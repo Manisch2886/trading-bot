@@ -1,0 +1,21 @@
+# Virtuelle Umgebung
+trading-env/
+
+# Sensible Konfigurationsdateien (enthalten Keys im Klartext)
+config/email_config.py
+shared/fetch_binance_data.py
+
+# Sonstige mögliche Secrets
+.env
+*.env
+
+# Logs und Datenbanken
+logs/
+*.log
+*.db
+*.sqlite
+
+# System
+.DS_Store
+__pycache__/
+*.pyc
