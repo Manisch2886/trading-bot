@@ -1,0 +1,4 @@
+bot,start_kapital,end_kapital,rendite_pct,max_drawdown_pct
+Elliott Wave (Aktien),16820.81,24882.76,47.93,-1.25
+"RSI-2 Mean-Reversion (Aktien, Prototyp)",9007.62,8143.15,-9.6,-9.93
+"Volatility Breakout (Aktien, Prototyp, neu)",12222.42,11978.2,-2.0,-3.64
