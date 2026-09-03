@@ -1,0 +1,7 @@
+sma_trend_period,rsi_threshold,stop_loss_pct,num_trades,num_symbols,win_rate,total_return_pct,avg_return_pct,avg_holding_days,max_drawdown_pct,robustness_score
+150,10.0,kein Stop,439,18,63.3,410.48,0.94,4.0,-57.89,0.34
+200,5.0,kein Stop,227,18,63.4,215.42,0.95,3.9,-55.92,0.256
+150,5.0,kein Stop,215,18,63.7,207.72,0.97,3.8,-65.74,0.216
+100,10.0,kein Stop,448,20,62.1,272.63,0.61,4.0,-69.29,0.186
+200,10.0,kein Stop,464,18,61.6,203.49,0.44,4.1,-102.63,0.092
+100,5.0,kein Stop,205,20,61.0,108.35,0.53,3.9,-87.24,0.087
