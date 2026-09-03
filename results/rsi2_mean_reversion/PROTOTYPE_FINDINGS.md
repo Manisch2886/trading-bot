@@ -277,4 +277,90 @@ python3 strategies/rsi2_mean_reversion/pipeline_report.py
 python3 strategies/rsi2_mean_reversion/portfolio_correlation_analysis.py
 python3 strategies/rsi2_mean_reversion/experiment_position_size_limit.py
 python3 strategies/rsi2_mean_reversion/correlation_robustness_check.py
+python3 strategies/rsi2_mean_reversion/experiment_signal_quality_and_priority.py
 ```
+
+---
+
+## 9. Gezielte Diagnose des Kernproblems: Signal-Qualität vs. Kapitalmanagement
+
+Statt weiterer Parameterwerte zwei gezielte Diagnosen des Kernbefunds aus
+Abschnitt 4 (bis zu 65% der gefundenen Trades werden bei Limit 8
+übersprungen). `experiment_signal_quality_and_priority.py`, feste Parameter
+RSI<5, kein Stop.
+
+### 9a. Signal-Qualitäts-Test (Timing-Nutzen vs. Kapitalmanagement-Nutzen)
+
+Vergleich (a) tatsächlich mit Kapital versorgte Trades (10% Allokation,
+Limit 8 - ursprünglicher validierter Startpunkt) gegen (b) ALLE gefundenen
+Signale unabhängig von Kapitalverfügbarkeit gegen (c) eine rein
+diagnostische "unbegrenztes Kapital"-Simulation (jedes Signal bekommt
+sofort 10% des aktuellen Kapitals, kein Limit — **kein Live-Vorschlag,
+unrealistisches Leverage**):
+
+| | Gesamtzeitraum | Out-of-Sample |
+|---|---|---|
+| (a) Ausgeführt (Limit 8, 10%): n, Win Rate, Ø PnL | 2.641 / 63,3% / **0,113%** | 887 / 63,9% / **0,354%** |
+| (b) Alle gefundenen Signale: n, Win Rate, Ø PnL | 5.391 / 64,5% / **0,229%** | 1.718 / 66,0% / **0,5%** |
+| Differenz Ø PnL (a − b) | **-0,116 Prozentpunkte** | **-0,146 Prozentpunkte** |
+| (c) Portfolio bei unbegrenztem Kapital | +185,72% (DD -50,12%) | +126,80% (DD -12,36%) |
+| Zum Vergleich: reales Portfolio (a) | +29,91% (DD -21,82%) | +35,01% (DD -11,44%) |
+
+**Befund geht über die ursprüngliche Hypothese hinaus.** Die Portfolio-Differenz
+zwischen real (a) und unbegrenzt (c) ist riesig (+29,91%→+185,72% Gesamtzeitraum,
++35,01%→+126,80% OOS) — das bestätigt klar: **Kapitalmanagement ist der
+dominante Flaschenhals**, nicht die Signalqualität selbst. Zusätzlicher,
+nicht erwarteter Befund: Die tatsächlich ausgeführten Trades sind im
+Schnitt sogar **leicht schlechter** als die Gesamtpopulation aller
+gefundenen Signale (-0,116/-0,146 Prozentpunkte), nicht nur eine zufällige
+Stichprobe davon. Der chronologische "wer zuerst kommt, kriegt Kapital"-
+Mechanismus wählt also nicht neutral aus — plausible Erklärung: Phasen mit
+vielen gleichzeitigen Signalen (breite Marktbewegungen) erschöpfen das
+Kapital schneller, sodass gerade dort viele Signale übersprungen werden,
+während in ruhigeren Phasen mit wenig Konkurrenz praktisch jedes Signal
+durchkommt — unabhängig davon, ob "viele gleichzeitige Signale" im Schnitt
+bessere oder schlechtere Trades sind.
+
+### 9b. Signal-Priorisierung bei Kapital-Konkurrenz
+
+Bei mehreren Signalen am selben Tag: aktuelle (chronologisch/alphabetisch
+nach Symbol) vs. RSI-priorisiert (niedrigster RSI(2)-Wert bekommt zuerst
+Kapital), bei der zuletzt validierten Kombination (5% Allokation, Limit 20):
+
+| | Gesamtzeitraum | Out-of-Sample |
+|---|---|---|
+| Aktuell (chronologisch) | +36,75% (DD -21,05%), 4.232/1.159 | +35,97% (DD -5,22%), 1.415/303 |
+| RSI-priorisiert | +36,20% (DD -19,53%), 4.218/1.173 | +34,97% (DD -5,10%), 1.415/303 |
+
+**Befund: kein relevanter Unterschied.** Beide Varianten liegen innerhalb
+von unter 1 Prozentpunkt Rendite-Differenz, Drawdown minimal unterschiedlich
+in beide Richtungen — im Rauschen. Bestätigt indirekt den Befund aus 9a: Es
+kommt auf die **Menge** des verfügbaren Kapitals an (Allokations-%/Limit),
+nicht darauf, **welches** der konkurrierenden Signale die knappen
+Kapitalplätze bekommt. Eine Priorisierungs-Logik allein löst das
+Kernproblem nicht.
+
+### 9c. Einordnung: Diversifikations-Trade-off (wie angefragt)
+
+Explizit geprüft, ob die 5%/Limit-20-Verbesserung (aus Abschnitt 6, bereits
+validiert) RSI-2s Wert genau in der 2022-Stress-Periode (siehe Abschnitt
+7b) abschwächt — RSI-2s Diversifikationsbeitrag kam bisher gerade daher,
+dass es dort verlor, während die anderen Bots dort am stärksten liefen:
+
+| Konfiguration | 2022-Rendite | 2022-Max-Drawdown |
+|---|---|---|
+| Original (10% Allokation, Limit 8) | -10,83% | -11,24% |
+| Verbessert (5% Allokation, Limit 20) | **-9,25%** | **-10,49%** |
+
+**Ergebnis: Der Diversifikations-Effekt bleibt erhalten, wird sogar leicht
+begünstigt statt abgeschwächt.** Unter der kapitaleffizienteren Konfiguration
+verliert RSI-2 in der Stress-Periode 2022 etwas **weniger** (-9,25% statt
+-10,83%), nicht mehr — RSI-2 bleibt weiterhin klar negativ in genau der
+Phase, in der die anderen Bots (Elliott Wave Aktien +81,44%, Elliott Wave
+Krypto +21,20%, siehe Abschnitt 7b) am stärksten waren. Die
+Diversifikationswirkung aus Abschnitt 7 ist also mit der getesteten
+Kapital-Verbesserung kompatibel, keine gegenläufige Wirkung. Weder 9a noch
+9b (reine Diagnose bzw. kein messbarer Effekt) berühren den
+Diversifikations-Trade-off zusätzlich.
+
+Rohdaten: `experiment_signal_priority_full.csv`, `experiment_signal_priority_oos.csv`.
