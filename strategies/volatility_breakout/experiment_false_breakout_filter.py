@@ -1,0 +1,67 @@
+"""
+Test: Volumen-Bestaetigungsfilter gegen Fehlausbrueche
+================================================================
+Vergleicht die Basis-Regel (kein Filter) gegen den vorgeschlagenen
+Volumen-Filter (Ausbruchstag-Volumen >= 1.5x 20-Tage-Durchschnitt) - Win
+Rate, Ø PnL, Trade-Anzahl, Gesamtzeitraum UND Out-of-Sample. Wird NUR dann
+als Standard empfohlen, wenn er die Win Rate spuerbar verbessert (wie
+angefragt, nicht blind eingebaut).
+"""
+
+import pandas as pd
+
+from multi_symbol_optimise import load_all_symbol_data
+from multi_symbol_walk_forward import split_all_symbols, TRAIN_SPLIT_RATIO
+from equity_simulation import collect_all_trades, simulate_portfolio, calculate_max_drawdown, \
+    STARTING_CAPITAL, ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS, STOP_LOSS_PCT
+from pipeline_report import collect_trades_windowed
+
+
+def stats(trades: pd.DataFrame, label: str) -> dict:
+    if trades.empty:
+        return {"variante": label, "n": 0}
+    win_rate = round((trades["pnl_pct"] > 0).mean() * 100, 1)
+    avg_pnl = round(trades["pnl_pct"].mean(), 2)
+
+    result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS)
+    total_return_pct = round((result["final_capital"] / STARTING_CAPITAL - 1) * 100, 2)
+    max_dd = calculate_max_drawdown(result["equity_curve"], STARTING_CAPITAL)
+
+    return {
+        "variante": label, "n": len(trades), "win_rate_pct": win_rate, "avg_pnl_pct": avg_pnl,
+        "portfolio_final_capital": result["final_capital"], "portfolio_return_pct": total_return_pct,
+        "trades_ausgefuehrt": result["num_executed"], "trades_uebersprungen": result["num_skipped"],
+        "max_drawdown_pct": max_dd,
+    }
+
+
+if __name__ == "__main__":
+    all_data = load_all_symbol_data()
+    train_data, test_data = split_all_symbols(all_data, TRAIN_SPLIT_RATIO)
+
+    print("=" * 90)
+    print("GESAMTZEITRAUM")
+    print("=" * 90)
+    trades_no_filter = collect_all_trades(all_data, STOP_LOSS_PCT, use_volume_filter=False)
+    trades_with_filter = collect_all_trades(all_data, STOP_LOSS_PCT, use_volume_filter=True)
+    full_rows = [
+        stats(trades_no_filter, "Ohne Volumen-Filter (Basis-Regel)"),
+        stats(trades_with_filter, "Mit Volumen-Filter (>=1.5x 20T-Durchschnitt)"),
+    ]
+    print(pd.DataFrame(full_rows).to_string(index=False))
+
+    print("\n" + "=" * 90)
+    print("OUT-OF-SAMPLE")
+    print("=" * 90)
+    trades_oos_no_filter = collect_trades_windowed(test_data, STOP_LOSS_PCT, use_volume_filter=False)
+    trades_oos_with_filter = collect_trades_windowed(test_data, STOP_LOSS_PCT, use_volume_filter=True)
+    oos_rows = [
+        stats(trades_oos_no_filter, "Ohne Volumen-Filter (Basis-Regel)"),
+        stats(trades_oos_with_filter, "Mit Volumen-Filter (>=1.5x 20T-Durchschnitt)"),
+    ]
+    print(pd.DataFrame(oos_rows).to_string(index=False))
+
+    win_rate_diff_full = full_rows[1]["win_rate_pct"] - full_rows[0]["win_rate_pct"]
+    win_rate_diff_oos = oos_rows[1]["win_rate_pct"] - oos_rows[0]["win_rate_pct"]
+    print(f"\nWin-Rate-Differenz (mit Filter - ohne Filter): "
+          f"Gesamtzeitraum {win_rate_diff_full:+.1f}pp, OOS {win_rate_diff_oos:+.1f}pp")
