@@ -113,17 +113,67 @@ also kein Nullsummenspiel, sondern verstärkt sich gegenseitig.
 
 ---
 
+## 4. Vertiefung vor Entscheidung: Kapitalallokation, Exit-Logik, Concurrency
+
+Auf Nutzerwunsch vor der Entscheidung genauer geklärt (`experiment_concurrency_stats.py`):
+
+**Kein simuliertes Leverage möglich.** `simulate_portfolio` (`equity_simulation.py`)
+berechnet `allocation = capital * allocation_pct` (10% des *aktuellen
+Gesamtkapitals*) und führt einen Entry nur aus, wenn `allocation <=
+free_capital`. Das begrenzt die gebundene Kapitalsumme implizit auf ≤100% des
+Kapitals — bei "unbegrenztem" Positionslimit werden also nicht beliebig viele
+Positionen gleichzeitig eröffnet, sondern die 10%-Allokation selbst wirkt als
+natürliche Obergrenze von rechnerisch ~10 Positionen.
+
+**Exit ohne Take-Profit:** Nur zwei Wege — Stop-Loss oder Zeit-Exit nach
+`MAX_HOLD_HOURS` (90 Handelstage) zum Schlusskurs des letzten Balkens. Kein
+Gegensignal-Exit (`backtest_elliott.py`, `simulate_trade`).
+
+**Tatsächliche Concurrency, "ohne Take-Profit"-Varianten (gemessen bei jedem Entry-Event):**
+
+| Variante | Ø offene Positionen | Median | Maximum | Ø Kapitalauslastung | Max. Kapitalauslastung |
+|---|---|---|---|---|---|
+| mit TP, Limit 8 (live) | 2,88 | 2 | 8 | 28,6% | 80,0% |
+| ohne TP, Limit 8 | 5,72 | 6 | 8 | 56,1% | 81,4% |
+| **ohne TP, unbegrenzt** | **6,70** | **7** | **11** | **65,4%** | **100,0%** |
+
+"Unbegrenzt" bedeutet in der Praxis also **maximal 11 statt 8 gleichzeitig
+offene Positionen** (im Schnitt ~7) — nicht 15+ oder tatsächlich unbeschränkt.
+Der Renditeunterschied zu Limit 8 kommt daher, dass in seltenen Phasen mit
+9–11 gleichzeitigen Signalen (bei "ohne TP" häufiger als bei "mit TP", da
+Positionen länger offen bleiben) diese zusätzlichen Trades nicht mehr am
+Limit scheitern.
+
+**⚠️ Wichtiger Zusatzbefund — `forward_test.py` (Live-Skript) unterstützt
+aktuell keine der beiden Änderungen:**
+- Kein `USE_TAKE_PROFIT`-Schalter: `target_price` wird immer gesetzt und
+  immer geprüft (Zeilen ~170, ~111) — ein reiner `live_params.py`-Wertewechsel
+  hätte hier keine Wirkung.
+- `MAX_CONCURRENT_POSITIONS = None` würde bei `if open_count >=
+  MAX_CONCURRENT_POSITIONS:` (Zeile ~155) einen `TypeError` auslösen und den
+  Cronjob abbrechen lassen.
+
+Eine Übernahme braucht also zusätzlich zu `live_params.py` eine kleine
+Anpassung in `forward_test.py` (Take-Profit-Schalter ergänzen, `None`-Fall
+beim Limit behandeln) — sonst weicht das Live-Verhalten vom getesteten
+Backtest-Verhalten ab bzw. der Cronjob bricht ab.
+
+---
+
 ## Empfehlung (zur Entscheidung, nicht automatisch übernommen)
 
 Alle drei getesteten Varianten zeigen ein konsistentes Out-of-Sample-Signal
 (Prinzip aus Protokoll Abschnitt 7.1: OOS zählt am meisten). Die stärkste
 Variante ist die Kombination **kein Take-Profit + unbegrenztes Positionslimit**
-— bestes Rendite-Ergebnis auf beiden Zeiträumen, Drawdown steigt gegenüber
-dem aktuellen Live-Stand deutlich (-1,9%→-10,7% Gesamtzeitraum bzw.
--1,65%→-4,97% OOS), bleibt aber in beiden Fällen weit unter dem
-Buy-and-Hold-Risiko. `live_params.py` wurde bewusst **nicht** verändert —
-das bleibt wie im Protokoll (Abschnitt 8) festgelegt ein manueller
-Freigabe-Schritt. Rohdaten liegen als CSV in diesem Ordner:
+(praktisch: max. 11 statt 8 Positionen) — bestes Rendite-Ergebnis auf beiden
+Zeiträumen, Drawdown steigt gegenüber dem aktuellen Live-Stand deutlich
+(-1,9%→-10,7% Gesamtzeitraum bzw. -1,65%→-4,97% OOS), bleibt aber in beiden
+Fällen weit unter dem Buy-and-Hold-Risiko. Kein simuliertes Leverage in
+keinem der Fälle (siehe Abschnitt 4). `live_params.py` **und**
+`forward_test.py` wurden bewusst **nicht** verändert — das bleibt wie im
+Protokoll (Abschnitt 8) festgelegt ein manueller Freigabe-Schritt, und
+`forward_test.py` braucht ohnehin eine eigene Anpassung (siehe Abschnitt 4).
+Rohdaten liegen als CSV in diesem Ordner:
 `experiment_position_limit_full.csv`, `experiment_position_limit_oos.csv`,
 `experiment_no_take_profit_full.csv`, `experiment_no_take_profit_oos.csv`,
 `experiment_combined_full.csv`, `experiment_combined_oos.csv`.
