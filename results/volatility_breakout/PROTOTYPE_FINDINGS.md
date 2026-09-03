@@ -317,3 +317,122 @@ werden, dass Volatility Breakout in einem 2022-artigen, mehrmonatigen
 Bärenmarkt der mit Abstand größte Einzelrisikotreiber im Portfolio wäre —
 unabhängig davon, wie das Kapitalmanagement innerhalb des Bots selbst
 konfiguriert ist.
+
+## 11. Kapitalmanagement-Tuning (analog zur RSI-2-Vorgehensweise)
+
+Reine Analyse, weiterhin nichts live geschaltet. Nach Klärung des
+Risikoprofils (Abschnitt 10) wie angekündigt: derselbe Kapitalmanagement-
+Test wie bei RSI-2, mit demselben Ausgangsverdacht (Kapitalmanagement, nicht
+Signalqualität, ist der dominante Flaschenhals bei 73% Skip-Rate).
+
+### 11a. Signal-Qualitäts-Test
+
+Vergleich (a) tatsächlich ausgeführte Trades (Limit 8, 10% Allokation) vs.
+(b) alle gefundenen Signale vs. (c) rein diagnostische
+"unbegrenztes Kapital"-Simulation (kein Live-Vorschlag):
+
+| | (a) Ausgeführt (Limit 8) | (b) Alle Signale | (c) Kapital unbegrenzt (Portfolio) |
+|---|---|---|---|
+| Gesamtzeitraum | n=1236, Win Rate 53,8%, Ø PnL 0,782% | n=4510, Win Rate 53,9%, Ø PnL 0,702% | +1088,99% (DD −38,34%) |
+| Out-of-Sample | n=385, Win Rate 56,4%, Ø PnL 1,54% | n=1334, Win Rate 54,6%, Ø PnL 1,09% | +249,03% (DD −20,64%) |
+
+Differenz Ø PnL (ausgeführt − alle gefunden): **Gesamtzeitraum +0,080pp, OOS
++0,450pp.**
+
+**Wichtiger Unterschied zu RSI-2:** Bei RSI-2 waren die ausgeführten Trades
+im Schnitt leicht SCHLECHTER als die Gesamtpopulation (chronologische
+Auswahl wählte nicht neutral). Bei Volatility Breakout ist es umgekehrt —
+die ausgeführten Trades sind sogar leicht BESSER. Der Kapital-Flaschenhals
+bestätigt sich trotzdem klar als dominanter Faktor: die reale
+Portfolio-Rendite (+142,06%/+74,54%) liegt weit unter der hypothetischen
+Kapital-unbegrenzt-Rendite (+1088,99%/+249,03%, jeweils Faktor ~7,7×/3,3×)
+— **Kapitalmanagement, nicht Signalqualität, ist auch hier der dominante
+Flaschenhals**, mit sogar noch größerem Hebel als bei RSI-2.
+
+### 11b. Positionsgröße × Limit-Matrix
+
+Feste Parameter: 8% Stop-Loss, 15 Handelstage Zeit-Exit. 16 Kombinationen
+(10%/5%/3%/2% × Limit 8/15/20/unbegrenzt) getestet, Gesamtzeitraum und OOS:
+
+| Allokation | Limit | Rendite (Gesamt) | Max DD (Gesamt) | Rendite (OOS) | Max DD (OOS) |
+|---|---|---|---|---|---|
+| **10%** | **15/20/unbegrenzt (identisch)** | **+224,41%** | **−23,97%** | **+93,18%** | **−12,53%** |
+| 10% | 8 (Basis) | +142,06% | −22,39% | +74,54% | −10,53% |
+| 5% | 20/unbegrenzt (identisch) | +157,47% | −15,71% | +55,75% | −10,13% |
+| 3% | unbegrenzt | +99,73% | −10,22% | +39,06% | −6,65% |
+| 2% | unbegrenzt | +75,36% | −7,10% | +32,09% | −4,48% |
+
+(Vollständige 16-Zeilen-Matrix in
+`results/volatility_breakout/experiment_position_size_limit_{full,oos}.csv`.)
+
+**Beste gefundene Kombination: 10% Allokation, Limit ≥15** (Limit 15, 20 und
+unbegrenzt liefern identische Ergebnisse — bei 10% Allokation sättigt das
+Kapital von selbst bei rund 10 gleichzeitigen Positionen, ein höheres Limit
+hat keinen zusätzlichen Effekt). Gegenüber der Basiskonfiguration (Limit 8):
+Rendite steigt deutlich (+82,35pp Gesamtzeitraum, +18,64pp OOS), Max Drawdown
+steigt nur leicht (+1,58pp Gesamtzeitraum, +2,00pp OOS) — genau der
+gesuchte Punkt, an dem die Rendite noch spürbar steigt, ohne dass der
+Drawdown explodiert. Anders als bei RSI-2 (wo 5%/Limit 20 die 10%-Variante
+im Gesamtzeitraum bei Rendite UND Drawdown strikt dominierte) gibt es hier
+einen echten Rendite/Risiko-Trade-off: 5% Allokation liefert weniger Rendite
+bei geringerem Drawdown, 10% mehr Rendite bei etwas höherem Drawdown — keine
+strikte Dominanz einer Allokationsgröße.
+
+### 11c. 2022-Stress-Periode unter der besten Konfiguration
+
+| Konfiguration | Rendite 2022 | Max DD 2022 |
+|---|---|---|
+| Basis (10% Allokation, Limit 8) | −13,14% | −22,39% |
+| **Beste Kombination (10% Allokation, Limit 15)** | **−12,94%** | **−23,97%** |
+
+**Befund: der 2022-Schwachpunkt bleibt strukturell nahezu unverändert** —
+Rendite marginal besser (−13,14%→−12,94%), Max Drawdown sogar leicht
+schlechter (−22,39%→−23,97%, mehr gebundenes Kapital durch die höhere
+Kapitalauslastung verstärkt den Drawdown geringfügig). Das bestätigt die in
+Abschnitt 10 aufgestellte Erwartung: die False-Breakout-Rate im 2022-Fenster
+(35,9%, mehr als doppelt so hoch wie der historische Basiswert von 17,8%)
+ist eine Eigenschaft der SIGNALE während dieser Marktphase, nicht der
+Kapitalauslastung — kein Kapitalmanagement-Hebel kann eine
+Signalqualitäts-Schwäche kompensieren, die genau in dieser Phase auftritt.
+
+### 11d. Zusammenfassung aller getesteten Konfigurationen (sortiert nach OOS-Rendite)
+
+| Allokation | Limit | Rendite Gesamt | DD Gesamt | Rendite OOS | DD OOS | Rendite 2022 | DD 2022 |
+|---|---|---|---|---|---|---|---|
+| **10%** | **15/20/∞** | **+224,41%** | **−23,97%** | **+93,18%** | **−12,53%** | **−12,94%** | **−23,97%** |
+| 10% | 8 (Basis) | +142,06% | −22,39% | +74,54% | −10,53% | −13,14% | −22,39% |
+| 5% | 20/∞ | +157,47% | −15,71% | +55,75% | −10,13% | −10,03% | −15,71% |
+| 5% | 15 | +106,98% | −15,41% | +45,21% | −9,00% | −8,54% | −15,26% |
+| 3% | ∞ | +99,73% | −10,22% | +39,06% | −6,65% | −5,61% | −9,77% |
+| 5% | 8 | +58,80% | −11,73% | +33,27% | −5,38% | −6,52% | −11,73% |
+| 3% | 20 | +78,30% | −9,85% | +32,27% | −6,42% | −5,50% | −9,85% |
+| 2% | ∞ | +75,36% | −7,10% | +32,09% | −4,48% | −0,80% | −4,95% |
+| 3% | 15 | +56,53% | −9,45% | +25,66% | −5,49% | −5,04% | −9,36% |
+| 2% | 20 | +47,85% | −6,64% | +20,76% | −4,32% | −3,62% | −6,64% |
+| 3% | 8 | +32,64% | −7,17% | +19,06% | −3,26% | −3,90% | −7,17% |
+| 2% | 15 | +35,34% | −6,36% | +16,63% | −3,69% | −3,32% | −6,31% |
+| 2% | 8 | +20,92% | −4,82% | +12,42% | −2,18% | −2,59% | −4,82% |
+
+(Vollständige Tabelle inkl. Trade-Anzahl in
+`results/volatility_breakout/capital_management_summary.csv`.)
+
+**Beobachtung am Rand:** 2% Allokation/unbegrenzt zeigt mit Abstand die
+mildeste 2022-Performance (−0,80%/−4,95% DD) — aber auch die zweitniedrigste
+Gesamtrendite. Das ist kein Widerspruch zu 11c: bei sehr kleiner
+Positionsgröße wird trotz mehr gleichzeitig offener Positionen (4249
+ausgeführte Trades statt 1236) das gebundene Kapital pro Position so klein,
+dass selbst eine erhöhte False-Breakout-Rate kaum noch spürbar wird — ein
+reiner Verwässerungseffekt (weniger Rendite generell), keine echte
+Verbesserung der Signalqualität in der Stressphase.
+
+### 11e. Empfehlung
+
+**10% Allokation, Limit ≥15** ist die im Gesamtzeitraum UND Out-of-Sample
+beste gefundene Kombination und wird als Kandidat für eine spätere
+Live-Entscheidung festgehalten — mit der ausdrücklichen Einordnung aus
+Abschnitt 10/11c: diese Optimierung verbessert die Rendite in normalen
+Marktphasen deutlich, mildert aber die spezifische 2022-artige
+Bärenmarkt-Schwäche nicht. Wie bei RSI-2 schließt auch die beste gefundene
+Kapitalmanagement-Kombination die Lücke zu Buy-and-Hold (+776,24%) nicht
+vollständig (+224,41% Gesamtzeitraum), verbessert die Bot-eigene Performance
+aber erheblich gegenüber der ursprünglichen Limit-8-Basiskonfiguration.
