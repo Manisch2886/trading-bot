@@ -1,0 +1,7 @@
+rsi_threshold,stop_loss_pct,final_capital,total_return_pct,trades_ausgefuehrt,trades_uebersprungen,max_drawdown_pct
+5.0,kein Stop,13501.36,35.01,887,831,-11.44
+5.0,5.0,12634.01,26.34,1048,750,-10.5
+5.0,8.0,12514.77,25.15,938,803,-13.86
+10.0,kein Stop,15068.2,50.68,1205,2139,-8.26
+10.0,5.0,13464.39,34.64,1460,2084,-13.34
+10.0,8.0,14294.84,42.95,1297,2103,-11.24

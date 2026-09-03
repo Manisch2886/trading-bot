@@ -1,0 +1,151 @@
+"""
+Phase 3 - Equity-Kurven-Simulation (realistisches Portfolio): RSI-2
+========================================================================
+Identisches Prinzip wie bei den drei bestehenden Bots (siehe z.B.
+elliott_wave_stocks/equity_simulation.py): event-basierte Simulation mit
+festem Startkapital, prozentualer Positionsgroesse und Positionslimit.
+Bewusst als eigenstaendige Kopie gehalten (nicht cross-strategy importiert),
+konsistent mit dem Unabhaengigkeits-Prinzip der Architektur
+(shared/strategy_paths.py-Kommentar: "neue Strategie hinzufuegen = Ordner
+kopieren, keine Shared-Code-Aenderung noetig").
+"""
+
+import os
+import sys
+import pandas as pd
+
+_STRATEGY_DIR = os.path.dirname(os.path.abspath(__file__))
+_SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "shared")
+sys.path.insert(0, _SHARED_DIR)
+
+from strategy_paths import get_strategy_paths
+_P = get_strategy_paths(__file__)
+RESULTS_DIR = _P["RESULTS_DIR"]
+
+from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
+
+STARTING_CAPITAL = 10_000.0
+ALLOCATION_PCT = 0.10
+MAX_CONCURRENT_POSITIONS = 8  # identisch zum Live-Stand des Elliott-Wave-Aktien-Bots, fuer fairen Vergleich
+
+# Platzhalter-Parameter fuer den direkten Skriptaufruf (__main__) - die
+# eigentliche Auswahl der besten Kombination erfolgt ueber
+# multi_symbol_walk_forward.py, siehe run_from_walk_forward_best() unten.
+RSI_THRESHOLD = 5.0
+STOP_LOSS_PCT = None
+
+
+def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: float) -> pd.DataFrame:
+    all_trades = []
+    for symbol, (df_ind, entry_cutoff) in all_data.items():
+        trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct)
+        if not trades.empty:
+            trades = trades.copy()
+            trades["symbol"] = symbol
+            all_trades.append(trades)
+
+    if not all_trades:
+        return pd.DataFrame()
+
+    combined = pd.concat(all_trades, ignore_index=True)
+    combined["entry_time"] = pd.to_datetime(combined["entry_time"])
+    combined["exit_time"] = pd.to_datetime(combined["exit_time"])
+    return combined.sort_values("entry_time").reset_index(drop=True)
+
+
+def simulate_portfolio(trades: pd.DataFrame, starting_capital: float,
+                        allocation_pct: float, max_concurrent_positions: int = None) -> dict:
+    """Unveraendert identische Logik zu den bestehenden Bots (siehe dortige
+    Kommentare zur Kapitalallokation und Positionslimit-Pruefung)."""
+    events = []
+    for idx, trade in trades.iterrows():
+        events.append((trade["entry_time"], "entry", idx))
+        events.append((trade["exit_time"], "exit", idx))
+    events.sort(key=lambda e: (e[0], e[1] != "exit"))
+
+    capital = starting_capital
+    open_positions = {}
+    skipped_trades = []
+    executed_trades = []
+    equity_curve = []
+
+    for time, event_type, idx in events:
+        trade = trades.loc[idx]
+
+        if event_type == "entry":
+            if max_concurrent_positions is not None and len(open_positions) >= max_concurrent_positions:
+                skipped_trades.append(idx)
+                continue
+
+            bound_capital = sum(open_positions.values())
+            free_capital = capital - bound_capital
+            allocation = capital * allocation_pct
+
+            if allocation > free_capital:
+                skipped_trades.append(idx)
+                continue
+
+            open_positions[idx] = allocation
+            executed_trades.append(idx)
+
+        elif event_type == "exit":
+            if idx not in open_positions:
+                continue
+            allocation = open_positions.pop(idx)
+            pnl_pct = trade["pnl_pct"]
+            result_value = allocation * (1 + pnl_pct / 100)
+            capital += (result_value - allocation)
+
+            equity_curve.append({
+                "time": time, "symbol": trade["symbol"], "pnl_pct": pnl_pct,
+                "allocation": round(allocation, 2), "capital_after": round(capital, 2),
+            })
+
+    equity_df = pd.DataFrame(equity_curve)
+    return {
+        "final_capital": round(capital, 2),
+        "num_executed": len(executed_trades),
+        "num_skipped": len(skipped_trades),
+        "equity_curve": equity_df,
+    }
+
+
+def calculate_max_drawdown(equity_df: pd.DataFrame, starting_capital: float) -> float:
+    if equity_df.empty:
+        return 0.0
+    capital_series = pd.concat([pd.Series([starting_capital]), equity_df["capital_after"]], ignore_index=True)
+    running_max = capital_series.cummax()
+    drawdown_pct = (capital_series - running_max) / running_max * 100
+    return round(drawdown_pct.min(), 2)
+
+
+if __name__ == "__main__":
+    all_data = load_all_symbol_data()
+    if not all_data:
+        print("Keine Daten gefunden.")
+        exit()
+
+    trades = collect_all_trades(all_data, RSI_THRESHOLD, STOP_LOSS_PCT)
+    if trades.empty:
+        print("Keine Trades fuer diese Parameter-Kombination gefunden.")
+        exit()
+
+    print(f"{len(trades)} Trades ueber alle Symbole gefunden.\n")
+    result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS)
+
+    print("=" * 55)
+    print("PORTFOLIO-SIMULATION")
+    print("=" * 55)
+    print(f"Startkapital:            {STARTING_CAPITAL:,.2f}")
+    print(f"Endkapital:              {result['final_capital']:,.2f}")
+    total_return_pct = (result["final_capital"] / STARTING_CAPITAL - 1) * 100
+    print(f"Gesamtrendite:           {total_return_pct:.2f}%")
+    print(f"Ausgefuehrte Trades:     {result['num_executed']}")
+    print(f"Uebersprungene Trades:   {result['num_skipped']}")
+    max_dd = calculate_max_drawdown(result["equity_curve"], STARTING_CAPITAL)
+    print(f"Max Drawdown (Kapital):  {max_dd:.2f}%")
+
+    if not result["equity_curve"].empty:
+        output_path = os.path.join(RESULTS_DIR, "equity_curve.csv")
+        result["equity_curve"].to_csv(output_path, index=False)
+        print(f"\nGespeichert als: {output_path}")
