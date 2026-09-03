@@ -140,21 +140,134 @@ als grobe, backtest-basierte Ersteinschätzung (keine echten
 Forward-Test-Daten, hypothetische Gleichgewichtung, keine tatsächliche
 Kapitalallokation zwischen den eigenständigen Bots).
 
-## 6. Einordnung / offene Punkte für eine Entscheidung
+## 6. Nachfrage: Positionsgröße x Positionslimit (statt nur Limit)
+
+Hypothese aus der Rückfrage: Nicht das explizite Limit (8) ist der
+Flaschenhals, sondern die 10%-Kapitalallokation selbst (siehe Abschnitt 4 im
+Übergabeprotokoll-Kontext: bei fester Allokation deckelt sich die Anzahl
+gleichzeitig offener Positionen implizit auf ~1/Allokations-Anteil,
+unabhängig vom expliziten Limit). Matrix: Allokation 10%/5%/3% × Limit
+8/15/20/unbegrenzt, feste Parameter RSI<5, kein Stop
+(`experiment_position_size_limit.py`).
+
+**Gesamtzeitraum:**
+
+| Allokation | Limit | Endkapital | Rendite | Trades ausgef./übersprungen | Max DD |
+|---|---|---|---|---|---|
+| 10% | 8 | 12.991 | +29,91% | 2.641 / 2.750 | -21,82% |
+| 10% | 15/20/unbegrenzt (identisch) | 13.394 | +33,94% | 2.940 / 2.451 | -28,46% |
+| **5%** | **8** | 11.504 | +15,04% | 2.641 / 2.750 | -11,33% |
+| 5% | 15 | 12.691 | +26,91% | 3.752 / 1.639 | -18,48% |
+| **5%** | **20/unbegrenzt (identisch)** | **13.675** | **+36,75%** | 4.232 / 1.159 | -21,05% |
+| 3% | 8 | 10.901 | +9,01% | 2.641 / 2.750 | -6,90% |
+| 3% | 15 | 11.588 | +15,88% | 3.752 / 1.639 | -11,39% |
+| 3% | 20 | 12.335 | +23,35% | 4.271 / 1.120 | -12,71% |
+| 3% | unbegrenzt | 12.935 | +29,35% | 4.931 / 460 | -15,84% |
+
+**Out-of-Sample:**
+
+| Allokation | Limit | Endkapital | Rendite | Trades ausgef./übersprungen | Max DD |
+|---|---|---|---|---|---|
+| 10% | 8 | 13.501 | +35,01% | 887 / 831 | -11,44% |
+| **10%** | **15/20/unbegrenzt (identisch)** | **14.843** | **+48,43%** | 994 / 724 | -12,85% |
+| 5% | 8 | 11.659 | +16,59% | 887 / 831 | -5,78% |
+| 5% | 15 | 13.071 | +30,71% | 1.260 / 458 | -5,57% |
+| 5% | 20/unbegrenzt (identisch) | 13.597 | +35,97% | 1.415 / 303 | -5,22% |
+| 3% | 8 | 10.973 | +9,73% | 887 / 831 | -3,48% |
+| 3% | 15 | 11.760 | +17,60% | 1.260 / 458 | -3,35% |
+| 3% | 20 | 12.129 | +21,29% | 1.427 / 291 | -3,17% |
+| 3% | unbegrenzt | 12.560 | +25,60% | 1.623 / 95 | -4,82% |
+
+**Befund: Hypothese eindeutig bestätigt.** Bei 10% Allokation sind Limit 15,
+20 und unbegrenzt exakt IDENTISCH (Gesamt: 2.940/2.451 in allen drei
+Fällen) — die 10%-Kapitalallokation selbst deckelt bei ca. 10 gleichzeitigen
+Positionen, das explizite Limit wird ab 15 komplett wirkungslos. Dasselbe
+Muster bei 5% Allokation (Limit 20 = unbegrenzt, Deckelung bei ~20
+Positionen). Erst bei 3% Allokation macht das Limit bis "unbegrenzt" noch
+einen Unterschied (natürliche Deckelung bei ~33 Positionen).
+
+**Bestes Gesamtergebnis: 5% Allokation, Limit ≥20** — höhere Rendite als die
+10%-Variante (+36,75% vs. +33,94%) bei gleichzeitig kleinerem Drawdown
+(-21,05% vs. -28,46%). Out-of-Sample liefert dieselbe Kombination ein
+deutlich kleineres Risiko (-5,22% statt -12,85% DD) bei nur leicht
+geringerer Rendite (+35,97% vs. +48,43% bei 10%/unbegrenzt). Die
+übersprungenen Trades sinken massiv (Gesamt: von 2.750 auf 1.159 bei
+5%/≥20, auf nur noch 460 bei 3%/unbegrenzt). **Keine der getesteten
+Kombinationen schlägt jedoch Buy-and-Hold bei der Rendite** (weiterhin
++776%/+776% bzw. +138% OOS als Referenz aus Abschnitt 4) — die kleinere
+Allokation hilft dem Portfolio-Ergebnis spürbar, schließt die Lücke aber
+nicht vollständig.
+
+## 7. Nachfrage: Korrelationsanalyse robuster geprüft
+
+### 7a. Gemeinsame Handelstage (Aktivitäts-Überlappung)
+
+`correlation_robustness_check.py`, gemeinsames Fenster 2021-09-14 bis
+2026-06-27 (1.748 Tage):
+
+| Metrik | Wert |
+|---|---|
+| Tage mit ≥1 Bot mit Trade-Exit | 965 (55,2%) |
+| Tage mit ≥2 Bots GLEICHZEITIG | 279 (16,0%) |
+| Tage mit ≥3 Bots GLEICHZEITIG | 27 (1,5%) |
+| Tage mit ALLEN 4 Bots GLEICHZEITIG | 0 (0,0%) |
+
+Aktivitätsanteil je Bot: Elliott Wave Krypto 6,1%, T3/SuperTrend 20,8%,
+Elliott Wave Aktien 10,5%, RSI-2 35,4% der Tage.
+
+**Bestätigt die geäußerte Sorge teilweise:** Mit nur 16% der Tage mit
+Überlappung ≥2 Bots und 0% mit allen 4 gleichzeitig ist die
+"praktisch unkorreliert"-Aussage aus Abschnitt 5 tatsächlich zu einem
+guten Teil ein Effekt dünner, seltener Handelsaktivität — an über 80% der
+Tage bewegt sich höchstens ein Bot überhaupt, was eine niedrige gemessene
+Korrelation der täglichen Renditen mechanisch begünstigt, unabhängig davon,
+ob die Strategien "wirklich" unterschiedlich auf denselben Marktimpuls
+reagieren würden. Die Aktivitäts-Korrelation selbst ist überwiegend
+ebenfalls niedrig (-0,07 bis 0,02), mit einer Ausnahme: Elliott Wave Aktien
+und RSI-2 (beide Aktien-Bots) korrelieren mit 0,16 leicht positiv in ihren
+Handelstagen — beide reagieren auf ähnliche Aktienmarkt-Volatilität, auch
+wenn sie unterschiedlich handeln.
+
+### 7b. Verhalten während der Stress-Periode 2022 (Krypto-Winter/Zinserhöhungen)
+
+| Bot | Rendite 2022 | Max Drawdown 2022 |
+|---|---|---|
+| Elliott Wave (Krypto) | +21,20% | -0,23% |
+| T3/SuperTrend (Krypto) | -3,28% | **-12,28%** |
+| Elliott Wave (Aktien) | **+81,44%** | -0,63% |
+| RSI-2 Mean-Reversion (Aktien, neu) | **-10,83%** | -11,16% |
+| **Gleichgewichtete 4-Bot-Kombination** | **+22,13%** | **-1,01%** |
+
+**Das ist die deutlich aussagekräftigere Evidenz als die reine
+Korrelationszahl.** RSI-2 zeigt hier konkret genau die in der
+Kandidaten-Recherche vorab benannte Schwäche (Mean-Reversion in
+anhaltenden/volatilen Abwärtsphasen: -10,83% Rendite, -11,16% Drawdown) -
+und T3/SuperTrend leidet ebenfalls (Trendfolge in einem choppy/bärischen
+Kryptojahr: -3,28%, -12,28% DD). Gleichzeitig liefern die beiden anderen
+Bots in genau demselben Jahr ihre besten Ergebnisse (Elliott Wave Aktien
++81,44%, Elliott Wave Krypto +21,20%) - die schwachen und starken Phasen
+fallen zeitlich zusammen, aber bei UNTERSCHIEDLICHEN Bots. Die kombinierte
+Kurve bleibt dadurch bei nur -1,01% Drawdown während exakt der Periode, in
+der der schlechteste Einzel-Bot -12,28% verlor. Das ist eine konkrete,
+nicht nur statistische Bestätigung: RSI-2s bekannte Schwäche wurde durch
+die anderen drei Bots in genau diesem Zeitraum real ausgeglichen, nicht nur
+im Durchschnitt über die Gesamtperiode.
+
+## 8. Einordnung / offene Punkte für eine Entscheidung
 
 - **Trade-Level-Edge ist real und OOS-bestätigt** (Win Rate ~64-66%, Score
   verbessert sich OOS) — die Grundidee funktioniert.
-- **Portfolio-Level-Ergebnis bei fixem Limit 8 ist schwach** und schlägt
-  Buy-and-Hold nicht — der Engpass ist eindeutig die hohe
-  Signal-Überlappungsrate dieser Strategie, nicht die Signalqualität selbst.
-- **Naheliegender nächster Schritt** (noch nicht durchgeführt): Positionslimit
-  für RSI-2 separat empirisch testen (analog zu den Limit-Experimenten der
-  bestehenden Bots) - plausibel, dass ein deutlich höheres Limit hier nötig
-  ist, damit die Strategie ihren Edge tatsächlich entfalten kann.
-- **Drawdown-Diversifikation im 4-Bot-Verbund ist das stärkste Einzelergebnis**
-  dieses Prototyps und spricht klar für die Weiterverfolgung.
+- **Positionsgröße, nicht Limit, war der Haupt-Flaschenhals** (Abschnitt 6,
+  Hypothese bestätigt) — 5% Allokation mit Limit ≥20 verbessert Rendite UND
+  Drawdown gegenüber der ursprünglichen 10%/Limit-8-Kombination deutlich,
+  schließt die Lücke zu Buy-and-Hold aber nicht vollständig.
+- **Drawdown-Diversifikation im 4-Bot-Verbund bestätigt sich auch bei
+  genauerer Prüfung** (Abschnitt 7) — die rohe Korrelationszahl war teils
+  ein Aktivitäts-Artefakt, aber die konkrete Stress-Test-Periode 2022 zeigt
+  echten, zeitlich konkreten Ausgleich zwischen den Bots, keine Scheinkorrelation.
 - Kein Stop-Loss (Connors' Standardversion) bestätigt sich als die bessere
   Wahl gegenüber festen Stop-Werten.
+- Weiterhin **nichts live geschaltet** — alle Ergebnisse rein analytisch.
 
 Reproduzierbar mit:
 ```
@@ -162,4 +275,6 @@ python3 strategies/rsi2_mean_reversion/multi_symbol_optimise.py
 python3 strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py
 python3 strategies/rsi2_mean_reversion/pipeline_report.py
 python3 strategies/rsi2_mean_reversion/portfolio_correlation_analysis.py
+python3 strategies/rsi2_mean_reversion/experiment_position_size_limit.py
+python3 strategies/rsi2_mean_reversion/correlation_robustness_check.py
 ```
