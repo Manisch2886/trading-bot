@@ -1,0 +1,8 @@
+variante,trades_gefunden,trades_ausgefuehrt,trades_uebersprungen,final_capital,total_return_pct,max_drawdown_pct,avg_holding_days
+Baseline: kein Take-Profit (live seit 2026-09-03) - OOS,132,74,58,30365.78,203.66,-5.04,66.6
+Trailing 5% (ab Einstieg aktiv) - OOS,132,125,7,24282.95,142.83,-0.04,12.3
+Trailing 8% (ab Einstieg aktiv) - OOS,132,110,22,25584.19,155.84,-0.95,30.7
+Trailing 12% (ab Einstieg aktiv) - OOS,132,98,34,25441.82,154.42,-3.48,49.4
+Trailing 15% (ab Einstieg aktiv) - OOS,132,89,43,27166.37,171.66,-4.37,57.6
+Trailing 8% (aktiv erst ab +8% Gewinn) - OOS,132,110,22,25427.14,154.27,-1.4,30.8
+Trailing 12% (aktiv erst ab +10% Gewinn) - OOS,132,98,34,25441.82,154.42,-3.48,49.4

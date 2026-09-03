@@ -177,3 +177,95 @@ Rohdaten liegen als CSV in diesem Ordner:
 `experiment_position_limit_full.csv`, `experiment_position_limit_oos.csv`,
 `experiment_no_take_profit_full.csv`, `experiment_no_take_profit_oos.csv`,
 `experiment_combined_full.csv`, `experiment_combined_oos.csv`.
+
+---
+
+## 5. Trailing-Take-Profit (Folgeexperiment nach Live-Rollout von "kein Take-Profit")
+
+Stand: 2026-09-03. **Rein analytisch — `live_params.py` und `forward_test.py`
+wurden für dieses Experiment NICHT verändert.** Vergleicht den seit
+2026-09-03 live laufenden Stand (kein festes Take-Profit-Ziel, Positionslimit
+8) gegen einen nachziehenden Stop-Loss: Der Stop wandert mit dem seit
+Einstieg erreichten Kurshöchststand nach oben mit (fester Abstand X%
+darunter), der ursprüngliche feste Stop (3% unter Einstieg) bleibt aktiv, bis
+der Trailing-Stop ihn überholt. Implementiert in
+`experiment_trailing_take_profit.py` (eigene, von `backtest_elliott.py`
+unabhängige Simulationslogik, um die produktiv genutzten Backtest-Dateien
+nicht anzufassen). Positionslimit für alle Varianten fix bei 8, identisch
+zum Live-Stand, für einen fairen Vergleich.
+
+**Gesamtzeitraum:**
+
+| Variante | Trades ausgeführt | Endkapital | Rendite | Max DD | Ø Haltedauer (Tage) |
+|---|---|---|---|---|---|
+| Baseline: kein Take-Profit (live) | 288 | 318.409 | +3084,1% | -9,79% | 71,4 |
+| Trailing 5% (ab Einstieg) | 455 | 318.122 | +3081,2% | **-0,10%** | 13,3 |
+| Trailing 8% (ab Einstieg) | 411 | 307.729 | +2977,3% | -0,95% | 28,9 |
+| Trailing 12% (ab Einstieg) | 365 | 236.655 | +2266,6% | -3,48% | 46,9 |
+| Trailing 15% (ab Einstieg) | 331 | 287.971 | +2779,7% | -4,37% | 57,2 |
+| Trailing 8%, aktiv erst ab +8% Gewinn | 408 | **330.211** | **+3202,1%** | -1,40% | 30,0 |
+| Trailing 12%, aktiv erst ab +10% Gewinn | 365 | 236.655 | +2266,6% | -3,48% | 46,9 |
+
+**Out-of-Sample (letzte 30%, keine Re-Optimierung):**
+
+| Variante | Trades ausgeführt | Endkapital | Rendite | Max DD | Ø Haltedauer (Tage) |
+|---|---|---|---|---|---|
+| Baseline: kein Take-Profit (live) | 74 | 30.366 | **+203,7%** | -5,04% | 66,6 |
+| Trailing 5% (ab Einstieg) | 125 | 24.283 | +142,8% | **-0,04%** | 12,3 |
+| Trailing 8% (ab Einstieg) | 110 | 25.584 | +155,8% | -0,95% | 30,7 |
+| Trailing 12% (ab Einstieg) | 98 | 25.442 | +154,4% | -3,48% | 49,4 |
+| Trailing 15% (ab Einstieg) | 89 | 27.166 | +171,7% | -4,37% | 57,6 |
+| Trailing 8%, aktiv erst ab +8% Gewinn | 110 | 25.427 | +154,3% | -1,40% | 30,8 |
+| Trailing 12%, aktiv erst ab +10% Gewinn | 98 | 25.442 | +154,4% | -3,48% | 49,4 |
+
+### Beantwortung der drei Leitfragen
+
+**1. Gibt es eine Variante mit besserer Rendite UND geringerem Drawdown als der Live-Stand?**
+Im **Gesamtzeitraum** ja: "Trailing 8%, aktiv erst ab +8% Gewinn" schlägt die
+Baseline auf beiden Achsen (+3202% statt +3084% Rendite, -1,40% statt -9,79%
+Drawdown). **Out-of-Sample zeigt sich das genaue Gegenteil**: Dort ist die
+Baseline (kein Take-Profit) bei der Rendite die **beste** aller sieben
+Varianten (+203,7%), jede Trailing-Variante liegt OOS bei der Rendite
+darunter (142,8%–171,7%) — nur beim Drawdown bleiben die Trailing-Varianten
+OOS weiterhin klar überlegen. Es gibt also **keine** Variante, die OOS auf
+beiden Achsen gleichzeitig besser ist als die Baseline.
+
+**2. Ist der Effekt Out-of-Sample stabil?**
+**Nein, nicht bei der Rendite — die Rangfolge kehrt sich nahezu um.**
+Gesamtzeitraum-Rangfolge nach Rendite: Trailing 8%/+8%-Aktivierung >
+Baseline > Trailing 5% > Trailing 8% > Trailing 15% > Trailing 12%.
+Out-of-Sample-Rangfolge nach Rendite: **Baseline** > Trailing 15% >
+Trailing 8% > Trailing 12% > Trailing 8%/+8%-Aktivierung > **Trailing 5%**
+(im Gesamtzeitraum die Nummer 3, OOS die Nummer 6/letzte). Nach Prinzip 7.1
+des Übergabeprotokolls ("nur Out-of-Sample-Ergebnisse zählen für
+Entscheidungen") ist das ein klares Overfitting-Warnsignal (siehe auch
+Prinzip 7.7, Parameter-Instabilität) — die im Gesamtzeitraum vielversprechend
+wirkende Kombination ist auf ungesehenen Daten nicht die beste.
+**Stabil ist dagegen die Drawdown-Reduktion selbst**: Jede Trailing-Variante
+senkt den Drawdown sowohl im Gesamtzeitraum als auch OOS deutlich und in
+konsistenter Größenordnung gegenüber der Baseline — dieser Teil des Effekts
+ist robust, nur die Renditeseite nicht.
+
+**3. Wie verändert sich die durchschnittliche Haltedauer?**
+Deutlich kürzer, proportional zum Trailing-Abstand: von Ø 71,4 Tagen (Baseline,
+Gesamtzeitraum) auf 13,3 Tage (Trailing 5%) bis 57,2 Tage (Trailing 15%) —
+engere Trailing-Abstände realisieren Gewinne viel früher, was auch die
+Vermutung stützt, warum sie OOS bei starken, anhaltenden Trends (wie im
+OOS-Fenster 2023–2026) Rendite auf dem Tisch liegen lassen.
+
+### Einordnung
+
+Die "Trailing 8%, aktiv erst ab +8%"-Kombination sieht im Gesamtzeitraum wie
+der gesuchte Free-Lunch-Fall aus, hält dieser Prüfung Out-of-Sample aber
+**nicht** stand — nach der im Projekt etablierten Methodik (OOS zählt am
+meisten) ist das kein belastbarer Fund, sondern ein Beispiel für genau das
+Overfitting-Muster, vor dem Prinzip 7 warnt. Die robusteste, OOS-bestätigte
+Erkenntnis ist die **Drawdown-Reduktion** selbst: Wer bereit ist, auf einen
+Teil der Rendite zu verzichten (OOS ca. 143–172% statt 204%), kann den
+Drawdown mit einem Trailing-Stop deutlich (auf einstellige Prozentwerte)
+senken. Eine Variante, die "kostenlos" sowohl mehr Rendite als auch weniger
+Risiko liefert, wurde in dieser Matrix nicht gefunden. `live_params.py` und
+`forward_test.py` bleiben unverändert; keine Empfehlung zur Übernahme aus
+diesem Experiment. Rohdaten:
+`experiment_trailing_take_profit_full.csv`,
+`experiment_trailing_take_profit_oos.csv`.

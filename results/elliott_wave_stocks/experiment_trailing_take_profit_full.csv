@@ -1,0 +1,8 @@
+variante,trades_gefunden,trades_ausgefuehrt,trades_uebersprungen,final_capital,total_return_pct,max_drawdown_pct,avg_holding_days
+Baseline: kein Take-Profit (live seit 2026-09-03) - gesamt,519,288,231,318409.32,3084.09,-9.79,71.4
+Trailing 5% (ab Einstieg aktiv) - gesamt,519,455,64,318122.33,3081.22,-0.1,13.3
+Trailing 8% (ab Einstieg aktiv) - gesamt,519,411,108,307729.29,2977.29,-0.95,28.9
+Trailing 12% (ab Einstieg aktiv) - gesamt,519,365,154,236655.18,2266.55,-3.48,46.9
+Trailing 15% (ab Einstieg aktiv) - gesamt,519,331,188,287971.01,2779.71,-4.37,57.2
+Trailing 8% (aktiv erst ab +8% Gewinn) - gesamt,519,408,111,330211.27,3202.11,-1.4,30.0
+Trailing 12% (aktiv erst ab +10% Gewinn) - gesamt,519,365,154,236655.18,2266.55,-3.48,46.9
