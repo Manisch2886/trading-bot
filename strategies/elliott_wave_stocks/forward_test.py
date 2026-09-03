@@ -42,7 +42,7 @@ from fetch_stock_data import fetch_historical_data
 from zigzag_indicator import calculate_zigzag
 from elliott_wave_counter import find_impulse_waves, remove_overlapping
 from stocks_symbols_config import SYMBOLS
-from live_params import DEVIATION_PCT, STOP_LOSS_PCT, TAKE_PROFIT_FIB, MAX_CONCURRENT_POSITIONS
+from live_params import DEVIATION_PCT, STOP_LOSS_PCT, TAKE_PROFIT_FIB, MAX_CONCURRENT_POSITIONS, USE_TAKE_PROFIT
 
 INTERVAL = "1d"
 LOOKBACK_PERIOD = "3y"  # 3 Jahre Vorlauf fuer Tages-Kerzen - genug fuer stabile Wellenerkennung
@@ -108,7 +108,9 @@ def check_open_trades(conn, price_data: dict):
             if row["low"] <= trade["stop_price"]:
                 exit_row, result, exit_price = row, "stop_loss", trade["stop_price"]
                 break
-            if row["high"] >= trade["target_price"]:
+            # Take-Profit nur pruefen, wenn ueber live_params.py aktiviert - konsistent
+            # mit backtest_elliott.simulate_trade(use_take_profit=...)
+            if USE_TAKE_PROFIT and row["high"] >= trade["target_price"]:
                 exit_row, result, exit_price = row, "take_profit", trade["target_price"]
                 break
             if row["open_time"] >= max_exit_time:
@@ -207,7 +209,8 @@ def print_summary(conn):
 
 
 if __name__ == "__main__":
-    print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}\n")
+    print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}")
+    print(f"Take-Profit aktiv: {USE_TAKE_PROFIT}\n")
 
     conn = init_db()
 
