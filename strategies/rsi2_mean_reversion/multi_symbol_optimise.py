@@ -76,9 +76,10 @@ def load_all_symbol_data() -> dict:
 
 
 def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, rsi_threshold: float,
-                           stop_loss_pct: float) -> pd.DataFrame:
+                           stop_loss_pct: float, max_hold_days: int = None) -> pd.DataFrame:
+    kwargs = {} if max_hold_days is None else {"max_hold_days": max_hold_days}
     return run_backtest(df_ind, rsi_threshold=rsi_threshold, stop_loss_pct=stop_loss_pct,
-                         entry_cutoff=entry_cutoff)
+                         entry_cutoff=entry_cutoff, **kwargs)
 
 
 def calculate_robustness_score(row: dict) -> float:

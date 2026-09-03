@@ -35,10 +35,11 @@ RSI_THRESHOLD = 5.0
 STOP_LOSS_PCT = None
 
 
-def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: float) -> pd.DataFrame:
+def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: float,
+                        max_hold_days: int = None) -> pd.DataFrame:
     all_trades = []
     for symbol, (df_ind, entry_cutoff) in all_data.items():
-        trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct)
+        trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct, max_hold_days)
         if not trades.empty:
             trades = trades.copy()
             trades["symbol"] = symbol

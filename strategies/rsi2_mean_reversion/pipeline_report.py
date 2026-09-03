@@ -21,11 +21,12 @@ _P = get_strategy_paths(__file__)
 RESULTS_DIR = _P["RESULTS_DIR"]
 
 
-def collect_trades_windowed(windowed_data: dict, rsi_threshold: float, stop_loss_pct: float) -> pd.DataFrame:
+def collect_trades_windowed(windowed_data: dict, rsi_threshold: float, stop_loss_pct: float,
+                             max_hold_days: int = None) -> pd.DataFrame:
     from multi_symbol_optimise import get_trades_for_symbol
     all_trades = []
     for symbol, (df_ind, cutoff_start, cutoff_end) in windowed_data.items():
-        trades = get_trades_for_symbol(df_ind, cutoff_start, rsi_threshold, stop_loss_pct)
+        trades = get_trades_for_symbol(df_ind, cutoff_start, rsi_threshold, stop_loss_pct, max_hold_days)
         if cutoff_end is not None and not trades.empty:
             trades = trades[trades["entry_time"] < cutoff_end]
         if not trades.empty:

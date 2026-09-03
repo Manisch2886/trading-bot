@@ -364,3 +364,103 @@ Kapital-Verbesserung kompatibel, keine gegenläufige Wirkung. Weder 9a noch
 Diversifikations-Trade-off zusätzlich.
 
 Rohdaten: `experiment_signal_priority_full.csv`, `experiment_signal_priority_oos.csv`.
+
+---
+
+## 10. Weitere Hebel gegen den Kapital-Flaschenhals: feinere Allokation, kürzerer Zeit-Exit
+
+Aufbauend auf Abschnitt 9 (Kapitalmanagement ist der dominante Flaschenhals)
+zwei konkrete Hebel über den bisher besten Stand (5% Allokation, Limit 20)
+hinaus getestet: feinere Allokations-Abstufung und kürzerer Zeit-Exit.
+`experiment_capital_bottleneck_v2.py`. **Implementierungshinweis:**
+`MAX_HOLD_DAYS` wurde dafür als optionaler Parameter durch die gesamte
+Pipeline (`backtest_rsi2.py` → `multi_symbol_optimise.py` →
+`equity_simulation.py`/`pipeline_report.py`) durchgereicht, mit Standardwert
+10 (unverändertes Verhalten für alle bestehenden Aufrufe) — per Regressionstest
+gegen die bisherigen Ergebnisse bestätigt (identische Trade-Anzahl und
+Endkapital wie zuvor).
+
+### Aufgabe 1: Feinere Allokations-Abstufung (2% / 1,5% / 1%, Limit unbegrenzt)
+
+| Allokation | Gesamtzeitraum | OOS | 2022-Stress |
+|---|---|---|---|
+| **5% (Baseline, Limit 20)** | **+36,75%** (DD -21,05%) | +35,97% (DD -5,22%) | -9,25% (DD -10,49%) |
+| 2,0% (Limit unbegrenzt) | +24,21% (DD -11,37%) | +17,93% (DD -2,67%) | -5,35% (DD -6,02%) |
+| 1,5% (Limit unbegrenzt) | +20,17% (DD -8,15%) | +13,65% (DD -1,82%) | -4,08% (DD -4,59%) |
+| 1,0% (Limit unbegrenzt) | +12,94% (DD -5,87%) | +8,93% (DD -1,21%) | -2,73% (DD -3,07%) |
+
+**Befund: Weiter verkleinern hilft NICHT** — Rendite fällt monoton mit
+sinkender Allokation, deutlich unter die 5%-Baseline. 5% ist offenbar
+bereits ein lokales Optimum (bestätigt auch den früheren Befund aus
+Abschnitt 6, wo 3% bereits schwächer war als 5%) — kleinere Positionen
+fangen zwar fast alle Signale ein (bei 1% werden praktisch 0 Trades mehr
+übersprungen), aber jede einzelne Position trägt zu wenig zum
+Kapitalwachstum bei, um das aufzuwiegen. Der Weg zur "unbegrenztes
+Kapital"-Diagnosezahl aus Abschnitt 9a (+185,72%) führt NICHT über eine
+noch feinere Allokation.
+
+### Aufgabe 2: Zeit-Exit verkürzen (7 / 5 Handelstage statt 10, bei 5%/Limit 20)
+
+| Zeit-Exit | Gesamtzeitraum | OOS | 2022-Stress |
+|---|---|---|---|
+| **10 Tage (Baseline)** | **+36,75%** (DD -21,05%) | +35,97% (DD -5,22%) | -9,25% (DD -10,49%) |
+| 7 Tage | +23,19% (DD -22,73%) | +36,02% (DD -5,42%) | -9,53% (DD -10,72%) |
+| 5 Tage | +31,25% (DD -19,65%) | +35,94% (DD -5,54%) | -9,85% (DD -10,50%) |
+
+**Befund: ebenfalls keine Verbesserung.** Die OOS-Unterschiede sind
+verschwindend klein (±0,1 Prozentpunkte, Rauschen), aber im Gesamtzeitraum
+fällt die Rendite bei kürzerem Zeit-Exit deutlich ab (36,75%→23,19% bei
+7 Tagen). Die Anzahl übersprungener Trades sinkt zwar leicht (1.159→1.026
+bei 5 Tagen), aber deutlich weniger stark als durch eine kleinere
+Positionsgröße — das schnellere Freiwerden von Kapital reicht nicht annähernd,
+um den Effekt der 10%-Allokation zu erreichen, und kostet gleichzeitig
+Gewinn aus Positionen, die nach Tag 5-7 noch weitergelaufen wären, bevor der
+SMA-Exit natürlich gegriffen hätte.
+
+### Aufgabe 3: Kombination — wie spezifiziert NICHT getestet
+
+Da weder Aufgabe 1 noch Aufgabe 2 für sich eine Verbesserung gegenüber der
+5%/Limit-20-Baseline zeigen, wurde die Kombination programmatisch korrekt
+übersprungen (genau wie in der Aufgabenstellung vorgesehen: "falls sowohl...
+als auch... positive Effekte zeigen").
+
+### Zusammenfassung aller getesteten Konfigurationen (sortiert nach OOS-Rendite)
+
+| Konfiguration | Gesamtzeitraum | Gesamt Max DD | OOS Rendite | OOS Max DD | 2022 Rendite | 2022 Max DD |
+|---|---|---|---|---|---|---|
+| 5% Allok., Limit 20, Zeit-Exit 7T | +23,19% | -22,73% | +36,02% | -5,42% | -9,53% | -10,72% |
+| **5% Allok., Limit 20, Zeit-Exit 10T (Baseline)** | **+36,75%** | **-21,05%** | **+35,97%** | **-5,22%** | **-9,25%** | **-10,49%** |
+| 5% Allok., Limit 20, Zeit-Exit 5T | +31,25% | -19,65% | +35,94% | -5,54% | -9,85% | -10,50% |
+| 2,0% Allok., Limit unbegrenzt | +24,21% | -11,37% | +17,93% | -2,67% | -5,35% | -6,02% |
+| 1,5% Allok., Limit unbegrenzt | +20,17% | -8,15% | +13,65% | -1,82% | -4,08% | -4,59% |
+| 1,0% Allok., Limit unbegrenzt | +12,94% | -5,87% | +8,93% | -1,21% | -2,73% | -3,07% |
+
+**Hinweis zur Rangfolge:** Nach reiner OOS-Rendite liegt "Zeit-Exit 7T" hauchdünn
+vorn (+36,02% vs. +35,97%) — dieser Unterschied ist bei einer Differenz von
+0,05 Prozentpunkten eindeutig Rauschen, nicht belastbar, und wird durch den
+Gesamtzeitraum klar widerlegt (dort +23,19% vs. +36,75% - deutlich
+schlechter). Die 2022-Stress-Werte liegen bei allen drei Zeit-Exit-Varianten
+und der Baseline in ähnlicher Größenordnung (-9,25% bis -9,85%), da die
+Positionsgröße (5%) unverändert bleibt - der Diversifikations-Trade-off ist
+hier nicht relevant unterschiedlich. Bei den kleineren Allokationen sinkt der
+2022-Verlust zwar (bis auf -2,73% bei 1%), aber das ist Teil derselben
+generellen Renditeschwäche, die auch in den anderen Zeiträumen auftritt -
+kein eigenständig positiver Effekt.
+
+### Fazit für eine Live-Aktivierungsentscheidung
+
+**5% Allokation, Limit ≥20, Zeit-Exit 10 Tage (unverändert) bleibt die beste
+gefundene Konfiguration.** Weder eine feinere Allokations-Abstufung noch ein
+kürzerer Zeit-Exit verbessern das Ergebnis - beide Hebel wurden konkret
+getestet und beide zeigen klar keine Verbesserung. Die Lücke zur
+"unbegrenztes Kapital"-Diagnosezahl (+185,72%, Abschnitt 9a) bleibt mit den
+hier getesteten Stellschrauben ungeschlossen; ein Schließen dieser Lücke
+würde vermutlich eine grundlegend andere Herangehensweise erfordern (z.B.
+mehr Kapital je Bot, ein größeres Aktien-Universum, oder eine andere
+Ausstiegs-Logik) als weitere Feinabstimmung der bereits getesteten
+Stellschrauben - das ist an dieser Stelle nicht mehr "Parameter-Tuning"
+sondern eine grundsätzlichere Design-Frage.
+
+Rohdaten: `experiment_capital_bottleneck_v2_full.csv`,
+`experiment_capital_bottleneck_v2_oos.csv`,
+`experiment_capital_bottleneck_v2_summary.csv`.

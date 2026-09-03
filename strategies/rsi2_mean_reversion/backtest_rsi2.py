@@ -89,12 +89,15 @@ def compute_indicators(price_df: pd.DataFrame) -> pd.DataFrame:
 
 
 def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
-                  stop_loss_pct: float = None, entry_cutoff=None) -> pd.DataFrame:
+                  stop_loss_pct: float = None, entry_cutoff=None,
+                  max_hold_days: int = MAX_HOLD_DAYS) -> pd.DataFrame:
     """Laeuft Tag fuer Tag durch die Kursreihe (Indikatoren muessen bereits
     berechnet sein, siehe compute_indicators). entry_cutoff (optional):
     Einstiege vor diesem Zeitpunkt werden verworfen UND der Scan startet
     direkt dort (kein Zeitverlust auf Jahrzehnte an ohnehin verworfenen
-    Vor-Fenster-Daten)."""
+    Vor-Fenster-Daten). max_hold_days (optional): ueberschreibt den
+    Standard-Zeit-Exit (10 Handelstage) - z.B. fuer Experimente mit
+    kuerzerer Haltedauer (siehe experiment_capital_bottleneck_v2.py)."""
     df = price_df
     close = df["close"].to_numpy()
     low = df["low"].to_numpy()
@@ -125,7 +128,7 @@ def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
         stop_price = entry_price * (1 - stop_loss_pct / 100) if stop_loss_pct is not None else None
 
         exit_idx, exit_price, result = None, None, None
-        max_offset = min(MAX_HOLD_DAYS, n - 1 - i)
+        max_offset = min(max_hold_days, n - 1 - i)
         for offset in range(1, max_offset + 1):
             idx = i + offset
             if stop_price is not None and low[idx] <= stop_price:
@@ -134,7 +137,7 @@ def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
             if not np.isnan(sma_exit[idx]) and close[idx] > sma_exit[idx]:
                 exit_idx, exit_price, result = idx, close[idx], "sma_exit"
                 break
-            if offset == MAX_HOLD_DAYS:
+            if offset == max_hold_days:
                 exit_idx, exit_price, result = idx, close[idx], "time_exit"
                 break
 

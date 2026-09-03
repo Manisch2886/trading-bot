@@ -1,0 +1,7 @@
+konfiguration,allocation_pct,limit,max_hold_days,final_capital,total_return_pct,trades_ausgefuehrt,trades_uebersprungen,max_drawdown_pct,stress_2022_return_pct,stress_2022_max_dd_pct
+"Baseline: 5% Allok., Limit 20, Zeit-Exit 10T",0.05,20,10,13675.2,36.75,4232,1159,-21.05,-9.25,-10.49
+"2.0% Allok., Limit unbegrenzt, Zeit-Exit 10T",0.02,unbegrenzt,10,12421.28,24.21,5246,145,-11.37,-5.35,-6.02
+"1.5% Allok., Limit unbegrenzt, Zeit-Exit 10T",0.015,unbegrenzt,10,12017.03,20.17,5354,37,-8.15,-4.08,-4.59
+"1.0% Allok., Limit unbegrenzt, Zeit-Exit 10T",0.01,unbegrenzt,10,11294.14,12.94,5391,0,-5.87,-2.73,-3.07
+"5% Allok., Limit 20, Zeit-Exit 7T",0.05,20,7,12319.48,23.19,4334,1105,-22.73,-9.53,-10.72
+"5% Allok., Limit 20, Zeit-Exit 5T",0.05,20,5,13124.78,31.25,4560,1026,-19.65,-9.85,-10.5
