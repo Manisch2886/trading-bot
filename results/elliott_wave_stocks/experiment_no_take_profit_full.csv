@@ -1,0 +1,3 @@
+variante,num_trades,win_rate_pct,avg_pnl_pct,best_trade_pct,worst_trade_pct,final_capital,total_return_pct,executed_trades,skipped_trades,max_drawdown_pct
+MIT Take-Profit (aktueller Live-Stand),519,86.7,6.47,62.74,-3.3,160052.62,1500.53,469,50,-1.9
+OHNE Take-Profit (laufen lassen),519,43.9,14.88,223.05,-3.3,318409.32,3084.09,288,231,-9.79

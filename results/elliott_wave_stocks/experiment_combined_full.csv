@@ -1,0 +1,9 @@
+take_profit,max_concurrent_positions,final_capital,total_return_pct,executed_trades,skipped_trades,max_drawdown_pct
+mit Take-Profit,3,74666.11,646.66,354,165,-1.32
+mit Take-Profit,5,120959.83,1109.6,426,93,-1.65
+mit Take-Profit,8,160052.62,1500.53,469,50,-1.9
+mit Take-Profit,unbegrenzt,177555.58,1675.56,483,36,-2.52
+ohne Take-Profit,3,58240.47,482.4,118,401,-3.89
+ohne Take-Profit,5,131669.7,1216.7,189,330,-7.03
+ohne Take-Profit,8,318409.32,3084.09,288,231,-9.79
+ohne Take-Profit,unbegrenzt,452201.83,4422.02,330,189,-10.71
