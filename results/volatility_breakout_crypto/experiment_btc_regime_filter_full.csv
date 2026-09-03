@@ -1,0 +1,3 @@
+variante,n,win_rate_pct,avg_pnl_pct,portfolio_final_capital,portfolio_return_pct,trades_ausgefuehrt,trades_uebersprungen,max_drawdown_pct
+Ohne BTC-Regime-Filter (Basis-Regel),359,26.5,1.75,17126.14,71.26,310,49,-16.77
+Mit BTC-Regime-Filter (nur bei BTC-Aufwaertstrend),233,25.3,2.67,14902.58,49.03,207,26,-16.29

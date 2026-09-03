@@ -1,0 +1,5 @@
+stop_loss_pct,num_trades,num_symbols,win_rate,total_return_pct,avg_return_pct,avg_holding_days,max_drawdown_pct,robustness_score
+5.0,359,20,26.5,629.88,1.75,7.6,-105.65,0.314
+8.0,342,20,33.6,533.28,1.56,10.0,-116.36,0.248
+3.0,379,20,18.2,400.32,1.06,5.3,-142.91,0.144
+kein Stop,329,20,44.1,391.99,1.19,15.0,-187.24,0.115
