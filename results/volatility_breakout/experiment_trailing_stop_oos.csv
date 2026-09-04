@@ -1,0 +1,5 @@
+variante,final_capital,total_return_pct,trades_ausgefuehrt,trades_uebersprungen,max_drawdown_pct
+"Baseline: fester Stop 8.0%, kein Trailing",17454.46,74.54,385,949,-10.53
+Trailing 8%,16086.4,60.86,411,929,-10.88
+Trailing 12%,16474.77,64.75,387,947,-15.59
+Trailing 15%,16917.71,69.18,387,947,-12.0

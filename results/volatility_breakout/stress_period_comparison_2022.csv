@@ -1,0 +1,6 @@
+bot,start_kapital,end_kapital,rendite_pct,max_drawdown_pct
+Elliott Wave (Krypto),10671.96,12934.78,21.2,-0.23
+T3/SuperTrend (Krypto),9673.19,9356.25,-3.28,-12.28
+Elliott Wave (Aktien),30978.04,56206.18,81.44,-0.63
+"RSI-2 Mean-Reversion (Aktien, Prototyp)",9893.99,8822.56,-10.83,-11.16
+"Volatility Breakout (Aktien, Prototyp, neu)",18344.44,15933.56,-13.14,-22.39
