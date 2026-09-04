@@ -96,7 +96,7 @@ def call_claude(system_prompt: str, user_message: str, max_tokens: int = 1000,
         response = client.messages.create(**kwargs)
 
         text_parts = [block.text for block in response.content if getattr(block, "type", None) == "text"]
-        return {"success": True, "text": "\n".join(text_parts), "raw": response}
+        return {"success": True, "text": "\n".join(text_parts), "stop_reason": response.stop_reason, "raw": response}
 
     except Exception as e:
         return {"success": False, "error": str(e)}
