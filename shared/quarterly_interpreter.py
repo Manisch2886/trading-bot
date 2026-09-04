@@ -74,9 +74,27 @@ ECHTE FORWARD-TEST-ERGEBNISSE (aktuelle Parameter, seit Start): {real_stats}
 
 Gib deine Empfehlung."""
 
-    result = call_claude(SYSTEM_PROMPT, user_message, max_tokens=500)
+    # thinking bewusst deaktiviert: reine Textsynthese ohne Tool-Use.
+    # MODEL_SONNET (claude-sonnet-5, Standardmodell von call_claude()) faehrt
+    # sonst automatisch "adaptive" Extended Thinking, deren Tokens sich das
+    # max_tokens-Budget mit der sichtbaren Antwort teilen - bei knappem Limit
+    # kann das Modell dadurch das komplette Budget "wegdenken", bevor
+    # ueberhaupt Antworttext entsteht (siehe portfolio_interpreter_agent.py,
+    # wo genau dieser Fall live auftrat).
+    result = call_claude(SYSTEM_PROMPT, user_message, max_tokens=500,
+                          thinking={"type": "disabled"})
 
     if not result["success"]:
+        return ""
+
+    if result.get("stop_reason") == "max_tokens":
+        raw = result.get("raw")
+        block_types = ([getattr(b, "type", "?") for b in raw.content] if raw is not None
+                        else "unbekannt (kein raw-Objekt)")
+        print(f"  Warnung: Antwort des Quartals-Empfehlungs-Agenten wurde bei max_tokens "
+              f"abgeschnitten ({len(result['text'])} Zeichen sichtbarer Text, "
+              f"Content-Block-Typen: {block_types}) - verwerfe die unvollstaendige Antwort "
+              f"statt eine mitten im Satz abbrechende oder leere Empfehlung zurueckzugeben.")
         return ""
 
     return result["text"].strip()

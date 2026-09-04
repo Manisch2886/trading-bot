@@ -127,22 +127,37 @@ def generate_portfolio_interpretation(overview_text: str) -> str:
 
     user_message = f"Woechentliche Portfolio-Uebersicht (Textausgabe von portfolio_overview.py):\n\n{overview_text}"
 
+    # WICHTIG - siehe claude_client.call_claude()-Docstring: MODEL_SONNET
+    # (claude-sonnet-5) faehrt automatisch "adaptive" Extended Thinking,
+    # SOBALD "thinking" weggelassen wird, und die dabei verbrauchten
+    # Thinking-Tokens teilen sich dasselbe max_tokens-Budget mit dem
+    # sichtbaren Antworttext. Das war die eigentliche Ursache eines zweiten,
+    # noch merkwuerdigeren Abbruch-Falls (stop_reason "max_tokens", aber 0
+    # Zeichen sichtbarer Text - das Thinking hat das komplette Budget
+    # verbraucht, BEVOR ueberhaupt Antworttext entstand) - eine hoehere
+    # max_tokens-Zahl alleine haette das nur seltener, nicht zuverlaessig
+    # behoben. Diese Aufgabe ist reine Textsynthese ohne Tool-Use, daher
+    # hier explizit deaktiviert statt nur die Reasoning-Tiefe zu reduzieren.
     # max_tokens grosszuegig bemessen (Teil A + Teil B zusammen, siehe
     # SYSTEM_PROMPT): 800 hat in der Praxis nicht gereicht, die Antwort
-    # brach mitten im Satz ab. Die stop_reason-Pruefung unten ist die
+    # brach mitten im Satz ab. Die stop_reason-Pruefung unten bleibt als
     # zusaetzliche Absicherung, falls das Limit trotzdem irgendwann wieder
     # zu knapp wird.
-    result = call_claude(SYSTEM_PROMPT, user_message, max_tokens=2000, model=MODEL_SONNET)
+    result = call_claude(SYSTEM_PROMPT, user_message, max_tokens=2000, model=MODEL_SONNET,
+                          thinking={"type": "disabled"})
 
     if not result["success"]:
         return ""
 
     if result.get("stop_reason") == "max_tokens":
+        raw = result.get("raw")
+        block_types = [getattr(b, "type", "?") for b in raw.content] if raw is not None else "unbekannt (kein raw-Objekt)"
         print(f"  Warnung: Antwort von Agent 4 (Portfolio-Einordnung) wurde bei max_tokens "
-              f"abgeschnitten ({len(result['text'])} Zeichen erhalten) - verwerfe die "
-              f"unvollstaendige Antwort, statt eine mitten im Satz abbrechende Einordnung in "
-              f"die E-Mail zu uebernehmen. max_tokens in generate_portfolio_interpretation() "
-              f"ggf. weiter erhoehen.")
+              f"abgeschnitten ({len(result['text'])} Zeichen sichtbarer Text erhalten, "
+              f"Content-Block-Typen: {block_types}) - verwerfe die unvollstaendige Antwort, "
+              f"statt eine mitten im Satz abbrechende oder leere Einordnung in die E-Mail zu "
+              f"uebernehmen. max_tokens in generate_portfolio_interpretation() ggf. weiter "
+              f"erhoehen.")
         return ""
 
     return result["text"].strip()

@@ -69,7 +69,7 @@ def get_client():
 
 
 def call_claude(system_prompt: str, user_message: str, max_tokens: int = 1000,
-                 tools: list = None, model: str = MODEL_SONNET) -> dict:
+                 tools: list = None, model: str = MODEL_SONNET, thinking: dict = None) -> dict:
     """
     Zentraler Aufruf-Wrapper. Gibt bei Erfolg {'success': True, 'text': ..., 'raw': ...}
     zurueck, bei Fehler oder fehlendem Key {'success': False, 'error': ...}.
@@ -78,6 +78,18 @@ def call_claude(system_prompt: str, user_message: str, max_tokens: int = 1000,
 
     model: MODEL_SONNET (Standard) oder MODEL_HAIKU (guenstiger, fuer
            einfache Zusammenfassungsaufgaben ausreichend).
+
+    thinking: optional, z.B. {"type": "disabled"} - standardmaessig NICHT
+              gesetzt. ACHTUNG bei MODEL_SONNET (claude-sonnet-5): anders
+              als bei Opus 4.7/4.8 laeuft dort automatisch "adaptive"
+              Extended Thinking, SOBALD dieser Parameter weggelassen wird -
+              und die dabei verbrauchten Thinking-Tokens zaehlen in
+              dasselbe max_tokens-Budget wie der sichtbare Antworttext.
+              Bei einem knappen max_tokens-Limit kann das Modell dadurch
+              das komplette Budget "wegdenken", bevor ueberhaupt sichtbarer
+              Text entsteht (stop_reason "max_tokens" bei 0 Zeichen Text -
+              siehe portfolio_interpreter_agent.py, das deshalb explizit
+              {"type": "disabled"} setzt).
     """
     client = get_client()
     if client is None:
@@ -92,6 +104,8 @@ def call_claude(system_prompt: str, user_message: str, max_tokens: int = 1000,
         }
         if tools:
             kwargs["tools"] = tools
+        if thinking is not None:
+            kwargs["thinking"] = thinking
 
         response = client.messages.create(**kwargs)
 

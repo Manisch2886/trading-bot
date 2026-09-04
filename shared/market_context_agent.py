@@ -54,9 +54,31 @@ def get_market_context(symbols: list, context_label: str = "") -> str:
     symbols_text = ", ".join(symbols[:10])  # hartes Limit, um Kosten zu begrenzen
     user_message = f"Symbole ({context_label}): {symbols_text}\n\nGibt es aktuell relevante Nachrichten?"
 
-    result = call_claude(SYSTEM_PROMPT, user_message, max_tokens=400, tools=[WEB_SEARCH_TOOL])
+    # thinking bleibt hier bewusst UNGESETZT (= adaptive, der Standard bei
+    # MODEL_SONNET/claude-sonnet-5) statt wie bei den anderen drei Agenten
+    # explizit deaktiviert zu werden: dieser Agent nutzt echtes Tool-Use
+    # (Web-Suche), wo Thinking dem Modell hilft, Suchanfragen zu planen und
+    # Ergebnisse einzuordnen. Stattdessen wird das max_tokens-Budget
+    # grosszuegig genug gesetzt, um Thinking + Suchergebnis-Bloecke + die
+    # finale 3-5-Satz-Antwort gemeinsam abzudecken - die alten 400 Tokens
+    # waren dafuer im Zweifel zu knapp (siehe portfolio_interpreter_agent.py:
+    # dort hat ein zu knappes Budget dazu gefuehrt, dass Thinking allein
+    # schon das gesamte Budget verbraucht hat, BEVOR sichtbarer Text
+    # entstand - das Risiko besteht hier grundsaetzlich genauso).
+    result = call_claude(SYSTEM_PROMPT, user_message, max_tokens=2000, tools=[WEB_SEARCH_TOOL])
 
     if not result["success"]:
+        return ""
+
+    if result.get("stop_reason") == "max_tokens":
+        raw = result.get("raw")
+        block_types = ([getattr(b, "type", "?") for b in raw.content] if raw is not None
+                        else "unbekannt (kein raw-Objekt)")
+        print(f"  Warnung: Antwort von Agent 3 (Marktkontext) wurde bei max_tokens "
+              f"abgeschnitten ({len(result['text'])} Zeichen sichtbarer Text, "
+              f"Content-Block-Typen: {block_types}) - verwerfe die unvollstaendige Antwort. "
+              f"Bei wiederholtem Auftreten max_tokens in get_market_context() weiter erhoehen "
+              f"(Thinking hier bewusst NICHT deaktivieren, siehe Kommentar oben).")
         return ""
 
     return result["text"].strip()
