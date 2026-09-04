@@ -195,11 +195,130 @@ Trendmärkte nach unten), nicht auf eine zufällige Einzelperiode.
 - **Kein Kapital-Flaschenhals** wie bei den Aktien-Prototypen.
 - **Schlägt Buy-and-Hold deutlich** — mit derselben Einschränkung wie bei
   RSI-2 Krypto zur konstruierten Buy-and-Hold-Messlatte.
-- BTC-Regime-Filter: uneindeutiges Ergebnis, keine klare Empfehlung.
+- **BTC-Regime-Filter (siehe Abschnitt 9, geklärt):** robuste
+  Drawdown-Reduktion und deutliche 2022-Stress-Milderung (−12,35%→−1,60%
+  Rendite), aber kein in jedem Split nachweisbarer Rendite-Vorteil im
+  Gesamtbild. Empfehlung: aufnehmen, primär als Risikomanagement-Maßnahme
+  gegen die bekannte Bärenmarkt-Schwäche, nicht als reiner Rendite-Hebel.
 - **2022-Stress-Test bestätigt die Bärenmarkt-Schwäche als
   strategie-inhärent, nicht marktspezifisch** — wiederholt sich in einem
   strukturell anderen Markt (Krypto statt Aktien) auf ähnliche Weise. Das
   ist die wichtigste Einzelerkenntnis dieses Prototyps und sollte bei einer
   künftigen Live-Entscheidung für BEIDE Volatility-Breakout-Varianten
-  (Aktien UND Krypto) explizit berücksichtigt werden.
+  (Aktien UND Krypto) explizit berücksichtigt werden. Anders als beim
+  Kapitalmanagement-Hebel der Aktien-Version (wirkungslos gegen die
+  2022-Schwäche) mildert der BTC-Regime-Filter diese Schwäche bei der
+  Krypto-Version spürbar (Abschnitt 9c).
 - Bewusst **nicht** umgesetzt: `live_params.py`, Cronjob, `forward_test.py`.
+
+## 9. Nachfrage: Klärung des uneindeutigen BTC-Regime-Filter-Befunds
+
+Reine Analyse, nichts live geschaltet. Der einzelne 70/30-Split aus
+Abschnitt 6 zeigte ein Trailing-Take-Profit-artiges Muster (Filter schadet
+Gesamtzeitraum, hilft OOS — nie beides) — dasselbe Overfitting-Warnsignal
+wie beim Aktien-Bot-Präzedenzfall. Drei gezielte Nachprüfungen, bevor eine
+Empfehlung möglich ist.
+
+### 9a. Robustheit: mehrere Split-Punkte (65/35, 70/30, 75/25)
+
+| Split | Variante | Trades | Ø PnL/Trade | Rendite | Max DD |
+|---|---|---|---|---|---|
+| 65/35 | Ohne Filter | 143 | 0,73% | +9,86% | −10,60% |
+| 65/35 | **Mit Filter** | 89 | 1,52% | **+13,91%** | **−7,26%** |
+| 70/30 | Ohne Filter | 134 | 1,01% | +16,32% | −11,33% |
+| 70/30 | **Mit Filter** | 83 | 1,81% | **+19,15%** | **−7,76%** |
+| 75/25 | Ohne Filter | 112 | 1,58% | **+20,04%** | −10,41% |
+| 75/25 | Mit Filter | 66 | 2,64% | +18,45% | **−7,26%** |
+
+**Kein sauberer Overfitting-Fall wie beim Trailing-Take-Profit, aber auch
+keine vollständige Robustheit.** Die Rendite-Rangfolge dreht sich bei
+einem von drei Split-Punkten (75/25: Filter schlechter). Zwei Muster sind
+dabei aber **in allen drei Splits ausnahmslos konsistent**:
+- **Max Drawdown ist mit Filter in JEDEM der drei Splits niedriger**
+  (−7,26%/−7,76%/−7,26% vs. −10,60%/−11,33%/−10,41% ohne Filter) — ein
+  klar robuster Risikoreduktions-Effekt, unabhängig vom Split-Punkt.
+- **Ø-Rendite/Trade ist mit Filter in JEDEM Split höher** (weniger, aber
+  qualitativ bessere Trades) — der Filter selektiert konsistent die
+  besseren Signale, verändert aber die GESAMT-Rendite unterschiedlich
+  stark je nachdem, wie viele Trades dadurch insgesamt wegfallen.
+
+Der Ausreißer bei 75/25 fällt zusammen mit dem kleinsten OOS-Fenster (457
+Tage statt 548/639) und der kleinsten Trade-Zahl mit Filter (66) — plausibler
+Kandidat für Stichproben-Rauschen bei schrumpfender Fenstergröße, nicht
+zwingend ein "echter" Regimewechsel (siehe 9b). Fazit: **die
+Drawdown-Reduktion ist robust belegt, der Rendite-Vorteil ist wahrscheinlich,
+aber nicht in jedem Split nachweisbar.**
+
+### 9b. Inhaltliche Plausibilität
+
+Anders als bei RSI-2 Krypto (Mean-Reversion braucht Rücksetzer — ein
+Trendfilter widerspricht der Kernlogik) ist ein Regime-Filter für eine
+Breakout-Strategie grundsätzlich naheliegend: nur Ausbrüche handeln, die
+mit dem übergeordneten Markttrend übereinstimmen, sollte Fehlausbrüche
+reduzieren.
+
+Geprüft wurde, ob unterschiedliche BTC-Regime-Verteilung zwischen
+In-Sample und Out-of-Sample die Rendite-Differenz mechanisch erklärt:
+
+| Split | In-Sample BTC-Aufwärtstrend | Out-of-Sample BTC-Aufwärtstrend |
+|---|---|---|
+| 65/35 | 49,2% | 45,7% |
+| 70/30 | 50,3% | 42,5% |
+| 75/25 | 50,5% | 40,5% |
+
+Der OOS-Anteil an BTC-Aufwärtstagen sinkt monoton von 65/35 zu 75/25
+(45,7%→42,5%→40,5%) — aber genau beim 75/25-Split mit dem NIEDRIGSTEN
+Bullen-Anteil schneidet der Filter am schlechtesten ab. Eine einfache
+"OOS ist bärischer, deshalb hilft der Filter dort mehr"-Erklärung hält
+der Prüfung also NICHT sauber stand — sie erklärt allenfalls einen Teil
+des Effekts (65/35 und 70/30), nicht den 75/25-Ausreißer. Die
+wahrscheinlichere Erklärung ist eine Mischung aus (a) einem echten,
+inhaltlich plausiblen Risikoreduktions-Effekt (siehe die durchgängig
+niedrigeren Drawdowns in 9a) und (b) Stichproben-Rauschen bei den kleiner
+werdenden OOS-Fenstern, nicht ein sauberer, einheitlicher
+Regimeverteilungs-Effekt.
+
+### 9c. 2022-Krypto-Winter MIT Filter
+
+| Variante | Rendite 2022 | Max DD 2022 |
+|---|---|---|
+| Ohne Filter (Basis, aus Abschnitt 7) | −12,35% | −16,55% |
+| **Mit BTC-Regime-Filter** | **−1,60%** | **−6,07%** |
+
+**Deutliche, spürbare Milderung — anders als beim Kapitalmanagement-Befund
+der Aktien-Version, wo Positionsgröße die 2022-Schwäche NICHT beheben
+konnte (dort blieb es bei −13,14%→−12,94%, praktisch unverändert).** Der
+BTC-Regime-Filter reduziert die 2022-Ausführungen von 46 auf 19 Positions-
+Exits (27 vermiedene Trades) und senkt den Anteil negativer Trades von
+91,3% auf 84,2% — der Filter blockiert überproportional genau die
+Fehlausbrüche, die die Bärenmarkt-Schwäche verursachen (siehe Abschnitt 7:
+False-Breakout-Häufung in Abwärtsphasen). Das ist ein **kausal
+nachvollziehbarer, nicht nur statistischer** Effekt: ein Trend-Filter
+verhindert per Definition genau die Art von Trades, die in einem
+Bärenmarkt am häufigsten scheitern.
+
+### 9d. Empfehlung
+
+**Gemischtes, aber überwiegend positives Bild — Empfehlung: Filter
+AUFNEHMEN, mit einer klaren Einordnung des Zwecks.** Anders als beim
+Trailing-Take-Profit (dort keine inhaltliche Erklärung, komplette
+Rangfolge-Umkehr, reines Overfitting) und anders als beim BTC-Filter für
+RSI-2 Krypto (dort eindeutig negativ, klar verworfen) liegt hier ein
+**dritter Fall** vor: ein Filter mit
+- robuster, konsistenter Drawdown-Reduktion (9a),
+- einer plausiblen, kausal nachvollziehbaren Wirkweise (9b/9c),
+- aber nicht in JEDEM getesteten Split nachweisbarem Rendite-Vorteil (9a).
+
+Die Entscheidung hängt vom Ziel ab: **Wer primär die identifizierte
+Bärenmarkt-Schwäche (Abschnitt 7, das größte bekannte Einzelrisiko dieser
+Strategie) absichern will, sollte den Filter aufnehmen** — die
+2022-Milderung ist stark und mechanistisch gut erklärbar. Wer
+ausschließlich auf maximale Gesamtrendite optimiert, hat keine
+zwingende Evidenz dafür (Rendite-Vorteil nur in 2 von 3 Splits). Da diese
+Strategie ohnehin schon als die fragilste im 2022-Vergleich identifiziert
+wurde (Abschnitt 7/8), überwiegt hier das Risikomanagement-Argument.
+
+**Nebenwirkung, die bei einer Entscheidung mitbedacht werden sollte:**
+Der Filter reduziert die Trade-Anzahl um ca. 35-40% — weniger
+Diversifikationsbreite innerhalb des Bots selbst, unabhängig vom
+2022-Befund.
