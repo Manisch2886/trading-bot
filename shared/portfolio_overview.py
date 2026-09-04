@@ -10,8 +10,22 @@ results/rsi2_mean_reversion/PROTOTYPE_FINDINGS.md) laufend im Blick zu
 behalten - ohne eine einzige Zeile in einem der Bot-Ordner anzufassen.
 
 Macht NUR:
-- Liest bereits vorhandene Dateien (results/<bot>/equity_curve.csv bevorzugt,
-  sonst Fallback auf die Live-DB paper_trading_<bot>.db)
+- Liest bereits vorhandene Dateien: die Live-DB paper_trading_<bot>.db wird
+  bevorzugt, SOBALD ein Bot mindestens MIN_LIVE_CLOSED_TRADES geschlossene
+  Live-Trades hat - erst dann sagt die Kurve etwas ueber den tatsaechlichen
+  Live-Betrieb aus, statt eine noch verrauschte Handvoll Trades zu zeigen.
+  results/<bot>/equity_curve.csv (Backtest-Simulation) ist der Fallback fuer
+  einen Bot, der diese Schwelle noch nicht erreicht (z.B. ein brandneuer,
+  gerade erst aktivierter Bot). Sobald die Live-DB genutzt wird, laeuft
+  dafuer die EIGENE, bereits validierte simulate_portfolio()-Funktion aus
+  dem equity_simulation.py DIESES Bots (siehe
+  build_capital_curve_from_live_trades) - inkl. echter Kapitalbindung bei
+  gleichzeitig offenen Positionen und Positionslimit, mit den EIGENEN
+  live_params.py-Werten (Allokation/Limit) des Bots, nicht einer fest
+  codierten Naeherung. Frueher (bis inkl. der Version ohne diesen Hinweis)
+  wurde equity_curve.csv IMMER bevorzugt, sobald es existierte - das machte
+  die Live-DB faktisch zu totem Code, sobald ein Bot einmal ein
+  Backtest-Ergebnis hatte (was nach der Validierung immer der Fall ist).
 - Rechnet ZWEI getrennte, (konfigurierbar) gewichtete Portfolios durch:
   "Live-Portfolio" (nur Bots mit live_params.py, also tatsaechlich
   aktivierte/produktive Bots) und, falls vorhanden, zusaetzlich "Inkl.
@@ -42,6 +56,8 @@ Aufruf von ueberall im trading-bot-Ordner:
 """
 
 import os
+import sys
+import subprocess
 import sqlite3
 import pandas as pd
 
@@ -50,8 +66,12 @@ BASE_DIR = os.path.dirname(_SHARED_DIR)
 RESULTS_DIR = os.path.join(BASE_DIR, "results", "portfolio_overview")
 
 STARTING_CAPITAL = 10_000.0
-ALLOCATION_PCT = 0.10  # nur fuer den DB-Fallback (siehe build_capital_curve_from_db) -
-                        # muss zum Konzept der jeweiligen equity_simulation.py passen
+
+MIN_LIVE_CLOSED_TRADES = 10  # Live-DB wird erst ab dieser Anzahl geschlossener
+                              # Live-Trades als Quelle bevorzugt (siehe
+                              # build_capital_curve_from_live_trades) - darunter
+                              # waere die Kurve zu verrauscht, dann bleibt
+                              # equity_curve.csv (falls vorhanden) die Quelle.
 
 # Anzeige-Namen fuer bekannte Bots - ein unbekannter (kuenftiger) Ordnername
 # faellt automatisch auf sich selbst zurueck, siehe display_name().
@@ -127,31 +147,47 @@ def discover_bots() -> dict:
     return bots
 
 
+def _load_db_exit_dates(db_file: str) -> pd.Series:
+    conn = sqlite3.connect(db_file)
+    try:
+        closed = pd.read_sql(
+            "SELECT exit_time FROM trades WHERE status='closed' AND exit_time IS NOT NULL", conn)
+    finally:
+        conn.close()
+    if closed.empty:
+        return pd.Series(dtype="datetime64[ns]")
+    return pd.to_datetime(closed["exit_time"]).dt.normalize()
+
+
+def count_live_closed_trades(db_file) -> int:
+    """Anzahl geschlossener Live-Trades - Grundlage fuer die
+    MIN_LIVE_CLOSED_TRADES-Entscheidung in load_all_curves(). 0, falls
+    keine Live-DB vorhanden ist (z.B. brandneuer Bot vor dem ersten
+    forward_test.py-Lauf)."""
+    if not db_file:
+        return 0
+    return len(_load_db_exit_dates(db_file))
+
+
 def load_trade_dates(sources: dict) -> pd.Series:
     """Rohe Trade-Exit-Termine (nicht forward-gefuellt) - Grundlage fuer die
     Mindestanzahl gemeinsamer Handelstage in Teil 3, analog zu
-    rsi2_mean_reversion/correlation_robustness_check.py."""
+    rsi2_mean_reversion/correlation_robustness_check.py. Nutzt DIESELBE
+    Quelle wie die Kapitalkurve dieses Bots (sources['using_live_data'],
+    von load_all_curves() gesetzt) - sonst koennten Kurve und
+    Handelstage-Zaehlung aus unterschiedlichen Datenquellen stammen."""
+    if sources.get("using_live_data") and sources.get("db_file"):
+        return _load_db_exit_dates(sources["db_file"])
     if sources.get("equity_csv"):
         df = pd.read_csv(sources["equity_csv"], parse_dates=["time"])
         return df["time"].dt.normalize()
     if sources.get("db_file"):
-        conn = sqlite3.connect(sources["db_file"])
-        try:
-            closed = pd.read_sql(
-                "SELECT exit_time FROM trades WHERE status='closed' AND exit_time IS NOT NULL", conn)
-        finally:
-            conn.close()
-        if closed.empty:
-            return pd.Series(dtype="datetime64[ns]")
-        return pd.to_datetime(closed["exit_time"]).dt.normalize()
+        return _load_db_exit_dates(sources["db_file"])
     return pd.Series(dtype="datetime64[ns]")
 
 
-def build_capital_curve_from_csv(csv_path: str) -> pd.Series:
-    """Bevorzugte Quelle: equity_curve.csv aus der jeweiligen
-    equity_simulation.py des Bots (bereits mit Positionslimit/Allokation
-    simuliert, wie im Backtest validiert)."""
-    df = pd.read_csv(csv_path, parse_dates=["time"]).sort_values("time")
+def _daily_capital_curve_from_equity_df(equity_df: pd.DataFrame) -> pd.Series:
+    df = equity_df.sort_values("time").copy()
     df["date"] = df["time"].dt.normalize()
     daily_last = df.groupby("date")["capital_after"].last()
     full_range = pd.date_range(daily_last.index.min(), daily_last.index.max(), freq="D")
@@ -161,53 +197,104 @@ def build_capital_curve_from_csv(csv_path: str) -> pd.Series:
     return daily_last
 
 
-def build_capital_curve_from_db(db_file: str) -> pd.Series:
-    """Fallback, falls (noch) kein equity_curve.csv vorliegt: rekonstruiert
-    eine VEREINFACHTE Kapitalkurve direkt aus den geschlossenen Live-Trades.
-    WICHTIG - Naeherung: Die Live-DBs tracken kein echtes Kapital/keine
-    Positionsgroessen (siehe Architektur-Diskussion), daher wird hier
-    ersatzweise sequentiell mit fester ALLOCATION_PCT pro Trade gerechnet,
-    OHNE Beruecksichtigung von echter Nebenlaeufigkeit/Positionslimit -
-    weniger praezise als die CSV-Quelle, aber besser als der Bot fehlt
-    komplett in der Uebersicht."""
+def build_capital_curve_from_csv(csv_path: str) -> pd.Series:
+    """Fallback-Quelle: equity_curve.csv aus der jeweiligen
+    equity_simulation.py des Bots (Backtest-Simulation) - wird genutzt,
+    solange die Live-DB dieses Bots noch unter MIN_LIVE_CLOSED_TRADES
+    liegt (siehe load_all_curves)."""
+    df = pd.read_csv(csv_path, parse_dates=["time"])
+    return _daily_capital_curve_from_equity_df(df)
+
+
+def load_live_trades(db_file: str) -> pd.DataFrame:
     conn = sqlite3.connect(db_file)
     try:
-        closed = pd.read_sql(
-            "SELECT exit_time, pnl_pct FROM trades WHERE status='closed' AND exit_time IS NOT NULL "
-            "ORDER BY exit_time", conn)
+        trades = pd.read_sql(
+            "SELECT symbol, entry_time, exit_time, pnl_pct FROM trades "
+            "WHERE status='closed' AND exit_time IS NOT NULL", conn)
     finally:
         conn.close()
+    trades["entry_time"] = pd.to_datetime(trades["entry_time"])
+    trades["exit_time"] = pd.to_datetime(trades["exit_time"])
+    return trades
 
-    if closed.empty:
+
+def build_capital_curve_from_live_trades(strategy_dir: str, live_trades: pd.DataFrame) -> pd.Series:
+    """Bevorzugte Quelle, sobald genug Live-Trades vorliegen (siehe
+    MIN_LIVE_CLOSED_TRADES): wendet die EIGENE, bereits validierte
+    simulate_portfolio()-Funktion DIESES Bots (aus dessen
+    equity_simulation.py) auf dessen echte Live-Trades an - inkl.
+    Kapitalbindung bei gleichzeitig offenen Positionen und Positionslimit,
+    exakt wie im Backtest. Nutzt dabei auch die EIGENEN live_params.py-Werte
+    (Allokation, Limit) des Bots statt einer fest codierten Naeherung.
+
+    Laeuft in einem EIGENEN Subprozess (siehe
+    turtle_soup_stocks/experiment_volatility_breakout_overlap.py-Docstring
+    fuer die ausfuehrliche Begruendung): sowohl equity_simulation.py als
+    auch live_params.py heissen bei JEDEM Bot identisch - ein direkter
+    Import mehrerer Bots im selben Python-Prozess wuerde denselben stillen
+    sys.modules-Kollisions-Bug reproduzieren, der dort bereits einmal
+    gefunden wurde (ein Bot bekommt lautlos die Funktionen/Werte eines
+    ANDEREN Bots untergeschoben, ohne Fehlermeldung)."""
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+    tmp_trades_csv = os.path.join(RESULTS_DIR, "_live_trades_cache.csv")
+    tmp_out_csv = os.path.join(RESULTS_DIR, "_live_equity_curve_cache.csv")
+    live_trades.to_csv(tmp_trades_csv, index=False)
+
+    script = f"""
+import pandas as pd
+from live_params import ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS
+from equity_simulation import simulate_portfolio, STARTING_CAPITAL
+trades = pd.read_csv({tmp_trades_csv!r}, parse_dates=["entry_time", "exit_time"])
+result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT / 100, MAX_CONCURRENT_POSITIONS)
+result["equity_curve"].to_csv({tmp_out_csv!r}, index=False)
+"""
+    result = subprocess.run([sys.executable, "-c", script], cwd=strategy_dir,
+                             capture_output=True, text=True)
+    os.remove(tmp_trades_csv)
+    if result.returncode != 0:
+        raise RuntimeError(f"Live-Equity-Subprozess fuer {strategy_dir} fehlgeschlagen:\n{result.stderr}")
+
+    equity_df = pd.read_csv(tmp_out_csv, parse_dates=["time"])
+    os.remove(tmp_out_csv)
+    if equity_df.empty:
         return pd.Series(dtype=float)
-
-    closed["exit_time"] = pd.to_datetime(closed["exit_time"])
-    capital = STARTING_CAPITAL
-    records = []
-    for _, row in closed.iterrows():
-        allocation = capital * ALLOCATION_PCT
-        capital += allocation * (row["pnl_pct"] / 100)
-        records.append((row["exit_time"].normalize(), capital))
-
-    series = pd.Series(dict(records)).sort_index()
-    series = series[~series.index.duplicated(keep="last")]
-    full_range = pd.date_range(series.index.min(), series.index.max(), freq="D")
-    series = series.reindex(full_range).ffill()
-    if pd.isna(series.iloc[0]):
-        series.iloc[0] = STARTING_CAPITAL
-    return series
+    return _daily_capital_curve_from_equity_df(equity_df)
 
 
 def load_all_curves(bots: dict) -> dict:
+    """Entscheidet PRO BOT die Datenquelle und laedt die Kapitalkurve.
+    Setzt zusaetzlich sources['using_live_data']/sources['live_closed_trades']
+    direkt in bots[name] (Mutation in-place - bots ist dasselbe dict-Objekt,
+    das run_analysis()/load_trade_dates() spaeter erneut nutzen), damit die
+    Korrelations-Handelstage-Zaehlung in Teil 3 dieselbe Quelle wie die
+    Kurve verwendet."""
     curves = {}
     for name, sources in bots.items():
         try:
-            if sources["equity_csv"] is not None:
+            live_trade_count = count_live_closed_trades(sources["db_file"])
+            sources["live_closed_trades"] = live_trade_count
+            use_live = live_trade_count >= MIN_LIVE_CLOSED_TRADES and sources["db_file"] is not None
+            sources["using_live_data"] = use_live
+
+            if use_live:
+                strategy_dir = os.path.join(BASE_DIR, "strategies", name)
+                live_trades = load_live_trades(sources["db_file"])
+                series = build_capital_curve_from_live_trades(strategy_dir, live_trades)
+                source_label = (f"Live-DB ({live_trade_count} geschlossene Live-Trades, "
+                                 f"eigene Allokation/Limit aus live_params.py)")
+            elif sources["equity_csv"] is not None:
                 series = build_capital_curve_from_csv(sources["equity_csv"])
-                source_label = "equity_curve.csv (Backtest-Simulation)"
+                if live_trade_count > 0:
+                    source_label = (f"equity_curve.csv (Backtest-Fallback, Live-DB noch zu duenn: "
+                                     f"{live_trade_count}/{MIN_LIVE_CLOSED_TRADES} Trades)")
+                else:
+                    source_label = "equity_curve.csv (Backtest-Simulation, noch keine geschlossenen Live-Trades)"
             elif sources["db_file"] is not None:
-                series = build_capital_curve_from_db(sources["db_file"])
-                source_label = "Live-DB (vereinfacht rekonstruiert)"
+                print(f"  Hinweis: {display_name(name)} uebersprungen (nur {live_trade_count} "
+                      f"geschlossene Live-Trades, unter Schwelle {MIN_LIVE_CLOSED_TRADES}, "
+                      f"kein Backtest-equity_curve.csv als Fallback vorhanden)")
+                continue
             else:
                 continue
         except Exception as e:
