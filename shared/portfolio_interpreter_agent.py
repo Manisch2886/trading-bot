@@ -40,8 +40,31 @@ Portfolio-Ebene vergleicht: Einzel-Bot-Renditen/-Drawdowns, ein kombiniertes
 (hypothetisch gewichtetes) Portfolio, und paarweise Korrelationswerte
 zwischen den Bots.
 
-DEINE AUFGABE - eine kurze, strukturierte Einordnung (in Fliesstext, keine
-Ueberschriften/Markdown, ca. 150-300 Woerter):
+AUFBAU DEINER ANTWORT - GENAU ZWEI TEILE, IN DIESER REIHENFOLGE:
+
+TEIL A - "WAS DAS FUER DICH BEDEUTET" (fuer einen Nutzer OHNE taegliche
+Beschaeftigung mit dem Projekt, einfache, nicht-technische Sprache, ca.
+3-5 Saetze):
+Schreibe zuerst genau die Zeile "WAS DAS FUER DICH BEDEUTET" (nur dieser
+schlichte Text als Abgrenzung - keine Raute, keine Sternchen, kein
+sonstiges Markdown), dann eine Leerzeile, dann Fliesstext, der klar diese
+drei Fragen beantwortet:
+a) Laeuft das Portfolio insgesamt so, wie es im Backtest erwartet wurde,
+   oder gibt es etwas Auffaelliges?
+b) Gibt es konkret etwas, das der Nutzer diese Woche tun sollte - oder ist
+   "nichts zu tun, alles laeuft wie erwartet" die zutreffende, voellig
+   legitime Aussage? Sag das dann auch explizit so, statt um den heissen
+   Brei zu reden.
+c) Falls die Datenbasis fuer eine Einschaetzung noch zu duenn ist (siehe
+   DATENBASIS-VORBEHALT weiter unten - das betrifft aktuell die meisten
+   Bot-Paare): sag das in EINEM einzigen klaren Satz (z.B. "Die meisten
+   Bots laufen noch zu kurz, um verlaessliche Aussagen zu treffen - in ca.
+   X Wochen sollte genug Historie vorliegen"), statt es erst in einer
+   langen Aufzaehlung zu verstecken. Nenne dabei nur eine grobe
+   Groessenordnung (Wochen), NIE ein konkretes Datum.
+
+TEIL B - Detail-Einordnung (Fliesstext, keine Ueberschriften/Markdown, ca.
+150-300 Woerter), direkt im Anschluss an Teil A (eine Leerzeile dazwischen):
 1. Laeuft die Diversifikation zwischen den Bots wie im jeweiligen Backtest
    erwartet (niedrige/negative Korrelation, kombinierter Drawdown flacher
    als der schlechteste Einzel-Bot)? Oder gibt es Anzeichen, dass sich
@@ -60,7 +83,8 @@ Ueberschriften/Markdown, ca. 150-300 Woerter):
    der einzelnen Bots nicht praezise genug fuer eine Datumsprognose).
 
 KRITISCH - DATENBASIS-VORBEHALT (das ist die wichtigste Regel in diesem
-Prompt, wichtiger als eine vollstaendig wirkende Antwort):
+Prompt, wichtiger als eine vollstaendig wirkende Antwort - gilt fuer BEIDE
+Teile A und B):
 Fuer JEDES Bot-Paar, das in der Textausgabe als "zu wenig Datenbasis" bzw.
 mit einer Handelstage-Zahl UNTER der genannten Mindestschwelle markiert
 ist, DARFST DU KEINE Handlungsempfehlung geben und KEINE selbstbewusst
@@ -69,8 +93,9 @@ treffen. Schreibe fuer diese Faelle ausdruecklich und woertlich sinngemaess:
 "noch nicht genug Daten fuer eine belastbare Einschaetzung". Falls ALLE
 Bot-Paare in der Textausgabe unter der Schwelle liegen, ist ein kurzer,
 zurueckhaltender Text OHNE jede Handlungsempfehlung das KORREKTE Ergebnis -
-das ist dann kein Mangel deiner Antwort, sondern die ehrliche Lage. Erzwinge
-NIEMALS eine Empfehlung nur damit die E-Mail vollstaendiger wirkt.
+das gilt fuer Teil A GENAUSO wie fuer Teil B, das ist dann kein Mangel
+deiner Antwort, sondern die ehrliche Lage. Erzwinge NIEMALS eine
+Empfehlung nur damit die E-Mail vollstaendiger wirkt.
 
 WEITERE REGELN:
 - Keine Uebertreibung, keine reisserische Sprache.
@@ -83,7 +108,10 @@ WEITERE REGELN:
   Aenderung vor - das bleibt vollstaendig der manuellen Pruefung durch den
   Nutzer vorbehalten, du lieferst nur Einordnung.
 - Keine Finanzberatung, keine Kursprognosen.
-- Antworte NUR mit dem Fliesstext, keine Ueberschriften, kein Markdown, keine Aufzaehlungszeichen.
+- Antworte NUR mit den beiden oben beschriebenen Teilen (erst Teil A, dann
+  Teil B), sonst keine Ueberschriften, kein Markdown, keine
+  Aufzaehlungszeichen - die einzige Ausnahme ist die eine Abgrenzungszeile
+  "WAS DAS FUER DICH BEDEUTET" zu Beginn von Teil A.
 """
 
 
@@ -99,9 +127,22 @@ def generate_portfolio_interpretation(overview_text: str) -> str:
 
     user_message = f"Woechentliche Portfolio-Uebersicht (Textausgabe von portfolio_overview.py):\n\n{overview_text}"
 
-    result = call_claude(SYSTEM_PROMPT, user_message, max_tokens=800, model=MODEL_SONNET)
+    # max_tokens grosszuegig bemessen (Teil A + Teil B zusammen, siehe
+    # SYSTEM_PROMPT): 800 hat in der Praxis nicht gereicht, die Antwort
+    # brach mitten im Satz ab. Die stop_reason-Pruefung unten ist die
+    # zusaetzliche Absicherung, falls das Limit trotzdem irgendwann wieder
+    # zu knapp wird.
+    result = call_claude(SYSTEM_PROMPT, user_message, max_tokens=2000, model=MODEL_SONNET)
 
     if not result["success"]:
+        return ""
+
+    if result.get("stop_reason") == "max_tokens":
+        print(f"  Warnung: Antwort von Agent 4 (Portfolio-Einordnung) wurde bei max_tokens "
+              f"abgeschnitten ({len(result['text'])} Zeichen erhalten) - verwerfe die "
+              f"unvollstaendige Antwort, statt eine mitten im Satz abbrechende Einordnung in "
+              f"die E-Mail zu uebernehmen. max_tokens in generate_portfolio_interpretation() "
+              f"ggf. weiter erhoehen.")
         return ""
 
     return result["text"].strip()

@@ -53,19 +53,30 @@ def run_portfolio_overview_and_capture() -> str:
 
 
 def build_email_body(overview_text: str, interpretation: str) -> str:
+    """Baut den E-Mail-Text. Reihenfolge bewusst so gewaehlt, dass die
+    verstaendliche Handlungsempfehlung (Teil A von Agent 4, "WAS DAS FUER
+    DICH BEDEUTET") ganz oben steht, VOR den Rohdaten-Tabellen von
+    portfolio_overview.py - damit das Wichtigste zuerst kommt und nicht
+    erst nach mehreren Bildschirmseiten Tabellen. Die Rohdaten bleiben
+    vollstaendig erhalten, nur weiter unten fuer den Detailblick."""
     now = datetime.utcnow()
     lines = []
     lines.append(f"Woechentliche Portfolio-Uebersicht - {now.strftime('%d.%m.%Y %H:%M')} UTC")
     lines.append("=" * 60)
-    lines.append("")
-    lines.append(overview_text.rstrip())
 
     if interpretation:
         lines.append("")
-        lines.append("=" * 60)
         lines.append("KI-EINORDNUNG DER WOCHE")
         lines.append("=" * 60)
+        lines.append("")
         lines.append(interpretation)
+        lines.append("")
+        lines.append("=" * 60)
+        lines.append("ROHDATEN (Tabellen, Korrelationswerte, Einzel-Bot-Drawdowns)")
+        lines.append("=" * 60)
+
+    lines.append("")
+    lines.append(overview_text.rstrip())
 
     return "\n".join(lines)
 
