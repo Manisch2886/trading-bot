@@ -108,18 +108,35 @@ def run_agent_search(evaluate_fn, param_spec: dict, seed_combos: list = None,
             f"Schlage die naechste Kombination vor."
         )
 
-        response = call_claude(SYSTEM_PROMPT, user_message, max_tokens=1000)
+        # thinking bewusst deaktiviert: reine JSON-Textsynthese ohne Tool-Use.
+        # MODEL_SONNET (claude-sonnet-5, Standardmodell von call_claude())
+        # faehrt sonst automatisch "adaptive" Extended Thinking, deren
+        # Tokens sich das max_tokens-Budget mit der sichtbaren Antwort
+        # teilen - bei knappem Limit kann das Modell dadurch das komplette
+        # Budget "wegdenken", bevor ueberhaupt JSON-Text entsteht (siehe
+        # portfolio_interpreter_agent.py, wo genau dieser Fall live auftrat).
+        response = call_claude(SYSTEM_PROMPT, user_message, max_tokens=1000,
+                                thinking={"type": "disabled"})
 
         if not response["success"]:
             print(f"  Agent-Aufruf fehlgeschlagen: {response['error']}")
             print("  Breche Agent-Suche ab, nutze bisher gefundene Ergebnisse.")
             break
 
+        if response.get("stop_reason") == "max_tokens":
+            raw = response.get("raw")
+            block_types = ([getattr(b, "type", "?") for b in raw.content] if raw is not None
+                            else "unbekannt (kein raw-Objekt)")
+            print(f"  Warnung: Antwort bei max_tokens abgeschnitten ({len(response['text'])} "
+                  f"Zeichen sichtbarer Text, Content-Block-Typen: {block_types}) - kann kein "
+                  f"gueltiges JSON sein, ueberspringe diese Iteration.")
+            continue
+
         decision = extract_json(response["text"])
         if decision is None:
-            stop_reason = getattr(response.get("raw"), "stop_reason", "unbekannt")
             print(f"  Konnte Antwort nicht als JSON lesen.")
-            print(f"  Textlaenge: {len(response['text'])} Zeichen, stop_reason: {stop_reason}")
+            print(f"  Textlaenge: {len(response['text'])} Zeichen, "
+                  f"stop_reason: {response.get('stop_reason', 'unbekannt')}")
             if response["text"]:
                 print(f"  Roher Text: {response['text'][:300]}")
             continue
