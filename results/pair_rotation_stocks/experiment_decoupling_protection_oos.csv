@@ -1,0 +1,3 @@
+variante,n,win_rate_pct,avg_pnl_pct,n_decoupling_exits,portfolio_final_capital,portfolio_return_pct,trades_ausgefuehrt,trades_uebersprungen,max_drawdown_pct
+Ohne Entkopplungs-Schutz,333,59.8,5.32,0,18896.58,88.97,131,202,-9.61
+Mit Entkopplungs-Schutz,333,59.8,5.32,0,18896.58,88.97,131,202,-9.61
