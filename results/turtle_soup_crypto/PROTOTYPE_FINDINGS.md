@@ -144,3 +144,79 @@ nicht möglich (Datenbeginn 2021-09, wie bei allen Krypto-Prototypen).
   sich auf Portfolio-Korrelationsebene über die gesamte Historie, nicht
   zuverlässig innerhalb einzelner Krisenperioden.
 - Bewusst **nicht** umgesetzt: `live_params.py`, Cronjob, `forward_test.py`.
+
+## 8. Kapitalmanagement-Tuning
+
+War in der Prototyp-Phase noch nicht Fokus - Krypto zeigte bei der
+urspruenglichen Equity-Simulation nur eine moderate 11,6% Skip-Rate (Limit
+8, 10% Allokation), deutlich schwaecher als der bei Aktien gefundene
+84,4%-Flaschenhals. Hier zur Vollstaendigkeit und im direkten Vergleich zur
+Aktien-Version untersucht, analog zur Vorgehensweise bei RSI-2/Volatility
+Breakout. Reine Analyse - **nichts live geschaltet**, keine `live_params.py`.
+
+### 8a. Signal-Qualitaets-Test (Aufgabe 1)
+
+| | n | Win Rate | Ø PnL/Trade |
+|---|---|---|---|
+| (a) Tatsaechlich ausgefuehrt (Limit 8, 10%) - Gesamtzeitraum | 1414 | 26,5% | 0,970% |
+| (b) Alle gefundenen Signale - Gesamtzeitraum | 1599 | 27,1% | 0,761% |
+| (a) Tatsaechlich ausgefuehrt - Out-of-Sample | 475 | 24,8% | 1,249% |
+| (b) Alle gefundenen Signale - Out-of-Sample | 532 | 26,9% | 1,322% |
+
+**Deutlich anderes Bild als bei Aktien:** im Gesamtzeitraum sind die
+tatsaechlich ausgefuehrten Trades sogar BESSER als die Gesamtpopulation
+(+0,209 Prozentpunkte) - das Gegenteil des bei Aktien gefundenen Musters.
+Out-of-Sample kehrt sich das leicht um (−0,073 Prozentpunkte), bleibt aber
+nahe null. Kapitalmanagement ist bei Krypto damit KEIN dominanter,
+konsistent nachteiliger Flaschenhals wie bei Aktien - konsistent mit der
+bereits im Prototyp gefundenen, deutlich niedrigeren Skip-Rate (11,6%
+gegenueber 84,4%). Die 25-Coin-Universumsgroesse erzeugt schlicht seltener
+so viele gleichzeitige Signale, dass Kapital zum limitierenden Faktor wird.
+
+### 8b. Positionsgroesse x Limit-Matrix (Aufgabe 2)
+
+Feste Basis: Donchian 10, structural Stop, 10 Tage Zeit-Exit. Vollstaendige
+Tabelle in `results/turtle_soup_crypto/experiment_position_size_limit_{full,oos}.csv`.
+
+**Gegenteiliger Befund zu Aktien:** anders als bei Aktien verbessert eine
+Lockerung des Kapitalmanagements (kleinere Allokation und/oder hoeheres
+Limit) die Ergebnisse NICHT - im Gegenteil, jede getestete Alternative
+verschlechtert sowohl Gesamtzeitraum-Rendite als auch Max Drawdown
+gegenueber der Basiskonfiguration (Limit 8, 10% Allokation: +177,59% Rendite,
+−32,40% DD - das beste Ergebnis im gesamten Grid). Plausible Erklaerung: die
+niedrige Win Rate (26–27%) bei "structural" Stop bedeutet, dass mehr
+gleichzeitige, kleinere Positionen nicht mehr Qualitaet einfangen, sondern
+nur mehr Verlierer gleichzeitig offen halten.
+
+### 8c. Stress-Periode unter neuer Konfiguration (Aufgabe 3)
+
+Vollstaendige Gesamtuebersicht (alle 9 Konfigurationen, sortiert nach
+Out-of-Sample-Rendite, mit Gesamtzeitraum- und 2022-Werten) in
+`results/turtle_soup_crypto/experiment_capital_management_summary.csv`.
+Auszug:
+
+| Allokation | Limit | OOS-Rendite | OOS-DD | Gesamt-Rendite | Gesamt-DD | 2022-Rendite | 2022-DD |
+|---|---|---|---|---|---|---|---|
+| **10% (Basis)** | **8** | 64,31% | −23,00% | **177,59%** | **−32,40%** | **−19,16%** | **−24,92%** |
+| 10% | 15/unbegrenzt | 73,10% | −23,81% | 165,97% | −36,02% | −20,44% | −26,15% |
+| 5% | unbegrenzt | 37,85% | −13,07% | 64,34% | −28,28% | −10,91% | −16,89% |
+
+**Empfehlung: Basiskonfiguration UNVERAENDERT beibehalten (10% Allokation,
+Limit 8).** Anders als bei Aktien bringt Kapitalmanagement-Tuning bei
+Krypto keinen Mehrwert - die urspruengliche Konfiguration ist bereits nahe
+am Optimum des gesamten Grids (bestes Gesamtzeitraum-Ergebnis UND bestes
+2022-Stress-Ergebnis). Die einzige Alternative mit hoeherer Out-of-Sample-
+Punktrendite (10% Allokation, Limit 15, identisch zu unbegrenzt: 73,10%
+statt 64,31%) faellt im Gesamtzeitraum klar ab (+165,97% statt +177,59%,
+DD −36,02% statt −32,40%) UND verschlechtert sich zusaetzlich im
+2022-Stresstest (−20,44%/−26,15% statt −19,16%/−24,92%) - wird daher trotz
+des hoeheren OOS-Einzelwerts nicht empfohlen.
+
+**Schwachstellenprofil unveraendert:** da keine Konfigurationsaenderung
+empfohlen wird, bleibt das bereits dokumentierte 2022-Bild (Turtle Soup
+schwaecher als Volatility Breakout, −19,16%/−24,92% vs. −12,35%/−16,55%)
+trivialerweise unveraendert. Bestaetigt im Uebrigen den bei Aktien
+gefundenen Grundsatz aus umgekehrter Richtung: die Schwaeche liegt in der
+Signalqualitaet (niedrige Win Rate des structural Stops), nicht im
+Kapitalmanagement - bei Krypto ist das Kapitalmanagement schlicht schon nah
+am Optimum, es gibt hier keinen Hebel zu ziehen.

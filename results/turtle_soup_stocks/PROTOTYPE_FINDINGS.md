@@ -177,3 +177,94 @@ trotzdem zur beobachteten niedrigen Korrelation (6b) führt.
   als ursprünglich angenommen — komplementäre statt kompensatorische
   Schwachstellen.
 - Bewusst **nicht** umgesetzt: `live_params.py`, Cronjob, `forward_test.py`.
+
+## 8. Kapitalmanagement-Tuning
+
+Ausgangslage: 84,4% Skip-Rate bei Limit 8/10% Allokation - der staerkste
+bisher beobachtete Kapital-Flaschenhals im gesamten Projekt (hoeher als
+RSI-2 65% und Volatility Breakout 73%). Analog zur erfolgreichen
+Vorgehensweise bei RSI-2/Volatility Breakout in drei Schritten untersucht.
+Reine Analyse - **nichts live geschaltet**, keine `live_params.py`.
+
+### 8a. Signal-Qualitaets-Test (Aufgabe 1)
+
+| | n | Win Rate | Ø PnL/Trade |
+|---|---|---|---|
+| (a) Tatsaechlich ausgefuehrt (Limit 8, 10%) - Gesamtzeitraum | 1887 | 53,7% | 0,523% |
+| (b) Alle gefundenen Signale - Gesamtzeitraum | 12069 | 55,2% | 0,691% |
+| (a) Tatsaechlich ausgefuehrt - Out-of-Sample | 575 | 54,3% | 0,907% |
+| (b) Alle gefundenen Signale - Out-of-Sample | 3632 | 55,8% | 1,059% |
+
+**Kapitalmanagement ist der dominante Flaschenhals** (wie bei den anderen
+Bots), UND die tatsaechlich ausgefuehrten Trades sind im Schnitt sogar
+LEICHT SCHLECHTER als die Gesamtpopulation (Differenz −0,168 Prozentpunkte
+Gesamtzeitraum, −0,152 Out-of-Sample) - derselbe Mechanismus wie bei RSI-2:
+keine neutrale Auswahl, sondern Kapitalerschoepfung tendenziell genau in
+Phasen mit vielen gleichzeitigen, teils hochwertigeren Signalen. Erklaert
+die ungewoehnlich hohe Skip-Rate: Turtle-Soup-Setups (N-Tage-Tief-Bruch)
+sind in einem 147-Aktien-Universum ein haeufiges Tagesereignis, das die
+10%-Allokation bei Limit 8 schnell saettigt.
+
+Die rein diagnostische "unbegrenztes Kapital"-Simulation (c) liefert hier
+ein methodisch wichtiges Nebenergebnis: bei dieser hohen Signal-Dichte
+(12069 Signale, oft viele gleichzeitig offen) fuehrt die Kombination aus
+"kein Limit" UND "10% des JEWEILIGEN aktuellen Kapitals pro Trade ohne
+Beruecksichtigung bereits gebundenen Kapitals" zu einem impliziten
+Hebel-Effekt weit ueber 100% des Kapitals gleichzeitig - das Ergebnis kann
+dadurch sogar negativ werden (Gesamtzeitraum: −153,71% "Rendite"). Das ist
+ein reines Artefakt der unrealistischen Diagnose-Annahme (kein Live-
+Vorschlag, siehe Docstring), kein wirtschaftlich sinnvolles Szenario -
+bestaetigt aber deutlich, warum ein Positionslimit ueberhaupt notwendig
+ist, sobald die Signal-Dichte hoch genug wird.
+
+### 8b. Positionsgroesse x Limit-Matrix (Aufgabe 2)
+
+Feste Basis: Donchian 10, kein Stop, 10 Tage Zeit-Exit. Vollstaendige
+Tabelle in `results/turtle_soup_stocks/experiment_position_size_limit_{full,oos}.csv`.
+
+Wichtige Beobachtung: bei 10% Allokation saettigt das Positionslimit bereits
+bei 15 (Limit 15/20/unbegrenzt liefern IDENTISCHE Ergebnisse) - der
+eigentliche Flaschenhals bei 10% ist also die Kapitalgroesse pro Trade, nicht
+die explizite Limit-Zahl. Eine kleinere Allokation erhoeht die Erfassungsrate
+drastisch: bei 2% Allokation/unbegrenztem Limit werden 8915 von 12069
+Signalen ausgefuehrt (73,9% Erfassung, gegenueber 15,6% bei der
+Basiskonfiguration).
+
+### 8c. Stress-Perioden unter neuer Konfiguration (Aufgabe 3)
+
+Vollstaendige Gesamtuebersicht (alle 16 Konfigurationen, sortiert nach
+Out-of-Sample-Rendite, mit Gesamtzeitraum-, 2022- und 2020-Werten) in
+`results/turtle_soup_stocks/experiment_capital_management_summary.csv`.
+Auszug der wichtigsten Kandidaten:
+
+| Allokation | Limit | OOS-Rendite | OOS-DD | Gesamt-Rendite | Gesamt-DD | 2022-Rendite | 2022-DD | 2020-Rendite | 2020-DD |
+|---|---|---|---|---|---|---|---|---|---|
+| 10% (Basis) | 8 | 63,38% | −12,01% | 133,01% | −32,54% | −12,22% | −25,57% | −24,22% | −32,22% |
+| 10% | 15/20/unbegrenzt | **91,16%** | −16,70% | 142,31% | −36,47% | −24,40% | −32,17% | −26,72% | −36,18% |
+| **2%** | **unbegrenzt** | 73,12% | −13,25% | **145,59%** | **−29,91%** | **−11,53%** | **−18,67%** | −25,18% | −29,91% |
+| 5% | 20/unbegrenzt | 68,96% | −13,64% | 170,37% | −34,81% | −19,66% | −26,11% | −25,58% | −34,72% |
+
+**Empfehlung: 2% Allokation, Limit unbegrenzt.** Diese Kombination dominiert
+die Basiskonfiguration auf fast jeder Dimension: hoehere Gesamtzeitraum-
+Rendite (+145,59% statt +133,01%) bei GLEICHZEITIG niedrigerem Max Drawdown
+(−29,91% statt −32,54%), UND eine deutlich verbesserte 2022-Performance
+(−11,53%/−18,67% statt −12,22%/−25,57% - schlaegt hier sogar Volatility
+Breakout, −13,14%/−22,39%), UND ein nahezu unveraendertes 2020-Profil
+(−25,18%/−29,91% statt −24,22%/−32,22% - marginal bessere DD trotz aehnlich
+schwacher Rendite). Die alternative Spitzenreiter-Konfiguration bei reiner
+OOS-Rendite (10% Allokation, Limit 15 - identisch zu 20/unbegrenzt, 91,16%
+OOS-Rendite) wird trotz des hoeheren Punktwerts NICHT empfohlen, da sie sich
+im 2022-Stresstest deutlich verschlechtert (−24,40%/−32,17% - fast doppelt
+so hoher Verlust wie die Basiskonfiguration) und damit das im Prototyp
+dokumentierte "gemeinsam mit Volatility Breakout schwach"-Risiko in 2022
+verstaerkt statt entschaerft.
+
+**Schwachstellenprofil bleibt strukturell nachvollziehbar:** wie beim
+Volatility-Breakout-Praezedenzfall erwartet, aendert sich die grundsaetzliche
+2020-Schwaeche (echter Crash statt Fehlausbruch) durch Kapitalmanagement-
+Tuning NICHT wesentlich - sie liegt in der Signalqualitaet, nicht im
+Kapitalmanagement. Die 2022-Zahlen verbessern sich bei der empfohlenen
+Konfiguration zwar spuerbar (kleinere, breiter gestreute Positionen daempfen
+den kumulierten Verlust eines breiten Baerenmarkts), aber Turtle Soup bleibt
+strukturell weiterhin die schwaechere der beiden Strategien in einem echten,
+schnellen Crash.
