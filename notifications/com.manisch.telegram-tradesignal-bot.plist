@@ -8,7 +8,7 @@ auf Telegram-Nachrichten lauschen koennen.
 
 VOR DEM ERSTEN LADEN PRUEFEN (siehe notifications/README.md):
 1. Pfad zu python3 unten stimmt mit "which python3" auf diesem Mac
-   ueberein (z.B. /usr/local/bin/python3 oder /opt/homebrew/bin/python3
+   ueberein (z.B. /Users/jaquelineloffler/trading-bot/trading-env/bin/python3 oder /opt/homebrew/bin/python3
    bei Apple Silicon, je nach Installation).
 2. Der Projekt-Pfad unten stimmt mit dem tatsaechlichen Speicherort
    ueberein (hier: /Users/jaquelineloffler/trading-bot).
@@ -29,7 +29,7 @@ Deinstallation/Stoppen:
 
     <key>ProgramArguments</key>
     <array>
-        <string>/usr/local/bin/python3</string>
+        <string>/Users/jaquelineloffler/trading-bot/trading-env/bin/python3</string>
         <string>/Users/jaquelineloffler/trading-bot/notifications/telegram_bot.py</string>
     </array>
 
