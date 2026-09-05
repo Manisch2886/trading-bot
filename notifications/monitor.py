@@ -776,13 +776,50 @@ def _scan_log_for_errors(bot_state: dict, log_file):
     return None, new_offset
 
 
-def check_for_events(bots: list = None) -> list:
+def check_for_events(bots: list = None) -> tuple:
     """
     Vergleicht den aktuellen DB-/Log-Stand jedes Bots mit dem zuletzt
-    gespeicherten Zustand (state.json) und gibt eine Liste fertig
-    formatierter Alert-Texte fuer alles Neue zurueck. Aktualisiert
-    state.json als Seiteneffekt - ein wiederholter Aufruf ohne
-    Aenderung dazwischen erzeugt KEINE Doppel-Alerts.
+    gespeicherten Zustand (state.json) und gibt (events, new_state)
+    zurueck - eine Liste fertig formatierter Alert-Texte fuer alles Neue,
+    UND den neuen Zustand.
+
+    WICHTIG - speichert state.json NICHT mehr selbst (Root Cause eines
+    beobachteten Live-Bugs, siehe unten) - der Aufrufer MUSS
+    _save_state(new_state) selbst aufrufen, und zwar ERST NACHDEM er
+    versucht hat, alle zurueckgegebenen events zu verschicken (siehe
+    poll_job() in telegram_bot.py und der __main__-Block dieser Datei).
+
+    ROOT CAUSE (live beobachtet, 05.09.: ein Stop-Loss-Trade bei
+    Elliott Wave Krypto wurde nie als Push-Benachrichtigung gemeldet,
+    obwohl state.json den Trade bereits korrekt als geschlossen fuehrte -
+    "known_open_ids": [], "max_id": 4 - und trotzdem KEINE Log-Spur eines
+    Versand-Versuchs existierte): die fruehere Version dieser Funktion
+    hat state.json INTERN gespeichert, BEVOR der Aufrufer die
+    zurueckgegebenen events ueberhaupt verschickt hat. Wurde der
+    Bot-Prozess GENAU in der Luecke zwischen "check_for_events() kehrt
+    zurueck" und "send_alert() fuer dieses Event abgeschlossen" beendet
+    (z.B. durch Strg+C waehrend eines der zahlreichen manuellen
+    Neustarts fuer Live-Tests - python-telegram-bots run_polling()
+    reagiert auf SIGINT mit einem Application.stop(), der einen gerade
+    laufenden JobQueue-Job/dessen asyncio.to_thread()-Aufrufe an genau
+    dieser Stelle abbrechen kann), wurde das Event PERMANENT verloren:
+    state.json markierte die Positions-Schliessung bereits als
+    "bekannt/verarbeitet", ein erneuter check_for_events()-Aufruf beim
+    naechsten Prozessstart erkennt sie deshalb NIE wieder als neu. Eine
+    Pruefung der Atomaritaet von _save_state() selbst (tempfile +
+    os.replace(), siehe dort) ergab dagegen KEIN Problem - os.replace()
+    ist auf POSIX-Systemen atomar, ein Leser sieht immer entweder die
+    komplette alte oder komplette neue Datei, nie einen unvollstaendigen
+    Zwischenstand. Die Race lag also NICHT im Datei-I/O selbst, sondern
+    in der REIHENFOLGE "erst speichern, dann erst versenden".
+
+    Fix: state.json wird jetzt ERST gespeichert, NACHDEM der Versand
+    versucht wurde (siehe Aufrufer) - ein Prozessabbruch waehrend des
+    Versands fuehrt dadurch bestenfalls zu einer SELTENEN DOPPELTEN
+    Benachrichtigung beim naechsten Zyklus (dieselben Events werden
+    erneut erkannt, da der alte Zustand noch nicht ueberschrieben wurde),
+    NIEMALS mehr zu einer STILL VERSCHLUCKTEN - fuer einen Trading-Bot
+    eindeutig die sicherere Richtung.
 
     Bei einem Bot, der zum ALLERERSTEN Mal gesehen wird (z.B. beim
     ersten Start des Telegram-Dienstes), wird bewusst NUR ein
@@ -869,12 +906,11 @@ def check_for_events(bots: list = None) -> list:
             "was_stale": is_stale,
         }
 
-    _save_state(state)
-    return events
+    return events, state
 
 
 if __name__ == "__main__":
-    found_events = check_for_events()
+    found_events, new_state = check_for_events()
     if not found_events:
         print("Keine neuen Ereignisse.")
     else:
@@ -883,3 +919,6 @@ if __name__ == "__main__":
             print(event_text)
             print("-" * 40)
             send_alert(event_text)
+    # WICHTIG: erst NACH dem (versuchten) Versand speichern - siehe
+    # Root-Cause-Erklaerung im Docstring von check_for_events().
+    _save_state(new_state)
