@@ -76,8 +76,19 @@ Umgebungsvariable `TELEGRAM_POLL_INTERVAL_SECONDS`.
 
 ## Logs
 
-Eigener Log unter `logs/notifications/telegram_bot.log` (rotierend),
-getrennt von den bestehenden Bot-Logs unter `logs/<bot>/`. Der
+**Wo nachschauen:** Alle Log-Ausgaben von `telegram_bot.py` (Start-Meldung,
+Warnungen, Fehler aus `error_handler()`/`_reply_for_selector()`) erscheinen
+seit dem /pnl-Diagnose-Fix an **zwei** Stellen gleichzeitig:
+1. **Direkt im Terminal** (Konsole), wenn der Bot manuell im Vordergrund
+   laeuft (`python3 notifications/telegram_bot.py`) - das ist der
+   richtige Ort fuer einen manuellen Live-Test.
+2. **`logs/notifications/telegram_bot.log`** (rotierend) - fuer den
+   dauerhaften launchd-Betrieb, wo niemand ein Terminal offen haelt.
+
+(Vorher gab es nur (2) - dadurch blieb ein Fehler beim manuellen Testen
+im Terminal komplett unsichtbar, obwohl er korrekt geloggt wurde.)
+
+Getrennt von den bestehenden Bot-Logs unter `logs/<bot>/`. Der
 launchd-Dienst selbst schreibt zusaetzlich `logs/notifications/launchd.out.log`
 und `.err.log`. Keine dieser Log-Dateien enthaelt jemals den Bot-Token.
 

@@ -47,15 +47,33 @@ os.makedirs(LOG_DIR, exist_ok=True)
 
 POLL_INTERVAL_SECONDS = int(os.environ.get("TELEGRAM_POLL_INTERVAL_SECONDS", "300"))
 
-logger = logging.getLogger("notifications.telegram_bot")
-logger.setLevel(logging.INFO)
-_handler = RotatingFileHandler(
+# WICHTIG (Root Cause eines vorherigen Diagnose-Versuchs): dieser Logger
+# bekam bisher NUR einen RotatingFileHandler - beim manuellen Start im
+# Vordergrund (siehe Docstring oben: "Start (Test, im Vordergrund)")
+# erschien dadurch NICHTS im Terminal, nicht einmal die Start-Meldung
+# "Telegram-Bot gestartet...", geschweige denn ein Fehler aus
+# error_handler(). Alles landete ausschliesslich in
+# logs/notifications/telegram_bot.log. Jetzt: BEIDES - Konsole (fuer den
+# manuellen Live-Test) UND Datei (fuer den dauerhaften launchd-Betrieb,
+# wo niemand ein Terminal offen haelt).
+_formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s")
+
+_file_handler = RotatingFileHandler(
     os.path.join(LOG_DIR, "telegram_bot.log"), maxBytes=2_000_000, backupCount=3
 )
-_handler.setFormatter(logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s"))
-logger.addHandler(_handler)
-logging.getLogger("notifications.notify").addHandler(_handler)
+_file_handler.setFormatter(_formatter)
+
+_console_handler = logging.StreamHandler(sys.stdout)
+_console_handler.setFormatter(_formatter)
+
+logger = logging.getLogger("notifications.telegram_bot")
+logger.setLevel(logging.INFO)
+logger.addHandler(_file_handler)
+logger.addHandler(_console_handler)
+
 logging.getLogger("notifications.notify").setLevel(logging.INFO)
+logging.getLogger("notifications.notify").addHandler(_file_handler)
+logging.getLogger("notifications.notify").addHandler(_console_handler)
 
 _CREDS = telegram_config.get_credentials()
 AUTHORIZED_USER_ID = _CREDS["user_id"] if _CREDS else None
@@ -91,7 +109,27 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
         await update.message.reply_text(text)
         return
 
-    text = formatter(bots)
+    try:
+        text = formatter(bots)
+    except Exception:
+        # WICHTIG: vorher lag dieser Aufruf AUSSERHALB jeder
+        # Fehlerbehandlung in dieser Funktion - eine Exception beim
+        # Formatieren (z.B. durch eine Eigenheit in den echten Live-Daten,
+        # die die synthetischen Sandbox-Testdaten nicht abbilden) fuehrte
+        # zu KEINER Antwort in Telegram. Sie haette zwar den globalen
+        # error_handler() in main() erreichen sollen, aber dessen Log
+        # landete bisher NUR in der Datei, nie im Terminal (siehe Fix oben
+        # bei der Logger-Konfiguration) - dadurch wirkte es wie ein
+        # kompletter Blackout. Jetzt: hier direkt und sichtbar loggen
+        # (Konsole + Datei) UND dem Nutzer trotzdem eine Antwort geben,
+        # statt auf den globalen Handler zu vertrauen.
+        logger.exception(f"Fehler beim Formatieren der Antwort (Selektor: {selector!r}).")
+        await update.message.reply_text(
+            "Fehler beim Abrufen der Daten - Details siehe "
+            "logs/notifications/telegram_bot.log (und Terminal, falls im Vordergrund gestartet)."
+        )
+        return
+
     try:
         await update.message.reply_text(text, parse_mode="Markdown")
     except BadRequest:
