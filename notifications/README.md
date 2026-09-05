@@ -113,11 +113,36 @@ echten Netzwerkzugriff auf die Binance-API oder Yahoo Finance
 entwickelt/getestet - die Entwicklungsumgebung hat keinen Netzwerk-Egress
 zu diesen externen APIs (`curl` gegen beide liefert hier keine
 Verbindung). Verifiziert wurde deshalb ausschliesslich mit gemockten
-Kursdaten (siehe Tests). **Der naechste Live-Test auf dem Mac sollte
-gezielt pruefen:** ob `/status` tatsaechlich echte, aktuelle Kurse
-anzeigt (nicht nur "Preis nicht verfuegbar" fuer alle Positionen), und
-ob die 12-Sekunden-Obergrenze im Alltag ausreicht (bei vielen
-gleichzeitig offenen Positionen ggf. anpassen).
+Kursdaten (siehe Tests).
+
+**Bereits im Live-Test gefunden und behoben:** `fetch_binance_prices()`
+lieferte anfangs fuer JEDE echte Krypto-Position "Preis nicht
+verfuegbar", obwohl `curl` auf demselben Mac problemlos funktionierte -
+Netzwerk/Firewall waren also nicht die Ursache. Root Cause: `requests`
+kodiert ein Leerzeichen in einem Query-Parameter als `+`
+(form-urlencoded-Konvention), `json.dumps()` fuegt aber standardmaessig
+nach jedem Komma ein Leerzeichen ein - die tatsaechlich gesendete URL
+enthielt dadurch ein woertliches `+` MITTEN im `symbols`-JSON-Array.
+Behoben durch `separators=(",", ":")` beim `json.dumps()`-Aufruf
+(erzeugt exakt Binances dokumentiertes, leerzeichenfreies Format
+`["BTCUSDT","BNBUSDT"]`). Fehlgeschlagene Kursabfragen werden jetzt
+ausserdem ueber `logging` statt `print(..., file=sys.stderr)` geloggt
+(`logging.getLogger("notifications.monitor")`, an dieselben Konsole-
+und Datei-Handler wie alle anderen Bot-Logs angehaengt) - inkl. des
+Response-Bodys bei einem HTTP-Fehler, damit ein aehnlicher stiller
+Fehler kuenftig sofort sichtbar ist statt erst nach einer eigenen
+Diagnose-Runde.
+
+**"+0,0%" bei einzelnen Aktienpositionen:** erwartungsgemaess, kein Bug
+- die Aktien-Bots handeln auf Tagesbasis und eroeffnen Positionen zum
+Schlusskurs. Faellt der `/status`-Aufruf auf ein Wochenende oder eine
+sehr frisch (noch am selben Handelstag) eroeffnete Position, liefert
+`yfinance`s "letzter verfuegbarer Schlusskurs" exakt denselben Wert wie
+der bereits bekannte `entry_price` - 0,0% ist dann schlicht korrekt.
+
+**Weiterhin fuer den naechsten Live-Test auf dem Mac zu pruefen:** ob
+die 12-Sekunden-Obergrenze im Alltag ausreicht (bei vielen gleichzeitig
+offenen Positionen ggf. anpassen).
 
 ## Automatische Push-Benachrichtigungen
 

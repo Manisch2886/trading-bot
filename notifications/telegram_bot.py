@@ -134,6 +134,12 @@ def _configure_own_logger(name: str) -> logging.Logger:
 
 logger = _configure_own_logger("notifications.telegram_bot")
 _configure_own_logger("notifications.notify")
+# monitor.py loggt seit der /status-Live-Kurs-Erweiterung ueber
+# logging.getLogger("notifications.monitor") statt print(..., file=sys.stderr) -
+# damit eine fehlgeschlagene Binance-/yfinance-Abfrage genauso zuverlaessig
+# in Konsole UND Datei landet wie jede andere Bot-Meldung, statt nur
+# sichtbar zu sein, wenn jemand zufaellig stderr direkt beobachtet.
+_configure_own_logger("notifications.monitor")
 
 _CREDS = telegram_config.get_credentials()
 AUTHORIZED_USER_ID = _CREDS["user_id"] if _CREDS else None

@@ -36,11 +36,24 @@ import os
 import sys
 import json
 import glob
+import logging
 import sqlite3
 from datetime import datetime, timezone
 
 import pandas as pd
 import requests
+
+# WICHTIG: reine logging.getLogger()-Instanz OHNE eigene Handler hier -
+# monitor.py ist auch eigenstaendig lauffaehig (python3 notifications/monitor.py),
+# nicht nur importiert aus telegram_bot.py. Wird das Modul von
+# telegram_bot.py importiert, haengt DAS dort dieselben Konsole+Datei-
+# Handler an wie an seine eigenen Logger (siehe _configure_own_logger()
+# dort) - Warnungen aus diesem Modul (z.B. eine fehlgeschlagene
+# Binance-/yfinance-Kursabfrage) landen dann zuverlaessig an derselben
+# Stelle wie alle anderen Bot-Logs, statt (wie zuvor mit print(...,
+# file=sys.stderr)) nur sichtbar zu sein, wenn jemand zufaellig genau
+# stderr beobachtet.
+logger = logging.getLogger("notifications.monitor")
 
 _NOTIF_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(_NOTIF_DIR)
@@ -327,17 +340,45 @@ def fetch_binance_prices(symbols: list) -> dict:
     """
     if not symbols:
         return {}
+
+    # WICHTIG - Root Cause eines Live-Bugs: requests kodiert ein
+    # Leerzeichen in einem Query-Parameter standardmaessig als "+"
+    # (application/x-www-form-urlencoded-Konvention), NICHT als "%20".
+    # json.dumps(liste) fuegt per Default nach jedem Komma ein
+    # Leerzeichen ein (z.B. '["A", "B"]') - dadurch enthielt die
+    # tatsaechlich gesendete URL ein woertliches "+" MITTEN im
+    # JSON-Array (?symbols=%5B%22A%22%2C+%22B%22%5D). Ein manueller
+    # curl-Test mit demselben Symbol GING problemlos durch (curl nutzt
+    # kein form-urlencoding fuer einzelne Query-Werte), was den Fehler
+    # zunaechst wie ein Netzwerk-/Erreichbarkeitsproblem aussehen liess,
+    # obwohl er tatsaechlich im JSON-Array-Encoding lag. Binances
+    # eigene Doku zeigt das erwartete Format ausdruecklich OHNE
+    # Leerzeichen (["BTCUSDT","BNBUSDT"]) - separators=(",", ":")
+    # erzwingt genau das und macht das Leerzeichen-/"+"-Problem
+    # dadurch komplett gegenstandslos, unabhaengig von der genauen
+    # Interpretation auf Binance-Seite.
+    symbols_param = json.dumps(sorted(set(symbols)), separators=(",", ":"))
+
     try:
         response = requests.get(
             BINANCE_TICKER_URL,
-            params={"symbols": json.dumps(sorted(set(symbols)))},
+            params={"symbols": symbols_param},
             timeout=BINANCE_REQUEST_TIMEOUT_SECONDS,
         )
         response.raise_for_status()
         data = response.json()
         return {item["symbol"]: float(item["price"]) for item in data}
     except Exception as e:
-        print(f"Warnung: Binance-Live-Kursabfrage fehlgeschlagen: {e}", file=sys.stderr)
+        # Bei einer HTTPError zusaetzlich den Response-Body mitloggen
+        # (Binance liefert bei einem ungueltigen Request z.B.
+        # {"code":-1100,"msg":"Illegal characters found in parameter..."}
+        # zurueck) - das haette diesen Bug beim ersten Live-Test sofort
+        # sichtbar gemacht, statt nur "Preis nicht verfuegbar" zu zeigen.
+        body = getattr(getattr(e, "response", None), "text", None)
+        logger.warning(
+            f"Binance-Live-Kursabfrage fehlgeschlagen fuer {symbols_param}: {e}"
+            + (f" - Antwort: {body[:300]}" if body else "")
+        )
         return {}
 
 
@@ -362,10 +403,9 @@ def fetch_stock_prices(symbols: list) -> dict:
     try:
         import yfinance as yf
     except ImportError:
-        print(
-            "Warnung: yfinance nicht installiert - Live-Kurse fuer Aktien-Positionen "
-            "nicht verfuegbar (pip3 install -r notifications/requirements.txt).",
-            file=sys.stderr,
+        logger.warning(
+            "yfinance nicht installiert - Live-Kurse fuer Aktien-Positionen "
+            "nicht verfuegbar (pip3 install -r notifications/requirements.txt)."
         )
         return {}
 
@@ -394,7 +434,7 @@ def fetch_stock_prices(symbols: list) -> dict:
                 except (KeyError, IndexError):
                     continue
     except Exception as e:
-        print(f"Warnung: yfinance-Live-Kursabfrage fehlgeschlagen: {e}", file=sys.stderr)
+        logger.warning(f"yfinance-Live-Kursabfrage fehlgeschlagen: {e}")
         return prices
 
     return prices
