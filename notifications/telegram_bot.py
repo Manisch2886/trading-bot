@@ -28,6 +28,7 @@ periodische Ueberwachung) - siehe notifications/requirements.txt:
 
 import os
 import sys
+import asyncio
 import logging
 from functools import wraps
 from logging.handlers import RotatingFileHandler
@@ -222,20 +223,41 @@ async def poll_job(context: ContextTypes.DEFAULT_TYPE):
     """
     Periodischer Job (siehe run_repeating in main()): fragt monitor.py
     nach neuen Ereignissen und verschickt jedes einzeln ueber
-    notify.send_alert(). notify.send_alert() ist ein blockierender
-    HTTP-Aufruf (siehe dortiger Kommentar) - bei der hier genutzten
-    niedrigen Frequenz (alle paar Minuten, wenige Nachrichten) bewusst
-    in Kauf genommen, statt eine zweite asynchrone Sende-Implementierung
-    nur fuer diesen Job zu pflegen.
+    notify.send_alert().
+
+    WICHTIG - Root Cause einer beobachteten Totalblockade (Bot lief
+    weiter, reagierte aber auf GAR KEINEN Befehl mehr, keine neuen Logs,
+    ein paralleler curl-Aufruf gegen getUpdates ging trotzdem normal
+    durch): notify.send_alert() ist ein ECHTER blockierender
+    Netzwerk-Aufruf (urllib, siehe dortiger Kommentar), und
+    monitor.check_for_events() macht synchrone SQLite-/Datei-I/O.
+    Frueher wurden beide DIREKT in dieser async-Funktion aufgerufen -
+    das blockiert bei einem einzigen Event-Loop (wie ihn
+    Application.run_polling() UND dieser JobQueue-Job gemeinsam nutzen)
+    den KOMPLETTEN Prozess fuer die gesamte Laufzeit des Aufrufs,
+    inklusive der parallel laufenden Update-Abholung fuer Telegram-
+    Befehle. Haengt der Netzwerk-Request in send_alert() nur kurz (z.B.
+    eine langsame DNS-Aufloesung, die vom eingestellten timeout nicht
+    zuverlaessig abgedeckt wird), friert dadurch der GESAMTE Bot ein -
+    genau das beobachtete Symptom, inkl. der Erklaerung, warum ein
+    externer curl-Aufruf zeitgleich anstandslos durchging: der
+    Bot-Prozess hatte in diesem Moment selbst gar keinen aktiven
+    getUpdates-Call laufen, weil er anderswo im selben Event-Loop
+    blockiert war.
+
+    Fix: beide potenziell blockierenden Aufrufe ueber asyncio.to_thread()
+    in einen separaten Thread auslagern - der Event-Loop bleibt dadurch
+    fuer die Befehlsverarbeitung frei, unabhaengig davon, wie lange der
+    Netzwerk-Request braucht.
     """
     try:
-        events = monitor.check_for_events()
+        events = await asyncio.to_thread(monitor.check_for_events)
     except Exception:
         logger.exception("Fehler beim periodischen Ueberwachungs-Check.")
         return
 
     for event_text in events:
-        notify.send_alert(event_text)
+        await asyncio.to_thread(notify.send_alert, event_text)
     if events:
         logger.info(f"{len(events)} neue(s) Ereignis(se) verschickt.")
 
