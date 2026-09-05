@@ -35,7 +35,7 @@ from logging.handlers import RotatingFileHandler
 
 from telegram import Update
 from telegram.error import BadRequest
-from telegram.ext import Application, CommandHandler, ContextTypes
+from telegram.ext import Application, ContextTypes, MessageHandler, filters
 
 import telegram_config
 import monitor
@@ -161,8 +161,41 @@ def restricted(handler):
     return wrapper
 
 
-def _selector_from_args(context: ContextTypes.DEFAULT_TYPE) -> str:
-    return " ".join(context.args).strip() if context.args else None
+def _command_filter(name: str):
+    """
+    Ersatz fuer CommandHandler(name, ...) - erkennt einen Befehl allein
+    anhand des NACHRICHTENTEXTS ('/name' am Anfang, optional '@botname',
+    optional gefolgt von Argumenten), UNABHAENGIG von der
+    MessageEntity, die Telegram/der Client dafuer mitschickt.
+
+    Root Cause eines beobachteten Totalausfalls: CommandHandler erkennt
+    einen Befehl nur, wenn Telegram die ALLERERSTE MessageEntity als
+    Typ "bot_command" markiert (siehe CommandHandler.check_update() im
+    PTB-Quellcode: `message.entities[0].type == MessageEntity.BOT_COMMAND`).
+    Ein Live-Test mit vollem HTTP-Debug-Logging zeigte, dass PTB ein
+    gesendetes /status-Update zwar empfing und normal verarbeitete
+    ("Processing update" geloggt, Offset fortgeschrieben), der
+    registrierte CommandHandler aber NIE aufgerufen wurde - nicht
+    einmal die allererste eigene TRACE-Zeile erschien. Empirisch
+    nachgestellt und bestaetigt: setzt man die erste Entity auf einen
+    ANDEREN Typ als "bot_command" (z.B. "code" - kann je nach
+    Telegram-Client/Situation vorkommen, wenn der Text wie ein
+    Code-Snippet aussieht), gibt CommandHandler.check_update() `None`
+    zurueck - PTB quittiert das Update trotzdem ganz normal (kein
+    Fehler aus PTBs Sicht, es findet schlicht kein Handler zustaendig).
+    Das erklaert luecken- und widerspruchslos JEDES bisher beobachtete
+    Symptom dieser Diagnose-Serie.
+
+    filters.Regex prueft dagegen AUSSCHLIESSLICH den Nachrichtentext
+    selbst - unabhaengig davon, welchen (oder ob ueberhaupt einen)
+    Entity-Typ Telegram dafuer gesetzt hat.
+    """
+    return filters.Regex(rf"(?i)^/{name}(@\S+)?(\s|$)")
+
+
+def _selector_from_text(text: str) -> str:
+    parts = (text or "").split()
+    return " ".join(parts[1:]).strip() or None
 
 
 REPLY_TIMEOUT_SECONDS = 20
@@ -299,7 +332,8 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
 @restricted
 async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     known = ", ".join(sorted(monitor.ASSET_CLASS.keys()))
-    await update.message.reply_text(
+    await _send_reply(
+        update.message,
         "Trading-Bot-Ueberwachung (Phase 1 - nur lesend)\n\n"
         "/status [filter] - Kurzueberblick aller Bots\n"
         "/positions [filter] - offene Positionen, gruppiert nach Krypto/Aktien\n"
@@ -307,23 +341,29 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
         "filter (optional): 'krypto', 'aktien', oder ein Bot-Name:\n"
         f"{known}\n\n"
         "Automatische Push-Benachrichtigungen (neuer Trade, Stop-Loss, "
-        "Cronjob-Fehler) laufen im Hintergrund, ohne dass du etwas tun musst."
+        "Cronjob-Fehler) laufen im Hintergrund, ohne dass du etwas tun musst.",
     )
 
 
 @restricted
 async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await _reply_for_selector(update, _selector_from_args(context), monitor.format_status_message)
+    await _reply_for_selector(
+        update, _selector_from_text(update.message.text), monitor.format_status_message
+    )
 
 
 @restricted
 async def positions_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await _reply_for_selector(update, _selector_from_args(context), monitor.format_positions_message)
+    await _reply_for_selector(
+        update, _selector_from_text(update.message.text), monitor.format_positions_message
+    )
 
 
 @restricted
 async def pnl_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await _reply_for_selector(update, _selector_from_args(context), monitor.format_pnl_message)
+    await _reply_for_selector(
+        update, _selector_from_text(update.message.text), monitor.format_pnl_message
+    )
 
 
 async def poll_job(context: ContextTypes.DEFAULT_TYPE):
@@ -397,11 +437,15 @@ def main():
 
     application = Application.builder().token(_CREDS["token"]).build()
 
-    application.add_handler(CommandHandler("start", help_command))
-    application.add_handler(CommandHandler("help", help_command))
-    application.add_handler(CommandHandler("status", status_command))
-    application.add_handler(CommandHandler("positions", positions_command))
-    application.add_handler(CommandHandler("pnl", pnl_command))
+    # MessageHandler + _command_filter() statt CommandHandler - siehe
+    # Docstring von _command_filter() fuer die Root Cause (CommandHandler
+    # verlangt eine "bot_command"-MessageEntity, die nicht in jedem Fall
+    # gesetzt wird).
+    application.add_handler(MessageHandler(_command_filter("start"), help_command))
+    application.add_handler(MessageHandler(_command_filter("help"), help_command))
+    application.add_handler(MessageHandler(_command_filter("status"), status_command))
+    application.add_handler(MessageHandler(_command_filter("positions"), positions_command))
+    application.add_handler(MessageHandler(_command_filter("pnl"), pnl_command))
     application.add_error_handler(error_handler)
 
     application.job_queue.run_repeating(poll_job, interval=POLL_INTERVAL_SECONDS, first=15)
