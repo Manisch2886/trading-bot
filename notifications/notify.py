@@ -35,7 +35,14 @@ logger = logging.getLogger("notifications.notify")
 TELEGRAM_API_URL_TEMPLATE = "https://api.telegram.org/bot{token}/sendMessage"
 
 
-def send_alert(text: str) -> bool:
+def send_alert(text: str, parse_mode: str = "Markdown") -> bool:
+    """
+    parse_mode: "Markdown" (Standard, unveraendertes Verhalten fuer alle
+    bestehenden Aufrufer - monitor.py:check_for_events() nutzt bewusst
+    gesetzte *fette*/`code`-Markdown-Entities in seinen Alert-Texten) oder
+    None, um die Nachricht KOMPLETT unformatiert (kein Markdown-Parsing
+    durch Telegram) zu verschicken - siehe send_report() fuer den Grund.
+    """
     creds = get_credentials()
     if not creds:
         logger.error(
@@ -46,11 +53,10 @@ def send_alert(text: str) -> bool:
         return False
 
     url = TELEGRAM_API_URL_TEMPLATE.format(token=creds["token"])
-    payload = json.dumps({
-        "chat_id": creds["user_id"],
-        "text": text,
-        "parse_mode": "Markdown",
-    }).encode("utf-8")
+    payload_dict = {"chat_id": creds["user_id"], "text": text}
+    if parse_mode:
+        payload_dict["parse_mode"] = parse_mode
+    payload = json.dumps(payload_dict).encode("utf-8")
 
     request = urllib.request.Request(
         url, data=payload, headers={"Content-Type": "application/json"}, method="POST"
@@ -83,28 +89,6 @@ def send_alert(text: str) -> bool:
 # Formatierungs-Overhead nicht ausversehen doch ueber das Limit rutscht.
 MAX_MESSAGE_LENGTH = 3500
 
-# Die vier in Telegrams LEGACY-Markdown-Modus (parse_mode="Markdown", siehe
-# send_alert()) reservierten Zeichen.
-_MARKDOWN_SPECIAL_CHARS = "_*`["
-
-
-def _escape_markdown(text: str) -> str:
-    """
-    Escaped die vier Markdown-Sonderzeichen in beliebigem Freitext. Noetig,
-    weil die Berichte (ehemalige E-Mail-Bodies) Datei-Pfade mit Unterstrichen
-    (z.B. "strategies/t3_supertrend/live_params.py") und E-Mail-Betreffs mit
-    eckigen Klammern (z.B. "Trading Bot [rsi2_crypto] - ...") enthalten -
-    unescaped wuerde Telegrams Markdown-Parser das als (moeglicherweise
-    unvollstaendige) Formatierung interpretieren und mit BadRequest
-    fehlschlagen. Exakt dieselbe Fehlerklasse, die bereits in
-    telegram_bot.py zu einem BadRequest-Bug fuehrte (siehe dortige
-    _send_reply()-Historie) - hier von vornherein vermieden statt erst
-    nachtraeglich abgefangen.
-    """
-    for ch in _MARKDOWN_SPECIAL_CHARS:
-        text = text.replace(ch, f"\\{ch}")
-    return text
-
 
 def _split_into_chunks(text: str, max_length: int = MAX_MESSAGE_LENGTH) -> list:
     """
@@ -134,32 +118,56 @@ def send_report(subject: str, body: str) -> bool:
     """
     Verschickt einen laengeren Bericht (ehemals E-Mail-Betreff + -Body) als
     eine oder mehrere Telegram-Nachrichten:
-      1. Betreff wird als fette erste Zeile vorangestellt - Ersatz fuer den
-         E-Mail-Betreff, den eine Telegram-Nachricht nicht kennt.
-      2. Betreff UND Body werden vor dem Versand Markdown-escaped (siehe
-         _escape_markdown) - der Bericht ist inhaltlich reiner Text, keine
-         beabsichtigte Markdown-Formatierung, daher wird alles ausser der
-         bewusst gesetzten fetten Ueberschrift als Literal behandelt.
-      3. Bei Ueberschreiten von MAX_MESSAGE_LENGTH wird in mehrere
+      1. Betreff wird als reine Text-Zeile vorangestellt - Ersatz fuer den
+         E-Mail-Betreff, den eine Telegram-Nachricht nicht kennt. BEWUSST
+         OHNE Fettung/Markdown (siehe unten, Root Cause eines Live-Bugs).
+      2. Bei Ueberschreiten von MAX_MESSAGE_LENGTH wird in mehrere
          Nachrichten aufgeteilt (siehe _split_into_chunks); jeder Chunk ab
          dem zweiten bekommt eine "(Fortsetzung)"-Markierung.
+      3. Die gesamte Nachricht wird OHNE parse_mode (also als reiner,
+         unformatierter Text) verschickt.
+
+    ROOT CAUSE eines Live-Bugs (erste Version dieser Funktion): der erste
+    Anlauf hat Betreff+Body vor dem Versand "Markdown-escaped" (Backslash
+    vor _ * ` [) und den Betreff in *...* eingefasst, mit parse_mode=
+    "Markdown" verschickt. Live-Test zeigte danach woertliche Backslashes
+    in der Betreffzeile ("Trading Bot \\[elliott\\_wave] - ..."). Ursache:
+    Telegrams LEGACY-Markdown-Modus (parse_mode="Markdown", im Unterschied
+    zu "MarkdownV2") kennt laut offizieller Bot-API-Doku GAR KEIN
+    Backslash-Escaping - dieser Mechanismus ist ausschliesslich fuer
+    MarkdownV2 spezifiziert. Im Legacy-Modus wird ein Backslash einfach als
+    gewoehnliches Zeichen durchgereicht, OHNE das nachfolgende
+    Sonderzeichen zu neutralisieren - die eingefuegten Escape-Backslashes
+    landeten deshalb woertlich sichtbar beim Nutzer, statt etwas zu
+    bewirken. Der Bericht-Text selbst (E-Mail-Betreffs/Datei-Pfade mit "_"
+    und "[") ist ohnehin reiner Inhaltstext ohne beabsichtigte
+    Markdown-Formatierung - die robusteste Loesung ist deshalb, fuer
+    send_report() komplett auf parse_mode zu verzichten (send_alert(...,
+    parse_mode=None)) statt eine fehlerhafte Escape-Strategie zu
+    reparieren: kein Formatierungsrisiko mehr durch IRGENDein
+    Sonderzeichen in beliebigem Bot-/Datei-/Betreff-Text, dafuer keine
+    Fettung der Ueberschrift - das wurde als klar vorzugswuerdig
+    eingestuft gegenueber einem Umstieg auf MarkdownV2 (dort muessten
+    praktisch alle Satzzeichen im gesamten Bericht escaped werden, u.a.
+    Punkte in Prozentzahlen und Bindestriche in negativen Werten).
 
     Nutzt fuer den eigentlichen Versand ausschliesslich die bestehende
-    send_alert() - dieselbe Funktion, die auch fuer die Event-Alerts aus
-    notifications/monitor.py verwendet wird.
+    send_alert() - dieselbe Funktion, die auch fuer die (weiterhin
+    Markdown-formatierten) Event-Alerts aus notifications/monitor.py
+    verwendet wird; send_report() ruft sie lediglich mit parse_mode=None
+    auf, alle anderen Aufrufer sind unveraendert.
 
     Gibt True zurueck, wenn ALLE Chunks erfolgreich verschickt wurden, sonst
     False - bricht beim ersten fehlgeschlagenen Chunk ab (sendet keine
     spaeteren Chunks mehr, um keine Nachricht ausser Reihenfolge nach einem
     bereits sichtbaren Fehler zu verschicken).
     """
-    header = f"*{_escape_markdown(subject)}*"
-    full_text = f"{header}\n\n{_escape_markdown(body)}"
+    full_text = f"{subject}\n\n{body}"
 
     chunks = _split_into_chunks(full_text)
     for i, chunk in enumerate(chunks):
         text = chunk if i == 0 else f"(Fortsetzung)\n\n{chunk}"
-        if not send_alert(text):
+        if not send_alert(text, parse_mode=None):
             return False
     return True
 
