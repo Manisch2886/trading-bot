@@ -604,13 +604,27 @@ def format_status_message(bots: list, live_prices: dict = None):
     Ausgabe (kumulierter PnL, offene Positionen als Symbolliste) bleibt
     unveraendert verfuegbar.
 
-    Reihenfolge: absteigend nach kumuliertem PnL (bester Bot zuerst) -
-    ALLE Bots bleiben weiterhin vollstaendig aufgelistet, auch ohne offene
-    Positionen, nur die Sortierung aendert sich. Bots ohne geschlossene
+    Reihenfolge: ZWEISTUFIG - primaer nach Asset-Klasse (erst alle
+    Aktien-Bots, dann alle Krypto-Bots), sekundaer INNERHALB jeder Gruppe
+    absteigend nach kumuliertem PnL (bester Bot der Gruppe zuerst). ALLE
+    Bots bleiben weiterhin vollstaendig aufgelistet, auch ohne offene
+    Positionen, nur die Reihenfolge aendert sich. Bots ohne geschlossene
     Trades (total_pnl is None, "n/a") haben keinen Sortierwert und werden
-    ans Ende gestellt; sorted() ist stabil, daher bleibt ihre
-    urspruengliche Reihenfolge (siehe discover_bots(), alphabetisch nach
-    Ordnername) untereinander erhalten.
+    ans Ende IHRER JEWEILIGEN Gruppe gestellt (nicht ans Ende der
+    Gesamtliste); sorted() ist stabil, daher bleibt ihre urspruengliche
+    Reihenfolge (siehe discover_bots(), alphabetisch nach Ordnername)
+    untereinander erhalten. Ein einzelner Tupel-Sortierschluessel
+    (Gruppe, hat-keinen-PnL-Wert, negativer PnL) erledigt alle drei
+    Sortierstufen in einem Aufwasch, da Python-Tupel-Sortierung
+    lexikografisch UND stabil ist.
+
+    Vor dem ersten Bot jeder Gruppe steht eine kurze Zwischenueberschrift
+    ("*Aktien*"/"*Krypto*", analog zur bestehenden Gruppierung in
+    format_positions_message()) fuer klare visuelle Trennung. Die
+    Ueberschrift wird als Teil des ERSTEN Bot-Blocks der jeweiligen Gruppe
+    behandelt (nicht als eigenes Chunking-Element) - so kann eine
+    Chunk-Grenze niemals zwischen einer Gruppenueberschrift und ihrem
+    ersten Bot landen.
 
     Letzte Zeile jedes Bot-Blocks ist "Aktuelles Gesamtergebnis" - siehe
     _current_total_result() fuer die Methodik (gemittelter, nicht
@@ -621,10 +635,15 @@ def format_status_message(bots: list, live_prices: dict = None):
     """
     live_prices = live_prices or {}
     entries = [(bot, get_bot_status(bot), get_bot_pnl_summary(bot)) for bot in bots]
-    entries.sort(key=lambda e: (e[2]["total_pnl"] is None, -(e[2]["total_pnl"] or 0)))
+    entries.sort(key=lambda e: (
+        0 if e[1]["asset_class"] == "aktien" else 1,
+        e[2]["total_pnl"] is None,
+        -(e[2]["total_pnl"] or 0),
+    ))
 
     chunks = []
     current_lines = ["*Status-Ueberblick*"]
+    last_asset_class = None
 
     for bot, s, p in entries:
         last_run_txt = s["last_run"].strftime("%d.%m. %H:%M UTC") if s["last_run"] else "unbekannt"
@@ -633,7 +652,13 @@ def format_status_message(bots: list, live_prices: dict = None):
         else:
             total_pnl_txt = "n/a (keine geschlossenen Trades)"
 
-        block_lines = [
+        block_lines = []
+        if s["asset_class"] != last_asset_class:
+            group_label = "Aktien" if s["asset_class"] == "aktien" else "Krypto"
+            block_lines.append(f"\n*{group_label}*")
+            last_asset_class = s["asset_class"]
+
+        block_lines += [
             f"\n*{s['display_name']}*",
             f"Letzter Lauf: {last_run_txt}",
             f"Offene Positionen: {s['num_open']}",
