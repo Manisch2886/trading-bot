@@ -197,7 +197,10 @@ def get_bot_status(bot: dict) -> dict:
     if not closed_trades.empty:
         exit_dates = pd.to_datetime(closed_trades["exit_time"], errors="coerce").dt.date
         today_mask = exit_dates == today
-        pnl_today = round(closed_trades.loc[today_mask, "pnl_pct"].sum(), 2)
+        # Gleiche Absicherung wie in get_bot_pnl_summary - pnl_pct kann in
+        # der Live-DB vereinzelt NULL/kaputte Werte enthalten.
+        pnl_values = pd.to_numeric(closed_trades.loc[today_mask, "pnl_pct"], errors="coerce")
+        pnl_today = round(pnl_values.sum(), 2)
         closed_today = int(today_mask.sum())
 
     log_file = _latest_log_file(bot["log_dir"])
@@ -238,9 +241,20 @@ def get_bot_pnl_summary(bot: dict) -> dict:
         "total_pnl": None,
     }
     if not closed.empty:
-        summary["win_rate"] = round((closed["pnl_pct"] > 0).mean() * 100, 1)
-        summary["avg_pnl"] = round(closed["pnl_pct"].mean(), 2)
-        summary["total_pnl"] = round(closed["pnl_pct"].sum(), 2)
+        # pnl_pct robust in echte Zahlen umwandeln, bevor damit gerechnet
+        # wird: anders als die synthetischen Sandbox-Testdaten kann die
+        # reale, seit Wochen laufende Live-DB vereinzelt NULL/kaputte Werte
+        # in pnl_pct enthalten (z.B. ein aelterer Trade ueber einen frueheren
+        # Code-Pfad) - eine object-dtype-Spalte mit None-Werten laesst
+        # ">"/mean()/sum() sonst mit TypeError abbrechen. Das erklaerte den
+        # Bug, dass /pnl live gar nicht mehr antwortete, waehrend /status
+        # - das nur die WENIGEN heutigen Trades anfasst - zufaellig nicht
+        # betroffen war. pd.to_numeric(..., errors="coerce") macht daraus
+        # sauber NaN statt abzustuerzen.
+        pnl = pd.to_numeric(closed["pnl_pct"], errors="coerce")
+        summary["win_rate"] = round((pnl > 0).mean() * 100, 1)
+        summary["avg_pnl"] = round(pnl.mean(), 2)
+        summary["total_pnl"] = round(pnl.sum(), 2)
 
     return summary
 

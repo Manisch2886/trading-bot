@@ -33,6 +33,7 @@ from functools import wraps
 from logging.handlers import RotatingFileHandler
 
 from telegram import Update
+from telegram.error import BadRequest
 from telegram.ext import Application, CommandHandler, ContextTypes
 
 import telegram_config
@@ -90,7 +91,24 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
         await update.message.reply_text(text)
         return
 
-    await update.message.reply_text(formatter(bots), parse_mode="Markdown")
+    text = formatter(bots)
+    try:
+        await update.message.reply_text(text, parse_mode="Markdown")
+    except BadRequest:
+        # Telegrams (legacy) Markdown-Parser lehnt eine Nachricht ab, statt
+        # sie unformatiert zuzustellen, sobald er auf ein Sonderzeichen-Muster
+        # trifft, das er nicht als gueltige Formatierung lesen kann (z.B.
+        # durch reale Live-Daten wie Bot-/Symbolnamen oder Zahlenformate, die
+        # in den synthetischen Sandbox-Testdaten so nicht vorkamen). Bisher
+        # fuehrte das zu KEINER Antwort in Telegram, obwohl der Bot-Prozess
+        # weiterlief - lieber unformatiert antworten als stillschweigend gar
+        # nichts zu schicken. Siehe auch error_handler() in main() fuer alle
+        # sonstigen unerwarteten Fehler.
+        logger.warning(
+            f"Markdown-Formatierung von Telegram abgelehnt, sende unformatiert erneut "
+            f"(Selektor: {selector!r})."
+        )
+        await update.message.reply_text(text, parse_mode=None)
 
 
 @restricted
@@ -145,6 +163,19 @@ async def poll_job(context: ContextTypes.DEFAULT_TYPE):
         logger.info(f"{len(events)} neue(s) Ereignis(se) verschickt.")
 
 
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """
+    Globaler Fallback fuer JEDE unerwartete Exception in einem Handler oder
+    Job (registriert unten via add_error_handler). Vorher gab es das nicht -
+    ein Fehler wie der urspruengliche /pnl-Bug (Exception beim Formatieren
+    der Antwort) fiel dadurch nur als "keine Antwort in Telegram" auf, ohne
+    dass im Log/Terminal etwas Konkretes dazu stand. Loest das Problem
+    selbst nicht, macht ein kuenftiges aehnliches Verhalten aber sofort
+    sichtbar statt nur stumm zu bleiben.
+    """
+    logger.error("Unerwarteter Fehler im Telegram-Bot:", exc_info=context.error)
+
+
 def main():
     if AUTHORIZED_USER_ID is None:
         logger.error(
@@ -165,6 +196,7 @@ def main():
     application.add_handler(CommandHandler("status", status_command))
     application.add_handler(CommandHandler("positions", positions_command))
     application.add_handler(CommandHandler("pnl", pnl_command))
+    application.add_error_handler(error_handler)
 
     application.job_queue.run_repeating(poll_job, interval=POLL_INTERVAL_SECONDS, first=15)
 
