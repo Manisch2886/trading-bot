@@ -93,6 +93,27 @@ Seit dem neuesten Fix gilt das auch fuer interne Meldungen von
 other getUpdates request` - siehe naechster Absatz), nicht nur fuer
 unsere eigenen Log-Zeilen.
 
+**TRACE-Breadcrumbs:** Jede Zeile mit `TRACE:` markiert einen Schritt
+im Aufruf-Pfad eines Befehls (`restricted()`-Wrapper erreicht →
+Autorisierung OK → `_reply_for_selector()` betreten →
+`discover_bots()`/`filter_bots()` fertig → `formatter()` fertig → vor/
+nach `reply_text()`). Bei einem erneuten "keine Antwort"-Fall zeigt
+`grep TRACE logs/notifications/telegram_bot.log` (oder das Terminal)
+GENAU, an welcher Stelle die Verarbeitung stehen geblieben ist - fehlt
+z.B. sogar die allererste TRACE-Zeile ("restricted()-Wrapper erreicht"),
+wurde der Handler von `python-telegram-bot` gar nicht erst aufgerufen
+(Dispatch-Problem); erscheint sie, aber die naechste TRACE-Zeile fehlt,
+haengt genau der Schritt dazwischen.
+
+**Vor dem naechsten Test unbedingt verifizieren, dass der aktuelle Code
+auch wirklich laeuft:**
+```
+git log -1 --format="%H %s" notifications/telegram_bot.py
+grep -c "TRACE:" notifications/telegram_bot.py
+```
+(Die zweite Zeile sollte mehrere Treffer zeigen - falls 0, laeuft eine
+aeltere Version der Datei.)
+
 ## WICHTIG vor jedem Neustart: nur EIN Bot-Prozess darf laufen
 
 Telegram erlaubt pro Bot-Token nur EINEN aktiven Long-Poller

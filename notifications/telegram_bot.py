@@ -145,10 +145,18 @@ def restricted(handler):
     mit seiner Telegram-User-ID geloggt."""
     @wraps(handler)
     async def wrapper(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        # TRACE-Breadcrumb (Diagnose): nach einem Live-Test, bei dem trotz
+        # bestaetigtem "Processing update" (PTB-eigenes Log) weder ein
+        # sendMessage-Aufruf noch der neue Reply-Timeout-Log (45a0f7f)
+        # jemals erschien, muss zweifelsfrei geklaert werden, WIE WEIT der
+        # Aufruf ueberhaupt kommt - diese Zeile ist der fruehestmoegliche
+        # Punkt in unserem eigenen Code nach dem Dispatch durch PTB.
+        logger.info(f"TRACE: restricted()-Wrapper erreicht fuer Handler '{handler.__name__}'.")
         user_id = update.effective_user.id if update.effective_user else None
         if user_id != AUTHORIZED_USER_ID:
             logger.warning(f"Unautorisierter Zugriffsversuch von Telegram-User-ID {user_id}.")
             return
+        logger.info(f"TRACE: Autorisierung OK, rufe Handler '{handler.__name__}' auf.")
         return await handler(update, context)
     return wrapper
 
@@ -192,8 +200,10 @@ async def _send_reply(message, text: str, **kwargs) -> bool:
     optional einen Fallback versuchen, ohne selbst try/except
     TimeoutError schreiben zu muessen.
     """
+    logger.info(f"TRACE: _send_reply() ruft jetzt message.reply_text() auf ({len(text)} Zeichen).")
     try:
         await asyncio.wait_for(message.reply_text(text, **kwargs), timeout=REPLY_TIMEOUT_SECONDS)
+        logger.info("TRACE: message.reply_text() erfolgreich zurueckgekehrt.")
         return True
     except asyncio.TimeoutError:
         logger.error(
@@ -205,8 +215,10 @@ async def _send_reply(message, text: str, **kwargs) -> bool:
 
 
 async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
+    logger.info(f"TRACE: _reply_for_selector() betreten (Selektor: {selector!r}).")
     try:
         bots = monitor.filter_bots(monitor.discover_bots(), selector)
+        logger.info(f"TRACE: discover_bots()/filter_bots() abgeschlossen ({len(bots)} Bot(s)).")
     except Exception:
         # Ergaenzung: eine gezielte Probe hat bestaetigt, dass eine
         # Exception hier zwar zuverlaessig beim globalen error_handler()
@@ -235,6 +247,7 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
 
     try:
         text = formatter(bots)
+        logger.info(f"TRACE: formatter() abgeschlossen ({len(text)} Zeichen), sende jetzt Antwort.")
     except Exception:
         # WICHTIG: vorher lag dieser Aufruf AUSSERHALB jeder
         # Fehlerbehandlung in dieser Funktion - eine Exception beim
@@ -255,10 +268,12 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
         )
         return
 
+    logger.info("TRACE: rufe jetzt update.message.reply_text(parse_mode='Markdown') auf.")
     try:
         await asyncio.wait_for(
             update.message.reply_text(text, parse_mode="Markdown"), timeout=REPLY_TIMEOUT_SECONDS
         )
+        logger.info("TRACE: reply_text(parse_mode='Markdown') erfolgreich zurueckgekehrt.")
     except BadRequest:
         # Telegrams (legacy) Markdown-Parser lehnt eine Nachricht ab, statt
         # sie unformatiert zuzustellen, sobald er auf ein Sonderzeichen-Muster
