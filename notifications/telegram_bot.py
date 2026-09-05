@@ -157,8 +157,72 @@ def _selector_from_args(context: ContextTypes.DEFAULT_TYPE) -> str:
     return " ".join(context.args).strip() if context.args else None
 
 
+REPLY_TIMEOUT_SECONDS = 20
+
+
+async def _send_reply(message, text: str, **kwargs) -> bool:
+    """
+    reply_text() mit einer HARTEN Zeit-Obergrenze. Root Cause eines
+    beobachteten stillen Abbruchs: ein Diagnose-Durchlauf mit vollem
+    HTTP-Debug-Logging zeigte, dass ein Befehl korrekt empfangen und zu
+    verarbeiten BEGONNEN wurde ("Processing update" im Log), aber NIE
+    ein sendMessage-Aufruf stattfand - UND kein Fehler irgendwo sichtbar
+    wurde (kein Absturz, keine Exception im Error-Handler, einfach
+    Stille). Das ist ein echtes Haengenbleiben, keine verschluckte
+    Exception (eine gezielte Sandbox-Probe hat bestaetigt, dass
+    Exceptions in diesem Codepfad zuverlaessig beim registrierten
+    add_error_handler() ankommen und geloggt werden).
+
+    Plausibelste Erklaerung: python-telegram-bot nutzt fuer getUpdates
+    und fuer alle anderen API-Aufrufe (inkl. sendMessage) ZWEI GETRENNTE
+    HTTP-Connection-Pools (siehe telegram.Bot.__init__) - die
+    getUpdates-Verbindung ist beim Eintreffen eines Befehls bereits
+    "warm" (dauerhaft offen), waehrend die zweite Verbindung fuer
+    sendMessage ggf. neu aufgebaut werden muss und dabei an einer Stelle
+    haengen bleiben kann, die von httpx/httpcores eigenen
+    Timeout-Parametern nicht zuverlaessig abgedeckt wird (z.B. eine
+    haengende DNS-Aufloesung) - passt exakt zum beobachteten Muster
+    (getUpdates lief die ganze Zeit einwandfrei weiter).
+
+    asyncio.wait_for() erzwingt hier eine harte Obergrenze UNABHAENGIG
+    von der genauen Ursache: im schlimmsten Fall geht GENAU DIESE eine
+    Antwort verloren, aber es gibt IMMER einen sichtbaren, geloggten
+    Fehler statt endloser Stille. Gibt True bei Erfolg zurueck, False
+    bei Zeitueberschreitung (bereits geloggt) - Aufrufer koennen so
+    optional einen Fallback versuchen, ohne selbst try/except
+    TimeoutError schreiben zu muessen.
+    """
+    try:
+        await asyncio.wait_for(message.reply_text(text, **kwargs), timeout=REPLY_TIMEOUT_SECONDS)
+        return True
+    except asyncio.TimeoutError:
+        logger.error(
+            f"Zeitueberschreitung ({REPLY_TIMEOUT_SECONDS}s) beim Senden einer Telegram-Antwort - "
+            "vermutlich ein Netzwerk-/Verbindungsproblem beim sendMessage-Aufruf (siehe "
+            "README.md, Abschnitt 'Netzwerk-Diagnose')."
+        )
+        return False
+
+
 async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
-    bots = monitor.filter_bots(monitor.discover_bots(), selector)
+    try:
+        bots = monitor.filter_bots(monitor.discover_bots(), selector)
+    except Exception:
+        # Ergaenzung: eine gezielte Probe hat bestaetigt, dass eine
+        # Exception hier zwar zuverlaessig beim globalen error_handler()
+        # ankommt und geloggt wird - der Nutzer bekam dabei aber KEINE
+        # Antwort in Telegram (kein Fallback existierte fuer diesen
+        # Codepfad). Konsistent mit den beiden Faellen weiter unten:
+        # sichtbar loggen UND trotzdem antworten, statt nur dem globalen
+        # Handler zu vertrauen.
+        logger.exception(f"Fehler beim Ermitteln der Bots (Selektor: {selector!r}).")
+        await _send_reply(
+            update.message,
+            "Fehler beim Zugriff auf die Bot-Daten - Details siehe "
+            "logs/notifications/telegram_bot.log (und Terminal, falls im Vordergrund gestartet).",
+        )
+        return
+
     if not bots:
         known = ", ".join(sorted(monitor.ASSET_CLASS.keys()))
         text = (
@@ -166,7 +230,7 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
             if selector else "Keine Bots mit Live-Datenbank gefunden."
         )
         text += f"\n\nGueltige Filter: krypto, aktien, oder einer von: {known}"
-        await update.message.reply_text(text)
+        await _send_reply(update.message, text)
         return
 
     try:
@@ -184,14 +248,17 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
         # (Konsole + Datei) UND dem Nutzer trotzdem eine Antwort geben,
         # statt auf den globalen Handler zu vertrauen.
         logger.exception(f"Fehler beim Formatieren der Antwort (Selektor: {selector!r}).")
-        await update.message.reply_text(
+        await _send_reply(
+            update.message,
             "Fehler beim Abrufen der Daten - Details siehe "
-            "logs/notifications/telegram_bot.log (und Terminal, falls im Vordergrund gestartet)."
+            "logs/notifications/telegram_bot.log (und Terminal, falls im Vordergrund gestartet).",
         )
         return
 
     try:
-        await update.message.reply_text(text, parse_mode="Markdown")
+        await asyncio.wait_for(
+            update.message.reply_text(text, parse_mode="Markdown"), timeout=REPLY_TIMEOUT_SECONDS
+        )
     except BadRequest:
         # Telegrams (legacy) Markdown-Parser lehnt eine Nachricht ab, statt
         # sie unformatiert zuzustellen, sobald er auf ein Sonderzeichen-Muster
@@ -206,7 +273,12 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
             f"Markdown-Formatierung von Telegram abgelehnt, sende unformatiert erneut "
             f"(Selektor: {selector!r})."
         )
-        await update.message.reply_text(text, parse_mode=None)
+        await _send_reply(update.message, text, parse_mode=None)
+    except asyncio.TimeoutError:
+        logger.error(
+            f"Zeitueberschreitung ({REPLY_TIMEOUT_SECONDS}s) beim Senden einer Telegram-Antwort "
+            f"(Selektor: {selector!r}) - siehe README.md, Abschnitt 'Netzwerk-Diagnose'."
+        )
 
 
 @restricted
