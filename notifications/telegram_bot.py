@@ -80,6 +80,26 @@ logging.basicConfig(
     stream=sys.stdout,
 )
 
+# Optionale Diagnose-Instrumentierung fuer EINEN Testlauf, NICHT fuer den
+# Dauerbetrieb gedacht (siehe README.md, Abschnitt "Netzwerk-Diagnose"):
+# nach drei aufeinanderfolgenden Fixes, die je fuer sich plausibel und
+# sandbox-verifiziert waren, aber das Live-Symptom nicht behoben haben,
+# wurde main()'s kompletter Code (echte Application, echtes
+# run_polling(), echte JobQueue mit echtem poll_job()-Lauf) gegen einen
+# echten lokalen HTTP-Server End-zu-Ende getestet und funktioniert dort
+# nachweislich fehlerfrei. Der naechstliegende verbleibende Verdacht ist
+# daher NICHT mehr ein Bug in diesem Code, sondern eine Netzwerk-
+# Eigenheit zwischen diesem Mac und api.telegram.org, die httpx (von
+# python-telegram-bot genutzt) anders behandelt als curl (z.B. ein
+# System-Proxy, eine TLS-inspizierende Sicherheitssoftware/VPN, oder ein
+# IPv4/IPv6-Unterschied). TELEGRAM_DEBUG_HTTP=1 aktiviert testweise
+# DEBUG-Logging fuer httpx/httpcore/telegram, um beim naechsten Live-Test
+# zu sehen, ob overhaupt eine Verbindung zu Telegram versucht wird, und
+# falls ja, wo genau sie haengen bleibt.
+if os.environ.get("TELEGRAM_DEBUG_HTTP"):
+    for _name in ("httpx", "httpcore", "telegram"):
+        logging.getLogger(_name).setLevel(logging.DEBUG)
+
 _formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s")
 
 _file_handler = RotatingFileHandler(

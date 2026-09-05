@@ -115,6 +115,39 @@ Getrennt von den bestehenden Bot-Logs unter `logs/<bot>/`. Der
 launchd-Dienst selbst schreibt zusaetzlich `logs/notifications/launchd.out.log`
 und `.err.log`. Keine dieser Log-Dateien enthaelt jemals den Bot-Token.
 
+## Netzwerk-Diagnose (falls der Bot trotz laufendem Prozess auf gar nichts reagiert)
+
+Der komplette Code (echte `Application`, echtes `run_polling()`, echte
+`JobQueue` mit echtem `poll_job()`-Lauf) wurde gegen einen echten
+lokalen HTTP-Server Ende-zu-Ende getestet und funktioniert dort
+nachweislich fehlerfrei. Bleibt der Bot live trotzdem stumm, ist der
+naechstliegende Verdacht KEIN Code-Fehler mehr, sondern eine
+Netzwerk-Eigenheit zwischen diesem Mac und `api.telegram.org`, die
+`httpx` (von `python-telegram-bot` genutzt) anders behandelt als
+`curl` - z.B. ein System-Proxy, eine TLS-inspizierende
+Sicherheits-Software/VPN, oder ein IPv4/IPv6-Unterschied.
+
+**Fuer GENAU EINEN Testlauf** (nicht dauerhaft einbauen - sehr
+gespraechig):
+```
+TELEGRAM_DEBUG_HTTP=1 python3 notifications/telegram_bot.py
+```
+Zeigt jede HTTP-Verbindung von `httpx`/`httpcore`/`telegram` im Detail
+(Verbindungsaufbau, Request, Response) - so laesst sich unterscheiden
+zwischen "es wird ueberhaupt keine Verbindung zu Telegram versucht" und
+"eine Verbindung wird versucht, haengt aber an einer bestimmten
+Stelle" (z.B. TLS-Handshake, DNS-Aufloesung).
+
+**Zum Vergleich hilfreich:**
+```
+curl -v "https://api.telegram.org/bot<TOKEN>/getUpdates"
+```
+Falls `curl -v` z.B. eine andere IP-Adresse, einen Proxy, oder ein
+anderes TLS-Verhalten zeigt als die `TELEGRAM_DEBUG_HTTP=1`-Ausgabe,
+ist das ein starker Hinweis auf eine Netzwerk-/Sicherheits-Software-
+Eigenheit auf diesem Mac, die spezifisch `httpx` betrifft - nicht auf
+einen Fehler in diesem Code.
+
 ## Sicherheit
 
 - `.env` darf niemals ins Repo gelangen (steht in `.gitignore`) und
