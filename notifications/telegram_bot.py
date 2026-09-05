@@ -1,0 +1,458 @@
+"""
+Haupt-Script: Telegram-Bot fuer das Trading-System (Phase 1 - Lesen +
+Benachrichtigungen)
+======================================================================
+Eigenstaendiger, rein lesender Dienst. Fasst KEINE der neun bestehenden
+Bot-Scripts an, veraendert keine live_params.py und schliesst/eroeffnet
+keine Positionen - siehe monitor.py fuer die eigentliche
+Lese-/Erkennungslogik. Dieses Script ist nur die duenne Telegram-Schicht
+darueber: Befehle entgegennehmen und periodisch monitor.py nach neuen
+Ereignissen fragen.
+
+Nur der in .env hinterlegte TELEGRAM_USER_ID darf Befehle senden - jeder
+andere Absender wird ignoriert und geloggt (siehe restricted()).
+
+Phase 3 (spaeter, NICHT Teil dieses Scripts): schreibender Zugriff, z.B.
+Positionen ueber Telegram schliessen. Bewusst nicht vorbereitet, um
+keine falsche Erwartung zu wecken, dass das schon moeglich waere.
+
+Start (Test, im Vordergrund):
+    python3 notifications/telegram_bot.py
+
+Dauerhafter Betrieb: siehe notifications/README.md (launchd-Dienst).
+
+Abhaengigkeit: python-telegram-bot (mit "job-queue"-Extra fuer die
+periodische Ueberwachung) - siehe notifications/requirements.txt:
+    pip3 install -r notifications/requirements.txt
+"""
+
+import os
+import sys
+import asyncio
+import logging
+from functools import wraps
+from logging.handlers import RotatingFileHandler
+
+from telegram import Update
+from telegram.error import BadRequest
+from telegram.ext import Application, ContextTypes, MessageHandler, filters
+
+import telegram_config
+import monitor
+import notify
+
+_NOTIF_DIR = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(_NOTIF_DIR)
+LOG_DIR = os.path.join(BASE_DIR, "logs", "notifications")
+os.makedirs(LOG_DIR, exist_ok=True)
+
+POLL_INTERVAL_SECONDS = int(os.environ.get("TELEGRAM_POLL_INTERVAL_SECONDS", "300"))
+
+# WICHTIG (Root Cause eines vorherigen Diagnose-Versuchs): dieser Logger
+# bekam bisher NUR einen RotatingFileHandler - beim manuellen Start im
+# Vordergrund (siehe Docstring oben: "Start (Test, im Vordergrund)")
+# erschien dadurch NICHTS im Terminal, nicht einmal die Start-Meldung
+# "Telegram-Bot gestartet...", geschweige denn ein Fehler aus
+# error_handler(). Alles landete ausschliesslich in
+# logs/notifications/telegram_bot.log. Jetzt: BEIDES - Konsole (fuer den
+# manuellen Live-Test) UND Datei (fuer den dauerhaften launchd-Betrieb,
+# wo niemand ein Terminal offen haelt).
+#
+# ZUSAETZLICH (Nachtrag): der vorherige Fix machte nur UNSERE EIGENEN
+# beiden Logger sichtbar - interne Meldungen von python-telegram-bot
+# selbst (z.B. "telegram.ext._updater"), httpx oder apscheduler blieben
+# weiterhin unsichtbar, da sie ueber eine eigene Logger-Hierarchie zum
+# Root-Logger propagieren, der bisher nirgends konfiguriert war. Genau
+# SO ein interner Fehler waere die Erklaerung, falls der Bot-Prozess
+# zwar laeuft, aber auf GAR KEINEN Befehl mehr reagiert und dabei
+# trotzdem etwas CPU-Zeit verbraucht: Telegram erlaubt pro Bot-Token nur
+# EINEN aktiven Long-Poller gleichzeitig - laeuft (z.B. aus einem
+# vorherigen Test) noch ein zweiter, alter Bot-Prozess im Hintergrund,
+# meldet Telegram "Conflict: terminated by other getUpdates request".
+# Das haette bisher NIRGENDS sichtbar geloggt, weder in der Datei noch
+# im Terminal. logging.basicConfig() faengt das jetzt am Root-Logger ab
+# (Level WARNING, um nicht jede einzelne HTTP-Anfrage von httpx mit
+# auszugeben) - siehe auch README.md fuer die konkrete
+# Vorgehensweise, um einen solchen doppelten Prozess zu erkennen/beenden.
+logging.basicConfig(
+    level=logging.WARNING,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    stream=sys.stdout,
+)
+
+# Optionale Diagnose-Instrumentierung fuer EINEN Testlauf, NICHT fuer den
+# Dauerbetrieb gedacht (siehe README.md, Abschnitt "Netzwerk-Diagnose"):
+# nach drei aufeinanderfolgenden Fixes, die je fuer sich plausibel und
+# sandbox-verifiziert waren, aber das Live-Symptom nicht behoben haben,
+# wurde main()'s kompletter Code (echte Application, echtes
+# run_polling(), echte JobQueue mit echtem poll_job()-Lauf) gegen einen
+# echten lokalen HTTP-Server End-zu-Ende getestet und funktioniert dort
+# nachweislich fehlerfrei. Der naechstliegende verbleibende Verdacht ist
+# daher NICHT mehr ein Bug in diesem Code, sondern eine Netzwerk-
+# Eigenheit zwischen diesem Mac und api.telegram.org, die httpx (von
+# python-telegram-bot genutzt) anders behandelt als curl (z.B. ein
+# System-Proxy, eine TLS-inspizierende Sicherheitssoftware/VPN, oder ein
+# IPv4/IPv6-Unterschied). TELEGRAM_DEBUG_HTTP=1 aktiviert testweise
+# DEBUG-Logging fuer httpx/httpcore/telegram, um beim naechsten Live-Test
+# zu sehen, ob overhaupt eine Verbindung zu Telegram versucht wird, und
+# falls ja, wo genau sie haengen bleibt.
+if os.environ.get("TELEGRAM_DEBUG_HTTP"):
+    for _name in ("httpx", "httpcore", "telegram"):
+        logging.getLogger(_name).setLevel(logging.DEBUG)
+
+_formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s")
+
+_file_handler = RotatingFileHandler(
+    os.path.join(LOG_DIR, "telegram_bot.log"), maxBytes=2_000_000, backupCount=3
+)
+_file_handler.setFormatter(_formatter)
+
+_console_handler = logging.StreamHandler(sys.stdout)
+_console_handler.setFormatter(_formatter)
+
+
+def _configure_own_logger(name: str) -> logging.Logger:
+    """
+    Haengt Datei- und Konsolen-Handler an einen unserer beiden eigenen
+    Logger. Leert vorher explizit .handlers (idempotent) - schuetzt
+    davor, dass ein erneuter Import/Reload dieses Moduls (z.B. in
+    Tests) Handler dupliziert und dieselbe Zeile mehrfach ausgibt.
+    propagate=False, damit dieselbe Meldung nicht zusaetzlich UEBER den
+    Root-Logger (siehe logging.basicConfig oben) ein zweites Mal auf
+    der Konsole erscheint - der Root-Handler ist nur fuer FREMDE Logger
+    (python-telegram-bot, httpx, apscheduler) gedacht, die keine eigenen
+    Handler haben.
+    """
+    log = logging.getLogger(name)
+    log.setLevel(logging.INFO)
+    log.handlers.clear()
+    log.addHandler(_file_handler)
+    log.addHandler(_console_handler)
+    log.propagate = False
+    return log
+
+
+logger = _configure_own_logger("notifications.telegram_bot")
+_configure_own_logger("notifications.notify")
+
+_CREDS = telegram_config.get_credentials()
+AUTHORIZED_USER_ID = _CREDS["user_id"] if _CREDS else None
+
+
+def restricted(handler):
+    """Laesst nur Befehle von AUTHORIZED_USER_ID durch - jeder andere
+    Absender wird stillschweigend (fuer den Absender) ignoriert, aber
+    mit seiner Telegram-User-ID geloggt."""
+    @wraps(handler)
+    async def wrapper(update: Update, context: ContextTypes.DEFAULT_TYPE):
+        # TRACE-Breadcrumb (Diagnose): nach einem Live-Test, bei dem trotz
+        # bestaetigtem "Processing update" (PTB-eigenes Log) weder ein
+        # sendMessage-Aufruf noch der neue Reply-Timeout-Log (45a0f7f)
+        # jemals erschien, muss zweifelsfrei geklaert werden, WIE WEIT der
+        # Aufruf ueberhaupt kommt - diese Zeile ist der fruehestmoegliche
+        # Punkt in unserem eigenen Code nach dem Dispatch durch PTB.
+        logger.info(f"TRACE: restricted()-Wrapper erreicht fuer Handler '{handler.__name__}'.")
+        user_id = update.effective_user.id if update.effective_user else None
+        if user_id != AUTHORIZED_USER_ID:
+            logger.warning(f"Unautorisierter Zugriffsversuch von Telegram-User-ID {user_id}.")
+            return
+        logger.info(f"TRACE: Autorisierung OK, rufe Handler '{handler.__name__}' auf.")
+        return await handler(update, context)
+    return wrapper
+
+
+def _command_filter(name: str):
+    """
+    Ersatz fuer CommandHandler(name, ...) - erkennt einen Befehl allein
+    anhand des NACHRICHTENTEXTS ('/name' am Anfang, optional '@botname',
+    optional gefolgt von Argumenten), UNABHAENGIG von der
+    MessageEntity, die Telegram/der Client dafuer mitschickt.
+
+    Root Cause eines beobachteten Totalausfalls: CommandHandler erkennt
+    einen Befehl nur, wenn Telegram die ALLERERSTE MessageEntity als
+    Typ "bot_command" markiert (siehe CommandHandler.check_update() im
+    PTB-Quellcode: `message.entities[0].type == MessageEntity.BOT_COMMAND`).
+    Ein Live-Test mit vollem HTTP-Debug-Logging zeigte, dass PTB ein
+    gesendetes /status-Update zwar empfing und normal verarbeitete
+    ("Processing update" geloggt, Offset fortgeschrieben), der
+    registrierte CommandHandler aber NIE aufgerufen wurde - nicht
+    einmal die allererste eigene TRACE-Zeile erschien. Empirisch
+    nachgestellt und bestaetigt: setzt man die erste Entity auf einen
+    ANDEREN Typ als "bot_command" (z.B. "code" - kann je nach
+    Telegram-Client/Situation vorkommen, wenn der Text wie ein
+    Code-Snippet aussieht), gibt CommandHandler.check_update() `None`
+    zurueck - PTB quittiert das Update trotzdem ganz normal (kein
+    Fehler aus PTBs Sicht, es findet schlicht kein Handler zustaendig).
+    Das erklaert luecken- und widerspruchslos JEDES bisher beobachtete
+    Symptom dieser Diagnose-Serie.
+
+    filters.Regex prueft dagegen AUSSCHLIESSLICH den Nachrichtentext
+    selbst - unabhaengig davon, welchen (oder ob ueberhaupt einen)
+    Entity-Typ Telegram dafuer gesetzt hat.
+    """
+    return filters.Regex(rf"(?i)^/{name}(@\S+)?(\s|$)")
+
+
+def _selector_from_text(text: str) -> str:
+    parts = (text or "").split()
+    return " ".join(parts[1:]).strip() or None
+
+
+REPLY_TIMEOUT_SECONDS = 20
+
+
+async def _send_reply(message, text: str, **kwargs) -> bool:
+    """
+    reply_text() mit einer HARTEN Zeit-Obergrenze. Root Cause eines
+    beobachteten stillen Abbruchs: ein Diagnose-Durchlauf mit vollem
+    HTTP-Debug-Logging zeigte, dass ein Befehl korrekt empfangen und zu
+    verarbeiten BEGONNEN wurde ("Processing update" im Log), aber NIE
+    ein sendMessage-Aufruf stattfand - UND kein Fehler irgendwo sichtbar
+    wurde (kein Absturz, keine Exception im Error-Handler, einfach
+    Stille). Das ist ein echtes Haengenbleiben, keine verschluckte
+    Exception (eine gezielte Sandbox-Probe hat bestaetigt, dass
+    Exceptions in diesem Codepfad zuverlaessig beim registrierten
+    add_error_handler() ankommen und geloggt werden).
+
+    Plausibelste Erklaerung: python-telegram-bot nutzt fuer getUpdates
+    und fuer alle anderen API-Aufrufe (inkl. sendMessage) ZWEI GETRENNTE
+    HTTP-Connection-Pools (siehe telegram.Bot.__init__) - die
+    getUpdates-Verbindung ist beim Eintreffen eines Befehls bereits
+    "warm" (dauerhaft offen), waehrend die zweite Verbindung fuer
+    sendMessage ggf. neu aufgebaut werden muss und dabei an einer Stelle
+    haengen bleiben kann, die von httpx/httpcores eigenen
+    Timeout-Parametern nicht zuverlaessig abgedeckt wird (z.B. eine
+    haengende DNS-Aufloesung) - passt exakt zum beobachteten Muster
+    (getUpdates lief die ganze Zeit einwandfrei weiter).
+
+    asyncio.wait_for() erzwingt hier eine harte Obergrenze UNABHAENGIG
+    von der genauen Ursache: im schlimmsten Fall geht GENAU DIESE eine
+    Antwort verloren, aber es gibt IMMER einen sichtbaren, geloggten
+    Fehler statt endloser Stille. Gibt True bei Erfolg zurueck, False
+    bei Zeitueberschreitung (bereits geloggt) - Aufrufer koennen so
+    optional einen Fallback versuchen, ohne selbst try/except
+    TimeoutError schreiben zu muessen.
+    """
+    logger.info(f"TRACE: _send_reply() ruft jetzt message.reply_text() auf ({len(text)} Zeichen).")
+    try:
+        await asyncio.wait_for(message.reply_text(text, **kwargs), timeout=REPLY_TIMEOUT_SECONDS)
+        logger.info("TRACE: message.reply_text() erfolgreich zurueckgekehrt.")
+        return True
+    except asyncio.TimeoutError:
+        logger.error(
+            f"Zeitueberschreitung ({REPLY_TIMEOUT_SECONDS}s) beim Senden einer Telegram-Antwort - "
+            "vermutlich ein Netzwerk-/Verbindungsproblem beim sendMessage-Aufruf (siehe "
+            "README.md, Abschnitt 'Netzwerk-Diagnose')."
+        )
+        return False
+
+
+async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
+    logger.info(f"TRACE: _reply_for_selector() betreten (Selektor: {selector!r}).")
+    try:
+        bots = monitor.filter_bots(monitor.discover_bots(), selector)
+        logger.info(f"TRACE: discover_bots()/filter_bots() abgeschlossen ({len(bots)} Bot(s)).")
+    except Exception:
+        # Ergaenzung: eine gezielte Probe hat bestaetigt, dass eine
+        # Exception hier zwar zuverlaessig beim globalen error_handler()
+        # ankommt und geloggt wird - der Nutzer bekam dabei aber KEINE
+        # Antwort in Telegram (kein Fallback existierte fuer diesen
+        # Codepfad). Konsistent mit den beiden Faellen weiter unten:
+        # sichtbar loggen UND trotzdem antworten, statt nur dem globalen
+        # Handler zu vertrauen.
+        logger.exception(f"Fehler beim Ermitteln der Bots (Selektor: {selector!r}).")
+        await _send_reply(
+            update.message,
+            "Fehler beim Zugriff auf die Bot-Daten - Details siehe "
+            "logs/notifications/telegram_bot.log (und Terminal, falls im Vordergrund gestartet).",
+        )
+        return
+
+    if not bots:
+        known = ", ".join(sorted(monitor.ASSET_CLASS.keys()))
+        text = (
+            f"Kein Bot fuer Filter '{selector}' gefunden."
+            if selector else "Keine Bots mit Live-Datenbank gefunden."
+        )
+        text += f"\n\nGueltige Filter: krypto, aktien, oder einer von: {known}"
+        await _send_reply(update.message, text)
+        return
+
+    try:
+        text = formatter(bots)
+        logger.info(f"TRACE: formatter() abgeschlossen ({len(text)} Zeichen), sende jetzt Antwort.")
+    except Exception:
+        # WICHTIG: vorher lag dieser Aufruf AUSSERHALB jeder
+        # Fehlerbehandlung in dieser Funktion - eine Exception beim
+        # Formatieren (z.B. durch eine Eigenheit in den echten Live-Daten,
+        # die die synthetischen Sandbox-Testdaten nicht abbilden) fuehrte
+        # zu KEINER Antwort in Telegram. Sie haette zwar den globalen
+        # error_handler() in main() erreichen sollen, aber dessen Log
+        # landete bisher NUR in der Datei, nie im Terminal (siehe Fix oben
+        # bei der Logger-Konfiguration) - dadurch wirkte es wie ein
+        # kompletter Blackout. Jetzt: hier direkt und sichtbar loggen
+        # (Konsole + Datei) UND dem Nutzer trotzdem eine Antwort geben,
+        # statt auf den globalen Handler zu vertrauen.
+        logger.exception(f"Fehler beim Formatieren der Antwort (Selektor: {selector!r}).")
+        await _send_reply(
+            update.message,
+            "Fehler beim Abrufen der Daten - Details siehe "
+            "logs/notifications/telegram_bot.log (und Terminal, falls im Vordergrund gestartet).",
+        )
+        return
+
+    logger.info("TRACE: rufe jetzt update.message.reply_text(parse_mode='Markdown') auf.")
+    try:
+        await asyncio.wait_for(
+            update.message.reply_text(text, parse_mode="Markdown"), timeout=REPLY_TIMEOUT_SECONDS
+        )
+        logger.info("TRACE: reply_text(parse_mode='Markdown') erfolgreich zurueckgekehrt.")
+    except BadRequest:
+        # Telegrams (legacy) Markdown-Parser lehnt eine Nachricht ab, statt
+        # sie unformatiert zuzustellen, sobald er auf ein Sonderzeichen-Muster
+        # trifft, das er nicht als gueltige Formatierung lesen kann (z.B.
+        # durch reale Live-Daten wie Bot-/Symbolnamen oder Zahlenformate, die
+        # in den synthetischen Sandbox-Testdaten so nicht vorkamen). Bisher
+        # fuehrte das zu KEINER Antwort in Telegram, obwohl der Bot-Prozess
+        # weiterlief - lieber unformatiert antworten als stillschweigend gar
+        # nichts zu schicken. Siehe auch error_handler() in main() fuer alle
+        # sonstigen unerwarteten Fehler.
+        logger.warning(
+            f"Markdown-Formatierung von Telegram abgelehnt, sende unformatiert erneut "
+            f"(Selektor: {selector!r})."
+        )
+        await _send_reply(update.message, text, parse_mode=None)
+    except asyncio.TimeoutError:
+        logger.error(
+            f"Zeitueberschreitung ({REPLY_TIMEOUT_SECONDS}s) beim Senden einer Telegram-Antwort "
+            f"(Selektor: {selector!r}) - siehe README.md, Abschnitt 'Netzwerk-Diagnose'."
+        )
+
+
+@restricted
+async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    known = ", ".join(sorted(monitor.ASSET_CLASS.keys()))
+    await _send_reply(
+        update.message,
+        "Trading-Bot-Ueberwachung (Phase 1 - nur lesend)\n\n"
+        "/status [filter] - Kurzueberblick aller Bots\n"
+        "/positions [filter] - offene Positionen, gruppiert nach Krypto/Aktien\n"
+        "/pnl [filter] - Performance-Zusammenfassung\n\n"
+        "filter (optional): 'krypto', 'aktien', oder ein Bot-Name:\n"
+        f"{known}\n\n"
+        "Automatische Push-Benachrichtigungen (neuer Trade, Stop-Loss, "
+        "Cronjob-Fehler) laufen im Hintergrund, ohne dass du etwas tun musst.",
+    )
+
+
+@restricted
+async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _reply_for_selector(
+        update, _selector_from_text(update.message.text), monitor.format_status_message
+    )
+
+
+@restricted
+async def positions_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _reply_for_selector(
+        update, _selector_from_text(update.message.text), monitor.format_positions_message
+    )
+
+
+@restricted
+async def pnl_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await _reply_for_selector(
+        update, _selector_from_text(update.message.text), monitor.format_pnl_message
+    )
+
+
+async def poll_job(context: ContextTypes.DEFAULT_TYPE):
+    """
+    Periodischer Job (siehe run_repeating in main()): fragt monitor.py
+    nach neuen Ereignissen und verschickt jedes einzeln ueber
+    notify.send_alert().
+
+    WICHTIG - Root Cause einer beobachteten Totalblockade (Bot lief
+    weiter, reagierte aber auf GAR KEINEN Befehl mehr, keine neuen Logs,
+    ein paralleler curl-Aufruf gegen getUpdates ging trotzdem normal
+    durch): notify.send_alert() ist ein ECHTER blockierender
+    Netzwerk-Aufruf (urllib, siehe dortiger Kommentar), und
+    monitor.check_for_events() macht synchrone SQLite-/Datei-I/O.
+    Frueher wurden beide DIREKT in dieser async-Funktion aufgerufen -
+    das blockiert bei einem einzigen Event-Loop (wie ihn
+    Application.run_polling() UND dieser JobQueue-Job gemeinsam nutzen)
+    den KOMPLETTEN Prozess fuer die gesamte Laufzeit des Aufrufs,
+    inklusive der parallel laufenden Update-Abholung fuer Telegram-
+    Befehle. Haengt der Netzwerk-Request in send_alert() nur kurz (z.B.
+    eine langsame DNS-Aufloesung, die vom eingestellten timeout nicht
+    zuverlaessig abgedeckt wird), friert dadurch der GESAMTE Bot ein -
+    genau das beobachtete Symptom, inkl. der Erklaerung, warum ein
+    externer curl-Aufruf zeitgleich anstandslos durchging: der
+    Bot-Prozess hatte in diesem Moment selbst gar keinen aktiven
+    getUpdates-Call laufen, weil er anderswo im selben Event-Loop
+    blockiert war.
+
+    Fix: beide potenziell blockierenden Aufrufe ueber asyncio.to_thread()
+    in einen separaten Thread auslagern - der Event-Loop bleibt dadurch
+    fuer die Befehlsverarbeitung frei, unabhaengig davon, wie lange der
+    Netzwerk-Request braucht.
+    """
+    try:
+        events = await asyncio.to_thread(monitor.check_for_events)
+    except Exception:
+        logger.exception("Fehler beim periodischen Ueberwachungs-Check.")
+        return
+
+    for event_text in events:
+        await asyncio.to_thread(notify.send_alert, event_text)
+    if events:
+        logger.info(f"{len(events)} neue(s) Ereignis(se) verschickt.")
+
+
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    """
+    Globaler Fallback fuer JEDE unerwartete Exception in einem Handler oder
+    Job (registriert unten via add_error_handler). Vorher gab es das nicht -
+    ein Fehler wie der urspruengliche /pnl-Bug (Exception beim Formatieren
+    der Antwort) fiel dadurch nur als "keine Antwort in Telegram" auf, ohne
+    dass im Log/Terminal etwas Konkretes dazu stand. Loest das Problem
+    selbst nicht, macht ein kuenftiges aehnliches Verhalten aber sofort
+    sichtbar statt nur stumm zu bleiben.
+    """
+    logger.error("Unerwarteter Fehler im Telegram-Bot:", exc_info=context.error)
+
+
+def main():
+    if AUTHORIZED_USER_ID is None:
+        logger.error(
+            "TELEGRAM_BOT_TOKEN/TELEGRAM_USER_ID fehlen oder sind ungueltig - "
+            "siehe .env im Projekt-Root. Beende, ohne zu starten."
+        )
+        print(
+            "Fehler: TELEGRAM_BOT_TOKEN/TELEGRAM_USER_ID fehlen oder sind ungueltig. "
+            "Siehe notifications/README.md.",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    application = Application.builder().token(_CREDS["token"]).build()
+
+    # MessageHandler + _command_filter() statt CommandHandler - siehe
+    # Docstring von _command_filter() fuer die Root Cause (CommandHandler
+    # verlangt eine "bot_command"-MessageEntity, die nicht in jedem Fall
+    # gesetzt wird).
+    application.add_handler(MessageHandler(_command_filter("start"), help_command))
+    application.add_handler(MessageHandler(_command_filter("help"), help_command))
+    application.add_handler(MessageHandler(_command_filter("status"), status_command))
+    application.add_handler(MessageHandler(_command_filter("positions"), positions_command))
+    application.add_handler(MessageHandler(_command_filter("pnl"), pnl_command))
+    application.add_error_handler(error_handler)
+
+    application.job_queue.run_repeating(poll_job, interval=POLL_INTERVAL_SECONDS, first=15)
+
+    logger.info(f"Telegram-Bot gestartet (Poll-Intervall {POLL_INTERVAL_SECONDS}s).")
+    application.run_polling()
+
+
+if __name__ == "__main__":
+    main()

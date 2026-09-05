@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+launchd-Vorlage fuer den Telegram-Bot (notifications/telegram_bot.py).
+Laeuft dauerhaft (KeepAlive), nicht per Cron - der Bot muss permanent
+auf Telegram-Nachrichten lauschen koennen.
+
+VOR DEM ERSTEN LADEN PRUEFEN (siehe notifications/README.md):
+1. Pfad zu python3 unten stimmt mit "which python3" auf diesem Mac
+   ueberein (z.B. /Users/jaquelineloffler/trading-bot/trading-env/bin/python3 oder /opt/homebrew/bin/python3
+   bei Apple Silicon, je nach Installation).
+2. Der Projekt-Pfad unten stimmt mit dem tatsaechlichen Speicherort
+   ueberein (hier: /Users/jaquelineloffler/trading-bot).
+3. .env liegt im Projekt-Root mit TELEGRAM_BOT_TOKEN + TELEGRAM_USER_ID.
+
+Installation:
+    cp notifications/com.manisch.telegram-tradesignal-bot.plist \
+       ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.manisch.telegram-tradesignal-bot.plist
+
+Deinstallation/Stoppen:
+    launchctl unload ~/Library/LaunchAgents/com.manisch.telegram-tradesignal-bot.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.manisch.telegram-tradesignal-bot</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/jaquelineloffler/trading-bot/trading-env/bin/python3</string>
+        <string>/Users/jaquelineloffler/trading-bot/notifications/telegram_bot.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/jaquelineloffler/trading-bot</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jaquelineloffler/trading-bot/logs/notifications/launchd.out.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/jaquelineloffler/trading-bot/logs/notifications/launchd.err.log</string>
+</dict>
+</plist>

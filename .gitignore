@@ -9,6 +9,10 @@ shared/fetch_binance_data.py
 .env
 *.env
 
+# Laufzeit-Zustand des Telegram-Benachrichtigungsdienstes (kein Secret,
+# aber reine Laufzeitdatei - gehört nicht ins Repo)
+notifications/state.json
+
 # Logs und Datenbanken
 logs/
 *.log
