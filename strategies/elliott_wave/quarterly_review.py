@@ -29,6 +29,21 @@ CONFIG_DIR = _P["CONFIG_DIR"]
 sys.path.insert(0, CONFIG_DIR)
 import email_config as cfg
 
+_NOTIF_DIR = os.path.join(_P["BASE_DIR"], "notifications")
+sys.path.insert(0, _NOTIF_DIR)
+from notify import send_report
+
+# E-Mail-Versand deaktiviert (siehe Aufgabe "Bot-eigene E-Mails durch
+# direkten Telegram-Versand ersetzen") - Telegram (send_report(), siehe
+# notifications/notify.py) ist jetzt der primaere Versandweg. Der
+# SMTP-Code (send_email() unten) bleibt bewusst UNVERAENDERT bestehen,
+# nur ueber diesen Flag deaktiviert - falls sich Telegram in der Praxis
+# doch als unzuverlaessig erweisen sollte, kann hier schnell zurueck-
+# geschaltet werden, ohne den alten Code neu schreiben zu muessen.
+# Vollstaendiges Entfernen ist fuer eine spaetere, separate Aufgabe
+# vorgesehen.
+SEND_VIA_EMAIL = False
+
 from param_search_agent import run_agent_search
 from quarterly_interpreter import generate_recommendation
 from multi_symbol_optimise import load_all_symbol_data, evaluate_combination_multi
@@ -207,8 +222,14 @@ if __name__ == "__main__":
     report = build_report(current_wf, proposed_params, proposed_wf, real_stats, recommendation)
     print("\n" + report)
 
+    subject = f"Quartals-Review [{STRATEGY_NAME}] - Parameter-Vorschlag"
     try:
-        send_email(f"Quartals-Review [{STRATEGY_NAME}] - Parameter-Vorschlag", report)
-        print("\nE-Mail erfolgreich verschickt.")
+        if SEND_VIA_EMAIL:
+            send_email(subject, report)
+            print("\nE-Mail erfolgreich verschickt.")
+        elif send_report(subject, report):
+            print("\nTelegram-Nachricht(en) erfolgreich verschickt.")
+        else:
+            print("\nTelegram-Versand fehlgeschlagen - siehe Log/Fehlermeldung von notify.py.")
     except Exception as e:
-        print(f"\nFehler beim E-Mail-Versand: {e}")
+        print(f"\nFehler beim Versand: {e}")
