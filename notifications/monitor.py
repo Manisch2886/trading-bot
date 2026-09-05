@@ -472,6 +472,28 @@ def fetch_live_prices_for_bots(bots: list) -> dict:
 # noch die Antwort verschicken muss.
 # ---------------------------------------------------------------------------
 
+def _pnl_emoji(value: float) -> str:
+    """
+    🟢 vor einem positiven, 🔴 vor einem negativen PnL-/Kursaenderungswert
+    - reine Formatierungshilfe, damit die Symbol-Logik nicht an mehreren
+    Stellen (kumulierter PnL pro Bot UND jede einzelne offene Position)
+    dupliziert wird. Bei exakt 0.0 bewusst KEIN Symbol (weder Gewinn noch
+    Verlust) statt eines beliebigen dritten Symbols - deckt insbesondere
+    den bekannten, harmlosen "+0.0%"-Fall bei manchen Aktienpositionen ab
+    (letzter verfuegbarer Schlusskurs zufaellig identisch mit dem
+    Entry-Preis, z.B. direkt nach Eroeffnung oder uebers Wochenende).
+    Gibt bei einem Symbol einen TRAILING Space mit zurueck, bei "" keinen -
+    so kann der Aufrufer den Rueckgabewert immer direkt vor den Wert
+    setzen, ohne selbst auf einen doppelten/fehlenden Leerraum achten zu
+    muessen.
+    """
+    if value > 0:
+        return "\U0001F7E2 "
+    if value < 0:
+        return "\U0001F534 "
+    return ""
+
+
 def _format_open_position_line(position: dict, live_prices: dict) -> str:
     # WICHTIG: entry_price/stop_price kommen direkt aus einer pandas-Spalte
     # (siehe get_bot_status) - ein fehlender Wert ist dort NaN (float),
@@ -487,7 +509,7 @@ def _format_open_position_line(position: dict, live_prices: dict) -> str:
     if current_price is not None and has_entry_price and entry_price != 0:
         change_pct = round((current_price - entry_price) / entry_price * 100, 2)
         sign = "+" if change_pct >= 0 else ""
-        price_txt = f"{current_price} ({sign}{change_pct}%)"
+        price_txt = f"{current_price} {_pnl_emoji(change_pct)}({sign}{change_pct}%)"
     else:
         price_txt = "Preis nicht verfuegbar"
 
@@ -511,16 +533,28 @@ def format_status_message(bots: list, live_prices: dict = None):
     verfuegbar" statt eines aktuellen Gewinns/Verlusts, der Rest der
     Ausgabe (kumulierter PnL, offene Positionen als Symbolliste) bleibt
     unveraendert verfuegbar.
+
+    Reihenfolge: absteigend nach kumuliertem PnL (bester Bot zuerst) -
+    ALLE Bots bleiben weiterhin vollstaendig aufgelistet, auch ohne offene
+    Positionen, nur die Sortierung aendert sich. Bots ohne geschlossene
+    Trades (total_pnl is None, "n/a") haben keinen Sortierwert und werden
+    ans Ende gestellt; sorted() ist stabil, daher bleibt ihre
+    urspruengliche Reihenfolge (siehe discover_bots(), alphabetisch nach
+    Ordnername) untereinander erhalten.
     """
     live_prices = live_prices or {}
+    entries = [(bot, get_bot_status(bot), get_bot_pnl_summary(bot)) for bot in bots]
+    entries.sort(key=lambda e: (e[2]["total_pnl"] is None, -(e[2]["total_pnl"] or 0)))
+
     chunks = []
     current_lines = ["*Status-Ueberblick*"]
 
-    for bot in bots:
-        s = get_bot_status(bot)
-        p = get_bot_pnl_summary(bot)
+    for bot, s, p in entries:
         last_run_txt = s["last_run"].strftime("%d.%m. %H:%M UTC") if s["last_run"] else "unbekannt"
-        total_pnl_txt = f"{p['total_pnl']}%" if p["total_pnl"] is not None else "n/a (keine geschlossenen Trades)"
+        if p["total_pnl"] is not None:
+            total_pnl_txt = f"{_pnl_emoji(p['total_pnl'])}{p['total_pnl']}%"
+        else:
+            total_pnl_txt = "n/a (keine geschlossenen Trades)"
 
         block_lines = [
             f"\n*{s['display_name']}*",
