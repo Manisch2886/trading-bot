@@ -88,6 +88,29 @@ seit dem /pnl-Diagnose-Fix an **zwei** Stellen gleichzeitig:
 (Vorher gab es nur (2) - dadurch blieb ein Fehler beim manuellen Testen
 im Terminal komplett unsichtbar, obwohl er korrekt geloggt wurde.)
 
+Seit dem neuesten Fix gilt das auch fuer interne Meldungen von
+`python-telegram-bot`/`httpx` selbst (z.B. `Conflict: terminated by
+other getUpdates request` - siehe naechster Absatz), nicht nur fuer
+unsere eigenen Log-Zeilen.
+
+## WICHTIG vor jedem Neustart: nur EIN Bot-Prozess darf laufen
+
+Telegram erlaubt pro Bot-Token nur EINEN aktiven Long-Poller
+gleichzeitig. Laeuft noch ein alter Prozess (z.B. von einem vorherigen
+Test, der nicht sauber mit `Strg+C` beendet wurde) im Hintergrund,
+antwortet der Bot auf GAR KEINEN Befehl mehr - der neue Prozess laeuft
+zwar (sichtbar in `ps aux`, mit etwas CPU-Zeit durch wiederholte
+Verbindungsversuche), bekommt aber nie Updates zugeteilt.
+
+**Vor jedem Neustart pruefen:**
+```
+pgrep -fl telegram_bot.py
+```
+Falls das MEHR als einen Prozess zeigt: alle mit `kill <PID>` beenden,
+dann `pgrep -fl telegram_bot.py` erneut ausfuehren bis die Liste leer
+ist, und erst DANACH `python3 notifications/telegram_bot.py` neu
+starten.
+
 Getrennt von den bestehenden Bot-Logs unter `logs/<bot>/`. Der
 launchd-Dienst selbst schreibt zusaetzlich `logs/notifications/launchd.out.log`
 und `.err.log`. Keine dieser Log-Dateien enthaelt jemals den Bot-Token.

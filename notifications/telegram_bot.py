@@ -56,6 +56,29 @@ POLL_INTERVAL_SECONDS = int(os.environ.get("TELEGRAM_POLL_INTERVAL_SECONDS", "30
 # logs/notifications/telegram_bot.log. Jetzt: BEIDES - Konsole (fuer den
 # manuellen Live-Test) UND Datei (fuer den dauerhaften launchd-Betrieb,
 # wo niemand ein Terminal offen haelt).
+#
+# ZUSAETZLICH (Nachtrag): der vorherige Fix machte nur UNSERE EIGENEN
+# beiden Logger sichtbar - interne Meldungen von python-telegram-bot
+# selbst (z.B. "telegram.ext._updater"), httpx oder apscheduler blieben
+# weiterhin unsichtbar, da sie ueber eine eigene Logger-Hierarchie zum
+# Root-Logger propagieren, der bisher nirgends konfiguriert war. Genau
+# SO ein interner Fehler waere die Erklaerung, falls der Bot-Prozess
+# zwar laeuft, aber auf GAR KEINEN Befehl mehr reagiert und dabei
+# trotzdem etwas CPU-Zeit verbraucht: Telegram erlaubt pro Bot-Token nur
+# EINEN aktiven Long-Poller gleichzeitig - laeuft (z.B. aus einem
+# vorherigen Test) noch ein zweiter, alter Bot-Prozess im Hintergrund,
+# meldet Telegram "Conflict: terminated by other getUpdates request".
+# Das haette bisher NIRGENDS sichtbar geloggt, weder in der Datei noch
+# im Terminal. logging.basicConfig() faengt das jetzt am Root-Logger ab
+# (Level WARNING, um nicht jede einzelne HTTP-Anfrage von httpx mit
+# auszugeben) - siehe auch README.md fuer die konkrete
+# Vorgehensweise, um einen solchen doppelten Prozess zu erkennen/beenden.
+logging.basicConfig(
+    level=logging.WARNING,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+    stream=sys.stdout,
+)
+
 _formatter = logging.Formatter("%(asctime)s %(levelname)s %(name)s: %(message)s")
 
 _file_handler = RotatingFileHandler(
@@ -66,14 +89,30 @@ _file_handler.setFormatter(_formatter)
 _console_handler = logging.StreamHandler(sys.stdout)
 _console_handler.setFormatter(_formatter)
 
-logger = logging.getLogger("notifications.telegram_bot")
-logger.setLevel(logging.INFO)
-logger.addHandler(_file_handler)
-logger.addHandler(_console_handler)
 
-logging.getLogger("notifications.notify").setLevel(logging.INFO)
-logging.getLogger("notifications.notify").addHandler(_file_handler)
-logging.getLogger("notifications.notify").addHandler(_console_handler)
+def _configure_own_logger(name: str) -> logging.Logger:
+    """
+    Haengt Datei- und Konsolen-Handler an einen unserer beiden eigenen
+    Logger. Leert vorher explizit .handlers (idempotent) - schuetzt
+    davor, dass ein erneuter Import/Reload dieses Moduls (z.B. in
+    Tests) Handler dupliziert und dieselbe Zeile mehrfach ausgibt.
+    propagate=False, damit dieselbe Meldung nicht zusaetzlich UEBER den
+    Root-Logger (siehe logging.basicConfig oben) ein zweites Mal auf
+    der Konsole erscheint - der Root-Handler ist nur fuer FREMDE Logger
+    (python-telegram-bot, httpx, apscheduler) gedacht, die keine eigenen
+    Handler haben.
+    """
+    log = logging.getLogger(name)
+    log.setLevel(logging.INFO)
+    log.handlers.clear()
+    log.addHandler(_file_handler)
+    log.addHandler(_console_handler)
+    log.propagate = False
+    return log
+
+
+logger = _configure_own_logger("notifications.telegram_bot")
+_configure_own_logger("notifications.notify")
 
 _CREDS = telegram_config.get_credentials()
 AUTHORIZED_USER_ID = _CREDS["user_id"] if _CREDS else None
