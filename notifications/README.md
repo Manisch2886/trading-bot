@@ -20,11 +20,14 @@ Telegram schliessen) - kommt erst in Phase 3.
 
 ## Einrichtung
 
-1. **Abhaengigkeit installieren** (nur fuer `telegram_bot.py` noetig,
-   `notify.py`/`monitor.py` kommen ohne diese Abhaengigkeit aus):
+1. **Abhaengigkeiten installieren:**
    ```
    pip3 install -r notifications/requirements.txt
    ```
+   (`python-telegram-bot` fuer `telegram_bot.py`; `requests` und
+   `yfinance` fuer die Live-Kursabfrage in `monitor.py`, siehe Abschnitt
+   "Live-Kurse in /status" unten. `notify.py` kommt weiterhin ohne
+   Extra-Abhaengigkeit aus - reine Standardbibliothek.)
 2. **`.env` im Projekt-Root pruefen** (bereits vorhanden laut Vorgabe) -
    muss enthalten:
    ```
@@ -53,13 +56,93 @@ Telegram schliessen) - kommt erst in Phase 3.
 
 ## Befehle (nur `TELEGRAM_USER_ID` wird akzeptiert)
 
-- `/status [filter]` - Kurzueberblick: letzter Lauf, offene Positionen, Tages-PnL
+- `/status [filter]` - je Bot: letzter Lauf, Anzahl offener Positionen,
+  Tages-PnL, KUMULIERTER PnL (alle geschlossenen Trades), sowie je
+  offener Position Symbol/Entry/Stop und der AKTUELLE Gewinn/Verlust in
+  % (Live-Kurs via Binance-API fuer Krypto-Bots, yfinance fuer
+  Aktien-Bots - siehe Abschnitt "Live-Kurse in /status" unten)
 - `/positions [filter]` - offene Positionen, gruppiert nach Krypto/Aktien
+  (nur Symbol-Liste, KEINE Live-Kurse - siehe `/status` dafuer)
 - `/pnl [filter]` - Performance-Zusammenfassung (Win Rate, Ø PnL, Summe PnL)
 
 `filter` ist optional: `krypto`, `aktien`, oder ein konkreter Bot-Name
 (z.B. `elliott_wave`) - siehe `monitor.ASSET_CLASS` fuer alle neun
 gueltigen Namen. Ohne Filter wird immer die Gesamtuebersicht gezeigt.
+
+## Live-Kurse in /status
+
+Fuer jede aktuell offene Position ruft `/status` den AKTUELLEN Kurs ab
+und zeigt den Gewinn/Verlust seit Entry in %:
+- **Krypto-Bots:** oeffentlicher, unauthentifizierter Binance-Endpunkt
+  `GET /api/v3/ticker/price?symbols=[...]` - EIN gebuendelter Request
+  fuer ALLE offenen Krypto-Positionen ueber alle Bots hinweg (nicht
+  einer pro Symbol). Kein API-Key noetig. Rate-Limit bei der hier zu
+  erwartenden Nutzung (gelegentliche manuelle `/status`-Aufrufe, nicht
+  automatisiert) nicht relevant - siehe Kommentar bei
+  `monitor.fetch_binance_prices()` fuer die Einordnung.
+- **Aktien-Bots:** `yfinance` (`yf.download()` mit mehreren Tickern in
+  einem Aufruf), letzter verfuegbarer Tages-Schlusskurs.
+
+**Fehlertoleranz:** Schlaegt eine Kursabfrage fehl (Netzwerkfehler,
+unbekanntes Symbol, Zeitueberschreitung), zeigt die betroffene Position
+"Preis nicht verfuegbar" - der Rest der `/status`-Antwort (kumulierter
+PnL, alle anderen Positionen) bleibt davon unberuehrt. Die komplette
+Kursabfrage hat eine harte Gesamt-Obergrenze von 12 Sekunden
+(`LIVE_PRICE_TIMEOUT_SECONDS` in `telegram_bot.py`) - danach zeigt
+`/status` alle Positionen ohne Live-Kurs, statt beliebig lange zu warten.
+
+**Event-Loop-Sicherheit:** Die Binance-/yfinance-Abfragen sind ECHTE,
+blockierende synchrone Netzwerk-Aufrufe (wie schon `notify.send_alert()`
+zuvor) - sie laufen deshalb IMMER ueber `asyncio.to_thread()`, NIE
+direkt in einer async-Funktion. Siehe die ausfuehrlichen Kommentare in
+`status_command()` (`telegram_bot.py`) und `fetch_live_prices_for_bots()`
+(`monitor.py`) - ein einziger uebersehener Blocking-Call an dieser
+Stelle hatte den Bot bereits einmal komplett eingefroren (siehe
+Git-Historie).
+
+**Nachrichtenlaenge:** Mit Live-Kursen fuer viele Bots/Positionen kann
+die volle `/status`-Antwort Telegrams 4096-Zeichen-Limit pro Nachricht
+ueberschreiten - `format_status_message()` teilt die Ausgabe in diesem
+Fall automatisch in mehrere aufeinanderfolgende Nachrichten auf
+(Sicherheitsmarge: `MAX_MESSAGE_LENGTH = 3500` Zeichen pro Nachricht in
+`monitor.py`). `/positions` und `/pnl` sind davon nicht betroffen -
+schicken weiterhin immer genau eine Nachricht.
+
+**Sandbox-Einschraenkung (Transparenz):** Diese Aenderung wurde OHNE
+echten Netzwerkzugriff auf die Binance-API oder Yahoo Finance
+entwickelt/getestet - die Entwicklungsumgebung hat keinen Netzwerk-Egress
+zu diesen externen APIs (`curl` gegen beide liefert hier keine
+Verbindung). Verifiziert wurde deshalb ausschliesslich mit gemockten
+Kursdaten (siehe Tests).
+
+**Bereits im Live-Test gefunden und behoben:** `fetch_binance_prices()`
+lieferte anfangs fuer JEDE echte Krypto-Position "Preis nicht
+verfuegbar", obwohl `curl` auf demselben Mac problemlos funktionierte -
+Netzwerk/Firewall waren also nicht die Ursache. Root Cause: `requests`
+kodiert ein Leerzeichen in einem Query-Parameter als `+`
+(form-urlencoded-Konvention), `json.dumps()` fuegt aber standardmaessig
+nach jedem Komma ein Leerzeichen ein - die tatsaechlich gesendete URL
+enthielt dadurch ein woertliches `+` MITTEN im `symbols`-JSON-Array.
+Behoben durch `separators=(",", ":")` beim `json.dumps()`-Aufruf
+(erzeugt exakt Binances dokumentiertes, leerzeichenfreies Format
+`["BTCUSDT","BNBUSDT"]`). Fehlgeschlagene Kursabfragen werden jetzt
+ausserdem ueber `logging` statt `print(..., file=sys.stderr)` geloggt
+(`logging.getLogger("notifications.monitor")`, an dieselben Konsole-
+und Datei-Handler wie alle anderen Bot-Logs angehaengt) - inkl. des
+Response-Bodys bei einem HTTP-Fehler, damit ein aehnlicher stiller
+Fehler kuenftig sofort sichtbar ist statt erst nach einer eigenen
+Diagnose-Runde.
+
+**"+0,0%" bei einzelnen Aktienpositionen:** erwartungsgemaess, kein Bug
+- die Aktien-Bots handeln auf Tagesbasis und eroeffnen Positionen zum
+Schlusskurs. Faellt der `/status`-Aufruf auf ein Wochenende oder eine
+sehr frisch (noch am selben Handelstag) eroeffnete Position, liefert
+`yfinance`s "letzter verfuegbarer Schlusskurs" exakt denselben Wert wie
+der bereits bekannte `entry_price` - 0,0% ist dann schlicht korrekt.
+
+**Weiterhin fuer den naechsten Live-Test auf dem Mac zu pruefen:** ob
+die 12-Sekunden-Obergrenze im Alltag ausreicht (bei vielen gleichzeitig
+offenen Positionen ggf. anpassen).
 
 ## Automatische Push-Benachrichtigungen
 
