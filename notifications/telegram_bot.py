@@ -464,15 +464,34 @@ async def poll_job(context: ContextTypes.DEFAULT_TYPE):
     in einen separaten Thread auslagern - der Event-Loop bleibt dadurch
     fuer die Befehlsverarbeitung frei, unabhaengig davon, wie lange der
     Netzwerk-Request braucht.
+
+    WICHTIG - Root Cause eines zweiten, spaeter gefundenen Live-Bugs
+    (ein Stop-Loss-Event wurde nie als Push-Nachricht zugestellt, obwohl
+    state.json es bereits als "bekannt" fuehrte): monitor.check_for_events()
+    speicherte frueher state.json INTERN, BEVOR ueberhaupt versucht wurde,
+    die Events zu verschicken. Wurde der Prozess GENAU zwischen diesem
+    Speichern und dem tatsaechlichen Versand beendet (z.B. Strg+C waehrend
+    eines der vielen manuellen Neustarts fuer Live-Tests - run_polling()
+    kann einen laufenden JobQueue-Job an dieser Stelle abbrechen), war das
+    Event PERMANENT verloren: der naechste check_for_events()-Aufruf sieht
+    im state.json bereits den neuen (post-Event) Zustand und erkennt keine
+    Aenderung mehr. Fix: monitor.check_for_events() speichert state.json
+    jetzt NICHT mehr selbst, sondern gibt (events, new_state) zurueck -
+    _save_state() wird hier explizit ERST NACH dem Versand-Versuch aller
+    Events aufgerufen. Ein Prozessabbruch waehrend des Versands fuehrt
+    dadurch bestenfalls zu einer seltenen doppelten Benachrichtigung beim
+    naechsten Zyklus (der alte Zustand wurde ja nie ueberschrieben, die
+    Events werden erneut erkannt), nie mehr zu einer still verschluckten.
     """
     try:
-        events = await asyncio.to_thread(monitor.check_for_events)
+        events, new_state = await asyncio.to_thread(monitor.check_for_events)
     except Exception:
         logger.exception("Fehler beim periodischen Ueberwachungs-Check.")
         return
 
     for event_text in events:
         await asyncio.to_thread(notify.send_alert, event_text)
+    await asyncio.to_thread(monitor._save_state, new_state)
     if events:
         logger.info(f"{len(events)} neue(s) Ereignis(se) verschickt.")
 
