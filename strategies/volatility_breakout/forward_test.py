@@ -130,8 +130,20 @@ def check_open_trades(conn, indicator_data: dict):
 def find_new_signals(conn, indicator_data: dict):
     """Prueft die LETZTE verfuegbare Kerze jedes Symbols: Squeeze am Vortag
     UND Ausbruch heute. Beruecksichtigt MAX_CONCURRENT_POSITIONS (None =
-    unbegrenzt)."""
+    unbegrenzt).
+
+    KEIN PYRAMIDING (Bugfix, siehe PROTOTYPE_FINDINGS.md Abschnitt 1,
+    Regel 2: "Kein Pyramiding (max. eine offene Position pro Symbol)" -
+    bereits validierte Backtest-Regel, backtest_breakout.py kann
+    strukturell gar keine Symbol-Duplikate erzeugen, sprang bislang aber
+    NICHT auf diese Live-Implementierung um. Ein Symbol mit bereits
+    offener Position wird deshalb explizit uebersprungen, unabhaengig vom
+    globalen MAX_CONCURRENT_POSITIONS-Zaehler - andernfalls koennte
+    dieselbe Aktie mehrfach gleichzeitig offen sein, was faktisch
+    doppelte Kapitalbindung in einem Symbol bedeutet (siehe DELL-Fall,
+    Untersuchung vom 2026-09-05)."""
     open_count = pd.read_sql("SELECT COUNT(*) as n FROM trades WHERE status='open'", conn)["n"].iloc[0]
+    open_symbols = set(pd.read_sql("SELECT symbol FROM trades WHERE status='open'", conn)["symbol"])
 
     for symbol, df in indicator_data.items():
         if len(df) < 2:
@@ -145,6 +157,11 @@ def find_new_signals(conn, indicator_data: dict):
         squeeze_yesterday = bool(prev["is_squeeze"])
         breakout_today = row["close"] > row["bb_upper"]
         if not (squeeze_yesterday and breakout_today):
+            continue
+
+        if symbol in open_symbols:
+            print(f"  [UEBERSPRUNGEN] {symbol}: Signal vorhanden, aber bereits eine offene "
+                  f"Position in diesem Symbol (kein Pyramiding)")
             continue
 
         if MAX_CONCURRENT_POSITIONS is not None and open_count >= MAX_CONCURRENT_POSITIONS:
@@ -164,6 +181,7 @@ def find_new_signals(conn, indicator_data: dict):
             """, (symbol, str(entry_time), str(entry_time), entry_price, stop_price))
             conn.commit()
             open_count += 1
+            open_symbols.add(symbol)
             stop_display = f"{stop_price:.2f}" if stop_price is not None else "kein Stop"
             print(f"  [NEU EROEFFNET] {symbol}: Entry {entry_price:.2f}, Stop {stop_display}")
         except sqlite3.IntegrityError:

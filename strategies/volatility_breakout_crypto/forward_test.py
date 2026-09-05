@@ -147,13 +147,21 @@ def find_new_signals(conn, indicator_data: dict, btc_regime_bullish: bool):
     Vortag UND Ausbruch heute. Blockiert ALLE neuen Einstiege komplett,
     wenn BTC selbst gerade im Abwaertstrend ist (Markt-Regime-Filter -
     siehe regime_filter.py, live_params.py fuer die Begruendung).
-    Beruecksichtigt MAX_CONCURRENT_POSITIONS (None = unbegrenzt)."""
+    Beruecksichtigt MAX_CONCURRENT_POSITIONS (None = unbegrenzt).
+
+    KEIN PYRAMIDING (Bugfix, siehe PROTOTYPE_FINDINGS.md des Aktien-
+    Pendants volatility_breakout: "Kein Pyramiding (max. eine offene
+    Position pro Symbol)" - bereits validierte Backtest-Regel, sprang
+    bislang nicht auf diese Live-Implementierung um. Ein Symbol mit
+    bereits offener Position wird deshalb explizit uebersprungen,
+    unabhaengig vom globalen MAX_CONCURRENT_POSITIONS-Zaehler."""
     if BTC_REGIME_FILTER_ENABLED and not btc_regime_bullish:
         print("  BTC ist aktuell im Abwaertstrend - keine neuen Einstiege in diesem Lauf "
               "(Regime-Filter, siehe live_params.py).")
         return
 
     open_count = pd.read_sql("SELECT COUNT(*) as n FROM trades WHERE status='open'", conn)["n"].iloc[0]
+    open_symbols = set(pd.read_sql("SELECT symbol FROM trades WHERE status='open'", conn)["symbol"])
 
     for symbol, df in indicator_data.items():
         if len(df) < 2:
@@ -167,6 +175,11 @@ def find_new_signals(conn, indicator_data: dict, btc_regime_bullish: bool):
         squeeze_yesterday = bool(prev["is_squeeze"])
         breakout_today = row["close"] > row["bb_upper"]
         if not (squeeze_yesterday and breakout_today):
+            continue
+
+        if symbol in open_symbols:
+            print(f"  [UEBERSPRUNGEN] {symbol}: Signal vorhanden, aber bereits eine offene "
+                  f"Position in diesem Symbol (kein Pyramiding)")
             continue
 
         if MAX_CONCURRENT_POSITIONS is not None and open_count >= MAX_CONCURRENT_POSITIONS:
@@ -186,6 +199,7 @@ def find_new_signals(conn, indicator_data: dict, btc_regime_bullish: bool):
             """, (symbol, str(entry_time), str(entry_time), entry_price, stop_price))
             conn.commit()
             open_count += 1
+            open_symbols.add(symbol)
             stop_display = f"{stop_price:.4f}" if stop_price is not None else "kein Stop"
             print(f"  [NEU EROEFFNET] {symbol}: Entry {entry_price:.4f}, Stop {stop_display}")
         except sqlite3.IntegrityError:

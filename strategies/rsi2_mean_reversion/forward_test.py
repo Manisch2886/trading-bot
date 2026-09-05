@@ -142,8 +142,16 @@ def check_open_trades(conn, indicator_data: dict):
 def find_new_signals(conn, indicator_data: dict):
     """Prueft die LETZTE verfuegbare Kerze jedes Symbols auf ein RSI-2-Signal
     (Trendfilter + RSI < Schwelle). Beruecksichtigt MAX_CONCURRENT_POSITIONS
-    (None = unbegrenzt), konsistent mit equity_simulation.py."""
+    (None = unbegrenzt), konsistent mit equity_simulation.py.
+
+    KEIN PYRAMIDING (Bugfix, siehe PROTOTYPE_FINDINGS.md: "Kein
+    Pyramiding" - bereits validierte Backtest-Regel, backtest_rsi2.py
+    kann strukturell gar keine Symbol-Duplikate erzeugen, sprang bislang
+    aber NICHT auf diese Live-Implementierung um. Ein Symbol mit bereits
+    offener Position wird deshalb explizit uebersprungen, unabhaengig
+    vom globalen MAX_CONCURRENT_POSITIONS-Zaehler."""
     open_count = pd.read_sql("SELECT COUNT(*) as n FROM trades WHERE status='open'", conn)["n"].iloc[0]
+    open_symbols = set(pd.read_sql("SELECT symbol FROM trades WHERE status='open'", conn)["symbol"])
 
     for symbol, df in indicator_data.items():
         if len(df) < 2:
@@ -154,6 +162,11 @@ def find_new_signals(conn, indicator_data: dict):
             continue
 
         if not (row["close"] > row["sma_trend"] and row["rsi"] < RSI_THRESHOLD):
+            continue
+
+        if symbol in open_symbols:
+            print(f"  [UEBERSPRUNGEN] {symbol}: Signal vorhanden, aber bereits eine offene "
+                  f"Position in diesem Symbol (kein Pyramiding)")
             continue
 
         if MAX_CONCURRENT_POSITIONS is not None and open_count >= MAX_CONCURRENT_POSITIONS:
@@ -173,6 +186,7 @@ def find_new_signals(conn, indicator_data: dict):
             """, (symbol, str(entry_time), str(entry_time), entry_price, stop_price, round(float(row["rsi"]), 2)))
             conn.commit()
             open_count += 1
+            open_symbols.add(symbol)
             stop_display = f"{stop_price:.2f}" if stop_price is not None else "kein Stop"
             print(f"  [NEU EROEFFNET] {symbol}: Entry {entry_price:.2f}, Stop {stop_display}, "
                   f"RSI(2) {row['rsi']:.1f}")
