@@ -518,6 +518,76 @@ def _format_open_position_line(position: dict, live_prices: dict) -> str:
     return f"  `{symbol}`: Entry {entry_txt}{stop_txt} -> {price_txt}"
 
 
+def _current_total_result(status: dict, pnl_summary: dict, live_prices: dict):
+    """
+    "Aktuelles Gesamtergebnis" eines Bots: kombiniert den bereits realen,
+    summierten kumulierten PnL der geschlossenen Trades (siehe
+    get_bot_pnl_summary - eine echte Groesse, keine Anpassung noetig) mit
+    dem Live-Gewinn/Verlust der aktuell offenen Positionen.
+
+    Methodik zur offenen Positionen (siehe docs/UEBERGABEPROTOKOLL.md
+    Abschnitt 7 - keine naive Trade-Prozent-Summierung, moeglichst nah an
+    einer echten Equity-Betrachtung): eine echte, nach Positionsgroesse
+    GEWICHTETE Mittelwertbildung (Sigma(size_i * pct_i) / Sigma(size_i))
+    war NICHT moeglich - Schema-Check aller neun paper_trading_*.db ergab:
+    KEINE trades-Tabelle speichert eine Positionsgroesse pro Trade (kein
+    quantity/position_size/shares/allocation/capital/amount). live_params.py
+    dokumentiert je Bot hoechstens einen FIXEN, bot-weiten ALLOCATION_PCT
+    (variiert zwischen Bots, z.B. 10% vs. 2%, aber INNERHALB eines Bots
+    fuer jeden Trade identisch) - dort ausdruecklich als "NUR zur
+    Dokumentation" markiert, da forward_test.py kein Kapital trackt, nur
+    Signale und Prozent-Ergebnisse. Da alle offenen Positionen DESSELBEN
+    Bots also implizit gleich gross sind, waere eine echte Gewichtung
+    rechnerisch identisch mit dem einfachen arithmetischen Mittelwert -
+    deshalb wird hier bewusst GEMITTELT statt (wie in der urspruenglichen
+    Vorgabe) summiert. Das ist eine vereinfachte Naeherung, KEINE echte
+    Equity-Kurven-Rekonstruktion (die haette echtes Kapital-Tracking pro
+    Trade vorausgesetzt, das es in diesem Projekt bislang nicht gibt).
+
+    Gibt (wert, hinweis) zurueck - wert ist None, wenn weder geschlossene
+    Trades noch (fuer den Durchschnitt verwertbare) offene Positionen
+    vorliegen. hinweis ist gesetzt, wenn fuer mindestens eine offene
+    Position kein Live-Kurs vorlag (Durchschnitt basiert dann nur auf den
+    verfuegbaren Positionen, oder faellt bei KEINER verfuegbaren Position
+    komplett auf den kumulierten PnL der geschlossenen Trades zurueck).
+    """
+    closed_component = pnl_summary["total_pnl"]
+
+    open_changes = []
+    missing_price_count = 0
+    for position in status["open_positions"]:
+        entry_price = position.get("entry_price")
+        current_price = live_prices.get(position["symbol"])
+        if current_price is None or not pd.notna(entry_price) or entry_price == 0:
+            missing_price_count += 1
+            continue
+        open_changes.append((current_price - entry_price) / entry_price * 100)
+
+    open_component = round(sum(open_changes) / len(open_changes), 2) if open_changes else None
+
+    if closed_component is None and open_component is None:
+        return None, None
+
+    total = round((closed_component or 0.0) + (open_component or 0.0), 2)
+
+    note = None
+    if status["open_positions"] and missing_price_count == len(status["open_positions"]):
+        note = "Live-Kurse fuer offene Positionen nicht verfuegbar"
+    elif missing_price_count > 0:
+        note = f"{missing_price_count} offene Position(en) ohne Live-Kurs nicht beruecksichtigt"
+
+    return total, note
+
+
+def _format_current_total_line(value, note) -> str:
+    if value is None:
+        return "Aktuelles Gesamtergebnis: n/a (keine geschlossenen Trades, keine offenen Positionen)"
+    line = f"Aktuelles Gesamtergebnis: {_pnl_emoji(value)}{value}%"
+    if note:
+        line += f" ({note})"
+    return line
+
+
 def format_status_message(bots: list, live_prices: dict = None):
     """
     Gibt einen einzelnen String zurueck, WENN die komplette Ausgabe unter
@@ -541,6 +611,13 @@ def format_status_message(bots: list, live_prices: dict = None):
     ans Ende gestellt; sorted() ist stabil, daher bleibt ihre
     urspruengliche Reihenfolge (siehe discover_bots(), alphabetisch nach
     Ordnername) untereinander erhalten.
+
+    Letzte Zeile jedes Bot-Blocks ist "Aktuelles Gesamtergebnis" - siehe
+    _current_total_result() fuer die Methodik (gemittelter, nicht
+    summierter Live-Gewinn/Verlust der offenen Positionen plus
+    kumulierter PnL der geschlossenen Trades; vereinfachte Naeherung ohne
+    echte Positionsgroessen-Gewichtung, da diese Daten in keiner der neun
+    Live-DBs vorliegen).
     """
     live_prices = live_prices or {}
     entries = [(bot, get_bot_status(bot), get_bot_pnl_summary(bot)) for bot in bots]
@@ -565,6 +642,9 @@ def format_status_message(bots: list, live_prices: dict = None):
         ]
         for position in s["open_positions"]:
             block_lines.append(_format_open_position_line(position, live_prices))
+
+        total_value, total_note = _current_total_result(s, p, live_prices)
+        block_lines.append(_format_current_total_line(total_value, total_note))
 
         block_text = "\n".join(block_lines)
         current_text = "\n".join(current_lines)
