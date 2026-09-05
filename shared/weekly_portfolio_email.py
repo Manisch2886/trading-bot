@@ -36,10 +36,25 @@ _CONFIG_DIR = os.path.join(_BASE_DIR, "config")
 sys.path.insert(0, _CONFIG_DIR)
 import email_config as cfg
 
+_NOTIF_DIR = os.path.join(_BASE_DIR, "notifications")
+sys.path.insert(0, _NOTIF_DIR)
+from notify import send_report
+
 import portfolio_overview
 from portfolio_interpreter_agent import generate_portfolio_interpretation
 
 USE_INTERPRETATION_AGENT = True
+
+# E-Mail-Versand deaktiviert (siehe Aufgabe "Bot-eigene E-Mails durch
+# direkten Telegram-Versand ersetzen") - Telegram (send_report(), siehe
+# notifications/notify.py) ist jetzt der primaere Versandweg. Der
+# SMTP-Code (send_email() unten) bleibt bewusst UNVERAENDERT bestehen,
+# nur ueber diesen Flag deaktiviert - falls sich Telegram in der Praxis
+# doch als unzuverlaessig erweisen sollte, kann hier schnell zurueck-
+# geschaltet werden, ohne den alten Code neu schreiben zu muessen.
+# Vollstaendiges Entfernen ist fuer eine spaetere, separate Aufgabe
+# vorgesehen.
+SEND_VIA_EMAIL = False
 
 
 def run_portfolio_overview_and_capture() -> str:
@@ -114,9 +129,15 @@ if __name__ == "__main__":
 
     email_body = build_email_body(overview_text, interpretation)
 
+    subject = "Trading Bot [Portfolio-Uebersicht] - Woechentliche Zusammenfassung"
     try:
-        send_email("Trading Bot [Portfolio-Uebersicht] - Woechentliche Zusammenfassung", email_body)
-        print("\nE-Mail erfolgreich verschickt.")
+        if SEND_VIA_EMAIL:
+            send_email(subject, email_body)
+            print("\nE-Mail erfolgreich verschickt.")
+        elif send_report(subject, email_body):
+            print("\nTelegram-Nachricht(en) erfolgreich verschickt.")
+        else:
+            print("\nTelegram-Versand fehlgeschlagen - siehe Log/Fehlermeldung von notify.py.")
     except Exception as e:
-        print(f"\nFehler beim E-Mail-Versand: {e}")
-        print("Pruefe deine Angaben in email_config.py.")
+        print(f"\nFehler beim Versand: {e}")
+        print("Pruefe deine Angaben in email_config.py bzw. .env (Telegram).")
