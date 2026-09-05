@@ -40,12 +40,24 @@ import sqlite3
 from datetime import datetime, timezone
 
 import pandas as pd
+import requests
 
 _NOTIF_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(_NOTIF_DIR)
 STRATEGIES_DIR = os.path.join(BASE_DIR, "strategies")
 LOGS_DIR = os.path.join(BASE_DIR, "logs")
 STATE_FILE = os.path.join(_NOTIF_DIR, "state.json")
+
+BINANCE_TICKER_URL = "https://api.binance.com/api/v3/ticker/price"
+BINANCE_REQUEST_TIMEOUT_SECONDS = 8  # nur der einzelne HTTP-Request - siehe
+                                      # zusaetzlich LIVE_PRICE_TIMEOUT_SECONDS
+                                      # in telegram_bot.py fuer die harte
+                                      # Gesamt-Obergrenze ueber Krypto+Aktien.
+
+# Telegram-Nachrichtenlimit ist 4096 Zeichen - Sicherheitsmarge, damit
+# Formatierungs-Overhead (Markdown-Sternchen, Emojis) nicht ausversehen
+# doch ueber das Limit rutscht.
+MAX_MESSAGE_LENGTH = 3500
 
 TRADE_COLUMNS = [
     "id", "symbol", "signal_time", "entry_time", "entry_price", "stop_price",
@@ -206,12 +218,26 @@ def get_bot_status(bot: dict) -> dict:
     log_file = _latest_log_file(bot["log_dir"])
     last_run = datetime.fromtimestamp(os.path.getmtime(log_file), tz=timezone.utc) if log_file else None
 
+    # open_positions: Detail je offener Position (Symbol/Entry/Stop) - fuer
+    # die Live-Kurs-Anzeige in /status (siehe format_status_message).
+    # open_symbols bleibt UNVERAENDERT bestehen (nur eine Symbol-Liste),
+    # damit format_positions_message() (eigener Befehl /positions, siehe
+    # dortige "nicht anfassen"-Vorgabe) exakt wie bisher weiterlaeuft.
+    open_positions = []
+    for _, row in open_trades.iterrows():
+        open_positions.append({
+            "symbol": row["symbol"],
+            "entry_price": row.get("entry_price"),
+            "stop_price": row.get("stop_price") if "stop_price" in open_trades.columns else None,
+        })
+
     return {
         "name": bot["name"],
         "display_name": bot["display_name"],
         "asset_class": bot["asset_class"],
         "num_open": len(open_trades),
         "open_symbols": open_trades["symbol"].tolist(),
+        "open_positions": open_positions,
         "pnl_today": pnl_today,
         "closed_today": closed_today,
         "last_run": last_run,
@@ -260,22 +286,221 @@ def get_bot_pnl_summary(bot: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Live-Kursabfrage fuer offene Positionen (nur fuer /status)
+# ---------------------------------------------------------------------------
+#
+# WICHTIG - siehe status_command() in telegram_bot.py: fetch_binance_prices(),
+# fetch_stock_prices() und fetch_live_prices_for_bots() machen ECHTE,
+# BLOCKIERENDE Netzwerk-Aufrufe (requests fuer die Binance-REST-API,
+# yfinance fuer Yahoo Finance). Sie MUESSEN deshalb IMMER ueber
+# asyncio.to_thread() aus einer async-Funktion heraus aufgerufen werden -
+# NIEMALS direkt in einem Telegram-Handler oder einem JobQueue-Job. Genau
+# ein synchroner Blocking-Call in einer async-Funktion war die Ursache
+# einer frueheren Totalblockade dieses Bots (siehe poll_job()-Docstring
+# unten in dieser Datei) - der Event-Loop ist single-threaded und
+# kooperativ, ein einziger blockierender Aufruf friert ALLES ein,
+# inklusive der Verarbeitung neuer Telegram-Befehle.
+
+def fetch_binance_prices(symbols: list) -> dict:
+    """
+    Aktuelle Preise fuer eine Liste von Binance-Symbolen - EIN
+    gebuendelter Request ueber den OEFFENTLICHEN, unauthentifizierten
+    Endpunkt GET /api/v3/ticker/price?symbols=[...] (kein API-Key
+    noetig, siehe Binance-API-Doku). Bei bis zu ~20 gleichzeitig offenen
+    Krypto-Positionen ueber alle Bots hinweg ist das EIN Request statt
+    20 Einzelabfragen.
+
+    Rate-Limit-Einordnung: der oeffentliche ticker/price-Endpunkt hat
+    fuer unauthentifizierte IPs ein grosszuegiges Gewichtslimit
+    (Groessenordnung 1200 Gewichtspunkte/Minute, ein gebuendelter
+    Mehrfach-Symbol-Request kostet nur wenige Punkte) - bei der hier zu
+    erwartenden Nutzung (/status wird von einer einzelnen Person
+    gelegentlich manuell aufgerufen, nicht automatisiert im Sekundentakt)
+    ist das nicht relevant. Konnte in dieser Sandbox NICHT gegen die
+    echte Binance-API verifiziert werden (kein Netzwerk-Egress zu
+    externen APIs hier, siehe Kommentar in notify.py/README.md) - basiert
+    auf der oeffentlich dokumentierten Rate-Limit-Grössenordnung.
+
+    Gibt {symbol: preis} zurueck - Symbole, fuer die kein Preis ermittelt
+    werden konnte (Netzwerkfehler, unbekanntes Symbol, Timeout), fehlen
+    im Ergebnis-Dict, statt die gesamte Abfrage abstuerzen zu lassen.
+    """
+    if not symbols:
+        return {}
+    try:
+        response = requests.get(
+            BINANCE_TICKER_URL,
+            params={"symbols": json.dumps(sorted(set(symbols)))},
+            timeout=BINANCE_REQUEST_TIMEOUT_SECONDS,
+        )
+        response.raise_for_status()
+        data = response.json()
+        return {item["symbol"]: float(item["price"]) for item in data}
+    except Exception as e:
+        print(f"Warnung: Binance-Live-Kursabfrage fehlgeschlagen: {e}", file=sys.stderr)
+        return {}
+
+
+def fetch_stock_prices(symbols: list) -> dict:
+    """
+    Aktuelle Schlusskurse fuer eine Liste von Aktien-Symbolen - EIN
+    gebuendelter yfinance-Aufruf (yf.download() mit mehreren Tickern)
+    statt eines Aufrufs pro Symbol. yfinance wird bewusst ERST HIER
+    (innerhalb der Funktion) importiert, nicht am Datei-Anfang - fehlt
+    das Package (z.B. auf einer Installation ohne Aktien-Bots), soll
+    NUR die Live-Kurs-Anzeige fuer Aktien-Positionen leise ausfallen
+    (siehe except-Block), nicht das gesamte Modul beim Import.
+
+    Liefert den letzten verfuegbaren Tages-Schlusskurs zurueck - fuer
+    /status "aktuell genug" waehrend der Handelszeiten, ohne eine
+    Realtime-Streaming-Anbindung zu benoetigen. Gibt {symbol: preis}
+    zurueck, fehlende Symbole (Netzwerkfehler, Ticker nicht gefunden)
+    werden ausgelassen statt die Abfrage abstuerzen zu lassen.
+    """
+    if not symbols:
+        return {}
+    try:
+        import yfinance as yf
+    except ImportError:
+        print(
+            "Warnung: yfinance nicht installiert - Live-Kurse fuer Aktien-Positionen "
+            "nicht verfuegbar (pip3 install -r notifications/requirements.txt).",
+            file=sys.stderr,
+        )
+        return {}
+
+    unique_symbols = sorted(set(symbols))
+    prices = {}
+    try:
+        data = yf.download(
+            unique_symbols, period="1d", interval="1d", progress=False,
+            group_by="ticker", threads=True,
+        )
+        if data.empty:
+            return {}
+
+        if len(unique_symbols) == 1:
+            # yfinance liefert bei GENAU EINEM Ticker keine MultiIndex-Spalten
+            # (anders als bei mehreren) - Sonderfall separat behandeln.
+            close_series = data["Close"].dropna()
+            if not close_series.empty:
+                prices[unique_symbols[0]] = float(close_series.iloc[-1])
+        else:
+            for symbol in unique_symbols:
+                try:
+                    close_series = data[symbol]["Close"].dropna()
+                    if not close_series.empty:
+                        prices[symbol] = float(close_series.iloc[-1])
+                except (KeyError, IndexError):
+                    continue
+    except Exception as e:
+        print(f"Warnung: yfinance-Live-Kursabfrage fehlgeschlagen: {e}", file=sys.stderr)
+        return prices
+
+    return prices
+
+
+def fetch_live_prices_for_bots(bots: list) -> dict:
+    """
+    Sammelt die Symbole aller AKTUELL OFFENEN Positionen der uebergebenen
+    Bots, gruppiert nach Asset-Klasse, und holt fuer beide Gruppen
+    GEBUENDELT (je EIN Aufruf, nicht einer pro Symbol/Bot) den aktuellen
+    Kurs. Wird von status_command() in telegram_bot.py ueber
+    asyncio.to_thread() aufgerufen (siehe Modul-Docstring oben - NIEMALS
+    direkt synchron in einer async-Funktion aufrufen).
+    """
+    crypto_symbols = set()
+    stock_symbols = set()
+    for bot in bots:
+        status = get_bot_status(bot)
+        symbols = {p["symbol"] for p in status["open_positions"]}
+        if bot["asset_class"] == "krypto":
+            crypto_symbols |= symbols
+        else:
+            stock_symbols |= symbols
+
+    prices = {}
+    if crypto_symbols:
+        prices.update(fetch_binance_prices(sorted(crypto_symbols)))
+    if stock_symbols:
+        prices.update(fetch_stock_prices(sorted(stock_symbols)))
+    return prices
+
+
+# ---------------------------------------------------------------------------
 # Telegram-Formatierung (Markdown) - zentral hier, damit telegram_bot.py nur
 # noch die Antwort verschicken muss.
 # ---------------------------------------------------------------------------
 
-def format_status_message(bots: list) -> str:
-    lines = ["*Status-Ueberblick*"]
+def _format_open_position_line(position: dict, live_prices: dict) -> str:
+    # WICHTIG: entry_price/stop_price kommen direkt aus einer pandas-Spalte
+    # (siehe get_bot_status) - ein fehlender Wert ist dort NaN (float),
+    # NICHT None, und NaN ist in Python truthy (bool(float('nan')) is True)!
+    # pd.notna() statt eines einfachen Wahrheitswert-Checks verwenden,
+    # sonst wuerde z.B. "Stop nan" angezeigt statt die Angabe wegzulassen.
+    symbol = position["symbol"]
+    entry_price = position.get("entry_price")
+    stop_price = position.get("stop_price")
+    current_price = live_prices.get(symbol)
+    has_entry_price = pd.notna(entry_price)
+
+    if current_price is not None and has_entry_price and entry_price != 0:
+        change_pct = round((current_price - entry_price) / entry_price * 100, 2)
+        sign = "+" if change_pct >= 0 else ""
+        price_txt = f"{current_price} ({sign}{change_pct}%)"
+    else:
+        price_txt = "Preis nicht verfuegbar"
+
+    entry_txt = f"{entry_price}" if has_entry_price else "?"
+    stop_txt = f", Stop {stop_price}" if pd.notna(stop_price) else ""
+    return f"  `{symbol}`: Entry {entry_txt}{stop_txt} -> {price_txt}"
+
+
+def format_status_message(bots: list, live_prices: dict = None):
+    """
+    Gibt einen einzelnen String zurueck, WENN die komplette Ausgabe unter
+    MAX_MESSAGE_LENGTH passt (der ueberwiegend haeufige Fall) - sonst
+    eine Liste mehrerer Strings (Telegrams 4096-Zeichen-Limit pro
+    Nachricht kann mit vielen Bots/offenen Positionen inkl. Live-Kursen
+    ueberschritten werden). _reply_for_selector() in telegram_bot.py
+    unterstuetzt beide Rueckgabeformen - siehe dortiger Kommentar.
+
+    live_prices: {symbol: aktueller_preis}, siehe fetch_live_prices_for_bots().
+    None/leer bedeutet "keine Live-Kurse verfuegbar" (z.B. Zeitueberschreitung
+    bei der Abfrage) - die Positionszeilen zeigen dann "Preis nicht
+    verfuegbar" statt eines aktuellen Gewinns/Verlusts, der Rest der
+    Ausgabe (kumulierter PnL, offene Positionen als Symbolliste) bleibt
+    unveraendert verfuegbar.
+    """
+    live_prices = live_prices or {}
+    chunks = []
+    current_lines = ["*Status-Ueberblick*"]
+
     for bot in bots:
         s = get_bot_status(bot)
+        p = get_bot_pnl_summary(bot)
         last_run_txt = s["last_run"].strftime("%d.%m. %H:%M UTC") if s["last_run"] else "unbekannt"
-        lines.append(
-            f"\n*{s['display_name']}*\n"
-            f"Letzter Lauf: {last_run_txt}\n"
-            f"Offene Positionen: {s['num_open']}\n"
-            f"Heute geschlossen: {s['closed_today']} (PnL {s['pnl_today']}%)"
-        )
-    return "\n".join(lines)
+        total_pnl_txt = f"{p['total_pnl']}%" if p["total_pnl"] is not None else "n/a (keine geschlossenen Trades)"
+
+        block_lines = [
+            f"\n*{s['display_name']}*",
+            f"Letzter Lauf: {last_run_txt}",
+            f"Offene Positionen: {s['num_open']}",
+            f"Heute geschlossen: {s['closed_today']} (PnL {s['pnl_today']}%)",
+            f"Kumulierter PnL: {total_pnl_txt}",
+        ]
+        for position in s["open_positions"]:
+            block_lines.append(_format_open_position_line(position, live_prices))
+
+        block_text = "\n".join(block_lines)
+        current_text = "\n".join(current_lines)
+        if len(current_lines) > 1 and len(current_text) + len(block_text) + 1 > MAX_MESSAGE_LENGTH:
+            chunks.append(current_text)
+            current_lines = ["*Status-Ueberblick (Fortsetzung)*"]
+        current_lines.append(block_text)
+
+    chunks.append("\n".join(current_lines))
+    return chunks if len(chunks) > 1 else chunks[0]
 
 
 def format_positions_message(bots: list) -> str:

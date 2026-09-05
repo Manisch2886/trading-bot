@@ -199,6 +199,8 @@ def _selector_from_text(text: str) -> str:
 
 
 REPLY_TIMEOUT_SECONDS = 20
+LIVE_PRICE_TIMEOUT_SECONDS = 12  # harte Gesamt-Obergrenze fuer die gebuendelte
+                                  # Binance+yfinance-Kursabfrage in status_command()
 
 
 async def _send_reply(message, text: str, **kwargs) -> bool:
@@ -279,8 +281,23 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
         return
 
     try:
-        text = formatter(bots)
-        logger.info(f"TRACE: formatter() abgeschlossen ({len(text)} Zeichen), sende jetzt Antwort.")
+        result = formatter(bots)
+        # WICHTIG: formatter(bots) darf entweder einen einzelnen String
+        # ODER eine Liste mehrerer Strings zurueckgeben - Letzteres nutzt
+        # aktuell nur format_status_message() (siehe dortiger Docstring),
+        # wenn die komplette /status-Ausgabe (viele Bots, viele offene
+        # Positionen inkl. Live-Kursen) Telegrams 4096-Zeichen-Limit pro
+        # Nachricht sprengen wuerde - dann wird in mehreren Nachrichten
+        # nacheinander gesendet. format_positions_message()/
+        # format_pnl_message() geben weiterhin IMMER einen einzelnen
+        # String zurueck - fuer /positions und /pnl aendert sich dadurch
+        # nichts (siehe test_telegram_bot.py: beide senden weiterhin
+        # genau eine Nachricht).
+        chunks = result if isinstance(result, list) else [result]
+        logger.info(
+            f"TRACE: formatter() abgeschlossen ({len(chunks)} Nachricht(en), "
+            f"{sum(len(c) for c in chunks)} Zeichen gesamt), sende jetzt Antwort."
+        )
     except Exception:
         # WICHTIG: vorher lag dieser Aufruf AUSSERHALB jeder
         # Fehlerbehandlung in dieser Funktion - eine Exception beim
@@ -301,32 +318,34 @@ async def _reply_for_selector(update: Update, selector: str, formatter) -> None:
         )
         return
 
-    logger.info("TRACE: rufe jetzt update.message.reply_text(parse_mode='Markdown') auf.")
-    try:
-        await asyncio.wait_for(
-            update.message.reply_text(text, parse_mode="Markdown"), timeout=REPLY_TIMEOUT_SECONDS
-        )
-        logger.info("TRACE: reply_text(parse_mode='Markdown') erfolgreich zurueckgekehrt.")
-    except BadRequest:
-        # Telegrams (legacy) Markdown-Parser lehnt eine Nachricht ab, statt
-        # sie unformatiert zuzustellen, sobald er auf ein Sonderzeichen-Muster
-        # trifft, das er nicht als gueltige Formatierung lesen kann (z.B.
-        # durch reale Live-Daten wie Bot-/Symbolnamen oder Zahlenformate, die
-        # in den synthetischen Sandbox-Testdaten so nicht vorkamen). Bisher
-        # fuehrte das zu KEINER Antwort in Telegram, obwohl der Bot-Prozess
-        # weiterlief - lieber unformatiert antworten als stillschweigend gar
-        # nichts zu schicken. Siehe auch error_handler() in main() fuer alle
-        # sonstigen unerwarteten Fehler.
-        logger.warning(
-            f"Markdown-Formatierung von Telegram abgelehnt, sende unformatiert erneut "
-            f"(Selektor: {selector!r})."
-        )
-        await _send_reply(update.message, text, parse_mode=None)
-    except asyncio.TimeoutError:
-        logger.error(
-            f"Zeitueberschreitung ({REPLY_TIMEOUT_SECONDS}s) beim Senden einer Telegram-Antwort "
-            f"(Selektor: {selector!r}) - siehe README.md, Abschnitt 'Netzwerk-Diagnose'."
-        )
+    for chunk in chunks:
+        logger.info("TRACE: rufe jetzt update.message.reply_text(parse_mode='Markdown') auf.")
+        try:
+            await asyncio.wait_for(
+                update.message.reply_text(chunk, parse_mode="Markdown"), timeout=REPLY_TIMEOUT_SECONDS
+            )
+            logger.info("TRACE: reply_text(parse_mode='Markdown') erfolgreich zurueckgekehrt.")
+        except BadRequest:
+            # Telegrams (legacy) Markdown-Parser lehnt eine Nachricht ab, statt
+            # sie unformatiert zuzustellen, sobald er auf ein Sonderzeichen-Muster
+            # trifft, das er nicht als gueltige Formatierung lesen kann (z.B.
+            # durch reale Live-Daten wie Bot-/Symbolnamen oder Zahlenformate, die
+            # in den synthetischen Sandbox-Testdaten so nicht vorkamen). Bisher
+            # fuehrte das zu KEINER Antwort in Telegram, obwohl der Bot-Prozess
+            # weiterlief - lieber unformatiert antworten als stillschweigend gar
+            # nichts zu schicken. Siehe auch error_handler() in main() fuer alle
+            # sonstigen unerwarteten Fehler.
+            logger.warning(
+                f"Markdown-Formatierung von Telegram abgelehnt, sende unformatiert erneut "
+                f"(Selektor: {selector!r})."
+            )
+            await _send_reply(update.message, chunk, parse_mode=None)
+        except asyncio.TimeoutError:
+            logger.error(
+                f"Zeitueberschreitung ({REPLY_TIMEOUT_SECONDS}s) beim Senden einer Telegram-Antwort "
+                f"(Selektor: {selector!r}) - siehe README.md, Abschnitt 'Netzwerk-Diagnose'."
+            )
+            return  # weitere Chunks nicht mehr versuchen - vermutlich Netzwerkproblem
 
 
 @restricted
@@ -347,8 +366,51 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 @restricted
 async def status_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    selector = _selector_from_text(update.message.text)
+
+    try:
+        bots = monitor.filter_bots(monitor.discover_bots(), selector)
+    except Exception:
+        # WICHTIG: dieser Aufruf dupliziert hier (fuer die Live-Kurs-
+        # Vorabholung unten) denselben discover_bots()/filter_bots()-Aufruf, den
+        # _reply_for_selector() intern SOWIESO nochmal macht - und DORT
+        # bereits robust abgesichert ist (sichtbares Logging + Antwort an
+        # den Nutzer, siehe dortiger Kommentar/test_silent_swallow.py).
+        # Schlaegt er schon HIER fehl, keine Live-Kurse vorab abrufen
+        # (es gibt ja keine bots-Liste dafuer), sondern direkt an
+        # _reply_for_selector() durchreichen - das faengt denselben
+        # Fehler dort erneut ab und antwortet dem Nutzer trotzdem.
+        await _reply_for_selector(update, selector, monitor.format_status_message)
+        return
+
+    # WICHTIG - kritisch fuer die Event-Loop-Sicherheit dieses Bots (siehe
+    # ausfuehrliche Root-Cause-Geschichte im Docstring von poll_job()
+    # weiter unten): monitor.fetch_live_prices_for_bots() macht ECHTE,
+    # BLOCKIERENDE Netzwerk-Aufrufe (Binance-REST-API via requests,
+    # Yahoo Finance via yfinance). Ein einziger synchroner Blocking-Call
+    # DIREKT in einer async-Funktion wuerde den kompletten, single-
+    # threaded asyncio-Event-Loop einfrieren - inklusive der Verarbeitung
+    # ALLER anderen Telegram-Befehle waehrend der Kursabfrage. Deshalb
+    # IMMER ueber asyncio.to_thread() in einen separaten Thread auslagern,
+    # NIE direkt aufrufen. asyncio.wait_for() setzt zusaetzlich eine
+    # harte Gesamt-Obergrenze: schlaegt die Kursabfrage fehl oder dauert
+    # zu lange, zeigt /status trotzdem die uebrigen Informationen
+    # (kumulierter PnL, offene Positionen) - nur ohne aktuelle Kurse
+    # ("Preis nicht verfuegbar" statt eines aktuellen Gewinns/Verlusts).
+    try:
+        live_prices = await asyncio.wait_for(
+            asyncio.to_thread(monitor.fetch_live_prices_for_bots, bots),
+            timeout=LIVE_PRICE_TIMEOUT_SECONDS,
+        )
+    except asyncio.TimeoutError:
+        logger.warning(
+            f"Live-Kursabfrage fuer /status hat {LIVE_PRICE_TIMEOUT_SECONDS}s ueberschritten - "
+            "zeige Status ohne aktuelle Kurse."
+        )
+        live_prices = {}
+
     await _reply_for_selector(
-        update, _selector_from_text(update.message.text), monitor.format_status_message
+        update, selector, lambda b: monitor.format_status_message(b, live_prices)
     )
 
 
