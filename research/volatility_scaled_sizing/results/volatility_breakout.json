@@ -1,0 +1,168 @@
+{
+  "bot": "volatility_breakout",
+  "assumptions": {
+    "vol_window_bars": 90,
+    "allocation_pct": 10.0,
+    "allocation_pct_assumed": false,
+    "max_concurrent_positions": 15,
+    "max_concurrent_assumed": false,
+    "train_split_ratio": 0.7,
+    "starting_capital": 10000.0,
+    "num_stability_windows": 4
+  },
+  "total_trades": 4510,
+  "in_sample": {
+    "num_trades": 3146,
+    "mean_vol_weight": 1.0,
+    "fixed": {
+      "total_return_pct": 95.94,
+      "max_drawdown_pct": -23.97,
+      "final_capital": 19593.97,
+      "num_executed": 999,
+      "num_skipped": 2147
+    },
+    "vol_scaled": {
+      "total_return_pct": 67.46,
+      "max_drawdown_pct": -17.18,
+      "final_capital": 16745.66,
+      "num_executed": 1092,
+      "num_skipped": 2054
+    },
+    "buy_and_hold": {
+      "total_return_pct": 240.13,
+      "num_symbols": 147
+    }
+  },
+  "out_of_sample": {
+    "num_trades": 1364,
+    "mean_vol_weight": 1.0,
+    "fixed": {
+      "total_return_pct": 67.21,
+      "max_drawdown_pct": -12.31,
+      "final_capital": 16720.85,
+      "num_executed": 456,
+      "num_skipped": 908
+    },
+    "vol_scaled": {
+      "total_return_pct": 38.45,
+      "max_drawdown_pct": -12.96,
+      "final_capital": 13844.6,
+      "num_executed": 495,
+      "num_skipped": 869
+    },
+    "buy_and_hold": {
+      "total_return_pct": 149.13,
+      "num_symbols": 146
+    }
+  },
+  "stability_windows": [
+    {
+      "window_index": 1,
+      "start": "2016-09-01",
+      "end": "2019-02-26",
+      "result": {
+        "num_trades": 1071,
+        "mean_vol_weight": 1.0,
+        "fixed": {
+          "total_return_pct": 32.02,
+          "max_drawdown_pct": -16.0,
+          "final_capital": 13201.89,
+          "num_executed": 350,
+          "num_skipped": 721
+        },
+        "vol_scaled": {
+          "total_return_pct": 21.04,
+          "max_drawdown_pct": -10.69,
+          "final_capital": 12103.86,
+          "num_executed": 385,
+          "num_skipped": 686
+        },
+        "buy_and_hold": {
+          "total_return_pct": 59.12,
+          "num_symbols": 140
+        }
+      }
+    },
+    {
+      "window_index": 2,
+      "start": "2019-02-26",
+      "end": "2021-08-23",
+      "result": {
+        "num_trades": 1240,
+        "mean_vol_weight": 1.0,
+        "fixed": {
+          "total_return_pct": 53.65,
+          "max_drawdown_pct": -9.41,
+          "final_capital": 15364.6,
+          "num_executed": 353,
+          "num_skipped": 887
+        },
+        "vol_scaled": {
+          "total_return_pct": 43.19,
+          "max_drawdown_pct": -6.76,
+          "final_capital": 14319.31,
+          "num_executed": 379,
+          "num_skipped": 861
+        },
+        "buy_and_hold": {
+          "total_return_pct": 87.46,
+          "num_symbols": 147
+        }
+      }
+    },
+    {
+      "window_index": 3,
+      "start": "2021-08-23",
+      "end": "2024-02-17",
+      "result": {
+        "num_trades": 1068,
+        "mean_vol_weight": 1.0,
+        "fixed": {
+          "total_return_pct": 9.32,
+          "max_drawdown_pct": -23.97,
+          "final_capital": 10932.02,
+          "num_executed": 380,
+          "num_skipped": 688
+        },
+        "vol_scaled": {
+          "total_return_pct": 13.28,
+          "max_drawdown_pct": -18.83,
+          "final_capital": 11327.63,
+          "num_executed": 393,
+          "num_skipped": 675
+        },
+        "buy_and_hold": {
+          "total_return_pct": 36.58,
+          "num_symbols": 147
+        }
+      }
+    },
+    {
+      "window_index": 4,
+      "start": "2024-02-17",
+      "end": "2026-08-14",
+      "result": {
+        "num_trades": 1131,
+        "mean_vol_weight": 1.0,
+        "fixed": {
+          "total_return_pct": 49.51,
+          "max_drawdown_pct": -12.31,
+          "final_capital": 14951.34,
+          "num_executed": 379,
+          "num_skipped": 752
+        },
+        "vol_scaled": {
+          "total_return_pct": 46.48,
+          "max_drawdown_pct": -9.84,
+          "final_capital": 14647.74,
+          "num_executed": 413,
+          "num_skipped": 718
+        },
+        "buy_and_hold": {
+          "total_return_pct": 102.63,
+          "num_symbols": 146
+        }
+      }
+    }
+  ]
+}
