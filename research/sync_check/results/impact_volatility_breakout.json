@@ -1,0 +1,32 @@
+{
+  "bot": "volatility_breakout",
+  "varianten": {
+    "backtest": {
+      "trades_gefunden": 4510,
+      "ausgefuehrt": 1236,
+      "uebersprungen": 3274,
+      "rendite_pct": 142.06,
+      "max_drawdown_pct": -22.39,
+      "calmar": 6.34,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8
+    },
+    "live": {
+      "trades_gefunden": 4510,
+      "ausgefuehrt": 1454,
+      "uebersprungen": 3056,
+      "rendite_pct": 224.41,
+      "max_drawdown_pct": -23.97,
+      "calmar": 9.36,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 15
+    }
+  },
+  "verschiebung": {
+    "rendite_pp": 82.35,
+    "rendite_faktor": 1.58,
+    "max_drawdown_pp": -1.58,
+    "calmar_differenz": 3.02,
+    "ausgefuehrte_trades": 218
+  }
+}

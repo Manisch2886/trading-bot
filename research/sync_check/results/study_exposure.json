@@ -1,0 +1,102 @@
+{
+  "studien": [
+    {
+      "pr": 18,
+      "name": "Volatilitaets-skalierte Positionsgroessen",
+      "branch": "origin/claude/vol-scaled-sizing-research",
+      "datei": "research/volatility_scaled_sizing/run_one_bot.py",
+      "quelle": "live_params.py",
+      "beleg": "allocation_pct = lp.ALLOCATION_PCT",
+      "erlaeuterung": "Nutzt es.collect_all_trades() nur als Trade-Generator, alle Parameter aber aus live_params.py (Stop-Loss, Allokation, Positionslimit, USE_TAKE_PROFIT). Die Konstanten-Abweichungen wirken sich daher NICHT aus.",
+      "bots": "alle 9",
+      "betroffenheit": {
+        "stufe": "gering",
+        "betroffene_bots": [
+          "volatility_breakout_crypto"
+        ],
+        "begruendung": "Konstanten stammen aus live_params.py, die Abweichungen wirken sich nicht aus. Betroffen bleibt allein der BTC-Regimefilter bei volatility_breakout_crypto, weil equity_simulation.py ihn gar nicht kennt."
+      },
+      "nachpruefung": "Beleg bestaetigt"
+    },
+    {
+      "pr": 19,
+      "name": "Hierarchical Risk Parity",
+      "branch": "origin/claude/hrp-portfolio-research",
+      "datei": "research/hrp_portfolio/run_walk_forward.py",
+      "quelle": "results/<bot>/equity_curve.csv ueber shared/portfolio_overview.py",
+      "beleg": "import portfolio_overview as po",
+      "erlaeuterung": "Baut auf den gespeicherten Kapitalkurven auf. portfolio_overview.py bevorzugt die Live-DB, faellt aber auf results/<bot>/equity_curve.csv zurueck - und diese CSVs stammen aus Laeufen von equity_simulation.py, also aus der BACKTEST-Konfiguration. In dieser Sandbox sind keine Live-DBs vorhanden, der Fallback greift also durchgaengig.",
+      "bots": "8 Bots mit equity_curve.csv",
+      "betroffenheit": {
+        "stufe": "hoch",
+        "betroffene_bots": [
+          "elliott_wave_stocks",
+          "rsi2_mean_reversion",
+          "turtle_soup_stocks",
+          "volatility_breakout",
+          "volatility_breakout_crypto"
+        ],
+        "begruendung": "Baut auf den gespeicherten Kapitalkurven auf, die aus der Backtest-Konfiguration stammen. Alle fuenf abweichenden Bots gehen mit der falschen Konfiguration in die Analyse ein."
+      },
+      "nachpruefung": "Beleg bestaetigt"
+    },
+    {
+      "pr": 20,
+      "name": "Portfolioweiter Trend-Overlay",
+      "branch": "origin/claude/trend-overlay-research",
+      "datei": "research/trend_overlay/run_overlay_analysis.py",
+      "quelle": "results/<bot>/equity_curve.csv ueber shared/portfolio_overview.py",
+      "beleg": "import portfolio_overview as po",
+      "erlaeuterung": "Dieselbe Datenquelle wie die HRP-Untersuchung.",
+      "bots": "8 Bots mit equity_curve.csv",
+      "betroffenheit": {
+        "stufe": "hoch",
+        "betroffene_bots": [
+          "elliott_wave_stocks",
+          "rsi2_mean_reversion",
+          "turtle_soup_stocks",
+          "volatility_breakout",
+          "volatility_breakout_crypto"
+        ],
+        "begruendung": "Baut auf den gespeicherten Kapitalkurven auf, die aus der Backtest-Konfiguration stammen. Alle fuenf abweichenden Bots gehen mit der falschen Konfiguration in die Analyse ein."
+      },
+      "nachpruefung": "Beleg bestaetigt"
+    },
+    {
+      "pr": 21,
+      "name": "Volatilitaets-kalibrierte Trailing-Stops",
+      "branch": "origin/claude/new-session-sipd5l",
+      "datei": "research/trailing_stops/run_one_bot.py",
+      "quelle": "live_params.py",
+      "beleg": "import live_params as lp",
+      "erlaeuterung": "Alle Parameter aus live_params.py. Der BTC-Regimefilter wird nur dort angewendet, wo die bot-eigene equity_simulation.py ihn anwendet (t3_supertrend) - bei volatility_breakout_crypto also nicht; das ist dort als Annahme 8 dokumentiert.",
+      "bots": "5 Bots mit festem %-Stop",
+      "betroffenheit": {
+        "stufe": "gering",
+        "betroffene_bots": [
+          "volatility_breakout_crypto"
+        ],
+        "begruendung": "Konstanten stammen aus live_params.py, die Abweichungen wirken sich nicht aus. Betroffen bleibt allein der BTC-Regimefilter bei volatility_breakout_crypto, weil equity_simulation.py ihn gar nicht kennt."
+      },
+      "nachpruefung": "Beleg bestaetigt"
+    },
+    {
+      "pr": 22,
+      "name": "Vertiefungsstudie volatility_breakout_crypto",
+      "branch": "origin/claude/vbc-deepdive",
+      "datei": "research/vbc_deepdive/run_deepdive.py",
+      "quelle": "live_params.py",
+      "beleg": "import live_params as lp",
+      "erlaeuterung": "Alle Parameter aus live_params.py, BTC-Regimefilter bewusst nicht angewendet (dort Annahme 8).",
+      "bots": "nur volatility_breakout_crypto",
+      "betroffenheit": {
+        "stufe": "gering",
+        "betroffene_bots": [
+          "volatility_breakout_crypto"
+        ],
+        "begruendung": "Konstanten stammen aus live_params.py, die Abweichungen wirken sich nicht aus. Betroffen bleibt allein der BTC-Regimefilter bei volatility_breakout_crypto, weil equity_simulation.py ihn gar nicht kennt."
+      },
+      "nachpruefung": "Beleg bestaetigt"
+    }
+  ]
+}

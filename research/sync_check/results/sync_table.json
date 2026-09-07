@@ -1,0 +1,466 @@
+{
+  "bots": [
+    {
+      "bot": "elliott_wave",
+      "zeilen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": "— nicht dokumentiert —",
+          "equity_simulation": 0.1,
+          "status": "nur im Backtest"
+        },
+        {
+          "groesse": "DEVIATION_PCT",
+          "live_params": 4.0,
+          "equity_simulation": 4.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "STOP_LOSS_PCT",
+          "live_params": 2.0,
+          "equity_simulation": 2.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "TAKE_PROFIT_FIB",
+          "live_params": 0.236,
+          "equity_simulation": 0.236,
+          "status": "identisch",
+          "hinweis": ""
+        }
+      ],
+      "abweichungen": [],
+      "synchron": true
+    },
+    {
+      "bot": "elliott_wave_stocks",
+      "zeilen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": "— nicht dokumentiert —",
+          "equity_simulation": 0.1,
+          "status": "nur im Backtest"
+        },
+        {
+          "groesse": "DEVIATION_PCT",
+          "live_params": 5.0,
+          "equity_simulation": 5.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live_params": 8,
+          "equity_simulation": 8,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "STOP_LOSS_PCT",
+          "live_params": 3.0,
+          "equity_simulation": 3.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "TAKE_PROFIT_FIB",
+          "live_params": 0.236,
+          "equity_simulation": 0.236,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "USE_TAKE_PROFIT",
+          "live_params": false,
+          "equity_simulation": true,
+          "status": "ABWEICHUNG",
+          "hinweis": ""
+        }
+      ],
+      "abweichungen": [
+        {
+          "groesse": "USE_TAKE_PROFIT",
+          "live": false,
+          "backtest": true,
+          "art": "Konstante"
+        }
+      ],
+      "synchron": false
+    },
+    {
+      "bot": "t3_supertrend",
+      "zeilen": [
+        {
+          "groesse": "ADX_THRESHOLD",
+          "live_params": 20.0,
+          "equity_simulation": 20.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": "— nicht dokumentiert —",
+          "equity_simulation": 0.1,
+          "status": "nur im Backtest"
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live_params": 5,
+          "equity_simulation": 5,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "STOP_LOSS_PCT",
+          "live_params": 4.0,
+          "equity_simulation": 4.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "T3_FAST",
+          "live_params": 16,
+          "equity_simulation": 16,
+          "status": "identisch",
+          "hinweis": "heisst live `T3_FAST_LENGTH`"
+        },
+        {
+          "groesse": "T3_SLOW",
+          "live_params": 30,
+          "equity_simulation": 30,
+          "status": "identisch",
+          "hinweis": "heisst live `T3_SLOW_LENGTH`"
+        }
+      ],
+      "abweichungen": [],
+      "synchron": true
+    },
+    {
+      "bot": "rsi2_crypto",
+      "zeilen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": 10,
+          "equity_simulation": 0.1,
+          "status": "identisch",
+          "hinweis": "live in Prozent (10), Backtest als Anteil"
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live_params": 8,
+          "equity_simulation": 8,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "RSI_THRESHOLD",
+          "live_params": 10.0,
+          "equity_simulation": 10.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "SMA_TREND_PERIOD",
+          "live_params": 150,
+          "equity_simulation": 150,
+          "status": "identisch",
+          "hinweis": "heisst live `SMA_TREND_FILTER`"
+        },
+        {
+          "groesse": "STOP_LOSS_PCT",
+          "live_params": null,
+          "equity_simulation": null,
+          "status": "identisch",
+          "hinweis": ""
+        }
+      ],
+      "abweichungen": [],
+      "synchron": true
+    },
+    {
+      "bot": "rsi2_mean_reversion",
+      "zeilen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": 5,
+          "equity_simulation": 0.1,
+          "status": "ABWEICHUNG",
+          "hinweis": "live in Prozent (5), Backtest als Anteil"
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live_params": 20,
+          "equity_simulation": 8,
+          "status": "ABWEICHUNG",
+          "hinweis": ""
+        },
+        {
+          "groesse": "RSI_THRESHOLD",
+          "live_params": 5.0,
+          "equity_simulation": 5.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "STOP_LOSS_PCT",
+          "live_params": null,
+          "equity_simulation": null,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "MAX_HOLD_DAYS",
+          "live_params": 10,
+          "equity_simulation": 10,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py"
+        }
+      ],
+      "abweichungen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live": 5,
+          "backtest": 0.1,
+          "art": "Konstante"
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live": 20,
+          "backtest": 8,
+          "art": "Konstante"
+        }
+      ],
+      "synchron": false
+    },
+    {
+      "bot": "turtle_soup_crypto",
+      "zeilen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": 10,
+          "equity_simulation": 0.1,
+          "status": "identisch",
+          "hinweis": "live in Prozent (10), Backtest als Anteil"
+        },
+        {
+          "groesse": "DONCHIAN_PERIOD",
+          "live_params": 10,
+          "equity_simulation": 10,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live_params": 8,
+          "equity_simulation": 8,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "STOP_MODE",
+          "live_params": "structural",
+          "equity_simulation": "structural",
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "MAX_HOLD_DAYS",
+          "live_params": 10,
+          "equity_simulation": 10,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py"
+        }
+      ],
+      "abweichungen": [],
+      "synchron": true
+    },
+    {
+      "bot": "turtle_soup_stocks",
+      "zeilen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": 2,
+          "equity_simulation": 0.1,
+          "status": "ABWEICHUNG",
+          "hinweis": "live in Prozent (2), Backtest als Anteil"
+        },
+        {
+          "groesse": "DONCHIAN_PERIOD",
+          "live_params": 10,
+          "equity_simulation": 10,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live_params": null,
+          "equity_simulation": 8,
+          "status": "ABWEICHUNG",
+          "hinweis": ""
+        },
+        {
+          "groesse": "STOP_MODE",
+          "live_params": null,
+          "equity_simulation": null,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "MAX_HOLD_DAYS",
+          "live_params": 10,
+          "equity_simulation": 10,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py"
+        }
+      ],
+      "abweichungen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live": 2,
+          "backtest": 0.1,
+          "art": "Konstante"
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live": null,
+          "backtest": 8,
+          "art": "Konstante"
+        }
+      ],
+      "synchron": false
+    },
+    {
+      "bot": "volatility_breakout",
+      "zeilen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": 10,
+          "equity_simulation": 0.1,
+          "status": "identisch",
+          "hinweis": "live in Prozent (10), Backtest als Anteil"
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live_params": 15,
+          "equity_simulation": 8,
+          "status": "ABWEICHUNG",
+          "hinweis": ""
+        },
+        {
+          "groesse": "STOP_LOSS_PCT",
+          "live_params": 8.0,
+          "equity_simulation": 8.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "BB_LOOKBACK",
+          "live_params": 126,
+          "equity_simulation": 126,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py (dort `SQUEEZE_LOOKBACK_DAYS`)"
+        },
+        {
+          "groesse": "BB_SQUEEZE_PERCENTILE",
+          "live_params": 25.0,
+          "equity_simulation": 25.0,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py (dort `SQUEEZE_PERCENTILE`)"
+        },
+        {
+          "groesse": "MAX_HOLD_DAYS",
+          "live_params": 15,
+          "equity_simulation": 15,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py"
+        }
+      ],
+      "abweichungen": [
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live": 15,
+          "backtest": 8,
+          "art": "Konstante"
+        }
+      ],
+      "synchron": false
+    },
+    {
+      "bot": "volatility_breakout_crypto",
+      "zeilen": [
+        {
+          "groesse": "ALLOCATION_PCT",
+          "live_params": 10,
+          "equity_simulation": 0.1,
+          "status": "identisch",
+          "hinweis": "live in Prozent (10), Backtest als Anteil"
+        },
+        {
+          "groesse": "MAX_CONCURRENT_POSITIONS",
+          "live_params": 8,
+          "equity_simulation": 8,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "STOP_LOSS_PCT",
+          "live_params": 5.0,
+          "equity_simulation": 5.0,
+          "status": "identisch",
+          "hinweis": ""
+        },
+        {
+          "groesse": "BB_LOOKBACK",
+          "live_params": 126,
+          "equity_simulation": 126,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py (dort `SQUEEZE_LOOKBACK_DAYS`)"
+        },
+        {
+          "groesse": "BB_SQUEEZE_PERCENTILE",
+          "live_params": 25.0,
+          "equity_simulation": 25.0,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py (dort `SQUEEZE_PERCENTILE`)"
+        },
+        {
+          "groesse": "BTC_REGIME_FILTER_ENABLED",
+          "live_params": true,
+          "equity_simulation": "— keine Entsprechung —",
+          "status": "nur live, im Backtest WIRKUNGSLOS"
+        },
+        {
+          "groesse": "MAX_HOLD_DAYS",
+          "live_params": 15,
+          "equity_simulation": 15,
+          "status": "identisch",
+          "hinweis": "Default aus backtest_*.py"
+        }
+      ],
+      "abweichungen": [
+        {
+          "groesse": "BTC_REGIME_FILTER_ENABLED",
+          "live": true,
+          "backtest": "im Backtest-Pfad nicht vorhanden",
+          "art": "Verhalten"
+        }
+      ],
+      "synchron": false
+    }
+  ],
+  "abweichend": [
+    "elliott_wave_stocks",
+    "rsi2_mean_reversion",
+    "turtle_soup_stocks",
+    "volatility_breakout",
+    "volatility_breakout_crypto"
+  ],
+  "synchron": [
+    "elliott_wave",
+    "t3_supertrend",
+    "rsi2_crypto",
+    "turtle_soup_crypto"
+  ]
+}

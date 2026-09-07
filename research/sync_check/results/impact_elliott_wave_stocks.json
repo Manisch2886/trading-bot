@@ -1,0 +1,34 @@
+{
+  "bot": "elliott_wave_stocks",
+  "varianten": {
+    "backtest": {
+      "trades_gefunden": 519,
+      "ausgefuehrt": 469,
+      "uebersprungen": 50,
+      "rendite_pct": 1500.53,
+      "max_drawdown_pct": -1.9,
+      "calmar": 789.75,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "USE_TAKE_PROFIT": true
+    },
+    "live": {
+      "trades_gefunden": 519,
+      "ausgefuehrt": 288,
+      "uebersprungen": 231,
+      "rendite_pct": 3084.09,
+      "max_drawdown_pct": -9.79,
+      "calmar": 315.02,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "USE_TAKE_PROFIT": false
+    }
+  },
+  "verschiebung": {
+    "rendite_pp": 1583.56,
+    "rendite_faktor": 2.055,
+    "max_drawdown_pp": -7.89,
+    "calmar_differenz": -474.73,
+    "ausgefuehrte_trades": -181
+  }
+}

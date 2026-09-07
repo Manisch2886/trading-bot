@@ -1,0 +1,32 @@
+{
+  "bot": "turtle_soup_stocks",
+  "varianten": {
+    "backtest": {
+      "trades_gefunden": 12069,
+      "ausgefuehrt": 1887,
+      "uebersprungen": 10182,
+      "rendite_pct": 133.01,
+      "max_drawdown_pct": -32.54,
+      "calmar": 4.09,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8
+    },
+    "live": {
+      "trades_gefunden": 12069,
+      "ausgefuehrt": 8915,
+      "uebersprungen": 3154,
+      "rendite_pct": 145.59,
+      "max_drawdown_pct": -29.91,
+      "calmar": 4.87,
+      "allocation_pct": 2.0,
+      "max_concurrent_positions": null
+    }
+  },
+  "verschiebung": {
+    "rendite_pp": 12.58,
+    "rendite_faktor": 1.095,
+    "max_drawdown_pp": 2.63,
+    "calmar_differenz": 0.78,
+    "ausgefuehrte_trades": 7028
+  }
+}
