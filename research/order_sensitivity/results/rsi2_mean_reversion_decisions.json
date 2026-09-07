@@ -1,0 +1,133 @@
+{
+  "bot": "rsi2_mean_reversion",
+  "n_permutations": 500,
+  "decisions": [
+    {
+      "id": "allokation_5_limit_20",
+      "frage": "5 % Allokation und Limit 20 statt 10 % und Limit 8",
+      "quelle": "results/rsi2_mean_reversion/PROTOTYPE_FINDINGS.md, Abschnitt 6",
+      "paarung": "echt - identischer Trade-Satz",
+      "berichtet": {
+        "5 %/20": "+36,75 % / -21,05 %",
+        "10 %/8": "+33,94 % / -28,46 %"
+      },
+      "varianten": {
+        "5 % / Limit 20 (live)": {
+          "point_total_return_pct": 36.61,
+          "point_max_drawdown_pct": -21.05,
+          "point_calmar": 1.74,
+          "point_executed": 4232,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 5391,
+            "total_return_pct": {
+              "min": 25.68,
+              "median": 37.62,
+              "max": 49.21,
+              "ci_low": 30.44,
+              "ci_high": 46.16
+            },
+            "max_drawdown_pct": {
+              "min": -23.24,
+              "median": -20.24,
+              "max": -17.59,
+              "ci_low": -22.04,
+              "ci_high": -18.47
+            },
+            "calmar_ratio": {
+              "min": 1.22,
+              "median": 1.87,
+              "max": 2.64,
+              "ci_low": 1.46,
+              "ci_high": 2.42
+            },
+            "trades_always_executed": 3466,
+            "trades_never_executed": 359,
+            "trades_contested": 1566,
+            "contested_share_pct": 29.0,
+            "mean_skipped_capital": 489.4,
+            "mean_skipped_position_limit": 672.8
+          }
+        },
+        "10 % / Limit 8": {
+          "point_total_return_pct": 29.91,
+          "point_max_drawdown_pct": -21.82,
+          "point_calmar": 1.37,
+          "point_executed": 2641,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 5391,
+            "total_return_pct": {
+              "min": 5.39,
+              "median": 26.78,
+              "max": 49.08,
+              "ci_low": 12.77,
+              "ci_high": 43.27
+            },
+            "max_drawdown_pct": {
+              "min": -27.72,
+              "median": -22.3,
+              "max": -16.92,
+              "ci_low": -25.92,
+              "ci_high": -18.9
+            },
+            "calmar_ratio": {
+              "min": 0.21,
+              "median": 1.21,
+              "max": 2.54,
+              "ci_low": 0.53,
+              "ci_high": 2.04
+            },
+            "trades_always_executed": 1721,
+            "trades_never_executed": 967,
+            "trades_contested": 2703,
+            "contested_share_pct": 50.1,
+            "mean_skipped_capital": 0.0,
+            "mean_skipped_position_limit": 2744.3
+          }
+        }
+      },
+      "vergleich_gewaehlt_vs_alternative": {
+        "calmar_ratio": {
+          "share_chosen_better_pct": 93.6,
+          "median_difference": 0.655,
+          "chosen_range": [
+            1.22,
+            2.64
+          ],
+          "alternative_range": [
+            0.21,
+            2.54
+          ],
+          "ranges_overlap": true
+        },
+        "total_return_pct": {
+          "share_chosen_better_pct": 91.8,
+          "median_difference": 10.362,
+          "chosen_range": [
+            25.68,
+            49.21
+          ],
+          "alternative_range": [
+            5.39,
+            49.08
+          ],
+          "ranges_overlap": true
+        },
+        "max_drawdown_pct": {
+          "share_chosen_better_pct": 86.2,
+          "median_difference": 2.03,
+          "chosen_range": [
+            -23.24,
+            -17.59
+          ],
+          "alternative_range": [
+            -27.72,
+            -16.92
+          ],
+          "ranges_overlap": true
+        }
+      }
+    }
+  ]
+}

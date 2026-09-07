@@ -1,0 +1,132 @@
+{
+  "bot": "turtle_soup_crypto",
+  "n_permutations": 500,
+  "decisions": [
+    {
+      "id": "basiskonfiguration",
+      "frage": "Kapitalmanagement unveraendert bei 10 % / Limit 8 belassen",
+      "quelle": "results/turtle_soup_crypto/PROTOTYPE_FINDINGS.md, Abschnitt 8b/8c",
+      "paarung": "echt - identischer Trade-Satz",
+      "berichtet": {
+        "10 %/8": "jede getestete Lockerung verschlechterte Rendite UND Drawdown"
+      },
+      "varianten": {
+        "10 % / Limit 8 (live)": {
+          "point_total_return_pct": 177.59,
+          "point_max_drawdown_pct": -32.4,
+          "point_calmar": 5.48,
+          "point_executed": 1414,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 1599,
+            "total_return_pct": {
+              "min": 102.2,
+              "median": 149.31,
+              "max": 206.75,
+              "ci_low": 115.68,
+              "ci_high": 187.69
+            },
+            "max_drawdown_pct": {
+              "min": -43.05,
+              "median": -36.55,
+              "max": -30.83,
+              "ci_low": -40.84,
+              "ci_high": -32.28
+            },
+            "calmar_ratio": {
+              "min": 2.41,
+              "median": 4.07,
+              "max": 6.51,
+              "ci_low": 3.01,
+              "ci_high": 5.53
+            },
+            "trades_always_executed": 1070,
+            "trades_never_executed": 21,
+            "trades_contested": 508,
+            "contested_share_pct": 31.8,
+            "mean_skipped_capital": 0.0,
+            "mean_skipped_position_limit": 187.6
+          }
+        },
+        "5 % / Limit 20": {
+          "point_total_return_pct": 64.62,
+          "point_max_drawdown_pct": -28.28,
+          "point_calmar": 2.29,
+          "point_executed": 1598,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 1599,
+            "total_return_pct": {
+              "min": 62.58,
+              "median": 64.34,
+              "max": 64.73,
+              "ci_low": 62.58,
+              "ci_high": 64.73
+            },
+            "max_drawdown_pct": {
+              "min": -28.62,
+              "median": -28.28,
+              "max": -28.28,
+              "ci_low": -28.49,
+              "ci_high": -28.28
+            },
+            "calmar_ratio": {
+              "min": 2.2,
+              "median": 2.28,
+              "max": 2.29,
+              "ci_low": 2.21,
+              "ci_high": 2.29
+            },
+            "trades_always_executed": 1579,
+            "trades_never_executed": 0,
+            "trades_contested": 20,
+            "contested_share_pct": 1.3,
+            "mean_skipped_capital": 0.7,
+            "mean_skipped_position_limit": 0.0
+          }
+        }
+      },
+      "vergleich_gewaehlt_vs_alternative": {
+        "calmar_ratio": {
+          "share_chosen_better_pct": 100.0,
+          "median_difference": 1.8,
+          "chosen_range": [
+            2.41,
+            6.51
+          ],
+          "alternative_range": [
+            2.2,
+            2.29
+          ],
+          "ranges_overlap": false
+        },
+        "total_return_pct": {
+          "share_chosen_better_pct": 100.0,
+          "median_difference": 85.06,
+          "chosen_range": [
+            102.2,
+            206.75
+          ],
+          "alternative_range": [
+            62.58,
+            64.73
+          ],
+          "ranges_overlap": false
+        },
+        "max_drawdown_pct": {
+          "share_chosen_better_pct": 0.0,
+          "median_difference": -8.255,
+          "chosen_range": [
+            -43.05,
+            -30.83
+          ],
+          "alternative_range": [
+            -28.62,
+            -28.28
+          ],
+          "ranges_overlap": false
+        }
+      }
+    }
+  ]
+}

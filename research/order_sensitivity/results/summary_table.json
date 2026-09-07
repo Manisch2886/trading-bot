@@ -1,0 +1,301 @@
+{
+  "bots": [
+    {
+      "bot": "elliott_wave",
+      "trades": 783,
+      "shared_pct": 46.1,
+      "largest_group": 9,
+      "allocation_pct": 0.1,
+      "limit": null,
+      "executed": 782,
+      "skipped": 1,
+      "skip_rate_pct": 0.1,
+      "skip_capital": 1.0,
+      "skip_limit": 0.0,
+      "contested": 9,
+      "contested_pct": 1.1,
+      "baseline_calmar": 1193.97,
+      "calmar": {
+        "min": 1189.21,
+        "median": 1193.79,
+        "max": 1197.19,
+        "ci_low": 1189.21,
+        "ci_high": 1197.19
+      },
+      "drawdown": {
+        "min": -1.83,
+        "median": -1.83,
+        "max": -1.83,
+        "ci_low": -1.83,
+        "ci_high": -1.83
+      },
+      "percentile": 56.4,
+      "mismatches": 0,
+      "einstufung": "praktisch nicht betroffen"
+    },
+    {
+      "bot": "elliott_wave_stocks",
+      "trades": 519,
+      "shared_pct": 63.6,
+      "largest_group": 19,
+      "allocation_pct": 0.1,
+      "limit": 8,
+      "executed": 469,
+      "skipped": 50,
+      "skip_rate_pct": 9.6,
+      "skip_capital": 0.0,
+      "skip_limit": 51.0,
+      "contested": 113,
+      "contested_pct": 21.8,
+      "baseline_calmar": 789.75,
+      "calmar": {
+        "min": 475.78,
+        "median": 704.35,
+        "max": 919.67,
+        "ci_low": 540.83,
+        "ci_high": 891.16
+      },
+      "drawdown": {
+        "min": -2.96,
+        "median": -2.22,
+        "max": -1.9,
+        "ci_low": -2.63,
+        "ci_high": -1.9
+      },
+      "percentile": 74.6,
+      "mismatches": 0,
+      "einstufung": "spuerbar betroffen"
+    },
+    {
+      "bot": "t3_supertrend",
+      "trades": 980,
+      "shared_pct": 43.8,
+      "largest_group": 9,
+      "allocation_pct": 0.1,
+      "limit": 5,
+      "executed": 656,
+      "skipped": 324,
+      "skip_rate_pct": 33.1,
+      "skip_capital": 0.0,
+      "skip_limit": 323.9,
+      "contested": 143,
+      "contested_pct": 14.6,
+      "baseline_calmar": 5.84,
+      "calmar": {
+        "min": 4.72,
+        "median": 5.71,
+        "max": 6.4,
+        "ci_low": 4.94,
+        "ci_high": 6.2
+      },
+      "drawdown": {
+        "min": -22.85,
+        "median": -22.32,
+        "max": -22.14,
+        "ci_low": -22.57,
+        "ci_high": -22.14
+      },
+      "percentile": 66.0,
+      "mismatches": 0,
+      "einstufung": "leicht betroffen"
+    },
+    {
+      "bot": "rsi2_crypto",
+      "trades": 439,
+      "shared_pct": 65.8,
+      "largest_group": 9,
+      "allocation_pct": 0.1,
+      "limit": 8,
+      "executed": 392,
+      "skipped": 47,
+      "skip_rate_pct": 10.7,
+      "skip_capital": 0.0,
+      "skip_limit": 46.5,
+      "contested": 65,
+      "contested_pct": 14.8,
+      "baseline_calmar": 2.13,
+      "calmar": {
+        "min": 1.5,
+        "median": 2.11,
+        "max": 2.77,
+        "ci_low": 1.71,
+        "ci_high": 2.53
+      },
+      "drawdown": {
+        "min": -14.85,
+        "median": -13.45,
+        "max": -12.25,
+        "ci_low": -14.37,
+        "ci_high": -12.57
+      },
+      "percentile": 52.6,
+      "mismatches": 0,
+      "einstufung": "spuerbar betroffen"
+    },
+    {
+      "bot": "rsi2_mean_reversion",
+      "trades": 5391,
+      "shared_pct": 90.7,
+      "largest_group": 46,
+      "allocation_pct": 0.1,
+      "limit": 8,
+      "executed": 2641,
+      "skipped": 2750,
+      "skip_rate_pct": 51.0,
+      "skip_capital": 0.0,
+      "skip_limit": 2744.3,
+      "contested": 2703,
+      "contested_pct": 50.1,
+      "baseline_calmar": 1.37,
+      "calmar": {
+        "min": 0.21,
+        "median": 1.21,
+        "max": 2.54,
+        "ci_low": 0.53,
+        "ci_high": 2.04
+      },
+      "drawdown": {
+        "min": -27.72,
+        "median": -22.3,
+        "max": -16.92,
+        "ci_low": -25.92,
+        "ci_high": -18.9
+      },
+      "percentile": 65.0,
+      "mismatches": 0,
+      "einstufung": "stark betroffen"
+    },
+    {
+      "bot": "turtle_soup_crypto",
+      "trades": 1599,
+      "shared_pct": 84.4,
+      "largest_group": 20,
+      "allocation_pct": 0.1,
+      "limit": 8,
+      "executed": 1414,
+      "skipped": 185,
+      "skip_rate_pct": 11.6,
+      "skip_capital": 0.0,
+      "skip_limit": 187.6,
+      "contested": 508,
+      "contested_pct": 31.8,
+      "baseline_calmar": 5.48,
+      "calmar": {
+        "min": 2.41,
+        "median": 4.07,
+        "max": 6.51,
+        "ci_low": 3.01,
+        "ci_high": 5.53
+      },
+      "drawdown": {
+        "min": -43.05,
+        "median": -36.55,
+        "max": -30.83,
+        "ci_low": -40.84,
+        "ci_high": -32.28
+      },
+      "percentile": 96.6,
+      "mismatches": 0,
+      "einstufung": "spuerbar betroffen"
+    },
+    {
+      "bot": "turtle_soup_stocks",
+      "trades": 12069,
+      "shared_pct": 96.5,
+      "largest_group": 68,
+      "allocation_pct": 0.1,
+      "limit": 8,
+      "executed": 1887,
+      "skipped": 10182,
+      "skip_rate_pct": 84.4,
+      "skip_capital": 0.0,
+      "skip_limit": 10182.0,
+      "contested": 6035,
+      "contested_pct": 50.0,
+      "baseline_calmar": 4.09,
+      "calmar": {
+        "min": 1.38,
+        "median": 3.91,
+        "max": 8.16,
+        "ci_low": 1.95,
+        "ci_high": 6.61
+      },
+      "drawdown": {
+        "min": -37.61,
+        "median": -31.97,
+        "max": -27.35,
+        "ci_low": -35.09,
+        "ci_high": -28.7
+      },
+      "percentile": 57.8,
+      "mismatches": 0,
+      "einstufung": "stark betroffen"
+    },
+    {
+      "bot": "volatility_breakout",
+      "trades": 4510,
+      "shared_pct": 87.7,
+      "largest_group": 24,
+      "allocation_pct": 0.1,
+      "limit": 8,
+      "executed": 1236,
+      "skipped": 3274,
+      "skip_rate_pct": 72.6,
+      "skip_capital": 0.0,
+      "skip_limit": 3272.9,
+      "contested": 2312,
+      "contested_pct": 51.3,
+      "baseline_calmar": 6.34,
+      "calmar": {
+        "min": 2.86,
+        "median": 7.11,
+        "max": 12.43,
+        "ci_low": 4.25,
+        "ci_high": 10.44
+      },
+      "drawdown": {
+        "min": -27.06,
+        "median": -22.02,
+        "max": -18.75,
+        "ci_low": -24.76,
+        "ci_high": -19.25
+      },
+      "percentile": 31.4,
+      "mismatches": 0,
+      "einstufung": "stark betroffen"
+    },
+    {
+      "bot": "volatility_breakout_crypto",
+      "trades": 359,
+      "shared_pct": 59.6,
+      "largest_group": 9,
+      "allocation_pct": 0.1,
+      "limit": 8,
+      "executed": 310,
+      "skipped": 49,
+      "skip_rate_pct": 13.6,
+      "skip_capital": 0.0,
+      "skip_limit": 49.0,
+      "contested": 62,
+      "contested_pct": 17.3,
+      "baseline_calmar": 4.25,
+      "calmar": {
+        "min": 2.98,
+        "median": 3.52,
+        "max": 4.9,
+        "ci_low": 3.09,
+        "ci_high": 4.73
+      },
+      "drawdown": {
+        "min": -16.77,
+        "median": -16.77,
+        "max": -16.77,
+        "ci_low": -16.77,
+        "ci_high": -16.77
+      },
+      "percentile": 61.4,
+      "mismatches": 0,
+      "einstufung": "spuerbar betroffen"
+    }
+  ]
+}

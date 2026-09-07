@@ -1,0 +1,65 @@
+{
+  "bot": "rsi2_crypto",
+  "config_source": "equity_simulation.py (Modul-Konstanten des Bots)",
+  "config": {
+    "starting_capital": 10000.0,
+    "allocation_pct": 0.1,
+    "max_concurrent_positions": 8,
+    "bot_has_position_limit_parameter": true
+  },
+  "timestamps": {
+    "n_trades": 439,
+    "trades_sharing_entry_timestamp": 289,
+    "share_sharing_entry_timestamp_pct": 65.8,
+    "largest_same_timestamp_group": 9,
+    "distinct_entry_timestamps": 239
+  },
+  "baseline_original_order": {
+    "total_return_pct": 28.37,
+    "max_drawdown_pct": -13.3,
+    "num_executed": 392,
+    "num_skipped": 47,
+    "calmar_ratio": 2.13
+  },
+  "equivalence_check": {
+    "n_verified_permutations": 25,
+    "mismatches": 0,
+    "detail": []
+  },
+  "permutations": {
+    "n_permutations": 500,
+    "n_trades": 439,
+    "total_return_pct": {
+      "min": 21.88,
+      "median": 28.49,
+      "max": 34.69,
+      "ci_low": 24.38,
+      "ci_high": 32.68
+    },
+    "max_drawdown_pct": {
+      "min": -14.85,
+      "median": -13.45,
+      "max": -12.25,
+      "ci_low": -14.37,
+      "ci_high": -12.57
+    },
+    "calmar_ratio": {
+      "min": 1.5,
+      "median": 2.11,
+      "max": 2.77,
+      "ci_low": 1.71,
+      "ci_high": 2.53
+    },
+    "trades_always_executed": 350,
+    "trades_never_executed": 24,
+    "trades_contested": 65,
+    "contested_share_pct": 14.8,
+    "mean_skipped_capital": 0.0,
+    "mean_skipped_position_limit": 46.5
+  },
+  "baseline_percentile": {
+    "total_return_pct": 46.6,
+    "max_drawdown_pct": 60.6,
+    "calmar_ratio": 52.6
+  }
+}
