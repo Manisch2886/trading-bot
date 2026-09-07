@@ -1,0 +1,32 @@
+{
+  "bot": "rsi2_mean_reversion",
+  "varianten": {
+    "backtest": {
+      "trades_gefunden": 5391,
+      "ausgefuehrt": 2641,
+      "uebersprungen": 2750,
+      "rendite_pct": 29.91,
+      "max_drawdown_pct": -21.82,
+      "calmar": 1.37,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8
+    },
+    "live": {
+      "trades_gefunden": 5391,
+      "ausgefuehrt": 4232,
+      "uebersprungen": 1159,
+      "rendite_pct": 36.75,
+      "max_drawdown_pct": -21.05,
+      "calmar": 1.75,
+      "allocation_pct": 5.0,
+      "max_concurrent_positions": 20
+    }
+  },
+  "verschiebung": {
+    "rendite_pp": 6.84,
+    "rendite_faktor": 1.229,
+    "max_drawdown_pp": 0.77,
+    "calmar_differenz": 0.38,
+    "ausgefuehrte_trades": 1591
+  }
+}
