@@ -133,15 +133,39 @@
         7.98
       ],
       "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 55,
+          "rendite_min_pct": 165.92,
+          "rendite_median_pct": 203.67,
+          "rendite_max_pct": 254.26,
+          "rendite_spanne_pp": 88.34,
+          "calmar_min": 4.98,
+          "calmar_median": 6.71,
+          "calmar_max": 9.58
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 17,
+          "rendite_min_pct": 14.56,
+          "rendite_median_pct": 18.75,
+          "rendite_max_pct": 24.16,
+          "rendite_spanne_pp": 9.6,
+          "calmar_min": 1.01,
+          "calmar_median": 1.27,
+          "calmar_max": 1.73
+        }
+      },
+      "reihenfolge_oos": {
         "permutationen": 200,
-        "zeitpunkte_mit_gleichzeitigen_einstiegen": 55,
-        "rendite_min_pct": 165.92,
-        "rendite_median_pct": 203.67,
-        "rendite_max_pct": 254.26,
-        "rendite_spanne_pp": 88.34,
-        "calmar_min": 4.98,
-        "calmar_median": 6.71,
-        "calmar_max": 9.58
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 17,
+        "rendite_min_pct": 14.56,
+        "rendite_median_pct": 18.75,
+        "rendite_max_pct": 24.16,
+        "rendite_spanne_pp": 9.6,
+        "calmar_min": 1.01,
+        "calmar_median": 1.27,
+        "calmar_max": 1.73
       },
       "symbolbeitrag": {
         "symbole_mit_trades": 121,
@@ -1005,15 +1029,39 @@
         10.02
       ],
       "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 54,
+          "rendite_min_pct": 357.59,
+          "rendite_median_pct": 445.98,
+          "rendite_max_pct": 555.84,
+          "rendite_spanne_pp": 198.25,
+          "calmar_min": 10.34,
+          "calmar_median": 15.43,
+          "calmar_max": 21.39
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 16,
+          "rendite_min_pct": 54.12,
+          "rendite_median_pct": 67.79,
+          "rendite_max_pct": 78.1,
+          "rendite_spanne_pp": 23.98,
+          "calmar_min": 3.48,
+          "calmar_median": 4.84,
+          "calmar_max": 5.58
+        }
+      },
+      "reihenfolge_oos": {
         "permutationen": 200,
-        "zeitpunkte_mit_gleichzeitigen_einstiegen": 54,
-        "rendite_min_pct": 357.59,
-        "rendite_median_pct": 445.98,
-        "rendite_max_pct": 555.84,
-        "rendite_spanne_pp": 198.25,
-        "calmar_min": 10.34,
-        "calmar_median": 15.43,
-        "calmar_max": 21.39
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 16,
+        "rendite_min_pct": 54.12,
+        "rendite_median_pct": 67.79,
+        "rendite_max_pct": 78.1,
+        "rendite_spanne_pp": 23.98,
+        "calmar_min": 3.48,
+        "calmar_median": 4.84,
+        "calmar_max": 5.58
       },
       "symbolbeitrag": {
         "symbole_mit_trades": 121,
@@ -1877,15 +1925,39 @@
         7.03
       ],
       "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 332,
+          "rendite_min_pct": 211.58,
+          "rendite_median_pct": 322.82,
+          "rendite_max_pct": 508.89,
+          "rendite_spanne_pp": 297.31,
+          "calmar_min": 6.25,
+          "calmar_median": 9.41,
+          "calmar_max": 17.45
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 126,
+          "rendite_min_pct": 104.74,
+          "rendite_median_pct": 139.87,
+          "rendite_max_pct": 181.89,
+          "rendite_spanne_pp": 77.15,
+          "calmar_min": 8.6,
+          "calmar_median": 17.8,
+          "calmar_max": 50.35
+        }
+      },
+      "reihenfolge_oos": {
         "permutationen": 200,
-        "zeitpunkte_mit_gleichzeitigen_einstiegen": 332,
-        "rendite_min_pct": 211.58,
-        "rendite_median_pct": 322.82,
-        "rendite_max_pct": 508.89,
-        "rendite_spanne_pp": 297.31,
-        "calmar_min": 6.25,
-        "calmar_median": 9.41,
-        "calmar_max": 17.45
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 126,
+        "rendite_min_pct": 104.74,
+        "rendite_median_pct": 139.87,
+        "rendite_max_pct": 181.89,
+        "rendite_spanne_pp": 77.15,
+        "calmar_min": 8.6,
+        "calmar_median": 17.8,
+        "calmar_max": 50.35
       },
       "symbolbeitrag": {
         "symbole_mit_trades": 147,
@@ -2905,15 +2977,39 @@
         8.2
       ],
       "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 122,
+          "rendite_min_pct": 301.25,
+          "rendite_median_pct": 384.88,
+          "rendite_max_pct": 496.27,
+          "rendite_spanne_pp": 195.02,
+          "calmar_min": 8.76,
+          "calmar_median": 11.73,
+          "calmar_max": 17.02
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 35,
+          "rendite_min_pct": 90.74,
+          "rendite_median_pct": 110.56,
+          "rendite_max_pct": 127.13,
+          "rendite_spanne_pp": 36.39,
+          "calmar_min": 9.42,
+          "calmar_median": 12.26,
+          "calmar_max": 18.84
+        }
+      },
+      "reihenfolge_oos": {
         "permutationen": 200,
-        "zeitpunkte_mit_gleichzeitigen_einstiegen": 122,
-        "rendite_min_pct": 301.25,
-        "rendite_median_pct": 384.88,
-        "rendite_max_pct": 496.27,
-        "rendite_spanne_pp": 195.02,
-        "calmar_min": 8.76,
-        "calmar_median": 11.73,
-        "calmar_max": 17.02
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 35,
+        "rendite_min_pct": 90.74,
+        "rendite_median_pct": 110.56,
+        "rendite_max_pct": 127.13,
+        "rendite_spanne_pp": 36.39,
+        "calmar_min": 9.42,
+        "calmar_median": 12.26,
+        "calmar_max": 18.84
       },
       "symbolbeitrag": {
         "symbole_mit_trades": 143,
@@ -3909,15 +4005,39 @@
         6.7
       ],
       "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 204,
+          "rendite_min_pct": 202.83,
+          "rendite_median_pct": 303.53,
+          "rendite_max_pct": 431.12,
+          "rendite_spanne_pp": 228.29,
+          "calmar_min": 7.04,
+          "calmar_median": 12.08,
+          "calmar_max": 18.53
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 75,
+          "rendite_min_pct": 98.18,
+          "rendite_median_pct": 126.44,
+          "rendite_max_pct": 158.06,
+          "rendite_spanne_pp": 59.88,
+          "calmar_min": 7.53,
+          "calmar_median": 11.32,
+          "calmar_max": 15.99
+        }
+      },
+      "reihenfolge_oos": {
         "permutationen": 200,
-        "zeitpunkte_mit_gleichzeitigen_einstiegen": 204,
-        "rendite_min_pct": 202.83,
-        "rendite_median_pct": 303.53,
-        "rendite_max_pct": 431.12,
-        "rendite_spanne_pp": 228.29,
-        "calmar_min": 7.04,
-        "calmar_median": 12.08,
-        "calmar_max": 18.53
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 75,
+        "rendite_min_pct": 98.18,
+        "rendite_median_pct": 126.44,
+        "rendite_max_pct": 158.06,
+        "rendite_spanne_pp": 59.88,
+        "calmar_min": 7.53,
+        "calmar_median": 11.32,
+        "calmar_max": 15.99
       },
       "symbolbeitrag": {
         "symbole_mit_trades": 145,
@@ -4925,15 +5045,39 @@
         5.39
       ],
       "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 78,
+          "rendite_min_pct": 303.98,
+          "rendite_median_pct": 380.22,
+          "rendite_max_pct": 440.29,
+          "rendite_spanne_pp": 136.31,
+          "calmar_min": 13.39,
+          "calmar_median": 16.67,
+          "calmar_max": 19.32
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 19,
+          "rendite_min_pct": 87.56,
+          "rendite_median_pct": 95.31,
+          "rendite_max_pct": 105.13,
+          "rendite_spanne_pp": 17.57,
+          "calmar_min": 7.36,
+          "calmar_median": 8.27,
+          "calmar_max": 9.82
+        }
+      },
+      "reihenfolge_oos": {
         "permutationen": 200,
-        "zeitpunkte_mit_gleichzeitigen_einstiegen": 78,
-        "rendite_min_pct": 303.98,
-        "rendite_median_pct": 380.22,
-        "rendite_max_pct": 440.29,
-        "rendite_spanne_pp": 136.31,
-        "calmar_min": 13.39,
-        "calmar_median": 16.67,
-        "calmar_max": 19.32
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 19,
+        "rendite_min_pct": 87.56,
+        "rendite_median_pct": 95.31,
+        "rendite_max_pct": 105.13,
+        "rendite_spanne_pp": 17.57,
+        "calmar_min": 7.36,
+        "calmar_median": 8.27,
+        "calmar_max": 9.82
       },
       "symbolbeitrag": {
         "symbole_mit_trades": 137,

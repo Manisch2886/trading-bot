@@ -72,7 +72,9 @@ zu `equity_simulation.collect_all_trades` des Bots ist.
 * **Aktien: breit, aber reihenfolgeabhängig.** 1785 Trades über 147 Aktien,
   davon 132 mit positivem Beitrag — das Muster ist nicht auf wenige Werte
   gestützt (Top-3-Anteil 8 %). Dafür verschiebt allein die Zeilenreihenfolge bei
-  gleichzeitigen Einstiegen die Gesamtrendite zwischen +212 % und +509 %.
+  gleichzeitigen Einstiegen die Gesamtrendite zwischen +212 % und +509 % und die
+  Out-of-Sample-Rendite zwischen +105 % und +182 % — letzteres umschliesst den
+  Buy-and-Hold-Wert von +119 %.
 * **Der Suchraum ist endlich.** 252 Kombinationen je Fenster und Bot. Ein
   feineres Raster könnte Zwischenwerte finden; die Nachbarschaftsprüfung deutet
   aber nicht darauf hin, dass zwischen den Rasterpunkten viel liegt.
@@ -278,11 +280,23 @@ mit viel Cash schützt im Einbruch und bleibt im Anstieg zurück.
 
 **Drittens: die Zahl ist nicht scharf.** Bei Positionslimit 8 entscheidet die
 Zeilenreihenfolge, welcher von mehreren gleichzeitigen Einstiegen den letzten
-freien Platz bekommt. Über 200 zufällige Permutationen (fester Startwert)
-schwankt die Gesamtrendite des Siegers zwischen **+211,58 % und +508,89 %**
-(Spanne 297 pp), der Calmar zwischen **6,25 und 17,45**. Die einzelne Zahl
-+398 % sollte niemand als präzise lesen — das ist derselbe Effekt, den PR #23
-über alle neun Bots gezeigt hat.
+freien Platz bekommt. Über 200 zufällige Permutationen (fester Startwert
+20260907) schwankt das Ergebnis des Siegers erheblich:
+
+| dev 2 % / Stop 16 % / kein Ziel | Minimum | Median | Maximum | Spanne |
+|---|---|---|---|---|
+| Rendite gesamt | +211,58 % | +322,82 % | +508,89 % | **297 pp** |
+| Calmar gesamt | 6,25 | 9,41 | 17,45 | |
+| Rendite out-of-sample | +104,74 % | +139,87 % | +181,89 % | **77 pp** |
+| Calmar out-of-sample | 8,60 | 17,80 | 50,35 | |
+
+Die einzelne Zahl +398 % sollte niemand als präzise lesen — das ist derselbe
+Effekt, den PR #23 über alle neun Bots gezeigt hat. Zwei Feinheiten daraus:
+Bedingung **B4 hält auch am unteren Rand** (Calmar 8,60 gegen Buy-and-Hold 6,60),
+die Rendite dagegen **überholt Buy-and-Hold nur teilweise** — das
+Out-of-Sample-Band 104,7–181,9 % umschliesst dessen +119,1 %. Ob der Sieger den
+Markt schlägt, hängt out-of-sample also unter anderem daran, welcher von
+mehreren gleichzeitigen Einstiegen zufällig den letzten freien Platz bekommt.
 
 ### Was der Vergleich trotzdem hergibt
 
