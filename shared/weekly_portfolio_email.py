@@ -8,12 +8,21 @@ das einordnen, und verschickt beides als eine E-Mail - im selben
 Format/Design wie die bestehenden daily_summary_email.py-Skripte der
 einzelnen Bots (gleicher SMTP-Versand ueber config/email_config.py, IONOS).
 
-WICHTIG: portfolio_overview.py selbst wird NICHT veraendert (bleibt rein
-lesend, wie es sein docstring schon festhaelt) - dieses Skript ruft nur
-seine main()-Funktion auf und faengt deren print()-Ausgabe per
+WICHTIG: die Analyse-Logik wird hier NICHT dupliziert - dieses Skript ruft
+nur portfolio_overview.main() auf und faengt deren print()-Ausgabe per
 contextlib.redirect_stdout ab, um denselben Text zu bekommen, den ein
-manueller Aufruf auf der Konsole sehen wuerde. Kein Duplizieren der
-Analyse-Logik.
+manueller Aufruf auf der Konsole sehen wuerde. portfolio_overview.py bleibt
+rein lesend.
+
+(Hinweis zur Historie: portfolio_overview.py war urspruenglich vollstaendig
+unveraendert. Inzwischen kennzeichnet es Bots, deren Backtest-Grundlage
+ueberarbeitet wird - siehe BACKTEST_BASIS_UNDER_REVIEW dort. Es bleibt aber
+weiterhin rein lesend und schreibt nichts in Bot-Daten.)
+
+Dieses Skript hebt den Warnblock zusaetzlich an den ANFANG der Nachricht:
+in der Rohdaten-Ausgabe steht er weiter unten, und genau dort wird er
+ueberlesen. Eine Kennzahl, die keine Live-Performance ist, muss vor der
+Zahl stehen, nicht darunter.
 
 Gedacht fuer einen WOECHENTLICHEN Cronjob, kurz NACH dem bestehenden
 woechentlichen portfolio_overview.py-Lauf (siehe Cronjob-Vorschlag in der
@@ -67,6 +76,36 @@ def run_portfolio_overview_and_capture() -> str:
     return buffer.getvalue()
 
 
+def extract_basis_warning(overview_text: str) -> str:
+    """Zieht den Warnblock aus der portfolio_overview.py-Ausgabe heraus.
+
+    Der Block ist dort an seinen "!"-Zeilen erkennbar (siehe
+    portfolio_overview.run_analysis). Er wird hier NICHT neu formuliert -
+    eine zweite Textquelle wuerde frueher oder spaeter auseinanderlaufen.
+    Findet sich kein Block, ist auch nichts zu warnen: dann laeuft kein Bot
+    im gekennzeichneten Fallback, und die Funktion gibt einen leeren String
+    zurueck.
+    """
+    blocks, current = [], []
+    for line in overview_text.splitlines():
+        if line.startswith("!"):
+            current.append(line)
+        elif current:
+            blocks.append(current)
+            current = []
+    if current:
+        blocks.append(current)
+    if not blocks:
+        return ""
+    # portfolio_overview.main() ruft run_analysis mehrfach auf (Live-Portfolio,
+    # danach inkl. Prototypen). Jeder Aufruf erzeugt einen eigenen Block, und
+    # der zweite umfasst dieselben oder mehr Bots als der erste. Deshalb wird
+    # der LAENGSTE Block genommen: er ist der vollstaendigste. Zeilenweise zu
+    # deduplizieren waere falsch - identische Begruendungszeilen zweier Bots
+    # fielen dabei weg, und der zweite Bot stuende ohne Grund da.
+    return "\n".join(max(blocks, key=len))
+
+
 def build_email_body(overview_text: str, interpretation: str) -> str:
     """Baut den E-Mail-Text. Reihenfolge bewusst so gewaehlt, dass die
     verstaendliche Handlungsempfehlung (Teil A von Agent 4, "WAS DAS FUER
@@ -78,6 +117,11 @@ def build_email_body(overview_text: str, interpretation: str) -> str:
     lines = []
     lines.append(f"Woechentliche Portfolio-Uebersicht - {now.strftime('%d.%m.%Y %H:%M')} UTC")
     lines.append("=" * 60)
+
+    warning = extract_basis_warning(overview_text)
+    if warning:
+        lines.append("")
+        lines.append(warning)
 
     if interpretation:
         lines.append("")
