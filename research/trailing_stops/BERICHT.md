@@ -1,5 +1,22 @@
 # Volatilitäts-kalibrierte Trailing-Stops — Backtest-Only-Untersuchung
 
+> ## ⚠ Nachtrag zu `volatility_breakout_crypto` (einer von drei auswertbaren Bots)
+>
+> Der Sync-Check (PR #24) hat belegt, dass `equity_simulation.py` dieses Bots den
+> in `live_params.py` aktivierten BTC-Regimefilter **nicht anwendet** — die in
+> Abschnitt 0.4 selbst vermutete Überlappung ist inzwischen gemessen. Mit der
+> Live-Konfiguration **fällt der Calmar-Befund weg** (P = 95,0 % → **64,6 %**
+> out-of-sample), **die Drawdown-Aussage hält** (P ≥ 97,3 %). Zusätzlich dreht
+> sich die A→B→C-Zerlegung für diesen Bot um.
+> Details, Regressionscheck (28/28) und Annahmen:
+> [`NACHTRAG_REGIMEFILTER.md`](NACHTRAG_REGIMEFILTER.md).
+>
+> **`t3_supertrend` und `volatility_breakout` sind nicht betroffen**; ihre Zahlen
+> unten stehen unverändert. Die übergreifende Aussage der Studie — die
+> Drawdown-Wirkung lässt sich beziffern, die risikoadjustierte Vorteilhaftigkeit
+> nicht — gilt danach **ohne die bisherige Teilausnahme**.
+
+
 **Status: reine Backtest-Untersuchung. KEINE Live-Aktivierung, KEINE Änderung an
 Live-Dateien.** Alle neuen Skripte liegen ausschliesslich unter
 `research/trailing_stops/`. Verifiziert per `git status`: keine Datei ausserhalb
@@ -92,7 +109,8 @@ P(ATR-Trailing besser als Baseline), Gesamtzeitraum / In-Sample / Out-of-Sample:
 |---|---|---|---|
 | `t3_supertrend` | **2,4 % / 3,1 % / 20,1 %** | 75,5 % / 71,2 % / 91,7 % | 2,5 % / 3,9 % / 18,1 % |
 | `volatility_breakout` | **63,2 % / 74,1 % / 33,4 %** | 43,5 % / 45,1 % / 36,0 % | 67,1 % / 78,1 % / 34,2 % |
-| `volatility_breakout_crypto` | 73,8 % / 48,8 % / **95,0 %** | **100,0 % / 99,9 % / 99,2 %** | 35,5 % / 26,0 % / 70,7 % |
+| `volatility_breakout_crypto` | 73,8 % / 48,8 % / **95,0 %** ⚠ | **100,0 % / 99,9 % / 99,2 %** | 35,5 % / 26,0 % / 70,7 % |
+| ↳ *mit live aktivem BTC-Regimefilter* | 61,1 % / 50,8 % / **64,6 %** | **99,2 % / 99,3 % / 97,3 %** | – |
 
 Drei klar unterschiedliche Bilder:
 
@@ -198,7 +216,8 @@ Bei den **3 belastbar auswertbaren Bots** ergibt sich ein konsistentes Bild:
 |---|---|---|---|---|
 | `t3_supertrend` | 4,51 → −0,07 / 0,85 → −0,05 | **nein** (deutlich schlechter) | ja (4/4) | **ja** (P = 2,4 %) |
 | `volatility_breakout` | 4,00 → 3,44 / 5,46 → 2,04 | Punktschätzer: nein | ja (3/4) | **nein — Vorzeichen unbestimmt** |
-| `volatility_breakout_crypto` | 2,44 → 2,25 / 1,79 → 5,04 | **unklar** (IS leicht schlechter, OOS klar besser) | ja (3/4) | Drawdown ja, Calmar nur OOS |
+| `volatility_breakout_crypto` | 2,44 → 2,25 / 1,79 → 5,04 | **unklar** (IS leicht schlechter, OOS klar besser) | ja (3/4) | Drawdown ja, Calmar nur OOS ⚠ |
+| ↳ *mit live aktivem BTC-Regimefilter* | 1,26 → 1,72 / 2,96 → 3,77 | **unklar** | s. PR #22 | Drawdown ja, **Calmar nein** |
 
 **In einem Satz:** Volatilitäts-kalibrierte Trailing-Stops senken bei den beiden
 trendfolgenden bzw. trendabhängigen Bots die risikoadjustierte Kennzahl deutlich
@@ -727,6 +746,7 @@ Calmar-Ratio, Gesamtzeitraum:
 | `t3_supertrend` | 5,84 | 1,03 | −0,12 | **−4,81** | −1,15 |
 | `volatility_breakout` | 9,36 | 7,20 | 6,04 | **−2,16** | −1,16 |
 | `volatility_breakout_crypto` | 4,25 | 6,52 | 7,93 | **+2,27** | +1,41 |
+| ↳ *mit live aktivem BTC-Regimefilter* | 3,01 | 2,77 | 5,60 | **−0,24** | **+2,83** |
 
 **Der weitaus grösste Teil des Effekts — in beide Richtungen — kommt vom
 Nachziehen des Stops selbst, nicht von der Volatilitäts-Kalibrierung.** Die
