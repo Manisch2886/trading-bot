@@ -1,5 +1,18 @@
 # Volatilitäts-skalierte Positionsgrössen — Backtest-Only-Untersuchung für alle 9 Bots
 
+> ## ⚠ Nachtrag zu `volatility_breakout_crypto` (eine Zeile dieser Studie)
+>
+> Der Sync-Check (PR #24) hat belegt, dass `equity_simulation.py` dieses Bots den
+> in `live_params.py` aktivierten BTC-Regimefilter **nicht anwendet**. Mit der
+> Live-Konfiguration **kippt der Befund für diesen Bot von „Verbesserung: ja" auf
+> „nein"** — es bleibt damit ein Gewinner statt zwei (`rsi2_crypto`).
+> Details, Regressionscheck und Annahmen: [`NACHTRAG_REGIMEFILTER.md`](NACHTRAG_REGIMEFILTER.md).
+>
+> **Die Kernaussage dieser Studie ist unberührt** (aus „schadet bei 7 von 9" wird
+> „schadet bei 8 von 9"). Die übrigen acht Bots sind nicht betroffen; ihre Zahlen
+> unten stehen unverändert.
+
+
 **Status: reine Backtest-Untersuchung, KEINE Live-Aktivierung, KEINE Änderung an
 `live_params.py`/`forward_test.py`/`strategies/`.** Alle neuen Skripte liegen
 ausschliesslich unter `research/volatility_scaled_sizing/`. Verifiziert per
@@ -255,6 +268,13 @@ verhältnismässig deutlicher, insbesondere Out-of-Sample: -11,3 % → -8,0 %).
 Walk-Forward: 3 von 4 Fenstern zugunsten vol-skaliert (W1, W3, W4 mit
 gleichem oder besserem Drawdown) → **Walk-Forward-Stabilität: ja**.
 
+> **⚠ Korrigiert — siehe [`NACHTRAG_REGIMEFILTER.md`](NACHTRAG_REGIMEFILTER.md).**
+> Diese Zahlen sind ohne den live aktiven BTC-Regimefilter gerechnet. Mit Filter
+> lautet das Urteil **Verbesserung: nein** (Calmar in-sample 1,26 → 0,72,
+> out-of-sample 2,96 → 2,68). Der Grund: die Drawdown-Verbesserung, auf der die
+> Begründung oben beruht (−11,3 % → −8,0 %), liefert der Regimefilter bereits
+> selbst (−7,76 %).
+
 ## Übergreifende Zusammenfassungstabelle
 
 | Bot | IS Rendite (fix→vol) | OOS Rendite (fix→vol) | OOS Drawdown (fix→vol) | Verbesserung | WF-stabil |
@@ -267,7 +287,8 @@ gleichem oder besserem Drawdown) → **Walk-Forward-Stabilität: ja**.
 | turtle_soup_crypto | 82,6→66,4 % | 51,2→40,9 % | -26,1→-25,9 % | nein | **nein** |
 | turtle_soup_stocks | 42,9→22,0 % | 72,4→52,1 % | -12,0→-11,3 % | nein | ja |
 | volatility_breakout | 95,9→67,5 % | 67,2→38,5 % | -12,3→-13,0 % | nein | ja |
-| volatility_breakout_crypto | 40,9→37,9 % | 20,2→16,2 % | -11,3→-8,0 % | **ja** | ja |
+| volatility_breakout_crypto | 40,9→37,9 % | 20,2→16,2 % | -11,3→-8,0 % | **ja** ⚠ | ja |
+| ↳ *mit live aktivem BTC-Regimefilter* | 20,5→11,7 % | 23,0→18,3 % | −7,8→−6,8 % | **nein** | s. PR #22 |
 
 (Maschinenlesbar identisch verfügbar in `summary_table.json`.)
 
