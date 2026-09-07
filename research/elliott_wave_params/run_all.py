@@ -28,7 +28,7 @@ import time
 DIR = os.path.dirname(os.path.abspath(__file__))
 BOTS = ("elliott_wave", "elliott_wave_stocks")
 STEPS = ("test_params.py", "search.py", "walkforward.py", "stability.py",
-         "symbols.py", "benchmark.py")
+         "symbols.py", "benchmark.py", "summary.py")
 
 
 def run(script, bot):
