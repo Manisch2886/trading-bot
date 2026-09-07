@@ -1,0 +1,143 @@
+{
+  "bot": "volatility_breakout_crypto",
+  "hinweis": "Punktuelle Korrektur nur fuer diesen Bot. Die uebrigen acht Bots dieser Studie sind nicht betroffen und wurden nicht neu gerechnet.",
+  "regressionscheck_bestanden": 11,
+  "trades": {
+    "ohne_filter": 359,
+    "mit_filter": 233,
+    "gestrichen_pct": 35.1
+  },
+  "split_time": "2025-04-22 14:24:00",
+  "perioden": {
+    "in_sample": {
+      "ohne_filter": {
+        "num_trades": 219,
+        "mean_vol_weight": 1.0,
+        "fixed": {
+          "total_return_pct": 40.89,
+          "max_drawdown_pct": -16.77,
+          "final_capital": 14088.55,
+          "num_executed": 209,
+          "num_skipped": 10,
+          "calmar_ratio": 2.44
+        },
+        "vol_scaled": {
+          "total_return_pct": 37.86,
+          "max_drawdown_pct": -15.17,
+          "final_capital": 13785.98,
+          "num_executed": 209,
+          "num_skipped": 10,
+          "calmar_ratio": 2.5
+        },
+        "buy_and_hold": {
+          "total_return_pct": 27.62,
+          "num_symbols": 20
+        }
+      },
+      "mit_filter": {
+        "num_trades": 148,
+        "mean_vol_weight": 1.0,
+        "fixed": {
+          "total_return_pct": 20.47,
+          "max_drawdown_pct": -16.29,
+          "final_capital": 12046.57,
+          "num_executed": 144,
+          "num_skipped": 4,
+          "calmar_ratio": 1.26
+        },
+        "vol_scaled": {
+          "total_return_pct": 11.65,
+          "max_drawdown_pct": -16.09,
+          "final_capital": 11165.29,
+          "num_executed": 144,
+          "num_skipped": 4,
+          "calmar_ratio": 0.72
+        },
+        "buy_and_hold": {
+          "total_return_pct": 27.62,
+          "num_symbols": 20
+        }
+      }
+    },
+    "out_of_sample": {
+      "ohne_filter": {
+        "num_trades": 140,
+        "mean_vol_weight": 1.0,
+        "fixed": {
+          "total_return_pct": 20.23,
+          "max_drawdown_pct": -11.33,
+          "final_capital": 12022.52,
+          "num_executed": 103,
+          "num_skipped": 37,
+          "calmar_ratio": 1.79
+        },
+        "vol_scaled": {
+          "total_return_pct": 16.2,
+          "max_drawdown_pct": -8.04,
+          "final_capital": 11619.85,
+          "num_executed": 103,
+          "num_skipped": 37,
+          "calmar_ratio": 2.01
+        },
+        "buy_and_hold": {
+          "total_return_pct": 85.64,
+          "num_symbols": 20
+        }
+      },
+      "mit_filter": {
+        "num_trades": 85,
+        "mean_vol_weight": 1.0,
+        "fixed": {
+          "total_return_pct": 23.0,
+          "max_drawdown_pct": -7.76,
+          "final_capital": 12299.54,
+          "num_executed": 64,
+          "num_skipped": 21,
+          "calmar_ratio": 2.96
+        },
+        "vol_scaled": {
+          "total_return_pct": 18.28,
+          "max_drawdown_pct": -6.82,
+          "final_capital": 11828.16,
+          "num_executed": 64,
+          "num_skipped": 21,
+          "calmar_ratio": 2.68
+        },
+        "buy_and_hold": {
+          "total_return_pct": 85.64,
+          "num_symbols": 20
+        }
+      }
+    }
+  },
+  "bewertung": {
+    "in_sample/ohne_filter": {
+      "calmar_fixed": 2.44,
+      "calmar_vol_scaled": 2.5,
+      "calmar_diff": 0.06,
+      "vol_sizing_besser": "True"
+    },
+    "in_sample/mit_filter": {
+      "calmar_fixed": 1.26,
+      "calmar_vol_scaled": 0.72,
+      "calmar_diff": -0.54,
+      "vol_sizing_besser": "False"
+    },
+    "out_of_sample/ohne_filter": {
+      "calmar_fixed": 1.79,
+      "calmar_vol_scaled": 2.01,
+      "calmar_diff": 0.22,
+      "vol_sizing_besser": "True"
+    },
+    "out_of_sample/mit_filter": {
+      "calmar_fixed": 2.96,
+      "calmar_vol_scaled": 2.68,
+      "calmar_diff": -0.28,
+      "vol_sizing_besser": "False"
+    }
+  },
+  "kriterium_is_und_oos_besser": {
+    "ohne_filter": "True",
+    "mit_filter": "False"
+  }
+}
