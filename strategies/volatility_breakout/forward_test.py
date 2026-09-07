@@ -29,6 +29,7 @@ _SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "sha
 sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
+from data_quality import balken_unvollstaendig, melde_uebersprungene_balken
 _P = get_strategy_paths(__file__)
 DB_FILE = _P["DB_FILE"]
 
@@ -105,8 +106,16 @@ def check_open_trades(conn, indicator_data: dict):
         has_stop = stop_price is not None and not pd.isna(stop_price)
 
         exit_row, result, exit_price = None, None, None
+        luecken = 0
         for offset in range(len(future)):
             row = future.iloc[offset]
+
+            if balken_unvollstaendig(row):
+                # Balken ohne Kurse: Stop, Ziel und Zeit-Ausstieg lassen sich
+                # daran nicht auswerten. Der naechste vorhandene Balken
+                # entscheidet - siehe shared/data_quality.py.
+                luecken += 1
+                continue
 
             if has_stop and row["low"] <= stop_price:
                 exit_row, result, exit_price = row, "stop_loss", stop_price
@@ -114,6 +123,8 @@ def check_open_trades(conn, indicator_data: dict):
             if MAX_HOLD_DAYS is not None and offset + 1 >= MAX_HOLD_DAYS:
                 exit_row, result, exit_price = row, "time_exit", row["close"]
                 break
+
+        melde_uebersprungene_balken(symbol, luecken, "offene Position")
 
         if exit_row is not None:
             pnl_pct = (exit_price - trade["entry_price"]) / trade["entry_price"] * 100
