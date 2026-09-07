@@ -20,8 +20,10 @@ Ein Kandidat gilt als TRAGFAEHIG, wenn alle fuenf zutreffen:
       (beide Varianten werden ausgewiesen)
   B3  positiver Ø PnL in JEDER Walk-Forward-Falte - ein einzelner
       guenstiger Abschnitt darf das Ergebnis nicht tragen
-  B4  schlaegt gleichgewichtetes Buy-and-Hold im Out-of-Sample-Fenster
-      im Calmar-Verhaeltnis
+  B4  verdient Out-of-Sample ueberhaupt Geld UND schlaegt dabei
+      gleichgewichtetes Buy-and-Hold im Calmar-Verhaeltnis. Die erste
+      Haelfte ist noetig, weil sonst ein Kandidat als Sieger gaelte,
+      der zwar weniger verliert als der Markt, aber trotzdem verliert
   B5  stabil: der Median der Rasternachbarn erreicht mindestens die
       Haelfte des eigenen Projekt-Scores, und eine Zigzag-Verschiebung
       um +/- 0,5 Prozentpunkte laesst den Ø PnL nicht ins Minus kippen
@@ -80,7 +82,7 @@ def main():
                "B2": "besteht die Mindestfilter Out-of-Sample (auch in der an die "
                      "Fensterlaenge angepassten Variante)",
                "B3": "positiver Ø PnL in jeder Walk-Forward-Falte",
-               "B4": "schlaegt Buy-and-Hold Out-of-Sample im Calmar",
+               "B4": "Out-of-Sample-Rendite positiv UND Calmar besser als Buy-and-Hold",
                "B5": f"Nachbar-Median >= {NACHBAR_MINDESTANTEIL_PCT:g} % des eigenen Scores "
                      f"und Zigzag +/- 0,5 pp bleibt im Plus"},
            "mindestfilter": search["mindestfilter"],
@@ -119,7 +121,9 @@ def main():
         cal = r_oos.get("pf_calmar_ratio") if r_oos else None
         cal = None if cal is None or (isinstance(cal, float) and cal != cal) else float(cal)
         bh_cal = bh_oos.get("calmar_ratio")
-        b4 = bool(cal is not None and bh_cal is not None and cal > bh_cal)
+        oos_return = (r_oos or {}).get("pf_total_return_pct")
+        b4 = bool(cal is not None and bh_cal is not None and cal > bh_cal
+                  and oos_return is not None and float(oos_return) > 0)
 
         # --- B5 ------------------------------------------------------
         st = stab_by.get(key, {})
@@ -155,8 +159,9 @@ def main():
               f"Ø {(r_is or {}).get('avg_return_pct')} %, Calmar {(r_is or {}).get('pf_calmar_ratio')}")
         print(f"      Out-of-Sample : {(r_oos or {}).get('num_trades')} Trades "
               f"(streng >= {f['min_trades']}, skaliert >= {skaliert_min_trades[engine.WINDOW_OOS]}), "
-              f"Ø {(r_oos or {}).get('avg_return_pct')} %, Calmar {cal}, "
-              f"Buy-and-Hold {bh_cal}")
+              f"Ø {(r_oos or {}).get('avg_return_pct')} %, "
+              f"Portfolio {oos_return} % / Calmar {cal}, "
+              f"Buy-and-Hold {bh_oos.get('total_return_pct')} % / Calmar {bh_cal}")
         print(f"      Falten Ø PnL  : "
               + ", ".join(f"F{k} {'-' if a is None else f'{a:+.2f} %'}" for k, a in fold_avgs))
         print(f"      Nachbarn      : Median {anteil} % des eigenen Scores; "
