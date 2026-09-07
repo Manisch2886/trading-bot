@@ -1,0 +1,79 @@
+{
+  "hinweis": "ALLE HIER GENANNTEN PARAMETER SIND UNVALIDIERTE VORSCHLAEGE. Es wurde NICHTS automatisch geaendert - live_params.py und forward_test.py bleiben unangetastet. Eine Uebernahme erfolgt ausschliesslich manuell und erst nach eigener Pruefung und ausdruecklicher Zustimmung des Auftraggebers.",
+  "bot": "elliott_wave_stocks",
+  "startkapital": 10000.0,
+  "fenster": {
+    "gesamt": {
+      "final_capital": 85568.75,
+      "total_return_pct": 755.69,
+      "max_drawdown_pct": -34.83,
+      "calmar_ratio": 21.7,
+      "num_symbols": 147,
+      "num_skipped_symbols": 1,
+      "zeitraum": {
+        "von": "2016-09-01 00:00:00",
+        "bis": "2026-09-01 00:00:00"
+      }
+    },
+    "is": {
+      "final_capital": 35399.38,
+      "total_return_pct": 253.99,
+      "max_drawdown_pct": -34.81,
+      "calmar_ratio": 7.3,
+      "num_symbols": 147,
+      "num_skipped_symbols": 0,
+      "zeitraum": {
+        "von": "2016-09-01 00:00:00",
+        "bis": "2025-02-20 00:00:00"
+      }
+    },
+    "oos": {
+      "final_capital": 21907.1,
+      "total_return_pct": 119.07,
+      "max_drawdown_pct": -18.03,
+      "calmar_ratio": 6.6,
+      "num_symbols": 147,
+      "num_skipped_symbols": 1,
+      "zeitraum": {
+        "von": "2023-08-29 00:00:00",
+        "bis": "2026-09-01 00:00:00"
+      }
+    },
+    "wf1_test": {
+      "final_capital": 13185.78,
+      "total_return_pct": 31.86,
+      "max_drawdown_pct": -20.12,
+      "calmar_ratio": 1.58,
+      "num_symbols": 147,
+      "num_skipped_symbols": 0,
+      "zeitraum": {
+        "von": "2020-09-01 00:00:00",
+        "bis": "2022-09-01 00:00:00"
+      }
+    },
+    "wf2_test": {
+      "final_capital": 17223.63,
+      "total_return_pct": 72.24,
+      "max_drawdown_pct": -12.75,
+      "calmar_ratio": 5.67,
+      "num_symbols": 147,
+      "num_skipped_symbols": 0,
+      "zeitraum": {
+        "von": "2022-09-02 00:00:00",
+        "bis": "2024-08-30 00:00:00"
+      }
+    },
+    "wf3_test": {
+      "final_capital": 17756.14,
+      "total_return_pct": 77.56,
+      "max_drawdown_pct": -19.75,
+      "calmar_ratio": 3.93,
+      "num_symbols": 147,
+      "num_skipped_symbols": 1,
+      "zeitraum": {
+        "von": "2024-09-03 00:00:00",
+        "bis": "2026-09-01 00:00:00"
+      }
+    }
+  }
+}
