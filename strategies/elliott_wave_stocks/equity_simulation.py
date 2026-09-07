@@ -33,6 +33,7 @@ _SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "sha
 sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
+from data_quality import melde_uebersprungene_balken
 _P = get_strategy_paths(__file__)
 RESULTS_DIR = _P["RESULTS_DIR"]
 
@@ -72,6 +73,22 @@ def collect_all_trades(all_data: dict, deviation_pct: float, stop_loss_pct: floa
     combined = pd.concat(all_trades, ignore_index=True)
     combined["entry_time"] = pd.to_datetime(combined["entry_time"])
     combined["exit_time"] = pd.to_datetime(combined["exit_time"])
+
+    # Trades ohne Ein- oder Ausstiegskurs streichen und die Streichung
+    # MELDEN. Ein einziger fehlender Kurs macht sonst die gesamte
+    # Kapitalkurve unbrauchbar (simulate_portfolio rechnet ihn ins
+    # Kapital, ab da ist jede Folgezahl NaN) - und der Projekt-Score
+    # merkt nichts davon, weil pandas beim Mitteln NaN ueberspringt.
+    # Genau so ist es beim leeren letzten Balken von APH passiert.
+    # Siehe shared/data_quality.py.
+    preisspalten = [s for s in ("entry_price", "exit_price") if s in combined.columns]
+    if preisspalten:
+        luecke = combined[preisspalten].isna().any(axis=1)
+        if luecke.any():
+            for symbol, anzahl in combined.loc[luecke, "symbol"].value_counts().items():
+                melde_uebersprungene_balken(symbol, int(anzahl), "Trade ohne Kurs gestrichen")
+            combined = combined[~luecke]
+
     return combined.sort_values("entry_time").reset_index(drop=True)
 
 

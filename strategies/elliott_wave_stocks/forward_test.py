@@ -35,6 +35,7 @@ _SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "sha
 sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
+from data_quality import balken_unvollstaendig, melde_uebersprungene_balken
 _P = get_strategy_paths(__file__)
 DB_FILE = _P["DB_FILE"]  # eigene Datenbank pro Strategie - vermischt sich nicht mit anderen Bots
 
@@ -104,7 +105,15 @@ def check_open_trades(conn, price_data: dict):
         result = None
         exit_price = None
 
+        luecken = 0
         for _, row in future.iterrows():
+            if balken_unvollstaendig(row):
+                # Balken ohne Kurse: Stop, Ziel und Zeit-Ausstieg lassen sich
+                # daran nicht auswerten. Der naechste vorhandene Balken
+                # entscheidet - siehe shared/data_quality.py.
+                luecken += 1
+                continue
+
             if row["low"] <= trade["stop_price"]:
                 exit_row, result, exit_price = row, "stop_loss", trade["stop_price"]
                 break
@@ -116,6 +125,8 @@ def check_open_trades(conn, price_data: dict):
             if row["open_time"] >= max_exit_time:
                 exit_row, result, exit_price = row, "time_exit", row["close"]
                 break
+
+        melde_uebersprungene_balken(symbol, luecken, "offene Position")
 
         if exit_row is not None:
             pnl_pct = (exit_price - trade["entry_price"]) / trade["entry_price"] * 100
@@ -163,8 +174,19 @@ def find_new_signals(conn, price_data: dict):
             # nicht den historischen Preis vom Wellenende - sonst wuerde
             # ein Trade zu einem laengst vergangenen Kurs eroeffnet.
             latest_price_row = df[df["open_time"] > end_time]
-            if latest_price_row.empty:
+            # Balken ohne Kurse aussortieren, BEVOR der letzte als
+            # Einstiegspreis genommen wird: sonst wuerde bei einem noch
+            # laufenden Handelstag (yfinance liefert dann Volumen, aber keine
+            # Kurse) ein Trade mit entry_price = NaN eroeffnet - und jede
+            # Kennzahl daraus waere fuer immer NaN. Siehe
+            # shared/data_quality.py.
+            vollstaendig = latest_price_row[
+                ~latest_price_row.apply(balken_unvollstaendig, axis=1)]
+            melde_uebersprungene_balken(
+                symbol, len(latest_price_row) - len(vollstaendig), "Einstiegskurs")
+            if vollstaendig.empty:
                 continue
+            latest_price_row = vollstaendig
             entry_price = latest_price_row.iloc[-1]["close"]
             entry_reference_time = latest_price_row.iloc[-1]["open_time"]
 
