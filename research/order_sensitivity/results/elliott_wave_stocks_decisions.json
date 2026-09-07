@@ -1,0 +1,133 @@
+{
+  "bot": "elliott_wave_stocks",
+  "n_permutations": 500,
+  "decisions": [
+    {
+      "id": "take_profit_aus",
+      "frage": "USE_TAKE_PROFIT = False statt True",
+      "quelle": "results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md, Abschnitt 2/3; live_params.py-Historie 2026-09-03",
+      "paarung": "nominell - unterschiedliche Trade-Saetze",
+      "berichtet": {
+        "ohne Take-Profit": "+3084,1 % / -9,79 %",
+        "mit Take-Profit": "+1500,5 % / -1,90 %"
+      },
+      "varianten": {
+        "ohne Take-Profit (live)": {
+          "point_total_return_pct": 3084.09,
+          "point_max_drawdown_pct": -9.79,
+          "point_calmar": 315.02,
+          "point_executed": 288,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 519,
+            "total_return_pct": {
+              "min": 2560.48,
+              "median": 3216.74,
+              "max": 3969.16,
+              "ci_low": 2764.34,
+              "ci_high": 3791.55
+            },
+            "max_drawdown_pct": {
+              "min": -9.79,
+              "median": -8.56,
+              "max": -7.33,
+              "ci_low": -9.48,
+              "ci_high": -7.64
+            },
+            "calmar_ratio": {
+              "min": 287.88,
+              "median": 381.33,
+              "max": 501.78,
+              "ci_low": 308.99,
+              "ci_high": 465.94
+            },
+            "trades_always_executed": 196,
+            "trades_never_executed": 120,
+            "trades_contested": 203,
+            "contested_share_pct": 39.1,
+            "mean_skipped_capital": 0.0,
+            "mean_skipped_position_limit": 235.7
+          }
+        },
+        "mit Take-Profit": {
+          "point_total_return_pct": 1500.53,
+          "point_max_drawdown_pct": -1.9,
+          "point_calmar": 789.75,
+          "point_executed": 469,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 519,
+            "total_return_pct": {
+              "min": 1395.25,
+              "median": 1577.93,
+              "max": 1747.38,
+              "ci_low": 1438.3,
+              "ci_high": 1697.42
+            },
+            "max_drawdown_pct": {
+              "min": -2.96,
+              "median": -2.22,
+              "max": -1.9,
+              "ci_low": -2.63,
+              "ci_high": -1.9
+            },
+            "calmar_ratio": {
+              "min": 475.78,
+              "median": 704.35,
+              "max": 919.67,
+              "ci_low": 540.83,
+              "ci_high": 891.16
+            },
+            "trades_always_executed": 404,
+            "trades_never_executed": 2,
+            "trades_contested": 113,
+            "contested_share_pct": 21.8,
+            "mean_skipped_capital": 0.0,
+            "mean_skipped_position_limit": 51.0
+          }
+        }
+      },
+      "vergleich_gewaehlt_vs_alternative": {
+        "calmar_ratio": {
+          "share_chosen_better_pct": 0.0,
+          "median_difference": -320.1,
+          "chosen_range": [
+            287.88,
+            501.78
+          ],
+          "alternative_range": [
+            475.78,
+            919.67
+          ],
+          "ranges_overlap": true
+        },
+        "total_return_pct": {
+          "share_chosen_better_pct": 100.0,
+          "median_difference": 1636.212,
+          "chosen_range": [
+            2560.48,
+            3969.16
+          ],
+          "alternative_range": [
+            1395.25,
+            1747.38
+          ],
+          "ranges_overlap": false
+        },
+        "max_drawdown_pct": {
+          "share_chosen_better_pct": 0.0,
+          "median_difference": -6.27,
+          "chosen_range": [
+            -9.79,
+            -7.33
+          ],
+          "alternative_range": [
+            -2.96,
+            -1.9
+          ],
+          "ranges_overlap": false
+        }
+      }
+    }
+  ]
+}

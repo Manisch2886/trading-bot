@@ -1,0 +1,144 @@
+{
+  "beobachtung": "Die Live-Bots verarbeiten ihre Symbole in einer FESTEN, deterministischen Reihenfolge: der Reihenfolge der Symbolliste in der jeweiligen Konfigurationsdatei. Diese Listen sind nach Marktkapitalisierung (Aktien) bzw. 24-Stunden-Volumen (Krypto) absteigend sortiert. Wird das Positionslimit erreicht, erhalten damit systematisch die Symbole am Listenanfang den freien Platz.",
+  "listen_anfang": {
+    "config/sp500_top150.txt": [
+      "NVDA",
+      "AAPL",
+      "GOOGL",
+      "GOOG",
+      "MSFT",
+      "AMZN",
+      "AVGO",
+      "META"
+    ],
+    "config/top25_symbols.txt": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "SOLUSDT",
+      "ZECUSDT",
+      "XRPUSDT",
+      "ENSOUSDT",
+      "UNIUSDT",
+      "BNBUSDT"
+    ]
+  },
+  "bots": [
+    {
+      "bot": "elliott_wave",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": false,
+      "symbol_konfiguration": "symbols_config",
+      "symbol_quelle": {
+        "datei": "config/top25_symbols.txt",
+        "erzeugt_von": "shared/get_top_symbols.py",
+        "sortierung": "absteigend nach 24-Stunden-Handelsvolumen"
+      }
+    },
+    {
+      "bot": "elliott_wave_stocks",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": true,
+      "symbol_konfiguration": "stocks_symbols_config",
+      "symbol_quelle": {
+        "datei": "config/sp500_top150.txt",
+        "erzeugt_von": "strategies/elliott_wave_stocks/get_top_stocks.py",
+        "sortierung": "absteigend nach Marktkapitalisierung"
+      }
+    },
+    {
+      "bot": "t3_supertrend",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": true,
+      "symbol_konfiguration": "symbols_config",
+      "symbol_quelle": {
+        "datei": "config/top25_symbols.txt",
+        "erzeugt_von": "shared/get_top_symbols.py",
+        "sortierung": "absteigend nach 24-Stunden-Handelsvolumen"
+      }
+    },
+    {
+      "bot": "rsi2_crypto",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": true,
+      "symbol_konfiguration": "symbols_config",
+      "symbol_quelle": {
+        "datei": "config/top25_symbols.txt",
+        "erzeugt_von": "shared/get_top_symbols.py",
+        "sortierung": "absteigend nach 24-Stunden-Handelsvolumen"
+      }
+    },
+    {
+      "bot": "rsi2_mean_reversion",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": true,
+      "symbol_konfiguration": "stocks_symbols_config",
+      "symbol_quelle": {
+        "datei": "config/sp500_top150.txt",
+        "erzeugt_von": "strategies/elliott_wave_stocks/get_top_stocks.py",
+        "sortierung": "absteigend nach Marktkapitalisierung"
+      }
+    },
+    {
+      "bot": "turtle_soup_crypto",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": true,
+      "symbol_konfiguration": "symbols_config",
+      "symbol_quelle": {
+        "datei": "config/top25_symbols.txt",
+        "erzeugt_von": "shared/get_top_symbols.py",
+        "sortierung": "absteigend nach 24-Stunden-Handelsvolumen"
+      }
+    },
+    {
+      "bot": "turtle_soup_stocks",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": true,
+      "symbol_konfiguration": "stocks_symbols_config",
+      "symbol_quelle": {
+        "datei": "config/sp500_top150.txt",
+        "erzeugt_von": "strategies/elliott_wave_stocks/get_top_stocks.py",
+        "sortierung": "absteigend nach Marktkapitalisierung"
+      }
+    },
+    {
+      "bot": "volatility_breakout",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": true,
+      "symbol_konfiguration": "stocks_symbols_config",
+      "symbol_quelle": {
+        "datei": "config/sp500_top150.txt",
+        "erzeugt_von": "strategies/elliott_wave_stocks/get_top_stocks.py",
+        "sortierung": "absteigend nach Marktkapitalisierung"
+      }
+    },
+    {
+      "bot": "volatility_breakout_crypto",
+      "forward_test_vorhanden": true,
+      "iteriert_ueber_symbols_liste": true,
+      "sortiert_die_liste_selbst": false,
+      "setzt_positionslimit_durch": true,
+      "symbol_konfiguration": "symbols_config",
+      "symbol_quelle": {
+        "datei": "config/top25_symbols.txt",
+        "erzeugt_von": "shared/get_top_symbols.py",
+        "sortierung": "absteigend nach 24-Stunden-Handelsvolumen"
+      }
+    }
+  ]
+}

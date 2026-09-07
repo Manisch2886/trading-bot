@@ -1,0 +1,206 @@
+{
+  "bot": "t3_supertrend",
+  "n_permutations": 500,
+  "decisions": [
+    {
+      "id": "limit_5",
+      "frage": "MAX_CONCURRENT_POSITIONS = 5 statt 3, 8 oder unbegrenzt",
+      "quelle": "Uebergabeprotokoll Abschnitt 3.2 (empirisch getestet: 3/5/8/unbegrenzt)",
+      "paarung": "echt - identischer Trade-Satz",
+      "berichtet": {
+        "Limit 5": "102,7 % / -31,2 % (ohne Regimefilter)"
+      },
+      "varianten": {
+        "Limit 5 (live)": {
+          "point_total_return_pct": 129.64,
+          "point_max_drawdown_pct": -22.2,
+          "point_calmar": 5.84,
+          "point_executed": 656,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 980,
+            "total_return_pct": {
+              "min": 106.4,
+              "median": 127.21,
+              "max": 142.03,
+              "ci_low": 111.43,
+              "ci_high": 137.76
+            },
+            "max_drawdown_pct": {
+              "min": -22.85,
+              "median": -22.32,
+              "max": -22.14,
+              "ci_low": -22.57,
+              "ci_high": -22.14
+            },
+            "calmar_ratio": {
+              "min": 4.72,
+              "median": 5.71,
+              "max": 6.4,
+              "ci_low": 4.94,
+              "ci_high": 6.2
+            },
+            "trades_always_executed": 588,
+            "trades_never_executed": 249,
+            "trades_contested": 143,
+            "contested_share_pct": 14.6,
+            "mean_skipped_capital": 0.0,
+            "mean_skipped_position_limit": 323.9
+          }
+        },
+        "Limit 8": {
+          "point_total_return_pct": 163.91,
+          "point_max_drawdown_pct": -29.34,
+          "point_calmar": 5.59,
+          "point_executed": 848,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 980,
+            "total_return_pct": {
+              "min": 122.61,
+              "median": 139.6,
+              "max": 165.68,
+              "ci_low": 128.72,
+              "ci_high": 160.47
+            },
+            "max_drawdown_pct": {
+              "min": -30.82,
+              "median": -29.71,
+              "max": -29.27,
+              "ci_low": -30.75,
+              "ci_high": -29.27
+            },
+            "calmar_ratio": {
+              "min": 4.02,
+              "median": 4.7,
+              "max": 5.65,
+              "ci_low": 4.24,
+              "ci_high": 5.46
+            },
+            "trades_always_executed": 798,
+            "trades_never_executed": 97,
+            "trades_contested": 85,
+            "contested_share_pct": 8.7,
+            "mean_skipped_capital": 0.0,
+            "mean_skipped_position_limit": 131.7
+          }
+        },
+        "Limit 3": {
+          "point_total_return_pct": 65.54,
+          "point_max_drawdown_pct": -17.43,
+          "point_calmar": 3.76,
+          "point_executed": 458,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 980,
+            "total_return_pct": {
+              "min": 38.3,
+              "median": 90.89,
+              "max": 151.86,
+              "ci_low": 45.68,
+              "ci_high": 140.58
+            },
+            "max_drawdown_pct": {
+              "min": -21.09,
+              "median": -17.37,
+              "max": -14.18,
+              "ci_low": -20.07,
+              "ci_high": -15.05
+            },
+            "calmar_ratio": {
+              "min": 1.93,
+              "median": 5.18,
+              "max": 10.18,
+              "ci_low": 2.48,
+              "ci_high": 8.69
+            },
+            "trades_always_executed": 395,
+            "trades_never_executed": 448,
+            "trades_contested": 137,
+            "contested_share_pct": 14.0,
+            "mean_skipped_capital": 0.0,
+            "mean_skipped_position_limit": 523.5
+          }
+        },
+        "unbegrenzt": {
+          "point_total_return_pct": 152.58,
+          "point_max_drawdown_pct": -31.41,
+          "point_calmar": 4.86,
+          "point_executed": 902,
+          "perms": {
+            "n_permutations": 500,
+            "n_trades": 980,
+            "total_return_pct": {
+              "min": 128.89,
+              "median": 141.56,
+              "max": 165.85,
+              "ci_low": 133.46,
+              "ci_high": 162.03
+            },
+            "max_drawdown_pct": {
+              "min": -31.41,
+              "median": -31.41,
+              "max": -31.11,
+              "ci_low": -31.41,
+              "ci_high": -31.11
+            },
+            "calmar_ratio": {
+              "min": 4.1,
+              "median": 4.52,
+              "max": 5.33,
+              "ci_low": 4.25,
+              "ci_high": 5.21
+            },
+            "trades_always_executed": 871,
+            "trades_never_executed": 54,
+            "trades_contested": 55,
+            "contested_share_pct": 5.6,
+            "mean_skipped_capital": 81.0,
+            "mean_skipped_position_limit": 0.0
+          }
+        }
+      },
+      "vergleich_gewaehlt_vs_alternative": {
+        "calmar_ratio": {
+          "share_chosen_better_pct": 96.8,
+          "median_difference": 0.97,
+          "chosen_range": [
+            4.72,
+            6.4
+          ],
+          "alternative_range": [
+            4.02,
+            5.65
+          ],
+          "ranges_overlap": true
+        },
+        "total_return_pct": {
+          "share_chosen_better_pct": 7.2,
+          "median_difference": -13.392,
+          "chosen_range": [
+            106.4,
+            142.03
+          ],
+          "alternative_range": [
+            122.61,
+            165.68
+          ],
+          "ranges_overlap": true
+        },
+        "max_drawdown_pct": {
+          "share_chosen_better_pct": 100.0,
+          "median_difference": 7.45,
+          "chosen_range": [
+            -22.85,
+            -22.14
+          ],
+          "alternative_range": [
+            -30.82,
+            -29.27
+          ],
+          "ranges_overlap": false
+        }
+      }
+    }
+  ]
+}

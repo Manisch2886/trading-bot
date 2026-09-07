@@ -1,0 +1,65 @@
+{
+  "bot": "elliott_wave_stocks",
+  "config_source": "equity_simulation.py (Modul-Konstanten des Bots)",
+  "config": {
+    "starting_capital": 10000.0,
+    "allocation_pct": 0.1,
+    "max_concurrent_positions": 8,
+    "bot_has_position_limit_parameter": true
+  },
+  "timestamps": {
+    "n_trades": 519,
+    "trades_sharing_entry_timestamp": 330,
+    "share_sharing_entry_timestamp_pct": 63.6,
+    "largest_same_timestamp_group": 19,
+    "distinct_entry_timestamps": 282
+  },
+  "baseline_original_order": {
+    "total_return_pct": 1500.53,
+    "max_drawdown_pct": -1.9,
+    "num_executed": 469,
+    "num_skipped": 50,
+    "calmar_ratio": 789.75
+  },
+  "equivalence_check": {
+    "n_verified_permutations": 25,
+    "mismatches": 0,
+    "detail": []
+  },
+  "permutations": {
+    "n_permutations": 500,
+    "n_trades": 519,
+    "total_return_pct": {
+      "min": 1395.25,
+      "median": 1577.93,
+      "max": 1747.38,
+      "ci_low": 1438.3,
+      "ci_high": 1697.42
+    },
+    "max_drawdown_pct": {
+      "min": -2.96,
+      "median": -2.22,
+      "max": -1.9,
+      "ci_low": -2.63,
+      "ci_high": -1.9
+    },
+    "calmar_ratio": {
+      "min": 475.78,
+      "median": 704.35,
+      "max": 919.67,
+      "ci_low": 540.83,
+      "ci_high": 891.16
+    },
+    "trades_always_executed": 404,
+    "trades_never_executed": 2,
+    "trades_contested": 113,
+    "contested_share_pct": 21.8,
+    "mean_skipped_capital": 0.0,
+    "mean_skipped_position_limit": 51.0
+  },
+  "baseline_percentile": {
+    "total_return_pct": 14.6,
+    "max_drawdown_pct": 73.8,
+    "calmar_ratio": 74.6
+  }
+}
