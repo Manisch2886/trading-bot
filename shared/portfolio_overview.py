@@ -57,6 +57,7 @@ Aufruf von ueberall im trading-bot-Ordner:
 
 import os
 import sys
+import json
 import subprocess
 import sqlite3
 import pandas as pd
@@ -239,7 +240,47 @@ def load_live_trades(db_file: str) -> pd.DataFrame:
     return trades
 
 
-def build_capital_curve_from_live_trades(strategy_dir: str, live_trades: pd.DataFrame) -> pd.Series:
+# Markiert die Metazeile, mit der der Subprozess unten zurueckmeldet, woher
+# Allokation und Positionslimit stammen. Bewusst ein eigener Praefix statt
+# "einfach die letzte Zeile nehmen": simulate_portfolio oder ein importiertes
+# Bot-Modul koennte selbst etwas ausgeben.
+_META_PREFIX = "__KAPITAL_META__ "
+
+
+def _parse_kapital_meta(stdout: str) -> dict:
+    """Liest die Metazeile des Subprozesses. Fehlt sie, ist das kein
+    Fehler - die Kurve steht ja bereits; dann wird die Herkunft eben
+    nicht ausgewiesen."""
+    for zeile in reversed(stdout.splitlines()):
+        if zeile.startswith(_META_PREFIX):
+            try:
+                return json.loads(zeile[len(_META_PREFIX):])
+            except json.JSONDecodeError:
+                return {}
+    return {}
+
+
+def _beschreibe_kapital_meta(meta: dict) -> str:
+    """Eine Zeile fuer die Quellenangabe: mit welcher Allokation und
+    welchem Limit die Kurve gerechnet wurde - und woher beides kam."""
+    if not meta:
+        return "eigene Allokation/Limit"
+    anteil = meta.get("allocation")
+    teile = []
+    if anteil is not None:
+        teile.append(f"Allokation {anteil * 100:.4g} % ({meta.get('allocation_quelle', '?')})")
+    limit_quelle = meta.get("limit_quelle", "")
+    limit = meta.get("limit")
+    if limit is None:
+        teile.append(f"kein Positionslimit ({limit_quelle})" if limit_quelle
+                     else "kein Positionslimit")
+    else:
+        teile.append(f"Limit {limit} ({limit_quelle})")
+    return ", ".join(teile)
+
+
+def build_capital_curve_from_live_trades(strategy_dir: str,
+                                          live_trades: pd.DataFrame) -> tuple:
     """Bevorzugte Quelle, sobald genug Live-Trades vorliegen (siehe
     MIN_LIVE_CLOSED_TRADES): wendet die EIGENE, bereits validierte
     simulate_portfolio()-Funktion DIESES Bots (aus dessen
@@ -255,19 +296,75 @@ def build_capital_curve_from_live_trades(strategy_dir: str, live_trades: pd.Data
     Import mehrerer Bots im selben Python-Prozess wuerde denselben stillen
     sys.modules-Kollisions-Bug reproduzieren, der dort bereits einmal
     gefunden wurde (ein Bot bekommt lautlos die Funktionen/Werte eines
-    ANDEREN Bots untergeschoben, ohne Fehlermeldung)."""
+    ANDEREN Bots untergeschoben, ohne Fehlermeldung).
+
+    NICHT JEDER BOT HAT ALLE WERTE - und das ist Absicht, kein Versaeumnis.
+    Frueher stand hier ein harter Import:
+
+        from live_params import ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS
+
+    Der bricht bei drei der neun Bots mit einem ImportError ab, sobald
+    deren Live-DB die Schwelle erreicht: elliott_wave hat weder
+    ALLOCATION_PCT noch MAX_CONCURRENT_POSITIONS, elliott_wave_stocks und
+    t3_supertrend haben kein ALLOCATION_PCT. Bei elliott_wave kaeme
+    ausserdem ein TypeError dazu - dessen simulate_portfolio kennt gar
+    kein Positionslimit-Argument, weil dieser Bot bewusst keins hat
+    (siehe research/order_sensitivity/).
+
+    Die Werte werden deshalb defensiv aufgeloest, ohne etwas zu erfinden:
+
+    * ALLOCATION_PCT fehlt -> es gilt der Wert, mit dem der Bot
+      tatsaechlich rechnet, naemlich der aus seinem eigenen
+      equity_simulation.py. Achtung auf die Einheit: live_params fuehrt
+      die Allokation in PROZENT (10), equity_simulation als ANTEIL (0.10).
+    * MAX_CONCURRENT_POSITIONS fehlt -> der Bot hat kein Limit, also wird
+      auch keins simuliert. Es waere falsch, hier ersatzweise eine Zahl zu
+      setzen: das wuerde ein Risikomanagement vortaeuschen, das dieser Bot
+      nicht hat.
+    * Das Limit wird nur uebergeben, wenn simulate_portfolio dieses
+      Argument ueberhaupt entgegennimmt.
+
+    Woher die beiden Werte kamen, meldet der Subprozess zurueck und steht
+    anschliessend in der Quellenzeile der Uebersicht - damit man einer
+    Zahl ansieht, worauf sie beruht."""
     os.makedirs(RESULTS_DIR, exist_ok=True)
     tmp_trades_csv = os.path.join(RESULTS_DIR, "_live_trades_cache.csv")
     tmp_out_csv = os.path.join(RESULTS_DIR, "_live_equity_curve_cache.csv")
     live_trades.to_csv(tmp_trades_csv, index=False)
 
     script = f"""
+import inspect, json
 import pandas as pd
-from live_params import ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS
+import live_params
+import equity_simulation as es
 from equity_simulation import simulate_portfolio, STARTING_CAPITAL
+
+allocation_live = getattr(live_params, "ALLOCATION_PCT", None)
+if allocation_live is not None:
+    allocation, allocation_quelle = allocation_live / 100, "live_params.py"
+else:
+    allocation, allocation_quelle = es.ALLOCATION_PCT, "equity_simulation.py"
+
+nimmt_limit = "max_concurrent_positions" in inspect.signature(simulate_portfolio).parameters
+limit = getattr(live_params, "MAX_CONCURRENT_POSITIONS", None)
+if not nimmt_limit:
+    limit_quelle = "Bot kennt kein Positionslimit"
+elif not hasattr(live_params, "MAX_CONCURRENT_POSITIONS"):
+    limit_quelle = "nicht in live_params.py - unbegrenzt"
+elif limit is None:
+    limit_quelle = "live_params.py: unbegrenzt"
+else:
+    limit_quelle = "live_params.py"
+
 trades = pd.read_csv({tmp_trades_csv!r}, parse_dates=["entry_time", "exit_time"])
-result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT / 100, MAX_CONCURRENT_POSITIONS)
+args = [trades, STARTING_CAPITAL, allocation]
+if nimmt_limit:
+    args.append(limit)
+result = simulate_portfolio(*args)
 result["equity_curve"].to_csv({tmp_out_csv!r}, index=False)
+print("{_META_PREFIX}" + json.dumps({{
+    "allocation": allocation, "allocation_quelle": allocation_quelle,
+    "limit": limit if nimmt_limit else None, "limit_quelle": limit_quelle}}))
 """
     result = subprocess.run([sys.executable, "-c", script], cwd=strategy_dir,
                              capture_output=True, text=True)
@@ -278,8 +375,8 @@ result["equity_curve"].to_csv({tmp_out_csv!r}, index=False)
     equity_df = pd.read_csv(tmp_out_csv, parse_dates=["time"])
     os.remove(tmp_out_csv)
     if equity_df.empty:
-        return pd.Series(dtype=float)
-    return _daily_capital_curve_from_equity_df(equity_df)
+        return pd.Series(dtype=float), _parse_kapital_meta(result.stdout)
+    return _daily_capital_curve_from_equity_df(equity_df), _parse_kapital_meta(result.stdout)
 
 
 def load_all_curves(bots: dict) -> dict:
@@ -300,9 +397,11 @@ def load_all_curves(bots: dict) -> dict:
             if use_live:
                 strategy_dir = os.path.join(BASE_DIR, "strategies", name)
                 live_trades = load_live_trades(sources["db_file"])
-                series = build_capital_curve_from_live_trades(strategy_dir, live_trades)
+                series, kapital_meta = build_capital_curve_from_live_trades(
+                    strategy_dir, live_trades)
+                sources["kapital_meta"] = kapital_meta
                 source_label = (f"Live-DB ({live_trade_count} geschlossene Live-Trades, "
-                                 f"eigene Allokation/Limit aus live_params.py)")
+                                 f"{_beschreibe_kapital_meta(kapital_meta)})")
             elif sources["equity_csv"] is not None:
                 series = build_capital_curve_from_csv(sources["equity_csv"])
                 if live_trade_count > 0:
