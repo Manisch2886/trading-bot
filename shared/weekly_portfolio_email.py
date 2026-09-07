@@ -51,6 +51,7 @@ from notify import send_report
 
 import portfolio_overview
 from portfolio_interpreter_agent import generate_portfolio_interpretation
+from empfehlung_format import formatiere_typ_a
 
 USE_INTERPRETATION_AGENT = True
 
@@ -107,9 +108,10 @@ def extract_basis_warning(overview_text: str) -> str:
 
 
 def build_email_body(overview_text: str, interpretation: str) -> str:
-    """Baut den E-Mail-Text. Reihenfolge bewusst so gewaehlt, dass die
-    verstaendliche Handlungsempfehlung (Teil A von Agent 4, "WAS DAS FUER
-    DICH BEDEUTET") ganz oben steht, VOR den Rohdaten-Tabellen von
+    """Baut den E-Mail-Text. Reihenfolge bewusst so gewaehlt, dass ein
+    etwaiger hervorgehobener Handlungs-Hinweis und die verstaendliche
+    Einordnung (Teil A von Agent 4, "WAS DAS FUER DICH BEDEUTET") ganz oben
+    stehen, VOR den Rohdaten-Tabellen von
     portfolio_overview.py - damit das Wichtigste zuerst kommt und nicht
     erst nach mehreren Bildschirmseiten Tabellen. Die Rohdaten bleiben
     vollstaendig erhalten, nur weiter unten fuer den Detailblick."""
@@ -124,11 +126,14 @@ def build_email_body(overview_text: str, interpretation: str) -> str:
         lines.append(warning)
 
     if interpretation:
+        # Enthaelt die Einordnung einen Handlungs-Hinweis (Typ A, erkennbar
+        # an der Marker-Zeile aus empfehlung_format), wird der als eigener
+        # hervorgehobener Block VOR die Einordnung gesetzt - dieselbe Logik
+        # wie beim Warnblock oben: das Handlungsrelevante gehoert nach oben,
+        # nicht in die Mitte eines Fliesstextes. Ohne Hinweis entsteht kein
+        # zusaetzlicher Block, die Ausgabe bleibt exakt wie bisher.
         lines.append("")
-        lines.append("KI-EINORDNUNG DER WOCHE")
-        lines.append("=" * 60)
-        lines.append("")
-        lines.append(interpretation)
+        lines.append(formatiere_typ_a(interpretation, "KI-EINORDNUNG DER WOCHE", breite=60))
         lines.append("")
         lines.append("=" * 60)
         lines.append("ROHDATEN (Tabellen, Korrelationswerte, Einzel-Bot-Drawdowns)")

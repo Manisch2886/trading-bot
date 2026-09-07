@@ -31,6 +31,7 @@ sys.path.insert(0, _NOTIF_DIR)
 from notify import send_report
 
 from daily_interpreter import generate_interpretation
+from empfehlung_format import formatiere_typ_a
 from market_context_agent import get_market_context
 
 USE_INTERPRETATION_AGENT = True
@@ -150,7 +151,11 @@ if __name__ == "__main__":
         interpretation = generate_interpretation(STRATEGY_NAME, summary)
         if interpretation:
             print(f"Einordnung: {interpretation}")
-            email_body += f"\n\n{'=' * 50}\nKI-EINORDNUNG DES TAGES\n{'=' * 50}\n{interpretation}"
+            # Formuliert der Agent einen Handlungs-Hinweis (Typ A), wird der
+            # hier in einen eigenen, optisch abgesetzten Block gehoben statt
+            # im Fliesstext unterzugehen - siehe shared/empfehlung_format.py.
+            # Ohne Hinweis ist die Ausgabe exakt der bisherige Abschnitt.
+            email_body += "\n\n" + formatiere_typ_a(interpretation, "KI-EINORDNUNG DES TAGES")
         else:
             print("(Keine Einordnung erhalten - API-Key gesetzt? Siehe shared/claude_client.py)")
 

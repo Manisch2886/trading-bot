@@ -21,6 +21,11 @@ benennen, statt trotzdem eine selbstbewusst klingende Handlungsempfehlung
 zu erzwingen. Das ist ein zentraler Bestandteil des Prompts, nicht nur eine
 Empfehlung - siehe den eigenen Absatz dazu.
 
+Der optionale Hinweis-Abschnitt (Marker-Zeile aus empfehlung_format, ganz am
+Ende der Antwort) wird von weekly_portfolio_email.py herausgeschnitten und
+als hervorgehobener Block VOR die Einordnung gesetzt - Teil A und Teil B
+bleiben davon unberuehrt.
+
 Modellwahl: Sonnet (nicht Haiku wie bei daily_interpreter.py) - hier geht
 es um eine interpretierende Einordnung ueber mehrere Bots UND Wochen
 hinweg, nicht nur um eine kurze Tages-Zusammenfassung.
@@ -31,6 +36,7 @@ dann trotzdem wie gewohnt, nur ohne die KI-Einordnung.
 """
 
 from claude_client import call_claude, MODEL_SONNET
+from empfehlung_format import PROMPT_BAUSTEIN_HINWEIS
 
 SYSTEM_PROMPT = """Du bist ein nuechterner, sachlicher Portfolio-Analyst.
 Du bekommst die woechentliche Textausgabe eines Beobachtungs-Skripts, das
@@ -109,10 +115,15 @@ WEITERE REGELN:
   Nutzer vorbehalten, du lieferst nur Einordnung.
 - Keine Finanzberatung, keine Kursprognosen.
 - Antworte NUR mit den beiden oben beschriebenen Teilen (erst Teil A, dann
-  Teil B), sonst keine Ueberschriften, kein Markdown, keine
-  Aufzaehlungszeichen - die einzige Ausnahme ist die eine Abgrenzungszeile
-  "WAS DAS FUER DICH BEDEUTET" zu Beginn von Teil A.
-"""
+  Teil B) und dem optionalen Hinweis-Abschnitt unten, sonst keine
+  Ueberschriften, kein Markdown, keine Aufzaehlungszeichen - die einzigen
+  Ausnahmen sind die Abgrenzungszeile "WAS DAS FUER DICH BEDEUTET" zu
+  Beginn von Teil A und die Marker-Zeile des Hinweis-Abschnitts.
+- Der DATENBASIS-VORBEHALT gilt auch fuer den Hinweis-Abschnitt: liegen
+  alle Bot-Paare unter der Schwelle, gehoert dort nichts hin, dann faellt
+  der Abschnitt ersatzlos weg.
+
+""" + PROMPT_BAUSTEIN_HINWEIS
 
 
 def generate_portfolio_interpretation(overview_text: str) -> str:

@@ -90,7 +90,8 @@ def send_alert(text: str, parse_mode: str = "Markdown") -> bool:
 MAX_MESSAGE_LENGTH = 3500
 
 
-def _split_into_chunks(text: str, max_length: int = MAX_MESSAGE_LENGTH) -> list:
+def _split_into_chunks(text: str, max_length: int = MAX_MESSAGE_LENGTH,
+                        unteilbare_bloecke: list = None) -> list:
     """
     Teilt einen langen Text an Zeilenumbruechen in mehrere Telegram-taugliche
     Chunks auf - adaptiert aus derselben Grundidee wie
@@ -98,23 +99,67 @@ def _split_into_chunks(text: str, max_length: int = MAX_MESSAGE_LENGTH) -> list:
     hier pro Zeile des Berichts), damit eine lange woechentliche/
     quartalsweise Zusammenfassung nicht am 4096-Zeichen-Limit einer
     einzelnen Telegram-Nachricht abgeschnitten wird.
+
+    unteilbare_bloecke: optionale Liste mehrzeiliger Text-Bloecke, die NICHT
+    ueber zwei Nachrichten hinweg auseinandergerissen werden duerfen. Genutzt
+    fuer den Pflichthinweis bei unvalidierten Parameter-Vorschlaegen (siehe
+    shared/empfehlung_format.pflichtblock_typ_b): eine Ueberschrift
+    "PARAMETER-VORSCHLAG (UNVALIDIERT)" am Ende der einen Nachricht und der
+    zugehoerige Warnhinweis erst am Anfang der naechsten waere genau das,
+    was die Kennzeichnung verhindern soll. Ohne dieses Argument ist das
+    Verhalten unveraendert: jede Zeile ist ihre eigene Einheit.
     """
-    lines = text.split("\n")
+    einheiten = _in_einheiten_zerlegen(text, unteilbare_bloecke)
     chunks = []
     current = []
-    for line in lines:
-        candidate = "\n".join(current + [line])
+    for einheit in einheiten:
+        candidate = "\n".join(current + einheit)
         if current and len(candidate) > max_length:
             chunks.append("\n".join(current))
-            current = [line]
+            current = list(einheit)
         else:
-            current.append(line)
+            current.extend(einheit)
     if current:
         chunks.append("\n".join(current))
     return chunks
 
 
-def send_report(subject: str, body: str) -> bool:
+def _in_einheiten_zerlegen(text: str, unteilbare_bloecke: list = None) -> list:
+    """Zerlegt den Text in Einheiten, zwischen denen umbrochen werden darf.
+
+    Normalfall: eine Einheit pro Zeile (exakt das bisherige Verhalten).
+    Trifft der Zeilenstrom auf einen der uebergebenen unteilbaren Bloecke,
+    werden dessen Zeilen zu EINER Einheit zusammengefasst und wandern
+    gemeinsam in denselben Chunk.
+
+    Ist ein Block laenger als eine ganze Nachricht, kann er trotzdem nicht
+    zusammengehalten werden - dann greift die normale Laengenlogik. Deshalb
+    wird als unteilbarer Block bewusst nur der kurze Pflichtteil uebergeben
+    (Ueberschrift + Hinweis), nicht der komplette Vorschlag mit allen Zahlen.
+    """
+    lines = text.split("\n")
+    block_zeilen = [b.split("\n") for b in (unteilbare_bloecke or []) if b and b.strip()]
+    if not block_zeilen:
+        return [[line] for line in lines]
+
+    einheiten = []
+    i = 0
+    while i < len(lines):
+        treffer = None
+        for bz in block_zeilen:
+            if lines[i:i + len(bz)] == bz:
+                treffer = bz
+                break
+        if treffer:
+            einheiten.append(list(treffer))
+            i += len(treffer)
+        else:
+            einheiten.append([lines[i]])
+            i += 1
+    return einheiten
+
+
+def send_report(subject: str, body: str, unteilbare_bloecke: list = None) -> bool:
     """
     Verschickt einen laengeren Bericht (ehemals E-Mail-Betreff + -Body) als
     eine oder mehrere Telegram-Nachrichten:
@@ -126,6 +171,10 @@ def send_report(subject: str, body: str) -> bool:
          dem zweiten bekommt eine "(Fortsetzung)"-Markierung.
       3. Die gesamte Nachricht wird OHNE parse_mode (also als reiner,
          unformatierter Text) verschickt.
+      4. unteilbare_bloecke (optional): Text-Bloecke, die beim Aufteilen
+         nicht ueber zwei Nachrichten hinweg zerrissen werden duerfen -
+         siehe _split_into_chunks(). Genutzt vom Pflichthinweis bei
+         unvalidierten Parameter-Vorschlaegen (quarterly_review.py).
 
     ROOT CAUSE eines Live-Bugs (erste Version dieser Funktion): der erste
     Anlauf hat Betreff+Body vor dem Versand "Markdown-escaped" (Backslash
@@ -164,7 +213,7 @@ def send_report(subject: str, body: str) -> bool:
     """
     full_text = f"{subject}\n\n{body}"
 
-    chunks = _split_into_chunks(full_text)
+    chunks = _split_into_chunks(full_text, unteilbare_bloecke=unteilbare_bloecke)
     for i, chunk in enumerate(chunks):
         text = chunk if i == 0 else f"(Fortsetzung)\n\n{chunk}"
         if not send_alert(text, parse_mode=None):
