@@ -1,0 +1,34 @@
+{
+  "schluessel": "elliott_wave_alt",
+  "bot": "elliott_wave",
+  "beschreibung": "Zigzag 4 % / Stop 2 % / Fib 0.236 (Stand bis 2026-09-07)",
+  "parameterquelle": "fest gesetzt - der Stand VOR der Parameter-Uebernahme",
+  "verwendete_parameter": {
+    "deviation_pct": 4.0,
+    "stop_loss_pct": 2.0,
+    "take_profit_fib": 0.236
+  },
+  "live_params_stand": "2026-08-31",
+  "positionslimit_live": null,
+  "symbole_geladen": 18,
+  "trades_gesamt": 791,
+  "konstanten_angeglichen": [],
+  "regimefilter": null,
+  "positionsgroesse_usd": 1000.0,
+  "jahr": 2025,
+  "gestrichen_wegen_kursluecke": 0,
+  "gleichzeitigkeit": {
+    "limit": null,
+    "relevant_2025": false,
+    "grund": "kein Positionslimit"
+  },
+  "trades_2025": 181,
+  "pnl_usd": 418.88,
+  "gewinnrate_pct": 30.4,
+  "bester_trade_usd": 97.18,
+  "schlechtester_trade_usd": -20.0,
+  "symbole_2025": 18,
+  "pnl_usd_netto_laut_bot": -124.2,
+  "kostenmodell_im_bot": true,
+  "trades_datei": "elliott_wave_alt_trades_2025.csv"
+}

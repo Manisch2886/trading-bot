@@ -1,0 +1,37 @@
+{
+  "schluessel": "rsi2_crypto",
+  "bot": "rsi2_crypto",
+  "beschreibung": "Live-Konfiguration aus live_params.py",
+  "parameterquelle": "live_params.py",
+  "verwendete_parameter": {
+    "rsi_threshold": 10.0,
+    "sma_trend_period": 150,
+    "stop_loss_pct": null
+  },
+  "live_params_stand": "2026-09-03",
+  "positionslimit_live": 8,
+  "symbole_geladen": 20,
+  "trades_gesamt": 439,
+  "konstanten_angeglichen": [],
+  "regimefilter": null,
+  "positionsgroesse_usd": 1000.0,
+  "jahr": 2025,
+  "gestrichen_wegen_kursluecke": 0,
+  "gleichzeitigkeit": {
+    "limit": 8,
+    "relevant_2025": true,
+    "geblockte_trades_2025": 19,
+    "zeitpunkte_am_limit_2025": 9,
+    "davon_mit_mehreren_signalen_gleichzeitig": 8,
+    "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+  },
+  "trades_2025": 137,
+  "pnl_usd": 1902.96,
+  "gewinnrate_pct": 63.5,
+  "bester_trade_usd": 372.66,
+  "schlechtester_trade_usd": -396.12,
+  "symbole_2025": 18,
+  "pnl_usd_netto_laut_bot": 1492.3,
+  "kostenmodell_im_bot": true,
+  "trades_datei": "rsi2_crypto_trades_2025.csv"
+}

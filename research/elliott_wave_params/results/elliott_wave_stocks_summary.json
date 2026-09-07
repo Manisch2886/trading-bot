@@ -1,0 +1,5930 @@
+{
+  "hinweis": "ALLE HIER GENANNTEN PARAMETER SIND UNVALIDIERTE VORSCHLAEGE. Es wurde NICHTS automatisch geaendert - live_params.py und forward_test.py bleiben unangetastet. Eine Uebernahme erfolgt ausschliesslich manuell und erst nach eigener Pruefung und ausdruecklicher Zustimmung des Auftraggebers.",
+  "bot": "elliott_wave_stocks",
+  "bedingungen": {
+    "B1": "besteht die Mindestfilter In-Sample",
+    "B2": "besteht die Mindestfilter Out-of-Sample (auch in der an die Fensterlaenge angepassten Variante)",
+    "B3": "positiver Ø PnL in jeder Walk-Forward-Falte",
+    "B4": "Out-of-Sample-Rendite positiv UND Calmar besser als Buy-and-Hold",
+    "B5": "Nachbar-Median >= 50 % des eigenen Scores und Zigzag +/- 0,5 pp bleibt im Plus"
+  },
+  "mindestfilter": {
+    "min_trades": 150,
+    "min_symbols": 22,
+    "min_avg_return_pct": 2.0
+  },
+  "mindest_trades_skaliert": {
+    "gesamt": 150,
+    "is": 105,
+    "oos": 45
+  },
+  "kandidaten": [
+    {
+      "kombination": "dev 6 % / Stop 16 % / Fib 1",
+      "key": [
+        6.0,
+        16.0,
+        1.0,
+        true
+      ],
+      "herkunft": "In-Sample-Score",
+      "is": {
+        "window": "is",
+        "deviation_pct": 6.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 1.0,
+        "use_take_profit": true,
+        "num_trades": 276,
+        "num_symbols": 114,
+        "win_rate": 57.2,
+        "total_return_pct": 2127.01,
+        "avg_return_pct": 7.71,
+        "max_drawdown_pct": -76.28,
+        "robustness_score": 1.678,
+        "max_drawdown_chronologisch_pct": -464.01,
+        "robustness_score_chronologisch": 0.276,
+        "share_take_profit_pct": 25.4,
+        "share_stop_loss_pct": 36.6,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 158,
+        "pf_num_skipped": 118,
+        "pf_total_return_pct": 102.57,
+        "pf_max_drawdown_pct": -30.39,
+        "pf_calmar_ratio": 3.38
+      },
+      "oos": {
+        "window": "oos",
+        "deviation_pct": 6.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 1.0,
+        "use_take_profit": true,
+        "num_trades": 92,
+        "num_symbols": 59,
+        "win_rate": 55.4,
+        "total_return_pct": 538.37,
+        "avg_return_pct": 5.85,
+        "max_drawdown_pct": -116.79,
+        "robustness_score": 0.481,
+        "max_drawdown_chronologisch_pct": -187.88,
+        "robustness_score_chronologisch": 0.299,
+        "share_take_profit_pct": 27.2,
+        "share_stop_loss_pct": 34.8,
+        "besteht_mindestfilter": false,
+        "pf_num_executed": 64,
+        "pf_num_skipped": 28,
+        "pf_total_return_pct": 18.85,
+        "pf_max_drawdown_pct": -15.55,
+        "pf_calmar_ratio": 1.21
+      },
+      "gesamt": {
+        "window": "gesamt",
+        "deviation_pct": 6.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 1.0,
+        "use_take_profit": true,
+        "num_trades": 374,
+        "num_symbols": 121,
+        "win_rate": 57.5,
+        "total_return_pct": 2829.87,
+        "avg_return_pct": 7.57,
+        "max_drawdown_pct": -114.1,
+        "robustness_score": 1.282,
+        "max_drawdown_chronologisch_pct": -464.01,
+        "robustness_score_chronologisch": 0.315,
+        "share_take_profit_pct": 27.0,
+        "share_stop_loss_pct": 35.8,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 227,
+        "pf_num_skipped": 147,
+        "pf_total_return_pct": 175.11,
+        "pf_max_drawdown_pct": -30.39,
+        "pf_calmar_ratio": 5.76
+      },
+      "walk_forward_falten": [
+        [
+          1,
+          -0.94
+        ],
+        [
+          2,
+          11.83
+        ],
+        [
+          3,
+          5.91
+        ]
+      ],
+      "buy_and_hold_oos": {
+        "final_capital": 21907.1,
+        "total_return_pct": 119.07,
+        "max_drawdown_pct": -18.03,
+        "calmar_ratio": 6.6,
+        "num_symbols": 147,
+        "num_skipped_symbols": 1,
+        "zeitraum": {
+          "von": "2023-08-29 00:00:00",
+          "bis": "2026-09-01 00:00:00"
+        }
+      },
+      "nachbar_median_anteil_pct_is": 56.4,
+      "zigzag_feinschritt_avg_pnl": [
+        7.74,
+        7.57,
+        7.98
+      ],
+      "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 55,
+          "rendite_min_pct": 165.92,
+          "rendite_median_pct": 203.67,
+          "rendite_max_pct": 254.26,
+          "rendite_spanne_pp": 88.34,
+          "calmar_min": 4.98,
+          "calmar_median": 6.71,
+          "calmar_max": 9.58
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 17,
+          "rendite_min_pct": 14.56,
+          "rendite_median_pct": 18.75,
+          "rendite_max_pct": 24.16,
+          "rendite_spanne_pp": 9.6,
+          "calmar_min": 1.01,
+          "calmar_median": 1.27,
+          "calmar_max": 1.73
+        }
+      },
+      "reihenfolge_oos": {
+        "permutationen": 200,
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 17,
+        "rendite_min_pct": 14.56,
+        "rendite_median_pct": 18.75,
+        "rendite_max_pct": 24.16,
+        "rendite_spanne_pp": 9.6,
+        "calmar_min": 1.01,
+        "calmar_median": 1.27,
+        "calmar_max": 1.73
+      },
+      "symbolbeitrag": {
+        "symbole_mit_trades": 121,
+        "symbole_positiv": 85,
+        "summe_pnl_pct": 2829.87,
+        "top3_summe_pnl_pct": 402.0,
+        "top3_anteil_pct": 14.2,
+        "bestes_symbol": "VLO",
+        "schlechtestes_symbol": "KKR",
+        "tabelle": [
+          {
+            "symbol": "VLO",
+            "trades": 6,
+            "summe_pnl_pct": 154.66,
+            "avg_pnl_pct": 25.78
+          },
+          {
+            "symbol": "AMAT",
+            "trades": 4,
+            "summe_pnl_pct": 144.23,
+            "avg_pnl_pct": 36.06
+          },
+          {
+            "symbol": "HD",
+            "trades": 2,
+            "summe_pnl_pct": 103.11,
+            "avg_pnl_pct": 51.56
+          },
+          {
+            "symbol": "DELL",
+            "trades": 4,
+            "summe_pnl_pct": 102.08,
+            "avg_pnl_pct": 25.52
+          },
+          {
+            "symbol": "SLB",
+            "trades": 8,
+            "summe_pnl_pct": 100.8,
+            "avg_pnl_pct": 12.6
+          },
+          {
+            "symbol": "PLD",
+            "trades": 4,
+            "summe_pnl_pct": 96.6,
+            "avg_pnl_pct": 24.15
+          },
+          {
+            "symbol": "TSLA",
+            "trades": 11,
+            "summe_pnl_pct": 95.85,
+            "avg_pnl_pct": 8.71
+          },
+          {
+            "symbol": "APH",
+            "trades": 3,
+            "summe_pnl_pct": 94.19,
+            "avg_pnl_pct": 31.4
+          },
+          {
+            "symbol": "AVGO",
+            "trades": 4,
+            "summe_pnl_pct": 93.82,
+            "avg_pnl_pct": 23.46
+          },
+          {
+            "symbol": "STX",
+            "trades": 4,
+            "summe_pnl_pct": 88.1,
+            "avg_pnl_pct": 22.02
+          },
+          {
+            "symbol": "LOW",
+            "trades": 2,
+            "summe_pnl_pct": 77.45,
+            "avg_pnl_pct": 38.72
+          },
+          {
+            "symbol": "PANW",
+            "trades": 4,
+            "summe_pnl_pct": 76.68,
+            "avg_pnl_pct": 19.17
+          },
+          {
+            "symbol": "FTNT",
+            "trades": 4,
+            "summe_pnl_pct": 73.06,
+            "avg_pnl_pct": 18.26
+          },
+          {
+            "symbol": "IBM",
+            "trades": 3,
+            "summe_pnl_pct": 70.07,
+            "avg_pnl_pct": 23.36
+          },
+          {
+            "symbol": "ANET",
+            "trades": 5,
+            "summe_pnl_pct": 69.59,
+            "avg_pnl_pct": 13.92
+          },
+          {
+            "symbol": "GE",
+            "trades": 5,
+            "summe_pnl_pct": 65.73,
+            "avg_pnl_pct": 13.15
+          },
+          {
+            "symbol": "AAPL",
+            "trades": 3,
+            "summe_pnl_pct": 64.99,
+            "avg_pnl_pct": 21.66
+          },
+          {
+            "symbol": "WDC",
+            "trades": 8,
+            "summe_pnl_pct": 60.58,
+            "avg_pnl_pct": 7.57
+          },
+          {
+            "symbol": "CMCSA",
+            "trades": 3,
+            "summe_pnl_pct": 59.72,
+            "avg_pnl_pct": 19.91
+          },
+          {
+            "symbol": "BKNG",
+            "trades": 3,
+            "summe_pnl_pct": 58.85,
+            "avg_pnl_pct": 19.62
+          },
+          {
+            "symbol": "HOOD",
+            "trades": 8,
+            "summe_pnl_pct": 58.51,
+            "avg_pnl_pct": 7.31
+          },
+          {
+            "symbol": "GS",
+            "trades": 4,
+            "summe_pnl_pct": 57.91,
+            "avg_pnl_pct": 14.48
+          },
+          {
+            "symbol": "EQIX",
+            "trades": 2,
+            "summe_pnl_pct": 57.76,
+            "avg_pnl_pct": 28.88
+          },
+          {
+            "symbol": "DHR",
+            "trades": 2,
+            "summe_pnl_pct": 57.13,
+            "avg_pnl_pct": 28.56
+          },
+          {
+            "symbol": "WELL",
+            "trades": 3,
+            "summe_pnl_pct": 56.49,
+            "avg_pnl_pct": 18.83
+          },
+          {
+            "symbol": "PLTR",
+            "trades": 5,
+            "summe_pnl_pct": 55.7,
+            "avg_pnl_pct": 11.14
+          },
+          {
+            "symbol": "PSX",
+            "trades": 6,
+            "summe_pnl_pct": 51.45,
+            "avg_pnl_pct": 8.58
+          },
+          {
+            "symbol": "COP",
+            "trades": 5,
+            "summe_pnl_pct": 49.45,
+            "avg_pnl_pct": 9.89
+          },
+          {
+            "symbol": "KLAC",
+            "trades": 3,
+            "summe_pnl_pct": 48.0,
+            "avg_pnl_pct": 16.0
+          },
+          {
+            "symbol": "GD",
+            "trades": 1,
+            "summe_pnl_pct": 47.94,
+            "avg_pnl_pct": 47.94
+          },
+          {
+            "symbol": "INTC",
+            "trades": 5,
+            "summe_pnl_pct": 47.04,
+            "avg_pnl_pct": 9.41
+          },
+          {
+            "symbol": "LLY",
+            "trades": 4,
+            "summe_pnl_pct": 43.57,
+            "avg_pnl_pct": 10.89
+          },
+          {
+            "symbol": "UNH",
+            "trades": 1,
+            "summe_pnl_pct": 42.64,
+            "avg_pnl_pct": 42.64
+          },
+          {
+            "symbol": "USB",
+            "trades": 3,
+            "summe_pnl_pct": 42.33,
+            "avg_pnl_pct": 14.11
+          },
+          {
+            "symbol": "ISRG",
+            "trades": 3,
+            "summe_pnl_pct": 42.01,
+            "avg_pnl_pct": 14.0
+          },
+          {
+            "symbol": "GLW",
+            "trades": 5,
+            "summe_pnl_pct": 39.6,
+            "avg_pnl_pct": 7.92
+          },
+          {
+            "symbol": "BA",
+            "trades": 5,
+            "summe_pnl_pct": 38.81,
+            "avg_pnl_pct": 7.76
+          },
+          {
+            "symbol": "MU",
+            "trades": 7,
+            "summe_pnl_pct": 38.55,
+            "avg_pnl_pct": 5.51
+          },
+          {
+            "symbol": "LRCX",
+            "trades": 5,
+            "summe_pnl_pct": 37.64,
+            "avg_pnl_pct": 7.53
+          },
+          {
+            "symbol": "VRT",
+            "trades": 1,
+            "summe_pnl_pct": 36.28,
+            "avg_pnl_pct": 36.28
+          },
+          {
+            "symbol": "JCI",
+            "trades": 4,
+            "summe_pnl_pct": 32.65,
+            "avg_pnl_pct": 8.16
+          },
+          {
+            "symbol": "MPC",
+            "trades": 5,
+            "summe_pnl_pct": 31.92,
+            "avg_pnl_pct": 6.38
+          },
+          {
+            "symbol": "LMT",
+            "trades": 1,
+            "summe_pnl_pct": 31.67,
+            "avg_pnl_pct": 31.67
+          },
+          {
+            "symbol": "CSX",
+            "trades": 1,
+            "summe_pnl_pct": 31.64,
+            "avg_pnl_pct": 31.64
+          },
+          {
+            "symbol": "HCA",
+            "trades": 3,
+            "summe_pnl_pct": 30.74,
+            "avg_pnl_pct": 10.25
+          },
+          {
+            "symbol": "RTX",
+            "trades": 2,
+            "summe_pnl_pct": 29.74,
+            "avg_pnl_pct": 14.87
+          },
+          {
+            "symbol": "CB",
+            "trades": 2,
+            "summe_pnl_pct": 28.51,
+            "avg_pnl_pct": 14.26
+          },
+          {
+            "symbol": "TJX",
+            "trades": 1,
+            "summe_pnl_pct": 26.38,
+            "avg_pnl_pct": 26.38
+          },
+          {
+            "symbol": "ADP",
+            "trades": 3,
+            "summe_pnl_pct": 25.6,
+            "avg_pnl_pct": 8.53
+          },
+          {
+            "symbol": "MCO",
+            "trades": 4,
+            "summe_pnl_pct": 25.46,
+            "avg_pnl_pct": 6.36
+          },
+          {
+            "symbol": "C",
+            "trades": 3,
+            "summe_pnl_pct": 25.12,
+            "avg_pnl_pct": 8.37
+          },
+          {
+            "symbol": "CME",
+            "trades": 2,
+            "summe_pnl_pct": 25.02,
+            "avg_pnl_pct": 12.51
+          },
+          {
+            "symbol": "PM",
+            "trades": 2,
+            "summe_pnl_pct": 24.4,
+            "avg_pnl_pct": 12.2
+          },
+          {
+            "symbol": "UPS",
+            "trades": 1,
+            "summe_pnl_pct": 24.39,
+            "avg_pnl_pct": 24.39
+          },
+          {
+            "symbol": "REGN",
+            "trades": 5,
+            "summe_pnl_pct": 23.68,
+            "avg_pnl_pct": 4.74
+          },
+          {
+            "symbol": "WMT",
+            "trades": 1,
+            "summe_pnl_pct": 23.41,
+            "avg_pnl_pct": 23.41
+          },
+          {
+            "symbol": "V",
+            "trades": 1,
+            "summe_pnl_pct": 23.29,
+            "avg_pnl_pct": 23.29
+          },
+          {
+            "symbol": "ABNB",
+            "trades": 5,
+            "summe_pnl_pct": 21.95,
+            "avg_pnl_pct": 4.39
+          },
+          {
+            "symbol": "PWR",
+            "trades": 1,
+            "summe_pnl_pct": 21.78,
+            "avg_pnl_pct": 21.78
+          },
+          {
+            "symbol": "VRTX",
+            "trades": 1,
+            "summe_pnl_pct": 20.6,
+            "avg_pnl_pct": 20.6
+          },
+          {
+            "symbol": "SPGI",
+            "trades": 4,
+            "summe_pnl_pct": 20.35,
+            "avg_pnl_pct": 5.09
+          },
+          {
+            "symbol": "DIS",
+            "trades": 4,
+            "summe_pnl_pct": 20.09,
+            "avg_pnl_pct": 5.02
+          },
+          {
+            "symbol": "GOOG",
+            "trades": 1,
+            "summe_pnl_pct": 19.25,
+            "avg_pnl_pct": 19.25
+          },
+          {
+            "symbol": "ABBV",
+            "trades": 1,
+            "summe_pnl_pct": 18.17,
+            "avg_pnl_pct": 18.17
+          },
+          {
+            "symbol": "TMO",
+            "trades": 1,
+            "summe_pnl_pct": 18.04,
+            "avg_pnl_pct": 18.04
+          },
+          {
+            "symbol": "BLK",
+            "trades": 3,
+            "summe_pnl_pct": 18.0,
+            "avg_pnl_pct": 6.0
+          },
+          {
+            "symbol": "BAC",
+            "trades": 2,
+            "summe_pnl_pct": 16.22,
+            "avg_pnl_pct": 8.11
+          },
+          {
+            "symbol": "SYK",
+            "trades": 1,
+            "summe_pnl_pct": 13.58,
+            "avg_pnl_pct": 13.58
+          },
+          {
+            "symbol": "AMZN",
+            "trades": 5,
+            "summe_pnl_pct": 13.55,
+            "avg_pnl_pct": 2.71
+          },
+          {
+            "symbol": "CRM",
+            "trades": 7,
+            "summe_pnl_pct": 13.44,
+            "avg_pnl_pct": 1.92
+          },
+          {
+            "symbol": "TT",
+            "trades": 1,
+            "summe_pnl_pct": 13.1,
+            "avg_pnl_pct": 13.1
+          },
+          {
+            "symbol": "T",
+            "trades": 1,
+            "summe_pnl_pct": 12.93,
+            "avg_pnl_pct": 12.93
+          },
+          {
+            "symbol": "CRWD",
+            "trades": 5,
+            "summe_pnl_pct": 9.66,
+            "avg_pnl_pct": 1.93
+          },
+          {
+            "symbol": "GOOGL",
+            "trades": 1,
+            "summe_pnl_pct": 9.05,
+            "avg_pnl_pct": 9.05
+          },
+          {
+            "symbol": "AXP",
+            "trades": 2,
+            "summe_pnl_pct": 8.82,
+            "avg_pnl_pct": 4.41
+          },
+          {
+            "symbol": "CDNS",
+            "trades": 2,
+            "summe_pnl_pct": 7.94,
+            "avg_pnl_pct": 3.97
+          },
+          {
+            "symbol": "HWM",
+            "trades": 2,
+            "summe_pnl_pct": 7.22,
+            "avg_pnl_pct": 3.61
+          },
+          {
+            "symbol": "VZ",
+            "trades": 1,
+            "summe_pnl_pct": 5.92,
+            "avg_pnl_pct": 5.92
+          },
+          {
+            "symbol": "ELV",
+            "trades": 1,
+            "summe_pnl_pct": 4.88,
+            "avg_pnl_pct": 4.88
+          },
+          {
+            "symbol": "SCHW",
+            "trades": 1,
+            "summe_pnl_pct": 4.59,
+            "avg_pnl_pct": 4.59
+          },
+          {
+            "symbol": "BRK-B",
+            "trades": 1,
+            "summe_pnl_pct": 3.39,
+            "avg_pnl_pct": 3.39
+          },
+          {
+            "symbol": "CVS",
+            "trades": 1,
+            "summe_pnl_pct": 3.03,
+            "avg_pnl_pct": 3.03
+          },
+          {
+            "symbol": "NFLX",
+            "trades": 2,
+            "summe_pnl_pct": 2.88,
+            "avg_pnl_pct": 1.44
+          },
+          {
+            "symbol": "UBER",
+            "trades": 7,
+            "summe_pnl_pct": 1.1,
+            "avg_pnl_pct": 0.16
+          },
+          {
+            "symbol": "AMGN",
+            "trades": 1,
+            "summe_pnl_pct": 0.99,
+            "avg_pnl_pct": 0.99
+          },
+          {
+            "symbol": "ADI",
+            "trades": 1,
+            "summe_pnl_pct": -0.8,
+            "avg_pnl_pct": -0.8
+          },
+          {
+            "symbol": "WFC",
+            "trades": 2,
+            "summe_pnl_pct": -3.61,
+            "avg_pnl_pct": -1.81
+          },
+          {
+            "symbol": "ORCL",
+            "trades": 4,
+            "summe_pnl_pct": -3.89,
+            "avg_pnl_pct": -0.97
+          },
+          {
+            "symbol": "AMD",
+            "trades": 8,
+            "summe_pnl_pct": -4.36,
+            "avg_pnl_pct": -0.55
+          },
+          {
+            "symbol": "MSFT",
+            "trades": 1,
+            "summe_pnl_pct": -4.67,
+            "avg_pnl_pct": -4.67
+          },
+          {
+            "symbol": "CAT",
+            "trades": 1,
+            "summe_pnl_pct": -6.54,
+            "avg_pnl_pct": -6.54
+          },
+          {
+            "symbol": "MMM",
+            "trades": 2,
+            "summe_pnl_pct": -6.56,
+            "avg_pnl_pct": -3.28
+          },
+          {
+            "symbol": "CSCO",
+            "trades": 1,
+            "summe_pnl_pct": -7.2,
+            "avg_pnl_pct": -7.2
+          },
+          {
+            "symbol": "ACN",
+            "trades": 2,
+            "summe_pnl_pct": -8.75,
+            "avg_pnl_pct": -4.38
+          },
+          {
+            "symbol": "MRVL",
+            "trades": 5,
+            "summe_pnl_pct": -10.31,
+            "avg_pnl_pct": -2.06
+          },
+          {
+            "symbol": "NOW",
+            "trades": 3,
+            "summe_pnl_pct": -11.73,
+            "avg_pnl_pct": -3.91
+          },
+          {
+            "symbol": "PNC",
+            "trades": 3,
+            "summe_pnl_pct": -13.63,
+            "avg_pnl_pct": -4.54
+          },
+          {
+            "symbol": "DASH",
+            "trades": 7,
+            "summe_pnl_pct": -14.27,
+            "avg_pnl_pct": -2.04
+          },
+          {
+            "symbol": "META",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "JPM",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "KO",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "CVX",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "BNY",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "DUK",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "COF",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "XOM",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "SO",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "MRSH",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "SBUX",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "PH",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "WMB",
+            "trades": 2,
+            "summe_pnl_pct": -16.46,
+            "avg_pnl_pct": -8.23
+          },
+          {
+            "symbol": "QCOM",
+            "trades": 4,
+            "summe_pnl_pct": -20.44,
+            "avg_pnl_pct": -5.11
+          },
+          {
+            "symbol": "NEM",
+            "trades": 3,
+            "summe_pnl_pct": -25.33,
+            "avg_pnl_pct": -8.44
+          },
+          {
+            "symbol": "MS",
+            "trades": 2,
+            "summe_pnl_pct": -32.6,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "MAR",
+            "trades": 2,
+            "summe_pnl_pct": -32.6,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "FCX",
+            "trades": 7,
+            "summe_pnl_pct": -33.64,
+            "avg_pnl_pct": -4.81
+          },
+          {
+            "symbol": "ADBE",
+            "trades": 4,
+            "summe_pnl_pct": -34.64,
+            "avg_pnl_pct": -8.66
+          },
+          {
+            "symbol": "NVDA",
+            "trades": 5,
+            "summe_pnl_pct": -36.6,
+            "avg_pnl_pct": -7.32
+          },
+          {
+            "symbol": "APP",
+            "trades": 10,
+            "summe_pnl_pct": -42.93,
+            "avg_pnl_pct": -4.29
+          },
+          {
+            "symbol": "INTU",
+            "trades": 4,
+            "summe_pnl_pct": -47.33,
+            "avg_pnl_pct": -11.83
+          },
+          {
+            "symbol": "KKR",
+            "trades": 5,
+            "summe_pnl_pct": -48.75,
+            "avg_pnl_pct": -9.75
+          }
+        ]
+      },
+      "bedingungen": {
+        "B1": true,
+        "B2": true,
+        "B2_streng": false,
+        "B2_skaliert": true,
+        "B3": false,
+        "B4": false,
+        "B5": true
+      },
+      "tragfaehig": false
+    },
+    {
+      "kombination": "dev 6 % / Stop 16 % / kein Ziel",
+      "key": [
+        6.0,
+        16.0,
+        0.236,
+        false
+      ],
+      "herkunft": "In-Sample-Score",
+      "is": {
+        "window": "is",
+        "deviation_pct": 6.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 276,
+        "num_symbols": 114,
+        "win_rate": 55.8,
+        "total_return_pct": 2701.84,
+        "avg_return_pct": 9.79,
+        "max_drawdown_pct": -97.8,
+        "robustness_score": 1.663,
+        "max_drawdown_chronologisch_pct": -508.53,
+        "robustness_score_chronologisch": 0.32,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 38.0,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 143,
+        "pf_num_skipped": 133,
+        "pf_total_return_pct": 165.51,
+        "pf_max_drawdown_pct": -29.98,
+        "pf_calmar_ratio": 5.52
+      },
+      "oos": {
+        "window": "oos",
+        "deviation_pct": 6.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 91,
+        "num_symbols": 58,
+        "win_rate": 51.6,
+        "total_return_pct": 947.04,
+        "avg_return_pct": 10.41,
+        "max_drawdown_pct": -173.39,
+        "robustness_score": 0.573,
+        "max_drawdown_chronologisch_pct": -194.29,
+        "robustness_score_chronologisch": 0.511,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 38.5,
+        "besteht_mindestfilter": false,
+        "pf_num_executed": 58,
+        "pf_num_skipped": 33,
+        "pf_total_return_pct": 61.73,
+        "pf_max_drawdown_pct": -15.56,
+        "pf_calmar_ratio": 3.97
+      },
+      "gesamt": {
+        "window": "gesamt",
+        "deviation_pct": 6.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 373,
+        "num_symbols": 121,
+        "win_rate": 55.2,
+        "total_return_pct": 3781.3,
+        "avg_return_pct": 10.14,
+        "max_drawdown_pct": -146.7,
+        "robustness_score": 1.335,
+        "max_drawdown_chronologisch_pct": -508.53,
+        "robustness_score_chronologisch": 0.385,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 37.8,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 207,
+        "pf_num_skipped": 166,
+        "pf_total_return_pct": 380.31,
+        "pf_max_drawdown_pct": -29.98,
+        "pf_calmar_ratio": 12.69
+      },
+      "walk_forward_falten": [
+        [
+          1,
+          -2.36
+        ],
+        [
+          2,
+          15.86
+        ],
+        [
+          3,
+          11.18
+        ]
+      ],
+      "buy_and_hold_oos": {
+        "final_capital": 21907.1,
+        "total_return_pct": 119.07,
+        "max_drawdown_pct": -18.03,
+        "calmar_ratio": 6.6,
+        "num_symbols": 147,
+        "num_skipped_symbols": 1,
+        "zeitraum": {
+          "von": "2023-08-29 00:00:00",
+          "bis": "2026-09-01 00:00:00"
+        }
+      },
+      "nachbar_median_anteil_pct_is": 49.7,
+      "zigzag_feinschritt_avg_pnl": [
+        10.52,
+        10.14,
+        10.02
+      ],
+      "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 54,
+          "rendite_min_pct": 357.59,
+          "rendite_median_pct": 445.98,
+          "rendite_max_pct": 555.84,
+          "rendite_spanne_pp": 198.25,
+          "calmar_min": 10.34,
+          "calmar_median": 15.43,
+          "calmar_max": 21.39
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 16,
+          "rendite_min_pct": 54.12,
+          "rendite_median_pct": 67.79,
+          "rendite_max_pct": 78.1,
+          "rendite_spanne_pp": 23.98,
+          "calmar_min": 3.48,
+          "calmar_median": 4.84,
+          "calmar_max": 5.58
+        }
+      },
+      "reihenfolge_oos": {
+        "permutationen": 200,
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 16,
+        "rendite_min_pct": 54.12,
+        "rendite_median_pct": 67.79,
+        "rendite_max_pct": 78.1,
+        "rendite_spanne_pp": 23.98,
+        "calmar_min": 3.48,
+        "calmar_median": 4.84,
+        "calmar_max": 5.58
+      },
+      "symbolbeitrag": {
+        "symbole_mit_trades": 121,
+        "symbole_positiv": 85,
+        "summe_pnl_pct": 3781.3,
+        "top3_summe_pnl_pct": 668.76,
+        "top3_anteil_pct": 17.7,
+        "bestes_symbol": "INTC",
+        "schlechtestes_symbol": "APP",
+        "tabelle": [
+          {
+            "symbol": "INTC",
+            "trades": 5,
+            "summe_pnl_pct": 269.74,
+            "avg_pnl_pct": 53.95
+          },
+          {
+            "symbol": "HOOD",
+            "trades": 8,
+            "summe_pnl_pct": 203.32,
+            "avg_pnl_pct": 25.42
+          },
+          {
+            "symbol": "AMAT",
+            "trades": 4,
+            "summe_pnl_pct": 195.7,
+            "avg_pnl_pct": 48.92
+          },
+          {
+            "symbol": "AMD",
+            "trades": 8,
+            "summe_pnl_pct": 184.43,
+            "avg_pnl_pct": 23.05
+          },
+          {
+            "symbol": "TSLA",
+            "trades": 11,
+            "summe_pnl_pct": 179.79,
+            "avg_pnl_pct": 16.34
+          },
+          {
+            "symbol": "SLB",
+            "trades": 8,
+            "summe_pnl_pct": 165.21,
+            "avg_pnl_pct": 20.65
+          },
+          {
+            "symbol": "AVGO",
+            "trades": 4,
+            "summe_pnl_pct": 150.97,
+            "avg_pnl_pct": 37.74
+          },
+          {
+            "symbol": "STX",
+            "trades": 4,
+            "summe_pnl_pct": 148.69,
+            "avg_pnl_pct": 37.17
+          },
+          {
+            "symbol": "MU",
+            "trades": 7,
+            "summe_pnl_pct": 146.37,
+            "avg_pnl_pct": 20.91
+          },
+          {
+            "symbol": "VLO",
+            "trades": 6,
+            "summe_pnl_pct": 138.29,
+            "avg_pnl_pct": 23.05
+          },
+          {
+            "symbol": "DELL",
+            "trades": 4,
+            "summe_pnl_pct": 110.88,
+            "avg_pnl_pct": 27.72
+          },
+          {
+            "symbol": "HD",
+            "trades": 2,
+            "summe_pnl_pct": 109.6,
+            "avg_pnl_pct": 54.8
+          },
+          {
+            "symbol": "LOW",
+            "trades": 2,
+            "summe_pnl_pct": 106.62,
+            "avg_pnl_pct": 53.31
+          },
+          {
+            "symbol": "PANW",
+            "trades": 4,
+            "summe_pnl_pct": 104.22,
+            "avg_pnl_pct": 26.06
+          },
+          {
+            "symbol": "GE",
+            "trades": 5,
+            "summe_pnl_pct": 97.48,
+            "avg_pnl_pct": 19.5
+          },
+          {
+            "symbol": "DHR",
+            "trades": 2,
+            "summe_pnl_pct": 91.99,
+            "avg_pnl_pct": 46.0
+          },
+          {
+            "symbol": "PLD",
+            "trades": 4,
+            "summe_pnl_pct": 91.02,
+            "avg_pnl_pct": 22.76
+          },
+          {
+            "symbol": "FTNT",
+            "trades": 4,
+            "summe_pnl_pct": 89.01,
+            "avg_pnl_pct": 22.25
+          },
+          {
+            "symbol": "ANET",
+            "trades": 5,
+            "summe_pnl_pct": 87.96,
+            "avg_pnl_pct": 17.59
+          },
+          {
+            "symbol": "VRT",
+            "trades": 1,
+            "summe_pnl_pct": 86.02,
+            "avg_pnl_pct": 86.02
+          },
+          {
+            "symbol": "GS",
+            "trades": 4,
+            "summe_pnl_pct": 82.51,
+            "avg_pnl_pct": 20.63
+          },
+          {
+            "symbol": "BKNG",
+            "trades": 3,
+            "summe_pnl_pct": 74.93,
+            "avg_pnl_pct": 24.98
+          },
+          {
+            "symbol": "LRCX",
+            "trades": 5,
+            "summe_pnl_pct": 66.15,
+            "avg_pnl_pct": 13.23
+          },
+          {
+            "symbol": "AAPL",
+            "trades": 3,
+            "summe_pnl_pct": 64.99,
+            "avg_pnl_pct": 21.66
+          },
+          {
+            "symbol": "GLW",
+            "trades": 5,
+            "summe_pnl_pct": 63.28,
+            "avg_pnl_pct": 12.66
+          },
+          {
+            "symbol": "MPC",
+            "trades": 5,
+            "summe_pnl_pct": 60.2,
+            "avg_pnl_pct": 12.04
+          },
+          {
+            "symbol": "CMCSA",
+            "trades": 3,
+            "summe_pnl_pct": 59.72,
+            "avg_pnl_pct": 19.91
+          },
+          {
+            "symbol": "APH",
+            "trades": 2,
+            "summe_pnl_pct": 57.87,
+            "avg_pnl_pct": 28.94
+          },
+          {
+            "symbol": "LLY",
+            "trades": 4,
+            "summe_pnl_pct": 54.16,
+            "avg_pnl_pct": 13.54
+          },
+          {
+            "symbol": "PSX",
+            "trades": 6,
+            "summe_pnl_pct": 52.29,
+            "avg_pnl_pct": 8.72
+          },
+          {
+            "symbol": "EQIX",
+            "trades": 2,
+            "summe_pnl_pct": 50.05,
+            "avg_pnl_pct": 25.02
+          },
+          {
+            "symbol": "KLAC",
+            "trades": 3,
+            "summe_pnl_pct": 49.08,
+            "avg_pnl_pct": 16.36
+          },
+          {
+            "symbol": "WDC",
+            "trades": 8,
+            "summe_pnl_pct": 48.7,
+            "avg_pnl_pct": 6.09
+          },
+          {
+            "symbol": "WELL",
+            "trades": 3,
+            "summe_pnl_pct": 46.12,
+            "avg_pnl_pct": 15.37
+          },
+          {
+            "symbol": "COP",
+            "trades": 5,
+            "summe_pnl_pct": 45.9,
+            "avg_pnl_pct": 9.18
+          },
+          {
+            "symbol": "ISRG",
+            "trades": 3,
+            "summe_pnl_pct": 44.48,
+            "avg_pnl_pct": 14.83
+          },
+          {
+            "symbol": "USB",
+            "trades": 3,
+            "summe_pnl_pct": 42.33,
+            "avg_pnl_pct": 14.11
+          },
+          {
+            "symbol": "BA",
+            "trades": 5,
+            "summe_pnl_pct": 38.86,
+            "avg_pnl_pct": 7.77
+          },
+          {
+            "symbol": "C",
+            "trades": 3,
+            "summe_pnl_pct": 38.44,
+            "avg_pnl_pct": 12.81
+          },
+          {
+            "symbol": "HCA",
+            "trades": 3,
+            "summe_pnl_pct": 37.36,
+            "avg_pnl_pct": 12.45
+          },
+          {
+            "symbol": "UNH",
+            "trades": 1,
+            "summe_pnl_pct": 36.74,
+            "avg_pnl_pct": 36.74
+          },
+          {
+            "symbol": "JCI",
+            "trades": 4,
+            "summe_pnl_pct": 32.65,
+            "avg_pnl_pct": 8.16
+          },
+          {
+            "symbol": "LMT",
+            "trades": 1,
+            "summe_pnl_pct": 31.67,
+            "avg_pnl_pct": 31.67
+          },
+          {
+            "symbol": "CSX",
+            "trades": 1,
+            "summe_pnl_pct": 31.64,
+            "avg_pnl_pct": 31.64
+          },
+          {
+            "symbol": "GD",
+            "trades": 1,
+            "summe_pnl_pct": 30.2,
+            "avg_pnl_pct": 30.2
+          },
+          {
+            "symbol": "RTX",
+            "trades": 2,
+            "summe_pnl_pct": 29.74,
+            "avg_pnl_pct": 14.87
+          },
+          {
+            "symbol": "CB",
+            "trades": 2,
+            "summe_pnl_pct": 28.51,
+            "avg_pnl_pct": 14.26
+          },
+          {
+            "symbol": "PWR",
+            "trades": 1,
+            "summe_pnl_pct": 27.06,
+            "avg_pnl_pct": 27.06
+          },
+          {
+            "symbol": "GOOG",
+            "trades": 1,
+            "summe_pnl_pct": 26.88,
+            "avg_pnl_pct": 26.88
+          },
+          {
+            "symbol": "TJX",
+            "trades": 1,
+            "summe_pnl_pct": 26.38,
+            "avg_pnl_pct": 26.38
+          },
+          {
+            "symbol": "ADP",
+            "trades": 3,
+            "summe_pnl_pct": 25.6,
+            "avg_pnl_pct": 8.53
+          },
+          {
+            "symbol": "CME",
+            "trades": 2,
+            "summe_pnl_pct": 25.02,
+            "avg_pnl_pct": 12.51
+          },
+          {
+            "symbol": "NOW",
+            "trades": 3,
+            "summe_pnl_pct": 24.81,
+            "avg_pnl_pct": 8.27
+          },
+          {
+            "symbol": "PM",
+            "trades": 2,
+            "summe_pnl_pct": 24.4,
+            "avg_pnl_pct": 12.2
+          },
+          {
+            "symbol": "UPS",
+            "trades": 1,
+            "summe_pnl_pct": 24.39,
+            "avg_pnl_pct": 24.39
+          },
+          {
+            "symbol": "PLTR",
+            "trades": 5,
+            "summe_pnl_pct": 23.7,
+            "avg_pnl_pct": 4.74
+          },
+          {
+            "symbol": "MRVL",
+            "trades": 5,
+            "summe_pnl_pct": 23.53,
+            "avg_pnl_pct": 4.71
+          },
+          {
+            "symbol": "WMT",
+            "trades": 1,
+            "summe_pnl_pct": 23.41,
+            "avg_pnl_pct": 23.41
+          },
+          {
+            "symbol": "VRTX",
+            "trades": 1,
+            "summe_pnl_pct": 20.6,
+            "avg_pnl_pct": 20.6
+          },
+          {
+            "symbol": "AMZN",
+            "trades": 5,
+            "summe_pnl_pct": 20.53,
+            "avg_pnl_pct": 4.11
+          },
+          {
+            "symbol": "V",
+            "trades": 1,
+            "summe_pnl_pct": 20.43,
+            "avg_pnl_pct": 20.43
+          },
+          {
+            "symbol": "SPGI",
+            "trades": 4,
+            "summe_pnl_pct": 20.35,
+            "avg_pnl_pct": 5.09
+          },
+          {
+            "symbol": "BAC",
+            "trades": 2,
+            "summe_pnl_pct": 19.13,
+            "avg_pnl_pct": 9.56
+          },
+          {
+            "symbol": "ABBV",
+            "trades": 1,
+            "summe_pnl_pct": 18.17,
+            "avg_pnl_pct": 18.17
+          },
+          {
+            "symbol": "TMO",
+            "trades": 1,
+            "summe_pnl_pct": 18.04,
+            "avg_pnl_pct": 18.04
+          },
+          {
+            "symbol": "BLK",
+            "trades": 3,
+            "summe_pnl_pct": 18.0,
+            "avg_pnl_pct": 6.0
+          },
+          {
+            "symbol": "REGN",
+            "trades": 5,
+            "summe_pnl_pct": 16.26,
+            "avg_pnl_pct": 3.25
+          },
+          {
+            "symbol": "DIS",
+            "trades": 4,
+            "summe_pnl_pct": 16.22,
+            "avg_pnl_pct": 4.06
+          },
+          {
+            "symbol": "HWM",
+            "trades": 2,
+            "summe_pnl_pct": 13.62,
+            "avg_pnl_pct": 6.81
+          },
+          {
+            "symbol": "SYK",
+            "trades": 1,
+            "summe_pnl_pct": 13.58,
+            "avg_pnl_pct": 13.58
+          },
+          {
+            "symbol": "CRM",
+            "trades": 7,
+            "summe_pnl_pct": 13.44,
+            "avg_pnl_pct": 1.92
+          },
+          {
+            "symbol": "TT",
+            "trades": 1,
+            "summe_pnl_pct": 13.1,
+            "avg_pnl_pct": 13.1
+          },
+          {
+            "symbol": "T",
+            "trades": 1,
+            "summe_pnl_pct": 12.93,
+            "avg_pnl_pct": 12.93
+          },
+          {
+            "symbol": "AXP",
+            "trades": 2,
+            "summe_pnl_pct": 11.21,
+            "avg_pnl_pct": 5.6
+          },
+          {
+            "symbol": "GOOGL",
+            "trades": 1,
+            "summe_pnl_pct": 9.05,
+            "avg_pnl_pct": 9.05
+          },
+          {
+            "symbol": "MCO",
+            "trades": 4,
+            "summe_pnl_pct": 8.91,
+            "avg_pnl_pct": 2.23
+          },
+          {
+            "symbol": "CDNS",
+            "trades": 2,
+            "summe_pnl_pct": 6.3,
+            "avg_pnl_pct": 3.15
+          },
+          {
+            "symbol": "VZ",
+            "trades": 1,
+            "summe_pnl_pct": 5.92,
+            "avg_pnl_pct": 5.92
+          },
+          {
+            "symbol": "ELV",
+            "trades": 1,
+            "summe_pnl_pct": 4.88,
+            "avg_pnl_pct": 4.88
+          },
+          {
+            "symbol": "SCHW",
+            "trades": 1,
+            "summe_pnl_pct": 4.59,
+            "avg_pnl_pct": 4.59
+          },
+          {
+            "symbol": "IBM",
+            "trades": 3,
+            "summe_pnl_pct": 4.25,
+            "avg_pnl_pct": 1.42
+          },
+          {
+            "symbol": "BRK-B",
+            "trades": 1,
+            "summe_pnl_pct": 3.39,
+            "avg_pnl_pct": 3.39
+          },
+          {
+            "symbol": "CVS",
+            "trades": 1,
+            "summe_pnl_pct": 3.03,
+            "avg_pnl_pct": 3.03
+          },
+          {
+            "symbol": "NFLX",
+            "trades": 2,
+            "summe_pnl_pct": 2.88,
+            "avg_pnl_pct": 1.44
+          },
+          {
+            "symbol": "AMGN",
+            "trades": 1,
+            "summe_pnl_pct": 0.99,
+            "avg_pnl_pct": 0.99
+          },
+          {
+            "symbol": "ADI",
+            "trades": 1,
+            "summe_pnl_pct": -0.8,
+            "avg_pnl_pct": -0.8
+          },
+          {
+            "symbol": "WFC",
+            "trades": 2,
+            "summe_pnl_pct": -3.61,
+            "avg_pnl_pct": -1.81
+          },
+          {
+            "symbol": "MSFT",
+            "trades": 1,
+            "summe_pnl_pct": -4.67,
+            "avg_pnl_pct": -4.67
+          },
+          {
+            "symbol": "CAT",
+            "trades": 1,
+            "summe_pnl_pct": -6.54,
+            "avg_pnl_pct": -6.54
+          },
+          {
+            "symbol": "MMM",
+            "trades": 2,
+            "summe_pnl_pct": -6.56,
+            "avg_pnl_pct": -3.28
+          },
+          {
+            "symbol": "CSCO",
+            "trades": 1,
+            "summe_pnl_pct": -7.2,
+            "avg_pnl_pct": -7.2
+          },
+          {
+            "symbol": "ACN",
+            "trades": 2,
+            "summe_pnl_pct": -8.75,
+            "avg_pnl_pct": -4.38
+          },
+          {
+            "symbol": "PNC",
+            "trades": 3,
+            "summe_pnl_pct": -13.63,
+            "avg_pnl_pct": -4.54
+          },
+          {
+            "symbol": "META",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "MRSH",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "DUK",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "CVX",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "BNY",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "COF",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "SBUX",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "SO",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "XOM",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "PH",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "JPM",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "KO",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "WMB",
+            "trades": 2,
+            "summe_pnl_pct": -16.46,
+            "avg_pnl_pct": -8.23
+          },
+          {
+            "symbol": "ABNB",
+            "trades": 5,
+            "summe_pnl_pct": -18.48,
+            "avg_pnl_pct": -3.7
+          },
+          {
+            "symbol": "CRWD",
+            "trades": 5,
+            "summe_pnl_pct": -18.61,
+            "avg_pnl_pct": -3.72
+          },
+          {
+            "symbol": "QCOM",
+            "trades": 4,
+            "summe_pnl_pct": -20.44,
+            "avg_pnl_pct": -5.11
+          },
+          {
+            "symbol": "NEM",
+            "trades": 3,
+            "summe_pnl_pct": -25.33,
+            "avg_pnl_pct": -8.44
+          },
+          {
+            "symbol": "MAR",
+            "trades": 2,
+            "summe_pnl_pct": -32.6,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "MS",
+            "trades": 2,
+            "summe_pnl_pct": -32.6,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "FCX",
+            "trades": 7,
+            "summe_pnl_pct": -33.64,
+            "avg_pnl_pct": -4.81
+          },
+          {
+            "symbol": "ADBE",
+            "trades": 4,
+            "summe_pnl_pct": -34.64,
+            "avg_pnl_pct": -8.66
+          },
+          {
+            "symbol": "NVDA",
+            "trades": 5,
+            "summe_pnl_pct": -36.6,
+            "avg_pnl_pct": -7.32
+          },
+          {
+            "symbol": "ORCL",
+            "trades": 4,
+            "summe_pnl_pct": -37.97,
+            "avg_pnl_pct": -9.49
+          },
+          {
+            "symbol": "UBER",
+            "trades": 7,
+            "summe_pnl_pct": -45.31,
+            "avg_pnl_pct": -6.47
+          },
+          {
+            "symbol": "INTU",
+            "trades": 4,
+            "summe_pnl_pct": -47.33,
+            "avg_pnl_pct": -11.83
+          },
+          {
+            "symbol": "KKR",
+            "trades": 5,
+            "summe_pnl_pct": -48.75,
+            "avg_pnl_pct": -9.75
+          },
+          {
+            "symbol": "DASH",
+            "trades": 7,
+            "summe_pnl_pct": -70.42,
+            "avg_pnl_pct": -10.06
+          },
+          {
+            "symbol": "APP",
+            "trades": 10,
+            "summe_pnl_pct": -103.02,
+            "avg_pnl_pct": -10.3
+          }
+        ]
+      },
+      "bedingungen": {
+        "B1": true,
+        "B2": true,
+        "B2_streng": false,
+        "B2_skaliert": true,
+        "B3": false,
+        "B4": false,
+        "B5": false
+      },
+      "tragfaehig": false
+    },
+    {
+      "kombination": "dev 2 % / Stop 16 % / kein Ziel",
+      "key": [
+        2.0,
+        16.0,
+        0.236,
+        false
+      ],
+      "herkunft": "In-Sample-Score",
+      "is": {
+        "window": "is",
+        "deviation_pct": 2.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 1228,
+        "num_symbols": 147,
+        "win_rate": 57.9,
+        "total_return_pct": 7047.61,
+        "avg_return_pct": 5.74,
+        "max_drawdown_pct": -154.13,
+        "robustness_score": 1.305,
+        "max_drawdown_chronologisch_pct": -1269.02,
+        "robustness_score_chronologisch": 0.158,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 27.7,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 202,
+        "pf_num_skipped": 1026,
+        "pf_total_return_pct": 144.98,
+        "pf_max_drawdown_pct": -34.16,
+        "pf_calmar_ratio": 4.24
+      },
+      "oos": {
+        "window": "oos",
+        "deviation_pct": 2.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 537,
+        "num_symbols": 144,
+        "win_rate": 57.4,
+        "total_return_pct": 4606.92,
+        "avg_return_pct": 8.58,
+        "max_drawdown_pct": -164.74,
+        "robustness_score": 1.207,
+        "max_drawdown_chronologisch_pct": -372.34,
+        "robustness_score_chronologisch": 0.534,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 27.2,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 78,
+        "pf_num_skipped": 459,
+        "pf_total_return_pct": 139.68,
+        "pf_max_drawdown_pct": -6.17,
+        "pf_calmar_ratio": 22.64
+      },
+      "gesamt": {
+        "window": "gesamt",
+        "deviation_pct": 2.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 1785,
+        "num_symbols": 147,
+        "win_rate": 57.8,
+        "total_return_pct": 12044.75,
+        "avg_return_pct": 6.75,
+        "max_drawdown_pct": -204.03,
+        "robustness_score": 1.397,
+        "max_drawdown_chronologisch_pct": -1269.02,
+        "robustness_score_chronologisch": 0.225,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 28.0,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 268,
+        "pf_num_skipped": 1517,
+        "pf_total_return_pct": 398.23,
+        "pf_max_drawdown_pct": -34.16,
+        "pf_calmar_ratio": 11.66
+      },
+      "walk_forward_falten": [
+        [
+          1,
+          3.31
+        ],
+        [
+          2,
+          12.08
+        ],
+        [
+          3,
+          5.66
+        ]
+      ],
+      "buy_and_hold_oos": {
+        "final_capital": 21907.1,
+        "total_return_pct": 119.07,
+        "max_drawdown_pct": -18.03,
+        "calmar_ratio": 6.6,
+        "num_symbols": 147,
+        "num_skipped_symbols": 1,
+        "zeitraum": {
+          "von": "2023-08-29 00:00:00",
+          "bis": "2026-09-01 00:00:00"
+        }
+      },
+      "nachbar_median_anteil_pct_is": 79.8,
+      "zigzag_feinschritt_avg_pnl": [
+        6.11,
+        6.75,
+        7.03
+      ],
+      "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 332,
+          "rendite_min_pct": 211.58,
+          "rendite_median_pct": 322.82,
+          "rendite_max_pct": 508.89,
+          "rendite_spanne_pp": 297.31,
+          "calmar_min": 6.25,
+          "calmar_median": 9.41,
+          "calmar_max": 17.45
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 126,
+          "rendite_min_pct": 104.74,
+          "rendite_median_pct": 139.87,
+          "rendite_max_pct": 181.89,
+          "rendite_spanne_pp": 77.15,
+          "calmar_min": 8.6,
+          "calmar_median": 17.8,
+          "calmar_max": 50.35
+        }
+      },
+      "reihenfolge_oos": {
+        "permutationen": 200,
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 126,
+        "rendite_min_pct": 104.74,
+        "rendite_median_pct": 139.87,
+        "rendite_max_pct": 181.89,
+        "rendite_spanne_pp": 77.15,
+        "calmar_min": 8.6,
+        "calmar_median": 17.8,
+        "calmar_max": 50.35
+      },
+      "symbolbeitrag": {
+        "symbole_mit_trades": 147,
+        "symbole_positiv": 132,
+        "summe_pnl_pct": 12044.75,
+        "top3_summe_pnl_pct": 964.28,
+        "top3_anteil_pct": 8.0,
+        "bestes_symbol": "STX",
+        "schlechtestes_symbol": "DASH",
+        "tabelle": [
+          {
+            "symbol": "STX",
+            "trades": 15,
+            "summe_pnl_pct": 345.76,
+            "avg_pnl_pct": 23.05
+          },
+          {
+            "symbol": "CRWD",
+            "trades": 14,
+            "summe_pnl_pct": 319.07,
+            "avg_pnl_pct": 22.79
+          },
+          {
+            "symbol": "PANW",
+            "trades": 16,
+            "summe_pnl_pct": 299.45,
+            "avg_pnl_pct": 18.72
+          },
+          {
+            "symbol": "INTC",
+            "trades": 13,
+            "summe_pnl_pct": 279.4,
+            "avg_pnl_pct": 21.49
+          },
+          {
+            "symbol": "AVGO",
+            "trades": 16,
+            "summe_pnl_pct": 241.89,
+            "avg_pnl_pct": 15.12
+          },
+          {
+            "symbol": "PSX",
+            "trades": 19,
+            "summe_pnl_pct": 237.77,
+            "avg_pnl_pct": 12.51
+          },
+          {
+            "symbol": "TSLA",
+            "trades": 23,
+            "summe_pnl_pct": 224.24,
+            "avg_pnl_pct": 9.75
+          },
+          {
+            "symbol": "PWR",
+            "trades": 11,
+            "summe_pnl_pct": 224.1,
+            "avg_pnl_pct": 20.37
+          },
+          {
+            "symbol": "LRCX",
+            "trades": 20,
+            "summe_pnl_pct": 213.11,
+            "avg_pnl_pct": 10.66
+          },
+          {
+            "symbol": "VLO",
+            "trades": 19,
+            "summe_pnl_pct": 211.69,
+            "avg_pnl_pct": 11.14
+          },
+          {
+            "symbol": "NVDA",
+            "trades": 14,
+            "summe_pnl_pct": 210.87,
+            "avg_pnl_pct": 15.06
+          },
+          {
+            "symbol": "HCA",
+            "trades": 13,
+            "summe_pnl_pct": 208.52,
+            "avg_pnl_pct": 16.04
+          },
+          {
+            "symbol": "AMAT",
+            "trades": 19,
+            "summe_pnl_pct": 194.99,
+            "avg_pnl_pct": 10.26
+          },
+          {
+            "symbol": "GLW",
+            "trades": 17,
+            "summe_pnl_pct": 190.79,
+            "avg_pnl_pct": 11.22
+          },
+          {
+            "symbol": "PH",
+            "trades": 16,
+            "summe_pnl_pct": 184.11,
+            "avg_pnl_pct": 11.51
+          },
+          {
+            "symbol": "BKNG",
+            "trades": 11,
+            "summe_pnl_pct": 181.04,
+            "avg_pnl_pct": 16.46
+          },
+          {
+            "symbol": "MPC",
+            "trades": 17,
+            "summe_pnl_pct": 176.91,
+            "avg_pnl_pct": 10.41
+          },
+          {
+            "symbol": "SCHW",
+            "trades": 16,
+            "summe_pnl_pct": 174.15,
+            "avg_pnl_pct": 10.88
+          },
+          {
+            "symbol": "APH",
+            "trades": 12,
+            "summe_pnl_pct": 169.88,
+            "avg_pnl_pct": 14.16
+          },
+          {
+            "symbol": "DE",
+            "trades": 11,
+            "summe_pnl_pct": 168.24,
+            "avg_pnl_pct": 15.29
+          },
+          {
+            "symbol": "DELL",
+            "trades": 10,
+            "summe_pnl_pct": 167.73,
+            "avg_pnl_pct": 16.77
+          },
+          {
+            "symbol": "MRVL",
+            "trades": 20,
+            "summe_pnl_pct": 159.71,
+            "avg_pnl_pct": 7.99
+          },
+          {
+            "symbol": "CDNS",
+            "trades": 12,
+            "summe_pnl_pct": 154.38,
+            "avg_pnl_pct": 12.86
+          },
+          {
+            "symbol": "ELV",
+            "trades": 14,
+            "summe_pnl_pct": 152.28,
+            "avg_pnl_pct": 10.88
+          },
+          {
+            "symbol": "WELL",
+            "trades": 16,
+            "summe_pnl_pct": 151.93,
+            "avg_pnl_pct": 9.5
+          },
+          {
+            "symbol": "AXP",
+            "trades": 13,
+            "summe_pnl_pct": 150.37,
+            "avg_pnl_pct": 11.57
+          },
+          {
+            "symbol": "LOW",
+            "trades": 8,
+            "summe_pnl_pct": 148.7,
+            "avg_pnl_pct": 18.59
+          },
+          {
+            "symbol": "VRTX",
+            "trades": 16,
+            "summe_pnl_pct": 148.32,
+            "avg_pnl_pct": 9.27
+          },
+          {
+            "symbol": "JPM",
+            "trades": 10,
+            "summe_pnl_pct": 145.82,
+            "avg_pnl_pct": 14.58
+          },
+          {
+            "symbol": "WDC",
+            "trades": 18,
+            "summe_pnl_pct": 145.11,
+            "avg_pnl_pct": 8.06
+          },
+          {
+            "symbol": "HWM",
+            "trades": 13,
+            "summe_pnl_pct": 142.26,
+            "avg_pnl_pct": 10.94
+          },
+          {
+            "symbol": "BA",
+            "trades": 16,
+            "summe_pnl_pct": 137.59,
+            "avg_pnl_pct": 8.6
+          },
+          {
+            "symbol": "CSX",
+            "trades": 11,
+            "summe_pnl_pct": 131.39,
+            "avg_pnl_pct": 11.94
+          },
+          {
+            "symbol": "ACN",
+            "trades": 14,
+            "summe_pnl_pct": 129.82,
+            "avg_pnl_pct": 9.27
+          },
+          {
+            "symbol": "ANET",
+            "trades": 17,
+            "summe_pnl_pct": 129.52,
+            "avg_pnl_pct": 7.62
+          },
+          {
+            "symbol": "KKR",
+            "trades": 12,
+            "summe_pnl_pct": 127.33,
+            "avg_pnl_pct": 10.61
+          },
+          {
+            "symbol": "IBM",
+            "trades": 13,
+            "summe_pnl_pct": 126.27,
+            "avg_pnl_pct": 9.71
+          },
+          {
+            "symbol": "VRT",
+            "trades": 4,
+            "summe_pnl_pct": 123.89,
+            "avg_pnl_pct": 30.97
+          },
+          {
+            "symbol": "MNST",
+            "trades": 11,
+            "summe_pnl_pct": 123.12,
+            "avg_pnl_pct": 11.19
+          },
+          {
+            "symbol": "LLY",
+            "trades": 12,
+            "summe_pnl_pct": 121.54,
+            "avg_pnl_pct": 10.13
+          },
+          {
+            "symbol": "WFC",
+            "trades": 17,
+            "summe_pnl_pct": 117.26,
+            "avg_pnl_pct": 6.9
+          },
+          {
+            "symbol": "GD",
+            "trades": 11,
+            "summe_pnl_pct": 110.31,
+            "avg_pnl_pct": 10.03
+          },
+          {
+            "symbol": "DHR",
+            "trades": 13,
+            "summe_pnl_pct": 107.53,
+            "avg_pnl_pct": 8.27
+          },
+          {
+            "symbol": "V",
+            "trades": 7,
+            "summe_pnl_pct": 107.49,
+            "avg_pnl_pct": 15.36
+          },
+          {
+            "symbol": "ADI",
+            "trades": 12,
+            "summe_pnl_pct": 107.49,
+            "avg_pnl_pct": 8.96
+          },
+          {
+            "symbol": "MAR",
+            "trades": 9,
+            "summe_pnl_pct": 107.2,
+            "avg_pnl_pct": 11.91
+          },
+          {
+            "symbol": "ISRG",
+            "trades": 15,
+            "summe_pnl_pct": 106.24,
+            "avg_pnl_pct": 7.08
+          },
+          {
+            "symbol": "COP",
+            "trades": 13,
+            "summe_pnl_pct": 106.09,
+            "avg_pnl_pct": 8.16
+          },
+          {
+            "symbol": "NFLX",
+            "trades": 15,
+            "summe_pnl_pct": 104.21,
+            "avg_pnl_pct": 6.95
+          },
+          {
+            "symbol": "HD",
+            "trades": 12,
+            "summe_pnl_pct": 102.23,
+            "avg_pnl_pct": 8.52
+          },
+          {
+            "symbol": "TT",
+            "trades": 7,
+            "summe_pnl_pct": 100.38,
+            "avg_pnl_pct": 14.34
+          },
+          {
+            "symbol": "GILD",
+            "trades": 13,
+            "summe_pnl_pct": 99.43,
+            "avg_pnl_pct": 7.65
+          },
+          {
+            "symbol": "MCK",
+            "trades": 15,
+            "summe_pnl_pct": 99.24,
+            "avg_pnl_pct": 6.62
+          },
+          {
+            "symbol": "PLD",
+            "trades": 15,
+            "summe_pnl_pct": 98.4,
+            "avg_pnl_pct": 6.56
+          },
+          {
+            "symbol": "PNC",
+            "trades": 16,
+            "summe_pnl_pct": 97.09,
+            "avg_pnl_pct": 6.07
+          },
+          {
+            "symbol": "C",
+            "trades": 16,
+            "summe_pnl_pct": 95.93,
+            "avg_pnl_pct": 6.0
+          },
+          {
+            "symbol": "BAC",
+            "trades": 15,
+            "summe_pnl_pct": 95.87,
+            "avg_pnl_pct": 6.39
+          },
+          {
+            "symbol": "PM",
+            "trades": 12,
+            "summe_pnl_pct": 93.78,
+            "avg_pnl_pct": 7.82
+          },
+          {
+            "symbol": "EQIX",
+            "trades": 12,
+            "summe_pnl_pct": 92.91,
+            "avg_pnl_pct": 7.74
+          },
+          {
+            "symbol": "UNH",
+            "trades": 10,
+            "summe_pnl_pct": 91.59,
+            "avg_pnl_pct": 9.16
+          },
+          {
+            "symbol": "UNP",
+            "trades": 8,
+            "summe_pnl_pct": 91.44,
+            "avg_pnl_pct": 11.43
+          },
+          {
+            "symbol": "MRSH",
+            "trades": 7,
+            "summe_pnl_pct": 89.01,
+            "avg_pnl_pct": 12.72
+          },
+          {
+            "symbol": "ETN",
+            "trades": 10,
+            "summe_pnl_pct": 87.6,
+            "avg_pnl_pct": 8.76
+          },
+          {
+            "symbol": "CB",
+            "trades": 8,
+            "summe_pnl_pct": 86.94,
+            "avg_pnl_pct": 10.87
+          },
+          {
+            "symbol": "UPS",
+            "trades": 15,
+            "summe_pnl_pct": 83.03,
+            "avg_pnl_pct": 5.54
+          },
+          {
+            "symbol": "CAT",
+            "trades": 12,
+            "summe_pnl_pct": 81.66,
+            "avg_pnl_pct": 6.8
+          },
+          {
+            "symbol": "GE",
+            "trades": 13,
+            "summe_pnl_pct": 81.47,
+            "avg_pnl_pct": 6.27
+          },
+          {
+            "symbol": "MSFT",
+            "trades": 9,
+            "summe_pnl_pct": 78.05,
+            "avg_pnl_pct": 8.67
+          },
+          {
+            "symbol": "MA",
+            "trades": 9,
+            "summe_pnl_pct": 76.04,
+            "avg_pnl_pct": 8.45
+          },
+          {
+            "symbol": "CME",
+            "trades": 10,
+            "summe_pnl_pct": 75.57,
+            "avg_pnl_pct": 7.56
+          },
+          {
+            "symbol": "KO",
+            "trades": 8,
+            "summe_pnl_pct": 71.71,
+            "avg_pnl_pct": 8.96
+          },
+          {
+            "symbol": "MRK",
+            "trades": 11,
+            "summe_pnl_pct": 70.17,
+            "avg_pnl_pct": 6.38
+          },
+          {
+            "symbol": "NEE",
+            "trades": 9,
+            "summe_pnl_pct": 68.66,
+            "avg_pnl_pct": 7.63
+          },
+          {
+            "symbol": "ADBE",
+            "trades": 13,
+            "summe_pnl_pct": 67.09,
+            "avg_pnl_pct": 5.16
+          },
+          {
+            "symbol": "LMT",
+            "trades": 12,
+            "summe_pnl_pct": 66.79,
+            "avg_pnl_pct": 5.57
+          },
+          {
+            "symbol": "BMY",
+            "trades": 14,
+            "summe_pnl_pct": 63.41,
+            "avg_pnl_pct": 4.53
+          },
+          {
+            "symbol": "WMT",
+            "trades": 8,
+            "summe_pnl_pct": 62.83,
+            "avg_pnl_pct": 7.85
+          },
+          {
+            "symbol": "ABBV",
+            "trades": 10,
+            "summe_pnl_pct": 62.04,
+            "avg_pnl_pct": 6.2
+          },
+          {
+            "symbol": "COF",
+            "trades": 15,
+            "summe_pnl_pct": 61.77,
+            "avg_pnl_pct": 4.12
+          },
+          {
+            "symbol": "MU",
+            "trades": 13,
+            "summe_pnl_pct": 61.65,
+            "avg_pnl_pct": 4.74
+          },
+          {
+            "symbol": "TXN",
+            "trades": 11,
+            "summe_pnl_pct": 61.51,
+            "avg_pnl_pct": 5.59
+          },
+          {
+            "symbol": "USB",
+            "trades": 8,
+            "summe_pnl_pct": 60.42,
+            "avg_pnl_pct": 7.55
+          },
+          {
+            "symbol": "T",
+            "trades": 5,
+            "summe_pnl_pct": 58.85,
+            "avg_pnl_pct": 11.77
+          },
+          {
+            "symbol": "PFE",
+            "trades": 17,
+            "summe_pnl_pct": 58.82,
+            "avg_pnl_pct": 3.46
+          },
+          {
+            "symbol": "MCO",
+            "trades": 11,
+            "summe_pnl_pct": 58.45,
+            "avg_pnl_pct": 5.31
+          },
+          {
+            "symbol": "AMZN",
+            "trades": 18,
+            "summe_pnl_pct": 58.06,
+            "avg_pnl_pct": 3.23
+          },
+          {
+            "symbol": "GOOGL",
+            "trades": 7,
+            "summe_pnl_pct": 56.93,
+            "avg_pnl_pct": 8.13
+          },
+          {
+            "symbol": "SBUX",
+            "trades": 8,
+            "summe_pnl_pct": 56.74,
+            "avg_pnl_pct": 7.09
+          },
+          {
+            "symbol": "ADP",
+            "trades": 10,
+            "summe_pnl_pct": 55.67,
+            "avg_pnl_pct": 5.57
+          },
+          {
+            "symbol": "JNJ",
+            "trades": 12,
+            "summe_pnl_pct": 52.65,
+            "avg_pnl_pct": 4.39
+          },
+          {
+            "symbol": "VZ",
+            "trades": 11,
+            "summe_pnl_pct": 51.19,
+            "avg_pnl_pct": 4.65
+          },
+          {
+            "symbol": "FTNT",
+            "trades": 15,
+            "summe_pnl_pct": 49.36,
+            "avg_pnl_pct": 3.29
+          },
+          {
+            "symbol": "CVS",
+            "trades": 14,
+            "summe_pnl_pct": 49.27,
+            "avg_pnl_pct": 3.52
+          },
+          {
+            "symbol": "TJX",
+            "trades": 8,
+            "summe_pnl_pct": 49.19,
+            "avg_pnl_pct": 6.15
+          },
+          {
+            "symbol": "XOM",
+            "trades": 9,
+            "summe_pnl_pct": 48.86,
+            "avg_pnl_pct": 5.43
+          },
+          {
+            "symbol": "BLK",
+            "trades": 12,
+            "summe_pnl_pct": 45.64,
+            "avg_pnl_pct": 3.8
+          },
+          {
+            "symbol": "PEP",
+            "trades": 6,
+            "summe_pnl_pct": 44.29,
+            "avg_pnl_pct": 7.38
+          },
+          {
+            "symbol": "COST",
+            "trades": 10,
+            "summe_pnl_pct": 44.01,
+            "avg_pnl_pct": 4.4
+          },
+          {
+            "symbol": "BX",
+            "trades": 12,
+            "summe_pnl_pct": 43.68,
+            "avg_pnl_pct": 3.64
+          },
+          {
+            "symbol": "QCOM",
+            "trades": 13,
+            "summe_pnl_pct": 43.04,
+            "avg_pnl_pct": 3.31
+          },
+          {
+            "symbol": "WMB",
+            "trades": 7,
+            "summe_pnl_pct": 42.07,
+            "avg_pnl_pct": 6.01
+          },
+          {
+            "symbol": "NOW",
+            "trades": 16,
+            "summe_pnl_pct": 40.93,
+            "avg_pnl_pct": 2.56
+          },
+          {
+            "symbol": "ICE",
+            "trades": 12,
+            "summe_pnl_pct": 39.84,
+            "avg_pnl_pct": 3.32
+          },
+          {
+            "symbol": "BRK-B",
+            "trades": 4,
+            "summe_pnl_pct": 39.3,
+            "avg_pnl_pct": 9.82
+          },
+          {
+            "symbol": "SPGI",
+            "trades": 14,
+            "summe_pnl_pct": 39.28,
+            "avg_pnl_pct": 2.81
+          },
+          {
+            "symbol": "SO",
+            "trades": 6,
+            "summe_pnl_pct": 38.9,
+            "avg_pnl_pct": 6.48
+          },
+          {
+            "symbol": "MDT",
+            "trades": 8,
+            "summe_pnl_pct": 38.07,
+            "avg_pnl_pct": 4.76
+          },
+          {
+            "symbol": "RTX",
+            "trades": 8,
+            "summe_pnl_pct": 36.41,
+            "avg_pnl_pct": 4.55
+          },
+          {
+            "symbol": "WM",
+            "trades": 12,
+            "summe_pnl_pct": 36.39,
+            "avg_pnl_pct": 3.03
+          },
+          {
+            "symbol": "MCD",
+            "trades": 9,
+            "summe_pnl_pct": 36.36,
+            "avg_pnl_pct": 4.04
+          },
+          {
+            "symbol": "LIN",
+            "trades": 5,
+            "summe_pnl_pct": 35.02,
+            "avg_pnl_pct": 7.0
+          },
+          {
+            "symbol": "GS",
+            "trades": 11,
+            "summe_pnl_pct": 32.78,
+            "avg_pnl_pct": 2.98
+          },
+          {
+            "symbol": "MS",
+            "trades": 15,
+            "summe_pnl_pct": 32.45,
+            "avg_pnl_pct": 2.16
+          },
+          {
+            "symbol": "MMM",
+            "trades": 15,
+            "summe_pnl_pct": 31.75,
+            "avg_pnl_pct": 2.12
+          },
+          {
+            "symbol": "GOOG",
+            "trades": 7,
+            "summe_pnl_pct": 31.69,
+            "avg_pnl_pct": 4.53
+          },
+          {
+            "symbol": "INTU",
+            "trades": 13,
+            "summe_pnl_pct": 29.73,
+            "avg_pnl_pct": 2.29
+          },
+          {
+            "symbol": "AAPL",
+            "trades": 14,
+            "summe_pnl_pct": 29.28,
+            "avg_pnl_pct": 2.09
+          },
+          {
+            "symbol": "SYK",
+            "trades": 6,
+            "summe_pnl_pct": 29.27,
+            "avg_pnl_pct": 4.88
+          },
+          {
+            "symbol": "META",
+            "trades": 7,
+            "summe_pnl_pct": 27.17,
+            "avg_pnl_pct": 3.88
+          },
+          {
+            "symbol": "MO",
+            "trades": 10,
+            "summe_pnl_pct": 26.76,
+            "avg_pnl_pct": 2.68
+          },
+          {
+            "symbol": "PLTR",
+            "trades": 9,
+            "summe_pnl_pct": 25.86,
+            "avg_pnl_pct": 2.87
+          },
+          {
+            "symbol": "AMGN",
+            "trades": 9,
+            "summe_pnl_pct": 25.75,
+            "avg_pnl_pct": 2.86
+          },
+          {
+            "symbol": "CVX",
+            "trades": 8,
+            "summe_pnl_pct": 24.28,
+            "avg_pnl_pct": 3.04
+          },
+          {
+            "symbol": "PG",
+            "trades": 8,
+            "summe_pnl_pct": 23.44,
+            "avg_pnl_pct": 2.93
+          },
+          {
+            "symbol": "ABT",
+            "trades": 7,
+            "summe_pnl_pct": 20.85,
+            "avg_pnl_pct": 2.98
+          },
+          {
+            "symbol": "FCX",
+            "trades": 20,
+            "summe_pnl_pct": 20.66,
+            "avg_pnl_pct": 1.03
+          },
+          {
+            "symbol": "JCI",
+            "trades": 13,
+            "summe_pnl_pct": 14.94,
+            "avg_pnl_pct": 1.15
+          },
+          {
+            "symbol": "CRM",
+            "trades": 19,
+            "summe_pnl_pct": 11.97,
+            "avg_pnl_pct": 0.63
+          },
+          {
+            "symbol": "PGR",
+            "trades": 4,
+            "summe_pnl_pct": 7.01,
+            "avg_pnl_pct": 1.75
+          },
+          {
+            "symbol": "KLAC",
+            "trades": 13,
+            "summe_pnl_pct": 4.92,
+            "avg_pnl_pct": 0.38
+          },
+          {
+            "symbol": "HOOD",
+            "trades": 10,
+            "summe_pnl_pct": 0.55,
+            "avg_pnl_pct": 0.05
+          },
+          {
+            "symbol": "DUK",
+            "trades": 8,
+            "summe_pnl_pct": 0.09,
+            "avg_pnl_pct": 0.01
+          },
+          {
+            "symbol": "TMO",
+            "trades": 11,
+            "summe_pnl_pct": -1.19,
+            "avg_pnl_pct": -0.11
+          },
+          {
+            "symbol": "UBER",
+            "trades": 22,
+            "summe_pnl_pct": -2.06,
+            "avg_pnl_pct": -0.09
+          },
+          {
+            "symbol": "TMUS",
+            "trades": 9,
+            "summe_pnl_pct": -3.28,
+            "avg_pnl_pct": -0.36
+          },
+          {
+            "symbol": "BNY",
+            "trades": 8,
+            "summe_pnl_pct": -9.8,
+            "avg_pnl_pct": -1.22
+          },
+          {
+            "symbol": "AMD",
+            "trades": 17,
+            "summe_pnl_pct": -30.95,
+            "avg_pnl_pct": -1.82
+          },
+          {
+            "symbol": "NEM",
+            "trades": 17,
+            "summe_pnl_pct": -33.93,
+            "avg_pnl_pct": -2.0
+          },
+          {
+            "symbol": "CSCO",
+            "trades": 8,
+            "summe_pnl_pct": -45.53,
+            "avg_pnl_pct": -5.69
+          },
+          {
+            "symbol": "ORCL",
+            "trades": 12,
+            "summe_pnl_pct": -45.77,
+            "avg_pnl_pct": -3.81
+          },
+          {
+            "symbol": "DIS",
+            "trades": 17,
+            "summe_pnl_pct": -49.2,
+            "avg_pnl_pct": -2.89
+          },
+          {
+            "symbol": "SLB",
+            "trades": 18,
+            "summe_pnl_pct": -56.51,
+            "avg_pnl_pct": -3.14
+          },
+          {
+            "symbol": "APP",
+            "trades": 10,
+            "summe_pnl_pct": -64.64,
+            "avg_pnl_pct": -6.46
+          },
+          {
+            "symbol": "CMCSA",
+            "trades": 12,
+            "summe_pnl_pct": -67.29,
+            "avg_pnl_pct": -5.61
+          },
+          {
+            "symbol": "ABNB",
+            "trades": 16,
+            "summe_pnl_pct": -78.45,
+            "avg_pnl_pct": -4.9
+          },
+          {
+            "symbol": "REGN",
+            "trades": 17,
+            "summe_pnl_pct": -89.91,
+            "avg_pnl_pct": -5.29
+          },
+          {
+            "symbol": "DASH",
+            "trades": 6,
+            "summe_pnl_pct": -97.8,
+            "avg_pnl_pct": -16.3
+          }
+        ]
+      },
+      "bedingungen": {
+        "B1": true,
+        "B2": true,
+        "B2_streng": true,
+        "B2_skaliert": true,
+        "B3": true,
+        "B4": true,
+        "B5": true
+      },
+      "tragfaehig": true
+    },
+    {
+      "kombination": "dev 4 % / Stop 16 % / kein Ziel",
+      "key": [
+        4.0,
+        16.0,
+        0.236,
+        false
+      ],
+      "herkunft": "In-Sample-Score",
+      "is": {
+        "window": "is",
+        "deviation_pct": 4.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 496,
+        "num_symbols": 134,
+        "win_rate": 53.6,
+        "total_return_pct": 3355.89,
+        "avg_return_pct": 6.77,
+        "max_drawdown_pct": -127.27,
+        "robustness_score": 1.184,
+        "max_drawdown_chronologisch_pct": -991.69,
+        "robustness_score_chronologisch": 0.152,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 36.5,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 173,
+        "pf_num_skipped": 323,
+        "pf_total_return_pct": 141.61,
+        "pf_max_drawdown_pct": -30.53,
+        "pf_calmar_ratio": 4.64
+      },
+      "oos": {
+        "window": "oos",
+        "deviation_pct": 4.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 225,
+        "num_symbols": 108,
+        "win_rate": 58.2,
+        "total_return_pct": 2196.42,
+        "avg_return_pct": 9.76,
+        "max_drawdown_pct": -148.15,
+        "robustness_score": 0.988,
+        "max_drawdown_chronologisch_pct": -353.02,
+        "robustness_score_chronologisch": 0.415,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 33.3,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 69,
+        "pf_num_skipped": 156,
+        "pf_total_return_pct": 111.57,
+        "pf_max_drawdown_pct": -7.82,
+        "pf_calmar_ratio": 14.27
+      },
+      "gesamt": {
+        "window": "gesamt",
+        "deviation_pct": 4.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 738,
+        "num_symbols": 143,
+        "win_rate": 55.7,
+        "total_return_pct": 5879.53,
+        "avg_return_pct": 7.97,
+        "max_drawdown_pct": -190.46,
+        "robustness_score": 1.136,
+        "max_drawdown_chronologisch_pct": -991.69,
+        "robustness_score_chronologisch": 0.218,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 35.4,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 239,
+        "pf_num_skipped": 499,
+        "pf_total_return_pct": 362.57,
+        "pf_max_drawdown_pct": -30.53,
+        "pf_calmar_ratio": 11.88
+      },
+      "walk_forward_falten": [
+        [
+          1,
+          -1.16
+        ],
+        [
+          2,
+          14.88
+        ],
+        [
+          3,
+          9.57
+        ]
+      ],
+      "buy_and_hold_oos": {
+        "final_capital": 21907.1,
+        "total_return_pct": 119.07,
+        "max_drawdown_pct": -18.03,
+        "calmar_ratio": 6.6,
+        "num_symbols": 147,
+        "num_skipped_symbols": 1,
+        "zeitraum": {
+          "von": "2023-08-29 00:00:00",
+          "bis": "2026-09-01 00:00:00"
+        }
+      },
+      "nachbar_median_anteil_pct_is": 80.2,
+      "zigzag_feinschritt_avg_pnl": [
+        6.7,
+        7.97,
+        8.2
+      ],
+      "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 122,
+          "rendite_min_pct": 301.25,
+          "rendite_median_pct": 384.88,
+          "rendite_max_pct": 496.27,
+          "rendite_spanne_pp": 195.02,
+          "calmar_min": 8.76,
+          "calmar_median": 11.73,
+          "calmar_max": 17.02
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 35,
+          "rendite_min_pct": 90.74,
+          "rendite_median_pct": 110.56,
+          "rendite_max_pct": 127.13,
+          "rendite_spanne_pp": 36.39,
+          "calmar_min": 9.42,
+          "calmar_median": 12.26,
+          "calmar_max": 18.84
+        }
+      },
+      "reihenfolge_oos": {
+        "permutationen": 200,
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 35,
+        "rendite_min_pct": 90.74,
+        "rendite_median_pct": 110.56,
+        "rendite_max_pct": 127.13,
+        "rendite_spanne_pp": 36.39,
+        "calmar_min": 9.42,
+        "calmar_median": 12.26,
+        "calmar_max": 18.84
+      },
+      "symbolbeitrag": {
+        "symbole_mit_trades": 143,
+        "symbole_positiv": 115,
+        "summe_pnl_pct": 5879.53,
+        "top3_summe_pnl_pct": 865.56,
+        "top3_anteil_pct": 14.7,
+        "bestes_symbol": "CRWD",
+        "schlechtestes_symbol": "DASH",
+        "tabelle": [
+          {
+            "symbol": "CRWD",
+            "trades": 14,
+            "summe_pnl_pct": 318.84,
+            "avg_pnl_pct": 22.77
+          },
+          {
+            "symbol": "INTC",
+            "trades": 6,
+            "summe_pnl_pct": 315.8,
+            "avg_pnl_pct": 52.63
+          },
+          {
+            "symbol": "PANW",
+            "trades": 8,
+            "summe_pnl_pct": 230.92,
+            "avg_pnl_pct": 28.86
+          },
+          {
+            "symbol": "HD",
+            "trades": 7,
+            "summe_pnl_pct": 167.02,
+            "avg_pnl_pct": 23.86
+          },
+          {
+            "symbol": "VLO",
+            "trades": 6,
+            "summe_pnl_pct": 158.54,
+            "avg_pnl_pct": 26.42
+          },
+          {
+            "symbol": "SLB",
+            "trades": 12,
+            "summe_pnl_pct": 152.95,
+            "avg_pnl_pct": 12.75
+          },
+          {
+            "symbol": "APH",
+            "trades": 5,
+            "summe_pnl_pct": 152.52,
+            "avg_pnl_pct": 30.5
+          },
+          {
+            "symbol": "AVGO",
+            "trades": 8,
+            "summe_pnl_pct": 149.31,
+            "avg_pnl_pct": 18.66
+          },
+          {
+            "symbol": "LRCX",
+            "trades": 8,
+            "summe_pnl_pct": 146.2,
+            "avg_pnl_pct": 18.27
+          },
+          {
+            "symbol": "PWR",
+            "trades": 7,
+            "summe_pnl_pct": 140.63,
+            "avg_pnl_pct": 20.09
+          },
+          {
+            "symbol": "CAT",
+            "trades": 8,
+            "summe_pnl_pct": 138.59,
+            "avg_pnl_pct": 17.32
+          },
+          {
+            "symbol": "BKNG",
+            "trades": 6,
+            "summe_pnl_pct": 131.06,
+            "avg_pnl_pct": 21.84
+          },
+          {
+            "symbol": "AMD",
+            "trades": 9,
+            "summe_pnl_pct": 130.16,
+            "avg_pnl_pct": 14.46
+          },
+          {
+            "symbol": "ACN",
+            "trades": 8,
+            "summe_pnl_pct": 110.44,
+            "avg_pnl_pct": 13.8
+          },
+          {
+            "symbol": "WDC",
+            "trades": 13,
+            "summe_pnl_pct": 110.23,
+            "avg_pnl_pct": 8.48
+          },
+          {
+            "symbol": "HWM",
+            "trades": 8,
+            "summe_pnl_pct": 109.96,
+            "avg_pnl_pct": 13.74
+          },
+          {
+            "symbol": "TSLA",
+            "trades": 17,
+            "summe_pnl_pct": 102.18,
+            "avg_pnl_pct": 6.01
+          },
+          {
+            "symbol": "CSX",
+            "trades": 6,
+            "summe_pnl_pct": 100.66,
+            "avg_pnl_pct": 16.78
+          },
+          {
+            "symbol": "HCA",
+            "trades": 5,
+            "summe_pnl_pct": 98.56,
+            "avg_pnl_pct": 19.71
+          },
+          {
+            "symbol": "COP",
+            "trades": 8,
+            "summe_pnl_pct": 96.56,
+            "avg_pnl_pct": 12.07
+          },
+          {
+            "symbol": "DHR",
+            "trades": 5,
+            "summe_pnl_pct": 92.78,
+            "avg_pnl_pct": 18.56
+          },
+          {
+            "symbol": "UNH",
+            "trades": 6,
+            "summe_pnl_pct": 92.73,
+            "avg_pnl_pct": 15.46
+          },
+          {
+            "symbol": "PLD",
+            "trades": 5,
+            "summe_pnl_pct": 91.59,
+            "avg_pnl_pct": 18.32
+          },
+          {
+            "symbol": "GLW",
+            "trades": 6,
+            "summe_pnl_pct": 90.42,
+            "avg_pnl_pct": 15.07
+          },
+          {
+            "symbol": "ADBE",
+            "trades": 7,
+            "summe_pnl_pct": 89.97,
+            "avg_pnl_pct": 12.85
+          },
+          {
+            "symbol": "LOW",
+            "trades": 3,
+            "summe_pnl_pct": 88.99,
+            "avg_pnl_pct": 29.66
+          },
+          {
+            "symbol": "CVS",
+            "trades": 4,
+            "summe_pnl_pct": 88.54,
+            "avg_pnl_pct": 22.14
+          },
+          {
+            "symbol": "MPC",
+            "trades": 4,
+            "summe_pnl_pct": 87.56,
+            "avg_pnl_pct": 21.89
+          },
+          {
+            "symbol": "WELL",
+            "trades": 5,
+            "summe_pnl_pct": 80.14,
+            "avg_pnl_pct": 16.03
+          },
+          {
+            "symbol": "NFLX",
+            "trades": 7,
+            "summe_pnl_pct": 77.97,
+            "avg_pnl_pct": 11.14
+          },
+          {
+            "symbol": "LLY",
+            "trades": 5,
+            "summe_pnl_pct": 77.44,
+            "avg_pnl_pct": 15.49
+          },
+          {
+            "symbol": "USB",
+            "trades": 6,
+            "summe_pnl_pct": 77.14,
+            "avg_pnl_pct": 12.86
+          },
+          {
+            "symbol": "PM",
+            "trades": 5,
+            "summe_pnl_pct": 75.25,
+            "avg_pnl_pct": 15.05
+          },
+          {
+            "symbol": "STX",
+            "trades": 11,
+            "summe_pnl_pct": 72.78,
+            "avg_pnl_pct": 6.62
+          },
+          {
+            "symbol": "CB",
+            "trades": 3,
+            "summe_pnl_pct": 70.42,
+            "avg_pnl_pct": 23.47
+          },
+          {
+            "symbol": "NEM",
+            "trades": 9,
+            "summe_pnl_pct": 69.45,
+            "avg_pnl_pct": 7.72
+          },
+          {
+            "symbol": "AMZN",
+            "trades": 7,
+            "summe_pnl_pct": 68.46,
+            "avg_pnl_pct": 9.78
+          },
+          {
+            "symbol": "HOOD",
+            "trades": 11,
+            "summe_pnl_pct": 67.9,
+            "avg_pnl_pct": 6.17
+          },
+          {
+            "symbol": "FTNT",
+            "trades": 6,
+            "summe_pnl_pct": 65.8,
+            "avg_pnl_pct": 10.97
+          },
+          {
+            "symbol": "VRTX",
+            "trades": 4,
+            "summe_pnl_pct": 65.61,
+            "avg_pnl_pct": 16.4
+          },
+          {
+            "symbol": "BA",
+            "trades": 8,
+            "summe_pnl_pct": 59.91,
+            "avg_pnl_pct": 7.49
+          },
+          {
+            "symbol": "DIS",
+            "trades": 7,
+            "summe_pnl_pct": 59.46,
+            "avg_pnl_pct": 8.49
+          },
+          {
+            "symbol": "MNST",
+            "trades": 3,
+            "summe_pnl_pct": 58.47,
+            "avg_pnl_pct": 19.49
+          },
+          {
+            "symbol": "XOM",
+            "trades": 6,
+            "summe_pnl_pct": 58.43,
+            "avg_pnl_pct": 9.74
+          },
+          {
+            "symbol": "UBER",
+            "trades": 10,
+            "summe_pnl_pct": 57.56,
+            "avg_pnl_pct": 5.76
+          },
+          {
+            "symbol": "PSX",
+            "trades": 8,
+            "summe_pnl_pct": 55.38,
+            "avg_pnl_pct": 6.92
+          },
+          {
+            "symbol": "AAPL",
+            "trades": 5,
+            "summe_pnl_pct": 48.54,
+            "avg_pnl_pct": 9.71
+          },
+          {
+            "symbol": "RTX",
+            "trades": 3,
+            "summe_pnl_pct": 48.01,
+            "avg_pnl_pct": 16.0
+          },
+          {
+            "symbol": "BAC",
+            "trades": 6,
+            "summe_pnl_pct": 47.97,
+            "avg_pnl_pct": 8.0
+          },
+          {
+            "symbol": "META",
+            "trades": 6,
+            "summe_pnl_pct": 47.22,
+            "avg_pnl_pct": 7.87
+          },
+          {
+            "symbol": "ABBV",
+            "trades": 3,
+            "summe_pnl_pct": 45.43,
+            "avg_pnl_pct": 15.14
+          },
+          {
+            "symbol": "EQIX",
+            "trades": 5,
+            "summe_pnl_pct": 45.39,
+            "avg_pnl_pct": 9.08
+          },
+          {
+            "symbol": "MCK",
+            "trades": 5,
+            "summe_pnl_pct": 45.02,
+            "avg_pnl_pct": 9.0
+          },
+          {
+            "symbol": "QCOM",
+            "trades": 10,
+            "summe_pnl_pct": 44.86,
+            "avg_pnl_pct": 4.49
+          },
+          {
+            "symbol": "C",
+            "trades": 5,
+            "summe_pnl_pct": 44.43,
+            "avg_pnl_pct": 8.89
+          },
+          {
+            "symbol": "SBUX",
+            "trades": 2,
+            "summe_pnl_pct": 41.87,
+            "avg_pnl_pct": 20.94
+          },
+          {
+            "symbol": "V",
+            "trades": 2,
+            "summe_pnl_pct": 41.36,
+            "avg_pnl_pct": 20.68
+          },
+          {
+            "symbol": "NVDA",
+            "trades": 8,
+            "summe_pnl_pct": 41.3,
+            "avg_pnl_pct": 5.16
+          },
+          {
+            "symbol": "ICE",
+            "trades": 2,
+            "summe_pnl_pct": 39.46,
+            "avg_pnl_pct": 19.73
+          },
+          {
+            "symbol": "CDNS",
+            "trades": 3,
+            "summe_pnl_pct": 38.86,
+            "avg_pnl_pct": 12.95
+          },
+          {
+            "symbol": "GS",
+            "trades": 6,
+            "summe_pnl_pct": 38.43,
+            "avg_pnl_pct": 6.4
+          },
+          {
+            "symbol": "GILD",
+            "trades": 1,
+            "summe_pnl_pct": 36.09,
+            "avg_pnl_pct": 36.09
+          },
+          {
+            "symbol": "PFE",
+            "trades": 4,
+            "summe_pnl_pct": 34.91,
+            "avg_pnl_pct": 8.73
+          },
+          {
+            "symbol": "ELV",
+            "trades": 3,
+            "summe_pnl_pct": 34.76,
+            "avg_pnl_pct": 11.59
+          },
+          {
+            "symbol": "BLK",
+            "trades": 5,
+            "summe_pnl_pct": 34.31,
+            "avg_pnl_pct": 6.86
+          },
+          {
+            "symbol": "REGN",
+            "trades": 8,
+            "summe_pnl_pct": 33.8,
+            "avg_pnl_pct": 4.22
+          },
+          {
+            "symbol": "GOOGL",
+            "trades": 2,
+            "summe_pnl_pct": 33.43,
+            "avg_pnl_pct": 16.72
+          },
+          {
+            "symbol": "SPGI",
+            "trades": 6,
+            "summe_pnl_pct": 33.04,
+            "avg_pnl_pct": 5.51
+          },
+          {
+            "symbol": "TXN",
+            "trades": 3,
+            "summe_pnl_pct": 32.46,
+            "avg_pnl_pct": 10.82
+          },
+          {
+            "symbol": "GD",
+            "trades": 1,
+            "summe_pnl_pct": 30.2,
+            "avg_pnl_pct": 30.2
+          },
+          {
+            "symbol": "MO",
+            "trades": 1,
+            "summe_pnl_pct": 29.3,
+            "avg_pnl_pct": 29.3
+          },
+          {
+            "symbol": "AMGN",
+            "trades": 2,
+            "summe_pnl_pct": 29.28,
+            "avg_pnl_pct": 14.64
+          },
+          {
+            "symbol": "GOOG",
+            "trades": 3,
+            "summe_pnl_pct": 28.49,
+            "avg_pnl_pct": 9.5
+          },
+          {
+            "symbol": "MCO",
+            "trades": 3,
+            "summe_pnl_pct": 27.66,
+            "avg_pnl_pct": 9.22
+          },
+          {
+            "symbol": "IBM",
+            "trades": 2,
+            "summe_pnl_pct": 27.41,
+            "avg_pnl_pct": 13.7
+          },
+          {
+            "symbol": "TJX",
+            "trades": 1,
+            "summe_pnl_pct": 26.38,
+            "avg_pnl_pct": 26.38
+          },
+          {
+            "symbol": "VRT",
+            "trades": 2,
+            "summe_pnl_pct": 25.76,
+            "avg_pnl_pct": 12.88
+          },
+          {
+            "symbol": "GE",
+            "trades": 5,
+            "summe_pnl_pct": 24.96,
+            "avg_pnl_pct": 4.99
+          },
+          {
+            "symbol": "UPS",
+            "trades": 3,
+            "summe_pnl_pct": 24.55,
+            "avg_pnl_pct": 8.18
+          },
+          {
+            "symbol": "TMO",
+            "trades": 5,
+            "summe_pnl_pct": 24.5,
+            "avg_pnl_pct": 4.9
+          },
+          {
+            "symbol": "MDT",
+            "trades": 3,
+            "summe_pnl_pct": 24.46,
+            "avg_pnl_pct": 8.15
+          },
+          {
+            "symbol": "PNC",
+            "trades": 6,
+            "summe_pnl_pct": 23.9,
+            "avg_pnl_pct": 3.98
+          },
+          {
+            "symbol": "BNY",
+            "trades": 4,
+            "summe_pnl_pct": 23.75,
+            "avg_pnl_pct": 5.94
+          },
+          {
+            "symbol": "WMT",
+            "trades": 1,
+            "summe_pnl_pct": 23.41,
+            "avg_pnl_pct": 23.41
+          },
+          {
+            "symbol": "CVX",
+            "trades": 4,
+            "summe_pnl_pct": 22.88,
+            "avg_pnl_pct": 5.72
+          },
+          {
+            "symbol": "ADP",
+            "trades": 3,
+            "summe_pnl_pct": 22.81,
+            "avg_pnl_pct": 7.6
+          },
+          {
+            "symbol": "VZ",
+            "trades": 2,
+            "summe_pnl_pct": 21.86,
+            "avg_pnl_pct": 10.93
+          },
+          {
+            "symbol": "ADI",
+            "trades": 4,
+            "summe_pnl_pct": 21.44,
+            "avg_pnl_pct": 5.36
+          },
+          {
+            "symbol": "JCI",
+            "trades": 4,
+            "summe_pnl_pct": 21.35,
+            "avg_pnl_pct": 5.34
+          },
+          {
+            "symbol": "WFC",
+            "trades": 3,
+            "summe_pnl_pct": 21.23,
+            "avg_pnl_pct": 7.08
+          },
+          {
+            "symbol": "UNP",
+            "trades": 2,
+            "summe_pnl_pct": 18.52,
+            "avg_pnl_pct": 9.26
+          },
+          {
+            "symbol": "CME",
+            "trades": 5,
+            "summe_pnl_pct": 18.46,
+            "avg_pnl_pct": 3.69
+          },
+          {
+            "symbol": "T",
+            "trades": 4,
+            "summe_pnl_pct": 18.38,
+            "avg_pnl_pct": 4.6
+          },
+          {
+            "symbol": "ABT",
+            "trades": 1,
+            "summe_pnl_pct": 16.58,
+            "avg_pnl_pct": 16.58
+          },
+          {
+            "symbol": "JNJ",
+            "trades": 2,
+            "summe_pnl_pct": 15.47,
+            "avg_pnl_pct": 7.74
+          },
+          {
+            "symbol": "MRK",
+            "trades": 4,
+            "summe_pnl_pct": 15.32,
+            "avg_pnl_pct": 3.83
+          },
+          {
+            "symbol": "MMM",
+            "trades": 7,
+            "summe_pnl_pct": 12.58,
+            "avg_pnl_pct": 1.8
+          },
+          {
+            "symbol": "DE",
+            "trades": 2,
+            "summe_pnl_pct": 12.39,
+            "avg_pnl_pct": 6.19
+          },
+          {
+            "symbol": "DUK",
+            "trades": 3,
+            "summe_pnl_pct": 11.52,
+            "avg_pnl_pct": 3.84
+          },
+          {
+            "symbol": "TT",
+            "trades": 3,
+            "summe_pnl_pct": 10.88,
+            "avg_pnl_pct": 3.63
+          },
+          {
+            "symbol": "FCX",
+            "trades": 15,
+            "summe_pnl_pct": 10.7,
+            "avg_pnl_pct": 0.71
+          },
+          {
+            "symbol": "NOW",
+            "trades": 10,
+            "summe_pnl_pct": 9.98,
+            "avg_pnl_pct": 1.0
+          },
+          {
+            "symbol": "LIN",
+            "trades": 3,
+            "summe_pnl_pct": 9.03,
+            "avg_pnl_pct": 3.01
+          },
+          {
+            "symbol": "LMT",
+            "trades": 4,
+            "summe_pnl_pct": 7.27,
+            "avg_pnl_pct": 1.82
+          },
+          {
+            "symbol": "MCD",
+            "trades": 1,
+            "summe_pnl_pct": 7.15,
+            "avg_pnl_pct": 7.15
+          },
+          {
+            "symbol": "KKR",
+            "trades": 8,
+            "summe_pnl_pct": 6.97,
+            "avg_pnl_pct": 0.87
+          },
+          {
+            "symbol": "COST",
+            "trades": 2,
+            "summe_pnl_pct": 6.17,
+            "avg_pnl_pct": 3.08
+          },
+          {
+            "symbol": "NEE",
+            "trades": 3,
+            "summe_pnl_pct": 5.97,
+            "avg_pnl_pct": 1.99
+          },
+          {
+            "symbol": "PLTR",
+            "trades": 8,
+            "summe_pnl_pct": 5.37,
+            "avg_pnl_pct": 0.67
+          },
+          {
+            "symbol": "JPM",
+            "trades": 3,
+            "summe_pnl_pct": 4.71,
+            "avg_pnl_pct": 1.57
+          },
+          {
+            "symbol": "TMUS",
+            "trades": 2,
+            "summe_pnl_pct": 3.83,
+            "avg_pnl_pct": 1.92
+          },
+          {
+            "symbol": "PGR",
+            "trades": 1,
+            "summe_pnl_pct": 3.11,
+            "avg_pnl_pct": 3.11
+          },
+          {
+            "symbol": "CRM",
+            "trades": 13,
+            "summe_pnl_pct": 1.17,
+            "avg_pnl_pct": 0.09
+          },
+          {
+            "symbol": "AMAT",
+            "trades": 5,
+            "summe_pnl_pct": 1.07,
+            "avg_pnl_pct": 0.21
+          },
+          {
+            "symbol": "MRVL",
+            "trades": 7,
+            "summe_pnl_pct": 0.24,
+            "avg_pnl_pct": 0.03
+          },
+          {
+            "symbol": "PEP",
+            "trades": 2,
+            "summe_pnl_pct": -5.13,
+            "avg_pnl_pct": -2.56
+          },
+          {
+            "symbol": "MRSH",
+            "trades": 2,
+            "summe_pnl_pct": -7.05,
+            "avg_pnl_pct": -3.52
+          },
+          {
+            "symbol": "SO",
+            "trades": 3,
+            "summe_pnl_pct": -8.59,
+            "avg_pnl_pct": -2.86
+          },
+          {
+            "symbol": "SYK",
+            "trades": 2,
+            "summe_pnl_pct": -8.82,
+            "avg_pnl_pct": -4.41
+          },
+          {
+            "symbol": "INTU",
+            "trades": 5,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -1.98
+          },
+          {
+            "symbol": "MS",
+            "trades": 5,
+            "summe_pnl_pct": -10.72,
+            "avg_pnl_pct": -2.14
+          },
+          {
+            "symbol": "DELL",
+            "trades": 6,
+            "summe_pnl_pct": -11.71,
+            "avg_pnl_pct": -1.95
+          },
+          {
+            "symbol": "ISRG",
+            "trades": 6,
+            "summe_pnl_pct": -13.14,
+            "avg_pnl_pct": -2.19
+          },
+          {
+            "symbol": "PH",
+            "trades": 3,
+            "summe_pnl_pct": -15.35,
+            "avg_pnl_pct": -5.12
+          },
+          {
+            "symbol": "MA",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "KO",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "CSCO",
+            "trades": 1,
+            "summe_pnl_pct": -16.3,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "ETN",
+            "trades": 3,
+            "summe_pnl_pct": -16.67,
+            "avg_pnl_pct": -5.56
+          },
+          {
+            "symbol": "BMY",
+            "trades": 2,
+            "summe_pnl_pct": -17.11,
+            "avg_pnl_pct": -8.56
+          },
+          {
+            "symbol": "KLAC",
+            "trades": 4,
+            "summe_pnl_pct": -19.26,
+            "avg_pnl_pct": -4.82
+          },
+          {
+            "symbol": "AXP",
+            "trades": 6,
+            "summe_pnl_pct": -21.27,
+            "avg_pnl_pct": -3.54
+          },
+          {
+            "symbol": "CMCSA",
+            "trades": 7,
+            "summe_pnl_pct": -24.8,
+            "avg_pnl_pct": -3.54
+          },
+          {
+            "symbol": "WMB",
+            "trades": 4,
+            "summe_pnl_pct": -25.53,
+            "avg_pnl_pct": -6.38
+          },
+          {
+            "symbol": "ANET",
+            "trades": 7,
+            "summe_pnl_pct": -26.57,
+            "avg_pnl_pct": -3.8
+          },
+          {
+            "symbol": "BX",
+            "trades": 6,
+            "summe_pnl_pct": -28.62,
+            "avg_pnl_pct": -4.77
+          },
+          {
+            "symbol": "ABNB",
+            "trades": 6,
+            "summe_pnl_pct": -30.11,
+            "avg_pnl_pct": -5.02
+          },
+          {
+            "symbol": "SCHW",
+            "trades": 2,
+            "summe_pnl_pct": -32.6,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "MAR",
+            "trades": 4,
+            "summe_pnl_pct": -37.49,
+            "avg_pnl_pct": -9.37
+          },
+          {
+            "symbol": "MU",
+            "trades": 9,
+            "summe_pnl_pct": -40.28,
+            "avg_pnl_pct": -4.48
+          },
+          {
+            "symbol": "COF",
+            "trades": 9,
+            "summe_pnl_pct": -41.8,
+            "avg_pnl_pct": -4.64
+          },
+          {
+            "symbol": "ORCL",
+            "trades": 3,
+            "summe_pnl_pct": -48.9,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "APP",
+            "trades": 8,
+            "summe_pnl_pct": -130.4,
+            "avg_pnl_pct": -16.3
+          },
+          {
+            "symbol": "DASH",
+            "trades": 8,
+            "summe_pnl_pct": -130.4,
+            "avg_pnl_pct": -16.3
+          }
+        ]
+      },
+      "bedingungen": {
+        "B1": true,
+        "B2": true,
+        "B2_streng": true,
+        "B2_skaliert": true,
+        "B3": false,
+        "B4": true,
+        "B5": true
+      },
+      "tragfaehig": false
+    },
+    {
+      "kombination": "dev 3 % / Stop 16 % / kein Ziel",
+      "key": [
+        3.0,
+        16.0,
+        0.236,
+        false
+      ],
+      "herkunft": "In-Sample-Score",
+      "is": {
+        "window": "is",
+        "deviation_pct": 3.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 767,
+        "num_symbols": 141,
+        "win_rate": 55.0,
+        "total_return_pct": 4567.43,
+        "avg_return_pct": 5.95,
+        "max_drawdown_pct": -148.75,
+        "robustness_score": 1.109,
+        "max_drawdown_chronologisch_pct": -1214.38,
+        "robustness_score_chronologisch": 0.136,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 33.0,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 189,
+        "pf_num_skipped": 578,
+        "pf_total_return_pct": 103.04,
+        "pf_max_drawdown_pct": -25.45,
+        "pf_calmar_ratio": 4.05
+      },
+      "oos": {
+        "window": "oos",
+        "deviation_pct": 3.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 360,
+        "num_symbols": 128,
+        "win_rate": 54.7,
+        "total_return_pct": 3241.49,
+        "avg_return_pct": 9.0,
+        "max_drawdown_pct": -127.0,
+        "robustness_score": 1.345,
+        "max_drawdown_chronologisch_pct": -302.84,
+        "robustness_score_chronologisch": 0.564,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 32.5,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 84,
+        "pf_num_skipped": 276,
+        "pf_total_return_pct": 135.76,
+        "pf_max_drawdown_pct": -10.77,
+        "pf_calmar_ratio": 12.61
+      },
+      "gesamt": {
+        "window": "gesamt",
+        "deviation_pct": 3.0,
+        "stop_loss_pct": 16.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 1147,
+        "num_symbols": 145,
+        "win_rate": 55.2,
+        "total_return_pct": 8169.7,
+        "avg_return_pct": 7.12,
+        "max_drawdown_pct": -155.01,
+        "robustness_score": 1.556,
+        "max_drawdown_chronologisch_pct": -1214.38,
+        "robustness_score_chronologisch": 0.199,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 33.0,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 260,
+        "pf_num_skipped": 887,
+        "pf_total_return_pct": 286.97,
+        "pf_max_drawdown_pct": -25.45,
+        "pf_calmar_ratio": 11.28
+      },
+      "walk_forward_falten": [
+        [
+          1,
+          -0.17
+        ],
+        [
+          2,
+          12.82
+        ],
+        [
+          3,
+          8.04
+        ]
+      ],
+      "buy_and_hold_oos": {
+        "final_capital": 21907.1,
+        "total_return_pct": 119.07,
+        "max_drawdown_pct": -18.03,
+        "calmar_ratio": 6.6,
+        "num_symbols": 147,
+        "num_skipped_symbols": 1,
+        "zeitraum": {
+          "von": "2023-08-29 00:00:00",
+          "bis": "2026-09-01 00:00:00"
+        }
+      },
+      "nachbar_median_anteil_pct_is": 96.4,
+      "zigzag_feinschritt_avg_pnl": [
+        7.03,
+        7.12,
+        6.7
+      ],
+      "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 204,
+          "rendite_min_pct": 202.83,
+          "rendite_median_pct": 303.53,
+          "rendite_max_pct": 431.12,
+          "rendite_spanne_pp": 228.29,
+          "calmar_min": 7.04,
+          "calmar_median": 12.08,
+          "calmar_max": 18.53
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 75,
+          "rendite_min_pct": 98.18,
+          "rendite_median_pct": 126.44,
+          "rendite_max_pct": 158.06,
+          "rendite_spanne_pp": 59.88,
+          "calmar_min": 7.53,
+          "calmar_median": 11.32,
+          "calmar_max": 15.99
+        }
+      },
+      "reihenfolge_oos": {
+        "permutationen": 200,
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 75,
+        "rendite_min_pct": 98.18,
+        "rendite_median_pct": 126.44,
+        "rendite_max_pct": 158.06,
+        "rendite_spanne_pp": 59.88,
+        "calmar_min": 7.53,
+        "calmar_median": 11.32,
+        "calmar_max": 15.99
+      },
+      "symbolbeitrag": {
+        "symbole_mit_trades": 145,
+        "symbole_positiv": 118,
+        "summe_pnl_pct": 8169.7,
+        "top3_summe_pnl_pct": 806.1,
+        "top3_anteil_pct": 9.9,
+        "bestes_symbol": "PANW",
+        "schlechtestes_symbol": "DASH",
+        "tabelle": [
+          {
+            "symbol": "PANW",
+            "trades": 10,
+            "summe_pnl_pct": 303.01,
+            "avg_pnl_pct": 30.3
+          },
+          {
+            "symbol": "CRWD",
+            "trades": 16,
+            "summe_pnl_pct": 275.67,
+            "avg_pnl_pct": 17.23
+          },
+          {
+            "symbol": "INTC",
+            "trades": 8,
+            "summe_pnl_pct": 227.42,
+            "avg_pnl_pct": 28.43
+          },
+          {
+            "symbol": "VLO",
+            "trades": 15,
+            "summe_pnl_pct": 213.35,
+            "avg_pnl_pct": 14.22
+          },
+          {
+            "symbol": "MPC",
+            "trades": 11,
+            "summe_pnl_pct": 209.34,
+            "avg_pnl_pct": 19.03
+          },
+          {
+            "symbol": "STX",
+            "trades": 11,
+            "summe_pnl_pct": 206.83,
+            "avg_pnl_pct": 18.8
+          },
+          {
+            "symbol": "BKNG",
+            "trades": 9,
+            "summe_pnl_pct": 206.51,
+            "avg_pnl_pct": 22.95
+          },
+          {
+            "symbol": "AVGO",
+            "trades": 11,
+            "summe_pnl_pct": 181.9,
+            "avg_pnl_pct": 16.54
+          },
+          {
+            "symbol": "APH",
+            "trades": 6,
+            "summe_pnl_pct": 174.52,
+            "avg_pnl_pct": 29.09
+          },
+          {
+            "symbol": "CSX",
+            "trades": 12,
+            "summe_pnl_pct": 166.29,
+            "avg_pnl_pct": 13.86
+          },
+          {
+            "symbol": "HWM",
+            "trades": 12,
+            "summe_pnl_pct": 160.79,
+            "avg_pnl_pct": 13.4
+          },
+          {
+            "symbol": "HCA",
+            "trades": 12,
+            "summe_pnl_pct": 155.32,
+            "avg_pnl_pct": 12.94
+          },
+          {
+            "symbol": "NVDA",
+            "trades": 12,
+            "summe_pnl_pct": 152.53,
+            "avg_pnl_pct": 12.71
+          },
+          {
+            "symbol": "LOW",
+            "trades": 9,
+            "summe_pnl_pct": 142.1,
+            "avg_pnl_pct": 15.79
+          },
+          {
+            "symbol": "DHR",
+            "trades": 10,
+            "summe_pnl_pct": 140.02,
+            "avg_pnl_pct": 14.0
+          },
+          {
+            "symbol": "HD",
+            "trades": 7,
+            "summe_pnl_pct": 137.36,
+            "avg_pnl_pct": 19.62
+          },
+          {
+            "symbol": "COP",
+            "trades": 10,
+            "summe_pnl_pct": 137.1,
+            "avg_pnl_pct": 13.71
+          },
+          {
+            "symbol": "ACN",
+            "trades": 12,
+            "summe_pnl_pct": 134.54,
+            "avg_pnl_pct": 11.21
+          },
+          {
+            "symbol": "DELL",
+            "trades": 7,
+            "summe_pnl_pct": 132.64,
+            "avg_pnl_pct": 18.95
+          },
+          {
+            "symbol": "GLW",
+            "trades": 7,
+            "summe_pnl_pct": 129.53,
+            "avg_pnl_pct": 18.5
+          },
+          {
+            "symbol": "AMAT",
+            "trades": 15,
+            "summe_pnl_pct": 129.24,
+            "avg_pnl_pct": 8.62
+          },
+          {
+            "symbol": "LRCX",
+            "trades": 12,
+            "summe_pnl_pct": 124.63,
+            "avg_pnl_pct": 10.39
+          },
+          {
+            "symbol": "VRT",
+            "trades": 4,
+            "summe_pnl_pct": 123.89,
+            "avg_pnl_pct": 30.97
+          },
+          {
+            "symbol": "NFLX",
+            "trades": 14,
+            "summe_pnl_pct": 118.06,
+            "avg_pnl_pct": 8.43
+          },
+          {
+            "symbol": "TSLA",
+            "trades": 24,
+            "summe_pnl_pct": 114.05,
+            "avg_pnl_pct": 4.75
+          },
+          {
+            "symbol": "PM",
+            "trades": 9,
+            "summe_pnl_pct": 113.93,
+            "avg_pnl_pct": 12.66
+          },
+          {
+            "symbol": "VRTX",
+            "trades": 7,
+            "summe_pnl_pct": 107.69,
+            "avg_pnl_pct": 15.38
+          },
+          {
+            "symbol": "CDNS",
+            "trades": 7,
+            "summe_pnl_pct": 105.9,
+            "avg_pnl_pct": 15.13
+          },
+          {
+            "symbol": "GE",
+            "trades": 7,
+            "summe_pnl_pct": 105.11,
+            "avg_pnl_pct": 15.02
+          },
+          {
+            "symbol": "SCHW",
+            "trades": 9,
+            "summe_pnl_pct": 103.97,
+            "avg_pnl_pct": 11.55
+          },
+          {
+            "symbol": "CAT",
+            "trades": 11,
+            "summe_pnl_pct": 103.6,
+            "avg_pnl_pct": 9.42
+          },
+          {
+            "symbol": "SBUX",
+            "trades": 5,
+            "summe_pnl_pct": 100.6,
+            "avg_pnl_pct": 20.12
+          },
+          {
+            "symbol": "PWR",
+            "trades": 4,
+            "summe_pnl_pct": 100.24,
+            "avg_pnl_pct": 25.06
+          },
+          {
+            "symbol": "AXP",
+            "trades": 10,
+            "summe_pnl_pct": 99.82,
+            "avg_pnl_pct": 9.98
+          },
+          {
+            "symbol": "ANET",
+            "trades": 13,
+            "summe_pnl_pct": 99.82,
+            "avg_pnl_pct": 7.68
+          },
+          {
+            "symbol": "WELL",
+            "trades": 10,
+            "summe_pnl_pct": 99.43,
+            "avg_pnl_pct": 9.94
+          },
+          {
+            "symbol": "PSX",
+            "trades": 15,
+            "summe_pnl_pct": 98.89,
+            "avg_pnl_pct": 6.59
+          },
+          {
+            "symbol": "ADI",
+            "trades": 11,
+            "summe_pnl_pct": 97.29,
+            "avg_pnl_pct": 8.84
+          },
+          {
+            "symbol": "KKR",
+            "trades": 7,
+            "summe_pnl_pct": 95.81,
+            "avg_pnl_pct": 13.69
+          },
+          {
+            "symbol": "PLD",
+            "trades": 6,
+            "summe_pnl_pct": 95.71,
+            "avg_pnl_pct": 15.95
+          },
+          {
+            "symbol": "UNH",
+            "trades": 7,
+            "summe_pnl_pct": 94.6,
+            "avg_pnl_pct": 13.51
+          },
+          {
+            "symbol": "ELV",
+            "trades": 9,
+            "summe_pnl_pct": 92.97,
+            "avg_pnl_pct": 10.33
+          },
+          {
+            "symbol": "BX",
+            "trades": 9,
+            "summe_pnl_pct": 88.41,
+            "avg_pnl_pct": 9.82
+          },
+          {
+            "symbol": "BAC",
+            "trades": 10,
+            "summe_pnl_pct": 86.48,
+            "avg_pnl_pct": 8.65
+          },
+          {
+            "symbol": "MU",
+            "trades": 14,
+            "summe_pnl_pct": 85.47,
+            "avg_pnl_pct": 6.1
+          },
+          {
+            "symbol": "AMGN",
+            "trades": 7,
+            "summe_pnl_pct": 84.71,
+            "avg_pnl_pct": 12.1
+          },
+          {
+            "symbol": "ISRG",
+            "trades": 11,
+            "summe_pnl_pct": 83.96,
+            "avg_pnl_pct": 7.63
+          },
+          {
+            "symbol": "QCOM",
+            "trades": 13,
+            "summe_pnl_pct": 82.19,
+            "avg_pnl_pct": 6.32
+          },
+          {
+            "symbol": "TMO",
+            "trades": 5,
+            "summe_pnl_pct": 80.0,
+            "avg_pnl_pct": 16.0
+          },
+          {
+            "symbol": "USB",
+            "trades": 7,
+            "summe_pnl_pct": 79.96,
+            "avg_pnl_pct": 11.42
+          },
+          {
+            "symbol": "BA",
+            "trades": 10,
+            "summe_pnl_pct": 78.16,
+            "avg_pnl_pct": 7.82
+          },
+          {
+            "symbol": "WFC",
+            "trades": 9,
+            "summe_pnl_pct": 77.36,
+            "avg_pnl_pct": 8.6
+          },
+          {
+            "symbol": "DE",
+            "trades": 6,
+            "summe_pnl_pct": 76.01,
+            "avg_pnl_pct": 12.67
+          },
+          {
+            "symbol": "VZ",
+            "trades": 3,
+            "summe_pnl_pct": 75.61,
+            "avg_pnl_pct": 25.2
+          },
+          {
+            "symbol": "IBM",
+            "trades": 5,
+            "summe_pnl_pct": 73.46,
+            "avg_pnl_pct": 14.69
+          },
+          {
+            "symbol": "MDT",
+            "trades": 7,
+            "summe_pnl_pct": 72.74,
+            "avg_pnl_pct": 10.39
+          },
+          {
+            "symbol": "TXN",
+            "trades": 8,
+            "summe_pnl_pct": 72.67,
+            "avg_pnl_pct": 9.08
+          },
+          {
+            "symbol": "TJX",
+            "trades": 6,
+            "summe_pnl_pct": 72.18,
+            "avg_pnl_pct": 12.03
+          },
+          {
+            "symbol": "LLY",
+            "trades": 5,
+            "summe_pnl_pct": 69.55,
+            "avg_pnl_pct": 13.91
+          },
+          {
+            "symbol": "ADBE",
+            "trades": 9,
+            "summe_pnl_pct": 65.84,
+            "avg_pnl_pct": 7.32
+          },
+          {
+            "symbol": "MRVL",
+            "trades": 16,
+            "summe_pnl_pct": 64.19,
+            "avg_pnl_pct": 4.01
+          },
+          {
+            "symbol": "WDC",
+            "trades": 15,
+            "summe_pnl_pct": 62.34,
+            "avg_pnl_pct": 4.16
+          },
+          {
+            "symbol": "GS",
+            "trades": 8,
+            "summe_pnl_pct": 61.23,
+            "avg_pnl_pct": 7.65
+          },
+          {
+            "symbol": "MRSH",
+            "trades": 4,
+            "summe_pnl_pct": 59.84,
+            "avg_pnl_pct": 14.96
+          },
+          {
+            "symbol": "MAR",
+            "trades": 9,
+            "summe_pnl_pct": 58.37,
+            "avg_pnl_pct": 6.49
+          },
+          {
+            "symbol": "PLTR",
+            "trades": 9,
+            "summe_pnl_pct": 53.36,
+            "avg_pnl_pct": 5.93
+          },
+          {
+            "symbol": "FCX",
+            "trades": 16,
+            "summe_pnl_pct": 49.21,
+            "avg_pnl_pct": 3.08
+          },
+          {
+            "symbol": "JPM",
+            "trades": 4,
+            "summe_pnl_pct": 48.4,
+            "avg_pnl_pct": 12.1
+          },
+          {
+            "symbol": "CB",
+            "trades": 3,
+            "summe_pnl_pct": 45.13,
+            "avg_pnl_pct": 15.04
+          },
+          {
+            "symbol": "CVS",
+            "trades": 6,
+            "summe_pnl_pct": 45.02,
+            "avg_pnl_pct": 7.5
+          },
+          {
+            "symbol": "MO",
+            "trades": 3,
+            "summe_pnl_pct": 40.17,
+            "avg_pnl_pct": 13.39
+          },
+          {
+            "symbol": "ADP",
+            "trades": 4,
+            "summe_pnl_pct": 37.67,
+            "avg_pnl_pct": 9.42
+          },
+          {
+            "symbol": "TT",
+            "trades": 5,
+            "summe_pnl_pct": 35.64,
+            "avg_pnl_pct": 7.13
+          },
+          {
+            "symbol": "ICE",
+            "trades": 8,
+            "summe_pnl_pct": 35.6,
+            "avg_pnl_pct": 4.45
+          },
+          {
+            "symbol": "MNST",
+            "trades": 9,
+            "summe_pnl_pct": 33.42,
+            "avg_pnl_pct": 3.71
+          },
+          {
+            "symbol": "T",
+            "trades": 7,
+            "summe_pnl_pct": 33.36,
+            "avg_pnl_pct": 4.77
+          },
+          {
+            "symbol": "MCK",
+            "trades": 9,
+            "summe_pnl_pct": 32.91,
+            "avg_pnl_pct": 3.66
+          },
+          {
+            "symbol": "ETN",
+            "trades": 7,
+            "summe_pnl_pct": 32.56,
+            "avg_pnl_pct": 4.65
+          },
+          {
+            "symbol": "XOM",
+            "trades": 7,
+            "summe_pnl_pct": 31.03,
+            "avg_pnl_pct": 4.43
+          },
+          {
+            "symbol": "UBER",
+            "trades": 15,
+            "summe_pnl_pct": 30.77,
+            "avg_pnl_pct": 2.05
+          },
+          {
+            "symbol": "RTX",
+            "trades": 4,
+            "summe_pnl_pct": 30.42,
+            "avg_pnl_pct": 7.6
+          },
+          {
+            "symbol": "PFE",
+            "trades": 12,
+            "summe_pnl_pct": 30.0,
+            "avg_pnl_pct": 2.5
+          },
+          {
+            "symbol": "NEE",
+            "trades": 5,
+            "summe_pnl_pct": 29.34,
+            "avg_pnl_pct": 5.87
+          },
+          {
+            "symbol": "WMB",
+            "trades": 6,
+            "summe_pnl_pct": 29.32,
+            "avg_pnl_pct": 4.89
+          },
+          {
+            "symbol": "AMZN",
+            "trades": 13,
+            "summe_pnl_pct": 29.22,
+            "avg_pnl_pct": 2.25
+          },
+          {
+            "symbol": "EQIX",
+            "trades": 6,
+            "summe_pnl_pct": 29.2,
+            "avg_pnl_pct": 4.87
+          },
+          {
+            "symbol": "PH",
+            "trades": 6,
+            "summe_pnl_pct": 27.95,
+            "avg_pnl_pct": 4.66
+          },
+          {
+            "symbol": "META",
+            "trades": 3,
+            "summe_pnl_pct": 27.37,
+            "avg_pnl_pct": 9.12
+          },
+          {
+            "symbol": "BNY",
+            "trades": 8,
+            "summe_pnl_pct": 27.12,
+            "avg_pnl_pct": 3.39
+          },
+          {
+            "symbol": "DUK",
+            "trades": 4,
+            "summe_pnl_pct": 26.67,
+            "avg_pnl_pct": 6.67
+          },
+          {
+            "symbol": "INTU",
+            "trades": 3,
+            "summe_pnl_pct": 25.79,
+            "avg_pnl_pct": 8.6
+          },
+          {
+            "symbol": "SO",
+            "trades": 5,
+            "summe_pnl_pct": 24.13,
+            "avg_pnl_pct": 4.83
+          },
+          {
+            "symbol": "BLK",
+            "trades": 5,
+            "summe_pnl_pct": 23.94,
+            "avg_pnl_pct": 4.79
+          },
+          {
+            "symbol": "ABT",
+            "trades": 4,
+            "summe_pnl_pct": 22.83,
+            "avg_pnl_pct": 5.71
+          },
+          {
+            "symbol": "JNJ",
+            "trades": 2,
+            "summe_pnl_pct": 22.66,
+            "avg_pnl_pct": 11.33
+          },
+          {
+            "symbol": "MCO",
+            "trades": 5,
+            "summe_pnl_pct": 22.52,
+            "avg_pnl_pct": 4.5
+          },
+          {
+            "symbol": "GD",
+            "trades": 4,
+            "summe_pnl_pct": 22.44,
+            "avg_pnl_pct": 5.61
+          },
+          {
+            "symbol": "JCI",
+            "trades": 10,
+            "summe_pnl_pct": 18.65,
+            "avg_pnl_pct": 1.86
+          },
+          {
+            "symbol": "SLB",
+            "trades": 11,
+            "summe_pnl_pct": 17.37,
+            "avg_pnl_pct": 1.58
+          },
+          {
+            "symbol": "PG",
+            "trades": 4,
+            "summe_pnl_pct": 16.43,
+            "avg_pnl_pct": 4.11
+          },
+          {
+            "symbol": "MS",
+            "trades": 6,
+            "summe_pnl_pct": 13.01,
+            "avg_pnl_pct": 2.17
+          },
+          {
+            "symbol": "COF",
+            "trades": 15,
+            "summe_pnl_pct": 11.19,
+            "avg_pnl_pct": 0.75
+          },
+          {
+            "symbol": "DIS",
+            "trades": 12,
+            "summe_pnl_pct": 11.05,
+            "avg_pnl_pct": 0.92
+          },
+          {
+            "symbol": "C",
+            "trades": 7,
+            "summe_pnl_pct": 9.12,
+            "avg_pnl_pct": 1.3
+          },
+          {
+            "symbol": "ABBV",
+            "trades": 6,
+            "summe_pnl_pct": 9.1,
+            "avg_pnl_pct": 1.52
+          },
+          {
+            "symbol": "UNP",
+            "trades": 2,
+            "summe_pnl_pct": 8.8,
+            "avg_pnl_pct": 4.4
+          },
+          {
+            "symbol": "MA",
+            "trades": 2,
+            "summe_pnl_pct": 8.68,
+            "avg_pnl_pct": 4.34
+          },
+          {
+            "symbol": "SYK",
+            "trades": 2,
+            "summe_pnl_pct": 6.49,
+            "avg_pnl_pct": 3.24
+          },
+          {
+            "symbol": "KO",
+            "trades": 3,
+            "summe_pnl_pct": 6.12,
+            "avg_pnl_pct": 2.04
+          },
+          {
+            "symbol": "GOOG",
+            "trades": 3,
+            "summe_pnl_pct": 5.42,
+            "avg_pnl_pct": 1.81
+          },
+          {
+            "symbol": "TMUS",
+            "trades": 4,
+            "summe_pnl_pct": 4.84,
+            "avg_pnl_pct": 1.21
+          },
+          {
+            "symbol": "CRM",
+            "trades": 19,
+            "summe_pnl_pct": 4.79,
+            "avg_pnl_pct": 0.25
+          },
+          {
+            "symbol": "WMT",
+            "trades": 2,
+            "summe_pnl_pct": 3.79,
+            "avg_pnl_pct": 1.9
+          },
+          {
+            "symbol": "AAPL",
+            "trades": 9,
+            "summe_pnl_pct": 3.77,
+            "avg_pnl_pct": 0.42
+          },
+          {
+            "symbol": "CSCO",
+            "trades": 3,
+            "summe_pnl_pct": 3.54,
+            "avg_pnl_pct": 1.18
+          },
+          {
+            "symbol": "PGR",
+            "trades": 1,
+            "summe_pnl_pct": 3.11,
+            "avg_pnl_pct": 3.11
+          },
+          {
+            "symbol": "WM",
+            "trades": 1,
+            "summe_pnl_pct": 2.48,
+            "avg_pnl_pct": 2.48
+          },
+          {
+            "symbol": "UPS",
+            "trades": 7,
+            "summe_pnl_pct": 1.74,
+            "avg_pnl_pct": 0.25
+          },
+          {
+            "symbol": "ORCL",
+            "trades": 7,
+            "summe_pnl_pct": -0.05,
+            "avg_pnl_pct": -0.01
+          },
+          {
+            "symbol": "PEP",
+            "trades": 3,
+            "summe_pnl_pct": -3.22,
+            "avg_pnl_pct": -1.07
+          },
+          {
+            "symbol": "GILD",
+            "trades": 3,
+            "summe_pnl_pct": -4.75,
+            "avg_pnl_pct": -1.58
+          },
+          {
+            "symbol": "CMCSA",
+            "trades": 12,
+            "summe_pnl_pct": -5.5,
+            "avg_pnl_pct": -0.46
+          },
+          {
+            "symbol": "LIN",
+            "trades": 4,
+            "summe_pnl_pct": -6.28,
+            "avg_pnl_pct": -1.57
+          },
+          {
+            "symbol": "CVX",
+            "trades": 4,
+            "summe_pnl_pct": -7.95,
+            "avg_pnl_pct": -1.99
+          },
+          {
+            "symbol": "MCD",
+            "trades": 3,
+            "summe_pnl_pct": -9.24,
+            "avg_pnl_pct": -3.08
+          },
+          {
+            "symbol": "MRK",
+            "trades": 7,
+            "summe_pnl_pct": -10.7,
+            "avg_pnl_pct": -1.53
+          },
+          {
+            "symbol": "REGN",
+            "trades": 14,
+            "summe_pnl_pct": -11.57,
+            "avg_pnl_pct": -0.83
+          },
+          {
+            "symbol": "NEM",
+            "trades": 11,
+            "summe_pnl_pct": -12.55,
+            "avg_pnl_pct": -1.14
+          },
+          {
+            "symbol": "FTNT",
+            "trades": 7,
+            "summe_pnl_pct": -13.35,
+            "avg_pnl_pct": -1.91
+          },
+          {
+            "symbol": "BMY",
+            "trades": 5,
+            "summe_pnl_pct": -13.84,
+            "avg_pnl_pct": -2.77
+          },
+          {
+            "symbol": "PNC",
+            "trades": 9,
+            "summe_pnl_pct": -13.98,
+            "avg_pnl_pct": -1.55
+          },
+          {
+            "symbol": "MSFT",
+            "trades": 3,
+            "summe_pnl_pct": -14.6,
+            "avg_pnl_pct": -4.87
+          },
+          {
+            "symbol": "COST",
+            "trades": 3,
+            "summe_pnl_pct": -15.38,
+            "avg_pnl_pct": -5.13
+          },
+          {
+            "symbol": "SPGI",
+            "trades": 8,
+            "summe_pnl_pct": -16.11,
+            "avg_pnl_pct": -2.01
+          },
+          {
+            "symbol": "CME",
+            "trades": 3,
+            "summe_pnl_pct": -18.41,
+            "avg_pnl_pct": -6.14
+          },
+          {
+            "symbol": "HOOD",
+            "trades": 9,
+            "summe_pnl_pct": -18.59,
+            "avg_pnl_pct": -2.07
+          },
+          {
+            "symbol": "MMM",
+            "trades": 8,
+            "summe_pnl_pct": -28.34,
+            "avg_pnl_pct": -3.54
+          },
+          {
+            "symbol": "LMT",
+            "trades": 4,
+            "summe_pnl_pct": -29.35,
+            "avg_pnl_pct": -7.34
+          },
+          {
+            "symbol": "GOOGL",
+            "trades": 3,
+            "summe_pnl_pct": -30.13,
+            "avg_pnl_pct": -10.04
+          },
+          {
+            "symbol": "NOW",
+            "trades": 12,
+            "summe_pnl_pct": -33.31,
+            "avg_pnl_pct": -2.78
+          },
+          {
+            "symbol": "KLAC",
+            "trades": 8,
+            "summe_pnl_pct": -33.9,
+            "avg_pnl_pct": -4.24
+          },
+          {
+            "symbol": "AMD",
+            "trades": 14,
+            "summe_pnl_pct": -54.41,
+            "avg_pnl_pct": -3.89
+          },
+          {
+            "symbol": "APP",
+            "trades": 10,
+            "summe_pnl_pct": -64.64,
+            "avg_pnl_pct": -6.46
+          },
+          {
+            "symbol": "ABNB",
+            "trades": 12,
+            "summe_pnl_pct": -89.76,
+            "avg_pnl_pct": -7.48
+          },
+          {
+            "symbol": "DASH",
+            "trades": 6,
+            "summe_pnl_pct": -97.8,
+            "avg_pnl_pct": -16.3
+          }
+        ]
+      },
+      "bedingungen": {
+        "B1": true,
+        "B2": true,
+        "B2_streng": true,
+        "B2_skaliert": true,
+        "B3": false,
+        "B4": true,
+        "B5": true
+      },
+      "tragfaehig": false
+    },
+    {
+      "kombination": "dev 5 % / Stop 3 % / kein Ziel",
+      "key": [
+        5.0,
+        3.0,
+        0.236,
+        false
+      ],
+      "herkunft": "aktuell live",
+      "is": {
+        "window": "is",
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 372,
+        "num_symbols": 128,
+        "win_rate": 19.9,
+        "total_return_pct": 1395.91,
+        "avg_return_pct": 3.75,
+        "max_drawdown_pct": -79.07,
+        "robustness_score": 0.915,
+        "max_drawdown_chronologisch_pct": -259.86,
+        "robustness_score_chronologisch": 0.279,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 80.1,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 289,
+        "pf_num_skipped": 83,
+        "pf_total_return_pct": 109.22,
+        "pf_max_drawdown_pct": -22.7,
+        "pf_calmar_ratio": 4.81
+      },
+      "oos": {
+        "window": "oos",
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 128,
+        "num_symbols": 73,
+        "win_rate": 22.7,
+        "total_return_pct": 962.19,
+        "avg_return_pct": 7.52,
+        "max_drawdown_pct": -39.6,
+        "robustness_score": 2.148,
+        "max_drawdown_chronologisch_pct": -106.8,
+        "robustness_score_chronologisch": 0.796,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 75.8,
+        "besteht_mindestfilter": false,
+        "pf_num_executed": 103,
+        "pf_num_skipped": 25,
+        "pf_total_return_pct": 87.56,
+        "pf_max_drawdown_pct": -11.9,
+        "pf_calmar_ratio": 7.36
+      },
+      "gesamt": {
+        "window": "gesamt",
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "num_trades": 510,
+        "num_symbols": 137,
+        "win_rate": 21.4,
+        "total_return_pct": 2448.96,
+        "avg_return_pct": 4.8,
+        "max_drawdown_pct": -82.5,
+        "robustness_score": 1.314,
+        "max_drawdown_chronologisch_pct": -259.86,
+        "robustness_score_chronologisch": 0.417,
+        "share_take_profit_pct": 0.0,
+        "share_stop_loss_pct": 78.0,
+        "besteht_mindestfilter": true,
+        "pf_num_executed": 398,
+        "pf_num_skipped": 112,
+        "pf_total_return_pct": 330.18,
+        "pf_max_drawdown_pct": -22.7,
+        "pf_calmar_ratio": 14.55
+      },
+      "walk_forward_falten": [
+        [
+          1,
+          -1.47
+        ],
+        [
+          2,
+          6.44
+        ],
+        [
+          3,
+          8.31
+        ]
+      ],
+      "buy_and_hold_oos": {
+        "final_capital": 21907.1,
+        "total_return_pct": 119.07,
+        "max_drawdown_pct": -18.03,
+        "calmar_ratio": 6.6,
+        "num_symbols": 147,
+        "num_skipped_symbols": 1,
+        "zeitraum": {
+          "von": "2023-08-29 00:00:00",
+          "bis": "2026-09-01 00:00:00"
+        }
+      },
+      "nachbar_median_anteil_pct_is": 82.5,
+      "zigzag_feinschritt_avg_pnl": [
+        4.33,
+        4.8,
+        5.39
+      ],
+      "reihenfolge": {
+        "gesamt": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 78,
+          "rendite_min_pct": 303.98,
+          "rendite_median_pct": 380.22,
+          "rendite_max_pct": 440.29,
+          "rendite_spanne_pp": 136.31,
+          "calmar_min": 13.39,
+          "calmar_median": 16.67,
+          "calmar_max": 19.32
+        },
+        "oos": {
+          "permutationen": 200,
+          "zeitpunkte_mit_gleichzeitigen_einstiegen": 19,
+          "rendite_min_pct": 87.56,
+          "rendite_median_pct": 95.31,
+          "rendite_max_pct": 105.13,
+          "rendite_spanne_pp": 17.57,
+          "calmar_min": 7.36,
+          "calmar_median": 8.27,
+          "calmar_max": 9.82
+        }
+      },
+      "reihenfolge_oos": {
+        "permutationen": 200,
+        "zeitpunkte_mit_gleichzeitigen_einstiegen": 19,
+        "rendite_min_pct": 87.56,
+        "rendite_median_pct": 95.31,
+        "rendite_max_pct": 105.13,
+        "rendite_spanne_pp": 17.57,
+        "calmar_min": 7.36,
+        "calmar_median": 8.27,
+        "calmar_max": 9.82
+      },
+      "symbolbeitrag": {
+        "symbole_mit_trades": 137,
+        "symbole_positiv": 78,
+        "summe_pnl_pct": 2448.96,
+        "top3_summe_pnl_pct": 515.97,
+        "top3_anteil_pct": 21.1,
+        "bestes_symbol": "INTC",
+        "schlechtestes_symbol": "TSLA",
+        "tabelle": [
+          {
+            "symbol": "INTC",
+            "trades": 5,
+            "summe_pnl_pct": 227.07,
+            "avg_pnl_pct": 45.41
+          },
+          {
+            "symbol": "AMAT",
+            "trades": 5,
+            "summe_pnl_pct": 150.71,
+            "avg_pnl_pct": 30.14
+          },
+          {
+            "symbol": "CRWD",
+            "trades": 10,
+            "summe_pnl_pct": 138.19,
+            "avg_pnl_pct": 13.82
+          },
+          {
+            "symbol": "MU",
+            "trades": 9,
+            "summe_pnl_pct": 110.44,
+            "avg_pnl_pct": 12.27
+          },
+          {
+            "symbol": "PANW",
+            "trades": 6,
+            "summe_pnl_pct": 109.31,
+            "avg_pnl_pct": 18.22
+          },
+          {
+            "symbol": "KLAC",
+            "trades": 4,
+            "summe_pnl_pct": 93.57,
+            "avg_pnl_pct": 23.39
+          },
+          {
+            "symbol": "LOW",
+            "trades": 2,
+            "summe_pnl_pct": 90.9,
+            "avg_pnl_pct": 45.45
+          },
+          {
+            "symbol": "AVGO",
+            "trades": 4,
+            "summe_pnl_pct": 86.22,
+            "avg_pnl_pct": 21.56
+          },
+          {
+            "symbol": "ADBE",
+            "trades": 5,
+            "summe_pnl_pct": 76.37,
+            "avg_pnl_pct": 15.27
+          },
+          {
+            "symbol": "ACN",
+            "trades": 5,
+            "summe_pnl_pct": 76.1,
+            "avg_pnl_pct": 15.22
+          },
+          {
+            "symbol": "GS",
+            "trades": 5,
+            "summe_pnl_pct": 71.84,
+            "avg_pnl_pct": 14.37
+          },
+          {
+            "symbol": "VRTX",
+            "trades": 3,
+            "summe_pnl_pct": 70.03,
+            "avg_pnl_pct": 23.34
+          },
+          {
+            "symbol": "BA",
+            "trades": 3,
+            "summe_pnl_pct": 63.61,
+            "avg_pnl_pct": 21.2
+          },
+          {
+            "symbol": "VLO",
+            "trades": 6,
+            "summe_pnl_pct": 62.65,
+            "avg_pnl_pct": 10.44
+          },
+          {
+            "symbol": "C",
+            "trades": 5,
+            "summe_pnl_pct": 60.49,
+            "avg_pnl_pct": 12.1
+          },
+          {
+            "symbol": "ISRG",
+            "trades": 4,
+            "summe_pnl_pct": 59.03,
+            "avg_pnl_pct": 14.76
+          },
+          {
+            "symbol": "SLB",
+            "trades": 9,
+            "summe_pnl_pct": 52.54,
+            "avg_pnl_pct": 5.84
+          },
+          {
+            "symbol": "WELL",
+            "trades": 5,
+            "summe_pnl_pct": 51.29,
+            "avg_pnl_pct": 10.26
+          },
+          {
+            "symbol": "PLD",
+            "trades": 3,
+            "summe_pnl_pct": 50.94,
+            "avg_pnl_pct": 16.98
+          },
+          {
+            "symbol": "TMO",
+            "trades": 3,
+            "summe_pnl_pct": 49.17,
+            "avg_pnl_pct": 16.39
+          },
+          {
+            "symbol": "AAPL",
+            "trades": 4,
+            "summe_pnl_pct": 48.79,
+            "avg_pnl_pct": 12.2
+          },
+          {
+            "symbol": "EQIX",
+            "trades": 3,
+            "summe_pnl_pct": 46.16,
+            "avg_pnl_pct": 15.39
+          },
+          {
+            "symbol": "AMZN",
+            "trades": 4,
+            "summe_pnl_pct": 45.3,
+            "avg_pnl_pct": 11.32
+          },
+          {
+            "symbol": "CSX",
+            "trades": 3,
+            "summe_pnl_pct": 44.45,
+            "avg_pnl_pct": 14.82
+          },
+          {
+            "symbol": "DELL",
+            "trades": 5,
+            "summe_pnl_pct": 44.17,
+            "avg_pnl_pct": 8.83
+          },
+          {
+            "symbol": "GE",
+            "trades": 5,
+            "summe_pnl_pct": 43.03,
+            "avg_pnl_pct": 8.61
+          },
+          {
+            "symbol": "HCA",
+            "trades": 3,
+            "summe_pnl_pct": 42.16,
+            "avg_pnl_pct": 14.05
+          },
+          {
+            "symbol": "MRVL",
+            "trades": 9,
+            "summe_pnl_pct": 40.86,
+            "avg_pnl_pct": 4.54
+          },
+          {
+            "symbol": "ICE",
+            "trades": 2,
+            "summe_pnl_pct": 39.46,
+            "avg_pnl_pct": 19.73
+          },
+          {
+            "symbol": "GOOGL",
+            "trades": 1,
+            "summe_pnl_pct": 39.25,
+            "avg_pnl_pct": 39.25
+          },
+          {
+            "symbol": "LRCX",
+            "trades": 7,
+            "summe_pnl_pct": 34.55,
+            "avg_pnl_pct": 4.94
+          },
+          {
+            "symbol": "HOOD",
+            "trades": 7,
+            "summe_pnl_pct": 34.0,
+            "avg_pnl_pct": 4.86
+          },
+          {
+            "symbol": "LMT",
+            "trades": 1,
+            "summe_pnl_pct": 31.67,
+            "avg_pnl_pct": 31.67
+          },
+          {
+            "symbol": "NOW",
+            "trades": 9,
+            "summe_pnl_pct": 29.52,
+            "avg_pnl_pct": 3.28
+          },
+          {
+            "symbol": "GD",
+            "trades": 2,
+            "summe_pnl_pct": 26.9,
+            "avg_pnl_pct": 13.45
+          },
+          {
+            "symbol": "DIS",
+            "trades": 6,
+            "summe_pnl_pct": 26.43,
+            "avg_pnl_pct": 4.4
+          },
+          {
+            "symbol": "SPGI",
+            "trades": 4,
+            "summe_pnl_pct": 26.33,
+            "avg_pnl_pct": 6.58
+          },
+          {
+            "symbol": "ORCL",
+            "trades": 4,
+            "summe_pnl_pct": 26.17,
+            "avg_pnl_pct": 6.54
+          },
+          {
+            "symbol": "BAC",
+            "trades": 4,
+            "summe_pnl_pct": 25.53,
+            "avg_pnl_pct": 6.38
+          },
+          {
+            "symbol": "DHR",
+            "trades": 3,
+            "summe_pnl_pct": 25.05,
+            "avg_pnl_pct": 8.35
+          },
+          {
+            "symbol": "HWM",
+            "trades": 4,
+            "summe_pnl_pct": 24.56,
+            "avg_pnl_pct": 6.14
+          },
+          {
+            "symbol": "ANET",
+            "trades": 9,
+            "summe_pnl_pct": 24.49,
+            "avg_pnl_pct": 2.72
+          },
+          {
+            "symbol": "T",
+            "trades": 2,
+            "summe_pnl_pct": 24.43,
+            "avg_pnl_pct": 12.22
+          },
+          {
+            "symbol": "ABT",
+            "trades": 1,
+            "summe_pnl_pct": 23.66,
+            "avg_pnl_pct": 23.66
+          },
+          {
+            "symbol": "WMT",
+            "trades": 1,
+            "summe_pnl_pct": 23.41,
+            "avg_pnl_pct": 23.41
+          },
+          {
+            "symbol": "TJX",
+            "trades": 2,
+            "summe_pnl_pct": 23.08,
+            "avg_pnl_pct": 11.54
+          },
+          {
+            "symbol": "UPS",
+            "trades": 4,
+            "summe_pnl_pct": 22.65,
+            "avg_pnl_pct": 5.66
+          },
+          {
+            "symbol": "RTX",
+            "trades": 2,
+            "summe_pnl_pct": 22.01,
+            "avg_pnl_pct": 11.0
+          },
+          {
+            "symbol": "CRM",
+            "trades": 11,
+            "summe_pnl_pct": 21.26,
+            "avg_pnl_pct": 1.93
+          },
+          {
+            "symbol": "MS",
+            "trades": 4,
+            "summe_pnl_pct": 20.85,
+            "avg_pnl_pct": 5.21
+          },
+          {
+            "symbol": "V",
+            "trades": 1,
+            "summe_pnl_pct": 20.43,
+            "avg_pnl_pct": 20.43
+          },
+          {
+            "symbol": "MDT",
+            "trades": 2,
+            "summe_pnl_pct": 18.88,
+            "avg_pnl_pct": 9.44
+          },
+          {
+            "symbol": "BLK",
+            "trades": 3,
+            "summe_pnl_pct": 18.0,
+            "avg_pnl_pct": 6.0
+          },
+          {
+            "symbol": "CME",
+            "trades": 3,
+            "summe_pnl_pct": 17.1,
+            "avg_pnl_pct": 5.7
+          },
+          {
+            "symbol": "MCO",
+            "trades": 3,
+            "summe_pnl_pct": 16.67,
+            "avg_pnl_pct": 5.56
+          },
+          {
+            "symbol": "MNST",
+            "trades": 1,
+            "summe_pnl_pct": 16.55,
+            "avg_pnl_pct": 16.55
+          },
+          {
+            "symbol": "CAT",
+            "trades": 4,
+            "summe_pnl_pct": 16.18,
+            "avg_pnl_pct": 4.04
+          },
+          {
+            "symbol": "MCK",
+            "trades": 3,
+            "summe_pnl_pct": 15.79,
+            "avg_pnl_pct": 5.26
+          },
+          {
+            "symbol": "UNP",
+            "trades": 2,
+            "summe_pnl_pct": 14.78,
+            "avg_pnl_pct": 7.39
+          },
+          {
+            "symbol": "CMCSA",
+            "trades": 4,
+            "summe_pnl_pct": 13.48,
+            "avg_pnl_pct": 3.37
+          },
+          {
+            "symbol": "APH",
+            "trades": 3,
+            "summe_pnl_pct": 12.54,
+            "avg_pnl_pct": 4.18
+          },
+          {
+            "symbol": "PSX",
+            "trades": 6,
+            "summe_pnl_pct": 9.93,
+            "avg_pnl_pct": 1.66
+          },
+          {
+            "symbol": "BKNG",
+            "trades": 5,
+            "summe_pnl_pct": 9.36,
+            "avg_pnl_pct": 1.87
+          },
+          {
+            "symbol": "AXP",
+            "trades": 3,
+            "summe_pnl_pct": 9.26,
+            "avg_pnl_pct": 3.09
+          },
+          {
+            "symbol": "WDC",
+            "trades": 10,
+            "summe_pnl_pct": 8.41,
+            "avg_pnl_pct": 0.84
+          },
+          {
+            "symbol": "WFC",
+            "trades": 3,
+            "summe_pnl_pct": 7.16,
+            "avg_pnl_pct": 2.39
+          },
+          {
+            "symbol": "PFE",
+            "trades": 2,
+            "summe_pnl_pct": 6.39,
+            "avg_pnl_pct": 3.2
+          },
+          {
+            "symbol": "NFLX",
+            "trades": 4,
+            "summe_pnl_pct": 5.9,
+            "avg_pnl_pct": 1.48
+          },
+          {
+            "symbol": "UBER",
+            "trades": 9,
+            "summe_pnl_pct": 5.41,
+            "avg_pnl_pct": 0.6
+          },
+          {
+            "symbol": "NEE",
+            "trades": 2,
+            "summe_pnl_pct": 5.38,
+            "avg_pnl_pct": 2.69
+          },
+          {
+            "symbol": "IBM",
+            "trades": 2,
+            "summe_pnl_pct": 5.21,
+            "avg_pnl_pct": 2.6
+          },
+          {
+            "symbol": "ADI",
+            "trades": 2,
+            "summe_pnl_pct": 4.34,
+            "avg_pnl_pct": 2.17
+          },
+          {
+            "symbol": "COST",
+            "trades": 2,
+            "summe_pnl_pct": 4.25,
+            "avg_pnl_pct": 2.12
+          },
+          {
+            "symbol": "REGN",
+            "trades": 6,
+            "summe_pnl_pct": 3.17,
+            "avg_pnl_pct": 0.53
+          },
+          {
+            "symbol": "ABBV",
+            "trades": 1,
+            "summe_pnl_pct": 2.13,
+            "avg_pnl_pct": 2.13
+          },
+          {
+            "symbol": "COP",
+            "trades": 6,
+            "summe_pnl_pct": 1.89,
+            "avg_pnl_pct": 0.32
+          },
+          {
+            "symbol": "ABNB",
+            "trades": 5,
+            "summe_pnl_pct": 1.82,
+            "avg_pnl_pct": 0.36
+          },
+          {
+            "symbol": "GLW",
+            "trades": 6,
+            "summe_pnl_pct": 0.76,
+            "avg_pnl_pct": 0.13
+          },
+          {
+            "symbol": "WMB",
+            "trades": 4,
+            "summe_pnl_pct": -2.83,
+            "avg_pnl_pct": -0.71
+          },
+          {
+            "symbol": "KO",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "MA",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "MRK",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "MRSH",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "SBUX",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "TXN",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "VZ",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "UNH",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "SO",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "TT",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "PG",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "JPM",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "LIN",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "DUK",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "CDNS",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "BNY",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "CVS",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "LLY",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "PH",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "PEP",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "MSFT",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "MCD",
+            "trades": 1,
+            "summe_pnl_pct": -3.3,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "COF",
+            "trades": 6,
+            "summe_pnl_pct": -5.94,
+            "avg_pnl_pct": -0.99
+          },
+          {
+            "symbol": "FTNT",
+            "trades": 5,
+            "summe_pnl_pct": -6.42,
+            "avg_pnl_pct": -1.28
+          },
+          {
+            "symbol": "SCHW",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "ELV",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "BMY",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "PWR",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "USB",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "SYK",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "PM",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "ETN",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "GOOG",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "META",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "CB",
+            "trades": 2,
+            "summe_pnl_pct": -6.6,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "ADP",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "BX",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "AMGN",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "CVX",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "XOM",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "HD",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "INTU",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "MAR",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "MMM",
+            "trades": 3,
+            "summe_pnl_pct": -9.9,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "STX",
+            "trades": 10,
+            "summe_pnl_pct": -12.99,
+            "avg_pnl_pct": -1.3
+          },
+          {
+            "symbol": "MPC",
+            "trades": 4,
+            "summe_pnl_pct": -13.2,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "PNC",
+            "trades": 4,
+            "summe_pnl_pct": -13.2,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "JCI",
+            "trades": 4,
+            "summe_pnl_pct": -13.2,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "AMD",
+            "trades": 10,
+            "summe_pnl_pct": -16.18,
+            "avg_pnl_pct": -1.62
+          },
+          {
+            "symbol": "KKR",
+            "trades": 5,
+            "summe_pnl_pct": -16.5,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "NVDA",
+            "trades": 5,
+            "summe_pnl_pct": -16.5,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "NEM",
+            "trades": 5,
+            "summe_pnl_pct": -16.5,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "PLTR",
+            "trades": 6,
+            "summe_pnl_pct": -19.8,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "DASH",
+            "trades": 7,
+            "summe_pnl_pct": -23.1,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "QCOM",
+            "trades": 7,
+            "summe_pnl_pct": -23.1,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "APP",
+            "trades": 8,
+            "summe_pnl_pct": -26.4,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "FCX",
+            "trades": 8,
+            "summe_pnl_pct": -26.4,
+            "avg_pnl_pct": -3.3
+          },
+          {
+            "symbol": "TSLA",
+            "trades": 11,
+            "summe_pnl_pct": -36.3,
+            "avg_pnl_pct": -3.3
+          }
+        ]
+      },
+      "bedingungen": {
+        "B1": true,
+        "B2": true,
+        "B2_streng": false,
+        "B2_skaliert": true,
+        "B3": false,
+        "B4": true,
+        "B5": true
+      },
+      "tragfaehig": false
+    }
+  ],
+  "tragfaehig": [
+    "dev 2 % / Stop 16 % / kein Ziel"
+  ]
+}

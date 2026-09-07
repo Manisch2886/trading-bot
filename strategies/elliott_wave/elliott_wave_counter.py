@@ -167,6 +167,127 @@ def remove_overlapping(impulses: pd.DataFrame) -> pd.DataFrame:
     return result
 
 
+def find_causal_waves(zigzag: pd.DataFrame, min_fib_score: float = 0.3,
+                       freshness_bars: int = None, direction: str = "bearish") -> pd.DataFrame:
+    """
+    Wellenerkennung OHNE Blick in die Zukunft - fuer den Backtest.
+
+    --------------------------------------------------------------------
+    Das Problem
+    --------------------------------------------------------------------
+    find_impulse_waves + remove_overlapping laufen im Backtest ueber die
+    GESAMTE Historie auf einmal. remove_overlapping behaelt pro
+    Ueberlappungsgruppe den Kandidaten mit dem besten Fibonacci-Score - und
+    dabei kann eine SPAETERE Welle eine FRUEHERE verdraengen:
+
+        if row["fib_score"] > kept_row["fib_score"]:
+            kept[i] = row
+
+    Live ist das unmoeglich. Der Bot haette die fruehere Welle laengst
+    gehandelt, als die spaetere noch gar nicht existierte. Ein Backtest, der
+    sie nachtraeglich streicht, benutzt Zukunftswissen.
+
+    --------------------------------------------------------------------
+    Die Loesung: die Live-Laeufe nachbilden
+    --------------------------------------------------------------------
+    Statt eine eigene, neue Auswahlregel zu erfinden, bildet diese Funktion
+    nach, was forward_test.py::find_new_signals tatsaechlich tut - Lauf fuer
+    Lauf:
+
+      1. Zu jedem Zeitpunkt sind genau die Wellen bekannt, deren letzter
+         Pivot (Welle 5) bereits BESTAETIGT ist.
+      2. Auf diese - und nur diese - wird die UNVERAENDERTE Bot-Funktion
+         remove_overlapping angewendet.
+      3. Was danach uebrig bleibt, frisch genug ist und noch nicht gehandelt
+         wurde, wird gehandelt. Einmal gehandelt heisst endgueltig gehandelt:
+         eine spaeter auftauchende, besser bewertete Welle kann das nicht
+         mehr rueckgaengig machen (in der Live-DB verhindert das die
+         UNIQUE(symbol, signal_time)-Bedingung).
+
+    Es wird ausschliesslich an den Balken ausgewertet, an denen mindestens
+    eine NEUE Welle bestaetigt wird. Dazwischen aendert sich die Menge der
+    bekannten Wellen nicht, remove_overlapping liefert dasselbe Ergebnis, und
+    das Frische-Fenster kann nur ablaufen - also nie einen zusaetzlichen
+    Trade erzeugen. Das ist exakt aequivalent zu einer Auswertung an jedem
+    Balken, nur ohne die leeren Durchlaeufe.
+
+    --------------------------------------------------------------------
+    Parameter
+    --------------------------------------------------------------------
+    zigzag          Ausgabe von zigzag_indicator.calculate_zigzag_with_confirmation
+                    (braucht die Spalten confirm_idx und pivot_idx)
+    min_fib_score   wie bei find_impulse_waves
+    freshness_bars  Balken, die ein Wellenende zurueckliegen darf, bevor der
+                    Live-Bot es als "nicht mehr frisch" verwirft
+                    (SIGNAL_FRESHNESS_HOURS bzw. ..._DAYS in forward_test.py).
+                    None = kein Frische-Fenster.
+    direction       "bearish" (Long-only, wie im Bot), "bullish", oder None
+                    fuer beide. Die Richtungsfilterung erfolgt NACH
+                    remove_overlapping - genauso wie in forward_test.py und
+                    im bisherigen Backtest.
+
+    Rueckgabe: dieselben Spalten wie find_impulse_waves, zusaetzlich
+      confirm_idx  Balken, an dem die Welle bekannt wurde
+      pivot_idx    Balken des Wellenende-Pivots
+      entry_idx    Balken, an dem der Trade eroeffnet wird (= der Lauf, bei
+                   dem die Welle erstmals durchkam)
+    Sortiert nach entry_idx.
+    """
+    empty = pd.DataFrame(columns=["start_time", "end_time", "direction", "wave0", "wave1",
+                                   "wave2", "wave3", "wave4", "wave5", "fib_score",
+                                   "confirm_idx", "pivot_idx", "entry_idx"])
+    if zigzag is None or len(zigzag) < 6:
+        return empty
+    if "confirm_idx" not in zigzag.columns:
+        raise ValueError("find_causal_waves braucht die Ausgabe von "
+                         "calculate_zigzag_with_confirmation (Spalte confirm_idx fehlt)")
+
+    candidates = find_impulse_waves(zigzag[["time", "price", "type"]], min_fib_score=min_fib_score)
+    if candidates.empty:
+        return empty
+
+    # Bestaetigungs- und Pivot-Index einer WELLE sind die ihres letzten
+    # Pivots (Welle 5) - vorher steht das Muster nicht fest.
+    pivot_times = pd.to_datetime(zigzag["time"])
+    confirm_by_time = dict(zip(pivot_times, zigzag["confirm_idx"]))
+    pivot_by_time = dict(zip(pivot_times, zigzag["pivot_idx"]))
+
+    candidates = candidates.copy()
+    end_times = pd.to_datetime(candidates["end_time"])
+    candidates["confirm_idx"] = end_times.map(confirm_by_time)
+    candidates["pivot_idx"] = end_times.map(pivot_by_time)
+    candidates = candidates.dropna(subset=["confirm_idx", "pivot_idx"])
+    if candidates.empty:
+        return empty
+    candidates["confirm_idx"] = candidates["confirm_idx"].astype(int)
+    candidates["pivot_idx"] = candidates["pivot_idx"].astype(int)
+
+    traded = set()          # Wellenenden, die bereits einen Trade ausgeloest haben
+    rows = []
+    for run_bar in sorted(candidates["confirm_idx"].unique()):
+        known = candidates[candidates["confirm_idx"] <= run_bar]
+        kept = remove_overlapping(known)
+        if kept.empty:
+            continue
+        if direction is not None:
+            kept = kept[kept["direction"] == direction]
+
+        for _, wave in kept.iterrows():
+            end_time = wave["end_time"]
+            if end_time in traded:
+                continue
+            if freshness_bars is not None and run_bar - int(wave["pivot_idx"]) > freshness_bars:
+                continue
+            traded.add(end_time)
+            row = wave.to_dict()
+            row["entry_idx"] = int(run_bar)
+            rows.append(row)
+
+    if not rows:
+        return empty
+    return pd.DataFrame(rows).sort_values("entry_idx", kind="stable").reset_index(drop=True)
+
+
 if __name__ == "__main__":
     zigzag = pd.read_csv(os.path.join(RESULTS_DIR, "BTCUSDT_zigzag.csv"), parse_dates=["time"])
 

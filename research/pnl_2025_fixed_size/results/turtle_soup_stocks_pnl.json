@@ -1,0 +1,42 @@
+{
+  "schluessel": "turtle_soup_stocks",
+  "bot": "turtle_soup_stocks",
+  "beschreibung": "Live-Konfiguration aus live_params.py",
+  "parameterquelle": "live_params.py",
+  "verwendete_parameter": {
+    "donchian_period": 10,
+    "stop_mode": null
+  },
+  "live_params_stand": "2026-09-04",
+  "positionslimit_live": null,
+  "symbole_geladen": 147,
+  "trades_gesamt": 12069,
+  "konstanten_angeglichen": [
+    {
+      "modul": "backtest_turtle_soup",
+      "konstante": "MAX_HOLD_DAYS",
+      "live_params": "MAX_HOLD_DAYS",
+      "wert_im_modul": 10,
+      "wert_live": 10,
+      "abweichung": false
+    }
+  ],
+  "regimefilter": null,
+  "positionsgroesse_usd": 1000.0,
+  "jahr": 2025,
+  "gestrichen_wegen_kursluecke": 0,
+  "gleichzeitigkeit": {
+    "limit": null,
+    "relevant_2025": false,
+    "grund": "kein Positionslimit"
+  },
+  "trades_2025": 1197,
+  "pnl_usd": 11102.54,
+  "gewinnrate_pct": 58.1,
+  "bester_trade_usd": 399.2,
+  "schlechtester_trade_usd": -327.9,
+  "symbole_2025": 147,
+  "pnl_usd_netto_laut_bot": 7511.2,
+  "kostenmodell_im_bot": true,
+  "trades_datei": "turtle_soup_stocks_trades_2025.csv"
+}

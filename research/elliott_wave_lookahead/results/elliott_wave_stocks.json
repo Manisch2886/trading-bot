@@ -1,0 +1,90 @@
+{
+  "bot": "elliott_wave_stocks",
+  "config": {
+    "deviation_pct": 5.0,
+    "stop_loss_pct": 3.0,
+    "take_profit_fib": 0.236,
+    "max_hold_bars": 90,
+    "cost_pct": 0.30000000000000004,
+    "max_concurrent": 8,
+    "freshness_bars": 5,
+    "use_take_profit": false
+  },
+  "data_basis": {
+    "symbols_loaded": 147,
+    "first_entry": "2016-10-27",
+    "last_exit": "2026-09-01",
+    "years_covered": 9.85
+  },
+  "mechanism": {
+    "trades": 519,
+    "bars_ahead_median": 1.0,
+    "bars_ahead_mean": 1.8,
+    "bars_ahead_max": 10,
+    "einstiegsvorteil_median_pct": 5.64,
+    "einstiegsvorteil_mittel_pct": 7.02,
+    "anteil_einstieg_guenstiger_pct": 100.0,
+    "trades_mit_stop_treffer_vor_bestaetigung": 0,
+    "anteil_stop_treffer_vor_bestaetigung_pct": 0.0,
+    "kursziel_median_pct": null,
+    "deviation_pct": 5.0,
+    "trades_mit_garantiertem_kursziel": null,
+    "anteil_garantiertes_kursziel_pct": null,
+    "trades_entschieden_vor_bestaetigung": 0,
+    "anteil_entschieden_vor_bestaetigung_pct": 0.0,
+    "take_profit_aktiv": false
+  },
+  "variants": {
+    "baseline": {
+      "num_trades": 519,
+      "num_executed": 288,
+      "num_skipped": 231,
+      "total_return_pct": 3084.09,
+      "max_drawdown_pct": -9.79,
+      "calmar_ratio": 315.02,
+      "win_rate_pct": 43.9,
+      "avg_pnl_pct": 14.88,
+      "worst_trade_pct": -3.3,
+      "best_trade_pct": 223.05,
+      "result_counts": {
+        "stop_loss": 290,
+        "time_exit": 229
+      },
+      "share_take_profit_pct": 0.0
+    },
+    "korrigiert": {
+      "num_trades": 497,
+      "num_executed": 392,
+      "num_skipped": 105,
+      "total_return_pct": 338.26,
+      "max_drawdown_pct": -22.19,
+      "calmar_ratio": 15.24,
+      "win_rate_pct": 21.7,
+      "avg_pnl_pct": 4.872,
+      "worst_trade_pct": -3.3,
+      "best_trade_pct": 240.27,
+      "result_counts": {
+        "stop_loss": 386,
+        "time_exit": 111
+      },
+      "share_take_profit_pct": 0.0
+    },
+    "verzoegert": {
+      "num_trades": 485,
+      "num_executed": 389,
+      "num_skipped": 96,
+      "total_return_pct": 332.99,
+      "max_drawdown_pct": -23.39,
+      "calmar_ratio": 14.24,
+      "win_rate_pct": 19.8,
+      "avg_pnl_pct": 3.78,
+      "worst_trade_pct": -3.3,
+      "best_trade_pct": 246.72,
+      "result_counts": {
+        "stop_loss": 388,
+        "time_exit": 97
+      },
+      "share_take_profit_pct": 0.0
+    }
+  }
+}

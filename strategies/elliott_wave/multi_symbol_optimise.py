@@ -26,8 +26,8 @@ _P = get_strategy_paths(__file__)
 DATA_DIR = _P["DATA_DIR"]
 RESULTS_DIR = _P["RESULTS_DIR"]
 
-from zigzag_indicator import calculate_zigzag
-from elliott_wave_counter import find_impulse_waves, remove_overlapping
+from zigzag_indicator import calculate_zigzag, calculate_zigzag_with_confirmation
+from elliott_wave_counter import find_impulse_waves, remove_overlapping, find_causal_waves
 from backtest_elliott import run_backtest
 import backtest_elliott
 
@@ -68,16 +68,20 @@ def load_all_symbol_data() -> dict:
 
 def get_trades_for_symbol(price_df: pd.DataFrame, deviation_pct: float) -> pd.DataFrame:
     """Fuehrt Zigzag -> Wellenerkennung -> Bereinigung -> Backtest fuer ein Symbol aus."""
-    zigzag = calculate_zigzag(price_df, deviation_pct=deviation_pct)
+    # Kausale Wellenerkennung: die Auswahl zum Zeitpunkt T darf nur Wellen
+    # kennen, die bis T bestaetigt sind, und eine spaeter auftauchende, besser
+    # bewertete Welle darf eine frueher gehandelte nicht mehr verdraengen.
+    # find_causal_waves bildet dafuer die Laeufe von forward_test.py nach und
+    # liefert je Welle den Balken, an dem der Trade tatsaechlich eroeffnet
+    # worden waere (Spalte entry_idx). Siehe research/elliott_wave_lookahead/.
+    zigzag = calculate_zigzag_with_confirmation(price_df, deviation_pct=deviation_pct)
     if len(zigzag) < 6:
         return pd.DataFrame()
 
-    impulses = find_impulse_waves(zigzag, min_fib_score=0.3)
-    if impulses.empty:
-        return pd.DataFrame()
-
-    impulses = remove_overlapping(impulses)
-    impulses = impulses[impulses["direction"] == "bearish"]  # Long-only
+    impulses = find_causal_waves(
+        zigzag, min_fib_score=0.3,
+        freshness_bars=backtest_elliott.SIGNAL_FRESHNESS_BARS,
+        direction="bearish")   # Long-only, wie zuvor festgelegt
     if impulses.empty:
         return pd.DataFrame()
 

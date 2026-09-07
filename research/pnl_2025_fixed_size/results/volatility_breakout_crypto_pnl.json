@@ -1,0 +1,59 @@
+{
+  "schluessel": "volatility_breakout_crypto",
+  "bot": "volatility_breakout_crypto",
+  "beschreibung": "Live-Konfiguration aus live_params.py",
+  "parameterquelle": "live_params.py",
+  "verwendete_parameter": {
+    "stop_loss_pct": 5.0,
+    "max_hold_days": 15
+  },
+  "live_params_stand": "2026-09-04",
+  "positionslimit_live": 8,
+  "symbole_geladen": 20,
+  "trades_gesamt": 233,
+  "konstanten_angeglichen": [
+    {
+      "modul": "backtest_breakout",
+      "konstante": "SQUEEZE_PERCENTILE",
+      "live_params": "BB_SQUEEZE_PERCENTILE",
+      "wert_im_modul": 25.0,
+      "wert_live": 25.0,
+      "abweichung": false
+    },
+    {
+      "modul": "backtest_breakout",
+      "konstante": "SQUEEZE_LOOKBACK_DAYS",
+      "live_params": "BB_LOOKBACK",
+      "wert_im_modul": 126,
+      "wert_live": 126,
+      "abweichung": false
+    }
+  ],
+  "regimefilter": {
+    "live_aktiv": true,
+    "trades_vorher": 359,
+    "trades_nachher": 233,
+    "geblockt": 126,
+    "hinweis": "collect_all_trades wendet den Filter nicht selbst an - hier nachgezogen (PR #22-Nachtrag)"
+  },
+  "positionsgroesse_usd": 1000.0,
+  "jahr": 2025,
+  "gestrichen_wegen_kursluecke": 0,
+  "gleichzeitigkeit": {
+    "limit": 8,
+    "relevant_2025": true,
+    "geblockte_trades_2025": 7,
+    "zeitpunkte_am_limit_2025": 3,
+    "davon_mit_mehreren_signalen_gleichzeitig": 2,
+    "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+  },
+  "trades_2025": 41,
+  "pnl_usd": 2346.13,
+  "gewinnrate_pct": 43.9,
+  "bester_trade_usd": 641.96,
+  "schlechtester_trade_usd": -50.0,
+  "symbole_2025": 18,
+  "pnl_usd_netto_laut_bot": 2223.3,
+  "kostenmodell_im_bot": true,
+  "trades_datei": "volatility_breakout_crypto_trades_2025.csv"
+}

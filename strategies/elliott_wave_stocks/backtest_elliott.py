@@ -17,6 +17,20 @@ Ende von Welle 5 hinaus (Annahme war falsch, Trend laeuft weiter).
 WICHTIG: Das ist ein einfacher Test-Ansatz, keine fertige
 Handelsstrategie. Ergebnisse sind Grundlage fuer Diskussion und
 weitere Optimierung, keine Kauf-/Verkaufsempfehlung.
+
+WICHTIG - Einstiegszeitpunkt (korrigiert, siehe research/elliott_wave_lookahead/):
+Der Backtest stieg frueher zum Zeitpunkt UND Preis des Wellenende-Pivots ein.
+Ein Zigzag-Pivot ist aber erst dann als Pivot erkennbar, wenn sich der Kurs
+danach um deviation_pct in die Gegenrichtung bewegt hat - der Einstieg lag
+also auf einem Kurs, den zu diesem Zeitpunkt noch niemand als Wellenende
+kennen konnte (Look-Ahead-Bias). Gemessen: der Backtest kaufte in 100 % der
+Trades guenstiger, als es live moeglich war, und der Stop war bis zur
+Bestaetigung mathematisch unerreichbar.
+
+Jetzt wird - genau wie in forward_test.py::find_new_signals - zum
+SCHLUSSKURS DES BESTAETIGUNGSBALKENS eingestiegen, und Ziel wie Stop werden
+aus diesem neuen Einstiegspreis berechnet. Welcher Balken das ist, liefert
+elliott_wave_counter.find_causal_waves in der Spalte entry_idx.
 """
 
 import os
@@ -34,6 +48,14 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 
 STOP_LOSS_PCT = 3.0       # Stop, falls Trend weiterlaeuft
 TAKE_PROFIT_FIB = 0.382   # Zielretracement der Gesamtbewegung
+# --- Frische-Fenster, gespiegelt aus forward_test.py -----------------------
+# Der Live-Bot verwirft Muster, deren Wellenende laenger zurueckliegt als
+# dieses Fenster (SIGNAL_FRESHNESS_HOURS bzw. SIGNAL_FRESHNESS_DAYS dort).
+# Der Backtest muss dieselbe Grenze kennen, sonst handelt er Signale, die
+# live nie eroeffnet worden waeren. Angabe in BALKEN - bei elliott_wave_stocks
+# entspricht ein Balken ein Handelstag, der Wert ist also derselbe wie dort.
+SIGNAL_FRESHNESS_BARS = 5
+
 MAX_HOLD_HOURS = 90       # Notausstieg, falls weder TP noch SL erreicht (90 Tages-Balken).
                           # WICHTIG: Trotz des Namens ist dies eine BALKEN-ANZAHL (siehe
                           # simulate_trade: .head(max_hold_hours)), keine echte Zeitspanne -
@@ -81,13 +103,27 @@ def simulate_trade(price_df: pd.DataFrame, entry_time, entry_price: float,
 def run_backtest(price_df: pd.DataFrame, impulses: pd.DataFrame, use_take_profit: bool = True) -> pd.DataFrame:
     trades = []
 
+    if not impulses.empty and "entry_idx" not in impulses.columns:
+        raise ValueError(
+            "run_backtest braucht die Spalte entry_idx - die Wellen muessen ueber "
+            "elliott_wave_counter.find_causal_waves erzeugt werden. Ohne sie waere "
+            "der Einstieg wieder der Wellenende-Pivot, also mit Look-Ahead "
+            "(siehe research/elliott_wave_lookahead/).")
+
     for _, wave in impulses.iterrows():
         # Long-only: bullische Impulse (wuerden zu Short fuehren) werden uebersprungen
         if wave["direction"] == "bullish":
             continue
 
-        entry_time = pd.to_datetime(wave["end_time"])
-        entry_price = wave["wave5"]
+        # Einstieg zum Schlusskurs des Bestaetigungsbalkens (siehe Modulkopf),
+        # NICHT zum Preis des Wellenende-Pivots. signal_time bleibt das
+        # Wellenende - dieselbe Trennung wie in der Live-Datenbank
+        # (signal_time fuer die Duplikat-Erkennung, entry_time fuer die
+        # tatsaechliche Ausfuehrung).
+        entry_idx = int(wave["entry_idx"])
+        signal_time = pd.to_datetime(wave["end_time"])
+        entry_time = pd.to_datetime(price_df["open_time"].iloc[entry_idx])
+        entry_price = float(price_df["close"].iloc[entry_idx])
         total_move = abs(wave["wave5"] - wave["wave0"])
 
         # Baerischer Impuls beendet -> erwartete Korrektur nach oben -> Long
@@ -116,6 +152,7 @@ def run_backtest(price_df: pd.DataFrame, impulses: pd.DataFrame, use_take_profit
         pnl_pct_net = pnl_pct - total_cost_pct
 
         trades.append({
+            "signal_time": signal_time,
             "entry_time": entry_time,
             "direction": direction,
             "entry_price": entry_price,
@@ -164,9 +201,20 @@ def print_summary(trades: pd.DataFrame):
 
 
 if __name__ == "__main__":
+    from zigzag_indicator import calculate_zigzag_with_confirmation
+    from elliott_wave_counter import find_causal_waves
+
     price_df = pd.read_csv(os.path.join(DATA_DIR, "AAPL_1d.csv"), parse_dates=["open_time"])
-    impulses = pd.read_csv(os.path.join(RESULTS_DIR, "AAPL_impulse_waves.csv"),
-                            parse_dates=["start_time", "end_time"])
+
+    # Die Wellen werden hier neu und KAUSAL bestimmt, statt die fertige
+    # AAPL_impulse_waves.csv zu lesen: jene Datei enthaelt keinen
+    # Bestaetigungszeitpunkt, und ohne den waere der Einstieg wieder der
+    # Wellenende-Pivot - also genau der Look-Ahead, den run_backtest jetzt
+    # vermeidet (siehe Modulkopf).
+    zigzag = calculate_zigzag_with_confirmation(price_df, deviation_pct=5.0)
+    impulses = find_causal_waves(zigzag, min_fib_score=0.3,
+                                  freshness_bars=SIGNAL_FRESHNESS_BARS,
+                                  direction="bearish")
 
     trades = run_backtest(price_df, impulses)
 
