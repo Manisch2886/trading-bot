@@ -12,6 +12,171 @@ im Abschnitt „Getroffene Annahmen" vollständig aufgeführt.
 
 ---
 
+## 0. Entscheidungsgrundlage
+
+*Nachgetragen. Die erste Fassung berichtete Punktschätzer ohne Aussenreferenz
+und ohne Unsicherheitsmass — gut genug, um zu beschreiben, WAS gemessen wurde,
+aber nicht, um darauf eine Entscheidung zu stützen. Der Nachtrag korrigiert
+eine Aussage der ersten Fassung (siehe „Was sich geändert hat" am Ende dieses
+Abschnitts).*
+
+### Datenbasis je Bot
+
+| Bot | Kerzen | Zeitraum | Jahre | Symbole | Trades gefunden → **ausgeführt** |
+|---|---|---|---|---|---|
+| `elliott_wave` | 1h | 2021-09 … 2026-08 | 4,97 | 18 | 783 → **780** |
+| `elliott_wave_stocks` | 1d | 2016-10 … 2026-09 | 9,85 | 138 | 519 → **288** |
+| `t3_supertrend` | 4h | 2021-09 … 2026-08 | 4,99 | 18 | 980 → **656** |
+| `volatility_breakout` | 1d | 2016-09 … 2026-09 | 10,0 | 147 | 4510 → **1454** |
+| `volatility_breakout_crypto` | 1d | 2022-03 … 2026-08 | 4,45 | 20 | 359 → **310** |
+
+Die Spalte „ausgeführt" fehlte in der ersten Fassung und ist wichtiger, als sie
+aussieht: bei `volatility_breakout` werden **68 % aller gefundenen Signale
+mangels freien Kapitals oder wegen `MAX_CONCURRENT_POSITIONS` verworfen**, bei
+`elliott_wave_stocks` 45 %. Welche Signale das trifft, hängt an der Reihenfolge
+gleichzeitiger Einstiege — siehe 0.3.
+
+Out-of-Sample-Stichproben (ausgeführte Trades): `t3_supertrend` 210 ·
+`volatility_breakout` 456 · `volatility_breakout_crypto` **103**. Die
+Krypto-Bots decken jeweils nur **einen einzigen Marktzyklus** ab.
+
+### 0.1 Buy-and-Hold — der fehlende Pflicht-Gegencheck
+
+Die erste Fassung hat den Buy-and-Hold-Vergleich **bewusst weggelassen und das
+begründet** (Annahme 12: die Zahl ist für alle drei Stop-Varianten dieselbe und
+trägt zur *internen* Frage nichts bei). Das Argument stimmt weiterhin — der
+Vergleich der Varianten untereinander wird davon nicht berührt.
+
+Trotzdem war die Auslassung ein Fehler, und zwar aus einem Grund, den die
+Begründung nicht abdeckt: Buy-and-Hold beantwortet nicht die interne Frage,
+sondern die vorgelagerte — **trägt die Ausgangsbasis überhaupt?** Bei einem der
+fünf Bots lautet die Antwort nein, und das war ohne diese Zahl nicht sichtbar.
+
+Nachgetragen über eine
+gemeinsame Implementierung, die gegen die drei Bots mit eigenem
+`buy_and_hold_benchmark.py` **exakt** geprüft ist (`verify_baseline.py`).
+Gleichgewichtet über alle Symbole, auf den jeweiligen Trade-Zeitraum
+zugeschnitten.
+
+| Bot | Baseline (Gesamtzeitraum) | **Buy-and-Hold** | Urteil |
+|---|---|---|---|
+| `t3_supertrend` | 129,64 / −22,20 / **5,84** | 8,42 / −79,93 / **0,11** | Strategie klar besser |
+| `volatility_breakout_crypto` | 71,26 / −16,77 / **4,25** | 19,45 / −67,90 / **0,29** | Strategie klar besser |
+| `volatility_breakout` | 224,41 / −23,97 / **9,36** | **804,93 / −34,81 / 23,12** | **Buy-and-Hold besser** |
+| `elliott_wave_stocks` * | 3084,09 / −9,79 / 315,02 | 768,39 / −35,10 / 21,89 | nicht interpretierbar |
+| `elliott_wave` * | 2162,06 / −1,83 / 1181,45 | −1,60 / −78,97 / −0,02 | nicht interpretierbar |
+
+**Der wichtigste Einzelbefund dieses Nachtrags:** bei `volatility_breakout`
+hätte stumpfes Halten der 147 Aktien über denselben Zeitraum eine **2,5-mal
+bessere Calmar-Ratio** erzielt als die Strategie (23,12 vs. 9,36) — bei
+3,6-facher Rendite. Das entwertet den *internen* Vergleich der drei
+Stop-Varianten nicht, stellt aber die Ausgangsbasis in Frage, auf der er
+stattfindet. Es passt zum bereits dokumentierten Survivorship-Bias-Problem des
+Aktien-Universums (Übergabeprotokoll, Abschnitt 3.3).
+
+Bei beiden Krypto-Bots gewinnt die Strategie dagegen deutlich — und zwar über
+den Drawdown (−22,20 % gegen −79,93 % bei `t3_supertrend`). Out-of-Sample
+liegt Buy-and-Hold bei **allen fünf** Bots bei der Rendite vorn.
+
+### 0.2 Belastbarkeit — Block-Bootstrap
+
+2000 Replikate, zirkulärer Moving-Block-Bootstrap über Kalendermonate
+(Blocklänge 3), gepaart: alle Varianten je Replikat auf derselben gezogenen
+Zeitachse. Ein Bootstrap über einzelne Trades wäre falsch — die Simulation ist
+pfadabhängig und der Max Drawdown eine Eigenschaft der Reihenfolge. Nur für
+die drei auswertbaren Bots gerechnet.
+
+P(ATR-Trailing besser als Baseline), Gesamtzeitraum / In-Sample / Out-of-Sample:
+
+| Bot | **Calmar** | **Drawdown** | Rendite |
+|---|---|---|---|
+| `t3_supertrend` | **2,4 % / 3,1 % / 20,1 %** | 75,5 % / 71,2 % / 91,7 % | 2,5 % / 3,9 % / 18,1 % |
+| `volatility_breakout` | **63,2 % / 74,1 % / 33,4 %** | 43,5 % / 45,1 % / 36,0 % | 67,1 % / 78,1 % / 34,2 % |
+| `volatility_breakout_crypto` | 73,8 % / 48,8 % / **95,0 %** | **100,0 % / 99,9 % / 99,2 %** | 35,5 % / 26,0 % / 70,7 % |
+
+Drei klar unterschiedliche Bilder:
+
+- **`t3_supertrend`: der negative Befund ist belastbar.** P = 2,4 % heisst, in
+  97,6 % der Replikate ist die ATR-Variante schlechter. Die Verschlechterung
+  ist damit das statistisch bestgesicherte Ergebnis dieser Untersuchung.
+- **`volatility_breakout`: der Befund ist NICHT belastbar** — und das
+  korrigiert die erste Fassung. Dort stand „Verbesserung: nein"; tatsächlich
+  liegt P bei 63 % (Gesamtzeitraum) und 74 % (In-Sample), also mehrheitlich
+  auf der *anderen* Seite als der Punktschätzer. Nur Out-of-Sample zeigt die
+  gleiche Richtung wie der Punktschätzer (33,4 %). **Das Vorzeichen ist von
+  den Daten nicht bestimmt.**
+- **`volatility_breakout_crypto`: die Drawdown-Reduktion ist praktisch sicher**
+  (P ≥ 99,2 % in jeder Periode), die Calmar-Verbesserung nur Out-of-Sample
+  grenzwertig (95,0 %, Intervall −0,56 … 16,14 berührt die Null).
+
+Ein Muster über alle drei: **die Drawdown-Wirkung lässt sich viel klarer
+beziffern als die Calmar-Wirkung.** Der Grund ist nicht Messfehler, sondern
+Substanz — die Rendite sinkt ähnlich verlässlich wie der Drawdown, und welcher
+Effekt in der Ratio überwiegt, hängt stark von der gezogenen
+Marktphasen-Mischung ab.
+
+**Wichtige Einschränkung zum Verfahren:** der Bootstrap würfelt die Abfolge der
+Marktphasen neu. Er beantwortet „wie sähe es in einer anders zusammengesetzten
+Historie derselben Phasen aus", nicht „wie sicher ist der Wert der
+tatsächlichen Historie". Bei `volatility_breakout` weichen Punktschätzer und
+Bootstrap-Mehrheit gerade deshalb voneinander ab — die tatsächliche Abfolge ist
+eine, in der die ATR-Variante schlechter abschneidet, viele gleichwertige
+Abfolgen sind es nicht.
+
+### 0.3 Belastbarkeit — Reihenfolge gleichzeitiger Einstiege
+
+Die Simulation vergibt Kapital sequenziell. Sind Kapital oder Positionslimit
+knapp, entscheidet die Reihenfolge innerhalb desselben Zeitstempels, **welcher
+Trade überhaupt ausgeführt wird**. Diese Reihenfolge ist inhaltlich willkürlich.
+500 Permutationen, Gesamtzeitraum, Calmar-Spanne:
+
+| Bot | geteilte Zeitstempel | Baseline | Fix-Trailing | ATR-Trailing | überlappen? |
+|---|---|---|---|---|---|
+| `t3_supertrend` | 43,8 % | 4,72 … 6,40 | 0,56 … 1,40 | −0,51 … 0,13 | **nein** |
+| `volatility_breakout` | **87,7 %** | 4,35 … 15,77 | 4,93 … 14,40 | 2,64 … 11,51 | **ja, fast vollständig** |
+| `volatility_breakout_crypto` | 59,6 % | 2,98 … 4,90 | 5,37 … 7,42 | 6,65 … 8,95 | **nein** |
+
+Bei `volatility_breakout` (87,7 % geteilte Zeitstempel, grösste Gruppe **24
+Trades an einem Tag**) schwankt die Baseline-Calmar allein durch diese
+Willkür zwischen 4,35 und 15,77 — ein Faktor von 3,6. Der berichtete
+Unterschied zur ATR-Variante (9,36 → 6,04) liegt vollständig innerhalb dieser
+Spanne. Bootstrap und Permutationstest kommen hier also unabhängig zum selben
+Schluss.
+
+Bei den beiden anderen Bots überlappen die Spannen nicht — dort übersteht die
+Kernaussage diese Störung.
+
+Der **Drawdown ist gegenüber der Reihenfolge weitgehend stabil** (z. B.
+`volatility_breakout_crypto` Baseline: exakt −16,77 % in allen 500
+Permutationen). Erneut dieselbe Trennlinie wie beim Bootstrap.
+
+### 0.4 Was den Befund umstossen würde
+
+- Ein **zweiter vollständiger Marktzyklus** für die Krypto-Bots (aktuell nur
+  einer). Die Trendphasen, in denen der Trailing-Stop verliert, sind dieselben,
+  die diese Bots profitabel machen.
+- Eine **andere Kapitalkonfiguration**: die Reihenfolge-Empfindlichkeit
+  entsteht nur, weil Kapital und Positionslimit knapp sind. Bei
+  `volatility_breakout` werden 68 % der Signale verworfen — eine kleinere
+  Positionsgrösse würde das Bild grundlegend ändern.
+- Für `volatility_breakout_crypto`: eine **Aktivierung des BTC-Regimefilters**
+  in der Backtest-Kette (siehe Annahme 8) — ebenfalls ein
+  Risikoreduktions-Mechanismus, der mit dem Trailing-Stop überlappen dürfte.
+
+### 0.5 Was sich gegenüber der ersten Fassung geändert hat
+
+| | erste Fassung | nach dem Nachtrag |
+|---|---|---|
+| `t3_supertrend` | Verbesserung: **nein**, WF-stabil ja | unverändert — und jetzt statistisch belegt (P = 2,4 %) |
+| `volatility_breakout` | Verbesserung: **nein**, WF-stabil ja | **korrigiert: Vorzeichen nicht bestimmt** (P = 63 % / 74 % / 33 %; Reihenfolge-Spannen überlappen fast vollständig) |
+| `volatility_breakout_crypto` | Verbesserung: **unklar** | unverändert — Drawdown-Wirkung jetzt als praktisch sicher belegt (P ≥ 99,2 %) |
+| Buy-and-Hold | bewusst ausgelassen (Annahme 12, begründet) | ergänzt; bei `volatility_breakout` schlägt B&H die Strategie risikoadjustiert um das 2,5-Fache |
+| Stichprobengrössen | fehlten | ergänzt, inkl. Anteil verworfener Signale |
+
+Die Gesamteinschätzung in Abschnitt 11 ist entsprechend angepasst.
+
+---
+
 ## Kurzfassung
 
 Von den 9 Bots haben **5 einen festen Prozent-Stop-Loss** und sind damit
@@ -29,11 +194,11 @@ Trailing-Stops — Details und Belege in Abschnitt 5.4.
 
 Bei den **3 belastbar auswertbaren Bots** ergibt sich ein konsistentes Bild:
 
-| Bot | Calmar Baseline → ATR-Trailing (IS / OOS) | Bewertung | WF-stabil |
-|---|---|---|---|
-| `t3_supertrend` | 4,51 → −0,07 / 0,85 → −0,05 | **nein** (deutlich schlechter) | ja (4/4) |
-| `volatility_breakout` | 4,00 → 3,44 / 5,46 → 2,04 | **nein** | ja (3/4) |
-| `volatility_breakout_crypto` | 2,44 → 2,25 / 1,79 → 5,04 | **unklar** (IS leicht schlechter, OOS klar besser) | ja (3/4) |
+| Bot | Calmar Baseline → ATR-Trailing (IS / OOS) | Bewertung | WF-stabil | belastbar? |
+|---|---|---|---|---|
+| `t3_supertrend` | 4,51 → −0,07 / 0,85 → −0,05 | **nein** (deutlich schlechter) | ja (4/4) | **ja** (P = 2,4 %) |
+| `volatility_breakout` | 4,00 → 3,44 / 5,46 → 2,04 | Punktschätzer: nein | ja (3/4) | **nein — Vorzeichen unbestimmt** |
+| `volatility_breakout_crypto` | 2,44 → 2,25 / 1,79 → 5,04 | **unklar** (IS leicht schlechter, OOS klar besser) | ja (3/4) | Drawdown ja, Calmar nur OOS |
 
 **In einem Satz:** Volatilitäts-kalibrierte Trailing-Stops senken bei den beiden
 trendfolgenden bzw. trendabhängigen Bots die risikoadjustierte Kennzahl deutlich
@@ -301,12 +466,26 @@ zweite Bestätigung über zwei getrennt implementierte Untersuchungen hinweg.
     konnte Episoden über ein tägliches Signal definieren; hier gibt es kein
     solches Signal, deshalb das gröbere, aber neutrale Kalenderjahr-Raster —
     es wird nicht nachträglich an die Daten angepasst.
-12. **Keine Buy-and-Hold-Referenz.** Diese Untersuchung vergleicht drei
-    Ausstiegsregeln auf **identischen Einstiegssignalen** desselben Bots; eine
-    Buy-and-Hold-Zahl wäre für alle drei Varianten dieselbe und trüge zur
-    eigentlichen Frage nichts bei. Die bot-spezifischen Buy-and-Hold-Werte sind
-    unverändert in den bestehenden `buy_and_hold_benchmark.py`-Skripten und in
-    der Vol-Sizing-Untersuchung dokumentiert.
+12. ~~**Keine Buy-and-Hold-Referenz.**~~ **ÜBERHOLT — nachgetragen, siehe 0.1.**
+    Ursprüngliche Begründung: die Zahl wäre für alle drei Varianten dieselbe
+    und trüge zur eigentlichen Frage nichts bei. Das gilt für den *internen*
+    Vergleich weiterhin, verfehlt aber die vorgelagerte Frage, ob die
+    Ausgangsbasis trägt — bei `volatility_breakout` schlägt Buy-and-Hold die
+    Strategie risikoadjustiert um das 2,5-Fache.
+13. **Nachtrag — Bootstrap-Einstellungen:** Blocklänge 3 Monate, 2000
+    Replikate, Seed 20260907; 500 Permutationen für die
+    Reihenfolge-Sensitivität. Identisch zur Vertiefungsstudie
+    `research/vbc_deepdive/`, damit beide vergleichbar bleiben. Für die beiden
+    Elliott-Wave-Bots wurde **kein** Bootstrap gerechnet: ein
+    Konfidenzintervall um eine nicht interpretierbare Grösse wäre irreführende
+    Präzision.
+14. **Nachtrag — Buy-and-Hold** über eine gemeinsame Implementierung
+    (`decision_basis.buy_and_hold`), weil zwei der fünf Bots kein eigenes
+    `buy_and_hold_benchmark.py` haben. Gegen die drei Bots mit eigener Fassung
+    exakt geprüft (`verify_baseline.py`). Auf den jeweiligen Trade-Zeitraum
+    zugeschnitten — die rohen CSVs reichen bei den Aktien-Bots Jahrzehnte
+    weiter zurück, ein ungeschnittener Vergleich wäre sinnlos (ungeschnitten
+    ergäbe `volatility_breakout` +115.164 % statt +805 %).
 
 ---
 
@@ -410,8 +589,31 @@ Damit fehlt der ATR-Variante bei diesem Bot sogar das übliche Trostargument.
 
 **Episoden-Befund: NICHT einzelepisoden-getrieben** — auf das stärkste Jahr
 (2025) entfallen nur 23 % des Unterschieds; der Nachteil verteilt sich über 11
-Jahre. Das macht diesen Befund in der Zeitverteilung sogar belastbarer als den
-von `t3_supertrend`, auch wenn er in der Grössenordnung milder ist.
+Jahre.
+
+**Nachtrag — dieser Befund hält der Unsicherheitsrechnung NICHT stand.** Die
+erste Fassung schloss auf „Verbesserung: nein". Beide nachgetragenen Prüfungen
+widersprechen dem:
+
+- **Block-Bootstrap:** P(ATR besser) = 63,2 % über den Gesamtzeitraum und
+  74,1 % In-Sample — mehrheitlich auf der *anderen* Seite als der
+  Punktschätzer; nur Out-of-Sample 33,4 %. Das Vorzeichen ist von den Daten
+  nicht bestimmt.
+- **Reihenfolge gleichzeitiger Einstiege:** dieser Bot hat mit **87,7 %** den
+  höchsten Anteil geteilter Zeitstempel aller fünf (grösste Gruppe: 24 Trades
+  an einem Tag), und **68 % aller gefundenen Signale werden mangels Kapital
+  verworfen**. Die Baseline-Calmar schwankt allein dadurch zwischen 4,35 und
+  15,77; der berichtete Unterschied (9,36 → 6,04) liegt vollständig innerhalb
+  dieser Spanne.
+
+Korrigiertes Urteil für diesen Bot: **kein belastbarer Unterschied zwischen den
+drei Stop-Varianten.** Die breite Zeitverteilung des Punktschätzer-Nachteils
+bleibt richtig beobachtet, trägt aber keine Aussage.
+
+Hinzu kommt die Einordnung aus 0.1: Buy-and-Hold hätte über denselben Zeitraum
+eine 2,5-mal bessere Calmar-Ratio erzielt (23,12 vs. 9,36). Die Frage nach der
+besten Stop-Variante ist bei diesem Bot nachrangig gegenüber der Frage, ob die
+Strategie gegenüber stumpfem Halten überhaupt trägt.
 
 Das Ergebnis deckt sich mit einem **bereits im Projekt dokumentierten Befund**:
 `strategies/volatility_breakout/experiment_trailing_stop.py` hat für genau
@@ -709,6 +911,20 @@ der ATR-Stop-Distanzen werden einzelne Verluste deutlich grösser als beim feste
 Stop (bis −26,03 % gegenüber −8,30 % bei `volatility_breakout`), auch wenn die
 mediane Stop-Weite per Kalibrierung identisch ist.
 
+**Nachtrag nach Buy-and-Hold-Vergleich, Bootstrap und
+Reihenfolge-Sensitivität** (Abschnitt 0): von den drei auswertbaren Bots bleibt
+nach der Unsicherheitsrechnung **einer** mit einem belastbaren Ergebnis übrig —
+`t3_supertrend`, und zwar mit einer klaren *Verschlechterung* (P = 2,4 %). Bei
+`volatility_breakout` ist das Vorzeichen unbestimmt; bei
+`volatility_breakout_crypto` ist nur die Drawdown-Reduktion gesichert
+(P ≥ 99,2 %), nicht die daraus abgeleitete Calmar-Verbesserung.
+
+Quer über die drei zeigt sich dieselbe Trennlinie wie in der Vertiefungsstudie:
+**die Drawdown-Wirkung eines Trailing-Stops lässt sich beziffern, seine
+risikoadjustierte Vorteilhaftigkeit nicht.** Die Rendite sinkt ähnlich
+verlässlich wie der Drawdown; welcher Effekt in der Ratio überwiegt, hängt an
+der Zusammensetzung des Betrachtungszeitraums.
+
 **Keiner der beobachteten Effekte ist so gross, so gleichmässig über die Zeit
 verteilt oder über die Bots hinweg so konsistent, dass sich daraus eine
 allgemeine Aussage über volatilitäts-kalibrierte Trailing-Stops ableiten liesse.**
@@ -757,7 +973,7 @@ Session.
 ```
 cd research/trailing_stops
 python3 stop_inventory.py --json     # Schritt 1: Bestandsaufnahme aller 9 Bots
-python3 test_atr_core.py             # 37 Sanity-Checks des Kernmoduls
+python3 test_atr_core.py             # 51 Sanity-Checks des Kernmoduls
 python3 run_all.py                   # Bestandsaufnahme + Baseline-Checks + alle Laeufe
 python3 aggregate_report.py          # Gesamttabellen + results/summary_table.json
 ```
@@ -782,9 +998,10 @@ nicht gelesen.
 |---|---|
 | `stop_inventory.py` | Schritt 1: Klassifikation aller 9 Bots aus `live_params.py` |
 | `atr_core.py` | ATR, Stop-Varianten, Ausstiegs-Simulation, Portfolio-Simulation, Kennzahlen |
-| `test_atr_core.py` | 37 Sanity-Checks inkl. des geforderten synthetischen Volatilitäts-Testfalls |
+| `test_atr_core.py` | 51 Sanity-Checks inkl. des synthetischen Volatilitäts-Testfalls und der Äquivalenz Schnellpfad ↔ Referenzpfad |
 | `verify_baseline.py` | Regressionscheck gegen die bot-eigene `equity_simulation.py` |
 | `run_one_bot.py` | Variantenrechnung für einen Bot (isolierter Prozess) |
 | `run_all.py` | Orchestrierung aller Schritte |
+| `decision_basis.py` | Buy-and-Hold, Reihenfolge-Sensitivität, Block-Bootstrap, NumPy-Schnellpfad |
 | `aggregate_report.py` | Aggregation zu `results/summary_table.json` + Tabellen |
 | `results/` | `stop_inventory.json`, `<bot>_atr14.json`, `<bot>_atr22.json`, `summary_table.json` |

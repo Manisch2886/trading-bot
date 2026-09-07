@@ -28,6 +28,7 @@ _RESEARCH_DIR = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.dirname(os.path.dirname(_RESEARCH_DIR))
 sys.path.insert(0, _RESEARCH_DIR)
 
+import decision_basis as db
 from atr_core import (
     wilder_atr, calibrate_atr_multiplier, simulate_exit, simulate_portfolio,
     calculate_max_drawdown, calmar_ratio, initial_stop_price,
@@ -82,6 +83,22 @@ os.makedirs(RESULTS_DIR, exist_ok=True)
 
 STARTING_CAPITAL = 10_000.0          # Konvention aller Bot-eigenen equity_simulation.py
 NUM_STABILITY_WINDOWS = 4            # wie in der Vol-Sizing-Untersuchung
+
+# Entscheidungsgrundlage (Nachtrag) - identische Einstellungen wie in der
+# Vertiefungsstudie research/vbc_deepdive/, damit beide vergleichbar bleiben.
+BOOTSTRAP_REPLICATES = 2000
+BOOTSTRAP_BLOCK_MONTHS = 3
+BOOTSTRAP_SEED = 20260907
+TIE_ORDER_PERMUTATIONS = 500
+
+# Fuer die beiden Elliott-Wave-Bots wird KEIN Bootstrap gerechnet: ihr
+# Vergleich ist wegen des Zigzag-Look-Aheads ohnehin nicht interpretierbar
+# (siehe BERICHT.md 5.4), ihr Drawdown liegt nahe null, und ein
+# Konfidenzintervall um eine nicht interpretierbare Groesse waere
+# irrefuehrende Praezision. Buy-and-Hold und Datenbasis werden fuer sie
+# trotzdem ausgewiesen.
+BOOTSTRAP_BOTS = ("t3_supertrend", "volatility_breakout", "volatility_breakout_crypto")
+PRIMARY_ATR_WINDOW = 14
 TRADING_COST_PCT = 2 * (0.1 + 0.05)  # Gebuehr + Slippage je Entry und Exit - in ALLEN
                                       # betroffenen Bots identisch (0.1 % + 0.05 %)
 
@@ -152,7 +169,7 @@ def prepare():
             impulses = impulses[impulses["direction"] == "bearish"]  # Long-only
             if impulses.empty:
                 continue
-            prepared[symbol] = _arrays(price_df) | {"impulses": impulses}
+            prepared[symbol] = _arrays(price_df) | {"impulses": impulses, "prices": _price_frame(price_df)}
 
     elif BOT == "t3_supertrend":
         from multi_symbol_optimise import load_all_symbol_data
@@ -169,6 +186,7 @@ def prepare():
             data = compute_indicators(price_df, cfg["t3_fast"], cfg["t3_slow"], bt.T3_FACTOR,
                                        bt.DI_LENGTH, bt.ADX_LENGTH, bt.ATR_LENGTH, bt.ATR_MULT)
             prepared[symbol] = _arrays(data) | {
+                "prices": _price_frame(data),
                 "t3_fast": data["t3_fast"].to_numpy(),
                 "t3_slow": data["t3_slow"].to_numpy(),
                 "adx": data["adx"].to_numpy(),
@@ -195,6 +213,7 @@ def prepare():
             else:
                 df_ind, entry_cutoff = bt.compute_indicators(entry), None
             prepared[symbol] = _arrays(df_ind) | {
+                "prices": _price_frame(df_ind),
                 "upper": df_ind["bb_upper"].to_numpy(),
                 "is_squeeze": df_ind["is_squeeze"].to_numpy(),
                 "entry_cutoff": entry_cutoff,
@@ -206,6 +225,11 @@ def prepare():
                          f"sind Gegenstand dieser Untersuchung)")
 
     return prepared, cfg
+
+
+def _price_frame(df: pd.DataFrame) -> pd.DataFrame:
+    """Minimale Kurstabelle je Symbol fuer den Buy-and-Hold-Vergleich."""
+    return df[["open_time", "close"]].copy()
 
 
 def _arrays(df: pd.DataFrame) -> dict:
@@ -544,9 +568,58 @@ def main():
         if entry["variants"][STOP_FIXED_STATIC] is not None:
             yearly.append(entry)
 
+    # ---- Entscheidungsgrundlage (Nachtrag) --------------------------------
+    price_by_symbol = {sym: p["prices"] for sym, p in prepared.items()}
+    period_bounds = {
+        "full": (entry_min, entry_max, True),
+        "in_sample": (entry_min, split_time, False),
+        "out_of_sample": (split_time, entry_max, True),
+    }
+    alloc_frac = cfg["allocation_pct"] / 100.0
+
+    bh = {name: db.buy_and_hold_window(price_by_symbol, lo, hi, STARTING_CAPITAL)
+          for name, (lo, hi, _) in period_bounds.items()}
+
+    data_basis = {
+        "symbols_with_trades": int(baseline["symbol"].nunique()),
+        "symbols_loaded": len(prepared),
+        "bar_interval": {"elliott_wave": "1h", "t3_supertrend": "4h"}.get(BOT, "1d"),
+        "first_entry": str(entry_min.date()),
+        "last_exit": str(max(t["exit_time"].max() for t in variant_trades.values()).date()),
+        "years_covered": round((baseline["exit_time"].max() - entry_min).days / 365.25, 2),
+        "trades_per_period": {
+            name: {v: {"found": periods[name][v]["num_trades"],
+                        "executed": periods[name][v]["num_executed"],
+                        "skipped": periods[name][v]["num_skipped"]}
+                   for v in VARIANTS if periods[name][v]}
+            for name in periods
+        },
+    }
+
+    # Nur im Hauptlauf (ATR-14). Der Robustheitslauf mit ATR-22 vergleicht die
+    # Fensterwahl und braucht dieselbe Unsicherheitsrechnung nicht noch einmal;
+    # Buy-and-Hold und Datenbasis haengen ohnehin nicht vom ATR-Fenster ab.
+    tie_order, bootstrap_results = {}, {}
+    if BOT in BOOTSTRAP_BOTS and ATR_WINDOW == PRIMARY_ATR_WINDOW:
+        comparisons = [(STOP_FIXED_TRAILING, STOP_FIXED_STATIC),
+                       (STOP_ATR_TRAILING, STOP_FIXED_STATIC),
+                       (STOP_ATR_TRAILING, STOP_FIXED_TRAILING)]
+        for name, (lo, hi, include_hi) in period_bounds.items():
+            sliced = {v: slice_period(t, lo, hi, include_hi) for v, t in variant_trades.items()}
+            tie_order[name] = db.tie_order_sensitivity(
+                sliced, alloc_frac, cfg["max_concurrent_positions"], STARTING_CAPITAL,
+                TIE_ORDER_PERMUTATIONS, BOOTSTRAP_SEED)
+            bootstrap_results[name] = db.block_bootstrap(
+                sliced, alloc_frac, cfg["max_concurrent_positions"], STARTING_CAPITAL,
+                BOOTSTRAP_REPLICATES, BOOTSTRAP_BLOCK_MONTHS, BOOTSTRAP_SEED, comparisons)
+
     output = {
         "bot": BOT,
         "atr_window_bars": ATR_WINDOW,
+        "data_basis": data_basis,
+        "buy_and_hold": bh,
+        "tie_order_sensitivity": tie_order,
+        "bootstrap": bootstrap_results,
         "assumptions": {
             "stop_loss_pct_baseline": cfg["stop_loss_pct"],
             "atr_multiplier_k": round(k, 4) if k else None,
@@ -559,6 +632,10 @@ def main():
             "train_split_ratio": cfg["train_split_ratio"],
             "starting_capital": STARTING_CAPITAL,
             "num_stability_windows": NUM_STABILITY_WINDOWS,
+            "bootstrap_replicates": BOOTSTRAP_REPLICATES if BOT in BOOTSTRAP_BOTS else None,
+            "bootstrap_block_months": BOOTSTRAP_BLOCK_MONTHS,
+            "bootstrap_seed": BOOTSTRAP_SEED,
+            "tie_order_permutations": TIE_ORDER_PERMUTATIONS if BOT in BOOTSTRAP_BOTS else None,
             "split_time": str(split_time),
         },
         "trade_counts": {v: int(len(t)) for v, t in variant_trades.items()},
@@ -585,6 +662,17 @@ def main():
         print(f"  {'':<14} Drawdown fix {row[STOP_FIXED_STATIC]['max_drawdown_pct']:>9.2f}% | "
               f"fix-trail {row[STOP_FIXED_TRAILING]['max_drawdown_pct']:>9.2f}% | "
               f"ATR-trail {row[STOP_ATR_TRAILING]['max_drawdown_pct']:>9.2f}%")
+    if bh.get("full"):
+        print(f"  Buy-and-Hold     gesamt {bh['full']['total_return_pct']:>8.2f}% / "
+              f"DD {bh['full']['max_drawdown_pct']:>7.2f}%   |   OOS "
+              f"{bh['out_of_sample']['total_return_pct']:>8.2f}% / "
+              f"DD {bh['out_of_sample']['max_drawdown_pct']:>7.2f}%")
+    if bootstrap_results.get("full") and "error" not in bootstrap_results["full"]:
+        for name in ("full", "out_of_sample"):
+            for key, diff in bootstrap_results[name]["differences"].items():
+                c, d = diff["calmar_ratio"], diff["max_drawdown_pct"]
+                print(f"  BS {name:<14} {key:<38} Calmar P(>0)={c['share_above_zero_pct']:>5.1f}%  "
+                      f"DD P(>0)={d['share_above_zero_pct']:>5.1f}%")
     print(f"  Ergebnis gespeichert: {out_path}")
 
 

@@ -1,6 +1,92 @@
 {
   "bot": "t3_supertrend",
   "atr_window_bars": 22,
+  "data_basis": {
+    "symbols_with_trades": 18,
+    "symbols_loaded": 18,
+    "bar_interval": "4h",
+    "first_entry": "2021-09-01",
+    "last_exit": "2026-08-31",
+    "years_covered": 4.99,
+    "trades_per_period": {
+      "full": {
+        "fixed_static": {
+          "found": 980,
+          "executed": 656,
+          "skipped": 324
+        },
+        "fixed_trailing": {
+          "found": 980,
+          "executed": 793,
+          "skipped": 187
+        },
+        "atr_trailing": {
+          "found": 980,
+          "executed": 812,
+          "skipped": 168
+        }
+      },
+      "in_sample": {
+        "fixed_static": {
+          "found": 664,
+          "executed": 446,
+          "skipped": 218
+        },
+        "fixed_trailing": {
+          "found": 664,
+          "executed": 546,
+          "skipped": 118
+        },
+        "atr_trailing": {
+          "found": 664,
+          "executed": 562,
+          "skipped": 102
+        }
+      },
+      "out_of_sample": {
+        "fixed_static": {
+          "found": 316,
+          "executed": 210,
+          "skipped": 106
+        },
+        "fixed_trailing": {
+          "found": 316,
+          "executed": 247,
+          "skipped": 69
+        },
+        "atr_trailing": {
+          "found": 316,
+          "executed": 250,
+          "skipped": 66
+        }
+      }
+    }
+  },
+  "buy_and_hold": {
+    "full": {
+      "final_capital": 10841.96,
+      "total_return_pct": 8.42,
+      "max_drawdown_pct": -79.93,
+      "num_symbols": 18,
+      "num_skipped": 0
+    },
+    "in_sample": {
+      "final_capital": 11860.2,
+      "total_return_pct": 18.6,
+      "max_drawdown_pct": -79.93,
+      "num_symbols": 18,
+      "num_skipped": 0
+    },
+    "out_of_sample": {
+      "final_capital": 18794.23,
+      "total_return_pct": 87.94,
+      "max_drawdown_pct": -61.53,
+      "num_symbols": 18,
+      "num_skipped": 0
+    }
+  },
+  "tie_order_sensitivity": {},
+  "bootstrap": {},
   "assumptions": {
     "stop_loss_pct_baseline": 4.0,
     "atr_multiplier_k": 1.6341,
@@ -13,6 +99,10 @@
     "train_split_ratio": 0.7,
     "starting_capital": 10000.0,
     "num_stability_windows": 4,
+    "bootstrap_replicates": 2000,
+    "bootstrap_block_months": 3,
+    "bootstrap_seed": 20260907,
+    "tie_order_permutations": 500,
     "split_time": "2025-02-23 10:48:00"
   },
   "trade_counts": {

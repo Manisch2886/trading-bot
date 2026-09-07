@@ -30,6 +30,7 @@ import pandas as pd
 # run_one_bot liest den Bot-Namen aus sys.argv[1] - dieses Skript wird mit
 # derselben Signatur aufgerufen, der Import uebernimmt also automatisch
 # denselben Bot (inkl. der dort noetigen Stub-Injektion fuer binance/yfinance).
+import decision_basis as db
 import run_one_bot as rob
 from atr_core import STOP_FIXED_STATIC
 
@@ -90,6 +91,34 @@ def main():
         passed = pd.Timestamp(a) == pd.Timestamp(b)
         ok &= passed
         print(f"{label:<22} {str(a):>20} {str(b):>20}  {'OK' if passed else 'ABWEICHUNG'}")
+
+    # --- Buy-and-Hold gegen die bot-eigene Fassung -------------------------
+    # Drei der fuenf betroffenen Bots haben ein eigenes
+    # buy_and_hold_benchmark.py; die beiden anderen (elliott_wave,
+    # t3_supertrend) nicht. decision_basis.buy_and_hold ist deshalb eine
+    # gemeinsame Nachbildung - hier wird geprueft, dass sie dort, wo es eine
+    # Vorlage gibt, exakt dasselbe liefert.
+    try:
+        from buy_and_hold_benchmark import calculate_buy_and_hold
+    except ImportError:
+        print(f"\nBuy-and-Hold: {BOT} hat kein eigenes Skript - "
+              f"gemeinsame Fassung ohne Vorlage, nicht vergleichbar.")
+    else:
+        import equity_simulation as es
+        raw = es.load_all_symbol_data()
+        # volatility_breakout liefert (df, cutoff)-Tupel statt roher DataFrames
+        raw = {sym: (value[0] if isinstance(value, tuple) else value)
+               for sym, value in raw.items()}
+        theirs_bh = calculate_buy_and_hold(raw, 10_000.0)
+        mine_bh = db.buy_and_hold(raw, 10_000.0)
+        print("\nBuy-and-Hold gegen die bot-eigene Fassung")
+        for label, key in (("Gesamtrendite %", "total_return_pct"),
+                           ("Max Drawdown %", "max_drawdown_pct"),
+                           ("Endkapital", "final_capital")):
+            passed = abs(mine_bh[key] - theirs_bh[key]) <= 0.01
+            ok &= passed
+            print(f"{label:<22} {mine_bh[key]:>20} {theirs_bh[key]:>20}  "
+                  f"{'OK' if passed else 'ABWEICHUNG'}")
 
     print("\nERGEBNIS:", "Baseline exakt reproduziert." if ok
           else "ABWEICHUNG - Ergebnisse dieses Bots sind NICHT belastbar.")

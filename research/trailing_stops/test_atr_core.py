@@ -263,6 +263,100 @@ check("Calmar-Ratio ist bei Drawdown 0 nicht definiert (None statt Ersatz-Nenner
       calmar_ratio(50.0, 0.0) is None)
 
 # ---------------------------------------------------------------------------
+print("\n8) Entscheidungsgrundlage: Schnellpfad, Buy-and-Hold, Reihenfolge")
+# ---------------------------------------------------------------------------
+import decision_basis as db
+
+# Trade-Satz MIT mehrfach belegten Einstiegszeitpunkten. Genau diese
+# Konstellation entscheidet ueber die Aequivalenz: die Simulation vergibt
+# Kapital sequenziell, und bei Gleichstand haengt das Ergebnis an der
+# Reihenfolge. Ein Test ohne doppelte Zeitstempel wuerde eine Abweichung
+# zwischen Referenz- und Schnellpfad nicht aufdecken.
+days = ["2024-01-02", "2024-01-02", "2024-01-02", "2024-01-05", "2024-01-05",
+        "2024-02-01", "2024-02-01", "2024-02-14", "2024-03-03", "2024-03-03",
+        "2024-03-03", "2024-04-08", "2024-05-02", "2024-05-02", "2024-06-11"]
+demo = pd.DataFrame({
+    "symbol": [f"S{i % 5}" for i in range(len(days))],
+    "entry_time": pd.to_datetime(days),
+    "exit_time": pd.to_datetime(days) + pd.to_timedelta(np.arange(len(days)) % 7 + 3, unit="D"),
+    "pnl_pct": [7.5, -4.2, 19.0, -3.1, 11.4, -6.0, 2.2, 25.5, -5.0, 8.8,
+                -1.5, 14.0, -7.7, 3.3, 30.0],
+})
+check("Testdaten enthalten mehrfach belegte Einstiegszeitpunkte",
+      demo["entry_time"].duplicated().any())
+
+entry_ns = demo["entry_time"].to_numpy("datetime64[ns]").astype("int64")
+exit_ns = demo["exit_time"].to_numpy("datetime64[ns]").astype("int64")
+pnl_arr = demo["pnl_pct"].to_numpy(dtype=float)
+
+for max_conc in (None, 3):
+    ref = simulate_portfolio(demo, 10_000.0, 0.10, max_conc)
+    ref_return = (ref["final_capital"] / 10_000.0 - 1) * 100
+    ref_dd = calculate_max_drawdown(ref["equity_curve"], 10_000.0)
+    fast_return, fast_dd = db.simulate_fast(entry_ns, exit_ns, pnl_arr, 10_000.0, 0.10, max_conc)
+    limit = "kein Limit" if max_conc is None else f"Limit {max_conc}"
+    check(f"decision_basis.simulate_fast == atr_core.simulate_portfolio ({limit})",
+          abs(ref_return - fast_return) < 1e-9 and abs(ref_dd - fast_dd) < 1e-9,
+          f"{ref_return:.6f}/{ref_dd} vs. {fast_return:.6f}/{fast_dd}")
+
+# Buy-and-Hold auf einem konstruierten Fall mit bekanntem Ergebnis
+bh_data = {
+    "A": pd.DataFrame({"open_time": pd.to_datetime(["2024-01-01", "2024-06-01", "2024-12-01"]),
+                        "close": [100.0, 50.0, 200.0]}),
+    "B": pd.DataFrame({"open_time": pd.to_datetime(["2024-01-01", "2024-06-01", "2024-12-01"]),
+                        "close": [10.0, 10.0, 10.0]}),
+}
+bh = db.buy_and_hold(bh_data, 10_000.0)
+check("Buy-and-Hold: gleichgewichtet, Kauf zum ersten und Verkauf zum letzten Kurs",
+      np.isclose(bh["total_return_pct"], 50.0), str(bh))
+check("Buy-and-Hold: Drawdown aus der zusammengefuehrten Portfolio-Kurve",
+      np.isclose(bh["max_drawdown_pct"], -25.0), str(bh))
+bh_nan = db.buy_and_hold({**bh_data, "C": pd.DataFrame(
+    {"open_time": pd.to_datetime(["2024-01-01", "2024-12-01"]), "close": [np.nan, 5.0]})}, 10_000.0)
+check("Buy-and-Hold: Symbol mit fehlerhaftem Kurs wird uebersprungen, sein Anteil "
+      "bleibt als Cash erhalten (APH-Praezedenzfall)",
+      bh_nan["num_skipped"] == 1, str(bh_nan))
+
+window = db.buy_and_hold_window(bh_data, pd.Timestamp("2024-06-01"),
+                                 pd.Timestamp("2024-12-01"), 10_000.0)
+check("Buy-and-Hold-Fenster schneidet nur die Eingabe zu (ab dem Tief ist die Rendite hoeher)",
+      window["total_return_pct"] > bh["total_return_pct"],
+      f"{window['total_return_pct']} vs. {bh['total_return_pct']}")
+
+# Block-Bootstrap
+variants = {"a": demo, "b": demo}
+boot = db.block_bootstrap(variants, 0.10, 8, 10_000.0, 25, 2, 42, [("b", "a")])
+boot2 = db.block_bootstrap(variants, 0.10, 8, 10_000.0, 25, 2, 42, [("b", "a")])
+check("Bootstrap ist bei gleichem Seed reproduzierbar", boot["differences"] == boot2["differences"])
+paired = boot["differences"]["b_minus_a"]
+check("identische Varianten ergeben eine gepaarte Differenz von exakt 0 (Paarung wirkt)",
+      all(paired[key]["ci_low"] == 0.0 and paired[key]["ci_high"] == 0.0
+          for key in ("total_return_pct", "max_drawdown_pct", "calmar_ratio")),
+      str(paired["calmar_ratio"]))
+check("Bootstrap verweigert zu kurze Zeitraeume statt ein Scheinintervall zu liefern",
+      "error" in db.block_bootstrap({"a": demo.head(3)}, 0.10, 8, 10_000.0, 5, 6, 1, []))
+
+months = db.month_span(variants)
+arrays = db.prepare_arrays(demo, months)
+starts = np.random.default_rng(2).integers(0, len(months), size=3)
+r_entry, r_exit, r_pnl = db.resample(arrays, starts, 2, len(months))
+check("Resampling erhaelt die Haltedauern exakt",
+      set(np.unique(r_exit - r_entry)).issubset(set(np.unique(exit_ns - entry_ns))))
+
+# Reihenfolge-Sensitivitaet
+sens = db.tie_order_sensitivity({"x": demo}, 0.34, 2, 10_000.0, 40, 1)["x"]
+check("Reihenfolge-Sensitivitaet erkennt geteilte Zeitstempel",
+      sens["share_sharing_entry_timestamp_pct"] > 0 and sens["largest_same_timestamp_group"] == 3,
+      str(sens["largest_same_timestamp_group"]))
+check("bei knappem Kapital streut das Ergebnis ueber die Reihenfolge",
+      sens["total_return_pct"]["min"] < sens["total_return_pct"]["max"],
+      f"{sens['total_return_pct']}")
+sens_free = db.tie_order_sensitivity({"x": demo}, 0.02, None, 10_000.0, 40, 1)["x"]
+check("ohne Kapital- und Positionsengpass ist die Reihenfolge irrelevant",
+      sens_free["total_return_pct"]["min"] == sens_free["total_return_pct"]["max"],
+      f"{sens_free['total_return_pct']}")
+
+# ---------------------------------------------------------------------------
 print(f"\n{'=' * 60}")
 print(f"{PASSED} Checks bestanden, {FAILED} fehlgeschlagen.")
 print(f"{'=' * 60}")
