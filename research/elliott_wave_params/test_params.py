@@ -200,6 +200,16 @@ def main():
               f"Take-Profit-Anteil bei deviation {worst_dev:g} %: "
               + ", ".join(f"Stop {k:g} % -> {v} %" for k, v in shares.items()))
 
+    # 12b - keine NaN-Kennzahl mehr: Trades mit Kursluecke sind
+    #       gestrichen, und die Streichung ist ausgewiesen statt still
+    ok = not engine_trades[["entry_price", "exit_price", "pnl_pct"]].isna().any().any()
+    check("kein Trade mit fehlendem Kurs bleibt in der Auswertung", ok,
+          f"gestrichen: {engine.datenluecken_bericht()}")
+    pf = engine.portfolio(engine_trades)
+    check("Portfolio-Kennzahlen sind Zahlen, kein NaN",
+          all(v == v for v in (pf["total_return_pct"], pf["max_drawdown_pct"])),
+          f"{pf['total_return_pct']} % / {pf['max_drawdown_pct']} %")
+
     # 13 - keine Live-Datei angefasst
     diff = subprocess.run(
         ["git", "-C", botenv.REPO_ROOT, "diff", "--stat", "HEAD", "--",

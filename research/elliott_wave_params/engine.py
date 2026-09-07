@@ -40,6 +40,7 @@ komplett neu durchgerechnet (eigener Zigzag, eigene Wellen); ein
 Fenster sieht also nie Kurse ausserhalb seiner Grenzen.
 """
 
+import collections
 import hashlib
 import os
 import pickle
@@ -62,6 +63,22 @@ TRAIN_SPLIT_RATIO = 0.7
 WINDOW_FULL, WINDOW_IS, WINDOW_OOS = "gesamt", "is", "oos"
 
 MIN_FIB_SCORE = 0.3          # wie in beiden Bots fest verdrahtet
+
+# Luecken in den Kursdaten: einzelne CSVs haben vereinzelt fehlende
+# Kurse (bei yfinance kommt das vor). Ein einziger NaN-Ausstiegskurs
+# macht die gesamte Kapitalkurve unbrauchbar - simulate_portfolio
+# rechnet ihn ins Kapital, und ab da ist jede Folgezahl NaN. Genau das
+# ist beim Aktien-Bot passiert: der letzte Balken von APH ist leer,
+# und jede Kombination, bei der ein APH-Trade dort per Zeitausstieg
+# endet, lieferte NaN als Rendite. Der Projekt-Score merkt davon
+# nichts, weil pandas beim Mitteln NaN ueberspringt - die Rangfolge
+# blieb also gueltig, die Portfolio-Kennzahl daneben war unbrauchbar.
+# buy_and_hold_benchmark.py des Aktien-Bots geht mit demselben Problem
+# schon so um: betroffenes Symbol sauber ueberspringen statt die
+# Rechnung still zu vergiften. Hier wird derselbe Weg gewaehlt, nur
+# auf Trade-Ebene, und jede Streichung wird mitgezaehlt und
+# ausgewiesen.
+DATENLUECKEN = collections.Counter()
 SUPPORTS_NO_TP = "use_take_profit" in bt.run_backtest.__code__.co_varnames
 SUPPORTS_POSITION_LIMIT = "max_concurrent_positions" in es.simulate_portfolio.__code__.co_varnames
 MAX_CONCURRENT = getattr(lp, "MAX_CONCURRENT_POSITIONS", None)
@@ -196,7 +213,20 @@ def collect_trades(all_data: dict, waves: dict, stop_loss_pct: float,
     combined = pd.concat(blocks, ignore_index=True)
     combined["entry_time"] = pd.to_datetime(combined["entry_time"])
     combined["exit_time"] = pd.to_datetime(combined["exit_time"])
+
+    luecken = combined[["entry_price", "exit_price", "pnl_pct"]].isna().any(axis=1)
+    if luecken.any():
+        for symbol in combined.loc[luecken, "symbol"]:
+            DATENLUECKEN[symbol] += 1
+        combined = combined[~luecken].reset_index(drop=True)
     return combined
+
+
+def datenluecken_bericht() -> dict:
+    """Wie viele Trades wegen fehlender Kurse gestrichen wurden, je
+    Symbol - summiert ueber alle bisher gerechneten Kombinationen."""
+    return {"gestrichene_trades_gesamt": int(sum(DATENLUECKEN.values())),
+            "je_symbol": dict(DATENLUECKEN)}
 
 
 # --------------------------------------------------------------------

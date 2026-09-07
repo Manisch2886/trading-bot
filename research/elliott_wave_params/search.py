@@ -202,6 +202,19 @@ def main():
                                           else "faellt durch die Mindestfilter"))
 
     out["laufzeit_s"] = round(time.time() - t_start, 1)
+    # Die Worker sind eigene Prozesse; ihre Zaehler kommen hier nicht an.
+    # Deshalb einmal im Elternprozess nachrechnen - eine Kombination
+    # genuegt, weil die Luecken in den KURSDATEN liegen, nicht in den
+    # Parametern.
+    probe = engine.collect_trades(
+        _DATA[engine.WINDOW_FULL],
+        engine.waves_for(engine.WINDOW_FULL, _DATA[engine.WINDOW_FULL], live["deviation_pct"]),
+        live["stop_loss_pct"], live["take_profit_fib"], live["use_take_profit"])
+    out["datenluecken_stichprobe"] = engine.datenluecken_bericht()
+    out["datenluecken_stichprobe"]["kombination"] = "live"
+    out["datenluecken_stichprobe"]["trades_nach_streichung"] = int(len(probe))
+    if out["datenluecken_stichprobe"]["gestrichene_trades_gesamt"]:
+        print(f"\nDatenluecken: {out['datenluecken_stichprobe']}")
     path = os.path.join(botenv.RESULTS_DIR, f"{BOT}_search.json")
     with open(path, "w") as fh:
         json.dump(out, fh, indent=2, default=str, ensure_ascii=False)
