@@ -89,6 +89,26 @@ DISPLAY_NAMES = {
 # gleichmaessig.
 WEIGHT_OVERRIDES = {}
 
+# Bots, deren Backtest-Grundlage derzeit ueberarbeitet wird und deren
+# equity_curve.csv-Fallback deshalb NICHT als Performance-Aussage gelesen
+# werden darf. Hintergrund: der Elliott-Wave-Backtest steigt zum Preis eines
+# Zigzag-Pivots ein, der zu diesem Zeitpunkt noch gar nicht als Pivot
+# erkennbar war (Look-Ahead, gemessen in research/elliott_wave_lookahead/).
+# forward_test.py ist davon NICHT betroffen - der Live-Bot steigt korrekt zum
+# Bestaetigungskurs ein. Betroffen ist ausschliesslich die hier als Fallback
+# gelesene Backtest-Kurve.
+#
+# Der Hinweis wird NUR angezeigt, solange ein Bot tatsaechlich im
+# CSV-Fallback laeuft. Sobald genug echte Live-Trades vorliegen
+# (MIN_LIVE_CLOSED_TRADES), stammt die Kurve aus der Live-DB und der Hinweis
+# verschwindet von selbst - ohne dass hier etwas geaendert werden muss.
+BACKTEST_BASIS_UNDER_REVIEW = {
+    "elliott_wave": "Zigzag-Look-Ahead im Backtest",
+    "elliott_wave_stocks": "Zigzag-Look-Ahead im Backtest",
+}
+BASIS_UNDER_REVIEW_HINT = ("Backtest-Fallback, nicht Live-Performance - "
+                            "Grundlage wird aktuell ueberarbeitet")
+
 CORRELATION_ALERT_THRESHOLD = 0.3  # einfacher Schwellenwert, siehe Teil 3
 MIN_COMMON_TRADING_DAYS = 30       # Mindestanzahl gemeinsamer Handelstage, bevor eine
                                     # Korrelationszahl fuer ein Bot-Paar ueberhaupt gezeigt wird
@@ -290,6 +310,11 @@ def load_all_curves(bots: dict) -> dict:
                                      f"{live_trade_count}/{MIN_LIVE_CLOSED_TRADES} Trades)")
                 else:
                     source_label = "equity_curve.csv (Backtest-Simulation, noch keine geschlossenen Live-Trades)"
+                # Nur im Fallback-Fall kennzeichnen - siehe
+                # BACKTEST_BASIS_UNDER_REVIEW oben.
+                if name in BACKTEST_BASIS_UNDER_REVIEW:
+                    sources["basis_under_review"] = BACKTEST_BASIS_UNDER_REVIEW[name]
+                    source_label += f"  [!] {BASIS_UNDER_REVIEW_HINT} ({BACKTEST_BASIS_UNDER_REVIEW[name]})"
             elif sources["db_file"] is not None:
                 print(f"  Hinweis: {display_name(name)} uebersprungen (nur {live_trade_count} "
                       f"geschlossene Live-Trades, unter Schwelle {MIN_LIVE_CLOSED_TRADES}, "
@@ -348,6 +373,21 @@ def run_analysis(bots: dict, curves: dict, group_label: str, output_suffix: str)
         print(f"  {display_name(name)}: {data['source']} "
               f"({data['series'].index.min().date()} bis {data['series'].index.max().date()})")
 
+    flagged = [n for n in curves if bots.get(n, {}).get("basis_under_review")]
+    if flagged:
+        print("\n" + "!" * 70)
+        print("! ACHTUNG - eingeschraenkte Aussagekraft")
+        print("!" * 70)
+        for name in flagged:
+            print(f"! {display_name(name)}: {BASIS_UNDER_REVIEW_HINT}")
+            print(f"!   Grund: {bots[name]['basis_under_review']}")
+        print("! Die Zahlen dieser Bots stammen aus dem Backtest, nicht aus echten")
+        print("! Live-Trades, und beruhen auf einer Grundlage, die derzeit ueberarbeitet")
+        print("! wird. Sie sind mit hoher Wahrscheinlichkeit zu optimistisch und duerfen")
+        print("! NICHT als erzielte Performance gelesen werden. Der Live-Bot selbst")
+        print("! (forward_test.py) ist davon nicht betroffen.")
+        print("!" * 70)
+
     common_start = max(d["series"].index.min() for d in curves.values())
     common_end = min(d["series"].index.max() for d in curves.values())
     print(f"\nGemeinsames Vergleichsfenster: {common_start.date()} bis {common_end.date()}")
@@ -369,9 +409,14 @@ def run_analysis(bots: dict, curves: dict, group_label: str, output_suffix: str)
     for name in curves:
         dd = max_drawdown_pct(normalised[name])
         total_return = round((normalised[name].iloc[-1] / normalised[name].iloc[0] - 1) * 100, 2)
-        rows.append({"bot": display_name(name), "gewicht": f"{weights[name]*100:.1f}%",
+        flag = " [!]" if bots.get(name, {}).get("basis_under_review") else ""
+        rows.append({"bot": display_name(name) + flag, "gewicht": f"{weights[name]*100:.1f}%",
                       "rendite_pct": total_return, "max_drawdown_pct": dd})
     print(pd.DataFrame(rows).to_string(index=False))
+    if flagged:
+        print(f"\n  [!] = {BASIS_UNDER_REVIEW_HINT}. Betrifft: "
+              f"{', '.join(display_name(n) for n in flagged)}.")
+        print("      Auch die kombinierten Portfolio-Zahlen in Teil 2 enthalten diese Bots.")
 
     print("\n" + "=" * 70)
     print(f"TEIL 2: KOMBINIERTES PORTFOLIO (Gewichtung: "
