@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bot-Detail</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="/statisch/style.css">
+<link rel="apple-touch-icon" href="/statisch/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#14171c">
+</head>
+<body>
+<header>
+  <a href="/" aria-label="Zurück zur Übersicht">‹ Übersicht</a>
+  <h1 id="titel">Bot</h1>
+</header>
+
+<main>
+  <div id="fehler"></div>
+  <div id="kurshinweis"></div>
+
+  <div class="karten" id="karten"></div>
+
+  <h2>Offene Positionen</h2>
+  <div class="tabellenrahmen">
+    <table>
+      <thead>
+        <tr><th>Symbol</th><th>Entry</th><th>Stop</th><th>Aktuell</th><th>Veränderung</th></tr>
+      </thead>
+      <tbody id="positionen"><tr><td colspan="5" class="gedaempft">lädt …</td></tr></tbody>
+    </table>
+  </div>
+
+  <h2>Verlauf (kumulierte Trade-Ergebnisse)</h2>
+  <div class="diagramm"><div id="diagramm"></div></div>
+
+  <h2>Zuletzt geschlossene Trades</h2>
+  <div class="tabellenrahmen">
+    <table>
+      <thead>
+        <tr><th>Symbol</th><th>Einstieg</th><th>Ausstieg</th><th>Ergebnis</th><th>PnL</th></tr>
+      </thead>
+      <tbody id="trades"><tr><td colspan="5" class="gedaempft">lädt …</td></tr></tbody>
+    </table>
+  </div>
+  <p class="fussnote">
+    Paper-Trading – kein echtes Kapital. Die Kurse der offenen Positionen sind
+    Live-Abfragen (Binance für Krypto, yfinance für Aktien); schlägt eine Abfrage
+    fehl, bleibt der Rest der Seite trotzdem vollständig.
+  </p>
+</main>
+
+<script src="/statisch/app.js"></script>
+<script>
+const name = new URLSearchParams(window.location.search).get("name") || "";
+
+function positionsZeile(p) {
+  return `<tr>
+    <td data-spalte="Symbol">${p.symbol}</td>
+    <td data-spalte="Entry">${zahl(p.entry_preis)}</td>
+    <td data-spalte="Stop">${p.stop_preis === null ? '<span class="gedaempft">–</span>' : zahl(p.stop_preis)}</td>
+    <td data-spalte="Aktuell">${p.aktueller_preis === null
+            ? '<span class="gedaempft">Preis nicht verfügbar</span>'
+            : zahl(p.aktueller_preis)}</td>
+    <td data-spalte="Veränderung">${prozent(p.veraenderung_pct)}</td>
+  </tr>`;
+}
+
+function tradeZeile(t) {
+  return `<tr>
+    <td data-spalte="Symbol">${t.symbol ?? "–"}</td>
+    <td data-spalte="Einstieg">${zeit(t.einstieg)}</td>
+    <td data-spalte="Ausstieg">${zeit(t.ausstieg)}</td>
+    <td data-spalte="Ergebnis" class="gedaempft">${t.ergebnis ?? "–"}</td>
+    <td data-spalte="PnL">${prozent(t.pnl_pct)}</td>
+  </tr>`;
+}
+
+function zeichne(detail) {
+  document.getElementById("titel").textContent = detail.anzeigename;
+  document.title = detail.anzeigename;
+
+  document.getElementById("karten").innerHTML = `
+    <div class="karte"><div class="beschriftung">Offene Positionen</div><div class="wert">${detail.offene_positionen}</div></div>
+    <div class="karte"><div class="beschriftung">Geschlossene Trades</div><div class="wert">${detail.geschlossene_trades}</div></div>
+    <div class="karte"><div class="beschriftung">Trefferquote</div><div class="wert">${
+      detail.trefferquote === null ? "–" : zahl(detail.trefferquote, 1) + "%"}</div></div>
+    <div class="karte"><div class="beschriftung">Ø pro Trade</div><div class="wert">${prozent(detail.durchschnitt_pnl)}</div></div>
+    <div class="karte"><div class="beschriftung">Summe PnL</div><div class="wert">${prozent(detail.summe_pnl)}</div></div>
+    <div class="karte"><div class="beschriftung">Letzter Lauf</div><div class="wert" style="font-size:15px">${zeit(detail.letzter_lauf)}</div></div>`;
+
+  document.getElementById("positionen").innerHTML = detail.positionen.length
+    ? detail.positionen.map(positionsZeile).join("")
+    : '<tr><td colspan="5" class="gedaempft">Keine offenen Positionen.</td></tr>';
+
+  document.getElementById("trades").innerHTML = detail.letzte_trades.length
+    ? detail.letzte_trades.map(tradeZeile).join("")
+    : '<tr><td colspan="5" class="gedaempft">Noch keine geschlossenen Trades.</td></tr>';
+}
+
+async function laden() {
+  if (!name) {
+    zeigeFehler("Kein Bot angegeben.");
+    return;
+  }
+  try {
+    // Erst ohne Live-Kurse (schnell), danach mit - genau wie in der Übersicht.
+    zeichne(await hole(`/api/bots/${encodeURIComponent(name)}`));
+  } catch (e) {
+    zeigeFehler("Bot konnte nicht geladen werden: " + e.message);
+    return;
+  }
+
+  try {
+    const verlauf = await hole("/api/verlauf");
+    const kurve = verlauf.bots[name];
+    linienDiagramm(document.getElementById("diagramm"),
+      [{ name: name, farbe: "#6aa9e0", punkte: punkteAus(kurve ? kurve.punkte : []) }]);
+  } catch (e) {
+    document.getElementById("diagramm").innerHTML =
+      '<p class="gedaempft">Verlauf nicht verfügbar.</p>';
+  }
+
+  try {
+    const mitKursen = await hole(`/api/bots/${encodeURIComponent(name)}?live=1`);
+    zeichne(mitKursen);
+    setzeHinweis(mitKursen.kurs_hinweis);
+  } catch (e) {
+    setzeHinweis("Live-Kurse nicht verfügbar: " + e.message);
+  }
+}
+
+laden();
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js").catch(() => {});
+}
+</script>
+</body>
+</html>
