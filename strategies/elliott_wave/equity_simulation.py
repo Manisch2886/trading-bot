@@ -39,13 +39,20 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 import backtest_elliott
 
+# Die drei Strategie-Parameter kommen DIREKT aus live_params.py - derselben
+# Datei, aus der auch forward_test.py liest. Vorher standen sie hier ein
+# zweites Mal als eigene Konstanten, was zwangslaeufig auseinanderlief:
+# nach der Parameter-Umstellung (PR #30) rechnete dieses Skript noch mit
+# 4 % / 2 % / 0.236, waehrend der Bot bereits mit 10 % / 6 % / 0.618 lief.
+# Ein Backtest von hier beschrieb damit eine Strategie, die es nicht mehr
+# gab (Sync-Check, PR #24). Der Import schliesst diese Luecke strukturell:
+# es gibt nur noch EINE Quelle, eine kuenftige Aenderung wirkt automatisch
+# auch hier. live_params.py importiert selbst nichts, ein Importzyklus ist
+# also ausgeschlossen.
+from live_params import DEVIATION_PCT, STOP_LOSS_PCT, TAKE_PROFIT_FIB
+
 STARTING_CAPITAL = 10_000.0
 ALLOCATION_PCT = 0.10  # Anteil des aktuellen Kapitals pro Trade
-
-# Beste Kombination aus der letzten Multi-Symbol-Optimierung
-DEVIATION_PCT = 4.0
-STOP_LOSS_PCT = 2.0
-TAKE_PROFIT_FIB = 0.236
 
 
 def collect_all_trades(all_data: dict, deviation_pct: float,
