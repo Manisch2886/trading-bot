@@ -1,85 +1,140 @@
 # `volatility_breakout_crypto` — Vertiefungsstudie: Vol-Sizing × ATR-Trailing-Stop
 
 **Status: reine Backtest-Untersuchung. KEINE Live-Aktivierung, KEINE Änderung an
-Live-Dateien, KEINE Aktivierungsempfehlung.** Alle neuen Skripte liegen
-ausschliesslich unter `research/vbc_deepdive/`. Verifiziert per `git status`:
-keine Datei ausserhalb dieses Verzeichnisses wurde angefasst — insbesondere
-nicht `strategies/volatility_breakout_crypto/live_params.py` oder
-`forward_test.py`.
-
-Anlass: Nach vier abgeschlossenen Backlog-Untersuchungen war
-`volatility_breakout_crypto` der einzige Bot, der über **zwei unabhängig
-erscheinende Mechanismen** positiv auffiel — volatilitäts-skalierte
-Positionsgrössen (PR #18) und ATR-Trailing-Stops (PR #21). Diese Studie prüft,
-ob es sich tatsächlich um zwei Signale handelt.
+Live-Dateien, KEINE Aktivierungsempfehlung.** Alle Skripte liegen ausschliesslich
+unter `research/vbc_deepdive/`. Verifiziert per `git status`: keine Datei
+ausserhalb dieses Verzeichnisses angefasst — insbesondere nicht
+`strategies/volatility_breakout_crypto/live_params.py` oder `forward_test.py`.
 
 ---
 
-## Kurzfassung
+## 0. Entscheidungsgrundlage
 
-**Die „doppelte Bestätigung" hält einer genauen Prüfung nicht stand. Es ist im
-Wesentlichen ein Signal, zweimal gemessen — und dieses eine Signal ist keine
-Ertragsverbesserung, sondern eine Varianzreduktion.**
+*Dieser Abschnitt steht bewusst vorne. Er enthält alles, was jemand braucht, der
+auf dieser Studie aufbauen will — nicht nur ihre Befunde, sondern auch ihre
+Reichweite.*
 
-Fünf voneinander unabhängige Belege, alle in dieser Studie neu erhoben:
+### Datenbasis
 
-1. **Die beiden „Volatilitäts"-Masse messen weitgehend dasselbe.** Korrelation
-   zwischen ATR/Kurs und realisierter Volatilität am Einstiegszeitpunkt:
-   **0,83** (Rangkorrelation 0,85) über 359 Trades.
-2. **Die Trade-Beiträge beider Mechanismen sind positiv korreliert** (0,45 auf
-   Trade-Ebene, 0,57 auf Quartalsebene) — nicht das Bild zweier unabhängiger
-   Effekte.
-3. **Die Kombination ist nicht additiv, sondern beim Risiko klar
-   sub-additiv:** die Renditekosten stapeln sich vollständig (Interaktion
-   +0,88 / −0,75 / +0,48 pp), die Drawdown-Reduktionen überlappen sich
-   (Interaktion **−1,98 / −1,94 / −1,76 pp** in allen drei Perioden). Der
-   zweite Mechanismus findet grösstenteils keinen Drawdown mehr vor, den der
-   erste nicht schon entfernt hätte.
-4. **Beide zeigen dasselbe bedingte Muster:** die Korrelation zwischen der
-   Quartalsrendite der Baseline und dem Vorteil des Mechanismus im selben
-   Quartal beträgt **−0,88** (Trailing) bzw. **−0,58** (Vol-Sizing). Der
-   Trailing-Stop war in **10 von 10** Quartalen mit negativer Baseline besser
-   und in nur 2 von 9 Quartalen mit positiver Baseline.
-5. **Die kombinierte Variante ist nicht walk-forward-stabil:** gegenüber dem
-   besseren Einzelmechanismus (Trailing) in 2 von 4 Fenstern besser, in 2 von 4
-   schlechter. Über den Gesamtzeitraum ist sie sogar **schlechter** als der
-   Trailing-Stop allein (Calmar 6,39 vs. 7,93).
+| | |
+|---|---|
+| Zeitraum | 2022-03-17 bis 2026-08-30 (**4,45 Jahre**) |
+| Symbole | 20 (alle mit Trades) |
+| Trades gesamt | 359 (fester Stop) / 396 (ATR-Trailing) |
+| davon In-Sample | 219 gefunden, **209 ausgeführt** / 232 gefunden, 231 ausgeführt |
+| davon Out-of-Sample | 140 gefunden, **103 ausgeführt** / 164 gefunden, 140 ausgeführt |
+| Markt | ausschliesslich Krypto, **ein einziger Zyklus** (Bärenmarkt 2022 → Erholung → 2024er Trends) |
 
-Die Episoden-Prüfung (Frage 2 der Aufgabenstellung) fällt differenziert aus:
-die **Drawdown-Reduktion** des Trailing-Stops ist robust (in 4 von 4
-Walk-Forward-Fenstern vorhanden), der **Renditeeffekt** ist es in der Richtung
-ebenfalls (besser in 12 von 19 Quartalen), aber in der Grössenordnung
-konzentriert (die drei grössten Quartalsabweichungen sind alle Verluste und
-tragen 55 % des Gesamtunterschieds — es sind exakt die drei stärksten
-Trendquartale). Keine Handlungsempfehlung.
+Der einzige klar positive Befund dieser Studie steht auf dem Out-of-Sample-
+Abschnitt — und der umfasst **17 Monate und rund 100 bis 140 ausgeführte
+Trades**. Das ist wenig.
+
+### Pflicht-Gegenchecks der Projekt-Methodik
+
+| Check | Ergebnis |
+|---|---|
+| Baseline reproduziert den Bot-Code | **ja** — 359 Trades, PnL-Summe 629,88 %, identische Eckdaten |
+| Beide Vorgänger-Studien reproduziert | **ja** — 50 von 50 Referenzwerten exakt |
+| **Buy-and-Hold-Vergleich** | **ja, siehe Abschnitt 5** — Strategie schlägt B&H risikoadjustiert deutlich, verliert Out-of-Sample aber klar bei der Rendite |
+| Walk-Forward | ja, 4 Fenster, Abschnitt 9 |
+| Equity-Simulation | ja, unverändert aus `equity_simulation.py` |
+
+### Belastbarkeit — die wichtigste Tabelle dieser Studie
+
+Zwei unabhängige Unsicherheitsquellen wurden quantifiziert (Details Abschnitt 6):
+
+| Behauptung | Block-Bootstrap, P(Effekt > 0) | überlappen die Reihenfolge-Streubereiche? | Bewertung |
+|---|---|---|---|
+| Trailing senkt den **Drawdown** | **100,0 %** (gesamt), 99,9 % (IS), 99,2 % (OOS) | nein | **belastbar** |
+| Kombination senkt den Drawdown ggü. Trailing allein (OOS) | **99,9 %** | — | belastbar, aber klein (+0,3 bis +2,2 pp) |
+| Trailing verbessert die **Calmar-Ratio** | 73,8 % (gesamt), **48,8 % (IS)**, 95,0 % (OOS) | gesamt: nein · OOS: nein | **nur OOS grenzwertig** |
+| Vol-Sizing verbessert irgendetwas | 40,1 % / 47,1 % / 53,8 % | ja, fast vollständig | **von Rauschen ununterscheidbar** |
+| Kombination schlägt Trailing allein (Calmar) | 31,1 % / 27,6 % / 71,2 % | ja | **kein Beleg** |
+
+Zusätzlich: **60 % der Trades teilen sich einen Einstiegszeitpunkt** mit einem
+anderen Trade (Tageskerzen, 20 Symbole). Da die Simulation Kapital sequenziell
+vergibt, verschiebt allein diese willkürliche Reihenfolge die berichtete
+Baseline-Calmar zwischen **2,98 und 4,90** (berichtet: 4,25). Der Drawdown ist
+davon praktisch unberührt.
+
+### Was diesen Befund umstossen würde
+
+- Ein Zeitraum mit einem **zweiten vollständigen Krypto-Zyklus**. Die gesamte
+  Historie enthält genau einen; die Trendquartale, in denen der Trailing-Stop
+  verliert, sind dieselben, die den Bot profitabel machen.
+- Eine **Aktivierung des BTC-Regimefilters** in der Backtest-Kette (siehe
+  Annahme 8): er ist ebenfalls ein Risikoreduktions-Mechanismus mit
+  Renditekosten und würde vermutlich mit dem Trailing-Stop überlappen.
+- Eine **andere Kapitalkonfiguration**. Die Reihenfolge-Empfindlichkeit
+  entsteht nur, weil Kapital und Positionslimit knapp sind (in
+  `test_vbc_core.py` gezeigt: ohne Engpass ist die Reihenfolge irrelevant).
+
+### Was diese Studie nicht leistet
+
+Keine Aussage über andere Bots. Keine Aussage über die Zukunft — der Bootstrap
+misst die Unsicherheit *innerhalb* dieser 4,45 Jahre, nicht die Unsicherheit
+über Marktregime, die darin nicht vorkommen. Keine Parametersuche (alle
+Parameter unverändert übernommen). Keine Aktivierungsempfehlung.
+
+### Reproduktion
+
+```
+cd research/vbc_deepdive
+python3 test_vbc_core.py        # 48 Sanity-Checks
+python3 verify_reference.py     # 50 Referenzwerte beider Vorgaenger-Studien
+python3 run_deepdive.py         # vollstaendige Analyse (~1 min), schreibt results/
+```
 
 ---
 
-## 1. Baseline-Regressionscheck (zuerst, wie gefordert)
+## 1. Kurzfassung
 
-Diese Studie rechnet mit einem eigenen Kernmodul (`vbc_core.py`), das die
-benötigten Funktionen aus den beiden Vorgänger-Studien als dokumentierte
-Übernahme enthält. Grund: beide liegen in noch nicht gemergten Branches
-(PR #18, PR #21); ein Import über Branch-Grenzen wäre nicht reproduzierbar.
+**Die „doppelte Bestätigung" hält der Prüfung nicht stand — und zwar deutlicher,
+als die reine Punktschätzung vermuten liess.**
 
-Dass die Übernahme verhaltensgleich ist, wird nicht behauptet, sondern geprüft.
-`verify_reference.py` bestätigt **50 von 50 Referenzwerten**:
+- **Vol-Sizing ist bei diesem Bot von Rauschen nicht zu unterscheiden.**
+  P(Verbesserung) = 40 % / 47 % / 54 % je nach Periode — ein Münzwurf. Sein
+  Streubereich überlappt fast vollständig mit dem der Baseline, schon allein
+  durch die Reihenfolge gleichzeitiger Einstiege. Von einer der beiden
+  „Bestätigungen" bleibt damit nichts übrig.
+- **Vom Trailing-Stop bleibt genau eine belastbare Aussage: er senkt den
+  Drawdown.** Das ist mit P = 100 % (Gesamtzeitraum) das stabilste Ergebnis der
+  gesamten Untersuchung und überlebt jede geprüfte Störung. Die daraus
+  abgeleitete *Calmar*-Verbesserung ist dagegen nur Out-of-Sample grenzwertig
+  belegt (P = 95,0 %) und In-Sample ein Münzwurf (P = 48,8 %).
+- **Die Kombination bringt keinen belegbaren Zusatznutzen.** Renditekosten
+  stapeln sich vollständig, Drawdown-Reduktionen überlappen sich (rund −2 pp
+  Interaktion in jeder Periode). P(Kombination besser als Trailing allein) =
+  31 % / 28 % / 71 %.
+- **Buy-and-Hold ordnet das Ganze ein:** über den Gesamtzeitraum schlägt die
+  Strategie stumpfes Halten klar (Calmar 4,25 vs. 0,29). Out-of-Sample hätte
+  Halten aber **+68,81 %** gebracht gegenüber +20,23 % der Baseline — die
+  Strategie gewinnt dort ausschliesslich über den Drawdown (−11,33 % vs.
+  −59,47 %).
 
-| Quelle | geprüft | Ergebnis |
-|---|---|---|
-| `strategies/volatility_breakout_crypto/equity_simulation.py` (unverändert) | Trade-Anzahl, PnL-Summe, erster Entry / letzter Exit | 359 Trades, 629,88 % — **identisch** |
-| `research/volatility_scaled_sizing/` (PR #18) | Baseline + Vol-Sizing, IS/OOS + 4 WF-Fenster | **alle exakt** |
-| `research/trailing_stops/` (PR #21) | Baseline + ATR-Trailing, full/IS/OOS + 4 WF-Fenster, k, Trade-Anzahlen | **alle exakt** |
-
-Belege im Detail: Baseline In-Sample 40,89 % / −16,77 %, Out-of-Sample
-20,23 % / −11,33 %; Vol-Sizing 37,86 % / −15,17 % bzw. 16,20 % / −8,04 %;
-ATR-Trailing 12,96 % / −5,76 % bzw. 28,12 % / −5,58 %; ATR-Multiplikator
-k = 0,8956; 359 bzw. 396 Trades. Erst danach wurde irgendein neuer Vergleich
-gerechnet.
+Die ehrliche Gesamtaussage: es waren nie zwei Signale. Es war ein Effekt —
+Drawdown-Reduktion durch früheres Aussteigen — plus ein zweiter, der bei
+genauer Messung verschwindet.
 
 ---
 
-## 2. Methodik
+## 2. Baseline-Regressionscheck
+
+`verify_reference.py` bestätigt **50 von 50 Referenzwerten** aus drei
+unabhängigen Richtungen:
+
+| Quelle | Ergebnis |
+|---|---|
+| unveränderte `equity_simulation.py` des Bots | 359 Trades, PnL-Summe 629,88 %, gleicher erster Entry / letzter Exit |
+| `research/volatility_scaled_sizing/` (PR #18) | Baseline + Vol-Sizing, IS/OOS + alle 4 WF-Fenster — exakt |
+| `research/trailing_stops/` (PR #21) | Baseline + ATR-Trailing, full/IS/OOS + alle 4 WF-Fenster, k = 0,8956, Trade-Anzahlen — exakt |
+
+Nötig, weil beide Vorgänger-Branches nicht gemergt sind: `vbc_core.py` enthält
+deren Bausteine als dokumentierte Übernahme, jede Funktion mit Herkunftsangabe.
+
+---
+
+## 3. Methodik
 
 ### Die vier Varianten (2 × 2)
 
@@ -88,114 +143,104 @@ gerechnet.
 | **fester 5 %-Stop** | **A** `baseline` | **B** `vol_sizing` |
 | **ATR-Trailing-Stop** | **C** `trailing` | **D** `combined` |
 
-Die Mechanismen greifen an unterschiedlichen Stellen an und sind technisch
-unabhängig kombinierbar: der Stop bestimmt, **wann** geschlossen wird, die
-Gewichtung, **wie gross** die Position war. Es gibt daher genau **zwei
-Trade-Sätze** (fester Stop: 359 Trades / ATR-Trailing: 396 Trades), auf die
-jeweils zwei Gewichtungen gelegt werden.
+Zwei Trade-Sätze (359 / 396), auf die je zwei Gewichtungen gelegt werden. Dass
+der Trailing-Stop mehr Trades erzeugt, folgt aus der Bot-Logik: kein
+Pyramiding, der nächste Scan startet erst nach dem Ausstieg — frühere Ausstiege
+setzen Kapazität frei.
 
-Dass der Trailing-Stop mehr Trades erzeugt, ist kein Fehler, sondern Folge der
-Bot-Logik: der Bot kennt kein Pyramiding, der nächste Signalscan startet erst
-nach dem Ausstieg. Frühere Ausstiege setzen also Kapazität für Folgesignale
-frei (396 statt 359; 39 Trades existieren nur im Trailing-Satz, 2 nur im
-Baseline-Satz).
+### Unverändert übernommene Parameter
 
-### Unverändert übernommene Parameter (Aufgaben-Vorgabe Punkt 5)
+ATR-14 · k = 0,8956 (auf den Median der IS-Baseline-Stop-Distanz kalibriert) ·
+Vol-Fenster 90 Balken · Clip-Faktor 4,0 · Gewichts-Normierung auf Mittelwert 1,0
+je Periode · `TRAIN_SPLIT_RATIO = 0,7` · dieselben 4 Walk-Forward-Fenster ·
+Calmar = Rendite % / |Max Drawdown %|. **Kein Parameter wurde neu gesucht.**
 
-| Parameter | Wert | Herkunft |
-|---|---|---|
-| ATR-Fenster | 14 Balken | `research/trailing_stops/` |
-| ATR-Multiplikator `k` | 0,8956, kalibriert auf den Median der In-Sample-Baseline-Stop-Distanz | `research/trailing_stops/` |
-| Vol-Fenster | 90 Balken | `research/volatility_scaled_sizing/` |
-| Clip-Faktor | 4,0 (median-relativ) | `research/volatility_scaled_sizing/` |
-| Gewichts-Normierung | Mittelwert exakt 1,0 innerhalb der jeweils ausgewerteten Periode | `research/volatility_scaled_sizing/` |
-| `TRAIN_SPLIT_RATIO` | 0,7 | `multi_symbol_walk_forward.py` |
-| Walk-Forward-Fenster | dieselben 4 chronologischen Fenster | `research/trailing_stops/` |
-| Calmar | Gesamtrendite % / \|Max Drawdown %\| | alle vier Vorgänger-Studien |
+### Neu in dieser Studie: zwei Unsicherheitsmasse
 
-**Es wurde kein einziger Parameter neu gesucht.** Diese Studie untersucht die
-Interaktion zweier bereits definierter Mechanismen.
+**Block-Bootstrap** (`bootstrap.py`): zirkulärer Moving-Block-Bootstrap über
+Kalendermonate, Blocklänge 3 Monate, 2000 Replikate, fester Seed. Ein naiver
+Trade-Bootstrap wäre falsch — die Simulation ist pfadabhängig und der Max
+Drawdown eine Eigenschaft der *Reihenfolge*. Blöcke erhalten lokale Struktur;
+die Zeitstempel werden beim Zusammensetzen verschoben, sodass eine gültige
+Historie entsteht. **Gepaart:** alle vier Varianten laufen je Replikat auf
+derselben gezogenen Zeitachse, sodass sich die Unsicherheit der
+Marktphasen-Auswahl aus der Differenz herauskürzt.
+
+**Reihenfolge-Sensitivität**: 500 Permutationen der Reihenfolge gleichzeitiger
+Einstiege, sonst nichts verändert. Das ist keine Stichprobenunsicherheit,
+sondern eine Implementierungs-Willkür, die in jedem einzelnen Lauf steckt.
+
+Für die 24.000 Simulationen des Bootstraps existiert ein NumPy-Schnellpfad
+(54 Sekunden statt gut 30 Minuten). `test_vbc_core.py` prüft, dass er auf
+Daten **mit mehrfach belegten Einstiegszeitpunkten** bit-genau dieselben
+Ergebnisse liefert wie der Referenzcode — genau daran war ein erster Entwurf
+gescheitert (pandas' `sort_values` ist per Default nicht stabil). Alle
+Punktschätzer im Bericht stammen weiterhin ausschliesslich aus dem
+Referenzpfad.
 
 ---
 
-## 3. Getroffene Annahmen (vollständig)
+## 4. Getroffene Annahmen (vollständig)
 
-1. **Vendoring statt Import.** Die benötigten Funktionen aus PR #18 und PR #21
-   sind in `vbc_core.py` als dokumentierte Übernahme enthalten, jede mit
-   Herkunftsangabe. Absicherung: der 50-Punkte-Regressionscheck oben. Ein
-   Import über nicht gemergte Branch-Grenzen wäre nicht reproduzierbar; eine
-   eigene Neufassung hätte die Vergleichbarkeit still zerstören können.
-2. **Gewichte je Periode normiert** (Mittelwert 1,0 innerhalb IS, OOS, jedem
-   WF-Fenster, jedem Quartal) — Konvention der Vol-Sizing-Studie, nötig um
-   deren Zahlen exakt zu reproduzieren. Für die Trade-Ebenen-Analyse
-   (Abschnitt 7) werden die Gewichte dagegen **über den Gesamtzeitraum**
-   normiert, weil dort die Frage lautet, welche Trades den GESAMTeffekt
-   tragen — dafür muss der Mechanismus über alle Trades derselbe sein.
-   Beides ist im Ergebnis-JSON getrennt ausgewiesen.
-3. **`k` einmalig auf den In-Sample-Baseline-Trades kalibriert** und unverändert
-   für OOS, alle WF-Fenster und alle Quartale verwendet — unverändert aus der
-   Trailing-Stop-Studie.
+1. **Vendoring statt Import** der Bausteine aus PR #18/#21, abgesichert über den
+   50-Punkte-Regressionscheck.
+2. **Gewichte je Periode normiert** (Mittelwert 1,0) — Konvention der
+   Vol-Sizing-Studie. Für die Trade-Ebenen-Analyse (Abschnitt 8) dagegen über
+   den Gesamtzeitraum, weil dort gefragt ist, welche Trades den GESAMTeffekt
+   tragen.
+3. **`k` einmalig auf den In-Sample-Baseline-Trades kalibriert.**
 4. **Quartale als Episoden-Raster**, jedes als eigenständige Simulation ab
-   10.000 gerechnet. Sonst hinge das Ergebnis eines Quartals vom Kapitalstand
-   des Vorquartals ab und die Quartale wären untereinander nicht vergleichbar.
-   Nebenwirkung, die genannt sein soll: die Quartalsrenditen verketten sich
-   deshalb nicht exakt zum Gesamtzeitraum.
-5. **Beitragsmasse in PnL-Prozentpunkten, nicht in Kapitaleinheiten.** Die
-   Kapitalwirkung eines einzelnen Trades hängt vom Pfad ab (freies Kapital,
-   Positionslimit) und liesse sich nicht sauber zurechnen. Die
-   Prozentpunkt-Betrachtung ist die konservativere, weil sie keine Zurechnung
-   behauptet, die die Simulation nicht hergibt.
-6. **Renditen additiv im Log-Raum, Drawdown additiv in Prozentpunkten**
-   (Abschnitt 5). Renditen verketten multiplikativ; der Max Drawdown ist ein
-   einzelner Extremwert und keine verkettete Grösse.
-7. **Rangkorrelation als Pearson-Korrelation der Ränge** berechnet — pandas'
-   `method="spearman"` benötigt `scipy`, das im Projekt nicht installiert ist
-   und für eine Backtest-Studie nicht neu eingeführt werden sollte.
+   10.000. Nebenwirkung: die Quartalsrenditen verketten sich nicht exakt zum
+   Gesamtzeitraum.
+5. **Beitragsmasse in PnL-Prozentpunkten, nicht in Kapitaleinheiten** — die
+   Kapitalwirkung eines einzelnen Trades ist pfadabhängig und nicht sauber
+   zurechenbar.
+6. **Renditen additiv im Log-Raum, Drawdown in Prozentpunkten.**
+7. **Rangkorrelation als Pearson-Korrelation der Ränge** (kein `scipy` im
+   Projekt, und dafür soll keines eingeführt werden).
 8. **BTC-Regimefilter NICHT angewendet.** `live_params.py` führt
    `BTC_REGIME_FILTER_ENABLED = True`, die bot-eigene `equity_simulation.py`
    wendet ihn aber nicht an (nur `forward_test.py` tut das). Beide
-   Vorgänger-Studien sind der `equity_simulation.py` gefolgt; diese Studie tut
-   es ebenfalls, sonst wäre der Regressionscheck unmöglich. Der Filter wirkt
-   nur auf Einstiege und damit in allen vier Varianten gleich.
-9. **Schwelle 60 %** für „durch eine Einzelepisode getrieben" — dieselbe
-   dokumentierte Heuristik wie in der Trailing-Stop-Studie. Zusätzlich wird
-   der Anteil der drei grössten Quartale ausgewiesen, weil eine Konzentration
-   auf wenige Episoden auch dann vorliegen kann, wenn kein einzelnes Quartal
-   die Schwelle reisst.
+   Vorgänger-Studien sind der `equity_simulation.py` gefolgt; diese Studie
+   ebenfalls, sonst wäre der Regressionscheck unmöglich. Der Filter wirkt nur
+   auf Einstiege und damit in allen vier Varianten gleich. **Das bleibt eine
+   ungeklärte Divergenz zwischen Live-Konfiguration und Backtest-Kette.**
+9. **Schwelle 60 %** für „durch eine Einzelepisode getrieben"; 3-von-4-Regel
+   für Walk-Forward-Stabilität — dokumentierte Heuristiken, keine Standardmasse.
+10. **Bootstrap-Blocklänge 3 Monate**, 2000 Replikate, Seed 20260907. Die
+    Blocklänge ist eine Konvention (ein Quartal), nicht optimiert; sie
+    balanciert Erhalt lokaler Struktur gegen Zahl unterscheidbarer Blöcke.
+11. **Buy-and-Hold über die unveränderte bot-eigene Funktion** gerechnet
+    (`buy_and_hold_benchmark.py::calculate_buy_and_hold`), nur der
+    Eingabezeitraum wird zugeschnitten. Der Wert ist für alle vier Varianten
+    identisch — genau deshalb ist er die unabhängige Aussenreferenz.
+12. **Calmar-Replikate mit |Drawdown| < 0,1 % werden verworfen** (der Nenner
+    explodiert). In dieser Studie trat der Fall in keinem einzigen Replikat auf
+    — die Zahl wird trotzdem ausgewiesen.
 
 ---
 
-## 4. Frage 1 — Kombinationseffekt: alle vier Varianten
+## 5. Ergebnisse
 
-Rendite % / Max Drawdown % / **Calmar**:
+### Die vier Kombinationen (Rendite % / Max Drawdown % / **Calmar**)
 
-| Periode | A Baseline | B Vol-Sizing | C Trailing | D Kombiniert |
-|---|---|---|---|---|
-| **Gesamtzeitraum** | 71,26 / −16,77 / **4,25** | 61,09 / −14,96 / **4,08** | 45,65 / −5,76 / **7,93** | 37,88 / −5,93 / **6,39** |
-| **In-Sample** | 40,89 / −16,77 / **2,44** | 37,86 / −15,17 / **2,50** | 12,96 / −5,76 / **2,25** | 9,78 / −6,10 / **1,60** |
-| **Out-of-Sample** | 20,23 / −11,33 / **1,79** | 16,20 / −8,04 / **2,01** | 28,12 / −5,58 / **5,04** | 24,31 / −4,05 / **6,00** |
+| Periode | A Baseline | B Vol-Sizing | C Trailing | D Kombiniert | **Buy-and-Hold** |
+|---|---|---|---|---|---|
+| Gesamtzeitraum | 71,26 / −16,77 / **4,25** | 61,09 / −14,96 / **4,08** | 45,65 / −5,76 / **7,93** | 37,88 / −5,93 / **6,39** | 19,45 / −67,90 / **0,29** |
+| In-Sample | 40,89 / −16,77 / **2,44** | 37,86 / −15,17 / **2,50** | 12,96 / −5,76 / **2,25** | 9,78 / −6,10 / **1,60** | 25,34 / −67,90 / **0,37** |
+| Out-of-Sample | 20,23 / −11,33 / **1,79** | 16,20 / −8,04 / **2,01** | 28,12 / −5,58 / **5,04** | 24,31 / −4,05 / **6,00** | 68,81 / −59,47 / **1,16** |
 
-**Antwort: die Kombination wirkt weder additiv noch klar gegenläufig, sondern
-überlagernd — mit einem Ergebnis, das je nach Periode kippt.**
+**Buy-and-Hold-Einordnung (Pflicht-Gegencheck):** über den Gesamtzeitraum
+schlägt jede Variante stumpfes Halten der 20 Coins klar — nicht über die
+Rendite (71,26 % vs. 19,45 %, aber die Strategie ist ja nur zeitweise
+investiert), sondern vor allem über den Drawdown (−16,77 % vs. −67,90 %).
+**Out-of-Sample kippt das Bild bei der Rendite:** Halten hätte +68,81 %
+gebracht, die Baseline nur +20,23 %, die beste Variante +28,12 %. Die
+Strategie gewinnt dort ausschliesslich über das Risiko. Wer den Drawdown nicht
+als Kostenfaktor gewichtet, hätte in diesem Abschnitt mit Nichtstun mehr
+verdient — das gehört in jede Abwägung.
 
-- **Gesamtzeitraum und In-Sample: die Kombination ist schlechter als der beste
-  Einzelmechanismus** (6,39 vs. 7,93 bzw. 1,60 vs. 2,50). Der zweite
-  Mechanismus kostet dort zusätzliche Rendite, ohne noch nennenswert Drawdown
-  zu finden.
-- **Out-of-Sample: die Kombination ist besser als jeder Einzelmechanismus**
-  (6,00 vs. 5,04 und 2,01) — allein durch den Drawdown (−5,58 % → −4,05 %),
-  bei niedrigerer Rendite (28,12 % → 24,31 %).
-
-Nebenbefund zum Vol-Sizing allein: dessen in PR #18 berichteter Vorteil
-(Calmar besser IS *und* OOS) ist real, aber klein — und **über den
-Gesamtzeitraum kehrt er sich um** (4,25 → 4,08). Der Gesamtzeitraum war in
-PR #18 nicht ausgewiesen; das ist kein Widerspruch zu jener Studie, aber ein
-relativierender Zusatz.
-
-### Additivitätsrechnung
-
-Erwartung bei rein additiver Wirkung gegenüber dem tatsächlichen kombinierten
-Ergebnis:
+### Additivität
 
 | Periode | Rendite erwartet → tatsächlich | Interaktion | Drawdown erwartet → tatsächlich | Interaktion |
 |---|---|---|---|---|
@@ -203,298 +248,231 @@ Ergebnis:
 | In-Sample | 10,53 % → 9,78 % | **−0,75 pp** | −4,16 % → −6,10 % | **−1,94 pp** |
 | Out-of-Sample | 23,83 % → 24,31 % | **+0,48 pp** | −2,29 % → −4,05 % | **−1,76 pp** |
 
-**Das ist der präziseste Einzelbefund dieser Studie:** die **Renditekosten
-stapeln sich praktisch vollständig** (Interaktion im Rauschbereich, ±1 pp),
-die **Drawdown-Reduktionen überlappen sich deutlich** (in allen drei Perioden
-rund 2 Prozentpunkte weniger Wirkung als bei Unabhängigkeit zu erwarten wäre).
-
-Man zahlt beide Mechanismen voll und bekommt ihren Schutz nur einmal — genau
-das erwartet man, wenn beide gegen dieselben Ereignisse schützen.
+Die Renditekosten stapeln sich vollständig, die Drawdown-Reduktionen
+überlappen sich — in allen drei Perioden um rund 2 Prozentpunkte. Man zahlt
+beide Mechanismen voll und bekommt ihren Schutz nur einmal.
 
 ---
 
-## 5. Frage 2 — Episoden-Robustheit (quartalsweise)
+## 6. Belastbarkeit (neu)
 
-Die laut Aufgabenstellung wichtigste Frage. Renditedifferenz gegenüber der
-Baseline, je Quartal, in Prozentpunkten:
+### 6.1 Block-Bootstrap — 95-%-Intervalle der gepaarten Differenz
 
-| Quartal | Baseline | Vol-Sizing | Trailing | Kombiniert |
-|---|---|---|---|---|
-| 2022Q1 | +3,26 % | −1,33 | −0,93 | −0,25 |
-| 2022Q2 | −1,06 % | ±0,00 | **+1,11** | +0,95 |
-| 2022Q3 | −9,21 % | ±0,00 | **+6,29** | +6,24 |
-| 2022Q4 | −6,00 % | −0,51 | **+4,69** | +4,72 |
-| 2023Q1 | +15,72 % | −0,42 | **−11,29** | −11,00 |
-| 2023Q2 | −3,61 % | +1,55 | **+4,38** | +4,35 |
-| 2023Q3 | −3,23 % | +0,34 | +0,17 | +0,64 |
-| 2023Q4 | +5,33 % | +1,96 | −0,42 | −1,44 |
-| 2024Q1 | +23,45 % | −9,42 | **−24,43** | −25,46 |
-| 2024Q2 | −1,87 % | +2,16 | **+2,92** | +3,91 |
-| 2024Q3 | −3,52 % | −0,08 | **+5,54** | +4,44 |
-| 2024Q4 | +22,35 % | +0,40 | **−22,06** | −21,29 |
-| 2025Q1 | −4,17 % | ±0,00 | +1,53 | +1,56 |
-| 2025Q2 | +3,23 % | −1,33 | **+6,42** | +4,68 |
-| 2025Q3 | +16,11 % | −2,20 | −1,18 | −5,08 |
-| 2025Q4 | −2,11 % | ±0,00 | +1,01 | +0,86 |
-| 2026Q1 | −3,29 % | +1,02 | **+2,97** | +2,88 |
-| 2026Q2 | +8,35 % | −4,35 | −3,03 | −4,86 |
-| 2026Q3 | +1,40 % | −0,38 | **+4,96** | +6,72 |
+**Calmar-Differenz:**
 
-**Richtung: breit verteilt.** Der Trailing-Stop ist in **12 von 19 Quartalen**
-besser, in 7 schlechter. Kein einzelnes Quartal reisst die 60-%-Schwelle
-(grösstes: 2024Q1 mit 23,2 % des Gesamtunterschieds).
-
-**Grössenordnung: konzentriert.** Die drei grössten Quartalsabweichungen
-(2024Q1 −24,43, 2024Q4 −22,06, 2023Q1 −11,29) tragen **54,9 %** des gesamten
-absoluten Unterschieds — und **alle drei sind Verluste**, in genau den drei
-stärksten Aufwärtsquartalen. Das Profil ist also: **viele kleine Gewinne,
-wenige grosse Verluste.**
-
-**Drawdown-Reduktion: robust.** Anders als der Renditeeffekt ist sie in
-**allen vier** Walk-Forward-Fenstern vorhanden:
-
-| Fenster | Baseline | Vol-Sizing | Trailing | Kombiniert |
-|---|---|---|---|---|
-| W1 2022-03 … 2023-04 | −16,77 % | −15,63 % | −4,87 % | −4,29 % |
-| W2 2023-04 … 2024-06 | −6,68 % | −6,44 % | −5,43 % | −5,56 % |
-| W3 2024-06 … 2025-07 | −11,48 % | −10,35 % | −3,20 % | −2,87 % |
-| W4 2025-07 … 2026-08 | −11,33 % | −7,83 % | −5,58 % | −3,91 % |
-
-Das ist der belastbarste positive Einzelbefund der Studie: die
-Drawdown-Reduktion des Trailing-Stops ist **kein Einzelepisoden-Artefakt**.
-
-### Die bedingte Struktur — der eigentliche Kern
-
-| Variante | Korrelation mit der Baseline-Quartalsrendite | Baseline negativ (10 Q) | Baseline positiv (9 Q) |
+| Vergleich | Gesamtzeitraum | In-Sample | Out-of-Sample |
 |---|---|---|---|
-| Vol-Sizing | **−0,58** | +0,45 pp, besser in 40 % | −1,90 pp, besser in 22 % |
-| Trailing | **−0,88** | **+3,06 pp, besser in 100 %** | −5,77 pp, besser in 22 % |
-| Kombiniert | **−0,91** | +3,06 pp, besser in 100 % | −6,44 pp, besser in 22 % |
+| Vol-Sizing − Baseline | −4,03 … 2,52 · P = **40,1 %** | −2,88 … 2,27 · P = **47,1 %** | −1,68 … 2,18 · P = **53,8 %** |
+| Trailing − Baseline | −10,03 … 14,48 · P = 73,8 % | −11,16 … 6,86 · P = **48,8 %** | −0,56 … 16,14 · P = **95,0 %** |
+| Kombiniert − Baseline | −10,95 … 13,58 · P = 70,7 % | −11,38 … 5,19 · P = 41,9 % | −0,68 … 19,15 · P = 94,7 % |
+| Kombiniert − Trailing | −4,91 … 2,99 · P = **31,1 %** | −3,41 … 1,00 · P = 27,6 % | −1,80 … 5,94 · P = 71,2 % |
 
-Der Trailing-Stop war in **jedem einzelnen** der zehn Quartale besser, in denen
-die Baseline verlor, und in nur zwei der neun Quartale, in denen sie gewann.
-Vol-Sizing zeigt dasselbe Muster, nur schwächer.
+**Drawdown-Differenz** (positiv = geringerer Drawdown, also besser):
 
-**Das ist kein zusätzlicher Ertrag, sondern eine Versicherung:** sie zahlt,
-wenn es schlecht läuft, und kostet Prämie, wenn es gut läuft. Ob das erwünscht
-ist, ist eine Präferenzfrage und keine Backtest-Frage — sie liegt beim Nutzer.
+| Vergleich | Gesamtzeitraum | In-Sample | Out-of-Sample |
+|---|---|---|---|
+| Vol-Sizing − Baseline | −2,34 … 6,18 · P = 79,5 % | −2,53 … 6,06 · P = 73,5 % | −0,49 … 5,05 · P = 94,7 % |
+| Trailing − Baseline | **+4,67 … +30,57 · P = 100,0 %** | +4,47 … +29,87 · P = 99,9 % | +0,87 … +9,47 · P = 99,2 % |
+| Kombiniert − Baseline | **+5,22 … +31,14 · P = 100,0 %** | +4,16 … +30,17 · P = 99,9 % | +1,60 … +10,93 · P = 100,0 % |
+| Kombiniert − Trailing | −1,48 … 2,30 · P = 73,8 % | −2,19 … 1,84 · P = 47,5 % | **+0,29 … +2,17 · P = 99,9 %** |
+
+**Das ist der zentrale neue Befund dieser Studie.** Die Drawdown-Reduktion des
+Trailing-Stops ist in jeder Periode praktisch sicher (P ≥ 99,2 %) und in der
+Grössenordnung erheblich (+4,7 bis +30,6 Prozentpunkte im Gesamtzeitraum). Die
+daraus abgeleitete **Calmar**-Verbesserung ist es nicht: über den
+Gesamtzeitraum P = 73,8 %, In-Sample **48,8 % — ein exakter Münzwurf**, nur
+Out-of-Sample 95,0 % und dort mit einem Intervall, das die Null gerade eben
+noch berührt (−0,56).
+
+Der Grund für die Diskrepanz: der Drawdown wird zuverlässig kleiner, die
+Rendite aber ebenso zuverlässig auch — und welcher der beiden Effekte in der
+Ratio überwiegt, hängt stark von der gezogenen Marktphasen-Mischung ab.
+
+### 6.2 Reihenfolge gleichzeitiger Einstiege
+
+60 % der Trades teilen ihren Einstiegszeitpunkt mit mindestens einem anderen
+(grösste Gruppe: 9 Trades an einem Tag). Streubereich über 500 Permutationen,
+Gesamtzeitraum:
+
+| Variante | Calmar | Rendite % | Max Drawdown % |
+|---|---|---|---|
+| Baseline | 2,98 … 4,90 (berichtet **4,25**) | 49,94 … 82,14 | −16,77 … −16,77 |
+| Vol-Sizing | 2,50 … 4,75 (berichtet 4,08) | 37,30 … 70,98 | −14,96 … −14,93 |
+| Trailing | 6,65 … 8,95 (berichtet 7,93) | 39,02 … 51,55 | −5,96 … −5,76 |
+| Kombiniert | 5,33 … 6,93 (berichtet 6,39) | 31,59 … 41,08 | −5,93 … −5,93 |
+
+Drei Schlüsse:
+
+1. **Baseline und Trailing überlappen nicht** (4,90 < 6,65) — die Kernaussage
+   „Trailing ist risikoadjustiert besser" übersteht diese Willkür.
+2. **Baseline und Vol-Sizing überlappen fast vollständig** — der
+   Vol-Sizing-Effekt ist kleiner als die Reihenfolge-Willkür und damit
+   inhaltlich nicht interpretierbar.
+3. **Trailing und Kombiniert überlappen** (5,33 … 6,93 gegen 6,65 … 8,95) — die
+   Aussage „die Kombination ist schlechter als Trailing allein" ist **nicht**
+   robust. Sie deckt sich aber mit dem Bootstrap-Befund, dass die Kombination
+   auch nicht *besser* ist.
+
+Der **Drawdown ist gegenüber der Reihenfolge praktisch invariant** (Baseline
+exakt −16,77 % in allen 500 Permutationen). Erneut dieselbe Trennlinie: die
+Risikodimension ist die stabile, die Renditedimension die wackelige.
+
+Die berichtete Baseline-Calmar von 4,25 liegt über dem Permutations-Median von
+3,52 — die tatsächlich verwendete Reihenfolge ist also eine eher günstige
+Ziehung. Das relativiert den Ausgangspunkt aller Vergleiche leicht zugunsten
+der Alternativvarianten.
 
 ---
 
-## 6. Frage 3 — Mechanismus-Unabhängigkeit
+## 7. Episoden-Robustheit (quartalsweise, 19 Quartale)
 
-### Messen die beiden Mechanismen überhaupt Verschiedenes?
+- **Richtung breit verteilt:** Trailing besser in 12 von 19 Quartalen; kein
+  Quartal reisst die 60-%-Schwelle (grösstes 2024Q1 mit 23,2 %).
+- **Grössenordnung konzentriert:** die drei grössten Abweichungen (2024Q1
+  −24,43, 2024Q4 −22,06, 2023Q1 −11,29 pp) tragen 54,9 % — und sind **alle drei
+  Verluste**, in genau den stärksten Trendquartalen.
+- **Drawdown-Reduktion in 4 von 4 Walk-Forward-Fenstern vorhanden.**
 
-Formal ja: der ATR-Stop nutzt die **True Range** (Hoch/Tief/Vorschluss,
-14 Balken), das Vol-Sizing die **Standardabweichung der
-Schluss-zu-Schluss-Log-Returns** (90 Balken). Unterschiedliches Mass,
-unterschiedliches Fenster.
+**Bedingte Struktur** — Korrelation zwischen der Quartalsrendite der Baseline
+und dem Vorteil des Mechanismus im selben Quartal:
 
-Empirisch kaum: über die 359 Baseline-Trades korrelieren ATR/Kurs und
-realisierte Volatilität am Einstiegszeitpunkt mit **0,83** (Rangkorrelation
-**0,85**). Die beiden „Volatilitäten" sind praktisch dieselbe Information.
+| Variante | Korrelation | Baseline negativ (10 Q) | Baseline positiv (9 Q) |
+|---|---|---|---|
+| Vol-Sizing | −0,58 | +0,45 pp, besser in 40 % | −1,90 pp, besser in 22 % |
+| Trailing | **−0,88** | **+3,06 pp, besser in 100 %** | −5,77 pp, besser in 22 % |
+| Kombiniert | −0,91 | +3,06 pp, besser in 100 % | −6,44 pp, besser in 22 % |
 
-### Wirken sie auf dieselben Trades?
+Der Trailing-Stop war in **jedem** der zehn Quartale mit negativer Baseline
+besser und in nur zwei der neun mit positiver. Das ist das Profil einer
+Versicherung, nicht eines Edges — und es erklärt, warum die Drawdown-Wirkung
+belastbar ist, die Calmar-Wirkung aber nicht: ob sich eine Versicherung
+„lohnt", hängt davon ab, wie viele Schadensfälle im Betrachtungszeitraum
+liegen.
 
-357 der 359 Baseline-Trades kommen auch im Trailing-Satz vor (gleiches Symbol,
-gleicher Einstiegszeitpunkt) und sind damit direkt vergleichbar.
+---
+
+## 8. Mechanismus-Unabhängigkeit
 
 | Kennzahl | Wert |
 |---|---|
-| Korrelation der Trade-Beiträge | **+0,45** |
-| Korrelation der Quartalsbeiträge | **+0,57** |
-| beide halfen demselben Trade | 149 × |
-| beide schadeten demselben Trade | 49 × |
-| gegenläufig | 159 × |
-| Überlappung der 20 grössten Beiträge | **0** (bei Unabhängigkeit erwartet: 1,12) |
-| Summe Vol-Sizing-Beitrag | **−40,72 pp** |
-| Summe Trailing-Beitrag | **−380,82 pp** |
+| Korrelation der beiden Volatilitäts-Masse (ATR/Kurs vs. realisierte Vol) | **0,83** (Rang 0,85) |
+| Korrelation der Trade- / Quartalsbeiträge | **+0,45** / **+0,57** |
+| beide halfen / schadeten / gegenläufig (von 357 gemeinsamen Trades) | 149 / 49 / 159 |
+| Überlappung der 20 grössten Beiträge | **0** (Zufallserwartung 1,12) |
+| Summe Vol-Sizing- / Trailing-Beitrag | **−40,7 pp** / **−380,8 pp** |
 
-**Das Bild ist zweigeteilt und beide Hälften sind wichtig:**
+Formal messen die Mechanismen Verschiedenes (True Range über 14 Balken gegen
+Standardabweichung der Log-Returns über 90 Balken), empirisch fast dasselbe.
+In der Breite überlappen sie sich, an den Extremen sind sie disjunkt.
+**Beide Beitragssummen sind negativ** — der gesamte Calmar-Nutzen kommt aus
+dem Nenner.
 
-- **In der Breite überlappen sich die Mechanismen deutlich** (Korrelation
-  +0,45 bzw. +0,57, 149 gemeinsam verbesserte Trades). Das ist erwartbar,
-  wenn beide auf dieselbe Eingangsgrösse reagieren.
-- **An den Extremen sind sie disjunkt** (0 Überlappung unter den 20 grössten
-  Beiträgen, weniger als der Zufallserwartungswert). Die grössten Einzelbeiträge
-  stammen also tatsächlich aus verschiedenen Trades.
-
-Der zweite Punkt spricht für eine gewisse Rest-Unabhängigkeit. Er wiegt aber
-den ersten nicht auf, und vor allem: **beide Beitragssummen sind negativ.**
-Auf Ebene der PnL-Prozentpunkte reduzieren beide Mechanismen den Gesamtertrag
-(−40,7 bzw. −380,8 pp). Ihr gesamter Calmar-Nutzen stammt aus der
-Drawdown-Seite — und genau dort sind sie, wie Abschnitt 4 zeigt,
-sub-additiv.
-
-Zusätzlich wirkt Vol-Sizing bei diesem Bot **auch über die Trade-Auswahl**,
-nicht nur über die Grösse: die kombinierte Variante führt 367 statt 370 Trades
-aus, weil grössere Einzelpositionen gelegentlich das freie Kapital erschöpfen
-(in `test_vbc_core.py` als eigener Check nachgewiesen). Ein kleiner, aber
-realer Nebenkanal, der die beiden Mechanismen weiter verkoppelt.
+Vol-Sizing wirkt zusätzlich über die Trade-**Auswahl**: die kombinierte
+Variante führt 367 statt 370 Trades aus, weil grössere Einzelpositionen
+gelegentlich das freie Kapital erschöpfen.
 
 ---
 
-## 7. Frage 4 — Walk-Forward-Prüfung der kombinierten Variante
+## 9. Walk-Forward der kombinierten Variante
 
-Calmar-Ratio, dieselben 4 Fenster wie in der Trailing-Stop-Studie:
+Calmar, dieselben 4 Fenster wie in der Trailing-Stop-Studie:
 
-| Fenster | A Baseline | B Vol-Sizing | C Trailing | D Kombiniert | D besser als C? |
+| Fenster | A | B | C | D | D > C? |
 |---|---|---|---|---|---|
 | W1 2022-03 … 2023-04 | −0,20 | −0,23 | 0,71 | **1,11** | ja |
 | W2 2023-04 … 2024-06 | 3,85 | 3,30 | 0,04 | **−0,16** | nein |
 | W3 2024-06 … 2025-07 | 3,32 | 3,85 | 6,10 | **5,52** | nein |
 | W4 2025-07 … 2026-08 | 0,17 | 0,00 | 3,14 | **4,20** | ja |
 
-**Die kombinierte Variante ist gegenüber der Baseline in 3 von 4 Fenstern
-besser** (nur W2 nicht) — das entspricht dem Bild des Trailing-Stops allein.
-
-**Gegenüber dem besseren Einzelmechanismus ist sie nicht stabil: 2 von 4.**
-Nach der in den Vorgänger-Studien verwendeten 3-von-4-Regel ist der
-Zusatznutzen der Kombination damit **nicht walk-forward-stabil**. Das deckt
-sich mit dem Gesamtzeitraum-Ergebnis (6,39 vs. 7,93 zugunsten des
-Trailing-Stops allein) und widerspricht dem Out-of-Sample-Ergebnis (6,00 vs.
-5,04). Der OOS-Vorteil der Kombination ist also ein Einzelbefund, kein Muster.
-
-Nebenbefund zum Vol-Sizing allein: unter dem hier durchgehend verwendeten
-**Calmar-Kriterium** ist es nur in **1 von 4** Fenstern besser als die
-Baseline (W3). PR #18 hat diesen Bot als walk-forward-stabil eingestuft — dort
-allerdings anhand der **Drawdown-Richtung** (3 von 4 Fenstern gleich oder
-besser), was ebenfalls zutrifft und hier bestätigt wird (sogar 4 von 4). Kein
-Widerspruch, sondern ein Kriterienunterschied — der aber zeigt, wie viel von
-der ursprünglichen Einstufung am gewählten Kriterium hängt.
+Gegenüber der Baseline in 3/4 Fenstern besser; gegenüber dem besseren
+Einzelmechanismus nur **2/4** — nach der 3-von-4-Regel nicht stabil. Der
+Bootstrap bestätigt das unabhängig (P = 31 % im Gesamtzeitraum).
 
 ---
 
-## 8. Trade-Profil aller vier Varianten (Gesamtzeitraum)
+## 10. Die Kernfrage: zwei Signale oder eines, zweimal gemessen?
 
-| Variante | Trades | ausgeführt | Win Rate | Ø PnL | schlechtester | bester |
-|---|---|---|---|---|---|---|
-| A Baseline | 359 | 310 | 26,5 % | +1,755 % | −5,30 % | **+174,10 %** |
-| B Vol-Sizing | 359 | 310 | 26,5 % | +1,755 % | −5,30 % | +174,10 % |
-| C Trailing | 396 | 370 | **43,4 %** | +1,074 % | **−9,00 %** | **+40,78 %** |
-| D Kombiniert | 396 | 367 | 43,4 % | +1,074 % | −9,00 % | +40,78 % |
+**Nach der Unsicherheitsrechnung ist die Antwort schärfer als zuvor: es war
+nicht einmal ein Signal plus ein zweites — es war ein Effekt plus Rauschen.**
 
-A und B teilen sich naturgemäss das Trade-Profil (Vol-Sizing ändert nur die
-Positionsgrösse, nicht die Trades), ebenso C und D.
+- **Vol-Sizing**: P(Verbesserung) zwischen 40 % und 54 % über alle Perioden.
+  Sein Streubereich überlappt fast vollständig mit dem der Baseline, bereits
+  durch die Reihenfolge-Willkür allein. Es gibt hier nichts zu bestätigen.
+- **Trailing-Stop**: genau ein belastbarer Effekt — die Drawdown-Reduktion
+  (P = 100 % im Gesamtzeitraum). Die Calmar-Verbesserung folgt daraus **nicht**
+  automatisch und ist statistisch nur Out-of-Sample grenzwertig.
+- **Gemeinsamkeit statt Unabhängigkeit**: gemeinsame Eingangsgrösse (0,83),
+  gemeinsame bedingte Struktur (−0,88 / −0,58), überlappende statt additive
+  Drawdown-Wirkung, kein Kombinationsgewinn.
+- **Der einzige Gegenbefund** bleibt die Disjunktheit der 20 grössten
+  Einzelbeiträge. Bei 357 Trades und einer Erwartung von 1,12 ist das aber ein
+  schwaches Indiz und mit Stichprobenrauschen gut vereinbar.
 
-Das bereits in der Trailing-Stop-Studie beschriebene Muster bestätigt sich:
-Win Rate steigt deutlich (26,5 % → 43,4 %), der durchschnittliche Gewinn je
-Trade sinkt trotzdem (+1,76 % → +1,07 %), der grösste Gewinner wird von
-+174 % auf +41 % gekappt, und der grösste Einzelverlust wächst von −5,3 % auf
-−9,0 % (die ATR-Stop-Distanz ist bei identischem Median rechtsschief verteilt).
-
----
-
-## 9. Die zentrale Frage: zwei Signale oder eines, zweimal gemessen?
-
-**Ehrliche Antwort: im Wesentlichen eines, zweimal gemessen.**
-
-Dafür sprechen vier Befunde, jeder für sich schon deutlich:
-
-1. **Gemeinsame Eingangsgrösse.** Die beiden Volatilitätsmasse korrelieren mit
-   0,83 — sie sind praktisch dieselbe Information in zwei Verpackungen.
-2. **Gemeinsame Wirkungsrichtung.** Beide zeigen dasselbe bedingte Muster
-   (Korrelation mit der Baseline-Quartalsrendite −0,88 bzw. −0,58): sie helfen
-   in Verlustphasen und kosten in Gewinnphasen.
-3. **Überlappende, nicht additive Wirkung.** Die Renditekosten stapeln sich
-   vollständig, die Drawdown-Reduktion nicht (rund −2 pp Interaktion in jeder
-   Periode). Zwei unabhängige Verbesserungen sähen anders aus.
-4. **Keine stabile Kombinationsdividende.** Die Kombination schlägt den
-   besseren Einzelmechanismus in nur 2 von 4 Fenstern und über den
-   Gesamtzeitraum gar nicht.
-
-Dagegen spricht ein einziger, aber ernstzunehmender Befund: **die grössten
-Einzelbeiträge stammen aus disjunkten Trades** (0 von 20 überlappend, unter
-der Zufallserwartung). Es gibt also eine Rest-Unabhängigkeit an den Rändern.
-
-Die faire Zusammenfassung lautet daher nicht „identisch", sondern: **stark
-überlappend, mit einem kleinen unabhängigen Rest — und die Überlappung liegt
-genau dort, wo der Nutzen entsteht (Drawdown), während die Unabhängigkeit
-dort liegt, wo sie nichts einbringt (einzelne Extremtrades).**
-
-Und noch eine Ebene tiefer: **das eine Signal, das hier zweimal gemessen wird,
-ist gar keine Ertragsverbesserung.** Beide Mechanismen senken den summierten
-PnL (−40,7 bzw. −380,8 Prozentpunkte) und die Gesamtrendite (71,26 % → 61,09 %
-bzw. → 45,65 %). Der gesamte Calmar-Gewinn kommt aus dem Nenner. Die beiden
-Untersuchungen haben also nicht zweimal einen Edge bestätigt, sondern zweimal
-dieselbe Varianzreduktion gemessen.
+Und eine Ebene tiefer, unverändert gültig: der gemessene Effekt ist keine
+Ertragsverbesserung. Beide Mechanismen senken den summierten PnL und die
+Gesamtrendite. Der gesamte Calmar-Gewinn kommt aus dem Nenner.
 
 ---
 
-## 10. Gesamteinschätzung (unaufgeregt, ohne Handlungsempfehlung)
+## 11. Gesamteinschätzung (unaufgeregt, ohne Handlungsempfehlung)
 
-Der Anlass dieser Studie war die Vermutung, `volatility_breakout_crypto` sei
-über zwei unabhängige Wege als verbesserbar bestätigt. Nach genauerer
-Betrachtung ist diese Lesart nicht haltbar: die beiden Mechanismen greifen auf
-dieselbe Grösse zu, wirken in dieselbe Richtung, schützen vor denselben
-Ereignissen und liefern kombiniert keinen stabilen Zusatznutzen.
+Der Anlass war die Vermutung, dieser Bot sei über zwei unabhängige Wege als
+verbesserbar bestätigt. Nach Hinzunahme von Buy-and-Hold-Vergleich,
+Block-Bootstrap und Reihenfolge-Sensitivität bleibt davon:
 
-Was nach dieser Prüfung übrig bleibt, ist schmaler, aber solider als die
-ursprüngliche Lesart:
+- **Eine belastbare Aussage:** der ATR-Trailing-Stop senkt den Drawdown dieses
+  Bots deutlich und über jede geprüfte Störung hinweg stabil (−16,77 % →
+  −5,76 % im Gesamtzeitraum, P = 100 %).
+- **Eine unbelegte Aussage:** dass sich das risikoadjustiert lohnt. In-Sample
+  ein Münzwurf, Out-of-Sample grenzwertig, über den Gesamtzeitraum nicht
+  gesichert. Der Grund ist nicht Messfehler, sondern Substanz: die Rendite
+  sinkt ähnlich verlässlich wie der Drawdown.
+- **Eine widerlegte Aussage:** dass Vol-Sizing bei diesem Bot etwas beiträgt.
+- **Eine offene Abwägung:** Out-of-Sample hätte stumpfes Halten der 20 Coins
+  mehr als das Dreifache der Baseline-Rendite gebracht, bei fünffachem
+  Drawdown. Wie diese beiden Grössen gegeneinander stehen, ist eine
+  Präferenzfrage und keine Backtest-Frage.
 
-- **Der ATR-Trailing-Stop senkt bei diesem Bot den Drawdown robust** — in
-  4 von 4 Walk-Forward-Fenstern, nicht nur in einer Episode. Das ist der
-  belastbarste Einzelbefund.
-- **Er kostet dafür Rendite** (71,26 % → 45,65 % über den Gesamtzeitraum),
-  konzentriert auf die stärksten Trendquartale, und vergrössert den grössten
-  Einzelverlust.
-- **Vol-Sizing tut dasselbe, nur schwächer** und mit einem Vorteil, der über
-  den Gesamtzeitraum verschwindet.
-- **Die Kombination lohnt sich nicht** gegenüber dem Trailing-Stop allein:
-  über den Gesamtzeitraum schlechter, Out-of-Sample besser, walk-forward
-  nicht stabil.
-
-Ob eine Varianzreduktion, die im Mittel Rendite kostet, für dieses Portfolio
-erwünscht ist, ist keine Backtest-Frage — der Backtest kann nur zeigen, dass
-es sich um genau diesen Tausch handelt und nicht um einen zusätzlichen Edge.
-Diese Entscheidung liegt bewusst beim Nutzer in einer separaten, künftigen
-Session.
+Ob eine Versicherung, die zuverlässig Rendite kostet und deren
+risikoadjustierter Nutzen nicht gesichert ist, für dieses Portfolio erwünscht
+ist, kann der Backtest nicht entscheiden. Er kann nur zeigen, dass es genau
+dieser Tausch ist — und mit welcher Sicherheit. Die Entscheidung liegt bewusst
+beim Nutzer in einer separaten, künftigen Session.
 
 ---
-
-## 11. Explizit ausserhalb des Scopes
-
-Jede Untersuchung anderer Bots, jede Live-Code-Änderung, jede
-Aktivierungsempfehlung, jede neue Parameter-Optimierung der bereits gewählten
-Fenstergrössen (ATR-14, Vol-90, Clip 4,0, k = 0,8956 — alle unverändert
-übernommen).
 
 ## 12. Offene Fragen für eine mögliche Vertiefung
 
-- Die Rest-Unabhängigkeit an den Extremen (0 von 20 überlappende Top-Beiträge)
-  ist der einzige Befund, der für zwei Signale spricht. Eine gezielte
-  Betrachtung genau dieser Trades könnte klären, ob dahinter ein Mechanismus
-  steckt oder nur Stichprobenrauschen bei 357 Trades.
-- Der BTC-Regimefilter ist hier bewusst deaktiviert (Annahme 8), im Live-Betrieb
-  aber aktiv. Da er ebenfalls ein Risikoreduktions-Mechanismus mit
-  Renditekosten ist, wäre die Frage nach seiner Überlappung mit den beiden hier
-  untersuchten Mechanismen die naheliegende Fortsetzung — und zugleich der
-  Anlass, die Divergenz zwischen `live_params.py` und `equity_simulation.py`
-  einmal grundsätzlich zu klären.
-- Die Drawdown-Sub-Additivität von rund −2 pp ist über alle drei Perioden
-  bemerkenswert konstant. Ob das ein Zufall dieses Datensatzes ist oder eine
-  strukturelle Eigenschaft überlappender Risikomechanismen, liesse sich nur
-  bot-übergreifend beantworten — was hier ausserhalb des Scopes lag.
+- Die **Divergenz zwischen `live_params.py` (`BTC_REGIME_FILTER_ENABLED = True`)
+  und `equity_simulation.py`** (Filter nicht angewendet) betrifft sämtliche
+  Backtest-Zahlen dieses Bots, auch die der vier Vorgänger-Studien. Da der
+  Filter ebenfalls ein Risikoreduktions-Mechanismus mit Renditekosten ist, wäre
+  seine Überlappung mit dem Trailing-Stop die naheliegende Fortsetzung.
+- Die **Reihenfolge-Empfindlichkeit** (60 % geteilte Zeitstempel) betrifft
+  ebenfalls alle bisherigen Studien und alle Bots auf Tageskerzen. Ob die dort
+  berichteten Unterschiede grösser sind als diese Willkür, ist bislang für
+  keinen anderen Bot geprüft.
+- Die **Disjunktheit der grössten Einzelbeiträge** ist der einzige verbliebene
+  Hinweis auf zwei Mechanismen. Eine gezielte Betrachtung dieser Trades könnte
+  klären, ob dahinter Struktur oder Rauschen steckt.
 
 ---
 
-## 13. Reproduzierbarkeit
+## 13. Explizit ausserhalb des Scopes
 
-```
-cd research/vbc_deepdive
-python3 test_vbc_core.py        # 34 Sanity-Checks der kombinierten Logik
-python3 verify_reference.py     # 50 Referenzwerte beider Vorgaenger-Studien
-python3 run_deepdive.py         # vollstaendige Analyse, schreibt results/
-```
+Jede Untersuchung anderer Bots, jede Live-Code-Änderung, jede
+Aktivierungsempfehlung, jede neue Parameter-Optimierung.
 
-Alle Läufe lesen ausschliesslich die vorhandenen CSVs in `data/` — kein
-Netzwerkzugriff, keine zusätzliche Abhängigkeit (kein `scipy`).
+---
+
+## 14. Dateien
 
 | Datei | Inhalt |
 |---|---|
 | `vbc_core.py` | ATR/Trailing, realisierte Volatilität, inverse Vol-Gewichte, gewichtete Portfolio-Simulation, Kennzahlen — jede Funktion mit Herkunftsangabe |
-| `verify_reference.py` | Regressionscheck gegen den Bot-Code und beide Vorgänger-Studien |
-| `test_vbc_core.py` | 34 Sanity-Checks, Schwerpunkt kombinierte Logik |
-| `run_deepdive.py` | 2×2-Varianten, IS/OOS, 4 WF-Fenster, Quartale, Additivität, bedingte Struktur, Trade-Überlappung |
+| `bootstrap.py` | zirkulärer Moving-Block-Bootstrap inkl. NumPy-Schnellpfad |
+| `verify_reference.py` | Regressionscheck gegen Bot-Code und beide Vorgänger-Studien (50 Werte) |
+| `test_vbc_core.py` | 48 Sanity-Checks inkl. Äquivalenz Schnellpfad ↔ Referenzpfad |
+| `run_deepdive.py` | 2×2-Varianten, IS/OOS, 4 WF-Fenster, Quartale, Buy-and-Hold, Additivität, bedingte Struktur, Trade-Überlappung, Bootstrap, Reihenfolge-Sensitivität |
 | `results/vbc_deepdive.json` | alle Ergebnisse maschinenlesbar |
-| `results/trades_static_stop.csv`, `results/trades_atr_trailing.csv` | die beiden Trade-Sätze auf Trade-Ebene |
+| `results/trades_static_stop.csv`, `results/trades_atr_trailing.csv` | beide Trade-Sätze auf Trade-Ebene |

@@ -224,6 +224,118 @@ check("wilder_atr stimmt numerisch mit strategies/t3_supertrend/indicators.py::c
 tr = true_range(np.array([10.0, 12.0]), np.array([9.0, 10.5]), np.array([9.5, 11.5]))
 check("erster Balken: TR = Hoch - Tief", np.isclose(tr[0], 1.0))
 
+# ---------------------------------------------------------------------------
+print("\n9) Schnellpfad des Bootstraps == Referenzpfad")
+# ---------------------------------------------------------------------------
+import bootstrap as bs
+from vbc_core import simulate_weighted_portfolio as ref_sim
+
+# Trade-Satz MIT bewusst mehrfach belegten Einstiegszeitpunkten - genau die
+# Konstellation, an der ein frueher Entwurf des Schnellpfads gescheitert ist:
+# pandas' sort_values ist per Default NICHT stabil, und bei Gleichstand
+# entscheidet die Reihenfolge darueber, welcher Trade das freie Kapital
+# bekommt. Ein Test ohne doppelte Zeitstempel haette den Fehler nicht gefunden.
+days = ["2024-01-02", "2024-01-02", "2024-01-02", "2024-01-05", "2024-01-05",
+        "2024-02-01", "2024-02-01", "2024-02-14", "2024-03-03", "2024-03-03",
+        "2024-03-03", "2024-04-08", "2024-05-02", "2024-05-02", "2024-06-11"]
+synthetic = pd.DataFrame({
+    "symbol": [f"S{i % 5}" for i in range(len(days))],
+    "entry_time": pd.to_datetime(days),
+    "exit_time": pd.to_datetime(days) + pd.to_timedelta(np.arange(len(days)) % 7 + 3, unit="D"),
+    "pnl_pct": [7.5, -4.2, 19.0, -3.1, 11.4, -6.0, 2.2, 25.5, -5.0, 8.8,
+                -1.5, 14.0, -7.7, 3.3, 30.0],
+    "vol_at_entry": [0.02, 0.05, 0.01, 0.08, 0.03, 0.04, 0.02, 0.06,
+                     0.09, 0.015, 0.07, 0.025, 0.05, 0.035, 0.012],
+})
+check("Testdaten enthalten mehrfach belegte Einstiegszeitpunkte",
+      synthetic["entry_time"].duplicated().any())
+
+w_ref = compute_inverse_vol_weights(synthetic["vol_at_entry"])
+w_fast = bs.inverse_vol_weights_fast(synthetic["vol_at_entry"].to_numpy(dtype=float), 4.0)
+check("inverse_vol_weights_fast stimmt mit compute_inverse_vol_weights ueberein",
+      np.allclose(w_ref.to_numpy(), w_fast, rtol=1e-12, atol=1e-12),
+      f"max. Abweichung={np.max(np.abs(w_ref.to_numpy() - w_fast)):.3e}")
+
+for label, weights in (("ohne Gewichte", np.ones(len(synthetic))), ("mit Vol-Gewichten", w_fast)):
+    for max_conc in (None, 3):
+        ref = ref_sim(synthetic, 10_000.0, 0.10, pd.Series(weights, index=synthetic.index), max_conc)
+        ref_return = (ref["final_capital"] / 10_000.0 - 1) * 100
+        ref_dd = calculate_max_drawdown(ref["equity_curve"], 10_000.0)
+        fast_return, fast_dd = bs.simulate_fast(
+            synthetic["entry_time"].to_numpy("datetime64[ns]").astype("int64"),
+            synthetic["exit_time"].to_numpy("datetime64[ns]").astype("int64"),
+            synthetic["pnl_pct"].to_numpy(dtype=float), weights,
+            10_000.0, 0.10, max_conc)
+        limit = "kein Limit" if max_conc is None else f"Limit {max_conc}"
+        check(f"simulate_fast == simulate_weighted_portfolio ({label}, {limit})",
+              abs(ref_return - fast_return) < 1e-9 and abs(ref_dd - fast_dd) < 1e-9,
+              f"{ref_return:.6f}/{ref_dd} vs. {fast_return:.6f}/{fast_dd}")
+
+months = bs.month_span({"x": synthetic})
+starts = bs.draw_block_starts(len(months), 2, np.random.default_rng(1))
+ref_frame = bs.resample(synthetic, months, starts, 2)
+arrays = bs.prepare_arrays(synthetic, months)
+f_entry, f_exit, f_pnl, f_vol = bs.resample_fast(arrays, starts, 2, len(months))
+check("resample_fast liefert exakt dieselbe Historie wie resample",
+      len(ref_frame) == len(f_pnl)
+      and np.array_equal(ref_frame["entry_time"].to_numpy("datetime64[ns]").astype("int64"), f_entry)
+      and np.allclose(ref_frame["pnl_pct"].to_numpy(), f_pnl),
+      f"{len(ref_frame)} vs. {len(f_pnl)} Trades")
+check("Haltedauern bleiben beim Resampling exakt erhalten",
+      np.array_equal((ref_frame["exit_time"] - ref_frame["entry_time"]).to_numpy(),
+                     (f_exit - f_entry).astype("timedelta64[ns]")))
+
+cfg_test = {"allocation_pct": 10.0, "max_concurrent": 8, "clip_factor": 4.0}
+sets_test = {False: synthetic, True: synthetic}
+b1 = bs.run(sets_test, cfg_test, synthetic["entry_time"].min(), synthetic["entry_time"].max(),
+            True, 25, 2, 42, 10_000.0)
+b2 = bs.run(sets_test, cfg_test, synthetic["entry_time"].min(), synthetic["entry_time"].max(),
+            True, 25, 2, 42, 10_000.0)
+check("Bootstrap ist bei gleichem Seed reproduzierbar",
+      b1["differences"] == b2["differences"])
+check("Bootstrap verweigert zu kurze Zeitraeume, statt ein Scheinintervall zu liefern",
+      "error" in bs.run(sets_test, cfg_test, pd.Timestamp("2024-01-01"),
+                        pd.Timestamp("2024-01-20"), True, 5, 3, 1, 10_000.0))
+# Baseline und Trailing bekommen hier denselben Trade-Satz UND beide keine
+# Vol-Gewichte - sie sind also rechnerisch identisch. Ihre gepaarte Differenz
+# muss deshalb in jedem Replikat exakt 0 sein. Waere die Paarung kaputt
+# (verschiedene gezogene Zeitachsen je Variante), stuende hier ein breites
+# Intervall. combined/vol_sizing sind dagegen NICHT identisch, da sie
+# zusaetzlich vol-gewichtet werden - daher genau dieses Paar als Pruefung.
+paired = b1["differences"]["trailing_minus_baseline"]
+check("identische Varianten ergeben eine gepaarte Differenz von exakt 0 (Paarung wirkt)",
+      all(paired[key]["ci_low"] == 0.0 and paired[key]["ci_high"] == 0.0
+          for key in ("total_return_pct", "max_drawdown_pct", "calmar_ratio")),
+      str(paired["calmar_ratio"]))
+check("nicht identische Varianten ergeben dagegen eine Streuung ungleich 0",
+      b1["differences"]["combined_minus_trailing"]["total_return_pct"]["ci_low"]
+      != b1["differences"]["combined_minus_trailing"]["total_return_pct"]["ci_high"])
+
+# ---------------------------------------------------------------------------
+print("\n10) Reihenfolge gleichzeitiger Einstiege ist ergebnisrelevant")
+# ---------------------------------------------------------------------------
+entry_ns = synthetic["entry_time"].to_numpy("datetime64[ns]").astype("int64")
+exit_ns = synthetic["exit_time"].to_numpy("datetime64[ns]").astype("int64")
+pnl_arr = synthetic["pnl_pct"].to_numpy(dtype=float)
+results = set()
+rng_t = np.random.default_rng(5)
+for _ in range(50):
+    perm = rng_t.permutation(len(synthetic))
+    order = perm[np.argsort(entry_ns[perm], kind="stable")]
+    results.add(round(bs.simulate_fast(entry_ns[order], exit_ns[order], pnl_arr[order],
+                                        np.ones(len(order)), 10_000.0, 0.34, 2)[0], 6))
+check("bei knappem Kapital/Positionslimit haengt das Ergebnis von der Reihenfolge ab - "
+      "die Sensitivitaetsanalyse misst also etwas Reales",
+      len(results) > 1, f"{len(results)} verschiedene Ergebnisse")
+results_free = set()
+for _ in range(50):
+    perm = rng_t.permutation(len(synthetic))
+    order = perm[np.argsort(entry_ns[perm], kind="stable")]
+    results_free.add(round(bs.simulate_fast(entry_ns[order], exit_ns[order], pnl_arr[order],
+                                             np.ones(len(order)), 10_000.0, 0.02, None)[0], 6))
+check("ohne Kapital- und Positionsengpass ist die Reihenfolge dagegen irrelevant",
+      len(results_free) == 1, f"{len(results_free)} verschiedene Ergebnisse")
+
 print("\n" + "=" * 60)
 print(f"{PASSED} Checks bestanden, {FAILED} fehlgeschlagen.")
 print("=" * 60)

@@ -1,5 +1,1214 @@
 {
   "bot": "volatility_breakout_crypto",
+  "data_basis": {
+    "symbols_with_trades": 20,
+    "symbols_loaded": 20,
+    "first_entry": "2022-03-17",
+    "last_exit": "2026-08-30",
+    "years_covered": 4.45,
+    "trades_per_period": {
+      "full": {
+        "baseline": {
+          "found": 359,
+          "executed": 310,
+          "skipped": 49
+        },
+        "vol_sizing": {
+          "found": 359,
+          "executed": 310,
+          "skipped": 49
+        },
+        "trailing": {
+          "found": 396,
+          "executed": 370,
+          "skipped": 26
+        },
+        "combined": {
+          "found": 396,
+          "executed": 367,
+          "skipped": 29
+        }
+      },
+      "in_sample": {
+        "baseline": {
+          "found": 219,
+          "executed": 209,
+          "skipped": 10
+        },
+        "vol_sizing": {
+          "found": 219,
+          "executed": 209,
+          "skipped": 10
+        },
+        "trailing": {
+          "found": 232,
+          "executed": 231,
+          "skipped": 1
+        },
+        "combined": {
+          "found": 232,
+          "executed": 231,
+          "skipped": 1
+        }
+      },
+      "out_of_sample": {
+        "baseline": {
+          "found": 140,
+          "executed": 103,
+          "skipped": 37
+        },
+        "vol_sizing": {
+          "found": 140,
+          "executed": 103,
+          "skipped": 37
+        },
+        "trailing": {
+          "found": 164,
+          "executed": 140,
+          "skipped": 24
+        },
+        "combined": {
+          "found": 164,
+          "executed": 137,
+          "skipped": 27
+        }
+      }
+    }
+  },
+  "tie_order_sensitivity": {
+    "full": {
+      "baseline": {
+        "n_permutations": 500,
+        "trades": 359,
+        "trades_sharing_entry_timestamp": 214,
+        "share_sharing_entry_timestamp_pct": 59.6,
+        "largest_same_timestamp_group": 9,
+        "total_return_pct": {
+          "min": 49.94,
+          "median": 59.1,
+          "max": 82.14,
+          "ci_low": 51.82,
+          "ci_high": 79.19
+        },
+        "max_drawdown_pct": {
+          "min": -16.77,
+          "median": -16.77,
+          "max": -16.77,
+          "ci_low": -16.77,
+          "ci_high": -16.77
+        },
+        "calmar_ratio": {
+          "min": 2.98,
+          "median": 3.52,
+          "max": 4.9,
+          "ci_low": 3.09,
+          "ci_high": 4.73
+        }
+      },
+      "vol_sizing": {
+        "n_permutations": 500,
+        "trades": 359,
+        "trades_sharing_entry_timestamp": 214,
+        "share_sharing_entry_timestamp_pct": 59.6,
+        "largest_same_timestamp_group": 9,
+        "total_return_pct": {
+          "min": 37.3,
+          "median": 58.7,
+          "max": 70.98,
+          "ci_low": 39.79,
+          "ci_high": 68.48
+        },
+        "max_drawdown_pct": {
+          "min": -14.96,
+          "median": -14.95,
+          "max": -14.93,
+          "ci_low": -14.96,
+          "ci_high": -14.93
+        },
+        "calmar_ratio": {
+          "min": 2.5,
+          "median": 3.93,
+          "max": 4.75,
+          "ci_low": 2.66,
+          "ci_high": 4.58
+        }
+      },
+      "trailing": {
+        "n_permutations": 500,
+        "trades": 396,
+        "trades_sharing_entry_timestamp": 245,
+        "share_sharing_entry_timestamp_pct": 61.9,
+        "largest_same_timestamp_group": 9,
+        "total_return_pct": {
+          "min": 39.02,
+          "median": 44.77,
+          "max": 51.55,
+          "ci_low": 40.72,
+          "ci_high": 49.31
+        },
+        "max_drawdown_pct": {
+          "min": -5.96,
+          "median": -5.76,
+          "max": -5.76,
+          "ci_low": -5.93,
+          "ci_high": -5.76
+        },
+        "calmar_ratio": {
+          "min": 6.65,
+          "median": 7.72,
+          "max": 8.95,
+          "ci_low": 7.02,
+          "ci_high": 8.53
+        }
+      },
+      "combined": {
+        "n_permutations": 500,
+        "trades": 396,
+        "trades_sharing_entry_timestamp": 245,
+        "share_sharing_entry_timestamp_pct": 61.9,
+        "largest_same_timestamp_group": 9,
+        "total_return_pct": {
+          "min": 31.59,
+          "median": 36.54,
+          "max": 41.08,
+          "ci_low": 32.75,
+          "ci_high": 40.09
+        },
+        "max_drawdown_pct": {
+          "min": -5.93,
+          "median": -5.93,
+          "max": -5.93,
+          "ci_low": -5.93,
+          "ci_high": -5.93
+        },
+        "calmar_ratio": {
+          "min": 5.33,
+          "median": 6.16,
+          "max": 6.93,
+          "ci_low": 5.52,
+          "ci_high": 6.76
+        }
+      }
+    },
+    "in_sample": {
+      "baseline": {
+        "n_permutations": 500,
+        "trades": 219,
+        "trades_sharing_entry_timestamp": 116,
+        "share_sharing_entry_timestamp_pct": 53.0,
+        "largest_same_timestamp_group": 7,
+        "total_return_pct": {
+          "min": 24.76,
+          "median": 26.35,
+          "max": 41.4,
+          "ci_low": 24.76,
+          "ci_high": 41.4
+        },
+        "max_drawdown_pct": {
+          "min": -16.77,
+          "median": -16.77,
+          "max": -16.77,
+          "ci_low": -16.77,
+          "ci_high": -16.77
+        },
+        "calmar_ratio": {
+          "min": 1.48,
+          "median": 1.57,
+          "max": 2.47,
+          "ci_low": 1.48,
+          "ci_high": 2.47
+        }
+      },
+      "vol_sizing": {
+        "n_permutations": 500,
+        "trades": 219,
+        "trades_sharing_entry_timestamp": 116,
+        "share_sharing_entry_timestamp_pct": 53.0,
+        "largest_same_timestamp_group": 7,
+        "total_return_pct": {
+          "min": 19.31,
+          "median": 36.67,
+          "max": 38.4,
+          "ci_low": 19.6,
+          "ci_high": 38.2
+        },
+        "max_drawdown_pct": {
+          "min": -15.19,
+          "median": -15.19,
+          "max": -15.17,
+          "ci_low": -15.19,
+          "ci_high": -15.17
+        },
+        "calmar_ratio": {
+          "min": 1.27,
+          "median": 2.41,
+          "max": 2.53,
+          "ci_low": 1.29,
+          "ci_high": 2.52
+        }
+      },
+      "trailing": {
+        "n_permutations": 500,
+        "trades": 232,
+        "trades_sharing_entry_timestamp": 123,
+        "share_sharing_entry_timestamp_pct": 53.0,
+        "largest_same_timestamp_group": 7,
+        "total_return_pct": {
+          "min": 12.96,
+          "median": 12.96,
+          "max": 12.99,
+          "ci_low": 12.96,
+          "ci_high": 12.99
+        },
+        "max_drawdown_pct": {
+          "min": -5.76,
+          "median": -5.76,
+          "max": -5.76,
+          "ci_low": -5.76,
+          "ci_high": -5.76
+        },
+        "calmar_ratio": {
+          "min": 2.25,
+          "median": 2.25,
+          "max": 2.25,
+          "ci_low": 2.25,
+          "ci_high": 2.25
+        }
+      },
+      "combined": {
+        "n_permutations": 500,
+        "trades": 232,
+        "trades_sharing_entry_timestamp": 123,
+        "share_sharing_entry_timestamp_pct": 53.0,
+        "largest_same_timestamp_group": 7,
+        "total_return_pct": {
+          "min": 9.78,
+          "median": 9.88,
+          "max": 9.88,
+          "ci_low": 9.78,
+          "ci_high": 9.88
+        },
+        "max_drawdown_pct": {
+          "min": -6.1,
+          "median": -6.1,
+          "max": -6.1,
+          "ci_low": -6.1,
+          "ci_high": -6.1
+        },
+        "calmar_ratio": {
+          "min": 1.6,
+          "median": 1.62,
+          "max": 1.62,
+          "ci_low": 1.6,
+          "ci_high": 1.62
+        }
+      }
+    },
+    "out_of_sample": {
+      "baseline": {
+        "n_permutations": 500,
+        "trades": 140,
+        "trades_sharing_entry_timestamp": 98,
+        "share_sharing_entry_timestamp_pct": 70.0,
+        "largest_same_timestamp_group": 9,
+        "total_return_pct": {
+          "min": 18.27,
+          "median": 22.36,
+          "max": 27.7,
+          "ci_low": 19.17,
+          "ci_high": 26.61
+        },
+        "max_drawdown_pct": {
+          "min": -12.02,
+          "median": -10.83,
+          "max": -9.23,
+          "ci_low": -11.79,
+          "ci_high": -9.66
+        },
+        "calmar_ratio": {
+          "min": 1.52,
+          "median": 2.08,
+          "max": 2.93,
+          "ci_low": 1.7,
+          "ci_high": 2.71
+        }
+      },
+      "vol_sizing": {
+        "n_permutations": 500,
+        "trades": 140,
+        "trades_sharing_entry_timestamp": 98,
+        "share_sharing_entry_timestamp_pct": 70.0,
+        "largest_same_timestamp_group": 9,
+        "total_return_pct": {
+          "min": 13.59,
+          "median": 18.18,
+          "max": 23.91,
+          "ci_low": 14.62,
+          "ci_high": 22.32
+        },
+        "max_drawdown_pct": {
+          "min": -9.3,
+          "median": -7.84,
+          "max": -6.82,
+          "ci_low": -8.95,
+          "ci_high": -7.01
+        },
+        "calmar_ratio": {
+          "min": 1.47,
+          "median": 2.33,
+          "max": 3.32,
+          "ci_low": 1.69,
+          "ci_high": 2.98
+        }
+      },
+      "trailing": {
+        "n_permutations": 500,
+        "trades": 164,
+        "trades_sharing_entry_timestamp": 122,
+        "share_sharing_entry_timestamp_pct": 74.4,
+        "largest_same_timestamp_group": 9,
+        "total_return_pct": {
+          "min": 22.41,
+          "median": 27.78,
+          "max": 32.66,
+          "ci_low": 24.09,
+          "ci_high": 31.74
+        },
+        "max_drawdown_pct": {
+          "min": -5.96,
+          "median": -5.72,
+          "max": -5.49,
+          "ci_low": -5.93,
+          "ci_high": -5.55
+        },
+        "calmar_ratio": {
+          "min": 3.88,
+          "median": 4.84,
+          "max": 5.92,
+          "ci_low": 4.17,
+          "ci_high": 5.5
+        }
+      },
+      "combined": {
+        "n_permutations": 500,
+        "trades": 164,
+        "trades_sharing_entry_timestamp": 122,
+        "share_sharing_entry_timestamp_pct": 74.4,
+        "largest_same_timestamp_group": 9,
+        "total_return_pct": {
+          "min": 18.23,
+          "median": 23.83,
+          "max": 29.19,
+          "ci_low": 19.52,
+          "ci_high": 27.98
+        },
+        "max_drawdown_pct": {
+          "min": -5.26,
+          "median": -4.15,
+          "max": -3.99,
+          "ci_low": -5.03,
+          "ci_high": -4.01
+        },
+        "calmar_ratio": {
+          "min": 3.59,
+          "median": 5.75,
+          "max": 7.1,
+          "ci_low": 4.05,
+          "ci_high": 6.86
+        }
+      }
+    }
+  },
+  "buy_and_hold": {
+    "full": {
+      "final_capital": 11945.19,
+      "total_return_pct": 19.45,
+      "max_drawdown_pct": -67.9,
+      "num_symbols": 20,
+      "calmar_ratio": 0.29
+    },
+    "in_sample": {
+      "final_capital": 12533.66,
+      "total_return_pct": 25.34,
+      "max_drawdown_pct": -67.9,
+      "num_symbols": 20,
+      "calmar_ratio": 0.37
+    },
+    "out_of_sample": {
+      "final_capital": 16881.44,
+      "total_return_pct": 68.81,
+      "max_drawdown_pct": -59.47,
+      "num_symbols": 20,
+      "calmar_ratio": 1.16
+    }
+  },
+  "bootstrap": {
+    "full": {
+      "n_replicates": 2000,
+      "block_months": 3,
+      "months_in_period": 54,
+      "blocks_per_replicate": 18,
+      "seed": 20260907,
+      "calmar_replicates_dropped_near_zero_drawdown": {
+        "baseline": 0,
+        "vol_sizing": 0,
+        "trailing": 0,
+        "combined": 0
+      },
+      "trades_in_period": {
+        "baseline": 359,
+        "vol_sizing": 359,
+        "trailing": 396,
+        "combined": 396
+      },
+      "per_variant": {
+        "baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 81.225,
+            "median": 65.802,
+            "ci_low": -20.655,
+            "ci_high": 273.182,
+            "share_above_zero_pct": 90.6
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -21.829,
+            "median": -20.6,
+            "ci_low": -39.15,
+            "ci_high": -11.779,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 4.796,
+            "median": 3.155,
+            "ci_low": -0.61,
+            "ci_high": 19.891,
+            "share_above_zero_pct": 90.5
+          }
+        },
+        "vol_sizing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 68.457,
+            "median": 57.213,
+            "ci_low": -19.634,
+            "ci_high": 222.307,
+            "share_above_zero_pct": 90.2
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -20.08,
+            "median": -18.865,
+            "ci_low": -35.98,
+            "ci_high": -10.79,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 4.428,
+            "median": 3.04,
+            "ci_low": -0.61,
+            "ci_high": 17.732,
+            "share_above_zero_pct": 90.1
+          }
+        },
+        "trailing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 47.043,
+            "median": 43.895,
+            "ci_low": 6.443,
+            "ci_high": 105.721,
+            "share_above_zero_pct": 99.2
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -7.335,
+            "median": -7.04,
+            "ci_low": -12.655,
+            "ci_high": -4.14,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 7.487,
+            "median": 6.245,
+            "ci_low": 0.76,
+            "ci_high": 20.332,
+            "share_above_zero_pct": 99.2
+          }
+        },
+        "combined": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 39.049,
+            "median": 36.776,
+            "ci_low": 4.303,
+            "ci_high": 88.903,
+            "share_above_zero_pct": 99.1
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -6.814,
+            "median": -6.41,
+            "ci_low": -12.081,
+            "ci_high": -3.76,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 6.83,
+            "median": 5.54,
+            "ci_low": 0.479,
+            "ci_high": 19.451,
+            "share_above_zero_pct": 99.0
+          }
+        }
+      },
+      "differences": {
+        "vol_sizing_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -12.768,
+            "median": -8.171,
+            "ci_low": -70.915,
+            "ci_high": 18.528,
+            "share_above_zero_pct": 28.8
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 1.75,
+            "median": 1.655,
+            "ci_low": -2.34,
+            "ci_high": 6.181,
+            "share_above_zero_pct": 79.5
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": -0.367,
+            "median": -0.16,
+            "ci_low": -4.031,
+            "ci_high": 2.52,
+            "share_above_zero_pct": 40.1
+          }
+        },
+        "trailing_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -34.182,
+            "median": -21.204,
+            "ci_low": -203.255,
+            "ci_high": 58.929,
+            "share_above_zero_pct": 35.5
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 14.494,
+            "median": 13.44,
+            "ci_low": 4.67,
+            "ci_high": 30.574,
+            "share_above_zero_pct": 100.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 2.692,
+            "median": 2.585,
+            "ci_low": -10.025,
+            "ci_high": 14.48,
+            "share_above_zero_pct": 73.8
+          }
+        },
+        "combined_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -42.176,
+            "median": -28.582,
+            "ci_low": -212.883,
+            "ci_high": 49.287,
+            "share_above_zero_pct": 30.4
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 15.016,
+            "median": 13.94,
+            "ci_low": 5.22,
+            "ci_high": 31.14,
+            "share_above_zero_pct": 100.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 2.035,
+            "median": 2.06,
+            "ci_low": -10.945,
+            "ci_high": 13.583,
+            "share_above_zero_pct": 70.7
+          }
+        },
+        "combined_minus_trailing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -7.994,
+            "median": -7.465,
+            "ci_low": -25.155,
+            "ci_high": 5.613,
+            "share_above_zero_pct": 13.1
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 0.521,
+            "median": 0.54,
+            "ci_low": -1.48,
+            "ci_high": 2.3,
+            "share_above_zero_pct": 73.8
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": -0.657,
+            "median": -0.535,
+            "ci_low": -4.912,
+            "ci_high": 2.991,
+            "share_above_zero_pct": 31.1
+          }
+        }
+      }
+    },
+    "in_sample": {
+      "n_replicates": 2000,
+      "block_months": 3,
+      "months_in_period": 38,
+      "blocks_per_replicate": 13,
+      "seed": 20260907,
+      "calmar_replicates_dropped_near_zero_drawdown": {
+        "baseline": 0,
+        "vol_sizing": 0,
+        "trailing": 0,
+        "combined": 0
+      },
+      "trades_in_period": {
+        "baseline": 219,
+        "vol_sizing": 219,
+        "trailing": 232,
+        "combined": 232
+      },
+      "per_variant": {
+        "baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 51.195,
+            "median": 37.689,
+            "ci_low": -25.886,
+            "ci_high": 201.667,
+            "share_above_zero_pct": 83.0
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -21.64,
+            "median": -20.41,
+            "ci_low": -38.321,
+            "ci_high": -10.917,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 3.241,
+            "median": 1.87,
+            "ci_low": -0.81,
+            "ci_high": 15.092,
+            "share_above_zero_pct": 83.0
+          }
+        },
+        "vol_sizing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 46.687,
+            "median": 34.56,
+            "ci_low": -23.24,
+            "ci_high": 179.471,
+            "share_above_zero_pct": 83.6
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -20.308,
+            "median": -19.42,
+            "ci_low": -35.933,
+            "ci_high": -10.289,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 3.117,
+            "median": 1.86,
+            "ci_low": -0.77,
+            "ci_high": 14.662,
+            "share_above_zero_pct": 83.5
+          }
+        },
+        "trailing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 13.741,
+            "median": 12.078,
+            "ci_low": -7.002,
+            "ci_high": 41.681,
+            "share_above_zero_pct": 87.3
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -6.892,
+            "median": -6.37,
+            "ci_low": -12.951,
+            "ci_high": -3.51,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 2.677,
+            "median": 1.885,
+            "ci_low": -0.63,
+            "ci_high": 9.723,
+            "share_above_zero_pct": 87.2
+          }
+        },
+        "combined": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 10.587,
+            "median": 9.536,
+            "ci_low": -6.994,
+            "ci_high": 34.196,
+            "share_above_zero_pct": 85.1
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -6.956,
+            "median": -6.44,
+            "ci_low": -12.681,
+            "ci_high": -3.43,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 2.056,
+            "median": 1.44,
+            "ci_low": -0.66,
+            "ci_high": 8.152,
+            "share_above_zero_pct": 84.9
+          }
+        }
+      },
+      "differences": {
+        "vol_sizing_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -4.509,
+            "median": -2.3,
+            "ci_low": -42.497,
+            "ci_high": 20.82,
+            "share_above_zero_pct": 42.9
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 1.332,
+            "median": 1.195,
+            "ci_low": -2.53,
+            "ci_high": 6.06,
+            "share_above_zero_pct": 73.5
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": -0.123,
+            "median": -0.02,
+            "ci_low": -2.881,
+            "ci_high": 2.27,
+            "share_above_zero_pct": 47.1
+          }
+        },
+        "trailing_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -37.455,
+            "median": -24.136,
+            "ci_low": -182.948,
+            "ci_high": 36.486,
+            "share_above_zero_pct": 26.0
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 14.748,
+            "median": 13.77,
+            "ci_low": 4.467,
+            "ci_high": 29.871,
+            "share_above_zero_pct": 99.9
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": -0.563,
+            "median": -0.07,
+            "ci_low": -11.162,
+            "ci_high": 6.86,
+            "share_above_zero_pct": 48.8
+          }
+        },
+        "combined_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -40.608,
+            "median": -27.141,
+            "ci_low": -185.912,
+            "ci_high": 31.9,
+            "share_above_zero_pct": 23.2
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 14.684,
+            "median": 13.825,
+            "ci_low": 4.16,
+            "ci_high": 30.173,
+            "share_above_zero_pct": 99.9
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": -1.184,
+            "median": -0.38,
+            "ci_low": -11.384,
+            "ci_high": 5.19,
+            "share_above_zero_pct": 41.9
+          }
+        },
+        "combined_minus_trailing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -3.154,
+            "median": -2.811,
+            "ci_low": -12.842,
+            "ci_high": 4.427,
+            "share_above_zero_pct": 23.6
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -0.064,
+            "median": -0.05,
+            "ci_low": -2.19,
+            "ci_high": 1.84,
+            "share_above_zero_pct": 47.5
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": -0.621,
+            "median": -0.395,
+            "ci_low": -3.41,
+            "ci_high": 1.0,
+            "share_above_zero_pct": 27.6
+          }
+        }
+      }
+    },
+    "out_of_sample": {
+      "n_replicates": 2000,
+      "block_months": 3,
+      "months_in_period": 17,
+      "blocks_per_replicate": 6,
+      "seed": 20260907,
+      "calmar_replicates_dropped_near_zero_drawdown": {
+        "baseline": 0,
+        "vol_sizing": 0,
+        "trailing": 0,
+        "combined": 0
+      },
+      "trades_in_period": {
+        "baseline": 140,
+        "vol_sizing": 140,
+        "trailing": 164,
+        "combined": 164
+      },
+      "per_variant": {
+        "baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 22.225,
+            "median": 18.404,
+            "ci_low": -7.269,
+            "ci_high": 72.776,
+            "share_above_zero_pct": 86.6
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -9.839,
+            "median": -9.95,
+            "ci_low": -16.26,
+            "ci_high": -5.19,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 2.783,
+            "median": 1.94,
+            "ci_low": -0.63,
+            "ci_high": 11.45,
+            "share_above_zero_pct": 86.6
+          }
+        },
+        "vol_sizing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 17.77,
+            "median": 15.012,
+            "ci_low": -5.924,
+            "ci_high": 59.708,
+            "share_above_zero_pct": 84.2
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -7.472,
+            "median": -7.25,
+            "ci_low": -12.021,
+            "ci_high": -4.32,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 2.9,
+            "median": 2.04,
+            "ci_low": -0.63,
+            "ci_high": 11.484,
+            "share_above_zero_pct": 83.9
+          }
+        },
+        "trailing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 29.173,
+            "median": 28.087,
+            "ci_low": 6.741,
+            "ci_high": 59.104,
+            "share_above_zero_pct": 99.7
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -5.08,
+            "median": -4.855,
+            "ci_low": -8.602,
+            "ci_high": -2.12,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 7.079,
+            "median": 5.7,
+            "ci_low": 0.9,
+            "ci_high": 23.205,
+            "share_above_zero_pct": 99.7
+          }
+        },
+        "combined": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 26.187,
+            "median": 25.37,
+            "ci_low": 5.136,
+            "ci_high": 52.399,
+            "share_above_zero_pct": 99.6
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": -3.951,
+            "median": -3.87,
+            "ci_low": -6.87,
+            "ci_high": -1.74,
+            "share_above_zero_pct": 0.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 8.147,
+            "median": 6.525,
+            "ci_low": 0.93,
+            "ci_high": 25.571,
+            "share_above_zero_pct": 99.6
+          }
+        }
+      },
+      "differences": {
+        "vol_sizing_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -4.455,
+            "median": -3.768,
+            "ci_low": -18.178,
+            "ci_high": 4.785,
+            "share_above_zero_pct": 22.2
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 2.367,
+            "median": 2.47,
+            "ci_low": -0.49,
+            "ci_high": 5.05,
+            "share_above_zero_pct": 94.7
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 0.118,
+            "median": 0.07,
+            "ci_low": -1.681,
+            "ci_high": 2.18,
+            "share_above_zero_pct": 53.8
+          }
+        },
+        "trailing_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 6.948,
+            "median": 8.148,
+            "ci_low": -26.925,
+            "ci_high": 32.82,
+            "share_above_zero_pct": 70.7
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 4.76,
+            "median": 4.5,
+            "ci_low": 0.868,
+            "ci_high": 9.47,
+            "share_above_zero_pct": 99.2
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 4.296,
+            "median": 3.23,
+            "ci_low": -0.561,
+            "ci_high": 16.14,
+            "share_above_zero_pct": 95.0
+          }
+        },
+        "combined_minus_baseline": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": 3.962,
+            "median": 5.333,
+            "ci_low": -34.42,
+            "ci_high": 34.8,
+            "share_above_zero_pct": 62.8
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 5.888,
+            "median": 5.76,
+            "ci_low": 1.6,
+            "ci_high": 10.93,
+            "share_above_zero_pct": 100.0
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 5.364,
+            "median": 4.12,
+            "ci_low": -0.68,
+            "ci_high": 19.153,
+            "share_above_zero_pct": 94.7
+          }
+        },
+        "combined_minus_trailing": {
+          "total_return_pct": {
+            "label": "total_return_pct",
+            "n_valid": 2000,
+            "mean": -2.986,
+            "median": -2.932,
+            "ci_low": -13.045,
+            "ci_high": 6.801,
+            "share_above_zero_pct": 24.8
+          },
+          "max_drawdown_pct": {
+            "label": "max_drawdown_pct",
+            "n_valid": 2000,
+            "mean": 1.129,
+            "median": 1.15,
+            "ci_low": 0.29,
+            "ci_high": 2.17,
+            "share_above_zero_pct": 99.9
+          },
+          "calmar_ratio": {
+            "label": "calmar_ratio",
+            "n_valid": 2000,
+            "mean": 1.068,
+            "median": 0.645,
+            "ci_low": -1.8,
+            "ci_high": 5.94,
+            "share_above_zero_pct": 71.2
+          }
+        }
+      }
+    }
+  },
   "assumptions": {
     "atr_window_bars": 14,
     "vol_window_bars": 90,
@@ -14,7 +1223,11 @@
     "train_split_ratio": 0.7,
     "starting_capital": 10000.0,
     "split_time": "2025-04-22 14:24:00",
-    "btc_regime_filter_applied": false
+    "btc_regime_filter_applied": false,
+    "bootstrap_replicates": 2000,
+    "bootstrap_block_months": 3,
+    "bootstrap_seed": 20260907,
+    "tie_order_permutations": 500
   },
   "trade_counts": {
     "static_stop": 359,

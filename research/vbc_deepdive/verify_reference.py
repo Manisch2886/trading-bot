@@ -95,7 +95,7 @@ def main():
         "train_split_ratio": mswf.TRAIN_SPLIT_RATIO,
     }
 
-    prepared, warmup = rd.load_symbols()
+    prepared, warmup, _raw = rd.load_symbols()
     static = rd.collect_trades(prepared, warmup, STOP_FIXED_STATIC, cfg["stop_loss_pct"],
                                 None, cfg["max_hold"])
 

@@ -26,6 +26,7 @@ _DIR = os.path.dirname(os.path.abspath(__file__))
 _REPO_ROOT = os.path.dirname(os.path.dirname(_DIR))
 sys.path.insert(0, _DIR)
 
+import bootstrap
 from vbc_core import (
     wilder_atr, calibrate_atr_multiplier, simulate_exit, initial_stop_price,
     compute_realized_volatility, compute_inverse_vol_weights,
@@ -48,6 +49,12 @@ VOL_WINDOW = 90      # research/volatility_scaled_sizing - 90 Tagesbalken (diese
 CLIP_FACTOR = 4.0    # research/volatility_scaled_sizing - Ausreisser-Clip der inversen Vol-Gewichte
 NUM_STABILITY_WINDOWS = 4
 STARTING_CAPITAL = 10_000.0
+
+# Bootstrap-Einstellungen (siehe bootstrap.py fuer die Begruendung des Verfahrens)
+BOOTSTRAP_REPLICATES = 2000
+BOOTSTRAP_BLOCK_MONTHS = 3     # ein Quartal - lang genug, um eine Marktphase zusammenzuhalten
+BOOTSTRAP_SEED = 20260907      # fest, damit die Ergebnisse reproduzierbar sind
+TIE_ORDER_PERMUTATIONS = 500   # Streuung durch die Reihenfolge gleichzeitiger Einstiege
 TRADING_COST_PCT = 2 * (0.1 + 0.05)   # Gebuehr + Slippage je Entry und Exit, wie im Bot
 
 
@@ -62,8 +69,9 @@ def load_symbols() -> dict:
     from multi_symbol_optimise import load_all_symbol_data
     import backtest_breakout as bt
 
+    raw = load_all_symbol_data()
     prepared = {}
-    for symbol, price_df in load_all_symbol_data().items():
+    for symbol, price_df in raw.items():
         df = bt.compute_indicators(price_df)
         high = df["high"].to_numpy(dtype=float)
         low = df["low"].to_numpy(dtype=float)
@@ -76,7 +84,7 @@ def load_symbols() -> dict:
             "atr": wilder_atr(high, low, close, ATR_WINDOW),
             "vol": compute_realized_volatility(close, VOL_WINDOW),
         }
-    return prepared, bt.WARMUP_PERIOD
+    return prepared, bt.WARMUP_PERIOD, raw
 
 
 def collect_trades(prepared: dict, warmup: int, stop_kind: str, stop_pct: float,
@@ -131,6 +139,41 @@ def collect_trades(prepared: dict, warmup: int, stop_kind: str, stop_pct: float,
 # ===========================================================================
 # Auswertung
 # ===========================================================================
+def buy_and_hold(raw_data: dict, lo, hi) -> dict:
+    """
+    Buy-and-Hold-Gegencheck - laut CLAUDE.md Pflichtbestandteil der
+    Validierungskette (Backtest -> Walk-Forward -> Equity-Simulation ->
+    Buy-and-Hold).
+
+    Es wird die UNVERAENDERTE Funktion des Bots benutzt
+    (strategies/volatility_breakout_crypto/buy_and_hold_benchmark.py::
+    calculate_buy_and_hold) - gleichgewichtet ueber alle Symbole, Kauf zum
+    ersten Schlusskurs des Fensters, Halten bis zum letzten, Drawdown aus
+    der taeglichen Portfolio-Kurve. Nur der Eingabe-Zeitraum wird
+    zugeschnitten, an der Rechnung selbst nichts geaendert.
+
+    Der Wert ist fuer alle vier Varianten derselbe (er haengt weder vom
+    Stop noch von der Gewichtung ab) - genau deshalb ist er die
+    unabhaengige Aussenreferenz: er beantwortet die Frage, ob die
+    Strategie ueberhaupt besser ist als stumpfes Halten derselben Coins
+    im selben Zeitraum.
+    """
+    from buy_and_hold_benchmark import calculate_buy_and_hold
+
+    windowed = {}
+    for symbol, df in raw_data.items():
+        piece = df[(df["open_time"] >= lo) & (df["open_time"] <= hi)]
+        if len(piece) >= 2:
+            windowed[symbol] = piece.reset_index(drop=True)
+    if not windowed:
+        return None
+    result = calculate_buy_and_hold(windowed, STARTING_CAPITAL)
+    if result:
+        result["calmar_ratio"] = calmar_ratio(result["total_return_pct"],
+                                               result["max_drawdown_pct"])
+    return result
+
+
 def weights_for(trades: pd.DataFrame, use_vol: bool) -> pd.Series:
     """Inverse-Vol-Gewichte (Mittelwert exakt 1,0 INNERHALB des übergebenen
     Trade-Satzes) oder neutrale Gewichte. Die Normalisierung erfolgt immer
@@ -282,6 +325,86 @@ def overlap_analysis(static_trades: pd.DataFrame, trailing_trades: pd.DataFrame)
                             "trailing_contribution_pp": round(float(row["trailing_contribution"]), 2)}
                        for q, row in by_quarter.iterrows()},
     }
+
+
+def tie_order_sensitivity(sets: dict, cfg: dict, lo, hi, include_hi: bool,
+                           n_permutations: int, seed: int) -> dict:
+    """
+    Wie stark haengen die Ergebnisse an der Reihenfolge gleichzeitiger
+    Einstiege?
+
+    Dieser Bot laeuft auf TAGESKERZEN und handelt 20 Symbole - an einem Tag
+    entstehen daher regelmaessig mehrere Einstiegssignale mit exakt
+    demselben Zeitstempel. Die Portfolio-Simulation vergibt Kapital
+    sequenziell in Ereignis-Reihenfolge; bei erschoepftem Kapital oder
+    erreichtem MAX_CONCURRENT_POSITIONS entscheidet also die Reihenfolge
+    innerhalb desselben Tages darueber, WELCHER Trade ausgefuehrt wird und
+    welcher wegfaellt. Diese Reihenfolge ist inhaltlich willkuerlich (sie
+    ergibt sich aus der Symbol-Reihenfolge beim Einlesen und dem
+    Sortierverfahren), hat aber reale Wirkung auf das Ergebnis.
+
+    Gemessen wird, wie weit die Kennzahlen streuen, wenn man ausschliesslich
+    diese Reihenfolge zufaellig permutiert und sonst NICHTS aendert - keine
+    Kursdaten, keine Trades, keine Parameter. Das ist keine
+    Stichprobenunsicherheit wie beim Bootstrap, sondern eine
+    Implementierungs-Willkuer, die in jedem einzelnen Lauf steckt.
+
+    Wichtig fuer die Einordnung: eine breite Streuung entwertet einen
+    Vergleich nur dann, wenn sich die Streubereiche zweier Varianten
+    ueberlappen. Liegen sie auseinander, ist der Unterschied groesser als
+    die Willkuer.
+    """
+    rng = np.random.default_rng(seed)
+    out = {}
+    for variant in VARIANTS:
+        trades = sets[USES_TRAILING[variant]]
+        mask = trades["entry_time"] >= lo
+        mask &= (trades["entry_time"] <= hi) if include_hi else (trades["entry_time"] < hi)
+        trades = trades[mask].reset_index(drop=True)
+        if trades.empty:
+            continue
+
+        entry = trades["entry_time"].to_numpy("datetime64[ns]").astype("int64")
+        exit_ = trades["exit_time"].to_numpy("datetime64[ns]").astype("int64")
+        pnl = trades["pnl_pct"].to_numpy(dtype=float)
+        vol = trades["vol_at_entry"].to_numpy(dtype=float)
+
+        returns, drawdowns, calmars = [], [], []
+        for _ in range(n_permutations):
+            perm = rng.permutation(len(trades))
+            order = perm[np.argsort(entry[perm], kind="stable")]
+            weights = (bootstrap.inverse_vol_weights_fast(vol[order], CLIP_FACTOR)
+                       if USES_VOL_WEIGHTS[variant] else np.ones(len(order)))
+            total_return, max_dd = bootstrap.simulate_fast(
+                entry[order], exit_[order], pnl[order], weights,
+                STARTING_CAPITAL, cfg["allocation_pct"] / 100.0, cfg["max_concurrent"])
+            returns.append(total_return)
+            drawdowns.append(max_dd)
+            calmar = calmar_ratio(total_return, max_dd)
+            calmars.append(np.nan if calmar is None else calmar)
+
+        def spread(values):
+            arr = np.asarray(values, dtype=float)
+            arr = arr[np.isfinite(arr)]
+            if arr.size == 0:
+                return None
+            return {"min": round(float(arr.min()), 2), "median": round(float(np.median(arr)), 2),
+                    "max": round(float(arr.max()), 2),
+                    "ci_low": round(float(np.percentile(arr, 2.5)), 2),
+                    "ci_high": round(float(np.percentile(arr, 97.5)), 2)}
+
+        shared = int(trades["entry_time"].duplicated(keep=False).sum())
+        out[variant] = {
+            "n_permutations": n_permutations,
+            "trades": int(len(trades)),
+            "trades_sharing_entry_timestamp": shared,
+            "share_sharing_entry_timestamp_pct": round(shared / len(trades) * 100, 1),
+            "largest_same_timestamp_group": int(trades["entry_time"].value_counts().max()),
+            "total_return_pct": spread(returns),
+            "max_drawdown_pct": spread(drawdowns),
+            "calmar_ratio": spread(calmars),
+        }
+    return out
 
 
 def quarterly_concentration(quarters: list) -> dict:
@@ -437,7 +560,7 @@ def main():
         "train_split_ratio": mswf.TRAIN_SPLIT_RATIO,
     }
 
-    prepared, warmup = load_symbols()
+    prepared, warmup, raw_data = load_symbols()
     static = collect_trades(prepared, warmup, STOP_FIXED_STATIC, cfg["stop_loss_pct"],
                              None, cfg["max_hold"])
 
@@ -453,6 +576,12 @@ def main():
     trailing = collect_trades(prepared, warmup, STOP_ATR_TRAILING, cfg["stop_loss_pct"],
                                k, cfg["max_hold"])
     sets = {False: static, True: trailing}
+
+    period_bounds = {
+        "full": (entry_min, entry_max, True),
+        "in_sample": (entry_min, split_time, False),
+        "out_of_sample": (split_time, entry_max, True),
+    }
 
     periods = {
         "full": all_four(sets, cfg, entry_min, entry_max, include_hi=True),
@@ -478,8 +607,43 @@ def main():
         quarters.append({"quarter": str(period),
                           "variants": all_four(sets, cfg, lo, hi, include_hi=True)})
 
+    # Buy-and-Hold je Periode (Pflicht-Gegencheck)
+    bh = {name: buy_and_hold(raw_data, lo, hi) for name, (lo, hi, _) in period_bounds.items()}
+
+    # Datenbasis - gehoert in jede Entscheidungsgrundlage
+    all_static_symbols = sorted(static["symbol"].unique())
+    data_basis = {
+        "symbols_with_trades": len(all_static_symbols),
+        "symbols_loaded": len(raw_data),
+        "first_entry": str(entry_min.date()),
+        "last_exit": str(max(static["exit_time"].max(), trailing["exit_time"].max()).date()),
+        "years_covered": round((static["exit_time"].max() - entry_min).days / 365.25, 2),
+        "trades_per_period": {
+            name: {variant: {"found": periods[name][variant]["num_trades"],
+                              "executed": periods[name][variant]["num_executed"],
+                              "skipped": periods[name][variant]["num_skipped"]}
+                   for variant in VARIANTS}
+            for name in periods
+        },
+    }
+
+    # Block-Bootstrap: Konfidenzintervalle fuer die Variantenunterschiede
+    bootstrap_results = {}
+    for name, (lo, hi, include_hi) in period_bounds.items():
+        bootstrap_results[name] = bootstrap.run(
+            sets, {**cfg, "clip_factor": CLIP_FACTOR}, lo, hi, include_hi,
+            BOOTSTRAP_REPLICATES, BOOTSTRAP_BLOCK_MONTHS, BOOTSTRAP_SEED, STARTING_CAPITAL)
+
+    tie_order = {name: tie_order_sensitivity(sets, cfg, lo, hi, include_hi,
+                                              TIE_ORDER_PERMUTATIONS, BOOTSTRAP_SEED)
+                 for name, (lo, hi, include_hi) in period_bounds.items()}
+
     output = {
         "bot": BOT,
+        "data_basis": data_basis,
+        "tie_order_sensitivity": tie_order,
+        "buy_and_hold": bh,
+        "bootstrap": bootstrap_results,
         "assumptions": {
             "atr_window_bars": ATR_WINDOW,
             "vol_window_bars": VOL_WINDOW,
@@ -495,6 +659,10 @@ def main():
             "starting_capital": STARTING_CAPITAL,
             "split_time": str(split_time),
             "btc_regime_filter_applied": False,
+            "bootstrap_replicates": BOOTSTRAP_REPLICATES,
+            "bootstrap_block_months": BOOTSTRAP_BLOCK_MONTHS,
+            "bootstrap_seed": BOOTSTRAP_SEED,
+            "tie_order_permutations": TIE_ORDER_PERMUTATIONS,
         },
         "trade_counts": {"static_stop": int(len(static)), "atr_trailing": int(len(trailing))},
         "periods": periods,
@@ -560,6 +728,30 @@ def main():
           f"gegenlaeufig {ov['opposite_direction']}x (von {ov['matched_trades']} gemeinsamen Trades)")
     print(f"  Top-{ov['top_n']}-Beitraege ueberlappen {ov['top_n_overlap']}x "
           f"(bei Unabhaengigkeit erwartet: {ov['top_n_overlap_expected_if_independent']})")
+
+    print("\nBuy-and-Hold-Gegencheck (identisch fuer alle vier Varianten)")
+    for name, r in bh.items():
+        if r:
+            print(f"  {name:<14} {r['total_return_pct']:>8.2f}%  DD {r['max_drawdown_pct']:>7.2f}%  "
+                  f"Calmar {str(r['calmar_ratio']):>6}  ({r['num_symbols']} Symbole)")
+
+    print("\nStreuung allein durch die Reihenfolge gleichzeitiger Einstiege (Calmar, Gesamtzeitraum)")
+    for variant, t in tie_order["full"].items():
+        c = t["calmar_ratio"]
+        print(f"  {variant:<12} {c['min']:>6.2f} .. {c['max']:>6.2f}  (Median {c['median']:>6.2f}, "
+              f"berichtet {periods['full'][variant]['calmar_ratio']})")
+
+    print("\nBlock-Bootstrap: 95%-Intervalle der Calmar-DIFFERENZ gegenueber der Vergleichsvariante")
+    for name in ("full", "out_of_sample"):
+        b = bootstrap_results[name]
+        if "error" in b:
+            print(f"  {name}: {b['error']}")
+            continue
+        print(f"  {name} ({b['months_in_period']} Monate, {b['n_replicates']} Replikate)")
+        for key, diff in b["differences"].items():
+            c = diff["calmar_ratio"]
+            print(f"    {key:<28} {c['ci_low']:>7.2f} .. {c['ci_high']:>7.2f}   "
+                  f"P(>0) = {c['share_above_zero_pct']:>5.1f} %")
 
     print(f"\nErgebnis gespeichert: {out_path}")
 
