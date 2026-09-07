@@ -1,0 +1,1112 @@
+{
+  "hinweis": "ALLE HIER GENANNTEN PARAMETER SIND UNVALIDIERTE VORSCHLAEGE. Es wurde NICHTS automatisch geaendert - live_params.py und forward_test.py bleiben unangetastet. Eine Uebernahme erfolgt ausschliesslich manuell und erst nach eigener Pruefung und ausdruecklicher Zustimmung des Auftraggebers.",
+  "bot": "elliott_wave",
+  "kandidaten": [
+    {
+      "kombination": "dev 10 % / Stop 6 % / Fib 0.5",
+      "key": [
+        10.0,
+        6.0,
+        0.5,
+        true
+      ],
+      "herkunft": "In-Sample-Score",
+      "beitrag": {
+        "symbole_mit_trades": 18,
+        "symbole_positiv": 16,
+        "summe_pnl_pct": 528.59,
+        "top3_summe_pnl_pct": 243.06,
+        "top3_anteil_pct": 46.0,
+        "bestes_symbol": "SUIUSDT",
+        "schlechtestes_symbol": "SOLUSDT",
+        "tabelle": [
+          {
+            "symbol": "SUIUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 96.1,
+            "avg_pnl_pct": 13.73
+          },
+          {
+            "symbol": "WLDUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 82.63,
+            "avg_pnl_pct": 6.89
+          },
+          {
+            "symbol": "ZECUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 64.33,
+            "avg_pnl_pct": 6.43
+          },
+          {
+            "symbol": "UNIUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 62.82,
+            "avg_pnl_pct": 6.28
+          },
+          {
+            "symbol": "NEARUSDT",
+            "trades": 11,
+            "summe_pnl_pct": 61.55,
+            "avg_pnl_pct": 5.6
+          },
+          {
+            "symbol": "PROMUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 48.01,
+            "avg_pnl_pct": 5.33
+          },
+          {
+            "symbol": "ENAUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 40.28,
+            "avg_pnl_pct": 10.07
+          },
+          {
+            "symbol": "PEPEUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 26.91,
+            "avg_pnl_pct": 2.24
+          },
+          {
+            "symbol": "LINKUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 21.12,
+            "avg_pnl_pct": 2.35
+          },
+          {
+            "symbol": "DOGEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 13.54,
+            "avg_pnl_pct": 1.93
+          },
+          {
+            "symbol": "XRPUSDT",
+            "trades": 6,
+            "summe_pnl_pct": 9.2,
+            "avg_pnl_pct": 1.53
+          },
+          {
+            "symbol": "AAVEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 8.45,
+            "avg_pnl_pct": 1.21
+          },
+          {
+            "symbol": "BNBUSDT",
+            "trades": 3,
+            "summe_pnl_pct": 7.08,
+            "avg_pnl_pct": 2.36
+          },
+          {
+            "symbol": "TRXUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 5.89,
+            "avg_pnl_pct": 1.47
+          },
+          {
+            "symbol": "ADAUSDT",
+            "trades": 8,
+            "summe_pnl_pct": 4.12,
+            "avg_pnl_pct": 0.52
+          },
+          {
+            "symbol": "BTCUSDT",
+            "trades": 1,
+            "summe_pnl_pct": 1.0,
+            "avg_pnl_pct": 1.0
+          },
+          {
+            "symbol": "ETHUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -6.02,
+            "avg_pnl_pct": -1.2
+          },
+          {
+            "symbol": "SOLUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -18.42,
+            "avg_pnl_pct": -3.68
+          }
+        ]
+      },
+      "auswahl_nach_in_sample": {
+        "anzahl": 14,
+        "symbole": [
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ENAUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "PEPEUSDT",
+          "PROMUSDT",
+          "SUIUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "WLDUSDT",
+          "ZECUSDT"
+        ],
+        "oos_alle_symbole": {
+          "num_trades": 31,
+          "num_symbols": 13,
+          "win_rate": 41.9,
+          "total_return_pct": 77.44,
+          "avg_return_pct": 2.5,
+          "max_drawdown_pct": -44.1,
+          "robustness_score": 0.315,
+          "max_drawdown_chronologisch_pct": -50.48,
+          "robustness_score_chronologisch": 0.276,
+          "share_take_profit_pct": 9.7,
+          "share_stop_loss_pct": 54.8,
+          "besteht_mindestfilter": true,
+          "pf_num_executed": 31,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": 7.53,
+          "pf_max_drawdown_pct": -4.72,
+          "pf_calmar_ratio": 1.6
+        },
+        "oos_nur_auswahl": {
+          "num_trades": 27,
+          "num_symbols": 10,
+          "win_rate": 40.7,
+          "total_return_pct": 55.18,
+          "avg_return_pct": 2.04,
+          "max_drawdown_pct": -44.1,
+          "robustness_score": 0.241,
+          "max_drawdown_chronologisch_pct": -42.95,
+          "robustness_score_chronologisch": 0.247,
+          "share_take_profit_pct": 11.1,
+          "share_stop_loss_pct": 59.3,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 27,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": 5.29,
+          "pf_max_drawdown_pct": -4.24,
+          "pf_calmar_ratio": 1.25
+        }
+      }
+    },
+    {
+      "kombination": "dev 10 % / Stop 6 % / Fib 0.618",
+      "key": [
+        10.0,
+        6.0,
+        0.618,
+        true
+      ],
+      "herkunft": "In-Sample-Score",
+      "beitrag": {
+        "symbole_mit_trades": 18,
+        "symbole_positiv": 15,
+        "summe_pnl_pct": 544.84,
+        "top3_summe_pnl_pct": 271.62,
+        "top3_anteil_pct": 49.9,
+        "bestes_symbol": "SUIUSDT",
+        "schlechtestes_symbol": "ETHUSDT",
+        "tabelle": [
+          {
+            "symbol": "SUIUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 111.4,
+            "avg_pnl_pct": 15.91
+          },
+          {
+            "symbol": "ZECUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 80.94,
+            "avg_pnl_pct": 8.09
+          },
+          {
+            "symbol": "WLDUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 79.28,
+            "avg_pnl_pct": 6.61
+          },
+          {
+            "symbol": "PROMUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 64.35,
+            "avg_pnl_pct": 7.15
+          },
+          {
+            "symbol": "NEARUSDT",
+            "trades": 11,
+            "summe_pnl_pct": 59.86,
+            "avg_pnl_pct": 5.44
+          },
+          {
+            "symbol": "ENAUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 46.04,
+            "avg_pnl_pct": 11.51
+          },
+          {
+            "symbol": "PEPEUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 38.6,
+            "avg_pnl_pct": 3.22
+          },
+          {
+            "symbol": "UNIUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 36.64,
+            "avg_pnl_pct": 3.66
+          },
+          {
+            "symbol": "LINKUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 21.12,
+            "avg_pnl_pct": 2.35
+          },
+          {
+            "symbol": "DOGEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 13.54,
+            "avg_pnl_pct": 1.93
+          },
+          {
+            "symbol": "AAVEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 12.93,
+            "avg_pnl_pct": 1.85
+          },
+          {
+            "symbol": "XRPUSDT",
+            "trades": 6,
+            "summe_pnl_pct": 9.2,
+            "avg_pnl_pct": 1.53
+          },
+          {
+            "symbol": "ADAUSDT",
+            "trades": 8,
+            "summe_pnl_pct": 8.79,
+            "avg_pnl_pct": 1.1
+          },
+          {
+            "symbol": "TRXUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 5.89,
+            "avg_pnl_pct": 1.47
+          },
+          {
+            "symbol": "BTCUSDT",
+            "trades": 1,
+            "summe_pnl_pct": 1.0,
+            "avg_pnl_pct": 1.0
+          },
+          {
+            "symbol": "BNBUSDT",
+            "trades": 3,
+            "summe_pnl_pct": -4.71,
+            "avg_pnl_pct": -1.57
+          },
+          {
+            "symbol": "SOLUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -18.42,
+            "avg_pnl_pct": -3.68
+          },
+          {
+            "symbol": "ETHUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -21.61,
+            "avg_pnl_pct": -4.32
+          }
+        ]
+      },
+      "auswahl_nach_in_sample": {
+        "anzahl": 12,
+        "symbole": [
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ENAUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "PEPEUSDT",
+          "PROMUSDT",
+          "SUIUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "WLDUSDT",
+          "ZECUSDT"
+        ],
+        "oos_alle_symbole": {
+          "num_trades": 31,
+          "num_symbols": 13,
+          "win_rate": 41.9,
+          "total_return_pct": 100.19,
+          "avg_return_pct": 3.23,
+          "max_drawdown_pct": -44.1,
+          "robustness_score": 0.408,
+          "max_drawdown_chronologisch_pct": -46.01,
+          "robustness_score_chronologisch": 0.391,
+          "share_take_profit_pct": 9.7,
+          "share_stop_loss_pct": 54.8,
+          "besteht_mindestfilter": true,
+          "pf_num_executed": 31,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": 9.83,
+          "pf_max_drawdown_pct": -4.3,
+          "pf_calmar_ratio": 2.29
+        },
+        "oos_nur_auswahl": {
+          "num_trades": 25,
+          "num_symbols": 9,
+          "win_rate": 44.0,
+          "total_return_pct": 90.53,
+          "avg_return_pct": 3.62,
+          "max_drawdown_pct": -44.1,
+          "robustness_score": 0.411,
+          "max_drawdown_chronologisch_pct": -32.18,
+          "robustness_score_chronologisch": 0.563,
+          "share_take_profit_pct": 12.0,
+          "share_stop_loss_pct": 56.0,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 25,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": 8.92,
+          "pf_max_drawdown_pct": -3.21,
+          "pf_calmar_ratio": 2.78
+        }
+      }
+    },
+    {
+      "kombination": "dev 10 % / Stop 6 % / Fib 0.382",
+      "key": [
+        10.0,
+        6.0,
+        0.382,
+        true
+      ],
+      "herkunft": "In-Sample-Score",
+      "beitrag": {
+        "symbole_mit_trades": 18,
+        "symbole_positiv": 16,
+        "summe_pnl_pct": 511.31,
+        "top3_summe_pnl_pct": 205.64,
+        "top3_anteil_pct": 40.2,
+        "bestes_symbol": "SUIUSDT",
+        "schlechtestes_symbol": "SOLUSDT",
+        "tabelle": [
+          {
+            "symbol": "SUIUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 80.79,
+            "avg_pnl_pct": 11.54
+          },
+          {
+            "symbol": "UNIUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 66.21,
+            "avg_pnl_pct": 6.62
+          },
+          {
+            "symbol": "WLDUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 58.64,
+            "avg_pnl_pct": 4.89
+          },
+          {
+            "symbol": "LINKUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 57.2,
+            "avg_pnl_pct": 6.36
+          },
+          {
+            "symbol": "ZECUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 47.74,
+            "avg_pnl_pct": 4.77
+          },
+          {
+            "symbol": "NEARUSDT",
+            "trades": 11,
+            "summe_pnl_pct": 43.25,
+            "avg_pnl_pct": 3.93
+          },
+          {
+            "symbol": "PEPEUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 36.42,
+            "avg_pnl_pct": 3.04
+          },
+          {
+            "symbol": "ENAUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 34.52,
+            "avg_pnl_pct": 8.63
+          },
+          {
+            "symbol": "PROMUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 32.36,
+            "avg_pnl_pct": 3.6
+          },
+          {
+            "symbol": "DOGEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 32.3,
+            "avg_pnl_pct": 4.61
+          },
+          {
+            "symbol": "ADAUSDT",
+            "trades": 8,
+            "summe_pnl_pct": 21.21,
+            "avg_pnl_pct": 2.65
+          },
+          {
+            "symbol": "XRPUSDT",
+            "trades": 6,
+            "summe_pnl_pct": 15.79,
+            "avg_pnl_pct": 2.63
+          },
+          {
+            "symbol": "TRXUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 5.89,
+            "avg_pnl_pct": 1.47
+          },
+          {
+            "symbol": "AAVEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 3.96,
+            "avg_pnl_pct": 0.57
+          },
+          {
+            "symbol": "BNBUSDT",
+            "trades": 3,
+            "summe_pnl_pct": 3.07,
+            "avg_pnl_pct": 1.02
+          },
+          {
+            "symbol": "BTCUSDT",
+            "trades": 1,
+            "summe_pnl_pct": 1.0,
+            "avg_pnl_pct": 1.0
+          },
+          {
+            "symbol": "ETHUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -10.62,
+            "avg_pnl_pct": -2.12
+          },
+          {
+            "symbol": "SOLUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -18.42,
+            "avg_pnl_pct": -3.68
+          }
+        ]
+      },
+      "auswahl_nach_in_sample": {
+        "anzahl": 16,
+        "symbole": [
+          "ADAUSDT",
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ENAUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "PEPEUSDT",
+          "PROMUSDT",
+          "SUIUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "WLDUSDT",
+          "XRPUSDT",
+          "ZECUSDT"
+        ],
+        "oos_alle_symbole": {
+          "num_trades": 31,
+          "num_symbols": 13,
+          "win_rate": 41.9,
+          "total_return_pct": 54.7,
+          "avg_return_pct": 1.76,
+          "max_drawdown_pct": -44.1,
+          "robustness_score": 0.223,
+          "max_drawdown_chronologisch_pct": -54.94,
+          "robustness_score_chronologisch": 0.179,
+          "share_take_profit_pct": 9.7,
+          "share_stop_loss_pct": 54.8,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 31,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": 5.24,
+          "pf_max_drawdown_pct": -5.14,
+          "pf_calmar_ratio": 1.02
+        },
+        "oos_nur_auswahl": {
+          "num_trades": 30,
+          "num_symbols": 12,
+          "win_rate": 40.0,
+          "total_return_pct": 36.05,
+          "avg_return_pct": 1.2,
+          "max_drawdown_pct": -44.1,
+          "robustness_score": 0.149,
+          "max_drawdown_chronologisch_pct": -54.94,
+          "robustness_score_chronologisch": 0.12,
+          "share_take_profit_pct": 10.0,
+          "share_stop_loss_pct": 56.7,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 30,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": 3.38,
+          "pf_max_drawdown_pct": -5.14,
+          "pf_calmar_ratio": 0.66
+        }
+      }
+    },
+    {
+      "kombination": "dev 10 % / Stop 4 % / Fib 0.5",
+      "key": [
+        10.0,
+        4.0,
+        0.5,
+        true
+      ],
+      "herkunft": "In-Sample-Score",
+      "beitrag": {
+        "symbole_mit_trades": 18,
+        "symbole_positiv": 13,
+        "summe_pnl_pct": 339.39,
+        "top3_summe_pnl_pct": 183.9,
+        "top3_anteil_pct": 54.2,
+        "bestes_symbol": "NEARUSDT",
+        "schlechtestes_symbol": "SOLUSDT",
+        "tabelle": [
+          {
+            "symbol": "NEARUSDT",
+            "trades": 11,
+            "summe_pnl_pct": 64.09,
+            "avg_pnl_pct": 5.83
+          },
+          {
+            "symbol": "SUIUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 63.82,
+            "avg_pnl_pct": 9.12
+          },
+          {
+            "symbol": "UNIUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 55.99,
+            "avg_pnl_pct": 5.6
+          },
+          {
+            "symbol": "PROMUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 38.59,
+            "avg_pnl_pct": 4.29
+          },
+          {
+            "symbol": "WLDUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 37.96,
+            "avg_pnl_pct": 3.16
+          },
+          {
+            "symbol": "PEPEUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 30.94,
+            "avg_pnl_pct": 2.58
+          },
+          {
+            "symbol": "LINKUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 29.12,
+            "avg_pnl_pct": 3.24
+          },
+          {
+            "symbol": "ENAUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 15.87,
+            "avg_pnl_pct": 3.97
+          },
+          {
+            "symbol": "AAVEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 15.86,
+            "avg_pnl_pct": 2.27
+          },
+          {
+            "symbol": "XRPUSDT",
+            "trades": 6,
+            "summe_pnl_pct": 15.2,
+            "avg_pnl_pct": 2.53
+          },
+          {
+            "symbol": "TRXUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 9.89,
+            "avg_pnl_pct": 2.47
+          },
+          {
+            "symbol": "BNBUSDT",
+            "trades": 3,
+            "summe_pnl_pct": 8.1,
+            "avg_pnl_pct": 2.7
+          },
+          {
+            "symbol": "ETHUSDT",
+            "trades": 5,
+            "summe_pnl_pct": 1.98,
+            "avg_pnl_pct": 0.4
+          },
+          {
+            "symbol": "DOGEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": -1.96,
+            "avg_pnl_pct": -0.28
+          },
+          {
+            "symbol": "BTCUSDT",
+            "trades": 1,
+            "summe_pnl_pct": -4.3,
+            "avg_pnl_pct": -4.3
+          },
+          {
+            "symbol": "ZECUSDT",
+            "trades": 10,
+            "summe_pnl_pct": -9.66,
+            "avg_pnl_pct": -0.97
+          },
+          {
+            "symbol": "ADAUSDT",
+            "trades": 8,
+            "summe_pnl_pct": -10.6,
+            "avg_pnl_pct": -1.32
+          },
+          {
+            "symbol": "SOLUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -21.5,
+            "avg_pnl_pct": -4.3
+          }
+        ]
+      },
+      "auswahl_nach_in_sample": {
+        "anzahl": 14,
+        "symbole": [
+          "AAVEUSDT",
+          "BNBUSDT",
+          "ENAUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "PEPEUSDT",
+          "PROMUSDT",
+          "SUIUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "WLDUSDT",
+          "XRPUSDT",
+          "ZECUSDT"
+        ],
+        "oos_alle_symbole": {
+          "num_trades": 31,
+          "num_symbols": 13,
+          "win_rate": 19.4,
+          "total_return_pct": -28.88,
+          "avg_return_pct": -0.93,
+          "max_drawdown_pct": -54.39,
+          "robustness_score": -0.095,
+          "max_drawdown_chronologisch_pct": -48.75,
+          "robustness_score_chronologisch": -0.106,
+          "share_take_profit_pct": 3.2,
+          "share_stop_loss_pct": 80.6,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 31,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": -2.97,
+          "pf_max_drawdown_pct": -3.99,
+          "pf_calmar_ratio": -0.74
+        },
+        "oos_nur_auswahl": {
+          "num_trades": 28,
+          "num_symbols": 11,
+          "win_rate": 17.9,
+          "total_return_pct": -32.73,
+          "avg_return_pct": -1.17,
+          "max_drawdown_pct": -66.84,
+          "robustness_score": -0.093,
+          "max_drawdown_chronologisch_pct": -45.34,
+          "robustness_score_chronologisch": -0.136,
+          "share_take_profit_pct": 3.6,
+          "share_stop_loss_pct": 82.1,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 28,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": -3.3,
+          "pf_max_drawdown_pct": -3.68,
+          "pf_calmar_ratio": -0.9
+        }
+      }
+    },
+    {
+      "kombination": "dev 10 % / Stop 6 % / Fib 1",
+      "key": [
+        10.0,
+        6.0,
+        1.0,
+        true
+      ],
+      "herkunft": "In-Sample-Score",
+      "beitrag": {
+        "symbole_mit_trades": 18,
+        "symbole_positiv": 15,
+        "summe_pnl_pct": 522.64,
+        "top3_summe_pnl_pct": 275.5,
+        "top3_anteil_pct": 52.7,
+        "bestes_symbol": "SUIUSDT",
+        "schlechtestes_symbol": "ETHUSDT",
+        "tabelle": [
+          {
+            "symbol": "SUIUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 122.38,
+            "avg_pnl_pct": 17.48
+          },
+          {
+            "symbol": "ZECUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 91.73,
+            "avg_pnl_pct": 9.17
+          },
+          {
+            "symbol": "NEARUSDT",
+            "trades": 11,
+            "summe_pnl_pct": 61.39,
+            "avg_pnl_pct": 5.58
+          },
+          {
+            "symbol": "WLDUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 57.98,
+            "avg_pnl_pct": 4.83
+          },
+          {
+            "symbol": "PROMUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 57.23,
+            "avg_pnl_pct": 6.36
+          },
+          {
+            "symbol": "ENAUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 42.36,
+            "avg_pnl_pct": 10.59
+          },
+          {
+            "symbol": "UNIUSDT",
+            "trades": 10,
+            "summe_pnl_pct": 36.64,
+            "avg_pnl_pct": 3.66
+          },
+          {
+            "symbol": "ADAUSDT",
+            "trades": 8,
+            "summe_pnl_pct": 23.92,
+            "avg_pnl_pct": 2.99
+          },
+          {
+            "symbol": "LINKUSDT",
+            "trades": 9,
+            "summe_pnl_pct": 21.12,
+            "avg_pnl_pct": 2.35
+          },
+          {
+            "symbol": "PEPEUSDT",
+            "trades": 12,
+            "summe_pnl_pct": 14.16,
+            "avg_pnl_pct": 1.18
+          },
+          {
+            "symbol": "DOGEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 13.54,
+            "avg_pnl_pct": 1.93
+          },
+          {
+            "symbol": "XRPUSDT",
+            "trades": 6,
+            "summe_pnl_pct": 9.2,
+            "avg_pnl_pct": 1.53
+          },
+          {
+            "symbol": "AAVEUSDT",
+            "trades": 7,
+            "summe_pnl_pct": 8.84,
+            "avg_pnl_pct": 1.26
+          },
+          {
+            "symbol": "TRXUSDT",
+            "trades": 4,
+            "summe_pnl_pct": 5.89,
+            "avg_pnl_pct": 1.47
+          },
+          {
+            "symbol": "BTCUSDT",
+            "trades": 1,
+            "summe_pnl_pct": 1.0,
+            "avg_pnl_pct": 1.0
+          },
+          {
+            "symbol": "BNBUSDT",
+            "trades": 3,
+            "summe_pnl_pct": -4.71,
+            "avg_pnl_pct": -1.57
+          },
+          {
+            "symbol": "SOLUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -18.42,
+            "avg_pnl_pct": -3.68
+          },
+          {
+            "symbol": "ETHUSDT",
+            "trades": 5,
+            "summe_pnl_pct": -21.61,
+            "avg_pnl_pct": -4.32
+          }
+        ]
+      },
+      "auswahl_nach_in_sample": {
+        "anzahl": 12,
+        "symbole": [
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ENAUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "PEPEUSDT",
+          "PROMUSDT",
+          "SUIUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "WLDUSDT",
+          "ZECUSDT"
+        ],
+        "oos_alle_symbole": {
+          "num_trades": 31,
+          "num_symbols": 13,
+          "win_rate": 41.9,
+          "total_return_pct": 102.94,
+          "avg_return_pct": 3.32,
+          "max_drawdown_pct": -44.1,
+          "robustness_score": 0.419,
+          "max_drawdown_chronologisch_pct": -59.5,
+          "robustness_score_chronologisch": 0.311,
+          "share_take_profit_pct": 3.2,
+          "share_stop_loss_pct": 54.8,
+          "besteht_mindestfilter": true,
+          "pf_num_executed": 31,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": 9.99,
+          "pf_max_drawdown_pct": -5.56,
+          "pf_calmar_ratio": 1.8
+        },
+        "oos_nur_auswahl": {
+          "num_trades": 25,
+          "num_symbols": 9,
+          "win_rate": 44.0,
+          "total_return_pct": 93.28,
+          "avg_return_pct": 3.73,
+          "max_drawdown_pct": -44.1,
+          "robustness_score": 0.423,
+          "max_drawdown_chronologisch_pct": -45.67,
+          "robustness_score_chronologisch": 0.408,
+          "share_take_profit_pct": 4.0,
+          "share_stop_loss_pct": 56.0,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 25,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": 9.07,
+          "pf_max_drawdown_pct": -4.49,
+          "pf_calmar_ratio": 2.02
+        }
+      }
+    },
+    {
+      "kombination": "dev 4 % / Stop 2 % / Fib 0.236",
+      "key": [
+        4.0,
+        2.0,
+        0.236,
+        true
+      ],
+      "herkunft": "aktuell live",
+      "beitrag": {
+        "symbole_mit_trades": 18,
+        "symbole_positiv": 4,
+        "summe_pnl_pct": -288.52,
+        "top3_summe_pnl_pct": 32.49,
+        "top3_anteil_pct": -11.3,
+        "bestes_symbol": "SUIUSDT",
+        "schlechtestes_symbol": "ADAUSDT",
+        "tabelle": [
+          {
+            "symbol": "SUIUSDT",
+            "trades": 35,
+            "summe_pnl_pct": 16.39,
+            "avg_pnl_pct": 0.47
+          },
+          {
+            "symbol": "ETHUSDT",
+            "trades": 29,
+            "summe_pnl_pct": 9.63,
+            "avg_pnl_pct": 0.33
+          },
+          {
+            "symbol": "PROMUSDT",
+            "trades": 43,
+            "summe_pnl_pct": 6.47,
+            "avg_pnl_pct": 0.15
+          },
+          {
+            "symbol": "PEPEUSDT",
+            "trades": 57,
+            "summe_pnl_pct": 1.01,
+            "avg_pnl_pct": 0.02
+          },
+          {
+            "symbol": "BTCUSDT",
+            "trades": 13,
+            "summe_pnl_pct": -2.15,
+            "avg_pnl_pct": -0.17
+          },
+          {
+            "symbol": "BNBUSDT",
+            "trades": 21,
+            "summe_pnl_pct": -4.76,
+            "avg_pnl_pct": -0.23
+          },
+          {
+            "symbol": "LINKUSDT",
+            "trades": 55,
+            "summe_pnl_pct": -7.53,
+            "avg_pnl_pct": -0.14
+          },
+          {
+            "symbol": "ENAUSDT",
+            "trades": 37,
+            "summe_pnl_pct": -8.13,
+            "avg_pnl_pct": -0.22
+          },
+          {
+            "symbol": "TRXUSDT",
+            "trades": 11,
+            "summe_pnl_pct": -13.03,
+            "avg_pnl_pct": -1.18
+          },
+          {
+            "symbol": "XRPUSDT",
+            "trades": 32,
+            "summe_pnl_pct": -17.2,
+            "avg_pnl_pct": -0.54
+          },
+          {
+            "symbol": "DOGEUSDT",
+            "trades": 51,
+            "summe_pnl_pct": -18.77,
+            "avg_pnl_pct": -0.37
+          },
+          {
+            "symbol": "WLDUSDT",
+            "trades": 60,
+            "summe_pnl_pct": -21.75,
+            "avg_pnl_pct": -0.36
+          },
+          {
+            "symbol": "UNIUSDT",
+            "trades": 63,
+            "summe_pnl_pct": -28.34,
+            "avg_pnl_pct": -0.45
+          },
+          {
+            "symbol": "NEARUSDT",
+            "trades": 62,
+            "summe_pnl_pct": -33.16,
+            "avg_pnl_pct": -0.53
+          },
+          {
+            "symbol": "SOLUSDT",
+            "trades": 51,
+            "summe_pnl_pct": -38.73,
+            "avg_pnl_pct": -0.76
+          },
+          {
+            "symbol": "ZECUSDT",
+            "trades": 66,
+            "summe_pnl_pct": -39.82,
+            "avg_pnl_pct": -0.6
+          },
+          {
+            "symbol": "AAVEUSDT",
+            "trades": 56,
+            "summe_pnl_pct": -41.89,
+            "avg_pnl_pct": -0.75
+          },
+          {
+            "symbol": "ADAUSDT",
+            "trades": 49,
+            "summe_pnl_pct": -46.76,
+            "avg_pnl_pct": -0.95
+          }
+        ]
+      },
+      "auswahl_nach_in_sample": {
+        "anzahl": 6,
+        "symbole": [
+          "ENAUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "PEPEUSDT",
+          "PROMUSDT",
+          "SUIUSDT"
+        ],
+        "oos_alle_symbole": {
+          "num_trades": 208,
+          "num_symbols": 17,
+          "win_rate": 20.7,
+          "total_return_pct": -180.92,
+          "avg_return_pct": -0.87,
+          "max_drawdown_pct": -203.31,
+          "robustness_score": -0.062,
+          "max_drawdown_chronologisch_pct": -239.13,
+          "robustness_score_chronologisch": -0.052,
+          "share_take_profit_pct": 20.7,
+          "share_stop_loss_pct": 79.3,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 208,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": -16.72,
+          "pf_max_drawdown_pct": -21.36,
+          "pf_calmar_ratio": -0.78
+        },
+        "oos_nur_auswahl": {
+          "num_trades": 62,
+          "num_symbols": 6,
+          "win_rate": 19.4,
+          "total_return_pct": -46.68,
+          "avg_return_pct": -0.75,
+          "max_drawdown_pct": -66.86,
+          "robustness_score": -0.089,
+          "max_drawdown_chronologisch_pct": -84.1,
+          "robustness_score_chronologisch": -0.07,
+          "share_take_profit_pct": 19.4,
+          "share_stop_loss_pct": 80.6,
+          "besteht_mindestfilter": false,
+          "pf_num_executed": 62,
+          "pf_num_skipped": 0,
+          "pf_total_return_pct": -4.61,
+          "pf_max_drawdown_pct": -8.09,
+          "pf_calmar_ratio": -0.57
+        }
+      }
+    }
+  ]
+}
