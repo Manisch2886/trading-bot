@@ -1,0 +1,361 @@
+{
+  "bot": "elliott_wave_stocks",
+  "regressionscheck_bestanden": 10,
+  "train_split_ratio": 0.7,
+  "matrix": {
+    "gesamt": {
+      "baseline": {
+        "mit Take-Profit | Limit 3": {
+          "total_return_pct": 646.66,
+          "max_drawdown_pct": -1.32,
+          "calmar_ratio": 489.89,
+          "executed": 354,
+          "skipped": 165
+        },
+        "mit Take-Profit | Limit 5": {
+          "total_return_pct": 1109.6,
+          "max_drawdown_pct": -1.65,
+          "calmar_ratio": 672.48,
+          "executed": 426,
+          "skipped": 93
+        },
+        "mit Take-Profit | Limit 8": {
+          "total_return_pct": 1500.53,
+          "max_drawdown_pct": -1.9,
+          "calmar_ratio": 789.75,
+          "executed": 469,
+          "skipped": 50
+        },
+        "mit Take-Profit | Limit unbegrenzt": {
+          "total_return_pct": 1675.56,
+          "max_drawdown_pct": -2.52,
+          "calmar_ratio": 664.9,
+          "executed": 483,
+          "skipped": 36
+        },
+        "ohne Take-Profit | Limit 3": {
+          "total_return_pct": 482.4,
+          "max_drawdown_pct": -3.89,
+          "calmar_ratio": 124.01,
+          "executed": 118,
+          "skipped": 401
+        },
+        "ohne Take-Profit | Limit 5": {
+          "total_return_pct": 1216.7,
+          "max_drawdown_pct": -7.03,
+          "calmar_ratio": 173.07,
+          "executed": 189,
+          "skipped": 330
+        },
+        "ohne Take-Profit | Limit 8": {
+          "total_return_pct": 3084.09,
+          "max_drawdown_pct": -9.79,
+          "calmar_ratio": 315.02,
+          "executed": 288,
+          "skipped": 231
+        },
+        "ohne Take-Profit | Limit unbegrenzt": {
+          "total_return_pct": 4422.02,
+          "max_drawdown_pct": -10.71,
+          "calmar_ratio": 412.89,
+          "executed": 330,
+          "skipped": 189
+        }
+      },
+      "korrigiert": {
+        "mit Take-Profit | Limit 3": {
+          "total_return_pct": 22.76,
+          "max_drawdown_pct": -7.73,
+          "calmar_ratio": 2.94,
+          "executed": 337,
+          "skipped": 160
+        },
+        "mit Take-Profit | Limit 5": {
+          "total_return_pct": 29.83,
+          "max_drawdown_pct": -9.19,
+          "calmar_ratio": 3.25,
+          "executed": 409,
+          "skipped": 88
+        },
+        "mit Take-Profit | Limit 8": {
+          "total_return_pct": 28.69,
+          "max_drawdown_pct": -11.58,
+          "calmar_ratio": 2.48,
+          "executed": 450,
+          "skipped": 47
+        },
+        "mit Take-Profit | Limit unbegrenzt": {
+          "total_return_pct": 27.42,
+          "max_drawdown_pct": -12.56,
+          "calmar_ratio": 2.18,
+          "executed": 463,
+          "skipped": 34
+        },
+        "ohne Take-Profit | Limit 3": {
+          "total_return_pct": 262.45,
+          "max_drawdown_pct": -8.5,
+          "calmar_ratio": 30.88,
+          "executed": 178,
+          "skipped": 319
+        },
+        "ohne Take-Profit | Limit 5": {
+          "total_return_pct": 329.47,
+          "max_drawdown_pct": -16.82,
+          "calmar_ratio": 19.59,
+          "executed": 284,
+          "skipped": 213
+        },
+        "ohne Take-Profit | Limit 8": {
+          "total_return_pct": 338.26,
+          "max_drawdown_pct": -22.19,
+          "calmar_ratio": 15.24,
+          "executed": 392,
+          "skipped": 105
+        },
+        "ohne Take-Profit | Limit unbegrenzt": {
+          "total_return_pct": 368.79,
+          "max_drawdown_pct": -23.74,
+          "calmar_ratio": 15.53,
+          "executed": 420,
+          "skipped": 77
+        }
+      }
+    },
+    "out_of_sample": {
+      "baseline": {
+        "mit Take-Profit | Limit 3": {
+          "total_return_pct": 80.13,
+          "max_drawdown_pct": -1.32,
+          "calmar_ratio": 60.7,
+          "executed": 108,
+          "skipped": 24
+        },
+        "mit Take-Profit | Limit 5": {
+          "total_return_pct": 98.01,
+          "max_drawdown_pct": -1.65,
+          "calmar_ratio": 59.4,
+          "executed": 125,
+          "skipped": 7
+        },
+        "mit Take-Profit | Limit 8": {
+          "total_return_pct": 107.87,
+          "max_drawdown_pct": -1.65,
+          "calmar_ratio": 65.38,
+          "executed": 131,
+          "skipped": 1
+        },
+        "mit Take-Profit | Limit unbegrenzt": {
+          "total_return_pct": 109.39,
+          "max_drawdown_pct": -1.65,
+          "calmar_ratio": 66.3,
+          "executed": 132,
+          "skipped": 0
+        },
+        "ohne Take-Profit | Limit 3": {
+          "total_return_pct": 102.63,
+          "max_drawdown_pct": -2.86,
+          "calmar_ratio": 35.88,
+          "executed": 34,
+          "skipped": 98
+        },
+        "ohne Take-Profit | Limit 5": {
+          "total_return_pct": 162.45,
+          "max_drawdown_pct": -3.79,
+          "calmar_ratio": 42.86,
+          "executed": 49,
+          "skipped": 83
+        },
+        "ohne Take-Profit | Limit 8": {
+          "total_return_pct": 203.66,
+          "max_drawdown_pct": -5.04,
+          "calmar_ratio": 40.41,
+          "executed": 74,
+          "skipped": 58
+        },
+        "ohne Take-Profit | Limit unbegrenzt": {
+          "total_return_pct": 225.75,
+          "max_drawdown_pct": -4.97,
+          "calmar_ratio": 45.42,
+          "executed": 87,
+          "skipped": 45
+        }
+      },
+      "korrigiert": {
+        "mit Take-Profit | Limit 3": {
+          "total_return_pct": 11.0,
+          "max_drawdown_pct": -4.61,
+          "calmar_ratio": 2.39,
+          "executed": 98,
+          "skipped": 26
+        },
+        "mit Take-Profit | Limit 5": {
+          "total_return_pct": 13.18,
+          "max_drawdown_pct": -5.87,
+          "calmar_ratio": 2.25,
+          "executed": 116,
+          "skipped": 8
+        },
+        "mit Take-Profit | Limit 8": {
+          "total_return_pct": 14.68,
+          "max_drawdown_pct": -5.87,
+          "calmar_ratio": 2.5,
+          "executed": 122,
+          "skipped": 2
+        },
+        "mit Take-Profit | Limit unbegrenzt": {
+          "total_return_pct": 13.93,
+          "max_drawdown_pct": -5.87,
+          "calmar_ratio": 2.37,
+          "executed": 124,
+          "skipped": 0
+        },
+        "ohne Take-Profit | Limit 3": {
+          "total_return_pct": 75.06,
+          "max_drawdown_pct": -5.79,
+          "calmar_ratio": 12.96,
+          "executed": 47,
+          "skipped": 77
+        },
+        "ohne Take-Profit | Limit 5": {
+          "total_return_pct": 87.48,
+          "max_drawdown_pct": -8.28,
+          "calmar_ratio": 10.57,
+          "executed": 73,
+          "skipped": 51
+        },
+        "ohne Take-Profit | Limit 8": {
+          "total_return_pct": 89.3,
+          "max_drawdown_pct": -11.3,
+          "calmar_ratio": 7.9,
+          "executed": 100,
+          "skipped": 24
+        },
+        "ohne Take-Profit | Limit unbegrenzt": {
+          "total_return_pct": 100.43,
+          "max_drawdown_pct": -11.61,
+          "calmar_ratio": 8.65,
+          "executed": 108,
+          "skipped": 16
+        }
+      }
+    }
+  },
+  "entscheidungen": {
+    "USE_TAKE_PROFIT / gesamt / baseline": {
+      "mit_take_profit": {
+        "total_return_pct": 1500.53,
+        "max_drawdown_pct": -1.9,
+        "calmar_ratio": 789.75,
+        "executed": 469,
+        "skipped": 50
+      },
+      "ohne_take_profit": {
+        "total_return_pct": 3084.09,
+        "max_drawdown_pct": -9.79,
+        "calmar_ratio": 315.02,
+        "executed": 288,
+        "skipped": 231
+      },
+      "ohne_besser_rendite": "True",
+      "ohne_besser_calmar": "False"
+    },
+    "MAX_CONCURRENT_POSITIONS / gesamt / baseline": {
+      "gewaehlt": 8,
+      "bestes_limit_nach_calmar": "unbegrenzt",
+      "bestes_limit_nach_rendite": "unbegrenzt",
+      "calmar_je_limit": {
+        "3": 124.01,
+        "5": 173.07,
+        "8": 315.02,
+        "unbegrenzt": 412.89
+      }
+    },
+    "USE_TAKE_PROFIT / gesamt / korrigiert": {
+      "mit_take_profit": {
+        "total_return_pct": 28.69,
+        "max_drawdown_pct": -11.58,
+        "calmar_ratio": 2.48,
+        "executed": 450,
+        "skipped": 47
+      },
+      "ohne_take_profit": {
+        "total_return_pct": 338.26,
+        "max_drawdown_pct": -22.19,
+        "calmar_ratio": 15.24,
+        "executed": 392,
+        "skipped": 105
+      },
+      "ohne_besser_rendite": "True",
+      "ohne_besser_calmar": "True"
+    },
+    "MAX_CONCURRENT_POSITIONS / gesamt / korrigiert": {
+      "gewaehlt": 8,
+      "bestes_limit_nach_calmar": 3,
+      "bestes_limit_nach_rendite": "unbegrenzt",
+      "calmar_je_limit": {
+        "3": 30.88,
+        "5": 19.59,
+        "8": 15.24,
+        "unbegrenzt": 15.53
+      }
+    },
+    "USE_TAKE_PROFIT / out_of_sample / baseline": {
+      "mit_take_profit": {
+        "total_return_pct": 107.87,
+        "max_drawdown_pct": -1.65,
+        "calmar_ratio": 65.38,
+        "executed": 131,
+        "skipped": 1
+      },
+      "ohne_take_profit": {
+        "total_return_pct": 203.66,
+        "max_drawdown_pct": -5.04,
+        "calmar_ratio": 40.41,
+        "executed": 74,
+        "skipped": 58
+      },
+      "ohne_besser_rendite": "True",
+      "ohne_besser_calmar": "False"
+    },
+    "MAX_CONCURRENT_POSITIONS / out_of_sample / baseline": {
+      "gewaehlt": 8,
+      "bestes_limit_nach_calmar": "unbegrenzt",
+      "bestes_limit_nach_rendite": "unbegrenzt",
+      "calmar_je_limit": {
+        "3": 35.88,
+        "5": 42.86,
+        "8": 40.41,
+        "unbegrenzt": 45.42
+      }
+    },
+    "USE_TAKE_PROFIT / out_of_sample / korrigiert": {
+      "mit_take_profit": {
+        "total_return_pct": 14.68,
+        "max_drawdown_pct": -5.87,
+        "calmar_ratio": 2.5,
+        "executed": 122,
+        "skipped": 2
+      },
+      "ohne_take_profit": {
+        "total_return_pct": 89.3,
+        "max_drawdown_pct": -11.3,
+        "calmar_ratio": 7.9,
+        "executed": 100,
+        "skipped": 24
+      },
+      "ohne_besser_rendite": "True",
+      "ohne_besser_calmar": "True"
+    },
+    "MAX_CONCURRENT_POSITIONS / out_of_sample / korrigiert": {
+      "gewaehlt": 8,
+      "bestes_limit_nach_calmar": 3,
+      "bestes_limit_nach_rendite": "unbegrenzt",
+      "calmar_je_limit": {
+        "3": 12.96,
+        "5": 10.57,
+        "8": 7.9,
+        "unbegrenzt": 8.65
+      }
+    }
+  }
+}

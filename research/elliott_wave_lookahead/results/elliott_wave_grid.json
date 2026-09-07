@@ -1,0 +1,106 @@
+{
+  "bot": "elliott_wave",
+  "live_kombination": {
+    "deviation_pct": 4.0,
+    "stop_loss_pct": 2.0,
+    "take_profit_fib": 0.236
+  },
+  "use_take_profit": true,
+  "raster": {
+    "baseline": {
+      "bestandene_kombinationen": 36,
+      "sieger": {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": 0.236,
+        "num_trades": 540.0,
+        "num_symbols": 18.0,
+        "win_rate": 83.3,
+        "total_return_pct": 2741.68,
+        "avg_return_pct": 5.08,
+        "max_drawdown_pct": -6.6,
+        "robustness_score": 17.876
+      },
+      "live_kombination_rang": 6,
+      "live_kombination_zeile": {
+        "deviation_pct": 4.0,
+        "stop_loss_pct": 2.0,
+        "take_profit_fib": 0.236,
+        "num_trades": 783.0,
+        "num_symbols": 18.0,
+        "win_rate": 82.9,
+        "total_return_pct": 3165.8,
+        "avg_return_pct": 4.04,
+        "max_drawdown_pct": -9.2,
+        "robustness_score": 12.297
+      },
+      "top5": [
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 3.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 540,
+          "num_symbols": 18,
+          "win_rate": 83.3,
+          "total_return_pct": 2741.68,
+          "avg_return_pct": 5.08,
+          "max_drawdown_pct": -6.6,
+          "robustness_score": 17.876
+        },
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 2.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 540,
+          "num_symbols": 18,
+          "win_rate": 81.3,
+          "total_return_pct": 2725.27,
+          "avg_return_pct": 5.05,
+          "max_drawdown_pct": -6.9,
+          "robustness_score": 16.997
+        },
+        {
+          "deviation_pct": 3.0,
+          "stop_loss_pct": 2.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 1131,
+          "num_symbols": 18,
+          "win_rate": 85.5,
+          "total_return_pct": 3406.81,
+          "avg_return_pct": 3.01,
+          "max_drawdown_pct": -6.9,
+          "robustness_score": 14.681
+        },
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 4.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 540,
+          "num_symbols": 18,
+          "win_rate": 84.8,
+          "total_return_pct": 2752.01,
+          "avg_return_pct": 5.1,
+          "max_drawdown_pct": -8.6,
+          "robustness_score": 13.771
+        },
+        {
+          "deviation_pct": 2.0,
+          "stop_loss_pct": 2.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 2016,
+          "num_symbols": 18,
+          "win_rate": 88.8,
+          "total_return_pct": 4253.53,
+          "avg_return_pct": 2.11,
+          "max_drawdown_pct": -6.94,
+          "robustness_score": 13.65
+        }
+      ]
+    },
+    "korrigiert": {
+      "bestandene_kombinationen": 0,
+      "sieger": null,
+      "top5": []
+    }
+  }
+}

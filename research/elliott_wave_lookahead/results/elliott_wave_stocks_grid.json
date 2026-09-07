@@ -1,0 +1,191 @@
+{
+  "bot": "elliott_wave_stocks",
+  "live_kombination": {
+    "deviation_pct": 5.0,
+    "stop_loss_pct": 3.0,
+    "take_profit_fib": 0.236
+  },
+  "use_take_profit": false,
+  "raster": {
+    "baseline": {
+      "bestandene_kombinationen": 48,
+      "sieger": {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 2.0,
+        "take_profit_fib": 0.236,
+        "num_trades": 519.0,
+        "num_symbols": 138.0,
+        "win_rate": 41.4,
+        "total_return_pct": 7682.43,
+        "avg_return_pct": 14.8,
+        "max_drawdown_pct": -27.6,
+        "robustness_score": 12.218
+      },
+      "live_kombination_rang": 4,
+      "live_kombination_zeile": {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": 0.236,
+        "num_trades": 519.0,
+        "num_symbols": 138.0,
+        "win_rate": 43.9,
+        "total_return_pct": 7722.69,
+        "avg_return_pct": 14.88,
+        "max_drawdown_pct": -33.0,
+        "robustness_score": 10.272
+      },
+      "top5": [
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 2.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 519,
+          "num_symbols": 138,
+          "win_rate": 41.4,
+          "total_return_pct": 7682.43,
+          "avg_return_pct": 14.8,
+          "max_drawdown_pct": -27.6,
+          "robustness_score": 12.218
+        },
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 2.0,
+          "take_profit_fib": 0.382,
+          "num_trades": 519,
+          "num_symbols": 138,
+          "win_rate": 41.4,
+          "total_return_pct": 7682.43,
+          "avg_return_pct": 14.8,
+          "max_drawdown_pct": -27.6,
+          "robustness_score": 12.218
+        },
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 2.0,
+          "take_profit_fib": 0.5,
+          "num_trades": 519,
+          "num_symbols": 138,
+          "win_rate": 41.4,
+          "total_return_pct": 7682.43,
+          "avg_return_pct": 14.8,
+          "max_drawdown_pct": -27.6,
+          "robustness_score": 12.218
+        },
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 3.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 519,
+          "num_symbols": 138,
+          "win_rate": 43.9,
+          "total_return_pct": 7722.69,
+          "avg_return_pct": 14.88,
+          "max_drawdown_pct": -33.0,
+          "robustness_score": 10.272
+        },
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 3.0,
+          "take_profit_fib": 0.5,
+          "num_trades": 519,
+          "num_symbols": 138,
+          "win_rate": 43.9,
+          "total_return_pct": 7722.69,
+          "avg_return_pct": 14.88,
+          "max_drawdown_pct": -33.0,
+          "robustness_score": 10.272
+        }
+      ]
+    },
+    "korrigiert": {
+      "bestandene_kombinationen": 45,
+      "sieger": {
+        "deviation_pct": 4.0,
+        "stop_loss_pct": 8.0,
+        "take_profit_fib": 0.382,
+        "num_trades": 723.0,
+        "num_symbols": 143.0,
+        "win_rate": 39.6,
+        "total_return_pct": 4284.08,
+        "avg_return_pct": 5.93,
+        "max_drawdown_pct": -100.89,
+        "robustness_score": 1.579
+      },
+      "live_kombination_rang": 16,
+      "live_kombination_zeile": {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": 0.236,
+        "num_trades": 497.0,
+        "num_symbols": 137.0,
+        "win_rate": 21.7,
+        "total_return_pct": 2421.3,
+        "avg_return_pct": 4.87,
+        "max_drawdown_pct": -79.2,
+        "robustness_score": 1.371
+      },
+      "top5": [
+        {
+          "deviation_pct": 4.0,
+          "stop_loss_pct": 8.0,
+          "take_profit_fib": 0.382,
+          "num_trades": 723,
+          "num_symbols": 143,
+          "win_rate": 39.6,
+          "total_return_pct": 4284.08,
+          "avg_return_pct": 5.93,
+          "max_drawdown_pct": -100.89,
+          "robustness_score": 1.579
+        },
+        {
+          "deviation_pct": 4.0,
+          "stop_loss_pct": 8.0,
+          "take_profit_fib": 0.5,
+          "num_trades": 723,
+          "num_symbols": 143,
+          "win_rate": 39.6,
+          "total_return_pct": 4284.08,
+          "avg_return_pct": 5.93,
+          "max_drawdown_pct": -100.89,
+          "robustness_score": 1.579
+        },
+        {
+          "deviation_pct": 4.0,
+          "stop_loss_pct": 8.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 723,
+          "num_symbols": 143,
+          "win_rate": 39.6,
+          "total_return_pct": 4284.08,
+          "avg_return_pct": 5.93,
+          "max_drawdown_pct": -100.89,
+          "robustness_score": 1.579
+        },
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 8.0,
+          "take_profit_fib": 0.382,
+          "num_trades": 497,
+          "num_symbols": 137,
+          "win_rate": 39.8,
+          "total_return_pct": 3755.59,
+          "avg_return_pct": 7.56,
+          "max_drawdown_pct": -108.6,
+          "robustness_score": 1.551
+        },
+        {
+          "deviation_pct": 5.0,
+          "stop_loss_pct": 8.0,
+          "take_profit_fib": 0.236,
+          "num_trades": 497,
+          "num_symbols": 137,
+          "win_rate": 39.8,
+          "total_return_pct": 3755.59,
+          "avg_return_pct": 7.56,
+          "max_drawdown_pct": -108.6,
+          "robustness_score": 1.551
+        }
+      ]
+    }
+  }
+}
