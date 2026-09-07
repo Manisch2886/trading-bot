@@ -10,6 +10,14 @@ Ergebnisse zaehlen deutlich mehr als In-Sample-Ergebnisse. Sieht der
 Vorschlag In-Sample gut aus, faellt aber Out-of-Sample ab, ist das ein
 Overfitting-Warnsignal und sollte auch so benannt werden - genau das
 Muster, das in der Praxis mehrfach in diesem Projekt aufgetreten ist.
+
+HERVORHEBUNG IM BERICHT: Anders als bei daily_interpreter.py und
+portfolio_interpreter_agent.py wird hier KEINE Marker-Zeile verwendet - die
+Antwort dieses Agenten besteht ihrem Zweck nach vollstaendig aus der
+Empfehlung ("Empfehlung: Parameter beibehalten" + Begruendung). Es gibt
+also keinen davon zu trennenden reinen Analyse-Teil. quarterly_review.py
+uebergibt den Text deshalb mit alles_ist_hinweis=True an
+empfehlung_format.formatiere_typ_a().
 """
 
 from claude_client import call_claude
@@ -44,6 +52,17 @@ STRUKTUR DEINER ANTWORT (4-6 Saetze, sachlich, kein Marketing-Ton):
 2. Kurze Begruendung anhand der Out-of-Sample-Zahlen
 3. Falls relevant: Hinweis auf ein Overfitting-Muster oder zu kleine
    Stichprobe
+
+VERSTAENDLICHKEIT (dieser Text wird direkt so an einen Nutzer verschickt,
+der sich nicht taeglich mit dem Projekt beschaeftigt):
+- Erklaere jeden Fachbegriff, den du benutzt, in einem kurzen Halbsatz
+  (z.B. "Out-of-Sample, also auf Daten, die bei der Optimierung nicht
+  verwendet wurden").
+- Sag konkret, WAS du empfiehlst und WARUM - nicht nur, dass etwas
+  "beobachtet werden sollte".
+- Formuliere als Ueberlegung, nicht als Anweisung: es ist eine
+  statistische Einordnung, keine gepruefte Handlungsanweisung, und es
+  wird ohnehin nichts automatisch umgesetzt.
 
 Antworte NUR mit dem Fliesstext, keine Ueberschriften, kein Markdown.
 Das ist KEINE Finanzberatung, sondern eine statistische Einordnung -

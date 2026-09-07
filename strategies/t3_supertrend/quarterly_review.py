@@ -63,6 +63,8 @@ SEND_VIA_EMAIL = False
 
 from param_search_agent import run_agent_search
 from quarterly_interpreter import generate_recommendation
+from empfehlung_format import (formatiere_typ_a, formatiere_typ_b,
+                                pflichtblock_typ_b)
 from multi_symbol_optimise import load_all_symbol_data, evaluate_combination_multi
 from multi_symbol_walk_forward import split_all_symbols, TRAIN_SPLIT_RATIO
 from live_params import T3_FAST_LENGTH, T3_SLOW_LENGTH, ADX_THRESHOLD, STOP_LOSS_PCT
@@ -156,10 +158,17 @@ def build_report(current_wf: dict, proposed_params: dict, proposed_wf: dict, rea
     if proposed_params is None:
         lines.append("AGENT-VORSCHLAG: nicht verfuegbar (API-Fehler oder kein Key gesetzt)")
     else:
-        lines.append("VON AGENT 2 VORGESCHLAGENE NEUE PARAMETER:")
-        lines.append(f"  {proposed_params}")
-        lines.append("")
-        lines.append(format_wf_result("Walk-Forward (vorgeschlagene Parameter)", proposed_wf))
+        # Typ B: konkrete neue Parameter-Werte. Der Unvalidiert-Pflichthinweis
+        # steckt fest in shared/empfehlung_format.py und wird NICHT vom Agenten
+        # formuliert - ein Modell koennte ihn abschwaechen oder vergessen,
+        # eine Konstante nicht. Er steht immer direkt unter der Ueberschrift,
+        # also VOR den Zahlen.
+        vorschlag_details = "\n".join([
+            f"  {proposed_params}",
+            "",
+            format_wf_result("Walk-Forward (vorgeschlagene Parameter)", proposed_wf),
+        ])
+        lines.append(formatiere_typ_b(vorschlag_details, breite=60))
 
     lines.append("")
     lines.append("-" * 60)
@@ -175,8 +184,12 @@ def build_report(current_wf: dict, proposed_params: dict, proposed_wf: dict, rea
         lines.append("")
         lines.append("-" * 60)
         lines.append("")
-        lines.append("KI-EMPFEHLUNG:")
-        lines.append(recommendation)
+        # Typ A: die Antwort des Quartals-Interpreters besteht ihrem Zweck
+        # nach vollstaendig aus der Empfehlung (Kernaussage + Begruendung),
+        # es gibt keinen davon zu trennenden Analyse-Teil - daher
+        # alles_ist_hinweis=True statt einer Marker-Zeile.
+        lines.append(formatiere_typ_a(recommendation, "KI-EMPFEHLUNG", breite=60,
+                                       alles_ist_hinweis=True))
 
     lines.append("")
     lines.append("=" * 60)
@@ -254,7 +267,11 @@ if __name__ == "__main__":
         if SEND_VIA_EMAIL:
             send_email(subject, report)
             print("\nE-Mail erfolgreich verschickt.")
-        elif send_report(subject, report):
+        # unteilbare_bloecke: verhindert, dass das Zeilen-Chunking von
+        # notify.py die Ueberschrift des Parameter-Vorschlags und den
+        # Unvalidiert-Pflichthinweis auf zwei Telegram-Nachrichten verteilt.
+        elif send_report(subject, report,
+                          unteilbare_bloecke=[pflichtblock_typ_b(60)]):
             print("\nTelegram-Nachricht(en) erfolgreich verschickt.")
         else:
             print("\nTelegram-Versand fehlgeschlagen - siehe Log/Fehlermeldung von notify.py.")
