@@ -1,0 +1,138 @@
+{
+  "bots": [
+    {
+      "bot": "elliott_wave",
+      "market": "Krypto",
+      "timeframe": "1h",
+      "category": "fixed_pct",
+      "mechanism": "fester Stop-Loss 2.0 % unter Einstieg",
+      "stop_loss_pct": 2.0,
+      "stop_mode": null,
+      "max_hold_days": null,
+      "allocation_pct": null,
+      "max_concurrent_positions": "<nicht dokumentiert>",
+      "in_scope": true
+    },
+    {
+      "bot": "elliott_wave_stocks",
+      "market": "Aktien",
+      "timeframe": "1d",
+      "category": "fixed_pct",
+      "mechanism": "fester Stop-Loss 3.0 % unter Einstieg",
+      "stop_loss_pct": 3.0,
+      "stop_mode": null,
+      "max_hold_days": null,
+      "allocation_pct": null,
+      "max_concurrent_positions": 8,
+      "in_scope": true
+    },
+    {
+      "bot": "t3_supertrend",
+      "market": "Krypto",
+      "timeframe": "4h",
+      "category": "fixed_pct",
+      "mechanism": "fester Stop-Loss 4.0 % unter Einstieg",
+      "stop_loss_pct": 4.0,
+      "stop_mode": null,
+      "max_hold_days": null,
+      "allocation_pct": null,
+      "max_concurrent_positions": 5,
+      "in_scope": true
+    },
+    {
+      "bot": "rsi2_crypto",
+      "market": "Krypto",
+      "timeframe": "1d",
+      "category": "none",
+      "mechanism": "kein Stop-Loss (bewusste, empirisch validierte Designentscheidung)",
+      "stop_loss_pct": null,
+      "stop_mode": null,
+      "max_hold_days": null,
+      "allocation_pct": 10,
+      "max_concurrent_positions": 8,
+      "in_scope": false
+    },
+    {
+      "bot": "rsi2_mean_reversion",
+      "market": "Aktien",
+      "timeframe": "1d",
+      "category": "none",
+      "mechanism": "kein Stop-Loss (bewusste, empirisch validierte Designentscheidung)",
+      "stop_loss_pct": null,
+      "stop_mode": null,
+      "max_hold_days": 10,
+      "allocation_pct": 5,
+      "max_concurrent_positions": 20,
+      "in_scope": false
+    },
+    {
+      "bot": "turtle_soup_crypto",
+      "market": "Krypto",
+      "timeframe": "1d",
+      "category": "structural",
+      "mechanism": "struktureller Stop (STOP_MODE = \"structural\")",
+      "stop_loss_pct": null,
+      "stop_mode": "structural",
+      "max_hold_days": 10,
+      "allocation_pct": 10,
+      "max_concurrent_positions": 8,
+      "in_scope": false
+    },
+    {
+      "bot": "turtle_soup_stocks",
+      "market": "Aktien",
+      "timeframe": "1d",
+      "category": "none",
+      "mechanism": "kein Stop-Loss (bewusste, empirisch validierte Designentscheidung)",
+      "stop_loss_pct": null,
+      "stop_mode": null,
+      "max_hold_days": 10,
+      "allocation_pct": 2,
+      "max_concurrent_positions": null,
+      "in_scope": false
+    },
+    {
+      "bot": "volatility_breakout",
+      "market": "Aktien",
+      "timeframe": "1d",
+      "category": "fixed_pct",
+      "mechanism": "fester Stop-Loss 8.0 % unter Einstieg",
+      "stop_loss_pct": 8.0,
+      "stop_mode": null,
+      "max_hold_days": 15,
+      "allocation_pct": 10,
+      "max_concurrent_positions": 15,
+      "in_scope": true
+    },
+    {
+      "bot": "volatility_breakout_crypto",
+      "market": "Krypto",
+      "timeframe": "1d",
+      "category": "fixed_pct",
+      "mechanism": "fester Stop-Loss 5.0 % unter Einstieg",
+      "stop_loss_pct": 5.0,
+      "stop_mode": null,
+      "max_hold_days": 15,
+      "allocation_pct": 10,
+      "max_concurrent_positions": 8,
+      "in_scope": true
+    }
+  ],
+  "in_scope": [
+    "elliott_wave",
+    "elliott_wave_stocks",
+    "t3_supertrend",
+    "volatility_breakout",
+    "volatility_breakout_crypto"
+  ],
+  "out_of_scope_structural": [
+    "turtle_soup_crypto"
+  ],
+  "out_of_scope_no_stop": [
+    "rsi2_crypto",
+    "rsi2_mean_reversion",
+    "turtle_soup_stocks"
+  ],
+  "unclassified": [],
+  "unexpected_bot_dirs": []
+}
