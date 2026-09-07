@@ -1,5 +1,27 @@
 # Hierarchical Risk Parity (HRP) — Backtest-Only-Untersuchung für die Portfolio-Gewichtung
 
+> ## ⚠ Nachtrag: korrigierte Kapitalkurven-Grundlage (Sync-Check PR #24)
+>
+> Die `equity_curve.csv`-Dateien, auf denen diese Studie aufbaut, beruhten bei
+> **5 der 9 Bots nicht auf der Live-Konfiguration**. Die Untersuchung wurde
+> deshalb mit korrigierten Kurven wiederholt.
+>
+> **Die Kernaussage hält — und zwar deutlicher als zuvor.** HRP bleibt
+> risikoadjustiert hinter der einfachen Gleichgewichtung zurück; der Abstand
+> wächst von **−0,19 auf −0,46 Calmar-Punkte**. Die absoluten Zahlen
+> verschieben sich dagegen spürbar (Calmar 13,02 → **10,91**).
+>
+> **Zusätzlich gefunden:** die gespeicherte `elliott_wave`-Kurve
+> (`results/equity_curve.csv`) stammt aus dem Initial Commit und deckt nur
+> 5 Symbole / 144 Trades ab, während der heutige Code 782 Trades über 18
+> Symbole erzeugt. Das ist **kein** Sync-Problem, sondern eine davon
+> unabhängige Veralterung derselben Datengrundlage — sie wird getrennt
+> ausgewiesen, nicht mit der Korrektur vermischt.
+>
+> Details, Regressionscheck (15/15) und Annahmen: Abschnitt **„Nachtrag N"** am
+> Ende dieses Berichts.
+
+
 **Status: reine Backtest-Untersuchung, KEINE Live-Aktivierung, KEINE
 Änderung an `shared/portfolio_overview.py` oder irgendeiner anderen
 Live-Datei.** Alle neuen Skripte liegen ausschliesslich unter
@@ -143,8 +165,9 @@ Abschnitt "Wichtiger Befund" unten — sie griff in 17 von 18 Quartalen.
 
 | Variante | Rendite | Max Drawdown | Calmar-Ratio |
 |---|---|---|---|
-| HRP (Walk-Forward, Single-Linkage) | 63,26 % | -4,93 % | 12,83 |
-| Bestehende Gleichgewichtung (1/9, unrebalanciert) | 82,43 % | -6,33 % | 13,02 |
+| HRP (Walk-Forward, Single-Linkage) | 63,26 % | -4,93 % | 12,83 ⚠ |
+| Bestehende Gleichgewichtung (1/9, unrebalanciert) | 82,43 % | -6,33 % | 13,02 ⚠ |
+| ↳ *dieselben zwei Zeilen mit korrigierten Kurven (siehe Nachtrag N)* | 76,47 % / 107,13 % | −7,32 % / −9,82 % | **10,45 / 10,91** |
 | Buy-and-Hold-Referenz (161 Symbole) | 158,17 % | -23,77 % | 6,65 |
 | HRP (Robustheits-Illustration, Ward-Linkage) | 63,78 % | -4,93 % | 12,94 |
 | Schlechtester Einzel-Bot (nur Max Drawdown, zum Vergleich) | — | -32,40 % | — |
@@ -288,3 +311,213 @@ cd research/hrp_portfolio
 python3 test_hrp_core.py      # 20 Sanity-/Regressionstests des HRP-Kernmoduls
 python3 run_walk_forward.py   # vollstaendige Walk-Forward-Untersuchung, schreibt results/
 ```
+
+
+---
+
+# Nachtrag N: dieselbe Untersuchung auf korrigierter Kapitalkurven-Grundlage
+
+## N0. Entscheidungsgrundlage
+
+### Der Anlass
+
+Der Sync-Check (PR #24) hat belegt: bei **5 der 9 Bots** weicht die Konfiguration
+in `equity_simulation.py` von der Live-Konfiguration in `live_params.py` ab. Die
+Dateien `results/<bot>/equity_curve.csv` sind die Ausgabe genau dieser Läufe —
+und diese Studie baut ihr Portfolio ausschliesslich darauf auf. Sie ist damit
+vollständig betroffen (Einstufung des Sync-Checks: **hoch**).
+
+### Was geändert wurde — und was ausdrücklich nicht
+
+**Nur die Kapitalkurven.** Rebalancing-Intervall (Kalenderquartale),
+Linkage-Verfahren (Single, Ward als Illustration), Mindest-Datenbasis-Schwelle
+(30 gemeinsame Handelstage), die Bootstrap-Fallback-Regel, die
+Buy-and-Hold-Referenz und die komplette Auswertung werden **Funktion für
+Funktion unverändert aus `run_walk_forward.py` importiert und aufgerufen**. Es
+gibt in `nachtrag_sync_korrektur.py` keine zweite Umsetzung derselben Rechnung —
+eine eigene Neufassung hätte die Vergleichbarkeit zur Erstfassung still
+zerstören können.
+
+Unangetastet bleiben ausserdem: `shared/portfolio_overview.py` (die Kurven
+werden über seine unveränderten Funktionen geladen, nur die *Pfade* werden
+vorher umgebogen), sämtliche `results/*/equity_curve.csv`, und jeder Bot-Code.
+
+### Drei Grundlagen statt zwei
+
+| Grundlage | Was getauscht wird | Rolle |
+|---|---|---|
+| `original` | nichts | **Regressionscheck** gegen `results/hrp_summary.json` |
+| `korrigiert` | die 5 abweichenden Bots, Live-Konfiguration | **primär** — die auftragsgemässe Korrektur |
+| `korrigiert_plus_veraltet` | zusätzlich `elliott_wave` neu erzeugt | eigenständiger Nebenfund, siehe N3 |
+
+### Regressionschecks — zweifach, vor allem anderen
+
+**1. Die vier synchronen Bots als Probe des Erzeugers.** Sie werden mitgerechnet,
+obwohl sich bei ihnen nichts ändern *kann*. Drei von ihnen (`t3_supertrend`,
+`rsi2_crypto`, `turtle_soup_crypto`) ergeben eine **byteweise identische** Datei
+zur bestehenden `results/`-Kurve. Wäre das nicht so, wäre der Erzeuger falsch —
+und nicht etwa die Korrektur wirksam. Der vierte (`elliott_wave`) weicht ab, aus
+einem gemessenen und dokumentierten Grund (N3); das Skript **verlangt** diese
+Abweichung ausdrücklich, statt sie durchzuwinken.
+
+**2. Die fünf abweichenden Bots gegen den Sync-Check.** Alle fünf treffen die
+dort veröffentlichten Kennzahlen der Live-Variante exakt:
+
+| Bot | ausgeführt | Rendite | Max DD |
+|---|---|---|---|
+| `elliott_wave_stocks` | 288 | +3084,09 % | −9,79 % |
+| `volatility_breakout` | 1454 | +224,41 % | −23,97 % |
+| `turtle_soup_stocks` | 8915 | +145,59 % | −29,91 % |
+| `rsi2_mean_reversion` | 4232 | +36,75 % | −21,05 % |
+| `volatility_breakout_crypto` | 207 | +49,03 % | −16,29 % |
+
+**3. Die Basis `original` gegen die Erstfassung: 15/15 exakt** — HRP,
+Gleichgewichtung, Buy-and-Hold, Ward-Illustration (je Rendite, Drawdown,
+Calmar), Symbolzahl, schlechtester Einzel-Bot und Gewichts-Stabilität. Ohne
+diesen Durchlauf bricht das Skript ab.
+
+### Was diesen Befund umstossen würde
+
+* Eine andere Definition von „Live-Konfiguration". Sie ist hier wörtlich aus
+  `research/sync_check/impact.py` übernommen, nicht neu erfunden.
+* Die `elliott_wave`-Veralterung (N3): sie verschiebt die Zahlen weit stärker
+  als die Sync-Korrektur, ist aber selbst durch den in PR #21 nachgewiesenen
+  Zigzag-Look-Ahead verzerrt. Solange dieser Bias besteht, ist keine der beiden
+  `elliott_wave`-Kurven eine belastbare Grundlage.
+* Ein längeres gemeinsames Fenster. Es endet weiterhin 2026-06-27, weil die
+  kürzeste Bot-Kurve dort aufhört.
+
+---
+
+## N1. Ergebnis: die Kernaussage hält, die Zahlen nicht
+
+Rendite % / Max Drawdown % / Calmar:
+
+| Grundlage | Fenster | HRP (Walk-Forward) | Gleichgewichtung | **HRP − Gleichgewichtung** |
+|---|---|---|---|---|
+| `original` | 2022-03-18 … 2026-06-27 | 63,26 / −4,93 / **12,83** | 82,43 / −6,33 / **13,02** | **−0,19** |
+| **`korrigiert`** | 2022-03-18 … 2026-06-27 | 76,47 / −7,32 / **10,45** | 107,13 / −9,82 / **10,91** | **−0,46** |
+| `korrigiert_plus_veraltet` | 2022-03-18 … 2026-08-20 | 132,93 / −5,39 / **24,66** | 255,95 / −4,82 / **53,10** | **−28,44** |
+
+**Die Kernaussage dieser Studie — HRP bringt gegenüber der einfachen
+Gleichgewichtung keinen risikoadjustierten Vorteil — hält in allen drei
+Grundlagen.** Sie wird durch die Korrektur nicht schwächer, sondern
+deutlicher: der Abstand verdoppelt sich von −0,19 auf −0,46 Calmar-Punkte.
+
+Die absoluten Zahlen verschieben sich dagegen spürbar. Beide Varianten gewinnen
+Rendite (die korrigierten Bots handeln mehr und grösser) und verlieren
+gleichzeitig beim Drawdown; unter dem Strich fällt die Calmar-Ratio beider um
+rund zwei Punkte. **Wer die Zahlen dieses Berichts zitiert, muss die korrigierte
+Zeile nehmen.**
+
+Die Ward-Robustheits-Illustration bleibt ebenfalls unauffällig: 10,40 gegen
+10,45 (Single) — kein Instabilitätssignal, wie in der Erstfassung.
+
+---
+
+## N2. Was sich an den Gewichten ändert
+
+Die Gewichte des letzten Quartals:
+
+| Bot | `original` | `korrigiert` |
+|---|---|---|
+| `rsi2_mean_reversion` | 0,292 | **0,319** |
+| `turtle_soup_stocks` | 0,129 | **0,180** |
+| `volatility_breakout` | 0,159 | **0,096** |
+| `elliott_wave`, `elliott_wave_stocks`, `rsi2_crypto` | je 0,111 | je 0,111 (Fallback) |
+| `volatility_breakout_crypto` | 0,042 | 0,042 |
+| `t3_supertrend` | 0,029 | 0,019 |
+| `turtle_soup_crypto` | 0,016 | 0,011 |
+
+Die Rangfolge bleibt im Kern erhalten. Auffällig ist `volatility_breakout`: mit
+dem korrekten Positionslimit 15 (statt 8) handelt er mehr und schwankt stärker,
+und HRP gewichtet ihn dafür **ab** (0,159 → 0,096). Das ist genau das Verhalten,
+das der Bericht in „Warum HRP hier nicht besser abschneidet" beschreibt — HRP
+stuft die renditestärkeren Bots als riskant ein. Die Korrektur verstärkt diesen
+Mechanismus, statt ihn abzuschwächen.
+
+Die Gewichts-Stabilität verbessert sich leicht (mittlere Quartalsverschiebung
+0,116 → 0,095); die drei Bots im Datenbasis-Fallback (je 1/9) sind unverändert
+dieselben. Der Befund „die Fallback-Regel war kein theoretischer Sonderfall"
+bleibt bestehen.
+
+---
+
+## N3. Nebenfund: die gespeicherte `elliott_wave`-Kurve ist veraltet
+
+`shared/portfolio_overview.py` liest für diesen Bot aus
+`results/equity_curve.csv` (historischer Sonderpfad, `LEGACY_EQUITY_CSV_PATHS`).
+Diese Datei stammt aus dem **Initial Commit** und wurde seither nie neu erzeugt:
+
+| | gespeicherte Datei | heutiger Code |
+|---|---|---|
+| Trades | 144 | **782** |
+| Symbole | 5 (BTC, ETH, BNB, SOL, XRP) | **18** |
+| letzter Eintrag | 2026-06-27 | 2026-08-26 |
+
+Das ist **keine** Folge der Sync-Abweichung — `elliott_wave` ist
+konfigurationsseitig synchron — sondern eine davon unabhängige Veralterung
+derselben Datengrundlage. Sie trifft beide Studien, die auf diesen Kurven
+aufbauen.
+
+**Deshalb wird sie getrennt ausgewiesen und nicht stillschweigend
+mitkorrigiert.** Die Wirkung ist erheblich: die Gleichgewichtung springt auf
+Calmar 53,10, weil die neu erzeugte `elliott_wave`-Kurve +2185 % bei −1,83 %
+Drawdown liefert und das Portfolio dominiert.
+
+**Diese Zahl ist jedoch nicht besser, sondern anders verzerrt.** PR #21 hat
+gemessen, dass der Elliott-Wave-Backtest zum Zigzag-Wellenende einsteigt, dem
+per Konstruktion rückwirkend eine Aufwärtsbewegung folgt — bei **100 % der
+Trades**. Eine Kurve mit +2185 % und fast keinem Drawdown ist genau das
+erwartete Erscheinungsbild dieses Look-Aheads. Die Basis
+`korrigiert_plus_veraltet` wird deshalb ausgewiesen, um den Effekt sichtbar zu
+machen, und **nicht** als die belastbarere Grundlage empfohlen.
+
+Bemerkenswert bleibt: selbst unter dieser Verzerrung dreht sich die Kernaussage
+nicht um — HRP liegt dort mit **−28,44 Calmar-Punkten** so weit zurück wie nie.
+
+---
+
+## N4. Getroffene Annahmen dieses Nachtrags
+
+Zusätzlich zu den Annahmen der Erstfassung, die alle unverändert gelten:
+
+**N-A1 — Die Definition von „Live-Konfiguration" wird übernommen, nicht neu
+gefasst.** Die Fallunterscheidung je Bot stammt wörtlich aus
+`research/sync_check/impact.py::build`. Eine eigene Neufassung hätte still eine
+zweite, abweichende Definition erzeugt.
+
+**N-A2 — `elliott_wave_stocks` behält seine Backtest-Allokation.**
+`live_params.py` dokumentiert dort keine Allokation; getauscht wird nur
+`USE_TAKE_PROFIT` und das Positionslimit. Dieselbe Annahme wie im Sync-Check.
+
+**N-A3 — Die Veralterung wird getrennt geführt** (`KNOWN_STALE_BOTS`), damit
+Sync-Korrektur und Veralterung nicht in einer Zahl verschmelzen.
+
+**N-A4 — Das gemeinsame Fenster ergibt sich wie in der Erstfassung** aus dem
+Schnitt aller Bot-Kurven und wurde nicht fixiert. In der Basis
+`korrigiert_plus_veraltet` verlängert es sich dadurch bis 2026-08-20; die
+beiden anderen Grundlagen enden unverändert am 2026-06-27.
+
+**N-A5 — Die Buy-and-Hold-Referenz bleibt unverändert** (158,17 % / −23,77 % /
+6,65). Sie hängt an Symbolen und Zeitfenster, nicht an den Bot-Kurven — was der
+Lauf bestätigt: in den Basen `original` und `korrigiert` ist sie identisch.
+
+---
+
+## N5. Neue Dateien und Reproduktion
+
+| Datei | Rolle |
+|---|---|
+| `corrected_curves.py` | erzeugt die neun korrigierten Kurven und biegt die Quellpfade um |
+| `nachtrag_sync_korrektur.py` | rechnet die drei Grundlagen über die unveränderten Funktionen von `run_walk_forward.py` |
+| `test_corrected_curves.py` | 14 Sanity-Checks der Tausch-Logik |
+| `corrected_curves/` | die neun erzeugten Kurven + Kennzahlen je Bot |
+| `results/nachtrag_sync_korrektur.json` | vollständige Ergebnisse aller drei Grundlagen |
+
+```
+python3 test_corrected_curves.py       # 14 Checks
+python3 nachtrag_sync_korrektur.py     # erzeugt Kurven, prüft 15/15, rechnet 3 Grundlagen
+```
+
+Das Skript bricht ab, sobald eine der drei Proben fehlschlägt.

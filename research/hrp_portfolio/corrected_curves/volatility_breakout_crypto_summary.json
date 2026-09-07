@@ -1,0 +1,11 @@
+{
+  "bot": "volatility_breakout_crypto",
+  "trades_found": 233,
+  "executed": 207,
+  "skipped": 26,
+  "return_pct": 49.03,
+  "drawdown_pct": -16.29,
+  "allocation_pct": 10.0,
+  "max_concurrent_positions": 8,
+  "BTC_REGIME_FILTER_ENABLED": true
+}
