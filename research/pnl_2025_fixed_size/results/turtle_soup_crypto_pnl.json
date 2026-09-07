@@ -1,0 +1,45 @@
+{
+  "schluessel": "turtle_soup_crypto",
+  "bot": "turtle_soup_crypto",
+  "beschreibung": "Live-Konfiguration aus live_params.py",
+  "parameterquelle": "live_params.py",
+  "verwendete_parameter": {
+    "donchian_period": 10,
+    "stop_mode": "structural"
+  },
+  "live_params_stand": "2026-09-04",
+  "positionslimit_live": 8,
+  "symbole_geladen": 20,
+  "trades_gesamt": 1599,
+  "konstanten_angeglichen": [
+    {
+      "modul": "backtest_turtle_soup",
+      "konstante": "MAX_HOLD_DAYS",
+      "live_params": "MAX_HOLD_DAYS",
+      "wert_im_modul": 10,
+      "wert_live": 10,
+      "abweichung": false
+    }
+  ],
+  "regimefilter": null,
+  "positionsgroesse_usd": 1000.0,
+  "jahr": 2025,
+  "gestrichen_wegen_kursluecke": 0,
+  "gleichzeitigkeit": {
+    "limit": 8,
+    "relevant_2025": true,
+    "geblockte_trades_2025": 78,
+    "zeitpunkte_am_limit_2025": 29,
+    "davon_mit_mehreren_signalen_gleichzeitig": 17,
+    "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+  },
+  "trades_2025": 422,
+  "pnl_usd": 108.04,
+  "gewinnrate_pct": 23.9,
+  "bester_trade_usd": 1702.94,
+  "schlechtester_trade_usd": -307.76,
+  "symbole_2025": 20,
+  "pnl_usd_netto_laut_bot": -1159.4,
+  "kostenmodell_im_bot": true,
+  "trades_datei": "turtle_soup_crypto_trades_2025.csv"
+}

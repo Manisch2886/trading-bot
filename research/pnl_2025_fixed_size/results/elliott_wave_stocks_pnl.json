@@ -1,0 +1,38 @@
+{
+  "schluessel": "elliott_wave_stocks",
+  "bot": "elliott_wave_stocks",
+  "beschreibung": "unveraenderte Live-Konfiguration",
+  "parameterquelle": "live_params.py, unveraendert",
+  "verwendete_parameter": {
+    "deviation_pct": 5.0,
+    "stop_loss_pct": 3.0,
+    "take_profit_fib": 0.236,
+    "use_take_profit": false
+  },
+  "live_params_stand": "2026-09-03",
+  "positionslimit_live": 8,
+  "symbole_geladen": 147,
+  "trades_gesamt": 510,
+  "konstanten_angeglichen": [],
+  "regimefilter": null,
+  "positionsgroesse_usd": 1000.0,
+  "jahr": 2025,
+  "gestrichen_wegen_kursluecke": 0,
+  "gleichzeitigkeit": {
+    "limit": 8,
+    "relevant_2025": true,
+    "geblockte_trades_2025": 15,
+    "zeitpunkte_am_limit_2025": 6,
+    "davon_mit_mehreren_signalen_gleichzeitig": 4,
+    "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+  },
+  "trades_2025": 65,
+  "pnl_usd": 7488.51,
+  "gewinnrate_pct": 20.0,
+  "bester_trade_usd": 2405.67,
+  "schlechtester_trade_usd": -30.0,
+  "symbole_2025": 47,
+  "pnl_usd_netto_laut_bot": 7293.6,
+  "kostenmodell_im_bot": true,
+  "trades_datei": "elliott_wave_stocks_trades_2025.csv"
+}
