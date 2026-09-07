@@ -198,15 +198,21 @@ def main():
             print(f"  Zigzag +/-{FINE_STEP_PP} pp ({window}): {cells}")
 
         # --- 3) Reihenfolge-Empfindlichkeit -------------------------
-        _res, trades = evaluate(windows[engine.WINDOW_FULL], engine.WINDOW_FULL, key)
-        entry["reihenfolge"] = order_band(trades)
-        if entry["reihenfolge"] and "rendite_spanne_pp" in entry["reihenfolge"]:
-            b = entry["reihenfolge"]
-            print(f"  Reihenfolge (gesamt): Rendite {b['rendite_min_pct']} .. "
-                  f"{b['rendite_max_pct']} % (Spanne {b['rendite_spanne_pp']} pp), "
-                  f"Calmar {b['calmar_min']} .. {b['calmar_max']}")
-        else:
-            print(f"  Reihenfolge (gesamt): {entry['reihenfolge']}")
+        # Auch auf dem Out-of-Sample-Fenster, denn dort faellt die
+        # Entscheidung gegen Buy-and-Hold - eine Kennzahl, die allein
+        # von der Zeilenreihenfolge um dreistellige Prozentpunkte
+        # wandert, taugt nicht als Einzelwert.
+        entry["reihenfolge"] = {}
+        for window in (engine.WINDOW_FULL, engine.WINDOW_OOS):
+            _res, trades = evaluate(windows[window], window, key)
+            band = order_band(trades)
+            entry["reihenfolge"][window] = band
+            if band and "rendite_spanne_pp" in band:
+                print(f"  Reihenfolge ({window}): Rendite {band['rendite_min_pct']} .. "
+                      f"{band['rendite_max_pct']} % (Spanne {band['rendite_spanne_pp']} pp), "
+                      f"Calmar {band['calmar_min']} .. {band['calmar_max']}")
+            else:
+                print(f"  Reihenfolge ({window}): {band}")
 
         out["kandidaten"].append(entry)
 

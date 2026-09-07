@@ -143,6 +143,7 @@ def main():
             "nachbar_median_anteil_pct_is": anteil,
             "zigzag_feinschritt_avg_pnl": fine_avgs,
             "reihenfolge": st.get("reihenfolge"),
+            "reihenfolge_oos": (st.get("reihenfolge") or {}).get(engine.WINDOW_OOS),
             "symbolbeitrag": (sym_by.get(key) or {}).get("beitrag"),
             "bedingungen": {"B1": b1, "B2": b2, "B2_streng": b2_streng,
                              "B2_skaliert": b2_skaliert, "B3": b3, "B4": b4, "B5": b5},
