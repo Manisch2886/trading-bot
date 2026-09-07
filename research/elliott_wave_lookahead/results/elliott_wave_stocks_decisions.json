@@ -124,60 +124,60 @@
     "out_of_sample": {
       "baseline": {
         "mit Take-Profit | Limit 3": {
-          "total_return_pct": 80.13,
+          "total_return_pct": 646.66,
           "max_drawdown_pct": -1.32,
-          "calmar_ratio": 60.7,
-          "executed": 108,
-          "skipped": 24
+          "calmar_ratio": 489.89,
+          "executed": 354,
+          "skipped": 165
         },
         "mit Take-Profit | Limit 5": {
-          "total_return_pct": 98.01,
+          "total_return_pct": 1109.6,
           "max_drawdown_pct": -1.65,
-          "calmar_ratio": 59.4,
-          "executed": 125,
-          "skipped": 7
+          "calmar_ratio": 672.48,
+          "executed": 426,
+          "skipped": 93
         },
         "mit Take-Profit | Limit 8": {
-          "total_return_pct": 107.87,
-          "max_drawdown_pct": -1.65,
-          "calmar_ratio": 65.38,
-          "executed": 131,
-          "skipped": 1
+          "total_return_pct": 1500.53,
+          "max_drawdown_pct": -1.9,
+          "calmar_ratio": 789.75,
+          "executed": 469,
+          "skipped": 50
         },
         "mit Take-Profit | Limit unbegrenzt": {
-          "total_return_pct": 109.39,
-          "max_drawdown_pct": -1.65,
-          "calmar_ratio": 66.3,
-          "executed": 132,
-          "skipped": 0
+          "total_return_pct": 1675.56,
+          "max_drawdown_pct": -2.52,
+          "calmar_ratio": 664.9,
+          "executed": 483,
+          "skipped": 36
         },
         "ohne Take-Profit | Limit 3": {
-          "total_return_pct": 102.63,
-          "max_drawdown_pct": -2.86,
-          "calmar_ratio": 35.88,
-          "executed": 34,
-          "skipped": 98
+          "total_return_pct": 482.4,
+          "max_drawdown_pct": -3.89,
+          "calmar_ratio": 124.01,
+          "executed": 118,
+          "skipped": 401
         },
         "ohne Take-Profit | Limit 5": {
-          "total_return_pct": 162.45,
-          "max_drawdown_pct": -3.79,
-          "calmar_ratio": 42.86,
-          "executed": 49,
-          "skipped": 83
+          "total_return_pct": 1216.7,
+          "max_drawdown_pct": -7.03,
+          "calmar_ratio": 173.07,
+          "executed": 189,
+          "skipped": 330
         },
         "ohne Take-Profit | Limit 8": {
-          "total_return_pct": 203.66,
-          "max_drawdown_pct": -5.04,
-          "calmar_ratio": 40.41,
-          "executed": 74,
-          "skipped": 58
+          "total_return_pct": 3084.09,
+          "max_drawdown_pct": -9.79,
+          "calmar_ratio": 315.02,
+          "executed": 288,
+          "skipped": 231
         },
         "ohne Take-Profit | Limit unbegrenzt": {
-          "total_return_pct": 225.75,
-          "max_drawdown_pct": -4.97,
-          "calmar_ratio": 45.42,
-          "executed": 87,
-          "skipped": 45
+          "total_return_pct": 4422.02,
+          "max_drawdown_pct": -10.71,
+          "calmar_ratio": 412.89,
+          "executed": 330,
+          "skipped": 189
         }
       },
       "korrigiert": {
@@ -301,18 +301,18 @@
     },
     "USE_TAKE_PROFIT / out_of_sample / baseline": {
       "mit_take_profit": {
-        "total_return_pct": 107.87,
-        "max_drawdown_pct": -1.65,
-        "calmar_ratio": 65.38,
-        "executed": 131,
-        "skipped": 1
+        "total_return_pct": 1500.53,
+        "max_drawdown_pct": -1.9,
+        "calmar_ratio": 789.75,
+        "executed": 469,
+        "skipped": 50
       },
       "ohne_take_profit": {
-        "total_return_pct": 203.66,
-        "max_drawdown_pct": -5.04,
-        "calmar_ratio": 40.41,
-        "executed": 74,
-        "skipped": 58
+        "total_return_pct": 3084.09,
+        "max_drawdown_pct": -9.79,
+        "calmar_ratio": 315.02,
+        "executed": 288,
+        "skipped": 231
       },
       "ohne_besser_rendite": "True",
       "ohne_besser_calmar": "False"
@@ -322,10 +322,10 @@
       "bestes_limit_nach_calmar": "unbegrenzt",
       "bestes_limit_nach_rendite": "unbegrenzt",
       "calmar_je_limit": {
-        "3": 35.88,
-        "5": 42.86,
-        "8": 40.41,
-        "unbegrenzt": 45.42
+        "3": 124.01,
+        "5": 173.07,
+        "8": 315.02,
+        "unbegrenzt": 412.89
       }
     },
     "USE_TAKE_PROFIT / out_of_sample / korrigiert": {

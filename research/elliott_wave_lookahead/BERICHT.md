@@ -1,5 +1,20 @@
 # Elliott-Wave-Zigzag-Look-Ahead im Backtest — Untersuchung
 
+> ## ✅ Nachtrag: der Backtest ist inzwischen korrigiert
+>
+> Diese Untersuchung hat den Look-Ahead beschrieben und beziffert. **Beide
+> Kanäle sind seither im Bot-Code behoben** — siehe Abschnitt **„Nachtrag K"**
+> am Ende dieses Berichts. Die Abschnitte 1–8 beschreiben also den Zustand
+> VOR der Korrektur; die Mechanismus-Erklärung gilt unverändert, die
+> Baseline-Zahlen sind Geschichte.
+>
+> Kurz: `equity_simulation.py`/`backtest_elliott.py` steigen jetzt zum
+> Bestätigungskurs ein, und die Wellenauswahl ist kausal
+> (`find_causal_waves`). **1301 Trades einzeln geprüft, 0
+> Kausalitätsverletzungen.** `forward_test.py` und `live_params.py` blieben
+> unverändert.
+
+
 **Status: reine Untersuchung. KEINE Änderung an `equity_simulation.py`,
 `forward_test.py`, `live_params.py`, `portfolio_overview.py` oder irgendeiner
 `equity_curve.csv`. Keine Korrektur- oder Aktivierungsempfehlung.** Alle Skripte
@@ -500,3 +515,230 @@ dass die vorliegenden Zahlen sie nicht stützen können.
 | `test_lookahead.py` | 21 Sanity-Checks auf konstruierten Kursreihen |
 | `run_all.py` | alles in der richtigen Reihenfolge, bricht bei jedem Fehlschlag ab |
 | `results/*.json`, `results/*_trades_*.csv` | vollständige Ergebnisse und Trade-Sätze |
+
+
+---
+
+# Nachtrag K: die Korrektur im Bot-Code
+
+## K0. Entscheidungsgrundlage
+
+### Was gemacht wurde
+
+Beide in dieser Untersuchung beschriebenen Look-Ahead-Kanäle sind jetzt im
+**echten Backtest-Code** behoben — nicht mehr nur als Research-Kopie in diesem
+Verzeichnis:
+
+| Kanal | Behoben durch | Datei |
+|---|---|---|
+| **1** Einstieg zum Pivot-Preis | Einstieg zum **Schlusskurs des Bestätigungsbalkens**, Ziel und Stop daraus neu berechnet, Frische-Fenster wie live | `backtest_elliott.py` |
+| **2** rückblickende Wellenauswahl | **`find_causal_waves`** — bildet die Läufe von `forward_test.py` nach | `elliott_wave_counter.py` |
+
+Dazu: `calculate_zigzag_with_confirmation` in `zigzag_indicator.py` (liefert je
+Pivot den Bestätigungszeitpunkt), und die beiden Aufrufstellen
+`multi_symbol_optimise.get_trades_for_symbol` und `optimise_elliott.py` wurden
+auf die kausale Kette umgestellt. Beide Bots, symmetrisch.
+
+**`forward_test.py` und `live_params.py` sind unverändert** — nachgewiesen per
+`git diff` (leer). Der Live-Bot war nie betroffen; er machte es von Anfang an
+richtig.
+
+**Keine Parametersuche, keine Aktivierungsempfehlung.** Was die neuen Zahlen für
+die aktuell gesetzten Parameter bedeuten, ist eine separate Entscheidung.
+
+### Wie Kanal 2 behoben wurde — und warum so
+
+Das Problem sitzt in `remove_overlapping`:
+
+```python
+if row["fib_score"] > kept_row["fib_score"]:
+    kept[i] = row          # eine SPAETERE Welle verdraengt eine fruehere
+```
+
+Live ist das unmöglich: der Bot hätte die frühere Welle längst gehandelt, als
+die spätere noch gar nicht existierte.
+
+`find_causal_waves` erfindet **keine neue Auswahlregel**. Es bildet nach, was
+`forward_test.py::find_new_signals` tatsächlich tut, Lauf für Lauf:
+
+1. Bekannt sind nur Wellen, deren Welle-5-Pivot **bestätigt** ist.
+2. Auf genau diese wird die **unveränderte** `remove_overlapping` angewendet.
+3. Was übrig bleibt, frisch genug und noch nicht gehandelt ist, wird gehandelt.
+   **Einmal gehandelt heisst endgültig gehandelt** — wie
+   `UNIQUE(symbol, signal_time)` in der Live-Datenbank.
+
+Ausgewertet wird nur an den Balken, an denen eine **neue** Welle bestätigt wird.
+Dazwischen ändert sich die bekannte Menge nicht, `remove_overlapping` liefert
+dasselbe, und das Frische-Fenster kann nur ablaufen — also nie einen
+zusätzlichen Trade erzeugen. Das ist exakt äquivalent zu einer Auswertung an
+jedem einzelnen Balken, nur ohne die leeren Durchläufe.
+
+`find_impulse_waves` und `remove_overlapping` selbst bleiben **unverändert** —
+`forward_test.py` benutzt sie.
+
+### Der Kausalitäts-Nachweis — jeder Trade, nicht stichprobenartig
+
+`verify_causality.py` prüft **alle 1301 Trades** beider Bots. Entscheidend: die
+Gegenrechnung läuft auf einem **echt abgeschnittenen** Kurs-DataFrame
+(`price_df.iloc[:entry_idx + 1]`), nicht auf der vollen Historie mit
+nachträglichem Filter. Was dort nicht sichtbar ist, kann auch nicht
+versehentlich einfliessen.
+
+| Prüfung | `elliott_wave` (791) | `elliott_wave_stocks` (510) |
+|---|---|---|
+| P1 Zigzag ist präfix-stabil | 0 Verletzungen | 0 Verletzungen |
+| P2 Welle war zum Einstieg bereits ausgewählt | **0** | **0** |
+| P3 Einstiegskurs = Schlusskurs des Einstiegsbalkens | 0 | 0 |
+| P4 Frische-Fenster eingehalten | 0 | 0 |
+| P5a Ausstieg nach Einstieg | 0 | 0 |
+| P5b jedes Wellenende höchstens einmal gehandelt | 0 | 0 |
+
+**P2 ist die eigentliche Prüfung:** die gehandelte Welle muss in der Auswahl
+sein, die man zum Einstiegszeitpunkt allein aus den abgeschnittenen Daten
+getroffen hätte. Eine später auftauchende, besser bewertete Welle kann sie also
+nicht mehr verdrängt haben.
+
+**P1 ist die Voraussetzung dafür:** nur weil der Zigzag präfix-stabil ist
+(abgeschnittene Daten liefern dieselben Pivots wie die vollen, eingeschränkt auf
+die bis dahin bestätigten), bedeutet `confirm_idx <= T` überhaupt „war zu T
+bekannt". Auf echten Daten an jedem einzelnen Einstiegsbalken geprüft.
+
+### Regressionschecks
+
+* `verify_baseline.py` **14/14 je Bot** — Zigzag-Pivots identisch zur
+  unveränderten `calculate_zigzag`; die neue Bot-Fassung
+  `calculate_zigzag_with_confirmation` deckungsgleich mit der Kopie hier; der
+  Trade-Nachbau Trade für Trade identisch zum eingefrorenen Bot-Stand.
+* `decisions.py` **10/10** veröffentlichte Matrix-Zellen exakt
+  (1500,53 / −1,90 / 469 und 3084,09 / −9,79 / 288 und die
+  Unbegrenzt-Zeilen) — gerechnet auf den eingefrorenen Original-Trade-Sätzen.
+* `test_lookahead.py` **35** Sanity-Checks, davon 13 neu für die kausale
+  Wellenerkennung.
+
+### Was diese Korrektur NICHT leistet
+
+* **Keine Parameter-Neubestimmung.** Die Zahlen unten gelten für die aktuell
+  in `live_params.py` gesetzten Werte. Ob diese Werte auf sauberer Grundlage
+  noch die richtigen sind, ist offen — Abschnitt 4.3 dieses Berichts legt nahe,
+  dass sie es nicht sind.
+* **Keine Entscheidung über den Weiterbetrieb** der beiden Bots.
+* **Keine Neuerzeugung der `equity_curve.csv`.** Die Wochenbericht-Kennzeichnung
+  läuft separat (PR #27).
+* **Das rollierende Datenfenster von `forward_test.py`** (90 Tage Krypto,
+  3 Jahre Aktien) wird nicht nachgebildet — der Backtest rechnet weiter auf der
+  vollen Historie. Siehe Annahme K-A3.
+
+### Reproduktion
+
+```
+cd research/elliott_wave_lookahead
+python3 run_all.py                          # alles, ca. 4 Minuten
+python3 verify_causality.py elliott_wave    # nur der Kausalitaets-Nachweis
+python3 compare_channels.py elliott_wave    # nur der Stufenvergleich
+```
+
+---
+
+## K1. Was die zweite Korrektur bewirkt
+
+Rendite % / Max Drawdown % / **Calmar**:
+
+### `elliott_wave`
+
+| Stufe | Trades | ausgeführt | Rendite | Max DD | **Calmar** | Gewinnrate |
+|---|---|---|---|---|---|---|
+| baseline (kein Kanal korrigiert) | 783 | 782 | +2184,96 % | −1,83 % | **1193,97** | 82,9 % |
+| nur Kanal 1 (Einstiegskurs) | 780 | 780 | −24,44 % | −25,58 % | **−0,96** | 27,7 % |
+| **beide Kanäle (Bot-Stand heute)** | 791 | 791 | **−25,73 %** | **−26,84 %** | **−0,96** | 27,4 % |
+
+### `elliott_wave_stocks`
+
+| Stufe | Trades | ausgeführt | Rendite | Max DD | **Calmar** | Gewinnrate |
+|---|---|---|---|---|---|---|
+| baseline (kein Kanal korrigiert) | 519 | 288 | +3084,09 % | −9,79 % | **315,02** | 43,9 % |
+| nur Kanal 1 (Einstiegskurs) | 497 | 392 | +338,26 % | −22,19 % | **15,24** | 21,7 % |
+| **beide Kanäle (Bot-Stand heute)** | 510 | 395 | **+352,72 %** | **−22,44 %** | **15,72** | 21,4 % |
+
+## K2. Die Erwartung aus Annahme K-A5 hält nur zur Hälfte — Korrektur
+
+Abschnitt 6 dieses Berichts (Annahme K-A5) sagt, die Kanal-1-Zahlen seien eine
+**Obergrenze**: mit der zweiten Korrektur sollten sie niedriger ausfallen.
+
+| Bot | Wirkung von Kanal 2 | Erwartung |
+|---|---|---|
+| `elliott_wave` | Rendite **−1,29 pp**, Drawdown −1,26 pp | **bestätigt** |
+| `elliott_wave_stocks` | Rendite **+14,46 pp**, Calmar +0,48 | **nicht bestätigt** |
+
+**Diese Erwartung war zu pauschal formuliert und wird hiermit korrigiert.**
+
+Der Grund ist strukturell: die kausale Auswahl streicht **keine** Welle mehr
+rückwirkend — es kommen also *mehr* Trades zustande (+11 bzw. +13). Ob das hilft
+oder schadet, ist durch die Art des Bias nicht festgelegt. Rückblickend wurde
+nach dem **Fibonacci-Score** ausgewählt, und der ist ein **Formmass, kein
+Gewinnmass**. Die „im Rückblick bessere" Welle war nicht systematisch die
+profitablere.
+
+Was bleibt: die Kanal-1-Zahlen waren **nicht belastbar als exakte Werte** —
+das gilt weiterhin. Nur die behauptete *Richtung* der Abweichung war nicht
+begründet.
+
+Am Gesamtbild ändert das nichts: `elliott_wave` verliert Geld
+(Calmar −0,96), `elliott_wave_stocks` bleibt profitabel, aber mit einer
+Calmar-Ratio von 15,7 statt der berichteten 315.
+
+## K3. Getroffene Annahmen der Korrektur
+
+**K-K1 — Der Einstieg erfolgt zum Schlusskurs des Bestätigungsbalkens**, dem
+frühesten ehrlichen Zeitpunkt. Live liegt er beim nächsten Cron-Lauf danach
+(stündlich auf Stundenkerzen, täglich auf Tageskerzen), also höchstens einen
+Balken später. Die Annahme ist **strategiefreundlich**; die Variante
+`verzoegert` in `run_one_bot.py` zeigt die Latenz-Empfindlichkeit.
+
+**K-K2 — `SIGNAL_FRESHNESS_BARS` spiegelt `forward_test.py`** (48 bzw. 5) und
+liegt bewusst in `backtest_elliott.py`, mit Verweis auf die Quelle. Eine
+Änderung dort muss hier nachgezogen werden — der Kommentar sagt das.
+
+**K-K3 — Das rollierende Datenfenster wird nicht nachgebildet.** `forward_test.py`
+lädt nur die letzten 90 Tage (Krypto) bzw. 3 Jahre (Aktien); der Backtest rechnet
+auf der vollen Historie. Das betrifft die Anlaufphase des Zigzag, nicht die
+Kausalität: alles, was der Backtest benutzt, liegt vor dem Einstieg. Eine
+Nachbildung würde die Ergebnisse von einem willkürlichen Fensterrand abhängig
+machen.
+
+**K-K4 — `run_backtest` verlangt jetzt die Spalte `entry_idx`** und bricht sonst
+mit einer erklärenden Fehlermeldung ab, statt still auf den Pivot-Einstieg
+zurückzufallen. Ein stiller Rückfall wäre genau der behobene Fehler.
+
+**K-K5 — Die Baseline in `run_one_bot.py` und `decisions.py` kommt aus
+eingefrorenen Dateien** (`results/frozen_pr26/`), nicht aus dem Nachbau. Nicht
+nur der Trade-Satz zählt, sondern die **Zeilenreihenfolge**: bei Limit 8
+verschiebt sie die Rendite um über 100 Prozentpunkte (siehe
+`research/order_sensitivity`). Für einen Regressionscheck gegen die
+veröffentlichten Zellen taugt nur die Originaldatei.
+
+## K4. Geänderte Dateien
+
+**Bot-Code** (je zweimal, beide Bots symmetrisch):
+
+| Datei | Änderung |
+|---|---|
+| `zigzag_indicator.py` | **neu:** `calculate_zigzag_with_confirmation`. `calculate_zigzag` unverändert (forward_test.py benutzt sie) |
+| `elliott_wave_counter.py` | **neu:** `find_causal_waves`. `find_impulse_waves` / `remove_overlapping` unverändert |
+| `backtest_elliott.py` | Einstieg zum Bestätigungskurs, `SIGNAL_FRESHNESS_BARS`, `signal_time` im Trade, Schutz gegen fehlendes `entry_idx` |
+| `multi_symbol_optimise.py` | `get_trades_for_symbol` nutzt die kausale Kette |
+| `optimise_elliott.py` | dieselbe Umstellung |
+
+**Unverändert:** `forward_test.py`, `live_params.py`, `equity_simulation.py`
+(erbt die Korrektur über `get_trades_for_symbol`), alle
+`experiment_*.py`, `walk_forward.py`, `quarterly_review.py` — sie hängen an
+`collect_all_trades` und bekommen die Korrektur automatisch.
+
+**Research** (dieses Verzeichnis):
+
+| Datei | Rolle |
+|---|---|
+| `verify_causality.py` | **neu** — prüft jeden Trade auf Kausalität |
+| `compare_channels.py` | **neu** — Stufenvergleich baseline / Kanal 1 / beide |
+| `results/frozen_pr26/` | **neu** — die Trade-Sätze des unkorrigierten Bot-Stands |
+| `test_lookahead.py` | 35 statt 21 Checks (Abschnitt 5 neu) |
+| `verify_baseline.py`, `run_one_bot.py`, `decisions.py` | Baseline aus den eingefrorenen Dateien |

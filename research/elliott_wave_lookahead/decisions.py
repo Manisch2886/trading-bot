@@ -90,16 +90,34 @@ def cell(trades, es, limit) -> dict:
             "executed": res["num_executed"], "skipped": res["num_skipped"]}
 
 
+FROZEN_DIR = os.path.join(RESULTS_DIR, "frozen_pr26")
+
+
 def trades_for(all_data, cfg, basis, counter, es, use_tp):
-    """Baseline aus der bot-eigenen Funktion, korrigiert aus dem geprueften Nachbau."""
+    """Baseline aus dem eingefrorenen Bot-Stand, korrigiert aus dem Nachbau.
+
+    Die Baseline kann nicht mehr aus der bot-eigenen collect_all_trades kommen:
+    der Bot ist inzwischen korrigiert, das alte Verhalten existiert dort nicht
+    mehr. Sie stammt deshalb aus results/frozen_pr26/ - den Trade-Saetzen, die
+    der damals noch unkorrigierte Bot erzeugt hat.
+
+    Wichtig ist dabei nicht nur der Trade-SATZ, sondern auch die
+    ZEILENREIHENFOLGE: die Portfolio-Simulation vergibt Kapital in
+    Ereignisreihenfolge, und bei gleichzeitigen Einstiegen entscheidet die
+    Reihenfolge, wer den freien Platz bekommt (siehe
+    research/order_sensitivity). Der Nachbau erzeugt dieselben Trades, aber in
+    anderer Reihenfolge - bei Limit 8 verschiebt das die Rendite um ueber
+    100 Prozentpunkte. Fuer einen Regressionscheck gegen die veroeffentlichten
+    Zellen taugt deshalb nur die eingefrorene Originaldatei."""
     if basis == rob.VARIANT_BASELINE:
-        if BOT == "elliott_wave_stocks":
-            t = es.collect_all_trades(all_data, cfg["deviation_pct"], cfg["stop_loss_pct"],
-                                       cfg["take_profit_fib"], use_tp)
-        else:
-            t = es.collect_all_trades(all_data, cfg["deviation_pct"], cfg["stop_loss_pct"],
-                                       cfg["take_profit_fib"])
-        return t
+        tag = "mit_tp" if use_tp else "ohne_tp"
+        name = (f"{BOT}_trades_baseline_bot.csv" if not use_tp
+                else f"{BOT}_trades_baseline_bot_{tag}.csv")
+        path = os.path.join(FROZEN_DIR, name)
+        if not os.path.exists(path):
+            raise SystemExit(f"{path} fehlt - ohne den eingefrorenen Bot-Stand laesst "
+                              "sich die Baseline-Matrix nicht mehr reproduzieren.")
+        return pd.read_csv(path, parse_dates=["entry_time", "exit_time"])
     return rob.collect(all_data, cfg, basis, counter, use_tp)
 
 

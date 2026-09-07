@@ -31,8 +31,8 @@ _P = get_strategy_paths(__file__)
 DATA_DIR = _P["DATA_DIR"]
 RESULTS_DIR = _P["RESULTS_DIR"]
 
-from zigzag_indicator import calculate_zigzag
-from elliott_wave_counter import find_impulse_waves, remove_overlapping
+from zigzag_indicator import calculate_zigzag, calculate_zigzag_with_confirmation
+from elliott_wave_counter import find_impulse_waves, remove_overlapping, find_causal_waves
 from backtest_elliott import run_backtest
 
 # Zu testende Parameter-Bereiche
@@ -61,20 +61,22 @@ def evaluate_combination(price_df: pd.DataFrame, deviation_pct: float,
     backtest_elliott.STOP_LOSS_PCT = stop_loss_pct
     backtest_elliott.TAKE_PROFIT_FIB = take_profit_fib
 
-    zigzag = calculate_zigzag(price_df, deviation_pct=deviation_pct)
+    # Kausale Wellenerkennung: die Auswahl zum Zeitpunkt T darf nur Wellen
+    # kennen, die bis T bestaetigt sind, und eine spaeter auftauchende, besser
+    # bewertete Welle darf eine frueher gehandelte nicht mehr verdraengen.
+    # find_causal_waves bildet dafuer die Laeufe von forward_test.py nach und
+    # liefert je Welle den Balken, an dem der Trade tatsaechlich eroeffnet
+    # worden waere (Spalte entry_idx). Siehe research/elliott_wave_lookahead/.
+    zigzag = calculate_zigzag_with_confirmation(price_df, deviation_pct=deviation_pct)
     if len(zigzag) < 6:
         return None
 
-    impulses = find_impulse_waves(zigzag, min_fib_score=0.3)
+    impulses = find_causal_waves(
+        zigzag, min_fib_score=0.3,
+        freshness_bars=backtest_elliott.SIGNAL_FRESHNESS_BARS,
+        direction="bearish")   # Long-only, wie zuvor festgelegt
     if impulses.empty:
         return None
-    impulses = remove_overlapping(impulses)
-
-    # Long-only, wie zuvor festgelegt
-    impulses = impulses[impulses["direction"] == "bearish"]
-    if impulses.empty:
-        return None
-
     trades = run_backtest(price_df, impulses)
     if trades.empty or len(trades) < MIN_TRADES:
         return None

@@ -88,6 +88,87 @@ def calculate_zigzag(df: pd.DataFrame, deviation_pct: float = 3.0) -> pd.DataFra
     return pd.DataFrame(pivots, columns=["time", "price", "type"])
 
 
+def calculate_zigzag_with_confirmation(df: pd.DataFrame, deviation_pct: float = 3.0) -> pd.DataFrame:
+    """
+    Wie calculate_zigzag, gibt aber je Pivot zusaetzlich zurueck, WANN er
+    ueberhaupt erkennbar wurde.
+
+    Hintergrund: ein Pivot IST erst dann ein Pivot, wenn sich der Kurs danach
+    um deviation_pct in die Gegenrichtung bewegt hat - vorher koennte es ja
+    noch weiter gehen. Der Zeitstempel des Pivots liegt also VOR dem
+    Zeitpunkt, zu dem man ihn erkennen konnte. Wer im Backtest zum
+    Pivot-Zeitpunkt einsteigt, benutzt Wissen aus der Zukunft
+    (Look-Ahead-Bias, gemessen in research/elliott_wave_lookahead/).
+
+    Diese Funktion aendert an der Erkennung NICHTS - sie ist Zeile fuer Zeile
+    dieselbe Logik wie calculate_zigzag und liefert exakt dieselben Pivots,
+    nur mit drei Zusatzspalten:
+
+      confirm_idx    Balken-Index, an dem der Pivot fixiert wurde
+      confirm_time   Zeitstempel dieses Balkens
+      pivot_idx      Balken-Index des Pivots selbst
+
+    confirm_idx ist immer >= pivot_idx; die Differenz ist genau die Anzahl
+    Balken, die ein Backtest im Voraus wuesste, wenn er zum Pivot einstiege.
+
+    calculate_zigzag bleibt bewusst unveraendert daneben stehen: forward_test.py
+    benutzt sie, und dort ist die Zusatzinformation nicht noetig (der Live-Bot
+    sieht ohnehin nur die Vergangenheit).
+    """
+    highs = df["high"].values
+    lows = df["low"].values
+    times = df["open_time"].values
+
+    pivots = []
+
+    # Startpunkt: erste Kerze als vorlaeufiger Pivot
+    last_pivot_price = highs[0]
+    last_pivot_idx = 0
+    trend = None  # "up" oder "down" - wird beim ersten klaren Ausschlag gesetzt
+
+    for i in range(1, len(df)):
+        move_up_pct = (highs[i] - last_pivot_price) / last_pivot_price * 100
+        move_down_pct = (last_pivot_price - lows[i]) / last_pivot_price * 100
+
+        if trend is None:
+            if move_up_pct >= deviation_pct:
+                trend = "up"
+                last_pivot_price = lows[last_pivot_idx]
+                last_pivot_idx = i
+            elif move_down_pct >= deviation_pct:
+                trend = "down"
+                last_pivot_price = highs[last_pivot_idx]
+                last_pivot_idx = i
+            continue
+
+        if trend == "up":
+            if highs[i] > last_pivot_price:
+                last_pivot_price = highs[i]
+                last_pivot_idx = i
+            elif (last_pivot_price - lows[i]) / last_pivot_price * 100 >= deviation_pct:
+                # HIER wird der Pivot fixiert - Balken i ist der frueheste
+                # Zeitpunkt, zu dem er ueberhaupt erkennbar war.
+                pivots.append((times[last_pivot_idx], last_pivot_price, "high",
+                                i, times[i], last_pivot_idx))
+                trend = "down"
+                last_pivot_price = lows[i]
+                last_pivot_idx = i
+
+        elif trend == "down":
+            if lows[i] < last_pivot_price:
+                last_pivot_price = lows[i]
+                last_pivot_idx = i
+            elif (highs[i] - last_pivot_price) / last_pivot_price * 100 >= deviation_pct:
+                pivots.append((times[last_pivot_idx], last_pivot_price, "low",
+                                i, times[i], last_pivot_idx))
+                trend = "up"
+                last_pivot_price = highs[i]
+                last_pivot_idx = i
+
+    return pd.DataFrame(pivots, columns=["time", "price", "type",
+                                          "confirm_idx", "confirm_time", "pivot_idx"])
+
+
 if __name__ == "__main__":
     df = pd.read_csv(os.path.join(DATA_DIR, "AAPL_1d.csv"), parse_dates=["open_time"])
 

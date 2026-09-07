@@ -352,24 +352,36 @@ def main():
 
     all_data = es.load_all_symbol_data()
 
-    # Die BASELINE stammt aus der bot-eigenen, unveraenderten collect_all_trades -
-    # nicht aus dem Nachbau unten. Grund: der Nachbau erzeugt zwar denselben
+    # Die BASELINE stammt aus dem eingefrorenen Bot-Stand (results/frozen_pr26/),
+    # nicht aus dem Nachbau. Grund: der Nachbau erzeugt zwar denselben
     # Trade-SATZ (verify_baseline.py prueft das Trade fuer Trade), aber eine
-    # andere Zeilenreihenfolge unter gleichzeitigen Einstiegen. Die
-    # Portfolio-Simulation ist davon abhaengig (siehe research/order_sensitivity),
-    # und die berichtete Baseline soll auf die zweite Nachkommastelle die des
-    # Bots sein. Der Unterschied betraegt bei elliott_wave 0,32 pp auf +2185 %.
-    sets = {}
-    if BOT == "elliott_wave_stocks":
-        sets[VARIANT_BASELINE] = es.collect_all_trades(
-            all_data, cfg["deviation_pct"], cfg["stop_loss_pct"],
-            cfg["take_profit_fib"], use_take_profit)
-    else:
-        sets[VARIANT_BASELINE] = es.collect_all_trades(
-            all_data, cfg["deviation_pct"], cfg["stop_loss_pct"], cfg["take_profit_fib"])
-    sets[VARIANT_BASELINE]["result"] = sets[VARIANT_BASELINE]["result"].astype(str)
+    # andere Zeilenreihenfolge unter gleichzeitigen Einstiegen - und die
+    # Portfolio-Simulation haengt davon ab (siehe research/order_sensitivity).
+    # Bei elliott_wave_stocks mit Positionslimit 8 macht das ueber 100
+    # Prozentpunkte aus. Die berichtete Baseline soll die veroeffentlichte
+    # sein, also wird die Originaldatei gelesen.
+    frozen = os.path.join(RESULTS_DIR, "frozen_pr26", f"{BOT}_trades_baseline_bot.csv")
+    if not os.path.exists(frozen):
+        raise SystemExit(f"{frozen} fehlt - ohne den eingefrorenen Bot-Stand laesst sich "
+                          "die Baseline nicht mehr reproduzieren.")
+    sets = {VARIANT_BASELINE: pd.read_csv(frozen, parse_dates=["entry_time", "exit_time"])}
     for v in (VARIANT_CORRECTED, VARIANT_DELAYED):
         sets[v] = collect(all_data, cfg, v, counter, use_take_profit)
+
+    # HINWEIS zum Nachbau: er reproduziert das alte Bot-Verhalten weiterhin,
+    # nicht mehr aus der bot-eigenen collect_all_trades. Der Grund ist, dass
+    # der Bot inzwischen KORRIGIERT ist (siehe strategies/*/backtest_elliott.py)
+    # - das alte, fehlerhafte Verhalten existiert dort nicht mehr. Dass der
+    # Nachbau es exakt reproduziert hat, solange es den Bot-Code noch gab, ist
+    # in den eingefrorenen Ergebnissen von PR #26 dokumentiert; verify_baseline.py
+    # prueft ihn seitdem gegen genau diese eingefrorenen Trade-Saetze.
+    #
+    # Einziger bekannter Unterschied zur damaligen Bot-Ausgabe: die
+    # Zeilenreihenfolge bei gleichzeitigen Einstiegen. Die Portfolio-Simulation
+    # ist davon abhaengig (siehe research/order_sensitivity); bei elliott_wave
+    # macht das 0,32 pp auf +2185 % aus und liegt vollstaendig innerhalb der
+    # dort gemessenen Streubreite.
+
     periods = {v: evaluate(sets[v], es, cfg) for v in VARIANTS}
     diagnostic = mechanism_diagnostic(all_data, cfg, counter, use_take_profit)
 
@@ -390,7 +402,9 @@ def main():
 
     with open(os.path.join(RESULTS_DIR, f"{BOT}.json"), "w") as fh:
         json.dump(out, fh, indent=2, default=str, ensure_ascii=False)
-    for variant in VARIANTS:
+    # Die Baseline wird NICHT erneut geschrieben - sie steht unveraendert unter
+    # results/frozen_pr26/ und waere hier nur eine zweite, verwechselbare Kopie.
+    for variant in (VARIANT_CORRECTED, VARIANT_DELAYED):
         if not sets[variant].empty:
             sets[variant].to_csv(os.path.join(RESULTS_DIR, f"{BOT}_trades_{variant}.csv"), index=False)
 

@@ -1,19 +1,28 @@
 """
 Regressionscheck: der Nachbau muss den Bot exakt treffen
 ====================================================================
-Bevor irgendein Ergebnis dieser Untersuchung zaehlt, muessen zwei Dinge
+Bevor irgendein Ergebnis dieser Untersuchung zaehlt, muessen drei Dinge
 belegt sein:
 
   1. Der Zigzag dieses Verzeichnisses (`zigzag_confirm.py`) liefert
      EXAKT dieselben Pivots wie der unveraenderte
-     `strategies/<bot>/zigzag_indicator.py` - nur mit einer
-     Zusatzspalte. Waere das nicht so, waere jede Aussage ueber
+     `strategies/<bot>/zigzag_indicator.calculate_zigzag` - nur mit
+     Zusatzspalten. Waere das nicht so, waere jede Aussage ueber
      "Bestaetigungszeitpunkte" wertlos.
-  2. Der Trade-Nachbau (`run_one_bot.collect`, Variante "baseline")
-     erzeugt Trade fuer Trade denselben Satz wie die bot-eigene
-     `equity_simulation.collect_all_trades`. Erst damit ist gesichert,
-     dass der Unterschied zwischen "baseline" und "korrigiert"
-     ausschliesslich von der Korrektur kommt und nicht vom Nachbau.
+  2. Der Bot fuehrt inzwischen selbst eine Fassung mit
+     Bestaetigungszeitpunkt (`calculate_zigzag_with_confirmation`, siehe
+     PR #27-Nachfolger). Sie muss mit der Kopie hier deckungsgleich sein -
+     sonst pruefte dieses Verzeichnis etwas anderes, als der Bot rechnet.
+  3. Der Trade-Nachbau (`run_one_bot.collect`, Variante "baseline")
+     erzeugt Trade fuer Trade denselben Satz wie der damals noch
+     unkorrigierte Bot.
+
+Zu Punkt 3, wichtig fuer die Einordnung: dieser Vergleich lief in PR #26
+gegen den LEBENDEN Bot-Code und ging bei allen 1302 Trades ohne Abweichung
+durch. Inzwischen ist der Bot korrigiert - das alte Verhalten existiert
+dort nicht mehr. Der Vergleich laeuft deshalb jetzt gegen die eingefrorenen
+Trade-Saetze unter `results/frozen_pr26/`, die damals aus dem Bot stammen.
+Das ersetzt den urspruenglichen Nachweis nicht, es konserviert ihn.
 
 Zusaetzlich werden die im Projekt veroeffentlichten Kennzahlen beider
 Bots nachgerechnet.
@@ -40,6 +49,8 @@ TOL = 0.011
 # elliott_wave_stocks: results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md,
 #                      Abschnitt 3 (Take-Profit aus, Limit 8) - zugleich die
 #                      Zahl, mit der die USE_TAKE_PROFIT-Entscheidung begruendet ist.
+FROZEN_DIR = os.path.join(_DIR, "results", "frozen_pr26")
+
 PUBLISHED = {
     "elliott_wave": {"trades": 783, "executed": 782, "return_pct": 2184.96, "drawdown_pct": -1.83},
     "elliott_wave_stocks": {"trades": 519, "executed": 288, "return_pct": 3084.09, "drawdown_pct": -9.79},
@@ -98,6 +109,19 @@ def main():
             mismatches += 1
     check(f"{total_pivots} Pivots ueber {checked_symbols} Symbole exakt identisch",
           mismatches == 0, f"{mismatches} Symbole weichen ab")
+
+    # Der Bot fuehrt inzwischen eine eigene Fassung mit Bestaetigungszeitpunkt.
+    # Sie muss mit der Kopie hier zeichengleich uebereinstimmen - andernfalls
+    # prueft dieses Verzeichnis etwas anderes, als der Bot rechnet.
+    from zigzag_indicator import calculate_zigzag_with_confirmation as bot_variant
+    conf_mismatch = 0
+    for symbol, price_df in all_data.items():
+        mine = calculate_zigzag_with_confirmation(price_df, deviation_pct=cfg["deviation_pct"])
+        theirs_conf = bot_variant(price_df, deviation_pct=cfg["deviation_pct"])
+        if len(mine) != len(theirs_conf) or not mine.equals(theirs_conf):
+            conf_mismatch += 1
+    check("die Bot-Fassung calculate_zigzag_with_confirmation ist deckungsgleich",
+          conf_mismatch == 0, f"{conf_mismatch} Symbole weichen ab")
     # Die Zusatzspalte muss auch inhaltlich stimmen: ein Pivot kann nie VOR
     # sich selbst bestaetigt werden.
     bad_order = 0
@@ -107,13 +131,12 @@ def main():
             bad_order += 1
     check("Bestaetigung liegt nie vor dem Pivot selbst", bad_order == 0, f"{bad_order} Symbole")
 
-    print(f"\n2) Trade-Satz: Nachbau gegen die bot-eigene collect_all_trades")
-    if BOT == "elliott_wave_stocks":
-        theirs = es.collect_all_trades(all_data, cfg["deviation_pct"], cfg["stop_loss_pct"],
-                                        cfg["take_profit_fib"], use_tp)
-    else:
-        theirs = es.collect_all_trades(all_data, cfg["deviation_pct"], cfg["stop_loss_pct"],
-                                        cfg["take_profit_fib"])
+    print(f"\n2) Trade-Satz: Nachbau gegen den eingefrorenen Bot-Stand aus PR #26")
+    frozen_path = os.path.join(FROZEN_DIR, f"{BOT}_trades_baseline_bot.csv")
+    if not os.path.exists(frozen_path):
+        raise SystemExit(f"{frozen_path} fehlt - ohne den eingefrorenen Bot-Stand "
+                         "laesst sich der Nachbau nicht mehr pruefen.")
+    theirs = pd.read_csv(frozen_path, parse_dates=["entry_time", "exit_time"])
     mine = rob.collect(all_data, cfg, rob.VARIANT_BASELINE, counter, use_tp)
     check("Anzahl Trades identisch", len(theirs) == len(mine), f"{len(theirs)} vs {len(mine)}")
 
@@ -133,7 +156,7 @@ def main():
     check("Ergebnis-Kategorie bei allen Trades identisch",
           (merged["result_bot"].astype(str) == merged["result_neu"].astype(str)).all())
 
-    print(f"\n3) Veroeffentlichte Kennzahlen der Baseline")
+    print(f"\n3) Veroeffentlichte Kennzahlen der Baseline (eingefrorener Bot-Stand)")
     ref = PUBLISHED[BOT]
     row = rob.evaluate(theirs, es, cfg)
     check(f"Trades = {ref['trades']}", row["num_trades"] == ref["trades"], str(row["num_trades"]))

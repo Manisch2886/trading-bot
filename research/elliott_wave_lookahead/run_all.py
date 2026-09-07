@@ -18,11 +18,22 @@ BOTS = ("elliott_wave", "elliott_wave_stocks")
 
 # Reihenfolge ist Absicht: der Regressionscheck laeuft ZUERST. Schlaegt er
 # fehl, ist jede weitere Zahl wertlos.
+# Reihenfolge ist Absicht: erst die Regressionschecks gegen den eingefrorenen
+# Bot-Stand, dann der Kausalitaets-Nachweis fuer den KORRIGIERTEN Bot-Code,
+# dann die Auswertungen.
+#
+# Hinweis zur Abgrenzung: run_one_bot.py, grid.py und decisions.py sind die
+# Analyse aus PR #26. Ihre Variante "korrigiert" behebt nur Kanal 1 (den
+# Einstiegszeitpunkt) - die Wellenauswahl laeuft dort weiterhin rueckblickend.
+# Der Bot-Code selbst behebt inzwischen BEIDE Kanaele; compare_channels.py
+# stellt beide Staende gegenueber.
 STEPS = [
     ("verify_baseline.py", BOTS),
+    ("verify_causality.py", BOTS),
     ("run_one_bot.py", BOTS),
     ("grid.py", BOTS),
     ("decisions.py", ("elliott_wave_stocks",)),
+    ("compare_channels.py", BOTS),
 ]
 
 

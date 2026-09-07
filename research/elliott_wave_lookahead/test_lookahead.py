@@ -33,6 +33,16 @@ def check(label, condition, detail=""):
         print(f"  FEHLER {label}   {detail}")
 
 
+def _raises(fn, exc):
+    try:
+        fn()
+    except exc:
+        return True
+    except Exception:
+        return False
+    return False
+
+
 def frame(prices):
     """Kursreihe ohne Intrabar-Spanne: high = low = close = der Wert.
     So ist jeder Zigzag-Schritt von Hand nachvollziehbar."""
@@ -148,6 +158,73 @@ out = rob.simulate_exit(rally, 0, 100.0, target_price=110.0, stop_price=1.0,
                         max_hold_bars=10, use_take_profit=False)
 check("bei ausgeschaltetem Take-Profit wird das Ziel ignoriert",
       out["result"] == "time_exit", str(out))
+
+print("\n5) Kausale Wellenerkennung (elliott_wave_counter.find_causal_waves)")
+import elliott_wave_counter as counter
+
+# Acht Pivots, abwechselnd Hoch/Tief. Fenster 0-5 (Welle A) und Fenster 2-7
+# (Welle B) sind BEIDE gueltige baerische Impulse und ueberlappen sich - und
+# B hat den besseren Fibonacci-Score. Genau diese Konstellation loest den
+# Look-Ahead aus: rueckblickend verdraengt B die frueher gehandelte Welle A.
+PIVOT_PRICES = [100.0, 89.561, 95.94, 80.818, 89.023, 63.77, 70.041, 63.551]
+PIVOT_TYPES = ["high", "low", "high", "low", "high", "low", "high", "low"]
+# Bestaetigung jeweils zwei Balken nach dem Pivot; Pivots liegen 10 Balken auseinander.
+PIVOT_IDX = [10 * i for i in range(8)]
+CONFIRM_IDX = [idx + 2 for idx in PIVOT_IDX]
+zz = pd.DataFrame({
+    "time": pd.to_datetime([f"2024-01-01" for _ in PIVOT_IDX]) + pd.to_timedelta(PIVOT_IDX, unit="h"),
+    "price": PIVOT_PRICES, "type": PIVOT_TYPES,
+    "confirm_idx": CONFIRM_IDX, "pivot_idx": PIVOT_IDX,
+    "confirm_time": pd.to_datetime(["2024-01-01"] * 8) + pd.to_timedelta(CONFIRM_IDX, unit="h"),
+})
+
+plain = counter.find_impulse_waves(zz[["time", "price", "type"]], min_fib_score=0.3)
+bearish_plain = plain[plain["direction"] == "bearish"]
+check("die Testreihe enthaelt zwei gueltige, ueberlappende baerische Wellen",
+      len(bearish_plain) == 2, str(len(bearish_plain)))
+scores = sorted(bearish_plain["fib_score"])
+check("die spaetere der beiden hat den besseren Fibonacci-Score",
+      scores == [0.67, 1.0], str(scores))
+
+retro = counter.remove_overlapping(plain)
+retro_bearish = retro[retro["direction"] == "bearish"]
+check("rueckblickend bleibt nur EINE der beiden uebrig - die frueher gehandelte "
+      "wird nachtraeglich verdraengt (das ist der Look-Ahead)",
+      len(retro_bearish) == 1, str(len(retro_bearish)))
+check("und zwar bleibt die spaetere, besser bewertete uebrig",
+      float(retro_bearish.iloc[0]["fib_score"]) == 1.0)
+
+causal = counter.find_causal_waves(zz, min_fib_score=0.3, freshness_bars=None, direction="bearish")
+check("kausal bleiben BEIDE erhalten - die frueher gehandelte kann nicht mehr "
+      "rueckwirkend gestrichen werden",
+      len(causal) == 2, str(len(causal)))
+check("beide Einstiege liegen NACH ihrer jeweiligen Bestaetigung",
+      bool((causal["entry_idx"] >= causal["confirm_idx"]).all()),
+      str(causal[["entry_idx", "confirm_idx"]].to_dict("records")))
+check("jedes Wellenende loest hoechstens einen Trade aus",
+      causal["end_time"].is_unique)
+check("die Reihenfolge ist chronologisch nach Einstiegsbalken",
+      list(causal["entry_idx"]) == sorted(causal["entry_idx"]))
+
+# Frische-Fenster: die Bestaetigung liegt hier 2 Balken nach dem Pivot.
+tight = counter.find_causal_waves(zz, min_fib_score=0.3, freshness_bars=1, direction="bearish")
+check("ein zu enges Frische-Fenster verwirft beide Wellen (Bestaetigung kaeme zu spaet)",
+      len(tight) == 0, str(len(tight)))
+wide = counter.find_causal_waves(zz, min_fib_score=0.3, freshness_bars=2, direction="bearish")
+check("ein Frische-Fenster von genau der Verzoegerung laesst beide zu",
+      len(wide) == 2, str(len(wide)))
+
+check("die Richtungsfilterung wirkt (bullische Wellen kommen nicht durch)",
+      set(counter.find_causal_waves(zz, 0.3, None, "bearish")["direction"]) == {"bearish"})
+both_dirs = counter.find_causal_waves(zz, 0.3, None, None)
+check("ohne Richtungsfilter kommen mehr Wellen durch als mit",
+      len(both_dirs) >= len(causal), f"{len(both_dirs)} vs {len(causal)}")
+
+check("ohne Bestaetigungsspalte bricht find_causal_waves ab, statt still "
+      "auf den alten Pfad zurueckzufallen",
+      _raises(lambda: counter.find_causal_waves(zz[["time", "price", "type"]], 0.3), ValueError))
+check("eine zu kurze Zigzag-Liste ergibt ein leeres, aber wohlgeformtes Ergebnis",
+      counter.find_causal_waves(zz.head(3), 0.3).empty)
 
 print("\n" + "=" * 60)
 print(f"{PASSED} Checks bestanden, {FAILED} fehlgeschlagen.")

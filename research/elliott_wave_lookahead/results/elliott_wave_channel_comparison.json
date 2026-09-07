@@ -1,0 +1,63 @@
+{
+  "bot": "elliott_wave",
+  "stufen": {
+    "baseline (kein Kanal korrigiert)": {
+      "num_trades": 783,
+      "num_executed": 782,
+      "num_skipped": 1,
+      "total_return_pct": 2184.96,
+      "max_drawdown_pct": -1.83,
+      "calmar_ratio": 1193.97,
+      "win_rate_pct": 82.9,
+      "avg_pnl_pct": 4.043,
+      "worst_trade_pct": -2.3,
+      "best_trade_pct": 58.57,
+      "result_counts": {
+        "take_profit": 649,
+        "stop_loss": 134
+      },
+      "share_take_profit_pct": 82.9
+    },
+    "nur Kanal 1 (Einstiegskurs)": {
+      "num_trades": 780,
+      "num_executed": 780,
+      "num_skipped": 0,
+      "total_return_pct": -24.44,
+      "max_drawdown_pct": -25.58,
+      "calmar_ratio": -0.96,
+      "win_rate_pct": 27.7,
+      "avg_pnl_pct": -0.348,
+      "worst_trade_pct": -2.3,
+      "best_trade_pct": 12.59,
+      "result_counts": {
+        "stop_loss": 564,
+        "take_profit": 216
+      },
+      "share_take_profit_pct": 27.7
+    },
+    "beide Kanaele (Bot-Stand heute)": {
+      "num_trades": 791,
+      "num_executed": 791,
+      "num_skipped": 0,
+      "total_return_pct": -25.73,
+      "max_drawdown_pct": -26.84,
+      "calmar_ratio": -0.96,
+      "win_rate_pct": 27.4,
+      "avg_pnl_pct": -0.365,
+      "worst_trade_pct": -2.3,
+      "best_trade_pct": 12.59,
+      "result_counts": {
+        "stop_loss": 574,
+        "take_profit": 217
+      },
+      "share_take_profit_pct": 27.4
+    }
+  },
+  "wirkung_kanal2": {
+    "trades": 11,
+    "rendite_pp": -1.29,
+    "drawdown_pp": -1.26,
+    "calmar": 0.0
+  },
+  "erwartung_obergrenze_bestaetigt": true
+}
