@@ -1,0 +1,53 @@
+{
+  "schluessel": "volatility_breakout",
+  "bot": "volatility_breakout",
+  "beschreibung": "Live-Konfiguration aus live_params.py",
+  "parameterquelle": "live_params.py",
+  "verwendete_parameter": {
+    "stop_loss_pct": 8.0,
+    "max_hold_days": 15
+  },
+  "live_params_stand": "2026-09-03",
+  "positionslimit_live": 15,
+  "symbole_geladen": 147,
+  "trades_gesamt": 4510,
+  "konstanten_angeglichen": [
+    {
+      "modul": "backtest_breakout",
+      "konstante": "SQUEEZE_PERCENTILE",
+      "live_params": "BB_SQUEEZE_PERCENTILE",
+      "wert_im_modul": 25.0,
+      "wert_live": 25.0,
+      "abweichung": false
+    },
+    {
+      "modul": "backtest_breakout",
+      "konstante": "SQUEEZE_LOOKBACK_DAYS",
+      "live_params": "BB_LOOKBACK",
+      "wert_im_modul": 126,
+      "wert_live": 126,
+      "abweichung": false
+    }
+  ],
+  "regimefilter": null,
+  "positionsgroesse_usd": 1000.0,
+  "jahr": 2025,
+  "gestrichen_wegen_kursluecke": 0,
+  "gleichzeitigkeit": {
+    "limit": 15,
+    "relevant_2025": true,
+    "geblockte_trades_2025": 265,
+    "zeitpunkte_am_limit_2025": 86,
+    "davon_mit_mehreren_signalen_gleichzeitig": 72,
+    "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+  },
+  "trades_2025": 481,
+  "pnl_usd": 4815.8,
+  "gewinnrate_pct": 52.0,
+  "bester_trade_usd": 384.49,
+  "schlechtester_trade_usd": -80.0,
+  "symbole_2025": 147,
+  "pnl_usd_netto_laut_bot": 3372.5,
+  "kostenmodell_im_bot": true,
+  "trades_datei": "volatility_breakout_trades_2025.csv"
+}

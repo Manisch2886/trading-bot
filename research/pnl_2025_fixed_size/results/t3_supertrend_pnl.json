@@ -1,0 +1,38 @@
+{
+  "schluessel": "t3_supertrend",
+  "bot": "t3_supertrend",
+  "beschreibung": "Live-Konfiguration aus live_params.py",
+  "parameterquelle": "live_params.py",
+  "verwendete_parameter": {
+    "t3_fast": 16,
+    "t3_slow": 30,
+    "adx_threshold": 20.0,
+    "stop_loss_pct": 4.0
+  },
+  "live_params_stand": "2026-08-31",
+  "positionslimit_live": 5,
+  "symbole_geladen": 18,
+  "trades_gesamt": 980,
+  "konstanten_angeglichen": [],
+  "regimefilter": null,
+  "positionsgroesse_usd": 1000.0,
+  "jahr": 2025,
+  "gestrichen_wegen_kursluecke": 0,
+  "gleichzeitigkeit": {
+    "limit": 5,
+    "relevant_2025": true,
+    "geblockte_trades_2025": 67,
+    "zeitpunkte_am_limit_2025": 40,
+    "davon_mit_mehreren_signalen_gleichzeitig": 23,
+    "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+  },
+  "trades_2025": 203,
+  "pnl_usd": -125.36,
+  "gewinnrate_pct": 31.0,
+  "bester_trade_usd": 520.59,
+  "schlechtester_trade_usd": -40.0,
+  "symbole_2025": 18,
+  "pnl_usd_netto_laut_bot": -734.3,
+  "kostenmodell_im_bot": true,
+  "trades_datei": "t3_supertrend_trades_2025.csv"
+}

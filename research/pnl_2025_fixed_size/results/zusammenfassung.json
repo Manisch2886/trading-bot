@@ -1,0 +1,432 @@
+{
+  "jahr": 2025,
+  "positionsgroesse_usd": 1000.0,
+  "zeilen": [
+    {
+      "schluessel": "elliott_wave_alt",
+      "bot": "elliott_wave",
+      "beschreibung": "Zigzag 4 % / Stop 2 % / Fib 0.236 (Stand bis 2026-09-07)",
+      "parameterquelle": "fest gesetzt - der Stand VOR der Parameter-Uebernahme",
+      "verwendete_parameter": {
+        "deviation_pct": 4.0,
+        "stop_loss_pct": 2.0,
+        "take_profit_fib": 0.236
+      },
+      "live_params_stand": "2026-08-31",
+      "positionslimit_live": null,
+      "symbole_geladen": 18,
+      "trades_gesamt": 791,
+      "konstanten_angeglichen": [],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": null,
+        "relevant_2025": false,
+        "grund": "kein Positionslimit"
+      },
+      "trades_2025": 181,
+      "pnl_usd": 418.88,
+      "gewinnrate_pct": 30.4,
+      "bester_trade_usd": 97.18,
+      "schlechtester_trade_usd": -20.0,
+      "symbole_2025": 18,
+      "pnl_usd_netto_laut_bot": -124.2,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "elliott_wave_alt_trades_2025.csv"
+    },
+    {
+      "schluessel": "elliott_wave_neu",
+      "bot": "elliott_wave",
+      "beschreibung": "Zigzag 10 % / Stop 6 % / Fib 0.618 (uebernommen 2026-09-07)",
+      "parameterquelle": "fest gesetzt - der uebernommene Stand (PR #28)",
+      "verwendete_parameter": {
+        "deviation_pct": 10.0,
+        "stop_loss_pct": 6.0,
+        "take_profit_fib": 0.618
+      },
+      "live_params_stand": "2026-08-31",
+      "positionslimit_live": null,
+      "symbole_geladen": 18,
+      "trades_gesamt": 130,
+      "konstanten_angeglichen": [],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": null,
+        "relevant_2025": false,
+        "grund": "kein Positionslimit"
+      },
+      "trades_2025": 31,
+      "pnl_usd": 369.52,
+      "gewinnrate_pct": 29.0,
+      "bester_trade_usd": 571.12,
+      "schlechtester_trade_usd": -60.0,
+      "symbole_2025": 13,
+      "pnl_usd_netto_laut_bot": 276.4,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "elliott_wave_neu_trades_2025.csv"
+    },
+    {
+      "schluessel": "elliott_wave_stocks",
+      "bot": "elliott_wave_stocks",
+      "beschreibung": "unveraenderte Live-Konfiguration",
+      "parameterquelle": "live_params.py, unveraendert",
+      "verwendete_parameter": {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false
+      },
+      "live_params_stand": "2026-09-03",
+      "positionslimit_live": 8,
+      "symbole_geladen": 147,
+      "trades_gesamt": 510,
+      "konstanten_angeglichen": [],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": 8,
+        "relevant_2025": true,
+        "geblockte_trades_2025": 15,
+        "zeitpunkte_am_limit_2025": 6,
+        "davon_mit_mehreren_signalen_gleichzeitig": 4,
+        "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+      },
+      "trades_2025": 65,
+      "pnl_usd": 7488.51,
+      "gewinnrate_pct": 20.0,
+      "bester_trade_usd": 2405.67,
+      "schlechtester_trade_usd": -30.0,
+      "symbole_2025": 47,
+      "pnl_usd_netto_laut_bot": 7293.6,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "elliott_wave_stocks_trades_2025.csv"
+    },
+    {
+      "schluessel": "t3_supertrend",
+      "bot": "t3_supertrend",
+      "beschreibung": "Live-Konfiguration aus live_params.py",
+      "parameterquelle": "live_params.py",
+      "verwendete_parameter": {
+        "t3_fast": 16,
+        "t3_slow": 30,
+        "adx_threshold": 20.0,
+        "stop_loss_pct": 4.0
+      },
+      "live_params_stand": "2026-08-31",
+      "positionslimit_live": 5,
+      "symbole_geladen": 18,
+      "trades_gesamt": 980,
+      "konstanten_angeglichen": [],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": 5,
+        "relevant_2025": true,
+        "geblockte_trades_2025": 67,
+        "zeitpunkte_am_limit_2025": 40,
+        "davon_mit_mehreren_signalen_gleichzeitig": 23,
+        "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+      },
+      "trades_2025": 203,
+      "pnl_usd": -125.36,
+      "gewinnrate_pct": 31.0,
+      "bester_trade_usd": 520.59,
+      "schlechtester_trade_usd": -40.0,
+      "symbole_2025": 18,
+      "pnl_usd_netto_laut_bot": -734.3,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "t3_supertrend_trades_2025.csv"
+    },
+    {
+      "schluessel": "rsi2_crypto",
+      "bot": "rsi2_crypto",
+      "beschreibung": "Live-Konfiguration aus live_params.py",
+      "parameterquelle": "live_params.py",
+      "verwendete_parameter": {
+        "rsi_threshold": 10.0,
+        "sma_trend_period": 150,
+        "stop_loss_pct": null
+      },
+      "live_params_stand": "2026-09-03",
+      "positionslimit_live": 8,
+      "symbole_geladen": 20,
+      "trades_gesamt": 439,
+      "konstanten_angeglichen": [],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": 8,
+        "relevant_2025": true,
+        "geblockte_trades_2025": 19,
+        "zeitpunkte_am_limit_2025": 9,
+        "davon_mit_mehreren_signalen_gleichzeitig": 8,
+        "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+      },
+      "trades_2025": 137,
+      "pnl_usd": 1902.96,
+      "gewinnrate_pct": 63.5,
+      "bester_trade_usd": 372.66,
+      "schlechtester_trade_usd": -396.12,
+      "symbole_2025": 18,
+      "pnl_usd_netto_laut_bot": 1492.3,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "rsi2_crypto_trades_2025.csv"
+    },
+    {
+      "schluessel": "rsi2_mean_reversion",
+      "bot": "rsi2_mean_reversion",
+      "beschreibung": "Live-Konfiguration aus live_params.py",
+      "parameterquelle": "live_params.py",
+      "verwendete_parameter": {
+        "rsi_threshold": 5.0,
+        "stop_loss_pct": null
+      },
+      "live_params_stand": "2026-09-03",
+      "positionslimit_live": 20,
+      "symbole_geladen": 147,
+      "trades_gesamt": 5391,
+      "konstanten_angeglichen": [
+        {
+          "modul": "backtest_rsi2",
+          "konstante": "MAX_HOLD_DAYS",
+          "live_params": "MAX_HOLD_DAYS",
+          "wert_im_modul": 10,
+          "wert_live": 10,
+          "abweichung": false
+        }
+      ],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": 20,
+        "relevant_2025": true,
+        "geblockte_trades_2025": 34,
+        "zeitpunkte_am_limit_2025": 8,
+        "davon_mit_mehreren_signalen_gleichzeitig": 8,
+        "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+      },
+      "trades_2025": 481,
+      "pnl_usd": 2605.11,
+      "gewinnrate_pct": 69.0,
+      "bester_trade_usd": 223.12,
+      "schlechtester_trade_usd": -316.4,
+      "symbole_2025": 136,
+      "pnl_usd_netto_laut_bot": 1162.4,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "rsi2_mean_reversion_trades_2025.csv"
+    },
+    {
+      "schluessel": "turtle_soup_crypto",
+      "bot": "turtle_soup_crypto",
+      "beschreibung": "Live-Konfiguration aus live_params.py",
+      "parameterquelle": "live_params.py",
+      "verwendete_parameter": {
+        "donchian_period": 10,
+        "stop_mode": "structural"
+      },
+      "live_params_stand": "2026-09-04",
+      "positionslimit_live": 8,
+      "symbole_geladen": 20,
+      "trades_gesamt": 1599,
+      "konstanten_angeglichen": [
+        {
+          "modul": "backtest_turtle_soup",
+          "konstante": "MAX_HOLD_DAYS",
+          "live_params": "MAX_HOLD_DAYS",
+          "wert_im_modul": 10,
+          "wert_live": 10,
+          "abweichung": false
+        }
+      ],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": 8,
+        "relevant_2025": true,
+        "geblockte_trades_2025": 78,
+        "zeitpunkte_am_limit_2025": 29,
+        "davon_mit_mehreren_signalen_gleichzeitig": 17,
+        "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+      },
+      "trades_2025": 422,
+      "pnl_usd": 108.04,
+      "gewinnrate_pct": 23.9,
+      "bester_trade_usd": 1702.94,
+      "schlechtester_trade_usd": -307.76,
+      "symbole_2025": 20,
+      "pnl_usd_netto_laut_bot": -1159.4,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "turtle_soup_crypto_trades_2025.csv"
+    },
+    {
+      "schluessel": "turtle_soup_stocks",
+      "bot": "turtle_soup_stocks",
+      "beschreibung": "Live-Konfiguration aus live_params.py",
+      "parameterquelle": "live_params.py",
+      "verwendete_parameter": {
+        "donchian_period": 10,
+        "stop_mode": null
+      },
+      "live_params_stand": "2026-09-04",
+      "positionslimit_live": null,
+      "symbole_geladen": 147,
+      "trades_gesamt": 12069,
+      "konstanten_angeglichen": [
+        {
+          "modul": "backtest_turtle_soup",
+          "konstante": "MAX_HOLD_DAYS",
+          "live_params": "MAX_HOLD_DAYS",
+          "wert_im_modul": 10,
+          "wert_live": 10,
+          "abweichung": false
+        }
+      ],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": null,
+        "relevant_2025": false,
+        "grund": "kein Positionslimit"
+      },
+      "trades_2025": 1197,
+      "pnl_usd": 11102.54,
+      "gewinnrate_pct": 58.1,
+      "bester_trade_usd": 399.2,
+      "schlechtester_trade_usd": -327.9,
+      "symbole_2025": 147,
+      "pnl_usd_netto_laut_bot": 7511.2,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "turtle_soup_stocks_trades_2025.csv"
+    },
+    {
+      "schluessel": "volatility_breakout",
+      "bot": "volatility_breakout",
+      "beschreibung": "Live-Konfiguration aus live_params.py",
+      "parameterquelle": "live_params.py",
+      "verwendete_parameter": {
+        "stop_loss_pct": 8.0,
+        "max_hold_days": 15
+      },
+      "live_params_stand": "2026-09-03",
+      "positionslimit_live": 15,
+      "symbole_geladen": 147,
+      "trades_gesamt": 4510,
+      "konstanten_angeglichen": [
+        {
+          "modul": "backtest_breakout",
+          "konstante": "SQUEEZE_PERCENTILE",
+          "live_params": "BB_SQUEEZE_PERCENTILE",
+          "wert_im_modul": 25.0,
+          "wert_live": 25.0,
+          "abweichung": false
+        },
+        {
+          "modul": "backtest_breakout",
+          "konstante": "SQUEEZE_LOOKBACK_DAYS",
+          "live_params": "BB_LOOKBACK",
+          "wert_im_modul": 126,
+          "wert_live": 126,
+          "abweichung": false
+        }
+      ],
+      "regimefilter": null,
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": 15,
+        "relevant_2025": true,
+        "geblockte_trades_2025": 265,
+        "zeitpunkte_am_limit_2025": 86,
+        "davon_mit_mehreren_signalen_gleichzeitig": 72,
+        "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+      },
+      "trades_2025": 481,
+      "pnl_usd": 4815.8,
+      "gewinnrate_pct": 52.0,
+      "bester_trade_usd": 384.49,
+      "schlechtester_trade_usd": -80.0,
+      "symbole_2025": 147,
+      "pnl_usd_netto_laut_bot": 3372.5,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "volatility_breakout_trades_2025.csv"
+    },
+    {
+      "schluessel": "volatility_breakout_crypto",
+      "bot": "volatility_breakout_crypto",
+      "beschreibung": "Live-Konfiguration aus live_params.py",
+      "parameterquelle": "live_params.py",
+      "verwendete_parameter": {
+        "stop_loss_pct": 5.0,
+        "max_hold_days": 15
+      },
+      "live_params_stand": "2026-09-04",
+      "positionslimit_live": 8,
+      "symbole_geladen": 20,
+      "trades_gesamt": 233,
+      "konstanten_angeglichen": [
+        {
+          "modul": "backtest_breakout",
+          "konstante": "SQUEEZE_PERCENTILE",
+          "live_params": "BB_SQUEEZE_PERCENTILE",
+          "wert_im_modul": 25.0,
+          "wert_live": 25.0,
+          "abweichung": false
+        },
+        {
+          "modul": "backtest_breakout",
+          "konstante": "SQUEEZE_LOOKBACK_DAYS",
+          "live_params": "BB_LOOKBACK",
+          "wert_im_modul": 126,
+          "wert_live": 126,
+          "abweichung": false
+        }
+      ],
+      "regimefilter": {
+        "live_aktiv": true,
+        "trades_vorher": 359,
+        "trades_nachher": 233,
+        "geblockt": 126,
+        "hinweis": "collect_all_trades wendet den Filter nicht selbst an - hier nachgezogen (PR #22-Nachtrag)"
+      },
+      "positionsgroesse_usd": 1000.0,
+      "jahr": 2025,
+      "gestrichen_wegen_kursluecke": 0,
+      "gleichzeitigkeit": {
+        "limit": 8,
+        "relevant_2025": true,
+        "geblockte_trades_2025": 7,
+        "zeitpunkte_am_limit_2025": 3,
+        "davon_mit_mehreren_signalen_gleichzeitig": 2,
+        "hinweis": "Die Zeilenreihenfolge entscheidet nur dort, wo mehrere Signale denselben Einstiegszeitpunkt teilen und das Limit bereits ausgeschoepft ist."
+      },
+      "trades_2025": 41,
+      "pnl_usd": 2346.13,
+      "gewinnrate_pct": 43.9,
+      "bester_trade_usd": 641.96,
+      "schlechtester_trade_usd": -50.0,
+      "symbole_2025": 18,
+      "pnl_usd_netto_laut_bot": 2223.3,
+      "kostenmodell_im_bot": true,
+      "trades_datei": "volatility_breakout_crypto_trades_2025.csv"
+    }
+  ],
+  "elliott_wave_differenz_usd": -49.36
+}
