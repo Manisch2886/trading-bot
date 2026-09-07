@@ -1,0 +1,19 @@
+quarter_start,quarter_end,bootstrap,excluded,elliott_wave,elliott_wave_stocks,rsi2_crypto,rsi2_mean_reversion,t3_supertrend,turtle_soup_crypto,turtle_soup_stocks,volatility_breakout,volatility_breakout_crypto
+2022-03-18,2022-03-31,True,[],0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111
+2022-04-01,2022-06-30,False,"['elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111
+2022-07-01,2022-09-30,False,"['elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111
+2022-10-01,2022-12-31,False,"['elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111,0.111111
+2023-01-01,2023-03-31,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.111111,0.111111,0.031144,0.106294,0.195895,0.111111
+2023-04-01,2023-06-30,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 't3_supertrend', 'turtle_soup_crypto', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.206069,0.111111,0.111111,0.045009,0.082255,0.111111
+2023-07-01,2023-09-30,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 't3_supertrend', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.261288,0.111111,0.019506,0.064409,0.099241,0.111111
+2023-10-01,2023-12-31,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 't3_supertrend', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.237805,0.111111,0.021997,0.070472,0.11417,0.111111
+2024-01-01,2024-03-31,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'turtle_soup_crypto', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.204176,0.0868,0.111111,0.060195,0.093274,0.111111
+2024-04-01,2024-06-30,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.268052,0.016336,0.020667,0.105356,0.145144,0.111111
+2024-07-01,2024-09-30,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'volatility_breakout_crypto']",0.111111,0.111111,0.111111,0.274405,0.015696,0.017145,0.102087,0.146222,0.111111
+2024-10-01,2024-12-31,False,"['elliott_wave', 'elliott_wave_stocks', 't3_supertrend', 'volatility_breakout_crypto']",0.111111,0.111111,0.139046,0.213026,0.111111,0.016012,0.074935,0.112537,0.111111
+2025-01-01,2025-03-31,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto']",0.111111,0.111111,0.111111,0.290522,0.019682,0.014364,0.118619,0.186441,0.037038
+2025-04-01,2025-06-30,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto']",0.111111,0.111111,0.111111,0.30254,0.02368,0.016742,0.113496,0.165877,0.044332
+2025-07-01,2025-09-30,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto']",0.111111,0.111111,0.111111,0.286783,0.022227,0.01487,0.118986,0.182592,0.041209
+2025-10-01,2025-12-31,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto']",0.111111,0.111111,0.111111,0.307223,0.025479,0.016198,0.118766,0.164886,0.034115
+2026-01-01,2026-03-31,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto']",0.111111,0.111111,0.111111,0.301224,0.027762,0.015594,0.125576,0.159085,0.037426
+2026-04-01,2026-06-27,False,"['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto']",0.111111,0.111111,0.111111,0.292197,0.029017,0.016181,0.128634,0.159076,0.041562

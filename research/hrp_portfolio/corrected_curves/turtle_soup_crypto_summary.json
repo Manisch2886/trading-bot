@@ -1,0 +1,10 @@
+{
+  "bot": "turtle_soup_crypto",
+  "trades_found": 1599,
+  "executed": 1414,
+  "skipped": 185,
+  "return_pct": 177.59,
+  "drawdown_pct": -32.4,
+  "allocation_pct": 10.0,
+  "max_concurrent_positions": 8
+}

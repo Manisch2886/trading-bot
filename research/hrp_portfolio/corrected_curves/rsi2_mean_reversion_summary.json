@@ -1,0 +1,10 @@
+{
+  "bot": "rsi2_mean_reversion",
+  "trades_found": 5391,
+  "executed": 4232,
+  "skipped": 1159,
+  "return_pct": 36.75,
+  "drawdown_pct": -21.05,
+  "allocation_pct": 5.0,
+  "max_concurrent_positions": 20
+}
