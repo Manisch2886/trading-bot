@@ -7,11 +7,27 @@ werden unverändert aus den beiden Vorgänger-Studien übernommen.
 
 WICHTIG - reine Backtest-Untersuchung: liest NUR aus
 strategies/volatility_breakout_crypto/ (live_params.py, equity_simulation.py,
-multi_symbol_optimise.py, backtest_breakout.py) und schreibt ausschliesslich
-nach research/vbc_deepdive/results/. Keine Live-Datei wird verändert.
+multi_symbol_optimise.py, backtest_breakout.py, regime_filter.py) und schreibt
+ausschliesslich nach research/vbc_deepdive/results/. Keine Live-Datei wird
+verändert.
 
-Nutzung:
-    python3 run_deepdive.py
+--------------------------------------------------------------------
+Nachtrag: BTC-Regimefilter (siehe regime.py)
+--------------------------------------------------------------------
+Die erste Fassung dieser Studie rechnete OHNE BTC-Regimefilter, weil
+`equity_simulation.py` ihn nicht anwendet. Der Sync-Check (PR #24) hat
+belegt, dass der Live-Bot ihn sehr wohl anwendet
+(`BTC_REGIME_FILTER_ENABLED = True`). Die komplette Methodik laesst sich
+deshalb ueber `--regime` auf drei Trade-Grundlagen rechnen:
+
+    python3 run_deepdive.py                      # off        (Erstfassung, unveraendert)
+    python3 run_deepdive.py --regime posthoc     # Projekt-Konvention, PRIMAER
+    python3 run_deepdive.py --regime sequential   # live-getreue Gegenprobe
+
+Alles ausser der Trade-Grundlage bleibt zwischen den Modi gleich: derselbe
+ATR-Multiplikator k, derselbe IS/OOS-Trennzeitpunkt, dieselben Kalender-
+fenster, derselbe Bootstrap-Seed. Nur so ist der Unterschied dem Filter
+zuzuordnen und nicht einer nebenbei verschobenen Bezugsgroesse.
 """
 
 import json
@@ -27,6 +43,7 @@ _REPO_ROOT = os.path.dirname(os.path.dirname(_DIR))
 sys.path.insert(0, _DIR)
 
 import bootstrap
+import regime as rg
 from vbc_core import (
     wilder_atr, calibrate_atr_multiplier, simulate_exit, initial_stop_price,
     compute_realized_volatility, compute_inverse_vol_weights,
@@ -42,6 +59,23 @@ sys.path.insert(0, os.path.join(_REPO_ROOT, "shared"))
 
 RESULTS_DIR = os.path.join(_DIR, "results")
 os.makedirs(RESULTS_DIR, exist_ok=True)
+
+
+def _parse_regime_mode(argv) -> str:
+    """--regime off|posthoc|sequential (Vorgabe: off = Erstfassung)."""
+    if "--regime" not in argv:
+        return rg.REGIME_OFF
+    i = argv.index("--regime")
+    if i + 1 >= len(argv):
+        raise SystemExit("--regime braucht einen Wert: " + "|".join(rg.REGIME_MODES))
+    mode = argv[i + 1]
+    if mode not in rg.REGIME_MODES:
+        raise SystemExit(f"unbekannter --regime-Wert {mode!r}, erlaubt: " + "|".join(rg.REGIME_MODES))
+    return mode
+
+
+REGIME_MODE = _parse_regime_mode(sys.argv)
+OUTPUT_SUFFIX = "" if REGIME_MODE == rg.REGIME_OFF else f"_{REGIME_MODE}"
 
 # --- Unveränderte Übernahmen aus den beiden Vorgänger-Studien -------------
 ATR_WINDOW = 14      # research/trailing_stops - Wilder-Standard, im Projekt bereits fuer ADX/DI genutzt
@@ -88,7 +122,7 @@ def load_symbols() -> dict:
 
 
 def collect_trades(prepared: dict, warmup: int, stop_kind: str, stop_pct: float,
-                    k, max_hold: int) -> pd.DataFrame:
+                    k, max_hold: int, allowed: dict = None) -> pd.DataFrame:
     """
     Erzeugt den vollständigen Trade-Satz über alle Symbole für EINE
     Stop-Regel. Die Einstiegs-Logik ist unverändert aus
@@ -96,10 +130,18 @@ def collect_trades(prepared: dict, warmup: int, stop_kind: str, stop_pct: float,
     übernommen (Squeeze gestern UND Schluss über oberem Bollinger-Band
     heute, kein Pyramiding: der nächste Scan startet erst nach dem Ausstieg).
     Nur die Ausstiegs-Prüfung ist ausgetauscht.
+
+    `allowed` (optional, nur für die `sequential`-Gegenprobe): je Symbol eine
+    balkenweise Bool-Maske des BTC-Regimes. Ein Signal an einem gesperrten
+    Balken führt NICHT zum Einstieg - das Symbol bleibt frei und kann ein
+    späteres Signal annehmen. Genau so verhält sich der Live-Bot
+    (forward_test.py::find_new_signals); nachträgliches Streichen des
+    fertigen Trade-Satzes kann solche Ersatz-Trades nicht erzeugen.
     """
     rows = []
     for sym, p in prepared.items():
         close, upper, is_squeeze = p["close"], p["upper"], p["is_squeeze"]
+        regime_ok = None if allowed is None else allowed[sym]
         n, i = len(close), warmup + 1
         while i < n:
             if np.isnan(upper[i]) or np.isnan(close[i]):
@@ -107,6 +149,9 @@ def collect_trades(prepared: dict, warmup: int, stop_kind: str, stop_pct: float,
                 continue
             if not (bool(is_squeeze[i - 1]) and close[i] > upper[i]):
                 i += 1
+                continue
+            if regime_ok is not None and not regime_ok[i]:
+                i += 1          # Einstieg blockiert - Symbol bleibt frei
                 continue
 
             entry_price = float(close[i])
@@ -369,29 +414,53 @@ def tie_order_sensitivity(sets: dict, cfg: dict, lo, hi, include_hi: bool,
         pnl = trades["pnl_pct"].to_numpy(dtype=float)
         vol = trades["vol_at_entry"].to_numpy(dtype=float)
 
-        returns, drawdowns, calmars = [], [], []
-        for _ in range(n_permutations):
-            perm = rng.permutation(len(trades))
-            order = perm[np.argsort(entry[perm], kind="stable")]
+        def run_order(order, round_like_report: bool = False):
+            """`round_like_report=True` bildet die Rundungsreihenfolge von
+            evaluate() nach (Rendite erst runden, dann Calmar bilden). Nur der
+            BERICHTETE Wert wird so berechnet - damit ist er zahlengleich mit
+            dem publizierten Wert, dessen Lage er einordnen soll. Die
+            Permutationen selbst bleiben unveraendert ungerundet, sonst
+            verschoebe sich die Verteilung gegenueber der Erstfassung."""
             weights = (bootstrap.inverse_vol_weights_fast(vol[order], CLIP_FACTOR)
                        if USES_VOL_WEIGHTS[variant] else np.ones(len(order)))
             total_return, max_dd = bootstrap.simulate_fast(
                 entry[order], exit_[order], pnl[order], weights,
                 STARTING_CAPITAL, cfg["allocation_pct"] / 100.0, cfg["max_concurrent"])
+            if round_like_report:
+                total_return = round(total_return, 2)
+            calmar = calmar_ratio(total_return, max_dd)
+            return total_return, max_dd, (np.nan if calmar is None else calmar)
+
+        # Der BERICHTETE Wert ist der Lauf in der natuerlichen Reihenfolge des
+        # Trade-Satzes - genau die eine Permutation, die das Einlesen zufaellig
+        # ergeben hat. Er wird hier mitgerechnet, um seine Lage INNERHALB der
+        # Streuung als Perzentil auszuweisen (Methodik aus PR #23): ein Wert am
+        # Rand der Verteilung stellt die Variante systematisch zu gut oder zu
+        # schlecht dar, ein zentraler Wert ist unauffaellig.
+        reported = run_order(np.arange(len(trades)), round_like_report=True)
+
+        returns, drawdowns, calmars = [], [], []
+        for _ in range(n_permutations):
+            perm = rng.permutation(len(trades))
+            order = perm[np.argsort(entry[perm], kind="stable")]
+            total_return, max_dd, calmar = run_order(order)
             returns.append(total_return)
             drawdowns.append(max_dd)
-            calmar = calmar_ratio(total_return, max_dd)
-            calmars.append(np.nan if calmar is None else calmar)
+            calmars.append(calmar)
 
-        def spread(values):
+        def spread(values, reported_value=None):
             arr = np.asarray(values, dtype=float)
             arr = arr[np.isfinite(arr)]
             if arr.size == 0:
                 return None
-            return {"min": round(float(arr.min()), 2), "median": round(float(np.median(arr)), 2),
+            out_ = {"min": round(float(arr.min()), 2), "median": round(float(np.median(arr)), 2),
                     "max": round(float(arr.max()), 2),
                     "ci_low": round(float(np.percentile(arr, 2.5)), 2),
                     "ci_high": round(float(np.percentile(arr, 97.5)), 2)}
+            if reported_value is not None and np.isfinite(reported_value):
+                out_["reported"] = round(float(reported_value), 2)
+                out_["reported_percentile"] = round(float((arr < reported_value).mean() * 100), 1)
+            return out_
 
         shared = int(trades["entry_time"].duplicated(keep=False).sum())
         out[variant] = {
@@ -400,9 +469,9 @@ def tie_order_sensitivity(sets: dict, cfg: dict, lo, hi, include_hi: bool,
             "trades_sharing_entry_timestamp": shared,
             "share_sharing_entry_timestamp_pct": round(shared / len(trades) * 100, 1),
             "largest_same_timestamp_group": int(trades["entry_time"].value_counts().max()),
-            "total_return_pct": spread(returns),
-            "max_drawdown_pct": spread(drawdowns),
-            "calmar_ratio": spread(calmars),
+            "total_return_pct": spread(returns, reported[0]),
+            "max_drawdown_pct": spread(drawdowns, reported[1]),
+            "calmar_ratio": spread(calmars, reported[2]),
         }
     return out
 
@@ -575,6 +644,54 @@ def main():
 
     trailing = collect_trades(prepared, warmup, STOP_ATR_TRAILING, cfg["stop_loss_pct"],
                                k, cfg["max_hold"])
+
+    # --- BTC-Regimefilter ------------------------------------------------
+    # Bezugsgroessen (entry_min/entry_max, split_time, k) sind oben BEWUSST auf
+    # dem UNGEFILTERTEN Satz bestimmt und bleiben ueber alle drei Modi gleich.
+    # Sonst aendert sich mit dem Filter gleichzeitig der Trennzeitpunkt und die
+    # Stop-Distanz, und der gemessene Unterschied liesse sich keiner Ursache
+    # mehr zuordnen. k wird also NICHT nachkalibriert - was es waere, steht
+    # unten als reine Dokumentationszahl.
+    unfiltered = {"static": static, "trailing": trailing}
+    regime_report = {"mode": REGIME_MODE, "applied": REGIME_MODE != rg.REGIME_OFF}
+
+    if REGIME_MODE != rg.REGIME_OFF:
+        regime_table = rg.btc_regime_table(raw_data)
+
+        if REGIME_MODE == rg.REGIME_POSTHOC:
+            static = rg.filter_posthoc(static, regime_table)
+            trailing = rg.filter_posthoc(trailing, regime_table)
+        else:
+            allowed = {sym: rg.regime_mask_for(p["open_time"], regime_table)
+                       for sym, p in prepared.items()}
+            static = collect_trades(prepared, warmup, STOP_FIXED_STATIC, cfg["stop_loss_pct"],
+                                     None, cfg["max_hold"], allowed=allowed)
+            trailing = collect_trades(prepared, warmup, STOP_ATR_TRAILING, cfg["stop_loss_pct"],
+                                       k, cfg["max_hold"], allowed=allowed)
+
+        bull_share = float((regime_table["btc_regime"] == 1).mean() * 100)
+        f_min, f_max = static["entry_time"].min(), static["entry_time"].max()
+        own_split = f_min + (f_max - f_min) * cfg["train_split_ratio"]
+        is_filtered = static[static["entry_time"] < split_time]
+        k_would_be = calibrate_atr_multiplier(is_filtered["atr_at_entry"].to_numpy(),
+                                               is_filtered["entry_price"].to_numpy(),
+                                               cfg["stop_loss_pct"])
+        regime_report.update({
+            "btc_bullish_bar_share_pct": round(bull_share, 1),
+            "trades_before": {"static": int(len(unfiltered["static"])),
+                              "trailing": int(len(unfiltered["trailing"]))},
+            "trades_after": {"static": int(len(static)), "trailing": int(len(trailing))},
+            "removed_share_pct": {
+                "static": round((1 - len(static) / len(unfiltered["static"])) * 100, 1),
+                "trailing": round((1 - len(trailing) / len(unfiltered["trailing"])) * 100, 1)},
+            "first_entry_after_filter": str(f_min.date()),
+            "k_used": round(k, 4),
+            "k_if_recalibrated_on_filtered": (None if k_would_be is None
+                                              else round(k_would_be, 4)),
+            "split_time_used": str(split_time),
+            "split_time_if_recomputed_on_filtered": str(own_split),
+        })
+
     sets = {False: static, True: trailing}
 
     period_bounds = {
@@ -640,6 +757,7 @@ def main():
 
     output = {
         "bot": BOT,
+        "regime_filter": regime_report,
         "data_basis": data_basis,
         "tie_order_sensitivity": tie_order,
         "buy_and_hold": bh,
@@ -658,7 +776,8 @@ def main():
             "train_split_ratio": cfg["train_split_ratio"],
             "starting_capital": STARTING_CAPITAL,
             "split_time": str(split_time),
-            "btc_regime_filter_applied": False,
+            "btc_regime_filter_applied": REGIME_MODE != rg.REGIME_OFF,
+            "btc_regime_filter_mode": REGIME_MODE,
             "bootstrap_replicates": BOOTSTRAP_REPLICATES,
             "bootstrap_block_months": BOOTSTRAP_BLOCK_MONTHS,
             "bootstrap_seed": BOOTSTRAP_SEED,
@@ -674,14 +793,21 @@ def main():
         "overlap": overlap_analysis(static, trailing),
     }
 
-    out_path = os.path.join(RESULTS_DIR, "vbc_deepdive.json")
+    out_path = os.path.join(RESULTS_DIR, f"vbc_deepdive{OUTPUT_SUFFIX}.json")
     with open(out_path, "w") as f:
         json.dump(output, f, indent=2, default=str)
 
-    static.to_csv(os.path.join(RESULTS_DIR, "trades_static_stop.csv"), index=False)
-    trailing.to_csv(os.path.join(RESULTS_DIR, "trades_atr_trailing.csv"), index=False)
+    static.to_csv(os.path.join(RESULTS_DIR, f"trades_static_stop{OUTPUT_SUFFIX}.csv"), index=False)
+    trailing.to_csv(os.path.join(RESULTS_DIR, f"trades_atr_trailing{OUTPUT_SUFFIX}.csv"), index=False)
 
-    print(f"{BOT}: k={k:.3f} | Trades fester Stop {len(static)} / ATR-Trailing {len(trailing)}")
+    print(f"{BOT}: BTC-Regimefilter = {REGIME_MODE} | k={k:.3f} | "
+          f"Trades fester Stop {len(static)} / ATR-Trailing {len(trailing)}")
+    if regime_report["applied"]:
+        r = regime_report
+        print(f"  gestrichen: fester Stop {r['trades_before']['static']} -> {r['trades_after']['static']} "
+              f"({r['removed_share_pct']['static']}%), ATR-Trailing "
+              f"{r['trades_before']['trailing']} -> {r['trades_after']['trailing']} "
+              f"({r['removed_share_pct']['trailing']}%)")
     for name in ("full", "in_sample", "out_of_sample"):
         print(f"\n{name}")
         for v in VARIANTS:
@@ -739,7 +865,8 @@ def main():
     for variant, t in tie_order["full"].items():
         c = t["calmar_ratio"]
         print(f"  {variant:<12} {c['min']:>6.2f} .. {c['max']:>6.2f}  (Median {c['median']:>6.2f}, "
-              f"berichtet {periods['full'][variant]['calmar_ratio']})")
+              f"berichtet {periods['full'][variant]['calmar_ratio']} = "
+              f"{c.get('reported_percentile')}. Perzentil)")
 
     print("\nBlock-Bootstrap: 95%-Intervalle der Calmar-DIFFERENZ gegenueber der Vergleichsvariante")
     for name in ("full", "out_of_sample"):

@@ -336,6 +336,84 @@ for _ in range(50):
 check("ohne Kapital- und Positionsengpass ist die Reihenfolge dagegen irrelevant",
       len(results_free) == 1, f"{len(results_free)} verschiedene Ergebnisse")
 
+# ---------------------------------------------------------------------------
+print("\n11) BTC-Regimefilter (Nachtrag - regime.py)")
+# ---------------------------------------------------------------------------
+sys.path.insert(0, os.path.join(_REPO_ROOT, "strategies", "volatility_breakout_crypto"))
+import regime as rg
+import run_deepdive as rd
+
+# Regime-Tabelle von Hand: 1 = Aufwaerts (Einstiege erlaubt), -1 = Abwaerts.
+reg_days = pd.date_range("2024-01-01", periods=10, freq="D")
+reg_dir = [1, 1, -1, -1, -1, 1, 1, -1, 1, 1]
+regime_tbl = pd.DataFrame({"open_time": reg_days, "btc_regime": reg_dir})
+
+mask = rg.regime_mask_for(reg_days.to_numpy(), regime_tbl)
+check("Maske gibt die Regime-Richtung balkengenau wieder",
+      list(mask) == [d == 1 for d in reg_dir], str(list(mask.astype(int))))
+
+# Zeitpunkte ZWISCHEN zwei Regime-Balken muessen den letzten bekannten Zustand
+# erben - dasselbe Verhalten wie merge_asof(direction="backward") der
+# Bot-Funktion. Ein Vorwaerts-Blick waere hier ein echter Look-Ahead.
+between = pd.to_datetime(["2024-01-03 18:00", "2024-01-06 06:00"]).to_numpy()
+check("Zeitpunkte zwischen zwei Balken erben den letzten bekannten Zustand (kein Look-Ahead)",
+      list(rg.regime_mask_for(between, regime_tbl)) == [False, True])
+
+before = pd.to_datetime(["2023-12-25"]).to_numpy()
+check("Balken vor dem ersten Regime-Eintrag gelten als gesperrt (kein Einstieg ohne Regime)",
+      list(rg.regime_mask_for(before, regime_tbl)) == [False])
+
+# Gegenprobe der Maske gegen die UNVERAENDERTE Bot-Funktion auf denselben Daten:
+# beide muessen exakt dieselbe Trade-Menge uebriglassen.
+probe = pd.DataFrame({
+    "symbol": ["X"] * len(reg_days),
+    "entry_time": reg_days,
+    "exit_time": reg_days + pd.Timedelta(days=1),
+    "pnl_pct": np.arange(len(reg_days), dtype=float),
+})
+kept_bot = rg.filter_posthoc(probe, regime_tbl)
+kept_mask = probe[mask]
+check("filter_posthoc (Bot-Funktion) und regime_mask_for streichen dieselben Trades",
+      list(kept_bot["entry_time"]) == list(kept_mask["entry_time"]),
+      f"{list(kept_bot['entry_time'].dt.day)} vs {list(kept_mask['entry_time'].dt.day)}")
+check("der Filter streicht genau die Abwaertstrend-Einstiege",
+      len(kept_bot) == sum(1 for d in reg_dir if d == 1) and
+      all(reg_dir[t.day - 1] == 1 for t in kept_bot["entry_time"]))
+
+# Der strukturelle Unterschied zwischen 'posthoc' und 'sequential': wird ein
+# Einstieg blockiert, bleibt das Symbol frei und kann ein SPAETERES Signal
+# annehmen. Nachtraegliches Streichen kann das per Konstruktion nicht.
+# Konstruierter Fall: Signal an Balken 2 (gesperrt) und an Balken 5 (erlaubt);
+# ohne Sperre wuerde der Trade ab Balken 2 bis ueber Balken 5 hinaus laufen.
+n_bars = 20      # genug Resthistorie, damit MAX_HOLD nach dem spaeten Signal noch passt
+close_p = np.full(n_bars, 100.0)
+upper_p = np.full(n_bars, 101.0)
+squeeze_p = np.zeros(n_bars, dtype=bool)
+for sig in (2, 5):
+    squeeze_p[sig - 1] = True
+    close_p[sig] = 102.0          # Ausbruch ueber das Band
+prepared_probe = {"X": {
+    "open_time": pd.date_range("2024-01-01", periods=n_bars, freq="D").to_numpy(),
+    "high": close_p + 1.0, "low": close_p - 0.2, "close": close_p,
+    "upper": upper_p, "is_squeeze": squeeze_p,
+    "atr": np.full(n_bars, 1.0), "vol": np.full(n_bars, 0.02),
+}}
+allow_all = {"X": np.ones(n_bars, dtype=bool)}
+block_first = {"X": np.array([i != 2 for i in range(n_bars)])}
+
+t_open = rd.collect_trades(prepared_probe, 0, STOP_FIXED_STATIC, 5.0, None, 8)
+t_block = rd.collect_trades(prepared_probe, 0, STOP_FIXED_STATIC, 5.0, None, 8,
+                             allowed=block_first)
+check("ohne Sperre entsteht der Trade am ersten Signal",
+      len(t_open) >= 1 and t_open["entry_time"].iloc[0].day == 3, str(len(t_open)))
+check("mit Sperre entfaellt genau dieser Einstieg, das Symbol nimmt stattdessen "
+      "das spaetere Signal an (Ersatz-Trade - nur im sequential-Modus moeglich)",
+      len(t_block) == 1 and t_block["entry_time"].iloc[0].day == 6,
+      f"n={len(t_block)}, Tage={[] if t_block.empty else list(t_block['entry_time'].dt.day)}")
+check("eine Maske ohne jede Sperre aendert den Trade-Satz nicht (Neutralitaet)",
+      rd.collect_trades(prepared_probe, 0, STOP_FIXED_STATIC, 5.0, None, 8,
+                         allowed=allow_all).equals(t_open))
+
 print("\n" + "=" * 60)
 print(f"{PASSED} Checks bestanden, {FAILED} fehlgeschlagen.")
 print("=" * 60)

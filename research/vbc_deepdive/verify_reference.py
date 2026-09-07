@@ -21,6 +21,23 @@ die Kette nicht allein an den Zahlen der Vorgänger-Berichte.
 Die Referenzwerte unten sind wörtlich aus den Ergebnis-JSONs der beiden
 Studien übernommen (nicht aus deren Fliesstext gerundet).
 
+--------------------------------------------------------------------
+Nachtrag: der Regimefilter braucht seinen eigenen Regressionscheck
+--------------------------------------------------------------------
+Seit dem Sync-Check (PR #24) wird die Studie zusätzlich MIT aktiviertem
+BTC-Regimefilter gerechnet. Für diese zweite Trade-Grundlage gilt dieselbe
+Regel: sie ist erst dann verwendbar, wenn sie bereits veröffentlichte
+Zahlen exakt trifft. Geprüft wird gegen ZWEI voneinander unabhängige
+Quellen:
+
+  4. den Sync-Check selbst (PR #24): gefilterte Baseline über den
+     Gesamtzeitraum - 233 Trades, 207 ausgeführt, +49,03 %, -16,29 %.
+  5. `strategies/volatility_breakout_crypto/live_params.py` - dort ist die
+     Drawdown-Wirkung des Filters als Projekt-Entscheidungsgrundlage
+     dokumentiert ("70/30: -11,33% -> -7,76%"). Diese Zahl stammt aus einer
+     ganz anderen Rechnung (Bot-Experiment, vor dieser Studie) und ist
+     deshalb der wertvollste der beiden Checks.
+
 Nutzung:  python3 verify_reference.py
 """
 
@@ -66,6 +83,15 @@ TRAILING_WINDOWS_REF = {
 }
 TRAILING_K_REF = 0.8956
 TRADE_COUNT_REF = {"static_stop": 359, "atr_trailing": 396}
+
+# --- Referenzwerte mit aktiviertem BTC-Regimefilter -------------------------
+# (a) Sync-Check PR #24, research/sync_check/results/impact_volatility_breakout_crypto.json
+REGIME_BASELINE_REF = {"trades": 233, "executed": 207, "return_pct": 49.03, "drawdown_pct": -16.29}
+# (b) live_params.py des Bots, Historie 2026-09-04: "70/30: -11,33% -> -7,76%".
+#     Der linke Wert ist zugleich der OOS-Drawdown der ungefilterten Baseline
+#     (siehe VOLSIZING_REF oben) - beide Seiten der dokumentierten Aussage
+#     werden also hier nachgerechnet.
+REGIME_OOS_DRAWDOWN_REF = {"unfiltered": -11.33, "filtered": -7.76}
 
 TOL = 0.011   # Referenzwerte sind auf 2 Nachkommastellen gerundet gespeichert
 
@@ -154,9 +180,34 @@ def main():
                 check(f"W{i + 1} / {variant} / Rendite %", variants[variant]["total_return_pct"], ret)
                 check(f"W{i + 1} / {variant} / Max Drawdown %", variants[variant]["max_drawdown_pct"], dd)
 
+    print("\n5) Gefilterte Baseline gegen den Sync-Check (PR #24)")
+    import regime as rg
+    regime_tbl = rg.btc_regime_table(_raw)
+    static_f = rg.filter_posthoc(static, regime_tbl)
+    check("Trades nach Filter", float(len(static_f)), float(REGIME_BASELINE_REF["trades"]), 0)
+    f_periods = {
+        "full": rd.all_four({False: static_f, True: static_f}, cfg, entry_min, entry_max,
+                             include_hi=True),
+        "out_of_sample": rd.all_four({False: static_f, True: static_f}, cfg, split, entry_max,
+                                      include_hi=True),
+    }
+    row = f_periods["full"][VARIANT_BASELINE]
+    check("ausgefuehrte Trades", float(row["num_executed"]),
+          float(REGIME_BASELINE_REF["executed"]), 0)
+    check("Rendite % (gefiltert, Gesamtzeitraum)", row["total_return_pct"],
+          REGIME_BASELINE_REF["return_pct"])
+    check("Max Drawdown % (gefiltert, Gesamtzeitraum)", row["max_drawdown_pct"],
+          REGIME_BASELINE_REF["drawdown_pct"])
+
+    print("\n6) Drawdown-Wirkung des Filters gegen die Dokumentation in live_params.py")
+    check("Out-of-Sample OHNE Filter", periods["out_of_sample"][VARIANT_BASELINE]["max_drawdown_pct"],
+          REGIME_OOS_DRAWDOWN_REF["unfiltered"])
+    check("Out-of-Sample MIT Filter", f_periods["out_of_sample"][VARIANT_BASELINE]["max_drawdown_pct"],
+          REGIME_OOS_DRAWDOWN_REF["filtered"])
+
     print("\n" + "=" * 78)
     print(f"{PASSED} Referenzwerte bestaetigt, {FAILED} abweichend.")
-    print("Beide Vorgaenger-Studien exakt reproduziert." if not FAILED
+    print("Beide Vorgaenger-Studien und der Regimefilter exakt reproduziert." if not FAILED
           else "ABWEICHUNG - Ergebnisse dieser Studie sind NICHT belastbar.")
     print("=" * 78)
     sys.exit(1 if FAILED else 0)

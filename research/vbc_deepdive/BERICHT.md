@@ -8,6 +8,366 @@ ausserhalb dieses Verzeichnisses angefasst — insbesondere nicht
 
 ---
 
+> ## ⚠ Nachtrag (Fassung 2): diese Studie wurde ohne den BTC-Regimefilter gerechnet
+>
+> Der Sync-Check (PR #24) hat belegt, dass `equity_simulation.py` den in
+> `live_params.py` aktivierten `BTC_REGIME_FILTER_ENABLED = True` **nicht anwendet**.
+> Die Abschnitte 0–14 unten beruhen deshalb auf einer Trade-Grundlage, die der
+> Live-Bot so nie handelt. Sie bleiben unverändert als Protokoll stehen; **gültig
+> für die Live-Konfiguration ist der Nachtrag N0–N9 direkt darunter.**
+>
+> **Kurz: die Kernaussage der Erstfassung verschärft sich.** Von den vier geprüften
+> Behauptungen überlebt nur noch die Drawdown-Reduktion des Trailing-Stops. Der
+> einzige positive risikoadjustierte Befund der Erstfassung — Out-of-Sample-Calmar,
+> P = 95,0 % — fällt auf **64,6 %** und ist damit von Rauschen nicht mehr zu
+> unterscheiden.
+
+---
+
+# Nachtrag N: dieselbe Methodik mit aktiviertem BTC-Regimefilter
+
+## N0. Entscheidungsgrundlage
+
+### Was gerechnet wurde
+
+Die **komplette** Methodik der Erstfassung — vier Kombinationen, IS/OOS,
+4 Walk-Forward-Fenster, Quartals-Episoden, Buy-and-Hold, Block-Bootstrap mit
+2000 Replikaten, 500 Reihenfolge-Permutationen — noch einmal auf der gefilterten
+Trade-Grundlage. Nichts wurde neu optimiert: derselbe ATR-Multiplikator
+`k = 0,8956`, dasselbe ATR-14, Vol-90, Clip 4,0, derselbe Trennzeitpunkt,
+dieselben Kalenderfenster, derselbe Bootstrap-Seed.
+
+Der Filter wird in **zwei** Anwendungsarten gerechnet, weil sie nicht dasselbe
+sind (Begründung in `regime.py`):
+
+| Modus | Was er tut | Rolle |
+|---|---|---|
+| `posthoc` | vollen Trade-Satz erzeugen, dann die Einstiege im BTC-Abwärtstrend streichen — die **Projekt-Konvention** (`regime_filter.filter_trades_by_regime`, `experiment_btc_regime_filter.py`) | **primär**, weil referenzfähig |
+| `sequential` | Einstieg schon im Scan blockieren, Symbol bleibt frei für ein späteres Signal — mechanisch getreu zu `forward_test.py::find_new_signals` | Gegenprobe |
+
+Der Unterschied ist klein: 241 statt 233 Trades, also **8 Ersatz-Trades (3,4 %)**.
+Alle Schlussfolgerungen unten gelten in beiden Modi. Die Projekt-Konvention trägt.
+
+### Datenbasis
+
+Unverändert 2022-03-17 bis 2026-08-30 (4,45 Jahre), 20 Symbole, **ein einziger
+Krypto-Zyklus**. BTC ist in **48,0 %** aller Balken im Aufwärtstrend, der Filter
+sperrt also gut die Hälfte des Zeitraums.
+
+| | ohne Filter | `posthoc` | `sequential` |
+|---|---|---|---|
+| Trades fester Stop | 359 | **233** (−35,1 %) | 241 (−32,9 %) |
+| Trades ATR-Trailing | 396 | **265** (−33,1 %) | 271 (−31,6 %) |
+| **OOS ausgeführt, Baseline** | 103 | **64** | 64 |
+| **OOS ausgeführt, Trailing** | 140 | **95** | 94 |
+
+**Das ist die wichtigste Zahl dieses Nachtrags.** Der einzige positive Befund der
+Erstfassung stand out-of-sample auf 103 bzw. 140 ausgeführten Trades. Mit Filter
+sind es **64 bzw. 95** — auf 17 Monaten. Jede Aussage über diesen Zeitraum trägt
+entsprechend wenig Gewicht, unabhängig davon, wie die Zahl ausfällt.
+
+### Regressionscheck — zuerst, sonst zählt nichts
+
+`verify_reference.py`: **56/56** Referenzwerte exakt, aus vier unabhängigen Quellen:
+
+1. die bot-eigene `equity_simulation.collect_all_trades` (Trade-Anzahl, PnL-Summe,
+   erster Entry / letzter Exit),
+2. **50 Werte** aus PR #18 und PR #21 (unverändert aus der Erstfassung),
+3. der **Sync-Check PR #24**: gefilterte Baseline **233 Trades, 207 ausgeführt,
+   +49,03 %, −16,29 %** — auf die zweite Nachkommastelle getroffen,
+4. **`live_params.py` selbst.** Dort ist die Drawdown-Wirkung des Filters als
+   Projekt-Entscheidungsgrundlage dokumentiert: *„70/30: -11,33% -> -7,76%"*.
+   Beide Seiten dieser Aussage werden hier nachgerechnet und **beide stimmen
+   exakt**. Diese Zahl stammt aus einer ganz anderen Rechnung, Monate vor dieser
+   Studie — sie ist deshalb der wertvollste der vier Checks.
+
+Zusätzlich: der `off`-Modus reproduziert das committete Ergebnis der Erstfassung
+in **allen 2171 Feldern bitgenau** (nur neue Felder kamen hinzu). Der Umbau hat
+also nichts an der Erstfassung verändert.
+
+### Belastbarkeit — die Tabelle, die die Frage beantwortet
+
+Block-Bootstrap, 2000 Replikate, gepaart, P(Effekt > 0) in %, gesamt / IS / OOS:
+
+| Behauptung | ohne Filter | **mit Filter (`posthoc`)** | `sequential` | Urteil |
+|---|---|---|---|---|
+| Trailing senkt den **Drawdown** | 100,0 / 99,9 / 99,2 | **99,2 / 99,3 / 97,3** | 99,0 / 98,9 / 98,0 | **hält** |
+| Trailing verbessert die **Calmar** | 73,8 / 48,8 / **95,0** | 61,1 / 50,8 / **64,6** | 56,7 / 44,1 / 67,1 | **fällt weg** |
+| Vol-Sizing verbessert irgendetwas | 40,1 / 47,1 / 53,8 | **16,1 / 21,1 / 38,7** | 18,6 / 26,8 / 35,4 | **kippt ins Negative** |
+| Kombination schlägt Trailing allein | 31,1 / 27,6 / 71,2 | **13,4 / 9,8 / 50,6** | 22,7 / 14,9 / 51,9 | **kein Beleg, deutlicher** |
+
+### Was diesen Befund umstossen würde
+
+* Ein zweiter Krypto-Zyklus. Der Filter halbiert die Datenbasis; die 17 OOS-Monate
+  tragen jetzt 64 Baseline-Trades. Ein zweiter Bärenmarkt könnte das Bild drehen —
+  in beide Richtungen.
+* Eine andere Regime-Definition. `BTC_ATR_LENGTH = 22`, `BTC_ATR_MULT = 3,0` sind
+  Bot-Konstanten und wurden hier **nicht** variiert. Ob der Befund an genau diesem
+  SuperTrend hängt, ist ungeprüft.
+* Der Reihenfolge-Effekt (N6): der berichtete gefilterte Baseline-Wert liegt im
+  **17,6. Perzentil** seiner eigenen Streuung. Wäre er zufällig zentral
+  ausgefallen, wäre der Trailing-Vorteil noch kleiner.
+
+### Was dieser Nachtrag nicht leistet
+
+Keine Aussage über andere Bots, keine Aktivierungs- oder Deaktivierungsempfehlung
+zum Regimefilter, keine Prüfung, ob der Filter selbst eine gute Idee ist (das ist
+in `PROTOTYPE_FINDINGS.md` Abschnitt 9 bereits entschieden und wird hier als
+gegeben genommen), keine Parameter-Optimierung.
+
+### Reproduktion
+
+```
+python3 verify_reference.py                    # 56/56, Gate für alles Weitere
+python3 test_vbc_core.py                       # 56 Sanity-Checks
+python3 run_deepdive.py                        # Erstfassung, ohne Filter
+python3 run_deepdive.py --regime posthoc       # primäre Fassung 2
+python3 run_deepdive.py --regime sequential    # Gegenprobe
+python3 compare_modes.py                       # Gegenüberstellung + Zerlegung
+```
+
+---
+
+## N1. Die direkte Antwort auf die zentrale Frage
+
+> **Bleibt `volatility_breakout_crypto` nach Korrektur des Regimefilters ein
+> überzeugender Kandidat?**
+
+**Nein — als „mehrfach bestätigter" Kandidat trägt er nicht mehr.** Genauer, weil
+die Frage zwei Teile hat:
+
+**Die Drawdown-Reduktion des Trailing-Stops verschwindet nicht.** Sie war der
+einzige belastbare Befund der Erstfassung und bleibt es: P = 99,2 % über den
+Gesamtzeitraum, 97,3 % out-of-sample. Der Punktschätzer sinkt (−16,29 % → −5,41 %
+statt −16,77 % → −5,76 %), aber die Aussage steht.
+
+**Die risikoadjustierte Vorteilhaftigkeit verschwindet.** Der eine positive
+Calmar-Befund — OOS, P = 95,0 % — fällt auf 64,6 %. Out-of-Sample schrumpft der
+Abstand von **+3,25 Calmar** (1,79 → 5,04) auf **+0,81** (2,96 → 3,77), und der
+Trailing-Stop liefert dort jetzt sogar **weniger Rendite als die Baseline**
+(19,20 % gegen 23,00 %). Was übrig bleibt, ist ein Mechanismus, der Drawdown
+gegen Rendite tauscht — genau wie der Filter, den der Bot bereits fährt.
+
+**Und die Vol-Skalierung ist nicht mehr neutral, sondern schädlich.** In der
+Erstfassung war sie „von Rauschen ununterscheidbar" (P = 40,1 %). Mit Filter sind
+es **16,1 %** — also rund 84 % Wahrscheinlichkeit, dass sie die Calmar-Ratio
+*verschlechtert*. Der Bot, der in PR #18 einer von nur zwei Gewinnern war, ist
+unter der Live-Konfiguration keiner mehr.
+
+---
+
+## N2. Warum: die beiden Schutzmechanismen überlappen — aber nur dort, wo es zählt
+
+Alle vier Zellen liegen vor, die Zerlegung ist deshalb keine Interpretation,
+sondern eine Rechnung (`compare_modes.py`). Prozentpunkte Drawdown, positiv =
+Drawdown gesenkt, gegen die ungefilterte Baseline als gemeinsamen Nullpunkt:
+
+| Periode | Filter allein | Trailing allein | beide zusammen | **Überlappung** | Anteil am schwächeren Mechanismus |
+|---|---|---|---|---|---|
+| Gesamtzeitraum | 0,48 | 11,01 | 11,36 | **0,13** | 27,1 % |
+| In-Sample | 0,48 | 11,01 | 11,36 | **0,13** | 27,1 % |
+| **Out-of-Sample** | 3,57 | 5,75 | 6,24 | **3,08** | **86,3 %** |
+
+Das erklärt beide Hälften des Befunds auf einmal:
+
+* **Über den Gesamtzeitraum überlappen sie fast gar nicht** (0,13 pp). Der
+  Grund ist unspektakulär: der grösste Drawdown des Gesamtzeitraums liegt nicht
+  in einer Phase, die der Filter erwischt — er senkt ihn nur um 0,48 pp
+  (−16,77 % → −16,29 %). Wo der Filter nichts tut, kann er dem Trailing-Stop
+  auch nichts wegnehmen.
+* **Out-of-Sample überlappen sie fast vollständig.** Dort wirkt der Filter
+  (−11,33 % → −7,76 %, exakt der in `live_params.py` dokumentierte Wert), und
+  **86 % dieser Wirkung liefert der Trailing-Stop ohnehin schon**. Man bezahlt
+  zwei Versicherungen und bekommt eine.
+
+Genau in dieser Periode stand der einzige positive Befund der Erstfassung. Er
+war kein zusätzlicher Effekt — er war der Effekt, den der Live-Bot bereits hatte,
+noch einmal gemessen.
+
+Die `sequential`-Gegenprobe zeigt dasselbe Bild und out-of-sample sogar etwas
+stärker (Überlappung 3,23 pp, 90,5 %). Über den Gesamtzeitraum liegt sie dort bei
+136,6 % — kein Rechenfehler, sondern Gegenläufigkeit: die 8 Ersatz-Trades, die
+nur im `sequential`-Modus entstehen können, erzeugen eigenen Drawdown, sodass
+beide Mechanismen zusammen schlechter schützen als der Trailing-Stop allein
+(−6,46 % gegen −5,76 %).
+
+---
+
+## N3. Die vier Kombinationen mit Filter
+
+Rendite % / Max Drawdown % / **Calmar**, Modus `posthoc`:
+
+| Periode | A Baseline | B Vol-Sizing | C Trailing | D Kombiniert |
+|---|---|---|---|---|
+| Gesamt | 49,03 / −16,29 / **3,01** | 32,93 / −15,89 / **2,07** | 30,29 / −5,41 / **5,60** | 19,74 / −6,01 / **3,28** |
+| In-Sample | 20,47 / −16,29 / **1,26** | 11,65 / −16,09 / **0,72** | 9,29 / −5,41 / **1,72** | 4,65 / −6,25 / **0,74** |
+| Out-of-Sample | 23,00 / −7,76 / **2,96** | 18,28 / −6,82 / **2,68** | 19,20 / −5,09 / **3,77** | 18,14 / −4,04 / **4,49** |
+
+Zum Vergleich dieselben Zellen ohne Filter (Erstfassung, Abschnitt 5):
+
+| Periode | A Baseline | B Vol-Sizing | C Trailing | D Kombiniert |
+|---|---|---|---|---|
+| Gesamt | 71,26 / −16,77 / **4,25** | 61,09 / −14,96 / **4,08** | 45,65 / −5,76 / **7,93** | 37,88 / −5,93 / **6,39** |
+| Out-of-Sample | 20,23 / −11,33 / **1,79** | 16,20 / −8,04 / **2,01** | 28,12 / −5,58 / **5,04** | 24,31 / −4,05 / **6,00** |
+
+Bemerkenswert und leicht zu übersehen: **out-of-sample verbessert der Filter die
+Baseline** (Calmar 1,79 → 2,96), **über den Gesamtzeitraum verschlechtert er sie**
+(4,25 → 3,01). Beides ist in `live_params.py` vorweggenommen — der Filter ist dort
+ausdrücklich als Risikomanagement-Massnahme aktiviert, *„NICHT weil er in jedem
+Fall die Rendite verbessert"*. Dieser Nachtrag bestätigt die dortige Einschätzung;
+er stellt sie nicht in Frage.
+
+**Additivität** (Gesamtzeitraum, `posthoc`): Renditekosten stapeln sich weiterhin
+(erwartet 16,21 %, tatsächlich 19,74 %, +3,53 pp), Drawdown-Reduktionen
+überlappen weiterhin (erwartet −5,01 %, tatsächlich −6,01 %, −1,00 pp). Die
+Grundaussage der Erstfassung — *man zahlt beide Mechanismen voll und bekommt
+ihren Schutz nur einmal* — gilt unverändert, jetzt mit einem dritten Mechanismus
+im selben Bild.
+
+---
+
+## N4. Buy-and-Hold — unverändert, und deshalb aussagekräftig
+
+Der Gegencheck hängt weder am Stop noch an der Gewichtung noch am Filter (gleiche
+Symbole, gleiches Kalenderfenster), er ist in allen drei Modi identisch:
+
+| Periode | beste gefilterte Variante | **Buy-and-Hold** |
+|---|---|---|
+| Gesamtzeitraum | Trailing 30,29 / −5,41 / **5,60** | 19,45 / −67,90 / **0,29** |
+| Out-of-Sample | Kombiniert 18,14 / −4,04 / **4,49** | **68,81** / −59,47 / **1,16** |
+
+Weil der Filter Rendite kostet, rückt die Strategie **näher an stumpfes Halten
+heran**: out-of-sample bringt Halten jetzt das **Drei- bis Vierfache** der
+Rendite jeder Variante (68,81 % gegen 18–23 %), bei rund fünfzehnfachem Drawdown
+(−59,47 % gegen −4,04 %).
+Über den Gesamtzeitraum bleibt die Strategie klar überlegen. Die Abwägung ist
+dieselbe wie in der Erstfassung — nur ist der Abstand kleiner geworden.
+
+---
+
+## N5. Episoden und Walk-Forward — hier ändert sich am wenigsten
+
+**Walk-Forward** (Calmar, `posthoc`; ohne Filter in Klammern):
+
+| Fenster | Baseline | Trailing |
+|---|---|---|
+| W1 2022-03-17 .. 2023-04-25 | −0,65 (−0,20) | **0,75** (0,71) |
+| W2 2023-04-25 .. 2024-06-03 | **3,22** (3,85) | −0,16 (0,04) |
+| W3 2024-06-03 .. 2025-07-12 | 2,25 (3,32) | **6,08** (6,10) |
+| W4 2025-07-12 .. 2026-08-21 | 0,45 (0,17) | **1,74** (3,14) |
+
+Der Trailing-Stop ist in 3 von 4 Fenstern besser — **wie ohne Filter**, und mit
+demselben Ausreisser W2. Die Walk-Forward-Stabilität ist also nicht das, was sich
+ändert; es ändert sich die Unsicherheit um diese Punktschätzer herum.
+
+**Bedingte Struktur** (Quartale): Korrelation zwischen Baseline-Quartalsrendite
+und Trailing-Vorteil **−0,88** (ohne Filter −0,88). In Quartalen mit negativer
+Baseline war der Trailing-Stop in **90 %** besser (ohne Filter: 100 %), in
+Quartalen mit positiver Baseline nur in **14 %**. Das Versicherungsprofil aus
+Abschnitt 8 der Erstfassung bleibt exakt bestehen — der Filter ändert die *Art*
+des Mechanismus nicht, nur seinen verbleibenden Nutzen.
+
+**Episoden-Konzentration**: Trailing besser in **10 von 17** Quartalen, grösstes
+Einzelquartal 2024Q1 mit −25,56 pp = 29,9 % des Gesamtunterschieds, Top-3 = 52,7 %.
+Kein einzelnes Quartal reisst die 60-%-Schwelle; der Effekt ist weiterhin nicht
+von einer Einzelepisode getragen.
+
+---
+
+## N6. Reihenfolge-Empfindlichkeit — mit Filter unangenehmer als ohne
+
+Methodik aus PR #23, 500 Permutationen der Reihenfolge gleichzeitiger Einstiege.
+Gefiltert teilen sich **60,9 %** der Trades einen Einstiegszeitpunkt (ohne Filter
+59,6 %) — der Filter entschärft das Problem also nicht.
+
+Calmar über den Gesamtzeitraum, `posthoc`:
+
+| Variante | berichtet | min | Median | max | **Perzentil des berichteten Werts** |
+|---|---|---|---|---|---|
+| Baseline | **3,01** | 2,78 | 3,85 | 4,58 | **17,6** |
+| Vol-Sizing | 2,07 | 1,71 | 2,33 | 3,62 | 31,2 |
+| Trailing | 5,60 | 5,03 | 5,82 | 6,70 | 28,4 |
+| Kombiniert | 3,28 | 3,20 | 3,79 | 4,42 | **2,6** |
+
+**Das ist ein eigenständiger Befund und er geht gegen den Trailing-Stop.** Der
+gefilterte Baseline-Wert 3,01, den der Sync-Check berichtet und den dieser
+Nachtrag als Referenz reproduziert hat, liegt im **17,6. Perzentil** seiner
+eigenen Streuung: rund 82 % der gleichermassen legitimen Reihenfolgen hätten eine
+**bessere** Baseline ergeben (Median 3,85). Die Baseline wird durch die zufällige
+Einlese-Reihenfolge also systematisch zu schlecht dargestellt — und damit der
+Trailing-Stop zu gut. Beim Median-Vergleich schrumpft der Abstand von
+3,01 → 5,60 (+2,59) auf 3,85 → 5,82 (+1,97).
+
+Was **nicht** kippt: die Streubereiche von Baseline (2,78 … 4,58) und Trailing
+(5,03 … 6,70) überlappen sich **nicht**. Über den Gesamtzeitraum ist der
+Calmar-Unterschied also grösser als die Reihenfolge-Willkür — er ist nur kleiner,
+als der berichtete Punktschätzer nahelegt. Und der Drawdown ist wie in der
+Erstfassung praktisch invariant (−16,29 % in allen 500 Permutationen).
+
+---
+
+## N7. Getroffene Annahmen dieses Nachtrags (vollständig)
+
+Zusätzlich zu den 12 Annahmen der Erstfassung (Abschnitt 4), die alle
+unverändert gelten:
+
+**N-A1 — `posthoc` ist die primäre Variante, `sequential` die Gegenprobe.**
+Nachträgliches Streichen ist die Konvention des Projekts (`filter_trades_by_regime`,
+`experiment_btc_regime_filter.py`) und die einzige Variante, die gegen den
+Sync-Check und gegen `live_params.py` referenzfähig ist. Sie bildet das
+Live-Verhalten aber nicht exakt ab, deshalb wird beides gerechnet. Der Unterschied
+beträgt 8 Trades (3,4 %) und ändert keine Schlussfolgerung.
+
+**N-A2 — `k` wird NICHT nachkalibriert.** Es bleibt bei `k = 0,8956` aus der
+ungefilterten In-Sample-Kalibrierung. Auftragsgemäss wird kein bereits gewählter
+Parameter neu optimiert; ausserdem änderten sich sonst Trade-Satz *und*
+Stop-Distanz gleichzeitig. Auf dem gefilterten Satz wäre `k = 0,8823` (−1,5 %) —
+reine Dokumentationszahl, nicht verwendet.
+
+**N-A3 — Trennzeitpunkt und Kalenderfenster stammen aus dem ungefilterten Satz.**
+Gleiche Begründung. Hier fällt die Annahme nicht ins Gewicht: auf dem gefilterten
+Satz neu berechnet ergäbe sich derselbe Zeitpunkt (2025-04-22).
+
+**N-A4 — Die Regime-Parameter sind Bot-Konstanten und werden nicht variiert.**
+`BTC_ATR_LENGTH = 22`, `BTC_ATR_MULT = 3,0` unverändert aus
+`regime_filter.py`. Ob der Befund an dieser Regime-Definition hängt, ist offen.
+
+**N-A5 — Der Bootstrap-Seed bleibt gleich** (20260907), damit die Modi
+vergleichbar bleiben und nicht ein Teil des Unterschieds aus einer anderen
+Zufallsziehung stammt.
+
+**N-A6 — Balken vor dem ersten BTC-Regime-Eintrag gelten als gesperrt.**
+Die vorsichtigere Wahl: ohne bekanntes Regime gäbe es live keinen Einstieg. In
+der Praxis liegen diese Balken vor dem Warmup und sind wirkungslos.
+
+---
+
+## N8. Rückwirkung auf PR #18 und PR #21 (Teil B der Aufgabe)
+
+Die punktuellen Korrekturen liegen in den jeweiligen Studien-Verzeichnissen
+(`research/volatility_scaled_sizing/NACHTRAG_REGIMEFILTER.md` bzw.
+`research/trailing_stops/NACHTRAG_REGIMEFILTER.md`) und stützen sich auf **exakt
+dieselbe gefilterte Trade-Grundlage** wie dieser Nachtrag — dieselben 233 bzw.
+265 Trades, dieselbe Baseline 49,03 % / −16,29 % / 3,01. Konsistenz ist damit
+nicht behauptet, sondern konstruktiv gegeben.
+
+---
+
+## N9. Neue und geänderte Dateien
+
+| Datei | Rolle |
+|---|---|
+| `regime.py` | **neu** — Filter über die unveränderten Bot-Funktionen, beide Anwendungsarten |
+| `compare_modes.py` | **neu** — Gegenüberstellung der drei Modi + Zerlegung der Drawdown-Reduktion |
+| `run_deepdive.py` | erweitert um `--regime`; Vorgabe `off` reproduziert die Erstfassung in allen 2171 Feldern bitgenau |
+| `verify_reference.py` | erweitert um die Referenzen aus PR #24 und `live_params.py` (jetzt 56/56) |
+| `test_vbc_core.py` | erweitert um Abschnitt 11 zum Regimefilter (jetzt 56 Checks) |
+| `results/vbc_deepdive_posthoc.json`, `..._sequential.json`, `mode_comparison.json` | **neu** |
+
+---
+
+---
+
 ## 0. Entscheidungsgrundlage
 
 *Dieser Abschnitt steht bewusst vorne. Er enthält alles, was jemand braucht, der
