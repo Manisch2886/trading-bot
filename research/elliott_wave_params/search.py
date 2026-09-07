@@ -31,8 +31,13 @@ geoeffnet, und zwar dort, wo es einen sachlichen Grund gibt:
   Aktien-Bot hat "Gewinne laufen lassen" bereits als klar besser
   gemessen (USE_TAKE_PROFIT=False). Fuer den Krypto-Bot ist das nie
   geprueft worden, weil dessen run_backtest kein solches Flag kennt.
-  Ein sehr hohes Fibonacci-Ziel (5.0) ist dort das Aequivalent; ob es
-  wirklich nie erreicht wird, weist share_take_profit_pct aus.
+  Ein unerreichbar hohes Fibonacci-Ziel (100.0) ist dort das
+  Aequivalent. Dass es tatsaechlich nie erreicht wird, ist gemessen und
+  nicht angenommen: test_params.py prueft die Ecken des Suchraums, und
+  share_take_profit_pct steht in jeder Ergebniszeile. Zum Vergleich:
+  bei Fib 5.0 laufen je nach Einstellung noch bis zu 2,8 % der Trades
+  ins Ziel, bei Fib 20.0 noch 0,2 % - beides waere also kein sauberes
+  "kein Ziel".
 
 252 Kombinationen je Fenster und Bot - rund das Siebenfache des alten
 Rasters, aber immer noch klein genug, dass jede einzelne Kombination
@@ -63,7 +68,7 @@ STOP_LOSS_RANGE = {
 
 # (take_profit_fib, use_take_profit) - der Aktien-Bot kann das Ziel
 # nativ abschalten, der Krypto-Bot nicht (siehe Modulkopf).
-NO_TARGET_FIB = 5.0
+NO_TARGET_FIB = 100.0
 TARGET_RANGE = [(fib, True) for fib in (0.236, 0.382, 0.5, 0.618, 1.0)]
 TARGET_RANGE += [(0.236, False)] if engine.SUPPORTS_NO_TP else [(NO_TARGET_FIB, True)]
 

@@ -182,14 +182,23 @@ def main():
         check("Buy-and-Hold berechnet (Bot hat kein eigenes Vergleichsskript)",
               bh is not None, f"{bh['total_return_pct']} % / {bh['max_drawdown_pct']} %")
 
-    # 12 - Ersatz fuer "kein Ziel" beim Krypto-Bot wirkt tatsaechlich
+    # 12 - Ersatz fuer "kein Ziel" beim Krypto-Bot wirkt tatsaechlich.
+    #      Geprueft wird die unguenstigste Ecke des Suchraums: der
+    #      feinste Zigzag erzeugt die kleinsten Impulsbewegungen und
+    #      damit die naechstliegenden Ziele, der weiteste Stop laesst
+    #      die Trades am laengsten laufen.
     if not engine.SUPPORTS_NO_TP:
-        t = engine.collect_trades(full, cached, live["stop_loss_pct"],
-                                   search.NO_TARGET_FIB, True)
-        s = engine.score_trades(t)
+        worst_dev = min(search.DEVIATION_RANGE)
+        waves = engine.waves_for(engine.WINDOW_FULL, full, worst_dev)
+        shares = {}
+        for stop in (min(search.STOP_LOSS_RANGE), max(search.STOP_LOSS_RANGE)):
+            sc = engine.score_trades(
+                engine.collect_trades(full, waves, stop, search.NO_TARGET_FIB, True))
+            shares[stop] = sc["share_take_profit_pct"] if sc else 0.0
         check(f"Fib {search.NO_TARGET_FIB:g} wirkt wie 'kein Ziel'",
-              s["share_take_profit_pct"] == 0.0,
-              f"Take-Profit-Anteil {s['share_take_profit_pct']} % bei {s['num_trades']} Trades")
+              all(v == 0.0 for v in shares.values()),
+              f"Take-Profit-Anteil bei deviation {worst_dev:g} %: "
+              + ", ".join(f"Stop {k:g} % -> {v} %" for k, v in shares.items()))
 
     # 13 - keine Live-Datei angefasst
     diff = subprocess.run(

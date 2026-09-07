@@ -155,15 +155,27 @@ def waves_for(window: str, all_data: dict, deviation_pct: float, use_cache: bool
 
 def collect_trades(all_data: dict, waves: dict, stop_loss_pct: float,
                     take_profit_fib: float, use_take_profit: bool) -> pd.DataFrame:
-    """Wie equity_simulation.collect_all_trades des Bots, nur auf bereits
-    berechneten Wellen. Stop und Ziel gehen wie dort ueber die Modul-
-    variablen von backtest_elliott in dessen unveraendertes run_backtest.
+    """Trades einer Kombination ueber alle Symbole - auf bereits
+    berechneten Wellen, sonst identisch zum Bot. Stop und Ziel gehen wie
+    dort ueber die Modulvariablen von backtest_elliott in dessen
+    unveraendertes run_backtest.
 
-    Sortiert wird mit kind="stable": simulate_portfolio ist bei gleichen
-    Einstiegszeitpunkten reihenfolgeabhaengig (PR #23), und eine
-    instabile Sortierung waere je nach pandas-Version anders. Die
-    Abweichung zur Bot-eigenen Sortierung wird in test_params.py
-    gemessen und ausgewiesen."""
+    ACHTUNG, ZEILENREIHENFOLGE: der Bot benutzt zwei verschiedene.
+    multi_symbol_optimise.evaluate_combination_multi - das Skript, das
+    die Parameterwahl getragen hat - haengt die Symbol-Bloecke einfach
+    aneinander (pd.concat(..., ignore_index=True)) und rechnet seinen
+    Drawdown auf DIESER Reihenfolge. equity_simulation.collect_all_trades
+    sortiert dagegen nach entry_time, bevor die Kapitalsimulation laeuft.
+    Der Unterschied ist nicht klein: beim Aktien-Bot liefert dieselbe
+    Trade-Menge einmal -82,5 % und einmal -259,9 % kumulierten Drawdown.
+
+    Diese Funktion liefert deshalb die Bloecke in Bot-Reihenfolge
+    (Symbol fuer Symbol) - so wie das Optimierungsskript sie sieht -
+    und portfolio() sortiert selbst nach entry_time, so wie die
+    Kapitalsimulation es tut. Beide Bot-Pfade bleiben damit exakt
+    nachgebildet; score_trades weist zusaetzlich den chronologischen
+    Drawdown aus, damit der Unterschied sichtbar bleibt statt
+    stillschweigend in eine Kennzahl einzugehen."""
     bt.STOP_LOSS_PCT = float(stop_loss_pct)
     bt.TAKE_PROFIT_FIB = float(take_profit_fib)
 
@@ -184,7 +196,7 @@ def collect_trades(all_data: dict, waves: dict, stop_loss_pct: float,
     combined = pd.concat(blocks, ignore_index=True)
     combined["entry_time"] = pd.to_datetime(combined["entry_time"])
     combined["exit_time"] = pd.to_datetime(combined["exit_time"])
-    return combined.sort_values("entry_time", kind="stable").reset_index(drop=True)
+    return combined
 
 
 # --------------------------------------------------------------------
@@ -206,19 +218,32 @@ def project_filters() -> dict:
     }
 
 
+def _cum_drawdown(pnl: pd.Series) -> float:
+    cum = pnl.cumsum()
+    return float((cum - cum.cummax()).min())
+
+
 def score_trades(trades: pd.DataFrame) -> dict:
     """Das Bewertungsmass von multi_symbol_optimise - inklusive des dort
     verwendeten Drawdowns auf der KUMULIERTEN PnL-Reihe (nicht auf der
-    Kapitalkurve). Es ist das Mass, das die bisherige Parameterwahl
-    getragen hat; es wird hier unveraendert uebernommen, damit die
-    Ergebnisse mit den frueheren vergleichbar bleiben."""
+    Kapitalkurve) und in der dortigen Zeilenreihenfolge (Symbol-Bloecke,
+    siehe collect_trades). Es ist das Mass, das die bisherige
+    Parameterwahl getragen hat; es wird hier unveraendert uebernommen,
+    damit die Ergebnisse mit den frueheren vergleichbar bleiben.
+
+    Zusaetzlich - und ohne Einfluss auf die Rangfolge - wird derselbe
+    Drawdown auf der CHRONOLOGISCHEN Reihenfolge ausgewiesen. Nur diese
+    beschreibt einen Verlauf, den man tatsaechlich haette erleben
+    koennen; die Symbol-Block-Reihenfolge ist ein Nebenprodukt der
+    Art, wie das Optimierungsskript seine Teilergebnisse aneinanderhaengt."""
     if trades is None or trades.empty:
         return None
     f = project_filters()
     contributing = int(trades["symbol"].nunique())
     avg_return = float(trades["pnl_pct"].mean())
-    cum = trades["pnl_pct"].cumsum()
-    max_dd = float((cum - cum.cummax()).min())
+    max_dd = _cum_drawdown(trades["pnl_pct"])
+    chrono = trades.sort_values("entry_time", kind="stable")
+    max_dd_chrono = _cum_drawdown(chrono["pnl_pct"])
     counts = trades["result"].value_counts()
     passes = (len(trades) >= f["min_trades"]
               and contributing >= f["min_symbols"]
@@ -231,6 +256,9 @@ def score_trades(trades: pd.DataFrame) -> dict:
         "avg_return_pct": round(avg_return, 2),
         "max_drawdown_pct": round(max_dd, 2),
         "robustness_score": robustness_score(avg_return, len(trades), max_dd),
+        "max_drawdown_chronologisch_pct": round(max_dd_chrono, 2),
+        "robustness_score_chronologisch": robustness_score(avg_return, len(trades),
+                                                            max_dd_chrono),
         "share_take_profit_pct": round(float(counts.get("take_profit", 0)) / len(trades) * 100, 1),
         "share_stop_loss_pct": round(float(counts.get("stop_loss", 0)) / len(trades) * 100, 1),
         "besteht_mindestfilter": bool(passes),
@@ -251,6 +279,12 @@ def portfolio(trades: pd.DataFrame, order: pd.Index = None) -> dict:
         return None
     if order is not None:
         trades = trades.loc[order].reset_index(drop=True)
+    else:
+        # wie equity_simulation.collect_all_trades - dort laeuft die
+        # Kapitalsimulation immer auf der chronologisch sortierten Menge.
+        # kind="stable" statt der pandas-Vorgabe, damit gleichzeitige
+        # Einstiege reproduzierbar in derselben Reihenfolge stehen.
+        trades = trades.sort_values("entry_time", kind="stable").reset_index(drop=True)
     if SUPPORTS_POSITION_LIMIT:
         res = es.simulate_portfolio(trades, es.STARTING_CAPITAL, es.ALLOCATION_PCT, MAX_CONCURRENT)
     else:

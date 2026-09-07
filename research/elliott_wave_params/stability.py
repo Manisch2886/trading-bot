@@ -103,6 +103,7 @@ def order_band(trades: pd.DataFrame) -> dict:
         return {"hinweis": "kein Positionslimit - Reihenfolge ohne Einfluss"}
 
     rng = np.random.default_rng(SEED)
+    trades = trades.sort_values("entry_time", kind="stable").reset_index(drop=True)
     groups = trades.groupby("entry_time", sort=False).indices
     ties = sum(1 for idx in groups.values() if len(idx) > 1)
     returns, calmars = [], []
