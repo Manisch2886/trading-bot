@@ -1,0 +1,113 @@
+{
+  "stdout": "Hinweis: GEV deckt nur 888 Tage ab (< 1825 noetig), wird uebersprungen.\nHinweis: SNDK deckt nur 565 Tage ab (< 1825 noetig), wird uebersprungen.\nHinweis: CEG deckt nur 1686 Tage ab (< 1825 noetig), wird uebersprungen.\nOut-of-Sample-Zeitraum: 2023-08-30 00:00:00 bis 2026-09-01 00:00:00\n\nOptimiere auf In-Sample-Daten, um die Parameter zu bestimmen...\nTeste 64 Kombinationen auf 147 Symbolen...\n\n\nVerwendete Parameter (aus In-Sample-Optimierung):\n  Zigzag: 5.0%  |  Stop-Loss: 2.0%  |  Take-Profit Fib: None\n\nSammle Trades im Out-of-Sample-Zeitraum...\n",
+  "mitschnitt": {
+    "bester": {
+      "deviation_pct": 5.0,
+      "stop_loss_pct": 2.0,
+      "take_profit_fib": null,
+      "use_take_profit": false,
+      "num_trades": 372,
+      "num_symbols": 128,
+      "win_rate": 14.2,
+      "total_return_pct": 1002.72,
+      "avg_return_pct": 2.7,
+      "max_drawdown_pct": -51.15,
+      "robustness_score": 1.018
+    },
+    "bester_typen": {
+      "deviation_pct": "float",
+      "stop_loss_pct": "float",
+      "take_profit_fib": "NoneType",
+      "use_take_profit": "bool",
+      "num_trades": "int",
+      "num_symbols": "int",
+      "win_rate": "float",
+      "total_return_pct": "float",
+      "avg_return_pct": "float",
+      "max_drawdown_pct": "float",
+      "robustness_score": "float"
+    },
+    "spalten_dtypes": {
+      "deviation_pct": "float64",
+      "stop_loss_pct": "float64",
+      "take_profit_fib": "object",
+      "use_take_profit": "bool",
+      "num_trades": "int64",
+      "num_symbols": "int64",
+      "win_rate": "float64",
+      "total_return_pct": "float64",
+      "avg_return_pct": "float64",
+      "max_drawdown_pct": "float64",
+      "robustness_score": "float64"
+    },
+    "top5": [
+      {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 2.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 372,
+        "num_symbols": 128,
+        "win_rate": 14.2,
+        "total_return_pct": 1002.72,
+        "avg_return_pct": 2.7,
+        "max_drawdown_pct": -51.15,
+        "robustness_score": 1.018
+      },
+      {
+        "deviation_pct": 4.0,
+        "stop_loss_pct": 8.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 496,
+        "num_symbols": 134,
+        "win_rate": 36.7,
+        "total_return_pct": 2181.02,
+        "avg_return_pct": 4.4,
+        "max_drawdown_pct": -99.49,
+        "robustness_score": 0.985
+      },
+      {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 372,
+        "num_symbols": 128,
+        "win_rate": 19.9,
+        "total_return_pct": 1395.91,
+        "avg_return_pct": 3.75,
+        "max_drawdown_pct": -79.07,
+        "robustness_score": 0.915
+      },
+      {
+        "deviation_pct": 2.0,
+        "stop_loss_pct": 8.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 1228,
+        "num_symbols": 147,
+        "win_rate": 42.6,
+        "total_return_pct": 4989.04,
+        "avg_return_pct": 4.06,
+        "max_drawdown_pct": -156.6,
+        "robustness_score": 0.909
+      },
+      {
+        "deviation_pct": 3.0,
+        "stop_loss_pct": 8.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 767,
+        "num_symbols": 141,
+        "win_rate": 39.9,
+        "total_return_pct": 3327.49,
+        "avg_return_pct": 4.34,
+        "max_drawdown_pct": -132.8,
+        "robustness_score": 0.905
+      }
+    ]
+  },
+  "abbruch": "Traceback (most recent call last):\n  File \"/tmp/oos_g8xu4v54/_laeufer.py\", line 81, in <module>\n    runpy.run_path(os.path.join(bot_dir, \"oos_equity_simulation.py\"),\n  File \"<frozen runpy>\", line 291, in run_path\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/home/user/trading-bot/strategies/elliott_wave_stocks/oos_equity_simulation.py\", line 60, in <module>\n    trades = collect_all_trades(\n             ^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/trading-bot/strategies/elliott_wave_stocks/equity_simulation.py\", line 73, in collect_all_trades\n    trades = get_trades_for_symbol(price_df, deviation_pct, use_take_profit)\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/trading-bot/strategies/elliott_wave_stocks/multi_symbol_optimise.py\", line 105, in get_trades_for_symbol\n    return run_backtest(price_df, impulses, use_take_profit=use_take_profit)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/user/trading-bot/strategies/elliott_wave_stocks/backtest_elliott.py\", line 134, in run_backtest\n    target_price = entry_price + total_move * TAKE_PROFIT_FIB if use_take_profit else float(\"inf\")\n                                 ~~~~~~~~~~~^~~~~~~~~~~~~~~~~\nTypeError: unsupported operand type(s) for *: 'float' and 'NoneType'\n",
+  "kennzahlen": {}
+}

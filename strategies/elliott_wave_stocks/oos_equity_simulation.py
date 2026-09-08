@@ -52,16 +52,36 @@ if __name__ == "__main__":
         exit()
 
     best = train_results.iloc[0]
+    # use_take_profit ist eine eigene Dimension des Suchrasters
+    # (multi_symbol_optimise.py:181) und steht im Ergebnis (:154). Sie wurde
+    # hier frueher NICHT weitergereicht, wodurch collect_all_trades() seinen
+    # Default True nahm - die Out-of-Sample-Pruefung haette also eine andere
+    # Variante validiert als die gewonnene. Tatsaechlich starb sie sogar
+    # daran, siehe die Anmerkung zu take_profit_fib unten.
+    # multi_symbol_walk_forward.py:77 macht es seit jeher richtig; dieser
+    # Aufruf ist bewusst genauso aufgebaut.
+    tp_label = (f"Fib {best['take_profit_fib']}" if best["use_take_profit"]
+                else "KEIN festes Ziel")
     print(f"\nVerwendete Parameter (aus In-Sample-Optimierung):")
     print(f"  Zigzag: {best['deviation_pct']}%  |  Stop-Loss: {best['stop_loss_pct']}%  |  "
-          f"Take-Profit Fib: {best['take_profit_fib']}\n")
+          f"Take-Profit: {tp_label}\n")
 
     print("Sammle Trades im Out-of-Sample-Zeitraum...")
     trades = collect_all_trades(
         test_data,
         deviation_pct=best["deviation_pct"],
         stop_loss_pct=best["stop_loss_pct"],
-        take_profit_fib=best["take_profit_fib"],
+        # take_profit_fib ist None, wenn die Gewinner-Kombination ohne festes
+        # Ziel laeuft (multi_symbol_optimise.py:153). Besteht ausserdem KEINE
+        # Kombination mit Ziel die Mindestfilter - beim Aktien-Bot der Fall -,
+        # bleibt die Spalte object-typisiert und das None ueberlebt bis in
+        # backtest_elliott.py:134, wo es mit einem TypeError multipliziert
+        # wird. Der Ersatzwert ist deshalb kein Schoenheitsfehler, sondern
+        # notwendig; wirkungslos ist er ohnehin, weil das Ziel bei
+        # use_take_profit=False auf unendlich gesetzt wird.
+        take_profit_fib=(best["take_profit_fib"] if best["use_take_profit"]
+                          else 0.236),
+        use_take_profit=best["use_take_profit"],
     )
 
     if trades.empty:
