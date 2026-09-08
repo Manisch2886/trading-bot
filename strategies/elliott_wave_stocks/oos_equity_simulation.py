@@ -112,7 +112,15 @@ if __name__ == "__main__":
     total_return_pct = (result["final_capital"] / STARTING_CAPITAL - 1) * 100
     print(f"Gesamtrendite:           {total_return_pct:.2f}%")
     print(f"Ausgefuehrte Trades:     {result['num_executed']}")
-    print(f"Uebersprungene Trades:   {result['num_skipped']} (nicht genug freies Kapital)")
+    # Der Klammerzusatz nannte frueher pauschal "nicht genug freies Kapital".
+    # Seit das Positionslimit uebergeben wird, ist das die falsche Haelfte der
+    # Wahrheit: simulate_portfolio() ueberspringt einen Trade entweder, weil
+    # das Limit erreicht ist, ODER weil das freie Kapital nicht reicht - und im
+    # gemessenen Lauf war ausnahmslos das Limit der Grund (siehe
+    # research/oos_positionslimit/BERICHT.md). Beide Gruende nennen, statt
+    # einen zu behaupten.
+    print(f"Uebersprungene Trades:   {result['num_skipped']} "
+          f"(Positionslimit {MAX_CONCURRENT_POSITIONS} erreicht oder zu wenig freies Kapital)")
 
     max_dd = calculate_max_drawdown(result["equity_curve"], STARTING_CAPITAL)
     print(f"Max Drawdown (Kapital):  {max_dd:.2f}%")

@@ -1,0 +1,38 @@
+{
+  "stdout": "Hinweis: GEV deckt nur 888 Tage ab (< 1825 noetig), wird uebersprungen.\nHinweis: SNDK deckt nur 565 Tage ab (< 1825 noetig), wird uebersprungen.\nHinweis: CEG deckt nur 1686 Tage ab (< 1825 noetig), wird uebersprungen.\nOut-of-Sample-Zeitraum: 2023-08-30 00:00:00 bis 2026-09-01 00:00:00\n\nOptimiere auf In-Sample-Daten, um die Parameter zu bestimmen...\nTeste 64 Kombinationen auf 147 Symbolen...\n\n\nVerwendete Parameter (aus In-Sample-Optimierung):\n  Zigzag: 5.0%  |  Stop-Loss: 2.0%  |  Take-Profit: KEIN festes Ziel\n\nSammle Trades im Out-of-Sample-Zeitraum...\n128 Trades gefunden.\n\n=======================================================\nOUT-OF-SAMPLE PORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              17,239.11\nGesamtrendite:           72.39%\nAusgefuehrte Trades:     114\nUebersprungene Trades:   14 (nicht genug freies Kapital)\nMax Drawdown (Kapital):  -9.69%\n\nGespeichert als: <TEMP>/results/oos_equity_curve.csv\n",
+  "mitschnitt": {
+    "bester": {
+      "deviation_pct": 5.0,
+      "stop_loss_pct": 2.0,
+      "take_profit_fib": null,
+      "use_take_profit": false,
+      "num_trades": 372,
+      "num_symbols": 128,
+      "win_rate": 14.2,
+      "total_return_pct": 1002.72,
+      "avg_return_pct": 2.7,
+      "max_drawdown_pct": -51.15,
+      "robustness_score": 1.018
+    },
+    "limit_uebergeben": 8,
+    "trades_gesamt": 128,
+    "startkapital": 10000.0,
+    "allokation": 0.1,
+    "endkapital": 17239.11,
+    "ausgefuehrt": 114,
+    "uebersprungen": 14,
+    "max_dd": -9.69
+  },
+  "abbruch": null,
+  "kennzahlen": {
+    "rendite_pct": 72.39,
+    "max_drawdown_pct": -9.69,
+    "calmar": 7.47,
+    "endkapital": 17239.11,
+    "trades_gesamt": 128,
+    "ausgefuehrt": 114,
+    "uebersprungen": 14,
+    "limit_uebergeben": 8
+  },
+  "trades_hash": "277c1c2324422f6060e4b052a73946a0ddbee1564abda30c84310e93e090a868"
+}
