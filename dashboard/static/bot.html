@@ -15,6 +15,7 @@
 <header>
   <a href="/" aria-label="Zurück zur Übersicht">‹ Übersicht</a>
   <h1 id="titel">Bot</h1>
+  <span class="ladeanzeige" id="ladeanzeige" role="status" aria-live="polite" hidden></span>
 </header>
 
 <main>
@@ -151,12 +152,16 @@ erstesLaden();
 // auch hier ungetaktet - er aendert sich erst, wenn ein Trade schliesst.
 if (name) {
   autoAktualisierung(ladeDetail, AKTUALISIERUNG_DATEN_MS,
-                     (fehler) => markiereAktualisierung("titel", fehler));
+                     (zustand, fehler) => markiereAktualisierung("titel", zustand, fehler),
+                     "Aktualisiere …");
   autoAktualisierung(ladeMitKursen, AKTUALISIERUNG_KURSE_MS,
-                     (fehler) => {
-                       if (fehler > 0) setzeHinweis("Live-Kurse gerade nicht erreichbar - "
-                                                     + "angezeigt sind die zuletzt geladenen Werte.");
-                     });
+                     (zustand, fehler) => {
+                       if (zustand === AKTUALISIERUNG_VERALTET) {
+                         setzeHinweis("Live-Kurse gerade nicht erreichbar - "
+                                       + "angezeigt sind die zuletzt geladenen Werte.");
+                       }
+                     },
+                     "Kurse werden geladen …");
 }
 
 if ("serviceWorker" in navigator) {

@@ -31,6 +31,15 @@ const FARBEN = ["#6aa9e0", "#46b877", "#e0a96a", "#c78ae0", "#e06c6c",
 const AKTUALISIERUNG_DATEN_MS = 60 * 1000;        // Datenbank-Daten: jede Minute
 const AKTUALISIERUNG_KURSE_MS = 150 * 1000;       // Live-Kurse: alle 2,5 Minuten
 
+/* Die drei Zustaende einer automatischen Aktualisierung. Bewusst genau
+   drei und bewusst sich gegenseitig ausschliessend: die Anzeige darf nie
+   gleichzeitig "laedt gerade" und "veraltet" behaupten. Welcher Zustand
+   gilt, entscheidet allein autoAktualisierung() - es gibt keine zweite
+   Stelle, die an denselben Klassen dreht. */
+const AKTUALISIERUNG_NORMAL   = "normal";     // Daten frisch, nichts laeuft
+const AKTUALISIERUNG_LAEDT    = "laedt";      // Anfrage unterwegs
+const AKTUALISIERUNG_VERALTET = "veraltet";   // letzter Versuch fehlgeschlagen
+
 /* Mindestabstand zwischen zwei Laeufen derselben Aufgabe. Schuetzt davor,
    dass haeufiges Wechseln zwischen Apps auf dem iPhone (jedes
    Sichtbarwerden loest sofort einen Lauf aus) eine Anfrage-Lawine
@@ -182,12 +191,21 @@ function punkteAus(liste) {
    3. FEHLER LOESCHEN NICHTS. Schlaegt ein Lauf fehl, bleiben die zuletzt
       erfolgreich angezeigten Daten stehen. Sichtbar wird das nur an einer
       dezenten Markierung an der Stand-Anzeige; beim naechsten Takt wird
-      es einfach erneut versucht. */
+      es einfach erneut versucht.
+   4. GENAU EIN ZUSTAND. Jeder Lauf durchlaeuft normal -> laedt -> normal
+      bzw. -> veraltet. Der Wechsel passiert an genau einer Stelle (hier),
+      nicht in einer zweiten, parallelen Anzeige-Logik. Wer wissen will,
+      was angezeigt wird, muss nur diese Funktion lesen. */
 
-function autoAktualisierung(ladefunktion, intervallMs, beiFehlerstatus) {
+function autoAktualisierung(ladefunktion, intervallMs, beiZustand, beschriftung) {
   let laeuft = false;
   let letzterStart = Date.now();   // die Seite hat gerade selbst geladen
   let fehlerInFolge = 0;
+  const aufgabe = beschriftung || "Aktualisiere \u2026";
+
+  function melde(zustand) {
+    if (beiZustand) beiZustand(zustand, fehlerInFolge);
+  }
 
   async function ausfuehren(grund) {
     if (laeuft) return;                                   // (2)
@@ -202,15 +220,21 @@ function autoAktualisierung(ladefunktion, intervallMs, beiFehlerstatus) {
     if (grund === "sichtbar" && Date.now() - letzterStart < intervallMs) return;
     laeuft = true;
     letzterStart = Date.now();
+    // (4) Der Zustand wechselt VOR dem await auf LAEDT und im finally
+    // zurueck - dadurch gibt es keinen Pfad, auf dem die Anzeige haengen
+    // bleibt: auch ein geworfener Fehler kommt am finally vorbei.
+    ladeanzeigeAn(aufgabe);
+    melde(AKTUALISIERUNG_LAEDT);
     try {
       await ladefunktion(grund);
       fehlerInFolge = 0;
-      if (beiFehlerstatus) beiFehlerstatus(0);
+      melde(AKTUALISIERUNG_NORMAL);
     } catch (e) {                                          // (3)
       fehlerInFolge += 1;
-      if (beiFehlerstatus) beiFehlerstatus(fehlerInFolge, e);
+      melde(AKTUALISIERUNG_VERALTET, e);
     } finally {
       laeuft = false;
+      ladeanzeigeAus(aufgabe);
     }
   }
 
@@ -225,19 +249,70 @@ function autoAktualisierung(ladefunktion, intervallMs, beiFehlerstatus) {
   return ausfuehren;
 }
 
-/* Dezente Rueckmeldung an der "Stand"-Anzeige: nach einem fehlgeschlagenen
-   Versuch bekommt sie eine gedaempfte Markierung und einen Tooltip, mehr
-   nicht. Kein Banner, keine Fehlermeldung ueber der Seite - die angezeigten
-   Zahlen sind ja weiterhin gueltig, nur eben nicht mehr taufrisch. */
-function markiereAktualisierung(elementId, fehlerInFolge) {
+/* Dezente Rueckmeldung an der "Stand"-Anzeige (auf der Detailseite am
+   Titel). Sie traegt IMMER GENAU EINEN der drei Zustaende - beide Klassen
+   werden zuerst entfernt, dann wird hoechstens eine gesetzt. Damit ist ein
+   Widerspruch ("blass wegen veraltet" UND "pulsiert wegen laedt")
+   strukturell ausgeschlossen, nicht nur nach Absprache.
+
+   Waehrend eines Versuchs NACH einem Fehlschlag gewinnt "laedt": das ist
+   die aktuellere Aussage ("gerade passiert etwas"). Damit dabei nichts
+   unter den Tisch faellt, nennt der Tooltip in diesem Fall beides. */
+function markiereAktualisierung(elementId, zustand, fehlerInFolge) {
   const feld = document.getElementById(elementId);
   if (!feld) return;
-  if (fehlerInFolge > 0) {
+
+  feld.classList.remove("laedt", "veraltet");
+
+  if (zustand === AKTUALISIERUNG_LAEDT) {
+    feld.classList.add("laedt");
+    feld.title = fehlerInFolge > 0
+      ? `Aktualisierung laeuft - der letzte Versuch war fehlgeschlagen (${fehlerInFolge}x).`
+      : "Aktualisierung laeuft \u2026";
+  } else if (zustand === AKTUALISIERUNG_VERALTET) {
     feld.classList.add("veraltet");
     feld.title = `Letzte Aktualisierung fehlgeschlagen (${fehlerInFolge}x). ` +
                  `Angezeigt werden die zuletzt erfolgreich geladenen Daten.`;
   } else {
-    feld.classList.remove("veraltet");
     feld.title = "";
   }
+}
+
+/* --- Ladeanzeige im Kopfbereich --------------------------------------------
+   Ein einziges kleines Element je Seite (#ladeanzeige), das nennt, WAS
+   gerade laeuft. Warum eine Liste und nicht ein blosses An/Aus: die beiden
+   Takte sind unabhaengig und koennen sich ueberlappen - der 60-Sekunden-Takt
+   kann anlaufen, waehrend die Kursabfrage noch unterwegs ist (die darf bis
+   zu 12 Sekunden dauern). Ein einfaches Flag wuerde dann beim Ende der
+   kurzen Aufgabe auch die noch laufende lange ausblenden, und der Nutzer
+   saehe waehrend der langsamsten Abfrage ueberhaupt nichts.
+
+   Deshalb: jede Aufgabe meldet sich mit ihrer Beschriftung an und wieder
+   ab; angezeigt wird, was gerade angemeldet ist. Ein Zaehler je
+   Beschriftung ist nicht noetig, weil autoAktualisierung() ueberlappende
+   Laeufe DERSELBEN Aufgabe ohnehin verhindert.
+
+   aria-live="polite" am Element sorgt dafuer, dass Screenreader die
+   Aenderung vorlesen, ohne den Nutzer mitten im Satz zu unterbrechen. */
+const laufendeAufgaben = new Set();
+
+function ladeanzeigeAn(beschriftung) {
+  laufendeAufgaben.add(beschriftung);
+  zeichneLadeanzeige();
+}
+
+function ladeanzeigeAus(beschriftung) {
+  laufendeAufgaben.delete(beschriftung);
+  zeichneLadeanzeige();
+}
+
+function zeichneLadeanzeige() {
+  const feld = document.getElementById("ladeanzeige");
+  if (!feld) return;
+  const text = [...laufendeAufgaben].join(" \u00b7 ");
+  feld.textContent = text;
+  feld.title = text;
+  // hidden statt display:none im Stylesheet - so bleibt der Zustand am
+  // Element ablesbar und die Animation laeuft nicht unsichtbar weiter.
+  feld.hidden = laufendeAufgaben.size === 0;
 }
