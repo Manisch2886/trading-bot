@@ -112,6 +112,24 @@ def _mit_ergebnis(trades, startkapital, allokation, *a, **k):
 
 equity_simulation.simulate_portfolio = _mit_ergebnis
 
+# Modus "gegenprobe": beantwortet die Frage, was die fehlerhafte Fassung
+# GEMELDET haette, waere sie nicht am None abgestuerzt. Sie ignorierte
+# use_take_profit und nahm den Default True - also wird hier genau das
+# erzwungen, mit dem Live-Fibonacci-Ziel als Ersatz fuer das None. Kein
+# Zustand, den es je gab; nur die Vergleichszahl, die sonst fehlt.
+if os.environ.get("GEGENPROBE") == "1":
+    _echtes_sammeln = equity_simulation.collect_all_trades
+
+    def _erzwinge_take_profit(all_data, deviation_pct, stop_loss_pct,
+                               take_profit_fib, use_take_profit=True):
+        mitschnitt["erzwungen"] = {"take_profit_fib": 0.236,
+                                    "use_take_profit": True}
+        return _echtes_sammeln(all_data, deviation_pct, stop_loss_pct,
+                                0.236, True)
+
+    equity_simulation.collect_all_trades = _erzwinge_take_profit
+
+
 # Ein Abbruch ist hier ein moegliches ERGEBNIS, kein Testfehler: die
 # fehlerhafte Fassung stirbt an genau der Stelle, um die es geht. Der
 # Mitschnitt (allen voran der In-Sample-Gewinner) muss deshalb auch dann
@@ -136,14 +154,17 @@ print(json.dumps({"stdout": puffer.getvalue().replace(temp_dir, "<TEMP>"),
 '''
 
 
-def lauf() -> dict:
+def lauf(modus: str = "normal") -> dict:
     with tempfile.TemporaryDirectory(prefix="oos_") as temp_dir:
         skript = os.path.join(temp_dir, "_laeufer.py")
         with open(skript, "w", encoding="utf-8") as f:
             f.write(LAEUFER)
+        umgebung = dict(os.environ)
+        if modus == "gegenprobe":
+            umgebung["GEGENPROBE"] = "1"
         fertig = subprocess.run(
             [sys.executable, skript, BOT_DIR, temp_dir, SHARED, STUBS],
-            capture_output=True, text=True, timeout=7200)
+            capture_output=True, text=True, timeout=7200, env=umgebung)
     if "---OOS-JSON---" not in fertig.stdout:
         return {"fehler": fertig.stdout[-3000:] + "\n" + fertig.stderr[-3000:]}
     return json.loads(fertig.stdout.split("---OOS-JSON---", 1)[1])
@@ -169,14 +190,14 @@ def kennzahlen(m: dict) -> dict:
 
 
 def main():
-    if len(sys.argv) < 2 or sys.argv[1] not in ("vorher", "nachher"):
+    if len(sys.argv) < 2 or sys.argv[1] not in ("vorher", "nachher", "gegenprobe"):
         print(__doc__)
         sys.exit(1)
     phase = sys.argv[1]
 
     print(f"OOS-Lauf ({phase}) laeuft - das dauert einige Minuten ...",
           flush=True)
-    ergebnis = lauf()
+    ergebnis = lauf(phase)
     if "fehler" in ergebnis:
         print("LAEUFER-FEHLER:\n" + ergebnis["fehler"])
         sys.exit(1)
