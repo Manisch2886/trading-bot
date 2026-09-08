@@ -40,17 +40,26 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 import backtest_elliott
 
-STARTING_CAPITAL = 10_000.0
-ALLOCATION_PCT = 0.10  # Anteil des aktuellen Kapitals pro Trade
-MAX_CONCURRENT_POSITIONS = 8  # begrenzt Klumpenrisiko bei breiten Marktbewegungen -
-                                # bei 100 Aktien steigt die Chance auf viele gleichzeitige
-                                # Signale deutlich, siehe Diskussion beim T3/SuperTrend-Bot
+# Die Strategie-Parameter kommen DIREKT aus live_params.py - derselben Datei,
+# aus der auch forward_test.py liest (Muster aus PR #31). Vorher standen sie
+# hier ein zweites Mal als eigene Konstanten, und genau bei diesem Bot ist die
+# Doppelfuehrung bereits auseinandergelaufen: USE_TAKE_PROFIT wurde am
+# 2026-09-03 live auf False gesetzt ("Gewinne laufen lassen"), hier blieb es
+# auf True stehen. Ein Backtest von hier beschrieb damit eine Strategie, die
+# so nicht mehr laeuft (Sync-Check, PR #24). Der Import schliesst das
+# strukturell: es gibt nur noch EINE Quelle. live_params.py importiert selbst
+# nichts, ein Importzyklus ist ausgeschlossen.
+#
+# MAX_CONCURRENT_POSITIONS = 8 begrenzt das Klumpenrisiko bei breiten
+# Marktbewegungen - bei 150 Aktien steigt die Chance auf viele gleichzeitige
+# Signale deutlich (siehe Diskussion beim T3/SuperTrend-Bot).
+from live_params import (DEVIATION_PCT, STOP_LOSS_PCT, TAKE_PROFIT_FIB,
+                          USE_TAKE_PROFIT, MAX_CONCURRENT_POSITIONS)
 
-# Beste Kombination aus der letzten Multi-Symbol-Optimierung (nach Walk-Forward anpassen!)
-DEVIATION_PCT = 5.0
-STOP_LOSS_PCT = 3.0
-TAKE_PROFIT_FIB = 0.236
-USE_TAKE_PROFIT = True  # False = kein festes Kursziel, Gewinne laufen bis Stop/max. Haltedauer
+STARTING_CAPITAL = 10_000.0
+# ALLOCATION_PCT steht bei diesem Bot NICHT in live_params.py - eine
+# dokumentierte Luecke (Sync-Check, PR #24), kein Versehen dieser Aenderung.
+ALLOCATION_PCT = 0.10  # Anteil des aktuellen Kapitals pro Trade
 
 
 def collect_all_trades(all_data: dict, deviation_pct: float, stop_loss_pct: float,
