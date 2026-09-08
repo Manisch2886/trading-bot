@@ -91,48 +91,73 @@ function zeichneUebersicht(daten) {
   document.getElementById("stand").textContent = "Stand " + zeit(daten.abgerufen_am);
 }
 
-async function laden() {
+// Drei getrennte Ladeschritte, damit die automatische Aktualisierung
+// jeden einzeln wiederholen kann - der teure Kursabruf muss nicht im
+// selben Takt laufen wie die Datenbankabfrage.
+
+async function ladeUebersicht() {
+  zeichneUebersicht(await hole("/api/portfolio"));
+  zeigeFehler("");
+}
+
+async function ladeVerlauf() {
+  const verlauf = await hole("/api/verlauf");
+  const reihen = [{ name: "Alle Bots zusammen", farbe: "#ffffff",
+                     punkte: punkteAus(verlauf.gesamt) }];
+  Object.entries(verlauf.bots).forEach(([name, kurve], i) => {
+    reihen.push({ name: kurve.anzeigename, farbe: FARBEN[i % FARBEN.length],
+                   punkte: punkteAus(kurve.punkte) });
+  });
+  linienDiagramm(document.getElementById("diagramm"), reihen);
+  legende(document.getElementById("legende"), reihen);
+  document.getElementById("verlaufhinweis").textContent = verlauf.hinweis;
+}
+
+async function ladeLiveKurse() {
+  // Die langsame, netzabhängige Fassung. Läuft bewusst getrennt von der
+  // Übersicht, damit eine hängende Kursabfrage die Zahlen nie blockiert.
+  const mitKursen = await hole("/api/portfolio?live=1");
+  mitKursen.bots.forEach(bot => {
+    const feld = document.getElementById("aktuell-" + bot.name);
+    if (feld) feld.innerHTML = prozent(bot.aktuelles_gesamtergebnis);
+  });
+  setzeHinweis(mitKursen.kurs_hinweis);
+}
+
+async function erstesLaden() {
   try {
-    // Schritt 1: schnelle Fassung ohne Netzwerkzugriff sofort anzeigen.
-    zeichneUebersicht(await hole("/api/portfolio"));
+    await ladeUebersicht();
   } catch (e) {
     zeigeFehler("Übersicht konnte nicht geladen werden: " + e.message);
     return;
   }
-
-  // Schritt 2: Verlaufskurven.
   try {
-    const verlauf = await hole("/api/verlauf");
-    const reihen = [{ name: "Alle Bots zusammen", farbe: "#ffffff",
-                       punkte: punkteAus(verlauf.gesamt) }];
-    Object.entries(verlauf.bots).forEach(([name, kurve], i) => {
-      reihen.push({ name: kurve.anzeigename, farbe: FARBEN[i % FARBEN.length],
-                     punkte: punkteAus(kurve.punkte) });
-    });
-    linienDiagramm(document.getElementById("diagramm"), reihen);
-    legende(document.getElementById("legende"), reihen);
-    document.getElementById("verlaufhinweis").textContent = verlauf.hinweis;
+    await ladeVerlauf();
   } catch (e) {
     document.getElementById("diagramm").innerHTML =
       '<p class="gedaempft">Verlauf nicht verfügbar.</p>';
   }
-
-  // Schritt 3: die langsame, netzabhängige Fassung mit Live-Kursen
-  // nachladen und die Spalte "Aktuell" nachtragen. Läuft bewusst NACH
-  // der Anzeige, damit eine hängende Kursabfrage die Seite nie blockiert.
   try {
-    const mitKursen = await hole("/api/portfolio?live=1");
-    mitKursen.bots.forEach(bot => {
-      const feld = document.getElementById("aktuell-" + bot.name);
-      if (feld) feld.innerHTML = prozent(bot.aktuelles_gesamtergebnis);
-    });
-    setzeHinweis(mitKursen.kurs_hinweis);
+    await ladeLiveKurse();
   } catch (e) {
     setzeHinweis("Live-Kurse nicht verfügbar: " + e.message);
   }
 }
 
-laden();
+erstesLaden();
+
+// Ab hier laufen die beiden Takte. Der Verlauf wird bewusst NICHT
+// mitgetaktet: er ändert sich erst, wenn ein Trade schliesst, und ein
+// neu gezeichnetes Diagramm alle 60 Sekunden wäre Unruhe ohne Nutzen.
+// Er kommt beim nächsten Öffnen der Seite frisch.
+autoAktualisierung(ladeUebersicht, AKTUALISIERUNG_DATEN_MS,
+                   (fehler) => markiereAktualisierung("stand", fehler));
+autoAktualisierung(ladeLiveKurse, AKTUALISIERUNG_KURSE_MS,
+                   (fehler, e) => {
+                     if (fehler > 0) setzeHinweis("Live-Kurse gerade nicht erreichbar - "
+                                                   + "angezeigt sind die zuletzt geladenen Werte.");
+                   });
+
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/sw.js").catch(() => {});
 }

@@ -19,6 +19,7 @@ Nutzung:  python3 dashboard/test_dashboard.py
 import hashlib
 import json
 import os
+import re
 import socket
 import sqlite3
 import sys
@@ -475,6 +476,96 @@ def teste_nur_lesend(app, basis, pruefsummen_vorher, db_dateien):
           "Pruefsummen weichen ab" if nachher != pruefsummen_vorher else "")
 
 
+def ohne_kommentare(quelltext: str) -> str:
+    """Entfernt Kommentare aus JS/CSS/HTML, damit die Quelltext-Pruefungen
+    unten wirklich den CODE pruefen und nicht den Fliesstext daneben.
+
+    Genau diese Verwechslung hat den Test zunaechst falsch anschlagen
+    lassen: app.js erklaert in einem Kommentar, warum bewusst KEIN
+    location.reload() benutzt wird - die reine Textsuche sah darin einen
+    Aufruf. Umgekehrt koennte ein Kommentar auch faelschlich eine
+    Zusicherung erfuellen ("hier stand mal fehlerInFolge += 1").
+    Beides ist mit dieser Vorstufe ausgeschlossen.
+
+    Bewusst simpel gehalten (kein echter Parser): Zeichenketten, die '//'
+    oder '/*' enthalten, gibt es in diesen Dateien nicht - fuer die
+    Zusicherungen hier reicht das. Das ':' vor '//' schuetzt trotzdem
+    schon einmal URLs wie https://.
+    """
+    quelltext = re.sub(r"<!--.*?-->", " ", quelltext, flags=re.S)
+    quelltext = re.sub(r"/\*.*?\*/", " ", quelltext, flags=re.S)
+    quelltext = re.sub(r"(?<!:)//[^\n]*", " ", quelltext)
+    return quelltext
+
+
+def teste_automatische_aktualisierung():
+    """Quelltext-Pruefungen zur periodischen Aktualisierung.
+
+    Das eigentliche Zeitverhalten (Takte, Pause im Hintergrund) laesst sich
+    ohne Browser nicht sinnvoll nachstellen - es wurde im Chromium
+    beobachtet und im PR dokumentiert. Was hier geprueft wird, sind die
+    Zusicherungen, die man beim Umbau versehentlich verlieren koennte."""
+    print("\n8) Automatische Aktualisierung (Quelltext)")
+
+    statisch = os.path.join(DIR, "static")
+
+    def lies(datei):
+        return ohne_kommentare(open(os.path.join(statisch, datei)).read())
+
+    app_js = lies("app.js")
+    index = lies("index.html")
+    detail = lies("bot.html")
+    css = lies("style.css")
+
+    check("Beide Takte stehen als Konstante am Dateianfang von app.js",
+          "const AKTUALISIERUNG_DATEN_MS" in app_js
+          and "const AKTUALISIERUNG_KURSE_MS" in app_js)
+    check("Die Kurse werden seltener geholt als die Datenbank-Daten "
+          "(externe API-Aufrufe sind teurer)",
+          app_js.index("AKTUALISIERUNG_DATEN_MS = 60") > 0
+          and "AKTUALISIERUNG_KURSE_MS = 150" in app_js)
+
+    check("Die Aktualisierung haengt an document.visibilityState",
+          "document.visibilityState" in app_js
+          and 'addEventListener("visibilitychange"' in app_js)
+    check("Ueberlappende Laeufe werden verhindert",
+          "if (laeuft) return;" in app_js)
+    check("Ein fehlgeschlagener Lauf wird gezaehlt statt die Anzeige zu leeren",
+          "fehlerInFolge += 1" in app_js)
+    check("zeigeFehler() loescht bei leerem Text, statt eine leere Box zu zeigen",
+          'text ? `<div class="hinweis">${text}</div>` : ""' in app_js)
+    check("Es gibt eine dezente Markierung fuer veraltete Daten",
+          "classList.add(\"veraltet\")" in app_js and ".veraltet" in css)
+
+    # Regressionstest fuer die Vorstufe selbst: eine Zusicherung darf
+    # weder von einem Kommentar erfuellt noch von einem Kommentar
+    # gebrochen werden koennen.
+    zeilenkommentar = ohne_kommentare("a();  // location.reload()\nb();")
+    check("ohne_kommentare() blendet Zeilenkommentare aus",
+          "reload" not in zeilenkommentar
+          and "a();" in zeilenkommentar and "b();" in zeilenkommentar,
+          detail=repr(zeilenkommentar))
+    check("ohne_kommentare() blendet Block- und HTML-Kommentare aus",
+          "reload" not in ohne_kommentare("/* location.reload() */ a();")
+          and "reload" not in ohne_kommentare("<!-- location.reload() --> a();"))
+    check("ohne_kommentare() laesst echten Code stehen",
+          "location.reload()" in ohne_kommentare("if (x) location.reload();"))
+
+    # Die wichtigste Zusicherung: die Seite wird nie neu geladen, sondern
+    # nur ihre Daten erneuert.
+    for name, quelle in (("app.js", app_js), ("index.html", index), ("bot.html", detail)):
+        check(f"{name} laedt die Seite nicht neu (kein location.reload)",
+              "location.reload" not in quelle)
+
+    for name, quelle in (("index.html", index), ("bot.html", detail)):
+        check(f"{name} taktet die Datenbank-Daten",
+              "autoAktualisierung(" in quelle and "AKTUALISIERUNG_DATEN_MS" in quelle)
+        check(f"{name} taktet die Live-Kurse getrennt",
+              "AKTUALISIERUNG_KURSE_MS" in quelle)
+        check(f"{name} ruft beim ersten Laden dieselben Ladefunktionen auf",
+              "erstesLaden()" in quelle)
+
+
 def main():
     print("Selbsttests des Dashboards")
 
@@ -510,6 +601,7 @@ def main():
             teste_live_kurse(server.basis)
             teste_frontend(server.basis)
             teste_nur_lesend(app, server.basis, vorher, db_dateien)
+        teste_automatische_aktualisierung()
     finally:
         monitor.BASE_DIR, monitor.STRATEGIES_DIR, monitor.LOGS_DIR, monitor.requests = alt
 
