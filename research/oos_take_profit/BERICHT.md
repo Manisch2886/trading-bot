@@ -145,6 +145,14 @@ durchgelaufen; es gibt also nichts, wovon der korrigierte Wert abweichen könnte
 Frage „wie stark weicht er ab" hat für diesen Bot keine Antwort in Zahlen — und das
 ist selbst der Befund.
 
+Eine Gegenprobe hätte die fehlende Vergleichszahl liefern können — derselbe Lauf mit
+erzwungenem `use_take_profit=True` und Fib 0,236 als Ersatz für das `None`, also das,
+was die fehlerhafte Fassung *gemeldet hätte*, wäre sie nicht abgestürzt. Der Modus
+steckt als `oos_lauf.py gegenprobe` im Werkzeug. Der Lauf wurde **bewusst abgebrochen**:
+er beantwortet eine hypothetische Frage, die die Aufgabe so nicht stellt, und rechtfertigt
+keinen weiteren unbeaufsichtigten Hintergrundlauf. Wer die Zahl braucht, startet ihn
+mit einem Befehl nach.
+
 **Der Plausibilitätscheck fällt dagegen sehr deutlich aus.** Von 64 geprüften
 Kombinationen besteht auf dem In-Sample-Fenster **keine einzige mit festem Kursziel**
 die Mindestfilter (`MIN_TRADES=150`, `MIN_SYMBOLS_CONTRIBUTING=22`,
