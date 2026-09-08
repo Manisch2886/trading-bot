@@ -209,7 +209,7 @@ Gemeinsames Muster in jedem der drei `strategies/<name>/`-Ordner (Dateinamen var
 | `equity_simulation.py` | Event-basierte Portfolio-Simulation (echtes Kapital, Positionsgröße, ggf. Positionslimit) statt naiver Summierung |
 | `oos_equity_simulation.py` | (nur Krypto-Varianten) Equity-Simulation beschränkt auf Out-of-Sample-Zeitraum |
 | `forward_test.py` | **Live-Skript**: prüft offene Positionen, sucht neue Signale, schreibt in DB — das läuft per Cron |
-| `daily_summary_email.py` | Liest DB, baut Zusammenfassung, ruft Agent 1 + Agent 3 auf, verschickt Mail — läuft täglich per Cron |
+| `daily_summary_email.py` | Liest DB, baut Zusammenfassung, ruft Agent 1 + Agent 3 auf, verschickt den Bericht — **Cronjob seit 2026-09-08 deaktiviert** (Zahlen jederzeit über `/status`/Dashboard abrufbar; Skript bleibt manuell lauffähig, Cron-Zeile nur auskommentiert) |
 | `live_params.py` | Aktuell aktive, validierte Parameter (siehe Abschnitt 4) |
 | `agent_optimise.py` | Nutzt Agent 2 (`param_search_agent.py`) als Alternative zum vollen Grid-Search |
 | `quarterly_review.py` | Vierteljährlicher automatisierter Review-Prozess (siehe Abschnitt 6.4) |
@@ -226,7 +226,7 @@ Gemeinsames Muster in jedem der drei `strategies/<name>/`-Ordner (Dateinamen var
 
 ### 6.1 Agent 1 — Tägliche Einordnung (`daily_interpreter.py`)
 - Modell: **Haiku 4.5** (günstig, für einfache Zusammenfassung ausreichend)
-- Läuft: automatisch bei jedem `daily_summary_email.py`-Aufruf (3×/Tag über alle Bots)
+- Läuft: automatisch bei jedem `daily_summary_email.py`-Aufruf — **seit 2026-09-08 nicht mehr automatisch**, da dessen Cronjob deaktiviert wurde (nur noch bei manuellem Aufruf)
 - Funktion: `generate_interpretation(strategy_name, summary_text)` → 2-4 Sätze sachliche Einordnung der Tageszahlen
 - Kosten: ~0,001-0,002 $/Aufruf, geschätzt unter 0,20 €/Monat gesamt
 - Kein Handlungsbedarf für den Nutzer — reine Lese-Information in der E-Mail
@@ -241,7 +241,7 @@ Gemeinsames Muster in jedem der drei `strategies/<name>/`-Ordner (Dateinamen var
 
 ### 6.3 Agent 3 — Marktkontext (`market_context_agent.py`)
 - Modell: **Sonnet 5** + `web_search_20250305`-Tool (server-seitige Websuche über die Anthropic-API)
-- Läuft: automatisch bei `daily_summary_email.py`, **aber nur wenn der jeweilige Bot offene Positionen hat** (sonst übersprungen, keine Kosten)
+- Läuft: automatisch bei `daily_summary_email.py`, **aber nur wenn der jeweilige Bot offene Positionen hat** (sonst übersprungen, keine Kosten) — **seit 2026-09-08 nicht mehr automatisch**, da dessen Cronjob deaktiviert wurde; dieser Agent war der teurere der beiden täglichen Aufrufe
 - Funktion: `get_market_context(symbols, context_label)` → 3-5 Sätze zu aktuellen Nachrichten/Ereignissen zu den Symbolen mit offenen Positionen
 - Kosten: ~0,02-0,03 $ pro Auslösung (inkl. Websuch-Gebühr), 0 € an Tagen ohne offene Positionen
 - **Bewusst rein informativ** — blockiert oder löst niemals Trades aus (explizite Design-Entscheidung, da eine validierte "News-Veto"-Logik ein eigenständiges, noch nicht getestetes Feature wäre)
