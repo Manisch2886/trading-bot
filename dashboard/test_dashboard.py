@@ -650,6 +650,71 @@ def teste_zustandsmaschine():
           detail=fertig.stderr.strip()[-300:] if fertig.returncode else "")
 
 
+def teste_zeitstempel(basis):
+    """Die Zeitstempel, die der Server SELBST erzeugt, muessen eindeutig
+    sein - also mit Zeitzonen-Offset.
+
+    Hintergrund: der "Stand" kam frueher aus datetime.utcnow().isoformat()
+    und damit ohne Offset. JavaScript liest eine solche Datum-Zeit-Form
+    laut Norm als Ortszeit des Browsers - im Dashboard stand deshalb die
+    UTC-Zahl, in Berlin also zwei Stunden zu frueh. Ein naiver String
+    sieht dabei voellig unauffaellig aus; nur diese Pruefung faellt auf
+    ihn herein. Wie er im Browser ANKOMMT, prueft test_zeitzone.js.
+    """
+    print("\n7) Zeitstempel der Endpunkte: eindeutig mit Zeitzone")
+
+    stellen = [
+        ("/api/portfolio", "abgerufen_am", lambda d: d["abgerufen_am"]),
+        ("/api/bots/elliott_wave", "abgerufen_am", lambda d: d["abgerufen_am"]),
+        ("/api/verlauf", "abgerufen_am", lambda d: d["abgerufen_am"]),
+        ("/api/portfolio", "bots[].letzter_lauf",
+         lambda d: d["bots"][0]["letzter_lauf"]),
+    ]
+    for pfad, feld, hole in stellen:
+        wert = hole(get(basis, pfad).json())
+        try:
+            gelesen = datetime.fromisoformat(wert)
+        except (TypeError, ValueError):
+            gelesen = None
+        check(f"{pfad} -> {feld} traegt eine Zeitzone",
+              gelesen is not None and gelesen.tzinfo is not None, repr(wert))
+
+    # Und der Wert muss auch stimmen: ein Zeitstempel mit Offset, der um
+    # den eigenen UTC-Versatz danebenliegt, waere derselbe Fehler in neuem
+    # Gewand. Grosszuegige Schranke - geprueft wird die Groessenordnung,
+    # nicht die Millisekunde.
+    stand = datetime.fromisoformat(get(basis, "/api/portfolio").json()["abgerufen_am"])
+    abweichung = abs((datetime.now(timezone.utc) - stand).total_seconds())
+    check("Der Stand bezeichnet wirklich den Augenblick der Abfrage",
+          abweichung < 120, f"{abweichung:.1f} s Unterschied")
+
+
+def teste_zeitzone():
+    """Startet den Node-Test der Zeitanzeige (siehe test_zeitzone.js).
+
+    Wie bei der Zustandsmaschine: fehlendes node ist kein Fehlschlag,
+    aber ein sichtbarer Hinweis - sonst gilt der wichtigste Nachweis
+    dieser Aenderung stillschweigend als erbracht."""
+    print("\n11) Zeitanzeige in verschiedenen Zeitzonen (node)")
+
+    node = shutil.which("node")
+    if not node:
+        print("  [uebersprungen] node nicht gefunden - die Umrechnung in die "
+              "Geraete-Zeitzone\n                  bleibt ungeprueft "
+              "(node dashboard/test_zeitzone.js)")
+        return
+
+    skript = os.path.join(DIR, "test_zeitzone.js")
+    fertig = subprocess.run([node, skript], capture_output=True, text=True,
+                             timeout=180)
+    for zeile in fertig.stdout.splitlines():
+        if zeile.strip():
+            print("  " + zeile.strip() if zeile.startswith("  ") else zeile)
+    check("Verhaltenstest der Zeitanzeige (test_zeitzone.js)",
+          fertig.returncode == 0,
+          detail=fertig.stderr.strip()[-300:] if fertig.returncode else "")
+
+
 def main():
     print("Selbsttests des Dashboards")
 
@@ -685,9 +750,11 @@ def main():
             teste_live_kurse(server.basis)
             teste_frontend(server.basis)
             teste_nur_lesend(app, server.basis, vorher, db_dateien)
+            teste_zeitstempel(server.basis)
         teste_automatische_aktualisierung()
         teste_ladeindikator()
         teste_zustandsmaschine()
+        teste_zeitzone()
     finally:
         monitor.BASE_DIR, monitor.STRATEGIES_DIR, monitor.LOGS_DIR, monitor.requests = alt
 
