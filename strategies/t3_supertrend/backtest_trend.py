@@ -27,7 +27,23 @@ from indicators import compute_indicators
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05
 
-# Standard-Parameter (Ausgangspunkt fuer die Optimierung)
+# Standard-Parameter (Ausgangspunkt fuer die Optimierung).
+#
+# BEWUSST NICHT an live_params.py gekoppelt, obwohl vier davon dort einen
+# Eintrag haben und dieser abweicht (T3_FAST_LENGTH 12 gegen live 16,
+# T3_SLOW_LENGTH 25 gegen 30, ADX_THRESHOLD 25.0 gegen 20.0,
+# STOP_LOSS_PCT 3.0 gegen 4.0):
+#
+#   - Diese vier werden von multi_symbol_optimise.py und
+#     multi_symbol_walk_forward.py ueber ihre Suchraster variiert, und der
+#     Live-Pfad (equity_simulation.py) uebergibt sie ohnehin explizit aus
+#     live_params.py. Der Default hier wird also nie wirksam; die Zahlen
+#     sind Startwerte des Suchrasters, nicht die Live-Einstellung.
+#   - Die uebrigen (T3_FACTOR, DI_LENGTH, ADX_LENGTH, ATR_LENGTH, ATR_MULT)
+#     wirken zwar tatsaechlich ueber ihren Default - sie stehen aber gar
+#     nicht in live_params.py, es gibt also nichts zu koppeln. Sie sind
+#     damit ein offener Punkt fuer eine spaetere Entscheidung, keine
+#     uebersehene Sync-Luecke (siehe research/backtest_defaults/BERICHT.md).
 T3_FAST_LENGTH = 12
 T3_SLOW_LENGTH = 25
 T3_FACTOR = 0.7

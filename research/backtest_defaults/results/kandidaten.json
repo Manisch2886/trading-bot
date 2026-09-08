@@ -1,0 +1,819 @@
+[
+  {
+    "bot": "t3_supertrend",
+    "datei": "backtest_trend.py",
+    "funktion": "run_backtest",
+    "parameter": "t3_factor",
+    "default": "<T3_FACTOR>",
+    "default_quelle": "T3_FACTOR",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 0.7,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:71"
+      ],
+      "SUCHE": [
+        "optimise_trend.py:46"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'T3_FACTOR' hat keinen Eintrag in live_params.py"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "backtest_trend.py",
+    "funktion": "run_backtest",
+    "parameter": "di_length",
+    "default": "<DI_LENGTH>",
+    "default_quelle": "DI_LENGTH",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 14,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:71"
+      ],
+      "SUCHE": [
+        "optimise_trend.py:46"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'DI_LENGTH' hat keinen Eintrag in live_params.py"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "backtest_trend.py",
+    "funktion": "run_backtest",
+    "parameter": "adx_length",
+    "default": "<ADX_LENGTH>",
+    "default_quelle": "ADX_LENGTH",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 14,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:71"
+      ],
+      "SUCHE": [
+        "optimise_trend.py:46"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'ADX_LENGTH' hat keinen Eintrag in live_params.py"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "backtest_trend.py",
+    "funktion": "run_backtest",
+    "parameter": "atr_length",
+    "default": "<ATR_LENGTH>",
+    "default_quelle": "ATR_LENGTH",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 22,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:71"
+      ],
+      "SUCHE": [
+        "optimise_trend.py:46"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'ATR_LENGTH' hat keinen Eintrag in live_params.py"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "backtest_trend.py",
+    "funktion": "run_backtest",
+    "parameter": "atr_mult",
+    "default": "<ATR_MULT>",
+    "default_quelle": "ATR_MULT",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 3.0,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:71"
+      ],
+      "SUCHE": [
+        "optimise_trend.py:46"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'ATR_MULT' hat keinen Eintrag in live_params.py"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "backtest_trend.py",
+    "funktion": "run_backtest",
+    "parameter": "use_t3_exit",
+    "default": true,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:71"
+      ],
+      "SUCHE": [
+        "optimise_trend.py:46"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "backtest_trend.py",
+    "funktion": "run_backtest",
+    "parameter": "use_vwap_filter",
+    "default": false,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:71"
+      ],
+      "SUCHE": [
+        "optimise_trend.py:46"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "indicators.py",
+    "funktion": "calculate_vwap_daily",
+    "parameter": "bars_per_day",
+    "default": 6,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 1,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "indicators.py:160"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "regime_filter.py",
+    "funktion": "compute_btc_regime",
+    "parameter": "atr_length",
+    "default": 22,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:66"
+      ],
+      "SUCHE": [
+        "multi_symbol_optimise.py:110"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "t3_supertrend",
+    "datei": "regime_filter.py",
+    "funktion": "compute_btc_regime",
+    "parameter": "atr_mult",
+    "default": 3.0,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:66"
+      ],
+      "SUCHE": [
+        "multi_symbol_optimise.py:110"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "rsi2_crypto",
+    "datei": "multi_symbol_optimise.py",
+    "funktion": "get_trades_for_symbol",
+    "parameter": "entry_cutoff",
+    "default": null,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 4,
+    "ueberschrieben": {
+      "STUDIE": [
+        "multi_symbol_walk_forward.py:52",
+        "pipeline_report.py:30"
+      ]
+    },
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:51"
+      ],
+      "SUCHE": [
+        "multi_symbol_optimise.py:95"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": true,
+    "urteil": "KEIN STRATEGIEPARAMETER",
+    "grund": "steuert den Datenausschnitt, nicht die Strategie"
+  },
+  {
+    "bot": "turtle_soup_crypto",
+    "datei": "backtest_turtle_soup.py",
+    "funktion": "run_backtest",
+    "parameter": "max_hold_days",
+    "default": "<MAX_HOLD_DAYS>",
+    "default_quelle": "MAX_HOLD_DAYS",
+    "quelle_aus_live_params": "MAX_HOLD_DAYS",
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:59"
+      ],
+      "STUDIE": [
+        "backtest_turtle_soup.py:189"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "GEKOPPELT",
+    "live_name": "MAX_HOLD_DAYS",
+    "wert": 10,
+    "live_wert": 10
+  },
+  {
+    "bot": "turtle_soup_crypto",
+    "datei": "multi_symbol_optimise.py",
+    "funktion": "get_trades_for_symbol",
+    "parameter": "entry_cutoff",
+    "default": null,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 4,
+    "ueberschrieben": {
+      "STUDIE": [
+        "multi_symbol_walk_forward.py:37",
+        "pipeline_report.py:26"
+      ]
+    },
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:42"
+      ],
+      "SUCHE": [
+        "multi_symbol_optimise.py:71"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": true,
+    "urteil": "KEIN STRATEGIEPARAMETER",
+    "grund": "steuert den Datenausschnitt, nicht die Strategie"
+  },
+  {
+    "bot": "turtle_soup_stocks",
+    "datei": "backtest_turtle_soup.py",
+    "funktion": "run_backtest",
+    "parameter": "max_hold_days",
+    "default": "<MAX_HOLD_DAYS>",
+    "default_quelle": "MAX_HOLD_DAYS",
+    "quelle_aus_live_params": "MAX_HOLD_DAYS",
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:68"
+      ],
+      "STUDIE": [
+        "backtest_turtle_soup.py:185"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "GEKOPPELT",
+    "live_name": "MAX_HOLD_DAYS",
+    "wert": 10,
+    "live_wert": 10
+  },
+  {
+    "bot": "volatility_breakout",
+    "datei": "backtest_breakout.py",
+    "funktion": "compute_indicators",
+    "parameter": "squeeze_lookback_days",
+    "default": "<SQUEEZE_LOOKBACK_DAYS>",
+    "default_quelle": "SQUEEZE_LOOKBACK_DAYS",
+    "quelle_aus_live_params": "BB_LOOKBACK",
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:68"
+      ],
+      "STUDIE": [
+        "backtest_breakout.py:217"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "GEKOPPELT",
+    "live_name": "BB_LOOKBACK",
+    "wert": 126,
+    "live_wert": 126
+  },
+  {
+    "bot": "volatility_breakout",
+    "datei": "backtest_breakout.py",
+    "funktion": "compute_indicators",
+    "parameter": "squeeze_percentile",
+    "default": "<SQUEEZE_PERCENTILE>",
+    "default_quelle": "SQUEEZE_PERCENTILE",
+    "quelle_aus_live_params": "BB_SQUEEZE_PERCENTILE",
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:68"
+      ],
+      "STUDIE": [
+        "backtest_breakout.py:217"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "GEKOPPELT",
+    "live_name": "BB_SQUEEZE_PERCENTILE",
+    "wert": 25.0,
+    "live_wert": 25.0
+  },
+  {
+    "bot": "volatility_breakout",
+    "datei": "backtest_breakout.py",
+    "funktion": "run_backtest",
+    "parameter": "max_hold_days",
+    "default": "<MAX_HOLD_DAYS>",
+    "default_quelle": "MAX_HOLD_DAYS",
+    "quelle_aus_live_params": "MAX_HOLD_DAYS",
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:76"
+      ],
+      "STUDIE": [
+        "backtest_breakout.py:218"
+      ]
+    },
+    "unklar_wegen_sternchen": [
+      "multi_symbol_optimise.py:76"
+    ],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "GEKOPPELT",
+    "live_name": "MAX_HOLD_DAYS",
+    "wert": 15,
+    "live_wert": 15
+  },
+  {
+    "bot": "volatility_breakout",
+    "datei": "backtest_breakout.py",
+    "funktion": "run_backtest",
+    "parameter": "volume_filter_multiplier",
+    "default": "<VOLUME_FILTER_MULTIPLIER>",
+    "default_quelle": "VOLUME_FILTER_MULTIPLIER",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 1.5,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:76"
+      ],
+      "STUDIE": [
+        "backtest_breakout.py:218"
+      ]
+    },
+    "unklar_wegen_sternchen": [
+      "multi_symbol_optimise.py:76"
+    ],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'VOLUME_FILTER_MULTIPLIER' hat keinen Eintrag in live_params.py"
+  },
+  {
+    "bot": "volatility_breakout",
+    "datei": "equity_simulation.py",
+    "funktion": "collect_all_trades",
+    "parameter": "max_hold_days",
+    "default": null,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 10,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:160"
+      ],
+      "STUDIE": [
+        "analysis_2022_drawdown_dynamics.py:55",
+        "capital_management_summary.py:74",
+        "experiment_2022_stress_best_config.py:50",
+        "experiment_false_breakout_filter.py:45",
+        "experiment_false_breakout_filter.py:46",
+        "experiment_position_size_limit.py:63",
+        "experiment_signal_quality.py:139",
+        "experiment_trailing_stop.py:165",
+        "pipeline_report.py:59"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "volatility_breakout",
+    "datei": "equity_simulation.py",
+    "funktion": "collect_all_trades",
+    "parameter": "use_volume_filter",
+    "default": false,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 10,
+    "ueberschrieben": {
+      "STUDIE": [
+        "experiment_false_breakout_filter.py:45",
+        "experiment_false_breakout_filter.py:46"
+      ]
+    },
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:160"
+      ],
+      "STUDIE": [
+        "analysis_2022_drawdown_dynamics.py:55",
+        "capital_management_summary.py:74",
+        "experiment_2022_stress_best_config.py:50",
+        "experiment_position_size_limit.py:63",
+        "experiment_signal_quality.py:139",
+        "experiment_trailing_stop.py:165",
+        "pipeline_report.py:59"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": true,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "backtest_breakout.py",
+    "funktion": "compute_indicators",
+    "parameter": "squeeze_lookback_days",
+    "default": "<SQUEEZE_LOOKBACK_DAYS>",
+    "default_quelle": "SQUEEZE_LOOKBACK_DAYS",
+    "quelle_aus_live_params": "BB_LOOKBACK",
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:62"
+      ],
+      "STUDIE": [
+        "backtest_breakout.py:176"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "GEKOPPELT",
+    "live_name": "BB_LOOKBACK",
+    "wert": 126,
+    "live_wert": 126
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "backtest_breakout.py",
+    "funktion": "compute_indicators",
+    "parameter": "squeeze_percentile",
+    "default": "<SQUEEZE_PERCENTILE>",
+    "default_quelle": "SQUEEZE_PERCENTILE",
+    "quelle_aus_live_params": "BB_SQUEEZE_PERCENTILE",
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:62"
+      ],
+      "STUDIE": [
+        "backtest_breakout.py:176"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "GEKOPPELT",
+    "live_name": "BB_SQUEEZE_PERCENTILE",
+    "wert": 25.0,
+    "live_wert": 25.0
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "backtest_breakout.py",
+    "funktion": "run_backtest",
+    "parameter": "max_hold_days",
+    "default": "<MAX_HOLD_DAYS>",
+    "default_quelle": "MAX_HOLD_DAYS",
+    "quelle_aus_live_params": "MAX_HOLD_DAYS",
+    "quelle_wert": null,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:66"
+      ],
+      "STUDIE": [
+        "backtest_breakout.py:177"
+      ]
+    },
+    "unklar_wegen_sternchen": [
+      "multi_symbol_optimise.py:66"
+    ],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "GEKOPPELT",
+    "live_name": "MAX_HOLD_DAYS",
+    "wert": 15,
+    "live_wert": 15
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "backtest_breakout.py",
+    "funktion": "run_backtest",
+    "parameter": "volume_filter_multiplier",
+    "default": "<VOLUME_FILTER_MULTIPLIER>",
+    "default_quelle": "VOLUME_FILTER_MULTIPLIER",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 1.5,
+    "aufrufe_gesamt": 2,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "multi_symbol_optimise.py:66"
+      ],
+      "STUDIE": [
+        "backtest_breakout.py:177"
+      ]
+    },
+    "unklar_wegen_sternchen": [
+      "multi_symbol_optimise.py:66"
+    ],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'VOLUME_FILTER_MULTIPLIER' hat keinen Eintrag in live_params.py"
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "equity_simulation.py",
+    "funktion": "collect_all_trades",
+    "parameter": "max_hold_days",
+    "default": null,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 4,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:133"
+      ],
+      "STUDIE": [
+        "experiment_2022_stress_with_btc_filter.py:65",
+        "experiment_btc_regime_filter.py:58",
+        "pipeline_report.py:59"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "equity_simulation.py",
+    "funktion": "collect_all_trades",
+    "parameter": "use_volume_filter",
+    "default": false,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 4,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:133"
+      ],
+      "STUDIE": [
+        "experiment_2022_stress_with_btc_filter.py:65",
+        "experiment_btc_regime_filter.py:58",
+        "pipeline_report.py:59"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "Default ist ein Literal ohne benannte Konstante"
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "multi_symbol_optimise.py",
+    "funktion": "get_trades_for_symbol",
+    "parameter": "entry_cutoff",
+    "default": null,
+    "default_quelle": null,
+    "quelle_aus_live_params": null,
+    "quelle_wert": null,
+    "aufrufe_gesamt": 4,
+    "ueberschrieben": {
+      "STUDIE": [
+        "multi_symbol_walk_forward.py:43",
+        "pipeline_report.py:29"
+      ]
+    },
+    "wirkt_in": {
+      "LIVE": [
+        "equity_simulation.py:50"
+      ],
+      "SUCHE": [
+        "multi_symbol_optimise.py:80"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": true,
+    "urteil": "KEIN STRATEGIEPARAMETER",
+    "grund": "steuert den Datenausschnitt, nicht die Strategie"
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "regime_filter.py",
+    "funktion": "compute_btc_regime",
+    "parameter": "atr_length",
+    "default": "<BTC_ATR_LENGTH>",
+    "default_quelle": "BTC_ATR_LENGTH",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 22,
+    "aufrufe_gesamt": 4,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "forward_test.py:256"
+      ],
+      "STUDIE": [
+        "experiment_2022_stress_with_btc_filter.py:63",
+        "experiment_btc_regime_filter.py:29",
+        "experiment_btc_regime_filter_robustness.py:34"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'BTC_ATR_LENGTH' hat keinen Eintrag in live_params.py"
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "datei": "regime_filter.py",
+    "funktion": "compute_btc_regime",
+    "parameter": "atr_mult",
+    "default": "<BTC_ATR_MULT>",
+    "default_quelle": "BTC_ATR_MULT",
+    "quelle_aus_live_params": null,
+    "quelle_wert": 3.0,
+    "aufrufe_gesamt": 4,
+    "ueberschrieben": {},
+    "wirkt_in": {
+      "LIVE": [
+        "forward_test.py:256"
+      ],
+      "STUDIE": [
+        "experiment_2022_stress_with_btc_filter.py:63",
+        "experiment_btc_regime_filter.py:29",
+        "experiment_btc_regime_filter_robustness.py:34"
+      ]
+    },
+    "unklar_wegen_sternchen": [],
+    "wirksam_im_live_pfad": true,
+    "variiert_in_suche": false,
+    "variiert_in_studie": false,
+    "urteil": "KEIN GEGENSTUECK",
+    "grund": "'BTC_ATR_MULT' hat keinen Eintrag in live_params.py"
+  }
+]

@@ -46,8 +46,19 @@ _P = get_strategy_paths(__file__)
 DATA_DIR = _P["DATA_DIR"]
 RESULTS_DIR = _P["RESULTS_DIR"]
 
-STOP_LOSS_PCT = 3.0       # Stop, falls Trend weiterlaeuft
-TAKE_PROFIT_FIB = 0.382   # Zielretracement der Gesamtbewegung
+# STOP_LOSS_PCT und TAKE_PROFIT_FIB bleiben BEWUSST eigene Konstanten und
+# werden NICHT an live_params.py gekoppelt, obwohl die Werte dort abweichen
+# (live: STOP_LOSS_PCT = 6.0, TAKE_PROFIT_FIB = 0.618). Der Grund ist ein
+# anderer als bei den uebrigen Bots: beide werden zur Laufzeit von aussen
+# ueberschrieben -
+#     backtest_elliott.STOP_LOSS_PCT = stop_loss_pct
+# in equity_simulation.py, multi_symbol_optimise.py und optimise_elliott.py.
+# Die Zahlen hier sind damit reine Startwerte; wirksam ist immer der Wert,
+# den der jeweilige Aufrufer setzt (im Live-Pfad der aus live_params.py).
+# Ein Import wuerde daran nichts aendern und nur den Eindruck erwecken, die
+# Zuweisung von aussen sei entfallen.
+STOP_LOSS_PCT = 3.0       # Startwert, wird von aussen gesetzt (siehe oben)
+TAKE_PROFIT_FIB = 0.382   # Startwert, wird von aussen gesetzt (siehe oben)
 # --- Frische-Fenster, gespiegelt aus forward_test.py -----------------------
 # Der Live-Bot verwirft Muster, deren Wellenende laenger zurueckliegt als
 # dieses Fenster (SIGNAL_FRESHNESS_HOURS bzw. SIGNAL_FRESHNESS_DAYS dort).

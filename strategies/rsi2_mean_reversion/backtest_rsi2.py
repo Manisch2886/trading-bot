@@ -67,10 +67,20 @@ import pandas as pd
 
 from indicators import sma, rsi
 
+# MAX_HOLD_DAYS kommt DIREKT aus live_params.py - derselben Datei, aus der
+# auch forward_test.py liest (Muster aus PR #31/#38). Der Wert ist hier kein
+# blosser Startwert: run_backtest() liest ihn unten direkt im Rumpf, er ist
+# nie Funktions-Parameter und wird von keinem Aufrufer ueberschrieben. Was
+# hier steht, IST also die Haltedauer, mit der der Backtest rechnet. Stuende
+# der Wert weiter als eigene Zahl hier, koennte er bei der naechsten
+# Live-Anpassung unbemerkt auseinanderlaufen - genau die Falle, die bei
+# elliott_wave_stocks/USE_TAKE_PROFIT schon einmal zugeschnappt ist.
+# live_params.py importiert selbst nichts, ein Importzyklus ist ausgeschlossen.
+from live_params import MAX_HOLD_DAYS   # Handelstage NACH dem Einstiegstag
+
 RSI_PERIOD = 2
 SMA_TREND_PERIOD = 200
 SMA_EXIT_PERIOD = 5
-MAX_HOLD_DAYS = 10  # Handelstage NACH dem Einstiegstag, keine Kalenderzeit
 
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05
