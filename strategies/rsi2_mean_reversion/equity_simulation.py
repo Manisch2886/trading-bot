@@ -25,15 +25,32 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 
-STARTING_CAPITAL = 10_000.0
-ALLOCATION_PCT = 0.10
-MAX_CONCURRENT_POSITIONS = 8  # identisch zum Live-Stand des Elliott-Wave-Aktien-Bots, fuer fairen Vergleich
-
-# Platzhalter-Parameter fuer den direkten Skriptaufruf (__main__) - die
+# Die Parameter kommen DIREKT aus live_params.py - derselben Datei, aus der
+# auch forward_test.py liest (Muster aus PR #31/#38/#39). Vorher standen sie
+# hier ein zweites Mal als eigene Konstanten, und zwei davon waren
+# auseinandergelaufen (Sync-Check, PR #24):
+#   ALLOCATION_PCT            10 % hier gegen 5 % live
+#   MAX_CONCURRENT_POSITIONS  8 hier gegen 20 live
+# Der Backtest beschrieb damit einen Bot, der doppelt so gross einsteigt und
+# nur ein Drittel so viele Positionen gleichzeitig halten darf wie der
+# tatsaechlich laufende. Massgeblich ist ab jetzt der Live-Wert.
+# live_params.py importiert selbst nichts, ein Importzyklus ist ausgeschlossen.
+#
+# RSI_THRESHOLD und STOP_LOSS_PCT waren bereits identisch (5.0 bzw. None -
+# "kein Stop" ist die validierte Kombination, kein fehlender Wert); sie werden
+# hier nur mit umgestellt, damit die Doppelfuehrung vollstaendig verschwindet.
+# Fuer den direkten Skriptaufruf (__main__) sind sie der Ausgangspunkt - die
 # eigentliche Auswahl der besten Kombination erfolgt ueber
 # multi_symbol_walk_forward.py, siehe run_from_walk_forward_best() unten.
-RSI_THRESHOLD = 5.0
-STOP_LOSS_PCT = None
+from live_params import (RSI_THRESHOLD, STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+                          ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
+
+STARTING_CAPITAL = 10_000.0
+# EINHEITEN: live_params.py notiert die Allokation in PROZENT (5), dieses
+# Skript rechnet mit dem ANTEIL (0.05) - deshalb die Umrechnung statt eines
+# direkten Imports. shared/portfolio_overview.py liest ALLOCATION_PCT von hier
+# und erwartet ebenfalls den Anteil.
+ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
 def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: float) -> pd.DataFrame:
