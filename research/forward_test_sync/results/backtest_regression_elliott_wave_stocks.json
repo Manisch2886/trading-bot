@@ -1,0 +1,16 @@
+{
+  "bot": "elliott_wave_stocks",
+  "geaenderte_dateien": [
+    "equity_simulation.py"
+  ],
+  "identisch": false,
+  "stdout_hash_alt": "917c2a3bf0fcd246712fdfd01630cda9ef73a01a096b87b50851095590b5bca9",
+  "stdout_hash_neu": "8920f354549b56f2241acb0c04513b8d4b000b41928ad2cfe9fd614272644d16",
+  "datei_hashes_alt": {
+    "equity_curve.csv": "2f95b722b59dbbf962ef1e001ffa0c52aea4fad642a58187aea3fba5870201a3"
+  },
+  "datei_hashes_neu": {
+    "equity_curve.csv": "2f95b722b59dbbf962ef1e001ffa0c52aea4fad642a58187aea3fba5870201a3"
+  },
+  "stdout": "Hinweis: GEV deckt nur 888 Tage ab (< 1825 noetig), wird uebersprungen.\nHinweis: SNDK deckt nur 565 Tage ab (< 1825 noetig), wird uebersprungen.\nHinweis: CEG deckt nur 1686 Tage ab (< 1825 noetig), wird uebersprungen.\n510 Trades ueber alle Symbole gefunden (unsortiert nach Kapital-Verfuegbarkeit).\n\n=======================================================\nPORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              45,272.24\nGesamtrendite:           352.72%\nAusgefuehrte Trades:     395\nUebersprungene Trades:   115 (Positionslimit 8 erreicht oder zu wenig freies Kapital)\nMax Drawdown (Kapital):  -22.44%\n\nLetzte 10 abgeschlossene Trades:\n      time symbol  pnl_pct  allocation  capital_after\n2026-08-04    AXP    15.86     3084.43       37669.00\n2026-08-05   QCOM    -3.30     3766.90       37544.69\n2026-08-24    WDC    -3.30     3754.47       37420.79\n2026-09-01   BKNG    22.56     3711.36       38258.07\n2026-09-01   ANET    27.07     3711.36       39262.74\n2026-09-01    ABT    23.66     3688.96       40135.55\n2026-09-01   ADBE    44.60     3664.47       41769.90\n2026-09-01    ACN    44.86     3717.98       43437.79\n2026-09-01    ICE    25.64     3717.98       44391.08\n2026-09-01    CME    23.70     3717.98       45272.24\n\nGespeichert als: <TEMP>/results/equity_curve.csv\n"
+}

@@ -38,7 +38,7 @@ RESULTS_DIR = os.path.join(_DIR, "results")
 LAEUFER = r'''
 import io, json, os, runpy, sys, contextlib, traceback
 
-bot_dir, temp_dir, shared, stubs, data_dir = sys.argv[1:6]
+bot_dir, temp_dir, shared, stubs, repo = sys.argv[1:6]
 sys.path.insert(0, bot_dir)
 sys.path.insert(0, shared)
 sys.path.append(stubs)
@@ -48,12 +48,20 @@ _echt = strategy_paths.get_strategy_paths
 
 def _umgeleitet(caller_file):
     p = dict(_echt(caller_file))
-    # DATA_DIR leitet get_strategy_paths aus dem Ort der AUFRUFENDEN Datei
-    # ab. Der Alt-Baum liegt unter /tmp, dort gibt es kein data/ - ohne
-    # diese Umleitung fände der Alt-Lauf keine einzige Kursdatei und
-    # "ABWEICHUNG" waere ein Artefakt des Testaufbaus, kein Befund.
-    # Beide Laeufe muessen ohnehin dieselben Daten sehen.
-    p["DATA_DIR"] = data_dir
+    # Regel: der Alt-Baum liefert nur den geaenderten CODE, saemtliche
+    # EINGABEN kommen aus dem echten Repo, die AUSGABEN gehen ins temporaere
+    # Verzeichnis. get_strategy_paths leitet alle Pfade aus dem Ort der
+    # AUFRUFENDEN Datei ab; der Alt-Baum liegt unter /tmp, und dort gibt es
+    # weder data/ noch config/.
+    #
+    # Ohne diese Umleitung waere "ABWEICHUNG" ein Artefakt des Testaufbaus:
+    # der Alt-Lauf faende keine Kursdatei (DATA_DIR), und bei den Aktien-Bots
+    # auch keine Symbolliste (CONFIG_DIR) - er fiele auf die Standardliste
+    # mit 5 Aktien zurueck und rechnete 15 statt 510 Trades. Genau das ist
+    # beim ersten Lauf dieser Art passiert.
+    p["BASE_DIR"] = repo
+    p["DATA_DIR"] = os.path.join(repo, "data")
+    p["CONFIG_DIR"] = os.path.join(repo, "config")
     p["RESULTS_DIR"] = os.path.join(temp_dir, "results")
     p["LOGS_DIR"] = os.path.join(temp_dir, "logs")
     p["DB_FILE"] = os.path.join(temp_dir, "paper_trading.db")
@@ -113,11 +121,22 @@ def lauf(bot_dir: str) -> dict:
             f.write(LAEUFER)
         fertig = subprocess.run(
             [sys.executable, skript, bot_dir, temp_dir, SHARED, STUBS,
-             os.path.join(_REPO_ROOT, "data")],
+             _REPO_ROOT],
             capture_output=True, text=True, timeout=7200)
     if "---REG-JSON---" not in fertig.stdout:
         return {"fehler": fertig.stdout[-2500:] + "\n" + fertig.stderr[-2500:]}
     roh = json.loads(fertig.stdout.split("---REG-JSON---", 1)[1])
+    # Ein Abbruch IM Lauf wurde bisher nur mitgeschrieben, nicht ausgewertet.
+    # Damit konnten zwei gescheiterte Laeufe als "IDENTISCH" durchgehen: beide
+    # ohne Ausgabe, beide ohne Ergebnisdatei, beide mit demselben Hash der
+    # leeren Zeichenkette (e3b0c442...). Genau das ist passiert, als der
+    # Aktien-Bot mangels yfinance-Attrappe schon beim Import scheiterte. Ein
+    # gescheiterter Lauf belegt nichts und wird deshalb als Fehler behandelt.
+    if roh.get("abbruch"):
+        return {"fehler": "Lauf abgebrochen:\n" + roh["abbruch"]}
+    if not roh["stdout"].strip():
+        return {"fehler": "Lauf ohne jede Ausgabe - das belegt nichts.\n"
+                          + fertig.stderr[-2500:]}
     roh["stdout_hash"] = hashlib.sha256(roh["stdout"].encode()).hexdigest()
     roh["datei_hashes"] = {n: hashlib.sha256(i.encode()).hexdigest()
                             for n, i in sorted(roh["dateien"].items())}
