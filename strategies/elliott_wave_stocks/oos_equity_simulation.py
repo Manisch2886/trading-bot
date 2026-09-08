@@ -28,6 +28,12 @@ from multi_symbol_optimise import load_all_symbol_data, run_multi_optimisation
 from multi_symbol_walk_forward import split_all_symbols, TRAIN_SPLIT_RATIO
 from equity_simulation import collect_all_trades, simulate_portfolio, calculate_max_drawdown
 
+# MAX_CONCURRENT_POSITIONS kommt DIREKT aus live_params.py - derselben Datei,
+# aus der auch forward_test.py und equity_simulation.py:195 lesen. Es ist
+# KEIN Parameter des Suchrasters, sondern eine feste Eigenschaft des
+# laufenden Bots; deshalb der Import statt eines Werts aus `best`.
+from live_params import MAX_CONCURRENT_POSITIONS
+
 STARTING_CAPITAL = 10_000.0
 ALLOCATION_PCT = 0.10
 
@@ -90,7 +96,12 @@ if __name__ == "__main__":
 
     print(f"{len(trades)} Trades gefunden.\n")
 
-    result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT)
+    # Ohne das Positionslimit simulierte diese Pruefung beliebig viele
+    # gleichzeitige Positionen und damit ein Portfolio, das es so nie gab -
+    # live begrenzt MAX_CONCURRENT_POSITIONS das Klumpenrisiko auf 8.
+    # equity_simulation.py:195 uebergibt den Wert seit jeher; hier fehlte er.
+    result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT,
+                                 MAX_CONCURRENT_POSITIONS)
 
     print("=" * 55)
     print("OUT-OF-SAMPLE PORTFOLIO-SIMULATION")

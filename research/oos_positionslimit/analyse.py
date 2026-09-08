@@ -21,6 +21,14 @@ Ereignisschleife hier nachgebildet - und zwar nachweislich TREU:
 Damit ist die Aufschluesselung so vertrauenswuerdig wie die Uebereinstimmung,
 die sie vorher beweist.
 
+VERWANDT, aber nicht dasselbe: der Bot hat mit
+experiment_concurrency_stats.simulate_portfolio_instrumented() bereits eine
+instrumentierte Kopie derselben Schleife. Sie protokolliert die Anzahl
+gleichzeitig offener Positionen und die Kapitalauslastung - aber NICHT, aus
+welchem der beiden Gruende ein Trade uebersprungen wurde. Genau das ergaenzt
+dieses Skript; die Zaehlung der gleichzeitig offenen Positionen laeuft hier
+nur als Nebenprodukt mit.
+
 Nutzung:  python3 analyse.py
 """
 
