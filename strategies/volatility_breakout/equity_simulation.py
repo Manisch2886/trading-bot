@@ -22,11 +22,33 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 
-STARTING_CAPITAL = 10_000.0
-ALLOCATION_PCT = 0.10   # Startwert, wie angefragt - Kapitaleffizienz-Frage erst NACH validiertem Edge
-MAX_CONCURRENT_POSITIONS = 8  # Startwert, identisch zu den anderen Aktien-Bots
+# Die Parameter kommen DIREKT aus live_params.py - derselben Datei, aus der
+# auch forward_test.py liest (Muster aus PR #31/#38/#39). Vorher standen sie
+# hier ein zweites Mal als eigene Konstanten, und einer davon war
+# auseinandergelaufen (Sync-Check, PR #24):
+#   MAX_CONCURRENT_POSITIONS  8 hier gegen 15 live
+#
+# AUFGEGEBENE BEGRUENDUNG - bitte nicht versehentlich zurueckdrehen: das
+# Limit 8 stand hier als "Startwert, identisch zu den anderen Aktien-Bots",
+# also aus Gruenden der Vergleichbarkeit zwischen den Bots. Diese Motivation
+# gilt ab jetzt nicht mehr; massgeblich ist der tatsaechliche Live-Wert. Ein
+# Backtest, der eine andere Konfiguration rechnet als der laufende Bot, ist
+# die teurere Ungenauigkeit als eine eingeschraenkte Vergleichbarkeit
+# zwischen Bots.
+#
+# ALLOCATION_PCT und STOP_LOSS_PCT waren bereits identisch (10 % bzw. 8.0);
+# sie werden mit umgestellt, damit die Doppelfuehrung vollstaendig
+# verschwindet. live_params.py importiert selbst nichts, ein Importzyklus ist
+# ausgeschlossen.
+from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+                          ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
 
-STOP_LOSS_PCT = 8.0  # aus multi_symbol_optimise.py als robusteste Kombination hervorgegangen
+STARTING_CAPITAL = 10_000.0
+# EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
+# Skript rechnet mit dem ANTEIL (0.10) - deshalb die Umrechnung statt eines
+# direkten Imports. shared/portfolio_overview.py liest ALLOCATION_PCT von hier
+# und erwartet ebenfalls den Anteil.
+ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
 def collect_all_trades(all_data: dict, stop_loss_pct: float, max_hold_days: int = None,
