@@ -12,6 +12,8 @@ Historie:
   -1.32% vs. -34.83% Max Drawdown). Signal-Qualitaets-Test zeigt:
   Mehrwert kommt aus Timing/Kapitalmanagement, nicht aus den
   Ausstiegsregeln selbst - siehe Chat-Diskussion.
+  ACHTUNG: Die Buy-and-Hold-Aussage dieses Eintrags ist ueberholt -
+  siehe Eintrag 2026-09-08.
 - 2026-09-03: USE_TAKE_PROFIT auf False gesetzt (Gewinne laufen lassen) -
   empirisch getestet (Gesamtzeitraum + Out-of-Sample), Rendite ca.
   verdoppelt (+3084% statt +1500% Gesamtzeitraum, +204% statt +108% OOS)
@@ -21,6 +23,40 @@ Historie:
   Option B mit unbegrenztem Limit war in der Matrix noch staerker, aber
   noch nicht uebernommen). Siehe
   results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md fuer Details.
+- 2026-09-08: Nur Dokumentation korrigiert, KEIN Parameter geaendert.
+  Die Buy-and-Hold-Aussage vom 2026-09-02 ("schlaegt Buy-and-Hold klar,
+  1458% vs. 756%") stammte von einer Backtest-Grundlage MIT Look-Ahead:
+  der Backtest stieg zum Preis des Wellenende-Pivots ein, wodurch der
+  Stop bis zur Bestaetigung dieses Pivots mathematisch unerreichbar war
+  (research/elliott_wave_lookahead/BERICHT.md, PR #26). Auf der
+  korrigierten, kausal sauberen Grundlage gilt sie nicht mehr.
+
+  Befund der Parameter-Neubestimmung
+  (research/elliott_wave_params/BERICHT.md, PR #28): KEINE der 252
+  geprueften Kombinationen schlaegt Buy-and-Hold ueber den vollen
+  Zehnjahres-Zeitraum. Buy-and-Hold liegt bei +755,7% Rendite bei
+  -34,8% Max Drawdown; diese Live-Konfiguration bei +330,2% bei -22,7%.
+  Sie bleibt in der Rendite also klar zurueck, faellt dabei aber
+  flacher.
+
+  Einordnung dieser Konfiguration - sie ist nicht der Fehler: auf dem
+  Gesamtfenster Rang 10 von 116 Kombinationen, die die Mindestfilter
+  bestehen, In-Sample Rang 16 von 95, und ihr Out-of-Sample-Ø-PnL ist
+  mit 7,52% der beste aller getesteten Kandidaten. Sie scheitert an
+  einer einzigen der fuenf dort vorab festgelegten Bedingungen (B3:
+  Walk-Forward-Falte 1 mit -1,47%) - an denselben Falten wie fast alle
+  anderen Kandidaten auch. Eine nachvollziehbare Wahl unter mehreren
+  aehnlich plausiblen Alternativen, aber keine herausragende.
+
+  Die Entscheidung USE_TAKE_PROFIT = False vom 2026-09-03 haelt auf der
+  sauberen Grundlage stand: unter den 116 Kombinationen, die die
+  Mindestfilter bestehen, sind die vorderen zehn praktisch ausnahmslos
+  ohne festes Kursziel.
+
+  Bewusst NICHT mitgeaendert: LAST_UPDATED bleibt auf 2026-09-03. Der
+  Wert bezeichnet den Stand der PARAMETER (und wird als solcher in
+  research/pnl_2025_fixed_size/extract.py ausgewertet); am 2026-09-08
+  wurde ausschliesslich dieser Text korrigiert.
 """
 
 DEVIATION_PCT = 5.0
