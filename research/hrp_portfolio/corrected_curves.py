@@ -51,6 +51,7 @@ falschen Bot laden.
 import hashlib
 import json
 import os
+import shutil
 import subprocess
 import sys
 
@@ -319,3 +320,212 @@ def load_corrected_curves(portfolio_overview, generated: dict, swap_bots=None):
             bots[bot]["equity_csv"] = generated[bot]["csv"]
     curves = portfolio_overview.load_all_curves(bots)
     return bots, curves
+
+
+# ===========================================================================
+# ZWEITE KORREKTUR ("heute") - PR #55
+# ===========================================================================
+# Seit der ersten Korrektur (Commit 30a813c) sind die Sync-Befunde selbst
+# gemergt worden: PR #40-42 haben Allokation und Positionslimit bei
+# rsi2_mean_reversion, turtle_soup_stocks und volatility_breakout direkt in
+# equity_simulation.py nachgezogen, PR #45 die Funktions-Defaults bei fuenf
+# Bots, PR #51/#52 die Backtest-Defaults von t3_supertrend und rsi2_crypto
+# auf live_params.py umgestellt. Ausserdem haben die beiden Elliott-Bots
+# zwischenzeitlich einen korrigierten ZigZag-Indikator bekommen.
+#
+# Damit ist die Nachbildung oben ueberholt: was sie damals von Hand
+# rekonstruieren musste ("wie waere es MIT Live-Konfiguration"), steht heute
+# im Bot selbst. Die zweite Korrektur braucht deshalb keine Fallunterscheidung
+# je Bot mehr - sie fuehrt schlicht die HEUTIGE equity_simulation.py aus.
+#
+# Und zwar buchstaeblich: nicht die Modulfunktionen nachgerufen, sondern der
+# __main__-Block per runpy ausgefuehrt, mit umgebogenem RESULTS_DIR. Der
+# Unterschied ist wesentlich. Die Nachbildung oben ist eine ZWEITE Fassung
+# derselben Rechnung und kann still von der ersten abweichen, sobald sich im
+# Bot ein Aufruf aendert - genau das ist bei mehreren Bots inzwischen
+# passiert. Der __main__-Block ist dagegen per Definition das, was die
+# gespeicherte results/-Kurve erzeugt hat.
+#
+# Die Attrappen unten WERFEN, statt leere Daten zu liefern. Eine Attrappe,
+# die einen leeren DataFrame zurueckgibt, laesst einen versehentlichen
+# Netzabruf durchgehen: der Lauf rechnet mit weniger Symbolen weiter und
+# meldet eine Kurve, die niemand als falsch erkennt. Hier bricht er ab.
+
+_WORKER_HEUTE = r'''
+import contextlib, io, json, os, runpy, sys, types
+
+
+def _wirft(name):
+    def _f(*a, **kw):
+        raise AssertionError(
+            f"{name} wurde aufgerufen - im Kurvenlauf darf kein Kursabruf "
+            f"stattfinden, gelesen werden nur die CSVs unter data/.")
+    return _f
+
+
+for _name in ("fetch_binance_data", "yfinance"):
+    _m = types.ModuleType(_name)
+    _m.fetch_historical_data = _wirft(f"{_name}.fetch_historical_data")
+    _m.download = _wirft(f"{_name}.download")
+    _m.Ticker = _wirft(f"{_name}.Ticker")
+    sys.modules.setdefault(_name, _m)
+
+_b, _c = types.ModuleType("binance"), types.ModuleType("binance.client")
+
+
+class _FakeClient:
+    # Die Intervall-Konstanten tragen die ECHTEN Werte - eine Attrappe, die
+    # hier etwas anderes liefert, wuerde die Kurve verfaelschen, ohne dass
+    # es auffiele. Ein Verbindungsversuch wirft dagegen sofort.
+    KLINE_INTERVAL_1MINUTE = "1m"
+    KLINE_INTERVAL_15MINUTE = "15m"
+    KLINE_INTERVAL_1HOUR = "1h"
+    KLINE_INTERVAL_4HOUR = "4h"
+    KLINE_INTERVAL_1DAY = "1d"
+
+    # Erzeugen muss GELINGEN: shared/fetch_multi_data.py legt auf Modulebene
+    # ein client = Client() an, und mehrere Bots ziehen dieses Modul ueber
+    # multi_symbol_optimise mit herein - nur wegen der Konstante INTERVAL.
+    # Ein werfender Konstruktor wuerde also schon den Import zerlegen.
+    # Werfen muss stattdessen jeder METHODENaufruf: das waere ein echter
+    # Netzzugriff, und der darf im Kurvenlauf nicht vorkommen.
+    def __init__(self, *a, **kw):
+        pass
+
+    def __getattr__(self, name):
+        raise AssertionError(f"Client.{name} wurde aufgerufen - im Kurvenlauf "
+                             f"darf keine Binance-Verbindung benutzt werden.")
+
+
+_c.Client = _FakeClient
+_b.client = _c
+sys.modules.setdefault("binance", _b)
+sys.modules.setdefault("binance.client", _c)
+
+BOT, OUT_JSON, RESULTS = sys.argv[1], sys.argv[2], sys.argv[3]
+
+import strategy_paths
+
+_echt = strategy_paths.get_strategy_paths
+
+
+def _umgeleitet(caller_file):
+    """Nur die AUSGABEN wandern; DATA_DIR und CONFIG_DIR bleiben die echten,
+    weil der Lauf im echten Bot-Ordner stattfindet."""
+    p = dict(_echt(caller_file))
+    p["RESULTS_DIR"] = RESULTS
+    p["LOGS_DIR"] = os.path.join(RESULTS, "logs")
+    os.makedirs(p["RESULTS_DIR"], exist_ok=True)
+    os.makedirs(p["LOGS_DIR"], exist_ok=True)
+    return p
+
+
+strategy_paths.get_strategy_paths = _umgeleitet
+
+puffer = io.StringIO()
+with contextlib.redirect_stdout(puffer):
+    try:
+        globalen = runpy.run_path("equity_simulation.py", run_name="__main__")
+    except SystemExit:
+        # Mehrere Bots beenden sich per exit(), wenn keine Trades entstehen.
+        globalen = {}
+
+ergebnis = globalen.get("result")
+if ergebnis is None:
+    raise SystemExit("equity_simulation.py hat kein 'result' hinterlassen - "
+                     "der Lauf ist nicht durchgekommen:\n" + puffer.getvalue()[-2000:])
+
+start = globalen["STARTING_CAPITAL"]
+zusammenfassung = {
+    "bot": BOT,
+    "trades_found": int(len(globalen["trades"])),
+    "executed": ergebnis["num_executed"],
+    "skipped": ergebnis["num_skipped"],
+    "return_pct": round((ergebnis["final_capital"] / start - 1) * 100, 2),
+    "drawdown_pct": globalen["calculate_max_drawdown"](ergebnis["equity_curve"], start),
+    "allocation_pct": round(globalen["ALLOCATION_PCT"] * 100, 2),
+    "max_concurrent_positions": globalen.get("MAX_CONCURRENT_POSITIONS"),
+    "starting_capital": start,
+}
+with open(OUT_JSON, "w") as fh:
+    json.dump(zusammenfassung, fh, indent=2)
+'''
+
+
+def generate_heute(repo_root: str, out_dir: str, portfolio_overview,
+                    verbose: bool = True) -> dict:
+    """Erzeugt fuer alle neun Bots die Kurve, die ihre HEUTIGE
+    equity_simulation.py schreibt - durch Ausfuehren eben dieser Datei.
+
+    Rueckgabe wie generate(): {bot: {"csv", "summary", "identical_to_original"}}
+
+    Es gibt hier bewusst KEINE eingebauten Sollwerte. Die Probe der ersten
+    Korrektur (Sync-Check-Kennzahlen treffen) waere hier sinnlos: gerade
+    weil sich der Bot-Code seither geaendert hat, WIRD sich die Kurve
+    unterscheiden - das ist der Gegenstand der Untersuchung, nicht ihr
+    Fehlerfall. Geprueft wird stattdessen, dass jeder Lauf ueberhaupt
+    durchkam und eine nichtleere Kurve hinterlassen hat.
+    """
+    os.makedirs(out_dir, exist_ok=True)
+    out = {}
+    probleme = []
+
+    for bot in ALL_BOTS:
+        strategy_dir = os.path.join(repo_root, "strategies", bot)
+        lauf_dir = os.path.join(out_dir, f"_lauf_{bot}")
+        json_path = os.path.join(out_dir, f"{bot}_summary.json")
+        ziel_csv = os.path.join(out_dir, f"{bot}_equity_curve.csv")
+
+        proc = subprocess.run(
+            [sys.executable, "-c", _WORKER_HEUTE, bot, json_path, lauf_dir],
+            cwd=strategy_dir, capture_output=True, text=True,
+            env={**os.environ, "PYTHONPATH": os.path.join(repo_root, "shared")})
+        if proc.returncode != 0:
+            raise SystemExit(f"Kurvenlauf fuer {bot} fehlgeschlagen:\n"
+                             f"{proc.stderr[-3000:]}")
+
+        erzeugt = os.path.join(lauf_dir, "equity_curve.csv")
+        if not os.path.exists(erzeugt):
+            probleme.append(f"{bot}: equity_simulation.py hat keine Kurve geschrieben")
+            continue
+        os.replace(erzeugt, ziel_csv)
+        # Das Lauf-Verzeichnis war nur Ablage fuer RESULTS_DIR/LOGS_DIR des
+        # Bots; die Kurve liegt jetzt am Zielort. Es stehen zu lassen wuerde
+        # neun leere Ordner im Studienverzeichnis hinterlassen.
+        shutil.rmtree(lauf_dir, ignore_errors=True)
+
+        with open(json_path) as handle:
+            summary = json.load(handle)
+
+        zeilen = len(pd.read_csv(ziel_csv))
+        if zeilen == 0:
+            probleme.append(f"{bot}: erzeugte Kurve ist leer")
+
+        original = original_csv_path(repo_root, bot, portfolio_overview)
+        identical = os.path.exists(original) and _sha256(original) == _sha256(ziel_csv)
+        out[bot] = {"csv": ziel_csv, "summary": summary,
+                    "identical_to_original": identical, "original_csv": original,
+                    "rows": zeilen}
+
+        if verbose:
+            mark = "unveraendert" if identical else "NEU"
+            print(f"  {bot:<28}{mark:<14}{summary['executed']:>6} ausgefuehrt  "
+                  f"{summary['return_pct']:>10.2f}%  DD {summary['drawdown_pct']:>7.2f}%  "
+                  f"{zeilen:>5} Zeilen")
+
+    if probleme:
+        raise SystemExit("Kurvenerzeugung nicht belastbar:\n  - " + "\n  - ".join(probleme))
+    return out
+
+
+def vorhandene_kurven(kurven_dir: str) -> dict:
+    """Die bereits GESPEICHERTEN Kurven einer frueheren Korrektur als
+    `generated`-artiges dict - damit laesst sich eine aeltere Grundlage
+    exakt reproduzieren, ohne sie neu zu rechnen (und ohne sie dabei
+    versehentlich zu veraendern)."""
+    vorhanden = {}
+    for bot in ALL_BOTS:
+        pfad = os.path.join(kurven_dir, f"{bot}_equity_curve.csv")
+        if os.path.exists(pfad):
+            vorhanden[bot] = {"csv": pfad}
+    return vorhanden

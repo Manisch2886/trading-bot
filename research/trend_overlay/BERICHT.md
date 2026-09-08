@@ -27,6 +27,33 @@
 > Ende dieses Berichts.
 
 
+> ## ⚠ Zweiter Nachtrag: die Kernaussage hält auch hier
+>
+> Die Kurven waren ein **zweites Mal** veraltet: seit der ersten Korrektur sind
+> die Sync-Befunde selbst gemergt worden (PR #40–#42, #45, #51/#52), und die
+> beiden Elliott-Bots haben einen **Look-Ahead-Fix** bekommen. Die Untersuchung
+> wurde deshalb erneut wiederholt — mit Kurven, die die **heutige**
+> `equity_simulation.py` erzeugt.
+>
+> **Alle drei Teilaussagen halten.** Der Overlay verbessert den Gesamtzeitraum
+> (Calmar +7,31), bringt out-of-sample **keine** Drawdown-Verbesserung, und die
+> Wirkung bleibt auf die 2022-Episode konzentriert (85 % der Signaltage).
+>
+> **Die in der ersten Korrektur gekippte Nuance kippt zurück** — und zwar in
+> die schärfste denkbare Form: out-of-sample sind alle drei Varianten
+> **zahlengleich** (26,44 % / −4,53 % / 5,84). Das Signal ist im
+> Out-of-Sample-Fenster an keinem einzigen Tag aktiv; der Overlay tut dort
+> buchstäblich nichts. Der Calmar-Unterschied ist deshalb exakt 0,00 statt
+> +0,81 wie in der ersten Korrektur.
+>
+> Die absoluten Zahlen verschieben sich deutlich (Calmar Baseline 10,91 →
+> **5,90**, Overlay 18,02 → **13,21**), das Portfolio ist mit den heutigen
+> Kurven risikoreicher und weniger rentabel.
+>
+> Regressionscheck: **91/91** Referenzwerte beider früherer Fassungen exakt
+> reproduziert. Details: Abschnitt **„Nachtrag Z"** am Ende dieses Berichts.
+
+
 **Status: reine, retrospektive Backtest-Untersuchung, KEINE Live-Aktivierung,
 KEINE Änderung an Live-Dateien.** Alle neuen Skripte liegen ausschliesslich
 unter `research/trend_overlay/`. Verifiziert per `git status`: keine Datei
@@ -501,3 +528,210 @@ deshalb bricht das Skript dort ab statt zu warnen.
 python3 test_corrected_curves.py       # 14 Checks
 python3 nachtrag_sync_korrektur.py     # erzeugt Kurven, prüft 39/39, rechnet 3 Grundlagen
 ```
+
+---
+
+# Nachtrag Z — zweite Korrektur der Kapitalkurven (2026-09-08)
+
+## Z0. Entscheidungsgrundlage
+
+**Warum überhaupt ein zweiter Nachtrag.** Der erste Nachtrag hat von Hand
+nachgebildet, wie die fünf damals abweichenden Bots *mit* Live-Konfiguration
+gerechnet hätten. Inzwischen sind genau diese Befunde gemergt — die
+Nachbildung ist damit nicht mehr die Korrektur, sondern selbst ein
+historischer Stand. Dazu kommen Änderungen ohne Bezug zum Sync-Thema, die
+dieselbe Datengrundlage treffen, allen voran ein Look-Ahead-Fix bei beiden
+Elliott-Bots.
+
+**Warum die Kurven diesmal nicht nachgebildet, sondern erzeugt werden.** Die
+zweite Korrektur führt den `__main__`-Block der heutigen
+`equity_simulation.py` aus (`corrected_curves.generate_heute`), statt einzelne
+Bot-Funktionen mit passend gesetzten Parametern aufzurufen. Eine Nachbildung
+ist eine zweite Fassung derselben Rechnung und läuft still auseinander, sobald
+sich im Bot ein Aufruf ändert — genau das ist inzwischen mehrfach passiert.
+
+**Warum zwei Regressionsanker statt einem.** Ein Dreifach-Vergleich ist nur so
+viel wert wie die Vergleichbarkeit seiner Spalten. Geprüft wird deshalb beides:
+dass die Auswertung unverändert rechnet (Basis `original` trifft
+`results/trend_overlay_summary.json`) *und* dass die alte Grundlage exakt
+reproduziert wird (Basis `korrigiert_v1` trifft
+`results/nachtrag_sync_korrektur.json`). **91/91 Referenzwerte bestätigt, 0
+abweichend.**
+
+**Was unverändert bleibt.** Signal-Konstruktion (200-Tage-MA, logisches UND
+beider Märkte), Marktreferenzen, Fenstergrössen, Exponierungs-Varianten,
+IS/OOS-Split und die 2022-Stressperiode kommen unverändert aus
+`run_overlay_analysis.py` / `trend_core.py` — aufgerufen über
+`nachtrag_sync_korrektur.analyse()`, also wörtlich dieselbe Funktion wie in der
+ersten Korrektur. `shared/portfolio_overview.py`, `results/*/equity_curve.csv`,
+`corrected_curves/` und jeder Bot-Code bleiben unangetastet.
+
+## Z1. Bestandsaufnahme: welche Bots rechnen heute anders?
+
+Gemessen, nicht aus Commit-Titeln gelesen — Kurve gegen Kurve, per SHA-256:
+
+| Bot | ggü. `results/` | ggü. 1. Korrektur | ausgeführt (1. → 2.) | Rendite % (1. → 2.) | Max DD % (1. → 2.) |
+|---|---|---|---:|---:|---:|
+| `elliott_wave` | anders | **anders** | 782 → **130** | 2.184,96 → **67,77** | −1,83 → **−10,17** |
+| `elliott_wave_stocks` | anders | **anders** | 288 → **395** | 3.084,09 → **352,72** | −9,79 → **−22,44** |
+| `volatility_breakout_crypto` | identisch | **anders** | 207 → **310** | 49,03 → **71,26** | −16,29 → **−16,77** |
+| `rsi2_crypto` | identisch | identisch | 392 | 28,37 | −13,30 |
+| `rsi2_mean_reversion` | anders | identisch | 4.232 | 36,75 | −21,05 |
+| `t3_supertrend` | identisch | identisch | 656 | 129,64 | −22,20 |
+| `turtle_soup_crypto` | identisch | identisch | 1.414 | 177,59 | −32,40 |
+| `turtle_soup_stocks` | anders | identisch | 8.915 | 145,59 | −29,91 |
+| `volatility_breakout` | identisch | identisch | 1.454 | 224,41 | −23,97 |
+
+**Drei Kurven haben sich bewegt**, aus zwei belegbaren Gründen:
+
+* `elliott_wave` und `elliott_wave_stocks` — Commit `839500b`
+  *„Elliott-Wave-Backtest korrigieren: beide Look-Ahead-Kanäle beheben"*. Die
+  grösste Verschiebung der Studie: die Renditen fallen um den Faktor 32 bzw. 9.
+  Der alte Wert war nicht falsch parametriert, sondern durch Vorausschau
+  überhöht.
+* `volatility_breakout_crypto` — Commit `9bb230f` (PR #45).
+
+**Sechs Kurven sind unverändert** — darunter die drei Bots aus PR #40–#42, deren
+gemergte Fassung die Handnachbildung des ersten Nachtrags auf die
+Nachkommastelle trifft. Eine unabhängige Bestätigung, dass die erste Korrektur
+damals richtig gerechnet hat.
+
+**Nebenbeobachtung, hier nicht behoben:** bei fünf Bots weicht die gespeicherte
+`results/<bot>/equity_curve.csv` vom heutigen Code ab — sie wurde nach den
+Korrekturen nie neu erzeugt.
+
+## Z2. Dreifach-Vergleich
+
+Rendite % / Max Drawdown % / Calmar.
+
+**Gesamtzeitraum**
+
+| Grundlage | Baseline | reduziert 50 % | pausiert 0 % |
+|---|---|---|---|
+| Erstfassung | 82,43 / −6,33 / **13,02** | 82,56 / −5,90 / **13,99** | 82,63 / −5,50 / **15,02** |
+| 1. Korrektur | 107,13 / −9,82 / **10,91** | 117,05 / −8,36 / **14,00** | 127,37 / −7,07 / **18,02** |
+| 1. Korrektur + veraltet | 255,95 / −4,82 / **53,10** | 253,74 / −2,44 / **103,99** | 251,43 / −1,56 / **161,17** |
+| **2. Korrektur** | 72,12 / −12,22 / **5,90** | 86,74 / −9,51 / **9,12** | 102,52 / −7,76 / **13,21** |
+
+**In-Sample**
+
+| Grundlage | Baseline | reduziert 50 % | pausiert 0 % |
+|---|---|---|---|
+| Erstfassung | 51,82 / −6,33 / **8,19** | 53,05 / −5,90 / **8,99** | 54,24 / −5,50 / **9,86** |
+| 1. Korrektur | 51,58 / −8,12 / **6,35** | 57,46 / −7,59 / **7,57** | 63,53 / −7,07 / **8,99** |
+| 1. Korrektur + veraltet | 108,77 / −4,82 / **22,57** | 107,47 / −2,44 / **44,05** | 106,12 / −1,56 / **68,03** |
+| **2. Korrektur** | 36,12 / −12,22 / **2,96** | 47,69 / −9,51 / **5,01** | 60,17 / −7,76 / **7,75** |
+
+**Out-of-Sample**
+
+| Grundlage | Baseline | reduziert 50 % | pausiert 0 % |
+|---|---|---|---|
+| Erstfassung | 20,16 / −4,32 / **4,67** | 19,29 / −4,32 / **4,47** | 18,41 / −4,32 / **4,26** |
+| 1. Korrektur | 36,65 / −2,96 / **12,38** | 37,84 / −2,96 / **12,78** | 39,04 / −2,96 / **13,19** |
+| 1. Korrektur + veraltet | 70,50 / −1,38 / **51,09** | 70,50 / −1,38 / **51,09** | 70,50 / −1,38 / **51,09** |
+| **2. Korrektur** | 26,44 / −4,53 / **5,84** | 26,44 / −4,53 / **5,84** | 26,44 / −4,53 / **5,84** |
+
+Das Portfolio ist mit den heutigen Kurven **risikoreicher** (Max Drawdown
+−6,3 % → −12,2 %) und **weniger rentabel** (82,4 % → 72,1 %) als in der
+Erstfassung — im Wesentlichen wegen der beiden Elliott-Bots, deren überhöhte
+Kurven bisher Rendite beisteuerten und Drawdown verwässerten.
+
+## Z3. Die drei Teilaussagen — einzeln geprüft
+
+Bewusst nicht zu einem einzigen Ja/Nein verrechnet: die Teilaussagen können
+sich unterschiedlich verhalten, und in der ersten Korrektur haben sie das
+getan.
+
+| Grundlage | T1 Calmar-Gewinn (gesamt) | T2 OOS-Drawdown | OOS-Calmar-Differenz | T3 Signaltage in 2022 |
+|---|---:|---|---:|---:|
+| Erstfassung | +2,0015 | identisch (−4,32 %) | −0,4051 | 85,0 % |
+| 1. Korrektur | +7,1062 | identisch (−2,96 %) | **+0,8074** | 85,0 % |
+| 1. Korrektur + veraltet | +108,0714 | identisch (−1,38 %) | 0,0000 | 85,0 % |
+| **2. Korrektur** | **+7,3095** | identisch (−4,53 %) | **0,0000** | 85,0 % |
+
+**T1 — der Overlay verbessert den Gesamtzeitraum: hält** in allen vier
+Grundlagen, in der zweiten Korrektur mit +7,31 sogar etwas deutlicher als in
+der ersten.
+
+**T2 — out-of-sample keine Drawdown-Verbesserung: hält** in allen vier
+Grundlagen. In der zweiten Korrektur in der schärfsten denkbaren Form: alle
+drei Varianten sind out-of-sample **zahlengleich**, nicht nur im Drawdown. Der
+Grund steht in den Signalstatistiken — im OOS-Fenster (ab 2025-04-23) ist das
+Signal an **keinem einzigen Tag** aktiv. Der Overlay tut dort buchstäblich
+nichts.
+
+Nachgezählt statt aus der Zahlengleichheit geschlossen: **0 von 485
+OOS-Tagen** aktiv, alle 300 aktiven Tage liegen im In-Sample-Bereich.
+
+**Dabei ist es knapp:** der letzte aktive Signaltag ist der **2025-04-21**,
+zwei Tage vor dem Split am 2025-04-23. T2 hält in dieser Fassung also nicht,
+weil das Signal weit von der Grenze entfernt läge, sondern weil es sie um zwei
+Tage verfehlt. Ein etwas anderes gemeinsames Fenster — und damit ein etwas
+anderer Split — hätte einige Signaltage in den OOS-Bereich gelegt. Das ist eine
+Eigenschaft des Testaufbaus (fester 70/30-Split auf dem gemeinsamen Fenster),
+keine Aussage über den Overlay, und es wird hier festgehalten, damit die
+Zahlengleichheit nicht robuster wirkt, als sie ist.
+
+**T3 — die Wirkung konzentriert sich auf 2022: hält**, und zwar unverändert
+zahlengleich. Das Signal wird aus BTC und dem Aktien-Proxy gebildet und hängt
+gar nicht von den Bot-Kurven ab: 300 aktive Tage in 9 Episoden, davon 255
+(85 %) im 2022-Fenster, längste Episode 229 Tage.
+
+**Die eine Nuance, die in der ersten Korrektur gekippt war, kippt zurück.**
+Damals *gewann* der Overlay out-of-sample leicht an Calmar (+0,81), was den
+Halbsatz der Erstfassung („und kostet stattdessen leicht Rendite") ausser Kraft
+setzte. Mit den heutigen Kurven ist der Unterschied exakt **0,00** — weil das
+Signal dort nie aktiv ist. Beide Formulierungen der Erstfassung sind damit
+out-of-sample gegenstandslos: der Overlay kostet nichts und bringt nichts.
+
+## Z4. Getroffene Annahmen und Grenzen dieses Nachtrags
+
+1. **„Heutiger Stand" heisst: was `equity_simulation.py` rechnet — nicht: was
+   live läuft.** Bei `volatility_breakout_crypto` fallen die beiden
+   auseinander: `live_params.py` setzt `BTC_REGIME_FILTER_ENABLED = True`, der
+   Backtest wendet den Filter bewusst nicht an (dokumentiert im Kopf von
+   `equity_simulation.py`, PR #45). Die v2-Kurve dieses Bots (71,26 %) ist
+   damit **nicht** live-konform; live läge sie bei 49,03 % (Sync-Check PR #24).
+   Für diesen einen Bot war die erste Korrektur näher an der
+   Live-Konfiguration. Eine zusätzliche Grundlage mit der gefilterten Kurve
+   wurde bewusst **nicht** gerechnet — das wäre die dritte Runde, die die
+   Aufgabe ausschliesst.
+2. **Die erste Korrektur lässt sich nicht mehr wiederholen.**
+   `nachtrag_sync_korrektur.py` prüft seine Kurven gegen die im Sync-Check
+   veröffentlichten Kennzahlen; für `elliott_wave_stocks` trifft es sie nach
+   dem Look-Ahead-Fix nicht mehr und bricht ab — **nachdem** es die CSVs
+   geschrieben hat. Ein Lauf auf `corrected_curves/` würde die gespeicherte
+   v1-Grundlage überschreiben und danach scheitern. Die Prüfung dieser Aussage
+   lief deshalb in einem temporären Verzeichnis; `corrected_curves/` ist
+   unangetastet, und die v1-Spalte stammt aus den **gespeicherten** Kurven.
+3. **Die Attrappen werfen** bei jedem Netzzugriff, statt leere Daten zu
+   liefern — sonst liefe ein versehentlicher Abruf still mit weniger Symbolen
+   weiter. Ausnahme mit Grund: `binance.client.Client` muss sich **erzeugen**
+   lassen, weil `shared/fetch_multi_data.py` auf Modulebene eine Instanz
+   anlegt; geworfen wird bei jedem Methodenaufruf.
+4. **Fensterwechsel.** Die zweite Korrektur endet am 2026-08-20 statt am
+   2026-06-27, weil die neu erzeugte `elliott_wave`-Kurve weiter reicht.
+   Dadurch verschiebt sich auch der IS/OOS-Split von 2025-03-16 auf
+   2025-04-23 — genau dieser Fensterwechsel ist der Grund, warum das Signal
+   im OOS-Bereich nicht mehr vorkommt. Die Spalte „1. Korrektur + veraltet"
+   nutzt dasselbe Fenster und ist deshalb der fenstergleiche
+   Vergleichspartner; sie zeigt denselben Effekt.
+5. Alles Übrige unverändert aus der Erstfassung; siehe „Getroffene Annahmen
+   (vollständig)" und N4.
+
+## Z5. Neue Dateien und Reproduktion
+
+| Datei | Zweck |
+|---|---|
+| `corrected_curves.py` | ergänzt um `generate_heute()` und `vorhandene_kurven()` — der Erzeuger der ersten Korrektur bleibt unverändert daneben stehen |
+| `nachtrag_sync_korrektur_v2.py` | dieser Nachtrag; ruft die Auswertung über `nachtrag_sync_korrektur.analyse()` auf |
+| `corrected_curves_v2/` | die neun neu erzeugten Kurven samt Kennzahlen |
+| `results/nachtrag_sync_korrektur_v2.json` | vollständige Zahlen aller vier Grundlagen |
+
+```
+python3 research/trend_overlay/nachtrag_sync_korrektur_v2.py
+```
+
+Erwartete Ausgabe: `91 Referenzwerte bestaetigt, 0 abweichend.` Der Lauf
+erzeugt die neun Kurven neu (einige Minuten) und rührt weder `results/<bot>/`
+noch `corrected_curves/` an.

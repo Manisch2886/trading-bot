@@ -1,0 +1,11 @@
+{
+  "bot": "t3_supertrend",
+  "trades_found": 980,
+  "executed": 656,
+  "skipped": 324,
+  "return_pct": 129.64,
+  "drawdown_pct": -22.2,
+  "allocation_pct": 10.0,
+  "max_concurrent_positions": 5,
+  "starting_capital": 10000.0
+}
