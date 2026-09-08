@@ -1,0 +1,12 @@
+{
+  "bot": "volatility_breakout_crypto",
+  "mit_regimefilter": true,
+  "trades_found": 233,
+  "vom_filter_entfernt": 126,
+  "executed": 207,
+  "skipped": 26,
+  "return_pct": 49.03,
+  "drawdown_pct": -16.29,
+  "allocation_pct": 10.0,
+  "max_concurrent_positions": 8
+}
