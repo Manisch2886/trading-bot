@@ -141,3 +141,9 @@ button.knopf {
   header h1 { font-size: 15px; }
   tr td[colspan]::before { content: ""; }
 }
+
+/* Dezente Markierung, wenn die letzte automatische Aktualisierung
+   fehlgeschlagen ist: die angezeigten Zahlen sind weiterhin gueltig, nur
+   nicht mehr taufrisch - das rechtfertigt keinen Fehlerbalken, nur einen
+   Hinweis am Zeitstempel (Tooltip nennt die Einzelheiten). */
+.veraltet { opacity: .55; text-decoration: underline dotted; }

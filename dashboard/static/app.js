@@ -17,6 +17,26 @@
 const FARBEN = ["#6aa9e0", "#46b877", "#e0a96a", "#c78ae0", "#e06c6c",
                 "#6ae0d2", "#e0d76a", "#8a9ae0", "#a0e06a"];
 
+/* --- Takt der automatischen Aktualisierung ---------------------------------
+   Bewusst hier oben und nicht im Seitencode verstreut, damit sich die Werte
+   an einer Stelle anpassen lassen.
+
+   Die beiden Takte sind unterschiedlich, weil die dahinterliegenden
+   Anfragen unterschiedlich teuer sind: /api/portfolio ist eine reine
+   Datenbankabfrage ohne Netzwerkzugriff, /api/portfolio?live=1 loest je
+   Aufruf echte Abfragen bei Binance und yfinance aus. Die Kurse werden
+   deshalb deutlich seltener geholt - und selbst dann bleibt der Server
+   durch asyncio.to_thread() plus Zeitgrenze abgesichert (siehe app.py),
+   daran aendert die Automatik nichts. */
+const AKTUALISIERUNG_DATEN_MS = 60 * 1000;        // Datenbank-Daten: jede Minute
+const AKTUALISIERUNG_KURSE_MS = 150 * 1000;       // Live-Kurse: alle 2,5 Minuten
+
+/* Mindestabstand zwischen zwei Laeufen derselben Aufgabe. Schuetzt davor,
+   dass haeufiges Wechseln zwischen Apps auf dem iPhone (jedes
+   Sichtbarwerden loest sofort einen Lauf aus) eine Anfrage-Lawine
+   erzeugt. */
+const MINDESTABSTAND_MS = 5 * 1000;
+
 async function hole(pfad) {
   const antwort = await fetch(pfad, { credentials: "same-origin" });
   if (antwort.status === 401) {
@@ -59,7 +79,10 @@ function alterInStunden(iso) {
 function zeigeFehler(text) {
   const bereich = document.getElementById("fehler");
   if (!bereich) return;
-  bereich.innerHTML = `<div class="hinweis">${text}</div>`;
+  // Leerer Text loescht den Block, statt eine leere rote Box zu zeigen -
+  // wird von der automatischen Aktualisierung genutzt, um eine alte
+  // Fehlermeldung nach einem geglueckten Versuch wieder wegzunehmen.
+  bereich.innerHTML = text ? `<div class="hinweis">${text}</div>` : "";
 }
 
 function setzeHinweis(text) {
@@ -134,4 +157,87 @@ function punkteAus(liste) {
     .map(p => ({ x: new Date(p.zeitpunkt).getTime(), y: p.kumuliert_pct }))
     .filter(p => !isNaN(p.x) && p.y !== null && p.y !== undefined)
     .sort((a, b) => a.x - b.x);
+}
+
+/* --- Automatische Aktualisierung -------------------------------------------
+   Ein kleiner Taktgeber je Aufgabe (Datenbank-Daten, Live-Kurse). Bewusst
+   kein location.reload(): die Seite wird nie neu aufgebaut, es wird nur
+   dieselbe Render-Funktion mit frischen Daten erneut aufgerufen. Wer gerade
+   scrollt oder eine Tabelle liest, merkt davon nichts ausser aktualisierten
+   Zahlen.
+
+   Drei Eigenschaften, die den Unterschied zu einem blossen setInterval
+   ausmachen:
+
+   1. PAUSE IM HINTERGRUND. Laeuft nur, solange document.visibilityState
+      "visible" ist. Liegt das iPhone gesperrt in der Tasche oder ist der
+      Tab im Hintergrund, wird nichts abgefragt - das spart vor allem die
+      teuren Kursabfragen. Wird die Seite wieder sichtbar und ist seither
+      mehr Zeit vergangen als ein Takt, wird sofort nachgeladen, statt bis
+      zum naechsten Tick zu warten (siehe die Bedingung in ausfuehren()
+      fuer den Grund, warum nicht bei JEDEM Sichtbarwerden).
+   2. KEINE UEBERLAPPUNG. Laeuft eine Abfrage noch (eine Kursabfrage darf
+      bis zu 12 Sekunden dauern), wird der naechste Takt uebersprungen
+      statt eine zweite Abfrage danebenzustellen.
+   3. FEHLER LOESCHEN NICHTS. Schlaegt ein Lauf fehl, bleiben die zuletzt
+      erfolgreich angezeigten Daten stehen. Sichtbar wird das nur an einer
+      dezenten Markierung an der Stand-Anzeige; beim naechsten Takt wird
+      es einfach erneut versucht. */
+
+function autoAktualisierung(ladefunktion, intervallMs, beiFehlerstatus) {
+  let laeuft = false;
+  let letzterStart = Date.now();   // die Seite hat gerade selbst geladen
+  let fehlerInFolge = 0;
+
+  async function ausfuehren(grund) {
+    if (laeuft) return;                                   // (2)
+    if (Date.now() - letzterStart < MINDESTABSTAND_MS) return;
+    // Beim Sichtbarwerden wird nur nachgeladen, wenn der Takt auch
+    // faellig WAERE. Wer zwischen zwei Apps hin- und herwechselt, loest
+    // sonst bei jedem Blick eine neue Kursabfrage bei Binance/yfinance
+    // aus - und das widerspraeche dem Zweck der Sichtbarkeitspruefung.
+    // Fuer den eigentlich gemeinten Fall (Seite war laenger weg als ein
+    // Takt) aendert sich nichts: dann ist die Aufgabe faellig und laeuft
+    // sofort, ohne auf den naechsten Tick zu warten.
+    if (grund === "sichtbar" && Date.now() - letzterStart < intervallMs) return;
+    laeuft = true;
+    letzterStart = Date.now();
+    try {
+      await ladefunktion(grund);
+      fehlerInFolge = 0;
+      if (beiFehlerstatus) beiFehlerstatus(0);
+    } catch (e) {                                          // (3)
+      fehlerInFolge += 1;
+      if (beiFehlerstatus) beiFehlerstatus(fehlerInFolge, e);
+    } finally {
+      laeuft = false;
+    }
+  }
+
+  setInterval(() => {
+    if (document.visibilityState === "visible") ausfuehren("takt");  // (1)
+  }, intervallMs);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") ausfuehren("sichtbar");
+  });
+
+  return ausfuehren;
+}
+
+/* Dezente Rueckmeldung an der "Stand"-Anzeige: nach einem fehlgeschlagenen
+   Versuch bekommt sie eine gedaempfte Markierung und einen Tooltip, mehr
+   nicht. Kein Banner, keine Fehlermeldung ueber der Seite - die angezeigten
+   Zahlen sind ja weiterhin gueltig, nur eben nicht mehr taufrisch. */
+function markiereAktualisierung(elementId, fehlerInFolge) {
+  const feld = document.getElementById(elementId);
+  if (!feld) return;
+  if (fehlerInFolge > 0) {
+    feld.classList.add("veraltet");
+    feld.title = `Letzte Aktualisierung fehlgeschlagen (${fehlerInFolge}x). ` +
+                 `Angezeigt werden die zuletzt erfolgreich geladenen Daten.`;
+  } else {
+    feld.classList.remove("veraltet");
+    feld.title = "";
+  }
 }
