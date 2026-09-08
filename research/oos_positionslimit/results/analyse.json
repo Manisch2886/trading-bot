@@ -1,0 +1,39 @@
+{
+  "ohne_limit": {
+    "endkapital": 17036.74,
+    "ausgefuehrt": 120,
+    "uebersprungen": 8,
+    "wegen_limit": 0,
+    "wegen_kapital": 8,
+    "hoechststand_gleichzeitig": 9
+  },
+  "mit_limit": {
+    "endkapital": 17239.11,
+    "ausgefuehrt": 114,
+    "uebersprungen": 14,
+    "wegen_limit": 14,
+    "wegen_kapital": 0,
+    "hoechststand_gleichzeitig": 8
+  },
+  "trades_gesamt": 128,
+  "kennzahlen_vorher": {
+    "rendite_pct": 70.37,
+    "max_drawdown_pct": -10.11,
+    "calmar": 6.96,
+    "endkapital": 17036.74,
+    "trades_gesamt": 128,
+    "ausgefuehrt": 120,
+    "uebersprungen": 8,
+    "limit_uebergeben": null
+  },
+  "kennzahlen_nachher": {
+    "rendite_pct": 72.39,
+    "max_drawdown_pct": -9.69,
+    "calmar": 7.47,
+    "endkapital": 17239.11,
+    "trades_gesamt": 128,
+    "ausgefuehrt": 114,
+    "uebersprungen": 14,
+    "limit_uebergeben": 8
+  }
+}
