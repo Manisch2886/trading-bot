@@ -31,16 +31,17 @@ DB_FILE = _P["DB_FILE"]
 from fetch_binance_data import fetch_historical_data
 from symbols_config import SYMBOLS
 from indicators import compute_indicators
-from live_params import T3_FAST_LENGTH, T3_SLOW_LENGTH, ADX_THRESHOLD, STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS
+# T3_FACTOR bis ATR_MULT neu aus live_params.py statt eigener Zahlen weiter
+# unten - die WERTE sind unveraendert, nur ihre Quelle ist jetzt dieselbe wie
+# fuer backtest_trend.py. Vorher fuehrten beide Dateien sie getrennt.
+from live_params import (T3_FAST_LENGTH, T3_SLOW_LENGTH, ADX_THRESHOLD,
+                          STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+                          T3_FACTOR, DI_LENGTH, ADX_LENGTH, ATR_LENGTH,
+                          ATR_MULT)
 
 INTERVAL = Client.KLINE_INTERVAL_4HOUR
 LOOKBACK = "120 day ago UTC"  # genug Vorlauf fuer Indikator-Einschwingzeit bei 4h-Kerzen
 
-T3_FACTOR = 0.7
-DI_LENGTH = 14
-ADX_LENGTH = 14
-ATR_LENGTH = 22
-ATR_MULT = 3.0
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05
 
