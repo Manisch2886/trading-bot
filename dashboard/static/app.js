@@ -70,18 +70,53 @@ function prozent(wert) {
   return `<span class="${klasse}">${vorzeichen}${zahl(wert)}%</span>`;
 }
 
+/* --- Zeitangaben ----------------------------------------------------------
+   Alle Zeitangaben laufen ueber diese eine Stelle, damit Anzeige und
+   Altersberechnung nicht auseinanderlaufen koennen.
+
+   Der Server schickt Zeitpunkte, die er selbst erzeugt ("Stand", "Letzter
+   Lauf"), als ISO-8601 MIT Zeitzonen-Offset. Erst dadurch ist der Wert
+   eindeutig, und erst dann rechnet der Browser ihn in die Zeitzone des
+   Geraets um - das ist der Kern der Korrektur. Vorher kam der "Stand" naiv
+   in UTC, und die Anzeige stand zwei Stunden zurueck (Sommerzeit).
+
+   Zeitpunkte OHNE Zeitzonenangabe gibt es weiterhin: die Einstiegs- und
+   Ausstiegszeiten stammen unveraendert aus den Bot-Datenbanken und sind
+   Kerzen-Zeitstempel des Marktes, keine Wanduhrzeit des Nutzers. Sie
+   werden deshalb bewusst NICHT verschoben, sondern so gezeigt, wie sie
+   dastehen.
+
+   Das muss man erzwingen, weil JavaScript die beiden naiven Formen
+   unterschiedlich liest: "2026-01-03T00:00:00" gilt laut Norm als
+   Ortszeit, die reine Datumsform "2026-01-03" dagegen als UTC. Ohne die
+   Ergaenzung unten wuerde ein Tages-Zeitstempel in Berlin als "01:00"
+   erscheinen - und westlich von Greenwich sogar am Vortag. */
+
+const ZEITZONE_IM_TEXT = /(Z|[+-]\d{2}:?\d{2})$/;
+
+function zeitpunkt(iso) {
+  if (!iso) return null;
+  // Leerzeichen statt "T" ist die Form, die str(pandas.Timestamp) liefert.
+  let text = String(iso).trim().replace(" ", "T");
+  if (!ZEITZONE_IM_TEXT.test(text) && !text.includes("T")) {
+    // reine Datumsform: als lokale Mitternacht lesen, nicht als UTC
+    text += "T00:00:00";
+  }
+  const datum = new Date(text);
+  return isNaN(datum) ? null : datum;
+}
+
 function zeit(iso) {
   if (!iso) return "–";
-  const datum = new Date(iso);
-  if (isNaN(datum)) return iso;
+  const datum = zeitpunkt(iso);
+  if (!datum) return iso;
   return datum.toLocaleString("de-DE", { day: "2-digit", month: "2-digit",
                                           hour: "2-digit", minute: "2-digit" });
 }
 
 function alterInStunden(iso) {
-  if (!iso) return null;
-  const datum = new Date(iso);
-  if (isNaN(datum)) return null;
+  const datum = zeitpunkt(iso);
+  if (!datum) return null;
   return (Date.now() - datum.getTime()) / 3600000;
 }
 
@@ -163,7 +198,10 @@ function legende(behaelter, reihen) {
 
 function punkteAus(liste) {
   return liste
-    .map(p => ({ x: new Date(p.zeitpunkt).getTime(), y: p.kumuliert_pct }))
+    // ueber zeitpunkt(), damit die Achse dieselbe Lesart benutzt wie die
+    // Tabellen - sonst haette derselbe Wert zwei Bedeutungen.
+    .map(p => ({ x: (zeitpunkt(p.zeitpunkt) || { getTime: () => NaN }).getTime(),
+                  y: p.kumuliert_pct }))
     .filter(p => !isNaN(p.x) && p.y !== null && p.y !== undefined)
     .sort((a, b) => a.x - b.x);
 }

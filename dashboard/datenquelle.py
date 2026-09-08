@@ -25,7 +25,7 @@ numpy.float64/int64 sind fuer json nicht serialisierbar.
 import math
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timezone
 
 import pandas as pd
 
@@ -41,6 +41,28 @@ import monitor  # noqa: E402
 # einer versehentlich riesigen JSON-Antwort, wenn ein Bot ueber Monate
 # sehr viele Trades angesammelt hat.
 MAX_TRADES = 500
+
+
+def _jetzt_iso() -> str:
+    """Aktueller Zeitpunkt als ISO-8601-String MIT Zeitzonen-Offset.
+
+    Hier stand frueher datetime.utcnow().isoformat(). Das ergibt
+    einen NAIVEN String ("2026-09-08T19:17:13"), dem man die Zeitzone nicht
+    ansieht - und JavaScript liest eine solche Datum-Zeit-Form laut Norm
+    als ORTSZEIT des Browsers. Aus 19:17 UTC wurde im Dashboard also
+    "19:17" angezeigt, waehrend die Uhr in Berlin 21:17 zeigte: genau der
+    gemeldete Versatz von zwei Stunden (Sommerzeit, UTC+2).
+
+    Mit Offset ("...+00:00") ist der Zeitpunkt eindeutig, und der Browser
+    rechnet ihn selbst in seine Zeitzone um. Deshalb hier bewusst KEINE
+    fest einprogrammierte Zeitzone (etwa Europe/Berlin): das Dashboard
+    soll auch von unterwegs die richtige Ortszeit zeigen, ohne dass der
+    Server wissen muesste, wo der Nutzer gerade ist.
+
+    Nebeneffekt: datetime.utcnow() ist seit Python 3.12 als veraltet
+    markiert, genau wegen dieser Naivitaet.
+    """
+    return datetime.now(timezone.utc).isoformat()
 
 
 def _zahl(wert):
@@ -175,7 +197,7 @@ def portfolio_uebersicht(live_kurse: dict = None) -> dict:
                 sum(z["summe_pnl"] or 0.0 for z in zeilen), 2),
         },
         "live_kurse_enthalten": live_kurse is not None,
-        "abgerufen_am": datetime.utcnow().isoformat(),
+        "abgerufen_am": _jetzt_iso(),
     }
 
 
@@ -188,7 +210,7 @@ def bot_detail(bot: dict, live_kurse: dict = None, trade_limit: int = 50) -> dic
     ]
     zeile["letzte_trades"] = geschlossene_trades(bot, limit=trade_limit)
     zeile["live_kurse_enthalten"] = live_kurse is not None
-    zeile["abgerufen_am"] = datetime.utcnow().isoformat()
+    zeile["abgerufen_am"] = _jetzt_iso()
     return zeile
 
 
@@ -319,7 +341,7 @@ def gesamtverlauf() -> dict:
         "gesamt": gesamt,
         "trades_ohne_ergebnis": ohne_ergebnis_gesamt,
         "hinweis": hinweis,
-        "abgerufen_am": datetime.utcnow().isoformat(),
+        "abgerufen_am": _jetzt_iso(),
     }
 
 

@@ -23,6 +23,8 @@ ueber `notifications/monitor.py` im SQLite-Modus `ro` geoeffnet.
 | `static/` | Frontend (HTML/CSS/JS), `manifest.json`, `sw.js`, Icons |
 | `erzeuge_icons.py` | erzeugt die beiden PWA-Icons neu (keine Fremdbibliothek noetig) |
 | `test_dashboard.py` | Selbsttests gegen den echten Server, synthetische Daten |
+| `test_zustandsmaschine.js` | Verhaltenstest der Aktualisierungs-Zustaende (node, wird mitgestartet) |
+| `test_zeitzone.js` | Verhaltenstest der Zeitanzeige in vier Zeitzonen (node, wird mitgestartet) |
 
 ## Erste Inbetriebnahme (Schritt fuer Schritt)
 
@@ -56,7 +58,12 @@ ueber `notifications/monitor.py` im SQLite-Modus `ro` geoeffnet.
    ```
    python3 dashboard/test_dashboard.py
    ```
-   Erwartet: `79/79 Pruefungen bestanden.`
+   Erwartet: `121/121 Pruefungen bestanden.`
+
+   Die beiden Node-Tests werden davon mitgestartet, sofern `node`
+   vorhanden ist. Fehlt es, sagen die Selbsttests das ausdruecklich und
+   nennen, was dadurch ungeprueft bleibt - sie melden es nicht als
+   Fehlschlag.
 
 5. **Dashboard starten** (laeuft im Vordergrund, `Strg+C` beendet):
    ```
