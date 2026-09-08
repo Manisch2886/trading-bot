@@ -10,6 +10,16 @@ ADX_THRESHOLD = 20.0
 STOP_LOSS_PCT = 4.0
 MAX_CONCURRENT_POSITIONS = 5
 
+# Die fuenf Indikator-Parameter - seit PR #51 hier, WERTE UNVERAENDERT.
+# Sie standen vorher zweimal unabhaengig im Bot (backtest_trend.py und
+# forward_test.py) und in dieser Datei gar nicht; PR #49 hatte das nur
+# dokumentiert. Jetzt lesen beide Stellen von hier.
+T3_FACTOR = 0.7
+DI_LENGTH = 14
+ADX_LENGTH = 14
+ATR_LENGTH = 22
+ATR_MULT = 3.0
+
 # Weitere wirksame Parameter: bewusst NICHT hier definiert - reine Dokumentation.
 # ------------------------------------------------------------------------
 # Die folgenden Groessen bestimmen den Live-Betrieb dieses Bots mit, stehen
@@ -19,22 +29,12 @@ MAX_CONCURRENT_POSITIONS = 5
 # Erhoben mit research/backtest_defaults/ (PR #45), Werte am 2026-09-08 erneut
 # geprueft.
 #
-# INDIKATOR-PARAMETER - und zwar DOPPELT gefuehrt:
-#
-#   T3_FACTOR   = 0.7   DI_LENGTH  = 14   ADX_LENGTH = 14
-#   ATR_LENGTH  = 22    ATR_MULT   = 3.0
-#
-# Sie stehen ZWEIMAL im Bot, mit je eigener Zahl:
-#   - backtest_trend.py:49-54 (Defaults von run_backtest(); der Live-Pfad
-#     ueber multi_symbol_optimise.get_trades_for_symbol() uebergibt sie nicht,
-#     der Default wirkt also)
-#   - forward_test.py:39-43 (dort erneut gesetzt und in Zeile 194/195 an die
-#     Indikatorberechnung uebergeben - das ist der Cronjob)
-# Stand 2026-09-08 sind beide Saetze identisch. Sie koennen aber unbemerkt
-# auseinanderlaufen: wer einen Wert anpasst und den zweiten Ort vergisst,
-# bekommt einen Backtest, der eine andere Strategie beschreibt als die
-# laufende - genau die Falle, die bei elliott_wave_stocks/USE_TAKE_PROFIT
-# schon einmal zugeschnappt ist (PR #24/#31).
+# ERLEDIGT seit PR #51: die fuenf Indikator-Parameter (T3_FACTOR,
+# DI_LENGTH, ADX_LENGTH, ATR_LENGTH, ATR_MULT) standen frueher ZWEIMAL im
+# Bot - in backtest_trend.py und noch einmal in forward_test.py. Dieser
+# Block beschrieb das als offene Falle. Sie ist geschlossen: die Werte
+# stehen jetzt oben in dieser Datei, beide Stellen importieren sie von
+# hier. Die Zahlen selbst wurden dabei nicht angefasst.
 #
 # EXIT- UND FILTER-SCHALTER (Literale in der Signatur von run_backtest(),
 # backtest_trend.py:61):
@@ -54,8 +54,11 @@ MAX_CONCURRENT_POSITIONS = 5
 # compute_btc_regime()):
 #   atr_length = 22   atr_mult = 3.0
 # equity_simulation.py:66 ruft die Funktion ohne Argumente auf, die Literale
-# wirken also direkt. Sie entsprechen ATR_LENGTH/ATR_MULT oben, sind aber eine
-# dritte, unabhaengige Kopie derselben Zahlen.
+# wirken also direkt. Sie entsprechen ATR_LENGTH/ATR_MULT oben, sind aber
+# weiterhin eine eigene Kopie - hier BEWUSST nicht mitumgestellt: der
+# Regime-Filter ist eine andere Groesse als die Signal-Indikatoren (BTC-eigener
+# SuperTrend statt Handelssymbol), auch wenn die Zahlen zufaellig gleich sind.
+# Sie gleichzusetzen waere eine inhaltliche Entscheidung, keine Aufraeumarbeit.
 #
 # BEWUSST NUR DOKUMENTIERT, NICHT GEKOPPELT: ein Import dieser Werte aus
 # dieser Datei waere eine strukturelle Aenderung mit echtem Risiko fuer die

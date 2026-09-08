@@ -46,13 +46,18 @@ SLIPPAGE_PCT = 0.05
 #     uebersehene Sync-Luecke (siehe research/backtest_defaults/BERICHT.md).
 T3_FAST_LENGTH = 12
 T3_SLOW_LENGTH = 25
-T3_FACTOR = 0.7
-DI_LENGTH = 14
-ADX_LENGTH = 14
 ADX_THRESHOLD = 25.0
-ATR_LENGTH = 22
-ATR_MULT = 3.0
 STOP_LOSS_PCT = 3.0
+
+# Diese fuenf kommen DIREKT aus live_params.py - derselben Datei, aus der
+# auch forward_test.py liest. Sie standen hier und dort zweimal unabhaengig
+# mit derselben Zahl; wer eine der beiden angepasst und die andere vergessen
+# haette, bekaeme einen Backtest, der eine andere Strategie beschreibt als
+# die laufende. Anders als die vier Werte darueber werden sie von KEINEM
+# Suchraster variiert - eine Kopplung nimmt hier also keine Freiheit weg.
+# live_params.py importiert selbst nichts, ein Importzyklus ist ausgeschlossen.
+from live_params import (T3_FACTOR, DI_LENGTH, ADX_LENGTH, ATR_LENGTH,
+                          ATR_MULT)
 
 
 def run_backtest(df: pd.DataFrame, t3_fast_length=T3_FAST_LENGTH, t3_slow_length=T3_SLOW_LENGTH,
