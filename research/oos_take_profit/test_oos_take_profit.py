@@ -277,12 +277,56 @@ def teste_krypto_nicht_betroffen():
           len(aktien_treffer) >= 5, str(aktien_treffer))
 
 
+# ---------------------------------------------------------------------------
+# E) Die allgemeine Regel statt nur dieses einen Falls
+# ---------------------------------------------------------------------------
+
+def optimierer_dimensionen(ordner: str) -> set:
+    """Welche Strategie-Parameter legt multi_symbol_optimise.py in sein
+    Ergebnis-dict? Genau die kann der Gewinner tragen - und genau die muss
+    die OOS-Simulation weiterreichen, sonst validiert sie etwas anderes."""
+    bekannt = {"deviation_pct", "stop_loss_pct", "take_profit_fib",
+               "use_take_profit", "donchian_period", "stop_mode"}
+    schluessel = set()
+    for knoten in ast.walk(_baum(os.path.join(ordner, "multi_symbol_optimise.py"))):
+        if isinstance(knoten, ast.Dict):
+            for s in knoten.keys:
+                if isinstance(s, ast.Constant) and isinstance(s.value, str):
+                    schluessel.add(s.value)
+    return schluessel & bekannt
+
+
+def teste_alle_dimensionen_durchgereicht():
+    """Der eigentliche Schutz gegen eine Wiederholung.
+
+    Der Fix an einer Zeile behebt den heutigen Fall. Wird morgen eine neue
+    Dimension ins Suchraster aufgenommen und beim OOS-Aufruf vergessen,
+    entsteht derselbe Fehler erneut - lautlos. Diese Pruefung vergleicht
+    deshalb, was der Optimierer LIEFERN kann, mit dem, was die
+    OOS-Simulation ABHOLT."""
+    print("\nE) Jede gesuchte Dimension wird auch weitergereicht")
+
+    for bot, ordner in (("elliott_wave", KRYPTO), ("elliott_wave_stocks", AKTIEN)):
+        oos = os.path.join(ordner, "oos_equity_simulation.py")
+        if not os.path.exists(oos):
+            continue
+        gesucht = optimierer_dimensionen(ordner)
+        aufrufe = aufruf_argumente(oos, "collect_all_trades")
+        durchgereicht = set(aufrufe[0]) if aufrufe else set()
+        fehlend = gesucht - durchgereicht
+        check(f"{bot}: OOS reicht alle {len(gesucht)} gesuchten Dimensionen durch",
+              not fehlend,
+              f"fehlt: {sorted(fehlend)}" if fehlend
+              else f"{sorted(gesucht)}")
+
+
 def main():
     print("Selbsttests: Take-Profit-Uebergabe in der OOS-Validierung")
     teste_uebergabe()
     teste_none_falle()
     teste_wirkung()
     teste_krypto_nicht_betroffen()
+    teste_alle_dimensionen_durchgereicht()
 
     print(f"\n{_bestanden}/{_bestanden + len(_fehler)} Pruefungen bestanden.")
     for name in _fehler:

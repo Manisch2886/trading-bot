@@ -1,0 +1,127 @@
+{
+  "stdout": "Hinweis: GEV deckt nur 888 Tage ab (< 1825 noetig), wird uebersprungen.\nHinweis: SNDK deckt nur 565 Tage ab (< 1825 noetig), wird uebersprungen.\nHinweis: CEG deckt nur 1686 Tage ab (< 1825 noetig), wird uebersprungen.\nOut-of-Sample-Zeitraum: 2023-08-30 00:00:00 bis 2026-09-01 00:00:00\n\nOptimiere auf In-Sample-Daten, um die Parameter zu bestimmen...\nTeste 64 Kombinationen auf 147 Symbolen...\n\n\nVerwendete Parameter (aus In-Sample-Optimierung):\n  Zigzag: 5.0%  |  Stop-Loss: 2.0%  |  Take-Profit: KEIN festes Ziel\n\nSammle Trades im Out-of-Sample-Zeitraum...\n128 Trades gefunden.\n\n=======================================================\nOUT-OF-SAMPLE PORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              17,036.74\nGesamtrendite:           70.37%\nAusgefuehrte Trades:     120\nUebersprungene Trades:   8 (nicht genug freies Kapital)\nMax Drawdown (Kapital):  -10.11%\n\nGespeichert als: <TEMP>/results/oos_equity_curve.csv\n",
+  "mitschnitt": {
+    "bester": {
+      "deviation_pct": 5.0,
+      "stop_loss_pct": 2.0,
+      "take_profit_fib": null,
+      "use_take_profit": false,
+      "num_trades": 372,
+      "num_symbols": 128,
+      "win_rate": 14.2,
+      "total_return_pct": 1002.72,
+      "avg_return_pct": 2.7,
+      "max_drawdown_pct": -51.15,
+      "robustness_score": 1.018
+    },
+    "bester_typen": {
+      "deviation_pct": "float",
+      "stop_loss_pct": "float",
+      "take_profit_fib": "NoneType",
+      "use_take_profit": "bool",
+      "num_trades": "int",
+      "num_symbols": "int",
+      "win_rate": "float",
+      "total_return_pct": "float",
+      "avg_return_pct": "float",
+      "max_drawdown_pct": "float",
+      "robustness_score": "float"
+    },
+    "spalten_dtypes": {
+      "deviation_pct": "float64",
+      "stop_loss_pct": "float64",
+      "take_profit_fib": "object",
+      "use_take_profit": "bool",
+      "num_trades": "int64",
+      "num_symbols": "int64",
+      "win_rate": "float64",
+      "total_return_pct": "float64",
+      "avg_return_pct": "float64",
+      "max_drawdown_pct": "float64",
+      "robustness_score": "float64"
+    },
+    "top5": [
+      {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 2.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 372,
+        "num_symbols": 128,
+        "win_rate": 14.2,
+        "total_return_pct": 1002.72,
+        "avg_return_pct": 2.7,
+        "max_drawdown_pct": -51.15,
+        "robustness_score": 1.018
+      },
+      {
+        "deviation_pct": 4.0,
+        "stop_loss_pct": 8.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 496,
+        "num_symbols": 134,
+        "win_rate": 36.7,
+        "total_return_pct": 2181.02,
+        "avg_return_pct": 4.4,
+        "max_drawdown_pct": -99.49,
+        "robustness_score": 0.985
+      },
+      {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 372,
+        "num_symbols": 128,
+        "win_rate": 19.9,
+        "total_return_pct": 1395.91,
+        "avg_return_pct": 3.75,
+        "max_drawdown_pct": -79.07,
+        "robustness_score": 0.915
+      },
+      {
+        "deviation_pct": 2.0,
+        "stop_loss_pct": 8.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 1228,
+        "num_symbols": 147,
+        "win_rate": 42.6,
+        "total_return_pct": 4989.04,
+        "avg_return_pct": 4.06,
+        "max_drawdown_pct": -156.6,
+        "robustness_score": 0.909
+      },
+      {
+        "deviation_pct": 3.0,
+        "stop_loss_pct": 8.0,
+        "take_profit_fib": null,
+        "use_take_profit": false,
+        "num_trades": 767,
+        "num_symbols": 141,
+        "win_rate": 39.9,
+        "total_return_pct": 3327.49,
+        "avg_return_pct": 4.34,
+        "max_drawdown_pct": -132.8,
+        "robustness_score": 0.905
+      }
+    ],
+    "trades_gesamt": 128,
+    "startkapital": 10000.0,
+    "endkapital": 17036.74,
+    "ausgefuehrt": 120,
+    "uebersprungen": 8,
+    "max_dd": -10.11
+  },
+  "abbruch": null,
+  "kennzahlen": {
+    "rendite_pct": 70.37,
+    "max_drawdown_pct": -10.11,
+    "calmar": 6.96,
+    "endkapital": 17036.74,
+    "trades_gesamt": 128,
+    "ausgefuehrt": 120,
+    "uebersprungen": 8
+  }
+}

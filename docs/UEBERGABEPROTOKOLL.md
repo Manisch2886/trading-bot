@@ -207,7 +207,7 @@ Gemeinsames Muster in jedem der drei `strategies/<name>/`-Ordner (Dateinamen var
 | `multi_symbol_optimise.py` | **Haupt-Optimierungsskript**: lädt alle Symbole, Grid-Search über Parameterraum, robuste Kombination finden |
 | `multi_symbol_walk_forward.py` | Teilt Daten 70/30 (In-Sample/Out-of-Sample), validiert Optimierungsergebnis auf ungesehenen Daten |
 | `equity_simulation.py` | Event-basierte Portfolio-Simulation (echtes Kapital, Positionsgröße, ggf. Positionslimit) statt naiver Summierung |
-| `oos_equity_simulation.py` | (nur Krypto-Varianten) Equity-Simulation beschränkt auf Out-of-Sample-Zeitraum |
+| `oos_equity_simulation.py` | Equity-Simulation beschränkt auf den Out-of-Sample-Zeitraum, mit den auf dem In-Sample-Fenster optimierten Parametern (nicht mit den Live-Werten — das ist der Sinn der Prüfung). Vorhanden bei `elliott_wave` **und** `elliott_wave_stocks`; die frühere Angabe „nur Krypto-Varianten" war falsch und hat mit dazu beigetragen, dass ein Fehler in der Aktien-Fassung lange unbemerkt blieb (PR #45/#47) |
 | `forward_test.py` | **Live-Skript**: prüft offene Positionen, sucht neue Signale, schreibt in DB — das läuft per Cron |
 | `daily_summary_email.py` | Liest DB, baut Zusammenfassung, ruft Agent 1 + Agent 3 auf, verschickt den Bericht — **Cronjob seit 2026-09-08 deaktiviert** (Zahlen jederzeit über `/status`/Dashboard abrufbar; Skript bleibt manuell lauffähig, Cron-Zeile nur auskommentiert) |
 | `live_params.py` | Aktuell aktive, validierte Parameter (siehe Abschnitt 4) |
