@@ -21,7 +21,9 @@ import json
 import os
 import re
 import socket
+import shutil
 import sqlite3
+import subprocess
 import sys
 import tempfile
 import threading
@@ -566,6 +568,88 @@ def teste_automatische_aktualisierung():
               "erstesLaden()" in quelle)
 
 
+def teste_ladeindikator():
+    """Ladezustand: Auszeichnung der Seiten und Stil.
+
+    Das eigentliche VERHALTEN (welcher Zustand wann gilt, und dass sich
+    "laedt" und "veraltet" gegenseitig ausschliessen) prueft
+    test_zustandsmaschine.js, indem es app.js wirklich ausfuehrt - siehe
+    teste_zustandsmaschine() weiter unten. Hier stehen nur die Dinge, die
+    sich sinnvoll am Quelltext festmachen lassen: dass die Elemente in
+    beiden Seiten existieren, richtig ausgezeichnet sind und dass es zu
+    jeder Klasse auch eine Regel im Stylesheet gibt."""
+    print("\n9) Ladeindikator (Auszeichnung und Stil)")
+
+    statisch = os.path.join(DIR, "static")
+
+    def lies(datei):
+        return ohne_kommentare(open(os.path.join(statisch, datei)).read())
+
+    app_js = lies("app.js")
+    css = lies("style.css")
+    roh = {name: open(os.path.join(statisch, name)).read()
+            for name in ("index.html", "bot.html")}
+
+    check("Die drei Zustaende stehen als benannte Konstanten in app.js",
+          all(f'const {n} ' in app_js or f'const {n}' in app_js
+              for n in ("AKTUALISIERUNG_NORMAL", "AKTUALISIERUNG_LAEDT",
+                         "AKTUALISIERUNG_VERALTET")))
+    check("Beide Zustandsklassen werden vor dem Setzen entfernt "
+          "(Ausschluss strukturell, nicht per Absprache)",
+          'classList.remove("laedt", "veraltet")' in app_js)
+    check("Die Ladeanzeige wird im finally wieder abgemeldet - ein Fehler "
+          "darf sie nicht haengen lassen",
+          "finally {" in app_js and "ladeanzeigeAus(aufgabe)" in app_js)
+
+    for name, quelle in roh.items():
+        gesaeubert = ohne_kommentare(quelle)
+        check(f"{name} hat ein Element fuer die Ladeanzeige",
+              'id="ladeanzeige"' in quelle)
+        check(f"{name}: die Ladeanzeige ist anfangs ausgeblendet",
+              'id="ladeanzeige"' in quelle
+              and "hidden" in quelle.split('id="ladeanzeige"')[1].split(">")[0])
+        check(f"{name}: die Ladeanzeige wird Screenreadern gemeldet",
+              'aria-live="polite"' in quelle and 'role="status"' in quelle)
+        check(f"{name} benennt beide Aufgaben unterschiedlich",
+              "Aktualisiere \u2026" in gesaeubert
+              and "Kurse werden geladen \u2026" in gesaeubert)
+        check(f"{name} reicht den Zustand an markiereAktualisierung durch",
+              "AKTUALISIERUNG_VERALTET" in gesaeubert)
+
+    check("Es gibt eine CSS-Regel fuer den Ladezustand",
+          ".laedt {" in css and "@keyframes atmen" in css)
+    check("Die Ladeanzeige hat ein animiertes Symbol",
+          ".ladeanzeige::before" in css and "@keyframes pulsieren" in css)
+    check("Abgeschaltete Bewegung wird respektiert",
+          "prefers-reduced-motion" in css)
+
+
+def teste_zustandsmaschine():
+    """Startet den Node-Verhaltenstest, sofern node vorhanden ist.
+
+    Node ist im Projekt sonst nirgends noetig - deshalb ist sein Fehlen
+    kein Fehlschlag, sondern ein sichtbarer Hinweis. Was dann ungeprueft
+    bleibt, steht in der Meldung, damit niemand die Luecke uebersieht."""
+    print("\n10) Verhalten der Zustandsmaschine (node)")
+
+    node = shutil.which("node")
+    if not node:
+        print("  [uebersprungen] node nicht gefunden - die Zustandsuebergaenge "
+              "in app.js\n                  bleiben ungeprueft "
+              "(node dashboard/test_zustandsmaschine.js)")
+        return
+
+    skript = os.path.join(DIR, "test_zustandsmaschine.js")
+    fertig = subprocess.run([node, skript], capture_output=True, text=True,
+                             timeout=120)
+    for zeile in fertig.stdout.splitlines():
+        if zeile.strip():
+            print("  " + zeile.strip() if zeile.startswith("  ") else zeile)
+    check("Verhaltenstest der Zustandsmaschine (test_zustandsmaschine.js)",
+          fertig.returncode == 0,
+          detail=fertig.stderr.strip()[-300:] if fertig.returncode else "")
+
+
 def main():
     print("Selbsttests des Dashboards")
 
@@ -602,6 +686,8 @@ def main():
             teste_frontend(server.basis)
             teste_nur_lesend(app, server.basis, vorher, db_dateien)
         teste_automatische_aktualisierung()
+        teste_ladeindikator()
+        teste_zustandsmaschine()
     finally:
         monitor.BASE_DIR, monitor.STRATEGIES_DIR, monitor.LOGS_DIR, monitor.requests = alt
 

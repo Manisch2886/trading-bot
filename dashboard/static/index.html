@@ -16,6 +16,7 @@
 <header>
   <h1>Trading-Bots</h1>
   <span class="status" id="stand">lädt …</span>
+  <span class="ladeanzeige" id="ladeanzeige" role="status" aria-live="polite" hidden></span>
 </header>
 
 <main>
@@ -150,13 +151,23 @@ erstesLaden();
 // mitgetaktet: er ändert sich erst, wenn ein Trade schliesst, und ein
 // neu gezeichnetes Diagramm alle 60 Sekunden wäre Unruhe ohne Nutzen.
 // Er kommt beim nächsten Öffnen der Seite frisch.
+// Die Beschriftung (4. Argument) benennt die Aufgabe in der Ladeanzeige.
+// Zwei verschiedene Texte, weil die beiden Abfragen sich sehr
+// unterschiedlich anfühlen: die Datenbankabfrage ist nach Millisekunden
+// durch, die Kursabfrage darf bis zu 12 Sekunden dauern. Ohne den
+// Unterschied hielte man die lange Kursabfrage leicht für eine hängende
+// Seite.
 autoAktualisierung(ladeUebersicht, AKTUALISIERUNG_DATEN_MS,
-                   (fehler) => markiereAktualisierung("stand", fehler));
+                   (zustand, fehler) => markiereAktualisierung("stand", zustand, fehler),
+                   "Aktualisiere …");
 autoAktualisierung(ladeLiveKurse, AKTUALISIERUNG_KURSE_MS,
-                   (fehler, e) => {
-                     if (fehler > 0) setzeHinweis("Live-Kurse gerade nicht erreichbar - "
-                                                   + "angezeigt sind die zuletzt geladenen Werte.");
-                   });
+                   (zustand, fehler) => {
+                     if (zustand === AKTUALISIERUNG_VERALTET) {
+                       setzeHinweis("Live-Kurse gerade nicht erreichbar - "
+                                     + "angezeigt sind die zuletzt geladenen Werte.");
+                     }
+                   },
+                   "Kurse werden geladen …");
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/sw.js").catch(() => {});
