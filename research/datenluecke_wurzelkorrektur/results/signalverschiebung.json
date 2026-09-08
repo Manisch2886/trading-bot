@@ -1,0 +1,53 @@
+[
+ {
+  "bot": "rsi2_mean_reversion",
+  "symbole_mit_daten": 150,
+  "geprüfte_balken": 1417557,
+  "signal_balken": 43578,
+  "signale_je_symbol_und_jahr": 7.75,
+  "symbole_mit_signal_am_letzten_balken": 19,
+  "preisunterschied_prozentpunkte": {
+   "n": 43578,
+   "median_absolut": 1.327,
+   "mittelwert": 1.825,
+   "p90_absolut": 3.924,
+   "maximum_absolut": 44.421,
+   "anteil_ueber_1pp": 61.0,
+   "anteil_ueber_3pp": 17.5
+  }
+ },
+ {
+  "bot": "turtle_soup_stocks",
+  "symbole_mit_daten": 150,
+  "geprüfte_balken": 1417557,
+  "signal_balken": 89871,
+  "signale_je_symbol_und_jahr": 15.98,
+  "symbole_mit_signal_am_letzten_balken": 14,
+  "preisunterschied_prozentpunkte": {
+   "n": 89871,
+   "median_absolut": 0.822,
+   "mittelwert": 0.18,
+   "p90_absolut": 2.866,
+   "maximum_absolut": 28.09,
+   "anteil_ueber_1pp": 42.7,
+   "anteil_ueber_3pp": 9.2
+  }
+ },
+ {
+  "bot": "volatility_breakout",
+  "symbole_mit_daten": 150,
+  "geprüfte_balken": 1417557,
+  "signal_balken": 33300,
+  "signale_je_symbol_und_jahr": 5.92,
+  "symbole_mit_signal_am_letzten_balken": 1,
+  "preisunterschied_prozentpunkte": {
+   "n": 33300,
+   "median_absolut": 1.82,
+   "mittelwert": -2.343,
+   "p90_absolut": 4.834,
+   "maximum_absolut": 50.0,
+   "anteil_ueber_1pp": 74.1,
+   "anteil_ueber_3pp": 26.1
+  }
+ }
+]
