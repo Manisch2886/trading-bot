@@ -1,0 +1,18 @@
+{
+  "bot": "rsi2_crypto",
+  "geaenderte_dateien": [
+    "live_params.py",
+    "backtest_rsi2.py",
+    "forward_test.py"
+  ],
+  "identisch": true,
+  "stdout_hash_alt": "da303c0f7415a2aa1d5119daeddd7c1c9af7b231b200a40a9e8afe71bf9d085d",
+  "stdout_hash_neu": "da303c0f7415a2aa1d5119daeddd7c1c9af7b231b200a40a9e8afe71bf9d085d",
+  "datei_hashes_alt": {
+    "equity_curve.csv": "0d1cbe237d4faff67053e586240869bb6637a0fe0a08ca464bf3ebbb1205a7de"
+  },
+  "datei_hashes_neu": {
+    "equity_curve.csv": "0d1cbe237d4faff67053e586240869bb6637a0fe0a08ca464bf3ebbb1205a7de"
+  },
+  "stdout": "Hinweis: ENSOUSDT deckt nur 321 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: PUMPUSDT deckt nur 354 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: ZKCUSDT deckt nur 350 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: UUSDT deckt nur 230 Tage ab (< 500 noetig), wird uebersprungen.\n439 Trades ueber alle Symbole gefunden.\n\n=======================================================\nPORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              12,837.09\nGesamtrendite:           28.37%\nAusgefuehrte Trades:     392\nUebersprungene Trades:   47\nMax Drawdown (Kapital):  -13.30%\n\nGespeichert als: <TEMP>/results/equity_curve.csv\n"
+}

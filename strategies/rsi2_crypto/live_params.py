@@ -26,4 +26,13 @@ ALLOCATION_PCT = 10          # in Prozent - NUR zur Dokumentation, siehe
                               # Begruendung (forward_test.py trackt kein Kapital)
 MAX_CONCURRENT_POSITIONS = 8
 
-LAST_UPDATED = "2026-09-03"
+# MAX_HOLD_DAYS neu hier aufgenommen - der WERT ist unveraendert 10.
+# Er stand bisher zweimal unabhaengig im Bot (backtest_rsi2.py und
+# forward_test.py) und in dieser Datei gar nicht; damit war dieser Bot der
+# einzige der drei Zeit-Exit-Bots ohne gemeinsame Quelle. Beide Stellen
+# lesen ihn jetzt von hier. Die Zahl selbst wurde nicht angefasst.
+MAX_HOLD_DAYS = 10           # Tage NACH dem Einstiegstag, keine Kalenderzeit
+
+LAST_UPDATED = "2026-09-03"  # Stand der PARAMETER - MAX_HOLD_DAYS ist neu
+                              # aufgenommen, aber nicht neu gesetzt (10 wie
+                              # vorher an beiden alten Stellen).
