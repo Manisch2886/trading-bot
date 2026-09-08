@@ -203,7 +203,23 @@ if __name__ == "__main__":
     total_return_pct = (result["final_capital"] / STARTING_CAPITAL - 1) * 100
     print(f"Gesamtrendite:           {total_return_pct:.2f}%")
     print(f"Ausgefuehrte Trades:     {result['num_executed']}")
-    print(f"Uebersprungene Trades:   {result['num_skipped']} (nicht genug freies Kapital)")
+    # Der Klammerzusatz nannte frueher pauschal "nicht genug freies Kapital".
+    # Das ist die falsche Haelfte der Wahrheit: simulate_portfolio()
+    # ueberspringt einen Trade entweder, weil MAX_CONCURRENT_POSITIONS
+    # erreicht ist, ODER weil das freie Kapital nicht reicht. Beide landen in
+    # derselben Liste, die Funktion gibt nur deren Laenge zurueck - eine
+    # Aufschluesselung ist von hier aus gar nicht moeglich.
+    #
+    # Der Zusatz war nicht nur ungenau, sondern in der Sache falsch: im
+    # gemessenen Lauf gingen ALLE 115 uebersprungenen Trades auf das Limit
+    # zurueck und keiner auf fehlendes Kapital. Bei 10 % Allokation und
+    # hoechstens 8 gleichzeitigen Positionen sind nie mehr als rund 80 % des
+    # Kapitals gebunden - das Limit greift praktisch immer zuerst.
+    #
+    # Gleicher Wortlaut wie in oos_equity_simulation.py (PR #48), damit die
+    # beiden Skripte nicht wieder Verschiedenes ueber dieselbe Zahl sagen.
+    print(f"Uebersprungene Trades:   {result['num_skipped']} "
+          f"(Positionslimit {MAX_CONCURRENT_POSITIONS} erreicht oder zu wenig freies Kapital)")
 
     max_dd = calculate_max_drawdown(result["equity_curve"], STARTING_CAPITAL)
     print(f"Max Drawdown (Kapital):  {max_dd:.2f}%")
