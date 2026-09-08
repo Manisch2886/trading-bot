@@ -47,4 +47,33 @@ ALLOCATION_PCT = 10                 # in Prozent - NUR zur Dokumentation, siehe
                                      # Begruendung (forward_test.py trackt kein Kapital)
 MAX_CONCURRENT_POSITIONS = 8
 
-LAST_UPDATED = "2026-09-04"
+# Weitere wirksame Parameter: bewusst NICHT hier definiert - reine Dokumentation.
+# ------------------------------------------------------------------------
+# Erhoben mit research/backtest_defaults/ (PR #45), Werte am 2026-09-08 erneut
+# geprueft. Muster wie beim ALLOCATION_PCT-Block in
+# elliott_wave_stocks/live_params.py.
+#
+# BTC-REGIME-FILTER - die Zahlen hinter dem Schalter oben:
+#   BTC_ATR_LENGTH = 22    (regime_filter.py:16)
+#   BTC_ATR_MULT   = 3.0   (regime_filter.py:17)
+#
+# BTC_REGIME_FILTER_ENABLED oben sagt, OB der Filter laeuft; diese beiden
+# sagen, WIE er rechnet (SuperTrend auf BTC mit ATR-Laenge 22 und Faktor 3,0).
+# Sie wirken tatsaechlich live: forward_test.py:256 ruft
+# compute_btc_regime(raw_data["BTCUSDT"]) OHNE Argumente auf, es greifen also
+# die Defaults aus regime_filter.py. Anders als beim T3-Bot gibt es hier nur
+# EINE Quelle - forward_test.py fuehrt keine eigene Kopie.
+#
+# VOLUMEN-BESTAETIGUNGSFILTER (live AUS, wie bei der Aktien-Version):
+#   use_volume_filter        = False  (Signatur von run_backtest(),
+#                                      backtest_breakout.py:97)
+#   VOLUME_FILTER_MULTIPLIER = 1.5    (backtest_breakout.py:71)
+#   VOLUME_AVG_PERIOD        = 20     (backtest_breakout.py:65)
+# equity_simulation.py:133 ruft collect_all_trades() ohne use_volume_filter
+# auf; der Multiplikator ist damit heute wirkungslos und beschreibt nur, wie
+# der Filter arbeiten wuerde, falls man ihn einschaltet.
+#
+# BEWUSST NUR DOKUMENTIERT, NICHT GEKOPPELT (PR #45, Befund 7.2).
+
+LAST_UPDATED = "2026-09-04"  # Stand der PARAMETER - der Dokumentationsblock
+                              # oben aendert keinen Wert.
