@@ -1,8 +1,15 @@
 """
 Phase 3 - Equity-Kurven-Simulation (realistisches Portfolio): Turtle Soup (Aktien)
 ================================================================================================
-Identisches Prinzip wie bei den anderen Bots. Startwerte wie angefragt:
-10% Allokation, Limit 8.
+Identisches Prinzip wie bei den anderen Bots.
+
+Die urspruenglichen Startwerte (10 % Allokation, Limit 8, "identisch zu den
+anderen Aktien-Bots" fuer die Vergleichbarkeit) gelten hier NICHT mehr: seit
+2026-09-04 laeuft der Bot live mit 2 % Allokation und OHNE Positionslimit,
+und dieses Skript liest die Werte jetzt direkt aus live_params.py. Die
+Vergleichbarkeit mit den anderen Aktien-Bots wird damit bewusst aufgegeben -
+ein Backtest, der eine andere Konfiguration rechnet als der laufende Bot,
+ist die teurere Ungenauigkeit. Siehe Kommentar am Import unten.
 """
 
 import os
@@ -20,13 +27,38 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 
-STARTING_CAPITAL = 10_000.0
-ALLOCATION_PCT = 0.10
-MAX_CONCURRENT_POSITIONS = 8
+# Die Parameter kommen DIREKT aus live_params.py - derselben Datei, aus der
+# auch forward_test.py liest (Muster aus PR #31/#38/#39). Vorher standen sie
+# hier ein zweites Mal als eigene Konstanten, und zwei davon waren
+# auseinandergelaufen (Sync-Check, PR #24):
+#   ALLOCATION_PCT            10 % hier gegen 2 % live
+#   MAX_CONCURRENT_POSITIONS  8 hier gegen None (unbegrenzt) live
+#
+# AUFGEGEBENE BEGRUENDUNG - bitte nicht versehentlich zurueckdrehen: das
+# Limit 8 stand hier als bewusster "Startwert, identisch zu den anderen
+# Aktien-Bots", also aus Gruenden der Vergleichbarkeit zwischen den Bots.
+# Diese Motivation gilt ab jetzt nicht mehr; massgeblich ist der
+# TATSAECHLICHE Live-Wert. Ein Backtest, der eine andere Konfiguration
+# rechnet als der laufende Bot, ist die teurere Ungenauigkeit als eine
+# eingeschraenkte Vergleichbarkeit zwischen Bots. live_params.py begruendet
+# das unbegrenzte Limit inhaltlich: bei 2 % Allokation saettigt die
+# Kapitalbindung rechnerisch bei ca. 50 offenen Positionen, ein Limit waere
+# dort kein Risikohebel mehr, sondern wuerde nur Signale blockieren
+# (PROTOTYPE_FINDINGS.md, Abschnitt 8b/8c).
+#
+# DONCHIAN_PERIOD und STOP_MODE waren bereits identisch (10 bzw. None -
+# "kein Stop" ist die validierte Kombination, kein fehlender Wert); sie
+# werden mit umgestellt, damit die Doppelfuehrung vollstaendig verschwindet.
+# live_params.py importiert selbst nichts, ein Importzyklus ist ausgeschlossen.
+from live_params import (DONCHIAN_PERIOD, STOP_MODE, MAX_CONCURRENT_POSITIONS,
+                          ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
 
-# Validierte Basiskonfiguration aus multi_symbol_optimise.py (bester Gesamtzeitraum-Score)
-DONCHIAN_PERIOD = 10
-STOP_MODE = None  # "kein Stop" - beste validierte Kombination
+STARTING_CAPITAL = 10_000.0
+# EINHEITEN: live_params.py notiert die Allokation in PROZENT (2), dieses
+# Skript rechnet mit dem ANTEIL (0.02) - deshalb die Umrechnung statt eines
+# direkten Imports. shared/portfolio_overview.py liest ALLOCATION_PCT von hier
+# und erwartet ebenfalls den Anteil.
+ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
 def collect_all_trades(all_data: dict, donchian_period: int, stop_mode=None) -> pd.DataFrame:
