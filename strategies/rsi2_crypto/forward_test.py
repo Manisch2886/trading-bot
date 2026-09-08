@@ -40,14 +40,17 @@ DB_FILE = _P["DB_FILE"]
 from fetch_binance_data import fetch_historical_data
 from symbols_config import SYMBOLS
 from indicators import sma, rsi
-from live_params import SMA_TREND_FILTER, RSI_THRESHOLD, STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS
+# MAX_HOLD_DAYS neu aus live_params.py statt eigener Zahl weiter unten -
+# der Wert ist unveraendert 10, nur seine Quelle ist jetzt dieselbe wie fuer
+# backtest_rsi2.py. Vorher fuehrten beide Dateien ihn getrennt.
+from live_params import (SMA_TREND_FILTER, RSI_THRESHOLD, STOP_LOSS_PCT,
+                          MAX_CONCURRENT_POSITIONS, MAX_HOLD_DAYS)
 
 INTERVAL = Client.KLINE_INTERVAL_1DAY
 LOOKBACK = "400 day ago UTC"  # genug Vorlauf fuer SMA(150) + Puffer
 
 RSI_PERIOD = 2
 SMA_EXIT_PERIOD = 5
-MAX_HOLD_DAYS = 10
 
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05

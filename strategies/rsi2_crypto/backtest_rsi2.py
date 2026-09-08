@@ -44,9 +44,16 @@ import pandas as pd
 
 from indicators import sma, rsi
 
+# MAX_HOLD_DAYS kommt DIREKT aus live_params.py - derselben Datei, aus der
+# auch forward_test.py liest. Der Wert stand hier und dort zweimal
+# unabhaengig als 10; wer einen der beiden angepasst und den anderen
+# vergessen haette, haette einen Backtest bekommen, der eine andere
+# Strategie beschreibt als die laufende. live_params.py importiert selbst
+# nichts, ein Importzyklus ist ausgeschlossen.
+from live_params import MAX_HOLD_DAYS
+
 RSI_PERIOD = 2
 SMA_EXIT_PERIOD = 5
-MAX_HOLD_DAYS = 10
 
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05
