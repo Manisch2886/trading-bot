@@ -19,13 +19,21 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 
-STARTING_CAPITAL = 10_000.0
-ALLOCATION_PCT = 0.10
-MAX_CONCURRENT_POSITIONS = 8
+# Die Strategie-Parameter kommen DIREKT aus live_params.py - derselben Datei,
+# aus der auch forward_test.py liest (Muster aus PR #31). Vorher standen sie
+# hier ein zweites Mal als eigene Konstanten. Dass beide Seiten denselben Wert
+# trugen, war kein Schutz, sondern Zufall: die Doppelfuehrung faellt erst bei
+# der ersten Parameter-Aenderung auf, die nur eine Seite erreicht - genau so
+# ist die USE_TAKE_PROFIT-Abweichung beim Aktien-Elliott-Bot entstanden
+# (Sync-Check, PR #24). live_params.py importiert selbst nichts, ein
+# Importzyklus ist damit ausgeschlossen.
+from live_params import (DONCHIAN_PERIOD, STOP_MODE, MAX_CONCURRENT_POSITIONS,
+                          ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
 
-# Validierte Basiskonfiguration aus multi_symbol_optimise.py (bester Gesamtzeitraum-Score)
-DONCHIAN_PERIOD = 10
-STOP_MODE = "structural"
+STARTING_CAPITAL = 10_000.0
+# EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
+# Skript rechnet mit dem ANTEIL (0.10) - siehe Sync-Check (PR #24).
+ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
 def collect_all_trades(all_data: dict, donchian_period: int, stop_mode=None) -> pd.DataFrame:

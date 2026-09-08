@@ -56,13 +56,20 @@ check("nicht literal auswertbare Ausdruecke stuerzen nicht ab",
 # ---------------------------------------------------------------------------
 print("\n2) Einheiten: Prozent (live) gegen Anteil (Backtest)")
 # ---------------------------------------------------------------------------
-# rsi2_crypto fuehrt live 10 % und im Backtest 0.10 - dieselbe Konfiguration.
+# rsi2_crypto berechnet die Allokation seit der Import-Umstellung aus
+# live_params.ALLOCATION_PCT (10 %) - der Backtest rechnet weiter mit dem
+# Anteil 0.10. Genau dieser Fall wurde vom Check zunaechst falsch als
+# Abweichung gemeldet, weil ast.literal_eval eine Division nicht auswerten
+# kann; er muss als abgeleitet und damit synchron gelten.
 entry = st.compare_bot("rsi2_crypto")
 row = rows_of(entry, "ALLOCATION_PCT")
-check("10 % (live) und 0.10 (Backtest) gelten als identisch",
-      row["status"] == "identisch", str(row))
+check("aus live_params berechnete Allokation gilt als synchron, nicht als Abweichung",
+      row["status"] == "aus live_params abgeleitet", str(row))
 check("der Einheitenunterschied wird im Hinweis genannt",
       "Prozent" in row.get("hinweis", ""), str(row.get("hinweis")))
+check("und der Bot erscheint deswegen nicht als abweichend",
+      not any(d["groesse"] == "ALLOCATION_PCT" for d in entry["abweichungen"]),
+      str(entry["abweichungen"]))
 # turtle_soup_stocks fuehrt live 2 % gegen 0.10 - echte Abweichung.
 row = rows_of(st.compare_bot("turtle_soup_stocks"), "ALLOCATION_PCT")
 check("2 % (live) gegen 0.10 (Backtest) wird als Abweichung erkannt",
@@ -71,13 +78,45 @@ check("2 % (live) gegen 0.10 (Backtest) wird als Abweichung erkannt",
 # ---------------------------------------------------------------------------
 print("\n3) Namens-Aliase")
 # ---------------------------------------------------------------------------
-row = rows_of(st.compare_bot("t3_supertrend"), "T3_FAST")
-check("T3_FAST (Backtest) wird gegen T3_FAST_LENGTH (live) geprueft",
-      row is not None and row["status"] == "identisch"
-      and "T3_FAST_LENGTH" in row.get("hinweis", ""), str(row))
-row = rows_of(st.compare_bot("rsi2_crypto"), "SMA_TREND_PERIOD")
-check("SMA_TREND_PERIOD wird gegen SMA_TREND_FILTER geprueft",
-      row is not None and row["status"] == "identisch", str(row))
+# Seit der Import-Umstellung kommen diese Groessen per Alias-Import herein
+# (`from live_params import T3_FAST_LENGTH as T3_FAST`) - sie stehen also
+# nicht mehr als eigene Konstante im Backtest-Skript. Geprueft wird deshalb
+# beides: dass der Import samt Alias aufgeloest wird, und dass die Groesse
+# unter ihrem LIVE-Namen als referenziert gemeldet wird.
+importiert = st.live_import_namen(
+    os.path.join(st.STRATEGIES, "t3_supertrend", "equity_simulation.py"))
+check("Alias-Import T3_FAST_LENGTH as T3_FAST wird aufgeloest",
+      importiert.get("T3_FAST") == "T3_FAST_LENGTH", str(importiert))
+row = rows_of(st.compare_bot("t3_supertrend"), "T3_FAST_LENGTH")
+check("T3_FAST_LENGTH wird als im Backtest referenziert gemeldet",
+      row is not None and row["status"] == "im Backtest referenziert", str(row))
+importiert = st.live_import_namen(
+    os.path.join(st.STRATEGIES, "rsi2_crypto", "equity_simulation.py"))
+check("Alias-Import SMA_TREND_FILTER as SMA_TREND_PERIOD wird aufgeloest",
+      importiert.get("SMA_TREND_PERIOD") == "SMA_TREND_FILTER", str(importiert))
+
+# ---------------------------------------------------------------------------
+print("\n3b) Referenz-Pruefung per AST statt Textsuche")
+# ---------------------------------------------------------------------------
+# Regressionstest fuer einen konkret aufgetretenen Fehlbefund: nachdem
+# equity_simulation.py von volatility_breakout_crypto einen Kommentar bekam,
+# der BTC_REGIME_FILTER_ENABLED erwaehnt, meldete die damalige Textsuche den
+# Bot als synchron - und verschluckte damit die wichtigste Abweichung des
+# ganzen Berichts. Ueber den AST darf das nicht passieren.
+_tmp = os.path.join(tempfile.mkdtemp(), "beispiel.py")
+with open(_tmp, "w") as fh:
+    fh.write("# BTC_REGIME_FILTER_ENABLED wird hier nur erwaehnt\n"
+             '"""auch im Docstring: BTC_REGIME_FILTER_ENABLED"""\n'
+             "X = 1\n")
+check("ein nur in Kommentar/Docstring erwaehnter Name gilt NICHT als referenziert",
+      "BTC_REGIME_FILTER_ENABLED" not in st.referenzierte_namen(_tmp))
+with open(_tmp, "w") as fh:
+    fh.write("Y = BTC_REGIME_FILTER_ENABLED\n")
+check("ein im Code benutzter Name gilt als referenziert",
+      "BTC_REGIME_FILTER_ENABLED" in st.referenzierte_namen(_tmp))
+check("und der echte Bot meldet den Regimefilter weiterhin als wirkungslos",
+      any(d["groesse"] == "BTC_REGIME_FILTER_ENABLED"
+          for d in st.compare_bot("volatility_breakout_crypto")["abweichungen"]))
 
 # ---------------------------------------------------------------------------
 print("\n4) Werte, die erst ueber den backtest_*.py-Default wirksam werden")
@@ -108,12 +147,20 @@ print("\n6) Gesamtbild ueber alle 9 Bots")
 report = [st.compare_bot(bot) for bot in st.BOTS]
 check("alle 9 Bots werden geprueft", len(report) == 9)
 divergent = {e["bot"] for e in report if not e["synchron"]}
-check("genau die fuenf bekannten Bots weichen ab",
-      divergent == {"elliott_wave_stocks", "rsi2_mean_reversion", "turtle_soup_stocks",
+# Stand nach der Import-Umstellung (PR #31 fuer elliott_wave, danach die
+# uebrigen): elliott_wave_stocks ist synchron, seit sein Backtest
+# USE_TAKE_PROFIT aus live_params.py liest. Offen sind noch die drei Bots
+# mit ECHTEN Wertunterschieden, ueber die der Nutzer entscheiden muss, plus
+# der Regimefilter bei volatility_breakout_crypto (fehlendes Verhalten, kein
+# Konstanten-Problem).
+check("genau die vier noch offenen Bots weichen ab",
+      divergent == {"rsi2_mean_reversion", "turtle_soup_stocks",
                      "volatility_breakout", "volatility_breakout_crypto"}, str(divergent))
-check("die uebrigen vier sind synchron",
+check("die uebrigen fuenf sind synchron",
       {e["bot"] for e in report if e["synchron"]}
-      == {"elliott_wave", "t3_supertrend", "rsi2_crypto", "turtle_soup_crypto"})
+      == {"elliott_wave", "elliott_wave_stocks", "t3_supertrend",
+          "rsi2_crypto", "turtle_soup_crypto"},
+      str({e["bot"] for e in report if e["synchron"]}))
 check("jede gemeldete Abweichung hat eine Art (Konstante, Backtest-Default oder Verhalten)",
       all(d["art"] in ("Konstante", "Backtest-Default", "Verhalten")
           for e in report for d in e["abweichungen"]))

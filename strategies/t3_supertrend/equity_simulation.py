@@ -22,16 +22,25 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 import backtest_trend
 from regime_filter import compute_btc_regime, filter_trades_by_regime
 
-STARTING_CAPITAL = 10_000.0
-ALLOCATION_PCT = 0.10
-MAX_CONCURRENT_POSITIONS = 5  # begrenzt Klumpenrisiko bei korrelierten Krypto-Trends
-                                # (bei 18 handelbaren Coins: max. ~28% gleichzeitig offen)
+# Die Strategie-Parameter kommen DIREKT aus live_params.py - derselben Datei,
+# aus der auch forward_test.py liest (Muster aus PR #31). Vorher standen sie
+# hier ein zweites Mal als eigene Konstanten. Dass beide Seiten denselben Wert
+# trugen, war kein Schutz, sondern Zufall: die Doppelfuehrung faellt erst bei
+# der ersten Parameter-Aenderung auf, die nur eine Seite erreicht - genau so
+# ist die USE_TAKE_PROFIT-Abweichung beim Aktien-Elliott-Bot entstanden
+# (Sync-Check, PR #24). live_params.py importiert selbst nichts, ein
+# Importzyklus ist damit ausgeschlossen.
+# Die beiden T3-Laengen heissen dort T3_FAST_LENGTH/T3_SLOW_LENGTH.
+# MAX_CONCURRENT_POSITIONS = 5 begrenzt das Klumpenrisiko bei korrelierten
+# Krypto-Trends (bei 18 handelbaren Coins: max. ~28% gleichzeitig offen).
+from live_params import (T3_FAST_LENGTH as T3_FAST, T3_SLOW_LENGTH as T3_SLOW,
+                          ADX_THRESHOLD, STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS)
 
-# Beste Kombination aus der Walk-Forward-Analyse (validiert auf Out-of-Sample-Daten)
-T3_FAST = 16
-T3_SLOW = 30
-ADX_THRESHOLD = 20.0
-STOP_LOSS_PCT = 4.0
+STARTING_CAPITAL = 10_000.0
+# ALLOCATION_PCT steht bei diesem Bot NICHT in live_params.py - eine
+# dokumentierte Luecke (Sync-Check, PR #24), kein Versehen dieser Aenderung.
+# Der Wert bleibt deshalb hier.
+ALLOCATION_PCT = 0.10
 
 
 def collect_all_trades(all_data: dict, t3_fast: int, t3_slow: int,

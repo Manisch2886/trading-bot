@@ -19,11 +19,28 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 
-STARTING_CAPITAL = 10_000.0
-ALLOCATION_PCT = 0.10
-MAX_CONCURRENT_POSITIONS = 8
+# Die Strategie-Parameter kommen DIREKT aus live_params.py - derselben Datei,
+# aus der auch forward_test.py liest (Muster aus PR #31). Vorher standen sie
+# hier ein zweites Mal als eigene Konstanten. Dass beide Seiten denselben Wert
+# trugen, war kein Schutz, sondern Zufall: die Doppelfuehrung faellt erst bei
+# der ersten Parameter-Aenderung auf, die nur eine Seite erreicht - genau so
+# ist die USE_TAKE_PROFIT-Abweichung beim Aktien-Elliott-Bot entstanden
+# (Sync-Check, PR #24). live_params.py importiert selbst nichts, ein
+# Importzyklus ist damit ausgeschlossen.
+# NICHT mit importiert: BTC_REGIME_FILTER_ENABLED. Dieses Flag ist keine
+# Konstante, die hier fehlt, sondern fehlendes VERHALTEN - dieses Skript
+# wendet den Regimefilter nirgends an, nur forward_test.py tut das. Ihn hier
+# einzubauen waere eine Aenderung der Handelsregeln im Backtest und
+# ausdruecklich nicht Teil dieser Umstellung; die quantitative Auswirkung
+# steht im Sync-Check-Bericht (PR #24, Abschnitt 3: Rendite 71,26 % -> 49,03 %,
+# Calmar 4,25 -> 3,01).
+from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+                          ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
 
-STOP_LOSS_PCT = 5.0  # aus multi_symbol_optimise.py als robusteste Kombination hervorgegangen
+STARTING_CAPITAL = 10_000.0
+# EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
+# Skript rechnet mit dem ANTEIL (0.10) - siehe Sync-Check (PR #24).
+ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
 def collect_all_trades(all_data: dict, stop_loss_pct: float = None, max_hold_days: int = None,

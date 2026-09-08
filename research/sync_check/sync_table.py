@@ -92,14 +92,89 @@ def constants(path: str) -> dict:
     return {k: v for k, v in out.items() if k not in IGNORE}
 
 
+def live_import_namen(path: str) -> dict:
+    """{Name im Backtest-Skript: Name in live_params.py} fuer alles, was per
+    `from live_params import ...` hereinkommt - Aliasse eingeschlossen."""
+    out = {}
+    for node in ast.walk(ast.parse(open(path).read())):
+        if isinstance(node, ast.ImportFrom) and node.module == "live_params":
+            for alias in node.names:
+                out[alias.asname or alias.name] = alias.name
+    return out
+
+
+def abgeleitete_konstanten(path: str, importiert: dict) -> dict:
+    """Konstanten, deren WERT aus einer importierten live_params-Groesse
+    berechnet wird - der Fall `ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100`
+    (live in Prozent, Backtest als Anteil).
+
+    Ohne diese Erkennung meldet der Vergleich sie als Abweichung, weil
+    ast.literal_eval eine Division nicht auswerten kann - eine
+    Falschmeldung ausgerechnet fuer Bots, deren Doppelfuehrung bereits
+    strukturell geschlossen ist.
+    """
+    out = {}
+    for node in ast.parse(open(path).read()).body:
+        if not isinstance(node, ast.Assign):
+            continue
+        quellen = {n.id for n in ast.walk(node.value)
+                   if isinstance(n, ast.Name) and n.id in importiert}
+        if not quellen:
+            continue
+        for target in node.targets:
+            if isinstance(target, ast.Name) and target.id.isupper():
+                out[target.id] = importiert[sorted(quellen)[0]]
+    return out
+
+
+def referenzierte_namen(path: str) -> set:
+    """Alle Bezeichner, die im CODE einer Datei vorkommen - per AST, nicht
+    per Textsuche.
+
+    Wichtig: eine Textsuche im Quelltext findet einen Namen auch dann, wenn
+    er nur in einem Kommentar oder Docstring steht. Genau das trat auf,
+    nachdem equity_simulation.py von volatility_breakout_crypto einen
+    Kommentar bekam, der BTC_REGIME_FILTER_ENABLED erwaehnt: der Check
+    meldete den Bot daraufhin als synchron und verschluckte damit die
+    wichtigste Abweichung des Berichts (der Regimefilter wirkt im Backtest
+    nach wie vor nicht). Ueber den AST kann das nicht passieren.
+    """
+    namen = set()
+    for node in ast.walk(ast.parse(open(path).read())):
+        if isinstance(node, ast.Name):
+            namen.add(node.id)
+        elif isinstance(node, ast.Attribute):
+            namen.add(node.attr)
+        elif isinstance(node, ast.alias):
+            namen.add(node.name)
+            if node.asname:
+                namen.add(node.asname)
+    return namen
+
+
 def compare_bot(bot: str) -> dict:
     lp_path = os.path.join(STRATEGIES, bot, "live_params.py")
     es_path = os.path.join(STRATEGIES, bot, "equity_simulation.py")
     live, esim = constants(lp_path), constants(es_path)
-    es_source = open(es_path).read()
+    es_namen = referenzierte_namen(es_path)
+    importiert = live_import_namen(es_path)
+    abgeleitet = abgeleitete_konstanten(es_path, importiert)
 
     rows, divergences = [], []
     checked_live = set()
+
+    # Groessen, die das Backtest-Skript aus live_params.py BERECHNET (statt
+    # sie direkt zu importieren): per Konstruktion synchron, siehe
+    # abgeleitete_konstanten().
+    for es_name, live_name in sorted(abgeleitet.items()):
+        checked_live.add(live_name)
+        esim.pop(es_name, None)
+        rows.append({"groesse": es_name, "live_params": live.get(live_name, "—"),
+                      "equity_simulation": "— abgeleitet —",
+                      "status": "aus live_params abgeleitet",
+                      "hinweis": (f"berechnet aus live_params.{live_name}"
+                                  + (", Prozent -> Anteil"
+                                     if live_name in PERCENT_VS_FRACTION else ""))})
 
     for es_name, es_value in sorted(esim.items()):
         live_name = ALIASES.get(es_name, es_name)
@@ -136,10 +211,17 @@ def compare_bot(bot: str) -> dict:
     #      verhaltensrelevante Abweichung.
     backtest = backtest_constants(bot)
     for live_name, live_value in sorted(live.items()):
-        if live_name in checked_live or live_name in ALIASES.values():
+        # Frueher wurden Alias-Ziele hier pauschal uebersprungen, weil die
+        # erste Schleife sie ueber den Backtest-Namen schon geprueft hatte.
+        # Seit die Aliase per Import hereinkommen (`... as T3_FAST`), gibt es
+        # diese Konstante im Backtest-Skript nicht mehr - der pauschale
+        # Ueberspringer liess die Groesse dann komplett aus der Tabelle
+        # fallen. checked_live allein reicht: die erste Schleife traegt dort
+        # jeden tatsaechlich geprueften Live-Namen ein.
+        if live_name in checked_live:
             continue
 
-        if live_name in es_source:
+        if live_name in es_namen:
             rows.append({"groesse": live_name, "live_params": live_value,
                           "equity_simulation": "— nicht als Konstante —",
                           "status": "im Backtest referenziert"})
