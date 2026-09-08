@@ -1,0 +1,62 @@
+{
+ "zeitraum": "2023-09-01 bis 2026-09-01",
+ "handelstage": 783,
+ "schluss_in_berliner_zeit": {
+  "22:00": 723,
+  "21:00": 60
+ },
+ "schluss_in_utc": {
+  "20:00": 513,
+  "21:00": 270
+ },
+ "kandidaten": [
+  {
+   "cron": "22:00 Berliner Zeit (Protokoll: 'werktags 22 Uhr')",
+   "tage": 783,
+   "minimaler_abstand_min": 0,
+   "maximaler_abstand_min": 60,
+   "tage_vor_boersenschluss": 0,
+   "tage_unter_30_min_nach_schluss": 723
+  },
+  {
+   "cron": "22:05 Berliner Zeit",
+   "tage": 783,
+   "minimaler_abstand_min": 5,
+   "maximaler_abstand_min": 65,
+   "tage_vor_boersenschluss": 0,
+   "tage_unter_30_min_nach_schluss": 723
+  },
+  {
+   "cron": "22:30 Berliner Zeit",
+   "tage": 783,
+   "minimaler_abstand_min": 30,
+   "maximaler_abstand_min": 90,
+   "tage_vor_boersenschluss": 0,
+   "tage_unter_30_min_nach_schluss": 0
+  },
+  {
+   "cron": "23:00 Berliner Zeit",
+   "tage": 783,
+   "minimaler_abstand_min": 60,
+   "maximaler_abstand_min": 120,
+   "tage_vor_boersenschluss": 0,
+   "tage_unter_30_min_nach_schluss": 0
+  },
+  {
+   "cron": "23:30 Berliner Zeit",
+   "tage": 783,
+   "minimaler_abstand_min": 90,
+   "maximaler_abstand_min": 150,
+   "tage_vor_boersenschluss": 0,
+   "tage_unter_30_min_nach_schluss": 0
+  },
+  {
+   "cron": "22:05 UTC",
+   "tage": 783,
+   "minimaler_abstand_min": 65,
+   "maximaler_abstand_min": 125,
+   "tage_vor_boersenschluss": 0,
+   "tage_unter_30_min_nach_schluss": 0
+  }
+ ]
+}

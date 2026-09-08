@@ -1,0 +1,25 @@
+{
+ "dateien": 150,
+ "balken_gesamt": 1417557,
+ "luecken": [
+  {
+   "symbol": "APH",
+   "datum": "2026-09-01",
+   "ist_letzter_balken": true,
+   "alle_preise_fehlen": true,
+   "volumen": 7650337.0
+  }
+ ],
+ "luecken_anteil_prozent": 7.1e-05,
+ "letzter_balken_je_datum": {
+  "2026-09-01": 150
+ },
+ "volumen_des_letzten_balkens_zum_median_der_vortage": {
+  "symbole": 150,
+  "median": 1.019,
+  "p05": 0.731,
+  "p95": 1.76,
+  "minimum": 0.565,
+  "anteil_unter_0_5": 0.0
+ }
+}
