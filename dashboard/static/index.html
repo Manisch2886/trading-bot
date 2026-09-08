@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trading-Bots</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="/statisch/style.css">
+<link rel="apple-touch-icon" href="/statisch/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Trading-Bots">
+<meta name="theme-color" content="#14171c">
+</head>
+<body>
+<header>
+  <h1>Trading-Bots</h1>
+  <span class="status" id="stand">lädt …</span>
+</header>
+
+<main>
+  <div id="fehler"></div>
+  <div id="kurshinweis"></div>
+
+  <div class="karten" id="karten"></div>
+
+  <h2>Verlauf (kumulierte Trade-Ergebnisse)</h2>
+  <div class="diagramm">
+    <div id="diagramm"></div>
+    <div class="legende" id="legende"></div>
+  </div>
+  <p class="fussnote" id="verlaufhinweis"></p>
+
+  <h2>Bots</h2>
+  <div class="tabellenrahmen">
+    <table>
+      <thead>
+        <tr>
+          <th>Bot</th><th>Offen</th><th>Heute</th><th>Trades</th>
+          <th>Trefferquote</th><th>Summe PnL</th><th>Aktuell</th><th>Letzter Lauf</th>
+        </tr>
+      </thead>
+      <tbody id="bottabelle"><tr><td colspan="8" class="gedaempft">lädt …</td></tr></tbody>
+    </table>
+  </div>
+  <p class="fussnote">
+    „Summe PnL“ ist die Summe der Ergebnisse aller geschlossenen Trades in
+    Prozentpunkten, „Aktuell“ zusätzlich der Live-Stand der offenen Positionen –
+    beides in Prozentpunkten und ausdrücklich keine Portfolio-Rendite, da die Bots
+    keine Positionsgröße pro Trade speichern. Alle Zahlen stammen aus dem
+    Paper-Trading, es ist kein echtes Kapital im Spiel.
+  </p>
+</main>
+
+<script src="/statisch/app.js"></script>
+<script>
+function botZeile(bot) {
+  const alter = alterInStunden(bot.letzter_lauf);
+  const laufKlasse = (alter !== null && alter > 48) ? "rot" : "gedaempft";
+  // data-spalte traegt die Spaltenbeschriftung fuer die Karten-Ansicht
+  // auf schmalen Bildschirmen (siehe style.css, @media max-width 700px).
+  return `<tr>
+    <td data-spalte="Bot"><a href="/bot?name=${encodeURIComponent(bot.name)}">${bot.anzeigename}</a></td>
+    <td data-spalte="Offen">${bot.offene_positionen}</td>
+    <td data-spalte="Heute">${prozent(bot.pnl_heute)}</td>
+    <td data-spalte="Trades">${bot.geschlossene_trades}</td>
+    <td data-spalte="Trefferquote">${bot.trefferquote === null ? '<span class="gedaempft">–</span>'
+                                     : zahl(bot.trefferquote, 1) + "%"}</td>
+    <td data-spalte="Summe PnL">${prozent(bot.summe_pnl)}</td>
+    <td data-spalte="Aktuell" id="aktuell-${bot.name}">${prozent(bot.aktuelles_gesamtergebnis)}</td>
+    <td data-spalte="Letzter Lauf" class="${laufKlasse}">${zeit(bot.letzter_lauf)}</td>
+  </tr>`;
+}
+
+function zeichneUebersicht(daten) {
+  const s = daten.summe;
+  document.getElementById("karten").innerHTML = `
+    <div class="karte"><div class="beschriftung">Bots</div><div class="wert">${s.anzahl_bots}</div></div>
+    <div class="karte"><div class="beschriftung">Offene Positionen</div><div class="wert">${s.offene_positionen}</div></div>
+    <div class="karte"><div class="beschriftung">Geschlossene Trades</div><div class="wert">${s.geschlossene_trades}</div></div>
+    <div class="karte"><div class="beschriftung">Heute</div><div class="wert">${prozent(s.pnl_heute)}</div></div>
+    <div class="karte"><div class="beschriftung">Summe aller Bots</div><div class="wert">${prozent(s.summe_pnl_prozentpunkte)}</div></div>`;
+
+  const zeilen = daten.bots.slice().sort((a, b) => {
+    if (a.anlageklasse !== b.anlageklasse) return a.anlageklasse < b.anlageklasse ? -1 : 1;
+    return (b.summe_pnl ?? -1e9) - (a.summe_pnl ?? -1e9);
+  });
+  document.getElementById("bottabelle").innerHTML = zeilen.length
+    ? zeilen.map(botZeile).join("")
+    : '<tr><td colspan="8" class="gedaempft">Keine Bot-Datenbanken gefunden.</td></tr>';
+  document.getElementById("stand").textContent = "Stand " + zeit(daten.abgerufen_am);
+}
+
+async function laden() {
+  try {
+    // Schritt 1: schnelle Fassung ohne Netzwerkzugriff sofort anzeigen.
+    zeichneUebersicht(await hole("/api/portfolio"));
+  } catch (e) {
+    zeigeFehler("Übersicht konnte nicht geladen werden: " + e.message);
+    return;
+  }
+
+  // Schritt 2: Verlaufskurven.
+  try {
+    const verlauf = await hole("/api/verlauf");
+    const reihen = [{ name: "Alle Bots zusammen", farbe: "#ffffff",
+                       punkte: punkteAus(verlauf.gesamt) }];
+    Object.entries(verlauf.bots).forEach(([name, kurve], i) => {
+      reihen.push({ name: kurve.anzeigename, farbe: FARBEN[i % FARBEN.length],
+                     punkte: punkteAus(kurve.punkte) });
+    });
+    linienDiagramm(document.getElementById("diagramm"), reihen);
+    legende(document.getElementById("legende"), reihen);
+    document.getElementById("verlaufhinweis").textContent = verlauf.hinweis;
+  } catch (e) {
+    document.getElementById("diagramm").innerHTML =
+      '<p class="gedaempft">Verlauf nicht verfügbar.</p>';
+  }
+
+  // Schritt 3: die langsame, netzabhängige Fassung mit Live-Kursen
+  // nachladen und die Spalte "Aktuell" nachtragen. Läuft bewusst NACH
+  // der Anzeige, damit eine hängende Kursabfrage die Seite nie blockiert.
+  try {
+    const mitKursen = await hole("/api/portfolio?live=1");
+    mitKursen.bots.forEach(bot => {
+      const feld = document.getElementById("aktuell-" + bot.name);
+      if (feld) feld.innerHTML = prozent(bot.aktuelles_gesamtergebnis);
+    });
+    setzeHinweis(mitKursen.kurs_hinweis);
+  } catch (e) {
+    setzeHinweis("Live-Kurse nicht verfügbar: " + e.message);
+  }
+}
+
+laden();
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/sw.js").catch(() => {});
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Abhaengigkeiten des Dashboards (dashboard/server.py).
+# Installation:  pip3 install -r dashboard/requirements.txt
+#
+# pandas kommt aus dem bestehenden Bot-Umfeld und ist bereits
+# installiert; requests/yfinance werden ueber notifications/monitor.py
+# fuer die Live-Kurse gebraucht und stehen in
+# notifications/requirements.txt.
+fastapi>=0.110
+uvicorn>=0.27
