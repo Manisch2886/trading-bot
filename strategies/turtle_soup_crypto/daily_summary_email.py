@@ -2,6 +2,32 @@
 Phase 4b - Taegliche E-Mail-Zusammenfassung: Turtle Soup (Krypto)
 ================================================================================
 Analog zu volatility_breakout_crypto/daily_summary_email.py.
+
+CRONJOB SEIT 2026-09-08 DEAKTIVIERT - das Skript bleibt bewusst erhalten:
+Bis dahin lief dieses Skript taeglich per Cronjob und hat dabei ueber
+shared/daily_interpreter.py je Bot und Tag einen Claude-Aufruf (Haiku)
+ausgeloest. Die reinen Zahlen (offene Positionen, PnL, Status) sind
+inzwischen jederzeit ueber die Telegram-Befehle /status, /positions und
+/pnl sowie ueber das Web-Dashboard (dashboard/) abrufbar - der Mehrwert
+einer zusaetzlichen taeglichen KI-Einordnung stand dem laufenden
+API-Verbrauch nicht klar gegenueber.
+
+Deaktiviert wurde ausschliesslich die AUSLOESUNG: die Cron-Zeile auf dem
+Mac ist auskommentiert, nicht geloescht. Weder dieses Skript noch der
+Agent wurden entfernt.
+  - Manueller Aufruf funktioniert unveraendert:
+        python3 strategies/<bot>/daily_summary_email.py
+  - Reaktivieren: in "crontab -e" das vorangestellte "#" der betreffenden
+    Zeile wieder entfernen.
+
+UNVERAENDERT WEITER AKTIV (bewusst nicht angefasst): die woechentliche
+Portfolio-Uebersicht (shared/weekly_portfolio_email.py) und die
+Quartals-Reviews (strategies/*/quarterly_review.py) - sie liefern
+Korrelations-/Diversifikations-Analysen bzw. Parameter-Vorschlaege, die
+/status nicht abdeckt. Ebenso unveraendert: forward_test.py, das die
+Trades ueberhaupt erst erzeugt.
+
+Hintergrund/Umsetzung siehe Branch claude/daily-reports-stoppen.
 """
 
 import os
