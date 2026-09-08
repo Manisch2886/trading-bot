@@ -20,9 +20,11 @@ Identisches Grundgeruest zu volatility_breakout/backtest_breakout.py
    ueber dem oberen Band von heute. Einstieg zum Schlusskurs. Kein
    Pyramiding.
 3. AUSSTIEG - Prioritaet pro Tag:
-   a) STOP-LOSS - Tagestief <= Stop-Kurs (Startwert 8%, wie bei der
-      validierten Aktien-Version)
-   b) ZEIT-EXIT - spaetestens nach MAX_HOLD_DAYS (15) Tagen
+   a) STOP-LOSS - Tagestief <= Stop-Kurs (die 8% in der Signatur sind der
+      Startwert des Suchrasters, live sind es 5% - siehe Kommentar an
+      run_backtest())
+   b) ZEIT-EXIT - spaetestens nach MAX_HOLD_DAYS (live 15, aus
+      live_params.py) Tagen
    Kein Trailing-Element in der Basis-Regel (siehe Aktien-Version:
    Trailing-Stop dort als Overfitting identifiziert - wird hier nicht
    erneut ungeprueft uebernommen).
@@ -41,13 +43,32 @@ import pandas as pd
 
 from indicators import bollinger_bands, band_width, squeeze_threshold
 
+# Die drei Groessen, die den Live-Betrieb bestimmen, kommen DIREKT aus
+# live_params.py - derselben Datei, aus der auch forward_test.py liest
+# (Muster aus PR #31/#38). Sie wirken hier ueber ihren Funktions-Default:
+# weder equity_simulation.py noch multi_symbol_optimise.py uebergeben sie,
+# der Wert an dieser Stelle IST also der Wert, mit dem der Backtest rechnet.
+# Als eigene Zahlen gefuehrt wuerden sie bei der naechsten Live-Anpassung
+# unbemerkt auseinanderlaufen - genau die Falle, die bei
+# elliott_wave_stocks/USE_TAKE_PROFIT schon einmal zugeschnappt ist.
+#
+# NAMEN: in live_params.py heissen die beiden Squeeze-Groessen BB_LOOKBACK
+# und BB_SQUEEZE_PERCENTILE. Der Alias haelt die hiesigen, sprechenderen
+# Namen und damit die uebrigen Verwendungsstellen unveraendert.
+# live_params.py importiert selbst nichts, ein Importzyklus ist ausgeschlossen.
+from live_params import (BB_LOOKBACK as SQUEEZE_LOOKBACK_DAYS,
+                          BB_SQUEEZE_PERCENTILE as SQUEEZE_PERCENTILE,
+                          MAX_HOLD_DAYS)
+
 BB_PERIOD = 20
 BB_NUM_STD = 2.0
-SQUEEZE_LOOKBACK_DAYS = 126
-SQUEEZE_PERCENTILE = 25.0
 VOLUME_AVG_PERIOD = 20
+# VOLUME_FILTER_MULTIPLIER bleibt BEWUSST eine eigene Konstante: der
+# Volumen-Filter ist nicht live (use_volume_filter=False), sondern ein
+# Vorschlag, der in experiment_false_breakout_filter.py mit/ohne verglichen
+# wird. live_params.py fuehrt ihn folgerichtig gar nicht - es gibt hier
+# nichts zu koppeln.
 VOLUME_FILTER_MULTIPLIER = 1.5
-MAX_HOLD_DAYS = 15
 
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05
@@ -66,6 +87,12 @@ def compute_indicators(price_df: pd.DataFrame, squeeze_lookback_days: int = SQUE
     return df
 
 
+# stop_loss_pct bleibt BEWUSST ein Literal und wird NICHT an live_params.py
+# gekoppelt: multi_symbol_optimise.py variiert es ueber
+# STOP_LOSS_RANGE = [3.0, 5.0, 8.0, None] (None = kein Stop), und jeder
+# Aufrufer im Live-Pfad uebergibt den Wert ohnehin explizit - der Default
+# hier wird also nie wirksam. Er ist der Startwert des Suchrasters, nicht
+# die Live-Einstellung; die steht als STOP_LOSS_PCT = 5.0 in live_params.py.
 def run_backtest(price_df: pd.DataFrame, stop_loss_pct: float = 8.0, entry_cutoff=None,
                   max_hold_days: int = MAX_HOLD_DAYS, use_volume_filter: bool = False,
                   volume_filter_multiplier: float = VOLUME_FILTER_MULTIPLIER) -> pd.DataFrame:

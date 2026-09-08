@@ -1,0 +1,37 @@
+{
+  "rsi2_mean_reversion": {
+    "stdout": "5391 Trades ueber alle Symbole gefunden.\n\n=======================================================\nPORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              13,675.20\nGesamtrendite:           36.75%\nAusgefuehrte Trades:     4232\nUebersprungene Trades:   1159\nMax Drawdown (Kapital):  -21.05%\n\nGespeichert als: <TEMP>/results/equity_curve.csv\n",
+    "stdout_hash": "8f36b8339460a368cd63fcf700a4079ba4a18717d71ccdbd10012445e2f7298f",
+    "dateien": {
+      "equity_curve.csv": "1fe5534bd99e90eff48a02909d43d74a9654e3ff5c25a06a040b01cffdd50fa4"
+    }
+  },
+  "turtle_soup_crypto": {
+    "stdout": "Hinweis: ENSOUSDT deckt nur 321 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: PUMPUSDT deckt nur 354 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: ZKCUSDT deckt nur 350 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: UUSDT deckt nur 230 Tage ab (< 500 noetig), wird uebersprungen.\n1599 Trades ueber alle Symbole gefunden.\n\n=======================================================\nPORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              27,759.42\nGesamtrendite:           177.59%\nAusgefuehrte Trades:     1414\nUebersprungene Trades:   185\nMax Drawdown (Kapital):  -32.40%\n\nGespeichert als: <TEMP>/results/equity_curve.csv\n",
+    "stdout_hash": "371653765b12d7576f17c10afef02780909729812c011b61cea360aa844e6d75",
+    "dateien": {
+      "equity_curve.csv": "a556b073e1b0edfacb968d5654245ca4013ddd28401329f8531fcae008deb68a"
+    }
+  },
+  "turtle_soup_stocks": {
+    "stdout": "12069 Trades ueber alle Symbole gefunden.\n\n=======================================================\nPORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              24,559.08\nGesamtrendite:           145.59%\nAusgefuehrte Trades:     8915\nUebersprungene Trades:   3154\nMax Drawdown (Kapital):  -29.91%\n\nGespeichert als: <TEMP>/results/equity_curve.csv\n",
+    "stdout_hash": "97a87399906ba75f4be6a968ba2edd14c30b8827d6d73bc3df93127f90a9eadf",
+    "dateien": {
+      "equity_curve.csv": "1dc07fba573b38e711e115e5a8b5bc9d63eeeddbdc204e22a6aec4afde4e620b"
+    }
+  },
+  "volatility_breakout": {
+    "stdout": "4510 Trades ueber alle Symbole gefunden.\n\n=======================================================\nPORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              32,441.42\nGesamtrendite:           224.41%\nAusgefuehrte Trades:     1454\nUebersprungene Trades:   3056\nMax Drawdown (Kapital):  -23.97%\n\nGespeichert als: <TEMP>/results/equity_curve.csv\n",
+    "stdout_hash": "1fb2a811844be782b29dd71be4b654811f9d140b5546997cab3eb481f9e6fb5a",
+    "dateien": {
+      "equity_curve.csv": "426d8f4fae80499e73e97a50c5eab92362ab987671642c81d7130c7b87283320"
+    }
+  },
+  "volatility_breakout_crypto": {
+    "stdout": "Hinweis: ENSOUSDT deckt nur 321 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: PUMPUSDT deckt nur 354 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: ZKCUSDT deckt nur 350 Tage ab (< 500 noetig), wird uebersprungen.\nHinweis: UUSDT deckt nur 230 Tage ab (< 500 noetig), wird uebersprungen.\n359 Trades ueber alle Symbole gefunden.\n\n=======================================================\nPORTFOLIO-SIMULATION\n=======================================================\nStartkapital:            10,000.00\nEndkapital:              17,126.14\nGesamtrendite:           71.26%\nAusgefuehrte Trades:     310\nUebersprungene Trades:   49\nMax Drawdown (Kapital):  -16.77%\n\nGespeichert als: <TEMP>/results/equity_curve.csv\n",
+    "stdout_hash": "e2e765f51aef0cf7fba122479da9929e5830052894e9b17d28783d3d77970073",
+    "dateien": {
+      "equity_curve.csv": "5de7c5aba344c6836914fed12ca9cf4a75455385caa37a94b5476ef2be9ec237"
+    }
+  }
+}

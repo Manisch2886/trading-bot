@@ -14,8 +14,12 @@ REGELN (exakt, keine Mehrdeutigkeit):
    ein rollierendes 126-Tage-Tief: Breite liegt im untersten Quartil
    (<= 25.-Perzentil) der Breite der letzten 126 Handelstage (inkl.
    aktuellem Tag). SQUEEZE_LOOKBACK_DAYS und SQUEEZE_PERCENTILE sind
-   Parameter, Startwerte 126 / 25 - werden in multi_symbol_optimise.py
-   testweise variiert.
+   zwar als Funktions-Parameter angelegt, werden aber von KEINEM Aufrufer
+   uebergeben - auch nicht von multi_symbol_optimise.py, dessen Raster nur
+   STOP_LOSS_RANGE variiert. Sie wirken also ueber ihren Default und
+   kommen deshalb aus live_params.py (BB_LOOKBACK = 126,
+   BB_SQUEEZE_PERCENTILE = 25.0). Eine fruehere Fassung dieses Docstrings
+   nannte sie "Startwerte, werden testweise variiert" - das traf nicht zu.
 
 2. EINSTIEGS-TRIGGER (Long-only, wie alle Aktien-Bots im Projekt):
    Squeeze war am VORTAG (t-1) aktiv UND der Schlusskurs von HEUTE (t)
@@ -36,14 +40,16 @@ REGELN (exakt, keine Mehrdeutigkeit):
 3. AUSSTIEG - "was zuerst eintritt", explizite Prioritaet pro Tag (ab dem
    ersten Handelstag NACH dem Einstiegstag):
    a) STOP-LOSS - Tagestief <= Stop-Kurs (initial STOP_LOSS_PCT unter
-      Einstieg, Startwert 5%).
+      Einstieg; die 5% in der Signatur sind der Startwert des
+      Suchrasters, live sind es 8% - siehe Kommentar an run_backtest()).
    b) TRAILING-ELEMENT - bewusst NICHT Teil der Basis-Regel. Trailing-
       Take-Profit hat sich beim Aktien-Elliott-Wave-Bot als Overfitting
       erwiesen (sah im Gesamtzeitraum gut aus, hielt der Out-of-Sample-
       Pruefung nicht stand) - wird hier NICHT blind uebernommen, sondern
       separat und skeptisch in experiment_trailing_stop.py getestet, mit
       identischer OOS-Sorgfalt.
-   c) ZEIT-EXIT - spaetestens nach MAX_HOLD_DAYS (Startwert 15) Handelstagen
+   c) ZEIT-EXIT - spaetestens nach MAX_HOLD_DAYS (live 15, aus
+      live_params.py) Handelstagen
       nach dem Einstiegstag, zum Schlusskurs dieses Tages. 15 Tage statt
       RSI-2s 10 Tage, weil Ausbruchsbewegungen tendenziell laenger laufen
       als Mean-Reversion-Trades.
@@ -69,13 +75,32 @@ import pandas as pd
 
 from indicators import bollinger_bands, band_width, squeeze_threshold
 
+# Die drei Groessen, die den Live-Betrieb bestimmen, kommen DIREKT aus
+# live_params.py - derselben Datei, aus der auch forward_test.py liest
+# (Muster aus PR #31/#38). Sie wirken hier ueber ihren Funktions-Default:
+# weder equity_simulation.py noch multi_symbol_optimise.py uebergeben sie,
+# der Wert an dieser Stelle IST also der Wert, mit dem der Backtest rechnet.
+# Als eigene Zahlen gefuehrt wuerden sie bei der naechsten Live-Anpassung
+# unbemerkt auseinanderlaufen - genau die Falle, die bei
+# elliott_wave_stocks/USE_TAKE_PROFIT schon einmal zugeschnappt ist.
+#
+# NAMEN: in live_params.py heissen die beiden Squeeze-Groessen BB_LOOKBACK
+# und BB_SQUEEZE_PERCENTILE. Der Alias haelt die hiesigen, sprechenderen
+# Namen und damit die uebrigen Verwendungsstellen unveraendert.
+# live_params.py importiert selbst nichts, ein Importzyklus ist ausgeschlossen.
+from live_params import (BB_LOOKBACK as SQUEEZE_LOOKBACK_DAYS,
+                          BB_SQUEEZE_PERCENTILE as SQUEEZE_PERCENTILE,
+                          MAX_HOLD_DAYS)
+
 BB_PERIOD = 20
 BB_NUM_STD = 2.0
-SQUEEZE_LOOKBACK_DAYS = 126
-SQUEEZE_PERCENTILE = 25.0
 VOLUME_AVG_PERIOD = 20
-VOLUME_FILTER_MULTIPLIER = 1.5
-MAX_HOLD_DAYS = 15  # Handelstage NACH dem Einstiegstag, keine Kalenderzeit
+# VOLUME_FILTER_MULTIPLIER bleibt BEWUSST eine eigene Konstante: der
+# Volumen-Filter ist nicht live (use_volume_filter=False), sondern ein
+# Vorschlag, der in experiment_false_breakout_filter.py mit/ohne verglichen
+# wird. live_params.py fuehrt ihn folgerichtig gar nicht - es gibt hier
+# nichts zu koppeln.
+VOLUME_FILTER_MULTIPLIER = 1.5  # Handelstage NACH dem Einstiegstag, keine Kalenderzeit
 
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05
@@ -99,6 +124,12 @@ def compute_indicators(price_df: pd.DataFrame, squeeze_lookback_days: int = SQUE
     return df
 
 
+# stop_loss_pct bleibt BEWUSST ein Literal und wird NICHT an live_params.py
+# gekoppelt: multi_symbol_optimise.py variiert es ueber
+# STOP_LOSS_RANGE = [3.0, 5.0, 8.0, None] (None = kein Stop), und jeder
+# Aufrufer im Live-Pfad uebergibt den Wert ohnehin explizit - der Default
+# hier wird also nie wirksam. Er ist der Startwert des Suchrasters, nicht
+# die Live-Einstellung; die steht als STOP_LOSS_PCT = 8.0 in live_params.py.
 def run_backtest(price_df: pd.DataFrame, stop_loss_pct: float = 5.0, entry_cutoff=None,
                   max_hold_days: int = MAX_HOLD_DAYS, use_volume_filter: bool = False,
                   volume_filter_multiplier: float = VOLUME_FILTER_MULTIPLIER) -> pd.DataFrame:

@@ -73,8 +73,25 @@ import pandas as pd
 
 from indicators import donchian_low
 
+# MAX_HOLD_DAYS kommt DIREKT aus live_params.py - derselben Datei, aus der
+# auch forward_test.py liest (Muster aus PR #31/#38). Anders als
+# DONCHIAN_PERIOD und stop_mode wird die Haltedauer von KEINEM Aufrufer
+# ueberschrieben: equity_simulation.py reicht sie nicht durch, also wirkt
+# hier tatsaechlich der Default. Eine eigene Zahl an dieser Stelle waere
+# damit eine stille Doppelfuehrung, die bei der naechsten Live-Anpassung
+# auseinanderliefe. live_params.py importiert selbst nichts, ein
+# Importzyklus ist ausgeschlossen.
+from live_params import MAX_HOLD_DAYS
+
+# DONCHIAN_PERIOD bleibt BEWUSST eine eigene Konstante und wird NICHT an
+# live_params.py gekoppelt: multi_symbol_optimise.py variiert sie ueber
+# DONCHIAN_PERIOD_RANGE = [10, 20, 40], und multi_symbol_walk_forward.py
+# baut darauf auf. Eine Kopplung wuerde diese Suche nicht kaputtmachen
+# (die Aufrufer uebergeben den Wert explizit), aber sie wuerde
+# faelschlich behaupten, 20 sei der Live-Wert - er ist nur der Startwert
+# des Suchrasters. Der Live-Wert ist 10 und steht in live_params.py;
+# equity_simulation.py und forward_test.py lesen ihn von dort.
 DONCHIAN_PERIOD = 20
-MAX_HOLD_DAYS = 10
 
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05

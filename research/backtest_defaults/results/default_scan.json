@@ -1,0 +1,3930 @@
+[
+  {
+    "bot": "elliott_wave",
+    "parameter": [
+      {
+        "bot": "elliott_wave",
+        "datei": "elliott_wave_counter.py",
+        "funktion": "find_impulse_waves",
+        "parameter": "min_fib_score",
+        "default": 0.3,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "elliott_wave_counter.py:245",
+            "forward_test.py:140"
+          ],
+          "STUDIE": [
+            "elliott_wave_counter.py:294"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave",
+        "datei": "elliott_wave_counter.py",
+        "funktion": "find_causal_waves",
+        "parameter": "min_fib_score",
+        "default": 0.3,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:81"
+          ],
+          "SUCHE": [
+            "optimise_elliott.py:74"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:203"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave",
+        "datei": "elliott_wave_counter.py",
+        "funktion": "find_causal_waves",
+        "parameter": "freshness_bars",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:81"
+          ],
+          "SUCHE": [
+            "optimise_elliott.py:74"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:203"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave",
+        "datei": "elliott_wave_counter.py",
+        "funktion": "find_causal_waves",
+        "parameter": "direction",
+        "default": "bearish",
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:81"
+          ],
+          "SUCHE": [
+            "optimise_elliott.py:74"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:203"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave",
+        "datei": "quarterly_review.py",
+        "funktion": "build_report",
+        "parameter": "recommendation",
+        "default": "",
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "STUDIE": [
+            "quarterly_review.py:235"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave",
+        "datei": "zigzag_indicator.py",
+        "funktion": "calculate_zigzag",
+        "parameter": "deviation_pct",
+        "default": 3.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:136"
+          ],
+          "STUDIE": [
+            "zigzag_indicator.py:175"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave",
+        "datei": "zigzag_indicator.py",
+        "funktion": "calculate_zigzag_with_confirmation",
+        "parameter": "deviation_pct",
+        "default": 3.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:77"
+          ],
+          "SUCHE": [
+            "optimise_elliott.py:70"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:202"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      }
+    ],
+    "live_werte": {
+      "DEVIATION_PCT": 10.0,
+      "STOP_LOSS_PCT": 6.0,
+      "TAKE_PROFIT_FIB": 0.618,
+      "LAST_UPDATED": "2026-09-07"
+    },
+    "live_erreichbar": [
+      "backtest_elliott.py:run_backtest",
+      "backtest_elliott.py:simulate_trade",
+      "datetime.py:timedelta",
+      "elliott_wave_counter.py:fibonacci_score",
+      "elliott_wave_counter.py:find_causal_waves",
+      "elliott_wave_counter.py:find_impulse_waves",
+      "elliott_wave_counter.py:is_valid_impulse",
+      "elliott_wave_counter.py:remove_overlapping",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_binance_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "pandas.py:DataFrame",
+      "pandas.py:Series",
+      "pandas.py:concat",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths",
+      "zigzag_indicator.py:calculate_zigzag",
+      "zigzag_indicator.py:calculate_zigzag_with_confirmation"
+    ]
+  },
+  {
+    "bot": "elliott_wave_stocks",
+    "parameter": [
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "backtest_elliott.py",
+        "funktion": "simulate_trade",
+        "parameter": "use_take_profit",
+        "default": true,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "LIVE": [
+            "backtest_elliott.py:137"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "backtest_elliott.py",
+        "funktion": "run_backtest",
+        "parameter": "use_take_profit",
+        "default": true,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:105"
+          ]
+        },
+        "wirkt_in": {
+          "SUCHE": [
+            "optimise_elliott.py:80"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:219"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "elliott_wave_counter.py",
+        "funktion": "find_impulse_waves",
+        "parameter": "min_fib_score",
+        "default": 0.3,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "elliott_wave_counter.py:245",
+            "forward_test.py:157"
+          ],
+          "STUDIE": [
+            "elliott_wave_counter.py:294"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "elliott_wave_counter.py",
+        "funktion": "find_causal_waves",
+        "parameter": "min_fib_score",
+        "default": 0.3,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:98"
+          ],
+          "SUCHE": [
+            "optimise_elliott.py:74"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:215"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "elliott_wave_counter.py",
+        "funktion": "find_causal_waves",
+        "parameter": "freshness_bars",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:98"
+          ],
+          "SUCHE": [
+            "optimise_elliott.py:74"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:215"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "elliott_wave_counter.py",
+        "funktion": "find_causal_waves",
+        "parameter": "direction",
+        "default": "bearish",
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:98"
+          ],
+          "SUCHE": [
+            "optimise_elliott.py:74"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:215"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "use_take_profit",
+        "default": true,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 11,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:187"
+          ],
+          "STUDIE": [
+            "experiment_combined.py:43",
+            "experiment_concurrency_stats.py:141",
+            "experiment_concurrency_stats.py:142",
+            "experiment_concurrency_stats.py:152",
+            "experiment_concurrency_stats.py:153",
+            "experiment_no_take_profit.py:52",
+            "experiment_position_limit.py:69",
+            "experiment_position_limit.py:84"
+          ]
+        },
+        "wirkt_in": {
+          "SUCHE": [
+            "oos_equity_simulation.py:60"
+          ],
+          "STUDIE": [
+            "signal_quality_test.py:83"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "equity_simulation.py",
+        "funktion": "simulate_portfolio",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 5,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:195"
+          ],
+          "STUDIE": [
+            "experiment_combined.py:45",
+            "experiment_no_take_profit.py:55",
+            "experiment_position_limit.py:44"
+          ]
+        },
+        "wirkt_in": {
+          "SUCHE": [
+            "oos_equity_simulation.py:73"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "experiment_concurrency_stats.py",
+        "funktion": "simulate_portfolio_instrumented",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "STUDIE": [
+            "experiment_concurrency_stats.py:110"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "fetch_stock_data.py",
+        "funktion": "fetch_historical_data",
+        "parameter": "period",
+        "default": "<PERIOD>",
+        "default_quelle": "PERIOD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": "max",
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:243"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "fetch_stock_data.py:68"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "fetch_stock_data.py",
+        "funktion": "fetch_historical_data",
+        "parameter": "interval",
+        "default": "<INTERVAL>",
+        "default_quelle": "INTERVAL",
+        "quelle_aus_live_params": null,
+        "quelle_wert": "1d",
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:243"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "fetch_stock_data.py:68"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "use_take_profit",
+        "default": true,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:73"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:123"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "use_take_profit",
+        "default": true,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "SUCHE": [
+            "agent_optimise.py:42",
+            "multi_symbol_optimise.py:182"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:73",
+            "quarterly_review.py:73"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "quarterly_review.py",
+        "funktion": "build_report",
+        "parameter": "recommendation",
+        "default": "",
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "STUDIE": [
+            "quarterly_review.py:240"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "zigzag_indicator.py",
+        "funktion": "calculate_zigzag",
+        "parameter": "deviation_pct",
+        "default": 3.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:153"
+          ],
+          "STUDIE": [
+            "zigzag_indicator.py:175"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "elliott_wave_stocks",
+        "datei": "zigzag_indicator.py",
+        "funktion": "calculate_zigzag_with_confirmation",
+        "parameter": "deviation_pct",
+        "default": 3.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:94"
+          ],
+          "SUCHE": [
+            "optimise_elliott.py:70"
+          ],
+          "STUDIE": [
+            "backtest_elliott.py:214"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      }
+    ],
+    "live_werte": {
+      "DEVIATION_PCT": 5.0,
+      "STOP_LOSS_PCT": 3.0,
+      "TAKE_PROFIT_FIB": 0.236,
+      "USE_TAKE_PROFIT": false,
+      "MAX_CONCURRENT_POSITIONS": 8,
+      "LAST_UPDATED": "2026-09-03"
+    },
+    "live_erreichbar": [
+      "backtest_elliott.py:run_backtest",
+      "backtest_elliott.py:simulate_trade",
+      "data_quality.py:balken_unvollstaendig",
+      "data_quality.py:melde_uebersprungene_balken",
+      "datetime.py:timedelta",
+      "elliott_wave_counter.py:fibonacci_score",
+      "elliott_wave_counter.py:find_causal_waves",
+      "elliott_wave_counter.py:find_impulse_waves",
+      "elliott_wave_counter.py:is_valid_impulse",
+      "elliott_wave_counter.py:remove_overlapping",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_stock_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "pandas.py:DataFrame",
+      "pandas.py:DateOffset",
+      "pandas.py:Series",
+      "pandas.py:concat",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths",
+      "yfinance.py:download",
+      "zigzag_indicator.py:calculate_zigzag",
+      "zigzag_indicator.py:calculate_zigzag_with_confirmation"
+    ]
+  },
+  {
+    "bot": "t3_supertrend",
+    "parameter": [
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "t3_fast_length",
+        "default": "<T3_FAST_LENGTH>",
+        "default_quelle": "T3_FAST_LENGTH",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 12,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "t3_slow_length",
+        "default": "<T3_SLOW_LENGTH>",
+        "default_quelle": "T3_SLOW_LENGTH",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 25,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "t3_factor",
+        "default": "<T3_FACTOR>",
+        "default_quelle": "T3_FACTOR",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 0.7,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "di_length",
+        "default": "<DI_LENGTH>",
+        "default_quelle": "DI_LENGTH",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 14,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "adx_length",
+        "default": "<ADX_LENGTH>",
+        "default_quelle": "ADX_LENGTH",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 14,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "adx_threshold",
+        "default": "<ADX_THRESHOLD>",
+        "default_quelle": "ADX_THRESHOLD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 25.0,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "atr_length",
+        "default": "<ATR_LENGTH>",
+        "default_quelle": "ATR_LENGTH",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 22,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "atr_mult",
+        "default": "<ATR_MULT>",
+        "default_quelle": "ATR_MULT",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 3.0,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "stop_loss_pct",
+        "default": "<STOP_LOSS_PCT>",
+        "default_quelle": "STOP_LOSS_PCT",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 3.0,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "use_t3_exit",
+        "default": true,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "backtest_trend.py",
+        "funktion": "run_backtest",
+        "parameter": "use_vwap_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "SUCHE": [
+            "optimise_trend.py:46"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "equity_simulation.py",
+        "funktion": "simulate_portfolio",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:159"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "indicators.py",
+        "funktion": "calculate_vwap_daily",
+        "parameter": "bars_per_day",
+        "default": 6,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "indicators.py:160"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "quarterly_review.py",
+        "funktion": "build_report",
+        "parameter": "recommendation",
+        "default": "",
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "STUDIE": [
+            "quarterly_review.py:262"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "regime_filter.py",
+        "funktion": "compute_btc_regime",
+        "parameter": "atr_length",
+        "default": 22,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:66"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:110"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "t3_supertrend",
+        "datei": "regime_filter.py",
+        "funktion": "compute_btc_regime",
+        "parameter": "atr_mult",
+        "default": 3.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:66"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:110"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      }
+    ],
+    "live_werte": {
+      "T3_FAST_LENGTH": 16,
+      "T3_SLOW_LENGTH": 30,
+      "ADX_THRESHOLD": 20.0,
+      "STOP_LOSS_PCT": 4.0,
+      "MAX_CONCURRENT_POSITIONS": 5,
+      "LAST_UPDATED": "2026-08-31"
+    },
+    "live_erreichbar": [
+      "backtest_trend.py:run_backtest",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_binance_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "indicators.py:calculate_adx",
+      "indicators.py:calculate_atr",
+      "indicators.py:calculate_supertrend",
+      "indicators.py:calculate_t3",
+      "indicators.py:calculate_vwap_daily",
+      "indicators.py:compute_indicators",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "numpy.py:arange",
+      "numpy.py:empty",
+      "numpy.py:where",
+      "pandas.py:DataFrame",
+      "pandas.py:Series",
+      "pandas.py:concat",
+      "pandas.py:isna",
+      "pandas.py:merge_asof",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "regime_filter.py:compute_btc_regime",
+      "regime_filter.py:filter_trades_by_regime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths"
+    ]
+  },
+  {
+    "bot": "rsi2_crypto",
+    "parameter": [
+      {
+        "bot": "rsi2_crypto",
+        "datei": "backtest_rsi2.py",
+        "funktion": "run_backtest",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:78"
+          ],
+          "STUDIE": [
+            "backtest_rsi2.py:138"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "backtest_rsi2.py",
+        "funktion": "run_backtest",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:78"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_rsi2.py:138"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:134"
+          ],
+          "STUDIE": [
+            "experiment_btc_regime_filter.py:57",
+            "pipeline_report.py:60"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "equity_simulation.py",
+        "funktion": "simulate_portfolio",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:140"
+          ],
+          "STUDIE": [
+            "experiment_btc_regime_filter.py:37",
+            "pipeline_report.py:46"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "indicators.py",
+        "funktion": "rsi",
+        "parameter": "period",
+        "default": 2,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "backtest_rsi2.py:59",
+            "forward_test.py:87"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:51"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:95"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:52",
+            "pipeline_report.py:30"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:52",
+            "pipeline_report.py:30"
+          ]
+        },
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:51"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:95"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "SUCHE": [
+            "multi_symbol_optimise.py:134"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "multi_symbol_walk_forward.py",
+        "funktion": "evaluate_combination_multi_windowed",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:94",
+            "multi_symbol_walk_forward.py:135"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "pipeline_report.py",
+        "funktion": "collect_trades_windowed",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "STUDIE": [
+            "experiment_btc_regime_filter.py:68",
+            "pipeline_report.py:61"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "regime_filter.py",
+        "funktion": "compute_btc_regime",
+        "parameter": "atr_length",
+        "default": "<BTC_ATR_LENGTH>",
+        "default_quelle": "BTC_ATR_LENGTH",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 22,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "experiment_btc_regime_filter.py:28"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "rsi2_crypto",
+        "datei": "regime_filter.py",
+        "funktion": "compute_btc_regime",
+        "parameter": "atr_mult",
+        "default": "<BTC_ATR_MULT>",
+        "default_quelle": "BTC_ATR_MULT",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 3.0,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "experiment_btc_regime_filter.py:28"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      }
+    ],
+    "live_werte": {
+      "SMA_TREND_FILTER": 150,
+      "RSI_THRESHOLD": 10.0,
+      "STOP_LOSS_PCT": null,
+      "ALLOCATION_PCT": 10,
+      "MAX_CONCURRENT_POSITIONS": 8,
+      "LAST_UPDATED": "2026-09-03"
+    },
+    "live_erreichbar": [
+      "backtest_rsi2.py:compute_indicators",
+      "backtest_rsi2.py:run_backtest",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_binance_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:compute_indicators",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "indicators.py:rsi",
+      "indicators.py:sma",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "numpy.py:datetime64",
+      "numpy.py:isnan",
+      "pandas.py:DataFrame",
+      "pandas.py:Series",
+      "pandas.py:Timestamp",
+      "pandas.py:concat",
+      "pandas.py:isna",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths"
+    ]
+  },
+  {
+    "bot": "rsi2_mean_reversion",
+    "parameter": [
+      {
+        "bot": "rsi2_mean_reversion",
+        "datei": "backtest_rsi2.py",
+        "funktion": "run_backtest",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:80"
+          ],
+          "STUDIE": [
+            "backtest_rsi2.py:171"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_mean_reversion",
+        "datei": "backtest_rsi2.py",
+        "funktion": "run_backtest",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:80"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_rsi2.py:171"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "rsi2_mean_reversion",
+        "datei": "correlation_robustness_check.py",
+        "funktion": "build_daily_capital_curve",
+        "parameter": "starting_capital",
+        "default": 10000.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "correlation_robustness_check.py:58"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "rsi2_mean_reversion",
+        "datei": "equity_simulation.py",
+        "funktion": "simulate_portfolio",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:168"
+          ],
+          "STUDIE": [
+            "experiment_position_size_limit.py:34",
+            "pipeline_report.py:44"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "rsi2_mean_reversion",
+        "datei": "fetch_stock_data.py",
+        "funktion": "fetch_historical_data",
+        "parameter": "period",
+        "default": "<PERIOD>",
+        "default_quelle": "PERIOD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": "max",
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:240"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "fetch_stock_data.py:68"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "rsi2_mean_reversion",
+        "datei": "fetch_stock_data.py",
+        "funktion": "fetch_historical_data",
+        "parameter": "interval",
+        "default": "<INTERVAL>",
+        "default_quelle": "INTERVAL",
+        "quelle_aus_live_params": null,
+        "quelle_wert": "1d",
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:240"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "fetch_stock_data.py:68"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "rsi2_mean_reversion",
+        "datei": "indicators.py",
+        "funktion": "rsi",
+        "parameter": "period",
+        "default": 2,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "backtest_rsi2.py:87",
+            "forward_test.py:90"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      }
+    ],
+    "live_werte": {
+      "RSI_THRESHOLD": 5.0,
+      "STOP_LOSS_PCT": null,
+      "MAX_HOLD_DAYS": 10,
+      "ALLOCATION_PCT": 5,
+      "MAX_CONCURRENT_POSITIONS": 20,
+      "LAST_UPDATED": "2026-09-03"
+    },
+    "live_erreichbar": [
+      "backtest_rsi2.py:compute_indicators",
+      "backtest_rsi2.py:run_backtest",
+      "data_quality.py:balken_unvollstaendig",
+      "data_quality.py:melde_uebersprungene_balken",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_stock_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:compute_indicators",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "indicators.py:rsi",
+      "indicators.py:sma",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "numpy.py:datetime64",
+      "numpy.py:isnan",
+      "pandas.py:DataFrame",
+      "pandas.py:DateOffset",
+      "pandas.py:Series",
+      "pandas.py:Timestamp",
+      "pandas.py:concat",
+      "pandas.py:isna",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths",
+      "yfinance.py:download"
+    ]
+  },
+  {
+    "bot": "turtle_soup_crypto",
+    "parameter": [
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "compute_indicators",
+        "parameter": "donchian_period",
+        "default": "<DONCHIAN_PERIOD>",
+        "default_quelle": "DONCHIAN_PERIOD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 20,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:58"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_turtle_soup.py:171"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "run_backtest",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:59"
+          ],
+          "STUDIE": [
+            "backtest_turtle_soup.py:172"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "run_backtest",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:59"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_turtle_soup.py:172"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "run_backtest",
+        "parameter": "max_hold_days",
+        "default": "<MAX_HOLD_DAYS>",
+        "default_quelle": "MAX_HOLD_DAYS",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 10,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:59"
+          ],
+          "STUDIE": [
+            "backtest_turtle_soup.py:172"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "run_backtest",
+        "parameter": "donchian_period",
+        "default": "<DONCHIAN_PERIOD>",
+        "default_quelle": "DONCHIAN_PERIOD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 20,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:59"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_turtle_soup.py:172"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 8,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:125"
+          ],
+          "STUDIE": [
+            "experiment_capital_management_summary.py:78",
+            "experiment_position_size_limit.py:65",
+            "experiment_signal_quality.py:130",
+            "experiment_stress_new_config.py:92",
+            "experiment_volatility_breakout_overlap.py:66",
+            "pipeline_report.py:56",
+            "stress_periods.py:76"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "equity_simulation.py",
+        "funktion": "simulate_portfolio",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 10,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:131"
+          ],
+          "STUDIE": [
+            "experiment_capital_management_summary.py:55",
+            "experiment_capital_management_summary.py:59",
+            "experiment_position_size_limit.py:33",
+            "experiment_signal_quality.py:88",
+            "experiment_stress_new_config.py:94",
+            "experiment_stress_new_config.py:97",
+            "experiment_volatility_breakout_overlap.py:161",
+            "pipeline_report.py:42",
+            "stress_periods.py:77"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "experiment_volatility_breakout_overlap.py",
+        "funktion": "test_temporal_proximity",
+        "parameter": "n_shuffles",
+        "default": 20,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "experiment_volatility_breakout_overlap.py:194"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:42"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:71"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:37",
+            "pipeline_report.py:26"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:37",
+            "pipeline_report.py:26"
+          ]
+        },
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:42"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:71"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "SUCHE": [
+            "multi_symbol_optimise.py:108"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "multi_symbol_walk_forward.py",
+        "funktion": "evaluate_combination_multi_windowed",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:78",
+            "multi_symbol_walk_forward.py:118"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_crypto",
+        "datei": "pipeline_report.py",
+        "funktion": "collect_trades_windowed",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "STUDIE": [
+            "experiment_capital_management_summary.py:79",
+            "experiment_position_size_limit.py:73",
+            "experiment_signal_quality.py:131",
+            "pipeline_report.py:57"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      }
+    ],
+    "live_werte": {
+      "DONCHIAN_PERIOD": 10,
+      "STOP_MODE": "structural",
+      "MAX_HOLD_DAYS": 10,
+      "ALLOCATION_PCT": 10,
+      "MAX_CONCURRENT_POSITIONS": 8,
+      "LAST_UPDATED": "2026-09-04"
+    },
+    "live_erreichbar": [
+      "backtest_turtle_soup.py:compute_indicators",
+      "backtest_turtle_soup.py:run_backtest",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_binance_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:compute_indicators",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "indicators.py:donchian_low",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "numpy.py:datetime64",
+      "numpy.py:isnan",
+      "pandas.py:DataFrame",
+      "pandas.py:Series",
+      "pandas.py:Timestamp",
+      "pandas.py:concat",
+      "pandas.py:isna",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths"
+    ]
+  },
+  {
+    "bot": "turtle_soup_stocks",
+    "parameter": [
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "compute_indicators",
+        "parameter": "donchian_period",
+        "default": "<DONCHIAN_PERIOD>",
+        "default_quelle": "DONCHIAN_PERIOD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 20,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:67"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_turtle_soup.py:167"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "run_backtest",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:68"
+          ],
+          "STUDIE": [
+            "backtest_turtle_soup.py:168"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "run_backtest",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:68"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_turtle_soup.py:168"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "run_backtest",
+        "parameter": "max_hold_days",
+        "default": "<MAX_HOLD_DAYS>",
+        "default_quelle": "MAX_HOLD_DAYS",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 10,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:68"
+          ],
+          "STUDIE": [
+            "backtest_turtle_soup.py:168"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "backtest_turtle_soup.py",
+        "funktion": "run_backtest",
+        "parameter": "donchian_period",
+        "default": "<DONCHIAN_PERIOD>",
+        "default_quelle": "DONCHIAN_PERIOD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 20,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:68"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_turtle_soup.py:168"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 8,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:166"
+          ],
+          "STUDIE": [
+            "experiment_capital_management_summary.py:84",
+            "experiment_position_size_limit.py:66",
+            "experiment_signal_quality.py:140",
+            "experiment_stress_new_config.py:93",
+            "experiment_volatility_breakout_overlap.py:99",
+            "pipeline_report.py:57",
+            "stress_periods.py:83"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "equity_simulation.py",
+        "funktion": "simulate_portfolio",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 10,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:172"
+          ],
+          "STUDIE": [
+            "experiment_capital_management_summary.py:59",
+            "experiment_capital_management_summary.py:63",
+            "experiment_position_size_limit.py:34",
+            "experiment_signal_quality.py:98",
+            "experiment_stress_new_config.py:95",
+            "experiment_stress_new_config.py:98",
+            "experiment_volatility_breakout_overlap.py:205",
+            "pipeline_report.py:43",
+            "stress_periods.py:84"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "experiment_volatility_breakout_overlap.py",
+        "funktion": "test_temporal_proximity",
+        "parameter": "n_shuffles",
+        "default": 20,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "experiment_volatility_breakout_overlap.py:238"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "fetch_stock_data.py",
+        "funktion": "fetch_historical_data",
+        "parameter": "period",
+        "default": "<PERIOD>",
+        "default_quelle": "PERIOD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": "max",
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:236"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "fetch_stock_data.py:68"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "fetch_stock_data.py",
+        "funktion": "fetch_historical_data",
+        "parameter": "interval",
+        "default": "<INTERVAL>",
+        "default_quelle": "INTERVAL",
+        "quelle_aus_live_params": null,
+        "quelle_wert": "1d",
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:236"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "fetch_stock_data.py:68"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:67"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:80"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:37",
+            "pipeline_report.py:27"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "SUCHE": [
+            "multi_symbol_optimise.py:117"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "multi_symbol_walk_forward.py",
+        "funktion": "evaluate_combination_multi_windowed",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:78",
+            "multi_symbol_walk_forward.py:118"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "turtle_soup_stocks",
+        "datei": "pipeline_report.py",
+        "funktion": "collect_trades_windowed",
+        "parameter": "stop_mode",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "STUDIE": [
+            "experiment_capital_management_summary.py:85",
+            "experiment_position_size_limit.py:74",
+            "experiment_signal_quality.py:141",
+            "pipeline_report.py:58"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      }
+    ],
+    "live_werte": {
+      "DONCHIAN_PERIOD": 10,
+      "STOP_MODE": null,
+      "MAX_HOLD_DAYS": 10,
+      "ALLOCATION_PCT": 2,
+      "MAX_CONCURRENT_POSITIONS": null,
+      "LAST_UPDATED": "2026-09-04"
+    },
+    "live_erreichbar": [
+      "backtest_turtle_soup.py:compute_indicators",
+      "backtest_turtle_soup.py:run_backtest",
+      "data_quality.py:balken_unvollstaendig",
+      "data_quality.py:melde_uebersprungene_balken",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_stock_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:compute_indicators",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "indicators.py:donchian_low",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "numpy.py:datetime64",
+      "numpy.py:isnan",
+      "pandas.py:DataFrame",
+      "pandas.py:DateOffset",
+      "pandas.py:Series",
+      "pandas.py:Timestamp",
+      "pandas.py:concat",
+      "pandas.py:isna",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths",
+      "yfinance.py:download"
+    ]
+  },
+  {
+    "bot": "volatility_breakout",
+    "parameter": [
+      {
+        "bot": "volatility_breakout",
+        "datei": "analysis_2022_drawdown_dynamics.py",
+        "funktion": "build_daily_capital_curve",
+        "parameter": "starting_capital",
+        "default": 10000.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "analysis_2022_drawdown_dynamics.py:37"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "backtest_breakout.py",
+        "funktion": "compute_indicators",
+        "parameter": "squeeze_lookback_days",
+        "default": "<SQUEEZE_LOOKBACK_DAYS>",
+        "default_quelle": "SQUEEZE_LOOKBACK_DAYS",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 126,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:68"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:186"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "backtest_breakout.py",
+        "funktion": "compute_indicators",
+        "parameter": "squeeze_percentile",
+        "default": "<SQUEEZE_PERCENTILE>",
+        "default_quelle": "SQUEEZE_PERCENTILE",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 25.0,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:68"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:186"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "stop_loss_pct",
+        "default": 5.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:76"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:187"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:76"
+        ],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:76"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_breakout.py:187"
+          ]
+        },
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:76"
+        ],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "max_hold_days",
+        "default": "<MAX_HOLD_DAYS>",
+        "default_quelle": "MAX_HOLD_DAYS",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 15,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:76"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:187"
+          ]
+        },
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:76"
+        ],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:76"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_breakout.py:187"
+          ]
+        },
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:76"
+        ],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "volume_filter_multiplier",
+        "default": "<VOLUME_FILTER_MULTIPLIER>",
+        "default_quelle": "VOLUME_FILTER_MULTIPLIER",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 1.5,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:76"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:187"
+          ]
+        },
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:76"
+        ],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 10,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:160"
+          ],
+          "STUDIE": [
+            "analysis_2022_drawdown_dynamics.py:55",
+            "capital_management_summary.py:74",
+            "experiment_2022_stress_best_config.py:50",
+            "experiment_false_breakout_filter.py:45",
+            "experiment_false_breakout_filter.py:46",
+            "experiment_position_size_limit.py:63",
+            "experiment_signal_quality.py:139",
+            "experiment_trailing_stop.py:165",
+            "pipeline_report.py:59"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 10,
+        "ueberschrieben": {
+          "STUDIE": [
+            "experiment_false_breakout_filter.py:45",
+            "experiment_false_breakout_filter.py:46"
+          ]
+        },
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:160"
+          ],
+          "STUDIE": [
+            "analysis_2022_drawdown_dynamics.py:55",
+            "capital_management_summary.py:74",
+            "experiment_2022_stress_best_config.py:50",
+            "experiment_position_size_limit.py:63",
+            "experiment_signal_quality.py:139",
+            "experiment_trailing_stop.py:165",
+            "pipeline_report.py:59"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "equity_simulation.py",
+        "funktion": "simulate_portfolio",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 10,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:166"
+          ],
+          "STUDIE": [
+            "analysis_2022_drawdown_dynamics.py:109",
+            "capital_management_summary.py:32",
+            "capital_management_summary.py:43",
+            "experiment_2022_stress_best_config.py:57",
+            "experiment_false_breakout_filter.py:26",
+            "experiment_position_size_limit.py:31",
+            "experiment_signal_quality.py:99",
+            "experiment_trailing_stop.py:147",
+            "pipeline_report.py:45"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "experiment_trailing_stop.py",
+        "funktion": "run_backtest_trailing",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "STUDIE": [
+            "experiment_trailing_stop.py:115",
+            "experiment_trailing_stop.py:131"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "experiment_trailing_stop.py",
+        "funktion": "run_backtest_trailing",
+        "parameter": "max_hold_days",
+        "default": "<MAX_HOLD_DAYS>",
+        "default_quelle": "MAX_HOLD_DAYS",
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "experiment_trailing_stop.py:115",
+            "experiment_trailing_stop.py:131"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "fetch_stock_data.py",
+        "funktion": "fetch_historical_data",
+        "parameter": "period",
+        "default": "<PERIOD>",
+        "default_quelle": "PERIOD",
+        "quelle_aus_live_params": null,
+        "quelle_wert": "max",
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:233"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "fetch_stock_data.py:68"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "fetch_stock_data.py",
+        "funktion": "fetch_historical_data",
+        "parameter": "interval",
+        "default": "<INTERVAL>",
+        "default_quelle": "INTERVAL",
+        "quelle_aus_live_params": null,
+        "quelle_wert": "1d",
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "forward_test.py:233"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "fetch_stock_data.py:68"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "indicators.py",
+        "funktion": "bollinger_bands",
+        "parameter": "period",
+        "default": 20,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "backtest_breakout.py:94",
+            "forward_test.py:79"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "indicators.py",
+        "funktion": "bollinger_bands",
+        "parameter": "num_std",
+        "default": 2.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "backtest_breakout.py:94",
+            "forward_test.py:79"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:58"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:91"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:53",
+            "pipeline_report.py:29"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:58"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:91"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:53",
+            "pipeline_report.py:29"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "SUCHE": [
+            "multi_symbol_optimise.py:133"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "SUCHE": [
+            "multi_symbol_optimise.py:133"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "multi_symbol_walk_forward.py",
+        "funktion": "evaluate_combination_multi_windowed",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:93",
+            "multi_symbol_walk_forward.py:132"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "multi_symbol_walk_forward.py",
+        "funktion": "evaluate_combination_multi_windowed",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:93",
+            "multi_symbol_walk_forward.py:132"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "pipeline_report.py",
+        "funktion": "collect_trades_windowed",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 7,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "capital_management_summary.py:75",
+            "experiment_false_breakout_filter.py:56",
+            "experiment_false_breakout_filter.py:57",
+            "experiment_position_size_limit.py:71",
+            "experiment_signal_quality.py:140",
+            "experiment_trailing_stop.py:177",
+            "pipeline_report.py:60"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "pipeline_report.py",
+        "funktion": "collect_trades_windowed",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 7,
+        "ueberschrieben": {
+          "STUDIE": [
+            "experiment_false_breakout_filter.py:56",
+            "experiment_false_breakout_filter.py:57"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "capital_management_summary.py:75",
+            "experiment_position_size_limit.py:71",
+            "experiment_signal_quality.py:140",
+            "experiment_trailing_stop.py:177",
+            "pipeline_report.py:60"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "stress_period_2020_covid.py",
+        "funktion": "build_daily_capital_curve",
+        "parameter": "starting_capital",
+        "default": 10000.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "stress_period_2020_covid.py:63"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout",
+        "datei": "stress_period_comparison.py",
+        "funktion": "build_daily_capital_curve",
+        "parameter": "starting_capital",
+        "default": 10000.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "stress_period_comparison.py:48"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      }
+    ],
+    "live_werte": {
+      "BB_SQUEEZE_PERCENTILE": 25.0,
+      "BB_LOOKBACK": 126,
+      "STOP_LOSS_PCT": 8.0,
+      "MAX_HOLD_DAYS": 15,
+      "ALLOCATION_PCT": 10,
+      "MAX_CONCURRENT_POSITIONS": 15,
+      "LAST_UPDATED": "2026-09-03"
+    },
+    "live_erreichbar": [
+      "backtest_breakout.py:compute_indicators",
+      "backtest_breakout.py:run_backtest",
+      "data_quality.py:balken_unvollstaendig",
+      "data_quality.py:melde_uebersprungene_balken",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_stock_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:compute_indicators",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "indicators.py:band_width",
+      "indicators.py:bollinger_bands",
+      "indicators.py:squeeze_threshold",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "numpy.py:datetime64",
+      "numpy.py:isnan",
+      "pandas.py:DataFrame",
+      "pandas.py:DateOffset",
+      "pandas.py:Series",
+      "pandas.py:Timestamp",
+      "pandas.py:concat",
+      "pandas.py:isna",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths",
+      "yfinance.py:download"
+    ]
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "parameter": [
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "backtest_breakout.py",
+        "funktion": "compute_indicators",
+        "parameter": "squeeze_lookback_days",
+        "default": "<SQUEEZE_LOOKBACK_DAYS>",
+        "default_quelle": "SQUEEZE_LOOKBACK_DAYS",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 126,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:62"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:149"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "backtest_breakout.py",
+        "funktion": "compute_indicators",
+        "parameter": "squeeze_percentile",
+        "default": "<SQUEEZE_PERCENTILE>",
+        "default_quelle": "SQUEEZE_PERCENTILE",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 25.0,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:62"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:149"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "stop_loss_pct",
+        "default": 8.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:66"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:150"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:66"
+        ],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:66"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_breakout.py:150"
+          ]
+        },
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:66"
+        ],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "max_hold_days",
+        "default": "<MAX_HOLD_DAYS>",
+        "default_quelle": "MAX_HOLD_DAYS",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 15,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:66"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:150"
+          ]
+        },
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:66"
+        ],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "multi_symbol_optimise.py:66"
+          ]
+        },
+        "wirkt_in": {
+          "STUDIE": [
+            "backtest_breakout.py:150"
+          ]
+        },
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:66"
+        ],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "backtest_breakout.py",
+        "funktion": "run_backtest",
+        "parameter": "volume_filter_multiplier",
+        "default": "<VOLUME_FILTER_MULTIPLIER>",
+        "default_quelle": "VOLUME_FILTER_MULTIPLIER",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 1.5,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "multi_symbol_optimise.py:66"
+          ],
+          "STUDIE": [
+            "backtest_breakout.py:150"
+          ]
+        },
+        "unklar_wegen_sternchen": [
+          "multi_symbol_optimise.py:66"
+        ],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:133"
+          ],
+          "STUDIE": [
+            "experiment_2022_stress_with_btc_filter.py:65",
+            "experiment_btc_regime_filter.py:58",
+            "pipeline_report.py:59"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:133"
+          ],
+          "STUDIE": [
+            "experiment_2022_stress_with_btc_filter.py:65",
+            "experiment_btc_regime_filter.py:58",
+            "pipeline_report.py:59"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "equity_simulation.py",
+        "funktion": "collect_all_trades",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:133"
+          ],
+          "STUDIE": [
+            "experiment_2022_stress_with_btc_filter.py:65",
+            "experiment_btc_regime_filter.py:58",
+            "pipeline_report.py:59"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "equity_simulation.py",
+        "funktion": "simulate_portfolio",
+        "parameter": "max_concurrent_positions",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 6,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:139"
+          ],
+          "STUDIE": [
+            "experiment_2022_stress_with_btc_filter.py:68",
+            "experiment_2022_stress_with_btc_filter.py:69",
+            "experiment_btc_regime_filter.py:38",
+            "experiment_btc_regime_filter_robustness.py:43",
+            "pipeline_report.py:45"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "indicators.py",
+        "funktion": "bollinger_bands",
+        "parameter": "period",
+        "default": 20,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "backtest_breakout.py:61",
+            "forward_test.py:92"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "indicators.py",
+        "funktion": "bollinger_bands",
+        "parameter": "num_std",
+        "default": 2.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "LIVE": [
+            "backtest_breakout.py:61",
+            "forward_test.py:92"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:50"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:80"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:43",
+            "pipeline_report.py:29"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:50"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:80"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:43",
+            "pipeline_report.py:29"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "LIVE": [
+            "equity_simulation.py:50"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:80"
+          ],
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:43",
+            "pipeline_report.py:29"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "get_trades_for_symbol",
+        "parameter": "entry_cutoff",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:43",
+            "pipeline_report.py:29"
+          ]
+        },
+        "wirkt_in": {
+          "LIVE": [
+            "equity_simulation.py:50"
+          ],
+          "SUCHE": [
+            "multi_symbol_optimise.py:80"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {
+          "SUCHE": [
+            "multi_symbol_optimise.py:115"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": true,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "SUCHE": [
+            "multi_symbol_optimise.py:115"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_optimise.py",
+        "funktion": "evaluate_combination_multi",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "SUCHE": [
+            "multi_symbol_optimise.py:115"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_walk_forward.py",
+        "funktion": "evaluate_combination_multi_windowed",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:82",
+            "multi_symbol_walk_forward.py:121"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_walk_forward.py",
+        "funktion": "evaluate_combination_multi_windowed",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:82",
+            "multi_symbol_walk_forward.py:121"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "multi_symbol_walk_forward.py",
+        "funktion": "evaluate_combination_multi_windowed",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 2,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "multi_symbol_walk_forward.py:82",
+            "multi_symbol_walk_forward.py:121"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "pipeline_report.py",
+        "funktion": "collect_trades_windowed",
+        "parameter": "stop_loss_pct",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {
+          "STUDIE": [
+            "experiment_btc_regime_filter.py:69",
+            "experiment_btc_regime_filter_robustness.py:62",
+            "pipeline_report.py:60"
+          ]
+        },
+        "wirkt_in": {},
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": true
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "pipeline_report.py",
+        "funktion": "collect_trades_windowed",
+        "parameter": "max_hold_days",
+        "default": null,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "experiment_btc_regime_filter.py:69",
+            "experiment_btc_regime_filter_robustness.py:62",
+            "pipeline_report.py:60"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "pipeline_report.py",
+        "funktion": "collect_trades_windowed",
+        "parameter": "use_volume_filter",
+        "default": false,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 3,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "experiment_btc_regime_filter.py:69",
+            "experiment_btc_regime_filter_robustness.py:62",
+            "pipeline_report.py:60"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "regime_filter.py",
+        "funktion": "compute_btc_regime",
+        "parameter": "atr_length",
+        "default": "<BTC_ATR_LENGTH>",
+        "default_quelle": "BTC_ATR_LENGTH",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 22,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "forward_test.py:256"
+          ],
+          "STUDIE": [
+            "experiment_2022_stress_with_btc_filter.py:63",
+            "experiment_btc_regime_filter.py:29",
+            "experiment_btc_regime_filter_robustness.py:34"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "regime_filter.py",
+        "funktion": "compute_btc_regime",
+        "parameter": "atr_mult",
+        "default": "<BTC_ATR_MULT>",
+        "default_quelle": "BTC_ATR_MULT",
+        "quelle_aus_live_params": null,
+        "quelle_wert": 3.0,
+        "aufrufe_gesamt": 4,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "LIVE": [
+            "forward_test.py:256"
+          ],
+          "STUDIE": [
+            "experiment_2022_stress_with_btc_filter.py:63",
+            "experiment_btc_regime_filter.py:29",
+            "experiment_btc_regime_filter_robustness.py:34"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": true,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      },
+      {
+        "bot": "volatility_breakout_crypto",
+        "datei": "stress_period_2022_crypto_family.py",
+        "funktion": "build_daily_capital_curve",
+        "parameter": "starting_capital",
+        "default": 10000.0,
+        "default_quelle": null,
+        "quelle_aus_live_params": null,
+        "quelle_wert": null,
+        "aufrufe_gesamt": 1,
+        "ueberschrieben": {},
+        "wirkt_in": {
+          "STUDIE": [
+            "stress_period_2022_crypto_family.py:46"
+          ]
+        },
+        "unklar_wegen_sternchen": [],
+        "wirksam_im_live_pfad": false,
+        "variiert_in_suche": false,
+        "variiert_in_studie": false
+      }
+    ],
+    "live_werte": {
+      "BB_SQUEEZE_PERCENTILE": 25.0,
+      "BB_LOOKBACK": 126,
+      "STOP_LOSS_PCT": 5.0,
+      "MAX_HOLD_DAYS": 15,
+      "BTC_REGIME_FILTER_ENABLED": true,
+      "ALLOCATION_PCT": 10,
+      "MAX_CONCURRENT_POSITIONS": 8,
+      "LAST_UPDATED": "2026-09-04"
+    },
+    "live_erreichbar": [
+      "backtest_breakout.py:compute_indicators",
+      "backtest_breakout.py:run_backtest",
+      "equity_simulation.py:<modulebene>",
+      "equity_simulation.py:calculate_max_drawdown",
+      "equity_simulation.py:collect_all_trades",
+      "equity_simulation.py:simulate_portfolio",
+      "fetch_binance_data.py:fetch_historical_data",
+      "forward_test.py:<modulebene>",
+      "forward_test.py:check_open_trades",
+      "forward_test.py:compute_indicators",
+      "forward_test.py:find_new_signals",
+      "forward_test.py:get_open_trades",
+      "forward_test.py:init_db",
+      "forward_test.py:print_summary",
+      "indicators.py:band_width",
+      "indicators.py:bollinger_bands",
+      "indicators.py:calculate_atr",
+      "indicators.py:calculate_supertrend",
+      "indicators.py:squeeze_threshold",
+      "multi_symbol_optimise.py:get_trades_for_symbol",
+      "multi_symbol_optimise.py:load_all_symbol_data",
+      "numpy.py:datetime64",
+      "numpy.py:empty",
+      "numpy.py:isnan",
+      "pandas.py:DataFrame",
+      "pandas.py:Series",
+      "pandas.py:Timestamp",
+      "pandas.py:concat",
+      "pandas.py:isna",
+      "pandas.py:read_csv",
+      "pandas.py:read_sql",
+      "pandas.py:to_datetime",
+      "regime_filter.py:compute_btc_regime",
+      "sqlite3.py:connect",
+      "strategy_paths.py:get_strategy_paths"
+    ]
+  }
+]
