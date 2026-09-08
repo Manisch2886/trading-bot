@@ -100,7 +100,7 @@ VOLUME_AVG_PERIOD = 20
 # Vorschlag, der in experiment_false_breakout_filter.py mit/ohne verglichen
 # wird. live_params.py fuehrt ihn folgerichtig gar nicht - es gibt hier
 # nichts zu koppeln.
-VOLUME_FILTER_MULTIPLIER = 1.5  # Handelstage NACH dem Einstiegstag, keine Kalenderzeit
+VOLUME_FILTER_MULTIPLIER = 1.5  # Vielfaches des 20-Tage-Durchschnittsvolumens
 
 TRADING_FEE_PCT = 0.1
 SLIPPAGE_PCT = 0.05
