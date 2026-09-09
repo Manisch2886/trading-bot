@@ -114,9 +114,14 @@ with open(_tmp, "w") as fh:
     fh.write("Y = BTC_REGIME_FILTER_ENABLED\n")
 check("ein im Code benutzter Name gilt als referenziert",
       "BTC_REGIME_FILTER_ENABLED" in st.referenzierte_namen(_tmp))
-check("und der echte Bot meldet den Regimefilter weiterhin als wirkungslos",
-      any(d["groesse"] == "BTC_REGIME_FILTER_ENABLED"
-          for d in st.compare_bot("volatility_breakout_crypto")["abweichungen"]))
+# Diese Pruefung stand frueher umgekehrt hier ("meldet den Regimefilter
+# weiterhin als wirkungslos") und beschrieb damit die damals offene Luecke.
+# Seit PR #57 wendet equity_simulation.py den Filter an; die Pruefung haelt
+# jetzt fest, dass er angewendet BLEIBT - baut jemand ihn wieder aus, faellt
+# genau hier auf, dass Backtest und Live auseinanderlaufen.
+check("der echte Bot meldet den Regimefilter NICHT mehr als Abweichung",
+      not any(d["groesse"] == "BTC_REGIME_FILTER_ENABLED"
+              for d in st.compare_bot("volatility_breakout_crypto")["abweichungen"]))
 
 # ---------------------------------------------------------------------------
 print("\n4) Werte, die erst ueber den backtest_*.py-Default wirksam werden")
@@ -133,12 +138,22 @@ check("der abweichende Name SQUEEZE_LOOKBACK_DAYS wird im Hinweis genannt",
 # ---------------------------------------------------------------------------
 print("\n5) Verhaltens-Abweichung: ein Flag ohne jede Entsprechung")
 # ---------------------------------------------------------------------------
+# Dieser Abschnitt fuehrte BTC_REGIME_FILTER_ENABLED als Musterfall vor: ein
+# Flag, das live Verhalten steuert und im Backtest nirgends vorkam. Seit
+# PR #57 ist genau dieser Fall geschlossen - der Musterfall taugt dafuer also
+# nicht mehr. Geprueft wird jetzt beides: dass das Flag im Backtest ankommt
+# (die Korrektur) und dass die Erkennung von Verhaltens-Abweichungen
+# weiterhin funktioniert - vorgefuehrt an MAX_HOLD_DAYS, das bei diesem Bot
+# nach wie vor ohne Entsprechung ist.
 entry = st.compare_bot("volatility_breakout_crypto")
 row = rows_of(entry, "BTC_REGIME_FILTER_ENABLED")
-check("BTC_REGIME_FILTER_ENABLED wird als im Backtest wirkungslos erkannt",
-      row is not None and "WIRKUNGSLOS" in row["status"], str(row))
-check("und als Abweichung der Art 'Verhalten' gefuehrt",
-      any(d["groesse"] == "BTC_REGIME_FILTER_ENABLED" and d["art"] == "Verhalten"
+check("BTC_REGIME_FILTER_ENABLED wird im Backtest referenziert",
+      row is not None and "referenziert" in row["status"], str(row))
+check("und taucht nicht mehr unter den Abweichungen auf",
+      not any(d["groesse"] == "BTC_REGIME_FILTER_ENABLED"
+              for d in entry["abweichungen"]), str(entry["abweichungen"]))
+check("eine echte Verhaltens-Abweichung wird weiterhin erkannt (MAX_HOLD_DAYS)",
+      any(d["groesse"] == "MAX_HOLD_DAYS" and d["art"] == "Verhalten"
           for d in entry["abweichungen"]), str(entry["abweichungen"]))
 
 # ---------------------------------------------------------------------------

@@ -27,15 +27,19 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 # ist die USE_TAKE_PROFIT-Abweichung beim Aktien-Elliott-Bot entstanden
 # (Sync-Check, PR #24). live_params.py importiert selbst nichts, ein
 # Importzyklus ist damit ausgeschlossen.
-# NICHT mit importiert: BTC_REGIME_FILTER_ENABLED. Dieses Flag ist keine
-# Konstante, die hier fehlt, sondern fehlendes VERHALTEN - dieses Skript
-# wendet den Regimefilter nirgends an, nur forward_test.py tut das. Ihn hier
-# einzubauen waere eine Aenderung der Handelsregeln im Backtest und
-# ausdruecklich nicht Teil dieser Umstellung; die quantitative Auswirkung
-# steht im Sync-Check-Bericht (PR #24, Abschnitt 3: Rendite 71,26 % -> 49,03 %,
-# Calmar 4,25 -> 3,01).
+# BTC_REGIME_FILTER_ENABLED wird seit PR #57 MIT importiert und unten auch
+# angewendet. Frueher stand hier, das Flag sei "kein fehlender Wert, sondern
+# fehlendes VERHALTEN" - richtig beobachtet, aber eben eine Luecke: live
+# blockiert forward_test.py neue Einstiege im BTC-Abwaertsregime, der
+# Backtest tat das nicht. Damit beschrieb diese Datei eine Strategie, die so
+# nicht laeuft - derselbe Fehlertyp wie die USE_TAKE_PROFIT-Abweichung beim
+# Aktien-Elliott-Bot (Sync-Check, PR #24). Der letzte bekannte
+# Sync-Unterschied dieses Bots ist damit geschlossen.
 from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+                          BTC_REGIME_FILTER_ENABLED,
                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
+# Dieselben Funktionen, die forward_test.py live benutzt - nicht nachgebaut.
+from regime_filter import compute_btc_regime, filter_trades_by_regime
 
 STARTING_CAPITAL = 10_000.0
 # EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
@@ -58,6 +62,45 @@ def collect_all_trades(all_data: dict, stop_loss_pct: float = None, max_hold_day
     combined["entry_time"] = pd.to_datetime(combined["entry_time"])
     combined["exit_time"] = pd.to_datetime(combined["exit_time"])
     return combined.sort_values("entry_time").reset_index(drop=True)
+
+
+def apply_btc_regime_filter(trades: pd.DataFrame, all_data: dict) -> pd.DataFrame:
+    """Entfernt Trades, die im BTC-Abwaertsregime eingestiegen waeren.
+
+    Das ist die Backtest-Entsprechung dessen, was forward_test.py live tut:
+    dort blockiert `BTC_REGIME_FILTER_ENABLED and not btc_regime_bullish`
+    NEUE Einstiege, wenn BTC selbst (eigener taeglicher SuperTrend) faellt.
+    Live wird dafuer nur die JEWEILS LETZTE Kerze geprueft; ueber eine
+    Historie ist die Entsprechung genau `filter_trades_by_regime()`, das je
+    Trade das zum Einstiegszeitpunkt geltende Regime nachschlaegt. Beide
+    Funktionen kommen unveraendert aus regime_filter.py.
+
+    BEWUSST HIER und nicht in collect_all_trades(): drei Experiment-Skripte
+    dieses Bots (experiment_btc_regime_filter.py,
+    experiment_2022_stress_with_btc_filter.py, ...robustness.py) holen sich
+    ueber genau jene Funktion ihren UNGEFILTERTEN Vergleichsdatensatz
+    (`trades_no_filter`). Den Filter dort einzubauen wuerde diese Experimente
+    still sinnlos machen, statt sie scheitern zu lassen.
+
+    Fehlt BTCUSDT, wird NICHT stillschweigend ungefiltert weitergerechnet -
+    das waere genau die Luecke, die hier geschlossen wird, nur unsichtbar.
+    """
+    if not BTC_REGIME_FILTER_ENABLED:
+        return trades
+
+    btc = all_data.get("BTCUSDT")
+    if btc is None:
+        raise SystemExit(
+            "BTC_REGIME_FILTER_ENABLED ist aktiv, aber BTCUSDT fehlt in den "
+            "Kursdaten - der Regimefilter ist nicht anwendbar. Erst "
+            "'python3 fetch_1d_data.py' ausfuehren; ein Lauf ohne Filter "
+            "wuerde eine andere Strategie beschreiben als die laufende.")
+
+    vorher = len(trades)
+    gefiltert = filter_trades_by_regime(trades, compute_btc_regime(btc))
+    print(f"BTC-Regimefilter aktiv: {vorher - len(gefiltert)} von {vorher} Trades "
+          f"entfernt (Einstieg im BTC-Abwaertsregime), {len(gefiltert)} bleiben.")
+    return gefiltert
 
 
 def simulate_portfolio(trades: pd.DataFrame, starting_capital: float,
@@ -135,7 +178,12 @@ if __name__ == "__main__":
         print("Keine Trades fuer diese Parameter-Kombination gefunden.")
         exit()
 
-    print(f"{len(trades)} Trades ueber alle Symbole gefunden.\n")
+    print(f"{len(trades)} Trades ueber alle Symbole gefunden.")
+    trades = apply_btc_regime_filter(trades, all_data)
+    if trades.empty:
+        print("Nach dem BTC-Regimefilter bleibt kein Trade uebrig.")
+        exit()
+    print()
     result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS)
 
     print("=" * 55)

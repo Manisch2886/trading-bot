@@ -69,7 +69,7 @@ MAX_CONCURRENT_POSITIONS = 8
 #                                      backtest_breakout.py:97)
 #   VOLUME_FILTER_MULTIPLIER = 1.5    (backtest_breakout.py:71)
 #   VOLUME_AVG_PERIOD        = 20     (backtest_breakout.py:65)
-# equity_simulation.py:133 ruft collect_all_trades() ohne use_volume_filter
+# equity_simulation.py:176 ruft collect_all_trades() ohne use_volume_filter
 # auf; der Multiplikator ist damit heute wirkungslos und beschreibt nur, wie
 # der Filter arbeiten wuerde, falls man ihn einschaltet.
 #

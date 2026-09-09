@@ -66,7 +66,7 @@ FUNDSTELLEN = [
     ("volatility_breakout_crypto", "backtest_breakout.py", 65, "VOLUME_AVG_PERIOD"),
     ("volatility_breakout_crypto", "backtest_breakout.py", 71, "VOLUME_FILTER_MULTIPLIER"),
     ("volatility_breakout_crypto", "backtest_breakout.py", 97, "use_volume_filter"),
-    ("volatility_breakout_crypto", "equity_simulation.py", 133, "collect_all_trades"),
+    ("volatility_breakout_crypto", "equity_simulation.py", 176, "collect_all_trades"),
     ("volatility_breakout_crypto", "forward_test.py", 256, "compute_btc_regime"),
 ]
 
