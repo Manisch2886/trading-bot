@@ -184,12 +184,21 @@ function testeAlterUndRaender(ergebnisse) {
 
 /* --- 5) Gegenprobe: die alte Fassung muss durchfallen --------------------- */
 
+/* Die Fassung VOR der Zeitzonen-Korrektur, festgenagelt auf ihren Commit.
+
+   Hier stand frueher `origin/main` - und das war ein Ziel, das sich bewegt.
+   Sobald die Korrektur (Commit 68d0c86) in main gemergt war, holte die
+   Gegenprobe die KORRIGIERTE Fassung und verlangte von ihr, falsch zu
+   liegen. Sie schlug damit fehl, ohne dass irgendetwas kaputt war. Ein
+   Commit-Hash ist eine historische Tatsache und veraendert sich nicht. */
+const FASSUNG_VOR_DER_KORREKTUR = "68d0c86^:dashboard/static/app.js";
+
 function testeGegenprobe() {
   console.log("\n5) Gegenprobe - die fruehere Fassung von app.js muss scheitern");
   let alt;
   try {
     alt = execFileSync("git", ["-C", path.dirname(__dirname), "show",
-                                "origin/main:dashboard/static/app.js"],
+                                FASSUNG_VOR_DER_KORREKTUR],
                         { encoding: "utf8", stdio: ["ignore", "pipe", "ignore"] });
   } catch (e) {
     console.log("  [uebersprungen] die fruehere Fassung ist per git nicht erreichbar");

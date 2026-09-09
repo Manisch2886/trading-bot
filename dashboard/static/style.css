@@ -1,126 +1,307 @@
-/* Dashboard-Stil - bewusst klein gehalten, kein CSS-Framework.
-   Dunkles Thema, weil das Dashboard vor allem abends/nachts auf dem
-   iPhone aufgerufen wird, und mobil-zuerst: die Tabellen scrollen
-   horizontal statt umzubrechen. */
+/* Dashboard-Stil - bewusst klein gehalten, kein CSS-Framework und keine
+   nachgeladene Schrift: die PWA soll offline funktionieren, und jede
+   externe Datei waere genau dort der schwaechste Punkt.
+
+   Dunkles Thema, weil das Dashboard vor allem abends auf dem iPhone
+   aufgerufen wird, und mobil-zuerst: aus den Tabellen werden auf
+   schmalen Bildschirmen Karten statt horizontal scrollender Gitter.
+
+   ----------------------------------------------------------------------
+   Gestaltung (Ueberarbeitung 2026-09-09)
+   ----------------------------------------------------------------------
+   Tiefe entsteht hier ueber GESTAFFELTE FLAECHEN und einen hauchduennen
+   hellen Ring, nicht ueber Schlagschatten. Auf einem fast schwarzen
+   Hintergrund ist ein Schatten kaum zu sehen - was eine Karte abhebt, ist
+   dass sie HELLER ist als die Seite. Der Schatten kommt nur als leiser
+   Zusatz dazu.
+
+   Drei Flaechen-Stufen:
+     --hintergrund   die Seite
+     --karte         alles, was darauf liegt
+     --karte-hoch    dasselbe unter dem Mauszeiger
+
+   Farbe traegt Bedeutung, nicht Dekoration: Gruen/Rot ausschliesslich fuer
+   das Vorzeichen von Ergebnissen (dieselben Werte wie in der Bot-Tabelle),
+   der Akzent fuer Verweise und den Ladepunkt. Beschriftungen und Zahlen
+   tragen Textfarben, nie eine Reihenfarbe. */
 
 :root {
-  --hintergrund: #14171c;
-  --karte: #1d222a;
-  --rahmen: #2a313b;
+  --hintergrund: #101318;
+  --karte: #1a1f27;
+  --karte-hoch: #20262f;
+
+  /* Der Ring ist absichtlich halbtransparent statt einer festen Farbe: so
+     bleibt er auf jeder der drei Flaechenstufen gleich dezent. */
+  --rahmen: rgba(255, 255, 255, .07);
+  --rahmen-stark: rgba(255, 255, 255, .12);
+  --trennlinie: rgba(255, 255, 255, .05);
+
   --text: #e8ecf1;
   --gedaempft: #97a3b2;
+
+  /* Unveraendert aus der ersten Fassung - die Bot-Tabelle faerbt damit
+     seit jeher ihre Vorzeichen, und die Kacheln sollen dieselbe Sprache
+     sprechen. Alle vier liegen auf --karte ueber 5:1 Kontrast. */
   --gruen: #46b877;
   --rot: #e06c6c;
   --akzent: #6aa9e0;
+
+  --radius: 14px;
+  --radius-klein: 10px;
+
+  /* Zwei Lagen: eine harte, kurze Kante direkt unter der Karte, und ein
+     weiter gestreuter, sehr schwacher Schein. Zusammen ergibt das ein
+     Abheben, das man eher spuert als sieht. */
+  --schatten: 0 1px 2px rgba(0, 0, 0, .45), 0 10px 24px -16px rgba(0, 0, 0, .8);
 }
 
 * { box-sizing: border-box; }
 
 body {
   margin: 0;
-  padding: 0 0 40px;
-  font-family: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI", sans-serif;
+  padding: 0 0 48px;
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, "Segoe UI",
+               Roboto, "Helvetica Neue", Arial, sans-serif;
   background: var(--hintergrund);
   color: var(--text);
+  line-height: 1.45;
   -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
 }
 
+/* --- Kopfbereich ---------------------------------------------------------
+   Bleibt beim Scrollen stehen. Statt einer harten Trennlinie ein leichter
+   Verlauf nach unten - die Kante wirkt dadurch weniger wie ein Strich
+   quer durchs Bild. */
 header {
   position: sticky;
   top: 0;
-  background: var(--hintergrund);
-  border-bottom: 1px solid var(--rahmen);
-  padding: 14px 16px calc(14px + env(safe-area-inset-top)) 16px;
-  padding-top: calc(14px + env(safe-area-inset-top));
+  background: rgba(16, 19, 24, .88);
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-bottom: 1px solid var(--trennlinie);
+  padding: 13px 16px;
+  padding-top: calc(13px + env(safe-area-inset-top));
   display: flex;
   align-items: center;
   gap: 12px;
   z-index: 10;
 }
 
-header h1 { font-size: 17px; margin: 0; flex: 1; }
-header .status { font-size: 12px; color: var(--gedaempft); }
+header h1 {
+  font-size: 17px;
+  font-weight: 650;
+  letter-spacing: -.01em;
+  margin: 0;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+header .status { font-size: 12px; color: var(--gedaempft); flex: none; }
 
-main { padding: 16px; max-width: 1000px; margin: 0 auto; }
+main { padding: 18px 16px; max-width: 1040px; margin: 0 auto; }
 
 a { color: var(--akzent); text-decoration: none; }
+a:hover { text-decoration: underline; }
 
-.karten { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; }
+/* Tastaturbedienung sichtbar machen - ohne diese Regel ist der Fokus auf
+   dunklem Grund praktisch unsichtbar. */
+:focus-visible {
+  outline: 2px solid var(--akzent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* --- Kennzahlen-Kacheln --------------------------------------------------
+   Hierarchie ueber GROESSE und GEWICHT, nicht nur ueber den Zeilenumbruch:
+   die Beschriftung ist klein, gedaempft und leicht gesperrt, der Wert
+   gross und halbfett. Man liest die Zahl zuerst und die Beschriftung
+   danach - das ist die Reihenfolge, in der man eine Kachel auch benutzt.
+
+   Bewusst KEIN tabular-nums beim Wert: Tabellenziffern geben jeder Ziffer
+   die Breite einer Null, was bei grossen Zahlen loecherig aussieht. Fuer
+   Spalten, die untereinander stehen muessen, bleibt es weiter an
+   (Tabelle, Achsenbeschriftung). */
+.karten {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 14px;
+}
+
 .karte {
   background: var(--karte);
   border: 1px solid var(--rahmen);
-  border-radius: 12px;
-  padding: 12px 14px;
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  box-shadow: var(--schatten);
+  transition: background .18s ease, border-color .18s ease;
+
+  /* Spalte mit dem Wert unten: die Beschriftungen sind unterschiedlich
+     lang, und "Geschlossene Trades" bricht auf der Detailseite auf zwei
+     Zeilen um. Ohne diese Ausrichtung rutscht der Wert genau dieser
+     Kachel nach unten, waehrend die Nachbarwerte oben stehen - die Zeile
+     verliert ihre gemeinsame Grundlinie, und genau die macht eine
+     Kachelreihe ueberhaupt vergleichbar. Das Grid streckt die Karten
+     ohnehin auf gleiche Hoehe; margin-top: auto nutzt das aus. */
+  display: flex;
+  flex-direction: column;
 }
-.karte .beschriftung { font-size: 12px; color: var(--gedaempft); }
-.karte .wert { font-size: 22px; margin-top: 4px; font-variant-numeric: tabular-nums; }
 
-h2 { font-size: 15px; margin: 26px 0 10px; color: var(--gedaempft); font-weight: 600;
-     text-transform: uppercase; letter-spacing: .04em; }
+.karte .beschriftung {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .015em;
+  color: var(--gedaempft);
+}
 
-.tabellenrahmen { overflow-x: auto; -webkit-overflow-scrolling: touch;
-                  border: 1px solid var(--rahmen); border-radius: 12px; background: var(--karte); }
+.karte .wert {
+  font-size: 30px;
+  font-weight: 620;
+  line-height: 1.12;
+  letter-spacing: -.02em;
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+h2 {
+  font-size: 12px;
+  margin: 30px 0 12px;
+  color: var(--gedaempft);
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+}
+
+/* --- Tabellen ------------------------------------------------------------ */
+.tabellenrahmen {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  background: var(--karte);
+  box-shadow: var(--schatten);
+}
+
 table { border-collapse: collapse; width: 100%; font-size: 14px; }
-th, td { padding: 10px 12px; text-align: right; white-space: nowrap; }
-th { color: var(--gedaempft); font-weight: 600; font-size: 12px;
-     border-bottom: 1px solid var(--rahmen); }
-td { border-bottom: 1px solid rgba(42, 49, 59, .6); font-variant-numeric: tabular-nums; }
+th, td { padding: 11px 14px; text-align: right; white-space: nowrap; }
+
+th {
+  color: var(--gedaempft);
+  font-weight: 600;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  border-bottom: 1px solid var(--rahmen-stark);
+}
+
+td {
+  border-bottom: 1px solid var(--trennlinie);
+  font-variant-numeric: tabular-nums;
+}
+
 tr:last-child td { border-bottom: 0; }
-th:first-child, td:first-child { text-align: left; }
+th:first-child, td:first-child { text-align: left; font-weight: 550; }
+
+/* Zeilenhervorhebung nur dort, wo es einen Mauszeiger gibt - auf dem
+   Telefon wuerde sie beim Scrollen aufblitzen. */
+@media (hover: hover) {
+  tbody tr { transition: background .15s ease; }
+  tbody tr:hover { background: var(--karte-hoch); }
+}
 
 .gruen { color: var(--gruen); }
 .rot { color: var(--rot); }
 .gedaempft { color: var(--gedaempft); }
 
 .hinweis {
-  background: rgba(224, 108, 108, .12);
-  border: 1px solid rgba(224, 108, 108, .35);
-  border-radius: 10px;
-  padding: 10px 12px;
+  background: rgba(224, 108, 108, .10);
+  border: 1px solid rgba(224, 108, 108, .30);
+  border-radius: var(--radius-klein);
+  padding: 11px 14px;
   font-size: 13px;
   margin: 12px 0;
 }
-.fussnote { font-size: 12px; color: var(--gedaempft); margin-top: 8px; line-height: 1.5; }
 
-.diagramm { background: var(--karte); border: 1px solid var(--rahmen);
-            border-radius: 12px; padding: 12px; }
+.fussnote {
+  font-size: 12px;
+  color: var(--gedaempft);
+  margin-top: 10px;
+  line-height: 1.6;
+  max-width: 70ch;
+}
+
+/* --- Verlaufs-Diagramm --------------------------------------------------- */
+.diagramm {
+  background: var(--karte);
+  border: 1px solid var(--rahmen);
+  border-radius: var(--radius);
+  padding: 14px 14px 10px;
+  box-shadow: var(--schatten);
+}
+
 /* max-height: auf einem breiten Bildschirm wuerde das per viewBox
    skalierte SVG sonst ueber die halbe Seitenhoehe einnehmen. */
 .diagramm svg { width: 100%; height: auto; max-height: 320px; display: block; }
-.legende { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; font-size: 12px;
-           color: var(--gedaempft); }
-.legende span { display: inline-flex; align-items: center; gap: 5px; }
-.legende i { width: 10px; height: 3px; border-radius: 2px; display: inline-block; }
+
+.legende {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--trennlinie);
+  font-size: 12px;
+  color: var(--gedaempft);
+}
+.legende span { display: inline-flex; align-items: center; gap: 6px; }
+.legende i { width: 12px; height: 3px; border-radius: 2px; display: inline-block; flex: none; }
 
 button.knopf {
-  background: var(--karte); color: var(--text); border: 1px solid var(--rahmen);
-  border-radius: 8px; padding: 8px 12px; font-size: 13px;
+  background: var(--karte);
+  color: var(--text);
+  border: 1px solid var(--rahmen-stark);
+  border-radius: var(--radius-klein);
+  padding: 9px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background .15s ease;
 }
+button.knopf:hover { background: var(--karte-hoch); }
 
-/* Auf schmalen Bildschirmen (iPhone) wird aus jeder Tabellenzeile eine
-   Karte: eine 8-spaltige Tabelle laesst sich auf 390 Pixeln nur
-   horizontal scrollend lesen, und genau die interessanten Spalten
-   (Summe PnL, Aktuell) waeren dann ausserhalb des Sichtbereichs. Die
-   Beschriftung kommt aus dem data-spalte-Attribut, das die
-   Zeilen-Bauer in index.html/bot.html setzen. */
+/* --- Schmale Bildschirme -------------------------------------------------
+   Aus jeder Tabellenzeile wird eine Karte: eine 8-spaltige Tabelle laesst
+   sich auf 390 Pixeln nur horizontal scrollend lesen, und genau die
+   interessanten Spalten (Summe PnL, Aktuell) waeren dann ausserhalb des
+   Sichtbereichs. Die Beschriftung kommt aus dem data-spalte-Attribut, das
+   die Zeilen-Bauer in index.html/bot.html setzen. */
 @media (max-width: 700px) {
-  .tabellenrahmen { border: 0; background: none; overflow-x: visible; }
+  main { padding: 16px 14px; }
+  .karten { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
+  .karte { padding: 14px 16px; }
+  .karte .wert { font-size: 27px; }
+
+  .tabellenrahmen { border: 0; background: none; overflow-x: visible; box-shadow: none; }
   table, thead, tbody, tr, th, td { display: block; }
   thead { display: none; }
   tr {
     background: var(--karte);
     border: 1px solid var(--rahmen);
-    border-radius: 12px;
-    padding: 6px 12px;
-    margin-bottom: 10px;
+    border-radius: var(--radius);
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    box-shadow: var(--schatten);
   }
+  @media (hover: hover) { tbody tr:hover { background: var(--karte); } }
   td {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
     gap: 12px;
-    padding: 6px 0;
-    border-bottom: 1px solid rgba(42, 49, 59, .5);
+    padding: 7px 0;
+    border-bottom: 1px solid var(--trennlinie);
     white-space: normal;
     text-align: right;
   }
@@ -130,10 +311,12 @@ button.knopf {
     color: var(--gedaempft);
     font-size: 12px;
     text-align: left;
+    font-variant-numeric: normal;
   }
   td:first-child {
     font-size: 16px;
-    padding-bottom: 8px;
+    font-weight: 600;
+    padding-bottom: 9px;
     justify-content: flex-start;
     text-align: left;
   }
@@ -142,9 +325,11 @@ button.knopf {
   tr td[colspan]::before { content: ""; }
 }
 
-/* Die drei Zustaende der automatischen Aktualisierung.
+/* --- Zustaende der automatischen Aktualisierung ---------------------------
    Sie schliessen sich gegenseitig aus (siehe markiereAktualisierung() in
-   app.js): "normal" ist die Abwesenheit beider Klassen. */
+   app.js): "normal" ist die Abwesenheit beider Klassen. Die Gestaltung
+   wurde ueberarbeitet, das VERHALTEN nicht - Klassennamen, Uebergaenge
+   und die Ruecksicht auf abgeschaltete Bewegung bleiben wie in PR #46. */
 
 /* Dezente Markierung, wenn die letzte automatische Aktualisierung
    fehlgeschlagen ist: die angezeigten Zahlen sind weiterhin gueltig, nur
@@ -173,6 +358,7 @@ button.knopf {
   font-size: 12px;
   color: var(--gedaempft);
   white-space: nowrap;
+  flex: none;
 }
 
 .ladeanzeige::before {
@@ -192,14 +378,29 @@ button.knopf {
 
 /* Wer Bewegung im System abgestellt hat, bekommt denselben Zustand ohne
    Animation angezeigt - der Punkt bleibt sichtbar, er pulsiert nur nicht.
-   Die Information geht dadurch nicht verloren. */
+   Die Information geht dadurch nicht verloren. Die neuen Uebergaenge
+   (Karten, Tabellenzeilen, Knopf) sind hier ebenfalls abgeschaltet. */
 @media (prefers-reduced-motion: reduce) {
   .laedt { animation: none; }
   .ladeanzeige::before { animation: none; opacity: .9; }
+  .karte, tbody tr, button.knopf { transition: none; }
 }
 
 /* Auf schmalen Displays wuerde die Ladeanzeige den Titel verdraengen -
    dort bleibt der pulsierende Punkt, der Text entfaellt. */
 @media (max-width: 480px) {
   .ladeanzeige { font-size: 0; gap: 0; }
+}
+
+/* Unter 460 Pixeln stehen die Kacheln sicher in ZWEI Spalten (drei
+   braeuchten 3x140 + 2x12 = 444 Pixel zzgl. Seitenrand). Bei ungerader
+   Anzahl bliebe die letzte allein in ihrer Zeile und liesse die halbe
+   Breite leer - ausgerechnet bei "Summe aller Bots", der Zahl, um die es
+   auf dieser Seite am ehesten geht. Sie bekommt die ganze Zeile.
+
+   Die Regel haengt an :last-child:nth-child(odd), nicht an einer festen
+   Kachelzahl: die Detailseite zeigt andere Kacheln, und bei gerader
+   Anzahl greift sie von selbst nicht. */
+@media (max-width: 460px) {
+  .karten .karte:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
