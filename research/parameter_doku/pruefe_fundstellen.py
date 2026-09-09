@@ -48,12 +48,16 @@ def check(name, ok, detail=""):
 # Was in den live_params.py-Dokublocken behauptet wird:
 # (Bot, Datei, Zeile, erwarteter Name in dieser Zeile)
 FUNDSTELLEN = [
-    ("t3_supertrend", "backtest_trend.py", 49, "T3_FACTOR"),
-    ("t3_supertrend", "backtest_trend.py", 54, "ATR_MULT"),
-    ("t3_supertrend", "backtest_trend.py", 61, "use_vwap_filter"),
+    # Seit PR #51 stehen die fuenf Indikator-Parameter in live_params.py
+    # selbst; backtest_trend.py und forward_test.py importieren sie von dort.
+    # Die frueheren Eintraege zeigten auf ihre alten Definitionsstellen in
+    # jenen beiden Dateien - die es nicht mehr gibt. Geprueft wird jetzt der
+    # heutige Weg: Quelle in live_params.py, Import in beiden Verbrauchern.
+    ("t3_supertrend", "live_params.py", 17, "T3_FACTOR"),
+    ("t3_supertrend", "live_params.py", 21, "ATR_MULT"),
+    ("t3_supertrend", "backtest_trend.py", 59, "T3_FACTOR"),
+    ("t3_supertrend", "backtest_trend.py", 66, "use_vwap_filter"),
     ("t3_supertrend", "forward_test.py", 39, "T3_FACTOR"),
-    ("t3_supertrend", "forward_test.py", 43, "ATR_MULT"),
-    ("t3_supertrend", "forward_test.py", 194, "T3_FACTOR"),
     ("t3_supertrend", "indicators.py", 128, "bars_per_day"),
     ("t3_supertrend", "regime_filter.py", 19, "atr_length"),
     ("t3_supertrend", "equity_simulation.py", 66, "compute_btc_regime"),
@@ -72,16 +76,15 @@ FUNDSTELLEN = [
 
 # (Bot, Datei, Konstante, dokumentierter Wert)
 WERTE = [
-    ("t3_supertrend", "backtest_trend.py", "T3_FACTOR", 0.7),
-    ("t3_supertrend", "backtest_trend.py", "DI_LENGTH", 14),
-    ("t3_supertrend", "backtest_trend.py", "ADX_LENGTH", 14),
-    ("t3_supertrend", "backtest_trend.py", "ATR_LENGTH", 22),
-    ("t3_supertrend", "backtest_trend.py", "ATR_MULT", 3.0),
-    ("t3_supertrend", "forward_test.py", "T3_FACTOR", 0.7),
-    ("t3_supertrend", "forward_test.py", "DI_LENGTH", 14),
-    ("t3_supertrend", "forward_test.py", "ADX_LENGTH", 14),
-    ("t3_supertrend", "forward_test.py", "ATR_LENGTH", 22),
-    ("t3_supertrend", "forward_test.py", "ATR_MULT", 3.0),
+    # Frueher standen diese zehn Zeilen hier zweimal - je einmal fuer
+    # backtest_trend.py und forward_test.py, die die Werte damals unabhaengig
+    # fuehrten. Seit PR #51 gibt es nur noch EINE Quelle; die Zeilen sind
+    # entsprechend auf live_params.py zusammengefuehrt.
+    ("t3_supertrend", "live_params.py", "T3_FACTOR", 0.7),
+    ("t3_supertrend", "live_params.py", "DI_LENGTH", 14),
+    ("t3_supertrend", "live_params.py", "ADX_LENGTH", 14),
+    ("t3_supertrend", "live_params.py", "ATR_LENGTH", 22),
+    ("t3_supertrend", "live_params.py", "ATR_MULT", 3.0),
     ("volatility_breakout", "backtest_breakout.py", "VOLUME_FILTER_MULTIPLIER", 1.5),
     ("volatility_breakout", "backtest_breakout.py", "VOLUME_AVG_PERIOD", 20),
     ("volatility_breakout_crypto", "backtest_breakout.py", "VOLUME_FILTER_MULTIPLIER", 1.5),
@@ -140,18 +143,44 @@ def teste_werte():
               f"tatsaechlich {ist}" if ist != soll else "")
 
 
+def live_importe(bot: str, datei: str) -> set:
+    """Namen, die eine Datei per `from live_params import ...` hereinholt."""
+    pfad = os.path.join(STRATEGIES, bot, datei)
+    with open(pfad, encoding="utf-8") as f:
+        baum = ast.parse(f.read(), filename=pfad)
+    return {a.name for k in ast.walk(baum)
+            if isinstance(k, ast.ImportFrom) and k.module == "live_params"
+            for a in k.names}
+
+
 def teste_doppelfuehrung():
-    """Der Dokublock von t3_supertrend sagt, dass Backtest und forward_test
-    dieselben fuenf Zahlen fuehren und dass sie derzeit uebereinstimmen.
-    Laufen sie auseinander, ist genau der dort beschriebene Fall eingetreten -
-    und die Meldung hier ist die einzige Stelle, an der er auffaellt."""
-    print("\n3) t3_supertrend: laufen die doppelt gefuehrten Werte auseinander?")
-    bt = konstanten("t3_supertrend", "backtest_trend.py")
-    ft = konstanten("t3_supertrend", "forward_test.py")
+    """Frueher stand hier ein WERTVERGLEICH: fuehren backtest_trend.py und
+    forward_test.py dieselben fuenf Zahlen?
+
+    Seit PR #51 fuehrt keine der beiden Dateien sie mehr - beide importieren
+    aus live_params.py. Der alte Vergleich lief damit ins Leere und meldete
+    `<fehlt> vs. <fehlt>`, also GLEICH, und galt als bestanden. Eine Pruefung,
+    die gruen wird, weil sie nichts mehr findet, ist schlimmer als keine.
+
+    Geprueft wird deshalb jetzt die Struktur statt der Zahlen: beide Dateien
+    muessen die fuenf Groessen aus live_params.py importieren. Faengt eine von
+    ihnen wieder an, eine eigene Zahl zu fuehren, faellt das hier auf - und
+    zwar bevor die beiden auseinanderlaufen koennen."""
+    print("\n3) t3_supertrend: gibt es wieder eine zweite Quelle?")
+    bt = live_importe("t3_supertrend", "backtest_trend.py")
+    ft = live_importe("t3_supertrend", "forward_test.py")
+    bt_konst = konstanten("t3_supertrend", "backtest_trend.py")
+    ft_konst = konstanten("t3_supertrend", "forward_test.py")
     for name in DOPPELT_GEFUEHRT:
-        a, b = bt.get(name, "<fehlt>"), ft.get(name, "<fehlt>")
-        check(f"{name}: backtest_trend.py und forward_test.py stimmen ueberein",
-              a == b, f"{a} vs. {b}")
+        importiert = name in bt and name in ft
+        eigene_zahl = [d for d, k in (("backtest_trend.py", bt_konst),
+                                       ("forward_test.py", ft_konst)) if name in k]
+        check(f"{name}: beide Dateien lesen aus live_params.py",
+              importiert and not eigene_zahl,
+              ("fuehrt wieder eine eigene Zahl in " + ", ".join(eigene_zahl))
+              if eigene_zahl else
+              ("" if importiert else f"Import fehlt (backtest={name in bt}, "
+                                      f"forward={name in ft})"))
 
 
 def teste_nur_dokumentation():
@@ -160,8 +189,14 @@ def teste_nur_dokumentation():
     Absicht."""
     print("\n4) Die Dokublocks definieren selbst keine Werte")
     erwartet = {
+        # Die fuenf Indikator-Parameter sind seit PR #51 ABSICHTLICH hier -
+        # sie waren der Gegenstand jener Umstellung. Sie als "neu
+        # hinzugekommen" zu melden war die Folge davon, dass diese Liste
+        # seither nicht nachgezogen wurde.
         "t3_supertrend": {"T3_FAST_LENGTH", "T3_SLOW_LENGTH", "ADX_THRESHOLD",
-                           "STOP_LOSS_PCT", "MAX_CONCURRENT_POSITIONS", "LAST_UPDATED"},
+                           "STOP_LOSS_PCT", "MAX_CONCURRENT_POSITIONS", "LAST_UPDATED",
+                           "T3_FACTOR", "DI_LENGTH", "ADX_LENGTH", "ATR_LENGTH",
+                           "ATR_MULT"},
         "volatility_breakout": {"BB_SQUEEZE_PERCENTILE", "BB_LOOKBACK",
                                  "STOP_LOSS_PCT", "MAX_HOLD_DAYS", "ALLOCATION_PCT",
                                  "MAX_CONCURRENT_POSITIONS", "LAST_UPDATED"},

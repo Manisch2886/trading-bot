@@ -13,6 +13,7 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 from multi_symbol_walk_forward import split_all_symbols, TRAIN_SPLIT_RATIO
 from equity_simulation import (
     collect_all_trades, simulate_portfolio, calculate_max_drawdown,
+    apply_btc_regime_filter,
     STARTING_CAPITAL, ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS, STOP_LOSS_PCT,
 )
 from buy_and_hold_benchmark import calculate_buy_and_hold
@@ -56,8 +57,20 @@ if __name__ == "__main__":
     all_data = load_all_symbol_data()
     train_data, test_data = split_all_symbols(all_data, TRAIN_SPLIT_RATIO)
 
-    trades_full = collect_all_trades(all_data, STOP_LOSS_PCT)
-    trades_oos = collect_trades_windowed(test_data, STOP_LOSS_PCT)
+    # Der BTC-Regimefilter ist live aktiv, und equity_simulation.py wendet ihn
+    # seit PR #57 an. Dieser Report las bis dahin denselben ungefilterten
+    # Trade-Satz und beschrieb damit eine Strategie, die so nicht laeuft -
+    # dieselbe Luecke, nur an einer zweiten Stelle. Beide Zeitraeume gehen
+    # deshalb durch dieselbe Funktion wie der offizielle Backtest; sie
+    # entscheidet selbst anhand von BTC_REGIME_FILTER_ENABLED.
+    trades_full = apply_btc_regime_filter(
+        collect_all_trades(all_data, STOP_LOSS_PCT), all_data)
+    # Fuer das Out-of-Sample-Fenster ist BTC bewusst aus ALL_DATA genommen,
+    # nicht aus test_data: das Regime ist eine Eigenschaft des Marktes, keine
+    # des Testfensters, und der SuperTrend braucht die Vorgeschichte, um am
+    # Fensteranfang ueberhaupt definiert zu sein.
+    trades_oos = apply_btc_regime_filter(
+        collect_trades_windowed(test_data, STOP_LOSS_PCT), all_data)
 
     print("=" * 70)
     print(f"GESAMTZEITRAUM (Stop-Loss {STOP_LOSS_PCT}%, {ALLOCATION_PCT*100:.0f}% Allokation, "
