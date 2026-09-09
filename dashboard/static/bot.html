@@ -21,6 +21,7 @@
 <main>
   <div id="fehler"></div>
   <div id="kurshinweis"></div>
+  <div id="erfolg" role="status" aria-live="polite"></div>
 
   <div class="karten" id="karten"></div>
 
@@ -28,11 +29,14 @@
   <div class="tabellenrahmen">
     <table>
       <thead>
-        <tr><th>Symbol</th><th>Entry</th><th>Stop</th><th>Aktuell</th><th>Veränderung</th></tr>
+        <tr id="positionen-kopf">
+          <th>Symbol</th><th>Entry</th><th>Stop</th><th>Aktuell</th><th>Veränderung</th>
+        </tr>
       </thead>
       <tbody id="positionen"><tr><td colspan="5" class="gedaempft">lädt …</td></tr></tbody>
     </table>
   </div>
+  <p class="fussnote" id="schliessen-fussnote" hidden></p>
 
   <h2>Verlauf (kumulierte Trade-Ergebnisse)</h2>
   <div class="diagramm"><div id="diagramm"></div></div>
@@ -53,11 +57,74 @@
   </p>
 </main>
 
+<!-- Der einzige Ort im Dashboard, an dem etwas geschrieben wird.
+     <dialog> statt eines selbstgebauten Overlays: Fokusfang, Esc-Taste und
+     Verdunklung bringt der Browser mit. Bei einem Fenster, das eine
+     Live-Datenbank ändert, ist "der Fokus liegt noch dahinter" kein
+     Schönheitsfehler.
+     Beide Stufen liegen hier nebeneinander im Markup und werden per
+     hidden umgeschaltet - so gibt es keinen Moment, in dem der Dialog
+     leer ist, während neues HTML gebaut wird. -->
+<dialog id="schliessdialog" class="schliessen-dialog"
+        aria-labelledby="dialog-titel">
+  <div class="inhalt">
+    <h2 id="dialog-titel">Position schließen?</h2>
+    <div class="stufe" id="dialog-stufe">Schritt 1 von 2</div>
+
+    <div id="dialog-fehler" class="dialog-fehler" hidden></div>
+
+    <div id="dialog-stufe1">
+      <div class="dialog-zeilen" id="dialog-zusammenfassung"></div>
+      <div class="dialog-warnung" id="dialog-warnung"></div>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="dialog-abbrechen1">Abbrechen</button>
+        <button type="button" class="knopf gefahr" id="dialog-ja">Ja, schließen</button>
+      </div>
+    </div>
+
+    <div id="dialog-stufe2" hidden>
+      <div class="dialog-zeilen" id="dialog-zusammenfassung2"></div>
+      <p class="dialog-warnung" id="dialog-aufforderung"></p>
+      <input type="text" class="dialog-eingabe" id="dialog-eingabe"
+             autocomplete="off" autocapitalize="off" autocorrect="off"
+             spellcheck="false" aria-describedby="dialog-frist">
+      <p class="dialog-frist" id="dialog-frist"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="dialog-abbrechen2">Abbrechen</button>
+        <button type="button" class="knopf gefahr" id="dialog-ausfuehren" disabled>
+          Endgültig schließen
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <script src="/statisch/app.js"></script>
 <script>
 const name = new URLSearchParams(window.location.search).get("name") || "";
 
+/* Was das Backend über das manuelle Schließen sagt. null, solange es
+   nicht abgefragt wurde - dann wird die Spalte gar nicht erst gezeigt,
+   statt sie zu zeigen und später wegzunehmen. */
+let schliessInfo = null;
+let letztesDetail = null;
+
+function schliessbarAktiv() {
+  return !!(schliessInfo && schliessInfo.schliessbar);
+}
+
+function spaltenzahl() {
+  return schliessbarAktiv() ? 6 : 5;
+}
+
 function positionsZeile(p) {
+  /* Die Zeilen-ID kommt aus derselben Antwort wie die übrigen Werte der
+     Zeile. Über das Symbol zu adressieren wäre mehrdeutig, sobald ein
+     Symbol zweimal offen ist - deshalb trägt der Knopf die ID. */
+  const knopf = p.id === null || p.id === undefined
+    ? '<span class="gedaempft">–</span>'
+    : `<button type="button" class="knopf gefahr schliessen-knopf"
+               data-id="${p.id}" data-symbol="${p.symbol}">Schließen</button>`;
   return `<tr>
     <td data-spalte="Symbol">${p.symbol}</td>
     <td data-spalte="Entry">${zahl(p.entry_preis)}</td>
@@ -66,6 +133,7 @@ function positionsZeile(p) {
             ? '<span class="gedaempft">Preis nicht verfügbar</span>'
             : zahl(p.aktueller_preis)}</td>
     <td data-spalte="Veränderung">${prozent(p.veraenderung_pct)}</td>
+    ${schliessbarAktiv() ? `<td data-spalte="Aktion">${knopf}</td>` : ""}
   </tr>`;
 }
 
@@ -79,7 +147,35 @@ function tradeZeile(t) {
   </tr>`;
 }
 
+function zeichnePositionen() {
+  const kopf = document.getElementById("positionen-kopf");
+  const hatAktionsspalte = kopf.querySelectorAll("th").length === 6;
+  if (schliessbarAktiv() && !hatAktionsspalte) {
+    const th = document.createElement("th");
+    th.textContent = "Aktion";
+    kopf.appendChild(th);
+  }
+
+  const positionen = letztesDetail ? letztesDetail.positionen : [];
+  document.getElementById("positionen").innerHTML = positionen.length
+    ? positionen.map(positionsZeile).join("")
+    : `<tr><td colspan="${spaltenzahl()}" class="gedaempft">Keine offenen Positionen.</td></tr>`;
+
+  const fussnote = document.getElementById("schliessen-fussnote");
+  if (schliessbarAktiv()) {
+    fussnote.textContent =
+      "Der Schließen-Knopf trägt den Ausstieg direkt in die Live-Datenbank "
+      + "dieses Bots ein (Vermerk manual_close), zum zuletzt angezeigten Kurs. "
+      + "Dafür sind zwei Bestätigungen nötig, und im Dashboard lässt es sich "
+      + "nicht rückgängig machen. Freigeschaltet ist bisher nur dieser eine Bot.";
+    fussnote.hidden = false;
+  } else {
+    fussnote.hidden = true;
+  }
+}
+
 function zeichne(detail) {
+  letztesDetail = detail;
   document.getElementById("titel").textContent = detail.anzeigename;
   document.title = detail.anzeigename;
 
@@ -92,14 +188,210 @@ function zeichne(detail) {
     <div class="karte"><div class="beschriftung">Summe PnL</div><div class="wert">${prozent(detail.summe_pnl)}</div></div>
     <div class="karte"><div class="beschriftung">Letzter Lauf</div><div class="wert" style="font-size:15px">${zeit(detail.letzter_lauf)}</div></div>`;
 
-  document.getElementById("positionen").innerHTML = detail.positionen.length
-    ? detail.positionen.map(positionsZeile).join("")
-    : '<tr><td colspan="5" class="gedaempft">Keine offenen Positionen.</td></tr>';
+  zeichnePositionen();
 
   document.getElementById("trades").innerHTML = detail.letzte_trades.length
     ? detail.letzte_trades.map(tradeZeile).join("")
     : '<tr><td colspan="5" class="gedaempft">Noch keine geschlossenen Trades.</td></tr>';
 }
+
+/* ------------------------------------------------------------------------
+   Manuelles Schließen - zwei Stufen, beide serverseitig abgesichert
+   ------------------------------------------------------------------------
+   Dieser Dialog ist die Bequemlichkeit, nicht die Sicherung: die eigentliche
+   Absicherung sind die zwei getrennten Aufrufe (vorbereiten/ausführen) und
+   die Prüfungen in dashboard/schliessen.py und notifications/manual_close.py.
+   Wer die API direkt aufruft, kommt an diesem Dialog vorbei - aber nicht an
+   der Vorgangs-Kennung, der Frist und dem Bestätigungstext.
+
+   Der Vorgang entsteht bereits beim Öffnen des Dialogs (Stufe 1). Das ist
+   ungefährlich - eine Kennung allein schreibt nichts - und hat den Vorteil,
+   dass die Zusammenfassung genau den Kurs zeigt, der später geschrieben
+   wird: derselbe, den der Server sich in diesem Moment gemerkt hat. */
+
+const dialog = document.getElementById("schliessdialog");
+let vorgang = null;        // Antwort von /vorbereiten
+let fristUhr = null;       // Intervall für den Countdown
+let laeuft = false;        // verhindert Doppelklicks auf "Endgültig schließen"
+
+function dialogFehler(text) {
+  const feld = document.getElementById("dialog-fehler");
+  feld.textContent = text || "";
+  feld.hidden = !text;
+}
+
+function zeilen(behaelter, paare) {
+  document.getElementById(behaelter).innerHTML = paare
+    .map(([b, w]) => `<div><span class="beschriftung">${b}</span><span>${w}</span></div>`)
+    .join("");
+}
+
+function zusammenfassungPaare(v) {
+  return [
+    ["Bot", v.anzeigename],
+    ["Symbol", v.symbol],
+    ["Einstieg", `${zahl(v.entry_preis)}${v.entry_time ? " (" + zeit(v.entry_time) + ")" : ""}`],
+    ["Ausstieg zum Kurs", zahl(v.aktueller_preis)],
+    ["Geschätzter PnL", prozent(v.pnl_pct)],
+  ];
+}
+
+function stufeZeigen(nummer) {
+  document.getElementById("dialog-stufe1").hidden = nummer !== 1;
+  document.getElementById("dialog-stufe2").hidden = nummer !== 2;
+  document.getElementById("dialog-stufe").textContent = `Schritt ${nummer} von 2`;
+}
+
+function fristStoppen() {
+  if (fristUhr) { clearInterval(fristUhr); fristUhr = null; }
+}
+
+function fristStarten(sekunden) {
+  fristStoppen();
+  const ende = Date.now() + sekunden * 1000;
+  const anzeige = document.getElementById("dialog-frist");
+  const knopf = document.getElementById("dialog-ausfuehren");
+  const tick = () => {
+    const rest = Math.max(0, Math.ceil((ende - Date.now()) / 1000));
+    if (rest === 0) {
+      fristStoppen();
+      anzeige.textContent = "Die Bestätigung ist abgelaufen. Bitte von vorn beginnen.";
+      knopf.disabled = true;
+      document.getElementById("dialog-eingabe").disabled = true;
+      return;
+    }
+    anzeige.textContent = `Gültig noch ${rest} Sekunden.`;
+  };
+  tick();
+  fristUhr = setInterval(tick, 1000);
+}
+
+async function starteSchliessen(tradeId) {
+  dialogFehler("");
+  stufeZeigen(1);
+  vorgang = null;
+  fristStoppen();
+  // Zuruecksetzen, falls der vorherige Versuch an dieser Stelle abbrach -
+  // sonst bliebe der Knopf fuer die naechste Position gesperrt.
+  document.getElementById("dialog-ja").disabled = true;
+  document.getElementById("dialog-zusammenfassung").innerHTML =
+    '<div class="gedaempft">Hole aktuellen Kurs …</div>';
+  document.getElementById("dialog-warnung").textContent = "";
+  if (!dialog.open) dialog.showModal();
+
+  try {
+    vorgang = await sende(
+      `/api/bots/${encodeURIComponent(name)}/schliessen/vorbereiten`,
+      { trade_id: tradeId });
+  } catch (e) {
+    document.getElementById("dialog-zusammenfassung").innerHTML = "";
+    dialogFehler(e.message);
+    document.getElementById("dialog-ja").disabled = true;
+    return;
+  }
+
+  document.getElementById("dialog-ja").disabled = false;
+  zeilen("dialog-zusammenfassung", zusammenfassungPaare(vorgang));
+  /* Der Warntext steht hier und nicht im Backend - wie jede andere
+     Beschriftung des Dashboards. */
+  document.getElementById("dialog-warnung").textContent =
+    "Das schreibt den Ausstieg direkt in die Live-Datenbank des Bots. "
+    + "Im Dashboard lässt sich das nicht rückgängig machen.";
+}
+
+function zurZweitenStufe() {
+  if (!vorgang) return;
+  stufeZeigen(2);
+  zeilen("dialog-zusammenfassung2", zusammenfassungPaare(vorgang));
+  document.getElementById("dialog-aufforderung").textContent =
+    `Letzter Schritt: tippe genau ${vorgang.bestaetigungstext} (Großbuchstaben) ein, `
+    + `um ${vorgang.symbol} zum Kurs ${zahl(vorgang.aktueller_preis)} zu schließen.`;
+  const eingabe = document.getElementById("dialog-eingabe");
+  eingabe.value = "";
+  eingabe.disabled = false;
+  eingabe.placeholder = vorgang.bestaetigungstext;
+  document.getElementById("dialog-ausfuehren").disabled = true;
+  fristStarten(vorgang.gueltig_sekunden);
+  eingabe.focus();
+}
+
+/* Der Knopf wird erst freigegeben, wenn der Text exakt stimmt - inklusive
+   Groß-/Kleinschreibung, genau wie der Server prüft. Das ist Bequemlichkeit,
+   keine Sicherung: der Server prüft denselben Text noch zweimal
+   (dashboard/schliessen.py und manual_close.py). */
+document.getElementById("dialog-eingabe").addEventListener("input", (e) => {
+  const stimmt = vorgang && e.target.value.trim() === vorgang.bestaetigungstext;
+  document.getElementById("dialog-ausfuehren").disabled = !stimmt || !fristUhr;
+});
+
+async function abbrechen() {
+  fristStoppen();
+  const kennung = vorgang ? vorgang.vorgang : null;
+  vorgang = null;
+  if (dialog.open) dialog.close();
+  if (kennung) {
+    /* Aufräumen ist Höflichkeit, keine Bedingung: der Vorgang verfällt
+       ohnehin nach Ablauf der Frist. Ein Fehler hier darf deshalb nichts
+       weiter auslösen als eine Zeile im Browser-Log. */
+    try {
+      await sende(`/api/bots/${encodeURIComponent(name)}/schliessen/abbrechen`,
+                  { vorgang: kennung });
+    } catch (e) { /* bewusst ignoriert, siehe oben */ }
+  }
+}
+
+async function ausfuehren() {
+  if (!vorgang || laeuft) return;
+  laeuft = true;
+  const knopf = document.getElementById("dialog-ausfuehren");
+  knopf.disabled = true;
+  dialogFehler("");
+  try {
+    const ergebnis = await sende(
+      `/api/bots/${encodeURIComponent(name)}/schliessen/ausfuehren`,
+      { vorgang: vorgang.vorgang,
+        bestaetigung: document.getElementById("dialog-eingabe").value.trim() });
+    fristStoppen();
+    vorgang = null;
+    dialog.close();
+    document.getElementById("erfolg").innerHTML =
+      `<div class="erfolgsmeldung">✅ ${ergebnis.meldung}</div>`;
+    /* Sofort neu laden, damit die geschlossene Position nicht bis zum
+       nächsten Takt weiter als offen dasteht. */
+    try { await ladeDetail(); } catch (e) { /* der Takt holt es nach */ }
+    try { await ladeMitKursen(); } catch (e) { /* dito */ }
+    try { await ladeVerlauf(); } catch (e) { /* dito */ }
+  } catch (e) {
+    /* Der Vorgang ist serverseitig in jedem Fall verbraucht - auch bei
+       falschem Text. Deshalb hier keinen zweiten Versuch anbieten,
+       sondern zurück auf Anfang. */
+    vorgang = null;
+    fristStoppen();
+    dialogFehler(e.message);
+    document.getElementById("dialog-eingabe").disabled = true;
+  } finally {
+    laeuft = false;
+  }
+}
+
+document.getElementById("dialog-ja").addEventListener("click", zurZweitenStufe);
+document.getElementById("dialog-abbrechen1").addEventListener("click", abbrechen);
+document.getElementById("dialog-abbrechen2").addEventListener("click", abbrechen);
+document.getElementById("dialog-ausfuehren").addEventListener("click", ausfuehren);
+
+/* Esc-Taste und Klick auf den Hintergrund schließen den Dialog am
+   Abbrechen-Knopf vorbei - der Vorgang muss trotzdem verworfen werden. */
+dialog.addEventListener("cancel", (e) => { e.preventDefault(); abbrechen(); });
+
+/* Ereignisdelegation: die Tabelle wird bei jeder Aktualisierung neu
+   gebaut: an die einzelnen Knöpfe gebundene Handler wären nach dem
+   ersten Takt weg. */
+document.getElementById("positionen").addEventListener("click", (e) => {
+  const knopf = e.target.closest(".schliessen-knopf");
+  if (!knopf) return;
+  document.getElementById("erfolg").innerHTML = "";
+  starteSchliessen(Number(knopf.dataset.id));
+});
 
 // Getrennte Ladeschritte, damit die automatische Aktualisierung jeden
 // einzeln wiederholen kann - siehe index.html, gleiches Prinzip.
@@ -122,6 +414,16 @@ async function ladeMitKursen() {
   setzeHinweis(mitKursen.kurs_hinweis);
 }
 
+/* Ohne live=1: reine Konfigurationsfrage ("ist dieser Bot freigeschaltet"),
+   kein Netzwerkzugriff auf der Serverseite. Die Kurse für die
+   Zusammenfassung holt der Server erst beim Vorbereiten - dann sind sie
+   frisch und es ist genau der Kurs, der geschrieben wird. */
+async function ladeSchliessInfo() {
+  schliessInfo = await hole(
+    `/api/bots/${encodeURIComponent(name)}/schliessbare-positionen`);
+  zeichnePositionen();
+}
+
 async function erstesLaden() {
   if (!name) {
     zeigeFehler("Kein Bot angegeben.");
@@ -132,6 +434,14 @@ async function erstesLaden() {
   } catch (e) {
     zeigeFehler("Bot konnte nicht geladen werden: " + e.message);
     return;
+  }
+  try {
+    await ladeSchliessInfo();
+  } catch (e) {
+    /* Ohne diese Antwort bleibt die Aktionsspalte weg - die Seite ist
+       dann genau so lesend wie vor dieser Erweiterung. Das ist die
+       richtige Richtung zum Fehlschlagen. */
+    schliessInfo = null;
   }
   try {
     await ladeVerlauf();

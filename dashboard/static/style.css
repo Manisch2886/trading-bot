@@ -404,3 +404,126 @@ button.knopf:hover { background: var(--karte-hoch); }
 @media (max-width: 460px) {
   .karten .karte:last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
+
+/* --- Manuelles Schliessen -------------------------------------------------
+   Der einzige Ort im Dashboard, an dem etwas geschrieben wird. Die
+   Gestaltung soll das auch zeigen: die Schaltflaeche in der Tabelle ist
+   zurueckhaltend (sie steht neben harmlosen Zahlen), der Dialog dagegen
+   deutlich - dort faellt die Entscheidung.
+
+   <dialog> statt eines selbstgebauten Overlays: der Browser bringt
+   Fokusfang, Esc-Taste und die Verdunklung des Hintergrunds von sich aus
+   mit. Ein nachgebautes Modal muesste all das von Hand richtig machen,
+   und bei einem Dialog, der eine Datenbank aendert, ist "der Fokus liegt
+   noch hinter dem Fenster" kein Schoenheitsfehler. */
+
+button.knopf.gefahr {
+  border-color: rgba(224, 108, 108, .45);
+  color: #f0a0a0;
+}
+button.knopf.gefahr:hover { background: rgba(224, 108, 108, .12); }
+button.knopf:disabled { opacity: .4; cursor: not-allowed; }
+button.knopf:disabled:hover { background: var(--karte); }
+
+/* In der Tabelle: klein und ohne Rahmenfarbe, damit die Zahlenspalten
+   daneben nicht untergehen. */
+td .schliessen-knopf { padding: 5px 10px; font-size: 12px; }
+
+dialog.schliessen-dialog {
+  background: var(--karte);
+  color: var(--text);
+  border: 1px solid var(--rahmen-stark);
+  border-radius: var(--radius);
+  padding: 0;
+  width: min(440px, calc(100vw - 32px));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, .6);
+}
+dialog.schliessen-dialog::backdrop { background: rgba(0, 0, 0, .6); }
+dialog.schliessen-dialog .inhalt { padding: 20px 22px 18px; }
+dialog.schliessen-dialog h2 {
+  margin: 0 0 4px;
+  font-size: 17px;
+  letter-spacing: -.01em;
+}
+dialog.schliessen-dialog .stufe {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: var(--gedaempft);
+  margin-bottom: 14px;
+}
+
+/* Die Zusammenfassung als Beschriftung/Wert-Paare - dieselbe Sprache wie
+   die Kacheln, nur waagerecht. */
+.dialog-zeilen { display: grid; gap: 8px; margin: 0 0 16px; }
+.dialog-zeilen div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+.dialog-zeilen dt, .dialog-zeilen .beschriftung {
+  color: var(--gedaempft);
+  font-variant-numeric: normal;
+}
+
+.dialog-warnung {
+  background: rgba(224, 108, 108, .10);
+  border: 1px solid rgba(224, 108, 108, .30);
+  border-radius: var(--radius-klein);
+  padding: 11px 13px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.dialog-fehler {
+  color: var(--rot);
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 0 14px;
+}
+
+.dialog-eingabe {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border-radius: var(--radius-klein);
+  border: 1px solid var(--rahmen-stark);
+  background: var(--hintergrund);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;          /* unter 16px zoomt iOS Safari beim Fokus hinein */
+  letter-spacing: .08em;
+  margin-bottom: 6px;
+}
+.dialog-frist {
+  font-size: 12px;
+  color: var(--gedaempft);
+  margin: 0 0 16px;
+  font-variant-numeric: tabular-nums;
+}
+
+.dialog-knoepfe {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+.dialog-knoepfe button { flex: 0 0 auto; }
+
+.erfolgsmeldung {
+  background: rgba(70, 184, 119, .10);
+  border: 1px solid rgba(70, 184, 119, .32);
+  border-radius: var(--radius-klein);
+  padding: 11px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 12px 0;
+}
+
+@media (max-width: 460px) {
+  .dialog-knoepfe { flex-direction: column-reverse; }
+  .dialog-knoepfe button { width: 100%; }
+}

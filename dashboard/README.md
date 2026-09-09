@@ -1,16 +1,38 @@
-# Web-Dashboard (Phase 2) - rein lesend
+# Web-Dashboard - lesend, mit genau einer Ausnahme
 
 Kleines Web-Dashboard fuer die neun Paper-Trading-Bots, installierbar auf
 dem iPhone (PWA). Zeigt dieselben Daten wie der Telegram-Bot, nur
 visuell aufbereitet: Uebersicht aller Bots, Verlaufsdiagramm, Detailseite
 je Bot mit offenen Positionen und den letzten Trades.
 
-**Rein lesend.** Es gibt keinen Endpunkt, der irgendetwas veraendert -
-keine Moeglichkeit, eine Position zu schliessen, einen Parameter zu
-setzen oder einen Bot zu starten. Das ist Phase 3 und ausdruecklich
-nicht Teil dieser Anwendung. Die einzige Nicht-GET-Route ist
-`POST /login`, die nur ein Cookie setzt. Die Bot-Datenbanken werden
-ueber `notifications/monitor.py` im SQLite-Modus `ro` geoeffnet.
+**Hier stand bis zuletzt "rein lesend - es gibt keinen Endpunkt, der
+irgendetwas veraendert".** Das gilt so nicht mehr, und der Satz soll nicht
+stillschweigend falsch werden.
+
+**Lesend, ausser einem einzigen Weg:** eine offene Position von Hand
+schliessen. Dieser Weg ist eng gefasst:
+
+* nur fuer die Bots in `manual_close.SCHLIESSBARE_BOTS` - derzeit genau
+  einer, `t3_supertrend`; alle uebrigen antworten mit 403,
+* nur ueber **zwei getrennte HTTP-Aufrufe** (`…/vorbereiten`, dann
+  `…/ausfuehren`), der zweite mit einer zufaelligen, einmaligen, nach 120
+  Sekunden verfallenden Vorgangs-Kennung **und** dem exakt getippten Text
+  `BESTAETIGEN` (Gross-/Kleinschreibung zaehlt). Ein einzelner Aufruf kann
+  nichts schliessen,
+* und nur ueber `notifications/manual_close.py` - dasselbe Modul, das auch
+  die Telegram-Variante benutzt, mit Transaktion, Nebenlaeufigkeits-
+  Absicherung und eigenem Protokoll.
+
+Alles andere ist unveraendert lesend: kein Parameter laesst sich aendern,
+keine Position eroeffnen, kein Bot-Lauf anstossen. Ausserhalb dieses einen
+Pfades werden die Bot-Datenbanken weiterhin ueber
+`notifications/monitor.py` im SQLite-Modus `ro` geoeffnet.
+
+**Vor dem ersten Einsatz:** die gestaffelte Anleitung in
+[`TESTANLEITUNG_SCHLIESSEN.md`](TESTANLEITUNG_SCHLIESSEN.md) durchgehen -
+Schritte 0-3 sind gefahrlos, Schritt 4 testet an einer Kopie der Datenbank,
+erst Schritt 5 fasst die echte an. Dort stehen auch die bekannten
+Restrisiken.
 
 ## Struktur
 
@@ -18,13 +40,15 @@ ueber `notifications/monitor.py` im SQLite-Modus `ro` geoeffnet.
 |---|---|
 | `server.py` | Start (uvicorn), Bindung an 127.0.0.1, Warnhinweise |
 | `app.py` | FastAPI-App: Endpunkte, Token-Pruefung, Auslieferung des Frontends |
-| `datenquelle.py` | duenne Leseschicht ueber `notifications/monitor.py` |
+| `datenquelle.py` | duenne Leseschicht ueber `notifications/monitor.py` (enthaelt bewusst keinen Schreibpfad) |
+| `schliessen.py` | der eine schreibende Weg: Zustand zwischen den beiden Bestaetigungen, ruft `notifications/manual_close.py` |
 | `konfig.py` | Token/Host/Port aus `.env` bzw. Umgebung |
 | `static/` | Frontend (HTML/CSS/JS), `manifest.json`, `sw.js`, Icons |
 | `erzeuge_icons.py` | erzeugt die beiden PWA-Icons neu (keine Fremdbibliothek noetig) |
 | `test_dashboard.py` | Selbsttests gegen den echten Server, synthetische Daten |
 | `test_zustandsmaschine.js` | Verhaltenstest der Aktualisierungs-Zustaende (node, wird mitgestartet) |
 | `test_zeitzone.js` | Verhaltenstest der Zeitanzeige in vier Zeitzonen (node, wird mitgestartet) |
+| `TESTANLEITUNG_SCHLIESSEN.md` | gestaffelte Anleitung fuer den manuellen Test des Schliessens |
 
 ## Erste Inbetriebnahme (Schritt fuer Schritt)
 
@@ -118,7 +142,7 @@ angehaengtem Token aufrufen
 (`http://<adresse>:8787/?token=<token>`) - das setzt gleich das Cookie,
 danach ist das Token nicht mehr noetig.
 
-## Endpunkte (alle GET, alle lesend)
+## Endpunkte (lesend)
 
 | Endpunkt | Zweck |
 |---|---|
@@ -134,6 +158,28 @@ danach ist das Token nicht mehr noetig.
 
 Seiten: `/` (Uebersicht), `/bot?name=<bot>` (Detail), `/login`,
 `/abmelden`, `/manifest.json`, `/sw.js`, `/statisch/*`.
+
+## Endpunkte des manuellen Schliessens
+
+| Endpunkt | Methode | Schreibt? |
+|---|---|---|
+| `/api/bots/{name}/schliessbare-positionen[?live=1]` | GET | nein - Zeilen-IDs, Kurs, geschaetzter PnL |
+| `/api/bots/{name}/schliessen/vorbereiten` | POST | nein - legt nur einen Vorgang im Arbeitsspeicher an |
+| `/api/bots/{name}/schliessen/abbrechen` | POST | nein - verwirft ihn wieder |
+| `/api/bots/{name}/schliessen/ausfuehren` | POST | **ja** - der einzige Schreibzugriff der Anwendung |
+
+`vorbereiten` erwartet `{"trade_id": <ID>}` und antwortet mit Symbol,
+Einstiegs- und aktuellem Kurs, geschaetztem PnL sowie einer Vorgangs-Kennung.
+`ausfuehren` erwartet `{"vorgang": "<Kennung>", "bestaetigung": "BESTAETIGEN"}`.
+Jeder Fehlversuch verbraucht die Kennung; abgelehnt wird mit 409 (Konflikt),
+ein nicht freigeschalteter Bot mit 403.
+
+Jeder Versuch - erfolgreich wie abgelehnt - landet in
+`logs/notifications/manuelle_eingriffe.log`, jede Zeile mit der Marke
+`MANUELLER-EINGRIFF` und dem Feld `quelle=dashboard`. Es ist bewusst
+dasselbe Protokoll wie fuer die Telegram-Variante: die Frage "wer hat diese
+Position wann von Hand geschlossen" soll sich aus EINER Datei beantworten
+lassen.
 
 ## Warum die Live-Kurse getrennt geladen werden
 
@@ -216,6 +262,14 @@ mit Live-Kursen.
 
 ## Bekannte Grenzen
 
+- **Das Zugriffs-Token kann jetzt mehr als lesen.** Es liegt nach dem
+  ersten Login 90 Tage als Cookie im Browser. Wer Zugriff auf das
+  entsperrte Geraet hat, kann eine Position schliessen; die beiden
+  Bestaetigungen schuetzen vor Versehen, nicht vor einer fremden Person.
+  Das war vorher schon so, wog aber weniger - bis jetzt konnte man mit
+  dem Token nur lesen. Dasselbe gilt fuer `DASHBOARD_HOST`: wer die
+  Bindung von localhost weg aendert, macht auch den schreibenden Endpunkt
+  im Netz erreichbar.
 - **Keine Ratenbegrenzung** an der Anmeldung. Bei einem zufaelligen
   Token mit 32 Byte Entropie ist Durchprobieren praktisch aussichtslos;
   ein kurzes, selbst ausgedachtes Token waere es nicht - deshalb die

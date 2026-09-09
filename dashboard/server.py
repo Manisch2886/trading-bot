@@ -21,6 +21,11 @@ nicht mehr.
 Wer trotzdem vom iPhone im selben WLAN zugreifen will, kann
 DASHBOARD_HOST=0.0.0.0 setzen - dann greift nur noch das Token als
 Schutz, und der Server weist beim Start ausdruecklich darauf hin.
+
+Das wiegt seit dem manuellen Schliessen schwerer als frueher: das
+Dashboard ist nicht mehr rein lesend, es hat genau einen schreibenden
+Endpunkt (siehe app.py und dashboard/schliessen.py). Der Start gibt
+deshalb aus, fuer welche Bots das freigeschaltet ist.
 """
 
 import logging
@@ -32,6 +37,7 @@ if _DASHBOARD_DIR not in sys.path:
     sys.path.insert(0, _DASHBOARD_DIR)
 
 import konfig
+import schliessen
 from app import erzeuge_app
 
 LOKALE_ADRESSEN = {"127.0.0.1", "localhost", "::1"}
@@ -53,8 +59,14 @@ def main():
 
     adresse, tor = konfig.host(), konfig.port()
 
-    print("Trading-Bot-Dashboard (rein lesend)")
+    print("Trading-Bot-Dashboard")
     print(f"  Adresse: http://{adresse}:{tor}/")
+    # Nicht mehr "rein lesend": seit dem manuellen Schliessen gibt es
+    # genau einen schreibenden Endpunkt. Wer den Server startet, soll das
+    # auf der Startzeile sehen und es nicht erst im Quelltext finden.
+    print(f"  Schreibend freigeschaltet: "
+          f"{', '.join(schliessen.freigeschaltete_bots())} (Position manuell "
+          f"schliessen, doppelte Bestaetigung)")
     if adresse in LOKALE_ADRESSEN:
         print("  Bindung: nur localhost - vom iPhone/anderen Geraeten NICHT erreichbar.")
         print("           Fuer den Fernzugriff ist Tailscale (oder Gleichwertiges) noetig,")
