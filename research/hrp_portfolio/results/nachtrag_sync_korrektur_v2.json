@@ -1,0 +1,358 @@
+{
+  "hinweis": "Zweiter Nachtrag. Nur die Kapitalkurven wurden erneuert - sie stammen jetzt aus einem Lauf der heutigen equity_simulation.py. Methodik, Annahmen und Auswertung stammen unveraendert aus run_walk_forward.py.",
+  "bestandsaufnahme": {
+    "elliott_wave": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "ANDERS",
+      "bot": "elliott_wave",
+      "trades_found": 130,
+      "executed": 130,
+      "skipped": 0,
+      "return_pct": 67.77,
+      "drawdown_pct": -10.17,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": null,
+      "starting_capital": 10000.0
+    },
+    "elliott_wave_stocks": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "ANDERS",
+      "bot": "elliott_wave_stocks",
+      "trades_found": 510,
+      "executed": 395,
+      "skipped": 115,
+      "return_pct": 352.72,
+      "drawdown_pct": -22.44,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "starting_capital": 10000.0
+    },
+    "rsi2_crypto": {
+      "gegenueber_results": "identisch",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "rsi2_crypto",
+      "trades_found": 439,
+      "executed": 392,
+      "skipped": 47,
+      "return_pct": 28.37,
+      "drawdown_pct": -13.3,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "starting_capital": 10000.0
+    },
+    "rsi2_mean_reversion": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "rsi2_mean_reversion",
+      "trades_found": 5391,
+      "executed": 4232,
+      "skipped": 1159,
+      "return_pct": 36.75,
+      "drawdown_pct": -21.05,
+      "allocation_pct": 5.0,
+      "max_concurrent_positions": 20,
+      "starting_capital": 10000.0
+    },
+    "t3_supertrend": {
+      "gegenueber_results": "identisch",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "t3_supertrend",
+      "trades_found": 980,
+      "executed": 656,
+      "skipped": 324,
+      "return_pct": 129.64,
+      "drawdown_pct": -22.2,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 5,
+      "starting_capital": 10000.0
+    },
+    "turtle_soup_crypto": {
+      "gegenueber_results": "identisch",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "turtle_soup_crypto",
+      "trades_found": 1599,
+      "executed": 1414,
+      "skipped": 185,
+      "return_pct": 177.59,
+      "drawdown_pct": -32.4,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "starting_capital": 10000.0
+    },
+    "turtle_soup_stocks": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "turtle_soup_stocks",
+      "trades_found": 12069,
+      "executed": 8915,
+      "skipped": 3154,
+      "return_pct": 145.59,
+      "drawdown_pct": -29.91,
+      "allocation_pct": 2.0,
+      "max_concurrent_positions": null,
+      "starting_capital": 10000.0
+    },
+    "volatility_breakout": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "volatility_breakout",
+      "trades_found": 4510,
+      "executed": 1454,
+      "skipped": 3056,
+      "return_pct": 224.41,
+      "drawdown_pct": -23.97,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 15,
+      "starting_capital": 10000.0
+    },
+    "volatility_breakout_crypto": {
+      "gegenueber_results": "identisch",
+      "gegenueber_erster_korrektur": "ANDERS",
+      "bot": "volatility_breakout_crypto",
+      "trades_found": 359,
+      "executed": 310,
+      "skipped": 49,
+      "return_pct": 71.26,
+      "drawdown_pct": -16.77,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "starting_capital": 10000.0
+    }
+  },
+  "regressionscheck_bestanden": 24,
+  "kernaussage_ueber_alle_grundlagen_stabil": false,
+  "ergebnisse": {
+    "original": {
+      "basis": "original_v2",
+      "bots": [
+        "elliott_wave",
+        "elliott_wave_stocks",
+        "rsi2_crypto",
+        "rsi2_mean_reversion",
+        "t3_supertrend",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "common_window": {
+        "start": "2022-03-18",
+        "end": "2026-06-27"
+      },
+      "hrp_walk_forward": {
+        "total_return_pct": 63.26,
+        "max_drawdown_pct": -4.93,
+        "calmar_ratio": 12.8316
+      },
+      "baseline_equal_weight": {
+        "total_return_pct": 82.43,
+        "max_drawdown_pct": -6.33,
+        "calmar_ratio": 13.0221
+      },
+      "buy_and_hold": {
+        "total_return_pct": 158.17,
+        "max_drawdown_pct": -23.77,
+        "calmar_ratio": 6.6542
+      },
+      "buy_and_hold_num_symbols": 161,
+      "worst_individual_bot_max_drawdown_pct": -32.4,
+      "robustness_check_ward_linkage": {
+        "total_return_pct": 63.78,
+        "max_drawdown_pct": -4.93,
+        "calmar_ratio": 12.9371
+      },
+      "weight_stability": {
+        "mean_quarter_to_quarter_swing": 0.1161,
+        "max_quarter_to_quarter_swing": 0.3902,
+        "num_quarters": 18
+      },
+      "final_weights": {
+        "elliott_wave": 0.1111,
+        "elliott_wave_stocks": 0.1111,
+        "rsi2_crypto": 0.1111,
+        "rsi2_mean_reversion": 0.2922,
+        "t3_supertrend": 0.029,
+        "turtle_soup_crypto": 0.0162,
+        "turtle_soup_stocks": 0.1286,
+        "volatility_breakout": 0.1591,
+        "volatility_breakout_crypto": 0.0416
+      },
+      "hrp_minus_baseline_calmar": -0.1905,
+      "kernaussage_haelt": true
+    },
+    "korrigiert_v1": {
+      "basis": "k_v1",
+      "bots": [
+        "elliott_wave",
+        "elliott_wave_stocks",
+        "rsi2_crypto",
+        "rsi2_mean_reversion",
+        "t3_supertrend",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "common_window": {
+        "start": "2022-03-18",
+        "end": "2026-06-27"
+      },
+      "hrp_walk_forward": {
+        "total_return_pct": 76.47,
+        "max_drawdown_pct": -7.32,
+        "calmar_ratio": 10.4467
+      },
+      "baseline_equal_weight": {
+        "total_return_pct": 107.13,
+        "max_drawdown_pct": -9.82,
+        "calmar_ratio": 10.9094
+      },
+      "buy_and_hold": {
+        "total_return_pct": 158.17,
+        "max_drawdown_pct": -23.77,
+        "calmar_ratio": 6.6542
+      },
+      "buy_and_hold_num_symbols": 161,
+      "worst_individual_bot_max_drawdown_pct": -32.4,
+      "robustness_check_ward_linkage": {
+        "total_return_pct": 76.14,
+        "max_drawdown_pct": -7.32,
+        "calmar_ratio": 10.4016
+      },
+      "weight_stability": {
+        "mean_quarter_to_quarter_swing": 0.0946,
+        "max_quarter_to_quarter_swing": 0.3118,
+        "num_quarters": 18
+      },
+      "final_weights": {
+        "elliott_wave": 0.1111,
+        "elliott_wave_stocks": 0.1111,
+        "rsi2_crypto": 0.1111,
+        "rsi2_mean_reversion": 0.3191,
+        "t3_supertrend": 0.019,
+        "turtle_soup_crypto": 0.0106,
+        "turtle_soup_stocks": 0.1802,
+        "volatility_breakout": 0.0964,
+        "volatility_breakout_crypto": 0.0415
+      },
+      "hrp_minus_baseline_calmar": -0.4627,
+      "kernaussage_haelt": true
+    },
+    "korrigiert_v1_stale": {
+      "basis": "k_v1s",
+      "bots": [
+        "elliott_wave",
+        "elliott_wave_stocks",
+        "rsi2_crypto",
+        "rsi2_mean_reversion",
+        "t3_supertrend",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "common_window": {
+        "start": "2022-03-18",
+        "end": "2026-08-20"
+      },
+      "hrp_walk_forward": {
+        "total_return_pct": 132.93,
+        "max_drawdown_pct": -5.39,
+        "calmar_ratio": 24.6623
+      },
+      "baseline_equal_weight": {
+        "total_return_pct": 255.95,
+        "max_drawdown_pct": -4.82,
+        "calmar_ratio": 53.1017
+      },
+      "buy_and_hold": {
+        "total_return_pct": 159.12,
+        "max_drawdown_pct": -23.77,
+        "calmar_ratio": 6.6942
+      },
+      "buy_and_hold_num_symbols": 161,
+      "worst_individual_bot_max_drawdown_pct": -32.4,
+      "robustness_check_ward_linkage": {
+        "total_return_pct": 131.94,
+        "max_drawdown_pct": -5.39,
+        "calmar_ratio": 24.4787
+      },
+      "weight_stability": {
+        "mean_quarter_to_quarter_swing": 0.122,
+        "max_quarter_to_quarter_swing": 0.3145,
+        "num_quarters": 19
+      },
+      "final_weights": {
+        "elliott_wave": 0.0925,
+        "elliott_wave_stocks": 0.1111,
+        "rsi2_crypto": 0.1111,
+        "rsi2_mean_reversion": 0.3376,
+        "t3_supertrend": 0.0196,
+        "turtle_soup_crypto": 0.0114,
+        "turtle_soup_stocks": 0.1929,
+        "volatility_breakout": 0.0833,
+        "volatility_breakout_crypto": 0.0405
+      },
+      "hrp_minus_baseline_calmar": -28.4394,
+      "kernaussage_haelt": true
+    },
+    "korrigiert_v2": {
+      "basis": "k_v2",
+      "bots": [
+        "elliott_wave",
+        "elliott_wave_stocks",
+        "rsi2_crypto",
+        "rsi2_mean_reversion",
+        "t3_supertrend",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "common_window": {
+        "start": "2022-03-18",
+        "end": "2026-08-20"
+      },
+      "hrp_walk_forward": {
+        "total_return_pct": 72.53,
+        "max_drawdown_pct": -12.0,
+        "calmar_ratio": 6.0442
+      },
+      "baseline_equal_weight": {
+        "total_return_pct": 72.12,
+        "max_drawdown_pct": -12.22,
+        "calmar_ratio": 5.9018
+      },
+      "buy_and_hold": {
+        "total_return_pct": 159.12,
+        "max_drawdown_pct": -23.77,
+        "calmar_ratio": 6.6942
+      },
+      "buy_and_hold_num_symbols": 161,
+      "worst_individual_bot_max_drawdown_pct": -32.4,
+      "robustness_check_ward_linkage": {
+        "total_return_pct": 72.21,
+        "max_drawdown_pct": -12.0,
+        "calmar_ratio": 6.0175
+      },
+      "weight_stability": {
+        "mean_quarter_to_quarter_swing": 0.0929,
+        "max_quarter_to_quarter_swing": 0.3532,
+        "num_quarters": 19
+      },
+      "final_weights": {
+        "elliott_wave": 0.1111,
+        "elliott_wave_stocks": 0.1111,
+        "rsi2_crypto": 0.1111,
+        "rsi2_mean_reversion": 0.3445,
+        "t3_supertrend": 0.0207,
+        "turtle_soup_crypto": 0.0122,
+        "turtle_soup_stocks": 0.1811,
+        "volatility_breakout": 0.0782,
+        "volatility_breakout_crypto": 0.03
+      },
+      "hrp_minus_baseline_calmar": 0.1424,
+      "kernaussage_haelt": false
+    }
+  }
+}

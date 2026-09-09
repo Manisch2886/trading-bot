@@ -1,0 +1,11 @@
+{
+  "bot": "rsi2_crypto",
+  "trades_found": 439,
+  "executed": 392,
+  "skipped": 47,
+  "return_pct": 28.37,
+  "drawdown_pct": -13.3,
+  "allocation_pct": 10.0,
+  "max_concurrent_positions": 8,
+  "starting_capital": 10000.0
+}

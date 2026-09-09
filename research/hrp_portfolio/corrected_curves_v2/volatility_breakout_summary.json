@@ -1,0 +1,11 @@
+{
+  "bot": "volatility_breakout",
+  "trades_found": 4510,
+  "executed": 1454,
+  "skipped": 3056,
+  "return_pct": 224.41,
+  "drawdown_pct": -23.97,
+  "allocation_pct": 10.0,
+  "max_concurrent_positions": 15,
+  "starting_capital": 10000.0
+}

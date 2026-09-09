@@ -1,0 +1,11 @@
+{
+  "bot": "turtle_soup_stocks",
+  "trades_found": 12069,
+  "executed": 8915,
+  "skipped": 3154,
+  "return_pct": 145.59,
+  "drawdown_pct": -29.91,
+  "allocation_pct": 2.0,
+  "max_concurrent_positions": null,
+  "starting_capital": 10000.0
+}

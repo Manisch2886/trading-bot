@@ -1,0 +1,11 @@
+{
+  "bot": "elliott_wave_stocks",
+  "trades_found": 510,
+  "executed": 395,
+  "skipped": 115,
+  "return_pct": 352.72,
+  "drawdown_pct": -22.44,
+  "allocation_pct": 10.0,
+  "max_concurrent_positions": 8,
+  "starting_capital": 10000.0
+}

@@ -1,0 +1,635 @@
+{
+  "hinweis": "Zweiter Nachtrag. Nur die Kapitalkurven wurden erneuert - sie stammen jetzt aus einem Lauf der heutigen equity_simulation.py. Signal-Konstruktion, Fenster und Auswertung stammen unveraendert aus run_overlay_analysis.py / trend_core.py.",
+  "bestandsaufnahme": {
+    "elliott_wave": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "ANDERS",
+      "bot": "elliott_wave",
+      "trades_found": 130,
+      "executed": 130,
+      "skipped": 0,
+      "return_pct": 67.77,
+      "drawdown_pct": -10.17,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": null,
+      "starting_capital": 10000.0
+    },
+    "elliott_wave_stocks": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "ANDERS",
+      "bot": "elliott_wave_stocks",
+      "trades_found": 510,
+      "executed": 395,
+      "skipped": 115,
+      "return_pct": 352.72,
+      "drawdown_pct": -22.44,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "starting_capital": 10000.0
+    },
+    "rsi2_crypto": {
+      "gegenueber_results": "identisch",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "rsi2_crypto",
+      "trades_found": 439,
+      "executed": 392,
+      "skipped": 47,
+      "return_pct": 28.37,
+      "drawdown_pct": -13.3,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "starting_capital": 10000.0
+    },
+    "rsi2_mean_reversion": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "rsi2_mean_reversion",
+      "trades_found": 5391,
+      "executed": 4232,
+      "skipped": 1159,
+      "return_pct": 36.75,
+      "drawdown_pct": -21.05,
+      "allocation_pct": 5.0,
+      "max_concurrent_positions": 20,
+      "starting_capital": 10000.0
+    },
+    "t3_supertrend": {
+      "gegenueber_results": "identisch",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "t3_supertrend",
+      "trades_found": 980,
+      "executed": 656,
+      "skipped": 324,
+      "return_pct": 129.64,
+      "drawdown_pct": -22.2,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 5,
+      "starting_capital": 10000.0
+    },
+    "turtle_soup_crypto": {
+      "gegenueber_results": "identisch",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "turtle_soup_crypto",
+      "trades_found": 1599,
+      "executed": 1414,
+      "skipped": 185,
+      "return_pct": 177.59,
+      "drawdown_pct": -32.4,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "starting_capital": 10000.0
+    },
+    "turtle_soup_stocks": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "turtle_soup_stocks",
+      "trades_found": 12069,
+      "executed": 8915,
+      "skipped": 3154,
+      "return_pct": 145.59,
+      "drawdown_pct": -29.91,
+      "allocation_pct": 2.0,
+      "max_concurrent_positions": null,
+      "starting_capital": 10000.0
+    },
+    "volatility_breakout": {
+      "gegenueber_results": "ANDERS",
+      "gegenueber_erster_korrektur": "identisch",
+      "bot": "volatility_breakout",
+      "trades_found": 4510,
+      "executed": 1454,
+      "skipped": 3056,
+      "return_pct": 224.41,
+      "drawdown_pct": -23.97,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 15,
+      "starting_capital": 10000.0
+    },
+    "volatility_breakout_crypto": {
+      "gegenueber_results": "identisch",
+      "gegenueber_erster_korrektur": "ANDERS",
+      "bot": "volatility_breakout_crypto",
+      "trades_found": 359,
+      "executed": 310,
+      "skipped": 49,
+      "return_pct": 71.26,
+      "drawdown_pct": -16.77,
+      "allocation_pct": 10.0,
+      "max_concurrent_positions": 8,
+      "starting_capital": 10000.0
+    }
+  },
+  "regressionscheck_bestanden": 91,
+  "teilaussagen_stabil": {
+    "T1": true,
+    "T2": true,
+    "T3": true,
+    "OOS_Richtung": false
+  },
+  "ergebnisse": {
+    "original": {
+      "basis": "original_v2",
+      "bots": [
+        "elliott_wave",
+        "elliott_wave_stocks",
+        "rsi2_crypto",
+        "rsi2_mean_reversion",
+        "t3_supertrend",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "common_window": {
+        "start": "2022-03-18",
+        "end": "2026-06-27"
+      },
+      "split_date": "2025-03-16",
+      "signal_stats_primary_window": {
+        "total_days": 1562,
+        "active_days": 300,
+        "active_pct": 19.21,
+        "num_episodes": 9,
+        "longest_episode_days": 229
+      },
+      "signal_stats_robustness_window": {
+        "total_days": 1562,
+        "active_days": 286,
+        "active_pct": 18.31,
+        "num_episodes": 14,
+        "longest_episode_days": 127
+      },
+      "stress_period_2022": {
+        "days_in_window": 288,
+        "stats": {
+          "total_days": 288,
+          "active_days": 255,
+          "active_pct": 88.54,
+          "num_episodes": 4,
+          "longest_episode_days": 229
+        }
+      },
+      "full_period": {
+        "baseline": {
+          "total_return_pct": 82.43,
+          "max_drawdown_pct": -6.33,
+          "calmar_ratio": 13.0221
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 82.56,
+          "max_drawdown_pct": -5.9,
+          "calmar_ratio": 13.9932
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 82.63,
+          "max_drawdown_pct": -5.5,
+          "calmar_ratio": 15.0236
+        }
+      },
+      "in_sample": {
+        "baseline": {
+          "total_return_pct": 51.82,
+          "max_drawdown_pct": -6.33,
+          "calmar_ratio": 8.1864
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 53.05,
+          "max_drawdown_pct": -5.9,
+          "calmar_ratio": 8.9915
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 54.24,
+          "max_drawdown_pct": -5.5,
+          "calmar_ratio": 9.8618
+        }
+      },
+      "out_of_sample": {
+        "baseline": {
+          "total_return_pct": 20.16,
+          "max_drawdown_pct": -4.32,
+          "calmar_ratio": 4.6667
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 19.29,
+          "max_drawdown_pct": -4.32,
+          "calmar_ratio": 4.4653
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 18.41,
+          "max_drawdown_pct": -4.32,
+          "calmar_ratio": 4.2616
+        }
+      },
+      "robustness_check_150day_window": {
+        "baseline": {
+          "total_return_pct": 82.43,
+          "max_drawdown_pct": -6.33,
+          "calmar_ratio": 13.0221
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 85.49,
+          "max_drawdown_pct": -5.36,
+          "calmar_ratio": 15.9496
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 88.53,
+          "max_drawdown_pct": -4.53,
+          "calmar_ratio": 19.543
+        }
+      },
+      "kernaussage": {
+        "T1_full_period_calmar_gain": 2.0015,
+        "T1_haelt": true,
+        "T2_out_of_sample_drawdowns": {
+          "baseline": -4.32,
+          "reduziert_50pct": -4.32,
+          "pausiert_0pct": -4.32
+        },
+        "T2_haelt": true,
+        "out_of_sample_calmar_gain": -0.4051,
+        "out_of_sample_calmar_richtung_wie_erstfassung": true,
+        "T3_anteil_signaltage_in_2022_pct": 85.0,
+        "T3_laengste_episode_tage": 229,
+        "T3_haelt": true
+      }
+    },
+    "korrigiert_v1": {
+      "basis": "k_v1",
+      "bots": [
+        "elliott_wave",
+        "elliott_wave_stocks",
+        "rsi2_crypto",
+        "rsi2_mean_reversion",
+        "t3_supertrend",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "common_window": {
+        "start": "2022-03-18",
+        "end": "2026-06-27"
+      },
+      "split_date": "2025-03-16",
+      "signal_stats_primary_window": {
+        "total_days": 1562,
+        "active_days": 300,
+        "active_pct": 19.21,
+        "num_episodes": 9,
+        "longest_episode_days": 229
+      },
+      "signal_stats_robustness_window": {
+        "total_days": 1562,
+        "active_days": 286,
+        "active_pct": 18.31,
+        "num_episodes": 14,
+        "longest_episode_days": 127
+      },
+      "stress_period_2022": {
+        "days_in_window": 288,
+        "stats": {
+          "total_days": 288,
+          "active_days": 255,
+          "active_pct": 88.54,
+          "num_episodes": 4,
+          "longest_episode_days": 229
+        }
+      },
+      "full_period": {
+        "baseline": {
+          "total_return_pct": 107.13,
+          "max_drawdown_pct": -9.82,
+          "calmar_ratio": 10.9094
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 117.05,
+          "max_drawdown_pct": -8.36,
+          "calmar_ratio": 14.0012
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 127.37,
+          "max_drawdown_pct": -7.07,
+          "calmar_ratio": 18.0156
+        }
+      },
+      "in_sample": {
+        "baseline": {
+          "total_return_pct": 51.58,
+          "max_drawdown_pct": -8.12,
+          "calmar_ratio": 6.3522
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 57.46,
+          "max_drawdown_pct": -7.59,
+          "calmar_ratio": 7.5705
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 63.53,
+          "max_drawdown_pct": -7.07,
+          "calmar_ratio": 8.9859
+        }
+      },
+      "out_of_sample": {
+        "baseline": {
+          "total_return_pct": 36.65,
+          "max_drawdown_pct": -2.96,
+          "calmar_ratio": 12.3818
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 37.84,
+          "max_drawdown_pct": -2.96,
+          "calmar_ratio": 12.7838
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 39.04,
+          "max_drawdown_pct": -2.96,
+          "calmar_ratio": 13.1892
+        }
+      },
+      "robustness_check_150day_window": {
+        "baseline": {
+          "total_return_pct": 107.13,
+          "max_drawdown_pct": -9.82,
+          "calmar_ratio": 10.9094
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 119.76,
+          "max_drawdown_pct": -7.59,
+          "calmar_ratio": 15.7787
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 133.09,
+          "max_drawdown_pct": -5.42,
+          "calmar_ratio": 24.5554
+        }
+      },
+      "kernaussage": {
+        "T1_full_period_calmar_gain": 7.1062,
+        "T1_haelt": true,
+        "T2_out_of_sample_drawdowns": {
+          "baseline": -2.96,
+          "reduziert_50pct": -2.96,
+          "pausiert_0pct": -2.96
+        },
+        "T2_haelt": true,
+        "out_of_sample_calmar_gain": 0.8074,
+        "out_of_sample_calmar_richtung_wie_erstfassung": false,
+        "T3_anteil_signaltage_in_2022_pct": 85.0,
+        "T3_laengste_episode_tage": 229,
+        "T3_haelt": true
+      }
+    },
+    "korrigiert_v1_stale": {
+      "basis": "k_v1s",
+      "bots": [
+        "elliott_wave",
+        "elliott_wave_stocks",
+        "rsi2_crypto",
+        "rsi2_mean_reversion",
+        "t3_supertrend",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "common_window": {
+        "start": "2022-03-18",
+        "end": "2026-08-20"
+      },
+      "split_date": "2025-04-23",
+      "signal_stats_primary_window": {
+        "total_days": 1616,
+        "active_days": 300,
+        "active_pct": 18.56,
+        "num_episodes": 9,
+        "longest_episode_days": 229
+      },
+      "signal_stats_robustness_window": {
+        "total_days": 1616,
+        "active_days": 286,
+        "active_pct": 17.7,
+        "num_episodes": 14,
+        "longest_episode_days": 127
+      },
+      "stress_period_2022": {
+        "days_in_window": 288,
+        "stats": {
+          "total_days": 288,
+          "active_days": 255,
+          "active_pct": 88.54,
+          "num_episodes": 4,
+          "longest_episode_days": 229
+        }
+      },
+      "full_period": {
+        "baseline": {
+          "total_return_pct": 255.95,
+          "max_drawdown_pct": -4.82,
+          "calmar_ratio": 53.1017
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 253.74,
+          "max_drawdown_pct": -2.44,
+          "calmar_ratio": 103.9918
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 251.43,
+          "max_drawdown_pct": -1.56,
+          "calmar_ratio": 161.1731
+        }
+      },
+      "in_sample": {
+        "baseline": {
+          "total_return_pct": 108.77,
+          "max_drawdown_pct": -4.82,
+          "calmar_ratio": 22.5664
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 107.47,
+          "max_drawdown_pct": -2.44,
+          "calmar_ratio": 44.0451
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 106.12,
+          "max_drawdown_pct": -1.56,
+          "calmar_ratio": 68.0256
+        }
+      },
+      "out_of_sample": {
+        "baseline": {
+          "total_return_pct": 70.5,
+          "max_drawdown_pct": -1.38,
+          "calmar_ratio": 51.087
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 70.5,
+          "max_drawdown_pct": -1.38,
+          "calmar_ratio": 51.087
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 70.5,
+          "max_drawdown_pct": -1.38,
+          "calmar_ratio": 51.087
+        }
+      },
+      "robustness_check_150day_window": {
+        "baseline": {
+          "total_return_pct": 255.95,
+          "max_drawdown_pct": -4.82,
+          "calmar_ratio": 53.1017
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 253.88,
+          "max_drawdown_pct": -2.44,
+          "calmar_ratio": 104.0492
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 251.68,
+          "max_drawdown_pct": -1.56,
+          "calmar_ratio": 161.3333
+        }
+      },
+      "kernaussage": {
+        "T1_full_period_calmar_gain": 108.0714,
+        "T1_haelt": true,
+        "T2_out_of_sample_drawdowns": {
+          "baseline": -1.38,
+          "reduziert_50pct": -1.38,
+          "pausiert_0pct": -1.38
+        },
+        "T2_haelt": true,
+        "out_of_sample_calmar_gain": 0.0,
+        "out_of_sample_calmar_richtung_wie_erstfassung": true,
+        "T3_anteil_signaltage_in_2022_pct": 85.0,
+        "T3_laengste_episode_tage": 229,
+        "T3_haelt": true
+      }
+    },
+    "korrigiert_v2": {
+      "basis": "k_v2",
+      "bots": [
+        "elliott_wave",
+        "elliott_wave_stocks",
+        "rsi2_crypto",
+        "rsi2_mean_reversion",
+        "t3_supertrend",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "common_window": {
+        "start": "2022-03-18",
+        "end": "2026-08-20"
+      },
+      "split_date": "2025-04-23",
+      "signal_stats_primary_window": {
+        "total_days": 1616,
+        "active_days": 300,
+        "active_pct": 18.56,
+        "num_episodes": 9,
+        "longest_episode_days": 229
+      },
+      "signal_stats_robustness_window": {
+        "total_days": 1616,
+        "active_days": 286,
+        "active_pct": 17.7,
+        "num_episodes": 14,
+        "longest_episode_days": 127
+      },
+      "stress_period_2022": {
+        "days_in_window": 288,
+        "stats": {
+          "total_days": 288,
+          "active_days": 255,
+          "active_pct": 88.54,
+          "num_episodes": 4,
+          "longest_episode_days": 229
+        }
+      },
+      "full_period": {
+        "baseline": {
+          "total_return_pct": 72.12,
+          "max_drawdown_pct": -12.22,
+          "calmar_ratio": 5.9018
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 86.74,
+          "max_drawdown_pct": -9.51,
+          "calmar_ratio": 9.1209
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 102.52,
+          "max_drawdown_pct": -7.76,
+          "calmar_ratio": 13.2113
+        }
+      },
+      "in_sample": {
+        "baseline": {
+          "total_return_pct": 36.12,
+          "max_drawdown_pct": -12.22,
+          "calmar_ratio": 2.9558
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 47.69,
+          "max_drawdown_pct": -9.51,
+          "calmar_ratio": 5.0147
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 60.17,
+          "max_drawdown_pct": -7.76,
+          "calmar_ratio": 7.7539
+        }
+      },
+      "out_of_sample": {
+        "baseline": {
+          "total_return_pct": 26.44,
+          "max_drawdown_pct": -4.53,
+          "calmar_ratio": 5.8366
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 26.44,
+          "max_drawdown_pct": -4.53,
+          "calmar_ratio": 5.8366
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 26.44,
+          "max_drawdown_pct": -4.53,
+          "calmar_ratio": 5.8366
+        }
+      },
+      "robustness_check_150day_window": {
+        "baseline": {
+          "total_return_pct": 72.12,
+          "max_drawdown_pct": -12.22,
+          "calmar_ratio": 5.9018
+        },
+        "reduziert_50pct": {
+          "total_return_pct": 90.54,
+          "max_drawdown_pct": -8.43,
+          "calmar_ratio": 10.7402
+        },
+        "pausiert_0pct": {
+          "total_return_pct": 110.86,
+          "max_drawdown_pct": -5.73,
+          "calmar_ratio": 19.3473
+        }
+      },
+      "kernaussage": {
+        "T1_full_period_calmar_gain": 7.3095,
+        "T1_haelt": true,
+        "T2_out_of_sample_drawdowns": {
+          "baseline": -4.53,
+          "reduziert_50pct": -4.53,
+          "pausiert_0pct": -4.53
+        },
+        "T2_haelt": true,
+        "out_of_sample_calmar_gain": 0.0,
+        "out_of_sample_calmar_richtung_wie_erstfassung": true,
+        "T3_anteil_signaltage_in_2022_pct": 85.0,
+        "T3_laengste_episode_tage": 229,
+        "T3_haelt": true
+      }
+    }
+  }
+}

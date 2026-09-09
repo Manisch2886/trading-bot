@@ -22,6 +22,36 @@
 > Ende dieses Berichts.
 
 
+> ## ⚠⚠ Zweiter Nachtrag: die Kernaussage kippt
+>
+> Die Kurven waren ein **zweites Mal** veraltet: seit der ersten Korrektur sind
+> die Sync-Befunde selbst gemergt worden (PR #40–#42, #45, #51/#52), und die
+> beiden Elliott-Bots haben einen **Look-Ahead-Fix** bekommen. Die Untersuchung
+> wurde deshalb erneut wiederholt — mit Kurven, die die **heutige**
+> `equity_simulation.py` erzeugt.
+>
+> **Die Kernaussage hält diesmal NICHT.** Mit den heutigen Kurven liegt HRP
+> risikoadjustiert erstmals **vor** der Gleichgewichtung:
+>
+> | Grundlage | HRP − Gleichgewichtung (Calmar) | Kernaussage |
+> |---|---:|---|
+> | Erstfassung | −0,1905 | hält |
+> | erste Korrektur | −0,4627 | hält |
+> | **zweite Korrektur** | **+0,1424** | **hält nicht** |
+>
+> Der Vorzeichenwechsel ist echt und kein Artefakt: 24/24 Referenzwerte der
+> beiden früheren Fassungen werden exakt reproduziert, und die
+> Robustheitsprobe mit Ward-Linkage kippt mit (+0,1157). Der **Abstand ist
+> allerdings klein** — +0,14 auf ein Calmar-Niveau von rund 6, also gut 2 %.
+> Klein war er in den früheren Fassungen auch (−0,19 / −0,46).
+>
+> Hier wird das nur festgehalten, nicht weitergedeutet und nicht zum Anlass
+> für eine dritte Runde genommen — die Einordnung liegt beim Nutzer.
+>
+> Details, Bestandsaufnahme und Dreifach-Vergleich: Abschnitt **„Nachtrag Z"**
+> am Ende dieses Berichts.
+
+
 **Status: reine Backtest-Untersuchung, KEINE Live-Aktivierung, KEINE
 Änderung an `shared/portfolio_overview.py` oder irgendeiner anderen
 Live-Datei.** Alle neuen Skripte liegen ausschliesslich unter
@@ -521,3 +551,192 @@ python3 nachtrag_sync_korrektur.py     # erzeugt Kurven, prüft 15/15, rechnet 3
 ```
 
 Das Skript bricht ab, sobald eine der drei Proben fehlschlägt.
+
+---
+
+# Nachtrag Z — zweite Korrektur der Kapitalkurven (2026-09-08)
+
+## Z0. Entscheidungsgrundlage
+
+**Warum überhaupt ein zweiter Nachtrag.** Der erste Nachtrag hat von Hand
+nachgebildet, wie die fünf damals abweichenden Bots *mit* Live-Konfiguration
+gerechnet hätten. Inzwischen sind genau diese Befunde gemergt — die
+Nachbildung ist damit nicht mehr die Korrektur, sondern selbst ein
+historischer Stand. Dazu kommen Änderungen, die mit dem Sync-Thema nichts zu
+tun haben und trotzdem dieselbe Datengrundlage treffen, allen voran ein
+Look-Ahead-Fix bei beiden Elliott-Bots.
+
+**Warum die Kurven diesmal nicht nachgebildet, sondern erzeugt werden.** Die
+zweite Korrektur ruft nicht mehr einzelne Bot-Funktionen mit passend gesetzten
+Parametern auf, sondern führt den `__main__`-Block der heutigen
+`equity_simulation.py` aus (`corrected_curves.generate_heute`). Der
+Unterschied ist nicht kosmetisch: eine Nachbildung ist eine zweite Fassung
+derselben Rechnung und läuft still auseinander, sobald sich im Bot ein Aufruf
+ändert — genau das ist inzwischen mehrfach passiert. Der `__main__`-Block ist
+dagegen per Definition das, was die gespeicherte `results/`-Kurve erzeugt hat.
+
+**Warum zwei Regressionsanker statt einem.** Ein Dreifach-Vergleich ist nur so
+viel wert wie die Vergleichbarkeit seiner Spalten. Geprüft wird deshalb beides:
+dass die Auswertung unverändert rechnet (Basis `original` trifft
+`results/hrp_summary.json`) *und* dass die alte Grundlage exakt reproduziert
+wird (Basis `korrigiert_v1` trifft `results/nachtrag_sync_korrektur.json`).
+**24/24 Referenzwerte bestätigt, 0 abweichend.** Ohne den zweiten Anker wüsste
+man nicht, ob eine Verschiebung von den neuen Kurven kommt oder davon, dass
+die alte Spalte anders gerechnet wurde als damals.
+
+**Was unverändert bleibt.** Rebalancing-Intervall, Linkage-Verfahren,
+Mindest-Datenbasis-Schwelle, Bootstrap-Fallback, Buy-and-Hold-Referenz und die
+gesamte Auswertung kommen unverändert aus `run_walk_forward.py` — aufgerufen
+über `nachtrag_sync_korrektur.analyse()`, also wörtlich dieselbe Funktion, die
+schon die erste Korrektur benutzt hat. Es gibt keine zweite Umsetzung
+derselben Rechnung. `shared/portfolio_overview.py`, `results/*/equity_curve.csv`,
+`corrected_curves/` und jeder Bot-Code bleiben unangetastet.
+
+## Z1. Bestandsaufnahme: welche Bots rechnen heute anders?
+
+Nicht aus den Commit-Titeln gelesen, sondern gemessen — Kurve gegen Kurve,
+per SHA-256:
+
+| Bot | ggü. `results/` | ggü. 1. Korrektur | ausgeführt (1. → 2.) | Rendite % (1. → 2.) | Max DD % (1. → 2.) |
+|---|---|---|---:|---:|---:|
+| `elliott_wave` | anders | **anders** | 782 → **130** | 2.184,96 → **67,77** | −1,83 → **−10,17** |
+| `elliott_wave_stocks` | anders | **anders** | 288 → **395** | 3.084,09 → **352,72** | −9,79 → **−22,44** |
+| `volatility_breakout_crypto` | identisch | **anders** | 207 → **310** | 49,03 → **71,26** | −16,29 → **−16,77** |
+| `rsi2_crypto` | identisch | identisch | 392 | 28,37 | −13,30 |
+| `rsi2_mean_reversion` | anders | identisch | 4.232 | 36,75 | −21,05 |
+| `t3_supertrend` | identisch | identisch | 656 | 129,64 | −22,20 |
+| `turtle_soup_crypto` | identisch | identisch | 1.414 | 177,59 | −32,40 |
+| `turtle_soup_stocks` | anders | identisch | 8.915 | 145,59 | −29,91 |
+| `volatility_breakout` | identisch | identisch | 1.454 | 224,41 | −23,97 |
+
+**Drei Kurven haben sich bewegt**, und zwar aus zwei belegbaren Gründen:
+
+* `elliott_wave` und `elliott_wave_stocks` — Commit `839500b`
+  *„Elliott-Wave-Backtest korrigieren: beide Look-Ahead-Kanäle beheben"*.
+  Das ist die mit Abstand grösste Verschiebung der ganzen Studie: die
+  Renditen der beiden Elliott-Bots fallen um den Faktor 32 bzw. 9. Der alte
+  Wert war nicht falsch parametriert, sondern durch Vorausschau überhöht.
+* `volatility_breakout_crypto` — Commit `9bb230f` (PR #45), Kopplung der
+  wirksamen Backtest-Defaults an `live_params.py`.
+
+**Sechs Kurven sind unverändert** — darunter ausgerechnet die drei Bots aus
+PR #40–#42 (`rsi2_mean_reversion`, `turtle_soup_stocks`,
+`volatility_breakout`). Ihre gemergte Fassung trifft die Handnachbildung des
+ersten Nachtrags **auf die Nachkommastelle**. Das ist eine unabhängige
+Bestätigung, dass die erste Korrektur damals richtig gerechnet hat.
+
+Ebenso unverändert: `rsi2_crypto`, `t3_supertrend` und `turtle_soup_crypto`.
+Bei den ersten beiden hatten PR #51/#52 zugesagt, nur die *Quelle* der Werte
+zu vereinheitlichen und keine Zahl anzufassen — die identischen Kurven
+bestätigen das nachträglich von aussen.
+
+**Nebenbeobachtung, hier nicht behoben:** bei **fünf** Bots weicht die im Repo
+gespeicherte `results/<bot>/equity_curve.csv` vom heutigen Code ab. Sie wurde
+nach den Korrekturen nie neu erzeugt. Diese Studie liest sie nur für die
+Vergleichsspalte `original`; für alles andere sind die frisch erzeugten Kurven
+massgeblich.
+
+## Z2. Dreifach-Vergleich
+
+Rendite % / Max Drawdown % / Calmar:
+
+| Grundlage | Fenster | HRP (Walk-Forward) | Gleichgewichtung | Buy-and-Hold |
+|---|---|---|---|---|
+| Erstfassung | 2022-03-18 … 2026-06-27 | 63,26 / −4,93 / **12,83** | 82,43 / −6,33 / **13,02** | 158,17 / −23,77 / 6,65 |
+| 1. Korrektur | 2022-03-18 … 2026-06-27 | 76,47 / −7,32 / **10,45** | 107,13 / −9,82 / **10,91** | 158,17 / −23,77 / 6,65 |
+| 1. Korrektur + veraltet | 2022-03-18 … 2026-08-20 | 132,93 / −5,39 / **24,66** | 255,95 / −4,82 / **53,10** | 159,12 / −23,77 / 6,69 |
+| **2. Korrektur** | 2022-03-18 … 2026-08-20 | 72,53 / −12,00 / **6,04** | 72,12 / −12,22 / **5,90** | 159,12 / −23,77 / 6,69 |
+
+Das Gesamtbild verschiebt sich deutlich: das Portfolio ist mit den heutigen
+Kurven **risikoreicher** (Max Drawdown −6,3 % → −12,2 % bei Gleichgewichtung)
+und **weniger rentabel** (82,4 % → 72,1 %) als in der Erstfassung. Beides geht
+im Wesentlichen auf die beiden Elliott-Bots zurück, deren überhöhte Kurven
+bisher Rendite beisteuerten und Drawdown verwässerten.
+
+Der Buy-and-Hold-Vergleich bleibt über alle vier Grundlagen bestehen: das
+Portfolio liegt in der Rendite hinter Buy-and-Hold (72,1 % vs. 159,1 %), bei
+deutlich kleinerem Drawdown (−12,2 % vs. −23,8 %).
+
+## Z3. ⚠ Die Kernaussage kippt
+
+Die Kernaussage dieser Studie lautete: **HRP bringt gegenüber der einfachen
+Gleichgewichtung keinen risikoadjustierten Vorteil.** Gemessen wird sie am
+Abstand der Calmar-Ratios.
+
+| Grundlage | HRP − Gleichgewichtung (Calmar) | Ward-Linkage (Robustheitsprobe) | Kernaussage |
+|---|---:|---:|---|
+| Erstfassung | −0,1905 | −0,0850 | hält |
+| 1. Korrektur | −0,4627 | −0,5078 | hält |
+| 1. Korrektur + veraltet | −28,4394 | −28,6230 | hält |
+| **2. Korrektur** | **+0,1424** | **+0,1157** | **hält nicht** |
+
+**Zum ersten Mal in allen drei Fassungen liegt HRP vorn.** Der Befund ist
+nicht auf eine Methodenwahl zurückzuführen: die im ursprünglichen Design
+vorgesehene Robustheitsprobe mit Ward-Linkage kippt mit, in dieselbe Richtung
+und in derselben Grössenordnung.
+
+Zur Einordnung der Grösse — ohne Deutung: +0,1424 auf ein Calmar-Niveau von
+rund 6,0 sind gut 2 %. In den früheren Fassungen war der Abstand mit −0,19 und
+−0,46 ähnlich klein; gross war er nur in der Nebenspalte
+„1. Korrektur + veraltet".
+
+**Auftragsgemäss wird das hier nur festgehalten.** Es wird nicht
+weitergedeutet, es wird keine dritte Runde angestossen, und es folgt keine
+Empfehlung. Was daraus folgt, entscheidet der Nutzer.
+
+## Z4. Getroffene Annahmen und Grenzen dieses Nachtrags
+
+1. **„Heutiger Stand" heisst: was `equity_simulation.py` rechnet — nicht: was
+   live läuft.** Bei `volatility_breakout_crypto` fallen die beiden
+   auseinander: `live_params.py` setzt `BTC_REGIME_FILTER_ENABLED = True`, der
+   Backtest wendet den Filter aber bewusst nicht an (dokumentiert im Kopf von
+   `equity_simulation.py`, PR #45). Die v2-Kurve dieses Bots (71,26 %) ist
+   damit **nicht** live-konform; die Live-Variante läge bei 49,03 % (Sync-Check
+   PR #24). Für diesen einen Bot war die erste Korrektur näher an der
+   Live-Konfiguration als die zweite. Eine Grundlage, die für diesen Bot die
+   gefilterte Kurve einsetzt, wurde bewusst **nicht** zusätzlich gerechnet —
+   das wäre die dritte Runde, die die Aufgabe ausdrücklich ausschliesst.
+2. **Die erste Korrektur lässt sich nicht mehr wiederholen.**
+   `nachtrag_sync_korrektur.py` prüft seine Kurven gegen die im Sync-Check
+   veröffentlichten Kennzahlen; für `elliott_wave_stocks` trifft es sie nach
+   dem Look-Ahead-Fix nicht mehr (395 statt 288 Trades, 352,72 % statt
+   3.084,09 %) und bricht ab — **nachdem** es die CSVs bereits geschrieben hat.
+   Ein Lauf auf `corrected_curves/` würde die gespeicherte v1-Grundlage also
+   überschreiben und danach scheitern. Diese Prüfung wurde deshalb in einem
+   temporären Verzeichnis gefahren; `corrected_curves/` ist unangetastet. Die
+   v1-Spalte dieses Berichts stammt aus den **gespeicherten** Kurven, nicht aus
+   einem neuen Lauf.
+3. **Der Attrappen-Ansatz wurde verschärft.** Die Attrappen des zweiten
+   Nachtrags **werfen** bei jedem Netzzugriff, statt leere Daten zu liefern.
+   Eine Attrappe, die einen leeren DataFrame zurückgibt, lässt einen
+   versehentlichen Abruf durchgehen: der Lauf rechnet mit weniger Symbolen
+   weiter und meldet eine Kurve, die niemand als falsch erkennt. Ausnahme mit
+   Grund: `binance.client.Client` muss sich **erzeugen** lassen, weil
+   `shared/fetch_multi_data.py` auf Modulebene eine Instanz anlegt; geworfen
+   wird stattdessen bei jedem Methodenaufruf.
+4. **Fensterwechsel.** Die zweite Korrektur endet am 2026-08-20 statt am
+   2026-06-27, weil die neu erzeugte `elliott_wave`-Kurve weiter reicht als
+   die gespeicherte. Das gemeinsame Fenster ist damit rund zwei Monate länger
+   als in Erstfassung und erster Korrektur — die Spalte
+   „1. Korrektur + veraltet" nutzt dasselbe Fenster und ist deshalb der
+   fenstergleiche Vergleichspartner der zweiten Korrektur.
+5. Alles Übrige — Rebalancing, Linkage, Schwellen, Buy-and-Hold-Referenz —
+   unverändert aus der Erstfassung; siehe Abschnitt „Getroffene Annahmen
+   (vollständig)" und N4.
+
+## Z5. Neue Dateien und Reproduktion
+
+| Datei | Zweck |
+|---|---|
+| `corrected_curves.py` | ergänzt um `generate_heute()` und `vorhandene_kurven()` — der bestehende Erzeuger der ersten Korrektur bleibt unverändert daneben stehen |
+| `nachtrag_sync_korrektur_v2.py` | dieser Nachtrag; ruft die Auswertung über `nachtrag_sync_korrektur.analyse()` auf |
+| `corrected_curves_v2/` | die neun neu erzeugten Kurven samt Kennzahlen |
+| `results/nachtrag_sync_korrektur_v2.json` | vollständige Zahlen aller vier Grundlagen |
+
+```
+python3 research/hrp_portfolio/nachtrag_sync_korrektur_v2.py
+```
+
+Erwartete Ausgabe: `24 Referenzwerte bestaetigt, 0 abweichend.` Der Lauf
+erzeugt die neun Kurven neu (einige Minuten) und rührt weder `results/<bot>/`
+noch `corrected_curves/` an.
