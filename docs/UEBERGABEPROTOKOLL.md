@@ -331,6 +331,8 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 
 6. **E-Mail-Versandzeiten beider Krypto-Bots überschneiden sich** (beide 8:05 Uhr) — wurde einmal als mögliche Unannehmlichkeit angesprochen, aber nie eine Änderung gewünscht/umgesetzt. Kein akuter Handlungsbedarf, nur zur Kenntnis.
 
+7. **Der Schliess-Dialog des Dashboards wurde nicht in echtem iOS-Safari geprüft.** Der zweistufige Bestätigungsdialog (PR #62, „Position manuell schliessen") benutzt das native `<dialog>`-Element und wurde in Chromium im iPhone-Format (390 px) vollständig durchgespielt — aber nicht in Safari auf dem Gerät selbst. `<dialog>` setzt dort iOS 15.4+ voraus; das ist praktisch überall vorhanden, doch bei der ersten schreibenden Funktion des Dashboards sollte „praktisch" nicht genügen. Beim nächsten Aufruf des Dashboards auf dem iPhone gezielt prüfen: öffnet sich der Dialog überhaupt, liegt der Fokus darin, verwirft die Zurück-Geste den Vorgang (der `cancel`-Handler sollte greifen), und lässt sich `BESTAETIGEN` auf der iOS-Tastatur eingeben (Autokorrektur und automatische Grossschreibung sind im Feld abgeschaltet, `font-size: 16px` verhindert das Hineinzoomen). Falls `<dialog>` dort nicht trägt, wäre der Rückfallweg ein einfaches Overlay — dann müssten Fokusfang und Esc-Taste allerdings von Hand nachgebaut werden, was genau der Grund war, `<dialog>` zu nehmen.
+
 ---
 
 ## 10. STARTPUNKT FÜR DIE WEITERE ARBEIT
