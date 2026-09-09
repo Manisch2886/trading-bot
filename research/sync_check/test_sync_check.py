@@ -70,10 +70,15 @@ check("der Einheitenunterschied wird im Hinweis genannt",
 check("und der Bot erscheint deswegen nicht als abweichend",
       not any(d["groesse"] == "ALLOCATION_PCT" for d in entry["abweichungen"]),
       str(entry["abweichungen"]))
-# turtle_soup_stocks fuehrt live 2 % gegen 0.10 - echte Abweichung.
+# Diese Pruefung stand frueher umgekehrt hier: turtle_soup_stocks fuehrte
+# live 2 % gegen 0.10 im Backtest - eine echte Abweichung. PR #42 hat sie
+# geschlossen, der Backtest leitet die Allokation seither aus live_params ab.
+# Dass ein ECHTER Einheitenunterschied weiterhin auffiele, prueft jetzt
+# Abschnitt 7 an einem gebauten Fall, statt darauf zu bauen, dass ein
+# Bot kaputt bleibt.
 row = rows_of(st.compare_bot("turtle_soup_stocks"), "ALLOCATION_PCT")
-check("2 % (live) gegen 0.10 (Backtest) wird als Abweichung erkannt",
-      row["status"] == "ABWEICHUNG", str(row))
+check("turtle_soup_stocks leitet die Allokation seit PR #42 aus live_params ab",
+      row["status"] == "aus live_params abgeleitet", str(row))
 
 # ---------------------------------------------------------------------------
 print("\n3) Namens-Aliase")
@@ -152,9 +157,15 @@ check("BTC_REGIME_FILTER_ENABLED wird im Backtest referenziert",
 check("und taucht nicht mehr unter den Abweichungen auf",
       not any(d["groesse"] == "BTC_REGIME_FILTER_ENABLED"
               for d in entry["abweichungen"]), str(entry["abweichungen"]))
-check("eine echte Verhaltens-Abweichung wird weiterhin erkannt (MAX_HOLD_DAYS)",
-      any(d["groesse"] == "MAX_HOLD_DAYS" and d["art"] == "Verhalten"
-          for d in entry["abweichungen"]), str(entry["abweichungen"]))
+# Diese Pruefung fuehrte in PR #57 MAX_HOLD_DAYS als noch offenen Fall vor.
+# Seit die Import-Aufloesung greift (PR #58), hat kein Bot mehr eine
+# Verhaltens-Abweichung - der Vorfuehrfall ist weg. Dass die Erkennung
+# trotzdem funktioniert, prueft Abschnitt 7 an einem gebauten Bot; sich auf
+# einen dauerhaft kaputten echten Bot zu stuetzen, waere ohnehin die
+# schlechtere Zusicherung gewesen.
+check("MAX_HOLD_DAYS ist bei diesem Bot ebenfalls aufgeloest",
+      not any(d["groesse"] == "MAX_HOLD_DAYS" for d in entry["abweichungen"]),
+      str(entry["abweichungen"]))
 
 # ---------------------------------------------------------------------------
 print("\n6) Gesamtbild ueber alle 9 Bots")
@@ -162,19 +173,18 @@ print("\n6) Gesamtbild ueber alle 9 Bots")
 report = [st.compare_bot(bot) for bot in st.BOTS]
 check("alle 9 Bots werden geprueft", len(report) == 9)
 divergent = {e["bot"] for e in report if not e["synchron"]}
-# Stand nach der Import-Umstellung (PR #31 fuer elliott_wave, danach die
-# uebrigen): elliott_wave_stocks ist synchron, seit sein Backtest
-# USE_TAKE_PROFIT aus live_params.py liest. Offen sind noch die drei Bots
-# mit ECHTEN Wertunterschieden, ueber die der Nutzer entscheiden muss, plus
-# der Regimefilter bei volatility_breakout_crypto (fehlendes Verhalten, kein
-# Konstanten-Problem).
-check("genau die vier noch offenen Bots weichen ab",
-      divergent == {"rsi2_mean_reversion", "turtle_soup_stocks",
-                     "volatility_breakout", "volatility_breakout_crypto"}, str(divergent))
-check("die uebrigen fuenf sind synchron",
-      {e["bot"] for e in report if e["synchron"]}
-      == {"elliott_wave", "elliott_wave_stocks", "t3_supertrend",
-          "rsi2_crypto", "turtle_soup_crypto"},
+# Endstand der Aufraeumreihe: alle neun Bots synchron. Der Weg dorthin -
+# PR #31 (elliott_wave), #24/#38 (elliott_wave_stocks), #40-42 (Allokation
+# und Limits), #45 (Backtest-Defaults), #51/#52 (Indikatorwerte und
+# MAX_HOLD_DAYS), #57 (BTC-Regimefilter), #58 (Import-Aufloesung im Check
+# selbst).
+#
+# Diese Pruefung ist bewusst hart formuliert: schleicht sich irgendwo wieder
+# eine Doppelfuehrung ein, faellt sie hier auf, ohne dass jemand die Tabelle
+# lesen muss.
+check("kein Bot weicht mehr ab", divergent == set(), str(divergent))
+check("alle neun sind synchron",
+      {e["bot"] for e in report if e["synchron"]} == set(st.BOTS),
       str({e["bot"] for e in report if e["synchron"]}))
 check("jede gemeldete Abweichung hat eine Art (Konstante, Backtest-Default oder Verhalten)",
       all(d["art"] in ("Konstante", "Backtest-Default", "Verhalten")
@@ -182,7 +192,62 @@ check("jede gemeldete Abweichung hat eine Art (Konstante, Backtest-Default oder 
 check("kein Bot meldet eine Abweichung ohne konkrete Groesse",
       all(d.get("groesse") for e in report for d in e["abweichungen"]))
 
+# ---------------------------------------------------------------------------
+print("\n7) Gegenprobe: wuerde eine ECHTE Abweichung noch auffallen?")
+# ---------------------------------------------------------------------------
+# Seit Abschnitt 6 alle neun Bots als synchron meldet, hat der Check keinen
+# echten Fall mehr, an dem sich zeigen liesse, dass er ueberhaupt noch
+# etwas findet. "Alles gruen" ist ohne diese Gegenprobe wertlos - genau die
+# Falle, in die eine reine Zustandspruefung laeuft.
+#
+# Deshalb hier ein GEBAUTER Bot mit vier Groessen, je eine pro Ausgang. Er
+# haengt an keinem echten Bot; niemand muss also kaputt bleiben, damit diese
+# Zusicherung etwas wert ist.
+_fake_root = tempfile.mkdtemp()
+_fake_bot = os.path.join(_fake_root, "probebot")
+os.makedirs(_fake_bot)
+with open(os.path.join(_fake_bot, "live_params.py"), "w") as fh:
+    fh.write("GEKOPPELT = 10\n"          # kommt per Import in den Backtest
+             "ABWEICHEND = 20\n"          # Backtest fuehrt eine andere Zahl
+             "OHNE_ENTSPRECHUNG = 30\n"   # taucht im Backtest nirgends auf
+             "ALLOCATION_PCT = 2\n")      # Prozent gegen Anteil
+with open(os.path.join(_fake_bot, "backtest_probe.py"), "w") as fh:
+    fh.write("from live_params import GEKOPPELT\n"
+             "ABWEICHEND = 99\n")
+with open(os.path.join(_fake_bot, "equity_simulation.py"), "w") as fh:
+    fh.write("ALLOCATION_PCT = 0.10\n")
+
+_echte_strategies = st.STRATEGIES
+st.STRATEGIES = _fake_root
+try:
+    probe = st.compare_bot("probebot")
+    _row = rows_of(probe, "GEKOPPELT")
+    check("importierter Wert gilt als synchron",
+          _row is not None and _row["status"] == "identisch", str(_row))
+    check("und erscheint nicht unter den Abweichungen",
+          not any(d["groesse"] == "GEKOPPELT" for d in probe["abweichungen"]))
+
+    check("eine abweichende Zahl im Backtest wird gemeldet",
+          any(d["groesse"] == "ABWEICHEND" for d in probe["abweichungen"]),
+          str(probe["abweichungen"]))
+
+    check("ein Wert ohne jede Entsprechung wird als Verhalten gemeldet",
+          any(d["groesse"] == "OHNE_ENTSPRECHUNG" and d["art"] == "Verhalten"
+              for d in probe["abweichungen"]), str(probe["abweichungen"]))
+
+    check("ein echter Einheitenunterschied (2 gegen 0.10) faellt weiterhin auf",
+          any(d["groesse"] == "ALLOCATION_PCT" for d in probe["abweichungen"]),
+          str(probe["abweichungen"]))
+
+    check("der gebaute Bot gilt insgesamt als NICHT synchron",
+          not probe["synchron"])
+finally:
+    st.STRATEGIES = _echte_strategies
+
+
 print("\n" + "=" * 60)
 print(f"{PASSED} Checks bestanden, {FAILED} fehlgeschlagen.")
+
+
 print("=" * 60)
 sys.exit(1 if FAILED else 0)
