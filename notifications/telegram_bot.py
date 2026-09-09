@@ -35,11 +35,14 @@ from logging.handlers import RotatingFileHandler
 
 from telegram import Update
 from telegram.error import BadRequest
-from telegram.ext import Application, ContextTypes, MessageHandler, filters
+from telegram.ext import (Application, CallbackQueryHandler, ContextTypes,
+                           MessageHandler, filters)
 
 import telegram_config
 import monitor
 import notify
+import manual_close
+import telegram_schliessen as schliessen
 
 _NOTIF_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(_NOTIF_DIR)
@@ -359,10 +362,12 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     known = ", ".join(sorted(monitor.ASSET_CLASS.keys()))
     await _send_reply(
         update.message,
-        "Trading-Bot-Ueberwachung (Phase 1 - nur lesend)\n\n"
+        "Trading-Bot-Ueberwachung\n\n"
         "/status [filter] - Kurzueberblick aller Bots\n"
         "/positions [filter] - offene Positionen, gruppiert nach Krypto/Aktien\n"
-        "/pnl [filter] - Performance-Zusammenfassung\n\n"
+        "/pnl [filter] - Performance-Zusammenfassung\n"
+        "/schliessen [bot] - offene Position manuell schliessen "
+        "(SCHREIBT, doppelte Bestaetigung)\n\n"
         "filter (optional): 'krypto', 'aktien', oder ein Bot-Name:\n"
         f"{known}\n\n"
         "Automatische Push-Benachrichtigungen (neuer Trade, Stop-Loss, "
@@ -432,6 +437,155 @@ async def pnl_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await _reply_for_selector(
         update, _selector_from_text(update.message.text), monitor.format_pnl_message
     )
+
+
+# ---------------------------------------------------------------------------
+# /schliessen - der einzige SCHREIBENDE Befehl (Phase 3)
+# ---------------------------------------------------------------------------
+# Der Ablauf steht in telegram_schliessen.py, das Schreiben in
+# manual_close.py. Hier bleiben nur die drei Handler, die python-telegram-bot
+# aufruft. Alle drei tragen @restricted - auch der Callback- und der
+# Text-Handler, nicht nur der Befehl selbst: eine Schaltflaeche kann jeder
+# antippen, der die Nachricht weitergeleitet bekommt.
+
+
+@restricted
+async def schliessen_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Zeigt die offenen Positionen des freigeschalteten Bots mit Live-Kurs."""
+    schliessen.vergiss_bestaetigung(context.user_data)
+    gewaehlt = _selector_from_text(update.message.text)
+    freigeschaltet = sorted(manual_close.SCHLIESSBARE_BOTS)
+
+    if gewaehlt and gewaehlt not in manual_close.SCHLIESSBARE_BOTS:
+        await _send_reply(update.message,
+                           f"Fuer '{gewaehlt}' ist das manuelle Schliessen nicht "
+                           f"freigeschaltet.\nFreigeschaltet: "
+                           f"{', '.join(freigeschaltet)}.")
+        return
+    bot_name = gewaehlt or freigeschaltet[0]
+
+    try:
+        positionen = await asyncio.to_thread(manual_close.offene_positionen, bot_name)
+    except manual_close.SchliessenNichtMoeglich as fehler:
+        await _send_reply(update.message, str(fehler))
+        return
+
+    # Kursabfrage im Thread mit harter Obergrenze - dieselbe Begruendung wie
+    # in status_command(): ein blockierender Netzaufruf in einer
+    # async-Funktion friert den kompletten Event-Loop ein.
+    try:
+        kurse = await asyncio.wait_for(
+            asyncio.to_thread(schliessen.kurse_fuer, bot_name, positionen),
+            timeout=LIVE_PRICE_TIMEOUT_SECONDS)
+    except asyncio.TimeoutError:
+        logger.warning("Kursabfrage fuer /schliessen ueberschritt "
+                        f"{LIVE_PRICE_TIMEOUT_SECONDS}s.")
+        kurse = {}
+
+    await _send_reply(update.message,
+                       schliessen.formatiere_liste(bot_name, positionen, kurse),
+                       parse_mode="Markdown",
+                       reply_markup=schliessen.tastatur_liste(bot_name, positionen, kurse)
+                       if positionen else None)
+
+
+@restricted
+async def schliessen_callback(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Die beiden Schaltflaechen-Schritte: Position waehlen und erste
+    Bestaetigung. Geschrieben wird hier noch nichts."""
+    query = update.callback_query
+    await query.answer()
+    teile = (query.data or "").split(":")
+    art, bot_name, roh_id = (teile + ["-", "-"])[:3]
+
+    if art == schliessen.CB_ABBRECHEN:
+        schliessen.vergiss_bestaetigung(context.user_data)
+        await query.edit_message_text("Abgebrochen. Es wurde nichts geaendert.")
+        return
+
+    try:
+        trade_id = int(roh_id)
+    except (TypeError, ValueError):
+        await query.edit_message_text("Ungueltige Auswahl - abgebrochen.")
+        return
+
+    position = await asyncio.to_thread(schliessen.hole_position, bot_name, trade_id)
+    if position is None:
+        schliessen.vergiss_bestaetigung(context.user_data)
+        await query.edit_message_text(
+            "Diese Position ist nicht mehr offen - vermutlich hat der Cronjob "
+            "sie inzwischen selbst geschlossen. Es wurde nichts geaendert.")
+        return
+
+    try:
+        kurse = await asyncio.wait_for(
+            asyncio.to_thread(schliessen.kurse_fuer, bot_name, [position]),
+            timeout=LIVE_PRICE_TIMEOUT_SECONDS)
+    except asyncio.TimeoutError:
+        kurse = {}
+    kurs = schliessen._kurs(position["symbol"], kurse)
+    if not kurs:
+        await query.edit_message_text(
+            "Kein aktueller Kurs verfuegbar - ohne Ausstiegskurs wird nicht "
+            "geschrieben. Bitte spaeter erneut versuchen.")
+        return
+
+    pnl = manual_close.berechne_pnl(bot_name, position["entry_price"], kurs)
+
+    if art == schliessen.CB_WAEHLEN:
+        await query.edit_message_text(
+            schliessen.formatiere_zusammenfassung(bot_name, position, kurs, pnl),
+            parse_mode="Markdown",
+            reply_markup=schliessen.tastatur_bestaetigung(bot_name, trade_id))
+        return
+
+    if art == schliessen.CB_BESTAETIGEN:
+        schliessen.merke_bestaetigung(context.user_data, bot_name, position, kurs, pnl)
+        await query.edit_message_text(
+            schliessen.text_aufforderung(position, kurs), parse_mode="Markdown")
+
+
+@restricted
+async def schliessen_text(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    """Die ZWEITE Bestaetigung: der eingetippte Text. Erst hier wird
+    geschrieben - und nur, wenn eine gueltige, nicht abgelaufene
+    Bestaetigung wartet und der Text exakt stimmt."""
+    wartend = schliessen.offene_bestaetigung(context.user_data)
+    if not wartend:
+        return  # keine Bestaetigung offen - normale Nachricht, nichts tun
+
+    eingabe = (update.message.text or "").strip()
+    schliessen.vergiss_bestaetigung(context.user_data)   # in JEDEM Fall verbrauchen
+
+    # Case-SENSITIV, siehe Begruendung bei manual_close.BESTAETIGUNGSTEXT.
+    if eingabe != manual_close.BESTAETIGUNGSTEXT:
+        manual_close.protokolliere_ablehnung(
+            wartend["bot"], wartend["trade_id"],
+            update.effective_user.id if update.effective_user else None,
+            "falscher Bestaetigungstext")
+        await _send_reply(update.message,
+                           "Abgebrochen - der Text stimmte nicht. Es wurde "
+                           "nichts geaendert.")
+        return
+
+    try:
+        ergebnis = await asyncio.to_thread(
+            manual_close.schliesse_position,
+            wartend["bot"], wartend["trade_id"], wartend["kurs"],
+            update.effective_user.id if update.effective_user else None,
+            eingabe)
+    except manual_close.SchliessenNichtMoeglich as fehler:
+        await _send_reply(update.message, f"Nicht ausgefuehrt: {fehler}")
+        return
+    except Exception:
+        logger.exception("Unerwarteter Fehler beim manuellen Schliessen.")
+        await _send_reply(update.message,
+                           "Unerwarteter Fehler - siehe Log. Ob geschrieben "
+                           "wurde, bitte mit /positions pruefen.")
+        return
+
+    await _send_reply(update.message, schliessen.formatiere_erfolg(ergebnis),
+                       parse_mode="Markdown")
 
 
 async def poll_job(context: ContextTypes.DEFAULT_TYPE):
@@ -533,6 +687,16 @@ def main():
     application.add_handler(MessageHandler(_command_filter("status"), status_command))
     application.add_handler(MessageHandler(_command_filter("positions"), positions_command))
     application.add_handler(MessageHandler(_command_filter("pnl"), pnl_command))
+    application.add_handler(MessageHandler(_command_filter("schliessen"),
+                                            schliessen_command))
+    application.add_handler(CallbackQueryHandler(schliessen_callback))
+    # ZULETZT registriert und bewusst ohne Befehls-Filter: dieser Handler
+    # sieht jede freie Texteingabe, tut aber nur dann etwas, wenn gerade
+    # eine Bestaetigung aussteht (siehe schliessen_text). Vor den
+    # Befehls-Handlern registriert wuerde er ihnen die Nachrichten
+    # wegnehmen.
+    application.add_handler(MessageHandler(
+        filters.TEXT & ~filters.COMMAND, schliessen_text))
     application.add_error_handler(error_handler)
 
     application.job_queue.run_repeating(poll_job, interval=POLL_INTERVAL_SECONDS, first=15)

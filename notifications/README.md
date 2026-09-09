@@ -252,6 +252,23 @@ ist das ein starker Hinweis auf eine Netzwerk-/Sicherheits-Software-
 Eigenheit auf diesem Mac, die spezifisch `httpx` betrifft - nicht auf
 einen Fehler in diesem Code.
 
+## Position manuell schliessen (`/schliessen`, schreibend)
+
+Der einzige Befehl, der in eine Bot-Datenbank SCHREIBT. Freigeschaltet ist
+nur `t3_supertrend`; jeder andere Bot wird abgelehnt. Der Ablauf hat zwei
+unabhaengige Bestaetigungen (Schaltflaeche + eingetippter Text
+`BESTAETIGEN`), und jeder Versuch - erfolgreich wie abgelehnt - landet in
+`logs/notifications/manuelle_eingriffe.log`.
+
+Vor dem ersten Einsatz die Schritt-fuer-Schritt-Anleitung durchgehen,
+inklusive des gefahrlosen Tests an einer Kopie der Datenbank:
+**[TESTANLEITUNG_SCHLIESSEN.md](TESTANLEITUNG_SCHLIESSEN.md)** - dort stehen
+auch die bekannten Restrisiken.
+
+Weitere Bots werden allein ueber `SCHLIESSBARE_BOTS` in `manual_close.py`
+freigeschaltet; die Selbsttests liegen in `test_manual_close.py`
+(`python3 notifications/test_manual_close.py`).
+
 ## Sicherheit
 
 - `.env` darf niemals ins Repo gelangen (steht in `.gitignore`) und
