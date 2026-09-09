@@ -14,8 +14,27 @@
    Anmelde-Cookie automatisch mit. Bei 401 wird auf die Login-Seite
    umgeleitet, statt eine leere Seite zu zeigen. */
 
-const FARBEN = ["#6aa9e0", "#46b877", "#e0a96a", "#c78ae0", "#e06c6c",
-                "#6ae0d2", "#e0d76a", "#8a9ae0", "#a0e06a"];
+/* Reihenfarben des Verlaufs-Diagramms. Die REIHENFOLGE ist hier der
+   eigentliche Mechanismus, nicht die Auswahl: benachbarte Reihen muessen
+   auch fuer Rot-Gruen-Blindheit unterscheidbar bleiben, und das haengt
+   daran, welche Farbe neben welcher liegt.
+
+   Die vorherige Liste tat das nicht: #e0a96a (orange) und #46b877 (gruen)
+   standen nebeneinander und lagen fuer Protanopie bei Delta E 1.9 - fuer
+   einen rot-gruen-blinden Leser praktisch dieselbe Linie. Nachgemessen,
+   nicht geschaetzt (dataviz-Palettenpruefer, dunkle Flaeche #1a1f27).
+
+   Diese Reihenfolge besteht alle Pruefungen: Helligkeitsband, Buntheit,
+   Kontrast zur Flaeche, und als schlechtestes Nachbarpaar Delta E 8.4
+   (Protanopie) bzw. 19.3 fuer normales Sehen. Wer sie aendert, sollte den
+   Pruefer erneut laufen lassen - eine huebschere Farbe an falscher Stelle
+   kippt das Ergebnis.
+
+   Die Gesamtlinie ("Alle Bots zusammen") ist bewusst NICHT Teil dieser
+   Liste: sie ist keine Kategorie neben den Bots, sondern deren Summe, und
+   traegt deshalb Weiss. */
+const FARBEN = ["#3987e5", "#d95926", "#199e70", "#c98500", "#d55181",
+                "#008300", "#9085e9", "#e66767", "#2aa6b8"];
 
 /* --- Takt der automatischen Aktualisierung ---------------------------------
    Bewusst hier oben und nicht im Seitencode verstreut, damit sich die Werte
@@ -163,7 +182,7 @@ function linienDiagramm(behaelter, reihen) {
   const teile = [];
   // Nulllinie und Achsenbeschriftung
   teile.push(`<line x1="${rand.links}" y1="${py(0)}" x2="${breite - rand.rechts}" y2="${py(0)}"
-                    stroke="#3a434f" stroke-width="1"/>`);
+                    stroke="rgba(255,255,255,.07)" stroke-width="1"/>`);
   for (const wert of [yMax, 0, yMin]) {
     teile.push(`<text x="${rand.links - 6}" y="${py(wert) + 4}" fill="#97a3b2"
                       font-size="11" text-anchor="end">${wert.toFixed(0)}%</text>`);
