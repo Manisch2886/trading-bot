@@ -345,3 +345,137 @@ beiden Konfigurationen „richtig" ist.
 | `run_all.py` | alle drei Schritte nacheinander |
 | `test_sync_check.py` | 21 Sanity-Checks |
 | `results/` | `sync_table.json`, `impact_<bot>.json`, `study_exposure.json` |
+
+---
+
+# Nachtrag S — Abschluss der Sync-Reihe (2026-09-09)
+
+## S0. Das Ergebnis in einem Satz
+
+**Alle neun Bots sind synchron** — `ABWEICHEND (0), SYNCHRON (9)`. Der Weg
+dorthin lief über PR #31, #24/#38, #40–#42, #45, #51/#52 und #57; dieser
+Nachtrag schliesst die Reihe ab, **ohne eine einzige Zeile Bot-Code zu
+ändern**.
+
+## S1. ⚠ Die letzten 15 „Abweichungen" waren keine
+
+Vor diesem Nachtrag meldete `sync_table.py` 15 Abweichungen bei 7 Bots,
+alle vom Typ *„nur live, im Backtest WIRKUNGSLOS"*:
+
+| Bot | gemeldete Grössen |
+|---|---|
+| `t3_supertrend` | `T3_FACTOR`, `DI_LENGTH`, `ADX_LENGTH`, `ATR_LENGTH`, `ATR_MULT` |
+| `rsi2_crypto` | `MAX_HOLD_DAYS` |
+| `rsi2_mean_reversion` | `MAX_HOLD_DAYS` |
+| `turtle_soup_crypto` | `MAX_HOLD_DAYS` |
+| `turtle_soup_stocks` | `MAX_HOLD_DAYS` |
+| `volatility_breakout` | `BB_LOOKBACK`, `BB_SQUEEZE_PERCENTILE`, `MAX_HOLD_DAYS` |
+| `volatility_breakout_crypto` | `BB_LOOKBACK`, `BB_SQUEEZE_PERCENTILE`, `MAX_HOLD_DAYS` |
+
+**Alle 15 sind bereits gekoppelt** — und zwar in der bestmöglichen Form: das
+jeweilige `backtest_*.py` **importiert** sie aus `live_params.py`, teils unter
+anderem Namen (`BB_LOOKBACK as SQUEEZE_LOOKBACK_DAYS`).
+
+Die Falschmeldung entstand im Prüfer selbst: `backtest_constants()` liest
+ausschliesslich `ast.Assign`. Seit PR #45/#51/#52 stehen die Werte dort nicht
+mehr als eigene Zuweisung, sondern kommen als Import — also genau in der Form,
+die diese Aufräumreihe herstellen wollte. Für den Prüfer verschwanden sie damit
+aus dem Backtest-Pfad, und er meldete das Gegenteil der Lage: nicht
+ungekoppelt, sondern bestmöglich gekoppelt.
+
+**Der Prüfer bestrafte also den Erfolg der Aufräumarbeit.** Eine weitere Runde
+„Werte an `live_params.py` koppeln" wäre ins Leere gelaufen — sie sind es schon.
+
+## S2. Belegt, nicht angenommen
+
+**Statisch und zur Laufzeit** — für alle 15: der Name steht in einem
+`from live_params import …` des `backtest_*.py`, und das importierte Modul
+trägt zur Laufzeit denselben Wert wie `live_params`. 15 von 15 gleich.
+
+**Dynamisch** — der Live-Wert wird im Testprozess verändert, das Ergebnis
+*muss* sich ändern (`kopplungsnachweis.py` aus PR #45, per `lauf()`
+wiederverwendet):
+
+| Bot | Grösse | Basis | gestört | |
+|---|---|---:|---:|---|
+| `rsi2_mean_reversion` | `MAX_HOLD_DAYS` | 13.675,20 | 13.804,11 | reagiert |
+| `turtle_soup_crypto` | `MAX_HOLD_DAYS` | 27.759,42 | 23.260,28 | reagiert |
+| `turtle_soup_stocks` | `MAX_HOLD_DAYS` | 24.559,08 | 19.269,21 | reagiert |
+| `volatility_breakout` | `MAX_HOLD_DAYS` | 32.441,42 | 23.024,71 | reagiert |
+| `rsi2_crypto` | `MAX_HOLD_DAYS` | 28,37 % | 24,56 % | reagiert |
+| `volatility_breakout` | `BB_LOOKBACK` | 224,41 % | 184,74 % | reagiert |
+| `volatility_breakout` | `BB_SQUEEZE_PERCENTILE` | 224,41 % | 170,87 % | reagiert |
+| `volatility_breakout_crypto` | `BB_LOOKBACK` | 49,03 % | 71,34 % | reagiert |
+| `volatility_breakout_crypto` | `BB_SQUEEZE_PERCENTILE` | 49,03 % | 68,62 % | reagiert |
+| `volatility_breakout_crypto` | `MAX_HOLD_DAYS` | 49,03 % | 64,76 % | reagiert |
+| `t3_supertrend` | `T3_FACTOR` | 129,64 % | 26,98 % | reagiert |
+| `t3_supertrend` | `DI_LENGTH` | 129,64 % | 146,20 % | reagiert |
+| `t3_supertrend` | `ADX_LENGTH` | 129,64 % | 145,77 % | reagiert |
+| `t3_supertrend` | `ATR_LENGTH` | 129,64 % | 128,41 % | reagiert |
+| `t3_supertrend` | `ATR_MULT` | 129,64 % | 64,74 % | reagiert |
+
+**Ein Zwischenfall, der hierher gehört:** der erste `t3`-Durchgang meldete für
+alle fünf Grössen „Lauf bricht ab" — und der Nachweis hätte das als Wirkung
+durchgehen lassen können. Der Abbruch kam aber von
+`ModuleNotFoundError: No module named 'binance'`, einer Lücke im Testaufbau,
+nicht vom veränderten Wert. Mit Attrappen im `PYTHONPATH` liefern alle fünf
+richtige Zahlen. Ohne den mitgeführten Fehlertext wäre das nicht aufgefallen.
+
+**Nebenbeobachtung:** die gespeicherte Basis in
+`research/backtest_defaults/results/regression_nachher.json` ist für
+`volatility_breakout_crypto` seit PR #57 veraltet (17.126,14 gegen heute
+14.902,58). Die Aussage „reagiert" hält trotzdem — gegen die *heutige* Basis
+ergibt die Störung 16.475,57, also ebenfalls einen Unterschied. Die Datei
+selbst wurde hier nicht neu erzeugt.
+
+## S3. Was am Prüfer geändert wurde
+
+`backtest_live_importe(bot)` sammelt, was ein `backtest_*.py` per
+`from live_params import …` hereinholt; `compare_bot()` löst solche Grössen
+**vor** dem bisherigen Default-Zweig auf und meldet sie als `identisch` mit
+Hinweis auf Datei und Aliasnamen. Bot-Code bleibt unangetastet.
+
+## S4. Warum „alles grün" hier trotzdem etwas wert ist
+
+Ein Prüfer, der nach einer Änderung nur noch Grün meldet, ist ohne Gegenprobe
+wertlos. Zwei kommen dazu:
+
+**Am echten Repo:** in `volatility_breakout/backtest_breakout.py` wurde der
+Import von `MAX_HOLD_DAYS` versuchsweise durch `MAX_HOLD_DAYS = 99` ersetzt.
+Der Prüfer meldete sofort `MAX_HOLD_DAYS 15 gegen 99 ABWEICHUNG` und
+`ABWEICHEND (1)`. Danach byteweise wiederhergestellt.
+
+**Dauerhaft in der Testsuite (Abschnitt 7, neu):** ein *gebauter* Bot mit vier
+Grössen — eine importiert, eine mit abweichender Zahl, eine ohne jede
+Entsprechung, eine mit Einheitenunterschied (2 gegen 0.10). Alle vier Ausgänge
+werden geprüft. Diese Zusicherung hängt an keinem echten Bot; niemand muss
+kaputt bleiben, damit sie etwas wert ist.
+
+Vier Prüfungen der Suite beschrieben den alten Stand und wurden umgestellt —
+darunter zwei, die seit PR #42 bzw. PR #57 überholt waren. Vorher 19/7
+(sieben rot), jetzt **33/33**.
+
+## S5. Verbleibende Abweichungen — bewusst keine
+
+Es gibt keine. Was in der Tabelle **nicht** als Abweichung erscheint und es
+auch nicht ist:
+
+| Fall | Warum kein Befund |
+|---|---|
+| `DONCHIAN_PERIOD` (beide Turtle-Bots) | wird von `multi_symbol_optimise.py` über `DONCHIAN_PERIOD_RANGE = [10, 20, 40]` **absichtlich variiert** — eine Kopplung nähme dem Suchraster seine Freiheit. So im Bot dokumentiert. |
+| `ALLOCATION_PCT` (Elliott-Bots) | steht nicht in `live_params.py`; der Bot hat bewusst kein Positionslimit (`research/order_sensitivity`). |
+| ATR-Literale in `t3_supertrend/regime_filter.py` | der Regimefilter rechnet auf **BTC**, nicht auf dem Handelssymbol — gleiche Zahlen, andere Grösse. |
+
+## S6. Entscheidungsgrundlage
+
+**Warum nichts gekoppelt wurde:** die Aufgabe ging davon aus, dass 15 Werte
+noch zu koppeln seien. Sie sind es bereits — belegt statisch, zur Laufzeit und
+dynamisch. Sie ein zweites Mal zu koppeln wäre im besten Fall wirkungslos, im
+schlechteren eine neue Doppelführung.
+
+**Warum der Prüfer geändert wurde und nicht der Bot:** die Abweichung bestand
+zwischen Wirklichkeit und Messung, nicht zwischen Backtest und Live.
+
+**Nicht passiert:** keine Änderung an `equity_simulation.py`, `forward_test.py`
+oder `live_params.py` irgendeines Bots, keine Wertänderung, keine
+Handelsregel-Änderung, keine Aktivierungsempfehlung.

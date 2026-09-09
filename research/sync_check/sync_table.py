@@ -77,6 +77,31 @@ def backtest_constants(bot: str) -> dict:
     return merged
 
 
+def backtest_live_importe(bot: str) -> dict:
+    """{live_params-Name: (Dateiname, lokaler Name)} fuer alles, was ein
+    backtest_*.py-Modul per `from live_params import ...` hereinholt.
+
+    Warum das noetig wurde: backtest_constants() liest ausschliesslich
+    ast.Assign. Seit PR #45/#51/#52 stehen die betroffenen Groessen dort
+    aber nicht mehr als eigene Zuweisung, sondern kommen als IMPORT aus
+    live_params.py - also genau in der Form, die diese ganze Aufraeumreihe
+    herstellen wollte. Fuer den Check verschwanden sie damit aus
+    backtest_constants(), und er meldete sie als "nur live, im Backtest
+    WIRKUNGSLOS". Die Meldung war das genaue Gegenteil der Lage: nicht
+    ungekoppelt, sondern bestmoeglich gekoppelt.
+    """
+    ordner = os.path.join(STRATEGIES, bot)
+    treffer = {}
+    for name in sorted(os.listdir(ordner)):
+        if not (name.startswith("backtest_") and name.endswith(".py")):
+            continue
+        for live_name, lokal in live_import_namen(
+                os.path.join(ordner, name)).items():
+            # live_import_namen liefert {lokal: live}; hier andersherum
+            treffer[lokal] = (name, live_name)
+    return treffer
+
+
 def constants(path: str) -> dict:
     """Top-Level-GROSSBUCHSTABEN-Zuweisungen einer Datei, per AST."""
     out = {}
@@ -210,6 +235,7 @@ def compare_bot(bot: str) -> dict:
     #   c) es gibt gar keine Entsprechung - erst das ist eine echte,
     #      verhaltensrelevante Abweichung.
     backtest = backtest_constants(bot)
+    live_importe = backtest_live_importe(bot)
     for live_name, live_value in sorted(live.items()):
         # Frueher wurden Alias-Ziele hier pauschal uebersprungen, weil die
         # erste Schleife sie ueber den Backtest-Namen schon geprueft hatte.
@@ -225,6 +251,22 @@ def compare_bot(bot: str) -> dict:
             rows.append({"groesse": live_name, "live_params": live_value,
                           "equity_simulation": "— nicht als Konstante —",
                           "status": "im Backtest referenziert"})
+            continue
+
+        # Kommt der Wert per Import aus live_params.py in ein
+        # backtest_*.py-Modul, gibt es gar nichts mehr zu vergleichen: es ist
+        # dieselbe Zahl aus derselben Datei. Das ist der Zielzustand dieser
+        # Aufraeumreihe und darf nicht als Abweichung gelten.
+        importiert_in = live_importe.get(live_name)
+        if importiert_in:
+            datei, lokal = importiert_in
+            hinweis = f"aus live_params importiert ({datei}"
+            if lokal != live_name:
+                hinweis += f", dort `{lokal}`"
+            hinweis += "), wirkt als Default von run_backtest()"
+            rows.append({"groesse": live_name, "live_params": live_value,
+                          "equity_simulation": live_value,
+                          "status": "identisch", "hinweis": hinweis})
             continue
 
         fallback_name = BACKTEST_FALLBACK.get(live_name)
