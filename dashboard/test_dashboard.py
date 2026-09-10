@@ -540,9 +540,9 @@ def teste_frontend(basis):
 # Die Nicht-GET-Routen, die es geben DARF - vollstaendig und woertlich.
 # Diese Liste ist der Kern des korrigierten Nachweises: bis PR #60 stand
 # hier "genau eine, POST /login". Mit dem Einzel-Schliessen wurden es vier,
-# mit dem Notfallweg (alle Positionen) sechs - davon fassen GENAU ZWEI eine
-# Datenbank an. Kommt irgendwann eine siebte dazu, faellt dieser Test auf -
-# und genau das soll er.
+# mit dem Notfallweg (alle Positionen) sechs, mit dem globalen Crash-Weg
+# acht - davon fassen GENAU DREI eine Datenbank an. Kommt irgendwann eine
+# neunte dazu, faellt dieser Test auf - und genau das soll er.
 ERLAUBTE_SCHREIB_ROUTEN = [
     ("POST", "/login"),                                          # setzt nur ein Cookie
     ("POST", "/api/bots/{name}/schliessen/vorbereiten"),          # nur Arbeitsspeicher
@@ -550,6 +550,8 @@ ERLAUBTE_SCHREIB_ROUTEN = [
     ("POST", "/api/bots/{name}/schliessen/ausfuehren"),           # <- schreibt
     ("POST", "/api/bots/{name}/alle-schliessen/vorbereiten"),     # nur Arbeitsspeicher
     ("POST", "/api/bots/{name}/alle-schliessen/ausfuehren"),      # <- schreibt
+    ("POST", "/api/alle-bots-schliessen/vorbereiten"),            # nur Arbeitsspeicher
+    ("POST", "/api/alle-bots-schliessen/ausfuehren"),             # <- schreibt (global)
 ]
 
 
@@ -561,11 +563,12 @@ def teste_nur_lesend(app, basis, pruefsummen_vorher, db_dateien):
         methoden = set(getattr(route, "methods", []) or [])
         for methode in methoden & {"POST", "PUT", "PATCH", "DELETE"}:
             schreibende.append((methode, getattr(route, "path", "?")))
-    check("Es gibt genau die sechs erwarteten Nicht-GET-Routen",
+    check("Es gibt genau die acht erwarteten Nicht-GET-Routen",
           sorted(schreibende) == sorted(ERLAUBTE_SCHREIB_ROUTEN), str(sorted(schreibende)))
-    check("Davon fassen genau ZWEI eine Datenbank an (die beiden …/ausfuehren)",
+    check("Davon fassen genau DREI eine Datenbank an (die drei …/ausfuehren)",
           sorted(r[1] for r in schreibende if r[1].endswith("/ausfuehren"))
-          == ["/api/bots/{name}/alle-schliessen/ausfuehren",
+          == ["/api/alle-bots-schliessen/ausfuehren",
+              "/api/bots/{name}/alle-schliessen/ausfuehren",
               "/api/bots/{name}/schliessen/ausfuehren"],
           str(sorted(r[1] for r in schreibende if r[1].endswith("/ausfuehren"))))
 
@@ -803,9 +806,17 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
               "bestaetigung" not in inspect.signature(
                   schliessen.ausfuehren).parameters,
               str(inspect.signature(schliessen.ausfuehren)))
+        # Eingegrenzt auf den EINZEL-Endpunkt: der globale Crash-Weg liest
+        # sehr wohl ein 'bestaetigung' (den Text CRASH), eine Suche ueber die
+        # ganze Datei waere seit dessen Einbau irrefuehrend.
         quelltext_app = open(os.path.join(DIR, "app.py"), encoding="utf-8").read()
-        check("Der Endpunkt liest kein 'bestaetigung' mehr aus dem Koerper",
-              'get("bestaetigung")' not in quelltext_app)
+        einzel_endpunkt = quelltext_app.split(
+            "async def schliessen_ausfuehren", 1)[1].split("\n    @app.", 1)[0]
+        check("Der Einzel-Endpunkt liest kein 'bestaetigung' mehr aus dem Koerper",
+              'get("bestaetigung")' not in einzel_endpunkt)
+        check("Der globale Endpunkt liest ihn dagegen ausdruecklich",
+              'get("bestaetigung")' in quelltext_app.split(
+                  "async def global_schliessen_ausfuehren", 1)[1])
         check("Der Kern verlangt den Text unveraendert weiter (Telegram "
               "behaelt seine zwei Stufen)",
               manual_close.BESTAETIGUNGSTEXT == "BESTAETIGEN")
@@ -1576,6 +1587,388 @@ def teste_alle_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         schliessen.vorgaenge_zuruecksetzen()
 
 
+# ---------------------------------------------------------------------------
+# 10) Globaler Crash-Weg: alle Positionen ALLER Bots
+# ---------------------------------------------------------------------------
+# Die folgenreichste Aktion des Projekts. Der Kern dieses Abschnitts ist die
+# TEILAUSFALL-SICHERHEIT IN ZWEI DIMENSIONEN, beide mit echten Fehlern statt
+# Behauptungen:
+#
+#   10f  eine POSITION scheitert (dem Trade wird der Einstiegskurs entzogen,
+#        der Kern lehnt sie innerhalb seiner Transaktion ab) - die uebrigen
+#        Positionen desselben Bots laufen weiter
+#   10g  ein GANZER BOT scheitert (seine Datenbank wird geloescht bzw. durch
+#        eine unlesbare Datei ersetzt) - die uebrigen BOTS laufen weiter
+#
+# 10g ist der neue Fall und der unangenehmere: ein Abbruch beim dritten von
+# neun Bots hinterliesse einen Zustand, den niemand benennen kann.
+
+
+def _crash_vorbereiten(basis, token=TEST_TOKEN):
+    return post(basis, "/api/alle-bots-schliessen/vorbereiten", {}, token=token)
+
+
+def _crash_ausfuehren(basis, vorgang, text="CRASH", token=TEST_TOKEN):
+    return post(basis, "/api/alle-bots-schliessen/ausfuehren",
+                 {"vorgang": vorgang, "bestaetigung": text}, token=token)
+
+
+def teste_global_schliessen(basis, wurzel, db_dateien, protokoll_datei):
+    print("\n10) Globaler Crash-Weg - alle Positionen ALLER Bots")
+
+    # Das Testprojekt hat drei Bots; alle drei sind freigeschaltet. Genau
+    # richtig fuer diesen Abschnitt: mit einem einzigen liesse sich der
+    # bot-uebergreifende Teilausfall nicht pruefen.
+    alle_db = dict(db_dateien)
+
+    def status(bot, trade_id):
+        conn = sqlite3.connect(alle_db[bot])
+        try:
+            zeile = conn.execute("SELECT status, result, exit_price FROM trades "
+                                  "WHERE id=?", (trade_id,)).fetchone()
+        finally:
+            conn.close()
+        return tuple(zeile) if zeile else None
+
+    def alles_schliessen():
+        """Ausgangslage: nichts offen, in allen Bots."""
+        for pfad in alle_db.values():
+            conn = sqlite3.connect(pfad)
+            conn.execute("UPDATE trades SET status='closed', result='vorlauf' "
+                          "WHERE status='open'")
+            conn.commit()
+            conn.close()
+
+    def oeffne(bot, posten):
+        ids = []
+        conn = sqlite3.connect(alle_db[bot])
+        try:
+            for symbol, entry in posten:
+                conn.execute(
+                    "INSERT INTO trades (symbol, signal_time, entry_time, "
+                    "entry_price, stop_price, status) VALUES (?,?,?,?,?,'open')",
+                    (symbol, "2026-04-01 00:00:00", "2026-04-01 00:00:00",
+                     entry, entry * 0.95))
+                ids.append(conn.execute("SELECT MAX(id) FROM trades").fetchone()[0])
+            conn.commit()
+        finally:
+            conn.close()
+        return ids
+
+    original_kurse = monitor.fetch_live_prices_for_bots
+    monitor.fetch_live_prices_for_bots = lambda bots: dict(TESTKURSE)
+    schliessen.vorgaenge_zuruecksetzen()
+    try:
+        # --- 10a) Nichts offen: der Weg beginnt nicht ---------------------
+        alles_schliessen()
+        antwort = _crash_vorbereiten(basis)
+        check("Ohne offene Position irgendwo wird das Vorbereiten abgelehnt (409)",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Die Meldung sagt, dass kein Bot etwas offen hat",
+              "Kein Bot" in antwort.json()["detail"], antwort.json()["detail"][:90])
+
+        # --- 10b) Uebersicht ueber MEHRERE Bots ---------------------------
+        t3 = oeffne("t3_supertrend", [("BTCUSDT", 100.0), ("ETHUSDT", 200.0)])
+        ew = oeffne("elliott_wave", [("SOLUSDT", 20.0)])
+        vb = oeffne("volatility_breakout", [("ADAUSDT", 1.0)])
+        eins = _crash_vorbereiten(basis).json()
+        check("Die Uebersicht fuehrt alle drei Bots",
+              sorted(b["bot"] for b in eins["bots"])
+              == ["elliott_wave", "t3_supertrend", "volatility_breakout"],
+              str([b["bot"] for b in eins["bots"]]))
+        check("Und zaehlt alle vier Positionen",
+              (eins["anzahl"], eins["anzahl_bots"]) == (4, 3),
+              f"{eins['anzahl']}/{eins['anzahl_bots']}")
+        check("Nach Bot gruppiert, mit Durchschnitt JE BOT",
+              all("pnl_schnitt_pct" in b for b in eins["bots"]))
+        check("KEINE Gesamtsumme und kein Gesamt-PnL ueber alle Bots "
+              "(Methodik-Grundsatz 2)",
+              "pnl_summe_pct" not in eins and "pnl_schnitt_pct" not in eins
+              and "pnl_gesamt" not in eins, str(sorted(eins))[:160])
+        check("Der zu tippende Text wird mitgeteilt",
+              eins["crash_text"] == schliessen.CRASH_TEXT)
+        aktien = [b for b in eins["bots"] if b["anlageklasse"] == "aktien"]
+        check("Aktien-Bots sind als solche erkennbar (fuer den Kurs-Hinweis)",
+              [b["bot"] for b in aktien] == ["volatility_breakout"], str(aktien)[:90])
+
+        # --- 10c) Token ---------------------------------------------------
+        for token in (None, "falsches-token-aber-lang-genug"):
+            check(f"Vorbereiten ohne gueltiges Token: 401 (Token {token!r})",
+                  _crash_vorbereiten(basis, token=token).status_code == 401)
+            check(f"Ausfuehren ohne gueltiges Token: 401 (Token {token!r})",
+                  _crash_ausfuehren(basis, eins["vorgang"],
+                                     token=token).status_code == 401)
+        check("Ein abgewiesener Fremdzugriff verbraucht den Vorgang nicht",
+              schliessen.offener_vorgang(eins["vorgang"]) is not None)
+
+        # --- 10d) Falscher oder fehlender CRASH-Text ----------------------
+        # Jeder Versuch verbraucht den Vorgang - sonst liesse sich der Text
+        # innerhalb der Frist beliebig oft durchprobieren.
+        # "CRASH " mit Leerzeichen steht bewusst NICHT in dieser Liste: der
+        # Vergleich entfernt umschliessende Leerzeichen, der Text waere also
+        # gueltig und wuerde wirklich alles schliessen. (Genau das ist beim
+        # Schreiben dieses Tests passiert.) Geprueft wird das weiter unten
+        # ausdruecklich - hier stehen nur Texte, die abgelehnt werden muessen.
+        for text in ("crash", "CRAS", "", "Crash", "CRASHH", None):
+            vorab = _crash_vorbereiten(basis).json()
+            antwort = _crash_ausfuehren(basis, vorab["vorgang"], text=text)
+            check(f"Text {text!r} wird abgelehnt (409)",
+                  antwort.status_code == 409, str(antwort.status_code))
+            check(f"Text {text!r}: der Vorgang ist danach verbraucht",
+                  _crash_ausfuehren(basis, vorab["vorgang"]).status_code == 409)
+        check("Der Vergleich ist case-sensitiv - 'crash' genuegt nicht",
+              schliessen.CRASH_TEXT == "CRASH"
+              and schliessen.CRASH_TEXT != schliessen.CRASH_TEXT.lower())
+        check("Nach allen falschen Texten ist noch nichts geschlossen",
+              all(status(b, i)[0] == "open"
+                  for b, ids in (("t3_supertrend", t3), ("elliott_wave", ew),
+                                  ("volatility_breakout", vb)) for i in ids))
+        check("Gegenprobe: der EXAKTE Text ist der erwartete",
+              schliessen.CRASH_TEXT == "CRASH")
+        # Umschliessende Leerzeichen sind bewusst erlaubt (Kopieren aus einer
+        # Anleitung nimmt schnell eines mit). Hier ohne Schreibzugriff
+        # geprueft: der Vergleich selbst, nicht ueber den Endpunkt.
+        check("Umschliessende Leerzeichen werden toleriert",
+              "  CRASH  ".strip() == schliessen.CRASH_TEXT)
+
+        # --- 10e) Artfremde Kennungen -------------------------------------
+        schliessen.vorgaenge_zuruecksetzen()
+        global_vorgang = _crash_vorbereiten(basis).json()
+        einzel = _vorbereiten(basis, trade_id=t3[0]).json()
+        botweit = _alle_vorbereiten(basis).json()
+        antwort = _crash_ausfuehren(basis, einzel["vorgang"])
+        check("Eine EINZEL-Kennung loest auf dem globalen Endpunkt nichts aus",
+              antwort.status_code == 409 and "anderen Vorgang" in antwort.json()["detail"],
+              antwort.json()["detail"][:80])
+        antwort = _crash_ausfuehren(basis, botweit["vorgang"])
+        check("Eine BOT-WEITE Kennung ebenfalls nicht",
+              antwort.status_code == 409 and "anderen Vorgang" in antwort.json()["detail"],
+              antwort.json()["detail"][:80])
+        antwort = _ausfuehren(basis, global_vorgang["vorgang"])
+        check("Und eine GLOBALE Kennung nicht auf dem Einzel-Endpunkt",
+              antwort.status_code == 409 and "anderen Vorgang" in antwort.json()["detail"],
+              antwort.json()["detail"][:80])
+        antwort = _alle_ausfuehren(basis, global_vorgang["vorgang"])
+        check("Auch nicht auf dem bot-weiten Endpunkt",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Nach allen vier Kreuzversuchen ist nichts geschlossen",
+              all(status(b, i)[0] == "open"
+                  for b, ids in (("t3_supertrend", t3), ("elliott_wave", ew),
+                                  ("volatility_breakout", vb)) for i in ids))
+
+        # --- 10f) TEILAUSFALL DIMENSION 1: eine POSITION scheitert --------
+        # Echter Fehlschlag des Kerns, kein Testdoppel: dem mittleren Trade
+        # von t3 wird nach der Uebersicht der Einstiegskurs entzogen.
+        schliessen.vorgaenge_zuruecksetzen()
+        zwei = _crash_vorbereiten(basis).json()
+        opfer = t3[1]
+        conn = sqlite3.connect(alle_db["t3_supertrend"])
+        conn.execute("UPDATE trades SET entry_price=NULL WHERE id=?", (opfer,))
+        conn.commit()
+        conn.close()
+
+        antwort = _crash_ausfuehren(basis, zwei["vorgang"])
+        check("Ein Teilausfall ist KEIN HTTP-Fehler (200)",
+              antwort.status_code == 200,
+              str(antwort.status_code) + antwort.text[:120])
+        r = antwort.json()
+        check("erfolg ist false, weil eine Position fehlschlug",
+              r["erfolg"] is False)
+        check("Drei von vier Positionen geschlossen, eine fehlgeschlagen",
+              (r["anzahl_geschlossen"], r["anzahl_fehlgeschlagen"]) == (3, 1),
+              f"{r['anzahl_geschlossen']}/{r['anzahl_fehlgeschlagen']}")
+        t3_block = [b for b in r["bots"] if b["bot"] == "t3_supertrend"][0]
+        check("Der Fehlschlag steht beim RICHTIGEN Bot, mit Grund",
+              t3_block["fehlgeschlagen"][0]["trade_id"] == opfer
+              and "Einstiegskurs" in t3_block["fehlgeschlagen"][0]["grund"],
+              str(t3_block["fehlgeschlagen"])[:130])
+        check("DIE ANDEREN BOTS sind trotzdem vollstaendig geschlossen",
+              status("elliott_wave", ew[0])[:2] == ("closed", "manual_close")
+              and status("volatility_breakout", vb[0])[:2] == ("closed", "manual_close"),
+              f"{status('elliott_wave', ew[0])} / {status('volatility_breakout', vb[0])}")
+        check("Und im betroffenen Bot die uebrige Position ebenfalls",
+              status("t3_supertrend", t3[0])[:2] == ("closed", "manual_close"),
+              str(status("t3_supertrend", t3[0])))
+        check("Die fehlgeschlagene Position bleibt offen und unberuehrt",
+              status("t3_supertrend", opfer) == ("open", None, None),
+              str(status("t3_supertrend", opfer)))
+        check("Die Meldung nennt Gesamtzahl und Bots",
+              "3 von 4" in r["meldung"] and "3 Bots" in r["meldung"],
+              r["meldung"][:170])
+
+        # --- 10g) TEILAUSFALL DIMENSION 2: ein GANZER BOT scheitert ------
+        # Die Datenbank eines Bots wird nach der Uebersicht durch eine
+        # unlesbare Datei ersetzt. manual_close.offene_positionen() scheitert
+        # dann fuer DIESEN Bot - und die uebrigen muessen weiterlaufen.
+        alles_schliessen()
+        conn = sqlite3.connect(alle_db["t3_supertrend"])
+        conn.execute("UPDATE trades SET entry_price=200.0 WHERE entry_price IS NULL")
+        conn.commit()
+        conn.close()
+        t3 = oeffne("t3_supertrend", [("BTCUSDT", 100.0)])
+        ew = oeffne("elliott_wave", [("SOLUSDT", 20.0), ("ETHUSDT", 200.0)])
+        vb = oeffne("volatility_breakout", [("ADAUSDT", 1.0)])
+        schliessen.vorgaenge_zuruecksetzen()
+        drei = _crash_vorbereiten(basis).json()
+        check("Vorher sind alle drei Bots in der Uebersicht",
+              drei["anzahl_bots"] == 3 and drei["anzahl"] == 4,
+              f"{drei['anzahl_bots']}/{drei['anzahl']}")
+
+        kaputt = alle_db["elliott_wave"]
+        gesichert = kaputt + ".sicherung"
+        shutil.copy2(kaputt, gesichert)
+        with open(kaputt, "wb") as datei:
+            datei.write(b"das ist keine SQLite-Datenbank")
+        try:
+            antwort = _crash_ausfuehren(basis, drei["vorgang"])
+            check("Ein komplett ausgefallener Bot ergibt KEIN HTTP-Fehler (200)",
+                  antwort.status_code == 200,
+                  str(antwort.status_code) + antwort.text[:140])
+            r = antwort.json()
+            check("Der ausgefallene Bot wird GETRENNT von Positionsfehlern "
+                  "ausgewiesen",
+                  [b["bot"] for b in r["bots_fehlgeschlagen"]] == ["elliott_wave"],
+                  str(r["bots_fehlgeschlagen"])[:150])
+            check("Mit Grund und der Zahl der dort unberuehrten Positionen",
+                  r["bots_fehlgeschlagen"][0]["angefragt"] == 2
+                  and bool(r["bots_fehlgeschlagen"][0]["grund"]),
+                  str(r["bots_fehlgeschlagen"][0])[:130])
+            check("DIE SCHLEIFE UEBER DIE BOTS IST NICHT ABGEBROCHEN: die "
+                  "uebrigen zwei Bots sind geschlossen",
+                  status("t3_supertrend", t3[0])[:2] == ("closed", "manual_close")
+                  and status("volatility_breakout", vb[0])[:2]
+                  == ("closed", "manual_close"),
+                  f"{status('t3_supertrend', t3[0])} / "
+                  f"{status('volatility_breakout', vb[0])}")
+            check("Gezaehlt werden nur die wirklich geschlossenen",
+                  r["anzahl_geschlossen"] == 2, str(r["anzahl_geschlossen"]))
+            check("erfolg ist false, weil ein Bot ausfiel",
+                  r["erfolg"] is False)
+            check("Die Meldung nennt den uebersprungenen Bot ausdruecklich",
+                  "uebersprungen" in r["meldung"] and "elliott_wave" in r["meldung"],
+                  r["meldung"][:200])
+        finally:
+            shutil.move(gesichert, kaputt)
+        check("Die Datenbank des ausgefallenen Bots ist nach der Wiederher"
+              "stellung unveraendert - es wurde dort nichts geschrieben",
+              [z["status"] for z in zeilen(alle_db["elliott_wave"])].count("open") == 2,
+              str([z["status"] for z in zeilen(alle_db["elliott_wave"])]))
+
+        # --- 10h) Der vollstaendige Erfolgsfall ueber alle Bots ----------
+        alles_schliessen()
+        t3 = oeffne("t3_supertrend", [("BTCUSDT", 100.0)])
+        ew = oeffne("elliott_wave", [("SOLUSDT", 20.0)])
+        vb = oeffne("volatility_breakout", [("ADAUSDT", 1.0)])
+        schliessen.vorgaenge_zuruecksetzen()
+        vier = _crash_vorbereiten(basis).json()
+        vor_lauf = {b: zeilen(pfad) for b, pfad in alle_db.items()}
+        marke = len(open(protokoll_datei, encoding="utf-8").read().splitlines())
+        r = _crash_ausfuehren(basis, vier["vorgang"]).json()
+        check("Alle Positionen aller Bots geschlossen",
+              r["erfolg"] is True and r["anzahl_geschlossen"] == 3
+              and r["anzahl_fehlgeschlagen"] == 0
+              and not r["bots_fehlgeschlagen"], r["meldung"][:140])
+        # Auch das ERGEBNIS darf keine Gesamtzahl ueber alle Bots tragen -
+        # nicht nur die Uebersicht. Genau diese Haelfte fehlte zuerst und ist
+        # in der Mutationsprobe aufgefallen.
+        check("Auch das Ergebnis traegt keine aufsummierte Gesamt-Prozentzahl",
+              not [k for k in r if "pnl" in k],
+              str([k for k in r if "pnl" in k]))
+        check("Der Durchschnitt steht je Bot, nicht global",
+              all("pnl_schnitt_pct" in b for b in r["bots"]),
+              str(sorted(r["bots"][0]))[:140])
+        check("Jede mit dem Kurs IHRES Symbols, nicht einem gemeinsamen",
+              sorted((g["symbol"], g["exit_preis"])
+                      for b in r["bots"] for g in b["geschlossen"])
+              == [("ADAUSDT", 0.9), ("BTCUSDT", 110.0), ("SOLUSDT", 22.0)],
+              str(sorted((g["symbol"], g["exit_preis"])
+                          for b in r["bots"] for g in b["geschlossen"])))
+        for bot, ids in (("t3_supertrend", t3), ("elliott_wave", ew),
+                          ("volatility_breakout", vb)):
+            diff = unterschiede(vor_lauf[bot], zeilen(alle_db[bot]))
+            check(f"{bot}: genau die fuenf Ausstiegsfelder EINER Zeile",
+                  {f for _, f, _, _ in diff} == set(SCHREIB_SPALTEN)
+                  and len({k for k, _, _, _ in diff}) == 1,
+                  str(sorted({(k, f) for k, f, _, _ in diff})))
+
+        # --- 10i) Protokoll: je Position eine Zeile, mit eigener Herkunft --
+        protokoll = open(protokoll_datei, encoding="utf-8").read().splitlines()
+        neue = [z for z in protokoll[marke:] if z.strip()]
+        erfolge = [z for z in neue if "ERFOLGREICH" in z]
+        check("Der globale Lauf erzeugt GENAU DREI Erfolgszeilen - eine je "
+              "Position, keine Sammelzeile",
+              len(erfolge) == 3, f"{len(erfolge)} Erfolgszeilen")
+        check("Jede traegt die eigene Herkunft quelle=dashboard-crash - so ist "
+              "ein Crash-Eingriff von einem normalen unterscheidbar",
+              all(f"quelle={manual_close.QUELLE_DASHBOARD_CRASH}" in z
+                  for z in erfolge),
+              [z for z in erfolge
+               if f"quelle={manual_close.QUELLE_DASHBOARD_CRASH}" not in z][:1])
+        check("Und nennt den jeweiligen Bot, nicht nur 'alle'",
+              sorted(set(re.findall(r"bot=(\w+)", " ".join(erfolge))))
+              == ["elliott_wave", "t3_supertrend", "volatility_breakout"],
+              str(sorted(set(re.findall(r"bot=(\w+)", " ".join(erfolge))))))
+        check("Die Herkunft unterscheidet sich von der des normalen Wegs",
+              manual_close.QUELLE_DASHBOARD_CRASH != manual_close.QUELLE_DASHBOARD)
+
+        # --- 10j) Nebenlaeufigkeit ueber mehrere Bots ---------------------
+        # Zwei echte Fremdprozesse halten gleichzeitig die Schreibsperre auf
+        # ZWEI Datenbanken. Erwartet: beide Bots scheitern sauber, der dritte
+        # wird trotzdem geschlossen.
+        alles_schliessen()
+        t3 = oeffne("t3_supertrend", [("BTCUSDT", 100.0)])
+        ew = oeffne("elliott_wave", [("SOLUSDT", 20.0)])
+        vb = oeffne("volatility_breakout", [("ADAUSDT", 1.0)])
+        schliessen.vorgaenge_zuruecksetzen()
+        fuenf = _crash_vorbereiten(basis).json()
+        halter_skript = os.path.join(wurzel, "sperr_halter.py")
+        with open(halter_skript, "w", encoding="utf-8") as datei:
+            datei.write(SPERR_HALTER_FREI)
+        altes_limit = manual_close.SPERR_TIMEOUT_SEKUNDEN
+        manual_close.SPERR_TIMEOUT_SEKUNDEN = 1
+        halter = [subprocess.Popen(
+            [sys.executable, halter_skript, alle_db[b], "6"],
+            stdout=subprocess.PIPE, text=True)
+            for b in ("t3_supertrend", "elliott_wave")]
+        try:
+            check("Zwei Fremdprozesse halten zwei Schreibsperren",
+                  all(h.stdout.readline().strip() == "gesperrt" for h in halter))
+            r = _crash_ausfuehren(basis, fuenf["vorgang"]).json()
+            gescheitert = {f["symbol"] for b in r["bots"]
+                           for f in b["fehlgeschlagen"]}
+            check("Die beiden gesperrten Bots scheitern sauber",
+                  gescheitert == {"BTCUSDT", "SOLUSDT"}, str(gescheitert))
+            check("Der dritte Bot wird trotzdem geschlossen",
+                  status("volatility_breakout", vb[0])[:2] == ("closed", "manual_close"),
+                  str(status("volatility_breakout", vb[0])))
+            check("Die gesperrten Positionen bleiben offen und unberuehrt",
+                  status("t3_supertrend", t3[0]) == ("open", None, None)
+                  and status("elliott_wave", ew[0]) == ("open", None, None))
+        finally:
+            manual_close.SPERR_TIMEOUT_SEKUNDEN = altes_limit
+            for h in halter:
+                h.wait(timeout=60)
+    finally:
+        monitor.fetch_live_prices_for_bots = original_kurse
+        schliessen.vorgaenge_zuruecksetzen()
+
+
+# Derselbe Sperrhalter wie in Abschnitt 8, hier als eigene Konstante, weil
+# dieser Abschnitt zwei davon gleichzeitig startet und sie auf Zeilen
+# arbeiten muessen, die es in jedem Testbot gibt.
+SPERR_HALTER_FREI = """\
+\"\"\"Haelt eine SQLite-Schreibsperre - simuliert einen laufenden Cronjob.\"\"\"
+import sqlite3, sys, time
+conn = sqlite3.connect(sys.argv[1], timeout=30, isolation_level=None)
+conn.execute("BEGIN IMMEDIATE")
+conn.execute("UPDATE trades SET status=status WHERE id=1")
+print("gesperrt", flush=True)
+time.sleep(float(sys.argv[2]))
+conn.execute("ROLLBACK")
+conn.close()
+"""
+
+
 def teste_schliessen_frontend():
     print("\n10) Frontend des Schliessvorgangs")
     statisch = os.path.join(DIR, "static")
@@ -1669,6 +2062,95 @@ def teste_schliessen_frontend():
                                      encoding="utf-8").read())
     check("Keine aufsummierte Gesamt-Prozentzahl im Frontend (Grundsatz 2)",
           "pnl_summe" not in code and "pnl_schnitt_pct" in code)
+
+    # --- Globaler Crash-Weg: er steht auf der UEBERSICHTSSEITE -----------
+    index = ohne_kommentare(open(os.path.join(statisch, "index.html"),
+                                  encoding="utf-8").read())
+    check("Der Crash-Knopf steht auf index.html, NICHT auf einer Bot-Seite",
+          'id="crash-knopf"' in index and 'id="crash-knopf"' not in code)
+    check("Der Crash-Dialog hat DREI Stufen",
+          all(f'id="crash-stufe{n}"' in index for n in (1, 2, 3)))
+    check("Die dritte Stufe verlangt eine Texteingabe",
+          'id="crash-eingabe"' in index)
+    check("Der Text wird vom Server geholt, nicht im Frontend festgeschrieben",
+          '"CRASH"' not in index and "crashVorgang.crash_text" in index)
+    check("Der Frontend-Vergleich ist case-sensitiv (===, kein toUpperCase)",
+          "=== crashVorgang.crash_text" in index and "toUpperCase" not in index)
+    check("Der Ausfuehren-Knopf der dritten Stufe startet gesperrt",
+          re.search(r'id="crash-ausfuehren"[^>]*disabled', index) is not None)
+    # Die Stufen muessen wirklich drei sein: nur der letzte Knopf schreibt.
+    check("Stufe 1 blaettert nur weiter",
+          'getElementById("crash-weiter").addEventListener("click", crashZuStufe2)'
+          in index)
+    check("Stufe 2 blaettert nur weiter",
+          'getElementById("crash-weiter2").addEventListener("click", crashZuStufe3)'
+          in index)
+    check("Nur Stufe 3 loest das Schreiben aus",
+          'getElementById("crash-ausfuehren").addEventListener("click", '
+          'crashAusfuehren)' in index)
+    check("Der schreibende Aufruf steht genau EINMAL im Frontend",
+          index.count("/api/alle-bots-schliessen/ausfuehren") == 1)
+    vor_stufe3 = index.split("function crashZuStufe3()", 1)[0]
+    check("Die Stufen 1 und 2 rufen den schreibenden Endpunkt NICHT auf",
+          "/api/alle-bots-schliessen/ausfuehren" not in vor_stufe3)
+    check("Der Crash-Knopf traegt eine eigene Klasse, nicht die der anderen "
+          "Notfall-Knoepfe",
+          (lambda t: t is not None and "knopf crash" in t.group(0)
+           and "notfall" not in t.group(0))(
+              re.search(r'<button(?:(?!</?button)[\s\S])*?id="crash-knopf"'
+                         r'(?:(?!</?button)[\s\S])*?>', index)))
+    check("Und steht in einem eigenen, abgesetzten Bereich",
+          'id="crash-bereich"' in index
+          and "crash-bereich" in open(os.path.join(statisch, "style.css"),
+                                       encoding="utf-8").read())
+    check("Das Ergebnis wird bot-weise ausgewiesen, inkl. ausgefallener Bots",
+          "bots_fehlgeschlagen" in index and "b.meldung" in index)
+    check("Ein gemischter Ausgang wird auch hier nicht als Erfolg dargestellt",
+          "teilmeldung" in index)
+
+    # Das hidden-Attribut muss jede display-Regel schlagen. `display: none`
+    # fuer [hidden] steht nur im Browser-Standardstil und verliert gegen jede
+    # Autorenregel - ein `.klasse { display: flex }` macht ein verborgenes
+    # Element also wieder sichtbar. Genau so war der Notfall-Knopf anfangs
+    # auch bei nicht freigeschalteten Bots zu sehen; aufgefallen ist es erst
+    # im Browser, nicht in dieser Suite. Deshalb die Pruefung hier.
+    css = open(os.path.join(statisch, "style.css"), encoding="utf-8").read()
+    check("style.css erzwingt [hidden] gegen jede display-Regel",
+          re.search(r"\[hidden\]\s*\{[^}]*display:\s*none\s*!important",
+                     css) is not None)
+    # Die Leiste wird ueber das hidden-Attribut geschaltet - also haengt ihre
+    # Unsichtbarkeit genau an der Regel oben. Beides zusammen geprueft, damit
+    # nicht eines von beiden still wegfaellt.
+    check("Die Notfall-Leiste wird ueber hidden geschaltet (nicht ueber style)",
+          re.search(r"leiste\.hidden\s*=", code) is not None
+          and "notfall-leiste" not in code.split("style.display")[0][-200:]
+          if "style.display" in code else
+          re.search(r"leiste\.hidden\s*=", code) is not None)
+    check("Und sie traegt im Markup von Anfang an hidden - vor dem ersten "
+          "Ladevorgang ist noch nicht bekannt, ob der Bot freigeschaltet ist",
+          re.search(r'id="notfall-leiste"[^>]*hidden', code) is not None)
+    check("Der Schliessen-Knopf startet gesperrt - vor dem vorbereiten-Aufruf "
+          "gibt es keine Kennung",
+          re.search(r'id="dialog-ja"[^>]*disabled', code) is not None)
+    check("Derselbe Knopf loest jetzt das Schreiben aus",
+          'getElementById("dialog-ja").addEventListener("click", ausfuehren)'
+          in code)
+    check("Esc und Klick daneben verwerfen den Vorgang ebenfalls",
+          '"cancel"' in code and "abbrechen()" in code)
+
+    # Der Bestaetigungstext darf im Frontend nirgends mehr auftauchen -
+    # weder festgeschrieben noch aus der Serverantwort gelesen.
+    check("Der Bestaetigungstext kommt im Frontend nicht mehr vor",
+          '"BESTAETIGEN"' not in code and "bestaetigungstext" not in code)
+    check("Der Ausfuehren-Aufruf schickt nur die Kennung",
+          "bestaetigung:" not in code)
+
+    # Die Frist bleibt sichtbar: der Vorgang verfaellt serverseitig weiter
+    # nach 120 Sekunden, und ein Tap auf einen abgelaufenen Vorgang soll als
+    # solcher erkennbar sein, nicht als unerklaerliche Absage.
+    check("Der Countdown bleibt und sperrt den Knopf bei Ablauf",
+          "fristStarten(vorgang.gueltig_sekunden)" in code
+          and "abgelaufen" in code)
 
     check("Schreibende Aufrufe laufen ueber ein eigenes sende()",
           "async function sende(" in ohne_kommentare(app_js)
@@ -1979,6 +2461,8 @@ def main():
             teste_schliessen(server.basis, wurzel, db_dateien, protokoll_datei)
             teste_alle_schliessen(server.basis, wurzel, db_dateien,
                                    protokoll_datei)
+            teste_global_schliessen(server.basis, wurzel, db_dateien,
+                                     protokoll_datei)
         teste_schliessen_frontend()
         teste_automatische_aktualisierung()
         teste_ladeindikator()

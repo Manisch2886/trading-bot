@@ -10,11 +10,20 @@ irgendetwas veraendert".** Das gilt so nicht mehr, und der Satz soll nicht
 stillschweigend falsch werden.
 
 **Lesend, ausser einem einzigen Zweck:** offene Positionen von Hand
-schliessen - einzeln oder alle auf einmal (Notfallweg). Beides ist eng
-gefasst und teilt dieselbe Absicherung:
+schliessen - in drei Abstufungen:
 
-* nur fuer die Bots in `manual_close.SCHLIESSBARE_BOTS` - derzeit genau
-  einer, `t3_supertrend`; alle uebrigen antworten mit 403,
+| Weg | Reichweite | Bestaetigung | Wo |
+|---|---|---|---|
+| einzeln | eine Position | EIN Tap | Bot-Detailseite |
+| bot-weit | alle Positionen eines Bots | ZWEI Klicks | Bot-Detailseite |
+| global (Crash) | alle Positionen ALLER Bots | ZWEI Klicks + Text `CRASH` | Uebersichtsseite |
+
+Alle drei sind eng gefasst und teilen dieselbe Absicherung:
+
+* nur fuer die Bots in `manual_close.SCHLIESSBARE_BOTS` - inzwischen alle
+  neun. Jeder wurde davor EINZELN gegen sein `forward_test.py` geprueft
+  (Schema, PnL-Formel, `result`-Werte), und die Pruefung laeuft bei jedem
+  Testlauf erneut. Ein Bot, der nicht in der Liste steht, antwortet mit 403,
 * nur ueber **zwei getrennte HTTP-Aufrufe** (`…/vorbereiten`, dann
   `…/ausfuehren`), der zweite mit einer zufaelligen, einmaligen, nach 120
   Sekunden verfallenden Vorgangs-Kennung, die nur fuer genau diesen Bot und
@@ -205,6 +214,33 @@ geschlossen wurde.
 
 In der Oberflaeche braucht dieser Weg **zwei Klicks** (Uebersicht, dann
 Rueckfrage), der Einzelweg einen. Beide ohne Texteingabe.
+
+### Globaler Crash-Weg: alle Bots
+
+`POST /api/alle-bots-schliessen/vorbereiten` (kein Koerper) liest ueber ALLE
+freigeschalteten Bots hinweg die offenen Positionen zusammen und antwortet
+nach Bot gruppiert, je Bot mit Durchschnitt und Spannweite - **keine
+Gesamtzahl ueber alle Bots**, aus demselben Grund wie oben. Ein Bot, dessen
+Datenbank fehlt, wird stillschweigend uebergangen (er lief noch nie); ein
+Bot, dessen Datenbank vorhanden aber unlesbar ist, wird als `lesefehler`
+ausgewiesen.
+
+`POST /api/alle-bots-schliessen/ausfuehren` erwartet
+`{"vorgang": "<Kennung>", "bestaetigung": "CRASH"}`. Der Text wird
+case-sensitiv geprueft, NACH dem Einloesen der Kennung - ein falscher
+Versuch verbraucht sie also. Geschlossen wird je Bot ueber dieselbe Schleife
+wie beim bot-weiten Weg, je Position ueber dieselbe Kernfunktion wie beim
+Einzelweg.
+
+**Teilausfall in zwei Dimensionen:** scheitert eine Position, laufen die
+uebrigen Positionen des Bots weiter; scheitert ein ganzer Bot (Datenbank
+gesperrt oder unlesbar), laufen die uebrigen Bots weiter. Die Antwort nennt
+`bots` (je Bot das volle Ergebnis) und `bots_fehlgeschlagen` getrennt. Ein
+Teilausfall ist auch hier kein HTTP-Fehler.
+
+Im Protokoll traegt jede Zeile dieses Wegs `quelle=dashboard-crash` statt
+`quelle=dashboard` - so ist hinterher unterscheidbar, was der eine
+Crash-Klick angefasst hat.
 
 Jeder Versuch - erfolgreich wie abgelehnt - landet in
 `logs/notifications/manuelle_eingriffe.log`, jede Zeile mit der Marke

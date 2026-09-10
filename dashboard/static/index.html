@@ -51,7 +51,74 @@
     keine Positionsgröße pro Trade speichern. Alle Zahlen stammen aus dem
     Paper-Trading, es ist kein echtes Kapital im Spiel.
   </p>
+
+  <div id="erfolg" role="status" aria-live="polite"></div>
+
+  <!-- Der globale Crash-Bereich. GANZ UNTEN und in einem eigenen, umrandeten
+       Block: dieser Knopf betrifft alle neun Bots gleichzeitig und ist die
+       folgenreichste Schaltfläche der Anwendung. Er gehört deshalb nicht
+       zwischen die Kennzahlen, sondern hinter alles andere - man muss an der
+       gesamten Übersicht vorbeigescrollt sein, um ihn überhaupt zu sehen.
+       Auf einer einzelnen Bot-Seite hätte er nichts zu suchen: dort wirkt
+       jeder andere Knopf nur auf diesen einen Bot. -->
+  <section class="crash-bereich" id="crash-bereich" hidden>
+    <h2 class="crash-titel">⚠ Notfall über alle Bots</h2>
+    <p class="crash-text" id="crash-hinweis"></p>
+    <button type="button" class="knopf crash" id="crash-knopf">
+      ⚠ ALLE Positionen ALLER Bots schließen
+    </button>
+  </section>
 </main>
+
+<!-- Drei Stufen: Übersicht -> Rückfrage -> Texteingabe "CRASH". Alle drei
+     liegen nebeneinander im Markup und werden per hidden umgeschaltet. -->
+<dialog id="crashdialog" class="schliessen-dialog crash-dialog"
+        aria-labelledby="crash-titel">
+  <div class="inhalt">
+    <h2 id="crash-titel">Alle Positionen aller Bots schließen?</h2>
+    <div class="stufe" id="crash-stufe">Schritt 1 von 3</div>
+
+    <div id="crash-fehler" class="dialog-fehler" hidden></div>
+
+    <div id="crash-stufe1">
+      <div class="crash-liste" id="crash-liste"></div>
+      <div class="dialog-warnung" id="crash-warnung"></div>
+      <p class="dialog-frist" id="crash-frist"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="crash-abbrechen1">Abbrechen</button>
+        <button type="button" class="knopf crash" id="crash-weiter" disabled>
+          Ja, alle schließen
+        </button>
+      </div>
+    </div>
+
+    <div id="crash-stufe2" hidden>
+      <p class="notfall-frage" id="crash-frage"></p>
+      <div class="dialog-warnung" id="crash-warnung2"></div>
+      <p class="dialog-frist" id="crash-frist2"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="crash-abbrechen2">Abbrechen</button>
+        <button type="button" class="knopf crash" id="crash-weiter2">
+          Weiter zur letzten Bestätigung
+        </button>
+      </div>
+    </div>
+
+    <div id="crash-stufe3" hidden>
+      <p class="notfall-frage" id="crash-aufforderung"></p>
+      <input type="text" class="dialog-eingabe" id="crash-eingabe"
+             autocomplete="off" autocapitalize="off" autocorrect="off"
+             spellcheck="false" aria-describedby="crash-frist3">
+      <p class="dialog-frist" id="crash-frist3"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="crash-abbrechen3">Abbrechen</button>
+        <button type="button" class="knopf crash" id="crash-ausfuehren" disabled>
+          Endgültig ALLES schließen
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
 
 <script src="/statisch/app.js"></script>
 <script>
@@ -90,6 +157,24 @@ function zeichneUebersicht(daten) {
     ? zeilen.map(botZeile).join("")
     : '<tr><td colspan="8" class="gedaempft">Keine Bot-Datenbanken gefunden.</td></tr>';
   document.getElementById("stand").textContent = "Stand " + zeit(daten.abgerufen_am);
+
+  /* Der Crash-Bereich erscheint nur, wenn es überhaupt etwas zu schließen
+     gibt. Ein Knopf dieser Tragweite, der garantiert in "nichts offen" endet,
+     lädt zum Ausprobieren ein - und genau das soll er nicht. */
+  const offenGesamt = daten.bots.reduce(
+    (summe, b) => summe + (b.offene_positionen || 0), 0);
+  const bereich = document.getElementById("crash-bereich");
+  bereich.hidden = offenGesamt === 0;
+  if (!bereich.hidden) {
+    const botsMitOffenen = daten.bots.filter(b => (b.offene_positionen || 0) > 0);
+    document.getElementById("crash-knopf").textContent =
+      `⚠ ALLE ${offenGesamt} Positionen in ${botsMitOffenen.length} Bots schließen`;
+    document.getElementById("crash-hinweis").textContent =
+      "Schließt jede offene Position aller freigeschalteten Bots - jede "
+      + "einzeln und jede zu ihrem eigenen aktuellen Kurs. Gedacht für den "
+      + "Crash-Fall. Drei Bestätigungsschritte nötig, darunter eine "
+      + "Texteingabe. Im Dashboard nicht rückgängig zu machen.";
+  }
 }
 
 // Drei getrennte Ladeschritte, damit die automatische Aktualisierung
@@ -168,6 +253,253 @@ autoAktualisierung(ladeLiveKurse, AKTUALISIERUNG_KURSE_MS,
                      }
                    },
                    "Kurse werden geladen …");
+
+/* ------------------------------------------------------------------------
+   Globaler Crash-Weg - DREI Stufen
+   ------------------------------------------------------------------------
+   Der folgenreichste Ablauf der Anwendung. Die Stufen sind: Übersicht über
+   alle Bots -> Rückfrage mit Gesamtzahl -> Texteingabe "CRASH".
+
+   Die Texteingabe ist hier bewusst zurück, obwohl sie beim Einzel- und beim
+   bot-weiten Weg entfernt wurde. Dort war sie keine Sicherung, sondern nur
+   Zeitverlust. Hier ist sie genau das, was sie sein soll: eine Sekunde, in
+   der man es sich anders überlegen kann, bevor alle neun Bots leer sind.
+   Die eigentliche Absicherung bleibt auch hier serverseitig - Vorgangs-
+   Kennung, Frist, Vorgangsart und derselbe Text, nochmals geprüft. */
+
+const crashDialog = document.getElementById("crashdialog");
+let crashVorgang = null;
+let crashUhr = null;
+let crashLaeuft = false;
+
+function crashFehler(text) {
+  const feld = document.getElementById("crash-fehler");
+  feld.textContent = text || "";
+  feld.hidden = !text;
+}
+
+function crashStufe(nummer) {
+  [1, 2, 3].forEach(n => {
+    document.getElementById("crash-stufe" + n).hidden = n !== nummer;
+  });
+  document.getElementById("crash-stufe").textContent = `Schritt ${nummer} von 3`;
+}
+
+function crashUhrStoppen() {
+  if (crashUhr) { clearInterval(crashUhr); crashUhr = null; }
+}
+
+/* Eine Uhr für alle drei Stufen, ab dem vorbereiten-Aufruf: drei getrennte
+   Countdowns würden in Stufe 3 mehr Zeit vorspiegeln, als der Server gibt. */
+function crashFristStarten(sekunden) {
+  crashUhrStoppen();
+  const ende = Date.now() + sekunden * 1000;
+  const knoepfe = ["crash-weiter", "crash-weiter2", "crash-ausfuehren"];
+  const tick = () => {
+    const rest = Math.max(0, Math.ceil((ende - Date.now()) / 1000));
+    const text = rest === 0
+      ? "Die Bestätigung ist abgelaufen. Bitte von vorn beginnen."
+      : `Gültig noch ${rest} Sekunden.`;
+    ["crash-frist", "crash-frist2", "crash-frist3"].forEach(id => {
+      document.getElementById(id).textContent = text;
+    });
+    if (rest === 0) {
+      crashUhrStoppen();
+      knoepfe.forEach(id => { document.getElementById(id).disabled = true; });
+      document.getElementById("crash-eingabe").disabled = true;
+    }
+  };
+  tick();
+  crashUhr = setInterval(tick, 1000);
+}
+
+/* Nach Bot gruppiert, mit Durchschnitt je Bot. Ausdrücklich KEINE
+   Gesamtsumme über alle Bots: die Summe von Trade-Prozenten ist keine
+   Portfolio-Rendite (Methodik-Grundsatz 2) - und im Crash-Fall wäre eine
+   große, falsche Zahl die irreführendste Anzeige überhaupt. */
+function crashListe(v) {
+  const bloecke = v.bots.map(b => {
+    if (b.lesefehler) {
+      return `<div class="crash-bot"><div class="crash-bot-kopf">${b.anzeigename}`
+        + `<span class="rot"> nicht lesbar</span></div>`
+        + `<div class="gedaempft">${b.lesefehler}</div></div>`;
+    }
+    const zeilen = b.positionen.map(p => {
+      const wert = p.schliessbar_jetzt
+        ? `${zahl(p.entry_preis)} → ${zahl(p.aktueller_preis)} &nbsp; ${prozent(p.pnl_pct)}`
+        : `<span class="gedaempft">wird übersprungen: ${p.grund}</span>`;
+      return `<div><span class="beschriftung">${p.symbol}</span><span>${wert}</span></div>`;
+    }).join("");
+    const schnitt = b.pnl_schnitt_pct === null ? "" :
+      `<div><span class="beschriftung">Ø je Position</span><span>`
+      + `${prozent(b.pnl_schnitt_pct)} <span class="gedaempft">`
+      + `(${prozent(b.pnl_schlechtestes_pct)} … ${prozent(b.pnl_bestes_pct)})`
+      + `</span></span></div>`;
+    const aktien = b.anlageklasse === "aktien"
+      ? `<div class="gedaempft crash-aktienhinweis">Aktien-Bot: der Kurs ist `
+        + `ein Tages-Schlusskurs, außerhalb der US-Handelszeiten der des `
+        + `letzten Handelstags.</div>`
+      : "";
+    return `<div class="crash-bot"><div class="crash-bot-kopf">${b.anzeigename}`
+      + `<span class="gedaempft"> · ${b.anzahl} von ${b.anzahl_gesamt}</span></div>`
+      + `<div class="dialog-zeilen">${zeilen}${schnitt}</div>${aktien}</div>`;
+  });
+  document.getElementById("crash-liste").innerHTML = bloecke.join("");
+}
+
+async function starteCrash() {
+  crashFehler("");
+  crashStufe(1);
+  crashVorgang = null;
+  crashUhrStoppen();
+  document.getElementById("crash-weiter").disabled = true;
+  document.getElementById("crash-weiter2").disabled = false;
+  document.getElementById("crash-ausfuehren").disabled = true;
+  document.getElementById("crash-liste").innerHTML =
+    '<div class="gedaempft">Sammle offene Positionen aller Bots und Kurse …</div>';
+  document.getElementById("crash-warnung").textContent = "";
+  ["crash-frist", "crash-frist2", "crash-frist3"].forEach(id => {
+    document.getElementById(id).textContent = "";
+  });
+  if (!crashDialog.open) crashDialog.showModal();
+
+  try {
+    crashVorgang = await sende("/api/alle-bots-schliessen/vorbereiten", {});
+  } catch (e) {
+    document.getElementById("crash-liste").innerHTML = "";
+    crashFehler(e.message);
+    return;
+  }
+
+  crashListe(crashVorgang);
+  document.getElementById("crash-warnung").textContent =
+    `Das schließt ${crashVorgang.anzahl} Positionen in `
+    + `${crashVorgang.anzahl_bots} Bots direkt in den Live-Datenbanken, jede `
+    + "zu ihrem eigenen angezeigten Kurs. Im Dashboard lässt sich das nicht "
+    + "rückgängig machen.";
+  crashFristStarten(crashVorgang.gueltig_sekunden);
+  document.getElementById("crash-weiter").disabled = false;
+  document.getElementById("crash-abbrechen1").focus();
+}
+
+function crashZuStufe2() {
+  if (!crashVorgang) return;
+  crashStufe(2);
+  document.getElementById("crash-frage").textContent =
+    `Wirklich ALLE ${crashVorgang.anzahl} Positionen über ALLE `
+    + `${crashVorgang.anzahl_bots} Bots schließen?`;
+  document.getElementById("crash-warnung2").textContent =
+    "Danach folgt noch eine Texteingabe. Erst dann wird geschrieben.";
+  document.getElementById("crash-abbrechen2").focus();
+}
+
+function crashZuStufe3() {
+  if (!crashVorgang) return;
+  crashStufe(3);
+  const eingabe = document.getElementById("crash-eingabe");
+  document.getElementById("crash-aufforderung").textContent =
+    `Letzter Schritt: tippe genau ${crashVorgang.crash_text} (Großbuchstaben) `
+    + `ein, um ${crashVorgang.anzahl} Positionen in `
+    + `${crashVorgang.anzahl_bots} Bots zu schließen.`;
+  eingabe.value = "";
+  eingabe.disabled = false;
+  eingabe.placeholder = crashVorgang.crash_text;
+  document.getElementById("crash-ausfuehren").disabled = true;
+  eingabe.focus();
+}
+
+/* Der Knopf wird erst frei, wenn der Text exakt stimmt - inklusive
+   Groß-/Kleinschreibung, genau wie der Server prüft. Bequemlichkeit, keine
+   Sicherung: der Server prüft denselben Text noch einmal. */
+document.getElementById("crash-eingabe").addEventListener("input", (e) => {
+  const stimmt = crashVorgang
+    && e.target.value.trim() === crashVorgang.crash_text;
+  document.getElementById("crash-ausfuehren").disabled = !stimmt || !crashUhr;
+});
+
+async function crashAbbrechen() {
+  crashUhrStoppen();
+  const kennung = crashVorgang ? crashVorgang.vorgang : null;
+  crashVorgang = null;
+  if (crashDialog.open) crashDialog.close();
+  if (kennung) {
+    /* Dieselbe Abbruch-Route wie die anderen beiden Wege - der Vorgang liegt
+       serverseitig im selben Speicher. Aufräumen ist Höflichkeit: der Vorgang
+       verfällt ohnehin nach der Frist. Die Route hängt an einem Bot-Namen;
+       welcher, ist für das Verwerfen gleichgültig. */
+    try {
+      await sende("/api/bots/t3_supertrend/schliessen/abbrechen",
+                  { vorgang: kennung });
+    } catch (e) { /* bewusst ignoriert, siehe oben */ }
+  }
+}
+
+/* Bot-weise gegliedert, und jede der drei Gruppen wird genannt, sobald es
+   sie gibt. Ein Teilausfall über neun Bots, der sich wie ein Erfolg liest,
+   wäre der schlimmste denkbare Ausgang dieser Funktion. */
+function crashErgebnisAnzeigen(r) {
+  const voll = r.anzahl_fehlgeschlagen === 0 && r.bots_fehlgeschlagen.length === 0
+    && r.anzahl_uebersprungen === 0;
+  let html = `<div class="${voll ? "erfolgsmeldung" : "teilmeldung"}">`
+    + `<strong>${voll ? "✅" : "⚠"} ${r.anzahl_geschlossen} von ${r.angefragt} `
+    + `Positionen in ${r.angefragte_bots} Bots geschlossen</strong>`;
+  r.bots.forEach(b => {
+    html += `<div><strong>${b.anzeigename}:</strong> ${b.meldung}</div>`;
+  });
+  if (r.bots_fehlgeschlagen.length) {
+    html += `<div><strong>Komplett übersprungene Bots:</strong> `
+      + r.bots_fehlgeschlagen
+          .map(b => `${b.anzeigename} – ${b.grund} (${b.angefragt} Position(en) `
+                     + `unberührt)`).join("; ") + "</div>";
+  }
+  html += "</div>";
+  document.getElementById("erfolg").innerHTML = html;
+}
+
+async function crashAusfuehren() {
+  if (!crashVorgang || crashLaeuft) return;
+  crashLaeuft = true;
+  document.getElementById("crash-ausfuehren").disabled = true;
+  crashFehler("");
+  try {
+    const ergebnis = await sende("/api/alle-bots-schliessen/ausfuehren",
+      { vorgang: crashVorgang.vorgang,
+        bestaetigung: document.getElementById("crash-eingabe").value.trim() });
+    crashUhrStoppen();
+    crashVorgang = null;
+    crashDialog.close();
+    crashErgebnisAnzeigen(ergebnis);
+    try { await ladeUebersicht(); } catch (e) { /* der Takt holt es nach */ }
+    try { await ladeLiveKurse(); } catch (e) { /* dito */ }
+    try { await ladeVerlauf(); } catch (e) { /* dito */ }
+  } catch (e) {
+    /* Hierher kommt nur, wer gar nichts ausgelöst hat: ungültige,
+       abgelaufene oder artfremde Kennung, oder falscher CRASH-Text. Ein
+       Teilausfall ist serverseitig ein Ergebnis, kein Fehler, und landet im
+       try-Zweig. Der Vorgang ist in jedem Fall verbraucht - zurück auf
+       Anfang. */
+    crashVorgang = null;
+    crashUhrStoppen();
+    document.getElementById("crash-eingabe").disabled = true;
+    crashFehler(e.message);
+  } finally {
+    crashLaeuft = false;
+  }
+}
+
+document.getElementById("crash-knopf").addEventListener("click", () => {
+  document.getElementById("erfolg").innerHTML = "";
+  starteCrash();
+});
+document.getElementById("crash-weiter").addEventListener("click", crashZuStufe2);
+document.getElementById("crash-weiter2").addEventListener("click", crashZuStufe3);
+document.getElementById("crash-ausfuehren").addEventListener("click", crashAusfuehren);
+["crash-abbrechen1", "crash-abbrechen2", "crash-abbrechen3"].forEach(id => {
+  document.getElementById(id).addEventListener("click", crashAbbrechen);
+});
+crashDialog.addEventListener("cancel", (e) => {
+  e.preventDefault(); crashAbbrechen();
+});
 
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/sw.js").catch(() => {});
