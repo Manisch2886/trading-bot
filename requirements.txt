@@ -1,0 +1,61 @@
+# Abhaengigkeiten des Trading-Bot-Projekts
+# ============================================================================
+# Installation (im Projekt-Ordner):
+#     pip3 install -r requirements.txt
+#
+# Diese Datei gab es bisher nicht - die Bot-Skripte kamen mit pandas/numpy
+# aus, und die beiden Beobachtungsebenen fuehren ihre eigenen Listen
+# (notifications/requirements.txt, dashboard/requirements.txt). Angelegt
+# wurde sie mit den Warteauftraegen (PR #69), weil dort zum ersten Mal eine
+# Abhaengigkeit hinzukommt, die NICHT nur eine Anzeige betrifft, sondern
+# darueber entscheidet, ob geschrieben wird oder nicht. Eine solche
+# Abhaengigkeit soll an einer Stelle stehen, die man vor der Inbetriebnahme
+# liest.
+#
+# Die beiden bestehenden Listen bleiben, wo sie sind, und werden hier
+# eingebunden - eine dritte Kopie derselben Pakete waere genau die
+# Doppelfuehrung, die in diesem Projekt schon einmal auseinandergelaufen ist.
+-r notifications/requirements.txt
+-r dashboard/requirements.txt
+
+# ---------------------------------------------------------------------------
+# Boersenkalender - fuer die Warteauftraege der Aktien-Bots
+# ---------------------------------------------------------------------------
+# WOFUER: notifications/boersenkalender.py beantwortet damit die Frage "ist
+# die NYSE gerade offen". Davon haengt ab, ob eine Aktien-Position sofort
+# geschlossen oder als Warteauftrag vorgemerkt wird. Ohne dieses Paket
+# passiert KEINES von beidem (fail closed) - das Dashboard laeuft weiter und
+# lehnt das Schliessen von Aktien-Positionen mit Begruendung ab.
+#
+# WARUM DIESES PAKET:
+#   * Es kennt echte NYSE-Handelstage inklusive beweglicher Feiertage UND
+#     verkuerzter Handelstage - letztere als eigene market_close-Zeit je Tag,
+#     nicht bloss als "Handelstag ja/nein". Genau daran scheitert jede
+#     selbstgebaute Zeitregel.
+#   * Es liefert die Zeiten zeitzonenbehaftet. Die USA stellen an anderen
+#     Terminen auf Sommerzeit um als Europa; eine in deutscher Ortszeit
+#     formulierte Regel liegt zwei- bis dreimal im Jahr wochenlang daneben.
+#   * Es braucht kein Netz, keinen Schluessel und keinen Dienst - reine
+#     Regelauswertung. Eine Kursdaten-API zu fragen "seid ihr offen" waere
+#     eine Netzabhaengigkeit an einer Stelle, an der eine Zeitueberschreitung
+#     bedeutet, dass gar nichts passiert.
+#   * Es ist die verbreitetste Loesung fuer diese Frage im Python-Umfeld und
+#     wird aktiv gepflegt.
+#
+# GEPRUEFTE ALTERNATIVEN:
+#   * exchange_calendars - dieselbe Datengrundlage (pandas_market_calendars
+#     baut selbst darauf auf und wird als Abhaengigkeit mitinstalliert).
+#     Direkt benutzt haette es denselben Nutzen; die Wahl fiel auf das
+#     verbreitetere Paket mit der einfacheren schedule()-Schnittstelle.
+#   * pandas.tseries.holiday.USFederalHolidayCalendar (schon ueber pandas da,
+#     keine neue Abhaengigkeit) - ABGELEHNT: es kennt Bundesfeiertage, nicht
+#     Boersenfeiertage (Karfreitag fehlt, Columbus Day und Veterans Day sind
+#     zu viel) und weiss nichts von verkuerzten Handelstagen.
+#   * Eine eigene Zeitregel - ABGELEHNT, ausfuehrlich begruendet im Kopf von
+#     notifications/boersenkalender.py.
+#
+# VERSION: bewusst nur eine Untergrenze. pip waehlt damit auf Python 3.9 die
+# 4.x-Reihe und auf 3.10+ die aktuelle 5.x - beide haben die hier benutzte
+# Schnittstelle (get_calendar/schedule). Eine feste Version waere auf der
+# einen der beiden Umgebungen nicht installierbar.
+pandas_market_calendars>=4.1

@@ -50,6 +50,24 @@
     <span class="fussnote" id="notfall-hinweis"></span>
   </div>
 
+  <!-- Wartende Auftraege dieses Bots. Steht direkt unter den offenen
+       Positionen, weil beide dieselbe Frage beantworten ("was ist an
+       diesem Bot gerade offen") - und weil ein Warteauftrag hier
+       gelandet ist, statt eine der Zeilen darueber zu schliessen.
+       Erscheint nur, wenn es welche gibt. -->
+  <section id="warteauftraege-bereich" hidden>
+    <h2>Wartende Aufträge</h2>
+    <div class="tabellenrahmen">
+      <table>
+        <thead>
+          <tr><th>Symbol</th><th>Angefordert</th><th>Zustand</th><th>Aktion</th></tr>
+        </thead>
+        <tbody id="warteauftraege-tabelle"></tbody>
+      </table>
+    </div>
+    <p class="fussnote warteauftrag-fussnote" id="warteauftraege-hinweis"></p>
+  </section>
+
   <h2>Verlauf (kumulierte Trade-Ergebnisse)</h2>
   <div class="diagramm"><div id="diagramm"></div></div>
 
@@ -85,16 +103,41 @@
 
     <div id="dialog-fehler" class="dialog-fehler" hidden></div>
 
-    <div class="dialog-zeilen" id="dialog-zusammenfassung"></div>
-    <div class="dialog-warnung" id="dialog-warnung"></div>
-    <p class="dialog-frist" id="dialog-frist"></p>
-    <div class="dialog-knoepfe">
-      <button type="button" class="knopf" id="dialog-abbrechen">Abbrechen</button>
-      <!-- Startet gesperrt: erst wenn der vorbereiten-Aufruf zurück ist,
-           gibt es überhaupt eine Kennung, mit der sich schließen lässt. -->
-      <button type="button" class="knopf gefahr" id="dialog-ja" disabled>
-        Ja, schließen
-      </button>
+    <div id="dialog-hauptstufe">
+      <div class="dialog-zeilen" id="dialog-zusammenfassung"></div>
+      <div class="dialog-warnung" id="dialog-warnung"></div>
+      <p class="dialog-frist" id="dialog-frist"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="dialog-abbrechen">Abbrechen</button>
+        <!-- Startet gesperrt: erst wenn der vorbereiten-Aufruf zurück ist,
+             gibt es überhaupt eine Kennung, mit der sich schließen lässt.
+             Die Beschriftung wechselt, wenn die Börse geschlossen ist -
+             ein Knopf, der "Ja, schließen" sagt und einen Warteauftrag
+             anlegt, wäre die Unwahrheit an der wichtigsten Stelle. -->
+        <button type="button" class="knopf gefahr" id="dialog-ja" disabled>
+          Ja, schließen
+        </button>
+      </div>
+    </div>
+
+    <!-- DER ZUSÄTZLICHE WARNSCHRITT. Er erscheint ausschließlich dann, wenn
+         die Börse geschlossen ist und der Bot ein Aktien-Bot ist. Bei
+         offener Börse und bei jedem Krypto-Bot bleibt es beim einen Tap -
+         dort ändert sich nichts.
+         Eigene Stufe und nicht bloß ein zusätzlicher Absatz oben: was hier
+         bestätigt wird, ist etwas anderes als das, was der Nutzer im ersten
+         Schritt wollte. Er wollte schließen; bestätigen soll er eine
+         Ausführung, die später und ohne erneute Rückfrage passiert. -->
+    <div id="dialog-warteauftrag" hidden>
+      <div class="stufe" id="dialog-wa-stufe">Zusätzlicher Hinweis</div>
+      <div id="dialog-wa-warnung"></div>
+      <p class="dialog-frist" id="dialog-wa-frist"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="dialog-wa-abbrechen">Abbrechen</button>
+        <button type="button" class="knopf warteauftrag" id="dialog-wa-ja">
+          Verstanden – Warteauftrag anlegen
+        </button>
+      </div>
     </div>
   </div>
 </dialog>
@@ -136,6 +179,20 @@
         </button>
       </div>
     </div>
+
+    <!-- Dritte Stufe, NUR bei geschlossener Börse. Sie ersetzt die zweite
+         nicht, sie kommt dahinter: die Tragweite "alle Positionen dieses
+         Bots" bleibt dieselbe, hinzu kommt die zeitversetzte Ausführung. -->
+    <div id="notfall-stufe3" hidden>
+      <div id="notfall-wa-warnung"></div>
+      <p class="dialog-frist" id="notfall-frist3"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="notfall-abbrechen3">Abbrechen</button>
+        <button type="button" class="knopf warteauftrag" id="notfall-wa-ausfuehren">
+          Verstanden – Warteaufträge anlegen
+        </button>
+      </div>
+    </div>
   </div>
 </dialog>
 
@@ -157,14 +214,29 @@ function spaltenzahl() {
   return schliessbarAktiv() ? 6 : 5;
 }
 
+function boerseGeschlossen() {
+  return !!(schliessInfo && schliessInfo.boerse
+            && schliessInfo.boerse.warteauftrag_noetig);
+}
+
 function positionsZeile(p) {
   /* Die Zeilen-ID kommt aus derselben Antwort wie die übrigen Werte der
      Zeile. Über das Symbol zu adressieren wäre mehrdeutig, sobald ein
      Symbol zweimal offen ist - deshalb trägt der Knopf die ID. */
+  /* Die Beschriftung sagt, was tatsächlich passiert. Bei geschlossener Börse
+     ist das eben NICHT "schließen", sondern "vormerken" - ein Knopf, der das
+     eine sagt und das andere tut, wäre genau an der Stelle unehrlich, an der
+     es darauf ankommt. Steht schon ein Auftrag, gibt es gar keinen Knopf
+     mehr: ein zweiter für dieselbe Zeile würde serverseitig ohnehin
+     abgelehnt. */
+  const wartet = p.warteauftrag_offen === true;
+  const beschriftung = boerseGeschlossen() ? "Vormerken" : "Schließen";
   const knopf = p.id === null || p.id === undefined
     ? '<span class="gedaempft">–</span>'
-    : `<button type="button" class="knopf gefahr schliessen-knopf"
-               data-id="${p.id}" data-symbol="${p.symbol}">Schließen</button>`;
+    : (wartet
+        ? '<span class="gedaempft">Warteauftrag steht</span>'
+        : `<button type="button" class="knopf gefahr schliessen-knopf"
+               data-id="${p.id}" data-symbol="${p.symbol}">${beschriftung}</button>`);
   return `<tr>
     <td data-spalte="Symbol">${p.symbol}</td>
     <td data-spalte="Entry">${zahl(p.entry_preis)}</td>
@@ -203,12 +275,17 @@ function zeichnePositionen() {
 
   const fussnote = document.getElementById("schliessen-fussnote");
   if (schliessbarAktiv()) {
-    fussnote.textContent =
+    const grundtext =
       "Der Schließen-Knopf trägt den Ausstieg direkt in die Live-Datenbank "
       + "dieses Bots ein (Vermerk manual_close), zum zuletzt angezeigten Kurs. "
       + "Es erscheint vorher eine Zusammenfassung; ein Tap darauf schreibt, "
-      + "und im Dashboard lässt es sich nicht rückgängig machen. "
-      + "Freigeschaltet ist bisher nur dieser eine Bot.";
+      + "und im Dashboard lässt es sich nicht rückgängig machen.";
+    /* Der Zusatz kommt aus app.js und ist derselbe Text, den auch die
+       Übersichtsseite benutzt. innerHTML statt textContent, weil er
+       Hervorhebungen enthält. */
+    const zusatz = warteauftragHinweisKurz(schliessInfo.boerse);
+    fussnote.innerHTML = zusatz ? `${grundtext} <strong>${zusatz}</strong>`
+                                 : grundtext;
     fussnote.hidden = false;
   } else {
     fussnote.hidden = true;
@@ -270,6 +347,12 @@ const dialog = document.getElementById("schliessdialog");
 let vorgang = null;        // Antwort von /vorbereiten
 let fristUhr = null;       // Intervall für den Countdown
 let laeuft = false;        // verhindert Doppelklicks auf "Ja, schließen"
+/* Wurde der zusätzliche Warnschritt bestätigt? Nur dann geht die Anfrage
+   mit dem Bestätigungsfeld raus - und nur dann legt der Server einen
+   Warteauftrag an. Der Wert wird bei jedem Öffnen des Dialogs
+   zurückgesetzt; eine Bestätigung darf nicht auf die nächste Position
+   durchschlagen. */
+let warteauftragBestaetigt = false;
 
 function dialogFehler(text) {
   const feld = document.getElementById("dialog-fehler");
@@ -306,24 +389,42 @@ function fristStarten(sekunden) {
   fristStoppen();
   const ende = Date.now() + sekunden * 1000;
   const anzeige = document.getElementById("dialog-frist");
+  const anzeigeWa = document.getElementById("dialog-wa-frist");
   const knopf = document.getElementById("dialog-ja");
+  const knopfWa = document.getElementById("dialog-wa-ja");
   const tick = () => {
     const rest = Math.max(0, Math.ceil((ende - Date.now()) / 1000));
     if (rest === 0) {
       fristStoppen();
-      anzeige.textContent = "Die Bestätigung ist abgelaufen. Bitte von vorn beginnen.";
+      /* EINE Uhr für beide Stufen: die Frist läuft ab dem vorbereiten-Aufruf,
+         nicht ab dem Stufenwechsel. Ein eigener Countdown für den
+         Warnschritt würde dort mehr Zeit vorspiegeln, als der Server gibt. */
+      const text = "Die Bestätigung ist abgelaufen. Bitte von vorn beginnen.";
+      anzeige.textContent = text;
+      anzeigeWa.textContent = text;
       knopf.disabled = true;
+      knopfWa.disabled = true;
       return;
     }
     anzeige.textContent = `Gültig noch ${rest} Sekunden.`;
+    anzeigeWa.textContent = `Gültig noch ${rest} Sekunden.`;
   };
   tick();
   fristUhr = setInterval(tick, 1000);
 }
 
+function dialogStufe(warteauftrag) {
+  document.getElementById("dialog-hauptstufe").hidden = warteauftrag;
+  document.getElementById("dialog-warteauftrag").hidden = !warteauftrag;
+}
+
 async function starteSchliessen(tradeId) {
   dialogFehler("");
   vorgang = null;
+  warteauftragBestaetigt = false;
+  dialogStufe(false);
+  document.getElementById("dialog-titel").textContent = "Position schließen?";
+  document.getElementById("dialog-ja").textContent = "Ja, schließen";
   fristStoppen();
   // Zuruecksetzen, falls der vorherige Versuch an dieser Stelle abbrach -
   // sonst bliebe der Knopf fuer die naechste Position gesperrt.
@@ -347,10 +448,22 @@ async function starteSchliessen(tradeId) {
 
   zeilen("dialog-zusammenfassung", zusammenfassungPaare(vorgang));
   /* Der Warntext steht hier und nicht im Backend - wie jede andere
-     Beschriftung des Dashboards. */
-  document.getElementById("dialog-warnung").textContent =
-    "Ein Tap schreibt den Ausstieg direkt in die Live-Datenbank des Bots. "
-    + "Im Dashboard lässt sich das nicht rückgängig machen.";
+     Beschriftung des Dashboards. Bei geschlossener Börse sagt er etwas
+     anderes, weil etwas anderes passiert: es wird nicht geschrieben,
+     sondern vorgemerkt. */
+  if (vorgang.warteauftrag) {
+    document.getElementById("dialog-titel").textContent =
+      "Position vormerken?";
+    document.getElementById("dialog-warnung").textContent =
+      "Die Börse ist geschlossen. Dieser Vorgang schreibt deshalb NICHTS in "
+      + "die Datenbank - er legt einen Warteauftrag an. Der nächste Schritt "
+      + "erklärt, was das bedeutet.";
+    document.getElementById("dialog-ja").textContent = "Weiter";
+  } else {
+    document.getElementById("dialog-warnung").textContent =
+      "Ein Tap schreibt den Ausstieg direkt in die Live-Datenbank des Bots. "
+      + "Im Dashboard lässt sich das nicht rückgängig machen.";
+  }
   fristStarten(vorgang.gueltig_sekunden);
   /* Erst jetzt freigeben - vorher gibt es keine Kennung. Der Fokus bleibt
      bewusst auf "Abbrechen": der Dialog soll nicht mit einem versehentlich
@@ -363,6 +476,9 @@ async function abbrechen() {
   fristStoppen();
   const kennung = vorgang ? vorgang.vorgang : null;
   vorgang = null;
+  warteauftragBestaetigt = false;
+  document.getElementById("dialog-ja").disabled = true;
+  document.getElementById("dialog-wa-ja").disabled = false;
   if (dialog.open) dialog.close();
   if (kennung) {
     /* Aufräumen ist Höflichkeit, keine Bedingung: der Vorgang verfällt
@@ -377,21 +493,40 @@ async function abbrechen() {
 
 async function ausfuehren() {
   if (!vorgang || laeuft) return;
+
+  /* DER ZUSÄTZLICHE WARNSCHRITT. Beim ersten Tap wird hier NICHTS an den
+     Server geschickt - es wird nur die Warnung gezeigt. Erst der Knopf
+     darunter ruft diese Funktion erneut auf, dann mit gesetzter
+     Bestätigung. Der Server prüft sie unabhängig davon noch einmal; dieser
+     Zweig ist die Erklärung, nicht die Absicherung. */
+  if (vorgang.warteauftrag && !warteauftragBestaetigt) {
+    document.getElementById("dialog-wa-warnung").innerHTML =
+      warteauftragWarnung(vorgang.boerse, `${vorgang.symbol}`);
+    dialogStufe(true);
+    document.getElementById("dialog-wa-abbrechen").focus();
+    return;
+  }
+
   laeuft = true;
   document.getElementById("dialog-ja").disabled = true;
+  document.getElementById("dialog-wa-ja").disabled = true;
   dialogFehler("");
   try {
+    const koerper = { vorgang: vorgang.vorgang };
+    if (vorgang.warteauftrag) koerper[WARTEAUFTRAG_FELD] = true;
     const ergebnis = await sende(
-      `/api/bots/${encodeURIComponent(name)}/schliessen/ausfuehren`,
-      { vorgang: vorgang.vorgang });
+      `/api/bots/${encodeURIComponent(name)}/schliessen/ausfuehren`, koerper);
     fristStoppen();
     vorgang = null;
     dialog.close();
     document.getElementById("erfolg").innerHTML =
-      `<div class="erfolgsmeldung">✅ ${ergebnis.meldung}</div>`;
+      `<div class="${ergebnis.warteauftrag ? "warteauftrag-meldung" : "erfolgsmeldung"}">`
+      + `${ergebnis.warteauftrag ? "🕒" : "✅"} ${ergebnis.meldung}</div>`;
     /* Sofort neu laden, damit die geschlossene Position nicht bis zum
        nächsten Takt weiter als offen dasteht. */
     try { await ladeDetail(); } catch (e) { /* der Takt holt es nach */ }
+    try { await ladeSchliessInfo(); } catch (e) { /* dito */ }
+    try { await ladeWarteauftraege(); } catch (e) { /* dito */ }
     try { await ladeMitKursen(); } catch (e) { /* dito */ }
     try { await ladeVerlauf(); } catch (e) { /* dito */ }
   } catch (e) {
@@ -399,8 +534,11 @@ async function ausfuehren() {
        der Versuch scheiterte. Deshalb hier keinen zweiten Tap anbieten,
        sondern zurück auf Anfang: der Knopf bleibt gesperrt. */
     vorgang = null;
+    warteauftragBestaetigt = false;
     fristStoppen();
     document.getElementById("dialog-frist").textContent = "";
+    document.getElementById("dialog-wa-frist").textContent = "";
+    dialogStufe(false);
     dialogFehler(e.message);
   } finally {
     laeuft = false;
@@ -409,6 +547,14 @@ async function ausfuehren() {
 
 document.getElementById("dialog-ja").addEventListener("click", ausfuehren);
 document.getElementById("dialog-abbrechen").addEventListener("click", abbrechen);
+/* Der Knopf des Warnschritts ruft dieselbe Funktion - mit gesetzter
+   Bestätigung. Eine eigene Sende-Stelle wäre eine zweite Stelle, an der
+   der schreibende bzw. vormerkende Aufruf steht. */
+document.getElementById("dialog-wa-ja").addEventListener("click", () => {
+  warteauftragBestaetigt = true;
+  ausfuehren();
+});
+document.getElementById("dialog-wa-abbrechen").addEventListener("click", abbrechen);
 
 /* Esc-Taste und Klick auf den Hintergrund schließen den Dialog am
    Abbrechen-Knopf vorbei - der Vorgang muss trotzdem verworfen werden. */
@@ -440,6 +586,7 @@ const notfallDialog = document.getElementById("notfalldialog");
 let notfallVorgang = null;
 let notfallUhr = null;
 let notfallLaeuft = false;
+let notfallWaBestaetigt = false;
 
 function notfallFehler(text) {
   const feld = document.getElementById("notfall-fehler");
@@ -447,10 +594,20 @@ function notfallFehler(text) {
   feld.hidden = !text;
 }
 
+/* Zwei Stufen bei offener Börse, drei bei geschlossener. Die Zahl steht
+   nicht fest im Text, sondern folgt der tatsächlichen Anzahl - "Schritt 2
+   von 2" gefolgt von einem dritten Schritt wäre genau die Art von
+   Kleinigkeit, die Vertrauen kostet. */
+function notfallStufenZahl() {
+  return (notfallVorgang && notfallVorgang.warteauftrag) ? 3 : 2;
+}
+
 function notfallStufe(nummer) {
-  document.getElementById("notfall-stufe1").hidden = nummer !== 1;
-  document.getElementById("notfall-stufe2").hidden = nummer !== 2;
-  document.getElementById("notfall-stufe").textContent = `Schritt ${nummer} von 2`;
+  [1, 2, 3].forEach((n) => {
+    document.getElementById("notfall-stufe" + n).hidden = n !== nummer;
+  });
+  document.getElementById("notfall-stufe").textContent =
+    `Schritt ${nummer} von ${notfallStufenZahl()}`;
 }
 
 function notfallUhrStoppen() {
@@ -470,10 +627,12 @@ function notfallFristStarten(sekunden) {
       : `Gültig noch ${rest} Sekunden.`;
     document.getElementById("notfall-frist").textContent = text;
     document.getElementById("notfall-frist2").textContent = text;
+    document.getElementById("notfall-frist3").textContent = text;
     if (rest === 0) {
       notfallUhrStoppen();
       document.getElementById("notfall-weiter").disabled = true;
       document.getElementById("notfall-ausfuehren").disabled = true;
+      document.getElementById("notfall-wa-ausfuehren").disabled = true;
     }
   };
   tick();
@@ -515,11 +674,13 @@ function notfallZeilen(v) {
 
 async function starteNotfall() {
   notfallFehler("");
-  notfallStufe(1);
   notfallVorgang = null;
+  notfallWaBestaetigt = false;
+  notfallStufe(1);
   notfallUhrStoppen();
   document.getElementById("notfall-weiter").disabled = true;
   document.getElementById("notfall-ausfuehren").disabled = false;
+  document.getElementById("notfall-wa-ausfuehren").disabled = false;
   document.getElementById("notfall-liste").innerHTML =
     '<div class="gedaempft">Hole offene Positionen und Kurse …</div>';
   document.getElementById("notfall-warnung").textContent = "";
@@ -537,10 +698,18 @@ async function starteNotfall() {
   }
 
   notfallZeilen(notfallVorgang);
+  document.getElementById("notfall-titel").textContent =
+    notfallVorgang.warteauftrag ? "Alle Positionen vormerken?"
+                                 : "Alle Positionen schließen?";
   document.getElementById("notfall-warnung").textContent =
-    `Das schließt ${notfallVorgang.anzahl} Positionen direkt in der `
-    + "Live-Datenbank des Bots, jede zu ihrem eigenen angezeigten Kurs. "
-    + "Im Dashboard lässt sich das nicht rückgängig machen.";
+    notfallVorgang.warteauftrag
+      ? (`Die Börse ist geschlossen. Es wird deshalb NICHTS geschrieben - `
+          + `${notfallVorgang.anzahl} Positionen werden vorgemerkt. Was das `
+          + `bedeutet, steht im letzten Schritt.`)
+      : (`Das schließt ${notfallVorgang.anzahl} Positionen direkt in der `
+          + "Live-Datenbank des Bots, jede zu ihrem eigenen angezeigten Kurs. "
+          + "Im Dashboard lässt sich das nicht rückgängig machen.");
+  notfallStufe(1);
   notfallFristStarten(notfallVorgang.gueltig_sekunden);
   document.getElementById("notfall-weiter").disabled = false;
   document.getElementById("notfall-abbrechen1").focus();
@@ -550,9 +719,13 @@ function notfallZurZweitenStufe() {
   if (!notfallVorgang) return;
   notfallStufe(2);
   document.getElementById("notfall-frage").textContent =
-    `Wirklich ALLE ${notfallVorgang.anzahl} Positionen schließen?`;
+    notfallVorgang.warteauftrag
+      ? `Wirklich ALLE ${notfallVorgang.anzahl} Positionen vormerken?`
+      : `Wirklich ALLE ${notfallVorgang.anzahl} Positionen schließen?`;
   document.getElementById("notfall-warnung2").textContent =
-    "Letzte Rückfrage. Der nächste Klick schreibt.";
+    notfallVorgang.warteauftrag
+      ? "Es folgt noch ein Hinweis zur zeitversetzten Ausführung."
+      : "Letzte Rückfrage. Der nächste Klick schreibt.";
   /* Fokus auf Abbrechen, nicht auf dem Schreibknopf: sonst läge nach dem
      ersten Klick der Fokus auf dem zweiten, und ein doppelter Klick oder ein
      Enter hätte die zweite Stufe gleich mit erledigt - dann wären es faktisch
@@ -564,6 +737,7 @@ async function notfallAbbrechen() {
   notfallUhrStoppen();
   const kennung = notfallVorgang ? notfallVorgang.vorgang : null;
   notfallVorgang = null;
+  notfallWaBestaetigt = false;
   if (notfallDialog.open) notfallDialog.close();
   if (kennung) {
     /* Dieselbe Abbruch-Route wie beim Einzelweg - der Vorgang liegt auf dem
@@ -576,10 +750,45 @@ async function notfallAbbrechen() {
   }
 }
 
+/* Eigene Anzeige für den vorgemerkten Ausgang. Bewusst NICHT die grüne
+   Erfolgsmeldung des Schließens: hier ist nichts geschlossen worden, die
+   Positionen sind alle noch offen. Eine Anzeige, die sich anfühlt wie
+   "erledigt", wäre bei einer Aktion, die erst morgen wirkt, die
+   gefährlichste Rückmeldung überhaupt. */
+function vormerkErgebnisAnzeigen(r) {
+  const voll = r.anzahl_fehlgeschlagen === 0 && r.anzahl_uebersprungen === 0
+    && r.nicht_bestaetigt.length === 0;
+  let html = `<div class="warteauftrag-meldung">`
+    + `<strong>🕒 ${r.anzahl_vorgemerkt} von ${r.angefragt} Positionen `
+    + `vorgemerkt – nichts geschlossen</strong>`;
+  if (r.anzahl_vorgemerkt) {
+    html += `<div>Vorgemerkt: ${r.vorgemerkt.map((v) => v.symbol).join(", ")}. `
+      + `Ausgeführt wird automatisch bei der nächsten Börsenöffnung, `
+      + `<strong>ohne erneute Rückfrage</strong>.</div>`;
+  }
+  if (r.anzahl_fehlgeschlagen) {
+    html += `<div><strong>Nicht vorgemerkt:</strong> `
+      + r.fehlgeschlagen.map((f) => `${f.symbol} – ${f.grund}`).join("; ")
+      + `</div>`;
+  }
+  if (r.anzahl_uebersprungen) {
+    html += `<div>Übersprungen (der Bot hatte sie selbst geschlossen): `
+      + r.uebersprungen.map((u) => u.symbol).join(", ") + `</div>`;
+  }
+  if (r.nicht_bestaetigt.length) {
+    html += `<div>Nach der Übersicht eröffnet und deshalb NICHT vorgemerkt: `
+      + `${r.nicht_bestaetigt.length} Position(en).</div>`;
+  }
+  if (!voll) html += `<div>Siehe die Liste der wartenden Aufträge.</div>`;
+  html += "</div>";
+  document.getElementById("erfolg").innerHTML = html;
+}
+
 /* Die Ergebnisanzeige nennt IMMER alle drei Gruppen, sobald es sie gibt -
    auch bei vollem Erfolg. Ein Teilausfall, der sich wie ein Erfolg liest,
    wäre hier der schlimmste denkbare Ausgang. */
 function notfallErgebnisAnzeigen(r) {
+  if (r.warteauftrag) { vormerkErgebnisAnzeigen(r); return; }
   const voll = r.anzahl_fehlgeschlagen === 0 && r.anzahl_uebersprungen === 0
     && r.nicht_bestaetigt.length === 0;
   const zeile = (s) => `<div>${s}</div>`;
@@ -628,13 +837,28 @@ function notfallErgebnisAnzeigen(r) {
 
 async function notfallAusfuehren() {
   if (!notfallVorgang || notfallLaeuft) return;
+
+  /* Der zusätzliche Warnschritt - dieselbe Mechanik wie im Einzelweg:
+     beim ersten Klick geht NICHTS an den Server. */
+  if (notfallVorgang.warteauftrag && !notfallWaBestaetigt) {
+    document.getElementById("notfall-wa-warnung").innerHTML =
+      warteauftragWarnung(notfallVorgang.boerse,
+                          `${notfallVorgang.anzahl} Positionen dieses Bots`);
+    notfallStufe(3);
+    document.getElementById("notfall-abbrechen3").focus();
+    return;
+  }
+
   notfallLaeuft = true;
   document.getElementById("notfall-ausfuehren").disabled = true;
+  document.getElementById("notfall-wa-ausfuehren").disabled = true;
   notfallFehler("");
   try {
+    const koerper = { vorgang: notfallVorgang.vorgang };
+    if (notfallVorgang.warteauftrag) koerper[WARTEAUFTRAG_FELD] = true;
     const ergebnis = await sende(
       `/api/bots/${encodeURIComponent(name)}/alle-schliessen/ausfuehren`,
-      { vorgang: notfallVorgang.vorgang });
+      koerper);
     notfallUhrStoppen();
     notfallVorgang = null;
     notfallDialog.close();
@@ -642,6 +866,8 @@ async function notfallAusfuehren() {
     /* Sofort neu laden, damit die geschlossenen Positionen nicht bis zum
        nächsten Takt weiter als offen dastehen. */
     try { await ladeDetail(); } catch (e) { /* der Takt holt es nach */ }
+    try { await ladeSchliessInfo(); } catch (e) { /* dito */ }
+    try { await ladeWarteauftraege(); } catch (e) { /* dito */ }
     try { await ladeMitKursen(); } catch (e) { /* dito */ }
     try { await ladeVerlauf(); } catch (e) { /* dito */ }
   } catch (e) {
@@ -650,6 +876,7 @@ async function notfallAusfuehren() {
        sondern ein Ergebnis, und landet im try-Zweig oben. Der Vorgang ist in
        jedem Fall verbraucht, also zurück auf Anfang. */
     notfallVorgang = null;
+    notfallWaBestaetigt = false;
     notfallUhrStoppen();
     notfallFehler(e.message);
   } finally {
@@ -669,6 +896,13 @@ document.getElementById("notfall-abbrechen1")
   .addEventListener("click", notfallAbbrechen);
 document.getElementById("notfall-abbrechen2")
   .addEventListener("click", notfallAbbrechen);
+document.getElementById("notfall-abbrechen3")
+  .addEventListener("click", notfallAbbrechen);
+/* Dritte Stufe: derselbe Aufruf, nur mit gesetzter Bestätigung. */
+document.getElementById("notfall-wa-ausfuehren").addEventListener("click", () => {
+  notfallWaBestaetigt = true;
+  notfallAusfuehren();
+});
 notfallDialog.addEventListener("cancel", (e) => {
   e.preventDefault(); notfallAbbrechen();
 });
@@ -704,6 +938,43 @@ async function ladeSchliessInfo() {
   zeichnePositionen();
 }
 
+/* Die wartenden Aufträge dieses Bots. Eigene, kleine Abfrage ohne
+   Netzzugriff auf der Serverseite - sie liest die Auftragsdatei und die
+   Bot-Datenbank. */
+async function ladeWarteauftraege() {
+  const daten = await hole(
+    `/api/warteauftraege?bot=${encodeURIComponent(name)}`);
+  zeichneWarteauftraege(daten, false);
+}
+
+/* Der Datentakt lädt alle drei zusammen: Positionen, Freischaltung samt
+   Börsenlage und die wartenden Aufträge. Die Börsenlage MUSS mitlaufen -
+   eine Seite, die um 15:25 Uhr geöffnet wurde, würde sonst um 16:00 Uhr
+   immer noch "Börse geschlossen" behaupten und beim Tippen einen
+   Warteauftrag anlegen, den niemand mehr will. Jede der drei Abfragen
+   scheitert für sich; eine leere Auftragsliste darf die Positionstabelle
+   nicht mitreißen. */
+async function ladeSeitendaten() {
+  await ladeDetail();
+  try { await ladeSchliessInfo(); } catch (e) { /* Anzeige bleibt lesend */ }
+  try { await ladeWarteauftraege(); } catch (e) { /* Liste bleibt stehen */ }
+}
+
+/* Stornieren: ein Klick, keine Rückfrage - es verhindert eine Ausführung,
+   statt eine auszulösen (Begründung in notifications/warteauftraege.py). */
+document.getElementById("warteauftraege-tabelle")
+  .addEventListener("click", async (e) => {
+    const knopf = e.target.closest(".stornieren-knopf");
+    if (!knopf) return;
+    knopf.disabled = true;
+    try {
+      await storniereWarteauftrag(knopf.dataset.id, ladeSeitendaten);
+    } catch (fehler) {
+      knopf.disabled = false;
+      zeigeFehler("Stornieren fehlgeschlagen: " + fehler.message);
+    }
+  });
+
 async function erstesLaden() {
   if (!name) {
     zeigeFehler("Kein Bot angegeben.");
@@ -724,6 +995,11 @@ async function erstesLaden() {
     schliessInfo = null;
   }
   try {
+    await ladeWarteauftraege();
+  } catch (e) {
+    /* Auch hier: lieber keine Liste als eine unvollständige. */
+  }
+  try {
     await ladeVerlauf();
   } catch (e) {
     document.getElementById("diagramm").innerHTML =
@@ -741,7 +1017,7 @@ erstesLaden();
 // Dieselben zwei Takte wie auf der Uebersichtsseite. Der Verlauf bleibt
 // auch hier ungetaktet - er aendert sich erst, wenn ein Trade schliesst.
 if (name) {
-  autoAktualisierung(ladeDetail, AKTUALISIERUNG_DATEN_MS,
+  autoAktualisierung(ladeSeitendaten, AKTUALISIERUNG_DATEN_MS,
                      (zustand, fehler) => markiereAktualisierung("titel", zustand, fehler),
                      "Aktualisiere …");
   autoAktualisierung(ladeMitKursen, AKTUALISIERUNG_KURSE_MS,

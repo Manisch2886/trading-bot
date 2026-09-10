@@ -36,10 +36,21 @@ Siehe dashboard/schliessen.py. Alles andere ist unveraendert lesend:
 kein Parameter laesst sich aendern, keine Position eroeffnen, kein
 Bot-Lauf anstossen.
 
+WARTEAUFTRAEGE (neu): ist die Boerse geschlossen und der Bot ein
+Aktien-Bot, schreibt derselbe Aufruf NICHT in die Datenbank, sondern
+merkt den Ausstieg vor - nach einem zusaetzlichen, serverseitig
+geprueften Bestaetigungsschritt. Ausgefuehrt wird er spaeter vom
+eigenstaendigen Skript dashboard/warteauftraege_ausfuehren.py, nicht von
+dieser Anwendung. Welcher der beiden Ausgaenge gilt, entscheidet der
+SERVER anhand des Boersenkalenders; der Browser bestaetigt ihn nur.
+Krypto-Bots sind davon nicht betroffen.
+
 Nicht-GET-Routen insgesamt: POST /login (schreibt nur ein Cookie), die
 drei Routen des Einzel-Schliessvorgangs, die zwei des bot-weiten
-Notfallwegs und die zwei des globalen Crash-Wegs. In eine Datenbank
-schreiben genau drei davon:
+Notfallwegs, die zwei des globalen Crash-Wegs und
+POST /api/warteauftraege/stornieren (entfernt einen wartenden Auftrag -
+fasst keine Bot-Datenbank an). In eine Datenbank schreiben weiterhin
+genau drei davon:
 POST /api/bots/{name}/schliessen/ausfuehren,
 POST /api/bots/{name}/alle-schliessen/ausfuehren und
 POST /api/alle-bots-schliessen/ausfuehren.
@@ -447,7 +458,8 @@ def erzeuge_app(token: str = None) -> FastAPI:
         try:
             return await asyncio.to_thread(
                 schliessen.ausfuehren, name, daten.get("vorgang"),
-                _wer(request))
+                _wer(request),
+                daten.get(schliessen.WARTEAUFTRAG_BESTAETIGUNG))
         except schliessen.SchliessenNichtMoeglich as fehler:
             # 409 (Konflikt) und nicht 400: die Anfrage war formal in
             # Ordnung, der Zustand hat nur nicht gepasst - abgelaufene
@@ -506,7 +518,8 @@ def erzeuge_app(token: str = None) -> FastAPI:
         try:
             return await asyncio.to_thread(
                 schliessen.alle_ausfuehren, name, daten.get("vorgang"),
-                _wer(request))
+                _wer(request),
+                daten.get(schliessen.WARTEAUFTRAG_BESTAETIGUNG))
         except schliessen.SchliessenNichtMoeglich as fehler:
             # Nur noch die Faelle, in denen GAR NICHTS versucht wurde:
             # ungueltige, abgelaufene, fremde oder artfremde Kennung.
@@ -552,7 +565,8 @@ def erzeuge_app(token: str = None) -> FastAPI:
         try:
             return await asyncio.to_thread(
                 schliessen.global_ausfuehren, daten.get("vorgang"),
-                daten.get("bestaetigung"), _wer(request))
+                daten.get("bestaetigung"), _wer(request),
+                daten.get(schliessen.WARTEAUFTRAG_BESTAETIGUNG))
         except schliessen.SchliessenNichtMoeglich as fehler:
             # Nur die Faelle, in denen GAR NICHTS versucht wurde: ungueltige,
             # abgelaufene oder artfremde Kennung, oder falscher CRASH-Text.
@@ -564,6 +578,44 @@ def erzeuge_app(token: str = None) -> FastAPI:
                 detail=("Unerwarteter Fehler - siehe Log. Welche Positionen "
                          "geschlossen wurden, bitte im Protokoll pruefen "
                          "(quelle=dashboard-crash)."))
+
+    # -- Warteauftraege: anzeigen und stornieren --------------------------
+    # Die EINZIGE Nicht-GET-Route dieses Bereichs (stornieren) fasst KEINE
+    # Bot-Datenbank an - sie entfernt einen Eintrag aus der Auftragsdatei.
+    # Deshalb steht sie hier und nicht bei den Schliess-Routen: sie gehoert
+    # zur risikosenkenden Richtung.
+    #
+    # EIN Endpunkt fuer die Liste, nicht einer je Bot: die Uebersichtsseite
+    # zeigt alle, die Bot-Seite filtert mit ?bot=... - dieselben Daten aus
+    # derselben Quelle. Zwei Endpunkte waeren zwei Gelegenheiten, die Liste
+    # unterschiedlich zusammenzustellen.
+
+    @app.get("/api/warteauftraege")
+    async def warteauftraege_liste(bot: str = None):
+        """Rein lesend. Liefert die wartenden Auftraege samt der Frage, ob
+        die jeweilige Position ueberhaupt noch offen ist."""
+        if bot is not None and not schliessen.ist_freigeschaltet(bot):
+            raise HTTPException(status_code=404, detail=f"Unbekannter Bot: {bot}")
+        try:
+            return await asyncio.to_thread(schliessen.warteauftrag_liste, bot)
+        except schliessen.WarteauftragNichtMoeglich as fehler:
+            # Eine unlesbare Auftragsdatei ist ein Zustand, kein Absturz -
+            # die Seite soll ihn anzeigen koennen.
+            raise HTTPException(status_code=409, detail=str(fehler))
+
+    @app.post("/api/warteauftraege/stornieren")
+    async def warteauftrag_stornieren(request: Request):
+        """Nimmt einen wartenden Auftrag zurueck. KEINE zweite Bestaetigung -
+        das Stornieren VERHINDERT einen kuenftigen Schreibzugriff, es loest
+        keinen aus (Begruendung ausfuehrlich in
+        notifications/warteauftraege.py)."""
+        daten = await _koerper(request)
+        try:
+            return await asyncio.to_thread(
+                schliessen.warteauftrag_stornieren, daten.get("id"),
+                _wer(request))
+        except schliessen.WarteauftragNichtMoeglich as fehler:
+            raise HTTPException(status_code=409, detail=str(fehler))
 
     # Statische Dateien zuletzt einhaengen, damit die expliziten Routen
     # oben Vorrang haben. Der Zugriffsschutz greift auch hier, weil die

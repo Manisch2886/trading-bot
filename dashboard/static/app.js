@@ -446,3 +446,127 @@ function zeichneLadeanzeige() {
   // Element ablesbar und die Animation laeuft nicht unsichtbar weiter.
   feld.hidden = laufendeAufgaben.size === 0;
 }
+
+/* --- Boerse geschlossen: Warnschritt und wartende Auftraege ----------------
+   Alles in diesem Abschnitt wird von BEIDEN Seiten benutzt (bot.html und
+   index.html) und steht deshalb hier - genau wie GEWICHTUNG_ERLAEUTERUNG
+   weiter oben. Der Warntext ist der Kern der neuen Funktion; zwei Fassungen
+   davon wären die Doppelführung, bei der irgendwann nur noch eine Seite
+   sagt, worauf sich der Nutzer einlässt.
+
+   Was der Server liefert, sind FAKTEN (offen ja/nein, letzter Handelstag,
+   nächste Öffnung als ISO-Zeitpunkt mit Offset). Der Satz daraus entsteht
+   hier - so wie jede andere Beschriftung des Dashboards auch, und so
+   stehen die Zeitpunkte in der Zeitzone des Geräts statt in UTC. */
+
+/* Das Feld, mit dem der zusätzliche Warnschritt bestätigt wird. Es heißt
+   auf beiden Seiten gleich und wird serverseitig geprüft (siehe
+   dashboard/schliessen.py, WARTEAUFTRAG_BESTAETIGUNG). */
+const WARTEAUFTRAG_FELD = "warteauftrag_bestaetigt";
+
+function datum(iso) {
+  if (!iso) return "–";
+  const d = zeitpunkt(iso);
+  if (!d) return String(iso);
+  return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit",
+                                          year: "numeric" });
+}
+
+/* Der Satz, um den es geht. Er nennt drei Dinge, und alle drei sind nötig:
+   dass NICHT sofort geschlossen wird, wann stattdessen geschlossen wird,
+   und dass dabei niemand mehr gefragt wird. Der dritte Punkt ist der neue
+   und der unangenehmste - er steht deshalb nicht im Kleingedruckten. */
+function warteauftragWarnung(boerse, anzahlText) {
+  const b = boerse || {};
+  const stand = b.letzter_handelstag
+    ? `letzter Handelstag: ${datum(b.letzter_handelstag)}`
+    : "letzter Handelstag unbekannt";
+  const oeffnung = b.naechste_oeffnung
+    ? `voraussichtlich am ${zeit(b.naechste_oeffnung)}`
+    : "sobald sie wieder öffnet";
+  return `<div class="warteauftrag-warnung">
+      <strong>Die Börse ist aktuell geschlossen (${stand}).</strong>
+      <div>${anzahlText} wird <strong>NICHT sofort geschlossen</strong>,
+        sondern automatisch zum nächstmöglichen echten Kurs, sobald die
+        Börse wieder öffnet – ${oeffnung}.</div>
+      <div class="warteauftrag-tragweite">Das heißt: die Ausführung passiert
+        <strong>später und ohne erneute Rückfrage</strong>. Zu welchem Kurs,
+        steht jetzt noch nicht fest – der Markt bewegt sich bis dahin. Bis
+        zur Ausführung lässt sich der Auftrag in der Liste „Wartende
+        Aufträge“ stornieren.</div>
+    </div>`;
+}
+
+/* Kurzform für die Fußnote unter der Positionstabelle bzw. den Crash-Bereich -
+   dieselbe Aussage in einem Satz, ohne den Dialog nachzubauen. */
+function warteauftragHinweisKurz(boerse) {
+  const b = boerse || {};
+  if (b.unbekannt) {
+    return "Der Börsenkalender gibt gerade keine Auskunft – Aktien-Positionen "
+      + "lassen sich deshalb weder sofort schließen noch vormerken.";
+  }
+  if (!b.warteauftrag_noetig) return "";
+  const oeffnung = b.naechste_oeffnung ? ` (${zeit(b.naechste_oeffnung)})` : "";
+  return "Die Börse ist geschlossen: Ein Schließen legt jetzt einen "
+    + `Warteauftrag an und wird erst bei der nächsten Öffnung${oeffnung} `
+    + "ausgeführt – dann ohne erneute Rückfrage.";
+}
+
+/* Eine Zeile je wartendem Auftrag. `mitBot` blendet die Bot-Spalte ein -
+   auf der Übersichtsseite stehen die Aufträge aller Bots zusammen, auf der
+   Bot-Seite nur die des einen. */
+function warteauftragZeile(a, mitBot) {
+  const zustand = a.noch_offen === false
+    ? '<span class="gedaempft">Position ist nicht mehr offen – der Auftrag '
+      + 'wird beim nächsten Lauf abgeräumt</span>'
+    : (a.letzter_fehler
+        ? `<span class="rot">${a.versuche} Fehlversuch(e): ${a.letzter_fehler}</span>`
+        : '<span class="gedaempft">wartet auf die nächste Börsenöffnung</span>');
+  return `<tr>
+    ${mitBot ? `<td data-spalte="Bot">${a.anzeigename}</td>` : ""}
+    <td data-spalte="Symbol">${a.symbol}</td>
+    <td data-spalte="Angefordert">${zeit(a.angefordert_am)}</td>
+    <td data-spalte="Zustand">${zustand}</td>
+    <td data-spalte="Aktion"><button type="button"
+        class="knopf stornieren-knopf" data-id="${a.id}">Stornieren</button></td>
+  </tr>`;
+}
+
+/* Zeichnet den ganzen Bereich (Überschrift, Tabelle, Fußnote) und blendet
+   ihn aus, wenn nichts wartet. Ein leerer Block mit der Überschrift
+   „Wartende Aufträge“ würde sonst dauerhaft behaupten, es gäbe welche. */
+function zeichneWarteauftraege(daten, mitBot) {
+  const bereich = document.getElementById("warteauftraege-bereich");
+  if (!bereich) return;
+  const liste = (daten && daten.auftraege) || [];
+  bereich.hidden = liste.length === 0;
+  if (bereich.hidden) return;
+
+  document.getElementById("warteauftraege-tabelle").innerHTML =
+    liste.map((a) => warteauftragZeile(a, mitBot)).join("");
+  const b = (daten && daten.boerse) || {};
+  const zustand = b.offen === true
+    ? "Die Börse ist offen – der nächste Lauf des Ausführungsskripts "
+      + "schließt diese Positionen."
+    : (b.naechste_oeffnung
+        ? `Ausführung ab der nächsten Börsenöffnung (${zeit(b.naechste_oeffnung)}).`
+        : "Ausführung bei der nächsten Börsenöffnung.");
+  document.getElementById("warteauftraege-hinweis").innerHTML =
+    `${liste.length} wartende(r) Auftrag/Aufträge. ${zustand} `
+    + "Ausgeführt wird <strong>ohne erneute Rückfrage</strong>, durch den "
+    + "Cronjob <code>dashboard/warteauftraege_ausfuehren.py</code>. "
+    + "Stornieren verhindert die Ausführung und ändert sonst nichts.";
+}
+
+/* Stornieren ist die risikosenkende Richtung und braucht deshalb KEINE
+   Rückfrage - es verhindert einen Schreibzugriff, statt einen auszulösen.
+   Der Aufrufer übergibt, was danach neu geladen werden soll. */
+async function storniereWarteauftrag(id, danach) {
+  const ergebnis = await sende("/api/warteauftraege/stornieren", { id: id });
+  const feld = document.getElementById("erfolg");
+  if (feld) {
+    feld.innerHTML = `<div class="erfolgsmeldung">✅ ${ergebnis.meldung}</div>`;
+  }
+  if (danach) await danach();
+  return ergebnis;
+}

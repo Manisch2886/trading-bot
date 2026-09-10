@@ -108,6 +108,15 @@ QUELLE_DASHBOARD = "dashboard"
 # "was hat dieser eine Crash-Klick eigentlich angefasst" nur noch ueber
 # Zeitstempel-Naehe raten.
 QUELLE_DASHBOARD_CRASH = "dashboard-crash"
+# Ein Ausstieg, den ein WARTEAUFTRAG ausgeloest hat: der Nutzer hat ihn
+# bestaetigt, waehrend die Boerse geschlossen war, und
+# dashboard/warteauftraege_ausfuehren.py hat ihn spaeter - bei geoeffneter
+# Boerse - tatsaechlich geschrieben. Eigener Wert und nicht bloss
+# QUELLE_DASHBOARD, weil dies die EINZIGE Quelle des Projekts ist, bei der
+# zwischen Bestaetigung und Schreibzugriff Stunden liegen koennen. Wer
+# spaeter im Protokoll steht "wer hat das geschrieben", soll diesen
+# Unterschied sehen, ohne ihn aus Zeitstempeln erschliessen zu muessen.
+QUELLE_WARTEAUFTRAG = "warteauftrag"
 QUELLE_UNBEKANNT = "unbenannt"
 
 # Der Text, den der Nutzer als ZWEITE Bestaetigung eintippen muss.
@@ -263,6 +272,31 @@ def protokolliere_ablehnung(bot_name, trade_id, benutzer_id, grund: str,
         "ABGELEHNT quelle=%s bot=%s trade_id=%s benutzer=%s grund=%s | "
         "Datenbank unveraendert",
         quelle or QUELLE_UNBEKANNT, bot_name, trade_id, benutzer_id, grund)
+
+
+def protokolliere_warteauftrag(ereignis: str, bot_name, trade_id, benutzer,
+                                quelle: str = None, zusatz: str = "") -> None:
+    """Eine Zeile fuer das Leben eines WARTEAUFTRAGS - angelegt,
+    storniert, uebersprungen.
+
+    Warum das hier steht und nicht in warteauftraege.py: es ist DASSELBE
+    Protokoll wie fuer jeden anderen manuellen Eingriff
+    (logs/notifications/manuelle_eingriffe.log). Die Frage, die im Zweifel
+    beantwortet werden muss, lautet weiterhin "wer hat an dieser Position
+    wann von Hand etwas veranlasst" - und die soll sich aus EINER Datei
+    beantworten lassen. Ein zweites Protokoll fuer die Warteauftraege
+    haette genau die Sortierarbeit erzwungen, die dieses eine hier
+    erspart.
+
+    Das ERFOLGREICHE Ausfuehren eines Warteauftrags braucht diese
+    Funktion nicht: das ist ein gewoehnlicher Schliessvorgang und wird
+    von protokolliere_erfolg() geschrieben, erkennbar an
+    quelle=warteauftrag.
+    """
+    _protokoll.info(
+        "WARTEAUFTRAG-%s quelle=%s bot=%s trade_id=%s benutzer=%s | %s",
+        ereignis, quelle or QUELLE_UNBEKANNT, bot_name, trade_id, benutzer,
+        zusatz or "-")
 
 
 class SchliessenNichtMoeglich(Exception):

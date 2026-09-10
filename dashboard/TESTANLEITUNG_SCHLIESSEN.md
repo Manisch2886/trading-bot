@@ -728,3 +728,319 @@ herausziehen:
 ```bash
 grep 'quelle=dashboard-crash' ~/trading-bot/logs/notifications/manuelle_eingriffe.log
 ```
+
+---
+
+# Teil 2: Warteauftraege ausserhalb der Boersenzeiten
+
+**Bitte diesen Abschnitt vollstaendig lesen, bevor irgendetwas eingerichtet
+wird.** Er beschreibt die erste Funktion dieses Projekts, bei der ein
+Schreibzugriff auf eine Live-Datenbank **zeitversetzt und ohne erneute
+Rueckfrage** passiert.
+
+## Was sich aendert - in einem Absatz
+
+Bisher: Klick auf "Schliessen" bei einem Aktien-Bot am Sonntagabend →
+die Position wurde **sofort** geschlossen, und zwar zum Schlusskurs des
+letzten Handelstags. Also zu einem Kurs, den es "gerade jetzt" gar nicht
+gibt (ueber ein Wochenende zweieinhalb Tage alt, ueber Ostern vier).
+
+Jetzt: derselbe Klick legt einen **Warteauftrag** an. Geschrieben wird
+nichts. Sobald die Boerse wieder offen ist, schliesst ein Cronjob die
+Position zum dann gueltigen echten Kurs - **ohne noch einmal zu fragen**.
+
+**Krypto ist davon nicht betroffen.** Binance handelt rund um die Uhr;
+dort bleibt alles wie bisher.
+
+## Die Tragweite - was der Cronjob-Eintrag wirklich erlaubt
+
+| | bisher | mit Warteauftraegen |
+|---|---|---|
+| Wer loest den Schreibzugriff aus | ein Mensch, jetzt | ein Cronjob, spaeter |
+| Bestaetigung im Moment des Schreibens | ja | **nein** |
+| Kurs beim Bestaetigen bekannt | ja | **nein** |
+| Zeit zwischen Bestaetigung und Schreiben | Sekunden | Stunden bis Tage |
+| Abbruch moeglich | Dialog schliessen | **Stornieren**, solange der Auftrag wartet |
+
+Wer den Cronjob einrichtet, erteilt damit eine **Vorab-Erlaubnis fuer alle
+kuenftigen Warteauftraege**, nicht fuer einen einzelnen. Der Markt bewegt
+sich zwischen Bestaetigung und Ausfuehrung; der Ausstiegskurs kann deutlich
+schlechter sein als der, der beim Bestaetigen zu sehen war. Das ist der
+Preis dafuer, zu einem **echten** Kurs zu schliessen statt zu einem
+veralteten - und genau darum ging es bei dieser Aenderung.
+
+Ohne den Cronjob passiert **gar nichts**: Warteauftraege werden angelegt,
+im Dashboard angezeigt und nie ausgefuehrt. Das ist ein moeglicher
+Zwischenschritt, wenn man die Funktion erst beobachten will (siehe
+Schritt 15).
+
+---
+
+## Schritt 13 - Bibliothek installieren und den Kalender ansehen (schreibt nichts)
+
+```bash
+pip3 install -r ~/trading-bot/requirements.txt
+```
+
+Danach der Kalender selbst - er rechnet nur, fragt kein Netz und fasst
+nichts an:
+
+```bash
+python3 ~/trading-bot/notifications/boersenkalender.py
+```
+
+Erwartet: ein JSON-Block mit `"offen": true` oder `false`, dem letzten
+Handelstag und der naechsten Oeffnung. Zum Ausprobieren mit festen
+Zeitpunkten (alles in UTC):
+
+```bash
+python3 ~/trading-bot/notifications/boersenkalender.py "2026-11-26 17:00"
+```
+
+Erwartet: `"offen": false` - das ist Thanksgiving, ein Donnerstag mitten in
+der Handelszeit. Genau der Fall, den eine selbstgebaute Zeitregel
+durchgelassen haette.
+
+```bash
+python3 ~/trading-bot/notifications/boersenkalender.py "2026-11-27 18:30"
+```
+
+Erwartet: ebenfalls `"offen": false` - der Tag nach Thanksgiving schliesst
+um 13:00 Ortszeit statt 16:00. Um `17:30` waere derselbe Tag noch offen.
+
+## Schritt 14 - Selbsttests (ohne jedes Risiko)
+
+```bash
+python3 ~/trading-bot/dashboard/test_dashboard.py
+```
+
+Erwartet: `738/738 Pruefungen bestanden.` Darin enthalten sind die
+Abschnitte 16 bis 19: der echte Kalender (Feiertage, Wochenende,
+verkuerzter Handelstag), die Warteauftraege, das Ausfuehrungsskript und
+der gemischte Crash-Fall. Die Tests fassen weder echte Datenbanken noch
+die echte Auftragsdatei an.
+
+## Schritt 15 - Anlegen und Stornieren im Dashboard (schreibt keine Bot-Datenbank)
+
+**Wichtig: dieser Schritt legt eine Absicht an, aber der Cronjob aus
+Schritt 17 ist noch nicht eingerichtet. Es kann also noch nichts
+ausgefuehrt werden - der ideale Zeitpunkt zum Ausprobieren.**
+
+Dashboard starten und einen **Aktien-Bot** oeffnen, waehrend die Boerse
+geschlossen ist (also z. B. abends oder am Wochenende):
+
+| # | Vorgehen | Erwartung |
+|---|---|---|
+| 1 | Bot-Detailseite oeffnen | Der Knopf in der Positionszeile heisst **"Vormerken"**, nicht "Schliessen". Die Fussnote sagt, dass die Boerse geschlossen ist und wann sie wieder oeffnet |
+| 2 | "Vormerken" antippen | Zusammenfassung wie bisher, Titel "Position vormerken?", Knopf "Weiter" |
+| 3 | "Weiter" antippen | **Der zusaetzliche Warnschritt**: "Die Boerse ist aktuell geschlossen (letzter Handelstag: …)". Es ist noch **nichts** passiert |
+| 4 | Dialog mit Esc schliessen | Nichts angelegt, nichts geschrieben |
+| 5 | Von vorn, diesmal "Verstanden - Warteauftrag anlegen" | Meldung: nicht geschlossen, sondern vorgemerkt. Darunter erscheint die Tabelle **"Wartende Auftraege"** |
+| 6 | Position in der Tabelle "Offene Positionen" ansehen | Sie ist **weiterhin offen** - in der Aktionsspalte steht "Warteauftrag steht" |
+| 7 | Uebersichtsseite oeffnen | Derselbe Auftrag steht dort in der bot-uebergreifenden Liste |
+| 8 | "Stornieren" klicken | Ohne Rueckfrage weg. Die Position bleibt offen |
+
+Gegenprobe, dass wirklich nichts geschrieben wurde:
+
+```bash
+sqlite3 ~/trading-bot/paper_trading_volatility_breakout.db \
+  "SELECT id, symbol, status, result FROM trades WHERE status='open';"
+```
+
+Erwartet: dieselben Zeilen wie vorher, alle mit `open` und `result` leer.
+
+Und das Protokoll:
+
+```bash
+grep WARTEAUFTRAG ~/trading-bot/logs/notifications/manuelle_eingriffe.log
+```
+
+Erwartet: je eine Zeile `WARTEAUFTRAG-ANGELEGT` und `WARTEAUFTRAG-STORNIERT`,
+die erste mit dem Vermerk `Datenbank UNVERAENDERT`.
+
+Die Auftragsdatei selbst (reiner Text, gefahrlos anzusehen):
+
+```bash
+cat ~/trading-bot/notifications/warteauftraege.json
+```
+
+**Waehrend der Handelszeiten** (15:30-22:00 deutscher Zeit, Mo-Fr, ausser
+an US-Feiertagen) sieht dieselbe Seite unveraendert aus wie bisher: der
+Knopf heisst "Schliessen", es gibt keinen Warnschritt, und ein Tap schreibt
+sofort. Bitte einmal auch so pruefen - der Unterschied ist der eigentliche
+Gegenstand dieser Aenderung.
+
+**Krypto-Gegenprobe:** einen Krypto-Bot zur selben Zeit oeffnen. Dort steht
+weiterhin "Schliessen", es gibt keinen Warnschritt und keine wartenden
+Auftraege - egal welche Uhrzeit.
+
+## Schritt 16 - Das Ausfuehrungsskript im Trockenlauf (schreibt nichts)
+
+Einen Warteauftrag anlegen (Schritt 15, Punkte 1-5) und **nicht**
+stornieren. Dann:
+
+```bash
+python3 ~/trading-bot/dashboard/warteauftraege_ausfuehren.py --trockenlauf
+```
+
+Bei geschlossener Boerse erwartet: eine Zeile "… bleiben stehen. Die NYSE
+ist geschlossen. Letzter Handelstag: …".
+
+Waehrend der Handelszeiten erwartet: "TROCKENLAUF (nichts geschrieben): 1
+geschlossen, …" - also die Ansage, was **passieren wuerde**. Danach
+nachsehen, dass die Position wirklich noch offen ist:
+
+```bash
+sqlite3 ~/trading-bot/paper_trading_volatility_breakout.db \
+  "SELECT id, symbol, status FROM trades WHERE status='open';"
+```
+
+Der Ernstfall - dasselbe ohne `--trockenlauf`, waehrend die Boerse offen
+ist - schliesst die Position dann tatsaechlich:
+
+```bash
+python3 ~/trading-bot/dashboard/warteauftraege_ausfuehren.py
+```
+
+Erwartet: `GESCHLOSSEN: <SYMBOL> (<bot>) zu <kurs> -> <pnl> % [quelle=warteauftrag]`.
+Der Eingriff steht danach im Protokoll:
+
+```bash
+grep 'quelle=warteauftrag' ~/trading-bot/logs/notifications/manuelle_eingriffe.log
+```
+
+**Rueckgaengig machen** geht genau wie beim manuellen Schliessen (Schritt 5),
+und der Filter ist derselbe:
+
+```bash
+sqlite3 ~/trading-bot/paper_trading_volatility_breakout.db \
+  "UPDATE trades SET status='open', result=NULL, exit_time=NULL, exit_price=NULL, pnl_pct=NULL WHERE id=<ID> AND result='manual_close';"
+```
+
+## Schritt 17 - Den Cronjob einrichten (die eigentliche Freigabe)
+
+**Erst wenn die Schritte 13-16 durchgelaufen sind.** Mit diesem Eintrag
+gilt die Vorab-Erlaubnis aus dem Abschnitt "Tragweite" oben.
+
+Die Befehle bitte **einzeln** ausfuehren, mit einem Blick dazwischen.
+
+**1. Aktuellen Stand sichern** (damit ein Rueckweg existiert):
+
+```bash
+crontab -l > ~/crontab-sicherung-$(date +%Y%m%d).txt
+```
+
+**2. Ansehen, was bisher drinsteht:**
+
+```bash
+crontab -l
+```
+
+**3. Log-Ordner anlegen** (sonst schreibt der Cronjob ins Leere):
+
+```bash
+mkdir -p ~/trading-bot/logs/dashboard
+```
+
+**4. Crontab oeffnen** (nano, nicht vim):
+
+```bash
+EDITOR=nano crontab -e
+```
+
+**5. Diese eine Zeile ans Ende einfuegen** - eine Zeile, nicht umbrechen:
+
+```cron
+*/5 * * * * cd ~/trading-bot && /usr/bin/python3 dashboard/warteauftraege_ausfuehren.py >> logs/dashboard/warteauftraege.log 2>&1
+```
+
+Speichern in nano: `Strg+O`, `Enter`, `Strg+X`.
+
+**6. Pruefen, dass die Zeile steht:**
+
+```bash
+crontab -l | grep warteauftraege
+```
+
+Erwartete Ausgabe: genau die Zeile von oben.
+
+**7. Nach dem naechsten Lauf ins Log sehen** (fruehestens fuenf Minuten
+spaeter):
+
+```bash
+tail -20 ~/trading-bot/logs/dashboard/warteauftraege.log
+```
+
+Solange kein Auftrag wartet, bleibt die Datei **leer** - das ist richtig so
+und gewollt (siehe unten).
+
+**Wieder abschalten** geht genauso: `EDITOR=nano crontab -e`, die Zeile mit
+`#` auskommentieren oder loeschen. Wartende Auftraege werden dann nicht mehr
+ausgefuehrt, bleiben aber stehen und lassen sich im Dashboard stornieren.
+
+### Warum alle 5 Minuten - und warum rund um die Uhr
+
+**Alle 5 Minuten**, weil der Zweck der ganzen Funktion ein Ausstieg zum
+**naechstmoeglichen echten Kurs** ist. Bei 30 Minuten Takt waere der
+"naechstmoegliche Kurs" im Zweifel eine halbe Stunde nach Handelsbeginn -
+gerade in den ersten Minuten nach der Eroeffnung bewegen sich Kurse
+deutlich. Fuenf Minuten sind ein guter Kompromiss zwischen Genauigkeit und
+Aufwand.
+
+**Der Aufwand ist naemlich fast null:** liegt kein Warteauftrag vor, liest
+das Skript eine kleine JSON-Datei, stellt fest, dass sie leer ist, und
+endet - ohne Kalenderabfrage, ohne Netzzugriff, ohne Datenbankzugriff. Das
+ist der Normalfall und dauert Millisekunden. Erst wenn ein Auftrag wartet,
+wird der Kalender gefragt; und erst wenn die Boerse offen ist, wird
+ueberhaupt ein Kurs geholt.
+
+**Rund um die Uhr statt in einem Zeitfenster**, obwohl ein Fenster wie
+`*/5 15-22 * * 1-5` naheliegt: Deutschland und die USA stellen an
+**unterschiedlichen Terminen** auf Sommerzeit um. Zwei- bis dreimal im Jahr
+gibt es Wochen, in denen der Handel bereits um 14:30 deutscher Zeit
+beginnt. Ein in deutscher Ortszeit formuliertes Fenster wuerde in genau
+diesen Wochen die erste Handelsstunde verpassen - und der Fehler faellt
+nicht auf, weil ja "irgendwann" ausgefuehrt wird. Die Entscheidung, ob
+gehandelt werden kann, trifft ohnehin der Kalender im Skript; das
+Zeitfenster im Cronjob wuerde diese Entscheidung nur unnoetig
+vorwegnehmen - und zwar mit der ungenaueren Methode.
+
+Wer trotzdem sparen will: `*/5 * * * 1-5` (nur Werktage) ist gefahrlos, weil
+die NYSE an keinem Samstag oder Sonntag deutscher Zeit geoeffnet ist. Der
+Unterschied betraegt rund 570 Leerlaeufe pro Woche, jeder davon ein
+Dateizugriff.
+
+## Schritt 18 - Zusammenspiel mit dem Bot (der wichtigste Fall)
+
+Der Bot laeuft weiter, waehrend ein Auftrag wartet. Schliesst er die
+Position selbst (Stop-Loss, regulaerer Ausstieg), darf der Warteauftrag
+**nicht** noch einmal zuschlagen.
+
+| # | Vorgehen | Erwartung |
+|---|---|---|
+| 1 | Warteauftrag anlegen (Schritt 15) | Auftrag steht in der Liste |
+| 2 | Die Position "wie der Bot" schliessen: `sqlite3 ~/trading-bot/paper_trading_volatility_breakout.db "UPDATE trades SET status='closed', result='sma_exit', exit_price=123.0, pnl_pct=1.0, exit_time='2026-01-01 00:00:00' WHERE id=<ID>;"` | Zeile geschlossen, Grund `sma_exit` |
+| 3 | Dashboard neu laden | Der Auftrag steht noch da, mit dem Vermerk "Position ist nicht mehr offen" |
+| 4 | `python3 ~/trading-bot/dashboard/warteauftraege_ausfuehren.py` waehrend der Handelszeiten | Meldung: `0 geschlossen, 1 uebersprungen` |
+| 5 | Protokoll ansehen | `WARTEAUFTRAG-UEBERSPRUNGEN … bereits vom Bot selbst geschlossen` - ausdruecklich **kein** Fehler |
+| 6 | Die Zeile des Bots pruefen | Unveraendert `sma_exit`, **nicht** `manual_close` |
+
+## Die groessten verbleibenden Risiken (Teil 2)
+
+1. **Die Vorab-Erlaubnis ist das eigentliche Risiko.** Nicht ein Fehler im
+   Code, sondern die Eigenschaft selbst: es wird geschrieben, wenn niemand
+   hinsieht. Wer das nicht will, richtet den Cronjob **nicht** ein und
+   fuehrt Auftraege von Hand aus (Schritt 16, ohne `--trockenlauf`).
+2. **Der Kurs beim Ausfuehren ist nicht der beim Bestaetigen.** Ueber ein
+   Wochenende kann das ein deutlicher Unterschied sein - eine
+   Eroeffnungsluecke am Montag trifft den Warteauftrag voll.
+3. **Ein dauerhaft scheiternder Auftrag bleibt stehen.** Das ist Absicht
+   (ein einmal gesperrter Bot soll nicht dazu fuehren, dass der Auftrag
+   verschwindet), aber es faellt nur auf, wenn man hinsieht: die Liste im
+   Dashboard zeigt Versuche und letzten Fehler.
+4. **Die Auftragsdatei liegt nur auf diesem Rechner** und ist gitignored.
+   Ein Umzug oder eine Neuinstallation nimmt wartende Auftraege nicht mit.
+5. **yfinance liefert waehrend der Handelszeiten den laufenden Tageskurs.**
+   Das ist ein echter, aktueller Kurs - aber keine Realtime-Boersenanbindung
+   mit Ausfuehrungsgarantie. Fuer Paper-Trading ist das genau richtig; fuer
+   echtes Geld waere es das nicht.

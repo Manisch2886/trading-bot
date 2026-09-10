@@ -52,6 +52,24 @@
     Paper-Trading, es ist kein echtes Kapital im Spiel.
   </p>
 
+  <!-- Alle wartenden Auftraege ueber alle Bots. Steht hier, weil die
+       Uebersichtsseite die Frage "was ist gerade in Bewegung" beantwortet -
+       und ein vorgemerkter Ausstieg ist genau das, ohne in einer der
+       Tabellen darueber vorzukommen. Erscheint nur, wenn es welche gibt. -->
+  <section id="warteauftraege-bereich" hidden>
+    <h2>Wartende Aufträge</h2>
+    <div class="tabellenrahmen">
+      <table>
+        <thead>
+          <tr><th>Bot</th><th>Symbol</th><th>Angefordert</th><th>Zustand</th>
+              <th>Aktion</th></tr>
+        </thead>
+        <tbody id="warteauftraege-tabelle"></tbody>
+      </table>
+    </div>
+    <p class="fussnote warteauftrag-fussnote" id="warteauftraege-hinweis"></p>
+  </section>
+
   <div id="erfolg" role="status" aria-live="polite"></div>
 
   <!-- Der globale Crash-Bereich. GANZ UNTEN und in einem eigenen, umrandeten
@@ -100,6 +118,20 @@
         <button type="button" class="knopf" id="crash-abbrechen2">Abbrechen</button>
         <button type="button" class="knopf crash" id="crash-weiter2">
           Weiter zur letzten Bestätigung
+        </button>
+      </div>
+    </div>
+
+    <!-- Der zusaetzliche Warnschritt, NUR wenn Aktien-Bots bei geschlossener
+         Boerse betroffen sind. Er steht VOR der Texteingabe: die Eingabe ist
+         die letzte Huerde vor dem Ausloesen und soll das auch bleiben. -->
+    <div id="crash-stufewa" hidden>
+      <div id="crash-wa-warnung"></div>
+      <p class="dialog-frist" id="crash-fristwa"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="crash-abbrechenwa">Abbrechen</button>
+        <button type="button" class="knopf warteauftrag" id="crash-weiterwa">
+          Verstanden – weiter
         </button>
       </div>
     </div>
@@ -199,6 +231,32 @@ async function ladeVerlauf() {
   document.getElementById("verlaufhinweis").textContent = verlauf.hinweis;
 }
 
+/* Die wartenden Auftraege ALLER Bots. Reine Leseabfrage ohne Netzzugriff
+   auf der Serverseite; laeuft deshalb im schnellen Datentakt mit. */
+async function ladeWarteauftraege() {
+  zeichneWarteauftraege(await hole("/api/warteauftraege"), true);
+}
+
+async function ladeUebersichtUndAuftraege() {
+  await ladeUebersicht();
+  try { await ladeWarteauftraege(); } catch (e) { /* Liste bleibt stehen */ }
+}
+
+/* Stornieren: ein Klick, keine Rueckfrage - es verhindert eine Ausfuehrung,
+   statt eine auszuloesen (Begruendung in notifications/warteauftraege.py). */
+document.getElementById("warteauftraege-tabelle")
+  .addEventListener("click", async (e) => {
+    const knopf = e.target.closest(".stornieren-knopf");
+    if (!knopf) return;
+    knopf.disabled = true;
+    try {
+      await storniereWarteauftrag(knopf.dataset.id, ladeWarteauftraege);
+    } catch (fehler) {
+      knopf.disabled = false;
+      zeigeFehler("Stornieren fehlgeschlagen: " + fehler.message);
+    }
+  });
+
 async function ladeLiveKurse() {
   // Die langsame, netzabhängige Fassung. Läuft bewusst getrennt von der
   // Übersicht, damit eine hängende Kursabfrage die Zahlen nie blockiert.
@@ -216,6 +274,11 @@ async function erstesLaden() {
   } catch (e) {
     zeigeFehler("Übersicht konnte nicht geladen werden: " + e.message);
     return;
+  }
+  try {
+    await ladeWarteauftraege();
+  } catch (e) {
+    /* Lieber keine Liste als eine unvollständige. */
   }
   try {
     await ladeVerlauf();
@@ -242,7 +305,7 @@ erstesLaden();
 // durch, die Kursabfrage darf bis zu 12 Sekunden dauern. Ohne den
 // Unterschied hielte man die lange Kursabfrage leicht für eine hängende
 // Seite.
-autoAktualisierung(ladeUebersicht, AKTUALISIERUNG_DATEN_MS,
+autoAktualisierung(ladeUebersichtUndAuftraege, AKTUALISIERUNG_DATEN_MS,
                    (zustand, fehler) => markiereAktualisierung("stand", zustand, fehler),
                    "Aktualisiere …");
 autoAktualisierung(ladeLiveKurse, AKTUALISIERUNG_KURSE_MS,
@@ -271,6 +334,7 @@ const crashDialog = document.getElementById("crashdialog");
 let crashVorgang = null;
 let crashUhr = null;
 let crashLaeuft = false;
+let crashWaBestaetigt = false;
 
 function crashFehler(text) {
   const feld = document.getElementById("crash-fehler");
@@ -278,11 +342,25 @@ function crashFehler(text) {
   feld.hidden = !text;
 }
 
+/* Drei Stufen bei offener Boerse, vier bei geschlossener - die zusaetzliche
+   ("wa") liegt zwischen Rueckfrage und Texteingabe. Die Nummerierung folgt
+   der tatsaechlichen Zahl der Stufen, statt fest "von 3" zu behaupten. */
+const CRASH_ALLE_STUFEN = ["1", "2", "wa", "3"];
+
+function crashStufenfolge() {
+  return (crashVorgang && crashVorgang.warteauftrag)
+    ? ["1", "2", "wa", "3"] : ["1", "2", "3"];
+}
+
 function crashStufe(nummer) {
-  [1, 2, 3].forEach(n => {
-    document.getElementById("crash-stufe" + n).hidden = n !== nummer;
+  const gewaehlt = String(nummer);
+  CRASH_ALLE_STUFEN.forEach(n => {
+    document.getElementById("crash-stufe" + n).hidden = n !== gewaehlt;
   });
-  document.getElementById("crash-stufe").textContent = `Schritt ${nummer} von 3`;
+  const folge = crashStufenfolge();
+  const platz = folge.indexOf(gewaehlt) + 1;
+  document.getElementById("crash-stufe").textContent =
+    `Schritt ${platz} von ${folge.length}`;
 }
 
 function crashUhrStoppen() {
@@ -294,13 +372,14 @@ function crashUhrStoppen() {
 function crashFristStarten(sekunden) {
   crashUhrStoppen();
   const ende = Date.now() + sekunden * 1000;
-  const knoepfe = ["crash-weiter", "crash-weiter2", "crash-ausfuehren"];
+  const knoepfe = ["crash-weiter", "crash-weiter2", "crash-weiterwa",
+                   "crash-ausfuehren"];
   const tick = () => {
     const rest = Math.max(0, Math.ceil((ende - Date.now()) / 1000));
     const text = rest === 0
       ? "Die Bestätigung ist abgelaufen. Bitte von vorn beginnen."
       : `Gültig noch ${rest} Sekunden.`;
-    ["crash-frist", "crash-frist2", "crash-frist3"].forEach(id => {
+    ["crash-frist", "crash-frist2", "crash-fristwa", "crash-frist3"].forEach(id => {
       document.getElementById(id).textContent = text;
     });
     if (rest === 0) {
@@ -335,13 +414,24 @@ function crashListe(v) {
       + `${prozent(b.pnl_schnitt_pct)} <span class="gedaempft">`
       + `(${prozent(b.pnl_schlechtestes_pct)} … ${prozent(b.pnl_bestes_pct)})`
       + `</span></span></div>`;
+    /* Der frühere Hinweis "der Kurs ist ein Tages-Schlusskurs" steht hier
+       nicht mehr als Fußnote, sondern als Ansage, was mit diesem Bot
+       passiert: bei geschlossener Börse wird er nämlich gar nicht
+       geschlossen. */
     const aktien = b.anlageklasse === "aktien"
-      ? `<div class="gedaempft crash-aktienhinweis">Aktien-Bot: der Kurs ist `
-        + `ein Tages-Schlusskurs, außerhalb der US-Handelszeiten der des `
-        + `letzten Handelstags.</div>`
+      ? `<div class="crash-aktienhinweis ${b.warteauftrag ? "warteauftrag-marke" : "gedaempft"}">`
+        + (b.warteauftrag
+            ? `Börse geschlossen – diese Positionen werden <strong>nicht `
+              + `geschlossen, sondern vorgemerkt</strong> und erst bei der `
+              + `nächsten Öffnung ausgeführt.`
+            : `Aktien-Bot: der Kurs ist ein Tages-Schlusskurs; die Börse ist `
+              + `gerade offen.`)
+        + `</div>`
       : "";
+    const marke = b.warteauftrag ? " · wird vorgemerkt" : "";
     return `<div class="crash-bot"><div class="crash-bot-kopf">${b.anzeigename}`
-      + `<span class="gedaempft"> · ${b.anzahl} von ${b.anzahl_gesamt}</span></div>`
+      + `<span class="gedaempft"> · ${b.anzahl} von ${b.anzahl_gesamt}${marke}`
+      + `</span></div>`
       + `<div class="dialog-zeilen">${zeilen}${schnitt}</div>${aktien}</div>`;
   });
   /* Die gewichtete Zahl steht ÜBER alle Bots, also NACH den Bot-Blöcken und
@@ -360,16 +450,18 @@ function crashListe(v) {
 
 async function starteCrash() {
   crashFehler("");
-  crashStufe(1);
   crashVorgang = null;
+  crashWaBestaetigt = false;
+  crashStufe(1);
   crashUhrStoppen();
   document.getElementById("crash-weiter").disabled = true;
   document.getElementById("crash-weiter2").disabled = false;
+  document.getElementById("crash-weiterwa").disabled = false;
   document.getElementById("crash-ausfuehren").disabled = true;
   document.getElementById("crash-liste").innerHTML =
     '<div class="gedaempft">Sammle offene Positionen aller Bots und Kurse …</div>';
   document.getElementById("crash-warnung").textContent = "";
-  ["crash-frist", "crash-frist2", "crash-frist3"].forEach(id => {
+  ["crash-frist", "crash-frist2", "crash-fristwa", "crash-frist3"].forEach(id => {
     document.getElementById(id).textContent = "";
   });
   if (!crashDialog.open) crashDialog.showModal();
@@ -383,11 +475,22 @@ async function starteCrash() {
   }
 
   crashListe(crashVorgang);
+  /* Bei geschlossener Börse ist der Klick GEMISCHT: Krypto sofort, Aktien
+     vorgemerkt. Beide Zahlen stehen einzeln da - eine Gesamtzahl würde hier
+     genau die Verwechslung erzeugen, um die es geht ("neun geschlossen",
+     von denen vier noch offen sind). */
   document.getElementById("crash-warnung").textContent =
-    `Das schließt ${crashVorgang.anzahl} Positionen in `
-    + `${crashVorgang.anzahl_bots} Bots direkt in den Live-Datenbanken, jede `
-    + "zu ihrem eigenen angezeigten Kurs. Im Dashboard lässt sich das nicht "
-    + "rückgängig machen.";
+    crashVorgang.warteauftrag
+      ? (`Die Börse ist geschlossen. Deshalb werden `
+          + `${crashVorgang.anzahl_sofort} Krypto-Positionen SOFORT `
+          + `geschlossen und ${crashVorgang.anzahl_warteauftrag} `
+          + `Aktien-Positionen NICHT - die werden nur vorgemerkt. `
+          + `Was das bedeutet, steht im übernächsten Schritt.`)
+      : (`Das schließt ${crashVorgang.anzahl} Positionen in `
+          + `${crashVorgang.anzahl_bots} Bots direkt in den Live-Datenbanken, `
+          + "jede zu ihrem eigenen angezeigten Kurs. Im Dashboard lässt sich "
+          + "das nicht rückgängig machen.");
+  crashStufe(1);
   crashFristStarten(crashVorgang.gueltig_sekunden);
   document.getElementById("crash-weiter").disabled = false;
   document.getElementById("crash-abbrechen1").focus();
@@ -397,11 +500,31 @@ function crashZuStufe2() {
   if (!crashVorgang) return;
   crashStufe(2);
   document.getElementById("crash-frage").textContent =
-    `Wirklich ALLE ${crashVorgang.anzahl} Positionen über ALLE `
-    + `${crashVorgang.anzahl_bots} Bots schließen?`;
+    crashVorgang.warteauftrag
+      ? (`Wirklich ${crashVorgang.anzahl_sofort} Positionen sofort schließen `
+          + `und ${crashVorgang.anzahl_warteauftrag} vormerken – über ALLE `
+          + `${crashVorgang.anzahl_bots} Bots?`)
+      : (`Wirklich ALLE ${crashVorgang.anzahl} Positionen über ALLE `
+          + `${crashVorgang.anzahl_bots} Bots schließen?`);
   document.getElementById("crash-warnung2").textContent =
-    "Danach folgt noch eine Texteingabe. Erst dann wird geschrieben.";
+    crashVorgang.warteauftrag
+      ? ("Danach folgt ein Hinweis zur zeitversetzten Ausführung und dann "
+          + "die Texteingabe. Erst dann passiert etwas.")
+      : "Danach folgt noch eine Texteingabe. Erst dann wird geschrieben.";
   document.getElementById("crash-abbrechen2").focus();
+}
+
+/* Der zusätzliche Warnschritt des Crash-Wegs. Er liegt zwischen Rückfrage
+   und Texteingabe: die Eingabe bleibt die letzte Hürde. */
+function crashZumWarnschritt() {
+  if (!crashVorgang) return;
+  if (!crashVorgang.warteauftrag) { crashZuStufe3(); return; }
+  document.getElementById("crash-wa-warnung").innerHTML =
+    warteauftragWarnung(crashVorgang.boerse,
+      `${crashVorgang.anzahl_warteauftrag} Aktien-Position(en) in `
+      + `${crashVorgang.bots_warteauftrag.length} Bot(s)`);
+  crashStufe("wa");
+  document.getElementById("crash-abbrechenwa").focus();
 }
 
 function crashZuStufe3() {
@@ -432,6 +555,7 @@ async function crashAbbrechen() {
   crashUhrStoppen();
   const kennung = crashVorgang ? crashVorgang.vorgang : null;
   crashVorgang = null;
+  crashWaBestaetigt = false;
   if (crashDialog.open) crashDialog.close();
   if (kennung) {
     /* Dieselbe Abbruch-Route wie die anderen beiden Wege - der Vorgang liegt
@@ -449,14 +573,33 @@ async function crashAbbrechen() {
    sie gibt. Ein Teilausfall über neun Bots, der sich wie ein Erfolg liest,
    wäre der schlimmste denkbare Ausgang dieser Funktion. */
 function crashErgebnisAnzeigen(r) {
+  const verschoben = (r.bots_verschoben || []).length;
   const voll = r.anzahl_fehlgeschlagen === 0 && r.bots_fehlgeschlagen.length === 0
-    && r.anzahl_uebersprungen === 0;
+    && r.anzahl_uebersprungen === 0 && verschoben === 0;
   let html = `<div class="${voll ? "erfolgsmeldung" : "teilmeldung"}">`
     + `<strong>${voll ? "✅" : "⚠"} ${r.anzahl_geschlossen} von ${r.angefragt} `
     + `Positionen in ${r.angefragte_bots} Bots geschlossen</strong>`;
+  /* Die vorgemerkten Positionen stehen GETRENNT und nicht in derselben
+     Zahl: sie sind noch offen. Das ist die wichtigste Unterscheidung dieser
+     ganzen Anzeige. */
+  if (r.anzahl_vorgemerkt) {
+    html += `<div class="warteauftrag-marke"><strong>🕒 ${r.anzahl_vorgemerkt} `
+      + `Position(en) wurden NICHT geschlossen, sondern vorgemerkt</strong> `
+      + `(Börse geschlossen). Sie werden bei der nächsten Öffnung automatisch `
+      + `geschlossen, ohne erneute Rückfrage – bis dahin stornierbar.</div>`;
+  }
   r.bots.forEach(b => {
     html += `<div><strong>${b.anzeigename}:</strong> ${b.meldung}</div>`;
   });
+  (r.bots_vorgemerkt || []).forEach(b => {
+    html += `<div><strong>${b.anzeigename}:</strong> ${b.meldung}</div>`;
+  });
+  if (verschoben) {
+    html += `<div><strong>Unberührt, weil die Börse zwischenzeitlich `
+      + `geschlossen hat:</strong> `
+      + r.bots_verschoben.map(b => `${b.anzeigename} (${b.angefragt} `
+          + `Position(en)) – ${b.grund}`).join("; ") + `</div>`;
+  }
   if (r.bots_fehlgeschlagen.length) {
     html += `<div><strong>Komplett übersprungene Bots:</strong> `
       + r.bots_fehlgeschlagen
@@ -481,14 +624,18 @@ async function crashAusfuehren() {
   document.getElementById("crash-ausfuehren").disabled = true;
   crashFehler("");
   try {
-    const ergebnis = await sende("/api/alle-bots-schliessen/ausfuehren",
-      { vorgang: crashVorgang.vorgang,
-        bestaetigung: document.getElementById("crash-eingabe").value.trim() });
+    const koerper = { vorgang: crashVorgang.vorgang,
+                      bestaetigung: document.getElementById("crash-eingabe").value.trim() };
+    if (crashVorgang.warteauftrag && crashWaBestaetigt) {
+      koerper[WARTEAUFTRAG_FELD] = true;
+    }
+    const ergebnis = await sende("/api/alle-bots-schliessen/ausfuehren", koerper);
     crashUhrStoppen();
     crashVorgang = null;
     crashDialog.close();
     crashErgebnisAnzeigen(ergebnis);
     try { await ladeUebersicht(); } catch (e) { /* der Takt holt es nach */ }
+    try { await ladeWarteauftraege(); } catch (e) { /* dito */ }
     try { await ladeLiveKurse(); } catch (e) { /* dito */ }
     try { await ladeVerlauf(); } catch (e) { /* dito */ }
   } catch (e) {
@@ -498,6 +645,7 @@ async function crashAusfuehren() {
        try-Zweig. Der Vorgang ist in jedem Fall verbraucht - zurück auf
        Anfang. */
     crashVorgang = null;
+    crashWaBestaetigt = false;
     crashUhrStoppen();
     document.getElementById("crash-eingabe").disabled = true;
     crashFehler(e.message);
@@ -511,9 +659,15 @@ document.getElementById("crash-knopf").addEventListener("click", () => {
   starteCrash();
 });
 document.getElementById("crash-weiter").addEventListener("click", crashZuStufe2);
-document.getElementById("crash-weiter2").addEventListener("click", crashZuStufe3);
+document.getElementById("crash-weiter2").addEventListener("click", crashZumWarnschritt);
+/* Und von dort - mit gesetzter Bestätigung - zur Texteingabe. */
+document.getElementById("crash-weiterwa").addEventListener("click", () => {
+  crashWaBestaetigt = true;
+  crashZuStufe3();
+});
 document.getElementById("crash-ausfuehren").addEventListener("click", crashAusfuehren);
-["crash-abbrechen1", "crash-abbrechen2", "crash-abbrechen3"].forEach(id => {
+["crash-abbrechen1", "crash-abbrechen2", "crash-abbrechenwa",
+ "crash-abbrechen3"].forEach(id => {
   document.getElementById(id).addEventListener("click", crashAbbrechen);
 });
 crashDialog.addEventListener("cancel", (e) => {

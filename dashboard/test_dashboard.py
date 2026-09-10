@@ -59,12 +59,67 @@ for pfad in (DIR, os.path.join(BASE_DIR, "notifications")):
 
 import monitor          # noqa: E402
 import manual_close     # noqa: E402
+import boersenkalender  # noqa: E402
+import warteauftraege   # noqa: E402
 import konfig           # noqa: E402
 import datenquelle      # noqa: E402
 import schliessen       # noqa: E402
 from app import erzeuge_app  # noqa: E402
 
 TEST_TOKEN = "test-token-1234567890-abcdefgh"
+
+# ---------------------------------------------------------------------------
+# Die Uhr des Tests - fuer den Boersenkalender
+# ---------------------------------------------------------------------------
+# Seit es Warteauftraege gibt, haengt das VERHALTEN des Dashboards davon ab,
+# ob die Boerse gerade offen ist. Ein Test, der die echte Uhr benutzt, waere
+# damit von der Tageszeit abhaengig: nachmittags gruen, abends rot - die
+# schlechteste aller Eigenschaften fuer eine Pruefung.
+#
+# Gefaelscht wird deshalb die ZEIT, nicht der Kalender. boersenkalender.status
+# bekommt einen festen Zeitpunkt untergeschoben, rechnet aber weiterhin mit
+# der echten Bibliothek und den echten NYSE-Regeln. So laeuft in jedem
+# Abschnitt der ECHTE Kalender - nur eben an einem Tag, den der Test kennt.
+# Eine nachgebaute Kalender-Attrappe haette genau die Eigenschaft, die
+# Methodik-Grundsatz 12 verbietet: sie waere immer gruen, weil sie nichts
+# misst.
+#
+# Alle Werte in UTC. 13:30-20:00 UTC ist die uebliche Handelszeit im
+# Sommer (9:30-16:00 New Yorker Zeit).
+ZEIT_OFFEN = "2026-09-10 17:00:00+00:00"        # Donnerstag, 13:00 New York
+ZEIT_WOCHENENDE = "2026-09-12 17:00:00+00:00"   # Samstag
+ZEIT_FEIERTAG = "2026-11-26 17:00:00+00:00"     # Thanksgiving (4. Do im Nov.)
+ZEIT_KARFREITAG = "2026-04-03 15:00:00+00:00"   # Good Friday - beweglich
+ZEIT_4_JULI = "2026-07-03 17:00:00+00:00"       # 4. Juli faellt auf Samstag,
+                                                 # begangen am Freitag davor
+ZEIT_HALBTAG_OFFEN = "2026-11-27 17:30:00+00:00"   # 12:30 NY, Handel laeuft
+ZEIT_HALBTAG_ZU = "2026-11-27 18:30:00+00:00"      # 13:30 NY, seit 13:00 zu
+
+# Was die Tests gerade als "jetzt" sehen. Liste statt Konstante, damit die
+# Umschaltung in einem with-Block moeglich ist (siehe boerse_am()).
+TESTZEIT = [ZEIT_OFFEN]
+
+
+class boerse_am:
+    """Setzt die Testuhr fuer die Dauer eines Blocks.
+
+        with boerse_am(ZEIT_WOCHENENDE):
+            ...   # das Dashboard haelt die Boerse fuer geschlossen
+    """
+
+    def __init__(self, zeitpunkt):
+        self.zeitpunkt = zeitpunkt
+
+    def __enter__(self):
+        self.vorher = TESTZEIT[0]
+        TESTZEIT[0] = self.zeitpunkt
+        boersenkalender.zwischenspeicher_leeren()
+        return self
+
+    def __exit__(self, *_):
+        TESTZEIT[0] = self.vorher
+        boersenkalender.zwischenspeicher_leeren()
+        return False
 
 CHECKS = []
 
@@ -578,6 +633,11 @@ ERLAUBTE_SCHREIB_ROUTEN = [
     ("POST", "/api/bots/{name}/alle-schliessen/ausfuehren"),      # <- schreibt
     ("POST", "/api/alle-bots-schliessen/vorbereiten"),            # nur Arbeitsspeicher
     ("POST", "/api/alle-bots-schliessen/ausfuehren"),             # <- schreibt (global)
+    # Neu mit den Warteauftraegen: entfernt einen wartenden Auftrag aus der
+    # Auftragsdatei. Fasst KEINE Bot-Datenbank an - und steht deshalb hier
+    # in derselben Liste wie die beiden Arbeitsspeicher-Routen, nicht bei
+    # den drei schreibenden.
+    ("POST", "/api/warteauftraege/stornieren"),                   # nur Auftragsdatei
 ]
 
 
@@ -589,9 +649,10 @@ def teste_nur_lesend(app, basis, pruefsummen_vorher, db_dateien):
         methoden = set(getattr(route, "methods", []) or [])
         for methode in methoden & {"POST", "PUT", "PATCH", "DELETE"}:
             schreibende.append((methode, getattr(route, "path", "?")))
-    check("Es gibt genau die acht erwarteten Nicht-GET-Routen",
+    check("Es gibt genau die neun erwarteten Nicht-GET-Routen",
           sorted(schreibende) == sorted(ERLAUBTE_SCHREIB_ROUTEN), str(sorted(schreibende)))
-    check("Davon fassen genau DREI eine Datenbank an (die drei …/ausfuehren)",
+    check("Davon fassen weiterhin genau DREI eine Datenbank an "
+          "(die drei …/ausfuehren)",
           sorted(r[1] for r in schreibende if r[1].endswith("/ausfuehren"))
           == ["/api/alle-bots-schliessen/ausfuehren",
               "/api/bots/{name}/alle-schliessen/ausfuehren",
@@ -1075,9 +1136,19 @@ def _oeffne_positionen(db_pfad, posten):
     angelegt = []
     conn = sqlite3.connect(db_pfad)
     try:
+        # Die naechste freie ID kommt aus DIESER Datenbank, nicht aus einem
+        # gemeinsamen Zaehler. Der gemeinsame Zaehler hat genau einmal
+        # gereicht: sobald ein anderer Abschnitt eine Zeile OHNE eigene ID
+        # einfuegt (dann vergibt SQLite max+1), laufen die beiden
+        # Nummernkreise ineinander - und der Test scheitert an einem
+        # UNIQUE-Verstoss statt an dem, was er pruefen soll.
+        hoechste = conn.execute(
+            "SELECT COALESCE(MAX(id), 0) FROM trades").fetchone()[0]
+        naechste = max(_NAECHSTE_ID[0], hoechste + 1)
         for symbol, entry in posten:
-            trade_id = _NAECHSTE_ID[0]
-            _NAECHSTE_ID[0] += 1
+            trade_id = naechste
+            naechste += 1
+            _NAECHSTE_ID[0] = max(_NAECHSTE_ID[0], naechste)
             conn.execute(
                 "INSERT INTO trades (id, symbol, signal_time, entry_time, "
                 "entry_price, stop_price, exit_time, exit_price, result, "
@@ -2395,6 +2466,948 @@ conn.close()
 """
 
 
+# ---------------------------------------------------------------------------
+# 17) Warteauftraege: was bei geschlossener Boerse passiert - und was nicht
+# ---------------------------------------------------------------------------
+# Der erste zeitversetzte Schreibvorgang des Projekts. Entsprechend wird hier
+# nicht nur geprueft, dass ein Auftrag entsteht, sondern vor allem, was NICHT
+# passiert: keine Zeile in einer Bot-Datenbank, kein Auftrag ohne den
+# zusaetzlichen Bestaetigungsschritt, kein Auftrag bei einem Krypto-Bot.
+#
+# Gearbeitet wird mit dem ECHTEN Kalender an einem bekannten Tag (siehe
+# boerse_am), nicht mit einer Kalender-Attrappe: eine Attrappe wuerde genau
+# das nicht pruefen, worauf es ankommt.
+
+AKTIEN_TESTKURSE = {"NVDA": 505.0, "AAPL": 160.0, "MSFT": 310.0}
+
+
+def _wa_vorbereiten(basis, bot, trade_id):
+    return post(basis, f"/api/bots/{bot}/schliessen/vorbereiten",
+                 {"trade_id": trade_id})
+
+
+def _wa_ausfuehren(basis, bot, vorgang, bestaetigt=None):
+    koerper = {"vorgang": vorgang}
+    if bestaetigt is not None:
+        koerper[schliessen.WARTEAUFTRAG_BESTAETIGUNG] = bestaetigt
+    return post(basis, f"/api/bots/{bot}/schliessen/ausfuehren", koerper)
+
+
+def _auftraege_aus_datei() -> list:
+    """Liest die Auftragsdatei DIREKT - nicht ueber das Modul.
+
+    So belegt der Test, dass die Auftraege wirklich auf der Platte stehen
+    und nicht bloss in einem Speicher, den ein Neustart mitnimmt. Genau das
+    ist die Zusicherung 'persistent'."""
+    pfad = warteauftraege.datei()
+    if not os.path.exists(pfad):
+        return []
+    with open(pfad, encoding="utf-8") as fh:
+        return json.load(fh)["auftraege"]
+
+
+def teste_warteauftraege(basis, wurzel, db_dateien, protokoll_datei):
+    print("\n17) Warteauftraege bei geschlossener Boerse")
+
+    db_aktien = db_dateien["volatility_breakout"]
+    db_krypto = db_dateien["t3_supertrend"]
+    andere = {n: p for n, p in db_dateien.items()
+              if n not in ("volatility_breakout",)}
+
+    original_kurse = monitor.fetch_live_prices_for_bots
+    monitor.fetch_live_prices_for_bots = lambda bots: dict(
+        list(TESTKURSE.items()) + list(AKTIEN_TESTKURSE.items()))
+    schliessen.vorgaenge_zuruecksetzen()
+    warteauftraege.alles_loeschen()
+    try:
+        aktien_posten = _oeffne_positionen(db_aktien, [("AAPL", 150.0),
+                                                        ("MSFT", 300.0)])
+        aapl_id, msft_id = aktien_posten[0][0], aktien_posten[1][0]
+        stand_aktien = zeilen(db_aktien)
+        pruefsummen_andere = _pruefsummen(andere)
+
+        def aktien_db_unveraendert(was):
+            check(f"{was}: die Aktien-Datenbank ist Feld fuer Feld unveraendert",
+                  unterschiede(stand_aktien, zeilen(db_aktien)) == [],
+                  str(unterschiede(stand_aktien, zeilen(db_aktien)))[:140])
+
+        # --- 17a) Boerse OFFEN: alles bleibt wie bisher --------------------
+        with boerse_am(ZEIT_OFFEN):
+            antwort = get(basis, "/api/bots/volatility_breakout/"
+                                  "schliessbare-positionen?live=1").json()
+            check("Bei offener Boerse meldet die Positionsliste kein Vormerken",
+                  antwort["boerse"]["warteauftrag_noetig"] is False
+                  and antwort["boerse"]["offen"] is True,
+                  str(antwort["boerse"])[:120])
+            vorbereitet = _wa_vorbereiten(basis, "volatility_breakout",
+                                           aapl_id).json()
+            check("Der Vorgang ist ein SOFORT-Vorgang, kein Warteauftrag",
+                  vorbereitet["warteauftrag"] is False)
+            check("Und er nennt den Kurs, zu dem geschrieben wird",
+                  vorbereitet["aktueller_preis"] == 160.0,
+                  str(vorbereitet["aktueller_preis"]))
+            ergebnis = _wa_ausfuehren(basis, "volatility_breakout",
+                                       vorbereitet["vorgang"])
+            check("Sofortiges Schliessen funktioniert unveraendert (HTTP 200)",
+                  ergebnis.status_code == 200, ergebnis.text[:120])
+            check("... und meldet ausdruecklich KEINEN Warteauftrag",
+                  ergebnis.json()["warteauftrag"] is False)
+            check("Die Zeile ist geschlossen - der uebliche Weg schreibt weiter",
+                  [z for z in zeilen(db_aktien) if z["id"] == aapl_id][0]["status"]
+                  == "closed")
+            check("Und es ist KEIN Warteauftrag entstanden",
+                  _auftraege_aus_datei() == [], str(_auftraege_aus_datei())[:120])
+
+        stand_aktien = zeilen(db_aktien)
+
+        # --- 17b) Boerse GESCHLOSSEN: der Warnschritt ----------------------
+        with boerse_am(ZEIT_WOCHENENDE):
+            antwort = get(basis, "/api/bots/volatility_breakout/"
+                                  "schliessbare-positionen?live=1").json()
+            check("Bei geschlossener Boerse meldet die Liste 'vormerken'",
+                  antwort["boerse"]["warteauftrag_noetig"] is True
+                  and antwort["boerse"]["offen"] is False)
+            check("... und nennt den letzten Handelstag fuer die Anzeige",
+                  antwort["boerse"]["letzter_handelstag"] == "2026-09-11",
+                  str(antwort["boerse"]["letzter_handelstag"]))
+            check("... und den Zeitpunkt der naechsten Oeffnung",
+                  str(antwort["boerse"]["naechste_oeffnung"]).startswith("2026-09-14"),
+                  str(antwort["boerse"]["naechste_oeffnung"]))
+
+            vorbereitet = _wa_vorbereiten(basis, "volatility_breakout",
+                                           msft_id).json()
+            check("Der Vorgang ist jetzt ein WARTEAUFTRAGS-Vorgang",
+                  vorbereitet["warteauftrag"] is True)
+            check("Der Server entscheidet das, nicht der Aufrufer - die "
+                  "Boersenlage liegt dem Vorgang bei",
+                  vorbereitet["boerse"]["offen"] is False)
+            aktien_db_unveraendert("Nach dem Vorbereiten")
+
+            # OHNE Bestaetigung des Warnschritts passiert GAR NICHTS.
+            abgelehnt = _wa_ausfuehren(basis, "volatility_breakout",
+                                        vorbereitet["vorgang"])
+            check("Ohne Bestaetigung des Warnschritts: abgelehnt (409)",
+                  abgelehnt.status_code == 409, str(abgelehnt.status_code))
+            check("... die Meldung nennt den Grund und sagt, dass nichts "
+                  "geaendert wurde",
+                  "nichts geaendert" in abgelehnt.json()["detail"]
+                  and "vorgemerkt" in abgelehnt.json()["detail"],
+                  abgelehnt.json()["detail"][:120])
+            check("... es ist KEIN Warteauftrag entstanden",
+                  _auftraege_aus_datei() == [])
+            aktien_db_unveraendert("Nach dem abgelehnten Versuch")
+
+            # Ein falscher Wert im Bestaetigungsfeld zaehlt nicht als
+            # Bestaetigung - geprueft wird auf genau True.
+            for falsch in ("ja", 1, "true", 0, None):
+                v = _wa_vorbereiten(basis, "volatility_breakout", msft_id).json()
+                a = _wa_ausfuehren(basis, "volatility_breakout", v["vorgang"],
+                                    bestaetigt=falsch)
+                check(f"Bestaetigung {falsch!r} zaehlt nicht - abgelehnt",
+                      a.status_code == 409, str(a.status_code))
+            check("Nach fuenf Fehlversuchen steht immer noch kein Auftrag da",
+                  _auftraege_aus_datei() == [])
+            aktien_db_unveraendert("Nach allen Fehlversuchen")
+
+            # MIT Bestaetigung: der Auftrag entsteht - und sonst nichts.
+            vorbereitet = _wa_vorbereiten(basis, "volatility_breakout",
+                                           msft_id).json()
+            ergebnis = _wa_ausfuehren(basis, "volatility_breakout",
+                                       vorbereitet["vorgang"], bestaetigt=True)
+            check("Mit Bestaetigung: HTTP 200", ergebnis.status_code == 200,
+                  ergebnis.text[:140])
+            daten = ergebnis.json()
+            check("... das Ergebnis sagt ausdruecklich 'Warteauftrag'",
+                  daten["warteauftrag"] is True)
+            check("... die Meldung sagt, dass NICHT geschlossen wurde",
+                  "NICHT geschlossen" in daten["meldung"],
+                  daten["meldung"][:120])
+            check("... und dass die Ausfuehrung ohne erneute Rueckfrage kommt",
+                  "ohne erneute Rueckfrage" in daten["meldung"])
+            aktien_db_unveraendert("Nach dem Anlegen des Warteauftrags")
+            check("Die uebrigen Bot-Datenbanken sind ebenfalls unveraendert",
+                  _pruefsummen(andere) == pruefsummen_andere)
+
+            # PERSISTENZ: der Auftrag steht auf der Platte, nicht im Speicher.
+            auf_platte = _auftraege_aus_datei()
+            check("Genau EIN Auftrag steht in der Datei auf der Platte",
+                  len(auf_platte) == 1, str(auf_platte)[:140])
+            auftrag = auf_platte[0]
+            check("Er nennt Bot, Trade-ID, Symbol, Zeitpunkt und Quelle",
+                  auftrag["bot"] == "volatility_breakout"
+                  and auftrag["trade_id"] == msft_id
+                  and auftrag["symbol"] == "MSFT"
+                  and auftrag["angefordert_am"]
+                  and auftrag["quelle"] == "dashboard"
+                  and auftrag["benutzer"].startswith("dashboard@"),
+                  str(auftrag)[:200])
+            check("Er nennt bewusst KEINEN Ausstiegskurs - den gibt es noch "
+                  "nicht",
+                  "kurs" not in auftrag and "exit_price" not in auftrag,
+                  str(sorted(auftrag))[:160])
+
+            # Ein zweiter Auftrag fuer dieselbe Zeile wird abgelehnt.
+            zweiter = _wa_vorbereiten(basis, "volatility_breakout", msft_id)
+            check("Ein zweiter Auftrag fuer dieselbe Position: abgelehnt (409)",
+                  zweiter.status_code == 409, str(zweiter.status_code))
+            check("... mit dem Hinweis auf den bestehenden Auftrag",
+                  "bereits ein Warteauftrag" in zweiter.json()["detail"],
+                  zweiter.json()["detail"][:110])
+
+            # Die Liste zeigt ihn - auf beiden Wegen.
+            liste = get(basis, "/api/warteauftraege").json()
+            check("Die Uebersichtsliste zeigt den Auftrag",
+                  liste["anzahl"] == 1
+                  and liste["auftraege"][0]["symbol"] == "MSFT")
+            check("... mit dem Vermerk, dass die Position noch offen ist",
+                  liste["auftraege"][0]["noch_offen"] is True)
+            liste_bot = get(basis, "/api/warteauftraege?bot=volatility_breakout").json()
+            check("Die Bot-Liste zeigt denselben Auftrag",
+                  liste_bot["anzahl"] == 1
+                  and liste_bot["auftraege"][0]["id"] == auftrag["id"])
+            leer = get(basis, "/api/warteauftraege?bot=t3_supertrend").json()
+            check("Ein Bot ohne Auftraege liefert eine leere Liste, keinen Fehler",
+                  leer["anzahl"] == 0)
+
+            # Die Positionsliste weist die Zeile als vorgemerkt aus.
+            antwort = get(basis, "/api/bots/volatility_breakout/"
+                                  "schliessbare-positionen?live=1").json()
+            vorgemerkt = [p for p in antwort["positionen"] if p["id"] == msft_id]
+            check("Die Positionsliste markiert die Zeile als vorgemerkt",
+                  vorgemerkt and vorgemerkt[0]["warteauftrag_offen"] is True)
+
+            # --- 17c) KRYPTO ist von alledem nicht betroffen ---------------
+            krypto_posten = _oeffne_positionen(db_krypto, [("BTCUSDT", 100.0)])
+            btc_id = krypto_posten[0][0]
+            k_antwort = get(basis, "/api/bots/t3_supertrend/"
+                                    "schliessbare-positionen?live=1").json()
+            check("Krypto-Bot: kein Vormerken, auch am Samstag nicht",
+                  k_antwort["boerse"]["warteauftrag_noetig"] is False
+                  and k_antwort["boerse"]["kalender_gilt"] is False)
+            k_vorbereitet = _wa_vorbereiten(basis, "t3_supertrend", btc_id).json()
+            check("Krypto-Vorgang ist ein SOFORT-Vorgang",
+                  k_vorbereitet["warteauftrag"] is False)
+            k_ergebnis = _wa_ausfuehren(basis, "t3_supertrend",
+                                         k_vorbereitet["vorgang"])
+            check("Krypto wird am Samstag sofort geschlossen (HTTP 200)",
+                  k_ergebnis.status_code == 200, k_ergebnis.text[:120])
+            check("... die Zeile ist geschlossen",
+                  [z for z in zeilen(db_krypto) if z["id"] == btc_id][0]["status"]
+                  == "closed")
+            check("... und es ist dabei KEIN Auftrag entstanden",
+                  len(_auftraege_aus_datei()) == 1)
+            check("Der Kern lehnt einen Krypto-Warteauftrag auch direkt ab",
+                  _wirft(lambda: warteauftraege.anlegen(
+                      "t3_supertrend", 1, "BTCUSDT", "test", "test"),
+                      warteauftraege.WarteauftragNichtMoeglich, "Krypto-Bot"))
+
+            # --- 17d) Stornieren ------------------------------------------
+            protokoll_vorher = open(protokoll_datei, encoding="utf-8").read()
+            storniert = post(basis, "/api/warteauftraege/stornieren",
+                              {"id": auftrag["id"]})
+            check("Stornieren ohne zweite Bestaetigung: HTTP 200",
+                  storniert.status_code == 200, storniert.text[:120])
+            check("... die Meldung sagt, dass die Position offen bleibt",
+                  "bleibt offen" in storniert.json()["meldung"],
+                  storniert.json()["meldung"][:120])
+            check("Der Auftrag ist aus der Datei verschwunden",
+                  _auftraege_aus_datei() == [])
+            aktien_db_unveraendert("Nach dem Stornieren")
+            check("Die Position ist unveraendert OFFEN geblieben",
+                  [z for z in zeilen(db_aktien) if z["id"] == msft_id][0]["status"]
+                  == "open")
+
+            neu_im_protokoll = open(protokoll_datei, encoding="utf-8").read()[
+                len(protokoll_vorher):]
+            check("Das Stornieren steht als 'STORNIERT' im Protokoll",
+                  "WARTEAUFTRAG-STORNIERT" in neu_im_protokoll,
+                  neu_im_protokoll[:140])
+            check("... ausdruecklich NICHT als ausgefuehrt oder fehlgeschlagen",
+                  "AUSGEFUEHRT" not in neu_im_protokoll
+                  and "FEHLGESCHLAGEN" not in neu_im_protokoll)
+            check("... und mit dem Vermerk, dass nichts geschrieben wurde",
+                  "Datenbank unveraendert" in neu_im_protokoll)
+
+            zweimal = post(basis, "/api/warteauftraege/stornieren",
+                            {"id": auftrag["id"]})
+            check("Ein zweites Stornieren desselben Auftrags: 409, kein Absturz",
+                  zweimal.status_code == 409, str(zweimal.status_code))
+
+            # --- 17e) Protokollzeile beim ANLEGEN --------------------------
+            protokoll_vorher = open(protokoll_datei, encoding="utf-8").read()
+            v = _wa_vorbereiten(basis, "volatility_breakout", msft_id).json()
+            _wa_ausfuehren(basis, "volatility_breakout", v["vorgang"],
+                            bestaetigt=True)
+            neu_im_protokoll = open(protokoll_datei, encoding="utf-8").read()[
+                len(protokoll_vorher):]
+            check("Das Anlegen hat eine eigene, erkennbare Protokollzeile",
+                  "WARTEAUFTRAG-ANGELEGT" in neu_im_protokoll,
+                  neu_im_protokoll[:160])
+            check("... mit dem ausdruecklichen Vermerk 'Datenbank UNVERAENDERT'",
+                  "Datenbank UNVERAENDERT" in neu_im_protokoll)
+            check("... und sie steht in DERSELBEN Datei wie die uebrigen "
+                  "manuellen Eingriffe",
+                  "MANUELLER-EINGRIFF" in neu_im_protokoll)
+    finally:
+        monitor.fetch_live_prices_for_bots = original_kurse
+
+
+def _wirft(aufruf, art, textstueck=""):
+    """Hilfsmittel: wirft der Aufruf die erwartete Ausnahme mit dem
+    erwarteten Text? Bewusst kein blosses 'wirft irgendetwas' - eine
+    Ausnahme aus einem Tippfehler saehe sonst aus wie ein bestandener Test."""
+    try:
+        aufruf()
+    except art as fehler:
+        return textstueck in str(fehler)
+    except Exception:
+        return False
+    return False
+
+
+# ---------------------------------------------------------------------------
+# 18) Das Ausfuehrungsskript - die zeitversetzte Ausfuehrung selbst
+# ---------------------------------------------------------------------------
+# Hier wird das geprueft, was dieses Projekt bisher nicht hatte: ein
+# Schreibzugriff OHNE gleichzeitige Bestaetigung. Entsprechend liegt das
+# Gewicht auf den Faellen, in denen NICHT geschrieben werden darf:
+#
+#   Boerse geschlossen              -> gar nichts, Auftrag bleibt stehen
+#   Position schon vom Bot zu       -> uebersprungen, KEIN Schreibversuch
+#   Auftrag storniert               -> es gibt nichts mehr auszufuehren
+#   Kein Kurs / Datenbank gesperrt  -> Auftrag bleibt, Zaehler hoch
+#   Trockenlauf                     -> nichts, unter keinen Umstaenden
+#
+# Und einen Fall, in dem geschrieben werden MUSS - sonst waere die ganze
+# Funktion eine Attrappe (Methodik-Grundsatz 12).
+
+def _auftrag_anlegen(bot, trade_id, symbol, entry_price=None):
+    """Legt einen Auftrag direkt ueber den Kern an - ohne HTTP.
+
+    Der Weg ueber die Oberflaeche ist in Abschnitt 17 geprueft; hier geht es
+    um das Ausfuehren, und ein Auftrag ist ein Auftrag."""
+    with boerse_am(ZEIT_WOCHENENDE):
+        return warteauftraege.anlegen(
+            bot, trade_id, symbol, "test-nutzer", "dashboard",
+            entry_price=entry_price,
+            boerse=schliessen.boersenlage("aktien"))
+
+
+def teste_ausfuehrungsskript(wurzel, db_dateien, protokoll_datei):
+    print("\n18) Ausfuehrungsskript fuer Warteauftraege")
+
+    import warteauftraege_ausfuehren as skript
+
+    db_aktien = db_dateien["volatility_breakout"]
+    andere = {n: p for n, p in db_dateien.items() if n != "volatility_breakout"}
+    warteauftraege.alles_loeschen()
+
+    # Ein eigener Kurslieferant statt yfinance. Das Skript nimmt ihn als
+    # Parameter entgegen - im Ernstfall steht dort monitor.fetch_stock_prices,
+    # also genau die Funktion, die auch das Dashboard benutzt.
+    kurse = {"AAPL": 165.0, "MSFT": 330.0, "NVDA": 480.0}
+    holen = lambda symbole: {s: kurse[s] for s in symbole if s in kurse}
+
+    posten = _oeffne_positionen(db_aktien, [("AAPL", 150.0), ("MSFT", 300.0),
+                                             ("NVDA", 500.0)])
+    aapl, msft, nvda = [p[0] for p in posten]
+    pruefsummen_andere = _pruefsummen(andere)
+
+    def zeile(trade_id):
+        treffer = [z for z in zeilen(db_aktien) if z["id"] == trade_id]
+        return treffer[0] if treffer else None
+
+    # --- 18a) Boerse GESCHLOSSEN: es passiert nichts ----------------------
+    _auftrag_anlegen("volatility_breakout", aapl, "AAPL", 150.0)
+    stand = zeilen(db_aktien)
+    with boerse_am(ZEIT_WOCHENENDE):
+        ergebnis = skript.lauf(kurse_holen=holen)
+    check("Bei geschlossener Boerse wird nichts geschlossen",
+          ergebnis["geschlossen"] == [] and ergebnis["fehlgeschlagen"] == [],
+          str(ergebnis["meldung"])[:120])
+    check("... der Auftrag bleibt stehen",
+          len(warteauftraege.alle()) == 1)
+    check("... die Datenbank ist Feld fuer Feld unveraendert",
+          unterschiede(stand, zeilen(db_aktien)) == [],
+          str(unterschiede(stand, zeilen(db_aktien)))[:120])
+    check("... und die Meldung nennt den Grund (Kalender)",
+          "geschlossen" in ergebnis["meldung"], ergebnis["meldung"][:110])
+
+    # Auch am Feiertag mitten in der Handelszeit passiert nichts - der Fall,
+    # den eine Wochentagsregel durchgelassen haette.
+    with boerse_am(ZEIT_FEIERTAG):
+        ergebnis = skript.lauf(kurse_holen=holen)
+    check("Am Feiertag (Thanksgiving, Donnerstag 13:00 NY) ebenfalls nichts",
+          ergebnis["geschlossen"] == [] and len(warteauftraege.alle()) == 1,
+          ergebnis["meldung"][:110])
+    check("... die Datenbank bleibt auch dort unveraendert",
+          unterschiede(stand, zeilen(db_aktien)) == [])
+
+    # Und am verkuerzten Handelstag NACH dem fruehen Schluss.
+    with boerse_am(ZEIT_HALBTAG_ZU):
+        ergebnis = skript.lauf(kurse_holen=holen)
+    check("Nach dem fruehen Schluss eines verkuerzten Handelstags: nichts",
+          ergebnis["geschlossen"] == [] and len(warteauftraege.alle()) == 1)
+
+    # --- 18b) TROCKENLAUF bei offener Boerse: sagt was, tut nichts --------
+    with boerse_am(ZEIT_OFFEN):
+        ergebnis = skript.lauf(trockenlauf=True, kurse_holen=holen)
+    check("Trockenlauf meldet, was er taete",
+          len(ergebnis["geschlossen"]) == 1
+          and ergebnis["geschlossen"][0]["symbol"] == "AAPL",
+          str(ergebnis["geschlossen"])[:120])
+    check("... schreibt aber nichts",
+          unterschiede(stand, zeilen(db_aktien)) == [])
+    check("... und laesst den Auftrag stehen",
+          len(warteauftraege.alle()) == 1)
+    check("... und sagt das auch in der Meldung",
+          ergebnis["meldung"].startswith("TROCKENLAUF"),
+          ergebnis["meldung"][:60])
+
+    # --- 18c) Boerse OFFEN: jetzt wird geschrieben -----------------------
+    protokoll_vorher = open(protokoll_datei, encoding="utf-8").read()
+    with boerse_am(ZEIT_OFFEN):
+        ergebnis = skript.lauf(kurse_holen=holen)
+    check("Bei offener Boerse wird der Auftrag ausgefuehrt",
+          len(ergebnis["geschlossen"]) == 1
+          and ergebnis["geschlossen"][0]["symbol"] == "AAPL",
+          str(ergebnis["meldung"])[:120])
+    danach = zeile(aapl)
+    check("Die Position ist geschlossen",
+          danach["status"] == "closed" and danach["result"] == "manual_close",
+          f"{danach['status']} / {danach['result']}")
+    check("Geschlossen wurde zum KURS DES AUSFUEHRUNGSZEITPUNKTS, nicht zu "
+          "einem beim Bestaetigen gemerkten",
+          danach["exit_price"] == 165.0, str(danach["exit_price"]))
+    check("Der PnL folgt der Formel des Bots (150 -> 165 = +9.70)",
+          danach["pnl_pct"] == 9.7, str(danach["pnl_pct"]))
+    veraendert = {f for _, f, _, _ in unterschiede(stand, zeilen(db_aktien))}
+    check("Geaendert wurden GENAU die fuenf Ausstiegsfelder",
+          veraendert == {"exit_time", "exit_price", "result", "pnl_pct",
+                          "status"}, str(sorted(veraendert)))
+    check("Die uebrigen Bot-Datenbanken sind byteweise unveraendert",
+          _pruefsummen(andere) == pruefsummen_andere)
+    check("Der Auftrag ist abgeraeumt",
+          warteauftraege.alle() == [], str(warteauftraege.alle())[:120])
+
+    neu = open(protokoll_datei, encoding="utf-8").read()[len(protokoll_vorher):]
+    check("Der Eingriff steht mit quelle=warteauftrag im Protokoll",
+          "quelle=warteauftrag" in neu, neu[:160])
+    check("... als gewoehnlicher ERFOLGREICH-Eintrag, also mit Vorher/Nachher",
+          "ERFOLGREICH" in neu and "VORHER" in neu and "NACHHER" in neu)
+    check("... und der Abschluss des Auftrags ist eigens vermerkt",
+          "WARTEAUFTRAG-AUSGEFUEHRT" in neu)
+    check("... samt Angabe, wer ihn urspruenglich bestellt hatte",
+          "bestellt_von=test-nutzer" in neu, neu[-200:])
+
+    # --- 18d) Der Bot war schneller: uebersprungen, kein Fehler -----------
+    _auftrag_anlegen("volatility_breakout", msft, "MSFT", 300.0)
+    conn = sqlite3.connect(db_aktien)
+    conn.execute("UPDATE trades SET status='closed', result='sma_exit', "
+                  "exit_price=310.0, pnl_pct=3.03, exit_time='2026-09-10 12:00:00' "
+                  "WHERE id=?", (msft,))
+    conn.commit()
+    conn.close()
+    stand = zeilen(db_aktien)
+    protokoll_vorher = open(protokoll_datei, encoding="utf-8").read()
+    with boerse_am(ZEIT_OFFEN):
+        ergebnis = skript.lauf(kurse_holen=holen)
+    check("Eine vom Bot selbst geschlossene Position wird UEBERSPRUNGEN",
+          len(ergebnis["uebersprungen"]) == 1
+          and ergebnis["uebersprungen"][0]["symbol"] == "MSFT",
+          str(ergebnis["uebersprungen"])[:120])
+    check("... und ausdruecklich NICHT als Fehlschlag gezaehlt",
+          ergebnis["fehlgeschlagen"] == [] and ergebnis["geschlossen"] == [])
+    check("... die Zeile des Bots bleibt voellig unberuehrt",
+          unterschiede(stand, zeilen(db_aktien)) == [],
+          str(unterschiede(stand, zeilen(db_aktien)))[:140])
+    check("... insbesondere bleibt SEIN Ausstiegsgrund stehen, nicht "
+          "'manual_close'",
+          zeile(msft)["result"] == "sma_exit", str(zeile(msft)["result"]))
+    check("... der Auftrag ist abgeraeumt",
+          warteauftraege.alle() == [])
+    neu = open(protokoll_datei, encoding="utf-8").read()[len(protokoll_vorher):]
+    check("... und im Protokoll steht UEBERSPRUNGEN mit Begruendung",
+          "WARTEAUFTRAG-UEBERSPRUNGEN" in neu
+          and "bereits vom Bot selbst geschlossen" in neu, neu[:200])
+    check("... und gerade KEIN Schreibversuch, also keine Ablehnung",
+          "ABGELEHNT" not in neu, neu[:200])
+
+    # --- 18e) Storniert heisst storniert ---------------------------------
+    auftrag = _auftrag_anlegen("volatility_breakout", nvda, "NVDA", 500.0)
+    warteauftraege.stornieren(auftrag["id"], "test", "dashboard")
+    stand = zeilen(db_aktien)
+    with boerse_am(ZEIT_OFFEN):
+        ergebnis = skript.lauf(kurse_holen=holen)
+    check("Ein stornierter Auftrag wird NICHT ausgefuehrt",
+          ergebnis["geschlossen"] == [] and ergebnis["auftraege_gesamt"] == 0,
+          str(ergebnis["meldung"])[:110])
+    check("... die Position bleibt offen",
+          zeile(nvda)["status"] == "open")
+    check("... und die Datenbank unveraendert",
+          unterschiede(stand, zeilen(db_aktien)) == [])
+    # Gegenprobe: OHNE Stornierung wuerde dieselbe Position geschlossen -
+    # sonst belegte der Test oben nur, dass gerade gar nichts passiert.
+    _auftrag_anlegen("volatility_breakout", nvda, "NVDA", 500.0)
+    with boerse_am(ZEIT_OFFEN):
+        ergebnis = skript.lauf(kurse_holen=holen)
+    check("Gegenprobe: ohne Stornierung wird dieselbe Position geschlossen",
+          len(ergebnis["geschlossen"]) == 1
+          and zeile(nvda)["status"] == "closed",
+          str(ergebnis["meldung"])[:110])
+    check("Gegenprobe: der Ausstiegskurs ist der aktuelle (480), nicht der "
+          "Einstieg", zeile(nvda)["exit_price"] == 480.0,
+          str(zeile(nvda)["exit_price"]))
+
+    # --- 18f) Kein Kurs: der Auftrag bleibt stehen -----------------------
+    posten = _oeffne_positionen(db_aktien, [("AAPL", 100.0)])
+    ohne_kurs = posten[0][0]
+    _auftrag_anlegen("volatility_breakout", ohne_kurs, "AAPL", 100.0)
+    stand = zeilen(db_aktien)
+    with boerse_am(ZEIT_OFFEN):
+        ergebnis = skript.lauf(kurse_holen=lambda symbole: {})
+    check("Ohne Kurs wird nicht geschrieben",
+          ergebnis["geschlossen"] == []
+          and len(ergebnis["fehlgeschlagen"]) == 1,
+          str(ergebnis["fehlgeschlagen"])[:120])
+    check("... der Auftrag bleibt stehen (der naechste Lauf versucht es erneut)",
+          len(warteauftraege.alle()) == 1)
+    check("... mit Zaehler und Grund am Auftrag",
+          warteauftraege.alle()[0]["versuche"] == 1
+          and "Kurs" in (warteauftraege.alle()[0]["letzter_fehler"] or ""),
+          str(warteauftraege.alle()[0])[:160])
+    check("... und die Datenbank ist unveraendert",
+          unterschiede(stand, zeilen(db_aktien)) == [])
+
+    # --- 18g) Gesperrte Datenbank: derselbe Schutz wie beim Schliessen ---
+    halter_skript = os.path.join(wurzel, "sperr_halter_wa.py")
+    with open(halter_skript, "w", encoding="utf-8") as datei:
+        datei.write(SPERR_HALTER_FREI)
+    altes_limit = manual_close.SPERR_TIMEOUT_SEKUNDEN
+    manual_close.SPERR_TIMEOUT_SEKUNDEN = 1
+    halter = subprocess.Popen([sys.executable, halter_skript, db_aktien, "6"],
+                               stdout=subprocess.PIPE, text=True)
+    try:
+        check("Ein Fremdprozess haelt die Schreibsperre (wie ein Cronjob)",
+              halter.stdout.readline().strip() == "gesperrt")
+        with boerse_am(ZEIT_OFFEN):
+            ergebnis = skript.lauf(kurse_holen=lambda s: {"AAPL": 111.0})
+        check("Bei gesperrter Datenbank wird sauber abgebrochen",
+              ergebnis["geschlossen"] == []
+              and len(ergebnis["fehlgeschlagen"]) == 1,
+              str(ergebnis["fehlgeschlagen"])[:140])
+        check("... die Meldung nennt die Sperre",
+              "gesperrt" in ergebnis["fehlgeschlagen"][0]["grund"].lower(),
+              ergebnis["fehlgeschlagen"][0]["grund"][:110])
+        check("... der Auftrag bleibt stehen und zaehlt den zweiten Versuch",
+              len(warteauftraege.alle()) == 1
+              and warteauftraege.alle()[0]["versuche"] == 2,
+              str(warteauftraege.alle()[0]["versuche"]))
+    finally:
+        manual_close.SPERR_TIMEOUT_SEKUNDEN = altes_limit
+        halter.wait(timeout=60)
+    check("Nach dem Ende der Sperre ist die Zeile immer noch offen",
+          zeile(ohne_kurs)["status"] == "open")
+
+    # Und jetzt laeuft es durch - die Sperre ist weg, der Kurs da.
+    with boerse_am(ZEIT_OFFEN):
+        ergebnis = skript.lauf(kurse_holen=lambda s: {"AAPL": 111.0})
+    check("Derselbe Auftrag laeuft im naechsten Lauf sauber durch",
+          len(ergebnis["geschlossen"]) == 1
+          and zeile(ohne_kurs)["status"] == "closed",
+          str(ergebnis["meldung"])[:110])
+    check("Die Auftragsliste ist danach leer",
+          warteauftraege.alle() == [])
+
+    # --- 18h) Ein Auftrag auf einen Krypto-Bot wird NICHT ausgefuehrt ----
+    # Ueber die Oberflaeche kann er nicht entstehen (Abschnitt 17). Wer die
+    # Datei von Hand bearbeitet, soll trotzdem keinen Schreibzugriff
+    # ausloesen - der Kalender gilt fuer Krypto ja gar nicht.
+    krypto_posten = _oeffne_positionen(db_dateien["t3_supertrend"],
+                                        [("BTCUSDT", 100.0)])
+    with _sperre_frei():
+        stand_datei = {"version": 1, "auftraege": [{
+            "id": "handgemacht", "bot": "t3_supertrend",
+            "anzeigename": "T3", "trade_id": krypto_posten[0][0],
+            "symbol": "BTCUSDT", "entry_time": None, "entry_price": 100.0,
+            "angefordert_am": "2026-09-12T10:00:00+00:00",
+            "benutzer": "von-hand", "quelle": "handarbeit",
+            "boerse_bei_anforderung": {}, "versuche": 0,
+            "letzter_versuch_am": None, "letzter_fehler": None}]}
+        with open(warteauftraege.datei(), "w", encoding="utf-8") as fh:
+            json.dump(stand_datei, fh)
+    krypto_stand = zeilen(db_dateien["t3_supertrend"])
+    with boerse_am(ZEIT_OFFEN):
+        ergebnis = skript.lauf(kurse_holen=lambda s: {"BTCUSDT": 120.0})
+    check("Ein von Hand eingetragener Krypto-Auftrag wird NICHT ausgefuehrt",
+          ergebnis["geschlossen"] == []
+          and len(ergebnis["fehlgeschlagen"]) == 1,
+          str(ergebnis["fehlgeschlagen"])[:140])
+    check("... die Krypto-Datenbank bleibt unveraendert",
+          unterschiede(krypto_stand,
+                        zeilen(db_dateien["t3_supertrend"])) == [])
+    warteauftraege.alles_loeschen()
+
+    # --- 18i) Leerlauf kostet nichts -------------------------------------
+    ergebnis = skript.lauf(kurse_holen=_kein_kursabruf)
+    check("Ohne Auftraege endet der Lauf sofort - ohne Kursabfrage",
+          ergebnis["auftraege_gesamt"] == 0 and ergebnis["boerse"] is None,
+          str(ergebnis["meldung"])[:80])
+
+
+def _kein_kursabruf(symbole):
+    raise AssertionError("Ohne Warteauftraege darf keine Kursabfrage "
+                         "stattfinden - genau das macht einen engen "
+                         "Cron-Takt bezahlbar.")
+
+
+class _sperre_frei:
+    """Kontext, der die Auftragsdatei direkt beschreibt - unter derselben
+    Sperre wie das Modul selbst."""
+
+    def __enter__(self):
+        self._s = warteauftraege._sperre().__enter__()
+        return self
+
+    def __exit__(self, *_):
+        self._s.__exit__(None, None, None)
+        return False
+
+
+# ---------------------------------------------------------------------------
+# 19) Mehrere Auftraege ueber mehrere Bots - und der gemischte Crash-Fall
+# ---------------------------------------------------------------------------
+# Der Fall, der im Ernstfall zaehlt: Sonntagabend, der Nutzer will alles
+# glattstellen. Krypto laesst sich schliessen, Aktien nicht. Ein Klick, zwei
+# voellig verschiedene Ausgaenge - und die Anzeige muss beide auseinander
+# halten, sonst haelt sich jemand fuer flach im Markt und ist es nicht.
+
+def teste_mehrere_warteauftraege(basis, wurzel, db_dateien, protokoll_datei):
+    print("\n19) Mehrere Warteauftraege ueber mehrere Bots")
+
+    import warteauftraege_ausfuehren as skript
+
+    # Ein ZWEITER Aktien-Bot. Bis hierher hatte das Testprojekt nur einen -
+    # damit liesse sich "mehrere Bots" nicht belegen, sondern nur behaupten.
+    db_zweiter = _lege_bot_an(wurzel, "turtle_soup_stocks", [],
+                               live_params="ALLOCATION_PCT = 4\n")
+    db_dateien = dict(db_dateien)
+    db_dateien["turtle_soup_stocks"] = db_zweiter
+
+    db_a1 = db_dateien["volatility_breakout"]
+    db_k1 = db_dateien["t3_supertrend"]
+    db_k2 = db_dateien["elliott_wave"]
+
+    original_kurse = monitor.fetch_live_prices_for_bots
+    alle_kurse = {"AAPL": 160.0, "MSFT": 320.0, "NVDA": 490.0, "TSLA": 210.0,
+                  "BTCUSDT": 110.0, "ETHUSDT": 180.0, "SOLUSDT": 22.0}
+    monitor.fetch_live_prices_for_bots = lambda bots: dict(alle_kurse)
+    schliessen.vorgaenge_zuruecksetzen()
+    warteauftraege.alles_loeschen()
+    try:
+        a1 = _oeffne_positionen(db_a1, [("AAPL", 150.0), ("MSFT", 300.0)])
+        a2 = _oeffne_positionen(db_zweiter, [("TSLA", 200.0)])
+        k1 = _oeffne_positionen(db_k1, [("BTCUSDT", 100.0)])
+        k2 = _oeffne_positionen(db_k2, [("SOLUSDT", 20.0)])
+
+        def status(bot, trade_id):
+            conn = sqlite3.connect(db_dateien[bot])
+            zeile = conn.execute("SELECT status, result FROM trades WHERE id=?",
+                                  (trade_id,)).fetchone()
+            conn.close()
+            return tuple(zeile) if zeile else None
+
+        stand_a1, stand_a2 = zeilen(db_a1), zeilen(db_zweiter)
+
+        with boerse_am(ZEIT_WOCHENENDE):
+            # --- 19a) Bot-weiter Notfallweg bei geschlossener Boerse ------
+            vorbereitet = _alle_vorbereiten(basis, "volatility_breakout").json()
+            check("Bot-weit: der Vorgang ist ein Warteauftrags-Vorgang",
+                  vorbereitet["warteauftrag"] is True
+                  and vorbereitet["boerse"]["offen"] is False)
+            offen_jetzt = len(manual_close.offene_positionen("volatility_breakout"))
+            check("... und umfasst ALLE offenen Positionen dieses Bots",
+                  vorbereitet["anzahl"] == offen_jetzt >= 2,
+                  f"{vorbereitet['anzahl']} von {offen_jetzt}")
+
+            ohne = _alle_ausfuehren(basis, vorbereitet["vorgang"],
+                                     "volatility_breakout")
+            check("Bot-weit ohne Bestaetigung des Warnschritts: 409",
+                  ohne.status_code == 409, str(ohne.status_code))
+            check("... nichts geschrieben, nichts vorgemerkt",
+                  unterschiede(stand_a1, zeilen(db_a1)) == []
+                  and warteauftraege.alle() == [])
+
+            vorbereitet = _alle_vorbereiten(basis, "volatility_breakout").json()
+            mit = post(basis, "/api/bots/volatility_breakout/"
+                               "alle-schliessen/ausfuehren",
+                        {"vorgang": vorbereitet["vorgang"],
+                         schliessen.WARTEAUFTRAG_BESTAETIGUNG: True})
+            check("Bot-weit mit Bestaetigung: HTTP 200",
+                  mit.status_code == 200, mit.text[:140])
+            ergebnis = mit.json()
+            check("... alle Positionen sind vorgemerkt, keine geschlossen",
+                  ergebnis["anzahl_vorgemerkt"] == offen_jetzt
+                  and "geschlossen" not in ergebnis, str(sorted(ergebnis))[:160])
+            check("... die Meldung sagt ausdruecklich 'nichts geschlossen'",
+                  "nichts geschlossen" in ergebnis["meldung"],
+                  ergebnis["meldung"][:130])
+            check("... die Datenbank des Bots ist unveraendert",
+                  unterschiede(stand_a1, zeilen(db_a1)) == [])
+            check("... und fuer jede steht ein Auftrag in der Datei",
+                  len(_auftraege_aus_datei()) == offen_jetzt,
+                  str(len(_auftraege_aus_datei())))
+
+            # Ein zweiter Durchlauf findet nichts mehr vorzumerken.
+            nochmal = _alle_vorbereiten(basis, "volatility_breakout")
+            check("Ein zweiter Durchlauf wird abgelehnt - alles steht schon",
+                  nochmal.status_code == 409, str(nochmal.status_code))
+            check("... mit dem Grund je Position",
+                  "vormerken" in nochmal.json()["detail"],
+                  nochmal.json()["detail"][:120])
+
+            # --- 19b) Der globale Crash-Weg: GEMISCHT --------------------
+            crash = _crash_vorbereiten(basis).json()
+            check("Crash-Uebersicht: der Vorgang ist gemischt",
+                  crash["warteauftrag"] is True
+                  and crash["anzahl_sofort"] >= 2
+                  and crash["anzahl_warteauftrag"] >= 1,
+                  f"sofort={crash['anzahl_sofort']} "
+                  f"vormerken={crash['anzahl_warteauftrag']}")
+            check("... die Aktien-Bots sind als 'wird vorgemerkt' markiert",
+                  all(b["warteauftrag"] is True for b in crash["bots"]
+                      if b["anlageklasse"] == "aktien"),
+                  str([(b["bot"], b["warteauftrag"]) for b in crash["bots"]]))
+            check("... die Krypto-Bots ausdruecklich NICHT",
+                  all(b["warteauftrag"] is False for b in crash["bots"]
+                      if b["anlageklasse"] == "krypto"))
+            check("... und die beiden Zahlen werden nicht zu einer verrechnet",
+                  crash["anzahl"] == crash["anzahl_sofort"]
+                  + crash["anzahl_warteauftrag"])
+            check("Die bereits vorgemerkten Positionen zaehlen nicht noch "
+                  "einmal mit",
+                  all(p["grund"] == "steht bereits als Warteauftrag"
+                      for b in crash["bots"] if b["bot"] == "volatility_breakout"
+                      for p in b["positionen"] if not p["schliessbar_jetzt"]),
+                  str([p for b in crash["bots"]
+                       if b["bot"] == "volatility_breakout"
+                       for p in b["positionen"]])[:200])
+
+            # Ohne Bestaetigung des Warnschritts passiert GAR NICHTS - auch
+            # bei den Krypto-Bots nicht.
+            k1_vorher = status("t3_supertrend", k1[0][0])
+            ohne = post(basis, "/api/alle-bots-schliessen/ausfuehren",
+                         {"vorgang": crash["vorgang"], "bestaetigung": "CRASH"})
+            check("Crash ohne Bestaetigung des Warnschritts: 409",
+                  ohne.status_code == 409, str(ohne.status_code))
+            check("... und die Krypto-Position bleibt ebenfalls unberuehrt - "
+                  "ein halb ausgefuehrter Crash waere die schlechteste "
+                  "Antwort von allen",
+                  status("t3_supertrend", k1[0][0]) == k1_vorher,
+                  str(status("t3_supertrend", k1[0][0])))
+
+            crash = _crash_vorbereiten(basis).json()
+            mit = post(basis, "/api/alle-bots-schliessen/ausfuehren",
+                        {"vorgang": crash["vorgang"], "bestaetigung": "CRASH",
+                         schliessen.WARTEAUFTRAG_BESTAETIGUNG: True})
+            check("Crash mit beiden Bestaetigungen: HTTP 200",
+                  mit.status_code == 200, mit.text[:140])
+            r = mit.json()
+            check("Die Krypto-Positionen sind SOFORT geschlossen",
+                  status("t3_supertrend", k1[0][0]) == ("closed", "manual_close")
+                  and status("elliott_wave", k2[0][0]) == ("closed", "manual_close"),
+                  f"{status('t3_supertrend', k1[0][0])} / "
+                  f"{status('elliott_wave', k2[0][0])}")
+            check("Die Aktien-Position des zweiten Bots ist NICHT geschlossen",
+                  status("turtle_soup_stocks", a2[0][0]) == ("open", None))
+            check("... sondern vorgemerkt",
+                  any(a["bot"] == "turtle_soup_stocks"
+                      for a in _auftraege_aus_datei()),
+                  str([a["bot"] for a in _auftraege_aus_datei()]))
+            check("Das Ergebnis weist geschlossen und vorgemerkt GETRENNT aus",
+                  r["anzahl_geschlossen"] >= 2 and r["anzahl_vorgemerkt"] == 1
+                  and r["anzahl_geschlossen"] != r["anzahl_vorgemerkt"],
+                  f"{r['anzahl_geschlossen']} / {r['anzahl_vorgemerkt']}")
+            check("... die geschlossenen sind ausschliesslich Krypto-Positionen",
+                  all(b["bot"] in ("t3_supertrend", "elliott_wave",
+                                    "rsi2_crypto", "turtle_soup_crypto",
+                                    "volatility_breakout_crypto")
+                      for b in r["bots"] if b["anzahl_geschlossen"]),
+                  str([(b["bot"], b["anzahl_geschlossen"]) for b in r["bots"]]))
+            check("... die vorgemerkten ausschliesslich Aktien-Positionen",
+                  all(b["bot"] in ("volatility_breakout", "turtle_soup_stocks",
+                                    "rsi2_mean_reversion", "elliott_wave_stocks")
+                      for b in r["bots_vorgemerkt"]),
+                  str([b["bot"] for b in r["bots_vorgemerkt"]]))
+            check("... die vorgemerkten zaehlen ausdruecklich nicht als "
+                  "geschlossen",
+                  all(g["symbol"] not in ("TSLA",) for b in r["bots"]
+                      for g in b["geschlossen"]))
+            check("... und die Meldung nennt beides",
+                  "vorgemerkt" in r["meldung"] and "geschlossen" in r["meldung"],
+                  r["meldung"][:200])
+            check("Die Datenbanken beider Aktien-Bots sind unveraendert",
+                  unterschiede(stand_a1, zeilen(db_a1)) == []
+                  and unterschiede(stand_a2, zeilen(db_zweiter)) == [])
+            check("Insgesamt stehen jetzt Auftraege ueber ZWEI Bots",
+                  len(_auftraege_aus_datei()) == offen_jetzt + 1
+                  and {a["bot"] for a in _auftraege_aus_datei()}
+                  == {"volatility_breakout", "turtle_soup_stocks"},
+                  str([(a["bot"], a["symbol"]) for a in _auftraege_aus_datei()]))
+
+            liste = get(basis, "/api/warteauftraege").json()
+            check("Die Uebersichtsliste zeigt alle, bot-uebergreifend",
+                  liste["anzahl"] == offen_jetzt + 1
+                  and {a["bot"] for a in liste["auftraege"]}
+                  == {"volatility_breakout", "turtle_soup_stocks"})
+            check("... jeweils mit Anzeigenamen fuer die Tabelle",
+                  all(a["anzeigename"] for a in liste["auftraege"]))
+
+        # --- 19c) Ein Lauf raeumt alle drei ab, ueber beide Bots ---------
+        with boerse_am(ZEIT_OFFEN):
+            ergebnis = skript.lauf(
+                kurse_holen=lambda symbole: {s: alle_kurse[s] for s in symbole
+                                              if s in alle_kurse})
+        check("Ein einziger Lauf schliesst alle wartenden Positionen",
+              len(ergebnis["geschlossen"]) == offen_jetzt + 1,
+              str(ergebnis["meldung"])[:140])
+        check("... ueber beide Aktien-Bots hinweg",
+              {g["bot"] for g in ergebnis["geschlossen"]}
+              == {"volatility_breakout", "turtle_soup_stocks"},
+              str({g["bot"] for g in ergebnis["geschlossen"]}))
+        geschrieben = {g["symbol"]: g["exit_preis"]
+                       for g in ergebnis["geschlossen"]}
+        check("... jede zu IHREM eigenen aktuellen Kurs",
+              all(geschrieben[s] == alle_kurse[s] for s in geschrieben)
+              and {"AAPL", "MSFT", "TSLA"} <= set(geschrieben),
+              str(geschrieben))
+        check("... und die Auftragsliste ist danach leer",
+              warteauftraege.alle() == [])
+        check("Alle drei Zeilen tragen jetzt den manuellen Vermerk",
+              status("volatility_breakout", a1[0][0]) == ("closed", "manual_close")
+              and status("volatility_breakout", a1[1][0]) == ("closed", "manual_close")
+              and status("turtle_soup_stocks", a2[0][0]) == ("closed", "manual_close"))
+    finally:
+        monitor.fetch_live_prices_for_bots = original_kurse
+        # Den zweiten Aktien-Bot wieder entfernen - die uebrigen Abschnitte
+        # rechnen mit drei Bots im Testprojekt.
+        if os.path.exists(db_zweiter):
+            os.remove(db_zweiter)
+        shutil.rmtree(os.path.join(wurzel, "strategies", "turtle_soup_stocks"),
+                      ignore_errors=True)
+        warteauftraege.alles_loeschen()
+
+
+# ---------------------------------------------------------------------------
+# 16) Der echte Boersenkalender - ohne Server, ohne Datenbank
+# ---------------------------------------------------------------------------
+# Diese Pruefungen sind der Grund, warum eine Bibliothek benutzt wird statt
+# einer Zeitregel. Jeder einzelne Fall unten wuerde eine Faustregel
+# ("Mo-Fr, 15:30-22:00") falsch beantworten:
+#
+#   Thanksgiving         beweglicher Feiertag (4. Donnerstag im November)
+#   Karfreitag           haengt am Osterdatum, also am Mondkalender
+#   4. Juli 2026         faellt auf einen Samstag und wird am Freitag davor
+#                        begangen - ein Werktag, an dem nicht gehandelt wird
+#   Tag nach Thanksgiving  Handelsschluss 13:00 statt 16:00 Ortszeit
+#
+# Und weil eine gruene Pruefung erst dann etwas wert ist, wenn sie auch rot
+# werden kann (Methodik-Grundsatz 12), steht bei jedem geschlossenen Tag ein
+# offener Zeitpunkt daneben, der durch DIESELBE Funktion laeuft.
+
+def teste_boersenkalender():
+    print("\n16) Boersenkalender: echte NYSE-Regeln")
+    echt = boersenkalender.status
+
+    check("Bibliothek ist installiert",
+          boersenkalender.bibliothek_verfuegbar(),
+          str(boersenkalender.BIBLIOTHEK_FEHLER))
+
+    offen = echt(ZEIT_OFFEN)
+    check("Normaler Donnerstag, 13:00 New Yorker Zeit: OFFEN",
+          offen["offen"] is True, offen["grund"])
+    check("Dabei steht der Handelsschluss dieses Tages mit dabei",
+          offen["naechster_schluss"] is not None, str(offen["naechster_schluss"]))
+
+    # --- Wochenende --------------------------------------------------------
+    wochenende = echt(ZEIT_WOCHENENDE)
+    check("Samstag: geschlossen", wochenende["offen"] is False)
+    check("... und der letzte Handelstag ist der Freitag davor",
+          wochenende["letzter_handelstag"] == "2026-09-11",
+          str(wochenende["letzter_handelstag"]))
+    check("... die naechste Oeffnung ist der Montag",
+          str(wochenende["naechste_oeffnung"]).startswith("2026-09-14"),
+          str(wochenende["naechste_oeffnung"]))
+
+    # --- Feiertage ---------------------------------------------------------
+    feiertag = echt(ZEIT_FEIERTAG)
+    check("Thanksgiving (beweglich, 4. Donnerstag im November): geschlossen",
+          feiertag["offen"] is False, feiertag["grund"])
+    check("... obwohl es ein Donnerstag mitten in der Handelszeit ist - "
+          "genau der Fall, den eine Wochentagsregel verschluckt",
+          feiertag["letzter_handelstag"] == "2026-11-25",
+          str(feiertag["letzter_handelstag"]))
+
+    karfreitag = echt(ZEIT_KARFREITAG)
+    check("Karfreitag (haengt am Osterdatum): geschlossen",
+          karfreitag["offen"] is False, karfreitag["grund"])
+
+    juli = echt(ZEIT_4_JULI)
+    check("4. Juli 2026 faellt auf Samstag - der Freitag davor ist zu",
+          juli["offen"] is False, juli["grund"])
+
+    # --- Verkuerzter Handelstag -------------------------------------------
+    # DER Fall, an dem eine Zeitregel drei Stunden lang das Falsche sagt.
+    halb_offen = echt(ZEIT_HALBTAG_OFFEN)
+    halb_zu = echt(ZEIT_HALBTAG_ZU)
+    check("Tag nach Thanksgiving, 12:30 New Yorker Zeit: noch offen",
+          halb_offen["offen"] is True, halb_offen["grund"])
+    check("... und derselbe Tag um 13:30: bereits geschlossen "
+          "(verkuerzter Handelstag)",
+          halb_zu["offen"] is False, halb_zu["grund"])
+    check("... der Kalender weist ihn ausdruecklich als verkuerzt aus",
+          halb_offen["verkuerzter_handelstag"] is True)
+    check("Gegenprobe: ein normaler Tag gilt NICHT als verkuerzt",
+          offen["verkuerzter_handelstag"] is False)
+    check("Eine Faustregel 'bis 22:00 deutscher Zeit' laege hier daneben - "
+          "der Unterschied ist belegt, nicht behauptet",
+          halb_offen["offen"] is not halb_zu["offen"])
+
+    # --- Fail closed: ohne Bibliothek keine Auskunft ----------------------
+    gemerkt = boersenkalender.BIBLIOTHEK_FEHLER
+    try:
+        boersenkalender.BIBLIOTHEK_FEHLER = "Testfall: Bibliothek fehlt"
+        ohne = echt(ZEIT_OFFEN)
+        check("Ohne Bibliothek ist die Antwort UNBEKANNT (None), nicht 'offen'",
+              ohne["offen"] is None, str(ohne["offen"]))
+        check("... mit einer Begruendung, die die Ursache nennt",
+              "Bibliothek" in (ohne["grund"] or ""), str(ohne["grund"])[:80])
+        lage = schliessen.boersenlage("aktien", ZEIT_OFFEN)
+        check("... und die Aktien-Lage ist dann WEDER handelbar NOCH "
+              "vormerkbar",
+              lage["unbekannt"] is True and lage["handelbar_jetzt"] is False
+              and lage["warteauftrag_noetig"] is False, str(lage)[:120])
+        krypto = schliessen.boersenlage("krypto", ZEIT_OFFEN)
+        check("Krypto bleibt davon voellig unberuehrt - immer handelbar",
+              krypto["handelbar_jetzt"] is True
+              and krypto["warteauftrag_noetig"] is False
+              and krypto["kalender_gilt"] is False)
+    finally:
+        boersenkalender.BIBLIOTHEK_FEHLER = gemerkt
+        boersenkalender.zwischenspeicher_leeren()
+
+    check("Nach dem Testfall antwortet der Kalender wieder normal",
+          echt(ZEIT_OFFEN)["offen"] is True)
+
+    # --- Krypto/Aktien-Weiche ---------------------------------------------
+    check("Bei geschlossener Boerse ist die Aktien-Lage 'vormerken'",
+          schliessen.boersenlage("aktien", ZEIT_WOCHENENDE)["warteauftrag_noetig"]
+          is True)
+    check("... waehrend Krypto zur selben Zeit sofort handelbar bleibt",
+          schliessen.boersenlage("krypto", ZEIT_WOCHENENDE)["handelbar_jetzt"]
+          is True)
+
+
 def teste_schliessen_frontend():
     print("\n10) Frontend des Schliessvorgangs")
     statisch = os.path.join(DIR, "static")
@@ -2509,15 +3522,20 @@ def teste_schliessen_frontend():
           'getElementById("crash-weiter").addEventListener("click", crashZuStufe2)'
           in index)
     check("Stufe 2 blaettert nur weiter",
-          'getElementById("crash-weiter2").addEventListener("click", crashZuStufe3)'
-          in index)
+          'getElementById("crash-weiter2").addEventListener("click", '
+          'crashZumWarnschritt)' in index)
+    check("... und der Warnschritt ebenfalls nur weiter (zur Texteingabe)",
+          "crashZuStufe3();" in index.split("function crashZumWarnschritt()", 1)[1]
+          .split("\n}", 1)[0]
+          or 'crashWaBestaetigt = true;\n  crashZuStufe3();' in index)
     check("Nur Stufe 3 loest das Schreiben aus",
           'getElementById("crash-ausfuehren").addEventListener("click", '
           'crashAusfuehren)' in index)
     check("Der schreibende Aufruf steht genau EINMAL im Frontend",
           index.count("/api/alle-bots-schliessen/ausfuehren") == 1)
     vor_stufe3 = index.split("function crashZuStufe3()", 1)[0]
-    check("Die Stufen 1 und 2 rufen den schreibenden Endpunkt NICHT auf",
+    check("Die Stufen 1, 2 und der Warnschritt rufen den schreibenden "
+          "Endpunkt NICHT auf",
           "/api/alle-bots-schliessen/ausfuehren" not in vor_stufe3)
     check("Der Crash-Knopf traegt eine eigene Klasse, nicht die der anderen "
           "Notfall-Knoepfe",
@@ -2587,6 +3605,103 @@ def teste_schliessen_frontend():
           "ladeDetail()" in code.split("erfolgsmeldung")[1][:600])
     check("Kein location.reload() - die bestehende Aktualisierung wird genutzt",
           "location.reload" not in code)
+
+    # --- Der zusaetzliche Warnschritt bei geschlossener Boerse -----------
+    # Er ist die eigentliche Neuerung, und im Frontend liegt seine
+    # sichtbare Haelfte. Geprueft wird beides: dass er DA ist, und dass er
+    # nicht umgangen werden kann, ohne dass diese Suite rot wird.
+    wa_stufe = code.split('id="dialog-warteauftrag"', 1)[1].split("</div>\n  </div>", 1)[0]
+    check("Einzel-Dialog: es gibt einen eigenen Warnschritt fuer Warteauftraege",
+          'id="dialog-warteauftrag"' in code
+          and 'id="dialog-wa-ja"' in code)
+    check("... er ist im Markup von Anfang an verborgen - bei offener Boerse "
+          "bleibt es beim einen Tap",
+          re.search(r'id="dialog-warteauftrag"[^>]*hidden', code) is not None)
+    check("... und verlangt KEINE Texteingabe (wie die uebrigen Stufen auch)",
+          "<input" not in wa_stufe, wa_stufe[:120])
+    check("Sein Knopf traegt eine EIGENE Klasse, nicht die des roten "
+          "Schliessen-Knopfes - er loest keinen Schreibzugriff aus",
+          (lambda t: t is not None and "knopf warteauftrag" in t.group(0)
+           and "gefahr" not in t.group(0))(
+              re.search(r'<button(?:(?!</?button)[\s\S])*?id="dialog-wa-ja"'
+                         r'(?:(?!</?button)[\s\S])*?>', code)))
+
+    # Der erste Tap darf bei geschlossener Boerse NICHTS senden. Geprueft
+    # wird der Wortlaut der Weiche und dass sie VOR dem sende()-Aufruf steht -
+    # ohne diese Pruefung bliebe die Suite gruen, wenn der Warnschritt
+    # angezeigt und gleichzeitig gesendet wuerde.
+    rumpf = code.split("async function ausfuehren()", 1)[1].split("\n}", 1)[0]
+    check("Der erste Tap zeigt nur die Warnung und sendet nichts",
+          "vorgang.warteauftrag && !warteauftragBestaetigt" in rumpf
+          and rumpf.index("return;") < rumpf.index("sende("),
+          rumpf[:160])
+    check("Erst der Knopf des Warnschritts setzt die Bestaetigung",
+          "warteauftragBestaetigt = true;" in code
+          and code.count("warteauftragBestaetigt = true;") == 1)
+
+    # Der Feldname MUSS dem entsprechen, den der Server prueft. Zwei
+    # Schreibweisen desselben Feldes waeren genau die Doppelfuehrung, an der
+    # dieses Projekt schon mehrfach gelitten hat - und hier waere die Folge
+    # ein Warnschritt, der bestaetigt wird und trotzdem nicht zaehlt.
+    check("Frontend und Server benutzen DENSELBEN Feldnamen fuer die "
+          "Bestaetigung",
+          f'const WARTEAUFTRAG_FELD = "{schliessen.WARTEAUFTRAG_BESTAETIGUNG}"'
+          in app_js, schliessen.WARTEAUFTRAG_BESTAETIGUNG)
+    check("... und keine Seite schreibt den Namen ein zweites Mal aus",
+          schliessen.WARTEAUFTRAG_BESTAETIGUNG not in code
+          and schliessen.WARTEAUFTRAG_BESTAETIGUNG not in index)
+
+    # Der Warntext steht EINMAL, in app.js, und wird von beiden Seiten und
+    # allen drei Dialogen benutzt.
+    check("Der Warntext steht genau einmal (in app.js) und nennt die "
+          "Tragweite",
+          "function warteauftragWarnung(" in app_js
+          and "ohne erneute Rückfrage" in app_js)
+    check("... beide Seiten benutzen ihn, statt ihn nachzubauen",
+          "warteauftragWarnung(" in code and "warteauftragWarnung(" in index
+          and "function warteauftragWarnung(" not in code
+          and "function warteauftragWarnung(" not in index)
+    check("Notfall-Dialog: dritte Stufe fuer den Warnschritt vorhanden",
+          'id="notfall-stufe3"' in code and 'id="notfall-wa-ausfuehren"' in code)
+    check("... und auch sie sendet erst beim zweiten Anlauf",
+          "notfallVorgang.warteauftrag && !notfallWaBestaetigt" in code)
+
+    # --- Crash-Weg -------------------------------------------------------
+    check("Crash-Dialog: eigener Warnschritt zwischen Rueckfrage und "
+          "Texteingabe",
+          'id="crash-stufewa"' in index
+          and index.index('id="crash-stufewa"') < index.index('id="crash-stufe3"'))
+    check("... die Stufenzahl folgt der tatsaechlichen Zahl (3 oder 4)",
+          "crashStufenfolge()" in index and "von ${folge.length}" in index)
+    check("... die Bestaetigung wird nur mitgeschickt, wenn der Warnschritt "
+          "durchlaufen wurde",
+          "crashVorgang.warteauftrag && crashWaBestaetigt" in index)
+    check("Der gemischte Ausgang wird getrennt angezeigt, nicht "
+          "zusammengezaehlt",
+          "anzahl_vorgemerkt" in index and "bots_vorgemerkt" in index
+          and "NICHT geschlossen" in index)
+
+    # --- Liste der wartenden Auftraege ----------------------------------
+    for datei, name in ((code, "Bot-Seite"), (index, "Uebersichtsseite")):
+        check(f"{name}: es gibt einen Bereich fuer wartende Auftraege",
+              'id="warteauftraege-bereich"' in datei
+              and 'id="warteauftraege-tabelle"' in datei)
+        check(f"{name}: er ist von Anfang an verborgen und erscheint nur bei "
+              f"Bedarf",
+              re.search(r'id="warteauftraege-bereich"[^>]*hidden', datei)
+              is not None)
+        check(f"{name}: jede Zeile hat einen Stornieren-Knopf",
+              "stornieren-knopf" in datei)
+    check("Stornieren fragt NICHT zurueck - es verhindert eine Ausfuehrung, "
+          "statt eine auszuloesen",
+          "confirm(" not in code and "confirm(" not in index
+          and "confirm(" not in app_js)
+    check("Die Liste zeigt an, wenn eine Position gar nicht mehr offen ist",
+          "noch_offen === false" in app_js)
+    check("Der Datentakt laedt die Boersenlage mit - sonst behauptet eine "
+          "offen gelassene Seite abends noch mittags",
+          "async function ladeSeitendaten()" in code
+          and "ladeSchliessInfo()" in code.split("ladeSeitendaten()", 1)[1][:400])
 
 
 def ohne_kommentare(quelltext: str) -> str:
@@ -2859,6 +3974,9 @@ def main():
 
     teste_konfiguration()
     teste_bot_freischaltung()
+    # Vor dem Umbiegen der Uhr: dieser Abschnitt prueft den Kalender selbst
+    # und uebergibt seine Zeitpunkte ausdruecklich.
+    teste_boersenkalender()
 
     wurzel = tempfile.mkdtemp(prefix="dashboard_test_")
     db_dateien = baue_testprojekt(wurzel)
@@ -2878,6 +3996,24 @@ def main():
     alt_mc = (manual_close.BASE_DIR, manual_close.STRATEGIES_DIR)
     manual_close.BASE_DIR = wurzel
     manual_close.STRATEGIES_DIR = os.path.join(wurzel, "strategies")
+
+    # Und die Auftragsdatei ebenso. OHNE diese Zeilen wuerden die Tests in
+    # die ECHTE Datei notifications/warteauftraege.json schreiben und im
+    # schlimmsten Fall einen wartenden Auftrag des Nutzers loeschen - genau
+    # dieselbe Falle wie bei manual_close.BASE_DIR darueber.
+    alt_wa = warteauftraege.BASE_DIR
+    warteauftraege.BASE_DIR = wurzel
+    os.makedirs(os.path.join(wurzel, "notifications"), exist_ok=True)
+
+    # Die Testuhr (siehe boerse_am oben): der ECHTE Kalender, aber an einem
+    # Tag, den der Test kennt. Ohne das haengt das Verhalten des Dashboards
+    # an der Tageszeit, zu der jemand die Suite startet.
+    alt_status = boersenkalender.status
+
+    def status_mit_testuhr(jetzt=None):
+        return alt_status(jetzt if jetzt is not None else TESTZEIT[0])
+
+    boersenkalender.status = status_mit_testuhr
     protokoll_datei = os.path.join(wurzel, "manuelle_eingriffe.log")
     alt_griffe = list(manual_close._protokoll.handlers)
     for griff in alt_griffe:
@@ -2900,6 +4036,20 @@ def main():
               str(sorted(b["name"] for b in datenquelle.alle_bots())))
         check("Die echten Bot-Datenbanken werden nicht angefasst",
               manual_close.BASE_DIR == wurzel != BASE_DIR)
+        check("Auch die echte Warteauftrags-Datei wird nicht angefasst",
+              warteauftraege.datei().startswith(wurzel)
+              and not warteauftraege.datei().startswith(BASE_DIR),
+              warteauftraege.datei())
+        # Gegenprobe zu Grundsatz 12: die Umlenkung MUSS erkennbar sein.
+        # Zeigte warteauftraege.BASE_DIR noch auf das echte Projekt, waere
+        # die Pruefung oben rot - genau das ist hier belegt.
+        check("Gegenprobe: die Umlenkung ist wirksam, nicht bloss behauptet",
+              warteauftraege.BASE_DIR == wurzel
+              and os.path.dirname(os.path.dirname(warteauftraege.datei()))
+              == wurzel)
+        check("Die Testuhr steht auf einem Tag mit offener Boerse",
+              boersenkalender.status()["offen"] is True,
+              boersenkalender.status()["grund"])
 
         app = erzeuge_app(token=TEST_TOKEN)
         with Testserver(app) as server:
@@ -2919,6 +4069,11 @@ def main():
                                    protokoll_datei)
             teste_global_schliessen(server.basis, wurzel, db_dateien,
                                      protokoll_datei)
+            teste_warteauftraege(server.basis, wurzel, db_dateien,
+                                  protokoll_datei)
+            teste_ausfuehrungsskript(wurzel, db_dateien, protokoll_datei)
+            teste_mehrere_warteauftraege(server.basis, wurzel, db_dateien,
+                                          protokoll_datei)
         teste_schliessen_frontend()
         teste_automatische_aktualisierung()
         teste_ladeindikator()
@@ -2928,6 +4083,8 @@ def main():
     finally:
         monitor.BASE_DIR, monitor.STRATEGIES_DIR, monitor.LOGS_DIR, monitor.requests = alt
         manual_close.BASE_DIR, manual_close.STRATEGIES_DIR = alt_mc
+        warteauftraege.BASE_DIR = alt_wa
+        boersenkalender.status = alt_status
         for griff in list(manual_close._protokoll.handlers):
             manual_close._protokoll.removeHandler(griff)
             griff.close()
