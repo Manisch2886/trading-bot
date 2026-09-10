@@ -1,5 +1,12 @@
 # Broker-Brücke: Paper-Trades auf dem Binance SPOT-Testnet spiegeln
 
+> **Es gibt inzwischen zwei Brücken.** Diese hier spiegelt den Krypto-Bot
+> `t3_supertrend` auf das Binance-Testnet. Die zweite spiegelt den Aktien-Bot
+> `volatility_breakout` auf ein **IBKR-Paper-Konto** — siehe
+> [`README_IBKR.md`](README_IBKR.md). Gemeinsam ist beiden der
+> schreibgeschützte Leser `bot_db.py`; alles andere ist getrennt, inklusive der
+> Notbremse (`broker/STOP` gegen `broker/STOP_IBKR`).
+
 Diese Komponente ist der **erste Schreibzugriff dieses Projekts auf eine Börse**.
 Sie platziert echte Orders — aber auf dem **Testnet**, mit virtuellem Guthaben,
 ohne echtes Geld und ohne Marktwirkung.

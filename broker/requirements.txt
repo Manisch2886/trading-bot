@@ -1,0 +1,8 @@
+# Nur fuer die IBKR-Paper-Bruecke (broker/ibkr_*.py) - die Binance-Bruecke
+# kommt mit der Standardbibliothek aus.
+#
+# ib_async ist der von IBKR selbst benannte Nachfolger des nicht mehr
+# gepflegten ib_insync; das offizielle ibapi liegt auf PyPI nur als fremde
+# Altlast von 2020 und kommt sonst als ZIP-Download. Begruendung ausfuehrlich
+# im Kopf von broker/ibkr_paper.py.
+ib_async>=2.1.0    # braucht Python 3.10 oder neuer
