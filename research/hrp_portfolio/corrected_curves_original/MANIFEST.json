@@ -1,0 +1,52 @@
+{
+  "kurven": {
+    "elliott_wave": {
+      "quelle_im_repo": "results/equity_curve.csv",
+      "sha256": "ed0d1a600f88d157d7337711ee3499312df69ed9884cf93b380fbf77031c774b",
+      "zeilen": 145
+    },
+    "elliott_wave_stocks": {
+      "quelle_im_repo": "results/elliott_wave_stocks/equity_curve.csv",
+      "sha256": "1b54cc55fcf17c6b97ab645f24548d3a23075d5440dc85dcfde665e8d641434b",
+      "zeilen": 470
+    },
+    "rsi2_crypto": {
+      "quelle_im_repo": "results/rsi2_crypto/equity_curve.csv",
+      "sha256": "0d1cbe237d4faff67053e586240869bb6637a0fe0a08ca464bf3ebbb1205a7de",
+      "zeilen": 393
+    },
+    "rsi2_mean_reversion": {
+      "quelle_im_repo": "results/rsi2_mean_reversion/equity_curve.csv",
+      "sha256": "61cb0acbc31045df3ce0895cbc88f46544675d26647f3ffbce81aaf00145b701",
+      "zeilen": 2642
+    },
+    "t3_supertrend": {
+      "quelle_im_repo": "results/t3_supertrend/equity_curve.csv",
+      "sha256": "64eaf3b4673b423f27cb0b2c0b9889f3433d5215f52dd57ff58fb1d0fe28e858",
+      "zeilen": 657
+    },
+    "turtle_soup_crypto": {
+      "quelle_im_repo": "results/turtle_soup_crypto/equity_curve.csv",
+      "sha256": "a556b073e1b0edfacb968d5654245ca4013ddd28401329f8531fcae008deb68a",
+      "zeilen": 1415
+    },
+    "turtle_soup_stocks": {
+      "quelle_im_repo": "results/turtle_soup_stocks/equity_curve.csv",
+      "sha256": "c8ef5ad803c8eac309bd7ffa90b7d9ef8ab5e164ebc45301371e8868325f9725",
+      "zeilen": 1888
+    },
+    "volatility_breakout": {
+      "quelle_im_repo": "results/volatility_breakout/equity_curve.csv",
+      "sha256": "9b6f0f0ed2fb87b03991548ea908787391f9c2c036f612de6c1d89459d403ce0",
+      "zeilen": 1237
+    },
+    "volatility_breakout_crypto": {
+      "quelle_im_repo": "results/volatility_breakout_crypto/equity_curve.csv",
+      "sha256": "5de7c5aba344c6836914fed12ca9cf4a75455385caa37a94b5476ef2be9ec237",
+      "zeilen": 311
+    }
+  },
+  "nachpruefbar_mit": "git show <quell_commit>:<quelle_im_repo> | sha256sum",
+  "quell_commit": "db11ba64f44376243c574f647f4a5941292d2e19",
+  "zweck": "Eingefrorener Schnappschuss der neun LEBENDEN Kurven, wie sie zum Zeitpunkt der Erstfassung der HRP-Studie (results/hrp_summary.json, erzeugt in Commit db11ba6) im Repo standen. Grundlage des Regressionsankers 'original' in nachtrag_vbc_regimefilter.py."
+}

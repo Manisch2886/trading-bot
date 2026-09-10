@@ -34,12 +34,41 @@ uebernommenen Kurven wirklich dieselbe Rechnung ergeben wie in PR #55 - und
 damit, dass ein Unterschied zur neuen Grundlage ausschliesslich von der einen
 getauschten Kurve kommt.
 
+Warum der Erstfassungs-Anker eingefroren ist (Wartung, PR nach #64)
+-------------------------------------------------------------------
+Der Anker `original` las ursprueglich die NEUN LEBENDEN Kurven unter
+`results/<bot>/equity_curve.csv` - also genau die Dateien, die die Erstfassung
+gelesen hatte, ohne jeden Tausch. Das war richtig gedacht und wurde doch zum
+Problem: PR #57 hat den BTC-Regimefilter in den echten Backtest von
+volatility_breakout_crypto eingebaut und dabei dessen lebende Kurve neu
+erzeugt. Der Anker verglich danach eine veraenderte Grundlage mit der
+unveraenderten Referenz `results/hrp_summary.json` und schlug in 7 von 9
+Werten fehl - das Modul brach ab, obwohl inhaltlich nichts falsch war.
+
+Der Anker liest deshalb jetzt `corrected_curves_original/` - einen
+eingefrorenen Schnappschuss derselben neun Dateien aus Commit db11ba6, dem
+Commit, in dem `results/hrp_summary.json` entstand. Damit haengt keiner der
+drei Anker mehr an einer lebenden Datei, und das Modul bleibt reproduzierbar,
+auch wenn ein Bot seine Kurve kuenftig erneut neu erzeugt.
+
+Belegt ist der Schnappschuss doppelt: alle neun Dateien sind zwischen db11ba6
+und dem Commit unmittelbar VOR PR #57 byteweise identisch (die lebenden Kurven
+wurden in diesem ganzen Zeitraum nicht angefasst), und ihre Pruefsummen stehen
+in `corrected_curves_original/MANIFEST.json`, gegen die bei jedem Lauf geprueft
+wird.
+
+Das aendert an der Aussage der Untersuchung nichts: sie haengt am Vergleich
+`korrigiert_v2` gegen `v2_mit_regimefilter`, und beide Grundlagen lagen schon
+vorher eingefroren unter `corrected_curves_v2/` bzw.
+`corrected_curves_v2_regimefilter/`.
+
 Reine Backtest-Untersuchung. Kein Bot-Code, keine Live-Datei, weder
 `corrected_curves/` noch `corrected_curves_v2/` werden veraendert.
 
 Nutzung:  python3 nachtrag_vbc_regimefilter.py
 """
 
+import hashlib
 import json
 import os
 import sys
@@ -60,6 +89,12 @@ REFERENZ_ERSTFASSUNG = os.path.join(RESULTS_DIR, "hrp_summary.json")
 REFERENZ_V1 = os.path.join(RESULTS_DIR, "nachtrag_sync_korrektur.json")
 REFERENZ_V2 = os.path.join(RESULTS_DIR, "nachtrag_sync_korrektur_v2.json")
 TOL = 0.011
+
+# Eingefrorener Schnappschuss der neun LEBENDEN Kurven zum Zeitpunkt der
+# Erstfassung (Commit db11ba6, in dem results/hrp_summary.json entstand).
+# Siehe unten, "Warum der Erstfassungs-Anker eingefroren ist".
+CURVE_DIR_ORIGINAL = os.path.join(_DIR, "corrected_curves_original")
+MANIFEST_ORIGINAL = os.path.join(CURVE_DIR_ORIGINAL, "MANIFEST.json")
 
 BASES = ("original", "korrigiert_v1", "korrigiert_v2", "v2_mit_regimefilter")
 
@@ -98,6 +133,39 @@ def vergleich_block(name, ergebnis):
     }
 
 
+def erstfassungs_kurven():
+    """Die neun eingefrorenen Kurven der Erstfassung - mit Pruefung der
+    Pruefsummen aus MANIFEST.json.
+
+    Der Schnappschuss ist der einzige Schutz des Erstfassungs-Ankers gegen
+    stilles Abwandern; er wird deshalb vor jedem Gebrauch geprueft und bricht
+    bei Abweichung ab, statt einen unbemerkt verschobenen Anker als 'grün' zu
+    melden. Dieselbe Haltung wie bei der erzwungenen Leerprobe in
+    vbc_regimefilter.py: lieber kein Ergebnis als ein unbelastbares.
+    """
+    with open(MANIFEST_ORIGINAL) as handle:
+        manifest = json.load(handle)
+
+    kurven = cc.vorhandene_kurven(CURVE_DIR_ORIGINAL)
+    fehlend = [bot for bot in cc.ALL_BOTS if bot not in kurven]
+    if fehlend:
+        raise SystemExit(f"Schnappschuss der Erstfassung unvollstaendig: {fehlend}")
+
+    for bot, eintrag in sorted(manifest["kurven"].items()):
+        with open(kurven[bot]["csv"], "rb") as handle:
+            ist = hashlib.sha256(handle.read()).hexdigest()
+        if ist != eintrag["sha256"]:
+            raise SystemExit(
+                f"Schnappschuss der Erstfassung veraendert ({bot}):\n"
+                f"  erwartet {eintrag['sha256']}\n  gefunden {ist}\n"
+                f"  Sollstand: git show {manifest['quell_commit'][:7]}:"
+                f"{eintrag['quelle_im_repo']}")
+
+    print(f"  Schnappschuss Erstfassung: {len(kurven)} Kurven, Pruefsummen OK "
+          f"(Quelle: Commit {manifest['quell_commit'][:7]})")
+    return kurven
+
+
 def main():
     print("=" * 96)
     print("1) Die eine getauschte Kurve erzeugen (inkl. erzwungener Leerprobe)")
@@ -110,9 +178,10 @@ def main():
     v1_kurven = cc.vorhandene_kurven(vbc.CURVE_DIR_V2.replace("corrected_curves_v2",
                                                                "corrected_curves"))
     v2_kurven = cc.vorhandene_kurven(vbc.CURVE_DIR_V2)
+    o_kurven = erstfassungs_kurven()
 
     ergebnisse = {
-        "original": analysiere(v2_kurven, (), "o"),
+        "original": analysiere(o_kurven, cc.ALL_BOTS, "o"),
         "korrigiert_v1": analysiere(v1_kurven, cc.SWAP_PRIMARY, "k1"),
         "korrigiert_v2": analysiere(v2_kurven, cc.ALL_BOTS, "k2"),
     }
