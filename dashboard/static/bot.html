@@ -495,7 +495,8 @@ function notfallZeilen(v) {
   });
   /* Kein aufsummierter Gesamt-PnL: die Summe von Trade-Prozenten ist keine
      Portfolio-Rendite (Methodik-Grundsatz 2 im Übergabeprotokoll). Gezeigt
-     wird der Durchschnitt je Position plus Spannweite. */
+     wird der Durchschnitt je Position plus Spannweite - und daneben der nach
+     Positionsgröße GEWICHTETE Durchschnitt, siehe gewichtungsZeilen(). */
   const schnitt = v.pnl_schnitt_pct === null ? [] : [
     `<div><span class="beschriftung">Ø je Position</span><span>`
       + `${prozent(v.pnl_schnitt_pct)} &nbsp;<span class="gedaempft">`
@@ -503,8 +504,14 @@ function notfallZeilen(v) {
       + `</span></span></div>`,
   ];
   document.getElementById("notfall-liste").innerHTML =
-    kopf.concat(zeilen, schnitt).join("");
+    kopf.concat(zeilen, schnitt, gewichtungsZeilen(v.pnl_gewichtet)).join("");
 }
+
+/* GEWICHTUNG_ERLAEUTERUNG, positionsgroesse() und gewichtungsZeilen()
+   stehen in app.js: der Crash-Dialog in index.html zeigt dieselben zwei
+   Zahlen mit derselben Beschriftung, und zwei Fassungen desselben
+   Hinweistextes wären genau die Doppelführung, bei der irgendwann nur
+   noch eine Seite sagt, worauf die Zahl beruht. */
 
 async function starteNotfall() {
   notfallFehler("");
@@ -596,6 +603,24 @@ function notfallErgebnisAnzeigen(r) {
     html += zeile("Nach der Übersicht eröffnet und deshalb NICHT angefasst: "
       + `${r.nicht_bestaetigt.length} Position(en). Erneut ausführen, falls `
       + "auch diese geschlossen werden sollen.");
+  }
+  /* Dieselben zwei Zahlen wie im Dialog, jetzt aber über die TATSÄCHLICH
+     geschriebenen Werte statt über die Schätzung. Nur eine der beiden Stellen
+     zu beschriften wäre hier schon zweimal der Grund gewesen, warum eine
+     Prüfung grün war, obwohl die Hälfte fehlte. */
+  const g = r.pnl_gewichtet;
+  if (g && g.wert_pct !== null) {
+    html += zeile(`Ø je Position ${prozent(r.pnl_schnitt_pct)} · gewichtet `
+      + `${prozent(g.wert_pct)} `
+      + `<span class="gedaempft">(${g.gewichte.map((w) => positionsgroesse(w.allokation_pct)).join(" / ")} `
+      + `Positionsgröße)</span>`);
+    html += `<div class="hinweis-gewichtung">${GEWICHTUNG_ERLAEUTERUNG}</div>`;
+  }
+  if (g && g.nicht_gewichtbar.length) {
+    html += `<div class="hinweis-gewichtung">Ohne dokumentierte Positionsgröße `
+      + `und deshalb <strong>aus der gewichteten Zahl ausgenommen</strong> – `
+      + g.nicht_gewichtbar.map((n) => `${n.anzeigename} (${n.anzahl}), `
+          + `ungewichtet ${prozent(n.pnl_schnitt_pct)}`).join("; ") + `.</div>`;
   }
   html += "</div>";
   document.getElementById("erfolg").innerHTML = html;

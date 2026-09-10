@@ -202,6 +202,33 @@ keine Summe - die Summe von Trade-Prozenten ist keine Portfolio-Rendite,
 siehe Methodik-Grundsatz 2 im Uebergabeprotokoll) und einer Kennung eigener
 Art. Eine Kennung des Einzelwegs loest hier nichts aus und umgekehrt.
 
+Dazu - in `vorbereiten` wie in `ausfuehren` - das Feld `pnl_gewichtet` mit dem
+nach **Positionsgroesse gewichteten** Durchschnitt:
+
+```
+"pnl_gewichtet": {
+  "wert_pct": -2.59,                  // Summe(Allokation*PnL) / Summe(Allokation)
+  "ungewichtet_schnitt_pct": 0.5,     // dieselben Positionen ohne Gewichtung
+  "anzahl": 4,
+  "grundlage": "angenommene Positionsgroesse je Bot (ALLOCATION_PCT ...)",
+  "hinweis": "... Annahme, KEINE live getrackte Kapitalbindung ...",
+  "gewichte": [{"bot": ..., "allokation_pct": 10.0, "quelle": "live_params.py",
+                "anzahl": 2}],
+  "nicht_gewichtbar": [{"bot": ..., "grund": ..., "anzahl": 1,
+                        "pnl_schnitt_pct": 1.0}]
+}
+```
+
+Die Gewichte kommen je Bot aus dessen eigenen Dateien - `ALLOCATION_PCT` aus
+`live_params.py` (in **Prozent**) oder, wo es dort bewusst nicht steht, aus
+`equity_simulation.py` (als **Anteil**); dieselbe Konvention wie in
+`shared/portfolio_overview.py`. Das ist eine **Backtest-Annahme**, keine live
+getrackte Kapitalbindung und keine Portfolio-Rendite - die Oberflaeche schreibt
+das sichtbar dazu. Ein Bot ohne dokumentierte Groesse wird **nicht** mit einem
+angenommenen Wert mitgerechnet, sondern steht mit Grund unter
+`nicht_gewichtbar`. `pnl_schnitt_pct` und die Spannweite bleiben unveraendert
+daneben, damit der Unterschied der beiden Zahlen selbst sichtbar ist.
+
 `alle-schliessen/ausfuehren` liest den **tatsaechlichen** Stand neu und
 schliesst den Schnitt aus "bestaetigt" und "noch offen" - jede Position
 einzeln ueber dieselbe Kernfunktion wie der Einzelweg, mit eigener
@@ -220,7 +247,13 @@ Rueckfrage), der Einzelweg einen. Beide ohne Texteingabe.
 `POST /api/alle-bots-schliessen/vorbereiten` (kein Koerper) liest ueber ALLE
 freigeschalteten Bots hinweg die offenen Positionen zusammen und antwortet
 nach Bot gruppiert, je Bot mit Durchschnitt und Spannweite - **keine
-Gesamtzahl ueber alle Bots**, aus demselben Grund wie oben. Ein Bot, dessen
+aufsummierte Gesamtzahl ueber alle Bots**, aus demselben Grund wie oben.
+Bot-uebergreifend steht dort genau eine Kennzahl, `pnl_gewichtet` (siehe
+oben): der nach Positionsgroesse **gewichtete** Durchschnitt mit Angabe
+seiner Grundlage. Hier ist er inhaltlich relevant, weil 10 %, 5 % und 2 %
+Positionsgroesse aufeinandertreffen - ein einfacher Durchschnitt ueber alle
+Positionen wuerde sie gleich gewichten. `ausfuehren` traegt dieselbe Angabe
+ueber die tatsaechlich geschriebenen Werte. Ein Bot, dessen
 Datenbank fehlt, wird stillschweigend uebergangen (er lief noch nie); ein
 Bot, dessen Datenbank vorhanden aber unlesbar ist, wird als `lesefehler`
 ausgewiesen.

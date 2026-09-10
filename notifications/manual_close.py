@@ -336,6 +336,147 @@ def berechne_pnl(bot_name: str, entry_price: float, exit_price: float) -> float:
     return round(pnl, 2)
 
 
+# ---------------------------------------------------------------------------
+# Die dokumentierte Positionsgroesse eines Bots - ausschliesslich fuer ANZEIGEN
+# ---------------------------------------------------------------------------
+# Kein Schreibweg ruft das hier auf. Es steht trotzdem in diesem Modul, weil
+# dies die Stelle ist, die Dateien eines Bots LIEST, ohne sie zu importieren
+# (siehe kostensatz()) - ein zweiter AST-Leser an anderer Stelle waere genau
+# die Doppelfuehrung, die in diesem Projekt schon mehrfach dazu gefuehrt hat,
+# dass zwei Seiten unbemerkt auseinanderlaufen (Methodik-Grundsatz 11).
+#
+# EINHEITEN - die eigentliche Fallgrube, und keine theoretische: die Konvention
+# steht bereits in shared/portfolio_overview.py und wird hier nicht neu
+# erfunden, sondern uebernommen:
+#
+#     live_params.py        ALLOCATION_PCT in PROZENT  (10   bedeutet 10 %)
+#     equity_simulation.py  ALLOCATION_PCT als ANTEIL  (0.10 bedeutet 10 %)
+#
+# Zuerst gelesen wird live_params.py - das ist laut Grundsatz 11 die eine
+# Quelle der Handelsparameter. equity_simulation.py ist die zweite Quelle fuer
+# die Bots, die den Wert dort bewusst nicht als Konstante fuehren (elliott_wave,
+# elliott_wave_stocks, t3_supertrend; bei den beiden Elliott-Bots verweist der
+# Kommentar in live_params.py ausdruecklich dorthin).
+#
+# WAS DIESE ZAHL NICHT IST: eine echte Kapitalbindung. Sie ist eine Annahme aus
+# der Backtest-Konfiguration. forward_test.py trackt bei keinem Bot Kapital
+# oder Positionsgroessen. Wer mit ihr rechnet, muss das mitsagen - siehe
+# dashboard/schliessen.py::gewichteter_pnl().
+
+ALLOKATION_LIVE_PARAMS = "live_params.py"
+ALLOKATION_EQUITY_SIM = "equity_simulation.py"
+
+
+def _ohne_allokation(grund: str) -> dict:
+    return {"anteil": None, "prozent": None, "quelle": None, "grund": grund}
+
+
+def _literal_konstante(pfad: str, name: str):
+    """Der Wert einer Zuweisung auf Modulebene, per AST gelesen - oder None,
+    wenn die Datei fehlt, der Name nicht vorkommt oder der Wert kein reines
+    Zahlen-Literal ist.
+
+    Absichtlich NICHT ausgewertet werden gerechnete Ausdruecke: mehrere Bots
+    schreiben in equity_simulation.py
+
+        ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
+
+    holen den Wert also aus live_params.py und rechnen ihn um. Diesen Ausdruck
+    hier auszurechnen hiesse, den Quelltext eines Bots zu interpretieren statt
+    ihn zu lesen. Fuer genau diese Bots steht der Wert ohnehin in
+    live_params.py, das zuerst gelesen wird.
+    """
+    if not os.path.exists(pfad):
+        return None
+    try:
+        with open(pfad, encoding="utf-8") as fh:
+            baum = ast.parse(fh.read(), filename=pfad)
+    except (OSError, SyntaxError):
+        return None
+    for knoten in baum.body:
+        if not isinstance(knoten, ast.Assign):
+            continue
+        for ziel in knoten.targets:
+            if isinstance(ziel, ast.Name) and ziel.id == name:
+                try:
+                    wert = ast.literal_eval(knoten.value)
+                except (ValueError, SyntaxError, TypeError):
+                    return None
+                return float(wert) if isinstance(wert, (int, float)) else None
+    return None
+
+
+def allokation(bot_name: str) -> dict:
+    """Die je Trade angenommene Positionsgroesse dieses Bots als ANTEIL
+    (0.10 = 10 %), dazu die Datei, aus der der Wert stammt.
+
+    Wirft NIE. Ein fehlender Wert ist kein Fehler, sondern eine Aussage: bei
+    einem Bot, der keine Positionsgroesse dokumentiert, ist eine Gewichtung
+    nicht moeglich - und ein ersatzweise angenommener Standardwert (etwa 10 %)
+    waere eine erfundene Zahl in einer Anzeige, die ueber echtes Geld
+    mitentscheidet. Deshalb kommt in diesem Fall `anteil=None` mit einem
+    `grund` zurueck, der in der Oberflaeche sichtbar wird.
+
+    Rueckgabe: {"anteil": 0.10|None, "prozent": 10.0|None,
+                "quelle": "live_params.py"|"equity_simulation.py"|None,
+                "grund": None|"..."}
+    """
+    if bot_name != os.path.basename(str(bot_name)) or bot_name in ("", ".", ".."):
+        # Der Name wird sonst zu einem Pfad zusammengesetzt. Die Aufrufer
+        # arbeiten mit internen Listen, nicht mit Nutzereingaben - aber diese
+        # Funktion oeffnet Dateien, und eine Zeile Pruefung ist billiger als
+        # die Annahme, dass das so bleibt.
+        return _ohne_allokation(f"'{bot_name}' ist kein einfacher Bot-Name")
+
+    ordner = os.path.join(STRATEGIES_DIR, bot_name)
+    if not os.path.isdir(ordner):
+        return _ohne_allokation(f"Es gibt kein Verzeichnis strategies/{bot_name}")
+
+    roh_prozent = _literal_konstante(os.path.join(ordner, ALLOKATION_LIVE_PARAMS),
+                                      "ALLOCATION_PCT")
+    roh_anteil = _literal_konstante(os.path.join(ordner, ALLOKATION_EQUITY_SIM),
+                                     "ALLOCATION_PCT")
+
+    # Jede Datei wird in IHRER Einheit gelesen und auf Plausibilitaet geprueft.
+    # Ein Wert ausserhalb des moeglichen Bereichs wird NICHT zurechtgebogen -
+    # genau so entstehen die Einheitenfehler, die dieses Projekt mehrfach
+    # getroffen haben (0.10 als "0,1 %" verrechnet). Er gilt dann als nicht
+    # lesbar und wird im Grund benannt.
+    kandidaten, probleme = [], []
+    if roh_prozent is not None:
+        if 0 < roh_prozent <= 100:
+            kandidaten.append((roh_prozent / 100, ALLOKATION_LIVE_PARAMS))
+        else:
+            probleme.append(f"{ALLOKATION_LIVE_PARAMS} nennt {roh_prozent:g} - "
+                             f"als Prozentangabe nicht moeglich")
+    if roh_anteil is not None:
+        if 0 < roh_anteil <= 1:
+            kandidaten.append((roh_anteil, ALLOKATION_EQUITY_SIM))
+        else:
+            probleme.append(f"{ALLOKATION_EQUITY_SIM} nennt {roh_anteil:g} - "
+                             f"als Anteil nicht moeglich")
+
+    if not kandidaten:
+        grund = "; ".join(probleme) if probleme else (
+            f"weder {ALLOKATION_LIVE_PARAMS} noch {ALLOKATION_EQUITY_SIM} "
+            f"dokumentieren ALLOCATION_PCT als Zahl")
+        return _ohne_allokation(grund)
+
+    # Widerspruch zwischen beiden Dateien: dann wird NICHT stillschweigend die
+    # eine genommen. Eine doppelt gefuehrte Zahl, die auseinandergelaufen ist,
+    # ist der Normalfall dieses Projekts (fuenf von neun Bots, Abschnitt 4.2
+    # des Uebergabeprotokolls) - hier soll sie auffallen, nicht gewichten.
+    if len(kandidaten) == 2 and abs(kandidaten[0][0] - kandidaten[1][0]) > 1e-9:
+        return _ohne_allokation(
+            f"{ALLOKATION_LIVE_PARAMS} nennt {kandidaten[0][0] * 100:g} %, "
+            f"{ALLOKATION_EQUITY_SIM} {kandidaten[1][0] * 100:g} % - die beiden "
+            f"Dateien widersprechen sich")
+
+    anteil, quelle = kandidaten[0]
+    return {"anteil": anteil, "prozent": round(anteil * 100, 4),
+            "quelle": quelle, "grund": None}
+
+
 def _verbindung(db_pfad: str):
     if not os.path.exists(db_pfad):
         raise SchliessenNichtMoeglich(

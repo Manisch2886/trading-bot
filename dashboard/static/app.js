@@ -117,6 +117,51 @@ function prozent(wert) {
   return `<span class="${klasse}">${vorzeichen}${zahl(wert)}%</span>`;
 }
 
+/* Die Beschriftung der gewichteten Zahl steht an EINER Stelle und wird im
+   Notfall-Dialog (bot.html), im Crash-Dialog (index.html) und in beiden
+   Ergebnisanzeigen verwendet. Sie ist kein Beiwerk, sondern
+   der Grund, warum diese Zahl überhaupt gezeigt werden darf: ohne sie wäre
+   eine Backtest-Annahme als Live-Aussage hingestellt - genau die
+   Verwechslung, die Methodik-Grundsatz 2 verhindern soll.
+
+   Bewusst als SICHTBARER Text, nicht als title-Tooltip: dieses Dashboard wird
+   überwiegend am iPhone benutzt, und dort gibt es kein Hover. Ein Tooltip wäre
+   eine Beschriftung, die der eigentliche Nutzer nie sieht. */
+const GEWICHTUNG_ERLAEUTERUNG =
+  "Gewichtet nach der je Bot im Backtest <strong>angenommenen</strong> "
+  + "Positionsgröße – keine echte Kapitalbindung und keine Portfolio-Rendite.";
+
+function positionsgroesse(pct) {
+  return `${zahl(pct, Number.isInteger(pct) ? 0 : 2)} %`;
+}
+
+function gewichtungsZeilen(g) {
+  if (!g) return [];
+  const zeilen = [];
+  if (g.wert_pct !== null) {
+    const groessen = g.gewichte.map((w) => positionsgroesse(w.allokation_pct)).join(" / ");
+    zeilen.push(
+      `<div><span class="beschriftung">Ø gewichtet</span><span>`
+        + `${prozent(g.wert_pct)} &nbsp;<span class="gedaempft">`
+        + `(Positionsgröße ${groessen}; dieselben Positionen ungewichtet `
+        + `${prozent(g.ungewichtet_schnitt_pct)})</span></span></div>`,
+      `<div class="hinweis-gewichtung">${GEWICHTUNG_ERLAEUTERUNG}</div>`);
+  }
+  /* Ein Bot ohne dokumentierte Positionsgröße verschwindet NICHT stillschweigend
+     aus der Rechnung - er wird benannt, mit Grund und mit seinem eigenen
+     ungewichteten Durchschnitt. */
+  if (g.nicht_gewichtbar && g.nicht_gewichtbar.length) {
+    const liste = g.nicht_gewichtbar
+      .map((n) => `${n.anzeigename}: ${n.anzahl} Position(en), ungewichtet `
+                  + `${prozent(n.pnl_schnitt_pct)} – ${n.grund}`)
+      .join("; ");
+    zeilen.push(`<div class="hinweis-gewichtung">Ohne dokumentierte `
+      + `Positionsgröße und deshalb <strong>aus der gewichteten Zahl `
+      + `ausgenommen</strong> – ${liste}.</div>`);
+  }
+  return zeilen;
+}
+
 /* --- Zeitangaben ----------------------------------------------------------
    Alle Zeitangaben laufen ueber diese eine Stelle, damit Anzeige und
    Altersberechnung nicht auseinanderlaufen koennen.
