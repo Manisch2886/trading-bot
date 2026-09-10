@@ -39,17 +39,26 @@
 > | erste Korrektur | −0,4627 | hält |
 > | **zweite Korrektur** | **+0,1424** | **hält nicht** |
 >
-> Der Vorzeichenwechsel ist echt und kein Artefakt: 24/24 Referenzwerte der
-> beiden früheren Fassungen werden exakt reproduziert, und die
-> Robustheitsprobe mit Ward-Linkage kippt mit (+0,1157). Der **Abstand ist
-> allerdings klein** — +0,14 auf ein Calmar-Niveau von rund 6, also gut 2 %.
-> Klein war er in den früheren Fassungen auch (−0,19 / −0,46).
+> Der Vorzeichenwechsel ist kein Rechenfehler: 24/24 Referenzwerte der beiden
+> früheren Fassungen werden exakt reproduziert, und die Robustheitsprobe mit
+> Ward-Linkage kippt mit (+0,1157). Er hängt aber, wie sich in Nachtrag V
+> herausgestellt hat, an der einen nicht live-konformen Kurve. Der **Abstand
+> ist ausserdem klein** — +0,14 auf ein Calmar-Niveau von rund 6, also gut
+> 2 %. Klein war er in den früheren Fassungen auch (−0,19 / −0,46).
 >
 > Hier wird das nur festgehalten, nicht weitergedeutet und nicht zum Anlass
 > für eine dritte Runde genommen — die Einordnung liegt beim Nutzer.
 >
 > Details, Bestandsaufnahme und Dreifach-Vergleich: Abschnitt **„Nachtrag Z"**
 > am Ende dieses Berichts.
+>
+> **⚠ Nachträglich geprüft und wieder umgekehrt — siehe Nachtrag V.** Der
+> Nachtrag Z hat selbst benannt, dass die `volatility_breakout_crypto`-Kurve
+> als einzige nicht live-konform ist (BTC-Regimefilter live aktiv, im Backtest
+> nicht angewendet). Mit korrekt gefilterter Kurve liegt HRP wieder **hinten**:
+> **−0,0432** statt +0,1424. Die Kernaussage hält damit doch — allerdings mit
+> einem noch kleineren Abstand als der Vorsprung, den sie ersetzt. Der
+> Vorzeichenwechsel aus Nachtrag Z war ein Artefakt genau dieser einen Lücke.
 
 
 **Status: reine Backtest-Untersuchung, KEINE Live-Aktivierung, KEINE
@@ -740,3 +749,140 @@ python3 research/hrp_portfolio/nachtrag_sync_korrektur_v2.py
 Erwartete Ausgabe: `24 Referenzwerte bestaetigt, 0 abweichend.` Der Lauf
 erzeugt die neun Kurven neu (einige Minuten) und rührt weder `results/<bot>/`
 noch `corrected_curves/` an.
+
+---
+
+# Nachtrag V — `volatility_breakout_crypto` mit BTC-Regimefilter (2026-09-08)
+
+## V0. Die Frage und die Antwort
+
+Nachtrag Z hat die Kernaussage kippen sehen — und im selben Atemzug die eine
+Lücke benannt, die das Ergebnis tragen könnte: die
+`volatility_breakout_crypto`-Kurve ist die einzige der neun, die **nicht
+live-konform** ist. `live_params.py` setzt `BTC_REGIME_FILTER_ENABLED = True`,
+`equity_simulation.py` wendet den Filter bewusst nicht an (dokumentiert seit
+PR #45). Bei einem Vorsprung von nur gut 2 % konnte das den Ausschlag geben.
+
+**Antwort: der HRP-Vorteil kippt zurück.**
+
+| Grundlage | HRP − Gleichgewichtung (Calmar) | Ward-Linkage | HRP besser? |
+|---|---:|---:|---|
+| Erstfassung | −0,1905 | −0,0850 | nein |
+| 1. Korrektur | −0,4627 | −0,5078 | nein |
+| 2. Korrektur (Nachtrag Z) | **+0,1424** | +0,1157 | **ja** |
+| **2. Korrektur, VBC live-konform** | **−0,0432** | **−0,0330** | **nein** |
+
+Der Filter verschiebt den Abstand um **−0,1856** und dreht damit das
+Vorzeichen. Die Robustheitsprobe mit Ward-Linkage dreht mit.
+
+**Die ursprüngliche Kernaussage der Studie hält also doch** — HRP bringt
+gegenüber der einfachen Gleichgewichtung keinen risikoadjustierten Vorteil.
+
+**Mit einer Einschränkung, die zur Redlichkeit gehört:** der neue Abstand ist
+noch kleiner als der Vorsprung, den er ersetzt. −0,0432 auf ein Calmar-Niveau
+von rund 6,17 sind **0,7 %**; der Vorsprung in Nachtrag Z waren 2,4 %. Die
+dritte in der Aufgabe genannte Möglichkeit — „kein klarer Unterschied mehr" —
+beschreibt die Lage auf dieser Kurvengrundlage mindestens so gut wie ein
+Richtungsurteil. Das Vorzeichen ist eindeutig; die Grösse ist es nicht.
+
+## V1. Was genau getauscht wurde
+
+Acht Kurven **unverändert** aus `corrected_curves_v2/`. Die neunte neu:
+
+| | ausgeführt | Rendite % | Max DD % |
+|---|---:|---:|---:|
+| `volatility_breakout_crypto` ohne Filter (Nachtrag Z) | 310 | 71,26 | −16,77 |
+| **mit BTC-Regimefilter** | **207** | **49,03** | **−16,29** |
+
+Der Filter entfernt **126 der 359 gefundenen Trades** (359 → 233), nämlich
+die, die in einem BTC-Abwärtsregime eingestiegen wären; ausgeführt werden
+danach 207 statt 310. Die Kennzahlen der gefilterten Variante
+treffen exakt die im Sync-Check (PR #24) veröffentlichten Live-Zahlen —
+unabhängige Bestätigung, dass die richtige Variante gerechnet wurde.
+
+## V2. Warum der Vergleich dem Filter zuzurechnen ist
+
+Zwei Dinge mussten stimmen, sonst wäre die Differenz nicht dem Filter
+zuzuschreiben, sondern dem Testaufbau.
+
+**1. Die Nachbildung muss exakt der heutigen Rechnung entsprechen.**
+`generate_heute()` führt den `__main__`-Block per `runpy` aus — genau deshalb
+lässt sich dort nicht zwischen `collect_all_trades()` und
+`simulate_portfolio()` eingreifen: beide Namen werden im ausgeführten Skript
+selbst gebunden, ein Monkey-Patch von aussen erreicht sie nicht. Diese
+Variante bildet die vier wirksamen Zeilen des `__main__`-Blocks deshalb nach —
+denselben Weg, den `corrected_curves._WORKER` für diesen Bot schon gegangen
+ist, mit `compute_btc_regime` / `filter_trades_by_regime` aus dem
+unveränderten `regime_filter.py`.
+
+Eine Nachbildung kann still abweichen. Sie läuft deshalb **immer zuerst ohne
+Filter**, und das Ergebnis muss die v2-Kurve **byteweise** treffen. Es tut es
+(310 / 71,26 % / −16,77 %). Schlägt diese Leerprobe fehl, bricht das Modul ab,
+statt eine unbelastbare Zahl zu liefern.
+
+**2. Die acht übernommenen Kurven müssen dieselbe Rechnung ergeben wie in
+Nachtrag Z.** Dafür gibt es hier **drei** Regressionsanker statt zwei:
+
+| Anker | trifft | |
+|---|---|---|
+| `original` | `results/hrp_summary.json` | Erstfassung |
+| `korrigiert_v1` | `results/nachtrag_sync_korrektur.json` | 1. Korrektur |
+| `korrigiert_v2` | `results/nachtrag_sync_korrektur_v2.json` | 2. Korrektur |
+
+**27/27 Referenzwerte bestätigt, 0 abweichend** — inklusive der
+Ward-Robustheitsprobe in allen drei Fassungen. Der dritte Anker ist hier der
+entscheidende: er belegt, dass die neue Grundlage sich von Nachtrag Z
+ausschliesslich in der einen getauschten Kurve unterscheidet.
+
+## V3. Vollständige Zahlen
+
+Rendite % / Max Drawdown % / Calmar:
+
+| Grundlage | Fenster | HRP (Walk-Forward) | Gleichgewichtung |
+|---|---|---|---|
+| Erstfassung | 2022-03-18 … 2026-06-27 | 63,26 / −4,93 / **12,83** | 82,43 / −6,33 / **13,02** |
+| 1. Korrektur | 2022-03-18 … 2026-06-27 | 76,47 / −7,32 / **10,45** | 107,13 / −9,82 / **10,91** |
+| 2. Korrektur | 2022-03-18 … 2026-08-20 | 72,53 / −12,00 / **6,04** | 72,12 / −12,22 / **5,90** |
+| **2. Korrektur, VBC live-konform** | 2022-03-18 … 2026-08-20 | 66,25 / −10,81 / **6,13** | 69,68 / −11,29 / **6,17** |
+
+Der Filter nimmt beiden Ansätzen Rendite (HRP 72,53 → 66,25 %,
+Gleichgewichtung 72,12 → 69,68 %) und senkt beide Drawdowns leicht. Er trifft
+die Gleichgewichtung weniger hart — daher der Vorzeichenwechsel.
+
+## V4. Getroffene Annahmen und Grenzen
+
+1. **Untersucht wurde nur dieser eine Faktor.** Auftragsgemäss keine erneute
+   Bestandsaufnahme der neun Bots, keine weiteren Varianten. Die acht anderen
+   Kurven sind byteweise die aus `corrected_curves_v2/`.
+2. **Der Regimefilter bleibt aus `equity_simulation.py` heraus.** Diese
+   Untersuchung ändert keinen Bot-Code. Ob der Filter dort eingebaut werden
+   soll, ist eine eigene, grössere Entscheidung und ausdrücklich nicht Teil
+   dieser Arbeit.
+3. **`corrected_curves/` und `corrected_curves_v2/` sind unangetastet.** Die
+   neue Kurve liegt in `corrected_curves_v2_regimefilter/`, damit alle drei
+   Kurvenstände nebeneinander nachvollziehbar bleiben.
+4. **Kein Aktivierungsurteil.** Weder für HRP noch für den Regimefilter.
+5. Alles Übrige — Rebalancing, Linkage, Schwellen, Buy-and-Hold-Referenz —
+   unverändert aus der Erstfassung; siehe N4 und Z4.
+
+## V5. Neue Dateien und Reproduktion
+
+| Datei | Zweck |
+|---|---|
+| `vbc_regimefilter.py` | erzeugt die gefilterte Kurve; enthält die erzwungene Leerprobe |
+| `nachtrag_vbc_regimefilter.py` | rechnet HRP auf der gemischten Grundlage, mit den drei Ankern |
+| `corrected_curves_v2_regimefilter/` | die eine getauschte Kurve samt Kennzahlen |
+| `results/nachtrag_vbc_regimefilter.json` | vollständige Zahlen aller vier Grundlagen |
+
+`corrected_curves.py` bleibt **unverändert**: `vbc_regimefilter.py` übernimmt
+dessen Attrappen-Vorspann zur Laufzeit aus `_WORKER_HEUTE`, statt eine dritte
+Kopie zu führen. Das ist auch der Grund, warum diese Untersuchung ohne jede
+Änderung in `research/trend_overlay/` auskommt — dort liegt dieselbe Datei als
+byteweise identische Kopie, eine Änderung müsste beide treffen.
+
+```
+python3 research/hrp_portfolio/nachtrag_vbc_regimefilter.py
+```
+
+Erwartete Ausgabe: `27 Referenzwerte bestaetigt, 0 abweichend.` sowie die
+Zeile `ANTWORT: Der HRP-Vorteil KIPPT ZURUECK …`.
