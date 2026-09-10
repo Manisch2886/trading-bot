@@ -9,8 +9,13 @@ zum Schliessen offener Positionen:
 
 | Weg | Bestaetigung in der Oberflaeche | Schritt in dieser Anleitung |
 |---|---|---|
-| **eine** Position | EIN Tap auf die Zusammenfassung | 2, 3, 4, 5 |
-| **alle** Positionen (Notfall) | ZWEI Klicks, beide ohne Texteingabe | 6, 7 |
+| **eine** Position eines Bots | EIN Tap auf die Zusammenfassung | 2, 3, 4, 5 |
+| **alle** Positionen EINES Bots (Notfall) | ZWEI Klicks, ohne Texteingabe | 6, 7 |
+| **alle** Positionen ALLER Bots (Crash) | ZWEI Klicks **und** der Text `CRASH` | 9, 10, 11 |
+
+Freigeschaltet sind inzwischen **alle neun Bots** (vorher nur `t3_supertrend`).
+Jeder wurde einzeln gegen sein `forward_test.py` geprueft; die Pruefung laeuft
+bei jedem Testlauf erneut (Abschnitt 9 der Selbsttests).
 
 Beide sind ueber zwei getrennte Server-Aufrufe abgesichert, die ohne
 einander wirkungslos sind. Der Notfallweg schliesst jede Position **einzeln**
@@ -526,3 +531,197 @@ das SQL dort wirkt ueber `WHERE result='manual_close'` und nimmt deshalb nur
 manuelle Eingriffe zurueck, nie einen Ausstieg des Bots. Bei **mehreren**
 Positionen auf einmal ist das entsprechend mehr Handarbeit: genau deshalb
 verlangt dieser Weg zwei Klicks.
+
+---
+
+## Schritt 9 - Alle neun Bots: was sich geaendert hat
+
+Der Schliessen-Knopf und der bot-weite Notfall-Knopf erscheinen jetzt auf
+**jeder** Bot-Detailseite, nicht mehr nur bei `t3_supertrend`. Bitte an zwei
+oder drei Bots nachsehen - Schritte 2, 3 und 6 gelten unveraendert, nur eben
+fuer jeden Bot.
+
+### Besonderheit der vier Aktien-Bots (wichtig)
+
+`elliott_wave_stocks`, `rsi2_mean_reversion`, `turtle_soup_stocks` und
+`volatility_breakout` holen ihre Kurse per yfinance - und zwar den **letzten
+verfuegbaren Tages-Schlusskurs**. Daraus folgt etwas, das man wissen muss:
+
+> **Ausserhalb der US-Handelszeiten erscheint der Knopf trotzdem**, weil ein
+> Kurs vorliegt - naemlich der Schluss des letzten Handelstags. Die Regel
+> "kein Kurs, kein Knopf" greift hier also NICHT als Handelszeiten-Sperre; in
+> `notifications/monitor.py` gibt es keine Handelszeit-Logik.
+
+Inhaltlich ist das vertretbar: die Aktien-Bots arbeiten selbst auf
+Tages-Kerzen und schliessen zum Tages-Schluss. Der Dialog weist bei
+Aktien-Bots ausdruecklich darauf hin. Wer das anders will, braucht eine echte
+Handelszeiten-Sperre - die ist bewusst **nicht** eingebaut (Zeitzonen,
+Feiertage, Halbtage waeren eigene Fallstricke).
+
+| # | Vorgehen | Erwartung |
+|---|---|---|
+| 1 | Einen Aktien-Bot ausserhalb der US-Handelszeiten oeffnen | Knopf erscheint, Spalte "Aktuell" zeigt einen Kurs (den letzten Schluss) |
+| 2 | Dialog oeffnen | Zusammenfassung mit dem Hinweis, dass es ein Tages-Schlusskurs ist |
+| 3 | Denselben Bot waehrend der Handelszeiten oeffnen (15:30-22:00 deutscher Zeit) | dito, Kurs bewegt sich nun |
+| 4 | Einen Bot ohne jede offene Position oeffnen | kein Notfall-Knopf, kein Crash-Bereich-Beitrag |
+
+---
+
+## Schritt 10 - Crash-Knopf: Anzeige und Abbruch (schreibt nichts)
+
+Gefahrlos an der **echten** Datenbank. Der Knopf steht **ganz unten auf der
+Uebersichtsseite** (`/`), nicht auf einer Bot-Seite - er wirkt ueber alle
+Bots. Voraussetzung: irgendein Bot hat eine offene Position.
+
+| # | Vorgehen | Erwartung |
+|---|---|---|
+| 1 | Uebersichtsseite nach unten scrollen | Eigener umrandeter Bereich **"⚠ Notfall ueber alle Bots"** mit Erklaerung und rotem Knopf, der Anzahl und Bot-Zahl nennt |
+| 2 | Den Knopf mit dem Notfall-Knopf einer Bot-Seite vergleichen | Der Crash-Knopf ist **heller rot, fetter und hat einen Ring**; der bot-weite ist dunkler und ohne Ring |
+| 3 | Knopf antippen | Dialog **"Alle Positionen aller Bots schliessen?"**, **"Schritt 1 von 3"**, Liste **nach Bot gruppiert** mit je Bot Ø und Spannweite, Countdown |
+| 4 | Die Liste mit der Bot-Tabelle darueber vergleichen | Dieselben Bots, dieselben Zahlen. Aktien-Bots tragen den Tages-Schlusskurs-Hinweis |
+| 5 | Pruefen, dass **keine** Gesamt-Prozentzahl ueber alle Bots steht | Nur Ø je Bot - eine Gesamtsumme waere keine Portfolio-Rendite |
+| 6 | **Abbrechen** in Stufe 1 | Dialog zu, nichts passiert |
+| 7 | **Ja, alle schliessen** -> Stufe 2 -> **Abbrechen** | dito |
+| 8 | Stufe 2 -> **Weiter zur letzten Bestaetigung** -> Stufe 3 -> **Abbrechen** | dito |
+| 9 | In Stufe 3 `crash` (klein) tippen | Knopf **Endgueltig ALLES schliessen** bleibt gesperrt |
+| 10 | `CRAS` tippen | Knopf bleibt gesperrt |
+| 11 | Esc in jeder Stufe | Dialog zu, nichts passiert |
+| 12 | Knopf -> gut zwei Minuten warten | Countdown laeuft ab, alle Knoepfe und das Textfeld werden gesperrt |
+
+Der Countdown laeuft **ab dem Oeffnen**, nicht je Stufe neu - in Stufe 3 ist
+also weniger Zeit uebrig als in Stufe 1. Das ist Absicht: die Frist gilt
+serverseitig fuer den ganzen Vorgang.
+
+**Kontrolle:** Schritt 1 wiederholen. Ausgabe weiterhin identisch.
+
+### Schritt 10b - Die API des Crash-Wegs direkt (schreibt nichts)
+
+```bash
+# a) Ohne Token: 401.
+curl -s -o /dev/null -w "%{http_code}\n" -X POST \
+  -H 'Content-Type: application/json' -d '{"vorgang":"x","bestaetigung":"CRASH"}' \
+  http://127.0.0.1:8787/api/alle-bots-schliessen/ausfuehren
+
+# b) Mit Token, ohne vorherigen Vorbereiten-Schritt: 409.
+curl -s -X POST -H "X-Dashboard-Token: <TOKEN>" \
+  -H 'Content-Type: application/json' \
+  -d '{"vorgang":"frei-erfunden","bestaetigung":"CRASH"}' \
+  http://127.0.0.1:8787/api/alle-bots-schliessen/ausfuehren
+```
+
+Erwartet: `401`, dann "Keine gueltige Bestaetigung offen". Ein einzelner
+Aufruf kann auch hier nichts schliessen - und der richtige Text allein
+genuegt ohne Kennung nicht.
+
+---
+
+## Schritt 11 - Crash-Weg an einer KOPIE mit MEHREREN Bots
+
+Der eigentliche Test von Teil B. Kopie wie in Schritt 4/7 anlegen, dann in
+der **Kopie** in mindestens drei verschiedenen Bots offene Positionen
+herstellen:
+
+```bash
+cp -R ~/trading-bot ~/trading-bot-probe
+for bot in t3_supertrend elliott_wave volatility_breakout; do
+  sqlite3 ~/trading-bot-probe/paper_trading_$bot.db \
+    "INSERT INTO trades (symbol, signal_time, entry_time, entry_price,
+                         stop_price, status)
+     VALUES ('BTCUSDT','2026-04-01 00:00:00','2026-04-01 00:00:00',
+             100000.0, 95000.0,'open');"
+done
+sqlite3 ~/trading-bot-probe/paper_trading_t3_supertrend.db \
+  "SELECT id, symbol, status FROM trades WHERE status='open';"
+```
+
+Dashboard aus der Kopie auf eigenem Port starten, Uebersichtsseite oeffnen,
+und den Weg gehen:
+
+**⚠ ALLE ... schliessen -> Ja, alle schliessen -> Weiter -> `CRASH` tippen ->
+Endgueltig ALLES schliessen**
+
+Erwartet:
+* eine **gruene** Meldung "N von N Positionen in M Bots geschlossen",
+* darunter **je Bot eine eigene Zeile** mit dessen Ergebnis,
+* alle Positionen verschwinden, der Crash-Bereich verschwindet,
+* im Protokoll **je Position eine eigene Zeile** mit
+  `quelle=dashboard-crash` - daran ist ein Crash-Eingriff von einem normalen
+  unterscheidbar:
+
+```bash
+grep 'quelle=dashboard-crash' ~/trading-bot-probe/logs/notifications/manuelle_eingriffe.log
+```
+
+### Schritt 11b - Teilausfall DIMENSION 1: eine Position scheitert
+
+```bash
+# 1. In der Kopie in drei Bots je zwei offene Positionen herstellen.
+# 2. Crash-Dialog OEFFNEN und offen lassen (Stufe 1).
+# 3. In einem zweiten Terminal EINER Position EINES Bots den Einstiegskurs
+#    entziehen:
+sqlite3 ~/trading-bot-probe/paper_trading_t3_supertrend.db \
+  "UPDATE trades SET entry_price=NULL WHERE id=<ID>;"
+# 4. Im Browser durchklicken bis zum Schluss.
+```
+
+Erwartet: Meldung **orange**, "N-1 von N"; der Fehlschlag steht **beim
+richtigen Bot** mit Grund; **alle uebrigen Positionen - auch die der anderen
+Bots - sind geschlossen**; die fehlgeschlagene bleibt offen und unberuehrt.
+
+### Schritt 11c - Teilausfall DIMENSION 2: ein ganzer Bot scheitert
+
+Das ist der Fall, den es vorher nicht gab.
+
+```bash
+# 1. In der Kopie in drei Bots offene Positionen herstellen.
+# 2. Crash-Dialog oeffnen und offen lassen.
+# 3. In einem zweiten Terminal EINE Bot-Datenbank unlesbar machen:
+mv ~/trading-bot-probe/paper_trading_elliott_wave.db /tmp/ew-sicherung.db
+echo "keine datenbank" > ~/trading-bot-probe/paper_trading_elliott_wave.db
+# 4. Im Browser durchklicken bis zum Schluss.
+# 5. Danach zuruecksichern:
+mv /tmp/ew-sicherung.db ~/trading-bot-probe/paper_trading_elliott_wave.db
+```
+
+Erwartet - und das ist der Kern von Teil B:
+* Die Meldung nennt **"1 Bot(s) komplett uebersprungen: elliott_wave (...)"**,
+  getrennt von Positionsfehlern, mit der Zahl der dort unberuehrten
+  Positionen.
+* Die **uebrigen Bots sind trotzdem vollstaendig geschlossen** - die Schleife
+  ueber die Bots ist nicht abgebrochen.
+* Nach dem Zuruecksichern sind die Positionen des ausgefallenen Bots
+  **unveraendert offen**.
+
+### Schritt 11d - Nebenlaeufigkeit ueber mehrere Bots
+
+Zwei Cronjobs gleichzeitig simulieren: in zwei Terminals je
+
+```bash
+sqlite3 ~/trading-bot-probe/paper_trading_t3_supertrend.db \
+  "BEGIN IMMEDIATE; SELECT 1;"   # offen lassen
+```
+
+Dann den Crash-Weg durchklicken. Erwartet: die gesperrten Bots melden
+"Datenbank ist gerade gesperrt", der unbeteiligte Bot wird geschlossen,
+die gesperrten Positionen bleiben offen.
+
+**Zum Schluss aufraeumen:** `rm -rf ~/trading-bot-probe`.
+
+---
+
+## Schritt 12 - Crash-Weg im Ernstfall (echte Datenbanken)
+
+Nur wenn Schritt 9-11 durchgelaufen sind. Dies ist die folgenreichste Aktion
+des Projekts: ein Klick schliesst jede offene Position aller neun Bots.
+
+Nicht rueckgaengig zu machen. Der Weg zurueck ist derselbe wie in Schritt 5 -
+pro Bot einmal, abgesichert ueber `WHERE result='manual_close'`. Bei
+mehreren Bots und mehreren Positionen ist das entsprechend viel Handarbeit:
+genau deshalb verlangt dieser Weg zwei Klicks **und** eine Texteingabe.
+
+Die Protokollzeilen dieses einen Klicks lassen sich hinterher sauber
+herausziehen:
+
+```bash
+grep 'quelle=dashboard-crash' ~/trading-bot/logs/notifications/manuelle_eingriffe.log
+```

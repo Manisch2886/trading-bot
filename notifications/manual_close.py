@@ -101,6 +101,13 @@ MANUELLER_GRUND = "manual_close"
 # Kein Wert mit Bedeutung fuer die Datenbank, nur fuer den Nachvollzug.
 QUELLE_TELEGRAM = "telegram"
 QUELLE_DASHBOARD = "dashboard"
+# Eigener Wert fuer den globalen Crash-Weg (alle Bots auf einmal), NICHT
+# bloss QUELLE_DASHBOARD: im Protokoll muss hinterher unterscheidbar sein,
+# ob eine Zeile aus einem gezielten Eingriff an einer Position kam oder aus
+# dem einen Klick, der alles geschlossen hat. Sonst liesse sich die Frage
+# "was hat dieser eine Crash-Klick eigentlich angefasst" nur noch ueber
+# Zeitstempel-Naehe raten.
+QUELLE_DASHBOARD_CRASH = "dashboard-crash"
 QUELLE_UNBEKANNT = "unbenannt"
 
 # Der Text, den der Nutzer als ZWEITE Bestaetigung eintippen muss.
@@ -121,12 +128,76 @@ BESTAETIGUNGSTEXT = "BESTAETIGEN"
 # eine Oberflaeche stillschweigend nachlaessiger als die andere.
 BESTAETIGUNG_GUELTIG_SEKUNDEN = 120
 
-# Zentrale Liste - hier kommen spaetere Bots dazu. Nur was hier steht,
-# laesst sich ueberhaupt schliessen; jeder andere Name wird abgelehnt.
+# Zentrale Liste. Nur was hier steht, laesst sich ueberhaupt schliessen;
+# jeder andere Name wird abgelehnt.
+#
+# Seit der Freischaltung aller neun Bots steht hier das vollstaendige
+# Universum. Jeder Bot wurde davor EINZELN geprueft, nicht pauschal
+# uebernommen - die Pruefung laeuft als Testabschnitt 9 bei jedem Lauf
+# erneut, je Bot gegen dessen ECHTES forward_test.py:
+#
+#   * Schema: die fuenf Spalten, die beim Schliessen geschrieben werden
+#     (exit_time, exit_price, result, pnl_pct, status), und die, die
+#     offene_positionen() liest (id, symbol, entry_time, entry_price,
+#     stop_price) - alle aus dem CREATE TABLE des Bots gelesen, nicht
+#     angenommen. Zusatzspalten unterscheiden sich (target_price und
+#     fib_score bei den Elliott-Bots, rsi_at_entry bei den RSI-2-Bots);
+#     sie werden nie angefasst und stoeren deshalb nicht.
+#   * PnL-Formel: der Bot muss die Rechnung verwenden, die berechne_pnl()
+#     nachbildet - geprueft am Quelltext, nicht unterstellt. Alle neun
+#     tun es wortgleich; die Kostensaetze liest kostensatz() je Bot
+#     ohnehin einzeln aus dessen Datei.
+#   * result-Werte: kein Bot darf 'manual_close' selbst verwenden, sonst
+#     liesse sich ein manueller Eingriff nicht mehr von einem Ausstieg
+#     des Bots unterscheiden - und das SQL zum Zuruecknehmen von Hand
+#     (WHERE result='manual_close') wuerde zu viel treffen.
+#
+# Die Namen und Anlageklassen hier sind bewusst ausgeschrieben und nicht
+# aus monitor.DISPLAY_NAMES gelesen: dieses Modul ist der SCHREIBKERN und
+# kommt absichtlich mit der Standardbibliothek aus - eine Abhaengigkeit
+# auf das Lesemodul waere hier der falsche Weg. Dass beide Listen
+# uebereinstimmen, sichert stattdessen ein Test ab.
 SCHLIESSBARE_BOTS = {
+    # Krypto
+    "elliott_wave": {
+        "anzeigename": "Elliott Wave (Krypto)",
+        "anlageklasse": "krypto",
+    },
+    "rsi2_crypto": {
+        "anzeigename": "RSI-2 (Krypto)",
+        "anlageklasse": "krypto",
+    },
     "t3_supertrend": {
         "anzeigename": "T3/ADX/SuperTrend (Krypto)",
         "anlageklasse": "krypto",
+    },
+    "turtle_soup_crypto": {
+        "anzeigename": "Turtle Soup (Krypto)",
+        "anlageklasse": "krypto",
+    },
+    "volatility_breakout_crypto": {
+        "anzeigename": "Volatility Breakout (Krypto)",
+        "anlageklasse": "krypto",
+    },
+    # Aktien. Ihre Kurse kommen aus yfinance und sind TAGES-Schlusskurse -
+    # ausserhalb der US-Handelszeiten also der Schluss des letzten
+    # Handelstags. Siehe den Hinweis in dashboard/schliessen.py und
+    # TESTANLEITUNG_SCHLIESSEN.md; das Dashboard weist es dem Nutzer aus.
+    "elliott_wave_stocks": {
+        "anzeigename": "Elliott Wave (Aktien)",
+        "anlageklasse": "aktien",
+    },
+    "rsi2_mean_reversion": {
+        "anzeigename": "RSI-2 Mean-Reversion (Aktien)",
+        "anlageklasse": "aktien",
+    },
+    "turtle_soup_stocks": {
+        "anzeigename": "Turtle Soup (Aktien)",
+        "anlageklasse": "aktien",
+    },
+    "volatility_breakout": {
+        "anzeigename": "Volatility Breakout (Aktien)",
+        "anlageklasse": "aktien",
     },
 }
 

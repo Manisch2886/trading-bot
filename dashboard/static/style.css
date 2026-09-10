@@ -605,3 +605,103 @@ dialog.schliessen-dialog h2 {
   .dialog-knoepfe { flex-direction: column-reverse; }
   .dialog-knoepfe button { width: 100%; }
 }
+
+/* --- Globaler Crash-Weg ----------------------------------------------------
+   Die folgenreichste Schaltflaeche der Anwendung, und sie soll danach
+   aussehen. Drei Stufen der Abgrenzung, von aussen nach innen:
+
+     1. ein eigener, umrandeter Bereich ganz unten auf der Uebersichtsseite -
+        man muss an allem anderen vorbeigescrollt sein,
+     2. eine kraeftigere Rotflaeche als der bot-weite Notfallknopf (der ist
+        schon voll, dieser ist heller und hat einen Ring),
+     3. im Dialog drei Stufen statt zwei, die letzte mit Texteingabe.
+
+   Der Unterschied zum bot-weiten Knopf muss SICHTBAR sein, nicht nur in der
+   Beschriftung: beide sind rot, aber nur dieser traegt Rahmen und Ring. */
+.crash-bereich {
+  margin: 38px 0 0;
+  padding: 18px 20px 20px;
+  border: 1px solid rgba(224, 108, 108, .42);
+  border-radius: var(--radius);
+  /* Leichter Rotschimmer auf dem Seitengrund - der Bereich soll sich vom
+     Rest der Seite abheben, ohne wie eine Fehlermeldung zu wirken. */
+  background: rgba(141, 47, 47, .10);
+}
+.crash-bereich .crash-titel {
+  margin: 0 0 8px;
+  color: #e09a9a;
+  font-size: 12px;
+}
+.crash-bereich .crash-text {
+  font-size: 13px;
+  color: var(--gedaempft);
+  line-height: 1.6;
+  margin: 0 0 14px;
+  max-width: 70ch;
+}
+
+button.knopf.crash {
+  background: #a32828;
+  border-color: #c94a4a;
+  color: #fff2f2;
+  font-weight: 700;
+  letter-spacing: .01em;
+  padding: 11px 18px;
+  /* Der Ring ist das Merkmal, das nur dieser Knopf hat. */
+  box-shadow: 0 0 0 3px rgba(163, 40, 40, .22);
+}
+button.knopf.crash:hover { background: #c03030; }
+button.knopf.crash:disabled:hover { background: #a32828; }
+
+dialog.crash-dialog {
+  border-color: rgba(224, 108, 108, .55);
+  width: min(560px, calc(100vw - 32px));
+}
+dialog.crash-dialog .stufe {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #e09a9a;
+  margin-bottom: 14px;
+}
+dialog.crash-dialog h2 { margin-bottom: 4px; }
+
+/* Die Liste im Crash-Dialog ist nach Bot gegliedert und kann laenger werden
+   als der Schirm - deshalb scrollt sie in sich, damit die Knoepfe unten
+   sichtbar bleiben. Ein Dialog, bei dem man zum Abbrechen erst scrollen
+   muss, waere hier der falsche Ort fuer Sparsamkeit. */
+.crash-liste {
+  max-height: min(46vh, 420px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 0 16px;
+}
+.crash-bot + .crash-bot {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--trennlinie);
+}
+.crash-bot-kopf {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.crash-bot .dialog-zeilen { margin-bottom: 0; }
+.crash-aktienhinweis { font-size: 12px; line-height: 1.5; margin-top: 8px; }
+
+/* Die Texteingabe der dritten Stufe. Es gab sie bis zur Vereinfachung des
+   Einzelwegs global; hier kommt sie zurueck, aber NUR im Crash-Dialog -
+   damit sie nicht unbemerkt wieder in den anderen Wegen auftaucht. */
+dialog.crash-dialog .dialog-eingabe {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  border-radius: var(--radius-klein);
+  border: 1px solid var(--rahmen-stark);
+  background: var(--hintergrund);
+  color: var(--text);
+  font-family: inherit;
+  font-size: 16px;          /* unter 16px zoomt iOS Safari beim Fokus hinein */
+  letter-spacing: .12em;
+  margin-bottom: 6px;
+}
