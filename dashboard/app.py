@@ -9,24 +9,31 @@ schreibenden Endpunkt". Das stimmt nicht mehr, und diese Zeilen sind die
 Korrektur dazu - der Satz stand in vier PRs so da und soll nicht
 stillschweigend falsch werden.
 
-Es gibt jetzt GENAU EINEN Weg, der in eine Bot-Datenbank schreibt: eine
-offene Position von Hand schliessen, und zwar
+Es gibt jetzt genau ZWEI Wege, die in eine Bot-Datenbank schreiben -
+offene Positionen von Hand schliessen, einzeln oder alle auf einmal
+(Notfallweg), und zwar
   * nur fuer die Bots in manual_close.SCHLIESSBARE_BOTS (aktuell genau
     einer: t3_supertrend),
   * nur nach ZWEI getrennten HTTP-Aufrufen (vorbereiten + ausfuehren),
     der zweite mit einer zufaelligen, einmaligen, nach 120 Sekunden
-    verfallenden Vorgangs-Kennung, die nur fuer genau diesen Bot und
-    diese Position gilt (in der Oberflaeche ist das EIN Tap: die
-    Zusammenfassung ist schon der erste Aufruf),
+    verfallenden Vorgangs-Kennung, die nur fuer genau diesen Bot, diese
+    Position(en) und diese Art von Vorgang gilt (eine Einzel-Kennung
+    loest auf dem Alle-Endpunkt nichts aus und umgekehrt),
   * und nur ueber notifications/manual_close.py, das die gesamte
-    Absicherung mitbringt (Transaktion, Nebenlaeufigkeit, Protokoll).
+    Absicherung mitbringt (Transaktion, Nebenlaeufigkeit, Protokoll) -
+    auch der Notfallweg ruft dort je Position EINZELN auf, es gibt keine
+    Sammelschreibung.
+In der Oberflaeche: EIN Tap fuer eine Position (die Zusammenfassung ist
+schon der erste Aufruf), ZWEI Klicks fuer alle - groessere Tragweite.
 Siehe dashboard/schliessen.py. Alles andere ist unveraendert lesend:
 kein Parameter laesst sich aendern, keine Position eroeffnen, kein
 Bot-Lauf anstossen.
 
 Nicht-GET-Routen insgesamt: POST /login (schreibt nur ein Cookie), die
-drei Routen des Schliessvorgangs, davon schreibt genau
-POST /api/bots/{name}/schliessen/ausfuehren in eine Datenbank.
+drei Routen des Einzel-Schliessvorgangs und die zwei des Notfallwegs.
+In eine Datenbank schreiben genau zwei davon:
+POST /api/bots/{name}/schliessen/ausfuehren und
+POST /api/bots/{name}/alle-schliessen/ausfuehren.
 
 Alle Zahlen kommen ueber dashboard/datenquelle.py aus
 notifications/monitor.py, das die Bot-Datenbanken read-only oeffnet.
@@ -107,8 +114,8 @@ def erzeuge_app(token: str = None) -> FastAPI:
         title="Trading-Bot-Dashboard",
         description=("Uebersicht ueber die neun Paper-Trading-Bots. Lesend, "
                       "mit genau einer schreibenden Ausnahme: das manuelle "
-                      "Schliessen einer Position bei den dafuer "
-                      "freigeschalteten Bots."),
+                      "Schliessen offener Positionen - einzeln oder alle auf "
+                      "einmal - bei den dafuer freigeschalteten Bots."),
         docs_url=None,      # keine oeffentliche API-Doku-Seite - das Dashboard
         redoc_url=None,     # hat genau einen Nutzer, der die Endpunkte kennt.
         openapi_url=None,
@@ -163,7 +170,7 @@ def erzeuge_app(token: str = None) -> FastAPI:
     async def login_absenden(request: Request):
         """Schreibt nur ein Cookie - ohne jede Wirkung auf Bots oder Daten.
         (Bis PR #60 war das die einzige Nicht-GET-Route; seit dem
-        manuellen Schliessen gibt es die drei Routen weiter unten. Diese
+        manuellen Schliessen gibt es die fuenf Routen weiter unten. Diese
         hier bleibt die einzige ohne Token-Pflicht.)
 
         Der Formularkoerper wird hier von Hand geparst, statt ueber
@@ -323,12 +330,14 @@ def erzeuge_app(token: str = None) -> FastAPI:
         kurse, hinweis = await _kurse_holen(auswahl)
         return {"kurse": kurse, "hinweis": hinweis}
 
-    # -- Manuelles Schliessen: der einzige schreibende Pfad ---------------
-    # Drei Routen, aber nur EINE schreibt in eine Datenbank:
-    #   GET  .../schliessbare-positionen  liest (IDs + Live-Kurs + PnL)
-    #   POST .../schliessen/vorbereiten   legt einen Vorgang im Speicher an
-    #   POST .../schliessen/abbrechen     verwirft ihn wieder
-    #   POST .../schliessen/ausfuehren    <- schreibt, und nur diese
+    # -- Manuelles Schliessen: die schreibenden Pfade ---------------------
+    # Fuenf Routen, aber nur ZWEI schreiben in eine Datenbank:
+    #   GET  .../schliessbare-positionen     liest (IDs + Live-Kurs + PnL)
+    #   POST .../schliessen/vorbereiten      legt einen Vorgang im Speicher an
+    #   POST .../schliessen/abbrechen        verwirft ihn wieder (beide Arten)
+    #   POST .../schliessen/ausfuehren       <- schreibt (eine Position)
+    #   POST .../alle-schliessen/vorbereiten legt einen Notfall-Vorgang an
+    #   POST .../alle-schliessen/ausfuehren  <- schreibt (alle bestaetigten)
     # Die Aufteilung ist die eigentliche Sicherung: es gibt keinen
     # einzelnen Aufruf, der eine Position schliesst. Ein Bestaetigungs-
     # dialog allein im Browser waere keiner - die API bliebe mit curl
@@ -440,6 +449,60 @@ def erzeuge_app(token: str = None) -> FastAPI:
                 status_code=500,
                 detail=("Unerwarteter Fehler - siehe Log. Ob geschrieben wurde, "
                          "bitte in der Positionsliste pruefen."))
+
+    # -- Notfallweg: ALLE offenen Positionen eines Bots -------------------
+    # Dieselbe Aufteilung wie beim Einzelweg, eigene Vorgangs-Art: eine
+    # Kennung von dort loest hier nichts aus (siehe schliessen.ART_*).
+    # Abgebrochen wird ueber dieselbe abbrechen-Route - der Vorgang liegt im
+    # selben Speicher, und eine zweite Abbruchroute waere eine zweite
+    # Stelle, die man pflegen muss.
+
+    @app.post("/api/bots/{name}/alle-schliessen/vorbereiten")
+    async def alle_schliessen_vorbereiten(name: str, request: Request):
+        """Notfallweg, Aufruf 1. Schreibt NICHTS - Uebersicht aller offenen
+        Positionen samt Kursen und PnL-Schaetzung, plus Vorgangs-Kennung."""
+        _bot_oder_404(name)
+        bot = await asyncio.to_thread(datenquelle.finde_bot, name)
+        if bot is None:
+            raise HTTPException(status_code=404, detail=f"Unbekannter Bot: {name}")
+
+        kurse, _ = await _kurse_holen([bot])
+        try:
+            return await asyncio.to_thread(schliessen.alle_vorbereiten, name, kurse)
+        except schliessen.SchliessenNichtMoeglich as fehler:
+            raise HTTPException(status_code=409, detail=str(fehler))
+
+    @app.post("/api/bots/{name}/alle-schliessen/ausfuehren")
+    async def alle_schliessen_ausfuehren(name: str, request: Request):
+        """Notfallweg, Aufruf 2 - der zweite schreibende Endpunkt.
+
+        Schliesst jede bestaetigte Position EINZELN ueber dieselbe
+        Kernfunktion wie der Einzelweg. Ein Fehlschlag bei einer Position
+        bricht den Rest NICHT ab; die Antwort nennt Erfolge, Fehlschlaege
+        und Uebersprungene vollstaendig.
+
+        Deshalb ist ein Teilausfall hier KEIN HTTP-Fehler: die Anfrage ist
+        vollstaendig bearbeitet, das Ergebnis ist nur gemischt. Ein 409 mit
+        Fehlertext wuerde verschweigen, was bereits geschlossen WURDE -
+        genau die Unklarheit, die diese Funktion vermeiden soll.
+        """
+        _bot_oder_404(name)
+        daten = await _koerper(request)
+        try:
+            return await asyncio.to_thread(
+                schliessen.alle_ausfuehren, name, daten.get("vorgang"),
+                _wer(request))
+        except schliessen.SchliessenNichtMoeglich as fehler:
+            # Nur noch die Faelle, in denen GAR NICHTS versucht wurde:
+            # ungueltige, abgelaufene, fremde oder artfremde Kennung.
+            raise HTTPException(status_code=409, detail=str(fehler))
+        except Exception:
+            logger.exception("Unerwarteter Fehler beim Notfall-Schliessen.")
+            raise HTTPException(
+                status_code=500,
+                detail=("Unerwarteter Fehler - siehe Log. Welche Positionen "
+                         "geschlossen wurden, bitte in der Positionsliste und "
+                         "im Protokoll pruefen."))
 
     # Statische Dateien zuletzt einhaengen, damit die expliziten Routen
     # oben Vorrang haben. Der Zugriffsschutz greift auch hier, weil die

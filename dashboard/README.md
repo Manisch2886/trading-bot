@@ -9,23 +9,28 @@ je Bot mit offenen Positionen und den letzten Trades.
 irgendetwas veraendert".** Das gilt so nicht mehr, und der Satz soll nicht
 stillschweigend falsch werden.
 
-**Lesend, ausser einem einzigen Weg:** eine offene Position von Hand
-schliessen. Dieser Weg ist eng gefasst:
+**Lesend, ausser einem einzigen Zweck:** offene Positionen von Hand
+schliessen - einzeln oder alle auf einmal (Notfallweg). Beides ist eng
+gefasst und teilt dieselbe Absicherung:
 
 * nur fuer die Bots in `manual_close.SCHLIESSBARE_BOTS` - derzeit genau
   einer, `t3_supertrend`; alle uebrigen antworten mit 403,
 * nur ueber **zwei getrennte HTTP-Aufrufe** (`…/vorbereiten`, dann
   `…/ausfuehren`), der zweite mit einer zufaelligen, einmaligen, nach 120
   Sekunden verfallenden Vorgangs-Kennung, die nur fuer genau diesen Bot und
-  diese Position gilt. Ein einzelner Aufruf kann nichts schliessen - das ist
-  die Absicherung. In der Oberflaeche ist es **ein Tap**: die Zusammenfassung
-  ist bereits der erste Aufruf. (Bis PR #62 war zusaetzlich der Text
+  diese Position(en) und diese Vorgangsart gilt. Ein einzelner Aufruf kann
+  nichts schliessen - das ist die Absicherung. In der Oberflaeche ist es
+  **ein Tap** fuer eine Position (die Zusammenfassung ist bereits der erste
+  Aufruf) und **zwei Klicks** fuer alle - groessere Tragweite, deshalb eine
+  zusaetzliche Rueckfrage. (Bis PR #62 war zusaetzlich der Text
   `BESTAETIGEN` einzutippen; das ist entfallen - Paper-Trading ohne echtes
   Kapital, und im schnellen Kryptomarkt kostet der Tippschritt Zeit. Die
   Telegram-Variante behaelt ihre zwei Stufen.)
 * und nur ueber `notifications/manual_close.py` - dasselbe Modul, das auch
   die Telegram-Variante benutzt, mit Transaktion, Nebenlaeufigkeits-
-  Absicherung und eigenem Protokoll.
+  Absicherung und eigenem Protokoll. Auch der Notfallweg ruft dort je
+  Position EINZELN auf; es gibt keine Sammelschreibung und keine zweite
+  Schreiblogik.
 
 Alles andere ist unveraendert lesend: kein Parameter laesst sich aendern,
 keine Position eroeffnen, kein Bot-Lauf anstossen. Ausserhalb dieses einen
@@ -169,14 +174,37 @@ Seiten: `/` (Uebersicht), `/bot?name=<bot>` (Detail), `/login`,
 |---|---|---|
 | `/api/bots/{name}/schliessbare-positionen[?live=1]` | GET | nein - Zeilen-IDs, Kurs, geschaetzter PnL |
 | `/api/bots/{name}/schliessen/vorbereiten` | POST | nein - legt nur einen Vorgang im Arbeitsspeicher an |
-| `/api/bots/{name}/schliessen/abbrechen` | POST | nein - verwirft ihn wieder |
-| `/api/bots/{name}/schliessen/ausfuehren` | POST | **ja** - der einzige Schreibzugriff der Anwendung |
+| `/api/bots/{name}/schliessen/abbrechen` | POST | nein - verwirft ihn wieder (beide Vorgangsarten) |
+| `/api/bots/{name}/schliessen/ausfuehren` | POST | **ja** - schliesst eine Position |
+| `/api/bots/{name}/alle-schliessen/vorbereiten` | POST | nein - nur Arbeitsspeicher |
+| `/api/bots/{name}/alle-schliessen/ausfuehren` | POST | **ja** - schliesst alle bestaetigten Positionen, jede einzeln |
 
 `vorbereiten` erwartet `{"trade_id": <ID>}` und antwortet mit Symbol,
 Einstiegs- und aktuellem Kurs, geschaetztem PnL sowie einer Vorgangs-Kennung.
 `ausfuehren` erwartet `{"vorgang": "<Kennung>"}` - nichts weiter. Jeder
 Fehlversuch verbraucht die Kennung; abgelehnt wird mit 409 (Konflikt), ein
 nicht freigeschalteter Bot mit 403.
+
+### Notfallweg: alle Positionen
+
+`alle-schliessen/vorbereiten` braucht keinen Koerper und antwortet mit allen
+offenen Positionen samt Kursen, dem **Durchschnitt je Position** (bewusst
+keine Summe - die Summe von Trade-Prozenten ist keine Portfolio-Rendite,
+siehe Methodik-Grundsatz 2 im Uebergabeprotokoll) und einer Kennung eigener
+Art. Eine Kennung des Einzelwegs loest hier nichts aus und umgekehrt.
+
+`alle-schliessen/ausfuehren` liest den **tatsaechlichen** Stand neu und
+schliesst den Schnitt aus "bestaetigt" und "noch offen" - jede Position
+einzeln ueber dieselbe Kernfunktion wie der Einzelweg, mit eigener
+Protokollzeile. Scheitert eine, laufen die uebrigen weiter; die Antwort nennt
+`geschlossen`, `fehlgeschlagen`, `uebersprungen` (vom Bot selbst geschlossen)
+und `nicht_bestaetigt` (nach der Uebersicht eroeffnet, deshalb nicht
+angefasst) vollstaendig. **Ein Teilausfall ist kein HTTP-Fehler**, sondern
+ein Ergebnis mit `erfolg: false` - ein 409 wuerde verschweigen, was bereits
+geschlossen wurde.
+
+In der Oberflaeche braucht dieser Weg **zwei Klicks** (Uebersicht, dann
+Rueckfrage), der Einzelweg einen. Beide ohne Texteingabe.
 
 Jeder Versuch - erfolgreich wie abgelehnt - landet in
 `logs/notifications/manuelle_eingriffe.log`, jede Zeile mit der Marke

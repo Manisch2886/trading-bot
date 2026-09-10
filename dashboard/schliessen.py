@@ -3,9 +3,16 @@ Die EINE schreibende Faehigkeit des Dashboards
 ==============================================================================
 Bis zu diesem Modul war das Dashboard ausschliesslich lesend (siehe den
 Docstring von app.py und den Nachweis in test_dashboard.py). Hier kommt
-genau eine Ausnahme hinzu: eine offene Position von Hand schliessen, fuer
-genau einen Bot, nach EINER Bestaetigung in der Oberflaeche - abgesichert
-ueber zwei getrennte Server-Aufrufe.
+genau eine Faehigkeit hinzu: offene Positionen von Hand schliessen, fuer
+genau einen Bot - in zwei Varianten, beide abgesichert ueber zwei getrennte
+Server-Aufrufe:
+
+  EINZELN   eine Position, EIN Tap in der Oberflaeche
+  ALLE      alle offenen Positionen, ZWEI Klicks (Notfallweg, siehe unten)
+
+Beide schreiben ausschliesslich ueber `manual_close.schliesse_position()` -
+je Position ein Aufruf, auch der Notfallweg. Dort steht keine Schleife und
+hier keine Schreiblogik.
 
 ------------------------------------------------------------------------------
 Was hier NICHT steht - und warum das der Punkt ist
@@ -103,6 +110,15 @@ BESTAETIGUNGSTEXT = manual_close.BESTAETIGUNGSTEXT
 # vorbereiten-Endpunkt in einer Schleife aufruft. Dann sollen nicht
 # unbegrenzt Eintraege im Speicher wachsen.
 MAX_VORGAENGE = 20
+
+# Es gibt ZWEI Arten von Vorgaengen, und eine Kennung der einen Art darf auf
+# dem Endpunkt der anderen nichts ausloesen. Beide liegen bewusst im
+# SELBEN Speicher - so gelten Ablauffrist, Einmaligkeit, Obergrenze und
+# `abbrechen()` ohne Zutun fuer beide, statt in einer zweiten Verwaltung
+# nachgebaut (und irgendwann anders) zu werden. Die Trennung leistet
+# stattdessen dieses eine Feld, das beide Ausfuehren-Wege pruefen.
+ART_EINZEL = "einzel"
+ART_ALLE = "alle"
 
 _VORGAENGE = {}
 
@@ -246,6 +262,7 @@ def vorbereiten(bot_name: str, trade_id, kurse: dict) -> dict:
     kennung = secrets.token_urlsafe(24)
     _VORGAENGE[kennung] = Vorgang({
         "kennung": kennung,
+        "art": ART_EINZEL,
         "bot": bot_name,
         "trade_id": trade_id,
         "symbol": position["symbol"],
@@ -297,15 +314,18 @@ def offener_vorgang(kennung):
 # Ausfuehren - der einzige schreibende Weg
 # ---------------------------------------------------------------------------
 
-def ausfuehren(bot_name: str, kennung, benutzer) -> dict:
-    """Aufruf 2 - der einzige Weg im Dashboard, der schreibt.
+def _vorgang_einloesen(bot_name: str, kennung, benutzer, art: str) -> Vorgang:
+    """Loest eine Vorgangs-Kennung ein: prueft Herkunft, Frist, Art und
+    Bot-Zuordnung, verbraucht sie und gibt den Vorgang zurueck.
 
-    Verlangt eine gueltige, noch nicht abgelaufene Vorgangs-Kennung aus
-    Aufruf 1. Eine zusaetzliche Texteingabe wird NICHT mehr verlangt (siehe
-    Modul-Kopf); die Kennung ist die Absicherung, und sie ist es auch
-    vorher schon gewesen.
+    BEIDE schreibenden Wege gehen hier durch - der fuer eine Position und
+    der fuer alle. Bewusst eine gemeinsame Funktion: eine zweite Fassung
+    dieser Pruefungen waere genau die Doppelfuehrung, die in diesem Projekt
+    schon mehrfach auseinandergelaufen ist, und hier waere sie die
+    gefaehrlichste Stelle dafuer - eine Nachlaessigkeit fiele erst auf,
+    wenn sie ausgenutzt wird.
 
-    Der Vorgang wird in JEDEM Fall verbraucht, auch wenn der Versuch
+    Der Vorgang wird in JEDEM Fall verbraucht, auch wenn der Versuch danach
     scheitert: ein Vorgang, der einen Fehlversuch ueberlebt, waere ein
     zweiter Versuch, den der Nutzer nicht angefordert hat.
     """
@@ -331,14 +351,40 @@ def ausfuehren(bot_name: str, kennung, benutzer) -> dict:
 
     _VORGAENGE.pop(vorgang["kennung"], None)
 
+    # Eine Kennung fuer EINE Position darf auf dem Alle-Endpunkt nichts
+    # ausloesen und umgekehrt. Ohne diese Pruefung waere die zweite
+    # Klick-Bestaetigung des Notfallwegs umgehbar: man koennte die billiger
+    # zu bekommende Einzel-Kennung auf dem Alle-Endpunkt einloesen.
+    if vorgang.get("art") != art:
+        manual_close.protokolliere_ablehnung(
+            bot_name, vorgang.get("trade_id"), benutzer,
+            f"Bestaetigung ist fuer '{vorgang.get('art')}', angefragt wurde "
+            f"'{art}'", manual_close.QUELLE_DASHBOARD)
+        raise SchliessenNichtMoeglich(
+            "Die Bestaetigung gehoert zu einem anderen Vorgang. Es wurde "
+            "nichts geaendert; bitte von vorn beginnen.")
+
     if vorgang["bot"] != bot_name:
         manual_close.protokolliere_ablehnung(
-            bot_name, vorgang["trade_id"], benutzer,
+            bot_name, vorgang.get("trade_id"), benutzer,
             "Bestaetigung gehoert zu einem anderen Bot",
             manual_close.QUELLE_DASHBOARD)
         raise SchliessenNichtMoeglich(
             "Die Bestaetigung gehoert zu einem anderen Bot. Es wurde nichts "
             "geaendert.")
+
+    return vorgang
+
+
+def ausfuehren(bot_name: str, kennung, benutzer) -> dict:
+    """Aufruf 2 - schliesst GENAU EINE Position.
+
+    Verlangt eine gueltige, noch nicht abgelaufene Vorgangs-Kennung aus
+    Aufruf 1. Eine zusaetzliche Texteingabe wird NICHT mehr verlangt (siehe
+    Modul-Kopf); die Kennung ist die Absicherung, und sie ist es auch
+    vorher schon gewesen.
+    """
+    vorgang = _vorgang_einloesen(bot_name, kennung, benutzer, ART_EINZEL)
 
     # Der Kern verlangt den Bestaetigungstext weiter; der wird hier aus der
     # Konstante gesetzt, nicht aus der Anfrage gelesen (siehe Modul-Kopf).
@@ -361,3 +407,258 @@ def ausfuehren(bot_name: str, kennung, benutzer) -> dict:
                      f"'{ergebnis['result']}'; der Eingriff steht im Protokoll "
                      f"logs/notifications/manuelle_eingriffe.log."),
     }
+
+
+# ---------------------------------------------------------------------------
+# Notfallweg: ALLE offenen Positionen eines Bots
+# ---------------------------------------------------------------------------
+# Warum hier ZWEI Klick-Bestaetigungen stehen, waehrend der Einzelweg mit
+# einer auskommt: die Tragweite ist eine andere. Beim Einzelschliessen sieht
+# der Nutzer genau die eine Zeile, die er trifft. Hier trifft ein Tap
+# potenziell fuenf Positionen gleichzeitig - und der Weg zurueck ist in
+# beiden Faellen SQL von Hand. Eine Texteingabe ist es trotzdem nicht
+# geworden: sie war auch beim Einzelweg nicht die Absicherung (das ist die
+# Vorgangs-Kennung), sie kostet nur Zeit. Zwei Klicks auf zwei verschiedene
+# Knoepfe sind gegen ein Versehen genauso wirksam.
+#
+# WELCHE POSITIONEN GESCHLOSSEN WERDEN - die wichtigste Festlegung hier:
+# Beim Ausfuehren wird der TATSAECHLICHE Stand neu gelesen, nicht die Liste
+# aus der Uebersicht abgearbeitet. Aus beiden Mengen wird der Schnitt
+# gebildet:
+#
+#   bestaetigt UND noch offen   -> wird geschlossen
+#   bestaetigt, nicht mehr offen -> uebersprungen (der Cronjob war schneller)
+#   offen, aber NICHT bestaetigt -> wird NICHT angefasst
+#
+# Der letzte Fall ist eine Entscheidung, keine Nebenwirkung: der Bot kann
+# zwischen Uebersicht und Tap eine neue Position eroeffnen. Sie zu schliessen
+# hiesse, etwas anzufassen, das der Nutzer nie gesehen und dessen Kurs und
+# PnL er nie bestaetigt hat - dieselbe Abwaegung wie beim geschriebenen Kurs
+# (siehe Modul-Kopf): still mehr zu tun als bestaetigt wurde, waere die
+# groessere Ueberraschung. Sie bleibt offen, wird im Ergebnis ausdruecklich
+# ausgewiesen, und ein zweiter Durchlauf erfasst sie.
+
+def alle_vorbereiten(bot_name: str, kurse: dict) -> dict:
+    """Notfallweg, Aufruf 1. Uebersicht ALLER offenen Positionen samt
+    Kursen und PnL-Schaetzung, plus eine Vorgangs-Kennung. Schreibt nichts.
+    """
+    if not ist_freigeschaltet(bot_name):
+        raise SchliessenNichtMoeglich(
+            f"Fuer '{bot_name}' ist das manuelle Schliessen nicht freigeschaltet. "
+            f"Freigeschaltet: {', '.join(freigeschaltete_bots())}.")
+
+    offen = manual_close.offene_positionen(bot_name)
+    if not offen:
+        raise SchliessenNichtMoeglich(
+            "Dieser Bot hat gerade keine offene Position. Es gibt nichts zu "
+            "schliessen.")
+
+    kurse = kurse or {}
+    zeilen, schliessbar = [], []
+    for position in offen:
+        kurs = kurse.get(position["symbol"])
+        kurs = float(kurs) if kurs else None
+        pnl = None
+        if kurs and position.get("entry_price"):
+            pnl = manual_close.berechne_pnl(bot_name, position["entry_price"], kurs)
+        # Ohne Kurs oder ohne Einstiegskurs wuerde der Kern ablehnen. Solche
+        # Positionen werden deshalb hier schon als nicht schliessbar
+        # ausgewiesen, statt sie mitzuzaehlen und spaeter als Fehlschlag zu
+        # melden - der Nutzer soll vorher wissen, was er bestaetigt.
+        grund = None
+        if not kurs:
+            grund = "kein aktueller Kurs verfuegbar"
+        elif not position.get("entry_price"):
+            grund = "Einstiegskurs fehlt in der Datenbank"
+        eintrag = {
+            "id": position["id"],
+            "symbol": position["symbol"],
+            "entry_time": position.get("entry_time"),
+            "entry_preis": _gerundet(position.get("entry_price")),
+            "aktueller_preis": _gerundet(kurs),
+            "pnl_pct": pnl,
+            "schliessbar_jetzt": grund is None,
+            "grund": grund,
+        }
+        zeilen.append(eintrag)
+        if grund is None:
+            schliessbar.append((position["id"], position["symbol"], kurs))
+
+    if not schliessbar:
+        raise SchliessenNichtMoeglich(
+            "Von keiner der offenen Positionen liegt ein verwertbarer Kurs "
+            "vor. Ohne Ausstiegskurs wird nicht geschrieben - bitte spaeter "
+            "erneut versuchen.")
+
+    _aufraeumen()
+    if len(_VORGAENGE) >= MAX_VORGAENGE:
+        raise SchliessenNichtMoeglich(
+            "Zu viele offene Bestaetigungen. Bitte kurz warten, bis die "
+            "aelteren abgelaufen sind.")
+
+    kennung = secrets.token_urlsafe(24)
+    _VORGAENGE[kennung] = Vorgang({
+        "kennung": kennung,
+        "art": ART_ALLE,
+        "bot": bot_name,
+        # Nur die ID wuerde genuegen, um zu schliessen. Symbol und Kurs
+        # stehen mit dabei, weil GENAU DIESER Kurs geschrieben wird - der,
+        # den der Nutzer in der Uebersicht gesehen hat, je Position ein
+        # eigener. Nicht ein einziger Kurs fuer alle, und kein beim
+        # Ausfuehren neu geholter.
+        "positionen": schliessbar,
+        "trade_id": None,
+        "gueltig_bis": _jetzt() + GUELTIG_SEKUNDEN,
+    })
+    logger.info(f"Notfall-Schliessvorgang vorbereitet: Bot {bot_name}, "
+                f"{len(schliessbar)} Positionen "
+                f"({', '.join(s for _, s, _ in schliessbar)}) - noch nichts "
+                f"geschrieben.")
+
+    werte = [z["pnl_pct"] for z in zeilen if z["pnl_pct"] is not None]
+    return {
+        "vorgang": kennung,
+        "bot": bot_name,
+        "anzeigename": manual_close.SCHLIESSBARE_BOTS[bot_name]["anzeigename"],
+        "positionen": zeilen,
+        "anzahl": len(schliessbar),
+        "anzahl_gesamt": len(zeilen),
+        # KEINE Summe der Prozente. Die waere keine Portfolio-Rendite,
+        # sondern eine Zahl ohne Bedeutung - in diesem Projekt eine
+        # mehrfach aufgetretene Fehlerquelle und als Methodik-Grundsatz im
+        # Uebergabeprotokoll (Abschnitt 7, Punkt 2) ausdruecklich
+        # festgehalten. Belastbar waere nur eine Rechnung ueber die
+        # Positionsgroesse, und die steht als Backtest-Annahme in
+        # equity_simulation.py - sie hier hereinzuziehen hiesse, eine
+        # Backtest-Groesse als Live-Aussage auszugeben. Deshalb: der
+        # Durchschnitt je Position, dazu bestes und schlechtestes Ergebnis.
+        "pnl_schnitt_pct": round(sum(werte) / len(werte), 2) if werte else None,
+        "pnl_bestes_pct": max(werte) if werte else None,
+        "pnl_schlechtestes_pct": min(werte) if werte else None,
+        "gueltig_sekunden": GUELTIG_SEKUNDEN,
+    }
+
+
+def alle_ausfuehren(bot_name: str, kennung, benutzer) -> dict:
+    """Notfallweg, Aufruf 2 - schliesst jede bestaetigte Position EINZELN.
+
+    Geschlossen wird ueber manual_close.schliesse_position(), dieselbe
+    Funktion wie beim Einzelweg und damit mit derselben Transaktion, der
+    erneuten Pruefung innerhalb der Transaktion, derselben PnL-Formel und
+    einer eigenen Protokollzeile je Position. Hier steht KEINE zweite
+    Schreiblogik - nur eine Schleife darum.
+
+    TEILAUSFALL: Scheitert eine Position, laeuft die Schleife weiter. Ein
+    Abbruch in der Mitte waere das Schlimmste, was diese Funktion tun
+    koennte - er hinterliesse einen Zustand, den niemand benennen kann
+    ("sind 2 oder 3 geschlossen?"). Jeder Fehlschlag wird einzeln
+    festgehalten und am Ende vollstaendig ausgewiesen.
+    """
+    vorgang = _vorgang_einloesen(bot_name, kennung, benutzer, ART_ALLE)
+    bestaetigt = list(vorgang["positionen"])
+
+    # NEU LESEN, nicht die bestaetigte Liste abarbeiten: zwischen Uebersicht
+    # und Tap koennen bis zu GUELTIG_SEKUNDEN liegen, und der Cronjob
+    # arbeitet in dieser Zeit weiter.
+    noch_offen = {p["id"] for p in manual_close.offene_positionen(bot_name)}
+
+    geschlossen, fehlgeschlagen, uebersprungen = [], [], []
+
+    for trade_id, symbol, kurs in bestaetigt:
+        if trade_id not in noch_offen:
+            # Kein Fehlschlag, sondern ein Nicht-Ereignis: der Bot hat die
+            # Position regulaer selbst geschlossen. Es wird GAR NICHT
+            # versucht - ein Versuch wuerde bloss eine Ablehnung ins
+            # Protokoll schreiben, die nichts bedeutet.
+            uebersprungen.append({
+                "trade_id": trade_id, "symbol": symbol,
+                "grund": ("war beim Ausfuehren nicht mehr offen - der Bot hat "
+                           "sie selbst geschlossen"),
+            })
+            continue
+        try:
+            ergebnis = manual_close.schliesse_position(
+                bot_name, trade_id, kurs, benutzer, BESTAETIGUNGSTEXT,
+                quelle=manual_close.QUELLE_DASHBOARD)
+        except SchliessenNichtMoeglich as fehler:
+            # Weitermachen. Der Kern hat diese Ablehnung bereits einzeln
+            # protokolliert und garantiert, dass nichts geschrieben wurde.
+            fehlgeschlagen.append({
+                "trade_id": trade_id, "symbol": symbol, "grund": str(fehler),
+            })
+            logger.warning(f"Notfall-Schliessen: Trade {trade_id} ({symbol}) "
+                           f"fehlgeschlagen, Schleife laeuft weiter - {fehler}")
+            continue
+        except Exception as fehler:      # noqa: BLE001 - siehe Begruendung
+            # Auch ein UNERWARTETER Fehler darf die Schleife nicht
+            # abbrechen; sonst haette genau der Fall, den niemand vorhergesehen
+            # hat, die schlimmste Folge. Der Kern schreibt nur innerhalb
+            # einer Transaktion, ein Fehler laesst die Zeile also unberuehrt.
+            manual_close.protokolliere_ablehnung(
+                bot_name, trade_id, benutzer,
+                f"unerwarteter Fehler beim Notfall-Schliessen: {fehler}",
+                manual_close.QUELLE_DASHBOARD)
+            fehlgeschlagen.append({
+                "trade_id": trade_id, "symbol": symbol,
+                "grund": f"unerwarteter Fehler: {fehler}",
+            })
+            logger.exception(f"Notfall-Schliessen: unerwarteter Fehler bei "
+                             f"Trade {trade_id} ({symbol}) - Schleife laeuft weiter.")
+            continue
+        geschlossen.append({
+            "trade_id": ergebnis["trade_id"],
+            "symbol": ergebnis["symbol"],
+            "entry_preis": _gerundet(ergebnis["entry_price"]),
+            "exit_preis": _gerundet(ergebnis["exit_price"]),
+            "exit_time": ergebnis["exit_time"],
+            "pnl_pct": ergebnis["pnl_pct"],
+            "ergebnis": ergebnis["result"],
+        })
+
+    # Positionen, die der Bot NACH der Uebersicht eroeffnet hat: nicht
+    # angefasst, aber ausgewiesen (siehe Begruendung oben).
+    bestaetigte_ids = {t for t, _, _ in bestaetigt}
+    nicht_bestaetigt = sorted(noch_offen - bestaetigte_ids)
+
+    werte = [g["pnl_pct"] for g in geschlossen if g["pnl_pct"] is not None]
+    ergebnis = {
+        "erfolg": not fehlgeschlagen,
+        "bot": bot_name,
+        "angefragt": len(bestaetigt),
+        "geschlossen": geschlossen,
+        "fehlgeschlagen": fehlgeschlagen,
+        "uebersprungen": uebersprungen,
+        "nicht_bestaetigt": nicht_bestaetigt,
+        "anzahl_geschlossen": len(geschlossen),
+        "anzahl_fehlgeschlagen": len(fehlgeschlagen),
+        "anzahl_uebersprungen": len(uebersprungen),
+        "pnl_schnitt_pct": round(sum(werte) / len(werte), 2) if werte else None,
+    }
+    ergebnis["meldung"] = _alle_meldung(ergebnis)
+    logger.info(f"Notfall-Schliessen beendet: {ergebnis['meldung']}")
+    return ergebnis
+
+
+def _alle_meldung(ergebnis: dict) -> str:
+    """Ein Satz, der den Ausgang vollstaendig nennt - auch den unschoenen.
+    Bewusst KEIN blosses "erfolgreich": ein Teilausfall, der sich wie ein
+    Erfolg liest, ist schlimmer als eine Fehlermeldung."""
+    teile = [f"{ergebnis['anzahl_geschlossen']} von {ergebnis['angefragt']} "
+             f"Positionen geschlossen"]
+    if ergebnis["anzahl_fehlgeschlagen"]:
+        namen = ", ".join(f"{f['symbol']} ({f['grund']})"
+                           for f in ergebnis["fehlgeschlagen"])
+        teile.append(f"{ergebnis['anzahl_fehlgeschlagen']} fehlgeschlagen: {namen}")
+    if ergebnis["anzahl_uebersprungen"]:
+        namen = ", ".join(u["symbol"] for u in ergebnis["uebersprungen"])
+        teile.append(f"{ergebnis['anzahl_uebersprungen']} uebersprungen, weil "
+                      f"der Bot sie selbst geschlossen hatte: {namen}")
+    if ergebnis["nicht_bestaetigt"]:
+        teile.append(f"{len(ergebnis['nicht_bestaetigt'])} Position(en) wurden "
+                      f"erst nach der Uebersicht eroeffnet und NICHT angefasst "
+                      f"(IDs {', '.join(str(i) for i in ergebnis['nicht_bestaetigt'])})")
+    satz = "; ".join(teile) + "."
+    if ergebnis["anzahl_geschlossen"]:
+        satz += (" Jeder Eingriff steht einzeln im Protokoll "
+                 "logs/notifications/manuelle_eingriffe.log.")
+    return satz

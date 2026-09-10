@@ -38,6 +38,18 @@
   </div>
   <p class="fussnote" id="schliessen-fussnote" hidden></p>
 
+  <!-- Der Notfallweg steht ABSICHTLICH unterhalb der Tabelle und nicht in
+       ihr: er gehört nicht zu einer Zeile, sondern zu allen. Eigene Farbe
+       (Vollfläche rot statt Umriss), eigene Beschriftung mit Anzahl und ein
+       Abstand dazwischen - damit er nicht mit dem harmloseren Schließen-Knopf
+       einer einzelnen Position verwechselt wird. -->
+  <div class="notfall-leiste" id="notfall-leiste" hidden>
+    <button type="button" class="knopf notfall" id="alle-schliessen">
+      ⚠ Notfall: alle Positionen schließen
+    </button>
+    <span class="fussnote" id="notfall-hinweis"></span>
+  </div>
+
   <h2>Verlauf (kumulierte Trade-Ergebnisse)</h2>
   <div class="diagramm"><div id="diagramm"></div></div>
 
@@ -83,6 +95,46 @@
       <button type="button" class="knopf gefahr" id="dialog-ja" disabled>
         Ja, schließen
       </button>
+    </div>
+  </div>
+</dialog>
+
+<!-- Notfall-Dialog: ZWEI Klick-Stufen, weil hier mehrere Positionen auf
+     einmal betroffen sind. Beide Stufen liegen nebeneinander im Markup und
+     werden per hidden umgeschaltet - so ist der Dialog in keinem Moment
+     leer, während neues HTML gebaut wird. Eigene IDs, eigener Dialog: ein
+     geteilter Dialog mit Sonderfällen wäre genau die Stelle, an der ein
+     Notfall-Klick versehentlich im Einzelweg landet. -->
+<dialog id="notfalldialog" class="schliessen-dialog notfall-dialog"
+        aria-labelledby="notfall-titel">
+  <div class="inhalt">
+    <h2 id="notfall-titel">Alle Positionen schließen?</h2>
+    <div class="stufe" id="notfall-stufe">Schritt 1 von 2</div>
+
+    <div id="notfall-fehler" class="dialog-fehler" hidden></div>
+
+    <div id="notfall-stufe1">
+      <div class="dialog-zeilen" id="notfall-liste"></div>
+      <div class="dialog-warnung" id="notfall-warnung"></div>
+      <p class="dialog-frist" id="notfall-frist"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="notfall-abbrechen1">Abbrechen</button>
+        <button type="button" class="knopf notfall" id="notfall-weiter" disabled>
+          Ja, alle schließen
+        </button>
+      </div>
+    </div>
+
+    <div id="notfall-stufe2" hidden>
+      <p class="notfall-frage" id="notfall-frage"></p>
+      <div class="dialog-warnung" id="notfall-warnung2"></div>
+      <p class="dialog-frist" id="notfall-frist2"></p>
+      <div class="dialog-knoepfe">
+        <button type="button" class="knopf" id="notfall-abbrechen2">Abbrechen</button>
+        <button type="button" class="knopf notfall" id="notfall-ausfuehren">
+          Endgültig bestätigen
+        </button>
+      </div>
     </div>
   </div>
 </dialog>
@@ -160,6 +212,21 @@ function zeichnePositionen() {
     fussnote.hidden = false;
   } else {
     fussnote.hidden = true;
+  }
+
+  /* Der Notfallknopf erscheint nur, wenn es überhaupt etwas zu schließen
+     gibt - ein Knopf, der garantiert in "keine offene Position" endet, ist
+     bei dieser Tragweite kein harmloser Leerlauf, sondern lädt zum Klicken
+     auf Vorrat ein. */
+  const leiste = document.getElementById("notfall-leiste");
+  const offen = positionen.length;
+  leiste.hidden = !schliessbarAktiv() || offen === 0;
+  if (!leiste.hidden) {
+    document.getElementById("alle-schliessen").textContent =
+      `⚠ Notfall: alle ${offen} Positionen schließen`;
+    document.getElementById("notfall-hinweis").textContent =
+      "Schließt jede offene Position dieses Bots einzeln, jede zu ihrem "
+      + "eigenen aktuellen Kurs. Zwei Klicks nötig.";
   }
 }
 
@@ -355,6 +422,230 @@ document.getElementById("positionen").addEventListener("click", (e) => {
   if (!knopf) return;
   document.getElementById("erfolg").innerHTML = "";
   starteSchliessen(Number(knopf.dataset.id));
+});
+
+/* ------------------------------------------------------------------------
+   Notfallweg: ALLE Positionen - zwei Klick-Stufen
+   ------------------------------------------------------------------------
+   Eigener Dialog, eigener Vorgang, eigene Zustandsvariablen. Der Server
+   unterscheidet die beiden Vorgangsarten ebenfalls (schliessen.ART_*), eine
+   Kennung von hier löst auf dem Einzel-Endpunkt nichts aus und umgekehrt.
+
+   Zwei Stufen statt einer, obwohl der Einzelweg mit einem Tap auskommt: hier
+   trifft ein Klick potenziell alle offenen Positionen gleichzeitig. Beide
+   Stufen sind Klicks - eine Texteingabe war auch beim Einzelweg nicht die
+   Absicherung, sie kostet nur Zeit. */
+
+const notfallDialog = document.getElementById("notfalldialog");
+let notfallVorgang = null;
+let notfallUhr = null;
+let notfallLaeuft = false;
+
+function notfallFehler(text) {
+  const feld = document.getElementById("notfall-fehler");
+  feld.textContent = text || "";
+  feld.hidden = !text;
+}
+
+function notfallStufe(nummer) {
+  document.getElementById("notfall-stufe1").hidden = nummer !== 1;
+  document.getElementById("notfall-stufe2").hidden = nummer !== 2;
+  document.getElementById("notfall-stufe").textContent = `Schritt ${nummer} von 2`;
+}
+
+function notfallUhrStoppen() {
+  if (notfallUhr) { clearInterval(notfallUhr); notfallUhr = null; }
+}
+
+/* Ein Countdown für BEIDE Stufen: die Frist läuft ab dem vorbereiten-Aufruf,
+   nicht ab dem Stufenwechsel. Zwei getrennte Uhren würden dem Nutzer in
+   Stufe 2 mehr Zeit vorspiegeln, als der Server ihm gibt. */
+function notfallFristStarten(sekunden) {
+  notfallUhrStoppen();
+  const ende = Date.now() + sekunden * 1000;
+  const tick = () => {
+    const rest = Math.max(0, Math.ceil((ende - Date.now()) / 1000));
+    const text = rest === 0
+      ? "Die Bestätigung ist abgelaufen. Bitte von vorn beginnen."
+      : `Gültig noch ${rest} Sekunden.`;
+    document.getElementById("notfall-frist").textContent = text;
+    document.getElementById("notfall-frist2").textContent = text;
+    if (rest === 0) {
+      notfallUhrStoppen();
+      document.getElementById("notfall-weiter").disabled = true;
+      document.getElementById("notfall-ausfuehren").disabled = true;
+    }
+  };
+  tick();
+  notfallUhr = setInterval(tick, 1000);
+}
+
+function notfallZeilen(v) {
+  const kopf = [
+    `<div><span class="beschriftung">Bot</span><span>${v.anzeigename}</span></div>`,
+    `<div><span class="beschriftung">Positionen</span><span>${v.anzahl}`
+      + `${v.anzahl_gesamt > v.anzahl ? ` von ${v.anzahl_gesamt} (Rest ohne Kurs)` : ""}`
+      + `</span></div>`,
+  ];
+  const zeilen = v.positionen.map((p) => {
+    const wert = p.schliessbar_jetzt
+      ? `${zahl(p.entry_preis)} → ${zahl(p.aktueller_preis)} &nbsp; ${prozent(p.pnl_pct)}`
+      : `<span class="gedaempft">wird übersprungen: ${p.grund}</span>`;
+    return `<div><span class="beschriftung">${p.symbol}</span><span>${wert}</span></div>`;
+  });
+  /* Kein aufsummierter Gesamt-PnL: die Summe von Trade-Prozenten ist keine
+     Portfolio-Rendite (Methodik-Grundsatz 2 im Übergabeprotokoll). Gezeigt
+     wird der Durchschnitt je Position plus Spannweite. */
+  const schnitt = v.pnl_schnitt_pct === null ? [] : [
+    `<div><span class="beschriftung">Ø je Position</span><span>`
+      + `${prozent(v.pnl_schnitt_pct)} &nbsp;<span class="gedaempft">`
+      + `(${prozent(v.pnl_schlechtestes_pct)} … ${prozent(v.pnl_bestes_pct)})`
+      + `</span></span></div>`,
+  ];
+  document.getElementById("notfall-liste").innerHTML =
+    kopf.concat(zeilen, schnitt).join("");
+}
+
+async function starteNotfall() {
+  notfallFehler("");
+  notfallStufe(1);
+  notfallVorgang = null;
+  notfallUhrStoppen();
+  document.getElementById("notfall-weiter").disabled = true;
+  document.getElementById("notfall-ausfuehren").disabled = false;
+  document.getElementById("notfall-liste").innerHTML =
+    '<div class="gedaempft">Hole offene Positionen und Kurse …</div>';
+  document.getElementById("notfall-warnung").textContent = "";
+  document.getElementById("notfall-frist").textContent = "";
+  document.getElementById("notfall-frist2").textContent = "";
+  if (!notfallDialog.open) notfallDialog.showModal();
+
+  try {
+    notfallVorgang = await sende(
+      `/api/bots/${encodeURIComponent(name)}/alle-schliessen/vorbereiten`, {});
+  } catch (e) {
+    document.getElementById("notfall-liste").innerHTML = "";
+    notfallFehler(e.message);
+    return;
+  }
+
+  notfallZeilen(notfallVorgang);
+  document.getElementById("notfall-warnung").textContent =
+    `Das schließt ${notfallVorgang.anzahl} Positionen direkt in der `
+    + "Live-Datenbank des Bots, jede zu ihrem eigenen angezeigten Kurs. "
+    + "Im Dashboard lässt sich das nicht rückgängig machen.";
+  notfallFristStarten(notfallVorgang.gueltig_sekunden);
+  document.getElementById("notfall-weiter").disabled = false;
+  document.getElementById("notfall-abbrechen1").focus();
+}
+
+function notfallZurZweitenStufe() {
+  if (!notfallVorgang) return;
+  notfallStufe(2);
+  document.getElementById("notfall-frage").textContent =
+    `Wirklich ALLE ${notfallVorgang.anzahl} Positionen schließen?`;
+  document.getElementById("notfall-warnung2").textContent =
+    "Letzte Rückfrage. Der nächste Klick schreibt.";
+  /* Fokus auf Abbrechen, nicht auf dem Schreibknopf: sonst läge nach dem
+     ersten Klick der Fokus auf dem zweiten, und ein doppelter Klick oder ein
+     Enter hätte die zweite Stufe gleich mit erledigt - dann wären es faktisch
+     wieder ein Klick. */
+  document.getElementById("notfall-abbrechen2").focus();
+}
+
+async function notfallAbbrechen() {
+  notfallUhrStoppen();
+  const kennung = notfallVorgang ? notfallVorgang.vorgang : null;
+  notfallVorgang = null;
+  if (notfallDialog.open) notfallDialog.close();
+  if (kennung) {
+    /* Dieselbe Abbruch-Route wie beim Einzelweg - der Vorgang liegt auf dem
+       Server im selben Speicher. Aufräumen ist Höflichkeit, keine Bedingung:
+       der Vorgang verfällt ohnehin. */
+    try {
+      await sende(`/api/bots/${encodeURIComponent(name)}/schliessen/abbrechen`,
+                  { vorgang: kennung });
+    } catch (e) { /* bewusst ignoriert, siehe oben */ }
+  }
+}
+
+/* Die Ergebnisanzeige nennt IMMER alle drei Gruppen, sobald es sie gibt -
+   auch bei vollem Erfolg. Ein Teilausfall, der sich wie ein Erfolg liest,
+   wäre hier der schlimmste denkbare Ausgang. */
+function notfallErgebnisAnzeigen(r) {
+  const voll = r.anzahl_fehlgeschlagen === 0 && r.anzahl_uebersprungen === 0
+    && r.nicht_bestaetigt.length === 0;
+  const zeile = (s) => `<div>${s}</div>`;
+  let html = `<div class="${voll ? "erfolgsmeldung" : "teilmeldung"}">`
+    + `<strong>${voll ? "✅" : "⚠"} ${r.anzahl_geschlossen} von ${r.angefragt} `
+    + `Positionen geschlossen</strong>`;
+  if (r.anzahl_geschlossen) {
+    html += zeile("Geschlossen: " + r.geschlossen
+      .map((g) => `${g.symbol} zu ${zahl(g.exit_preis)} (${prozent(g.pnl_pct)})`)
+      .join(", "));
+  }
+  if (r.anzahl_fehlgeschlagen) {
+    html += zeile("<strong>Fehlgeschlagen:</strong> " + r.fehlgeschlagen
+      .map((f) => `${f.symbol} – ${f.grund}`).join("; "));
+  }
+  if (r.anzahl_uebersprungen) {
+    html += zeile("Übersprungen (der Bot hatte sie selbst geschlossen): "
+      + r.uebersprungen.map((u) => u.symbol).join(", "));
+  }
+  if (r.nicht_bestaetigt.length) {
+    html += zeile("Nach der Übersicht eröffnet und deshalb NICHT angefasst: "
+      + `${r.nicht_bestaetigt.length} Position(en). Erneut ausführen, falls `
+      + "auch diese geschlossen werden sollen.");
+  }
+  html += "</div>";
+  document.getElementById("erfolg").innerHTML = html;
+}
+
+async function notfallAusfuehren() {
+  if (!notfallVorgang || notfallLaeuft) return;
+  notfallLaeuft = true;
+  document.getElementById("notfall-ausfuehren").disabled = true;
+  notfallFehler("");
+  try {
+    const ergebnis = await sende(
+      `/api/bots/${encodeURIComponent(name)}/alle-schliessen/ausfuehren`,
+      { vorgang: notfallVorgang.vorgang });
+    notfallUhrStoppen();
+    notfallVorgang = null;
+    notfallDialog.close();
+    notfallErgebnisAnzeigen(ergebnis);
+    /* Sofort neu laden, damit die geschlossenen Positionen nicht bis zum
+       nächsten Takt weiter als offen dastehen. */
+    try { await ladeDetail(); } catch (e) { /* der Takt holt es nach */ }
+    try { await ladeMitKursen(); } catch (e) { /* dito */ }
+    try { await ladeVerlauf(); } catch (e) { /* dito */ }
+  } catch (e) {
+    /* Hierher kommt nur, wer gar nichts ausgelöst hat (ungültige, abgelaufene
+       oder fremde Kennung) - ein Teilausfall ist serverseitig KEIN Fehler,
+       sondern ein Ergebnis, und landet im try-Zweig oben. Der Vorgang ist in
+       jedem Fall verbraucht, also zurück auf Anfang. */
+    notfallVorgang = null;
+    notfallUhrStoppen();
+    notfallFehler(e.message);
+  } finally {
+    notfallLaeuft = false;
+  }
+}
+
+document.getElementById("alle-schliessen").addEventListener("click", () => {
+  document.getElementById("erfolg").innerHTML = "";
+  starteNotfall();
+});
+document.getElementById("notfall-weiter")
+  .addEventListener("click", notfallZurZweitenStufe);
+document.getElementById("notfall-ausfuehren")
+  .addEventListener("click", notfallAusfuehren);
+document.getElementById("notfall-abbrechen1")
+  .addEventListener("click", notfallAbbrechen);
+document.getElementById("notfall-abbrechen2")
+  .addEventListener("click", notfallAbbrechen);
+notfallDialog.addEventListener("cancel", (e) => {
+  e.preventDefault(); notfallAbbrechen();
 });
 
 // Getrennte Ladeschritte, damit die automatische Aktualisierung jeden

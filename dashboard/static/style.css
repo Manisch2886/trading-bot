@@ -57,6 +57,17 @@
 
 * { box-sizing: border-box; }
 
+/* Das hidden-Attribut muss JEDE display-Regel schlagen.
+   Hintergrund: `display: none` fuer [hidden] steht nur im
+   Browser-Standardstil, und der verliert gegen jede Autorenregel - ein
+   `.irgendwas { display: flex }` macht ein hidden-Element also wieder
+   sichtbar. Genau das war bei `.notfall-leiste` (neu) und bei
+   `.ladeanzeige` (seit PR #46, bisher unbemerkt, weil die Anzeige im
+   Ruhezustand leeren Text hat) der Fall. Einmal zentral statt je Klasse
+   eine Sonderregel - sonst faellt derselbe Fehler beim naechsten Element
+   mit display-Angabe wieder an. */
+[hidden] { display: none !important; }
+
 body {
   margin: 0;
   padding: 0 0 48px;
@@ -429,6 +440,54 @@ button.knopf:disabled:hover { background: var(--karte); }
    daneben nicht untergehen. */
 td .schliessen-knopf { padding: 5px 10px; font-size: 12px; }
 
+/* --- Notfallweg: ALLE Positionen -----------------------------------------
+   Bewusst die einzige VOLLFLAECHIG rote Schaltflaeche der ganzen Anwendung.
+   Der Einzel-Knopf ist ein Umriss in gedaempftem Rot; dieser hier ist
+   gefuellt, traegt ein Warnzeichen und steht ausserhalb der Tabelle. Die
+   beiden sollen auf einen Blick verschieden aussehen - eine Verwechslung
+   kostet hier nicht eine Position, sondern alle. */
+button.knopf.notfall {
+  background: #8d2f2f;
+  border-color: #a33a3a;
+  color: #ffe8e8;
+  font-weight: 600;
+}
+button.knopf.notfall:hover { background: #a33a3a; }
+button.knopf.notfall:disabled:hover { background: #8d2f2f; }
+
+.notfall-leiste {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  /* Deutlicher Abstand nach oben: der Knopf gehoert nicht mehr zur Tabelle. */
+  margin: 18px 0 4px;
+}
+.notfall-leiste .fussnote { margin: 0; flex: 1 1 240px; }
+
+dialog.notfall-dialog { border-color: rgba(224, 108, 108, .40); }
+/* Die Schritt-Anzeige gab es bis zur Vereinfachung des Einzelwegs global;
+   sie wurde dort entfernt, weil der Einzelweg nur noch einen Schritt hat.
+   Hier kommt sie zurueck - aber ausdruecklich NUR im Notfall-Dialog, damit
+   sie nicht unbemerkt wieder im Einzelweg auftaucht. */
+dialog.notfall-dialog .stufe {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  color: #e09a9a;
+  margin-bottom: 14px;
+}
+/* Im Einzel-Dialog folgt auf die Ueberschrift direkt die Zusammenfassung
+   (16px Abstand, siehe oben); hier folgt die Schritt-Anzeige, die ihren
+   Abstand selbst mitbringt. */
+dialog.notfall-dialog h2 { margin-bottom: 4px; }
+.notfall-frage {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.45;
+  margin: 0 0 14px;
+}
+
 dialog.schliessen-dialog {
   background: var(--karte);
   color: var(--text);
@@ -506,6 +565,20 @@ dialog.schliessen-dialog h2 {
   line-height: 1.5;
   margin: 12px 0;
 }
+
+/* Gemischter Ausgang des Notfallwegs: bewusst NICHT gruen. Ein Teilausfall,
+   der aussieht wie ein Erfolg, ist schlimmer als eine Fehlermeldung. */
+.teilmeldung {
+  background: rgba(214, 160, 74, .10);
+  border: 1px solid rgba(214, 160, 74, .35);
+  border-radius: var(--radius-klein);
+  padding: 11px 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 12px 0;
+}
+.teilmeldung div { margin-top: 6px; }
+.erfolgsmeldung div { margin-top: 6px; }
 
 @media (max-width: 460px) {
   .dialog-knoepfe { flex-direction: column-reverse; }

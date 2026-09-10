@@ -4,10 +4,17 @@ Diese Anleitung ist fuer den manuellen Test **vor** dem Merge gedacht.
 
 Das Dashboard war bis hierher **rein lesend** - so stand es in PR #35, #44,
 #46, #53 und #60, und es wurde dort auch jedes Mal geprueft. Mit dieser
-Aenderung gibt es **genau einen** schreibenden Weg: eine offene Position von
-Hand schliessen, nur fuer **`t3_supertrend`**, nach **einer** Bestaetigung in
-der Oberflaeche (ein Tap auf die Zusammenfassung) - abgesichert ueber zwei
-getrennte Server-Aufrufe, die ohne einander wirkungslos sind.
+Aenderung gibt es schreibende Wege - nur fuer **`t3_supertrend`**, und nur
+zum Schliessen offener Positionen:
+
+| Weg | Bestaetigung in der Oberflaeche | Schritt in dieser Anleitung |
+|---|---|---|
+| **eine** Position | EIN Tap auf die Zusammenfassung | 2, 3, 4, 5 |
+| **alle** Positionen (Notfall) | ZWEI Klicks, beide ohne Texteingabe | 6, 7 |
+
+Beide sind ueber zwei getrennte Server-Aufrufe abgesichert, die ohne
+einander wirkungslos sind. Der Notfallweg schliesst jede Position **einzeln**
+ueber dieselbe Kernfunktion - und laeuft weiter, wenn eine davon scheitert.
 
 Die Reihenfolge unten ist so gebaut, dass die Schritte 0-3 **gar nichts**
 veraendern koennen, Schritt 4 nur eine **Kopie** anfasst, und erst Schritt 5
@@ -320,3 +327,164 @@ oder anders als bei der Telegram-Variante.
    muss aber jeweils geprueft werden, ob deren Schema zusaetzliche Spalten
    hat (Elliott- und rsi2-Bots haben welche) und ob die Kursquelle rund um
    die Uhr taugt (bei den Aktien-Bots nicht).
+
+---
+
+## Schritt 6 - Notfallweg: Anzeige und Abbruch (schreibt nichts)
+
+Gefahrlos an der **echten** Datenbank. Voraussetzung: `t3_supertrend` hat
+mindestens eine offene Position - sonst erscheint der Knopf absichtlich gar
+nicht (ein Knopf, der garantiert in "keine offene Position" endet, laedt bei
+dieser Tragweite zum Klicken auf Vorrat ein).
+
+Unterhalb der Positionstabelle steht jetzt eine eigene Leiste mit dem Knopf
+**⚠ Notfall: alle N Positionen schliessen**.
+
+| # | Vorgehen | Erwartung |
+|---|---|---|
+| 1 | Den Knopf mit dem Einzel-Knopf in der Tabelle vergleichen | Der Notfall-Knopf ist **vollflaechig rot** mit Warnzeichen, der Einzel-Knopf nur ein gedaempfter Umriss. Sie duerfen nicht verwechselbar aussehen |
+| 2 | Notfall-Knopf antippen | Dialog **"Alle Positionen schliessen?"**, Kopfzeile **"Schritt 1 von 2"**, Liste ALLER offenen Positionen mit Einstieg, aktuellem Kurs und PnL, darunter **Ø je Position** mit Spannweite, Warnung und Countdown |
+| 3 | Die Liste mit der Tabelle darueber vergleichen | Dieselben Symbole, dieselben Kurse. Positionen ohne Live-Kurs stehen als "wird uebersprungen: kein aktueller Kurs verfuegbar" drin und zaehlen nicht mit |
+| 4 | **Abbrechen** in Stufe 1 | Dialog zu, nichts passiert |
+| 5 | Knopf -> **Ja, alle schliessen** | Stufe 2: **"Wirklich ALLE N Positionen schliessen?"**, Knopf **Endgueltig bestaetigen**, Countdown laeuft weiter (er wird **nicht** neu gestartet - die Frist gilt ab dem Oeffnen) |
+| 6 | **Abbrechen** in Stufe 2 | Dialog zu, nichts passiert |
+| 7 | Knopf -> **Ja, alle schliessen** -> Esc-Taste | dito |
+| 8 | Knopf -> gut zwei Minuten warten | Countdown laeuft ab, beide Knoepfe werden gesperrt, Hinweis "Die Bestaetigung ist abgelaufen" |
+
+Wichtig bei 5: Der Fokus liegt in **beiden** Stufen auf **Abbrechen**, nicht
+auf dem roten Knopf. Ein doppelter Klick oder ein Enter darf die zweite Stufe
+nicht gleich mit erledigen - sonst waere es faktisch wieder ein Klick.
+
+**Kontrolle:** Schritt 1 wiederholen. Ausgabe weiterhin identisch.
+
+### Schritt 6b - Die API des Notfallwegs direkt (schreibt nichts)
+
+```bash
+# a) Ohne Token: 401.
+curl -s -o /dev/null -w "%{http_code}\n" -X POST \
+  -H 'Content-Type: application/json' -d '{"vorgang":"x"}' \
+  http://127.0.0.1:8787/api/bots/t3_supertrend/alle-schliessen/ausfuehren
+
+# b) Mit Token, aber ohne vorherigen Vorbereiten-Schritt: 409.
+curl -s -X POST -H "X-Dashboard-Token: <TOKEN>" \
+  -H 'Content-Type: application/json' -d '{"vorgang":"frei-erfunden"}' \
+  http://127.0.0.1:8787/api/bots/t3_supertrend/alle-schliessen/ausfuehren
+
+# c) Nicht freigeschalteter Bot: 403.
+curl -s -X POST -H "X-Dashboard-Token: <TOKEN>" \
+  -H 'Content-Type: application/json' -d '{}' \
+  http://127.0.0.1:8787/api/bots/elliott_wave/alle-schliessen/vorbereiten
+```
+
+Erwartet: `401`, dann "Keine gueltige Bestaetigung offen", dann "nicht
+freigeschaltet". Danach Schritt 1 wiederholen - weiterhin unveraendert.
+
+---
+
+## Schritt 7 - Notfallweg an einer KOPIE mit MEHREREN offenen Positionen
+
+Das ist der eigentliche Test dieser Funktion. Kopie wie in Schritt 4 anlegen:
+
+```bash
+# 1. Laufendes Dashboard der Kopie beenden, falls noch eines laeuft.
+# 2. Frische Kopie:
+cp -R ~/trading-bot ~/trading-bot-probe
+# 3. Pruefen, dass die Kopie eine EIGENE Datenbank hat:
+ls -l ~/trading-bot-probe/paper_trading_t3_supertrend.db
+# 4. Vorher-Zustand der Kopie festhalten:
+sqlite3 ~/trading-bot-probe/paper_trading_t3_supertrend.db \
+  "SELECT id, symbol, entry_price, status FROM trades WHERE status='open';"
+```
+
+Falls die Kopie nur eine oder keine offene Position hat, lassen sich fuer den
+Test welche ergaenzen - **ausschliesslich in der KOPIE**:
+
+```bash
+sqlite3 ~/trading-bot-probe/paper_trading_t3_supertrend.db \
+  "INSERT INTO trades (symbol, signal_time, entry_time, entry_price,
+                       stop_price, status)
+   VALUES ('BTCUSDT','2026-03-01 00:00:00','2026-03-01 00:00:00',
+           100000.0, 95000.0,'open'),
+          ('ETHUSDT','2026-03-01 00:00:00','2026-03-01 00:00:00',
+           4000.0, 3800.0,'open');"
+```
+
+Dashboard aus der Kopie auf eigenem Port starten und den Weg gehen:
+
+**⚠ Notfall -> Ja, alle schliessen -> Endgueltig bestaetigen**
+
+Erwartet:
+* eine **gruene** Meldung "N von N Positionen geschlossen" samt Liste jeder
+  geschlossenen Position mit ihrem **eigenen** Ausstiegskurs,
+* alle Positionen verschwinden **sofort** aus "Offene Positionen",
+* der Notfall-Knopf verschwindet (keine offene Position mehr),
+* alle Trades stehen unter "Zuletzt geschlossene Trades" mit `manual_close`.
+
+### Schritt 7b - Der wichtigste Fall: TEILAUSFALL
+
+Hier wird geprueft, dass ein Fehlschlag bei EINER Position die uebrigen nicht
+mitnimmt. Dazu wird einer Position **nach** dem Oeffnen der Uebersicht der
+Einstiegskurs entzogen - dann lehnt der Kern genau sie ab, weil der PnL nicht
+berechenbar ist.
+
+```bash
+# 1. In der Kopie wieder drei offene Positionen herstellen (siehe oben).
+# 2. Im Browser den Notfall-Dialog OEFFNEN und offen lassen (Stufe 1).
+# 3. In einem zweiten Terminal EINER Position den Einstiegskurs entziehen -
+#    <ID> ist eine der in der Uebersicht gezeigten Positionen:
+sqlite3 ~/trading-bot-probe/paper_trading_t3_supertrend.db \
+  "UPDATE trades SET entry_price=NULL WHERE id=<ID>;"
+# 4. Im Browser weiterklicken: Ja, alle schliessen -> Endgueltig bestaetigen
+```
+
+Erwartet - und das ist der Kern:
+* Die Meldung ist **orange, nicht gruen**, und lautet
+  **"N-1 von N Positionen geschlossen; 1 fehlgeschlagen: SYMBOL (Einstiegskurs
+  fehlt oder ist 0 - PnL nicht berechenbar.)"**.
+* Die **uebrigen** Positionen sind wirklich geschlossen - auch die, die in der
+  Reihenfolge **nach** der fehlgeschlagenen kam.
+* Die fehlgeschlagene Position ist **weiterhin offen** und vollstaendig
+  unberuehrt (`exit_price` leer).
+* Im Protokoll steht fuer **jede** Position eine eigene Zeile - Erfolge als
+  `ERFOLGREICH`, die eine als `ABGELEHNT`. Keine Sammelzeile.
+
+```bash
+sqlite3 ~/trading-bot-probe/paper_trading_t3_supertrend.db \
+  "SELECT id, symbol, exit_price, result, status FROM trades ORDER BY id DESC LIMIT 5;"
+cat ~/trading-bot-probe/logs/notifications/manuelle_eingriffe.log
+```
+
+Danach den Einstiegskurs in der Kopie zuruecksetzen, falls weitergetestet wird.
+
+### Schritt 7c - Der Cronjob kommt dazwischen
+
+```bash
+# 1. Drei offene Positionen, Notfall-Dialog oeffnen und offen lassen.
+# 2. Eine davon "wie der Bot" schliessen:
+sqlite3 ~/trading-bot-probe/paper_trading_t3_supertrend.db \
+  "UPDATE trades SET exit_time='2026-03-01 12:00:00', exit_price=99000.0,
+     result='stop_loss', pnl_pct=-1.3, status='closed' WHERE id=<ID>;"
+# 3. Im Browser weiterklicken.
+```
+
+Erwartet: Die Meldung nennt sie als **uebersprungen**, nicht als Fehlschlag -
+"1 uebersprungen, weil der Bot sie selbst geschlossen hatte". Ihr
+`result` bleibt **`stop_loss`**, wird also **nicht** mit `manual_close`
+ueberschrieben. Die uebrigen werden geschlossen.
+
+**Zum Schluss aufraeumen:** `rm -rf ~/trading-bot-probe`.
+
+---
+
+## Schritt 8 - Notfallweg im Ernstfall (echte Datenbank)
+
+Nur wenn Schritt 6 und 7 durchgelaufen sind, und mit demselben Vorbehalt wie
+Schritt 5: guenstiger Zeitpunkt ist kurz **nach** einem Cronjob-Lauf von
+`t3_supertrend` (alle 4 Stunden), damit die Frist von 120 Sekunden nicht mit
+dem Bot kollidiert.
+
+Nicht rueckgaengig zu machen. Der Weg zurueck ist derselbe wie in Schritt 5 -
+das SQL dort wirkt ueber `WHERE result='manual_close'` und nimmt deshalb nur
+manuelle Eingriffe zurueck, nie einen Ausstieg des Bots. Bei **mehreren**
+Positionen auf einmal ist das entsprechend mehr Handarbeit: genau deshalb
+verlangt dieser Weg zwei Klicks.

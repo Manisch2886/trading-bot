@@ -21,9 +21,10 @@ Nachweise aufgeteilt, und beide muessen halten:
   6) Alles ausser dem Schliessen ist lesend. Nach allen Lese-Tests sind
      saemtliche Bot-Datenbanken byteweise unveraendert, und die Liste
      der Nicht-GET-Routen ist genau die erwartete.
-  8) Der eine schreibende Pfad schreibt genau das Erwartete: EINE Zeile
-     EINER Datenbank, und dort nur die fuenf Ausstiegsfelder. Alle
-     anderen Datenbanken bleiben byteweise identisch.
+  8) Die schreibenden Pfade schreiben genau das Erwartete: je Position
+     EINE Zeile EINER Datenbank, und dort nur die fuenf Ausstiegsfelder.
+     Alle anderen Datenbanken bleiben byteweise identisch. Abschnitt 10
+     deckt den Notfallweg ab, der alle Positionen auf einmal schliesst.
 
 Ein Test, der nur "es hat funktioniert" prueft, waere hier zu wenig -
 gerade weil dies der erste Schreibzugriff des Dashboards ueberhaupt ist.
@@ -538,14 +539,17 @@ def teste_frontend(basis):
 
 # Die Nicht-GET-Routen, die es geben DARF - vollstaendig und woertlich.
 # Diese Liste ist der Kern des korrigierten Nachweises: bis PR #60 stand
-# hier "genau eine, POST /login". Seit dem manuellen Schliessen sind es
-# vier, und nur EINE davon fasst eine Datenbank an. Kommt irgendwann eine
-# fuenfte dazu, faellt dieser Test auf - und genau das soll er.
+# hier "genau eine, POST /login". Mit dem Einzel-Schliessen wurden es vier,
+# mit dem Notfallweg (alle Positionen) sechs - davon fassen GENAU ZWEI eine
+# Datenbank an. Kommt irgendwann eine siebte dazu, faellt dieser Test auf -
+# und genau das soll er.
 ERLAUBTE_SCHREIB_ROUTEN = [
-    ("POST", "/login"),                                        # setzt nur ein Cookie
-    ("POST", "/api/bots/{name}/schliessen/vorbereiten"),        # nur Arbeitsspeicher
-    ("POST", "/api/bots/{name}/schliessen/abbrechen"),          # nur Arbeitsspeicher
-    ("POST", "/api/bots/{name}/schliessen/ausfuehren"),         # <- schreibt
+    ("POST", "/login"),                                          # setzt nur ein Cookie
+    ("POST", "/api/bots/{name}/schliessen/vorbereiten"),          # nur Arbeitsspeicher
+    ("POST", "/api/bots/{name}/schliessen/abbrechen"),            # nur Arbeitsspeicher
+    ("POST", "/api/bots/{name}/schliessen/ausfuehren"),           # <- schreibt
+    ("POST", "/api/bots/{name}/alle-schliessen/vorbereiten"),     # nur Arbeitsspeicher
+    ("POST", "/api/bots/{name}/alle-schliessen/ausfuehren"),      # <- schreibt
 ]
 
 
@@ -557,10 +561,13 @@ def teste_nur_lesend(app, basis, pruefsummen_vorher, db_dateien):
         methoden = set(getattr(route, "methods", []) or [])
         for methode in methoden & {"POST", "PUT", "PATCH", "DELETE"}:
             schreibende.append((methode, getattr(route, "path", "?")))
-    check("Es gibt genau die vier erwarteten Nicht-GET-Routen",
+    check("Es gibt genau die sechs erwarteten Nicht-GET-Routen",
           sorted(schreibende) == sorted(ERLAUBTE_SCHREIB_ROUTEN), str(sorted(schreibende)))
-    check("Davon fasst genau EINE eine Datenbank an (…/schliessen/ausfuehren)",
-          len([r for r in schreibende if r[1].endswith("/ausfuehren")]) == 1)
+    check("Davon fassen genau ZWEI eine Datenbank an (die beiden …/ausfuehren)",
+          sorted(r[1] for r in schreibende if r[1].endswith("/ausfuehren"))
+          == ["/api/bots/{name}/alle-schliessen/ausfuehren",
+              "/api/bots/{name}/schliessen/ausfuehren"],
+          str(sorted(r[1] for r in schreibende if r[1].endswith("/ausfuehren"))))
 
     for methode in ("POST", "PUT", "DELETE", "PATCH"):
         antwort = requests.request(methode, basis + "/api/portfolio",
@@ -990,29 +997,490 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         schliessen.vorgaenge_zuruecksetzen()
 
 
+# ---------------------------------------------------------------------------
+# 9) Notfallweg: ALLE offenen Positionen
+# ---------------------------------------------------------------------------
+# Der schwierigste Teil dieser Funktion ist nicht der Erfolgsfall, sondern der
+# TEILAUSFALL: scheitert die dritte von fuenf Positionen, darf die Schleife
+# nicht abbrechen und einen Zustand hinterlassen, den niemand benennen kann.
+# Abschnitt 9f prueft das mit einem ECHTEN Fehlschlag des Kerns (kein
+# Testdoppel), 9i zusaetzlich mit einem unerwarteten Fehler.
+
+_NAECHSTE_ID = [100]
+
+
+def _oeffne_positionen(db_pfad, posten):
+    """Legt offene Testpositionen an und gibt [(id, symbol, entry)] zurueck.
+    Eigene IDs ab 100, damit sie sich nicht mit den Zeilen aus Abschnitt 8
+    ueberschneiden - dort wird bereits geschlossen."""
+    angelegt = []
+    conn = sqlite3.connect(db_pfad)
+    try:
+        for symbol, entry in posten:
+            trade_id = _NAECHSTE_ID[0]
+            _NAECHSTE_ID[0] += 1
+            conn.execute(
+                "INSERT INTO trades (id, symbol, signal_time, entry_time, "
+                "entry_price, stop_price, exit_time, exit_price, result, "
+                "pnl_pct, status) VALUES (?,?,?,?,?,?,NULL,NULL,NULL,NULL,'open')",
+                (trade_id, symbol, "2026-03-01 00:00:00", "2026-03-01 00:00:00",
+                 entry, entry * 0.95))
+            angelegt.append((trade_id, symbol, entry))
+        conn.commit()
+    finally:
+        conn.close()
+    return angelegt
+
+
+def _alle_vorbereiten(basis, bot="t3_supertrend", token=TEST_TOKEN):
+    return post(basis, f"/api/bots/{bot}/alle-schliessen/vorbereiten", {},
+                 token=token)
+
+
+def _alle_ausfuehren(basis, vorgang, bot="t3_supertrend", token=TEST_TOKEN):
+    return post(basis, f"/api/bots/{bot}/alle-schliessen/ausfuehren",
+                 {"vorgang": vorgang}, token=token)
+
+
+def teste_alle_schliessen(basis, wurzel, db_dateien, protokoll_datei):
+    print("\n9) Notfallweg: alle Positionen eines Bots schliessen")
+
+    db_t3 = db_dateien["t3_supertrend"]
+    andere = {n: p for n, p in db_dateien.items() if n != "t3_supertrend"}
+    andere_vorher = _pruefsummen(andere)
+
+    def status(trade_id):
+        conn = sqlite3.connect(db_t3)
+        try:
+            zeile = conn.execute(
+                "SELECT status, result, exit_price, pnl_pct FROM trades WHERE id=?",
+                (trade_id,)).fetchone()
+        finally:
+            conn.close()
+        return tuple(zeile) if zeile else None
+
+    original_kurse = monitor.fetch_live_prices_for_bots
+    monitor.fetch_live_prices_for_bots = lambda bots: dict(TESTKURSE)
+    schliessen.vorgaenge_zuruecksetzen()
+    protokoll_vorher = len(open(protokoll_datei, encoding="utf-8").read().splitlines())
+    try:
+        # --- 9a) Kein offener Posten: der Weg beginnt gar nicht -----------
+        # Abschnitt 8 hat alle offenen t3-Positionen geschlossen, der Stand
+        # ist also genau der, den dieser Fall braucht.
+        antwort = _alle_vorbereiten(basis)
+        check("Ohne offene Position wird das Vorbereiten abgelehnt (409)",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Die Meldung sagt, dass es nichts zu schliessen gibt",
+              "keine offene Position" in antwort.json()["detail"],
+              antwort.json()["detail"][:90])
+
+        # --- 9b) Ohne gueltiges Token ------------------------------------
+        _oeffne_positionen(db_t3, [("BTCUSDT", 100.0)])
+        vorbereitet = _alle_vorbereiten(basis).json()
+        for token in (None, "falsches-token-aber-lang-genug"):
+            check(f"Vorbereiten ohne gueltiges Token: 401 (Token {token!r})",
+                  _alle_vorbereiten(basis, token=token).status_code == 401)
+            check(f"Ausfuehren ohne gueltiges Token: 401 (Token {token!r})",
+                  _alle_ausfuehren(basis, vorbereitet["vorgang"],
+                                    token=token).status_code == 401)
+        check("Ein abgewiesener Fremdzugriff verbraucht den Vorgang nicht",
+              schliessen.offener_vorgang(vorbereitet["vorgang"]) is not None)
+
+        # --- 9c) Nicht freigeschalteter Bot -------------------------------
+        for bot in ("elliott_wave", "volatility_breakout"):
+            check(f"Vorbereiten fuer {bot}: 403",
+                  _alle_vorbereiten(basis, bot=bot).status_code == 403)
+            check(f"Ausfuehren fuer {bot}: 403",
+                  _alle_ausfuehren(basis, vorbereitet["vorgang"],
+                                    bot=bot).status_code == 403)
+
+        # --- 9d) Eine Kennung der einen Art auf dem Endpunkt der anderen ---
+        # Ohne diese Pruefung waere die zweite Klick-Bestaetigung umgehbar:
+        # die billiger zu bekommende Einzel-Kennung wuerde auf dem
+        # Alle-Endpunkt alles schliessen.
+        einzel = _vorbereiten(basis, trade_id=vorbereitet["positionen"][0]["id"]).json()
+        antwort = _alle_ausfuehren(basis, einzel["vorgang"])
+        check("Eine EINZEL-Kennung loest auf dem Alle-Endpunkt nichts aus (409)",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Und zwar ausdruecklich, WEIL sie zu einem anderen Vorgang gehoert",
+              "anderen Vorgang" in antwort.json()["detail"],
+              antwort.json()["detail"][:90])
+        antwort = _ausfuehren(basis, vorbereitet["vorgang"])
+        check("Eine ALLE-Kennung loest auf dem Einzel-Endpunkt nichts aus (409)",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Auch hier ist der Grund die fremde Vorgangsart",
+              "anderen Vorgang" in antwort.json()["detail"],
+              antwort.json()["detail"][:90])
+        check("Die Position ist nach beiden Versuchen unveraendert offen",
+              status(vorbereitet["positionen"][0]["id"])[0] == "open")
+
+        # --- 9e) Abbruch in beiden Klick-Stufen ---------------------------
+        # Serverseitig ist beides derselbe Aufruf - der Unterschied liegt
+        # allein in der Oberflaeche. Geprueft wird deshalb, dass die Kennung
+        # danach in BEIDEN Faellen wertlos ist.
+        for stufe in ("Stufe 1", "Stufe 2"):
+            eins = _alle_vorbereiten(basis).json()
+            post(basis, "/api/bots/t3_supertrend/schliessen/abbrechen",
+                 {"vorgang": eins["vorgang"]})
+            check(f"Abbruch in {stufe} macht die Kennung wertlos",
+                  _alle_ausfuehren(basis, eins["vorgang"]).status_code == 409)
+        check("Nach beiden Abbruechen ist die Position weiterhin offen",
+              status(vorbereitet["positionen"][0]["id"])[0] == "open")
+
+        # --- 9f) TEILAUSFALL mit einem ECHTEN Fehlschlag des Kerns --------
+        # Kein Testdoppel: einer der drei Positionen wird nach der Uebersicht
+        # der Einstiegskurs entzogen. Der Kern lehnt sie daraufhin INNERHALB
+        # seiner Transaktion ab (berechne_pnl wirft), die beiden uebrigen
+        # muessen trotzdem durchlaufen.
+        schliessen.vorgaenge_zuruecksetzen()
+        offen = _oeffne_positionen(db_t3, [("ETHUSDT", 200.0), ("SOLUSDT", 20.0)])
+        drei = _alle_vorbereiten(basis).json()
+        ids = [p["id"] for p in drei["positionen"]]
+        check("Die Uebersicht nennt alle drei offenen Positionen",
+              len(ids) == 3 and drei["anzahl"] == 3, str(drei["positionen"])[:150])
+        check("Und einen Durchschnitt je Position statt einer Summe",
+              "pnl_schnitt_pct" in drei and "pnl_summe_pct" not in drei)
+
+        opfer = offen[1][0]                      # SOLUSDT
+        conn = sqlite3.connect(db_t3)
+        conn.execute("UPDATE trades SET entry_price=NULL WHERE id=?", (opfer,))
+        conn.commit()
+        conn.close()
+
+        antwort = _alle_ausfuehren(basis, drei["vorgang"])
+        check("Ein Teilausfall ist KEIN HTTP-Fehler - die Anfrage wurde "
+              "vollstaendig bearbeitet (200)",
+              antwort.status_code == 200, str(antwort.status_code) + antwort.text[:120])
+        r = antwort.json()
+        check("erfolg ist false, weil eine Position fehlschlug",
+              r["erfolg"] is False, str(r["erfolg"]))
+        check("Zwei von drei geschlossen, eine fehlgeschlagen",
+              (r["anzahl_geschlossen"], r["anzahl_fehlgeschlagen"],
+               r["angefragt"]) == (2, 1, 3),
+              f"{r['anzahl_geschlossen']}/{r['anzahl_fehlgeschlagen']}/{r['angefragt']}")
+        check("Die fehlgeschlagene Position wird namentlich und mit Grund genannt",
+              r["fehlgeschlagen"][0]["trade_id"] == opfer
+              and "Einstiegskurs" in r["fehlgeschlagen"][0]["grund"],
+              str(r["fehlgeschlagen"])[:140])
+        check("Die Meldung nennt Erfolge UND Fehlschlag in einem Satz",
+              "2 von 3" in r["meldung"] and "fehlgeschlagen" in r["meldung"],
+              r["meldung"][:160])
+        uebrige = [i for i in ids if i != opfer]
+        check("Die beiden uebrigen Positionen sind wirklich geschlossen",
+              all(status(i)[0] == "closed" and status(i)[1] == "manual_close"
+                  for i in uebrige), str([status(i) for i in uebrige]))
+        check("DIE SCHLEIFE IST NICHT ABGEBROCHEN: auch die Position NACH der "
+              "fehlgeschlagenen wurde bearbeitet",
+              status(ids[-1])[0] == "closed" if ids[-1] != opfer
+              else status(ids[0])[0] == "closed")
+        check("Die fehlgeschlagene Position bleibt offen und unberuehrt",
+              status(opfer)[0] == "open" and status(opfer)[2] is None,
+              str(status(opfer)))
+        check("Die Datenbanken der uebrigen Bots sind unveraendert",
+              _pruefsummen(andere) == andere_vorher)
+
+        # Aufraeumen: Einstiegskurs zuruecksetzen, Position schliessen.
+        conn = sqlite3.connect(db_t3)
+        conn.execute("UPDATE trades SET entry_price=20.0, status='closed', "
+                      "result='aufgeraeumt' WHERE id=?", (opfer,))
+        conn.commit()
+        conn.close()
+
+        # --- 9g) Nebenlaeufigkeit: der Cronjob kommt dazwischen -----------
+        schliessen.vorgaenge_zuruecksetzen()
+        offen = _oeffne_positionen(db_t3, [("BTCUSDT", 100.0), ("ETHUSDT", 200.0),
+                                            ("SOLUSDT", 20.0)])
+        vier = _alle_vorbereiten(basis).json()
+        zuvorgekommen = offen[1][0]
+        conn = sqlite3.connect(db_t3)
+        conn.execute("UPDATE trades SET exit_time=?, exit_price=?, result=?, "
+                      "pnl_pct=?, status='closed' WHERE id=?",
+                      ("2026-09-10 08:00:00", 195.0, "stop_loss", -2.8, zuvorgekommen))
+        conn.commit()
+        conn.close()
+
+        r = _alle_ausfuehren(basis, vier["vorgang"]).json()
+        check("Die vom Bot geschlossene Position wird UEBERSPRUNGEN, nicht "
+              "als Fehlschlag gezaehlt",
+              r["anzahl_uebersprungen"] == 1
+              and r["uebersprungen"][0]["trade_id"] == zuvorgekommen
+              and r["anzahl_fehlgeschlagen"] == 0, str(r["uebersprungen"]))
+        check("Die uebrigen Positionen wurden trotzdem geschlossen",
+              r["anzahl_geschlossen"] == len(vier["positionen"]) - 1,
+              f"{r['anzahl_geschlossen']} von {len(vier['positionen'])}")
+        check("Der Ausstieg des Bots wurde NICHT ueberschrieben",
+              status(zuvorgekommen)[1] == "stop_loss"
+              and status(zuvorgekommen)[2] == 195.0, str(status(zuvorgekommen)))
+        check("Die Meldung erklaert das Ueberspringen",
+              "uebersprungen" in r["meldung"] and "selbst geschlossen" in r["meldung"],
+              r["meldung"][:170])
+
+        # --- 9h) Eine NACH der Uebersicht eroeffnete Position ------------
+        # Sie wird NICHT angefasst: der Nutzer hat sie nie gesehen und ihren
+        # Kurs nie bestaetigt. Ausgewiesen wird sie trotzdem.
+        schliessen.vorgaenge_zuruecksetzen()
+        _oeffne_positionen(db_t3, [("BTCUSDT", 100.0)])
+        fuenf = _alle_vorbereiten(basis).json()
+        spaet = _oeffne_positionen(db_t3, [("ETHUSDT", 200.0)])[0][0]
+        r = _alle_ausfuehren(basis, fuenf["vorgang"]).json()
+        check("Die spaeter eroeffnete Position wird NICHT geschlossen",
+              status(spaet)[0] == "open", str(status(spaet)))
+        check("Sie wird im Ergebnis aber ausdruecklich ausgewiesen",
+              r["nicht_bestaetigt"] == [spaet], str(r["nicht_bestaetigt"]))
+        check("Und die Meldung sagt, dass sie nach der Uebersicht entstand",
+              "nach der Uebersicht eroeffnet" in r["meldung"], r["meldung"][:170])
+        check("Die bestaetigte Position wurde geschlossen",
+              r["anzahl_geschlossen"] == 1, str(r["anzahl_geschlossen"]))
+
+        # --- 9i) Ein UNERWARTETER Fehler bricht die Schleife auch nicht ---
+        # Der eine Fall, fuer den ein Testdoppel noetig ist: ein Fehler, den
+        # der Kern gar nicht vorsieht. Genau dort waere ein Abbruch am
+        # schlimmsten, weil ihn niemand vorhergesehen hat.
+        schliessen.vorgaenge_zuruecksetzen()
+        offen = _oeffne_positionen(db_t3, [("SOLUSDT", 20.0)])
+        sechs = _alle_vorbereiten(basis).json()
+        ids = [p["id"] for p in sechs["positionen"]]
+        platzt = ids[0]
+        echt = manual_close.schliesse_position
+
+        def mit_panne(bot_name, trade_id, *a, **kw):
+            if trade_id == platzt:
+                raise RuntimeError("simulierter unerwarteter Fehler")
+            return echt(bot_name, trade_id, *a, **kw)
+
+        manual_close.schliesse_position = mit_panne
+        try:
+            antwort = _alle_ausfuehren(basis, sechs["vorgang"])
+        finally:
+            manual_close.schliesse_position = echt
+        check("Auch ein unerwarteter Fehler endet in einer Zusammenfassung, "
+              "nicht in einem 500er", antwort.status_code == 200,
+              str(antwort.status_code) + antwort.text[:120])
+        r = antwort.json()
+        check("Er wird als Fehlschlag mit Grund ausgewiesen",
+              r["anzahl_fehlgeschlagen"] >= 1
+              and "unerwarteter Fehler" in r["fehlgeschlagen"][0]["grund"],
+              str(r["fehlgeschlagen"])[:140])
+        check("Und die uebrigen Positionen laufen trotzdem durch",
+              r["anzahl_geschlossen"] == len(ids) - 1,
+              f"{r['anzahl_geschlossen']} von {len(ids)}")
+        check("Die geplatzte Position bleibt offen und unberuehrt",
+              status(platzt)[0] == "open" and status(platzt)[2] is None,
+              str(status(platzt)))
+
+        # --- 9j) Der vollstaendige Erfolgsfall ---------------------------
+        schliessen.vorgaenge_zuruecksetzen()
+        conn = sqlite3.connect(db_t3)
+        conn.execute("UPDATE trades SET status='closed', result='aufgeraeumt' "
+                      "WHERE status='open'")
+        conn.commit()
+        conn.close()
+        offen = _oeffne_positionen(db_t3, [("BTCUSDT", 100.0), ("ETHUSDT", 200.0),
+                                            ("SOLUSDT", 22.0),
+                                            ("XRPUSDT", 0.5)])
+        sieben = _alle_vorbereiten(basis).json()
+        # XRPUSDT steht nicht in TESTKURSE - ohne Kurs wuerde der Kern
+        # ablehnen, also wird die Position schon in der Uebersicht als nicht
+        # schliessbar ausgewiesen statt spaeter als Fehlschlag gemeldet.
+        ohne_kurs = [p for p in sieben["positionen"] if not p["schliessbar_jetzt"]]
+        check("Eine Position ohne Kurs wird vorab als nicht schliessbar "
+              "ausgewiesen, nicht spaeter als Fehlschlag",
+              [p["symbol"] for p in ohne_kurs] == ["XRPUSDT"]
+              and "kein aktueller Kurs" in ohne_kurs[0]["grund"],
+              str(ohne_kurs))
+        check("Gezaehlt werden nur die schliessbaren (3 von 4)",
+              (sieben["anzahl"], sieben["anzahl_gesamt"]) == (3, 4),
+              f"{sieben['anzahl']}/{sieben['anzahl_gesamt']}")
+        check("Der Durchschnitt rechnet nur ueber die mit Kurs",
+              sieben["pnl_schnitt_pct"] == round((9.7 - 10.3 - 0.3) / 3, 2),
+              str(sieben["pnl_schnitt_pct"]))
+
+        vor_lauf = [z for z in zeilen(db_t3)]
+        protokoll_vor_erfolgslauf = len(
+            open(protokoll_datei, encoding="utf-8").read().splitlines())
+        r = _alle_ausfuehren(basis, sieben["vorgang"]).json()
+        check("Alle drei schliessbaren Positionen wurden geschlossen",
+              r["erfolg"] is True and r["anzahl_geschlossen"] == 3
+              and r["anzahl_fehlgeschlagen"] == 0, str(r["meldung"])[:140])
+        check("Jede mit ihrem EIGENEN Kurs, nicht einem gemeinsamen",
+              sorted((g["symbol"], g["exit_preis"]) for g in r["geschlossen"])
+              == [("BTCUSDT", 110.0), ("ETHUSDT", 180.0), ("SOLUSDT", 22.0)],
+              str(sorted((g["symbol"], g["exit_preis"]) for g in r["geschlossen"])))
+        check("Und mit dem PnL nach der Bot-Formel je Position",
+              sorted(g["pnl_pct"] for g in r["geschlossen"]) == [-10.3, -0.3, 9.7],
+              str(sorted(g["pnl_pct"] for g in r["geschlossen"])))
+        diff = unterschiede(vor_lauf, zeilen(db_t3))
+        check("Geaendert wurden genau die fuenf Ausstiegsfelder der drei Zeilen",
+              {f for _, f, _, _ in diff} ==
+              {"exit_time", "exit_price", "result", "pnl_pct", "status"}
+              and len({k for k, _, _, _ in diff}) == 3,
+              str(sorted({(k, f) for k, f, _, _ in diff})))
+        check("Die Position ohne Kurs blieb offen",
+              status(offen[3][0])[0] == "open", str(status(offen[3][0])))
+        check("Zeilenzahl unveraendert - nichts eingefuegt, nichts geloescht",
+              len(zeilen(db_t3)) == len(vor_lauf))
+        check("Die Datenbanken der uebrigen Bots sind byteweise identisch",
+              _pruefsummen(andere) == andere_vorher)
+
+        # --- 9k) Protokoll: je Position eine eigene Zeile ----------------
+        # Gemessen wird am EINEN Lauf aus 9j (drei Positionen), nicht an einer
+        # Gesamtsumme ueber den ganzen Abschnitt: eine hartkodierte Summe
+        # waere bei jeder spaeteren Ergaenzung falsch, ohne dass die Aussage
+        # "eine Zeile je Position" dadurch besser geprueft wuerde.
+        protokoll = open(protokoll_datei, encoding="utf-8").read().splitlines()
+        vom_erfolgslauf = [z for z in protokoll[protokoll_vor_erfolgslauf:]
+                            if z.strip() and "ERFOLGREICH" in z]
+        check("Der Lauf mit drei Positionen erzeugt GENAU DREI Erfolgszeilen - "
+              "keine zusammengefasste Batch-Zeile",
+              len(vom_erfolgslauf) == 3, f"{len(vom_erfolgslauf)} Erfolgszeilen")
+        # Jede Zeile muss GENAU EINE der drei Positionen nennen - sonst
+        # koennten drei Zeilen auch dreimal dieselbe Position sein.
+        erwartete_ids = sorted(g["trade_id"] for g in r["geschlossen"])
+        genannte_ids = sorted(
+            tid for tid in erwartete_ids
+            if len([z for z in vom_erfolgslauf if f"trade_id={tid} " in z]) == 1)
+        check("Und jede Zeile nennt genau eine andere Position",
+              genannte_ids == erwartete_ids,
+              f"erwartet {erwartete_ids}, eindeutig genannt {genannte_ids}")
+
+        neue = [z for z in protokoll[protokoll_vorher:] if z.strip()]
+        erfolge = [z for z in neue if "ERFOLGREICH" in z]
+        check("Ueber den ganzen Abschnitt entspricht die Zahl der "
+              "Erfolgszeilen der Zahl tatsaechlich geschlossener Positionen",
+              len(erfolge) == len([z for z in zeilen(db_t3)
+                                    if z["result"] == "manual_close"
+                                    and z["id"] >= 100]),
+              f"{len(erfolge)} Erfolgszeilen")
+        check("Jede Zeile traegt die Marke MANUELLER-EINGRIFF und quelle=dashboard",
+              all("MANUELLER-EINGRIFF" in z and "quelle=dashboard" in z
+                  for z in neue),
+              [z for z in neue if "quelle=dashboard" not in z][:1])
+        check("Die Erfolgszeilen nennen jede einzeln Vorher- und Nachher-Zustand",
+              all("VORHER status=open" in z and "NACHHER status=closed" in z
+                  for z in erfolge))
+        check("Auch die abgelehnten Einzelversuche stehen im Protokoll",
+              len([z for z in neue if "ABGELEHNT" in z]) >= 3,
+              f"{len([z for z in neue if 'ABGELEHNT' in z])} Ablehnungen")
+    finally:
+        monitor.fetch_live_prices_for_bots = original_kurse
+        schliessen.vorgaenge_zuruecksetzen()
+
+
 def teste_schliessen_frontend():
-    print("\n9) Frontend des Schliessvorgangs")
+    print("\n10) Frontend des Schliessvorgangs")
     statisch = os.path.join(DIR, "static")
     bot_html = open(os.path.join(statisch, "bot.html"), encoding="utf-8").read()
     app_js = open(os.path.join(statisch, "app.js"), encoding="utf-8").read()
     code = ohne_kommentare(bot_html)
 
-    check("Es gibt einen echten <dialog> statt eines nachgebauten Overlays",
-          "<dialog" in code and "showModal()" in code)
+    check("Es gibt echte <dialog>-Elemente statt nachgebauter Overlays",
+          code.count("<dialog") == 2 and "showModal()" in code)
+
+    # Die folgenden Pruefungen gelten NUR fuer den Einzel-Dialog. Seit es den
+    # Notfall-Dialog gibt, waere eine Suche im ganzen Dokument irrefuehrend:
+    # der Notfallweg hat zu Recht zwei Stufen und eine Schritt-Anzeige.
+    # Deshalb wird hier genau der eine Dialog herausgeschnitten.
+    einzel = code.split('id="schliessdialog"', 1)[1].split("</dialog>", 1)[0]
+    notfall = code.split('id="notfalldialog"', 1)[1].split("</dialog>", 1)[0]
 
     # EIN Schritt: die Zusammenfassung ist schon der vorbereiten-Aufruf, der
     # Knopf darunter der ausfuehren-Aufruf. Die frueheren zwei Stufen samt
     # Texteingabe sind weg - und sollen nicht unbemerkt zurueckkehren.
-    check("Keine zweite Stufe mehr im Markup",
+    check("Einzel-Dialog: keine zweite Stufe im Markup",
           'id="dialog-stufe1"' not in code and 'id="dialog-stufe2"' not in code)
-    check("Keine Texteingabe mehr im Dialog",
-          'id="dialog-eingabe"' not in code and "<input" not in code)
-    check("Keine Schritt-Anzeige mehr ('Schritt 1 von 2')",
-          "von 2" not in code and 'id="dialog-stufe"' not in code)
-    check("Genau EIN Abbrechen-Knopf",
+    check("Einzel-Dialog: keine Texteingabe",
+          'id="dialog-eingabe"' not in code and "<input" not in einzel)
+    check("Einzel-Dialog: keine Schritt-Anzeige ('Schritt 1 von 2')",
+          "von 2" not in einzel and 'id="dialog-stufe"' not in einzel)
+    check("Einzel-Dialog: genau EIN Abbrechen-Knopf",
           code.count('id="dialog-abbrechen"') == 1
           and 'id="dialog-abbrechen1"' not in code
           and 'id="dialog-abbrechen2"' not in code)
+
+    # --- Notfallweg: ZWEI Klick-Stufen, deutlich abgesetzt ----------------
+    check("Notfall-Dialog: zwei Stufen im Markup",
+          'id="notfall-stufe1"' in notfall and 'id="notfall-stufe2"' in notfall)
+    check("Notfall-Dialog: Schritt-Anzeige vorhanden (anders als beim Einzelweg)",
+          'id="notfall-stufe"' in notfall and "von 2" in notfall)
+    check("Notfall-Dialog: ebenfalls KEINE Texteingabe - beide Stufen sind Klicks",
+          "<input" not in notfall and "BESTAETIGEN" not in notfall)
+    check("Notfall-Dialog: zwei verschiedene Knoepfe fuer die zwei Stufen",
+          'id="notfall-weiter"' in notfall and 'id="notfall-ausfuehren"' in notfall)
+    check("Notfall-Dialog: der erste Knopf startet gesperrt (vor der Kennung)",
+          re.search(r'id="notfall-weiter"[^>]*disabled', notfall) is not None)
+    check("Notfall-Dialog: Esc und Klick daneben verwerfen den Vorgang auch hier",
+          "notfallDialog.addEventListener" in code
+          and "notfallAbbrechen()" in code)
+    # Geprueft wird das Knopf-Element SELBST, nicht ob die Klasse irgendwo in
+    # der Datei vorkommt: "knopf notfall" steht auch an den Dialogknoepfen,
+    # eine Suche im ganzen Dokument waere also gruen geblieben, waehrend der
+    # Notfallknopf schon wie der harmlose Einzelknopf aussieht. Genau so ist
+    # diese Luecke in der Mutationsprobe aufgefallen.
+    knopf_tag = re.search(r'<button(?:(?!</?button)[\s\S])*?id="alle-schliessen"'
+                           r'(?:(?!</?button)[\s\S])*?>', code)
+    check("Der Notfall-Knopf traegt SELBST die eigene Notfall-Klasse",
+          knopf_tag is not None and "knopf notfall" in knopf_tag.group(0),
+          knopf_tag.group(0)[:110] if knopf_tag else "kein <button> gefunden")
+    check("Und gerade NICHT die Klasse des harmlosen Einzel-Knopfes",
+          knopf_tag is not None and "schliessen-knopf" not in knopf_tag.group(0)
+          and "gefahr" not in knopf_tag.group(0),
+          knopf_tag.group(0)[:110] if knopf_tag else "-")
+    check("Er steht ausserhalb der Tabelle, in eigener Leiste",
+          'id="notfall-leiste"' in code
+          and code.index('id="notfall-leiste"') > code.index('id="positionen"'))
+
+    # Die ZWEI Stufen muessen auch wirklich zwei sein: der erste Knopf darf
+    # nur weiterblaettern, geschrieben wird ausschliesslich vom zweiten.
+    # Ohne diese Pruefung bleibt die Suite gruen, wenn der erste Klick direkt
+    # schreibt - die zweite Bestaetigung waere dann wirkungslos. Auch das ist
+    # erst in der Mutationsprobe aufgefallen.
+    check("Der erste Notfall-Knopf blaettert nur zur zweiten Stufe weiter",
+          'getElementById("notfall-weiter")\n  .addEventListener("click", '
+          'notfallZurZweitenStufe);' in code)
+    check("Geschrieben wird ausschliesslich ueber den Knopf der zweiten Stufe",
+          'getElementById("notfall-ausfuehren")\n  .addEventListener("click", '
+          'notfallAusfuehren);' in code)
+    nach_weiter = code.split('function notfallZurZweitenStufe()', 1)[1] \
+        .split("\nasync function", 1)[0]
+    check("Die erste Stufe ruft den schreibenden Endpunkt NICHT auf",
+          "/alle-schliessen/ausfuehren" not in nach_weiter
+          and "notfallAusfuehren" not in nach_weiter, nach_weiter[:120])
+    check("Der schreibende Aufruf steht genau EINMAL im Frontend",
+          code.count("/alle-schliessen/ausfuehren") == 1)
+    check("Der Notfallweg ruft eigene Endpunkte auf",
+          "/alle-schliessen/vorbereiten" in code
+          and "/alle-schliessen/ausfuehren" in code)
+    check("Das Ergebnis nennt Fehlschlaege und Uebersprungene ausdruecklich",
+          "fehlgeschlagen" in code and "uebersprungen" in code
+          and "nicht_bestaetigt" in code)
+    check("Ein gemischter Ausgang wird NICHT als Erfolg dargestellt",
+          "teilmeldung" in code
+          and "teilmeldung" in open(os.path.join(statisch, "style.css"),
+                                     encoding="utf-8").read())
+    check("Keine aufsummierte Gesamt-Prozentzahl im Frontend (Grundsatz 2)",
+          "pnl_summe" not in code and "pnl_schnitt_pct" in code)
+
+    # Das hidden-Attribut muss jede display-Regel schlagen. `display: none`
+    # fuer [hidden] steht nur im Browser-Standardstil und verliert gegen jede
+    # Autorenregel - ein `.klasse { display: flex }` macht ein verborgenes
+    # Element also wieder sichtbar. Genau so war der Notfall-Knopf anfangs
+    # auch bei nicht freigeschalteten Bots zu sehen; aufgefallen ist es erst
+    # im Browser, nicht in dieser Suite. Deshalb die Pruefung hier.
+    css = open(os.path.join(statisch, "style.css"), encoding="utf-8").read()
+    check("style.css erzwingt [hidden] gegen jede display-Regel",
+          re.search(r"\[hidden\]\s*\{[^}]*display:\s*none\s*!important",
+                     css) is not None)
+    # Die Leiste wird ueber das hidden-Attribut geschaltet - also haengt ihre
+    # Unsichtbarkeit genau an der Regel oben. Beides zusammen geprueft, damit
+    # nicht eines von beiden still wegfaellt.
+    check("Die Notfall-Leiste wird ueber hidden geschaltet (nicht ueber style)",
+          re.search(r"leiste\.hidden\s*=", code) is not None
+          and "notfall-leiste" not in code.split("style.display")[0][-200:]
+          if "style.display" in code else
+          re.search(r"leiste\.hidden\s*=", code) is not None)
+    check("Und sie traegt im Markup von Anfang an hidden - vor dem ersten "
+          "Ladevorgang ist noch nicht bekannt, ob der Bot freigeschaltet ist",
+          re.search(r'id="notfall-leiste"[^>]*hidden', code) is not None)
     check("Der Schliessen-Knopf startet gesperrt - vor dem vorbereiten-Aufruf "
           "gibt es keine Kennung",
           re.search(r'id="dialog-ja"[^>]*disabled', code) is not None)
@@ -1076,7 +1544,7 @@ def teste_automatische_aktualisierung():
     ohne Browser nicht sinnvoll nachstellen - es wurde im Chromium
     beobachtet und im PR dokumentiert. Was hier geprueft wird, sind die
     Zusicherungen, die man beim Umbau versehentlich verlieren koennte."""
-    print("\n10) Automatische Aktualisierung (Quelltext)")
+    print("\n11) Automatische Aktualisierung (Quelltext)")
 
     statisch = os.path.join(DIR, "static")
 
@@ -1147,7 +1615,7 @@ def teste_ladeindikator():
     sich sinnvoll am Quelltext festmachen lassen: dass die Elemente in
     beiden Seiten existieren, richtig ausgezeichnet sind und dass es zu
     jeder Klasse auch eine Regel im Stylesheet gibt."""
-    print("\n11) Ladeindikator (Auszeichnung und Stil)")
+    print("\n12) Ladeindikator (Auszeichnung und Stil)")
 
     statisch = os.path.join(DIR, "static")
 
@@ -1199,7 +1667,7 @@ def teste_zustandsmaschine():
     Node ist im Projekt sonst nirgends noetig - deshalb ist sein Fehlen
     kein Fehlschlag, sondern ein sichtbarer Hinweis. Was dann ungeprueft
     bleibt, steht in der Meldung, damit niemand die Luecke uebersieht."""
-    print("\n12) Verhalten der Zustandsmaschine (node)")
+    print("\n13) Verhalten der Zustandsmaschine (node)")
 
     node = shutil.which("node")
     if not node:
@@ -1264,7 +1732,7 @@ def teste_zeitzone():
     Wie bei der Zustandsmaschine: fehlendes node ist kein Fehlschlag,
     aber ein sichtbarer Hinweis - sonst gilt der wichtigste Nachweis
     dieser Aenderung stillschweigend als erbracht."""
-    print("\n13) Zeitanzeige in verschiedenen Zeitzonen (node)")
+    print("\n14) Zeitanzeige in verschiedenen Zeitzonen (node)")
 
     node = shutil.which("node")
     if not node:
@@ -1342,6 +1810,8 @@ def main():
             # hat sich keine Datenbank veraendert, und ab hier wird
             # genau eine Zeile geschrieben.
             teste_schliessen(server.basis, wurzel, db_dateien, protokoll_datei)
+            teste_alle_schliessen(server.basis, wurzel, db_dateien,
+                                   protokoll_datei)
         teste_schliessen_frontend()
         teste_automatische_aktualisierung()
         teste_ladeindikator()
