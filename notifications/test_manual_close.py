@@ -550,22 +550,34 @@ def test_unbekannter_bot_wird_abgelehnt():
     print("\n7. Nicht freigeschaltete Bots")
     wurzel = tempfile.mkdtemp(prefix="mc_fremd_")
     db_t3 = baue_bot(wurzel, "t3_supertrend")
-    db_fremd = baue_bot(wurzel, "elliott_wave")   # existiert, aber nicht freigeschaltet
+    db_fremd = baue_bot(wurzel, "elliott_wave")
     biege_um(_MC, wurzel)
     lenke_protokoll_um(_MC, os.path.join(wurzel, "eingriffe.log"))
 
-    summe = datei_pruefsumme(db_fremd)
-    for name in ("elliott_wave", "rsi2_crypto", "", "../../etc", "t3_supertrend2"):
-        try:
-            _MC.schliesse_position(name, 1, exit_price=110.0, benutzer_id=4242,
-                                    bestaetigungstext="BESTAETIGEN")
-            check(f"abgelehnt: Bot '{name}'", False, "wurde AUSGEFUEHRT")
-        except _MC.SchliessenNichtMoeglich:
-            check(f"abgelehnt: Bot '{name}'", True)
-    check("Die Datenbank des nicht freigeschalteten Bots ist unveraendert",
-          datei_pruefsumme(db_fremd) == summe)
-    check("Auch offene_positionen() lehnt einen fremden Bot ab",
-          _abgelehnt(lambda: _MC.offene_positionen("elliott_wave")))
+    # elliott_wave ist inzwischen freigeschaltet. Um die SPERRE selbst zu
+    # pruefen, wird er hier kurz aus der Liste genommen - das ist der
+    # aussagekraeftigere Test als ein erfundener Name, weil seine Datenbank
+    # vollstaendig vorhanden ist und die Ablehnung damit wirklich an der
+    # Liste haengt und an nichts anderem.
+    gemerkt = _MC.SCHLIESSBARE_BOTS.pop("elliott_wave")
+    try:
+        summe = datei_pruefsumme(db_fremd)
+        for name in ("elliott_wave", "", "../../etc", "t3_supertrend2",
+                      "gibt_es_nicht"):
+            try:
+                _MC.schliesse_position(name, 1, exit_price=110.0, benutzer_id=4242,
+                                        bestaetigungstext="BESTAETIGEN")
+                check(f"abgelehnt: Bot '{name}'", False, "wurde AUSGEFUEHRT")
+            except _MC.SchliessenNichtMoeglich:
+                check(f"abgelehnt: Bot '{name}'", True)
+        check("Die Datenbank des gesperrten Bots ist unveraendert",
+              datei_pruefsumme(db_fremd) == summe)
+        check("Auch offene_positionen() lehnt einen gesperrten Bot ab",
+              _abgelehnt(lambda: _MC.offene_positionen("elliott_wave")))
+    finally:
+        _MC.SCHLIESSBARE_BOTS["elliott_wave"] = gemerkt
+    check("Nach dem Zuruecksetzen ist er wieder lesbar",
+          len(_MC.offene_positionen("elliott_wave")) == 2)
 
     # Gegenprobe: der freigeschaltete Bot geht sehr wohl - sonst waere oben
     # nur belegt, dass die Funktion immer ablehnt.
@@ -1210,7 +1222,9 @@ def test_nicht_freigeschalteter_bot_ueber_telegram():
     baue_bot(wurzel)
     biege_um(_MC, wurzel)
     lenke_protokoll_um(_MC, os.path.join(wurzel, "eingriffe.log"))
-    update = FalschesUpdate(ERLAUBTE_ID, text="/schliessen elliott_wave")
+    # elliott_wave ist inzwischen freigeschaltet; fuer diesen Test braucht es
+    # einen Namen, der in SCHLIESSBARE_BOTS wirklich nicht vorkommt.
+    update = FalschesUpdate(ERLAUBTE_ID, text="/schliessen gibt_es_nicht")
     asyncio.run(tb.schliessen_command(update, FalscherKontext()))
     text = update.message.antworten[0]["text"]
     check("Antwort weist den Bot ab und nennt die freigeschalteten",
@@ -1223,21 +1237,26 @@ def test_nicht_freigeschalteter_bot_ueber_telegram():
 # ---------------------------------------------------------------------------
 
 def test_zweiter_bot_nur_ueber_die_liste():
-    print("\n14. Ein weiterer Bot wird allein ueber SCHLIESSBARE_BOTS aktiv")
+    print("\n14. Die Freischaltung haengt allein an SCHLIESSBARE_BOTS")
+    # Seit alle neun Bots freigeschaltet sind, laesst sich die Wirkung der
+    # Liste nicht mehr durch HINZUfuegen zeigen - dafuer aber durch
+    # Herausnehmen, und das ist der Nachweis, auf den es ankommt: ein Bot,
+    # der nicht in der Liste steht, ist gesperrt, egal wie vollstaendig
+    # seine Datenbank ist.
     wurzel = tempfile.mkdtemp(prefix="mc_zweiter_")
     baue_bot(wurzel, "t3_supertrend")
     db2 = baue_bot(wurzel, "rsi2_crypto")
     biege_um(_MC, wurzel)
     lenke_protokoll_um(_MC, os.path.join(wurzel, "eingriffe.log"))
 
-    check("Vorher: rsi2_crypto ist gesperrt",
-          _abgelehnt(lambda: _MC.offene_positionen("rsi2_crypto")))
-
     original = dict(_MC.SCHLIESSBARE_BOTS)
+    gemerkt = _MC.SCHLIESSBARE_BOTS.pop("rsi2_crypto")
+    check("Aus der Liste genommen: rsi2_crypto ist gesperrt, obwohl seine "
+          "Datenbank vollstaendig ist",
+          _abgelehnt(lambda: _MC.offene_positionen("rsi2_crypto")))
     try:
-        _MC.SCHLIESSBARE_BOTS["rsi2_crypto"] = {
-            "anzeigename": "RSI2 (Krypto)", "anlageklasse": "krypto"}
-        check("Nach dem Eintrag: Positionen lesbar, ohne weitere Aenderung",
+        _MC.SCHLIESSBARE_BOTS["rsi2_crypto"] = gemerkt
+        check("Wieder eingetragen: Positionen lesbar, ohne weitere Aenderung",
               len(_MC.offene_positionen("rsi2_crypto")) == 2)
         ergebnis = _MC.schliesse_position("rsi2_crypto", 2, 220.0, 4242,
                                            "BESTAETIGEN", jetzt="2026-09-09 12:00:00")
@@ -1249,11 +1268,16 @@ def test_zweiter_bot_nur_ueber_die_liste():
     finally:
         _MC.SCHLIESSBARE_BOTS.clear()
         _MC.SCHLIESSBARE_BOTS.update(original)
-    check("Nach dem Zuruecksetzen wieder gesperrt",
-          _abgelehnt(lambda: _MC.offene_positionen("rsi2_crypto")))
-    check("In der ausgelieferten Fassung ist genau EIN Bot freigeschaltet",
-          list(_MC.SCHLIESSBARE_BOTS) == ["t3_supertrend"],
-          str(list(_MC.SCHLIESSBARE_BOTS)))
+    check("In der ausgelieferten Fassung sind alle NEUN Bots freigeschaltet",
+          len(_MC.SCHLIESSBARE_BOTS) == 9
+          and "t3_supertrend" in _MC.SCHLIESSBARE_BOTS,
+          str(sorted(_MC.SCHLIESSBARE_BOTS)))
+    check("Und jeder Eintrag traegt Anzeigename und Anlageklasse",
+          all({"anzeigename", "anlageklasse"} <= set(a)
+              for a in _MC.SCHLIESSBARE_BOTS.values()))
+    check("Kein Bot verwendet 'manual_close' als eigenen Vermerk - sonst "
+          "liesse sich ein manueller Eingriff nicht mehr zuruecknehmen",
+          _MC.MANUELLER_GRUND == "manual_close")
     shutil.rmtree(wurzel, ignore_errors=True)
 
 
