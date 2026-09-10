@@ -692,9 +692,22 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
               all(p["aktueller_preis"] is None and p["schliessbar_jetzt"] is False
                   for p in ohne_kurse["positionen"]))
 
-        fremd = get(basis, "/api/bots/elliott_wave/schliessbare-positionen").json()
-        check("elliott_wave meldet sich als nicht freigeschaltet",
-              fremd["schliessbar"] is False and "t3_supertrend" in fremd["grund"])
+        # Seit der Freischaltung aller neun Bots gibt es keinen echten Bot
+        # mehr, der abgelehnt wird. Die Sperre selbst bleibt trotzdem
+        # pruefbar - und wird es hier, indem ein Bot kurz aus der Liste
+        # genommen wird. Ein erfundener Name waere der schwaechere Test:
+        # er koennte auch an "Bot existiert nicht" scheitern.
+        gemerkt = manual_close.SCHLIESSBARE_BOTS.pop("elliott_wave")
+        try:
+            fremd = get(basis, "/api/bots/elliott_wave/schliessbare-positionen").json()
+            check("Ein aus der Liste genommener Bot meldet sich als nicht "
+                  "freigeschaltet",
+                  fremd["schliessbar"] is False and "t3_supertrend" in fremd["grund"],
+                  str(fremd.get("grund"))[:110])
+        finally:
+            manual_close.SCHLIESSBARE_BOTS["elliott_wave"] = gemerkt
+        check("Danach ist er wieder freigeschaltet",
+              schliessen.ist_freigeschaltet("elliott_wave"))
 
         # --- 8b) Beide Leser sehen dieselben Zeilen-IDs -------------------
         # Der eine Weg fuellt die Tabelle (monitor -> datenquelle), der
@@ -747,14 +760,21 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
               schliessen.offener_vorgang(vorbereitet["vorgang"]) is not None)
 
         # --- 8e) Nicht freigeschalteter Bot --------------------------------
+        # Alle neun sind freigeschaltet; geprueft wird deshalb die SPERRE,
+        # nicht ein bestimmter Bot: zwei Bots kurz herausnehmen, danach
+        # wieder eintragen.
         for bot in ("elliott_wave", "volatility_breakout"):
-            antwort = post(basis, f"/api/bots/{bot}/schliessen/vorbereiten",
-                            {"trade_id": 1})
-            check(f"Vorbereiten fuer {bot}: 403", antwort.status_code == 403,
-                  str(antwort.status_code))
-            antwort = _ausfuehren(basis, vorbereitet["vorgang"], bot=bot)
-            check(f"Ausfuehren fuer {bot}: 403", antwort.status_code == 403,
-                  str(antwort.status_code))
+            gemerkt = manual_close.SCHLIESSBARE_BOTS.pop(bot)
+            try:
+                antwort = post(basis, f"/api/bots/{bot}/schliessen/vorbereiten",
+                                {"trade_id": 1})
+                check(f"Vorbereiten fuer den gesperrten {bot}: 403",
+                      antwort.status_code == 403, str(antwort.status_code))
+                antwort = _ausfuehren(basis, vorbereitet["vorgang"], bot=bot)
+                check(f"Ausfuehren fuer den gesperrten {bot}: 403",
+                      antwort.status_code == 403, str(antwort.status_code))
+            finally:
+                manual_close.SCHLIESSBARE_BOTS[bot] = gemerkt
         check("Die Datenbanken der uebrigen Bots sind unveraendert",
               _pruefsummen(andere) == andere_vorher)
 
@@ -814,14 +834,11 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         nichts_geschrieben("Nach abgelaufener Bestaetigung")
 
         # --- 8i) Vorgang eines ANDEREN Bots --------------------------------
-        manual_close.SCHLIESSBARE_BOTS["elliott_wave"] = {
-            "anzeigename": "Elliott Wave (Krypto)", "anlageklasse": "krypto"}
-        try:
-            fremder = _vorbereiten(basis, bot="elliott_wave", trade_id=4).json()
-            check("Vorbereiten fuer den zweiten Bot gelingt (Erweiterbarkeit)",
-                  bool(fremder.get("vorgang")), str(fremder)[:100])
-        finally:
-            manual_close.SCHLIESSBARE_BOTS.pop("elliott_wave", None)
+        # elliott_wave ist inzwischen dauerhaft freigeschaltet - der Test
+        # muss ihn nicht mehr vorruebergehend eintragen.
+        fremder = _vorbereiten(basis, bot="elliott_wave", trade_id=4).json()
+        check("Vorbereiten fuer einen zweiten Bot gelingt",
+              bool(fremder.get("vorgang")), str(fremder)[:100])
         antwort = _ausfuehren(basis, fremder["vorgang"], bot="t3_supertrend")
         check("Eine Kennung von Bot A schliesst nichts bei Bot B",
               antwort.status_code == 409, str(antwort.status_code))
@@ -838,8 +855,13 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         check("Die Datenbanken der uebrigen Bots sind weiterhin unveraendert",
               _pruefsummen(andere) == andere_vorher)
         nichts_geschrieben("Nach dem Versuch mit fremder Kennung")
-        check("Nach dem Test ist wieder genau ein Bot freigeschaltet",
-              list(manual_close.SCHLIESSBARE_BOTS) == ["t3_supertrend"])
+        # Die Tests oben nehmen einzelne Bots vorruebergehend aus der Liste.
+        # Dass sie danach wieder vollstaendig ist, gehoert mitgeprueft -
+        # eine halb geleerte Liste wuerde alle folgenden Abschnitte
+        # stillschweigend entschaerfen.
+        check("Nach den Sperr-Tests sind wieder alle neun Bots freigeschaltet",
+              sorted(manual_close.SCHLIESSBARE_BOTS) == sorted(monitor.DISPLAY_NAMES),
+              str(sorted(manual_close.SCHLIESSBARE_BOTS)))
 
         # --- 8j) Nebenlaeufigkeit: die Datenbank ist gerade gesperrt --------
         # Echter zweiter Prozess, keine Attrappe: SQLite-Sperren wirken
@@ -1042,6 +1064,187 @@ def _alle_ausfuehren(basis, vorgang, bot="t3_supertrend", token=TEST_TOKEN):
                  {"vorgang": vorgang}, token=token)
 
 
+# ---------------------------------------------------------------------------
+# 9) Freischaltung: jeder Bot EINZELN gegen sein echtes forward_test.py
+# ---------------------------------------------------------------------------
+# Die Architektur war auf Erweiterbarkeit gebaut, aber "geht wahrscheinlich"
+# ist bei einem Schreibzugriff in eine Live-Datenbank kein Nachweis. Dieser
+# Abschnitt prueft jeden freigeschalteten Bot gegen seine TATSAECHLICHE
+# Datei im Repo - nicht gegen eine Annahme und nicht gegen das synthetische
+# Testprojekt der uebrigen Abschnitte.
+#
+# Geprueft wird je Bot:
+#   a) das CREATE TABLE aus dem Bot-Quelltext enthaelt alle Spalten, die
+#      geschrieben bzw. gelesen werden,
+#   b) der Bot rechnet seinen PnL so, wie berechne_pnl() es nachbildet,
+#   c) der Bot verwendet 'manual_close' nicht selbst als result,
+#   d) Name und Anlageklasse stimmen mit dem Lesemodul ueberein,
+#   e) und dann wird in einer Wegwerf-Datenbank, die aus DIESEM CREATE TABLE
+#      entsteht, wirklich eine Position geschlossen - mit dem Kostensatz des
+#      Bots und der Pruefung, dass genau die fuenf Ausstiegsfelder kippen.
+#
+# Punkt e) ist der eigentliche Beleg: er laeuft durch dieselbe Funktion, die
+# auch die Live-Datenbank anfasst.
+
+# Die fuenf Felder, die beim Schliessen geschrieben werden, und die, die
+# offene_positionen() liest. Beide Listen stehen hier ausgeschrieben, damit
+# der Test auffaellt, wenn sich eine der beiden Stellen im Kern aendert.
+SCHREIB_SPALTEN = ("exit_time", "exit_price", "result", "pnl_pct", "status")
+LESE_SPALTEN = ("id", "symbol", "entry_time", "entry_price", "stop_price")
+
+# Die Rechnung, die berechne_pnl() nachbildet - als Quelltextmuster, damit
+# eine kuenftige Aenderung im Bot hier auffaellt und nicht erst in einer
+# falsch geschriebenen Zeile.
+PNL_MUSTER = (
+    r"pnl_pct\s*=\s*\(exit_price\s*-\s*trade\[.entry_price.\]\)\s*/\s*"
+    r"trade\[.entry_price.\]\s*\*\s*100",
+    r"pnl_pct\s*-=\s*2\s*\*\s*\(TRADING_FEE_PCT\s*\+\s*SLIPPAGE_PCT\)",
+)
+
+
+def _create_table_des_bots(bot: str) -> str:
+    """Der CREATE-TABLE-Block aus dem echten forward_test.py des Bots."""
+    pfad = os.path.join(BASE_DIR, "strategies", bot, "forward_test.py")
+    quelle = open(pfad, encoding="utf-8").read()
+    treffer = re.search(r"CREATE TABLE IF NOT EXISTS trades\s*\((.*?)\n\s*\)\s*\n",
+                         quelle, re.S)
+    if not treffer:
+        raise AssertionError(f"Kein CREATE TABLE in {pfad} gefunden")
+    return treffer.group(1)
+
+
+def _spalten_des_bots(bot: str) -> list:
+    """Spaltennamen aus dem CREATE TABLE - UNIQUE-Zeile ausgenommen."""
+    spalten = []
+    for zeile in _create_table_des_bots(bot).splitlines():
+        zeile = zeile.strip().rstrip(",")
+        if not zeile or zeile.upper().startswith(("UNIQUE", "PRIMARY KEY",
+                                                   "FOREIGN KEY")):
+            continue
+        spalten.append(zeile.split()[0])
+    return spalten
+
+
+def teste_bot_freischaltung():
+    print("\n9) Freischaltung je Bot - gegen das echte forward_test.py")
+
+    erwartete_bots = sorted(monitor.DISPLAY_NAMES)
+    check("Alle neun Bots sind freigeschaltet",
+          sorted(manual_close.SCHLIESSBARE_BOTS) == erwartete_bots,
+          str(sorted(manual_close.SCHLIESSBARE_BOTS)))
+
+    wurzel = tempfile.mkdtemp(prefix="freischaltung_")
+    alt = (manual_close.BASE_DIR, manual_close.STRATEGIES_DIR)
+    alt_griffe = list(manual_close._protokoll.handlers)
+    for griff in alt_griffe:
+        manual_close._protokoll.removeHandler(griff)
+    manual_close._protokoll.addHandler(logging.FileHandler(
+        os.path.join(wurzel, "eingriffe.log"), encoding="utf-8"))
+    try:
+        for bot, angaben in sorted(manual_close.SCHLIESSBARE_BOTS.items()):
+            print(f"  -- {bot}")
+            quelle = open(os.path.join(BASE_DIR, "strategies", bot,
+                                        "forward_test.py"),
+                           encoding="utf-8").read()
+
+            # --- a) Schema -------------------------------------------------
+            spalten = _spalten_des_bots(bot)
+            fehlend_schreib = [s for s in SCHREIB_SPALTEN if s not in spalten]
+            check(f"{bot}: alle fuenf Ausstiegsspalten im CREATE TABLE",
+                  not fehlend_schreib, f"fehlt: {fehlend_schreib}")
+            fehlend_lese = [s for s in LESE_SPALTEN if s not in spalten]
+            check(f"{bot}: alle von offene_positionen() gelesenen Spalten da",
+                  not fehlend_lese, f"fehlt: {fehlend_lese}")
+
+            # --- b) PnL-Formel ---------------------------------------------
+            fehlende_muster = [m for m in PNL_MUSTER
+                               if re.search(m, quelle) is None]
+            check(f"{bot}: rechnet den PnL so, wie berechne_pnl() es nachbildet",
+                  not fehlende_muster, f"Muster ohne Treffer: {len(fehlende_muster)}")
+
+            # --- c) result-Werte -------------------------------------------
+            eigene_ergebnisse = set(re.findall(r'result\s*=\s*"([a-z_]+)"', quelle))
+            eigene_ergebnisse |= set(re.findall(r'"(stop_loss|take_profit|'
+                                                 r'time_exit|sma_exit|trend_flip|'
+                                                 r't3_crossunder)"', quelle))
+            check(f"{bot}: verwendet '{manual_close.MANUELLER_GRUND}' nicht selbst",
+                  manual_close.MANUELLER_GRUND not in eigene_ergebnisse,
+                  str(sorted(eigene_ergebnisse)))
+
+            # --- d) Name und Anlageklasse ----------------------------------
+            check(f"{bot}: Anzeigename deckt sich mit dem Lesemodul",
+                  angaben["anzeigename"] == monitor.DISPLAY_NAMES[bot],
+                  f"{angaben['anzeigename']!r} vs {monitor.DISPLAY_NAMES[bot]!r}")
+            check(f"{bot}: Anlageklasse deckt sich mit dem Lesemodul",
+                  angaben["anlageklasse"] == monitor.ASSET_CLASS[bot],
+                  f"{angaben['anlageklasse']!r} vs {monitor.ASSET_CLASS[bot]!r}")
+
+            # --- e) Echtes Schliessen in einer Wegwerf-Datenbank -----------
+            # Die Tabelle entsteht aus DEM CREATE TABLE DES BOTS, samt seiner
+            # Zusatzspalten. Genau so faellt auf, wenn eine davon NOT NULL
+            # waere oder das UPDATE an ihr scheitern wuerde.
+            os.makedirs(os.path.join(wurzel, "strategies", bot), exist_ok=True)
+            with open(os.path.join(wurzel, "strategies", bot, "forward_test.py"),
+                       "w", encoding="utf-8") as ziel:
+                ziel.write(quelle)
+            db = os.path.join(wurzel, f"paper_trading_{bot}.db")
+            if os.path.exists(db):
+                os.remove(db)
+            conn = sqlite3.connect(db)
+            conn.execute(f"CREATE TABLE trades (\n{_create_table_des_bots(bot)}\n)")
+            conn.execute(
+                "INSERT INTO trades (symbol, signal_time, entry_time, "
+                "entry_price, stop_price, status) "
+                "VALUES ('BTCUSDT','2026-03-01 00:00:00','2026-03-01 00:00:00',"
+                "100.0, 95.0, 'open')")
+            # Eine zweite, bereits geschlossene Zeile: sie muss unberuehrt
+            # bleiben und belegt, dass das UPDATE nicht zu breit trifft.
+            conn.execute(
+                "INSERT INTO trades (symbol, signal_time, entry_time, "
+                "entry_price, stop_price, exit_time, exit_price, result, "
+                "pnl_pct, status) VALUES ('ETHUSDT','2026-02-01 00:00:00',"
+                "'2026-02-01 00:00:00', 200.0, 190.0, '2026-02-02 00:00:00',"
+                "210.0, 'take_profit', 4.7, 'closed')")
+            conn.commit()
+            conn.close()
+
+            manual_close.BASE_DIR = wurzel
+            manual_close.STRATEGIES_DIR = os.path.join(wurzel, "strategies")
+
+            offen = manual_close.offene_positionen(bot)
+            check(f"{bot}: offene_positionen() liest die eine offene Zeile",
+                  [p["symbol"] for p in offen] == ["BTCUSDT"], str(offen)[:110])
+
+            vorher = zeilen(db)
+            kosten = manual_close.kostensatz(bot)
+            ergebnis = manual_close.schliesse_position(
+                bot, offen[0]["id"], 110.0, "freischaltungstest",
+                manual_close.BESTAETIGUNGSTEXT,
+                quelle=manual_close.QUELLE_DASHBOARD)
+            erwarteter_pnl = round(10.0 - kosten, 2)
+            check(f"{bot}: PnL nach dem Kostensatz DIESES Bots ({kosten})",
+                  ergebnis["pnl_pct"] == erwarteter_pnl,
+                  f"{ergebnis['pnl_pct']} statt {erwarteter_pnl}")
+            check(f"{bot}: Vermerk ist '{manual_close.MANUELLER_GRUND}'",
+                  ergebnis["result"] == manual_close.MANUELLER_GRUND)
+            diff = unterschiede(vorher, zeilen(db))
+            check(f"{bot}: genau die fuenf Ausstiegsfelder EINER Zeile geaendert",
+                  {f for _, f, _, _ in diff} == set(SCHREIB_SPALTEN)
+                  and len({k for k, _, _, _ in diff}) == 1,
+                  str(sorted({(k, f) for k, f, _, _ in diff})))
+            check(f"{bot}: die bereits geschlossene Zeile blieb unberuehrt",
+                  all(k != 2 for k, _, _, _ in diff))
+            check(f"{bot}: danach keine offene Position mehr",
+                  manual_close.offene_positionen(bot) == [])
+    finally:
+        manual_close.BASE_DIR, manual_close.STRATEGIES_DIR = alt
+        for griff in list(manual_close._protokoll.handlers):
+            manual_close._protokoll.removeHandler(griff)
+        for griff in alt_griffe:
+            manual_close._protokoll.addHandler(griff)
+        shutil.rmtree(wurzel, ignore_errors=True)
+
+
 def teste_alle_schliessen(basis, wurzel, db_dateien, protokoll_datei):
     print("\n9) Notfallweg: alle Positionen eines Bots schliessen")
 
@@ -1087,12 +1290,19 @@ def teste_alle_schliessen(basis, wurzel, db_dateien, protokoll_datei):
               schliessen.offener_vorgang(vorbereitet["vorgang"]) is not None)
 
         # --- 9c) Nicht freigeschalteter Bot -------------------------------
+        # Wie in 8e: alle neun sind freigeschaltet, geprueft wird die SPERRE.
         for bot in ("elliott_wave", "volatility_breakout"):
-            check(f"Vorbereiten fuer {bot}: 403",
-                  _alle_vorbereiten(basis, bot=bot).status_code == 403)
-            check(f"Ausfuehren fuer {bot}: 403",
-                  _alle_ausfuehren(basis, vorbereitet["vorgang"],
-                                    bot=bot).status_code == 403)
+            gemerkt = manual_close.SCHLIESSBARE_BOTS.pop(bot)
+            try:
+                check(f"Vorbereiten fuer den gesperrten {bot}: 403",
+                      _alle_vorbereiten(basis, bot=bot).status_code == 403)
+                check(f"Ausfuehren fuer den gesperrten {bot}: 403",
+                      _alle_ausfuehren(basis, vorbereitet["vorgang"],
+                                        bot=bot).status_code == 403)
+            finally:
+                manual_close.SCHLIESSBARE_BOTS[bot] = gemerkt
+        check("Danach sind wieder alle neun Bots freigeschaltet",
+              sorted(manual_close.SCHLIESSBARE_BOTS) == sorted(monitor.DISPLAY_NAMES))
 
         # --- 9d) Eine Kennung der einen Art auf dem Endpunkt der anderen ---
         # Ohne diese Pruefung waere die zweite Klick-Bestaetigung umgehbar:
@@ -1460,50 +1670,6 @@ def teste_schliessen_frontend():
     check("Keine aufsummierte Gesamt-Prozentzahl im Frontend (Grundsatz 2)",
           "pnl_summe" not in code and "pnl_schnitt_pct" in code)
 
-    # Das hidden-Attribut muss jede display-Regel schlagen. `display: none`
-    # fuer [hidden] steht nur im Browser-Standardstil und verliert gegen jede
-    # Autorenregel - ein `.klasse { display: flex }` macht ein verborgenes
-    # Element also wieder sichtbar. Genau so war der Notfall-Knopf anfangs
-    # auch bei nicht freigeschalteten Bots zu sehen; aufgefallen ist es erst
-    # im Browser, nicht in dieser Suite. Deshalb die Pruefung hier.
-    css = open(os.path.join(statisch, "style.css"), encoding="utf-8").read()
-    check("style.css erzwingt [hidden] gegen jede display-Regel",
-          re.search(r"\[hidden\]\s*\{[^}]*display:\s*none\s*!important",
-                     css) is not None)
-    # Die Leiste wird ueber das hidden-Attribut geschaltet - also haengt ihre
-    # Unsichtbarkeit genau an der Regel oben. Beides zusammen geprueft, damit
-    # nicht eines von beiden still wegfaellt.
-    check("Die Notfall-Leiste wird ueber hidden geschaltet (nicht ueber style)",
-          re.search(r"leiste\.hidden\s*=", code) is not None
-          and "notfall-leiste" not in code.split("style.display")[0][-200:]
-          if "style.display" in code else
-          re.search(r"leiste\.hidden\s*=", code) is not None)
-    check("Und sie traegt im Markup von Anfang an hidden - vor dem ersten "
-          "Ladevorgang ist noch nicht bekannt, ob der Bot freigeschaltet ist",
-          re.search(r'id="notfall-leiste"[^>]*hidden', code) is not None)
-    check("Der Schliessen-Knopf startet gesperrt - vor dem vorbereiten-Aufruf "
-          "gibt es keine Kennung",
-          re.search(r'id="dialog-ja"[^>]*disabled', code) is not None)
-    check("Derselbe Knopf loest jetzt das Schreiben aus",
-          'getElementById("dialog-ja").addEventListener("click", ausfuehren)'
-          in code)
-    check("Esc und Klick daneben verwerfen den Vorgang ebenfalls",
-          '"cancel"' in code and "abbrechen()" in code)
-
-    # Der Bestaetigungstext darf im Frontend nirgends mehr auftauchen -
-    # weder festgeschrieben noch aus der Serverantwort gelesen.
-    check("Der Bestaetigungstext kommt im Frontend nicht mehr vor",
-          '"BESTAETIGEN"' not in code and "bestaetigungstext" not in code)
-    check("Der Ausfuehren-Aufruf schickt nur die Kennung",
-          "bestaetigung:" not in code)
-
-    # Die Frist bleibt sichtbar: der Vorgang verfaellt serverseitig weiter
-    # nach 120 Sekunden, und ein Tap auf einen abgelaufenen Vorgang soll als
-    # solcher erkennbar sein, nicht als unerklaerliche Absage.
-    check("Der Countdown bleibt und sperrt den Knopf bei Ablauf",
-          "fristStarten(vorgang.gueltig_sekunden)" in code
-          and "abgelaufen" in code)
-
     check("Schreibende Aufrufe laufen ueber ein eigenes sende()",
           "async function sende(" in ohne_kommentare(app_js)
           and 'method: "POST"' in app_js)
@@ -1756,6 +1922,7 @@ def main():
     print("Selbsttests des Dashboards")
 
     teste_konfiguration()
+    teste_bot_freischaltung()
 
     wurzel = tempfile.mkdtemp(prefix="dashboard_test_")
     db_dateien = baue_testprojekt(wurzel)
