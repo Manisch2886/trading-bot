@@ -886,3 +886,109 @@ python3 research/hrp_portfolio/nachtrag_vbc_regimefilter.py
 
 Erwartete Ausgabe: `27 Referenzwerte bestaetigt, 0 abweichend.` sowie die
 Zeile `ANTWORT: Der HRP-Vorteil KIPPT ZURUECK …`.
+
+---
+
+# Nachtrag W — Erstfassungs-Anker eingefroren (Wartung, 2026-09-10)
+
+## W0. Der Anlass
+
+Reine Wartung am Prüfwerkzeug. **Kein inhaltlicher Befund, keine Neuanalyse,
+keine geänderte Aussage** — wer nur an den Ergebnissen interessiert ist, kann
+diesen Abschnitt überspringen.
+
+`nachtrag_vbc_regimefilter.py` sichert sich mit drei Regressionsankern ab
+(Abschnitt V2). Zwei davon lesen eingefrorene Schnappschüsse
+(`corrected_curves/`, `corrected_curves_v2/`). Der dritte, `original`, las die
+**neun lebenden Kurven** unter `results/<bot>/equity_curve.csv` — absichtlich,
+denn genau die hatte die Erstfassung gelesen.
+
+Diese eine Abhängigkeit ist inzwischen gerissen. PR #57 hat den BTC-Regimefilter
+in den echten Backtest von `volatility_breakout_crypto` eingebaut und dabei
+dessen lebende Kurve neu erzeugt. Seitdem verglich der Anker eine veränderte
+Grundlage mit der unveränderten Referenz `results/hrp_summary.json` und schlug
+in **7 von 9** Werten fehl; das Modul brach folgerichtig ab, obwohl inhaltlich
+nichts falsch war. Aufgefallen ist das beim Nachziehen von PR #56 in PR #64.
+
+## W1. Was geändert wurde
+
+Der Anker `original` liest jetzt `corrected_curves_original/` — einen
+eingefrorenen Schnappschuss derselben neun Dateien aus Commit `db11ba6`, also
+dem Commit, in dem `results/hrp_summary.json` entstand. Damit hängt **keiner**
+der drei Anker mehr an einer lebenden Datei, und das Modul bleibt
+reproduzierbar, auch wenn ein Bot seine Kurve künftig erneut neu erzeugt.
+
+Gewählt wurde damit der aufwändigere, aber haltbare Weg: den Anker wirklich zu
+reparieren, statt ihn nur als „historisch, nicht mehr prüfbar" zu kommentieren.
+Das war möglich, weil der Sollstand **exakt** rekonstruierbar ist (W2) — wäre
+er es nicht gewesen, wäre die Kommentarlösung das Ehrlichere gewesen.
+
+Bewusst **nicht** gewählt: nur die eine veränderte Kurve
+(`volatility_breakout_crypto`) einzufrieren und die übrigen acht weiter live zu
+lesen. Das hätte denselben Fehler beim nächsten Bot wieder eingefangen — die
+Abhängigkeit von lebenden Dateien ist die Ursache, nicht diese eine Datei.
+
+## W2. Warum der Schnappschuss der richtige Stand ist
+
+Zwei unabhängige Belege:
+
+1. **Die lebenden Kurven wurden im ganzen fraglichen Zeitraum nicht angefasst.**
+   `git log -- 'results/*/equity_curve.csv' results/equity_curve.csv` zeigt
+   zwischen `db11ba6` (Erstfassung) und `3770ca7` (PR #57) **keinen einzigen**
+   Commit. Alle neun Dateien sind zwischen `db11ba6` und dem Commit unmittelbar
+   vor PR #57 byteweise identisch — geprüft per SHA256. Auf dem heutigen `main`
+   weicht **genau eine** ab: `volatility_breakout_crypto`
+   (`5de7c5aba3…` → `060a54aea4…`).
+
+2. **Der Anker reproduziert wieder exakt dieselben neun Werte** wie vor PR #57
+   (63,26 / −4,93 / 12,8316 usw., Abschnitt V3) — also die Werte, die auch der
+   Original-Stand des Nachtrags lieferte.
+
+Der Schnappschuss ist zudem **selbstsichernd**: die Prüfsummen aller neun
+Dateien stehen in `corrected_curves_original/MANIFEST.json` und werden bei
+jedem Lauf geprüft. Weicht eine ab, bricht das Modul mit dem Sollstand im
+Klartext ab (`git show db11ba6:results/<bot>/equity_curve.csv`) statt einen
+still verschobenen Anker als grün zu melden — dieselbe Haltung wie bei der
+erzwungenen Leerprobe in `vbc_regimefilter.py`.
+
+## W3. Was unverändert bleibt
+
+Die **Kernaussage ist nicht berührt**. Sie hängt am Vergleich `korrigiert_v2`
+gegen `v2_mit_regimefilter` (Abschnitt V0/V3); beide Grundlagen lagen schon
+vorher eingefroren unter `corrected_curves_v2/` bzw.
+`corrected_curves_v2_regimefilter/` und sind von PR #57 nie berührt worden.
+Nachgewiesen: `results/nachtrag_vbc_regimefilter.json` wird vom neuen Lauf
+**byteweise identisch** neu erzeugt — alle vier Grundlagen, alle Kennzahlen,
+der HRP-Vorteil weiterhin **−0,0432** (Ward −0,0330), Veränderung durch den
+Filter **−0,1856**.
+
+Ebenfalls unverändert: `corrected_curves.py`, `corrected_curves/`,
+`corrected_curves_v2/`, `corrected_curves_v2_regimefilter/`, jeder Bot-Code,
+jede `live_params.py`. Der Regimefilter wird weiterhin **nicht** in
+`equity_simulation.py` eingebaut.
+
+## W4. Neue Dateien und Reproduktion
+
+| Datei | Zweck |
+|---|---|
+| `corrected_curves_original/*_equity_curve.csv` | eingefrorener Schnappschuss der neun Kurven der Erstfassung (Commit `db11ba6`) |
+| `corrected_curves_original/MANIFEST.json` | Quell-Commit, Quellpfad und SHA256 je Kurve — Grundlage der Laufzeitprüfung |
+
+Der Schnappschuss ist jederzeit gegen die Git-Historie nachprüfbar:
+
+```
+git show db11ba6:results/t3_supertrend/equity_curve.csv | sha256sum
+```
+
+muss die in `MANIFEST.json` hinterlegte Prüfsumme ergeben (für `elliott_wave`
+ist der Quellpfad aus historischen Gründen `results/equity_curve.csv`, siehe
+`portfolio_overview.LEGACY_EQUITY_CSV_PATHS`).
+
+```
+python3 research/hrp_portfolio/nachtrag_vbc_regimefilter.py
+```
+
+Erwartete Ausgabe jetzt wieder vollständig: die Zeile
+`Schnappschuss Erstfassung: 9 Kurven, Pruefsummen OK`, danach
+`27 Referenzwerte bestaetigt, 0 abweichend.` sowie
+`ANTWORT: Der HRP-Vorteil KIPPT ZURUECK …`.
