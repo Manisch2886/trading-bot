@@ -460,7 +460,12 @@ def erzeuge_app(token: str = None) -> FastAPI:
     @app.post("/api/bots/{name}/alle-schliessen/vorbereiten")
     async def alle_schliessen_vorbereiten(name: str, request: Request):
         """Notfallweg, Aufruf 1. Schreibt NICHTS - Uebersicht aller offenen
-        Positionen samt Kursen und PnL-Schaetzung, plus Vorgangs-Kennung."""
+        Positionen samt Kursen und PnL-Schaetzung, plus Vorgangs-Kennung.
+
+        Enthaelt neben `pnl_schnitt_pct` auch `pnl_gewichtet`: denselben
+        Durchschnitt, gewichtet mit der je Bot angenommenen Positionsgroesse
+        (siehe schliessen.gewichteter_pnl - Backtest-Annahme, keine echte
+        Kapitalbindung)."""
         _bot_oder_404(name)
         bot = await asyncio.to_thread(datenquelle.finde_bot, name)
         if bot is None:

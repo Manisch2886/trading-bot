@@ -524,6 +524,27 @@ dialog.schliessen-dialog h2 {
   font-variant-numeric: normal;
 }
 
+/* Die Beschriftung der gewichteten Zahl. Sie MUSS `display: block` setzen,
+   weil `.dialog-zeilen div` ein `display: flex` mit `space-between` ist: darin
+   wird jedes Kindelement ein eigenes Flex-Element - das <strong> im Hinweistext
+   stand im Browser tatsaechlich als eigene Zeile mitten im Satz. Im Browser
+   gemessen, nicht vermutet.
+   Deshalb steht der Selektor ZWEIMAL da: `.dialog-zeilen .hinweis-gewichtung`
+   ist spezifischer als `.dialog-zeilen div` und gewinnt unabhaengig von der
+   Reihenfolge; `.hinweis-gewichtung` allein gilt fuer dieselbe Erlaeuterung in
+   der Ergebnisanzeige, die nicht in `.dialog-zeilen` steht.
+   Klein und gedaempft, aber NICHT versteckt: sie sagt, dass die Zahl auf einer
+   Backtest-Annahme beruht - ohne sie duerfte die Zahl nicht dastehen. */
+.dialog-zeilen .hinweis-gewichtung,
+.hinweis-gewichtung {
+  display: block;
+  font-size: 12px;
+  line-height: 1.45;
+  color: var(--gedaempft);
+  text-align: left;
+  margin: -2px 0 2px;
+}
+
 .dialog-warnung {
   background: rgba(224, 108, 108, .10);
   border: 1px solid rgba(224, 108, 108, .30);

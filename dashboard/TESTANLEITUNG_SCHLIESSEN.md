@@ -343,7 +343,7 @@ Unterhalb der Positionstabelle steht jetzt eine eigene Leiste mit dem Knopf
 | # | Vorgehen | Erwartung |
 |---|---|---|
 | 1 | Den Knopf mit dem Einzel-Knopf in der Tabelle vergleichen | Der Notfall-Knopf ist **vollflaechig rot** mit Warnzeichen, der Einzel-Knopf nur ein gedaempfter Umriss. Sie duerfen nicht verwechselbar aussehen |
-| 2 | Notfall-Knopf antippen | Dialog **"Alle Positionen schliessen?"**, Kopfzeile **"Schritt 1 von 2"**, Liste ALLER offenen Positionen mit Einstieg, aktuellem Kurs und PnL, darunter **Ø je Position** mit Spannweite, Warnung und Countdown |
+| 2 | Notfall-Knopf antippen | Dialog **"Alle Positionen schliessen?"**, Kopfzeile **"Schritt 1 von 2"**, Liste ALLER offenen Positionen mit Einstieg, aktuellem Kurs und PnL, darunter **Ø je Position** mit Spannweite, **Ø gewichtet** (siehe Schritt 6c), Warnung und Countdown |
 | 3 | Die Liste mit der Tabelle darueber vergleichen | Dieselben Symbole, dieselben Kurse. Positionen ohne Live-Kurs stehen als "wird uebersprungen: kein aktueller Kurs verfuegbar" drin und zaehlen nicht mit |
 | 4 | **Abbrechen** in Stufe 1 | Dialog zu, nichts passiert |
 | 5 | Knopf -> **Ja, alle schliessen** | Stufe 2: **"Wirklich ALLE N Positionen schliessen?"**, Knopf **Endgueltig bestaetigen**, Countdown laeuft weiter (er wird **nicht** neu gestartet - die Frist gilt ab dem Oeffnen) |
@@ -378,6 +378,44 @@ curl -s -X POST -H "X-Dashboard-Token: <TOKEN>" \
 
 Erwartet: `401`, dann "Keine gueltige Bestaetigung offen", dann "nicht
 freigeschaltet". Danach Schritt 1 wiederholen - weiterhin unveraendert.
+
+---
+
+### Schritt 6c - Die gewichtete Zahl und ihre Beschriftung (schreibt nichts)
+
+Im Dialog aus Schritt 6 steht unter dem Durchschnitt eine zweite Zeile:
+
+```
+Ø je Position   -0,30%   (-10,30% … +9,70%)
+Ø gewichtet     -0,30%   (Positionsgroesse 10 %; dieselben Positionen ungewichtet -0,30%)
+                Gewichtet nach der je Bot im Backtest ANGENOMMENEN Positionsgroesse -
+                keine echte Kapitalbindung und keine Portfolio-Rendite.
+```
+
+| # | Vorgehen | Erwartung |
+|---|---|---|
+| 1 | Die beiden Zeilen vergleichen | Bei **einem** Bot sind sie zwangslaeufig gleich: alle Positionen dieses Bots tragen dieselbe angenommene Groesse. Das ist kein Fehler, sondern die Rechnung. Unterschiedlich werden sie erst ueber mehrere Bots (10 % / 5 % / 2 %) |
+| 2 | Die Erlaeuterung lesen | Sie steht als **sichtbarer Text** da, nicht als Tooltip - am iPhone gibt es kein Hover. Ohne diese Zeile duerfte die Zahl nicht dastehen: sie beruht auf einer Backtest-Annahme, nicht auf getracktem Kapital |
+| 3 | Die angezeigte Groesse nachsehen | `grep -n "^ALLOCATION_PCT" strategies/t3_supertrend/equity_simulation.py strategies/t3_supertrend/live_params.py` - bei `t3_supertrend` steht der Wert **nur** in `equity_simulation.py` (als Anteil `0.10`), und genau `10 %` muss im Dialog stehen |
+| 4 | Gegenprobe mit einem anderen Bot | `grep -n "^ALLOCATION_PCT" strategies/turtle_soup_stocks/live_params.py` zeigt `2` (in **Prozent**). Sobald dieser Bot schliessbar ist, muss dort `2 %` erscheinen - nicht `0,02 %` und nicht `200 %` |
+| 5 | `grep -rn "pnl_gewichtet" dashboard/static/bot.html` | Kommt in **beiden** Ansichten vor: im Dialog (`v.pnl_gewichtet`) und in der Ergebnisanzeige (`r.pnl_gewichtet`) |
+
+**Kontrolle:** Schritt 1 wiederholen. Ausgabe weiterhin identisch - dieser
+Schritt liest nur.
+
+Direkt an der API sichtbar (schreibt nichts, braucht eine offene Position):
+
+```bash
+curl -s -X POST -H "X-Dashboard-Token: <TOKEN>" \
+  -H 'Content-Type: application/json' -d '{}' \
+  http://127.0.0.1:8787/api/bots/t3_supertrend/alle-schliessen/vorbereiten \
+  | python3 -m json.tool | sed -n '/pnl_/,$p'
+```
+
+Erwartet: `pnl_schnitt_pct`, `pnl_bestes_pct`, `pnl_schlechtestes_pct` wie
+bisher, dazu `pnl_gewichtet` mit `wert_pct`, `ungewichtet_schnitt_pct`,
+`gewichte` (Bot, `allokation_pct`, `quelle`, Anzahl) und `nicht_gewichtbar`.
+**Keine** Summe der Prozente - die gibt es weiterhin nicht.
 
 ---
 

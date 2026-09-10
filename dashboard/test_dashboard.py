@@ -80,8 +80,21 @@ def check(name, ok, detail=""):
 # Synthetische Projektstruktur
 # ---------------------------------------------------------------------------
 
-def _lege_bot_an(wurzel: str, name: str, trades: list):
+def _lege_bot_an(wurzel: str, name: str, trades: list, live_params: str = None,
+                  equity_simulation: str = None):
+    """`live_params`/`equity_simulation` sind der INHALT der jeweiligen Datei,
+    nicht der Wert - so kann ein Test auch den Fall abbilden, dass
+    ALLOCATION_PCT dort nur als KOMMENTAR steht (genau die Lage beim echten
+    elliott_wave) oder als gerechneter Ausdruck. Fehlt der Parameter, wird die
+    Datei nicht angelegt: der Bot dokumentiert dann keine Positionsgroesse."""
     os.makedirs(os.path.join(wurzel, "strategies", name), exist_ok=True)
+    for datei, inhalt in (("live_params.py", live_params),
+                           ("equity_simulation.py", equity_simulation)):
+        if inhalt is None:
+            continue
+        with open(os.path.join(wurzel, "strategies", name, datei),
+                   "w", encoding="utf-8") as fh:
+            fh.write(inhalt)
     # forward_test.py mit den beiden Kostensaetzen: manual_close liest sie
     # per AST von dort, statt sie ein zweites Mal zu fuehren. Ohne die
     # Datei koennte kein PnL berechnet werden - dieselben Werte wie beim
@@ -156,10 +169,23 @@ def baue_testprojekt(wurzel: str) -> dict:
          (heute - timedelta(days=3)).isoformat(), 0.55, "trend_flip", 9.7, "closed"),
     ]
 
+    # Die angenommenen Positionsgroessen spiegeln die Lage bei den echten Bots:
+    # zwei fuehren ALLOCATION_PCT in live_params.py (in PROZENT), einer nur in
+    # equity_simulation.py (als ANTEIL) und hat in live_params.py bloss einen
+    # Kommentar, der darauf verweist. Drei verschiedene Groessen, damit sich
+    # gewichteter und einfacher Durchschnitt ueberhaupt unterscheiden koennen.
     return {
-        "elliott_wave": _lege_bot_an(wurzel, "elliott_wave", krypto),
-        "volatility_breakout": _lege_bot_an(wurzel, "volatility_breakout", aktien),
-        "t3_supertrend": _lege_bot_an(wurzel, "t3_supertrend", t3),
+        "elliott_wave": _lege_bot_an(
+            wurzel, "elliott_wave", krypto,
+            live_params="ALLOCATION_PCT = 5          # in Prozent\n"),
+        "volatility_breakout": _lege_bot_an(
+            wurzel, "volatility_breakout", aktien,
+            live_params="ALLOCATION_PCT = 2          # in Prozent\n"),
+        "t3_supertrend": _lege_bot_an(
+            wurzel, "t3_supertrend", t3,
+            live_params="# ALLOCATION_PCT: bewusst NICHT hier, siehe "
+                        "equity_simulation.py (0.10)\nSTOP_LOSS_PCT = 6.0\n",
+            equity_simulation="ALLOCATION_PCT = 0.10  # Anteil je Trade\n"),
     }
 
 
@@ -1366,6 +1392,306 @@ def teste_alle_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         schliessen.vorgaenge_zuruecksetzen()
 
 
+# ---------------------------------------------------------------------------
+# 15) Gewichteter Durchschnitt nach Positionsgroesse
+# ---------------------------------------------------------------------------
+# Der einfache Durchschnitt gewichtet eine Position mit 2 % Positionsgroesse
+# genauso wie eine mit 10 %. Diese Pruefungen belegen dreierlei:
+#
+#   * die Gewichtung rechnet richtig - und zwar BOT-UEBERGREIFEND, wo sie sich
+#     vom einfachen Durchschnitt ueberhaupt unterscheiden kann,
+#   * ein Bot ohne dokumentierte Positionsgroesse wird ausgeschlossen und
+#     BENANNT, nicht mit einem angenommenen Wert mitgerechnet,
+#   * die bisherige Anzeige (Durchschnitt, Spannweite) bleibt unveraendert
+#     daneben stehen - die neue Zahl kommt dazu, sie ersetzt nichts.
+
+def _ohne_allokation_anlegen(wurzel, name="ohne_positionsgroesse"):
+    """Ein Bot-Verzeichnis ohne live_params.py und ohne equity_simulation.py.
+    Der Name steht nicht in monitor.ASSET_CLASS, discover_bots() uebergeht ihn
+    also - er existiert nur fuer diese Rechnung."""
+    ordner = os.path.join(wurzel, "strategies", name)
+    os.makedirs(ordner, exist_ok=True)
+    with open(os.path.join(ordner, "forward_test.py"), "w", encoding="utf-8") as fh:
+        fh.write("TRADING_FEE_PCT = 0.1\nSLIPPAGE_PCT = 0.05\n")
+    return name
+
+
+def _js_funktion(code: str, name: str) -> str:
+    """Der Rumpf einer JS-Funktion aus bot.html, von ihrem Kopf bis zur
+    naechsten Funktion auf Modulebene. Grob, aber ausreichend: die Datei
+    schreibt jede Funktion linksbuendig."""
+    for kopf in (f"function {name}(", f"async function {name}("):
+        start = code.find(kopf)
+        if start >= 0:
+            break
+    else:
+        return ""
+    rest = code[start + 10:]
+    enden = [rest.find(m) for m in ("\nfunction ", "\nasync function ",
+                                    "\nconst ", "\ndocument.")]
+    enden = [e for e in enden if e >= 0]
+    return rest[:min(enden)] if enden else rest
+
+
+def _bot_dateien_pruefsummen(wurzel: str) -> dict:
+    """Pruefsummen aller .py-Dateien unter strategies/ - der Nachweis, dass
+    das Lesen der Positionsgroesse wirklich nur liest."""
+    summen = {}
+    basis = os.path.join(wurzel, "strategies")
+    for ordner, _, dateien in os.walk(basis):
+        for datei in sorted(dateien):
+            if not datei.endswith(".py"):
+                continue
+            pfad = os.path.join(ordner, datei)
+            summen[os.path.relpath(pfad, basis)] = hashlib.sha256(
+                open(pfad, "rb").read()).hexdigest()
+    return summen
+
+
+def teste_gewichteten_pnl(basis, wurzel, db_dateien, protokoll_datei):
+    print("\n15) Gewichteter Durchschnitt nach Positionsgroesse")
+    bot_dateien_vorher = _bot_dateien_pruefsummen(wurzel)
+
+    # --- 15a) Die Allokation wird GELESEN, nicht geraten ------------------
+    werte = {name: manual_close.allokation(name)
+             for name in ("t3_supertrend", "elliott_wave", "volatility_breakout")}
+    check("t3_supertrend: 10 % aus equity_simulation.py (Anteil 0.10)",
+          werte["t3_supertrend"]["prozent"] == 10.0
+          and werte["t3_supertrend"]["quelle"] == "equity_simulation.py",
+          str(werte["t3_supertrend"]))
+    check("Ein ALLOCATION_PCT, das dort nur als KOMMENTAR steht, gilt nicht als Wert",
+          "ALLOCATION_PCT" in open(os.path.join(
+              wurzel, "strategies", "t3_supertrend", "live_params.py"),
+              encoding="utf-8").read()
+          and werte["t3_supertrend"]["quelle"] != "live_params.py")
+    check("elliott_wave: 5 % aus live_params.py (Prozent -> Anteil 0.05)",
+          werte["elliott_wave"]["anteil"] == 0.05
+          and werte["elliott_wave"]["quelle"] == "live_params.py",
+          str(werte["elliott_wave"]))
+    check("volatility_breakout: 2 % aus live_params.py",
+          werte["volatility_breakout"]["anteil"] == 0.02, str(werte["volatility_breakout"]))
+
+    ohne = _ohne_allokation_anlegen(wurzel)
+    try:
+        leer = manual_close.allokation(ohne)
+        check("Ein Bot ohne beide Dateien bekommt KEINEN angenommenen Wert",
+              leer["anteil"] is None and leer["prozent"] is None, str(leer))
+        check("Und einen Grund, der beide Dateien nennt",
+              "live_params.py" in leer["grund"]
+              and "equity_simulation.py" in leer["grund"], leer["grund"])
+
+        # --- 15b) Die Rechnung, bot-uebergreifend ------------------------
+        # 10 % zweimal (-4, -6), 5 % einmal (+2), 2 % einmal (+10) und ein
+        # nicht gewichtbarer Bot (+1). Von Hand:
+        #   Zaehler = 0.10*(-4-6) + 0.05*2 + 0.02*10 = -0.70
+        #   Nenner  = 0.10*2      + 0.05*1  + 0.02*1 =  0.27
+        #   gewichtet = -2.59 %   einfach = (-4-6+2+10)/4 = +0.50 %
+        # Das Vorzeichen dreht sich: die kleine Position mit +10 % zieht den
+        # einfachen Durchschnitt ins Plus, obwohl sie nur ein Fuenftel des
+        # Kapitals der grossen traegt. Genau dieser Unterschied ist der Grund
+        # fuer die ganze Rechnung.
+        beitraege = [("t3_supertrend", -4.0), ("t3_supertrend", -6.0),
+                     ("elliott_wave", 2.0), ("volatility_breakout", 10.0),
+                     (ohne, 1.0)]
+        g = schliessen.gewichteter_pnl(beitraege)
+        check("Gewichtet ueber drei Bots: -2.59 %", g["wert_pct"] == -2.59,
+              str(g["wert_pct"]))
+        check("Dieselben Positionen ungewichtet: +0.50 % - das Vorzeichen dreht sich",
+              g["ungewichtet_schnitt_pct"] == 0.5, str(g["ungewichtet_schnitt_pct"]))
+        check("Die nicht gewichtbare Position zaehlt in KEINER der beiden Zahlen",
+              g["anzahl"] == 4, str(g["anzahl"]))
+        check("Jeder einbezogene Bot steht mit Groesse, Quelle und Anzahl da",
+              [(w["bot"], w["allokation_pct"], w["quelle"], w["anzahl"])
+               for w in g["gewichte"]]
+              == [("elliott_wave", 5.0, "live_params.py", 1),
+                  ("t3_supertrend", 10.0, "equity_simulation.py", 2),
+                  ("volatility_breakout", 2.0, "live_params.py", 1)],
+              str(g["gewichte"]))
+        check("Der nicht gewichtbare Bot wird BENANNT, mit Grund und eigener Zahl",
+              len(g["nicht_gewichtbar"]) == 1
+              and g["nicht_gewichtbar"][0]["bot"] == ohne
+              and g["nicht_gewichtbar"][0]["anzahl"] == 1
+              and g["nicht_gewichtbar"][0]["pnl_schnitt_pct"] == 1.0
+              and "ALLOCATION_PCT" in g["nicht_gewichtbar"][0]["grund"],
+              str(g["nicht_gewichtbar"]))
+        check("Die Grundlage steht als Text dabei (Backtest-Annahme)",
+              "ALLOCATION_PCT" in g["grundlage"] and "Backtest" in g["grundlage"],
+              g["grundlage"])
+        check("Der Hinweis nennt die Annahme, die fehlende Kapitalbindung und "
+              "die Stelle, an der eine echte Portfolio-Rendite steht",
+              "Annahme" in g["hinweis"]
+              and "KEINE live getrackte Kapitalbindung" in g["hinweis"]
+              and "keine Portfolio-Rendite" in g["hinweis"]
+              and "equity_simulation.py" in g["hinweis"], g["hinweis"][:80])
+
+        # Gegenprobe zur Rechnung: dieselben Werte, aber alle Bots mit
+        # derselben Groesse - dann MUESSEN beide Zahlen uebereinstimmen. Ohne
+        # diese Probe koennte die Gewichtung auch zufaellig richtig aussehen.
+        gleich = schliessen.gewichteter_pnl(
+            [("elliott_wave", -4.0), ("elliott_wave", -6.0),
+             ("elliott_wave", 2.0), ("elliott_wave", 10.0)])
+        check("Bei EINEM Bot sind gewichtet und ungewichtet identisch (+0.5 %)",
+              gleich["wert_pct"] == gleich["ungewichtet_schnitt_pct"] == 0.5,
+              f"{gleich['wert_pct']} / {gleich['ungewichtet_schnitt_pct']}")
+        check("Ohne jede Position gibt es keine Zahl, nicht die Zahl 0",
+              schliessen.gewichteter_pnl([])["wert_pct"] is None)
+        check("Positionen ohne PnL (kein Kurs) zaehlen nicht mit",
+              schliessen.gewichteter_pnl(
+                  [("elliott_wave", None), ("elliott_wave", 4.0)])["anzahl"] == 1)
+
+        # --- 15c) In BEIDEN Antworten des Notfallwegs --------------------
+        original_kurse = monitor.fetch_live_prices_for_bots
+        monitor.fetch_live_prices_for_bots = lambda bots: dict(TESTKURSE)
+        schliessen.vorgaenge_zuruecksetzen()
+        db_t3 = db_dateien["t3_supertrend"]
+        try:
+            _oeffne_positionen(db_t3, [("BTCUSDT", 100.0), ("ETHUSDT", 200.0)])
+            v = _alle_vorbereiten(basis).json()
+            # 100 -> 110 sind +9.7 %, 200 -> 180 sind -10.3 % (je minus 0.3
+            # Kosten). Beide Positionen gehoeren demselben Bot, also ist die
+            # gewichtete Zahl hier zwangslaeufig gleich dem Durchschnitt -
+            # dass sie sich unterscheiden KANN, zeigt 15b.
+            check("Die Uebersicht nennt den Durchschnitt wie bisher",
+                  v["pnl_schnitt_pct"] == -0.3, str(v["pnl_schnitt_pct"]))
+            check("Spannweite wie bisher unveraendert daneben",
+                  v["pnl_bestes_pct"] == 9.7 and v["pnl_schlechtestes_pct"] == -10.3,
+                  f"{v['pnl_schlechtestes_pct']} .. {v['pnl_bestes_pct']}")
+            check("UND den gewichteten Durchschnitt, mit Groesse und Quelle",
+                  v["pnl_gewichtet"]["wert_pct"] == -0.3
+                  and v["pnl_gewichtet"]["gewichte"][0]["allokation_pct"] == 10.0
+                  and v["pnl_gewichtet"]["gewichte"][0]["quelle"] == "equity_simulation.py",
+                  str(v["pnl_gewichtet"])[:160])
+            check("Weiterhin KEINE aufsummierte Prozentzahl",
+                  "pnl_summe_pct" not in v and "pnl_summe" not in str(list(v)))
+
+            ergebnis = _alle_ausfuehren(basis, v["vorgang"]).json()
+            check("Auch das ERGEBNIS nennt beide Zahlen",
+                  ergebnis["pnl_schnitt_pct"] == -0.3
+                  and ergebnis["pnl_gewichtet"]["wert_pct"] == -0.3,
+                  str(ergebnis.get("pnl_gewichtet"))[:120])
+            check("Und zwar ueber die TATSAECHLICH geschriebenen Werte",
+                  ergebnis["pnl_gewichtet"]["anzahl"] == ergebnis["anzahl_geschlossen"] == 2,
+                  str(ergebnis["anzahl_geschlossen"]))
+
+            # --- 15d) Fehlt die Groesse, wird NICHT geschaetzt - und der
+            # Notfallweg funktioniert trotzdem. Eine Anzeigefrage darf den
+            # Schliessweg nie blockieren.
+            es_pfad = os.path.join(wurzel, "strategies", "t3_supertrend",
+                                    "equity_simulation.py")
+            gesichert = open(es_pfad, encoding="utf-8").read()
+            os.remove(es_pfad)
+            try:
+                _oeffne_positionen(db_t3, [("BTCUSDT", 100.0)])
+                v2 = _alle_vorbereiten(basis).json()
+                check("Ohne dokumentierte Groesse gibt es KEINE gewichtete Zahl",
+                      v2["pnl_gewichtet"]["wert_pct"] is None, str(v2["pnl_gewichtet"])[:120])
+                check("Der Durchschnitt steht trotzdem da - die alte Anzeige bleibt",
+                      v2["pnl_schnitt_pct"] == 9.7, str(v2["pnl_schnitt_pct"]))
+                check("Der Bot wird als nicht gewichtbar ausgewiesen, mit Grund",
+                      [n["bot"] for n in v2["pnl_gewichtet"]["nicht_gewichtbar"]]
+                      == ["t3_supertrend"]
+                      and "ALLOCATION_PCT" in v2["pnl_gewichtet"]["nicht_gewichtbar"][0]["grund"],
+                      str(v2["pnl_gewichtet"]["nicht_gewichtbar"]))
+                e2 = _alle_ausfuehren(basis, v2["vorgang"]).json()
+                check("UND die Position wird trotzdem geschlossen - die "
+                      "Anzeige blockiert den Notfallweg nicht",
+                      e2["erfolg"] and e2["anzahl_geschlossen"] == 1,
+                      str(e2["meldung"])[:90])
+                check("Auch im Ergebnis steht der Ausschluss statt einer Zahl",
+                      e2["pnl_gewichtet"]["wert_pct"] is None
+                      and len(e2["pnl_gewichtet"]["nicht_gewichtbar"]) == 1)
+            finally:
+                with open(es_pfad, "w", encoding="utf-8") as fh:
+                    fh.write(gesichert)
+            check("Nach dem Zuruecksichern ist die Groesse wieder lesbar",
+                  manual_close.allokation("t3_supertrend")["prozent"] == 10.0)
+        finally:
+            monitor.fetch_live_prices_for_bots = original_kurse
+            schliessen.vorgaenge_zuruecksetzen()
+
+        # --- 15e) Keine Bot-Datei wurde dabei veraendert ------------------
+        # Pruefsummen, nicht "ist noch lesbar": eine Datei, die nach dem
+        # Umschreiben zufaellig noch Text enthaelt, waere sonst ein gruener
+        # Test ohne Aussage (Methodik-Grundsatz 12). Die Summen stehen ganz
+        # oben in dieser Funktion, also VOR jedem Lesezugriff dieses
+        # Abschnitts - inklusive des absichtlich entfernten und wieder
+        # hergestellten equity_simulation.py aus 15d.
+        # Das in 15a angelegte Hilfsverzeichnis ist die einzige erwartete
+        # Neuerung und wird ausgenommen - alles andere muss Byte fuer Byte
+        # gleich sein.
+        nachher = {n: s for n, s in _bot_dateien_pruefsummen(wurzel).items()
+                   if not n.startswith(ohne + os.sep)}
+        check("Alle Bot-Dateien sind byteweise unveraendert - auch die in 15d "
+              "entfernte und zurueckgesicherte",
+              nachher == bot_dateien_vorher,
+              str([n for n in set(nachher) | set(bot_dateien_vorher)
+                   if nachher.get(n) != bot_dateien_vorher.get(n)])[:160])
+    finally:
+        shutil.rmtree(os.path.join(wurzel, "strategies", ohne), ignore_errors=True)
+
+    # --- 15f) Frontend: die Zahl steht nie ohne ihre Beschriftung da -----
+    bot_html = open(os.path.join(DIR, "static", "bot.html"), encoding="utf-8").read()
+    code = ohne_kommentare(bot_html)
+    check("Der Dialog zeigt den gewichteten Durchschnitt",
+          "pnl_gewichtet" in code and "gewichtungsZeilen" in code)
+    # UND, nicht ODER: der Dialog liest v.pnl_gewichtet, die Ergebnisanzeige
+    # r.pnl_gewichtet. Eine Pruefung auf "kommt irgendwo vor" waere gruen,
+    # sobald nur EINE der beiden Ansichten die Zahl zeigt - und genau das war
+    # in den beiden vorigen Aenderungen zweimal der Fehler.
+    check("Die gewichtete Zahl steht in BEIDEN Ansichten - Dialog und Ergebnis",
+          "gewichtungsZeilen(v.pnl_gewichtet)" in code
+          and "r.pnl_gewichtet" in code,
+          f"gewichtungsZeilen: {code.count('gewichtungsZeilen(')}")
+    check("Die Erlaeuterung nennt die Backtest-ANNAHME",
+          "GEWICHTUNG_ERLAEUTERUNG" in code
+          and "angenommenen" in code and "Backtest" in code)
+    check("Und sagt, dass es KEINE Portfolio-Rendite ist",
+          "keine Portfolio-Rendite" in code)
+    check("Die Erlaeuterung ist sichtbarer Text, kein title-Tooltip",
+          'class="hinweis-gewichtung"' in code
+          and 'title="Gewichtet' not in code)
+
+    # JE FUNKTION pruefen, nicht im ganzen Dokument: Dialog und
+    # Ergebnisanzeige bauen ihre Zeilen getrennt auf. Eine Suche ueber die
+    # ganze Datei war gruen, als die Erlaeuterung und der Ausschluss-Hinweis
+    # im Dialog entfernt waren - die Ergebnisanzeige enthielt beides ja noch.
+    # (Gegenprobe M8/M9: genau so gefunden.)
+    dialog = _js_funktion(code, "gewichtungsZeilen")
+    ergebnis = _js_funktion(code, "notfallErgebnisAnzeigen")
+    check("Die Funktion des Dialogs gefunden und die der Ergebnisanzeige auch",
+          len(dialog) > 200 and len(ergebnis) > 200,
+          f"{len(dialog)} / {len(ergebnis)} Zeichen")
+    for wo, rumpf in (("Dialog", dialog), ("Ergebnisanzeige", ergebnis)):
+        check(f"{wo}: die gewichtete Zahl steht dort mit ihrer Erlaeuterung",
+              "GEWICHTUNG_ERLAEUTERUNG" in rumpf
+              and "hinweis-gewichtung" in rumpf, rumpf[:90])
+        check(f"{wo}: nicht gewichtbare Bots werden dort benannt und als "
+              f"ausgenommen bezeichnet",
+              "nicht_gewichtbar" in rumpf and "ausgenommen" in rumpf,
+              rumpf[:90])
+    check("Weiterhin keine aufsummierte Gesamt-Prozentzahl im Frontend",
+          "pnl_summe" not in code and "pnl_schnitt_pct" in code)
+    # Die Regel wird aus dem CSS GEPARST, nicht im Text gesucht: eine Suche
+    # "steht 'display: block' irgendwo hinter dem Selektor" hat beim Umbau
+    # dieses Selektors sofort falsch angeschlagen, weil der Erklaerkommentar
+    # den Selektornamen ebenfalls enthaelt.
+    css = re.sub(r"/\*.*?\*/", "", open(os.path.join(DIR, "static", "style.css"),
+                                          encoding="utf-8").read(), flags=re.S)
+    regeln = [(s.strip(), k) for s, k in re.findall(r"([^{}]+)\{([^}]*)\}", css)
+              if ".hinweis-gewichtung" in s]
+    check("Der Hinweis ist ein Block - sonst zieht das Flex-Layout der "
+          "Dialogzeilen den Satz auseinander",
+          len(regeln) == 1 and "display: block" in regeln[0][1],
+          str(regeln)[:200])
+    # Der eigentliche Fallstrick, im Browser gemessen: `.dialog-zeilen div`
+    # (Spezifitaet 0,1,1) schlaegt `.hinweis-gewichtung` (0,1,0). Ohne den
+    # spezifischeren Selektor bleibt der Hinweis ein Flex-Container, und das
+    # <strong> im Satz steht als eigene Zeile.
+    check("Und der Selektor ist spezifischer als '.dialog-zeilen div'",
+          regeln and ".dialog-zeilen .hinweis-gewichtung" in regeln[0][0],
+          regeln[0][0] if regeln else "keine Regel")
+
+
 def teste_schliessen_frontend():
     print("\n10) Frontend des Schliessvorgangs")
     statisch = os.path.join(DIR, "static")
@@ -1687,6 +2013,34 @@ def teste_zustandsmaschine():
           detail=fertig.stderr.strip()[-300:] if fertig.returncode else "")
 
 
+def teste_gewichtung_node():
+    """Verhaltenstest der gewichteten Anzeige - wie Abschnitt 13 ueber node.
+
+    Braucht es, weil eine Textsuche in bot.html gruen bleibt, wenn ein
+    if-Zweig auf `false` steht: der gesuchte Text liegt dann unerreichbar im
+    Rumpf. In der Gegenprobe zu dieser Aenderung blieb genau diese Mutation
+    unentdeckt, bis dieser Test dazukam."""
+    print("\n16) Verhalten der gewichteten Anzeige (node)")
+
+    node = shutil.which("node")
+    if not node:
+        print("  [uebersprungen] node nicht gefunden - ob Erlaeuterung und "
+              "Ausschluss-Hinweis\n                  wirklich in der Ausgabe "
+              "landen, bleibt ungeprueft "
+              "(node dashboard/test_gewichtung.js)")
+        return
+
+    skript = os.path.join(DIR, "test_gewichtung.js")
+    fertig = subprocess.run([node, skript], capture_output=True, text=True,
+                             timeout=120)
+    for zeile in fertig.stdout.splitlines():
+        if zeile.strip():
+            print("  " + zeile.strip() if zeile.startswith("  ") else zeile)
+    check("Verhaltenstest der gewichteten Anzeige (test_gewichtung.js)",
+          fertig.returncode == 0,
+          detail=fertig.stderr.strip()[-300:] if fertig.returncode else "")
+
+
 def teste_zeitstempel(basis):
     """Die Zeitstempel, die der Server SELBST erzeugt, muessen eindeutig
     sein - also mit Zeitzonen-Offset.
@@ -1812,10 +2166,13 @@ def main():
             teste_schliessen(server.basis, wurzel, db_dateien, protokoll_datei)
             teste_alle_schliessen(server.basis, wurzel, db_dateien,
                                    protokoll_datei)
+            teste_gewichteten_pnl(server.basis, wurzel, db_dateien,
+                                   protokoll_datei)
         teste_schliessen_frontend()
         teste_automatische_aktualisierung()
         teste_ladeindikator()
         teste_zustandsmaschine()
+        teste_gewichtung_node()
         teste_zeitzone()
     finally:
         monitor.BASE_DIR, monitor.STRATEGIES_DIR, monitor.LOGS_DIR, monitor.requests = alt

@@ -1273,17 +1273,238 @@ def test_keine_bot_datei_wird_importiert_oder_veraendert():
             importe.add(k.module or "")
     verdaechtig = {i for i in importe
                    if any(t in i for t in ("forward_test", "live_params",
-                                            "runpy", "importlib", "exec"))}
+                                            "equity_simulation", "runpy",
+                                            "importlib", "exec"))}
     check("Kein Import eines Bot-Moduls, kein runpy/importlib", not verdaechtig,
           str(verdaechtig))
     check("Kein exec()/eval() im Modul",
           not any(isinstance(k, ast.Name) and k.id in ("exec", "eval")
                   for k in ast.walk(baum)))
     check("forward_test.py wird per ast.parse gelesen", "ast.parse" in quelle)
+    # Seit der gewichteten Anzeige liest das Modul zwei weitere Bot-Dateien.
+    # Auch fuer sie gilt: lesen, nie importieren. Ein Import von
+    # equity_simulation.py waere hier besonders heikel - bei allen neun Bots
+    # heisst die Datei gleich, und der sys.modules-Kollisionsfehler, bei dem
+    # ein Bot lautlos die Werte eines ANDEREN bekommt, ist in diesem Projekt
+    # schon einmal aufgetreten (siehe shared/portfolio_overview.py).
+    check("Auch live_params.py und equity_simulation.py werden nur als Datei "
+          "gelesen, nicht importiert",
+          "live_params.py" in quelle and "equity_simulation.py" in quelle
+          and not verdaechtig)
 
     # Und: das Modul oeffnet forward_test.py nur lesend.
     check("Kein Schreibzugriff auf eine .py-Datei",
           'open(pfad, encoding="utf-8")' in quelle and '"w"' not in quelle)
+
+
+# ---------------------------------------------------------------------------
+# 16. Positionsgroesse je Bot: gelesen, nicht geraten
+# ---------------------------------------------------------------------------
+# allokation() liefert die Zahl, mit der das Dashboard den gewichteten
+# Durchschnitt rechnet. Sie wird aus den Dateien des Bots GELESEN - und die
+# Einheit haengt davon ab, aus welcher Datei:
+#
+#     live_params.py        ALLOCATION_PCT in PROZENT  (10   -> Anteil 0.10)
+#     equity_simulation.py  ALLOCATION_PCT als ANTEIL  (0.10 -> Anteil 0.10)
+#
+# Die Umrechnung ist die Stelle, an der ein Faktor 100 unbemerkt durchrutschen
+# koennte. Sie wird deshalb nicht nur synthetisch geprueft, sondern an den
+# ECHTEN neun Bots gegen einen zweiten, unabhaengigen Leseweg (regulaerer
+# Ausdruck statt AST) - eine Pruefung, die sich selbst bestaetigt, waere hier
+# wertlos.
+
+ALLE_ECHTEN_BOTS = ["elliott_wave", "elliott_wave_stocks", "rsi2_crypto",
+                    "rsi2_mean_reversion", "t3_supertrend",
+                    "turtle_soup_crypto", "turtle_soup_stocks",
+                    "volatility_breakout", "volatility_breakout_crypto"]
+
+
+def _rohwert_per_regex(pfad):
+    """Derselbe Wert auf einem ANDEREN Leseweg als im Modul: ein regulaerer
+    Ausdruck auf der Zeile, statt ast.parse. Dient nur dem Gegenvergleich."""
+    import re
+    if not os.path.exists(pfad):
+        return None
+    for zeile in open(pfad, encoding="utf-8"):
+        treffer = re.match(r"^ALLOCATION_PCT\s*=\s*([0-9]+(?:\.[0-9]+)?)\s*(?:#.*)?$",
+                           zeile.rstrip("\n"))
+        if treffer:
+            return float(treffer.group(1))
+    return None
+
+
+def _schreibe_allokation(wurzel, bot, live_params=None, equity_simulation=None):
+    ordner = os.path.join(wurzel, "strategies", bot)
+    os.makedirs(ordner, exist_ok=True)
+    for datei, inhalt in (("live_params.py", live_params),
+                           ("equity_simulation.py", equity_simulation)):
+        pfad = os.path.join(ordner, datei)
+        if inhalt is None:
+            if os.path.exists(pfad):
+                os.remove(pfad)
+            continue
+        with open(pfad, "w", encoding="utf-8") as fh:
+            fh.write(inhalt)
+
+
+def test_allokation_wird_gelesen_nicht_geraten():
+    print("\n16. Positionsgroesse je Bot (ALLOCATION_PCT) wird gelesen")
+
+    # --- 16a) Bestandsaufnahme an den ECHTEN neun Bots -------------------
+    echte_strategien = os.path.join(BASE_DIR, "strategies")
+    alt = _MC.STRATEGIES_DIR
+    _MC.STRATEGIES_DIR = echte_strategien
+    try:
+        vorher = {}
+        for bot in ALLE_ECHTEN_BOTS:
+            for datei in ("live_params.py", "equity_simulation.py"):
+                p = os.path.join(echte_strategien, bot, datei)
+                if os.path.exists(p):
+                    vorher[f"{bot}/{datei}"] = datei_pruefsumme(p)
+
+        check("Es gibt genau neun Bot-Verzeichnisse",
+              sorted(n for n in os.listdir(echte_strategien)
+                     if os.path.isdir(os.path.join(echte_strategien, n)))
+              == ALLE_ECHTEN_BOTS,
+              str(sorted(os.listdir(echte_strategien))))
+
+        befund = {bot: _MC.allokation(bot) for bot in ALLE_ECHTEN_BOTS}
+        for bot, info in befund.items():
+            print(f"      {bot:28} {str(info['prozent']) + ' %':>8}  "
+                  f"{info['quelle'] or info['grund']}")
+
+        check("Jeder Bot liefert entweder eine Groesse ODER einen Grund - nie beides, nie nichts",
+              all(bool(i["anteil"] is None) != bool(i["grund"] is None)
+                  for i in befund.values()),
+              str({b: i for b, i in befund.items()
+                   if (i["anteil"] is None) == (i["grund"] is None)}))
+        check("Keine geratene Zahl: jede genannte Groesse hat eine Quelldatei",
+              all(i["quelle"] in ("live_params.py", "equity_simulation.py")
+                  for i in befund.values() if i["anteil"] is not None))
+        check("Jede Groesse liegt im moeglichen Bereich (0 < Anteil <= 1)",
+              all(0 < i["anteil"] <= 1 for i in befund.values()
+                  if i["anteil"] is not None))
+
+        # Der eigentliche Punkt: die EINHEIT. Gegen einen zweiten Leseweg.
+        fehler = []
+        for bot, info in befund.items():
+            if info["anteil"] is None:
+                continue
+            roh = _rohwert_per_regex(os.path.join(echte_strategien, bot, info["quelle"]))
+            erwartet = roh / 100 if info["quelle"] == "live_params.py" else roh
+            if roh is None or abs(erwartet - info["anteil"]) > 1e-12:
+                fehler.append(f"{bot}: Datei {roh}, Modul {info['anteil']}")
+        check("Die Umrechnung stimmt bei JEDEM Bot mit dem Dateiinhalt ueberein "
+              "(Prozent/100 bzw. Anteil unveraendert)", not fehler, str(fehler))
+        check("Beide Einheiten kommen in der Wirklichkeit vor - der Unterschied "
+              "ist nicht theoretisch",
+              {i["quelle"] for i in befund.values() if i["anteil"]}
+              == {"live_params.py", "equity_simulation.py"},
+              str({b: i["quelle"] for b, i in befund.items()}))
+        check("Und es gibt tatsaechlich verschiedene Groessen - sonst waere die "
+              "Gewichtung folgenlos",
+              len({i["prozent"] for i in befund.values() if i["anteil"]}) >= 2,
+              str(sorted({i["prozent"] for i in befund.values() if i["anteil"]})))
+
+        nachher = {}
+        for bot in ALLE_ECHTEN_BOTS:
+            for datei in ("live_params.py", "equity_simulation.py"):
+                p = os.path.join(echte_strategien, bot, datei)
+                if os.path.exists(p):
+                    nachher[f"{bot}/{datei}"] = datei_pruefsumme(p)
+        check("Die echten Bot-Dateien sind nach dem Lesen byteweise unveraendert",
+              nachher == vorher,
+              str([k for k in set(nachher) | set(vorher)
+                   if nachher.get(k) != vorher.get(k)]))
+    finally:
+        _MC.STRATEGIES_DIR = alt
+
+    # --- 16b) Einheiten und Sonderfaelle, synthetisch --------------------
+    wurzel = tempfile.mkdtemp(prefix="allokation_")
+    alt = _MC.STRATEGIES_DIR
+    _MC.STRATEGIES_DIR = os.path.join(wurzel, "strategies")
+    try:
+        faelle = [
+            ("Prozent aus live_params.py wird geteilt (10 -> 0.10)",
+             dict(live_params="ALLOCATION_PCT = 10\n"), 0.10, "live_params.py"),
+            ("Anteil aus equity_simulation.py bleibt, wie er ist (0.02)",
+             dict(equity_simulation="ALLOCATION_PCT = 0.02\n"), 0.02,
+             "equity_simulation.py"),
+            ("live_params.py hat Vorrang, wenn beide Dateien dasselbe sagen",
+             dict(live_params="ALLOCATION_PCT = 5\n",
+                  equity_simulation="ALLOCATION_PCT = 0.05\n"), 0.05,
+             "live_params.py"),
+            ("Ein gerechneter Ausdruck wird NICHT ausgewertet - live_params "
+             "traegt den Wert",
+             dict(live_params="ALLOCATION_PCT = 2\n",
+                  equity_simulation="from live_params import ALLOCATION_PCT as _P\n"
+                                     "ALLOCATION_PCT = _P / 100\n"), 0.02,
+             "live_params.py"),
+            ("Auch Kommazahlen in Prozent gehen (0.5 -> 0.005)",
+             dict(live_params="ALLOCATION_PCT = 0.5\n"), 0.005, "live_params.py"),
+        ]
+        for name, dateien, erwartet, quelle in faelle:
+            _schreibe_allokation(wurzel, "probe", **dateien)
+            info = _MC.allokation("probe")
+            check(name, info["anteil"] == erwartet and info["quelle"] == quelle,
+                  str(info))
+
+        abgelehnt = [
+            ("Nur ein gerechneter Ausdruck und sonst nichts -> nicht gewichtbar",
+             dict(equity_simulation="ALLOCATION_PCT = _P / 100\n"), "ALLOCATION_PCT"),
+            ("150 als Prozentangabe ist unmoeglich und wird NICHT gebogen",
+             dict(live_params="ALLOCATION_PCT = 150\n"), "nicht moeglich"),
+            ("10 als ANTEIL ist unmoeglich (das waere 1000 %)",
+             dict(equity_simulation="ALLOCATION_PCT = 10\n"), "nicht moeglich"),
+            ("Eine Null ist keine Positionsgroesse",
+             dict(live_params="ALLOCATION_PCT = 0\n"), "nicht moeglich"),
+            ("Ein negativer Wert ebenfalls nicht",
+             dict(equity_simulation="ALLOCATION_PCT = -0.1\n"), "nicht moeglich"),
+            ("Ein Widerspruch zwischen beiden Dateien wird NICHT stillschweigend "
+             "aufgeloest",
+             dict(live_params="ALLOCATION_PCT = 10\n",
+                  equity_simulation="ALLOCATION_PCT = 0.05\n"), "widersprechen"),
+            ("Nur ein Kommentar ist kein Wert",
+             dict(live_params="# ALLOCATION_PCT = 10 - steht woanders\n"),
+             "dokumentieren ALLOCATION_PCT"),
+            ("Keine der beiden Dateien vorhanden",
+             dict(), "dokumentieren ALLOCATION_PCT"),
+            ("Eine Datei mit Syntaxfehler wird nicht als Wert gelesen",
+             dict(live_params="ALLOCATION_PCT = = 10\n"),
+             "dokumentieren ALLOCATION_PCT"),
+        ]
+        for name, dateien, teil in abgelehnt:
+            _schreibe_allokation(wurzel, "probe", **dateien)
+            info = _MC.allokation("probe")
+            check(name, info["anteil"] is None and teil in (info["grund"] or ""),
+                  str(info))
+
+        # --- 16c) Wirft nie, egal was hereinkommt ------------------------
+        for name in ("gibt_es_nicht", "../notifications", "/etc", "", ".", "..",
+                     "probe/../probe"):
+            try:
+                info = _MC.allokation(name)
+                ok = info["anteil"] is None and bool(info["grund"])
+            except Exception as fehler:            # noqa: BLE001
+                ok, info = False, f"Ausnahme: {fehler}"
+            check(f"allokation({name!r}) wirft nicht und liefert einen Grund",
+                  ok, str(info))
+        # Die Anzeige haengt NICHT an der Freischaltungsliste: der globale
+        # Weg zeigt spaeter eine Uebersicht ueber Bots, die (noch) nicht
+        # schliessbar sind, und auch dort soll die Groesse dastehen statt
+        # eines Fehlers. Geprueft mit einem Namen, der ausdruecklich NICHT in
+        # SCHLIESSBARE_BOTS steht, und gegen einen echten Wert - nicht bloss
+        # dagegen, dass ueberhaupt etwas zurueckkommt.
+        _schreibe_allokation(wurzel, "noch_nicht_frei",
+                              live_params="ALLOCATION_PCT = 3\n")
+        frei_los = _MC.allokation("noch_nicht_frei")
+        check("Ein nicht freigeschalteter Bot wird trotzdem gelesen (3 % -> 0.03)",
+              "noch_nicht_frei" not in _MC.SCHLIESSBARE_BOTS
+              and frei_los["anteil"] == 0.03
+              and frei_los["quelle"] == "live_params.py", str(frei_los))
+    finally:
+        _MC.STRATEGIES_DIR = alt
+        shutil.rmtree(wurzel, ignore_errors=True)
 
 
 # ---------------------------------------------------------------------------
@@ -1314,6 +1535,7 @@ def main():
         test_nicht_freigeschalteter_bot_ueber_telegram,
         test_zweiter_bot_nur_ueber_die_liste,
         test_keine_bot_datei_wird_importiert_oder_veraendert,
+        test_allokation_wird_gelesen_nicht_geraten,
     ]
     for test in tests:
         if getattr(test, "braucht_telegram", False) and _TS is None:

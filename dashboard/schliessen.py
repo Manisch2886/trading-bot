@@ -34,7 +34,12 @@ Absicherungen der ersten nicht.
 Hier steht deshalb nur, was die Oberflaeche wirklich braucht:
   1. die Liste der schliessbaren Positionen samt Live-Kurs und PnL,
   2. der Zustand zwischen Zusammenfassung und Ausfuehrung,
-  3. die Uebersetzung in JSON-taugliche Werte.
+  3. die Uebersetzung in JSON-taugliche Werte,
+  4. die Kennzahlen der Anzeige - Durchschnitt, Spannweite und der nach
+     Positionsgroesse GEWICHTETE Durchschnitt (siehe gewichteter_pnl()).
+     Anzeigelogik, kein Schreibweg; die Positionsgroesse selbst wird nicht
+     hier gefuehrt, sondern je Bot aus dessen eigenen Dateien gelesen
+     (manual_close.allokation()).
 
 ------------------------------------------------------------------------------
 Warum die Absicherung SERVERSEITIG liegt - auch bei nur einem Tap
@@ -410,6 +415,126 @@ def ausfuehren(bot_name: str, kennung, benutzer) -> dict:
 
 
 # ---------------------------------------------------------------------------
+# Kapitalgewichteter Durchschnitt der Einzelrenditen
+# ---------------------------------------------------------------------------
+# Bis hierher zeigte das Dashboard bewusst NUR den einfachen Durchschnitt je
+# Position und die Spannweite - mit der Begruendung, dass eine Summe von
+# Trade-Prozenten keine Portfolio-Rendite ist (Methodik-Grundsatz 2). Das war
+# richtig, hat das Problem aber vermieden statt geloest: unterschiedlich grosse
+# Positionen gleich zu gewichten ist genauso falsch wie sie zu addieren, nur
+# unauffaelliger. Ein Bot mit 2 % Positionsgroesse zaehlt im einfachen
+# Durchschnitt genauso viel wie einer mit 10 %.
+#
+# Die Rechnung hier ist der gewichtete Durchschnitt:
+#
+#     Summe(Allokation_i * PnL_i) / Summe(Allokation_i)
+#
+# WAS DIESE ZAHL IST: die mittlere Rendite der geschlossenen Positionen, je
+# Position gewichtet mit der Positionsgroesse, die der jeweilige Bot in seiner
+# Backtest-Konfiguration annimmt. Bei einem einzelnen Bot ist sie deshalb
+# zwangslaeufig gleich dem einfachen Durchschnitt (alle Positionen tragen
+# dieselbe Allokation); erst ueber mehrere Bots mit 10 %, 5 % und 2 % trennen
+# sich die beiden Zahlen.
+#
+# WAS SIE NICHT IST, und das gehoert an jede Anzeige dazu:
+#   * keine echte Kapitalbindung - die Allokation ist eine Annahme aus der
+#     Backtest-Konfiguration, forward_test.py trackt bei keinem Bot Kapital.
+#     Genau diese Verwechslung von Backtest-Annahme und Live-Fakt sollte
+#     Grundsatz 2 verhindern; sie wird hier nicht durch Weglassen der Zahl
+#     vermieden, sondern durch Beschriftung.
+#   * keine Portfolio-Rendite - Zinseszins und gleichzeitig gebundenes Kapital
+#     stecken allein in der ereignisbasierten equity_simulation.py.
+#
+# WARUM DURCH DIE SUMME DER GEWICHTE GETEILT WIRD: ohne diesen Nenner waere
+# Summe(Allokation_i * PnL_i) die Wirkung auf das Gesamtkapital in
+# Prozentpunkten - auch eine sinnvolle Zahl, aber eine andere, und eine, die
+# mit der Zahl der Positionen waechst. Im Crash-Fall waere das wieder die
+# grosse, beeindruckende Zahl, die niemand richtig liest. Gezeigt wird deshalb
+# eine Rendite, keine Summe.
+
+GEWICHTUNG_GRUNDLAGE = ("angenommene Positionsgroesse je Bot (ALLOCATION_PCT "
+                        "aus der Backtest-Konfiguration)")
+
+GEWICHTUNG_HINWEIS = (
+    "Gewichtet nach der Positionsgroesse, die JE BOT in dessen "
+    "Backtest-Konfiguration angenommen ist (ALLOCATION_PCT aus live_params.py "
+    "bzw. equity_simulation.py). Das ist eine Annahme, KEINE live getrackte "
+    "Kapitalbindung - forward_test.py fuehrt bei keinem Bot Kapital oder "
+    "Positionsgroessen. Es ist auch keine Portfolio-Rendite: Zinseszins und "
+    "gleichzeitig gebundenes Kapital stecken allein in equity_simulation.py.")
+
+
+def _anzeigename(bot_name: str) -> str:
+    eintrag = manual_close.SCHLIESSBARE_BOTS.get(bot_name) or {}
+    return eintrag.get("anzeigename", bot_name)
+
+
+def gewichteter_pnl(beitraege) -> dict:
+    """Der gewichtete Durchschnitt ueber (bot_name, pnl_pct)-Paare.
+
+    Funktioniert fuer EINEN Bot wie fuer beliebig viele - der bot-weite
+    Notfallweg gibt Paare eines Bots hinein, der globale Weg die aller Bots.
+    Eine zweite Rechnung fuer den bot-uebergreifenden Fall gibt es
+    ausdruecklich nicht: sie waere die Stelle, an der die Gewichtung spaeter
+    nur noch auf einem der beiden Wege stimmt.
+
+    Bots OHNE dokumentierte Positionsgroesse werden nicht geschaetzt und nicht
+    stillschweigend uebergangen, sondern aus der gewichteten Zahl
+    herausgenommen und unter `nicht_gewichtbar` mit Grund, Anzahl und ihrem
+    eigenen ungewichteten Durchschnitt ausgewiesen. Ein ersatzweise
+    angenommener Standardwert waere eine erfundene Zahl in einer Anzeige, nach
+    der im Zweifel schnell entschieden wird.
+
+    `ungewichtet_schnitt_pct` ist der einfache Durchschnitt ueber GENAU
+    DIESELBEN Positionen, die auch in die gewichtete Zahl eingehen. Nur so
+    zeigt der Vergleich der beiden Zahlen die Wirkung der Gewichtung und nicht
+    zusaetzlich den Unterschied der Grundmenge; der Durchschnitt ueber ALLE
+    Positionen steht unveraendert daneben in `pnl_schnitt_pct`.
+    """
+    nach_bot = {}
+    for bot_name, pnl in beitraege:
+        if pnl is None:
+            continue
+        nach_bot.setdefault(bot_name, []).append(float(pnl))
+
+    gewichte, nicht_gewichtbar, einbezogen = [], [], []
+    zaehler = nenner = 0.0
+    for bot_name in sorted(nach_bot):
+        werte = nach_bot[bot_name]
+        info = manual_close.allokation(bot_name)
+        if info["anteil"] is None:
+            nicht_gewichtbar.append({
+                "bot": bot_name,
+                "anzeigename": _anzeigename(bot_name),
+                "grund": info["grund"],
+                "anzahl": len(werte),
+                "pnl_schnitt_pct": round(sum(werte) / len(werte), 2),
+            })
+            continue
+        gewichte.append({
+            "bot": bot_name,
+            "anzeigename": _anzeigename(bot_name),
+            "allokation_pct": info["prozent"],
+            "quelle": info["quelle"],
+            "anzahl": len(werte),
+        })
+        zaehler += info["anteil"] * sum(werte)
+        nenner += info["anteil"] * len(werte)
+        einbezogen.extend(werte)
+
+    return {
+        "wert_pct": round(zaehler / nenner, 2) if nenner else None,
+        "ungewichtet_schnitt_pct": (round(sum(einbezogen) / len(einbezogen), 2)
+                                     if einbezogen else None),
+        "anzahl": len(einbezogen),
+        "grundlage": GEWICHTUNG_GRUNDLAGE,
+        "hinweis": GEWICHTUNG_HINWEIS,
+        "gewichte": gewichte,
+        "nicht_gewichtbar": nicht_gewichtbar,
+    }
+
+
+# ---------------------------------------------------------------------------
 # Notfallweg: ALLE offenen Positionen eines Bots
 # ---------------------------------------------------------------------------
 # Warum hier ZWEI Klick-Bestaetigungen stehen, waehrend der Einzelweg mit
@@ -523,18 +648,24 @@ def alle_vorbereiten(bot_name: str, kurse: dict) -> dict:
         "positionen": zeilen,
         "anzahl": len(schliessbar),
         "anzahl_gesamt": len(zeilen),
-        # KEINE Summe der Prozente. Die waere keine Portfolio-Rendite,
-        # sondern eine Zahl ohne Bedeutung - in diesem Projekt eine
-        # mehrfach aufgetretene Fehlerquelle und als Methodik-Grundsatz im
-        # Uebergabeprotokoll (Abschnitt 7, Punkt 2) ausdruecklich
-        # festgehalten. Belastbar waere nur eine Rechnung ueber die
-        # Positionsgroesse, und die steht als Backtest-Annahme in
-        # equity_simulation.py - sie hier hereinzuziehen hiesse, eine
-        # Backtest-Groesse als Live-Aussage auszugeben. Deshalb: der
-        # Durchschnitt je Position, dazu bestes und schlechtestes Ergebnis.
+        # WEITERHIN KEINE Summe der Prozente: die waere keine
+        # Portfolio-Rendite, sondern eine Zahl ohne Bedeutung - in diesem
+        # Projekt eine mehrfach aufgetretene Fehlerquelle und als
+        # Methodik-Grundsatz im Uebergabeprotokoll (Abschnitt 7, Punkt 2)
+        # festgehalten. Gezeigt wird der Durchschnitt je Position, dazu
+        # bestes und schlechtestes Ergebnis.
         "pnl_schnitt_pct": round(sum(werte) / len(werte), 2) if werte else None,
         "pnl_bestes_pct": max(werte) if werte else None,
         "pnl_schlechtestes_pct": min(werte) if werte else None,
+        # DAZU, nicht statt dessen: der nach Positionsgroesse gewichtete
+        # Durchschnitt. Hier stand vorher die Begruendung, eine Rechnung ueber
+        # die Positionsgroesse hereinzuziehen hiesse, eine Backtest-Annahme als
+        # Live-Aussage auszugeben. Das bleibt richtig - aber es trifft nur zu,
+        # wenn man die Zahl unbeschriftet hinstellt. Beschriftet loest sie das
+        # Problem, das der einfache Durchschnitt nur verdeckt: er gewichtet 2 %
+        # und 10 % Positionsgroesse gleich. Beide Zahlen stehen deshalb
+        # nebeneinander, damit der Unterschied selbst sichtbar ist.
+        "pnl_gewichtet": gewichteter_pnl((bot_name, z["pnl_pct"]) for z in zeilen),
         "gueltig_sekunden": GUELTIG_SEKUNDEN,
     }
 
@@ -633,6 +764,13 @@ def alle_ausfuehren(bot_name: str, kennung, benutzer) -> dict:
         "anzahl_fehlgeschlagen": len(fehlgeschlagen),
         "anzahl_uebersprungen": len(uebersprungen),
         "pnl_schnitt_pct": round(sum(werte) / len(werte), 2) if werte else None,
+        # Auch im ERGEBNIS, nicht nur in der Uebersicht: die Uebersicht nennt
+        # Schaetzungen, das Ergebnis die tatsaechlich geschriebenen Werte. Nur
+        # eine der beiden Stellen zu beschriften war in diesem Projekt schon
+        # zweimal der Grund, warum eine Pruefung gruen war, obwohl die Haelfte
+        # fehlte.
+        "pnl_gewichtet": gewichteter_pnl((bot_name, g["pnl_pct"])
+                                          for g in geschlossen),
     }
     ergebnis["meldung"] = _alle_meldung(ergebnis)
     logger.info(f"Notfall-Schliessen beendet: {ergebnis['meldung']}")
