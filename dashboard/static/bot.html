@@ -62,39 +62,27 @@
      Verdunklung bringt der Browser mit. Bei einem Fenster, das eine
      Live-Datenbank ändert, ist "der Fokus liegt noch dahinter" kein
      Schönheitsfehler.
-     Beide Stufen liegen hier nebeneinander im Markup und werden per
-     hidden umgeschaltet - so gibt es keinen Moment, in dem der Dialog
-     leer ist, während neues HTML gebaut wird. -->
+     EIN Schritt: die Zusammenfassung ist bereits der vorbereiten-Aufruf,
+     der Knopf darunter ist der ausführen-Aufruf. Die frühere zweite Stufe
+     mit Texteingabe ist entfallen - die Absicherung ist die Vorgangs-
+     Kennung auf dem Server, nicht der getippte Text. -->
 <dialog id="schliessdialog" class="schliessen-dialog"
         aria-labelledby="dialog-titel">
   <div class="inhalt">
     <h2 id="dialog-titel">Position schließen?</h2>
-    <div class="stufe" id="dialog-stufe">Schritt 1 von 2</div>
 
     <div id="dialog-fehler" class="dialog-fehler" hidden></div>
 
-    <div id="dialog-stufe1">
-      <div class="dialog-zeilen" id="dialog-zusammenfassung"></div>
-      <div class="dialog-warnung" id="dialog-warnung"></div>
-      <div class="dialog-knoepfe">
-        <button type="button" class="knopf" id="dialog-abbrechen1">Abbrechen</button>
-        <button type="button" class="knopf gefahr" id="dialog-ja">Ja, schließen</button>
-      </div>
-    </div>
-
-    <div id="dialog-stufe2" hidden>
-      <div class="dialog-zeilen" id="dialog-zusammenfassung2"></div>
-      <p class="dialog-warnung" id="dialog-aufforderung"></p>
-      <input type="text" class="dialog-eingabe" id="dialog-eingabe"
-             autocomplete="off" autocapitalize="off" autocorrect="off"
-             spellcheck="false" aria-describedby="dialog-frist">
-      <p class="dialog-frist" id="dialog-frist"></p>
-      <div class="dialog-knoepfe">
-        <button type="button" class="knopf" id="dialog-abbrechen2">Abbrechen</button>
-        <button type="button" class="knopf gefahr" id="dialog-ausfuehren" disabled>
-          Endgültig schließen
-        </button>
-      </div>
+    <div class="dialog-zeilen" id="dialog-zusammenfassung"></div>
+    <div class="dialog-warnung" id="dialog-warnung"></div>
+    <p class="dialog-frist" id="dialog-frist"></p>
+    <div class="dialog-knoepfe">
+      <button type="button" class="knopf" id="dialog-abbrechen">Abbrechen</button>
+      <!-- Startet gesperrt: erst wenn der vorbereiten-Aufruf zurück ist,
+           gibt es überhaupt eine Kennung, mit der sich schließen lässt. -->
+      <button type="button" class="knopf gefahr" id="dialog-ja" disabled>
+        Ja, schließen
+      </button>
     </div>
   </div>
 </dialog>
@@ -166,8 +154,9 @@ function zeichnePositionen() {
     fussnote.textContent =
       "Der Schließen-Knopf trägt den Ausstieg direkt in die Live-Datenbank "
       + "dieses Bots ein (Vermerk manual_close), zum zuletzt angezeigten Kurs. "
-      + "Dafür sind zwei Bestätigungen nötig, und im Dashboard lässt es sich "
-      + "nicht rückgängig machen. Freigeschaltet ist bisher nur dieser eine Bot.";
+      + "Es erscheint vorher eine Zusammenfassung; ein Tap darauf schreibt, "
+      + "und im Dashboard lässt es sich nicht rückgängig machen. "
+      + "Freigeschaltet ist bisher nur dieser eine Bot.";
     fussnote.hidden = false;
   } else {
     fussnote.hidden = true;
@@ -196,23 +185,24 @@ function zeichne(detail) {
 }
 
 /* ------------------------------------------------------------------------
-   Manuelles Schließen - zwei Stufen, beide serverseitig abgesichert
+   Manuelles Schließen - EIN Tap, serverseitig abgesichert
    ------------------------------------------------------------------------
    Dieser Dialog ist die Bequemlichkeit, nicht die Sicherung: die eigentliche
    Absicherung sind die zwei getrennten Aufrufe (vorbereiten/ausführen) und
    die Prüfungen in dashboard/schliessen.py und notifications/manual_close.py.
    Wer die API direkt aufruft, kommt an diesem Dialog vorbei - aber nicht an
-   der Vorgangs-Kennung, der Frist und dem Bestätigungstext.
+   der Vorgangs-Kennung und ihrer Frist.
 
-   Der Vorgang entsteht bereits beim Öffnen des Dialogs (Stufe 1). Das ist
-   ungefährlich - eine Kennung allein schreibt nichts - und hat den Vorteil,
-   dass die Zusammenfassung genau den Kurs zeigt, der später geschrieben
-   wird: derselbe, den der Server sich in diesem Moment gemerkt hat. */
+   Der Vorgang entsteht bereits beim Öffnen des Dialogs. Das ist
+   ungefährlich - eine Kennung allein schreibt nichts - und hat zwei
+   Vorteile: die Zusammenfassung zeigt genau den Kurs, der später
+   geschrieben wird (derselbe, den der Server sich in diesem Moment gemerkt
+   hat), und der eine Tap darunter braucht keinen zweiten Schritt mehr. */
 
 const dialog = document.getElementById("schliessdialog");
 let vorgang = null;        // Antwort von /vorbereiten
 let fristUhr = null;       // Intervall für den Countdown
-let laeuft = false;        // verhindert Doppelklicks auf "Endgültig schließen"
+let laeuft = false;        // verhindert Doppelklicks auf "Ja, schließen"
 
 function dialogFehler(text) {
   const feld = document.getElementById("dialog-fehler");
@@ -236,28 +226,26 @@ function zusammenfassungPaare(v) {
   ];
 }
 
-function stufeZeigen(nummer) {
-  document.getElementById("dialog-stufe1").hidden = nummer !== 1;
-  document.getElementById("dialog-stufe2").hidden = nummer !== 2;
-  document.getElementById("dialog-stufe").textContent = `Schritt ${nummer} von 2`;
-}
-
 function fristStoppen() {
   if (fristUhr) { clearInterval(fristUhr); fristUhr = null; }
 }
 
+/* Der Countdown bleibt, obwohl nur noch ein Tap nötig ist: der Vorgang
+   verfällt serverseitig weiterhin nach 120 Sekunden, und der geschriebene
+   Kurs ist der aus der Zusammenfassung. Wer den Dialog offen liegen lässt,
+   soll sehen, dass sein Tap nicht mehr gilt - statt eine Absage zu
+   bekommen, die er sich nicht erklären kann. */
 function fristStarten(sekunden) {
   fristStoppen();
   const ende = Date.now() + sekunden * 1000;
   const anzeige = document.getElementById("dialog-frist");
-  const knopf = document.getElementById("dialog-ausfuehren");
+  const knopf = document.getElementById("dialog-ja");
   const tick = () => {
     const rest = Math.max(0, Math.ceil((ende - Date.now()) / 1000));
     if (rest === 0) {
       fristStoppen();
       anzeige.textContent = "Die Bestätigung ist abgelaufen. Bitte von vorn beginnen.";
       knopf.disabled = true;
-      document.getElementById("dialog-eingabe").disabled = true;
       return;
     }
     anzeige.textContent = `Gültig noch ${rest} Sekunden.`;
@@ -268,7 +256,6 @@ function fristStarten(sekunden) {
 
 async function starteSchliessen(tradeId) {
   dialogFehler("");
-  stufeZeigen(1);
   vorgang = null;
   fristStoppen();
   // Zuruecksetzen, falls der vorherige Versuch an dieser Stelle abbrach -
@@ -277,6 +264,7 @@ async function starteSchliessen(tradeId) {
   document.getElementById("dialog-zusammenfassung").innerHTML =
     '<div class="gedaempft">Hole aktuellen Kurs …</div>';
   document.getElementById("dialog-warnung").textContent = "";
+  document.getElementById("dialog-frist").textContent = "";
   if (!dialog.open) dialog.showModal();
 
   try {
@@ -290,39 +278,19 @@ async function starteSchliessen(tradeId) {
     return;
   }
 
-  document.getElementById("dialog-ja").disabled = false;
   zeilen("dialog-zusammenfassung", zusammenfassungPaare(vorgang));
   /* Der Warntext steht hier und nicht im Backend - wie jede andere
      Beschriftung des Dashboards. */
   document.getElementById("dialog-warnung").textContent =
-    "Das schreibt den Ausstieg direkt in die Live-Datenbank des Bots. "
+    "Ein Tap schreibt den Ausstieg direkt in die Live-Datenbank des Bots. "
     + "Im Dashboard lässt sich das nicht rückgängig machen.";
-}
-
-function zurZweitenStufe() {
-  if (!vorgang) return;
-  stufeZeigen(2);
-  zeilen("dialog-zusammenfassung2", zusammenfassungPaare(vorgang));
-  document.getElementById("dialog-aufforderung").textContent =
-    `Letzter Schritt: tippe genau ${vorgang.bestaetigungstext} (Großbuchstaben) ein, `
-    + `um ${vorgang.symbol} zum Kurs ${zahl(vorgang.aktueller_preis)} zu schließen.`;
-  const eingabe = document.getElementById("dialog-eingabe");
-  eingabe.value = "";
-  eingabe.disabled = false;
-  eingabe.placeholder = vorgang.bestaetigungstext;
-  document.getElementById("dialog-ausfuehren").disabled = true;
   fristStarten(vorgang.gueltig_sekunden);
-  eingabe.focus();
+  /* Erst jetzt freigeben - vorher gibt es keine Kennung. Der Fokus bleibt
+     bewusst auf "Abbrechen": der Dialog soll nicht mit einem versehentlich
+     ausgelösten Schreibzugriff aufgehen. */
+  document.getElementById("dialog-ja").disabled = false;
+  document.getElementById("dialog-abbrechen").focus();
 }
-
-/* Der Knopf wird erst freigegeben, wenn der Text exakt stimmt - inklusive
-   Groß-/Kleinschreibung, genau wie der Server prüft. Das ist Bequemlichkeit,
-   keine Sicherung: der Server prüft denselben Text noch zweimal
-   (dashboard/schliessen.py und manual_close.py). */
-document.getElementById("dialog-eingabe").addEventListener("input", (e) => {
-  const stimmt = vorgang && e.target.value.trim() === vorgang.bestaetigungstext;
-  document.getElementById("dialog-ausfuehren").disabled = !stimmt || !fristUhr;
-});
 
 async function abbrechen() {
   fristStoppen();
@@ -343,14 +311,12 @@ async function abbrechen() {
 async function ausfuehren() {
   if (!vorgang || laeuft) return;
   laeuft = true;
-  const knopf = document.getElementById("dialog-ausfuehren");
-  knopf.disabled = true;
+  document.getElementById("dialog-ja").disabled = true;
   dialogFehler("");
   try {
     const ergebnis = await sende(
       `/api/bots/${encodeURIComponent(name)}/schliessen/ausfuehren`,
-      { vorgang: vorgang.vorgang,
-        bestaetigung: document.getElementById("dialog-eingabe").value.trim() });
+      { vorgang: vorgang.vorgang });
     fristStoppen();
     vorgang = null;
     dialog.close();
@@ -362,22 +328,20 @@ async function ausfuehren() {
     try { await ladeMitKursen(); } catch (e) { /* dito */ }
     try { await ladeVerlauf(); } catch (e) { /* dito */ }
   } catch (e) {
-    /* Der Vorgang ist serverseitig in jedem Fall verbraucht - auch bei
-       falschem Text. Deshalb hier keinen zweiten Versuch anbieten,
-       sondern zurück auf Anfang. */
+    /* Der Vorgang ist serverseitig in jedem Fall verbraucht - auch wenn
+       der Versuch scheiterte. Deshalb hier keinen zweiten Tap anbieten,
+       sondern zurück auf Anfang: der Knopf bleibt gesperrt. */
     vorgang = null;
     fristStoppen();
+    document.getElementById("dialog-frist").textContent = "";
     dialogFehler(e.message);
-    document.getElementById("dialog-eingabe").disabled = true;
   } finally {
     laeuft = false;
   }
 }
 
-document.getElementById("dialog-ja").addEventListener("click", zurZweitenStufe);
-document.getElementById("dialog-abbrechen1").addEventListener("click", abbrechen);
-document.getElementById("dialog-abbrechen2").addEventListener("click", abbrechen);
-document.getElementById("dialog-ausfuehren").addEventListener("click", ausfuehren);
+document.getElementById("dialog-ja").addEventListener("click", ausfuehren);
+document.getElementById("dialog-abbrechen").addEventListener("click", abbrechen);
 
 /* Esc-Taste und Klick auf den Hintergrund schließen den Dialog am
    Abbrechen-Knopf vorbei - der Vorgang muss trotzdem verworfen werden. */

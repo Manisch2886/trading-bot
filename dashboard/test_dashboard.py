@@ -33,6 +33,7 @@ Nutzung:  python3 dashboard/test_dashboard.py
 
 import ast
 import hashlib
+import inspect
 import json
 import logging
 import os
@@ -630,10 +631,17 @@ def _vorbereiten(basis, bot="t3_supertrend", trade_id=1):
                  {"trade_id": trade_id})
 
 
-def _ausfuehren(basis, vorgang, text="BESTAETIGEN", bot="t3_supertrend",
-                 token=TEST_TOKEN):
+def _ausfuehren(basis, vorgang, bot="t3_supertrend", token=TEST_TOKEN,
+                 zusatz=None):
+    """Der Ausfuehren-Aufruf, wie das Frontend ihn schickt: NUR die
+    Vorgangs-Kennung. `zusatz` dient den Tests, die belegen, dass weitere
+    Felder im Koerper nichts aendern - insbesondere, dass ein frueher
+    noetiges "bestaetigung" weder noch gebraucht noch ausgewertet wird."""
+    koerper = {"vorgang": vorgang}
+    if zusatz:
+        koerper.update(zusatz)
     return post(basis, f"/api/bots/{bot}/schliessen/ausfuehren",
-                 {"vorgang": vorgang, "bestaetigung": text}, token=token)
+                 koerper, token=token)
 
 
 def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
@@ -663,8 +671,14 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         check("PnL wird nach der Bot-Formel geschaetzt (100 -> 110 = +9.70)",
               btc["pnl_pct"] == 9.7, str(btc["pnl_pct"]))
         check("Mit Kurs ist die Position schliessbar", btc["schliessbar_jetzt"] is True)
-        check("Der Bestaetigungstext kommt aus dem geteilten Kern",
-              antwort["bestaetigungstext"] == manual_close.BESTAETIGUNGSTEXT)
+        # Das Frontend braucht den Bestaetigungstext nicht mehr, also wird er
+        # auch nicht mehr mitgeschickt. Ein Feld, das niemand liest, waere
+        # eine Einladung, es doch wieder zu benutzen.
+        check("Der Bestaetigungstext wird nicht mehr ans Frontend gegeben",
+              "bestaetigungstext" not in antwort, str(sorted(antwort))[:120])
+        check("Die Frist kommt weiterhin aus dem geteilten Kern",
+              antwort["gueltig_sekunden"]
+              == manual_close.BESTAETIGUNG_GUELTIG_SEKUNDEN)
 
         ohne_kurse = get(basis, "/api/bots/t3_supertrend/schliessbare-positionen").json()
         check("Ohne live=1 keine Kurse und damit kein Knopf",
@@ -691,13 +705,23 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         nichts_geschrieben("Nach allen Leseabfragen")
 
         # --- 8c) Ein einzelner Aufruf kann niemals schreiben --------------
+        # Das ist die Absicherung, die den Wegfall der Texteingabe traegt:
+        # ohne vorheriges `vorbereiten` gibt es keine Kennung, und ohne
+        # Kennung schreibt kein Aufruf - egal was sonst im Koerper steht.
         antwort = _ausfuehren(basis, "frei-erfundene-kennung")
         check("Ausfuehren ohne vorherigen Vorgang wird abgelehnt (409)",
               antwort.status_code == 409, str(antwort.status_code))
-        for koerper in ({}, {"vorgang": None}, {"bestaetigung": "BESTAETIGEN"}):
+        for koerper in ({}, {"vorgang": None}, {"bestaetigung": "BESTAETIGEN"},
+                         {"vorgang": "", "bestaetigung": "BESTAETIGEN"},
+                         {"trade_id": 1}):
             antwort = post(basis, "/api/bots/t3_supertrend/schliessen/ausfuehren", koerper)
             check(f"Ausfuehren mit {koerper} wird abgelehnt",
                   antwort.status_code == 409, str(antwort.status_code))
+        check("Auch ein mitgeschicktes 'bestaetigung' oeffnet keinen Weg ohne "
+              "Kennung - der Text ist nicht mehr die Absicherung, die "
+              "Kennung ist es",
+              post(basis, "/api/bots/t3_supertrend/schliessen/ausfuehren",
+                   {"bestaetigung": "BESTAETIGEN"}).status_code == 409)
         nichts_geschrieben("Nach Aufrufen ohne Vorgang")
 
         # --- 8d) Ohne gueltiges Token --------------------------------------
@@ -727,41 +751,47 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         check("Die Datenbanken der uebrigen Bots sind unveraendert",
               _pruefsummen(andere) == andere_vorher)
 
-        # --- 8f) Abbruch in beiden Stufen ----------------------------------
-        # Stufe 1: der Vorgang entsteht beim Oeffnen des Dialogs.
+        # --- 8f) Abbruch -------------------------------------------------
+        # Es gibt nur noch EINEN Abbruchweg: der Vorgang entsteht beim
+        # Oeffnen des Dialogs, und Abbrechen/Esc/Klick daneben verwerfen ihn.
+        # Frueher war derselbe Aufruf zweimal zu pruefen, einmal je Stufe.
         eins = _vorbereiten(basis).json()
         check("Vorbereiten liefert Kennung, Kurs und geschaetzten PnL",
               eins["vorgang"] and eins["aktueller_preis"] == 110.0
               and eins["pnl_pct"] == 9.7)
         antwort = post(basis, "/api/bots/t3_supertrend/schliessen/abbrechen",
                         {"vorgang": eins["vorgang"]})
-        check("Abbrechen in Stufe 1 wird bestaetigt", antwort.status_code == 200)
+        check("Abbrechen wird bestaetigt", antwort.status_code == 200)
         check("Danach ist die Kennung wertlos",
               _ausfuehren(basis, eins["vorgang"]).status_code == 409)
-        nichts_geschrieben("Nach Abbruch in Stufe 1")
+        nichts_geschrieben("Nach Abbruch")
 
-        # Stufe 2: derselbe Weg, nur nachdem der Nutzer "Ja, schliessen"
-        # gedrueckt hat - fuer den Server ist das derselbe Vorgang, der
-        # Unterschied liegt allein in der Oberflaeche.
-        zwei = _vorbereiten(basis).json()
-        post(basis, "/api/bots/t3_supertrend/schliessen/abbrechen",
-             {"vorgang": zwei["vorgang"]})
-        check("Abbruch in Stufe 2 macht die Kennung ebenso wertlos",
-              _ausfuehren(basis, zwei["vorgang"]).status_code == 409)
-        nichts_geschrieben("Nach Abbruch in Stufe 2")
-
-        # --- 8g) Falscher Bestaetigungstext --------------------------------
-        for text in ("bestaetigen", "BESTAETIGE", "", "ja", "BESTÄTIGEN", None):
-            drei = _vorbereiten(basis).json()
-            antwort = _ausfuehren(basis, drei["vorgang"], text=text)
-            check(f"Text {text!r} wird abgelehnt", antwort.status_code == 409,
-                  str(antwort.status_code))
-            check(f"Text {text!r}: der Vorgang ist danach verbraucht",
-                  _ausfuehren(basis, drei["vorgang"]).status_code == 409)
-        nichts_geschrieben("Nach allen falschen Bestaetigungstexten")
-        check("Gegenprobe: der EXAKTE Text kaeme durch - sonst waere oben "
-              "nur belegt, dass immer abgelehnt wird",
+        # --- 8g) Kein Bestaetigungstext mehr - aber nur im Dashboard -------
+        # Die Texteingabe ist aus dem Dashboard-Weg entfernt (ein Tap statt
+        # zwei). Geprueft wird hier beides: dass der Weg sie wirklich nicht
+        # mehr verlangt, UND dass der geteilte Kern sie unveraendert weiter
+        # verlangt - sonst haette diese Aenderung die Telegram-Variante
+        # stillschweigend mit aufgeweicht, die ihre zwei Stufen behaelt.
+        check("Der Dashboard-Weg nimmt gar kein Bestaetigungsfeld mehr an",
+              "bestaetigung" not in inspect.signature(
+                  schliessen.ausfuehren).parameters,
+              str(inspect.signature(schliessen.ausfuehren)))
+        quelltext_app = open(os.path.join(DIR, "app.py"), encoding="utf-8").read()
+        check("Der Endpunkt liest kein 'bestaetigung' mehr aus dem Koerper",
+              'get("bestaetigung")' not in quelltext_app)
+        check("Der Kern verlangt den Text unveraendert weiter (Telegram "
+              "behaelt seine zwei Stufen)",
               manual_close.BESTAETIGUNGSTEXT == "BESTAETIGEN")
+        try:
+            manual_close.schliesse_position(
+                "t3_supertrend", 1, 110.0, "test", "falscher-text",
+                quelle=manual_close.QUELLE_DASHBOARD)
+            kern_lehnt_ab = False
+        except manual_close.SchliessenNichtMoeglich as fehler:
+            kern_lehnt_ab = "Bestaetigungstext" in str(fehler)
+        check("Ein direkter Kern-Aufruf mit falschem Text schreibt weiterhin "
+              "nichts", kern_lehnt_ab)
+        nichts_geschrieben("Nach dem Kern-Aufruf mit falschem Text")
 
         # --- 8h) Abgelaufene Bestaetigung ----------------------------------
         vier = _vorbereiten(basis).json()
@@ -831,9 +861,26 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
             halter.wait(timeout=60)
         nichts_geschrieben("Nach dem Versuch gegen eine gesperrte Datenbank")
 
+        # Die Sperre ist jetzt weg - die Position waere wieder schliessbar.
+        # Genau deshalb ist DIES die scharfe Stelle fuer die Einmaligkeit der
+        # Kennung: haette der gescheiterte Versuch sie nicht verbraucht,
+        # gelaenge der zweite Tap jetzt und wuerde schreiben. Der Grund muss
+        # mitgeprueft werden, nicht nur der Statuscode - sonst waere dieser
+        # Test auch dann gruen, wenn er an etwas anderem scheitert.
+        zweiter_tap = _ausfuehren(basis, fuenf["vorgang"])
+        check("Ein zweiter Tap auf dieselbe Kennung gelingt nicht, obwohl die "
+              "Sperre weg ist", zweiter_tap.status_code == 409,
+              str(zweiter_tap.status_code) + " " + zweiter_tap.text[:120])
+        check("Und zwar ausdruecklich, WEIL die Kennung verbraucht ist",
+              "Keine gueltige Bestaetigung offen" in zweiter_tap.json()["detail"],
+              zweiter_tap.json()["detail"][:90])
+        nichts_geschrieben("Nach dem zweiten Tap auf eine verbrauchte Kennung")
+
         # --- 8k) Der Cronjob kommt waehrend der Rueckfrage zuvor -----------
-        # Das realistischste Szenario: zwischen "Ja, schliessen" und dem
-        # getippten Text vergehen Sekunden bis Minuten.
+        # Das realistischste Szenario: zwischen dem Oeffnen der
+        # Zusammenfassung und dem Tap darauf vergehen Sekunden bis Minuten.
+        # Mit nur noch einem Tap ist das Fenster kleiner als vorher, aber es
+        # ist nicht weg - die Frist von 120 Sekunden gilt unveraendert.
         sechs = _vorbereiten(basis, trade_id=2).json()
         bot_conn = sqlite3.connect(db_t3)
         bot_conn.execute(
@@ -855,11 +902,34 @@ def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
         zeile2 = [z for z in zeilen(db_t3) if z["id"] == 2][0]
         check("result ist weiterhin 'stop_loss', nicht 'manual_close'",
               zeile2["result"] == "stop_loss" and zeile2["exit_price"] == 190.0)
+        # Dieser Versuch ist durch `schliessen.ausfuehren` gelaufen und hat
+        # die Kennung damit verbraucht - ein zweiter Tap auf denselben
+        # Vorgang findet nichts mehr vor. Das ist die Einmaligkeit, die
+        # frueher zusaetzlich am falschen Text haengen blieb.
+        wieder = _ausfuehren(basis, sechs["vorgang"])
+        check("Die Kennung ist nach dem gescheiterten Versuch verbraucht",
+              wieder.status_code == 409, str(wieder.status_code))
+        # Auch hier der GRUND: ohne diese Zeile waere der Test gruen, weil
+        # die Position ohnehin nicht mehr offen ist - die Einmaligkeit der
+        # Kennung waere ungeprueft. Genau so ist die Mutationsprobe
+        # "Kennung ueberlebt einen Fehlversuch" zuerst durchgerutscht.
+        check("Und zwar WEIL die Kennung weg ist, nicht weil die Position "
+              "geschlossen ist",
+              "Keine gueltige Bestaetigung offen" in wieder.json()["detail"],
+              wieder.json()["detail"][:90])
 
         # --- 8l) Der vollstaendige, erfolgreiche Weg -----------------------
+        # EIN Aufruf mit der Kennung - kein Bestaetigungstext. Genau das ist
+        # der "ein Tap"-Nachweis: wuerde irgendeine Schicht den Text noch
+        # verlangen, schlaege dieser Abschnitt fehl. Zusaetzlich wird ein
+        # FALSCHER Text mitgeschickt; er muss wirkungslos sein, sonst wird
+        # er doch noch irgendwo ausgewertet.
         sieben = _vorbereiten(basis, trade_id=1).json()
-        antwort = _ausfuehren(basis, sieben["vorgang"])
-        check("Der vollstaendige Weg gelingt", antwort.status_code == 200,
+        antwort = _ausfuehren(basis, sieben["vorgang"],
+                               zusatz={"bestaetigung": "voelliger-unsinn"})
+        check("Ein einzelner Tap (nur Kennung) gelingt - auch mit falschem "
+              "Text im Koerper, der schlicht nicht mehr gelesen wird",
+              antwort.status_code == 200,
               str(antwort.status_code) + " " + antwort.text[:120])
         ergebnis = antwort.json()
         check("Antwort nennt Symbol, Ausstiegskurs, PnL und den Vermerk",
@@ -929,27 +999,47 @@ def teste_schliessen_frontend():
 
     check("Es gibt einen echten <dialog> statt eines nachgebauten Overlays",
           "<dialog" in code and "showModal()" in code)
-    check("Zwei Stufen im Markup", 'id="dialog-stufe1"' in code
-          and 'id="dialog-stufe2"' in code)
-    check("Stufe 2 verlangt eine Texteingabe", 'id="dialog-eingabe"' in code)
-    check("Der Ausfuehren-Knopf startet gesperrt",
-          re.search(r'id="dialog-ausfuehren"[^>]*disabled', code) is not None)
+
+    # EIN Schritt: die Zusammenfassung ist schon der vorbereiten-Aufruf, der
+    # Knopf darunter der ausfuehren-Aufruf. Die frueheren zwei Stufen samt
+    # Texteingabe sind weg - und sollen nicht unbemerkt zurueckkehren.
+    check("Keine zweite Stufe mehr im Markup",
+          'id="dialog-stufe1"' not in code and 'id="dialog-stufe2"' not in code)
+    check("Keine Texteingabe mehr im Dialog",
+          'id="dialog-eingabe"' not in code and "<input" not in code)
+    check("Keine Schritt-Anzeige mehr ('Schritt 1 von 2')",
+          "von 2" not in code and 'id="dialog-stufe"' not in code)
+    check("Genau EIN Abbrechen-Knopf",
+          code.count('id="dialog-abbrechen"') == 1
+          and 'id="dialog-abbrechen1"' not in code
+          and 'id="dialog-abbrechen2"' not in code)
+    check("Der Schliessen-Knopf startet gesperrt - vor dem vorbereiten-Aufruf "
+          "gibt es keine Kennung",
+          re.search(r'id="dialog-ja"[^>]*disabled', code) is not None)
+    check("Derselbe Knopf loest jetzt das Schreiben aus",
+          'getElementById("dialog-ja").addEventListener("click", ausfuehren)'
+          in code)
     check("Esc und Klick daneben verwerfen den Vorgang ebenfalls",
           '"cancel"' in code and "abbrechen()" in code)
 
-    # Der Frontend-Vergleich ist Bequemlichkeit, nicht Sicherung - aber er
-    # muss dieselbe Regel anwenden wie der Server, sonst wirkt der Knopf
-    # freigegeben und der Server lehnt trotzdem ab.
-    check("Der Frontend-Vergleich ist case-sensitiv (===, kein toUpperCase)",
-          "=== vorgang.bestaetigungstext" in code
-          and "toUpperCase" not in code)
-    check("Der Bestaetigungstext wird vom Server geholt, nicht im Frontend "
-          "festgeschrieben", '"BESTAETIGEN"' not in code)
+    # Der Bestaetigungstext darf im Frontend nirgends mehr auftauchen -
+    # weder festgeschrieben noch aus der Serverantwort gelesen.
+    check("Der Bestaetigungstext kommt im Frontend nicht mehr vor",
+          '"BESTAETIGEN"' not in code and "bestaetigungstext" not in code)
+    check("Der Ausfuehren-Aufruf schickt nur die Kennung",
+          "bestaetigung:" not in code)
+
+    # Die Frist bleibt sichtbar: der Vorgang verfaellt serverseitig weiter
+    # nach 120 Sekunden, und ein Tap auf einen abgelaufenen Vorgang soll als
+    # solcher erkennbar sein, nicht als unerklaerliche Absage.
+    check("Der Countdown bleibt und sperrt den Knopf bei Ablauf",
+          "fristStarten(vorgang.gueltig_sekunden)" in code
+          and "abgelaufen" in code)
 
     check("Schreibende Aufrufe laufen ueber ein eigenes sende()",
           "async function sende(" in ohne_kommentare(app_js)
           and 'method: "POST"' in app_js)
-    check("Beide Schritte werden getrennt aufgerufen",
+    check("Beide Server-Aufrufe bleiben getrennt",
           "/schliessen/vorbereiten" in code and "/schliessen/ausfuehren" in code)
     check("Nach dem Schreiben wird sofort neu geladen",
           "ladeDetail()" in code.split("erfolgsmeldung")[1][:600])

@@ -441,16 +441,13 @@ dialog.schliessen-dialog {
 dialog.schliessen-dialog::backdrop { background: rgba(0, 0, 0, .6); }
 dialog.schliessen-dialog .inhalt { padding: 20px 22px 18px; }
 dialog.schliessen-dialog h2 {
-  margin: 0 0 4px;
+  /* Vorher 4px, weil darunter die Schritt-Anzeige ("Schritt 1 von 2") den
+     restlichen Abstand mitbrachte. Die ist mit der zweiten Stufe entfallen,
+     also steht der Abstand jetzt hier - sonst klebte die Zusammenfassung
+     an der Ueberschrift. */
+  margin: 0 0 16px;
   font-size: 17px;
   letter-spacing: -.01em;
-}
-dialog.schliessen-dialog .stufe {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  color: var(--gedaempft);
-  margin-bottom: 14px;
 }
 
 /* Die Zusammenfassung als Beschriftung/Wert-Paare - dieselbe Sprache wie
@@ -485,19 +482,6 @@ dialog.schliessen-dialog .stufe {
   margin: 0 0 14px;
 }
 
-.dialog-eingabe {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 11px 12px;
-  border-radius: var(--radius-klein);
-  border: 1px solid var(--rahmen-stark);
-  background: var(--hintergrund);
-  color: var(--text);
-  font-family: inherit;
-  font-size: 16px;          /* unter 16px zoomt iOS Safari beim Fokus hinein */
-  letter-spacing: .08em;
-  margin-bottom: 6px;
-}
 .dialog-frist {
   font-size: 12px;
   color: var(--gedaempft);

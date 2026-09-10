@@ -4,7 +4,8 @@ Die EINE schreibende Faehigkeit des Dashboards
 Bis zu diesem Modul war das Dashboard ausschliesslich lesend (siehe den
 Docstring von app.py und den Nachweis in test_dashboard.py). Hier kommt
 genau eine Ausnahme hinzu: eine offene Position von Hand schliessen, fuer
-genau einen Bot, nach zwei unabhaengigen Bestaetigungen.
+genau einen Bot, nach EINER Bestaetigung in der Oberflaeche - abgesichert
+ueber zwei getrennte Server-Aufrufe.
 
 ------------------------------------------------------------------------------
 Was hier NICHT steht - und warum das der Punkt ist
@@ -25,11 +26,11 @@ Absicherungen der ersten nicht.
 
 Hier steht deshalb nur, was die Oberflaeche wirklich braucht:
   1. die Liste der schliessbaren Positionen samt Live-Kurs und PnL,
-  2. der Zustand zwischen den beiden Bestaetigungen,
+  2. der Zustand zwischen Zusammenfassung und Ausfuehrung,
   3. die Uebersetzung in JSON-taugliche Werte.
 
 ------------------------------------------------------------------------------
-Warum die zweite Bestaetigung SERVERSEITIG gehalten wird
+Warum die Absicherung SERVERSEITIG liegt - auch bei nur einem Tap
 ------------------------------------------------------------------------------
 Ein Bestaetigungsdialog im Browser ist keine Sicherung, sondern eine
 Hoeflichkeit: die API bleibt mit `curl` direkt aufrufbar, und ein
@@ -38,11 +39,23 @@ es zwei getrennte HTTP-Aufrufe, und der zweite ist ohne den ersten
 wirkungslos:
 
     POST .../schliessen/vorbereiten   legt einen Vorgang an (120 s gueltig)
-    POST .../schliessen/ausfuehren    braucht dessen Kennung UND den Text
+    POST .../schliessen/ausfuehren    braucht genau diese Kennung
 
 Es gibt keinen Weg, in einem einzigen Aufruf zu schreiben. Die Kennung
-ist zufaellig, einmalig verwendbar und laeuft ab; der Bestaetigungstext
-wird zusaetzlich in `manual_close` noch einmal geprueft.
+ist zufaellig, einmalig verwendbar und laeuft ab, und sie gilt nur fuer
+den Bot und die Position, fuer die sie angelegt wurde.
+
+In der OBERFLAECHE reicht dafuer EIN Tap: Position antippen -> die
+Zusammenfassung erscheint (das ist bereits der `vorbereiten`-Aufruf) ->
+ein Tap auf "Ja, schliessen" schreibt. Die frueher zusaetzlich verlangte
+Texteingabe ("BESTAETIGEN" eintippen) ist entfallen. Begruendung: in
+einem schnellen Kryptomarkt kostet der Tippschritt Zeit, und es geht um
+Paper-Trading ohne echtes Kapital - die Abwaegung ist eine andere als bei
+echtem Geld. Entfallen ist damit AUSSCHLIESSLICH die zweite Eingabe in
+der Oberflaeche; die Zwei-Aufruf-Architektur, die Frist, die Bot- und
+Positionsbindung der Kennung und jede Pruefung im Kern bleiben. Die
+Telegram-Variante behaelt ihre zwei Stufen - das ist eine eigene
+Entscheidung und ein eigener Branch.
 
 WELCHER KURS GESCHRIEBEN WIRD: der, den der Nutzer in der Zusammenfassung
 gesehen und bestaetigt hat - nicht ein beim Ausfuehren neu geholter. Er
@@ -67,12 +80,23 @@ import manual_close  # noqa: E402
 
 logger = logging.getLogger("dashboard.schliessen")
 
-# Der Fehlertyp und der Bestaetigungstext kommen aus dem Kern - hier wird
-# nichts davon neu definiert. Wer `BESTAETIGUNGSTEXT` aendern will, aendert
-# es an einer Stelle und beide Oberflaechen ziehen mit.
+# Der Fehlertyp und die Frist kommen aus dem Kern - hier wird nichts davon
+# neu definiert, damit Dashboard und Telegram-Variante nicht auseinander
+# laufen koennen.
 SchliessenNichtMoeglich = manual_close.SchliessenNichtMoeglich
-BESTAETIGUNGSTEXT = manual_close.BESTAETIGUNGSTEXT
 GUELTIG_SEKUNDEN = manual_close.BESTAETIGUNG_GUELTIG_SEKUNDEN
+
+# Der Kern verlangt den Bestaetigungstext weiterhin als Argument - dort ist
+# er die Absicherung fuer JEDE Oberflaeche, auch fuer die Telegram-Variante
+# und fuer eine kuenftige dritte. Der Dashboard-Weg stellt die Bedingung
+# nicht mehr an den Nutzer, sondern erfuellt sie selbst: er reicht die
+# Konstante durch, nachdem er die Vorgangs-Kennung geprueft hat. Die
+# Absicherung dieses Wegs ist also die Kennung, nicht der Text - was sie
+# vorher schon war, denn ein bekannter, immer gleicher Text haelt niemanden
+# auf, der die API direkt aufruft. Der Text wird dem Frontend bewusst NICHT
+# mehr mitgeschickt: er spielt dort keine Rolle mehr, und ein Feld, das
+# niemand liest, ist nur eine Einladung, es doch wieder zu benutzen.
+BESTAETIGUNGSTEXT = manual_close.BESTAETIGUNGSTEXT
 
 # Obergrenze fuer gleichzeitig offene Vorgaenge. Es gibt genau einen
 # Nutzer; mehr als eine Handvoll kann es nur geben, wenn jemand den
@@ -84,8 +108,9 @@ _VORGAENGE = {}
 
 
 class Vorgang(dict):
-    """Ein angefangener Schliessvorgang zwischen den beiden Bestaetigungen.
-    Bewusst ein einfaches dict: der Inhalt geht als JSON ans Frontend."""
+    """Ein angefangener Schliessvorgang zwischen Zusammenfassung und
+    Ausfuehrung. Bewusst ein einfaches dict: der Inhalt geht als JSON ans
+    Frontend."""
 
 
 def _jetzt() -> float:
@@ -140,7 +165,6 @@ def positionen(bot_name: str, kurse: dict = None) -> dict:
                        f"freigeschaltet. Freigeschaltet: "
                        f"{', '.join(freigeschaltete_bots())}."),
             "positionen": [],
-            "bestaetigungstext": BESTAETIGUNGSTEXT,
             "gueltig_sekunden": GUELTIG_SEKUNDEN,
         }
 
@@ -171,7 +195,6 @@ def positionen(bot_name: str, kurse: dict = None) -> dict:
         "schliessbar": True,
         "grund": None,
         "positionen": zeilen,
-        "bestaetigungstext": BESTAETIGUNGSTEXT,
         "gueltig_sekunden": GUELTIG_SEKUNDEN,
     }
 
@@ -181,7 +204,7 @@ def positionen(bot_name: str, kurse: dict = None) -> dict:
 # ---------------------------------------------------------------------------
 
 def vorbereiten(bot_name: str, trade_id, kurse: dict) -> dict:
-    """Stufe 1. Legt einen Vorgang an und gibt die Zusammenfassung
+    """Aufruf 1. Legt einen Vorgang an und gibt die Zusammenfassung
     zurueck, die dem Nutzer gezeigt wird. Schreibt nichts."""
     if not ist_freigeschaltet(bot_name):
         raise SchliessenNichtMoeglich(
@@ -244,7 +267,6 @@ def vorbereiten(bot_name: str, trade_id, kurse: dict) -> dict:
         "entry_preis": _gerundet(position["entry_price"]),
         "aktueller_preis": _gerundet(kurs),
         "pnl_pct": pnl,
-        "bestaetigungstext": BESTAETIGUNGSTEXT,
         "gueltig_sekunden": GUELTIG_SEKUNDEN,
     }
     # Der WARNTEXT steht bewusst NICHT hier, sondern in bot.html. Alle
@@ -256,40 +278,43 @@ def vorbereiten(bot_name: str, trade_id, kurse: dict) -> dict:
 
 
 def abbrechen(kennung) -> bool:
-    """Stufe 1 oder 2 abgebrochen. Gibt zurueck, ob es ueberhaupt einen
-    Vorgang gab - fuer den Nutzer ist das Ergebnis in beiden Faellen
-    dasselbe: es wurde nichts geaendert."""
+    """Der Nutzer hat den Dialog verworfen (Knopf, Esc oder Klick daneben).
+    Gibt zurueck, ob es ueberhaupt einen Vorgang gab - fuer den Nutzer ist
+    das Ergebnis in beiden Faellen dasselbe: es wurde nichts geaendert."""
     _aufraeumen()
     return _VORGAENGE.pop(str(kennung or ""), None) is not None
 
 
 def offener_vorgang(kennung):
     """Der Vorgang zur Kennung, oder None (unbekannt oder abgelaufen).
-    Abgelaufene werden dabei entfernt, damit ein spaet eintreffendes
-    BESTAETIGEN nicht doch noch etwas ausloest."""
+    Abgelaufene werden dabei entfernt, damit ein spaet eintreffender
+    Ausfuehren-Aufruf nicht doch noch etwas ausloest."""
     _aufraeumen()
     return _VORGAENGE.get(str(kennung or ""))
 
 
 # ---------------------------------------------------------------------------
-# Zweite Bestaetigung: ausfuehren
+# Ausfuehren - der einzige schreibende Weg
 # ---------------------------------------------------------------------------
 
-def ausfuehren(bot_name: str, kennung, bestaetigung, benutzer) -> dict:
-    """Stufe 2 - der einzige Weg im Dashboard, der schreibt.
+def ausfuehren(bot_name: str, kennung, benutzer) -> dict:
+    """Aufruf 2 - der einzige Weg im Dashboard, der schreibt.
 
-    Der Vorgang wird in JEDEM Fall verbraucht, auch bei falschem Text.
-    Sonst liesse sich der Bestaetigungstext innerhalb der Frist beliebig
-    oft durchprobieren; er ist zwar bekannt und kein Geheimnis, aber ein
-    Vorgang, der nach einem Fehlversuch weiterlebt, waere ein zweiter
-    Versuch, den der Nutzer nicht angefordert hat.
+    Verlangt eine gueltige, noch nicht abgelaufene Vorgangs-Kennung aus
+    Aufruf 1. Eine zusaetzliche Texteingabe wird NICHT mehr verlangt (siehe
+    Modul-Kopf); die Kennung ist die Absicherung, und sie ist es auch
+    vorher schon gewesen.
+
+    Der Vorgang wird in JEDEM Fall verbraucht, auch wenn der Versuch
+    scheitert: ein Vorgang, der einen Fehlversuch ueberlebt, waere ein
+    zweiter Versuch, den der Nutzer nicht angefordert hat.
     """
     vorgang = offener_vorgang(kennung)
     if vorgang is None:
         # Auch DIESER Versuch gehoert ins Protokoll. Er ist der einzige,
-        # den ein direkter API-Aufruf ohne vorherige Stufe 1 ueberhaupt
-        # erzeugen kann - also genau die Zeile, an der auffiele, dass
-        # jemand den Bestaetigungsdialog zu umgehen versucht. Welche
+        # den ein direkter API-Aufruf ohne vorheriges `vorbereiten`
+        # ueberhaupt erzeugen kann - also genau die Zeile, an der auffiele,
+        # dass jemand den Bestaetigungsdialog zu umgehen versucht. Welche
         # Position gemeint war, ist dabei nicht bekannt.
         manual_close.protokolliere_ablehnung(
             bot_name, None, benutzer,
@@ -315,19 +340,8 @@ def ausfuehren(bot_name: str, kennung, bestaetigung, benutzer) -> dict:
             "Die Bestaetigung gehoert zu einem anderen Bot. Es wurde nichts "
             "geaendert.")
 
-    # Der Text wird HIER geprueft, damit eine falsche Eingabe den Vorgang
-    # verbraucht - und gleich darauf noch einmal im Kern, der ihn ebenfalls
-    # verlangt. Doppelt, weil die zweite Pruefung die ist, die auch dann
-    # noch greift, wenn jemand kuenftig eine dritte Oberflaeche baut.
-    if (bestaetigung or "").strip() != BESTAETIGUNGSTEXT:
-        manual_close.protokolliere_ablehnung(
-            bot_name, vorgang["trade_id"], benutzer,
-            "falscher Bestaetigungstext", manual_close.QUELLE_DASHBOARD)
-        raise SchliessenNichtMoeglich(
-            f"Der Bestaetigungstext stimmt nicht - erwartet wird genau "
-            f"'{BESTAETIGUNGSTEXT}', Gross-/Kleinschreibung inbegriffen. Es "
-            f"wurde nichts geaendert.")
-
+    # Der Kern verlangt den Bestaetigungstext weiter; der wird hier aus der
+    # Konstante gesetzt, nicht aus der Anfrage gelesen (siehe Modul-Kopf).
     ergebnis = manual_close.schliesse_position(
         bot_name, vorgang["trade_id"], vorgang["kurs"], benutzer,
         BESTAETIGUNGSTEXT, quelle=manual_close.QUELLE_DASHBOARD)

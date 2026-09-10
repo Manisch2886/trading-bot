@@ -16,9 +16,13 @@ schliessen. Dieser Weg ist eng gefasst:
   einer, `t3_supertrend`; alle uebrigen antworten mit 403,
 * nur ueber **zwei getrennte HTTP-Aufrufe** (`…/vorbereiten`, dann
   `…/ausfuehren`), der zweite mit einer zufaelligen, einmaligen, nach 120
-  Sekunden verfallenden Vorgangs-Kennung **und** dem exakt getippten Text
-  `BESTAETIGEN` (Gross-/Kleinschreibung zaehlt). Ein einzelner Aufruf kann
-  nichts schliessen,
+  Sekunden verfallenden Vorgangs-Kennung, die nur fuer genau diesen Bot und
+  diese Position gilt. Ein einzelner Aufruf kann nichts schliessen - das ist
+  die Absicherung. In der Oberflaeche ist es **ein Tap**: die Zusammenfassung
+  ist bereits der erste Aufruf. (Bis PR #62 war zusaetzlich der Text
+  `BESTAETIGEN` einzutippen; das ist entfallen - Paper-Trading ohne echtes
+  Kapital, und im schnellen Kryptomarkt kostet der Tippschritt Zeit. Die
+  Telegram-Variante behaelt ihre zwei Stufen.)
 * und nur ueber `notifications/manual_close.py` - dasselbe Modul, das auch
   die Telegram-Variante benutzt, mit Transaktion, Nebenlaeufigkeits-
   Absicherung und eigenem Protokoll.
@@ -170,9 +174,9 @@ Seiten: `/` (Uebersicht), `/bot?name=<bot>` (Detail), `/login`,
 
 `vorbereiten` erwartet `{"trade_id": <ID>}` und antwortet mit Symbol,
 Einstiegs- und aktuellem Kurs, geschaetztem PnL sowie einer Vorgangs-Kennung.
-`ausfuehren` erwartet `{"vorgang": "<Kennung>", "bestaetigung": "BESTAETIGEN"}`.
-Jeder Fehlversuch verbraucht die Kennung; abgelehnt wird mit 409 (Konflikt),
-ein nicht freigeschalteter Bot mit 403.
+`ausfuehren` erwartet `{"vorgang": "<Kennung>"}` - nichts weiter. Jeder
+Fehlversuch verbraucht die Kennung; abgelehnt wird mit 409 (Konflikt), ein
+nicht freigeschalteter Bot mit 403.
 
 Jeder Versuch - erfolgreich wie abgelehnt - landet in
 `logs/notifications/manuelle_eingriffe.log`, jede Zeile mit der Marke

@@ -15,8 +15,9 @@ offene Position von Hand schliessen, und zwar
     einer: t3_supertrend),
   * nur nach ZWEI getrennten HTTP-Aufrufen (vorbereiten + ausfuehren),
     der zweite mit einer zufaelligen, einmaligen, nach 120 Sekunden
-    verfallenden Vorgangs-Kennung UND dem exakt getippten
-    Bestaetigungstext,
+    verfallenden Vorgangs-Kennung, die nur fuer genau diesen Bot und
+    diese Position gilt (in der Oberflaeche ist das EIN Tap: die
+    Zusammenfassung ist schon der erste Aufruf),
   * und nur ueber notifications/manual_close.py, das die gesamte
     Absicherung mitbringt (Transaktion, Nebenlaeufigkeit, Protokoll).
 Siehe dashboard/schliessen.py. Alles andere ist unveraendert lesend:
@@ -388,7 +389,7 @@ def erzeuge_app(token: str = None) -> FastAPI:
 
     @app.post("/api/bots/{name}/schliessen/vorbereiten")
     async def schliessen_vorbereiten(name: str, request: Request):
-        """Stufe 1. Schreibt NICHTS - legt nur einen Vorgang im
+        """Aufruf 1. Schreibt NICHTS - legt nur einen Vorgang im
         Arbeitsspeicher an und gibt die Zusammenfassung zurueck."""
         _bot_oder_404(name)
         daten = await _koerper(request)
@@ -414,22 +415,24 @@ def erzeuge_app(token: str = None) -> FastAPI:
 
     @app.post("/api/bots/{name}/schliessen/ausfuehren")
     async def schliessen_ausfuehren(name: str, request: Request):
-        """Stufe 2 - DER schreibende Endpunkt des Dashboards.
+        """Aufruf 2 - DER schreibende Endpunkt des Dashboards.
 
-        Ohne eine gueltige, nicht abgelaufene Vorgangs-Kennung aus Stufe 1
-        UND den exakt getippten Bestaetigungstext passiert hier nichts.
-        Geschrieben wird ueber notifications/manual_close.py, nicht hier.
+        Ohne eine gueltige, nicht abgelaufene Vorgangs-Kennung aus dem
+        vorbereiten-Aufruf passiert hier nichts. Ein zusaetzlicher
+        Bestaetigungstext wird nicht mehr verlangt - was hier ankommt, wird
+        also gar nicht gelesen. Geschrieben wird ueber
+        notifications/manual_close.py, nicht hier.
         """
         _bot_oder_404(name)
         daten = await _koerper(request)
         try:
             return await asyncio.to_thread(
                 schliessen.ausfuehren, name, daten.get("vorgang"),
-                daten.get("bestaetigung"), _wer(request))
+                _wer(request))
         except schliessen.SchliessenNichtMoeglich as fehler:
             # 409 (Konflikt) und nicht 400: die Anfrage war formal in
             # Ordnung, der Zustand hat nur nicht gepasst - abgelaufene
-            # Bestaetigung, falscher Text, oder der Cronjob war schneller.
+            # Bestaetigung, fremder Bot, oder der Cronjob war schneller.
             raise HTTPException(status_code=409, detail=str(fehler))
         except Exception:
             logger.exception("Unerwarteter Fehler beim manuellen Schliessen.")

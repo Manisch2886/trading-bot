@@ -5,7 +5,9 @@ Diese Anleitung ist fuer den manuellen Test **vor** dem Merge gedacht.
 Das Dashboard war bis hierher **rein lesend** - so stand es in PR #35, #44,
 #46, #53 und #60, und es wurde dort auch jedes Mal geprueft. Mit dieser
 Aenderung gibt es **genau einen** schreibenden Weg: eine offene Position von
-Hand schliessen, nur fuer **`t3_supertrend`**, nur nach zwei Bestaetigungen.
+Hand schliessen, nur fuer **`t3_supertrend`**, nach **einer** Bestaetigung in
+der Oberflaeche (ein Tap auf die Zusammenfassung) - abgesichert ueber zwei
+getrennte Server-Aufrufe, die ohne einander wirkungslos sind.
 
 Die Reihenfolge unten ist so gebaut, dass die Schritte 0-3 **gar nichts**
 veraendern koennen, Schritt 4 nur eine **Kopie** anfasst, und erst Schritt 5
@@ -74,7 +76,12 @@ sein.
 
 ---
 
-## Schritt 3 - Beide Abbruchwege (schreibt nichts)
+## Schritt 3 - Der Abbruchweg (schreibt nichts)
+
+Seit der Umstellung auf **einen Tap** gibt es nur noch EINEN Dialogschritt und
+damit nur noch einen Abbruchweg - in drei Varianten, die alle dasselbe tun.
+Die frueheren Faelle rund um die Texteingabe (`bestaetigen` klein tippen,
+`BESTAETIGE` unvollstaendig) sind entfallen, weil es kein Textfeld mehr gibt.
 
 Alle Faelle koennen gefahrlos an der **echten** Datenbank durchgespielt
 werden; keiner davon fuehrt zu einem Schreibzugriff.
@@ -82,15 +89,19 @@ werden; keiner davon fuehrt zu einem Schreibzugriff.
 | # | Vorgehen | Erwartung |
 |---|---|---|
 | 1 | **Schliessen** -> im Dialog **Abbrechen** | Dialog schliesst, nichts passiert |
-| 2 | **Schliessen** -> **Ja, schliessen** -> **Abbrechen** | dito |
-| 3 | **Schliessen** -> **Ja, schliessen** -> Esc-Taste | dito (Esc verwirft den Vorgang ebenfalls) |
-| 4 | Im Textfeld `bestaetigen` (klein) tippen | Knopf **Endgueltig schliessen** bleibt gesperrt |
-| 5 | `BESTAETIGE` (unvollstaendig) tippen | Knopf bleibt gesperrt |
-| 6 | **Ja, schliessen** -> gut zwei Minuten warten | Countdown laeuft ab, Feld und Knopf werden gesperrt, Hinweis "Bestaetigung ist abgelaufen" |
+| 2 | **Schliessen** -> Esc-Taste | dito (Esc verwirft den Vorgang ebenfalls) |
+| 3 | **Schliessen** -> Klick auf den verdunkelten Hintergrund | dito |
+| 4 | **Schliessen** -> gut zwei Minuten warten, ohne zu tippen | Countdown laeuft ab, **Ja, schliessen** wird gesperrt, Hinweis "Die Bestaetigung ist abgelaufen" |
 
-Der Dialog zeigt in Stufe 1 Symbol, Einstiegskurs, **aktuellen Kurs**,
-geschaetzten PnL und die Warnung. Bitte pruefen, dass der angezeigte Kurs
-plausibel ist (Vergleich mit der Spalte "Aktuell" in der Tabelle).
+Wichtig bei Fall 4: Der Vorgang verfaellt weiterhin nach 120 Sekunden - daran
+hat die Umstellung nichts geaendert. Wer den Dialog offen liegen laesst, muss
+von vorn beginnen.
+
+Der Dialog zeigt Symbol, Einstiegskurs, **aktuellen Kurs**, geschaetzten PnL,
+die Warnung und den Countdown. Bitte pruefen, dass der angezeigte Kurs
+plausibel ist (Vergleich mit der Spalte "Aktuell" in der Tabelle). Der Fokus
+liegt beim Oeffnen auf **Abbrechen**, nicht auf dem Schliessen-Knopf - ein
+versehentliches Enter darf nichts schreiben.
 
 **Kontrolle:** Schritt 1 wiederholen. Ausgabe weiterhin identisch.
 
@@ -105,12 +116,14 @@ Sicherung **serverseitig** liegt, laesst sich in drei Aufrufen nachpruefen -
 ```bash
 # a) Ohne Token: 401, egal was im Koerper steht.
 curl -s -o /dev/null -w "%{http_code}\n" -X POST \
-  -H 'Content-Type: application/json' \
-  -d '{"vorgang":"x","bestaetigung":"BESTAETIGEN"}' \
+  -H 'Content-Type: application/json' -d '{"vorgang":"x"}' \
   http://127.0.0.1:8787/api/bots/t3_supertrend/schliessen/ausfuehren
 
 # b) Mit Token, aber ohne vorherigen Vorbereiten-Schritt: 409.
-#    Ein EINZELNER Aufruf kann nichts schliessen - das ist der Kern.
+#    Ein EINZELNER Aufruf kann nichts schliessen - das ist der Kern, und
+#    das ist seit dem Wegfall der Texteingabe DIE Absicherung. Das frueher
+#    noetige "bestaetigung" ist hier absichtlich mitgeschickt: es wird nicht
+#    mehr gelesen und oeffnet ohne gueltige Kennung auch nichts.
 curl -s -X POST -H "X-Dashboard-Token: <TOKEN>" \
   -H 'Content-Type: application/json' \
   -d '{"vorgang":"frei-erfunden","bestaetigung":"BESTAETIGEN"}' \
@@ -164,7 +177,11 @@ DASHBOARD_PORT=8788 python3 dashboard/server.py
 Im Browser `http://127.0.0.1:8788` oeffnen (dasselbe Token) und den
 vollstaendigen Weg gehen:
 
-**Schliessen -> Ja, schliessen -> `BESTAETIGEN` tippen -> Endgueltig schliessen**
+**Schliessen -> Ja, schliessen**
+
+Das sind die zwei Taps: der erste oeffnet die Zusammenfassung (und legt
+serverseitig den Vorgang an), der zweite schreibt. Ein Textfeld gibt es
+nicht mehr.
 
 Erwartet:
 * gruene Erfolgsmeldung mit Symbol, Kurs, PnL und dem Vermerk `manual_close`,
@@ -262,7 +279,7 @@ oder anders als bei der Telegram-Variante.
 
 2. **Geschlossen wird zu dem Kurs, den der Server beim Oeffnen des Dialogs
    geholt hat**, nicht zu einem beim Ausfuehren neu geholten. Zwischen
-   Anzeige und `BESTAETIGEN` koennen bis zu zwei Minuten liegen; in einem
+   Anzeige und dem Tap koennen bis zu zwei Minuten liegen; in einem
    schnellen Kryptomarkt kann der echte Kurs dann spuerbar abweichen. Die
    Alternative - still zu einem anderen Kurs als dem bestaetigten schliessen -
    waere die groessere Ueberraschung. Die zwei Minuten begrenzen den Effekt,
