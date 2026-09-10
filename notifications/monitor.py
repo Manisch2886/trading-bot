@@ -239,6 +239,18 @@ def get_bot_status(bot: dict) -> dict:
     open_positions = []
     for _, row in open_trades.iterrows():
         open_positions.append({
+            # Die Zeilen-ID kommt seit dem manuellen Schliessen mit
+            # (dashboard/schliessen.py): das Dashboard zeigt je offener
+            # Position eine Schaltflaeche und muss dafuer sagen koennen,
+            # WELCHE Zeile gemeint ist - ein Symbol kann theoretisch
+            # mehrfach offen sein. Rein additiv; die bisherigen Leser
+            # dieses Feldes (format_status_message) benutzen nur
+            # symbol/entry_price/stop_price und sind unberuehrt.
+            # Geschrieben wird ueber diese ID NICHT hier, sondern in
+            # manual_close.py, das die IDs eigenstaendig liest; dass
+            # beide dasselbe sehen, prueft test_dashboard.py.
+            "id": int(row["id"]) if "id" in open_trades.columns
+                                     and pd.notna(row.get("id")) else None,
             "symbol": row["symbol"],
             "entry_price": row.get("entry_price"),
             "stop_price": row.get("stop_price") if "stop_price" in open_trades.columns else None,

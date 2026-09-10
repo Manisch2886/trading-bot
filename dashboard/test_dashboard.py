@@ -6,18 +6,37 @@ komplett synthetische Projektstruktur in einem temporaeren Verzeichnis
 und ruft alle Endpunkte per HTTP auf - keine nachgebaute Testfassung der
 App, keine Umgehung der Middleware.
 
-Es werden dabei WEDER echte Bot-Datenbanken geleseneN NOCH echte
-Netzwerkabfragen gemacht: monitor.BASE_DIR/STRATEGIES_DIR/LOGS_DIR
-zeigen waehrend des Tests auf das temporaere Verzeichnis, und
-requests.get wird im monitor-Modul durch eine Funktion ersetzt, die
-sofort einen Fehler wirft - schliche sich doch ein echter Netzaufruf
-ein, faellt der Test auf.
+Es werden dabei WEDER echte Bot-Datenbanken gelesen NOCH echte
+Netzwerkabfragen gemacht: monitor.BASE_DIR/STRATEGIES_DIR/LOGS_DIR und
+manual_close.BASE_DIR/STRATEGIES_DIR zeigen waehrend des Tests auf das
+temporaere Verzeichnis, und requests.get wird im monitor-Modul durch
+eine Funktion ersetzt, die sofort einen Fehler wirft - schliche sich
+doch ein echter Netzaufruf ein, faellt der Test auf.
+
+WICHTIG SEIT DEM MANUELLEN SCHLIESSEN: das Dashboard hat jetzt einen
+schreibenden Endpunkt. Der frueher hier gefuehrte Nachweis "rein
+lesend" waere damit schlicht falsch geworden. Er ist deshalb in ZWEI
+Nachweise aufgeteilt, und beide muessen halten:
+
+  6) Alles ausser dem Schliessen ist lesend. Nach allen Lese-Tests sind
+     saemtliche Bot-Datenbanken byteweise unveraendert, und die Liste
+     der Nicht-GET-Routen ist genau die erwartete.
+  8) Die schreibenden Pfade schreiben genau das Erwartete: je Position
+     EINE Zeile EINER Datenbank, und dort nur die fuenf Ausstiegsfelder.
+     Alle anderen Datenbanken bleiben byteweise identisch. Abschnitt 10
+     deckt den Notfallweg ab, der alle Positionen auf einmal schliesst.
+
+Ein Test, der nur "es hat funktioniert" prueft, waere hier zu wenig -
+gerade weil dies der erste Schreibzugriff des Dashboards ueberhaupt ist.
 
 Nutzung:  python3 dashboard/test_dashboard.py
 """
 
+import ast
 import hashlib
+import inspect
 import json
+import logging
 import os
 import re
 import socket
@@ -39,8 +58,10 @@ for pfad in (DIR, os.path.join(BASE_DIR, "notifications")):
         sys.path.insert(0, pfad)
 
 import monitor          # noqa: E402
+import manual_close     # noqa: E402
 import konfig           # noqa: E402
 import datenquelle      # noqa: E402
+import schliessen       # noqa: E402
 from app import erzeuge_app  # noqa: E402
 
 TEST_TOKEN = "test-token-1234567890-abcdefgh"
@@ -61,6 +82,13 @@ def check(name, ok, detail=""):
 
 def _lege_bot_an(wurzel: str, name: str, trades: list):
     os.makedirs(os.path.join(wurzel, "strategies", name), exist_ok=True)
+    # forward_test.py mit den beiden Kostensaetzen: manual_close liest sie
+    # per AST von dort, statt sie ein zweites Mal zu fuehren. Ohne die
+    # Datei koennte kein PnL berechnet werden - dieselben Werte wie beim
+    # echten t3_supertrend.
+    with open(os.path.join(wurzel, "strategies", name, "forward_test.py"),
+               "w", encoding="utf-8") as datei:
+        datei.write("TRADING_FEE_PCT = 0.1\nSLIPPAGE_PCT = 0.05\n")
     log_dir = os.path.join(wurzel, "logs", name)
     os.makedirs(log_dir, exist_ok=True)
     with open(os.path.join(log_dir, "lauf.log"), "w") as datei:
@@ -81,7 +109,9 @@ def _lege_bot_an(wurzel: str, name: str, trades: list):
 
 
 def baue_testprojekt(wurzel: str) -> dict:
-    """Zwei Bots mit bekannten Zahlen - einer Krypto, einer Aktien.
+    """Drei Bots mit bekannten Zahlen: zwei Krypto, einer Aktien.
+    t3_supertrend ist dabei, weil er der einzige Bot ist, bei dem das
+    manuelle Schliessen freigeschaltet ist (Abschnitt 8).
     Die Namen muessen in monitor.ASSET_CLASS stehen, sonst wuerde
     discover_bots() sie (korrekterweise) ueberspringen."""
     heute = datetime.now(timezone.utc)
@@ -111,9 +141,25 @@ def baue_testprojekt(wurzel: str) -> dict:
         ("NVDA", "2026-02-01", "2026-02-01", 500.0, None, None, None, None, None, "open"),
     ]
 
+    # t3_supertrend (krypto): der EINZIGE Bot, bei dem das manuelle
+    # Schliessen freigeschaltet ist. Zwei offene Positionen und ein
+    # bereits geschlossener Trade - der geschlossene ist wichtig, weil er
+    # beim Vorher/Nachher-Vergleich beweisen muss, dass er unberuehrt
+    # bleibt. Feste, runde Zahlen, damit der erwartete PnL exakt
+    # nachrechenbar ist: 100 -> 110 sind +10 %, minus 2*(0.1+0.05) = 9.7.
+    t3 = [
+        ("BTCUSDT", "2026-01-01 00:00:00", "2026-01-01 00:00:00", 100.0, 95.0,
+         None, None, None, None, "open"),
+        ("ETHUSDT", "2026-01-02 00:00:00", "2026-01-02 00:00:00", 200.0, 190.0,
+         None, None, None, None, "open"),
+        ("XRPUSDT", "2026-01-03 00:00:00", "2026-01-03 00:00:00", 0.5, 0.45,
+         (heute - timedelta(days=3)).isoformat(), 0.55, "trend_flip", 9.7, "closed"),
+    ]
+
     return {
         "elliott_wave": _lege_bot_an(wurzel, "elliott_wave", krypto),
         "volatility_breakout": _lege_bot_an(wurzel, "volatility_breakout", aktien),
+        "t3_supertrend": _lege_bot_an(wurzel, "t3_supertrend", t3),
     }
 
 
@@ -162,6 +208,39 @@ def get(basis, pfad, token=TEST_TOKEN, **kwargs):
     kopf = {"X-Dashboard-Token": token} if token else {}
     return requests.get(basis + pfad, headers=kopf, timeout=30,
                          allow_redirects=False, **kwargs)
+
+
+def post(basis, pfad, koerper=None, token=TEST_TOKEN):
+    kopf = {"X-Dashboard-Token": token} if token else {}
+    return requests.post(basis + pfad, headers=kopf, json=koerper or {},
+                          timeout=60, allow_redirects=False)
+
+
+def zeilen(db_pfad: str) -> list:
+    """Alle Trade-Zeilen einer Datenbank, fuer den Feld-fuer-Feld-Vergleich."""
+    conn = sqlite3.connect(db_pfad)
+    conn.row_factory = sqlite3.Row
+    daten = [dict(z) for z in conn.execute("SELECT * FROM trades ORDER BY id")]
+    conn.close()
+    return daten
+
+
+def unterschiede(vorher: list, nachher: list) -> list:
+    """(id, feld, alt, neu) fuer jeden Unterschied - inklusive
+    hinzugekommener oder verschwundener Zeilen."""
+    ergebnis = []
+    a = {z["id"]: z for z in vorher}
+    b = {z["id"]: z for z in nachher}
+    for kennung in sorted(set(a) | set(b)):
+        if kennung not in a:
+            ergebnis.append((kennung, "<ZEILE NEU>", None, b[kennung]))
+        elif kennung not in b:
+            ergebnis.append((kennung, "<ZEILE WEG>", a[kennung], None))
+        else:
+            for feld in a[kennung]:
+                if a[kennung][feld] != b[kennung][feld]:
+                    ergebnis.append((kennung, feld, a[kennung][feld], b[kennung][feld]))
+    return ergebnis
 
 
 # ---------------------------------------------------------------------------
@@ -275,8 +354,8 @@ def teste_endpunkte(basis):
 
     daten = get(basis, "/api/portfolio").json()
     namen = sorted(b["name"] for b in daten["bots"])
-    check("Beide Testbots erscheinen in der Uebersicht",
-          namen == ["elliott_wave", "volatility_breakout"], str(namen))
+    check("Alle drei Testbots erscheinen in der Uebersicht",
+          namen == ["elliott_wave", "t3_supertrend", "volatility_breakout"], str(namen))
 
     krypto = next(b for b in daten["bots"] if b["name"] == "elliott_wave")
     check("Offene Positionen korrekt gezaehlt", krypto["offene_positionen"] == 2,
@@ -298,11 +377,13 @@ def teste_endpunkte(basis):
           abs(aktien["summe_pnl"] - 2.0) < 1e-6, str(aktien["summe_pnl"]))
     check("Antwort ist gueltiges JSON ohne NaN", "NaN" not in get(basis, "/api/portfolio").text)
 
-    check("Summenzeile zaehlt beide Bots", daten["summe"]["anzahl_bots"] == 2)
-    check("Summe offener Positionen ueber alle Bots", daten["summe"]["offene_positionen"] == 3)
+    check("Summenzeile zaehlt alle Bots", daten["summe"]["anzahl_bots"] == 3)
+    # 2 (elliott_wave) + 1 (volatility_breakout) + 2 (t3_supertrend)
+    check("Summe offener Positionen ueber alle Bots", daten["summe"]["offene_positionen"] == 5,
+          str(daten["summe"]["offene_positionen"]))
 
     liste = get(basis, "/api/bots").json()
-    check("/api/bots liefert die Kurzliste", len(liste["bots"]) == 2)
+    check("/api/bots liefert die Kurzliste", len(liste["bots"]) == 3)
 
     detail = get(basis, "/api/bots/elliott_wave").json()
     check("Detail: zwei offene Positionen", len(detail["positionen"]) == 2)
@@ -331,8 +412,9 @@ def teste_endpunkte(basis):
     kurve = [p["kumuliert_pct"] for p in verlauf["bots"]["elliott_wave"]["punkte"]]
     check("Verlauf kumuliert korrekt (2.0 / 1.0 / 1.5)",
           kurve == [2.0, 1.0, 1.5], str(kurve))
-    check("Gesamtkurve enthaelt alle fuenf geschlossenen Trades beider Bots",
-          len(verlauf["gesamt"]) == 5, str(len(verlauf["gesamt"])))
+    # 3 (elliott_wave) + 2 (volatility_breakout) + 1 (t3_supertrend)
+    check("Gesamtkurve enthaelt alle sechs geschlossenen Trades aller Bots",
+          len(verlauf["gesamt"]) == 6, str(len(verlauf["gesamt"])))
     check("Trade ohne lesbares Ergebnis wird gezaehlt und im Hinweis genannt",
           verlauf["trades_ohne_ergebnis"] == 1
           and "ohne lesbares Ergebnis" in verlauf["hinweis"],
@@ -414,7 +496,7 @@ def teste_live_kurse(basis):
 
         uebersicht = get(basis, "/api/portfolio?live=1")
         check("Uebersicht bleibt trotz Kursfehler vollstaendig",
-              uebersicht.status_code == 200 and len(uebersicht.json()["bots"]) == 2)
+              uebersicht.status_code == 200 and len(uebersicht.json()["bots"]) == 3)
 
         antwort = get(basis, "/api/live-kurse?bot=gibtesnicht")
         check("Live-Kurse fuer unbekannten Bot: 404", antwort.status_code == 404)
@@ -455,16 +537,37 @@ def teste_frontend(basis):
           "http://" not in js.text and "https://" not in js.text)
 
 
+# Die Nicht-GET-Routen, die es geben DARF - vollstaendig und woertlich.
+# Diese Liste ist der Kern des korrigierten Nachweises: bis PR #60 stand
+# hier "genau eine, POST /login". Mit dem Einzel-Schliessen wurden es vier,
+# mit dem Notfallweg (alle Positionen) sechs - davon fassen GENAU ZWEI eine
+# Datenbank an. Kommt irgendwann eine siebte dazu, faellt dieser Test auf -
+# und genau das soll er.
+ERLAUBTE_SCHREIB_ROUTEN = [
+    ("POST", "/login"),                                          # setzt nur ein Cookie
+    ("POST", "/api/bots/{name}/schliessen/vorbereiten"),          # nur Arbeitsspeicher
+    ("POST", "/api/bots/{name}/schliessen/abbrechen"),            # nur Arbeitsspeicher
+    ("POST", "/api/bots/{name}/schliessen/ausfuehren"),           # <- schreibt
+    ("POST", "/api/bots/{name}/alle-schliessen/vorbereiten"),     # nur Arbeitsspeicher
+    ("POST", "/api/bots/{name}/alle-schliessen/ausfuehren"),      # <- schreibt
+]
+
+
 def teste_nur_lesend(app, basis, pruefsummen_vorher, db_dateien):
-    print("\n6) Nachweis: rein lesend")
+    print("\n6) Nachweis: lesend, ausser dem einen Schliess-Endpunkt")
 
     schreibende = []
     for route in app.routes:
         methoden = set(getattr(route, "methods", []) or [])
         for methode in methoden & {"POST", "PUT", "PATCH", "DELETE"}:
             schreibende.append((methode, getattr(route, "path", "?")))
-    check("Einzige Nicht-GET-Route ist POST /login (setzt nur ein Cookie)",
-          schreibende == [("POST", "/login")], str(schreibende))
+    check("Es gibt genau die sechs erwarteten Nicht-GET-Routen",
+          sorted(schreibende) == sorted(ERLAUBTE_SCHREIB_ROUTEN), str(sorted(schreibende)))
+    check("Davon fassen genau ZWEI eine Datenbank an (die beiden …/ausfuehren)",
+          sorted(r[1] for r in schreibende if r[1].endswith("/ausfuehren"))
+          == ["/api/bots/{name}/alle-schliessen/ausfuehren",
+              "/api/bots/{name}/schliessen/ausfuehren"],
+          str(sorted(r[1] for r in schreibende if r[1].endswith("/ausfuehren"))))
 
     for methode in ("POST", "PUT", "DELETE", "PATCH"):
         antwort = requests.request(methode, basis + "/api/portfolio",
@@ -472,10 +575,944 @@ def teste_nur_lesend(app, basis, pruefsummen_vorher, db_dateien):
         check(f"{methode} auf /api/portfolio wird abgelehnt",
               antwort.status_code == 405, f"war {antwort.status_code}")
 
+    # Die lesende Datenschicht darf weiterhin keinen Schreibpfad haben.
+    # Der Schreibpfad laeuft ausdruecklich an ihr vorbei (app.py ->
+    # schliessen.py -> manual_close.py); wer ihn hier einbaute, machte
+    # diesen Nachweis unfuehrbar.
+    # Geprueft wird der CODE, nicht der Fliesstext daneben: datenquelle.py
+    # ERWAEHNT manual_close in einem Kommentar (es erklaert dort, dass der
+    # Schreibpfad ausdruecklich an dieser Schicht vorbeilaeuft). Eine reine
+    # Textsuche wuerde genau diese Erklaerung als Verstoss lesen - derselbe
+    # Fehlertyp, den ohne_kommentare() weiter unten fuer JS/CSS behebt.
+    quelldatei = os.path.join(DIR, "datenquelle.py")
+    baum = ast.parse(open(quelldatei, encoding="utf-8").read(), filename=quelldatei)
+    zeichenketten = [k.value for k in ast.walk(baum)
+                     if isinstance(k, ast.Constant) and isinstance(k.value, str)]
+    sql = [z for z in zeichenketten
+           if re.match(r"\s*(INSERT|UPDATE|DELETE|DROP)\s", z, re.I)]
+    check("datenquelle.py enthaelt keine schreibende SQL-Anweisung", not sql, str(sql)[:80])
+
+    importe = set()
+    for knoten in ast.walk(baum):
+        if isinstance(knoten, ast.Import):
+            importe.update(a.name for a in knoten.names)
+        elif isinstance(knoten, ast.ImportFrom):
+            importe.add(knoten.module or "")
+    check("datenquelle.py importiert das Schreibmodul nicht",
+          "manual_close" not in importe, str(sorted(importe)))
+    # Gegenprobe: die Pruefung findet einen Import ueberhaupt - sonst waere
+    # das gruene Ergebnis oben nur die Abwesenheit eines Suchtreffers.
+    probe = ast.parse("import manual_close")
+    check("Gegenprobe: ein eingeschmuggelter Import wuerde auffallen",
+          any(a.name == "manual_close"
+              for k in ast.walk(probe) if isinstance(k, ast.Import)
+              for a in k.names))
+
     nachher = _pruefsummen(db_dateien)
-    check("Keine Bot-Datenbank wurde durch die Tests veraendert",
+    check("Nach allen LESENDEN Tests ist keine Bot-Datenbank veraendert",
           nachher == pruefsummen_vorher,
           "Pruefsummen weichen ab" if nachher != pruefsummen_vorher else "")
+
+
+# ---------------------------------------------------------------------------
+# 8) Der eine schreibende Endpunkt
+# ---------------------------------------------------------------------------
+
+SPERR_HALTER = """\
+\"\"\"Haelt eine SQLite-Schreibsperre - simuliert den laufenden Cronjob.\"\"\"
+import sqlite3, sys, time
+conn = sqlite3.connect(sys.argv[1], timeout=30, isolation_level=None)
+conn.execute("BEGIN IMMEDIATE")
+conn.execute("UPDATE trades SET stop_price=stop_price WHERE id=2")
+print("gesperrt", flush=True)
+time.sleep(float(sys.argv[2]))
+conn.execute("ROLLBACK")
+conn.close()
+"""
+
+TESTKURSE = {"BTCUSDT": 110.0, "ETHUSDT": 180.0, "SOLUSDT": 22.0, "ADAUSDT": 0.9}
+
+
+def _vorbereiten(basis, bot="t3_supertrend", trade_id=1):
+    return post(basis, f"/api/bots/{bot}/schliessen/vorbereiten",
+                 {"trade_id": trade_id})
+
+
+def _ausfuehren(basis, vorgang, bot="t3_supertrend", token=TEST_TOKEN,
+                 zusatz=None):
+    """Der Ausfuehren-Aufruf, wie das Frontend ihn schickt: NUR die
+    Vorgangs-Kennung. `zusatz` dient den Tests, die belegen, dass weitere
+    Felder im Koerper nichts aendern - insbesondere, dass ein frueher
+    noetiges "bestaetigung" weder noch gebraucht noch ausgewertet wird."""
+    koerper = {"vorgang": vorgang}
+    if zusatz:
+        koerper.update(zusatz)
+    return post(basis, f"/api/bots/{bot}/schliessen/ausfuehren",
+                 koerper, token=token)
+
+
+def teste_schliessen(basis, wurzel, db_dateien, protokoll_datei):
+    print("\n8) Manuelles Schliessen - der einzige schreibende Pfad")
+
+    db_t3 = db_dateien["t3_supertrend"]
+    andere = {n: p for n, p in db_dateien.items() if n != "t3_supertrend"}
+    andere_vorher = _pruefsummen(andere)
+    vor_allem = zeilen(db_t3)
+
+    def nichts_geschrieben(was):
+        check(f"{was}: t3-Datenbank Feld fuer Feld unveraendert",
+              unterschiede(vor_allem, zeilen(db_t3)) == [],
+              str(unterschiede(vor_allem, zeilen(db_t3)))[:120])
+
+    original_kurse = monitor.fetch_live_prices_for_bots
+    monitor.fetch_live_prices_for_bots = lambda bots: dict(TESTKURSE)
+    schliessen.vorgaenge_zuruecksetzen()
+    try:
+        # --- 8a) Lesen: wer ist freigeschaltet, und mit welchen IDs -------
+        antwort = get(basis, "/api/bots/t3_supertrend/schliessbare-positionen?live=1").json()
+        check("t3_supertrend ist freigeschaltet", antwort["schliessbar"] is True)
+        check("Zwei offene Positionen mit Zeilen-ID",
+              [p["id"] for p in antwort["positionen"]] == [1, 2],
+              str([p["id"] for p in antwort["positionen"]]))
+        btc = antwort["positionen"][0]
+        check("PnL wird nach der Bot-Formel geschaetzt (100 -> 110 = +9.70)",
+              btc["pnl_pct"] == 9.7, str(btc["pnl_pct"]))
+        check("Mit Kurs ist die Position schliessbar", btc["schliessbar_jetzt"] is True)
+        # Das Frontend braucht den Bestaetigungstext nicht mehr, also wird er
+        # auch nicht mehr mitgeschickt. Ein Feld, das niemand liest, waere
+        # eine Einladung, es doch wieder zu benutzen.
+        check("Der Bestaetigungstext wird nicht mehr ans Frontend gegeben",
+              "bestaetigungstext" not in antwort, str(sorted(antwort))[:120])
+        check("Die Frist kommt weiterhin aus dem geteilten Kern",
+              antwort["gueltig_sekunden"]
+              == manual_close.BESTAETIGUNG_GUELTIG_SEKUNDEN)
+
+        ohne_kurse = get(basis, "/api/bots/t3_supertrend/schliessbare-positionen").json()
+        check("Ohne live=1 keine Kurse und damit kein Knopf",
+              all(p["aktueller_preis"] is None and p["schliessbar_jetzt"] is False
+                  for p in ohne_kurse["positionen"]))
+
+        fremd = get(basis, "/api/bots/elliott_wave/schliessbare-positionen").json()
+        check("elliott_wave meldet sich als nicht freigeschaltet",
+              fremd["schliessbar"] is False and "t3_supertrend" in fremd["grund"])
+
+        # --- 8b) Beide Leser sehen dieselben Zeilen-IDs -------------------
+        # Der eine Weg fuellt die Tabelle (monitor -> datenquelle), der
+        # andere schreibt (manual_close). Waeren ihre IDs verschieden,
+        # schloesse ein Klick die falsche Position - der unangenehmste
+        # denkbare Fehler dieser Funktion.
+        aus_detail = get(basis, "/api/bots/t3_supertrend?live=1").json()["positionen"]
+        aus_kern = manual_close.offene_positionen("t3_supertrend")
+        check("Detailseite und Schreibmodul sehen dieselben (ID, Symbol)-Paare",
+              [(p["id"], p["symbol"]) for p in aus_detail]
+              == [(p["id"], p["symbol"]) for p in aus_kern],
+              f"{[(p['id'], p['symbol']) for p in aus_detail]} vs "
+              f"{[(p['id'], p['symbol']) for p in aus_kern]}")
+
+        nichts_geschrieben("Nach allen Leseabfragen")
+
+        # --- 8c) Ein einzelner Aufruf kann niemals schreiben --------------
+        # Das ist die Absicherung, die den Wegfall der Texteingabe traegt:
+        # ohne vorheriges `vorbereiten` gibt es keine Kennung, und ohne
+        # Kennung schreibt kein Aufruf - egal was sonst im Koerper steht.
+        antwort = _ausfuehren(basis, "frei-erfundene-kennung")
+        check("Ausfuehren ohne vorherigen Vorgang wird abgelehnt (409)",
+              antwort.status_code == 409, str(antwort.status_code))
+        for koerper in ({}, {"vorgang": None}, {"bestaetigung": "BESTAETIGEN"},
+                         {"vorgang": "", "bestaetigung": "BESTAETIGEN"},
+                         {"trade_id": 1}):
+            antwort = post(basis, "/api/bots/t3_supertrend/schliessen/ausfuehren", koerper)
+            check(f"Ausfuehren mit {koerper} wird abgelehnt",
+                  antwort.status_code == 409, str(antwort.status_code))
+        check("Auch ein mitgeschicktes 'bestaetigung' oeffnet keinen Weg ohne "
+              "Kennung - der Text ist nicht mehr die Absicherung, die "
+              "Kennung ist es",
+              post(basis, "/api/bots/t3_supertrend/schliessen/ausfuehren",
+                   {"bestaetigung": "BESTAETIGEN"}).status_code == 409)
+        nichts_geschrieben("Nach Aufrufen ohne Vorgang")
+
+        # --- 8d) Ohne gueltiges Token --------------------------------------
+        vorbereitet = _vorbereiten(basis).json()
+        for token in (None, "falsches-token-aber-lang-genug"):
+            antwort = post(basis, "/api/bots/t3_supertrend/schliessen/vorbereiten",
+                            {"trade_id": 1}, token=token)
+            check(f"Vorbereiten ohne gueltiges Token: 401 (Token {token!r})",
+                  antwort.status_code == 401, str(antwort.status_code))
+            antwort = _ausfuehren(basis, vorbereitet["vorgang"], token=token)
+            check(f"Ausfuehren ohne gueltiges Token: 401 (Token {token!r})",
+                  antwort.status_code == 401, str(antwort.status_code))
+        nichts_geschrieben("Nach Versuchen ohne Token")
+        # Der Vorgang von oben lebt noch - ein 401 darf ihn nicht verbrauchen.
+        check("Ein abgewiesener Fremdzugriff verbraucht den Vorgang nicht",
+              schliessen.offener_vorgang(vorbereitet["vorgang"]) is not None)
+
+        # --- 8e) Nicht freigeschalteter Bot --------------------------------
+        for bot in ("elliott_wave", "volatility_breakout"):
+            antwort = post(basis, f"/api/bots/{bot}/schliessen/vorbereiten",
+                            {"trade_id": 1})
+            check(f"Vorbereiten fuer {bot}: 403", antwort.status_code == 403,
+                  str(antwort.status_code))
+            antwort = _ausfuehren(basis, vorbereitet["vorgang"], bot=bot)
+            check(f"Ausfuehren fuer {bot}: 403", antwort.status_code == 403,
+                  str(antwort.status_code))
+        check("Die Datenbanken der uebrigen Bots sind unveraendert",
+              _pruefsummen(andere) == andere_vorher)
+
+        # --- 8f) Abbruch -------------------------------------------------
+        # Es gibt nur noch EINEN Abbruchweg: der Vorgang entsteht beim
+        # Oeffnen des Dialogs, und Abbrechen/Esc/Klick daneben verwerfen ihn.
+        # Frueher war derselbe Aufruf zweimal zu pruefen, einmal je Stufe.
+        eins = _vorbereiten(basis).json()
+        check("Vorbereiten liefert Kennung, Kurs und geschaetzten PnL",
+              eins["vorgang"] and eins["aktueller_preis"] == 110.0
+              and eins["pnl_pct"] == 9.7)
+        antwort = post(basis, "/api/bots/t3_supertrend/schliessen/abbrechen",
+                        {"vorgang": eins["vorgang"]})
+        check("Abbrechen wird bestaetigt", antwort.status_code == 200)
+        check("Danach ist die Kennung wertlos",
+              _ausfuehren(basis, eins["vorgang"]).status_code == 409)
+        nichts_geschrieben("Nach Abbruch")
+
+        # --- 8g) Kein Bestaetigungstext mehr - aber nur im Dashboard -------
+        # Die Texteingabe ist aus dem Dashboard-Weg entfernt (ein Tap statt
+        # zwei). Geprueft wird hier beides: dass der Weg sie wirklich nicht
+        # mehr verlangt, UND dass der geteilte Kern sie unveraendert weiter
+        # verlangt - sonst haette diese Aenderung die Telegram-Variante
+        # stillschweigend mit aufgeweicht, die ihre zwei Stufen behaelt.
+        check("Der Dashboard-Weg nimmt gar kein Bestaetigungsfeld mehr an",
+              "bestaetigung" not in inspect.signature(
+                  schliessen.ausfuehren).parameters,
+              str(inspect.signature(schliessen.ausfuehren)))
+        quelltext_app = open(os.path.join(DIR, "app.py"), encoding="utf-8").read()
+        check("Der Endpunkt liest kein 'bestaetigung' mehr aus dem Koerper",
+              'get("bestaetigung")' not in quelltext_app)
+        check("Der Kern verlangt den Text unveraendert weiter (Telegram "
+              "behaelt seine zwei Stufen)",
+              manual_close.BESTAETIGUNGSTEXT == "BESTAETIGEN")
+        try:
+            manual_close.schliesse_position(
+                "t3_supertrend", 1, 110.0, "test", "falscher-text",
+                quelle=manual_close.QUELLE_DASHBOARD)
+            kern_lehnt_ab = False
+        except manual_close.SchliessenNichtMoeglich as fehler:
+            kern_lehnt_ab = "Bestaetigungstext" in str(fehler)
+        check("Ein direkter Kern-Aufruf mit falschem Text schreibt weiterhin "
+              "nichts", kern_lehnt_ab)
+        nichts_geschrieben("Nach dem Kern-Aufruf mit falschem Text")
+
+        # --- 8h) Abgelaufene Bestaetigung ----------------------------------
+        vier = _vorbereiten(basis).json()
+        check("Die Frist wird mitgeliefert",
+              vier["gueltig_sekunden"] == manual_close.BESTAETIGUNG_GUELTIG_SEKUNDEN)
+        # Die Uhr vorstellen, statt zwei Minuten zu warten.
+        schliessen.offener_vorgang(vier["vorgang"])["gueltig_bis"] = time.time() - 1
+        antwort = _ausfuehren(basis, vier["vorgang"])
+        check("Eine abgelaufene Bestaetigung schreibt nichts mehr",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Die Meldung nennt die Frist",
+              str(manual_close.BESTAETIGUNG_GUELTIG_SEKUNDEN) in antwort.json()["detail"])
+        nichts_geschrieben("Nach abgelaufener Bestaetigung")
+
+        # --- 8i) Vorgang eines ANDEREN Bots --------------------------------
+        manual_close.SCHLIESSBARE_BOTS["elliott_wave"] = {
+            "anzeigename": "Elliott Wave (Krypto)", "anlageklasse": "krypto"}
+        try:
+            fremder = _vorbereiten(basis, bot="elliott_wave", trade_id=4).json()
+            check("Vorbereiten fuer den zweiten Bot gelingt (Erweiterbarkeit)",
+                  bool(fremder.get("vorgang")), str(fremder)[:100])
+        finally:
+            manual_close.SCHLIESSBARE_BOTS.pop("elliott_wave", None)
+        antwort = _ausfuehren(basis, fremder["vorgang"], bot="t3_supertrend")
+        check("Eine Kennung von Bot A schliesst nichts bei Bot B",
+              antwort.status_code == 409, str(antwort.status_code))
+        # Der GRUND muss stimmen, nicht nur der Statuscode. Die beiden
+        # Testbots haben ueberlappungsfreie Zeilen-IDs (elliott_wave: 4/5
+        # offen, t3: 1/2) - ohne die Bot-Pruefung wuerde der Versuch
+        # deshalb ohnehin an "Kein Trade mit ID 4" scheitern, und dieser
+        # Test waere gruen, ohne die Absicherung zu pruefen. Genau dieser
+        # Fall ist in der Mutationsprobe aufgefallen.
+        check("Und zwar ausdruecklich, WEIL die Kennung zu einem anderen "
+              "Bot gehoert",
+              "anderen Bot" in antwort.json()["detail"],
+              antwort.json()["detail"][:90])
+        check("Die Datenbanken der uebrigen Bots sind weiterhin unveraendert",
+              _pruefsummen(andere) == andere_vorher)
+        nichts_geschrieben("Nach dem Versuch mit fremder Kennung")
+        check("Nach dem Test ist wieder genau ein Bot freigeschaltet",
+              list(manual_close.SCHLIESSBARE_BOTS) == ["t3_supertrend"])
+
+        # --- 8j) Nebenlaeufigkeit: die Datenbank ist gerade gesperrt --------
+        # Echter zweiter Prozess, keine Attrappe: SQLite-Sperren wirken
+        # zwischen Verbindungen, ein Thread im selben Prozess wuerde hier
+        # nichts beweisen.
+        halter_skript = os.path.join(wurzel, "sperr_halter.py")
+        with open(halter_skript, "w", encoding="utf-8") as datei:
+            datei.write(SPERR_HALTER)
+        fuenf = _vorbereiten(basis).json()
+        altes_limit = manual_close.SPERR_TIMEOUT_SEKUNDEN
+        manual_close.SPERR_TIMEOUT_SEKUNDEN = 1
+        halter = subprocess.Popen([sys.executable, halter_skript, db_t3, "5"],
+                                   stdout=subprocess.PIPE, text=True)
+        try:
+            check("Der zweite Prozess haelt die Schreibsperre",
+                  halter.stdout.readline().strip() == "gesperrt")
+            antwort = _ausfuehren(basis, fuenf["vorgang"])
+            check("Bei gesperrter Datenbank bricht der Endpunkt sauber ab (409)",
+                  antwort.status_code == 409, str(antwort.status_code))
+            check("Die Meldung nennt die Sperre und den vermuteten Cronjob",
+                  "gesperrt" in antwort.json()["detail"].lower()
+                  and "cronjob" in antwort.json()["detail"].lower(),
+                  antwort.json()["detail"][:90])
+        finally:
+            manual_close.SPERR_TIMEOUT_SEKUNDEN = altes_limit
+            halter.wait(timeout=60)
+        nichts_geschrieben("Nach dem Versuch gegen eine gesperrte Datenbank")
+
+        # Die Sperre ist jetzt weg - die Position waere wieder schliessbar.
+        # Genau deshalb ist DIES die scharfe Stelle fuer die Einmaligkeit der
+        # Kennung: haette der gescheiterte Versuch sie nicht verbraucht,
+        # gelaenge der zweite Tap jetzt und wuerde schreiben. Der Grund muss
+        # mitgeprueft werden, nicht nur der Statuscode - sonst waere dieser
+        # Test auch dann gruen, wenn er an etwas anderem scheitert.
+        zweiter_tap = _ausfuehren(basis, fuenf["vorgang"])
+        check("Ein zweiter Tap auf dieselbe Kennung gelingt nicht, obwohl die "
+              "Sperre weg ist", zweiter_tap.status_code == 409,
+              str(zweiter_tap.status_code) + " " + zweiter_tap.text[:120])
+        check("Und zwar ausdruecklich, WEIL die Kennung verbraucht ist",
+              "Keine gueltige Bestaetigung offen" in zweiter_tap.json()["detail"],
+              zweiter_tap.json()["detail"][:90])
+        nichts_geschrieben("Nach dem zweiten Tap auf eine verbrauchte Kennung")
+
+        # --- 8k) Der Cronjob kommt waehrend der Rueckfrage zuvor -----------
+        # Das realistischste Szenario: zwischen dem Oeffnen der
+        # Zusammenfassung und dem Tap darauf vergehen Sekunden bis Minuten.
+        # Mit nur noch einem Tap ist das Fenster kleiner als vorher, aber es
+        # ist nicht weg - die Frist von 120 Sekunden gilt unveraendert.
+        sechs = _vorbereiten(basis, trade_id=2).json()
+        bot_conn = sqlite3.connect(db_t3)
+        bot_conn.execute(
+            "UPDATE trades SET exit_time=?, exit_price=?, result=?, pnl_pct=?, "
+            "status='closed' WHERE id=?",
+            ("2026-09-09 08:00:00", 190.0, "stop_loss", -5.3, 2))
+        bot_conn.commit()
+        bot_conn.close()
+        nach_cronjob = zeilen(db_t3)
+
+        antwort = _ausfuehren(basis, sechs["vorgang"])
+        check("Der manuelle Versuch wird abgelehnt, wenn der Cronjob zuvorkam",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Die Meldung erklaert, dass die Position nicht mehr offen ist",
+              "nicht mehr offen" in antwort.json()["detail"].lower(),
+              antwort.json()["detail"][:90])
+        check("Der Ausstieg des Bots wurde NICHT ueberschrieben",
+              unterschiede(nach_cronjob, zeilen(db_t3)) == [])
+        zeile2 = [z for z in zeilen(db_t3) if z["id"] == 2][0]
+        check("result ist weiterhin 'stop_loss', nicht 'manual_close'",
+              zeile2["result"] == "stop_loss" and zeile2["exit_price"] == 190.0)
+        # Dieser Versuch ist durch `schliessen.ausfuehren` gelaufen und hat
+        # die Kennung damit verbraucht - ein zweiter Tap auf denselben
+        # Vorgang findet nichts mehr vor. Das ist die Einmaligkeit, die
+        # frueher zusaetzlich am falschen Text haengen blieb.
+        wieder = _ausfuehren(basis, sechs["vorgang"])
+        check("Die Kennung ist nach dem gescheiterten Versuch verbraucht",
+              wieder.status_code == 409, str(wieder.status_code))
+        # Auch hier der GRUND: ohne diese Zeile waere der Test gruen, weil
+        # die Position ohnehin nicht mehr offen ist - die Einmaligkeit der
+        # Kennung waere ungeprueft. Genau so ist die Mutationsprobe
+        # "Kennung ueberlebt einen Fehlversuch" zuerst durchgerutscht.
+        check("Und zwar WEIL die Kennung weg ist, nicht weil die Position "
+              "geschlossen ist",
+              "Keine gueltige Bestaetigung offen" in wieder.json()["detail"],
+              wieder.json()["detail"][:90])
+
+        # --- 8l) Der vollstaendige, erfolgreiche Weg -----------------------
+        # EIN Aufruf mit der Kennung - kein Bestaetigungstext. Genau das ist
+        # der "ein Tap"-Nachweis: wuerde irgendeine Schicht den Text noch
+        # verlangen, schlaege dieser Abschnitt fehl. Zusaetzlich wird ein
+        # FALSCHER Text mitgeschickt; er muss wirkungslos sein, sonst wird
+        # er doch noch irgendwo ausgewertet.
+        sieben = _vorbereiten(basis, trade_id=1).json()
+        antwort = _ausfuehren(basis, sieben["vorgang"],
+                               zusatz={"bestaetigung": "voelliger-unsinn"})
+        check("Ein einzelner Tap (nur Kennung) gelingt - auch mit falschem "
+              "Text im Koerper, der schlicht nicht mehr gelesen wird",
+              antwort.status_code == 200,
+              str(antwort.status_code) + " " + antwort.text[:120])
+        ergebnis = antwort.json()
+        check("Antwort nennt Symbol, Ausstiegskurs, PnL und den Vermerk",
+              ergebnis["symbol"] == "BTCUSDT" and ergebnis["exit_preis"] == 110.0
+              and ergebnis["pnl_pct"] == 9.7
+              and ergebnis["ergebnis"] == "manual_close", str(ergebnis)[:150])
+
+        diff = unterschiede(nach_cronjob, zeilen(db_t3))
+        check("Genau die fuenf Ausstiegsfelder von Trade 1 haben sich geaendert",
+              {(k, f) for k, f, _, _ in diff} ==
+              {(1, "exit_time"), (1, "exit_price"), (1, "result"),
+               (1, "pnl_pct"), (1, "status")}, str(sorted({(k, f) for k, f, _, _ in diff})))
+        check("Keine andere Zeile wurde beruehrt",
+              all(k == 1 for k, _, _, _ in diff))
+        check("Zeilenzahl unveraendert (nichts eingefuegt, nichts geloescht)",
+              len(zeilen(db_t3)) == len(vor_allem) == 3)
+        zeile1 = [z for z in zeilen(db_t3) if z["id"] == 1][0]
+        check("symbol, entry_price, stop_price, signal_time, entry_time unveraendert",
+              all(zeile1[f] == vor_allem[0][f] for f in
+                  ("symbol", "entry_price", "stop_price", "signal_time", "entry_time")))
+        check("Die Datenbanken der uebrigen Bots sind byteweise identisch",
+              _pruefsummen(andere) == andere_vorher)
+
+        # Die geschlossene Position darf danach nicht mehr angeboten werden.
+        rest = get(basis, "/api/bots/t3_supertrend/schliessbare-positionen?live=1").json()
+        check("Die geschlossene Position taucht nicht mehr als offen auf",
+              [p["id"] for p in rest["positionen"]] == [], str(rest["positionen"]))
+        check("Der Trade erscheint jetzt in den geschlossenen Trades",
+              any(t["ergebnis"] == "manual_close"
+                  for t in get(basis, "/api/bots/t3_supertrend").json()["letzte_trades"]))
+
+        # --- 8m) Protokoll --------------------------------------------------
+        with open(protokoll_datei, encoding="utf-8") as datei:
+            protokoll = [z.strip() for z in datei if z.strip()]
+        check("Es wurde protokolliert", len(protokoll) > 0)
+        check("Jede Zeile traegt die Marke MANUELLER-EINGRIFF",
+              all("MANUELLER-EINGRIFF" in z for z in protokoll))
+        check("Jede Zeile nennt das Dashboard als Quelle",
+              all("quelle=dashboard" in z for z in protokoll),
+              [z for z in protokoll if "quelle=dashboard" not in z][:1])
+        erfolge = [z for z in protokoll if "ERFOLGREICH" in z]
+        check("Genau EIN erfolgreicher Eingriff im Protokoll", len(erfolge) == 1,
+              f"{len(erfolge)}")
+        check("Die Erfolgszeile nennt Vorher- und Nachher-Zustand",
+              "VORHER status=open" in erfolge[0]
+              and "NACHHER status=closed" in erfolge[0]
+              and "result=manual_close" in erfolge[0])
+        check("Die Erfolgszeile nennt die Gegenstelle als Benutzer",
+              "benutzer=dashboard@127.0.0.1" in erfolge[0], erfolge[0][-120:])
+        ablehnungen = [z for z in protokoll if "ABGELEHNT" in z]
+        check("Auch die abgelehnten Versuche stehen im Protokoll",
+              len(ablehnungen) >= 5, f"{len(ablehnungen)} Ablehnungen")
+        check("Abgelehnte Zeilen halten 'Datenbank unveraendert' fest",
+              all("Datenbank unveraendert" in z for z in ablehnungen))
+        print(f"       Beispiel: {erfolge[0]}")
+    finally:
+        monitor.fetch_live_prices_for_bots = original_kurse
+        schliessen.vorgaenge_zuruecksetzen()
+
+
+# ---------------------------------------------------------------------------
+# 9) Notfallweg: ALLE offenen Positionen
+# ---------------------------------------------------------------------------
+# Der schwierigste Teil dieser Funktion ist nicht der Erfolgsfall, sondern der
+# TEILAUSFALL: scheitert die dritte von fuenf Positionen, darf die Schleife
+# nicht abbrechen und einen Zustand hinterlassen, den niemand benennen kann.
+# Abschnitt 9f prueft das mit einem ECHTEN Fehlschlag des Kerns (kein
+# Testdoppel), 9i zusaetzlich mit einem unerwarteten Fehler.
+
+_NAECHSTE_ID = [100]
+
+
+def _oeffne_positionen(db_pfad, posten):
+    """Legt offene Testpositionen an und gibt [(id, symbol, entry)] zurueck.
+    Eigene IDs ab 100, damit sie sich nicht mit den Zeilen aus Abschnitt 8
+    ueberschneiden - dort wird bereits geschlossen."""
+    angelegt = []
+    conn = sqlite3.connect(db_pfad)
+    try:
+        for symbol, entry in posten:
+            trade_id = _NAECHSTE_ID[0]
+            _NAECHSTE_ID[0] += 1
+            conn.execute(
+                "INSERT INTO trades (id, symbol, signal_time, entry_time, "
+                "entry_price, stop_price, exit_time, exit_price, result, "
+                "pnl_pct, status) VALUES (?,?,?,?,?,?,NULL,NULL,NULL,NULL,'open')",
+                (trade_id, symbol, "2026-03-01 00:00:00", "2026-03-01 00:00:00",
+                 entry, entry * 0.95))
+            angelegt.append((trade_id, symbol, entry))
+        conn.commit()
+    finally:
+        conn.close()
+    return angelegt
+
+
+def _alle_vorbereiten(basis, bot="t3_supertrend", token=TEST_TOKEN):
+    return post(basis, f"/api/bots/{bot}/alle-schliessen/vorbereiten", {},
+                 token=token)
+
+
+def _alle_ausfuehren(basis, vorgang, bot="t3_supertrend", token=TEST_TOKEN):
+    return post(basis, f"/api/bots/{bot}/alle-schliessen/ausfuehren",
+                 {"vorgang": vorgang}, token=token)
+
+
+def teste_alle_schliessen(basis, wurzel, db_dateien, protokoll_datei):
+    print("\n9) Notfallweg: alle Positionen eines Bots schliessen")
+
+    db_t3 = db_dateien["t3_supertrend"]
+    andere = {n: p for n, p in db_dateien.items() if n != "t3_supertrend"}
+    andere_vorher = _pruefsummen(andere)
+
+    def status(trade_id):
+        conn = sqlite3.connect(db_t3)
+        try:
+            zeile = conn.execute(
+                "SELECT status, result, exit_price, pnl_pct FROM trades WHERE id=?",
+                (trade_id,)).fetchone()
+        finally:
+            conn.close()
+        return tuple(zeile) if zeile else None
+
+    original_kurse = monitor.fetch_live_prices_for_bots
+    monitor.fetch_live_prices_for_bots = lambda bots: dict(TESTKURSE)
+    schliessen.vorgaenge_zuruecksetzen()
+    protokoll_vorher = len(open(protokoll_datei, encoding="utf-8").read().splitlines())
+    try:
+        # --- 9a) Kein offener Posten: der Weg beginnt gar nicht -----------
+        # Abschnitt 8 hat alle offenen t3-Positionen geschlossen, der Stand
+        # ist also genau der, den dieser Fall braucht.
+        antwort = _alle_vorbereiten(basis)
+        check("Ohne offene Position wird das Vorbereiten abgelehnt (409)",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Die Meldung sagt, dass es nichts zu schliessen gibt",
+              "keine offene Position" in antwort.json()["detail"],
+              antwort.json()["detail"][:90])
+
+        # --- 9b) Ohne gueltiges Token ------------------------------------
+        _oeffne_positionen(db_t3, [("BTCUSDT", 100.0)])
+        vorbereitet = _alle_vorbereiten(basis).json()
+        for token in (None, "falsches-token-aber-lang-genug"):
+            check(f"Vorbereiten ohne gueltiges Token: 401 (Token {token!r})",
+                  _alle_vorbereiten(basis, token=token).status_code == 401)
+            check(f"Ausfuehren ohne gueltiges Token: 401 (Token {token!r})",
+                  _alle_ausfuehren(basis, vorbereitet["vorgang"],
+                                    token=token).status_code == 401)
+        check("Ein abgewiesener Fremdzugriff verbraucht den Vorgang nicht",
+              schliessen.offener_vorgang(vorbereitet["vorgang"]) is not None)
+
+        # --- 9c) Nicht freigeschalteter Bot -------------------------------
+        for bot in ("elliott_wave", "volatility_breakout"):
+            check(f"Vorbereiten fuer {bot}: 403",
+                  _alle_vorbereiten(basis, bot=bot).status_code == 403)
+            check(f"Ausfuehren fuer {bot}: 403",
+                  _alle_ausfuehren(basis, vorbereitet["vorgang"],
+                                    bot=bot).status_code == 403)
+
+        # --- 9d) Eine Kennung der einen Art auf dem Endpunkt der anderen ---
+        # Ohne diese Pruefung waere die zweite Klick-Bestaetigung umgehbar:
+        # die billiger zu bekommende Einzel-Kennung wuerde auf dem
+        # Alle-Endpunkt alles schliessen.
+        einzel = _vorbereiten(basis, trade_id=vorbereitet["positionen"][0]["id"]).json()
+        antwort = _alle_ausfuehren(basis, einzel["vorgang"])
+        check("Eine EINZEL-Kennung loest auf dem Alle-Endpunkt nichts aus (409)",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Und zwar ausdruecklich, WEIL sie zu einem anderen Vorgang gehoert",
+              "anderen Vorgang" in antwort.json()["detail"],
+              antwort.json()["detail"][:90])
+        antwort = _ausfuehren(basis, vorbereitet["vorgang"])
+        check("Eine ALLE-Kennung loest auf dem Einzel-Endpunkt nichts aus (409)",
+              antwort.status_code == 409, str(antwort.status_code))
+        check("Auch hier ist der Grund die fremde Vorgangsart",
+              "anderen Vorgang" in antwort.json()["detail"],
+              antwort.json()["detail"][:90])
+        check("Die Position ist nach beiden Versuchen unveraendert offen",
+              status(vorbereitet["positionen"][0]["id"])[0] == "open")
+
+        # --- 9e) Abbruch in beiden Klick-Stufen ---------------------------
+        # Serverseitig ist beides derselbe Aufruf - der Unterschied liegt
+        # allein in der Oberflaeche. Geprueft wird deshalb, dass die Kennung
+        # danach in BEIDEN Faellen wertlos ist.
+        for stufe in ("Stufe 1", "Stufe 2"):
+            eins = _alle_vorbereiten(basis).json()
+            post(basis, "/api/bots/t3_supertrend/schliessen/abbrechen",
+                 {"vorgang": eins["vorgang"]})
+            check(f"Abbruch in {stufe} macht die Kennung wertlos",
+                  _alle_ausfuehren(basis, eins["vorgang"]).status_code == 409)
+        check("Nach beiden Abbruechen ist die Position weiterhin offen",
+              status(vorbereitet["positionen"][0]["id"])[0] == "open")
+
+        # --- 9f) TEILAUSFALL mit einem ECHTEN Fehlschlag des Kerns --------
+        # Kein Testdoppel: einer der drei Positionen wird nach der Uebersicht
+        # der Einstiegskurs entzogen. Der Kern lehnt sie daraufhin INNERHALB
+        # seiner Transaktion ab (berechne_pnl wirft), die beiden uebrigen
+        # muessen trotzdem durchlaufen.
+        schliessen.vorgaenge_zuruecksetzen()
+        offen = _oeffne_positionen(db_t3, [("ETHUSDT", 200.0), ("SOLUSDT", 20.0)])
+        drei = _alle_vorbereiten(basis).json()
+        ids = [p["id"] for p in drei["positionen"]]
+        check("Die Uebersicht nennt alle drei offenen Positionen",
+              len(ids) == 3 and drei["anzahl"] == 3, str(drei["positionen"])[:150])
+        check("Und einen Durchschnitt je Position statt einer Summe",
+              "pnl_schnitt_pct" in drei and "pnl_summe_pct" not in drei)
+
+        opfer = offen[1][0]                      # SOLUSDT
+        conn = sqlite3.connect(db_t3)
+        conn.execute("UPDATE trades SET entry_price=NULL WHERE id=?", (opfer,))
+        conn.commit()
+        conn.close()
+
+        antwort = _alle_ausfuehren(basis, drei["vorgang"])
+        check("Ein Teilausfall ist KEIN HTTP-Fehler - die Anfrage wurde "
+              "vollstaendig bearbeitet (200)",
+              antwort.status_code == 200, str(antwort.status_code) + antwort.text[:120])
+        r = antwort.json()
+        check("erfolg ist false, weil eine Position fehlschlug",
+              r["erfolg"] is False, str(r["erfolg"]))
+        check("Zwei von drei geschlossen, eine fehlgeschlagen",
+              (r["anzahl_geschlossen"], r["anzahl_fehlgeschlagen"],
+               r["angefragt"]) == (2, 1, 3),
+              f"{r['anzahl_geschlossen']}/{r['anzahl_fehlgeschlagen']}/{r['angefragt']}")
+        check("Die fehlgeschlagene Position wird namentlich und mit Grund genannt",
+              r["fehlgeschlagen"][0]["trade_id"] == opfer
+              and "Einstiegskurs" in r["fehlgeschlagen"][0]["grund"],
+              str(r["fehlgeschlagen"])[:140])
+        check("Die Meldung nennt Erfolge UND Fehlschlag in einem Satz",
+              "2 von 3" in r["meldung"] and "fehlgeschlagen" in r["meldung"],
+              r["meldung"][:160])
+        uebrige = [i for i in ids if i != opfer]
+        check("Die beiden uebrigen Positionen sind wirklich geschlossen",
+              all(status(i)[0] == "closed" and status(i)[1] == "manual_close"
+                  for i in uebrige), str([status(i) for i in uebrige]))
+        check("DIE SCHLEIFE IST NICHT ABGEBROCHEN: auch die Position NACH der "
+              "fehlgeschlagenen wurde bearbeitet",
+              status(ids[-1])[0] == "closed" if ids[-1] != opfer
+              else status(ids[0])[0] == "closed")
+        check("Die fehlgeschlagene Position bleibt offen und unberuehrt",
+              status(opfer)[0] == "open" and status(opfer)[2] is None,
+              str(status(opfer)))
+        check("Die Datenbanken der uebrigen Bots sind unveraendert",
+              _pruefsummen(andere) == andere_vorher)
+
+        # Aufraeumen: Einstiegskurs zuruecksetzen, Position schliessen.
+        conn = sqlite3.connect(db_t3)
+        conn.execute("UPDATE trades SET entry_price=20.0, status='closed', "
+                      "result='aufgeraeumt' WHERE id=?", (opfer,))
+        conn.commit()
+        conn.close()
+
+        # --- 9g) Nebenlaeufigkeit: der Cronjob kommt dazwischen -----------
+        schliessen.vorgaenge_zuruecksetzen()
+        offen = _oeffne_positionen(db_t3, [("BTCUSDT", 100.0), ("ETHUSDT", 200.0),
+                                            ("SOLUSDT", 20.0)])
+        vier = _alle_vorbereiten(basis).json()
+        zuvorgekommen = offen[1][0]
+        conn = sqlite3.connect(db_t3)
+        conn.execute("UPDATE trades SET exit_time=?, exit_price=?, result=?, "
+                      "pnl_pct=?, status='closed' WHERE id=?",
+                      ("2026-09-10 08:00:00", 195.0, "stop_loss", -2.8, zuvorgekommen))
+        conn.commit()
+        conn.close()
+
+        r = _alle_ausfuehren(basis, vier["vorgang"]).json()
+        check("Die vom Bot geschlossene Position wird UEBERSPRUNGEN, nicht "
+              "als Fehlschlag gezaehlt",
+              r["anzahl_uebersprungen"] == 1
+              and r["uebersprungen"][0]["trade_id"] == zuvorgekommen
+              and r["anzahl_fehlgeschlagen"] == 0, str(r["uebersprungen"]))
+        check("Die uebrigen Positionen wurden trotzdem geschlossen",
+              r["anzahl_geschlossen"] == len(vier["positionen"]) - 1,
+              f"{r['anzahl_geschlossen']} von {len(vier['positionen'])}")
+        check("Der Ausstieg des Bots wurde NICHT ueberschrieben",
+              status(zuvorgekommen)[1] == "stop_loss"
+              and status(zuvorgekommen)[2] == 195.0, str(status(zuvorgekommen)))
+        check("Die Meldung erklaert das Ueberspringen",
+              "uebersprungen" in r["meldung"] and "selbst geschlossen" in r["meldung"],
+              r["meldung"][:170])
+
+        # --- 9h) Eine NACH der Uebersicht eroeffnete Position ------------
+        # Sie wird NICHT angefasst: der Nutzer hat sie nie gesehen und ihren
+        # Kurs nie bestaetigt. Ausgewiesen wird sie trotzdem.
+        schliessen.vorgaenge_zuruecksetzen()
+        _oeffne_positionen(db_t3, [("BTCUSDT", 100.0)])
+        fuenf = _alle_vorbereiten(basis).json()
+        spaet = _oeffne_positionen(db_t3, [("ETHUSDT", 200.0)])[0][0]
+        r = _alle_ausfuehren(basis, fuenf["vorgang"]).json()
+        check("Die spaeter eroeffnete Position wird NICHT geschlossen",
+              status(spaet)[0] == "open", str(status(spaet)))
+        check("Sie wird im Ergebnis aber ausdruecklich ausgewiesen",
+              r["nicht_bestaetigt"] == [spaet], str(r["nicht_bestaetigt"]))
+        check("Und die Meldung sagt, dass sie nach der Uebersicht entstand",
+              "nach der Uebersicht eroeffnet" in r["meldung"], r["meldung"][:170])
+        check("Die bestaetigte Position wurde geschlossen",
+              r["anzahl_geschlossen"] == 1, str(r["anzahl_geschlossen"]))
+
+        # --- 9i) Ein UNERWARTETER Fehler bricht die Schleife auch nicht ---
+        # Der eine Fall, fuer den ein Testdoppel noetig ist: ein Fehler, den
+        # der Kern gar nicht vorsieht. Genau dort waere ein Abbruch am
+        # schlimmsten, weil ihn niemand vorhergesehen hat.
+        schliessen.vorgaenge_zuruecksetzen()
+        offen = _oeffne_positionen(db_t3, [("SOLUSDT", 20.0)])
+        sechs = _alle_vorbereiten(basis).json()
+        ids = [p["id"] for p in sechs["positionen"]]
+        platzt = ids[0]
+        echt = manual_close.schliesse_position
+
+        def mit_panne(bot_name, trade_id, *a, **kw):
+            if trade_id == platzt:
+                raise RuntimeError("simulierter unerwarteter Fehler")
+            return echt(bot_name, trade_id, *a, **kw)
+
+        manual_close.schliesse_position = mit_panne
+        try:
+            antwort = _alle_ausfuehren(basis, sechs["vorgang"])
+        finally:
+            manual_close.schliesse_position = echt
+        check("Auch ein unerwarteter Fehler endet in einer Zusammenfassung, "
+              "nicht in einem 500er", antwort.status_code == 200,
+              str(antwort.status_code) + antwort.text[:120])
+        r = antwort.json()
+        check("Er wird als Fehlschlag mit Grund ausgewiesen",
+              r["anzahl_fehlgeschlagen"] >= 1
+              and "unerwarteter Fehler" in r["fehlgeschlagen"][0]["grund"],
+              str(r["fehlgeschlagen"])[:140])
+        check("Und die uebrigen Positionen laufen trotzdem durch",
+              r["anzahl_geschlossen"] == len(ids) - 1,
+              f"{r['anzahl_geschlossen']} von {len(ids)}")
+        check("Die geplatzte Position bleibt offen und unberuehrt",
+              status(platzt)[0] == "open" and status(platzt)[2] is None,
+              str(status(platzt)))
+
+        # --- 9j) Der vollstaendige Erfolgsfall ---------------------------
+        schliessen.vorgaenge_zuruecksetzen()
+        conn = sqlite3.connect(db_t3)
+        conn.execute("UPDATE trades SET status='closed', result='aufgeraeumt' "
+                      "WHERE status='open'")
+        conn.commit()
+        conn.close()
+        offen = _oeffne_positionen(db_t3, [("BTCUSDT", 100.0), ("ETHUSDT", 200.0),
+                                            ("SOLUSDT", 22.0),
+                                            ("XRPUSDT", 0.5)])
+        sieben = _alle_vorbereiten(basis).json()
+        # XRPUSDT steht nicht in TESTKURSE - ohne Kurs wuerde der Kern
+        # ablehnen, also wird die Position schon in der Uebersicht als nicht
+        # schliessbar ausgewiesen statt spaeter als Fehlschlag gemeldet.
+        ohne_kurs = [p for p in sieben["positionen"] if not p["schliessbar_jetzt"]]
+        check("Eine Position ohne Kurs wird vorab als nicht schliessbar "
+              "ausgewiesen, nicht spaeter als Fehlschlag",
+              [p["symbol"] for p in ohne_kurs] == ["XRPUSDT"]
+              and "kein aktueller Kurs" in ohne_kurs[0]["grund"],
+              str(ohne_kurs))
+        check("Gezaehlt werden nur die schliessbaren (3 von 4)",
+              (sieben["anzahl"], sieben["anzahl_gesamt"]) == (3, 4),
+              f"{sieben['anzahl']}/{sieben['anzahl_gesamt']}")
+        check("Der Durchschnitt rechnet nur ueber die mit Kurs",
+              sieben["pnl_schnitt_pct"] == round((9.7 - 10.3 - 0.3) / 3, 2),
+              str(sieben["pnl_schnitt_pct"]))
+
+        vor_lauf = [z for z in zeilen(db_t3)]
+        protokoll_vor_erfolgslauf = len(
+            open(protokoll_datei, encoding="utf-8").read().splitlines())
+        r = _alle_ausfuehren(basis, sieben["vorgang"]).json()
+        check("Alle drei schliessbaren Positionen wurden geschlossen",
+              r["erfolg"] is True and r["anzahl_geschlossen"] == 3
+              and r["anzahl_fehlgeschlagen"] == 0, str(r["meldung"])[:140])
+        check("Jede mit ihrem EIGENEN Kurs, nicht einem gemeinsamen",
+              sorted((g["symbol"], g["exit_preis"]) for g in r["geschlossen"])
+              == [("BTCUSDT", 110.0), ("ETHUSDT", 180.0), ("SOLUSDT", 22.0)],
+              str(sorted((g["symbol"], g["exit_preis"]) for g in r["geschlossen"])))
+        check("Und mit dem PnL nach der Bot-Formel je Position",
+              sorted(g["pnl_pct"] for g in r["geschlossen"]) == [-10.3, -0.3, 9.7],
+              str(sorted(g["pnl_pct"] for g in r["geschlossen"])))
+        diff = unterschiede(vor_lauf, zeilen(db_t3))
+        check("Geaendert wurden genau die fuenf Ausstiegsfelder der drei Zeilen",
+              {f for _, f, _, _ in diff} ==
+              {"exit_time", "exit_price", "result", "pnl_pct", "status"}
+              and len({k for k, _, _, _ in diff}) == 3,
+              str(sorted({(k, f) for k, f, _, _ in diff})))
+        check("Die Position ohne Kurs blieb offen",
+              status(offen[3][0])[0] == "open", str(status(offen[3][0])))
+        check("Zeilenzahl unveraendert - nichts eingefuegt, nichts geloescht",
+              len(zeilen(db_t3)) == len(vor_lauf))
+        check("Die Datenbanken der uebrigen Bots sind byteweise identisch",
+              _pruefsummen(andere) == andere_vorher)
+
+        # --- 9k) Protokoll: je Position eine eigene Zeile ----------------
+        # Gemessen wird am EINEN Lauf aus 9j (drei Positionen), nicht an einer
+        # Gesamtsumme ueber den ganzen Abschnitt: eine hartkodierte Summe
+        # waere bei jeder spaeteren Ergaenzung falsch, ohne dass die Aussage
+        # "eine Zeile je Position" dadurch besser geprueft wuerde.
+        protokoll = open(protokoll_datei, encoding="utf-8").read().splitlines()
+        vom_erfolgslauf = [z for z in protokoll[protokoll_vor_erfolgslauf:]
+                            if z.strip() and "ERFOLGREICH" in z]
+        check("Der Lauf mit drei Positionen erzeugt GENAU DREI Erfolgszeilen - "
+              "keine zusammengefasste Batch-Zeile",
+              len(vom_erfolgslauf) == 3, f"{len(vom_erfolgslauf)} Erfolgszeilen")
+        # Jede Zeile muss GENAU EINE der drei Positionen nennen - sonst
+        # koennten drei Zeilen auch dreimal dieselbe Position sein.
+        erwartete_ids = sorted(g["trade_id"] for g in r["geschlossen"])
+        genannte_ids = sorted(
+            tid for tid in erwartete_ids
+            if len([z for z in vom_erfolgslauf if f"trade_id={tid} " in z]) == 1)
+        check("Und jede Zeile nennt genau eine andere Position",
+              genannte_ids == erwartete_ids,
+              f"erwartet {erwartete_ids}, eindeutig genannt {genannte_ids}")
+
+        neue = [z for z in protokoll[protokoll_vorher:] if z.strip()]
+        erfolge = [z for z in neue if "ERFOLGREICH" in z]
+        check("Ueber den ganzen Abschnitt entspricht die Zahl der "
+              "Erfolgszeilen der Zahl tatsaechlich geschlossener Positionen",
+              len(erfolge) == len([z for z in zeilen(db_t3)
+                                    if z["result"] == "manual_close"
+                                    and z["id"] >= 100]),
+              f"{len(erfolge)} Erfolgszeilen")
+        check("Jede Zeile traegt die Marke MANUELLER-EINGRIFF und quelle=dashboard",
+              all("MANUELLER-EINGRIFF" in z and "quelle=dashboard" in z
+                  for z in neue),
+              [z for z in neue if "quelle=dashboard" not in z][:1])
+        check("Die Erfolgszeilen nennen jede einzeln Vorher- und Nachher-Zustand",
+              all("VORHER status=open" in z and "NACHHER status=closed" in z
+                  for z in erfolge))
+        check("Auch die abgelehnten Einzelversuche stehen im Protokoll",
+              len([z for z in neue if "ABGELEHNT" in z]) >= 3,
+              f"{len([z for z in neue if 'ABGELEHNT' in z])} Ablehnungen")
+    finally:
+        monitor.fetch_live_prices_for_bots = original_kurse
+        schliessen.vorgaenge_zuruecksetzen()
+
+
+def teste_schliessen_frontend():
+    print("\n10) Frontend des Schliessvorgangs")
+    statisch = os.path.join(DIR, "static")
+    bot_html = open(os.path.join(statisch, "bot.html"), encoding="utf-8").read()
+    app_js = open(os.path.join(statisch, "app.js"), encoding="utf-8").read()
+    code = ohne_kommentare(bot_html)
+
+    check("Es gibt echte <dialog>-Elemente statt nachgebauter Overlays",
+          code.count("<dialog") == 2 and "showModal()" in code)
+
+    # Die folgenden Pruefungen gelten NUR fuer den Einzel-Dialog. Seit es den
+    # Notfall-Dialog gibt, waere eine Suche im ganzen Dokument irrefuehrend:
+    # der Notfallweg hat zu Recht zwei Stufen und eine Schritt-Anzeige.
+    # Deshalb wird hier genau der eine Dialog herausgeschnitten.
+    einzel = code.split('id="schliessdialog"', 1)[1].split("</dialog>", 1)[0]
+    notfall = code.split('id="notfalldialog"', 1)[1].split("</dialog>", 1)[0]
+
+    # EIN Schritt: die Zusammenfassung ist schon der vorbereiten-Aufruf, der
+    # Knopf darunter der ausfuehren-Aufruf. Die frueheren zwei Stufen samt
+    # Texteingabe sind weg - und sollen nicht unbemerkt zurueckkehren.
+    check("Einzel-Dialog: keine zweite Stufe im Markup",
+          'id="dialog-stufe1"' not in code and 'id="dialog-stufe2"' not in code)
+    check("Einzel-Dialog: keine Texteingabe",
+          'id="dialog-eingabe"' not in code and "<input" not in einzel)
+    check("Einzel-Dialog: keine Schritt-Anzeige ('Schritt 1 von 2')",
+          "von 2" not in einzel and 'id="dialog-stufe"' not in einzel)
+    check("Einzel-Dialog: genau EIN Abbrechen-Knopf",
+          code.count('id="dialog-abbrechen"') == 1
+          and 'id="dialog-abbrechen1"' not in code
+          and 'id="dialog-abbrechen2"' not in code)
+
+    # --- Notfallweg: ZWEI Klick-Stufen, deutlich abgesetzt ----------------
+    check("Notfall-Dialog: zwei Stufen im Markup",
+          'id="notfall-stufe1"' in notfall and 'id="notfall-stufe2"' in notfall)
+    check("Notfall-Dialog: Schritt-Anzeige vorhanden (anders als beim Einzelweg)",
+          'id="notfall-stufe"' in notfall and "von 2" in notfall)
+    check("Notfall-Dialog: ebenfalls KEINE Texteingabe - beide Stufen sind Klicks",
+          "<input" not in notfall and "BESTAETIGEN" not in notfall)
+    check("Notfall-Dialog: zwei verschiedene Knoepfe fuer die zwei Stufen",
+          'id="notfall-weiter"' in notfall and 'id="notfall-ausfuehren"' in notfall)
+    check("Notfall-Dialog: der erste Knopf startet gesperrt (vor der Kennung)",
+          re.search(r'id="notfall-weiter"[^>]*disabled', notfall) is not None)
+    check("Notfall-Dialog: Esc und Klick daneben verwerfen den Vorgang auch hier",
+          "notfallDialog.addEventListener" in code
+          and "notfallAbbrechen()" in code)
+    # Geprueft wird das Knopf-Element SELBST, nicht ob die Klasse irgendwo in
+    # der Datei vorkommt: "knopf notfall" steht auch an den Dialogknoepfen,
+    # eine Suche im ganzen Dokument waere also gruen geblieben, waehrend der
+    # Notfallknopf schon wie der harmlose Einzelknopf aussieht. Genau so ist
+    # diese Luecke in der Mutationsprobe aufgefallen.
+    knopf_tag = re.search(r'<button(?:(?!</?button)[\s\S])*?id="alle-schliessen"'
+                           r'(?:(?!</?button)[\s\S])*?>', code)
+    check("Der Notfall-Knopf traegt SELBST die eigene Notfall-Klasse",
+          knopf_tag is not None and "knopf notfall" in knopf_tag.group(0),
+          knopf_tag.group(0)[:110] if knopf_tag else "kein <button> gefunden")
+    check("Und gerade NICHT die Klasse des harmlosen Einzel-Knopfes",
+          knopf_tag is not None and "schliessen-knopf" not in knopf_tag.group(0)
+          and "gefahr" not in knopf_tag.group(0),
+          knopf_tag.group(0)[:110] if knopf_tag else "-")
+    check("Er steht ausserhalb der Tabelle, in eigener Leiste",
+          'id="notfall-leiste"' in code
+          and code.index('id="notfall-leiste"') > code.index('id="positionen"'))
+
+    # Die ZWEI Stufen muessen auch wirklich zwei sein: der erste Knopf darf
+    # nur weiterblaettern, geschrieben wird ausschliesslich vom zweiten.
+    # Ohne diese Pruefung bleibt die Suite gruen, wenn der erste Klick direkt
+    # schreibt - die zweite Bestaetigung waere dann wirkungslos. Auch das ist
+    # erst in der Mutationsprobe aufgefallen.
+    check("Der erste Notfall-Knopf blaettert nur zur zweiten Stufe weiter",
+          'getElementById("notfall-weiter")\n  .addEventListener("click", '
+          'notfallZurZweitenStufe);' in code)
+    check("Geschrieben wird ausschliesslich ueber den Knopf der zweiten Stufe",
+          'getElementById("notfall-ausfuehren")\n  .addEventListener("click", '
+          'notfallAusfuehren);' in code)
+    nach_weiter = code.split('function notfallZurZweitenStufe()', 1)[1] \
+        .split("\nasync function", 1)[0]
+    check("Die erste Stufe ruft den schreibenden Endpunkt NICHT auf",
+          "/alle-schliessen/ausfuehren" not in nach_weiter
+          and "notfallAusfuehren" not in nach_weiter, nach_weiter[:120])
+    check("Der schreibende Aufruf steht genau EINMAL im Frontend",
+          code.count("/alle-schliessen/ausfuehren") == 1)
+    check("Der Notfallweg ruft eigene Endpunkte auf",
+          "/alle-schliessen/vorbereiten" in code
+          and "/alle-schliessen/ausfuehren" in code)
+    check("Das Ergebnis nennt Fehlschlaege und Uebersprungene ausdruecklich",
+          "fehlgeschlagen" in code and "uebersprungen" in code
+          and "nicht_bestaetigt" in code)
+    check("Ein gemischter Ausgang wird NICHT als Erfolg dargestellt",
+          "teilmeldung" in code
+          and "teilmeldung" in open(os.path.join(statisch, "style.css"),
+                                     encoding="utf-8").read())
+    check("Keine aufsummierte Gesamt-Prozentzahl im Frontend (Grundsatz 2)",
+          "pnl_summe" not in code and "pnl_schnitt_pct" in code)
+
+    # Das hidden-Attribut muss jede display-Regel schlagen. `display: none`
+    # fuer [hidden] steht nur im Browser-Standardstil und verliert gegen jede
+    # Autorenregel - ein `.klasse { display: flex }` macht ein verborgenes
+    # Element also wieder sichtbar. Genau so war der Notfall-Knopf anfangs
+    # auch bei nicht freigeschalteten Bots zu sehen; aufgefallen ist es erst
+    # im Browser, nicht in dieser Suite. Deshalb die Pruefung hier.
+    css = open(os.path.join(statisch, "style.css"), encoding="utf-8").read()
+    check("style.css erzwingt [hidden] gegen jede display-Regel",
+          re.search(r"\[hidden\]\s*\{[^}]*display:\s*none\s*!important",
+                     css) is not None)
+    # Die Leiste wird ueber das hidden-Attribut geschaltet - also haengt ihre
+    # Unsichtbarkeit genau an der Regel oben. Beides zusammen geprueft, damit
+    # nicht eines von beiden still wegfaellt.
+    check("Die Notfall-Leiste wird ueber hidden geschaltet (nicht ueber style)",
+          re.search(r"leiste\.hidden\s*=", code) is not None
+          and "notfall-leiste" not in code.split("style.display")[0][-200:]
+          if "style.display" in code else
+          re.search(r"leiste\.hidden\s*=", code) is not None)
+    check("Und sie traegt im Markup von Anfang an hidden - vor dem ersten "
+          "Ladevorgang ist noch nicht bekannt, ob der Bot freigeschaltet ist",
+          re.search(r'id="notfall-leiste"[^>]*hidden', code) is not None)
+    check("Der Schliessen-Knopf startet gesperrt - vor dem vorbereiten-Aufruf "
+          "gibt es keine Kennung",
+          re.search(r'id="dialog-ja"[^>]*disabled', code) is not None)
+    check("Derselbe Knopf loest jetzt das Schreiben aus",
+          'getElementById("dialog-ja").addEventListener("click", ausfuehren)'
+          in code)
+    check("Esc und Klick daneben verwerfen den Vorgang ebenfalls",
+          '"cancel"' in code and "abbrechen()" in code)
+
+    # Der Bestaetigungstext darf im Frontend nirgends mehr auftauchen -
+    # weder festgeschrieben noch aus der Serverantwort gelesen.
+    check("Der Bestaetigungstext kommt im Frontend nicht mehr vor",
+          '"BESTAETIGEN"' not in code and "bestaetigungstext" not in code)
+    check("Der Ausfuehren-Aufruf schickt nur die Kennung",
+          "bestaetigung:" not in code)
+
+    # Die Frist bleibt sichtbar: der Vorgang verfaellt serverseitig weiter
+    # nach 120 Sekunden, und ein Tap auf einen abgelaufenen Vorgang soll als
+    # solcher erkennbar sein, nicht als unerklaerliche Absage.
+    check("Der Countdown bleibt und sperrt den Knopf bei Ablauf",
+          "fristStarten(vorgang.gueltig_sekunden)" in code
+          and "abgelaufen" in code)
+
+    check("Schreibende Aufrufe laufen ueber ein eigenes sende()",
+          "async function sende(" in ohne_kommentare(app_js)
+          and 'method: "POST"' in app_js)
+    check("Beide Server-Aufrufe bleiben getrennt",
+          "/schliessen/vorbereiten" in code and "/schliessen/ausfuehren" in code)
+    check("Nach dem Schreiben wird sofort neu geladen",
+          "ladeDetail()" in code.split("erfolgsmeldung")[1][:600])
+    check("Kein location.reload() - die bestehende Aktualisierung wird genutzt",
+          "location.reload" not in code)
 
 
 def ohne_kommentare(quelltext: str) -> str:
@@ -507,7 +1544,7 @@ def teste_automatische_aktualisierung():
     ohne Browser nicht sinnvoll nachstellen - es wurde im Chromium
     beobachtet und im PR dokumentiert. Was hier geprueft wird, sind die
     Zusicherungen, die man beim Umbau versehentlich verlieren koennte."""
-    print("\n8) Automatische Aktualisierung (Quelltext)")
+    print("\n11) Automatische Aktualisierung (Quelltext)")
 
     statisch = os.path.join(DIR, "static")
 
@@ -578,7 +1615,7 @@ def teste_ladeindikator():
     sich sinnvoll am Quelltext festmachen lassen: dass die Elemente in
     beiden Seiten existieren, richtig ausgezeichnet sind und dass es zu
     jeder Klasse auch eine Regel im Stylesheet gibt."""
-    print("\n9) Ladeindikator (Auszeichnung und Stil)")
+    print("\n12) Ladeindikator (Auszeichnung und Stil)")
 
     statisch = os.path.join(DIR, "static")
 
@@ -630,7 +1667,7 @@ def teste_zustandsmaschine():
     Node ist im Projekt sonst nirgends noetig - deshalb ist sein Fehlen
     kein Fehlschlag, sondern ein sichtbarer Hinweis. Was dann ungeprueft
     bleibt, steht in der Meldung, damit niemand die Luecke uebersieht."""
-    print("\n10) Verhalten der Zustandsmaschine (node)")
+    print("\n13) Verhalten der Zustandsmaschine (node)")
 
     node = shutil.which("node")
     if not node:
@@ -695,7 +1732,7 @@ def teste_zeitzone():
     Wie bei der Zustandsmaschine: fehlendes node ist kein Fehlschlag,
     aber ein sichtbarer Hinweis - sonst gilt der wichtigste Nachweis
     dieser Aenderung stillschweigend als erbracht."""
-    print("\n11) Zeitanzeige in verschiedenen Zeitzonen (node)")
+    print("\n14) Zeitanzeige in verschiedenen Zeitzonen (node)")
 
     node = shutil.which("node")
     if not node:
@@ -731,6 +1768,21 @@ def main():
     monitor.STRATEGIES_DIR = os.path.join(wurzel, "strategies")
     monitor.LOGS_DIR = os.path.join(wurzel, "logs")
 
+    # Das SCHREIBENDE Modul ebenfalls umbiegen. Ohne diese zwei Zeilen
+    # wuerde der Schliess-Test gegen die ECHTEN Bot-Datenbanken des
+    # Projekts laufen - der einzige Ort in dieser Testdatei, an dem ein
+    # vergessenes Umbiegen echten Schaden anrichten koennte.
+    alt_mc = (manual_close.BASE_DIR, manual_close.STRATEGIES_DIR)
+    manual_close.BASE_DIR = wurzel
+    manual_close.STRATEGIES_DIR = os.path.join(wurzel, "strategies")
+    protokoll_datei = os.path.join(wurzel, "manuelle_eingriffe.log")
+    alt_griffe = list(manual_close._protokoll.handlers)
+    for griff in alt_griffe:
+        manual_close._protokoll.removeHandler(griff)
+    griff = logging.FileHandler(protokoll_datei, encoding="utf-8")
+    griff.setFormatter(logging.Formatter("%(asctime)s MANUELLER-EINGRIFF %(message)s"))
+    manual_close._protokoll.addHandler(griff)
+
     class KeinNetz:
         @staticmethod
         def get(*a, **k):
@@ -741,7 +1793,10 @@ def main():
     try:
         check("Testprojekt wird erkannt",
               sorted(b["name"] for b in datenquelle.alle_bots())
-              == ["elliott_wave", "volatility_breakout"])
+              == ["elliott_wave", "t3_supertrend", "volatility_breakout"],
+              str(sorted(b["name"] for b in datenquelle.alle_bots())))
+        check("Die echten Bot-Datenbanken werden nicht angefasst",
+              manual_close.BASE_DIR == wurzel != BASE_DIR)
 
         app = erzeuge_app(token=TEST_TOKEN)
         with Testserver(app) as server:
@@ -751,12 +1806,25 @@ def main():
             teste_frontend(server.basis)
             teste_nur_lesend(app, server.basis, vorher, db_dateien)
             teste_zeitstempel(server.basis)
+            # ZULETZT, und mit Absicht nach dem Lesend-Nachweis: bis hier
+            # hat sich keine Datenbank veraendert, und ab hier wird
+            # genau eine Zeile geschrieben.
+            teste_schliessen(server.basis, wurzel, db_dateien, protokoll_datei)
+            teste_alle_schliessen(server.basis, wurzel, db_dateien,
+                                   protokoll_datei)
+        teste_schliessen_frontend()
         teste_automatische_aktualisierung()
         teste_ladeindikator()
         teste_zustandsmaschine()
         teste_zeitzone()
     finally:
         monitor.BASE_DIR, monitor.STRATEGIES_DIR, monitor.LOGS_DIR, monitor.requests = alt
+        manual_close.BASE_DIR, manual_close.STRATEGIES_DIR = alt_mc
+        for griff in list(manual_close._protokoll.handlers):
+            manual_close._protokoll.removeHandler(griff)
+            griff.close()
+        for griff in alt_griffe:
+            manual_close._protokoll.addHandler(griff)
 
     print(f"\n{len(CHECKS)}/{len(CHECKS)} Pruefungen bestanden.")
 

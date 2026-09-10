@@ -77,6 +77,34 @@ async function hole(pfad) {
   return antwort.json();
 }
 
+/* Schreibender Aufruf. Bewusst getrennt von hole(): jede Stelle, die
+   sende() benutzt, veraendert etwas - das soll im Quelltext auf einen
+   Blick zu sehen sein und nicht in einem Parameter von hole() versteckt
+   liegen.
+
+   FastAPI verpackt Fehlermeldungen in {"detail": "..."}. Die Meldungen
+   sind hier bewusst fuer den Nutzer geschrieben (siehe
+   dashboard/schliessen.py), also werden sie durchgereicht statt durch
+   ein generisches "Fehler 409" ersetzt. */
+async function sende(pfad, koerper) {
+  const antwort = await fetch(pfad, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(koerper || {}),
+  });
+  if (antwort.status === 401) {
+    window.location.href = "/login";
+    throw new Error("nicht angemeldet");
+  }
+  let daten = null;
+  try { daten = await antwort.json(); } catch (e) { daten = null; }
+  if (!antwort.ok) {
+    throw new Error((daten && daten.detail) || `${pfad}: HTTP ${antwort.status}`);
+  }
+  return daten;
+}
+
 function zahl(wert, nachkomma = 2) {
   if (wert === null || wert === undefined) return "–";
   return Number(wert).toFixed(nachkomma);

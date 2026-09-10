@@ -13,7 +13,12 @@ andere Zahlen liefern als /status in Telegram.
 monitor.py oeffnet die neun Bot-Datenbanken im SQLite-Modus "ro"
 (read-only) und hat keinen Code-Pfad, der irgendwo schreibt. Dieses
 Modul fuegt keinen hinzu: es gibt hier keine INSERT/UPDATE/DELETE-Stelle
-und keine Funktion, die eine Bot-Datei anfasst.
+und keine Funktion, die eine Bot-Datei anfasst. Das gilt weiterhin,
+auch seit das Dashboard einen schreibenden Endpunkt hat - der laeuft
+NICHT ueber diese Schicht, sondern ueber dashboard/schliessen.py und
+notifications/manual_close.py. Wer hier einen Schreibpfad einbaut, hebt
+die Trennung auf, die den Nachweis in test_dashboard.py ueberhaupt erst
+fuehrbar macht.
 
 Aufgabe dieser Schicht ist im Wesentlichen die Umwandlung der
 pandas-/numpy-Werte aus monitor.py in JSON-taugliche Python-Typen:
@@ -163,6 +168,12 @@ def _position_zeile(position: dict, live_kurse: dict) -> dict:
         veraenderung = round((aktuell - entry) / entry * 100, 2)
 
     return {
+        # Zeilen-ID der offenen Position. Nur die Detailseite braucht sie,
+        # und nur, um beim manuellen Schliessen die richtige Zeile zu
+        # benennen (siehe dashboard/schliessen.py). Sie zu zeigen kostet
+        # nichts und verhindert das Adressieren ueber das Symbol - das
+        # waere mehrdeutig, sobald ein Symbol zweimal offen ist.
+        "id": position.get("id"),
         "symbol": symbol,
         "entry_preis": entry,
         "stop_preis": stop,
