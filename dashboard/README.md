@@ -247,7 +247,13 @@ Rueckfrage), der Einzelweg einen. Beide ohne Texteingabe.
 `POST /api/alle-bots-schliessen/vorbereiten` (kein Koerper) liest ueber ALLE
 freigeschalteten Bots hinweg die offenen Positionen zusammen und antwortet
 nach Bot gruppiert, je Bot mit Durchschnitt und Spannweite - **keine
-Gesamtzahl ueber alle Bots**, aus demselben Grund wie oben. Ein Bot, dessen
+aufsummierte Gesamtzahl ueber alle Bots**, aus demselben Grund wie oben.
+Bot-uebergreifend steht dort genau eine Kennzahl, `pnl_gewichtet` (siehe
+oben): der nach Positionsgroesse **gewichtete** Durchschnitt mit Angabe
+seiner Grundlage. Hier ist er inhaltlich relevant, weil 10 %, 5 % und 2 %
+Positionsgroesse aufeinandertreffen - ein einfacher Durchschnitt ueber alle
+Positionen wuerde sie gleich gewichten. `ausfuehren` traegt dieselbe Angabe
+ueber die tatsaechlich geschriebenen Werte. Ein Bot, dessen
 Datenbank fehlt, wird stillschweigend uebergangen (er lief noch nie); ein
 Bot, dessen Datenbank vorhanden aber unlesbar ist, wird als `lesefehler`
 ausgewiesen.

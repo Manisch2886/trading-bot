@@ -1830,7 +1830,72 @@ def teste_gewichteten_pnl(basis, wurzel, db_dateien, protokoll_datei):
             monitor.fetch_live_prices_for_bots = original_kurse
             schliessen.vorgaenge_zuruecksetzen()
 
-        # --- 15e) Keine Bot-Datei wurde dabei veraendert ------------------
+        # --- 15e) DER eigentliche Fall: quer ueber DREI Bots mit DREI
+        # verschiedenen Positionsgroessen, ueber den globalen Crash-Weg. Hier
+        # trennen sich gewichtete und einfache Zahl wirklich - innerhalb eines
+        # Bots koennen sie das nicht.
+        original_kurse = monitor.fetch_live_prices_for_bots
+        monitor.fetch_live_prices_for_bots = lambda bots: dict(TESTKURSE)
+        schliessen.vorgaenge_zuruecksetzen()
+        try:
+            for pfad_db in db_dateien.values():
+                conn = sqlite3.connect(pfad_db)
+                conn.execute("UPDATE trades SET status='closed', result='vorlauf' "
+                              "WHERE status='open'")
+                conn.commit()
+                conn.close()
+            # t3_supertrend 10 %: BTC 100->110 = +9.7, ETH 200->180 = -10.3
+            # elliott_wave  5 %:  SOL  20->22  = +9.7
+            # volatility_breakout 2 %: ADA 1.0->0.9 = -10.3
+            _oeffne_positionen(db_dateien["t3_supertrend"],
+                                [("BTCUSDT", 100.0), ("ETHUSDT", 200.0)])
+            _oeffne_positionen(db_dateien["elliott_wave"], [("SOLUSDT", 20.0)])
+            _oeffne_positionen(db_dateien["volatility_breakout"], [("ADAUSDT", 1.0)])
+
+            global_eins = _crash_vorbereiten(basis).json()
+            g = global_eins["pnl_gewichtet"]
+            # Von Hand:
+            #   Zaehler = 0.10*(9.7-10.3) + 0.05*9.7 + 0.02*(-10.3) = 0.219
+            #   Nenner  = 0.10*2          + 0.05*1   + 0.02*1       = 0.27
+            #   gewichtet = +0.81 %       einfach = (9.7-10.3+9.7-10.3)/4 = -0.30 %
+            check("Global: gewichtet ueber drei Bots = +0.81 %",
+                  g["wert_pct"] == 0.81, str(g["wert_pct"]))
+            check("Global: dieselben Positionen ungewichtet = -0.30 % - wieder "
+                  "dreht das Vorzeichen",
+                  g["ungewichtet_schnitt_pct"] == -0.3,
+                  str(g["ungewichtet_schnitt_pct"]))
+            check("Global: alle drei Groessen stehen mit Quelle dabei",
+                  [(w["bot"], w["allokation_pct"]) for w in g["gewichte"]]
+                  == [("elliott_wave", 5.0), ("t3_supertrend", 10.0),
+                      ("volatility_breakout", 2.0)], str(g["gewichte"])[:200])
+            check("Global: der Durchschnitt JE BOT steht unveraendert daneben",
+                  all("pnl_schnitt_pct" in b for b in global_eins["bots"]))
+            # "gesamt" allein taugt hier nicht als Verbot: `anzahl_gesamt` ist
+            # eine Stueckzahl und voellig in Ordnung. Verboten ist eine
+            # aufsummierte PROZENTZAHL - die einzige bot-uebergreifende
+            # PnL-Angabe muss die gewichtete sein.
+            check("Global: weiterhin keine aufsummierte Gesamt-Prozentzahl",
+                  [k for k in global_eins if "pnl" in k] == ["pnl_gewichtet"]
+                  and not [k for k in global_eins if "summe" in k.lower()],
+                  str(sorted(global_eins))[:140])
+
+            global_ergebnis = _crash_ausfuehren(
+                basis, global_eins["vorgang"]).json()
+            ge = global_ergebnis["pnl_gewichtet"]
+            check("Global: auch das ERGEBNIS traegt die gewichtete Zahl",
+                  ge["wert_pct"] == 0.81 and ge["anzahl"] == 4,
+                  f"{ge['wert_pct']} / {ge['anzahl']}")
+            check("Global: und zwar ueber die tatsaechlich geschriebenen Werte",
+                  global_ergebnis["anzahl_geschlossen"] == 4
+                  and global_ergebnis["erfolg"] is True,
+                  global_ergebnis["meldung"][:110])
+            check("Global: die Grundlage steht auch im Ergebnis dabei",
+                  "Backtest" in ge["grundlage"] and "Annahme" in ge["hinweis"])
+        finally:
+            monitor.fetch_live_prices_for_bots = original_kurse
+            schliessen.vorgaenge_zuruecksetzen()
+
+        # --- 15f) Keine Bot-Datei wurde dabei veraendert ------------------
         # Pruefsummen, nicht "ist noch lesbar": eine Datei, die nach dem
         # Umschreiben zufaellig noch Text enthaelt, waere sonst ein gruener
         # Test ohne Aussage (Methodik-Grundsatz 12). Die Summen stehen ganz
@@ -1853,8 +1918,27 @@ def teste_gewichteten_pnl(basis, wurzel, db_dateien, protokoll_datei):
     # --- 15f) Frontend: die Zahl steht nie ohne ihre Beschriftung da -----
     bot_html = open(os.path.join(DIR, "static", "bot.html"), encoding="utf-8").read()
     code = ohne_kommentare(bot_html)
-    check("Der Dialog zeigt den gewichteten Durchschnitt",
+    # Die drei Bausteine (Erlaeuterung, Groessen-Format, Zeilenbau) stehen in
+    # app.js, weil bot.html UND index.html sie brauchen - zwei Fassungen
+    # desselben Hinweistextes waeren die Doppelfuehrung, bei der irgendwann nur
+    # noch eine Seite sagt, worauf die Zahl beruht.
+    app_code = ohne_kommentare(open(os.path.join(DIR, "static", "app.js"),
+                                     encoding="utf-8").read())
+    index_code = ohne_kommentare(open(os.path.join(DIR, "static", "index.html"),
+                                       encoding="utf-8").read())
+    check("Die Bausteine der gewichteten Anzeige stehen EINMAL, in app.js",
+          "function gewichtungsZeilen(" in app_code
+          and "function gewichtungsZeilen(" not in code
+          and "function gewichtungsZeilen(" not in index_code,
+          "mehrfach definiert")
+    check("Der Notfall-Dialog zeigt den gewichteten Durchschnitt",
           "pnl_gewichtet" in code and "gewichtungsZeilen" in code)
+    check("Der CRASH-Dialog ebenfalls - dort ist die Gewichtung der eigentliche "
+          "Punkt (10 % / 5 % / 2 % nebeneinander)",
+          "gewichtungsZeilen(v.pnl_gewichtet)" in index_code
+          and "gewichtungsZeilen(r.pnl_gewichtet)" in index_code,
+          "fehlt in Uebersicht oder Ergebnis")
+    code = app_code + "\n" + code
     # UND, nicht ODER: der Dialog liest v.pnl_gewichtet, die Ergebnisanzeige
     # r.pnl_gewichtet. Eine Pruefung auf "kommt irgendwo vor" waere gruen,
     # sobald nur EINE der beiden Ansichten die Zahl zeigt - und genau das war
@@ -2004,10 +2088,23 @@ def teste_global_schliessen(basis, wurzel, db_dateien, protokoll_datei):
               f"{eins['anzahl']}/{eins['anzahl_bots']}")
         check("Nach Bot gruppiert, mit Durchschnitt JE BOT",
               all("pnl_schnitt_pct" in b for b in eins["bots"]))
-        check("KEINE Gesamtsumme und kein Gesamt-PnL ueber alle Bots "
-              "(Methodik-Grundsatz 2)",
+        # Weiterhin KEINE Summe und kein unbeschrifteter Gesamtwert. Seit der
+        # gewichteten Anzeige gibt es hier aber `pnl_gewichtet` - eine
+        # gewichtete Durchschnittsrendite MIT Angabe ihrer Grundlage. Die
+        # Zusicherung wurde deshalb praeziser gefasst statt aufgegeben: verboten
+        # ist die aufsummierte oder unbeschriftete Zahl, nicht jede Kennzahl
+        # ueber alle Bots (Abschnitt 15 prueft die Rechnung).
+        check("KEINE Gesamtsumme und kein unbeschrifteter Gesamt-PnL ueber alle "
+              "Bots (Methodik-Grundsatz 2)",
               "pnl_summe_pct" not in eins and "pnl_schnitt_pct" not in eins
-              and "pnl_gesamt" not in eins, str(sorted(eins))[:160])
+              and "pnl_gesamt" not in eins
+              and not [k for k in eins if "summe" in k.lower()],
+              str(sorted(eins))[:160])
+        check("Die gewichtete Zahl ist da - und nie ohne ihre Grundlage",
+              eins["pnl_gewichtet"]["wert_pct"] is not None
+              and "Backtest" in eins["pnl_gewichtet"]["grundlage"]
+              and "keine Portfolio-Rendite" in eins["pnl_gewichtet"]["hinweis"],
+              str(eins["pnl_gewichtet"])[:120])
         check("Der zu tippende Text wird mitgeteilt",
               eins["crash_text"] == schliessen.CRASH_TEXT)
         aktien = [b for b in eins["bots"] if b["anlageklasse"] == "aktien"]
@@ -2191,12 +2288,18 @@ def teste_global_schliessen(basis, wurzel, db_dateien, protokoll_datei):
               r["erfolg"] is True and r["anzahl_geschlossen"] == 3
               and r["anzahl_fehlgeschlagen"] == 0
               and not r["bots_fehlgeschlagen"], r["meldung"][:140])
-        # Auch das ERGEBNIS darf keine Gesamtzahl ueber alle Bots tragen -
-        # nicht nur die Uebersicht. Genau diese Haelfte fehlte zuerst und ist
-        # in der Mutationsprobe aufgefallen.
+        # Auch das ERGEBNIS darf keine aufsummierte Gesamtzahl tragen - nicht
+        # nur die Uebersicht. Genau diese Haelfte fehlte zuerst und ist in der
+        # Mutationsprobe aufgefallen. Geprueft wird jetzt, dass die EINZIGE
+        # bot-uebergreifende PnL-Angabe die gewichtete ist und dass sie ihre
+        # Grundlage mitbringt; eine Summe gibt es weiterhin nicht.
         check("Auch das Ergebnis traegt keine aufsummierte Gesamt-Prozentzahl",
-              not [k for k in r if "pnl" in k],
+              [k for k in r if "pnl" in k] == ["pnl_gewichtet"]
+              and not [k for k in r if "summe" in k.lower()],
               str([k for k in r if "pnl" in k]))
+        check("Und die gewichtete Zahl im Ergebnis nennt ihre Grundlage",
+              "Backtest" in r["pnl_gewichtet"]["grundlage"]
+              and "keine Portfolio-Rendite" in r["pnl_gewichtet"]["hinweis"])
         check("Der Durchschnitt steht je Bot, nicht global",
               all("pnl_schnitt_pct" in b for b in r["bots"]),
               str(sorted(r["bots"][0]))[:140])

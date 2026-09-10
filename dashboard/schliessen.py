@@ -41,7 +41,8 @@ Hier steht deshalb nur, was die Oberflaeche wirklich braucht:
   2. der Zustand zwischen Zusammenfassung und Ausfuehrung,
   3. die Uebersetzung in JSON-taugliche Werte,
   4. die Kennzahlen der Anzeige - Durchschnitt, Spannweite und der nach
-     Positionsgroesse GEWICHTETE Durchschnitt (siehe gewichteter_pnl()).
+     Positionsgroesse GEWICHTETE Durchschnitt (siehe gewichteter_pnl()),
+     in allen drei Abstufungen aus derselben Funktion.
      Anzeigelogik, kein Schreibweg; die Positionsgroesse selbst wird nicht
      hier gefuehrt, sondern je Bot aus dessen eigenen Dateien gelesen
      (manual_close.allokation()).
@@ -1027,6 +1028,15 @@ def global_vorbereiten(kurse: dict) -> dict:
         "anzahl_gesamt": sum(b["anzahl_gesamt"] for b in bots),
         "anzahl_bots": len(je_bot),
         "bots_mit_lesefehler": [b["bot"] for b in bots if b["lesefehler"]],
+        # HIER ist die Gewichtung inhaltlich relevant: ueber neun Bots treffen
+        # 10 %, 5 % und 2 % Positionsgroesse aufeinander, und ein einfacher
+        # Durchschnitt ueber alle Positionen wuerde sie gleich gewichten.
+        # Weiterhin KEINE Summe und keine unbeschriftete Gesamtzahl - eine
+        # gewichtete Durchschnittsrendite mit Angabe ihrer Grundlage (siehe
+        # gewichteter_pnl()). Der Durchschnitt je Bot steht unveraendert in
+        # den einzelnen Bot-Eintraegen.
+        "pnl_gewichtet": gewichteter_pnl(
+            (b["bot"], p["pnl_pct"]) for b in bots for p in b["positionen"]),
         # Der Text wird dem Frontend bewusst MITGETEILT - anders als beim
         # frueheren Einzelweg, wo er versteckt und damit sinnlos war. Hier
         # ist er kein Geheimnis, sondern eine Huerde: der Nutzer soll lesen
@@ -1104,8 +1114,13 @@ def global_ausfuehren(kennung, bestaetigung, benutzer) -> dict:
         "anzahl_geschlossen": gesamt_geschlossen,
         "anzahl_fehlgeschlagen": gesamt_fehlgeschlagen,
         "anzahl_uebersprungen": gesamt_uebersprungen,
-        # KEIN Gesamt-PnL ueber alle Bots - siehe _bot_uebersicht().
-        # Der Durchschnitt je Bot steht in den einzelnen Eintraegen.
+        # Wie in der Uebersicht, jetzt ueber die TATSAECHLICH geschriebenen
+        # Werte: der nach Positionsgroesse gewichtete Durchschnitt, mit seiner
+        # Grundlage. Eine aufsummierte Gesamt-Prozentzahl gibt es weiterhin
+        # nicht; der Durchschnitt je Bot steht in den einzelnen Eintraegen.
+        "pnl_gewichtet": gewichteter_pnl(
+            (e["bot"], g["pnl_pct"]) for e in ergebnisse
+            for g in e["geschlossen"]),
     }
     ergebnis["meldung"] = _global_meldung(ergebnis)
     logger.warning(f"GLOBALES Schliessen beendet: {ergebnis['meldung']}")

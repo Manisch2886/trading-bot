@@ -49,9 +49,11 @@ function funktion(quelle, kopf) {
 
 const statisch = path.join(__dirname, "static");
 const botHtml = fs.readFileSync(path.join(statisch, "bot.html"), "utf8");
+const indexHtml = fs.readFileSync(path.join(statisch, "index.html"), "utf8");
 const appJs = fs.readFileSync(path.join(statisch, "app.js"), "utf8");
 
-const erlaeuterung = botHtml.match(/const GEWICHTUNG_ERLAEUTERUNG =[\s\S]*?;\n/);
+/* Die drei Bausteine stehen in app.js, weil beide Seiten sie brauchen. */
+const erlaeuterung = appJs.match(/const GEWICHTUNG_ERLAEUTERUNG =[\s\S]*?;\n/);
 if (!erlaeuterung) throw new Error("GEWICHTUNG_ERLAEUTERUNG nicht gefunden");
 
 /* Minimaler DOM-Ersatz: notfallErgebnisAnzeigen() schreibt in #erfolg. */
@@ -70,11 +72,15 @@ vm.runInNewContext([
   funktion(appJs, "function zahl("),
   funktion(appJs, "function prozent("),
   erlaeuterung[0],
-  funktion(botHtml, "function positionsgroesse("),
-  funktion(botHtml, "function gewichtungsZeilen("),
+  funktion(appJs, "function positionsgroesse("),
+  funktion(appJs, "function gewichtungsZeilen("),
   funktion(botHtml, "function notfallErgebnisAnzeigen("),
+  funktion(indexHtml, "function crashListe("),
+  funktion(indexHtml, "function crashErgebnisAnzeigen("),
   "this.gewichtungsZeilen = gewichtungsZeilen;",
   "this.notfallErgebnisAnzeigen = notfallErgebnisAnzeigen;",
+  "this.crashListe = crashListe;",
+  "this.crashErgebnisAnzeigen = crashErgebnisAnzeigen;",
 ].join("\n\n"), ctx);
 
 /* --- Fall 1: zwei Bots mit verschiedener Groesse, einer ohne ------------- */
@@ -157,6 +163,75 @@ const erfolg2 = geschrieben["erfolg"] || "";
 check("Ohne gewichtbare Position zeigt das Ergebnis nur den Ausschluss",
       !erfolg2.includes("gewichtet -") && erfolg2.includes("ausgenommen"),
       erfolg2.slice(-120));
+
+/* --- Fall 5: der CRASH-Dialog (index.html) ------------------------------
+   Dort ist die Gewichtung der eigentliche Punkt: 10 %, 5 % und 2 % treffen
+   aufeinander. Geprueft wird wieder die ERZEUGTE Ausgabe, in Uebersicht und
+   Ergebnis. */
+geschrieben["crash-liste"] = "";
+ctx.crashListe({
+  anzahl: 4, anzahl_gesamt: 4, anzahl_bots: 2,
+  bots: [
+    { bot: "t3_supertrend", anzeigename: "T3/ADX/SuperTrend", anlageklasse: "krypto",
+      anzahl: 2, anzahl_gesamt: 2, lesefehler: null, pnl_schnitt_pct: -5.0,
+      pnl_bestes_pct: -4.0, pnl_schlechtestes_pct: -6.0,
+      positionen: [
+        { symbol: "BTCUSDT", entry_preis: 100, aktueller_preis: 96,
+          pnl_pct: -4.0, schliessbar_jetzt: true, grund: null },
+        { symbol: "ETHUSDT", entry_preis: 200, aktueller_preis: 188,
+          pnl_pct: -6.0, schliessbar_jetzt: true, grund: null }],
+    },
+    { bot: "turtle_soup_stocks", anzeigename: "Turtle Soup (Aktien)",
+      anlageklasse: "aktien", anzahl: 1, anzahl_gesamt: 1, lesefehler: null,
+      pnl_schnitt_pct: 10.0, pnl_bestes_pct: 10.0, pnl_schlechtestes_pct: 10.0,
+      positionen: [
+        { symbol: "AAPL", entry_preis: 150, aktueller_preis: 165,
+          pnl_pct: 10.0, schliessbar_jetzt: true, grund: null }],
+    },
+  ],
+  pnl_gewichtet: mitGewicht,
+});
+const crash = geschrieben["crash-liste"] || "";
+check("Die Crash-Uebersicht nennt den Durchschnitt JE BOT weiterhin",
+      (crash.match(/Ø je Position/g) || []).length === 2,
+      String((crash.match(/Ø je Position/g) || []).length));
+check("UND darunter die gewichtete Zahl ueber alle Bots",
+      crash.includes("Ø gewichtet") && crash.includes("-2.59%")
+      && crash.includes("Über alle Bots"));
+check("Mit Erlaeuterung und mit dem ausgeschlossenen Bot",
+      crash.includes("angenommenen") && crash.includes("keine Portfolio-Rendite")
+      && crash.includes("Neuer Bot") && crash.includes("ausgenommen"));
+check("Die Querzahl steht NACH den Bot-Bloecken, nicht in einem davon",
+      crash.indexOf("Über alle Bots") > crash.indexOf("Turtle Soup (Aktien)"),
+      `${crash.indexOf("Über alle Bots")} > ${crash.indexOf("Turtle Soup (Aktien)")}`);
+
+geschrieben["erfolg"] = "";
+ctx.crashErgebnisAnzeigen({
+  anzahl_geschlossen: 4, angefragt: 4, angefragte_bots: 2,
+  anzahl_fehlgeschlagen: 0, anzahl_uebersprungen: 0, bots_fehlgeschlagen: [],
+  bots: [{ anzeigename: "T3/ADX/SuperTrend", meldung: "2 von 2 geschlossen." },
+         { anzeigename: "Turtle Soup (Aktien)", meldung: "1 von 1 geschlossen." }],
+  pnl_gewichtet: mitGewicht,
+});
+const crashErfolg = geschrieben["erfolg"] || "";
+check("Das Crash-ERGEBNIS nennt die gewichtete Zahl ebenfalls",
+      crashErfolg.includes("Ø gewichtet") && crashErfolg.includes("-2.59%"),
+      crashErfolg.slice(-140));
+check("Auch dort mit Erlaeuterung und Ausschluss",
+      crashErfolg.includes("angenommenen")
+      && crashErfolg.includes("keine Portfolio-Rendite")
+      && crashErfolg.includes("ausgenommen"));
+
+geschrieben["erfolg"] = "";
+ctx.crashErgebnisAnzeigen({
+  anzahl_geschlossen: 1, angefragt: 1, angefragte_bots: 1,
+  anzahl_fehlgeschlagen: 0, anzahl_uebersprungen: 0, bots_fehlgeschlagen: [],
+  bots: [{ anzeigename: "Bot", meldung: "1 von 1 geschlossen." }],
+  pnl_gewichtet: ohne,
+});
+check("Ohne gewichtbare Position zeigt auch das Crash-Ergebnis nur den Ausschluss",
+      !(geschrieben["erfolg"] || "").includes("Ø gewichtet")
+      && (geschrieben["erfolg"] || "").includes("ausgenommen"));
 
 console.log(`\n${bestanden}/${bestanden + fehler.length} Pruefungen bestanden.`);
 if (fehler.length) {

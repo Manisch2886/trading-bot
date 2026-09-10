@@ -535,6 +535,10 @@ dialog.schliessen-dialog h2 {
    der Ergebnisanzeige, die nicht in `.dialog-zeilen` steht.
    Klein und gedaempft, aber NICHT versteckt: sie sagt, dass die Zahl auf einer
    Backtest-Annahme beruht - ohne sie duerfte die Zahl nicht dastehen. */
+/* Die bot-uebergreifende Zahl im Crash-Dialog wird vom Rest abgesetzt: sie
+   gilt NICHT fuer einen der Bot-Bloecke darueber, sondern quer ueber alle. */
+.crash-gewichtung { border-color: rgba(224, 108, 108, .35); }
+
 .dialog-zeilen .hinweis-gewichtung,
 .hinweis-gewichtung {
   display: block;

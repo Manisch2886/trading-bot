@@ -579,7 +579,10 @@ Bots. Voraussetzung: irgendein Bot hat eine offene Position.
 | 2 | Den Knopf mit dem Notfall-Knopf einer Bot-Seite vergleichen | Der Crash-Knopf ist **heller rot, fetter und hat einen Ring**; der bot-weite ist dunkler und ohne Ring |
 | 3 | Knopf antippen | Dialog **"Alle Positionen aller Bots schliessen?"**, **"Schritt 1 von 3"**, Liste **nach Bot gruppiert** mit je Bot Ø und Spannweite, Countdown |
 | 4 | Die Liste mit der Bot-Tabelle darueber vergleichen | Dieselben Bots, dieselben Zahlen. Aktien-Bots tragen den Tages-Schlusskurs-Hinweis |
-| 5 | Pruefen, dass **keine** Gesamt-Prozentzahl ueber alle Bots steht | Nur Ø je Bot - eine Gesamtsumme waere keine Portfolio-Rendite |
+| 5 | Pruefen, dass **keine aufsummierte** Gesamt-Prozentzahl ueber alle Bots steht | Eine Summe waere keine Portfolio-Rendite. Je Bot steht weiter sein eigenes Ø |
+| 5b | Unter den Bot-Bloecken den abgesetzten Block **"Über alle Bots"** ansehen | Darin **Ø gewichtet** mit den Positionsgroessen der beteiligten Bots (z. B. `10 % / 5 % / 2 %`), dem ungewichteten Vergleichswert **derselben** Positionen und darunter der Satz, dass nach der im Backtest **angenommenen** Groesse gewichtet wird - keine echte Kapitalbindung, keine Portfolio-Rendite |
+| 5c | Die gewichtete Zahl gegen die Ø je Bot halten | Sie muss **zwischen** den Bot-Durchschnitten liegen und sich zum grossen Bot hin neigen. Liegt sie ausserhalb, stimmt etwas nicht |
+| 5d | `grep -n "^ALLOCATION_PCT" strategies/*/live_params.py strategies/*/equity_simulation.py` | Die im Dialog genannten Groessen muessen genau diese Werte sein - `live_params.py` in **Prozent** (10), `equity_simulation.py` als **Anteil** (0.10) |
 | 6 | **Abbrechen** in Stufe 1 | Dialog zu, nichts passiert |
 | 7 | **Ja, alle schliessen** -> Stufe 2 -> **Abbrechen** | dito |
 | 8 | Stufe 2 -> **Weiter zur letzten Bestaetigung** -> Stufe 3 -> **Abbrechen** | dito |

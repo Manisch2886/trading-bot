@@ -344,7 +344,18 @@ function crashListe(v) {
       + `<span class="gedaempft"> · ${b.anzahl} von ${b.anzahl_gesamt}</span></div>`
       + `<div class="dialog-zeilen">${zeilen}${schnitt}</div>${aktien}</div>`;
   });
-  document.getElementById("crash-liste").innerHTML = bloecke.join("");
+  /* Die gewichtete Zahl steht ÜBER alle Bots, also NACH den Bot-Blöcken und
+     deutlich von ihnen abgesetzt: innerhalb eines Bots ist sie dieselbe Zahl
+     wie sein Ø, erst quer über 10 % / 5 % / 2 % sagt sie etwas Eigenes.
+     Weiterhin keine Summe - gezeigt wird eine Rendite mit ihrer Grundlage
+     (dieselbe Funktion wie im Notfall-Dialog, siehe app.js). */
+  const gewichtet = gewichtungsZeilen(v.pnl_gewichtet);
+  const quer = gewichtet.length
+    ? `<div class="crash-bot crash-gewichtung"><div class="crash-bot-kopf">`
+      + `Über alle Bots</div><div class="dialog-zeilen">`
+      + gewichtet.join("") + `</div></div>`
+    : "";
+  document.getElementById("crash-liste").innerHTML = bloecke.join("") + quer;
 }
 
 async function starteCrash() {
@@ -451,6 +462,14 @@ function crashErgebnisAnzeigen(r) {
       + r.bots_fehlgeschlagen
           .map(b => `${b.anzeigename} – ${b.grund} (${b.angefragt} Position(en) `
                      + `unberührt)`).join("; ") + "</div>";
+  }
+  /* Auch hier über die TATSÄCHLICH geschriebenen Werte, nicht über die
+     Schätzung aus der Übersicht - und an derselben Stelle wie dort, damit die
+     beiden Ansichten dieselbe Zahl mit derselben Beschriftung zeigen. */
+  const gewichtet = gewichtungsZeilen(r.pnl_gewichtet);
+  if (gewichtet.length) {
+    html += `<div class="dialog-zeilen crash-gewichtung">`
+      + gewichtet.join("") + `</div>`;
   }
   html += "</div>";
   document.getElementById("erfolg").innerHTML = html;

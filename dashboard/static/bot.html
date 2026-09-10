@@ -507,49 +507,11 @@ function notfallZeilen(v) {
     kopf.concat(zeilen, schnitt, gewichtungsZeilen(v.pnl_gewichtet)).join("");
 }
 
-/* Die Beschriftung der gewichteten Zahl steht an EINER Stelle und wird im
-   Dialog wie in der Ergebnisanzeige verwendet. Sie ist kein Beiwerk, sondern
-   der Grund, warum diese Zahl überhaupt gezeigt werden darf: ohne sie wäre
-   eine Backtest-Annahme als Live-Aussage hingestellt - genau die
-   Verwechslung, die Methodik-Grundsatz 2 verhindern soll.
-
-   Bewusst als SICHTBARER Text, nicht als title-Tooltip: dieses Dashboard wird
-   überwiegend am iPhone benutzt, und dort gibt es kein Hover. Ein Tooltip wäre
-   eine Beschriftung, die der eigentliche Nutzer nie sieht. */
-const GEWICHTUNG_ERLAEUTERUNG =
-  "Gewichtet nach der je Bot im Backtest <strong>angenommenen</strong> "
-  + "Positionsgröße – keine echte Kapitalbindung und keine Portfolio-Rendite.";
-
-function positionsgroesse(pct) {
-  return `${zahl(pct, Number.isInteger(pct) ? 0 : 2)} %`;
-}
-
-function gewichtungsZeilen(g) {
-  if (!g) return [];
-  const zeilen = [];
-  if (g.wert_pct !== null) {
-    const groessen = g.gewichte.map((w) => positionsgroesse(w.allokation_pct)).join(" / ");
-    zeilen.push(
-      `<div><span class="beschriftung">Ø gewichtet</span><span>`
-        + `${prozent(g.wert_pct)} &nbsp;<span class="gedaempft">`
-        + `(Positionsgröße ${groessen}; dieselben Positionen ungewichtet `
-        + `${prozent(g.ungewichtet_schnitt_pct)})</span></span></div>`,
-      `<div class="hinweis-gewichtung">${GEWICHTUNG_ERLAEUTERUNG}</div>`);
-  }
-  /* Ein Bot ohne dokumentierte Positionsgröße verschwindet NICHT stillschweigend
-     aus der Rechnung - er wird benannt, mit Grund und mit seinem eigenen
-     ungewichteten Durchschnitt. */
-  if (g.nicht_gewichtbar && g.nicht_gewichtbar.length) {
-    const liste = g.nicht_gewichtbar
-      .map((n) => `${n.anzeigename}: ${n.anzahl} Position(en), ungewichtet `
-                  + `${prozent(n.pnl_schnitt_pct)} – ${n.grund}`)
-      .join("; ");
-    zeilen.push(`<div class="hinweis-gewichtung">Ohne dokumentierte `
-      + `Positionsgröße und deshalb <strong>aus der gewichteten Zahl `
-      + `ausgenommen</strong> – ${liste}.</div>`);
-  }
-  return zeilen;
-}
+/* GEWICHTUNG_ERLAEUTERUNG, positionsgroesse() und gewichtungsZeilen()
+   stehen in app.js: der Crash-Dialog in index.html zeigt dieselben zwei
+   Zahlen mit derselben Beschriftung, und zwei Fassungen desselben
+   Hinweistextes wären genau die Doppelführung, bei der irgendwann nur
+   noch eine Seite sagt, worauf die Zahl beruht. */
 
 async function starteNotfall() {
   notfallFehler("");
