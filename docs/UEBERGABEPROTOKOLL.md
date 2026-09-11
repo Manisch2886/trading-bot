@@ -452,6 +452,8 @@ Alles läuft auf dem Mac des Nutzers. Neben den Cronjobs gibt es inzwischen **dr
 
 Das ist mehr als eine Lücke im Log. **Cron holt verpasste Läufe nicht nach** — ein schlafender Mac bedeutet nicht „später", sondern „gar nicht". Ein Signal, das während einer Schlafphase entsteht, wird **nie** erkannt; die Paper-Trading-Auswertung zeigt danach eine Strategie, die so nie gelaufen ist. Fehlende Läufe verfälschen die Ergebnisse still und ohne Fehlermeldung.
 
+**Die Folge für die Daten steht in [`docs/DATENLUECKEN.md`](DATENLUECKEN.md)** — einem fortlaufenden Register, das je Ausfall festhält, was ausgefallen ist, was nachgeholt wurde und was das für die Auswertung bedeutet. Der Brücken-Lauf von 12:05 wurde später von Hand nachgeholt, die Forward-Tests nicht: sie sind an ihre Kerzenzeit gebunden. Wer Forward-Test-Zahlen auswertet, sollte dort zuerst nachsehen.
+
 Der Dienst ruft `/usr/bin/caffeinate -i -m -s` (Idle-Sleep, Platten-Sleep, Sleep bei Netzbetrieb), startet bei jeder Anmeldung (`RunAtLoad`) und wird bei Prozessende neu gestartet (`KeepAlive`). `-d`/`-u` (Display wachhalten bzw. einschalten) sind bewusst **nicht** gesetzt: ein dunkles Display ist kein Schlaf, die Cronjobs laufen davon unberührt.
 
 **Vier dokumentierte Grenzen, bewusst nicht gelöst** (`system/README_CAFFEINATE.md`):
@@ -653,7 +655,9 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 
 11. **Die IBKR-Brücke ist nie gegen eine echte TWS gelaufen** und auf dem Rechner des Nutzers derzeit **nicht lauffähig**: `ib_async` verlangt Python 3.10+, das `trading-env` steht auf 3.9.6 (Abschnitt 4.4). Vor einer Inbetriebnahme ist also zweierlei nötig — eine Python-Version ab 3.10 und ein Durchlauf der gestaffelten Anleitung in `broker/README_IBKR.md` mit laufender TWS. Bis dahin ist die Brücke gemergter, geprüfter, aber **unerprobter** Code. Die Binance-Brücke ist davon nicht betroffen und läuft produktiv.
 
-12. **Die Warteaufträge und die Broker-Brücken sind im Dauerbetrieb ungeprüft.** Beide sind vollständig gegen Attrappen getestet; was keine Attrappe zeigt, ist das Verhalten über Wochen — ein dauerhaft scheiternder Warteauftrag bleibt stehen (Absicht, fällt aber nur auf, wenn man hinsieht), und ein Binance-Testnet-Konto wird periodisch zurückgesetzt, wonach Schlüssel und Bestände neu zu erzeugen sind.
+12. **Zum Ausfall vom 11.09.2026 sind drei Fragen offen** (`docs/DATENLUECKEN.md`): die genaue Zahl der ausgefallenen `elliott_wave`-Läufe, ob auch der `t3_supertrend`-Forward-Test von 12:05 betroffen war (hängt davon ab, welche der beiden Cron-Varianten aus `broker/README.md` eingerichtet ist), und ob die täglichen Krypto-Bots im Fenster lagen. Alle drei klärt ein Blick in `crontab -l` und `logs/*/cron.log` auf dem Mac; die Antworten gehören dann ins Register nachgetragen.
+
+13. **Die Warteaufträge und die Broker-Brücken sind im Dauerbetrieb ungeprüft.** Beide sind vollständig gegen Attrappen getestet; was keine Attrappe zeigt, ist das Verhalten über Wochen — ein dauerhaft scheiternder Warteauftrag bleibt stehen (Absicht, fällt aber nur auf, wenn man hinsieht), und ein Binance-Testnet-Konto wird periodisch zurückgesetzt, wonach Schlüssel und Bestände neu zu erzeugen sind.
 
 ---
 
@@ -717,6 +721,7 @@ Keine feste Reihenfolge vom Nutzer vorgegeben. Sinnvolle Kandidaten, nach Aufwan
 - **Alle neun `live_params.py`-Inhalte** exakt wie in Abschnitt 3 dokumentiert — diese sind der aktuelle "Wahrheitsstand" der Live-Konfiguration. Im Zweifel gilt die Datei, nicht dieses Dokument
 - **Cronjob-Zeitplan** wie in Abschnitt 6.4 (Quartals-Reviews) und der Bot-Tabelle (Abschnitt 2) dokumentiert
 - **Methodik-Prinzipien aus Abschnitt 7** sollten bei jeder neuen Analyse/Optimierung konsequent angewendet werden — das ist der etablierte Qualitätsstandard dieses Projekts. Besonders Punkt 10 (Kausalität) und Punkt 12 (eine grüne Prüfung muss auch rot werden können) sind teuer erlernt
+- **Bekannte Datenlücken stehen in `docs/DATENLUECKEN.md`.** Cron holt verpasste Läufe nicht nach; wer Forward-Test-Zahlen auswertet oder mit einem Backtest vergleicht, sieht dort zuerst nach, ob der Zeitraum überhaupt lückenlos gelaufen ist
 - **`broker/` sendet echte Orders an echte Gegenstellen.** `--echt` wird **nie** ohne ausdrückliche Zustimmung des Nutzers aufgerufen; der Trockenlauf ist der Standard. Notbremse: `touch broker/STOP` bzw. `broker/STOP_IBKR` (Abschnitt 4.4)
 - **Das Dashboard schreibt.** Wer es anfasst, fasst einen Schreibpfad in die Live-Datenbanken an — und mit den Warteaufträgen einen, der zeitversetzt und ohne erneute Rückfrage wirkt (Abschnitt 4.3)
 - **Arbeitsweise**: neuer Branch je Aufgabe, eigener Pull Request, **nie selbst mergen**. Untersuchungen unter `research/` fassen keinen Bot-Code an

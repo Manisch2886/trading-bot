@@ -135,7 +135,7 @@ cd ~/trading-bot
 python3 broker/test_broker.py
 ```
 
-Erwartet: `148 von 148 Pruefungen bestanden, 0 fehlgeschlagen.`
+Erwartet: `163 von 163 Pruefungen bestanden, 0 fehlgeschlagen.`
 
 ### Schritt 2 — Verbindung und Schlüssel prüfen (liest nur)
 

@@ -47,6 +47,7 @@ Einzelheiten: `broker/README.md` und `broker/README_IBKR.md`, Übergabeprotokoll
 - Abhängigkeiten stehen in `requirements.txt` (bindet `notifications/` und `dashboard/` ein, ergänzt den Börsenkalender); `broker/requirements.txt` ist separat.
 - Kein Agent darf automatisch `live_params.py` ändern oder Trades auslösen — Parameterübernahme bleibt manuell.
 - Neue Parameter/Strategien immer per Backtest → Walk-Forward → Equity-Simulation → Buy-and-Hold-Vergleich validieren, bevor sie als "live" gelten (siehe Protokoll Abschnitt 7).
+- **Bei Auswertungen und Backtests zuerst `docs/DATENLUECKEN.md` ansehen.** Cron holt verpasste Läufe nicht nach; dort steht, für welche Zeiträume Forward-Test-Daten lückenhaft sind. Eine Lücke sieht in den Zahlen genauso aus wie "kein Signal" und fällt sonst nicht auf.
 - Untersuchungen unter `research/` fassen **keinen** Bot-Code an; Parameterübernahme ist immer ein getrennter, ausdrücklich freigegebener Schritt.
 - Jeder Handelsparameter steht genau einmal (in `live_params.py`) und wird überall sonst importiert — doppelt geführte Zahlen sind hier schon einmal unbemerkt auseinandergelaufen.
 - `config/email_config.py` und `shared/fetch_binance_data.py` enthalten Zugangsdaten und sind absichtlich in `.gitignore` — niemals Klartext-Secrets committen. Bei Dateiinhalten mit Zugangsdaten `grep -c` statt `cat` verwenden.
