@@ -622,21 +622,33 @@ def test_symbole():
         except zugang.ZugangFehler as fehler:
             check(f"{schlecht!r} wird abgelehnt", True, str(fehler)[:55])
 
-    ib = FakeIB(treffer=2)
-    v = verbindung(ib)
+    # _aktie auch hier durch die Attrappe ersetzen. Ohne das baut kontrakt()
+    # einen ECHTEN ib_async-Kontrakt, und auf einem Rechner ohne die Bibliothek
+    # scheiterten diese zwei Pruefungen an "ib_async fehlt" - mit roter Meldung
+    # an der falschen Stelle, statt das zu pruefen, was hier gemeint ist. Die
+    # Suite soll ohne die optionale Bibliothek vollstaendig gruen sein; was sich
+    # nur gegen die echte Bibliothek pruefen laesst, steht in Abschnitt 13 und
+    # wird dort sichtbar uebersprungen.
+    alt_aktie = ip._aktie
+    ip._aktie = lambda symbol: FakeContract(zugang.ibkr_symbol(symbol))
     try:
-        v.kontrakt("AAPL")
-        check("Ein mehrdeutiges Kuerzel wird abgelehnt statt geraten", False)
-    except ip.IbkrFehler as fehler:
-        check("Ein mehrdeutiges Kuerzel wird abgelehnt statt geraten",
-              "nicht eindeutig" in str(fehler), str(fehler)[:75])
-    ib0 = FakeIB(treffer=0)
-    try:
-        verbindung(ib0).kontrakt("AAPL")
-        check("Ein unbekanntes Kuerzel wird abgelehnt", False)
-    except ip.IbkrFehler as fehler:
-        check("Ein unbekanntes Kuerzel wird abgelehnt",
-              "keinen Kontrakt" in str(fehler), str(fehler)[:60])
+        ib = FakeIB(treffer=2)
+        v = verbindung(ib)
+        try:
+            v.kontrakt("AAPL")
+            check("Ein mehrdeutiges Kuerzel wird abgelehnt statt geraten", False)
+        except ip.IbkrFehler as fehler:
+            check("Ein mehrdeutiges Kuerzel wird abgelehnt statt geraten",
+                  "nicht eindeutig" in str(fehler), str(fehler)[:75])
+        ib0 = FakeIB(treffer=0)
+        try:
+            verbindung(ib0).kontrakt("AAPL")
+            check("Ein unbekanntes Kuerzel wird abgelehnt", False)
+        except ip.IbkrFehler as fehler:
+            check("Ein unbekanntes Kuerzel wird abgelehnt",
+                  "keinen Kontrakt" in str(fehler), str(fehler)[:60])
+    finally:
+        ip._aktie = alt_aktie
 
 
 # ---------------------------------------------------------------------------
