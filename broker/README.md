@@ -110,7 +110,7 @@ des Symbols (`LOT_SIZE`) und geprüft gegen Mindestmenge und Mindestgegenwert
 | Die echten Handelsendpunkte stehen namentlich auf einer Verbotsliste | `zugang.VERBOTENE_HOSTS` |
 | Nur Pfade unter `/api/` — `/sapi/`-Pfade (dort liegen **Auszahlungen**) sind strukturell unerreichbar | `pruefe_url()` |
 | **Trockenlauf ist der Standard**, Senden verlangt `--echt` | `spiegel.py` |
-| **Notbremse**: `touch broker/STOP` stoppt jede Order, `rm broker/STOP` gibt wieder frei | vor **jeder** Order geprüft |
+| **Notbremse**: `touch broker/STOP` stoppt jede Order, `rm broker/STOP` gibt wieder frei | **zweimal** geprüft: zu Beginn jedes Laufs *und* vor **jeder** Order |
 | Höchstens 5 Orders je Lauf, 20 in 24 Stunden | `zugang.MAX_ORDERS_PRO_*` |
 | Betrag je Order höchstens 1000 USDT — die Grenze steht im Code, nicht in der `.env` | `zugang.betrag_usdt()` |
 | Getrennte Schlüssel, Verwechslung wird erkannt | `zugang.get_zugang()` |
@@ -118,6 +118,7 @@ des Symbols (`LOT_SIZE`) und geprüft gegen Mindestmenge und Mindestgegenwert
 | Keine doppelte Order: `UNIQUE(bot, trade_id, seite)` **und** eine aus dem Trade abgeleitete `newClientOrderId`, die eine bereits gesendete Order wiedererkennt | `spiegel.py` |
 | Jede Order einzeln im Protokoll, mit Menge, Kurs, Order-ID, Gebühren | `logs/broker/testnet_spiegel.log` |
 | Rückgabewert 1 bei jedem Fehlschlag, damit Cron per Mail anschlägt | `spiegel.main()` |
+| Gezogene Notbremse **ohne** offene Aufgabe: Rückgabewert **0** — sie ist eine befolgte Anweisung, kein Fehlschlag; mit offener Aufgabe bleibt es bei 1 | `spiegel.main()` |
 
 Der Schlüssel kann auf dem Testnet ohnehin nicht abheben — das Konto hält keine
 echten Werte. Die `/sapi/`-Sperre ist trotzdem drin: sie kostet nichts und gilt
@@ -185,6 +186,7 @@ Trockenlauf ansehen, dann entscheiden.
 ```bash
 touch broker/STOP                       # Sicherung
 python3 broker/spiegel.py --echt        # muss "NOTBREMSE aktiv" melden
+                                        # (auch bei NULL offenen Aufgaben)
 rm broker/STOP                          # Sicherung lösen
 python3 broker/spiegel.py --echt        # jetzt geht EINE Order raus
 ```

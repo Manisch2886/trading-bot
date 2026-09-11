@@ -182,6 +182,30 @@ def notiere_versuch(conn, bot, trade_id, seite, symbol, modus, ergebnis,
     conn.commit()
 
 
+# ---------------------------------------------------------------------------
+# Notbremse
+# ---------------------------------------------------------------------------
+# Wie bei der Binance-Bruecke (broker/spiegel.py) wird die Bremse an ZWEI
+# Stellen geprueft, und aus demselben Grund:
+#
+#   1. zu Beginn von lauf(echt=True) - sichtbar, und auch dann, wenn gar keine
+#      Aufgabe offen ist. Ohne diese Stelle war ein gebremster Leerlauf von
+#      einem ganz gewoehnlichen Leerlauf nicht zu unterscheiden: keine Zeile,
+#      Rueckgabewert 0. Das hat bereits zu der falschen Meldung gefuehrt, die
+#      Bremse greife nicht - ein Fehlalarm ausgerechnet an der Sicherung, der
+#      man am meisten glauben muss.
+#   2. je Aufgabe in spiegle_eine() - unveraendert. Nur diese Stelle greift,
+#      wenn die Datei mitten im Lauf angelegt wird. Sie ist die Sicherung;
+#      Nummer 1 kommt hinzu, ersetzt sie nicht.
+#
+# Der Text steht hier einmal, damit beide Stellen wortgleich melden. Die DATEI
+# ist eine eigene (STOP_IBKR, siehe ibkr_zugang.py): eine gemeinsame haette
+# bedeutet, dass man Krypto nicht bremsen kann, ohne Aktien mitzubremsen.
+
+def notbremse_grund() -> str:
+    return f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - nichts gesendet"
+
+
 def gespiegelt(conn, bot, trade_id, seite):
     zeile = conn.execute(
         "SELECT * FROM spiegelungen WHERE bot=? AND trade_id=? AND seite=?",
@@ -302,8 +326,12 @@ def spiegle_eine(conn, bot: str, aufgabe: dict, verbindung, echt: bool,
         return {"ergebnis": "trockenlauf", "trade_id": trade_id, "seite": seite,
                 "symbol": symbol, "stueck": stueck}
 
+    # Diese Pruefung JE AUFGABE ist die eigentliche Sicherung und bleibt, auch
+    # seit lauf() die Bremse zusaetzlich zu Beginn prueft: nur sie greift,
+    # wenn die Datei WAEHREND eines laufenden Durchgangs angelegt wird - und
+    # genau dann wird sie angelegt.
     if zugang.notbremse_aktiv():
-        grund = f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - nichts gesendet"
+        grund = notbremse_grund()
         logger.warning(f"{grund}. Unerledigt: {kopf}")
         notiere_versuch(conn, bot, trade_id, seite, symbol, modus,
                         "fehlgeschlagen", grund)
@@ -428,45 +456,83 @@ def lauf(bot: str = ERLAUBTE_BOTS[0], echt: bool = False, verbindung=None,
                             eintrag["symbol"], "echt" if echt else "trocken",
                             "uebersprungen", eintrag["grund"])
 
-        if echt:
-            heute = orders_heute(conn, bot)
-            if heute >= zugang.MAX_ORDERS_PRO_TAG:
-                raise SpiegelFehler(
-                    f"Tagesgrenze erreicht: {heute} Orders in den letzten 24 "
-                    f"Stunden (Grenze {zugang.MAX_ORDERS_PRO_TAG}). Es wurde "
-                    f"nichts gesendet.")
-
-        if verbindung is None:
-            konto = zugang.erwartetes_konto()
-            if echt and not konto:
-                # Vor dem Verbindungsaufbau, nicht danach: ohne erwartetes
-                # Konto fehlt die zweite der beiden Absicherungen, und dann
-                # wird gar nicht erst verbunden.
-                raise SpiegelFehler(
-                    f"Fuer echte Orders muss {zugang.KONTO_VARIABLE} in der "
-                    f".env stehen - die Konto-Pruefung ist eine der beiden "
-                    f"Absicherungen und wird nicht uebergangen. Es wurde nichts "
-                    f"gesendet.")
-            verbindung = ip.PaperVerbindung(erwartetes_konto=konto)
-            verbindung.verbinden(nur_lesen=not echt)
-            selbst_verbunden = True
-
         ergebnisse = []
-        for aufgabe in plan["offen"]:
-            geschrieben = [e for e in ergebnisse if e["ergebnis"] == "erfolg"]
-            if echt and len(geschrieben) >= zugang.MAX_ORDERS_PRO_LAUF:
+        # Pruefung 1 von 2 (siehe notbremse_grund()): zu Beginn, sichtbar, und
+        # BEVOR eine Verbindung zu TWS aufgebaut wird. Der Lauf endet hier -
+        # was offen ist, bleibt offen und wird beim naechsten Lauf erneut
+        # angefasst, sobald die Datei weg ist.
+        notbremse = echt and zugang.notbremse_aktiv()
+        if notbremse:
+            logger.warning(
+                f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - dieser Lauf "
+                f"wird sofort beendet, ohne TWS auch nur zu kontaktieren. "
+                f"Offene Aufgaben: {len(plan['offen'])}. Datei entfernen gibt "
+                f"den Weg wieder frei.")
+            # Was offen war, wird NICHT stillschweigend uebergangen: jede
+            # Aufgabe bekommt denselben Eintrag in der Nachverfolgung und
+            # denselben Grund, den auch die Pruefung je Aufgabe schreiben
+            # wuerde.
+            #
+            # Auch Aufgaben AUSSERHALB der Handelszeiten stehen hier als
+            # "fehlgeschlagen" statt als "wartet". Das ist beabsichtigt: die
+            # Handelszeit waere der Grund, warum eine Order spaeter kommt -
+            # bei gezogener Bremse kommt sie ueberhaupt nicht, und der
+            # sichtbarere der beiden Gruende gehoert in die Anzeige.
+            grund = notbremse_grund()
+            for aufgabe in plan["offen"]:
                 logger.warning(
-                    f"Grenze je Lauf erreicht ({zugang.MAX_ORDERS_PRO_LAUF}) - "
-                    f"die uebrigen {len(plan['offen']) - len(ergebnisse)} "
-                    f"Aufgaben kommen beim naechsten Lauf.")
-                break
-            ergebnisse.append(spiegle_eine(conn, bot, aufgabe, verbindung, echt,
-                                            jetzt))
+                    f"{grund}. Unerledigt: {bot} Trade {aufgabe['trade_id']} "
+                    f"{aufgabe['seite']} ({aufgabe['symbol']})")
+                notiere_versuch(conn, bot, aufgabe["trade_id"], aufgabe["seite"],
+                                aufgabe["symbol"], "echt", "fehlgeschlagen",
+                                grund)
+                ergebnisse.append({
+                    "ergebnis": "fehlgeschlagen", "grund": grund,
+                    "trade_id": aufgabe["trade_id"], "seite": aufgabe["seite"],
+                    "symbol": aufgabe["symbol"]})
+        else:
+            if echt:
+                heute = orders_heute(conn, bot)
+                if heute >= zugang.MAX_ORDERS_PRO_TAG:
+                    raise SpiegelFehler(
+                        f"Tagesgrenze erreicht: {heute} Orders in den letzten 24 "
+                        f"Stunden (Grenze {zugang.MAX_ORDERS_PRO_TAG}). Es wurde "
+                        f"nichts gesendet.")
+
+            if verbindung is None:
+                konto = zugang.erwartetes_konto()
+                if echt and not konto:
+                    # Vor dem Verbindungsaufbau, nicht danach: ohne erwartetes
+                    # Konto fehlt die zweite der beiden Absicherungen, und dann
+                    # wird gar nicht erst verbunden.
+                    raise SpiegelFehler(
+                        f"Fuer echte Orders muss {zugang.KONTO_VARIABLE} in der "
+                        f".env stehen - die Konto-Pruefung ist eine der beiden "
+                        f"Absicherungen und wird nicht uebergangen. Es wurde nichts "
+                        f"gesendet.")
+                verbindung = ip.PaperVerbindung(erwartetes_konto=konto)
+                verbindung.verbinden(nur_lesen=not echt)
+                selbst_verbunden = True
+
+            for aufgabe in plan["offen"]:
+                geschrieben = [e for e in ergebnisse if e["ergebnis"] == "erfolg"]
+                if echt and len(geschrieben) >= zugang.MAX_ORDERS_PRO_LAUF:
+                    logger.warning(
+                        f"Grenze je Lauf erreicht ({zugang.MAX_ORDERS_PRO_LAUF}) - "
+                        f"die uebrigen {len(plan['offen']) - len(ergebnisse)} "
+                        f"Aufgaben kommen beim naechsten Lauf.")
+                    break
+                ergebnisse.append(spiegle_eine(conn, bot, aufgabe, verbindung, echt,
+                                                jetzt))
 
         return {
             "bot": bot, "modus": "echt" if echt else "trocken",
-            "konto": verbindung.konto,
+            # Bei gezogener Bremse wird nicht verbunden - dann gibt es auch
+            # kein Konto zu melden. Kein erfundener Platzhalter: None sagt
+            # "nicht verbunden", und genau das ist der Fall.
+            "konto": verbindung.konto if verbindung is not None else None,
             "aufgaben": len(plan["offen"]),
+            "notbremse": notbremse,
             "uebersprungen": plan["uebersprungen"],
             "wartet": [e for e in ergebnisse if e["ergebnis"] == "uebersprungen"],
             "ergebnisse": ergebnisse,
@@ -484,6 +550,13 @@ def lauf(bot: str = ERLAUBTE_BOTS[0], echt: bool = False, verbindung=None,
 def _meldung(z: dict) -> str:
     teile = [f"{z['erfolg']} von {z['aufgaben']} Spiegelung(en) "
              f"({'ECHT' if z['modus'] == 'echt' else 'Trockenlauf'})"]
+    # Zuerst, nicht als Fussnote: bei gezogener Bremse ist das die Nachricht.
+    # Ohne sie lautete die Zeile bei null Aufgaben "0 von 0 Spiegelung(en)" -
+    # nicht zu unterscheiden von einem Lauf, bei dem es schlicht nichts zu tun
+    # gab.
+    if z.get("notbremse"):
+        teile.insert(0, f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - Lauf zu "
+                        f"Beginn beendet, nichts gesendet")
     if z["fehlgeschlagen"]:
         teile.append(f"{len(z['fehlgeschlagen'])} fehlgeschlagen: " +
                       "; ".join(f"Trade {f['trade_id']} {f['seite']} "
@@ -611,6 +684,18 @@ def main(argv=None) -> int:
         return 1
     meldung = _meldung(z)
     logger.info(meldung)
+    # Rueckgabewert 1 bei Fehlschlaegen, damit der Cronjob per Mail anschlaegt.
+    #
+    # Eine GEZOGENE NOTBREMSE ist fuer sich genommen kein Fehlschlag: sie ist
+    # eine Anweisung des Nutzers, und sie wurde befolgt. Lag keine Aufgabe an,
+    # ist nichts liegengeblieben und der Rueckgabewert bleibt 0. Eine
+    # Fehlermail bei jedem Lauf, solange die Bremse absichtlich gezogen ist,
+    # wuerde genau die Mails entwerten, auf die es ankommt. Dass die Bremse
+    # wirkt, steht sichtbar im Protokoll (logger.warning in lauf() und
+    # _meldung() oben), nicht im Rueckgabewert.
+    #
+    # LAGEN Aufgaben an, bleibt es beim bisherigen 1: dann ist tatsaechlich
+    # etwas nicht ausgefuehrt worden, was ausgefuehrt werden sollte.
     return 1 if z["fehlgeschlagen"] else 0
 
 

@@ -55,6 +55,11 @@ const appJs = fs.readFileSync(path.join(statisch, "app.js"), "utf8");
 /* Die drei Bausteine stehen in app.js, weil beide Seiten sie brauchen. */
 const erlaeuterung = appJs.match(/const GEWICHTUNG_ERLAEUTERUNG =[\s\S]*?;\n/);
 if (!erlaeuterung) throw new Error("GEWICHTUNG_ERLAEUTERUNG nicht gefunden");
+const anzahlErlaeuterung =
+  appJs.match(/const POSITIONSANZAHL_ERLAEUTERUNG =[\s\S]*?;\n/);
+if (!anzahlErlaeuterung) {
+  throw new Error("POSITIONSANZAHL_ERLAEUTERUNG nicht gefunden");
+}
 
 /* Minimaler DOM-Ersatz: notfallErgebnisAnzeigen() schreibt in #erfolg. */
 const geschrieben = {};
@@ -73,11 +78,14 @@ vm.runInNewContext([
   funktion(appJs, "function prozent("),
   erlaeuterung[0],
   funktion(appJs, "function positionsgroesse("),
+  anzahlErlaeuterung[0],
+  funktion(appJs, "function positionsanzahlZeilen("),
   funktion(appJs, "function gewichtungsZeilen("),
   funktion(botHtml, "function notfallErgebnisAnzeigen("),
   funktion(indexHtml, "function crashListe("),
   funktion(indexHtml, "function crashErgebnisAnzeigen("),
   "this.gewichtungsZeilen = gewichtungsZeilen;",
+  "this.positionsanzahlZeilen = positionsanzahlZeilen;",
   "this.notfallErgebnisAnzeigen = notfallErgebnisAnzeigen;",
   "this.crashListe = crashListe;",
   "this.crashErgebnisAnzeigen = crashErgebnisAnzeigen;",
@@ -115,6 +123,45 @@ check("Der nicht gewichtbare Bot wird in der Ausgabe BENANNT",
 check("Mit seinem Grund und seiner eigenen Zahl",
       dialog.includes("live_params.py") && dialog.includes("+1.00%"));
 
+/* Die Anzahl je Bot: die gewichtete Zahl ist rechnerisch richtig, sagt aber
+   nicht, WORAUS sie besteht. Geprueft wird die erzeugte Ausgabe, nicht der
+   Quelltext - eine Textsuche waere gruen geblieben, haette der if-Zweig auf
+   `false` gestanden. */
+check("Der Dialog weist die Anzahl der Positionen JE BOT aus",
+      dialog.includes("Eingegangene Positionen je Bot")
+      && dialog.includes("T3/ADX/SuperTrend: 2")
+      && dialog.includes("Turtle Soup (Aktien): 1"),
+      (dialog.match(/Eingegangene Positionen je Bot[^<]*/) || [""])[0].slice(0, 90));
+check("Und zwar als SICHTBARE Zeile, nicht als title-Tooltip (am iPhone gibt "
+      + "es kein Hover)",
+      dialog.includes('class="hinweis-gewichtung">Eingegangene Positionen je Bot')
+      && !dialog.includes('title="Eingegangene'));
+check("Mit der Erlaeuterung, warum die Anzahl ueberhaupt dasteht",
+      dialog.includes("ohne Obergrenze für gleichzeitige Positionen"));
+
+/* --- Fall 1b: der Fall, um den es hier ueberhaupt geht ------------------
+   `elliott_wave` hat als einziger Bot kein MAX_CONCURRENT_POSITIONS. Traegt
+   er sieben von acht Positionen, ist "Ø gewichtet" praktisch seine Zahl -
+   und ohne die Anzahl je Bot sieht man das der Anzeige nicht an. */
+const dominiert = {
+  wert_pct: -8.05, ungewichtet_schnitt_pct: -8.0, anzahl: 8,
+  grundlage: "...", hinweis: "...",
+  gewichte: [
+    { bot: "elliott_wave", anzeigename: "Elliott Wave (Krypto)",
+      allokation_pct: 10.0, quelle: "equity_simulation.py", anzahl: 7 },
+    { bot: "turtle_soup_stocks", anzeigename: "Turtle Soup (Aktien)",
+      allokation_pct: 2.0, quelle: "live_params.py", anzahl: 1 },
+  ],
+  nicht_gewichtbar: [],
+};
+const ungleich = ctx.gewichtungsZeilen(dominiert).join("");
+check("Traegt EIN Bot sieben von acht Positionen, ist das ablesbar",
+      ungleich.includes("Elliott Wave (Krypto): 7")
+      && ungleich.includes("Turtle Soup (Aktien): 1"),
+      (ungleich.match(/Eingegangene Positionen je Bot[^<]*/) || [""])[0].slice(0, 90));
+check("Die Gewichtung selbst bleibt unveraendert daneben stehen",
+      ungleich.includes("-8.05%") && ungleich.includes("10 % / 2 %"));
+
 /* --- Fall 2: gar keine gewichtbare Position ----------------------------- */
 const ohne = {
   wert_pct: null, ungewichtet_schnitt_pct: null, anzahl: 0,
@@ -134,6 +181,46 @@ check("Fehlt das Feld ganz (aelteres Backend), bricht nichts",
       ctx.gewichtungsZeilen(undefined).length === 0
       && ctx.gewichtungsZeilen(null).length === 0);
 
+/* --- Fall 3b: die Anzahl-Anzeige darf den Notfallweg NIE blockieren -----
+   Dieselbe Regel wie bei der Positionsgroesse: fehlt eine Angabe, wird
+   trotzdem geschlossen. Eine Anzeige, die im Crash eine Ausnahme wirft,
+   waere schlimmer als eine fehlende Anzeige. */
+check("Ohne Feld, ohne Liste und mit leerer Liste entsteht keine Anzahl-Zeile",
+      ctx.positionsanzahlZeilen(undefined).length === 0
+      && ctx.positionsanzahlZeilen(null).length === 0
+      && ctx.positionsanzahlZeilen({}).length === 0
+      && ctx.positionsanzahlZeilen({ gewichte: [] }).length === 0
+      && ctx.positionsanzahlZeilen({ gewichte: "kaputt" }).length === 0);
+check("Fehlt die Anzahl EINES Bots, steht dort ein Strich statt einer Luecke",
+      ctx.positionsanzahlZeilen({ gewichte: [{ anzeigename: "Bot A" }] })
+        .join("").includes("Bot A: –"));
+check("Fehlt auch der Name, bleibt die Zeile lesbar",
+      ctx.positionsanzahlZeilen({ gewichte: [{ anzahl: 3 }] })
+        .join("").includes("unbekannt: 3"));
+
+/* Der eigentliche Punkt: das uebrige Ergebnis steht trotzdem da. Geprueft
+   wird ueber gewichtungsZeilen(), also so, wie der Dialog es aufruft. */
+const ohneAnzahl = {
+  wert_pct: -2.59, ungewichtet_schnitt_pct: 0.5, anzahl: 4,
+  grundlage: "...", hinweis: "...",
+  gewichte: [{ bot: "t3_supertrend", anzeigename: "T3/ADX/SuperTrend",
+                allokation_pct: 10.0, quelle: "equity_simulation.py" }],
+  nicht_gewichtbar: [],
+};
+let trotzdem = "";
+let geworfen = null;
+try {
+  trotzdem = ctx.gewichtungsZeilen(ohneAnzahl).join("");
+} catch (e) {
+  geworfen = e;
+}
+check("Eine fehlende Anzahl wirft nicht - gewichtete Zahl und Erlaeuterung "
+      + "stehen unveraendert da",
+      geworfen === null && trotzdem.includes("-2.59%")
+      && trotzdem.includes("keine Portfolio-Rendite")
+      && trotzdem.includes("T3/ADX/SuperTrend: –"),
+      geworfen ? String(geworfen).slice(0, 80) : "");
+
 /* --- Fall 4: die Ergebnisanzeige, dieselben Zusicherungen -------------- */
 ctx.notfallErgebnisAnzeigen({
   anzahl_geschlossen: 3, angefragt: 4, anzahl_fehlgeschlagen: 0,
@@ -151,6 +238,14 @@ check("Und dort steht dieselbe Erlaeuterung",
       erfolg.includes("angenommenen") && erfolg.includes("keine Portfolio-Rendite"));
 check("Und auch dort wird der ausgeschlossene Bot benannt",
       erfolg.includes("Neuer Bot") && erfolg.includes("ausgenommen"));
+/* notfallErgebnisAnzeigen() baut sein HTML SELBST auf und ruft
+   gewichtungsZeilen() nicht auf - die Anzahl muss dort eigens geholt werden.
+   Genau diese Stelle war in PR #62/#66/#67 dreimal die vergessene. */
+check("Die Ergebnisanzeige weist die Anzahl je Bot ebenfalls aus",
+      erfolg.includes("Eingegangene Positionen je Bot")
+      && erfolg.includes("T3/ADX/SuperTrend: 2")
+      && erfolg.includes("Turtle Soup (Aktien): 1"),
+      (erfolg.match(/Eingegangene Positionen je Bot[^<]*/) || [""])[0].slice(0, 90));
 
 geschrieben["erfolg"] = "";
 ctx.notfallErgebnisAnzeigen({
@@ -201,6 +296,11 @@ check("UND darunter die gewichtete Zahl ueber alle Bots",
 check("Mit Erlaeuterung und mit dem ausgeschlossenen Bot",
       crash.includes("angenommenen") && crash.includes("keine Portfolio-Rendite")
       && crash.includes("Neuer Bot") && crash.includes("ausgenommen"));
+check("Die Crash-Uebersicht weist die Anzahl je Bot aus",
+      crash.includes("Eingegangene Positionen je Bot")
+      && crash.includes("T3/ADX/SuperTrend: 2")
+      && crash.includes("Turtle Soup (Aktien): 1"),
+      (crash.match(/Eingegangene Positionen je Bot[^<]*/) || [""])[0].slice(0, 90));
 check("Die Querzahl steht NACH den Bot-Bloecken, nicht in einem davon",
       crash.indexOf("Über alle Bots") > crash.indexOf("Turtle Soup (Aktien)"),
       `${crash.indexOf("Über alle Bots")} > ${crash.indexOf("Turtle Soup (Aktien)")}`);
@@ -221,6 +321,11 @@ check("Auch dort mit Erlaeuterung und Ausschluss",
       crashErfolg.includes("angenommenen")
       && crashErfolg.includes("keine Portfolio-Rendite")
       && crashErfolg.includes("ausgenommen"));
+check("Und das Crash-ERGEBNIS weist die Anzahl je Bot aus",
+      crashErfolg.includes("Eingegangene Positionen je Bot")
+      && crashErfolg.includes("T3/ADX/SuperTrend: 2")
+      && crashErfolg.includes("Turtle Soup (Aktien): 1"),
+      (crashErfolg.match(/Eingegangene Positionen je Bot[^<]*/) || [""])[0].slice(0, 90));
 
 geschrieben["erfolg"] = "";
 ctx.crashErgebnisAnzeigen({

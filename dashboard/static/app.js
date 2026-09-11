@@ -135,6 +135,42 @@ function positionsgroesse(pct) {
   return `${zahl(pct, Number.isInteger(pct) ? 0 : 2)} %`;
 }
 
+/* Wie viele Positionen je Bot in die gewichtete Zahl eingehen.
+   ==========================================================================
+   Die gewichtete Zahl rechnet richtig, sagt aber nicht, WORAUS sie besteht.
+   `elliott_wave` hat als einziger Bot kein MAX_CONCURRENT_POSITIONS und kann
+   deshalb deutlich mehr Positionen gleichzeitig stellen als die anderen. Steht
+   dann "Ø gewichtet -8 %" da, kann das der Durchschnitt über sieben Elliott-
+   Positionen und eine einzige fremde sein - rechnerisch korrekt, aber
+   faktisch die Aussage EINES Bots. Genau in dem Moment, in dem der Nutzer
+   entscheidet, ob er alles schließt, darf das nicht unsichtbar sein.
+
+   Die Zahlen werden nicht neu berechnet: `gewichte[].anzahl` zählt die
+   Gewichtung ohnehin schon mit. Hier wird sie nur ausgewiesen.
+
+   Wie GEWICHTUNG_ERLAEUTERUNG bewusst SICHTBARER Text, kein title-Tooltip:
+   dieses Dashboard wird überwiegend am iPhone benutzt, und dort gibt es kein
+   Hover. Und wie dort steht der Text an EINER Stelle, weil bot.html und
+   index.html ihn beide brauchen. */
+const POSITIONSANZAHL_ERLAEUTERUNG =
+  "Bots ohne Obergrenze für gleichzeitige Positionen können die gewichtete "
+  + "Zahl allein tragen.";
+
+function positionsanzahlZeilen(g) {
+  /* Diese Anzeige darf den Notfallweg unter KEINEN Umständen blockieren -
+     dieselbe Regel wie bei der Positionsgröße. Fehlt das Feld (älteres
+     Backend), fehlt die Liste oder fehlt eine einzelne Zahl, bleibt die Zeile
+     weg bzw. steht ein Strich; geschlossen wird trotzdem. */
+  if (!g || !Array.isArray(g.gewichte) || !g.gewichte.length) return [];
+  const teile = g.gewichte.map((w) => {
+    const wieviele = (w && w.anzahl !== null && w.anzahl !== undefined)
+      ? w.anzahl : "–";
+    return `${(w && (w.anzeigename || w.bot)) || "unbekannt"}: ${wieviele}`;
+  });
+  return [`<div class="hinweis-gewichtung">Eingegangene Positionen je Bot – `
+          + `${teile.join("; ")}. ${POSITIONSANZAHL_ERLAEUTERUNG}</div>`];
+}
+
 function gewichtungsZeilen(g) {
   if (!g) return [];
   const zeilen = [];
@@ -147,6 +183,9 @@ function gewichtungsZeilen(g) {
         + `${prozent(g.ungewichtet_schnitt_pct)})</span></span></div>`,
       `<div class="hinweis-gewichtung">${GEWICHTUNG_ERLAEUTERUNG}</div>`);
   }
+  /* Direkt unter der Zahl, nicht am Ende: wer sie liest, soll im selben Blick
+     sehen, aus wie vielen Positionen je Bot sie besteht. */
+  zeilen.push(...positionsanzahlZeilen(g));
   /* Ein Bot ohne dokumentierte Positionsgröße verschwindet NICHT stillschweigend
      aus der Rechnung - er wird benannt, mit Grund und mit seinem eigenen
      ungewichteten Durchschnitt. */

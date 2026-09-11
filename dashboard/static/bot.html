@@ -825,6 +825,12 @@ function notfallErgebnisAnzeigen(r) {
       + `Positionsgröße)</span>`);
     html += `<div class="hinweis-gewichtung">${GEWICHTUNG_ERLAEUTERUNG}</div>`;
   }
+  /* Diese Funktion baut ihr HTML selbst auf und ruft gewichtungsZeilen() nicht
+     auf - die Anzahl je Bot muss hier deshalb EIGENS geholt werden, aus
+     derselben Quelle in app.js. Genau diese Stelle ist in PR #62, #66 und #67
+     dreimal übersehen worden, weil eine Suche über das ganze Dokument grün
+     war, solange die Übersicht den Text noch enthielt. */
+  html += positionsanzahlZeilen(g).join("");
   if (g && g.nicht_gewichtbar.length) {
     html += `<div class="hinweis-gewichtung">Ohne dokumentierte Positionsgröße `
       + `und deshalb <strong>aus der gewichteten Zahl ausgenommen</strong> – `
