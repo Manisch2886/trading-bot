@@ -358,8 +358,16 @@ def test_struktur():
     check("Kein sapi-Pfad im Quelltext (dort liegen Auszahlungen)",
           "/sapi/" not in quelle_client)
     quelle_spiegel = open(os.path.join(_DIR, "spiegel.py"), encoding="utf-8").read()
+    # Der lesende Zugang liegt seit der IBKR-Bruecke in bot_db.py - EINE Stelle
+    # fuer beide Bruecken. Geprueft wird deshalb dort, und zusaetzlich, dass
+    # spiegel.py die Bot-Datenbank nicht selbst aufmacht.
+    quelle_botdb = open(os.path.join(_DIR, "bot_db.py"), encoding="utf-8").read()
     check("Die Bot-Datenbank wird schreibgeschuetzt geoeffnet (mode=ro)",
-          'mode=ro' in quelle_spiegel and "uri=True" in quelle_spiegel)
+          'mode=ro' in quelle_botdb and "uri=True" in quelle_botdb)
+    check("Und spiegel.py oeffnet sie nicht auf eigenem Weg",
+          "paper_trading_" not in quelle_spiegel
+          and "bot_db.lies_trades" in quelle_spiegel,
+          "eigener Zugriff auf die Bot-Datenbank gefunden")
     check("Kein INSERT/UPDATE/DELETE auf die trades-Tabelle",
           not any(f"{wort} trades" in quelle_spiegel.upper()
                   for wort in ("INSERT INTO", "UPDATE", "DELETE FROM")),
