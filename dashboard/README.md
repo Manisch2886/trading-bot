@@ -119,9 +119,11 @@ Restrisiken.
 | `erzeuge_icons.py` | erzeugt die beiden PWA-Icons neu (keine Fremdbibliothek noetig) |
 | `warteauftraege_ausfuehren.py` | eigenstaendiges Programm (Cronjob): fuehrt wartende Ausstiege aus, sobald die Boerse offen ist |
 | `test_dashboard.py` | Selbsttests gegen den echten Server, synthetische Daten |
+| `pruefe_warteauftraege_kopie.py` | Selbstpruefung der Warteauftraege gegen eine **Arbeitskopie** (laeuft nur mit Markierungsdatei `.probe-kopie`) |
 | `test_zustandsmaschine.js` | Verhaltenstest der Aktualisierungs-Zustaende (node, wird mitgestartet) |
 | `test_zeitzone.js` | Verhaltenstest der Zeitanzeige in vier Zeitzonen (node, wird mitgestartet) |
-| `TESTANLEITUNG_SCHLIESSEN.md` | gestaffelte Anleitung fuer den manuellen Test des Schliessens |
+| `TESTANLEITUNG_SCHLIESSEN.md` | gestaffelte Anleitung fuer den manuellen Test des Schliessens (Teil 2: Warteauftraege) |
+| `TESTPLAN_WARTEAUFTRAEGE_AGENT.md` | derselbe Test, aber als Arbeitsanweisung fuer eine lokale Claude-Code-Sitzung |
 
 ## Erste Inbetriebnahme (Schritt fuer Schritt)
 
