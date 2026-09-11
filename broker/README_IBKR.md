@@ -211,9 +211,17 @@ cd ~/trading-bot
 python3 broker/test_ibkr.py
 ```
 
-Erwartet: `183 von 183 Pruefungen bestanden, 0 fehlgeschlagen.`
-Ohne installiertes `ib_async` läuft alles außer Abschnitt 13, und das wird
-sichtbar als „uebersprungen" gemeldet.
+Erwartet **mit** installiertem `ib_async`:
+`200 von 200 Pruefungen bestanden, 0 fehlgeschlagen.`
+
+Erwartet **ohne** `ib_async`:
+`168 von 168 Pruefungen bestanden, 0 fehlgeschlagen.`,
+davor eine Zeile `UEBERSPRUNGEN: test_gegen_echte_bibliothek`.
+
+Die kleinere Zahl ist **kein Fehler**: ohne die Bibliothek läuft alles außer
+Abschnitt 13, und das wird sichtbar als „uebersprungen" gemeldet. Abschnitt 13
+ist der einzige, der die Bibliothek braucht — er prüft, ob deren Schnittstelle
+noch zu den Annahmen dieses Codes passt.
 
 ### Schritt 2 — Verbindung und Konto (verbindet NUR LESEND)
 
@@ -395,7 +403,7 @@ grep -E "FEHLGESCHLAGEN|OFFEN" logs/broker/ibkr_paper_spiegel.log | tail
 | `broker/ibkr_paper.py` | die einzige Stelle mit `ib_async`: Verbindung, Kontrakt, Handelszeiten, Order |
 | `broker/ibkr_spiegel.py` | die Brücke: liest den Bot, entscheidet, sendet, protokolliert |
 | `broker/ibkr_abgleich.py` | Bericht Simulation ↔ Ausführung |
-| `broker/test_ibkr.py` | 183 Prüfungen, ohne TWS und ohne Verbindung |
+| `broker/test_ibkr.py` | **200** Prüfungen mit `ib_async`, **168** ohne (Abschnitt 13 wird dann sichtbar übersprungen) — in beiden Fällen ohne TWS und ohne Verbindung |
 | `broker/bot_db.py` | der gemeinsame, schreibgeschützte Leser beider Brücken |
 | `broker_ibkr_volatility_breakout.db` | eigene Nachverfolgung (`.gitignore`) |
 | `logs/broker/ibkr_paper_spiegel.log` | jede Order mit vollem Kontext |
