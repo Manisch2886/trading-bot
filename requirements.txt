@@ -54,8 +54,12 @@
 #   * Eine eigene Zeitregel - ABGELEHNT, ausfuehrlich begruendet im Kopf von
 #     notifications/boersenkalender.py.
 #
-# VERSION: bewusst nur eine Untergrenze. pip waehlt damit auf Python 3.9 die
-# 4.x-Reihe und auf 3.10+ die aktuelle 5.x - beide haben die hier benutzte
-# Schnittstelle (get_calendar/schedule). Eine feste Version waere auf der
-# einen der beiden Umgebungen nicht installierbar.
-pandas_market_calendars>=4.1
+# VERSION: Untergrenze 4.1 (ab da get_calendar/schedule in der hier benutzten
+# Form), Obergrenze <5. Die 5.x-Reihe deklariert zwar "Requires-Python >=3.8",
+# benutzt aber auf Modulebene Syntax ab Python 3.10 (`pd.Timestamp | None`)
+# und bricht auf dem hier eingesetzten Python 3.9.6 beim Import mit TypeError
+# ab - pip merkt das nicht und installiert sie trotzdem (Testlauf 2026-09-11,
+# Version 5.2.4). Die urspruengliche Annahme "pip waehlt auf 3.9 von selbst
+# 4.x" war falsch. Sobald das trading-env auf Python 3.10+ steht, kann die
+# Obergrenze fallen.
+pandas_market_calendars>=4.1,<5
