@@ -23,3 +23,10 @@ logs/
 .DS_Store
 __pycache__/
 *.pyc
+
+# Wartende Ausstiegsauftraege des Dashboards (Laufzeitzustand, kein
+# Secret - gehoert aber so wenig ins Repo wie notifications/state.json:
+# er beschreibt, was auf DIESEM Rechner gerade aussteht)
+notifications/warteauftraege.json
+notifications/warteauftraege.json.lock
+notifications/warteauftraege.json.neu

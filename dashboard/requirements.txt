@@ -7,3 +7,9 @@
 # notifications/requirements.txt.
 fastapi>=0.110
 uvicorn>=0.27
+
+# Der Boersenkalender fuer die Warteauftraege (siehe requirements.txt im
+# Projekt-Root, dort steht die Begruendung der Paketwahl) wird NICHT hier
+# gefuehrt: er gehoert nicht dem Dashboard allein, sondern auch dem
+# eigenstaendigen Ausfuehrungsskript und dem Lesemodul in notifications/.
+# Er steht deshalb genau einmal, in requirements.txt.

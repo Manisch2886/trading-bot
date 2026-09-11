@@ -46,6 +46,60 @@ keine Position eroeffnen, kein Bot-Lauf anstossen. Ausserhalb dieses einen
 Pfades werden die Bot-Datenbanken weiterhin ueber
 `notifications/monitor.py` im SQLite-Modus `ro` geoeffnet.
 
+## Ausserhalb der Boersenzeiten: Warteauftraege (Aktien-Bots)
+
+**Das ist die einzige Funktion des Projekts, bei der zeitversetzt und ohne
+erneute Rueckfrage geschrieben wird. Bitte vor der Einrichtung des Cronjobs
+den entsprechenden Abschnitt der
+[Testanleitung](TESTANLEITUNG_SCHLIESSEN.md#teil-2-warteauftraege-ausserhalb-der-boersenzeiten)
+lesen.**
+
+Vorher schloss ein Tap bei einem Aktien-Bot auch nachts oder am Wochenende
+sofort - zum letzten verfuegbaren **Tages-Schlusskurs**, also zu einem Kurs,
+den es "gerade jetzt" nicht gibt. Jetzt gilt:
+
+| Lage | Was passiert |
+|---|---|
+| Krypto-Bot, immer | sofort schliessen, zum aktuellen Kurs - **unveraendert** |
+| Aktien-Bot, Boerse offen | sofort schliessen, zum aktuellen Kurs - **unveraendert** |
+| Aktien-Bot, Boerse zu | **Warteauftrag** nach zusaetzlicher Bestaetigung; ausgefuehrt bei der naechsten Oeffnung |
+| Aktien-Bot, Kalender nicht lesbar | **weder noch** - abgelehnt mit Begruendung (fail closed) |
+
+Die Unterscheidung trifft der **Server** anhand eines echten
+NYSE-Handelskalenders (`notifications/boersenkalender.py`, Bibliothek
+`pandas_market_calendars`, siehe `requirements.txt`) - inklusive
+beweglicher Feiertage und verkuerzter Handelstage. Der Browser bestaetigt
+sie nur; er waehlt sie nicht.
+
+**Was ein Warteauftrag ist:** eine gespeicherte Absicht, kein Ergebnis. Er
+nennt Bot, Position, Symbol, Zeitpunkt der Anforderung und Quelle - aber
+ausdruecklich **keinen Kurs**, denn den gibt es noch nicht. Er liegt in
+`notifications/warteauftraege.json` (eine Datei fuer alle Bots, gitignored,
+gegen gleichzeitigen Zugriff gesperrt) und ueberlebt jeden Neustart von
+Dashboard und Ausfuehrungsskript.
+
+**Ausgefuehrt** wird er von einem eigenstaendigen Programm, nicht vom
+Dashboard und nicht von einem Bot:
+
+```
+python3 dashboard/warteauftraege_ausfuehren.py [--trockenlauf] [--jetzt <ISO>]
+```
+
+Es prueft den Kalender, holt bei offener Boerse den aktuellen Kurs ueber
+dieselbe Funktion wie das Dashboard (`monitor.fetch_stock_prices`) und
+schliesst ueber dieselbe Kernfunktion wie jeder andere manuelle Eingriff
+(`manual_close.schliesse_position`, mit Transaktion, erneuter Pruefung und
+Protokoll). Im Protokoll traegt die Zeile `quelle=warteauftrag`.
+
+Der noetige Cronjob-Eintrag steht in der Testanleitung, Schritt 17. **Ohne
+ihn wird kein Auftrag ausgefuehrt** - sie sammeln sich dann sichtbar im
+Dashboard an.
+
+**Stornieren** entfernt einen wartenden Auftrag - ohne zweite Bestaetigung,
+weil es eine Ausfuehrung *verhindert* statt eine auszuloesen. Die Listen
+stehen auf der Bot-Detailseite (nur dieser Bot) und auf der Uebersichtsseite
+(alle Bots).
+
 **Vor dem ersten Einsatz:** die gestaffelte Anleitung in
 [`TESTANLEITUNG_SCHLIESSEN.md`](TESTANLEITUNG_SCHLIESSEN.md) durchgehen -
 Schritte 0-3 sind gefahrlos, Schritt 4 testet an einer Kopie der Datenbank,
@@ -63,17 +117,24 @@ Restrisiken.
 | `konfig.py` | Token/Host/Port aus `.env` bzw. Umgebung |
 | `static/` | Frontend (HTML/CSS/JS), `manifest.json`, `sw.js`, Icons |
 | `erzeuge_icons.py` | erzeugt die beiden PWA-Icons neu (keine Fremdbibliothek noetig) |
+| `warteauftraege_ausfuehren.py` | eigenstaendiges Programm (Cronjob): fuehrt wartende Ausstiege aus, sobald die Boerse offen ist |
 | `test_dashboard.py` | Selbsttests gegen den echten Server, synthetische Daten |
+| `pruefe_warteauftraege_kopie.py` | Selbstpruefung der Warteauftraege gegen eine **Arbeitskopie** (laeuft nur mit Markierungsdatei `.probe-kopie`) |
 | `test_zustandsmaschine.js` | Verhaltenstest der Aktualisierungs-Zustaende (node, wird mitgestartet) |
 | `test_zeitzone.js` | Verhaltenstest der Zeitanzeige in vier Zeitzonen (node, wird mitgestartet) |
-| `TESTANLEITUNG_SCHLIESSEN.md` | gestaffelte Anleitung fuer den manuellen Test des Schliessens |
+| `TESTANLEITUNG_SCHLIESSEN.md` | gestaffelte Anleitung fuer den manuellen Test des Schliessens (Teil 2: Warteauftraege) |
+| `TESTPLAN_WARTEAUFTRAEGE_AGENT.md` | derselbe Test, aber als Arbeitsanweisung fuer eine lokale Claude-Code-Sitzung |
 
 ## Erste Inbetriebnahme (Schritt fuer Schritt)
 
 1. **Abhaengigkeiten installieren**
    ```
-   pip3 install -r dashboard/requirements.txt
+   pip3 install -r requirements.txt
    ```
+   (Die Datei im Projekt-Root bindet die Listen von Dashboard und
+   Telegram-Bot ein und ergaenzt den Boersenkalender
+   `pandas_market_calendars`, ohne den Aktien-Positionen weder sofort
+   geschlossen noch vorgemerkt werden koennen.)
    (FastAPI und uvicorn. `pandas` ist ueber die Bots schon da,
    `requests`/`yfinance` fuer die Live-Kurse kommen aus
    `notifications/requirements.txt` und sind fuer den Telegram-Bot
@@ -100,7 +161,7 @@ Restrisiken.
    ```
    python3 dashboard/test_dashboard.py
    ```
-   Erwartet: `121/121 Pruefungen bestanden.`
+   Erwartet: `738/738 Pruefungen bestanden.`
 
    Die beiden Node-Tests werden davon mitgestartet, sofern `node`
    vorhanden ist. Fehlt es, sagen die Selbsttests das ausdruecklich und
@@ -173,6 +234,7 @@ danach ist das Token nicht mehr noetig.
 | `/api/bots/{name}/trades?limit=N` | geschlossene Trades, neueste zuerst |
 | `/api/verlauf` | kumulierte Trade-Ergebnisse je Bot und zusammengefasst |
 | `/api/live-kurse[?bot=name]` | nur die aktuellen Kurse der offenen Positionen |
+| `/api/warteauftraege[?bot=name]` | wartende Ausstiegsauftraege, je mit Angabe, ob die Position noch offen ist |
 
 Seiten: `/` (Uebersicht), `/bot?name=<bot>` (Detail), `/login`,
 `/abmelden`, `/manifest.json`, `/sw.js`, `/statisch/*`.
@@ -187,6 +249,13 @@ Seiten: `/` (Uebersicht), `/bot?name=<bot>` (Detail), `/login`,
 | `/api/bots/{name}/schliessen/ausfuehren` | POST | **ja** - schliesst eine Position |
 | `/api/bots/{name}/alle-schliessen/vorbereiten` | POST | nein - nur Arbeitsspeicher |
 | `/api/bots/{name}/alle-schliessen/ausfuehren` | POST | **ja** - schliesst alle bestaetigten Positionen, jede einzeln |
+| `/api/warteauftraege/stornieren` | POST | nein - entfernt einen wartenden Auftrag |
+
+Bei geschlossener Boerse haben die drei `ausfuehren`-Endpunkte einen
+**vierten Ausgang**, der gar nichts schreibt: sie legen Warteauftraege an.
+Dafuer muss das Feld `warteauftrag_bestaetigt: true` mitkommen - der
+zusaetzliche Warnschritt aus dem Dialog. Fehlt es, wird mit 409 abgelehnt
+und **nichts** angelegt und nichts geschrieben.
 
 `vorbereiten` erwartet `{"trade_id": <ID>}` und antwortet mit Symbol,
 Einstiegs- und aktuellem Kurs, geschaetztem PnL sowie einer Vorgangs-Kennung.
@@ -362,6 +431,18 @@ mit Live-Kursen.
    Test, und dann als eigener Schritt.
 
 ## Bekannte Grenzen
+
+- **Ein Warteauftrag wird ohne erneute Rueckfrage ausgefuehrt.** Das ist
+  seine Aufgabe, aber es ist neu in diesem Projekt: zwischen Bestaetigung
+  und Schreibzugriff koennen Stunden bis Tage liegen, und der Kurs steht
+  beim Bestaetigen noch nicht fest. Wer den Cronjob einrichtet, erlaubt das
+  fuer alle kuenftigen Auftraege.
+- **Ohne `pandas_market_calendars` lassen sich Aktien-Positionen gar nicht
+  mehr manuell schliessen** - weder sofort noch vorgemerkt. Das ist Absicht
+  (fail closed); die Meldung nennt die fehlende Bibliothek. Krypto ist nicht
+  betroffen.
+- **Die Auftragsdatei liegt nur lokal** und ist gitignored. Sie ueberlebt
+  Neustarts, aber keinen Rechnerwechsel.
 
 - **Das Zugriffs-Token kann jetzt mehr als lesen.** Es liegt nach dem
   ersten Login 90 Tage als Cookie im Browser. Wer Zugriff auf das

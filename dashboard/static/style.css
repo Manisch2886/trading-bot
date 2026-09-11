@@ -709,3 +709,70 @@ dialog.crash-dialog .dialog-eingabe {
   letter-spacing: .12em;
   margin-bottom: 6px;
 }
+
+/* ---------------------------------------------------------------------------
+   Warteauftraege: die zeitversetzte Ausfuehrung
+   ---------------------------------------------------------------------------
+   EIGENE Farbe, und zwar bewusst weder Gruen noch Rot: ein Warteauftrag ist
+   kein Erfolg (es wurde nichts geschlossen) und kein Fehler (es ist alles
+   nach Plan gelaufen). Er ist ein DRITTER Zustand - "steht noch aus" - und
+   der braucht eine eigene Sprache, sonst liest ihn jemand als eines von
+   beidem. Genommen ist der Akzentblau-Ton, den das Dashboard schon fuer
+   Verweise benutzt; er sticht auf der dunklen Flaeche heraus, ohne wie eine
+   Warnung auszusehen.
+
+   Rot waere hier falsch: es wuerde Gefahr signalisieren, wo gerade die
+   VORSICHTIGERE Variante gewaehlt wurde. Gruen waere schlimmer: es wuerde
+   "erledigt" sagen, obwohl die Position noch offen ist. */
+
+.warteauftrag-warnung {
+  background: rgba(106, 169, 224, .10);
+  border: 1px solid rgba(106, 169, 224, .40);
+  border-radius: var(--radius-klein);
+  padding: 12px 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0 0 14px;
+}
+.warteauftrag-warnung div { margin-top: 8px; }
+
+/* Der Absatz, der die Tragweite benennt ("spaeter, ohne erneute
+   Rueckfrage"). Etwas kraeftiger abgesetzt als der Rest der Warnung - er
+   ist der Grund, warum es diesen Schritt ueberhaupt gibt. */
+.warteauftrag-tragweite {
+  border-top: 1px solid rgba(106, 169, 224, .25);
+  padding-top: 8px;
+}
+
+/* Der Knopf, der einen Warteauftrag anlegt. Umriss statt Vollflaeche und
+   dieselbe blaue Sprache: er loest KEINEN Schreibzugriff aus, und er soll
+   deshalb auch nicht aussehen wie der rote Notfall- oder Crash-Knopf. */
+button.knopf.warteauftrag {
+  border-color: rgba(106, 169, 224, .55);
+  color: #cfe4f7;
+}
+button.knopf.warteauftrag:hover { background: rgba(106, 169, 224, .12); }
+
+/* Ergebnisanzeige nach dem Vormerken - dieselbe Farbe wie die Warnung,
+   damit erkennbar bleibt, dass beides dasselbe Thema ist. */
+.warteauftrag-meldung {
+  background: rgba(106, 169, 224, .10);
+  border: 1px solid rgba(106, 169, 224, .35);
+  border-radius: var(--radius-klein);
+  padding: 11px 14px;
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 12px 0;
+}
+.warteauftrag-meldung div { margin-top: 6px; }
+
+/* Kurzmarke innerhalb einer laengeren Liste (Crash-Dialog, Crash-Ergebnis). */
+.warteauftrag-marke { color: #cfe4f7; }
+
+.warteauftrag-fussnote { margin-top: 8px; }
+
+/* Der Stornier-Knopf ist absichtlich UNAUFFAELLIG - schlichter Umriss, keine
+   Warnfarbe. Er verhindert eine Ausfuehrung, statt eine auszuloesen; ihn wie
+   den Schliessen-Knopf einzufaerben hiesse, die risikosenkende Aktion so
+   aussehen zu lassen wie die riskante. */
+td .stornieren-knopf { padding: 5px 10px; font-size: 12px; }
