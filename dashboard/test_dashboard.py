@@ -2066,6 +2066,61 @@ def teste_gewichteten_pnl(basis, wurzel, db_dateien, protokoll_datei):
     check("Und der Selektor ist spezifischer als '.dialog-zeilen div'",
           regeln and ".dialog-zeilen .hinweis-gewichtung" in regeln[0][0],
           regeln[0][0] if regeln else "keine Regel")
+
+    # --- 15g) Frontend: die Anzahl der Positionen JE BOT -----------------
+    # Die gewichtete Zahl rechnet richtig, sagt aber nicht, woraus sie besteht.
+    # `elliott_wave` hat kein MAX_CONCURRENT_POSITIONS und kann die Zahl
+    # praktisch allein tragen - im Crash-Dialog, also genau dann, wenn eine
+    # Notfallentscheidung faellt.
+    bot_code = ohne_kommentare(bot_html)
+    check("Die Anzahl-Anzeige steht EINMAL, in app.js - wie die Erlaeuterung",
+          "function positionsanzahlZeilen(" in app_code
+          and "function positionsanzahlZeilen(" not in bot_code
+          and "function positionsanzahlZeilen(" not in index_code,
+          "mehrfach definiert oder nicht in app.js")
+    check("Sie ist sichtbarer Text, kein title-Tooltip",
+          "hinweis-gewichtung" in _js_funktion(app_code, "positionsanzahlZeilen")
+          and "title=" not in _js_funktion(app_code, "positionsanzahlZeilen"))
+    check("Und sie nennt den Grund - Bots ohne Obergrenze fuer gleichzeitige "
+          "Positionen",
+          "POSITIONSANZAHL_ERLAEUTERUNG" in app_code
+          and "Obergrenze für gleichzeitige Positionen" in app_code)
+
+    # JE FUNKTION, nicht im ganzen Dokument: in #62, #66 und #67 war eine
+    # Suche ueber die ganze Datei jedes Mal gruen, obwohl eine der beiden
+    # Ansichten die Angabe gar nicht zeigte. Vier Ansichten sind es hier:
+    # Uebersicht und Ergebnis, je bot-weit (alle-schliessen) und global
+    # (alle-bots-schliessen).
+    ansichten = (
+        ("app.js: gewichtungsZeilen (Uebersicht bot-weit und global)",
+         _js_funktion(app_code, "gewichtungsZeilen"), "positionsanzahlZeilen("),
+        ("bot.html: notfallErgebnisAnzeigen (Ergebnis bot-weit)",
+         _js_funktion(bot_code, "notfallErgebnisAnzeigen"),
+         "positionsanzahlZeilen("),
+        ("bot.html: notfallZeilen (Uebersicht bot-weit)",
+         _js_funktion(bot_code, "notfallZeilen"),
+         "gewichtungsZeilen(v.pnl_gewichtet)"),
+        ("index.html: crashListe (Uebersicht global)",
+         _js_funktion(index_code, "crashListe"),
+         "gewichtungsZeilen(v.pnl_gewichtet)"),
+        ("index.html: crashErgebnisAnzeigen (Ergebnis global)",
+         _js_funktion(index_code, "crashErgebnisAnzeigen"),
+         "gewichtungsZeilen(r.pnl_gewichtet)"),
+    )
+    for wo, rumpf, erwartet in ansichten:
+        check(f"{wo}: Funktion gefunden", len(rumpf) > 120, f"{len(rumpf)} Zeichen")
+        check(f"{wo}: die Anzahl je Bot ist dort erreichbar",
+              erwartet in rumpf, rumpf[:90])
+    # notfallErgebnisAnzeigen() baut sein HTML selbst auf und ruft
+    # gewichtungsZeilen() NICHT auf - waere die Anzahl nur dort eingehaengt,
+    # bliebe genau diese Ansicht ohne sie.
+    check("Die Ergebnisanzeige des bot-weiten Wegs holt sie EIGENS - sie geht "
+          "nicht ueber gewichtungsZeilen()",
+          "gewichtungsZeilen(" not in _js_funktion(bot_code,
+                                                    "notfallErgebnisAnzeigen"))
+    check("Die Gewichtungsformel selbst bleibt unangetastet: weiterhin keine "
+          "aufsummierte Gesamtzahl",
+          "pnl_summe" not in app_code + bot_code + index_code)
 # 10) Globaler Crash-Weg: alle Positionen ALLER Bots
 # ---------------------------------------------------------------------------
 # Die folgenreichste Aktion des Projekts. Der Kern dieses Abschnitts ist die

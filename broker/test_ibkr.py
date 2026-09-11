@@ -23,6 +23,7 @@ Aufruf:  python3 broker/test_ibkr.py
 import ast
 import hashlib
 import inspect
+import logging
 import os
 import shutil
 import sqlite3
@@ -315,6 +316,34 @@ def geschlossener_trade(tid, symbol="AAPL", entry=200.0, exit_=210.0,
 
 def pruefsumme(pfad):
     return hashlib.sha256(open(pfad, "rb").read()).hexdigest()
+
+
+class Protokoll:
+    """Faengt die Protokollzeilen eines Moduls ab.
+
+    Bei der Notbremse ist die SICHTBARE MELDUNG die eigentliche Zusicherung,
+    nicht ein Nebenprodukt: ohne sie sah ein gebremster Lauf ohne offene
+    Aufgabe genauso aus wie ein ganz gewoehnlicher Leerlauf.
+    """
+
+    def __init__(self, modul):
+        self.logger = modul.logger
+        self.zeilen = []
+
+    def __enter__(self):
+        fang = self
+
+        class Fang(logging.Handler):
+            def emit(self, satz):
+                fang.zeilen.append(satz.getMessage())
+
+        self.handler = Fang()
+        self.logger.addHandler(self.handler)
+        return self.zeilen
+
+    def __exit__(self, *a):
+        self.logger.removeHandler(self.handler)
+        return False
 
 
 class Projekt:
@@ -991,6 +1020,97 @@ def test_nur_lesend_und_grenzen():
                           verbindung=verbindung(ib), conn=p.conn, jetzt=IN_SITZUNG)
         check("Nach dem Entfernen laeuft es wieder",
               len(ib.orders) == 1 and z["erfolg"] == 1)
+
+    # --- Die Bremse zu BEGINN, zusaetzlich zu der je Aufgabe -------------
+    # Bis hierher wurde sie nur unmittelbar vor jeder einzelnen Order
+    # geprueft. Lag keine Aufgabe an, kam die Pruefung nie dran: keine Zeile,
+    # Rueckgabewert 0, und der Lauf sah aus wie jeder andere Leerlauf.
+    with Projekt([]) as p:                       # KEIN einziger Trade
+        open(zugang.NOTBREMSE_DATEI, "w").write("aus\n")
+        with Protokoll(spiegel) as zeilen:
+            # OHNE `verbindung`: waere die Bremse nicht zu Beginn geprueft,
+            # baute lauf() hier eine echte TWS-Verbindung auf. Dass der Test
+            # ohne TWS durchlaeuft, IST die Zusicherung.
+            z = spiegel.lauf("volatility_breakout", echt=True, conn=p.conn,
+                              jetzt=IN_SITZUNG)
+        check("Ohne offene Aufgabe wird die Notbremse trotzdem SICHTBAR gemeldet",
+              any("NOTBREMSE aktiv" in t for t in zeilen), str(zeilen)[:120])
+        check("Die Meldung sagt, wo die Datei liegt (STOP_IBKR, nicht STOP)",
+              any(t.endswith("frei.") and "STOP_IBKR" in t for t in zeilen))
+        check("Und dass der Lauf deshalb beendet wird",
+              any("beendet" in t for t in zeilen if "NOTBREMSE" in t))
+        check("Das Ergebnis weist die Bremse als eigenes Feld aus",
+              z["notbremse"] is True and z["aufgaben"] == 0, str(z)[:90])
+        check("TWS wird gar nicht erst kontaktiert - deshalb steht dort auch "
+              "kein Konto",
+              z["konto"] is None, str(z["konto"]))
+        check("Die Zusammenfassung nennt die Bremse an erster Stelle",
+              spiegel._meldung(z).startswith("NOTBREMSE aktiv"),
+              spiegel._meldung(z)[:90])
+        # DER Rueckgabewert: 0. Die gezogene Bremse ist eine befolgte
+        # Anweisung des Nutzers; ohne offene Aufgabe ist nichts
+        # liegengeblieben, und eine Fehlermail bei jedem Lauf wuerde genau die
+        # Mails entwerten, auf die es ankommt.
+        check("Rueckgabewert 0 ohne offene Aufgabe - Cron schlaegt NICHT "
+              "falsch Alarm",
+              spiegel.main(["--bot", "volatility_breakout", "--echt"]) == 0)
+        os.remove(zugang.NOTBREMSE_DATEI)
+        with Protokoll(spiegel) as zeilen:
+            z = spiegel.lauf("volatility_breakout", echt=True,
+                              verbindung=verbindung(FakeIB()), conn=p.conn,
+                              jetzt=IN_SITZUNG)
+        check("Ohne Bremse steht die Zeile NICHT da - sie ist keine Deko",
+              not any("NOTBREMSE" in t for t in zeilen) and z["notbremse"] is False)
+
+    with Projekt([offener_trade(1)]) as p:
+        open(zugang.NOTBREMSE_DATEI, "w").write("aus\n")
+        check("MIT offener Aufgabe bleibt es beim Rueckgabewert 1",
+              spiegel.main(["--bot", "volatility_breakout", "--echt"]) == 1)
+        check("Und die Aufgabe steht mit Grund in der Nachverfolgung, statt "
+              "spurlos zu verschwinden",
+              [v for v in p.versuche()
+               if v["ergebnis"] == "fehlgeschlagen" and "NOTBREMSE" in v["grund"]],
+              str(p.versuche()[-1:])[:110])
+
+    # --- Und die Pruefung JE AUFGABE greift weiterhin --------------------
+    # Sie ist die eigentliche Sicherung: nur sie faengt den Fall, dass die
+    # Datei WAEHREND eines laufenden Durchgangs angelegt wird. Hier mit einer
+    # echt mitten im Lauf angelegten Datei geprueft, nicht behauptet.
+    with Projekt([offener_trade(1), offener_trade(2, "MSFT", 400.0)]) as p:
+        ib = FakeIB()
+        echte_verbindung = verbindung(ib)
+        versuche = []
+
+        class BremstMittendrin:
+            def __getattr__(self, name):
+                return getattr(echte_verbindung, name)
+
+            def marktorder(self, *a, **k):
+                versuche.append(a[0])
+                antwort = echte_verbindung.marktorder(*a, **k)
+                open(zugang.NOTBREMSE_DATEI, "w").write("aus\n")
+                return antwort
+
+        z = spiegel.lauf("volatility_breakout", echt=True,
+                          verbindung=BremstMittendrin(), conn=p.conn,
+                          jetzt=IN_SITZUNG)
+        check("Mitten im Lauf gezogen: die erste Order ist noch draussen",
+              len(ib.orders) == 1 and z["erfolg"] == 1, str(len(ib.orders)))
+        # Es gibt DREI Ebenen: lauf() zu Beginn, spiegle_eine() je Aufgabe und
+        # ganz unten ibkr_paper.marktorder(). Geprueft wird hier gezielt die
+        # MITTLERE: nur wenn sie greift, wird die Verbindung fuer die zweite
+        # Aufgabe gar nicht erst gefragt (Gegenprobe M12).
+        check("Die zweite wird von der Pruefung JE AUFGABE gestoppt - die "
+              "Verbindung wird dafuer nicht mehr gefragt",
+              len(versuche) == 1, f"{len(versuche)} Order-Versuche an der Verbindung")
+        check("Und der Grund ist ihrer, nicht der der untersten Ebene",
+              len(z["fehlgeschlagen"]) == 1
+              and z["fehlgeschlagen"][0]["grund"] == spiegel.notbremse_grund(),
+              str(z["fehlgeschlagen"])[:110])
+        check("Zu Beginn war die Bremse nicht gesetzt - dieser Lauf ist NICHT "
+              "die neue Pruefung",
+              z["notbremse"] is False)
+        os.remove(zugang.NOTBREMSE_DATEI)
 
     with Projekt([offener_trade(1)]) as p:
         for wert, teil in (("0", "groesser als 0"),

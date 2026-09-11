@@ -19,6 +19,7 @@ import ast
 import hashlib
 import hmac
 import json
+import logging
 import os
 import sqlite3
 import sys
@@ -220,6 +221,35 @@ def geschlossener_trade(tid, symbol="BTCUSDT", entry=50000.0, exit_=51000.0,
 
 def pruefsumme(pfad):
     return hashlib.sha256(open(pfad, "rb").read()).hexdigest()
+
+
+class Protokoll:
+    """Faengt die Protokollzeilen eines Moduls ab.
+
+    Bei der Notbremse ist die SICHTBARE MELDUNG die eigentliche Zusicherung,
+    nicht ein Nebenprodukt: ohne sie sah ein gebremster Lauf ohne offene
+    Aufgabe genauso aus wie ein ganz gewoehnlicher Leerlauf. Deshalb wird hier
+    die Ausgabe geprueft und nicht nur der Rueckgabewert.
+    """
+
+    def __init__(self, modul):
+        self.logger = modul.logger
+        self.zeilen = []
+
+    def __enter__(self):
+        fang = self
+
+        class Fang(logging.Handler):
+            def emit(self, satz):
+                fang.zeilen.append(satz.getMessage())
+
+        self.handler = Fang()
+        self.logger.addHandler(self.handler)
+        return self.zeilen
+
+    def __exit__(self, *a):
+        self.logger.removeHandler(self.handler)
+        return False
 
 
 class Projekt:
@@ -727,6 +757,108 @@ def test_notbremse_und_grenzen():
         z = spiegel.lauf("t3_supertrend", echt=True, client=client(boerse), conn=p.conn)
         check("Nach dem Entfernen laeuft es wieder", len(boerse.orders) == 1
               and z["erfolg"] == 1)
+
+    # --- Die Bremse zu BEGINN, zusaetzlich zu der je Aufgabe -------------
+    # Bis hierher wurde sie nur unmittelbar vor jeder einzelnen Order
+    # geprueft. Lag keine Aufgabe an, kam die Pruefung nie dran: keine Zeile,
+    # Rueckgabewert 0, und der Lauf sah aus wie jeder andere Leerlauf. Das hat
+    # bereits zu der Meldung gefuehrt, die Bremse greife nicht - ein Fehlalarm
+    # ausgerechnet an der Sicherung, der man am meisten glauben muss.
+    with Projekt([]) as p:                       # KEIN einziger Trade
+        open(zugang.NOTBREMSE_DATEI, "w").write("aus\n")
+        boerse = Boerse()
+        with Protokoll(spiegel) as zeilen:
+            z = spiegel.lauf("t3_supertrend", echt=True, client=client(boerse),
+                              conn=p.conn)
+        check("Ohne offene Aufgabe wird die Notbremse trotzdem SICHTBAR gemeldet",
+              any("NOTBREMSE aktiv" in t for t in zeilen),
+              str(zeilen)[:120])
+        check("Die Meldung sagt, wo die Datei liegt - sonst weiss niemand, "
+              "was zu entfernen ist",
+              any(zugang.NOTBREMSE_DATEI in t for t in zeilen))
+        check("Und dass der Lauf deshalb beendet wird",
+              any("beendet" in t for t in zeilen if "NOTBREMSE" in t))
+        check("Das Ergebnis weist die Bremse als eigenes Feld aus",
+              z["notbremse"] is True and z["aufgaben"] == 0, str(z)[:90])
+        check("Die Boerse wird dabei GAR NICHT erst kontaktiert - kein Ping, "
+              "kein Zeitabgleich",
+              not boerse.anfragen, str(boerse.anfragen)[:90])
+        check("Die Zusammenfassung nennt die Bremse an erster Stelle, nicht "
+              "als Fussnote",
+              spiegel._meldung(z).startswith("NOTBREMSE aktiv"),
+              spiegel._meldung(z)[:90])
+        # DER Rueckgabewert: 0. Die gezogene Bremse ist eine Anweisung des
+        # Nutzers, die befolgt wurde, und ohne offene Aufgabe ist nichts
+        # liegengeblieben. Eine Fehlermail bei jedem Lauf, solange die Bremse
+        # absichtlich gezogen ist, wuerde genau die Mails entwerten, auf die
+        # es ankommt.
+        check("Rueckgabewert 0 ohne offene Aufgabe - Cron schlaegt NICHT "
+              "falsch Alarm",
+              spiegel.main(["--bot", "t3_supertrend", "--echt"]) == 0)
+        os.remove(zugang.NOTBREMSE_DATEI)
+        with Protokoll(spiegel) as zeilen:
+            z = spiegel.lauf("t3_supertrend", echt=True, client=client(boerse),
+                              conn=p.conn)
+        check("Ohne Bremse steht die Zeile NICHT da - sie ist keine Deko",
+              not any("NOTBREMSE" in t for t in zeilen) and z["notbremse"] is False)
+
+    with Projekt([offener_trade(1)]) as p:
+        open(zugang.NOTBREMSE_DATEI, "w").write("aus\n")
+        # Mit offener Aufgabe ist tatsaechlich etwas liegengeblieben - da
+        # bleibt es beim bisherigen 1.
+        check("MIT offener Aufgabe bleibt es beim Rueckgabewert 1",
+              spiegel.main(["--bot", "t3_supertrend", "--echt"]) == 1)
+        check("Und die Aufgabe steht mit Grund in der Nachverfolgung, statt "
+              "spurlos zu verschwinden",
+              [v for v in p.versuche()
+               if v["ergebnis"] == "fehlgeschlagen" and "NOTBREMSE" in v["grund"]],
+              str(p.versuche()[-1:])[:110])
+
+    # --- Und die Pruefung JE AUFGABE greift weiterhin --------------------
+    # Sie ist die eigentliche Sicherung: nur sie faengt den Fall, dass die
+    # Datei WAEHREND eines laufenden Durchgangs angelegt wird - und genau dann
+    # wird sie angelegt. Die neue Pruefung zu Beginn kommt hinzu, sie ersetzt
+    # nichts. Hier wird das mit einer echt mitten im Lauf angelegten Datei
+    # geprueft, nicht behauptet.
+    with Projekt([offener_trade(1), offener_trade(2, "ETHUSDT", 2000.0)]) as p:
+        boerse = Boerse()
+        echter_client = client(boerse)
+        versuche = []
+
+        class BremstMittendrin:
+            """Leitet alles an den echten Client weiter und zieht die Bremse,
+            sobald die ERSTE Order draussen ist."""
+
+            def __getattr__(self, name):
+                return getattr(echter_client, name)
+
+            def marktorder(self, *a, **k):
+                versuche.append(a[0])
+                antwort = echter_client.marktorder(*a, **k)
+                open(zugang.NOTBREMSE_DATEI, "w").write("aus\n")
+                return antwort
+
+        z = spiegel.lauf("t3_supertrend", echt=True, client=BremstMittendrin(),
+                          conn=p.conn)
+        check("Mitten im Lauf gezogen: die erste Order ist noch draussen",
+              len(boerse.orders) == 1 and z["erfolg"] == 1, str(len(boerse.orders)))
+        # Es gibt DREI Ebenen: lauf() zu Beginn, spiegle_eine() je Aufgabe und
+        # ganz unten binance_testnet.marktorder(). Geprueft wird hier gezielt
+        # die MITTLERE: nur wenn sie greift, wird der Client fuer die zweite
+        # Aufgabe gar nicht erst gefragt - und nur dann steht ihr Wortlaut im
+        # Grund. Ohne diese Unterscheidung waere die Pruefung auch dann gruen,
+        # wenn die mittlere Ebene fehlte (Gegenprobe M7: genau so gefunden).
+        check("Die zweite wird von der Pruefung JE AUFGABE gestoppt - der "
+              "Client wird dafuer nicht mehr gefragt",
+              len(versuche) == 1, f"{len(versuche)} Order-Versuche am Client")
+        check("Und der Grund ist ihrer, nicht der der untersten Ebene",
+              len(z["fehlgeschlagen"]) == 1
+              and z["fehlgeschlagen"][0]["grund"] == spiegel.notbremse_grund(),
+              str(z["fehlgeschlagen"])[:110])
+        check("Zu Beginn war die Bremse nicht gesetzt - dieser Lauf ist NICHT "
+              "die neue Pruefung",
+              z["notbremse"] is False)
+        os.remove(zugang.NOTBREMSE_DATEI)
 
     with Projekt([offener_trade(1)]) as p:
         os.environ[zugang.BETRAG_VARIABLE] = str(zugang.BETRAG_USDT_MAX + 1)

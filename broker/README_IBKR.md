@@ -132,7 +132,7 @@ Konto sie hängt.
 | `--pruefen` verbindet mit IBKRs **readonly-Flag** — diese Sitzung kann strukturell nicht handeln | `ibkr_spiegel._pruefen()` |
 | **Trockenlauf ist der Standard**, Senden verlangt `--echt` | `ibkr_spiegel.main()` |
 | **Keine Order außerhalb der Handelszeiten** — und die Zeiten kommen von IBKR selbst, nicht aus einem eigenen Kalender | `ibkr_paper.in_handelszeiten()` |
-| **Notbremse**: `touch broker/STOP_IBKR` (eigene Datei, unabhängig von Binance) | vor jeder Order |
+| **Notbremse**: `touch broker/STOP_IBKR` (eigene Datei, unabhängig von Binance) | **zweimal** geprüft: zu Beginn jedes Laufs — dann wird TWS gar nicht erst kontaktiert — *und* vor jeder Order |
 | 5 Orders je Lauf, 20 in 24 h, höchstens 50 Stück je Order | `ibkr_zugang` |
 | **Symbol-Übersetzung** nur für ausdrücklich hinterlegte Fälle (`BRK-B` → `BRK B`); jedes andere Sonderzeichen wird **abgelehnt**, nicht geraten | `ibkr_zugang.ibkr_symbol()` |
 | **Kontrakt nur bei genau einem Treffer** — ein mehrdeutiges Kürzel wird abgelehnt | `ibkr_paper.kontrakt()` |
@@ -277,6 +277,7 @@ ausprobieren:
 ```bash
 touch broker/STOP_IBKR                      # Sicherung
 python3 broker/ibkr_spiegel.py --echt       # muss "NOTBREMSE aktiv" melden
+                                            # (auch bei NULL offenen Aufgaben)
 rm broker/STOP_IBKR                         # Sicherung lösen
 python3 broker/ibkr_spiegel.py --echt       # jetzt geht EINE Order raus
 ```

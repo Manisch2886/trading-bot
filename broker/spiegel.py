@@ -192,6 +192,27 @@ def notiere_versuch(conn, bot, trade_id, seite, symbol, modus, ergebnis,
     conn.commit()
 
 
+# ---------------------------------------------------------------------------
+# Notbremse
+# ---------------------------------------------------------------------------
+# Die Bremse wird an ZWEI Stellen geprueft, und das ist Absicht:
+#
+#   1. zu Beginn von lauf(echt=True) - sichtbar, und auch dann, wenn gar keine
+#      Aufgabe offen ist. Ohne diese Stelle sah ein gebremster Lauf ohne
+#      Aufgaben aus wie ein ganz normaler Leerlauf: keine Zeile, Rueckgabewert
+#      0. Wer die Bremse gerade gezogen hatte, bekam also keinerlei
+#      Bestaetigung, dass sie wirkt - an der Sicherung, der man am meisten
+#      glauben muss, ist das die schlechteste aller Rueckmeldungen.
+#   2. je Aufgabe in spiegle_eine() - unveraendert. Nur diese Stelle greift,
+#      wenn die Datei mitten im Lauf angelegt wird, und genau dann wird sie
+#      angelegt. Sie ist die Sicherung; Nummer 1 kommt hinzu, ersetzt sie nicht.
+#
+# Der Text steht hier einmal, damit beide Stellen wortgleich melden.
+
+def notbremse_grund() -> str:
+    return f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - nichts gesendet"
+
+
 def gespiegelt(conn, bot, trade_id, seite):
     zeile = conn.execute(
         "SELECT * FROM spiegelungen WHERE bot=? AND trade_id=? AND seite=?",
@@ -335,8 +356,12 @@ def spiegle_eine(conn, bot: str, aufgabe: dict, client: bt.Testnet,
         return {"ergebnis": "trockenlauf", "trade_id": trade_id, "seite": seite,
                 "symbol": symbol, "menge": menge_text, "kurs": kurs}
 
+    # Diese Pruefung JE AUFGABE ist die eigentliche Sicherung und bleibt, auch
+    # seit lauf() die Bremse zusaetzlich zu Beginn prueft: nur sie greift,
+    # wenn die Datei WAEHREND eines laufenden Durchgangs angelegt wird - und
+    # genau dann wird sie angelegt.
     if zugang.notbremse_aktiv():
-        grund = (f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - nichts gesendet")
+        grund = notbremse_grund()
         logger.warning(f"{grund}. Unerledigt: {kopf}")
         notiere_versuch(conn, bot, trade_id, seite, symbol, modus,
                         "fehlgeschlagen", grund)
@@ -450,30 +475,60 @@ def lauf(bot: str = ERLAUBTE_BOTS[0], echt: bool = False,
                             "uebersprungen", eintrag["grund"])
 
         ergebnisse = []
-        if echt:
-            heute = orders_heute(conn, bot)
-            if heute >= zugang.MAX_ORDERS_PRO_TAG:
-                raise SpiegelFehler(
-                    f"Tagesgrenze erreicht: {heute} Orders in den letzten 24 "
-                    f"Stunden (Grenze {zugang.MAX_ORDERS_PRO_TAG}). Es wurde "
-                    f"nichts gesendet.")
-
-        client = client or bt.Testnet(**(_zugangsdaten() or {}))
-        if echt:
-            client.zeit_abgleichen()
-
-        for aufgabe in plan["offen"]:
-            if echt and len(ergebnisse) >= zugang.MAX_ORDERS_PRO_LAUF:
+        # Pruefung 1 von 2 (siehe notbremse_grund()): zu Beginn, sichtbar, und
+        # BEVOR die Boerse ueberhaupt kontaktiert wird. Der Lauf endet hier -
+        # was offen ist, bleibt offen und wird beim naechsten Lauf erneut
+        # angefasst, sobald die Datei weg ist.
+        notbremse = echt and zugang.notbremse_aktiv()
+        if notbremse:
+            logger.warning(
+                f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - dieser Lauf "
+                f"wird sofort beendet, ohne das Testnet auch nur zu "
+                f"kontaktieren. Offene Aufgaben: {len(plan['offen'])}. "
+                f"Datei entfernen gibt den Weg wieder frei.")
+            # Was offen war, wird NICHT stillschweigend uebergangen: jede
+            # Aufgabe bekommt denselben Eintrag in der Nachverfolgung und
+            # denselben Grund, den auch die Pruefung je Aufgabe schreiben
+            # wuerde. Sonst stuende in der Nachverfolgung eine Luecke genau
+            # dort, wo spaeter jemand nachliest, warum nichts passiert ist.
+            grund = notbremse_grund()
+            for aufgabe in plan["offen"]:
                 logger.warning(
-                    f"Grenze je Lauf erreicht ({zugang.MAX_ORDERS_PRO_LAUF}) - "
-                    f"die uebrigen {len(plan['offen']) - len(ergebnisse)} "
-                    f"Aufgaben kommen beim naechsten Lauf.")
-                break
-            ergebnisse.append(spiegle_eine(conn, bot, aufgabe, client, echt))
+                    f"{grund}. Unerledigt: {bot} Trade {aufgabe['trade_id']} "
+                    f"{aufgabe['seite']} ({aufgabe['symbol']})")
+                notiere_versuch(conn, bot, aufgabe["trade_id"], aufgabe["seite"],
+                                aufgabe["symbol"], "echt", "fehlgeschlagen",
+                                grund)
+                ergebnisse.append({
+                    "ergebnis": "fehlgeschlagen", "grund": grund,
+                    "trade_id": aufgabe["trade_id"], "seite": aufgabe["seite"],
+                    "symbol": aufgabe["symbol"]})
+        else:
+            if echt:
+                heute = orders_heute(conn, bot)
+                if heute >= zugang.MAX_ORDERS_PRO_TAG:
+                    raise SpiegelFehler(
+                        f"Tagesgrenze erreicht: {heute} Orders in den letzten 24 "
+                        f"Stunden (Grenze {zugang.MAX_ORDERS_PRO_TAG}). Es wurde "
+                        f"nichts gesendet.")
+
+            client = client or bt.Testnet(**(_zugangsdaten() or {}))
+            if echt:
+                client.zeit_abgleichen()
+
+            for aufgabe in plan["offen"]:
+                if echt and len(ergebnisse) >= zugang.MAX_ORDERS_PRO_LAUF:
+                    logger.warning(
+                        f"Grenze je Lauf erreicht ({zugang.MAX_ORDERS_PRO_LAUF}) - "
+                        f"die uebrigen {len(plan['offen']) - len(ergebnisse)} "
+                        f"Aufgaben kommen beim naechsten Lauf.")
+                    break
+                ergebnisse.append(spiegle_eine(conn, bot, aufgabe, client, echt))
 
         zusammenfassung = {
             "bot": bot, "modus": "echt" if echt else "trocken",
             "aufgaben": len(plan["offen"]),
+            "notbremse": notbremse,
             "uebersprungen": plan["uebersprungen"],
             "ergebnisse": ergebnisse,
             "erfolg": sum(1 for e in ergebnisse if e["ergebnis"] == "erfolg"),
@@ -494,6 +549,13 @@ def _zugangsdaten():
 def _meldung(z: dict) -> str:
     teile = [f"{z['erfolg']} von {z['aufgaben']} Spiegelung(en) "
              f"({'ECHT' if z['modus'] == 'echt' else 'Trockenlauf'})"]
+    # Zuerst, nicht als Fussnote: bei gezogener Bremse ist das die Nachricht.
+    # Ohne sie lautete die Zeile bei null Aufgaben "0 von 0 Spiegelung(en)" -
+    # nicht zu unterscheiden von einem Lauf, bei dem es schlicht nichts zu tun
+    # gab.
+    if z.get("notbremse"):
+        teile.insert(0, f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - Lauf zu "
+                        f"Beginn beendet, nichts gesendet")
     if z["fehlgeschlagen"]:
         teile.append(f"{len(z['fehlgeschlagen'])} fehlgeschlagen: " +
                       "; ".join(f"Trade {f['trade_id']} {f['seite']} "
@@ -594,6 +656,19 @@ def main(argv=None) -> int:
     logger.info(meldung)
     # Rueckgabewert 1 bei Fehlschlaegen, damit ein Cronjob per Mail anschlaegt -
     # ein stiller Fehlschlag waere hier das Schlimmste.
+    #
+    # Eine GEZOGENE NOTBREMSE ist fuer sich genommen kein Fehlschlag: sie ist
+    # eine Anweisung des Nutzers, und sie wurde befolgt. Lag keine Aufgabe an,
+    # ist deshalb nichts liegengeblieben und der Rueckgabewert bleibt 0. Der
+    # Alarmweg von Cron ist die Fehlermail; sie bei jedem Lauf zu schicken,
+    # solange die Bremse absichtlich gezogen ist, wuerde genau die Mails
+    # entwerten, auf die es ankommt - und die Bremse bleibt im Zweifel Tage
+    # liegen. Dass sie wirkt, steht sichtbar im Protokoll (logger.warning in
+    # lauf() und _meldung() oben), nicht im Rueckgabewert.
+    #
+    # LAGEN Aufgaben an, bleibt es beim bisherigen 1: dann ist tatsaechlich
+    # etwas nicht ausgefuehrt worden, was ausgefuehrt werden sollte, und das
+    # unterscheidet sich fuer den Cronjob nicht von einem anderen Fehlschlag.
     return 1 if z["fehlgeschlagen"] else 0
 
 
