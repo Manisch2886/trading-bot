@@ -23,6 +23,32 @@ Ein Eintrag entsteht auch dann, wenn der Ausfall **teilweise** nachgeholt
 wurde. Gerade dann: dass ein Teil nachgeholt wurde, ist genau die Information,
 die man beim Auswerten braucht.
 
+## ⚠️ Offener Punkt: die Bots protokollieren ihre Läufe nicht
+
+**Dieses Register lässt sich derzeit nicht vollständig belegen.** Die Bots
+schreiben **keine Lauf-Zeitstempel**. `logs/elliott_wave/` etwa enthält
+`forward_test.log` (Trade-Zeilen mit Kerzenzeiten, aber ohne Lauf-Zeitpunkt)
+und `email_summary.log`; eine eigene Cron-Logdatei gibt es dort nicht.
+
+Nach einem Ausfall ist deshalb **nicht belegbar, welche Läufe tatsächlich
+stattgefunden haben** — und genau diese Information braucht man, um einen
+Eintrag hier überhaupt füllen zu können. Beim ersten Eintrag (11.09.2026) ist
+das sofort aufgeschlagen: die Zahl der ausgefallenen `elliott_wave`-Läufe liess
+sich nicht auf eine Zahl festlegen, und ob ein zweiter Bot betroffen war,
+bleibt offen.
+
+Bei einem System, das vollständig von Cron abhängt und bei dem verpasste Läufe
+echte Datenlücken erzeugen, ist das eine Lücke in der Protokollierung selbst.
+
+> **Ein einheitliches Lauf-Protokoll — eine Zeile je Start und Ende, mit
+> Zeitstempel — wäre die Voraussetzung dafür, künftige Einträge in diesem
+> Register belegen zu können. Nicht umgesetzt, als Aufgabe vorgemerkt.**
+
+Solange es fehlt, sind Angaben in diesem Register teilweise Rekonstruktion aus
+Dateizeitstempeln und Cron-Einträgen. Wo das der Fall ist, steht es beim
+jeweiligen Eintrag dabei. Der Punkt steht auch in `docs/UEBERGABEPROTOKOLL.md`,
+Abschnitt 9.
+
 ## Was hier **nicht** hineingehört
 
 - **Kurslücken in den Eingangsdaten** — also fehlende oder fehlerhafte Werte
@@ -66,6 +92,8 @@ ist das der Moment, die Frage neu zu stellen.
 | **Zeitraum** | von–bis, mit Zeitzone; „ca." wenn nicht genau bekannt |
 | **Ursache** | was den Ausfall verursacht hat |
 | **Betroffen** | welche Bots und Dienste, mit ihrer Taktung |
+| **Nicht betroffen** | was nachweislich ausserhalb lag — eine geprüfte Entwarnung ist so viel wert wie ein Befund |
+| **Ungeklärt** | was weder belegt noch ausgeschlossen ist; lieber hier als stillschweigend unter „nicht betroffen" |
 | **Nachgeholt** | was von Hand nachgeholt wurde — und was nicht |
 | **Auswirkung** | was das für die Auswertung bedeutet |
 | **Belegt durch** | Quelle im Repo bzw. Angabe des Nutzers |
@@ -81,10 +109,12 @@ ist das der Moment, die Frage neu zu stellen.
 |---|---|
 | **Zeitraum** | Freitag, 11.09.2026, **ca. 08:50 bis 12:06** Ortszeit (rund 3¼ Stunden) |
 | **Ursache** | Nach einem macOS-Update war das **von Hand gestartete `caffeinate` ersatzlos verschwunden**, ohne Hinweis. Der Mac ging in den Idle-Sleep; Cron lief damit nicht. |
-| **Betroffen** | `elliott_wave` (Krypto, 1h-Takt): **mehrere** stündliche Forward-Test-Läufe. Binance-Testnet-Brücke (`broker/spiegel.py`, 4h-Takt zur Minute 5): der **12:05-Lauf**, vollständig. |
+| **Betroffen** | `elliott_wave` (Krypto, 1h-Takt): **drei bis vier** stündliche Forward-Test-Läufe — die genaue Zahl ist nicht belegbar, siehe unten. Binance-Testnet-Brücke (`broker/spiegel.py`, 4h-Takt zur Minute 5): der **12:05-Lauf**, vollständig. |
+| **Nicht betroffen** | Die drei täglichen Krypto-Bots (alle drei Cron-Einträge liegen nachts) und die vier Aktien-Bots (werktags 22:15). Belegt am 11.09.2026 mit `crontab -l`. |
+| **Ungeklärt** | Ob der `t3_supertrend`-Forward-Test von **12:00** ebenfalls ausgefallen ist — sein Cron-Eintrag `0 */4 * * *` legt einen Lauf genau ins Fenster. Siehe unten. |
 | **Nachgeholt** | Der **12:05-Lauf der Brücke wurde später von Hand nachgeholt**, mit demselben Aufruf wie der Cronjob. Die **Forward-Test-Läufe nicht** — siehe unten. |
 | **Auswirkung** | Signale, die in diesem Fenster entstanden wären, wurden nie erkannt. Die `elliott_wave`-Forward-Test-Daten dieses Tages sind für das Fenster **lückenhaft**. |
-| **Belegt durch** | `system/README_CAFFEINATE.md` (Ursache, Zeitraum, betroffene Läufe); `docs/UEBERGABEPROTOKOLL.md` Abschnitt 4.5. Die Angabe zum nachgeholten Brücken-Lauf stammt vom Nutzer und ist im Repo nicht nachweisbar (`logs/` ist gitignored). |
+| **Belegt durch** | `system/README_CAFFEINATE.md` (Ursache, Zeitraum, betroffene Läufe); `docs/UEBERGABEPROTOKOLL.md` Abschnitt 4.5. Die Cron-Zeiten wurden am 11.09.2026 auf dem Mac des Nutzers mit `crontab -l` geprüft. Die Angabe zum nachgeholten Brücken-Lauf stammt vom Nutzer und ist im Repo nicht nachweisbar (`logs/` ist gitignored). |
 
 ### Warum die Forward-Tests nicht nachholbar sind
 
@@ -114,33 +144,83 @@ späterer Lauf erledigt sie nachträglich, genau dafür ist die Brücke gebaut.
    Dashboard, Telegram-Zahlen, Equity-Simulation über Live-Trades,
    Quartals-Review.
 
-### Offene Fragen zu diesem Eintrag
+### Was nachträglich geprüft wurde
 
-Diese Punkte lassen sich aus dem Repo **nicht** klären und sind deshalb
-ausdrücklich benannt statt ausgefüllt:
+Als dieser Eintrag entstand, waren drei Fragen offen, weil sie sich aus dem Repo
+nicht beantworten liessen. Sie wurden **am 11.09.2026 auf dem Mac des Nutzers
+mit `crontab -l` geprüft**. Zwei sind eindeutig geklärt, die dritte so weit, wie
+sie sich klären lässt.
 
-1. **Die genaue Zahl der ausgefallenen `elliott_wave`-Läufe ist nicht belegt.**
-   „Mehrere" ist die Angabe, die in `system/README_CAFFEINATE.md` steht. Rein
-   rechnerisch lägen bei stündlichem Takt vier Läufe im Fenster — aber der
-   genaue Cron-Minutenwert steht nirgends im Repo, und die Fenstergrenzen sind
-   selbst nur „ca." bekannt. Eine konkrete Zahl wäre hier geraten. Klären liesse
-   sich das an `logs/elliott_wave/cron.log` auf dem Mac: die Lücke zwischen zwei
-   Zeitstempeln zeigt die ausgefallenen Läufe direkt.
-2. **Ob auch der `t3_supertrend`-Forward-Test von 12:05 ausgefallen ist, ist
-   offen.** `broker/README.md` bietet zwei Cron-Varianten an: entweder Bot und
-   Brücke in **einer** Zeile (`5 */4 * * * … forward_test.py … && … spiegel.py
-   --echt`) oder die Brücke in einem eigenen Eintrag ein paar Minuten später.
-   Ist die kombinierte Zeile eingerichtet, fiel der 12:05-Lauf des Bots
-   **ebenfalls** aus — und der ist, anders als der Brücken-Lauf, nicht
-   nachholbar. `system/README_CAFFEINATE.md` nennt nur die Brücke. `crontab -l |
-   grep t3_supertrend` klärt es in einer Minute; das Ergebnis gehört dann hier
-   nachgetragen.
-3. **Ob die täglichen Krypto-Bots betroffen waren, ist offen.** Für
-   `rsi2_crypto`, `turtle_soup_crypto` und `volatility_breakout_crypto` ist im
-   Repo nur „täglich" dokumentiert, keine Uhrzeit. Liegt ihr Lauf zwischen 08:50
-   und 12:06, sind sie ebenfalls betroffen. Die vier Aktien-Bots laufen
-   werktags 22:15 und liegen damit klar ausserhalb des Fensters; der 11.09.2026
-   war ein Freitag.
+**1. Bot und Brücke sind NICHT gekoppelt** ✅ geklärt — **aber die Frage nach
+dem `t3_supertrend`-Lauf ist damit nicht erledigt** ⚠️
+
+Geklärt ist: Bot und Brücke stehen in **getrennten** Cron-Einträgen, nicht in
+der kombinierten Zeile, die `broker/README.md` als Variante anbietet:
+
+```
+crontab -l | grep -c "forward_test.py.*spiegel.py"
+→ 0
+```
+
+Die Zeitangaben sind `0 */4 * * *` für den Bot und `5 */4 * * *` für die
+Brücke. Ein Ausfall des Bot-Laufs **als Nebenwirkung der Brücken-Zeile** ist
+damit ausgeschlossen — das war die ursprüngliche Sorge, und sie ist ausgeräumt.
+
+**Was daraus aber nicht folgt:** dass der Bot-Lauf stattgefunden hat. `0 */4 *
+* *` bedeutet Läufe um 00:00, 04:00, 08:00, **12:00**, 16:00, 20:00. Das
+Schlaffenster reichte von ca. 08:50 bis 12:06 — der **12:00-Lauf liegt also
+darin**, unabhängig davon, in welcher Cron-Zeile er steht. Ein eigener
+Cron-Eintrag schützt nicht vor einem schlafenden Rechner.
+
+Belastbar ist damit:
+
+| | |
+|---|---|
+| ausgeschlossen | ein Ausfall **durch die gekoppelte Cron-Zeile** — die gibt es nicht |
+| offen | ob der `t3_supertrend`-Lauf um 12:00 **trotzdem** ausgefallen ist |
+
+Die Auflösung hängt an derselben Frage wie Punkt 3: ob beim Aufwachen um 12:06
+verpasste Läufe verspätet nachgeholt wurden. Der Zeitstempel 12:06 in
+`logs/elliott_wave/forward_test.log` spricht dafür — dann hätte es auch den
+`t3_supertrend`-Lauf getroffen und beide wären nachgeholt. Spricht er nicht
+dafür, fehlen **beide**. Ohne Lauf-Protokoll lässt sich das nicht entscheiden;
+siehe den offenen Punkt oben.
+
+`system/README_CAFFEINATE.md` nennt nur den Brücken-Lauf. Ob der Bot-Lauf
+damals geprüft und für in Ordnung befunden wurde oder schlicht nicht angesehen
+wurde, geht daraus nicht hervor. **Ein Blick in `logs/t3_supertrend/` würde es
+klären, falls dort Zeitstempel liegen** — beim Krypto-Bot war das nicht der
+Fall, bei diesem ist es ungeprüft.
+
+**2. Die täglichen Krypto-Bots lagen NICHT im Fenster.** ✅ geklärt
+
+Alle drei Einträge liegen nachts, weit ausserhalb von 08:50–12:06: `20 23 * * *`,
+`50 23 * * *` und `15 0 * * *`. Welcher Eintrag zu welchem der drei Bots
+(`rsi2_crypto`, `turtle_soup_crypto`, `volatility_breakout_crypto`) gehört,
+wurde nicht erhoben — für die Frage hier genügt, dass **alle drei** nachts
+laufen.
+
+**3. Die genaue Zahl der ausgefallenen `elliott_wave`-Läufe bleibt offen.**
+⚠️ nicht belegbar
+
+Der Cron-Eintrag ist `0 * * * *`, also stündlich zur vollen Stunde. Rechnerisch
+lagen damit die Läufe um **9:00, 10:00, 11:00 und 12:00** im Fenster — vier
+Stück. Allerdings trägt `logs/elliott_wave/forward_test.log` einen Zeitstempel
+von **12:06**, was dafür spricht, dass der 12:00-Lauf beim Aufwachen des Mac
+verspätet stattgefunden hat. Dann wären es drei.
+
+Ein **Hinweis**, kein Beleg: der Zeitstempel sagt, wann zuletzt geschrieben
+wurde, nicht, welcher Lauf das war. Auflösen lässt sich das nicht, und zwar aus
+einem Grund, der über diesen Eintrag hinausreicht:
+
+> **Der Bot protokolliert keine Lauf-Zeitstempel.** `logs/elliott_wave/`
+> enthält `forward_test.log` (Trade-Zeilen mit Kerzenzeiten, kein
+> Lauf-Zeitpunkt) und `email_summary.log`. Eine eigene Cron-Logdatei gibt es
+> für diesen Bot nicht.
+
+**Verbindliche Angabe für diesen Eintrag ist deshalb „drei bis vier Läufe".**
+Eine der beiden Zahlen zu wählen hiesse, sich für eine zu entscheiden, ohne
+etwas zu wissen. Siehe dazu den offenen Punkt oben.
 
 ---
 
