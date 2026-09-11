@@ -65,8 +65,9 @@ def main():
     # genau einen schreibenden Endpunkt. Wer den Server startet, soll das
     # auf der Startzeile sehen und es nicht erst im Quelltext finden.
     print(f"  Schreibend freigeschaltet: "
-          f"{', '.join(schliessen.freigeschaltete_bots())} (Position manuell "
-          f"schliessen, doppelte Bestaetigung)")
+          f"{', '.join(schliessen.freigeschaltete_bots())}")
+    print("    Positionen manuell schliessen - einzeln: 1 Tap | bot-weit: "
+          "2 Klicks | alle Bots: 2 Klicks + Text")
     if adresse in LOKALE_ADRESSEN:
         print("  Bindung: nur localhost - vom iPhone/anderen Geraeten NICHT erreichbar.")
         print("           Fuer den Fernzugriff ist Tailscale (oder Gleichwertiges) noetig,")
