@@ -280,6 +280,30 @@ def erzeuge_app(token: str = None) -> FastAPI:
             logger.warning(f"Live-Kursabfrage fehlgeschlagen: {e}")
             return {}, "Kursabfrage fehlgeschlagen - siehe Log."
 
+    def _boersenlage_aktien():
+        """Die Boersenlage fuer die UEBERSICHTSSEITE.
+
+        Sie zeigt alle neun Bots zusammen, also beide Anlageklassen. Gefragt
+        wird deshalb nach der Lage der AKTIEN - Krypto hat keine
+        Handelszeiten, und eine Lage "immer handelbar" waere dort keine
+        Aussage, sondern nur Platz.
+
+        Gelesen wird ausschliesslich schliessen.boersenlage(), also dieselbe
+        Funktion, an der auch das Schliessen selbst haengt (PR #71). Eine
+        zweite Quelle fuer Handelszeiten waere genau die Stelle, an der die
+        Angaben spaeter auseinanderlaufen.
+
+        Diese Angabe ist AUSSCHMUECKUNG, nicht Voraussetzung: faellt sie aus,
+        fehlt die Statuszeile, und die Uebersicht wird trotzdem
+        ausgeliefert. Deshalb der breite except - eine kaputte Anzeige darf
+        die Seite nicht mitnehmen, auf der der Notfallknopf sitzt.
+        """
+        try:
+            return schliessen.boersenlage("aktien")
+        except Exception as fehler:      # noqa: BLE001 - siehe Docstring
+            logger.warning(f"Boersenlage nicht ermittelbar: {fehler}")
+            return None
+
     @app.get("/api/portfolio")
     async def portfolio(live: int = 0):
         """Uebersicht aller Bots.
@@ -291,12 +315,15 @@ def erzeuge_app(token: str = None) -> FastAPI:
         nach. So haengt die Seite nie an einer langsamen Kursabfrage.
         """
         if not live:
-            return await asyncio.to_thread(datenquelle.portfolio_uebersicht)
+            uebersicht = await asyncio.to_thread(datenquelle.portfolio_uebersicht)
+            uebersicht["boerse"] = _boersenlage_aktien()
+            return uebersicht
 
         auswahl = await asyncio.to_thread(datenquelle.alle_bots)
         kurse, hinweis = await _kurse_holen(auswahl)
         uebersicht = await asyncio.to_thread(datenquelle.portfolio_uebersicht, kurse)
         uebersicht["kurs_hinweis"] = hinweis
+        uebersicht["boerse"] = _boersenlage_aktien()
         return uebersicht
 
     @app.get("/api/bots")

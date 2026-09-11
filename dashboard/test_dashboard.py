@@ -3959,6 +3959,151 @@ def teste_gewichtung_node():
           detail=fertig.stderr.strip()[-300:] if fertig.returncode else "")
 
 
+def teste_boersenstatus(basis):
+    """Der Boersenstatus im Dashboard - Endpunkt und Frontend.
+
+    Zwei Dinge werden hier getrennt geprueft:
+
+      (a) dass /api/portfolio die Lage UEBERHAUPT mitliefert, mit den
+          Feldern, aus denen die Anzeige ihren Satz baut. Ohne das Feld ist
+          jede Frontend-Pruefung wertlos.
+      (b) dass BEIDE Ansichten sie zeigen, JE FUNKTION geprueft. Eine Suche
+          ueber das ganze Dokument war in PR #62, #66, #67 und #73 viermal
+          gruen, obwohl eine der beiden Ansichten die Angabe nicht zeigte.
+
+    Was die Anzeige ERZEUGT, prueft test_boersenstatus.js (Abschnitt 17).
+    """
+    print("\n16b) Boersenstatus: Endpunkt und Einhaengepunkte")
+
+    # --- (a) der Endpunkt --------------------------------------------------
+    with boerse_am(ZEIT_OFFEN):
+        offen = get(basis, "/api/portfolio").json().get("boerse")
+    check("/api/portfolio liefert die Boersenlage mit",
+          isinstance(offen, dict), str(offen)[:80])
+    check("Bei offener Boerse steht offen=True und ein Handelsschluss da",
+          offen and offen.get("offen") is True and offen.get("naechster_schluss"),
+          str(offen)[:110])
+    check("Die Lage nennt den Kalender, aus dem sie stammt",
+          offen and offen.get("kalender") == "NYSE", str(offen.get("kalender")))
+
+    with boerse_am(ZEIT_WOCHENENDE):
+        zu = get(basis, "/api/portfolio").json().get("boerse")
+    check("Am Wochenende steht offen=False und die naechste Oeffnung da",
+          zu and zu.get("offen") is False and zu.get("naechste_oeffnung"),
+          str(zu)[:110])
+    with boerse_am(ZEIT_HALBTAG_OFFEN):
+        halb = get(basis, "/api/portfolio").json().get("boerse")
+    check("Am verkuerzten Handelstag ist das am Feld erkennbar",
+          halb and halb.get("verkuerzter_handelstag") is True,
+          str(halb.get("verkuerzter_handelstag")))
+
+    # Die Lage der UEBERSICHT ist die der AKTIEN - Krypto hat keine
+    # Handelszeiten, und "immer handelbar" waere dort keine Aussage.
+    check("Die Uebersicht fragt nach der AKTIEN-Lage, nicht nach Krypto",
+          offen and offen.get("anlageklasse") == "aktien"
+          and offen.get("kalender_gilt") is True, str(offen.get("anlageklasse")))
+
+    # Sie kommt aus derselben Funktion wie das Schliessen selbst (PR #71) -
+    # eine zweite Quelle fuer Handelszeiten waere die Stelle, an der die
+    # Angaben spaeter auseinanderlaufen.
+    quelle = open(os.path.join(DIR, "app.py"), encoding="utf-8").read()
+    check("Der Endpunkt liest schliessen.boersenlage() und baut nichts nach",
+          "schliessen.boersenlage(" in quelle
+          and "boersenkalender" not in ohne_kommentare(quelle),
+          "app.py greift am Kalender vorbei")
+
+    # --- (b) die Einhaengepunkte, JE FUNKTION ------------------------------
+    app_code = ohne_kommentare(open(os.path.join(DIR, "static", "app.js"),
+                                     encoding="utf-8").read())
+    bot_code = ohne_kommentare(open(os.path.join(DIR, "static", "bot.html"),
+                                     encoding="utf-8").read())
+    index_code = ohne_kommentare(open(os.path.join(DIR, "static", "index.html"),
+                                       encoding="utf-8").read())
+
+    check("Die Darstellungslogik steht EINMAL, in app.js",
+          "function boersenstatusZeile(" in app_code
+          and "function boersenstatusZeile(" not in bot_code
+          and "function boersenstatusZeile(" not in index_code,
+          "mehrfach definiert oder nicht in app.js")
+    check("Auch die Entscheidung schliessen/vormerken steht dort nur einmal",
+          "function wirdVorgemerkt(" in app_code
+          and "function wirdVorgemerkt(" not in bot_code
+          and "function wirdVorgemerkt(" not in index_code)
+    check("Die Statuszeile ist sichtbarer Text, kein title-Tooltip",
+          "boersenstatus" in _js_funktion(app_code, "boersenstatusZeile")
+          and "title=" not in _js_funktion(app_code, "boersenstatusZeile"))
+    check("Krypto wird an EINER Stelle unterschieden (kalender_gilt), nicht "
+          "je Ansicht",
+          "kalender_gilt" in _js_funktion(app_code, "boersenLage")
+          and "kalender_gilt" not in bot_code
+          and "kalender_gilt" not in index_code)
+
+    ansichten = (
+        ("index.html: Statuszeile", _js_funktion(index_code, "zeichneBoersenstatus"),
+         "boersenstatusZeile("),
+        ("index.html: Statuszeile laeuft im Datentakt mit",
+         _js_funktion(index_code, "zeichneUebersicht"), "zeichneBoersenstatus("),
+        ("index.html: Crash-Knopf nach Lage beschriftet",
+         _js_funktion(index_code, "zeichneUebersicht"), "crashKnopfText("),
+        ("bot.html: Statuszeile", _js_funktion(bot_code, "zeichneBoersenstatus"),
+         "boersenstatusZeile("),
+        ("bot.html: Statuszeile laeuft im Datentakt mit",
+         _js_funktion(bot_code, "ladeSchliessInfo"), "zeichneBoersenstatus("),
+        ("bot.html: Einzelknopf nach Lage beschriftet",
+         _js_funktion(bot_code, "positionsZeile"), "boerseGeschlossen("),
+        ("bot.html: bot-weiter Notfallknopf nach Lage beschriftet",
+         _js_funktion(bot_code, "zeichnePositionen"), "boerseGeschlossen("),
+        ("bot.html: die Lage kommt aus der gemeinsamen Quelle",
+         _js_funktion(bot_code, "boerseGeschlossen"), "wirdVorgemerkt("),
+    )
+    for wo, rumpf, erwartet in ansichten:
+        check(f"{wo}: Funktion gefunden", len(rumpf) > 40, f"{len(rumpf)} Zeichen")
+        check(f"{wo}: haengt wirklich daran", erwartet in rumpf, rumpf[:80])
+
+    # Beide Seiten brauchen den Platz, in den die Zeile geschrieben wird -
+    # ohne ihn liefe zeichneBoersenstatus() ins Leere.
+    for name, roh in (("index.html", open(os.path.join(DIR, "static", "index.html"),
+                                           encoding="utf-8").read()),
+                       ("bot.html", open(os.path.join(DIR, "static", "bot.html"),
+                                          encoding="utf-8").read())):
+        check(f"{name} hat den Platz fuer die Statuszeile",
+              'id="boersenstatus"' in roh)
+
+    # Und die Regel, die in PR #71 gilt und NICHT angetastet wurde.
+    check("Der Knopf wird NICHT gesperrt - ausserhalb der Handelszeiten "
+          "entsteht wie bisher ein Warteauftrag",
+          "disabled" not in _js_funktion(bot_code, "positionsZeile")
+          and "schliessen-knopf" in _js_funktion(bot_code, "positionsZeile"))
+
+
+def teste_boersenstatus_node():
+    """Verhaltenstest der Statuszeile und der Knopfbeschriftungen.
+
+    Wie Abschnitt 13 und 16 ueber node: eine Textsuche bleibt gruen, wenn ein
+    if-Zweig auf `false` steht. Erst das Ausfuehren zeigt, ob Zeile und
+    Beschriftung wirklich in der Ausgabe landen - und zwar in BEIDEN
+    Ansichten."""
+    print("\n17) Verhalten des Boersenstatus (node)")
+
+    node = shutil.which("node")
+    if not node:
+        print("  [uebersprungen] node nicht gefunden - ob Statuszeile und "
+              "Knopftext\n                  wirklich in der Ausgabe landen, "
+              "bleibt ungeprueft "
+              "(node dashboard/test_boersenstatus.js)")
+        return
+
+    skript = os.path.join(DIR, "test_boersenstatus.js")
+    fertig = subprocess.run([node, skript], capture_output=True, text=True,
+                             timeout=120)
+    for zeile in fertig.stdout.splitlines():
+        if zeile.strip():
+            print("  " + zeile.strip() if zeile.startswith("  ") else zeile)
+    check("Verhaltenstest des Boersenstatus (test_boersenstatus.js)",
+          fertig.returncode == 0,
+          detail=fertig.stderr.strip()[-300:] if fertig.returncode else "")
+
+
 def teste_zeitstempel(basis):
     """Die Zeitstempel, die der Server SELBST erzeugt, muessen eindeutig
     sein - also mit Zeitzonen-Offset.
@@ -4129,11 +4274,13 @@ def main():
             teste_ausfuehrungsskript(wurzel, db_dateien, protokoll_datei)
             teste_mehrere_warteauftraege(server.basis, wurzel, db_dateien,
                                           protokoll_datei)
+            teste_boersenstatus(server.basis)
         teste_schliessen_frontend()
         teste_automatische_aktualisierung()
         teste_ladeindikator()
         teste_zustandsmaschine()
         teste_gewichtung_node()
+        teste_boersenstatus_node()
         teste_zeitzone()
     finally:
         monitor.BASE_DIR, monitor.STRATEGIES_DIR, monitor.LOGS_DIR, monitor.requests = alt

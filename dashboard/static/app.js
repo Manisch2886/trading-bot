@@ -536,6 +536,180 @@ function warteauftragWarnung(boerse, anzahlText) {
     </div>`;
 }
 
+/* --- Börsenstatus: was gerade gilt, VOR dem Klick ------------------------
+   ==========================================================================
+   Seit PR #71 wird ausserhalb der Handelszeiten vorgemerkt statt geschlossen.
+   Das funktionierte, war aber erst IM Bestätigungsdialog zu sehen. Die
+   US-Börsen öffnen in Berlin erst am Nachmittag, und ob gerade Feiertag oder
+   Halbtag ist, weiss niemand auswendig — der Nutzer soll vor dem Klick
+   wissen, in welcher der beiden Welten er sich befindet.
+
+   Alles hier ist reine DARSTELLUNG. Die Fakten (offen ja/nein, nächste
+   Öffnung, verkürzter Handelstag) kommen unverändert aus
+   `notifications/boersenkalender.py` über `schliessen.boersenlage()`. Eine
+   zweite Quelle für Handelszeiten wäre genau die Stelle, an der die Angaben
+   später auseinanderlaufen.
+
+   Die Unterscheidung Krypto/Aktien wird NICHT hier getroffen, sondern
+   serverseitig in `boersenlage()`: für Krypto steht dort `kalender_gilt:
+   false`, und daran hängt alles Weitere. Eine Fallunterscheidung je Ansicht
+   wäre je Ansicht die Gelegenheit, sie einmal zu vergessen. */
+
+const BOERSE_UNBEKANNT_TEXT =
+  "Börsenstatus unbekannt – der Kalender gibt gerade keine Auskunft. "
+  + "Aktien-Positionen lassen sich deshalb weder sofort schließen noch "
+  + "vormerken; Krypto ist davon nicht betroffen.";
+
+/* Wochentag + Uhrzeit in der Zeitzone des GERÄTS. `zeit()` liefert Datum und
+   Uhrzeit — hier ist der Wochentag die eigentliche Information ("öffnet
+   Montag" sagt mehr als "öffnet 14.09."), und die Uhrzeit entscheidet, ob
+   sich das Warten lohnt. */
+function boersenZeit(iso) {
+  const d = zeitpunkt(iso);
+  if (!d) return null;
+  const tag = d.toLocaleDateString("de-DE", { weekday: "long" });
+  const uhr = d.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+  return `${tag}, ${uhr} Uhr`;
+}
+
+/* Wie viele WERKTAGE liegen echt zwischen zwei Zeitpunkten?
+   ==========================================================================
+   Damit wird ein Feiertag von einem Wochenende unterschieden — und zwar ohne
+   eine zweite Kalenderquelle. Der Gedanke: die Börse schliesst am letzten
+   Handelstag und öffnet am nächsten. Liegt dazwischen ein WERKTAG ohne
+   Sitzung, war das ein Feiertag.
+
+       Do 20:00 zu, Fr 13:30 auf   -> nichts dazwischen        -> über Nacht
+       Fr 20:00 zu, Mo 13:30 auf   -> Sa, So                   -> Wochenende
+       Mi 21:00 zu, Fr 14:30 auf   -> Do (Werktag!)            -> Feiertag
+       Do 20:00 zu, Mo 13:30 auf   -> Fr (Werktag!), Sa, So    -> Feiertag
+
+   Gerechnet wird in UTC-Daten. Das ist hier zulässig und sogar sicherer als
+   Gerätezeit: eine NYSE-Sitzung läuft 13:30–21:00 UTC und überschreitet nie
+   eine UTC-Datumsgrenze, das UTC-Datum ist also immer der Handelstag. Auf
+   Gerätezeit umgerechnet läge ein Handelsschluss in Berlin je nach Jahreszeit
+   schon nach Mitternacht — und der Wochentag wäre um einen daneben. */
+function werktageDazwischen(vonIso, bisIso) {
+  const von = zeitpunkt(vonIso);
+  const bis = zeitpunkt(bisIso);
+  if (!von || !bis) return null;
+  const tag = (d) => Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate());
+  let werktage = 0;
+  for (let t = tag(von) + 86400000; t < tag(bis); t += 86400000) {
+    const wochentag = new Date(t).getUTCDay();
+    if (wochentag !== 0 && wochentag !== 6) werktage += 1;
+  }
+  return werktage;
+}
+
+/* Welcher Fall liegt vor. EINE Stelle, die das entscheidet - Statuszeile und
+   Knopfbeschriftung fragen beide hier. */
+function boersenLage(boerse) {
+  const b = boerse || {};
+  if (!b.kalender_gilt) return "krypto";      // auch: gar keine Angabe da
+  if (b.unbekannt) return "unbekannt";
+  if (b.offen === true) return "offen";
+  if (!b.naechste_oeffnung || !b.letzter_schluss) return "geschlossen";
+  const werktage = werktageDazwischen(b.letzter_schluss, b.naechste_oeffnung);
+  if (werktage === null) return "geschlossen";
+  if (werktage > 0) return "feiertag";
+  const tage = (zeitpunkt(b.naechste_oeffnung) - zeitpunkt(b.letzter_schluss))
+                / 86400000;
+  return tage > 1.5 ? "wochenende" : "geschlossen";
+}
+
+/* Die Statuszeile. Sichtbarer Text, kein title-Tooltip: dieses Dashboard wird
+   überwiegend am iPhone benutzt, und dort gibt es kein Hover — dieselbe
+   Begründung wie bei GEWICHTUNG_ERLAEUTERUNG.
+
+   Gibt "" zurück, wenn es nichts zu sagen gibt (Krypto). Wirft nie: fehlt das
+   Feld ganz, fehlt die Zeile, und geschlossen wird trotzdem. */
+function boersenstatusZeile(boerse) {
+  const b = boerse || {};
+  const lage = boersenLage(b);
+  if (lage === "krypto") return "";
+  const boersenname = b.kalender || "Börse";
+
+  if (lage === "unbekannt") {
+    return `<div class="boersenstatus unbekannt">${BOERSE_UNBEKANNT_TEXT}</div>`;
+  }
+
+  if (lage === "offen") {
+    const schluss = boersenZeit(b.naechster_schluss);
+    /* Bei OFFENER Börse beschreibt `verkuerzter_handelstag` den laufenden
+       Tag - deshalb "schließt heute früher". Bei geschlossener beschreibt es
+       den NÄCHSTEN Handelstag, siehe unten. */
+    const kurz = b.verkuerzter_handelstag
+      ? ' <span class="boersenstatus-marke">verkürzter Handelstag</span>' : "";
+    return `<div class="boersenstatus offen"><strong>${boersenname} geöffnet</strong>`
+      + (schluss ? ` – schließt ${schluss}` : "") + kurz + `</div>`;
+  }
+
+  const anlass = { feiertag: " (Feiertag)", wochenende: " (Wochenende)" }[lage] || "";
+  const oeffnung = boersenZeit(b.naechste_oeffnung);
+  /* Hier beschreibt `verkuerzter_handelstag` den nächsten Handelstag - die
+     Börse öffnet also, schließt aber früher als sonst. Das gehört dazu: wer
+     auf die Öffnung wartet, plant sonst mit dem falschen Zeitfenster. */
+  const kurz = b.verkuerzter_handelstag
+    ? ' <span class="boersenstatus-marke">verkürzter Handelstag</span>' : "";
+  return `<div class="boersenstatus zu"><strong>${boersenname} geschlossen`
+    + `${anlass}</strong>`
+    + (oeffnung ? ` – öffnet ${oeffnung}` : "") + kurz + `</div>`;
+}
+
+/* Heisst der Knopf "Schließen" oder "Vormerken"? Dieselbe EINE Quelle für
+   alle drei Wege (Einzelposition, bot-weit, Crash) und beide Seiten. */
+function wirdVorgemerkt(boerse) {
+  return !!(boerse && boerse.kalender_gilt && boerse.warteauftrag_noetig);
+}
+
+/* Die Beschriftung des CRASH-Knopfes.
+   ==========================================================================
+   Dieser Knopf ist der einzige, der BEIDE Welten auf einmal trifft: Krypto
+   handelt durchgehend, Aktien nicht. Bei geschlossener Börse wird ein Teil
+   sofort geschlossen und ein Teil nur vorgemerkt — und genau das muss am
+   Knopf stehen.
+
+   GEWÄHLT: die Zahlen getrennt nennen, nicht zusammenfassen.
+
+       offen         ⚠ ALLE 12 Positionen in 5 Bots schließen
+       geschlossen   ⚠ 7 Krypto sofort schließen · 5 Aktien vormerken
+
+   Verworfen wurden zwei bequemere Varianten:
+     * „ALLE 12 Positionen schließen bzw. vormerken" — eine Zahl für zwei
+       verschiedene Vorgänge. Wer sie liest, weiss hinterher nicht, wie viele
+       Positionen nach dem Tap noch offen sind, und genau das ist im Crash-Fall
+       die Frage.
+     * die Beschriftung unverändert lassen und den Hinweis darunter erweitern —
+       das war der Zustand vor dieser Änderung. Der Hinweis wird im Ernstfall
+       nicht gelesen, der Knopftext schon; er ist das Letzte, was vor dem Tap
+       im Blick ist.
+
+   Ist nur EINE der beiden Welten betroffen, steht auch nur eine Zahl da: eine
+   Zeile „0 Krypto sofort schließen" wäre Rauschen.
+
+   Wirft nie. Fehlt die Börsenlage, fehlt die Aufteilung und der Text bleibt
+   der bisherige — geschlossen wird trotzdem. */
+function crashKnopfText(bots, offenGesamt, anzahlBots, boerse) {
+  const unveraendert = `⚠ ALLE ${offenGesamt} Positionen in ${anzahlBots} Bots schließen`;
+  if (!wirdVorgemerkt(boerse)) return unveraendert;
+
+  const zaehle = (klasse) => (bots || [])
+    .filter((b) => b && b.anlageklasse === klasse)
+    .reduce((summe, b) => summe + (b.offene_positionen || 0), 0);
+  const aktien = zaehle("aktien");
+  const krypto = zaehle("krypto");
+  /* Ergibt die Aufteilung nicht die Gesamtzahl, stimmt eine Annahme über die
+     Daten nicht (eine dritte Anlageklasse, ein fehlendes Feld). Dann lieber
+     die alte, sicher richtige Beschriftung als eine falsche Aufteilung. */
+  if (aktien + krypto !== offenGesamt || aktien === 0) return unveraendert;
+
+  const teile = [];
+  if (krypto > 0) teile.push(`${krypto} Krypto sofort schließen`);
+  teile.push(`${aktien} Aktien vormerken`);
+  return `⚠ ${teile.join(" · ")}`;
+}
+
 /* Kurzform für die Fußnote unter der Positionstabelle bzw. den Crash-Bereich -
    dieselbe Aussage in einem Satz, ohne den Dialog nachzubauen. */
 function warteauftragHinweisKurz(boerse) {
