@@ -20,10 +20,31 @@ Das Übergabeprotokoll ist die verbindliche Grundlage für dieses Projekt. Es en
 | Turtle Soup (Aktien) | `strategies/turtle_soup_stocks/` | S&P-500-Auswahl | 1 Tag |
 | Volatility Breakout (Aktien) | `strategies/volatility_breakout/` | S&P-500-Auswahl | 1 Tag |
 
-Gemeinsame Infrastruktur in `shared/` (inkl. **vier** Claude-API-Agenten plus Quartals-Interpreter — rein informativ, verändern nie automatisch Parameter oder Trades) und `config/`. Dazu zwei rein lesende Beobachtungsebenen: `notifications/` (Telegram-Bot) und `dashboard/` (Web/PWA). Abgeschlossene Untersuchungen liegen unter `research/`, je mit eigenem `BERICHT.md`. Details siehe Übergabeprotokoll.
+Gemeinsame Infrastruktur in `shared/` (inkl. **vier** Claude-API-Agenten plus Quartals-Interpreter — rein informativ, verändern nie automatisch Parameter oder Trades) und `config/`. Dazu zwei Beobachtungsebenen: `notifications/` (Telegram-Bot, **rein lesend**) und `dashboard/` (Web/PWA, **liest und schreibt** — siehe unten). Zwei Broker-Brücken liegen unter `broker/`, Systemdienste unter `system/`. Abgeschlossene Untersuchungen liegen unter `research/`, je mit eigenem `BERICHT.md`. Details siehe Übergabeprotokoll.
+
+## ⚠️ `broker/` — echte Orders an echte Gegenstellen
+
+Unter `broker/` liegt der **einzige Code des Projekts, der Orders an eine externe Gegenstelle sendet**. Kein Bot tut das, kein Agent tut das — nur diese beiden Brücken:
+
+| Brücke | Spiegelt | Gegenstelle | Stand |
+|---|---|---|---|
+| `broker/spiegel.py` | `t3_supertrend` | Binance **SPOT-Testnet** (virtuelles Guthaben) | produktiv, Cronjob alle 4 h zur Minute 5 |
+| `broker/ibkr_spiegel.py` | `volatility_breakout` | **IBKR-Paper-Konto** über lokale TWS | gemergt, aber **nie gegen eine echte TWS gelaufen** |
+
+**Grundregeln für jede Sitzung:**
+
+- **`--echt` wird NIE ohne ausdrückliche Zustimmung des Nutzers aufgerufen.** Der Standard ist der Trockenlauf; `--echt` sendet wirklich. Das gilt auch dann, wenn eine Aufgabe es nahezulegen scheint.
+- Beide Gegenstellen sind **Test- bzw. Paper-Umgebungen ohne echtes Geld**. Der Endpunkt steht jeweils als Literal im Code, die echten Handelsendpunkte stehen namentlich auf Verbotslisten. Das bleibt so.
+- **Notbremse**: `touch broker/STOP` (Binance) bzw. `touch broker/STOP_IBKR` (IBKR) stoppt jede Order. Sie wird auf **drei** Ebenen geprüft: zu Beginn jedes echten Laufs, je Aufgabe und in der Orderfunktion selbst.
+- Die Brücken lesen die Bot-Datenbanken über den gemeinsamen, schreibgeschützten Leser `broker/bot_db.py` (`mode=ro`). Sie fassen **keinen** Bot-Code an.
+- **Bekannte Einschränkung:** `ib_async` verlangt Python 3.10+, auf dem Rechner des Nutzers läuft 3.9.6. Die IBKR-Brücke ist dort derzeit **nicht lauffähig**.
+
+Einzelheiten: `broker/README.md` und `broker/README_IBKR.md`, Übergabeprotokoll Abschnitt 4.4.
 
 **Wichtige Grundregeln:**
-- Live-Trading mit echtem Kapital ist NICHT implementiert (nur Paper-Trading/Forward-Testing).
+- Live-Trading mit echtem Kapital ist NICHT implementiert (nur Paper-Trading/Forward-Testing). Die beiden Broker-Brücken unter `broker/` senden Orders, aber ausschliesslich an Testnet bzw. Paper-Konto — siehe Abschnitt oben.
+- Das **Dashboard ist seit PR #62/#71 nicht mehr rein lesend**: es kann Positionen manuell schliessen (alle neun Bots, doppelte Bestätigung) und bei geschlossener Börse **Warteaufträge** anlegen, die ein Cronjob später **ohne erneute Rückfrage** ausführt. Der Telegram-Bot bleibt rein lesend.
+- Abhängigkeiten stehen in `requirements.txt` (bindet `notifications/` und `dashboard/` ein, ergänzt den Börsenkalender); `broker/requirements.txt` ist separat.
 - Kein Agent darf automatisch `live_params.py` ändern oder Trades auslösen — Parameterübernahme bleibt manuell.
 - Neue Parameter/Strategien immer per Backtest → Walk-Forward → Equity-Simulation → Buy-and-Hold-Vergleich validieren, bevor sie als "live" gelten (siehe Protokoll Abschnitt 7).
 - Untersuchungen unter `research/` fassen **keinen** Bot-Code an; Parameterübernahme ist immer ein getrennter, ausdrücklich freigegebener Schritt.

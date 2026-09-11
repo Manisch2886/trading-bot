@@ -2,7 +2,7 @@
 
 **Zweck dieses Dokuments:** Technisches Übergabe-/Gedächtnisdokument für die Fortsetzung der Arbeit in einem neuen Claude-Projekt-Chat. Enthält alle Entscheidungen, Architektur, Code-Struktur, Erkenntnisse und offenen Punkte. Wo Informationen unklar oder nicht abschließend bestätigt sind, ist das explizit gekennzeichnet.
 
-**Stand: 2026-09-09.** Das Dokument beschreibt den Stand von `main`. Offene, noch nicht gemergte Pull Requests sind — wo überhaupt erwähnt — ausdrücklich als „in Entwicklung, nicht aktiv" gekennzeichnet und dürfen nicht als laufende Funktion gelesen werden.
+**Stand: 2026-09-11.** Das Dokument beschreibt den Stand von `main` (nach dem Merge von PR #73). Die vorige Fassung stammte vom 2026-09-09 (PR #63) und hinkte den Merges #64–#73 hinterher; nachgezogen wurden das manuelle Schliessen, die Warteauftraege, die beiden Broker-Bruecken, der caffeinate-Dienst und die dreistufige Notbremse. Offene, noch nicht gemergte Pull Requests sind — wo überhaupt erwähnt — ausdrücklich als „in Entwicklung, nicht aktiv" gekennzeichnet und dürfen nicht als laufende Funktion gelesen werden.
 
 ---
 
@@ -13,13 +13,13 @@ Aufbau mehrerer unabhängiger, automatisierter Trading-Bots (aktuell Krypto und 
 - rigoros validiert werden (Backtest → Walk-Forward-Analyse → Equity-Simulation → Buy-and-Hold-Vergleich → Signal-Qualitäts-Test), bevor Parameter als "live" gelten
 - aktuell im **Paper-Trading-Modus** (Forward Testing, kein echtes Geld) laufen, vollautomatisiert per Cronjob auf dem Mac des Nutzers
 - durch **vier** Claude-API-Agenten ergänzt werden (tägliche Einordnung, intelligente Parameter-Suche, Marktkontext via Web-Suche, wöchentliche Portfolio-Einordnung) sowie den Quartals-Interpreter, die informativ unterstützen, aber **nie automatisch** Handelsparameter oder Trades verändern
-- über eine gemeinsame **Beobachtungsebene** überwacht werden: ein Telegram-Bot und ein Web-Dashboard, beide rein lesend (siehe Abschnitt 4.3)
+- über eine gemeinsame **Beobachtungsebene** überwacht werden: ein Telegram-Bot (rein lesend) und ein Web-Dashboard (liest **und schreibt** — manuelles Schliessen und Warteaufträge, siehe Abschnitt 4.3)
 
 **Es sind inzwischen NEUN Bots, nicht drei.** Das Dokument beschrieb bis 2026-09-09 nur die drei ursprünglichen; die sechs später hinzugekommenen Prototypen sind seit Anfang September ebenfalls live im Paper-Trading (siehe Abschnitt 2 und 3.4).
 
 Ursprünglicher Auslöser: Ein Diagramm einer "AI Trading Agent"-Pipeline (Research → Build → Optimise → Forward Test → Risk → Live Trade) mit mehreren Claude-Agenten als Pipeline-Stufen. Die tatsächliche Umsetzung hat sich davon entfernt: Es läuft **kein** Claude-Agent zur Laufzeit der eigentlichen Handelslogik — die Backtest-/Optimierungs-/Signalerkennung ist reiner, deterministischer Python-Code. Claude-Agenten wurden **später gezielt ergänzt** (siehe Abschnitt 6), sind aber vom Kern-Trading-Loop entkoppelt.
 
-**Live-Trading mit echtem Kapital ist explizit noch NICHT umgesetzt** — nur konzeptionell besprochen (siehe Abschnitt 10).
+**Live-Trading mit echtem Kapital ist explizit noch NICHT umgesetzt** — nur konzeptionell besprochen (siehe Abschnitt 10). Seit PR #68/#70 gibt es allerdings **zwei Broker-Brücken** unter `broker/`, die Orders an das Binance-**Testnet** bzw. ein IBKR-**Paper**-Konto senden (Abschnitt 4.4): virtuelles Geld, aber echte Gegenstellen und der erste Schreibzugriff des Projekts nach aussen.
 
 ---
 
@@ -213,6 +213,8 @@ Anfang September 2026 kamen sechs weitere Bots dazu — drei Strategien, jeweils
 
 ## 4. Gemeinsame Architektur
 
+### 4.1 Ordnerstruktur und Pfad-Auflösung
+
 ```
 trading-bot/
 ├── trading-env/                        (Python-3.9-venv)
@@ -221,7 +223,8 @@ trading-bot/
 │   ├── strategy_paths.py               (Kernstück: get_strategy_paths(__file__) leitet automatisch
 │   │                                     RESULTS_DIR, LOGS_DIR, DB_FILE aus dem STRATEGIE-ORDNERNAMEN ab —
 │   │                                     neue Strategie hinzufügen = Ordner kopieren, keine Shared-Code-Änderung nötig)
-│   ├── fetch_binance_data.py           (Krypto: Einzelsymbol-Abruf-Funktion)
+│   ├── fetch_binance_data.py           (Krypto: Einzelsymbol-Abruf-Funktion — gitignored, liegt nur auf
+│   │                                     dem Rechner des Nutzers, enthält Zugangsdaten)
 │   ├── fetch_multi_data.py             (Krypto: Multi-Symbol-Abruf, 1h, von elliott_wave genutzt)
 │   ├── get_top_symbols.py              (Krypto: rankt Binance-USDT-Paare nach 24h-Volumen,
 │   │                                     filtert Stablecoins/gehebelte Token, → top25_symbols.txt)
@@ -237,15 +240,41 @@ trading-bot/
 │   ├── empfehlung_format.py            (EINZIGE Stelle für die Hervorhebung von Handlungsempfehlungen, 13 Versandstellen)
 │   ├── data_quality.py                 (erkennt unvollständige Kursbalken — Lehre aus dem APH-Vorfall)
 │   ├── build_daily_crypto_data.py      (leitet Tageskerzen aus vorhandenen 1h-Daten ab, für die Krypto-Prototypen)
-│   └── status_overview.py              (kostenloser Multi-Bot-Statuscheck ohne API-Aufrufe)
-├── notifications/                      (Beobachtungsebene 1: Telegram — siehe 4.3)
+│   ├── status_overview.py              (kostenloser Multi-Bot-Statuscheck ohne API-Aufrufe)
+│   └── test_empfehlung_format.py       (Selbsttests der Empfehlungs-Hervorhebung)
+├── notifications/                      (Beobachtungsebene 1: Telegram, rein lesend — siehe 4.3)
 │   ├── monitor.py                      (Lese-/Erkennungslogik, öffnet alle Bot-DBs read-only)
 │   ├── telegram_bot.py                 (Befehle /status /positions /pnl /help + periodischer Ereignis-Job)
 │   ├── notify.py                       (send_alert() ohne Zusatz-Abhängigkeit, für beliebige Skripte)
-│   └── telegram_config.py              (TELEGRAM_BOT_TOKEN/TELEGRAM_USER_ID aus .env)
-├── dashboard/                          (Beobachtungsebene 2: Web/PWA — siehe 4.3)
+│   ├── telegram_config.py              (TELEGRAM_BOT_TOKEN/TELEGRAM_USER_ID aus .env)
+│   ├── manual_close.py                 (die EINE schreibende Kernfunktion: schliesst genau eine Position,
+│   │                                     BEGIN IMMEDIATE + erneute Prüfung in der Transaktion, PR #62)
+│   ├── boersenkalender.py              (echter NYSE-Kalender; beantwortet nur "ist die Börse offen", PR #69/#71)
+│   ├── warteauftraege.py               (persistente Auftragsverwaltung: anlegen, auflisten, stornieren,
+│   │                                     abschliessen; JSON + eigene Sperrdatei, PR #69/#71)
+│   ├── test_manual_close.py            (Selbsttests der Schreibfunktion)
+│   └── com.manisch.telegram-tradesignal-bot.plist   (launchd-Vorlage)
+├── dashboard/                          (Beobachtungsebene 2: Web/PWA — LIEST UND SCHREIBT, siehe 4.3)
 │   ├── server.py, app.py, konfig.py, datenquelle.py
+│   ├── schliessen.py                   (Schliess-Wege: eine Position, alle eines Bots, alle aller Bots;
+│   │                                     Warteauftrags-Fallunterscheidung — ruft manual_close.py)
+│   ├── warteauftraege_ausfuehren.py    (eigenständiges Cronjob-Programm: das EINZIGE, das zeitversetzt
+│   │                                     schreibt — siehe 4.3 und Abschnitt 8)
+│   ├── pruefe_warteauftraege_kopie.py  (Selbstprüfung gegen eine Arbeitskopie, nur mit .probe-kopie)
+│   ├── test_dashboard.py, test_gewichtung.js, test_zeitzone.js, test_zustandsmaschine.js
 │   └── static/                         (index.html, bot.html, app.js, style.css, sw.js, manifest.json, Icons)
+├── broker/                             (Broker-Brücken — der EINZIGE Code, der Orders sendet, siehe 4.4)
+│   ├── bot_db.py                       (gemeinsamer, schreibgeschützter Leser beider Brücken, mode=ro)
+│   ├── zugang.py, binance_testnet.py, spiegel.py, abgleich.py    (Binance-Testnet, PR #68)
+│   ├── ibkr_zugang.py, ibkr_paper.py, ibkr_spiegel.py, ibkr_abgleich.py   (IBKR-Paper, PR #70)
+│   ├── test_broker.py, test_ibkr.py
+│   ├── requirements.txt                (eigene Liste, NICHT in der Wurzel-requirements.txt eingebunden)
+│   ├── README.md, README_IBKR.md
+│   └── STOP / STOP_IBKR                (Notbremsen — je Brücke eine eigene Datei; nicht im Repo)
+├── system/                             (Systemdienste des Mac, PR #72)
+│   ├── com.manisch.caffeinate.plist    (launchd-Vorlage: hält den Mac wach, siehe 4.5)
+│   ├── README_CAFFEINATE.md, TESTAUFTRAG_CAFFEINATE.md
+│   └── test_caffeinate_plist.py
 ├── research/                           (abgeschlossene Untersuchungen, je ein BERICHT.md — NIE Bot-Code)
 │   └── elliott_wave_lookahead/, elliott_wave_params/, sync_check/, hrp_portfolio/, … (17 Ordner)
 ├── strategies/                         (NEUN Bots, siehe Abschnitt 2)
@@ -262,11 +291,19 @@ trading-bot/
 ├── data/                               (gemeinsamer Ordner für Kursdaten-CSVs, z.B. BTCUSDT_1h.csv,
 │                                         AAPL_1d.csv — Dateinamen verhindern Kollisionen zwischen Strategien)
 ├── config/
-│   ├── email_config.py                 (SMTP-Zugangsdaten IONOS/1&1 + ANTHROPIC_API_KEY, siehe Abschnitt 6.5)
+│   ├── email_config.py                 (SMTP-Zugangsdaten IONOS/1&1 + ANTHROPIC_API_KEY, siehe Abschnitt 6.5
+│   │                                     — gitignored, liegt nur auf dem Rechner des Nutzers)
 │   ├── top25_symbols.txt               (Krypto-Symbolliste)
-│   └── sp500_top150.txt                (Aktien-Symbolliste, aktueller Stand)
-├── .env                                (TELEGRAM_BOT_TOKEN, TELEGRAM_USER_ID, DASHBOARD_ACCESS_TOKEN — gitignored)
+│   └── sp500_top150.txt                (Aktien-Symbolliste, aktueller Stand; daneben sp500_top50.txt
+│                                         und sp500_top25.txt aus früheren Zuschnitten)
+├── requirements.txt                    (Wurzel-Liste: bindet notifications/ und dashboard/ ein und ergänzt
+│                                         pandas_market_calendars>=4.1,<5 — die Obergrenze ist nötig, weil die
+│                                         5.x-Reihe auf dem Python 3.9.6 des Nutzers beim Import abbricht.
+│                                         broker/requirements.txt steht bewusst daneben, nicht darin)
+├── .env                                (TELEGRAM_BOT_TOKEN, TELEGRAM_USER_ID, DASHBOARD_ACCESS_TOKEN,
+│                                         Binance-Testnet- und IBKR-Paper-Zugänge — gitignored)
 ├── docs/UEBERGABEPROTOKOLL.md          (dieses Dokument)
+├── docs/UEBERGABE_*.md                 (Übergaben einzelner PRs: Warteaufträge #71, Positionsanzahl/Notbremse #73)
 ├── CLAUDE.md                           (wird von jeder Session zuerst gelesen, verweist hierher)
 ├── results/<strategie_name>/           (Backtest-/Optimierungs-Ergebnis-CSVs, PROTOTYPE_FINDINGS.md)
 ├── logs/<strategie_name>/              (Cronjob-Log-Dateien)
@@ -291,7 +328,9 @@ Dieses Muster hat sich bewährt und sollte für **jede zukünftige Strategie** g
 
 **`live_params.py`-Muster:** Jede Strategie hat eine kleine, von der restlichen Logik getrennte Datei mit den aktuell aktiven Parametern, importiert von `forward_test.py`, `equity_simulation.py`, `oos_equity_simulation.py`, `quarterly_review.py`, `agent_optimise.py`. Zweck: Parameter-Übernahme nach Validierung soll so einfach und risikoarm wie möglich sein (eine kleine, übersichtliche Datei bearbeiten statt tief im Code zu suchen).
 
-**Ein Wert, eine Quelle — die Sync-Reihe (PR #38–#42, #45, #48, #51, #52, #58, #59).** Über mehrere Runden wurde bei allen neun Bots jede Doppelführung von Handelsparametern beseitigt: Werte, die sowohl in `live_params.py` als auch in einem Backtest-/Simulationsskript standen, werden jetzt **importiert** statt zweimal geschrieben. Der Anlass war real — Backtest und Live liefen bei fünf Bots messbar auseinander, ohne dass es jemandem aufgefallen wäre.
+### 4.2 Ein Wert, eine Quelle — die Sync-Reihe
+
+**Die Sync-Reihe (PR #38–#42, #45, #48, #51, #52, #58, #59).** Über mehrere Runden wurde bei allen neun Bots jede Doppelführung von Handelsparametern beseitigt: Werte, die sowohl in `live_params.py` als auch in einem Backtest-/Simulationsskript standen, werden jetzt **importiert** statt zweimal geschrieben. Der Anlass war real — Backtest und Live liefen bei fünf Bots messbar auseinander, ohne dass es jemandem aufgefallen wäre.
 
 **Aktueller Stand: synchron.** `research/sync_check/sync_table.py` prüft alle neun Bots automatisch und meldet **keine** Abweichung mehr. Was in der Tabelle bewusst NICHT als Abweichung erscheint:
 
@@ -305,7 +344,31 @@ Eine wichtige methodische Lehre daraus (Nachtrag S des Berichts): die letzten 15
 
 ### 4.3 Beobachtungsebene: Telegram-Bot und Dashboard
 
-Beide lesen ausschliesslich; **keiner von beiden verändert einen Bot, eine Datenbank oder einen Parameter.** Sie ersetzen die früheren täglichen E-Mails (siehe Abschnitt 5, `daily_summary_email.py`).
+**Diese Einleitung stand bis 2026-09-11 falsch hier.** Sie lautete „Beide lesen ausschliesslich; keiner von beiden verändert einen Bot, eine Datenbank oder einen Parameter." Für den **Telegram-Bot gilt das weiterhin**. Für das **Dashboard nicht mehr** — seit PR #62 schreibt es, seit PR #71 sogar zeitversetzt:
+
+| Ebene | Liest | Schreibt |
+|---|---|---|
+| `notifications/` — Telegram | ja | **nein**, unverändert rein lesend |
+| `dashboard/` — Web/PWA | ja | **ja**: Positionen manuell schliessen (PR #62), Warteaufträge anlegen und ausführen lassen (PR #71) |
+
+Der Telegram-Weg zum Schliessen (`/schliessen`, PR #61) wurde gebaut, aber **nicht gemergt** — der Pull Request ist am 2026-09-10 ohne Merge geschlossen worden. Im Quelltext von `telegram_bot.py` steht ausdrücklich, dass das bewusst nicht vorbereitet ist. Der Dashboard-Weg hat ihn abgelöst.
+
+Beide Ebenen ersetzen die früheren täglichen E-Mails (siehe Abschnitt 5, `daily_summary_email.py`).
+
+**Die schreibenden Wege des Dashboards im Überblick** (Einzelheiten: `dashboard/README.md`, `docs/UEBERGABE_PR71_WARTEAUFTRAEGE.md`):
+
+| Weg | Bestätigung | Freigeschaltet für |
+|---|---|---|
+| eine einzelne Position | ein Tap auf die Zusammenfassung (Vorgangs-Kennung als eigentliche Absicherung) | **alle neun Bots** |
+| alle Positionen EINES Bots (Notfallweg) | zwei Klicks auf zwei verschiedene Knöpfe | alle neun Bots |
+| alle Positionen ALLER Bots (Crash-Weg) | zwei Klicks **und** der getippte Text `CRASH` | alle neun Bots |
+| **Warteauftrag** bei geschlossener Börse | zusätzlicher Warnschritt; Ausführung später **ohne erneute Rückfrage** | die vier Aktien-Bots |
+
+Geschrieben wird immer über **eine** Funktion: `notifications/manual_close.py::schliesse_position()` — mit `BEGIN IMMEDIATE`, erneuter Prüfung *innerhalb* der Transaktion, `rowcount == 1` und eigenem Protokoll (`logs/notifications/manuelle_eingriffe.log`, Marke `MANUELLER-EINGRIFF`). Auch das Cronjob-Programm ruft dieselbe Funktion; eine zweite Schreiblogik gibt es bewusst nicht. Manuelle Ausstiege sind dauerhaft an `result='manual_close'` erkennbar — ein Wert, den kein Bot je selbst schreibt.
+
+**Warteaufträge (PR #69/#71) — die folgenreichste Eigenschaft.** Bei den vier Aktien-Bots erschien der Schliessen-Knopf früher auch ausserhalb der Börsenzeiten und schloss dann zum letzten Tages-Schlusskurs aus yfinance — über ein Wochenende zweieinhalb Tage alt. Jetzt entscheidet ein echter NYSE-Kalender (`pandas_market_calendars`) über drei Zustände: **offen** → sofort schliessen, **geschlossen** → vormerken, **unbekannt** → weder noch. Der dritte Zustand ist Absicht: ein Warteauftrag ohne funktionierenden Kalender wäre eine Absicht, die niemand einlösen kann, weil das Ausführungsskript am selben Kalender hängt. Eine Faustregel als Rückfallebene wurde bewusst **nicht** eingebaut — sie schlüge genau dann zu, wenn niemand hinsieht.
+
+`dashboard/warteauftraege_ausfuehren.py` ist das einzige Programm des Projekts, das **zeitversetzt und ohne gleichzeitige menschliche Bestätigung** schreibt. **Ohne den Cronjob passiert nichts**: Aufträge werden angelegt, angezeigt und nie ausgeführt. Wer den Cronjob einrichtet, erteilt damit eine Vorab-Erlaubnis für alle künftigen Warteaufträge — siehe Abschnitt 8 und 9.
 
 **`notifications/` — Telegram (PR #16, #34).** Ein eigenständiger Dienst (launchd), der
 - die Befehle `/status`, `/positions`, `/pnl` und `/help` beantwortet, je optional gefiltert nach `krypto`, `aktien` oder einem Bot-Namen,
@@ -337,11 +400,74 @@ Zwei Eigenheiten, die viel Diagnosezeit gekostet haben und deshalb im Code ausf�
 
 Zugriffsschutz ist ein `DASHBOARD_ACCESS_TOKEN` aus `.env`, geprüft über `hmac.compare_digest`; der Server startet ohne Token gar nicht (fail closed) und bindet standardmässig nur an `127.0.0.1`.
 
+### 4.4 Broker-Brücken: der erste Schreibzugriff auf eine Börse
+
+Unter `broker/` liegt der **einzige Code des Projekts, der Orders an eine externe Gegenstelle sendet**. Kein Bot tut das, kein Agent tut das. Es sind zwei voneinander unabhängige Brücken; gemeinsam ist ihnen nur der schreibgeschützte Leser `broker/bot_db.py`.
+
+| | Binance-Testnet (PR #68) | IBKR-Paper (PR #70) |
+|---|---|---|
+| Spiegelt | `t3_supertrend` (Krypto) | `volatility_breakout` (Aktien) |
+| Gegenstelle | Binance **SPOT-Testnet**, virtuelles Guthaben | **IBKR-Paper-Konto** über lokal laufende TWS / IB Gateway |
+| Weg | REST, Endpunkt als Literal im Code | Socket `127.0.0.1:7497` bzw. `4002` |
+| Hauptdatei | `broker/spiegel.py` | `broker/ibkr_spiegel.py` |
+| Nachverfolgung | `broker_testnet_t3_supertrend.db` | `broker_ibkr_volatility_breakout.db` |
+| Notbremse | `broker/STOP` | `broker/STOP_IBKR` |
+| Cronjob | alle 4 h zur Minute 5 (hinter dem Bot) | alle 30 min während der US-Sitzung, Mo–Fr |
+| **Stand** | **produktiv** | **gemergt, aber nie gegen eine echte TWS gelaufen** |
+
+**Was unverändert bleibt:** `forward_test.py`, `live_params.py` und die `trades`-Tabelle jedes Bots. Die Brücken lesen die Bot-Datenbank über `file:…?mode=ro` — SQLite verweigert dort jeden Schreibversuch, auch einen versehentlichen. Ihre eigene Nachverfolgung liegt je in einer eigenen Datei.
+
+**Was sie nicht sind:** kein Live-Trading. Der Endpunkt steht jeweils als Literal im Code, es gibt keine Umgebungsvariable, die ihn verschieben könnte, und die echten Handelsendpunkte bzw. Live-Ports stehen namentlich auf Verbotslisten. Der **Trockenlauf ist der Standard**; gesendet wird nur mit `--echt`.
+
+**Die Notbremse wird auf drei Ebenen geprüft** (Ebene 1 seit PR #73):
+
+| Ebene | Wo | Greift wann |
+|---|---|---|
+| 1 | `lauf(echt=True)`, zu Beginn | die Bremse lag schon vor dem Lauf — meldet sichtbar und beendet den Lauf, **bevor** Testnet bzw. TWS überhaupt kontaktiert werden |
+| 2 | `spiegle_eine()`, je Aufgabe | die Datei wird **mitten im Lauf** angelegt, und genau dann wird sie angelegt |
+| 3 | `binance_testnet.marktorder()` / `ibkr_paper.marktorder()` | letzte Rückfallebene |
+
+Ebene 1 kam hinzu, weil ein gebremster Lauf **ohne offene Aufgabe** vorher von einem gewöhnlichen Leerlauf nicht zu unterscheiden war: keine Zeile, Rückgabewert 0. Das hatte bereits zu der falschen Meldung geführt, die Bremse greife nicht. Zur Wahl des Rückgabewerts siehe Abschnitt 8.
+
+**Zwei Einschränkungen, die zum Stand gehören:**
+
+1. **Die IBKR-Brücke ist nie gegen eine echte TWS gelaufen.** Sie wurde vollständig gegen eine Attrappe geprüft, aber niemand hat je eine TWS gestartet. Der häufigste Ausfall wird deshalb kein Fehler der Brücke sein, sondern eine abgemeldete TWS nach deren täglichem Neustart.
+2. **`ib_async` verlangt Python 3.10+**, der Rechner des Nutzers läuft auf 3.9.6 (`trading-env`). Die IBKR-Brücke ist dort derzeit **nicht lauffähig**; die Selbsttests laufen auch ohne die Bibliothek, überspringen dann aber den Abschnitt, der die Annahmen über deren Schnittstelle prüft.
+
+Ein Binance-Testnet-Konto wird periodisch (etwa monatlich, ohne Vorankündigung) zurückgesetzt; Schlüssel und Bestände sind danach neu zu erzeugen. Das ist normal und kein Fehler der Brücke.
+
+Einzelheiten und die gestaffelten Inbetriebnahme-Anleitungen: `broker/README.md` und `broker/README_IBKR.md`.
+
+### 4.5 Betrieb auf dem Mac: drei launchd-Dienste und der Schlaf
+
+Alles läuft auf dem Mac des Nutzers. Neben den Cronjobs gibt es inzwischen **drei** launchd-Dienste:
+
+| Dienst | Zweck | Vorlage im Repo |
+|---|---|---|
+| Dashboard | FastAPI-Server der Beobachtungsebene 2 | — |
+| Telegram-Bot | Befehle und Push-Nachrichten | `notifications/com.manisch.telegram-tradesignal-bot.plist` |
+| **`com.manisch.caffeinate`** (PR #72) | hält den Mac wach, damit Cron überhaupt läuft | `system/com.manisch.caffeinate.plist` |
+
+**Warum der dritte Dienst existiert — der Vorfall vom 11.09.2026.** Nach einem macOS-Update war das von Hand gestartete `caffeinate` ersatzlos verschwunden, ohne Hinweis. Der Mac schlief zwischen etwa **08:50 und 12:06**. In dieser Zeit fielen aus: der **12:05-Lauf der Binance-Brücke** komplett und mehrere **stündliche `elliott_wave`-Forward-Tests**.
+
+Das ist mehr als eine Lücke im Log. **Cron holt verpasste Läufe nicht nach** — ein schlafender Mac bedeutet nicht „später", sondern „gar nicht". Ein Signal, das während einer Schlafphase entsteht, wird **nie** erkannt; die Paper-Trading-Auswertung zeigt danach eine Strategie, die so nie gelaufen ist. Fehlende Läufe verfälschen die Ergebnisse still und ohne Fehlermeldung.
+
+Der Dienst ruft `/usr/bin/caffeinate -i -m -s` (Idle-Sleep, Platten-Sleep, Sleep bei Netzbetrieb), startet bei jeder Anmeldung (`RunAtLoad`) und wird bei Prozessende neu gestartet (`KeepAlive`). `-d`/`-u` (Display wachhalten bzw. einschalten) sind bewusst **nicht** gesetzt: ein dunkles Display ist kein Schlaf, die Cronjobs laufen davon unberührt.
+
+**Vier dokumentierte Grenzen, bewusst nicht gelöst** (`system/README_CAFFEINATE.md`):
+
+1. **Ein zugeklapptes MacBook schläft trotzdem** (Clamshell-Sleep ohne externen Monitor). `caffeinate` verhindert Idle-Sleep, nicht den vom Nutzer ausgelösten — der Mac muss aufgeklappt bleiben.
+2. **Ein LaunchAgent startet erst nach der grafischen Anmeldung.** Nach einem Neustart muss sich jemand anmelden. Das gilt für Dashboard und Telegram-Bot schon heute und ist damit keine neue Einschränkung.
+3. **Ein LaunchDaemon in `/Library/LaunchDaemons` würde schon beim Systemstart greifen** — braucht aber `sudo`, Eigentümer `root` und andere Rechte. Nur als **Option erwähnt, bewusst nicht umgesetzt**.
+4. **Bei reinem Batteriebetrieb wirkt `-s` nicht.** Für den Dauerbetrieb gehört der Mac ans Netzteil.
+
+Das Repo enthält nur die Vorlage; das Kopieren nach `~/Library/LaunchAgents/` führt der Nutzer selbst aus. `python3 system/test_caffeinate_plist.py` prüft die Datei (gültiges XML, erwartete Schlüssel, korrekte Flags, kein `-d`/`-u`) und läuft auch ohne macOS.
+
 ---
 
 ## 5. Datei-Inventar pro Strategie (Kernskripte)
 
-Gemeinsames Muster in jedem der neun `strategies/<name>/`-Ordner (Dateinamen variieren leicht zwischen den Strategie-Familien):
+Gemeinsames Muster in den `strategies/<name>/`-Ordnern (Dateinamen variieren zwischen den Strategie-Familien; wo eine Datei **nicht** bei allen neun Bots liegt, steht das in der Zeile):
 
 | Datei | Zweck |
 |---|---|
@@ -356,8 +482,8 @@ Gemeinsames Muster in jedem der neun `strategies/<name>/`-Ordner (Dateinamen var
 | `forward_test.py` | **Live-Skript**: prüft offene Positionen, sucht neue Signale, schreibt in DB — das läuft per Cron |
 | `daily_summary_email.py` | Liest DB, baut Zusammenfassung, ruft Agent 1 + Agent 3 auf, verschickt den Bericht — **alle neun Cronjobs seit 2026-09-08 deaktiviert** (PR #36). Die reinen Zahlen sind jederzeit über `/status`, `/positions`, `/pnl` und das Dashboard abrufbar; der Mehrwert einer zusätzlichen täglichen KI-Einordnung stand dem laufenden API-Verbrauch nicht klar gegenüber. Deaktiviert wurde **nur die Auslösung**: die Cron-Zeilen auf dem Mac sind auskommentiert, nicht gelöscht, und die Skripte bleiben manuell lauffähig. Der Name „…_email" ist historisch — die Berichte laufen seit PR #16 über Telegram |
 | `live_params.py` | Aktuell aktive, validierte Parameter (siehe Abschnitt 4) |
-| `agent_optimise.py` | Nutzt Agent 2 (`param_search_agent.py`) als Alternative zum vollen Grid-Search |
-| `quarterly_review.py` | Vierteljährlicher automatisierter Review-Prozess (siehe Abschnitt 6.4) |
+| `agent_optimise.py` | Nutzt Agent 2 (`param_search_agent.py`) als Alternative zum vollen Grid-Search. **Nur bei den drei ursprünglichen Bots** (`elliott_wave`, `elliott_wave_stocks`, `t3_supertrend`) — die sechs Prototypen haben ihn nicht |
+| `quarterly_review.py` | Vierteljährlicher automatisierter Review-Prozess (siehe Abschnitt 6.4). **Ebenfalls nur bei den drei ursprünglichen Bots.** Die frühere Darstellung als Teil des gemeinsamen Musters aller neun war falsch; sie betrifft auch Abschnitt 9, Punkt 2 — für sechs der neun Strategien kann es gar keinen Quartals-Cronjob geben |
 
 **Strategie-spezifische Zusatzdateien:**
 - `t3_supertrend/`: `fetch_4h_data.py`, `regime_filter.py`
@@ -426,7 +552,9 @@ Ablauf bei jedem Lauf:
 ```
 0 9 1 1,4,7,10 * <python-pfad> <strategie-pfad>/quarterly_review.py >> <log-pfad> 2>&1
 ```
-**⚠️ UNKLAR / vom Nutzer zu verifizieren:** Es wurde die Anleitung gegeben, diese Cron-Zeile je Strategie einzutragen. Bestätigt ist nur der **manuelle Testlauf** für `t3_supertrend` — **nicht bestätigt**, für welche der neun Strategien die Cron-Zeilen tatsächlich eingetragen sind. Mit `crontab -l` prüfen. Der Umfang der Frage ist mit sechs weiteren Bots grösser geworden als beim ursprünglichen Eintrag.
+**⚠️ UNKLAR / vom Nutzer zu verifizieren:** Es wurde die Anleitung gegeben, diese Cron-Zeile je Strategie einzutragen. Bestätigt ist nur der **manuelle Testlauf** für `t3_supertrend` — **nicht bestätigt**, für welche Strategien die Cron-Zeilen tatsächlich eingetragen sind. Mit `crontab -l` prüfen.
+
+*Eingrenzung vom 2026-09-11:* `quarterly_review.py` existiert überhaupt nur bei **drei** Bots — `elliott_wave`, `elliott_wave_stocks` und `t3_supertrend`. Die sechs später hinzugekommenen Prototypen haben die Datei nicht, für sie kann es also gar keinen Quartals-Cronjob geben. Der frühere Satz, die Frage sei „mit sechs weiteren Bots grösser geworden", war damit falsch: sie ist kleiner, als sie aussah. Ob das Quartals-Review auf die sechs Prototypen ausgeweitet werden soll, ist eine **offene Entscheidung des Nutzers** und keine vergessene Einrichtung.
 
 ### 6.5 API-Key-Verwaltung
 `claude_client.py`s `get_client()`-Funktion sucht den Key in dieser Reihenfolge:
@@ -490,7 +618,14 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 | Berichte von E-Mail auf Telegram umgestellt (PR #16) | Push statt Postfach; die Bot-Berichte kamen vorher nur per Mail und wurden entsprechend spät gelesen |
 | Bots bleiben dauerhaft getrennt, **kein** gemeinsames Kapitalkonto | Ein zentrales Konto bräuchte Locking und ein Vergütungssystem in `shared/` — hoher Aufwand, hohes Risiko. Stattdessen `portfolio_overview.py` als reine **Beobachtungsrechnung** mit hypothetischer Gewichtung, die keine einzige Zeile in einem Bot-Ordner anfasst |
 | Beide Beobachtungsebenen (Telegram, Dashboard) lesen über dieselbe `monitor.py` | Zwei Leseimplementierungen würden früher oder später unterschiedliche Zahlen zeigen — dieselbe Begründung wie beim `live_params.py`-Muster |
-| Manuelles Schliessen von Positionen: gebaut, aber **nicht gemergt** | Siehe Abschnitt 9, Punkt 7. Bewusst zurückgehalten, bis der Nutzer die gestaffelte Testanleitung durchlaufen hat |
+| Manuelles Schliessen über das **Dashboard** gemergt (PR #62), über **Telegram nicht** (PR #61 ohne Merge geschlossen) | Zwei Wege für denselben Schreibzugriff wären zwei Stellen, an denen die Absicherung auseinanderlaufen kann. Der Dashboard-Weg zeigt Kurs und PnL vor der Bestätigung im Zusammenhang; der Telegram-Weg hätte dieselbe Kernfunktion über eine zweite Oberfläche angesprochen. Die Kernfunktion `manual_close.py` stammt aus PR #61 und wird weiterverwendet — abgelöst wurde nur die Bedienoberfläche |
+| Freigeschaltet sind **alle neun Bots**, nicht nur `t3_supertrend` | Der erste Bot war ein bewusster Anfang mit dem einfachsten Schema. Die Erweiterung ist ein Eintrag in `SCHLIESSBARE_BOTS` und braucht keine Codeänderung; jeder Bot wurde einzeln gegen sein `forward_test.py` geprüft, und die Prüfung läuft bei jedem Testlauf erneut |
+| **Zeitversetzte Ausführung ohne erneute Bestätigung** eingeführt (Warteaufträge, PR #69/#71) | Der Schliessen-Knopf der Aktien-Bots schloss ausserhalb der Börsenzeiten zu einem Tages-Schlusskurs, den es „gerade jetzt" gar nicht gibt — über ein Wochenende zweieinhalb Tage alt. Die Alternative wäre gewesen, den Knopf dort ganz zu sperren; dann hätte der Nutzer im Ernstfall bis zur Eröffnung gar keine Handhabe. Gewählt wurde der Warteauftrag: zu einem **echten** Kurs schliessen statt zu einem veralteten. **Der Preis ist eine Vorab-Erlaubnis** — wer den Cronjob einrichtet, erlaubt alle künftigen Warteaufträge, nicht einen einzelnen, und eine Eröffnungslücke am Montag trifft den Auftrag voll. Das ist der erste Schreibvorgang des Projekts ohne gleichzeitige menschliche Bestätigung und die folgenreichste Einzelentscheidung seit dem Dashboard |
+| Bei unbekanntem Börsenstatus **weder schliessen noch vormerken** | Ein Warteauftrag ohne funktionierenden Kalender wäre eine Absicht, die niemand einlösen kann — das Ausführungsskript hängt am selben Kalender. Bewusst **keine Faustregel als Rückfallebene**: eine Näherung, die nur greift, wenn die genaue Antwort fehlt, schlüge genau dann zu, wenn niemand hinsieht |
+| Zwei Broker-Brücken gebaut, beide nur gegen **Testnet bzw. Paper-Konto** (PR #68, #70) | Der erste Schreibzugriff auf eine Börse sollte nicht zugleich der erste mit echtem Geld sein. Endpunkt als Literal im Code, echte Handelsendpunkte und Live-Ports namentlich auf Verbotslisten, Trockenlauf als Standard, Grenzen je Lauf und je Tag im Code statt in der `.env` |
+| **Notbremse auf drei Ebenen**, Rückgabewert **0** ohne offene Aufgabe (PR #73) | Vorher wurde nur je Aufgabe geprüft. Lag keine Aufgabe an, kam die Prüfung nie dran: keine Zeile, Rückgabewert 0 — ein gebremster Lauf war von einem gewöhnlichen Leerlauf nicht zu unterscheiden, was bereits zu der falschen Meldung geführt hatte, die Bremse greife nicht. **Zum Rückgabewert:** eine gezogene Bremse ist eine befolgte Anweisung des Nutzers, kein Fehlschlag; ohne offene Aufgabe ist nichts liegengeblieben, deshalb **0**. Eine Fehlermail bei jedem Lauf — beim 4-Stunden-Takt sechs am Tag, tagelang — würde genau die Mails entwerten, auf die es ankommt. **Mit** offener Aufgabe bleibt es bei **1**: da wurde tatsächlich etwas nicht ausgeführt. Dass die Bremse wirkt, steht sichtbar im Protokoll, nicht im Rückgabewert |
+| Im Crash-Dialog wird die **Positionsanzahl je Bot** ausgewiesen (PR #73) | Die gewichtete Gesamt-Zahl rechnet korrekt, sagt aber nicht, woraus sie besteht. `elliott_wave` hat als einziger Bot kein `MAX_CONCURRENT_POSITIONS` und kann sie praktisch allein tragen — rechnerisch richtig, faktisch die Aussage *eines* Bots, und zwar genau in dem Moment, in dem eine Notfallentscheidung fällt. Ausgewiesen, nicht neu berechnet: die Zahlen fielen bei der Gewichtung ohnehin an |
+| `caffeinate` als **launchd-Dienst** statt als Terminalbefehl (PR #72) | Ein von Hand gestartetes `caffeinate` hängt am Terminalfenster und überlebt weder Neustart noch macOS-Update — beim Update vom 11.09.2026 war es ersatzlos weg, und der Mac verschlief drei Stunden Cronjobs. Cron holt verpasste Läufe **nicht** nach; fehlende Läufe verfälschen die Paper-Trading-Auswertung still (Abschnitt 4.5) |
 
 ---
 
@@ -498,7 +633,7 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 
 1. **`MAX_CONCURRENT_POSITIONS = 8` beim Elliott-Aktien-Bot nicht empirisch getestet** (im Gegensatz zum T3-Bot, wo 3/5/8/unbegrenzt systematisch verglichen wurden). Der Wert wirkt inzwischen nachweislich — 14 von 128 OOS-Trades sind davon betroffen (PR #48) —, aber ob **8** die richtige Zahl ist, wurde nie geprüft. Sollte nachgeholt werden.
 
-2. **Quartals-Review-Cronjobs**: Anleitung wurde gegeben, aber **nicht bestätigt**, für welche der neun Strategien sie tatsächlich eingetragen sind (nur `t3_supertrend` wurde manuell getestet). Mit `crontab -l` verifizieren.
+2. **Quartals-Review-Cronjobs**: Anleitung wurde gegeben, aber **nicht bestätigt**, für welche Strategien sie tatsächlich eingetragen sind (nur `t3_supertrend` wurde manuell getestet). Mit `crontab -l` verifizieren. *Eingrenzung vom 2026-09-11:* `quarterly_review.py` existiert überhaupt nur bei **drei** Bots (`elliott_wave`, `elliott_wave_stocks`, `t3_supertrend`) — die Frage betrifft also drei mögliche Einträge, nicht neun.
 
 3. **Live-Trading mit echtem Kapital**: rein konzeptionell besprochen, keine Code-Umsetzung. Bei Bedarf: API-Keys mit Handelsrechten (ohne Auszahlungsrecht), Notausschalter/Kill-Switch, Tagesverlust-Limit, Monitoring/Alarmierung, sehr kleines Startkapital für die ersten Wochen.
 
@@ -508,20 +643,26 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 
 6. **Die 2022-Bärenmarkt-Schwäche von `volatility_breakout` (Aktien)** ist identifiziert, dokumentiert und **nicht behoben** — das angepasste Kapitalmanagement mildert sie nicht. Gilt als bekanntes, akzeptiertes Risiko dieses Bots.
 
-7. **Manuelles Schliessen einer Position — gebaut, aber NICHT AKTIV.** Zwei offene Pull Requests, beide auf `main` **nicht** gemergt (verifiziert am 2026-09-09): PR #61 als Telegram-Befehl `/schliessen`, PR #62 als Dashboard-Dialog. Beide nur für `t3_supertrend`, mit doppelter Bestätigung. **Im aktuellen `main`-Stand existiert diese Funktion nicht** — Telegram und Dashboard sind dort rein lesend. Der Nutzer will vor dem Merge die jeweilige gestaffelte Testanleitung durchlaufen. Nicht als laufende Funktion beschreiben.
+7. **Manuelles Schliessen einer Position — inzwischen AKTIV.** *Dieser Punkt stand bis 2026-09-11 falsch hier*: er beschrieb die Funktion als „gebaut, aber nicht gemergt" und Dashboard wie Telegram als rein lesend. Tatsächlich ist **PR #62 gemergt** und die Funktion im Dashboard für **alle neun Bots** in Betrieb (Abschnitt 4.3). **PR #61** (Telegram-Befehl `/schliessen`) wurde am 2026-09-10 **ohne Merge geschlossen**; der Telegram-Bot bleibt rein lesend. Offen ist hier nur noch: der Cronjob-Status der Warteaufträge (Punkt 10) und die iOS-Safari-Prüfung (Punkt 8).
 
-8. **Der Schliess-Dialog aus PR #62 wurde nicht in echtem iOS-Safari geprüft** (nur in Chromium im iPhone-Format). Betrifft nur den nicht gemergten Stand; sobald PR #62 gemergt wird, beim nächsten Aufruf auf dem iPhone gezielt nachsehen.
+8. **Der Schliess-Dialog wurde nie in echtem iOS-Safari geprüft.** Der Bestätigungsdialog (PR #62) benutzt das native `<dialog>`-Element und wurde in Chromium im iPhone-Format (390 px) vollständig durchgespielt — aber nicht in Safari auf dem Gerät selbst. `<dialog>` setzt dort iOS 15.4+ voraus; das ist praktisch überall vorhanden, doch bei einer schreibenden Funktion sollte „praktisch" nicht genügen. Beim nächsten Aufruf des Dashboards auf dem iPhone gezielt prüfen: öffnet sich der Dialog überhaupt, liegt der Fokus darin, verwirft die Zurück-Geste den Vorgang (der `cancel`-Handler sollte greifen), und lässt sich `BESTAETIGEN` auf der iOS-Tastatur eingeben (Autokorrektur und automatische Grossschreibung sind im Feld abgeschaltet, `font-size: 16px` verhindert das Hineinzoomen). Falls `<dialog>` dort nicht trägt, wäre der Rückfallweg ein einfaches Overlay — dann müssten Fokusfang und Esc-Taste allerdings von Hand nachgebaut werden, was genau der Grund war, `<dialog>` zu nehmen. **Seit PR #71 und #73 gilt dasselbe für die Warteauftrags-Dialoge und die Positionsanzahl-Zeile im Crash-Dialog** — auch sie sind nur über die erzeugte Ausgabe geprüft, nie am Gerät.
 
 9. **Versandzeiten**: die früher hier notierte Überschneidung der beiden Krypto-Bot-E-Mails um 8:05 Uhr ist gegenstandslos, seit die täglichen Mails abgeschaltet sind (PR #36). Nur zur Kenntnis, falls die Cron-Zeilen je wieder aktiviert werden.
 
-7. **Der Schliess-Dialog des Dashboards wurde nicht in echtem iOS-Safari geprüft.** Der zweistufige Bestätigungsdialog (PR #62, „Position manuell schliessen") benutzt das native `<dialog>`-Element und wurde in Chromium im iPhone-Format (390 px) vollständig durchgespielt — aber nicht in Safari auf dem Gerät selbst. `<dialog>` setzt dort iOS 15.4+ voraus; das ist praktisch überall vorhanden, doch bei der ersten schreibenden Funktion des Dashboards sollte „praktisch" nicht genügen. Beim nächsten Aufruf des Dashboards auf dem iPhone gezielt prüfen: öffnet sich der Dialog überhaupt, liegt der Fokus darin, verwirft die Zurück-Geste den Vorgang (der `cancel`-Handler sollte greifen), und lässt sich `BESTAETIGEN` auf der iOS-Tastatur eingeben (Autokorrektur und automatische Grossschreibung sind im Feld abgeschaltet, `font-size: 16px` verhindert das Hineinzoomen). Falls `<dialog>` dort nicht trägt, wäre der Rückfallweg ein einfaches Overlay — dann müssten Fokusfang und Esc-Taste allerdings von Hand nachgebaut werden, was genau der Grund war, `<dialog>` zu nehmen.
+10. **Der Cronjob der Warteaufträge ist nicht bestätigt** — analog zu Punkt 2. `dashboard/warteauftraege_ausfuehren.py` ist das einzige Programm, das zeitversetzt und ohne erneute Rückfrage schreibt; der Eintrag dafür (`*/5 * * * *`, Testanleitung Schritt 17) muss der Nutzer selbst setzen. **Ohne ihn passiert nichts**: Warteaufträge werden angelegt, im Dashboard angezeigt und nie ausgeführt — ein bewusst möglicher Zwischenschritt. Mit `crontab -l | grep warteauftraege` verifizieren. Ist er gesetzt, gilt die Vorab-Erlaubnis aus Abschnitt 8.
+
+11. **Die IBKR-Brücke ist nie gegen eine echte TWS gelaufen** und auf dem Rechner des Nutzers derzeit **nicht lauffähig**: `ib_async` verlangt Python 3.10+, das `trading-env` steht auf 3.9.6 (Abschnitt 4.4). Vor einer Inbetriebnahme ist also zweierlei nötig — eine Python-Version ab 3.10 und ein Durchlauf der gestaffelten Anleitung in `broker/README_IBKR.md` mit laufender TWS. Bis dahin ist die Brücke gemergter, geprüfter, aber **unerprobter** Code. Die Binance-Brücke ist davon nicht betroffen und läuft produktiv.
+
+12. **Die Warteaufträge und die Broker-Brücken sind im Dauerbetrieb ungeprüft.** Beide sind vollständig gegen Attrappen getestet; was keine Attrappe zeigt, ist das Verhalten über Wochen — ein dauerhaft scheiternder Warteauftrag bleibt stehen (Absicht, fällt aber nur auf, wenn man hinsieht), und ein Binance-Testnet-Konto wird periodisch zurückgesetzt, wonach Schlüssel und Bestände neu zu erzeugen sind.
 
 ---
 
 ## 10. STARTPUNKT FÜR DIE WEITERE ARBEIT
 
 ### 1. Wo wir aktuell stehen
-**Neun** Bots sind aufgebaut, validiert und laufen automatisiert per Cronjob im Paper-Trading-Modus (Abschnitt 2). **Vier** Claude-Agenten sind produktiv im Einsatz, dazu das Quartals-Review-System. Zwei rein lesende Beobachtungsebenen laufen: der Telegram-Bot (`/status`, `/positions`, `/pnl` plus Push-Nachrichten bei neuem Trade, Stop-Loss und ausgebliebenem Cronjob-Lauf) und das Web-Dashboard als PWA auf dem iPhone.
+**Neun** Bots sind aufgebaut, validiert und laufen automatisiert per Cronjob im Paper-Trading-Modus (Abschnitt 2). **Vier** Claude-Agenten sind produktiv im Einsatz, dazu das Quartals-Review-System. Zwei Beobachtungsebenen laufen: der Telegram-Bot (`/status`, `/positions`, `/pnl` plus Push-Nachrichten bei neuem Trade, Stop-Loss und ausgebliebenem Cronjob-Lauf) und das Web-Dashboard als PWA auf dem iPhone.
+
+**Was sich seit der vorigen Fassung grundlegend geändert hat:** das Dashboard ist **nicht mehr rein lesend**. Es kann Positionen aller neun Bots manuell schliessen und bei geschlossener Börse Warteaufträge anlegen, die ein Cronjob später **ohne erneute Rückfrage** ausführt (Abschnitt 4.3). Dazu senden zwei **Broker-Brücken** Orders an das Binance-Testnet bzw. ein IBKR-Paper-Konto (Abschnitt 4.4) — der erste Schreibzugriff des Projekts auf eine Börse, wenn auch ohne echtes Geld. Der Telegram-Bot bleibt rein lesend.
 
 Backtest- und Live-Konfiguration sind bei allen neun Bots **synchron** (Abschnitt 4.2). Die täglichen Bot-E-Mails sind abgeschaltet (PR #36); die wöchentliche Portfolio-Mail mit Agent 4 läuft weiter.
 
@@ -539,9 +680,21 @@ Am 2026-09-08/09 lief eine ungewöhnlich lange Reihe von Änderungen, alle als e
 | Datenqualität | #33, #43 | APH-Kurslücke, `shared/data_quality.py` |
 | Studien ohne Code-Änderung | #18–#25, #29, #49, #54–#57 | HRP-Portfolio, Trend-Overlay, Order-Sensitivität, VBC-Regimefilter u. a. |
 
+**Am 2026-09-10/11 folgte eine zweite Reihe (#62 bis #73)**, die den Charakter des Projekts verändert hat — vom rein beobachtenden zum teilweise handelnden System:
+
+| Thema | PRs | Ergebnis |
+|---|---|---|
+| Manuelles Schliessen im Dashboard | #62, #64–#67 | gemergt und aktiv, alle neun Bots; gewichteter Gesamt-PnL im Crash-Dialog |
+| Broker-Brücke Binance-Testnet | #68 | produktiv, Cronjob alle 4 h |
+| Warteaufträge für Aktien-Positionen | #69, #71 | Börsenkalender, zeitversetzte Ausführung; Cronjob-Status offen (Abschnitt 9, Punkt 10) |
+| Broker-Brücke IBKR-Paper | #70 | gemergt, nie gegen echte TWS gelaufen, auf Python 3.9 nicht lauffähig |
+| `caffeinate` als launchd-Dienst | #72 | Lehre aus dem Schlaf-Vorfall vom 11.09.2026 (Abschnitt 4.5) |
+| Positionsanzahl je Bot + Notbremse zu Beginn | #73 | dreistufige Notbremse, Rückgabewert begründet (Abschnitt 8) |
+| Protokoll-Aktualisierung | #63 | die vorige Fassung dieses Dokuments |
+
 **Der SSH-Fernzugriff über Tailscale ist eingerichtet und getestet** — der frühere offene Punkt ist damit erledigt. Zusätzlich ist das Dashboard über den Browser erreichbar, was denselben Zweck für den Alltag besser erfüllt als eine SSH-Sitzung.
 
-**Offen und bewusst nicht gemergt:** PR #61 und #62 (manuelles Schliessen einer Position, siehe Abschnitt 9 Punkt 7).
+**Nicht gemergt:** PR #61 (Telegram-Befehl `/schliessen`), am 2026-09-10 ohne Merge geschlossen. Der Dashboard-Weg hat ihn abgelöst; die Kernfunktion `notifications/manual_close.py` stammt aber aus diesem PR und ist in Betrieb.
 
 ### 3. Welche Aufgaben noch offen sind
 Alle Punkte aus Abschnitt 9. Keine davon ist blockierend — die Bots laufen.
@@ -549,10 +702,12 @@ Alle Punkte aus Abschnitt 9. Keine davon ist blockierend — die Bots laufen.
 ### 4. Was als Nächstes konkret getan werden sollte
 Keine feste Reihenfolge vom Nutzer vorgegeben. Sinnvolle Kandidaten, nach Aufwand sortiert:
 
-1. **`crontab -l` prüfen** (Abschnitt 9, Punkt 2) — eine Minute, klärt eine seit Monaten offene Unsicherheit.
-2. **PR #61/#62 durchtesten und entscheiden** — die gestaffelten Testanleitungen liegen in den jeweiligen Branches (`notifications/TESTANLEITUNG_SCHLIESSEN.md` bzw. `dashboard/TESTANLEITUNG_SCHLIESSEN.md`); Schritte 0–3 sind gefahrlos.
-3. **Positionslimit des Elliott-Aktien-Bots empirisch prüfen** (Abschnitt 9, Punkt 1) — die Methodik dafür existiert beim T3-Bot bereits.
-4. **Die strategische Frage zum Elliott-Aktien-Bot beantworten** (Abschnitt 9, Punkt 4). Braucht eine Entscheidung des Nutzers, keine Rechnung.
+1. **`crontab -l` prüfen** (Abschnitt 9, Punkte 2 und 10) — eine Minute, klärt zwei offene Unsicherheiten auf einmal: die Quartals-Reviews und den Warteauftrags-Cronjob. Für den zweiten ist die Antwort besonders wichtig, weil davon abhängt, ob zeitversetzte Schreibvorgänge überhaupt stattfinden.
+2. **Den `caffeinate`-Dienst einrichten**, falls noch nicht geschehen (`system/README_CAFFEINATE.md`) — fünf Minuten, und die Lehre aus dem Vorfall vom 11.09.2026 ist gezogen. `pmset -g assertions` zeigt danach, ob er wirkt.
+3. **Das Dashboard einmal auf dem iPhone durchspielen** (Abschnitt 9, Punkt 8) — die schreibenden Dialoge sind nie auf dem Gerät geprüft worden, auf dem sie im Ernstfall bedient werden.
+4. **Positionslimit des Elliott-Aktien-Bots empirisch prüfen** (Abschnitt 9, Punkt 1) — die Methodik dafür existiert beim T3-Bot bereits.
+5. **Entscheiden, ob die IBKR-Brücke in Betrieb gehen soll** (Abschnitt 9, Punkt 11). Braucht zuerst Python 3.10+ im `trading-env` — das ist ein eigener, nicht ganz kleiner Schritt, der alle neun Bots betrifft.
+6. **Die strategische Frage zum Elliott-Aktien-Bot beantworten** (Abschnitt 9, Punkt 4). Braucht eine Entscheidung des Nutzers, keine Rechnung.
 
 ### 5. Informationen, die für die Fortsetzung unbedingt im Kontext bleiben müssen
 - **Nutzer-Kenntnisstand**: Grundlegend terminal-erfahren, aber wiederholt Schwierigkeiten mit: mehrzeiligem Copy-Paste (Zeilen rutschen zusammen), vim-Bedienung (nano wird bevorzugt), Verwechslung von Downloads-Ordnerpfaden (durch viele ZIP-Downloads sind nummerierte Duplikate wie `strategies-2` bis `strategies-12` entstanden — bei Dateiabgleichen IMMER mit `find`/`grep` verifizieren, nicht blind auf `cp`-Erfolg vertrauen)
@@ -562,5 +717,7 @@ Keine feste Reihenfolge vom Nutzer vorgegeben. Sinnvolle Kandidaten, nach Aufwan
 - **Alle neun `live_params.py`-Inhalte** exakt wie in Abschnitt 3 dokumentiert — diese sind der aktuelle "Wahrheitsstand" der Live-Konfiguration. Im Zweifel gilt die Datei, nicht dieses Dokument
 - **Cronjob-Zeitplan** wie in Abschnitt 6.4 (Quartals-Reviews) und der Bot-Tabelle (Abschnitt 2) dokumentiert
 - **Methodik-Prinzipien aus Abschnitt 7** sollten bei jeder neuen Analyse/Optimierung konsequent angewendet werden — das ist der etablierte Qualitätsstandard dieses Projekts. Besonders Punkt 10 (Kausalität) und Punkt 12 (eine grüne Prüfung muss auch rot werden können) sind teuer erlernt
+- **`broker/` sendet echte Orders an echte Gegenstellen.** `--echt` wird **nie** ohne ausdrückliche Zustimmung des Nutzers aufgerufen; der Trockenlauf ist der Standard. Notbremse: `touch broker/STOP` bzw. `broker/STOP_IBKR` (Abschnitt 4.4)
+- **Das Dashboard schreibt.** Wer es anfasst, fasst einen Schreibpfad in die Live-Datenbanken an — und mit den Warteaufträgen einen, der zeitversetzt und ohne erneute Rückfrage wirkt (Abschnitt 4.3)
 - **Arbeitsweise**: neuer Branch je Aufgabe, eigener Pull Request, **nie selbst mergen**. Untersuchungen unter `research/` fassen keinen Bot-Code an
 - Terminal-Befehle immer **einzeln, mit Bestätigung zwischen den Schritten** anbieten, nicht mehrere Befehle auf einmal zum Copy-Paste geben (hat wiederholt zu Fehlern geführt)
