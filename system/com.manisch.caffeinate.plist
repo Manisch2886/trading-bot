@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+launchd-Vorlage, die den Mac dauerhaft wachhaelt (caffeinate).
+
+WARUM: Die neun Bots laufen per Cron. Schlaeft der Mac, laeuft kein
+Cronjob - und Cron holt Verpasstes NIE nach. Am 11.09.2026 ging nach
+einem macOS-Update das von Hand gestartete caffeinate verloren; der Mac
+schlief von ca. 08:50 bis 12:06 und in dieser Zeit fielen der 12:05-Lauf
+der Binance-Bruecke sowie mehrere stuendliche elliott_wave-Laeufe
+ersatzlos aus. Als Dienst ueberlebt caffeinate Neustart und geschlossenes
+Terminalfenster. Begruendung der Flags und die Grenzen des Ganzen stehen
+in system/README_CAFFEINATE.md.
+
+FLAGS (bewusst einzeln, nicht zu "-ims" zusammengefasst):
+    -i  verhindert System-Idle-Sleep
+    -m  verhindert Festplatten-Sleep
+    -s  verhindert Sleep bei Netzbetrieb
+Bewusst NICHT gesetzt: -d (haelt das Display dauerhaft wach) und -u
+(schaltet das Display aktiv ein). Beides ist im Dauerbetrieb unnoetiger
+Stromverbrauch und Displayverschleiss - fuer die Cronjobs bringt es
+nichts.
+
+VOR DEM ERSTEN LADEN PRUEFEN (siehe system/README_CAFFEINATE.md):
+1. Der Projekt-Pfad in den beiden Log-Zeilen unten stimmt mit dem
+   tatsaechlichen Speicherort ueberein (hier: /Users/jaquelineloffler/trading-bot).
+2. Der Log-Ordner existiert, sonst startet der Dienst nicht:
+       mkdir -p /Users/jaquelineloffler/trading-bot/logs/system
+3. Es laeuft kein von Hand gestartetes caffeinate mehr (sonst zwei
+   Prozesse parallel):
+       pgrep -fl caffeinate
+
+Installation:
+    cp system/com.manisch.caffeinate.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.manisch.caffeinate.plist
+
+Deinstallation/Stoppen:
+    launchctl unload ~/Library/LaunchAgents/com.manisch.caffeinate.plist
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.manisch.caffeinate</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/caffeinate</string>
+        <string>-i</string>
+        <string>-m</string>
+        <string>-s</string>
+    </array>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/jaquelineloffler/trading-bot/logs/system/caffeinate.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/jaquelineloffler/trading-bot/logs/system/caffeinate.err.log</string>
+</dict>
+</plist>
