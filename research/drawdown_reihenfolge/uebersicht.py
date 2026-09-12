@@ -74,7 +74,8 @@ def main():
             str(j["num_besteht_mindestfilter"]) + f" von {j['kombinationen']}",
             str(j["sieger"]["block"]),
             str(j["sieger"]["entry"]),
-            "nein" if j["urteil"]["sieger_identisch"] else "JA",
+            {None: "entfaellt", True: "nein", False: "JA"}[
+                j["urteil"]["sieger_identisch"]],
             f"{j['urteil'].get('block_sieger_stabil_pct')} %",
         ))
 

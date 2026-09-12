@@ -43,10 +43,16 @@ SEED = 20260912          # fest, damit ein Lauf reproduzierbar ist
 
 def rangfolge(rows: list, key: str) -> list:
     """Wie multi_symbol_optimise: absteigend nach Score, nur
-    Kombinationen, die die Mindestfilter bestehen. Gleichstand bricht
-    stabil in Rasterreihenfolge - der Bot benutzt dieselbe stabile
-    Vorgabe von pandas.sort_values fuer diesen Fall nicht, deshalb
-    weisen wir Gleichstaende unten eigens aus."""
+    Kombinationen, die die Mindestfilter bestehen.
+
+    ZUM GLEICHSTAND: hier wird STABIL sortiert, ein Gleichstand bleibt
+    also in Rasterreihenfolge stehen. Der Bot benutzt
+    pandas.sort_values mit der Vorgabe kind="quicksort", die nicht
+    stabil ist - bei genau gleichem Score kann er also eine andere
+    Kombination nach vorne nehmen. Das ist nicht theoretisch: bei
+    rsi2_mean_reversion liegen im In-Sample-Fenster zwei Kombinationen
+    bei exakt 0,033 (siehe BERICHT.md, Abschnitt 4.3). Gegengeprueft
+    wurde dort gegen den echten Bot-Lauf."""
     gueltig = [r for r in rows if r["besteht_mindestfilter"] and r.get(key) is not None]
     return sorted(gueltig, key=lambda r: -r[key])
 
@@ -183,7 +189,14 @@ def main():
     # ---------------- Kernfrage: kippt der Sieger? ------------------
     sieger_block = ergebnis["sieger"]["block"]
     sieger_entry = ergebnis["sieger"]["entry"]
-    ergebnis["urteil"]["sieger_identisch"] = (sieger_block == sieger_entry)
+    # Ohne Sieger gibt es keine Kernfrage. Das ist kein Randfall: im
+    # eigenen Raster von elliott_wave besteht auf kausal sauberer
+    # Grundlage KEINE der 36 Kombinationen die Mindestfilter des Bots.
+    # Dann darf hier nicht "selbe Kombination" stehen - das waere eine
+    # gruene Antwort auf eine Frage, die nicht gestellt werden kann.
+    ergebnis["urteil"]["sieger_identisch"] = (
+        None if sieger_block is None or sieger_entry is None
+        else sieger_block == sieger_entry)
 
     # Vorsprung des Siegers auf den Zweiten - ein knapper Vorsprung
     # heisst etwas anderes als ein klarer.
@@ -237,7 +250,12 @@ def main():
     print(f"\nSieger nach Block-Reihenfolge (Bot-Mass): {sieger_block}")
     print(f"Sieger nach entry_time (chronologisch):   {sieger_entry}")
     print(f"Sieger nach exit_time (realisiert):       {ergebnis['sieger']['exit']}")
-    print(f"-> Kernfrage: {'SELBE Kombination' if ergebnis['urteil']['sieger_identisch'] else 'ANDERE Kombination'}")
+    if ergebnis["urteil"]["sieger_identisch"] is None:
+        print("-> Kernfrage stellt sich nicht: KEINE Kombination dieses Rasters "
+              "besteht die Mindestfilter des Bots")
+    else:
+        print(f"-> Kernfrage: "
+              f"{'SELBE Kombination' if ergebnis['urteil']['sieger_identisch'] else 'ANDERE Kombination'}")
     if "block_sieger_stabil_pct" in ergebnis["urteil"]:
         print(f"Block-Mass gegen seine eigene Willkuer: Sieger in "
               f"{ergebnis['urteil']['block_sieger_stabil_pct']} % von {n_perm} "

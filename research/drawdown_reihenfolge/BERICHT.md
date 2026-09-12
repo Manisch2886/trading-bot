@@ -36,10 +36,10 @@ Bei **fünf** Bots ändert sich nichts: `rsi2_crypto`, `rsi2_mean_reversion`,
 letzterer aus einem Grund, den niemand beabsichtigt hat (Abschnitt 2.3).
 
 **Der Befund ist kein Rauschen.** Der chronologische Drawdown liegt bei
-11 von 13 gemessenen Bot-Fenstern **außerhalb** der Spanne, die 200
-zufällige Vertauschungen der Symbol-Blockreihenfolge erzeugen — der
-Unterschied ist also größer als die Willkür, die im Bot-Maß selbst
-steckt. Umgekehrt ist das Bot-Maß gegen seine eigene Willkür oft nicht
+**13 von 15** gerechneten Bot-Fenstern **außerhalb** der Spanne, die 200
+zufällige Vertauschungen der Symbol-Blockreihenfolge erzeugen (über alle
+177 zulässigen Kombinationen: 140 von 177) — der Unterschied ist also
+größer als die Willkür, die im Bot-Maß selbst steckt. Umgekehrt ist das Bot-Maß gegen seine eigene Willkür oft nicht
 stabil: bei `elliott_wave_stocks` gewinnt in nur **17,5 %** von 200
 Symbol-Reihenfolgen dieselbe Kombination, bei `turtle_soup_stocks` in
 30,5 %, bei `volatility_breakout` in 40,0 %. In den übrigen
@@ -64,12 +64,14 @@ gemessen (Abschnitt 6):
 | `volatility_breakout` | −0,200 | **0,800** |
 | `volatility_breakout_crypto` | 0,400 | **1,000** |
 | `elliott_wave` | 0,871 | **0,983** |
-| `elliott_wave_stocks` | 0,707 | 0,706 |
+| `elliott_wave_stocks` | 0,265 | **0,645** |
 
-Die Blockreihenfolge steht bei zwei Bots in **umgekehrtem** Verhältnis
-zum echten Kapital-Drawdown: wer sie minimiert, wählt dort systematisch
-den schlechteren Kapitalverlauf. Empfehlung samt Gegenargument und Preis
-in Abschnitt 6.
+Die Blockreihenfolge ordnet bei **drei** Bots sogar **umgekehrt** zum
+echten Kapital-Drawdown: wer sie dort minimiert, wählt systematisch den
+schlechteren Kapitalverlauf. Sie liegt bei keinem Bot näher als die
+chronologische — nur bei `elliott_wave_stocks` auf dem weiteren Raster
+von PR #28 sind beide gleich (0,707 gegen 0,706). Empfehlung samt
+Gegenargument und Preis in Abschnitt 6.
 
 ### Woher die Zahlen kommen
 
@@ -96,8 +98,10 @@ Verluste wirklich im Konto landen).
 
 ### Pflicht-Gegenchecks
 
-`python3 test_drawdown.py <bot>` — **18/18 Prüfungen** bei allen
-geprüften Bots. Enthalten sind fünf **Gegenproben** (Projekt-Prinzip 12:
+`python3 test_drawdown.py <bot>` — **alle Prüfungen bestanden bei allen
+neun Bots** (18/18 bei den sechs Prototypen und bei `t3_supertrend`,
+17/17 bei den beiden Elliott-Bots, deren In-Sample-Fenster nicht
+ableitbar ist). Enthalten sind fünf **Gegenproben** (Projekt-Prinzip 12:
 eine grüne Prüfung ist erst etwas wert, wenn belegt ist, dass sie auch
 rot werden kann):
 
@@ -427,9 +431,13 @@ immer das Gesamtfenster entschieden hat: das Gesamtfenster (wie
 | `turtle_soup_stocks` / In-Sample | 12 von 12 | Donchian 10 / kein Stop | Donchian 10 / Stop 5 % | ja | 44,0 % |
 | `volatility_breakout` / gesamt | 4 von 4 | Stop 8 % | Stop 8 % | **nein** | 40,0 % |
 | `volatility_breakout` / In-Sample | 4 von 4 | Stop 8 % | Stop 8 % | nein | 39,5 % |
+| `elliott_wave` / gesamt (eigenes Raster) | **0 von 36** | — | — | entfällt | — |
 
 Fett steht die Zeile, die die Parameterwahl des Bots dokumentiert
-getroffen hat. Die Zeile „`t3_supertrend` / heutiger Code" ist in
+getroffen hat. Für `elliott_wave` ist das keine Zeile dieser Tabelle,
+sondern die Kandidatenliste aus PR #28 (Abschnitt 4.4) — sein eigenes
+Raster enthält auf kausal sauberer Grundlage keine einzige zulässige
+Kombination (Abschnitt 4.5). Die Zeile „`t3_supertrend` / heutiger Code" ist in
 Klammern, weil die Blockreihenfolge dort nichts mehr ist, was der Bot
 rechnet — siehe 2.3.
 
@@ -465,18 +473,20 @@ Hier zeigt sich der Mechanismus besonders deutlich: auf der
 Blockreihenfolge liegen die beiden Drawdowns praktisch gleich (−163,7
 gegen −160,7), chronologisch dagegen 530 Prozentpunkte auseinander. Der
 5 %-Stop begrenzt genau das, was die Blockreihenfolge wegmittelt — das
-gleichzeitige Verlieren vieler Positionen. Der Kapital-Drawdown bestätigt
-das unabhängig (Abschnitt 6): −17,89 % mit Stop gegen −23,35 % ohne.
+gleichzeitige Verlieren vieler Positionen. Die Kapitalsimulation des Bots
+bestätigt das unabhängig (Abschnitt 6): mit 5 %-Stop −27,13 % Drawdown
+bei +189,94 % Rendite (Calmar **7,00**), ohne Stop −29,27 % bei +162,18 %
+(Calmar 5,54).
 
 **`elliott_wave_stocks`** — hier verbessert sich die Live-Kombination.
 
 | Kombination | Trades | Ø PnL | DD Block | Score Block | DD chrono | Score chrono |
 |---|---|---|---|---|---|---|
-| dev 4 % / Stop 8 % / kein Ziel | 738 | 5,79 % | −94,41 | **1,660** (Rang 1) | −623,30 | 0,251 (Rang 9) |
+| dev 4 % / Stop 8 % / kein Ziel | 738 | 5,77 % | −94,41 | **1,660** (Rang 1) | −623,30 | 0,251 (Rang 10) |
 | dev 5 % / Stop 2 % / kein Ziel | 510 | 3,48 % | −57,50 | 1,367 (Rang 5) | −167,85 | **0,468** (Rang 1) |
 | dev 5 % / Stop 3 % / kein Ziel (live) | 510 | 4,80 % | −82,50 | 1,314 (Rang 6) | −259,86 | 0,417 (Rang **2**) |
 
-Der Block-Sieger stürzt auf Rang 9, die Live-Kombination steigt von Rang
+Der Block-Sieger stürzt auf Rang 10, die Live-Kombination steigt von Rang
 6 auf Rang 2. Für diesen Bot spricht der Wechsel des Maßes also **für**
 die heutige Einstellung, nicht gegen sie. Und er ist der Bot mit der
 unzuverlässigsten Block-Rangfolge überhaupt: in nur 17,5 % von 200
@@ -499,6 +509,19 @@ Symbol-Reihenfolgen gewinnt dieselbe Kombination.
   Maßen. Die Live-Wahl bleibt. Nebenbei: unter dem chronologischen Maß
   wählt auch das Gesamtfenster RSI 5, die beiden Stufen wären dann
   erstmals einig.
+
+  **Wie knapp diese Wahl war, gehört dazu.** Im In-Sample-Fenster
+  stehen unter dem Block-Maß RSI 5 und RSI 10 bei **exakt demselben
+  Score, 0,033**. Welche der beiden „gewinnt", entscheidet dort nur die
+  Zeilenreihenfolge des Rasters — `pandas.sort_values` sortiert mit der
+  Vorgabe `kind="quicksort"`, also nicht stabil. Nachgeprüft am echten
+  Bot-Lauf (`multi_symbol_walk_forward.run_multi_optimisation_windowed`):
+  er liefert RSI 5 / kein Stop mit 3674 Trades, Win Rate 63,8 %, Score
+  0,033 — bitgenau die Zahlen des Prototyp-Berichts, und mit dem
+  Gleichstand darunter. Unter dem chronologischen Maß gewinnt RSI 5
+  dagegen **eindeutig**: 0,011 gegen 0,006, also 83 % Vorsprung. Für
+  diesen Bot ändert der Wechsel des Maßes die Wahl nicht — er macht sie
+  belastbar.
 * **`volatility_breakout`**: Stop 8 % unter beiden Maßen, in beiden
   Fenstern. Allerdings **knapp**: chronologisch nur 2,8 % vor „kein
   Stop" (0,111 gegen 0,108), gegenüber 9,1 % unter dem Block-Maß. Der
@@ -557,7 +580,31 @@ Gesamtfenster-Sieger des Block-Maßes fällt von Rang 1 auf **Rang 43 von
 
 ### 4.5 Das eigene Raster des Krypto-Elliott-Bots
 
-ELLIOTT_WAVE_EIGENES_RASTER
+Der Vollständigkeit halber wurde auch das **eigene** Raster dieses Bots
+gerechnet (`DEVIATION_RANGE = [2, 3, 4, 5]`, `STOP_LOSS_RANGE = [2, 3, 4]`,
+`TAKE_PROFIT_FIB_RANGE = [0.236, 0.382, 0.5]`, 36 Kombinationen, 18
+Symbole, 45 Minuten Rechenzeit). Das Ergebnis ist ein eigener Befund:
+
+**Keine einzige der 36 Kombinationen besteht die Mindestfilter des
+Bots.** Alle scheitern an `MIN_AVG_RETURN_PCT = 2.0` — der Ø-Gewinn je
+Trade liegt durchgehend im Minus (Beispiele: dev 2 % / Stop 2 % /
+Fib 0,236: 2057 Trades, Score −0,022; dev 3 % / Stop 4 % / Fib 0,5: 1160
+Trades, Score −0,027). Das Raster **kann** also gar keinen Sieger
+liefern, und damit stellt sich die Reihenfolge-Frage darin nicht.
+
+Das ist keine Auffälligkeit dieser Untersuchung, sondern der bekannte
+Befund von PR #26/#28 in seiner reinsten Form: auf kausal sauberer
+Grundlage ist der Bereich, in dem das alte Raster gesucht hat, insgesamt
+verlustbringend — genau deshalb musste PR #28 den Suchraum öffnen
+(dev bis 10 %, Stop bis 12 %). Für die Kernfrage dieses Bots zählt
+deshalb allein Abschnitt 4.4.
+
+Die Ergebnisdatei hält das ausdrücklich fest
+(`results/elliott_wave_ergebnis.json`: `num_besteht_mindestfilter: 0`,
+`urteil.sieger_identisch: null`), und `analyse.py` gibt in diesem Fall
+„Kernfrage stellt sich nicht" aus statt „selbe Kombination" — eine
+grüne Antwort auf eine Frage, die nicht gestellt werden kann, wäre
+schlimmer als keine.
 
 ---
 
@@ -595,8 +642,8 @@ Beides je Kombination, fester Startwert 20260912.
 Zwei Ergebnisse, und sie zeigen in dieselbe Richtung:
 
 **Die Rest-Willkür des chronologischen Maßes ist klein** — 0 bis 29
-Prozentpunkte, gegenüber Unterschieden zwischen den Maßen von 60 bis
-1 970 Prozentpunkten. Die chronologische Zahl ist als Zahl also scharf.
+Prozentpunkte, gegenüber Unterschieden zwischen den Maßen von 58 bis
+1 972 Prozentpunkten. Die chronologische Zahl ist als Zahl also scharf.
 
 **Die Willkür des Block-Maßes ist groß und verschluckt den Unterschied
 nicht.** Ihre Spanne beträgt 83 bis 238 Prozentpunkte — in derselben
@@ -605,6 +652,12 @@ liegt bei **fünf von sieben** Bots trotzdem **außerhalb** dieser Spanne.
 Selbst die günstigste Symbol-Reihenfolge kommt dort nicht an den
 chronologischen Wert heran. Bei den beiden Ausnahmen (`rsi2_crypto`,
 `t3_supertrend` vor Regimefilter) kippt der Sieger ohnehin nicht.
+
+Nimmt man alle gerechneten Fenster und alle zulässigen Kombinationen
+dazu, ändert sich das Bild nicht: über **15** Bot-Fenster liegt der
+chronologische Wert des Block-Siegers 13 Mal außerhalb, und über alle
+**177** Kombinationen, die irgendwo die Mindestfilter bestehen, 140 Mal
+(79 %).
 
 Die härtere Prüfung ist die dritte Spalte der Tabelle in 4.1: **Wie oft
 gewinnt unter 200 Symbol-Reihenfolgen dieselbe Kombination?**
@@ -682,11 +735,16 @@ Rangfolgen:
 | `volatility_breakout` | 4 | −184 .. −113 | −449 .. −373 | **−27,4 .. −14,9** | −0,200 | 0,800 | Stop 3 % = **keines von beiden** |
 | `volatility_breakout_crypto` | 4 | −187 .. −106 | −469 .. −168 | **−34,0 .. −14,8** | 0,400 | **1,000** | Stop 5 % = beide Maße |
 | `elliott_wave` | 32 | −224 .. −47 | −390 .. −73 | **−32,8 .. −7,2** | 0,871 | **0,983** | dev 10 / Stop 8 / kein Ziel = beide Maße |
-| `elliott_wave_stocks` | 116 | −245 .. −53 | −1 269 .. −99 | **−38,3 .. −9,2** | 0,707 | 0,706 | ELLIOTT_STOCKS_KAPITAL_SIEGER |
+| `elliott_wave_stocks` | 17 | −159 .. −58 | −926 .. −168 | **−28,8 .. −15,5** | 0,265 | **0,645** | dev 2 % / Stop 5 % / kein Ziel = **keines von beiden** |
 
-(Die beiden Elliott-Zeilen stammen aus den in PR #28 gespeicherten
-Rasterdateien, die die Kapitalkennzahlen je Kombination schon enthalten;
-die übrigen sechs sind hier gerechnet. Bei
+(Sieben Zeilen sind hier gerechnet, je auf dem **eigenen Raster** des
+Bots. Die Zeile `elliott_wave` stammt aus der in PR #28 gespeicherten
+Rasterdatei, die die Kapitalkennzahlen je Kombination schon enthält —
+das eigene Raster dieses Bots liefert keine einzige zulässige
+Kombination, siehe 4.5. Auf demselben weiteren Raster gerechnet, ergibt
+`elliott_wave_stocks` über 116 Kombinationen 0,707 gegen 0,706 statt
+0,265 gegen 0,645; der Sieger nach Kapital-Calmar ist dort derselbe
+(dev 2 % / Stop 5 % / kein Ziel, Calmar 26,15). Bei
 `volatility_breakout`/`-_crypto` beruht die Rangkorrelation auf **vier**
 Punkten und ist entsprechend wenig belastbar.)
 
@@ -703,10 +761,33 @@ Drei Dinge stehen darin:
    systematisch den schlechteren Kapitalverlauf.
 3. **Aber er ist nicht die Wahrheit.** Bei `turtle_soup_crypto` stimmt
    der Kapital-Calmar mit dem **Block**-Sieger überein, nicht mit dem
-   chronologischen; bei `volatility_breakout` mit keinem von beiden
-   (Stop 3 %, den beide Maße auf Rang 3–4 setzen); bei
+   chronologischen; bei `volatility_breakout` mit keinem von beiden; bei
    `elliott_wave_stocks` sind die beiden Korrelationen praktisch gleich
    (0,707 gegen 0,706).
+
+Die beiden Gegenbeispiele in Zahlen, weil sie das Gewicht dieses
+Vorbehalts tragen:
+
+| `turtle_soup_crypto`, Donchian 10 | DD Block | DD chrono | **Kapital-DD** | Kapital-Rendite | **Kapital-Calmar** |
+|---|---|---|---|---|---|
+| Stop **structural** (live, Block-Sieger) | −164,66 | −629,00 | **−35,40 %** | +159,27 % | **4,50** |
+| **kein Stop** (chrono-Sieger) | −249,89 | −690,20 | −47,48 % | +99,89 % | 2,10 |
+
+| `volatility_breakout` | DD Block | DD chrono | **Kapital-DD** | Kapital-Rendite | **Kapital-Calmar** |
+|---|---|---|---|---|---|
+| **Stop 3 %** (beide Maße: Rang 3–4) | −184,12 | −373,39 | **−14,86 %** | +220,23 % | **14,82** |
+| Stop 5 % | −113,21 | −441,64 | −20,64 % | +211,32 % | 10,24 |
+| Stop 8 % (live, beide Maße Rang 1) | −115,78 | −423,56 | −24,07 % | +180,66 % | 7,51 |
+| kein Stop | −141,04 | −448,87 | −27,38 % | +148,66 % | 5,43 |
+
+Bei `turtle_soup_crypto` würde ein Wechsel auf den chronologischen
+Drawdown also von der kapitalseitig **besseren** auf die schlechtere
+Kombination führen. Und bei `volatility_breakout` ordnet der
+Kapital-Drawdown die vier Stops **monoton** (3 % am besten, „kein Stop"
+am schlechtesten), während beide Rastermaße Stop 8 % vorn sehen und
+Stop 3 % hinten — dort zeigt der Vorfilter in die Gegenrichtung der
+Kennzahl, nach der dieses Projekt sonst entscheidet. Das ist kein
+Reihenfolge-Befund mehr, sondern ein eigener (Abschnitt 9, Punkt 6).
 
 ### Empfehlung
 

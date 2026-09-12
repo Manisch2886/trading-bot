@@ -1,0 +1,35 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "elliott_wave",
+  "symbole": 18,
+  "kombinationen": 36,
+  "permutationen": 200,
+  "seed": 20260912,
+  "mindestfilter": {
+    "MIN_TRADES": 30,
+    "MIN_SYMBOLS_CONTRIBUTING": 5,
+    "MIN_AVG_RETURN_PCT": 2.0
+  },
+  "num_besteht_mindestfilter": 0,
+  "nan_pnl_trades_gesamt": 0,
+  "rangfolgen": {
+    "bot": [],
+    "block": [],
+    "entry": [],
+    "exit": []
+  },
+  "sieger": {
+    "bot": null,
+    "block": null,
+    "entry": null,
+    "exit": null
+  },
+  "urteil": {
+    "sieger_identisch": true,
+    "vorsprung_block_pct": null,
+    "vorsprung_entry_pct": null,
+    "vorsprung_exit_pct": null
+  },
+  "rangwechsel": [],
+  "streuung": []
+}
