@@ -465,6 +465,29 @@ Der Dienst ruft `/usr/bin/caffeinate -i -m -s` (Idle-Sleep, Platten-Sleep, Sleep
 
 Das Repo enthält nur die Vorlage; das Kopieren nach `~/Library/LaunchAgents/` führt der Nutzer selbst aus. `python3 system/test_caffeinate_plist.py` prüft die Datei (gültiges XML, erwartete Schlüssel, korrekte Flags, kein `-d`/`-u`) und läuft auch ohne macOS.
 
+### 4.6 Log-Rotation (PR #79)
+
+Mehrere Logdateien unter `logs/` wuchsen unbegrenzt. Das Problem war nicht der Platz, sondern die **Lesbarkeit**: in einer Datei, die zu neun Zehnteln aus wiederholten Routinemeldungen besteht, geht eine echte Fehlermeldung unter — und genau danach wurde beim Vorfall vom 11.09.2026 gegriffen.
+
+`system/log_rotation.py` rotiert nach **Grösse** (Schwelle 1 MB), behält **5 Stände** und läuft per Cron oder von Hand. Kein Zustand, keine Datenbank: die Entscheidung fällt allein anhand der aktuellen Dateigrösse, der Lauf ist beliebig oft wiederholbar. Gesucht wird nach `logs/**/*.log` — gesucht statt aufgelistet, damit kein neuer Bot vergessen wird; alles, was nicht auf `.log` endet, bleibt damit automatisch aussen vor (Datenbanken, `state.json`, `.env`).
+
+**Kopieren und leeren, nicht umbenennen.** Dashboard, Telegram-Bot und `caffeinate` halten ihre Logdatei dauerhaft offen. Ein `mv` nimmt das offene Dateihandle mit: der Dienst schreibt weiter in die umbenannte Datei, die neue bleibt für immer leer — und es fällt erst beim nächsten Fehler auf, wenn man in der falschen Datei sucht. Stattdessen wird kopiert und die Datei anschliessend geleert (`truncate`); sie behält ihren **Inode**, jedes offene Handle zeigt weiter auf dieselbe, nun leere Datei. Voraussetzung ist `O_APPEND`, und das ist bei allen Schreibern dieses Projekts nicht Annahme, sondern Funktionsweise: Cron schreibt mit `>>`, launchd öffnet anhängend, `logging.FileHandler` benutzt `mode="a"`.
+
+**Die Restlücke ist benannt und beziffert.** Zwischen dem letzten Lesevorgang und dem Leeren kann eine Zeile verloren gehen — die bekannte Eigenschaft jedes Kopieren-und-Leeren-Verfahrens, ohne Mitwirkung der schreibenden Prozesse nicht auflösbar. Gemessen: bei 200 Zeilen/s **null** von 6.092 Zeilen über 60 Rotationen, bei 5.000 Zeilen/s höchstens **eine** Zeile je 10 Rotationen (~0,1 je Rotation). In der ersten Fassung stand der `fsync` *nach* dem letzten Lesevorgang und kostete knapp **eine Zeile pro Rotation** — jetzt liegt alles Teure davor, und der Selbsttest sichert die Reihenfolge über einen Zähler und ein künstlich verlangsamtes `fsync` deterministisch ab.
+
+**Zwei Abweichungen von der Standardbehandlung, beide begründet:**
+
+| Datei | Behandlung | Grund |
+|---|---|---|
+| `logs/broker/testnet_spiegel.log`, `logs/broker/ibkr_paper_spiegel.log` | **20 Stände** statt 5 | Dort stehen Order-IDs, Ausführungspreise, Gebühren und der Verlauf fehlgeschlagener Versuche. Tragfähig ist die Rotation nur, weil das **Endergebnis jeder Order zusätzlich in der Broker-Datenbank** steht (`spiegelungen`, Fehlversuche in `versuche`) — das Protokoll ist die ausführliche Fassung, nicht die einzige. |
+| `logs/notifications/telegram_bot.log`, `logs/notifications/manuelle_eingriffe.log` | **ausgenommen** | Sie rotieren sich selbst über einen `RotatingFileHandler` (2 MB × 3 bzw. 1 MB × 5) und sind damit bereits nach oben begrenzt. Ein zweiter Rotator würde zwei konkurrierende Namensschemata für dieselbe Datei einführen. Die Zahlen werden nicht doppelt geführt: der Selbsttest liest sie **per AST aus den echten Quelldateien** und vergleicht sie. |
+
+Archive heissen `<name>.log.<Zeitmarke>` statt `.1`, `.2`, `.3`. Damit entfällt das Umbenennen einer ganzen Kette bei jeder Rotation — jedes Umbenennen wäre eine weitere Stelle, an der ein Lauf abbrechen und einen Stand überschreiben kann —, die Sortierung ist lexikalisch wie chronologisch, und der Name endet nicht auf `.log`, wird also nie selbst zum Kandidaten.
+
+**Gegen `newsyslog` entschieden**, das macOS mitbringt: es braucht `sudo` und eine Konfigurationsdatei unter `/etc/newsyslog.d/` — dieselbe Abwägung wie bei `caffeinate` (Abschnitt 4.5), hier mit mehr Gewicht, weil eine Rotation *löscht*. Die Konfiguration läge zudem ausserhalb des Repos, wäre also nicht versioniert und nicht testbar, und für den entscheidenden Fall hat `newsyslog` keine bessere Antwort: sein Standardverfahren ist Umbenennen, und für das Neuöffnen bräuchte es eine PID-Datei und ein Signal, die hier niemand liefert.
+
+Die **Cron-Zeile steht als Vorschlag im README und ist nicht eingetragen** (`30 3 * * *`). Einzelheiten: `system/README_LOG_ROTATION.md`, Testauftrag: `system/TESTAUFTRAG_LOG_ROTATION.md`, Selbsttests: `python3 system/test_log_rotation.py`.
+
 ---
 
 ## 5. Datei-Inventar pro Strategie (Kernskripte)
@@ -658,6 +681,8 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 12. **Die Bots protokollieren ihre Läufe nicht mit Zeitstempel.** Nach einem Ausfall ist deshalb nicht belegbar, welche Läufe tatsächlich stattgefunden haben — und genau das braucht man, um einen Eintrag in `docs/DATENLUECKEN.md` zu belegen. Ein einheitliches Lauf-Protokoll (eine Zeile je Start und Ende, mit Zeitstempel) wäre die Voraussetzung dafür. **Nicht umgesetzt, als Aufgabe vorgemerkt.**
 
     Der Punkt ist beim ersten Registereintrag aufgeschlagen und dort belegt: von den drei ursprünglich offenen Fragen zum 11.09.2026 liessen sich mit `crontab -l` zwei klären (die täglichen Krypto-Bots lagen nachts, also ausserhalb; Bot und Brücke stehen in getrennten Cron-Einträgen), aber die Zahl der ausgefallenen `elliott_wave`-Läufe bleibt „drei bis vier". **Neu hinzugekommen ist dabei eine Frage:** `t3_supertrend` läuft laut `crontab -l` um `0 */4 * * *`, hat also einen Lauf um **12:00** — mitten im Schlaffenster (ca. 08:50–12:06). Ob der stattgefunden hat, ist aus demselben Grund offen. Einzelheiten im Register.
+
+14. **Der Cronjob der Log-Rotation ist nicht eingetragen** — wie Punkt 2 und 10. Die Zeile (`30 3 * * *`) steht als Vorschlag in `system/README_LOG_ROTATION.md`. Unkritisch, weil `system/log_rotation.py` nach **Grösse** entscheidet und kein Intervall braucht: von Hand aufgerufen tut es genau dasselbe. **Erschwerend:** die Crontab des Nutzers liess sich am 12.09.2026 nicht ändern (`crontab -` scheitert mit `Operation not permitted`, macOS-Berechtigung nach einem Update zurückgesetzt) — das betrifft auch die offenen Einträge aus Punkt 2, 10 und den Vorschlag aus PR #78 und sollte zuerst behoben werden.
 
 13. **Die Warteaufträge und die Broker-Brücken sind im Dauerbetrieb ungeprüft.** Beide sind vollständig gegen Attrappen getestet; was keine Attrappe zeigt, ist das Verhalten über Wochen — ein dauerhaft scheiternder Warteauftrag bleibt stehen (Absicht, fällt aber nur auf, wenn man hinsieht), und ein Binance-Testnet-Konto wird periodisch zurückgesetzt, wonach Schlüssel und Bestände neu zu erzeugen sind.
 
