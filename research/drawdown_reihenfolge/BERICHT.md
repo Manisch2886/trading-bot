@@ -640,7 +640,10 @@ Die Ergebnisdatei hält das ausdrücklich fest
 `urteil.sieger_identisch: null`), und `analyse.py` gibt in diesem Fall
 „Kernfrage stellt sich nicht" aus statt „selbe Kombination" — eine
 grüne Antwort auf eine Frage, die nicht gestellt werden kann, wäre
-schlimmer als keine.
+schlimmer als keine. `kapitalkurve.py` meldet für diesen Bot
+entsprechend „Zu wenige Kombinationen fuer eine Rangkorrelation" und
+schreibt keine Datei; die Kapitalzeile in Abschnitt 6 stammt deshalb
+aus den Rasterdateien von PR #28.
 
 ---
 
