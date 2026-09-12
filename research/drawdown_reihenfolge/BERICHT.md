@@ -134,6 +134,24 @@ Ziel ergibt sich **−82,50 %** (Blockreihenfolge) gegen **−259,86 %**
 (chronologisch) — genau die −82,5 % gegen −259,9 % aus
 `research/elliott_wave_params/BERICHT.md`, Abschnitt 6.
 
+Dieselbe Probe noch einmal, für die Live-Kombination des Krypto-Elliott-
+Bots (dev 10 % / Stop 6 % / Fib 0,618). Sie liegt ausserhalb seines
+eigenen Rasters, `evaluate_combination_multi` nimmt aber beliebige Werte
+— und PR #28 hat sie gespeichert. Diese Untersuchung, unabhängig
+geschrieben, trifft **jede der sieben Zahlen**:
+
+| | hier gerechnet | `elliott_wave_grid_gesamt.csv` (PR #28) |
+|---|---|---|
+| Trades / Symbole | 130 / 18 | 130 / 18 |
+| Ø PnL | 4,19 % | 4,19 % |
+| Drawdown Blockreihenfolge | **−56,22** | **−56,22** |
+| Score darauf | **0,850** | **0,850** |
+| Drawdown chronologisch | **−93,50** | **−93,50** |
+| Score darauf | **0,511** | **0,511** |
+
+Zwei getrennt gebaute Nachbildungen, dieselben Zahlen bis auf die
+letzte Stelle — für beide Drawdown-Begriffe.
+
 ### Belastbarkeit
 
 * **Datenbasis** je Bot in Abschnitt 3. Zwischen 4 und 81 Kombinationen
@@ -196,10 +214,11 @@ gleicher Trade-Zahl werden ausschließlich über ihren Drawdown geordnet.
 Das ist der Grund, warum der Reihenfolge-Befund die Rangfolge überhaupt
 verschieben kann.
 
-Zähler und Nenner werden **gerundet, bevor** sie in die Formel gehen
-(`round(avg_return, 2)`, `round(max_drawdown, 2)`) — diese Untersuchung
-rundet genauso, weil nur diese Zahl die bisherige Parameterwahl getragen
-hat.
+Ø PnL und Drawdown werden **gerundet, bevor** sie in die Formel gehen
+(`round(avg_return, 2)`, `round(max_drawdown, 2)` in
+`evaluate_combination_multi`, und erst das Ergebnis-Dict geht in
+`calculate_robustness_score`) — diese Untersuchung rundet genauso, weil
+nur diese Zahl die bisherige Parameterwahl getragen hat.
 
 ### Wie der Drawdown entsteht
 
@@ -252,10 +271,12 @@ Dazu zwei Stellen außerhalb von `strategies/`:
 `optimise_elliott.py` und `optimise_trend.py` rechnen denselben Score mit
 demselben `cumsum`-Drawdown, aber auf **einem** Symbol. `einzelsymbol.py`
 prüft, ob die Trade-Liste eines Symbols, so wie die Bot-Funktion sie
-liefert, bereits nach `entry_time` steigt. Ergebnis über acht Bots:
+liefert, bereits nach `entry_time` steigt. Ergebnis über **alle neun
+Bots**, je auf deren Live-Kombination:
 
 | Bot | Symbole | davon `entry_time` bereits monoton |
 |---|---|---|
+| `elliott_wave` | 18 | 18 |
 | `t3_supertrend` | 18 | 18 |
 | `rsi2_crypto` | 18 | 18 |
 | `turtle_soup_crypto` | 20 | 20 |
@@ -374,20 +395,25 @@ Jeweils für den Sieger des Bot-Maßes auf dem Gesamtfenster. „Faktor" ist
 
 | Bot | Symbole | Trades | Drawdown Blockreihenfolge | chronologisch (`entry_time`) | realisiert (`exit_time`) | Faktor |
 |---|---|---|---|---|---|---|
-| `rsi2_crypto` | 18 | 439 | −57,89 | −115,75 | −124,89 | **2,0** |
 | `volatility_breakout_crypto` | 20 | 359 | −105,65 | −192,97 | −187,67 | **1,8** |
+| `rsi2_crypto` | 18 | 439 | −57,89 | −115,75 | −124,89 | **2,0** |
 | `t3_supertrend` (vor Regimefilter) | 18 | 428 | −120,91 | −272,82 | −273,74 | **2,3** |
+| `volatility_breakout` | 147 | 4 510 | −115,78 | −423,56 | −429,36 | **3,7** |
 | `turtle_soup_crypto` | 20 | 1 599 | −164,66 | −629,00 | −645,89 | **3,8** |
 | `elliott_wave_stocks` | 137 | 738 | −94,41 | −623,30 | −809,46 | **6,6** |
 | `rsi2_mean_reversion` | 147 | 10 342 | −129,53 | −1 200,43 | −1 214,59 | **9,3** |
 | `turtle_soup_stocks` | 147 | 12 069 | −163,70 | −2 135,83 | −2 135,83 | **13,1** |
-| `volatility_breakout` | 147 | 4 510 | −115,78 | −423,56 | −429,36 | **3,7** |
+
+Der Krypto-Elliott-Bot fehlt in dieser Tabelle: sein eigenes Raster
+liefert keine zulässige Kombination (Abschnitt 4.5). Für seine
+Live-Kombination aus dem weiteren Raster von PR #28 gilt −56,22 gegen
+−93,50, also Faktor **1,7** bei 18 Symbolen und nur 130 Trades.
 
 Der Faktor drei aus `research/elliott_wave_params/` ist **kein
 Ausreißer, sondern die Untergrenze**. Er fällt umso größer aus, je mehr
 Symbole parallel laufen und je mehr Trades zusammenkommen: bei den
-Krypto-Bots (18–20 Symbole) liegt er bei 1,8 bis 3,8, bei den
-Aktien-Bots (147 Symbole) bei 3,7 bis 13,1.
+Krypto-Bots (18–20 Symbole) liegt er bei 1,7 bis 3,8, bei den
+Aktien-Bots (137–147 Symbole) bei 3,7 bis 13,1.
 
 Der Mechanismus ist einfach. Hängt man Symbol für Symbol an, wechseln
 sich Gewinn- und Verlustphasen verschiedener Märkte ab und kürzen sich
@@ -559,6 +585,12 @@ genutzte Kombination (Stop 6 %) fällt aus den Top 5 heraus: sie steht
 chronologisch auf **Rang 6 von 37**. Sie wäre unter diesem Maß nicht
 Kandidat gewesen.
 
+(Die beiden ersten Plätze der rechten Spalte stehen bei **demselben**
+gerundeten Score 0,548 — Fib 0,382 mit Ø 2,18 % bei Drawdown −39,10,
+Fib 0,5 mit Ø 2,47 % bei −44,39. Auch das ist ein Gleichstand, den nur
+die Zeilenreihenfolge auflöst; für die Aussage hier ist er
+gleichgültig, weil beide denselben Stop von 2 % tragen.)
+
 Was daraus gefolgt wäre, sagt diese Untersuchung **nicht**. Die
 Bedingungen B1–B5 (insbesondere B3 „positiver Ø PnL in jeder
 Walk-Forward-Falte" und B4 „schlägt Buy-and-Hold im Calmar") hätten die
@@ -572,11 +604,15 @@ Auf dem **Gesamtfenster** und **Out-of-Sample** wechselt der Sieger
 dieses Bots dagegen nicht (dev 10 % / Stop 6 % / Fib 0,618 bzw. dev 10 %
 / Stop 8 % / kein Ziel, jeweils Rang 1 unter beiden Maßen).
 
-Für `elliott_wave_stocks` ist dieselbe Rechnung noch deutlicher: dort
-wechselt die In-Sample-Kandidatenliste von „dev 2–6 % / Stop 16 %"
-geschlossen auf „**dev 8 %** / Stop 2–16 %", und der
-Gesamtfenster-Sieger des Block-Maßes fällt von Rang 1 auf **Rang 43 von
-116**.
+Dieselbe Rechnung für `elliott_wave_stocks` auf jenem weiteren Raster
+fällt noch deutlicher aus: die In-Sample-Kandidatenliste wechselt von
+„dev 2–6 % / Stop 16 %" geschlossen auf „**dev 8 %** / Stop 2–16 %", und
+der Gesamtfenster-Sieger des Block-Maßes fällt von Rang 1 auf **Rang 43
+von 116**. Eine Folge für den Live-Betrieb hat das dort allerdings
+nicht: PR #28 hat die Parameter dieses Bots bewusst **nicht** getauscht
+(„ein Wechsel ohne Vorteil wäre reine Bewegung", Übergabeprotokoll
+Abschnitt 8). Seine Live-Wahl stammt weiter aus dem eigenen Raster —
+und dort kippt sie, siehe 4.2.
 
 ### 4.5 Das eigene Raster des Krypto-Elliott-Bots
 
@@ -703,7 +739,7 @@ Der Satz aus PR #28 gilt uneingeschränkt. Die Reihenfolge entsteht aus
   anderen Sieger;
 * **systematisch zu klein** — sie mittelt gerade das heraus, was die
   Kennzahl messen soll: das gleichzeitige Verlieren korrelierter
-  Positionen. Faktor 1,8 bis 13,1 (Abschnitt 3).
+  Positionen. Faktor 1,7 bis 13,1 (Abschnitt 3).
 
 Dazu kommt, dass sie sich nur zufällig noch so verhält: bei
 `t3_supertrend` hat eine Sortierzeile in `filter_trades_by_regime` das

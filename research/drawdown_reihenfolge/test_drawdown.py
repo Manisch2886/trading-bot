@@ -3,9 +3,10 @@ Selbsttests: rechnet diese Untersuchung wirklich den Bot nach?
 ====================================================================
 Aufruf:  python3 test_drawdown.py <bot> [--alle]
 
-Ohne `--alle` wird eine Stichprobe von Kombinationen geprueft (die
-Live-Kombination des Bots, sofern im Raster, plus die erste, die
-mittlere und die letzte); mit `--alle` jede Kombination des Rasters.
+Ohne `--alle` wird eine Stichprobe geprueft: die Live-Kombination des
+Bots (auch wenn sie ausserhalb seines Rasters liegt - siehe
+`stichprobe()`) plus die erste, die mittlere und die letzte
+Rasterkombination. Mit `--alle` jede Kombination des Rasters.
 
 Zu jeder Prueflinie gehoert eine GEGENPROBE (Projekt-Prinzip 12: eine
 gruene Pruefung ist erst etwas wert, wenn belegt ist, dass sie auch rot
@@ -49,10 +50,21 @@ LIVE = {
 
 
 def stichprobe(combos, bot):
+    """Die Live-Kombination (falls im Raster) plus erste, mittlere und
+    letzte Rasterkombination.
+
+    ZUSAETZLICH die Live-Kombination, wenn sie NICHT im Raster liegt:
+    `evaluate_combination_multi` nimmt beliebige Werte, und bei
+    `elliott_wave` ist das noetig, damit ueberhaupt eine ZAHL
+    verglichen wird. Sein eigenes Raster liefert auf kausal sauberer
+    Grundlage keine Kombination, die die Mindestfilter besteht - der Bot
+    gibt dort ueberall None zurueck, und ein None-gegen-None-Vergleich
+    ist genau die Art gruener Pruefung, die dieses Projekt schon einmal
+    teuer bezahlt hat (Protokoll-Prinzip 12)."""
     aus = []
     live = LIVE.get(bot)
-    if live in combos:
-        aus.append(live)
+    if live is not None:
+        aus.append(live)          # auch wenn sie ausserhalb des Rasters liegt
     for c in (combos[0], combos[len(combos) // 2], combos[-1]):
         if c not in aus:
             aus.append(c)
@@ -144,9 +156,17 @@ def main():
 
     # Gegenprobe zum Kernstueck: Bloecke absichtlich umgedreht -> die
     # Gleichheit muss brechen. Wenn nicht, prueft der Test nichts.
-    combo = pruef[0]
-    trades, n_sym = ad.collect(data, combo)
-    bot_res = ad.bot_eval(data, combo)
+    combo, trades, bot_res = pruef[0], None, None
+    for kandidat in pruef:
+        t, n = ad.collect(data, kandidat)
+        b = ad.bot_eval(data, kandidat)
+        if t is not None and b is not None:
+            combo, trades, bot_res, n_sym = kandidat, t, b, n
+            break
+    if trades is None or bot_res is None:
+        check("Es gibt ueberhaupt eine Kombination, die der Bot bewertet "
+              "(sonst vergleicht nichts eine Zahl)", False,
+              "der Bot gibt fuer jede gepruefte Kombination None zurueck")
     if trades is not None and bot_res is not None:
         # Eine vertauschte Blockreihenfolge muss die Gleichheit mit dem
         # Bot brechen - sonst prueft die Pruefung oben nichts. Gesucht
@@ -173,7 +193,10 @@ def main():
                   all(eigen[f] == bot_res[f] for f in FELDER))
 
     # ---- 4) die behauptete Struktur je Bot -------------------------
-    trades, n_sym = ad.collect(data, pruef[0])
+    # auf derselben Kombination wie die Gegenprobe oben - der Bot muss
+    # sie bewerten, sonst sagt die Struktur-Aussage nichts.
+    if trades is None:
+        trades, n_sym = ad.collect(data, pruef[0])
     k = engine.kennzahlen(trades, n_sym, mo.calculate_robustness_score)
     if bot == "t3_supertrend":
         check("t3_supertrend: das Bot-Mass IST das chronologische "

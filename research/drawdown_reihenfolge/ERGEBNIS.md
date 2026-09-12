@@ -99,6 +99,10 @@ Sieger des Bot-Maßes je Bot, Gesamtfenster:
 | `rsi2_mean_reversion` | 147 | −129,53 | −1 200,43 | 9,3 |
 | `turtle_soup_stocks` | 147 | −163,70 | −2 135,83 | **13,1** |
 
+Der Krypto-Elliott-Bot fehlt: sein eigenes Raster liefert keine
+zulässige Kombination. Für seine Live-Kombination aus PR #28 gilt
+−56,22 gegen −93,50, also Faktor 1,7.
+
 Der Faktor wächst mit der Zahl parallel laufender Symbole. Grund:
 chronologisch fallen die Verlustphasen **aller** Symbole zusammen — und
 genau dieses gleichzeitige Verlieren korrelierter Positionen ist das
@@ -188,7 +192,11 @@ einmal erzeugt hat.
 * **Der Auslöser dieser Untersuchung ist unabhängig bestätigt**:
   `elliott_wave_stocks` bei dev 5 % / Stop 3 % ergibt −82,50 % gegen
   −259,86 % — genau die −82,5 gegen −259,9 aus
-  `research/elliott_wave_params/BERICHT.md`.
+  `research/elliott_wave_params/BERICHT.md`. Und für die
+  Live-Kombination des Krypto-Elliott-Bots treffen alle sieben dort
+  gespeicherten Zahlen bis auf die letzte Stelle: 130 Trades, Ø 4,19 %,
+  Drawdown −56,22 (Score 0,850) und chronologisch −93,50 (Score 0,511).
+  Zwei getrennt gebaute Nachbildungen, dasselbe Ergebnis.
 * **Die APH-Kurslücke berührt diese Zahlen nicht**, gemessen statt
   angenommen: `cumsum` überspringt NaN, der Drawdown bleibt unberührt.
   32 betroffene Trades bei `elliott_wave_stocks`, 0 Abweichung in 64

@@ -13,8 +13,11 @@ wie die Bot-Funktion sie liefert, bereits nach `entry_time` steigt.
 Wenn ja, ist die Reihenfolge dort keine Willkuer, sondern die Zeit -
 und die Einzelsymbol-Optimierer sind vom Befund nicht betroffen.
 
-Geprueft wird auf der Live-Kombination des Bots bzw., wenn die nicht im
-Raster liegt, auf der ersten Rasterkombination.
+Geprueft wird auf der Live-Kombination des Bots. Sie muss dafuer nicht
+im Raster liegen - `get_trades_for_symbol` nimmt beliebige Werte. Bei
+`elliott_wave` ist das noetig: seine Live-Kombination (Zigzag 10 %)
+stammt aus dem weiteren Raster von PR #28, und ein Zigzag von 2 % waere
+hier nur langsamer, nicht aussagekraeftiger.
 """
 
 import sys
@@ -32,8 +35,7 @@ def main():
 
     ad = adapters.build(bot, mo)
     data = mo.load_all_symbol_data()
-    combos = ad.combinations()
-    combo = LIVE[bot] if LIVE.get(bot) in combos else combos[0]
+    combo = LIVE.get(bot) or ad.combinations()[0]
 
     trades, n_sym = ad.collect(data, combo)
     print(f"\n=== {bot}: {ad.label(combo)} ===")
