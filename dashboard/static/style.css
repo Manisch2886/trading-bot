@@ -776,3 +776,40 @@ button.knopf.warteauftrag:hover { background: rgba(106, 169, 224, .12); }
    den Schliessen-Knopf einzufaerben hiesse, die risikosenkende Aktion so
    aussehen zu lassen wie die riskante. */
 td .stornieren-knopf { padding: 5px 10px; font-size: 12px; }
+
+/* --- Boersenstatus -----------------------------------------------------
+   Die Statuszeile sagt VOR dem Klick, in welcher der beiden Welten man sich
+   befindet: Boerse offen -> es wird sofort geschlossen, Boerse zu -> es wird
+   vorgemerkt. Sie steht deshalb weit oben auf beiden Seiten und ist
+   sichtbarer Text, kein title-Tooltip - am iPhone gibt es kein Hover.
+
+   Drei Zustaende, drei Farben, und der mittlere ist der wichtigste: "zu"
+   heisst nicht "kaputt", sondern "wird vorgemerkt". Deshalb dieselbe Farbe
+   wie die Warteauftrags-Marke und nicht Rot. */
+.boersenstatus {
+  display: block;
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 4px solid var(--rand, #3a4250);
+  background: rgba(255, 255, 255, .03);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.boersenstatus.offen      { border-left-color: #199e70; }
+.boersenstatus.zu         { border-left-color: #c98500; }
+.boersenstatus.unbekannt  { border-left-color: #d95926; }
+
+/* Der Zusatz "verkuerzter Handelstag" ist keine Nebenbemerkung: an so einem
+   Tag schliesst die Boerse drei Stunden frueher, und wer damit nicht rechnet,
+   plant mit dem falschen Zeitfenster. */
+.boersenstatus-marke {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(201, 133, 0, .18);
+  color: #e0a96a;
+  font-size: 12px;
+  white-space: nowrap;
+}

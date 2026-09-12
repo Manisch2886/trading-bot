@@ -23,6 +23,11 @@
   <div id="fehler"></div>
   <div id="kurshinweis"></div>
 
+  <!-- Börsenstatus. Steht ganz oben, weil er entscheidet, was ein Klick auf
+       IRGENDEINEN Schließen-Knopf dieser Seite auslöst: sofort schließen oder
+       vormerken. Gefüllt aus app.js (boersenstatusZeile), leer bei Krypto. -->
+  <div id="boersenstatus"></div>
+
   <div class="karten" id="karten"></div>
 
   <h2>Verlauf (kumulierte Trade-Ergebnisse)</h2>
@@ -172,7 +177,22 @@ function botZeile(bot) {
   </tr>`;
 }
 
+/* Die Börsenlage der letzten Übersichts-Antwort. Sie läuft im Datentakt mit
+   (60 s), damit Statuszeile UND Knopfbeschriftung beim Übergang geschlossen →
+   offen von selbst umspringen, ohne Neuladen der Seite. */
+let letzteBoerse = null;
+
+function zeichneBoersenstatus() {
+  /* Diese Anzeige darf nichts blockieren: fehlt das Feld (älteres Backend,
+     ausgefallene Kalenderabfrage), bleibt die Zeile leer und alles andere
+     funktioniert unverändert weiter. */
+  document.getElementById("boersenstatus").innerHTML =
+    boersenstatusZeile(letzteBoerse);
+}
+
 function zeichneUebersicht(daten) {
+  letzteBoerse = daten.boerse || null;
+  zeichneBoersenstatus();
   const s = daten.summe;
   document.getElementById("karten").innerHTML = `
     <div class="karte"><div class="beschriftung">Bots</div><div class="wert">${s.anzahl_bots}</div></div>
@@ -200,12 +220,16 @@ function zeichneUebersicht(daten) {
   if (!bereich.hidden) {
     const botsMitOffenen = daten.bots.filter(b => (b.offene_positionen || 0) > 0);
     document.getElementById("crash-knopf").textContent =
-      `⚠ ALLE ${offenGesamt} Positionen in ${botsMitOffenen.length} Bots schließen`;
-    document.getElementById("crash-hinweis").textContent =
+      crashKnopfText(daten.bots, offenGesamt, botsMitOffenen.length, letzteBoerse);
+    /* Der Zusatz kommt aus app.js und ist derselbe Satz wie auf der
+       Bot-Seite. innerHTML, weil er Hervorhebungen enthalten kann. */
+    const zusatz = warteauftragHinweisKurz(letzteBoerse);
+    document.getElementById("crash-hinweis").innerHTML =
       "Schließt jede offene Position aller freigeschalteten Bots - jede "
       + "einzeln und jede zu ihrem eigenen aktuellen Kurs. Gedacht für den "
       + "Crash-Fall. Drei Bestätigungsschritte nötig, darunter eine "
-      + "Texteingabe. Im Dashboard nicht rückgängig zu machen.";
+      + "Texteingabe. Im Dashboard nicht rückgängig zu machen."
+      + (zusatz ? ` <strong>${zusatz}</strong>` : "");
   }
 }
 

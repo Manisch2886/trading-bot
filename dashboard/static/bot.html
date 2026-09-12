@@ -23,6 +23,10 @@
   <div id="kurshinweis"></div>
   <div id="erfolg" role="status" aria-live="polite"></div>
 
+  <!-- Börsenstatus. Nur für Aktien-Bots gefüllt; bei Krypto liefert
+       boersenstatusZeile() bewusst "" - dort gibt es keine Handelszeiten. -->
+  <div id="boersenstatus"></div>
+
   <div class="karten" id="karten"></div>
 
   <h2>Offene Positionen</h2>
@@ -214,9 +218,18 @@ function spaltenzahl() {
   return schliessbarAktiv() ? 6 : 5;
 }
 
+/* Die Entscheidung "schließen oder vormerken" fällt an EINER Stelle, in
+   app.js (wirdVorgemerkt) - dieselbe, die auch der Crash-Knopf der
+   Übersichtsseite benutzt. Hier steht nur noch, woher die Lage kommt. */
 function boerseGeschlossen() {
-  return !!(schliessInfo && schliessInfo.boerse
-            && schliessInfo.boerse.warteauftrag_noetig);
+  return wirdVorgemerkt(schliessInfo && schliessInfo.boerse);
+}
+
+function zeichneBoersenstatus() {
+  /* Darf nichts blockieren: ohne Lage bleibt die Zeile leer, und der
+     Notfallweg funktioniert unverändert. */
+  document.getElementById("boersenstatus").innerHTML =
+    boersenstatusZeile(schliessInfo && schliessInfo.boerse);
 }
 
 function positionsZeile(p) {
@@ -231,12 +244,14 @@ function positionsZeile(p) {
      abgelehnt. */
   const wartet = p.warteauftrag_offen === true;
   const beschriftung = boerseGeschlossen() ? "Vormerken" : "Schließen";
+  const titel = boerseGeschlossen() ? "Zur Börsenöffnung vormerken" : "Schließen";
   const knopf = p.id === null || p.id === undefined
     ? '<span class="gedaempft">–</span>'
     : (wartet
         ? '<span class="gedaempft">Warteauftrag steht</span>'
         : `<button type="button" class="knopf gefahr schliessen-knopf"
-               data-id="${p.id}" data-symbol="${p.symbol}">${beschriftung}</button>`);
+               data-id="${p.id}" data-symbol="${p.symbol}"
+               aria-label="${titel}">${beschriftung}</button>`);
   return `<tr>
     <td data-spalte="Symbol">${p.symbol}</td>
     <td data-spalte="Entry">${zahl(p.entry_preis)}</td>
@@ -299,11 +314,19 @@ function zeichnePositionen() {
   const offen = positionen.length;
   leiste.hidden = !schliessbarAktiv() || offen === 0;
   if (!leiste.hidden) {
-    document.getElementById("alle-schliessen").textContent =
-      `⚠ Notfall: alle ${offen} Positionen schließen`;
-    document.getElementById("notfall-hinweis").textContent =
-      "Schließt jede offene Position dieses Bots einzeln, jede zu ihrem "
-      + "eigenen aktuellen Kurs. Zwei Klicks nötig.";
+    /* Der Knopf sagt, was der Klick auslöst - nicht, was er im Normalfall
+       auslösen würde. Bei geschlossener Börse ist das Vormerken, und das
+       gehört an den Knopf und nicht erst in den Dialog. Dieselbe Quelle wie
+       beim Einzelknopf darüber und beim Crash-Knopf der Übersichtsseite. */
+    document.getElementById("alle-schliessen").textContent = boerseGeschlossen()
+      ? `⚠ Notfall: alle ${offen} Positionen zur Börsenöffnung vormerken`
+      : `⚠ Notfall: alle ${offen} Positionen schließen`;
+    document.getElementById("notfall-hinweis").textContent = boerseGeschlossen()
+      ? "Legt für jede offene Position dieses Bots einen Warteauftrag an. "
+        + "Ausgeführt wird bei der nächsten Öffnung, zum dann gültigen Kurs "
+        + "und ohne erneute Rückfrage. Zwei Klicks nötig."
+      : "Schließt jede offene Position dieses Bots einzeln, jede zu ihrem "
+        + "eigenen aktuellen Kurs. Zwei Klicks nötig.";
   }
 }
 
@@ -941,6 +964,10 @@ async function ladeMitKursen() {
 async function ladeSchliessInfo() {
   schliessInfo = await hole(
     `/api/bots/${encodeURIComponent(name)}/schliessbare-positionen`);
+  /* Statuszeile UND Knopfbeschriftungen hängen an derselben Antwort und
+     werden deshalb zusammen neu gezeichnet. Beim Übergang geschlossen →
+     offen springt damit beides um, ohne dass die Seite neu geladen wird. */
+  zeichneBoersenstatus();
   zeichnePositionen();
 }
 
