@@ -30,3 +30,10 @@ __pycache__/
 notifications/warteauftraege.json
 notifications/warteauftraege.json.lock
 notifications/warteauftraege.json.neu
+
+# Zwischenspeicher der Portfolio-Sicht des Dashboards (Laufzeitzustand:
+# beschreibt den Stand auf DIESEM Rechner, wird per Knopf/Cron neu gerechnet)
+results/portfolio_overview/dashboard_snapshot.json
+results/portfolio_overview/dashboard_snapshot.json.lock
+results/portfolio_overview/dashboard_snapshot.json.neu
+results/portfolio_overview/_dashboard_arbeit/

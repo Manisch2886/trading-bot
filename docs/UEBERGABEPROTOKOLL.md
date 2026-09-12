@@ -400,6 +400,25 @@ Zwei Eigenheiten, die viel Diagnosezeit gekostet haben und deshalb im Code ausf�
 
 Zugriffsschutz ist ein `DASHBOARD_ACCESS_TOKEN` aus `.env`, geprüft über `hmac.compare_digest`; der Server startet ohne Token gar nicht (fail closed) und bindet standardmässig nur an `127.0.0.1`.
 
+#### 4.3b Portfolio-Sicht im Dashboard (PR #80)
+
+Eigene Seite `/portfolio`, seit PR #80. Sie beantwortet die Frage, die die Übersichtsseite bewusst offenlässt: nicht „läuft Bot 7?", sondern „läuft das Portfolio?". Gerechnet wird mit `shared/portfolio_overview.py` — demselben Programm, das die Montags-Mail füllt; die Zahlen sind deshalb dieselben, und ein Selbsttest vergleicht sie Zahl für Zahl mit dessen Textausgabe.
+
+**Die Kennzeichnung der Datenquelle ist der Zweck, nicht das Beiwerk.** `portfolio_overview` benutzt die Live-Datenbank eines Bots erst ab `MIN_LIVE_CLOSED_TRADES = 10` geschlossenen Trades, darunter die Backtest-Kurve `results/<bot>/equity_curve.csv`. Stand 12.09.2026 liegen **alle neun Bots unter dieser Schwelle**. Die Seite zeigt deshalb je Bot eine Quellenmarke (`echte Trades (25)` / `Backtest (3 von 10)` / `keine Kurve`) und **zwei** Gruppenergebnisse statt einer Zahl: „Nur echte Trades" und „Alle Bots (teils Backtest)", jedes mit einem Satz, woraus es besteht. Eine Rendite ohne Herkunftsangabe gibt es dort nicht.
+
+**Zwei Befunde aus dieser Arbeit, die über die Anzeige hinausreichen:**
+
+1. **Das Wort „live" ist im Projekt doppelt belegt.** `portfolio_overview` nennt seine erste Gruppe „LIVE-PORTFOLIO (nur aktivierte Bots)" und meint damit „hat eine `live_params.py`". Alle neun Bots haben eine — die „LIVE-PORTFOLIO"-Zahl der **Montags-Mail stammt heute zu 100 % aus Backtest-Kurven**, obwohl sie „live" heisst. Das Dashboard vermeidet das Wort deshalb und spricht von „echten Trades". Die Mail selbst ist unverändert (sie wurde nicht angefasst) — wer sie liest, sollte das wissen.
+2. **Ein Bot, dessen Kurve sich nicht laden lässt, verschwindet lautlos.** `load_all_curves()` fängt Lesefehler ab, gibt eine `print`-Warnung aus und lässt den Bot aus dem Ergebnis fallen; die Summe läuft dann über weniger Bots. Im Terminal sieht man die Warnung, in einer Oberfläche wäre es ein stiller Verlust. Die Portfolio-Sicht vergleicht deshalb `discover_bots()` mit `load_all_curves()` und führt jeden fehlenden Bot ausdrücklich als „keine Kurve" samt Hinweis, dass er in **keiner** Summe enthalten ist.
+
+**Eigene Seite statt Block auf der Übersicht**, und zwar aus einem architektonischen Grund: auf der Übersicht liegt der Crash-Knopf, und die Rechnung startet je Bot einen Subprozess (gemessen 2,9 s bei sieben Bots, hochgerechnet ~3,8 s bei neun). Eine eigene Seite macht es unmöglich, dass diese Rechnung je in den Ladepfad des Notfallwegs gerät.
+
+**Das Dashboard rechnet nie von selbst.** `GET /api/portfolio-sicht` liest ausschliesslich einen Zwischenspeicher; neu gerechnet wird per Knopf, per Skriptaufruf oder per Cronjob (Zeile im README, **nicht eingetragen**). Das Alter des Standes ist Teil der Anzeige. Der zweite Grund dafür ist kein Tempo-, sondern ein Richtigkeitsargument: `portfolio_overview` legt seine Zwischendateien unter einem **festen** Namen ab, zwei gleichzeitige Rechnungen (Dashboard und Montags-Mail) würden sich gegenseitig überschreiben. `portfolio_sicht.py` lenkt `RESULTS_DIR` deshalb für die Dauer der Rechnung auf einen eigenen Ordner um und serialisiert sich über eine Sperrdatei.
+
+Der neue `POST /api/portfolio-sicht/berechnen` ist der **zehnte** Nicht-GET-Endpunkt des Dashboards und steht in der Positivliste in `test_dashboard.py`. Er schreibt ausschliesslich den eigenen Zwischenspeicher — keine Bot-Datenbank; die Zahl der datenbankschreibenden Endpunkte bleibt bei **drei**.
+
+Einzelheiten: `dashboard/README.md`, Abschnitt „Portfolio-Sicht". Tests: `python3 dashboard/test_portfolio_sicht.py` (90 Prüfungen, davon 67 im Frontend über `node`).
+
 ### 4.4 Broker-Brücken: der erste Schreibzugriff auf eine Börse
 
 Unter `broker/` liegt der **einzige Code des Projekts, der Orders an eine externe Gegenstelle sendet**. Kein Bot tut das, kein Agent tut das. Es sind zwei voneinander unabhängige Brücken; gemeinsam ist ihnen nur der schreibgeschützte Leser `broker/bot_db.py`.
@@ -683,6 +702,10 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
     Der Punkt ist beim ersten Registereintrag aufgeschlagen und dort belegt: von den drei ursprünglich offenen Fragen zum 11.09.2026 liessen sich mit `crontab -l` zwei klären (die täglichen Krypto-Bots lagen nachts, also ausserhalb; Bot und Brücke stehen in getrennten Cron-Einträgen), aber die Zahl der ausgefallenen `elliott_wave`-Läufe bleibt „drei bis vier". **Neu hinzugekommen ist dabei eine Frage:** `t3_supertrend` läuft laut `crontab -l` um `0 */4 * * *`, hat also einen Lauf um **12:00** — mitten im Schlaffenster (ca. 08:50–12:06). Ob der stattgefunden hat, ist aus demselben Grund offen. Einzelheiten im Register.
 
 14. **Der Cronjob der Log-Rotation ist nicht eingetragen** — wie Punkt 2 und 10. Die Zeile (`30 3 * * *`) steht als Vorschlag in `system/README_LOG_ROTATION.md`. Unkritisch, weil `system/log_rotation.py` nach **Grösse** entscheidet und kein Intervall braucht: von Hand aufgerufen tut es genau dasselbe. **Erschwerend:** die Crontab des Nutzers liess sich am 12.09.2026 nicht ändern (`crontab -` scheitert mit `Operation not permitted`, macOS-Berechtigung nach einem Update zurückgesetzt) — das betrifft auch die offenen Einträge aus Punkt 2, 10 und den Vorschlag aus PR #78 und sollte zuerst behoben werden.
+
+15. **Die Montags-Mail nennt eine Backtest-Zahl „LIVE-PORTFOLIO".** Aufgefallen bei PR #80: `shared/portfolio_overview.py` gruppiert nach „hat eine `live_params.py`" und beschriftet diese Gruppe „LIVE-PORTFOLIO (nur aktivierte Bots)". Alle neun Bots haben eine `live_params.py`, und keiner erreicht bisher `MIN_LIVE_CLOSED_TRADES = 10` — die Zahl stammt damit **vollständig aus Backtest-Kurven**, obwohl sie „live" heisst. Die Quellenzeile je Bot weist das korrekt aus, die Gruppenüberschrift nicht. **Nicht geändert**, weil `portfolio_overview.py` laut Auftrag zu PR #80 nur gelesen werden durfte (daran hängt die Mail). Zu entscheiden: Überschrift schärfen (etwa „AKTIVIERTE BOTS") oder so lassen und im Protokoll belassen. Bis dahin gilt: wer die Montags-Mail liest, liest heute Backtest-Zahlen.
+
+16. **Der Cronjob der Portfolio-Sicht ist nicht eingetragen** — wie Punkt 2, 10 und 14. Zeile (`40 3 * * *`) in `dashboard/README.md`. Unkritisch: die Seite zeigt den letzten Stand samt Alter, und der Knopf rechnet neu. Hängt wie Punkt 14 am Festplattenvollzugriff fürs Terminal.
 
 13. **Die Warteaufträge und die Broker-Brücken sind im Dauerbetrieb ungeprüft.** Beide sind vollständig gegen Attrappen getestet; was keine Attrappe zeigt, ist das Verhalten über Wochen — ein dauerhaft scheiternder Warteauftrag bleibt stehen (Absicht, fällt aber nur auf, wenn man hinsieht), und ein Binance-Testnet-Konto wird periodisch zurückgesetzt, wonach Schlüssel und Bestände neu zu erzeugen sind.
 

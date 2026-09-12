@@ -622,8 +622,9 @@ def teste_frontend(basis):
 # Diese Liste ist der Kern des korrigierten Nachweises: bis PR #60 stand
 # hier "genau eine, POST /login". Mit dem Einzel-Schliessen wurden es vier,
 # mit dem Notfallweg (alle Positionen) sechs, mit dem globalen Crash-Weg
-# acht - davon fassen GENAU DREI eine Datenbank an. Kommt irgendwann eine
-# neunte dazu, faellt dieser Test auf - und genau das soll er.
+# acht, mit den Warteauftraegen neun und mit der Portfolio-Sicht zehn - davon
+# fassen GENAU DREI eine Datenbank an. Kommt irgendwann eine elfte dazu,
+# faellt dieser Test auf - und genau das soll er.
 ERLAUBTE_SCHREIB_ROUTEN = [
     ("POST", "/login"),                                          # setzt nur ein Cookie
     ("POST", "/api/bots/{name}/schliessen/vorbereiten"),          # nur Arbeitsspeicher
@@ -638,6 +639,16 @@ ERLAUBTE_SCHREIB_ROUTEN = [
     # in derselben Liste wie die beiden Arbeitsspeicher-Routen, nicht bei
     # den drei schreibenden.
     ("POST", "/api/warteauftraege/stornieren"),                   # nur Auftragsdatei
+    # Neu mit der Portfolio-Sicht: rechnet die Kapitalkurven durch und
+    # schreibt AUSSCHLIESSLICH den eigenen Zwischenspeicher
+    # (results/portfolio_overview/dashboard_snapshot.json). Keine
+    # Bot-Datenbank, keine Parameterdatei, kein Bot-Lauf.
+    #
+    # Warum ueberhaupt POST und nicht GET mit Parameter: die Route schreibt
+    # eine Datei. Sie als GET zu tarnen haette sie an genau diesem Nachweis
+    # vorbeigefuehrt - und dieser Nachweis ist der Grund, warum man dem
+    # Dashboard noch ansieht, was es anfasst.
+    ("POST", "/api/portfolio-sicht/berechnen"),                   # nur eigener Zwischenspeicher
 ]
 
 
@@ -649,7 +660,7 @@ def teste_nur_lesend(app, basis, pruefsummen_vorher, db_dateien):
         methoden = set(getattr(route, "methods", []) or [])
         for methode in methoden & {"POST", "PUT", "PATCH", "DELETE"}:
             schreibende.append((methode, getattr(route, "path", "?")))
-    check("Es gibt genau die neun erwarteten Nicht-GET-Routen",
+    check("Es gibt genau die zehn erwarteten Nicht-GET-Routen",
           sorted(schreibende) == sorted(ERLAUBTE_SCHREIB_ROUTEN), str(sorted(schreibende)))
     check("Davon fassen weiterhin genau DREI eine Datenbank an "
           "(die drei …/ausfuehren)",
