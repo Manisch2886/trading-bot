@@ -22,6 +22,7 @@ _SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "sha
 sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
+from kursdaten import entferne_unvollstaendige, Zaehler
 _P = get_strategy_paths(__file__)
 DATA_DIR = _P["DATA_DIR"]
 RESULTS_DIR = _P["RESULTS_DIR"]
@@ -53,10 +54,22 @@ def load_all_symbol_data() -> dict:
     entry_cutoff) zurueck - entry_cutoff filtert nur die generierten TRADES
     auf die letzten RECENT_YEARS_ONLY Jahre, nicht die Indikator-Basis."""
     data = {}
+    _luecken = Zaehler()
     for symbol in SYMBOLS:
         csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
         try:
             df = pd.read_csv(csv_path, parse_dates=["open_time"])
+
+            # Kerzen ohne Kurse sofort nach dem Einlesen streichen und zaehlen.
+            # Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+            # einem Zeitausstieg exit_price = NaN und damit pnl_pct = NaN. Das
+            # faellt nirgends auf: simulate_portfolio rechnet damit weiter und
+            # macht jede FOLGENDE Kapitalzeile unbrauchbar, avg_return
+            # uebergeht NaN, und win_rate zaehlt den Trade als Verlierer
+            # (NaN > 0 ist False). Siehe shared/kursdaten.py.
+            df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+                                                        melden=False)
+            _luecken.erfasse(symbol, _gestrichen)
         except FileNotFoundError:
             continue
         if df.empty:
@@ -72,6 +85,7 @@ def load_all_symbol_data() -> dict:
 
         df_ind = compute_indicators(df)
         data[symbol] = (df_ind, entry_cutoff)
+    _luecken.melde()
     return data
 
 
