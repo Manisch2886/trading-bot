@@ -1,0 +1,25 @@
+{
+  "bot": "turtle_soup_crypto",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 8,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 1599,
+  "trades_ausgefuehrt": 1414,
+  "trades_uebersprungen": 185,
+  "endkapital": 27759.42,
+  "rendite_pct": 177.59,
+  "max_drawdown_pct_bot": -32.4,
+  "erster_einstieg": "2021-10-12 00:00:00",
+  "letzter_ausstieg": "2026-08-28 00:00:00",
+  "symbole": 20,
+  "kennzeichnung_neutral": true,
+  "abgleich_results_csv": {
+    "datei": "results/turtle_soup_crypto/equity_curve.csv",
+    "vorhanden": true,
+    "zeilen_repo": 1414,
+    "zeilen_eigen": 1414,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "bot": "rsi2_mean_reversion",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.05,
+  "max_concurrent_positions": 20,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 5391,
+  "trades_ausgefuehrt": 4232,
+  "trades_uebersprungen": 1159,
+  "endkapital": 13675.2,
+  "rendite_pct": 36.75,
+  "max_drawdown_pct_bot": -21.05,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "symbole": 147,
+  "kennzeichnung_neutral": true,
+  "abgleich_results_csv": {
+    "datei": "results/rsi2_mean_reversion/equity_curve.csv",
+    "vorhanden": true,
+    "zeilen_repo": 2641,
+    "zeilen_eigen": 4232,
+    "identisch": false,
+    "abweichende_zeilen": null
+  }
+}

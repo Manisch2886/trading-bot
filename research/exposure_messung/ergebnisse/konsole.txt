@@ -1,0 +1,153 @@
+==============================================================================
+0. DIE URSPRUENGLICHE ZAHL - nachgerechnet aus den abgelegten Kurven
+==============================================================================
+  Fenster: 2021-09-14 bis 2026-06-27
+    elliott_wave             abgelegt    -0.23 %   heutige live_params   -10.17 %
+    t3_supertrend            abgelegt   -22.20 %   heutige live_params   -22.20 %
+    elliott_wave_stocks      abgelegt    -1.65 %   heutige live_params   -21.16 %
+    rsi2_mean_reversion      abgelegt   -12.72 %   heutige live_params   -11.73 %
+  kombiniert (25/25/25/25):  abgelegt    -1.43 %   heutige live_params    -9.41 %
+
+  Woher der Unterschied kommt - je ein Bot durch seine heutige Kurve ersetzt:
+    nur elliott_wave             getauscht:     -2.66 %
+    nur t3_supertrend            getauscht:     -1.43 %
+    nur elliott_wave_stocks      getauscht:     -4.93 %
+    nur rsi2_mean_reversion      getauscht:     -1.43 %
+
+==============================================================================
+ABGLEICH: abgelegte results-Kurve gegen heutige live_params.py
+==============================================================================
+                       bot  zeilen_abgelegt  zeilen_neu  identisch  allocation_pct  max_concurrent  rendite_neu_pct  max_dd_neu_pct
+              elliott_wave              144         130      False            0.10             NaN            67.77          -10.17
+             t3_supertrend              656         656       True            0.10             5.0           129.64          -22.20
+       elliott_wave_stocks              469         395      False            0.10             8.0           352.72          -22.44
+       rsi2_mean_reversion             2641        4232      False            0.05            20.0            36.75          -21.05
+               rsi2_crypto              392         392       True            0.10             8.0            28.37          -13.30
+        turtle_soup_crypto             1414        1414       True            0.10             8.0           177.59          -32.40
+        turtle_soup_stocks             1887        8915      False            0.02             NaN           145.59          -29.91
+       volatility_breakout             1236        1454      False            0.10            15.0           224.41          -23.97
+volatility_breakout_crypto              207         207       True            0.10             8.0            49.03          -16.29
+
+==============================================================================
+BUY-AND-HOLD-REFERENZ je Universum
+==============================================================================
+Datenqualitaet: insgesamt 1 unvollstaendige Kerze(n) in 1 Symbol(en) gestrichen - APH (1). Diese Kerzen gehen in KEINE Kennzahl ein.
+  aktien: 150 Symbole (0 ohne Datei), 16274 Handelstage 1962-01-03..2026-09-01
+  krypto: 24 Symbole (1 ohne Datei), 1825 Handelstage 2021-09-02..2026-08-31
+
+==============================================================================
+GRUPPE VIER_BOTS (4 Bots)
+==============================================================================
+  gemeinsames Fenster: 2021-09-22 bis 2026-08-20 (1794 Kalendertage)
+  Brutto-Exposure   Mittel  25.85 %   Median  25.50 %   p10  13.08 %   p90  38.72 %   max  61.84 %
+  Tage ohne jede Position: 0.00 %   Tage ueber 50 % Exposure: 1.56 %
+  Max Drawdown  am Gesamtkapital          -9.41 %
+                am investierten Kapital  -32.12 %
+                zu Marktpreisen          -10.12 %   (Naht-Median 0.3 Pp.)
+  zum Vergleich: mittlerer Einzel-Bot-DD -16.32 %, schlechtester -22.20 %
+  Korrelation der Tagesbewegungen zu Marktpreisen: Mittel +0.056 (min -0.005, max +0.142)
+    gegen Buy-and-Hold aktien: elliott_wave=+0.15, t3_supertrend=+0.04, elliott_wave_stocks=+0.46, rsi2_mean_reversion=+0.48
+    gegen Buy-and-Hold krypto: elliott_wave=+0.25, t3_supertrend=+0.24, elliott_wave_stocks=+0.17, rsi2_mean_reversion=+0.19
+  Exposure unter Stress:
+    Corona-Einbruch (Feb-Apr 2020)             keine Tage im Fenster
+    Gesamtjahr 2022                             23.10 %   (flach an 0.0 % der 365 Tage)
+    10 % schlechteste B&H-Tage (aktien)         26.97 %   (flach an 0.0 % der 124 Tage)
+    10 % schlechteste B&H-Tage (krypto)         25.44 %   (flach an 0.0 % der 180 Tage)
+
+  je Bot im Fenster dieser Gruppe:
+                bot anlageklasse  zeit_im_markt_pct  mittlere_exposure_pct  mittlere_positionen_wenn_offen  max_positionen  max_dd_im_fenster_pct                  dd_phase  dd_anteil_an_tagen_mit_allen_anderen_flach_pct  anteil_tage_alle_anderen_flach_pct
+       elliott_wave       krypto              22.80                   4.40                            1.93               7                 -10.17 2022-03-24 bis 2022-11-17                                            0.00                                0.00
+      t3_supertrend       krypto              55.57                  17.72                            3.19               8                 -22.20 2022-04-03 bis 2023-10-19                                            0.00                                0.00
+elliott_wave_stocks       aktien              95.21                  45.57                            4.88              11                 -21.16 2021-09-22 bis 2022-10-11                                            3.49                                2.17
+rsi2_mean_reversion       aktien              91.30                  39.70                            8.69              26                 -11.73 2021-11-29 bis 2022-06-28                                            0.00                                0.78
+
+==============================================================================
+GRUPPE NEUN_BOTS (9 Bots)
+==============================================================================
+  gemeinsames Fenster: 2022-03-17 bis 2026-08-20 (1618 Kalendertage)
+  Brutto-Exposure   Mittel  37.91 %   Median  38.03 %   p10  26.35 %   p90  48.59 %   max  68.46 %
+  Tage ohne jede Position: 0.00 %   Tage ueber 50 % Exposure: 7.05 %
+  Max Drawdown  am Gesamtkapital         -11.47 %
+                am investierten Kapital  -27.28 %
+                zu Marktpreisen          -13.80 %   (Naht-Median 0.3 Pp.)
+  zum Vergleich: mittlerer Einzel-Bot-DD -17.93 %, schlechtester -31.91 %
+  Korrelation der Tagesbewegungen zu Marktpreisen: Mittel +0.112 (min -0.015, max +0.475)
+    gegen Buy-and-Hold aktien: elliott_wave=+0.15, t3_supertrend=+0.04, elliott_wave_stocks=+0.46, rsi2_mean_reversion=+0.47, rsi2_crypto=+0.12, turtle_soup_crypto=+0.26, turtle_soup_stocks=+0.82, volatility_breakout=+0.49, volatility_breakout_crypto=+0.07
+    gegen Buy-and-Hold krypto: elliott_wave=+0.24, t3_supertrend=+0.24, elliott_wave_stocks=+0.17, rsi2_mean_reversion=+0.18, rsi2_crypto=+0.38, turtle_soup_crypto=+0.54, turtle_soup_stocks=+0.33, volatility_breakout=+0.21, volatility_breakout_crypto=+0.21
+  Exposure unter Stress:
+    Corona-Einbruch (Feb-Apr 2020)             keine Tage im Fenster
+    Gesamtjahr 2022                             31.09 %   (flach an 0.0 % der 290 Tage)
+    10 % schlechteste B&H-Tage (aktien)         38.08 %   (flach an 0.0 % der 112 Tage)
+    10 % schlechteste B&H-Tage (krypto)         38.45 %   (flach an 0.0 % der 162 Tage)
+
+  je Bot im Fenster dieser Gruppe:
+                       bot anlageklasse  zeit_im_markt_pct  mittlere_exposure_pct  mittlere_positionen_wenn_offen  max_positionen  max_dd_im_fenster_pct                  dd_phase  dd_anteil_an_tagen_mit_allen_anderen_flach_pct  anteil_tage_alle_anderen_flach_pct
+              elliott_wave       krypto              21.32                   3.79                            1.78               7                 -10.17 2022-03-24 bis 2022-11-17                                             0.0                                 0.0
+             t3_supertrend       krypto              56.49                  18.16                            3.22               8                 -22.20 2022-04-03 bis 2023-10-19                                             0.0                                 0.0
+       elliott_wave_stocks       aktien              95.43                  47.56                            5.10               9                 -16.23 2022-03-17 bis 2022-10-11                                             0.0                                 0.0
+       rsi2_mean_reversion       aktien              90.67                  39.25                            8.66              26                  -8.60 2023-08-01 bis 2023-10-04                                             0.0                                 0.0
+               rsi2_crypto       krypto              45.18                  12.18                            2.70               9                 -13.30 2024-03-16 bis 2024-10-04                                             0.0                                 0.0
+        turtle_soup_crypto       krypto              92.89                  48.24                            5.20              15                 -31.91 2024-12-10 bis 2025-04-09                                             0.0                                 0.0
+        turtle_soup_stocks       aktien             100.00                  79.51                           39.77              63                 -18.71 2022-03-30 bis 2022-10-12                                             0.0                                 0.0
+       volatility_breakout       aktien              99.44                  83.98                            8.47              14                 -23.97 2022-04-11 bis 2022-10-19                                             0.0                                 0.0
+volatility_breakout_crypto       krypto              34.18                  10.80                            3.15               9                 -16.29 2022-04-07 bis 2023-11-02                                             0.0                                 0.0
+
+==============================================================================
+GRUPPE VIER_AKTIEN_BOTS (4 Bots)
+==============================================================================
+  gemeinsames Fenster: 2016-10-28 bis 2026-09-01 (3596 Kalendertage)
+  Brutto-Exposure   Mittel  61.19 %   Median  61.38 %   p10  43.74 %   p90  78.89 %   max 100.21 %
+  Tage ohne jede Position: 0.00 %   Tage ueber 50 % Exposure: 79.84 %
+  Max Drawdown  am Gesamtkapital         -17.54 %
+                am investierten Kapital  -30.30 %
+                zu Marktpreisen          -19.07 %   (Naht-Median 0.3 Pp.)
+  zum Vergleich: mittlerer Einzel-Bot-DD -24.31 %, schlechtester -29.79 %
+  Korrelation der Tagesbewegungen zu Marktpreisen: Mittel +0.279 (min +0.157, max +0.438)
+    gegen Buy-and-Hold aktien: elliott_wave_stocks=+0.48, rsi2_mean_reversion=+0.44, turtle_soup_stocks=+0.83, volatility_breakout=+0.43
+    gegen Buy-and-Hold krypto: elliott_wave_stocks=+0.17, rsi2_mean_reversion=+0.20, turtle_soup_stocks=+0.33, volatility_breakout=+0.20
+  Exposure unter Stress:
+    Corona-Einbruch (Feb-Apr 2020)              36.17 %   (flach an 0.0 % der 90 Tage)
+    Gesamtjahr 2022                             58.58 %   (flach an 0.0 % der 365 Tage)
+    10 % schlechteste B&H-Tage (aktien)         61.00 %   (flach an 0.0 % der 248 Tage)
+    10 % schlechteste B&H-Tage (krypto)         64.65 %   (flach an 0.0 % der 183 Tage)
+
+  je Bot im Fenster dieser Gruppe:
+                bot anlageklasse  zeit_im_markt_pct  mittlere_exposure_pct  mittlere_positionen_wenn_offen  max_positionen  max_dd_im_fenster_pct                  dd_phase  dd_anteil_an_tagen_mit_allen_anderen_flach_pct  anteil_tage_alle_anderen_flach_pct
+elliott_wave_stocks       aktien              91.02                  40.52                            4.51              11                 -22.44 2021-07-16 bis 2022-10-11                                            0.00                                0.00
+rsi2_mean_reversion       aktien              89.10                  38.89                            8.73              26                 -21.05 2018-02-01 bis 2020-03-20                                            0.00                                0.00
+ turtle_soup_stocks       aktien             100.00                  75.70                           37.85              65                 -29.79 2020-02-19 bis 2020-03-27                                            6.48                                0.08
+volatility_breakout       aktien              96.97                  82.50                            8.54              14                 -23.97 2022-04-11 bis 2022-10-19                                            0.00                                0.00
+
+==============================================================================
+KONZENTRATION: gleichzeitig gehaltene Titel (Neuner-Buch)
+==============================================================================
+              bot_a                      bot_b  max_gleiche_symbole  tage_mit_ueberlappung  anteil_tage_pct  mittel_wenn_ueberlappung
+rsi2_mean_reversion         turtle_soup_stocks                   19                   1284            79.36                      4.71
+ turtle_soup_stocks        volatility_breakout                    9                   1181            72.99                      1.93
+        rsi2_crypto         turtle_soup_crypto                    7                    420            25.96                      1.84
+       elliott_wave         turtle_soup_crypto                    5                    143             8.84                      1.18
+elliott_wave_stocks         turtle_soup_stocks                    5                   1058            65.39                      1.83
+      t3_supertrend         turtle_soup_crypto                    5                    442            27.32                      1.54
+      t3_supertrend volatility_breakout_crypto                    5                    207            12.79                      1.85
+ turtle_soup_crypto volatility_breakout_crypto                    5                    186            11.50                      1.52
+       elliott_wave                rsi2_crypto                    4                     42             2.60                      1.31
+elliott_wave_stocks        rsi2_mean_reversion                    4                    201            12.42                      1.09
+rsi2_mean_reversion        volatility_breakout                    3                    315            19.47                      1.26
+elliott_wave_stocks        volatility_breakout                    3                    463            28.62                      1.11
+        rsi2_crypto volatility_breakout_crypto                    3                     36             2.22                      1.11
+       elliott_wave              t3_supertrend                    2                     74             4.57                      1.16
+      t3_supertrend                rsi2_crypto                    2                     25             1.55                      1.04
+       elliott_wave volatility_breakout_crypto                    1                      4             0.25                      1.00
+
+  Hoechste Zahl Bots auf demselben Symbol am selben Tag: 4
+  Anteil Tage mit mindestens einer Doppelhaltung: 98.39 %
+
+  Verteilung gleichzeitig offener Positionen (Neuner-Buch), Quantile:
+    10. Perzentil:  44 Positionen
+    25. Perzentil:  59 Positionen
+    50. Perzentil:  72 Positionen
+    75. Perzentil:  83 Positionen
+    90. Perzentil:  92 Positionen
+    99. Perzentil: 103 Positionen
+
+Geschrieben nach research/exposure_messung/ergebnisse/

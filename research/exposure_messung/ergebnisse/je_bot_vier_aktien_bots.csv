@@ -1,0 +1,5 @@
+bot,anlageklasse,zeit_im_markt_pct,mittlere_exposure_pct,mittlere_positionen_wenn_offen,max_positionen,max_dd_im_fenster_pct,dd_phase,dd_anteil_an_tagen_mit_allen_anderen_flach_pct,anteil_tage_alle_anderen_flach_pct
+elliott_wave_stocks,aktien,91.02,40.52,4.51,11,-22.44,2021-07-16 bis 2022-10-11,0.0,0.0
+rsi2_mean_reversion,aktien,89.1,38.89,8.73,26,-21.05,2018-02-01 bis 2020-03-20,0.0,0.0
+turtle_soup_stocks,aktien,100.0,75.7,37.85,65,-29.79,2020-02-19 bis 2020-03-27,6.48,0.08
+volatility_breakout,aktien,96.97,82.5,8.54,14,-23.97,2022-04-11 bis 2022-10-19,0.0,0.0
