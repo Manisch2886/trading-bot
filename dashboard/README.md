@@ -351,6 +351,101 @@ dasselbe Protokoll wie fuer die Telegram-Variante: die Frage "wer hat diese
 Position wann von Hand geschlossen" soll sich aus EINER Datei beantworten
 lassen.
 
+## Portfolio-Sicht (`/portfolio`)
+
+Die Uebersichtsseite zeigt neun Bots nebeneinander und beantwortet damit
+"laeuft Bot 7?" - nicht "laeuft das Portfolio?". Die Seite `/portfolio`
+beantwortet die zweite Frage.
+
+### Warum eine eigene Seite und kein Block auf der Uebersicht
+
+Auf der Uebersicht liegt der **Crash-Knopf**. Die Portfolio-Rechnung startet je
+Bot einen eigenen Python-Subprozess und dauert Sekunden (gemessen: 2,9 s bei
+sieben Bots auf dem Live-Weg, hochgerechnet ~3,8 s bei neun). Eine eigene Seite
+macht es **strukturell** unmoeglich, dass diese Rechnung je in den Ladepfad des
+Notfallwegs geraet - aus einer Frage der Sorgfalt wird eine der Architektur.
+Auf der Uebersicht steht nur ein Link, der nichts nachlaedt.
+
+### Woher jede Zahl kommt - der eigentliche Zweck dieser Seite
+
+`shared/portfolio_overview.py` benutzt die Live-Datenbank eines Bots **erst ab
+zehn geschlossenen Trades** (`MIN_LIVE_CLOSED_TRADES`); darunter greift es auf
+die Backtest-Kurve `results/<bot>/equity_curve.csv` zurueck. Stand 12.09.2026
+liegen alle neun Bots unter dieser Schwelle - die Portfolio-Zahl waere also
+vollstaendig Backtest, und **das sieht man ihr nicht an**.
+
+Die Seite zeigt deshalb:
+
+* je Bot eine **Quellenmarke**: `echte Trades (25)`, `Backtest (3 von 10)` oder
+  `keine Kurve`,
+* **zwei** Gruppenergebnisse - "Nur echte Trades" und "Alle Bots (teils
+  Backtest)" - statt einer Zahl,
+* je Gruppe einen Satz, woraus sie besteht. Eine Rendite ohne diesen Satz gibt
+  es auf der Seite nicht.
+
+> **Achtung auf das Wort "live".** `shared/portfolio_overview.py` nennt seine
+> erste Gruppe "LIVE-PORTFOLIO (nur aktivierte Bots)" und meint damit "hat eine
+> `live_params.py`". Alle neun Bots haben eine - die "LIVE-PORTFOLIO"-Zahl der
+> Montags-Mail stammt heute also zu 100 % aus Backtest-Kurven. Die Gruppen
+> dieser Seite heissen deshalb **nicht** "live", sondern "Nur echte Trades".
+
+Ein Bot, dessen Kurve sich nicht laden laesst, wird von `load_all_curves()`
+stillschweigend uebersprungen (nur eine `print`-Warnung). Hier bekommt er eine
+eigene Zeile mit der Marke `keine Kurve` und einen Hinweis oben - sonst waere
+die Summe ueber weniger Bots gebildet, ohne dass es jemand sieht.
+
+### Das Dashboard rechnet nie von selbst
+
+`GET /api/portfolio-sicht` liest **nur** den Zwischenspeicher und rechnet nicht.
+Neu gerechnet wird ausdruecklich: per Knopf auf der Seite, per Skriptaufruf oder
+per Cronjob. Das Alter des Standes steht immer dabei; ueber 24 Stunden wird es
+als *veraltet* gekennzeichnet.
+
+Der zweite Grund fuer den Zwischenspeicher ist kein Tempo-, sondern ein
+Richtigkeitsargument: `portfolio_overview` legt seine Zwischendateien unter
+einem **festen** Namen in `results/portfolio_overview/` ab. Zwei gleichzeitige
+Rechnungen - etwa Dashboard und Montags-Mail - wuerden sich diese Datei
+gegenseitig ueberschreiben. `portfolio_sicht.py` lenkt `RESULTS_DIR` deshalb
+fuer die Dauer seiner Rechnung auf einen eigenen Ordner um und serialisiert sich
+ueber eine Sperrdatei.
+
+```bash
+python3 dashboard/portfolio_sicht.py              # zeigt den Stand
+python3 dashboard/portfolio_sicht.py --berechnen  # rechnet neu
+```
+
+### Cron-Zeile - Vorschlag, **nicht eingetragen**
+
+```cron
+40 3 * * * cd ~/trading-bot && /usr/bin/python3 dashboard/portfolio_sicht.py --berechnen >> logs/dashboard/portfolio_sicht.log 2>&1
+```
+
+Einmal taeglich, weil die groebste Bot-Taktung taeglich ist: oefter kann sich
+nichts geaendert haben. 3:40 Uhr liegt nach der Log-Rotation (3:30) und
+zwischen den 4-Stunden-Laeufen der Bots. Vorher `mkdir -p logs/dashboard`.
+
+Solange die Zeile fehlt, ist die Seite nicht leer - sie zeigt den letzten
+Stand samt Alter, und der Knopf rechnet neu.
+
+### Was die Seite bewusst NICHT zeigt
+
+* **Korrelationen je Bot-Paar.** `portfolio_overview` rechnet sie, verlangt
+  dafuer aber mindestens 30 gemeinsame Handelstage und sagt sonst ausdruecklich
+  "zu wenig Datenbasis". Heute waere das bei fast jedem Paar der Fall, und eine
+  Matrix aus neun Bots ist auf 390 px ohnehin nicht lesbar.
+* **Eurobetraege.** Die Bots fuehren kein Kapital je Trade; jeder Betrag waere
+  aus Annahmen abgeleitet und wuerde echter wirken als eine Prozentzahl.
+* **Eine Tageszusammenfassung.** Das ist der naechste der drei
+  Dashboard-Schritte und fasst dieselben Dateien an - bewusst getrennt.
+
+### Der Unterschied zur Zahl auf der Uebersicht
+
+Die Uebersicht zeigt `summe_pnl_prozentpunkte` - eine **Summe von
+Prozentpunkten** und ausdruecklich keine Rendite, weil die Bots kein Kapital je
+Trade fuehren (siehe `datenquelle.portfolio_uebersicht`). Die Portfolio-Seite
+zeigt eine **gewichtete Rendite** aus den Kapitalkurven. Zwei verschiedene
+Zahlen, beide richtig, und die Seite sagt das auch.
+
 ## Warum die Live-Kurse getrennt geladen werden
 
 Binance- und yfinance-Abfragen sind echte, blockierende

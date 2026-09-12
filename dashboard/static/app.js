@@ -783,3 +783,152 @@ async function storniereWarteauftrag(id, danach) {
   if (danach) await danach();
   return ergebnis;
 }
+
+/* ------------------------------------------------------------------------
+   Portfolio-Sicht (/portfolio)
+   ------------------------------------------------------------------------
+   Die Quellenkennzeichnung ist der Kern dieser Seite, nicht ihr Beiwerk. Wer
+   eine Backtest-Rendite für ein Live-Ergebnis hält, zieht falsche Schlüsse
+   über seine Strategie - genau das, was dieses Projekt vermeiden will.
+
+   Deshalb liegt die Kennzeichnung in EINER Funktion (quellenMarke), die
+   sowohl die Bot-Tabelle als auch jeder Gruppenblock benutzt. Zwei getrennte
+   Fassungen wären zwei Stellen, an denen eine Angabe fehlen kann - genau der
+   Fehler aus PR #62, #66, #67, #73 und #77.
+
+   Sichtbarer Text, kein title-Tooltip: benutzt wird ein iPhone, dort gibt es
+   kein Hover. */
+
+const PORTFOLIO_QUELLEN = {
+  live: { text: "echte Trades", klasse: "quelle-live" },
+  backtest: { text: "Backtest", klasse: "quelle-backtest" },
+  fehlt: { text: "keine Kurve", klasse: "quelle-fehlt" },
+};
+
+/* Die Marke nennt IMMER die Quelle und bei Backtest zusätzlich, wie weit der
+   Bot von der Schwelle entfernt ist. Eine Marke, die nur "Backtest" sagt,
+   lässt offen, ob das ein Dauerzustand ist oder in zwei Trades vorbei. */
+function quellenMarke(bot, schwelle) {
+  const art = PORTFOLIO_QUELLEN[bot.quelle] || PORTFOLIO_QUELLEN.fehlt;
+  let text = art.text;
+  if (bot.quelle === "live") {
+    text += ` (${bot.geschlossene_trades})`;
+  } else if (bot.quelle === "backtest") {
+    text += ` (${bot.geschlossene_trades} von ${schwelle})`;
+  }
+  return `<span class="quelle ${art.klasse}">${text}</span>`;
+}
+
+/* Ein Bot, dessen Kurve nicht geladen werden konnte, wird von
+   portfolio_overview stillschweigend übersprungen. Hier bekommt er eine
+   eigene Zeile mit Begründung - sonst wäre die Summe über weniger Bots
+   gebildet, ohne dass es jemand sieht. */
+function portfolioBotZeile(bot, schwelle) {
+  const beitrag = bot.beitrag_pp === null || bot.beitrag_pp === undefined
+    ? '<span class="gedaempft">–</span>'
+    : prozent(bot.beitrag_pp);
+  const hinweis = bot.grundlage_in_ueberarbeitung
+    ? `<div class="warnzeile">⚠ Grundlage wird überarbeitet: ${bot.grundlage_in_ueberarbeitung}</div>`
+    : "";
+  return `<tr>
+    <td data-spalte="Bot"><a href="/bot?name=${encodeURIComponent(bot.name)}">${bot.anzeigename}</a>${hinweis}</td>
+    <td data-spalte="Quelle">${quellenMarke(bot, schwelle)}</td>
+    <td data-spalte="Beitrag">${beitrag}</td>
+    <td data-spalte="Offen">${bot.offene_positionen === null || bot.offene_positionen === undefined ? "–" : bot.offene_positionen}</td>
+  </tr>`;
+}
+
+/* Ein Gruppenblock trägt seine Herkunft im Titel UND als Satz darunter. Die
+   Zahl ohne diesen Satz wäre unzulässig - siehe Modulkopf von
+   portfolio_sicht.py. */
+function portfolioGruppe(gruppe, schwelle) {
+  if (!gruppe.moeglich) {
+    return `<section class="portfolio-gruppe">
+      <h3>${gruppe.titel}</h3>
+      <p class="portfolio-leer">Keine Zahl möglich: ${gruppe.grund}.</p>
+    </section>`;
+  }
+  const herkunft = gruppe.nur_echte_daten
+    ? `Nur Bots, deren Kurve aus echten Live-Trades stammt (mindestens ${schwelle} geschlossene Trades).`
+    : (gruppe.enthaelt_backtest
+       ? "Enthält Bots, deren Kurve aus dem <strong>Backtest</strong> stammt – das ist keine erzielte Rendite."
+       : "Alle Bots dieser Gruppe stammen aus echten Live-Trades.");
+  const einzeln = gruppe.anzahl_bots === 1
+    ? '<p class="portfolio-leer">Nur ein Bot – das ist keine Diversifikation, sondern dieser eine Bot.</p>'
+    : "";
+  return `<section class="portfolio-gruppe">
+    <h3>${gruppe.titel}</h3>
+    <p class="portfolio-herkunft">${herkunft}</p>
+    ${einzeln}
+    <div class="portfolio-kennzahlen">
+      <div><span class="kennzahl">${prozent(gruppe.rendite_pct)}</span><span class="kennzahl-name">Rendite im Fenster</span></div>
+      <div><span class="kennzahl">${zahl(gruppe.max_drawdown_pct)}%</span><span class="kennzahl-name">max. Drawdown</span></div>
+      <div><span class="kennzahl">${gruppe.anzahl_bots}</span><span class="kennzahl-name">Bots</span></div>
+    </div>
+    <p class="fussnote">Zeitraum ${gruppe.von} bis ${gruppe.bis} (${gruppe.tage} Tage) – die
+      Schnittmenge aller beteiligten Kurven. Ein Bot mit kurzer Historie verkürzt
+      das Fenster für alle.</p>
+  </section>`;
+}
+
+/* Der Stand ist Teil der Aussage: eine Portfolio-Zahl ohne Zeitpunkt ist
+   genauso unehrlich wie eine ohne Quelle. Das Dashboard rechnet nicht von
+   selbst, der Wert kann also beliebig alt sein. */
+function portfolioStand(stand) {
+  if (!stand.vorhanden) {
+    return `<p class="portfolio-leer">${stand.hinweis}</p>`;
+  }
+  const minuten = Math.floor(stand.alter_sekunden / 60);
+  const alter = minuten < 1 ? "gerade eben"
+    : (minuten < 60 ? `vor ${minuten} Minuten`
+       : `vor ${Math.floor(minuten / 60)} Stunden`);
+  const warnung = stand.veraltet
+    ? ' <span class="quelle quelle-backtest">veraltet</span>'
+    : "";
+  /* zeit(), nicht zeitpunkt(): zeitpunkt() gibt ein Date-Objekt zurueck, das
+     in einem Template als "Sat Sep 12 2026 09:00:00 GMT+0000" landet - auf
+     einem deutschen iPhone gleich doppelt falsch. */
+  return `<p class="portfolio-stand">Berechnet ${zeit(stand.daten.berechnet_am)}
+    (${alter}, Rechenzeit ${zahl(stand.daten.dauer_sekunden, 1)} s)${warnung}</p>`;
+}
+
+function portfolioSicht(stand) {
+  if (!stand.vorhanden) return portfolioStand(stand);
+  const daten = stand.daten;
+
+  /* Der Beitrag je Bot kommt aus der Gruppe "alle" - das ist die einzige
+     Gruppe, die jeden Bot mit Kurve enthält. Ein Bot ohne Kurve bekommt
+     dadurch keinen Beitrag, was richtig ist: er ist in keiner Summe. */
+  const beitrag = {};
+  const alle = daten.gruppen && daten.gruppen.alle;
+  if (alle && alle.moeglich) {
+    (alle.je_bot || []).forEach((e) => { beitrag[e.name] = e.beitrag_pp; });
+  }
+
+  const fehlend = (daten.bots || []).filter((b) => b.quelle === "fehlt");
+  const fehlenderHinweis = fehlend.length
+    ? `<p class="warnzeile">⚠ ${fehlend.length} Bot(s) sind in KEINER Summe unten enthalten:
+       ${fehlend.map((b) => b.anzeigename).join(", ")}.</p>`
+    : "";
+
+  const gruppen = Object.keys(daten.gruppen)
+    .map((s) => portfolioGruppe(daten.gruppen[s], daten.schwelle))
+    .join("");
+
+  const zeilen = (daten.bots || []).map((b) => portfolioBotZeile(
+    Object.assign({}, b, { beitrag_pp: beitrag[b.name] }), daten.schwelle)).join("");
+
+  return `${portfolioStand(stand)}
+    ${fehlenderHinweis}
+    <p class="fussnote">Offene Positionen über alle Bots:
+      <strong>${daten.offene_positionen === null || daten.offene_positionen === undefined ? "–" : daten.offene_positionen}</strong></p>
+    ${gruppen}
+    <h2>Je Bot</h2>
+    <p class="fussnote">Beitrag = Gewicht × Rendite dieses Bots im gemeinsamen
+      Fenster, in Prozentpunkten. Die Spalte summiert sich auf die Rendite der
+      Gruppe „Alle Bots“, nicht auf die der Gruppe „Nur echte Trades“.</p>
+    <table class="tabelle">
+      <thead><tr><th>Bot</th><th>Quelle</th><th>Beitrag</th><th>Offen</th></tr></thead>
+      <tbody>${zeilen}</tbody>
+    </table>`;
+}

@@ -86,6 +86,7 @@ from fastapi.staticfiles import StaticFiles
 
 import konfig
 import datenquelle
+import portfolio_sicht
 import schliessen
 
 logger = logging.getLogger("dashboard.app")
@@ -225,6 +226,20 @@ def erzeuge_app(token: str = None) -> FastAPI:
     @app.get("/bot", response_class=HTMLResponse)
     async def bot_seite():
         return FileResponse(os.path.join(konfig.STATIC_DIR, "bot.html"))
+
+    @app.get("/portfolio", response_class=HTMLResponse)
+    async def portfolio_seite():
+        """EIGENE Seite, kein Block auf der Uebersicht - und zwar nicht aus
+        Geschmack, sondern weil der Crash-Knopf auf der Uebersicht liegt.
+
+        Die Portfolio-Rechnung dauert Sekunden (gemessen: 2,9 s bei sieben
+        Bots auf dem Live-Weg). Eine eigene Seite macht es STRUKTURELL
+        unmoeglich, dass diese Rechnung je im Ladepfad des Notfallwegs
+        landet - eine Sorgfaltsfrage wird damit zu einer Frage der
+        Architektur. Auf der Uebersicht steht nur ein Link, der nichts
+        rechnet und nichts nachlaedt.
+        """
+        return FileResponse(os.path.join(konfig.STATIC_DIR, "portfolio.html"))
 
     @app.get("/manifest.json")
     async def manifest():
@@ -612,6 +627,37 @@ def erzeuge_app(token: str = None) -> FastAPI:
     # Deshalb steht sie hier und nicht bei den Schliess-Routen: sie gehoert
     # zur risikosenkenden Richtung.
     #
+    # -- Portfolio-Sicht ---------------------------------------------------
+    #
+    # GET liest NUR den Zwischenspeicher und rechnet nie. Das Neuberechnen ist
+    # ein eigener, ausdruecklicher POST - kein Nebeneffekt eines Seitenaufrufs
+    # und erst recht keiner des 60-Sekunden-Refreshs.
+
+    @app.get("/api/portfolio-sicht")
+    async def portfolio_sicht_lesen():
+        """Der zwischengespeicherte Stand samt seinem Alter. Nie eine
+        Rechnung - siehe portfolio_sicht.py, Modulkopf."""
+        return await asyncio.to_thread(portfolio_sicht.sicht)
+
+    @app.post("/api/portfolio-sicht/berechnen")
+    async def portfolio_sicht_berechnen():
+        """Rechnet neu. Schreibt ausschliesslich den eigenen
+        Zwischenspeicher - keine Bot-Datenbank, keine Parameterdatei, kein
+        Bot-Lauf. Das ist der Grund, warum hier KEINE zweistufige
+        Bestaetigung steht wie beim Schliessen: es gibt nichts
+        Unwiderrufliches zu bestaetigen.
+        """
+        try:
+            daten = await asyncio.to_thread(portfolio_sicht.berechne_und_speichere)
+        except portfolio_sicht.RechnungLaeuft as fehler:
+            # 409 statt 500: das ist ein Zustand, kein Fehler.
+            raise HTTPException(status_code=409, detail=str(fehler))
+        except Exception as fehler:                            # noqa: BLE001
+            logger.exception("Portfolio-Sicht konnte nicht berechnet werden")
+            raise HTTPException(status_code=503,
+                                detail=f"Berechnung fehlgeschlagen: {fehler}")
+        return {"berechnet": True, "daten": daten}
+
     # EIN Endpunkt fuer die Liste, nicht einer je Bot: die Uebersichtsseite
     # zeigt alle, die Bot-Seite filtert mit ?bot=... - dieselben Daten aus
     # derselben Quelle. Zwei Endpunkte waeren zwei Gelegenheiten, die Liste

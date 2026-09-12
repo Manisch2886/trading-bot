@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portfolio</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="stylesheet" href="/statisch/style.css">
+<link rel="apple-touch-icon" href="/statisch/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Trading-Bots">
+<meta name="theme-color" content="#14171c">
+</head>
+<body>
+<header>
+  <h1><a href="/" class="zurueck">←</a> Portfolio</h1>
+  <span class="status" id="stand">lädt …</span>
+</header>
+
+<main>
+  <div id="fehler"></div>
+
+  <!-- Diese Seite rechnet NICHT beim Laden und aktualisiert sich NICHT
+       automatisch. Begründung: die Rechnung startet je Bot einen eigenen
+       Python-Prozess und dauert Sekunden. Das Neurechnen ist deshalb ein
+       ausdrücklicher Knopf, und der Stand steht immer dabei. -->
+  <div id="portfolio">lädt …</div>
+
+  <p>
+    <button type="button" class="knopf" id="neu-rechnen">Neu berechnen</button>
+    <span class="fussnote" id="rechnen-hinweis"></span>
+  </p>
+
+  <p class="fussnote">
+    Diese Seite zeigt, was die Übersichtsseite bewusst nicht zeigt: eine
+    <em>gewichtete Portfolio-Rendite</em>. Die Summe auf der Übersicht ist eine
+    Summe von Prozentpunkten und ausdrücklich keine Rendite – die Bots führen
+    kein Kapital je Trade. Hier stammt die Zahl aus den Kapitalkurven, die
+    <code>shared/portfolio_overview.py</code> auch für die Montags-Mail rechnet.
+  </p>
+</main>
+
+<script src="/statisch/app.js"></script>
+<script>
+/* Alle Anzeige-Funktionen stehen in app.js, damit sie von
+   test_portfolio_anzeige.js wirklich ausgeführt und geprüft werden können. */
+
+async function ladePortfolio() {
+  const ziel = document.getElementById("portfolio");
+  try {
+    const stand = await hole("/api/portfolio-sicht");
+    ziel.innerHTML = portfolioSicht(stand);
+    document.getElementById("stand").textContent = stand.vorhanden
+      ? "Stand siehe unten" : "noch nicht berechnet";
+    const knopf = document.getElementById("neu-rechnen");
+    if (knopf) knopf.disabled = !!stand.laeuft_gerade;
+    document.getElementById("rechnen-hinweis").textContent = stand.laeuft_gerade
+      ? "Eine Berechnung läuft bereits." : "";
+  } catch (fehler) {
+    zeigeFehler("Portfolio-Sicht nicht erreichbar: " + fehler.message);
+    document.getElementById("stand").textContent = "Fehler";
+  }
+}
+
+document.getElementById("neu-rechnen").addEventListener("click", async () => {
+  const knopf = document.getElementById("neu-rechnen");
+  const hinweis = document.getElementById("rechnen-hinweis");
+  knopf.disabled = true;
+  hinweis.textContent = "rechnet … das dauert einige Sekunden";
+  try {
+    await sende("/api/portfolio-sicht/berechnen", {});
+    hinweis.textContent = "";
+    await ladePortfolio();
+  } catch (fehler) {
+    hinweis.textContent = "";
+    zeigeFehler("Berechnung fehlgeschlagen: " + fehler.message);
+  } finally {
+    knopf.disabled = false;
+  }
+});
+
+ladePortfolio();
+</script>
+</body>
+</html>

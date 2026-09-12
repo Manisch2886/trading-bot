@@ -13,6 +13,7 @@ const CACHE = "dashboard-huelle-v1";
 const HUELLE = [
   "/",
   "/bot",
+  "/portfolio",
   "/statisch/style.css",
   "/statisch/app.js",
   "/statisch/icon-192.png",
