@@ -25,6 +25,7 @@ _SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "sha
 sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
+from kursdaten import entferne_unvollstaendige
 _P = get_strategy_paths(__file__)
 DATA_DIR = _P["DATA_DIR"]
 
@@ -56,7 +57,21 @@ def fetch_historical_data(ticker: str, period: str = PERIOD, interval: str = INT
         "Close": "close", "Volume": "volume",
     })
 
-    return df[["open_time", "open", "high", "low", "close", "volume"]]
+    df = df[["open_time", "open", "high", "low", "close", "volume"]]
+
+    # Kerzen ohne Kurse hier streichen - an der fruehesten Stelle, an der sie
+    # ins Projekt kommen. yfinance liefert gelegentlich eine Zeile mit Datum
+    # und Volumen, aber leeren OHLC-Werten (gemessen: APH, 2026-09-01). Ein
+    # Trade, der auf so einer Kerze per Zeitausstieg endet, bekommt
+    # exit_price = NaN; daraus wird pnl_pct = NaN, und das vergiftet in
+    # equity_simulation.simulate_portfolio jede danach berechnete
+    # Kapitalzeile - ohne Fehlermeldung.
+    #
+    # Diese Funktion schreibt die CSVs UND versorgt forward_test.py mit
+    # Live-Daten. Die Absicherung wirkt damit auf beiden Wegen, ohne dass
+    # forward_test.py angefasst werden muss.
+    df, _gestrichen = entferne_unvollstaendige(df, symbol=ticker)
+    return df.reset_index(drop=True)
 
 
 if __name__ == "__main__":
