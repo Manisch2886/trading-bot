@@ -180,8 +180,15 @@ def test_logpfade():
     # Konsistenz mit dem bereits eingerichteten Telegram-Dienst: beide
     # Vorlagen muessen denselben Projektpfad annehmen, sonst schreibt eine
     # von beiden ins Leere.
-    telegram = os.path.join(BASE_DIR, "notifications",
-                            "com.manisch.telegram-tradesignal-bot.plist")
+    #
+    # Die Telegram-Vorlage lag bis TB-15 unter notifications/ und liegt
+    # seitdem neben dieser hier unter system/. Frueher stand der Vergleich
+    # hinter einem "if os.path.isfile(...)": verschwand die Datei oder zog
+    # sie um, fiel die Pruefung stillschweigend weg und der Test blieb
+    # gruen. Ihre Existenz wird deshalb jetzt selbst geprueft.
+    telegram = os.path.join(_DIR, "com.manisch.telegram-tradesignal-bot.plist")
+    check("Telegram-Vorlage liegt neben dieser unter system/",
+          os.path.isfile(telegram), telegram)
     if os.path.isfile(telegram):
         with open(telegram, "rb") as datei:
             anderes = plistlib.load(datei)

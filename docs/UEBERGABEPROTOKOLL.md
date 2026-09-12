@@ -252,8 +252,8 @@ trading-bot/
 │   ├── boersenkalender.py              (echter NYSE-Kalender; beantwortet nur "ist die Börse offen", PR #69/#71)
 │   ├── warteauftraege.py               (persistente Auftragsverwaltung: anlegen, auflisten, stornieren,
 │   │                                     abschliessen; JSON + eigene Sperrdatei, PR #69/#71)
-│   ├── test_manual_close.py            (Selbsttests der Schreibfunktion)
-│   └── com.manisch.telegram-tradesignal-bot.plist   (launchd-Vorlage)
+│   └── test_manual_close.py            (Selbsttests der Schreibfunktion)
+│                                       (die launchd-Vorlage liegt seit TB-15 unter system/)
 ├── dashboard/                          (Beobachtungsebene 2: Web/PWA — LIEST UND SCHREIBT, siehe 4.3)
 │   ├── server.py, app.py, konfig.py, datenquelle.py
 │   ├── schliessen.py                   (Schliess-Wege: eine Position, alle eines Bots, alle aller Bots;
@@ -271,10 +271,13 @@ trading-bot/
 │   ├── requirements.txt                (eigene Liste, NICHT in der Wurzel-requirements.txt eingebunden)
 │   ├── README.md, README_IBKR.md
 │   └── STOP / STOP_IBKR                (Notbremsen — je Brücke eine eigene Datei; nicht im Repo)
-├── system/                             (Systemdienste des Mac, PR #72)
+├── system/                             (Systemdienste des Mac, PR #72; alle drei Dienst-Vorlagen, TB-15)
 │   ├── com.manisch.caffeinate.plist    (launchd-Vorlage: hält den Mac wach, siehe 4.5)
+│   ├── com.manisch.telegram-tradesignal-bot.plist   (launchd-Vorlage, aus notifications/ hierher)
+│   ├── com.manisch.trading-dashboard.plist          (launchd-Vorlage — noch PLATZHALTER, siehe 4.5)
+│   ├── README_DIENSTE.md, TESTAUFTRAG_DIENSTE.md    (gemeinsame Anleitung für alle drei)
 │   ├── README_CAFFEINATE.md, TESTAUFTRAG_CAFFEINATE.md
-│   └── test_caffeinate_plist.py
+│   └── test_caffeinate_plist.py, test_dienst_plists.py
 ├── research/                           (abgeschlossene Untersuchungen, je ein BERICHT.md — NIE Bot-Code)
 │   └── elliott_wave_lookahead/, elliott_wave_params/, sync_check/, hrp_portfolio/, … (17 Ordner)
 ├── strategies/                         (NEUN Bots, siehe Abschnitt 2)
@@ -463,9 +466,11 @@ Alles läuft auf dem Mac des Nutzers. Neben den Cronjobs gibt es inzwischen **dr
 
 | Dienst | Zweck | Vorlage im Repo |
 |---|---|---|
-| Dashboard | FastAPI-Server der Beobachtungsebene 2 | — |
-| Telegram-Bot | Befehle und Push-Nachrichten | `notifications/com.manisch.telegram-tradesignal-bot.plist` |
+| `com.manisch.trading-dashboard` | FastAPI-Server der Beobachtungsebene 2 | `system/com.manisch.trading-dashboard.plist` — **noch Platzhalter** (TB-15) |
+| `com.manisch.telegram-tradesignal-bot` | Befehle und Push-Nachrichten | `system/com.manisch.telegram-tradesignal-bot.plist` (TB-15: aus `notifications/` hierher) |
 | **`com.manisch.caffeinate`** (PR #72) | hält den Mac wach, damit Cron überhaupt läuft | `system/com.manisch.caffeinate.plist` |
+
+Seit TB-15 liegen **alle drei** Vorlagen unter `system/`, mit einer gemeinsamen Anleitung in [`system/README_DIENSTE.md`](../system/README_DIENSTE.md) (Installation, Prüfen, Neustarten, Entfernen) und einem gemeinsamen Selbsttest `system/test_dienst_plists.py`.
 
 **Warum der dritte Dienst existiert — der Vorfall vom 11.09.2026.** Nach einem macOS-Update war das von Hand gestartete `caffeinate` ersatzlos verschwunden, ohne Hinweis. Der Mac schlief zwischen etwa **08:50 und 12:06**. In dieser Zeit fielen aus: der **12:05-Lauf der Binance-Brücke** komplett und mehrere **stündliche `elliott_wave`-Forward-Tests**.
 
@@ -483,6 +488,24 @@ Der Dienst ruft `/usr/bin/caffeinate -i -m -s` (Idle-Sleep, Platten-Sleep, Sleep
 4. **Bei reinem Batteriebetrieb wirkt `-s` nicht.** Für den Dauerbetrieb gehört der Mac ans Netzteil.
 
 Das Repo enthält nur die Vorlage; das Kopieren nach `~/Library/LaunchAgents/` führt der Nutzer selbst aus. `python3 system/test_caffeinate_plist.py` prüft die Datei (gültiges XML, erwartete Schlüssel, korrekte Flags, kein `-d`/`-u`) und läuft auch ohne macOS.
+
+**Die Dashboard-Vorlage ist bewusst ein Platzhalter (TB-15).** Der Dienst läuft seit Monaten produktiv, seine Datei lag aber **nie im Repo** — in der gesamten Git-Historie gibt es keine Fassung davon; sie existiert nur unter `~/Library/LaunchAgents/` auf dem Mac, und dorthin hat eine Cloud-Sitzung keinen Zugriff. Die offenen Werte (Interpreter-Pfad, beide Logpfade) sind deshalb mit `PLATZHALTER__` markiert statt geraten: launchd würde eine erfundene Fassung klaglos annehmen, und der Dienst liefe danach anders als bisher, ohne dass es auffällt. Im Kommentarkopf der Vorlage steht getrennt, was **belegt**, was **erschlossen** und was **offen** ist. Befüllt wird sie in einem Schritt aus der laufenden Fassung:
+
+```
+cp ~/Library/LaunchAgents/com.manisch.trading-dashboard.plist system/
+python3 system/test_dienst_plists.py
+```
+
+`system/test_dienst_plists.py` kennt dafür **drei** Ergebnisse statt zwei — `OK`, `FEHLER` und `OFFEN` — und gibt `0` / `1` / `2` zurück. Ein Platzhalter landet nie im OK-Topf: eine Prüfung, die einen Platzhalter für gültig hält, behauptet eine Zusicherung, die es nicht gibt. Heute ist der Rückgabewert **2** (0 Fehler, 4 offen); nach dem `cp` wird daraus **0**.
+
+**Zwei Dinge zum Dashboard-Dienst, die wiederholt zu Fehlschlüssen geführt haben** (beide stehen in `system/README_DIENSTE.md`):
+
+1. Er lauscht auf **`100.106.38.8:8787`** (Tailscale-Adresse), **nicht** auf `localhost` — ein `curl http://localhost:8787/` läuft ins Leere, obwohl der Dienst einwandfrei läuft. Die Grundeinstellung im Code ist `127.0.0.1` (`dashboard/konfig.py`), die Adresse muss also von aussen gesetzt werden (`DASHBOARD_HOST` in der Vorlage oder in der `.env`).
+2. Ein Aufruf **ohne Token** wird mit **`303`** auf `/login` umgeleitet. Das ist korrektes Verhalten (`fail closed`) und **beweist**, dass der Dienst läuft — erst *keine* Antwort ist ein Problem.
+
+Ebenfalls für alle drei: eine **negative Zahl** in der mittleren Spalte von `launchctl list | grep manisch` ist kein Fehler, sondern der Exit-Status des **Vorgängers**. `-15` heisst „durch Signal 15 beendet" — genau das, was `launchctl kickstart -k` tut. Entscheidend ist die **erste** Spalte: eine PID heisst „läuft".
+
+*Randnotiz, bewusst nicht geändert:* der Kopfkommentar von `dashboard/server.py` sagt noch „Kein Hintergrunddienst und kein launchd-Eintrag". Das stimmt seit Einrichtung des Dienstes nicht mehr; `server.py` wurde in TB-15 nur gelesen, nicht angefasst.
 
 ### 4.6 Log-Rotation (PR #79)
 
