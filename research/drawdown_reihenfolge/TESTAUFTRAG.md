@@ -1,8 +1,10 @@
 # Testauftrag: Drawdown-Reihenfolge
 
 **Für eine lokale Claude-Code-Sitzung auf dem Mac.** Geprüfter Stand:
-Branch `claude/new-session-08numz`, Basis `origin/main` (`94e0d7f`, nach
-Merge von #80).
+Branch `claude/new-session-08numz`. Der Branch enthält `main` bis
+einschliesslich **PR #84**; die Zahlen sind nach **PR #81**
+(Kurslücken im Trade-Pfad) gerechnet, der `load_all_symbol_data` aller
+neun Bots geändert hat — siehe `BERICHT.md`, Abschnitt 0 unter „Stand".
 
 > ## Was diese Sitzung darf und was nicht
 >
