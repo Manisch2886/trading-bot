@@ -1,0 +1,27 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "turtle_soup_stocks",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.02,
+  "positionslimit": null,
+  "kombinationen": 12,
+  "spanne_dd_block": [
+    -184.8,
+    -138.67
+  ],
+  "spanne_dd_entry": [
+    -2214.29,
+    -1386.72
+  ],
+  "spanne_dd_kapital": [
+    -33.32,
+    -17.89
+  ],
+  "rangkorr_score_block_vs_kapital_calmar": 0.755,
+  "rangkorr_score_entry_vs_kapital_calmar": 0.809,
+  "rangkorr_ddblock_vs_ddkapital": 0.259,
+  "rangkorr_ddentry_vs_ddkapital": 0.559,
+  "sieger_score_block": "Donchian 10 / Stop kein Stop",
+  "sieger_score_entry": "Donchian 10 / Stop 5.0",
+  "sieger_kapital_calmar": "Donchian 10 / Stop 5.0"
+}

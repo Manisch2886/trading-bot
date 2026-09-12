@@ -1,0 +1,332 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "volatility_breakout",
+  "symbole": 147,
+  "kombinationen": 4,
+  "permutationen": 200,
+  "seed": 20260912,
+  "mindestfilter": {
+    "MIN_TRADES": 100,
+    "MIN_SYMBOLS_CONTRIBUTING": 15,
+    "MIN_AVG_RETURN_PCT": 0.0
+  },
+  "num_besteht_mindestfilter": 4,
+  "nan_pnl_trades_gesamt": 0,
+  "rangfolgen": {
+    "bot": [
+      {
+        "rang": 1,
+        "label": "Stop 8.0",
+        "score": 0.406,
+        "dd": -115.78,
+        "num_trades": 4510,
+        "avg_return_pct": 0.7
+      },
+      {
+        "rang": 2,
+        "label": "Stop 5.0",
+        "score": 0.372,
+        "dd": -113.21,
+        "num_trades": 4603,
+        "avg_return_pct": 0.62
+      },
+      {
+        "rang": 3,
+        "label": "Stop kein Stop",
+        "score": 0.342,
+        "dd": -141.04,
+        "num_trades": 4495,
+        "avg_return_pct": 0.72
+      },
+      {
+        "rang": 4,
+        "label": "Stop 3.0",
+        "score": 0.192,
+        "dd": -184.12,
+        "num_trades": 4821,
+        "avg_return_pct": 0.51
+      }
+    ],
+    "block": [
+      {
+        "rang": 1,
+        "label": "Stop 8.0",
+        "score": 0.406,
+        "dd": -115.78,
+        "num_trades": 4510,
+        "avg_return_pct": 0.7
+      },
+      {
+        "rang": 2,
+        "label": "Stop 5.0",
+        "score": 0.372,
+        "dd": -113.21,
+        "num_trades": 4603,
+        "avg_return_pct": 0.62
+      },
+      {
+        "rang": 3,
+        "label": "Stop kein Stop",
+        "score": 0.342,
+        "dd": -141.04,
+        "num_trades": 4495,
+        "avg_return_pct": 0.72
+      },
+      {
+        "rang": 4,
+        "label": "Stop 3.0",
+        "score": 0.192,
+        "dd": -184.12,
+        "num_trades": 4821,
+        "avg_return_pct": 0.51
+      }
+    ],
+    "entry": [
+      {
+        "rang": 1,
+        "label": "Stop 8.0",
+        "score": 0.111,
+        "dd": -423.56,
+        "num_trades": 4510,
+        "avg_return_pct": 0.7
+      },
+      {
+        "rang": 2,
+        "label": "Stop kein Stop",
+        "score": 0.108,
+        "dd": -448.87,
+        "num_trades": 4495,
+        "avg_return_pct": 0.72
+      },
+      {
+        "rang": 3,
+        "label": "Stop 3.0",
+        "score": 0.095,
+        "dd": -373.39,
+        "num_trades": 4821,
+        "avg_return_pct": 0.51
+      },
+      {
+        "rang": 4,
+        "label": "Stop 5.0",
+        "score": 0.095,
+        "dd": -441.64,
+        "num_trades": 4603,
+        "avg_return_pct": 0.62
+      }
+    ],
+    "exit": [
+      {
+        "rang": 1,
+        "label": "Stop 8.0",
+        "score": 0.109,
+        "dd": -429.36,
+        "num_trades": 4510,
+        "avg_return_pct": 0.7
+      },
+      {
+        "rang": 2,
+        "label": "Stop kein Stop",
+        "score": 0.108,
+        "dd": -448.87,
+        "num_trades": 4495,
+        "avg_return_pct": 0.72
+      },
+      {
+        "rang": 3,
+        "label": "Stop 3.0",
+        "score": 0.1,
+        "dd": -353.66,
+        "num_trades": 4821,
+        "avg_return_pct": 0.51
+      },
+      {
+        "rang": 4,
+        "label": "Stop 5.0",
+        "score": 0.099,
+        "dd": -426.85,
+        "num_trades": 4603,
+        "avg_return_pct": 0.62
+      }
+    ]
+  },
+  "sieger": {
+    "bot": "Stop 8.0",
+    "block": "Stop 8.0",
+    "entry": "Stop 8.0",
+    "exit": "Stop 8.0"
+  },
+  "urteil": {
+    "sieger_identisch": true,
+    "vorsprung_block_pct": 9.1,
+    "vorsprung_entry_pct": 2.8,
+    "vorsprung_exit_pct": 0.9,
+    "block_permutationssieger": [
+      [
+        "Stop 5.0",
+        80
+      ],
+      [
+        "Stop 8.0",
+        68
+      ],
+      [
+        "Stop 3.0",
+        28
+      ],
+      [
+        "Stop kein Stop",
+        24
+      ]
+    ],
+    "block_sieger_stabil_pct": 40.0
+  },
+  "rangwechsel": [
+    {
+      "label": "Stop 8.0",
+      "rang_block": 1,
+      "rang_entry": 1,
+      "rang_exit": 1,
+      "delta_entry": 0
+    },
+    {
+      "label": "Stop 5.0",
+      "rang_block": 2,
+      "rang_entry": 4,
+      "rang_exit": 4,
+      "delta_entry": 2
+    },
+    {
+      "label": "Stop kein Stop",
+      "rang_block": 3,
+      "rang_entry": 2,
+      "rang_exit": 2,
+      "delta_entry": -1
+    },
+    {
+      "label": "Stop 3.0",
+      "rang_block": 4,
+      "rang_entry": 3,
+      "rang_exit": 3,
+      "delta_entry": -1
+    }
+  ],
+  "streuung": [
+    {
+      "label": "Stop 3.0",
+      "dd_block": -184.12,
+      "dd_entry": -373.39,
+      "dd_exit": -353.66,
+      "faktor_entry_zu_block": 2.03,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -239.53,
+        "median": -114.84,
+        "max": -75.5,
+        "spanne_pp": 164.03
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -379.99,
+        "median": -371.0,
+        "max": -366.55,
+        "spanne_pp": 13.44
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.15,
+        "median": 0.31,
+        "max": 0.47,
+        "spanne_pp": 0.32
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Stop 5.0",
+      "dd_block": -113.21,
+      "dd_entry": -441.64,
+      "dd_exit": -426.85,
+      "faktor_entry_zu_block": 3.9,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -212.73,
+        "median": -121.08,
+        "max": -80.78,
+        "spanne_pp": 131.95
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -447.43,
+        "median": -433.73,
+        "max": -427.29,
+        "spanne_pp": 20.14
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.2,
+        "median": 0.35,
+        "max": 0.52,
+        "spanne_pp": 0.32
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Stop 8.0",
+      "dd_block": -115.78,
+      "dd_entry": -423.56,
+      "dd_exit": -429.36,
+      "faktor_entry_zu_block": 3.66,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -227.03,
+        "median": -135.98,
+        "max": -89.55,
+        "spanne_pp": 137.48
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -438.78,
+        "median": -422.54,
+        "max": -418.72,
+        "spanne_pp": 20.06
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.21,
+        "median": 0.35,
+        "max": 0.53,
+        "spanne_pp": 0.32
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Stop kein Stop",
+      "dd_block": -141.04,
+      "dd_entry": -448.87,
+      "dd_exit": -448.87,
+      "faktor_entry_zu_block": 3.18,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -318.71,
+        "median": -154.27,
+        "max": -112.63,
+        "spanne_pp": 206.08
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -448.87,
+        "median": -448.87,
+        "max": -448.87,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.15,
+        "median": 0.31,
+        "max": 0.43,
+        "spanne_pp": 0.28
+      },
+      "dd_entry_in_block_spanne": false
+    }
+  ]
+}

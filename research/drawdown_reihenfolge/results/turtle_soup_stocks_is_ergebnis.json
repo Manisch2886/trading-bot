@@ -1,0 +1,825 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "turtle_soup_stocks",
+  "fenster": "is",
+  "symbole": 147,
+  "kombinationen": 12,
+  "permutationen": 200,
+  "seed": 20260912,
+  "mindestfilter": {
+    "MIN_TRADES": 150,
+    "MIN_SYMBOLS_CONTRIBUTING": 22,
+    "MIN_AVG_RETURN_PCT": 0.0
+  },
+  "num_besteht_mindestfilter": 12,
+  "nan_pnl_trades_gesamt": 0,
+  "rangfolgen": {
+    "bot": [
+      {
+        "rang": 1,
+        "label": "Donchian 10 / Stop kein Stop",
+        "score": 0.263,
+        "dd": -185.31,
+        "num_trades": 8441,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 2,
+        "label": "Donchian 40 / Stop kein Stop",
+        "score": 0.242,
+        "dd": -178.66,
+        "num_trades": 3406,
+        "avg_return_pct": 0.74
+      },
+      {
+        "rang": 3,
+        "label": "Donchian 40 / Stop 5.0",
+        "score": 0.213,
+        "dd": -157.49,
+        "num_trades": 4002,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 4,
+        "label": "Donchian 10 / Stop 8.0",
+        "score": 0.201,
+        "dd": -192.9,
+        "num_trades": 8952,
+        "avg_return_pct": 0.41
+      },
+      {
+        "rang": 5,
+        "label": "Donchian 20 / Stop kein Stop",
+        "score": 0.181,
+        "dd": -192.11,
+        "num_trades": 5481,
+        "avg_return_pct": 0.47
+      },
+      {
+        "rang": 6,
+        "label": "Donchian 10 / Stop 5.0",
+        "score": 0.18,
+        "dd": -223.34,
+        "num_trades": 9607,
+        "avg_return_pct": 0.41
+      },
+      {
+        "rang": 7,
+        "label": "Donchian 40 / Stop 8.0",
+        "score": 0.156,
+        "dd": -186.97,
+        "num_trades": 3698,
+        "avg_return_pct": 0.48
+      },
+      {
+        "rang": 8,
+        "label": "Donchian 20 / Stop 5.0",
+        "score": 0.148,
+        "dd": -183.07,
+        "num_trades": 6329,
+        "avg_return_pct": 0.34
+      },
+      {
+        "rang": 9,
+        "label": "Donchian 10 / Stop structural",
+        "score": 0.119,
+        "dd": -178.55,
+        "num_trades": 12414,
+        "avg_return_pct": 0.19
+      },
+      {
+        "rang": 10,
+        "label": "Donchian 20 / Stop 8.0",
+        "score": 0.103,
+        "dd": -223.48,
+        "num_trades": 5875,
+        "avg_return_pct": 0.3
+      }
+    ],
+    "block": [
+      {
+        "rang": 1,
+        "label": "Donchian 10 / Stop kein Stop",
+        "score": 0.263,
+        "dd": -185.31,
+        "num_trades": 8441,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 2,
+        "label": "Donchian 40 / Stop kein Stop",
+        "score": 0.242,
+        "dd": -178.66,
+        "num_trades": 3406,
+        "avg_return_pct": 0.74
+      },
+      {
+        "rang": 3,
+        "label": "Donchian 40 / Stop 5.0",
+        "score": 0.213,
+        "dd": -157.49,
+        "num_trades": 4002,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 4,
+        "label": "Donchian 10 / Stop 8.0",
+        "score": 0.201,
+        "dd": -192.9,
+        "num_trades": 8952,
+        "avg_return_pct": 0.41
+      },
+      {
+        "rang": 5,
+        "label": "Donchian 20 / Stop kein Stop",
+        "score": 0.181,
+        "dd": -192.11,
+        "num_trades": 5481,
+        "avg_return_pct": 0.47
+      },
+      {
+        "rang": 6,
+        "label": "Donchian 10 / Stop 5.0",
+        "score": 0.18,
+        "dd": -223.34,
+        "num_trades": 9607,
+        "avg_return_pct": 0.41
+      },
+      {
+        "rang": 7,
+        "label": "Donchian 40 / Stop 8.0",
+        "score": 0.156,
+        "dd": -186.97,
+        "num_trades": 3698,
+        "avg_return_pct": 0.48
+      },
+      {
+        "rang": 8,
+        "label": "Donchian 20 / Stop 5.0",
+        "score": 0.148,
+        "dd": -183.07,
+        "num_trades": 6329,
+        "avg_return_pct": 0.34
+      },
+      {
+        "rang": 9,
+        "label": "Donchian 10 / Stop structural",
+        "score": 0.119,
+        "dd": -178.55,
+        "num_trades": 12414,
+        "avg_return_pct": 0.19
+      },
+      {
+        "rang": 10,
+        "label": "Donchian 20 / Stop 8.0",
+        "score": 0.103,
+        "dd": -223.48,
+        "num_trades": 5875,
+        "avg_return_pct": 0.3
+      }
+    ],
+    "entry": [
+      {
+        "rang": 1,
+        "label": "Donchian 10 / Stop 5.0",
+        "score": 0.025,
+        "dd": -1605.47,
+        "num_trades": 9607,
+        "avg_return_pct": 0.41
+      },
+      {
+        "rang": 2,
+        "label": "Donchian 40 / Stop kein Stop",
+        "score": 0.024,
+        "dd": -1806.22,
+        "num_trades": 3406,
+        "avg_return_pct": 0.74
+      },
+      {
+        "rang": 3,
+        "label": "Donchian 40 / Stop 5.0",
+        "score": 0.024,
+        "dd": -1421.0,
+        "num_trades": 4002,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 4,
+        "label": "Donchian 10 / Stop kein Stop",
+        "score": 0.023,
+        "dd": -2135.83,
+        "num_trades": 8441,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 5,
+        "label": "Donchian 10 / Stop 8.0",
+        "score": 0.018,
+        "dd": -2214.29,
+        "num_trades": 8952,
+        "avg_return_pct": 0.41
+      },
+      {
+        "rang": 6,
+        "label": "Donchian 20 / Stop 5.0",
+        "score": 0.018,
+        "dd": -1543.19,
+        "num_trades": 6329,
+        "avg_return_pct": 0.34
+      },
+      {
+        "rang": 7,
+        "label": "Donchian 20 / Stop kein Stop",
+        "score": 0.017,
+        "dd": -2106.64,
+        "num_trades": 5481,
+        "avg_return_pct": 0.47
+      },
+      {
+        "rang": 8,
+        "label": "Donchian 40 / Stop 8.0",
+        "score": 0.015,
+        "dd": -1921.72,
+        "num_trades": 3698,
+        "avg_return_pct": 0.48
+      },
+      {
+        "rang": 9,
+        "label": "Donchian 10 / Stop structural",
+        "score": 0.014,
+        "dd": -1533.9,
+        "num_trades": 12414,
+        "avg_return_pct": 0.19
+      },
+      {
+        "rang": 10,
+        "label": "Donchian 40 / Stop structural",
+        "score": 0.014,
+        "dd": -1386.72,
+        "num_trades": 4981,
+        "avg_return_pct": 0.27
+      }
+    ],
+    "exit": [
+      {
+        "rang": 1,
+        "label": "Donchian 40 / Stop kein Stop",
+        "score": 0.024,
+        "dd": -1806.22,
+        "num_trades": 3406,
+        "avg_return_pct": 0.74
+      },
+      {
+        "rang": 2,
+        "label": "Donchian 10 / Stop kein Stop",
+        "score": 0.023,
+        "dd": -2135.83,
+        "num_trades": 8441,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 3,
+        "label": "Donchian 10 / Stop 5.0",
+        "score": 0.023,
+        "dd": -1745.33,
+        "num_trades": 9607,
+        "avg_return_pct": 0.41
+      },
+      {
+        "rang": 4,
+        "label": "Donchian 40 / Stop 5.0",
+        "score": 0.022,
+        "dd": -1548.58,
+        "num_trades": 4002,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 5,
+        "label": "Donchian 20 / Stop kein Stop",
+        "score": 0.017,
+        "dd": -2106.64,
+        "num_trades": 5481,
+        "avg_return_pct": 0.47
+      },
+      {
+        "rang": 6,
+        "label": "Donchian 10 / Stop 8.0",
+        "score": 0.016,
+        "dd": -2487.25,
+        "num_trades": 8952,
+        "avg_return_pct": 0.41
+      },
+      {
+        "rang": 7,
+        "label": "Donchian 20 / Stop 5.0",
+        "score": 0.016,
+        "dd": -1671.32,
+        "num_trades": 6329,
+        "avg_return_pct": 0.34
+      },
+      {
+        "rang": 8,
+        "label": "Donchian 40 / Stop 8.0",
+        "score": 0.013,
+        "dd": -2184.78,
+        "num_trades": 3698,
+        "avg_return_pct": 0.48
+      },
+      {
+        "rang": 9,
+        "label": "Donchian 10 / Stop structural",
+        "score": 0.012,
+        "dd": -1709.13,
+        "num_trades": 12414,
+        "avg_return_pct": 0.19
+      },
+      {
+        "rang": 10,
+        "label": "Donchian 40 / Stop structural",
+        "score": 0.012,
+        "dd": -1604.64,
+        "num_trades": 4981,
+        "avg_return_pct": 0.27
+      }
+    ]
+  },
+  "sieger": {
+    "bot": "Donchian 10 / Stop kein Stop",
+    "block": "Donchian 10 / Stop kein Stop",
+    "entry": "Donchian 10 / Stop 5.0",
+    "exit": "Donchian 40 / Stop kein Stop"
+  },
+  "urteil": {
+    "sieger_identisch": false,
+    "vorsprung_block_pct": 8.7,
+    "vorsprung_entry_pct": 4.2,
+    "vorsprung_exit_pct": 4.3,
+    "block_permutationssieger": [
+      [
+        "Donchian 40 / Stop kein Stop",
+        88
+      ],
+      [
+        "Donchian 40 / Stop 5.0",
+        44
+      ],
+      [
+        "Donchian 10 / Stop kein Stop",
+        40
+      ],
+      [
+        "Donchian 10 / Stop 5.0",
+        21
+      ],
+      [
+        "Donchian 40 / Stop 8.0",
+        4
+      ],
+      [
+        "Donchian 10 / Stop 8.0",
+        2
+      ],
+      [
+        "Donchian 20 / Stop kein Stop",
+        1
+      ]
+    ],
+    "block_sieger_stabil_pct": 44.0
+  },
+  "rangwechsel": [
+    {
+      "label": "Donchian 10 / Stop kein Stop",
+      "rang_block": 1,
+      "rang_entry": 4,
+      "rang_exit": 2,
+      "delta_entry": 3
+    },
+    {
+      "label": "Donchian 40 / Stop kein Stop",
+      "rang_block": 2,
+      "rang_entry": 2,
+      "rang_exit": 1,
+      "delta_entry": 0
+    },
+    {
+      "label": "Donchian 40 / Stop 5.0",
+      "rang_block": 3,
+      "rang_entry": 3,
+      "rang_exit": 4,
+      "delta_entry": 0
+    },
+    {
+      "label": "Donchian 10 / Stop 8.0",
+      "rang_block": 4,
+      "rang_entry": 5,
+      "rang_exit": 6,
+      "delta_entry": 1
+    },
+    {
+      "label": "Donchian 20 / Stop kein Stop",
+      "rang_block": 5,
+      "rang_entry": 7,
+      "rang_exit": 5,
+      "delta_entry": 2
+    },
+    {
+      "label": "Donchian 10 / Stop 5.0",
+      "rang_block": 6,
+      "rang_entry": 1,
+      "rang_exit": 3,
+      "delta_entry": -5
+    },
+    {
+      "label": "Donchian 40 / Stop 8.0",
+      "rang_block": 7,
+      "rang_entry": 8,
+      "rang_exit": 8,
+      "delta_entry": 1
+    },
+    {
+      "label": "Donchian 20 / Stop 5.0",
+      "rang_block": 8,
+      "rang_entry": 6,
+      "rang_exit": 7,
+      "delta_entry": -2
+    },
+    {
+      "label": "Donchian 10 / Stop structural",
+      "rang_block": 9,
+      "rang_entry": 9,
+      "rang_exit": 9,
+      "delta_entry": 0
+    },
+    {
+      "label": "Donchian 20 / Stop 8.0",
+      "rang_block": 10,
+      "rang_entry": 11,
+      "rang_exit": 11,
+      "delta_entry": 1
+    },
+    {
+      "label": "Donchian 40 / Stop structural",
+      "rang_block": 11,
+      "rang_entry": 10,
+      "rang_exit": 10,
+      "delta_entry": -1
+    },
+    {
+      "label": "Donchian 20 / Stop structural",
+      "rang_block": 12,
+      "rang_entry": 12,
+      "rang_exit": 12,
+      "delta_entry": 0
+    }
+  ],
+  "streuung": [
+    {
+      "label": "Donchian 10 / Stop kein Stop",
+      "dd_block": -185.31,
+      "dd_entry": -2135.83,
+      "dd_exit": -2135.83,
+      "faktor_entry_zu_block": 11.53,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -363.39,
+        "median": -197.02,
+        "max": -141.16,
+        "spanne_pp": 222.23
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -2150.78,
+        "median": -2135.83,
+        "max": -2135.83,
+        "spanne_pp": 14.95
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.13,
+        "median": 0.25,
+        "max": 0.34,
+        "spanne_pp": 0.21
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 10 / Stop structural",
+      "dd_block": -178.55,
+      "dd_entry": -1533.9,
+      "dd_exit": -1709.13,
+      "faktor_entry_zu_block": 8.59,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -348.56,
+        "median": -196.1,
+        "max": -134.84,
+        "spanne_pp": 213.72
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1542.69,
+        "median": -1527.39,
+        "max": -1517.82,
+        "spanne_pp": 24.87
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.06,
+        "median": 0.11,
+        "max": 0.16,
+        "spanne_pp": 0.1
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 10 / Stop 5.0",
+      "dd_block": -223.34,
+      "dd_entry": -1605.47,
+      "dd_exit": -1745.33,
+      "faktor_entry_zu_block": 7.19,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -285.67,
+        "median": -177.48,
+        "max": -130.0,
+        "spanne_pp": 155.67
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1658.47,
+        "median": -1602.79,
+        "max": -1592.86,
+        "spanne_pp": 65.61
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.14,
+        "median": 0.23,
+        "max": 0.31,
+        "spanne_pp": 0.17
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 10 / Stop 8.0",
+      "dd_block": -192.9,
+      "dd_entry": -2214.29,
+      "dd_exit": -2487.25,
+      "faktor_entry_zu_block": 11.48,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -363.16,
+        "median": -200.1,
+        "max": -135.05,
+        "spanne_pp": 228.11
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -2305.59,
+        "median": -2222.59,
+        "max": -2197.69,
+        "spanne_pp": 107.9
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.11,
+        "median": 0.19,
+        "max": 0.29,
+        "spanne_pp": 0.18
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 20 / Stop kein Stop",
+      "dd_block": -192.11,
+      "dd_entry": -2106.64,
+      "dd_exit": -2106.64,
+      "faktor_entry_zu_block": 10.97,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -405.65,
+        "median": -208.39,
+        "max": -129.85,
+        "spanne_pp": 275.8
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -2120.77,
+        "median": -2106.64,
+        "max": -2106.64,
+        "spanne_pp": 14.13
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.09,
+        "median": 0.17,
+        "max": 0.27,
+        "spanne_pp": 0.18
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 20 / Stop structural",
+      "dd_block": -282.56,
+      "dd_entry": -1503.28,
+      "dd_exit": -1720.59,
+      "faktor_entry_zu_block": 5.32,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -483.94,
+        "median": -245.15,
+        "max": -170.11,
+        "spanne_pp": 313.83
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1534.79,
+        "median": -1494.94,
+        "max": -1487.89,
+        "spanne_pp": 46.9
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.02,
+        "median": 0.04,
+        "max": 0.06,
+        "spanne_pp": 0.04
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 20 / Stop 5.0",
+      "dd_block": -183.07,
+      "dd_entry": -1543.19,
+      "dd_exit": -1671.32,
+      "faktor_entry_zu_block": 8.43,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -377.54,
+        "median": -194.49,
+        "max": -123.7,
+        "spanne_pp": 253.84
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1601.49,
+        "median": -1542.39,
+        "max": -1518.45,
+        "spanne_pp": 83.04
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.07,
+        "median": 0.14,
+        "max": 0.22,
+        "spanne_pp": 0.15
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 20 / Stop 8.0",
+      "dd_block": -223.48,
+      "dd_entry": -2100.46,
+      "dd_exit": -2371.84,
+      "faktor_entry_zu_block": 9.4,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -493.03,
+        "median": -228.66,
+        "max": -151.9,
+        "spanne_pp": 341.13
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -2180.07,
+        "median": -2110.77,
+        "max": -2083.86,
+        "spanne_pp": 96.21
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.05,
+        "median": 0.1,
+        "max": 0.15,
+        "spanne_pp": 0.1
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 40 / Stop kein Stop",
+      "dd_block": -178.66,
+      "dd_entry": -1806.22,
+      "dd_exit": -1806.22,
+      "faktor_entry_zu_block": 10.11,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -312.47,
+        "median": -157.9,
+        "max": -111.33,
+        "spanne_pp": 201.14
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1820.06,
+        "median": -1808.27,
+        "max": -1804.69,
+        "spanne_pp": 15.37
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.14,
+        "median": 0.27,
+        "max": 0.39,
+        "spanne_pp": 0.25
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 40 / Stop structural",
+      "dd_block": -191.96,
+      "dd_entry": -1386.72,
+      "dd_exit": -1604.64,
+      "faktor_entry_zu_block": 7.22,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -357.66,
+        "median": -165.93,
+        "max": -101.53,
+        "spanne_pp": 256.13
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1423.35,
+        "median": -1378.39,
+        "max": -1371.34,
+        "spanne_pp": 52.01
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.05,
+        "median": 0.12,
+        "max": 0.19,
+        "spanne_pp": 0.14
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 40 / Stop 5.0",
+      "dd_block": -157.49,
+      "dd_entry": -1421.0,
+      "dd_exit": -1548.58,
+      "faktor_entry_zu_block": 9.02,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -242.07,
+        "median": -138.31,
+        "max": -88.29,
+        "spanne_pp": 153.78
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1470.75,
+        "median": -1420.31,
+        "max": -1396.56,
+        "spanne_pp": 74.19
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.14,
+        "median": 0.24,
+        "max": 0.38,
+        "spanne_pp": 0.24
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "Donchian 40 / Stop 8.0",
+      "dd_block": -186.97,
+      "dd_entry": -1921.72,
+      "dd_exit": -2184.78,
+      "faktor_entry_zu_block": 10.28,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -286.32,
+        "median": -152.34,
+        "max": -102.68,
+        "spanne_pp": 183.64
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1990.97,
+        "median": -1933.64,
+        "max": -1905.12,
+        "spanne_pp": 85.85
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.1,
+        "median": 0.19,
+        "max": 0.28,
+        "spanne_pp": 0.18
+      },
+      "dd_entry_in_block_spanne": false
+    }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "rsi2_crypto",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "positionslimit": 8,
+  "kombinationen": 6,
+  "spanne_dd_block": [
+    -102.63,
+    -55.92
+  ],
+  "spanne_dd_entry": [
+    -181.68,
+    -82.7
+  ],
+  "spanne_dd_kapital": [
+    -17.09,
+    -9.33
+  ],
+  "rangkorr_score_block_vs_kapital_calmar": 0.771,
+  "rangkorr_score_entry_vs_kapital_calmar": 1.0,
+  "rangkorr_ddblock_vs_ddkapital": 0.371,
+  "rangkorr_ddentry_vs_ddkapital": 0.886,
+  "sieger_score_block": "SMA 150 / RSI 10.0 / Stop kein Stop",
+  "sieger_score_entry": "SMA 150 / RSI 10.0 / Stop kein Stop",
+  "sieger_kapital_calmar": "SMA 150 / RSI 10.0 / Stop kein Stop"
+}

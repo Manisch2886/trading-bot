@@ -1,0 +1,5 @@
+label,stop_loss_pct,num_trades,dd_block,dd_entry,score_block,score_entry,kapital_rendite_pct,kapital_dd_pct,kapital_calmar,ausgefuehrt,uebersprungen
+Stop 3.0,3.0,379,-142.91,-168.38,0.144,0.123,43.71,-14.77,2.96,343,36
+Stop 5.0,5.0,359,-105.65,-192.97,0.314,0.172,55.04,-16.77,3.28,310,49
+Stop 8.0,8.0,342,-116.36,-289.65,0.248,0.1,38.21,-22.99,1.66,287,55
+Stop kein Stop,kein Stop,329,-187.24,-469.4,0.115,0.046,31.45,-33.98,0.93,267,62

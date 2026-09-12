@@ -1,0 +1,5 @@
+label,stop_loss_pct,num_trades,num_symbols,num_nan_pnl,win_rate,total_return_pct,avg_return_pct,dd_bot,dd_bot_ohne_nan,dd_block,dd_block_ohne_nan,dd_entry,dd_entry_ohne_nan,dd_exit,dd_exit_ohne_nan,score_bot,score_bot_ohne_nan,score_block,score_block_ohne_nan,score_entry,score_entry_ohne_nan,score_exit,score_exit_ohne_nan,besteht_mindestfilter
+Stop 3.0,3.0,239,20,0,17.2,435.37,1.82,-131.33,-131.33,-131.33,-131.33,-125.22,-125.22,-131.82,-131.82,0.214,0.214,0.214,0.214,0.225,0.225,0.213,0.213,True
+Stop 5.0,5.0,225,20,0,24.4,494.65,2.2,-83.6,-83.6,-83.6,-83.6,-192.97,-192.97,-187.67,-187.67,0.395,0.395,0.395,0.395,0.171,0.171,0.176,0.176,True
+Stop 8.0,8.0,215,20,0,33.5,501.36,2.33,-93.48,-93.48,-93.48,-93.48,-289.65,-289.65,-281.35,-281.35,0.365,0.365,0.365,0.365,0.118,0.118,0.121,0.121,True
+Stop kein Stop,kein Stop,207,20,0,46.9,434.61,2.1,-171.76,-171.76,-171.76,-171.76,-469.4,-469.4,-469.4,-469.4,0.176,0.176,0.176,0.176,0.064,0.064,0.064,0.064,True
