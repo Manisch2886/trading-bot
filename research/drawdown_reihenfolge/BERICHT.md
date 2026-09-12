@@ -40,9 +40,9 @@ letzterer aus einem Grund, den niemand beabsichtigt hat (Abschnitt 2.3).
 zufällige Vertauschungen der Symbol-Blockreihenfolge erzeugen (über alle
 177 zulässigen Kombinationen: 140 von 177) — der Unterschied ist also
 größer als die Willkür, die im Bot-Maß selbst steckt. Umgekehrt ist das Bot-Maß gegen seine eigene Willkür oft nicht
-stabil: bei `elliott_wave_stocks` gewinnt in nur **17,5 %** von 200
-Symbol-Reihenfolgen dieselbe Kombination, bei `turtle_soup_stocks` in
-30,5 %, bei `volatility_breakout` in 40,0 %. In den übrigen
+stabil: bei `turtle_soup_stocks` gewinnt in nur **30,5 %** von 200
+Symbol-Reihenfolgen dieselbe Kombination, bei `elliott_wave_stocks` in
+34,5 %, bei `volatility_breakout` in 40,0 %. In den übrigen
 Reihenfolgen gewinnt eine andere. Einzelheiten in Abschnitt 5.
 
 ### Frage 5 in einem Satz, und sie fällt anders aus als erwartet
@@ -152,6 +152,34 @@ geschrieben, trifft **jede der sieben Zahlen**:
 Zwei getrennt gebaute Nachbildungen, dieselben Zahlen bis auf die
 letzte Stelle — für beide Drawdown-Begriffe.
 
+### Stand: gerechnet nach PR #81 (Kurslücken im Trade-Pfad)
+
+Während dieser Untersuchung ist **PR #81** in `main` gemergt worden. Er
+streicht unvollständige Kerzen in `load_all_symbol_data` **aller neun
+Bots** (`shared/kursdaten.py`) — also genau die APH-Lücke, die der
+auslösende Bericht als zweiten Fund am Rande genannt hatte. Diese
+Untersuchung ist danach vollständig nachgerechnet worden. Was sich
+dadurch ändert, ist gemessen:
+
+| | Wirkung von PR #81 |
+|---|---|
+| Betroffene Kerzen im ganzen `data/`-Ordner | **eine** (`APH_1d.csv`, letzter Balken) — `python3 shared/kursdaten.py` prüft alle 242 Dateien |
+| Acht Bots (`elliott_wave`, `t3_supertrend`, alle `rsi2_*`, `turtle_soup_*`, `volatility_breakout*`) | **keine**: ihre Raster-CSVs sind vor und nach dem Merge byteweise identisch |
+| `elliott_wave_stocks`: Trade-Zahl, Trefferquote, **alle vier Drawdowns**, Filterentscheidung | **unverändert**, 64 von 64 Kombinationen |
+| `elliott_wave_stocks`: Ø PnL | 6 von 64 Werten um **0,01 Prozentpunkte** verschoben |
+| `elliott_wave_stocks`: `num_nan_pnl` | **32 → 0** |
+| Sieger, Ränge und Vorsprünge in beiden Rangfolgen | **unverändert** |
+| Selbsttests gegen den geänderten Bot-Code | **alle neun Bots bestanden** |
+
+Eine einzige abgeleitete Zahl bewegt sich merklich: der Anteil der
+Symbol-Reihenfolgen, in denen bei `elliott_wave_stocks` dieselbe
+Kombination gewinnt, springt von 17,5 % auf **34,5 %**. Das ist kein
+Widerspruch, sondern derselbe Befund noch einmal: wenn 0,01
+Prozentpunkte Ø PnL diesen Anteil verdoppeln, liegen die Scores dieses
+Bots so dicht beieinander, dass der Einzelwert nichts trägt. Die
+Aussage, die trägt, ist in beiden Fällen dieselbe — in der Mehrheit der
+Reihenfolgen gewinnt eine andere Kombination (Abschnitt 9, Punkt 6).
+
 ### Belastbarkeit
 
 * **Datenbasis** je Bot in Abschnitt 3. Zwischen 4 und 81 Kombinationen
@@ -168,7 +196,9 @@ letzte Stelle — für beide Drawdown-Begriffe.
   aus den Berichten und `live_params.py`-Kommentaren belegt, nicht aus
   der Zahl (Abschnitt 2.4).
 * **Kursdatenlücken**: Die APH-Lücke berührt diese Zahlen **nicht** —
-  gemessen, nicht angenommen (Abschnitt 7, A-5).
+  gemessen, nicht angenommen (Abschnitt 7, A-5). Seit PR #81 ist sie im
+  Bot geschlossen; die Wirkung auf diese Zahlen steht oben unter
+  „Stand".
 
 ### Reproduktion
 
@@ -450,7 +480,7 @@ immer das Gesamtfenster entschieden hat: das Gesamtfenster (wie
 | `turtle_soup_crypto` / In-Sample | 5 von 12 | Donchian 10 / kein Stop | Donchian 10 / kein Stop | nein | 96,0 % |
 | `volatility_breakout_crypto` / gesamt | 4 von 4 | Stop 5 % | Stop 5 % | **nein** | 92,5 % |
 | `volatility_breakout_crypto` / In-Sample | 4 von 4 | Stop 5 % | Stop 3 % | ja | 63,0 % |
-| `elliott_wave_stocks` / gesamt | 17 von 64 | **dev 4 % / Stop 8 % / kein Ziel** | **dev 5 % / Stop 2 % / kein Ziel** | **JA** | **17,5 %** |
+| `elliott_wave_stocks` / gesamt | 17 von 64 | **dev 4 % / Stop 8 % / kein Ziel** | **dev 5 % / Stop 2 % / kein Ziel** | **JA** | **34,5 %** |
 | `rsi2_mean_reversion` / gesamt | 6 von 6 | RSI 10 / kein Stop | RSI 5 / kein Stop | ja | 53,0 % |
 | `rsi2_mean_reversion` / In-Sample | 2 von 6 | **RSI 5 / kein Stop** | **RSI 5 / kein Stop** | **nein** | 69,5 % |
 | `turtle_soup_stocks` / gesamt | 12 von 12 | **Donchian 10 / kein Stop** | **Donchian 10 / Stop 5 %** | **JA** | **30,5 %** |
@@ -514,8 +544,8 @@ bei +189,94 % Rendite (Calmar **7,00**), ohne Stop −29,27 % bei +162,18 %
 
 Der Block-Sieger stürzt auf Rang 10, die Live-Kombination steigt von Rang
 6 auf Rang 2. Für diesen Bot spricht der Wechsel des Maßes also **für**
-die heutige Einstellung, nicht gegen sie. Und er ist der Bot mit der
-unzuverlässigsten Block-Rangfolge überhaupt: in nur 17,5 % von 200
+die heutige Einstellung, nicht gegen sie. Seine Block-Rangfolge ist
+zudem eine der unzuverlässigsten: in nur 34,5 % von 200
 Symbol-Reihenfolgen gewinnt dieselbe Kombination.
 
 **`elliott_wave`** — siehe 4.4.
@@ -708,11 +738,11 @@ gewinnt unter 200 Symbol-Reihenfolgen dieselbe Kombination?**
 | `rsi2_crypto` / gesamt | 59,5 % | wackelig |
 | `rsi2_mean_reversion` / gesamt | 53,0 % | wackelig |
 | `volatility_breakout` / gesamt | 40,0 % | in 3 von 5 Reihenfolgen gewinnt etwas anderes |
-| `turtle_soup_stocks` / gesamt | 30,5 % | die Rangfolge ist überwiegend Zufall der Symbolliste |
-| `elliott_wave_stocks` / gesamt | **17,5 %** | in mehr als vier von fünf Reihenfolgen gewinnt eine andere Kombination |
+| `elliott_wave_stocks` / gesamt | **34,5 %** | in zwei von drei Reihenfolgen gewinnt eine andere Kombination |
+| `turtle_soup_stocks` / gesamt | **30,5 %** | die Rangfolge ist überwiegend Zufall der Symbolliste |
 
 Das ist der eigentliche Befund dieses Abschnitts, und er ist stärker als
-die Ausgangsfrage: bei `elliott_wave_stocks`, `turtle_soup_stocks` und
+die Ausgangsfrage: bei `turtle_soup_stocks`, `elliott_wave_stocks` und
 `volatility_breakout` ist die Rangfolge des Block-Maßes **schon gegen die
 eigene Symbollisten-Reihenfolge nicht stabil**. Hätte jemand die Zeilen
 in `config/sp500_top150.txt` anders sortiert — nach Alphabet statt nach
@@ -909,18 +939,26 @@ wäre eine Ableitung aus der Gesamtmenge falsch, und `analyse.py`
 verweigert sie mit Begründung statt sie zu schätzen.
 
 **A-5 — Die APH-Kurslücke berührt diese Zahlen nicht; gemessen, nicht
-angenommen.** Erwartet war, dass ein Trade mit `pnl_pct = NaN` die
-kumulierte Reihe abbricht. Gemessen (Prüfung 14) gilt das **nicht**:
-`Series.cumsum()` überspringt NaN (`skipna=True`), ein solcher Trade
-wirkt wie 0, und der Drawdown bleibt unberührt. Über alle Raster hinweg
-treten NaN-PnL-Trades nur bei `elliott_wave_stocks` auf (32 Stück, einer
-je Kombination — der letzte, leere APH-Balken), und die Drawdowns mit und
-ohne diese Trades sind auf zwei Stellen **identisch**: 0 von 64
-Kombinationen weichen ab, weder in der Block- noch in der
-chronologischen Reihenfolge. Was die Lücke verschiebt, ist `mean()` —
-dort fällt der NaN-Trade aus dem Nenner, während `num_trades` ihn
-mitzählt. Das ist ein Effekt in der vierten Stelle und ändert keine
-Rangfolge. Behoben wird hier nichts; das bleibt die eigene Aufgabe.
+angenommen — und im Bot ist sie inzwischen behoben.** Erwartet war, dass
+ein Trade mit `pnl_pct = NaN` die kumulierte Reihe abbricht. Gemessen
+(Prüfung 14) gilt das **nicht**: `Series.cumsum()` überspringt NaN
+(`skipna=True`), ein solcher Trade wirkt wie 0, und der Drawdown bleibt
+unberührt. Was die Lücke verschiebt, ist `mean()` — dort fällt der
+NaN-Trade aus dem Nenner, während `num_trades` ihn mitzählt.
+
+**PR #81 hat die Lücke am 12.09.2026 an der Quelle geschlossen**
+(`shared/kursdaten.py`, aufgerufen in `load_all_symbol_data` aller neun
+Bots). Diese Untersuchung ist danach vollständig nachgerechnet worden;
+was sich dadurch geändert hat, steht in Abschnitt 0 unter „Stand" und
+ist klein: `num_nan_pnl` fällt bei `elliott_wave_stocks` von 32 auf 0,
+sechs von 64 Ø-PnL-Werten verschieben sich um 0,01 Prozentpunkte, alle
+Drawdowns, Trade-Zahlen, Trefferquoten und beide Sieger bleiben gleich.
+
+Ein Rest bleibt offen und ist nicht Gegenstand dieser Untersuchung:
+`equity_simulation.py` rechnet weiter ohne eigene NaN-Absicherung. Sie
+bekommt heute keine Lücke mehr zu sehen, weil `load_all_symbol_data` sie
+vorher streicht — aber der Schutz liegt damit in einer anderen Datei als
+die Rechnung.
 
 **A-6 — Der Score wird mit der gerundeten Eingabe gerechnet**, so wie
 der Bot es tut (`round(avg_return, 2)`, `round(max_drawdown, 2)` vor dem
@@ -982,7 +1020,10 @@ Beobachtungen, keine Aufträge — die Entscheidung liegt beim Nutzer:
    je entfernt oder durch etwas anderes ersetzt, ändert damit dessen
    Score — ohne dass irgendein Kommentar davor warnt.
 4. **Die gespeicherten `multi_symbol_optimisation_results.csv` sind
-   unterschiedlich alt.** Die von `t3_supertrend` stammt von vor dem
+   unterschiedlich alt.** (Seit PR #81 gilt das für alle neun erneut:
+   deren `load_all_symbol_data` ist geändert, die Dateien daneben sind
+   älter. Für acht Bots ohne Folge — gemessen, Abschnitt 0 —, für
+   `elliott_wave_stocks` in der dritten Stelle.) Die von `t3_supertrend` stammt von vor dem
    Regimefilter, die von `elliott_wave_stocks` von vor der
    Look-Ahead-Korrektur. Beide werden in Berichten weiter als aktuelle
    Zahlen zitiert. Ein Datum im Dateikopf oder eine Zeile im jeweiligen
@@ -991,7 +1032,15 @@ Beobachtungen, keine Aufträge — die Entscheidung liegt beim Nutzer:
    außerhalb von `strategies/`** (Abschnitt 1). Eine gemeinsame Funktion
    in `shared/` wäre der Ort dafür — dieselbe Überlegung wie bei
    `live_params.py` und `empfehlung_format.py`.
-6. **`volatility_breakout`: der Kapital-Calmar bevorzugt Stop 3 %**, den
+6. **Der Stabilitätswert des Block-Maßes ist selbst empfindlich.** Bei
+   `elliott_wave_stocks` verschiebt PR #81 sechs Ø-PnL-Werte um
+   0,01 Prozentpunkte — und der Anteil der Symbol-Reihenfolgen, in denen
+   dieselbe Kombination gewinnt, springt von 17,5 % auf 34,5 %. Der
+   Einzelwert taugt also nicht als Messgröße, die qualitative Aussage
+   („in der Mehrheit der Reihenfolgen gewinnt eine andere Kombination")
+   bleibt in beiden Fällen dieselbe. Wer diese Zahl zitiert, sollte sie
+   nicht auf die Stelle genau lesen.
+7. **`volatility_breakout`: der Kapital-Calmar bevorzugt Stop 3 %**, den
    beide Rastermaße auf Rang 3–4 setzen. Das ist kein
    Reihenfolge-Befund, sondern ein Hinweis, dass der Vorfilter bei diesem
    Bot in eine andere Richtung zeigt als die Kapitalkurve. Eigene Frage.

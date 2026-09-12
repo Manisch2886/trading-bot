@@ -1,10 +1,12 @@
 {
   "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
   "bot": "rsi2_mean_reversion",
+  "fenster": "gesamt",
   "symbole": 147,
   "kombinationen": 6,
   "permutationen": 200,
   "seed": 20260912,
+  "ohne_regimefilter": false,
   "mindestfilter": {
     "MIN_TRADES": 150,
     "MIN_SYMBOLS_CONTRIBUTING": 22,

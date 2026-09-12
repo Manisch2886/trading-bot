@@ -1,17 +1,19 @@
 {
   "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
   "bot": "elliott_wave_stocks",
+  "fenster": "gesamt",
   "symbole": 147,
   "kombinationen": 64,
   "permutationen": 200,
   "seed": 20260912,
+  "ohne_regimefilter": false,
   "mindestfilter": {
     "MIN_TRADES": 150,
     "MIN_SYMBOLS_CONTRIBUTING": 22,
     "MIN_AVG_RETURN_PCT": 2.0
   },
   "num_besteht_mindestfilter": 17,
-  "nan_pnl_trades_gesamt": 32,
+  "nan_pnl_trades_gesamt": 0,
   "rangfolgen": {
     "bot": [
       {
@@ -33,10 +35,10 @@
       {
         "rang": 3,
         "label": "dev 2.0 % / Stop 8.0 % / kein Ziel",
-        "score": 1.41,
+        "score": 1.407,
         "dd": -146.57,
         "num_trades": 1786,
-        "avg_return_pct": 4.89
+        "avg_return_pct": 4.88
       },
       {
         "rang": 4,
@@ -65,10 +67,10 @@
       {
         "rang": 7,
         "label": "dev 3.0 % / Stop 8.0 % / kein Ziel",
-        "score": 1.139,
+        "score": 1.137,
         "dd": -158.81,
         "num_trades": 1148,
-        "avg_return_pct": 5.34
+        "avg_return_pct": 5.33
       },
       {
         "rang": 8,
@@ -115,10 +117,10 @@
       {
         "rang": 3,
         "label": "dev 2.0 % / Stop 8.0 % / kein Ziel",
-        "score": 1.41,
+        "score": 1.407,
         "dd": -146.57,
         "num_trades": 1786,
-        "avg_return_pct": 4.89
+        "avg_return_pct": 4.88
       },
       {
         "rang": 4,
@@ -147,10 +149,10 @@
       {
         "rang": 7,
         "label": "dev 3.0 % / Stop 8.0 % / kein Ziel",
-        "score": 1.139,
+        "score": 1.137,
         "dd": -158.81,
         "num_trades": 1148,
-        "avg_return_pct": 5.34
+        "avg_return_pct": 5.33
       },
       {
         "rang": 8,
@@ -355,51 +357,47 @@
     "vorsprung_exit_pct": 1.8,
     "block_permutationssieger": [
       [
-        "dev 2.0 % / Stop 5.0 % / kein Ziel",
-        35
-      ],
-      [
-        "dev 2.0 % / Stop 8.0 % / kein Ziel",
-        28
-      ],
-      [
-        "dev 3.0 % / Stop 8.0 % / kein Ziel",
-        26
-      ],
-      [
         "dev 5.0 % / Stop 3.0 % / kein Ziel",
-        22
-      ],
-      [
-        "dev 3.0 % / Stop 5.0 % / kein Ziel",
-        21
-      ],
-      [
-        "dev 3.0 % / Stop 3.0 % / kein Ziel",
-        19
-      ],
-      [
-        "dev 3.0 % / Stop 2.0 % / kein Ziel",
-        16
-      ],
-      [
-        "dev 5.0 % / Stop 5.0 % / kein Ziel",
-        13
+        69
       ],
       [
         "dev 5.0 % / Stop 8.0 % / kein Ziel",
-        10
+        52
       ],
       [
-        "dev 2.0 % / Stop 3.0 % / kein Ziel",
+        "dev 5.0 % / Stop 5.0 % / kein Ziel",
+        47
+      ],
+      [
+        "dev 2.0 % / Stop 5.0 % / kein Ziel",
         9
       ],
       [
         "dev 4.0 % / Stop 8.0 % / kein Ziel",
-        1
+        8
+      ],
+      [
+        "dev 4.0 % / Stop 5.0 % / kein Ziel",
+        4
+      ],
+      [
+        "dev 4.0 % / Stop 3.0 % / kein Ziel",
+        3
+      ],
+      [
+        "dev 2.0 % / Stop 8.0 % / kein Ziel",
+        3
+      ],
+      [
+        "dev 4.0 % / Stop 2.0 % / kein Ziel",
+        3
+      ],
+      [
+        "dev 5.0 % / Stop 2.0 % / kein Ziel",
+        2
       ]
     ],
-    "block_sieger_stabil_pct": 17.5
+    "block_sieger_stabil_pct": 34.5
   },
   "rangwechsel": [
     {
@@ -531,10 +529,10 @@
       "faktor_entry_zu_block": 3.52,
       "perm_block_dd": {
         "n": 200,
-        "min": -242.68,
-        "median": -116.48,
-        "max": -19.8,
-        "spanne_pp": 222.88
+        "min": -253.78,
+        "median": -139.72,
+        "max": -95.39,
+        "spanne_pp": 158.39
       },
       "perm_tie_dd": {
         "n": 200,
@@ -545,10 +543,10 @@
       },
       "perm_block_score": {
         "n": 200,
-        "min": 0.43,
-        "median": 0.9,
-        "max": 5.29,
-        "spanne_pp": 4.86
+        "min": 0.41,
+        "median": 0.75,
+        "max": 1.1,
+        "spanne_pp": 0.69
       },
       "dd_entry_in_block_spanne": false
     },
@@ -560,10 +558,10 @@
       "faktor_entry_zu_block": 5.17,
       "perm_block_dd": {
         "n": 200,
-        "min": -204.25,
-        "median": -106.8,
-        "max": -10.6,
-        "spanne_pp": 193.65
+        "min": -205.58,
+        "median": -127.38,
+        "max": -86.88,
+        "spanne_pp": 118.7
       },
       "perm_tie_dd": {
         "n": 200,
@@ -575,9 +573,9 @@
       "perm_block_score": {
         "n": 200,
         "min": 0.75,
-        "median": 1.44,
-        "max": 14.51,
-        "spanne_pp": 13.76
+        "median": 1.21,
+        "max": 1.77,
+        "spanne_pp": 1.02
       },
       "dd_entry_in_block_spanne": false
     },
@@ -590,9 +588,9 @@
       "perm_block_dd": {
         "n": 200,
         "min": -404.38,
-        "median": -158.45,
-        "max": -24.9,
-        "spanne_pp": 379.48
+        "median": -188.98,
+        "max": -132.8,
+        "spanne_pp": 271.58
       },
       "perm_tie_dd": {
         "n": 200,
@@ -604,9 +602,9 @@
       "perm_block_score": {
         "n": 200,
         "min": 0.51,
-        "median": 1.3,
-        "max": 8.3,
-        "spanne_pp": 7.79
+        "median": 1.09,
+        "max": 1.55,
+        "spanne_pp": 1.04
       },
       "dd_entry_in_block_spanne": false
     },
@@ -618,10 +616,10 @@
       "faktor_entry_zu_block": 2.83,
       "perm_block_dd": {
         "n": 200,
-        "min": -181.7,
-        "median": -86.6,
-        "max": -9.2,
-        "spanne_pp": 172.5
+        "min": -189.45,
+        "median": -105.17,
+        "max": -65.04,
+        "spanne_pp": 124.41
       },
       "perm_tie_dd": {
         "n": 200,
@@ -632,10 +630,10 @@
       },
       "perm_block_score": {
         "n": 200,
-        "min": 0.46,
-        "median": 0.95,
-        "max": 8.99,
-        "spanne_pp": 8.53
+        "min": 0.44,
+        "median": 0.79,
+        "max": 1.27,
+        "spanne_pp": 0.83
       },
       "dd_entry_in_block_spanne": false
     },
@@ -648,9 +646,9 @@
       "perm_block_dd": {
         "n": 200,
         "min": -209.9,
-        "median": -89.1,
-        "max": -9.9,
-        "spanne_pp": 200.0
+        "median": -109.25,
+        "max": -72.6,
+        "spanne_pp": 137.3
       },
       "perm_tie_dd": {
         "n": 200,
@@ -662,9 +660,9 @@
       "perm_block_score": {
         "n": 200,
         "min": 0.48,
-        "median": 1.14,
-        "max": 10.27,
-        "spanne_pp": 9.78
+        "median": 0.93,
+        "max": 1.4,
+        "spanne_pp": 0.92
       },
       "dd_entry_in_block_spanne": false
     },
@@ -677,9 +675,9 @@
       "perm_block_dd": {
         "n": 200,
         "min": -269.85,
-        "median": -117.04,
-        "max": -5.3,
-        "spanne_pp": 264.55
+        "median": -140.09,
+        "max": -97.4,
+        "spanne_pp": 172.45
       },
       "perm_tie_dd": {
         "n": 200,
@@ -691,9 +689,9 @@
       "perm_block_score": {
         "n": 200,
         "min": 0.49,
-        "median": 1.13,
-        "max": 24.93,
-        "spanne_pp": 24.44
+        "median": 0.94,
+        "max": 1.36,
+        "spanne_pp": 0.87
       },
       "dd_entry_in_block_spanne": false
     },
@@ -706,9 +704,9 @@
       "perm_block_dd": {
         "n": 200,
         "min": -309.58,
-        "median": -140.53,
-        "max": -8.3,
-        "spanne_pp": 301.28
+        "median": -169.08,
+        "max": -120.35,
+        "spanne_pp": 189.23
       },
       "perm_tie_dd": {
         "n": 200,
@@ -720,9 +718,9 @@
       "perm_block_score": {
         "n": 200,
         "min": 0.58,
-        "median": 1.29,
-        "max": 21.8,
-        "spanne_pp": 21.21
+        "median": 1.07,
+        "max": 1.5,
+        "spanne_pp": 0.92
       },
       "dd_entry_in_block_spanne": false
     },

@@ -6,6 +6,7 @@
   "kombinationen": 6,
   "permutationen": 200,
   "seed": 20260912,
+  "ohne_regimefilter": false,
   "mindestfilter": {
     "MIN_TRADES": 150,
     "MIN_SYMBOLS_CONTRIBUTING": 22,

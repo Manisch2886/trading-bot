@@ -67,10 +67,10 @@ Symbol-Reihenfolgen dieselbe Kombination?**
 | `rsi2_mean_reversion` | 53,0 % |
 | `volatility_breakout` | 40,0 % |
 | `t3_supertrend` (vor Regimefilter) | 38,5 % |
-| `turtle_soup_stocks` | 30,5 % |
-| **`elliott_wave_stocks`** | **17,5 %** |
+| `elliott_wave_stocks` | **34,5 %** |
+| **`turtle_soup_stocks`** | **30,5 %** |
 
-Bei `elliott_wave_stocks`, `turtle_soup_stocks` und
+Bei `turtle_soup_stocks`, `elliott_wave_stocks` und
 `volatility_breakout` ist die Rangfolge des heutigen Maßes **schon gegen
 die Sortierung der eigenen Symboldatei nicht stabil**. Wäre
 `config/sp500_top150.txt` alphabetisch statt nach Marktkapitalisierung
@@ -197,10 +197,20 @@ einmal erzeugt hat.
   gespeicherten Zahlen bis auf die letzte Stelle: 130 Trades, Ø 4,19 %,
   Drawdown −56,22 (Score 0,850) und chronologisch −93,50 (Score 0,511).
   Zwei getrennt gebaute Nachbildungen, dasselbe Ergebnis.
-* **Die APH-Kurslücke berührt diese Zahlen nicht**, gemessen statt
-  angenommen: `cumsum` überspringt NaN, der Drawdown bleibt unberührt.
-  32 betroffene Trades bei `elliott_wave_stocks`, 0 Abweichung in 64
-  Kombinationen.
+* **Gerechnet nach PR #81** (Kurslücken im Trade-Pfad), der während
+  dieser Untersuchung in `main` gemergt wurde und `load_all_symbol_data`
+  aller neun Bots ändert. Wirkung gemessen: im ganzen `data/`-Ordner ist
+  **eine** Kerze betroffen (APH, letzter Balken); für acht Bots sind die
+  Raster-CSVs vor und nach dem Merge byteweise identisch; bei
+  `elliott_wave_stocks` bleiben Trade-Zahl, Trefferquote, alle vier
+  Drawdowns und beide Sieger gleich, sechs von 64 Ø-PnL-Werten
+  verschieben sich um 0,01 Prozentpunkte, `num_nan_pnl` fällt von 32 auf
+  0. Alle Selbsttests bestehen auch gegen den geänderten Bot-Code.
+* **Eine abgeleitete Zahl ist selbst empfindlich:** der Stabilitätsanteil
+  von `elliott_wave_stocks` springt durch diese 0,01 Prozentpunkte von
+  17,5 % auf 34,5 %. Die qualitative Aussage bleibt dieselbe — in der
+  Mehrheit der Reihenfolgen gewinnt eine andere Kombination —, aber der
+  Einzelwert sollte nicht auf die Stelle genau gelesen werden.
 * **Dünn**: `volatility_breakout` und `volatility_breakout_crypto` haben
   nur vier Rasterpunkte; deren Rangkorrelationen sind nicht belastbar.
 * **Nicht reproduzierbar** ist die historische Rasterausgabe von
