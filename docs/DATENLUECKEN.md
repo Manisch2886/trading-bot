@@ -23,6 +23,26 @@ Ein Eintrag entsteht auch dann, wenn der Ausfall **teilweise** nachgeholt
 wurde. Gerade dann: dass ein Teil nachgeholt wurde, ist genau die Information,
 die man beim Auswerten braucht.
 
+## Was hier NICHT hingehört: löchrige Kursdaten
+
+Dieses Register führt Ausfälle, bei denen ein Bot **gar nicht lief** — der Mac
+schlief, der Cronjob kam nicht zum Zug, und Cron holt nichts nach. Fehlende
+**Läufe** also.
+
+Davon zu unterscheiden ist der Fall, dass der Bot lief, aber die **Kursdaten**
+löchrig waren. Beispiel (PR #81): die letzte Kerze von `APH` kam am 12.09.2026
+mit Datum und Volumen, aber ohne Kurse aus yfinance. Ein Trade, der dort per
+Zeitausstieg endete, bekam `NaN` als Ergebnis — und das vergiftete die
+Kapitalkurve, ohne dass irgendwo eine Meldung erschien.
+
+**Andere Fehlerklasse, andere Abhilfe.** Solche Lücken werden nicht hier
+vermerkt, sondern beim Laden gestrichen und gezählt; zuständig ist
+`shared/kursdaten.py`, prüfen lässt es sich mit `python3 shared/kursdaten.py`.
+Die Unterscheidung steht hier, weil beides in den Zahlen gleich aussieht wie
+„kein Signal" und deshalb leicht verwechselt wird.
+
+---
+
 ## ⚠️ Offener Punkt: die Bots protokollieren ihre Läufe nicht
 
 **Dieses Register lässt sich derzeit nicht vollständig belegen.** Die Bots

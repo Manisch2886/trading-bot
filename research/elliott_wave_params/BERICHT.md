@@ -414,6 +414,14 @@ Beobachtungen, keine Aufträge — die Entscheidung liegt beim Auftraggeber:
 2. **Die Kurslücke in `APH`** trifft den Bot selbst genauso — `equity_simulation`
    würde dieselbe NaN-Kapitalkurve erzeugen. Eine kleine Absicherung im
    Bot-Code wäre naheliegend.
+
+   *Nachtrag 12.09.2026 (PR #81):* erledigt, aber an anderer Stelle als hier
+   vermutet. Die Absicherung sitzt nicht im Bot-Code, sondern an den beiden
+   Stellen, an denen Kursdaten ins Projekt kommen (`fetch_stock_data` und
+   `load_all_symbol_data`, `shared/kursdaten.py`) — `equity_simulation.py` ist
+   unverändert. Gemessen: 1 von 150 Aktien-Symbolen betroffen, 24 von 48
+   Rasterkombinationen dieses Bots erzeugten den NaN-Trade, die Live-Kombination
+   **nicht**. Einzelheiten in `docs/UEBERGABE_kursluecken.md`.
 3. **Die zwei Zeilenreihenfolgen** (Abschnitt 6) betreffen jede künftige
    Rasteroptimierung aller neun Bots, nicht nur diese Untersuchung.
 4. **Der Eintrag in `strategies/elliott_wave_stocks/live_params.py`** hält
