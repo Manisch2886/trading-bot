@@ -46,10 +46,12 @@ Telegram schliessen) - kommt erst in Phase 3.
    python3 notifications/telegram_bot.py
    ```
    Dann in Telegram an `Manisch_TradeSignal_Bot` `/status` schicken.
-4. **Als launchd-Dienst einrichten** (dauerhafter Betrieb, siehe
-   `com.manisch.telegram-tradesignal-bot.plist` fuer Details/Pfade-Check):
+4. **Als launchd-Dienst einrichten** (dauerhafter Betrieb). Die Vorlage
+   liegt seit TB-15 bei den beiden anderen Diensten unter `system/`, die
+   gemeinsame Anleitung fuer alle drei steht in
+   [`system/README_DIENSTE.md`](../system/README_DIENSTE.md):
    ```
-   cp notifications/com.manisch.telegram-tradesignal-bot.plist ~/Library/LaunchAgents/
+   cp system/com.manisch.telegram-tradesignal-bot.plist ~/Library/LaunchAgents/
    launchctl load ~/Library/LaunchAgents/com.manisch.telegram-tradesignal-bot.plist
    ```
    Stoppen: `launchctl unload ~/Library/LaunchAgents/com.manisch.telegram-tradesignal-bot.plist`

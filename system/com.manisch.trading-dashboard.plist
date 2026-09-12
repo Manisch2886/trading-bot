@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+launchd-Vorlage fuer das Dashboard (dashboard/server.py).
+
+=== ACHTUNG: DIESE VORLAGE IST NOCH EIN PLATZHALTER ====================
+
+Der Dienst com.manisch.trading-dashboard laeuft seit Monaten produktiv,
+seine Datei liegt aber NUR unter ~/Library/LaunchAgents/ auf dem Mac des
+Nutzers. Sie war noch nie im Repo (in der gesamten Git-Historie gibt es
+keine Fassung davon), und eine Cloud-Sitzung hat keinen Zugriff darauf.
+
+Die mit PLATZHALTER__ markierten Werte sind deshalb NICHT geraten worden,
+sondern ausdruecklich offen gelassen. So laedt die Datei absichtlich
+nicht: launchd wuerde eine erfundene Fassung klaglos annehmen und der
+Dienst liefe dann anders als der bisherige, ohne dass es jemand merkt.
+
+Befuellt wird sie aus der laufenden Fassung, nicht von Hand:
+
+    cp ~/Library/LaunchAgents/com.manisch.trading-dashboard.plist system/
+    python3 system/test_dienst_plists.py
+
+Der vollstaendige Ablauf mit Gegenpruefung steht in
+system/README_DIENSTE.md, Abschnitt "Die Dashboard-Vorlage befuellen".
+
+=== BELEGT (aus dem Repo nachpruefbar) =================================
+
+1. Einstiegspunkt ist dashboard/server.py. Es holt erzeuge_app() aus
+   dashboard/app.py und startet uvicorn - app.py selbst ist KEIN
+   Einstiegspunkt und darf hier nicht stehen.
+2. Port 8787 ist die Grundeinstellung (STANDARD_PORT in
+   dashboard/konfig.py).
+3. Ohne gueltiges Token antwortet der Server einem Browser mit 303
+   (Umleitung auf /login, dashboard/app.py). Das ist korrektes
+   Verhalten und kein Fehler.
+4. Der Projektpfad /Users/jaquelineloffler/trading-bot stimmt mit den
+   beiden anderen Dienst-Vorlagen unter system/ ueberein; der Selbsttest
+   vergleicht das.
+
+=== ERSCHLOSSEN (plausibel, aber nicht aus der laufenden Fassung belegt) =
+
+5. DASHBOARD_HOST=100.106.38.8 unten: dass der Dienst auf dieser
+   Tailscale-Adresse lauscht, ist beobachtet. Die Grundeinstellung in
+   dashboard/konfig.py ist jedoch 127.0.0.1, d.h. die Adresse MUSS von
+   aussen gesetzt werden - entweder hier als EnvironmentVariables oder in
+   der .env im Projekt-Root. WELCHER der beiden Wege in der laufenden
+   Fassung benutzt wird, ist nicht belegt. Steht es in der .env, ist der
+   Block unten ueberfluessig (aber auch nicht schaedlich, gleicher Wert).
+6. RunAtLoad/KeepAlive auf true: das Uebliche fuer einen dauerhaft
+   lauschenden Server und bei den beiden anderen Diensten ebenso. Die
+   tatsaechlichen Werte der laufenden Fassung sind nicht belegt.
+7. WorkingDirectory auf den Projekt-Root: server.py und konfig.py lesen
+   die .env aus dem Projekt-Root.
+
+=== OFFEN (nur die laufende Fassung weiss es) ==========================
+
+8. Der Pfad zum python3 mit den Abhaengigkeiten aus
+   dashboard/requirements.txt (fastapi, uvicorn). Die Telegram-Vorlage
+   benutzt .../trading-env/bin/python3 - ob das Dashboard dieselbe
+   Umgebung benutzt, ist nicht belegt.
+9. Die Namen der beiden Logdateien.
+
+Neustart nach einem git pull, der dashboard/ anfasst:
+    launchctl kickstart -k gui/$(id -u)/com.manisch.trading-dashboard
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.manisch.trading-dashboard</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>PLATZHALTER__PYTHON3_PFAD</string>
+        <string>/Users/jaquelineloffler/trading-bot/dashboard/server.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/jaquelineloffler/trading-bot</string>
+
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>DASHBOARD_HOST</key>
+        <string>100.106.38.8</string>
+        <key>DASHBOARD_PORT</key>
+        <string>8787</string>
+    </dict>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>PLATZHALTER__LOGPFAD_OUT</string>
+
+    <key>StandardErrorPath</key>
+    <string>PLATZHALTER__LOGPFAD_ERR</string>
+</dict>
+</plist>
