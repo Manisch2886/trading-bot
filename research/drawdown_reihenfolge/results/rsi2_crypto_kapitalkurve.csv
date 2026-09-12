@@ -1,0 +1,7 @@
+label,sma_trend_period,rsi_threshold,stop_loss_pct,num_trades,dd_block,dd_entry,score_block,score_entry,kapital_rendite_pct,kapital_dd_pct,kapital_calmar,ausgefuehrt,uebersprungen
+SMA 100 / RSI 5.0 / Stop kein Stop,100,5.0,kein Stop,205,-87.24,-82.7,0.087,0.092,9.5,-9.77,0.97,199,6
+SMA 100 / RSI 10.0 / Stop kein Stop,100,10.0,kein Stop,448,-69.29,-180.31,0.186,0.072,10.84,-16.9,0.64,405,43
+SMA 150 / RSI 5.0 / Stop kein Stop,150,5.0,kein Stop,215,-65.74,-95.88,0.216,0.148,17.59,-9.33,1.89,202,13
+SMA 150 / RSI 10.0 / Stop kein Stop,150,10.0,kein Stop,439,-57.89,-115.75,0.34,0.17,31.31,-13.96,2.24,393,46
+SMA 200 / RSI 5.0 / Stop kein Stop,200,5.0,kein Stop,227,-55.92,-128.07,0.256,0.112,16.93,-13.66,1.24,211,16
+SMA 200 / RSI 10.0 / Stop kein Stop,200,10.0,kein Stop,464,-102.63,-181.68,0.092,0.052,10.2,-17.09,0.6,414,50

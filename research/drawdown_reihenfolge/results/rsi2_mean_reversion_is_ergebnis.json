@@ -1,0 +1,190 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "rsi2_mean_reversion",
+  "fenster": "is",
+  "symbole": 147,
+  "kombinationen": 6,
+  "permutationen": 200,
+  "seed": 20260912,
+  "ohne_regimefilter": false,
+  "mindestfilter": {
+    "MIN_TRADES": 150,
+    "MIN_SYMBOLS_CONTRIBUTING": 22,
+    "MIN_AVG_RETURN_PCT": 0.0
+  },
+  "num_besteht_mindestfilter": 2,
+  "nan_pnl_trades_gesamt": 0,
+  "rangfolgen": {
+    "bot": [
+      {
+        "rang": 1,
+        "label": "RSI 5.0 / Stop kein Stop",
+        "score": 0.033,
+        "dd": -186.45,
+        "num_trades": 3674,
+        "avg_return_pct": 0.1
+      },
+      {
+        "rang": 2,
+        "label": "RSI 10.0 / Stop kein Stop",
+        "score": 0.033,
+        "dd": -203.11,
+        "num_trades": 7000,
+        "avg_return_pct": 0.08
+      }
+    ],
+    "block": [
+      {
+        "rang": 1,
+        "label": "RSI 5.0 / Stop kein Stop",
+        "score": 0.033,
+        "dd": -186.45,
+        "num_trades": 3674,
+        "avg_return_pct": 0.1
+      },
+      {
+        "rang": 2,
+        "label": "RSI 10.0 / Stop kein Stop",
+        "score": 0.033,
+        "dd": -203.11,
+        "num_trades": 7000,
+        "avg_return_pct": 0.08
+      }
+    ],
+    "entry": [
+      {
+        "rang": 1,
+        "label": "RSI 5.0 / Stop kein Stop",
+        "score": 0.011,
+        "dd": -560.7,
+        "num_trades": 3674,
+        "avg_return_pct": 0.1
+      },
+      {
+        "rang": 2,
+        "label": "RSI 10.0 / Stop kein Stop",
+        "score": 0.006,
+        "dd": -1200.43,
+        "num_trades": 7000,
+        "avg_return_pct": 0.08
+      }
+    ],
+    "exit": [
+      {
+        "rang": 1,
+        "label": "RSI 5.0 / Stop kein Stop",
+        "score": 0.01,
+        "dd": -596.22,
+        "num_trades": 3674,
+        "avg_return_pct": 0.1
+      },
+      {
+        "rang": 2,
+        "label": "RSI 10.0 / Stop kein Stop",
+        "score": 0.006,
+        "dd": -1214.59,
+        "num_trades": 7000,
+        "avg_return_pct": 0.08
+      }
+    ]
+  },
+  "sieger": {
+    "bot": "RSI 5.0 / Stop kein Stop",
+    "block": "RSI 5.0 / Stop kein Stop",
+    "entry": "RSI 5.0 / Stop kein Stop",
+    "exit": "RSI 5.0 / Stop kein Stop"
+  },
+  "urteil": {
+    "sieger_identisch": true,
+    "vorsprung_block_pct": 0.0,
+    "vorsprung_entry_pct": 83.3,
+    "vorsprung_exit_pct": 66.7,
+    "block_permutationssieger": [
+      [
+        "RSI 5.0 / Stop kein Stop",
+        139
+      ],
+      [
+        "RSI 10.0 / Stop kein Stop",
+        61
+      ]
+    ],
+    "block_sieger_stabil_pct": 69.5
+  },
+  "rangwechsel": [
+    {
+      "label": "RSI 5.0 / Stop kein Stop",
+      "rang_block": 1,
+      "rang_entry": 1,
+      "rang_exit": 1,
+      "delta_entry": 0
+    },
+    {
+      "label": "RSI 10.0 / Stop kein Stop",
+      "rang_block": 2,
+      "rang_entry": 2,
+      "rang_exit": 2,
+      "delta_entry": 0
+    }
+  ],
+  "streuung": [
+    {
+      "label": "RSI 5.0 / Stop kein Stop",
+      "dd_block": -186.45,
+      "dd_entry": -560.7,
+      "dd_exit": -596.22,
+      "faktor_entry_zu_block": 3.01,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -331.45,
+        "median": -147.03,
+        "max": -85.21,
+        "spanne_pp": 246.24
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -561.37,
+        "median": -561.24,
+        "max": -560.7,
+        "spanne_pp": 0.67
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.02,
+        "median": 0.04,
+        "max": 0.07,
+        "spanne_pp": 0.05
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "RSI 10.0 / Stop kein Stop",
+      "dd_block": -203.11,
+      "dd_entry": -1200.43,
+      "dd_exit": -1214.59,
+      "faktor_entry_zu_block": 5.91,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -390.47,
+        "median": -192.87,
+        "max": -123.17,
+        "spanne_pp": 267.3
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -1201.12,
+        "median": -1200.43,
+        "max": -1200.43,
+        "spanne_pp": 0.69
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.02,
+        "median": 0.04,
+        "max": 0.05,
+        "spanne_pp": 0.04
+      },
+      "dd_entry_in_block_spanne": false
+    }
+  ]
+}

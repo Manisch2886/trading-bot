@@ -1,0 +1,1018 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "elliott_wave_stocks",
+  "fenster": "gesamt",
+  "symbole": 147,
+  "kombinationen": 64,
+  "permutationen": 200,
+  "seed": 20260912,
+  "ohne_regimefilter": false,
+  "mindestfilter": {
+    "MIN_TRADES": 150,
+    "MIN_SYMBOLS_CONTRIBUTING": 22,
+    "MIN_AVG_RETURN_PCT": 2.0
+  },
+  "num_besteht_mindestfilter": 17,
+  "nan_pnl_trades_gesamt": 0,
+  "rangfolgen": {
+    "bot": [
+      {
+        "rang": 1,
+        "label": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+        "score": 1.66,
+        "dd": -94.41,
+        "num_trades": 738,
+        "avg_return_pct": 5.77
+      },
+      {
+        "rang": 2,
+        "label": "dev 5.0 % / Stop 8.0 % / kein Ziel",
+        "score": 1.412,
+        "dd": -116.9,
+        "num_trades": 510,
+        "avg_return_pct": 7.31
+      },
+      {
+        "rang": 3,
+        "label": "dev 2.0 % / Stop 8.0 % / kein Ziel",
+        "score": 1.407,
+        "dd": -146.57,
+        "num_trades": 1786,
+        "avg_return_pct": 4.88
+      },
+      {
+        "rang": 4,
+        "label": "dev 5.0 % / Stop 5.0 % / kein Ziel",
+        "score": 1.386,
+        "dd": -95.61,
+        "num_trades": 510,
+        "avg_return_pct": 5.87
+      },
+      {
+        "rang": 5,
+        "label": "dev 5.0 % / Stop 2.0 % / kein Ziel",
+        "score": 1.367,
+        "dd": -57.5,
+        "num_trades": 510,
+        "avg_return_pct": 3.48
+      },
+      {
+        "rang": 6,
+        "label": "dev 5.0 % / Stop 3.0 % / kein Ziel",
+        "score": 1.314,
+        "dd": -82.5,
+        "num_trades": 510,
+        "avg_return_pct": 4.8
+      },
+      {
+        "rang": 7,
+        "label": "dev 3.0 % / Stop 8.0 % / kein Ziel",
+        "score": 1.137,
+        "dd": -158.81,
+        "num_trades": 1148,
+        "avg_return_pct": 5.33
+      },
+      {
+        "rang": 8,
+        "label": "dev 4.0 % / Stop 2.0 % / kein Ziel",
+        "score": 1.086,
+        "dd": -71.3,
+        "num_trades": 738,
+        "avg_return_pct": 2.85
+      },
+      {
+        "rang": 9,
+        "label": "dev 2.0 % / Stop 5.0 % / kein Ziel",
+        "score": 1.08,
+        "dd": -142.49,
+        "num_trades": 1786,
+        "avg_return_pct": 3.64
+      },
+      {
+        "rang": 10,
+        "label": "dev 4.0 % / Stop 3.0 % / kein Ziel",
+        "score": 1.037,
+        "dd": -101.08,
+        "num_trades": 738,
+        "avg_return_pct": 3.86
+      }
+    ],
+    "block": [
+      {
+        "rang": 1,
+        "label": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+        "score": 1.66,
+        "dd": -94.41,
+        "num_trades": 738,
+        "avg_return_pct": 5.77
+      },
+      {
+        "rang": 2,
+        "label": "dev 5.0 % / Stop 8.0 % / kein Ziel",
+        "score": 1.412,
+        "dd": -116.9,
+        "num_trades": 510,
+        "avg_return_pct": 7.31
+      },
+      {
+        "rang": 3,
+        "label": "dev 2.0 % / Stop 8.0 % / kein Ziel",
+        "score": 1.407,
+        "dd": -146.57,
+        "num_trades": 1786,
+        "avg_return_pct": 4.88
+      },
+      {
+        "rang": 4,
+        "label": "dev 5.0 % / Stop 5.0 % / kein Ziel",
+        "score": 1.386,
+        "dd": -95.61,
+        "num_trades": 510,
+        "avg_return_pct": 5.87
+      },
+      {
+        "rang": 5,
+        "label": "dev 5.0 % / Stop 2.0 % / kein Ziel",
+        "score": 1.367,
+        "dd": -57.5,
+        "num_trades": 510,
+        "avg_return_pct": 3.48
+      },
+      {
+        "rang": 6,
+        "label": "dev 5.0 % / Stop 3.0 % / kein Ziel",
+        "score": 1.314,
+        "dd": -82.5,
+        "num_trades": 510,
+        "avg_return_pct": 4.8
+      },
+      {
+        "rang": 7,
+        "label": "dev 3.0 % / Stop 8.0 % / kein Ziel",
+        "score": 1.137,
+        "dd": -158.81,
+        "num_trades": 1148,
+        "avg_return_pct": 5.33
+      },
+      {
+        "rang": 8,
+        "label": "dev 4.0 % / Stop 2.0 % / kein Ziel",
+        "score": 1.086,
+        "dd": -71.3,
+        "num_trades": 738,
+        "avg_return_pct": 2.85
+      },
+      {
+        "rang": 9,
+        "label": "dev 2.0 % / Stop 5.0 % / kein Ziel",
+        "score": 1.08,
+        "dd": -142.49,
+        "num_trades": 1786,
+        "avg_return_pct": 3.64
+      },
+      {
+        "rang": 10,
+        "label": "dev 4.0 % / Stop 3.0 % / kein Ziel",
+        "score": 1.037,
+        "dd": -101.08,
+        "num_trades": 738,
+        "avg_return_pct": 3.86
+      }
+    ],
+    "entry": [
+      {
+        "rang": 1,
+        "label": "dev 5.0 % / Stop 2.0 % / kein Ziel",
+        "score": 0.468,
+        "dd": -167.85,
+        "num_trades": 510,
+        "avg_return_pct": 3.48
+      },
+      {
+        "rang": 2,
+        "label": "dev 5.0 % / Stop 3.0 % / kein Ziel",
+        "score": 0.417,
+        "dd": -259.86,
+        "num_trades": 510,
+        "avg_return_pct": 4.8
+      },
+      {
+        "rang": 3,
+        "label": "dev 5.0 % / Stop 5.0 % / kein Ziel",
+        "score": 0.367,
+        "dd": -361.11,
+        "num_trades": 510,
+        "avg_return_pct": 5.87
+      },
+      {
+        "rang": 4,
+        "label": "dev 5.0 % / Stop 8.0 % / kein Ziel",
+        "score": 0.363,
+        "dd": -455.34,
+        "num_trades": 510,
+        "avg_return_pct": 7.31
+      },
+      {
+        "rang": 5,
+        "label": "dev 4.0 % / Stop 2.0 % / kein Ziel",
+        "score": 0.359,
+        "dd": -215.64,
+        "num_trades": 738,
+        "avg_return_pct": 2.85
+      },
+      {
+        "rang": 6,
+        "label": "dev 4.0 % / Stop 3.0 % / kein Ziel",
+        "score": 0.33,
+        "dd": -317.5,
+        "num_trades": 738,
+        "avg_return_pct": 3.86
+      },
+      {
+        "rang": 7,
+        "label": "dev 3.0 % / Stop 2.0 % / kein Ziel",
+        "score": 0.274,
+        "dd": -301.32,
+        "num_trades": 1148,
+        "avg_return_pct": 2.44
+      },
+      {
+        "rang": 8,
+        "label": "dev 4.0 % / Stop 5.0 % / kein Ziel",
+        "score": 0.27,
+        "dd": -453.13,
+        "num_trades": 738,
+        "avg_return_pct": 4.51
+      },
+      {
+        "rang": 9,
+        "label": "dev 3.0 % / Stop 3.0 % / kein Ziel",
+        "score": 0.252,
+        "dd": -403.31,
+        "num_trades": 1148,
+        "avg_return_pct": 3.0
+      },
+      {
+        "rang": 10,
+        "label": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+        "score": 0.251,
+        "dd": -623.3,
+        "num_trades": 738,
+        "avg_return_pct": 5.77
+      }
+    ],
+    "exit": [
+      {
+        "rang": 1,
+        "label": "dev 5.0 % / Stop 2.0 % / kein Ziel",
+        "score": 0.334,
+        "dd": -235.45,
+        "num_trades": 510,
+        "avg_return_pct": 3.48
+      },
+      {
+        "rang": 2,
+        "label": "dev 5.0 % / Stop 3.0 % / kein Ziel",
+        "score": 0.328,
+        "dd": -330.16,
+        "num_trades": 510,
+        "avg_return_pct": 4.8
+      },
+      {
+        "rang": 3,
+        "label": "dev 5.0 % / Stop 5.0 % / kein Ziel",
+        "score": 0.302,
+        "dd": -439.61,
+        "num_trades": 510,
+        "avg_return_pct": 5.87
+      },
+      {
+        "rang": 4,
+        "label": "dev 4.0 % / Stop 2.0 % / kein Ziel",
+        "score": 0.292,
+        "dd": -265.31,
+        "num_trades": 738,
+        "avg_return_pct": 2.85
+      },
+      {
+        "rang": 5,
+        "label": "dev 5.0 % / Stop 8.0 % / kein Ziel",
+        "score": 0.291,
+        "dd": -567.54,
+        "num_trades": 510,
+        "avg_return_pct": 7.31
+      },
+      {
+        "rang": 6,
+        "label": "dev 4.0 % / Stop 3.0 % / kein Ziel",
+        "score": 0.276,
+        "dd": -379.67,
+        "num_trades": 738,
+        "avg_return_pct": 3.86
+      },
+      {
+        "rang": 7,
+        "label": "dev 4.0 % / Stop 5.0 % / kein Ziel",
+        "score": 0.224,
+        "dd": -547.45,
+        "num_trades": 738,
+        "avg_return_pct": 4.51
+      },
+      {
+        "rang": 8,
+        "label": "dev 3.0 % / Stop 2.0 % / kein Ziel",
+        "score": 0.203,
+        "dd": -406.86,
+        "num_trades": 1148,
+        "avg_return_pct": 2.44
+      },
+      {
+        "rang": 9,
+        "label": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+        "score": 0.194,
+        "dd": -809.46,
+        "num_trades": 738,
+        "avg_return_pct": 5.77
+      },
+      {
+        "rang": 10,
+        "label": "dev 3.0 % / Stop 3.0 % / kein Ziel",
+        "score": 0.188,
+        "dd": -541.13,
+        "num_trades": 1148,
+        "avg_return_pct": 3.0
+      }
+    ]
+  },
+  "sieger": {
+    "bot": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+    "block": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+    "entry": "dev 5.0 % / Stop 2.0 % / kein Ziel",
+    "exit": "dev 5.0 % / Stop 2.0 % / kein Ziel"
+  },
+  "urteil": {
+    "sieger_identisch": false,
+    "vorsprung_block_pct": 17.6,
+    "vorsprung_entry_pct": 12.2,
+    "vorsprung_exit_pct": 1.8,
+    "block_permutationssieger": [
+      [
+        "dev 5.0 % / Stop 3.0 % / kein Ziel",
+        69
+      ],
+      [
+        "dev 5.0 % / Stop 8.0 % / kein Ziel",
+        52
+      ],
+      [
+        "dev 5.0 % / Stop 5.0 % / kein Ziel",
+        47
+      ],
+      [
+        "dev 2.0 % / Stop 5.0 % / kein Ziel",
+        9
+      ],
+      [
+        "dev 4.0 % / Stop 8.0 % / kein Ziel",
+        8
+      ],
+      [
+        "dev 4.0 % / Stop 5.0 % / kein Ziel",
+        4
+      ],
+      [
+        "dev 4.0 % / Stop 3.0 % / kein Ziel",
+        3
+      ],
+      [
+        "dev 2.0 % / Stop 8.0 % / kein Ziel",
+        3
+      ],
+      [
+        "dev 4.0 % / Stop 2.0 % / kein Ziel",
+        3
+      ],
+      [
+        "dev 5.0 % / Stop 2.0 % / kein Ziel",
+        2
+      ]
+    ],
+    "block_sieger_stabil_pct": 34.5
+  },
+  "rangwechsel": [
+    {
+      "label": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+      "rang_block": 1,
+      "rang_entry": 10,
+      "rang_exit": 9,
+      "delta_entry": 9
+    },
+    {
+      "label": "dev 5.0 % / Stop 8.0 % / kein Ziel",
+      "rang_block": 2,
+      "rang_entry": 4,
+      "rang_exit": 5,
+      "delta_entry": 2
+    },
+    {
+      "label": "dev 2.0 % / Stop 8.0 % / kein Ziel",
+      "rang_block": 3,
+      "rang_entry": 11,
+      "rang_exit": 11,
+      "delta_entry": 8
+    },
+    {
+      "label": "dev 5.0 % / Stop 5.0 % / kein Ziel",
+      "rang_block": 4,
+      "rang_entry": 3,
+      "rang_exit": 3,
+      "delta_entry": -1
+    },
+    {
+      "label": "dev 5.0 % / Stop 2.0 % / kein Ziel",
+      "rang_block": 5,
+      "rang_entry": 1,
+      "rang_exit": 1,
+      "delta_entry": -4
+    },
+    {
+      "label": "dev 5.0 % / Stop 3.0 % / kein Ziel",
+      "rang_block": 6,
+      "rang_entry": 2,
+      "rang_exit": 2,
+      "delta_entry": -4
+    },
+    {
+      "label": "dev 3.0 % / Stop 8.0 % / kein Ziel",
+      "rang_block": 7,
+      "rang_entry": 14,
+      "rang_exit": 16,
+      "delta_entry": 7
+    },
+    {
+      "label": "dev 4.0 % / Stop 2.0 % / kein Ziel",
+      "rang_block": 8,
+      "rang_entry": 5,
+      "rang_exit": 4,
+      "delta_entry": -3
+    },
+    {
+      "label": "dev 2.0 % / Stop 5.0 % / kein Ziel",
+      "rang_block": 9,
+      "rang_entry": 13,
+      "rang_exit": 14,
+      "delta_entry": 4
+    },
+    {
+      "label": "dev 4.0 % / Stop 3.0 % / kein Ziel",
+      "rang_block": 10,
+      "rang_entry": 6,
+      "rang_exit": 6,
+      "delta_entry": -4
+    },
+    {
+      "label": "dev 4.0 % / Stop 5.0 % / kein Ziel",
+      "rang_block": 11,
+      "rang_entry": 8,
+      "rang_exit": 7,
+      "delta_entry": -3
+    },
+    {
+      "label": "dev 3.0 % / Stop 3.0 % / kein Ziel",
+      "rang_block": 12,
+      "rang_entry": 9,
+      "rang_exit": 10,
+      "delta_entry": -3
+    },
+    {
+      "label": "dev 3.0 % / Stop 5.0 % / kein Ziel",
+      "rang_block": 13,
+      "rang_entry": 16,
+      "rang_exit": 15,
+      "delta_entry": 3
+    },
+    {
+      "label": "dev 3.0 % / Stop 2.0 % / kein Ziel",
+      "rang_block": 14,
+      "rang_entry": 7,
+      "rang_exit": 8,
+      "delta_entry": -7
+    },
+    {
+      "label": "dev 2.0 % / Stop 3.0 % / kein Ziel",
+      "rang_block": 15,
+      "rang_entry": 15,
+      "rang_exit": 13,
+      "delta_entry": 0
+    },
+    {
+      "label": "dev 5.0 % / Stop 5.0 % / Fib 0.5",
+      "rang_block": 16,
+      "rang_entry": 12,
+      "rang_exit": 12,
+      "delta_entry": -4
+    },
+    {
+      "label": "dev 5.0 % / Stop 8.0 % / Fib 0.5",
+      "rang_block": 17,
+      "rang_entry": 17,
+      "rang_exit": 17,
+      "delta_entry": 0
+    }
+  ],
+  "streuung": [
+    {
+      "label": "dev 2.0 % / Stop 3.0 % / kein Ziel",
+      "dd_block": -149.56,
+      "dd_entry": -527.19,
+      "dd_exit": -604.16,
+      "faktor_entry_zu_block": 3.52,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -253.78,
+        "median": -139.72,
+        "max": -95.39,
+        "spanne_pp": 158.39
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -534.64,
+        "median": -520.59,
+        "max": -513.99,
+        "spanne_pp": 20.65
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.41,
+        "median": 0.75,
+        "max": 1.1,
+        "spanne_pp": 0.69
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 2.0 % / Stop 5.0 % / kein Ziel",
+      "dd_block": -142.49,
+      "dd_entry": -736.47,
+      "dd_exit": -888.77,
+      "faktor_entry_zu_block": 5.17,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -205.58,
+        "median": -127.38,
+        "max": -86.88,
+        "spanne_pp": 118.7
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -741.77,
+        "median": -741.77,
+        "max": -736.47,
+        "spanne_pp": 5.3
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.75,
+        "median": 1.21,
+        "max": 1.77,
+        "spanne_pp": 1.02
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 2.0 % / Stop 8.0 % / kein Ziel",
+      "dd_block": -146.57,
+      "dd_entry": -925.84,
+      "dd_exit": -1183.3,
+      "faktor_entry_zu_block": 6.32,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -404.38,
+        "median": -188.98,
+        "max": -132.8,
+        "spanne_pp": 271.58
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -925.84,
+        "median": -925.84,
+        "max": -925.84,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.51,
+        "median": 1.09,
+        "max": 1.55,
+        "spanne_pp": 1.04
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 3.0 % / Stop 2.0 % / kein Ziel",
+      "dd_block": -106.34,
+      "dd_entry": -301.32,
+      "dd_exit": -406.86,
+      "faktor_entry_zu_block": 2.83,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -189.45,
+        "median": -105.17,
+        "max": -65.04,
+        "spanne_pp": 124.41
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -315.12,
+        "median": -298.47,
+        "max": -294.42,
+        "spanne_pp": 20.7
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.44,
+        "median": 0.79,
+        "max": 1.27,
+        "spanne_pp": 0.83
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 3.0 % / Stop 3.0 % / kein Ziel",
+      "dd_block": -105.79,
+      "dd_entry": -403.31,
+      "dd_exit": -541.13,
+      "faktor_entry_zu_block": 3.81,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -209.9,
+        "median": -109.25,
+        "max": -72.6,
+        "spanne_pp": 137.3
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -416.51,
+        "median": -400.01,
+        "max": -396.71,
+        "spanne_pp": 19.8
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.48,
+        "median": 0.93,
+        "max": 1.4,
+        "spanne_pp": 0.92
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 3.0 % / Stop 5.0 % / kein Ziel",
+      "dd_block": -156.34,
+      "dd_entry": -681.09,
+      "dd_exit": -766.88,
+      "faktor_entry_zu_block": 4.36,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -269.85,
+        "median": -140.09,
+        "max": -97.4,
+        "spanne_pp": 172.45
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -707.59,
+        "median": -681.09,
+        "max": -675.79,
+        "spanne_pp": 31.8
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.49,
+        "median": 0.94,
+        "max": 1.36,
+        "spanne_pp": 0.87
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 3.0 % / Stop 8.0 % / kein Ziel",
+      "dd_block": -158.81,
+      "dd_entry": -902.33,
+      "dd_exit": -1080.96,
+      "faktor_entry_zu_block": 5.68,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -309.58,
+        "median": -169.08,
+        "max": -120.35,
+        "spanne_pp": 189.23
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -935.53,
+        "median": -910.63,
+        "max": -902.33,
+        "spanne_pp": 33.2
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.58,
+        "median": 1.07,
+        "max": 1.5,
+        "spanne_pp": 0.92
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 4.0 % / Stop 2.0 % / kein Ziel",
+      "dd_block": -71.3,
+      "dd_entry": -215.64,
+      "dd_exit": -265.31,
+      "faktor_entry_zu_block": 3.02,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -159.22,
+        "median": -82.3,
+        "max": -49.43,
+        "spanne_pp": 109.79
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -217.94,
+        "median": -215.64,
+        "max": -213.34,
+        "spanne_pp": 4.6
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.49,
+        "median": 0.94,
+        "max": 1.57,
+        "spanne_pp": 1.08
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 4.0 % / Stop 3.0 % / kein Ziel",
+      "dd_block": -101.08,
+      "dd_entry": -317.5,
+      "dd_exit": -379.67,
+      "faktor_entry_zu_block": 3.14,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -192.97,
+        "median": -99.0,
+        "max": -58.87,
+        "spanne_pp": 134.1
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -317.5,
+        "median": -314.2,
+        "max": -314.2,
+        "spanne_pp": 3.3
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.54,
+        "median": 1.06,
+        "max": 1.78,
+        "spanne_pp": 1.24
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 4.0 % / Stop 5.0 % / kein Ziel",
+      "dd_block": -127.2,
+      "dd_entry": -453.13,
+      "dd_exit": -547.45,
+      "faktor_entry_zu_block": 3.56,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -195.82,
+        "median": -114.94,
+        "max": -71.86,
+        "spanne_pp": 123.96
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -453.13,
+        "median": -447.83,
+        "max": -442.53,
+        "spanne_pp": 10.6
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.63,
+        "median": 1.07,
+        "max": 1.71,
+        "spanne_pp": 1.08
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+      "dd_block": -94.41,
+      "dd_entry": -623.3,
+      "dd_exit": -809.46,
+      "faktor_entry_zu_block": 6.6,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -320.79,
+        "median": -132.46,
+        "max": -87.52,
+        "spanne_pp": 233.27
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -623.3,
+        "median": -623.3,
+        "max": -623.3,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.49,
+        "median": 1.18,
+        "max": 1.79,
+        "spanne_pp": 1.3
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 5.0 % / Stop 2.0 % / kein Ziel",
+      "dd_block": -57.5,
+      "dd_entry": -167.85,
+      "dd_exit": -235.45,
+      "faktor_entry_zu_block": 2.92,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -124.32,
+        "median": -71.1,
+        "max": -41.4,
+        "spanne_pp": 82.92
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -170.15,
+        "median": -165.55,
+        "max": -160.95,
+        "spanne_pp": 9.2
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.63,
+        "median": 1.1,
+        "max": 1.9,
+        "spanne_pp": 1.27
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 5.0 % / Stop 3.0 % / kein Ziel",
+      "dd_block": -82.5,
+      "dd_entry": -259.86,
+      "dd_exit": -330.16,
+      "faktor_entry_zu_block": 3.15,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -132.9,
+        "median": -75.18,
+        "max": -42.9,
+        "spanne_pp": 90.0
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -263.16,
+        "median": -256.56,
+        "max": -249.96,
+        "spanne_pp": 13.2
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.82,
+        "median": 1.44,
+        "max": 2.53,
+        "spanne_pp": 1.71
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 5.0 % / Stop 5.0 % / Fib 0.5",
+      "dd_block": -113.54,
+      "dd_entry": -238.5,
+      "dd_exit": -299.09,
+      "faktor_entry_zu_block": 2.1,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -203.36,
+        "median": -81.78,
+        "max": -53.0,
+        "spanne_pp": 150.36
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -254.24,
+        "median": -238.5,
+        "max": -238.5,
+        "spanne_pp": 15.74
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.26,
+        "median": 0.64,
+        "max": 0.98,
+        "spanne_pp": 0.72
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 5.0 % / Stop 5.0 % / kein Ziel",
+      "dd_block": -95.61,
+      "dd_entry": -361.11,
+      "dd_exit": -439.61,
+      "faktor_entry_zu_block": 3.78,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -218.97,
+        "median": -95.4,
+        "max": -58.3,
+        "spanne_pp": 160.67
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -366.41,
+        "median": -355.81,
+        "max": -345.21,
+        "spanne_pp": 21.2
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.6,
+        "median": 1.39,
+        "max": 2.27,
+        "spanne_pp": 1.67
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 5.0 % / Stop 8.0 % / Fib 0.5",
+      "dd_block": -135.33,
+      "dd_entry": -373.5,
+      "dd_exit": -439.9,
+      "faktor_entry_zu_block": 2.76,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -204.16,
+        "median": -103.79,
+        "max": -70.48,
+        "spanne_pp": 133.68
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -388.82,
+        "median": -373.5,
+        "max": -373.5,
+        "spanne_pp": 15.32
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.28,
+        "median": 0.56,
+        "max": 0.82,
+        "spanne_pp": 0.54
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "dev 5.0 % / Stop 8.0 % / kein Ziel",
+      "dd_block": -116.9,
+      "dd_entry": -455.34,
+      "dd_exit": -567.54,
+      "faktor_entry_zu_block": 3.9,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -233.34,
+        "median": -122.34,
+        "max": -80.52,
+        "spanne_pp": 152.82
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -455.34,
+        "median": -438.74,
+        "max": -430.44,
+        "spanne_pp": 24.9
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.71,
+        "median": 1.35,
+        "max": 2.05,
+        "spanne_pp": 1.34
+      },
+      "dd_entry_in_block_spanne": false
+    }
+  ]
+}

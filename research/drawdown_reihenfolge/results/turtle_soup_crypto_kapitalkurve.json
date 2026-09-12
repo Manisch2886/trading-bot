@@ -1,0 +1,27 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "turtle_soup_crypto",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "positionslimit": 8,
+  "kombinationen": 8,
+  "spanne_dd_block": [
+    -438.25,
+    -164.66
+  ],
+  "spanne_dd_entry": [
+    -966.23,
+    -427.33
+  ],
+  "spanne_dd_kapital": [
+    -51.0,
+    -35.04
+  ],
+  "rangkorr_score_block_vs_kapital_calmar": 0.929,
+  "rangkorr_score_entry_vs_kapital_calmar": 0.91,
+  "rangkorr_ddblock_vs_ddkapital": -0.333,
+  "rangkorr_ddentry_vs_ddkapital": 0.69,
+  "sieger_score_block": "Donchian 10 / Stop structural",
+  "sieger_score_entry": "Donchian 10 / Stop kein Stop",
+  "sieger_kapital_calmar": "Donchian 10 / Stop structural"
+}

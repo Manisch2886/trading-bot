@@ -1,0 +1,1222 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "t3_supertrend",
+  "fenster": "gesamt",
+  "symbole": 18,
+  "kombinationen": 81,
+  "permutationen": 200,
+  "seed": 20260912,
+  "ohne_regimefilter": true,
+  "mindestfilter": {
+    "MIN_TRADES": 40,
+    "MIN_SYMBOLS_CONTRIBUTING": 5,
+    "MIN_AVG_RETURN_PCT": 0.3
+  },
+  "num_besteht_mindestfilter": 23,
+  "nan_pnl_trades_gesamt": 0,
+  "rangfolgen": {
+    "bot": [
+      {
+        "rang": 1,
+        "label": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+        "score": 0.188,
+        "dd": -120.91,
+        "num_trades": 428,
+        "avg_return_pct": 1.1
+      },
+      {
+        "rang": 2,
+        "label": "T3 16/21 / ADX 20.0 / Stop 2.0 %",
+        "score": 0.161,
+        "dd": -121.05,
+        "num_trades": 1801,
+        "avg_return_pct": 0.46
+      },
+      {
+        "rang": 3,
+        "label": "T3 16/30 / ADX 20.0 / Stop 4.0 %",
+        "score": 0.159,
+        "dd": -162.28,
+        "num_trades": 1448,
+        "avg_return_pct": 0.68
+      },
+      {
+        "rang": 4,
+        "label": "T3 12/30 / ADX 30.0 / Stop 4.0 %",
+        "score": 0.129,
+        "dd": -157.17,
+        "num_trades": 463,
+        "avg_return_pct": 0.94
+      },
+      {
+        "rang": 5,
+        "label": "T3 16/30 / ADX 25.0 / Stop 4.0 %",
+        "score": 0.126,
+        "dd": -197.83,
+        "num_trades": 859,
+        "avg_return_pct": 0.85
+      },
+      {
+        "rang": 6,
+        "label": "T3 16/21 / ADX 20.0 / Stop 3.0 %",
+        "score": 0.125,
+        "dd": -176.43,
+        "num_trades": 1801,
+        "avg_return_pct": 0.52
+      },
+      {
+        "rang": 7,
+        "label": "T3 16/21 / ADX 25.0 / Stop 3.0 %",
+        "score": 0.12,
+        "dd": -177.27,
+        "num_trades": 1101,
+        "avg_return_pct": 0.64
+      },
+      {
+        "rang": 8,
+        "label": "T3 16/21 / ADX 25.0 / Stop 2.0 %",
+        "score": 0.106,
+        "dd": -193.86,
+        "num_trades": 1101,
+        "avg_return_pct": 0.62
+      },
+      {
+        "rang": 9,
+        "label": "T3 16/30 / ADX 20.0 / Stop 3.0 %",
+        "score": 0.106,
+        "dd": -193.86,
+        "num_trades": 1449,
+        "avg_return_pct": 0.54
+      },
+      {
+        "rang": 10,
+        "label": "T3 8/30 / ADX 20.0 / Stop 4.0 %",
+        "score": 0.098,
+        "dd": -222.51,
+        "num_trades": 1702,
+        "avg_return_pct": 0.53
+      }
+    ],
+    "block": [
+      {
+        "rang": 1,
+        "label": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+        "score": 0.188,
+        "dd": -120.91,
+        "num_trades": 428,
+        "avg_return_pct": 1.1
+      },
+      {
+        "rang": 2,
+        "label": "T3 16/21 / ADX 20.0 / Stop 2.0 %",
+        "score": 0.161,
+        "dd": -121.05,
+        "num_trades": 1801,
+        "avg_return_pct": 0.46
+      },
+      {
+        "rang": 3,
+        "label": "T3 16/30 / ADX 20.0 / Stop 4.0 %",
+        "score": 0.159,
+        "dd": -162.28,
+        "num_trades": 1448,
+        "avg_return_pct": 0.68
+      },
+      {
+        "rang": 4,
+        "label": "T3 12/30 / ADX 30.0 / Stop 4.0 %",
+        "score": 0.129,
+        "dd": -157.17,
+        "num_trades": 463,
+        "avg_return_pct": 0.94
+      },
+      {
+        "rang": 5,
+        "label": "T3 16/30 / ADX 25.0 / Stop 4.0 %",
+        "score": 0.126,
+        "dd": -197.83,
+        "num_trades": 859,
+        "avg_return_pct": 0.85
+      },
+      {
+        "rang": 6,
+        "label": "T3 16/21 / ADX 20.0 / Stop 3.0 %",
+        "score": 0.125,
+        "dd": -176.43,
+        "num_trades": 1801,
+        "avg_return_pct": 0.52
+      },
+      {
+        "rang": 7,
+        "label": "T3 16/21 / ADX 25.0 / Stop 3.0 %",
+        "score": 0.12,
+        "dd": -177.27,
+        "num_trades": 1101,
+        "avg_return_pct": 0.64
+      },
+      {
+        "rang": 8,
+        "label": "T3 16/21 / ADX 25.0 / Stop 2.0 %",
+        "score": 0.106,
+        "dd": -193.86,
+        "num_trades": 1101,
+        "avg_return_pct": 0.62
+      },
+      {
+        "rang": 9,
+        "label": "T3 16/30 / ADX 20.0 / Stop 3.0 %",
+        "score": 0.106,
+        "dd": -193.86,
+        "num_trades": 1449,
+        "avg_return_pct": 0.54
+      },
+      {
+        "rang": 10,
+        "label": "T3 8/30 / ADX 20.0 / Stop 4.0 %",
+        "score": 0.098,
+        "dd": -222.51,
+        "num_trades": 1702,
+        "avg_return_pct": 0.53
+      }
+    ],
+    "entry": [
+      {
+        "rang": 1,
+        "label": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+        "score": 0.083,
+        "dd": -272.82,
+        "num_trades": 428,
+        "avg_return_pct": 1.1
+      },
+      {
+        "rang": 2,
+        "label": "T3 12/30 / ADX 30.0 / Stop 4.0 %",
+        "score": 0.072,
+        "dd": -281.31,
+        "num_trades": 463,
+        "avg_return_pct": 0.94
+      },
+      {
+        "rang": 3,
+        "label": "T3 16/30 / ADX 30.0 / Stop 3.0 %",
+        "score": 0.057,
+        "dd": -246.05,
+        "num_trades": 429,
+        "avg_return_pct": 0.68
+      },
+      {
+        "rang": 4,
+        "label": "T3 16/30 / ADX 25.0 / Stop 4.0 %",
+        "score": 0.053,
+        "dd": -465.67,
+        "num_trades": 859,
+        "avg_return_pct": 0.85
+      },
+      {
+        "rang": 5,
+        "label": "T3 16/30 / ADX 20.0 / Stop 4.0 %",
+        "score": 0.05,
+        "dd": -517.86,
+        "num_trades": 1448,
+        "avg_return_pct": 0.68
+      },
+      {
+        "rang": 6,
+        "label": "T3 16/21 / ADX 25.0 / Stop 2.0 %",
+        "score": 0.047,
+        "dd": -439.89,
+        "num_trades": 1101,
+        "avg_return_pct": 0.62
+      },
+      {
+        "rang": 7,
+        "label": "T3 16/30 / ADX 20.0 / Stop 3.0 %",
+        "score": 0.043,
+        "dd": -481.51,
+        "num_trades": 1449,
+        "avg_return_pct": 0.54
+      },
+      {
+        "rang": 8,
+        "label": "T3 16/21 / ADX 25.0 / Stop 3.0 %",
+        "score": 0.039,
+        "dd": -545.19,
+        "num_trades": 1101,
+        "avg_return_pct": 0.64
+      },
+      {
+        "rang": 9,
+        "label": "T3 16/21 / ADX 20.0 / Stop 2.0 %",
+        "score": 0.037,
+        "dd": -530.33,
+        "num_trades": 1801,
+        "avg_return_pct": 0.46
+      },
+      {
+        "rang": 10,
+        "label": "T3 16/30 / ADX 25.0 / Stop 3.0 %",
+        "score": 0.037,
+        "dd": -462.8,
+        "num_trades": 860,
+        "avg_return_pct": 0.59
+      }
+    ],
+    "exit": [
+      {
+        "rang": 1,
+        "label": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+        "score": 0.083,
+        "dd": -273.74,
+        "num_trades": 428,
+        "avg_return_pct": 1.1
+      },
+      {
+        "rang": 2,
+        "label": "T3 12/30 / ADX 30.0 / Stop 4.0 %",
+        "score": 0.072,
+        "dd": -281.31,
+        "num_trades": 463,
+        "avg_return_pct": 0.94
+      },
+      {
+        "rang": 3,
+        "label": "T3 16/30 / ADX 30.0 / Stop 3.0 %",
+        "score": 0.057,
+        "dd": -246.05,
+        "num_trades": 429,
+        "avg_return_pct": 0.68
+      },
+      {
+        "rang": 4,
+        "label": "T3 16/30 / ADX 25.0 / Stop 4.0 %",
+        "score": 0.054,
+        "dd": -462.16,
+        "num_trades": 859,
+        "avg_return_pct": 0.85
+      },
+      {
+        "rang": 5,
+        "label": "T3 16/30 / ADX 20.0 / Stop 4.0 %",
+        "score": 0.051,
+        "dd": -510.49,
+        "num_trades": 1448,
+        "avg_return_pct": 0.68
+      },
+      {
+        "rang": 6,
+        "label": "T3 16/21 / ADX 25.0 / Stop 2.0 %",
+        "score": 0.047,
+        "dd": -437.59,
+        "num_trades": 1101,
+        "avg_return_pct": 0.62
+      },
+      {
+        "rang": 7,
+        "label": "T3 16/30 / ADX 20.0 / Stop 3.0 %",
+        "score": 0.042,
+        "dd": -493.41,
+        "num_trades": 1449,
+        "avg_return_pct": 0.54
+      },
+      {
+        "rang": 8,
+        "label": "T3 16/21 / ADX 25.0 / Stop 3.0 %",
+        "score": 0.039,
+        "dd": -540.65,
+        "num_trades": 1101,
+        "avg_return_pct": 0.64
+      },
+      {
+        "rang": 9,
+        "label": "T3 8/30 / ADX 20.0 / Stop 4.0 %",
+        "score": 0.037,
+        "dd": -585.13,
+        "num_trades": 1702,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 10,
+        "label": "T3 16/21 / ADX 20.0 / Stop 2.0 %",
+        "score": 0.037,
+        "dd": -530.33,
+        "num_trades": 1801,
+        "avg_return_pct": 0.46
+      }
+    ]
+  },
+  "sieger": {
+    "bot": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+    "block": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+    "entry": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+    "exit": "T3 16/30 / ADX 30.0 / Stop 4.0 %"
+  },
+  "urteil": {
+    "sieger_identisch": true,
+    "vorsprung_block_pct": 16.8,
+    "vorsprung_entry_pct": 15.3,
+    "vorsprung_exit_pct": 15.3,
+    "block_permutationssieger": [
+      [
+        "T3 16/30 / ADX 25.0 / Stop 4.0 %",
+        77
+      ],
+      [
+        "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+        51
+      ],
+      [
+        "T3 16/30 / ADX 20.0 / Stop 4.0 %",
+        40
+      ],
+      [
+        "T3 12/30 / ADX 30.0 / Stop 4.0 %",
+        22
+      ],
+      [
+        "T3 16/21 / ADX 25.0 / Stop 2.0 %",
+        8
+      ],
+      [
+        "T3 16/21 / ADX 25.0 / Stop 3.0 %",
+        1
+      ],
+      [
+        "T3 16/21 / ADX 20.0 / Stop 3.0 %",
+        1
+      ]
+    ],
+    "block_sieger_stabil_pct": 38.5
+  },
+  "rangwechsel": [
+    {
+      "label": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+      "rang_block": 1,
+      "rang_entry": 1,
+      "rang_exit": 1,
+      "delta_entry": 0
+    },
+    {
+      "label": "T3 16/21 / ADX 20.0 / Stop 2.0 %",
+      "rang_block": 2,
+      "rang_entry": 9,
+      "rang_exit": 10,
+      "delta_entry": 7
+    },
+    {
+      "label": "T3 16/30 / ADX 20.0 / Stop 4.0 %",
+      "rang_block": 3,
+      "rang_entry": 5,
+      "rang_exit": 5,
+      "delta_entry": 2
+    },
+    {
+      "label": "T3 12/30 / ADX 30.0 / Stop 4.0 %",
+      "rang_block": 4,
+      "rang_entry": 2,
+      "rang_exit": 2,
+      "delta_entry": -2
+    },
+    {
+      "label": "T3 16/30 / ADX 25.0 / Stop 4.0 %",
+      "rang_block": 5,
+      "rang_entry": 4,
+      "rang_exit": 4,
+      "delta_entry": -1
+    },
+    {
+      "label": "T3 16/21 / ADX 20.0 / Stop 3.0 %",
+      "rang_block": 6,
+      "rang_entry": 13,
+      "rang_exit": 13,
+      "delta_entry": 7
+    },
+    {
+      "label": "T3 16/21 / ADX 25.0 / Stop 3.0 %",
+      "rang_block": 7,
+      "rang_entry": 8,
+      "rang_exit": 8,
+      "delta_entry": 1
+    },
+    {
+      "label": "T3 16/21 / ADX 25.0 / Stop 2.0 %",
+      "rang_block": 8,
+      "rang_entry": 6,
+      "rang_exit": 6,
+      "delta_entry": -2
+    },
+    {
+      "label": "T3 16/30 / ADX 20.0 / Stop 3.0 %",
+      "rang_block": 9,
+      "rang_entry": 7,
+      "rang_exit": 7,
+      "delta_entry": -2
+    },
+    {
+      "label": "T3 8/30 / ADX 20.0 / Stop 4.0 %",
+      "rang_block": 10,
+      "rang_entry": 11,
+      "rang_exit": 9,
+      "delta_entry": 1
+    },
+    {
+      "label": "T3 16/30 / ADX 25.0 / Stop 3.0 %",
+      "rang_block": 11,
+      "rang_entry": 10,
+      "rang_exit": 11,
+      "delta_entry": -1
+    },
+    {
+      "label": "T3 16/21 / ADX 25.0 / Stop 4.0 %",
+      "rang_block": 12,
+      "rang_entry": 15,
+      "rang_exit": 15,
+      "delta_entry": 3
+    },
+    {
+      "label": "T3 16/21 / ADX 20.0 / Stop 4.0 %",
+      "rang_block": 13,
+      "rang_entry": 19,
+      "rang_exit": 19,
+      "delta_entry": 6
+    },
+    {
+      "label": "T3 12/30 / ADX 30.0 / Stop 2.0 %",
+      "rang_block": 14,
+      "rang_entry": 12,
+      "rang_exit": 12,
+      "delta_entry": -2
+    },
+    {
+      "label": "T3 12/25 / ADX 20.0 / Stop 4.0 %",
+      "rang_block": 15,
+      "rang_entry": 21,
+      "rang_exit": 21,
+      "delta_entry": 6
+    },
+    {
+      "label": "T3 12/25 / ADX 20.0 / Stop 3.0 %",
+      "rang_block": 16,
+      "rang_entry": 20,
+      "rang_exit": 20,
+      "delta_entry": 4
+    },
+    {
+      "label": "T3 16/25 / ADX 30.0 / Stop 4.0 %",
+      "rang_block": 17,
+      "rang_entry": 14,
+      "rang_exit": 14,
+      "delta_entry": -3
+    },
+    {
+      "label": "T3 12/25 / ADX 25.0 / Stop 3.0 %",
+      "rang_block": 18,
+      "rang_entry": 16,
+      "rang_exit": 16,
+      "delta_entry": -2
+    },
+    {
+      "label": "T3 12/30 / ADX 25.0 / Stop 4.0 %",
+      "rang_block": 19,
+      "rang_entry": 18,
+      "rang_exit": 18,
+      "delta_entry": -1
+    },
+    {
+      "label": "T3 16/30 / ADX 30.0 / Stop 3.0 %",
+      "rang_block": 20,
+      "rang_entry": 3,
+      "rang_exit": 3,
+      "delta_entry": -17
+    },
+    {
+      "label": "T3 12/30 / ADX 20.0 / Stop 4.0 %",
+      "rang_block": 21,
+      "rang_entry": 23,
+      "rang_exit": 23,
+      "delta_entry": 2
+    },
+    {
+      "label": "T3 12/25 / ADX 25.0 / Stop 4.0 %",
+      "rang_block": 22,
+      "rang_entry": 22,
+      "rang_exit": 22,
+      "delta_entry": 0
+    },
+    {
+      "label": "T3 8/30 / ADX 25.0 / Stop 4.0 %",
+      "rang_block": 23,
+      "rang_entry": 17,
+      "rang_exit": 17,
+      "delta_entry": -6
+    }
+  ],
+  "streuung": [
+    {
+      "label": "T3 8/30 / ADX 20.0 / Stop 4.0 %",
+      "dd_block": -222.51,
+      "dd_entry": -615.81,
+      "dd_exit": -585.13,
+      "faktor_entry_zu_block": 2.77,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -565.97,
+        "median": -305.0,
+        "max": -204.2,
+        "spanne_pp": 361.77
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -615.81,
+        "median": -615.81,
+        "max": -615.81,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.04,
+        "median": 0.07,
+        "max": 0.11,
+        "spanne_pp": 0.07
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 8/30 / ADX 25.0 / Stop 4.0 %",
+      "dd_block": -367.62,
+      "dd_entry": -396.21,
+      "dd_exit": -382.58,
+      "faktor_entry_zu_block": 1.08,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -505.79,
+        "median": -300.5,
+        "max": -179.34,
+        "spanne_pp": 326.45
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -396.21,
+        "median": -396.21,
+        "max": -396.21,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.02,
+        "median": 0.03,
+        "max": 0.06,
+        "spanne_pp": 0.04
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "T3 12/25 / ADX 20.0 / Stop 3.0 %",
+      "dd_block": -220.91,
+      "dd_entry": -720.96,
+      "dd_exit": -716.37,
+      "faktor_entry_zu_block": 3.26,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -455.25,
+        "median": -264.67,
+        "max": -147.94,
+        "spanne_pp": 307.31
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -721.3,
+        "median": -720.96,
+        "max": -720.96,
+        "spanne_pp": 0.34
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.03,
+        "median": 0.06,
+        "max": 0.1,
+        "spanne_pp": 0.07
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 12/25 / ADX 20.0 / Stop 4.0 %",
+      "dd_block": -216.11,
+      "dd_entry": -790.72,
+      "dd_exit": -784.86,
+      "faktor_entry_zu_block": 3.66,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -564.11,
+        "median": -285.3,
+        "max": -177.15,
+        "spanne_pp": 386.96
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -790.88,
+        "median": -790.72,
+        "max": -790.72,
+        "spanne_pp": 0.16
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.03,
+        "median": 0.05,
+        "max": 0.09,
+        "spanne_pp": 0.06
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 12/25 / ADX 25.0 / Stop 3.0 %",
+      "dd_block": -246.53,
+      "dd_entry": -560.0,
+      "dd_exit": -556.7,
+      "faktor_entry_zu_block": 2.27,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -544.79,
+        "median": -305.07,
+        "max": -185.38,
+        "spanne_pp": 359.41
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -560.0,
+        "median": -560.0,
+        "max": -560.0,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.03,
+        "median": 0.05,
+        "max": 0.08,
+        "spanne_pp": 0.06
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 12/25 / ADX 25.0 / Stop 4.0 %",
+      "dd_block": -281.23,
+      "dd_entry": -643.57,
+      "dd_exit": -639.27,
+      "faktor_entry_zu_block": 2.29,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -659.78,
+        "median": -361.44,
+        "max": -202.2,
+        "spanne_pp": 457.58
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -643.57,
+        "median": -643.57,
+        "max": -643.57,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.01,
+        "median": 0.03,
+        "max": 0.05,
+        "spanne_pp": 0.04
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "T3 12/30 / ADX 20.0 / Stop 4.0 %",
+      "dd_block": -270.29,
+      "dd_entry": -876.79,
+      "dd_exit": -877.5,
+      "faktor_entry_zu_block": 3.24,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -539.27,
+        "median": -320.55,
+        "max": -209.68,
+        "spanne_pp": 329.59
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -878.48,
+        "median": -878.48,
+        "max": -876.79,
+        "spanne_pp": 1.69
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.02,
+        "median": 0.04,
+        "max": 0.06,
+        "spanne_pp": 0.04
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 12/30 / ADX 25.0 / Stop 4.0 %",
+      "dd_block": -270.41,
+      "dd_entry": -558.02,
+      "dd_exit": -553.72,
+      "faktor_entry_zu_block": 2.06,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -569.76,
+        "median": -311.32,
+        "max": -177.74,
+        "spanne_pp": 392.02
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -558.02,
+        "median": -558.02,
+        "max": -558.02,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.03,
+        "median": 0.04,
+        "max": 0.08,
+        "spanne_pp": 0.05
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "T3 12/30 / ADX 30.0 / Stop 2.0 %",
+      "dd_block": -111.6,
+      "dd_entry": -228.74,
+      "dd_exit": -227.43,
+      "faktor_entry_zu_block": 2.05,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -185.35,
+        "median": -116.2,
+        "max": -69.15,
+        "spanne_pp": 116.2
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -228.74,
+        "median": -228.74,
+        "max": -228.74,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.04,
+        "median": 0.07,
+        "max": 0.12,
+        "spanne_pp": 0.07
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 12/30 / ADX 30.0 / Stop 4.0 %",
+      "dd_block": -157.17,
+      "dd_entry": -281.31,
+      "dd_exit": -281.31,
+      "faktor_entry_zu_block": 1.79,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -278.24,
+        "median": -166.73,
+        "max": -104.82,
+        "spanne_pp": 173.42
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -281.31,
+        "median": -281.31,
+        "max": -281.31,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.07,
+        "median": 0.12,
+        "max": 0.19,
+        "spanne_pp": 0.12
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/21 / ADX 20.0 / Stop 2.0 %",
+      "dd_block": -121.05,
+      "dd_entry": -530.33,
+      "dd_exit": -530.33,
+      "faktor_entry_zu_block": 4.38,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -355.73,
+        "median": -178.16,
+        "max": -120.39,
+        "spanne_pp": 235.34
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -532.63,
+        "median": -530.33,
+        "max": -530.33,
+        "spanne_pp": 2.3
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.06,
+        "median": 0.11,
+        "max": 0.16,
+        "spanne_pp": 0.11
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/21 / ADX 20.0 / Stop 3.0 %",
+      "dd_block": -176.43,
+      "dd_entry": -650.79,
+      "dd_exit": -642.44,
+      "faktor_entry_zu_block": 3.69,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -422.15,
+        "median": -221.23,
+        "max": -134.92,
+        "spanne_pp": 287.23
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -650.83,
+        "median": -650.79,
+        "max": -650.79,
+        "spanne_pp": 0.04
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.05,
+        "median": 0.1,
+        "max": 0.16,
+        "spanne_pp": 0.11
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/21 / ADX 20.0 / Stop 4.0 %",
+      "dd_block": -242.05,
+      "dd_entry": -747.3,
+      "dd_exit": -734.82,
+      "faktor_entry_zu_block": 3.09,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -439.55,
+        "median": -260.32,
+        "max": -168.42,
+        "spanne_pp": 271.13
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -747.34,
+        "median": -747.3,
+        "max": -747.3,
+        "spanne_pp": 0.04
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.04,
+        "median": 0.07,
+        "max": 0.11,
+        "spanne_pp": 0.07
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/21 / ADX 25.0 / Stop 2.0 %",
+      "dd_block": -193.86,
+      "dd_entry": -439.89,
+      "dd_exit": -437.59,
+      "faktor_entry_zu_block": 2.27,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -355.96,
+        "median": -192.45,
+        "max": -104.74,
+        "spanne_pp": 251.22
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -439.89,
+        "median": -439.89,
+        "max": -439.89,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.06,
+        "median": 0.11,
+        "max": 0.2,
+        "spanne_pp": 0.14
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/21 / ADX 25.0 / Stop 3.0 %",
+      "dd_block": -177.27,
+      "dd_entry": -545.19,
+      "dd_exit": -540.65,
+      "faktor_entry_zu_block": 3.08,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -371.95,
+        "median": -232.57,
+        "max": -137.18,
+        "spanne_pp": 234.77
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -545.19,
+        "median": -545.19,
+        "max": -545.19,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.06,
+        "median": 0.09,
+        "max": 0.15,
+        "spanne_pp": 0.1
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/21 / ADX 25.0 / Stop 4.0 %",
+      "dd_block": -250.68,
+      "dd_entry": -614.54,
+      "dd_exit": -606.85,
+      "faktor_entry_zu_block": 2.45,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -454.7,
+        "median": -274.98,
+        "max": -164.83,
+        "spanne_pp": 289.87
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -614.54,
+        "median": -614.54,
+        "max": -614.54,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.04,
+        "median": 0.07,
+        "max": 0.12,
+        "spanne_pp": 0.08
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/25 / ADX 30.0 / Stop 4.0 %",
+      "dd_block": -161.03,
+      "dd_entry": -305.54,
+      "dd_exit": -298.71,
+      "faktor_entry_zu_block": 1.9,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -244.39,
+        "median": -143.86,
+        "max": -87.33,
+        "spanne_pp": 157.06
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -305.54,
+        "median": -305.54,
+        "max": -305.54,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.04,
+        "median": 0.07,
+        "max": 0.12,
+        "spanne_pp": 0.08
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/30 / ADX 20.0 / Stop 3.0 %",
+      "dd_block": -193.86,
+      "dd_entry": -481.51,
+      "dd_exit": -493.41,
+      "faktor_entry_zu_block": 2.48,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -427.33,
+        "median": -238.64,
+        "max": -170.85,
+        "spanne_pp": 256.48
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -484.81,
+        "median": -481.51,
+        "max": -478.21,
+        "spanne_pp": 6.6
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.05,
+        "median": 0.09,
+        "max": 0.12,
+        "spanne_pp": 0.07
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/30 / ADX 20.0 / Stop 4.0 %",
+      "dd_block": -162.28,
+      "dd_entry": -517.86,
+      "dd_exit": -510.49,
+      "faktor_entry_zu_block": 3.19,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -296.44,
+        "median": -182.51,
+        "max": -137.8,
+        "spanne_pp": 158.64
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -517.86,
+        "median": -517.86,
+        "max": -517.86,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.09,
+        "median": 0.14,
+        "max": 0.19,
+        "spanne_pp": 0.1
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/30 / ADX 25.0 / Stop 3.0 %",
+      "dd_block": -196.48,
+      "dd_entry": -462.8,
+      "dd_exit": -467.93,
+      "faktor_entry_zu_block": 2.36,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -352.36,
+        "median": -225.52,
+        "max": -137.89,
+        "spanne_pp": 214.47
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -468.05,
+        "median": -462.8,
+        "max": -462.8,
+        "spanne_pp": 5.25
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.05,
+        "median": 0.08,
+        "max": 0.12,
+        "spanne_pp": 0.08
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/30 / ADX 25.0 / Stop 4.0 %",
+      "dd_block": -197.83,
+      "dd_entry": -465.67,
+      "dd_exit": -462.16,
+      "faktor_entry_zu_block": 2.35,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -258.57,
+        "median": -165.74,
+        "max": -108.6,
+        "spanne_pp": 149.97
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -465.67,
+        "median": -465.67,
+        "max": -465.67,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.1,
+        "median": 0.15,
+        "max": 0.23,
+        "spanne_pp": 0.13
+      },
+      "dd_entry_in_block_spanne": false
+    },
+    {
+      "label": "T3 16/30 / ADX 30.0 / Stop 3.0 %",
+      "dd_block": -272.4,
+      "dd_entry": -246.05,
+      "dd_exit": -246.05,
+      "faktor_entry_zu_block": 0.9,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -355.91,
+        "median": -222.81,
+        "max": -139.82,
+        "spanne_pp": 216.09
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -251.3,
+        "median": -246.05,
+        "max": -246.05,
+        "spanne_pp": 5.25
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.04,
+        "median": 0.06,
+        "max": 0.1,
+        "spanne_pp": 0.06
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "T3 16/30 / ADX 30.0 / Stop 4.0 %",
+      "dd_block": -120.91,
+      "dd_entry": -272.82,
+      "dd_exit": -273.74,
+      "faktor_entry_zu_block": 2.26,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -288.72,
+        "median": -164.3,
+        "max": -91.34,
+        "spanne_pp": 197.38
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -272.82,
+        "median": -272.82,
+        "max": -272.82,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.08,
+        "median": 0.14,
+        "max": 0.25,
+        "spanne_pp": 0.17
+      },
+      "dd_entry_in_block_spanne": true
+    }
+  ]
+}

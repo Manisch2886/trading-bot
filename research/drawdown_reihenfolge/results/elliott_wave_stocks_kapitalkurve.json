@@ -1,0 +1,27 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "elliott_wave_stocks",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "positionslimit": 8,
+  "kombinationen": 17,
+  "spanne_dd_block": [
+    -158.81,
+    -57.5
+  ],
+  "spanne_dd_entry": [
+    -925.84,
+    -167.85
+  ],
+  "spanne_dd_kapital": [
+    -28.82,
+    -15.51
+  ],
+  "rangkorr_score_block_vs_kapital_calmar": 0.169,
+  "rangkorr_score_entry_vs_kapital_calmar": 0.125,
+  "rangkorr_ddblock_vs_ddkapital": 0.265,
+  "rangkorr_ddentry_vs_ddkapital": 0.645,
+  "sieger_score_block": "dev 4.0 % / Stop 8.0 % / kein Ziel",
+  "sieger_score_entry": "dev 5.0 % / Stop 2.0 % / kein Ziel",
+  "sieger_kapital_calmar": "dev 2.0 % / Stop 5.0 % / kein Ziel"
+}

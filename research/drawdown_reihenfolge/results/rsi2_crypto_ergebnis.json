@@ -1,0 +1,466 @@
+{
+  "hinweis": "DIES IST EINE UNTERSUCHUNG, KEINE KORREKTUR. Es wurde NICHTS geaendert - kein live_params.py, kein forward_test.py, kein equity_simulation.py, kein multi_symbol_optimise.py und keine Ergebnisdatei eines Bots. Ob aus den hier gezeigten Zahlen eine Aenderung folgt, entscheidet der Nutzer.",
+  "bot": "rsi2_crypto",
+  "fenster": "gesamt",
+  "symbole": 20,
+  "kombinationen": 18,
+  "permutationen": 200,
+  "seed": 20260912,
+  "ohne_regimefilter": false,
+  "mindestfilter": {
+    "MIN_TRADES": 40,
+    "MIN_SYMBOLS_CONTRIBUTING": 8,
+    "MIN_AVG_RETURN_PCT": 0.0
+  },
+  "num_besteht_mindestfilter": 6,
+  "nan_pnl_trades_gesamt": 0,
+  "rangfolgen": {
+    "bot": [
+      {
+        "rang": 1,
+        "label": "SMA 150 / RSI 10.0 / Stop kein Stop",
+        "score": 0.34,
+        "dd": -57.89,
+        "num_trades": 439,
+        "avg_return_pct": 0.94
+      },
+      {
+        "rang": 2,
+        "label": "SMA 200 / RSI 5.0 / Stop kein Stop",
+        "score": 0.256,
+        "dd": -55.92,
+        "num_trades": 227,
+        "avg_return_pct": 0.95
+      },
+      {
+        "rang": 3,
+        "label": "SMA 150 / RSI 5.0 / Stop kein Stop",
+        "score": 0.216,
+        "dd": -65.74,
+        "num_trades": 215,
+        "avg_return_pct": 0.97
+      },
+      {
+        "rang": 4,
+        "label": "SMA 100 / RSI 10.0 / Stop kein Stop",
+        "score": 0.186,
+        "dd": -69.29,
+        "num_trades": 448,
+        "avg_return_pct": 0.61
+      },
+      {
+        "rang": 5,
+        "label": "SMA 200 / RSI 10.0 / Stop kein Stop",
+        "score": 0.092,
+        "dd": -102.63,
+        "num_trades": 464,
+        "avg_return_pct": 0.44
+      },
+      {
+        "rang": 6,
+        "label": "SMA 100 / RSI 5.0 / Stop kein Stop",
+        "score": 0.087,
+        "dd": -87.24,
+        "num_trades": 205,
+        "avg_return_pct": 0.53
+      }
+    ],
+    "block": [
+      {
+        "rang": 1,
+        "label": "SMA 150 / RSI 10.0 / Stop kein Stop",
+        "score": 0.34,
+        "dd": -57.89,
+        "num_trades": 439,
+        "avg_return_pct": 0.94
+      },
+      {
+        "rang": 2,
+        "label": "SMA 200 / RSI 5.0 / Stop kein Stop",
+        "score": 0.256,
+        "dd": -55.92,
+        "num_trades": 227,
+        "avg_return_pct": 0.95
+      },
+      {
+        "rang": 3,
+        "label": "SMA 150 / RSI 5.0 / Stop kein Stop",
+        "score": 0.216,
+        "dd": -65.74,
+        "num_trades": 215,
+        "avg_return_pct": 0.97
+      },
+      {
+        "rang": 4,
+        "label": "SMA 100 / RSI 10.0 / Stop kein Stop",
+        "score": 0.186,
+        "dd": -69.29,
+        "num_trades": 448,
+        "avg_return_pct": 0.61
+      },
+      {
+        "rang": 5,
+        "label": "SMA 200 / RSI 10.0 / Stop kein Stop",
+        "score": 0.092,
+        "dd": -102.63,
+        "num_trades": 464,
+        "avg_return_pct": 0.44
+      },
+      {
+        "rang": 6,
+        "label": "SMA 100 / RSI 5.0 / Stop kein Stop",
+        "score": 0.087,
+        "dd": -87.24,
+        "num_trades": 205,
+        "avg_return_pct": 0.53
+      }
+    ],
+    "entry": [
+      {
+        "rang": 1,
+        "label": "SMA 150 / RSI 10.0 / Stop kein Stop",
+        "score": 0.17,
+        "dd": -115.75,
+        "num_trades": 439,
+        "avg_return_pct": 0.94
+      },
+      {
+        "rang": 2,
+        "label": "SMA 150 / RSI 5.0 / Stop kein Stop",
+        "score": 0.148,
+        "dd": -95.88,
+        "num_trades": 215,
+        "avg_return_pct": 0.97
+      },
+      {
+        "rang": 3,
+        "label": "SMA 200 / RSI 5.0 / Stop kein Stop",
+        "score": 0.112,
+        "dd": -128.07,
+        "num_trades": 227,
+        "avg_return_pct": 0.95
+      },
+      {
+        "rang": 4,
+        "label": "SMA 100 / RSI 5.0 / Stop kein Stop",
+        "score": 0.092,
+        "dd": -82.7,
+        "num_trades": 205,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 5,
+        "label": "SMA 100 / RSI 10.0 / Stop kein Stop",
+        "score": 0.072,
+        "dd": -180.31,
+        "num_trades": 448,
+        "avg_return_pct": 0.61
+      },
+      {
+        "rang": 6,
+        "label": "SMA 200 / RSI 10.0 / Stop kein Stop",
+        "score": 0.052,
+        "dd": -181.68,
+        "num_trades": 464,
+        "avg_return_pct": 0.44
+      }
+    ],
+    "exit": [
+      {
+        "rang": 1,
+        "label": "SMA 150 / RSI 10.0 / Stop kein Stop",
+        "score": 0.158,
+        "dd": -124.89,
+        "num_trades": 439,
+        "avg_return_pct": 0.94
+      },
+      {
+        "rang": 2,
+        "label": "SMA 150 / RSI 5.0 / Stop kein Stop",
+        "score": 0.148,
+        "dd": -95.88,
+        "num_trades": 215,
+        "avg_return_pct": 0.97
+      },
+      {
+        "rang": 3,
+        "label": "SMA 200 / RSI 5.0 / Stop kein Stop",
+        "score": 0.112,
+        "dd": -128.07,
+        "num_trades": 227,
+        "avg_return_pct": 0.95
+      },
+      {
+        "rang": 4,
+        "label": "SMA 100 / RSI 5.0 / Stop kein Stop",
+        "score": 0.087,
+        "dd": -87.69,
+        "num_trades": 205,
+        "avg_return_pct": 0.53
+      },
+      {
+        "rang": 5,
+        "label": "SMA 100 / RSI 10.0 / Stop kein Stop",
+        "score": 0.072,
+        "dd": -180.31,
+        "num_trades": 448,
+        "avg_return_pct": 0.61
+      },
+      {
+        "rang": 6,
+        "label": "SMA 200 / RSI 10.0 / Stop kein Stop",
+        "score": 0.049,
+        "dd": -195.03,
+        "num_trades": 464,
+        "avg_return_pct": 0.44
+      }
+    ]
+  },
+  "sieger": {
+    "bot": "SMA 150 / RSI 10.0 / Stop kein Stop",
+    "block": "SMA 150 / RSI 10.0 / Stop kein Stop",
+    "entry": "SMA 150 / RSI 10.0 / Stop kein Stop",
+    "exit": "SMA 150 / RSI 10.0 / Stop kein Stop"
+  },
+  "urteil": {
+    "sieger_identisch": true,
+    "vorsprung_block_pct": 32.8,
+    "vorsprung_entry_pct": 14.9,
+    "vorsprung_exit_pct": 6.8,
+    "block_permutationssieger": [
+      [
+        "SMA 150 / RSI 10.0 / Stop kein Stop",
+        119
+      ],
+      [
+        "SMA 200 / RSI 5.0 / Stop kein Stop",
+        63
+      ],
+      [
+        "SMA 150 / RSI 5.0 / Stop kein Stop",
+        18
+      ]
+    ],
+    "block_sieger_stabil_pct": 59.5
+  },
+  "rangwechsel": [
+    {
+      "label": "SMA 150 / RSI 10.0 / Stop kein Stop",
+      "rang_block": 1,
+      "rang_entry": 1,
+      "rang_exit": 1,
+      "delta_entry": 0
+    },
+    {
+      "label": "SMA 200 / RSI 5.0 / Stop kein Stop",
+      "rang_block": 2,
+      "rang_entry": 3,
+      "rang_exit": 3,
+      "delta_entry": 1
+    },
+    {
+      "label": "SMA 150 / RSI 5.0 / Stop kein Stop",
+      "rang_block": 3,
+      "rang_entry": 2,
+      "rang_exit": 2,
+      "delta_entry": -1
+    },
+    {
+      "label": "SMA 100 / RSI 10.0 / Stop kein Stop",
+      "rang_block": 4,
+      "rang_entry": 5,
+      "rang_exit": 5,
+      "delta_entry": 1
+    },
+    {
+      "label": "SMA 200 / RSI 10.0 / Stop kein Stop",
+      "rang_block": 5,
+      "rang_entry": 6,
+      "rang_exit": 6,
+      "delta_entry": 1
+    },
+    {
+      "label": "SMA 100 / RSI 5.0 / Stop kein Stop",
+      "rang_block": 6,
+      "rang_entry": 4,
+      "rang_exit": 4,
+      "delta_entry": -2
+    }
+  ],
+  "streuung": [
+    {
+      "label": "SMA 100 / RSI 5.0 / Stop kein Stop",
+      "dd_block": -87.24,
+      "dd_entry": -82.7,
+      "dd_exit": -87.69,
+      "faktor_entry_zu_block": 0.95,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -168.42,
+        "median": -92.62,
+        "max": -49.69,
+        "spanne_pp": 118.73
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -87.69,
+        "median": -82.7,
+        "max": -80.79,
+        "spanne_pp": 6.9
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.04,
+        "median": 0.08,
+        "max": 0.15,
+        "spanne_pp": 0.11
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "SMA 100 / RSI 10.0 / Stop kein Stop",
+      "dd_block": -69.29,
+      "dd_entry": -180.31,
+      "dd_exit": -180.31,
+      "faktor_entry_zu_block": 2.6,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -192.71,
+        "median": -102.94,
+        "max": -63.9,
+        "spanne_pp": 128.81
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -180.31,
+        "median": -180.31,
+        "max": -180.31,
+        "spanne_pp": 0.0
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.07,
+        "median": 0.12,
+        "max": 0.2,
+        "spanne_pp": 0.14
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "SMA 150 / RSI 5.0 / Stop kein Stop",
+      "dd_block": -65.74,
+      "dd_entry": -95.88,
+      "dd_exit": -95.88,
+      "faktor_entry_zu_block": 1.46,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -140.69,
+        "median": -74.9,
+        "max": -49.93,
+        "spanne_pp": 90.76
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -95.88,
+        "median": -89.91,
+        "max": -88.57,
+        "spanne_pp": 7.31
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.1,
+        "median": 0.19,
+        "max": 0.28,
+        "spanne_pp": 0.18
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "SMA 150 / RSI 10.0 / Stop kein Stop",
+      "dd_block": -57.89,
+      "dd_entry": -115.75,
+      "dd_exit": -124.89,
+      "faktor_entry_zu_block": 2.0,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -138.19,
+        "median": -76.3,
+        "max": -54.81,
+        "spanne_pp": 83.38
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -122.07,
+        "median": -115.75,
+        "max": -115.38,
+        "spanne_pp": 6.69
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.14,
+        "median": 0.26,
+        "max": 0.36,
+        "spanne_pp": 0.22
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "SMA 200 / RSI 5.0 / Stop kein Stop",
+      "dd_block": -55.92,
+      "dd_entry": -128.07,
+      "dd_exit": -128.07,
+      "faktor_entry_zu_block": 2.29,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -129.66,
+        "median": -64.42,
+        "max": -36.23,
+        "spanne_pp": 93.43
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -128.07,
+        "median": -128.07,
+        "max": -120.76,
+        "spanne_pp": 7.31
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.11,
+        "median": 0.22,
+        "max": 0.4,
+        "spanne_pp": 0.29
+      },
+      "dd_entry_in_block_spanne": true
+    },
+    {
+      "label": "SMA 200 / RSI 10.0 / Stop kein Stop",
+      "dd_block": -102.63,
+      "dd_entry": -181.68,
+      "dd_exit": -195.03,
+      "faktor_entry_zu_block": 1.77,
+      "perm_block_dd": {
+        "n": 200,
+        "min": -197.36,
+        "median": -109.34,
+        "max": -66.44,
+        "spanne_pp": 130.92
+      },
+      "perm_tie_dd": {
+        "n": 200,
+        "min": -190.86,
+        "median": -181.74,
+        "max": -181.31,
+        "spanne_pp": 9.55
+      },
+      "perm_block_score": {
+        "n": 200,
+        "min": 0.05,
+        "median": 0.09,
+        "max": 0.14,
+        "spanne_pp": 0.09
+      },
+      "dd_entry_in_block_spanne": true
+    }
+  ]
+}
