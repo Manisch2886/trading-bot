@@ -166,6 +166,19 @@ python3 system/test_dienst_plists.py ; echo "Rueckgabewert: $?"
 
 **Erwartet jetzt: Rueckgabewert 0**, 0 Fehler, 0 offen.
 
+Zwei Zeilen sehen dabei anders aus als frueher und sind **kein Fehler**:
+
+```
+[OK   ] Vorlage setzt DASHBOARD_HOST gar nicht oder auf eine Tailscale-Adresse (100.64.x - 100.127.x)   nicht in der Vorlage gesetzt - kommt aus .env oder dashboard/konfig.py
+[OK   ] Vorlage setzt DASHBOARD_PORT gar nicht oder auf 8787   nicht in der Vorlage gesetzt - kommt aus .env oder dashboard/konfig.py
+```
+
+Bis TB-15 verlangte der Test hier, dass die Vorlage beide Werte selbst
+setzt. Das war eine Vermutung und ist widerlegt: die laufende Fassung
+setzt keinen von beiden (Host aus der `.env`, Port aus der Voreinstellung
+in `dashboard/konfig.py`). Seit TB-16 ist die Pruefung **bedingt** — sie
+schlaegt nur an, wenn die Vorlage einen der Werte setzt und er falsch ist.
+
 Schlaegt stattdessen etwas fehl, ist das ein **echter Befund** und nicht
 durch Anpassen der Vorlage zu „reparieren". Die drei wahrscheinlichsten:
 
@@ -193,9 +206,20 @@ durch Anpassen der Vorlage zu „reparieren". Die drei wahrscheinlichsten:
    ```
    (`grep -c`, nicht `cat` — die `.env` enthaelt Zugangsdaten.)
    Beide Wege sind zulaessig; festhalten, welcher gilt.
-3. **Wohin schreibt der Dienst seine Logs?** Die Pfade aus der
-   uebernommenen Datei in `README_DIENSTE.md`, Abschnitt „Logs",
-   nachtragen — dort steht bisher „in der Vorlage noch offen".
+
+   **Am 12.09.2026 beantwortet:** aus der `.env`; `DASHBOARD_PORT` ist
+   ueberhaupt nicht gesetzt. In `README_DIENSTE.md` festgehalten, samt
+   der Schwachstelle, die daran haengt (die `.env` ist nicht versioniert
+   — geht sie verloren, ist das Dashboard ueber Tailscale nicht mehr
+   erreichbar). Nur noch **gegenpruefen**, ob das weiterhin so ist; ein
+   abweichender Befund gehoert gemeldet, nicht stillschweigend angepasst.
+3. **Wohin schreibt der Dienst seine Logs?** In `README_DIENSTE.md`,
+   Abschnitt „Logs", steht jetzt `logs/dashboard/launchd.out.log` und
+   `launchd.err.log`. Belegt ist davon bisher nur die `.err.log`
+   (`TESTAUFTRAG_LOG_ROTATION.md`, Schritt 6). Die **genauen** Namen
+   beider Dateien aus `StandardOutPath`/`StandardErrorPath` der
+   uebernommenen Datei ablesen und, falls sie abweichen, dort richtig
+   stellen.
 
 ---
 

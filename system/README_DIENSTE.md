@@ -59,7 +59,8 @@ Mac):
    virtuellen Umgebung).
 3. **Der Log-Ordner existiert** — sonst startet der Dienst nicht:
    ```
-   mkdir -p ~/trading-bot/logs/system ~/trading-bot/logs/notifications
+   mkdir -p ~/trading-bot/logs/system ~/trading-bot/logs/notifications \
+            ~/trading-bot/logs/dashboard
    ```
 
 ---
@@ -161,8 +162,42 @@ deshalb ins Leere, obwohl der Dienst einwandfrei laeuft.
 
 Das ist kein Zufall, sondern muss ausdruecklich gesetzt werden: die
 Grundeinstellung im Code ist `STANDARD_HOST = "127.0.0.1"` (siehe
-`dashboard/konfig.py`). Die Adresse kommt entweder aus `DASHBOARD_HOST` in
-der Vorlage (`EnvironmentVariables`) oder aus der `.env` im Projekt-Root.
+`dashboard/konfig.py`). `konfig.py` nimmt den Wert in dieser Reihenfolge:
+**Umgebung** (also `EnvironmentVariables` der plist), sonst **`.env`** im
+Projekt-Root, sonst **Voreinstellung**.
+
+Am 12.09.2026 nachgesehen, welcher der Wege tatsaechlich gilt:
+
+| Wert | Woher er auf dem Mac kommt |
+|---|---|
+| `DASHBOARD_HOST` | aus der **`.env`** (`grep -c "^DASHBOARD_HOST" .env` → 1) |
+| `DASHBOARD_PORT` | **nirgends gesetzt** — es gilt `STANDARD_PORT = 8787` aus `dashboard/konfig.py` |
+
+Die laufende `com.manisch.trading-dashboard.plist` setzt also **keinen von
+beiden** ueber `EnvironmentVariables`.
+
+> ### ⚠️ Der Fernzugriff haengt an einer Datei, die in keinem Backup liegt
+>
+> Die `.env` ist **nicht versioniert** (`.gitignore`, sie enthaelt
+> Zugangsdaten). Geht sie verloren — Systemwechsel, Neuinstallation,
+> versehentliches Loeschen —, startet das Dashboard auf der Voreinstellung
+> `127.0.0.1` und ist **ueber Tailscale nicht mehr erreichbar**. Der
+> einzige Fernzugriffsweg des Projekts haengt damit an einer Datei, die
+> kein Repo-Backup enthaelt.
+>
+> Der Dienst startet dabei **einwandfrei** und meldet nichts — der Ausfall
+> faellt erst auf, wenn jemand von aussen zugreifen will. Das ist dieselbe
+> Klasse von stillem Ausfall wie der Schlaf-Vorfall (siehe oben).
+>
+> **Bewusst nicht behoben**, weil jede Abhilfe den laufenden Dienst oder
+> den Umgang mit Zugangsdaten beruehrt und das die Entscheidung des
+> Nutzers ist. Zwei Wege stuenden offen: `DASHBOARD_HOST` zusaetzlich in
+> `EnvironmentVariables` der plist eintragen (dann steht der Wert an zwei
+> Stellen — die Umgebung gewinnt laut Reihenfolge oben, die Bindung
+> ueberlebt aber einen Verlust der `.env`), oder die *Namen* der
+> benoetigten `.env`-Schluessel versioniert festhalten, damit die Datei
+> nach einem Verlust wiederherstellbar ist. Die Werte selbst gehoeren in
+> keinem Fall ins Repo.
 
 Richtig ist:
 
@@ -253,10 +288,11 @@ Zwei Dinge sieht sich der Nutzer trotzdem selbst an:
 1. **Zeigt die Datei auf `dashboard/server.py`?** `server.py` holt
    `erzeuge_app()` aus `app.py` und startet uvicorn — `app.py` allein
    startet keinen Server und waere der falsche Einstiegspunkt.
-2. **Woher kommt `DASHBOARD_HOST`?** Steht die Adresse in der Vorlage
-   (`EnvironmentVariables`) oder in der `.env`? Beides funktioniert; nur
-   sollte man wissen, welches von beidem gilt, wenn die Bindung sich
-   einmal aendern soll.
+2. **Woher kommt `DASHBOARD_HOST`?** — seit 12.09.2026 beantwortet: aus
+   der **`.env`**, nicht aus der Vorlage; `DASHBOARD_PORT` ist gar nicht
+   gesetzt. Beide Wege bleiben zulaessig, der Test schreibt keinen vor
+   (siehe unten). Was daran eine Schwachstelle ist, steht oben unter
+   [„Es lauscht nicht auf `localhost`"](#1-es-lauscht-nicht-auf-localhost).
 
 Der vollstaendige Ablauf mit Gegenproben steht in
 [`TESTAUFTRAG_DIENSTE.md`](TESTAUFTRAG_DIENSTE.md).
@@ -269,7 +305,18 @@ Der vollstaendige Ablauf mit Gegenproben steht in
 |---|---|
 | `caffeinate` | `logs/system/caffeinate.log`, `caffeinate.err.log` |
 | Telegram-Bot | `logs/notifications/launchd.out.log`, `launchd.err.log` |
-| Dashboard | steht in der laufenden Fassung (in der Vorlage noch offen) |
+| Dashboard | `logs/dashboard/launchd.out.log`, `launchd.err.log` |
+
+Zur Dashboard-Zeile: belegt ist davon
+`logs/dashboard/launchd.err.log` — dorthin schreibt `uvicorn`, und
+[`TESTAUFTRAG_LOG_ROTATION.md`](TESTAUFTRAG_LOG_ROTATION.md) (Schritt 6)
+arbeitet am laufenden Dienst mit genau dieser Datei. Der
+`StandardOutPath` liegt im selben Ordner; sein genauer Name steht in der
+laufenden `plist` und ist im Repo erst nachlesbar, wenn die befuellte
+Vorlage eingecheckt ist (siehe
+[Die Dashboard-Vorlage befuellen](#die-dashboard-vorlage-befuellen)).
+Der Ordner heisst `logs/dashboard/` und nicht `logs/system/` — das ist
+der haeufigste Fehlgriff beim Suchen.
 
 Alle drei halten ihre Logdatei **dauerhaft offen**. Wer sie rotiert, darf
 sie deshalb **nicht umbenennen**, sondern muss kopieren und leeren —
