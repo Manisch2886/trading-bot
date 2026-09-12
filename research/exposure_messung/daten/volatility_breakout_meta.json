@@ -1,0 +1,25 @@
+{
+  "bot": "volatility_breakout",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 15,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 4510,
+  "trades_ausgefuehrt": 1454,
+  "trades_uebersprungen": 3056,
+  "endkapital": 32441.42,
+  "rendite_pct": 224.41,
+  "max_drawdown_pct_bot": -23.97,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "symbole": 147,
+  "kennzeichnung_neutral": true,
+  "abgleich_results_csv": {
+    "datei": "results/volatility_breakout/equity_curve.csv",
+    "vorhanden": true,
+    "zeilen_repo": 1236,
+    "zeilen_eigen": 1454,
+    "identisch": false,
+    "abweichende_zeilen": null
+  }
+}

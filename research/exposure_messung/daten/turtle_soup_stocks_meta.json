@@ -1,0 +1,25 @@
+{
+  "bot": "turtle_soup_stocks",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.02,
+  "max_concurrent_positions": null,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 12069,
+  "trades_ausgefuehrt": 8915,
+  "trades_uebersprungen": 3154,
+  "endkapital": 24559.08,
+  "rendite_pct": 145.59,
+  "max_drawdown_pct_bot": -29.91,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "symbole": 147,
+  "kennzeichnung_neutral": true,
+  "abgleich_results_csv": {
+    "datei": "results/turtle_soup_stocks/equity_curve.csv",
+    "vorhanden": true,
+    "zeilen_repo": 1887,
+    "zeilen_eigen": 8915,
+    "identisch": false,
+    "abweichende_zeilen": null
+  }
+}

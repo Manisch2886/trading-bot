@@ -1,0 +1,1258 @@
+{
+  "urspruengliche_zahl": {
+    "abgelegte_kurven": {
+      "fenster": [
+        "2021-09-14",
+        "2026-06-27"
+      ],
+      "max_dd_je_bot_pct": {
+        "elliott_wave": -0.23,
+        "t3_supertrend": -22.2,
+        "elliott_wave_stocks": -1.65,
+        "rsi2_mean_reversion": -12.72
+      },
+      "max_dd_kombiniert_pct": -1.43,
+      "rendite_kombiniert_pct": 140.92,
+      "korrelation": {
+        "elliott_wave": {
+          "elliott_wave": 1.0,
+          "t3_supertrend": -0.012,
+          "elliott_wave_stocks": -0.008,
+          "rsi2_mean_reversion": -0.023
+        },
+        "t3_supertrend": {
+          "elliott_wave": -0.012,
+          "t3_supertrend": 1.0,
+          "elliott_wave_stocks": -0.007,
+          "rsi2_mean_reversion": 0.004
+        },
+        "elliott_wave_stocks": {
+          "elliott_wave": -0.008,
+          "t3_supertrend": -0.007,
+          "elliott_wave_stocks": 1.0,
+          "rsi2_mean_reversion": 0.005
+        },
+        "rsi2_mean_reversion": {
+          "elliott_wave": -0.023,
+          "t3_supertrend": 0.004,
+          "elliott_wave_stocks": 0.005,
+          "rsi2_mean_reversion": 1.0
+        }
+      }
+    },
+    "heutige_live_params": {
+      "fenster": [
+        "2021-09-24",
+        "2026-08-20"
+      ],
+      "max_dd_je_bot_pct": {
+        "elliott_wave": -10.17,
+        "t3_supertrend": -22.2,
+        "elliott_wave_stocks": -21.16,
+        "rsi2_mean_reversion": -11.73
+      },
+      "max_dd_kombiniert_pct": -9.41,
+      "rendite_kombiniert_pct": 74.69,
+      "korrelation": {
+        "elliott_wave": {
+          "elliott_wave": 1.0,
+          "t3_supertrend": -0.012,
+          "elliott_wave_stocks": 0.001,
+          "rsi2_mean_reversion": 0.001
+        },
+        "t3_supertrend": {
+          "elliott_wave": -0.012,
+          "t3_supertrend": 1.0,
+          "elliott_wave_stocks": -0.008,
+          "rsi2_mean_reversion": -0.009
+        },
+        "elliott_wave_stocks": {
+          "elliott_wave": 0.001,
+          "t3_supertrend": -0.008,
+          "elliott_wave_stocks": 1.0,
+          "rsi2_mean_reversion": 0.023
+        },
+        "rsi2_mean_reversion": {
+          "elliott_wave": 0.001,
+          "t3_supertrend": -0.009,
+          "elliott_wave_stocks": 0.023,
+          "rsi2_mean_reversion": 1.0
+        }
+      }
+    },
+    "einzeltausch_max_dd_pct": {
+      "elliott_wave": -2.66,
+      "t3_supertrend": -1.43,
+      "elliott_wave_stocks": -4.93,
+      "rsi2_mean_reversion": -1.43
+    }
+  },
+  "abgleich": [
+    {
+      "bot": "elliott_wave",
+      "zeilen_abgelegt": 144,
+      "zeilen_neu": 130,
+      "identisch": false,
+      "allocation_pct": 0.1,
+      "max_concurrent": NaN,
+      "rendite_neu_pct": 67.77,
+      "max_dd_neu_pct": -10.17
+    },
+    {
+      "bot": "t3_supertrend",
+      "zeilen_abgelegt": 656,
+      "zeilen_neu": 656,
+      "identisch": true,
+      "allocation_pct": 0.1,
+      "max_concurrent": 5.0,
+      "rendite_neu_pct": 129.64,
+      "max_dd_neu_pct": -22.2
+    },
+    {
+      "bot": "elliott_wave_stocks",
+      "zeilen_abgelegt": 469,
+      "zeilen_neu": 395,
+      "identisch": false,
+      "allocation_pct": 0.1,
+      "max_concurrent": 8.0,
+      "rendite_neu_pct": 352.72,
+      "max_dd_neu_pct": -22.44
+    },
+    {
+      "bot": "rsi2_mean_reversion",
+      "zeilen_abgelegt": 2641,
+      "zeilen_neu": 4232,
+      "identisch": false,
+      "allocation_pct": 0.05,
+      "max_concurrent": 20.0,
+      "rendite_neu_pct": 36.75,
+      "max_dd_neu_pct": -21.05
+    },
+    {
+      "bot": "rsi2_crypto",
+      "zeilen_abgelegt": 392,
+      "zeilen_neu": 392,
+      "identisch": true,
+      "allocation_pct": 0.1,
+      "max_concurrent": 8.0,
+      "rendite_neu_pct": 28.37,
+      "max_dd_neu_pct": -13.3
+    },
+    {
+      "bot": "turtle_soup_crypto",
+      "zeilen_abgelegt": 1414,
+      "zeilen_neu": 1414,
+      "identisch": true,
+      "allocation_pct": 0.1,
+      "max_concurrent": 8.0,
+      "rendite_neu_pct": 177.59,
+      "max_dd_neu_pct": -32.4
+    },
+    {
+      "bot": "turtle_soup_stocks",
+      "zeilen_abgelegt": 1887,
+      "zeilen_neu": 8915,
+      "identisch": false,
+      "allocation_pct": 0.02,
+      "max_concurrent": NaN,
+      "rendite_neu_pct": 145.59,
+      "max_dd_neu_pct": -29.91
+    },
+    {
+      "bot": "volatility_breakout",
+      "zeilen_abgelegt": 1236,
+      "zeilen_neu": 1454,
+      "identisch": false,
+      "allocation_pct": 0.1,
+      "max_concurrent": 15.0,
+      "rendite_neu_pct": 224.41,
+      "max_dd_neu_pct": -23.97
+    },
+    {
+      "bot": "volatility_breakout_crypto",
+      "zeilen_abgelegt": 207,
+      "zeilen_neu": 207,
+      "identisch": true,
+      "allocation_pct": 0.1,
+      "max_concurrent": 8.0,
+      "rendite_neu_pct": 49.03,
+      "max_dd_neu_pct": -16.29
+    }
+  ],
+  "buy_and_hold_referenz": {
+    "aktien": {
+      "symbole": 150,
+      "ohne_datei": 0,
+      "handelstage": 16274,
+      "von": "1962-01-03",
+      "bis": "2026-09-01"
+    },
+    "krypto": {
+      "symbole": 24,
+      "ohne_datei": 1,
+      "handelstage": 1825,
+      "von": "2021-09-02",
+      "bis": "2026-08-31"
+    }
+  },
+  "gruppen": {
+    "vier_bots": {
+      "gruppe": "vier_bots",
+      "bots": [
+        "elliott_wave",
+        "t3_supertrend",
+        "elliott_wave_stocks",
+        "rsi2_mean_reversion"
+      ],
+      "fenster": [
+        "2021-09-22",
+        "2026-08-20"
+      ],
+      "exposure": {
+        "tage": 1794,
+        "mittel_pct": 25.85,
+        "median_pct": 25.5,
+        "p10_pct": 13.08,
+        "p90_pct": 38.72,
+        "max_pct": 61.84,
+        "anteil_tage_flach_pct": 0.0,
+        "anteil_tage_ueber_50_pct": 1.56
+      },
+      "max_dd_gesamtkapital_pct": -9.41,
+      "max_dd_investiertes_kapital_pct": -32.12,
+      "aktive_tage": 1794,
+      "rendite_gesamtkapital_pct": 74.28,
+      "stress": {
+        "Corona-Einbruch (Feb-Apr 2020)": {
+          "tage": 0,
+          "mittlere_exposure_pct": null,
+          "anteil_tage_flach_pct": null
+        },
+        "Gesamtjahr 2022": {
+          "tage": 365,
+          "mittlere_exposure_pct": 23.1,
+          "anteil_tage_flach_pct": 0.0
+        },
+        "10 % schlechteste B&H-Tage (aktien)": {
+          "tage": 124,
+          "mittlere_exposure_pct": 26.97,
+          "anteil_tage_flach_pct": 0.0
+        },
+        "10 % schlechteste B&H-Tage (krypto)": {
+          "tage": 180,
+          "mittlere_exposure_pct": 25.44,
+          "anteil_tage_flach_pct": 0.0
+        }
+      },
+      "verteilung_offene_positionen": {
+        "1": 0.06,
+        "2": 0.56,
+        "3": 1.34,
+        "4": 1.17,
+        "5": 2.17,
+        "6": 4.01,
+        "7": 3.07,
+        "8": 5.57,
+        "9": 5.69,
+        "10": 5.85,
+        "11": 6.19,
+        "12": 7.3,
+        "13": 7.41,
+        "14": 4.57,
+        "15": 4.01,
+        "16": 4.35,
+        "17": 4.63,
+        "18": 3.68,
+        "19": 3.51,
+        "20": 3.34,
+        "21": 3.18,
+        "22": 2.95,
+        "23": 3.12,
+        "24": 2.01,
+        "25": 2.79,
+        "26": 1.62,
+        "27": 1.28,
+        "28": 1.51,
+        "29": 1.0,
+        "30": 0.56,
+        "31": 0.45,
+        "32": 0.5,
+        "33": 0.22,
+        "34": 0.11,
+        "35": 0.06,
+        "37": 0.06,
+        "38": 0.11
+      },
+      "max_dd_zu_marktpreisen_pct": -10.12,
+      "mtm_naht": {
+        "positionen_mit_kurs": 5413,
+        "naht_median_pp": 0.3,
+        "naht_p90_pp": 2.02
+      },
+      "korrelation_zu_marktpreisen": {
+        "matrix": {
+          "elliott_wave": {
+            "elliott_wave": 1.0,
+            "t3_supertrend": 0.041,
+            "elliott_wave_stocks": 0.034,
+            "rsi2_mean_reversion": 0.076
+          },
+          "t3_supertrend": {
+            "elliott_wave": 0.041,
+            "t3_supertrend": 1.0,
+            "elliott_wave_stocks": 0.045,
+            "rsi2_mean_reversion": -0.005
+          },
+          "elliott_wave_stocks": {
+            "elliott_wave": 0.034,
+            "t3_supertrend": 0.045,
+            "elliott_wave_stocks": 1.0,
+            "rsi2_mean_reversion": 0.142
+          },
+          "rsi2_mean_reversion": {
+            "elliott_wave": 0.076,
+            "t3_supertrend": -0.005,
+            "elliott_wave_stocks": 0.142,
+            "rsi2_mean_reversion": 1.0
+          }
+        },
+        "mittel_ausser_diagonale": 0.056,
+        "min": -0.005,
+        "max": 0.142,
+        "gegen_buy_and_hold": {
+          "aktien": {
+            "elliott_wave": 0.15,
+            "t3_supertrend": 0.039,
+            "elliott_wave_stocks": 0.457,
+            "rsi2_mean_reversion": 0.481
+          },
+          "krypto": {
+            "elliott_wave": 0.254,
+            "t3_supertrend": 0.244,
+            "elliott_wave_stocks": 0.168,
+            "rsi2_mean_reversion": 0.191
+          }
+        }
+      },
+      "mittlerer_einzel_dd_pct": -16.32,
+      "schlechtester_einzel_dd_pct": -22.2,
+      "je_bot": [
+        {
+          "bot": "elliott_wave",
+          "anlageklasse": "krypto",
+          "zeit_im_markt_pct": 22.8,
+          "mittlere_exposure_pct": 4.4,
+          "mittlere_positionen_wenn_offen": 1.93,
+          "max_positionen": 7,
+          "max_dd_im_fenster_pct": -10.17,
+          "dd_phase": "2022-03-24 bis 2022-11-17",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "t3_supertrend",
+          "anlageklasse": "krypto",
+          "zeit_im_markt_pct": 55.57,
+          "mittlere_exposure_pct": 17.72,
+          "mittlere_positionen_wenn_offen": 3.19,
+          "max_positionen": 8,
+          "max_dd_im_fenster_pct": -22.2,
+          "dd_phase": "2022-04-03 bis 2023-10-19",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "elliott_wave_stocks",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 95.21,
+          "mittlere_exposure_pct": 45.57,
+          "mittlere_positionen_wenn_offen": 4.88,
+          "max_positionen": 11,
+          "max_dd_im_fenster_pct": -21.16,
+          "dd_phase": "2021-09-22 bis 2022-10-11",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 3.49,
+          "anteil_tage_alle_anderen_flach_pct": 2.17
+        },
+        {
+          "bot": "rsi2_mean_reversion",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 91.3,
+          "mittlere_exposure_pct": 39.7,
+          "mittlere_positionen_wenn_offen": 8.69,
+          "max_positionen": 26,
+          "max_dd_im_fenster_pct": -11.73,
+          "dd_phase": "2021-11-29 bis 2022-06-28",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.78
+        }
+      ]
+    },
+    "neun_bots": {
+      "gruppe": "neun_bots",
+      "bots": [
+        "elliott_wave",
+        "t3_supertrend",
+        "elliott_wave_stocks",
+        "rsi2_mean_reversion",
+        "rsi2_crypto",
+        "turtle_soup_crypto",
+        "turtle_soup_stocks",
+        "volatility_breakout",
+        "volatility_breakout_crypto"
+      ],
+      "fenster": [
+        "2022-03-17",
+        "2026-08-20"
+      ],
+      "exposure": {
+        "tage": 1618,
+        "mittel_pct": 37.91,
+        "median_pct": 38.03,
+        "p10_pct": 26.35,
+        "p90_pct": 48.59,
+        "max_pct": 68.46,
+        "anteil_tage_flach_pct": 0.0,
+        "anteil_tage_ueber_50_pct": 7.05
+      },
+      "max_dd_gesamtkapital_pct": -11.47,
+      "max_dd_investiertes_kapital_pct": -27.28,
+      "aktive_tage": 1618,
+      "rendite_gesamtkapital_pct": 71.49,
+      "stress": {
+        "Corona-Einbruch (Feb-Apr 2020)": {
+          "tage": 0,
+          "mittlere_exposure_pct": null,
+          "anteil_tage_flach_pct": null
+        },
+        "Gesamtjahr 2022": {
+          "tage": 290,
+          "mittlere_exposure_pct": 31.09,
+          "anteil_tage_flach_pct": 0.0
+        },
+        "10 % schlechteste B&H-Tage (aktien)": {
+          "tage": 112,
+          "mittlere_exposure_pct": 38.08,
+          "anteil_tage_flach_pct": 0.0
+        },
+        "10 % schlechteste B&H-Tage (krypto)": {
+          "tage": 162,
+          "mittlere_exposure_pct": 38.45,
+          "anteil_tage_flach_pct": 0.0
+        }
+      },
+      "verteilung_offene_positionen": {
+        "21": 0.12,
+        "23": 0.06,
+        "24": 0.06,
+        "25": 0.19,
+        "26": 0.25,
+        "27": 0.37,
+        "28": 0.43,
+        "29": 0.12,
+        "30": 0.43,
+        "31": 0.12,
+        "32": 0.31,
+        "33": 0.31,
+        "34": 0.68,
+        "35": 0.49,
+        "36": 0.74,
+        "37": 0.62,
+        "38": 0.68,
+        "39": 1.24,
+        "40": 0.56,
+        "41": 0.56,
+        "42": 0.43,
+        "43": 0.8,
+        "44": 0.87,
+        "45": 0.43,
+        "46": 0.87,
+        "47": 0.93,
+        "48": 0.93,
+        "49": 1.05,
+        "50": 0.8,
+        "51": 1.24,
+        "52": 1.17,
+        "53": 0.99,
+        "54": 0.74,
+        "55": 0.99,
+        "56": 1.17,
+        "57": 1.48,
+        "58": 0.93,
+        "59": 0.87,
+        "60": 1.11,
+        "61": 0.87,
+        "62": 1.92,
+        "63": 1.98,
+        "64": 1.79,
+        "65": 2.22,
+        "66": 2.16,
+        "67": 2.47,
+        "68": 2.04,
+        "69": 2.1,
+        "70": 2.16,
+        "71": 1.85,
+        "72": 2.6,
+        "73": 2.35,
+        "74": 2.29,
+        "75": 2.16,
+        "76": 2.53,
+        "77": 2.53,
+        "78": 2.6,
+        "79": 2.35,
+        "80": 2.41,
+        "81": 1.92,
+        "82": 2.16,
+        "83": 1.42,
+        "84": 2.16,
+        "85": 2.47,
+        "86": 1.73,
+        "87": 1.42,
+        "88": 2.35,
+        "89": 1.48,
+        "90": 1.98,
+        "91": 1.24,
+        "92": 1.61,
+        "93": 1.42,
+        "94": 0.87,
+        "95": 0.87,
+        "96": 0.93,
+        "97": 0.93,
+        "98": 0.56,
+        "99": 0.8,
+        "100": 0.56,
+        "101": 0.43,
+        "102": 0.06,
+        "103": 0.37,
+        "104": 0.06,
+        "105": 0.19,
+        "106": 0.19,
+        "107": 0.25,
+        "114": 0.06
+      },
+      "max_dd_zu_marktpreisen_pct": -13.8,
+      "mtm_naht": {
+        "positionen_mit_kurs": 17795,
+        "naht_median_pp": 0.3,
+        "naht_p90_pp": 0.87
+      },
+      "korrelation_zu_marktpreisen": {
+        "matrix": {
+          "elliott_wave": {
+            "elliott_wave": 1.0,
+            "t3_supertrend": 0.03,
+            "elliott_wave_stocks": 0.038,
+            "rsi2_mean_reversion": 0.064,
+            "rsi2_crypto": 0.136,
+            "turtle_soup_crypto": 0.216,
+            "turtle_soup_stocks": 0.13,
+            "volatility_breakout": 0.078,
+            "volatility_breakout_crypto": 0.011
+          },
+          "t3_supertrend": {
+            "elliott_wave": 0.03,
+            "t3_supertrend": 1.0,
+            "elliott_wave_stocks": 0.056,
+            "rsi2_mean_reversion": -0.005,
+            "rsi2_crypto": -0.015,
+            "turtle_soup_crypto": 0.192,
+            "turtle_soup_stocks": -0.005,
+            "volatility_breakout": 0.076,
+            "volatility_breakout_crypto": 0.102
+          },
+          "elliott_wave_stocks": {
+            "elliott_wave": 0.038,
+            "t3_supertrend": 0.056,
+            "elliott_wave_stocks": 1.0,
+            "rsi2_mean_reversion": 0.139,
+            "rsi2_crypto": 0.038,
+            "turtle_soup_crypto": 0.109,
+            "turtle_soup_stocks": 0.327,
+            "volatility_breakout": 0.232,
+            "volatility_breakout_crypto": 0.039
+          },
+          "rsi2_mean_reversion": {
+            "elliott_wave": 0.064,
+            "t3_supertrend": -0.005,
+            "elliott_wave_stocks": 0.139,
+            "rsi2_mean_reversion": 1.0,
+            "rsi2_crypto": 0.067,
+            "turtle_soup_crypto": 0.106,
+            "turtle_soup_stocks": 0.475,
+            "volatility_breakout": 0.166,
+            "volatility_breakout_crypto": 0.035
+          },
+          "rsi2_crypto": {
+            "elliott_wave": 0.136,
+            "t3_supertrend": -0.015,
+            "elliott_wave_stocks": 0.038,
+            "rsi2_mean_reversion": 0.067,
+            "rsi2_crypto": 1.0,
+            "turtle_soup_crypto": 0.209,
+            "turtle_soup_stocks": 0.082,
+            "volatility_breakout": 0.1,
+            "volatility_breakout_crypto": 0.07
+          },
+          "turtle_soup_crypto": {
+            "elliott_wave": 0.216,
+            "t3_supertrend": 0.192,
+            "elliott_wave_stocks": 0.109,
+            "rsi2_mean_reversion": 0.106,
+            "rsi2_crypto": 0.209,
+            "turtle_soup_crypto": 1.0,
+            "turtle_soup_stocks": 0.175,
+            "volatility_breakout": 0.113,
+            "volatility_breakout_crypto": 0.071
+          },
+          "turtle_soup_stocks": {
+            "elliott_wave": 0.13,
+            "t3_supertrend": -0.005,
+            "elliott_wave_stocks": 0.327,
+            "rsi2_mean_reversion": 0.475,
+            "rsi2_crypto": 0.082,
+            "turtle_soup_crypto": 0.175,
+            "turtle_soup_stocks": 1.0,
+            "volatility_breakout": 0.335,
+            "volatility_breakout_crypto": 0.024
+          },
+          "volatility_breakout": {
+            "elliott_wave": 0.078,
+            "t3_supertrend": 0.076,
+            "elliott_wave_stocks": 0.232,
+            "rsi2_mean_reversion": 0.166,
+            "rsi2_crypto": 0.1,
+            "turtle_soup_crypto": 0.113,
+            "turtle_soup_stocks": 0.335,
+            "volatility_breakout": 1.0,
+            "volatility_breakout_crypto": 0.019
+          },
+          "volatility_breakout_crypto": {
+            "elliott_wave": 0.011,
+            "t3_supertrend": 0.102,
+            "elliott_wave_stocks": 0.039,
+            "rsi2_mean_reversion": 0.035,
+            "rsi2_crypto": 0.07,
+            "turtle_soup_crypto": 0.071,
+            "turtle_soup_stocks": 0.024,
+            "volatility_breakout": 0.019,
+            "volatility_breakout_crypto": 1.0
+          }
+        },
+        "mittel_ausser_diagonale": 0.112,
+        "min": -0.015,
+        "max": 0.475,
+        "gegen_buy_and_hold": {
+          "aktien": {
+            "elliott_wave": 0.15,
+            "t3_supertrend": 0.039,
+            "elliott_wave_stocks": 0.462,
+            "rsi2_mean_reversion": 0.468,
+            "rsi2_crypto": 0.125,
+            "turtle_soup_crypto": 0.255,
+            "turtle_soup_stocks": 0.816,
+            "volatility_breakout": 0.492,
+            "volatility_breakout_crypto": 0.072
+          },
+          "krypto": {
+            "elliott_wave": 0.237,
+            "t3_supertrend": 0.245,
+            "elliott_wave_stocks": 0.173,
+            "rsi2_mean_reversion": 0.185,
+            "rsi2_crypto": 0.381,
+            "turtle_soup_crypto": 0.544,
+            "turtle_soup_stocks": 0.332,
+            "volatility_breakout": 0.21,
+            "volatility_breakout_crypto": 0.208
+          }
+        }
+      },
+      "mittlerer_einzel_dd_pct": -17.93,
+      "schlechtester_einzel_dd_pct": -31.91,
+      "je_bot": [
+        {
+          "bot": "elliott_wave",
+          "anlageklasse": "krypto",
+          "zeit_im_markt_pct": 21.32,
+          "mittlere_exposure_pct": 3.79,
+          "mittlere_positionen_wenn_offen": 1.78,
+          "max_positionen": 7,
+          "max_dd_im_fenster_pct": -10.17,
+          "dd_phase": "2022-03-24 bis 2022-11-17",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "t3_supertrend",
+          "anlageklasse": "krypto",
+          "zeit_im_markt_pct": 56.49,
+          "mittlere_exposure_pct": 18.16,
+          "mittlere_positionen_wenn_offen": 3.22,
+          "max_positionen": 8,
+          "max_dd_im_fenster_pct": -22.2,
+          "dd_phase": "2022-04-03 bis 2023-10-19",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "elliott_wave_stocks",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 95.43,
+          "mittlere_exposure_pct": 47.56,
+          "mittlere_positionen_wenn_offen": 5.1,
+          "max_positionen": 9,
+          "max_dd_im_fenster_pct": -16.23,
+          "dd_phase": "2022-03-17 bis 2022-10-11",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "rsi2_mean_reversion",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 90.67,
+          "mittlere_exposure_pct": 39.25,
+          "mittlere_positionen_wenn_offen": 8.66,
+          "max_positionen": 26,
+          "max_dd_im_fenster_pct": -8.6,
+          "dd_phase": "2023-08-01 bis 2023-10-04",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "rsi2_crypto",
+          "anlageklasse": "krypto",
+          "zeit_im_markt_pct": 45.18,
+          "mittlere_exposure_pct": 12.18,
+          "mittlere_positionen_wenn_offen": 2.7,
+          "max_positionen": 9,
+          "max_dd_im_fenster_pct": -13.3,
+          "dd_phase": "2024-03-16 bis 2024-10-04",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "turtle_soup_crypto",
+          "anlageklasse": "krypto",
+          "zeit_im_markt_pct": 92.89,
+          "mittlere_exposure_pct": 48.24,
+          "mittlere_positionen_wenn_offen": 5.2,
+          "max_positionen": 15,
+          "max_dd_im_fenster_pct": -31.91,
+          "dd_phase": "2024-12-10 bis 2025-04-09",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "turtle_soup_stocks",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 100.0,
+          "mittlere_exposure_pct": 79.51,
+          "mittlere_positionen_wenn_offen": 39.77,
+          "max_positionen": 63,
+          "max_dd_im_fenster_pct": -18.71,
+          "dd_phase": "2022-03-30 bis 2022-10-12",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "volatility_breakout",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 99.44,
+          "mittlere_exposure_pct": 83.98,
+          "mittlere_positionen_wenn_offen": 8.47,
+          "max_positionen": 14,
+          "max_dd_im_fenster_pct": -23.97,
+          "dd_phase": "2022-04-11 bis 2022-10-19",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "volatility_breakout_crypto",
+          "anlageklasse": "krypto",
+          "zeit_im_markt_pct": 34.18,
+          "mittlere_exposure_pct": 10.8,
+          "mittlere_positionen_wenn_offen": 3.15,
+          "max_positionen": 9,
+          "max_dd_im_fenster_pct": -16.29,
+          "dd_phase": "2022-04-07 bis 2023-11-02",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        }
+      ]
+    },
+    "vier_aktien_bots": {
+      "gruppe": "vier_aktien_bots",
+      "bots": [
+        "elliott_wave_stocks",
+        "rsi2_mean_reversion",
+        "turtle_soup_stocks",
+        "volatility_breakout"
+      ],
+      "fenster": [
+        "2016-10-28",
+        "2026-09-01"
+      ],
+      "exposure": {
+        "tage": 3596,
+        "mittel_pct": 61.19,
+        "median_pct": 61.38,
+        "p10_pct": 43.74,
+        "p90_pct": 78.89,
+        "max_pct": 100.21,
+        "anteil_tage_flach_pct": 0.0,
+        "anteil_tage_ueber_50_pct": 79.84
+      },
+      "max_dd_gesamtkapital_pct": -17.54,
+      "max_dd_investiertes_kapital_pct": -30.3,
+      "aktive_tage": 3596,
+      "rendite_gesamtkapital_pct": 174.89,
+      "stress": {
+        "Corona-Einbruch (Feb-Apr 2020)": {
+          "tage": 90,
+          "mittlere_exposure_pct": 36.17,
+          "anteil_tage_flach_pct": 0.0
+        },
+        "Gesamtjahr 2022": {
+          "tage": 365,
+          "mittlere_exposure_pct": 58.58,
+          "anteil_tage_flach_pct": 0.0
+        },
+        "10 % schlechteste B&H-Tage (aktien)": {
+          "tage": 248,
+          "mittlere_exposure_pct": 61.0,
+          "anteil_tage_flach_pct": 0.0
+        },
+        "10 % schlechteste B&H-Tage (krypto)": {
+          "tage": 183,
+          "mittlere_exposure_pct": 64.65,
+          "anteil_tage_flach_pct": 0.0
+        }
+      },
+      "verteilung_offene_positionen": {
+        "6": 0.03,
+        "9": 0.22,
+        "10": 0.28,
+        "11": 0.03,
+        "12": 0.06,
+        "13": 0.11,
+        "14": 0.19,
+        "15": 0.17,
+        "16": 0.31,
+        "17": 0.39,
+        "18": 0.11,
+        "19": 0.17,
+        "20": 0.11,
+        "21": 0.33,
+        "22": 0.5,
+        "23": 0.5,
+        "24": 0.28,
+        "25": 0.53,
+        "26": 0.5,
+        "27": 0.64,
+        "28": 0.67,
+        "29": 0.7,
+        "30": 0.53,
+        "31": 0.44,
+        "32": 1.03,
+        "33": 0.97,
+        "34": 1.22,
+        "35": 1.31,
+        "36": 1.11,
+        "37": 0.97,
+        "38": 1.08,
+        "39": 1.25,
+        "40": 1.5,
+        "41": 0.89,
+        "42": 1.5,
+        "43": 1.14,
+        "44": 1.47,
+        "45": 1.28,
+        "46": 1.56,
+        "47": 1.53,
+        "48": 1.56,
+        "49": 1.2,
+        "50": 1.25,
+        "51": 1.61,
+        "52": 1.81,
+        "53": 1.7,
+        "54": 1.95,
+        "55": 1.86,
+        "56": 2.0,
+        "57": 1.97,
+        "58": 2.31,
+        "59": 1.95,
+        "60": 1.97,
+        "61": 2.22,
+        "62": 2.09,
+        "63": 2.42,
+        "64": 2.36,
+        "65": 2.36,
+        "66": 2.39,
+        "67": 1.95,
+        "68": 2.73,
+        "69": 2.31,
+        "70": 2.09,
+        "71": 1.92,
+        "72": 2.11,
+        "73": 2.45,
+        "74": 1.72,
+        "75": 1.72,
+        "76": 1.81,
+        "77": 1.47,
+        "78": 1.53,
+        "79": 1.39,
+        "80": 1.17,
+        "81": 1.5,
+        "82": 1.22,
+        "83": 1.08,
+        "84": 1.08,
+        "85": 0.89,
+        "86": 0.61,
+        "87": 0.53,
+        "88": 0.61,
+        "89": 0.42,
+        "90": 0.25,
+        "91": 0.31,
+        "92": 0.03,
+        "93": 0.19,
+        "94": 0.17,
+        "95": 0.03,
+        "96": 0.06,
+        "97": 0.03,
+        "98": 0.03
+      },
+      "max_dd_zu_marktpreisen_pct": -19.07,
+      "mtm_naht": {
+        "positionen_mit_kurs": 14996,
+        "naht_median_pp": 0.3,
+        "naht_p90_pp": 0.3
+      },
+      "korrelation_zu_marktpreisen": {
+        "matrix": {
+          "elliott_wave_stocks": {
+            "elliott_wave_stocks": 1.0,
+            "rsi2_mean_reversion": 0.157,
+            "turtle_soup_stocks": 0.331,
+            "volatility_breakout": 0.224
+          },
+          "rsi2_mean_reversion": {
+            "elliott_wave_stocks": 0.157,
+            "rsi2_mean_reversion": 1.0,
+            "turtle_soup_stocks": 0.438,
+            "volatility_breakout": 0.222
+          },
+          "turtle_soup_stocks": {
+            "elliott_wave_stocks": 0.331,
+            "rsi2_mean_reversion": 0.438,
+            "turtle_soup_stocks": 1.0,
+            "volatility_breakout": 0.304
+          },
+          "volatility_breakout": {
+            "elliott_wave_stocks": 0.224,
+            "rsi2_mean_reversion": 0.222,
+            "turtle_soup_stocks": 0.304,
+            "volatility_breakout": 1.0
+          }
+        },
+        "mittel_ausser_diagonale": 0.279,
+        "min": 0.157,
+        "max": 0.438,
+        "gegen_buy_and_hold": {
+          "aktien": {
+            "elliott_wave_stocks": 0.478,
+            "rsi2_mean_reversion": 0.438,
+            "turtle_soup_stocks": 0.832,
+            "volatility_breakout": 0.43
+          },
+          "krypto": {
+            "elliott_wave_stocks": 0.166,
+            "rsi2_mean_reversion": 0.198,
+            "turtle_soup_stocks": 0.332,
+            "volatility_breakout": 0.197
+          }
+        }
+      },
+      "mittlerer_einzel_dd_pct": -24.31,
+      "schlechtester_einzel_dd_pct": -29.79,
+      "je_bot": [
+        {
+          "bot": "elliott_wave_stocks",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 91.02,
+          "mittlere_exposure_pct": 40.52,
+          "mittlere_positionen_wenn_offen": 4.51,
+          "max_positionen": 11,
+          "max_dd_im_fenster_pct": -22.44,
+          "dd_phase": "2021-07-16 bis 2022-10-11",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "rsi2_mean_reversion",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 89.1,
+          "mittlere_exposure_pct": 38.89,
+          "mittlere_positionen_wenn_offen": 8.73,
+          "max_positionen": 26,
+          "max_dd_im_fenster_pct": -21.05,
+          "dd_phase": "2018-02-01 bis 2020-03-20",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        },
+        {
+          "bot": "turtle_soup_stocks",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 100.0,
+          "mittlere_exposure_pct": 75.7,
+          "mittlere_positionen_wenn_offen": 37.85,
+          "max_positionen": 65,
+          "max_dd_im_fenster_pct": -29.79,
+          "dd_phase": "2020-02-19 bis 2020-03-27",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 6.48,
+          "anteil_tage_alle_anderen_flach_pct": 0.08
+        },
+        {
+          "bot": "volatility_breakout",
+          "anlageklasse": "aktien",
+          "zeit_im_markt_pct": 96.97,
+          "mittlere_exposure_pct": 82.5,
+          "mittlere_positionen_wenn_offen": 8.54,
+          "max_positionen": 14,
+          "max_dd_im_fenster_pct": -23.97,
+          "dd_phase": "2022-04-11 bis 2022-10-19",
+          "dd_anteil_an_tagen_mit_allen_anderen_flach_pct": 0.0,
+          "anteil_tage_alle_anderen_flach_pct": 0.0
+        }
+      ]
+    }
+  },
+  "titelueberlappung_gesamt": {
+    "max_bots_auf_demselben_symbol": 4,
+    "anteil_tage_mit_doppelhaltung_pct": 98.39
+  },
+  "meta_je_bot": {
+    "elliott_wave": {
+      "bot": "elliott_wave",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": null,
+      "bot_hat_limit_parameter": false,
+      "trades_gefunden": 130,
+      "trades_ausgefuehrt": 130,
+      "trades_uebersprungen": 0,
+      "endkapital": 16777.45,
+      "rendite_pct": 67.77,
+      "max_drawdown_pct_bot": -10.17,
+      "erster_einstieg": "2021-09-22 07:00:00",
+      "letzter_ausstieg": "2026-08-20 05:00:00",
+      "symbole": 18,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 144,
+        "zeilen_eigen": 130,
+        "identisch": false,
+        "abweichende_zeilen": null
+      }
+    },
+    "t3_supertrend": {
+      "bot": "t3_supertrend",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 5,
+      "bot_hat_limit_parameter": true,
+      "trades_gefunden": 980,
+      "trades_ausgefuehrt": 656,
+      "trades_uebersprungen": 324,
+      "endkapital": 22963.95,
+      "rendite_pct": 129.64,
+      "max_drawdown_pct_bot": -22.2,
+      "erster_einstieg": "2021-09-01 20:00:00",
+      "letzter_ausstieg": "2026-08-29 16:00:00",
+      "symbole": 18,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/t3_supertrend/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 656,
+        "zeilen_eigen": 656,
+        "identisch": true,
+        "abweichende_zeilen": 0
+      }
+    },
+    "elliott_wave_stocks": {
+      "bot": "elliott_wave_stocks",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 8,
+      "bot_hat_limit_parameter": true,
+      "trades_gefunden": 510,
+      "trades_ausgefuehrt": 395,
+      "trades_uebersprungen": 115,
+      "endkapital": 45272.24,
+      "rendite_pct": 352.72,
+      "max_drawdown_pct_bot": -22.44,
+      "erster_einstieg": "2016-10-28 00:00:00",
+      "letzter_ausstieg": "2026-09-01 00:00:00",
+      "symbole": 127,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/elliott_wave_stocks/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 469,
+        "zeilen_eigen": 395,
+        "identisch": false,
+        "abweichende_zeilen": null
+      }
+    },
+    "rsi2_mean_reversion": {
+      "bot": "rsi2_mean_reversion",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.05,
+      "max_concurrent_positions": 20,
+      "bot_hat_limit_parameter": true,
+      "trades_gefunden": 5391,
+      "trades_ausgefuehrt": 4232,
+      "trades_uebersprungen": 1159,
+      "endkapital": 13675.2,
+      "rendite_pct": 36.75,
+      "max_drawdown_pct_bot": -21.05,
+      "erster_einstieg": "2016-09-01 00:00:00",
+      "letzter_ausstieg": "2026-09-01 00:00:00",
+      "symbole": 147,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/rsi2_mean_reversion/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 2641,
+        "zeilen_eigen": 4232,
+        "identisch": false,
+        "abweichende_zeilen": null
+      }
+    },
+    "rsi2_crypto": {
+      "bot": "rsi2_crypto",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 8,
+      "bot_hat_limit_parameter": true,
+      "trades_gefunden": 439,
+      "trades_ausgefuehrt": 392,
+      "trades_uebersprungen": 47,
+      "endkapital": 12837.09,
+      "rendite_pct": 28.37,
+      "max_drawdown_pct_bot": -13.3,
+      "erster_einstieg": "2022-02-11 00:00:00",
+      "letzter_ausstieg": "2026-08-20 00:00:00",
+      "symbole": 18,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/rsi2_crypto/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 392,
+        "zeilen_eigen": 392,
+        "identisch": true,
+        "abweichende_zeilen": 0
+      }
+    },
+    "turtle_soup_crypto": {
+      "bot": "turtle_soup_crypto",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 8,
+      "bot_hat_limit_parameter": true,
+      "trades_gefunden": 1599,
+      "trades_ausgefuehrt": 1414,
+      "trades_uebersprungen": 185,
+      "endkapital": 27759.42,
+      "rendite_pct": 177.59,
+      "max_drawdown_pct_bot": -32.4,
+      "erster_einstieg": "2021-10-12 00:00:00",
+      "letzter_ausstieg": "2026-08-28 00:00:00",
+      "symbole": 20,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/turtle_soup_crypto/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 1414,
+        "zeilen_eigen": 1414,
+        "identisch": true,
+        "abweichende_zeilen": 0
+      }
+    },
+    "turtle_soup_stocks": {
+      "bot": "turtle_soup_stocks",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.02,
+      "max_concurrent_positions": null,
+      "bot_hat_limit_parameter": true,
+      "trades_gefunden": 12069,
+      "trades_ausgefuehrt": 8915,
+      "trades_uebersprungen": 3154,
+      "endkapital": 24559.08,
+      "rendite_pct": 145.59,
+      "max_drawdown_pct_bot": -29.91,
+      "erster_einstieg": "2016-09-01 00:00:00",
+      "letzter_ausstieg": "2026-09-01 00:00:00",
+      "symbole": 147,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/turtle_soup_stocks/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 1887,
+        "zeilen_eigen": 8915,
+        "identisch": false,
+        "abweichende_zeilen": null
+      }
+    },
+    "volatility_breakout": {
+      "bot": "volatility_breakout",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 15,
+      "bot_hat_limit_parameter": true,
+      "trades_gefunden": 4510,
+      "trades_ausgefuehrt": 1454,
+      "trades_uebersprungen": 3056,
+      "endkapital": 32441.42,
+      "rendite_pct": 224.41,
+      "max_drawdown_pct_bot": -23.97,
+      "erster_einstieg": "2016-09-01 00:00:00",
+      "letzter_ausstieg": "2026-09-01 00:00:00",
+      "symbole": 147,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/volatility_breakout/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 1236,
+        "zeilen_eigen": 1454,
+        "identisch": false,
+        "abweichende_zeilen": null
+      }
+    },
+    "volatility_breakout_crypto": {
+      "bot": "volatility_breakout_crypto",
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 8,
+      "bot_hat_limit_parameter": true,
+      "trades_gefunden": 233,
+      "trades_ausgefuehrt": 207,
+      "trades_uebersprungen": 26,
+      "endkapital": 14902.58,
+      "rendite_pct": 49.03,
+      "max_drawdown_pct_bot": -16.29,
+      "erster_einstieg": "2022-03-17 00:00:00",
+      "letzter_ausstieg": "2026-08-30 00:00:00",
+      "symbole": 19,
+      "kennzeichnung_neutral": true,
+      "abgleich_results_csv": {
+        "datei": "results/volatility_breakout_crypto/equity_curve.csv",
+        "vorhanden": true,
+        "zeilen_repo": 207,
+        "zeilen_eigen": 207,
+        "identisch": true,
+        "abweichende_zeilen": 0
+      }
+    }
+  }
+}

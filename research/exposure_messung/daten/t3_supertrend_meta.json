@@ -1,0 +1,25 @@
+{
+  "bot": "t3_supertrend",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 5,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 980,
+  "trades_ausgefuehrt": 656,
+  "trades_uebersprungen": 324,
+  "endkapital": 22963.95,
+  "rendite_pct": 129.64,
+  "max_drawdown_pct_bot": -22.2,
+  "erster_einstieg": "2021-09-01 20:00:00",
+  "letzter_ausstieg": "2026-08-29 16:00:00",
+  "symbole": 18,
+  "kennzeichnung_neutral": true,
+  "abgleich_results_csv": {
+    "datei": "results/t3_supertrend/equity_curve.csv",
+    "vorhanden": true,
+    "zeilen_repo": 656,
+    "zeilen_eigen": 656,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}

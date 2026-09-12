@@ -1,0 +1,17 @@
+bot_a,bot_b,max_gleiche_symbole,tage_mit_ueberlappung,anteil_tage_pct,mittel_wenn_ueberlappung
+rsi2_mean_reversion,turtle_soup_stocks,19,1284,79.36,4.71
+turtle_soup_stocks,volatility_breakout,9,1181,72.99,1.93
+rsi2_crypto,turtle_soup_crypto,7,420,25.96,1.84
+elliott_wave,turtle_soup_crypto,5,143,8.84,1.18
+elliott_wave_stocks,turtle_soup_stocks,5,1058,65.39,1.83
+t3_supertrend,turtle_soup_crypto,5,442,27.32,1.54
+t3_supertrend,volatility_breakout_crypto,5,207,12.79,1.85
+turtle_soup_crypto,volatility_breakout_crypto,5,186,11.5,1.52
+elliott_wave,rsi2_crypto,4,42,2.6,1.31
+elliott_wave_stocks,rsi2_mean_reversion,4,201,12.42,1.09
+rsi2_mean_reversion,volatility_breakout,3,315,19.47,1.26
+elliott_wave_stocks,volatility_breakout,3,463,28.62,1.11
+rsi2_crypto,volatility_breakout_crypto,3,36,2.22,1.11
+elliott_wave,t3_supertrend,2,74,4.57,1.16
+t3_supertrend,rsi2_crypto,2,25,1.55,1.04
+elliott_wave,volatility_breakout_crypto,1,4,0.25,1.0

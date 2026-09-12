@@ -1,0 +1,5 @@
+bot,anlageklasse,zeit_im_markt_pct,mittlere_exposure_pct,mittlere_positionen_wenn_offen,max_positionen,max_dd_im_fenster_pct,dd_phase,dd_anteil_an_tagen_mit_allen_anderen_flach_pct,anteil_tage_alle_anderen_flach_pct
+elliott_wave,krypto,22.8,4.4,1.93,7,-10.17,2022-03-24 bis 2022-11-17,0.0,0.0
+t3_supertrend,krypto,55.57,17.72,3.19,8,-22.2,2022-04-03 bis 2023-10-19,0.0,0.0
+elliott_wave_stocks,aktien,95.21,45.57,4.88,11,-21.16,2021-09-22 bis 2022-10-11,3.49,2.17
+rsi2_mean_reversion,aktien,91.3,39.7,8.69,26,-11.73,2021-11-29 bis 2022-06-28,0.0,0.78
