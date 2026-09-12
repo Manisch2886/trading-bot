@@ -1,0 +1,25 @@
+{
+  "bot": "elliott_wave",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": null,
+  "bot_hat_limit_parameter": false,
+  "trades_gefunden": 130,
+  "trades_ausgefuehrt": 130,
+  "trades_uebersprungen": 0,
+  "endkapital": 16777.45,
+  "rendite_pct": 67.77,
+  "max_drawdown_pct_bot": -10.17,
+  "erster_einstieg": "2021-09-22 07:00:00",
+  "letzter_ausstieg": "2026-08-20 05:00:00",
+  "symbole": 18,
+  "kennzeichnung_neutral": true,
+  "abgleich_results_csv": {
+    "datei": "results/equity_curve.csv",
+    "vorhanden": true,
+    "zeilen_repo": 144,
+    "zeilen_eigen": 130,
+    "identisch": false,
+    "abweichende_zeilen": null
+  }
+}

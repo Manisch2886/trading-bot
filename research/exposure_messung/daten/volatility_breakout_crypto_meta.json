@@ -1,0 +1,25 @@
+{
+  "bot": "volatility_breakout_crypto",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 8,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 233,
+  "trades_ausgefuehrt": 207,
+  "trades_uebersprungen": 26,
+  "endkapital": 14902.58,
+  "rendite_pct": 49.03,
+  "max_drawdown_pct_bot": -16.29,
+  "erster_einstieg": "2022-03-17 00:00:00",
+  "letzter_ausstieg": "2026-08-30 00:00:00",
+  "symbole": 19,
+  "kennzeichnung_neutral": true,
+  "abgleich_results_csv": {
+    "datei": "results/volatility_breakout_crypto/equity_curve.csv",
+    "vorhanden": true,
+    "zeilen_repo": 207,
+    "zeilen_eigen": 207,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}
