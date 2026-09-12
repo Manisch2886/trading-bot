@@ -148,14 +148,135 @@ offenen Positionen ggf. anpassen).
 
 Laufen rund um die Uhr, ohne Ruhezeiten (bewusste Entscheidung - siehe
 Absprache):
-- Neuer Trade eroeffnet/geschlossen (mit Bot-Name, Symbol, Ergebnis)
-- Stop-Loss ausgeloest (separat hervorgehoben)
+- Neuer Trade **eroeffnet** (mit Bot-Name, Symbol, Einstiegskurs)
 - Cronjob-Fehler/Script-Abbruch (Traceback im Log) oder ein Bot, der
   deutlich laenger nicht gelaufen ist als fuer seinen Zeitrahmen zu
   erwarten waere
 
 Poll-Intervall standardmaessig 300 Sekunden, ueberschreibbar per
 Umgebungsvariable `TELEGRAM_POLL_INTERVAL_SECONDS`.
+
+**Geschlossene Trades meldet dieser Dienst NICHT mehr** - das macht seit
+2026-09-12 ein eigenes Cronjob-Skript, siehe den naechsten Abschnitt. Der
+Grund steht im Quelltext an der Stelle, wo die Meldung stand
+(`monitor.check_for_events`): ihr Mechanismus war fuer diese Aussage zu
+schwach, vor allem weil ein fehlgeschlagener Versand hier als erledigt gilt
+(`poll_job` prueft den Rueckgabewert von `send_alert` nicht). Bei einer
+Cronjob-Warnung ist das verzeihlich, bei "dein Stop-Loss hat ausgeloest"
+nicht.
+
+## Nachricht bei jedem geschlossenen Trade (`schliess_benachrichtigung.py`)
+
+Eigenstaendiges Skript, per Cronjob. Es haengt NICHT am Telegram-Dienst und
+nicht an den Bots: es liest die neun Bot-Datenbanken schreibgeschuetzt ueber
+`broker/bot_db.py` (`mode=ro`), erkennt neu geschlossene Trades und vermerkt
+in einer EIGENEN Datenbank (`benachrichtigungen_schliessung.db`, gitignored
+wie alle `*.db`), was gemeldet wurde.
+
+`forward_test.py` und `live_params.py` werden dabei weder veraendert noch
+importiert - dasselbe Muster wie die Broker-Bruecken unter `broker/`.
+
+### Die Nachricht
+
+```
+🔴 *Trade geschlossen* – Turtle Soup (Aktien)
+*AAPL*  ·  *-4.80 %*
+Einstieg 200 → Ausstieg 190.4
+Gehalten: 3 Tage 5 Std.
+Grund: Stop-Loss ausgelöst
+```
+
+Prozent, keine Euro- oder Dollarbetraege: die Bots tracken kein echtes
+Kapital, jeder Betrag waere aus einer Annahme abgeleitet und wuerde echter
+wirken, als er ist.
+
+### Vor dem ersten Cron-Eintrag: den Erstlauf von Hand ausloesen
+
+In den Datenbanken liegen hunderte bereits geschlossene Trades. Der ERSTE
+Lauf vermerkt diesen Bestand stillschweigend als erledigt und schickt genau
+eine Bestaetigung. Das ist der einzige Schritt, der sich nicht wiederholen
+laesst - deshalb bewusst von Hand und nicht beilaeufig durch den Cronjob:
+
+```bash
+cd ~/trading-bot
+python3 notifications/schliess_benachrichtigung.py --status       # zeigt: Erstlauf noch offen
+python3 notifications/schliess_benachrichtigung.py --trockenlauf  # zeigt, was passieren wuerde
+python3 notifications/schliess_benachrichtigung.py                # DER Erstlauf
+```
+
+Erwartet: eine Telegram-Nachricht "Schliess-Benachrichtigung aktiv, N
+bestehende Trades wurden als erledigt vermerkt". Ab dann wird gemeldet.
+
+Dass der Modus nicht versehentlich ein zweites Mal greift, haengt an zwei
+Bedingungen, die BEIDE erfuellt sein muessen: keine Marke `erstlauf_am` in
+der Zustandstabelle UND eine vollstaendig leere Tabelle `gemeldet`. Beides
+entsteht in derselben Transaktion. Fehlt die Marke, sind aber Vermerke da
+(jemand hat die Tabelle angefasst), wird der Erstlauf ABGELEHNT und laut
+gemeldet - sonst wuerde er echte Schliessungen verschlucken.
+
+### Cronjob (nicht eingetragen - `crontab` liegt beim Nutzer)
+
+```cron
+# Schliess-Benachrichtigung: alle 15 Minuten
+*/15 * * * * cd ~/trading-bot && /usr/bin/python3 notifications/schliess_benachrichtigung.py >> logs/notifications/schliess_benachrichtigung.log 2>&1
+```
+
+**Warum 15 Minuten und kein Eintrag hinter jedem Bot-Lauf.** Neun Eintraege
+hinter neun Bot-Zeilen waeren neun Stellen, an denen ein Bot vergessen wird -
+und bei drei verschiedenen Rhythmen (stuendlich, alle 4 h, taeglich abends)
+neun verschiedene Zeitpunkte, die mit jeder Cron-Aenderung neu stimmen
+muessen. Ein eigener Takt kennt die Bot-Rhythmen gar nicht: er sieht nach,
+was seit dem letzten Mal geschlossen wurde, und das ist unabhaengig davon,
+welcher Bot es war.
+
+15 Minuten sind der Ausgleich zwischen zwei Groessen: der schnellste Bot
+(`elliott_wave`) schliesst hoechstens stuendlich, ein engerer Takt bringt
+also nichts; und ein Leerlauf kostet nichts messbares, weil er ohne Netz
+auskommt - neun SQLite-Abfragen und ein Mengenvergleich. 96 Leerlaeufe am Tag
+fallen damit nicht ins Gewicht. Der bestehende Telegram-Dienst pollt alle 5
+Minuten, aber der laeuft ohnehin dauerhaft; ein Cronjob mit demselben Takt
+waere 288 Prozessstarts am Tag fuer keinen Gewinn.
+
+Der Pfad zu `python3` muss vollstaendig sein - Cron hat ein anderes `PATH` als
+die Anmeldesitzung. `which python3` gibt den richtigen. Den Log-Ordner vorher
+anlegen: `mkdir -p logs/notifications`.
+
+### Bündelung statt Einzelnachrichten
+
+Der Standard ist **eine Nachricht je Trade**. Wird es zu viel, laesst sich das
+umstellen, ohne etwas neu zu bauen:
+
+```bash
+# einmalig ausprobieren
+python3 notifications/schliess_benachrichtigung.py --modus gebuendelt
+```
+
+Dauerhaft: in `schliess_benachrichtigung.py` die Zeile
+`BENACHRICHTIGUNG_MODUS = MODUS_EINZELN` auf `MODUS_GEBUENDELT` aendern, oder
+`--modus gebuendelt` an die Cron-Zeile anhaengen. Beide Wege sind geprueft.
+
+### Nachrichtenflut
+
+- Eine Sekunde Pause zwischen zwei Nachrichten (`PAUSE_SEKUNDEN`).
+- Hoechstens 25 Einzelnachrichten je Lauf (`MAX_EINZELN_PRO_LAUF`). Werden es
+  mehr, gehen die ersten 25 einzeln raus und der **Rest als EINE
+  Sammelnachricht** - nichts faellt still unter den Tisch.
+- Schlaegt ein Versand fehl, wird der Trade **nicht** als gemeldet vermerkt
+  und der Lauf bricht ab. Der naechste Lauf holt ihn nach. Rueckgabewert 1,
+  damit der Cronjob per Mail anschlaegt.
+
+### Nachsehen
+
+```bash
+python3 notifications/schliess_benachrichtigung.py --status
+```
+
+Zeigt, ob der Erstlauf erfolgt ist, wie viele Vermerke es je Zustand gibt und
+was noch nicht gemeldet ist. Steht dort etwas unter `wird_gesendet`, wurde ein
+Lauf zwischen Senden und Bestaetigen abgebrochen - bei diesen Trades ist
+unklar, ob die Nachricht rausging. Sie werden bewusst NICHT erneut gemeldet
+(ein abgebrochener Lauf darf nicht dieselben Nachrichten wiederholen), aber
+der Zustand sagt es, statt es zu verschweigen.
 
 ## Logs
 

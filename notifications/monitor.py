@@ -867,7 +867,11 @@ def check_for_events(bots: list = None) -> tuple:
             }
             continue
 
-        known_open_ids = set(bot_state.get("known_open_ids", []))
+        # `known_open_ids` wird nicht mehr GELESEN, seit die Schliess-Meldung
+        # umgezogen ist (siehe unten) - der Schluessel wird aber weiter
+        # GESCHRIEBEN: er beschreibt, was beim letzten Check offen war, und ist
+        # damit die Diagnose-Angabe, an der sich ein verlorener Zustand
+        # erkennen laesst. Ihn hier auszulesen waere toter Code.
         max_id = bot_state.get("max_id", -1)
 
         new_rows = trades[trades["id"] > max_id] if not trades.empty else trades
@@ -878,18 +882,35 @@ def check_for_events(bots: list = None) -> tuple:
             )
 
         currently_open_ids = set(trades.loc[trades["status"] == "open", "id"].tolist()) if not trades.empty else set()
-        newly_closed_ids = known_open_ids - currently_open_ids
-        if newly_closed_ids:
-            closed_rows = trades[trades["id"].isin(newly_closed_ids)]
-            for _, row in closed_rows.iterrows():
-                is_stop = row.get("result") == "stop_loss"
-                icon = "\U0001F6D1" if is_stop else "✅"
-                label = "STOP-LOSS ausgeloest" if is_stop else "Trade geschlossen"
-                events.append(
-                    f"{icon} *{bot['display_name']}*: {label}\n"
-                    f"Symbol: `{row['symbol']}`  |  Ergebnis: {row.get('result', '?')}  |  "
-                    f"PnL: {row.get('pnl_pct', '?')}%"
-                )
+
+        # HIER STAND BIS 2026-09-12 DIE MELDUNG "Trade geschlossen".
+        #
+        # Sie ist nach notifications/schliess_benachrichtigung.py umgezogen -
+        # ein eigenstaendiges Cronjob-Skript. Nicht, weil die Meldung falsch
+        # war, sondern weil ihr Mechanismus fuer diese Aussage zu schwach ist:
+        #
+        #   * Der Inhalt war der rohe Feldwert ("Ergebnis: stop_loss"), ohne
+        #     Ein-/Ausstiegskurs, ohne Haltedauer.
+        #   * Erkannt wurde ueber den Mengenvergleich gegen state.json - eine
+        #     Momentaufnahme "welche Trades waren offen", ohne Vermerk JE
+        #     TRADE. Geht die Datei verloren, schreibt die Baseline-Logik oben
+        #     still einen neuen Anfangszustand, und jede Schliessung dieses
+        #     Fensters ist weg.
+        #   * Ein fehlgeschlagener Versand galt als erledigt: poll_job prueft
+        #     den Rueckgabewert von send_alert nicht und speichert den Zustand
+        #     danach in jedem Fall.
+        #
+        # Der dritte Punkt war der Anlass. Bei einer Cronjob-Warnung ist das
+        # verzeihlich, bei "dein Stop-Loss hat ausgeloest" nicht. Das neue
+        # Skript vermerkt je Trade mit UNIQUE(bot, trade_id) und nimmt einen
+        # fehlgeschlagenen Versand ausdruecklich NICHT als erledigt.
+        #
+        # `currently_open_ids` wird weiter gefuehrt: der Zustand ist die
+        # Grundlage fuer die Erkennung NEUER Trades (max_id) und fuer die
+        # Staleness-Warnung. Nur die Schliess-Meldung ist weg.
+        #
+        # Eroeffnungen, Cronjob-Fehler, Staleness-Warnung und alle Befehle
+        # (/status, /positions, /pnl) sind unveraendert.
 
         error_snippet, new_offset = _scan_log_for_errors(bot_state, log_file)
         if error_snippet:
