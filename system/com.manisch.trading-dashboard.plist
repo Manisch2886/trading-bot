@@ -38,15 +38,29 @@ system/README_DIENSTE.md, Abschnitt "Die Dashboard-Vorlage befuellen".
    beiden anderen Dienst-Vorlagen unter system/ ueberein; der Selbsttest
    vergleicht das.
 
+=== WIDERLEGT (stand hier als Vermutung, ist am 12.09.2026 geprueft) ====
+
+5. Hier stand, die Adresse 100.106.38.8 muesse "entweder hier als
+   EnvironmentVariables oder in der .env" gesetzt sein, und welcher der
+   beiden Wege gelte, sei nicht belegt. Nachgesehen:
+
+     DASHBOARD_HOST steht in der .env  (grep -c "^DASHBOARD_HOST" .env -> 1)
+     DASHBOARD_PORT ist nirgends gesetzt; es gilt STANDARD_PORT aus
+                    dashboard/konfig.py
+
+   Die laufende Fassung setzt also KEINEN von beiden ueber
+   EnvironmentVariables - der Block unten ist ueberfluessig. Er bleibt
+   trotzdem stehen: schaedlich ist er nicht (gleicher Wert, und die
+   Umgebung gewinnt ohnehin), und beim Befuellen per cp wird diese ganze
+   Datei ersetzt. Der Selbsttest VERLANGT den Block seit TB-16 nicht mehr;
+   er prueft bedingt: wer ihn setzt, muss ihn richtig setzen.
+
+   Folge fuers Betriebswissen: der einzige Fernzugriffsweg des Projekts
+   haengt damit an der .env, und die ist nicht versioniert. Einzelheiten
+   in system/README_DIENSTE.md, Abschnitt "Es lauscht nicht auf localhost".
+
 === ERSCHLOSSEN (plausibel, aber nicht aus der laufenden Fassung belegt) =
 
-5. DASHBOARD_HOST=100.106.38.8 unten: dass der Dienst auf dieser
-   Tailscale-Adresse lauscht, ist beobachtet. Die Grundeinstellung in
-   dashboard/konfig.py ist jedoch 127.0.0.1, d.h. die Adresse MUSS von
-   aussen gesetzt werden - entweder hier als EnvironmentVariables oder in
-   der .env im Projekt-Root. WELCHER der beiden Wege in der laufenden
-   Fassung benutzt wird, ist nicht belegt. Steht es in der .env, ist der
-   Block unten ueberfluessig (aber auch nicht schaedlich, gleicher Wert).
 6. RunAtLoad/KeepAlive auf true: das Uebliche fuer einen dauerhaft
    lauschenden Server und bei den beiden anderen Diensten ebenso. Die
    tatsaechlichen Werte der laufenden Fassung sind nicht belegt.

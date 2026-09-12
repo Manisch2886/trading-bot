@@ -61,6 +61,19 @@ sind, werden dabei ausdruecklich vermieden:
    die Telegram-Vorlage, weil sie als einzige der drei vollstaendig aus
    der laufenden Fassung stammt und keinen Platzhalter enthaelt.
 
+Eine BEDINGTE Zusicherung (TB-16)
+--------------------------------------------------------------------------
+Zwei Pruefungen verlangten, dass die Dashboard-Vorlage DASHBOARD_HOST und
+DASHBOARD_PORT in EnvironmentVariables setzt. Beide waren als
+"erschlossen, nicht belegt" gekennzeichnet und sind am 12.09.2026
+widerlegt worden: die laufende Fassung setzt keinen von beiden. Host und
+Port duerfen aus der plist, aus der .env ODER aus der Voreinstellung in
+dashboard/konfig.py kommen - der Test erklaert keinen Weg zum einzig
+richtigen. Er prueft stattdessen: WENN die Vorlage einen der Werte setzt,
+muss er der richtige sein. Begruendung und Bauform stehen bei
+pruefe_dashboard_bindung(); dass die Pruefung dabei nicht einfach
+verstummt ist, zeigen die Proben am Ende von Abschnitt 7.
+
 Kein Test-Framework, wie in allen uebrigen Selbsttests dieses Projekts.
 
 Nutzung:  python3 system/test_dienst_plists.py
@@ -291,6 +304,77 @@ def pruefe_vorlage(vorlage, p):
 
 
 # ---------------------------------------------------------------------------
+# Bindung des Dashboards: eine BEDINGTE Zusicherung
+#
+# Die erste Fassung (TB-15) verlangte, dass die Vorlage DASHBOARD_HOST und
+# DASHBOARD_PORT in EnvironmentVariables setzt. Das war als "erschlossen,
+# nicht belegt" gekennzeichnet - und ist am 12.09.2026 widerlegt worden:
+# die laufende Fassung setzt KEINEN von beiden. Der Host steht in der .env,
+# der Port nirgends (es gilt STANDARD_PORT aus dashboard/konfig.py). Der
+# Dienst laeuft seit Monaten korrekt auf 100.106.38.8:8787.
+#
+# dashboard/konfig.py._wert() nimmt Umgebung, sonst .env, sonst
+# Voreinstellung - ALLE DREI Bezugswege sind zulaessig, und der Test darf
+# keinen davon zum einzig richtigen erklaeren. Zusichern laesst sich
+# stattdessen: WENN die Vorlage einen der Werte setzt, muss er der richtige
+# sein. Ein falscher Port in der plist ueberstimmt .env und Voreinstellung
+# und macht das Dashboard unerreichbar - genau davor schuetzt das hier.
+#
+# Warum zwei bedingte Pruefungen und kein eigener Ergebnistopf: OFFEN
+# heisst in diesem Test "noch nicht befuellt, jemand muss etwas tun", und
+# genau das treibt den Rueckgabewert 2. Ein nicht gesetzter Host ist aber
+# keine offene Aufgabe, sondern ein fertiger, gueltiger Zustand. Als OFFEN
+# gemeldet kaeme der Test auf dem Mac des Nutzers nie mehr auf 0 - der
+# Rueckgabewert-Mechanismus aus TB-15 wuerde dadurch entwertet.
+# ---------------------------------------------------------------------------
+def _ist_tailscale_adresse(wert):
+    """100.64.0.0/10 - der CGNAT-Bereich, aus dem Tailscale seine Adressen
+    vergibt. Absichtlich enger als "beginnt mit 100.": 100.0.x bis 100.63.x
+    und 100.128.x aufwaerts sind gewoehnliche oeffentliche Adressen und in
+    einer DASHBOARD_HOST-Zeile ein Fehler, kein Tailscale-Host."""
+    if not isinstance(wert, str):
+        return False
+    teile = wert.split(".")
+    if len(teile) != 4:
+        return False
+    for teil in teile:
+        if not teil.isdigit() or not 0 <= int(teil) <= 255:
+            return False
+    return int(teile[0]) == 100 and 64 <= int(teile[1]) <= 127
+
+
+# Was von den beiden Werten erwartet wird, WENN die Vorlage sie setzt.
+BINDUNG = (
+    ("DASHBOARD_HOST", "eine Tailscale-Adresse (100.64.x - 100.127.x)",
+     _ist_tailscale_adresse),
+    ("DASHBOARD_PORT", "8787", lambda w: w == "8787"),
+)
+
+
+def pruefe_dashboard_bindung(pfad, p):
+    """Die bedingte Pruefung. Laeuft in Abschnitt 3 ueber die echte Vorlage
+    und in Abschnitt 7 ueber verbogene Kopien - dieselbe Funktion, damit
+    die Proben den tatsaechlichen Ablauf pruefen."""
+    try:
+        umgebung = lade(pfad).get("EnvironmentVariables") or {}
+    except Exception as fehler:                          # noqa: BLE001
+        for variable, erwartung, _ in BINDUNG:
+            p.check(f"Vorlage setzt {variable} gar nicht oder auf {erwartung}",
+                    False, str(fehler))
+        return
+
+    for variable, erwartung, praedikat in BINDUNG:
+        name = f"Vorlage setzt {variable} gar nicht oder auf {erwartung}"
+        if variable not in umgebung:
+            # Kein Fehler und auch nichts Offenes: der Wert kommt dann aus
+            # der .env oder aus der Voreinstellung in dashboard/konfig.py.
+            p.check(name, True, "nicht in der Vorlage gesetzt - kommt aus "
+                                ".env oder dashboard/konfig.py")
+            continue
+        p.check_wert(name, umgebung[variable], praedikat)
+
+
+# ---------------------------------------------------------------------------
 def abschnitt(titel):
     print(f"\n{titel}")
 
@@ -362,8 +446,9 @@ def test_dashboard_einstiegspunkt(p):
             not any(isinstance(a, str) and a.endswith("/dashboard/app.py")
                     for a in argumente))
 
-    # Port und Bindung: die Vorlage muss die Adresse setzen, weil die
-    # Grundeinstellung im Code localhost ist.
+    # Port und Bindung. Die Grundeinstellung im Code ist localhost - die
+    # Tailscale-Adresse muss also von aussen kommen. WOHER sie kommt, ist
+    # damit aber noch nicht festgelegt; siehe pruefe_dashboard_bindung().
     konfig = open(os.path.join(BASE_DIR, "dashboard", "konfig.py"),
                   encoding="utf-8").read()
     p.check("konfig.py: STANDARD_PORT ist 8787",
@@ -371,13 +456,18 @@ def test_dashboard_einstiegspunkt(p):
     p.check("konfig.py: STANDARD_HOST ist 127.0.0.1 (Bindung muss gesetzt werden)",
             re.search(r'^STANDARD_HOST\s*=\s*"127\.0\.0\.1"', konfig, re.M) is not None)
 
-    umgebung = lade(DASHBOARD).get("EnvironmentVariables") or {}
-    p.check("Vorlage setzt DASHBOARD_HOST auf die Tailscale-Adresse",
-            umgebung.get("DASHBOARD_HOST") == "100.106.38.8",
-            repr(umgebung.get("DASHBOARD_HOST")))
-    p.check("Vorlage setzt DASHBOARD_PORT auf 8787",
-            umgebung.get("DASHBOARD_PORT") == "8787",
-            repr(umgebung.get("DASHBOARD_PORT")))
+    # Der Beleg dafuer, dass die Pruefung unten bedingt sein MUSS: _wert()
+    # nimmt zuerst die Umgebung (also EnvironmentVariables der plist), dann
+    # die .env, dann die Voreinstellung. Alle drei Wege fuehren zum Ziel.
+    # Waere diese Reihenfolge eines Tages anders, faellt genau hier auf,
+    # dass die Begruendung der bedingten Pruefung nicht mehr traegt.
+    p.check("konfig.py: Wert kommt aus der Umgebung, sonst .env, sonst "
+            "Voreinstellung",
+            re.search(r"return\s+os\.environ\.get\(name\)\s+or\s+"
+                      r"env_werte\.get\(name\)\s+or\s+standard",
+                      konfig) is not None)
+
+    pruefe_dashboard_bindung(DASHBOARD, p)
 
 
 def test_platzhalter(p):
@@ -433,6 +523,11 @@ def test_dokumentation(p):
         ("Signal 15", "Erklaerung der -15"),
         ("Anmeldung", "LaunchAgent erst nach grafischer Anmeldung"),
         ("git pull", "Neustart nur bei Aenderungen an dashboard/"),
+        # TB-16: der Befund, der die bedingte Pruefung ausgeloest hat. Er
+        # ist Betriebswissen und darf nicht still aus dem README fallen.
+        ("nicht versioniert",
+         "die .env ist nicht versioniert - der Fernzugriff haengt an ihr"),
+        ("logs/dashboard/launchd.err.log", "Logpfad des Dashboard-Dienstes"),
     ):
         p.check(f"README dokumentiert: {thema}", stichwort in text)
 
@@ -478,6 +573,42 @@ def _probe(quelle, vorlage_vorlage, ersetzungen, erwartete_fehler, p,
             p.check(f"Probe '{beschreibung}': erwartete offene Pruefungen",
                     set(still.offen) == set(erwartet_offen),
                     repr(sorted(still.offen)))
+
+
+def _probe_bindung(quelle, eintraege, erwartete_fehler, p, beschreibung,
+                   erwartet_offen=None):
+    """Wie _probe(), nur fuer die bedingte Bindungs-Pruefung: eine ECHTE
+    Vorlage wird kopiert, an genau einer Stelle um einen
+    EnvironmentVariables-Block ergaenzt und durch die ECHTE Pruefkette
+    geschickt. Verglichen werden die Mengen der fehlgeschlagenen und - wo
+    angegeben - der offenen Pruefungen EXAKT."""
+    with tempfile.TemporaryDirectory() as ordner:
+        ziel = os.path.join(ordner, os.path.basename(quelle))
+        shutil.copy(quelle, ziel)
+        if eintraege:
+            zeilen = "".join(f"        <key>{name}</key>\n"
+                             f"        <string>{wert}</string>\n"
+                             for name, wert in eintraege)
+            block = ("    <key>EnvironmentVariables</key>\n"
+                     "    <dict>\n" + zeilen + "    </dict>\n</dict>")
+            text = open(ziel, encoding="utf-8").read()
+            if "</dict>\n</plist>" not in text:
+                p.check(f"Probe '{beschreibung}': Ansatzpunkt gefunden", False)
+                return
+            open(ziel, "w", encoding="utf-8").write(
+                text.replace("</dict>\n</plist>", block + "\n</plist>", 1))
+
+        still = Pruefer(laut=False)
+        pruefe_dashboard_bindung(ziel, still)
+
+        ist, soll = set(still.fehler), set(erwartete_fehler)
+        p.check(f"Probe '{beschreibung}' schlaegt genau bei den erwarteten "
+                f"Pruefungen an", ist == soll,
+                "" if ist == soll else f"zuviel={sorted(ist - soll)} "
+                                       f"fehlt={sorted(soll - ist)}")
+        p.check(f"Probe '{beschreibung}': erwartete offene Pruefungen",
+                set(still.offen) == set(erwartet_offen or []),
+                repr(sorted(still.offen)))
 
 
 def test_mutationsproben(p):
@@ -584,6 +715,59 @@ def test_mutationsproben(p):
         p.check("Platzhalter-Melder findet den eingeschmuggelten Platzhalter",
                 platzhalter_in(ziel) == [f"{MARKE}PYTHON3_PFAD"],
                 repr(platzhalter_in(ziel)))
+
+    # --- Proben zur bedingten Bindungs-Pruefung --------------------------
+    #
+    # Grundlage ist wieder die Telegram-Vorlage, und diesmal aus einem
+    # zweiten Grund: sie ist die einzige der drei, die der Nutzer NICHT
+    # ueberschreibt, wenn er die Dashboard-Vorlage aus der laufenden
+    # Fassung befuellt. Proben, die an der Dashboard-Vorlage haengen,
+    # wuerden nach diesem einen cp ihren Ansatzpunkt verlieren.
+    #
+    # Sie setzt von sich aus keine EnvironmentVariables - das ist genau der
+    # Zustand der uebernommenen Dashboard-Vorlage. Die erste Probe haelt
+    # diesen Zustand fest, die weiteren schmuggeln je EINEN falschen Wert
+    # ein. Ohne die letzten beiden waere nicht zu unterscheiden, ob die
+    # Pruefung noch etwas zusichert oder nach der Korrektur nur noch
+    # schweigt.
+    _probe_bindung(basis.pfad, [], [], p,
+                   "keine EnvironmentVariables (Zustand der laufenden Fassung)")
+
+    _probe_bindung(basis.pfad,
+                   [("DASHBOARD_PORT", "8080")],
+                   ["Vorlage setzt DASHBOARD_PORT gar nicht oder auf 8787"],
+                   p, "falscher Port 8080 in der Vorlage")
+
+    _probe_bindung(basis.pfad,
+                   [("DASHBOARD_PORT", "8787")], [],
+                   p, "richtiger Port 8787 in der Vorlage")
+
+    _probe_bindung(basis.pfad,
+                   [("DASHBOARD_HOST", "127.0.0.1")],
+                   ["Vorlage setzt DASHBOARD_HOST gar nicht oder auf eine "
+                    "Tailscale-Adresse (100.64.x - 100.127.x)"],
+                   p, "Bindung auf localhost statt Tailscale")
+
+    # 100.7.x sieht aus wie eine Tailscale-Adresse, liegt aber unterhalb
+    # von 100.64 und ist damit eine gewoehnliche oeffentliche Adresse.
+    _probe_bindung(basis.pfad,
+                   [("DASHBOARD_HOST", "100.7.38.8")],
+                   ["Vorlage setzt DASHBOARD_HOST gar nicht oder auf eine "
+                    "Tailscale-Adresse (100.64.x - 100.127.x)"],
+                   p, "100.x ausserhalb des Tailscale-Bereichs")
+
+    _probe_bindung(basis.pfad,
+                   [("DASHBOARD_HOST", "100.106.38.8")], [],
+                   p, "richtige Tailscale-Adresse in der Vorlage")
+
+    # Ein Platzhalter gehoert auch hier weder in den OK- noch in den
+    # Fehler-Topf.
+    _probe_bindung(basis.pfad,
+                   [("DASHBOARD_HOST", f"{MARKE}TAILSCALE_ADRESSE")], [], p,
+                   "Platzhalter als Bindungsadresse",
+                   erwartet_offen=["Vorlage setzt DASHBOARD_HOST gar nicht "
+                                   "oder auf eine Tailscale-Adresse "
+                                   "(100.64.x - 100.127.x)"])
 
     # Und die Gegenrichtung: ein PLATZHALTER__ im Kommentar ist
     # Dokumentation, kein offener Wert - sonst waere die echte
