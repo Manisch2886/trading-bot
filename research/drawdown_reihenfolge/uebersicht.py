@@ -69,14 +69,15 @@ def main():
         fenster = j.get("fenster", "gesamt")
         if j.get("ohne_regimefilter"):
             fenster += " (vor Regimefilter)"
+        stabil = j["urteil"].get("block_sieger_stabil_pct")
         zeilen.append((
             f"{j['bot']} / {fenster}",
             str(j["num_besteht_mindestfilter"]) + f" von {j['kombinationen']}",
-            str(j["sieger"]["block"]),
-            str(j["sieger"]["entry"]),
+            j["sieger"]["block"] or "-",
+            j["sieger"]["entry"] or "-",
             {None: "entfaellt", True: "nein", False: "JA"}[
                 j["urteil"]["sieger_identisch"]],
-            f"{j['urteil'].get('block_sieger_stabil_pct')} %",
+            f"{stabil} %" if stabil is not None else "-",
         ))
 
     breiten = [max(len(str(z[i])) for z in ([kopf] + zeilen)) for i in range(len(kopf))]
