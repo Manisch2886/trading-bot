@@ -144,6 +144,21 @@ def evaluate_combination_multi(all_data: dict, deviation_pct: float,
     cum_returns = combined["pnl_pct"].cumsum()
     max_drawdown = (cum_returns - cum_returns.cummax()).min()
 
+    # Derselbe Drawdown ein zweites Mal, nur auf der CHRONOLOGISCHEN
+    # Reihenfolge (entry_time) - so wie equity_simulation.collect_all_trades
+    # sortiert. Die Zeilenreihenfolge oben ist die der aneinandergehaengten
+    # Symbol-Bloecke; sie ist ein Nebenprodukt der Art, wie dieses Skript
+    # seine Teilergebnisse zusammenfuegt, und beschreibt keinen Verlauf, den
+    # jemand haette erleben koennen. Der Wert wird nur AUSGEWIESEN:
+    # robustness_score und Rangfolge bleiben unveraendert am bisherigen Mass
+    # (research/drawdown_reihenfolge/BERICHT.md, Schritt M1).
+    # kind="stable" ist nicht schmueckend: ohne das liefert sort_values bei
+    # gleichen Zeitstempeln eine beliebige Reihenfolge - und damit einen
+    # anderen Drawdown bei jedem Lauf.
+    chronologisch = combined.sort_values("entry_time", kind="stable")
+    cum_chrono = chronologisch["pnl_pct"].cumsum()
+    max_drawdown_chrono = (cum_chrono - cum_chrono.cummax()).min()
+
     result = {
         "deviation_pct": deviation_pct,
         "stop_loss_pct": stop_loss_pct,
@@ -156,6 +171,8 @@ def evaluate_combination_multi(all_data: dict, deviation_pct: float,
         "max_drawdown_pct": round(max_drawdown, 2),
     }
     result["robustness_score"] = calculate_robustness_score(result)
+    # Rein informativ, geht in keine Rangfolge ein (siehe oben).
+    result["max_drawdown_chronologisch_pct"] = round(max_drawdown_chrono, 2)
     return result
 
 
@@ -204,3 +221,6 @@ if __name__ == "__main__":
               f"Take-Profit Fib: {best['take_profit_fib']}")
         print(f"  -> {best['num_trades']} Trades ueber {best['num_symbols']} Symbole, "
               f"{best['win_rate']}% Win Rate, {best['total_return_pct']}% Gesamtertrag")
+        print(f"  Max Drawdown: {best['max_drawdown_pct']}% (Symbol-Bloecke, Grundlage "
+              f"des robustness_score)  |  {best['max_drawdown_chronologisch_pct']}% "
+              f"(chronologisch)")
