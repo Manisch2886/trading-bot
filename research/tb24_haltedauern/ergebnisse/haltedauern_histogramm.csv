@@ -1,0 +1,13 @@
+,elliott_wave,t3_supertrend,rsi2_crypto,turtle_soup_crypto,volatility_breakout_crypto,elliott_wave_stocks,rsi2_mean_reversion,turtle_soup_stocks,volatility_breakout
+0 bis < 1,40,143,0,0,0,0,0,0,0
+1 bis < 2,12,123,46,448,43,80,373,0,9
+2 bis < 3,6,83,72,158,27,20,477,0,14
+3 bis < 5,10,96,138,181,26,53,849,0,11
+5 bis < 8,10,107,99,135,18,48,1575,0,50
+8 bis < 11,52,67,37,492,16,13,434,0,42
+11 bis < 16,0,32,0,0,77,23,513,8143,75
+16 bis < 21,0,4,0,0,0,13,11,772,61
+21 bis < 31,0,1,0,0,0,29,0,0,1192
+31 bis < 61,0,0,0,0,0,22,0,0,0
+61 bis < 91,0,0,0,0,0,11,0,0,0
+>= 91,0,0,0,0,0,83,0,0,0

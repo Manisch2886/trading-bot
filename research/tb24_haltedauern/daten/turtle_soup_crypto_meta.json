@@ -1,0 +1,31 @@
+{
+  "bot": "turtle_soup_crypto",
+  "zeitrahmen": "1d",
+  "anlageklasse": "krypto",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 8,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 1599,
+  "trades_ausgefuehrt": 1414,
+  "trades_uebersprungen": 185,
+  "symbole_gefunden": 20,
+  "symbole_ausgefuehrt": 20,
+  "erster_einstieg": "2021-10-12 00:00:00",
+  "letzter_ausstieg": "2026-08-28 00:00:00",
+  "ausstiegsarten": {
+    "stop_loss": 975,
+    "time_exit": 439
+  },
+  "spalte_result_vorhanden": true,
+  "kerzen_ohne_wert": 0,
+  "kennzeichnung_neutral": true,
+  "abgleich_exposure_messung": {
+    "datei": "research/exposure_messung/daten/turtle_soup_crypto_positionen.csv",
+    "vorhanden": true,
+    "zeilen_dort": 1414,
+    "zeilen_hier": 1414,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}

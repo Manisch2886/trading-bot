@@ -1,0 +1,32 @@
+{
+  "bot": "elliott_wave",
+  "zeitrahmen": "1h",
+  "anlageklasse": "krypto",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": null,
+  "bot_hat_limit_parameter": false,
+  "trades_gefunden": 130,
+  "trades_ausgefuehrt": 130,
+  "trades_uebersprungen": 0,
+  "symbole_gefunden": 18,
+  "symbole_ausgefuehrt": 18,
+  "erster_einstieg": "2021-09-22 07:00:00",
+  "letzter_ausstieg": "2026-08-20 05:00:00",
+  "ausstiegsarten": {
+    "stop_loss": 70,
+    "time_exit": 44,
+    "take_profit": 16
+  },
+  "spalte_result_vorhanden": true,
+  "kerzen_ohne_wert": 0,
+  "kennzeichnung_neutral": true,
+  "abgleich_exposure_messung": {
+    "datei": "research/exposure_messung/daten/elliott_wave_positionen.csv",
+    "vorhanden": true,
+    "zeilen_dort": 130,
+    "zeilen_hier": 130,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}

@@ -1,0 +1,10 @@
+bot,n_ausgefuehrt,median_ausgefuehrt,n_alle,median_alle,differenz_tage,uebersprungen
+elliott_wave,130,3.9,130,3.9,0.0,0
+t3_supertrend,656,2.67,980,2.42,0.25,324
+rsi2_crypto,392,4.0,439,4.0,0.0,47
+turtle_soup_crypto,1414,4.0,1599,4.0,0.0,185
+volatility_breakout_crypto,207,6.0,233,6.0,0.0,26
+elliott_wave_stocks,395,7.0,510,7.0,0.0,115
+rsi2_mean_reversion,4232,5.0,5391,5.0,0.0,1159
+turtle_soup_stocks,8915,14.0,12069,14.0,0.0,3154
+volatility_breakout,1454,21.0,4510,21.0,0.0,3056

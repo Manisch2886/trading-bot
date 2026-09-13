@@ -1,0 +1,31 @@
+{
+  "bot": "rsi2_crypto",
+  "zeitrahmen": "1d",
+  "anlageklasse": "krypto",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 8,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 439,
+  "trades_ausgefuehrt": 392,
+  "trades_uebersprungen": 47,
+  "symbole_gefunden": 18,
+  "symbole_ausgefuehrt": 18,
+  "erster_einstieg": "2022-02-11 00:00:00",
+  "letzter_ausstieg": "2026-08-20 00:00:00",
+  "ausstiegsarten": {
+    "sma_exit": 384,
+    "time_exit": 8
+  },
+  "spalte_result_vorhanden": true,
+  "kerzen_ohne_wert": 0,
+  "kennzeichnung_neutral": true,
+  "abgleich_exposure_messung": {
+    "datei": "research/exposure_messung/daten/rsi2_crypto_positionen.csv",
+    "vorhanden": true,
+    "zeilen_dort": 392,
+    "zeilen_hier": 392,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}

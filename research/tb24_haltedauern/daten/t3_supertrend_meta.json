@@ -1,0 +1,32 @@
+{
+  "bot": "t3_supertrend",
+  "zeitrahmen": "4h",
+  "anlageklasse": "krypto",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 5,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 980,
+  "trades_ausgefuehrt": 656,
+  "trades_uebersprungen": 324,
+  "symbole_gefunden": 18,
+  "symbole_ausgefuehrt": 18,
+  "erster_einstieg": "2021-09-01 20:00:00",
+  "letzter_ausstieg": "2026-08-29 16:00:00",
+  "ausstiegsarten": {
+    "stop_loss": 348,
+    "trend_flip": 202,
+    "t3_crossunder": 106
+  },
+  "spalte_result_vorhanden": true,
+  "kerzen_ohne_wert": 0,
+  "kennzeichnung_neutral": true,
+  "abgleich_exposure_messung": {
+    "datei": "research/exposure_messung/daten/t3_supertrend_positionen.csv",
+    "vorhanden": true,
+    "zeilen_dort": 656,
+    "zeilen_hier": 656,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}
