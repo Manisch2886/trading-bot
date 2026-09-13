@@ -3,26 +3,87 @@ Aktuell live genutzte Parameter - Elliott-Wave-Strategie (Aktien)
 =======================================================================
 Siehe elliott_wave/live_params.py fuer die Erklaerung des Zwecks dieser Datei.
 
+GUELTIGE KENNZAHLEN - kausal saubere Grundlage, Stand 2026-09-13
+-----------------------------------------------------------------------
+Zehn Jahre, Quelle: research/elliott_wave_params/BERICHT.md Abschnitt 4.
+
+                                           Rendite   Max DD   Calmar
+  Buy-and-Hold                            +755,69 %  -34,83 %    21,70
+  Live-Kombination (dev 5 % / Stop 3 %)    +330,18 %  -22,70 %    14,55
+  bester gepruefter Kandidat (2 % / 16 %)  +398,23 %  -34,16 %    11,66
+
+BUY-AND-HOLD SCHLAEGT DIESEN BOT - in der Rendite UND im Calmar-
+Verhaeltnis. Keine der 252 geprueften Kombinationen kommt an die +755 %
+heran. Er faellt dabei flacher (-22,7 % gegen -34,8 %); das ist der
+einzige Vorsprung, den er hat.
+
+Wer weiter unten eine Zeile findet, die etwas anderes behauptet, liest
+einen Eintrag von VOR der Look-Ahead-Korrektur (PR #26). Die
+zurueckgezogenen Zahlen stehen absichtlich noch da - sie sind in
+Berichten, E-Mails und im Uebergabeprotokoll zitiert worden und
+verschwinden nicht dadurch, dass man sie hier loescht.
+
 Historie:
 - 2026-09-01: Zigzag 5%, Stop-Loss 2%, Ziel 0.236, Top 100 Aktien (erste
   robuste Validierung, aber Buy-and-Hold schlug die Strategie leicht)
 - 2026-09-02: Aktualisiert auf Top 150 Aktien mit Stop-Loss 3% -
-  Out-of-Sample bestaetigt (Ø PnL 7.37%, 132 Trades/79 Symbole),
-  schlaegt Buy-and-Hold klar (1458% vs. 756% Rendite,
-  -1.32% vs. -34.83% Max Drawdown). Signal-Qualitaets-Test zeigt:
-  Mehrwert kommt aus Timing/Kapitalmanagement, nicht aus den
-  Ausstiegsregeln selbst - siehe Chat-Diskussion.
-  ACHTUNG: Die Buy-and-Hold-Aussage dieses Eintrags ist ueberholt -
-  siehe Eintrag 2026-09-08.
-- 2026-09-03: USE_TAKE_PROFIT auf False gesetzt (Gewinne laufen lassen) -
-  empirisch getestet (Gesamtzeitraum + Out-of-Sample), Rendite ca.
-  verdoppelt (+3084% statt +1500% Gesamtzeitraum, +204% statt +108% OOS)
-  bei moderat hoeherem, aber weiterhin klar unter Buy-and-Hold liegendem
-  Drawdown (-9.79%/-5.04% statt -1.90%/-1.65%). Positionslimit bewusst
-  bei 8 belassen (konservativerer Zwischenschritt statt unbegrenzt -
-  Option B mit unbegrenztem Limit war in der Matrix noch staerker, aber
-  noch nicht uebernommen). Siehe
-  results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md fuer Details.
+  Out-of-Sample bestaetigt (Ø PnL 7,37%, 132 Trades/79 Symbole).
+  Signal-Qualitaets-Test zeigt: Mehrwert kommt aus Timing/Kapital-
+  management, nicht aus den Ausstiegsregeln selbst - siehe
+  Chat-Diskussion.
+
+  ZURUECKGEZOGEN am 2026-09-13 (Befund TB-17) - hier stand: "schlaegt
+  Buy-and-Hold klar (1458% vs. 756% Rendite, -1.32% vs. -34.83% Max
+  Drawdown)". Die +1458% und die -1,32% stammen aus dem Backtest MIT
+  Look-Ahead und gelten nicht mehr; gueltig ist die Tabelle im Kopf
+  dieser Datei (+330,18% bei -22,70%). Bemerkenswert: der
+  Vergleichsmassstab selbst war von Anfang an richtig - Buy-and-Hold
+  liegt unveraendert bei +755,69% und -34,83%. Falsch war nur die eigene
+  Zahl daneben, und zwar um mehr als den Faktor vier.
+  Der Rest dieses Eintrags (Ø PnL, Trade-Zahlen, Signal-Qualitaets-Test)
+  ist von der Korrektur nicht betroffen - siehe Uebergabeprotokoll
+  Abschnitt 3.3, "Weiterhin gueltig".
+- 2026-09-03: USE_TAKE_PROFIT auf False gesetzt (Gewinne laufen lassen).
+  Positionslimit bewusst bei 8 belassen (konservativerer Zwischenschritt
+  statt unbegrenzt - Option B mit unbegrenztem Limit war in der Matrix
+  noch staerker, aber noch nicht uebernommen).
+
+  DIE ENTSCHEIDUNG HAELT, DIE ZAHLEN DAZU NICHT (geprueft 2026-09-13):
+  Hier stand, die Rendite habe sich "ca. verdoppelt (+3084% statt +1500%
+  Gesamtzeitraum, +204% statt +108% OOS)" bei Drawdowns von
+  "-9.79%/-5.04% statt -1.90%/-1.65%". Alle acht Zahlen stammen aus
+  results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md und damit aus
+  derselben Look-Ahead-Grundlage wie der Eintrag vom 2026-09-02.
+  Gueltig ist fuer die heutige Live-Konfiguration die Tabelle im Kopf
+  dieser Datei: +330,18% bei -22,70% (bzw. +352,72% bei -22,44% in der
+  vom Bot selbst erzeugten Ergebniskurve, PR #86 - identischer
+  Trade-Satz, nur eine andere Zeilenreihenfolge bei gleichzeitigen
+  Einstiegen, siehe BERICHT.md P-A5).
+  Ein sauber gerechnetes Gegenstueck zum Paar "mit/ohne Kursziel" gibt es
+  bis heute NICHT - deshalb steht hier absichtlich keine neue Zahl.
+  Was die Entscheidung stattdessen traegt, ist eine Rangfolge:
+  research/elliott_wave_params/BERICHT.md Abschnitt 5 zeigt, dass unter
+  den 116 Kombinationen, die die Mindestfilter bestehen, die vorderen
+  zehn praktisch ausnahmslos ohne festes Kursziel arbeiten. Ein festes
+  Ziel schadet also durchgehend - die Richtung der Entscheidung ist
+  bestaetigt, nur ihr gemessener Hebel ist unbekannt.
+
+  NACHTRAG: EXPERIMENT_FINDINGS.md traegt seit dem 13.09.2026 einen
+  Warnhinweis (Kasten am Dateianfang plus eine Zeile je betroffenem
+  Abschnitt). Ihre Zahlen wurden dabei NICHT umgerechnet, und das mit
+  Absicht: research/elliott_wave_lookahead/ benutzt sie als
+  veroeffentlichte Baseline und weist damit nach, dass die
+  Look-Ahead-Reproduktion den damaligen Lauf wirklich trifft
+  (decisions.py PUBLISHED_CELLS, verify_baseline.py PUBLISHED). Wer die
+  Tabellen dort ueberschreibt, zerstoert diesen Nachweis.
+
+  Aufgefallen ist dabei noch etwas: die abgelegte Ergebniskurve des Bots
+  trug bis PR #86 +1500,53% bei -1,90% - das ist die Zahl der Variante
+  MIT Take-Profit, obwohl USE_TAKE_PROFIT am 2026-09-03 auf False
+  gesetzt wurde (die 469 ausgefuehrten Trades der alten Kurve entsprechen
+  genau jener Zelle). Die Kurve war also aus ZWEI unabhaengigen Gruenden
+  veraltet: dem Look-Ahead und einem Parameterwechsel, nach dem sie nie
+  neu erzeugt wurde.
 - 2026-09-08: Nur Dokumentation korrigiert, KEIN Parameter geaendert.
   Die Buy-and-Hold-Aussage vom 2026-09-02 ("schlaegt Buy-and-Hold klar,
   1458% vs. 756%") stammte von einer Backtest-Grundlage MIT Look-Ahead:
@@ -57,8 +118,56 @@ Historie:
   Wert bezeichnet den Stand der PARAMETER (und wird als solcher in
   research/pnl_2025_fixed_size/extract.py ausgewertet); am 2026-09-08
   wurde ausschliesslich dieser Text korrigiert.
-"""
+- 2026-09-13: Wieder nur Dokumentation, KEIN Parameter geaendert (Befund
+  TB-17). Zwei Korrekturen und eine festgehaltene Entscheidung.
 
+  (1) Die falschen Zahlen sind jetzt AN DER STELLE markiert, an der sie
+  stehen. Bis heute trug der Eintrag vom 2026-09-02 seine Behauptung
+  unveraendert im Wortlaut und verwies mit einem "ACHTUNG" auf einen
+  Eintrag sechs Tage weiter unten. Wer die Datei von oben liest - der
+  Nutzer oder eine Claude-Code-Sitzung -, hatte die widerlegte Aussage
+  schon gelesen und geglaubt, bevor die Richtigstellung kam. Die
+  gueltigen Zahlen stehen deshalb jetzt im KOPF der Datei, vor der
+  Historie.
+
+  (2) Der Eintrag vom 2026-09-03 war noch nie korrigiert worden. Am
+  2026-09-08 wurde nur die Buy-and-Hold-Aussage vom 2026-09-02
+  angefasst; die acht Kennzahlen des Take-Profit-Eintrags stammen aus
+  derselben Look-Ahead-Grundlage und blieben unbemerkt stehen. Genau
+  dieselbe Fehlerklasse hat sich am 12.09.2026 zweimal in
+  broker/README.md und broker/README_IBKR.md wiederholt - eine
+  Korrektur, die nur die gemeldete Zeile anfasst, laesst die
+  Geschwister stehen.
+
+  (3) ENTSCHEIDUNG DES NUTZERS vom 12.09.2026 - der Bot laeuft weiter,
+  aber die Begruendung hat gewechselt: Er laeuft als DIVERSIFIKATOR,
+  NICHT weil er den Markt schlaegt. Gemessen wird er kuenftig an seinem
+  Beitrag zum Portfolio, nicht an seiner Einzelrendite. Damit ist der
+  bis dahin offene Punkt "weiterlaufen, ueberarbeiten oder abschalten?"
+  (Uebergabeprotokoll Abschnitt 9, Punkt 4) entschieden.
+
+  Prueftermine: Quartals-Review Oktober 2026 als Zwischenstand, ein
+  belastbares Urteil eher im Januar 2027 - die Live-Historie ist heute
+  noch zu kurz (kein Bot erreicht MIN_LIVE_CLOSED_TRADES = 10, die
+  Portfolio-Zahlen stammen also weiterhin aus Backtest-Kurven).
+
+  Schaerferes Pruefkriterium fuer diesen Termin: der Bot bei GLEICHER
+  ZEIT IM MARKT gegen das 95. Perzentil von Zufalls-Timing. Der
+  Massstab ist bewusst gewaehlt und noch NICHT gemessen - er ist ein
+  Auftrag an den Prueftermin, kein Ergebnis.
+
+  Ehrlicher Vorbehalt zur Diversifikator-Begruendung, damit sie beim
+  Prueftermin nicht ungeprueft durchlaeuft: research/exposure_messung/
+  BERICHT.md misst fuer diesen Bot 95,4% Zeit im Markt und eine
+  Korrelation von +0,46 zu einem gleichgewichteten Buy-and-Hold des
+  Aktienuniversums (taegliche Bewertung zu Marktpreisen). Ein Bot, der
+  fast immer investiert ist und sich dabei deutlich mit dem Markt
+  bewegt, ist kein selbstverstaendlicher Diversifikator. Dasselbe
+  Dokument zeigt ausserdem, dass gerade die aussergewoehnlich flache
+  abgelegte Kurve dieses Bots (-1,65%) den kombinierten Vierer-Drawdown
+  getragen hat; frisch gerechnet sind es -21,16%. Das ist der
+  eigentliche Grund, das schaerfere Kriterium anzulegen.
+"""
 DEVIATION_PCT = 5.0
 STOP_LOSS_PCT = 3.0
 TAKE_PROFIT_FIB = 0.236   # nur relevant, falls USE_TAKE_PROFIT=True

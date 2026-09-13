@@ -17,6 +17,7 @@ Kein Test-Framework, wie in allen uebrigen Selbsttests dieses Projekts.
 Nutzung:  python3 shared/test_kursdaten.py
 """
 
+import ast
 import glob
 import os
 import subprocess
@@ -43,6 +44,26 @@ def check(name, bedingung, detail=""):
     else:
         FEHLER.append(name)
         print(f"  [FEHLER] {name}" + (f"   {detail}" if detail else ""))
+
+
+def _konstanten(quelltext):
+    """Liest die Konstanten einer live_params.py per AST aus.
+
+    Bewusst AST statt import: der Vergleich laeuft auch gegen die Fassung
+    aus origin/main, die als reiner Text vorliegt und gar nicht importiert
+    werden koennte.
+    """
+    werte = {}
+    for knoten in ast.parse(quelltext).body:
+        if not isinstance(knoten, ast.Assign):
+            continue
+        for ziel in knoten.targets:
+            if isinstance(ziel, ast.Name):
+                try:
+                    werte[ziel.id] = ast.literal_eval(knoten.value)
+                except (ValueError, SyntaxError):
+                    werte[ziel.id] = "<nicht literal auswertbar>"
+    return werte
 
 
 def rahmen(zeilen):
@@ -417,9 +438,44 @@ def test_verbreitung():
     lauf = subprocess.run(["git", "diff", "--name-only", "origin/main"],
                           cwd=BASE_DIR, capture_output=True, text=True)
     geaendert = [z for z in lauf.stdout.splitlines() if z.strip()]
-    for verboten in ("live_params.py", "forward_test.py", "equity_simulation.py"):
+    for verboten in ("forward_test.py", "equity_simulation.py"):
         betroffen = [z for z in geaendert if z.endswith(verboten)]
         check(f"keine {verboten} veraendert", not betroffen, betroffen)
+
+    # live_params.py: geprueft werden die WERTE, nicht die Dateibytes.
+    #
+    # Praezisiert am 2026-09-13 (Befund TB-17). Vorher stand hier dieselbe
+    # Zeile wie fuer die beiden Dateien oben - jede Aenderung an einer
+    # live_params.py galt als Befund, auch eine reine Korrektur im
+    # Kopfkommentar. Genau so eine Korrektur war faellig: der Eintrag in
+    # elliott_wave_stocks/live_params.py behauptete noch, die Strategie
+    # schlage Buy-and-Hold "klar (1458% vs. 756%)" - eine Zahl von vor der
+    # Look-Ahead-Korrektur (PR #26), die seit PR #28 widerlegt ist.
+    #
+    # Was dieser Pruefer schuetzen soll, ist der Handelsparameter, nicht der
+    # Satz daneben: ein Kommentar aendert kein Verhalten. Deshalb wird jetzt
+    # verglichen, was die Datei AUSWERTET - Name fuer Name gegen origin/main.
+    # Das ist strenger als vorher, nicht lockerer: eine Zahl, die sich
+    # aendert, faellt weiterhin auf, und zusaetzlich faellt auf, wenn eine
+    # Konstante verschwindet oder neu hinzukommt.
+    for pfad_lp in [z for z in geaendert if z.endswith("live_params.py")]:
+        alt = subprocess.run(["git", "show", f"origin/main:{pfad_lp}"],
+                             cwd=BASE_DIR, capture_output=True, text=True)
+        check(f"{pfad_lp}: Fassung in origin/main lesbar", alt.returncode == 0,
+              alt.stderr.strip())
+        if alt.returncode != 0:
+            continue
+        with open(os.path.join(BASE_DIR, pfad_lp), "r", encoding="utf-8") as datei:
+            jetzt = datei.read()
+        werte_alt, werte_neu = _konstanten(alt.stdout), _konstanten(jetzt)
+        abweichend = sorted(
+            name for name in set(werte_alt) | set(werte_neu)
+            if werte_alt.get(name, "<fehlt>") != werte_neu.get(name, "<fehlt>")
+        )
+        check(f"{pfad_lp}: kein Parameterwert veraendert (nur Kommentartext)",
+              not abweichend,
+              "; ".join(f"{n}: {werte_alt.get(n, '<fehlt>')!r} -> "
+                        f"{werte_neu.get(n, '<fehlt>')!r}" for n in abweichend))
     check("nichts unter broker/ veraendert",
           not [z for z in geaendert if z.startswith("broker/")],
           [z for z in geaendert if z.startswith("broker/")])
