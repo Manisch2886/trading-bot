@@ -53,7 +53,14 @@ CURVES = {
 
 def build_daily_capital_curve(csv_path: str) -> pd.Series:
     df = pd.read_csv(csv_path, parse_dates=["time"])
-    df = df.sort_values("time")
+    # kind="stable" ist nicht schmueckend: die equity_curve.csv enthaelt
+    # mehrere Zeilen mit demselben Zeitstempel (mehrere Ausstiege am selben
+    # Tag). Ohne "stable" liefert sort_values dafuer eine beliebige
+    # Reihenfolge - das groupby(...).last() unten greift dann nicht
+    # zwingend den chronologisch letzten Kapitalstand des Tages ab. Die
+    # Datei steht bereits in Ereignisreihenfolge; stabil sortiert behaelt
+    # sie diese bei.
+    df = df.sort_values("time", kind="stable")
     df["date"] = df["time"].dt.normalize()
     daily_last = df.groupby("date")["capital_after"].last()
     full_range = pd.date_range(daily_last.index.min(), daily_last.index.max(), freq="D")
