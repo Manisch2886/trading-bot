@@ -1,0 +1,1089 @@
+{
+  "hinweis": "TB-25 IST EINE MESSUNG, KEINE EMPFEHLUNG UND KEINE AENDERUNG. Es wurde NICHTS am Bot-Code geaendert - live_params.py, forward_test.py, elliott_wave_counter.py und zigzag_indicator.py bleiben unangetastet. Was aus dem Ergebnis folgt (Schwelle, Auswahlregel, Fortbestand des Bots), entscheidet der Nutzer.",
+  "bot": "elliott_wave_stocks",
+  "quelle": "elliott_wave_stocks_muster.csv",
+  "stufen": [
+    {
+      "name": "Stufe 0",
+      "n": 303,
+      "symbole": 116,
+      "mittel_pnl_pct": 3.61,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 16.89,
+      "summe_pnl_pct": 1093.32,
+      "trefferquote_pct": 20.1,
+      "ci95_trades": [
+        1.77,
+        5.52
+      ],
+      "ci95_cluster_symbole": [
+        1.92,
+        5.5
+      ],
+      "ausstieg": {
+        "stop_loss": 242,
+        "time_exit": 61
+      },
+      "haltedauer_median": 6.0,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "Stufe 1",
+      "n": 363,
+      "symbole": 125,
+      "mittel_pnl_pct": 4.59,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 22.3,
+      "summe_pnl_pct": 1667.8,
+      "trefferquote_pct": 20.1,
+      "ci95_trades": [
+        2.48,
+        7.05
+      ],
+      "ci95_cluster_symbole": [
+        2.67,
+        6.94
+      ],
+      "ausstieg": {
+        "stop_loss": 288,
+        "time_exit": 75
+      },
+      "haltedauer_median": 6.0,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "Stufe 2",
+      "n": 127,
+      "symbole": 87,
+      "mittel_pnl_pct": 4.81,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 20.12,
+      "summe_pnl_pct": 610.52,
+      "trefferquote_pct": 22.0,
+      "ci95_trades": [
+        1.64,
+        8.52
+      ],
+      "ci95_cluster_symbole": [
+        1.68,
+        8.78
+      ],
+      "ausstieg": {
+        "stop_loss": 99,
+        "time_exit": 28
+      },
+      "haltedauer_median": 11.0,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "Stufe 3",
+      "n": 20,
+      "symbole": 19,
+      "mittel_pnl_pct": 8.53,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 17.0,
+      "summe_pnl_pct": 170.64,
+      "trefferquote_pct": 40.0,
+      "ci95_trades": [
+        1.78,
+        16.48
+      ],
+      "ci95_cluster_symbole": [
+        2.42,
+        15.85
+      ],
+      "ausstieg": {
+        "stop_loss": 11,
+        "time_exit": 9
+      },
+      "haltedauer_median": 30.0,
+      "aussagekraeftig": false
+    }
+  ],
+  "zeitliche_verteilung": {
+    "je_stufe": {
+      "0": {
+        "median_einstieg": "2022-03-18",
+        "je_jahr": {
+          "2016": 1,
+          "2017": 1,
+          "2018": 26,
+          "2019": 32,
+          "2020": 49,
+          "2021": 20,
+          "2022": 65,
+          "2023": 17,
+          "2024": 29,
+          "2025": 35,
+          "2026": 28
+        }
+      },
+      "1": {
+        "median_einstieg": "2022-05-13",
+        "je_jahr": {
+          "2016": 1,
+          "2017": 8,
+          "2018": 34,
+          "2019": 19,
+          "2020": 71,
+          "2021": 19,
+          "2022": 84,
+          "2023": 29,
+          "2024": 10,
+          "2025": 51,
+          "2026": 37
+        }
+      },
+      "2": {
+        "median_einstieg": "2022-03-16",
+        "je_jahr": {
+          "2016": 1,
+          "2017": 1,
+          "2018": 15,
+          "2019": 7,
+          "2020": 25,
+          "2021": 7,
+          "2022": 28,
+          "2023": 15,
+          "2024": 3,
+          "2025": 13,
+          "2026": 12
+        }
+      },
+      "3": {
+        "median_einstieg": "2022-09-26",
+        "je_jahr": {
+          "2018": 2,
+          "2019": 1,
+          "2020": 2,
+          "2022": 8,
+          "2023": 4,
+          "2024": 1,
+          "2025": 1,
+          "2026": 1
+        }
+      }
+    },
+    "bemerkung": "Beschreibend, kein Test. Verteilen sich die Stufen aehnlich ueber die Jahre, kann ein Stufenunterschied nicht allein daran liegen, dass eine Stufe in einer besseren Marktphase haeufiger vorkommt."
+  },
+  "monotonie": {
+    "spearman_stufe_gegen_pnl": {
+      "rho": 0.038562,
+      "p_wert": 0.265873,
+      "n": 813,
+      "ziehungen": 10000
+    },
+    "benachbarte_stufen": [
+      {
+        "name": "Stufe 1 gegen Stufe 0",
+        "auswertbar": true,
+        "n_a": 363,
+        "n_b": 303,
+        "mittel_a": 4.59,
+        "mittel_b": 3.61,
+        "differenz_pp": 0.99,
+        "ci95_differenz": [
+          -1.9,
+          4.06
+        ],
+        "ci_schliesst_null_ein": true,
+        "ci95_differenz_cluster_symbole": [
+          -1.91,
+          3.86
+        ],
+        "ci_cluster_schliesst_null_ein": true,
+        "p_permutation": 0.5385,
+        "weglassprobe_symbole": {
+          "differenz_voll": 0.986174,
+          "min": 0.326583,
+          "max": 1.424508,
+          "vorzeichen_bleibt": true,
+          "weggelassene_symbole": 139,
+          "symbol_mit_groesstem_einfluss": "INTC",
+          "differenz_ohne_dieses_symbol": 0.326583
+        },
+        "trefferquote_a_pct": 20.1,
+        "trefferquote_b_pct": 20.1,
+        "differenz_trefferquote_pp": -0.0
+      },
+      {
+        "name": "Stufe 2 gegen Stufe 1",
+        "auswertbar": true,
+        "n_a": 127,
+        "n_b": 363,
+        "mittel_a": 4.81,
+        "mittel_b": 4.59,
+        "differenz_pp": 0.21,
+        "ci95_differenz": [
+          -3.86,
+          4.56
+        ],
+        "ci_schliesst_null_ein": true,
+        "ci95_differenz_cluster_symbole": [
+          -3.77,
+          4.77
+        ],
+        "ci_cluster_schliesst_null_ein": true,
+        "p_permutation": 0.9248,
+        "weglassprobe_symbole": {
+          "differenz_voll": 0.212754,
+          "min": -1.013029,
+          "max": 0.912944,
+          "vorzeichen_bleibt": false,
+          "weggelassene_symbole": 136,
+          "symbol_mit_groesstem_einfluss": "MU",
+          "differenz_ohne_dieses_symbol": -1.013029
+        },
+        "trefferquote_a_pct": 22.0,
+        "trefferquote_b_pct": 20.1,
+        "differenz_trefferquote_pp": 1.9
+      },
+      {
+        "name": "Stufe 3 gegen Stufe 2",
+        "auswertbar": true,
+        "n_a": 20,
+        "n_b": 127,
+        "mittel_a": 8.53,
+        "mittel_b": 4.81,
+        "differenz_pp": 3.72,
+        "ci95_differenz": [
+          -3.99,
+          12.29
+        ],
+        "ci_schliesst_null_ein": true,
+        "ci95_differenz_cluster_symbole": [
+          -4.07,
+          12.14
+        ],
+        "ci_cluster_schliesst_null_ein": true,
+        "p_permutation": 0.4422,
+        "weglassprobe_symbole": {
+          "differenz_voll": 3.724756,
+          "min": 1.183566,
+          "max": 4.821483,
+          "vorzeichen_bleibt": true,
+          "weggelassene_symbole": 93,
+          "symbol_mit_groesstem_einfluss": "LRCX",
+          "differenz_ohne_dieses_symbol": 1.183566
+        },
+        "trefferquote_a_pct": 40.0,
+        "trefferquote_b_pct": 22.0,
+        "differenz_trefferquote_pp": 18.0
+      }
+    ],
+    "schwellenfrage": {
+      "name": "oberhalb der Schwelle (Stufe >=1) gegen Stufe 0",
+      "auswertbar": true,
+      "n_a": 510,
+      "n_b": 303,
+      "mittel_a": 4.8,
+      "mittel_b": 3.61,
+      "differenz_pp": 1.19,
+      "ci95_differenz": [
+        -1.45,
+        3.93
+      ],
+      "ci_schliesst_null_ein": true,
+      "ci95_differenz_cluster_symbole": [
+        -1.31,
+        3.7
+      ],
+      "ci_cluster_schliesst_null_ein": true,
+      "p_permutation": 0.4139,
+      "weglassprobe_symbole": {
+        "differenz_voll": 1.193566,
+        "min": 0.722382,
+        "max": 1.594006,
+        "vorzeichen_bleibt": true,
+        "weggelassene_symbole": 144,
+        "symbol_mit_groesstem_einfluss": "INTC",
+        "differenz_ohne_dieses_symbol": 0.722382
+      },
+      "trefferquote_a_pct": 21.4,
+      "trefferquote_b_pct": 20.1,
+      "differenz_trefferquote_pp": 1.2
+    },
+    "stufe_ab_2": {
+      "name": "Stufe >=2 gegen Stufe <=1",
+      "auswertbar": true,
+      "n_a": 147,
+      "n_b": 666,
+      "mittel_a": 5.31,
+      "mittel_b": 4.15,
+      "differenz_pp": 1.17,
+      "ci95_differenz": [
+        -2.22,
+        4.87
+      ],
+      "ci_schliesst_null_ein": true,
+      "ci95_differenz_cluster_symbole": [
+        -2.17,
+        4.99
+      ],
+      "ci_cluster_schliesst_null_ein": true,
+      "p_permutation": 0.5258,
+      "weglassprobe_symbole": {
+        "differenz_voll": 1.168188,
+        "min": 0.290838,
+        "max": 1.676175,
+        "vorzeichen_bleibt": true,
+        "weggelassene_symbole": 144,
+        "symbol_mit_groesstem_einfluss": "MU",
+        "differenz_ohne_dieses_symbol": 0.290838
+      },
+      "trefferquote_a_pct": 24.5,
+      "trefferquote_b_pct": 20.1,
+      "differenz_trefferquote_pp": 4.4
+    },
+    "nur_stufe_3": {
+      "name": "Stufe 3 gegen alles darunter",
+      "auswertbar": true,
+      "n_a": 20,
+      "n_b": 793,
+      "mittel_a": 8.53,
+      "mittel_b": 4.25,
+      "differenz_pp": 4.28,
+      "ci95_differenz": [
+        -2.57,
+        12.3
+      ],
+      "ci_schliesst_null_ein": true,
+      "ci95_differenz_cluster_symbole": [
+        -2.52,
+        12.22
+      ],
+      "ci_cluster_schliesst_null_ein": true,
+      "p_permutation": 0.3164,
+      "weglassprobe_symbole": {
+        "differenz_voll": 4.280247,
+        "min": 1.841893,
+        "max": 4.940627,
+        "vorzeichen_bleibt": true,
+        "weggelassene_symbole": 144,
+        "symbol_mit_groesstem_einfluss": "LRCX",
+        "differenz_ohne_dieses_symbol": 1.841893
+      },
+      "trefferquote_a_pct": 40.0,
+      "trefferquote_b_pct": 20.4,
+      "differenz_trefferquote_pp": 19.6
+    },
+    "mittelwerte_je_stufe": {
+      "0": 3.61,
+      "1": 4.59,
+      "2": 4.81,
+      "3": 8.53
+    },
+    "monoton_steigend_im_punktwert": true
+  },
+  "bedingungen": [
+    {
+      "name": "Welle 2 / Welle 1 erfuellt gegen nicht erfuellt",
+      "auswertbar": true,
+      "n_a": 168,
+      "n_b": 645,
+      "mittel_a": 5.69,
+      "mittel_b": 4.01,
+      "differenz_pp": 1.68,
+      "ci95_differenz": [
+        -1.61,
+        5.38
+      ],
+      "ci_schliesst_null_ein": true,
+      "ci95_differenz_cluster_symbole": [
+        -1.76,
+        5.51
+      ],
+      "ci_cluster_schliesst_null_ein": true,
+      "p_permutation": 0.328,
+      "weglassprobe_symbole": {
+        "differenz_voll": 1.68269,
+        "min": 0.668047,
+        "max": 2.117297,
+        "vorzeichen_bleibt": true,
+        "weggelassene_symbole": 144,
+        "symbol_mit_groesstem_einfluss": "CRWD",
+        "differenz_ohne_dieses_symbol": 0.668047
+      },
+      "trefferquote_a_pct": 23.8,
+      "trefferquote_b_pct": 20.2,
+      "differenz_trefferquote_pp": 3.7,
+      "bedingung": "w2_w1",
+      "titel": "Welle 2 / Welle 1",
+      "teilpunkte_im_bot": 0.34,
+      "intervall": [
+        0.5,
+        0.618
+      ],
+      "kanonischer_fib_wert": 0.618
+    },
+    {
+      "name": "Welle 3 / Welle 1 erfuellt gegen nicht erfuellt",
+      "auswertbar": true,
+      "n_a": 204,
+      "n_b": 609,
+      "mittel_a": 3.77,
+      "mittel_b": 4.56,
+      "differenz_pp": -0.79,
+      "ci95_differenz": [
+        -3.55,
+        2.18
+      ],
+      "ci_schliesst_null_ein": true,
+      "ci95_differenz_cluster_symbole": [
+        -3.52,
+        1.98
+      ],
+      "ci_cluster_schliesst_null_ein": true,
+      "p_permutation": 0.6306,
+      "weglassprobe_symbole": {
+        "differenz_voll": -0.790108,
+        "min": -1.383957,
+        "max": -0.39727,
+        "vorzeichen_bleibt": true,
+        "weggelassene_symbole": 144,
+        "symbol_mit_groesstem_einfluss": "MU",
+        "differenz_ohne_dieses_symbol": -1.383957
+      },
+      "trefferquote_a_pct": 22.1,
+      "trefferquote_b_pct": 20.5,
+      "differenz_trefferquote_pp": 1.5,
+      "bedingung": "w3_w1",
+      "titel": "Welle 3 / Welle 1",
+      "teilpunkte_im_bot": 0.33,
+      "intervall": [
+        1.4,
+        1.8
+      ],
+      "kanonischer_fib_wert": 1.618
+    },
+    {
+      "name": "Welle 4 / Welle 3 erfuellt gegen nicht erfuellt",
+      "auswertbar": true,
+      "n_a": 305,
+      "n_b": 508,
+      "mittel_a": 5.5,
+      "mittel_b": 3.67,
+      "differenz_pp": 1.82,
+      "ci95_differenz": [
+        -1.1,
+        4.92
+      ],
+      "ci_schliesst_null_ein": true,
+      "ci95_differenz_cluster_symbole": [
+        -1.13,
+        5.09
+      ],
+      "ci_cluster_schliesst_null_ein": true,
+      "p_permutation": 0.2167,
+      "weglassprobe_symbole": {
+        "differenz_voll": 1.823401,
+        "min": 1.075753,
+        "max": 2.383072,
+        "vorzeichen_bleibt": true,
+        "weggelassene_symbole": 144,
+        "symbol_mit_groesstem_einfluss": "INTC",
+        "differenz_ohne_dieses_symbol": 1.075753
+      },
+      "trefferquote_a_pct": 22.3,
+      "trefferquote_b_pct": 20.1,
+      "differenz_trefferquote_pp": 2.2,
+      "bedingung": "w4_w3",
+      "titel": "Welle 4 / Welle 3",
+      "teilpunkte_im_bot": 0.33,
+      "intervall": [
+        0.236,
+        0.382
+      ],
+      "kanonischer_fib_wert": 0.382
+    }
+  ],
+  "kombinationen": [
+    {
+      "name": "---",
+      "n": 303,
+      "symbole": 116,
+      "mittel_pnl_pct": 3.61,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 16.89,
+      "summe_pnl_pct": 1093.32,
+      "trefferquote_pct": 20.1,
+      "ci95_trades": [
+        1.77,
+        5.52
+      ],
+      "ci95_cluster_symbole": [
+        1.92,
+        5.5
+      ],
+      "ausstieg": {
+        "stop_loss": 242,
+        "time_exit": 61
+      },
+      "haltedauer_median": 6.0,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "--w4",
+      "n": 194,
+      "symbole": 100,
+      "mittel_pnl_pct": 5.03,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 24.29,
+      "summe_pnl_pct": 975.88,
+      "trefferquote_pct": 20.6,
+      "ci95_trades": [
+        2.02,
+        8.7
+      ],
+      "ci95_cluster_symbole": [
+        1.98,
+        8.78
+      ],
+      "ausstieg": {
+        "stop_loss": 153,
+        "time_exit": 41
+      },
+      "haltedauer_median": 5.0,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "-w3-",
+      "n": 94,
+      "symbole": 66,
+      "mittel_pnl_pct": 1.94,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 13.89,
+      "summe_pnl_pct": 182.39,
+      "trefferquote_pct": 17.0,
+      "ci95_trades": [
+        -0.65,
+        4.91
+      ],
+      "ci95_cluster_symbole": [
+        -0.4,
+        4.43
+      ],
+      "ausstieg": {
+        "stop_loss": 77,
+        "time_exit": 17
+      },
+      "haltedauer_median": 6.5,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "-w3w4",
+      "n": 54,
+      "symbole": 46,
+      "mittel_pnl_pct": 6.19,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 23.43,
+      "summe_pnl_pct": 334.43,
+      "trefferquote_pct": 24.1,
+      "ci95_trades": [
+        0.8,
+        13.06
+      ],
+      "ci95_cluster_symbole": [
+        0.91,
+        13.83
+      ],
+      "ausstieg": {
+        "stop_loss": 41,
+        "time_exit": 13
+      },
+      "haltedauer_median": 9.5,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "w2--",
+      "n": 75,
+      "symbole": 56,
+      "mittel_pnl_pct": 6.79,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 25.24,
+      "summe_pnl_pct": 509.53,
+      "trefferquote_pct": 22.7,
+      "ci95_trades": [
+        1.81,
+        13.09
+      ],
+      "ci95_cluster_symbole": [
+        1.73,
+        12.92
+      ],
+      "ausstieg": {
+        "stop_loss": 58,
+        "time_exit": 17
+      },
+      "haltedauer_median": 6.0,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "w2-w4",
+      "n": 37,
+      "symbole": 35,
+      "mittel_pnl_pct": 5.28,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 21.41,
+      "summe_pnl_pct": 195.45,
+      "trefferquote_pct": 18.9,
+      "ci95_trades": [
+        -0.65,
+        12.7
+      ],
+      "ci95_cluster_symbole": [
+        -0.6,
+        12.75
+      ],
+      "ausstieg": {
+        "stop_loss": 30,
+        "time_exit": 7
+      },
+      "haltedauer_median": 16.0,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "w2w3-",
+      "n": 36,
+      "symbole": 30,
+      "mittel_pnl_pct": 2.24,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 11.99,
+      "summe_pnl_pct": 80.64,
+      "trefferquote_pct": 22.2,
+      "ci95_trades": [
+        -1.27,
+        6.51
+      ],
+      "ci95_cluster_symbole": [
+        -1.23,
+        6.95
+      ],
+      "ausstieg": {
+        "stop_loss": 28,
+        "time_exit": 8
+      },
+      "haltedauer_median": 7.5,
+      "aussagekraeftig": true
+    },
+    {
+      "name": "w2w3w4",
+      "n": 20,
+      "symbole": 19,
+      "mittel_pnl_pct": 8.53,
+      "median_pnl_pct": -3.3,
+      "streuung_pnl_pct": 17.0,
+      "summe_pnl_pct": 170.64,
+      "trefferquote_pct": 40.0,
+      "ci95_trades": [
+        1.78,
+        16.48
+      ],
+      "ci95_cluster_symbole": [
+        2.42,
+        15.85
+      ],
+      "ausstieg": {
+        "stop_loss": 11,
+        "time_exit": 9
+      },
+      "haltedauer_median": 30.0,
+      "aussagekraeftig": false
+    }
+  ],
+  "rundungsartefakt": {
+    "welche_bedingung_traegt_0_34": "Welle 2 / Welle 1",
+    "erklaerung": "0,34 kann nur von der ERSTEN Bedingung kommen. Innerhalb Stufe 1 heisst 0,34 also 'nur Welle 2 passt' und 0,33 'nur Welle 3' oder 'nur Welle 4'. Der Rangfolge-Vorzug der 0,34 ist damit kein Zufall, sondern ein fest eingebauter Vorzug der Welle-2-Bedingung - gewaehlt hat ihn niemand.",
+    "stufe1_0_34_gegen_0_33": {
+      "name": "Stufe 1: 0,34 gegen 0,33",
+      "auswertbar": true,
+      "n_a": 75,
+      "n_b": 288,
+      "mittel_a": 6.79,
+      "mittel_b": 4.02,
+      "differenz_pp": 2.77,
+      "ci95_differenz": [
+        -2.8,
+        9.39
+      ],
+      "ci_schliesst_null_ein": true,
+      "ci95_differenz_cluster_symbole": [
+        -3.08,
+        9.2
+      ],
+      "ci_cluster_schliesst_null_ein": true,
+      "p_permutation": 0.3448,
+      "weglassprobe_symbole": {
+        "differenz_voll": 2.771963,
+        "min": 0.491862,
+        "max": 3.685925,
+        "vorzeichen_bleibt": true,
+        "weggelassene_symbole": 125,
+        "symbol_mit_groesstem_einfluss": "CRWD",
+        "differenz_ohne_dieses_symbol": 0.491862
+      },
+      "trefferquote_a_pct": 22.7,
+      "trefferquote_b_pct": 19.4,
+      "differenz_trefferquote_pp": 3.2
+    },
+    "stufe1_je_bedingung": [
+      {
+        "name": "--w4",
+        "n": 194,
+        "symbole": 100,
+        "mittel_pnl_pct": 5.03,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 24.29,
+        "summe_pnl_pct": 975.88,
+        "trefferquote_pct": 20.6,
+        "ci95_trades": [
+          2.02,
+          8.7
+        ],
+        "ci95_cluster_symbole": [
+          1.98,
+          8.78
+        ],
+        "ausstieg": {
+          "stop_loss": 153,
+          "time_exit": 41
+        },
+        "haltedauer_median": 5.0,
+        "aussagekraeftig": true
+      },
+      {
+        "name": "-w3-",
+        "n": 94,
+        "symbole": 66,
+        "mittel_pnl_pct": 1.94,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 13.89,
+        "summe_pnl_pct": 182.39,
+        "trefferquote_pct": 17.0,
+        "ci95_trades": [
+          -0.65,
+          4.91
+        ],
+        "ci95_cluster_symbole": [
+          -0.4,
+          4.43
+        ],
+        "ausstieg": {
+          "stop_loss": 77,
+          "time_exit": 17
+        },
+        "haltedauer_median": 6.5,
+        "aussagekraeftig": true
+      },
+      {
+        "name": "w2--",
+        "n": 75,
+        "symbole": 56,
+        "mittel_pnl_pct": 6.79,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 25.24,
+        "summe_pnl_pct": 509.53,
+        "trefferquote_pct": 22.7,
+        "ci95_trades": [
+          1.81,
+          13.09
+        ],
+        "ci95_cluster_symbole": [
+          1.73,
+          12.92
+        ],
+        "ausstieg": {
+          "stop_loss": 58,
+          "time_exit": 17
+        },
+        "haltedauer_median": 6.0,
+        "aussagekraeftig": true
+      }
+    ],
+    "stufe2_0_67_gegen_0_66": {
+      "name": "Stufe 2: 0,67 gegen 0,66",
+      "auswertbar": true,
+      "n_a": 73,
+      "n_b": 54,
+      "mittel_a": 3.78,
+      "mittel_b": 6.19,
+      "differenz_pp": -2.41,
+      "ci95_differenz": [
+        -10.37,
+        4.52
+      ],
+      "ci_schliesst_null_ein": true,
+      "ci95_differenz_cluster_symbole": [
+        -11.21,
+        5.01
+      ],
+      "ci_cluster_schliesst_null_ein": true,
+      "p_permutation": 0.5165,
+      "weglassprobe_symbole": {
+        "differenz_voll": -2.411093,
+        "min": -3.666898,
+        "max": 0.053942,
+        "vorzeichen_bleibt": false,
+        "weggelassene_symbole": 87,
+        "symbol_mit_groesstem_einfluss": "MU",
+        "differenz_ohne_dieses_symbol": 0.053942
+      },
+      "trefferquote_a_pct": 20.5,
+      "trefferquote_b_pct": 24.1,
+      "differenz_trefferquote_pp": -3.5
+    },
+    "stufe2_je_bedingung": [
+      {
+        "name": "-w3w4",
+        "n": 54,
+        "symbole": 46,
+        "mittel_pnl_pct": 6.19,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 23.43,
+        "summe_pnl_pct": 334.43,
+        "trefferquote_pct": 24.1,
+        "ci95_trades": [
+          0.8,
+          13.06
+        ],
+        "ci95_cluster_symbole": [
+          0.91,
+          13.83
+        ],
+        "ausstieg": {
+          "stop_loss": 41,
+          "time_exit": 13
+        },
+        "haltedauer_median": 9.5,
+        "aussagekraeftig": true
+      },
+      {
+        "name": "w2-w4",
+        "n": 37,
+        "symbole": 35,
+        "mittel_pnl_pct": 5.28,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 21.41,
+        "summe_pnl_pct": 195.45,
+        "trefferquote_pct": 18.9,
+        "ci95_trades": [
+          -0.65,
+          12.7
+        ],
+        "ci95_cluster_symbole": [
+          -0.6,
+          12.75
+        ],
+        "ausstieg": {
+          "stop_loss": 30,
+          "time_exit": 7
+        },
+        "haltedauer_median": 16.0,
+        "aussagekraeftig": true
+      },
+      {
+        "name": "w2w3-",
+        "n": 36,
+        "symbole": 30,
+        "mittel_pnl_pct": 2.24,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 11.99,
+        "summe_pnl_pct": 80.64,
+        "trefferquote_pct": 22.2,
+        "ci95_trades": [
+          -1.27,
+          6.51
+        ],
+        "ci95_cluster_symbole": [
+          -1.23,
+          6.95
+        ],
+        "ausstieg": {
+          "stop_loss": 28,
+          "time_exit": 8
+        },
+        "haltedauer_median": 7.5,
+        "aussagekraeftig": true
+      }
+    ]
+  },
+  "stetig": {
+    "existiert": true,
+    "begruendung": "Alle drei Bedingungen sind Intervallpruefungen auf einem Wellenlaengen-VERHAELTNIS - einer stetigen Groesse. Der Score schneidet sie auf 0/1.",
+    "bemerkung_intervall": "Es sind Intervalle, keine '±x % um ein Ziel'. Die kanonischen Fibonacci-Werte liegen bei Welle 2 und Welle 4 auf dem RAND des Intervalls, bei Welle 3 unsymmetrisch im Inneren.",
+    "spearman_naehe_gegen_pnl": {
+      "rho": 0.038446,
+      "p_wert": 0.275472,
+      "n": 813,
+      "ziehungen": 10000
+    },
+    "spearman_naehe_fib_gegen_pnl": {
+      "rho": 0.054249,
+      "p_wert": 0.125787,
+      "n": 813,
+      "ziehungen": 10000
+    },
+    "spearman_naehe_weich_gegen_pnl": {
+      "rho": 0.054165,
+      "p_wert": 0.124788,
+      "n": 813,
+      "ziehungen": 10000
+    },
+    "spearman_gesamtabstand_gegen_pnl": {
+      "rho": -0.050884,
+      "p_wert": 0.148685,
+      "n": 813,
+      "ziehungen": 10000
+    },
+    "saettigung_naehe": {
+      "anteil_naehe_null_pct": 37.3,
+      "bemerkung": "`naehe` ist fuer jedes Muster ausserhalb aller drei Intervalle exakt 0 und unterscheidet dort nichts mehr. `naehe_weich` und `gesamtabstand` haben diese Stelle nicht - siehe bedingungen.py."
+    },
+    "je_bedingung": {
+      "w2_w1": {
+        "titel": "Welle 2 / Welle 1",
+        "n_definiert": 813,
+        "spearman_abstand_gegen_pnl": {
+          "rho": -0.051711,
+          "p_wert": 0.139586,
+          "n": 813,
+          "ziehungen": 10000
+        },
+        "spearman_verhaeltnis_gegen_pnl": {
+          "rho": -0.001812,
+          "p_wert": 0.953705,
+          "n": 813,
+          "ziehungen": 10000
+        }
+      },
+      "w3_w1": {
+        "titel": "Welle 3 / Welle 1",
+        "n_definiert": 813,
+        "spearman_abstand_gegen_pnl": {
+          "rho": -0.014942,
+          "p_wert": 0.664934,
+          "n": 813,
+          "ziehungen": 10000
+        },
+        "spearman_verhaeltnis_gegen_pnl": {
+          "rho": 0.022467,
+          "p_wert": 0.525547,
+          "n": 813,
+          "ziehungen": 10000
+        }
+      },
+      "w4_w3": {
+        "titel": "Welle 4 / Welle 3",
+        "n_definiert": 813,
+        "spearman_abstand_gegen_pnl": {
+          "rho": -0.052743,
+          "p_wert": 0.132687,
+          "n": 813,
+          "ziehungen": 10000
+        },
+        "spearman_verhaeltnis_gegen_pnl": {
+          "rho": -0.029045,
+          "p_wert": 0.413559,
+          "n": 813,
+          "ziehungen": 10000
+        }
+      }
+    },
+    "naehe_quartile": [
+      {
+        "name": "naehe in (-0.001, 0.102]",
+        "n": 407,
+        "symbole": 128,
+        "mittel_pnl_pct": 3.43,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 18.09,
+        "summe_pnl_pct": 1397.69,
+        "trefferquote_pct": 18.7,
+        "ci95_trades": [
+          1.76,
+          5.22
+        ],
+        "ci95_cluster_symbole": [
+          1.91,
+          5.14
+        ],
+        "ausstieg": {
+          "stop_loss": 330,
+          "time_exit": 77
+        },
+        "haltedauer_median": 6.0,
+        "aussagekraeftig": true
+      },
+      {
+        "name": "naehe in (0.102, 0.266]",
+        "n": 203,
+        "symbole": 103,
+        "mittel_pnl_pct": 5.58,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 19.91,
+        "summe_pnl_pct": 1132.55,
+        "trefferquote_pct": 25.1,
+        "ci95_trades": [
+          2.94,
+          8.41
+        ],
+        "ci95_cluster_symbole": [
+          2.94,
+          8.43
+        ],
+        "ausstieg": {
+          "stop_loss": 151,
+          "time_exit": 52
+        },
+        "haltedauer_median": 6.0,
+        "aussagekraeftig": true
+      },
+      {
+        "name": "naehe in (0.266, 0.689]",
+        "n": 203,
+        "symbole": 106,
+        "mittel_pnl_pct": 4.99,
+        "median_pnl_pct": -3.3,
+        "streuung_pnl_pct": 23.29,
+        "summe_pnl_pct": 1012.04,
+        "trefferquote_pct": 21.2,
+        "ci95_trades": [
+          2.16,
+          8.44
+        ],
+        "ci95_cluster_symbole": [
+          1.85,
+          8.74
+        ],
+        "ausstieg": {
+          "stop_loss": 159,
+          "time_exit": 44
+        },
+        "haltedauer_median": 10.0,
+        "aussagekraeftig": true
+      }
+    ],
+    "entartete_muster": 0,
+    "eindeutigkeit": {
+      "anteil_gleichstand_fib_score_pct": 73.6,
+      "anteil_gleichstand_naehe_pct": 33.9,
+      "anteil_gleichstand_naehe_weich_pct": 0.0,
+      "verschiedene_fib_score_werte": 6,
+      "verschiedene_naehe_werte": 510,
+      "verschiedene_naehe_weich_werte": 813,
+      "muster_gesamt": 813,
+      "bemerkung": "Gemessen auf den Mustern DIESER Untersuchung (Stufen 0-3, nur bearish, nur frisch) und je Symbol. Die 87 % / 99 % aus TB-20 beziehen sich auf eine weitere Menge (alle Richtungen, ohne Frischefilter) und sind deshalb nicht Ziffer fuer Ziffer dieselbe Zahl - die Aussage ist dieselbe."
+    }
+  },
+  "macht": {
+    "streuung_pnl_pct": 19.95,
+    "hinweis": "Normalapproximation, Groessenordnung - keine Planungszahl. Sie beantwortet die Frage, die bei einem Nicht-Ergebnis sofort kommt: war die Messung ueberhaupt in der Lage, etwas zu finden?",
+    "trades_je_gruppe_fuer": {
+      "1pp": 6248,
+      "2pp": 1562,
+      "5pp": 250
+    }
+  },
+  "anzahl_vergleiche": 22,
+  "hinweis_mehrfachvergleiche": "22 Vergleiche. Bei 5 % Irrtumswahrscheinlichkeit sind rein zufaellig rund 1.1 davon 'auffaellig'. Ein einzelner p-Wert knapp unter 0,05 ist hier kein Befund."
+}

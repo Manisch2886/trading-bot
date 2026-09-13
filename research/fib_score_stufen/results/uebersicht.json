@@ -1,0 +1,630 @@
+{
+  "hinweis": "TB-25 IST EINE MESSUNG, KEINE EMPFEHLUNG UND KEINE AENDERUNG. Es wurde NICHTS am Bot-Code geaendert - live_params.py, forward_test.py, elliott_wave_counter.py und zigzag_indicator.py bleiben unangetastet. Was aus dem Ergebnis folgt (Schwelle, Auswahlregel, Fortbestand des Bots), entscheidet der Nutzer.",
+  "bots": {
+    "elliott_wave": {
+      "ausgang": {
+        "schluessel": "kein_unterschied",
+        "text": "Kein Unterschied zwischen den Stufen - der Score traegt nichts",
+        "jeder_schritt_unterscheidbar": false,
+        "stufe_3_hebt_sich_ab": false,
+        "punktwerte_steigen_monoton": true,
+        "schwelle_wirkt": true
+      },
+      "datenbasis": {
+        "symbole": 18,
+        "symbolliste": [
+          "AAVEUSDT",
+          "ADAUSDT",
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ENAUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "PEPEUSDT",
+          "PROMUSDT",
+          "SOLUSDT",
+          "SUIUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "WLDUSDT",
+          "XRPUSDT",
+          "ZECUSDT"
+        ],
+        "kerzen_gesamt": 706362,
+        "von": "2021-09-01 13:00:00",
+        "bis": "2026-08-31 12:00:00"
+      },
+      "parameter": {
+        "deviation_pct": 10.0,
+        "stop_loss_pct": 6.0,
+        "take_profit_fib": 0.618,
+        "use_take_profit": true,
+        "signal_freshness_bars": 48,
+        "max_hold_bars": 240,
+        "trading_fee_pct": 0.1,
+        "slippage_pct": 0.05,
+        "live_params_last_updated": "2026-09-07"
+      },
+      "stufen": [
+        {
+          "name": "Stufe 0",
+          "n": 95,
+          "mittel_pnl_pct": 0.07,
+          "ci95_trades": [
+            -2.13,
+            2.55
+          ],
+          "ci95_cluster_symbole": [
+            -2.31,
+            2.43
+          ],
+          "trefferquote_pct": 28.4,
+          "aussagekraeftig": true
+        },
+        {
+          "name": "Stufe 1",
+          "n": 83,
+          "mittel_pnl_pct": 3.9,
+          "ci95_trades": [
+            0.86,
+            7.33
+          ],
+          "ci95_cluster_symbole": [
+            1.37,
+            6.19
+          ],
+          "trefferquote_pct": 43.4,
+          "aussagekraeftig": true
+        },
+        {
+          "name": "Stufe 2",
+          "n": 42,
+          "mittel_pnl_pct": 4.02,
+          "ci95_trades": [
+            0.05,
+            8.29
+          ],
+          "ci95_cluster_symbole": [
+            0.8,
+            7.35
+          ],
+          "trefferquote_pct": 42.9,
+          "aussagekraeftig": true
+        },
+        {
+          "name": "Stufe 3",
+          "n": 5,
+          "mittel_pnl_pct": 10.42,
+          "ci95_trades": [
+            -3.69,
+            24.54
+          ],
+          "ci95_cluster_symbole": [
+            -6.3,
+            21.57
+          ],
+          "trefferquote_pct": 60.0,
+          "aussagekraeftig": false
+        }
+      ],
+      "schwellenfrage": {
+        "name": "oberhalb der Schwelle (Stufe >=1) gegen Stufe 0",
+        "auswertbar": true,
+        "n_a": 130,
+        "n_b": 95,
+        "mittel_a": 4.19,
+        "mittel_b": 0.07,
+        "differenz_pp": 4.12,
+        "ci95_differenz": [
+          0.7,
+          7.48
+        ],
+        "ci_schliesst_null_ein": false,
+        "ci95_differenz_cluster_symbole": [
+          1.26,
+          7.29
+        ],
+        "ci_cluster_schliesst_null_ein": false,
+        "p_permutation": 0.028,
+        "weglassprobe_symbole": {
+          "differenz_voll": 4.121182,
+          "min": 3.195167,
+          "max": 4.763848,
+          "vorzeichen_bleibt": true,
+          "weggelassene_symbole": 18,
+          "symbol_mit_groesstem_einfluss": "SUIUSDT",
+          "differenz_ohne_dieses_symbol": 3.195167
+        },
+        "trefferquote_a_pct": 43.8,
+        "trefferquote_b_pct": 28.4,
+        "differenz_trefferquote_pp": 15.4
+      },
+      "spearman_stufe": {
+        "rho": 0.163541,
+        "p_wert": 0.014399,
+        "n": 225,
+        "ziehungen": 10000
+      },
+      "bedingungen": [
+        {
+          "bedingung": "w2_w1",
+          "titel": "Welle 2 / Welle 1",
+          "n_a": 55,
+          "mittel_a": 5.12,
+          "n_b": 170,
+          "mittel_b": 1.59,
+          "differenz_pp": 3.53,
+          "ci95_differenz": [
+            -0.9,
+            8.03
+          ],
+          "p_permutation": 0.1014
+        },
+        {
+          "bedingung": "w3_w1",
+          "titel": "Welle 3 / Welle 1",
+          "n_a": 57,
+          "mittel_a": 2.27,
+          "n_b": 168,
+          "mittel_b": 2.51,
+          "differenz_pp": -0.24,
+          "ci95_differenz": [
+            -4.18,
+            3.78
+          ],
+          "p_permutation": 0.909
+        },
+        {
+          "bedingung": "w4_w3",
+          "titel": "Welle 4 / Welle 3",
+          "n_a": 70,
+          "mittel_a": 5.81,
+          "n_b": 155,
+          "mittel_b": 0.93,
+          "differenz_pp": 4.88,
+          "ci95_differenz": [
+            0.85,
+            9.13
+          ],
+          "p_permutation": 0.0117
+        }
+      ],
+      "rundungsartefakt": {
+        "name": "Stufe 1: 0,34 gegen 0,33",
+        "auswertbar": true,
+        "n_a": 27,
+        "n_b": 56,
+        "mittel_a": 4.3,
+        "mittel_b": 3.71,
+        "differenz_pp": 0.59,
+        "ci95_differenz": [
+          -6.2,
+          7.56
+        ],
+        "ci_schliesst_null_ein": true,
+        "ci95_differenz_cluster_symbole": [
+          -6.27,
+          10.35
+        ],
+        "ci_cluster_schliesst_null_ein": true,
+        "p_permutation": 0.8714,
+        "weglassprobe_symbole": {
+          "differenz_voll": 0.591647,
+          "min": -2.197885,
+          "max": 2.884364,
+          "vorzeichen_bleibt": false,
+          "weggelassene_symbole": 18,
+          "symbol_mit_groesstem_einfluss": "PROMUSDT",
+          "differenz_ohne_dieses_symbol": -2.197885
+        },
+        "trefferquote_a_pct": 48.1,
+        "trefferquote_b_pct": 41.1,
+        "differenz_trefferquote_pp": 7.1
+      },
+      "stetig": {
+        "naehe": {
+          "rho": 0.108551,
+          "p_wert": 0.10489,
+          "n": 225,
+          "ziehungen": 10000
+        },
+        "naehe_weich": {
+          "rho": 0.130262,
+          "p_wert": 0.052495,
+          "n": 225,
+          "ziehungen": 10000
+        },
+        "eindeutigkeit": {
+          "anteil_gleichstand_fib_score_pct": 85.8,
+          "anteil_gleichstand_naehe_pct": 41.3,
+          "anteil_gleichstand_naehe_weich_pct": 0.0,
+          "verschiedene_fib_score_werte": 6,
+          "verschiedene_naehe_werte": 131,
+          "verschiedene_naehe_weich_werte": 225,
+          "muster_gesamt": 225,
+          "bemerkung": "Gemessen auf den Mustern DIESER Untersuchung (Stufen 0-3, nur bearish, nur frisch) und je Symbol. Die 87 % / 99 % aus TB-20 beziehen sich auf eine weitere Menge (alle Richtungen, ohne Frischefilter) und sind deshalb nicht Ziffer fuer Ziffer dieselbe Zahl - die Aussage ist dieselbe."
+        }
+      },
+      "anzahl_vergleiche": 22
+    },
+    "elliott_wave_stocks": {
+      "ausgang": {
+        "schluessel": "kein_unterschied",
+        "text": "Kein Unterschied zwischen den Stufen - der Score traegt nichts",
+        "jeder_schritt_unterscheidbar": false,
+        "stufe_3_hebt_sich_ab": false,
+        "punktwerte_steigen_monoton": true,
+        "schwelle_wirkt": false
+      },
+      "datenbasis": {
+        "symbole": 147,
+        "symbolliste": [
+          "AAPL",
+          "ABBV",
+          "ABNB",
+          "ABT",
+          "ACN",
+          "ADBE",
+          "ADI",
+          "ADP",
+          "AMAT",
+          "AMD",
+          "AMGN",
+          "AMZN",
+          "ANET",
+          "APH",
+          "APP",
+          "AVGO",
+          "AXP",
+          "BA",
+          "BAC",
+          "BKNG",
+          "BLK",
+          "BMY",
+          "BNY",
+          "BRK-B",
+          "BX",
+          "C",
+          "CAT",
+          "CB",
+          "CDNS",
+          "CMCSA",
+          "CME",
+          "COF",
+          "COP",
+          "COST",
+          "CRM",
+          "CRWD",
+          "CSCO",
+          "CSX",
+          "CVS",
+          "CVX",
+          "DASH",
+          "DE",
+          "DELL",
+          "DHR",
+          "DIS",
+          "DUK",
+          "ELV",
+          "EQIX",
+          "ETN",
+          "FCX",
+          "FTNT",
+          "GD",
+          "GE",
+          "GILD",
+          "GLW",
+          "GOOG",
+          "GOOGL",
+          "GS",
+          "HCA",
+          "HD",
+          "HOOD",
+          "HWM",
+          "IBM",
+          "ICE",
+          "INTC",
+          "INTU",
+          "ISRG",
+          "JCI",
+          "JNJ",
+          "JPM",
+          "KKR",
+          "KLAC",
+          "KO",
+          "LIN",
+          "LLY",
+          "LMT",
+          "LOW",
+          "LRCX",
+          "MA",
+          "MAR",
+          "MCD",
+          "MCK",
+          "MCO",
+          "MDT",
+          "META",
+          "MMM",
+          "MNST",
+          "MO",
+          "MPC",
+          "MRK",
+          "MRSH",
+          "MRVL",
+          "MS",
+          "MSFT",
+          "MU",
+          "NEE",
+          "NEM",
+          "NFLX",
+          "NOW",
+          "NVDA",
+          "ORCL",
+          "PANW",
+          "PEP",
+          "PFE",
+          "PG",
+          "PGR",
+          "PH",
+          "PLD",
+          "PLTR",
+          "PM",
+          "PNC",
+          "PSX",
+          "PWR",
+          "QCOM",
+          "REGN",
+          "RTX",
+          "SBUX",
+          "SCHW",
+          "SLB",
+          "SO",
+          "SPGI",
+          "STX",
+          "SYK",
+          "T",
+          "TJX",
+          "TMO",
+          "TMUS",
+          "TSLA",
+          "TT",
+          "TXN",
+          "UBER",
+          "UNH",
+          "UNP",
+          "UPS",
+          "USB",
+          "V",
+          "VLO",
+          "VRT",
+          "VRTX",
+          "VZ",
+          "WDC",
+          "WELL",
+          "WFC",
+          "WM",
+          "WMB",
+          "WMT",
+          "XOM"
+        ],
+        "kerzen_gesamt": 361942,
+        "von": "2016-08-31 00:00:00",
+        "bis": "2026-09-01 00:00:00"
+      },
+      "parameter": {
+        "deviation_pct": 5.0,
+        "stop_loss_pct": 3.0,
+        "take_profit_fib": 0.236,
+        "use_take_profit": false,
+        "signal_freshness_bars": 5,
+        "max_hold_bars": 90,
+        "trading_fee_pct": 0.1,
+        "slippage_pct": 0.05,
+        "live_params_last_updated": "2026-09-03"
+      },
+      "stufen": [
+        {
+          "name": "Stufe 0",
+          "n": 303,
+          "mittel_pnl_pct": 3.61,
+          "ci95_trades": [
+            1.77,
+            5.52
+          ],
+          "ci95_cluster_symbole": [
+            1.92,
+            5.5
+          ],
+          "trefferquote_pct": 20.1,
+          "aussagekraeftig": true
+        },
+        {
+          "name": "Stufe 1",
+          "n": 363,
+          "mittel_pnl_pct": 4.59,
+          "ci95_trades": [
+            2.48,
+            7.05
+          ],
+          "ci95_cluster_symbole": [
+            2.67,
+            6.94
+          ],
+          "trefferquote_pct": 20.1,
+          "aussagekraeftig": true
+        },
+        {
+          "name": "Stufe 2",
+          "n": 127,
+          "mittel_pnl_pct": 4.81,
+          "ci95_trades": [
+            1.64,
+            8.52
+          ],
+          "ci95_cluster_symbole": [
+            1.68,
+            8.78
+          ],
+          "trefferquote_pct": 22.0,
+          "aussagekraeftig": true
+        },
+        {
+          "name": "Stufe 3",
+          "n": 20,
+          "mittel_pnl_pct": 8.53,
+          "ci95_trades": [
+            1.78,
+            16.48
+          ],
+          "ci95_cluster_symbole": [
+            2.42,
+            15.85
+          ],
+          "trefferquote_pct": 40.0,
+          "aussagekraeftig": false
+        }
+      ],
+      "schwellenfrage": {
+        "name": "oberhalb der Schwelle (Stufe >=1) gegen Stufe 0",
+        "auswertbar": true,
+        "n_a": 510,
+        "n_b": 303,
+        "mittel_a": 4.8,
+        "mittel_b": 3.61,
+        "differenz_pp": 1.19,
+        "ci95_differenz": [
+          -1.45,
+          3.93
+        ],
+        "ci_schliesst_null_ein": true,
+        "ci95_differenz_cluster_symbole": [
+          -1.31,
+          3.7
+        ],
+        "ci_cluster_schliesst_null_ein": true,
+        "p_permutation": 0.4139,
+        "weglassprobe_symbole": {
+          "differenz_voll": 1.193566,
+          "min": 0.722382,
+          "max": 1.594006,
+          "vorzeichen_bleibt": true,
+          "weggelassene_symbole": 144,
+          "symbol_mit_groesstem_einfluss": "INTC",
+          "differenz_ohne_dieses_symbol": 0.722382
+        },
+        "trefferquote_a_pct": 21.4,
+        "trefferquote_b_pct": 20.1,
+        "differenz_trefferquote_pp": 1.2
+      },
+      "spearman_stufe": {
+        "rho": 0.038562,
+        "p_wert": 0.265873,
+        "n": 813,
+        "ziehungen": 10000
+      },
+      "bedingungen": [
+        {
+          "bedingung": "w2_w1",
+          "titel": "Welle 2 / Welle 1",
+          "n_a": 168,
+          "mittel_a": 5.69,
+          "n_b": 645,
+          "mittel_b": 4.01,
+          "differenz_pp": 1.68,
+          "ci95_differenz": [
+            -1.61,
+            5.38
+          ],
+          "p_permutation": 0.328
+        },
+        {
+          "bedingung": "w3_w1",
+          "titel": "Welle 3 / Welle 1",
+          "n_a": 204,
+          "mittel_a": 3.77,
+          "n_b": 609,
+          "mittel_b": 4.56,
+          "differenz_pp": -0.79,
+          "ci95_differenz": [
+            -3.55,
+            2.18
+          ],
+          "p_permutation": 0.6306
+        },
+        {
+          "bedingung": "w4_w3",
+          "titel": "Welle 4 / Welle 3",
+          "n_a": 305,
+          "mittel_a": 5.5,
+          "n_b": 508,
+          "mittel_b": 3.67,
+          "differenz_pp": 1.82,
+          "ci95_differenz": [
+            -1.1,
+            4.92
+          ],
+          "p_permutation": 0.2167
+        }
+      ],
+      "rundungsartefakt": {
+        "name": "Stufe 1: 0,34 gegen 0,33",
+        "auswertbar": true,
+        "n_a": 75,
+        "n_b": 288,
+        "mittel_a": 6.79,
+        "mittel_b": 4.02,
+        "differenz_pp": 2.77,
+        "ci95_differenz": [
+          -2.8,
+          9.39
+        ],
+        "ci_schliesst_null_ein": true,
+        "ci95_differenz_cluster_symbole": [
+          -3.08,
+          9.2
+        ],
+        "ci_cluster_schliesst_null_ein": true,
+        "p_permutation": 0.3448,
+        "weglassprobe_symbole": {
+          "differenz_voll": 2.771963,
+          "min": 0.491862,
+          "max": 3.685925,
+          "vorzeichen_bleibt": true,
+          "weggelassene_symbole": 125,
+          "symbol_mit_groesstem_einfluss": "CRWD",
+          "differenz_ohne_dieses_symbol": 0.491862
+        },
+        "trefferquote_a_pct": 22.7,
+        "trefferquote_b_pct": 19.4,
+        "differenz_trefferquote_pp": 3.2
+      },
+      "stetig": {
+        "naehe": {
+          "rho": 0.038446,
+          "p_wert": 0.275472,
+          "n": 813,
+          "ziehungen": 10000
+        },
+        "naehe_weich": {
+          "rho": 0.054165,
+          "p_wert": 0.124788,
+          "n": 813,
+          "ziehungen": 10000
+        },
+        "eindeutigkeit": {
+          "anteil_gleichstand_fib_score_pct": 73.6,
+          "anteil_gleichstand_naehe_pct": 33.9,
+          "anteil_gleichstand_naehe_weich_pct": 0.0,
+          "verschiedene_fib_score_werte": 6,
+          "verschiedene_naehe_werte": 510,
+          "verschiedene_naehe_weich_werte": 813,
+          "muster_gesamt": 813,
+          "bemerkung": "Gemessen auf den Mustern DIESER Untersuchung (Stufen 0-3, nur bearish, nur frisch) und je Symbol. Die 87 % / 99 % aus TB-20 beziehen sich auf eine weitere Menge (alle Richtungen, ohne Frischefilter) und sind deshalb nicht Ziffer fuer Ziffer dieselbe Zahl - die Aussage ist dieselbe."
+        }
+      },
+      "anzahl_vergleiche": 22
+    }
+  }
+}
