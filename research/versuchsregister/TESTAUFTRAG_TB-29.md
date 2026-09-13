@@ -257,6 +257,16 @@ Abhängigkeiten (`pandas`, `numpy`, `scipy`, `yfinance`, `python-binance`,
 `dashboard/test_dashboard.py` mit 784/784 (mit `node`; ohne `node` sind es
 780/780) und `broker/test_ibkr.py` mit 168/168.
 
+**Eine Falle beim Nachprüfen:**
+`research/tb24_haltedauern/test_haltedauer_kern.py` hat in Abschnitt 13 eine
+Wache, die `git status --porcelain` auf fremde Pfade prüft. Sie schlägt an,
+solange der neue Ordner **nicht committet** ist — der Befund lautet dann
+`keine fremden Pfade geaendert (gefunden: ['research/versuchsregister/'])`.
+Auf dem committeten Zweig besteht der Test: `Alle Pruefungen bestanden.`
+Wer die Suite auf einem Arbeitsverzeichnis mit uncommitteten Dateien laufen
+lässt, sieht diesen einen zusätzlichen Fehlschlag — er ist kein Befund an der
+Sache.
+
 ### Zum Punkt „`ergebniskurven.py` muss `9x AKTUELL` melden"
 
 Der Auftrag nennt das als Randbedingung. **Auf unverändertem `main` meldet das
