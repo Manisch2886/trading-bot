@@ -24,6 +24,73 @@ _P = get_strategy_paths(__file__)
 RESULTS_DIR = _P["RESULTS_DIR"]
 
 
+# ---------------------------------------------------------------------------
+# Rangfolge zwischen mehreren gueltigen Wellenmustern (TB-20)
+# ---------------------------------------------------------------------------
+# `fib_score` ist eine Summe aus drei festen Teilpunkten (0.34 / 0.33 / 0.33),
+# auf zwei Stellen gerundet. Er kann deshalb nur SECHS Werte annehmen, davon
+# FUENF oberhalb von min_fib_score=0.3: 0.33, 0.34, 0.66, 0.67 und 1.0.
+# Gleichstaende sind damit nicht der Ausnahme-, sondern der Regelfall -
+# gemessen am Datenstand 13.09.2026 stehen 87 % der erkannten Krypto-Muster
+# und 99 % der Aktien-Muster in einer Gleichstandsgruppe.
+#
+# Ohne benanntes Zweitkriterium entscheidet bei Gleichstand die
+# SORTIERIMPLEMENTIERUNG, welches Muster oben steht: `sort_values` ohne
+# `kind` sortiert mit Quicksort, und dessen Vertauschung von Gleichstaenden
+# haengt an Feldlaenge, Feldinhalt und numpy-Version. Gemessen weicht die
+# Ausgabereihenfolge bei 19 von 23 Krypto- und 147 von 150 Aktiensymbolen
+# zwischen Quicksort und stabiler Sortierung ab; bei 35 der 150
+# Aktiensymbole steht ein ANDERES Muster auf Platz 1.
+#
+# ZWEITKRITERIUM: `end_time` absteigend - das JUENGERE Muster zuerst.
+# Das ist keine neu erfundene Regel, sondern die feinere Fassung einer im
+# Projekt schon getroffenen: forward_test.py verwirft Muster, deren Welle 5
+# laenger als SIGNAL_FRESHNESS_HOURS bzw. SIGNAL_FRESHNESS_DAYS zurueckliegt.
+# Der Grund steht dort im Kommentar - der Einstieg erfolgt zum AKTUELLEN
+# Kurs, nicht zum Kurs am Wellenende. Je weiter das Wellenende zurueckliegt,
+# desto weiter ist der Einstiegskurs vom erkannten Aufbau weggelaufen. Bei
+# gleichem Fibonacci-Urteil ist das zuletzt abgeschlossene Muster deshalb
+# das, fuer das die Strategie gebaut ist. Die beiden anderen naheliegenden
+# Kandidaten sind bewusst NICHT gewaehlt: "groessere Amplitude" verschiebt
+# ueber target_price = entry + total_move * TAKE_PROFIT_FIB das Kursziel und
+# waere damit eine Strategieaenderung, keine Rangregel; "kuerzere Dauer" hat
+# in diesem Projekt keine dokumentierte Begruendung.
+#
+# DRITTKRITERIUM: `start_time` absteigend - bei gleichem Ende das KUERZERE
+# Muster, aus demselben Grund. Innerhalb eines Symbols ist `end_time` bereits
+# eindeutig (gemessen: 0 Dubletten in allen 173 Symbolen beider Bots), dieses
+# Kriterium greift dort also nie. Es steht da, damit die Rangfolge auch dann
+# benannt bleibt, wenn Muster mehrerer Symbole gemeinsam sortiert werden.
+#
+# `kind="stable"` steht zusaetzlich da - aber es traegt heute NICHTS, und das
+# gehoert hierher, damit niemand sich darauf verlaesst: pandas wertet `kind`
+# bei einer MEHRSPALTIGEN `sort_values` nicht aus, dieser Pfad laeuft ueber
+# `lexsort` und ist ohnehin stabil (nachgemessen mit pandas 3.0.5:
+# `kind="quicksort"` liefert bei vollstaendigem Gleichstand dieselbe
+# Reihenfolge wie `kind="stable"`). Wirksam wird der Parameter erst, wenn
+# `RANGFOLGE` je wieder auf EINE Spalte zusammenschrumpft - genau der
+# Rueckschritt, den `shared/test_wellenauswahl.py` als Mutante "wie main"
+# abfaengt. Er steht deshalb als Absichtserklaerung, nicht als Wache.
+#
+# NICHT geaendert wurde die Ueberlappungsregel in remove_overlapping: dort
+# gewinnt bei Gleichstand weiterhin das FRUEHER erkannte Muster (der
+# Vergleich ist `>`, nicht `>=`). Das ist kein Widerspruch zur Rangfolge
+# oben, sondern die andere Frage: bei einer Ueberlappung geht es darum,
+# welches Muster EIN Marktereignis vertritt, und dort darf ein spaeteres
+# kein frueheres nachtraeglich verdraengen - genau das begruendet der
+# Modulkopf von find_causal_waves als Look-Ahead. Die Rangfolge dagegen
+# entscheidet zwischen VERSCHIEDENEN Ereignissen, die gleichzeitig zur
+# Auswahl stehen.
+RANGFOLGE = ["fib_score", "end_time", "start_time"]
+RANGFOLGE_AUFSTEIGEND = [False, False, False]      # alle drei absteigend
+
+
+def nach_rangfolge(waves: pd.DataFrame) -> pd.DataFrame:
+    """Sortiert Wellenmuster nach der oben begruendeten Rangfolge."""
+    return waves.sort_values(RANGFOLGE, ascending=RANGFOLGE_AUFSTEIGEND,
+                             kind="stable").reset_index(drop=True)
+
+
 def is_valid_impulse(points: list) -> bool:
     """
     Prueft, ob 6 aufeinanderfolgende Pivots (Start + Welle 1-5) die
@@ -103,7 +170,8 @@ def find_impulse_waves(zigzag: pd.DataFrame, min_fib_score: float = 0.3) -> pd.D
     jede Kombination auf Regelkonformitaet + Fibonacci-Score.
 
     Rueckgabe: DataFrame aller gefundenen gueltigen Impulskandidaten,
-               sortiert nach Fibonacci-Score (beste zuerst).
+               sortiert nach der RANGFOLGE oben (bester zuerst; bei
+               gleichem Fibonacci-Score das juengere Muster).
     """
     candidates = []
     prices = zigzag["price"].values
@@ -134,7 +202,7 @@ def find_impulse_waves(zigzag: pd.DataFrame, min_fib_score: float = 0.3) -> pd.D
 
     result = pd.DataFrame(candidates)
     if not result.empty:
-        result = result.sort_values("fib_score", ascending=False).reset_index(drop=True)
+        result = nach_rangfolge(result)
     return result
 
 
@@ -143,12 +211,20 @@ def remove_overlapping(impulses: pd.DataFrame) -> pd.DataFrame:
     Entfernt ueberlappende Wellenmuster (gleiches Marktereignis mehrfach
     erkannt). Behaelt pro Ueberlappungsgruppe nur den Kandidaten mit dem
     besten Fibonacci-Score, damit einzelne Ereignisse nicht mehrfach als
-    unabhaengige Trades in den Backtest einfliessen.
+    unabhaengige Trades in den Backtest einfliessen. Bei GLEICHEM Score
+    bleibt das frueher erkannte Muster stehen (der Vergleich ist `>`).
+
+    Rueckgabe: sortiert nach der RANGFOLGE oben.
     """
     if impulses.empty:
         return impulses
 
-    sorted_df = impulses.sort_values("start_time").reset_index(drop=True)
+    # Der Durchlauf ist rein chronologisch; `start_time` ist je Symbol
+    # eindeutig (gemessen: 0 Dubletten in allen 173 Symbolen beider Bots),
+    # ein fachliches Zweitkriterium hat hier also nichts zu entscheiden.
+    # `kind="stable"` steht als Absicherung, damit der Durchlauf auch bei
+    # einem doppelten `start_time` nicht von Quicksort abhaengt.
+    sorted_df = impulses.sort_values("start_time", kind="stable").reset_index(drop=True)
     kept = []
 
     for _, row in sorted_df.iterrows():
@@ -163,8 +239,7 @@ def remove_overlapping(impulses: pd.DataFrame) -> pd.DataFrame:
         if not overlaps_kept:
             kept.append(row)
 
-    result = pd.DataFrame(kept).sort_values("fib_score", ascending=False).reset_index(drop=True)
-    return result
+    return nach_rangfolge(pd.DataFrame(kept))
 
 
 def find_causal_waves(zigzag: pd.DataFrame, min_fib_score: float = 0.3,
