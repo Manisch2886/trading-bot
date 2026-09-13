@@ -11,6 +11,7 @@ import os
 import sys
 import smtplib
 import sqlite3
+import textwrap
 from datetime import datetime
 from email.mime.text import MIMEText
 
@@ -44,7 +45,7 @@ from notify import send_report
 # vorgesehen.
 SEND_VIA_EMAIL = False
 
-from param_search_agent import run_agent_search
+from param_search_agent import run_agent_search, zielmass_zeile
 from quarterly_interpreter import generate_recommendation
 from empfehlung_format import (formatiere_typ_a, formatiere_typ_b,
                                 pflichtblock_typ_b)
@@ -112,7 +113,7 @@ def format_wf_result(label: str, wf: dict) -> str:
 
 
 def build_report(current_wf: dict, proposed_params: dict, proposed_wf: dict, real_stats: dict,
-                  recommendation: str = "") -> str:
+                  recommendation: str = "", zielmass_hinweis: str = "") -> str:
     lines = []
     lines.append(f"Vierteljaehrliches Strategie-Review [{STRATEGY_NAME}]")
     lines.append(f"{datetime.utcnow().strftime('%d.%m.%Y %H:%M')} UTC")
@@ -136,8 +137,17 @@ def build_report(current_wf: dict, proposed_params: dict, proposed_wf: dict, rea
         # formuliert - ein Modell koennte ihn abschwaechen oder vergessen,
         # eine Konstante nicht. Er steht immer direkt unter der Ueberschrift,
         # also VOR den Zahlen.
+        # Auf welchem Mass der Agent ausgewaehlt hat. Steht direkt bei den
+        # Zahlen, weil ein Vorschlag ohne seine Grundlage eine Ebene hoeher
+        # genau dasselbe Problem erzeugt: niemand kann ihn mehr nachvollziehen.
+        zielmass_block = []
+        if zielmass_hinweis:
+            zielmass_block = ["", textwrap.fill(zielmass_hinweis, 58,
+                                                 initial_indent="  ",
+                                                 subsequent_indent="  ")]
         vorschlag_details = "\n".join([
             f"  {proposed_params}",
+        ] + zielmass_block + [
             "",
             format_wf_result("Walk-Forward (vorgeschlagene Parameter)", proposed_wf),
         ])
@@ -232,7 +242,8 @@ if __name__ == "__main__":
     else:
         print("(Keine Empfehlung erhalten - API-Key gesetzt?)")
 
-    report = build_report(current_wf, proposed_params, proposed_wf, real_stats, recommendation)
+    report = build_report(current_wf, proposed_params, proposed_wf, real_stats, recommendation,
+                           zielmass_hinweis=zielmass_zeile(search_result))
     print("\n" + report)
 
     subject = f"Quartals-Review [{STRATEGY_NAME}] - Parameter-Vorschlag"

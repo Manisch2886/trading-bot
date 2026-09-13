@@ -16,7 +16,7 @@ _STRATEGY_DIR = os.path.dirname(os.path.abspath(__file__))
 _SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "shared")
 sys.path.insert(0, _SHARED_DIR)
 
-from param_search_agent import run_agent_search
+from param_search_agent import run_agent_search, zielmass_zeile
 from multi_symbol_optimise import load_all_symbol_data, evaluate_combination_multi
 
 PARAM_SPEC = {
@@ -53,6 +53,9 @@ if __name__ == "__main__":
     print("AGENT-SUCHE ABGESCHLOSSEN")
     print("=" * 55)
     print(f"Getestete Kombinationen: {len(result['history'])}")
+    # Auf welchem Mass ausgewaehlt wurde - fest verdrahtet in
+    # param_search_agent.zielmass_zeile(), nicht vom Modell formuliert.
+    print(zielmass_zeile(result))
     if result["best"]:
         print(f"\nBestes gefundenes Ergebnis:")
         for k, v in result["best"].items():
