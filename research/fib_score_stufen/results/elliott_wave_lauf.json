@@ -1,0 +1,88 @@
+{
+  "hinweis": "TB-25 IST EINE MESSUNG, KEINE EMPFEHLUNG UND KEINE AENDERUNG. Es wurde NICHTS am Bot-Code geaendert - live_params.py, forward_test.py, elliott_wave_counter.py und zigzag_indicator.py bleiben unangetastet. Was aus dem Ergebnis folgt (Schwelle, Auswahlregel, Fortbestand des Bots), entscheidet der Nutzer.",
+  "bot": "elliott_wave",
+  "erzeugt": "2026-09-13 14:50:46",
+  "parameter": {
+    "deviation_pct": 10.0,
+    "stop_loss_pct": 6.0,
+    "take_profit_fib": 0.618,
+    "use_take_profit": true,
+    "signal_freshness_bars": 48,
+    "max_hold_bars": 240,
+    "trading_fee_pct": 0.1,
+    "slippage_pct": 0.05,
+    "live_params_last_updated": "2026-09-07"
+  },
+  "datenbasis": {
+    "symbole": 18,
+    "symbolliste": [
+      "AAVEUSDT",
+      "ADAUSDT",
+      "BNBUSDT",
+      "BTCUSDT",
+      "DOGEUSDT",
+      "ENAUSDT",
+      "ETHUSDT",
+      "LINKUSDT",
+      "NEARUSDT",
+      "PEPEUSDT",
+      "PROMUSDT",
+      "SOLUSDT",
+      "SUIUSDT",
+      "TRXUSDT",
+      "UNIUSDT",
+      "WLDUSDT",
+      "XRPUSDT",
+      "ZECUSDT"
+    ],
+    "kerzen_gesamt": 706362,
+    "von": "2021-09-01 13:00:00",
+    "bis": "2026-08-31 12:00:00"
+  },
+  "muster": {
+    "lauf_b_muster_gesamt": 225,
+    "lauf_b_muster_ohne_trade": 0,
+    "lauf_b_trades": 225,
+    "je_stufe": {
+      "0": 95,
+      "1": 83,
+      "2": 42,
+      "3": 5
+    },
+    "je_fib_score": {
+      "0.0": 95,
+      "0.33": 56,
+      "0.34": 27,
+      "0.66": 19,
+      "0.67": 23,
+      "1.0": 5
+    },
+    "symbole_mit_trades": 18
+  },
+  "identitaet_lauf_a_gegen_b": {
+    "trades_lauf_a_min_fib_0_3": 130,
+    "trades_lauf_b_stufe_ab_1": 130,
+    "gleiche_anzahl": true,
+    "zeile_fuer_zeile_identisch": true,
+    "geprueefte_spalten": [
+      "symbol",
+      "signal_time",
+      "entry_time",
+      "entry_price",
+      "exit_time",
+      "exit_price",
+      "result",
+      "pnl_pct",
+      "fib_score"
+    ],
+    "abweichende_spalten": {}
+  },
+  "kausalitaet": {
+    "wellen_funktion": "elliott_wave_counter.find_causal_waves",
+    "einstieg": "Schlusskurs des Bestaetigungsbalkens (entry_idx)",
+    "bemerkung": "Der seit PR #26 kausal korrigierte Pfad. run_backtest verweigert den Dienst ohne die Spalte entry_idx - ein Lauf mit Look-Ahead waere hier gar nicht moeglich."
+  },
+  "dateien": {
+    "muster_csv": "elliott_wave_muster.csv"
+  }
+}
