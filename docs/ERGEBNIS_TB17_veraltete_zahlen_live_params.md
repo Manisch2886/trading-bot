@@ -331,15 +331,57 @@ zusätzlichen Prüfungen sind hier also tatsächlich gelaufen.
 
 ## Was offen bleibt
 
-1. **`results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md` führt weiter
-   Look-Ahead-Zahlen** — als Punkt 18 im Übergabeprotokoll vermerkt. Die Datei
-   liegt unter `results/` (per Auftrag nicht anzufassen) und beschreibt einen
-   Lauf, der so stattgefunden hat. **Zu entscheiden:** Warnhinweis in die
-   Datei, oder Verlass auf den Vermerk in `live_params.py`.
-2. **Das schärfere Prüfkriterium ist nicht gemessen.** „Gleiche Zeit im Markt
+1. **Das schärfere Prüfkriterium ist nicht gemessen.** „Gleiche Zeit im Markt
    gegen das 95. Perzentil von Zufalls-Timing" ist als Auftrag an den
    Prüftermin Oktober 2026 notiert. Eine Messung wäre eine eigene
    Untersuchung unter `research/`.
-3. **Kein Gegenstück zu „mit/ohne Kursziel" auf sauberer Grundlage.** Die
+2. **Kein Gegenstück zu „mit/ohne Kursziel" auf sauberer Grundlage.** Die
    Entscheidung `USE_TAKE_PROFIT = False` ist durch die Rangfolge gestützt,
    ihr gemessener Hebel bleibt unbekannt.
+
+---
+
+## Nachtrag 2026-09-13: Warnhinweis in `EXPERIMENT_FINDINGS.md`
+
+Auf Wunsch des Nutzers nachgetragen — die ursprüngliche Aufgabe hatte
+`results/` ausgenommen.
+
+`results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md` trägt jetzt einen Kasten
+am Dateianfang und je eine Zeile unter den vier betroffenen Abschnitten sowie
+unter der Empfehlung. Der Kasten nennt die Ursache (Look-Ahead, PR #26), die
+heute gültigen Zahlen (+330,18 % / −22,70 % gegen Buy-and-Hold
++755,69 % / −34,83 %) und was von den Befunden bleibt.
+
+**Die Zahlen der Datei wurden NICHT umgerechnet — mit Absicht.** Sie haben
+eine aktive Aufgabe: `research/elliott_wave_lookahead/` benutzt sie als
+*veröffentlichte Baseline* und weist damit nach, dass die
+Look-Ahead-Reproduktion den damaligen Lauf wirklich trifft
+(`decisions.py` → `PUBLISHED_CELLS` mit +1500,53 % / −1,90 % und
++3084,09 % / −9,79 %; `verify_baseline.py` → `PUBLISHED`). Wer die Tabellen
+überschreibt, zerstört diesen Nachweis. Der Warnhinweis sagt das ausdrücklich,
+damit die nächste Sitzung nicht „aufräumt".
+
+Geprüft, dass die Datei von keinem Programm **gelesen** wird: alle Fundstellen
+von `EXPERIMENT_FINDINGS` im Repo sind Fliesstext in Kommentaren oder
+hartcodierte Vergleichszahlen — keine Stelle parst die Datei. Ein Kasten am
+Anfang kann also nichts brechen.
+
+### Ein Nebenbefund beim Anbringen des Hinweises
+
+Die abgelegte Ergebniskurve des Bots trug bis PR #86 **+1500,53 % bei
+−1,90 %** — das ist die Zahl der Variante **mit** Take-Profit, obwohl
+`USE_TAKE_PROFIT` am 2026-09-03 auf `False` gesetzt wurde. Belegt über die
+Trade-Zahl: die alte Kurve hatte 469 Zeilen, und genau 469 ausgeführte Trades
+nennt die Zelle „mit Take-Profit, Limit 8".
+
+**Die Kurve war also aus zwei unabhängigen Gründen veraltet** — dem Look-Ahead
+**und** einem Parameterwechsel, nach dem sie nie neu erzeugt wurde. PR #86
+hatte nur den ersten Grund genannt. Das ist ein Argument dafür,
+`shared/ergebniskurven.py` nach jeder Parameterübernahme laufen zu lassen,
+nicht nur nach einer Methodik-Korrektur.
+
+**Eigene Korrektur:** In der ersten Fassung dieses Dokuments und im Kommentar
+vom 2026-09-03 stand, PR #86 habe „für diese Konfiguration" statt
++1500,53 % / −1,90 % nun +352,72 % / −22,44 % gemessen. Das war ungenau — die
++1500,53 % gehören zur Variante *mit* Take-Profit, die +352,72 % zur heutigen
+*ohne*. Beide Stellen sind jetzt präzisiert.

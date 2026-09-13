@@ -53,10 +53,12 @@ Historie:
   Gesamtzeitraum, +204% statt +108% OOS)" bei Drawdowns von
   "-9.79%/-5.04% statt -1.90%/-1.65%". Alle acht Zahlen stammen aus
   results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md und damit aus
-  derselben Look-Ahead-Grundlage wie der Eintrag vom 2026-09-02; PR #86
-  hat die abgelegte Ergebniskurve nachgerechnet und fuer diese
-  Konfiguration statt +1500,53% / -1,90% tatsaechlich
-  +352,72% / -22,44% gemessen.
+  derselben Look-Ahead-Grundlage wie der Eintrag vom 2026-09-02.
+  Gueltig ist fuer die heutige Live-Konfiguration die Tabelle im Kopf
+  dieser Datei: +330,18% bei -22,70% (bzw. +352,72% bei -22,44% in der
+  vom Bot selbst erzeugten Ergebniskurve, PR #86 - identischer
+  Trade-Satz, nur eine andere Zeilenreihenfolge bei gleichzeitigen
+  Einstiegen, siehe BERICHT.md P-A5).
   Ein sauber gerechnetes Gegenstueck zum Paar "mit/ohne Kursziel" gibt es
   bis heute NICHT - deshalb steht hier absichtlich keine neue Zahl.
   Was die Entscheidung stattdessen traegt, ist eine Rangfolge:
@@ -65,9 +67,23 @@ Historie:
   zehn praktisch ausnahmslos ohne festes Kursziel arbeiten. Ein festes
   Ziel schadet also durchgehend - die Richtung der Entscheidung ist
   bestaetigt, nur ihr gemessener Hebel ist unbekannt.
-  (EXPERIMENT_FINDINGS.md selbst ist nicht mitkorrigiert worden: die
-  Datei liegt unter results/ und beschreibt einen Lauf, der so
-  stattgefunden hat. Sie ist als Quelle fuer heutige Zahlen unbrauchbar.)
+
+  NACHTRAG: EXPERIMENT_FINDINGS.md traegt seit dem 13.09.2026 einen
+  Warnhinweis (Kasten am Dateianfang plus eine Zeile je betroffenem
+  Abschnitt). Ihre Zahlen wurden dabei NICHT umgerechnet, und das mit
+  Absicht: research/elliott_wave_lookahead/ benutzt sie als
+  veroeffentlichte Baseline und weist damit nach, dass die
+  Look-Ahead-Reproduktion den damaligen Lauf wirklich trifft
+  (decisions.py PUBLISHED_CELLS, verify_baseline.py PUBLISHED). Wer die
+  Tabellen dort ueberschreibt, zerstoert diesen Nachweis.
+
+  Aufgefallen ist dabei noch etwas: die abgelegte Ergebniskurve des Bots
+  trug bis PR #86 +1500,53% bei -1,90% - das ist die Zahl der Variante
+  MIT Take-Profit, obwohl USE_TAKE_PROFIT am 2026-09-03 auf False
+  gesetzt wurde (die 469 ausgefuehrten Trades der alten Kurve entsprechen
+  genau jener Zelle). Die Kurve war also aus ZWEI unabhaengigen Gruenden
+  veraltet: dem Look-Ahead und einem Parameterwechsel, nach dem sie nie
+  neu erzeugt wurde.
 - 2026-09-08: Nur Dokumentation korrigiert, KEIN Parameter geaendert.
   Die Buy-and-Hold-Aussage vom 2026-09-02 ("schlaegt Buy-and-Hold klar,
   1458% vs. 756%") stammte von einer Backtest-Grundlage MIT Look-Ahead:

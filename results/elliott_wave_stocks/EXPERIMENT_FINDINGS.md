@@ -1,5 +1,71 @@
 # Experimente: Offene Punkte aus dem Übergabeprotokoll (Abschnitt 9, Punkte 1 & 2)
 
+> ## ⚠️ ALLE ZAHLEN IN DIESER DATEI STAMMEN VON EINER BACKTEST-GRUNDLAGE MIT LOOK-AHEAD
+>
+> **Nachtrag vom 2026-09-13 (Befund TB-17). Der Text unterhalb dieses Kastens
+> ist unverändert — er beschreibt einen Lauf, der so stattgefunden hat.**
+>
+> Die Experimente liefen im September 2026 gegen einen Backtest, der zum Preis
+> des Wellenende-Pivots einstieg. Ein Zigzag-Pivot **ist** aber erst dann ein
+> Pivot, wenn der Kurs sich danach um `deviation_pct` in die Gegenrichtung
+> bewegt hat — der Einstieg erfolgte also zu einem Kurs, der zu diesem
+> Zeitpunkt noch nicht als Signal bekannt sein konnte, und der Stop-Loss war
+> bis zur Bestätigung mathematisch unerreichbar. Das ist der Grund für die
+> durchweg sehr kleinen Drawdowns unten (−1,32 % bis −2,52 %): sie waren ein
+> Rechenfehler, keine Strategieeigenschaft. Behoben in **PR #26**
+> (`research/elliott_wave_lookahead/BERICHT.md`).
+>
+> **Was heute für die Live-Konfiguration gilt** (dev 5 % / Stop 3 % / kein
+> Kursziel / Limit 8), gemessen auf kausal sauberer Grundlage:
+>
+> | | Rendite (10 Jahre) | Max Drawdown | Calmar |
+> |---|---:|---:|---:|
+> | Buy-and-Hold | **+755,69 %** | −34,83 % | 21,70 |
+> | Live-Konfiguration | **+330,18 %** | **−22,70 %** | 14,55 |
+>
+> Quelle: `research/elliott_wave_params/BERICHT.md` Abschnitt 4 (PR #28).
+> **Buy-and-Hold schlägt diesen Bot** in der Rendite und im Calmar-Verhältnis;
+> keine der 252 dort geprüften Kombinationen kommt an die +755 % heran. Die
+> erneuerte Ergebniskurve des Bots weist **+352,72 % bei −22,44 %** aus
+> (PR #86) — die Differenz zu den +330,18 % ist kein Widerspruch, sondern die
+> Zeilenreihenfolge bei gleichzeitigen Einstiegen: identischer Trade-Satz,
+> stabile gegen instabile Sortierung (BERICHT.md, P-A5).
+>
+> ### Diese Zahlen bitte NICHT „korrigieren"
+>
+> Sie haben eine aktive Aufgabe: `research/elliott_wave_lookahead/` benutzt
+> sie als **veröffentlichte Baseline** und weist damit nach, dass die
+> Look-Ahead-Reproduktion den damaligen Lauf wirklich trifft — siehe
+> `decisions.py` (`PUBLISHED_CELLS`: +1500,53 % / −1,90 % für „mit
+> Take-Profit, Limit 8"; +3084,09 % / −9,79 % für „ohne Take-Profit,
+> Limit 8") und `verify_baseline.py` (`PUBLISHED`). Wer die Tabellen unten
+> überschreibt, zerstört diesen Nachweis. Deshalb steht hier ein Warnhinweis
+> und keine Umrechnung.
+>
+> ### Was von den Befunden bleibt
+>
+> * **`USE_TAKE_PROFIT = False` hält** — die Entscheidung ruht seit PR #28
+>   nicht mehr auf den Zahlen unten, sondern auf einer Rangfolge: unter den
+>   116 Kombinationen, die die fünf Mindestbedingungen bestehen, arbeiten die
+>   vorderen zehn praktisch ausnahmslos ohne festes Kursziel. Ein sauber
+>   gerechnetes Gegenstück zum Paar „mit/ohne Kursziel" existiert dagegen
+>   **nicht** — der gemessene Hebel der Entscheidung ist unbekannt.
+> * **Die Empfehlung „unbegrenztes Positionslimit" (Abschnitt 3 und
+>   Empfehlung) ist auf dieser Grundlage nicht mehr belastbar** und wurde nie
+>   übernommen; `MAX_CONCURRENT_POSITIONS` steht weiter auf 8. Ob 8 die
+>   richtige Zahl ist, ist nach wie vor ungeprüft (Übergabeprotokoll
+>   Abschnitt 9, Punkt 1).
+> * **Der Zusatzbefund zu `forward_test.py` in Abschnitt 4 gilt unverändert**
+>   — er betrifft die Code-Struktur, nicht die Kennzahlen.
+>
+> **Eine Falle, die hier schon zugeschlagen hat:** Die abgelegte
+> Ergebniskurve des Bots trug bis PR #86 die **+1500,53 % bei −1,90 %** aus
+> Abschnitt 1/3 — also die Zahl der Variante **mit** Take-Profit, obwohl
+> `USE_TAKE_PROFIT` am 2026-09-03 auf `False` gesetzt wurde. Sie war damit aus
+> **zwei** unabhängigen Gründen veraltet: dem Look-Ahead und einer nach dem
+> Parameterwechsel nie neu erzeugten Kurve. Die 469 ausgeführten Trades der
+> alten Kurve entsprechen genau der Zelle „mit Take-Profit, Limit 8".
+
 Stand: 2026-09-02. Beide Experimente nutzen die aktuellen Live-Parameter
 (`live_params.py`: Zigzag 5%, Stop-Loss 3%, Take-Profit-Fib 0.236,
 Positionslimit 8) als Fixpunkt und variieren jeweils **nur eine** Dimension —
@@ -17,6 +83,8 @@ python3 strategies/elliott_wave_stocks/experiment_no_take_profit.py
 ---
 
 ## 1. MAX_CONCURRENT_POSITIONS (Punkt 2)
+
+> ⚠️ **Look-Ahead-Grundlage — die Zahlen dieses Abschnitts gelten nicht mehr.** Siehe den Kasten am Dateianfang.
 
 | Limit | Endkapital (gesamt) | Rendite (gesamt) | Max DD (gesamt) | Endkapital (OOS) | Rendite (OOS) | Max DD (OOS) |
 |---|---|---|---|---|---|---|
@@ -46,6 +114,8 @@ machen könnte, auch wenn es historisch hier nicht sichtbar wurde.
 
 ## 2. Take-Profit aus ("Gewinne laufen lassen", Punkt 1)
 
+> ⚠️ **Look-Ahead-Grundlage — die Zahlen dieses Abschnitts gelten nicht mehr.** Siehe den Kasten am Dateianfang.
+
 | Variante | Trades | Win Rate | Ø PnL/Trade | Endkapital (gesamt) | Rendite (gesamt) | Max DD (gesamt) | Endkapital (OOS) | Rendite (OOS) | Max DD (OOS) |
 |---|---|---|---|---|---|---|---|---|---|
 | **Mit Take-Profit (aktuell live)** | 519 | 86,7% | 6,47% | 160.053 | +1500,5% | -1,90% | 20.787 | +107,9% | -1,65% |
@@ -70,6 +140,8 @@ von einem höheren Limit? — wird in Abschnitt 3 beantwortet.
 ---
 
 ## 3. Kombinierter Test: Take-Profit x Positionslimit (Folgeschritt)
+
+> ⚠️ **Look-Ahead-Grundlage — die Zahlen dieses Abschnitts gelten nicht mehr.** Siehe den Kasten am Dateianfang.
 
 Volle 2×4-Matrix (`experiment_combined.py`), gleiche feste Parameter wie oben.
 
@@ -114,6 +186,8 @@ also kein Nullsummenspiel, sondern verstärkt sich gegenseitig.
 ---
 
 ## 4. Vertiefung vor Entscheidung: Kapitalallokation, Exit-Logik, Concurrency
+
+> ⚠️ **Look-Ahead-Grundlage — die Kennzahlen dieses Abschnitts gelten nicht mehr.** Der Zusatzbefund zu `forward_test.py` am Ende des Abschnitts gilt dagegen unverändert: er betrifft die Code-Struktur, nicht die Zahlen.
 
 Auf Nutzerwunsch vor der Entscheidung genauer geklärt (`experiment_concurrency_stats.py`):
 
@@ -161,6 +235,8 @@ Backtest-Verhalten ab bzw. der Cronjob bricht ab.
 ---
 
 ## Empfehlung (zur Entscheidung, nicht automatisch übernommen)
+
+> ⚠️ **Diese Empfehlung ist auf Look-Ahead-Grundlage entstanden und wurde nie übernommen.** `MAX_CONCURRENT_POSITIONS` steht weiter auf 8. `USE_TAKE_PROFIT = False` wurde übernommen, hält aber aus einem anderen Grund als hier genannt — siehe den Kasten am Dateianfang.
 
 Alle drei getesteten Varianten zeigen ein konsistentes Out-of-Sample-Signal
 (Prinzip aus Protokoll Abschnitt 7.1: OOS zählt am meisten). Die stärkste

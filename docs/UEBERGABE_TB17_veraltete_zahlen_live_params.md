@@ -162,15 +162,14 @@ sind tatsächlich gelaufen.
 
 ## 6. Was offen bleibt
 
-1. **`results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md` führt weiter
-   Look-Ahead-Zahlen.** Als Punkt 18 im Übergabeprotokoll vermerkt. Die Datei
-   liegt unter `results/` und beschreibt einen Lauf, der so stattgefunden hat.
-   Zu entscheiden: Warnhinweis hinein, oder Verlass auf den Vermerk in
-   `live_params.py`.
-2. **Das schärfere Prüfkriterium ist nicht gemessen** — eigene Untersuchung
+1. **Das schärfere Prüfkriterium ist nicht gemessen** — eigene Untersuchung
    unter `research/` nötig.
-3. **Kein sauberes Gegenstück zu „mit/ohne Kursziel".** Die Entscheidung ist
+2. **Kein sauberes Gegenstück zu „mit/ohne Kursziel".** Die Entscheidung ist
    durch die Rangfolge gestützt, ihr gemessener Hebel bleibt unbekannt.
+3. **Neu aufgefallen: die Ergebniskurven hängen an der Parameterübernahme.**
+   Siehe den Nebenbefund im Nachtrag unten — `shared/ergebniskurven.py` sollte
+   nach **jeder** Parameterübernahme laufen, nicht nur nach einer
+   Methodik-Korrektur. Nicht umgesetzt, nur beobachtet.
 
 ---
 
@@ -183,4 +182,47 @@ sind tatsächlich gelaufen.
 | `shared/test_live_params_werte.py` | **neu**, 69 Prüfungen |
 | `shared/test_kursdaten.py` | Sperre auf Wertevergleich präzisiert |
 | `docs/ERGEBNIS_TB17_veraltete_zahlen_live_params.md` | Ergebnisdokument |
+| `results/elliott_wave_stocks/EXPERIMENT_FINDINGS.md` | **Warnhinweis** — Kasten am Anfang plus Zeile je Abschnitt; **keine Zahl umgerechnet** |
 | `docs/UEBERGABE_TB17_veraltete_zahlen_live_params.md` | dieses Dokument |
+
+---
+
+## 8. Nachtrag 2026-09-13: Warnhinweis in `EXPERIMENT_FINDINGS.md`
+
+Auf Ihren Wunsch nachgetragen; die ursprüngliche Aufgabe hatte `results/`
+ausgenommen. Damit ist Punkt 18 des Übergabeprotokolls **entschieden** statt
+offen.
+
+**Was die Datei jetzt trägt:** einen Kasten am Dateianfang (Ursache, die heute
+gültigen Zahlen, was von den Befunden bleibt) und je eine Zeile unter den vier
+betroffenen Abschnitten sowie unter der Empfehlung. Wer von oben liest **oder**
+direkt zu einer Tabelle springt, sieht den Hinweis.
+
+**Die Zahlen sind bewusst NICHT umgerechnet.** Das ist der wichtigste Punkt
+dieses Nachtrags: `research/elliott_wave_lookahead/` benutzt sie als
+*veröffentlichte Baseline* und weist damit nach, dass die
+Look-Ahead-Reproduktion den damaligen Lauf wirklich trifft
+(`decisions.py` → `PUBLISHED_CELLS`: +1500,53 %/−1,90 % und
++3084,09 %/−9,79 %; `verify_baseline.py` → `PUBLISHED`). Wer die Tabellen
+überschreibt, zerstört diesen Nachweis — der Warnhinweis sagt das ausdrücklich,
+damit die nächste Sitzung nicht „aufräumt". Vorher geprüft: keine Stelle im
+Repo **parst** die Datei, alle Fundstellen sind Fliesstext oder hartcodierte
+Vergleichszahlen. Ein Kasten kann also nichts brechen.
+
+**Nebenbefund, der dabei aufgefallen ist — und der Ihnen wichtig sein dürfte:**
+Die abgelegte Ergebniskurve trug bis PR #86 **+1500,53 % bei −1,90 %**, also
+die Zahl der Variante **mit** Take-Profit — obwohl `USE_TAKE_PROFIT` am
+2026-09-03 auf `False` gesetzt wurde. Belegt über die Trade-Zahl: die alte
+Kurve hatte 469 Zeilen, und genau 469 ausgeführte Trades nennt jene Zelle. Die
+Kurve war also aus **zwei** unabhängigen Gründen veraltet — dem Look-Ahead
+**und** einem Parameterwechsel, nach dem sie nie neu erzeugt wurde. PR #86
+hatte nur den ersten Grund genannt.
+
+**Eigene Korrektur:** Im Kommentar vom 2026-09-03 und in der ersten Fassung des
+Ergebnisdokuments stand, PR #86 habe „für diese Konfiguration" statt
++1500,53 %/−1,90 % nun +352,72 %/−22,44 % gemessen. Ungenau — die +1500,53 %
+gehören zur Variante *mit* Take-Profit, die +352,72 % zur heutigen *ohne*.
+Beide Stellen sind präzisiert.
+
+**Nachweis erneut geführt:** alle 61 Konstanten unverändert, Code-AST aller
+neun Dateien gegen `origin/main` identisch, nur Kommentartext geändert.
