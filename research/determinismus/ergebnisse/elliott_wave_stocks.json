@@ -1,0 +1,669 @@
+{
+  "bot": "elliott_wave_stocks",
+  "seed": 20260913,
+  "permutationen_angefordert": 20,
+  "permutationen_gelaufen": 20,
+  "voll_modus": true,
+  "pruef_laeufe": null,
+  "symbole_in_datei": 150,
+  "konfiguration": {
+    "startkapital": 10000.0,
+    "allocation_pct": 0.1,
+    "max_concurrent_positions": 8,
+    "bot_hat_limit_parameter": true
+  },
+  "fehler": [],
+  "zwischenspeicher": {
+    "aktiv": false,
+    "symbolrechnungen": 2940,
+    "aus_speicher": 0,
+    "nachgerechnet_und_verglichen": 2793,
+    "abweichungen": [],
+    "kursdaten_ladevorgaenge": 20,
+    "kursdaten_abweichungen": []
+  },
+  "vergleich": {
+    "signalmenge_identisch": true,
+    "ausgefuehrte_trades_identisch": false,
+    "kapitalpfad_identisch": false,
+    "verschiedene_signalmengen": 1,
+    "verschiedene_ausfuehrungsmengen": 20,
+    "verschiedene_kapitalpfade": 20
+  },
+  "umstrittene_trades": {
+    "trades_gesamt": 510,
+    "immer_ausgefuehrt": 328,
+    "nie_ausgefuehrt": 38,
+    "umstritten": 144,
+    "anteil_pct": 28.2,
+    "hinweis": "nur aussagekraeftig, solange die Signalmenge identisch ist"
+  },
+  "streuung": {
+    "rendite_pct": {
+      "min": 321.8,
+      "max": 424.42,
+      "spanne": 102.62,
+      "verschiedene_werte": 20
+    },
+    "max_drawdown_pct": {
+      "min": -23.22,
+      "max": -22.19,
+      "spanne": 1.03,
+      "verschiedene_werte": 10
+    },
+    "trades_ausgefuehrt": {
+      "min": 392.0,
+      "max": 399.0,
+      "spanne": 7.0,
+      "verschiedene_werte": 8
+    },
+    "trades_uebersprungen": {
+      "min": 111.0,
+      "max": 118.0,
+      "spanne": 7.0,
+      "verschiedene_werte": 8
+    }
+  },
+  "laufzeit": {
+    "erster_lauf_s": 12.9,
+    "gesamt_s": 259.7
+  },
+  "positionslimit": {
+    "limit": 8,
+    "gleichzeitig_offen_max": 8,
+    "gleichzeitig_offen_min": 8,
+    "limit_erreicht_in_laeufen": 20,
+    "laeufe": 20,
+    "zeitpunkte_am_limit_min": 40,
+    "zeitpunkte_am_limit_max": 47,
+    "kapitalschranke": {
+      "max_finanzierbar": 10,
+      "greift_vor_dem_limit": false
+    }
+  },
+  "urteil": "NICHT DETERMINISTISCH",
+  "ursache": "Zuteilung: andere Trades bekommen das Kapital",
+  "laeufe": [
+    {
+      "nummer": 0,
+      "dauer_s": 12.9,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "NVDA",
+        "AAPL",
+        "GOOGL",
+        "GOOG",
+        "MSFT"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "8efaee26ae94a5d7f7ba92f6a63e1d66ae3c6b38b5f570a855483fd9e68163c0",
+      "kapitalpfad_fp": "c38cc3757d9ce26c5bb7fcf4b4bfb73f7ea717467f1855c8d9f2ddc651ba1de6",
+      "endkapital": 45272.24,
+      "rendite_pct": 352.72,
+      "max_drawdown_pct": -22.44,
+      "trades_ausgefuehrt": 395,
+      "trades_uebersprungen": 115
+    },
+    {
+      "nummer": 1,
+      "dauer_s": 12.75,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "DUK",
+        "ETN",
+        "BX",
+        "APP",
+        "BAC"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "0547b1b94dbec68c0ec24b5ad70e34b948140e9132bf0db2744d6156507a9aca",
+      "kapitalpfad_fp": "144d2007638e1643fa122d548848ec6a665af76be035ded90c93e2c5c27a6b7d",
+      "endkapital": 46910.35,
+      "rendite_pct": 369.1,
+      "max_drawdown_pct": -22.7,
+      "trades_ausgefuehrt": 398,
+      "trades_uebersprungen": 112
+    },
+    {
+      "nummer": 2,
+      "dauer_s": 12.82,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "BA",
+        "KLAC",
+        "CVS",
+        "BRK-B",
+        "BMY"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "27e325210923821f0cbea7c4183e9e6bef0aa4614231bd7629ae6c0849790818",
+      "kapitalpfad_fp": "8fa8767087a8079e4d80d6ecebb4e377fbff7ff01c6c8fc0f04148f2d9abd298",
+      "endkapital": 48815.08,
+      "rendite_pct": 388.15,
+      "max_drawdown_pct": -22.7,
+      "trades_ausgefuehrt": 397,
+      "trades_uebersprungen": 113
+    },
+    {
+      "nummer": 3,
+      "dauer_s": 12.68,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "WDC",
+        "WM",
+        "REGN",
+        "HWM",
+        "HD"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "f817fac074bb0e772072fca60de3ffbffd20784ec26b299a110728d3847195f8",
+      "kapitalpfad_fp": "c8c14b167fd47067ac5ce8af6ec71d627f507cebfc66c4565b1117598377613e",
+      "endkapital": 46058.98,
+      "rendite_pct": 360.59,
+      "max_drawdown_pct": -22.45,
+      "trades_ausgefuehrt": 399,
+      "trades_uebersprungen": 111
+    },
+    {
+      "nummer": 4,
+      "dauer_s": 12.67,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "AMZN",
+        "CAT",
+        "GOOG",
+        "MA",
+        "DHR"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "2cb5f08994753bd9c54131888c1e172bd0058336e155e040399c11f6cbbedc6c",
+      "kapitalpfad_fp": "a5df63558acc4fee5fc7d76f544fb809a49e137ff5296a724773f4b9e0b156c9",
+      "endkapital": 47508.43,
+      "rendite_pct": 375.08,
+      "max_drawdown_pct": -22.95,
+      "trades_ausgefuehrt": 398,
+      "trades_uebersprungen": 112
+    },
+    {
+      "nummer": 5,
+      "dauer_s": 13.07,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "SYK",
+        "ORCL",
+        "CSCO",
+        "MAR",
+        "ICE"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "2263f47ba86f31bc08bb33e27a37c7ed98027a74448749f4d3d2bf074d06c327",
+      "kapitalpfad_fp": "29b8381252e9a80c5adad4b588873a45dd234d36a21f6b6b5c8129214d7dd957",
+      "endkapital": 47997.08,
+      "rendite_pct": 379.97,
+      "max_drawdown_pct": -22.71,
+      "trades_ausgefuehrt": 399,
+      "trades_uebersprungen": 111
+    },
+    {
+      "nummer": 6,
+      "dauer_s": 13.06,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "PFE",
+        "LOW",
+        "BX",
+        "GILD",
+        "ISRG"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "d5217917d30c634799bbce0a39806322fd5566a6113a03299d620d9f10c80201",
+      "kapitalpfad_fp": "b6167cb9f56184571bc05ca53ebe0b6322a988bae4162017ce3432a721e94eb7",
+      "endkapital": 51666.42,
+      "rendite_pct": 416.66,
+      "max_drawdown_pct": -22.46,
+      "trades_ausgefuehrt": 392,
+      "trades_uebersprungen": 118
+    },
+    {
+      "nummer": 7,
+      "dauer_s": 13.1,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "FCX",
+        "WMB",
+        "VZ",
+        "LRCX",
+        "SBUX"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "1062089eb191bea1bd9e8c88eb95d3f12703af663f83aa04c1bf36f09250342f",
+      "kapitalpfad_fp": "7e0e8c2265e7a846b96af1050a7092810cef806f8e52ba831e933a75d6cecc96",
+      "endkapital": 52016.2,
+      "rendite_pct": 420.16,
+      "max_drawdown_pct": -22.7,
+      "trades_ausgefuehrt": 396,
+      "trades_uebersprungen": 114
+    },
+    {
+      "nummer": 8,
+      "dauer_s": 12.77,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "ORCL",
+        "PM",
+        "ADI",
+        "MRSH",
+        "JCI"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "522adc30e66e7216249e5873804c9528330af7145f1cdfeb98cb87e7afe0a7ee",
+      "kapitalpfad_fp": "7e1daee57df1d42ae53d063be9e067364f2af458bcd416e3d7de12a910ff6bc8",
+      "endkapital": 49917.35,
+      "rendite_pct": 399.17,
+      "max_drawdown_pct": -22.97,
+      "trades_ausgefuehrt": 397,
+      "trades_uebersprungen": 113
+    },
+    {
+      "nummer": 9,
+      "dauer_s": 12.74,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "COST",
+        "DE",
+        "CVS",
+        "GOOG",
+        "CSX"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "627c64159bb63df058c391804d32479796b47cf5167b435ed22d412ab0929038",
+      "kapitalpfad_fp": "c7011ac9ff25c655d5dde1bb760ab25fe38d9196788724875449d3eeec497b37",
+      "endkapital": 51236.08,
+      "rendite_pct": 412.36,
+      "max_drawdown_pct": -22.7,
+      "trades_ausgefuehrt": 398,
+      "trades_uebersprungen": 112
+    },
+    {
+      "nummer": 10,
+      "dauer_s": 13.1,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "TT",
+        "DIS",
+        "TMO",
+        "MU",
+        "T"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "2f2a17af3444349556d4fde02ac5f47a54c7d0ccaf639a6984c3fbde545e1b26",
+      "kapitalpfad_fp": "f0bceb6a0045f0ae42cf09a3ca6af9bbbaabfa19435e6abe70666c1efdaef953",
+      "endkapital": 48162.32,
+      "rendite_pct": 381.62,
+      "max_drawdown_pct": -22.96,
+      "trades_ausgefuehrt": 398,
+      "trades_uebersprungen": 112
+    },
+    {
+      "nummer": 11,
+      "dauer_s": 13.24,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "GOOG",
+        "ACN",
+        "REGN",
+        "MMM",
+        "UNH"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "52748298fb46461b0ad5fa6d9e26e89de08fe6d6a6c61b9727bc3e405b70b5e5",
+      "kapitalpfad_fp": "20995952a35cddf9cfb2d373b8337a8fc2bcc03eb9ea9138d3edb58155f3d752",
+      "endkapital": 52441.91,
+      "rendite_pct": 424.42,
+      "max_drawdown_pct": -22.46,
+      "trades_ausgefuehrt": 393,
+      "trades_uebersprungen": 117
+    },
+    {
+      "nummer": 12,
+      "dauer_s": 12.96,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "TMUS",
+        "ISRG",
+        "MS",
+        "JCI",
+        "PWR"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "5b3e6a55f370ed6a8ce7f4c56a06a217e0704b045d002e205f1c26cb00b95625",
+      "kapitalpfad_fp": "49581aea0e40622d1143f778d47da89db9ccad86bbf81849f907d3ef4f976725",
+      "endkapital": 47100.17,
+      "rendite_pct": 371.0,
+      "max_drawdown_pct": -22.97,
+      "trades_ausgefuehrt": 398,
+      "trades_uebersprungen": 112
+    },
+    {
+      "nummer": 13,
+      "dauer_s": 13.11,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "ADI",
+        "DASH",
+        "LOW",
+        "NEE",
+        "AAPL"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "0612ceb22696719d989d01b348ea32e08edf34192cc28d5b89f3a79e2fbce7d9",
+      "kapitalpfad_fp": "b24fcb4cb08a59cfb857c966c9d42ae5d7c1b17d8b2f196411d8427215bff029",
+      "endkapital": 45015.65,
+      "rendite_pct": 350.16,
+      "max_drawdown_pct": -22.45,
+      "trades_ausgefuehrt": 397,
+      "trades_uebersprungen": 113
+    },
+    {
+      "nummer": 14,
+      "dauer_s": 13.61,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "CVS",
+        "AXP",
+        "NFLX",
+        "LMT",
+        "MPC"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "1262a4fee3e780145a54790f4a2d03e6c055ec924cfce6343393f6473d193302",
+      "kapitalpfad_fp": "42f42979f9cc2e2cfa508cbef9dccfdf7fa98584e3c231d66707bd3c36bd74c8",
+      "endkapital": 45966.23,
+      "rendite_pct": 359.66,
+      "max_drawdown_pct": -22.7,
+      "trades_ausgefuehrt": 398,
+      "trades_uebersprungen": 112
+    },
+    {
+      "nummer": 15,
+      "dauer_s": 12.74,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "MRVL",
+        "AMZN",
+        "GE",
+        "APP",
+        "HOOD"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "b13d2962158d232f78bd737a80d7d36307b35c801980ecbb7326734a46417d25",
+      "kapitalpfad_fp": "309f23a11988d116f1f6237df44030d07a0f14c3e016fe543f52c2ca61c243d1",
+      "endkapital": 45848.25,
+      "rendite_pct": 358.48,
+      "max_drawdown_pct": -22.71,
+      "trades_ausgefuehrt": 399,
+      "trades_uebersprungen": 111
+    },
+    {
+      "nummer": 16,
+      "dauer_s": 13.23,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "EQIX",
+        "PEP",
+        "BAC",
+        "TXN",
+        "MDT"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "dfa38fd9e4564528e0483405543ae0cc0c9b31ef7cd1f788aa99cecc1bc58c93",
+      "kapitalpfad_fp": "53193377f4265132ef76a2d06929b96ae1a36588ff4c0c02182379533ff7d47e",
+      "endkapital": 42179.56,
+      "rendite_pct": 321.8,
+      "max_drawdown_pct": -22.71,
+      "trades_ausgefuehrt": 399,
+      "trades_uebersprungen": 111
+    },
+    {
+      "nummer": 17,
+      "dauer_s": 13.23,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "COF",
+        "PEP",
+        "MCK",
+        "CRM",
+        "CRWD"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "3ffd3813aa1145d87707d4b536dd3611bbfa5fb87f45a921b5caeb96d082f55a",
+      "kapitalpfad_fp": "aa76b9d7a0afef5f6ce88c2cb4ede9d01c300101c41a8ce12be8ea0b931b7408",
+      "endkapital": 47760.14,
+      "rendite_pct": 377.6,
+      "max_drawdown_pct": -23.22,
+      "trades_ausgefuehrt": 399,
+      "trades_uebersprungen": 111
+    },
+    {
+      "nummer": 18,
+      "dauer_s": 12.81,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "SCHW",
+        "UNH",
+        "LLY",
+        "COF",
+        "BLK"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "9532eb4509bc864521913f68271f7572438475303f7ef7040c4bcd80da76a832",
+      "kapitalpfad_fp": "e5f919cb40541770c902140e079b9fef0ed6b91d69b6826824ae17cde74a4bf1",
+      "endkapital": 48743.37,
+      "rendite_pct": 387.43,
+      "max_drawdown_pct": -22.19,
+      "trades_ausgefuehrt": 394,
+      "trades_uebersprungen": 116
+    },
+    {
+      "nummer": 19,
+      "dauer_s": 13.13,
+      "symbole_geladen": 147,
+      "erste_symbole": [
+        "IBM",
+        "FCX",
+        "TMO",
+        "WMB",
+        "MDT"
+      ],
+      "signal_fp": "26416ee38c42bffa19d45538f47086f03748a33d533f50f9f4adf7237a6d4d80",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 510,
+      "ausgefuehrt_fp": "e587e384d2e596da99609d6929aa76541ebfb550742e741eb047e90df25bd9e0",
+      "kapitalpfad_fp": "b9a4f3bd59d596add1f5935c7ac9e38f249d1750b5f560b2b0253ef374dd260d",
+      "endkapital": 44561.93,
+      "rendite_pct": 345.62,
+      "max_drawdown_pct": -22.7,
+      "trades_ausgefuehrt": 398,
+      "trades_uebersprungen": 112
+    }
+  ],
+  "wanduhr_s": 260.6
+}

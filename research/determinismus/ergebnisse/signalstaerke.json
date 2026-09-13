@@ -1,0 +1,121 @@
+[
+  {
+    "bot": "elliott_wave",
+    "trades": 130,
+    "zeitpunkte": 105,
+    "trades_mit_gleichem_einstieg": 44,
+    "anteil_pct": 33.8,
+    "groesste_gruppe": 4,
+    "positionslimit": null,
+    "staerkespalte": "fib_score",
+    "verschiedene_werte": 5,
+    "werte": [
+      0.33,
+      0.34,
+      0.66,
+      0.67,
+      1.0
+    ],
+    "nach_rangregel_noch_gleichauf": 9,
+    "nach_rangregel_noch_gleichauf_pct": 6.9,
+    "von_den_gleichzeitigen_pct": 20.5
+  },
+  {
+    "bot": "elliott_wave_stocks",
+    "trades": 510,
+    "zeitpunkte": 288,
+    "trades_mit_gleichem_einstieg": 300,
+    "anteil_pct": 58.8,
+    "groesste_gruppe": 20,
+    "positionslimit": 8,
+    "staerkespalte": "fib_score",
+    "verschiedene_werte": 5,
+    "werte": [
+      0.33,
+      0.34,
+      0.66,
+      0.67,
+      1.0
+    ],
+    "nach_rangregel_noch_gleichauf": 144,
+    "nach_rangregel_noch_gleichauf_pct": 28.2,
+    "von_den_gleichzeitigen_pct": 48.0
+  },
+  {
+    "bot": "rsi2_crypto",
+    "trades": 439,
+    "zeitpunkte": 239,
+    "trades_mit_gleichem_einstieg": 289,
+    "anteil_pct": 65.8,
+    "groesste_gruppe": 9,
+    "positionslimit": 8,
+    "staerkespalte": null,
+    "hinweis": "kein Mass fuer Signalstaerke im Trade-Satz - eine Zuteilung nach Staerke muesste hier erst eines einfuehren"
+  },
+  {
+    "bot": "rsi2_mean_reversion",
+    "trades": 5391,
+    "zeitpunkte": 1495,
+    "trades_mit_gleichem_einstieg": 4888,
+    "anteil_pct": 90.7,
+    "groesste_gruppe": 46,
+    "positionslimit": 20,
+    "staerkespalte": null,
+    "hinweis": "kein Mass fuer Signalstaerke im Trade-Satz - eine Zuteilung nach Staerke muesste hier erst eines einfuehren"
+  },
+  {
+    "bot": "t3_supertrend",
+    "trades": 980,
+    "zeitpunkte": 727,
+    "trades_mit_gleichem_einstieg": 429,
+    "anteil_pct": 43.8,
+    "groesste_gruppe": 9,
+    "positionslimit": 5,
+    "staerkespalte": null,
+    "hinweis": "kein Mass fuer Signalstaerke im Trade-Satz - eine Zuteilung nach Staerke muesste hier erst eines einfuehren"
+  },
+  {
+    "bot": "turtle_soup_crypto",
+    "trades": 1599,
+    "zeitpunkte": 564,
+    "trades_mit_gleichem_einstieg": 1349,
+    "anteil_pct": 84.4,
+    "groesste_gruppe": 20,
+    "positionslimit": 8,
+    "staerkespalte": null,
+    "hinweis": "kein Mass fuer Signalstaerke im Trade-Satz - eine Zuteilung nach Staerke muesste hier erst eines einfuehren"
+  },
+  {
+    "bot": "turtle_soup_stocks",
+    "trades": 12069,
+    "zeitpunkte": 2105,
+    "trades_mit_gleichem_einstieg": 11641,
+    "anteil_pct": 96.5,
+    "groesste_gruppe": 68,
+    "positionslimit": null,
+    "staerkespalte": null,
+    "hinweis": "kein Mass fuer Signalstaerke im Trade-Satz - eine Zuteilung nach Staerke muesste hier erst eines einfuehren"
+  },
+  {
+    "bot": "volatility_breakout",
+    "trades": 4510,
+    "zeitpunkte": 1545,
+    "trades_mit_gleichem_einstieg": 3955,
+    "anteil_pct": 87.7,
+    "groesste_gruppe": 24,
+    "positionslimit": 15,
+    "staerkespalte": null,
+    "hinweis": "kein Mass fuer Signalstaerke im Trade-Satz - eine Zuteilung nach Staerke muesste hier erst eines einfuehren"
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "trades": 233,
+    "zeitpunkte": 132,
+    "trades_mit_gleichem_einstieg": 142,
+    "anteil_pct": 60.9,
+    "groesste_gruppe": 8,
+    "positionslimit": 8,
+    "staerkespalte": null,
+    "hinweis": "kein Mass fuer Signalstaerke im Trade-Satz - eine Zuteilung nach Staerke muesste hier erst eines einfuehren"
+  }
+]

@@ -1,0 +1,24 @@
+
+================================================================================================
+AUFLOESUNG DER SIGNALSTAERKE BEI GLEICHZEITIGEN EINSTIEGEN
+================================================================================================
+Bot                           Trades  gleichzeitig  groesste    Staerke  Stufen   bleibt gleichauf
+------------------------------------------------------------------------------------------------
+elliott_wave                     130    44 (33.8%)         4  fib_score       5          9 (20.5%)
+elliott_wave_stocks              510   300 (58.8%)        20  fib_score       5        144 (48.0%)
+rsi2_crypto                      439   289 (65.8%)         9          -       -                  -
+rsi2_mean_reversion             5391  4888 (90.7%)        46          -       -                  -
+t3_supertrend                    980   429 (43.8%)         9          -       -                  -
+turtle_soup_crypto              1599  1349 (84.4%)        20          -       -                  -
+turtle_soup_stocks             12069 11641 (96.5%)        68          -       -                  -
+volatility_breakout             4510  3955 (87.7%)        24          -       -                  -
+volatility_breakout_crypto       233   142 (60.9%)         8          -       -                  -
+------------------------------------------------------------------------------------------------
+gleichzeitig       Trades, die ihren Einstiegszeitpunkt mit mindestens einem
+                   anderen teilen - nur sie konkurrieren um einen freien Platz.
+Stufen             verschiedene Werte, die die Staerkespalte annimmt.
+bleibt gleichauf   Trades, die eine Rangregel auf der Staerkespalte NICHT
+                   entscheidet - der Rest, fuer den weiterhin etwas anderes
+                   entscheiden muesste.
+
+Diese Untersuchung misst und meldet. Sie loest nichts.

@@ -1,0 +1,669 @@
+{
+  "bot": "turtle_soup_crypto",
+  "seed": 20260913,
+  "permutationen_angefordert": 20,
+  "permutationen_gelaufen": 20,
+  "voll_modus": true,
+  "pruef_laeufe": null,
+  "symbole_in_datei": 24,
+  "konfiguration": {
+    "startkapital": 10000.0,
+    "allocation_pct": 0.1,
+    "max_concurrent_positions": 8,
+    "bot_hat_limit_parameter": true
+  },
+  "fehler": [],
+  "zwischenspeicher": {
+    "aktiv": false,
+    "symbolrechnungen": 400,
+    "aus_speicher": 0,
+    "nachgerechnet_und_verglichen": 380,
+    "abweichungen": [],
+    "kursdaten_ladevorgaenge": 20,
+    "kursdaten_abweichungen": []
+  },
+  "vergleich": {
+    "signalmenge_identisch": true,
+    "ausgefuehrte_trades_identisch": false,
+    "kapitalpfad_identisch": false,
+    "verschiedene_signalmengen": 1,
+    "verschiedene_ausfuehrungsmengen": 20,
+    "verschiedene_kapitalpfade": 20
+  },
+  "umstrittene_trades": {
+    "trades_gesamt": 1599,
+    "immer_ausgefuehrt": 1088,
+    "nie_ausgefuehrt": 22,
+    "umstritten": 489,
+    "anteil_pct": 30.6,
+    "hinweis": "nur aussagekraeftig, solange die Signalmenge identisch ist"
+  },
+  "streuung": {
+    "rendite_pct": {
+      "min": 123.77,
+      "max": 190.23,
+      "spanne": 66.46,
+      "verschiedene_werte": 20
+    },
+    "max_drawdown_pct": {
+      "min": -41.24,
+      "max": -32.4,
+      "spanne": 8.84,
+      "verschiedene_werte": 20
+    },
+    "trades_ausgefuehrt": {
+      "min": 1403.0,
+      "max": 1415.0,
+      "spanne": 12.0,
+      "verschiedene_werte": 12
+    },
+    "trades_uebersprungen": {
+      "min": 184.0,
+      "max": 196.0,
+      "spanne": 12.0,
+      "verschiedene_werte": 12
+    }
+  },
+  "laufzeit": {
+    "erster_lauf_s": 0.61,
+    "gesamt_s": 12.3
+  },
+  "positionslimit": {
+    "limit": 8,
+    "gleichzeitig_offen_max": 8,
+    "gleichzeitig_offen_min": 8,
+    "limit_erreicht_in_laeufen": 20,
+    "laeufe": 20,
+    "zeitpunkte_am_limit_min": 87,
+    "zeitpunkte_am_limit_max": 98,
+    "kapitalschranke": {
+      "max_finanzierbar": 10,
+      "greift_vor_dem_limit": false
+    }
+  },
+  "urteil": "NICHT DETERMINISTISCH",
+  "ursache": "Zuteilung: andere Trades bekommen das Kapital",
+  "laeufe": [
+    {
+      "nummer": 0,
+      "dauer_s": 0.61,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "SOLUSDT",
+        "ZECUSDT",
+        "XRPUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "d51ff33370a661831339dd23c6f42511638934790034f872cad0f59eaf3e987e",
+      "kapitalpfad_fp": "a54408d690a81a1467fb9788bc101e0721a6d75f6ff0d2767e11aed1960219f2",
+      "endkapital": 27759.42,
+      "rendite_pct": 177.59,
+      "max_drawdown_pct": -32.4,
+      "trades_ausgefuehrt": 1414,
+      "trades_uebersprungen": 185
+    },
+    {
+      "nummer": 1,
+      "dauer_s": 0.62,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "DOGEUSDT",
+        "WLDUSDT",
+        "XRPUSDT",
+        "PEPEUSDT",
+        "NEARUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "348f9b32e1918970d93afd689d0e14eeab1333ae7d393c56707a0a456a81441b",
+      "kapitalpfad_fp": "91e80782a672ced399f11b6e80606dd6ba8bd099e497bb2762e319077c73983b",
+      "endkapital": 25670.73,
+      "rendite_pct": 156.71,
+      "max_drawdown_pct": -34.67,
+      "trades_ausgefuehrt": 1412,
+      "trades_uebersprungen": 187
+    },
+    {
+      "nummer": 2,
+      "dauer_s": 0.66,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "ETHUSDT",
+        "SUIUSDT",
+        "LINKUSDT",
+        "BMTUSDT",
+        "NEARUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "23de5f2b5b8bea0c08e8499ae7f8d5ccc8c0bcd43ac36b08c82b63460422dd9c",
+      "kapitalpfad_fp": "1992cb432ac26918b7da917e79c1700a0ed810c422089d6dc37876e34f523b8e",
+      "endkapital": 23054.47,
+      "rendite_pct": 130.54,
+      "max_drawdown_pct": -40.53,
+      "trades_ausgefuehrt": 1411,
+      "trades_uebersprungen": 188
+    },
+    {
+      "nummer": 3,
+      "dauer_s": 0.67,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "UNIUSDT",
+        "BMTUSDT",
+        "ADAUSDT",
+        "TRXUSDT",
+        "SUIUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "f06914b23107faa36f93073782361d0e143f244d681174e68ab167a2f5135e95",
+      "kapitalpfad_fp": "09417fa0ef512aa5cb3426cee72f5044d07c09897e0f3e44bdf53df19beec7ef",
+      "endkapital": 24774.8,
+      "rendite_pct": 147.75,
+      "max_drawdown_pct": -41.24,
+      "trades_ausgefuehrt": 1414,
+      "trades_uebersprungen": 185
+    },
+    {
+      "nummer": 4,
+      "dauer_s": 0.67,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "TRUMPUSDT",
+        "XRPUSDT",
+        "WLDUSDT",
+        "PROMUSDT",
+        "NEARUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "185c2823f66182dfa4cf6595d1593ee053eff03d81ed26ecde9a03e07e148e2f",
+      "kapitalpfad_fp": "b3178639ecb807da29ea281fb589dcb5a0ae1e53703994e484017c8de1b56844",
+      "endkapital": 25104.25,
+      "rendite_pct": 151.04,
+      "max_drawdown_pct": -38.3,
+      "trades_ausgefuehrt": 1411,
+      "trades_uebersprungen": 188
+    },
+    {
+      "nummer": 5,
+      "dauer_s": 0.6,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "ENAUSDT",
+        "SUIUSDT",
+        "UNIUSDT",
+        "XRPUSDT",
+        "BNBUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "92d8376dab820971ef5924ce1ae7fb370aa9c64fb3094ff7823a66b0dc95d328",
+      "kapitalpfad_fp": "810a5561483b466e1ded886166eafd71032da83e8a151fe51cfc747de616ae39",
+      "endkapital": 26371.95,
+      "rendite_pct": 163.72,
+      "max_drawdown_pct": -37.51,
+      "trades_ausgefuehrt": 1410,
+      "trades_uebersprungen": 189
+    },
+    {
+      "nummer": 6,
+      "dauer_s": 0.6,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "SOLUSDT",
+        "ZECUSDT",
+        "WLDUSDT",
+        "NEARUSDT",
+        "LINKUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "bbd8541b1a49fe5f5345d3f1aba55a11064f945e4bfc1ca8cc7ac992151bd32d",
+      "kapitalpfad_fp": "c92f8875046f58eb7de86867e5c56f673942aba40277a2ef22a93c2df8ec3ba8",
+      "endkapital": 27243.1,
+      "rendite_pct": 172.43,
+      "max_drawdown_pct": -35.64,
+      "trades_ausgefuehrt": 1403,
+      "trades_uebersprungen": 196
+    },
+    {
+      "nummer": 7,
+      "dauer_s": 0.6,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "ZECUSDT",
+        "XRPUSDT",
+        "SUIUSDT",
+        "DOGEUSDT",
+        "BNBUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "bb19de005afd946a2739824e8f4792d0a3adbb07c3a2e58ee3cc7affc7861aae",
+      "kapitalpfad_fp": "29bbc6634f951f1a818f82956cbab7cb20531d995ae16082216df175c67618a7",
+      "endkapital": 23510.07,
+      "rendite_pct": 135.1,
+      "max_drawdown_pct": -37.85,
+      "trades_ausgefuehrt": 1404,
+      "trades_uebersprungen": 195
+    },
+    {
+      "nummer": 8,
+      "dauer_s": 0.57,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "ETHUSDT",
+        "UNIUSDT",
+        "BNBUSDT",
+        "BMTUSDT",
+        "WLDUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "50f5140faaf3def734bb3485b0bc3b3a84a0b0d519deb16d8ce9cc863b5f7f85",
+      "kapitalpfad_fp": "2efbe7f7c431c6d98c82ccdfbc10bf288cd6977d5902adb38d28532f966e0617",
+      "endkapital": 25490.67,
+      "rendite_pct": 154.91,
+      "max_drawdown_pct": -33.55,
+      "trades_ausgefuehrt": 1408,
+      "trades_uebersprungen": 191
+    },
+    {
+      "nummer": 9,
+      "dauer_s": 0.62,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "UNIUSDT",
+        "ETHUSDT",
+        "NEARUSDT",
+        "TRUMPUSDT",
+        "ZECUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "a040881db326f6cdd828ae7867acec2a37c136150652d96126d290a0f9a50247",
+      "kapitalpfad_fp": "03b884818ba5ec35d275fbedad21e9d1c36fcd6fcaa5f00463f1ac438092fa41",
+      "endkapital": 26690.08,
+      "rendite_pct": 166.9,
+      "max_drawdown_pct": -34.13,
+      "trades_ausgefuehrt": 1410,
+      "trades_uebersprungen": 189
+    },
+    {
+      "nummer": 10,
+      "dauer_s": 0.65,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "SOLUSDT",
+        "WLDUSDT",
+        "BMTUSDT",
+        "ADAUSDT",
+        "LINKUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "d0a8f0f8976e918491220fa28348f5c59430d1cf270e43c6456d80a83175c229",
+      "kapitalpfad_fp": "f12ab4252667ffee008e961d0ec86ca2df7e29e1831281f38d06cd4965c211bf",
+      "endkapital": 25492.66,
+      "rendite_pct": 154.93,
+      "max_drawdown_pct": -33.61,
+      "trades_ausgefuehrt": 1406,
+      "trades_uebersprungen": 193
+    },
+    {
+      "nummer": 11,
+      "dauer_s": 0.63,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "SOLUSDT",
+        "BTCUSDT",
+        "SUIUSDT",
+        "BNBUSDT",
+        "BMTUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "2977e65b396c61a491c43e81b3e5711d9d34586d90ad8e7150162347d5d2596b",
+      "kapitalpfad_fp": "9fc6aba432eb88e081b4dac94cfcfe804c38cac2415e24d80cfb028f28571b84",
+      "endkapital": 25489.7,
+      "rendite_pct": 154.9,
+      "max_drawdown_pct": -37.71,
+      "trades_ausgefuehrt": 1414,
+      "trades_uebersprungen": 185
+    },
+    {
+      "nummer": 12,
+      "dauer_s": 0.63,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "TRXUSDT",
+        "BTCUSDT",
+        "ENAUSDT",
+        "XRPUSDT",
+        "PEPEUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "50ed7dd3f3766719da149035b24a211cf026eba641282a78039917ec3a5052fa",
+      "kapitalpfad_fp": "50db09305a8ee240563e18c46b5c4ebd62be681fa798a4667e646f951d9d99e8",
+      "endkapital": 27070.22,
+      "rendite_pct": 170.7,
+      "max_drawdown_pct": -38.49,
+      "trades_ausgefuehrt": 1415,
+      "trades_uebersprungen": 184
+    },
+    {
+      "nummer": 13,
+      "dauer_s": 0.59,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "ETHUSDT",
+        "TRXUSDT",
+        "DOGEUSDT",
+        "ADAUSDT",
+        "ZECUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "89ef2b69225eddd18ecca2d971632fe0c8432cf946d734ebd5966082862328f6",
+      "kapitalpfad_fp": "705de74782fa065575d4ddfb71407e730b45b1c7e4d741dd574329f30e42b341",
+      "endkapital": 25106.75,
+      "rendite_pct": 151.07,
+      "max_drawdown_pct": -38.75,
+      "trades_ausgefuehrt": 1407,
+      "trades_uebersprungen": 192
+    },
+    {
+      "nummer": 14,
+      "dauer_s": 0.61,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "BMTUSDT",
+        "PEPEUSDT",
+        "SOLUSDT",
+        "XRPUSDT",
+        "DOGEUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "2e0bb5e8ffdb29099b44f6b33dc4605e9d9aa9a35300a46d91f49c50d5174d4f",
+      "kapitalpfad_fp": "7b58ba36a3da1cff3d0fa4d6a4e3c3455c03a2f95e5f952ee3c320c83c7bf974",
+      "endkapital": 22376.78,
+      "rendite_pct": 123.77,
+      "max_drawdown_pct": -35.72,
+      "trades_ausgefuehrt": 1413,
+      "trades_uebersprungen": 186
+    },
+    {
+      "nummer": 15,
+      "dauer_s": 0.58,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "UNIUSDT",
+        "BTCUSDT",
+        "DOGEUSDT",
+        "BNBUSDT",
+        "ENAUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "d89757c08d323bb4d749491c4a3d807642e8de77fe79d6ec2a7a724b1f36358a",
+      "kapitalpfad_fp": "47c452de421c9ab18c149f533190442a9d0ae5670736989009152dcbd6b0f5be",
+      "endkapital": 24048.42,
+      "rendite_pct": 140.48,
+      "max_drawdown_pct": -37.68,
+      "trades_ausgefuehrt": 1413,
+      "trades_uebersprungen": 186
+    },
+    {
+      "nummer": 16,
+      "dauer_s": 0.6,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "BMTUSDT",
+        "TRUMPUSDT",
+        "SUIUSDT",
+        "TRXUSDT",
+        "ENAUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "e2778eaa3fe21dda47cc7a67edb2dd582ab7124550a44c6df84820221fcfb115",
+      "kapitalpfad_fp": "ecd668005b3ab71d4d83fe476eb02af5ba8dcaf2ef7a0a4c1f7fa5ac21c8b974",
+      "endkapital": 22718.28,
+      "rendite_pct": 127.18,
+      "max_drawdown_pct": -39.52,
+      "trades_ausgefuehrt": 1412,
+      "trades_uebersprungen": 187
+    },
+    {
+      "nummer": 17,
+      "dauer_s": 0.59,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "UNIUSDT",
+        "TRUMPUSDT",
+        "SUIUSDT",
+        "WLDUSDT",
+        "PEPEUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "2f089c6975200db49c86d94ed6b6c365c7d1068080f3e82af16e4bd75412b3c8",
+      "kapitalpfad_fp": "7992040fb93ac0fc3d1de6bac1eddec1edd173b99f0b0c9334a1195fb62393dc",
+      "endkapital": 29022.85,
+      "rendite_pct": 190.23,
+      "max_drawdown_pct": -35.81,
+      "trades_ausgefuehrt": 1409,
+      "trades_uebersprungen": 190
+    },
+    {
+      "nummer": 18,
+      "dauer_s": 0.58,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "SOLUSDT",
+        "TRXUSDT",
+        "DOGEUSDT",
+        "BTCUSDT",
+        "PROMUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "c84426a3453859acc22cae095402280db07246bb63a8661dcd6a456810852368",
+      "kapitalpfad_fp": "40d601dc6d1368a1dadf85edb5d65a8aee70f88b7f249bae3592e28a2b33e9ff",
+      "endkapital": 27775.07,
+      "rendite_pct": 177.75,
+      "max_drawdown_pct": -36.54,
+      "trades_ausgefuehrt": 1403,
+      "trades_uebersprungen": 196
+    },
+    {
+      "nummer": 19,
+      "dauer_s": 0.63,
+      "symbole_geladen": 20,
+      "erste_symbole": [
+        "ENAUSDT",
+        "ADAUSDT",
+        "DOGEUSDT",
+        "BTCUSDT",
+        "BMTUSDT"
+      ],
+      "signal_fp": "06fa1c60e5dbc8cc17f2e39c7747071bc06b66c490f78499c24b3a5d8a489f11",
+      "signal_spalten": [
+        "symbol",
+        "entry_time",
+        "exit_time",
+        "entry_price",
+        "exit_price",
+        "pnl_pct"
+      ],
+      "signal_zahl": 1599,
+      "ausgefuehrt_fp": "f4cb75d14f62e31068f6e1dc72fd2d44584932159b99fdb8e75b322f25958b44",
+      "kapitalpfad_fp": "58b7ccd910c36383109d4139f216c56a6f0cf4092b36d5f499aac701f4b8f32b",
+      "endkapital": 27242.41,
+      "rendite_pct": 172.42,
+      "max_drawdown_pct": -34.7,
+      "trades_ausgefuehrt": 1410,
+      "trades_uebersprungen": 189
+    }
+  ],
+  "wanduhr_s": 13.9
+}

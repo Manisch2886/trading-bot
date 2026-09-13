@@ -1,0 +1,16 @@
+Pflicht-Gegencheck: Lauf 0 (Originalreihenfolge) gegen die abgelegte
+results/<bot>/equity_curve.csv. Trifft er sie nicht, misst das Werkzeug
+etwas anderes als den Backtest des Bots.
+
+Bot                                  Lauf 0       abgelegt         Zeilen  gleich
+--------------------------------------------------------------------------------------------
+elliott_wave                       16777.45       16777.45        130/130  JA
+elliott_wave_stocks                45272.24       45272.24        395/395  JA
+rsi2_crypto                        12837.09       12837.09        392/392  JA
+rsi2_mean_reversion                 13675.2        13675.2      4232/4232  JA
+t3_supertrend                      22963.95       22963.95        656/656  JA
+turtle_soup_crypto                 27759.42       27759.42      1414/1414  JA
+turtle_soup_stocks                 24559.08       24559.08      8915/8915  JA
+volatility_breakout                32441.42       32441.42      1454/1454  JA
+volatility_breakout_crypto         14902.58       14902.58        207/207  JA
+--------------------------------------------------------------------------------------------
