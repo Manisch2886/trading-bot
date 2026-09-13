@@ -234,12 +234,20 @@ def main():
                 if not z[3:].startswith(("research/", "docs/"))]
     check("Arbeitsbaum: nichts ausserhalb von research/ und docs/ veraendert",
           not beruehrt, str(beruehrt))
-    diff = subprocess.run(["git", "-C", botenv.REPO_ROOT, "diff", "origin/main", "HEAD",
+    # DREI Punkte, nicht zwei. `git diff origin/main HEAD` vergleicht die beiden
+    # Spitzen und listet deshalb auch alles auf, was MAIN seit dem Abzweig
+    # dazubekommen hat - gemessen am 13.09.2026 waren das die Ordner von TB-23
+    # und TB-24 samt zweier neuer Dateien unter shared/. Diese Untersuchung hat
+    # davon nichts angefasst, die Pruefung schlug trotzdem fehl.
+    # `origin/main...HEAD` vergleicht gegen die MERGE-BASIS und beantwortet
+    # genau die Frage der Randbedingung: was hat DIESER Zweig geaendert?
+    dreipunkt = "origin/main...HEAD"
+    diff = subprocess.run(["git", "-C", botenv.REPO_ROOT, "diff", dreipunkt,
                            "--name-only"], capture_output=True, text=True).stdout.split()
     fremd = [f for f in diff if not f.startswith(("research/", "docs/"))]
-    check("git diff origin/main HEAD: nur research/ und docs/",
+    check(f"git diff {dreipunkt} --name-only: nur research/ und docs/",
           not fremd, f"{len(diff)} Dateien" + (f", fremd: {fremd}" if fremd else ""))
-    tabu_diff = subprocess.run(["git", "-C", botenv.REPO_ROOT, "diff", "origin/main", "HEAD",
+    tabu_diff = subprocess.run(["git", "-C", botenv.REPO_ROOT, "diff", dreipunkt,
                                 "--name-only", "--"] + TABU,
                                capture_output=True, text=True).stdout.strip()
     check("die im Auftrag benannten Bot-Dateien sind unveraendert",
