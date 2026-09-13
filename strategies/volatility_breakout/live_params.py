@@ -41,7 +41,7 @@ MAX_CONCURRENT_POSITIONS = 15
 #   VOLUME_AVG_PERIOD        = 20     (backtest_breakout.py:97)
 #
 # Der Filter ist LIVE AUS: forward_test.py erwaehnt ihn gar nicht, und
-# equity_simulation.py:160 ruft collect_all_trades() ohne use_volume_filter
+# equity_simulation.py:151 ruft collect_all_trades() ohne use_volume_filter
 # auf. Der Multiplikator 1.5 ist damit heute wirkungslos - er beschreibt nur,
 # WIE der Filter arbeiten wuerde (Ausbruchstag-Volumen > 1,5-faches
 # 20-Tage-Durchschnittsvolumen), falls man ihn einschaltet. Der Vergleich

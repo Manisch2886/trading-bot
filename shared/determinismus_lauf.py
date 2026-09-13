@@ -86,6 +86,18 @@ import pandas as pd
 _SHARED_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(_SHARED_DIR)
 
+# Die Renditeformel steht seit TB-28 an einer Stelle (shared/messkette.py).
+# Vorher stand sie hier ein zweites Mal ausgeschrieben. Der Max Drawdown wird
+# hier NICHT nachgerechnet - er kommt als Variable `max_dd` aus den
+# __main__-Globalen des Bots, also aus dessen eigener Rechnung (siehe
+# `auswerten()`); das bleibt so.
+#
+# Der sys.path-Eintrag ist noetig, weil dieses Modul auch als Unterprozess
+# mit anderem Arbeitsverzeichnis startet.
+if _SHARED_DIR not in sys.path:
+    sys.path.insert(0, _SHARED_DIR)
+from messkette import rendite_pct
+
 # Markiert die Meldezeile an das aufrufende Programm. Eigener Praefix statt
 # "die letzte Zeile nehmen": der __main__-Block des Bots gibt selbst reichlich
 # aus.
@@ -620,7 +632,8 @@ def lauf(bot: str, anzahl: int, seed: int, pruef_laeufe: int, voll: bool,
             "ausgefuehrt_schluessel": kurvenschluessel(kurve),
             "kapitalpfad_fp": _fingerabdruck(kapitalpfadzeilen(kurve)),
             "endkapital": ergebnis.get("final_capital"),
-            "rendite_pct": (round((ergebnis["final_capital"] / globalen["STARTING_CAPITAL"] - 1) * 100, 2)
+            "rendite_pct": (round(rendite_pct(ergebnis["final_capital"],
+                                              globalen["STARTING_CAPITAL"]), 2)
                             if ergebnis.get("final_capital") is not None else None),
             "max_drawdown_pct": globalen.get("max_dd"),
             "trades_ausgefuehrt": ergebnis.get("num_executed"),

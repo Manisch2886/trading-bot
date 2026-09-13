@@ -53,7 +53,7 @@ ATR_MULT = 3.0
 # MARKT-REGIME-FILTER (regime_filter.py:19, Literale in der Signatur von
 # compute_btc_regime()):
 #   atr_length = 22   atr_mult = 3.0
-# equity_simulation.py:66 ruft die Funktion ohne Argumente auf, die Literale
+# equity_simulation.py:78 ruft die Funktion ohne Argumente auf, die Literale
 # wirken also direkt. Sie entsprechen ATR_LENGTH/ATR_MULT oben, sind aber
 # weiterhin eine eigene Kopie - hier BEWUSST nicht mitumgestellt: der
 # Regime-Filter ist eine andere Groesse als die Signal-Indikatoren (BTC-eigener

@@ -45,6 +45,19 @@ def check(name, ok, detail=""):
         print(f"  [FEHLER] {name}" + (f"   {detail}" if detail else ""))
 
 
+# NACHTRAG TB-28 (13.09.2026): Die drei Angaben, die in eine
+# equity_simulation.py zeigen, waren auf `main` bereits rot - seit TB-26 um
+# vier bis sechzehn Zeilen verrutscht, ohne dass es jemandem aufgefallen
+# waere. TB-28 hat sie nachgezogen und verschiebt sie dabei selbst erneut.
+#
+# Damit ist eine Abhaengigkeitsklasse benannt, die bis TB-27 nirgends
+# gelistet war: ZEILENNUMMERN. Sie bricht bei JEDER Aenderung an der
+# Zieldatei, auch bei einer, die nichts an der Sache aendert - eine
+# eingefuegte Kommentarzeile genuegt. Ob eine Dokumentationspruefung, die auf
+# Zeilennummern zeigt, ueberhaupt haltbar ist, ist damit eine offene Frage
+# (TB-28, Abschnitt "Der Befund hinter den Zeilennummern"). Sie wird hier
+# NICHT entschieden - die Angaben werden nur richtiggestellt.
+
 # Was in den live_params.py-Dokublocken behauptet wird:
 # (Bot, Datei, Zeile, erwarteter Name in dieser Zeile)
 FUNDSTELLEN = [
@@ -60,17 +73,17 @@ FUNDSTELLEN = [
     ("t3_supertrend", "forward_test.py", 39, "T3_FACTOR"),
     ("t3_supertrend", "indicators.py", 128, "bars_per_day"),
     ("t3_supertrend", "regime_filter.py", 19, "atr_length"),
-    ("t3_supertrend", "equity_simulation.py", 66, "compute_btc_regime"),
+    ("t3_supertrend", "equity_simulation.py", 78, "compute_btc_regime"),
     ("volatility_breakout", "backtest_breakout.py", 97, "VOLUME_AVG_PERIOD"),
     ("volatility_breakout", "backtest_breakout.py", 103, "VOLUME_FILTER_MULTIPLIER"),
     ("volatility_breakout", "backtest_breakout.py", 134, "use_volume_filter"),
-    ("volatility_breakout", "equity_simulation.py", 160, "collect_all_trades"),
+    ("volatility_breakout", "equity_simulation.py", 151, "collect_all_trades"),
     ("volatility_breakout_crypto", "regime_filter.py", 16, "BTC_ATR_LENGTH"),
     ("volatility_breakout_crypto", "regime_filter.py", 17, "BTC_ATR_MULT"),
     ("volatility_breakout_crypto", "backtest_breakout.py", 65, "VOLUME_AVG_PERIOD"),
     ("volatility_breakout_crypto", "backtest_breakout.py", 71, "VOLUME_FILTER_MULTIPLIER"),
     ("volatility_breakout_crypto", "backtest_breakout.py", 97, "use_volume_filter"),
-    ("volatility_breakout_crypto", "equity_simulation.py", 176, "collect_all_trades"),
+    ("volatility_breakout_crypto", "equity_simulation.py", 166, "collect_all_trades"),
     ("volatility_breakout_crypto", "forward_test.py", 256, "compute_btc_regime"),
 ]
 
