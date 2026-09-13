@@ -101,6 +101,7 @@ Läufe, Median:
 | `volatility_breakout` | 4 821 | 0,92 s | 0,96 s |
 | `t3_supertrend` | 1 152 | 0,69 s | 0,69 s |
 | `rsi2_crypto` | 205 | 0,130 s | 0,128 s |
+| `elliott_wave_stocks` | 1 786 | 24,79 s | 25,38 s |
 
 **Nicht spürbar.** Die Ende-zu-Ende-Unterschiede liegen bei wenigen Prozent und
 zeigen in beide Richtungen — sie sind Laufzeitrauschen, denn der Schritt selbst

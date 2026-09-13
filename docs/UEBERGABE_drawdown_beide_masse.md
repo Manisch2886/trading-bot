@@ -124,6 +124,7 @@ Datei, je fünf Läufe, Median (zwei unabhängige Messreihen, wo angegeben):
 | `turtle_soup_crypto` | 1 107 | 0,075 / 0,081 s | 0,078 / 0,084 s |
 | `volatility_breakout_crypto` | 379 | 0,142 / 0,144 s | 0,153 / 0,138 s |
 | `rsi2_crypto` | 205 | 0,130 / 0,127 s | 0,128 / 0,126 s |
+| `elliott_wave_stocks` | 1 786 | 24,79 s | 25,38 s |
 
 **Nicht spürbar — und die Ende-zu-Ende-Zahlen sind vorsichtig zu lesen.** Die
 Unterschiede liegen bei wenigen Prozent und zeigen in beide Richtungen (bei
@@ -140,8 +141,9 @@ und sind hier keine. Zweitens liess sich `elliott_wave` deshalb nicht messen:
 **keine** seiner Kombinationen besteht die eigenen Mindestfilter. Bei ihm gehen
 von ~175 s je Kombination praktisch alle in die Wellenerkennung; der
 Zusatzschritt auf seinen 2 057 Trades liegt nach obiger Tabelle unter 1 ms.
-`elliott_wave_stocks` (1 786 Trades, ~23 s je Kombination) zeigt dasselbe Bild:
-die Differenz verschwindet im Rauschen der Wellenerkennung.
+`elliott_wave_stocks` zeigt dasselbe Bild: 24,79 s gegen 25,38 s — eine
+Differenz von 0,6 s für einen Schritt, der auf 1 786 Trades 0,7 ms kostet; die
+schnellsten Läufe beider Fassungen liegen 0,14 s auseinander.
 
 Zum Vergleich: für den **Kapital**-Drawdown — das Mass, das der Bericht als
 eigentlich richtiges nennt — nennt die Untersuchung das **1,5- bis 2-Fache**
