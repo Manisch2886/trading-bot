@@ -1,0 +1,31 @@
+{
+  "bot": "rsi2_mean_reversion",
+  "zeitrahmen": "1d",
+  "anlageklasse": "aktien",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.05,
+  "max_concurrent_positions": 20,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 5391,
+  "trades_ausgefuehrt": 4232,
+  "trades_uebersprungen": 1159,
+  "symbole_gefunden": 147,
+  "symbole_ausgefuehrt": 147,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "ausstiegsarten": {
+    "sma_exit": 4098,
+    "time_exit": 134
+  },
+  "spalte_result_vorhanden": true,
+  "kerzen_ohne_wert": 0,
+  "kennzeichnung_neutral": true,
+  "abgleich_exposure_messung": {
+    "datei": "research/exposure_messung/daten/rsi2_mean_reversion_positionen.csv",
+    "vorhanden": true,
+    "zeilen_dort": 4232,
+    "zeilen_hier": 4232,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}

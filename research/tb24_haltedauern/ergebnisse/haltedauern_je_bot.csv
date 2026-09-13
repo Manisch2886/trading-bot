@@ -1,0 +1,10 @@
+bot,anlageklasse,zeitrahmen,ertragsquelle,n,tage_min,tage_p10,tage_q1,tage_median,tage_q3,tage_p90,tage_max,tage_mittel,kerzen_median,kerzen_q1,kerzen_q3,horizont_klasse
+elliott_wave,krypto,1h,muster,130,0.04,0.21,0.68,3.9,10.0,10.0,10.08,5.07,94.5,17.2,241.0,3 bis 10 Tage
+t3_supertrend,krypto,4h,trend,656,0.17,0.5,1.0,2.67,6.0,9.5,22.67,3.99,17.0,7.0,37.0,bis 2 Tage
+rsi2_crypto,krypto,1d,umkehr,392,1.0,1.0,2.0,4.0,5.0,7.0,10.0,4.04,5.0,3.0,6.0,3 bis 10 Tage
+turtle_soup_crypto,krypto,1d,umkehr,1414,1.0,1.0,1.0,4.0,10.0,10.0,10.0,4.98,5.0,2.0,11.0,3 bis 10 Tage
+volatility_breakout_crypto,krypto,1d,trend,207,1.0,1.0,2.0,6.0,15.0,15.0,15.0,7.52,7.0,3.0,16.0,3 bis 10 Tage
+elliott_wave_stocks,aktien,1d,muster,395,1.0,1.0,2.0,7.0,47.5,131.0,134.0,36.34,6.0,2.0,33.5,3 bis 10 Tage
+rsi2_mean_reversion,aktien,1d,umkehr,4232,1.0,2.0,3.0,5.0,7.0,11.0,18.0,5.75,4.0,3.0,6.0,3 bis 10 Tage
+turtle_soup_stocks,aktien,1d,umkehr,8915,14.0,14.0,14.0,14.0,15.0,15.0,18.0,14.51,11.0,11.0,11.0,11 bis 30 Tage
+volatility_breakout,aktien,1d,trend,1454,1.0,12.0,21.0,21.0,22.0,23.0,26.0,19.82,16.0,16.0,16.0,11 bis 30 Tage

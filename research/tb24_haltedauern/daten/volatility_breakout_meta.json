@@ -1,0 +1,31 @@
+{
+  "bot": "volatility_breakout",
+  "zeitrahmen": "1d",
+  "anlageklasse": "aktien",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 15,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 4510,
+  "trades_ausgefuehrt": 1454,
+  "trades_uebersprungen": 3056,
+  "symbole_gefunden": 147,
+  "symbole_ausgefuehrt": 147,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "ausstiegsarten": {
+    "time_exit": 1166,
+    "stop_loss": 288
+  },
+  "spalte_result_vorhanden": true,
+  "kerzen_ohne_wert": 0,
+  "kennzeichnung_neutral": true,
+  "abgleich_exposure_messung": {
+    "datei": "research/exposure_messung/daten/volatility_breakout_positionen.csv",
+    "vorhanden": true,
+    "zeilen_dort": 1454,
+    "zeilen_hier": 1454,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}

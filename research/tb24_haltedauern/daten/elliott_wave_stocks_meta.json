@@ -1,0 +1,31 @@
+{
+  "bot": "elliott_wave_stocks",
+  "zeitrahmen": "1d",
+  "anlageklasse": "aktien",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.1,
+  "max_concurrent_positions": 8,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 510,
+  "trades_ausgefuehrt": 395,
+  "trades_uebersprungen": 115,
+  "symbole_gefunden": 137,
+  "symbole_ausgefuehrt": 127,
+  "erster_einstieg": "2016-10-28 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "ausstiegsarten": {
+    "stop_loss": 313,
+    "time_exit": 82
+  },
+  "spalte_result_vorhanden": true,
+  "kerzen_ohne_wert": 0,
+  "kennzeichnung_neutral": true,
+  "abgleich_exposure_messung": {
+    "datei": "research/exposure_messung/daten/elliott_wave_stocks_positionen.csv",
+    "vorhanden": true,
+    "zeilen_dort": 395,
+    "zeilen_hier": 395,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}

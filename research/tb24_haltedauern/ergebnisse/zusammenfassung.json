@@ -1,0 +1,261 @@
+{
+  "vermutung": {
+    "wortlaut": "Sechs der neun haben Median-Haltedauern zwischen drei und zehn Tagen und bespielen ein Fenster.",
+    "bots_im_fenster_3_bis_10": [
+      "elliott_wave",
+      "rsi2_crypto",
+      "turtle_soup_crypto",
+      "volatility_breakout_crypto",
+      "elliott_wave_stocks",
+      "rsi2_mean_reversion"
+    ],
+    "anzahl": 6,
+    "trifft_zu": true
+  },
+  "horizont_klassen": {
+    "bis 2 Tage": {
+      "bots": [
+        "t3_supertrend"
+      ],
+      "anzahl": 1,
+      "ertragsquellen": [
+        "trend"
+      ]
+    },
+    "3 bis 10 Tage": {
+      "bots": [
+        "elliott_wave",
+        "rsi2_crypto",
+        "turtle_soup_crypto",
+        "volatility_breakout_crypto",
+        "elliott_wave_stocks",
+        "rsi2_mean_reversion"
+      ],
+      "anzahl": 6,
+      "ertragsquellen": [
+        "muster",
+        "trend",
+        "umkehr"
+      ]
+    },
+    "11 bis 30 Tage": {
+      "bots": [
+        "turtle_soup_stocks",
+        "volatility_breakout"
+      ],
+      "anzahl": 2,
+      "ertragsquellen": [
+        "trend",
+        "umkehr"
+      ]
+    },
+    "31 bis 90 Tage": {
+      "bots": [],
+      "anzahl": 0,
+      "ertragsquellen": []
+    },
+    "ueber 90 Tage": {
+      "bots": [],
+      "anzahl": 0,
+      "ertragsquellen": []
+    }
+  },
+  "median_spanne_tage": [
+    2.67,
+    21.0
+  ],
+  "staerkstes_paar_titeltage": [
+    {
+      "bot_a": "rsi2_mean_reversion",
+      "bot_b": "turtle_soup_stocks",
+      "gleiche_anlageklasse": true,
+      "fenster_von": "2016-09-01",
+      "fenster_bis": "2026-09-01",
+      "positionstage_a": 3260,
+      "positionstage_b": 3653,
+      "titeltage_a": 28562,
+      "anteil_tage_pct": 100.0,
+      "anteil_titel_pct": 48.59
+    }
+  ],
+  "staerkstes_paar_naehe": [
+    {
+      "bot_a": "rsi2_mean_reversion",
+      "bot_b": "turtle_soup_stocks",
+      "einstiege_a": 4232,
+      "einstiege_b": 8915,
+      "gemeinsame_symbole": 147,
+      "treffer": 1523,
+      "anteil_pct": 36.0,
+      "zufall_pct": 11.0,
+      "zufall_analytisch_pct": 11.1,
+      "ueberschuss": 3.27
+    }
+  ],
+  "schwaechstes_paar_naehe": [
+    {
+      "bot_a": "volatility_breakout",
+      "bot_b": "elliott_wave_stocks",
+      "einstiege_a": 1425,
+      "einstiege_b": 395,
+      "gemeinsame_symbole": 127,
+      "treffer": 0,
+      "anteil_pct": 0.0,
+      "zufall_pct": 0.5,
+      "zufall_analytisch_pct": 0.5,
+      "ueberschuss": 0.0
+    }
+  ],
+  "paare_gleiche_klasse_und_quelle": 8,
+  "groesster_versatz": [
+    {
+      "bot_a": "elliott_wave_stocks",
+      "bot_b": "volatility_breakout",
+      "einstiege_a": 395,
+      "mit_b_im_titel": 395,
+      "median_versatz_tage": 20.0,
+      "median_versatz_bis_30_tage": 15.0,
+      "anteil_bis_3_tage_pct": 0.0,
+      "n[-30 bis < -20]": 5,
+      "n[-20 bis < -10]": 2,
+      "n[-10 bis < -3]": 1,
+      "n[-3 bis < 0]": 0,
+      "n[0 bis < 3]": 0,
+      "n[3 bis < 10]": 2,
+      "n[10 bis < 20]": 10,
+      "n[20 bis < 30]": 12,
+      "n[< -30]": 175,
+      "n[>= 30]": 188
+    },
+    {
+      "bot_a": "volatility_breakout_crypto",
+      "bot_b": "elliott_wave",
+      "einstiege_a": 206,
+      "mit_b_im_titel": 205,
+      "median_versatz_tage": -41.0,
+      "median_versatz_bis_30_tage": -14.5,
+      "anteil_bis_3_tage_pct": 0.5,
+      "n[-30 bis < -20]": 4,
+      "n[-20 bis < -10]": 9,
+      "n[-10 bis < -3]": 2,
+      "n[-3 bis < 0]": 0,
+      "n[0 bis < 3]": 0,
+      "n[3 bis < 10]": 1,
+      "n[10 bis < 20]": 2,
+      "n[20 bis < 30]": 2,
+      "n[< -30]": 114,
+      "n[>= 30]": 71
+    },
+    {
+      "bot_a": "volatility_breakout",
+      "bot_b": "elliott_wave_stocks",
+      "einstiege_a": 1425,
+      "mit_b_im_titel": 1241,
+      "median_versatz_tage": 47.0,
+      "median_versatz_bis_30_tage": -14.5,
+      "anteil_bis_3_tage_pct": 0.0,
+      "n[-30 bis < -20]": 9,
+      "n[-20 bis < -10]": 13,
+      "n[-10 bis < -3]": 3,
+      "n[-3 bis < 0]": 0,
+      "n[0 bis < 3]": 0,
+      "n[3 bis < 10]": 0,
+      "n[10 bis < 20]": 3,
+      "n[20 bis < 30]": 6,
+      "n[< -30]": 576,
+      "n[>= 30]": 631
+    }
+  ],
+  "datenbasis": {
+    "elliott_wave": {
+      "zeitrahmen": "1h",
+      "anlageklasse": "krypto",
+      "trades_gefunden": 130,
+      "trades_ausgefuehrt": 130,
+      "symbole_ausgefuehrt": 18,
+      "erster_einstieg": "2021-09-22",
+      "letzter_ausstieg": "2026-08-20",
+      "abgleich_exposure_messung_identisch": true
+    },
+    "t3_supertrend": {
+      "zeitrahmen": "4h",
+      "anlageklasse": "krypto",
+      "trades_gefunden": 980,
+      "trades_ausgefuehrt": 656,
+      "symbole_ausgefuehrt": 18,
+      "erster_einstieg": "2021-09-01",
+      "letzter_ausstieg": "2026-08-29",
+      "abgleich_exposure_messung_identisch": true
+    },
+    "rsi2_crypto": {
+      "zeitrahmen": "1d",
+      "anlageklasse": "krypto",
+      "trades_gefunden": 439,
+      "trades_ausgefuehrt": 392,
+      "symbole_ausgefuehrt": 18,
+      "erster_einstieg": "2022-02-11",
+      "letzter_ausstieg": "2026-08-20",
+      "abgleich_exposure_messung_identisch": true
+    },
+    "turtle_soup_crypto": {
+      "zeitrahmen": "1d",
+      "anlageklasse": "krypto",
+      "trades_gefunden": 1599,
+      "trades_ausgefuehrt": 1414,
+      "symbole_ausgefuehrt": 20,
+      "erster_einstieg": "2021-10-12",
+      "letzter_ausstieg": "2026-08-28",
+      "abgleich_exposure_messung_identisch": true
+    },
+    "volatility_breakout_crypto": {
+      "zeitrahmen": "1d",
+      "anlageklasse": "krypto",
+      "trades_gefunden": 233,
+      "trades_ausgefuehrt": 207,
+      "symbole_ausgefuehrt": 19,
+      "erster_einstieg": "2022-03-17",
+      "letzter_ausstieg": "2026-08-30",
+      "abgleich_exposure_messung_identisch": true
+    },
+    "elliott_wave_stocks": {
+      "zeitrahmen": "1d",
+      "anlageklasse": "aktien",
+      "trades_gefunden": 510,
+      "trades_ausgefuehrt": 395,
+      "symbole_ausgefuehrt": 127,
+      "erster_einstieg": "2016-10-28",
+      "letzter_ausstieg": "2026-09-01",
+      "abgleich_exposure_messung_identisch": true
+    },
+    "rsi2_mean_reversion": {
+      "zeitrahmen": "1d",
+      "anlageklasse": "aktien",
+      "trades_gefunden": 5391,
+      "trades_ausgefuehrt": 4232,
+      "symbole_ausgefuehrt": 147,
+      "erster_einstieg": "2016-09-01",
+      "letzter_ausstieg": "2026-09-01",
+      "abgleich_exposure_messung_identisch": true
+    },
+    "turtle_soup_stocks": {
+      "zeitrahmen": "1d",
+      "anlageklasse": "aktien",
+      "trades_gefunden": 12069,
+      "trades_ausgefuehrt": 8915,
+      "symbole_ausgefuehrt": 147,
+      "erster_einstieg": "2016-09-01",
+      "letzter_ausstieg": "2026-09-01",
+      "abgleich_exposure_messung_identisch": true
+    },
+    "volatility_breakout": {
+      "zeitrahmen": "1d",
+      "anlageklasse": "aktien",
+      "trades_gefunden": 4510,
+      "trades_ausgefuehrt": 1454,
+      "symbole_ausgefuehrt": 147,
+      "erster_einstieg": "2016-09-01",
+      "letzter_ausstieg": "2026-09-01",
+      "abgleich_exposure_messung_identisch": true
+    }
+  }
+}

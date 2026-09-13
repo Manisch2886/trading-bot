@@ -1,0 +1,10 @@
+bot,ausstiegsarten,zwei_gruppen,verglichen,begruendung
+elliott_wave,3,True,stop_loss / time_exit,"stop_loss Q1..Q3 = 0.30..2.40 Tage, time_exit Q1..Q3 = 10.00..10.00 Tage - keine Ueberschneidung"
+t3_supertrend,3,True,stop_loss / trend_flip,"stop_loss Q1..Q3 = 0.67..2.17 Tage, trend_flip Q1..Q3 = 3.67..7.62 Tage - keine Ueberschneidung"
+rsi2_crypto,2,True,sma_exit / time_exit,"sma_exit Q1..Q3 = 2.00..5.00 Tage, time_exit Q1..Q3 = 10.00..10.00 Tage - keine Ueberschneidung"
+turtle_soup_crypto,2,True,stop_loss / time_exit,"stop_loss Q1..Q3 = 1.00..4.00 Tage, time_exit Q1..Q3 = 10.00..10.00 Tage - keine Ueberschneidung"
+volatility_breakout_crypto,2,True,stop_loss / time_exit,"stop_loss Q1..Q3 = 1.00..7.00 Tage, time_exit Q1..Q3 = 15.00..15.00 Tage - keine Ueberschneidung"
+elliott_wave_stocks,2,True,stop_loss / time_exit,"stop_loss Q1..Q3 = 1.00..15.00 Tage, time_exit Q1..Q3 = 129.00..132.00 Tage - keine Ueberschneidung"
+rsi2_mean_reversion,2,True,sma_exit / time_exit,"sma_exit Q1..Q3 = 3.00..7.00 Tage, time_exit Q1..Q3 = 14.00..15.00 Tage - keine Ueberschneidung"
+turtle_soup_stocks,1,False,,nur eine Ausstiegsart
+volatility_breakout,2,True,time_exit / stop_loss,"time_exit Q1..Q3 = 21.00..22.00 Tage, stop_loss Q1..Q3 = 7.00..17.00 Tage - keine Ueberschneidung"

@@ -1,0 +1,30 @@
+{
+  "bot": "turtle_soup_stocks",
+  "zeitrahmen": "1d",
+  "anlageklasse": "aktien",
+  "startkapital": 10000.0,
+  "allocation_pct": 0.02,
+  "max_concurrent_positions": null,
+  "bot_hat_limit_parameter": true,
+  "trades_gefunden": 12069,
+  "trades_ausgefuehrt": 8915,
+  "trades_uebersprungen": 3154,
+  "symbole_gefunden": 147,
+  "symbole_ausgefuehrt": 147,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "ausstiegsarten": {
+    "time_exit": 8915
+  },
+  "spalte_result_vorhanden": true,
+  "kerzen_ohne_wert": 0,
+  "kennzeichnung_neutral": true,
+  "abgleich_exposure_messung": {
+    "datei": "research/exposure_messung/daten/turtle_soup_stocks_positionen.csv",
+    "vorhanden": true,
+    "zeilen_dort": 8915,
+    "zeilen_hier": 8915,
+    "identisch": true,
+    "abweichende_zeilen": 0
+  }
+}
