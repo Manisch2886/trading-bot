@@ -1,0 +1,62 @@
+9 Bot(s), 20 Permutationen je Bot, Startwert 20260913, ohne Zwischenspeicher.
+
+  elliott_wave                 NUR REIHENFOLGE          81.8s
+  elliott_wave_stocks          NICHT DETERMINISTISCH   260.6s
+  rsi2_crypto                  NICHT DETERMINISTISCH     8.9s
+  rsi2_mean_reversion          NICHT DETERMINISTISCH   125.6s
+  t3_supertrend                NICHT DETERMINISTISCH    31.0s
+  turtle_soup_crypto           NICHT DETERMINISTISCH    13.9s
+  turtle_soup_stocks           NICHT DETERMINISTISCH   137.7s
+  volatility_breakout          NICHT DETERMINISTISCH   132.6s
+  volatility_breakout_crypto   NICHT DETERMINISTISCH     8.3s
+
+====================================================================================================
+DETERMINISMUS DER BACKTESTS UNTER PERMUTIERTER SYMBOLREIHENFOLGE
+====================================================================================================
+Bot                          Urteil                  umstr.         Rendite-Spanne      Drawdown-Spanne
+----------------------------------------------------------------------------------------------------
+elliott_wave                 NUR REIHENFOLGE           0.0%         67.77 .. 67.77     -10.17 .. -10.17
+elliott_wave_stocks          NICHT DETERMINISTISCH    28.2%       321.80 .. 424.42     -23.22 .. -22.19
+rsi2_crypto                  NICHT DETERMINISTISCH    14.4%         25.58 .. 34.07     -13.96 .. -12.66
+rsi2_mean_reversion          NICHT DETERMINISTISCH    27.1%         27.90 .. 45.62     -22.15 .. -18.93
+t3_supertrend                NICHT DETERMINISTISCH    14.6%       117.87 .. 138.12     -22.57 .. -22.14
+turtle_soup_crypto           NICHT DETERMINISTISCH    30.6%       123.77 .. 190.23     -41.24 .. -32.40
+turtle_soup_stocks           NICHT DETERMINISTISCH    36.4%       121.84 .. 164.68     -30.58 .. -28.45
+volatility_breakout          NICHT DETERMINISTISCH    46.6%       145.16 .. 269.47     -25.64 .. -22.89
+volatility_breakout_crypto   NICHT DETERMINISTISCH    11.6%         46.29 .. 73.45     -16.29 .. -16.29
+----------------------------------------------------------------------------------------------------
+
+Bot                            Limit  max. gleichzeitig   Limit erreicht   Trades          abgelehnt
+----------------------------------------------------------------------------------------------------
+elliott_wave                   keins               7..7     0/20 Laeufen      130               0..0
+elliott_wave_stocks                8               8..8    20/20 Laeufen      510           111..118
+rsi2_crypto                        8               8..8    20/20 Laeufen      439             46..47
+rsi2_mean_reversion               20             20..20    20/20 Laeufen     5391         1152..1171
+t3_supertrend                      5               5..5    20/20 Laeufen      980           321..327
+turtle_soup_crypto                 8               8..8    20/20 Laeufen     1599           184..196
+turtle_soup_stocks             keins             50..51     0/20 Laeufen    12069         3149..3157
+volatility_breakout               15             10..10     0/20 Laeufen     4510         3050..3063
+volatility_breakout_crypto         8               8..8    20/20 Laeufen      233             26..26
+----------------------------------------------------------------------------------------------------
+  elliott_wave: dieselben Trades, andere Abrechnungsreihenfolge bei gleichem Zeitstempel
+  elliott_wave_stocks: Zuteilung: andere Trades bekommen das Kapital
+  rsi2_crypto: Zuteilung: andere Trades bekommen das Kapital
+  rsi2_mean_reversion: Zuteilung: andere Trades bekommen das Kapital
+  t3_supertrend: Zuteilung: andere Trades bekommen das Kapital
+  turtle_soup_crypto: Zuteilung: andere Trades bekommen das Kapital
+  turtle_soup_stocks: Zuteilung: andere Trades bekommen das Kapital
+  volatility_breakout: Zuteilung: andere Trades bekommen das Kapital
+  volatility_breakout_crypto: Zuteilung: andere Trades bekommen das Kapital
+
+Erlaeuterung der Spalten:
+  umstr.   Anteil der Trades, die nur in EINEM TEIL der Permutationen
+           ausgefuehrt werden (weder immer noch nie). Ein Bot kann viele
+           Trades ablehnen und trotzdem unempfindlich sein - naemlich
+           dann, wenn es immer dieselben sind.
+  Spannen  ueber alle Permutationen, in Prozent.
+
+Diese Pruefung behebt nichts. Sie misst und meldet.
+
+Gesamtlaufzeit: 800.3s
+Je Bot abgelegt unter: research/determinismus/ergebnisse
+Gesamtbericht: research/determinismus/ergebnisse/gesamt_voll.json
