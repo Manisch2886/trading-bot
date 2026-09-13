@@ -208,7 +208,7 @@ def load_trade_dates(sources: dict) -> pd.Series:
 
 
 def _daily_capital_curve_from_equity_df(equity_df: pd.DataFrame) -> pd.Series:
-    df = equity_df.sort_values("time").copy()
+    df = equity_df.sort_values("time", kind="stable").copy()
     df["date"] = df["time"].dt.normalize()
     daily_last = df.groupby("date")["capital_after"].last()
     full_range = pd.date_range(daily_last.index.min(), daily_last.index.max(), freq="D")
