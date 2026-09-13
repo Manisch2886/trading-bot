@@ -173,11 +173,46 @@ Die Vorher-Werte −9,34 % und −11,29 % sind dort exakt reproduziert worden
 
 | Prüfung | Ergebnis |
 |---|---|
-| `shared/test_stabile_sortierung.py` (neu) | **46 von 46** |
+| `shared/test_stabile_sortierung.py` (neu) | **46 von 46** (`--schnell`: 41 von 41) |
 | `shared/ergebniskurven.py` | **9x AKTUELL** |
 | Wiederholbarkeit: beide Skripte zweimal | byteweise identisch |
-| Bestehende Selbsttests | siehe Übergabe-Zusammenfassung (Basislauf auf unverändertem `main` zum Vergleich) |
+| Alle 32 bestehenden Selbsttest-Dateien | **unverändert gegenüber dem Basislauf auf `main`** |
 
 Der neue Test prüft **Verhalten, nicht Quelltext**: er ruft die echten
 Funktionen auf und weist an **mutierten Kopien** nach, dass er rot werden
 kann. Einzelheiten im Testauftrag.
+
+### Basislauf: was in dieser Umgebung schon auf `main` fehlschlägt
+
+Alle 32 Testdateien liefen zweimal — einmal auf unverändertem `main` in
+einem eigenen Arbeitsbaum, einmal auf diesem Zweig. **Acht Dateien
+schlagen in beiden Läufen gleichermassen fehl**, keine davon wegen dieser
+Änderung:
+
+| Datei | Grund |
+|---|---|
+| `broker/test_ibkr.py` | keine `tzdata` im Container (`US/Eastern` nicht auflösbar) |
+| `dashboard/test_dashboard.py` | kein `fastapi` |
+| `dashboard/test_portfolio_sicht.py` | kein `fastapi` — 66 von 68, die JS-Prüfung besteht 67 von 67 |
+| `research/hrp_portfolio/test_hrp_core.py` | kein `scipy` |
+| `shared/test_kursdaten.py` | kein `binance` — 62 von 66 |
+| `research/drawdown_reihenfolge/test_drawdown.py` | braucht einen Bot als Argument (Aufrufhinweis, kein Fehlschlag) |
+| `research/elliott_wave_params/test_params.py` | dasselbe |
+| `system/test_dienst_plists.py` | Rückgabewert 2 by design — prüft macOS-Dienste |
+
+Die restlichen 24 bestehen auf `main` wie auf dem Zweig.
+
+**Zwei scheinbare Abweichungen sind keine.** Im ersten Zweiglauf fielen
+`research/pnl_2025_fixed_size/test_pnl.py` und
+`shared/test_drawdown_beide_masse.py` durch. Beide prüfen, dass **im Repo
+nichts verändert wurde** — und beide sahen genau das: die Änderung war zu
+diesem Zeitpunkt noch nicht eingecheckt, und parallel liefen weitere
+Skripte, die nach `results/portfolio_overview/` schrieben. Auf dem
+eingecheckten Stand und ohne Nebenläufer wiederholt:
+
+* `test_pnl.py`: **93 von 93**, „kein Bot-Code veraendert — leerer Diff"
+* `test_drawdown_beide_masse.py`: **253 von 253** (TB-18), Abschnitt 6
+  „Folgenlosigkeit" wieder grün
+
+Das ist gleichzeitig ein Beleg dafür, dass diese beiden Wachen
+funktionieren.
