@@ -4,7 +4,7 @@
 Übergabe: `docs/UEBERGABE_TB25_fib_score_stufen.md`.
 
 **Untersuchung, keine Änderung.** Kein Produktivcode angefasst, keine
-Parametrisierung. `git diff origin/main HEAD --name-only` listet ausschliesslich
+Parametrisierung. `git diff origin/main...HEAD --name-only` listet ausschliesslich
 `research/` und `docs/`.
 
 ---

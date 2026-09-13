@@ -3,7 +3,7 @@
 **Stand: 2026-09-13** · Branch `claude/new-session-u69uwy`, Base `main` (`48278b9`).
 **Untersuchung, keine Änderung.** Es wurde kein Produktivcode angefasst, keine
 `live_params.py` berührt, kein Parameter übernommen, keine Ergebnisdatei
-überschrieben. `git diff origin/main HEAD --name-only` listet ausschliesslich
+überschrieben. `git diff origin/main...HEAD --name-only` listet ausschliesslich
 `research/fib_score_stufen/` und `docs/`.
 
 Kurzfassung zum Kopieren: `docs/ERGEBNIS_TB25_fib_score_stufen.md`.
@@ -272,7 +272,7 @@ ausgeführt, das eines dieser Pakete bräuchte; ein Basislauf auf unverändertem
 | `python3 research/fib_score_stufen/test_stufen.py elliott_wave_stocks` | **29 von 29** |
 | `python3 shared/ergebniskurven.py` vor dem Lauf | **9× AKTUELL** |
 | `python3 shared/ergebniskurven.py` nach dem Lauf | **9× AKTUELL** |
-| `git diff origin/main HEAD --name-only` | nur `research/fib_score_stufen/` und `docs/` |
+| `git diff origin/main...HEAD --name-only` | nur `research/fib_score_stufen/` und `docs/` |
 | Bot-Dateien (7 je Bot, namentlich geprüft) | unverändert |
 
 Die Selbsttests prüfen unter anderem die Nachbildung gegen die echte

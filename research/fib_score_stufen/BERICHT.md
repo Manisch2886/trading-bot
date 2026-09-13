@@ -2,7 +2,7 @@
 
 > ## DIES IST EINE MESSUNG, KEINE EMPFEHLUNG UND KEINE ÄNDERUNG
 >
-> Es wurde **nichts am Bot-Code geändert**. `git diff origin/main HEAD --name-only`
+> Es wurde **nichts am Bot-Code geändert**. `git diff origin/main...HEAD --name-only`
 > listet ausschliesslich Dateien unter `research/` und `docs/` — nachgewiesen in
 > `test_stufen.py`, Prüfungen 27–29. `live_params.py`, `forward_test.py`,
 > `elliott_wave_counter.py`, `zigzag_indicator.py`, `backtest_elliott.py`,
@@ -491,7 +491,7 @@ wird kein Skript ausgeführt, das diese Pakete bräuchte.
 | Look-Ahead-Sperre greift | ja | ja |
 | Kursdaten über `shared/kursdaten.py` (PR #81) | ja | ja (1 Kerze APH gestrichen) |
 | `shared/ergebniskurven.py` | **9× AKTUELL** (vor und nach dem Lauf) | |
-| `git diff origin/main HEAD --name-only` | nur `research/` und `docs/` | |
+| `git diff origin/main...HEAD --name-only` | nur `research/` und `docs/` | |
 
 ---
 
