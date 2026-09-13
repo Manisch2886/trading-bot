@@ -41,20 +41,26 @@ echte Bot (24 Symbole, Tageskerzen). Kopiert wird in einen temporaeren
 Projektbaum; `data/`, `config/` und `shared/` sind Verweise auf das Original,
 also **nur gelesen**. Am Repo selbst aendert sich nichts (Abschnitt 8).
 
-* **UNVERAENDERT** - der Bot, wie er im Repo steht. Erwartung: Befund.
+* **UNVERAENDERT** - der Bot, wie er im Repo steht. Erwartung: **kein Befund**.
 * **GEHAERTET** - eine Fassung, deren Ergebnis von der Symbolreihenfolge gar
   nicht mehr abhaengen KANN: totale Sortierung mit Zweitschluessel, kein
   Positionslimit, eine Allokation, die das Kapital nie binden kann. Erwartung:
-  kein Befund. Das ist die Gegenprobe.
-* **GEHAERTET + EIN FEHLER** - dieselbe gehaertete Fassung, plus genau einer
-  kuenstlich eingebauten Zuteilung nach Dateireihenfolge bei bindendem Limit.
-  Erwartung: wieder Befund.
+  ebenfalls kein Befund - aber aus einem ganz anderen Grund.
+* **ZUTEILUNG ZURUECKGEDREHT** - der unveraenderte Bot, in dem genau eine
+  Sache auf den Stand vor TB-26 zurueckgesetzt ist: den knappen Platz bekommt
+  wieder der erste Kandidat in der Zeilenreihenfolge des Trade-DataFrames.
+  Erwartung: Befund.
 
-Der dritte Zustand ist die Mutationsprobe in ihrer strengen Form: er geht vom
-**nachweislich gruenen** Fall aus und aendert genau eine Sache. Waere der rote
-Fall stattdessen der unveraenderte Bot mit seinen mehreren gleichzeitigen
-Ursachen, koennte eine zweite Wache das Fehlen der ersten verdecken - der Test
-wuerde rot, ohne dass klar waere, welche Zusicherung ihn rot gemacht hat.
+**Die erste Erwartung hat sich mit TB-26 umgedreht**, und das ist keine
+Abschwaechung des Tests, sondern sein Gegenstand. Bis TB-23 war der
+unveraenderte Bot der rote Fall: wurde ein Platz knapp, entschied die
+Zeilenreihenfolge. Seit TB-26 entscheidet die Zuteilungskaskade
+(`shared/zuteilung.py`), und der unveraenderte Bot ist gruen. Der rote Fall
+ist deshalb an den dritten Zustand gewandert - der geht vom **nachweislich
+gruenen** Fall aus und aendert genau eine Sache. Waere der rote Fall weiterhin
+"irgendein Bot mit mehreren gleichzeitigen Ursachen", koennte eine zweite
+Wache das Fehlen der ersten verdecken: der Test wuerde rot, ohne dass klar
+waere, welche Zusicherung ihn rot gemacht hat.
 
 
 DIE ZWEITE FALLE: EINE PROBE, DIE SICH SELBST BESTAETIGT
@@ -191,6 +197,34 @@ def haerten(strategie_dir: str) -> list:
                     "MAX_CONCURRENT_POSITIONS = None"):
         misslungen.append("kein Positionslimit")
     return misslungen
+
+
+def zuteilung_zurueckdrehen(strategie_dir: str) -> bool:
+    """Setzt in der KOPIE genau eine Sache auf den Stand vor TB-26 zurueck:
+    die Zuteilung.
+
+    Vorher entschied bei knappem Platz die Zeilenreihenfolge des
+    Trade-DataFrames - Pythons stabile Sortierung liess die Einfuegereihenfolge
+    stehen, und die ist die Symbolreihenfolge der Konfigurationsdatei. Genau
+    das wird hier wiederhergestellt, indem die beiden Entscheidungen der
+    Kaskade auf "der erste der Liste" zurueckgestellt werden. Die Strategie,
+    die Parameter und die erzeugten Signale bleiben unberuehrt - deshalb ist
+    die Signalmenge auch in diesem Zustand identisch, und nur die AUSWAHL
+    schwankt. Abschnitt 5 prueft genau das.
+
+    Der Eingriff sitzt in der Kopie, nicht im Modul: `shared/` ist im
+    temporaeren Baum ein Verweis auf das Original und wird nur gelesen.
+    """
+    pfad = os.path.join(strategie_dir, "equity_simulation.py")
+    return _ersetze(
+        pfad,
+        "from zuteilung import simuliere_portfolio, protokollzeilen",
+        "from zuteilung import simuliere_portfolio, protokollzeilen\n"
+        "import zuteilung as _vor_tb26\n"
+        "_vor_tb26.Zuteiler.waehle = (\n"
+        "    lambda self, kandidaten, buch, zeit: list(kandidaten)[0])\n"
+        "_vor_tb26.Zuteiler.ausstiegsreihenfolge = (\n"
+        "    lambda self, positionen: list(positionen))")
 
 
 def fehler_einbauen(strategie_dir: str) -> bool:
@@ -365,16 +399,42 @@ def abschnitt2_5(p: Protokoll, perms: int):
                  bool(gesehen) and gesehen[0] == list(_originalliste()),
                  f"{gesehen[0][:3] if gesehen else '-'}")
 
-        p.pruefe("Abschnitt 3", f"{VORLAGE} unveraendert: Befund gemeldet",
-                 befund.get("urteil") == d.NICHT, str(befund.get("urteil")))
-        p.pruefe("Abschnitt 3", "als Ursache die Zuteilung benannt",
-                 "Zuteilung" in (befund.get("ursache") or ""),
-                 str(befund.get("ursache")))
+        # Haengen die Permutationen ueberhaupt am Startwert? Seit TB-26 laesst
+        # sich das NICHT mehr am Ergebnis ablesen - der Bot liefert unter
+        # jeder Reihenfolge dasselbe. Also wird es dort geprueft, wo es
+        # sichtbar ist: an den tatsaechlich gesehenen Reihenfolgen.
+        messe(ordner, perms=perms, seed=4712)
+        with open(pfad) as f:
+            alle = [z.strip().split(",") for z in f if z.strip()]
+        zweiter_block = alle[perms:]
+        p.pruefe("Abschnitt 2", "ein anderer Startwert liefert andere Permutationen",
+                 len(zweiter_block) == perms
+                 and [tuple(g) for g in zweiter_block] != [tuple(g) for g in gesehen],
+                 f"{len(zweiter_block)} Aufrufe im zweiten Block")
+        p.pruefe("Abschnitt 2",
+                 "auch beim anderen Startwert ist Lauf 0 die Originalreihenfolge",
+                 bool(zweiter_block) and zweiter_block[0] == list(_originalliste()))
+
+        # --- Abschnitt 3: die Zusicherung von TB-26, an echtem Bot-Code
+        p.pruefe("Abschnitt 3", f"{VORLAGE} unveraendert: KEIN Befund",
+                 befund.get("urteil") == d.DETERMINISTISCH,
+                 f"{befund.get('urteil')} / {befund.get('ursache')} / "
+                 f"{befund.get('fehler')}")
         p.pruefe("Abschnitt 3", "die Signalmenge selbst ist identisch",
                  (befund.get("vergleich") or {}).get("signalmenge_identisch") is True)
-        p.pruefe("Abschnitt 3", "umstrittene Trades werden beziffert",
-                 ((befund.get("umstrittene_trades") or {}).get("umstritten") or 0) > 0,
+        p.pruefe("Abschnitt 3", "auch der Kapitalpfad ist Zeile fuer Zeile gleich",
+                 (befund.get("vergleich") or {}).get("kapitalpfad_identisch") is True)
+        p.pruefe("Abschnitt 3", "kein Trade ist umstritten",
+                 (befund.get("umstrittene_trades") or {}).get("umstritten") == 0,
                  str((befund.get("umstrittene_trades") or {}).get("anteil_pct")))
+        # Ohne das waere der gruene Befund wertlos: ein Bot, bei dem nie ein
+        # Platz knapp wird, ist trivialerweise reihenfolgeunabhaengig. Erst
+        # wenn das Limit wirklich bindet, sagt "kein Befund" etwas ueber die
+        # Zuteilung aus.
+        p.pruefe("Abschnitt 3", "und das Positionslimit hat trotzdem gebunden",
+                 ((befund.get("positionslimit") or {}).get("limit_erreicht_in_laeufen")
+                  or 0) > 0,
+                 str(befund.get("positionslimit")))
 
     # --- 4: dieselbe Kopie, gehaertet -> die Gegenprobe --------------------
     with tempfile.TemporaryDirectory(prefix="determinismus_gruen_") as ordner:
@@ -396,17 +456,15 @@ def abschnitt2_5(p: Protokoll, perms: int):
                  ((befund.get("streuung") or {}).get("rendite_pct") or {})
                  .get("verschiedene_werte") == 1)
 
-    # --- 5: gehaertet PLUS genau ein eingebauter Fehler --------------------
+    # --- 5: derselbe Bot, nur die Zuteilung zurueckgedreht -----------------
     with tempfile.TemporaryDirectory(prefix="determinismus_mutante_") as ordner:
         strategie = baue_kopie(ordner)
-        misslungen = haerten(strategie)
-        eingebaut = fehler_einbauen(strategie)
+        eingebaut = zuteilung_zurueckdrehen(strategie)
         p.pruefe("Abschnitt 5", "der kuenstliche Fehler sitzt im Code",
-                 eingebaut and not misslungen,
-                 f"eingebaut={eingebaut}, misslungen={misslungen}")
+                 eingebaut, f"eingebaut={eingebaut}")
         befund = messe(ordner, perms=perms)
         p.pruefe("Abschnitt 5",
-                 "gehaertet + Zuteilung nach Dateireihenfolge: Befund gemeldet",
+                 "Zuteilung nach Dateireihenfolge: Befund gemeldet",
                  befund.get("urteil") == d.NICHT,
                  f"{befund.get('urteil')} / {befund.get('fehler')}")
         p.pruefe("Abschnitt 5", "als Ursache die Zuteilung benannt",
@@ -463,38 +521,76 @@ def abschnitt7(p: Protokoll):
              fp(erst) == fp(messe(BASE_DIR, perms=3, bot="rsi2_crypto",
                                    seed=99, voll=False)))
 
+    # Seit TB-26 muss ein anderer Startwert am ERGEBNIS nichts mehr aendern -
+    # die Permutationen sind andere, der Bot rechnet aber unter jeder
+    # Reihenfolge dasselbe. Dass die Permutationen selbst wirklich andere
+    # sind, prueft Abschnitt 2 am Ablauf; hier waere es nicht sichtbar.
     anders = messe(BASE_DIR, perms=3, bot="rsi2_crypto", seed=100, voll=True)
-    p.pruefe("Abschnitt 7", "ein anderer Startwert liefert andere Permutationen",
-             fp(erst) != fp(anders))
-    p.pruefe("Abschnitt 7", "Lauf 0 ist bei beiden Startwerten derselbe",
-             bool(fp(erst)) and fp(erst)[0] == fp(anders)[0])
+    p.pruefe("Abschnitt 7",
+             "ein anderer Startwert aendert das Ergebnis nicht mehr (TB-26)",
+             bool(fp(erst)) and fp(erst) == fp(anders))
 
     # Pflicht-Gegencheck: rechnet dieses Werkzeug dasselbe wie der Bot?
     # Lauf 0 laeuft in der unveraenderten Originalreihenfolge - er MUSS
-    # deshalb die abgelegte results/<bot>/equity_curve.csv treffen. Trifft er
-    # sie nicht, misst das Werkzeug etwas anderes als den Backtest des Bots,
-    # und jede Streuungszahl daraus waere wertlos.
+    # deshalb die Kurve treffen, die der Bot selbst erzeugt. Trifft er sie
+    # nicht, misst das Werkzeug etwas anderes als den Backtest des Bots, und
+    # jede Streuungszahl daraus waere wertlos.
+    #
+    # Verglichen wird gegen einen FRISCHEN Lauf des Bots (ueber
+    # `shared/kurven_lauf.py`, denselben Weg, den `shared/ergebniskurven.py`
+    # geht) und nicht mehr gegen `results/rsi2_crypto/equity_curve.csv`. Die
+    # abgelegten Kurven stammen von VOR TB-26 und beschreiben die alte
+    # Zuteilung; `shared/ergebniskurven.py` meldet sie bis zu ihrer
+    # Neuerzeugung zu Recht als ABWEICHEND. Ein Test, der eine bewusst
+    # veraltete Datei als Wahrheit nimmt, misst das Alter der Datei und nicht
+    # das Werkzeug.
     import pandas as pd
-    kurve = pd.read_csv(os.path.join(BASE_DIR, "results", "rsi2_crypto",
-                                      "equity_curve.csv"))
     lauf0 = erst.get("laeufe", [{}])[0]
-    p.pruefe("Abschnitt 7",
-             "Lauf 0 trifft die abgelegte equity_curve.csv des Bots",
-             len(kurve) == lauf0.get("trades_ausgefuehrt")
-             and abs(float(kurve["capital_after"].iloc[-1])
-                     - float(lauf0.get("endkapital", 0))) < 0.005,
-             f"{len(kurve)} Zeilen / {kurve['capital_after'].iloc[-1]} gegen "
-             f"{lauf0.get('trades_ausgefuehrt')} / {lauf0.get('endkapital')}")
+    with tempfile.TemporaryDirectory(prefix="determinismus_botkurve_") as ziel:
+        lauf = subprocess.run(
+            [sys.executable, os.path.join(_SHARED_DIR, "kurven_lauf.py"),
+             "rsi2_crypto", ziel], capture_output=True, text=True, cwd=BASE_DIR)
+        kurvenpfad = os.path.join(ziel, "equity_curve.csv")
+        if not os.path.exists(kurvenpfad):
+            p.pruefe("Abschnitt 7", "der Bot liess sich zum Vergleich laufen",
+                     False, (lauf.stderr or lauf.stdout)[-300:])
+        else:
+            kurve = pd.read_csv(kurvenpfad)
+            p.pruefe("Abschnitt 7",
+                     "Lauf 0 trifft die Kurve, die der Bot selbst erzeugt",
+                     len(kurve) == lauf0.get("trades_ausgefuehrt")
+                     and abs(float(kurve["capital_after"].iloc[-1])
+                             - float(lauf0.get("endkapital", 0))) < 0.005,
+                     f"{len(kurve)} Zeilen / {kurve['capital_after'].iloc[-1]} gegen "
+                     f"{lauf0.get('trades_ausgefuehrt')} / {lauf0.get('endkapital')}")
 
-    # Rueckgabewert des Gesamtprogramms: 1 bei Befund.
+    # Rueckgabewert des Gesamtprogramms: 0, wenn nichts zu melden ist - das
+    # ist seit TB-26 der Normalfall und zugleich die Zusicherung dieser
+    # Aufgabe, hier am Gesamtprogramm statt am Hilfsprogramm gemessen.
     lauf = subprocess.run(
         [sys.executable, os.path.join(_SHARED_DIR, "determinismus.py"),
          "--bot", "rsi2_crypto", "--perms", "3"],
         capture_output=True, text=True, cwd=BASE_DIR)
-    p.pruefe("Abschnitt 7", "Rueckgabewert 1 bei Befund (fuer den Cronjob)",
-             lauf.returncode == 1, f"rc={lauf.returncode}")
+    p.pruefe("Abschnitt 7", "Rueckgabewert 0, wenn kein Befund vorliegt",
+             lauf.returncode == 0, f"rc={lauf.returncode}")
     p.pruefe("Abschnitt 7", "der Bericht nennt Bot und Urteil",
-             "rsi2_crypto" in lauf.stdout and d.NICHT in lauf.stdout)
+             "rsi2_crypto" in lauf.stdout and d.DETERMINISTISCH in lauf.stdout)
+
+    # ... und 1, wenn einer vorliegt. Ein Programm, das nur noch gruen kann,
+    # waere keine Messung mehr. Geprueft an der Kopie mit zurueckgedrehter
+    # Zuteilung - am echten Bot gibt es diesen Fall nicht mehr.
+    with tempfile.TemporaryDirectory(prefix="determinismus_rc1_") as ordner:
+        strategie = baue_kopie(ordner)
+        p.pruefe("Abschnitt 7", "Zuteilung in der Kopie zurueckgedreht",
+                 zuteilung_zurueckdrehen(strategie))
+        lauf = subprocess.run(
+            [sys.executable, os.path.join(_SHARED_DIR, "determinismus.py"),
+             "--bot", VORLAGE, "--perms", "3", "--voll", "--basis", ordner],
+            capture_output=True, text=True, cwd=BASE_DIR)
+        p.pruefe("Abschnitt 7", "Rueckgabewert 1 bei Befund (fuer den Cronjob)",
+                 lauf.returncode == 1, f"rc={lauf.returncode}")
+        p.pruefe("Abschnitt 7", "der Bericht nennt den Befund",
+                 VORLAGE in lauf.stdout and d.NICHT in lauf.stdout)
 
     # Ein unbekannter Bot ist ein Aufruffehler (2), kein stilles Gruen.
     lauf = subprocess.run(
