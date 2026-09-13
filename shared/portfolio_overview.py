@@ -360,7 +360,20 @@ trades = pd.read_csv({tmp_trades_csv!r}, parse_dates=["entry_time", "exit_time"]
 args = [trades, STARTING_CAPITAL, allocation]
 if nimmt_limit:
     args.append(limit)
-result = simulate_portfolio(*args)
+
+# Stufe 1 der Zuteilungskaskade (TB-26) ruht auf diesem Weg - und das wird
+# ihr ausdruecklich gesagt, statt es auf einen Fehler ankommen zu lassen.
+# Die Live-Trades kommen aus der Bot-Datenbank und fuehren Symbol, Zeiten und
+# Ergebnis, aber KEINE strategieeigene Signalstaerke: die entsteht im
+# Backtest und wird live nirgends mitgeschrieben. Zwei Bots nennen eine
+# (`rsi_at_entry`); ohne diesen Hinweis braeche ihre simulate_portfolio hier
+# mit KeyError ab - absichtlich, denn im Backtest waere eine fehlende
+# SIGNALSPALTE ein Fehler. Die Kaskade beginnt hier also bei Stufe 2.
+kwargs = {{}}
+spalte = getattr(es, "SIGNALSPALTE", None)
+if spalte is not None and spalte[0] not in trades.columns:
+    kwargs["signalspalte"] = None
+result = simulate_portfolio(*args, **kwargs)
 result["equity_curve"].to_csv({tmp_out_csv!r}, index=False)
 print("{_META_PREFIX}" + json.dumps({{
     "allocation": allocation, "allocation_quelle": allocation_quelle,

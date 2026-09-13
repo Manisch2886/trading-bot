@@ -36,6 +36,10 @@ from strategy_paths import get_strategy_paths
 _P = get_strategy_paths(__file__)
 RESULTS_DIR = _P["RESULTS_DIR"]
 
+# Die Zuteilungskaskade und die Kapitalsimulation - seit TB-26 an einer
+# einzigen Stelle fuer alle neun Bots (siehe dortigen Kopfkommentar).
+from zuteilung import simuliere_portfolio, protokollzeilen
+
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 import backtest_elliott
 
@@ -78,66 +82,52 @@ def collect_all_trades(all_data: dict, deviation_pct: float,
     return combined.sort_values("entry_time").reset_index(drop=True)
 
 
+# ---------------------------------------------------------------------------
+# Stufe 1 der Zuteilungskaskade (shared/zuteilung.py)
+# ---------------------------------------------------------------------------
+# Welche STETIGE, zum Signalzeitpunkt bekannte Groesse drueckt bei diesem Bot
+# die Signalstaerke aus? Sie entscheidet als erste, wenn mehrere Signale
+# desselben Zeitpunkts um einen knappen Platz konkurrieren. `None` heisst:
+# dieser Bot fuehrt keine, und die Kaskade beginnt beim Diversifikations-
+# beitrag. Diese Zeile ist der EINZIGE Ort, an dem das je Bot steht.
+# Elliott Wave fuehrt mit `fib_score` zwar ein Guetemass der Welle, aber
+# kein STETIGES: oberhalb der Schwelle nimmt er nur fuenf Werte an. Gemessen
+# auf den 130 Trades dieses Bots bleiben danach 38,6 % der gleichzeitigen
+# Trades gleichauf - Eigenschaft 2 der Pruefliste (hoechstens 2 %
+# Gleichstaende an der Kante) ist damit verfehlt, und zwar um Groessen-
+# ordnungen. Die Kaskade beginnt deshalb beim Diversifikationsbeitrag.
+# Ob unter dem Score stetige Abstaende liegen (Retracement gegen
+# Zielverhaeltnis), untersucht TB-25; bis dahin wird hier nichts erfunden.
+SIGNALSPALTE = None
+
+
 def simulate_portfolio(trades: pd.DataFrame, starting_capital: float,
-                        allocation_pct: float) -> dict:
+                        allocation_pct: float, kursdaten=None,
+                        signalspalte=SIGNALSPALTE) -> dict:
+    """Kapitalsimulation mit Zuteilungskaskade.
+
+    Die Rechnung selbst steht seit TB-26 an EINER Stelle fuer alle neun Bots:
+    `shared/zuteilung.py`. Vorher stand sie neunmal fast wortgleich in den
+    equity_simulation.py - und mit ihr neunmal derselbe Befund aus TB-23: wurde
+    ein Platz knapp, entschied die Zeilenreihenfolge des Trade-DataFrames, also
+    die Symbolreihenfolge der Konfigurationsdatei.
+
+    DIESER Bot kennt bewusst KEIN Positionslimit - deshalb fehlt das Argument
+    hier weiterhin. `shared/portfolio_overview.py` und
+    `research/order_sensitivity/run_one_bot.py` fragen genau danach
+    (`inspect.signature` bzw. `co_varnames`), um zu erkennen, welcher Bot eins
+    hat; ein Limit-Argument mit Vorbelegung None waere fuer beide eine stille
+    Falschauskunft. An `shared/zuteilung.py` wird deshalb None durchgereicht.
+
+    `signalspalte` ist nur zu setzen, wenn die uebergebene Trade-Tabelle die
+    Spalte gar nicht fuehren KANN - so bei den Live-Trades aus der Bot-
+    Datenbank (`shared/portfolio_overview.py`), die Zeiten, Symbol und
+    Ergebnis enthalten und sonst nichts. Bleibt sie auf ihrer Vorbelegung und
+    fehlt die Spalte, bricht `shared/zuteilung.py` ab, statt lautlos ohne
+    Stufe 1 weiterzurechnen.
     """
-    Event-basierte Simulation: verarbeitet Entry- und Exit-Ereignisse
-    chronologisch, verwaltet freies vs. gebundenes Kapital.
-    """
-    events = []
-    for idx, trade in trades.iterrows():
-        events.append((trade["entry_time"], "entry", idx))
-        events.append((trade["exit_time"], "exit", idx))
-
-    # Bei gleichem Zeitpunkt: Exits vor Entries verarbeiten (Kapital wird frei)
-    events.sort(key=lambda e: (e[0], e[1] != "exit"))
-
-    capital = starting_capital
-    open_positions = {}  # idx -> allokierter Betrag
-    skipped_trades = []
-    executed_trades = []
-    equity_curve = []
-
-    for time, event_type, idx in events:
-        trade = trades.loc[idx]
-
-        if event_type == "entry":
-            bound_capital = sum(open_positions.values())
-            free_capital = capital - bound_capital
-            allocation = capital * allocation_pct
-
-            if allocation > free_capital:
-                skipped_trades.append(idx)
-                continue
-
-            open_positions[idx] = allocation
-            executed_trades.append(idx)
-
-        elif event_type == "exit":
-            if idx not in open_positions:
-                continue  # Trade wurde nie eroeffnet (uebersprungen)
-
-            allocation = open_positions.pop(idx)
-            pnl_pct = trade["pnl_pct"]
-            result_value = allocation * (1 + pnl_pct / 100)
-            capital += (result_value - allocation)
-
-            equity_curve.append({
-                "time": time,
-                "symbol": trade["symbol"],
-                "pnl_pct": pnl_pct,
-                "allocation": round(allocation, 2),
-                "capital_after": round(capital, 2),
-            })
-
-    equity_df = pd.DataFrame(equity_curve)
-
-    return {
-        "final_capital": round(capital, 2),
-        "num_executed": len(executed_trades),
-        "num_skipped": len(skipped_trades),
-        "equity_curve": equity_df,
-    }
+    return simuliere_portfolio(trades, starting_capital, allocation_pct,
+                                None, kursdaten, signalspalte=signalspalte)
 
 
 def calculate_max_drawdown(equity_df: pd.DataFrame, starting_capital: float) -> float:
@@ -163,7 +153,7 @@ if __name__ == "__main__":
 
     print(f"{len(trades)} Trades ueber alle Symbole gefunden (unsortiert nach Kapital-Verfuegbarkeit).\n")
 
-    result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT)
+    result = simulate_portfolio(trades, STARTING_CAPITAL, ALLOCATION_PCT, all_data)
 
     print("=" * 55)
     print("PORTFOLIO-SIMULATION")
@@ -178,6 +168,11 @@ if __name__ == "__main__":
 
     max_dd = calculate_max_drawdown(result["equity_curve"], STARTING_CAPITAL)
     print(f"Max Drawdown (Kapital):  {max_dd:.2f}%")
+
+    # Der Startwert des Zufalls gehoert ins Protokoll: ein Zufall, den
+    # niemand aufschreibt, ist kein reproduzierbarer.
+    for zeile in protokollzeilen(result["zuteilung"]):
+        print(zeile)
 
     if not result["equity_curve"].empty:
         print("\nLetzte 10 abgeschlossene Trades:")
