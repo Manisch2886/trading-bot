@@ -53,11 +53,22 @@ sich auf und fasst das Repo nicht an.
 
 Was er im Einzelnen nachweist:
 
+> **Nachtrag TB-28 (13.09.2026).** `calculate_max_drawdown()` steht seit
+> TB-28 nicht mehr in den neun Dateien, sondern einmal in
+> `shared/messkette.py`. Die beiden Proben, die an ihrem Rumpf ansetzten,
+> hätten ab sofort ins Leere gegriffen — der Test wäre grün geblieben, ohne
+> noch etwas zu prüfen. Aufgefallen ist es nur, weil beide Proben vorher
+> belegen, dass die Verfälschung überhaupt greift. Sie sitzen jetzt im Rumpf
+> von `simulate_portfolio()`; die Zeilen unten sind entsprechend
+> nachgezogen. Der Nachweis, dass die Messkette wirklich nur an einer Stelle
+> steht, führt seitdem `shared/test_messkette.py`
+> (`docs/TESTAUFTRAG_TB-28_messkette.md`).
+
 | Abschnitt | Nachweis |
 |---|---|
-| 1 | Der echte Bestand entspricht der festgehaltenen Erwartung; `calculate_max_drawdown` ist **eine** Gruppe, `simulate_portfolio` sind **zwei** |
+| 1 | Der echte Bestand entspricht der festgehaltenen Erwartung; `simulate_portfolio` sind **zwei** Gruppen, `calculate_max_drawdown` kommt (seit TB-28) gar nicht mehr vor |
 | 2 | Eine unveränderte Kopie bleibt grün |
-| 3 | **Eine verfälschte `calculate_max_drawdown()` macht ihn ROT** — und er nennt Bot und Funktion |
+| 3 | **Eine verfälschte `simulate_portfolio()` macht ihn ROT** — und er nennt Bot und Funktion |
 | 4 | Ein neuer Kommentar und ein geänderter Docstring lassen ihn **grün**; die Übersicht stuft die Gruppe dafür sichtbar von `zeichengleich` auf `ohne Kommentar` bzw. `sachlich gleich` zurück |
 | 5 | Eine neu hinzugekommene und eine verschwundene Funktion werden gemeldet |
 | 6 | Rechnen und Reden werden auseinandergehalten (Stufe 4, `print`-Argumente ausgeblendet) |
@@ -103,7 +114,9 @@ python3 research/tb27_kapitalsimulation/vergleich.py
 
 **Erwartet**, im Abschnitt `GRUPPEN SACHLICHER GLEICHHEIT`:
 
-* `calculate_max_drawdown   (1 Gruppe)` → `alle 9, zeichengleich`
+* `calculate_max_drawdown` — **kommt seit TB-28 nicht mehr vor** (steht
+  einmal in `shared/messkette.py` und wird importiert); bis dahin
+  `(1 Gruppe)` → `alle 9, zeichengleich`
 * `simulate_portfolio   (2 Gruppen)` → acht zeichengleich, `elliott_wave` allein
 * `collect_all_trades   (9 Gruppen)`
 * `__main__   (8 Gruppen)`, davon `turtle_soup_crypto, turtle_soup_stocks`

@@ -41,6 +41,14 @@ RESULTS_DIR = _P["RESULTS_DIR"]
 # einzigen Stelle fuer alle neun Bots (siehe dortigen Kopfkommentar).
 from zuteilung import simuliere_portfolio, protokollzeilen
 
+# Die Messkette - Rendite und Max Drawdown - steht seit TB-28 ebenfalls an
+# einer einzigen Stelle: shared/messkette.py. Bis dahin stand
+# `calculate_max_drawdown()` neunmal ZEICHENGLEICH in genau dieser Datei
+# (nachgewiesen in TB-27), und die Renditeformel ebenso. Der englische Name
+# bleibt, weil ueber dreissig Stellen im Repo ihn als Attribut dieses Moduls
+# aufrufen; durch den Import bleibt er genau das.
+from messkette import calculate_max_drawdown, rendite_pct
+
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 import backtest_elliott
 
@@ -153,15 +161,6 @@ def simulate_portfolio(trades: pd.DataFrame, starting_capital: float,
                                 signalspalte=signalspalte)
 
 
-def calculate_max_drawdown(equity_df: pd.DataFrame, starting_capital: float) -> float:
-    if equity_df.empty:
-        return 0.0
-    capital_series = pd.concat([pd.Series([starting_capital]), equity_df["capital_after"]], ignore_index=True)
-    running_max = capital_series.cummax()
-    drawdown_pct = (capital_series - running_max) / running_max * 100
-    return round(drawdown_pct.min(), 2)
-
-
 if __name__ == "__main__":
     all_data = load_all_symbol_data()
     if not all_data:
@@ -185,7 +184,7 @@ if __name__ == "__main__":
     print(f"Startkapital:            {STARTING_CAPITAL:,.2f}")
     print(f"Endkapital:              {result['final_capital']:,.2f}")
 
-    total_return_pct = (result["final_capital"] / STARTING_CAPITAL - 1) * 100
+    total_return_pct = rendite_pct(result["final_capital"], STARTING_CAPITAL)
     print(f"Gesamtrendite:           {total_return_pct:.2f}%")
     print(f"Ausgefuehrte Trades:     {result['num_executed']}")
     # Der Klammerzusatz nannte frueher pauschal "nicht genug freies Kapital".

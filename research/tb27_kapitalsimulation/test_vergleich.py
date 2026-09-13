@@ -96,8 +96,15 @@ def main():
     kode, uebersicht = laufen(_ECHTE_STRATEGIEN)
     pruefe("die Uebersicht laeuft durch", kode == 0)
     pruefe("sie findet neun Dateien", uebersicht.startswith("9x "), uebersicht[:60])
-    pruefe("calculate_max_drawdown steht als EINE Gruppe da",
-           re.search(r"calculate_max_drawdown\s+\(1 Gruppe\)", uebersicht) is not None)
+    # Seit TB-28 steht `calculate_max_drawdown` einmal in
+    # `shared/messkette.py` und wird von den neun Dateien importiert. Sie
+    # DEFINIEREN sie nicht mehr - deshalb taucht sie in der Gruppenuebersicht
+    # dieses Werkzeugs gar nicht mehr auf. Genau das wird hier festgehalten:
+    # verschwindet der Import wieder und steht die Funktion erneut neunmal
+    # da, faellt diese Pruefung.
+    pruefe("calculate_max_drawdown wird in keiner der neun Dateien mehr "
+           "DEFINIERT (seit TB-28 in shared/messkette.py)",
+           "calculate_max_drawdown" not in uebersicht, uebersicht[:300])
     pruefe("simulate_portfolio steht als ZWEI Gruppen da",
            re.search(r"simulate_portfolio\s+\(2 Gruppen\)", uebersicht) is not None)
 
@@ -115,22 +122,34 @@ def main():
         # -----------------------------------------------------------
         print("\n3. Eine stille Divergenz wird ROT")
         print("-" * 70)
-        # Der Fall, um den es geht: das Drawdown-Mass laeuft in EINEM Bot
-        # auseinander - dieselbe Sache, anders gerechnet. Genau das, was die
-        # Kurven-Erneuerung (PR #86) an den abgelegten Kurven gefunden hat.
+        # Der Fall, um den es geht: dieselbe Sache laeuft in EINEM Bot
+        # auseinander. Genau das, was die Kurven-Erneuerung (PR #86) an den
+        # abgelegten Kurven gefunden hat.
+        #
+        # BIS TB-28 setzte diese Probe am Drawdown-Mass an
+        # (`capital_series.cummax()` -> `.expanding().max()`). Diese Zeile
+        # steht seit TB-28 nicht mehr in den neun Dateien, sondern einmal in
+        # `shared/messkette.py`. Eine Probe, die ins Leere greift, wuerde sich
+        # selbst bestaetigen - deshalb die Umstellung auf die Stelle, die von
+        # der gemeinsamen Messkette UEBRIG bleibt und in acht Bots
+        # zeichengleich ist: die Durchreichung an `shared/zuteilung.py`.
+        # `pruefe("die Verfaelschung greift ueberhaupt", ...)` haette den
+        # Leerlauf gemeldet; sie ist der Grund, warum es hier auffiel.
         divergent = os.path.join(basis, "divergent")
         os.makedirs(divergent)
         kopie(divergent)
         text = lies(divergent, "turtle_soup_crypto")
+        # Das Positionslimit still fallen lassen: dieselbe Signatur, andere
+        # Rechnung - die stille Divergenz in Reinform.
         verfaelscht = text.replace(
-            "    running_max = capital_series.cummax()\n",
-            "    running_max = capital_series.expanding().max()\n", 1)
+            "                                max_concurrent_positions, kursdaten,\n",
+            "                                None, kursdaten,\n", 1)
         pruefe("die Verfaelschung greift ueberhaupt", verfaelscht != text)
         schreib(divergent, "turtle_soup_crypto", verfaelscht)
         kode, ausgabe = laufen(divergent, "--pruefen")
         pruefe("der Waechter meldet ROT", kode == 1, ausgabe.strip()[:200])
         pruefe("er nennt die betroffene Funktion",
-               "calculate_max_drawdown" in ausgabe, ausgabe[:200])
+               "simulate_portfolio" in ausgabe, ausgabe[:200])
         pruefe("er nennt den betroffenen Bot",
                "turtle_soup_crypto" in ausgabe, ausgabe[:300])
 
@@ -142,11 +161,15 @@ def main():
         harmlos = os.path.join(basis, "harmlos")
         os.makedirs(harmlos)
         kopie(harmlos)
+        # Auch diese Probe sass bis TB-28 im Rumpf von
+        # `calculate_max_drawdown` und greift seitdem ins Leere; sie sitzt
+        # jetzt im Rumpf von `simulate_portfolio`, der in acht Bots
+        # zeichengleich ist.
         text = lies(harmlos, "rsi2_crypto")
         mit_kommentar = text.replace(
-            "    if equity_df.empty:\n        return 0.0\n",
-            "    # Ein neuer, erklaerender Kommentar IM Rumpf des Masses.\n"
-            "    if equity_df.empty:\n        return 0.0\n", 1)
+            "    return simuliere_portfolio(trades, starting_capital, allocation_pct,\n",
+            "    # Ein neuer, erklaerender Kommentar IM Rumpf der Durchreichung.\n"
+            "    return simuliere_portfolio(trades, starting_capital, allocation_pct,\n", 1)
         pruefe("die Kommentar-Aenderung greift ueberhaupt", mit_kommentar != text)
         schreib(harmlos, "rsi2_crypto", mit_kommentar)
         kode, ausgabe = laufen(harmlos, "--pruefen")

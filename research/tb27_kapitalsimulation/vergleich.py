@@ -106,13 +106,20 @@ HAUPTBLOCK = "__main__"
 # fest, wie es am 13.09.2026 war, damit eine spaetere, unbeabsichtigte
 # Abweichung auffaellt. Wer eine Abweichung bewusst herbeifuehrt, zieht die
 # Tabelle mit nach und begruendet es im zugehoerigen Pull Request.
+#
+# NACHGEZOGEN IN TB-28 (13.09.2026): `calculate_max_drawdown` stand hier als
+# EINE Gruppe ueber alle neun Bots - zeichengleich, und genau deshalb ein
+# Kandidat fuer die Zusammenlegung. Die Funktion ist seit TB-28 nicht mehr
+# Teil dieser neun Dateien: sie steht einmal in `shared/messkette.py` und
+# wird dort importiert. Der Eintrag entfaellt deshalb - nicht, weil eine
+# Divergenz hingenommen wird, sondern weil es die Fassungen nicht mehr gibt,
+# zwischen denen eine entstehen koennte.
+#
+# Der Waechter hat diese Aenderung gemeldet, wie er soll ("FUNKTION FEHLT:
+# calculate_max_drawdown"). Die Renditeformel steht nicht in dieser Tabelle,
+# weil sie keine Funktion ist, sondern eine Zeile im `__main__`-Block; ihre
+# Gruppierung dort bleibt unveraendert (acht Gruppen, wie in TB-27).
 ERWARTUNG = {
-    "calculate_max_drawdown": [
-        ("elliott_wave", "elliott_wave_stocks", "rsi2_crypto",
-         "rsi2_mean_reversion", "t3_supertrend", "turtle_soup_crypto",
-         "turtle_soup_stocks", "volatility_breakout",
-         "volatility_breakout_crypto"),
-    ],
     "simulate_portfolio": [
         # Acht Bots teilen sich denselben Rumpf.
         ("elliott_wave_stocks", "rsi2_crypto", "rsi2_mean_reversion",

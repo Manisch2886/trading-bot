@@ -109,6 +109,20 @@ STRATEGIES_DIR = os.path.join(BASE_DIR, "strategies")
 RESULTS_DIR = os.path.join(BASE_DIR, "results")
 KURVEN_LAUF = os.path.join(_SHARED_DIR, "kurven_lauf.py")
 
+# Die Messkette steht seit TB-28 an einer Stelle (shared/messkette.py) - auch
+# fuer dieses Programm. Vorher stand die Drawdown-Formel hier ein zweites Mal
+# ausgeschrieben, mit dem Kommentar "nach der Formel aus ihrem
+# calculate_max_drawdown()". Genau diese Sorte Zusicherung ist in TB-27 (U10)
+# an drei research-Kopien als unzutreffend aufgefallen: zwei behaupteten
+# "identisch" und waren es nicht.
+#
+# Der sys.path-Eintrag ist noetig, weil dieses Modul auch IMPORTIERT wird
+# (shared/test_ergebniskurven.py, dashboard/): als Skript gestartet steht
+# shared/ ohnehin auf dem Pfad, als Import nicht zwingend.
+if _SHARED_DIR not in sys.path:
+    sys.path.insert(0, _SHARED_DIR)
+from messkette import max_drawdown_ungerundet, rendite_pct
+
 # Spalten, an denen sich die Gleichheit zweier Kurven entscheidet. `symbol`
 # gehoert dazu: ein Trade mit gleichem PnL an gleicher Stelle, aber anderem
 # Symbol, ist ein anderer Trade.
@@ -208,25 +222,42 @@ def _vergleichsform(df: pd.DataFrame) -> pd.DataFrame:
 
 
 def kennzahlen(df: pd.DataFrame, startkapital: float) -> dict:
-    """Dieselben Kennzahlen, die die Bots selbst ausgeben - der Max Drawdown
-    nach der Formel aus ihrem `calculate_max_drawdown()`: die Kapitalreihe
-    beginnt beim Startkapital, damit ein Verlust im ersten Trade nicht
-    wegfaellt."""
+    """Dieselben Kennzahlen, die die Bots selbst ausgeben - seit TB-28 aus
+    derselben Quelle (`shared/messkette.py`) statt hier nachgerechnet.
+
+    ZWEI UNTERSCHIEDE ZUR BOT-FASSUNG BLEIBEN ABSICHTLICH STEHEN - beide
+    sind in TB-28 nachgemessen und aendern den WERT nicht:
+
+    1. `pd.to_numeric(...)`: diese Funktion liest eine Kurve aus einer
+       CSV-Datei, der Bot bekommt sie frisch aus der Simulation. Fuer eine
+       wohlgeformte Kurve ist die Umwandlung wirkungslos; fuer eine
+       beschaedigte ist sie der Unterschied zwischen "Befund" und
+       Abbruch mit TypeError. Sie gehoert zum Einlesen, nicht zur Formel.
+    2. `float(...)`: der Rueckgabewert bleibt ein `float` und nicht der
+       `numpy.float64`, den pandas liefert. Er geht in `--json` und in die
+       Tabellenausgabe; `repr()` eines numpy-Werts lautet ab numpy 2
+       `np.float64(-10.17)`. Der Bot rundet denselben Wert ohne diese
+       Umwandlung (TB-27, U10) - dass beide Fassungen dieselbe ZAHL und
+       einen anderen TYP liefern, ist der Befund von TB-28, nicht seine
+       Reparatur.
+
+    Der Rueckgabewert fuer eine leere Kurve ist `None` und nicht `0.0` wie
+    bei `calculate_max_drawdown()`: hier wird eine Datei beschrieben, die
+    nichts enthaelt - dort ein Bot, der nichts verloren hat.
+    """
     if df.empty:
         return {"zeilen": 0, "von": None, "bis": None, "endkapital": None,
                 "rendite_pct": None, "max_drawdown_pct": None}
     zeiten = pd.to_datetime(df["time"])
-    kapital = pd.concat([pd.Series([startkapital]),
-                          pd.to_numeric(df["capital_after"])], ignore_index=True)
-    laufendes_max = kapital.cummax()
-    max_dd = ((kapital - laufendes_max) / laufendes_max * 100).min()
+    kapital = pd.to_numeric(df["capital_after"])
+    max_dd = max_drawdown_ungerundet(kapital, startkapital)
     end = float(kapital.iloc[-1])
     return {
         "zeilen": int(len(df)),
         "von": str(zeiten.min()),
         "bis": str(zeiten.max()),
         "endkapital": round(end, 2),
-        "rendite_pct": round((end / startkapital - 1) * 100, 2),
+        "rendite_pct": round(rendite_pct(end, startkapital), 2),
         "max_drawdown_pct": round(float(max_dd), 2),
     }
 
