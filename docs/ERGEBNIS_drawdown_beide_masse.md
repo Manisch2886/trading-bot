@@ -128,6 +128,16 @@ Umgekehrt ist der Abstand anderswo gross: bei `turtle_soup_stocks` stehen
 
 ---
 
+## Tests
+
+`python3 shared/test_drawdown_beide_masse.py` — **253 von 253 Prüfungen
+bestanden** (rund 7 Minuten; `--ohne-kursdaten` rund 1 Minute). Darunter 27
+Mutationsproben: jede Wache wird einzeln entfernt, und die zugehörige Prüfung
+muss dann anschlagen — sonst prüfte der Test nichts. Alle bestehenden Tests des
+Projekts laufen unverändert durch.
+
+---
+
 ## Was ausdrücklich nicht geändert wurde
 
 * keine `live_params.py`, keine `forward_test.py`, keine `equity_simulation.py`;

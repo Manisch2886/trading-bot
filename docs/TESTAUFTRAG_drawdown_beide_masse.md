@@ -41,8 +41,9 @@ cd <repo>
 python3 shared/test_drawdown_beide_masse.py
 ```
 
-**Erwartet:** `... von ... Pruefungen bestanden, 0 fehlgeschlagen.` und
-Rückgabewert `0`.
+**Erwartet:** `253 von 253 Pruefungen bestanden, 0 fehlgeschlagen.` und
+Rückgabewert `0` (Stand 2026-09-13; die Zahl wächst, wenn Prüfungen dazukommen —
+entscheidend ist die `0` hinter „fehlgeschlagen").
 
 Laufzeit: **etwa 6–8 Minuten**, fast vollständig verursacht von einer einzigen
 Gegenprobe an echten Kursdaten (`elliott_wave`, Stundenkerzen, ~3 Minuten für
@@ -152,7 +153,12 @@ seine eigenen Mindestfilter besteht.
 
 ### Abschnitt 6 — Folgenlosigkeit
 
-`git status --porcelain` vor und nach dem Lauf muss identisch sein. Der Test
+`git status --porcelain` vor und nach dem Lauf muss identisch sein — beschränkt
+auf `strategies/`, `results/`, `data/`, `logs/` und die Trade-Datenbanken, also
+auf das, was ein Testlauf überhaupt anfassen könnte. (Ohne diese Beschränkung
+schlägt die Prüfung an, sobald während des Laufs irgendwo sonst im Repo eine
+Datei entsteht — etwa ein Dokument oder ein `git commit` — und behauptete damit
+etwas, das sie nicht gemessen hat.) Der Test
 bindet die Bot-Dateien als **Bibliothek** ein; der `__main__`-Block, der
 `results/<bot>/multi_symbol_optimisation_results.csv` überschreiben würde, läuft
 nie. Die gespeicherten Ergebnisdateien sind Beweismittel früherer

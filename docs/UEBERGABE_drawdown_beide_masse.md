@@ -76,7 +76,7 @@ Zahl ist aus `avg_return_pct`, `num_trades` und dem neuen Drawdown exakt
 ableitbar. Eine zweite Score-Spalte wäre die Einladung, nach ihr zu sortieren —
 das gehört zu M2 und der Entscheidung danach.
 
-**Neu: `shared/test_drawdown_beide_masse.py`** (Selbsttest, 181 Prüfungen) und
+**Neu: `shared/test_drawdown_beide_masse.py`** (Selbsttest, 253 Prüfungen, **253 von 253 bestanden**) und
 **`docs/TESTAUFTRAG_drawdown_beide_masse.md`** (eigenständig ausführbar).
 
 ---
@@ -160,14 +160,15 @@ python3 shared/test_drawdown_beide_masse.py --ohne-kursdaten   # ca. 1 Minute
 
 Aufbau (Einzelheiten im Testauftrag):
 
-| Abschnitt | prüft | Umfang |
+| Abschnitt | prüft | Prüfungen |
 |---|---|---|
-| 1 | **die Zusicherung**: Score, Werte und Rangfolge hängen nicht an `entry_time` | 7 Prüfungen × 9 Bots |
-| 2 | der neue Wert **ist** der chronologische Drawdown (konstruierter Fall: −14 gegen −24, zusätzlich in reinem Python gegengerechnet) | 5 × 9 |
-| 3 | **stabile Sortierung** bei gleichen Zeitstempeln, inklusive Nachweis, dass der Fall überhaupt unterscheidet | 5 × 9 |
-| 4 | **Mutationsproben**: jede Wache einzeln entfernt, die zugehörige Prüfung muss anschlagen | 3 × 9 |
-| 5 | Gegenprobe an echten Kursdaten gegen `research/drawdown_reihenfolge/` | 6 × 9 |
-| 6 | `git status` vor und nach dem Lauf identisch | 1 |
+| 1 | **die Zusicherung**: Score, Werte und Rangfolge hängen nicht an `entry_time` | 63 (7 × 9 Bots) |
+| 2 | der neue Wert **ist** der chronologische Drawdown (konstruierter Fall: −14 gegen −24, zusätzlich in reinem Python gegengerechnet) | 45 |
+| 3 | **stabile Sortierung** bei gleichen Zeitstempeln, inklusive Nachweis, dass der Fall überhaupt unterscheidet | 45 |
+| 4 | **Mutationsproben**: jede Wache einzeln entfernt, die zugehörige Prüfung muss anschlagen | 27 (3 × 9) |
+| 5 | Gegenprobe an echten Kursdaten gegen `research/drawdown_reihenfolge/` | 72 |
+| 6 | Bot-Code, Ergebnisdateien, Kursdaten, Logs und Datenbanken nach dem Lauf unverändert | 1 |
+| | **gesamt** | **253 von 253 bestanden** |
 
 Zur Falle „selbstbestätigende Probe": nirgends wird ein Ergebnis von Hand
 hingeschrieben und wiedererkannt. Die Vergleichswerte kommen aus einem zweiten
