@@ -308,21 +308,98 @@ def mutationsproben():
 # Wache: die Untersuchung fasst nichts aussehalb ihres Ordners an
 # ===========================================================================
 
+_PRODUKTIVORDNER = ("strategies", "shared", "results", "broker", "config",
+                    "dashboard", "notifications", "system")
+
+
+def _arbeitsbaum():
+    """Zustand des Arbeitsbaums - Namen UND Inhalt der Aenderungen."""
+    status = subprocess.run(["git", "status", "--porcelain"], cwd=_REPO_ROOT,
+                            capture_output=True, text=True)
+    diff = subprocess.run(["git", "diff", "--", *_PRODUKTIVORDNER],
+                          cwd=_REPO_ROOT, capture_output=True, text=True)
+    return status.stdout + "\n---\n" + diff.stdout
+
+
+# Beim Laden dieses Tests aufgenommen, damit die Wache am Ende auch das
+# sieht, was der TEST selbst angerichtet haben koennte - etwa eine
+# Mutationsprobe, die versehentlich neben das Wegwerf-Verzeichnis schreibt.
+_ARBEITSBAUM_ZU_BEGINN = None
+
+
 def wache_repo_unveraendert():
-    print("\n13. Wache: keine Aenderung ausserhalb von research/tb24_haltedauern/ und docs/")
+    """Die Untersuchung fasst nichts ausserhalb ihres Ordners an.
+
+    Bis TB-30a stand hier eine andere Pruefung: `git status` durfte nichts
+    ausserhalb von `research/tb24_haltedauern/` und `docs/` melden. Die war
+    falsch gebaut, und zwar so, dass es erst auffiel, als sie zum ersten Mal
+    anschlug.
+
+    Sie prueft naemlich nicht diese Untersuchung, sondern den ARBEITSBAUM -
+    und der enthaelt alles, woran gerade sonst noch gearbeitet wird. TB-30a
+    aendert `shared/` und legt `research/vorregistrierung/` an, beides
+    ausdruecklich beauftragt und mit TB-24 nicht verwandt. Die alte Fassung
+    meldete das als Verstoss von TB-24. Ein Waechter, der bei fremder Arbeit
+    rot wird, wird abgeschaltet - und dann faengt er auch den Fall nicht
+    mehr, fuer den er da ist. (Dieselbe Falle steckte in
+    `research/versuchsregister/test_versuchsregister.py`; sie ist dort in
+    derselben Aenderung behoben.)
+
+    An ihre Stelle treten zwei Zusicherungen, die beide diese Untersuchung
+    betreffen und beide rot werden koennen:
+
+      1. **Dieser Testlauf veraendert nichts.** Aufgenommen beim Laden,
+         verglichen am Ende - inklusive der zehn Mutationsproben, die
+         dazwischen laufen.
+      2. **Wer schreibt, schreibt in den eigenen Ordner.** Ueber den
+         Syntaxbaum geprueft, nicht ueber eine Textsuche: ein Kommentar mit
+         `open(..., "w")` soll nicht anschlagen.
+
+    Was hier bewusst NICHT geschieht: `auswertung.py` starten. Es wuerde die
+    abgelegten Ergebnisdateien neu schreiben - eine Wache, die den Zustand
+    veraendert, den sie prueft, ist keine.
+    """
+    print("\n13. Wache: die Untersuchung fasst nichts ausserhalb ihres "
+          "Ordners an")
     ausgabe = subprocess.run(["git", "status", "--porcelain"], cwd=_REPO_ROOT,
                               capture_output=True, text=True)
     if ausgabe.returncode != 0:
         pruefe(False, "git status nicht ausfuehrbar")
         return
-    fremd = []
-    for zeile in ausgabe.stdout.splitlines():
-        pfad = zeile[3:].strip().strip('"')
-        if " -> " in pfad:
-            pfad = pfad.split(" -> ")[-1]
-        if not (pfad.startswith("research/tb24_haltedauern/") or pfad.startswith("docs/")):
-            fremd.append(pfad)
-    pruefe(not fremd, f"keine fremden Pfade geaendert (gefunden: {fremd or 'keine'})")
+
+    pruefe(_ARBEITSBAUM_ZU_BEGINN == _arbeitsbaum(),
+           "dieser Testlauf hat den Arbeitsbaum nicht veraendert")
+
+    import ast
+    fremde_ziele = []
+    for name in sorted(os.listdir(_DIR)):
+        if not name.endswith(".py") or name.startswith("test_"):
+            continue
+        quelle = open(os.path.join(_DIR, name), encoding="utf-8").read()
+        schreibt = False
+        for knoten in ast.walk(ast.parse(quelle)):
+            if not isinstance(knoten, ast.Call):
+                continue
+            ziel = getattr(knoten.func, "id", None) or getattr(
+                knoten.func, "attr", None)
+            if ziel == "open":
+                modi = [a.value for a in knoten.args[1:2]
+                        if isinstance(a, ast.Constant)]
+                modi += [k.value.value for k in knoten.keywords
+                         if k.arg == "mode" and isinstance(k.value, ast.Constant)]
+                if any(m and ("w" in m or "a" in m or "x" in m) for m in modi):
+                    schreibt = True
+            if ziel in ("to_csv", "to_json"):
+                schreibt = True
+        # Wer schreibt, bildet sein Ziel aus dem eigenen Ordner: in diesen
+        # Programmen ueber ERGEBNIS_DIR bzw. DATEN_DIR, beide aus `_DIR`.
+        if schreibt and not any(marke in quelle for marke in
+                                ("ERGEBNIS_DIR", "DATEN_DIR",
+                                 "TemporaryDirectory")):
+            fremde_ziele.append(name)
+    pruefe(not fremde_ziele,
+           f"wer schreibt, schreibt in den eigenen Ordner "
+           f"(aussen vor: {fremde_ziele or 'keine'})")
 
 
 # ===========================================================================
@@ -399,6 +476,11 @@ def pruefe_live_weg():
 
 
 if __name__ == "__main__":
+    # Vor allem anderen: der Ausgangszustand des Arbeitsbaums. Die Wache in
+    # Abschnitt 13 vergleicht ihn am Ende mit dem dann erreichten - so sieht
+    # sie auch, was dieser Test selbst angerichtet haette.
+    _ARBEITSBAUM_ZU_BEGINN = _arbeitsbaum()
+
     print("1.-11. Gegenproben auf dem echten Rechenkern")
     pruefungsreihe(haltedauer_kern)
     print(f"  {GEZAEHLT[0] - len(FEHLER)} von {GEZAEHLT[0]} Gegenproben bestanden")

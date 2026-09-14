@@ -327,6 +327,46 @@ Was daraus folgt, entscheidet der Nutzer.
 
 ---
 
+## 6a. Vorgemerkte Versuche (noch nicht gerechnet)
+
+Hier stehen Versuche, die **vorregistriert**, aber noch nicht gelaufen sind.
+Sie zählen **nicht** in die Summen der Abschnitte 0 bis 4 — dort steht, was
+belegbar gerechnet wurde. Sie stehen trotzdem hier, weil die Frage „wie oft
+wurde in diesem Projekt etwas probiert?" sonst genau in dem Moment eine
+falsche Antwort bekäme, in dem sie zum ersten Mal vorher gestellt wird.
+
+| # | Versuch | Register | Kombinationen | zählt zur DSR? |
+|---|---|---|---:|---|
+| V1 | **Neuselektion der neun Bots** (TB-30a) | [`docs/VORREGISTRIERUNG_neuselektion.md`](../../docs/VORREGISTRIERUNG_neuselektion.md) | **2 416** (je Bot aufgeschlüsselt im Register) | **ja** — dort wird unter Alternativen gewählt |
+| V2 | **S-E1, Turn-of-Month** (Nulltest) | [`docs/VORREGISTRIERUNG_S-E1_nulltest.md`](../../docs/VORREGISTRIERUNG_S-E1_nulltest.md) | **1** | **nein** — siehe unten |
+
+### Zu V2: ein Versuch ohne Wahl ist trotzdem ein Versuch
+
+`S-E1` bekommt hier **einen Eintrag** und zur DSR **keinen Beitrag**. Das ist
+kein Widerspruch, sondern der Unterschied zwischen zwei Fragen:
+
+* *Wie oft wurde etwas probiert?* — Darauf antwortet dieses Register, und
+  S-E1 ist ein Versuch.
+* *Wie viel Multiplizität muss eine Kennzahl vertragen?* — Multiplizität
+  entsteht, wo unter **Alternativen gewählt** wird. Bei S-E1 gibt es keine:
+  das Fenster stammt aus der Literatur, es wird kein Parameter gewählt,
+  **N = 1**.
+
+Die **Sweep-Zellen** von S-E1 zählen in keines von beiden. Sie sind
+Robustheit, nicht Auswahl: fällt das Kernfenster durch und besteht eine
+Sweep-Variante, wird sie nicht übernommen — *sonst wären es acht Versuche
+und nicht einer*. Wird diese Bedingung je aufgehoben, ist das ein **neuer
+vorregistrierter Lauf**, und dann zählen sie alle.
+
+### Was beim Lauf zu tun ist
+
+Sobald V1 oder V2 gerechnet ist, wandert die Zeile aus diesem Abschnitt in
+Abschnitt 1 bis 3, die Summen in Abschnitt 0 und 4 werden nachgezogen, und
+die `STAND_*`-Tabellen in `versuchsregister.py` ebenso. Bis dahin gilt: die
+Zahlen oben sind **Vorhaben**, keine Belege.
+
+---
+
 ## 7. Wie das Register fortgeschrieben wird
 
 ```bash

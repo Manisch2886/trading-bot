@@ -28,6 +28,7 @@ Wurzeln annimmt - und pruefen nicht nur, DASS ein Befund kommt, sondern
 dass es GENAU EINER ist und welcher.
 """
 
+import ast
 import os
 import shutil
 import subprocess
@@ -352,31 +353,99 @@ def test_summen_der_erhebung():
         pruefe(zahl in text, f"REGISTER.md nennt {zahl}")
 
 
+PRODUKTIVORDNER = ("strategies", "shared", "results", "broker", "config",
+                   "dashboard", "notifications", "system")
+
+
+def _arbeitsbaum() -> str:
+    """Der Zustand des Arbeitsbaums als Zeichenkette - Inhalt, nicht nur Namen.
+
+    `git status --porcelain` allein wuerde eine Aenderung uebersehen, die eine
+    Datei veraendert und wieder zuruecksetzt oder die eine bereits geaenderte
+    Datei weiter veraendert. Der Hash der Arbeitsbaum-Unterschiede sieht auch das.
+    """
+    status = subprocess.run(["git", "status", "--porcelain"],
+                            capture_output=True, text=True, cwd=BASE_DIR)
+    diff = subprocess.run(["git", "diff", "--", *PRODUKTIVORDNER],
+                          capture_output=True, text=True, cwd=BASE_DIR)
+    return status.stdout + "\n---\n" + diff.stdout
+
+
 def test_nichts_veraendert():
-    """Die Untersuchung fasst keinen Bot-Code an - per `git status` belegt."""
-    abschnitt("11. Nichts ausserhalb von research/ und docs/ veraendert")
+    """Die Untersuchung fasst keinen Bot-Code an - AM ABLAUF belegt.
+
+    Bis TB-30a stand hier eine andere Pruefung: `git status` durfte nichts
+    ausserhalb von `research/` und `docs/` melden. Die war falsch gebaut, und
+    zwar auf eine Art, die erst auffiel, als sie zum ersten Mal anschlug.
+
+    Sie prueft naemlich nicht diese Untersuchung, sondern den ARBEITSBAUM -
+    und der enthaelt alles, woran gerade sonst noch gearbeitet wird. TB-30a
+    aendert `shared/param_search_agent.py` und legt `shared/regimewache.py`
+    an, beides ausdruecklich beauftragt und mit TB-29 nicht verwandt. Die alte
+    Fassung meldete das als Verstoss von TB-29. Ein Waechter, der bei fremder
+    Arbeit rot wird, wird abgeschaltet - und dann faengt er auch den Fall
+    nicht mehr, fuer den er da ist.
+
+    Was TB-29 zugesichert hat, ist eng und pruefbar: **ein Lauf dieser
+    Untersuchung veraendert nichts.** Genau das steht jetzt hier. Der Zustand
+    des Arbeitsbaums wird vorher und nachher aufgenommen, dazwischen laeuft
+    die Untersuchung in allen ihren Betriebsarten. Beobachtet wird der
+    ABLAUF, nicht ein hingelegter Zustand - und die Probe kann rot werden:
+    wer der Erhebung eine Schreibzeile hinzufuegt, sieht sie hier scheitern.
+    """
+    abschnitt("11. Ein Lauf der Untersuchung veraendert nichts")
     ergebnis = subprocess.run(["git", "status", "--porcelain"],
                               capture_output=True, text=True, cwd=BASE_DIR)
     if ergebnis.returncode != 0:
         pruefe(False, "git status ausfuehrbar")
         return
-    fremd = []
-    for zeile in ergebnis.stdout.splitlines():
-        pfad = zeile[3:].strip().strip('"')
-        if " -> " in pfad:
-            pfad = pfad.split(" -> ")[-1]
-        if not (pfad.startswith("research/") or pfad.startswith("docs/")):
-            fremd.append(zeile)
-    pruefe(not fremd, f"git status meldet nichts ausserhalb research/ und docs/ "
-                      f"(gefunden: {fremd})")
 
-    unterschied = subprocess.run(
-        ["git", "diff", "--name-only", "HEAD", "--", "strategies", "shared",
-         "results", "broker", "config", "dashboard", "notifications", "system"],
-        capture_output=True, text=True, cwd=BASE_DIR)
-    pruefe(unterschied.stdout.strip() == "",
-           f"git diff gegen HEAD ist in allen Produktivordnern leer "
-           f"(gefunden: {unterschied.stdout.strip()!r})")
+    vorher = _arbeitsbaum()
+    for schalter in ([], ["--pruefen"], ["--dsr"]):
+        subprocess.run([sys.executable,
+                        os.path.join(_DIR, "versuchsregister.py"), *schalter],
+                       capture_output=True, text=True, cwd=BASE_DIR)
+    nachher = _arbeitsbaum()
+    pruefe(vorher == nachher,
+           "ein Lauf der Erhebung laesst den Arbeitsbaum unveraendert")
+
+    # Und die zweite Haelfte derselben Zusicherung, am Quelltext: wo ueberhaupt
+    # geschrieben wird, geht es in ein Wegwerf-Verzeichnis. Geprueft ueber den
+    # Syntaxbaum, nicht ueber eine Textsuche - `open(..., "w")` kommt sonst
+    # auch in einem Kommentar vor, und ein Waechter, der auf Kommentare
+    # anschlaegt, wird abgeschaltet.
+    schreibend = []
+    for name in sorted(os.listdir(_DIR)):
+        if not name.endswith(".py") or name.startswith("test_"):
+            continue
+        pfad = os.path.join(_DIR, name)
+        baum = ast.parse(open(pfad, encoding="utf-8").read())
+        for funktion in ast.walk(baum):
+            if not isinstance(funktion, (ast.FunctionDef, ast.AsyncFunctionDef,
+                                         ast.Module)):
+                continue
+            quelle = ast.dump(funktion)
+            schreibt = False
+            for knoten in ast.walk(funktion):
+                if not isinstance(knoten, ast.Call):
+                    continue
+                ziel = getattr(knoten.func, "id", None) or getattr(
+                    knoten.func, "attr", None)
+                if ziel == "open":
+                    modi = [a.value for a in knoten.args[1:2]
+                            if isinstance(a, ast.Constant)]
+                    modi += [k.value.value for k in knoten.keywords
+                             if k.arg == "mode" and isinstance(k.value, ast.Constant)]
+                    if any(m and ("w" in m or "a" in m or "x" in m) for m in modi):
+                        schreibt = True
+                if ziel in ("to_csv", "to_json", "remove", "rmtree", "unlink"):
+                    schreibt = True
+            if schreibt and "TemporaryDirectory" not in quelle:
+                stelle = getattr(funktion, "name", "<modulebene>")
+                schreibend.append(f"{name}:{stelle}")
+    pruefe(not schreibend,
+           f"wo die Untersuchung schreibt, schreibt sie in ein "
+           f"Wegwerf-Verzeichnis (aussen vor: {schreibend})")
 
 
 def main():
