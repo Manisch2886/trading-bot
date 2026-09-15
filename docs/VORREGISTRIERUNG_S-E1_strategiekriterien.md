@@ -27,10 +27,20 @@ und mit der Angabe, wer sie gesetzt hat.
 | **A1** | Instrument: das gleichgewichtete `sp500_top150`-Universum, point-in-time (§4.1) | Instrument: **SPY** | Auftraggeber, in der Aufgabenstellung | Ein Instrument statt 150 macht den Fall so einfach wie möglich — und darum geht es beim Nulltest. Das Universum bleibt als Festlegung für spätere Läufe stehen, es ist nicht gestrichen |
 | **A2** | Sweep: Fenster von **zwei bis sechs** Handelstagen um den Monatswechsel (§5.1) | Sweep: **−2/+3, −1/+2, −1/+4** sowie die Instrumente **QQQ, IWM, EFA** | Auftraggeber | Derselbe Zweck (hat der Effekt eine Flanke?), engere und benannte Zellen. Die Bedingung aus §5.1 — *keine Sweep-Zelle wird je zum Ergebnis* — gilt unverändert und wird in Abschnitt 4 wörtlich wiederholt |
 | **A3** | Schwelle: Falten-Median > 0 **und** Perzentil > 95 (§4.6) | dieselben zwei Bedingungen **plus** eine dritte: untere Bootstrap-Grenze > 0 | dieses Dokument | TB-30a nannte kein Bootstrap-Verfahren und keine Mindest-Ereigniszahl. Beides fehlte und wird hier ergänzt — **verschärfend**, nie lockernd |
+| **A4** | — (nicht geregelt) | Ein Ereignis gehört zu dem Kalenderjahr, in dem sein **Einstiegstag** (Tag −1) liegt | dieses Dokument | Nachgetragen beim Schreiben des Auswertungsskripts, **vor jeder Rechnung**. Ein Wechsel Dezember→Januar liegt in zwei Jahren; ohne diese Festlegung hätte das Skript an genau einer Stelle eine Wahl gehabt. Die gewählte Richtung ist die konservative: sie schiebt keine Beobachtung in die Bestätigungsperiode hinein, die dort nicht anfängt |
 
-> **Das ist die einzige Stelle, an der dieser Lauf etwas entscheiden musste,
-> das nicht schon im Register stand.** Sie liegt **vor** dem Lauf, nicht in
-> ihm. Der Übergabebericht führt sie unter der Pfadfrage ausdrücklich auf.
+> **Das sind die Stellen, an denen dieser Lauf etwas festlegen musste, das
+> nicht schon im Register stand.** Alle vier liegen **vor** dem Lauf, nicht in
+> ihm: A1 bis A3 stammen aus der Aufgabenstellung und wurden vor dem ersten
+> Commit eingefroren, **A4 fiel beim Schreiben des Auswertungsskripts auf und
+> wurde eingetragen, bevor eine einzige Zahl gerechnet war.** Der
+> Übergabebericht führt alle vier unter der Pfadfrage auf.
+>
+> **A4 ist der eigentliche Befund dieses Nulltests.** Er ist klein und er ist
+> harmlos — aber er ist genau die Art Lücke, um derentwillen S-E1 gerechnet
+> wird: eine Festlegung, die niemand vermisst, bis ein Skript sie braucht. Bei
+> `S-B1` mit neun Bots und 2 416 Zellen wäre sie nicht aufgefallen, sondern
+> stillschweigend im Code getroffen worden.
 
 ---
 
@@ -45,6 +55,7 @@ und mit der Angabe, wer sie gesetzt hat.
 | **Kursaufbereitung** | `shared/kursdaten.entferne_unvollstaendige` vor jeder Rechnung. Streichen **und** zählen; die Zahl steht in der Ergebnisdatei |
 | **Kursart** | Schlusskurse, `auto_adjust=True` (Dividenden und Splits bereinigt) |
 | **Zeitraum** | Der verfügbare Zeitraum bis zum Go-Live-Schnitt. Selektionsfalten: Kalenderjahre **bis einschliesslich 2025**; Bestätigungsperiode: **2026-01-01 bis 2026-09-01**, einmal |
+| **Faltenzuordnung** | Ein Ereignis gehört zu dem Kalenderjahr, in dem sein **Einstiegstag** (Tag −1) liegt — siehe A4 |
 
 **Warum der Zeitraum günstig liegt:** McConnell/Xu (2008) enden mit ihrer
 Stichprobe **2005**. Alles ab **2006** ist echte Out-of-Sample-Zeit für einen

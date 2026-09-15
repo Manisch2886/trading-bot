@@ -1,0 +1,7 @@
+# Kursdaten holt der Betreiber selbst (datenlauf.py) - sie gehoeren nicht
+# ins Repo: sie sind gross, sie aendern sich taeglich, und ihr Stand steht
+# ohnehin als Hash in jeder Ergebnisdatei.
+daten/
+# Das Signalprotokoll der Staging-Ebene entsteht im Betrieb.
+staging/
+__pycache__/
