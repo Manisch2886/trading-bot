@@ -37,3 +37,9 @@ results/portfolio_overview/dashboard_snapshot.json
 results/portfolio_overview/dashboard_snapshot.json.lock
 results/portfolio_overview/dashboard_snapshot.json.neu
 results/portfolio_overview/_dashboard_arbeit/
+
+# Sicherungen des Kursdatenbestands (shared/kursdaten_neuaufbau.py).
+# Sie entstehen auf dem Rechner des Nutzers vor jedem Neuaufbau, sind so
+# gross wie data/ selbst und werden bewusst nicht automatisch geloescht -
+# ins Repo gehoeren sie trotzdem nicht.
+data_sicherung/
