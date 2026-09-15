@@ -338,7 +338,7 @@ falsche Antwort bekäme, in dem sie zum ersten Mal vorher gestellt wird.
 | # | Versuch | Register | Kombinationen | zählt zur DSR? |
 |---|---|---|---:|---|
 | V1 | **Neuselektion der neun Bots** (TB-30a) | [`docs/VORREGISTRIERUNG_neuselektion.md`](../../docs/VORREGISTRIERUNG_neuselektion.md) | **2 416** (je Bot aufgeschlüsselt im Register) | **ja** — dort wird unter Alternativen gewählt |
-| V2 | **S-E1, Turn-of-Month** (Nulltest) | [`docs/VORREGISTRIERUNG_S-E1_nulltest.md`](../../docs/VORREGISTRIERUNG_S-E1_nulltest.md) | **1** | **nein** — siehe unten |
+| V2 | **S-E1, Turn-of-Month** (Nulltest) | [`…_nulltest.md`](../../docs/VORREGISTRIERUNG_S-E1_nulltest.md) · [`…_strategiekriterien.md`](../../docs/VORREGISTRIERUNG_S-E1_strategiekriterien.md) · [`…_pfadkriterien.md`](../../docs/VORREGISTRIERUNG_S-E1_pfadkriterien.md) | **1** | **nein** — siehe unten |
 
 ### Zu V2: ein Versuch ohne Wahl ist trotzdem ein Versuch
 
@@ -358,12 +358,52 @@ Sweep-Variante, wird sie nicht übernommen — *sonst wären es acht Versuche
 und nicht einer*. Wird diese Bedingung je aufgehoben, ist das ein **neuer
 vorregistrierter Lauf**, und dann zählen sie alle.
 
+### Stand von V2 nach TB-33 (15.09.2026)
+
+TB-33 hat für S-E1 **alles ausser dem Datenlauf** erledigt: beide
+Registereinträge stehen eingefroren, das Auswertungsskript
+(`research/turn_of_month/auswertung.py`) ist geschrieben und gegen erzeugte
+Beispieldaten geprüft (110/110), die Staging-Ebene steht.
+
+**V2 bleibt trotzdem in diesem Abschnitt** — und zwar genau deshalb, weil
+der Lauf auf **echten** Kursdaten noch aussteht: yfinance war aus der
+Arbeitsumgebung nicht erreichbar, der Datenlauf ist ein Schritt für den
+Rechner des Betreibers (`research/turn_of_month/datenlauf.py`).
+
+> *Das Register ist ein Kassenbuch.* Eine Zahlung, die noch nicht geflossen
+> ist, wird nicht gebucht — auch dann nicht, wenn alles andere fertig ist.
+> Ein Versuch gilt hier als gerechnet, wenn eine Ergebnisdatei ihn belegt,
+> nicht wenn das Programm dafür bereitläge.
+
 ### Was beim Lauf zu tun ist
 
 Sobald V1 oder V2 gerechnet ist, wandert die Zeile aus diesem Abschnitt in
 Abschnitt 1 bis 3, die Summen in Abschnitt 0 und 4 werden nachgezogen, und
 die `STAND_*`-Tabellen in `versuchsregister.py` ebenso. Bis dahin gilt: die
 Zahlen oben sind **Vorhaben**, keine Belege.
+
+**Für V2 sind das genau vier Handgriffe** — hier ausgeschrieben, damit sie
+nach dem Datenlauf nicht neu erfunden werden müssen:
+
+1. Neuer Abschnitt **3.5** („Vorregistrierte Nulltests"), eine Zeile:
+   `turn_of_month` · S-E1 Turn-of-Month · 1 Kombination · Beleg
+   `research/turn_of_month/ergebnisse/lauf.json`.
+2. Abschnitt 0 und 4.1: Gesamtsumme **2 798 → 2 799**, Zeile
+   „bot-übergreifend (3.3)" bleibt, neue Zeile „vorregistrierte Nulltests
+   (3.5) 1".
+3. Abschnitt 4.2 (dedupliziert): **653 → 654**. Das Turn-of-Month-Fenster
+   kommt in keinem der neun Bot-Raster vor.
+4. `versuchsregister.py`: `FORSCHUNGSDATEIEN` und `STAND_FORSCHUNGSZEILEN`
+   um `("turn_of_month", "kernfenster.csv"): 1` ergänzen, `STAND_DATUM`
+   nachziehen.
+
+> ⚠️ **Schritt 4 erst NACH dem Datenlauf.** Der Wächter meldet eine im
+> Register genannte, aber fehlende Datei als Abweichung — er hätte damit
+> recht, und ein Wächter, der aus Vorfreude rot leuchtet, wird bald nicht
+> mehr gelesen.
+
+Die **DSR ändert sich bei V2 nicht**, weder vorher noch nachher:
+**N = 1**.
 
 ---
 
