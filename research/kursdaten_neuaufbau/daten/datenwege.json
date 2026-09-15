@@ -1,0 +1,1381 @@
+{
+  "datenstand": {
+    "2026-08-30": [
+      "XAUTUSDT_1h.csv"
+    ],
+    "2026-08-31": [
+      "AAVEUSDT_1d.csv",
+      "AAVEUSDT_1h.csv",
+      "AAVEUSDT_4h.csv",
+      "ADAUSDT_1d.csv",
+      "ADAUSDT_1h.csv",
+      "ADAUSDT_4h.csv",
+      "BMTUSDT_1d.csv",
+      "BMTUSDT_1h.csv",
+      "BMTUSDT_4h.csv",
+      "BNBUSDT_15m.csv",
+      "BNBUSDT_1d.csv",
+      "BNBUSDT_1h.csv",
+      "BNBUSDT_4h.csv",
+      "BTCUSDT_15m.csv",
+      "BTCUSDT_1d.csv",
+      "BTCUSDT_1h.csv",
+      "BTCUSDT_4h.csv",
+      "DOGEUSDT_15m.csv",
+      "DOGEUSDT_1d.csv",
+      "DOGEUSDT_1h.csv",
+      "DOGEUSDT_4h.csv",
+      "ENAUSDT_15m.csv",
+      "ENAUSDT_1d.csv",
+      "ENAUSDT_1h.csv",
+      "ENAUSDT_4h.csv",
+      "ENSOUSDT_15m.csv",
+      "ENSOUSDT_1d.csv",
+      "ENSOUSDT_1h.csv",
+      "ENSOUSDT_4h.csv",
+      "ETHUSDT_15m.csv",
+      "ETHUSDT_1d.csv",
+      "ETHUSDT_1h.csv",
+      "ETHUSDT_4h.csv",
+      "LINKUSDT_1d.csv",
+      "LINKUSDT_1h.csv",
+      "LINKUSDT_4h.csv",
+      "NEARUSDT_15m.csv",
+      "NEARUSDT_1d.csv",
+      "NEARUSDT_1h.csv",
+      "NEARUSDT_4h.csv",
+      "PEPEUSDT_15m.csv",
+      "PEPEUSDT_1d.csv",
+      "PEPEUSDT_1h.csv",
+      "PEPEUSDT_4h.csv",
+      "PROMUSDT_15m.csv",
+      "PROMUSDT_1d.csv",
+      "PROMUSDT_1h.csv",
+      "PROMUSDT_4h.csv",
+      "PUMPUSDT_15m.csv",
+      "PUMPUSDT_1d.csv",
+      "PUMPUSDT_1h.csv",
+      "PUMPUSDT_4h.csv",
+      "SOLUSDT_15m.csv",
+      "SOLUSDT_1d.csv",
+      "SOLUSDT_1h.csv",
+      "SOLUSDT_4h.csv",
+      "SUIUSDT_15m.csv",
+      "SUIUSDT_1d.csv",
+      "SUIUSDT_1h.csv",
+      "SUIUSDT_4h.csv",
+      "TRUMPUSDT_15m.csv",
+      "TRUMPUSDT_1d.csv",
+      "TRUMPUSDT_1h.csv",
+      "TRUMPUSDT_4h.csv",
+      "TRXUSDT_15m.csv",
+      "TRXUSDT_1d.csv",
+      "TRXUSDT_1h.csv",
+      "TRXUSDT_4h.csv",
+      "UNIUSDT_15m.csv",
+      "UNIUSDT_1d.csv",
+      "UNIUSDT_1h.csv",
+      "UNIUSDT_4h.csv",
+      "UUSDT_15m.csv",
+      "UUSDT_1d.csv",
+      "UUSDT_1h.csv",
+      "UUSDT_4h.csv",
+      "WLDUSDT_1d.csv",
+      "WLDUSDT_1h.csv",
+      "WLDUSDT_4h.csv",
+      "XRPUSDT_15m.csv",
+      "XRPUSDT_1d.csv",
+      "XRPUSDT_1h.csv",
+      "XRPUSDT_4h.csv",
+      "ZECUSDT_15m.csv",
+      "ZECUSDT_1d.csv",
+      "ZECUSDT_1h.csv",
+      "ZECUSDT_4h.csv",
+      "ZKCUSDT_15m.csv",
+      "ZKCUSDT_1d.csv",
+      "ZKCUSDT_1h.csv",
+      "ZKCUSDT_4h.csv"
+    ],
+    "2026-09-01": [
+      "AAPL_1d.csv",
+      "ABBV_1d.csv",
+      "ABNB_1d.csv",
+      "ABT_1d.csv",
+      "ACN_1d.csv",
+      "ADBE_1d.csv",
+      "ADI_1d.csv",
+      "ADP_1d.csv",
+      "AMAT_1d.csv",
+      "AMD_1d.csv",
+      "AMGN_1d.csv",
+      "AMZN_1d.csv",
+      "ANET_1d.csv",
+      "APH_1d.csv",
+      "APP_1d.csv",
+      "AVGO_1d.csv",
+      "AXP_1d.csv",
+      "BAC_1d.csv",
+      "BA_1d.csv",
+      "BKNG_1d.csv",
+      "BLK_1d.csv",
+      "BMY_1d.csv",
+      "BNY_1d.csv",
+      "BRK-B_1d.csv",
+      "BX_1d.csv",
+      "CAT_1d.csv",
+      "CB_1d.csv",
+      "CDNS_1d.csv",
+      "CEG_1d.csv",
+      "CMCSA_1d.csv",
+      "CME_1d.csv",
+      "COF_1d.csv",
+      "COP_1d.csv",
+      "COST_1d.csv",
+      "CRM_1d.csv",
+      "CRWD_1d.csv",
+      "CSCO_1d.csv",
+      "CSX_1d.csv",
+      "CVS_1d.csv",
+      "CVX_1d.csv",
+      "C_1d.csv",
+      "DASH_1d.csv",
+      "DELL_1d.csv",
+      "DE_1d.csv",
+      "DHR_1d.csv",
+      "DIS_1d.csv",
+      "DUK_1d.csv",
+      "ELV_1d.csv",
+      "EQIX_1d.csv",
+      "ETN_1d.csv",
+      "FCX_1d.csv",
+      "FTNT_1d.csv",
+      "GD_1d.csv",
+      "GEV_1d.csv",
+      "GE_1d.csv",
+      "GILD_1d.csv",
+      "GLW_1d.csv",
+      "GOOGL_1d.csv",
+      "GOOG_1d.csv",
+      "GS_1d.csv",
+      "HCA_1d.csv",
+      "HD_1d.csv",
+      "HOOD_1d.csv",
+      "HWM_1d.csv",
+      "IBM_1d.csv",
+      "ICE_1d.csv",
+      "INTC_1d.csv",
+      "INTU_1d.csv",
+      "ISRG_1d.csv",
+      "JCI_1d.csv",
+      "JNJ_1d.csv",
+      "JPM_1d.csv",
+      "KKR_1d.csv",
+      "KLAC_1d.csv",
+      "KO_1d.csv",
+      "LIN_1d.csv",
+      "LLY_1d.csv",
+      "LMT_1d.csv",
+      "LOW_1d.csv",
+      "LRCX_1d.csv",
+      "MAR_1d.csv",
+      "MA_1d.csv",
+      "MCD_1d.csv",
+      "MCK_1d.csv",
+      "MCO_1d.csv",
+      "MDT_1d.csv",
+      "META_1d.csv",
+      "MMM_1d.csv",
+      "MNST_1d.csv",
+      "MO_1d.csv",
+      "MPC_1d.csv",
+      "MRK_1d.csv",
+      "MRSH_1d.csv",
+      "MRVL_1d.csv",
+      "MSFT_1d.csv",
+      "MS_1d.csv",
+      "MU_1d.csv",
+      "NEE_1d.csv",
+      "NEM_1d.csv",
+      "NFLX_1d.csv",
+      "NOW_1d.csv",
+      "NVDA_1d.csv",
+      "ORCL_1d.csv",
+      "PANW_1d.csv",
+      "PEP_1d.csv",
+      "PFE_1d.csv",
+      "PGR_1d.csv",
+      "PG_1d.csv",
+      "PH_1d.csv",
+      "PLD_1d.csv",
+      "PLTR_1d.csv",
+      "PM_1d.csv",
+      "PNC_1d.csv",
+      "PSX_1d.csv",
+      "PWR_1d.csv",
+      "QCOM_1d.csv",
+      "REGN_1d.csv",
+      "RTX_1d.csv",
+      "SBUX_1d.csv",
+      "SCHW_1d.csv",
+      "SLB_1d.csv",
+      "SNDK_1d.csv",
+      "SO_1d.csv",
+      "SPGI_1d.csv",
+      "STX_1d.csv",
+      "SYK_1d.csv",
+      "TJX_1d.csv",
+      "TMO_1d.csv",
+      "TMUS_1d.csv",
+      "TSLA_1d.csv",
+      "TT_1d.csv",
+      "TXN_1d.csv",
+      "T_1d.csv",
+      "UBER_1d.csv",
+      "UNH_1d.csv",
+      "UNP_1d.csv",
+      "UPS_1d.csv",
+      "USB_1d.csv",
+      "VLO_1d.csv",
+      "VRTX_1d.csv",
+      "VRT_1d.csv",
+      "VZ_1d.csv",
+      "V_1d.csv",
+      "WDC_1d.csv",
+      "WELL_1d.csv",
+      "WFC_1d.csv",
+      "WMB_1d.csv",
+      "WMT_1d.csv",
+      "WM_1d.csv",
+      "XOM_1d.csv"
+    ]
+  },
+  "module": {
+    "notifications/monitor.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "import yfinance (Zeile 416)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "research/datenluecke_wurzelkorrektur/signalverschiebung.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 124: pfad"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "research/exposure_messung/auswertung.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 90: pfad"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "research/hrp_portfolio/bh_reference.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 70: path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "research/trailing_stops/run_one_bot.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 150)",
+        "load_all_symbol_data (Zeile 175)",
+        "load_all_symbol_data (Zeile 198)"
+      ],
+      "schreibt": []
+    },
+    "research/trend_overlay/market_proxies.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 63: path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "research/uebersprungene_trades/aufschluesselung.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 132)"
+      ],
+      "schreibt": []
+    },
+    "research/vbc_deepdive/run_deepdive.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 103)"
+      ],
+      "schreibt": []
+    },
+    "research/vorregistrierung/benchmark.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 96: pfad"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "research/vorregistrierung/messgroessen.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 97: pfad",
+        "Zeile 206: pfad"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "shared/build_daily_crypto_data.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 67: src_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 70: out_path"
+      ]
+    },
+    "shared/fetch_multi_data.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 19)",
+        "import binance.client (Zeile 18)"
+      ],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 38: output_file"
+      ]
+    },
+    "shared/get_top_symbols.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "import binance.client (Zeile 11)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/agent_optimise.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 22)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/backtest_elliott.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 206: os.path.join(DATA_DIR, \"BTCUSDT_1h.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 51)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 42)",
+        "import binance.client (Zeile 32)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 57: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 17)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/oos_equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 27)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/optimise_elliott.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 126: os.path.join(DATA_DIR, \"BTCUSDT_1h.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/quarterly_review.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 52)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/walk_forward.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 52: os.path.join(DATA_DIR, \"BTCUSDT_1h.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave/zigzag_indicator.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 173: os.path.join(DATA_DIR, \"BTCUSDT_1h.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/agent_optimise.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 20)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/backtest_elliott.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 218: os.path.join(DATA_DIR, \"AAPL_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/buy_and_hold_benchmark.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 32)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 52)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/experiment_combined.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 29)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/experiment_concurrency_stats.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 35)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/experiment_no_take_profit.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 30)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/experiment_position_limit.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 33)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/fetch_stock_data.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "import yfinance (Zeile 21)"
+      ],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 88: output_file"
+      ]
+    },
+    "strategies/elliott_wave_stocks/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 42)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/get_top_stocks.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "import yfinance (Zeile 19)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 66: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 17)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/oos_equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 27)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/optimise_elliott.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 126: os.path.join(DATA_DIR, \"AAPL_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/quarterly_review.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 54)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/signal_quality_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 33)"
+      ],
+      "schreibt": []
+    },
+    "strategies/elliott_wave_stocks/zigzag_indicator.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 173: os.path.join(DATA_DIR, \"AAPL_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/rsi2_crypto/backtest_rsi2.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 143: os.path.join(_P[\"DATA_DIR\"], \"BTCUSDT_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/rsi2_crypto/buy_and_hold_benchmark.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 20)"
+      ],
+      "schreibt": []
+    },
+    "strategies/rsi2_crypto/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 35)"
+      ],
+      "schreibt": []
+    },
+    "strategies/rsi2_crypto/experiment_btc_regime_filter.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 27: os.path.join(DATA_DIR, \"BTCUSDT_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 14)"
+      ],
+      "schreibt": []
+    },
+    "strategies/rsi2_crypto/fetch_1d_data.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 31)",
+        "import binance.client (Zeile 25)"
+      ],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 49: output_file"
+      ]
+    },
+    "strategies/rsi2_crypto/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 40)",
+        "import binance.client (Zeile 30)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/rsi2_crypto/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 60: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/rsi2_crypto/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 15)"
+      ],
+      "schreibt": []
+    },
+    "strategies/rsi2_crypto/pipeline_report.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 12)"
+      ],
+      "schreibt": []
+    },
+    "strategies/rsi2_mean_reversion/backtest_rsi2.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 179: os.path.join(_P[\"DATA_DIR\"], \"AAPL_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 34: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/rsi2_mean_reversion/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 38)"
+      ],
+      "schreibt": []
+    },
+    "strategies/rsi2_mean_reversion/experiment_position_size_limit.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 17)"
+      ],
+      "schreibt": []
+    },
+    "strategies/rsi2_mean_reversion/fetch_stock_data.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "import yfinance (Zeile 21)"
+      ],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 88: output_file"
+      ]
+    },
+    "strategies/rsi2_mean_reversion/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 43)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/rsi2_mean_reversion/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 61: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 18)"
+      ],
+      "schreibt": []
+    },
+    "strategies/rsi2_mean_reversion/pipeline_report.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 13)"
+      ],
+      "schreibt": []
+    },
+    "strategies/t3_supertrend/agent_optimise.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 20)"
+      ],
+      "schreibt": []
+    },
+    "strategies/t3_supertrend/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 33)"
+      ],
+      "schreibt": []
+    },
+    "strategies/t3_supertrend/fetch_4h_data.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 25)",
+        "import binance.client (Zeile 19)"
+      ],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 41: output_file"
+      ]
+    },
+    "strategies/t3_supertrend/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 31)",
+        "import binance.client (Zeile 21)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/t3_supertrend/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 51: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/t3_supertrend/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 17)"
+      ],
+      "schreibt": []
+    },
+    "strategies/t3_supertrend/optimise_trend.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 100: os.path.join(DATA_DIR, \"BTCUSDT_1h.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/t3_supertrend/quarterly_review.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 69)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/backtest_turtle_soup.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 187: os.path.join(_P[\"DATA_DIR\"], \"BTCUSDT_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/buy_and_hold_benchmark.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 18)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 32)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/experiment_capital_management_summary.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 14)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/experiment_position_size_limit.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 18)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/experiment_signal_quality.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 15)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/experiment_stress_new_config.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 25)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/experiment_volatility_breakout_overlap.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 26)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 48)",
+        "import binance.client (Zeile 46)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 43: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 10)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/pipeline_report.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 10)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_crypto/stress_periods.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 15)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/backtest_turtle_soup.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 183: os.path.join(_P[\"DATA_DIR\"], \"AAPL_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/buy_and_hold_benchmark.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 30: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 40)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/experiment_capital_management_summary.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 15)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/experiment_position_size_limit.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 19)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/experiment_signal_quality.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 25)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/experiment_stress_new_config.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 24)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/experiment_volatility_breakout_overlap.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 53)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/fetch_stock_data.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "import yfinance (Zeile 21)"
+      ],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 88: output_file"
+      ]
+    },
+    "strategies/turtle_soup_stocks/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 41)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 50: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 10)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/pipeline_report.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 11)"
+      ],
+      "schreibt": []
+    },
+    "strategies/turtle_soup_stocks/stress_periods.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 17)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/analysis_2022_drawdown_dynamics.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 16)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/backtest_breakout.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 216: os.path.join(_P[\"DATA_DIR\"], \"AAPL_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/buy_and_hold_benchmark.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 32: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/capital_management_summary.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 14)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 35)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/experiment_2022_stress_best_config.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 23)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/experiment_false_breakout_filter.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 13)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/experiment_position_size_limit.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 16)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/experiment_signal_quality.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 26)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/experiment_trailing_stop.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 22)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/fetch_stock_data.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "import yfinance (Zeile 21)"
+      ],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 88: output_file"
+      ]
+    },
+    "strategies/volatility_breakout/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 36)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 56: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 14)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout/pipeline_report.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 12)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/backtest_breakout.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 175: os.path.join(_P[\"DATA_DIR\"], \"BTCUSDT_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/buy_and_hold_benchmark.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 18)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/equity_simulation.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 32)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/experiment_2022_stress_with_btc_filter.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 62: os.path.join(DATA_DIR, \"BTCUSDT_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 18)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/experiment_btc_regime_filter.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 28: os.path.join(DATA_DIR, \"BTCUSDT_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 15)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/experiment_btc_regime_filter_robustness.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 33: os.path.join(DATA_DIR, \"BTCUSDT_1d.csv\")"
+      ],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 18)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/fetch_1d_data.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 27)",
+        "import binance.client (Zeile 21)"
+      ],
+      "mittelbar": [],
+      "schreibt": [
+        "Zeile 45: output_file"
+      ]
+    },
+    "strategies/volatility_breakout_crypto/forward_test.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [
+        "fetch_historical_data (Zeile 45)",
+        "import binance.client (Zeile 35)"
+      ],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/multi_symbol_optimise.py": {
+      "fehler": null,
+      "liest": [
+        "Zeile 44: csv_path"
+      ],
+      "live": [],
+      "mittelbar": [],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 11)"
+      ],
+      "schreibt": []
+    },
+    "strategies/volatility_breakout_crypto/pipeline_report.py": {
+      "fehler": null,
+      "liest": [],
+      "live": [],
+      "mittelbar": [
+        "load_all_symbol_data (Zeile 12)"
+      ],
+      "schreibt": []
+    }
+  }
+}

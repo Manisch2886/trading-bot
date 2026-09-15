@@ -1,0 +1,653 @@
+{
+  "dateien": [
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "BTCUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "BTCUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "BTCUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "ETHUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "ETHUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "ETHUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "SOLUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "SOLUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "SOLUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "ZECUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "ZECUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "ZECUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "XRPUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "XRPUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "XRPUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-10-14 09:00:00",
+      "alt_zeilen": 7708,
+      "datei": "ENSOUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 8208,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-10-14 08:00:00",
+      "alt_zeilen": 1928,
+      "datei": "ENSOUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 2428,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2025-10-14",
+      "alt_zeilen": 322,
+      "datei": "ENSOUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 822,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "UNIUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "UNIUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "UNIUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "BNBUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "BNBUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "BNBUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-01-19 08:00:00",
+      "alt_zeilen": 14141,
+      "datei": "TRUMPUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 14641,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-01-19 08:00:00",
+      "alt_zeilen": 3536,
+      "datei": "TRUMPUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 4036,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2025-01-19",
+      "alt_zeilen": 590,
+      "datei": "TRUMPUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 1090,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "DOGEUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "DOGEUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "DOGEUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-09-11 12:00:00",
+      "alt_zeilen": 8497,
+      "datei": "PUMPUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 8997,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-09-11 12:00:00",
+      "alt_zeilen": 2125,
+      "datei": "PUMPUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 2625,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2025-09-11",
+      "alt_zeilen": 355,
+      "datei": "PUMPUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 855,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2024-04-02 08:00:00",
+      "alt_zeilen": 21149,
+      "datei": "ENAUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 21649,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2024-04-02 08:00:00",
+      "alt_zeilen": 5288,
+      "datei": "ENAUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 5788,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2024-04-02",
+      "alt_zeilen": 882,
+      "datei": "ENAUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 1382,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2023-05-03 12:00:00",
+      "alt_zeilen": 29185,
+      "datei": "SUIUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 29685,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2023-05-03 12:00:00",
+      "alt_zeilen": 7297,
+      "datei": "SUIUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 7797,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2023-05-03",
+      "alt_zeilen": 1217,
+      "datei": "SUIUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 1717,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2023-03-17 08:00:00",
+      "alt_zeilen": 30316,
+      "datei": "PROMUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 30816,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2023-03-17 08:00:00",
+      "alt_zeilen": 7580,
+      "datei": "PROMUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 8080,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2023-03-17",
+      "alt_zeilen": 1264,
+      "datei": "PROMUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 1764,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-09-15 14:00:00",
+      "alt_zeilen": 8399,
+      "datei": "ZKCUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 8899,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-09-15 12:00:00",
+      "alt_zeilen": 2101,
+      "datei": "ZKCUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 2601,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2025-09-15",
+      "alt_zeilen": 351,
+      "datei": "ZKCUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 851,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "NEARUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "NEARUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "NEARUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "TRXUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "TRXUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "TRXUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2023-05-05 18:00:00",
+      "alt_zeilen": 29131,
+      "datei": "PEPEUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 29631,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2023-05-05 16:00:00",
+      "alt_zeilen": 7284,
+      "datei": "PEPEUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 7784,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2023-05-05",
+      "alt_zeilen": 1215,
+      "datei": "PEPEUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 1715,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2026-01-13 08:00:00",
+      "alt_zeilen": 5525,
+      "datei": "UUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 6025,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2026-01-13 08:00:00",
+      "alt_zeilen": 1382,
+      "datei": "UUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 1882,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2026-01-13",
+      "alt_zeilen": 231,
+      "datei": "UUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 731,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "LINKUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "LINKUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "LINKUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "AAVEUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "AAVEUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "AAVEUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-03-18 15:00:00",
+      "alt_zeilen": 12742,
+      "datei": "BMTUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 13242,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2025-03-18 12:00:00",
+      "alt_zeilen": 3187,
+      "datei": "BMTUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 3687,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2025-03-18",
+      "alt_zeilen": 532,
+      "datei": "BMTUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 1032,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2023-07-24 09:00:00",
+      "alt_zeilen": 27220,
+      "datei": "WLDUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 27720,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2023-07-24 08:00:00",
+      "alt_zeilen": 6806,
+      "datei": "WLDUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 7306,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2023-07-24",
+      "alt_zeilen": 1135,
+      "datei": "WLDUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 1635,
+      "rand": 2
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 13:00:00",
+      "alt_zeilen": 43797,
+      "datei": "ADAUSDT_1h.csv",
+      "innen": 0,
+      "neu_zeilen": 44297,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31 12:00:00",
+      "alt_von": "2021-09-01 16:00:00",
+      "alt_zeilen": 10950,
+      "datei": "ADAUSDT_4h.csv",
+      "innen": 0,
+      "neu_zeilen": 11450,
+      "rand": 1
+    },
+    {
+      "alt_bis": "2026-08-31",
+      "alt_von": "2021-09-01",
+      "alt_zeilen": 1826,
+      "datei": "ADAUSDT_1d.csv",
+      "innen": 0,
+      "neu_zeilen": 2326,
+      "rand": 2
+    }
+  ],
+  "vorlauf": 500
+}

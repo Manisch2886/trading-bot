@@ -1,0 +1,773 @@
+{
+  "je_symbol": {
+    "AAVEUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "ADAUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "BMTUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 9
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2025-03-18",
+        "zeilen": 532
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 1
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2025-03-18 12:00:00",
+        "zeilen": 3187
+      }
+    },
+    "BNBUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "BTCUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "DOGEUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "ENAUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 16
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2024-04-02",
+        "zeilen": 882
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2024-04-02 08:00:00",
+        "zeilen": 5288
+      }
+    },
+    "ENSOUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 15
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2025-10-14",
+        "zeilen": 322
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 3
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2025-10-14 08:00:00",
+        "zeilen": 1928
+      }
+    },
+    "ETHUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "LINKUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "NEARUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "PEPEUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 6
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2023-05-05",
+        "zeilen": 1215
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 2
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2023-05-05 16:00:00",
+        "zeilen": 7284
+      }
+    },
+    "PROMUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 16
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2023-03-17",
+        "zeilen": 1264
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2023-03-17 08:00:00",
+        "zeilen": 7580
+      }
+    },
+    "PUMPUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 12
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2025-09-11",
+        "zeilen": 355
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2025-09-11 12:00:00",
+        "zeilen": 2125
+      }
+    },
+    "SOLUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "SUIUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 12
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2023-05-03",
+        "zeilen": 1217
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2023-05-03 12:00:00",
+        "zeilen": 7297
+      }
+    },
+    "TRUMPUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 16
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2025-01-19",
+        "zeilen": 590
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2025-01-19 08:00:00",
+        "zeilen": 3536
+      }
+    },
+    "TRXUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "UNIUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "UUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 16
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2026-01-13",
+        "zeilen": 231
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2026-01-13 08:00:00",
+        "zeilen": 1382
+      }
+    },
+    "WLDUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 15
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2023-07-24",
+        "zeilen": 1135
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 3
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2023-07-24 08:00:00",
+        "zeilen": 6806
+      }
+    },
+    "XRPUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "ZECUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 11
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2021-09-01",
+        "zeilen": 1826
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "vollstaendig",
+          "vorhanden": 4
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2021-09-01 16:00:00",
+        "zeilen": 10950
+      }
+    },
+    "ZKCUSDT": {
+      "1d": {
+        "bis": "2026-08-31",
+        "erste": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 10
+        },
+        "letzte": {
+          "erwartet": 24,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 13
+        },
+        "von": "2025-09-15",
+        "zeilen": 351
+      },
+      "4h": {
+        "bis": "2026-08-31 12:00:00",
+        "erste": {
+          "erwartet": 4,
+          "urteil": "abgeleitete_teilkerze",
+          "vorhanden": 2
+        },
+        "letzte": {
+          "erwartet": 4,
+          "urteil": "unbelegt",
+          "vorhanden": 1
+        },
+        "von": "2025-09-15 12:00:00",
+        "zeilen": 2101
+      }
+    }
+  },
+  "stand": "2026-09-15T00:00:00"
+}

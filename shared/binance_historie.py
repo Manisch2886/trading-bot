@@ -490,6 +490,14 @@ def _zeilen_aus_dataframe(df, intervall):
     return text.splitlines()
 
 
+# Oeffentliche Namen fuer die beiden Schreibbausteine. `kursdaten_neuaufbau.py`
+# (TB-34) baut den Bestand vollstaendig neu auf und muss dabei **dieselbe**
+# Schreibweise treffen wie die vorhandenen Dateien - eine zweite Formatierung
+# waere genau die Art doppelt gefuehrter Wahrheit, die dieses Projekt schon
+# mehrfach eingesammelt hat. Die Funktionen selbst bleiben unveraendert.
+zeilen_aus_dataframe = _zeilen_aus_dataframe
+
+
 def verlaengere_datei(abrufer, pfad, symbol, intervall, schreiben=True,
                       teilkerze_ersetzen=False, zaehler=None):
     """Laedt die Historie eines Symbols zurueck und verlaengert die Datei.
@@ -617,6 +625,9 @@ def _schreibe(pfad, kopfzeile, zeilen, endet_mit_umbruch):
     with open(vorlaeufig, "w", encoding="utf-8", newline="") as datei:
         datei.write(text)
     os.replace(vorlaeufig, pfad)
+
+
+schreibe_datei = _schreibe
 
 
 # ---------------------------------------------------------------------------
