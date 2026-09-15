@@ -235,8 +235,10 @@ trading-bot/
 │   ├── strategy_paths.py               (Kernstück: get_strategy_paths(__file__) leitet automatisch
 │   │                                     RESULTS_DIR, LOGS_DIR, DB_FILE aus dem STRATEGIE-ORDNERNAMEN ab —
 │   │                                     neue Strategie hinzufügen = Ordner kopieren, keine Shared-Code-Änderung nötig)
-│   ├── fetch_binance_data.py           (Krypto: Einzelsymbol-Abruf-Funktion — gitignored, liegt nur auf
-│   │                                     dem Rechner des Nutzers, enthält Zugangsdaten)
+│   ├── fetch_binance_data.py           (Krypto: Einzelsymbol-Abruf-Funktion — seit TB-37 IM REPO;
+│   │                                     Schlüssel kommen aus der Umgebung bzw. der gitignorierten
+│   │                                     .env, nicht mehr aus dem Quelltext. Neun Module hängen an
+│   │                                     ihr, fünf davon im Live-Betrieb)
 │   ├── fetch_multi_data.py             (Krypto: Multi-Symbol-Abruf, 1h, von elliott_wave genutzt)
 │   ├── get_top_symbols.py              (Krypto: rankt Binance-USDT-Paare nach 24h-Volumen,
 │   │                                     filtert Stablecoins/gehebelte Token, → top25_symbols.txt)

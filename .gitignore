@@ -3,9 +3,19 @@ trading-env/
 
 # Sensible Konfigurationsdateien (enthalten Keys im Klartext)
 config/email_config.py
-shared/fetch_binance_data.py
+
+# shared/fetch_binance_data.py stand bis TB-37 hier - und war damit die
+# einzige Datei des Projekts, an der fuenf Bots hingen und die es genau
+# einmal gab: auf dem MacBook des Betreibers, in keinem Commit, auf keinem
+# Server. Seit TB-37 ist der CODE versioniert und die SCHLUESSEL sind es
+# nicht: sie kommen aus der Umgebung, gespeist aus der `.env` unten.
+# Diese Zeile darf nicht zurueckkommen - sonst faellt der Code wieder aus
+# dem Repo heraus.
 
 # Sonstige mögliche Secrets
+# `.env` traegt jetzt die Binance-Zugangsdaten. `.env.beispiel` nennt nur
+# die Namen und gehoert ins Repo - `*.env` trifft sie nicht (das Muster
+# verlangt die Endung `.env`, nicht den Anfang).
 .env
 *.env
 
