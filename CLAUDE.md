@@ -50,6 +50,7 @@ Einzelheiten: `broker/README.md` und `broker/README_IBKR.md`, Übergabeprotokoll
 - **Bei Auswertungen und Backtests zuerst `docs/DATENLUECKEN.md` ansehen.** Cron holt verpasste Läufe nicht nach; dort steht, für welche Zeiträume Forward-Test-Daten lückenhaft sind. Eine Lücke sieht in den Zahlen genauso aus wie "kein Signal" und fällt sonst nicht auf.
 - Untersuchungen unter `research/` fassen **keinen** Bot-Code an; Parameterübernahme ist immer ein getrennter, ausdrücklich freigegebener Schritt.
 - Jeder Handelsparameter steht genau einmal (in `live_params.py`) und wird überall sonst importiert — doppelt geführte Zahlen sind hier schon einmal unbemerkt auseinandergelaufen.
-- `config/email_config.py` und `shared/fetch_binance_data.py` enthalten Zugangsdaten und sind absichtlich in `.gitignore` — niemals Klartext-Secrets committen. Bei Dateiinhalten mit Zugangsdaten `grep -c` statt `cat` verwenden.
+- `config/email_config.py` enthält Zugangsdaten und ist absichtlich in `.gitignore` — niemals Klartext-Secrets committen. Bei Dateiinhalten mit Zugangsdaten `grep -c` statt `cat` verwenden.
+- **Seit TB-37 ist `shared/fetch_binance_data.py` versioniert** (Code im Repo, Schlüssel ausschliesslich aus der Umgebung bzw. der gitignorierten `.env`; `.env.beispiel` nennt nur die Namen). Der Eintrag in `.gitignore` darf **nicht zurückkommen** — sonst fällt der Code wieder aus dem Repo heraus. `config/email_config.py` ist damit die letzte gitignorierte Quelltextdatei; siehe `research/zugangsdaten/BERICHT.md`.
 
 Offene Punkte und der aktuelle Arbeitsstand stehen in Abschnitt 9 und 10 des Übergabeprotokolls.
