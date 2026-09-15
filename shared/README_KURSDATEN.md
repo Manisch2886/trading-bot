@@ -6,6 +6,7 @@ Zwei Werkzeuge, die zusammengehören, aber getrennt bleiben:
 |---|---|---|
 | [`shared/kursdaten_neuaufbau.py`](kursdaten_neuaufbau.py) | lädt den Krypto-Kursdatenbestand **nativ** neu — 1h, 4h und 1d | ja, nur mit `--schreiben` |
 | [`shared/zeitabdeckung.py`](zeitabdeckung.py) | prüft, ob die **erste und letzte Kerze** jeder Kursdatei ihren Zeitraum abdeckt | nein, nie |
+| [`shared/abrufschutz.py`](abrufschutz.py) **(TB-35)** | hält die **laufende Kerze** aus den acht Abrufskripten heraus und wacht darüber, dass ein Abruf keine Datei **verkürzt** | nein, nie — es schreibt nur, wer es benutzt |
 
 Beide gehören zur Familie der eigenständigen Prüf- und Pflegewerkzeuge
 (`ergebniskurven.py`, `determinismus.py`, `kursdaten.py`, `binance_historie.py`)
@@ -240,3 +241,84 @@ Abschnitt 4. Die Kurzfassung:
 Deshalb steht hier **keine** Cron-Zeile für den Abruf. Eine solche Zeile
 einzutragen, bevor es ein Werkzeug gibt, das anfügt statt zu ersetzen, wäre die
 falsche Reihenfolge.
+
+---
+
+# Nachtrag TB-35 — die offene Frage von oben ist beantwortet
+
+Der letzte Abschnitt dieses Dokuments endete mit drei Gründen, warum es
+**keine** Cron-Zeile für den Abruf gibt. Zwei davon sind seit TB-35 erledigt,
+einer bleibt bewusst stehen.
+
+## Was sich geändert hat
+
+| Befund von TB-34 | Stand nach TB-35 |
+|---|---|
+| „keines schliesst die **laufende** Kerze aus" | **erledigt** — alle acht filtern sie **vor** dem Schreiben |
+| „zwei stehen weiterhin auf `3650 day ago UTC`" | **erledigt** — beide auf `1 Jan, 2017`, die widerlegte Begründung ist entfernt |
+| „ein Werkzeug, das die Dateien **hinten verlängert**, gibt es nicht" | **bleibt so — mit Absicht.** Siehe unten |
+
+## Warum weiterhin überschrieben wird
+
+Der Einwand, an dem die Entscheidung hängt:
+
+> Ein anhängendes Werkzeug, das sich irrt, verlängert eine Datei mit falschen
+> Zeilen, und der Fehler bleibt **dauerhaft** stehen. Ein überschreibendes, das
+> sich irrt, ist beim **nächsten Lauf** wieder in Ordnung.
+
+**Überschreiben war nie das Problem — die Teilkerze am Ende war es.** Mit dem
+Filter ist die Ursache weg. Dazu: `binance_historie.py` führt für „verlängern"
+bereits einen Vertrag, dessen ganzer Wert darin liegt, **nie** zu
+überschreiben; ein drittes Werkzeug mit einem vierten Vertrag wäre genau die
+Unübersichtlichkeit, die TB-34 beklagt hat. Und Anhängen bräuchte eine
+Konfliktregel für den Fall, dass der Endpunkt eine gespeicherte Kerze anders
+liefert als beim letzten Mal — die kann niemand allgemein richtig festlegen.
+
+Der Preis des Überschreibens ist abgesichert, nicht weggeredet: dafür gibt es
+die Wache.
+
+## Die Wache
+
+```bash
+python3 shared/abrufschutz.py --aufnehmen /tmp/vorher.json
+#   ... hier den Abruf laufen lassen ...
+python3 shared/abrufschutz.py --vergleiche /tmp/vorher.json    # 1 bei Befund
+
+python3 shared/abrufschutz.py --aufnehmen X --ordner ANDERER_ORDNER
+python3 shared/abrufschutz.py --vergleiche X --json bericht.json
+```
+
+Rückgabewert **1** bei Befund, 0 sonst, 2 bei Aufruffehler. Sie schlägt an,
+wenn eine Datei nach dem Abruf **weniger Zeilen** hat, **später beginnt**,
+**früher endet** oder **verschwunden** ist — und ausdrücklich **nicht**, wenn
+sie nur verlängert wurde, gleich geblieben ist oder neu hinzukommt.
+
+**Drei Kriterien, weil eines nicht reicht.** Eine Datei kann bei *gleicher*
+Zeilenzahl später beginnen (vorne fehlt etwas, hinten kam etwas dazu) oder
+früher enden. Wer nur zählt, sieht beides nicht.
+`shared/test_abrufschutz.py` Abschnitt 6 schaltet die Kriterien einzeln ab und
+weist nach, dass dann genau der eine zugehörige Fall verlorengeht — und die
+anderen beiden nicht.
+
+**Sie meldet und stoppt nie.** Die acht Abrufskripte rufen sie selbst auf (sie
+brauchen einen Vergleichswert von **vor** dem Lauf, den es hinterher nicht mehr
+gibt) und setzen bei Befund den Rückgabewert auf 1 — dieselbe Hausregel wie
+`kursdaten.py`: *ein Befund ist kein Fehler des Programms, aber etwas, das ein
+Cronjob-Aufruf sichtbar machen soll.* Geschrieben wird trotzdem; zurückgenommen
+wird nichts.
+
+## Und die Cron-Zeile?
+
+**Steht hier weiterhin nicht.** Die zwei technischen Hindernisse sind weg, aber
+die Entscheidung, ob `data/` täglich mitwachsen soll, ist eine des Betreibers —
+und sie berührt den **Datenstand-Hash der Vorregistrierung**
+(`docs/VORREGISTRIERUNG_neuselektion.md`), der sich dann täglich änderte. Das
+ist kein Abrufthema mehr, sondern eines der Vorregistrierung.
+
+Was sich geändert hat, ist die Gefahrenlage: ein Abruf von Hand ist jetzt
+**verlustfrei**. Er verlängert oder lässt gleich; er verkürzt nicht, und er
+schreibt keine Teilkerze mehr.
+
+Einzelheiten: Kopf von [`shared/abrufschutz.py`](abrufschutz.py),
+[`docs/UEBERGABE_TB-35_abrufskripte.md`](../docs/UEBERGABE_TB-35_abrufskripte.md),
+[`research/abrufskripte/BERICHT.md`](../research/abrufskripte/BERICHT.md).
