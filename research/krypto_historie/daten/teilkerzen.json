@@ -1,0 +1,319 @@
+{
+  "abgeleitet_geprueft": [],
+  "teilkerzen_1d": [
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "BTCUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "ETHUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "SOLUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "ZECUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "XRPUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2025-10-14",
+      "erste_stunden": 15,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "ENSOUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "UNIUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "BNBUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2025-01-19",
+      "erste_stunden": 16,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "TRUMPUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "DOGEUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2025-09-11",
+      "erste_stunden": 12,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "PUMPUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2024-04-02",
+      "erste_stunden": 16,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "ENAUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2023-05-03",
+      "erste_stunden": 12,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "SUIUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2023-03-17",
+      "erste_stunden": 16,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "PROMUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2025-09-15",
+      "erste_stunden": 10,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "ZKCUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "NEARUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "TRXUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2023-05-05",
+      "erste_stunden": 6,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "PEPEUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2026-01-13",
+      "erste_stunden": 16,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "UUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "LINKUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "AAVEUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2025-03-18",
+      "erste_stunden": 9,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "BMTUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2023-07-24",
+      "erste_stunden": 15,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "WLDUSDT"
+    },
+    {
+      "aus_1h_abgeleitet": true,
+      "erste": "2021-09-01",
+      "erste_stunden": 11,
+      "letzte": "2026-08-31",
+      "letzte_stunden": 13,
+      "symbol": "ADAUSDT"
+    }
+  ],
+  "teilkerzen_4h": [
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "BTCUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "ETHUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "SOLUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "ZECUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "XRPUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "ENSOUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "UNIUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "BNBUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "TRUMPUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "DOGEUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "PUMPUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "ENAUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "SUIUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "PROMUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "ZKCUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "NEARUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "TRXUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "PEPEUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "UUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "LINKUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "AAVEUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "BMTUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "WLDUSDT",
+      "vollstaendig_laut_1h": false
+    },
+    {
+      "letzte": "2026-08-31 12:00:00",
+      "symbol": "ADAUSDT",
+      "vollstaendig_laut_1h": false
+    }
+  ]
+}

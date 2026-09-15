@@ -1,0 +1,344 @@
+[
+  {
+    "bot": "elliott_wave",
+    "ablage": "results/equity_curve.csv",
+    "heute": {
+      "zeilen": 130,
+      "von": "2021-09-24 11:00:00",
+      "bis": "2026-08-20 05:00:00",
+      "endkapital": 16777.45,
+      "rendite_pct": 67.77,
+      "max_drawdown_pct": -10.17
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": null,
+      "trades_gefunden": 130,
+      "trades_ausgefuehrt": 130,
+      "trades_uebersprungen": 0,
+      "endkapital": 16777.45,
+      "max_drawdown_pct": -10.17
+    },
+    "abgelegt": {
+      "zeilen": 130,
+      "von": "2021-09-24 11:00:00",
+      "bis": "2026-08-20 05:00:00",
+      "endkapital": 16777.45,
+      "rendite_pct": 67.77,
+      "max_drawdown_pct": -10.17
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 130,
+    "zeilen_heute": 130,
+    "gemeinsamer_teil": 130,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  },
+  {
+    "bot": "elliott_wave_stocks",
+    "ablage": "results/elliott_wave_stocks/equity_curve.csv",
+    "heute": {
+      "zeilen": 394,
+      "von": "2016-11-11 00:00:00",
+      "bis": "2026-09-01 00:00:00",
+      "endkapital": 51906.95,
+      "rendite_pct": 419.07,
+      "max_drawdown_pct": -22.97
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 8,
+      "trades_gefunden": 510,
+      "trades_ausgefuehrt": 394,
+      "trades_uebersprungen": 116,
+      "endkapital": 51906.95,
+      "max_drawdown_pct": -22.97
+    },
+    "abgelegt": {
+      "zeilen": 394,
+      "von": "2016-11-11 00:00:00",
+      "bis": "2026-09-01 00:00:00",
+      "endkapital": 51906.95,
+      "rendite_pct": 419.07,
+      "max_drawdown_pct": -22.97
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 394,
+    "zeilen_heute": 394,
+    "gemeinsamer_teil": 394,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  },
+  {
+    "bot": "rsi2_crypto",
+    "ablage": "results/rsi2_crypto/equity_curve.csv",
+    "heute": {
+      "zeilen": 392,
+      "von": "2022-02-15 00:00:00",
+      "bis": "2026-08-20 00:00:00",
+      "endkapital": 12719.18,
+      "rendite_pct": 27.19,
+      "max_drawdown_pct": -13.94
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 8,
+      "trades_gefunden": 439,
+      "trades_ausgefuehrt": 392,
+      "trades_uebersprungen": 47,
+      "endkapital": 12719.18,
+      "max_drawdown_pct": -13.94
+    },
+    "abgelegt": {
+      "zeilen": 392,
+      "von": "2022-02-15 00:00:00",
+      "bis": "2026-08-20 00:00:00",
+      "endkapital": 12719.18,
+      "rendite_pct": 27.19,
+      "max_drawdown_pct": -13.94
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 392,
+    "zeilen_heute": 392,
+    "gemeinsamer_teil": 392,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  },
+  {
+    "bot": "rsi2_mean_reversion",
+    "ablage": "results/rsi2_mean_reversion/equity_curve.csv",
+    "heute": {
+      "zeilen": 4218,
+      "von": "2016-09-06 00:00:00",
+      "bis": "2026-09-01 00:00:00",
+      "endkapital": 13628.4,
+      "rendite_pct": 36.28,
+      "max_drawdown_pct": -19.53
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.05,
+      "max_concurrent_positions": 20,
+      "trades_gefunden": 5391,
+      "trades_ausgefuehrt": 4218,
+      "trades_uebersprungen": 1173,
+      "endkapital": 13628.4,
+      "max_drawdown_pct": -19.53
+    },
+    "abgelegt": {
+      "zeilen": 4218,
+      "von": "2016-09-06 00:00:00",
+      "bis": "2026-09-01 00:00:00",
+      "endkapital": 13628.4,
+      "rendite_pct": 36.28,
+      "max_drawdown_pct": -19.53
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 4218,
+    "zeilen_heute": 4218,
+    "gemeinsamer_teil": 4218,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  },
+  {
+    "bot": "t3_supertrend",
+    "ablage": "results/t3_supertrend/equity_curve.csv",
+    "heute": {
+      "zeilen": 656,
+      "von": "2021-09-02 16:00:00",
+      "bis": "2026-08-29 16:00:00",
+      "endkapital": 22169.92,
+      "rendite_pct": 121.7,
+      "max_drawdown_pct": -22.4
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 5,
+      "trades_gefunden": 980,
+      "trades_ausgefuehrt": 656,
+      "trades_uebersprungen": 324,
+      "endkapital": 22169.92,
+      "max_drawdown_pct": -22.4
+    },
+    "abgelegt": {
+      "zeilen": 656,
+      "von": "2021-09-02 16:00:00",
+      "bis": "2026-08-29 16:00:00",
+      "endkapital": 22169.92,
+      "rendite_pct": 121.7,
+      "max_drawdown_pct": -22.4
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 656,
+    "zeilen_heute": 656,
+    "gemeinsamer_teil": 656,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  },
+  {
+    "bot": "turtle_soup_crypto",
+    "ablage": "results/turtle_soup_crypto/equity_curve.csv",
+    "heute": {
+      "zeilen": 1415,
+      "von": "2021-10-22 00:00:00",
+      "bis": "2026-08-28 00:00:00",
+      "endkapital": 25283.53,
+      "rendite_pct": 152.84,
+      "max_drawdown_pct": -34.85
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 8,
+      "trades_gefunden": 1599,
+      "trades_ausgefuehrt": 1415,
+      "trades_uebersprungen": 184,
+      "endkapital": 25283.53,
+      "max_drawdown_pct": -34.85
+    },
+    "abgelegt": {
+      "zeilen": 1415,
+      "von": "2021-10-22 00:00:00",
+      "bis": "2026-08-28 00:00:00",
+      "endkapital": 25283.53,
+      "rendite_pct": 152.84,
+      "max_drawdown_pct": -34.85
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 1415,
+    "zeilen_heute": 1415,
+    "gemeinsamer_teil": 1415,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  },
+  {
+    "bot": "turtle_soup_stocks",
+    "ablage": "results/turtle_soup_stocks/equity_curve.csv",
+    "heute": {
+      "zeilen": 8914,
+      "von": "2016-09-16 00:00:00",
+      "bis": "2026-09-01 00:00:00",
+      "endkapital": 23814.54,
+      "rendite_pct": 138.15,
+      "max_drawdown_pct": -29.07
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.02,
+      "max_concurrent_positions": null,
+      "trades_gefunden": 12069,
+      "trades_ausgefuehrt": 8914,
+      "trades_uebersprungen": 3155,
+      "endkapital": 23814.54,
+      "max_drawdown_pct": -29.07
+    },
+    "abgelegt": {
+      "zeilen": 8914,
+      "von": "2016-09-16 00:00:00",
+      "bis": "2026-09-01 00:00:00",
+      "endkapital": 23814.54,
+      "rendite_pct": 138.15,
+      "max_drawdown_pct": -29.07
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 8914,
+    "zeilen_heute": 8914,
+    "gemeinsamer_teil": 8914,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  },
+  {
+    "bot": "volatility_breakout",
+    "ablage": "results/volatility_breakout/equity_curve.csv",
+    "heute": {
+      "zeilen": 1461,
+      "von": "2016-09-19 00:00:00",
+      "bis": "2026-09-01 00:00:00",
+      "endkapital": 30958.92,
+      "rendite_pct": 209.59,
+      "max_drawdown_pct": -22.46
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 15,
+      "trades_gefunden": 4510,
+      "trades_ausgefuehrt": 1461,
+      "trades_uebersprungen": 3049,
+      "endkapital": 30958.92,
+      "max_drawdown_pct": -22.46
+    },
+    "abgelegt": {
+      "zeilen": 1461,
+      "von": "2016-09-19 00:00:00",
+      "bis": "2026-09-01 00:00:00",
+      "endkapital": 30958.92,
+      "rendite_pct": 209.59,
+      "max_drawdown_pct": -22.46
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 1461,
+    "zeilen_heute": 1461,
+    "gemeinsamer_teil": 1461,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  },
+  {
+    "bot": "volatility_breakout_crypto",
+    "ablage": "results/volatility_breakout_crypto/equity_curve.csv",
+    "heute": {
+      "zeilen": 207,
+      "von": "2022-03-18 00:00:00",
+      "bis": "2026-08-30 00:00:00",
+      "endkapital": 16812.68,
+      "rendite_pct": 68.13,
+      "max_drawdown_pct": -16.29
+    },
+    "lauf": {
+      "startkapital": 10000.0,
+      "allocation_pct": 0.1,
+      "max_concurrent_positions": 8,
+      "trades_gefunden": 233,
+      "trades_ausgefuehrt": 207,
+      "trades_uebersprungen": 26,
+      "endkapital": 16812.68,
+      "max_drawdown_pct": -16.29
+    },
+    "abgelegt": {
+      "zeilen": 207,
+      "von": "2022-03-18 00:00:00",
+      "bis": "2026-08-30 00:00:00",
+      "endkapital": 16812.68,
+      "rendite_pct": 68.13,
+      "max_drawdown_pct": -16.29
+    },
+    "zustand": "AKTUELL",
+    "grund": "Zeile fuer Zeile identisch",
+    "zeilen_abgelegt": 207,
+    "zeilen_heute": 207,
+    "gemeinsamer_teil": 207,
+    "abweichende_zeilen": 0,
+    "erste_abweichung": null,
+    "byteweise_identisch": true
+  }
+]
