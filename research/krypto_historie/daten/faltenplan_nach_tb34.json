@@ -1,0 +1,631 @@
+{
+  "go_live": "2026-09-01",
+  "marktphasen": [
+    {
+      "bis": "2018-12-31",
+      "phase": "Zyklus 2018 (Hoch 2017-12, Baerenmarkt 2018)",
+      "von": "2017-12-01",
+      "zustand": "vollstaendig"
+    },
+    {
+      "bis": "2020-04-30",
+      "phase": "Einbruch Maerz 2020",
+      "von": "2020-02-20",
+      "zustand": "vollstaendig"
+    },
+    {
+      "bis": "2022-12-31",
+      "phase": "Baerenmarkt 2022",
+      "von": "2022-01-01",
+      "zustand": "vollstaendig"
+    }
+  ],
+  "mindesttraining": 4,
+  "plaene": {
+    "elliott_wave": {
+      "anzahl_selektionsfalten": 2,
+      "bestaetigungsperiode": {
+        "bis_ausschliesslich": "2026-09-01",
+        "jahre": [
+          2026
+        ],
+        "symbole": [
+          "AAVEUSDT",
+          "ADAUSDT",
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "SOLUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "XRPUSDT",
+          "ZECUSDT"
+        ],
+        "von": "2026-01-01"
+      },
+      "bot": "elliott_wave",
+      "datenbeginn_frueheste": "2017-08-17",
+      "datenbeginn_spaeteste": "2026-01-13",
+      "erstes_faltenjahr": 2022,
+      "faltenlaenge": 2,
+      "ohne_datei": [],
+      "selektionsfalten": [
+        {
+          "bis_ausschliesslich": "2024-01-01",
+          "jahre": [
+            2022,
+            2023
+          ],
+          "symbole": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT"
+          ],
+          "von": "2022-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2026-01-01",
+          "jahre": [
+            2024,
+            2025
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "TRXUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2024-01-01"
+        }
+      ],
+      "symbole_gesamt": 24,
+      "symbole_je_beginn": {
+        "AAVEUSDT": "2020-10-15",
+        "ADAUSDT": "2018-04-17",
+        "BMTUSDT": "2025-03-18",
+        "BNBUSDT": "2017-11-06",
+        "BTCUSDT": "2017-08-17",
+        "DOGEUSDT": "2019-07-05",
+        "ENAUSDT": "2024-04-02",
+        "ENSOUSDT": "2025-10-14",
+        "ETHUSDT": "2017-08-17",
+        "LINKUSDT": "2019-01-16",
+        "NEARUSDT": "2020-10-14",
+        "PEPEUSDT": "2023-05-05",
+        "PROMUSDT": "2023-03-17",
+        "PUMPUSDT": "2025-09-11",
+        "SOLUSDT": "2020-08-11",
+        "SUIUSDT": "2023-05-03",
+        "TRUMPUSDT": "2025-01-19",
+        "TRXUSDT": "2018-06-11",
+        "UNIUSDT": "2020-09-17",
+        "UUSDT": "2026-01-13",
+        "WLDUSDT": "2023-07-24",
+        "XRPUSDT": "2018-05-04",
+        "ZECUSDT": "2019-03-21",
+        "ZKCUSDT": "2025-09-15"
+      },
+      "zeitrahmen": "1h"
+    },
+    "rsi2_crypto": {
+      "anzahl_selektionsfalten": 4,
+      "bestaetigungsperiode": {
+        "bis_ausschliesslich": "2026-09-01",
+        "jahre": [
+          2026
+        ],
+        "symbole": [
+          "AAVEUSDT",
+          "ADAUSDT",
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "SOLUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "XRPUSDT",
+          "ZECUSDT"
+        ],
+        "von": "2026-01-01"
+      },
+      "bot": "rsi2_crypto",
+      "datenbeginn_frueheste": "2017-08-17",
+      "datenbeginn_spaeteste": "2026-01-13",
+      "erstes_faltenjahr": 2022,
+      "faltenlaenge": 1,
+      "ohne_datei": [],
+      "selektionsfalten": [
+        {
+          "bis_ausschliesslich": "2023-01-01",
+          "jahre": [
+            2022
+          ],
+          "symbole": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT"
+          ],
+          "von": "2022-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2024-01-01",
+          "jahre": [
+            2023
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT",
+            "TRXUSDT",
+            "XRPUSDT"
+          ],
+          "von": "2023-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2025-01-01",
+          "jahre": [
+            2024
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "TRXUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2024-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2026-01-01",
+          "jahre": [
+            2025
+          ],
+          "symbole": [
+            "AAVEUSDT",
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "NEARUSDT",
+            "SOLUSDT",
+            "TRXUSDT",
+            "UNIUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2025-01-01"
+        }
+      ],
+      "symbole_gesamt": 24,
+      "symbole_je_beginn": {
+        "AAVEUSDT": "2020-10-15",
+        "ADAUSDT": "2018-04-17",
+        "BMTUSDT": "2025-03-18",
+        "BNBUSDT": "2017-11-06",
+        "BTCUSDT": "2017-08-17",
+        "DOGEUSDT": "2019-07-05",
+        "ENAUSDT": "2024-04-02",
+        "ENSOUSDT": "2025-10-14",
+        "ETHUSDT": "2017-08-17",
+        "LINKUSDT": "2019-01-16",
+        "NEARUSDT": "2020-10-14",
+        "PEPEUSDT": "2023-05-05",
+        "PROMUSDT": "2023-03-17",
+        "PUMPUSDT": "2025-09-11",
+        "SOLUSDT": "2020-08-11",
+        "SUIUSDT": "2023-05-03",
+        "TRUMPUSDT": "2025-01-19",
+        "TRXUSDT": "2018-06-11",
+        "UNIUSDT": "2020-09-17",
+        "UUSDT": "2026-01-13",
+        "WLDUSDT": "2023-07-24",
+        "XRPUSDT": "2018-05-04",
+        "ZECUSDT": "2019-03-21",
+        "ZKCUSDT": "2025-09-15"
+      },
+      "zeitrahmen": "1d"
+    },
+    "t3_supertrend": {
+      "anzahl_selektionsfalten": 4,
+      "bestaetigungsperiode": {
+        "bis_ausschliesslich": "2026-09-01",
+        "jahre": [
+          2026
+        ],
+        "symbole": [
+          "AAVEUSDT",
+          "ADAUSDT",
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "SOLUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "XRPUSDT",
+          "ZECUSDT"
+        ],
+        "von": "2026-01-01"
+      },
+      "bot": "t3_supertrend",
+      "datenbeginn_frueheste": "2017-08-17",
+      "datenbeginn_spaeteste": "2026-01-13",
+      "erstes_faltenjahr": 2022,
+      "faltenlaenge": 1,
+      "ohne_datei": [],
+      "selektionsfalten": [
+        {
+          "bis_ausschliesslich": "2023-01-01",
+          "jahre": [
+            2022
+          ],
+          "symbole": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT"
+          ],
+          "von": "2022-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2024-01-01",
+          "jahre": [
+            2023
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT",
+            "TRXUSDT",
+            "XRPUSDT"
+          ],
+          "von": "2023-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2025-01-01",
+          "jahre": [
+            2024
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "TRXUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2024-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2026-01-01",
+          "jahre": [
+            2025
+          ],
+          "symbole": [
+            "AAVEUSDT",
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "NEARUSDT",
+            "SOLUSDT",
+            "TRXUSDT",
+            "UNIUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2025-01-01"
+        }
+      ],
+      "symbole_gesamt": 24,
+      "symbole_je_beginn": {
+        "AAVEUSDT": "2020-10-15",
+        "ADAUSDT": "2018-04-17",
+        "BMTUSDT": "2025-03-18",
+        "BNBUSDT": "2017-11-06",
+        "BTCUSDT": "2017-08-17",
+        "DOGEUSDT": "2019-07-05",
+        "ENAUSDT": "2024-04-02",
+        "ENSOUSDT": "2025-10-14",
+        "ETHUSDT": "2017-08-17",
+        "LINKUSDT": "2019-01-16",
+        "NEARUSDT": "2020-10-14",
+        "PEPEUSDT": "2023-05-05",
+        "PROMUSDT": "2023-03-17",
+        "PUMPUSDT": "2025-09-11",
+        "SOLUSDT": "2020-08-11",
+        "SUIUSDT": "2023-05-03",
+        "TRUMPUSDT": "2025-01-19",
+        "TRXUSDT": "2018-06-11",
+        "UNIUSDT": "2020-09-17",
+        "UUSDT": "2026-01-13",
+        "WLDUSDT": "2023-07-24",
+        "XRPUSDT": "2018-05-04",
+        "ZECUSDT": "2019-03-21",
+        "ZKCUSDT": "2025-09-15"
+      },
+      "zeitrahmen": "4h"
+    },
+    "turtle_soup_crypto": {
+      "anzahl_selektionsfalten": 4,
+      "bestaetigungsperiode": {
+        "bis_ausschliesslich": "2026-09-01",
+        "jahre": [
+          2026
+        ],
+        "symbole": [
+          "AAVEUSDT",
+          "ADAUSDT",
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "SOLUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "XRPUSDT",
+          "ZECUSDT"
+        ],
+        "von": "2026-01-01"
+      },
+      "bot": "turtle_soup_crypto",
+      "datenbeginn_frueheste": "2017-08-17",
+      "datenbeginn_spaeteste": "2026-01-13",
+      "erstes_faltenjahr": 2022,
+      "faltenlaenge": 1,
+      "ohne_datei": [],
+      "selektionsfalten": [
+        {
+          "bis_ausschliesslich": "2023-01-01",
+          "jahre": [
+            2022
+          ],
+          "symbole": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT"
+          ],
+          "von": "2022-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2024-01-01",
+          "jahre": [
+            2023
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT",
+            "TRXUSDT",
+            "XRPUSDT"
+          ],
+          "von": "2023-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2025-01-01",
+          "jahre": [
+            2024
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "TRXUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2024-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2026-01-01",
+          "jahre": [
+            2025
+          ],
+          "symbole": [
+            "AAVEUSDT",
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "NEARUSDT",
+            "SOLUSDT",
+            "TRXUSDT",
+            "UNIUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2025-01-01"
+        }
+      ],
+      "symbole_gesamt": 24,
+      "symbole_je_beginn": {
+        "AAVEUSDT": "2020-10-15",
+        "ADAUSDT": "2018-04-17",
+        "BMTUSDT": "2025-03-18",
+        "BNBUSDT": "2017-11-06",
+        "BTCUSDT": "2017-08-17",
+        "DOGEUSDT": "2019-07-05",
+        "ENAUSDT": "2024-04-02",
+        "ENSOUSDT": "2025-10-14",
+        "ETHUSDT": "2017-08-17",
+        "LINKUSDT": "2019-01-16",
+        "NEARUSDT": "2020-10-14",
+        "PEPEUSDT": "2023-05-05",
+        "PROMUSDT": "2023-03-17",
+        "PUMPUSDT": "2025-09-11",
+        "SOLUSDT": "2020-08-11",
+        "SUIUSDT": "2023-05-03",
+        "TRUMPUSDT": "2025-01-19",
+        "TRXUSDT": "2018-06-11",
+        "UNIUSDT": "2020-09-17",
+        "UUSDT": "2026-01-13",
+        "WLDUSDT": "2023-07-24",
+        "XRPUSDT": "2018-05-04",
+        "ZECUSDT": "2019-03-21",
+        "ZKCUSDT": "2025-09-15"
+      },
+      "zeitrahmen": "1d"
+    },
+    "volatility_breakout_crypto": {
+      "anzahl_selektionsfalten": 4,
+      "bestaetigungsperiode": {
+        "bis_ausschliesslich": "2026-09-01",
+        "jahre": [
+          2026
+        ],
+        "symbole": [
+          "AAVEUSDT",
+          "ADAUSDT",
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ETHUSDT",
+          "LINKUSDT",
+          "NEARUSDT",
+          "SOLUSDT",
+          "TRXUSDT",
+          "UNIUSDT",
+          "XRPUSDT",
+          "ZECUSDT"
+        ],
+        "von": "2026-01-01"
+      },
+      "bot": "volatility_breakout_crypto",
+      "datenbeginn_frueheste": "2017-08-17",
+      "datenbeginn_spaeteste": "2026-01-13",
+      "erstes_faltenjahr": 2022,
+      "faltenlaenge": 1,
+      "ohne_datei": [],
+      "selektionsfalten": [
+        {
+          "bis_ausschliesslich": "2023-01-01",
+          "jahre": [
+            2022
+          ],
+          "symbole": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT"
+          ],
+          "von": "2022-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2024-01-01",
+          "jahre": [
+            2023
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "ETHUSDT",
+            "TRXUSDT",
+            "XRPUSDT"
+          ],
+          "von": "2023-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2025-01-01",
+          "jahre": [
+            2024
+          ],
+          "symbole": [
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "TRXUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2024-01-01"
+        },
+        {
+          "bis_ausschliesslich": "2026-01-01",
+          "jahre": [
+            2025
+          ],
+          "symbole": [
+            "AAVEUSDT",
+            "ADAUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "LINKUSDT",
+            "NEARUSDT",
+            "SOLUSDT",
+            "TRXUSDT",
+            "UNIUSDT",
+            "XRPUSDT",
+            "ZECUSDT"
+          ],
+          "von": "2025-01-01"
+        }
+      ],
+      "symbole_gesamt": 24,
+      "symbole_je_beginn": {
+        "AAVEUSDT": "2020-10-15",
+        "ADAUSDT": "2018-04-17",
+        "BMTUSDT": "2025-03-18",
+        "BNBUSDT": "2017-11-06",
+        "BTCUSDT": "2017-08-17",
+        "DOGEUSDT": "2019-07-05",
+        "ENAUSDT": "2024-04-02",
+        "ENSOUSDT": "2025-10-14",
+        "ETHUSDT": "2017-08-17",
+        "LINKUSDT": "2019-01-16",
+        "NEARUSDT": "2020-10-14",
+        "PEPEUSDT": "2023-05-05",
+        "PROMUSDT": "2023-03-17",
+        "PUMPUSDT": "2025-09-11",
+        "SOLUSDT": "2020-08-11",
+        "SUIUSDT": "2023-05-03",
+        "TRUMPUSDT": "2025-01-19",
+        "TRXUSDT": "2018-06-11",
+        "UNIUSDT": "2020-09-17",
+        "UUSDT": "2026-01-13",
+        "WLDUSDT": "2023-07-24",
+        "XRPUSDT": "2018-05-04",
+        "ZECUSDT": "2019-03-21",
+        "ZKCUSDT": "2025-09-15"
+      },
+      "zeitrahmen": "1d"
+    }
+  }
+}

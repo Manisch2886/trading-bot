@@ -814,6 +814,36 @@ Ab dem signierten Tag sind unveränderlich:
 Zusätzlich gilt: **Der Lauf darf nicht beginnen, bevor die beiden Bug-Fixes
 aus Abschnitt 11 eingebaut sind.**
 
+*Tatsache zu Punkt 12 (15.09.2026, TB-34):* Der Datenstand-Hash hat sich
+**vor** jedem Selektionslauf geändert — durch den nativen Neuaufbau der 72
+Krypto-Kursdateien (`shared/kursdaten_neuaufbau.py`, Stand 2026-09-15
+09:51:31 UTC, Sicherung `data_sicherung/2026-09-15_115131`). Vorher
+`6258cbc38872f9d6dd2b0315e9ea15a68148b133e97996cf5dbb18c82758c1f0`, nachher
+`97498f14527651a28323c1f273be24d2252595840b1b57364d263d7ff87eef1c` (je 242
+Dateien). Das ist **kein Amendment**: es gab keinen Lauf, dessen Ergebnisse
+davon berührt wären; genau deshalb kam TB-34 vor TB-30b. Die Aktiendateien
+sind unverändert. Der daraus folgende Krypto-Faltenplan (5.3) ist gerechnet
+(`research/krypto_historie/daten/faltenplan_nach_tb34.json`), aber **nicht**
+eingetragen — Lesart von „je Symbol" und Eintrag bleiben Betreiberentscheidung.
+
+*Fortschreibung derselben Tatsache (15.09.2026, nach dem Lauf):* Der oben
+genannte Stand `97498f14…` bestand nur kurz. Anschliessend wurden die **19
+verwaisten `*_15m.csv`** aus `data/` entfernt — Reste eines verworfenen
+15-Minuten-Versuchs, von **keinem** Programm gelesen (geprüft über den gesamten
+Python-Quelltext; die einzigen beiden Fundstellen sind `shared/zeitabdeckung.py`
+und ihr Test, und dort steht `_15m` als **Beispiel für einen nicht geführten
+Zeitrahmen**). Beides zusammen liegt in Commit `90e3cbd`.
+
+**Der Datenstand, der für den Selektionslauf gilt, ist damit:**
+`d9449faf51bffaaa…` bei **223** Kursdateien (223 = 72 Krypto + 150 Aktien +
+`XAUTUSDT_1h`), erfasst mit `research/vorregistrierung/herkunft.py`.
+
+*Warum beides in einem Zug geschah:* Die 19 Dateien waren im Hash mitgezählt.
+Sie später zu entfernen hätte einen **zweiten** Hash-Wechsel erzeugt — und wäre
+er nach dem Selektionslauf erfolgt, wäre er kein Tatsachenvermerk mehr gewesen,
+sondern ein Bruch der Sperrliste. Es gibt daher genau **einen** Übergang:
+`6258cbc3…` (242 Dateien) → `d9449faf…` (223 Dateien), vollzogen vor jedem Lauf.
+
 ### 10.1 Die Amendment-Regel
 
 > Ein **Bug-Fix ist ein Amendment**: dokumentiert, **der Lauf beginnt von
