@@ -1,0 +1,231 @@
+{
+  "elliott_wave": {
+    "art": "zeitbremse",
+    "bot": "elliott_wave",
+    "embargo_handelstage": 11,
+    "grundlage_handelstage": 10.0,
+    "laengste_zeitbremse": {
+      "einheit": "balken",
+      "handelstage": 10.0,
+      "herkunft": "strategies/elliott_wave/backtest_elliott.py:70",
+      "konstante": "MAX_HOLD_HOURS",
+      "wert": 240
+    },
+    "markt": "krypto",
+    "perzentil95": null,
+    "zeitbremsen": [
+      {
+        "einheit": "balken",
+        "handelstage": 10.0,
+        "herkunft": "strategies/elliott_wave/backtest_elliott.py:70",
+        "konstante": "MAX_HOLD_HOURS",
+        "wert": 240
+      },
+      {
+        "einheit": "balken",
+        "handelstage": 10.0,
+        "herkunft": "strategies/elliott_wave/forward_test.py:51",
+        "konstante": "MAX_HOLD_HOURS",
+        "wert": 240
+      }
+    ],
+    "zeitrahmen": "1h"
+  },
+  "elliott_wave_stocks": {
+    "art": "zeitbremse",
+    "bot": "elliott_wave_stocks",
+    "embargo_handelstage": 91,
+    "grundlage_handelstage": 90.0,
+    "laengste_zeitbremse": {
+      "einheit": "balken",
+      "handelstage": 90.0,
+      "herkunft": "strategies/elliott_wave_stocks/backtest_elliott.py:70",
+      "konstante": "MAX_HOLD_HOURS",
+      "wert": 90
+    },
+    "markt": "aktien",
+    "perzentil95": null,
+    "zeitbremsen": [
+      {
+        "einheit": "balken",
+        "handelstage": 90.0,
+        "herkunft": "strategies/elliott_wave_stocks/backtest_elliott.py:70",
+        "konstante": "MAX_HOLD_HOURS",
+        "wert": 90
+      },
+      {
+        "einheit": "kalendertage",
+        "handelstage": 89.0,
+        "herkunft": "strategies/elliott_wave_stocks/forward_test.py:51",
+        "konstante": "MAX_HOLD_DAYS",
+        "wert": 130
+      }
+    ],
+    "zeitrahmen": "1d"
+  },
+  "rsi2_crypto": {
+    "art": "zeitbremse",
+    "bot": "rsi2_crypto",
+    "embargo_handelstage": 11,
+    "grundlage_handelstage": 10.0,
+    "laengste_zeitbremse": {
+      "einheit": "balken",
+      "handelstage": 10.0,
+      "herkunft": "strategies/rsi2_crypto/live_params.py:34",
+      "konstante": "MAX_HOLD_DAYS",
+      "wert": 10
+    },
+    "markt": "krypto",
+    "perzentil95": null,
+    "zeitbremsen": [
+      {
+        "einheit": "balken",
+        "handelstage": 10.0,
+        "herkunft": "strategies/rsi2_crypto/live_params.py:34",
+        "konstante": "MAX_HOLD_DAYS",
+        "wert": 10
+      }
+    ],
+    "zeitrahmen": "1d"
+  },
+  "rsi2_mean_reversion": {
+    "art": "zeitbremse",
+    "bot": "rsi2_mean_reversion",
+    "embargo_handelstage": 11,
+    "grundlage_handelstage": 10.0,
+    "laengste_zeitbremse": {
+      "einheit": "balken",
+      "handelstage": 10.0,
+      "herkunft": "strategies/rsi2_mean_reversion/live_params.py:21",
+      "konstante": "MAX_HOLD_DAYS",
+      "wert": 10
+    },
+    "markt": "aktien",
+    "perzentil95": null,
+    "zeitbremsen": [
+      {
+        "einheit": "balken",
+        "handelstage": 10.0,
+        "herkunft": "strategies/rsi2_mean_reversion/live_params.py:21",
+        "konstante": "MAX_HOLD_DAYS",
+        "wert": 10
+      }
+    ],
+    "zeitrahmen": "1d"
+  },
+  "t3_supertrend": {
+    "art": "perzentil",
+    "bot": "t3_supertrend",
+    "embargo_handelstage": 13,
+    "grundlage_handelstage": 11.2083,
+    "laengste_zeitbremse": null,
+    "markt": "krypto",
+    "perzentil95": {
+      "herkunft": "research/tb24_haltedauern/daten/t3_supertrend_positionen.csv",
+      "n_positionen": 656,
+      "p95_tage": 11.2083
+    },
+    "zeitbremsen": [],
+    "zeitrahmen": "4h"
+  },
+  "turtle_soup_crypto": {
+    "art": "zeitbremse",
+    "bot": "turtle_soup_crypto",
+    "embargo_handelstage": 11,
+    "grundlage_handelstage": 10.0,
+    "laengste_zeitbremse": {
+      "einheit": "balken",
+      "handelstage": 10.0,
+      "herkunft": "strategies/turtle_soup_crypto/live_params.py:33",
+      "konstante": "MAX_HOLD_DAYS",
+      "wert": 10
+    },
+    "markt": "krypto",
+    "perzentil95": null,
+    "zeitbremsen": [
+      {
+        "einheit": "balken",
+        "handelstage": 10.0,
+        "herkunft": "strategies/turtle_soup_crypto/live_params.py:33",
+        "konstante": "MAX_HOLD_DAYS",
+        "wert": 10
+      }
+    ],
+    "zeitrahmen": "1d"
+  },
+  "turtle_soup_stocks": {
+    "art": "zeitbremse",
+    "bot": "turtle_soup_stocks",
+    "embargo_handelstage": 11,
+    "grundlage_handelstage": 10.0,
+    "laengste_zeitbremse": {
+      "einheit": "balken",
+      "handelstage": 10.0,
+      "herkunft": "strategies/turtle_soup_stocks/live_params.py:53",
+      "konstante": "MAX_HOLD_DAYS",
+      "wert": 10
+    },
+    "markt": "aktien",
+    "perzentil95": null,
+    "zeitbremsen": [
+      {
+        "einheit": "balken",
+        "handelstage": 10.0,
+        "herkunft": "strategies/turtle_soup_stocks/live_params.py:53",
+        "konstante": "MAX_HOLD_DAYS",
+        "wert": 10
+      }
+    ],
+    "zeitrahmen": "1d"
+  },
+  "volatility_breakout": {
+    "art": "zeitbremse",
+    "bot": "volatility_breakout",
+    "embargo_handelstage": 16,
+    "grundlage_handelstage": 15.0,
+    "laengste_zeitbremse": {
+      "einheit": "balken",
+      "handelstage": 15.0,
+      "herkunft": "strategies/volatility_breakout/live_params.py:25",
+      "konstante": "MAX_HOLD_DAYS",
+      "wert": 15
+    },
+    "markt": "aktien",
+    "perzentil95": null,
+    "zeitbremsen": [
+      {
+        "einheit": "balken",
+        "handelstage": 15.0,
+        "herkunft": "strategies/volatility_breakout/live_params.py:25",
+        "konstante": "MAX_HOLD_DAYS",
+        "wert": 15
+      }
+    ],
+    "zeitrahmen": "1d"
+  },
+  "volatility_breakout_crypto": {
+    "art": "zeitbremse",
+    "bot": "volatility_breakout_crypto",
+    "embargo_handelstage": 16,
+    "grundlage_handelstage": 15.0,
+    "laengste_zeitbremse": {
+      "einheit": "balken",
+      "handelstage": 15.0,
+      "herkunft": "strategies/volatility_breakout_crypto/live_params.py:43",
+      "konstante": "MAX_HOLD_DAYS",
+      "wert": 15
+    },
+    "markt": "krypto",
+    "perzentil95": null,
+    "zeitbremsen": [
+      {
+        "einheit": "balken",
+        "handelstage": 15.0,
+        "herkunft": "strategies/volatility_breakout_crypto/live_params.py:43",
+        "konstante": "MAX_HOLD_DAYS",
+        "wert": 15
+      }
+    ],
+    "zeitrahmen": "1d"
+  }
+}
