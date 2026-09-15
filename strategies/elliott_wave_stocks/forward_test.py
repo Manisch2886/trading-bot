@@ -40,6 +40,11 @@ _P = get_strategy_paths(__file__)
 DB_FILE = _P["DB_FILE"]  # eigene Datenbank pro Strategie - vermischt sich nicht mit anderen Bots
 
 from fetch_stock_data import fetch_historical_data
+# TB-38: die gemeinsame Abrufschicht. Sie liest data/, faellt bei veraltetem
+# Stand auf genau den Abruf darueber zurueck und schneidet in BEIDEN Faellen
+# alles ab, was nach der Entscheidungskerze liegt. Damit rechnet dieser Lauf
+# auf derselben Kerze wie der Backtest. Begruendung: shared/entscheidungskerze.py
+import entscheidungskerze
 from zigzag_indicator import calculate_zigzag
 from elliott_wave_counter import find_impulse_waves, remove_overlapping
 from stocks_symbols_config import SYMBOLS
@@ -240,7 +245,10 @@ if __name__ == "__main__":
     price_data = {}
     for symbol in SYMBOLS:
         try:
-            price_data[symbol] = fetch_historical_data(symbol, period=LOOKBACK_PERIOD, interval=INTERVAL)
+            price_data[symbol] = entscheidungskerze.lade(
+                symbol, INTERVAL, entscheidungskerze.AKTIEN,
+                abruf=lambda: fetch_historical_data(
+                    symbol, period=LOOKBACK_PERIOD, interval=INTERVAL))
         except Exception as e:
             print(f"  Fehler bei {symbol}: {e}")
     print()
@@ -250,6 +258,12 @@ if __name__ == "__main__":
 
     print("\nSuche neue Signale...")
     find_new_signals(conn, price_data)
+
+    # TB-38: genau EINMAL je Lauf - was an Rueckfaellen auf den Live-Abruf
+    # angefallen ist, geht ueber dieselbe Telegram-Leitung wie die Waechter
+    # (TB-32), mit derselben Wiederholungsdaempfung. Bringt den Lauf nie zum
+    # Scheitern.
+    entscheidungskerze.melde()
 
     print_summary(conn)
     conn.close()

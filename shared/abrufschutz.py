@@ -209,6 +209,23 @@ def _oeffnungszeiten_ms(spalte):
     return (umgerechnet - epoche).dt.total_seconds().mul(1000)
 
 
+def oeffnungszeiten_ms(spalte):
+    """Oeffentlicher Name fuer `_oeffnungszeiten_ms` (TB-38).
+
+    Die Umrechnung erkennt alle Schreibweisen, in denen `open_time` in
+    diesem Projekt vorkommt, und veraendert die Spalte dabei ausdruecklich
+    NICHT (siehe dort - es haengt der Datenstand-Hash daran). Ab TB-38
+    braucht `shared/entscheidungskerze.py` genau diese Umrechnung, um eine
+    Kursdatei gegen einen erwarteten Zeitpunkt zu halten.
+
+    Sie bekommt deshalb einen Namen ohne Unterstrich, statt dass die
+    Umrechnung ein zweites Mal geschrieben wird - eine zweite Fassung waere
+    genau die Doppelfuehrung, an der dieses Projekt schon einmal Zahlen
+    verloren hat. Am Verhalten aendert sich nichts.
+    """
+    return _oeffnungszeiten_ms(spalte)
+
+
 def abgeschlossen_maske(df, intervall, stand=None):
     """True je Zeile, deren Kerzenzeitraum zum Stand vorbei ist.
 
