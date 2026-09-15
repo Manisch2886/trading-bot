@@ -81,6 +81,32 @@ Abschnitt 9.
   PR #36 auskommentiert. Das ist eine Entscheidung, kein Ausfall, und steht im
   Übergabeprotokoll (Abschnitt 5 und 8).
 
+## Eine **dritte** Art, warum ein Zeitraum nicht auswertbar ist
+
+Dieses Register kennt bisher zwei Fälle: der Bot **lief nicht** (Einträge
+unten) und die **Kursdaten waren löchrig** (`shared/kursdaten.py`, oben).
+Seit TB-38 gibt es einen dritten, und er gehört hierher, weil er dieselbe
+Frage beantwortet wie die beiden anderen — *welche Zeiträume darf ich
+auswerten?* —, aber eine ganz andere Ursache hat:
+
+> **Der Bot lief, die Daten waren in Ordnung, aber er rechnete nach einer
+> anderen Regel als der Backtest.**
+
+Bis zur Umstellung entschieden alle neun Bots auf `df.iloc[-1]`, also auf der
+zum Laufzeitpunkt **laufenden** Kerze — bei `t3_supertrend` auf einer wenige
+Minuten alten Teilkerze einer Vier-Stunden-Strategie. Der Backtest rechnet
+auf abgeschlossenen Kerzen. Beide rechneten also nicht dasselbe.
+
+Das ist keine Kleinigkeit: der Live-Record ist die **einzige**
+Out-of-Sample-Evidenz dieses Projekts, und ein Holdout, der nach anderen
+Regeln entsteht als das Validierte, ist als Bestätigung wenig wert.
+
+Die Zäsur steht unten als eigener Eintrag und **maschinenlesbar** in
+`docs/umstellungstag_entscheidungskerze.json` (geschrieben von
+`shared/umstellungstag.py`, gelesen vom Vergleich — nicht von den Bots).
+
+---
+
 ## Was hier bewusst **nicht** gebaut ist — und warum
 
 Es gibt **keine Markierung der Lücken in den Ergebnis-CSVs**, **keine Änderung
@@ -122,6 +148,39 @@ ist das der Moment, die Frage neu zu stellen.
 ---
 
 # Einträge
+
+## 2026-09-15 — Zäsur: die Entscheidungskerze (TB-38)
+
+**Kein Ausfall.** Dieser Eintrag beschreibt keine fehlenden Läufe, sondern
+eine **Regeländerung**, ab der die Forward-Test-Ergebnisse mit dem Backtest
+vergleichbar werden — und vor der sie es nicht sind.
+
+| | |
+|---|---|
+| **Zeitraum** | **alles VOR** dem je Bot festgehaltenen Umstellungszeitpunkt |
+| **Ursache** | keine Störung, sondern ein Befund: die neun `forward_test.py` entschieden auf `df.iloc[-1]`, also auf der **laufenden** Kerze. Der Backtest rechnet auf **abgeschlossenen** Kerzen (TB-35, Nebenbefund N1) |
+| **Betroffen** | **alle neun Bots.** Am deutlichsten `t3_supertrend` (4 h): der Cron läuft kurz nach der Vier-Stunden-Grenze, Hoch/Tief/Schluss der gelesenen Kerze lagen noch fast auf der Eröffnung |
+| **Nicht betroffen** | die **Kursdateien** unter `data/` — sie sind seit TB-35 frei von Teilkerzen (Datenstand `d9449faf51bffaaa…`, 223 Dateien, unverändert). Betroffen war nur, was die Bots **live** lasen |
+| **Ungeklärt** | wie viele Trades der bisherige Papierpfad dadurch anders eröffnet oder geschlossen hat. Nachträglich nicht rekonstruierbar: welche Werte eine Teilkerze im Augenblick des Laufs hatte, steht nirgends — die Kerze ist danach vollständig geworden |
+| **Nachgeholt** | nichts, und es lässt sich nichts nachholen |
+| **Auswirkung** | ⚠️ **Papierpfade vor dem Umstellungszeitpunkt gelten für den Vergleich Backtest gegen Live als nicht vergleichbar.** Der Vergleich beginnt für diese Bots **neu**. Bis zum Stichtag der Neuselektion am **13.12.2026** ist das das gesamte verfügbare Vergleichsfenster |
+| **Belegt durch** | `shared/entscheidungskerze.py`, `docs/ERGEBNIS_TB-38_abrufschicht.md`; die Zeitpunkte je Bot maschinenlesbar in `docs/umstellungstag_entscheidungskerze.json` |
+
+**Die Zeitpunkte je Bot stehen nicht hier**, sondern in der JSON-Datei —
+sie entstehen erst beim Umstellen auf dem Rechner des Betreibers
+(`python3 shared/umstellungstag.py --festhalten --alle`, Schritt im
+Testauftrag `docs/TESTAUFTRAG_TB-38_abrufschicht.md`). Eine zweite, von Hand
+gepflegte Liste hier wäre genau die Doppelführung, an der dieses Projekt
+schon einmal Zahlen verloren hat.
+
+Nachsehen lässt sich der Stand jederzeit mit:
+
+```bash
+python3 shared/umstellungstag.py --zeigen
+python3 shared/umstellungstag.py --pruefen    # 1, wenn ein Bot fehlt
+```
+
+---
 
 ## 2026-09-11 — Mac schlief nach macOS-Update
 

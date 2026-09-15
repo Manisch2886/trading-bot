@@ -34,6 +34,13 @@ logs/
 __pycache__/
 *.pyc
 
+# Stand der Rueckfall-Meldungen der Abrufschicht (TB-38): welcher
+# Rueckfall auf den Live-Abruf wurde auf DIESEM Rechner wann zuletzt
+# gemeldet. Laufzeitzustand wie notifications/waechter_zustand.json, an
+# dessen Daempfung er haengt - kein Secret, gehoert aber nicht ins Repo.
+notifications/rueckfall_zustand.json
+notifications/rueckfall_zustand.json.neu
+
 # Stand der Waechter-Meldungen (Laufzeitzustand: welcher Befund wurde auf
 # DIESEM Rechner wann zuletzt gemeldet - kein Secret, gehoert aber so wenig
 # ins Repo wie notifications/state.json)
