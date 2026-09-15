@@ -23,7 +23,7 @@ from paths import DATA_DIR
 client = Client()
 
 INTERVAL = Client.KLINE_INTERVAL_1HOUR
-LOOKBACK = "1825 day ago UTC"  # 5 Jahre, wie zuvor
+LOOKBACK = "1 Jan, 2017"  # Binance-Start; frueher 1825 Tage, siehe TB-31
 PAUSE_BETWEEN_REQUESTS_SEC = 0.5  # schont Binance's Rate-Limit bei vielen Symbolen
 
 

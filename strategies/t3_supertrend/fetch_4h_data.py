@@ -27,7 +27,7 @@ from symbols_config import SYMBOLS
 from paths import DATA_DIR
 
 INTERVAL = Client.KLINE_INTERVAL_4HOUR
-LOOKBACK = "1825 day ago UTC"  # 5 Jahre, wie beim Elliott-Wave-Bot
+LOOKBACK = "1 Jan, 2017"  # Binance-Start; frueher 1825 Tage, siehe TB-31
 PAUSE_BETWEEN_REQUESTS_SEC = 0.5
 
 if __name__ == "__main__":
