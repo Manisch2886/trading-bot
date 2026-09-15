@@ -17,6 +17,7 @@ Telegram schliessen) - kommt erst in Phase 3.
 | `telegram_config.py` | liest `TELEGRAM_BOT_TOKEN` + `TELEGRAM_USER_ID` aus `.env` |
 | `notify.py` | `send_alert(text)` - von jedem anderen Script importierbar, keine Extra-Abhaengigkeit |
 | `monitor.py` | liest die neun Bot-DBs/-Logs, erkennt neue Trades/Stop-Loss/Fehler, liefert die Daten fuer `/status`, `/positions`, `/pnl` |
+| `waechter_melden.py` | fuehrt einen der fuenf naechtlichen Cron-Waechter aus und meldet bei Befund per Telegram - siehe [`README_WAECHTER_MELDEN.md`](README_WAECHTER_MELDEN.md) |
 
 ## Einrichtung
 

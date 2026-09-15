@@ -544,6 +544,42 @@ Archive heissen `<name>.log.<Zeitmarke>` statt `.1`, `.2`, `.3`. Damit entfällt
 
 Die **Cron-Zeile steht als Vorschlag im README und ist nicht eingetragen** (`30 3 * * *`). Einzelheiten: `system/README_LOG_ROTATION.md`, Testauftrag: `system/TESTAUFTRAG_LOG_ROTATION.md`, Selbsttests: `python3 system/test_log_rotation.py`.
 
+### 4.7 Wächter melden (TB-32)
+
+Am **14.09.2026** wurden fünf Werkzeuge in die Crontab eingetragen — die in 4.6 genannte Zeile ist damit aktiv, dazu vier Wächter:
+
+| Zeit | Werkzeug | gibt 1 zurück, wenn … |
+|---|---|---|
+| 3:30 | `system/log_rotation.py` | eine Rotation fehlgeschlagen ist |
+| 3:50 | `shared/ergebniskurven.py --nur-abweichung` | eine abgelegte Kurve nicht mehr zur heutigen Konfiguration passt |
+| 4:10 | `shared/determinismus.py --schnell` | ein Backtest von der Symbolreihenfolge abhängt |
+| 4:30 | `research/versuchsregister/versuchsregister.py --pruefen` | die Zahl der gefahrenen Versuche vom Register abweicht |
+| 4:40 | `research/tb27_kapitalsimulation/vergleich.py --pruefen` | die neun `equity_simulation.py` still divergieren |
+
+Alle fünf schreiben nach `logs/system/` — **und dorthin sieht niemand.** Ein Wächter, dessen Befund in einer Datei landet, die nie jemand öffnet, ist ein Wächter, den es nicht gibt.
+
+`notifications/waechter_melden.py` ist die eine Stelle, die das ändert: sie führt das Werkzeug aus, reicht dessen Ausgabe **unverändert** an `stdout`/`stderr` weiter (das Log bleibt also exakt, was es war) und schickt bei Befund **eine kurze Telegram-Nachricht** über das bestehende `notify.send_alert()` — keine zweite Anbindung, keine Änderung an `notify.py`, kein Wächter angefasst.
+
+**Drei Ausgänge, nicht zwei** — das ist die Entwurfsentscheidung:
+
+| Rückgabewert | Ausgang | Folge |
+|---|---|---|
+| `0` | in Ordnung | **Schweigen**, ausnahmslos. Ein tägliches „alles gut" ist nach einer Woche ungelesen, und 364 belanglose Nachrichten verbergen die eine, auf die es ankommt. |
+| `1` | Befund | melden, gedämpft (siehe unten) |
+| alles andere | **abgestürzt** | melden, **eigener Kopf** (`[ABGESTUERZT]`) |
+
+Der dritte Fall ist der gefährlichste: ein abgestürzter Wächter meldet nie wieder etwas, und Schweigen sieht von aussen genau aus wie „alles in Ordnung". Bei einem Befund **weiss** man etwas, bei einem Absturz weiss man **nichts** — zwei Nachrichten mit demselben Aussehen wären dieselbe Nachricht. Mitgeprüft wird der Sonderfall, der sonst durchgerutscht wäre: ein unbehandelter Python-Fehler endet mit Rückgabewert **1**, also demselben Wert wie ein Befund. Unterschieden wird an der **Fehler**ausgabe — alle fünf Werkzeuge drucken die Traceback eines von *ihnen* gestarteten Unterprozesses in ihre *normale* Ausgabe (`determinismus.py:174`, `ergebniskurven.py:191`), eine Traceback in `stderr` bedeutet also, dass das Werkzeug selbst gestorben ist.
+
+**Wiederholungsdämpfung**, vier Regeln in dieser Reihenfolge: *neu* → melden; *geändert* → melden; *Nachholung* (die letzte Meldung ging nicht raus) → melden; *Erinnerung* (unverändert, letzte Meldung ≥ **7 Tage** her) → melden; sonst schweigen. Verglichen wird **genau das, was gesendet würde**, nicht die ganze Ausgabe — alle vier Wächter drucken Laufzeiten, ein Fingerabdruck darüber wäre täglich ein anderer und die Dämpfung griffe nie. Sieben Tage ist der grösste Abstand, bei dem ein bestehender Befund in *jeder* Woche mindestens einmal vorkommt, und klein genug für höchstens rund vier Nachrichten je Wächter und Monat.
+
+**Der Wrapper bringt den Wächter nie zum Scheitern.** Sein Rückgabewert ist immer der des Wächters; die Ausgabe wird durchgereicht, **bevor** der Meldeteil überhaupt beginnt, und der steht vollständig in einem `try`. Ein Sendefehler wird protokolliert (`[waechter_melden]` in derselben Logdatei), nicht weitergereicht — und der Befund gilt dann ausdrücklich als *nicht* zugestellt, wird also beim nächsten Lauf nachgeholt (dieselbe Lehre wie in `schliess_benachrichtigung.py`).
+
+Zustand: `notifications/waechter_zustand.json` (in `.gitignore`, wie `state.json`). Geht er verloren, gilt ein bestehender Befund wieder als *neu* — eine Meldung zu viel, nie eine verschluckte.
+
+**Die fünf neuen Crontab-Zeilen stehen als Vorschlag im README und sind nicht eingetragen.** Einzelheiten: `notifications/README_WAECHTER_MELDEN.md`, Testauftrag: `docs/TESTAUFTRAG_TB-32_waechter_melden.md`, Selbsttests: `python3 notifications/test_waechter_melden.py` (149 Prüfungen, davon 9 Mutationsproben; ohne `pandas`/`numpy` lauffähig).
+
+---
+
 ---
 
 ## 5. Datei-Inventar pro Strategie (Kernskripte)
@@ -769,6 +805,10 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 20. **`shared/ergebniskurven.py::kennzahlen()` gibt den Max Drawdown als `float` zurück, die Bot-Fassung als `numpy.float64`** (Befund TB-28, gemessen auf allen neun Kurven: **gleicher Wert, anderer Typ**). Seit TB-28 rechnen beide mit derselben Formel aus `shared/messkette.py`; der Unterschied sitzt allein in der Umwandlung beim Aufrufer und ist dort begründet (der Wert geht in `--json` und in die Tabellenausgabe; `repr()` eines numpy-Werts lautet ab numpy 2 `np.float64(-10.17)`). Es ist derselbe Fall wie U10 aus TB-27, nur in `shared/` statt unter `research/`. **Bewusst nicht angeglichen** — das wäre eine Entscheidung über die Ausgabe, nicht Aufräumarbeit. `shared/test_messkette.py` hält den Unterschied fest, damit er nicht versehentlich verschwindet.
 
 21. **Es gibt eine Abhängigkeitsklasse „Zeilennummern", und sie ist strukturell fragil** (Befund TB-28). `research/parameter_doku/pruefe_fundstellen.py` hält dokumentierte Fundstellen (Datei **plus Zeile**) gegen die Wirklichkeit; drei davon zeigen in `equity_simulation.py`-Dateien. TB-26 hat sie gebrochen (35/38 auf `main`, monatelang unbemerkt), TB-28 hat sie nachgezogen (38/38) und dabei erneut verschoben. **Jede** Änderung an der Zieldatei verschiebt sie weiter, auch eine eingefügte Kommentarzeile. Dagegen steht, dass sie nicht wirkungslos ist: beim Schreiben der Dokublocks waren zwei von zwanzig Angaben bereits falsch, gefunden nur durch sie — und sie ist einer der wenigen Wächter, die ohne `pandas` laufen. Zu entscheiden: auf **Namen** statt auf Zeilen zeigen (das Werkzeug sucht den Namen beim Fehlschlag ohnehin schon) oder so lassen. **Von TB-28 ausdrücklich nur benannt, nicht entschieden.**
+
+22. **Eine behobene Abweichung wird nicht gemeldet** (Entwurfsentscheidung TB-32, Abschnitt 4.7). Fällt ein Wächter von Befund zurück auf `0`, räumt `waechter_melden.py` den Vermerk stillschweigend. Das folgt zwingend aus der Regel „0 heisst schweigen", kostet aber die Bestätigung, dass etwas behoben ist: nach einer Meldung erfährt man das Ende des Befundes nur daran, dass die wöchentliche Erinnerung **ausbleibt** — und das Ausbleiben einer Nachricht ist kein Signal. Bewusst so gebaut, damit der Kanal ausschliesslich trägt, was Handeln verlangt. Sollte sich das im Betrieb als zu still erweisen, wäre die kleinste Änderung eine **einmalige** „behoben"-Meldung genau dann, wenn zuvor etwas gemeldet wurde — sie kann pro Befund nur einmal auftreten und ist damit keine Quelle täglicher Nachrichten. **Nicht entschieden, nur benannt.**
+
+23. **Die Markenlisten in `waechter_melden.py` sind gegen die Ausgabe der Wächter geprüft, nicht gegen einen Befund.** Welche ein bis zwei Zeilen in die Telegram-Nachricht wandern, entscheidet je Wächter eine Liste von Marken (`WAECHTER` in `notifications/waechter_melden.py`). Formuliert ein Wächter seine Befundzeile um, greift keine Marke mehr; der Wrapper fällt dann auf die letzten Ausgabezeilen zurück **und schreibt das ausdrücklich in die Nachricht** — die Verschlechterung ist sichtbar, nicht still. Geprüft ist das am Verhalten mit einer Attrappe. Was **nicht** geprüft werden konnte: die Marken gegen die echte Befundausgabe von `ergebniskurven.py` und `determinismus.py` — beide brauchen `pandas`, das in der Cloud-Umgebung fehlt. Schritt 4 des Testauftrags holt das auf dem Rechner des Nutzers nach.
 
 13. **Die Warteaufträge und die Broker-Brücken sind im Dauerbetrieb ungeprüft.** Beide sind vollständig gegen Attrappen getestet; was keine Attrappe zeigt, ist das Verhalten über Wochen — ein dauerhaft scheiternder Warteauftrag bleibt stehen (Absicht, fällt aber nur auf, wenn man hinsieht), und ein Binance-Testnet-Konto wird periodisch zurückgesetzt, wonach Schlüssel und Bestände neu zu erzeugen sind.
 
