@@ -112,6 +112,14 @@ rot bleiben:
 ist richtig so, `node` ist auf dem Rechner des Nutzers bewusst nicht
 installiert.
 
+> **Eine Stolperstelle, falls der Arbeitsbaum nicht sauber ist:**
+> `research/pnl_2025_fixed_size/test_pnl.py` prüft am Ende, dass
+> `git diff HEAD -- strategies/` **leer** ist. Der Test schlägt fehl, solange
+> **nicht committete** Änderungen unter `strategies/` liegen — auch wenn sie
+> völlig in Ordnung sind. Auf einem sauberen Arbeitsbaum ist er grün
+> (**93/93**). Bei einem Fehlschlag dieses Tests also zuerst
+> `git status --short` ansehen, bevor irgendetwas anderes vermutet wird.
+
 **Abweichung:** rot ist **nur dann ein TB-35-Befund**, wenn derselbe Test auf
 `main` grün ist. Die Gegenprobe läuft in einem **zweiten Klon** — im
 Arbeitsbaum hin- und herzuschalten ist der Weg, auf dem `data/` versehentlich

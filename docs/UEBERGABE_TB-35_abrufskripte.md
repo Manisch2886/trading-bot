@@ -225,6 +225,10 @@ dort ein `DATA_DIR`, das unter `/tmp` liegt.
 **Bestehende Tests:** unverändert gegenüber dem Basislauf auf `main` — die
 Vergleichstabelle steht in `docs/ERGEBNIS_TB-35_abrufskripte.md`.
 
+> `research/pnl_2025_fixed_size/test_pnl.py` prüft, dass `git diff HEAD -- strategies/`
+> leer ist. Er schlägt an, solange Änderungen an Bot-Ordnern **nicht committet**
+> sind, und ist auf dem committeten Stand wieder grün (**93/93**). Nachgerechnet.
+
 ---
 
 ## 6. Was **nicht** angefasst wurde

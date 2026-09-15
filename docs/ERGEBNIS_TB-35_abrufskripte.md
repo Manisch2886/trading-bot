@@ -143,6 +143,10 @@ Fehlschläge in beiden Läufen** — alle aus fehlenden Abhängigkeiten in der C
 die ein Argument verlangen, oder aus einer Zeitüberschreitung.
 `shared/test_abrufschutz.py` ist die einzige neue Zeile, und sie ist grün.
 
+> `research/pnl_2025_fixed_size/test_pnl.py` prüft, dass `git diff HEAD -- strategies/`
+> leer ist. Er schlägt an, solange Änderungen an Bot-Ordnern **nicht committet**
+> sind, und ist auf dem committeten Stand wieder grün (**93/93**). Nachgerechnet.
+
 **Keine Prüfung fasst `data/` an.** `git diff origin/main HEAD --name-only`
 listet **keine** Datei unter `data/`; der Datenstand-Hash ist unverändert
 `d9449faf51bffaaa…` bei 223 Dateien.
