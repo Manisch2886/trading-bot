@@ -327,7 +327,7 @@ mehr vorkommen.
 cd ~/trading-bot && python3 shared/test_fetch_binance_data.py 2>&1 | tail -20 | tee ~/Downloads/TB-37_zugangsdaten/08a_selbsttest.txt
 ```
 
-**Erwartet:** `76 von 76 Pruefungen bestanden, 0 fehlgeschlagen.`
+**Erwartet:** `77 von 77 Pruefungen bestanden, 0 fehlgeschlagen.`
 
 Abschnitt 1 dieses Tests liest die **neun Aufrufer mechanisch** ein und prüft
 die Signatur gegen sie — nicht gegen eine Liste von Hand.
@@ -506,7 +506,7 @@ passte das Suchmuster auf **jede** Zeile und meldete falschen Alarm.
 | 6 | `.env` ergänzt, beide Namen gesetzt | ja / nein |
 | 7 | Abruf **ohne** Schlüssel | Zeilen: …… |
 | 7b | Abruf **mit** Schlüssel | Zeilen: …… (gleich?) |
-| 8a | Selbsttests | ……/76 |
+| 8a | Selbsttests | ……/77 |
 | 8c | vier `fetch_*.py` echt gelaufen | rc = …… |
 | 8e | 53 Tests, nichts neu rot | ja / nein |
 | 9 | `data/` unberührt | IDENTISCH / abweichend |

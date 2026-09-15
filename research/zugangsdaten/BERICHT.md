@@ -86,7 +86,7 @@ Vergleich des alten und des neuen Laufs zeigt sie. Der Testauftrag
 | `shared/fetch_binance_data.py` | **Neu im Repo.** Der Code; Schlüssel ausschließlich aus `os.environ`. |
 | `.env.beispiel` | Die zwei Namen, **ohne Werte**. |
 | `.gitignore` | Der Eintrag `shared/fetch_binance_data.py` ist **entfernt**; `.env` bleibt ausgeschlossen. |
-| `shared/test_fetch_binance_data.py` | 76 Prüfungen, davon 5 Mutationsproben. |
+| `shared/test_fetch_binance_data.py` | 77 Prüfungen, davon 5 Mutationsproben. |
 | `research/zugangsdaten/geruest.py` | Was muss der versionierte Teil können? |
 | `research/zugangsdaten/gitignoriert.py` | Woran hängt das System, das es nur einmal gibt? |
 
@@ -383,8 +383,15 @@ schlagen beide an.
 
 ### 5.4 Ergebnis
 
-`python3 shared/test_fetch_binance_data.py` → **76 von 76 Prüfungen
+`python3 shared/test_fetch_binance_data.py` → **77 von 77 Prüfungen
 bestanden.**
+
+Und im Vergleich zum Basislauf auf unverändertem `main` (`e23e38f`, eigener
+git-Arbeitsbaum): **52 Tests / 41 grün** vorher, **53 Tests / 42 grün**
+nachher. Der einzige Unterschied ist die neue Zeile — kein Test, der vorher
+grün war, ist rot geworden. Die 11 roten sind auf beiden Seiten dieselben
+(fehlende Cloud-Abhängigkeiten, Tests die ein Argument verlangen, und die
+bekannten TB-37-fremden Fälle).
 
 ---
 

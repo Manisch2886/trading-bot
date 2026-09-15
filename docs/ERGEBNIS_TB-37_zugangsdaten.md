@@ -207,10 +207,24 @@ Prüfung lief über `git ls-files` und übersah neu hinzugekommene Dateien; ein
 eingepflanzter Schlüssel wurde nur von der *zweiten* Prüfung gefunden. Behoben,
 danach schlagen beide an.
 
-**Basislauf auf unverändertem `main`** (`e23e38f`, eigener Arbeitsbaum): die
-in der Cloud roten Tests sind **identisch vorher wie nachher** — fehlende
-Abhängigkeiten (`fastapi`, `scipy`, Zeitzone `US/Eastern`), Tests, die ein
-Argument verlangen, und die bekannten TB-37-fremden Fälle.
+**Basislauf auf unverändertem `main`** (`e23e38f`, eigener git-Arbeitsbaum)
+gegen den Zweig:
+
+| | Tests | grün |
+|---|---|---|
+| `main` (`e23e38f`) | 52 | 41 |
+| Zweig (`e64f656`) | **53** | **42** |
+
+**Der einzige Unterschied ist die neue Zeile** `shared/test_fetch_binance_data.py`
+mit Rückgabewert `0`. Kein Test, der vorher grün war, ist rot geworden.
+
+Die 11 roten sind auf beiden Seiten dieselben: fehlende Cloud-Abhängigkeiten
+(`fastapi`, `scipy`, Zeitzone `US/Eastern`), drei Tests, die ein Argument
+verlangen (`test_drawdown.py <bot>` usw.), `test_drawdown_beide_masse.py`
+(Zeitüberschreitung), `test_portfolio_sicht.py` und `test_kursdaten.py`
+(66/68 bzw. 62/66) sowie `test_stabile_sortierung.py` und
+`test_wellenauswahl.py` (`ergebniskurven.py` meldet `9x AKTUELL`). Alle in
+der Aufgabenbeschreibung als vorbestehend genannt bzw. dort erklärt.
 
 ---
 
