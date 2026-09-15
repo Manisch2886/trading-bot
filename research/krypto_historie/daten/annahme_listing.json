@@ -1,0 +1,439 @@
+{
+  "_hinweis": "KEINE MESSUNG. Die mit herkunft=ANNAHME markierten Startdaten sind angenommene Binance-Listing-Daten und muessen durch den Lauf 'python3 shared/binance_historie.py --messen --bericht ...' auf dem Mac ersetzt werden, bevor aus dieser Datei eine Zahl zitiert wird. Die mit herkunft=gemessen markierten Startdaten stammen aus den Repo-Dateien selbst: sie liegen nach dem 2021-09-01 und wurden vom 1825-Tage-Fenster der Abrufskripte daher nicht beschnitten.",
+  "herkunft": {
+    "AAVEUSDT": "ANNAHME",
+    "ADAUSDT": "ANNAHME",
+    "BMTUSDT": "gemessen",
+    "BNBUSDT": "ANNAHME",
+    "BTCUSDT": "ANNAHME",
+    "DOGEUSDT": "ANNAHME",
+    "ENAUSDT": "gemessen",
+    "ENSOUSDT": "gemessen",
+    "ETHUSDT": "ANNAHME",
+    "LINKUSDT": "ANNAHME",
+    "NEARUSDT": "ANNAHME",
+    "PEPEUSDT": "gemessen",
+    "PROMUSDT": "gemessen",
+    "PUMPUSDT": "gemessen",
+    "SOLUSDT": "ANNAHME",
+    "SUIUSDT": "gemessen",
+    "TRUMPUSDT": "gemessen",
+    "TRXUSDT": "ANNAHME",
+    "UNIUSDT": "ANNAHME",
+    "UUSDT": "gemessen",
+    "WLDUSDT": "gemessen",
+    "XRPUSDT": "ANNAHME",
+    "ZECUSDT": "ANNAHME",
+    "ZKCUSDT": "gemessen"
+  },
+  "messung": {
+    "AAVEUSDT": {
+      "1d": {
+        "beginn": "2020-10-16",
+        "beginn_tag": "2020-10-16",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2020-10-16",
+        "beginn_tag": "2020-10-16",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2020-10-16",
+        "beginn_tag": "2020-10-16",
+        "fehler": null
+      }
+    },
+    "ADAUSDT": {
+      "1d": {
+        "beginn": "2018-04-17",
+        "beginn_tag": "2018-04-17",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2018-04-17",
+        "beginn_tag": "2018-04-17",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2018-04-17",
+        "beginn_tag": "2018-04-17",
+        "fehler": null
+      }
+    },
+    "BMTUSDT": {
+      "1d": {
+        "beginn": "2025-03-18",
+        "beginn_tag": "2025-03-18",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2025-03-18",
+        "beginn_tag": "2025-03-18",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2025-03-18",
+        "beginn_tag": "2025-03-18",
+        "fehler": null
+      }
+    },
+    "BNBUSDT": {
+      "1d": {
+        "beginn": "2017-11-06",
+        "beginn_tag": "2017-11-06",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2017-11-06",
+        "beginn_tag": "2017-11-06",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2017-11-06",
+        "beginn_tag": "2017-11-06",
+        "fehler": null
+      }
+    },
+    "BTCUSDT": {
+      "1d": {
+        "beginn": "2017-08-17",
+        "beginn_tag": "2017-08-17",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2017-08-17",
+        "beginn_tag": "2017-08-17",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2017-08-17",
+        "beginn_tag": "2017-08-17",
+        "fehler": null
+      }
+    },
+    "DOGEUSDT": {
+      "1d": {
+        "beginn": "2019-07-05",
+        "beginn_tag": "2019-07-05",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2019-07-05",
+        "beginn_tag": "2019-07-05",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2019-07-05",
+        "beginn_tag": "2019-07-05",
+        "fehler": null
+      }
+    },
+    "ENAUSDT": {
+      "1d": {
+        "beginn": "2024-04-02",
+        "beginn_tag": "2024-04-02",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2024-04-02",
+        "beginn_tag": "2024-04-02",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2024-04-02",
+        "beginn_tag": "2024-04-02",
+        "fehler": null
+      }
+    },
+    "ENSOUSDT": {
+      "1d": {
+        "beginn": "2025-10-14",
+        "beginn_tag": "2025-10-14",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2025-10-14",
+        "beginn_tag": "2025-10-14",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2025-10-14",
+        "beginn_tag": "2025-10-14",
+        "fehler": null
+      }
+    },
+    "ETHUSDT": {
+      "1d": {
+        "beginn": "2017-08-17",
+        "beginn_tag": "2017-08-17",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2017-08-17",
+        "beginn_tag": "2017-08-17",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2017-08-17",
+        "beginn_tag": "2017-08-17",
+        "fehler": null
+      }
+    },
+    "LINKUSDT": {
+      "1d": {
+        "beginn": "2019-01-16",
+        "beginn_tag": "2019-01-16",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2019-01-16",
+        "beginn_tag": "2019-01-16",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2019-01-16",
+        "beginn_tag": "2019-01-16",
+        "fehler": null
+      }
+    },
+    "NEARUSDT": {
+      "1d": {
+        "beginn": "2020-10-14",
+        "beginn_tag": "2020-10-14",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2020-10-14",
+        "beginn_tag": "2020-10-14",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2020-10-14",
+        "beginn_tag": "2020-10-14",
+        "fehler": null
+      }
+    },
+    "PEPEUSDT": {
+      "1d": {
+        "beginn": "2023-05-05",
+        "beginn_tag": "2023-05-05",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2023-05-05",
+        "beginn_tag": "2023-05-05",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2023-05-05",
+        "beginn_tag": "2023-05-05",
+        "fehler": null
+      }
+    },
+    "PROMUSDT": {
+      "1d": {
+        "beginn": "2023-03-17",
+        "beginn_tag": "2023-03-17",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2023-03-17",
+        "beginn_tag": "2023-03-17",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2023-03-17",
+        "beginn_tag": "2023-03-17",
+        "fehler": null
+      }
+    },
+    "PUMPUSDT": {
+      "1d": {
+        "beginn": "2025-09-11",
+        "beginn_tag": "2025-09-11",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2025-09-11",
+        "beginn_tag": "2025-09-11",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2025-09-11",
+        "beginn_tag": "2025-09-11",
+        "fehler": null
+      }
+    },
+    "SOLUSDT": {
+      "1d": {
+        "beginn": "2020-08-11",
+        "beginn_tag": "2020-08-11",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2020-08-11",
+        "beginn_tag": "2020-08-11",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2020-08-11",
+        "beginn_tag": "2020-08-11",
+        "fehler": null
+      }
+    },
+    "SUIUSDT": {
+      "1d": {
+        "beginn": "2023-05-03",
+        "beginn_tag": "2023-05-03",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2023-05-03",
+        "beginn_tag": "2023-05-03",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2023-05-03",
+        "beginn_tag": "2023-05-03",
+        "fehler": null
+      }
+    },
+    "TRUMPUSDT": {
+      "1d": {
+        "beginn": "2025-01-19",
+        "beginn_tag": "2025-01-19",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2025-01-19",
+        "beginn_tag": "2025-01-19",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2025-01-19",
+        "beginn_tag": "2025-01-19",
+        "fehler": null
+      }
+    },
+    "TRXUSDT": {
+      "1d": {
+        "beginn": "2018-06-11",
+        "beginn_tag": "2018-06-11",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2018-06-11",
+        "beginn_tag": "2018-06-11",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2018-06-11",
+        "beginn_tag": "2018-06-11",
+        "fehler": null
+      }
+    },
+    "UNIUSDT": {
+      "1d": {
+        "beginn": "2020-09-17",
+        "beginn_tag": "2020-09-17",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2020-09-17",
+        "beginn_tag": "2020-09-17",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2020-09-17",
+        "beginn_tag": "2020-09-17",
+        "fehler": null
+      }
+    },
+    "UUSDT": {
+      "1d": {
+        "beginn": "2026-01-13",
+        "beginn_tag": "2026-01-13",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2026-01-13",
+        "beginn_tag": "2026-01-13",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2026-01-13",
+        "beginn_tag": "2026-01-13",
+        "fehler": null
+      }
+    },
+    "WLDUSDT": {
+      "1d": {
+        "beginn": "2023-07-24",
+        "beginn_tag": "2023-07-24",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2023-07-24",
+        "beginn_tag": "2023-07-24",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2023-07-24",
+        "beginn_tag": "2023-07-24",
+        "fehler": null
+      }
+    },
+    "XRPUSDT": {
+      "1d": {
+        "beginn": "2018-05-04",
+        "beginn_tag": "2018-05-04",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2018-05-04",
+        "beginn_tag": "2018-05-04",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2018-05-04",
+        "beginn_tag": "2018-05-04",
+        "fehler": null
+      }
+    },
+    "ZECUSDT": {
+      "1d": {
+        "beginn": "2019-11-14",
+        "beginn_tag": "2019-11-14",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2019-11-14",
+        "beginn_tag": "2019-11-14",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2019-11-14",
+        "beginn_tag": "2019-11-14",
+        "fehler": null
+      }
+    },
+    "ZKCUSDT": {
+      "1d": {
+        "beginn": "2025-09-15",
+        "beginn_tag": "2025-09-15",
+        "fehler": null
+      },
+      "1h": {
+        "beginn": "2025-09-15",
+        "beginn_tag": "2025-09-15",
+        "fehler": null
+      },
+      "4h": {
+        "beginn": "2025-09-15",
+        "beginn_tag": "2025-09-15",
+        "fehler": null
+      }
+    }
+  }
+}
