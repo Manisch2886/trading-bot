@@ -24,6 +24,12 @@ logs/
 __pycache__/
 *.pyc
 
+# Stand der Waechter-Meldungen (Laufzeitzustand: welcher Befund wurde auf
+# DIESEM Rechner wann zuletzt gemeldet - kein Secret, gehoert aber so wenig
+# ins Repo wie notifications/state.json)
+notifications/waechter_zustand.json
+notifications/waechter_zustand.json.neu
+
 # Wartende Ausstiegsauftraege des Dashboards (Laufzeitzustand, kein
 # Secret - gehoert aber so wenig ins Repo wie notifications/state.json:
 # er beschreibt, was auf DIESEM Rechner gerade aussteht)
