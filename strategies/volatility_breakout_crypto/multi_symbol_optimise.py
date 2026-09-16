@@ -18,6 +18,11 @@ sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
 from kursdaten import entferne_unvollstaendige, Zaehler
+# TB-42: je ausgelassenem Symbol eine Zeile mit dem Grund, am Ende eine
+# Summenzeile. Der Wortlaut steht in shared/ladeprotokoll.py und damit
+# EINMAL statt neunmal. Geladen oder ausgeschlossen wird dadurch nichts
+# anderes als vorher - es wird nur gesagt.
+from ladeprotokoll import Ladeprotokoll
 _P = get_strategy_paths(__file__)
 DATA_DIR = _P["DATA_DIR"]
 RESULTS_DIR = _P["RESULTS_DIR"]
@@ -38,6 +43,7 @@ MIN_HISTORY_DAYS = 500          # deckt den 126-Tage-Squeeze-Vorlauf plus echten
 def load_all_symbol_data() -> dict:
     data = {}
     _luecken = Zaehler()
+    _prot = Ladeprotokoll(SYMBOLS)
     for symbol in SYMBOLS:
         csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
         try:
@@ -54,19 +60,20 @@ def load_all_symbol_data() -> dict:
                                                         melden=False)
             _luecken.erfasse(symbol, _gestrichen)
         except FileNotFoundError:
-            print(f"Warnung: {csv_path} nicht gefunden, wird uebersprungen.")
+            _prot.fehlt(symbol, csv_path)
             continue
         if df.empty:
+            _prot.leer(symbol, csv_path)
             continue
 
         timespan_days = (df["open_time"].max() - df["open_time"].min()).days
         if timespan_days < MIN_HISTORY_DAYS:
-            print(f"Hinweis: {symbol} deckt nur {timespan_days} Tage ab "
-                  f"(< {MIN_HISTORY_DAYS} noetig), wird uebersprungen.")
+            _prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
             continue
 
         data[symbol] = df
     _luecken.melde()
+    _prot.melde(data)
     return data
 
 
