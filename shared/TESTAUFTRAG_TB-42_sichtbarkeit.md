@@ -196,6 +196,21 @@ zwar fünfmal:
 | unlesbare Datei | läuft durch, 1,0 **und Warnung** |
 | Wert 50 | wird **nicht** übernommen, 1,0 **und Warnung**, dieselben Trades |
 
+> **Schreibt der Test in deine echten Bot-Datenbanken?** Nein — und das ist
+> abgesichert, nicht bloss beabsichtigt. Jeder Lauf bekommt Kursdaten,
+> Datenbank und Faktordatei über ein `sitecustomize.py` in einem
+> Wegwerf-Ordner untergeschoben. **Fehlt dieser Harnisch, bricht der Lauf ab**,
+> statt den Bot ohne Umleitung zu starten; und wenn hinterher keine Datenbank
+> im Wegwerf-Ordner liegt, bricht er ebenfalls ab und sagt, ob im
+> Projektordner eine Datei entstanden ist.
+>
+> Beide Wachen gibt es, weil genau das in der Cloud einmal passiert ist: der
+> Wegwerf-Ordner wurde während eines Laufs von aussen gelöscht, und der Bot
+> legte `paper_trading_rsi2_mean_reversion.db` im Projektordner an — leer, ohne
+> Trade, und **ohne dass irgendjemand es gemeldet hätte**. Der Lauf sagte nur
+> „0 Trades“. Auf deinem Mac gibt es diese Datenbanken wirklich, deshalb ist
+> die Wache dort wichtiger als hier. Abschnitt 6 prüft es zusätzlich.
+
 > **Wenn Abschnitt 5 lange still ist:** das ist normal, der Test schreibt erst
 > am Ende. Die vier Aktien-Bots legen je Lauf 150 Beispieldateien an.
 >
