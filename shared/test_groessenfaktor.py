@@ -386,15 +386,37 @@ def _lauf(bot, faktorinhalt, form, werkstatt, marke):
             f.write(faktorinhalt if isinstance(faktorinhalt, str)
                     else json.dumps(faktorinhalt))
 
+    harnisch = os.path.join(werkstatt, "_harness")
+    # Fail closed. Ohne dieses sitecustomize.py laeuft der Bot NICHT gegen die
+    # Wegwerf-Ordner, sondern gegen data/ und gegen die ECHTE Bot-Datenbank im
+    # Projektordner. Gemessen: genau das ist einmal passiert, als der
+    # Harnisch-Ordner waehrend eines Laufs von aussen geloescht wurde. Der Lauf
+    # meldete danach nur "0 Trades" - still, wie die Loader vor Teil 1.
+    if not os.path.exists(os.path.join(harnisch, "sitecustomize.py")):
+        raise RuntimeError(
+            "Der Testharnisch fehlt (%s). Ohne ihn wuerde der Bot in die ECHTE "
+            "Datenbank schreiben - der Lauf wird abgebrochen." % harnisch)
+
     umgebung = dict(os.environ)
     umgebung.update({"TB42_BASIS": BASE_DIR, "TB42_DATEN": d_daten, "TB42_DB": d_db,
                      "TB42_FAKTORDATEI": fdatei,
-                     "PYTHONPATH": os.path.join(werkstatt, "_harness")})
+                     "PYTHONPATH": harnisch})
     p = subprocess.run(
         [sys.executable, os.path.join(BASE_DIR, "strategies", bot, "forward_test.py")],
         capture_output=True, text=True, env=umgebung, timeout=1800)
 
     db = os.path.join(d_db, "paper_trading_%s.db" % bot)
+    # Und die Gegenprobe hinterher: liegt die Datenbank NICHT im Wegwerf-Ordner,
+    # hat der Harnisch nicht gegriffen. Dann ist jede Zahl aus diesem Lauf
+    # wertlos - und im Projektordner steht womoeglich eine neue Datei.
+    if not os.path.exists(db):
+        echte = os.path.join(BASE_DIR, "paper_trading_%s.db" % bot)
+        raise RuntimeError(
+            "Der Lauf hat keine Datenbank in %s angelegt - der Harnisch hat "
+            "nicht gegriffen.%s\nAusgabe: %s" % (
+                d_db,
+                " ACHTUNG: %s existiert." % echte if os.path.exists(echte) else "",
+                (p.stdout or "")[-500:]))
     trades, spalten = [], []
     if os.path.exists(db):
         c = sqlite3.connect(db)
