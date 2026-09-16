@@ -86,6 +86,11 @@ Mehrheitssignal** · **inverse Volatilitätsgewichtung** · **Kasse als Rest** �
 | Rohstoffe | `DBC` (breiter Rohstoffkorb), `DBA` (Agrarrohstoffe) |
 | Währungen | `FXE` (Euro), `FXY` (japanischer Yen) |
 
+> ⚠️ **ERGÄNZT durch Abschnitt 10a (Nachtrag TB-41, 16.09.2026).** Alle
+> vierzehn Instrumente sind **US-domiziliert und für einen EU-Privatanleger
+> nicht handelbar** (PRIIPs). Die Liste bleibt die **Signalliste**; gehandelt
+> wird auf UCITS-Gegenstücken nach der Proxy-Tabelle in 10a.
+
 ### 2.1 Registertext 1 — Universum
 
 > **(a)** Das Universum ist die Liste in `register.KANDIDATEN`. Sie wird vor
@@ -526,6 +531,9 @@ Ab dem Einfrieren dieses Dokuments sind unveränderlich:
 17. **Der Datenstand-Hash** — `d9449faf51bffaaa…`, 223 Dateien
 18. **`auto_adjust = True` und die Einfrier-Regel für die ETF-Kursdateien**
 19. **Die Reihenfolge Selektion → Bestätigungsperiode → Bericht**
+20. **Die Proxy-Tabelle, die Korrelationsschwelle 0,97 und die
+    Untergrenze acht Paare über vier Anlageklassen** — Abschnitt 10a
+    *(nachgetragen TB-41, 16.09.2026, vor jeder Rechnung)*
 
 **Amendment-Regel:** dieselbe wie im Hauptregister (§10.1). Eine Änderung
 nach dem Lauf ist ein **neuer registrierter Lauf mit eigenem N**, kein
@@ -547,6 +555,83 @@ Amendment.
 * Er rührt `docs/VORREGISTRIERUNG_neuselektion.md` nicht an und lässt
   `research/vorregistrierung/auswertung.py` eingefroren.
 * Bot-Dateien werden **gelesen, nie importiert**.
+
+---
+
+## 10a. Nachtrag TB-41 (16.09.2026) — Registertext 3: Die Proxy-Tabelle
+
+⚠️ **Dieser Abschnitt ist in TB-41 nachgetragen.** Er ergänzt Abschnitt 2 und
+die Sperrliste; **nichts Bestehendes ist gestrichen oder umgeschrieben.**
+
+### 10a.1 Der Befund, der ihn nötig macht
+
+Die **vierzehn Instrumente** aus Abschnitt 2 sind **US-domiziliert und für einen
+EU-Privatanleger nicht handelbar**: Ohne PRIIPs-Basisinformationsblatt darf ein
+Broker sie einem Privatanleger mit Wohnsitz in der EU nicht verkaufen. Das
+betrifft **alle vierzehn**, nicht einzelne.
+
+Das ist genau der Fall, gegen den der **Vorab-Filter (b)** der Neuselektion
+steht (`docs/VORREGISTRIERUNG_neuselektion.md`, Abschnitt 16.9): *„Ist das
+konkrete Instrument für ihn zugelassen?"* — eine Frage, die einen ganzen Lauf
+kostet, wenn man sie zuletzt stellt.
+
+### 10a.2 Registertext 3 — Signal und Handel trennen
+
+> **Signale werden auf den US-ETFs gerechnet** — sie haben die lange Historie,
+> die den Zeitraum ab 2007 überhaupt erst messbar macht. **Gehandelt wird auf
+> UCITS-Gegenstücken.**
+>
+> **(a)** Je Paar (US-ETF → UCITS-Gegenstück) steht **eine Registerzeile** mit
+> einer **Korrelationsprüfung der Tagesrenditen über die gemeinsame Historie**.
+>
+> **(b)** **Unter 0,97 ist das Paar kein Proxy** *(willkürlich)* und das
+> US-Instrument damit nicht handelbar.
+>
+> **(c)** ⚠️ **Die Registerzeile nennt, AB WANN die Prüfung möglich war** — also
+> den Beginn der gemeinsamen Historie —, und der **Bericht nennt, für welche
+> Bärenepisoden der Proxy ungeprüft bleibt.**
+>
+> **(d)** **Abbruch:** Sind weniger als **acht Paare über mindestens vier
+> Anlageklassen** handelbar, ist `S-B1` **nicht ausführbar**. *(Dieselbe
+> Untergrenze wie in Abschnitt 9 Nr. 3, jetzt auf die handelbaren Paare
+> bezogen, nicht auf die Kandidatenliste.)*
+
+*Warum (c) nicht weggelassen werden darf: **die gemeinsame Historie beginnt bei
+den meisten UCITS-Produkten erst ab 2010.** Geprüft wird also in den ruhigen
+Jahren, verlassen muss man sich in den Krisen — 2008 ist für kein Paar geprüft,
+und genau 2008 ist der Grund, warum der Zeitraum bis 2007 zurückreicht. Eine
+Korrelation von 0,99 über 2012–2026 sagt nichts darüber, ob das UCITS-Produkt
+im Oktober 2008 dasselbe getan hätte.*
+
+### 10a.3 Falls ein Short-Arm gebaut wird
+
+> ⚠️ Ein Short-Arm über einen **inversen UCITS-ETF** darf **nicht** als
+> „Index × (−1)" gerechnet werden, sondern **nur auf der eigenen Kursreihe des
+> Produkts**. *Begründung: täglich zurückgesetzte Inversprodukte sind über einen
+> Monat **pfadabhängig** — bei gleichem Anfangs- und Endstand des Index kann das
+> Inversprodukt verloren haben. Wer mit −1 rechnet, rechnet einen Ertrag, den
+> das Produkt nicht liefert.*
+>
+> **Folge, die ins Register gehört: Der Short-Arm hat einen anderen Faltenplan
+> als der Long-Arm** — seine Kursreihe beginnt, wann das Produkt aufgelegt
+> wurde, nicht wann der Index beginnt.
+
+Zusätzlich gilt für einen Short-Arm die **Vorbedingung für short-fähige
+Sleeves** aus `docs/VORREGISTRIERUNG_neuselektion.md`, Abschnitt 16.10 —
+insbesondere die Notional-Obergrenze von 20 % des Sleeve-Budgets und der
+Abbruch bei einem realisierten Tagesverlust über dem registrierten
+Stress-Tagesverlust.
+
+### 10a.4 Was dieser Nachtrag an S-B1 nicht ändert
+
+* **Die Kandidatenliste bleibt** — dieselben vierzehn Symbole, dieselbe
+  Universumsregel, derselbe Hash. Was sich ändert, ist **wo gehandelt wird**,
+  nicht **worauf gerechnet wird**.
+* **N bleibt 5.** Ein Proxy ist keine Rasterachse; die Paarbildung ist eine
+  Zulassungsfrage, keine Parameterwahl.
+* **Es ist kein Paar eingetragen.** Die Tabelle ist leer, bis die Prüfung aus
+  (a) gelaufen ist — und sie kann nur auf dem MacBook laufen, weil die
+  Kursanbieter aus der Cloud gesperrt sind.
 
 ---
 
