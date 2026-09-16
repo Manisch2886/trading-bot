@@ -68,8 +68,9 @@ WO DIE DATEI LIEGT UND WARUM DORT
   die geprueft werden koennen - und geprueft wird hier jeder einzelne Wert.
 * **JSON und nicht CSV**, weil neben den neun Zahlen auch das Quartal und die
   Herkunft hineingehoeren; eine CSV haette dafuer keinen Platz.
-* Selten geschrieben (quartalsweise), oft gelesen (neun Bots, bis zu sechs
-  Laeufe am Tag): ein paar hundert Byte, die der Kern in Millisekunden liest.
+* Selten geschrieben (quartalsweise), oft gelesen (neun Bots, der
+  Elliott-Wave-Krypto-Bot stuendlich): ein paar hundert Byte, die der Kern in
+  Millisekunden liest.
 
 `config/groessenfaktor.beispiel.json` zeigt das Format - nach dem Vorbild von
 `.env.beispiel`, das ebenfalls nur die Form nennt und nichts Wirksames setzt.
