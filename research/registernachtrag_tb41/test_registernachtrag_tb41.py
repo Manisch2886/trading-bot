@@ -15,6 +15,8 @@ TB-41 - Selbsttest des Registernachtrags
      Kursdatei - keine verdeckt das Fehlen der anderen.
   J  Der Beleg ist nicht abgetippt: das Ergebnisdokument von TB-40 und der
      Registereintrag werden aus zwei getrennten Parsern verglichen.
+  K  TB-43: ein LEERER Vergleich ist ein Befund, kein Erfolg - gemessen am
+     Ablauf auf einem wirklich gemergten Zweig, nicht an einem gesetzten Wert.
 
 ZU DEN ZWEI WIEDERKEHRENDEN FALLEN
 ------------------------------------------------------------------------------
@@ -89,6 +91,37 @@ def _kopie_docs(arbeit):
     return os.path.join(arbeit, REGISTER_REL), os.path.join(arbeit, BELEG_REL)
 
 
+def _hat_zweig(repo, name):
+    lauf = subprocess.run(["git", "rev-parse", "--verify", "-q", name],
+                          cwd=repo, capture_output=True, text=True)
+    return lauf.returncode == 0
+
+
+def _ist_vorfahr(repo, commit, nachfahr):
+    lauf = subprocess.run(["git", "merge-base", "--is-ancestor", commit, nachfahr],
+                          cwd=repo, capture_output=True, text=True)
+    return lauf.returncode == 0
+
+
+def standardbasis():
+    """Die Basis, gegen die der Nachtrag geprueft werden MUSS.
+
+    Das ist der Stand unmittelbar VOR dem Commit, der das Register zuletzt
+    angefasst hat - nicht `origin/main`. Denn sobald der Zweig gemergt ist,
+    ist der Diff gegen `origin/main` leer, und dann prueft B gar nichts mehr;
+    genau das war TB-43, Fehler 2. Mit `TB41_BASIS` ueberschreibbar.
+    """
+    vorgabe = os.environ.get("TB41_BASIS")
+    if vorgabe:
+        return vorgabe
+    lauf = subprocess.run(["git", "log", "-1", "--format=%H", "--", REGISTER_REL],
+                          cwd=BASE_DIR, capture_output=True, text=True)
+    commit = lauf.stdout.strip()
+    if lauf.returncode != 0 or not commit:
+        return "origin/main"            # Notnagel; B2 faellt dann auf
+    return commit + "^"
+
+
 def _mini_repo(arbeit, name):
     """Ein winziges git-Repo mit drei erzeugten Kursdateien und dem Register.
     Klein genug, um es zweimal anzulegen; echt genug, damit git und der
@@ -111,7 +144,7 @@ def _mini_repo(arbeit, name):
 
 
 def main():
-    basis = os.environ.get("TB41_BASIS", "origin/main")
+    basis = standardbasis()
     print("=" * 78)
     print("TB-41 REGISTERNACHTRAG - Selbsttest")
     print("=" * 78)
@@ -337,6 +370,73 @@ def main():
                "ist hoechstens so gross wie die alte",
                all(a <= b for a, b in zip(
                    zahlen_reg["rsi2_crypto"]["falten"], [6, 9, 13, 13, 13, 17, 18])))
+
+        # ------------------------------------------------------------------
+        # TB-43, Fehler 2: die Wache war nach jedem Merge trivial gruen.
+        # Geprueft wird am ABLAUF, auf einem WIRKLICH gemergten Zweig - nicht
+        # an einem von Hand gesetzten leeren numstat.
+        print("\nK  Ein leerer Vergleich ist kein Erfolg (TB-43)")
+        repo_k = _mini_repo(arbeit, "repo_k")
+
+        def git_k(*args):
+            return subprocess.run(["git"] + list(args), cwd=repo_k, check=True,
+                                  capture_output=True, text=True).stdout.strip()
+
+        vor_eintrag = git_k("rev-parse", "HEAD")
+        git_k("checkout", "-q", "-b", "zweig")
+        with open(os.path.join(repo_k, REGISTER_REL), "a", encoding="utf-8") as f:
+            f.write("\n<!-- eine ergaenzte Zeile, nichts entfernt -->\n")
+        git_k("add", "-A")
+        git_k("commit", "-qm", "Registereintrag")
+        zweig_spitze = git_k("rev-parse", "HEAD")
+        git_k("checkout", "-q", "master" if _hat_zweig(repo_k, "master") else "main")
+        git_k("merge", "-q", "--no-ff", "-m", "Merge zweig", "zweig")
+
+        pruefe("K0: der Zweig ist wirklich gemergt",
+               _ist_vorfahr(repo_k, zweig_spitze, "HEAD"))
+
+        # a) mit der richtigen Basis: die Wache misst und meldet nichts
+        rc, b, _ = _bericht(["--nur", "null_entfernte_zeilen", "--repo", repo_k,
+                             "--basis", vor_eintrag,
+                             "--arbeitsverzeichnis", arbeit], arbeit, "K_gut.json")
+        pruefe("K1: mit der Basis VOR dem Eintrag meldet die Wache nichts",
+               rc == 0 and not b["befunde"],
+               "rc=%s %s" % (rc, b["befunde"]))
+        pruefe("K2: und sie hat dabei wirklich einen Diff ausgewertet",
+               bool(b["quellen"].get("numstat")), str(b["quellen"].get("numstat")))
+
+        # b) gegen den gemergten Zweig: leerer Diff - DAS ist der Fehler
+        rc, b, _ = _bericht(["--nur", "null_entfernte_zeilen", "--repo", repo_k,
+                             "--basis", zweig_spitze,
+                             "--arbeitsverzeichnis", arbeit], arbeit, "K_leer.json")
+        pruefe("K3: der Vergleich gegen den gemergten Zweig ist wirklich leer",
+               b["quellen"].get("numstat") == [], str(b["quellen"].get("numstat")))
+        pruefe("K4: und genau das wird als BEFUND gemeldet, nicht als Erfolg",
+               any(x["pruefung"] == "null_entfernte_zeilen"
+                   and "LEERER VERGLEICH" in x["befund"] for x in b["befunde"]),
+               str(b["befunde"]))
+        pruefe("K5: der Rueckgabewert sagt dasselbe - 1, nicht 0", rc == 1,
+               "rc=%s" % rc)
+
+        # c) und die Basis steht im Bericht, statt geraten werden zu muessen
+        pruefe("K6: der Bericht sagt, wogegen verglichen wurde",
+               b["quellen"].get("basis", {}).get("commit") == zweig_spitze,
+               str(b["quellen"].get("basis")))
+
+        # d) Gegenprobe zur zweiten wiederkehrenden Falle: es ist WIRKLICH
+        #    diese Wache, die anschlaegt - keine andere verdeckt hier etwas.
+        pruefe("K7: es meldet genau die Wache null_entfernte_zeilen",
+               [x["pruefung"] for x in b["befunde"]] == ["null_entfernte_zeilen"],
+               str([x["pruefung"] for x in b["befunde"]]))
+
+        # e) merge-base allein wuerde den Fehler NICHT finden - Beleg fuer die
+        #    Wegentscheidung in TB-43.
+        mb = git_k("merge-base", "HEAD", zweig_spitze)
+        pruefe("K8: merge-base gegen den gemergten Zweig liefert die "
+               "Zweigspitze selbst - der Diff bleibt leer, merge-base allein "
+               "haette nicht geholfen", mb == zweig_spitze,
+               "%s vs %s" % (mb, zweig_spitze))
+
     finally:
         shutil.rmtree(arbeit, ignore_errors=True)
 

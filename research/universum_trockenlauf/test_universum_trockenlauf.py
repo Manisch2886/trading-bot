@@ -20,6 +20,13 @@ Geprueft wird, was die Aufgabenstellung ausdruecklich verlangt:
   F-H  Mutationsproben.
   I  Monotonie: Lesart H am Faltenende ist gleichbedeutend mit "an mindestens
      einem Handelstag der Falte" - oder der Lauf meldet es.
+  J  **TB-43 Fehler 3:** verglichen wird gegen die GUELTIGE Tabelle 16.1.1,
+     nicht gegen die historische 15.5 - in BEIDE Richtungen geprueft, und das
+     Werkzeug sagt, gegen welche es vergleicht.
+  K  **TB-43 Fehler 1:** der Schreibschutz kennt jeden Aufrufweg. `open(pfad,
+     mode="rb")` liest wieder, und ein Schreibversuch wird auf JEDEM Weg
+     abgefangen - `builtins.open` positional wie benannt, `io.open`,
+     `pathlib.Path.open`, `Path.write_text`, `os.open`.
 
 ZU DEN MUTATIONSPROBEN - DIE ZWEI WIEDERKEHRENDEN FALLEN
 ------------------------------------------------------------------------------
@@ -69,6 +76,10 @@ import universum_trockenlauf as ut                               # noqa: E402
 
 WERKZEUG = os.path.join(_HIER, "universum_trockenlauf.py")
 LOADERLAUF = os.path.join(_HIER, "loaderlauf.py")
+LOADER_DIR = _HIER
+# Irgendeine Datei, die es sicher gibt und die nur GELESEN wird. Teil K prueft
+# an ihr, dass beide Aufrufformen von open() dasselbe liefern.
+LESEQUELLE = LOADERLAUF
 
 bestanden = 0
 gescheitert = []
@@ -105,7 +116,8 @@ def _faltenplan():
     return _FALTENPLAN[0]
 
 
-def _trockenlauf_json(bots, register=None, werkzeug=WERKZEUG, umgebung=None):
+def _trockenlauf_json(bots, register=None, werkzeug=WERKZEUG, umgebung=None,
+                      extra=None):
     """Das Werkzeug als eigener Prozess; sein JSON-Bericht zurueck."""
     ordner = tempfile.mkdtemp(prefix="tb40_test_")
     ziel = os.path.join(ordner, "bericht.json")
@@ -115,6 +127,7 @@ def _trockenlauf_json(bots, register=None, werkzeug=WERKZEUG, umgebung=None):
         argv += ["--bot", b]
     if register:
         argv += ["--register", register]
+    argv += list(extra or [])
     r = _lauf(argv, umgebung)
     if not os.path.exists(ziel):
         return None, r
@@ -197,9 +210,11 @@ def teil_a():
                     - set(e["heute_geladen"]))
     pruefe("A3: und es sind namentlich dieselben vier",
            fehlen == ["ENSOUSDT", "PUMPUSDT", "UUSDT", "ZKCUSDT"], str(fehlen))
-    pruefe("A4: die eingetragene Zahl fuer die Bestaetigungsperiode ist 23 - "
-           "die Abweichung, um die es geht",
-           [f for f in e["falten"] if f["bestaetigung"]][0]["register"] == 23)
+    pruefe("A4: die eingetragene Zahl fuer die Bestaetigungsperiode ist 20 - "
+           "der Wert aus der GUELTIGEN Tabelle 16.1.1 (die historische in "
+           "15.5 sagt 23)",
+           [f for f in e["falten"] if f["bestaetigung"]][0]["register"] == 20,
+           str([f for f in e["falten"] if f["bestaetigung"]][0]["register"]))
 
 
 # ===========================================================================
@@ -341,10 +356,10 @@ def _registerkopie(ziel, alt, neu):
 def teil_e():
     original, _ = _trockenlauf_json(["rsi2_crypto"])
     pruefe("E0: unmutiert liest das Werkzeug die eingetragene Reihe "
-           "6 / 9 / 13 / 13 / 13 / 17 / 18",
+           "6 / 9 / 10 / 13 / 13 / 17 / 18 - aus der gueltigen Tabelle 16.1.1",
            original is not None
            and original["bots"]["rsi2_crypto"]["register"]["falten"]
-           == [6, 9, 13, 13, 13, 17, 18],
+           == [6, 9, 10, 13, 13, 17, 18],
            str((original or {}).get("bots", {}).get("rsi2_crypto", {}).get("register")))
     if original is None:
         return
@@ -353,8 +368,8 @@ def teil_e():
     with tempfile.TemporaryDirectory() as tmp:
         pfad = _registerkopie(
             os.path.join(tmp, "REG.md"),
-            "| `rsi2_crypto` | 6 / 9 / 13 / 13 / 13 / 17 / 18 | 23 | 24 |",
-            "| `rsi2_crypto` | 5 / 9 / 13 / 13 / 13 / 17 / 18 | 23 | 24 |")
+            "> | `rsi2_crypto` | 6 / 9 / 10 / 13 / 13 / 17 / 18 | 20 | 24 |",
+            "> | `rsi2_crypto` | 5 / 9 / 10 / 13 / 13 / 17 / 18 | 20 | 24 |")
         mutiert, r = _trockenlauf_json(["rsi2_crypto"], register=pfad)
         pruefe("E1: das Werkzeug laeuft auf dem veraenderten Register",
                mutiert is not None, (r.stdout + r.stderr)[-400:])
@@ -521,15 +536,200 @@ def teil_i():
            any(len(f["gemessen_F"]) < len(f["gemessen_H"]) for f in e["falten"]))
 
 
+
+# ===========================================================================
+# J  TB-43 Fehler 3: gegen WELCHE Tabelle wird verglichen?
+# ===========================================================================
+def teil_j():
+    """Seit dem Registernachtrag TB-41 gibt es ZWEI Tabellen mit derselben
+    Kopfzeile. Geprueft wird in BEIDE Richtungen - sonst belegt ein "kein
+    Befund" nur, dass das Werkzeug schweigt, nicht dass es die Tabelle
+    wechselt."""
+    gueltig = ut.lies_register(abschnitt=ut.TABELLE_GUELTIG)
+    historisch = ut.lies_register(abschnitt=ut.TABELLE_HISTORISCH)
+
+    pruefe("J0: der Standard ist die GUELTIGE Tabelle 16.1.1",
+           ut.TABELLE_GUELTIG == "16.1.1"
+           and ut.lies_register() == gueltig, ut.TABELLE_GUELTIG)
+    pruefe("J1: beide Tabellen werden ueberhaupt gefunden - je neun Bots",
+           len(gueltig) == 9 and len(historisch) == 9,
+           "%d / %d" % (len(gueltig), len(historisch)))
+
+    abweichend = [b for b in gueltig
+                  if (gueltig[b]["falten"], gueltig[b]["bestaetigung"])
+                  != (historisch[b]["falten"], historisch[b]["bestaetigung"])]
+    pruefe("J2: die beiden Tabellen sind wirklich verschieden - und zwar in "
+           "acht der neun Reihen", len(abweichend) == 8, str(sorted(abweichend)))
+    pruefe("J3: genau elliott_wave stimmt in beiden ueberein - der neunte Bot",
+           "elliott_wave" not in abweichend)
+
+    # Die Gegenprobe zur wichtigsten Falle: liest es WIRKLICH 16.1.1, oder
+    # schweigt es nur? Die Zahl, an der sich die beiden Tabellen fuer
+    # t3_supertrend unterscheiden, ist namentlich bekannt.
+    pruefe("J4: aus 16.1.1 kommt t3_supertrend = 3 / 6 / 9 / 13 / 13 / 13 / 17",
+           gueltig["t3_supertrend"]["falten"] == [3, 6, 9, 13, 13, 13, 17],
+           str(gueltig["t3_supertrend"]["falten"]))
+    pruefe("J5: aus 15.5 kommt dieselbe Zeile als 6 / 9 / 13 / 13 / 13 / 17 / 18",
+           historisch["t3_supertrend"]["falten"] == [6, 9, 13, 13, 13, 17, 18],
+           str(historisch["t3_supertrend"]["falten"]))
+
+    # Und das Werkzeug SAGT, gegen welche es vergleicht - im Bericht wie in
+    # der Ausgabe.
+    for abschnitt in (ut.TABELLE_GUELTIG, ut.TABELLE_HISTORISCH):
+        bericht, r = _trockenlauf_json(["rsi2_crypto"],
+                                       extra=["--register-abschnitt", abschnitt])
+        pruefe("J6-%s: der Lauf gegen %s kommt durch" % (abschnitt, abschnitt),
+               bericht is not None, (r.stdout + r.stderr)[-300:])
+        if bericht is None:
+            continue
+        pruefe("J7-%s: der Bericht nennt den benutzten Abschnitt" % abschnitt,
+               bericht.get("register_abschnitt") == abschnitt,
+               str(bericht.get("register_abschnitt")))
+        pruefe("J8-%s: und die Ausgabe nennt ihn auch" % abschnitt,
+               ("Abschnitt %s" % abschnitt) in r.stdout,
+               r.stdout[:200])
+        erwartet = (gueltig if abschnitt == ut.TABELLE_GUELTIG
+                    else historisch)["rsi2_crypto"]["falten"]
+        pruefe("J9-%s: und die eingetragene Reihe stammt aus dieser Tabelle"
+               % abschnitt,
+               bericht["bots"]["rsi2_crypto"]["register"]["falten"] == erwartet,
+               str(bericht["bots"]["rsi2_crypto"]["register"]["falten"]))
+
+    # Gegen 15.5 muss das Werkzeug ausserdem WARNEN - sonst liest jemand die
+    # acht Abweichungen als Registerfehler und "korrigiert" sie ein zweites Mal.
+    _, r155 = _trockenlauf_json(["rsi2_crypto"],
+                                extra=["--register-abschnitt",
+                                       ut.TABELLE_HISTORISCH])
+    pruefe("J10: gegen die historische Tabelle warnt das Werkzeug ausdruecklich",
+           "ACHTUNG" in r155.stdout and "NICHT die gueltige" in r155.stdout,
+           r155.stdout[:400])
+
+
+# ===========================================================================
+# K  TB-43 Fehler 1: der Schreibschutz kennt JEDEN Aufrufweg
+# ===========================================================================
+def teil_k():
+    """`open(pfad, mode="rb")` brach den Trockenlauf mit einem TypeError ab -
+    der Schreibschutz scheiterte an einem LESEversuch. Beim Reparieren des
+    Durchgriffs darf der Schutz nicht loechrig werden; deshalb wird beides
+    geprueft, und zwar am ABLAUF in einem eigenen Prozess.
+
+    Der Aufrufweg wird DIREKT geprueft, nicht ueber `python-binance`: in der
+    Cloud kommt dessen Import ohnehin nicht durch, und neuere
+    `dateparser`-Fassungen nehmen den Weg gar nicht mehr. Ein Test, der den
+    Fehler nur auf einem Rechner finden kann, findet ihn meistens nicht.
+    """
+    programm = r"""
+import io, json, os, pathlib, sys
+
+ordner, loader_dir, lesequelle = sys.argv[1], sys.argv[2], sys.argv[3]
+sys.path.insert(0, loader_dir)
+import loaderlauf
+
+erlaubt = os.path.join(ordner, "erlaubt")
+os.makedirs(erlaubt, exist_ok=True)
+loaderlauf.schreibschutz_an([erlaubt])
+
+ziel = os.path.join(ordner, "verboten.txt")
+erg = {}
+
+def probe(name, f):
+    try:
+        f()
+        erg[name] = "durchgelassen"
+    except loaderlauf.Schreibversuch:
+        erg[name] = "abgefangen"
+    except Exception as e:
+        erg[name] = type(e).__name__ + ": " + str(e)
+
+# 1. LESEN muss in beiden Aufrufformen gehen - und dasselbe liefern.
+a = b = None
+try:
+    a = open(lesequelle, "rb").read()
+    erg["lesen_positional"] = "ok"
+except Exception as e:
+    erg["lesen_positional"] = type(e).__name__ + ": " + str(e)
+try:
+    b = open(lesequelle, mode="rb").read()
+    erg["lesen_benannt"] = "ok"
+except Exception as e:
+    erg["lesen_benannt"] = type(e).__name__ + ": " + str(e)
+erg["lesen_gleich"] = bool(a is not None and a == b)
+
+# 2. SCHREIBEN muss auf JEDEM Weg abgefangen werden.
+probe("schreiben_positional", lambda: open(ziel + "1", "w"))
+probe("schreiben_benannt", lambda: open(ziel + "2", mode="w"))
+probe("schreiben_vollbenannt", lambda: open(file=ziel + "3", mode="w"))
+probe("io_open", lambda: io.open(ziel + "4", "w"))
+probe("pathlib_open", lambda: pathlib.Path(ziel + "5").open("w"))
+probe("pathlib_write_text", lambda: pathlib.Path(ziel + "6").write_text("x"))
+probe("os_open", lambda: os.close(os.open(ziel + "7", os.O_WRONLY | os.O_CREAT)))
+
+# 3. Erlaubtes Schreiben geht weiter.
+probe("erlaubt", lambda: open(os.path.join(erlaubt, "ok.txt"), "w").close())
+
+erg["angelegt"] = sorted(n for n in os.listdir(ordner)
+                         if n.startswith("verboten"))
+print(json.dumps(erg))
+"""
+
+    with tempfile.TemporaryDirectory() as tmp:
+        skript = os.path.join(tmp, "probe.py")
+        with open(skript, "w", encoding="utf-8") as f:
+            f.write(programm)
+        r = subprocess.run([sys.executable, skript, tmp, LOADER_DIR, LESEQUELLE],
+                           capture_output=True, text=True)
+        pruefe("K0: die Probe laeuft ueberhaupt durch",
+               r.returncode == 0, (r.stdout + r.stderr)[-500:])
+        if r.returncode != 0:
+            return
+        erg = json.loads(r.stdout.strip().splitlines()[-1])
+
+    # --- der eigentliche TB-43-Fehler ---
+    pruefe("K1: open(pfad, \"rb\") - positional - liest",
+           erg["lesen_positional"] == "ok", str(erg["lesen_positional"]))
+    pruefe("K2: open(pfad, mode=\"rb\") - benannt - liest AUCH "
+           "(vorher: TypeError)",
+           erg["lesen_benannt"] == "ok", str(erg["lesen_benannt"]))
+    pruefe("K3: und beide liefern dasselbe Ergebnis", erg["lesen_gleich"] is True,
+           str(erg["lesen_gleich"]))
+
+    # --- und der Schutz ist dabei nicht loechrig geworden ---
+    for name, text in (("schreiben_positional", "open(pfad, \"w\")"),
+                       ("schreiben_benannt", "open(pfad, mode=\"w\")"),
+                       ("schreiben_vollbenannt", "open(file=…, mode=\"w\")"),
+                       ("io_open", "io.open(pfad, \"w\")"),
+                       ("pathlib_open", "pathlib.Path(pfad).open(\"w\")"),
+                       ("pathlib_write_text", "Path(pfad).write_text(…)"),
+                       ("os_open", "os.open(pfad, O_WRONLY|O_CREAT)")):
+        pruefe("K4 %-22s wird abgefangen" % text,
+               erg[name] == "abgefangen", str(erg[name]))
+
+    pruefe("K5: erlaubtes Schreiben geht weiter - der Schutz ist nicht bloss "
+           "ein Totalverbot", erg["erlaubt"] == "durchgelassen",
+           str(erg["erlaubt"]))
+    pruefe("K6: und es ist wirklich keine verbotene Datei entstanden - am "
+           "Dateibestand geprueft, nicht an der Ausnahme",
+           erg["angelegt"] == [], str(erg["angelegt"]))
+
+
 # ===========================================================================
 def main():
     print(__doc__.strip().split("\n")[0])
     print("=" * 78)
     for name, teil in (("A", teil_a), ("B", teil_b), ("C", teil_c),
                        ("D", teil_d), ("E", teil_e), ("F", teil_f),
-                       ("G", teil_g), ("H", teil_h), ("I", teil_i)):
+                       ("G", teil_g), ("H", teil_h), ("I", teil_i),
+                       ("J", teil_j), ("K", teil_k)):
         print("  Teil %s ..." % name, flush=True)
-        teil()
+        try:
+            teil()
+        except Exception as e:                                   # noqa: BLE001
+            # Ein Teil, der abstuerzt, ist ein Fehlschlag - aber er darf die
+            # uebrigen nicht verschlucken. Sonst belegt ein Lauf auf einem
+            # unveraenderten Stand nur den ERSTEN fehlenden Befund.
+            pruefe("Teil %s stuerzt ab: %s: %s" % (name, type(e).__name__, e),
+                   False)
     print("\n" + "=" * 78)
     if gescheitert:
         print("%d bestanden, %d GESCHEITERT:" % (bestanden, len(gescheitert)))

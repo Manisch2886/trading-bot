@@ -18,7 +18,8 @@ auseinandergelaufen:
 * `research/faltenplan_neun/faltenplan_neun.py` fragt **"liegen Kursdaten
   vor?"** (Registertext 3a, Lesart A) und kommt fuer die Krypto-Tagesbots auf
   6 / 9 / 13 / 13 / 13 / 17 / 18, Bestaetigung 23. Diese Zahlen stehen heute
-  als Tatsachennotiz in `docs/VORREGISTRIERUNG_neuselektion.md`, Abschnitt 15.5.
+  als Tatsachennotiz in `docs/VORREGISTRIERUNG_neuselektion.md`, Abschnitt
+  16.1.1 (bis zum Registernachtrag TB-41: 15.5).
 * Der **Loader des Bots** fragt etwas anderes: **"reicht die Historie?"**
   (`MIN_HISTORY_DAYS`, bei `elliott_wave` `MIN_HISTORY_HOURS`). Am 16.09.2026
   laedt `strategies/rsi2_crypto/multi_symbol_optimise.py` deshalb **20 von 24**
@@ -83,9 +84,12 @@ gemacht ist und warum es kein Nachbau ist, steht im Kopf von `loaderlauf.py`.
 
 GEGENSTAND DES VERGLEICHS
 ------------------------------------------------------------------------------
-* die **eingetragene Zahl** aus `docs/VORREGISTRIERUNG_neuselektion.md` 15.5
-  (gelesen, nie geschrieben - die Korrektur selbst ist nicht Teil dieser
-  Aufgabe),
+* die **eingetragene Zahl** aus `docs/VORREGISTRIERUNG_neuselektion.md`,
+  Abschnitt **16.1.1** (gelesen, nie geschrieben). Seit dem Registernachtrag
+  TB-41 gibt es zwei Tabellen mit derselben Kopfzeile: 16.1.1 ist die
+  gueltige, 15.5 die als "ERSETZT" gekennzeichnete Vorfassung. Welche benutzt
+  wurde, steht in der Ausgabe; mit `--register-abschnitt` laesst sich die
+  andere waehlen,
 * die **namentlichen Listen** aus `research/faltenplan_neun/faltenplan_neun.py`
   (Lesart A). Dieses Werkzeug wird aufgerufen, nicht veraendert.
 """
@@ -118,12 +122,41 @@ MINDESTFALTEN = 3
 # 1. Das Register lesen
 # ---------------------------------------------------------------------------
 _ZEILE = re.compile(r"^\|\s*`([a-z0-9_]+)`\s*\|(.+)$")
+_UEBERSCHRIFT = re.compile(r"^#{1,6}\s")
+
+# Es gibt ZWEI Tabellen mit derselben Kopfzeile. Welche gilt, steht hier -
+# einmal, benannt, und nicht als "die erste, die wir finden".
+TABELLE_GUELTIG = "16.1.1"       # Registernachtrag TB-41: die korrigierten Zahlen
+TABELLE_HISTORISCH = "15.5"      # als "ERSETZT" gekennzeichnete Vorfassung
 
 
-def lies_register(pfad=REGISTER):
+def _ohne_zitat(zeile):
+    """Streift die Blockzitat-Zeichen ab.
+
+    Noetig, weil die GUELTIGE Tabelle in 16.1.1 als Blockzitat steht (`> |`),
+    die historische in 15.5 dagegen nicht. Ohne das findet der Parser nur die
+    historische - das war TB-43, Fehler 3.
+    """
+    s = zeile.strip()
+    while s.startswith(">"):
+        s = s[1:].lstrip()
+    return s
+
+
+def lies_register(pfad=REGISTER, abschnitt=TABELLE_GUELTIG):
     """Liest die Tatsachennotiz zu 3b: Symbolzahl je Falte, Bestaetigung,
-    Universum. Gelesen wird die Tabelle in Abschnitt 15.5 - die erste, deren
-    Kopfzeile 'Symbolzahl je Selektionsfalte' enthaelt.
+    Universum - aus einem BENANNTEN Registerabschnitt.
+
+    Bis TB-43 nahm diese Funktion schlicht die erste Tabelle, deren Kopfzeile
+    'Symbolzahl je Selektionsfalte' enthaelt. Seit dem Registernachtrag TB-41
+    ist das die HISTORISCHE, als ersetzt gekennzeichnete Fassung in 15.5; die
+    gueltigen Zahlen stehen in 16.1.1. Ein Lauf gegen 15.5 meldet deshalb
+    wieder acht Abweichungen, obwohl das Register stimmt.
+
+    Der Abschnitt ist jetzt ein Argument, sein Standard ist die gueltige
+    Tabelle, und welcher benutzt wurde, steht in der Ausgabe. Ein Werkzeug,
+    das gegen eine von zwei Tabellen prueft, ohne zu sagen gegen welche, ist
+    die naechste blinde Wache.
 
     Nicht abgetippt: aendert jemand eine Zahl im Register, aendert sich das
     Ergebnis dieses Werkzeugs. Genau das verlangt der Test 'Der Vergleich
@@ -132,21 +165,40 @@ def lies_register(pfad=REGISTER):
     with open(pfad, encoding="utf-8") as f:
         zeilen = f.read().splitlines()
 
-    start = None
+    # 1. Die Ueberschrift des verlangten Abschnitts.
+    kopf = re.compile(r"^#{1,6}\s+" + re.escape(abschnitt) + r"(\s|$)")
+    beginn = None
     for i, z in enumerate(zeilen):
-        if "Symbolzahl je Selektionsfalte" in z and z.lstrip().startswith("|"):
+        if kopf.match(z.strip()):
+            beginn = i
+            break
+    if beginn is None:
+        raise ValueError("Registerabschnitt %s nicht gefunden in %s"
+                         % (abschnitt, pfad))
+
+    # 2. Die Tabelle DARIN - und nur darin: bei der naechsten Ueberschrift ist
+    #    Schluss, sonst griffe der Parser stillschweigend auf die Tabelle des
+    #    folgenden Abschnitts durch.
+    start = None
+    for i in range(beginn + 1, len(zeilen)):
+        s = _ohne_zitat(zeilen[i])
+        if _UEBERSCHRIFT.match(zeilen[i].strip()):
+            break
+        if "Symbolzahl je Selektionsfalte" in s and s.startswith("|"):
             start = i
             break
     if start is None:
-        raise ValueError("Tabelle 'Symbolzahl je Selektionsfalte' nicht gefunden in %s" % pfad)
+        raise ValueError("Tabelle 'Symbolzahl je Selektionsfalte' steht nicht "
+                         "in Abschnitt %s von %s" % (abschnitt, pfad))
 
     eintraege = {}
     for z in zeilen[start + 1:]:
-        if not z.lstrip().startswith("|"):
+        s = _ohne_zitat(z)
+        if not s.startswith("|"):
             if eintraege:
                 break
             continue
-        m = _ZEILE.match(z.strip())
+        m = _ZEILE.match(s)
         if not m:
             continue
         bot = m.group(1)
@@ -161,7 +213,8 @@ def lies_register(pfad=REGISTER):
             "universum": int(re.findall(r"\d+", felder[2])[0]),
         }
     if not eintraege:
-        raise ValueError("Tabelle 15.5 gefunden, aber keine Bot-Zeile gelesen")
+        raise ValueError("Tabelle in Abschnitt %s gefunden, aber keine "
+                         "Bot-Zeile gelesen" % abschnitt)
     return eintraege
 
 
@@ -273,12 +326,15 @@ def messe_bot(bot, stichtage, datenordner=None,
 # 4. Der Trockenlauf
 # ---------------------------------------------------------------------------
 def trockenlauf(faltenplan_json=None, register_pfad=REGISTER, bots=None,
-                fortschritt=None):
+                fortschritt=None, register_abschnitt=TABELLE_GUELTIG):
     bots = bots or BOTS
     plan_alle = hole_faltenplan(faltenplan_json)["plaene"]
-    register = lies_register(register_pfad)
+    register = lies_register(register_pfad, register_abschnitt)
 
-    bericht = {"bots": {}, "monotonie_verletzt": [], "schreibversuche": []}
+    # Gegen WELCHE Tabelle verglichen wurde, steht im Bericht - nicht nur im
+    # Quelltext.
+    bericht = {"bots": {}, "monotonie_verletzt": [], "schreibversuche": [],
+               "register_abschnitt": register_abschnitt}
     for bot in bots:
         if fortschritt:
             fortschritt(bot)
@@ -396,7 +452,14 @@ def drucke(bericht):
     print("           (gemessen am letzten Zeitpunkt der Falte)")
     print("Lesart F = Aufgabenbeschreibung TB-40: Schranke am Faltenbeginn geprueft")
     print("           (gemessen am ersten Zeitpunkt der Falte)")
-    print("Eingetragen = Tatsachennotiz zu 3b, docs/VORREGISTRIERUNG_neuselektion.md 15.5 (Lesart A)")
+    abschnitt = bericht.get("register_abschnitt", TABELLE_GUELTIG)
+    print("Eingetragen = Tatsachennotiz zu 3b, docs/VORREGISTRIERUNG_neuselektion.md "
+          "Abschnitt %s (Lesart A)" % abschnitt)
+    if abschnitt != TABELLE_GUELTIG:
+        print("  ACHTUNG: %s ist NICHT die gueltige Tabelle. Gueltig ist %s; "
+              "%s ist die als ERSETZT" % (abschnitt, TABELLE_GUELTIG, abschnitt))
+        print("  gekennzeichnete Vorfassung. Abweichungen hier sind zu erwarten "
+              "und KEIN Registerfehler.")
     print()
 
     print("-" * 118)
@@ -673,6 +736,10 @@ def main(argv=None):
     p.add_argument("--faltenplan-json", default=None,
                    help="fertigen faltenplan_neun-Bericht wiederverwenden statt neu zu rechnen")
     p.add_argument("--register", default=REGISTER, help="Registerdatei (nur gelesen)")
+    p.add_argument("--register-abschnitt", default=TABELLE_GUELTIG,
+                   help="Registerabschnitt mit der Vergleichstabelle. Standard "
+                        "%s (gueltig); %s ist die historische, ersetzte Fassung."
+                        % (TABELLE_GUELTIG, TABELLE_HISTORISCH))
     p.add_argument("--bot", action="append", default=None, help="nur diesen Bot (mehrfach moeglich)")
     args = p.parse_args(argv)
 
@@ -691,7 +758,9 @@ def main(argv=None):
         sys.stderr.write("  ... %s\n" % bot)
         sys.stderr.flush()
 
-    bericht = trockenlauf(args.faltenplan_json, args.register, bots, fortschritt=melde)
+    bericht = trockenlauf(args.faltenplan_json, args.register, bots,
+                          fortschritt=melde,
+                          register_abschnitt=args.register_abschnitt)
     drucke(bericht)
     if args.json:
         with open(args.json, "w", encoding="utf-8") as f:

@@ -42,7 +42,13 @@ Genau zwei Eingriffe, beide an der **Eingabe**, keiner an der Entscheidung:
    Klasse bleiben unangetastet.
 
 Zusaetzlich laeuft ein **Schreibschutz**: jeder Schreibversuch auf eine Datei
-ausserhalb der ausdruecklich erlaubten Ausgabedatei bricht den Lauf ab.
+ausserhalb der ausdruecklich erlaubten Ausgabedatei bricht den Lauf ab. Bewacht
+werden seit TB-43 **alle drei Ebenen**, ueber die in Python eine Datei zum
+Schreiben aufgeht - `builtins.open`, `io.open` (und damit `pathlib.Path.open`,
+`Path.write_text`, `Path.write_bytes`) und `os.open` -, und zwar unabhaengig
+davon, ob Datei und Modus positional oder benannt uebergeben werden.
+*Ein Schreibschutz, der einen Aufrufweg nicht kennt, ist an diesem Weg kein
+Schreibschutz.*
 `os.makedirs` wird dabei nicht abgebrochen, sondern folgenlos gemacht - die
 Pfad-Hilfe `shared/strategy_paths.py` legt beim Import `results/<bot>/` und
 `logs/<bot>/` an, und ein harter Abbruch dort wuerde den Loader gar nicht erst
@@ -85,13 +91,60 @@ _ERLAUBT = []
 _MAKEDIRS_VERSUCHE = []
 
 
+def _ist_geraet(pfad):
+    """Zeigt der Pfad auf etwas, das gar keine Datei auf der Platte ist?
+
+    `/dev/null` und Konsorten sind Zeichengeraete: darauf zu schreiben
+    veraendert nichts, was der Datenstand-Hash je sehen koennte. Der
+    Schreibschutz bewacht den Platteninhalt, nicht den Systemaufruf an sich -
+    und `python-binance` bzw. `yfinance` oeffnen `/dev/null` beim Import
+    lesend-schreibend. Ein Pfad, den es noch nicht gibt, faellt hier
+    ausdruecklich NICHT heraus: der wuerde ja gerade angelegt.
+    """
+    try:
+        import stat
+        return not stat.S_ISREG(os.stat(pfad).st_mode)
+    except (OSError, ValueError, TypeError):
+        return False
+
+
 def _ist_erlaubt(pfad):
+    if _ist_geraet(pfad):
+        return True
     try:
         voll = os.path.abspath(os.fspath(pfad))
     except TypeError:
         # Dateideskriptor oder aehnliches - nicht beurteilbar, also erlauben.
+        # Das bleibt vertretbar, WEIL `os.open` mitbewacht wird: ein
+        # Schreib-Deskriptor kann gar nicht erst entstehen, ohne vorher an
+        # der Wache vorbeizumuessen.
         return True
     return any(voll == e or voll.startswith(e + os.sep) for e in _ERLAUBT)
+
+
+def _ist_schreibend(modus):
+    """Ist das ein Schreibmodus? Gleiche Lesart wie zuvor - Zeichen im String."""
+    return any(z in str(modus) for z in ("w", "a", "x", "+"))
+
+
+def _open_argumente(a, k):
+    """Liest Datei und Modus aus einem `open()`-Aufruf heraus - EGAL, ob sie
+    positional oder benannt uebergeben wurden.
+
+    Der Grund steht in TB-43: `open(pfad, mode="rb")` landete frueher mit
+    `mode` in `**k`, der Durchgriff reichte den Modus dann ein zweites Mal
+    positional weiter, und Python brach mit
+    `argument for open() given by name ('mode') and position (2)` ab. Ein
+    Schreibschutz, der einen Aufrufweg nicht kennt, ist an diesem Weg kein
+    Schreibschutz - also wird hier nur GELESEN, was der Aufrufer meinte;
+    weitergereicht wird der Aufruf danach unveraendert.
+
+    Fehlt die Datei ganz (kaputter Aufruf), kommt `None` zurueck; der Aufruf
+    laeuft dann durch, damit Python selbst den richtigen TypeError wirft.
+    """
+    datei = a[0] if a else k.get("file")
+    modus = a[1] if len(a) >= 2 else k.get("mode", "r")
+    return datei, modus
 
 
 def schreibschutz_an(erlaubte_pfade):
@@ -108,12 +161,38 @@ def schreibschutz_an(erlaubte_pfade):
 
     echtes_open = builtins.open
 
-    def wach_open(datei, modus="r", *a, **k):
-        if any(z in str(modus) for z in ("w", "a", "x", "+")) and not _ist_erlaubt(datei):
+    def wach_open(*a, **k):
+        # Die Argumente werden NUR GELESEN und danach unveraendert
+        # weitergereicht - so kann der Modus nicht doppelt ankommen, gleich
+        # wie der Aufrufer ihn uebergeben hat.
+        datei, modus = _open_argumente(a, k)
+        if _ist_schreibend(modus) and not _ist_erlaubt(datei):
             raise Schreibversuch("Schreibversuch auf %r (Modus %r)" % (datei, modus))
-        return echtes_open(datei, modus, *a, **k)
+        return echtes_open(*a, **k)
 
     builtins.open = wach_open
+    # `builtins.open is io.open` ist wahr, aber es sind ZWEI Namen fuer
+    # dasselbe Objekt: `builtins.open` zu ersetzen laesst `io.open`
+    # unberuehrt. Und `pathlib.Path.open` - und damit `Path.write_text`,
+    # `Path.write_bytes` - geht ueber `io.open`, nicht ueber `builtins.open`.
+    # Ohne diese Zeile schreibt der Trockenlauf an der Wache vorbei.
+    io.open = wach_open
+
+    echtes_os_open = os.open
+    _SCHREIBFLAGS = 0
+    for _name in ("O_WRONLY", "O_RDWR", "O_APPEND", "O_CREAT", "O_TRUNC"):
+        _SCHREIBFLAGS |= getattr(os, _name, 0)
+
+    def wach_os_open(pfad, flags, *a, **k):
+        # `os.open` ist der unterste Weg: wer ihn hat, braucht weder
+        # `builtins.open` noch `io.open`. `O_RDONLY` ist 0, ein reines Lesen
+        # faellt also durch die Maske.
+        if (flags & _SCHREIBFLAGS) and not _ist_erlaubt(pfad):
+            raise Schreibversuch("Schreibversuch auf %r (os.open, Flags %d)"
+                                 % (pfad, flags))
+        return echtes_os_open(pfad, flags, *a, **k)
+
+    os.open = wach_os_open
 
     echtes_makedirs = os.makedirs
     echtes_mkdir = os.mkdir
