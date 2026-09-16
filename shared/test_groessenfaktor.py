@@ -364,13 +364,21 @@ def _schreibe_daten(ordner, symbole, intervall, n, form):
                            p, 1000 + i))
 
 
-def _lauf(bot, faktorinhalt, form, werkstatt, marke, max_symbole=8):
-    """EIN echter Forward-Test-Lauf in eigenem Prozess. Gibt Trades und Ausgabe."""
+def _lauf(bot, faktorinhalt, form, werkstatt, marke):
+    """EIN echter Forward-Test-Lauf in eigenem Prozess. Gibt Trades und Ausgabe.
+
+    Beispieldaten entstehen fuer JEDES Symbol des Bots, nicht nur fuer ein
+    paar. Sonst faellt der Bot fuer den Rest auf den Live-Abruf zurueck - und
+    der ist aus der Cloud gesperrt (403). Das kostet nicht nur Zeit: die
+    beiden Elliott-Wave-Bots brechen bei einem leeren Kursrahmen mit
+    IndexError ab (zigzag_indicator.calculate_zigzag, `highs[0]`), und dann
+    misst der Lauf nicht mehr den Multiplikator, sondern die Sperre.
+    """
     intervall, n, _q = LAUFBOTS[bot]
     arbeit = os.path.join(werkstatt, marke)
     d_daten, d_db = os.path.join(arbeit, "daten"), os.path.join(arbeit, "db")
     os.makedirs(d_db, exist_ok=True)
-    _schreibe_daten(d_daten, _symbole(bot)[:max_symbole], intervall, n, form)
+    _schreibe_daten(d_daten, _symbole(bot), intervall, n, form)
 
     fdatei = os.path.join(arbeit, "faktor.json")
     if faktorinhalt is not None:
@@ -413,6 +421,7 @@ def _finde_form(bot, werkstatt):
                   werkstatt, "suche%d" % i)
         if e["trades"]:
             return form, e
+        shutil.rmtree(os.path.join(werkstatt, "suche%d" % i), ignore_errors=True)
     return None, None
 
 
