@@ -254,3 +254,25 @@ bestimmter Bot (`elliott_wave`) neu eingestellt werden darf oder nicht.
 ---
 
 *TB-40, 16.09.2026.*
+
+---
+
+## Nachtrag TB-43 (16.09.2026) — das Werkzeug wurde repariert
+
+Die Befunde oben bleiben, wie sie sind. Zwei Dinge am **Werkzeug** haben sich
+seither geändert; wer es erneut laufen lässt, sieht deshalb ein anderes Bild als
+dieser Bericht beschreibt:
+
+1. **Verglichen wird jetzt gegen Registerabschnitt 16.1.1**, nicht mehr gegen
+   die erste Tabelle mit passender Kopfzeile. Seit dem Registernachtrag TB-41
+   wäre das die historische, als „ERSETZT" gekennzeichnete Fassung in 15.5
+   gewesen — ein erneuter Lauf hätte wieder acht Abweichungen gemeldet, obwohl
+   das Register stimmt. Der benutzte Abschnitt steht jetzt in der Ausgabe;
+   `--register-abschnitt 15.5` stellt den hier dokumentierten Stand wieder her.
+2. **Der Schreibschutz in `loaderlauf.py` kannte vier Aufrufwege nicht**
+   (`io.open`, `pathlib.Path.open`, `Path.write_text`, `os.open`) und brach
+   ausserdem bei `open(pfad, mode="rb")` mit einem `TypeError` ab. Beides ist
+   behoben. Für die Messungen dieses Berichts ist das folgenlos — geschrieben
+   wurde nachweislich nichts —, aber der Schutz war dünner, als hier steht.
+
+Einzelheiten: `docs/ERGEBNIS_TB-43_blinde_wachen.md`.
