@@ -1,0 +1,18 @@
+{
+  "beschreibung": "Quartals-Multiplikator auf die statische Positionsgroesse je Bot (TB-42). Gelesen von shared/groessenfaktor.py bei jedem Bot-Lauf. m_b = 1,0 heisst 'wie bisher'. Zulaessig ist 0,25 bis 4,0; alles ausserhalb gilt als Fehler und wird NICHT uebernommen. Diese Beispieldatei wird von niemandem gelesen - die wirksame Datei heisst config/groessenfaktor.json und wird vom Leiter-Skript des Zellenbudgets geschrieben, das es noch nicht gibt.",
+  "quartal": "2026Q4",
+  "erzeugt_utc": "2026-10-01T06:00:00Z",
+  "herkunft": "research/vorregistrierung/auswertung.py (Verfahren B) - Zellenbudget, Registertext 6m",
+  "formel": "m_b = (Zellenanteil x Klassenschluessel x Bot-Anteil in der Zelle) / (1/9)",
+  "bots": {
+    "elliott_wave": 1.0,
+    "elliott_wave_stocks": 1.0,
+    "rsi2_crypto": 1.0,
+    "rsi2_mean_reversion": 1.0,
+    "t3_supertrend": 1.0,
+    "turtle_soup_crypto": 1.0,
+    "turtle_soup_stocks": 1.0,
+    "volatility_breakout": 1.0,
+    "volatility_breakout_crypto": 1.0
+  }
+}
