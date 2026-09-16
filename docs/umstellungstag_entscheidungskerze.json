@@ -1,0 +1,87 @@
+{
+  "beschreibung": "Je Bot der Zeitpunkt, ab dem er auf der Entscheidungskerze entscheidet statt auf der laufenden (TB-38). Papierpfade VOR diesem Zeitpunkt sind fuer den Vergleich Backtest gegen Live nicht vergleichbar - der Vergleich beginnt fuer diesen Bot dort neu. Gelesen wird diese Datei vom Vergleich, NICHT von den Bots. Prosa-Fassung: docs/DATENLUECKEN.md, Abschnitt 'Zaesur 2026 - die Entscheidungskerze'.",
+  "bots": {
+    "elliott_wave": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "1h",
+      "markt": "krypto",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    },
+    "elliott_wave_stocks": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "1d",
+      "markt": "aktien",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    },
+    "rsi2_crypto": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "1d",
+      "markt": "krypto",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    },
+    "rsi2_mean_reversion": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "1d",
+      "markt": "aktien",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    },
+    "t3_supertrend": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "4h",
+      "markt": "krypto",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    },
+    "turtle_soup_crypto": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "1d",
+      "markt": "krypto",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    },
+    "turtle_soup_stocks": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "1d",
+      "markt": "aktien",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    },
+    "volatility_breakout": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "1d",
+      "markt": "aktien",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    },
+    "volatility_breakout_crypto": {
+      "commit": "80cc37b899d1ebcc46b99f1eb4648562a7025190",
+      "intervall": "1d",
+      "markt": "krypto",
+      "nachher": "die letzte Kerze, deren Zeitraum vor der Startzeit des Laufs endete (Entscheidungskerze, TB-38)",
+      "rechner": "MacBookPro",
+      "umgestellt_am": "2026-09-16T04:42:24Z",
+      "vorher": "df.iloc[-1] - die zum Laufzeitpunkt LAUFENDE Kerze (Teilkerze)"
+    }
+  },
+  "version": 1
+}
