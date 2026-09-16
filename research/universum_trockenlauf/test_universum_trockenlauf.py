@@ -876,9 +876,16 @@ def _l_lauf(python, reihenfolge, loader_dir=None):
         skript = os.path.join(tmp, "probe_l.py")
         with open(skript, "w", encoding="utf-8") as f:
             f.write(_L_PROGRAMM)
-        r = subprocess.run([python, skript, loader_dir or LOADER_DIR, tmp,
-                            reihenfolge, LESEQUELLE],
-                           capture_output=True, text=True)
+        try:
+            # Mit Frist: `_pythons()` nimmt, was auf dem Rechner liegt, und
+            # darunter kann eine kaputte oder haengende Fassung sein. Ohne
+            # Frist haengt dann der ganze Selbsttest - auf einem fremden
+            # Rechner, an einer Stelle, die niemand vermutet.
+            r = subprocess.run([python, skript, loader_dir or LOADER_DIR, tmp,
+                                reihenfolge, LESEQUELLE],
+                               capture_output=True, text=True, timeout=600)
+        except subprocess.TimeoutExpired:
+            return None, "Zeitueberschreitung nach 600 s: %s" % python
         uebrig = sorted(n for n in os.listdir(tmp) if n.startswith("verbotenL"))
     finally:
         shutil.rmtree(tmp, ignore_errors=True)
