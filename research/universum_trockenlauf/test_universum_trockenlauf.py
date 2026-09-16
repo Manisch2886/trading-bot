@@ -1,0 +1,544 @@
+#!/usr/bin/env python3
+"""
+Selbsttest des Universum-Trockenlaufs (TB-40)
+==============================================================================
+Geprueft wird, was die Aufgabenstellung ausdruecklich verlangt:
+
+  A  Der ausloesende Befund wird reproduziert: `rsi2_crypto` laedt heute
+     20 von 24 Symbolen, und es sind namentlich dieselben vier, die auf dem
+     Mac fehlten.
+  B  **Der Datenstand-Hash ist vor und nach dem Lauf identisch** - am
+     Verhalten geprueft, nicht am Vorsatz.
+  C  **Der Trockenlauf ist wiederholbar** - zweiter Lauf, gleiche Listen,
+     Symbol fuer Symbol.
+  D  **Ein kuenstlich verkuerztes Symbol faellt heraus**, und ein Symbol
+     **genau an der Grenze** wird eindeutig behandelt - gegen erzeugte
+     Beispieldaten, am Ablauf, an zwei Bots mit VERSCHIEDENER Schranke
+     (Tagesspanne und Kerzenzahl).
+  E  **Der Vergleich meldet eine Abweichung**, wenn eine eingetragene Zahl
+     veraendert wird - sonst prueft er nichts.
+  F-H  Mutationsproben.
+  I  Monotonie: Lesart H am Faltenende ist gleichbedeutend mit "an mindestens
+     einem Handelstag der Falte" - oder der Lauf meldet es.
+
+ZU DEN MUTATIONSPROBEN - DIE ZWEI WIEDERKEHRENDEN FALLEN
+------------------------------------------------------------------------------
+1. **Eine Probe, deren Zustand der Test von Hand herstellt, bestaetigt sich
+   selbst.** Deshalb wird hier keine Variable im laufenden Prozess umgebogen.
+   Jede Probe kopiert das Werkzeug in ein Wegwerf-Verzeichnis, aendert dort
+   **eine** Zeile und startet es als **eigenen Prozess** auf denselben Daten.
+   Beobachtet wird der **Ablauf**: kommt etwas anderes heraus? Und jede Probe
+   zeigt zuerst, dass sie ohne Mutation das Richtige sieht - sonst belegte ein
+   rotes Ergebnis nichts.
+2. **Eine zweite Wache verdeckt das Fehlen der ersten.** Der Trockenlauf hat
+   zwei Wachen gegen dieselbe Gefahr - den Schreibschutz im Kindprozess und
+   den Datenstand-Hash. Sie werden deshalb **einzeln** geprueft:
+
+   * **F** macht den Stichtag wirkungslos. Faellt er aus, misst jede Falte
+     stillschweigend den **heutigen** Stand - und sieht dabei sogar besser
+     aus, weil jede Falte dann mehr Symbole hat. Keine andere Wache schlaegt
+     dabei an: der Datenstand bleibt gleich, geschrieben wird nichts, die
+     Monotonie gilt trivial.
+   * **G** laesst den Trockenlauf schreiben, **mit** Schreibschutz. Der
+     Schreibschutz allein muss den Lauf abbrechen - ohne dass ein
+     Datenstand-Hash gefragt wird.
+   * **H** laesst ihn dasselbe tun, **ohne** Schreibschutz. Jetzt laeuft er
+     ohne Klage durch, und der Datenstand-Hash allein muss es finden. Damit
+     ist gezeigt, dass jede der beiden Wachen fuer sich greift.
+
+    python3 research/universum_trockenlauf/test_universum_trockenlauf.py
+
+Rueckgabewert 0, wenn alle Pruefungen bestehen, sonst 1.
+"""
+
+import datetime as dt
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+
+_HIER = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(_HIER))
+sys.path.insert(0, _HIER)
+sys.path.insert(0, os.path.join(BASE_DIR, "research", "vorregistrierung"))
+
+import herkunft                                                  # noqa: E402
+import universum_trockenlauf as ut                               # noqa: E402
+
+WERKZEUG = os.path.join(_HIER, "universum_trockenlauf.py")
+LOADERLAUF = os.path.join(_HIER, "loaderlauf.py")
+
+bestanden = 0
+gescheitert = []
+
+# Einmal gerechnet, von mehreren Teilen benutzt - der Faltenplan ist der
+# Vergleichsgegenstand und aendert sich waehrend des Tests nicht.
+_FALTENPLAN = [None]
+
+
+def pruefe(name, bedingung, zusatz=""):
+    global bestanden
+    if bedingung:
+        bestanden += 1
+        print("    ok   %s" % name)
+    else:
+        gescheitert.append(("%s %s" % (name, zusatz)).strip())
+        print(("    FEHL %s %s" % (name, zusatz)).rstrip())
+
+
+def _lauf(argv, umgebung=None):
+    return subprocess.run([sys.executable] + argv, capture_output=True,
+                          text=True, env=umgebung or os.environ.copy())
+
+
+def _faltenplan():
+    if _FALTENPLAN[0] is None:
+        ordner = tempfile.mkdtemp(prefix="tb40_test_fp_")
+        ziel = os.path.join(ordner, "fp.json")
+        r = _lauf([os.path.join(BASE_DIR, "research", "faltenplan_neun",
+                                "faltenplan_neun.py"), "--json", ziel])
+        if not os.path.exists(ziel):
+            raise RuntimeError("faltenplan_neun.py lief nicht:\n%s" % r.stdout[-2000:])
+        _FALTENPLAN[0] = ziel
+    return _FALTENPLAN[0]
+
+
+def _trockenlauf_json(bots, register=None, werkzeug=WERKZEUG, umgebung=None):
+    """Das Werkzeug als eigener Prozess; sein JSON-Bericht zurueck."""
+    ordner = tempfile.mkdtemp(prefix="tb40_test_")
+    ziel = os.path.join(ordner, "bericht.json")
+    argv = [werkzeug, "--nur-universum", "--json", ziel,
+            "--faltenplan-json", _faltenplan()]
+    for b in bots:
+        argv += ["--bot", b]
+    if register:
+        argv += ["--register", register]
+    r = _lauf(argv, umgebung)
+    if not os.path.exists(ziel):
+        return None, r
+    with open(ziel, encoding="utf-8") as f:
+        return json.load(f), r
+
+
+def _ersetze(pfad, alt, neu):
+    with open(pfad, encoding="utf-8") as f:
+        s = f.read()
+    if alt not in s:
+        raise AssertionError("Mutationsstelle nicht gefunden in %s: %r" % (pfad, alt))
+    with open(pfad, "w", encoding="utf-8") as f:
+        f.write(s.replace(alt, neu, 1))
+
+
+def _werkzeugkopie(ziel):
+    shutil.copytree(_HIER, ziel, dirs_exist_ok=True,
+                    ignore=shutil.ignore_patterns("__pycache__"))
+    return ziel
+
+
+def _umgebung_der_kopie():
+    """Die Repo-Wurzel wandert mit. Sonst suchte die Kopie ihre Kursdateien und
+    das Register neben dem Wegwerf-Ordner, und die Probe scheiterte am
+    fehlenden Pfad statt an der Mutation - eine Probe, die aus dem falschen
+    Grund scheitert, belegt nichts."""
+    u = os.environ.copy()
+    u["TB40_BASE_DIR"] = BASE_DIR
+    return u
+
+
+# ===========================================================================
+# Wegwerf-Kursdaten
+# ===========================================================================
+def _schreibe_reihe(pfad, anzahl, schritt, ende=dt.datetime(2026, 9, 1)):
+    """Eine Kursdatei mit genau `anzahl` vollstaendigen Kerzen im Abstand
+    `schritt`, endend am 1. September 2026."""
+    with open(pfad, "w", encoding="utf-8") as f:
+        f.write("open_time,open,high,low,close,volume\n")
+        for i in range(anzahl):
+            zeit = ende - schritt * (anzahl - 1 - i)
+            f.write("%s,100,101,99,100,1\n" % zeit.strftime("%Y-%m-%d %H:%M:%S"))
+
+
+def _loaderlauf_json(bot, datenordner=None, werkzeug=LOADERLAUF, extra=None,
+                     umgebung=None):
+    ordner = tempfile.mkdtemp(prefix="tb40_test_ll_")
+    ziel = os.path.join(ordner, "l.json")
+    argv = [werkzeug, "--bot", bot, "--aus", ziel]
+    if datenordner:
+        argv += ["--daten", datenordner]
+    argv += extra or []
+    r = _lauf(argv, umgebung)
+    if not os.path.exists(ziel):
+        return None, r
+    with open(ziel, encoding="utf-8") as f:
+        return json.load(f), r
+
+
+# ===========================================================================
+# A  Der ausloesende Befund
+# ===========================================================================
+def teil_a():
+    stand = herkunft.datenstand()
+    pruefe("A0: der Datenstand ist der registrierte (223 Dateien, d9449faf...)",
+           stand["dateien"] == 223 and stand["datenstand"].startswith("d9449faf"),
+           "%s / %d" % (stand["datenstand"][:12], stand["dateien"]))
+
+    bericht, r = _trockenlauf_json(["rsi2_crypto"])
+    pruefe("A1: das Werkzeug laeuft", bericht is not None,
+           (r.stdout + r.stderr)[-500:])
+    if bericht is None:
+        return
+    e = bericht["bots"]["rsi2_crypto"]
+    pruefe("A2: der Loader laedt heute 20 von 24 Symbolen - der Befund vom Mac",
+           len(e["heute_geladen"]) == 20 and e["universum"] == 24,
+           "%d von %d" % (len(e["heute_geladen"]), e["universum"]))
+    fehlen = sorted({"ENSOUSDT", "PUMPUSDT", "ZKCUSDT", "UUSDT"}
+                    - set(e["heute_geladen"]))
+    pruefe("A3: und es sind namentlich dieselben vier",
+           fehlen == ["ENSOUSDT", "PUMPUSDT", "UUSDT", "ZKCUSDT"], str(fehlen))
+    pruefe("A4: die eingetragene Zahl fuer die Bestaetigungsperiode ist 23 - "
+           "die Abweichung, um die es geht",
+           [f for f in e["falten"] if f["bestaetigung"]][0]["register"] == 23)
+
+
+# ===========================================================================
+# B  Der Datenstand-Hash - am Verhalten
+# ===========================================================================
+def _baum(ordner):
+    """Alle Pfade unterhalb eines Ordners - oder None, wenn es ihn nicht gibt."""
+    if not os.path.exists(ordner):
+        return None
+    return sorted(os.path.join(w, n) for w, _d, ns in os.walk(ordner) for n in ns) \
+        + sorted(os.path.join(w, d) for w, ds, _n in os.walk(ordner) for d in ds)
+
+
+def teil_b():
+    vorher = herkunft.datenstand()
+    logs_vorher = _baum(os.path.join(BASE_DIR, "logs"))
+    ergebnisse_vorher = _baum(os.path.join(BASE_DIR, "results"))
+    bericht, r = _trockenlauf_json(["rsi2_crypto", "elliott_wave_stocks"])
+    nachher = herkunft.datenstand()
+    pruefe("B0: der Lauf kommt durch", bericht is not None,
+           (r.stdout + r.stderr)[-500:])
+    pruefe("B1: der Datenstand-Hash ist vor und nach dem Lauf identisch",
+           vorher == nachher, "%s -> %s" % (vorher["datenstand"][:12],
+                                            nachher["datenstand"][:12]))
+    # Dass der Schreibschutz waehrend des Laufs WIRKLICH aktiv war, zeigt
+    # sich daran, dass er etwas zu tun hatte: shared/strategy_paths.py will
+    # beim Import results/<bot> und logs/<bot> anlegen, und genau diese
+    # Versuche stehen im Bericht. Ohne diesen Nachweis koennte B1 auch dann
+    # gruen sein, wenn gar keine Wache liefe.
+    pruefe("B2: der Schreibschutz war waehrend des Laufs nachweislich aktiv",
+           bericht is not None
+           and any("makedirs_unterdrueckt" in e for e in bericht["bots"].values()),
+           str(list(bericht["bots"].values())[0].keys()) if bericht else "")
+    # results/<bot> und logs/<bot> legt shared/strategy_paths.py beim Import an.
+    # Der Schreibschutz macht das folgenlos; hier wird nachgesehen, dass es
+    # wirklich folgenlos blieb.
+    # Nicht "logs/ existiert nicht" - das waere eine Aussage ueber das ganze
+    # Repo, und andere Tests legen den Ordner an. Geprueft wird, was dieser
+    # Lauf hinterlassen hat: nichts.
+    pruefe("B3: der Lauf hat unter logs/ nichts angelegt",
+           _baum(os.path.join(BASE_DIR, "logs")) == logs_vorher,
+           str(set(_baum(os.path.join(BASE_DIR, "logs")) or [])
+               - set(logs_vorher or []))[:200])
+    pruefe("B4: und unter results/ ebenfalls nichts",
+           _baum(os.path.join(BASE_DIR, "results")) == ergebnisse_vorher,
+           str(set(_baum(os.path.join(BASE_DIR, "results")) or [])
+               - set(ergebnisse_vorher or []))[:200])
+
+
+# ===========================================================================
+# C  Wiederholbarkeit
+# ===========================================================================
+def teil_c():
+    erst, _ = _trockenlauf_json(["turtle_soup_crypto"])
+    zweit, _ = _trockenlauf_json(["turtle_soup_crypto"])
+    pruefe("C0: beide Laeufe kommen durch", erst is not None and zweit is not None)
+    if erst is None or zweit is None:
+        return
+    a = erst["bots"]["turtle_soup_crypto"]["falten"]
+    b = zweit["bots"]["turtle_soup_crypto"]["falten"]
+    gleich = all(x["gemessen_H"] == y["gemessen_H"]
+                 and x["gemessen_F"] == y["gemessen_F"] for x, y in zip(a, b))
+    pruefe("C1: zweiter Lauf, gleiche Listen - Symbol fuer Symbol, nicht nur "
+           "gleiche Anzahl", gleich)
+    pruefe("C2: und es sind ueberhaupt Symbole drin (sonst waere C1 leer wahr)",
+           sum(len(x["gemessen_H"]) for x in a) > 0)
+
+
+# ===========================================================================
+# D  Die Grenze - gegen erzeugte Beispieldaten, am Ablauf
+# ===========================================================================
+def teil_d():
+    # --- D1-D4: Spannen-Schranke (500 Tage, turtle_soup_crypto) -------------
+    # 501 Tageskerzen ergeben eine Spanne von 500 Tagen - genau die Schranke.
+    with tempfile.TemporaryDirectory() as tmp:
+        tag = dt.timedelta(days=1)
+        _schreibe_reihe(os.path.join(tmp, "BTCUSDT_1d.csv"), 900, tag)
+        _schreibe_reihe(os.path.join(tmp, "ETHUSDT_1d.csv"), 501, tag)
+        _schreibe_reihe(os.path.join(tmp, "XRPUSDT_1d.csv"), 500, tag)
+        lauf, r = _loaderlauf_json("turtle_soup_crypto", tmp)
+        pruefe("D0: der Loader laeuft auf den Beispieldaten",
+               lauf is not None and not lauf["fehler"],
+               (lauf or {}).get("fehler") or (r.stdout + r.stderr)[-400:])
+        if lauf is None or lauf["fehler"]:
+            return
+        geladen = set(lauf["laeufe"][0]["symbole"])
+        pruefe("D1: das lange Symbol wird geladen", "BTCUSDT" in geladen)
+        pruefe("D2: das kuenstlich verkuerzte Symbol faellt heraus "
+               "(499 Tage < 500)", "XRPUSDT" not in geladen)
+        pruefe("D3: genau an der Grenze (exakt 500 Tage) wird GELADEN - die "
+               "Schranke ist einschliesslich",
+               "ETHUSDT" in geladen, str(sorted(geladen)))
+        pruefe("D4: die Schranke, gegen die geprueft wurde, ist die des Bots "
+               "(500), nicht eine Zahl im Werkzeug",
+               lauf["schranken"].get("MIN_HISTORY_DAYS") == 500,
+               str(lauf["schranken"].get("MIN_HISTORY_DAYS")))
+
+    # --- D5-D7: Kerzenzahl-Schranke (17520 Kerzen, elliott_wave) -----------
+    # Derselbe Test an einem Bot, dessen Schranke eine ANDERE Groesse misst.
+    # Waere sie ueberall dieselbe, koennte das Werkzeug sie abschreiben.
+    with tempfile.TemporaryDirectory() as tmp:
+        stunde = dt.timedelta(hours=1)
+        _schreibe_reihe(os.path.join(tmp, "BTCUSDT_1h.csv"), 17520, stunde)
+        _schreibe_reihe(os.path.join(tmp, "ETHUSDT_1h.csv"), 17519, stunde)
+        # Gleiche Zeitspanne wie BTCUSDT, aber nur jede zehnte Kerze: eine
+        # Spannen-Schranke wuerde das durchlassen, eine Kerzenzahl-Schranke
+        # nicht. Das trennt die beiden Arten am Verhalten.
+        _schreibe_reihe(os.path.join(tmp, "XRPUSDT_1h.csv"), 1752,
+                        stunde * 10)
+        lauf, r = _loaderlauf_json("elliott_wave", tmp)
+        pruefe("D5: der Loader von elliott_wave laeuft auf den Beispieldaten",
+               lauf is not None and not lauf["fehler"],
+               (lauf or {}).get("fehler") or (r.stdout + r.stderr)[-400:])
+        if lauf is None or lauf["fehler"]:
+            return
+        geladen = set(lauf["laeufe"][0]["symbole"])
+        pruefe("D6: genau an der Grenze (exakt 17520 Kerzen) wird geladen, "
+               "eine Kerze weniger nicht",
+               "BTCUSDT" in geladen and "ETHUSDT" not in geladen,
+               str(sorted(geladen)))
+        pruefe("D7: dieselbe Zeitspanne mit zu wenig Kerzen faellt heraus - "
+               "dieser Bot misst Kerzen, nicht Tage",
+               "XRPUSDT" not in geladen)
+        pruefe("D8: und seine Schranke heisst auch anders",
+               "MIN_HISTORY_HOURS" in lauf["schranken"]
+               and "MIN_HISTORY_DAYS" not in lauf["schranken"],
+               str(sorted(lauf["schranken"])))
+
+
+# ===========================================================================
+# E  Der Vergleich meldet eine Abweichung
+# ===========================================================================
+def _registerkopie(ziel, alt, neu):
+    shutil.copy2(ut.REGISTER, ziel)
+    _ersetze(ziel, alt, neu)
+    return ziel
+
+
+def teil_e():
+    original, _ = _trockenlauf_json(["rsi2_crypto"])
+    pruefe("E0: unmutiert liest das Werkzeug die eingetragene Reihe "
+           "6 / 9 / 13 / 13 / 13 / 17 / 18",
+           original is not None
+           and original["bots"]["rsi2_crypto"]["register"]["falten"]
+           == [6, 9, 13, 13, 13, 17, 18],
+           str((original or {}).get("bots", {}).get("rsi2_crypto", {}).get("register")))
+    if original is None:
+        return
+    vorher = original["bots"]["rsi2_crypto"]["falten"][0]["differenz_H"]
+
+    with tempfile.TemporaryDirectory() as tmp:
+        pfad = _registerkopie(
+            os.path.join(tmp, "REG.md"),
+            "| `rsi2_crypto` | 6 / 9 / 13 / 13 / 13 / 17 / 18 | 23 | 24 |",
+            "| `rsi2_crypto` | 5 / 9 / 13 / 13 / 13 / 17 / 18 | 23 | 24 |")
+        mutiert, r = _trockenlauf_json(["rsi2_crypto"], register=pfad)
+        pruefe("E1: das Werkzeug laeuft auf dem veraenderten Register",
+               mutiert is not None, (r.stdout + r.stderr)[-400:])
+        if mutiert is None:
+            return
+        nachher = mutiert["bots"]["rsi2_crypto"]["falten"][0]["differenz_H"]
+        pruefe("E2: eine veraenderte eingetragene Zahl aendert die gemeldete "
+               "Differenz - der Vergleich prueft wirklich gegen das Register",
+               nachher == vorher + 1, "%s -> %s" % (vorher, nachher))
+        pruefe("E3: die GEMESSENE Liste bleibt dabei gleich - es hat sich nur "
+               "die eingetragene Zahl bewegt, nicht die Messung",
+               mutiert["bots"]["rsi2_crypto"]["falten"][0]["gemessen_H"]
+               == original["bots"]["rsi2_crypto"]["falten"][0]["gemessen_H"])
+
+
+# ===========================================================================
+# F  Mutationsprobe: der Stichtag wird wirkungslos
+# ===========================================================================
+def teil_f():
+    original, _ = _trockenlauf_json(["rsi2_crypto"])
+    pruefe("F0: unmutiert misst die erste Falte WENIGER als heute",
+           original is not None
+           and len(original["bots"]["rsi2_crypto"]["falten"][0]["gemessen_H"])
+           < len(original["bots"]["rsi2_crypto"]["heute_geladen"]))
+    if original is None:
+        return
+
+    with tempfile.TemporaryDirectory() as tmp:
+        ordner = _werkzeugkopie(os.path.join(tmp, "werkzeug"))
+        _ersetze(os.path.join(ordner, "loaderlauf.py"),
+                 '            df = df[df["open_time"] <= stichtag]',
+                 '            pass  # Mutationsprobe: Stichtag wirkungslos')
+        mutiert, r = _trockenlauf_json(
+            ["rsi2_crypto"],
+            werkzeug=os.path.join(ordner, "universum_trockenlauf.py"),
+            umgebung=_umgebung_der_kopie())
+        pruefe("F1: das mutierte Werkzeug laeuft (sonst belegte F2 nichts)",
+               mutiert is not None, (r.stdout + r.stderr)[-400:])
+        if mutiert is None:
+            return
+        m = mutiert["bots"]["rsi2_crypto"]
+        pruefe("F2: ohne wirksamen Stichtag misst JEDE Falte den heutigen "
+               "Stand - und das faellt auf",
+               all(f["gemessen_H"] == m["heute_geladen"] for f in m["falten"]),
+               str([len(f["gemessen_H"]) for f in m["falten"]]))
+        pruefe("F3: die Mutation macht die Zahlen GROESSER, nicht kleiner - "
+               "sie sieht also besser aus als das Richtige",
+               sum(len(f["gemessen_H"]) for f in m["falten"])
+               > sum(len(f["gemessen_H"])
+                     for f in original["bots"]["rsi2_crypto"]["falten"]))
+        pruefe("F4: keine andere Wache schlaegt dabei an - die Monotonie gilt "
+               "trivial weiter, also braucht es genau diese Probe",
+               mutiert["monotonie_verletzt"] == [])
+
+
+# ===========================================================================
+# G/H  Mutationsproben: die beiden Wachen gegen das Schreiben, einzeln
+# ===========================================================================
+_SCHREIB_ANKER = "    return modul\n"
+_SCHREIB_MUTATION = (
+    '    with open(os.path.join(modul.DATA_DIR, "_mutationsprobe.csv"), "w") as _f:\n'
+    '        _f.write("open_time,open,high,low,close,volume\\n")\n'
+    "    return modul\n")
+
+
+def _wegwerf_repo(ordner):
+    """Ein Wegwerf-Repo: alles verlinkt, nur `data/` ist eine echte Kopie mit
+    drei Kursdateien.
+
+    Warum nicht einfach `--daten`: Teil H schaltet den Schreibschutz ab. Alles,
+    was der Loader dann anlegen will - `shared/strategy_paths.py` will beim
+    Import `results/<bot>` und `logs/<bot>` - soll im Wegwerf-Ordner landen und
+    nicht im Repo. Die Probe darf das Repo auch dann nicht anfassen, wenn sie
+    gelingt."""
+    os.makedirs(ordner)
+    for name in ("config", "shared", "docs", "research", "strategies"):
+        os.symlink(os.path.join(BASE_DIR, name), os.path.join(ordner, name))
+    daten = os.path.join(ordner, "data")
+    os.makedirs(daten)
+    for symbol in ("BTCUSDT", "ETHUSDT", "XRPUSDT"):
+        shutil.copy2(os.path.join(BASE_DIR, "data", "%s_1d.csv" % symbol), daten)
+    return daten
+
+
+def teil_g():
+    with tempfile.TemporaryDirectory() as tmp:
+        repo = os.path.join(tmp, "repo")
+        daten = _wegwerf_repo(repo)
+        umgebung = os.environ.copy()
+        umgebung["TB40_BASE_DIR"] = repo
+        vorher = herkunft.datenstand(daten)
+
+        sauber, _ = _loaderlauf_json("turtle_soup_crypto", umgebung=umgebung)
+        pruefe("G0: unmutiert laeuft der Kindprozess ohne Fehler",
+               sauber is not None and not sauber["fehler"],
+               (sauber or {}).get("fehler"))
+
+        ordner = _werkzeugkopie(os.path.join(tmp, "werkzeug"))
+        _ersetze(os.path.join(ordner, "loaderlauf.py"),
+                 _SCHREIB_ANKER, _SCHREIB_MUTATION)
+        lauf, r = _loaderlauf_json(
+            "turtle_soup_crypto",
+            werkzeug=os.path.join(ordner, "loaderlauf.py"),
+            umgebung=umgebung)
+        pruefe("G1: der Schreibschutz ALLEIN bricht den Lauf ab - ohne dass "
+               "ein Datenstand-Hash gefragt wurde",
+               lauf is not None and lauf["fehler"]
+               and "SCHREIBVERSUCH" in lauf["fehler"],
+               str((lauf or {}).get("fehler"))[:200] or (r.stdout + r.stderr)[-300:])
+        pruefe("G2: und die Datei ist gar nicht erst entstanden",
+               not os.path.exists(os.path.join(daten, "_mutationsprobe.csv")))
+        pruefe("G3: der Datenstand des Wegwerf-Ordners steht unveraendert",
+               herkunft.datenstand(daten) == vorher)
+
+
+def teil_h():
+    with tempfile.TemporaryDirectory() as tmp:
+        repo = os.path.join(tmp, "repo")
+        daten = _wegwerf_repo(repo)
+        umgebung = os.environ.copy()
+        umgebung["TB40_BASE_DIR"] = repo
+        vorher = herkunft.datenstand(daten)
+
+        ordner = _werkzeugkopie(os.path.join(tmp, "werkzeug"))
+        _ersetze(os.path.join(ordner, "loaderlauf.py"),
+                 _SCHREIB_ANKER, _SCHREIB_MUTATION)
+        lauf, r = _loaderlauf_json(
+            "turtle_soup_crypto",
+            werkzeug=os.path.join(ordner, "loaderlauf.py"),
+            extra=["--ohne-schreibschutz"],
+            umgebung=umgebung)
+        pruefe("H1: ohne Schreibschutz laeuft derselbe Defekt OHNE Klage durch "
+               "- die erste Wache fehlt wirklich",
+               lauf is not None and not lauf["fehler"],
+               str((lauf or {}).get("fehler"))[:200] or (r.stdout + r.stderr)[-300:])
+        pruefe("H2: die Datei ist jetzt da",
+               os.path.exists(os.path.join(daten, "_mutationsprobe.csv")))
+        nachher = herkunft.datenstand(daten)
+        pruefe("H3: der Datenstand-Hash ALLEIN findet es - die zweite Wache "
+               "greift fuer sich",
+               nachher != vorher, "%s -> %s" % (vorher["datenstand"][:12],
+                                                nachher["datenstand"][:12]))
+        pruefe("H4: und zwar an der Dateizahl wie am Inhalt",
+               nachher["dateien"] == vorher["dateien"] + 1)
+
+
+# ===========================================================================
+# I  Monotonie
+# ===========================================================================
+def teil_i():
+    bericht, r = _trockenlauf_json(["rsi2_crypto", "elliott_wave",
+                                    "volatility_breakout"])
+    pruefe("I0: der Lauf kommt durch", bericht is not None,
+           (r.stdout + r.stderr)[-400:])
+    if bericht is None:
+        return
+    pruefe("I1: ueber alle Stichtage waechst die Menge der handelbaren "
+           "Symbole nur - Lesart H am Faltenende ist damit gleichbedeutend "
+           "mit 'an mindestens einem Handelstag der Falte'",
+           bericht["monotonie_verletzt"] == [],
+           str(bericht["monotonie_verletzt"])[:300])
+    e = bericht["bots"]["rsi2_crypto"]
+    pruefe("I2: und die Pruefung ist nicht leer - F ist echt strenger als H",
+           any(len(f["gemessen_F"]) < len(f["gemessen_H"]) for f in e["falten"]))
+
+
+# ===========================================================================
+def main():
+    print(__doc__.strip().split("\n")[0])
+    print("=" * 78)
+    for name, teil in (("A", teil_a), ("B", teil_b), ("C", teil_c),
+                       ("D", teil_d), ("E", teil_e), ("F", teil_f),
+                       ("G", teil_g), ("H", teil_h), ("I", teil_i)):
+        print("  Teil %s ..." % name, flush=True)
+        teil()
+    print("\n" + "=" * 78)
+    if gescheitert:
+        print("%d bestanden, %d GESCHEITERT:" % (bestanden, len(gescheitert)))
+        for g in gescheitert:
+            print("  - %s" % g)
+        return 1
+    print("%d/%d Pruefungen bestanden." % (bestanden, bestanden))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
