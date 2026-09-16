@@ -4782,7 +4782,6 @@ die den Auftrag hatten, im Projektarchiv nachzulesen statt abzuschreiben.
 ---
 
 ## Wiederkehrende Lehren
-## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
   Fehlerklasse trat in #62, #66, #67, #73 und #77 auf — fünfmal.

@@ -111,6 +111,12 @@ demselben Branch weiterarbeiten — das erzeugt tote PRs.
   > weiter. **Also gehört sie ausdrücklich in den Auftrag an die Cloud-Sitzung:**
   > *„Das Testdokument verlangt am Ende ebenfalls ein ZIP der dort entstehenden
   > Ergebnisse."*
+
+  ⚠️ **Und beim Abnehmen jeder Cloud-Übergabe wird nachgesehen, ob das
+  Testdokument die ZIP-Pflicht wirklich enthält** *(ergänzt 16.09.2026)* — nicht
+  erst dann, wenn der Mac-Lauf ohne Archiv endet. *Ein Satz im Auftrag ist eine
+  Anforderung; erst die Prüfung macht ihn zur Zusicherung.* Dasselbe gilt für
+  „In einfacher Sprache": beides gehört auf dieselbe Abnahmeliste.
 - ⚠️ **`ARBEITSWEISE.md`, `JOURNAL.md` und `BACKLOG.md` werden NICHT bei jeder
   Änderung mitgeschickt** *(ergänzt 15.09.2026, verschärft am selben Tag)*. Sie
   werden weiterhin fortlaufend gepflegt, und geänderte Regeln werden **im Chat
@@ -122,6 +128,32 @@ demselben Branch weiterarbeiten — das erzeugt tote PRs.
   jeder Übergabe, und wenn viel Ungesichertes aufgelaufen ist. **Und dann
   werden sie samt aller nötigen Schritte bereitgestellt:** wohin speichern,
   welche Datei ersetzt welche, und ob etwas ins Repo abzulegen ist.
+- ⚠️ **Die Sicherung geht IMMER ins Repo, nach `docs/projektfuehrung/`**
+  *(ergänzt 16.09.2026, eingerichtet am selben Tag)*. Nicht in den
+  Downloads-Ordner und dort liegenlassen. **Der feste Ablauf, jedes Mal:**
+
+  1. **Einzeldateien** anbieten, nicht nur das Archiv — ein ZIP muss erst
+     entpackt werden, und der Downloads-Ordner benennt Doppelte still um.
+  2. `git branch --show-current && git status --short` — ⚠️ **auf `main` stehen
+     und sauber sein**, sonst landet die Ablage auf einem Zweig.
+  3. ⚠️ **`ls -lt` auf die heruntergeladenen Dateien, und die BYTEGRÖSSEN gegen
+     die angebotenen prüfen.** *Am 16.09. lagen drei Fassungen von `JOURNAL.md`
+     gleichzeitig im Downloads-Ordner — `JOURNAL.md`, `files-15/JOURNAL.md` und
+     `SICHERUNG_projektfuehrung/JOURNAL.md`. Sie waren zufällig identisch. Ohne
+     Prüfung wäre das Glück gewesen, nicht Verfahren.*
+  4. Kopieren, **Grössen erneut prüfen**, dann `git add` + `commit` + `push`
+     **in einem Zug** — eine unversionierte Datei blockiert sonst den nächsten
+     Pull (P.2).
+
+  > ⚠️ **Ab der ersten Ablage ist die Fassung im Repo die massgebliche.** Jede
+  > Änderung in einer Sitzung muss denselben Weg zurücknehmen — herunterladen,
+  > kopieren, committen. *Sonst laufen zwei Fassungen auseinander, wie es bei den
+  > zwei Symbolzahl-Tabellen (15.5 gegen 16.1.1) bereits passiert ist.*
+
+  **Der Gewinn, der über das Sichern hinausgeht:** Die Cloud-Sitzungen können
+  `docs/projektfuehrung/ARBEITSWEISE.md` **lesen**. Stehende Regeln müssen nicht
+  mehr in jedes Aufgabendokument abgeschrieben werden — ein Verweis genügt.
+  *Das ist P.4 („die Sitzungen sehen einander nicht") an einer Stelle behoben.*
 
 > *Hintergrund: Der Nutzer arbeitet oft vom iPhone. Textdateien sind mehrfach
 > leer angekommen — **ZIP hat immer funktioniert**.*
