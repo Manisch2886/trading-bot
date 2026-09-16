@@ -36,6 +36,13 @@ _SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "sha
 sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
+# TB-42: die Leseseite des Quartals-Multiplikators auf die Positionsgroesse.
+# Gelesen wird er in __main__ und je Lauf protokolliert; bis dahin - und
+# immer, wenn keine Quartalsrechnung hinterlegt ist - gilt 1,0, also "wie
+# bisher". Kein Bot bleibt stehen, weil eine Quartalsrechnung fehlt.
+# Wo er angreift und warum nur dort: shared/groessenfaktor.py
+import groessenfaktor
+GROESSENFAKTOR = groessenfaktor.NEUTRAL
 _P = get_strategy_paths(__file__)
 DB_FILE = _P["DB_FILE"]  # eigene Datenbank pro Strategie - vermischt sich nicht mit anderen Bots
 
@@ -77,11 +84,13 @@ def init_db():
             result TEXT,
             pnl_pct REAL,
             status TEXT,
+            groessenfaktor REAL,
             fib_score REAL,
             UNIQUE(symbol, signal_time)
         )
     """)
     conn.commit()
+    groessenfaktor.spalte_anlegen(conn)   # TB-42, auch in Alt-Datenbanken
     return conn
 
 
@@ -169,10 +178,10 @@ def find_new_signals(conn, price_data: dict):
             try:
                 conn.execute("""
                     INSERT INTO trades
-                    (symbol, signal_time, entry_time, entry_price, stop_price, target_price, status, fib_score)
-                    VALUES (?, ?, ?, ?, ?, ?, 'open', ?)
+                    (symbol, signal_time, entry_time, entry_price, stop_price, target_price, status, fib_score, groessenfaktor)
+                    VALUES (?, ?, ?, ?, ?, ?, 'open', ?, ?)
                 """, (symbol, str(end_time), str(entry_reference_time), entry_price,
-                      stop_price, target_price, wave["fib_score"]))
+                      stop_price, target_price, wave["fib_score"], GROESSENFAKTOR))
                 conn.commit()
                 print(f"  [NEU EROEFFNET] {symbol}: Welle 5 endete {end_time}, "
                       f"Entry (aktueller Kurs) {entry_price:.2f}, "
@@ -204,6 +213,7 @@ def print_summary(conn):
 if __name__ == "__main__":
     print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}\n")
 
+    GROESSENFAKTOR = groessenfaktor.lies(__file__)
     conn = init_db()
 
     print("Lade aktuelle Marktdaten...")

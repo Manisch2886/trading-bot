@@ -23,6 +23,11 @@ sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
 from kursdaten import entferne_unvollstaendige, Zaehler
+# TB-42: je ausgelassenem Symbol eine Zeile mit dem Grund, am Ende eine
+# Summenzeile. Der Wortlaut steht in shared/ladeprotokoll.py und damit
+# EINMAL statt neunmal. Geladen oder ausgeschlossen wird dadurch nichts
+# anderes als vorher - es wird nur gesagt.
+from ladeprotokoll import Ladeprotokoll
 _P = get_strategy_paths(__file__)
 DATA_DIR = _P["DATA_DIR"]
 RESULTS_DIR = _P["RESULTS_DIR"]
@@ -55,6 +60,7 @@ def load_all_symbol_data() -> dict:
     auf die letzten RECENT_YEARS_ONLY Jahre, nicht die Indikator-Basis."""
     data = {}
     _luecken = Zaehler()
+    _prot = Ladeprotokoll(SYMBOLS)
     for symbol in SYMBOLS:
         csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
         try:
@@ -71,12 +77,15 @@ def load_all_symbol_data() -> dict:
                                                         melden=False)
             _luecken.erfasse(symbol, _gestrichen)
         except FileNotFoundError:
+            _prot.fehlt(symbol, csv_path)
             continue
         if df.empty:
+            _prot.leer(symbol, csv_path)
             continue
 
         timespan_days = (df["open_time"].max() - df["open_time"].min()).days
         if timespan_days < MIN_HISTORY_DAYS:
+            _prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
             continue
 
         entry_cutoff = None
@@ -86,6 +95,7 @@ def load_all_symbol_data() -> dict:
         df_ind = compute_indicators(df)
         data[symbol] = (df_ind, entry_cutoff)
     _luecken.melde()
+    _prot.melde(data)
     return data
 
 

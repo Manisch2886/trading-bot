@@ -680,9 +680,13 @@ def baue_abbild(wurzel, bot, live_csv_quelle):
 
     # ECHTE Module - unveraendert uebernommen, damit hier geprueft wird, was
     # spaeter auch laeuft.
+    # groessenfaktor.py ist seit TB-42 dabei: jede forward_test.py importiert
+    # sie beim Start. Im Abbild gibt es kein config/, die Faktordatei fehlt
+    # also - genau der Normalfall, in dem 1,0 gilt und der Bot unveraendert
+    # weiterlaeuft. Diese Datei prueft das nicht, sie braucht das Modul nur.
     for name in ("entscheidungskerze.py", "abrufschutz.py", "kursdaten.py",
                  "binance_historie.py", "strategy_paths.py",
-                 "data_quality.py"):
+                 "data_quality.py", "groessenfaktor.py"):
         shutil.copy2(os.path.join(_SHARED, name), os.path.join(shared, name))
     for name in ("waechter_melden.py", "boersenkalender.py"):
         quelle = os.path.join(BASE_DIR, "notifications", name)

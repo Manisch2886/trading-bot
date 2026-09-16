@@ -36,6 +36,13 @@ _SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "sha
 sys.path.insert(0, _SHARED_DIR)
 
 from strategy_paths import get_strategy_paths
+# TB-42: die Leseseite des Quartals-Multiplikators auf die Positionsgroesse.
+# Gelesen wird er in __main__ und je Lauf protokolliert; bis dahin - und
+# immer, wenn keine Quartalsrechnung hinterlegt ist - gilt 1,0, also "wie
+# bisher". Kein Bot bleibt stehen, weil eine Quartalsrechnung fehlt.
+# Wo er angreift und warum nur dort: shared/groessenfaktor.py
+import groessenfaktor
+GROESSENFAKTOR = groessenfaktor.NEUTRAL
 from data_quality import balken_unvollstaendig, melde_uebersprungene_balken
 _P = get_strategy_paths(__file__)
 DB_FILE = _P["DB_FILE"]
@@ -76,11 +83,13 @@ def init_db():
             result TEXT,
             pnl_pct REAL,
             status TEXT,
+            groessenfaktor REAL,
             rsi_at_entry REAL,
             UNIQUE(symbol, signal_time)
         )
     """)
     conn.commit()
+    groessenfaktor.spalte_anlegen(conn)   # TB-42, auch in Alt-Datenbanken
     return conn
 
 
@@ -197,9 +206,10 @@ def find_new_signals(conn, indicator_data: dict):
         try:
             conn.execute("""
                 INSERT INTO trades
-                (symbol, signal_time, entry_time, entry_price, stop_price, status, rsi_at_entry)
-                VALUES (?, ?, ?, ?, ?, 'open', ?)
-            """, (symbol, str(entry_time), str(entry_time), entry_price, stop_price, round(float(row["rsi"]), 2)))
+                (symbol, signal_time, entry_time, entry_price, stop_price, status, rsi_at_entry, groessenfaktor)
+                VALUES (?, ?, ?, ?, ?, 'open', ?, ?)
+            """, (symbol, str(entry_time), str(entry_time), entry_price, stop_price,
+                  round(float(row["rsi"]), 2), GROESSENFAKTOR))
             conn.commit()
             open_count += 1
             open_symbols.add(symbol)
@@ -236,6 +246,7 @@ if __name__ == "__main__":
           f"{'kein Stop' if STOP_LOSS_PCT is None else f'{STOP_LOSS_PCT}%'}  |  "
           f"Limit: {'unbegrenzt' if MAX_CONCURRENT_POSITIONS is None else MAX_CONCURRENT_POSITIONS}\n")
 
+    GROESSENFAKTOR = groessenfaktor.lies(__file__)
     conn = init_db()
 
     print("Lade aktuelle Marktdaten und berechne Indikatoren...")
