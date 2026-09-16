@@ -1,0 +1,11 @@
+{
+  "datenstand_ist": "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84",
+  "dateien_ist": 223,
+  "datenstand_soll": "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84",
+  "dateien_soll": 223,
+  "datenstand_unveraendert": true,
+  "ziel_ausserhalb_data": true,
+  "ziel": "/home/user/trading-bot/research/etf_trendfolge/daten",
+  "grund": null,
+  "in_ordnung": true
+}
