@@ -38,6 +38,11 @@ _P = get_strategy_paths(__file__)
 DB_FILE = _P["DB_FILE"]
 
 from fetch_binance_data import fetch_historical_data
+# TB-38: die gemeinsame Abrufschicht. Sie liest data/, faellt bei veraltetem
+# Stand auf genau den Abruf darueber zurueck und schneidet in BEIDEN Faellen
+# alles ab, was nach der Entscheidungskerze liegt. Damit rechnet dieser Lauf
+# auf derselben Kerze wie der Backtest. Begruendung: shared/entscheidungskerze.py
+import entscheidungskerze
 from symbols_config import SYMBOLS
 from indicators import sma, rsi
 # MAX_HOLD_DAYS neu aus live_params.py statt eigener Zahl weiter unten -
@@ -226,7 +231,9 @@ if __name__ == "__main__":
     indicator_data = {}
     for symbol in SYMBOLS:
         try:
-            df = fetch_historical_data(symbol, INTERVAL, LOOKBACK)
+            df = entscheidungskerze.lade(
+                symbol, INTERVAL, entscheidungskerze.KRYPTO,
+                abruf=lambda: fetch_historical_data(symbol, INTERVAL, LOOKBACK))
             if df.empty:
                 continue
             indicator_data[symbol] = compute_indicators(df)
@@ -239,6 +246,12 @@ if __name__ == "__main__":
 
     print("\nSuche neue Signale...")
     find_new_signals(conn, indicator_data)
+
+    # TB-38: genau EINMAL je Lauf - was an Rueckfaellen auf den Live-Abruf
+    # angefallen ist, geht ueber dieselbe Telegram-Leitung wie die Waechter
+    # (TB-32), mit derselben Wiederholungsdaempfung. Bringt den Lauf nie zum
+    # Scheitern.
+    entscheidungskerze.melde()
 
     print_summary(conn)
     conn.close()
