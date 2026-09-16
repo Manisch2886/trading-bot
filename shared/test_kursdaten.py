@@ -66,6 +66,20 @@ def _konstanten(quelltext):
     return werte
 
 
+def _geholte_parameter(quelltext):
+    """Welche Namen die Datei aus live_params.py zieht - per AST.
+
+    Das sind die Handelsparameter selbst. Dass sie vollzaehlig bleiben, ist
+    wichtiger als jede Zeile Text daneben.
+    """
+    namen = set()
+    for knoten in ast.walk(ast.parse(quelltext)):
+        if isinstance(knoten, ast.ImportFrom) and knoten.module == "live_params":
+            for alias in knoten.names:
+                namen.add(alias.name)
+    return namen
+
+
 def rahmen(zeilen):
     """Ein Kursrahmen wie die CSVs des Projekts."""
     return pd.DataFrame(zeilen, columns=["open_time", "open", "high", "low",
@@ -438,9 +452,58 @@ def test_verbreitung():
     lauf = subprocess.run(["git", "diff", "--name-only", "origin/main"],
                           cwd=BASE_DIR, capture_output=True, text=True)
     geaendert = [z for z in lauf.stdout.splitlines() if z.strip()]
-    for verboten in ("forward_test.py", "equity_simulation.py"):
-        betroffen = [z for z in geaendert if z.endswith(verboten)]
-        check(f"keine {verboten} veraendert", not betroffen, betroffen)
+    betroffen = [z for z in geaendert if z.endswith("equity_simulation.py")]
+    check("keine equity_simulation.py veraendert", not betroffen, betroffen)
+
+    # forward_test.py: geprueft wird, was die Datei an HANDELSPARAMETERN
+    # fuehrt - nicht die Dateibytes. Dieselbe Praezisierung wie bei
+    # live_params.py darunter, aus demselben Grund und mit demselben Anspruch:
+    # strenger, nicht lockerer.
+    #
+    # ANLASS: TB-42, Freigabe des Betreibers vom 16.09.2026. Die neun
+    # forward_test.py LESEN seit TB-42 einen Quartals-Multiplikator auf die
+    # Positionsgroesse (shared/groessenfaktor.py) - der erste freigegebene
+    # Eingriff in diese Dateien ueberhaupt. Ein Pruefer, der danach weiter
+    # "keine forward_test.py veraendert" sagt, waere entweder dauerhaft rot
+    # oder muesste abgeschaltet werden. Beides waere schlechter als das hier.
+    #
+    # Was weiterhin auffaellt, und das ist der Punkt: jeder geaenderte
+    # Zahlenwert (Gebuehr, Slippage, Lookback, Frischefenster), jede
+    # verschwundene oder neu hinzugekommene Konstante und jede Aenderung an
+    # dem Satz von Parametern, den die Datei aus live_params.py zieht. Also
+    # genau das, was Handeln veraendert.
+    #
+    # Was ein Textvergleich ohnehin nicht koennte: nachweisen, dass der
+    # Multiplikator NUR an der Positionsgroesse angreift und kein Signal
+    # beruehrt. Das prueft shared/test_groessenfaktor.py am ABLAUF - derselbe
+    # Lauf mit m_b = 1,0 und m_b = 0,5, dieselben Ein- und Ausstiegszeitpunkte.
+    erlaubt_neu = {"GROESSENFAKTOR"}
+    for pfad_ft in [z for z in geaendert if z.endswith("forward_test.py")]:
+        alt_ft = subprocess.run(["git", "show", f"origin/main:{pfad_ft}"],
+                                cwd=BASE_DIR, capture_output=True, text=True)
+        check(f"{pfad_ft}: Fassung in origin/main lesbar", alt_ft.returncode == 0,
+              alt_ft.stderr.strip())
+        if alt_ft.returncode != 0:
+            continue
+        with open(os.path.join(BASE_DIR, pfad_ft), "r", encoding="utf-8") as datei:
+            jetzt_ft = datei.read()
+
+        werte_alt, werte_neu = _konstanten(alt_ft.stdout), _konstanten(jetzt_ft)
+        abweichend = sorted(
+            name for name in set(werte_alt) | set(werte_neu)
+            if werte_alt.get(name, "<fehlt>") != werte_neu.get(name, "<fehlt>")
+            and name not in erlaubt_neu)
+        check(f"{pfad_ft}: kein Handelsparameter veraendert", not abweichend,
+              "; ".join(f"{n}: {werte_alt.get(n, '<fehlt>')!r} -> "
+                        f"{werte_neu.get(n, '<fehlt>')!r}" for n in abweichend))
+
+        # Und der Satz an Parametern, den die Datei aus live_params.py zieht.
+        # Verschwaende einer davon, waere das eine stille Strategieaenderung.
+        holt_alt, holt_neu = _geholte_parameter(alt_ft.stdout), _geholte_parameter(jetzt_ft)
+        check(f"{pfad_ft}: derselbe Satz Parameter aus live_params.py",
+              holt_alt == holt_neu,
+              f"nur vorher: {sorted(holt_alt - holt_neu)} | "
+              f"nur nachher: {sorted(holt_neu - holt_alt)}")
 
     # live_params.py: geprueft werden die WERTE, nicht die Dateibytes.
     #

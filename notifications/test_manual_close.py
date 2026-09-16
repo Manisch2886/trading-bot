@@ -142,6 +142,12 @@ def baue_bot(wurzel, bot_name="t3_supertrend", fee=0.1, slip=0.05):
             symbol TEXT, signal_time TEXT, entry_time TEXT,
             entry_price REAL, stop_price REAL, exit_time TEXT,
             exit_price REAL, result TEXT, pnl_pct REAL, status TEXT,
+            -- TB-42: die Positionsgroesse, mit der der Bot die Position
+            -- eroeffnet hat, als Vielfaches seiner statischen Groesse. Sie
+            -- gehoert hierher, weil dieser Nachbau das echte Bot-Schema
+            -- spiegelt - genau dafuer gibt es die Pruefung darunter. Das
+            -- manuelle Schliessen fasst die Spalte nicht an.
+            groessenfaktor REAL,
             UNIQUE(symbol, signal_time))""")
     conn.executemany(
         "INSERT INTO trades (symbol, signal_time, entry_time, entry_price, "
