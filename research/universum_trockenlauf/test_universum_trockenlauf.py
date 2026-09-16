@@ -27,6 +27,16 @@ Geprueft wird, was die Aufgabenstellung ausdruecklich verlangt:
      mode="rb")` liest wieder, und ein Schreibversuch wird auf JEDEM Weg
      abgefangen - `builtins.open` positional wie benannt, `io.open`,
      `pathlib.Path.open`, `Path.write_text`, `os.open`.
+  M  **TB-44 Mutationsproben:** die zwei Wachen aus L werden EINZELN
+     entfernt. Jede muss fuer sich fehlen duerfen, ohne dass die andere es
+     verdeckt - sonst belegt L nur, dass irgendeine von beiden da ist.
+  L  **TB-44:** derselbe Schreibschutz haelt auf JEDER Python-Fassung und in
+     BEIDER Import-Reihenfolge. `pathlib` bindet sich beim Import eine eigene
+     Kopie der Oeffnungsfunktion; je nachdem, ob das vor oder nach der Wache
+     passiert, war der Schutz vorher entweder loechrig oder er brach sogar
+     LESENDE Zugriffe ab. **Teil K sieht das nicht** - dort ist `pathlib`
+     schon geladen, bevor die Wache angeht. L faehrt beide Reihenfolgen ab,
+     unter jeder Python-Fassung, die auf dem Rechner liegt.
 
 ZU DEN MUTATIONSPROBEN - DIE ZWEI WIEDERKEHRENDEN FALLEN
 ------------------------------------------------------------------------------
@@ -714,13 +724,419 @@ print(json.dumps(erg))
 
 
 # ===========================================================================
+# L  TB-44: die Wache haelt auf JEDER Python-Fassung und in BEIDER
+#    Import-Reihenfolge
+# ===========================================================================
+# Laeuft als eigener Prozess - einmal je Python-Fassung auf dem Rechner, und
+# je Fassung einmal fuer jede Reihenfolge.
+_L_PROGRAMM = r'''
+import io, json, os, sys
+
+loader_dir, ordner, reihenfolge, lesequelle = sys.argv[1:5]
+sys.path.insert(0, loader_dir)
+import loaderlauf
+
+# --- Reihenfolge herstellen, ausdruecklich und nachpruefbar ----------------
+if reihenfolge == "frueh":
+    import pathlib
+else:
+    for _m in [n for n in list(sys.modules)
+               if n == "pathlib" or n.startswith("pathlib.")]:
+        del sys.modules[_m]
+    assert "pathlib" not in sys.modules, "pathlib liess sich nicht entladen"
+
+# --- Nachstellung, Haelfte 1: gebunden VOR der Wache ----------------------
+# Das sind woertlich die Zeilen, die CPython in den Rumpf von
+# `pathlib._NormalAccessor` schreibt - 3.9 nimmt `os.open`, 3.10 `io.open`.
+# Hier stehen beide, damit die Probe auf jeder Fassung dieselbe ist.
+class AccessorVorher:
+    oeffnen_os = os.open
+    oeffnen_io = io.open
+    entfernen = os.unlink
+
+# Ein Opfer zum Loeschen - angelegt, SOLANGE es noch erlaubt ist. Auf keinen
+# Fall eine Datei des Repos: faellt die Wache aus, ist sie danach weg.
+opfer = os.path.join(ordner, "opfer.txt")
+with open(opfer, "w") as _f:
+    _f.write("x")
+
+erlaubt = os.path.join(ordner, "erlaubt")
+os.makedirs(erlaubt, exist_ok=True)
+loaderlauf.schreibschutz_an([erlaubt])
+
+# --- Nachstellung, Haelfte 2: gebunden NACH der Wache ---------------------
+class AccessorNachher:
+    oeffnen_os = os.open
+    oeffnen_io = io.open
+    entfernen = os.unlink
+
+if reihenfolge == "spaet":
+    import pathlib                      # <-- ERST JETZT
+
+erg = {"py": "%d.%d.%d" % sys.version_info[:3], "reihenfolge": reihenfolge,
+       "pathlib_hat_accessor": hasattr(pathlib, "_NormalAccessor"),
+       "nachgezogen": sorted(set(getattr(loaderlauf,
+                                         "_BINDUNGEN_NACHGEZOGEN", [])))}
+
+def probe(name, f):
+    try:
+        f()
+        erg[name] = "durchgelassen"
+    except loaderlauf.Schreibversuch:
+        erg[name] = "abgefangen"
+    except Exception as e:
+        erg[name] = type(e).__name__ + ": " + str(e)[:140]
+
+def zu(fd):
+    os.close(fd)
+
+ziel = os.path.join(ordner, "verbotenL")
+
+for marke, zugriff in (("vor", AccessorVorher()), ("nach", AccessorNachher())):
+    probe(marke + "_lesen_os",
+          lambda a=zugriff: zu(a.oeffnen_os(lesequelle, os.O_RDONLY)))
+    probe(marke + "_lesen_io",
+          lambda a=zugriff: a.oeffnen_io(lesequelle, "rb").close())
+    probe(marke + "_schreiben_os",
+          lambda a=zugriff, m=marke: zu(a.oeffnen_os(ziel + m + "1",
+                                                     os.O_WRONLY | os.O_CREAT)))
+    probe(marke + "_schreiben_io",
+          lambda a=zugriff, m=marke: a.oeffnen_io(ziel + m + "2", "w").close())
+    probe(marke + "_loeschen", lambda a=zugriff: a.entfernen(opfer))
+
+# --- und dasselbe am ECHTEN pathlib ---------------------------------------
+probe("pathlib_lesen_read_text", lambda: pathlib.Path(lesequelle).read_text())
+probe("pathlib_lesen_open", lambda: pathlib.Path(lesequelle).open("r").close())
+probe("pathlib_schreiben_write_text",
+      lambda: pathlib.Path(ziel + "p1").write_text("x"))
+probe("pathlib_schreiben_open",
+      lambda: pathlib.Path(ziel + "p2").open("w").close())
+probe("pathlib_schreiben_touch", lambda: pathlib.Path(ziel + "p3").touch())
+probe("pathlib_schreiben_mkdir", lambda: pathlib.Path(ziel + "p4").mkdir())
+probe("pathlib_loeschen", lambda: pathlib.Path(opfer).unlink())
+
+# --- Zeichengeraete bleiben ausgenommen -----------------------------------
+# `python-binance` und `yfinance` oeffnen /dev/null beim Import
+# lesend-schreibend. Bricht die Wache daran ab, faellt der echte Trockenlauf
+# aus - und zwar erst im Kindprozess, also schwer zu sehen.
+probe("devnull_builtins", lambda: open(os.devnull, "r+").close())
+probe("devnull_io", lambda: io.open(os.devnull, "w").close())
+probe("devnull_os", lambda: zu(os.open(os.devnull, os.O_RDWR)))
+probe("devnull_pathlib", lambda: pathlib.Path(os.devnull).open("r+").close())
+
+# --- erlaubtes Schreiben geht weiter --------------------------------------
+probe("erlaubt", lambda: open(os.path.join(erlaubt, "ok.txt"), "w").close())
+probe("erlaubt_pathlib",
+      lambda: pathlib.Path(erlaubt, "ok2.txt").write_text("x"))
+
+erg["angelegt"] = sorted(n for n in os.listdir(ordner)
+                         if n.startswith("verbotenL"))
+erg["opfer_lebt"] = os.path.exists(opfer)
+print(json.dumps(erg))
+'''
+
+
+def _fassung(python):
+    """Die Fassungsnummer eines Interpreters - gefragt, nicht aus dem Namen
+    geraten. `python3.9` kann alles Moegliche sein."""
+    try:
+        r = subprocess.run([python, "-c",
+                            "import sys;print('%d %d' % sys.version_info[:2])"],
+                           capture_output=True, text=True, timeout=60)
+        return tuple(int(x) for x in r.stdout.split())
+    except Exception:                                            # noqa: BLE001
+        return None
+
+
+def _pythons():
+    """Jede Python-Fassung, die auf diesem Rechner erreichbar ist.
+
+    Der Befund von TB-44 ist auf 3.11 und neuer **strukturell unsichtbar**:
+    dort gibt es `pathlib._NormalAccessor` nicht mehr. Ein Test, der nur unter
+    `sys.executable` laeuft, sieht ihn auf einem 3.11-Rechner also nie - und
+    genau das ist in TB-43 passiert. Deshalb wird jede gefundene Fassung
+    abgefahren, und der Bericht nennt sie.
+    """
+    gesehen, gefunden = set(), []
+    for pfad in [sys.executable] + [shutil.which("python3.%d" % m)
+                                    for m in range(8, 15)]:
+        if not pfad:
+            continue
+        echt = os.path.realpath(pfad)
+        if echt in gesehen:
+            continue
+        gesehen.add(echt)
+        gefunden.append(pfad)
+    return gefunden
+
+
+def _l_lauf(python, reihenfolge, loader_dir=None):
+    tmp = tempfile.mkdtemp(prefix="tb44_l_")
+    try:
+        skript = os.path.join(tmp, "probe_l.py")
+        with open(skript, "w", encoding="utf-8") as f:
+            f.write(_L_PROGRAMM)
+        r = subprocess.run([python, skript, loader_dir or LOADER_DIR, tmp,
+                            reihenfolge, LESEQUELLE],
+                           capture_output=True, text=True)
+        uebrig = sorted(n for n in os.listdir(tmp) if n.startswith("verbotenL"))
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+    if r.returncode != 0 or not r.stdout.strip():
+        return None, (r.stdout + r.stderr)[-600:]
+    erg = json.loads(r.stdout.strip().splitlines()[-1])
+    erg["uebrig_nach_abbau"] = uebrig
+    return erg, ""
+
+
+def teil_l():
+    """Der Schreibschutz haengt nicht mehr an der Python-Fassung.
+
+    Der Befund, auf dem unveraenderten TB-43-Stand gemessen:
+
+      | Fassung | pathlib VOR der Wache        | pathlib NACH der Wache      |
+      |---------|------------------------------|-----------------------------|
+      | 3.9     | `Path.touch`/`mkdir`         | JEDER Zugriff bricht ab,    |
+      |         | schrieben **wirklich**       | auch ein LESENDER           |
+      | 3.10    | `Path.open("w")`/`write_text`| JEDER Zugriff bricht ab     |
+      |         | schrieben **wirklich**       |                             |
+      | 3.11+   | in Ordnung                   | in Ordnung                  |
+
+    Beides ist derselbe Fehler: `pathlib` legt sich beim Import eine **eigene
+    Kopie** der Oeffnungsfunktion in den Rumpf einer Klasse. Liegt die Kopie
+    vor der Wache, kennt sie den Schutz nicht; liegt sie danach, wird aus der
+    Python-Funktion eine gebundene Methode, und die Argumente verrutschen.
+
+    Geprueft wird dreifach - und getrennt, damit nicht eine Wache das Fehlen
+    der anderen verdeckt:
+
+    * **L1 gebunden NACH der Wache.** Eine Klasse mit `open = os.open` bzw.
+      `open = io.open` im Rumpf - woertlich die Zeile aus `pathlib`. Das
+      prueft allein die nicht-bindende Huelle `_Wache`.
+    * **L2 gebunden VOR der Wache.** Dieselbe Klasse, vor `schreibschutz_an`
+      angelegt. Das prueft allein `_bindungen_nachziehen`.
+      *L1 und L2 laufen auf JEDER Fassung und fallen auf dem alten Stand auf
+      jeder Fassung durch - sie brauchen kein altes Python.*
+    * **L3 am echten pathlib**, in beiden Reihenfolgen. Das ist der Nachweis,
+      dass L1/L2 die richtige Stelle nachstellen. Auf 3.9/3.10 faellt L3 auf
+      dem alten Stand durch; auf 3.11+ kann er es nicht - dort gibt es die
+      Stelle nicht.
+
+    Dazu L4 (Zeichengeraete und Erlaubtes bleiben offen), L5 (am
+    Dateibestand: es ist wirklich nichts entstanden und nichts verschwunden)
+    und L6 (es lief wirklich eine Fassung mit, die die Stelle noch hat).
+    """
+    pythons = _pythons()
+    fassungen = [(p, _fassung(p)) for p in pythons]
+    alte = [p for p, v in fassungen if v is not None and v < (3, 11)]
+    print("      Python-Fassungen: %s"
+          % ", ".join("%s=%s" % (os.path.basename(p),
+                                 ".".join(map(str, v)) if v else "?")
+                      for p, v in fassungen))
+    for python in pythons:
+        for reihenfolge in ("frueh", "spaet"):
+            erg, fehler = _l_lauf(python, reihenfolge)
+            pruefe("L0 %-22s die Probe laeuft durch"
+                   % ("%s/%s" % (os.path.basename(python), reihenfolge)),
+                   erg is not None, fehler)
+            if erg is None:
+                continue
+            m = "%s %s" % (erg["py"], reihenfolge)
+
+            # --- L1: Kopie NACH der Wache - die nicht-bindende Huelle ------
+            pruefe("L1 %-16s Kopie NACH der Wache: os.open LIEST" % m,
+                   erg["nach_lesen_os"] == "durchgelassen",
+                   str(erg["nach_lesen_os"]))
+            pruefe("L1 %-16s Kopie NACH der Wache: io.open LIEST" % m,
+                   erg["nach_lesen_io"] == "durchgelassen",
+                   str(erg["nach_lesen_io"]))
+            pruefe("L1 %-16s und os.open SCHREIBT trotzdem nicht" % m,
+                   erg["nach_schreiben_os"] == "abgefangen",
+                   str(erg["nach_schreiben_os"]))
+            pruefe("L1 %-16s und io.open SCHREIBT trotzdem nicht" % m,
+                   erg["nach_schreiben_io"] == "abgefangen",
+                   str(erg["nach_schreiben_io"]))
+            pruefe("L1 %-16s und os.unlink loescht nicht" % m,
+                   erg["nach_loeschen"] == "abgefangen",
+                   str(erg["nach_loeschen"]))
+
+            # --- L2: Kopie VOR der Wache - das Nachziehen ------------------
+            pruefe("L2 %-16s Kopie VOR der Wache: LESEN geht durch" % m,
+                   erg["vor_lesen_os"] == "durchgelassen"
+                   and erg["vor_lesen_io"] == "durchgelassen",
+                   "%s / %s" % (erg["vor_lesen_os"], erg["vor_lesen_io"]))
+            pruefe("L2 %-16s und os.open SCHREIBT nicht - nachgezogen" % m,
+                   erg["vor_schreiben_os"] == "abgefangen",
+                   str(erg["vor_schreiben_os"]))
+            pruefe("L2 %-16s und io.open SCHREIBT nicht - nachgezogen" % m,
+                   erg["vor_schreiben_io"] == "abgefangen",
+                   str(erg["vor_schreiben_io"]))
+            pruefe("L2 %-16s und os.unlink loescht nicht" % m,
+                   erg["vor_loeschen"] == "abgefangen",
+                   str(erg["vor_loeschen"]))
+            # Wie B2: dass die Wache etwas zu TUN hatte, ist beobachtbar.
+            pruefe("L2 %-16s das Nachziehen ist nachweislich passiert" % m,
+                   any(e.endswith("AccessorVorher.oeffnen_os")
+                       for e in erg["nachgezogen"]),
+                   str(erg["nachgezogen"])[:160])
+
+            # --- L3: am ECHTEN pathlib, beide Reihenfolgen -----------------
+            pruefe("L3 %-16s pathlib: read_text() liest" % m,
+                   erg["pathlib_lesen_read_text"] == "durchgelassen",
+                   str(erg["pathlib_lesen_read_text"]))
+            pruefe("L3 %-16s pathlib: Path().open(\"r\") liest" % m,
+                   erg["pathlib_lesen_open"] == "durchgelassen",
+                   str(erg["pathlib_lesen_open"]))
+            for schluessel, text in (("pathlib_schreiben_write_text",
+                                      "write_text()"),
+                                     ("pathlib_schreiben_open", "open(\"w\")"),
+                                     ("pathlib_schreiben_touch", "touch()"),
+                                     ("pathlib_loeschen", "unlink()")):
+                pruefe("L3 %-16s pathlib: %-12s abgefangen" % (m, text),
+                       erg[schluessel] == "abgefangen", str(erg[schluessel]))
+            # `mkdir` bricht absichtlich NICHT ab, sondern bleibt folgenlos -
+            # sonst kaeme `shared/strategy_paths.py` beim Import nicht durch.
+            # Geprueft wird deshalb am Dateibestand (L5), nicht an der Ausnahme.
+            pruefe("L3 %-16s pathlib: mkdir() bleibt folgenlos" % m,
+                   erg["pathlib_schreiben_mkdir"] == "durchgelassen",
+                   str(erg["pathlib_schreiben_mkdir"]))
+
+            # --- L4: Zeichengeraete und Erlaubtes bleiben offen ------------
+            for schluessel, text in (("devnull_builtins", "open(devnull,r+)"),
+                                     ("devnull_io", "io.open(devnull,w)"),
+                                     ("devnull_os", "os.open(devnull,RDWR)"),
+                                     ("devnull_pathlib", "Path(devnull).open")):
+                pruefe("L4 %-16s %-22s ausgenommen" % (m, text),
+                       erg[schluessel] == "durchgelassen", str(erg[schluessel]))
+            pruefe("L4 %-16s erlaubtes Schreiben geht weiter" % m,
+                   erg["erlaubt"] == "durchgelassen"
+                   and erg["erlaubt_pathlib"] == "durchgelassen",
+                   "%s / %s" % (erg["erlaubt"], erg["erlaubt_pathlib"]))
+
+            # --- L5: am Dateibestand, nicht an der Ausnahme ----------------
+            pruefe("L5 %-16s keine verbotene Datei entstanden" % m,
+                   erg["angelegt"] == [] and erg["uebrig_nach_abbau"] == [],
+                   "%s / %s" % (erg["angelegt"], erg["uebrig_nach_abbau"]))
+            pruefe("L5 %-16s und keine Datei verschwunden" % m,
+                   erg["opfer_lebt"] is True, str(erg["opfer_lebt"]))
+
+    pruefe("L6: es lief eine Fassung mit, die `pathlib._NormalAccessor` noch "
+           "hat (3.9/3.10) - sonst sagt L3 auf diesem Rechner nichts ueber "
+           "den Befund",
+           bool(alte),
+           "gefunden: %s" % ", ".join("%s" % os.path.basename(p)
+                                      for p in pythons))
+
+
+# ===========================================================================
+# M  TB-44 Mutationsproben: die zwei Wachen werden EINZELN geprueft
+# ===========================================================================
+# Gegen den Schaden aus TB-44 stehen zwei Wachen, und sie decken
+# verschiedene Faelle:
+#
+#   * `_huelle`/`_Wache`  - fuer Kopien, die NACH `schreibschutz_an` entstehen
+#   * `_bindungen_nachziehen` - fuer Kopien, die VORHER schon dastanden
+#
+# Zusammen sind sie dicht. Genau deshalb koennte eine von beiden fehlen, ohne
+# dass Teil L rot wird - **die zweite verdeckt das Fehlen der ersten**. Diese
+# Falle ist in diesem Projekt schon zweimal zugeschlagen. Deshalb wird jede
+# Wache einzeln entfernt, an einer Kopie, in einem eigenen Prozess, und
+# beobachtet wird der ABLAUF: welcher Zugriff geht jetzt durch, der vorher
+# nicht durchging - und welcher NICHT, weil die andere Wache noch steht.
+_M1_ALT = "    return _Wache(funktion, name)"
+_M1_NEU = "    return funktion"
+_M2_ALT = "    for modulname, modul in list(sys.modules.items()):"
+_M2_NEU = "    for modulname, modul in []:"
+
+
+def _m_kopie(tmp, alt, neu):
+    """Eine Kopie des Werkzeugs mit GENAU EINER geaenderten Zeile."""
+    ziel = _werkzeugkopie(os.path.join(tmp, "kopie"))
+    _ersetze(os.path.join(ziel, "loaderlauf.py"), alt, neu)
+    return ziel
+
+
+def teil_m():
+    """Jede der beiden TB-44-Wachen fuer sich.
+
+    M0 ist die Gegenprobe: **ohne** Mutation sieht die Probe das Richtige.
+    Ohne sie belegte ein rotes Ergebnis nichts - es koennte auch am
+    Wegwerf-Ordner liegen.
+    """
+    erg0, fehler = _l_lauf(sys.executable, "spaet")
+    pruefe("M0: die Probe laeuft unmutiert durch", erg0 is not None, fehler)
+    if erg0 is None:
+        return
+    pruefe("M0a: unmutiert liest eine NACH der Wache gebundene Kopie - und "
+           "schreibt nicht",
+           erg0["nach_lesen_os"] == "durchgelassen"
+           and erg0["nach_schreiben_os"] == "abgefangen",
+           "%s / %s" % (erg0["nach_lesen_os"], erg0["nach_schreiben_os"]))
+    pruefe("M0b: unmutiert schreibt eine VOR der Wache gebundene Kopie "
+           "ebenfalls nicht",
+           erg0["vor_schreiben_os"] == "abgefangen",
+           str(erg0["vor_schreiben_os"]))
+
+    # --- M1: die nicht-bindende Huelle faellt weg -------------------------
+    with tempfile.TemporaryDirectory() as tmp:
+        kopie = _m_kopie(tmp, _M1_ALT, _M1_NEU)
+        erg1, fehler = _l_lauf(sys.executable, "spaet", kopie)
+    pruefe("M1: die Probe laeuft auch mit der Mutation durch",
+           erg1 is not None, fehler)
+    if erg1 is not None:
+        pruefe("M1a: ohne die Huelle bricht eine NACH der Wache gebundene "
+               "Kopie ab - auch beim LESEN. Das ist der TB-44-Befund",
+               erg1["nach_lesen_os"] != "durchgelassen",
+               str(erg1["nach_lesen_os"]))
+        # GEMESSEN, nicht angenommen: das Nachziehen allein haelt zwar den
+        # Schreibversuch auf (es wird nichts angelegt), arbeitet aber
+        # ebenfalls falsch - es setzt ja dieselbe nackte Python-Funktion in
+        # die Klasse. Die beiden Wachen sind also NICHT unabhaengig: das
+        # Nachziehen SETZT die Huelle VORAUS. Das steht hier als Pruefung,
+        # damit es nicht in Vergessenheit geraet.
+        pruefe("M1b: ohne die Huelle schreibt die VOR der Wache gebundene "
+               "Kopie zwar immer noch nicht - das Nachziehen greift -, ...",
+               erg1["vor_schreiben_os"] != "durchgelassen"
+               and erg1["uebrig_nach_abbau"] == [],
+               "%s / %s" % (erg1["vor_schreiben_os"],
+                            erg1["uebrig_nach_abbau"]))
+        pruefe("M1c: ... aber sie bricht jetzt AUCH beim Lesen ab. Die zwei "
+               "Wachen sind nicht unabhaengig: das Nachziehen setzt die "
+               "Huelle voraus, die Huelle nicht das Nachziehen (M2b)",
+               erg1["vor_lesen_os"] != "durchgelassen",
+               str(erg1["vor_lesen_os"]))
+
+    # --- M2: das Nachziehen faellt weg ------------------------------------
+    with tempfile.TemporaryDirectory() as tmp:
+        kopie = _m_kopie(tmp, _M2_ALT, _M2_NEU)
+        erg2, fehler = _l_lauf(sys.executable, "spaet", kopie)
+    pruefe("M2: die Probe laeuft auch mit der Mutation durch",
+           erg2 is not None, fehler)
+    if erg2 is not None:
+        pruefe("M2a: ohne das Nachziehen SCHREIBT eine VOR der Wache "
+               "gebundene Kopie wieder - das Loch ist wieder offen",
+               erg2["vor_schreiben_os"] == "durchgelassen",
+               str(erg2["vor_schreiben_os"]))
+        pruefe("M2b: und die ANDERE Wache steht dabei noch - eine NACH der "
+               "Wache gebundene Kopie liest und schreibt weiterhin richtig",
+               erg2["nach_lesen_os"] == "durchgelassen"
+               and erg2["nach_schreiben_os"] == "abgefangen",
+               "%s / %s" % (erg2["nach_lesen_os"], erg2["nach_schreiben_os"]))
+        pruefe("M2c: und es ist dabei wirklich eine verbotene Datei "
+               "entstanden - am Dateibestand, nicht an der Ausnahme",
+               erg2["uebrig_nach_abbau"] != [],
+               str(erg2["uebrig_nach_abbau"]))
+
+
+# ===========================================================================
 def main():
     print(__doc__.strip().split("\n")[0])
     print("=" * 78)
     for name, teil in (("A", teil_a), ("B", teil_b), ("C", teil_c),
                        ("D", teil_d), ("E", teil_e), ("F", teil_f),
                        ("G", teil_g), ("H", teil_h), ("I", teil_i),
-                       ("J", teil_j), ("K", teil_k)):
+                       ("J", teil_j), ("K", teil_k), ("L", teil_l),
+                          ("M", teil_m)):
         print("  Teil %s ..." % name, flush=True)
         try:
             teil()

@@ -49,6 +49,17 @@ Schreiben aufgeht - `builtins.open`, `io.open` (und damit `pathlib.Path.open`,
 davon, ob Datei und Modus positional oder benannt uebergeben werden.
 *Ein Schreibschutz, der einen Aufrufweg nicht kennt, ist an diesem Weg kein
 Schreibschutz.*
+
+Seit TB-44 gilt das auch **unabhaengig von der Python-Fassung und von der
+Reihenfolge der Importe**. Der Grund steht ausfuehrlich bei `_Wache` und
+`_bindungen_nachziehen`; kurz: `pathlib` legt sich beim Import eine **eigene
+Kopie** der Oeffnungsfunktion in den Rumpf einer Klasse (`_NormalAccessor`,
+Python 3.9 und 3.10). Je nachdem, ob dieser Import vor oder nach der Wache
+passiert, war der Schutz vorher entweder **loechrig** (`Path.touch`,
+`Path.mkdir` auf 3.9; `Path.open("w")`, `Path.write_text` auf 3.10 schrieben
+wirklich) oder er brach sogar **lesende** Zugriffe ab (3.9 und 3.10). Gemessen,
+nicht vermutet - `Teil L` des Selbsttests faehrt beide Reihenfolgen auf jeder
+Python-Fassung ab, die auf dem Rechner liegt.
 `os.makedirs` wird dabei nicht abgebrochen, sondern folgenlos gemacht - die
 Pfad-Hilfe `shared/strategy_paths.py` legt beim Import `results/<bot>/` und
 `logs/<bot>/` an, und ein harter Abbruch dort wuerde den Loader gar nicht erst
@@ -89,6 +100,149 @@ class Schreibversuch(RuntimeError):
 
 _ERLAUBT = []
 _MAKEDIRS_VERSUCHE = []
+# Wohin die Wache sich nachtraeglich setzen musste, weil eine schon geladene
+# Klasse sich vorher eine eigene Kopie gebunden hatte. Der Trockenlauf gibt
+# diese Liste mit aus - sie ist ein Messwert, kein Protokoll.
+_BINDUNGEN_NACHGEZOGEN = []
+
+
+class _Wache:
+    """Eine Wache, die sich **genauso bindet wie die Funktion, die sie ersetzt** -
+    naemlich gar nicht.
+
+    WARUM ES DIESE KLASSE GIBT
+    ----------------------------------------------------------------------
+    `os.open`, `io.open` und `builtins.open` sind in C geschrieben. Ihr Typ
+    ist `builtin_function_or_method`, und der ist **kein Deskriptor**: steht
+    so eine Funktion im Rumpf einer Klasse, kommt sie beim Zugriff ueber eine
+    Instanz **unveraendert** zurueck.
+
+    Eine Python-Funktion ist ein Deskriptor. An derselben Stelle wird aus ihr
+    eine **gebundene Methode**, und die schiebt allen Argumenten die Instanz
+    voran. Eine Wache, die eine C-Funktion durch eine Python-Funktion ersetzt,
+    aendert damit etwas, das mit dem Schreibschutz nichts zu tun hat: das
+    Bindungsverhalten.
+
+    WO DAS ZUSCHLAEGT
+    ----------------------------------------------------------------------
+    `pathlib` schreibt beim Import in den Rumpf der Klasse `_NormalAccessor`:
+
+        open = os.open        # CPython 3.9,  pathlib.py Z. 405
+        open = io.open        # CPython 3.10, dieselbe Stelle
+        mkdir = os.mkdir      # und ebenso unlink, rename, replace, rmdir
+
+    Ab 3.11 gibt es `_NormalAccessor` nicht mehr; `Path.open` ruft `io.open`
+    direkt. **Deshalb ist der Fehler auf 3.11 strukturell unsichtbar.**
+
+    Passiert dieser Import **nach** der Wache, steht in der Klasse die Wache -
+    und war sie eine Python-Funktion, verrutschten die Argumente
+    (`pfad` = Accessor, `flags` = Path). Dann brach **sogar Lesen** ab.
+
+    Eine Instanz mit `__call__` ist aufrufbar, aber kein Deskriptor. Sie
+    bindet sich also wie das C-Original. Das ist **keine Sonderbehandlung fuer
+    pathlib**, sondern die Wiederherstellung einer Eigenschaft, die das
+    Original hatte und die die Wache verloren hatte - und sie gilt deshalb
+    auch fuer jede andere Klasse, die sich dieselbe Kopie zieht.
+
+    Die andere Reihenfolge - `pathlib` **vor** der Wache - deckt diese Klasse
+    nicht ab; dafuer gibt es `_bindungen_nachziehen`.
+    """
+
+    def __init__(self, funktion, name):
+        self._f = funktion
+        self.__name__ = name
+        self.__qualname__ = name
+        self.__doc__ = getattr(funktion, "__doc__", None)
+        self.__wrapped__ = funktion
+
+    def __call__(self, *a, **k):
+        return self._f(*a, **k)
+
+    def __repr__(self):
+        return "<Trockenlauf-Wache fuer %s>" % self.__name__
+
+
+def _huelle(funktion, name):
+    """Setzt eine Wache ein - **die einzige Stelle**, an der das passiert.
+
+    Steht hier `return funktion`, ist die Wache wieder eine Python-Funktion
+    und damit ein Deskriptor; genau das war der TB-44-Fehler. Die
+    Mutationsprobe M1 aendert diese eine Zeile und muss den Fehler
+    zurueckholen - sonst prueft Teil L an dieser Wache nichts.
+    """
+    return _Wache(funktion, name)
+
+
+# Module, deren Inhalt NICHT nachgezogen wird: dort stehen die Originale, die
+# die Wachen selbst noch brauchen, bzw. die Namen, die schon ersetzt wurden.
+_NICHT_NACHZIEHEN = frozenset(("builtins", "io", "_io", "os", "posix", "nt",
+                               "shutil", "sys", __name__))
+
+
+def _bindungen_nachziehen(paare):
+    """Ersetzt Kopien, die **vor** der Wache gebunden wurden.
+
+    `_Wache` hilft nur, wenn die Kopie **nach** der Wache entsteht. War
+    `pathlib` schon geladen, steht in `_NormalAccessor` die **echte**
+    Funktion - und die kennt keinen Schreibschutz. Gemessen auf dem
+    TB-43-Stand, mit `pathlib` vor der Wache:
+
+      * Python 3.9:  `Path.touch()` legte die Datei wirklich an,
+                     `Path.mkdir()` das Verzeichnis wirklich.
+      * Python 3.10: `Path.open("w")` und `Path.write_text()` schrieben
+                     wirklich - der Accessor hielt dort das echte `io.open`.
+
+    Das ist die zweite Haelfte desselben Befunds, und sie ist die
+    gefaehrlichere: ein Abbruch faellt auf, ein stilles Schreiben nicht.
+
+    Gesucht wird nach **Identitaet**, nicht nach Namen: jede Stelle in einem
+    schon geladenen Modul - auf Modulebene oder im Rumpf einer dort
+    definierten Klasse -, die genau eines der uebergebenen Originale haelt,
+    bekommt die zugehoerige Wache. Klassen werden nur ueber ihr eigenes Modul
+    besucht (`__module__`), damit ein zweiter Name auf dieselbe Klasse sie
+    nicht ein zweites Mal meldet.
+
+    Zurueck kommt die Liste der Stellen. Sie steht im Bericht des Laufs: dass
+    die Wache etwas zu tun hatte, ist beobachtbar und nicht nur behauptet.
+    """
+    nachgezogen = []
+
+    def ersatz_fuer(wert):
+        for alt, wache in paare:
+            if wert is alt:
+                return wache
+        return None
+
+    for modulname, modul in list(sys.modules.items()):
+        if modul is None or modulname.split(".")[0] in _NICHT_NACHZIEHEN:
+            continue
+        try:
+            eintraege = list(vars(modul).items())
+        except TypeError:                     # Modul ohne __dict__
+            continue
+        for name, wert in eintraege:
+            wache = ersatz_fuer(wert)
+            if wache is not None:
+                try:
+                    setattr(modul, name, wache)
+                except Exception:             # noqa: BLE001  schreibgeschuetzt
+                    continue
+                nachgezogen.append("%s.%s" % (modulname, name))
+                continue
+            if not isinstance(wert, type):
+                continue
+            if getattr(wert, "__module__", None) != modulname:
+                continue
+            for kname, kwert in list(vars(wert).items()):
+                kwache = ersatz_fuer(kwert)
+                if kwache is None:
+                    continue
+                try:
+                    setattr(wert, kname, kwache)
+                except Exception:             # noqa: BLE001
+                    continue
+                nachgezogen.append("%s.%s.%s" % (modulname, name, kname))
+    return nachgezogen
 
 
 def _ist_geraet(pfad):
@@ -170,12 +324,19 @@ def schreibschutz_an(erlaubte_pfade):
             raise Schreibversuch("Schreibversuch auf %r (Modus %r)" % (datei, modus))
         return echtes_open(*a, **k)
 
+    # TB-44: die Wache wird in eine `_Wache` gehuellt, BEVOR sie irgendwo
+    # eingesetzt wird. Sonst ist sie eine Python-Funktion - also ein
+    # Deskriptor -, und in einer Klasse, die sich davon eine Kopie zieht,
+    # verrutschen die Argumente. Begruendung bei `_Wache`.
+    wach_open = _huelle(wach_open, "open")
+
     builtins.open = wach_open
     # `builtins.open is io.open` ist wahr, aber es sind ZWEI Namen fuer
     # dasselbe Objekt: `builtins.open` zu ersetzen laesst `io.open`
     # unberuehrt. Und `pathlib.Path.open` - und damit `Path.write_text`,
     # `Path.write_bytes` - geht ueber `io.open`, nicht ueber `builtins.open`.
     # Ohne diese Zeile schreibt der Trockenlauf an der Wache vorbei.
+    # Beide Namen bekommen DASSELBE Objekt, so wie vorher auch.
     io.open = wach_open
 
     echtes_os_open = os.open
@@ -192,6 +353,7 @@ def schreibschutz_an(erlaubte_pfade):
                                  % (pfad, flags))
         return echtes_os_open(pfad, flags, *a, **k)
 
+    wach_os_open = _huelle(wach_os_open, "open")
     os.open = wach_os_open
 
     echtes_makedirs = os.makedirs
@@ -209,23 +371,42 @@ def schreibschutz_an(erlaubte_pfade):
         _MAKEDIRS_VERSUCHE.append(os.path.abspath(name))
         return None
 
+    wach_makedirs = _huelle(wach_makedirs, "makedirs")
+    wach_mkdir = _huelle(wach_mkdir, "mkdir")
     os.makedirs = wach_makedirs
     os.mkdir = wach_mkdir
 
     def _verboten(was):
         def f(*a, **k):
             raise Schreibversuch("Verbotener Aufruf %s%r" % (was, a[:2]))
-        return f
+        # Auch hier eine `_Wache`: `pathlib._NormalAccessor` bindet auf 3.9
+        # und 3.10 nicht nur `open`, sondern ebenso `unlink`, `rename`,
+        # `replace` und `rmdir`. Ohne die Huelle wuerde aus `Path.unlink()`
+        # ein Aufruf mit verschobenen Argumenten - der zwar auch abbricht,
+        # aber mit dem falschen Fehler und aus dem falschen Grund.
+        return _huelle(f, was.split(".")[-1])
 
-    os.remove = _verboten("os.remove")
-    os.unlink = _verboten("os.unlink")
-    os.rename = _verboten("os.rename")
-    os.replace = _verboten("os.replace")
-    os.rmdir = _verboten("os.rmdir")
-    shutil.rmtree = _verboten("shutil.rmtree")
-    shutil.copy = _verboten("shutil.copy")
-    shutil.copyfile = _verboten("shutil.copyfile")
-    shutil.move = _verboten("shutil.move")
+    echte_verbotene = [(os.remove, "os.remove"), (os.unlink, "os.unlink"),
+                       (os.rename, "os.rename"), (os.replace, "os.replace"),
+                       (os.rmdir, "os.rmdir"), (shutil.rmtree, "shutil.rmtree"),
+                       (shutil.copy, "shutil.copy"),
+                       (shutil.copyfile, "shutil.copyfile"),
+                       (shutil.move, "shutil.move")]
+    wachen_verboten = [(f, _verboten(n)) for f, n in echte_verbotene]
+
+    os.remove, os.unlink, os.rename, os.replace, os.rmdir = \
+        [w for _f, w in wachen_verboten[:5]]
+    shutil.rmtree, shutil.copy, shutil.copyfile, shutil.move = \
+        [w for _f, w in wachen_verboten[5:]]
+
+    # TB-44, zweite Haelfte: war `pathlib` (oder sonst jemand) schon VOR
+    # dieser Zeile geladen, steht dort noch die echte Funktion. Die wird
+    # jetzt nachgezogen. Begruendung und Messwerte bei
+    # `_bindungen_nachziehen`.
+    _BINDUNGEN_NACHGEZOGEN.extend(_bindungen_nachziehen(
+        [(echtes_open, wach_open), (echtes_os_open, wach_os_open),
+         (echtes_makedirs, wach_makedirs), (echtes_mkdir, wach_mkdir)]
+        + wachen_verboten))
 
 
 # ---------------------------------------------------------------------------
@@ -366,6 +547,7 @@ def main(argv=None):
         ergebnis["spur"] = traceback.format_exc()
 
     ergebnis["makedirs_unterdrueckt"] = sorted(set(_MAKEDIRS_VERSUCHE))
+    ergebnis["bindungen_nachgezogen"] = sorted(set(_BINDUNGEN_NACHGEZOGEN))
 
     with open(args.aus, "w") as f:                 # in `erlaubt`, also zulaessig
         json.dump(ergebnis, f, ensure_ascii=False, indent=1, default=str)
