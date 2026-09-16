@@ -1,0 +1,9 @@
+# Die ETF-Kursdateien holt der Betreiber selbst (datenlauf.py). Sie gehoeren
+# aus DREI Gruenden nicht ins Repo, und der dritte ist der wichtige:
+#   1. Sie sind gross und aendern sich taeglich.
+#   2. Ihr Stand steht als Hash in jeder Ergebnisdatei.
+#   3. Was nicht im Repo liegt, kann bei keinem Merge, keinem Rebase und
+#      keinem "mal eben aufraeumen" in data/ landen - und genau das wuerde
+#      den Datenstand-Hash der Vorregistrierung entwerten.
+daten/
+__pycache__/
