@@ -1,0 +1,19 @@
+{
+  "gesamtbestand": {
+    "kursdateien": 223,
+    "packfile_projekt": 119560192,
+    "rohbytes": 211039844
+  },
+  "messung": {
+    "blob": "82c5c4eb905ba190bf56cd14bbf67a389843491c",
+    "blob_gleich": true,
+    "dateien": 30,
+    "pack_A_bestand": 24651776,
+    "pack_B_mit_gleicher_kopie": 24652800,
+    "pack_C_mit_veraenderter_kopie": 24663040,
+    "rohbytes": 76825035,
+    "zeilen_angehaengt": 30,
+    "zuwachs_B": 1024,
+    "zuwachs_C": 10240
+  }
+}
