@@ -287,10 +287,20 @@ das ist kein roter Test, sondern eine Nutzungsmeldung:
 ⚠️ **Zwei Untersuchungstests haben eine Wache `git diff HEAD -- strategies/`**
 (`research/pnl_2025_fixed_size/test_pnl.py:139`,
 `research/elliott_wave_params/test_params.py:221`). Sie werden rot, solange
-Änderungen an Bot-Dateien **unkommittiert** im Arbeitsbaum liegen, und sind
-nach dem Commit wieder grün. **Dritte Erscheinung von T38.9** — ein Prüfer,
-der eine **Auflage** prüft statt einer **Eigenschaft**. *Anders als die beiden
-Wachen aus Teil 1 und 2 prüfen diese beiden ihren Rückgabewert immerhin.*
+Änderungen an Bot-Dateien **unkommittiert** im Arbeitsbaum liegen.
+**Nachgemessen: nach dem Commit sind beide wieder grün** (93/93 bzw. 18/18).
+**Dritte Erscheinung von T38.9** — ein Prüfer, der eine **Auflage** prüft statt
+einer **Eigenschaft**. *Anders als die beiden Wachen aus Teil 1 und 2 prüfen
+diese beiden ihren Rückgabewert immerhin.*
+
+⚠️ **Ein roter Test, der NICHT von dieser Aufgabe kommt:**
+`research/elliott_wave_params/test_params.py elliott_wave` meldet
+`Kennzahlen identisch zum Bot-eigenen Raster` als **rot**. **Gegengeprobt mit
+den Fassungen aus `origin/main`: derselbe Befund** — er ist also
+**vorbestehend** und steht in keiner Liste, weil dieser Test ohne Argument gar
+nicht läuft und ein Basislauf ihn deshalb nie erreicht. *Nicht untersucht, das
+wäre eine eigene Aufgabe.* Mit `elliott_wave_stocks` ist derselbe Test grün
+(18/18).
 
 ---
 
@@ -318,6 +328,9 @@ Wachen aus Teil 1 und 2 prüfen diese beiden ihren Rückgabewert immerhin.*
    Aufgabe.
 3. **`t3_supertrend`: `compute_indicators` bricht auf einem leeren Rahmen ab.**
    Heute eingefangen, aber mit der falschen Meldung.
+3a. **`research/elliott_wave_params/test_params.py elliott_wave` ist
+   vorbestehend rot** (`Kennzahlen identisch zum Bot-eigenen Raster`) und
+   fällt nur auf, wenn man den Test mit Argument aufruft.
 4. **Die sechs übrigen Bots überspringen ein leeres Symbol still.** Eine Zeile
    je Bot.
 5. **`system/test_log_rotation.py:599`** — der `os.fstat`-Ersatz ist auf allen

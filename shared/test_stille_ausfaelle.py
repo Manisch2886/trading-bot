@@ -168,8 +168,9 @@ def _abschnitt_laufen_lassen(ordner, datei, funktion):
             "ausnahme": (lauf.stderr or lauf.stdout)[-400:]}
 
 
-# Die beiden Prueflinge. `historisch` ist die Fassung, die in `origin/main`
-# steht - gegen sie laeuft die Gegenprobe auf den Befund.
+# Die beiden Prueflinge: (Datei, Abschnitt, Kennsatz der neuen Wache).
+# Der Kennsatz sagt Abschnitt 2, ob `origin/main` die Reparatur schon traegt -
+# dann ist "gruen" dort kein Befund mehr, sondern der Sollzustand.
 PRUEFLINGE = [
     ("shared/test_kursdaten.py", "test_verbreitung",
      "der Vergleich gegen origin/main kam zustande"),
@@ -263,7 +264,7 @@ def teil_2():
                 d.write(alt.stdout)
             _git(ordner, "add", "-A")
             _git(ordner, "commit", "-q", "-m", "alte Fassung")
-            _git(ordner, "update-ref", "refs/remotes/origin/main", "HEAD")
+            # Lage B: origin/main ist nicht aufloesbar.
             _git(ordner, "update-ref", "-d", "refs/remotes/origin/main")
 
             ergebnis = _abschnitt_laufen_lassen(ordner, datei, funktion)

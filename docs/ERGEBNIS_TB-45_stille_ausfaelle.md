@@ -107,6 +107,13 @@ beiden Elliott-Bots freigegeben.
 | `dashboard/test_portfolio_sicht.py` | „rot, **beide**" | ⚠️ **in der Cloud grün (91/91)** — rot wird er auf dem Mac, wo die Live-Datenbanken liegen |
 | `dashboard/test_dashboard.py` | „in der Cloud rot (780/780)" | ⚠️ **grün (784/784)** — `node` ist in dieser Cloud vorhanden |
 
+⭐ **Und ein vorbestehender roter Test, den bisher niemand sah:**
+`research/elliott_wave_params/test_params.py elliott_wave` meldet
+`Kennzahlen identisch zum Bot-eigenen Raster` als rot — **auch mit den
+Fassungen aus `origin/main`**, also nicht von dieser Aufgabe. Er fällt nur
+auf, weil dieser Test ein Argument braucht und ein Basislauf ihn sonst nie
+erreicht.
+
 ---
 
 ## Was als Nächstes gebraucht wird
