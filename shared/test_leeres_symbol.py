@@ -16,7 +16,8 @@ WAS HIER GEPRUEFT WIRD - UND WIE
      und `calculate_zigzag_with_confirmation` auf einem leeren Rahmen.
      ⚠ Und die Gegenprobe, ohne die die Reparatur nichts wert waere: auf
      ECHTEN Kursdaten liefern beide Funktionen **Pivot fuer Pivot, Spalte
-     fuer Spalte dasselbe** wie die Fassung aus `origin/main`.
+     fuer Spalte dasselbe** wie die Fassung VOR der Reparatur - gelesen aus
+     `BEZUGSCOMMIT`, einem festgeschriebenen Commit (siehe dort).
   2  Der ganze Lauf, am VERHALTEN: `forward_test.py` laeuft wirklich, als
      `__main__`, in einem eigenen Prozess je Bot - einmal mit einem leeren
      Symbol unter den geladenen, einmal ohne dieses Symbol. Verlangt wird:
@@ -56,6 +57,35 @@ import tempfile
 
 _SHARED = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(_SHARED)
+
+# ===========================================================================
+# Der Bezugspunkt der Gegenprobe - FESTGESCHRIEBEN (TB-46b, Teil 3)
+# ===========================================================================
+# Diese Datei verglich bis TB-46b gegen `origin/main`. Das ging gut, solange
+# `origin/main` die Reparatur noch nicht trug - und hoerte in dem Augenblick
+# auf zu pruefen, in dem TB-45 gemergt wurde: die "alte Fassung", die
+# abbrechen SOLL, war ab da die neue. Die Gegenprobe wurde dadurch nicht
+# falsch, sondern WIRKUNGSLOS, und zwar still.
+#
+# ⚠ Ein Bezugspunkt, der wandert, ist kein Bezugspunkt. Weder `origin/main`
+# noch `HEAD~n` taugen dafuer - beide zeigen morgen woanders hin.
+#
+# Festgeschrieben ist deshalb der Commit UNMITTELBAR VOR der Reparatur:
+#
+#   55b991d  TB-45: stille Ausfaelle - fuenf Stellen, die aufhoerten zu
+#            arbeiten, ohne es zu sagen        <- die Reparatur
+#   97aea88  Umgebungsvermerk: Mac 3.9.6 gegen Cloud 3.11+  <- ihr Elternteil
+#
+# In 97aea88 brechen `calculate_zigzag` und `calculate_zigzag_with_
+# confirmation` bei einem leeren Kursrahmen mit `IndexError` ab. Genau das
+# ist der Befund, den diese Datei belegt.
+#
+# ⚠ Findet git diesen Commit nicht (flache Kopie, fremder Klon), ist dieser
+# Test ROT mit dem Vermerk "nicht pruefbar" - nie gruen, nie uebersprungen.
+# Das ist die Lehre aus TB-45: ein gescheiterter Vergleich ist ein
+# Fehlschlag, kein Erfolg.
+BEZUGSCOMMIT = "97aea8878c9fae5e1f12d30e2ea0318dd20aadc5"
+BEZUGSCOMMIT_KURZ = "97aea88"
 
 ELLIOTT = [("elliott_wave", "BTCUSDT", "1h"),
            ("elliott_wave_stocks", "AAPL", "1d")]
@@ -150,13 +180,22 @@ def teil_1():
                   e.get("pivots") == 0 and "time" in e.get("spalten", []),
                   str(e)[:120])
 
-        # -- Gegenprobe gegen die Fassung aus origin/main -------------------
+        # -- Gegenprobe gegen die Fassung VOR der Reparatur -----------------
+        # Der Bezugspunkt ist festgeschrieben, nicht `origin/main` - siehe
+        # BEZUGSCOMMIT oben.
         alt = subprocess.run(
-            ["git", "show", f"origin/main:strategies/{bot}/zigzag_indicator.py"],
+            ["git", "show",
+             f"{BEZUGSCOMMIT}:strategies/{bot}/zigzag_indicator.py"],
             cwd=BASE_DIR, capture_output=True, text=True)
         if alt.returncode != 0:
-            check(f"{bot}: Fassung aus origin/main lesbar", False,
-                  alt.stderr.strip()[:120])
+            # NICHT PRUEFBAR ist ROT. Waere es gruen oder uebersprungen,
+            # stuende hier wieder eine Wache, die nicht mehr beisst.
+            check(f"{bot}: NICHT PRUEFBAR - der Bezugscommit "
+                  f"{BEZUGSCOMMIT_KURZ} ist in diesem Klon nicht zu lesen",
+                  False,
+                  (alt.stderr.strip()[:120] or "git show ohne Meldung")
+                  + "  (Abhilfe: vollstaendigen Klon verwenden, "
+                    "`git fetch --unshallow`)")
             continue
         # `zigzag_indicator.py` rechnet seinen shared/-Pfad aus dem eigenen
         # `__file__` aus. Die alte Fassung bekommt deshalb einen kleinen
@@ -176,11 +215,13 @@ def teil_1():
         finally:
             shutil.rmtree(altwurzel, ignore_errors=True)
         if vorher is None:
-            check(f"{bot}: die alte Fassung laeuft auf echten Daten", False,
+            check(f"{bot}: die Fassung aus {BEZUGSCOMMIT_KURZ} laeuft auf "
+                  f"echten Daten", False,
                   (lauf2.stdout + lauf2.stderr)[-300:])
             continue
-        check(f"{bot}: auf echten Daten bricht die ALTE Fassung bei einem "
-              f"leeren Rahmen ab - das ist der Befund",
+        check(f"{bot}: auf echten Daten bricht die Fassung aus "
+              f"{BEZUGSCOMMIT_KURZ} bei einem leeren Rahmen ab - das ist "
+              f"der Befund",
               "fehler" in vorher["zigzag_leer"],
               str(vorher["zigzag_leer"])[:120])
         for name in ("zigzag", "zigzag_bestaetigt"):

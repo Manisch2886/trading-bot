@@ -43,11 +43,14 @@ nicht mehr beisst).
 
 UND DIE GEGENPROBE AUF DEN BEFUND SELBST
 ------------------------------------------------------------------------------
-Dieselbe Lage B laeuft zusaetzlich gegen die Fassung aus `origin/main` -
+Dieselbe Lage B laeuft zusaetzlich gegen die Fassung aus `BEZUGSCOMMIT` -
 also gegen den unveraenderten Stand. Dort muss sie **gruen** sein. Genau das
 ist der Befund: der alte Stand meldet "bestanden", ohne gemessen zu haben.
-Faellt diese Gegenprobe eines Tages aus, weil `origin/main` die Reparatur
-schon enthaelt, sagt der Test das und wertet sie nicht als Fehler.
+⚠ Der Bezugspunkt ist FESTGESCHRIEBEN (TB-46b, Teil 3). Solange hier
+`origin/main` stand, hoerte diese Gegenprobe mit dem TB-45-Merge auf zu
+pruefen - der "unveraenderte Stand" war ab da der reparierte. Findet git den
+Bezugscommit nicht, oder traegt dessen Fassung die Wache wider Erwarten
+schon, ist der Abschnitt ROT mit dem Vermerk "nicht pruefbar".
 
 Abschnitt 3 misst getrennt davon den bekannten Punkt T38.9: was der
 Zwei-Punkt-Vergleich, die Drei-Punkt-Form und der Vergleich gegen die
@@ -168,9 +171,46 @@ def _abschnitt_laufen_lassen(ordner, datei, funktion):
             "ausnahme": (lauf.stderr or lauf.stdout)[-400:]}
 
 
+# ===========================================================================
+# Der Bezugspunkt der Gegenprobe - FESTGESCHRIEBEN (TB-46b, Teil 3)
+# ===========================================================================
+# Abschnitt 2 verglich bis TB-46b gegen `origin/main`. Das ging gut, solange
+# `origin/main` die Reparatur noch nicht trug - und hoerte in dem Augenblick
+# auf zu pruefen, in dem TB-45 gemergt wurde. Zwei Dinge gingen dabei kaputt,
+# und beide still:
+#
+#   1. Der Kennsatz-Zweig unten fand die Reparatur in der "alten" Fassung und
+#      meldete "Gegenprobe entfaellt" - GRUEN, ohne etwas gemessen zu haben.
+#      Genau die Verwechslung, die dieser Test selbst anprangert.
+#   2. Davor schon: die "alte" Fassung war zeichengleich mit der neuen, also
+#      staged `git add -A` nichts und `git commit` scheitert mit rc 1 und
+#      LEERER stderr ("nothing to commit" geht auf stdout). `_git` wirft
+#      darauf eine RuntimeError ohne Text, und teil_2 endet als Ausnahme.
+#
+# ⚠ Ein Bezugspunkt, der wandert, ist kein Bezugspunkt. Weder `origin/main`
+# noch `HEAD~n` taugen dafuer.
+#
+# Festgeschrieben ist der Commit UNMITTELBAR VOR der Reparatur:
+#
+#   55b991d  TB-45: stille Ausfaelle - fuenf Stellen, die aufhoerten zu
+#            arbeiten, ohne es zu sagen        <- die Reparatur
+#   97aea88  Umgebungsvermerk: Mac 3.9.6 gegen Cloud 3.11+  <- ihr Elternteil
+#
+# In 97aea88 tragen BEIDE Prueflinge die Wache noch nicht; sie melden in
+# Lage B faelschlich "bestanden". Das ist der Befund, den dieser Abschnitt
+# belegt.
+#
+# ⚠ Findet git den Commit nicht, oder traegt die Fassung von dort die
+# Reparatur wider Erwarten schon, ist dieser Abschnitt ROT mit dem Vermerk
+# "nicht pruefbar" - nie gruen, nie uebersprungen.
+BEZUGSCOMMIT = "97aea8878c9fae5e1f12d30e2ea0318dd20aadc5"
+BEZUGSCOMMIT_KURZ = "97aea88"
+
+
 # Die beiden Prueflinge: (Datei, Abschnitt, Kennsatz der neuen Wache).
-# Der Kennsatz sagt Abschnitt 2, ob `origin/main` die Reparatur schon traegt -
-# dann ist "gruen" dort kein Befund mehr, sondern der Sollzustand.
+# Der Kennsatz sagt Abschnitt 2, ob die Fassung aus BEZUGSCOMMIT die
+# Reparatur wider Erwarten schon traegt - dann stimmt der Bezugspunkt nicht
+# und der Abschnitt ist ROT, nicht gruen.
 PRUEFLINGE = [
     ("shared/test_kursdaten.py", "test_verbreitung",
      "der Vergleich gegen origin/main kam zustande"),
@@ -246,42 +286,59 @@ def teil_1():
 # 2  Die Gegenprobe: derselbe Fall auf dem unveraenderten Stand
 # ===========================================================================
 def teil_2():
-    print("\n2) Gegenprobe - der Stand aus origin/main meldet in Lage B "
-          "'bestanden'")
+    print(f"\n2) Gegenprobe - der Stand aus {BEZUGSCOMMIT_KURZ} (vor der "
+          f"Reparatur) meldet in Lage B 'bestanden'")
     arbeit = tempfile.mkdtemp(prefix="tb45_alt_")
     ordner = os.path.join(arbeit, "repo")
     try:
         _kopie_mit_eigener_geschichte(ordner)
         for datei, funktion, wache in PRUEFLINGE:
             kurz = os.path.basename(datei)
-            alt = _git(BASE_DIR, "show", f"origin/main:{datei}", pruefe=False)
+            alt = _git(BASE_DIR, "show", f"{BEZUGSCOMMIT}:{datei}",
+                       pruefe=False)
             if alt.returncode != 0:
-                check(f"{kurz}: Fassung aus origin/main lesbar", False,
-                      alt.stderr.strip()[:120])
+                # NICHT PRUEFBAR ist ROT - nie gruen, nie uebersprungen.
+                check(f"{kurz}: NICHT PRUEFBAR - der Bezugscommit "
+                      f"{BEZUGSCOMMIT_KURZ} ist in diesem Klon nicht zu "
+                      f"lesen", False,
+                      (alt.stderr.strip()[:120] or "git show ohne Meldung")
+                      + "  (Abhilfe: vollstaendigen Klon verwenden, "
+                        "`git fetch --unshallow`)")
                 continue
+
+            if wache in alt.stdout:
+                # Der Bezugspunkt zeigt auf einen Stand, der die Reparatur
+                # schon traegt. Dann misst die Gegenprobe nichts mehr - und
+                # das ist ein Befund ueber DIESEN TEST, kein gruener Haken.
+                check(f"{kurz}: NICHT PRUEFBAR - die Fassung aus "
+                      f"{BEZUGSCOMMIT_KURZ} traegt die Wache bereits, der "
+                      f"Bezugspunkt liegt also falsch", False,
+                      f"Kennsatz gefunden: {wache!r}")
+                continue
+
             ziel = os.path.join(ordner, datei)
             with open(ziel, "w", encoding="utf-8") as d:
                 d.write(alt.stdout)
             _git(ordner, "add", "-A")
-            _git(ordner, "commit", "-q", "-m", "alte Fassung")
+            # ⚠ `--allow-empty`: waere die alte Fassung eines Tages
+            # zeichengleich mit der neuen, staged `git add -A` nichts und
+            # `git commit` scheitert mit rc 1 bei LEERER stderr. Genau daran
+            # ist dieser Abschnitt nach dem TB-45-Merge abgebrochen. Der
+            # leere Commit ist hier harmlos: der Inhalt steht schon im Baum,
+            # und ob er neu ist, entscheidet nichts. Dass die Fassung
+            # ueberhaupt eine andere ist, prueft der Kennsatz-Zweig darueber.
+            _git(ordner, "commit", "-q", "--allow-empty", "-m", "alte Fassung")
             # Lage B: origin/main ist nicht aufloesbar.
             _git(ordner, "update-ref", "-d", "refs/remotes/origin/main")
 
             ergebnis = _abschnitt_laufen_lassen(ordner, datei, funktion)
-            enthaelt_reparatur = wache in alt.stdout
-            if enthaelt_reparatur:
-                # origin/main traegt die Reparatur bereits - dann ist "gruen"
-                # dort kein Befund mehr, sondern der Sollzustand.
-                check(f"{kurz}: origin/main traegt die Reparatur bereits - "
-                      f"Gegenprobe entfaellt", True, "kein Befund mehr")
-            else:
-                check(f"{kurz}: der unveraenderte Stand meldet in Lage B "
-                      f"faelschlich 'bestanden' - DAS ist der Befund",
-                      not ergebnis["fehler"] and ergebnis["ausnahme"] is None,
-                      str(ergebnis["fehler"] or ergebnis["ausnahme"])[:160])
-                check(f"{kurz}: und zwar mit {ergebnis['bestanden']} gruenen "
-                      f"Pruefungen, ohne etwas gemessen zu haben",
-                      ergebnis["bestanden"] > 0, ergebnis["bestanden"])
+            check(f"{kurz}: der Stand aus {BEZUGSCOMMIT_KURZ} meldet in "
+                  f"Lage B faelschlich 'bestanden' - DAS ist der Befund",
+                  not ergebnis["fehler"] and ergebnis["ausnahme"] is None,
+                  str(ergebnis["fehler"] or ergebnis["ausnahme"])[:160])
+            check(f"{kurz}: und zwar mit {ergebnis['bestanden']} gruenen "
+                  f"Pruefungen, ohne etwas gemessen zu haben",
+                  ergebnis["bestanden"] > 0, ergebnis["bestanden"])
             # fuer den naechsten Pruefling zuruecksetzen
             _git(ordner, "checkout", "-q", "--", ".")
             _git(ordner, "update-ref", "refs/remotes/origin/main", "HEAD")
