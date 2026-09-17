@@ -92,7 +92,7 @@ class Ladeprotokoll:
         # Meldung zweimal waere selbst ein Befund und soll sichtbar bleiben.
         self.ausgelassen = []
 
-    # -- die vier Gruende ---------------------------------------------------
+    # -- die fuenf Gruende --------------------------------------------------
     # Jeder Grund steht hier genau einmal. Die kurze Bezeichnung (zweites
     # Feld) ist die, die in der Summenzeile gezaehlt wird.
 
@@ -110,6 +110,27 @@ class Ladeprotokoll:
         """Die Historie deckt zu wenige Tage ab."""
         return self._aus(symbol, "Historie zu kurz",
                          f"deckt nur {tage} Tage ab (< {mindest} noetig)")
+
+    def ohne_kursrahmen(self, symbol, quelle):
+        """Die Kursquelle hat fuer dieses Symbol ueberhaupt keine Kerze
+        geliefert - ausgefallener Abruf, leere Antwort, leere Datei.
+
+        ANLASS: TB-45, Teil 4. Die vier Gruende darueber beschreiben den
+        BACKTEST-Lader, der aus einer CSV liest. Im Papierpfad kommt der
+        Rahmen aus `shared/entscheidungskerze.lade` und damit wahlweise aus
+        `data/` ODER aus dem Live-Abruf - welche der beiden Quellen leer
+        blieb, weiss die aufrufende Stelle, nicht dieses Modul. Deshalb ein
+        eigener Grund mit Platz fuer die Quelle, statt `leer()`
+        zweckzuentfremden und im Bericht "leere Kursdatei" zu behaupten, wo
+        vielleicht der Abruf ausfiel.
+
+        Warum der Wortlaut trotzdem hierher gehoert und nicht in die Bots:
+        derselbe Satz steht sonst zweimal im Repo und laeuft beim naechsten
+        Mal auseinander - genau der Fehler, gegen den dieses Modul gebaut
+        wurde.
+        """
+        return self._aus(symbol, "kein Kursrahmen",
+                         f"hat keinen Kursrahmen geliefert ({quelle})")
 
     def zu_wenige_kerzen(self, symbol, kerzen, mindest):
         """Die Historie hat zu wenige Kerzen (Bots mit Kerzenzahl-Schranke)."""

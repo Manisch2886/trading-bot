@@ -41,6 +41,22 @@ def calculate_zigzag(df: pd.DataFrame, deviation_pct: float = 3.0) -> pd.DataFra
 
     pivots = []
 
+    # TB-45, Teil 4: ohne Kerze gibt es keinen Pivot - und `highs[0]` waere
+    # ein IndexError, der den GANZEN Lauf beendet statt nur dieses Symbol.
+    # Gemessen in TB-42: faellt eine Kursquelle fuer ein einziges Symbol
+    # aus, handelten `elliott_wave` und `elliott_wave_stocks` an diesem Tag
+    # gar nicht mehr. Der Papierpfad laesst ein leeres Symbol seit TB-45
+    # schon vorher mit Meldung aus (`forward_test.py`); diese Zeile nimmt
+    # dem Abbruch zusaetzlich die Stelle, an der er entstand - auch fuer
+    # Backtest und Optimierer, die dieselbe Funktion rufen.
+    #
+    # Am Signal aendert sie NICHTS: fuer jede nichtleere Eingabe laeuft
+    # unveraendert derselbe Code. Nachgewiesen wird das nicht durch diese
+    # Zusage, sondern in `shared/test_leeres_symbol.py` - Pivot fuer Pivot,
+    # Spalte fuer Spalte, gegen echte Kursdateien.
+    if len(highs) == 0:
+        return pd.DataFrame(pivots, columns=["time", "price", "type"])
+
     # Startpunkt: erste Kerze als vorlaeufiger Pivot
     last_pivot_price = highs[0]
     last_pivot_idx = 0
@@ -120,6 +136,24 @@ def calculate_zigzag_with_confirmation(df: pd.DataFrame, deviation_pct: float = 
     times = df["open_time"].values
 
     pivots = []
+
+    # TB-45, Teil 4: ohne Kerze gibt es keinen Pivot - und `highs[0]` waere
+    # ein IndexError, der den GANZEN Lauf beendet statt nur dieses Symbol.
+    # Gemessen in TB-42: faellt eine Kursquelle fuer ein einziges Symbol
+    # aus, handelten `elliott_wave` und `elliott_wave_stocks` an diesem Tag
+    # gar nicht mehr. Der Papierpfad laesst ein leeres Symbol seit TB-45
+    # schon vorher mit Meldung aus (`forward_test.py`); diese Zeile nimmt
+    # dem Abbruch zusaetzlich die Stelle, an der er entstand - auch fuer
+    # Backtest und Optimierer, die dieselbe Funktion rufen.
+    #
+    # Am Signal aendert sie NICHTS: fuer jede nichtleere Eingabe laeuft
+    # unveraendert derselbe Code. Nachgewiesen wird das nicht durch diese
+    # Zusage, sondern in `shared/test_leeres_symbol.py` - Pivot fuer Pivot,
+    # Spalte fuer Spalte, gegen echte Kursdateien.
+    if len(highs) == 0:
+        return pd.DataFrame(pivots, columns=["time", "price", "type",
+                                             "confirm_idx", "confirm_time",
+                                             "pivot_idx"])
 
     # Startpunkt: erste Kerze als vorlaeufiger Pivot
     last_pivot_price = highs[0]

@@ -79,6 +79,7 @@ zu laufen.
 
 import argparse
 import contextlib
+import errno
 import importlib.util
 import io
 import json
@@ -246,7 +247,7 @@ def _bindungen_nachziehen(paare):
 
 
 def _ist_geraet(pfad):
-    """Zeigt der Pfad auf etwas, das gar keine Datei auf der Platte ist?
+    """Zeigt der Pfad auf ein GERAET - Zeichen-, Block- oder FIFO-Knoten?
 
     `/dev/null` und Konsorten sind Zeichengeraete: darauf zu schreiben
     veraendert nichts, was der Datenstand-Hash je sehen koennte. Der
@@ -254,10 +255,40 @@ def _ist_geraet(pfad):
     und `python-binance` bzw. `yfinance` oeffnen `/dev/null` beim Import
     lesend-schreibend. Ein Pfad, den es noch nicht gibt, faellt hier
     ausdruecklich NICHT heraus: der wuerde ja gerade angelegt.
+
+    TB-45, Teil 3: HIER STAND `not stat.S_ISREG(...)`
+    ----------------------------------------------------------------------
+    Also "alles, was keine regulaere Datei ist" - und damit **True fuer
+    jedes existierende Verzeichnis**. Eine Funktion namens "ist ein Geraet",
+    die fuer jedes Verzeichnis True liefert, fuehrt den naechsten in die
+    Irre, der die Wache erweitert.
+
+    Ein Schutzloch war es bis heute nicht, und das ist gemessen:
+    `makedirs(exist_ok=True)` ist ein No-op, `mkdir` wirft
+    `FileExistsError`, `open(ordner, "w")` und `os.open(ordner, O_WRONLY)`
+    scheitern mit `EISDIR`, und `rmdir`, `rename`, `unlink`, `remove`,
+    `replace`, `rmtree`, `move` sind bedingungslos verboten. **Aber die
+    Harmlosigkeit war Zufall der Umstaende, nicht des Entwurfs:** kaeme eine
+    Operation dazu, die auf ein Verzeichnis wirken kann - `chmod`, `utime`,
+    ein Kopiervorgang hinein -, wuerde der "Geraet"-Zweig sie durchwinken.
+
+    Und sie hatte eine Wirkung, die schon eingetreten war: weil ein
+    existierendes Verzeichnis als "Geraet" galt, lief `wach_makedirs` fuer
+    `results/<bot>` und `logs/<bot>` durch, **sobald es die Ordner gab** -
+    auf dem Mac (Cron hat sie angelegt) also immer, in einem frischen
+    Checkout nie. Derselbe Code, dasselbe Verhalten, verschiedenes
+    Testergebnis; Pruefung B2 des Trockenlaufs haing daran.
+
+    Nicht aufgenommen sind Sockets: sie sind hier nicht noetig (Netzverkehr
+    laeuft ueber das `socket`-Modul, nicht ueber `open(pfad)`), und die
+    engere Liste laesst hoechstens eine Meldung zu viel zu, nie eine zu
+    wenig.
     """
     try:
         import stat
-        return not stat.S_ISREG(os.stat(pfad).st_mode)
+        modus = os.stat(pfad).st_mode
+        return (stat.S_ISCHR(modus) or stat.S_ISBLK(modus)
+                or stat.S_ISFIFO(modus))
     except (OSError, ValueError, TypeError):
         return False
 
@@ -359,16 +390,41 @@ def schreibschutz_an(erlaubte_pfade):
     echtes_makedirs = os.makedirs
     echtes_mkdir = os.mkdir
 
+    def _existiert_schon(name):
+        try:
+            return os.path.exists(name)
+        except (OSError, ValueError, TypeError):
+            return False
+
+    # TB-45, Teil 3: seit `_ist_geraet` nur noch echte Geraete meldet, kommt
+    # ein BESTEHENDES Verzeichnis ausserhalb von `_ERLAUBT` hier an, statt
+    # oben durchgewunken zu werden. Zwei Folgen, beide gewollt:
+    #
+    #   * Der Versuch wird aufgezeichnet - unabhaengig davon, ob es den
+    #     Ordner schon gibt. Genau das verlangt die Pruefung B2: der Beleg,
+    #     dass die Wache etwas zu tun hatte, darf nicht davon abhaengen, ob
+    #     in diesem Checkout schon einmal ein Bot gelaufen ist.
+    #   * `exist_ok` muss die Wache jetzt selbst auswerten. Sonst bekaeme
+    #     ein Aufrufer, der auf `FileExistsError` baut, still ein `None` -
+    #     und der Trockenlauf bildete den Betrieb an dieser Stelle nicht
+    #     mehr nach. Geschrieben wird dabei weiterhin nichts.
     def wach_makedirs(name, *a, **k):
         if _ist_erlaubt(name):
             return echtes_makedirs(name, *a, **k)
         _MAKEDIRS_VERSUCHE.append(os.path.abspath(name))
+        exist_ok = a[1] if len(a) >= 2 else k.get("exist_ok", False)
+        if not exist_ok and _existiert_schon(name):
+            raise FileExistsError(errno.EEXIST, os.strerror(errno.EEXIST),
+                                  str(name))
         return None                      # folgenlos, aber kein Abbruch
 
     def wach_mkdir(name, *a, **k):
         if _ist_erlaubt(name):
             return echtes_mkdir(name, *a, **k)
         _MAKEDIRS_VERSUCHE.append(os.path.abspath(name))
+        if _existiert_schon(name):       # os.mkdir kennt kein exist_ok
+            raise FileExistsError(errno.EEXIST, os.strerror(errno.EEXIST),
+                                  str(name))
         return None
 
     wach_makedirs = _huelle(wach_makedirs, "makedirs")
