@@ -254,3 +254,63 @@ bestimmter Bot (`elliott_wave`) neu eingestellt werden darf oder nicht.
 ---
 
 *TB-40, 16.09.2026.*
+
+---
+
+## Nachtrag TB-43 (16.09.2026) — das Werkzeug wurde repariert
+
+Die Befunde oben bleiben, wie sie sind. Zwei Dinge am **Werkzeug** haben sich
+seither geändert; wer es erneut laufen lässt, sieht deshalb ein anderes Bild als
+dieser Bericht beschreibt:
+
+1. **Verglichen wird jetzt gegen Registerabschnitt 16.1.1**, nicht mehr gegen
+   die erste Tabelle mit passender Kopfzeile. Seit dem Registernachtrag TB-41
+   wäre das die historische, als „ERSETZT" gekennzeichnete Fassung in 15.5
+   gewesen — ein erneuter Lauf hätte wieder acht Abweichungen gemeldet, obwohl
+   das Register stimmt. Der benutzte Abschnitt steht jetzt in der Ausgabe;
+   `--register-abschnitt 15.5` stellt den hier dokumentierten Stand wieder her.
+2. **Der Schreibschutz in `loaderlauf.py` kannte vier Aufrufwege nicht**
+   (`io.open`, `pathlib.Path.open`, `Path.write_text`, `os.open`) und brach
+   ausserdem bei `open(pfad, mode="rb")` mit einem `TypeError` ab. Beides ist
+   behoben. Für die Messungen dieses Berichts ist das folgenlos — geschrieben
+   wurde nachweislich nichts —, aber der Schutz war dünner, als hier steht.
+
+Einzelheiten: `docs/ERGEBNIS_TB-43_blinde_wachen.md`.
+
+---
+
+## Nachtrag TB-44 (16.09.2026) — der Schreibschutz war versionsabhängig
+
+Der Nachtrag TB-43 oben sagt, der Schreibschutz kenne jetzt alle Aufrufwege.
+Das stimmt — **auf Python 3.11 und neuer.** Auf den Fassungen davor stimmte es
+in beide Richtungen nicht, und das ist gemessen worden:
+
+| Fassung | `pathlib` **vor** der Wache | `pathlib` **nach** der Wache |
+|---|---|---|
+| **3.9** | `Path.touch()` legte die Datei **wirklich** an, `Path.mkdir()` das Verzeichnis **wirklich** | jeder Zugriff brach ab, auch ein **lesender** |
+| **3.10** | `Path.open("w")` und `Path.write_text()` **schrieben wirklich** | jeder Zugriff brach ab, auch ein **lesender** |
+| **3.11+** | in Ordnung | in Ordnung |
+
+Die Ursache liegt nicht in `pathlib`, sondern im Bindungsverhalten: `os.open`
+und `io.open` sind C-Funktionen und damit **keine Deskriptoren**; die Wache war
+eine Python-Funktion und damit einer. Steht sie im Rumpf einer Klasse — und
+genau das tut `pathlib._NormalAccessor` beim Import —, wird daraus eine
+gebundene Methode, und die Argumente verrutschen.
+
+**Für die Messungen dieses Berichts ist das folgenlos** — sie sind in der Cloud
+auf Python 3.11 entstanden, der Datenstand-Hash ist unverändert, und
+geschrieben wurde nachweislich nichts. Aber der Schutz hing an der
+Python-Fassung, und das stand nirgends.
+
+Behoben durch zwei Wachen, von denen keine `pathlib` kennt: `_Wache` (die
+Wache ist eine aufrufbare Instanz statt einer Funktion, bindet sich also wie
+das C-Original) und `_bindungen_nachziehen` (Kopien, die vor der Wache gebunden
+wurden, werden über Identität gesucht und ersetzt). Geprüft von **Teil L** und
+**Teil M** des Selbsttests, unter jeder Python-Fassung, die auf dem Rechner
+liegt.
+
+> ⚠️ **Teil K sieht diesen Fall nicht** — dort ist `pathlib` schon geladen,
+> bevor die Wache angeht. Auf dem TB-43-Stand blieb Teil K grün, während Teil L
+> 118 von 251 Prüfungen rot meldete.
+
+Einzelheiten: `docs/ERGEBNIS_TB-44_wache_beide_pythons.md`.

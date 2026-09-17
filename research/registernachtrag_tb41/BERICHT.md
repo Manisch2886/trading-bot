@@ -130,3 +130,27 @@ gegen das aufgeschriebene Ergebnis.
 
 *TB-41, 16.09.2026. Kein Selektionslauf, kein signierter Tag, keine
 Parameterübernahme.*
+
+---
+
+## Nachtrag TB-43 (16.09.2026) — `null_entfernte_zeilen` war blind
+
+Die Prüfung `null_entfernte_zeilen` verglich gegen `origin/main`. Sobald der
+Zweig gemergt war, war der Diff leer, die Schleife lief null Mal, und die
+Prüfung meldete **Erfolg, ohne etwas geprüft zu haben** — dreimal aufgetreten
+(TB-36, TB-40, TB-41). Gefunden wurde es nur durch den Selbsttest **B2**
+(„der Diff wurde tatsächlich ausgewertet").
+
+Seit TB-43 gilt:
+
+* **Ein leerer Vergleich ist ein Befund** mit Rückgabewert 1, kein Erfolg.
+* Die Basis ist standardmässig `git merge-base HEAD origin/main` — das behebt
+  die *andere* Fehlerart (TB-34: fremde Commits im Diff), **nicht** den leeren
+  Vergleich.
+* **Welche Basis benutzt wurde und woher sie stammt, steht im Bericht**
+  (`Quelle basis:`).
+
+Wer die Prüfung sinnvoll laufen lassen will, gibt die Basis **vor** dem Eintrag
+an, z. B. `--basis $(git log -1 --format=%H -- docs/VORREGISTRIERUNG_neuselektion.md)^`.
+
+Einzelheiten: `docs/ERGEBNIS_TB-43_blinde_wachen.md`.

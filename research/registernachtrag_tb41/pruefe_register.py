@@ -27,6 +27,24 @@ Wo es das nicht kann (Cloud: kein pandas, Binance gesperrt), wird das
 committete Ergebnisdokument von TB-40 geparst. Welche Quelle benutzt wurde,
 steht im Bericht; geraten wird nichts.
 
+WOGEGEN VERGLICHEN WIRD - UND WARUM DAS IM BERICHT STEHT
+------------------------------------------------------------------------------
+Die beiden git-Pruefungen brauchen eine Vergleichsbasis. Bis TB-43 war das
+fest `origin/main`, mit zwei Folgen: nach einem Merge war der Diff leer und
+`null_entfernte_zeilen` meldete Erfolg, ohne irgendetwas geprueft zu haben
+(dreimal aufgetreten - TB-36, TB-40, TB-41).
+
+Beides ist jetzt getrennt behandelt:
+
+* Die Basis ist standardmaessig `git merge-base HEAD origin/main`, nicht
+  `origin/main` selbst - damit schleppt der Diff keine fremden Commits mit
+  herein, wenn `main` weitergelaufen ist.
+* Ein LEERER Vergleich ist ein BEFUND, kein Erfolg. `merge-base` hilft dagegen
+  naemlich gerade nicht: ist der Zweig schon gemergt, ist die Basis der eigene
+  Commit und der Diff bleibt leer.
+* Welche Basis benutzt wurde und woher sie kommt, steht als `Quelle basis:`
+  in der Ausgabe.
+
 DIESES WERKZEUG SCHREIBT NICHTS ausser der optionalen --json-Datei. Es fasst
 weder data/ noch strategies/ noch research/universum_trockenlauf/ an.
 """
@@ -60,6 +78,10 @@ AKTIEN_BOTS = ["elliott_wave_stocks", "rsi2_mean_reversion", "turtle_soup_stocks
 # Registrierter Datenstand - steht so im Register (Abschnitt 15.0/16.0).
 DATENSTAND_PRAEFIX = "d9449faf51bffaaa"
 DATENSTAND_DATEIEN = 223
+
+# Der Zweig, gegen den verglichen wird, wenn --basis nichts sagt. Nicht
+# direkt als Basis benutzt - siehe bestimme_basis().
+STANDARD_ZWEIG = "origin/main"
 
 # Der Umstellungstag der Entscheidungskerze, Registertext 7.
 UMSTELLUNGSTAG_ERWARTET = "2026-09-16T04:42:24Z"
@@ -317,12 +339,41 @@ def _git(repo, *args):
     return lauf.stdout
 
 
+def bestimme_basis(repo, angabe, zweig=STANDARD_ZWEIG):
+    """Wogegen wird verglichen - und woher kommt diese Antwort?
+
+    Bis TB-43 stand hier schlicht `origin/main`. Das hat zwei verschiedene
+    Fehler, die man nicht verwechseln darf:
+
+    * Ist `main` weitergelaufen, schleppt der Diff die Aenderungen ANDERER
+      Leute mit herein - das war die Verwirrung aus TB-34. Dagegen hilft
+      `git merge-base`, und deshalb ist es jetzt der Standard.
+    * Ist der eigene Zweig bereits GEMERGT, ist der Diff leer. Dagegen hilft
+      `merge-base` NICHT (die Basis ist dann der eigene Commit selbst, der
+      Diff bleibt leer) - dagegen hilft nur, den leeren Vergleich zu melden.
+      Das tut `null_entfernte_zeilen` weiter unten.
+
+    Zurueck kommt (Basis, Herkunft); die Herkunft steht im Bericht, damit
+    nicht geraten werden muss, wogegen geprueft wurde.
+    """
+    if angabe:
+        return angabe, "ausdruecklich angegeben (--basis)"
+    try:
+        gefunden = _git(repo, "merge-base", "HEAD", zweig).strip()
+    except RuntimeError as fehler:
+        return zweig, "Rueckfall auf %s - merge-base nicht ermittelbar (%s)" % (
+            zweig, fehler)
+    if not gefunden:
+        return zweig, "Rueckfall auf %s - merge-base lieferte nichts" % zweig
+    return gefunden, "git merge-base HEAD %s" % zweig
+
+
 # ---------------------------------------------------------------------------
 # 6. Die Pruefungen
 # ---------------------------------------------------------------------------
 def pruefe(auswahl, register_pfad, beleg_pfad, beleg_modus, arbeitsverzeichnis,
            repo, basis, daten_dir, erwarteter_datenstand, erwartete_dateien,
-           strategien_basis):
+           strategien_basis, basis_zweig=STANDARD_ZWEIG):
     bericht = {"befunde": [], "geprueft": [], "uebersprungen": [], "quellen": {}}
 
     def an(name):
@@ -332,6 +383,14 @@ def pruefe(auswahl, register_pfad, beleg_pfad, beleg_modus, arbeitsverzeichnis,
         bericht["befunde"].append({"pruefung": pruefung, "befund": text})
 
     register_text = _lies(register_pfad)
+
+    # Wogegen verglichen wird, steht ab jetzt IM BERICHT - nicht nur im
+    # Quelltext. Ein Werkzeug, das gegen eine von mehreren moeglichen Basen
+    # prueft, ohne zu sagen gegen welche, ist die naechste blinde Wache.
+    if an("daten_unberuehrt") or an("null_entfernte_zeilen"):
+        basis, basis_herkunft = bestimme_basis(repo, basis, basis_zweig)
+        bericht["quellen"]["basis"] = {"commit": basis,
+                                       "herkunft": basis_herkunft}
 
     braucht_beleg = an("symbolzahl") or an("faltenevidenz")
     beleg_zahlen = beleg_evidenz = None
@@ -487,8 +546,22 @@ def pruefe(auswahl, register_pfad, beleg_pfad, beleg_modus, arbeitsverzeichnis,
         except RuntimeError as fehler:
             befund("null_entfernte_zeilen", "git nicht auswertbar: %s" % fehler)
         else:
-            bericht["quellen"]["numstat"] = roh.strip().splitlines()
-            for zeile in roh.strip().splitlines():
+            zeilen = roh.strip().splitlines()
+            bericht["quellen"]["numstat"] = zeilen
+            if not zeilen:
+                # DAS ist der TB-43-Fehler: ohne diese Meldung war die
+                # Pruefung nach jedem Merge trivial gruen. Ein leerer
+                # Vergleich ist kein Nachweis, dass nichts entfernt wurde -
+                # er ist gar kein Nachweis. Ein Werkzeug, das nicht mehr
+                # misst, sagt es.
+                befund("null_entfernte_zeilen",
+                       "LEERER VERGLEICH gegen %s: keine der beiden "
+                       "Registerdateien steht im Diff. Diese Pruefung hat "
+                       "damit NICHTS geprueft - das ist kein Erfolg. "
+                       "Haeufigster Grund: der Zweig ist bereits gemergt. "
+                       "Abhilfe: --basis <Commit vor dem Eintrag> angeben."
+                       % basis)
+            for zeile in zeilen:
                 dazu, weg, datei = zeile.split("\t")
                 if weg != "0":
                     befund("null_entfernte_zeilen",
@@ -553,7 +626,11 @@ def main(argv=None):
     p.add_argument("--beleg-modus", default="auto",
                    choices=["auto", "trockenlauf", "dokument"])
     p.add_argument("--repo", default=BASE_DIR)
-    p.add_argument("--basis", default="origin/main")
+    p.add_argument("--basis", default=None,
+                   help="Vergleichsbasis. Standard: git merge-base HEAD gegen "
+                        "--basis-zweig")
+    p.add_argument("--basis-zweig", default=STANDARD_ZWEIG,
+                   help="Zweig, gegen den die Basis bestimmt wird")
     p.add_argument("--daten", default=os.path.join(BASE_DIR, "data"))
     p.add_argument("--strategien", default=BASE_DIR,
                    help="Wurzel, unter der strategies/<bot>/ liegt")
@@ -566,7 +643,8 @@ def main(argv=None):
     arbeit = a.arbeitsverzeichnis or os.environ.get("TMPDIR") or "/tmp"
     bericht = pruefe(set(a.nur) if a.nur else None, a.register, a.beleg,
                      a.beleg_modus, arbeit, a.repo, a.basis, a.daten,
-                     a.erwarteter_datenstand, a.erwartete_dateien, a.strategien)
+                     a.erwarteter_datenstand, a.erwartete_dateien, a.strategien,
+                     a.basis_zweig)
     drucke(bericht)
     if a.json:
         with open(a.json, "w", encoding="utf-8") as f:
