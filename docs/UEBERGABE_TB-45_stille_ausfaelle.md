@@ -277,12 +277,28 @@ Cloud gemessen, mit Angabe des Rechners (Regel aus `docs/UMGEBUNGEN.md`):
 | `dashboard/test_portfolio_sicht.py` | „bekannt rot, **beide**" | ⚠️ **grün, 91/91** — er wird auf dem Mac rot, weil dort die Live-Datenbanken liegen |
 | `dashboard/test_dashboard.py` | „in der Cloud rot" (ohne `node`: 780/780) | ⚠️ **grün, 784/784** — `node` ist in dieser Cloud vorhanden |
 
-**Vier Tests verlangen ein Argument** und geben ohne eines Rückgabewert 1 —
-das ist kein roter Test, sondern eine Nutzungsmeldung:
-`research/drawdown_reihenfolge/test_drawdown.py`,
-`research/elliott_wave_params/test_params.py`,
-`research/fib_score_stufen/test_stufen.py`,
-`research/hrp_portfolio/test_hrp_core.py` (dort fehlt zusätzlich `scipy`).
+**Der vollständige Basislauf: 62 Testdateien, keine unerklärte Abweichung.**
+Nicht grün waren elf, jede davon zugeordnet:
+
+| Test | Rückgabe | Einordnung |
+|---|---|---|
+| `shared/test_drawdown_beide_masse.py` | 124 (900 s) | **bekannt rot** (Zeitüberschreitung, beide) |
+| `shared/test_stabile_sortierung.py` | 45 bestanden, 1 rot | **bekannt rot** (beide) |
+| `shared/test_wellenauswahl.py` | 322 bestanden, 1 rot | **bekannt rot** (beide) |
+| `research/exposure_messung/test_exposure_kern.py` | 1 | **bekannt rot** (beide) |
+| `system/test_log_rotation.py` | 116 von 117 | **bekannt flatternd** (beide) |
+| `shared/test_zuteilung.py` | 68 bestanden, 1 rot | **bekannt rot in der Cloud**, auf dem Mac grün |
+| `research/drawdown_reihenfolge/test_drawdown.py` | 1 | ⚠️ **verlangt ein Argument** — Nutzungsmeldung, kein roter Test |
+| `research/elliott_wave_params/test_params.py` | 1 | ⚠️ dito |
+| `research/fib_score_stufen/test_stufen.py` | 1 | ⚠️ dito |
+| `research/hrp_portfolio/test_hrp_core.py` | 1 | ⚠️ dito; zusätzlich fehlt `scipy` in dieser Cloud |
+| `research/pnl_2025_fixed_size/test_pnl.py` | 1 | ⚠️ die Wache `git diff HEAD -- strategies/` — **nach dem Commit grün (93/93)** |
+
+**Alles andere grün**, darunter die von dieser Aufgabe berührten:
+`shared/test_ladeprotokoll.py` 182/182, `shared/test_groessenfaktor.py`
+171/171, `shared/test_entscheidungskerze.py` 130/130,
+`shared/test_umstellungstag.py` 25/25, `shared/test_live_params_werte.py`
+69/69, `broker/test_broker.py` 163/163, `broker/test_ibkr.py` 168/168.
 
 ⚠️ **Zwei Untersuchungstests haben eine Wache `git diff HEAD -- strategies/`**
 (`research/pnl_2025_fixed_size/test_pnl.py:139`,

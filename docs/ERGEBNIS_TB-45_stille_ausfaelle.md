@@ -107,6 +107,15 @@ beiden Elliott-Bots freigegeben.
 | `dashboard/test_portfolio_sicht.py` | „rot, **beide**" | ⚠️ **in der Cloud grün (91/91)** — rot wird er auf dem Mac, wo die Live-Datenbanken liegen |
 | `dashboard/test_dashboard.py` | „in der Cloud rot (780/780)" | ⚠️ **grün (784/784)** — `node` ist in dieser Cloud vorhanden |
 
+**Der Basislauf: 62 Testdateien, keine unerklärte Abweichung.** Elf nicht
+grün — sechs davon stehen als bekannt rot in der Liste
+(`test_drawdown_beide_masse`, `test_stabile_sortierung`, `test_wellenauswahl`,
+`test_exposure_kern`, `test_log_rotation`, `test_zuteilung`), vier geben nur
+eine **Nutzungsmeldung**, weil sie ein Argument verlangen, und einer
+(`research/pnl_2025_fixed_size/test_pnl.py`) hat eine Wache
+`git diff HEAD -- strategies/`, die nur bei **unkommittierten** Bot-Änderungen
+anschlägt — **nach dem Commit grün, 93/93**.
+
 ⭐ **Und ein vorbestehender roter Test, den bisher niemand sah:**
 `research/elliott_wave_params/test_params.py elliott_wave` meldet
 `Kennzahlen identisch zum Bot-eigenen Raster` als rot — **auch mit den
