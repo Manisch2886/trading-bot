@@ -399,10 +399,29 @@ Zeitgrenze je Datei und **Beendigung des Kindprozesses** danach.
 ⚠️ **`trading-env/` ausgeschlossen** — sonst 1 312 statt 63 Testdateien.
 
 **63 Testdateien** (62 wie in der Aufgabenstellung, plus das neue
-`shared/test_snapshot.py`).
+`shared/test_snapshot.py`). Zeitgrenze **420 s** je Datei.
 
-*Die Zahlen des Laufs stehen in `research/datenordner_schnitt/ergebnisse/basislauf.json`
-und in der Rohausgabe `basislauf_roh.txt` der ZIP.*
+| Ausgang | Dateien |
+|---|---:|
+| grün | **54** |
+| rot | **5** |
+| **ungeprüft** (verlangen ein Bot-Argument) | **3** |
+| Zeitgrenze | **1** |
+| davon **unerwartet** (in beide Richtungen) | **7** |
+
+### Die fünf roten — und wem sie gehören
+
+| Datei | Ergebnis | Einordnung |
+|---|---|---|
+| `shared/test_stabile_sortierung.py` | rot | **bekannt rot** (Mac 17.09.: 3 Fehler) ✓ wie erwartet |
+| `shared/test_wellenauswahl.py` | rot | **bekannt rot** (Mac 17.09.: 1 Fehler) ✓ wie erwartet |
+| `shared/test_leeres_symbol.py` | 43/45 | ⚠️ nicht in der Liste. Beide Fehler sind Gegenproben *„auf echten Daten bricht die ALTE Fassung ab — das ist der Befund"* — sie brauchen einen echten Abruf |
+| `shared/test_stille_ausfaelle.py` | 23/24 | ⚠️ nicht in der Liste. `teil_2` scheitert an einem `git commit` im nachgebauten Repo |
+| `shared/test_zuteilung.py` | rot | ⚠️ **erst durch die Nachinstallation rot geworden** — siehe unten |
+
+⚠️ **Für die beiden mittleren ist nachgewiesen, dass sie nicht von dieser
+Arbeit kommen** (Abschnitt 7, Vergleich gegen denselben Commit ohne die
+Neuzugänge — Zeile für Zeile gleich).
 
 ### Was **ungeprüft** heißt, und warum es nicht grün ist
 
@@ -413,8 +432,37 @@ führt sie als `ungeprueft`, nicht als `gruen`:
 `research/fib_score_stufen/test_stufen.py`,
 `research/elliott_wave_params/test_params.py`.
 
-`shared/test_drawdown_beide_masse.py` terminiert nicht (bekannt) und läuft in
-die Zeitgrenze; der Kindprozess wird danach beendet.
+`shared/test_drawdown_beide_masse.py` lief wie erwartet in die Zeitgrenze
+(420,1 s) und der Kindprozess wurde danach **beendet**.
+
+### ⚠️ Vier Tests sind hier grün, die auf dem Mac als rot geführt sind
+
+Der Lauf markiert das ausdrücklich als `UNERWARTET` — **auch ein bekannt roter
+Test, der plötzlich grün ist, ist eine Abweichung:**
+
+| Datei | hier | laut Liste (Mac 17.09.) |
+|---|---|---|
+| `dashboard/test_portfolio_sicht.py` | **91/91 grün** | 1 Fehler |
+| `research/exposure_messung/test_exposure_kern.py` | **grün** | 1 Fehler |
+| `research/hrp_portfolio/test_hrp_core.py` | **grün** | `scipy` fehlt |
+| `system/test_log_rotation.py` | **117/117 grün** | 1 Fehler |
+
+Bei `test_hrp_core.py` ist der Grund klar: `scipy` ist hier nachinstalliert, auf
+dem Mac fehlt es. Bei den drei anderen ist er **offen** — Schritt 5 des
+Mac-Testauftrags entscheidet, welche Umgebung recht hat.
+
+### ⚠️ Und eine Rotfärbung, die **die Nachinstallation selbst** verursacht hat
+
+`shared/test_zuteilung.py` war **vor** der Nachinstallation grün und ist danach
+rot: mit installiertem `binance`-Paket versucht er einen **echten Abruf** und
+scheitert am gesperrten Netz (`ProxyError … host='api.binance.com'`). Vorher
+kam er nicht so weit.
+
+**Die Nachinstallation hat also sechs Tests grün gemacht und einen rot.** Beide
+Läufe liegen vollständig in der ZIP; welche Zahl woher kommt, ist
+nachvollziehbar. ⚠️ **Auf dem Mac ist Binance erreichbar** — dort ist dieser
+Test die Probe, die er sein soll, und genau deshalb steht der Basislauf auch im
+Mac-Testauftrag (Schritt 5).
 
 ---
 

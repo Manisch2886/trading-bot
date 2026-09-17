@@ -267,11 +267,30 @@ echo "Rueckgabewert: $?"                       2>&1 | tee -a $E/05_basislauf.txt
 `<-- UNERWARTET` und liefert dann Rückgabewert 1.
 
 > ⚠️ **Auch das Gegenteil ist zu melden:** ein als bekannt rot geführter Test,
-> der auf dem Mac **grün** ist, wird ebenfalls als `UNERWARTET` markiert. In
-> der Cloud war das bei
-> `research/exposure_messung/test_exposure_kern.py` der Fall — dort grün, auf
-> dem Mac laut Liste rot. **Welche der beiden Umgebungen recht hat, entscheidet
-> dieser Lauf.**
+> der auf dem Mac **grün** ist, wird ebenfalls als `UNERWARTET` markiert.
+
+**In der Cloud sind vier davon grün gewesen**, und bei drei ist der Grund
+**offen** — dieser Lauf entscheidet, welche Umgebung recht hat:
+
+| Datei | Cloud | Liste (Mac 17.09.) | Grund |
+|---|---|---|---|
+| `research/hrp_portfolio/test_hrp_core.py` | grün | `scipy` fehlt | **geklärt** — `scipy` war in der Cloud nachinstalliert |
+| `dashboard/test_portfolio_sicht.py` | **91/91 grün** | 1 Fehler | ⚠️ offen |
+| `research/exposure_messung/test_exposure_kern.py` | grün | 1 Fehler | ⚠️ offen |
+| `system/test_log_rotation.py` | **117/117 grün** | 1 Fehler | ⚠️ offen |
+
+**Und zwei rote, die nicht in der Liste stehen** — in der Cloud gemessen, dort
+**nicht** von TB-46 verursacht (nachgewiesen gegen denselben Commit ohne die
+Neuzugänge):
+
+| Datei | Cloud | erwartet auf dem Mac |
+|---|---|---|
+| `shared/test_leeres_symbol.py` | 43/45 — beide Fehler sind Gegenproben, die einen **echten Abruf** brauchen | ⚠️ auf dem Mac ist Binance erreichbar — **hier sollte er grün sein** |
+| `shared/test_stille_ausfaelle.py` | 23/24, `teil_2` scheitert an einem `git commit` im nachgebauten Repo | ⚠️ unklar — bitte melden |
+| `shared/test_zuteilung.py` | rot: `ProxyError … api.binance.com` | ⚠️ auf dem Mac ist Binance erreichbar — **hier sollte er grün sein** |
+
+⚠️ **Diese drei sind der eigentliche Grund, warum der Basislauf hier noch einmal
+läuft:** alle drei hängen an etwas, das die Cloud strukturell nicht hat.
 
 **Abbruchgrund:** eine Datei, die weder in der Tabelle steht noch grün ist.
 
