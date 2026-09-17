@@ -4762,22 +4762,365 @@ Ganze **ruhiger** als reine Aktien, weil beide nicht gleichzeitig fallen.
 | 5 | „die **fünf** Werte von `MIN_HISTORY_*`" — es sind **vier** | Gruppen gezählt statt Werte |
 | 6 | Dateimuster `AAPL.csv` angenommen — es ist `AAPL_1d.csv` | nicht nachgesehen |
 | 7 | **Der TB-40-Mac-Testauftrag wurde nie angefordert** | gemergt und weitergegangen; dass das Werkzeug dort nicht läuft, fiel erst durch eine andere Aufgabe auf |
+| 8 | `shared/test_kursdaten.py` als „bekannt rot" geführt | war in der Cloud grün (82/82) und auf dem Mac grün (**88/88**) — aus einer alten Liste übernommen |
+| 9 | `docs/UMGEBUNGEN.md`: `node` als „fehlt in der Cloud" | ⚠️ **Der Vermerk, der gegen genau diese Fehlerklasse angelegt wurde, enthielt sie am Tag seiner Anlage selbst.** Richtig ist **„wechselnd — je Sitzung prüfen"** |
+| 10 | `</parameter>` am Ende eines Bash-Befehls | Syntaxfehler, der Befehl lief nicht — Unachtsamkeit beim Zusammensetzen |
+| 11 | **Der TB-45-Auftrag schrieb `python3` vor**, wo `trading-env/bin/python3` gehört | ⚠️ Steht seit demselben Morgen in `docs/UMGEBUNGEN.md` — **beim ersten Einsatz übergangen**. Folge: Trockenlauf und `test_leeres_symbol` fielen rot aus, **ohne dass etwas kaputt war**. ⭐ Die Sitzung hat es **gemeldet** und richtig gewechselt |
+| 12 | „**sechs** Schreibweisen scheitern auf 3.9" | Zahl aus dem Cloud-Bericht übernommen — der Mac misst **acht von vierzehn** |
 
-> **Sechs von sieben haben dieselbe Ursache: eine Zahl oder ein Muster aus einem
+> **Acht von zwölf haben dieselbe Ursache: eine Zahl oder ein Muster aus einem
 > Bericht übernommen, statt es an der Quelle zu prüfen.** Gefunden wurden sie
-> sämtlich von den Cloud-Sitzungen — **weil deren Aufträge verlangen, Belege aus
-> dem Repo zu lesen statt aus dem Aufgabendokument abzuschreiben.**
+> sämtlich von den Sitzungen — **weil deren Aufträge verlangen, Belege aus dem
+> Repo zu lesen statt aus dem Aufgabendokument abzuschreiben.**
+>
+> ⚠️ **Fehler 9 und 11 gehören zusammen und sind die unangenehmsten:** Die Datei,
+> die gegen diese Fehlerklasse angelegt wurde, enthielt sie selbst — und wurde im
+> ersten Auftrag danach übergangen. *Ein Vermerk hilft nur, wenn er gelesen wird
+> und wenn Abweichungen gemeldet werden. Beides ist inzwischen als Regel darin
+> eingetragen, und beim TB-45-Maclauf hat es funktioniert.*
 
 **Fehler 7 hat eine eigene Lehre:** Der Mac-Testauftrag wird **vor** dem nächsten
 Merge angefordert, nicht danach.
 
 ### In einfacher Sprache
 
-*Was hier steht:* Sieben Fehler aus der Planungsseite dieser Arbeitsphase, mit
-ihrer Ursache. *Warum sie aufgeschrieben sind:* Sechs davon sind derselbe Fehler
+*Was hier steht:* Zwölf Fehler aus der Planungsseite dieser Arbeitsphase, mit
+ihrer Ursache. *Warum sie aufgeschrieben sind:* Acht davon sind derselbe Fehler
 — eine Zahl aus einem Bericht übernommen, statt sie in der Quelle nachzusehen.
 *Was daran gut ist:* Alle sieben wurden gefunden, und zwar von den Programmen,
 die den Auftrag hatten, im Projektarchiv nachzulesen statt abzuschreiben.
+
+---
+
+## AY — Die Sichtbarkeitsreihe: TB-42 bis TB-45 (16./17.09.2026)
+
+**Vier Aufgaben, ein Satz:** *Ein Werkzeug, das nicht mehr misst, sagt es.*
+
+Der Anlass war jedes Mal derselbe: eine Prüfung, die **grün meldet, ohne etwas
+gemessen zu haben**. Das ist die gefährlichste Fehlerform dieses Projekts, weil
+sie in den Zahlen genauso aussieht wie ein gelungener Lauf.
+
+### AY.1 — TB-42: Der Grössenfaktor wird sichtbar
+
+Der Faktor stand als Konstante im Bot und tauchte in keiner Datenbankzeile auf.
+Nach TB-42 legt `groessenfaktor.spalte_anlegen(conn)` die Spalte **auch in
+Alt-Datenbanken** an, und `groessenfaktor.lies(__file__)` holt den Wert dort, wo
+er gilt. ⚠️ **Änderung an allen neun `forward_test.py`** — mit ausdrücklicher
+Freigabe, als **Fehlerbehebung eingestuft, nicht als Amendment**.
+
+### AY.2 — TB-43: Drei blinde Wachen
+
+Drei Schreibschutz-Wachen liessen Schreibvorgänge **still durch**. Sie meldeten
+weiter „bestanden".
+
+### AY.3 — TB-44: Die Wache auf beiden Pythons
+
+⭐ **Der lehrreichste Befund der Reihe, und er ist ein Sprachdetail:**
+
+```python
+def wach_open(datei, modus="r", *a, **k):
+    return echtes_open(datei, modus, *a, **k)   # mode= landet doppelt
+```
+
+**Eine Python-Funktion ist ein Deskriptor, eine C-Funktion nicht.** Wer im
+Klassenrumpf eine C-Funktion durch eine Python-Funktion ersetzt, ändert damit
+**das Bindungsverhalten mit** — die Argumente verschieben sich um eins.
+
+**Reparatur:** `_Wache` als aufrufbare **Instanz** (kein Deskriptor), dazu
+`_bindungen_nachziehen` über **Identität** statt über den Namen.
+
+⚠️ **In der Cloud war die Sache auf fünf Python-Fassungen grün und brach auf dem
+Mac bei zwei von neun Bots ab.** Daraus entstand `docs/UMGEBUNGEN.md` — und die
+Regel: **Der Mac-Testauftrag wird vor dem Merge angefordert.**
+
+### AY.4 — TB-45: Zwei Wachen, die bei kaputtem git „bestanden" melden
+
+⭐ **Der stärkste Einzelbefund der ganzen Reihe, gemessen am alten Stand:**
+
+> `shared/test_kursdaten.py` meldet bei fehlendem `origin/main` **„bestanden"**
+> — **mit 28 grünen Prüfungen, hinter denen keine einzige Messung steht.**
+> Dieselbe Verwechslung in `dashboard/test_portfolio_sicht.py` (6 Prüfungen).
+
+Die Ursache: Ein **gescheiterter** git-Aufruf liefert eine **leere** Ausgabe —
+und eine leere Ausgabe wurde gelesen als „keine Datei verändert".
+
+**Verschärft wurde nur der gescheiterte Aufruf, nicht das leere Ergebnis eines
+gelungenen.** Die Negativ-Prüfungen bleiben grün.
+
+**Gegenprobe am alten Stand, alle drei bestätigt:** `test_stille_ausfaelle.py`
+27/27 (alt: 6 rot) · `test_leeres_symbol.py` 45/45 (alt: **23/35**) ·
+Trockenlauf Teil N 156/156 (alt: `_ist_geraet(<Verzeichnis>)` = `True`).
+
+### AY.5 — Der Datumsbefund, der kleiner war als befürchtet
+
+Ich hatte gewarnt, `datetime.fromisoformat` treffe **alle neun Bots** und der
+anstehende Datenordner-Umbau verschärfe es. **Beides gemessen falsch:**
+
+| Meine Annahme | Gemessen (Mac, 3.9.6) |
+|---|---|
+| alle neun Bots | ⚠️ **vier von neun** — der Krypto-Pfad erreicht die Stelle nie |
+| der Datenordner-Umbau berührt den Weg | ⚠️ **nein** — die Zeitstempel der Kursdateien liest `pandas` |
+| „ein Datum kommt an" | ⚠️ **genau ein Wert**, `'2026-09-16T00:00:00'`, **vom Code selbst gebaut** |
+
+**Acht von vierzehn Schreibweisen scheitern auf 3.9** (die Cloud nannte sechs;
+der Mac-Katalog ist breiter). ⭐ **Keine davon kann die Stelle erreichen.**
+
+**Und der Ausgang, falls es doch einträte — auf dem Mac gemessen, nicht
+hergeleitet:** Der Bot **läuft durch**, schreibt **je Symbol eine Fehlerzeile**
+und hält **null Positionen**. Kein stiller Rückfall, keine falsche Kerze, kein
+Abbruch.
+
+> **Entscheidung des Betreibers: Weg 3** — so lassen und melden.
+> `shared/entscheidungskerze.py` ist seit dem 16.09., 04:42:24Z der Live-Pfad,
+> gegen den Registertext 7 den Backtest vergleicht. **Dort zu ändern heisst, am
+> Objekt zu ändern, dessen Übereinstimmung gerade gemessen wird** — für ein
+> Risiko, das gemessen nicht existiert.
+
+### AY.6 — Was der Mac-Lauf zusätzlich fand
+
+| Befund | Warum es zählt |
+|---|---|
+| ⚠️ `shared/test_drawdown_beide_masse.py` **terminiert nicht** und hinterlässt einen Kindprozess, der **20 Minuten weiterrechnet** | Auf dem Rechner, auf dem die neun Bots per Cron laufen |
+| ⚠️ **Drei** Tests erreicht ein Basislauf nie (Bot-Argument nötig) | Sie sind **ungeprüft, nicht rot** — aus der Cloud war einer sichtbar |
+| `t3_supertrend` hat denselben harten Stopp wie die Elliott-Bots | **Am Mac an beiden Ständen bestätigt** — nicht cloud-spezifisch |
+| Sechs der neun Bots überspringen ein leeres Symbol **still** | Widerspricht genau der Regel, die TB-45 durchsetzen sollte |
+| ⚠️ Bei GitHub war **kein einziger Schlüssel** hinterlegt | Der geplante signierte Tag wäre als **unverifiziert** geführt worden |
+
+### AY.7 — Die Randbedingungen, die getragen haben
+
+| | |
+|---|---|
+| Neun Datenbanken vorher/nachher | ✅ **byteweise identisch** |
+| Datenstand `d9449faf…`, 223 Dateien | ✅ unverändert |
+| Rücknahme des Alt-Stands nach Teil 4 | ✅ restlos |
+| ZIP zum manuellen Download | ✅ **geliefert** — die am 16.09. eingeführte Regel greift |
+
+### In einfacher Sprache
+
+*Worum es in allen vier Aufgaben ging:* Prüfprogramme, die „alles in Ordnung"
+melden, **ohne etwas geprüft zu haben**. Das ist schlimmer als ein Fehler, weil
+es wie Erfolg aussieht.
+
+*Der deutlichste Fall:* Ein Prüfprogramm vergleicht den aktuellen Code mit dem
+auf GitHub. Kommt dieser Vergleich gar nicht zustande, kam bisher eine **leere
+Antwort** zurück — und leer wurde gelesen als „nichts verändert". Es meldete
+dann **28 grüne Häkchen**, hinter denen nichts stand.
+
+*Ein Lehrstück über Sprachdetails:* Eine Schutzfunktion war auf dem einen
+Rechner in Ordnung und auf dem anderen kaputt — wegen eines Unterschieds
+zwischen zwei Arten von Funktionen, den man nicht sieht, wenn man nur den Code
+liest. Daher gibt es seit dem 17.09. eine eigene Datei, die festhält, worin sich
+die beiden Rechner unterscheiden.
+
+*Und eine Sorge, die sich aufgelöst hat:* Ich hatte befürchtet, ein
+Datumsproblem könnte alle neun Programme treffen. Der Mac hat gezeigt: Es
+betrifft vier, und die einzige Zahl, die dort ankommt, **baut das Programm
+selbst**. Niemand von aussen kann sie beeinflussen.
+
+---
+
+## AZ — TB-46 und die beiden Fable-Runden: der Zuschnitt der Datenbestände (17.09.2026)
+
+**Der Tag, an dem aus einer Schätzung eine Messung wurde — und aus einem
+Ordnernamen eine Registerfrage.**
+
+### AZ.1 — Der Auftrag war bewusst klein geschnitten
+
+Registertext 5a verlangt zwei Datenbestände. Wie teuer der Umbau würde, war seit
+Wochen **geschätzt und nie gezählt**: *„101 Module lesen `data/`."* TB-46 durfte
+deshalb **nichts umbauen** — nur erheben, zwei Entwürfe gegeneinander rechnen und
+das Snapshot-Werkzeug bauen.
+
+⭐ **Die Sitzung hat drei Zahlen der Aufgabenstellung korrigiert, statt sie
+abzuschreiben** — und alle drei waren meine.
+
+### AZ.2 — Die Messung, und warum die Methode zählte
+
+| | |
+|---:|---|
+| **182** | Module erreichen `data/` |
+| **29** | bauen den Pfad selbst, **7** davon sind die gemeinsamen Stellen |
+| **145** | beziehen ihn mittelbar |
+| ⭐ **0** | Bot-Dateien bauen einen Pfad |
+
+⭐ **Gemessen über den Syntaxbaum, nicht mit Textsuche — und der Unterschied war
+nicht akademisch:** Zwei `forward_test.py` **nennen** `data/` in einer
+Protokollzeile. **Eine Textsuche hätte gemeldet, der Umbau müsse die Bot-Dateien
+anfassen, die er nicht anfassen darf** — und damit die ganze Aufgabe blockiert.
+
+⚠️ **Zur 101:** Sie ist mit dem TB-34-Skript unverändert nachgemessen und kommt
+**genau** heraus. **Sie ist nicht veraltet, sie zählt eine engere Frage.** Beide
+Zahlen sind richtig.
+
+### AZ.3 — Was die Zahlen kosteten, und was sie wert waren
+
+| meine Angabe | gemessen |
+|---|---|
+| „rund 56 MB" | `data/` sind **211,0 MB**; im Repo kostet die Kopie **+0,001 %**, weil git gleiche Inhalte einmal ablegt. Auf der Platte **202 MB** |
+| „läuft die Hash-Berechnung rekursiv?" | **Nein** — `os.listdir` + `.csv`. ⭐ **Der Fallstrick ist die Voreinstellung**, nicht die Rekursion: `datenstand()` zeigt ohne Argument auf `BASE_DIR/data`, und nach einem Umzug läge dort **null** `.csv` — der Hash der leeren Menge |
+
+### AZ.4 — Die Entscheidung: Zuschnitt B
+
+**Zwei Entwürfe standen zur Wahl.** A benennt `data/` in `data/live/` um, wie im
+Register. B lässt `data/` und legt `snapshots/<hash>/` daneben.
+
+**Drei Ausfälle von A wurden an einem nachgebauten Baum gemessen:**
+
+| | |
+|---|---|
+| 1 | **`shared/paths.py` schweigt** — null `.csv`, keine Meldung, und `os.makedirs` legt den leeren Ordner wieder an |
+| 2 | ⚠️ **Die neun Bots fallen auf den Live-Abruf zurück und rufen über das Netz ab** — **Registertext 5a verbietet genau das** |
+| 3 | **Der Datenstand-Hash wird der der leeren Menge** |
+
+> ⭐ **Fables Urteil:** *„B ist zulässig, und zwar nicht als Abweichung, sondern
+> als die bessere Erfüllung."* Der Ordnername stand im Register, *„weil ich ihn
+> hingeschrieben habe, nicht weil er etwas sichert"*.
+>
+> **Und der Satz, der die Sache entscheidet:** *„Ein Zuschnitt, der die Live-Seite
+> anfasst, um die Selektionsseite zu isolieren, isoliert die falsche Seite."*
+
+### AZ.5 — ⚠️ Mein Einwand war halb richtig
+
+**Ich hatte eingewandt**, der Bericht stelle eine Frage nicht: *Was, wenn beim
+Umbau eines der 90 Selektionsmodule vergessen wird?* Unter A fände es einen
+leeren Ordner; **unter B den vollen Live-Bestand und rechnete still falsch.**
+
+**Mein Vorschlag war eine Eingangswache.** Fables Antwort:
+
+> ⚠️ *„Die Wache prüft die Eingabe, nicht das Verhalten."* Ein Modul, das seinen
+> Pfad **selbst baut**, sieht die übergebene Wurzel **nie** — es liest `data/`,
+> und die Eingangswache hat nichts zu beanstanden, **weil der Snapshot in Ordnung
+> ist.**
+
+⭐ **Und die Diagnose dahinter war die eigentliche Einsicht:** Was A „laut"
+gemacht hätte, war **nicht der Name, sondern die Leere**.
+
+**Drei Schichten statt einer** — der Resolver mit Selektionsmodus (fängt die
+145), ein AST-Test (fängt die 22 Selbstbauer, ⭐ **und er ist rot, bis die 90
+verdrahtet sind — das ist gewollt, er misst den Umbau**), und der Lese-Audit als
+Ausgangsnachweis. *„Drei Schichten, jede mechanisch, keine davon eine
+Beteuerung."*
+
+### AZ.6 — Die zwei Hashes, und die Falle darin
+
+**Fables neuer 5a definierte den Snapshot-Hash zunächst über die
+Manifest-Einträge.** Wir haben widersprochen, weil der registrierte Hash etwas
+anderes umfasst — **nur `*.csv`, mit Grösse** — und `d9449faf…` seit dem 15.09.
+die einzige verankerte Zahl des Projekts ist.
+
+**Er hat die Trennung angenommen und dabei seine eigene Definition korrigiert:**
+
+> ⭐ *„Der Snapshot-Hash läuft über die **Dateien**, nicht über das Manifest."*
+> Sonst **hinge der Name von der Metadaten-Formatierung ab** und wäre bei jedem
+> Feld, das jemand ergänzt, ein anderer.
+
+**Das Ergebnis:** Snapshot-Hash = der **Name** (*„ist das derselbe
+Eingabesatz?"*), Datenstand-Hash = die **Herkunft** (*„sind das dieselben
+Kursdateien?"*), beide im Manifest unter unverwechselbaren Feldnamen, je von
+**einer** Funktion erzeugt.
+
+⚠️ **Und warum die Umkehrung nicht ginge:** Zwei Snapshots mit identischen
+Kursdateien, aber geänderter Symbolliste bekämen denselben Namen — **eine
+Sicherung würde zum Fehler.**
+
+### AZ.7 — Drei Befunde, die keiner von uns gesucht hatte
+
+**1. ⚠️ Die Wanduhr im Selektionspfad** — Fable hält sie für die wahrscheinlichste
+Ursache, die den Lauf im Nachhinein ungültig machen könnte:
+
+> Ein `datetime.now()`, das die Historie kappt oder das „letzte vollständige
+> Jahr" bestimmt. **Derselbe Snapshot ergibt dann an zwei Tagen zwei Ergebnisse**,
+> und der Reproduktionstest findet es **nur, wenn er an einem anderen Tag läuft.**
+> *„Weil er in jedem Backtester steckt, der je ‚bis heute' gerechnet hat."*
+
+**2. ⚠️ Die Snapshot-Grenze war zu eng gedacht.** *„Alles, was nicht Code ist"* —
+Symbollisten, NYSE-Kalender, Konfigurationsdateien. *„Wenn die ausserhalb liegen,
+ist der Lauf nicht reproduzierbar, obwohl der Kurshash stimmt."*
+
+**3. ⚠️ Snapshot vor Datencron.** Läuft der Cron zuerst, meldet der
+Registerprüfer **jeden Tag ABWEICHUNG** — *„derselbe Fehler wie Ausfall 3, nur
+mit umgekehrtem Vorzeichen"*. Ein Alarm, an den man sich gewöhnt.
+
+### AZ.8 — ⚠️ Die wichtigste Zeile ist eine Frage, die wir nicht gestellt haben
+
+> *„‚Hält null Positionen' — heisst das **keine neuen** Positionen, oder
+> **schliesst** der Bot offene, weil er sie ohne Kerze nicht bewerten kann? Im
+> zweiten Fall macht ein Parsing-Fehler einen Trade."*
+>
+> *„Ein Bot, der bei fehlender Kerze verkauft, hat kein Holdout-Problem, sondern
+> ein Sicherheitsproblem."*
+
+**Sie stammt aus unserer eigenen TB-45-Messung.** Wir haben die Zahl berichtet
+(*„Offene Papier-Positionen: 0"*) und **nicht gefragt, wie sie zustande kommt.**
+
+### AZ.9 — Zwei Ableitungen, beide nachgerechnet
+
+**Die Mindestzahl Signale ist keine Wahl:**
+
+> **n ≥ 20 = 1 / (1 − Schwelle).** Bei n = 19 reisst **eine** Abweichung die
+> 95 % (18/19 = 94,7 %); bei n = 20 nicht (19/20 = 95,0 %).
+> ⭐ **Die Mindestzahl ist eine Eigenschaft der Schwelle, kein zweiter Parameter.**
+> *Wer die 95 % ändert, ändert die 20 mit.*
+
+**Und die Paketlage — an der Quelle geprüft, nachdem Fable sich selbst als
+unsicher markiert hatte:**
+
+| | `requires_python` laut PyPI |
+|---|---|
+| pandas **3.0.x** | ⚠️ **`>=3.11`** — nicht 3.10, wie vermutet |
+| pandas **2.3.3** (Mac) | `>=3.9` |
+
+⭐ **Sein Vorbehalt war berechtigt, und die geprüfte Zahl hat seinen Vorschlag
+gestärkt:** Der Mac kann pandas 3.x **nicht bekommen**. Also läuft der
+Selektionslauf auf dem Mac, und die Cloud reproduziert **im selben Lock auf einem
+3.9-Interpreter** — erst so sehen beide Seiten dieselbe pandas-Hauptversion.
+
+### AZ.10 — Was wir an TB-46 beanstandet haben
+
+| | |
+|---|---|
+| ⚠️ | **`git status` am Ende war nicht leer** — drei Dateien nach dem Commit geändert, während die Rohausgabe „(leer = sauber)" schreibt |
+| ⚠️ | **Eine Rohausgabe ist veraltet** — `test_snapshot_lauf.txt` zeigt **64/64**, das Dokument **69/69**; die 64 stammt aus einem Lauf vor Probe 3m |
+
+*Beides sind Schlampigkeiten der Ablage, keine Fehler der Arbeit — aber die
+zweite ist dieselbe Familie, die uns diese Woche zwölfmal erwischt hat.*
+
+### AZ.11 — Was aus dieser Runde ins Register geht
+
+**Fünf Texte, alle ausformuliert:** **5a neu** (Struktur statt Name,
+Snapshot-Grenze, Hash über Dateien, `asof`) · **5e neu** (Lese-Audit als
+Gültigkeitsbedingung) · **5f neu** (Umgebung als dritte Achse, Lock-Hash,
+Reproduktion auf gleicher Umgebung) · **7 Ergänzung I** (Kein-Entscheid-Tag) ·
+**7 Ergänzung II** (Ereignismenge, n ≥ 20, „unbestimmt") · **datierter Nachtrag**
+zur Tatsachennotiz vom 15.09.
+
+⭐ **Die Identität eines Laufs ist seither ein Tripel:** **Commit** (Code) ·
+**Snapshot** (Eingaben) · **Lock** (Umgebung). *„Der Snapshot ist das, was der
+Lauf liest; das Lock ist das, worauf er läuft."*
+
+### In einfacher Sprache
+
+*Worum es ging:* Das Register verlangt zwei Sammlungen von Kursdaten — eine
+laufende und eine eingefrorene. Bevor jemand umbaut, sollte gezählt sein, was der
+Umbau kostet. Bisher war es geschätzt.
+
+*Was herauskam:* Hundertzweiundachtzig Programme lesen den Ordner, nicht
+hundertundeins — **aber fast alle holen sich den Namen von woanders.** Und
+**keine der neun Bot-Dateien, die nicht angefasst werden dürfen, nennt den Ordner
+überhaupt.** Damit ist die grösste Sperre weg.
+
+*Die Entscheidung:* Der bequemere Zuschnitt gilt — bestätigt von dem, der den
+Registertext geschrieben hat, mit der Begründung, der Ordnername sichere nichts.
+
+*Wo ich danebenlag:* Ich hatte eine Wache am Eingang vorgeschlagen. Ein
+vergessenes Programm, das sich seinen Pfad selbst baut, kommt an dieser Wache gar
+nicht vorbei. Es braucht drei Wachen, und jede fängt eine andere Art von
+Vergessen.
+
+*Die unangenehmste Erkenntnis:* Wir haben gemessen, dass ein Bot bei fehlenden
+Kursdaten „null Positionen" hält — und **nicht gefragt, ob das heisst „kauft
+nichts" oder „verkauft alles".** Im zweiten Fall löst ein Datumsfehler einen
+echten Verkauf aus. Das ist jetzt der erste Punkt vor dem Umbau.
 
 ---
 
@@ -4812,6 +5155,49 @@ die den Auftrag hatten, im Projektarchiv nachzulesen statt abzuschreiben.
 - **Ein grüner Testlauf kann eine fehlende Abhängigkeit verbergen.** Ohne `node`
   meldet die Dashboard-Suite 780/780 — nicht „4 übersprungen". *(neu, bei A3
   geprüft)*
+- ⚠️ **Ein gescheiterter Aufruf und ein leeres Ergebnis sehen gleich aus — und
+  werden als Erfolg gelesen.** Bei einem git-Vergleich, der mit `rc=128`
+  abbricht, kommt dieselbe leere Ausgabe zurück wie bei „keine Datei verändert".
+  Zwei Wachen meldeten dadurch **„bestanden", eine davon mit 28 grünen
+  Prüfungen, ohne etwas gemessen zu haben.** **Der Rückgabewert wird geprüft,
+  bevor das Ergebnis gelesen wird.** *(neu aus TB-45)*
+- ⚠️ **Ein Test, der ein Argument verlangt, ist nicht rot, sondern ungeprüft.**
+  Drei Tests im Repo geben ohne Bot-Argument nur ihre Nutzungszeile aus und
+  beenden mit `rc=1`. Ein Basislauf erreicht sie **nie** — wer „alle Tests grün"
+  schreibt, meint sie nicht. *(neu aus dem TB-45-Maclauf)*
+- ⚠️ **Eine C-Funktion ist kein Deskriptor, eine Python-Funktion schon.** Wer im
+  Klassenrumpf die eine durch die andere ersetzt, verschiebt die Argumente um
+  eins — und die Wache lässt still durch, was sie verhindern sollte. *(neu aus
+  TB-44)*
+- **Grün in der Cloud heisst strukturell nicht grün auf dem Mac**, und
+  **die Cloud ist nicht eine Umgebung, sondern eine je Sitzung.** Daher
+  `docs/UMGEBUNGEN.md` — ⚠️ **und die Regel, Abweichungen davon zu MELDEN**, weil
+  die Datei altert und am Tag ihrer Anlage bereits zwei falsche Angaben enthielt.
+  *(neu aus TB-44/TB-45)*
+- ⚠️ **Eine Wache am Eingang prüft die Eingabe, nicht das Verhalten.** Wer seinen
+  Pfad selbst baut, kommt an ihr vorbei — sie hat nichts zu beanstanden, **weil
+  das Geprüfte in Ordnung ist.** Es braucht eine Schicht je Art des Vergessens:
+  den Resolver, der verweigert · den statischen Test, der die Selbstbauer findet ·
+  den Audit, der zeigt, was wirklich gelesen wurde. *(neu aus TB-46)*
+- ⚠️ **Ein Name darf nicht aus einer Beschreibung gerechnet werden, sondern aus
+  der Sache.** Ein Hash über Manifest-Einträge hinge von der
+  Metadaten-Formatierung ab — ein Feld mehr, ein anderer Name für denselben
+  Inhalt. *(neu aus TB-46)*
+- ⚠️ **Die Wanduhr im Auswertungspfad.** Ein `now()` oder `today()`, das die
+  Historie kappt, macht denselben Datenbestand an zwei Tagen zu zwei Ergebnissen
+  — **und die Gegenprobe findet es nur, wenn sie an einem anderen Tag läuft.**
+  Das Bezugsdatum kommt aus dem Register, nie aus der Uhr. *(neu aus TB-46)*
+- ⭐ **Am Syntaxbaum messen, nicht mit Textsuche.** Zwei `forward_test.py`
+  **nennen** `data/` in einer Protokollzeile, ohne einen Pfad zu bauen. Eine
+  Textsuche hätte den ganzen Umbau blockiert. *(neu aus TB-46)*
+- ⚠️ **Eine Zahl berichten heisst nicht, sie verstanden zu haben.** Wir haben
+  gemessen „Offene Papier-Positionen: 0" und **nicht gefragt, wie die Null
+  zustande kommt** — „kauft nichts" und „verkauft alles" sehen darin gleich aus.
+  *(neu aus der Fable-Runde zu TB-45/46)*
+- ⚠️ **Vor dem Merge gegen die Merge-Basis vergleichen.** `git diff main..zweig`
+  zeigt alles Neuere auf `main` als Löschung — fünfmal aufgetreten. Die
+  Drei-Punkt-Form löst das, sieht dafür **unkommittierte** Änderungen nicht mehr;
+  nur `git merge-base` löst beides. *(gemessen in TB-45)*
 
 - **Eine gute Zahl ist zuerst verdaechtig, nicht erfreulich.** Die −1,43 %
   kombinierter Drawdown galten zwei Wochen lang als Beleg fuer Diversifikation.

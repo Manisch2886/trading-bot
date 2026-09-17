@@ -317,6 +317,48 @@ Lauf". Gemeint ist die **Aufforderung**, nicht die Information.
 - Mehrzeilige Eingaben (Heredoc, Python-Blöcke) **funktionieren über Termius
   nicht** — die Zeilenumbrüche gehen verloren. Stattdessen zeilenweise mit
   `echo … >>` aufbauen.
+- ⚠️ **Vor jedem Merge: gegen die MERGE-BASIS vergleichen, nie `main..zweig`.**
+  Fünfmal aufgetreten (TB-34, TB-36, TB-40, TB-41, TB-42) — die Zwei-Punkt-Form
+  zeigt **alles Neuere auf `main` als Löschung** und lässt einen sauberen Zweig
+  gefährlich aussehen.
+
+  ```
+  git diff --stat $(git merge-base main origin/<zweig>)..origin/<zweig>
+  ```
+
+  ⭐ **In TB-45 gemessen, warum nicht die Drei-Punkt-Form:** Sie löst dasselbe
+  Problem, sieht dafür eine **unkommittierte** Änderung nicht mehr — sie
+  vergleicht zwei Commits, der Arbeitsbaum kommt darin nicht vor. **Der
+  Merge-Basis-Vergleich löst beides.**
+- ⚠️ **Vor dem Merge wird der Diff der Sperrlisten-Dateien angesehen**, wenn die
+  Statistik `live_params.py`, `forward_test.py` oder `equity_simulation.py`
+  nennt — auch dann, wenn die Aufgabe die Änderung ausdrücklich freigegeben
+  hatte. *Die Freigabe sagt, dass geändert werden durfte; sie sagt nicht, was
+  geändert wurde.*
+- ⭐ **Fundstellen werden nur genannt, wenn sie vor einem liegen.** Sonst steht
+  ausdrücklich „aus dem Gedächtnis" dabei. *Am 17.09. von beiden Seiten
+  unabhängig gezogen — die Fehlerliste im Journal (Block AX) zählt zwölf Fälle,
+  acht davon aus derselben Ursache.*
+- **Zeilen, die kein Befehl sind, werden als solche gekennzeichnet.** Ein
+  öffentlicher SSH-Schlüssel, ein Auszug aus einer Datei, ein Beispieltext
+  gehören ins Web-Formular oder in den Editor, nicht in die Eingabezeile.
+  *Am 17.09. einmal passiert — folgenlos, aber vermeidbar.*
+
+### Zugang zu GitHub vom Mac (Stand 17.09.2026)
+
+**`origin` läuft über SSH**, nicht mehr über HTTPS — der osxkeychain-Token war
+abgelaufen und hat jeden Push blockiert.
+
+| | |
+|---|---|
+| Fernadresse | `git@github.com:Manisch2886/trading-bot.git` |
+| Schlüssel | `~/.ssh/id_ed25519_signing` — bei GitHub als **Authentication Key** *und* als **Signing Key** hinterlegt |
+| `~/.ssh/config` | `Host github.com` mit `IdentityFile` und `IdentitiesOnly yes` — ⚠️ **nötig, weil der Dateiname kein Standardname ist**; ohne den Eintrag probiert SSH ihn gar nicht |
+
+⚠️ **Wird ein Schlüssel bei GitHub angelegt, verlangt die Seite danach das
+Kontopasswort** (*Confirm access*). Wird das übersprungen, **wird nichts
+gespeichert** — und die Übersicht zeigt weiter „no SSH keys". Genau daran ist
+der erste Versuch gescheitert.
 
 ---
 
