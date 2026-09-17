@@ -1,0 +1,963 @@
+#!/usr/bin/env python3
+"""
+Selbsttests zu TB-46, Teil 3: die Wache ueber `shared/snapshot.py`
+==============================================================================
+Der Snapshot ist die Grundlage des Selektionslaufs. Wenn das Werkzeug, das ihn
+zieht, eine Abweichung uebersieht, faellt das **niemals** auf: ein Snapshot,
+der nicht zu seinem Namen passt, sieht genauso aus wie einer, der passt.
+
+DIE LEHRE AUS TB-45, UND WARUM SIE HIER DIE BAUFORM BESTIMMT
+------------------------------------------------------------------------------
+In TB-45 meldeten zwei Wachen "bestanden" - eine davon mit **28 gruenen
+Pruefungen, ohne etwas gemessen zu haben**. Ein gescheiterter Aufruf und ein
+leeres Ergebnis sahen gleich aus. Daraus folgt hier dreierlei:
+
+  1. **Der Rueckgabewert wird geprueft, bevor das Ergebnis gelesen wird.**
+     Jeder Prueflauf geht durch `main()` in einem eigenen Prozess; geprueft
+     wird zuerst der Wert (0 / 1 / 2), dann der Text.
+  2. **"Konnte nicht messen" ist ein eigener, roter Ausgang.** Ein fehlendes
+     oder beschaedigtes Manifest ergibt **2**, nicht 0 und nicht 1. Eine
+     Datei, deren Quersumme sich nicht bilden laesst, ergibt **2** - nicht
+     "veraendert", denn ob sie sich geaendert hat, ist gerade nicht bekannt.
+  3. **Eine Probe, die nur rot sein kann, beweist nichts.** Zu jeder
+     Mutationsprobe gehoert die **Negativ-Probe** am unberuehrten Snapshot:
+     der muss gruen sein.
+
+WIE DIE PROBEN ZEIGEN, DASS SIE BEISSEN
+------------------------------------------------------------------------------
+Der Auftrag verlangt: *jede Probe muss am Stand ohne die Reparatur wirklich
+durchfallen - das ist zu zeigen, nicht zu behaupten.* `shared/snapshot.py` ist
+neu; einen "Stand ohne die Reparatur" gibt es nicht als Commit. Er wird
+deshalb **hergestellt**: Abschnitt 3 laedt den Quelltext, **entfernt eine
+einzelne Wache im Speicher**, fuehrt das Ergebnis als eigenes Modul aus und
+laesst dieselbe Probe erneut laufen.
+
+    echtes Modul   -> muss die Abweichung FINDEN
+    ohne die Wache -> muss sie UEBERSEHEN
+
+Findet die Fassung ohne Wache die Abweichung auch, dann prueft die Probe eine
+andere Stelle als angenommen, und das ist ein Befund ueber den Test, nicht
+ueber das Werkzeug. ⚠️ Findet sich der Ankertext einer Mutation nicht mehr im
+Quelltext, ist die Probe **rot** - nicht uebersprungen: eine Wache, die
+umgezogen ist, ist eine Wache, die dieser Test nicht mehr bewacht.
+
+DER GEFAEHRLICHSTE FALL, UND WARUM ER EIGENS VORKOMMT
+------------------------------------------------------------------------------
+Eine **hinzugefuegte Datei, die nicht `.csv` heisst**, aendert den
+Datenstand-Hash nicht (das Verfahren zaehlt nur `*.csv`). Wer nur die
+Manifesteintraege durchgeht oder nur den Gesamthash vergleicht, sieht sie
+nicht. Nur der Vergleich in **beide** Richtungen findet sie. Genau dieser Fall
+ist die Probe 3f.
+
+WAS DIESER TEST NICHT ANFASST
+------------------------------------------------------------------------------
+⚠️ `data/` wird **ausschliesslich gelesen** - einmal, um nachzuweisen, dass
+das Werkzeug den registrierten Datenstand-Hash reproduziert. Gezogen wird
+nur in Wegwerf-Verzeichnisse unter `tempfile.mkdtemp()`. Abschnitt 5 misst
+den Datenstand vor und nach dem Lauf und vergleicht beide.
+
+Keine Bot-Datei wird importiert. Kein Test-Framework, wie in allen uebrigen
+Selbsttests dieses Projekts.
+
+Nutzung:  python3 shared/test_snapshot.py
+"""
+
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+import types
+
+_SHARED = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.path.dirname(_SHARED)
+if _SHARED not in sys.path:
+    sys.path.insert(0, _SHARED)
+
+import snapshot                                             # noqa: E402
+
+SNAPSHOT_PFAD = os.path.join(_SHARED, "snapshot.py")
+DATA_DIR = os.path.join(BASE_DIR, "data")
+
+BESTANDEN = 0
+FEHLER = []
+
+
+def check(name, bedingung, detail=""):
+    global BESTANDEN
+    if bedingung:
+        BESTANDEN += 1
+        print("  [OK ] %s%s" % (name, "   " + detail if detail else ""))
+    else:
+        FEHLER.append(name)
+        print("  [FEHLER] %s%s" % (name, "   " + detail if detail else ""))
+
+
+# ---------------------------------------------------------------------------
+# Werkzeuge der Proben
+# ---------------------------------------------------------------------------
+
+def _quelle_bauen(ordner, kursdateien=("TESTUSDT_1d.csv", "ZZZ_1h.csv"),
+                  beigabe=None):
+    """Ein Wegwerf-`data/` mit ein paar Zeilen je Datei."""
+    os.makedirs(ordner, exist_ok=True)
+    for i, name in enumerate(kursdateien):
+        with open(os.path.join(ordner, name), "w", encoding="utf-8") as f:
+            f.write("open_time,open,high,low,close,volume\n")
+            f.write("2026-01-0%d 00:00:00,%d,%d,%d,%d,%d\n"
+                    % (i + 1, i + 1, i + 2, i, i + 1, 10 * (i + 1)))
+    if beigabe:
+        for name, inhalt in beigabe.items():
+            with open(os.path.join(ordner, name), "w", encoding="utf-8") as f:
+                f.write(inhalt)
+    return ordner
+
+
+def _lauf(*argumente):
+    """`snapshot.py` in einem eigenen Prozess. (Rueckgabewert, Ausgabe).
+
+    Eigener Prozess, weil der Rueckgabewert der Befehlszeile geprueft wird -
+    genau der Wert, den ein Cronjob oder ein Testauftrag sieht. Ein Aufruf von
+    `main()` im selben Prozess wuerde den Weg ueber `sys.exit` nicht messen.
+    """
+    lauf = subprocess.run([sys.executable, SNAPSHOT_PFAD] + list(argumente),
+                          capture_output=True, text=True)
+    return lauf.returncode, (lauf.stdout or "") + (lauf.stderr or "")
+
+
+def _mutiert(name, ersetzungen):
+    """`snapshot.py` mit entfernter Wache - als eigenes Modul im Speicher.
+
+    ⚠️ Der Ankertext muss gefunden werden. Ein `replace`, das nichts trifft,
+    liefert eine unveraenderte Fassung - und die Probe waere dann gruen, ohne
+    etwas gezeigt zu haben. Das ist derselbe stille Ausfall, gegen den dieser
+    Test geschrieben ist, nur eine Ebene hoeher.
+    """
+    with open(SNAPSHOT_PFAD, "r", encoding="utf-8") as f:
+        text = f.read()
+    for alt, neu in ersetzungen:
+        if alt not in text:
+            raise AssertionError(
+                "Ankertext der Mutation `%s` steht nicht mehr in snapshot.py: "
+                "%r" % (name, alt[:70]))
+        text = text.replace(alt, neu, 1)
+    modul = types.ModuleType("snapshot_ohne_" + name)
+    modul.__file__ = SNAPSHOT_PFAD
+    exec(compile(text, "<snapshot ohne %s>" % name, "exec"), modul.__dict__)
+    return modul
+
+
+def _zieht(modul, quelle, ziel):
+    """(gelungen, Grund) - zieht mit dem uebergebenen Modul."""
+    try:
+        bericht = modul.ziehen(quelle, ziel, wirklich=True)
+        return bool(bericht.get("gezogen")), None
+    except Exception as fehler:                              # noqa: BLE001
+        return False, str(fehler)
+
+
+# ===========================================================================
+# Abschnitt 1 - Das Hash-Verfahren ist das registrierte
+# ===========================================================================
+
+def abschnitt_1():
+    print("\n1. DER HASH IST DER REGISTRIERTE - nicht ein zweiter daneben")
+
+    # Das Soll kommt aus dem Register, nicht aus diesem Test: eine hier
+    # abgetippte Zahl waere die Doppelfuehrung, die das Projekt schon
+    # zweimal eingesammelt hat.
+    register_pfad = os.path.join(BASE_DIR, "research", "etf_trendfolge",
+                                 "register.py")
+    soll_hash, soll_anzahl = None, None
+    if os.path.exists(register_pfad):
+        # ⚠️ Die Konstante steht ueber zwei Zeilen fortgesetzt. Sie wird
+        # deshalb als Quelltext ausgewertet, nicht zeilenweise zerschnitten -
+        # ein `startswith`-Filter bekaeme nur die erste Haelfte des Hashes.
+        try:
+            eigen = {}
+            with open(register_pfad, "r", encoding="utf-8") as f:
+                quelltext = f.read()
+            beginn = quelltext.index("DATENSTAND_SOLL")
+            ende = quelltext.index("\n\n", beginn)
+            exec(compile(quelltext[beginn:ende], "<register>", "exec"), eigen)
+            soll_hash = eigen.get("DATENSTAND_SOLL")
+            soll_anzahl = eigen.get("DATENSTAND_DATEIEN_SOLL")
+        except Exception as fehler:                          # noqa: BLE001
+            check("das registrierte Soll ist auslesbar", False, str(fehler))
+
+    check("das registrierte Soll ist auslesbar",
+          bool(soll_hash) and bool(soll_anzahl),
+          "%s... / %s" % (str(soll_hash)[:16], soll_anzahl))
+
+    if not soll_hash:
+        return
+
+    if not os.path.isdir(DATA_DIR):
+        # Kein stillschweigendes Ueberspringen: hier gibt es nichts zu messen,
+        # und das ist ein roter Ausgang, kein gruener.
+        check("data/ ist vorhanden, um den Hash nachzurechnen", False,
+              "%s fehlt" % DATA_DIR)
+        return
+
+    ist_hash, ist_anzahl = snapshot.gesamthash(DATA_DIR)
+    check("snapshot.gesamthash(data/) reproduziert den registrierten Hash",
+          ist_hash == soll_hash and ist_anzahl == soll_anzahl,
+          "%s... / %d" % (ist_hash[:16], ist_anzahl))
+
+    # Und dass er dasselbe rechnet wie die Quelle des Verfahrens - nicht
+    # zufaellig dieselbe Zahl, sondern dieselbe Funktion.
+    herkunft = snapshot.lade_herkunft()
+    check("er kommt aus herkunft.datenstand, nicht aus einer eigenen Rechnung",
+          herkunft.datenstand(DATA_DIR)["datenstand"] == ist_hash)
+
+    # Faellt die Quelle des Verfahrens aus, wird NICHT ersatzweise selbst
+    # gerechnet.
+    try:
+        snapshot.lade_herkunft(os.path.join(BASE_DIR, "gibt_es_nicht.py"))
+        gebissen = False
+    except snapshot.Snapshotfehler:
+        gebissen = True
+    check("fehlt das Verfahren, bricht es ab statt selbst zu rechnen", gebissen)
+
+
+# ===========================================================================
+# Abschnitt 2 - Ziehen, Manifest, Gegenpruefung
+# ===========================================================================
+
+def abschnitt_2():
+    print("\n2. ZIEHEN - Manifest, Zeitstempel, Gegenpruefung")
+    arbeit = tempfile.mkdtemp(prefix="tb46_ziehen_")
+    try:
+        quelle = _quelle_bauen(os.path.join(arbeit, "quelle"),
+                              beigabe={"NOTIZ.json": '{"x": 1}\n'})
+        ziel = os.path.join(arbeit, "snapshots")
+
+        # Trockenlauf: er darf nichts anlegen. Die Voreinstellung ist der
+        # Trockenlauf - dieselbe Bauform wie kursdaten_neuaufbau.py.
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel", ziel)
+        check("Trockenlauf: Rueckgabewert 0", rc == 0, "rc=%d" % rc)
+        check("Trockenlauf legt nichts an", not os.path.exists(ziel))
+        check("Trockenlauf sagt, dass er einer ist", "TROCKENLAUF" in ausgabe)
+
+        # Wirklich ziehen
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel", ziel, "--ziehen")
+        check("Ziehen: Rueckgabewert 0", rc == 0, "rc=%d" % rc)
+        hash_, anzahl = snapshot.gesamthash(quelle)
+        snap = os.path.join(ziel, hash_)
+        check("der Zielordner heisst wie der Hash der Quelle",
+              os.path.isdir(snap), snap)
+
+        # Vollstaendigkeit: auch die Datei, die nicht in den Hash eingeht
+        vorhanden = sorted(os.listdir(snap))
+        check("alle Dateien der Quelle sind da, auch die Nicht-.csv",
+              vorhanden == ["MANIFEST.json", "NOTIZ.json", "TESTUSDT_1d.csv",
+                            "ZZZ_1h.csv"], str(vorhanden))
+
+        # Zeitstempel
+        gleich = all(
+            int(os.path.getmtime(os.path.join(quelle, n))) ==
+            int(os.path.getmtime(os.path.join(snap, n)))
+            for n in ("TESTUSDT_1d.csv", "ZZZ_1h.csv", "NOTIZ.json"))
+        check("die Zeitstempel sind erhalten (copy2)", gleich)
+
+        with open(os.path.join(snap, "MANIFEST.json"), encoding="utf-8") as f:
+            manifest = json.load(f)
+        check("das Manifest nennt Gesamthash und Dateizahl",
+              manifest["datenstand"] == hash_
+              and manifest["kursdateien"] == anzahl == 2,
+              "%s... / %s" % (manifest["datenstand"][:16],
+                              manifest["kursdateien"]))
+        check("das Manifest nennt je Datei Name, Groesse und Quersumme",
+              all(set(e) >= {"sha256", "bytes"}
+                  for e in manifest["dateien"].values())
+              and len(manifest["dateien"]) == 3)
+        check("der Zeitpunkt steht in UTC",
+              manifest["zeitpunkt_utc"].endswith("+00:00"),
+              manifest["zeitpunkt_utc"])
+        check("das Manifest nennt das Verfahren, mit dem gerechnet wurde",
+              "herkunft.py::datenstand" in manifest["verfahren"])
+
+        # Das Manifest selbst aendert den Hash nicht - der Ordner traegt zu
+        # Recht den Namen des Bestandes, den er enthaelt.
+        nach_hash, nach_anzahl = snapshot.gesamthash(snap)
+        check("das MANIFEST.json aendert den Datenstand-Hash nicht",
+              nach_hash == hash_ and nach_anzahl == anzahl)
+
+        # Nachpruefen am unberuehrten Snapshot: die Negativ-Probe. Ohne sie
+        # koennte jede Mutationsprobe gruen sein, weil alles rot ist.
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("NEGATIV-PROBE: der unberuehrte Snapshot ist UNVERAENDERT (0)",
+              rc == 0 and "UNVERAENDERT" in ausgabe, "rc=%d" % rc)
+
+        # Die Quelle ist unberuehrt geblieben
+        quelle_hash, _ = snapshot.gesamthash(quelle)
+        check("die Quelle ist durch das Ziehen unveraendert",
+              quelle_hash == hash_)
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+# ===========================================================================
+# Abschnitt 3 - Die Mutationsproben
+# ===========================================================================
+# Je Probe: (Name, was hergestellt wird, was das echte Modul sagen muss,
+# welche Wache entfernt wird, was die Fassung ohne sie sagt).
+# ---------------------------------------------------------------------------
+
+def _snapshot_bauen(arbeit, beigabe=None):
+    quelle = _quelle_bauen(os.path.join(arbeit, "quelle"), beigabe=beigabe)
+    ziel = os.path.join(arbeit, "snapshots")
+    bericht = snapshot.ziehen(quelle, ziel, wirklich=True)
+    return quelle, os.path.join(ziel, bericht["datenstand"])
+
+
+def probe_3a_datei_veraendert():
+    """Eine Datei im Snapshot wird nach dem Ziehen veraendert.
+
+    ⚠️ Veraendert wird **bei gleicher Laenge** - ein Byte wird ersetzt, keines
+    angehaengt. Das ist Absicht: ein Anhaengen wuerde auch der
+    Groessenvergleich finden, und die Probe wuerde dann gruen bleiben, ohne
+    etwas ueber die Quersumme zu sagen. Der erste Entwurf dieser Probe hatte
+    genau diesen Fehler, und er ist hier aufgefallen.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb46_3a_")
+    try:
+        _, snap = _snapshot_bauen(arbeit)
+        pfad = os.path.join(snap, "TESTUSDT_1d.csv")
+        vorher = os.path.getsize(pfad)
+        with open(pfad, "r+b") as f:
+            f.seek(vorher - 3)
+            f.write(b"7\n" if vorher >= 3 else b"7")
+        check("3a die Laenge hat sich dabei NICHT geaendert",
+              os.path.getsize(pfad) == vorher,
+              "%d Bytes" % os.path.getsize(pfad))
+
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3a echtes Modul: veraenderte Datei -> VERAENDERT (1)",
+              rc == 1 and "veraendert" in ausgabe, "rc=%d" % rc)
+        check("3a es nennt die Datei",
+              "TESTUSDT_1d.csv" in ausgabe)
+
+        # Ohne den Quersummenvergleich je Datei und ohne den Gesamthash bleibt
+        # nur noch die Groesse - und die stimmt.
+        ohne = _mutiert("quersummenvergleich", [
+            ('        if ist != eintrag.get("sha256"):',
+             '        if False:'),
+            ('    if ist_hash != manifest["datenstand"]:',
+             '    if False:'),
+        ])
+        b = ohne.pruefen(snap)
+        check("3a ohne die Wache: dieselbe Lage gilt als unveraendert",
+              b["ausgang"] == ohne.UNVERAENDERT, b["ausgang"])
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3b_datei_entfernt():
+    arbeit = tempfile.mkdtemp(prefix="tb46_3b_")
+    try:
+        _, snap = _snapshot_bauen(arbeit)
+        os.remove(os.path.join(snap, "ZZZ_1h.csv"))
+
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3b echtes Modul: entfernte Datei -> VERAENDERT (1)",
+              rc == 1 and "entfernt" in ausgabe, "rc=%d" % rc)
+
+        ohne = _mutiert("entfernt", [
+            ('        if not os.path.exists(pfad):\n'
+             '            abweichungen.append({"datei": name, "art": "entfernt"})\n'
+             '            continue',
+             '        if not os.path.exists(pfad):\n'
+             '            continue'),
+            ('    if ist_hash != manifest["datenstand"]:',
+             '    if False:'),
+            ('    if ist_anzahl != manifest["kursdateien"]:',
+             '    if False:'),
+        ])
+        b = ohne.pruefen(snap)
+        check("3b ohne die Wache: die fehlende Datei faellt nicht auf",
+              b["ausgang"] == ohne.UNVERAENDERT, b["ausgang"])
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3c_ziel_existiert():
+    arbeit = tempfile.mkdtemp(prefix="tb46_3c_")
+    try:
+        quelle, snap = _snapshot_bauen(arbeit)
+        # Der Beweis, dass nicht ueberschrieben wurde: eine Spur im Ordner.
+        spur = os.path.join(snap, "SPUR.txt")
+        with open(spur, "w", encoding="utf-8") as f:
+            f.write("der erste Lauf war hier\n")
+
+        ziel = os.path.dirname(snap)
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel", ziel, "--ziehen")
+        check("3c echtes Modul: bestehendes <hash>/ -> Abbruch (2)",
+              rc == 2 and "existiert bereits" in ausgabe, "rc=%d" % rc)
+        check("3c die Spur des ersten Laufs ist unberuehrt",
+              os.path.exists(spur))
+
+        ohne = _mutiert("zielpruefung", [
+            ('    if os.path.exists(ziel):\n'
+             '        raise Snapshotfehler(',
+             '    if False:\n'
+             '        raise Snapshotfehler('),
+            ('    os.makedirs(ziel, exist_ok=False)',
+             '    os.makedirs(ziel, exist_ok=True)'),
+        ])
+        gelungen, grund = _zieht(ohne, quelle, ziel)
+        check("3c ohne die Wache: der bestehende Snapshot wird ueberschrieben",
+              gelungen, grund or "")
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3d_quelle_leer():
+    arbeit = tempfile.mkdtemp(prefix="tb46_3d_")
+    try:
+        leer = os.path.join(arbeit, "leer")
+        os.makedirs(leer)
+        ziel = os.path.join(arbeit, "snapshots")
+
+        rc, ausgabe = _lauf("--quelle", leer, "--ziel", ziel, "--ziehen")
+        check("3d echtes Modul: leere Quelle -> Abbruch (2)",
+              rc == 2 and "keine einzige" in ausgabe, "rc=%d" % rc)
+        check("3d es entsteht kein Snapshot", not os.path.exists(ziel))
+
+        ohne = _mutiert("leerpruefung", [
+            ('    if not kursdateien:\n'
+             '        raise Snapshotfehler(',
+             '    if False:\n'
+             '        raise Snapshotfehler('),
+        ])
+        gelungen, grund = _zieht(ohne, leer, os.path.join(arbeit, "s2"))
+        check("3d ohne die Wache: ein leerer Snapshot entsteht und sieht "
+              "gueltig aus", gelungen, grund or "")
+        if gelungen:
+            # Und er traegt den Hash der leeren Menge - ein Name, der
+            # nichts beschreibt.
+            leere = sorted(os.listdir(os.path.join(arbeit, "s2")))
+            check("3d ohne die Wache: sein Name ist der Hash der leeren Menge",
+                  leere and leere[0].startswith("e3b0c442"), str(leere))
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3e_quersumme_nicht_bildbar():
+    """Eine Datei, deren Quersumme sich nicht bilden laesst.
+
+    Hergestellt, ohne auf Zugriffsrechte zu setzen: als **root** greift
+    `chmod 000` nicht, und der Test lief in der Cloud als root. Stattdessen
+    steht an der Stelle der Datei ein **Verzeichnis** gleichen Namens -
+    `os.path.exists` sagt ja, `open(...,'rb')` scheitert.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb46_3e_")
+    try:
+        _, snap = _snapshot_bauen(arbeit)
+        pfad = os.path.join(snap, "ZZZ_1h.csv")
+        os.remove(pfad)
+        os.makedirs(pfad)
+
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3e echtes Modul: Quersumme nicht bildbar -> NICHT PRUEFBAR (2)",
+              rc == 2 and "NICHT PRUEFBAR" in ausgabe, "rc=%d" % rc)
+        check("3e und NICHT als `veraendert` verbucht",
+              "VERAENDERT" not in ausgabe)
+        echt = snapshot.pruefen(snap)
+        check("3e das echte Modul behauptet NICHTS ueber diese Datei",
+              not [a for a in echt["abweichungen"]
+                   if a["datei"] == "ZZZ_1h.csv"],
+              str(echt["abweichungen"])[:90])
+
+        # Die Mutation, die TB-45 beschreibt: den Fehler verschlucken und
+        # etwas Leeres zurueckgeben. Dann heisst "konnte nicht messen"
+        # ploetzlich "veraendert" - eine Aussage, die niemand gemessen hat.
+        # ⚠️ Der Gesamthash bricht danach immer noch ab (`herkunft.datenstand`
+        # kommt an dieselbe Datei nicht heran), der Ausgang bleibt also
+        # `nicht pruefbar`. Verglichen wird deshalb die **Aussage ueber die
+        # Datei**, nicht der Ausgang: dort steht beim echten Modul nichts und
+        # bei der Fassung ohne Wache ein Urteil.
+        ohne = _mutiert("quersummenfehler", [
+            ('    except OSError as fehler:\n'
+             '        raise Snapshotfehler(\n'
+             '            "Quersumme von %s nicht bildbar: %s" % (pfad, fehler))',
+             '    except OSError:\n'
+             '        return ""'),
+        ])
+        b = ohne.pruefen(snap)
+        erfunden = [a for a in b["abweichungen"]
+                    if a["datei"] == "ZZZ_1h.csv" and a["art"] == "veraendert"]
+        check("3e ohne die Wache: aus `nicht messbar` wird ein Urteil "
+              "`veraendert`", bool(erfunden), str(b["abweichungen"])[:90])
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3f_datei_hinzugefuegt():
+    """Zwei Faelle - und nur einer davon wird vom Gesamthash gesehen."""
+    arbeit = tempfile.mkdtemp(prefix="tb46_3f_")
+    try:
+        _, snap = _snapshot_bauen(arbeit)
+
+        # Fall 1: eine hinzugefuegte .csv - der Gesamthash sieht sie auch.
+        neu_csv = os.path.join(snap, "NEU_1d.csv")
+        with open(neu_csv, "w", encoding="utf-8") as f:
+            f.write("open_time\n2026-01-09 00:00:00\n")
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3f echtes Modul: hinzugefuegte .csv -> VERAENDERT (1)",
+              rc == 1 and "hinzugefuegt" in ausgabe, "rc=%d" % rc)
+        os.remove(neu_csv)
+
+        # Fall 2: eine hinzugefuegte Datei, die NICHT .csv heisst.
+        # ⚠️ Der Gesamthash zaehlt nur *.csv - er aendert sich nicht. Nur der
+        # Vergleich in beide Richtungen findet sie.
+        neu_json = os.path.join(snap, "HEIMLICH.json")
+        with open(neu_json, "w", encoding="utf-8") as f:
+            f.write('{"unbemerkt": true}\n')
+        vorher, _ = snapshot.gesamthash(snap)
+        with open(os.path.join(snap, "MANIFEST.json"), encoding="utf-8") as f:
+            soll = json.load(f)["datenstand"]
+        check("3f der Gesamthash sieht eine Nicht-.csv NICHT",
+              vorher == soll, "%s..." % vorher[:16])
+
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3f echtes Modul findet sie trotzdem -> VERAENDERT (1)",
+              rc == 1 and "HEIMLICH.json" in ausgabe, "rc=%d" % rc)
+
+        ohne = _mutiert("richtung2", [
+            ('    for name in vorhanden:\n'
+             '        if name == MANIFEST or name == MANIFEST + ".neu":\n'
+             '            continue\n'
+             '        if name not in erwartet:\n'
+             '            abweichungen.append({"datei": name, "art": "hinzugefuegt"})',
+             '    for name in []:\n'
+             '        pass'),
+        ])
+        b = ohne.pruefen(snap)
+        check("3f ohne die Wache: die hinzugefuegte Datei faellt nicht auf",
+              b["ausgang"] == ohne.UNVERAENDERT, b["ausgang"])
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3g_manifest_fehlt():
+    arbeit = tempfile.mkdtemp(prefix="tb46_3g_")
+    try:
+        _, snap = _snapshot_bauen(arbeit)
+        os.remove(os.path.join(snap, "MANIFEST.json"))
+
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3g echtes Modul: Manifest fehlt -> NICHT PRUEFBAR (2)",
+              rc == 2 and "NICHT PRUEFBAR" in ausgabe, "rc=%d" % rc)
+        check("3g und nicht als `unveraendert` (0) durchgewinkt", rc != 0)
+
+        # Die Mutation ist der stille Ausfall aus TB-45 in Reinform: kein
+        # Manifest, kein Eintrag, keine Abweichung - also "bestanden".
+        ohne = _mutiert("manifestpflicht", [
+            ('    if not os.path.exists(pfad):\n'
+             '        return None, ("%s fehlt - dieser Ordner ist kein Snapshot dieses "\n'
+             '                      "Werkzeugs." % pfad)',
+             '    if not os.path.exists(pfad):\n'
+             '        return {"dateien": {"x": {}}, "datenstand": None,\n'
+             '                "kursdateien": None}, None'),
+            ('        if not os.path.exists(pfad):\n'
+             '            abweichungen.append({"datei": name, "art": "entfernt"})\n'
+             '            continue',
+             '        if not os.path.exists(pfad):\n'
+             '            continue'),
+            ('    if ist_hash != manifest["datenstand"]:',
+             '    if False:'),
+            ('    if ist_anzahl != manifest["kursdateien"]:',
+             '    if False:'),
+            ('    for name in vorhanden:\n'
+             '        if name == MANIFEST or name == MANIFEST + ".neu":\n'
+             '            continue\n'
+             '        if name not in erwartet:\n'
+             '            abweichungen.append({"datei": name, "art": "hinzugefuegt"})',
+             '    for name in []:\n'
+             '        pass'),
+        ])
+        b = ohne.pruefen(snap)
+        check("3g ohne die Wache: ein Ordner ohne Manifest gilt als geprueft "
+              "und unveraendert", b["ausgang"] == ohne.UNVERAENDERT,
+              b["ausgang"])
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3h_manifest_beschaedigt():
+    arbeit = tempfile.mkdtemp(prefix="tb46_3h_")
+    try:
+        _, snap = _snapshot_bauen(arbeit)
+        pfad = os.path.join(snap, "MANIFEST.json")
+
+        # (1) kein gueltiges JSON
+        with open(pfad, "w", encoding="utf-8") as f:
+            f.write("{das ist kein json")
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3h echtes Modul: Manifest kein JSON -> NICHT PRUEFBAR (2)",
+              rc == 2 and "beschaedigt" in ausgabe, "rc=%d" % rc)
+
+        # (2) gueltiges JSON, aber der Eintrag `dateien` fehlt
+        with open(pfad, "w", encoding="utf-8") as f:
+            json.dump({"datenstand": "x", "kursdateien": 2}, f)
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3h echtes Modul: Manifest ohne `dateien` -> NICHT PRUEFBAR (2)",
+              rc == 2, "rc=%d" % rc)
+
+        # (3) gueltiges JSON, `dateien` leer - der Fall, der am harmlosesten
+        # aussieht und am gefaehrlichsten ist: nichts zu pruefen heisst nicht
+        # geprueft.
+        with open(pfad, "w", encoding="utf-8") as f:
+            json.dump({"datenstand": "x", "kursdateien": 2, "dateien": {}}, f)
+        rc, ausgabe = _lauf("--pruefen", snap)
+        check("3h echtes Modul: Manifest mit leerem `dateien` -> "
+              "NICHT PRUEFBAR (2)", rc == 2, "rc=%d" % rc)
+
+        ohne = _mutiert("manifestpruefung", [
+            ('    if not isinstance(manifest["dateien"], dict) or not manifest["dateien"]:',
+             '    if False:'),
+            ('    if ist_hash != manifest["datenstand"]:',
+             '    if False:'),
+            ('    if ist_anzahl != manifest["kursdateien"]:',
+             '    if False:'),
+            ('    for name in vorhanden:\n'
+             '        if name == MANIFEST or name == MANIFEST + ".neu":\n'
+             '            continue\n'
+             '        if name not in erwartet:\n'
+             '            abweichungen.append({"datei": name, "art": "hinzugefuegt"})',
+             '    for name in []:\n'
+             '        pass'),
+        ])
+        b = ohne.pruefen(snap)
+        check("3h ohne die Wache: ein leeres `dateien` gilt als geprueft",
+              b["ausgang"] == ohne.UNVERAENDERT, b["ausgang"])
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3i_kopie_weicht_ab():
+    """Die Gegenpruefung beim Ziehen: eine Kopie, die nicht der Quelle gleicht.
+
+    Hergestellt durch ein `copy2`, das absichtlich etwas anderes schreibt -
+    so, wie ein Dateisystem- oder Uebertragungsfehler sich auswirken wuerde.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb46_3i_")
+    try:
+        quelle = _quelle_bauen(os.path.join(arbeit, "quelle"))
+        ziel = os.path.join(arbeit, "snapshots")
+
+        falsches_copy2 = (
+            'def _falsches_copy2(a, b):\n'
+            '    with open(a, "rb") as q, open(b, "wb") as z:\n'
+            '        z.write(q.read() + b"# ein Byte zu viel\\n")\n'
+            'shutil = type(shutil)("shutil_attrappe", "")\n'
+        )
+
+        # Das echte Modul, mit nur einer eingesetzten Stoerung: copy2
+        # schreibt etwas anderes. Alles andere bleibt, wie es ist.
+        echt = _mutiert("stoerung_copy2", [
+            ('                shutil.copy2(q_pfad, z_pfad)      # copy2: Zeitstempel bleiben',
+             '                with open(q_pfad, "rb") as _q, open(z_pfad, "wb") as _z:\n'
+             '                    _z.write(_q.read() + b"# ein Byte zu viel\\n")'),
+        ])
+        gelungen, grund = _zieht(echt, quelle, ziel)
+        check("3i echtes Modul: abweichende Kopie -> Abbruch",
+              not gelungen and "ABWEICHUNG" in (grund or ""),
+              (grund or "")[:80])
+        check("3i der halb gezogene Snapshot wird wieder entfernt",
+              not os.path.exists(ziel) or not os.listdir(ziel),
+              str(os.listdir(ziel)) if os.path.exists(ziel) else "-")
+
+        # Dieselbe Stoerung, aber ohne die Gegenpruefung: der Snapshot
+        # entsteht, traegt den Hash der Quelle - und enthaelt andere Bytes.
+        ohne = _mutiert("gegenpruefung", [
+            ('                shutil.copy2(q_pfad, z_pfad)      # copy2: Zeitstempel bleiben',
+             '                with open(q_pfad, "rb") as _q, open(z_pfad, "wb") as _z:\n'
+             '                    _z.write(_q.read() + b"# ein Byte zu viel\\n")'),
+            ('            if summe_quelle != summe_kopie:', '            if False:'),
+            ('            if not _byteweise_gleich(q_pfad, z_pfad):',
+             '            if False:'),
+            ('        if kopie_hash != hash_ or kopie_anzahl != anzahl:',
+             '        if False:'),
+        ])
+        ziel2 = os.path.join(arbeit, "snapshots2")
+        gelungen, grund = _zieht(ohne, quelle, ziel2)
+        check("3i ohne die Gegenpruefung: der falsche Snapshot entsteht",
+              gelungen, grund or "")
+        if gelungen:
+            name = os.listdir(ziel2)[0]
+            drin, _ = snapshot.gesamthash(os.path.join(ziel2, name))
+            check("3i ohne die Gegenpruefung: er traegt einen Namen, den sein "
+                  "Inhalt nicht erfuellt", drin != name,
+                  "Name %s..., Inhalt %s..." % (name[:16], drin[:16]))
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3j_quelle_mit_unterordner():
+    """Ein Unterordner in der Quelle - der Fall, den Entwurf A herstellt."""
+    arbeit = tempfile.mkdtemp(prefix="tb46_3j_")
+    try:
+        quelle = _quelle_bauen(os.path.join(arbeit, "quelle"))
+        os.makedirs(os.path.join(quelle, "snapshots", "aelter"))
+        with open(os.path.join(quelle, "snapshots", "aelter", "A_1d.csv"),
+                  "w", encoding="utf-8") as f:
+            f.write("open_time\n2025-01-01 00:00:00\n")
+
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel",
+                            os.path.join(arbeit, "s"), "--ziehen")
+        check("3j echtes Modul: Unterordner in der Quelle -> Abbruch (2)",
+              rc == 2 and "NICHT rekursiv" in ausgabe, "rc=%d" % rc)
+
+        # Und der Beweis der Aussage, auf der die Wache ruht: der
+        # Datenstand-Hash aendert sich durch den Unterordner NICHT.
+        mit, anzahl_mit = snapshot.gesamthash(quelle)
+        rein = _quelle_bauen(os.path.join(arbeit, "rein"))
+        ohne_unter, anzahl_ohne = snapshot.gesamthash(rein)
+        check("3j ein Unterordner aendert den registrierten Hash nicht - "
+              "die Berechnung ist nicht rekursiv",
+              mit == ohne_unter and anzahl_mit == anzahl_ohne,
+              "%s... == %s..." % (mit[:16], ohne_unter[:16]))
+
+        ohne = _mutiert("unterordnerpruefung", [
+            ('    if unterordner:\n'
+             '        raise Snapshotfehler(',
+             '    if False:\n'
+             '        raise Snapshotfehler('),
+        ])
+        gelungen, grund = _zieht(ohne, quelle, os.path.join(arbeit, "s2"))
+        check("3j ohne die Wache: der Snapshot entsteht ohne den Unterordner",
+              gelungen, grund or "")
+        if gelungen:
+            name = os.listdir(os.path.join(arbeit, "s2"))[0]
+            inhalt = sorted(os.listdir(os.path.join(arbeit, "s2", name)))
+            check("3j ohne die Wache: `snapshots/` fehlt in der Kopie - "
+                  "stillschweigend", "snapshots" not in inhalt, str(inhalt))
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3k_ziel_in_der_quelle():
+    arbeit = tempfile.mkdtemp(prefix="tb46_3k_")
+    try:
+        quelle = _quelle_bauen(os.path.join(arbeit, "quelle"))
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel",
+                            os.path.join(quelle, "snapshots"), "--ziehen")
+        check("3k echtes Modul: Ziel innerhalb der Quelle -> Abbruch (2)",
+              rc == 2 and "innerhalb der Quelle" in ausgabe, "rc=%d" % rc)
+        check("3k in der Quelle ist nichts entstanden",
+              not os.path.exists(os.path.join(quelle, "snapshots")))
+
+        ohne = _mutiert("ortspruefung", [
+            ('    if z == q or z.startswith(q + os.sep):\n'
+             '        raise Snapshotfehler(',
+             '    if False:\n'
+             '        raise Snapshotfehler('),
+        ])
+        gelungen, grund = _zieht(ohne, quelle,
+                                 os.path.join(quelle, "snapshots"))
+        check("3k ohne die Wache: der Lauf kopiert in die eigene Quelle",
+              gelungen, grund or "")
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3m_quelle_hat_schon_ein_manifest():
+    """Eine Quelldatei, die schon `MANIFEST.json` heisst.
+
+    Der unauffaelligste Fall von allen: das Manifest des Snapshots
+    ueberschreibt sie, und weil das Manifest sich selbst nicht auffuehrt,
+    findet `--pruefen` die verlorene Datei **nie**.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb46_3m_")
+    try:
+        quelle = _quelle_bauen(os.path.join(arbeit, "quelle"),
+                              beigabe={"MANIFEST.json": '{"fremd": true}\n'})
+        ziel = os.path.join(arbeit, "snapshots")
+
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel", ziel, "--ziehen")
+        check("3m echtes Modul: Quelle hat schon ein MANIFEST.json -> "
+              "Abbruch (2)", rc == 2 and "ueberschreiben" in ausgabe,
+              "rc=%d" % rc)
+        check("3m es entsteht kein Snapshot", not os.path.exists(ziel))
+
+        ohne = _mutiert("manifestkollision", [
+            ('    if MANIFEST in dateien:\n'
+             '        raise Snapshotfehler(',
+             '    if False:\n'
+             '        raise Snapshotfehler('),
+        ])
+        gelungen, grund = _zieht(ohne, quelle, ziel)
+        check("3m ohne die Wache: der Snapshot entsteht", gelungen, grund or "")
+        if gelungen:
+            name = os.listdir(ziel)[0]
+            with open(os.path.join(ziel, name, "MANIFEST.json"),
+                      encoding="utf-8") as f:
+                inhalt = json.load(f)
+            check("3m ohne die Wache: die Quelldatei ist weg, ueberschrieben "
+                  "vom eigenen Manifest", "fremd" not in inhalt)
+            # ⚠️ Und jetzt die Stelle, an der diese Probe im ersten Entwurf
+            # falsch lag: es wurde behauptet, das bleibe unentdeckt. Gemessen
+            # bleibt es das NICHT - das Manifest fuehrt die Quelldatei
+            # `MANIFEST.json` mit ihrer alten Quersumme, und die stimmt nach
+            # dem Ueberschreiben nicht mehr. `--pruefen` meldet also
+            # `veraendert`, **aber es zeigt auf das Manifest**, nicht auf die
+            # verlorene Datei. Der Wert der Wache liegt darin, den Grund
+            # vorher zu nennen, nicht darin, der einzige Finder zu sein.
+            b = ohne.pruefen(os.path.join(ziel, name))
+            zeigt_auf_manifest = [a for a in b["abweichungen"]
+                                  if a["datei"] == "MANIFEST.json"]
+            check("3m ohne die Wache: --pruefen findet nur das Manifest "
+                  "selbst, nicht die verlorene Datei",
+                  b["ausgang"] == ohne.VERAENDERT and bool(zeigt_auf_manifest)
+                  and not [a for a in b["abweichungen"]
+                           if a["art"] == "entfernt"],
+                  str(b["abweichungen"])[:100])
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3l_kein_verzeichnis():
+    """`--pruefen` auf etwas, das kein Snapshot ist."""
+    arbeit = tempfile.mkdtemp(prefix="tb46_3l_")
+    try:
+        datei = os.path.join(arbeit, "keine_kopie.txt")
+        with open(datei, "w", encoding="utf-8") as f:
+            f.write("nichts\n")
+        rc, ausgabe = _lauf("--pruefen", datei)
+        check("3l echtes Modul: `--pruefen` auf eine Datei -> "
+              "NICHT PRUEFBAR (2)", rc == 2 and "NICHT PRUEFBAR" in ausgabe,
+              "rc=%d" % rc)
+        rc, ausgabe = _lauf("--pruefen", os.path.join(arbeit, "gibt_es_nicht"))
+        check("3l echtes Modul: `--pruefen` auf einen fehlenden Ordner -> "
+              "NICHT PRUEFBAR (2)", rc == 2, "rc=%d" % rc)
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def abschnitt_3():
+    print("\n3. MUTATIONSPROBEN - jede zeigt, dass sie beisst")
+    for probe in (probe_3a_datei_veraendert, probe_3b_datei_entfernt,
+                  probe_3c_ziel_existiert, probe_3d_quelle_leer,
+                  probe_3e_quersumme_nicht_bildbar,
+                  probe_3f_datei_hinzugefuegt, probe_3g_manifest_fehlt,
+                  probe_3h_manifest_beschaedigt, probe_3i_kopie_weicht_ab,
+                  probe_3j_quelle_mit_unterordner,
+                  probe_3k_ziel_in_der_quelle, probe_3l_kein_verzeichnis,
+                  probe_3m_quelle_hat_schon_ein_manifest):
+        try:
+            probe()
+        except AssertionError as fehler:
+            # Ein nicht gefundener Ankertext: die Wache ist umgezogen. Das ist
+            # rot, nicht uebersprungen.
+            FEHLER.append(probe.__name__ + " (Anker)")
+            print("  [FEHLER] %s: %s" % (probe.__name__, fehler))
+        except Exception as fehler:                          # noqa: BLE001
+            import traceback
+            FEHLER.append(probe.__name__ + " (Ausnahme)")
+            print("  [FEHLER] %s warf eine Ausnahme: %s"
+                  % (probe.__name__, fehler))
+            traceback.print_exc()
+
+
+# ===========================================================================
+# Abschnitt 4 - Die Rueckgabewerte sind unterscheidbar
+# ===========================================================================
+
+def abschnitt_4():
+    print("\n4. DIE DREI RUECKGABEWERTE SIND UNTERSCHEIDBAR")
+    check("die drei Werte sind verschieden",
+          len({snapshot.OK, snapshot.BEFUND, snapshot.NICHT_PRUEFBAR}) == 3,
+          "%d / %d / %d" % (snapshot.OK, snapshot.BEFUND,
+                            snapshot.NICHT_PRUEFBAR))
+    check("und die drei Ausgaenge von --pruefen auch",
+          len({snapshot.UNVERAENDERT, snapshot.VERAENDERT,
+               snapshot.UNPRUEFBAR}) == 3)
+    # `--nur-hash` ist der einzige Aufruf, der nichts anlegt und nichts
+    # prueft - er muss trotzdem 0 liefern, sonst waere er nicht benutzbar.
+    arbeit = tempfile.mkdtemp(prefix="tb46_4_")
+    try:
+        quelle = _quelle_bauen(os.path.join(arbeit, "quelle"))
+        rc, ausgabe = _lauf("--quelle", quelle, "--nur-hash")
+        erwartet, anzahl = snapshot.gesamthash(quelle)
+        check("--nur-hash gibt den Hash aus und liefert 0",
+              rc == 0 and erwartet in ausgabe, "rc=%d" % rc)
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+# ===========================================================================
+# Abschnitt 5 - Die Randbedingung: `data/` ist unberuehrt
+# ===========================================================================
+
+def abschnitt_5(vorher):
+    print("\n5. RANDBEDINGUNG - unter data/ ist nichts passiert")
+    if vorher is None:
+        check("der Datenstand war vor dem Lauf messbar", False,
+              "vorher nicht gemessen")
+        return
+    nachher = snapshot.gesamthash(DATA_DIR)
+    check("der Datenstand-Hash ist derselbe wie vor dem Lauf",
+          nachher == vorher,
+          "vorher %s.../%d, nachher %s.../%d"
+          % (vorher[0][:16], vorher[1], nachher[0][:16], nachher[1]))
+
+    lauf = subprocess.run(["git", "-C", BASE_DIR, "status", "--porcelain",
+                           "--", "data"], capture_output=True, text=True)
+    # ⚠️ Der Rueckgabewert zuerst: ein gescheitertes `git` hat eine leere
+    # Ausgabe, und leer sah in TB-45 wie "nichts veraendert" aus.
+    if lauf.returncode != 0:
+        check("git kann den Zustand von data/ beurteilen", False,
+              (lauf.stderr or "").strip()[:120])
+        return
+    offen = [z for z in lauf.stdout.splitlines() if z.strip()]
+    check("git sieht unter data/ nichts Geaendertes oder Unversioniertes",
+          not offen, str(offen)[:200])
+
+
+def main():
+    print("=" * 78)
+    print("TB-46, Teil 3 und 4: das Snapshot-Werkzeug und seine Wache")
+    print("=" * 78)
+
+    vorher = None
+    if os.path.isdir(DATA_DIR):
+        try:
+            vorher = snapshot.gesamthash(DATA_DIR)
+        except snapshot.Snapshotfehler as fehler:
+            print("  ⚠️ Datenstand vorher nicht messbar: %s" % fehler)
+
+    for abschnitt in (abschnitt_1, abschnitt_2, abschnitt_3, abschnitt_4):
+        try:
+            abschnitt()
+        except Exception as fehler:                          # noqa: BLE001
+            import traceback
+            FEHLER.append("%s (Ausnahme)" % abschnitt.__name__)
+            print("  [FEHLER] %s warf eine Ausnahme: %s"
+                  % (abschnitt.__name__, fehler))
+            traceback.print_exc()
+    try:
+        abschnitt_5(vorher)
+    except Exception as fehler:                              # noqa: BLE001
+        FEHLER.append("abschnitt_5 (Ausnahme)")
+        print("  [FEHLER] abschnitt_5 warf eine Ausnahme: %s" % fehler)
+
+    print("\n" + "=" * 78)
+    gesamt = BESTANDEN + len(FEHLER)
+    print("%d von %d Pruefungen bestanden, %d fehlgeschlagen."
+          % (BESTANDEN, gesamt, len(FEHLER)))
+    for name in FEHLER:
+        print("  - %s" % name)
+    if gesamt == 0:
+        # Die Lehre aus TB-45 auf diesen Test selbst angewandt: null
+        # Pruefungen sind kein Erfolg.
+        print("KEINE EINZIGE PRUEFUNG GELAUFEN - das ist ein Fehler, "
+              "kein Bestehen.")
+        return 1
+    return 1 if FEHLER else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
