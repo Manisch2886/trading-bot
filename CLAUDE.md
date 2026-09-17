@@ -22,6 +22,19 @@ Das Übergabeprotokoll ist die verbindliche Grundlage für dieses Projekt. Es en
 
 Gemeinsame Infrastruktur in `shared/` (inkl. **vier** Claude-API-Agenten plus Quartals-Interpreter — rein informativ, verändern nie automatisch Parameter oder Trades) und `config/`. Dazu zwei Beobachtungsebenen: `notifications/` (Telegram-Bot, **rein lesend**) und `dashboard/` (Web/PWA, **liest und schreibt** — siehe unten). Zwei Broker-Brücken liegen unter `broker/`, Systemdienste unter `system/`. Abgeschlossene Untersuchungen liegen unter `research/`, je mit eigenem `BERICHT.md`. Details siehe Übergabeprotokoll.
 
+## Umgebungen
+
+⚠️ **Mac und Cloud laufen auf verschiedenen Python-Fassungen** — Mac **3.9.6**,
+Cloud **3.11 oder neuer**. **Grün in der Cloud heisst strukturell nicht grün auf
+dem Mac**, und der Mac ist der Rechner, auf dem der Betrieb stattfindet.
+
+**Vor jeder Aufgabe, die Standardbibliothek oder Fremdpakete anfasst:**
+`docs/UMGEBUNGEN.md` lesen. Dort stehen beide Fassungen, die bekannten
+Verhaltensunterschiede und was in der Cloud strukturell nicht prüfbar ist.
+
+**Der Mac-Testauftrag wird vor dem Merge angefordert, nicht danach.**
+
+
 ## ⚠️ `broker/` — echte Orders an echte Gegenstellen
 
 Unter `broker/` liegt der **einzige Code des Projekts, der Orders an eine externe Gegenstelle sendet**. Kein Bot tut das, kein Agent tut das — nur diese beiden Brücken:
