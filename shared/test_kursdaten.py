@@ -66,6 +66,43 @@ def _konstanten(quelltext):
     return werte
 
 
+def _geaenderte_dateien(basis="origin/main", repo=None):
+    """Die gegen `basis` geaenderten Pfade - UND ob die Messung zustande kam.
+
+    Rueckgabe: `(pfade, fehler)`. `fehler` ist `None`, wenn git durchlief;
+    sonst der Text, der sagt, warum nicht - und `pfade` ist dann leer.
+
+    WARUM DIE ZWEITE HAELFTE (TB-45, Teil 1)
+    ----------------------------------------------------------------------
+    Hier stand bisher nur `lauf.stdout`, ohne einen Blick auf
+    `lauf.returncode`. Schlaegt der Aufruf fehl - `origin/main` nicht
+    geholt, flacher Klon -, ist `stdout` leer, und leer sah aus wie
+    "nichts veraendert". Gemessen in TB-43: **Rueckgabewert 128, und die
+    Pruefungen darunter meldeten trotzdem "bestanden"**; die Schleifen
+    ueber `forward_test.py` und `live_params.py` erzeugten dabei NULL
+    Pruefungen, ohne dass das irgendwo auffiel.
+
+    Die Unterscheidung, auf die es ankommt (TB-43):
+
+      * Ein leerer Diff aus einem GELUNGENEN Aufruf **ist** der Nachweis -
+        "nichts veraendert" ist hier der Sollzustand. Das bleibt gruen.
+      * Ein leerer Diff aus einem GESCHEITERTEN Aufruf ist gar keine
+        Messung. Das ist ab jetzt ein Fehlschlag.
+
+    Wer stattdessen "leer = immer Fehler" schriebe, machte die erste Sorte
+    kaputt - und in dieser Datei sind ALLE fuenf git-gestuetzten Pruefungen
+    von dieser ersten Sorte (Begruendung bei `test_verbreitung`).
+    """
+    lauf = subprocess.run(["git", "diff", "--name-only", basis],
+                          cwd=repo or BASE_DIR, capture_output=True, text=True)
+    if lauf.returncode != 0:
+        meldung = lauf.stderr.strip().splitlines()
+        return [], ("git diff --name-only %s scheiterte (Rueckgabewert %d): %s"
+                    % (basis, lauf.returncode,
+                       meldung[0] if meldung else "ohne Meldung"))
+    return [z for z in lauf.stdout.splitlines() if z.strip()], None
+
+
 def _geholte_parameter(quelltext):
     """Welche Namen die Datei aus live_params.py zieht - per AST.
 
@@ -449,9 +486,35 @@ def test_verbreitung():
 
     # Die verbotenen Dateien bleiben unberuehrt - gegen origin/main geprueft,
     # nicht gegen ein Gedaechtnis.
-    lauf = subprocess.run(["git", "diff", "--name-only", "origin/main"],
-                          cwd=BASE_DIR, capture_output=True, text=True)
-    geaendert = [z for z in lauf.stdout.splitlines() if z.strip()]
+    #
+    # TB-45, Teil 1: ZUERST die Frage, ob die Messung ueberhaupt stattfand.
+    # Ein gescheiterter git-Aufruf liefert eine leere Liste, und eine leere
+    # Liste sah bis hierher genauso aus wie "nichts veraendert". Sie ist es
+    # nicht - sie ist "nicht nachgesehen".
+    #
+    # WELCHE SORTE SIND DIE PRUEFUNGEN DARUNTER? Alle fuenf sind von der
+    # `daten_unberuehrt`-Sorte (TB-43): "nichts veraendert" IST hier der
+    # Sollzustand, ein leerer Diff aus einem gelungenen Aufruf ist also der
+    # Nachweis und bleibt gruen. Das gilt ausdruecklich AUCH fuer die beiden
+    # Schleifen weiter unten: laeuft keine Runde, weil die Datei unveraendert
+    # ist, dann ist damit auch kein Handelsparameter veraendert - der
+    # Nachweis traegt. Verschaerft wird deshalb nicht der leere Diff, sondern
+    # nur der FEHLGESCHLAGENE Aufruf.
+    geaendert, git_fehler = _geaenderte_dateien("origin/main")
+    check("der Vergleich gegen origin/main kam zustande "
+          "(sonst ist jede Aussage darunter unbelegt)",
+          git_fehler is None, git_fehler or "")
+    if git_fehler is not None:
+        # Kein einziger Pruefling darunter wird jetzt gruen gemeldet: ein
+        # nicht gemessener Zustand ist kein unveraenderter Zustand.
+        for nicht_gemessen in ("keine equity_simulation.py veraendert",
+                               "forward_test.py: kein Handelsparameter veraendert",
+                               "live_params.py: kein Parameterwert veraendert",
+                               "nichts unter broker/ veraendert",
+                               "keine Kursdatei im Repo veraendert"):
+            check(nicht_gemessen, False,
+                  "nicht gemessen - der git-Vergleich schlug fehl")
+        return
     betroffen = [z for z in geaendert if z.endswith("equity_simulation.py")]
     check("keine equity_simulation.py veraendert", not betroffen, betroffen)
 

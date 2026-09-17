@@ -217,9 +217,28 @@ def test_grundsatz_kein_botcode():
     lauf = subprocess.run(["git", "diff", "--name-only", "origin/main", "--",
                            "shared/portfolio_overview.py"],
                           cwd=BASE_DIR, capture_output=True, text=True)
+    # TB-45, Teil 2: hier stand `lauf.returncode != 0 or not lauf.stdout.strip()`
+    # - ein gescheiterter git-Aufruf zaehlte ausdruecklich als Erfolg. Bei
+    # nicht geholtem `origin/main` oder flachem Klon ist `stdout` leer und
+    # `returncode` 128; die Pruefung meldete dann "unveraendert", ohne
+    # irgendetwas nachgesehen zu haben.
+    #
+    # Die Unterscheidung aus TB-43 gilt auch hier, und sie faellt fuer diese
+    # Pruefung genauso aus wie fuer die fuenf in shared/test_kursdaten.py:
+    # "nichts veraendert" IST der Sollzustand, ein leerer Diff aus einem
+    # GELUNGENEN Aufruf bleibt also der Nachweis und bleibt gruen. Verschaerft
+    # wird ausschliesslich der FEHLGESCHLAGENE Aufruf - er ist ab jetzt ein
+    # Fehlschlag, kein Freibrief.
+    check("der Vergleich gegen origin/main kam zustande "
+          "(sonst ist die Aussage darunter unbelegt)",
+          lauf.returncode == 0,
+          "" if lauf.returncode == 0 else
+          "Rueckgabewert %d: %s" % (lauf.returncode,
+                                    (lauf.stderr.strip().splitlines() or ["ohne Meldung"])[0]))
     check("shared/portfolio_overview.py ist unveraendert",
-          lauf.returncode != 0 or not lauf.stdout.strip(),
-          lauf.stdout.strip() or "keine Abweichung")
+          lauf.returncode == 0 and not lauf.stdout.strip(),
+          lauf.stdout.strip() or ("nicht gemessen - der git-Vergleich schlug fehl"
+                                  if lauf.returncode != 0 else "keine Abweichung"))
 
 
 def test_datenlagen():

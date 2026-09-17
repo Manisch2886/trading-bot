@@ -52,6 +52,10 @@ from fetch_stock_data import fetch_historical_data
 # alles ab, was nach der Entscheidungskerze liegt. Damit rechnet dieser Lauf
 # auf derselben Kerze wie der Backtest. Begruendung: shared/entscheidungskerze.py
 import entscheidungskerze
+# TB-42/TB-45: der Wortlaut fuer jedes ausgelassene Symbol steht an EINER
+# Stelle - doppelt gefuehrte Saetze sind in diesem Projekt schon einmal
+# auseinandergelaufen (CLAUDE.md).
+from ladeprotokoll import Ladeprotokoll
 from zigzag_indicator import calculate_zigzag
 from elliott_wave_counter import find_impulse_waves, remove_overlapping
 from stocks_symbols_config import SYMBOLS
@@ -253,12 +257,25 @@ if __name__ == "__main__":
 
     print("Lade aktuelle Marktdaten...")
     price_data = {}
+    # TB-45, Teil 4: ein leeres Symbol wird UEBERSPRUNGEN UND GEMELDET -
+    # so, wie es die sieben anderen Bots tun. Vorher landete ein leerer
+    # Kursrahmen (ausgefallene Kursquelle, gescheiterter Abruf) im
+    # price_data, und `calculate_zigzag` brach weiter unten mit einem
+    # IndexError ab: nicht das eine Symbol, sondern der GANZE Lauf. Fiel
+    # eine Kursquelle fuer ein einziges Symbol aus, handelte dieser Bot an
+    # dem Tag gar nicht. Der Wortlaut steht in shared/ladeprotokoll.py und
+    # damit an EINER Stelle fuer alle Bots.
+    _prot = Ladeprotokoll(SYMBOLS)
     for symbol in SYMBOLS:
         try:
-            price_data[symbol] = entscheidungskerze.lade(
+            df = entscheidungskerze.lade(
                 symbol, INTERVAL, entscheidungskerze.AKTIEN,
                 abruf=lambda: fetch_historical_data(
                     symbol, period=LOOKBACK_PERIOD, interval=INTERVAL))
+            if df is None or df.empty:
+                _prot.ohne_kursrahmen(symbol, "data/ und Live-Abruf")
+                continue
+            price_data[symbol] = df
         except Exception as e:
             print(f"  Fehler bei {symbol}: {e}")
     print()

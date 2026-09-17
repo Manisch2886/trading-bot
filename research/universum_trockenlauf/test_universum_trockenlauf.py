@@ -254,10 +254,34 @@ def teil_b():
     # beim Import results/<bot> und logs/<bot> anlegen, und genau diese
     # Versuche stehen im Bericht. Ohne diesen Nachweis koennte B1 auch dann
     # gruen sein, wenn gar keine Wache liefe.
-    pruefe("B2: der Schreibschutz war waehrend des Laufs nachweislich aktiv",
-           bericht is not None
-           and any("makedirs_unterdrueckt" in e for e in bericht["bots"].values()),
-           str(list(bericht["bots"].values())[0].keys()) if bericht else "")
+    #
+    # TB-45, Teil 3: ZWEI Dinge waren hier falsch.
+    #
+    # 1. Der Beleg haing am Zustand der Umgebung. Ein BESTEHENDES
+    #    Verzeichnis galt dem Schreibschutz als "Geraet" und lief durch,
+    #    ohne aufgezeichnet zu werden. Auf dem Mac legt der Cron
+    #    `results/<bot>` und `logs/<bot>` laengst an - dort war die Liste
+    #    also leer und B2 rot, in einem frischen Checkout gruen. Derselbe
+    #    Code, dasselbe Verhalten, verschiedenes Testergebnis. Behoben in
+    #    `loaderlauf._ist_geraet`; hier gemessen in Teil N, in beiden Lagen.
+    # 2. Geprueft wurde `"makedirs_unterdrueckt" in e` - also nur, ob der
+    #    SCHLUESSEL da ist. Jetzt wird nachgesehen, WAS darin steht: fuer
+    #    jeden gelaufenen Bot beide Pfade, die `shared/strategy_paths.py`
+    #    anlegen will. Eine Liste, die aus einem ganz anderen Grund einen
+    #    Eintrag haette, belegt B2 nicht mehr.
+    erwartet_je_bot = {}
+    for bot, e in (bericht["bots"].items() if bericht else []):
+        versuche = set(e.get("makedirs_unterdrueckt", []))
+        erwartet_je_bot[bot] = sorted(
+            ziel for ziel in (os.path.join(BASE_DIR, "results", bot),
+                              os.path.join(BASE_DIR, "logs", bot))
+            if ziel not in versuche)
+    fehlend = {b: z for b, z in erwartet_je_bot.items() if z}
+    pruefe("B2: der Schreibschutz war waehrend des Laufs nachweislich aktiv - "
+           "je Bot sind results/<bot> UND logs/<bot> als unterdrueckter "
+           "Versuch verzeichnet",
+           bericht is not None and bool(erwartet_je_bot) and not fehlend,
+           str(fehlend)[:300] if fehlend else "%d Bot(s)" % len(erwartet_je_bot))
     # results/<bot> und logs/<bot> legt shared/strategy_paths.py beim Import an.
     # Der Schreibschutz macht das folgenlos; hier wird nachgesehen, dass es
     # wirklich folgenlos blieb.
@@ -1136,6 +1160,141 @@ def teil_m():
 
 
 # ===========================================================================
+# ===========================================================================
+# N  TB-45, Teil 3: `_ist_geraet` heisst jetzt, was es tut
+# ===========================================================================
+_N_PROGRAMM = r"""
+import json, os, stat, sys
+ordner, loader_dir, lage = sys.argv[1], sys.argv[2], sys.argv[3]
+sys.path.insert(0, loader_dir)
+import loaderlauf
+
+erlaubt = os.path.join(ordner, "erlaubt")
+os.makedirs(erlaubt, exist_ok=True)
+
+# Das Ziel liegt AUSSERHALB des erlaubten Bereichs. In der Lage "vorhanden"
+# gibt es den Ordner schon - genau die Lage auf dem Mac, wo der Cron
+# results/<bot> und logs/<bot> laengst angelegt hat.
+ziel = os.path.join(ordner, "aussen", "unterordner")
+if lage == "vorhanden":
+    os.makedirs(ziel)
+
+loaderlauf.schreibschutz_an([erlaubt])
+
+erg = {"lage": lage}
+
+def probe(name, f):
+    try:
+        f()
+        erg[name] = "durchgelassen"
+    except loaderlauf.Schreibversuch as e:
+        erg[name] = "Schreibversuch"
+    except Exception as e:
+        erg[name] = type(e).__name__
+
+# 1. Was `_ist_geraet` jetzt meldet - an echten Knoten, nicht an Attrappen.
+erg["geraet_devnull"] = loaderlauf._ist_geraet("/dev/null")
+erg["geraet_ordner"] = loaderlauf._ist_geraet(ordner)
+erg["geraet_datei"] = loaderlauf._ist_geraet(os.path.join(loader_dir, "loaderlauf.py"))
+erg["geraet_fehlt"] = loaderlauf._ist_geraet(os.path.join(ordner, "gibtsnicht"))
+
+# 2. Der makedirs-Versuch - in BEIDEN Lagen muss er aufgezeichnet werden.
+probe("makedirs_exist_ok", lambda: os.makedirs(ziel, exist_ok=True))
+erg["aufgezeichnet"] = os.path.abspath(ziel) in list(loaderlauf._MAKEDIRS_VERSUCHE)
+
+# 3. `exist_ok=False` auf einem bestehenden Ordner: der Aufrufer muss
+#    weiterhin FileExistsError sehen, sonst bildet der Trockenlauf den
+#    Betrieb an dieser Stelle nicht mehr nach.
+probe("makedirs_ohne_exist_ok", lambda: os.makedirs(ziel))
+probe("mkdir", lambda: os.mkdir(ziel))
+
+# 4. `/dev/null` bleibt ausgenommen - der Grund, aus dem es die Ausnahme
+#    ueberhaupt gibt (python-binance und yfinance oeffnen es beim Import).
+probe("devnull_schreibend", lambda: open("/dev/null", "w").close())
+
+# 5. Und ein Verzeichnis ausserhalb wird jetzt als Schreibversuch gefuehrt
+#    statt als "Geraet" durchgewunken.
+probe("open_auf_ordner", lambda: open(ordner, "w"))
+
+# 6. Nichts davon hat wirklich etwas angelegt.
+erg["aussen_da"] = os.path.exists(os.path.join(ordner, "aussen"))
+print(json.dumps(erg, default=str))
+"""
+
+
+def teil_n():
+    """Der Befund aus dem TB-44-Mac-Lauf, behoben und in beiden Lagen belegt.
+
+    `_ist_geraet` lieferte `not S_ISREG(...)` - also True fuer JEDES
+    existierende Verzeichnis. Heute kein Schutzloch (gemessen), aber der
+    Name versprach etwas anderes als das Verhalten, und B2 haing daran:
+    derselbe Code war auf dem Mac rot und in der Cloud gruen, je nachdem,
+    ob `results/<bot>` und `logs/<bot>` schon existierten.
+
+    Deshalb laeuft jede Lage in einem EIGENEN Prozess: der Schreibschutz
+    ersetzt Bausteine der Standardbibliothek: zwei Lagen im selben Prozess
+    saehen einander.
+    """
+    ergebnisse = {}
+    for lage in ("fehlt", "vorhanden"):
+        with tempfile.TemporaryDirectory() as tmp:
+            skript = os.path.join(tmp, "probe_n.py")
+            with open(skript, "w", encoding="utf-8") as f:
+                f.write(_N_PROGRAMM)
+            r = subprocess.run([sys.executable, skript, tmp, LOADER_DIR, lage],
+                               capture_output=True, text=True)
+            pruefe("N0 %-9s die Probe laeuft durch" % lage,
+                   r.returncode == 0, (r.stdout + r.stderr)[-400:])
+            if r.returncode != 0:
+                return
+            ergebnisse[lage] = json.loads(r.stdout.strip().splitlines()[-1])
+
+    for lage, e in ergebnisse.items():
+        pruefe("N1 %-9s /dev/null gilt weiterhin als Geraet" % lage,
+               e["geraet_devnull"] is True, str(e["geraet_devnull"]))
+        pruefe("N2 %-9s ein VERZEICHNIS gilt nicht mehr als Geraet - das ist "
+               "der Befund" % lage,
+               e["geraet_ordner"] is False, str(e["geraet_ordner"]))
+        pruefe("N3 %-9s eine regulaere Datei ebenfalls nicht" % lage,
+               e["geraet_datei"] is False, str(e["geraet_datei"]))
+        pruefe("N4 %-9s ein Pfad, den es noch nicht gibt, faellt nicht heraus "
+               "- der wuerde ja gerade angelegt" % lage,
+               e["geraet_fehlt"] is False, str(e["geraet_fehlt"]))
+        # Der Kern: der Beleg entsteht in BEIDEN Lagen.
+        pruefe("N5 %-9s der makedirs-Versuch wird aufgezeichnet" % lage,
+               e["aufgezeichnet"] is True, str(e["aufgezeichnet"]))
+        pruefe("N6 %-9s und er bricht den Lauf nicht ab" % lage,
+               e["makedirs_exist_ok"] == "durchgelassen",
+               str(e["makedirs_exist_ok"]))
+        pruefe("N7 %-9s /dev/null bleibt schreibend offen - sonst kaeme "
+               "python-binance nicht durch den Import" % lage,
+               e["devnull_schreibend"] == "durchgelassen",
+               str(e["devnull_schreibend"]))
+        pruefe("N8 %-9s ein Verzeichnis ausserhalb wird als Schreibversuch "
+               "gefuehrt, nicht als Geraet durchgewunken" % lage,
+               e["open_auf_ordner"] == "Schreibversuch",
+               str(e["open_auf_ordner"]))
+        pruefe("N9 %-9s und es ist wirklich nichts angelegt worden" % lage,
+               e["aussen_da"] == (lage == "vorhanden"), str(e["aussen_da"]))
+
+    # Die Semantik, die der Trockenlauf dem Betrieb schuldet: `exist_ok`
+    # wertet die Wache jetzt selbst aus.
+    pruefe("N10 fehlt      makedirs ohne exist_ok laeuft durch, wenn es den "
+           "Ordner nicht gibt",
+           ergebnisse["fehlt"]["makedirs_ohne_exist_ok"] == "durchgelassen",
+           str(ergebnisse["fehlt"]["makedirs_ohne_exist_ok"]))
+    pruefe("N11 vorhanden  makedirs ohne exist_ok wirft weiterhin "
+           "FileExistsError - der Aufrufer sieht, was er im Betrieb saehe",
+           ergebnisse["vorhanden"]["makedirs_ohne_exist_ok"] == "FileExistsError",
+           str(ergebnisse["vorhanden"]["makedirs_ohne_exist_ok"]))
+    pruefe("N12 vorhanden  os.mkdir ebenso - es kennt gar kein exist_ok",
+           ergebnisse["vorhanden"]["mkdir"] == "FileExistsError",
+           str(ergebnisse["vorhanden"]["mkdir"]))
+    pruefe("N13 fehlt      und ohne bestehenden Ordner wirft os.mkdir nicht",
+           ergebnisse["fehlt"]["mkdir"] == "durchgelassen",
+           str(ergebnisse["fehlt"]["mkdir"]))
+
+
 def main():
     print(__doc__.strip().split("\n")[0])
     print("=" * 78)
@@ -1143,7 +1302,7 @@ def main():
                        ("D", teil_d), ("E", teil_e), ("F", teil_f),
                        ("G", teil_g), ("H", teil_h), ("I", teil_i),
                        ("J", teil_j), ("K", teil_k), ("L", teil_l),
-                          ("M", teil_m)):
+                          ("M", teil_m), ("N", teil_n)):
         print("  Teil %s ..." % name, flush=True)
         try:
             teil()
