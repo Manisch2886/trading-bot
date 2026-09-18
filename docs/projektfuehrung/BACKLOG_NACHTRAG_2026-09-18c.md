@@ -1,5 +1,10 @@
 # Backlog-Nachtrag 18.09.2026 (c) — TB-50 und vier Berichtigungen
 
+> ⚠️ EINGEARBEITET am 18.09.2026 in `docs/projektfuehrung/BACKLOG.md` und
+> `docs/projektfuehrung/ARBEITSWEISE.md` (Berichtigung 3), Commit 7cbf33a (TB-51).
+> Dieses Dokument bleibt als Beleg des Nachtrags stehen und wird nicht
+> mehr fortgeschrieben.
+
 **Nachzutragen in `docs/projektfuehrung/BACKLOG.md`.**
 ⚠️ **Setzt (a) und (b) voraus** — beide sind mit Commit `02de1f7` eingearbeitet.
 
