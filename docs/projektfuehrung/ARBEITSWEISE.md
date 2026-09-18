@@ -8,6 +8,14 @@ Es gilt dauerhaft, nicht nur fuer einzelne Aufgaben.**
 > wird der Nutzer gefragt, ob es noch passt oder ergaenzt werden soll**
 > (Abschnitt 10).
 
+> **Geprüfte Fassung vom 18.09.2026.** Neu in dieser Fassung: **5b** (wie die
+> Dokumentation aktualisiert wird), **6d** (Entscheidungsvorlagen tragen eine
+> Empfehlung), **7b** (Zugänge), **7c** (was in jedem Testauftrag steht), **11**
+> (Änderungsverbote nennen ihren Zweck), **12** (Prüfprinzipien).
+> Ergänzt: **2**, **6b**, **7**.
+> ⭐ **Und ein Formfehler behoben:** Die Zeile zu Fable stand in der Tabelle
+> von Abschnitt 1 mitten im Fliesstext; sie steht jetzt wieder in der Tabelle.
+
 ---
 
 ## 1. Die vier Wege — und sie werden IMMER benannt
@@ -19,6 +27,8 @@ geht. Nicht nur in der Datei, auch in der Begleitnachricht.
 |---|---|---|
 | **Cloud-Claude-Code** | Alle Aufgaben mit `TB-<Nummer>`. Läuft auf Anthropics Servern gegen das GitHub-Repo, erzeugt Branches und Pull Requests | Sitzungstitel im Dateikopf |
 | **Claude Code am Mac** *(vom Nutzer „Remote" genannt, weil er ihn über die Mobil-App anspricht)* | Die `TESTAUFTRAG_*.md` aus dem Repo. ⚠️ **Immer als fertiger Einzeiler mit Dateipfad** *(ergänzt 15.09.2026)* — nicht „`claude` starten, dann Satz einfügen" | Dateiname beginnt mit `TESTAUFTRAG_` |
+| **Claude Fable 5.1** | Die methodischen Fragen. **Ein durchgehender Chat** — Rückfragen gehören dorthin, nicht in einen neuen | Dateien heissen `RUECKFRAGE_`, `ANFRAGE_`, `RUECKMELDUNG_` |
+| **Diese Sitzung** | Planung, Aufgaben schreiben, Ergebnisse einordnen, Backlog führen | — |
 
 ⚠️ **Der lokale Start wird IMMER als ein einziger, kopierfertiger Befehl
 ausgegeben** *(ergänzt 15.09.2026)* — mit `cd` in den Projektordner, dem Aufruf
@@ -45,8 +55,6 @@ und App sind nur ein Fenster hinein. **Stoppt der Prozess, ist sie offline.**
 über Termius schon Zeilenumbrüche verloren. Ein Befehl, eine Zeile, ein Einfügen.*
 Dasselbe gilt für jeden anderen Zugriff auf eine Datei: **Pfad immer mitgeben,
 nie beschreiben.**
-| **Claude Fable 5.1** | Die methodischen Fragen. **Ein durchgehender Chat** — Rückfragen gehören dorthin, nicht in einen neuen | Dateien heissen `RUECKFRAGE_`, `ANFRAGE_`, `RUECKMELDUNG_` |
-| **Diese Sitzung** | Planung, Aufgaben schreiben, Ergebnisse einordnen, Backlog führen | — |
 
 **Bei Fable immer dazusagen: bestehender Chat oder neuer?** Faustregel: Bezieht
 sich die Frage auf Fables eigene frühere Aussagen oder auf seine Kürzel
@@ -155,6 +163,17 @@ demselben Branch weiterarbeiten — das erzeugt tote PRs.
   mehr in jedes Aufgabendokument abgeschrieben werden — ein Verweis genügt.
   *Das ist P.4 („die Sitzungen sehen einander nicht") an einer Stelle behoben.*
 
+- ⚠️ **Grosse Dokumente werden NICHT vollständig neu geschrieben, sondern als
+  Nachtrag geliefert** *(ergänzt 18.09.2026)*. Für `BACKLOG.md` und `JOURNAL.md`
+  gilt: **neue Blöcke plus benannte Ersetzungen**, mit Angabe, **an welche
+  Stelle** sie gehören — nicht die ganze Datei. *Das ist derselbe Mechanismus,
+  den das Register benutzt (`VORREGISTRIERUNG` + Nachtrag), und er hat dieselbe
+  Begründung: Wer eine 2000-Zeilen-Datei neu schreibt, verliert unbemerkt
+  Zeilen. Ein Nachtrag mit `null entfernte Zeilen` ist prüfbar.*
+  **`ARBEITSWEISE.md` ist die Ausnahme** — sie wird ganz geliefert, weil
+  Cloud-Sitzungen sie lesen und eine in zwei Dateien verteilte Regelsammlung
+  ihren Zweck verliert.
+
 > *Hintergrund: Der Nutzer arbeitet oft vom iPhone. Textdateien sind mehrfach
 > leer angekommen — **ZIP hat immer funktioniert**.*
 
@@ -221,6 +240,63 @@ Rede ich mit dem Nutzer über das nächste Vorgehen? Dann nein.
   umgeschrieben**, nur ergänzt.
 - Nach jedem relevanten Abschnitt: beide Dateien aktualisieren und **als
   Download ausgeben**.
+- ⚠️ **Fortschreiben spätestens bei der Übergabe, und dann vollständig**
+  *(ergänzt 18.09.2026)*. Am 18.09. lagen **drei erledigte Aufgaben** (TB-46b,
+  TB-47, TB-48) und **zwei Fable-Runden** ausserhalb beider Dateien — nur in
+  Chat-Bewertungen und ZIP-Archiven. *Ein Backlog, das eine Woche hinterherläuft,
+  ist beim Übergeben keine kanonische Quelle, sondern eine Momentaufnahme von
+  vorletzter Woche.*
+
+---
+
+## 5b. Wie die Dokumentation aktualisiert wird
+
+⚠️⚠️ **Ausdrückliche Anweisung des Nutzers, 18.09.2026: *„mache das zukünftig
+immer so."* Der Ablauf ist damit festgelegt, nicht Einzelfallentscheidung.**
+
+**Es gibt drei Wege, und nur zwei davon gehen über das Terminal:**
+
+| Weg | Wofür | Wie |
+|---|---|---|
+| **1 — ganz ersetzen** | Dokumente, die kurz genug sind, um sie vollständig zu schreiben: `ARBEITSWEISE.md`, `PRUEFPRINZIPIEN.md`, `UMGEBUNGEN.md`, `START_HIER.md` | **Der Nutzer legt sie selbst ab**, nach dem Ablauf in Abschnitt 2 (Grössen prüfen, kopieren, `add`+`commit`+`push` in einem Zug). *Die alte Fassung steckt in git; es geht nichts verloren* |
+| ⭐ **2 — Nachtrag** | ⚠️ **`BACKLOG.md` und `JOURNAL.md`** — und jede andere Datei über ein paar hundert Zeilen | **IMMER als eigene kleine Cloud-Aufgabe**, nie von Hand. Siehe unten |
+| **3 — neu dazulegen** | ein neues Dokument | wie Weg 1 |
+
+### Warum Weg 2 zwingend in eine Cloud-Aufgabe gehört
+
+**Die Regel des Projekts lautet „null entfernte Zeilen", und sie muss an der
+git-Zeile belegt sein, nicht am Gefühl.** Ein Nachtrag von mehreren hundert
+Zeilen, mit Ersetzungen mitten im Text, über Termius in eine 4000-Zeilen-Datei
+einzufügen, ist genau die Operation, bei der Zeilen verschwinden und es niemand
+merkt.
+
+**Was die Cloud-Sitzung dabei leistet und das Terminal nicht:**
+
+| | |
+|---|---|
+| ⭐ **`git diff --numstat` je Datei** | der Beleg, den TB-48 für das Register geliefert hat (`506 0`) |
+| **die Ersetzungen exakt treffen** | benannte Stellen statt Suchen und Scrollen |
+| ⭐ **prüfen statt raten** | *welcher Journal-Block ist wirklich der letzte?* — ein falscher Buchstabe macht jeden Backlog-Verweis wertlos |
+| **mehrere Dateien in einem Zug** | `BACKLOG`, `JOURNAL`, `START_HIER`, `UMGEBUNGEN` zusammen, mit einem Nachweis je Datei |
+
+### Der feste Ablauf
+
+1. **Ich schreibe den Nachtrag** — neue Blöcke plus **benannte** Ersetzungen, mit
+   Angabe, an welche Stelle sie gehören.
+2. **Ich formuliere die Aufgabe** (`CLOUD_TB-<Nr>_dokumentationspflege.md`), mit
+   der Numstat-Auflage je Datei und der ausdrücklichen Regel, dass **nichts
+   inhaltlich umformuliert** wird.
+3. **Der Nutzer startet die Cloud-Sitzung** und legt parallel die Dateien aus
+   Weg 1 selbst ab.
+4. **Vor dem Merge** wie immer: Merge-Basis-Vergleich, `numstat` gegenlesen,
+   `git status` **nach** dem letzten Commit (Abschnitt 7).
+
+⚠️ **Die Aufgabe berührt ausschliesslich `docs/`** — sie läuft damit **parallel**
+zu jeder fachlichen Aufgabe, ohne mit ihr zu kollidieren.
+
+⚠️ **Und der Stand-Abschnitt in `START_HIER.md` wird bei jeder solchen Runde
+mitgeschrieben.** *Ein Einstiegsdokument, dessen Stand von letzter Woche ist,
+führt die nächste Sitzung in die Irre — genau der Fehler aus P.4.*
 
 ---
 
@@ -266,6 +342,13 @@ welcher Ordner). Bei mehreren Wegen sagen, **welcher zuerst** kommt und ob die
 Reihenfolge zwingend ist. Und benennen, **was schiefgehen kann** und was dann
 zu tun ist.
 
+⚠️ **Auch dann, wenn der Schritt trivial aussieht** *(ergänzt 18.09.2026)*.
+Der Nutzer hat in dieser Sitzung **viermal** „leite mich step by step an"
+wiederholen müssen — jedes Mal an einer Stelle, die ich für offensichtlich
+hielt (ein Merge, ein Pfad, ein Kopierbefehl). *Was für mich ein Schritt ist,
+sind im Terminal drei.* **Die Regel gilt ohne Ausnahme; sie einmal abzukürzen
+kostet mehr Nachrichten, als sie spart.**
+
 ---
 
 ## 6c. Keine Hinweise auf Arbeitszeit
@@ -278,6 +361,32 @@ wann er aufhört, entscheidet er selbst.**
 *Sachliche Terminhinweise bleiben davon unberührt* — Fristen, Reihenfolgen,
 „dieser Schritt dauert 20 Minuten", „das Vergleichsfenster beginnt mit diesem
 Lauf". Gemeint ist die **Aufforderung**, nicht die Information.
+
+---
+
+## 6d. Jede Entscheidungsvorlage trägt eine Empfehlung
+
+⚠️ **Neu am 18.09.2026, weil der Nutzer in dieser Sitzung dreimal nachfragen
+musste: *„was würdest du empfehlen?"***
+
+**Wo eine Entscheidung ansteht, stehen drei Dinge beieinander:**
+
+| | |
+|---|---|
+| **die Möglichkeiten** | vollständig, jede mit ihrem Preis |
+| ⭐ **die Empfehlung** | **eine** davon, ausdrücklich benannt |
+| **die Begründung** | warum diese, und **was sie schlechter macht** als die anderen |
+
+**Warum das keine Anmassung ist:** Die Entscheidung bleibt beim Betreiber — bei
+Freigaben für Sperrlisten-Dateien, beim Risikoschlüssel, beim Termin des Laufs.
+Aber *„hier sind drei Wege"* ohne Empfehlung verlagert die Vorarbeit zurück auf
+ihn, und er hat die Möglichkeiten nicht selbst durchgerechnet. **Eine benannte
+Empfehlung ist widersprechbar; eine ausgelassene ist nur Arbeit.**
+
+⚠️ **Die Grenze:** Wo die Entscheidung von etwas abhängt, das nur der Betreiber
+weiss — seine Risikotragfähigkeit, seine verfügbare Zeit, sein Wohnsitzrecht —
+wird das **gesagt** statt geraten. *Beispiel 16.09.: beim Aktien/Krypto-Schlüssel
+war die Messung meine Aufgabe, die Wahl seine.*
 
 ---
 
@@ -331,20 +440,63 @@ Lauf". Gemeint ist die **Aufforderung**, nicht die Information.
   vergleicht zwei Commits, der Arbeitsbaum kommt darin nicht vor. **Der
   Merge-Basis-Vergleich löst beides.**
 - ⚠️ **Vor dem Merge wird der Diff der Sperrlisten-Dateien angesehen**, wenn die
-  Statistik `live_params.py`, `forward_test.py` oder `equity_simulation.py`
-  nennt — auch dann, wenn die Aufgabe die Änderung ausdrücklich freigegeben
-  hatte. *Die Freigabe sagt, dass geändert werden durfte; sie sagt nicht, was
-  geändert wurde.*
+  Statistik eine davon nennt — auch dann, wenn die Aufgabe die Änderung
+  ausdrücklich freigegeben hatte. *Die Freigabe sagt, dass geändert werden
+  durfte; sie sagt nicht, was geändert wurde.*
+
+  ⚠️ **Die Sperrliste, Stand 18.09.2026** *(erweitert)*:
+
+  | Datei | seit |
+  |---|---|
+  | `strategies/*/live_params.py` | von Anfang an |
+  | `strategies/*/forward_test.py` | von Anfang an |
+  | `strategies/*/equity_simulation.py` | von Anfang an, **hart** |
+  | `strategies/*/multi_symbol_optimise.py` | 16.09. (E1) |
+  | ⭐ **`shared/entscheidungskerze.py`** | **16.09., 04:42:24Z** — *seit dem Umstellungstag der Live-Pfad, gegen den Registertext 7 den Backtest vergleicht* |
+  | ⭐ **`shared/paths.py`** | **17.09.** — *von 145 Modulen importiert und im Cron; der Resolver-Modus ist ein eigener kleiner Schritt mit Mac-Lauf* |
+
+- ⚠️ **`git status --porcelain` wird NACH dem letzten Commit aufgenommen**
+  *(ergänzt 18.09.2026)*. In **TB-46 und TB-48** stand die Statusausgabe im
+  Beleg, war aber **vor** dem abschliessenden Commit entstanden — sie zeigte
+  Dokumente als ungesichert, die in Wahrheit im Zweig lagen. Beide Male war der
+  Zweig in Ordnung; **beide Male war der Beleg wertlos.**
+
+  **Deshalb vor jedem Merge zusätzlich prüfen, ob der Zweig die aktuellen
+  Fassungen trägt:**
+
+  ```
+  git diff --stat origin/<zweig> -- docs/ research/
+  ```
+
+- ⚠️ **Eine Abweichung, die auf den Betrieb zeigt, wird gegen den Betrieb
+  geprüft — nicht von Hand plausibilisiert** *(ergänzt 18.09.2026)*. Im
+  TB-46b-Mac-Lauf wich **eine** der neun Datenbanken ab; die Erklärung war der
+  `15 0 * * *`-Cronjob von `turtle_soup_crypto`. **Richtig ist: Zeitstempel
+  gegen den Crontab-Eintrag desselben Bots rechnen** (Ortszeit gegen UTC!) und
+  den Inhaltsunterschied gegen die Logzeile desselben Laufs. *„Wird schon der
+  Cron gewesen sein" ist keine Prüfung.*
+
 - ⭐ **Fundstellen werden nur genannt, wenn sie vor einem liegen.** Sonst steht
   ausdrücklich „aus dem Gedächtnis" dabei. *Am 17.09. von beiden Seiten
   unabhängig gezogen — die Fehlerliste im Journal (Block AX) zählt zwölf Fälle,
   acht davon aus derselben Ursache.*
+- ⚠️ **Und jede Zahl aus einem fremden Bericht wird an der ROHAUSGABE
+  nachgerechnet, bevor sie weitergereicht wird** *(verschärft 18.09.2026)*. Am
+  18.09. habe ich aus dem TB-47-Bericht *„die letzte Kerze ist bei allen 223
+  Dateien sauber"* übernommen — **175 davon tragen `kein_zeuge`**, dort ist
+  überhaupt nichts belegbar. *Der Bericht war nicht falsch; meine
+  Zusammenfassung war es.* **Die Rohausgabe liegt im ZIP; sie anzusehen kostet
+  eine Minute.**
 - **Zeilen, die kein Befehl sind, werden als solche gekennzeichnet.** Ein
   öffentlicher SSH-Schlüssel, ein Auszug aus einer Datei, ein Beispieltext
   gehören ins Web-Formular oder in den Editor, nicht in die Eingabezeile.
   *Am 17.09. einmal passiert — folgenlos, aber vermeidbar.*
 
-### Zugang zu GitHub vom Mac (Stand 17.09.2026)
+---
+
+## 7b. Zugänge zu den Umsystemen
+
+### GitHub vom Mac (Stand 17.09.2026)
 
 **`origin` läuft über SSH**, nicht mehr über HTTPS — der osxkeychain-Token war
 abgelaufen und hat jeden Push blockiert.
@@ -359,6 +511,40 @@ abgelaufen und hat jeden Push blockiert.
 Kontopasswort** (*Confirm access*). Wird das übersprungen, **wird nichts
 gespeichert** — und die Übersicht zeigt weiter „no SSH keys". Genau daran ist
 der erste Versuch gescheitert.
+
+⚠️ **`gh` und Homebrew sind auf dem Mac NICHT installiert.** Folge: Merges
+laufen lokal, die Cloud-Sitzungen können keinen PR anlegen, und die PR-Reihe auf
+GitHub ist ab TB-42 unvollständig (**E5**).
+
+### Die übrigen Zugänge, und wo sie liegen
+
+| | |
+|---|---|
+| **Binance** | Schlüssel in der gitignorierten `.env`, gelesen über `shared/fetch_binance_data.py`. ⚠️ **Der dritte Schlüssel** — zwei Vorgänger mussten neu erzeugt werden |
+| **Telegram** | Bot-Token in `config/`, gelesen von `notifications/`. Trägt alle Meldungen des Betriebs |
+| **E-Mail** | `config/email_config.py`, Klartext, gitignoriert, von **17 Betriebsmodulen** gelesen (**T37.3**) |
+| **IBKR** | `broker/zugang.py`, Testnet gegen Produktiv mit Verwechslungssperre (**T37.4**) |
+| **Dashboard über Tailscale** | `DASHBOARD_HOST` steht **nur** in der `.env` — geht sie verloren, ist der einzige Fernzugriffsweg weg (**F6/O2**) |
+
+⚠️ **Für alle gilt Abschnitt 7 ohne Ausnahme: Existenz prüfen, nie den Wert.**
+
+---
+
+## 7c. Was in jedem Testauftrag für den Mac steht
+
+⚠️ **Zusammengetragen am 18.09.2026 — bisher stand jeder dieser Punkte einzeln
+im Backlog, und jeder ist mindestens einmal vergessen worden.**
+
+| | |
+|---|---|
+| **Schritt 0** | ⚠️ **Sicherung der neun `*.db` mit Quersummen.** *Sie sind gitignoriert, existieren nur auf dem MacBook, sind die einzige OOS-Evidenz des Projekts und **nicht neu berechenbar** (T37.2).* Am Ende byteweise Identität nachweisen |
+| **Datenstand** | **vorher und nachher** messen, beides berichten — Soll: `d9449faf…` bei 223 Dateien |
+| **Basislauf** | mit Zeitgrenze je Datei; **bekannt rote UND ungeprüfte** Tests als solche kennzeichnen, Abweichungen melden — ⚠️ **auch ein bekannt roter Test, der plötzlich grün ist** |
+| **Interpreter** | ⭐ **immer `trading-env/bin/python3`**, nie `/usr/bin/python3` — dort fehlt `binance` |
+| **Abbruchkriterium** | gilt nur für Fehlschläge, **die den Gegenstand der Aufgabe betreffen** (T44.11) |
+| **`git status --porcelain`** | am Ende, **nach dem letzten Commit** |
+| **ZIP** | verbindlich, benannt nach der Aufgabe, nach `~/Downloads` |
+| **„In einfacher Sprache"** | am Ende des Ergebnisdokuments |
 
 ---
 
@@ -413,9 +599,10 @@ uebergeben.
 |---|---|
 | **`ARBEITSWEISE.md`** | ✅ **diese Datei, in der gepruefeten Fassung** |
 | `START_HIER.md` | ✅ Einstieg, auf den aktuellen Stand gebracht |
-| `BACKLOG.md` | ✅ die kanonische Quelle |
+| `BACKLOG.md` | ✅ die kanonische Quelle *(oder der Nachtrag dazu, siehe Abschnitt 2)* |
 | `STRATEGIEN_uebersicht.md` | ✅ |
 | `JOURNAL.md` | ✅ *(Hinweis mitgeben: nur bei Bedarf oeffnen)* |
+| ⭐ **`PRUEFPRINZIPIEN.md`** | ✅ **neu seit 18.09.2026, siehe Abschnitt 12** |
 | offene Aufgabendokumente | die, die noch nicht uebergeben sind |
 
 **Als ZIP**, wie alles andere auch.
@@ -450,3 +637,42 @@ Sag mir kurz, was du verstanden hast, bevor wir anfangen.
 
 > Der letzte Satz ist Absicht: Er zeigt sofort, ob die Uebergabe angekommen ist
 > — und ob etwas fehlt.
+
+---
+
+## 11. Änderungsverbote nennen ihren Zweck
+
+⚠️ **Neu am 18.09.2026, weil eine meiner eigenen Auflagen das Falsche bewirkt
+hat.**
+
+**Was passiert ist:** TB-48 durfte *„nichts unter `research/` ändern"*. Die
+Sitzung hat sich daran gehalten — und deshalb den **Prüfer, der die neunzehn
+Zahlen des Registernachtrags nachrechnet, nicht ins Repo gelegt.** Er existiert
+nur in einem ZIP-Archiv. Geht das verloren, ist die Nachrechnung verloren.
+
+> ⭐ **Die Sitzung hat sich korrekt verhalten. Meine Regel war zu breit.**
+
+**Die Regel, die daraus folgt:**
+
+| | |
+|---|---|
+| **Ein Verbot nennt, wovor es schützt** | *„`research/` nicht ändern, damit keine vorhandene Messung überschrieben wird"* — dann ist eine **neue** Datei erkennbar nicht gemeint |
+| ⭐ **Prüfwerkzeuge, die eine Aufgabe erzeugt, gehören ins Repo** | ausdrücklich, mit Zielpfad. *Eine Prüfung, die es gibt, aber nicht dort, wo sie gebraucht wird, ist dieselbe Fehlerfamilie wie eine Wache, die nicht mehr misst* |
+| **Beim Abnehmen gegenprüfen** | Liegt alles, was die Aufgabe erzeugt hat, dort, wo es gebraucht wird? Oder nur im Archiv? |
+
+---
+
+## 12. Prüfprinzipien
+
+⚠️ **Neu am 18.09.2026. Die Sammlung selbst steht in `docs/PRUEFPRINZIPIEN.md`
+und gehört ins Übergabepaket.**
+
+**Warum als eigenes Dokument und nicht hier:** Dieses Dokument enthält
+**stehende Anforderungen des Nutzers**. Die Prüfprinzipien sind etwas anderes —
+sie sind **gemessene Lehren** aus fehlgeschlagenen Prüfungen, und jede einzelne
+hat einen Fall hinter sich, der sie erzeugt hat. *Dieselbe Trennung wie bei
+`UMGEBUNGEN.md`: eine Umgebungstatsache ändert sich, wenn sich ein Rechner
+ändert, nicht wenn sich die Arbeitsweise ändert.*
+
+**Und sie gehören in jedes Aufgabendokument verwiesen**, nicht abgeschrieben —
+die Cloud-Sitzungen können `docs/PRUEFPRINZIPIEN.md` lesen.
