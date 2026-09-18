@@ -1643,8 +1643,12 @@ def probe_3x_rand_letzte_bricht_ab():
         check("3x genau eine Datei ist nicht zugelassen",
               len(kerzen["nicht_zugelassen"]) == 1,
               str([e["datei"] for e in kerzen["nicht_zugelassen"]]))
-        check("3x die drei uebrigen `rand_erste` bleiben zugelassen",
-              kerzen["zugelassen_anzahl"] == 4,
+        # ⚠️ Vier, nicht drei: die angeschnittene Datei traegt BEIDE Befunde -
+        # ihr `rand_erste` ist zugelassen, ihr `rand_letzte` nicht. Die
+        # Zulassung wird je Befund entschieden, nicht je Datei; genau deshalb
+        # bricht die Datei trotzdem ab.
+        check("3x vier `rand_erste` bleiben zugelassen - je Befund, nicht "
+              "je Datei", kerzen["zugelassen_anzahl"] == 4,
               "%d zugelassen" % kerzen["zugelassen_anzahl"])
 
         rc, ausgabe = _lauf("--quelle", quelle, "--ziel", ziel,
