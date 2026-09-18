@@ -293,3 +293,168 @@ Er ist dann auf den **Dokument-Beleg** ausgewichen und hat das **im Bericht
 gesagt** — richtig so; die Prüfung blieb aussagekräftig, weil sie ihre Quelle
 nennt.
 
+---
+
+## 9. Basislauf
+
+**64 Testdateien, Zeitgrenze 900 s je Datei** (`trading-env/` ausgeschlossen).
+
+| | | |
+|---|---:|---|
+| **grün** | **57** | darunter `research/registernachtrag_tb41/test_registernachtrag_tb41.py` (der Selbsttest des Registerprüfers) und `research/vorregistrierung/test_vorregistrierung.py` |
+| **rot** | **3** | **alle drei erklärt** — siehe unten |
+| **ungeprüft** | **3** | ⚠️ **nicht rot** — sie verlangen ein Bot-Argument |
+| **Zeitgrenze** | **1** | `shared/test_drawdown_beide_masse.py` (bekannt) |
+
+57 + 3 + 3 + 1 = **64**.
+
+### Die drei roten — keiner gehört diesem Zweig
+
+| Datei | rc | Ursache |
+|---|---:|---|
+| `shared/test_stabile_sortierung.py` | 1 | **bekannt rot** (Mac 17.09.: 3 Fehler), unverändert |
+| `shared/test_wellenauswahl.py` | 1 | **bekannt rot** (Mac 17.09.: 1 Fehler), unverändert |
+| `shared/test_zuteilung.py` | 1 | ⚠️ **Netzsperre** — `ProxyError … api.binance.com`. Genau der in der Aufgabenstellung als **„nur Cloud"** genannte Fall |
+
+### Die drei ungeprüften
+
+`research/drawdown_reihenfolge/test_drawdown.py` ·
+`research/elliott_wave_params/test_params.py` ·
+`research/fib_score_stufen/test_stufen.py` — ⚠️ **ungeprüft, nicht rot**, wie
+in der Aufgabenstellung vermerkt. Ohne Bot-Argument nur die Nutzungszeile und
+`rc=1`.
+
+### ⭐ Der Nebenbeweis aus TB-47 hält
+
+`shared/test_drawdown_beide_masse.py` lief wie erwartet in die Zeitgrenze
+(`rc=-15`, *„erwartet: terminiert nicht (bekannt)"*). Direkt danach gemessen:
+
+```
+Ueberlebende Prozesse: 0
+```
+
+Die Prozessgruppen-Reparatur aus TB-47 trägt auch in dieser Sitzung.
+
+### ⭐ Vier „UNERWARTET" — alle vier erklärt, keiner ein Befund
+
+| Datei | gemeldet | tatsächlich |
+|---|---|---|
+| `dashboard/test_portfolio_sicht.py` | bekannt rot (Mac) | **grün, 91/91** |
+| `research/exposure_messung/test_exposure_kern.py` | bekannt rot (Mac) | **grün** |
+| `research/hrp_portfolio/test_hrp_core.py` | bekannt rot (`scipy` fehlt, Mac) | **grün** — `scipy` ist hier vorhanden |
+| `shared/test_zuteilung.py` | auf dem Mac grün | **rot** — Netzsperre |
+
+⚠️ **Alle vier sind Rechnerunterschiede, keine Befunde.** Die `BEKANNT_ROT`-Liste
+des Runners führt **Mac-Werte**; die Markierung ist richtig, die Fälle sind
+erklärt. *Wieder ein Beleg dafür, dass diese Liste ihre Rechnerangabe braucht* —
+siehe `docs/UMGEBUNGEN.md`.
+
+⭐ **`system/test_log_rotation.py` war grün** (4,5 s), wie in der
+Aufgabenstellung angekündigt.
+
+**⭐ Keine Abweichung von der Erwartungsliste der Aufgabenstellung.** Die dort
+genannten bekannt roten, die drei ungeprüften und der Grün-Vermerk zu
+`system/test_log_rotation.py` sind alle eingetroffen. **TB-48 hat keinen Code
+angefasst — der Basislauf fällt entsprechend aus wie vor dem Zweig.**
+
+---
+
+## 10. Was ausdrücklich NICHT passiert ist
+
+| | |
+|---|---|
+| ❌ | **Kein Code geändert.** Nichts unter `shared/`, `strategies/`, `research/`, `broker/`, `dashboard/`, `notifications/`, `system/`, `config/`. `git diff --numstat` über den ganzen Zweig nennt **nur `docs/`-Dateien** |
+| ❌ | **`data/` nicht angefasst** — `d9449faf…`, 223 Dateien, **vorher und nachher gemessen**, identisch |
+| ❌ | **Kein Snapshot gezogen.** Es gibt weder `snapshots/` noch `data/snapshots/` |
+| ❌ | **Kein `--echt`, keine Order, keine Gegenstelle berührt** |
+| ❌ | **Keine Zeile entfernt** — `506	0` |
+| ❌ | **Kein Secret gelesen.** `config/email_config.py` ist in dieser Arbeit nicht geöffnet worden — weder mit `cat` noch mit `git show` |
+| ❌ | **Keine Parameterübernahme.** `live_params.py` ist nicht einmal gelesen worden |
+| ❌ | **Der Registerprüfer nicht erweitert** — er kennt Abschnitt 17 weiterhin nicht; das ist eine eigene Entscheidung |
+| ❌ | **Die zwei Befunde nicht behoben** — die Fundstellen-Abweichung und die Falten-Jahreszahl sind **gemeldet**, wie der Auftrag es verlangt |
+
+⚠️ **Nicht in Abschnitt 17 aufgenommen, wie beauftragt:** der **zweite
+Umstellungstag** (sein Datum existiert noch nicht), die Gleichheitsprüfung der
+Entscheidungskerze, der Datencron und der Resolver-Modus mit den 90 Modulen.
+Die letzten drei sind Änderungen am Live-Pfad beziehungsweise der grosse Umbau —
+eigene Aufgaben mit eigener Freigabe.
+
+---
+
+## 11. Was als Nächstes ansteht
+
+| | |
+|---|---|
+| ⚠️⚠️ **Zuerst** | **`shared/snapshot.py` kann den Snapshot nicht ziehen** (17.10, Zeile 2). Solange das so ist, ist der nächste geplante Schritt — Snapshot ziehen, dann signierter Tag — **blockiert**. Eigene Aufgabe, eigene Freigabe |
+| **Dann** | Der **Mac-Testauftrag** (`docs/TESTAUFTRAG_TB-48_registernachtrag.md`) — ⚠️ **vor dem Merge**, nicht danach |
+| **Offen, Betreiber** | Ob der Registerprüfer um Abschnitt 17 erweitert wird. Der in dieser Sitzung geschriebene Prüfer liegt **in der ZIP-Datei**, nicht im Repo — `research/` durfte nicht angefasst werden |
+| **Offen, Betreiber** | Die sechs übrigen Zeilen aus 17.10 (Lese-Audit, `requirements.lock`, Kein-Entscheid-Tag, Vergleichswerkzeug, Drift-Protokoll) |
+
+---
+
+## In einfacher Sprache
+
+**Was war die Aufgabe?** Im Register — dem Dokument, in dem vor einem Versuch
+festgehalten wird, wie er ablaufen soll — fehlten neun Festlegungen. Sie waren
+beschlossen, aber nicht eingetragen. Sie sollten hinein, **bevor** der nächste
+grosse Schritt gemacht wird. Das war eine reine Schreibaufgabe: **kein
+Programm wurde geändert.**
+
+**Was ist jetzt anders?** Das Register hat einen neuen Abschnitt 17 mit diesen
+neun Texten. Wichtig dabei: **es wurde nichts gelöscht.** Alte Fassungen stehen
+weiter da und haben nur einen Zettel danebenbekommen, auf dem steht „gilt nicht
+mehr, die neue Fassung steht dort". So bleibt nachlesbar, wie man zu dem
+gekommen ist, was heute gilt. Das Register ist dadurch von 2 065 auf 2 571
+Zeilen gewachsen — **506 Zeilen dazu, null weg.**
+
+**Wurde nachgeprüft, ob die Zahlen stimmen?** Ja, und das war der eigentliche
+Aufwand. **19 Zahlen** wurden nicht abgeschrieben, sondern **neu ausgerechnet**
+— aus den Kursdateien, aus dem Faltenplan, aus den Ergebnissen der letzten
+Aufgabe. **18 stimmten.**
+
+**Und die eine, die nicht stimmte?** In einem der beschlossenen Texte steht als
+Begründung: *„Die erste Selektionsfalte beginnt 2022."* Sie beginnt **2019**.
+Der Satz sollte erklären, warum ein bekannter kleiner Datenmangel — bei 36 von
+223 Kursdateien ist die allererste Kerze kürzer als die anderen — für die
+Auswertung folgenlos bleibt.
+
+⭐ **Die gute Nachricht: die Aussage stimmt trotzdem, nur die Begründung war
+falsch.** Es wurde über alle neun Bots und alle Zeitabschnitte durchgerechnet:
+**in keinem einzigen Fall** wird eine dieser kurzen ersten Kerzen tatsächlich
+benutzt. Der Grund ist aber ein anderer als angegeben — nicht „das liegt alles
+vor dem Auswertungszeitraum", sondern „die Programme laden solche Symbole gar
+nicht erst, weil ihre Geschichte zu kurz ist". Beides führt zum selben
+Ergebnis; nur ist der zweite Grund **nachprüfbar**, der erste war bloss eine
+Jahreszahl, die beim nächsten Mal still falsch geworden wäre.
+
+**Nach den Regeln dieser Aufgabe wurde der falsche Satz nicht heimlich
+ausgebessert.** Er steht weiter da, und direkt darunter steht, was
+nachgerechnet wurde. So sieht man später beides.
+
+**Gab es sonst etwas zu melden?** Zwei Dinge:
+
+1. Der Auftrag sagte, zwei alte Textstellen stünden in „Abschnitt 15". Sie
+   stehen in **Abschnitt 16**. Die Zettel wurden dort angebracht, wo der Text
+   wirklich steht — sonst hätten sie ins Leere gezeigt.
+
+2. ⚠️ **Das Wichtigste:** Der nächste geplante Schritt ist, eine eingefrorene
+   Kopie aller Kursdaten zu ziehen. **Mit dem heutigen Programm geht das
+   nicht.** Es bricht ab, sobald es eine dieser 36 kurzen ersten Kerzen sieht —
+   und der neue Registertext erlaubt sie ausdrücklich. Das Programm kennt die
+   Erlaubnis noch nicht. **Das musste auffallen, bevor jemand den Schritt
+   versucht.** Repariert wurde es nicht: diese Aufgabe durfte kein Programm
+   anfassen, und das ist auch richtig so — eine Änderung daran gehört
+   ausdrücklich freigegeben.
+
+**Ist etwas kaputtgegangen?** Nein. Die Kursdaten sind **vorher und nachher
+nachweislich unverändert** (dieselbe Prüfsumme, dieselben 223 Dateien). Von 64
+Testdateien sind 57 grün; die drei roten sind alle vorher schon bekannt gewesen
+oder liegen daran, dass die Cloud nicht ins Internet darf. **Kein einziger
+Fehler hat mit dieser Arbeit zu tun** — was auch nicht sein kann, denn es wurde
+kein Programm geändert.
+
+**Was fehlt noch?** Der Nachweis auf dem MacBook. Der Rechner, auf dem der
+Betrieb wirklich läuft, hat eine ältere Python-Fassung, und „grün in der Cloud"
+heisst dort erfahrungsgemäss nicht automatisch „grün". Der Auftrag dafür liegt
+fertig bereit und ist klein, weil hier nur Text geschrieben wurde. **Er wird
+vor dem Zusammenführen abgearbeitet, nicht danach.**
