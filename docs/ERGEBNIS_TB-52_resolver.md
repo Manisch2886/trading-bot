@@ -374,7 +374,7 @@ hätte das nach einem kaputten Zweig ausgesehen.
  research/selektionsmasse/test_eigener_pfadbau.py     | neu
  research/selektionsmasse/test_wanduhr.py             | neu
  shared/test_paths.py                                 | neu
- shared/paths.py                                      | 227 +, 4 -
+ shared/paths.py                                      | 246 +, 4 -
 ```
 
 ⭐ **Genau eine bestehende Datei geändert.** Die **vier entfernten Zeilen**, jede
