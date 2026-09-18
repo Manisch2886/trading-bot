@@ -9,10 +9,11 @@ Es gilt dauerhaft, nicht nur fuer einzelne Aufgaben.**
 > (Abschnitt 10).
 
 > **Geprüfte Fassung vom 18.09.2026.** Neu in dieser Fassung: **5b** (wie die
-> Dokumentation aktualisiert wird), **6d** (Entscheidungsvorlagen tragen eine
-> Empfehlung), **7b** (Zugänge), **7c** (was in jedem Testauftrag steht), **11**
-> (Änderungsverbote nennen ihren Zweck), **12** (Prüfprinzipien).
-> Ergänzt: **2**, **6b**, **7**.
+> Dokumentation aktualisiert wird, mit dem Auslöser *„jede Bewertung bringt ihren
+> Nachtrag mit"*), **6bb** (die Aufgaben des Betreibers am Ende jeder Antwort),
+> **6d** (Entscheidungsvorlagen tragen eine Empfehlung), **7b** (Zugänge),
+> **7c** (was in jedem Testauftrag steht), **11** (Änderungsverbote nennen ihren
+> Zweck), **12** (Prüfprinzipien). Ergänzt: **2**, **6b**, **7**.
 > ⭐ **Und ein Formfehler behoben:** Die Zeile zu Fable stand in der Tabelle
 > von Abschnitt 1 mitten im Fliesstext; sie steht jetzt wieder in der Tabelle.
 
@@ -279,6 +280,32 @@ merkt.
 | ⭐ **prüfen statt raten** | *welcher Journal-Block ist wirklich der letzte?* — ein falscher Buchstabe macht jeden Backlog-Verweis wertlos |
 | **mehrere Dateien in einem Zug** | `BACKLOG`, `JOURNAL`, `START_HIER`, `UMGEBUNGEN` zusammen, mit einem Nachweis je Datei |
 
+### Der Auslöser: jede Bewertung bringt ihren Nachtrag mit
+
+⚠️⚠️ **Festgelegt am 18.09.2026, weil der weiche Auslöser der eigentliche Fehler
+war.**
+
+> **„Fortlaufend führen" stand schon vor dem 18.09. in Abschnitt 5 — und diese
+> Sitzung hat drei erledigte Aufgaben und zwei Fable-Runden eine Woche lang nur
+> in Chat-Bewertungen liegen lassen.** *Eine Regel, die einen unbestimmten
+> Zeitpunkt nennt, wird verschoben. Nicht aus Nachlässigkeit, sondern weil es
+> immer etwas Dringenderes gibt.*
+
+**Deshalb hängt die Fortschreibung ab jetzt an einem Ereignis, das ohnehin jedes
+Mal eintritt:**
+
+| | |
+|---|---|
+| ⭐ **Jede Bewertung eines Ergebnisses bringt ihren Backlog- und Journal-Nachtrag im SELBEN Archiv mit** | Kommt ein ZIP von einer Cloud- oder Mac-Sitzung zurück, bekommt der Nutzer nicht nur die Einordnung, sondern auch die Blöcke zum Ablegen |
+| **Gilt auch für Fable-Antworten** | eine methodische Festlegung ist ein Ergebnis wie jedes andere |
+| **Gilt auch, wenn der Nachtrag kurz ist** | drei Zeilen sind ein Nachtrag. *Ein ausgelassener kurzer Nachtrag ist der Anfang eines langen* |
+
+**Der Preis, benannt:** ein paar Dateien mehr je Runde.
+**Der Gewinn:** es gibt keinen Zeitpunkt mehr, an dem es *„später"* heisst.
+
+⚠️ **Und es bleibt bei EINEM Archiv je Antwort** (Abschnitt 2) — der Nachtrag
+kommt **hinein**, nicht daneben.
+
 ### Der feste Ablauf
 
 1. **Ich schreibe den Nachtrag** — neue Blöcke plus **benannte** Ersetzungen, mit
@@ -348,6 +375,33 @@ wiederholen müssen — jedes Mal an einer Stelle, die ich für offensichtlich
 hielt (ein Merge, ein Pfad, ein Kopierbefehl). *Was für mich ein Schritt ist,
 sind im Terminal drei.* **Die Regel gilt ohne Ausnahme; sie einmal abzukürzen
 kostet mehr Nachrichten, als sie spart.**
+
+---
+
+## 6bb. Die Aufgaben des Betreibers werden am Ende jeder Antwort benannt
+
+⚠️⚠️ **Ausdrückliche Anweisung des Nutzers, 18.09.2026: *„weise mich immer
+detailliert auf meine Aufgaben hin."***
+
+**Jede Antwort, aus der für den Nutzer etwas zu tun folgt, endet mit einem
+eigenen, abgesetzten Block — nicht in den Fliesstext eingestreut.**
+
+| | |
+|---|---|
+| **Überschrift** | „Deine Aufgaben" oder „Was du jetzt tust" — **sichtbar abgesetzt** |
+| **nummeriert** | in der Reihenfolge, in der sie zu tun sind |
+| **je Aufgabe** | **Was · Wo · Woran du merkst, dass es geklappt hat** (Abschnitt 6b) |
+| ⭐ **dazu, was NICHT von ihm abhängt** | *„läuft ohne dich"*, *„ich warte auf das Archiv"* — damit er nicht sucht, was er übersehen haben könnte |
+| ⚠️ **und wenn nichts zu tun ist: das ausdrücklich sagen** | *„Nichts zu tun. Ich warte auf X."* **Kein erfundener Aufgabenblock**, nur damit einer dasteht |
+
+**Warum das nicht schon in 6b stand:** 6b sagt, **wie** eine Anweisung aussieht.
+Dieser Abschnitt sagt, **dass am Ende jeder Antwort eine vollständige Liste
+steht** — auch dann, wenn die Aufgaben über die Antwort verstreut schon genannt
+wurden. *Der Nutzer führt oft vier Sitzungen parallel; was nicht an einer Stelle
+gebündelt steht, geht unter.*
+
+⚠️ **Auch bei Wartezuständen.** Wartet eine Sitzung auf ein Archiv, gehört in den
+Block: **was wann von wem kommt, und was in der Zwischenzeit zu tun ist.**
 
 ---
 
