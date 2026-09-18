@@ -9,11 +9,12 @@ Es gilt dauerhaft, nicht nur fuer einzelne Aufgaben.**
 > (Abschnitt 10).
 
 > **Geprüfte Fassung vom 18.09.2026.** Neu in dieser Fassung: **5b** (wie die
-> Dokumentation aktualisiert wird, mit dem Auslöser *„jede Bewertung bringt ihren
-> Nachtrag mit"*), **6bb** (die Aufgaben des Betreibers am Ende jeder Antwort),
-> **6d** (Entscheidungsvorlagen tragen eine Empfehlung), **7b** (Zugänge),
-> **7c** (was in jedem Testauftrag steht), **11** (Änderungsverbote nennen ihren
-> Zweck), **12** (Prüfprinzipien). Ergänzt: **2**, **6b**, **7**.
+> Dokumentation aktualisiert wird — ⭐ **Regelweg: die Mac-Sitzung legt ab**,
+> dazu der Auslöser *„jede Bewertung bringt ihren Nachtrag mit"*), **6bb** (die
+> Aufgaben des Betreibers am Ende jeder Antwort), **6d** (Entscheidungsvorlagen
+> tragen eine Empfehlung), **7b** (Zugänge), **7c** (was in jedem Testauftrag
+> steht), **11** (Änderungsverbote nennen ihren Zweck), **12**
+> (Prüfprinzipien). Ergänzt: **2**, **6b**, **7**.
 > ⭐ **Und ein Formfehler behoben:** Die Zeile zu Fable stand in der Tabelle
 > von Abschnitt 1 mitten im Fliesstext; sie steht jetzt wieder in der Tabelle.
 
@@ -154,6 +155,11 @@ demselben Branch weiterarbeiten — das erzeugt tote PRs.
      **in einem Zug** — eine unversionierte Datei blockiert sonst den nächsten
      Pull (P.2).
 
+  ⚠️⚠️ **Dieser vierschrittige Ablauf ist ab 18.09.2026 die AUSNAHME, nicht die
+  Regel** — er gilt nur noch für Texte, die zu gross für einen Auftrag sind.
+  **Der Regelweg steht in Abschnitt 5b: die Mac-Sitzung legt ab und pusht
+  selbst.**
+
   > ⚠️ **Ab der ersten Ablage ist die Fassung im Repo die massgebliche.** Jede
   > Änderung in einer Sitzung muss denselben Weg zurücknehmen — herunterladen,
   > kopieren, committen. *Sonst laufen zwei Fassungen auseinander, wie es bei den
@@ -259,8 +265,8 @@ immer so."* Der Ablauf ist damit festgelegt, nicht Einzelfallentscheidung.**
 
 | Weg | Wofür | Wie |
 |---|---|---|
-| **1 — ganz ersetzen** | Dokumente, die kurz genug sind, um sie vollständig zu schreiben: `ARBEITSWEISE.md`, `PRUEFPRINZIPIEN.md`, `UMGEBUNGEN.md`, `START_HIER.md` | **Der Nutzer legt sie selbst ab**, nach dem Ablauf in Abschnitt 2 (Grössen prüfen, kopieren, `add`+`commit`+`push` in einem Zug). *Die alte Fassung steckt in git; es geht nichts verloren* |
-| ⭐ **2 — Nachtrag** | ⚠️ **`BACKLOG.md` und `JOURNAL.md`** — und jede andere Datei über ein paar hundert Zeilen | **IMMER als eigene kleine Cloud-Aufgabe**, nie von Hand. Siehe unten |
+| **1 — ganz ersetzen** | Dokumente, die kurz genug sind, um sie vollständig zu schreiben: `ARBEITSWEISE.md`, `PRUEFPRINZIPIEN.md`, `UMGEBUNGEN.md`, `START_HIER.md` | ⭐ **Regelweg: Auftrag an die Mac-Sitzung** (siehe unten). **Nur wenn der Text für einen Auftrag zu gross ist**, legt der Nutzer selbst ab, nach dem Ablauf in Abschnitt 2 |
+| ⭐ **2 — Nachtrag** | ⚠️ **`BACKLOG.md` und `JOURNAL.md`** — und jede andere Datei über ein paar hundert Zeilen | **IMMER als Auftrag an eine Sitzung, nie von Hand.** Mac-Sitzung bevorzugt, weil sie ohne Zweig und Merge direkt auf `main` pusht |
 | **3 — neu dazulegen** | ein neues Dokument | wie Weg 1 |
 
 ### Warum Weg 2 zwingend in eine Cloud-Aufgabe gehört
@@ -279,6 +285,46 @@ merkt.
 | **die Ersetzungen exakt treffen** | benannte Stellen statt Suchen und Scrollen |
 | ⭐ **prüfen statt raten** | *welcher Journal-Block ist wirklich der letzte?* — ein falscher Buchstabe macht jeden Backlog-Verweis wertlos |
 | **mehrere Dateien in einem Zug** | `BACKLOG`, `JOURNAL`, `START_HIER`, `UMGEBUNGEN` zusammen, mit einem Nachweis je Datei |
+
+### Der Regelweg ab 18.09.2026: die Mac-Sitzung legt ab
+
+⚠️⚠️ **Anweisung des Nutzers, 18.09.2026: *„nehme das mit remote claude so
+auf."*** **Dokumentationsänderungen gehen als Auftrag an die Mac-Sitzung, nicht
+als Download.**
+
+**Was der Download gekostet hat, gemessen an einem einzigen Tag:**
+
+| | |
+|---|---|
+| ⚠️ | **acht Fassungen von `ARBEITSWEISE.md`** im Downloads-Ordner, darunter ein Ordner mit `-2` im Namen, **der die ÄLTERE Datei enthielt** |
+| ⚠️ | **drei Fehleingaben ins Terminal** — eine legte über eine verrutschte Umleitung eine Datei `Ergänzt:` im Projektordner an |
+| | **sieben Schritte je Ablage**, jeder mit Grössenprüfung |
+
+**Was die Mac-Sitzung stattdessen tut:** Sie sitzt im Repo, fügt ein, prüft, und
+**pusht direkt auf `main`** — kein Zweig, kein Merge, kein PR. Bei Dokumentation
+braucht es den Umweg nicht.
+
+⚠️ **Die Grenze, ehrlich benannt: der Text muss zur Sitzung kommen.**
+
+| Fall | Weg |
+|---|---|
+| **Änderung an einem vorhandenen Dokument** — neuer Abschnitt, benannte Ersetzung | ⭐ **Der Text steht wörtlich im Auftrag**, mit der Einfügestelle als Ankertext. Kein Download |
+| **Neues oder vollständig neu geschriebenes Dokument** | Passt der Text in den Auftrag (Richtwert: bis ein paar hundert Zeilen), derselbe Weg. **Sonst Download** — dann ist er der ehrlichere |
+
+**Die harten Auflagen jedes solchen Auftrags:**
+
+| | |
+|---|---|
+| ⚠️ | **nur `docs/`** — nichts ausserhalb, und die Sperrliste gilt unverändert |
+| ⚠️ | **`git diff --numstat` je Datei**, und **jede entfernte Zeile einzeln der Ersetzung zugeordnet**, die sie verursacht hat |
+| ⚠️ | **nichts inhaltlich umformuliert** — Texte werden übernommen. *Findet die Sitzung einen Sachfehler: **melden, nicht korrigieren*** |
+| ⚠️ | **`git status --porcelain` NACH dem letzten Commit** |
+| | **Ankertext wörtlich im Auftrag**, damit die Einfügestelle nicht gesucht werden muss |
+
+**Der Preis, benannt:** Der Nutzer liest einen Bericht statt Ausgaben
+mitzulesen — er sieht die Zwischenschritte nicht mehr. ⭐ *Am 18.09. hätte das
+nichts gekostet: Die beiden Beinahe-Verwechslungen fand die **Prüfung**, nicht
+das Zusehen — und die Prüfung macht die Sitzung genauso.*
 
 ### Der Auslöser: jede Bewertung bringt ihren Nachtrag mit
 

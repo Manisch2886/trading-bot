@@ -58,6 +58,12 @@ AUSGENOMMEN = ("trading-env", "__pycache__", ".git", "node_modules")
 # gar keiner: er macht einen Test, der eines Tages wirklich rot wird,
 # unsichtbar. Das ist genau die Fehlerfamilie, gegen die TB-45 und TB-46b
 # gebaut sind - eine Wache, die aufgehoert hat zu beissen, ohne es zu sagen.
+# 18.09.2026 (TB-49-Maclauf): NICHT "auf beiden Rechnern gruen".
+# Zehn Einzellaeufe auf dem Mac: 3 von 10 rot, immer 116 von 117, immer
+# eine zeitabhaengige Probe zum Restfenster, wechselnde Probe. Rate ~30 %.
+# Die Streichung in TB-47 stuetzte sich auf je EINE Messung pro Rechner -
+# bei ~30 % Flackerrate trifft eine Einzelmessung mit 70 % Wahrscheinlich-
+# keit gruen. Siehe docs/PRUEFPRINZIPIEN.md A6 und Backlog T38.10/T49.17.
 BEKANNT_ROT = {
     "dashboard/test_portfolio_sicht.py": "Mac 17.09.: 1 Fehler",
     "shared/test_stabile_sortierung.py": "Mac 17.09.: 3 Fehler",

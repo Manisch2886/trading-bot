@@ -23,10 +23,12 @@ Stelle, die eine Sitzung liest.*
 | | **Mac** (`~/trading-bot`) | **Cloud** (Claude-Code-Sitzung) |
 |---|---|---|
 | **Rolle** | **Betrieb.** Cronjobs, Live-Datenbanken, Dashboard, Broker-Brücke | **Entwicklung.** Frischer Checkout je Sitzung, nichts davon dauerhaft |
+| **Betriebssystem** | **macOS 15.7.9 (Build 24G830), Darwin 24.6.0, x86_64** *(gemessen 18.09.2026)* | *nicht gemessen* |
 | **Python** | **3.9.6** (`trading-env/bin/python3`; `/usr/bin/python3` ist dieselbe Fassung, hat aber weder `binance` noch `dateparser`) | **3.11 oder neuer** (zuletzt gemessen: 3.11.15) |
 | ⭐ **Welcher Interpreter in Aufgaben** | ⚠️ **immer `trading-env/bin/python3`** — er ist der Betriebsinterpreter. *Der TB-45-Auftrag schrieb an mehreren Stellen `python3` vor; dort fiel alles rot aus, was `binance` braucht (Trockenlauf D5/I0, `test_leeres_symbol` 7 rot) — ohne dass irgendetwas kaputt war.* | `python3` |
 | **`pandas` / `numpy`** | 2.3.3 / 2.0.2 | ⚠️ **wechselnd** — fehlte in TB-39 ganz, liess sich in TB-43 und TB-45 nachinstallieren |
 | **`dateparser`** | **1.2.2** | **1.4.3** |
+| **`pandas_market_calendars`** | **4.6.1** *(an der Quelle geprüft 18.09.2026)* — Registertext 5f verweist darauf | **5.4.0** (TB-49) |
 | **Binance, yfinance** | erreichbar | ⚠️ **gesperrt (403)** — Abrufe gehören in den Mac-Testauftrag |
 | **`node`** | vorhanden (`/usr/local/bin/node`) — `test_dashboard.py` **784/784** | ⚠️ **wechselnd** — in älteren Sitzungen fehlend (`dashboard/test_dashboard.py` 780/780), in TB-45 **vorhanden** (784/784) |
 | **`scipy`** | ⚠️ **nicht vorhanden** — `research/hrp_portfolio/test_hrp_core.py` bricht am Import ab (TB-45-Maclauf) | vorhanden |
@@ -78,13 +80,15 @@ nicht sehen konnte:**
 | `research/drawdown_reihenfolge/test_drawdown.py` · `research/fib_score_stufen/test_stufen.py` · `research/elliott_wave_params/test_params.py` | ⚠️ **verlangen ein Bot-Argument** — ohne Argument nur die Nutzungszeile und `rc=1`. **Sie sind ungeprüft, nicht rot** |
 | `research/hrp_portfolio/test_hrp_core.py` | `scipy` fehlt auf dem Mac |
 | `shared/test_drawdown_beide_masse.py` | ⚠️ **läuft in die Zeitgrenze** (900 s) und **hinterlässt einen Kindprozess**, der weiterrechnet — im TB-45-Lauf rund 20 Minuten CPU, bis er von Hand beendet wurde |
-| `trading-env/` | im `find` **ausschliessen** — sonst 1 312 statt 62 Testdateien |
+| `trading-env/` | im `find` **ausschliessen** — sonst 1 312 statt 65 Testdateien *(65 gemessen 18.09.2026 im TB-49-Maclauf; die 62 stammte aus TB-45)* |
 | GNU `timeout` | fehlt — Ersatz: `perl -e 'alarm 900'` (`rc=142` = Zeitgrenze) |
 
 **Bekannt rot auf dem Mac, nicht durch einen Zweig verursacht:**
 `shared/test_stabile_sortierung.py` (3) · `shared/test_wellenauswahl.py` (1) —
 beide teils wegen **veralteter abgelegter Ergebniskurven**;
-`system/test_log_rotation.py` (1, Restfenster beim Rotieren) ·
+`system/test_log_rotation.py` — grün im Regelfall, zeitabhängig flackernd — auf
+dem Mac 3 von 10 Läufen rot (gemessen 18.09.2026, TB-49). Eine Einzelmessung
+belegt hier nichts, siehe `docs/PRUEFPRINZIPIEN.md` A6 ·
 `research/exposure_messung/test_exposure_kern.py` (1) ·
 `dashboard/test_portfolio_sicht.py` (1 — hier liegen die Live-Datenbanken).
 

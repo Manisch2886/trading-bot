@@ -71,6 +71,42 @@ Erfolg · die TB-40-Vergleichstabelle zeigte auf einen historischen Stand.
 ⭐ **Gefunden wurde es nur durch einen Selbsttest, der prüfte, OB geprüft
 wurde** — *„der Diff wurde tatsächlich ausgewertet"*.
 
+### A6 — Eine Einzelmessung kann die ABWESENHEIT eines flackernden Fehlers nicht belegen
+
+**Der Fall (TB-49, Mac-Lauf 18.09.2026):** `system/test_log_rotation.py` war in
+TB-47 aus `BEKANNT_ROT` gestrichen worden, mit der Begründung *„auf BEIDEN
+Rechnern grün, 117/117"* — je **eine** Messung pro Rechner.
+
+**Zehn Einzelläufe auf dem Mac:**
+
+| Lauf | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| | ⚠️ **116** | 117 | ⚠️ **116** | 117 | ⚠️ **116** | 117 | 117 | 117 | 117 | 117 |
+
+**Immer `116 von 117`, immer eine zeitabhängige Probe zum Restfenster beim
+Rotieren, ein bis zwei fehlende Zeilen von 238–512 — und die gefallene Probe
+wechselt.** Rate **~30 %**.
+
+> ⭐ ***„Die Streichung stützt sich auf je EINE Messung pro Rechner; bei ~30 %
+> Flackerrate trifft eine Einzelmessung mit 70 % Wahrscheinlichkeit grün."***
+
+⚠️ **Und der Befund stand längst im Backlog** (T38.10, 15.09.: *„flattert —
+Rennbedingung zwischen Sichern und Leeren"*). **Eine dokumentierte Aussage wurde
+mit einer Einzelmessung überstimmt, ohne nachzusehen, ob es dazu schon etwas
+gibt.**
+
+**Die Regel, zweiteilig:**
+
+| | |
+|---|---|
+| ⭐ **Grün einmal ist kein Nachweis** | Wer einen Eintrag aus einer Rot-Liste streicht, braucht **mehrere** Läufe — bei einem Verdacht auf Zeitabhängigkeit zehn |
+| ⚠️ **Vor dem Streichen im Backlog nachsehen** | *Eine geprüfte Aussage ungeprüft zu verwerfen ist derselbe Fehler wie eine Zahl ungeprüft zu übernehmen (**C1**), nur in die andere Richtung* |
+
+**Und die richtige Formulierung für solche Fälle:** nicht „rot" und nicht „grün",
+sondern ⭐ **„grün im Regelfall, zeitabhängig flackernd"** — mit der gemessenen
+Rate dabei. *Ein flatternder Test untergräbt sonst die Aussagekraft jedes
+Basislaufs, ohne dass jemand weiss, wie oft.*
+
 ---
 
 ## B — Wie eine Probe sich selbst täuscht
@@ -168,6 +204,8 @@ Ursache.** Darunter:
 | „`shared/test_kursdaten.py` ist bekannt rot" | **grün, 82/82** — Liste unbesehen übernommen (T42.6) |
 | „die letzte Kerze ist bei allen 223 Dateien sauber" | **175 tragen `kein_zeuge`** — dort ist nichts belegbar (18.09.) |
 | „die erste Selektionsfalte beginnt 2022" | der Faltenplan sagt **2019** (TB-48) |
+| „2022 ist die früheste **Krypto**-Falte" | **alle neun Bots beginnen 2019**; die 2022 stammt aus einem überholten Faltenplan (TB-49) |
+| „`system/test_log_rotation.py` ist auf beiden Rechnern grün" | ⚠️ **3 von 10 Läufen rot** — eine Einzelmessung je Rechner belegte nichts (TB-49, siehe **A6**) |
 
 ⭐ **Die Regel:** Fundstellen nur nennen, wenn sie **vorliegen**. Sonst steht
 ausdrücklich *„aus dem Gedächtnis"* dabei.

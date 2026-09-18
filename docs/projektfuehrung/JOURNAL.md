@@ -5124,6 +5124,638 @@ echten Verkauf aus. Das ist jetzt der erste Punkt vor dem Umbau.
 
 ---
 
+## BA — TB-46 gemergt, Zuschnitt B entschieden, zwei Fable-Runden
+
+**17.09.2026. Gemergt `135c306`.**
+
+`shared/snapshot.py` und `shared/test_snapshot.py` (69 Prüfungen, dreizehn
+Mutationsproben) sind im Repo. **Erhebung, Werkzeug, Wache — kein Umbau.**
+
+**Die Messung, die alles Weitere trägt:**
+
+| | |
+|---:|---|
+| **182** | Module erreichen `data/` — die frühere Zahl **101** ist exakt reproduziert und **nicht falsch**, sie zählt eine engere Frage |
+| ⭐ **0** | **Bot-Dateien bauen einen Pfad.** Der Umbau kommt ohne `forward_test.py`, `live_params.py` und `equity_simulation.py` aus |
+| **90** | Module der Selektionsseite, die auf den Snapshot zu zeigen sind |
+
+⭐ **Gemessen über den Syntaxbaum, nicht mit Textsuche** — zwei `forward_test.py`
+**nennen** `data/` in einer Protokollzeile. Eine Textsuche hätte gemeldet, der
+Umbau müsse genau die Dateien anfassen, die er nicht anfassen darf.
+**Prüfprinzip B5.**
+
+### Die Entscheidung: Zuschnitt B
+
+**`data/` bleibt der lebende Bestand, `snapshots/<hash>/` kommt daneben.**
+Fable hat das bestätigt — *„nicht als Abweichung, sondern als die bessere
+Erfüllung"* von Registertext 5.
+
+### Die zweite Fable-Runde: der Hash
+
+**Frage:** Worüber läuft der Snapshot-Hash — über das Manifest oder über die
+Dateien?
+
+**Antwort, angenommen:** ⭐ **über die sortierten (Pfad, Inhalts-Hash)-Paare der
+DATEIEN.** *Liefe er über das Manifest, hinge der Name des Snapshots an der
+Formatierung seiner Metadaten — und ein geänderter Zeitstempelformat erzeugte
+einen anderen Snapshot bei identischen Daten.*
+
+### Und der Vorschlag von mir, der verworfen wurde
+
+**Ich hatte eine „Eingangswache" vorgeschlagen:** beim Start des Laufs das
+Manifest prüfen. **Fable:** *„Die Wache prüft die Eingabe, nicht das Verhalten."*
+Ein Modul, das seinen Pfad selbst baut, sieht die übergebene Wurzel nie.
+
+⭐ **Angenommen stattdessen: drei Schichten.** **(1)** Resolver-Modus in
+`shared/paths.py`, der die Snapshot-Wurzel liefert und bei jeder Anfrage nach dem
+Live-Bestand **wirft** · **(2)** **AST-Test**, dass kein Selektionsmodul einen
+Datenpfad ausserhalb des Resolvers baut — ⭐ *er ist rot, bis die 90 verdrahtet
+sind, und das ist gewollt: er misst den Umbau* · **(3)** **Lese-Audit** als
+Ausgangsnachweis.
+
+### In einfacher Sprache
+
+**Was wir wissen wollten:** Wie viele Programmteile lesen die Kursdaten, und
+müssen wir dafür die Bot-Dateien anfassen, die nicht angefasst werden dürfen?
+
+**Was herauskam:** 182 Programmteile lesen die Daten, aber **kein einziger der
+neun Bots baut selbst einen Dateipfad**. Der Umbau kommt ohne sie aus.
+
+**Warum das so ist:** Gemessen wurde nicht mit einer Textsuche, sondern an der
+Struktur des Programms. Zwei Bots **erwähnen** den Datenordner in einer
+Protokollzeile — eine Textsuche hätte daraus geschlossen, man müsse sie ändern.
+
+**Was das für dich heisst:** Der grosse Umbau ist ungefährlicher als befürchtet.
+Und die eingefrorene Kopie der Daten kommt **neben** den lebenden Bestand, nicht
+an seine Stelle.
+
+---
+
+## BB — TB-46b: der Sicherheitspunkt ist beantwortet
+
+**18.09.2026. Gemergt `c5ad722`.**
+
+**Die Frage kam von Fable, und wir hatten sie nicht gestellt:**
+*„‚Hält null Positionen' — heisst das **keine neuen** Positionen, oder
+**schliesst** der Bot offene, weil er sie ohne Kerze nicht bewerten kann?"*
+⚠️ *„Ein Bot, der bei fehlender Kerze verkauft, hat kein Holdout-Problem,
+sondern ein Sicherheitsproblem."*
+
+### Die Antwort
+
+> ⭐⭐⭐ **KEIN Bot schliesst eine Position, weil Kursdaten fehlen. Nicht
+> „wurde nicht beobachtet", sondern strukturell unmöglich.**
+
+**Gelesen an neun von neun Bots über fünf Ausstiegspfade. Die gemeinsame
+Bauform:**
+
+```
+__main__          für jedes Symbol:  df = entscheidungskerze.lade(...)
+                                     → in price_data / indicator_data
+                  alles in einem try/except Exception je Symbol
+
+check_open_trades  für jeden offenen Trade:
+                     if symbol not in <daten>:  continue     ← die Tür
+                     future = df[df["open_time"] > entry_time]
+                     nur bei Treffer:  UPDATE ... status='closed'
+```
+
+⭐ **Es gibt kein `else`.** Ein Symbol ohne Kursdaten erreicht die UPDATE-Zeile
+nicht.
+
+### Der offene Punkt, der aus der Prüfung entstand
+
+⚠️⚠️ **`shared/entscheidungskerze.py`, `lade()`: der Rückfall auf die zweite
+Quelle wird nicht auf Frische geprüft.**
+
+```
+658    if art is not None:                       # data/ fehlt, veraltet oder unklar
+659        sammler.erfasse(symbol, art, grund)
+663        df = abruf()                          # ← die zweite Quelle
+667    gefiltert, _verworfen, hinweis = nur_entscheidbar(df, …)
+```
+
+`_aus_datei()` fragt `ist_frisch()` (Zeile 690). **`abruf()` fragt niemand.**
+⚠️ *Das ist der einzige Weg, auf dem eine falsche Kerze bis zur Entscheidung
+kommt.*
+
+### Fables Antwort darauf: Gleichheit statt Frische
+
+**Mein Vorschlag war eine Frischeprüfung. Verworfen.**
+
+⭐ **Angenommen: der `close_time` der gelieferten Kerze muss dem erwarteten Wert
+GLEICHEN — aus jeder Quelle, ohne Ausnahme. Stimmt er nicht, ist es ein
+Kein-Entscheid.**
+
+> *„Die Gleichheit braucht keinen Parameter. Eine Toleranz wäre eine zweite
+> willkürliche Zahl an genau der Stelle, an der das Register keine mehr
+> verträgt."*
+
+**Vier Dinge gehören deshalb in EINEN Zug** — und der braucht die
+Betreiberfreigabe für `shared/entscheidungskerze.py`: Gleichheitsprüfung ·
+Datencron mit Prüfung vor den Bot-Läufen (`TZ=UTC`) · Kein-Entscheid-Datensatz in
+`melde()` · Datenstand-Hash und Kerzenwerte je Lauf ins Protokoll.
+
+### Der Mac-Lauf und die eine abweichende Datenbank
+
+**Eine** der neun Datenbanken wich ab. ⭐ **Die Erklärung ist belegt, nicht
+plausibilisiert:** `turtle_soup_crypto` hat einen Cronjob `15 0 * * *`; die
+Änderungszeit 00:15:24 Ortszeit = **22:15:24 UTC** liegt im Prüffenster, und der
+Inhaltsunterschied deckt sich **Zeile für Zeile** mit der Logzeile desselben
+Laufs.
+
+### In einfacher Sprache
+
+**Was wir wissen wollten:** Kann es passieren, dass ein Bot eine offene Position
+verkauft, nur weil die Kursdaten für dieses Wertpapier gerade fehlen?
+
+**Was herauskam:** **Nein, und zwar nicht zufällig.** In allen neun Bots führt
+der Weg zur Verkaufszeile über eine Abfrage, die ein Wertpapier ohne Kursdaten
+vorher überspringt. Es gibt keinen Zweig, der „sonst verkaufe" sagt.
+
+**Warum das so ist:** Der Code ist so gebaut, dass fehlende Daten den Bot beim
+betroffenen Wertpapier weitergehen lassen. Das war nicht als Sicherheitsmassnahme
+gedacht, wirkt aber wie eine.
+
+**Was das für dich heisst:** Der Punkt, der vor allem anderen stand, ist vom
+Tisch. **Geblieben ist ein kleinerer:** Wenn die gespeicherten Daten veraltet
+sind, holt der Bot sie live nach — und **dabei prüft niemand, ob das Gelieferte
+wirklich die richtige Kerze ist.** Das wird behoben, sobald du die Änderung an
+dieser einen Datei freigibst.
+
+---
+
+## BC — TB-47: die Snapshotgrenze, gemessen
+
+**18.09.2026. Gemergt `a1e7fb4`.**
+
+| | |
+|---|---|
+| ⭐ **Die Grenze** | **transitive Hülle über 142 Module ⇒ genau ZWEI** Nicht-Kursdaten-Eingaben: `config/top25_symbols.txt` und `config/sp500_top150.txt`. Kein Handelskalender als Datei — er kommt aus dem Paket, also aus dem Lock |
+| ⭐ **Die zwei Hashes** | `datenstand` = `d9449faf…` bei 223 Dateien, **trifft den Anker vom 15.09.** · `snapshot_hash` = `4fee547dccd4c5e41df1f4dfa5d8e00c927c053fdfa31c57cb44022f0a1f3608`, **verschieden**. *Zwei Zahlen, zwei Fragen* |
+| ⚠️ **36 von 223** | Kursdateien mit Befund **`rand_erste`** — die **erste** Kerze deckt ihren Zeitraum nicht voll ab. ⭐ **Die Prüfung stellt je Datei fest, dass die Kerze auf die letzte Stelle das Aggregat genau der vorhandenen feineren Kerzen ist: abgeleitet, nicht unvollständig geschrieben** |
+| ⭐ **Letzte Kerze** | **bei keiner Datei betroffen** — der gefährliche Rand ist sauber |
+| ⚠️ **175 von 223** | tragen **`kein_zeuge`** — 150 Aktien, 25 Krypto-1h. **Keine feinere Datei zum Vergleich ⇒ nicht belegbar.** Das ist *„kein Befund"*, nicht *„geprüft"* |
+| **Prüfungen** | `shared/test_snapshot.py` **69 → 110**, dreizehn Mutationsproben, jede mit Gegenprobe |
+
+**Beide Rechner, dieselben Zahlen** — Cloud 3.11.15, Mac 3.9.6.
+
+### Prüfprinzip B4, neue Variante: eine Probe kann sich selbst SEHEN
+
+**Die Zählung überlebender Enkelprozesse meldete zuerst `4`.** Das wäre der
+Gegenbeweis gewesen. **Die Sitzung hat nicht weitergemacht, sondern
+nachgesehen — die Zählung zählte sich selbst:** Das Suchmuster stand in der
+eigenen Befehlszeile, also fand `ps` die eigene Shell.
+
+| Gegenprobe | Ergebnis |
+|---|---|
+| nur Python-Prozesse | 1 |
+| Zählung aus einer **Datei** heraus, eigener Prozess ausgeschlossen | 1 |
+| ⭐ **Aufruf ohne Heredoc — das Muster steht nicht mehr in der Befehlszeile** | **0** |
+
+> ⭐ **Wir kannten: „eine Probe kann sich selbst blind machen." Hier galt: eine
+> Probe kann sich selbst sehen — und meldet dann einen Fehler, den es nicht
+> gibt.**
+
+### Zwei Korrekturen am Rand
+
+- ⚠️ **`system/test_log_rotation.py` stand als „bekannt rot" — er ist 117/117
+  grün auf beiden Rechnern.** Der Eintrag kam aus einem Lauf auf einem alten
+  Checkout. **Gestrichen, mit Kommentar:** *„Ein falscher Eintrag in dieser Liste
+  ist teurer als gar keiner."*
+- **`pandas_market_calendars` 4.6.1** auf dem Mac — ⭐ die Fassung, von der der
+  Handelskalender kommt, und damit eine Zahl für `requirements.lock` und den
+  Registereintrag nach 5f.
+
+### In einfacher Sprache
+
+**Was wir wissen wollten:** Was genau muss in die eingefrorene Kopie hinein,
+damit der Selektionslauf später bitgenau wiederholbar ist?
+
+**Was herauskam:** Ausser den Kursdateien nur **zwei** weitere Dateien — zwei
+Symbollisten. Alles andere kommt entweder aus dem Programmcode oder aus einem
+Paket, dessen Version wir festschreiben.
+
+**Warum das so ist:** Gemessen wurde nicht „welche Dateien fallen uns ein",
+sondern was die Programme wirklich lesen, über alle Aufrufwege hinweg.
+
+**Was das für dich heisst:** Die Kopie ist überschaubar und vollständig
+beschreibbar. **Ein Vorbehalt bleibt ehrlich benannt:** Bei 175 der 223
+Kursdateien lässt sich nicht beweisen, dass die Randkerzen vollständig sind — es
+gibt keine feinere Datei zum Vergleich. Dafür bürgt eine andere Schutzschicht,
+und das steht so im Register.
+
+---
+
+## BD — Registertext 5a: die Ausnahme `rand_erste`
+
+**18.09.2026. Registereintrag, eingetragen mit TB-48 als Abschnitt 17.3.**
+
+**Die Teilkerzen-Prüfung schlägt bei 36 der 223 Kursdateien an und verweigert
+damit jeden Snapshot. Die Ausnahme ist registriert — nach drei Bedingungen:**
+
+| | |
+|---|---|
+| **(a)** | Der Befund betrifft ausschliesslich die **erste** Kerze. ⚠️ **Für `rand_letzte` gilt die Ausnahme nicht** |
+| **(b)** | Die Kerze ist nachweislich **das Aggregat genau der vorhandenen feineren Kerzen** |
+| **(c)** | Die Ausnahme wird **im Manifest des Snapshots** je Datei aufgeführt |
+
+> ⚠️ **Die Prüfung selbst wird nicht abgeschwächt. Es gibt keine
+> Übergehen-Flagge.** Sie schlägt weiter an und liefert weiter Rückgabewert 1;
+> das Ziehen erfolgt **gegen diesen Eintrag**, nicht gegen ein Schweigen der
+> Prüfung.
+
+**Die Folgenlosigkeit ist hergeleitet, nicht behauptet:**
+
+| | |
+|---:|---|
+| **20 von 36** | erste Kerze **2017–2020** — reiner Vorlauf vor der ersten Selektionsfalte |
+| **16 von 36** | erste Kerze **ab 2023**, gehörend zu **genau 11 Symbolen**: `BMT ENA ENSO PEPE PROM PUMP SUI TRUMP U WLD ZKC` |
+| ⭐ | **Diese Menge ist identisch mit der Liste aus T34.9** — den Symbolen, die **in keiner Selektionsfalte vorkommen** |
+
+**Kein Symbol-Jahr-Beitrag des Selektionslaufs hängt an einer der 36 kurzen
+ersten Kerzen.** ⭐ **Und TB-48 hat das direkt gemessen statt hergeleitet:**
+*„kurze erste Kerze in einer GELADENEN Falte: Soll 0, Ist 0"*, über alle neun
+Bots.
+
+**Warum nicht reparieren:**
+
+| | |
+|---|---|
+| ⚠️ **Teurer** | Abschneiden oder Neuaufbau ändert `data/` — und damit `d9449faf…`, die Tatsachennotiz vom 15.09. samt der darauf gemessenen Symbolzahlen je Falte |
+| ⚠️ **Nicht dauerhaft** | **Jedes neu gelistete Symbol bringt den Befund wieder mit** |
+
+> ⚠️ **Fällt künftig ein `rand_erste`-Befund an einer Datei an, deren Symbol in
+> einer Selektionsfalte vorkommt, greift diese Ausnahme nicht automatisch.**
+
+### In einfacher Sprache
+
+**Was wir wissen wollten:** 36 von 223 Kursdateien haben eine erste Kerze, die
+ihren Zeitraum nicht ganz abdeckt. Ist das ein Fehler, der die eingefrorene
+Kopie unbrauchbar macht?
+
+**Was herauskam:** **Nein.** Die kurze erste Kerze entsteht, weil die Geschichte
+eines Wertpapiers mitten in einem Tag oder einer Stunde beginnt — der erste
+Handelstag hat dann weniger Stunden. Das Prüfprogramm rechnet selbst nach, dass
+die Kerze genau die Summe der vorhandenen feineren Kerzen ist.
+
+**Warum das so ist:** Der gefährliche Fall wäre die **letzte** Kerze — dort
+könnte ein Abruf mitten hineingeschrieben haben. Die ist bei **keiner** der 223
+Dateien betroffen.
+
+**Was das für dich heisst:** Die Ausnahme steht im Register, eng gefasst und
+begründet. Sie gilt nur für die erste Kerze und nur, wenn nachgerechnet ist, dass
+die Zahlen stimmen. **Und das Prüfprogramm wird nicht weicher gemacht** — es
+meldet weiter; erlaubt wird die Ausnahme durch einen Eintrag daneben, den ein
+Prüfer lesen kann.
+
+---
+
+## BE — TB-48: der Registernachtrag, und zwei Fehler von mir
+
+**18.09.2026. Gemergt `db8913a`.**
+
+⭐ **`git diff --numstat`: `506 0`.** 506 Zeilen hinzugefügt, **null entfernt**,
+genau eine Datei berührt. Der Registerprüfer aus TB-41 läuft über alle neun
+Prüfungen einschliesslich `null_entfernte_zeilen`: **kein Befund.**
+
+**19 Zahlen an ihrer Quelle nachgerechnet, je mit Datei und Fundstelle. 18
+stimmen.** Darunter: die 11 Symbole als Menge identisch mit T34.9 · beide Hashes ·
+36 Befunde der Art `rand_erste` · letzte Kerze nicht betroffen · 175 `kein_zeuge`,
+davon 150 Aktien und 25 Krypto-1h · `18/19 = 94,7 %` reisst die Schwelle,
+`19/20 = 95,0 %` nicht, `1/(1−0,95) = 20`.
+
+### Fehler 1 — meine Jahreszahl
+
+**Ich hatte geschrieben: „die erste Selektionsfalte beginnt 2022."**
+**`research/faltenplan_neun/daten/faltenplan.json` sagt 2019.**
+
+⭐ **Die Sitzung hat nicht still korrigiert, sondern als BEFUND gemeldet — und
+mein indirektes Argument durch eine direkte Messung ersetzt.** Statt *„2017–2020
+liegt vor 2022, also Vorlauf"* steht jetzt die Messung selbst im Register: **keine
+der 36 kurzen ersten Kerzen liegt in einer Falte, in der ihr Symbol geladen
+ist.**
+
+> ⭐ **Die Schlussfolgerung hängt damit nicht mehr an meiner Jahreszahl.**
+
+⚠️ **Woher meine 2022 vermutlich kam** — und *vermutlich*, weil ich es nicht
+nachgemessen habe: T34.9 nennt *„Symbole je Falte: 3 (2022) → 6 → 9 → 13
+(2025)"*, und das ist der **Krypto**-Faltenplan. **2019 dürfte die früheste
+Falte über alle neun sein.** ⚠️ **Zwei Zahlen, zwei Fragen — TB-49 Teil 4
+misst es.**
+
+### Fehler 2 — meine Regel
+
+**Ich hatte verboten, unter `research/` etwas zu ändern.** Die Sitzung hat sich
+daran gehalten — und **den Prüfer, der die neunzehn Zahlen nachrechnet, deshalb
+NICHT ins Repo gelegt:**
+
+> *„`pruefe_abschnitt17.py` — **absichtlich nicht im Repo**: der Auftrag
+> untersagt Änderungen unter `research/`."*
+
+⚠️ **Folge: Der einzige Prüfer, der Abschnitt 17 nachrechnet, existiert nur in
+einem ZIP-Archiv.** ⭐ **Die Sitzung hat sich korrekt verhalten; meine Regel war
+zu breit.** **Daraus `ARBEITSWEISE.md` §11 (neu):** Ein Änderungsverbot nennt,
+wovor es schützt — und Prüfwerkzeuge, die eine Aufgabe erzeugt, gehören
+ausdrücklich ins Repo.
+
+### Fehler 3, zum zweiten Mal — `git status` vor dem letzten Commit
+
+**Wie in TB-46:** Die Statusausgabe im Beleg war **vor** dem abschliessenden
+Commit entstanden. Beide Male trug der Zweig die aktuellen Fassungen; **beide
+Male war der Beleg wertlos.** **Daraus die Regel in `ARBEITSWEISE.md` §7.**
+
+### In einfacher Sprache
+
+**Was wir wissen wollten:** Kommen die neuen Register-Festlegungen sauber in das
+2065 Zeilen lange Vorregistrierungs-Dokument, ohne dass eine alte Zeile
+verschwindet?
+
+**Was herauskam:** **Ja — 506 Zeilen hinzugefügt, keine einzige entfernt.** Das
+ist mit der git-Zeile belegt, und das eigene Prüfprogramm des Registers findet
+keinen Fehler.
+
+**Warum das so ist:** Neunzehn Zahlen wurden nicht abgeschrieben, sondern an
+ihrer Quelle nachgerechnet.
+
+**Was das für dich heisst:** ⚠️ **Eine der neunzehn war meine, und sie war
+falsch.** Ich hatte geschrieben, der Auswahlzeitraum beginne 2022; der Plan sagt
+2019. Die Sitzung hat das gemeldet statt stillschweigend auszubessern — und meine
+indirekte Begründung durch eine direkte Messung ersetzt. **Die Aussage, auf die
+es ankommt, gilt jetzt unabhängig davon, welche Jahreszahl richtig ist.**
+
+---
+
+## BF — TB-49: das Werkzeug lernt die Ausnahme
+
+**18.09.2026. Cloud-Zweig `claude/new-session-kfbw56`, Mac-Lauf und Merge offen.**
+
+**Die Lage vorher, in einem Satz:** *Das Register erlaubt die Ausnahme. Das
+Werkzeug weiss nichts davon.*
+
+### Der Nachweis in zwei Zahlen
+
+| | |
+|---|---|
+| **am Stand von TB-48**, gegen dasselbe `data/` | `ABBRUCH: … 36 Datei(en) mit Befund …` · **`RC_ALT=2`** |
+| **mit diesem Zweig**, derselbe Bestand | `36 Datei(en) mit Befund … davon zugelassen 36 … Abschnitt 17.3` · **`RC_TROCKENLAUF=0`** |
+
+> ⭐ **2 → 0, bei unverändert 36 gemeldeten Befunden.** Die Prüfung ist nicht
+> weicher geworden; sie bricht nur nicht mehr deswegen ab. **Und es gibt keine
+> Übergehen-Flagge** — drei erfundene ergeben **2**, der Quelltext kennt keine.
+
+**Am Wegwerf-Bestand wirklich gezogen:** 225 Dateien, 211,0 MB, **jede byteweise
+gegen die Quelle geprüft**, beim Nachprüfen `UNVERAENDERT`. ⭐ **Der Anker hielt
+ohne `--kein-anker`:** die Kopie trägt `d9449faf…` bei 223 Kursdateien.
+
+### Die Regel, und die drei Bedingungen
+
+**Zugelassen ist ein Befund genau dann, wenn alle drei zutreffen**
+(`shared/snapshot.py::_zulassung`): Art `rand_erste` · **erste** Kerze der
+Datei · Urteil `ABGELEITETE_TEILKERZE` **und** `aggregat_passt is True`.
+
+⭐ **Als Regel, nicht als Liste der 36 Dateien** — ein neu gelistetes Symbol ist
+damit automatisch gedeckt, ein `rand_letzte` nie.
+
+**Das Manifest führt auf, was erlaubt wurde:** `zugelassene_befunde` mit **36**
+Einträgen (Datei, Art, erste Kerze, Urteil, Text), `zugelassene_befunde_anzahl`
+und ⭐ **`zugelassene_befunde_herkunft`** mit `fundstelle` → *Abschnitt 17.3* und
+dem **Wortlaut des Registereintrags im Klartext**. Daneben unverändert
+`teilkerzen_befunde` mit allen 36 und `frei_von_teilkerzen: false` — *der
+Snapshot verschweigt nicht, dass die Prüfung angeschlagen hat.*
+
+### ⭐⭐ Entschieden wird je BEFUND, nicht je DATEI
+
+**Im `rand_letzte`-Versuch trägt `BTCUSDT_1d.csv` beides:** einen zugelassenen
+`rand_erste` an ihrer ersten Kerze **und** den gestellten `rand_letzte`. Der
+zugelassene bleibt in der Zählung (*„Zugelassen waren daneben 36 Befund(e)"*),
+**die Datei bricht trotzdem ab.**
+
+> ⚠️ **Eine Zulassung je Datei hätte den gefährlichen Rand durchgelassen, sobald
+> derselbe Name auch einen erlaubten Befund trägt.** Das stand nicht im Auftrag.
+> Probe `3x` misst genau diesen Fall.
+
+**Zwei weitere Entscheidungen, die niemand verlangt hatte:**
+
+**(b) wird eigens nachgestellt**, obwohl `rand_erste` heute nur an der ersten
+Kerze entsteht — *„die Bedingung des Registers lautet ‚die erste Kerze der
+Datei', nicht ‚ein Befund, der sich so nennt'. Wer die Herkunft des Namens für
+den Nachweis nimmt, prüft nichts."*
+
+**(c) holt das Urteil aus dem geladenen Modul**, statt es abzuschreiben — kennt
+`zeitabdeckung.py` den Namen künftig nicht mehr, ist die Bedingung **nicht
+prüfbar** ⇒ Rückgabewert **2**. *Eine Abschrift liefe gegen ein Urteil, das die
+Prüfung gar nicht mehr vergibt: die Ausnahme griffe dann entweder nie oder
+immer.*
+
+### Der fünfte Fall: `kein_zeuge`
+
+**Entschieden: nicht belegbar ist nicht zugelassen.** Und es ist **folgenlos**:
+
+| | |
+|---|---|
+| Dateien mit `kein_zeuge` | **175** von 223 — 150 Aktien, 25 Krypto-1h |
+| davon mit **irgendeinem** Befund | ⭐ **null** |
+
+**Der Grund liegt im Aufbau von `pruefe_datei`:** Fehlt der feinere Zeuge, kehrt
+die Funktion **vor** der Deckungsprüfung um und hinterlässt einen **Hinweis**,
+keinen Befund. `rand_erste` entsteht ausschliesslich aus dieser Deckungsprüfung.
+**Wo `kein_zeuge` steht, kann es keinen `rand_erste` geben.**
+
+⚠️ **Streng wird die Regel erst in dem Fall, für den sie gedacht ist:** wenn eine
+Eingabe von aussen einen Befund ohne Deckung behauptet, oder wenn einer Datei der
+Zeuge künftig abhandenkommt. Probe `3aa`.
+
+### Die Wache
+
+**`shared/test_snapshot.py`: 110 → 164 Prüfungen**, rc=0. Acht neue Proben,
+⭐ **sechs mit beissender Mutation** (die Fassung mit entfernter Bedingung muss
+den Fehler **übersehen**). ⭐ **Die beiden übrigen ausdrücklich nicht, mit
+Begründung:** `3ac` ist die Negativprobe — *„eine Probe, die nur rot sein kann,
+beweist nichts"* —, `3ad` misst die **Abwesenheit** einer Flagge: *„eine Wache,
+die man entfernen könnte, gibt es dort nicht."*
+
+**Zwei Fälle liessen sich aus echten Kursdateien nicht herstellen** (ein
+`rand_erste` an einer späteren Kerze, einer ohne Deckungsprüfung) — die heutige
+`zeitabdeckung.py` vergibt beides nicht. **Sie werden gestellt**, weil
+`snapshot.py` sich nicht darauf verlassen darf, dass seine Eingabe wohlgeformt
+ist. Dass sie dennoch beissen, zeigen ihre Mutationen.
+
+### ⚠️ Der Prüfer für Abschnitt 17 — und der Preis eines Fehlers von gestern
+
+**Der Auftrag sagte: die Datei aus dem TB-48-Paket kommt ins Repo.** ⚠️ **Sie lag
+den Unterlagen der Sitzung nicht bei** — das Archiv enthielt allein den
+Auftragstext, und im Repo war sie nirgends, **weil die TB-48-Auflage sie draussen
+gehalten hat.**
+
+**Sie wurde aus der Belegtabelle des TB-48-Ergebnisses neu geschrieben**, und das
+steht in der Datei selbst:
+
+> ⭐ ***„Ein neu geschriebenes Werkzeug ist kein wiederhergestelltes."***
+
+**Die Auflage „unverändert in der Sache" ist am Ergebnis geprüft, nicht am
+Quelltext:** 19 Zahlen, `uebersprungen` leer, `nicht_pruefbar` leer, **genau eine
+Abweichung**, Rückgabewert **1** — wie in TB-48. Selbsttest **24/24**.
+
+⭐ **Zwei Zahlen fasst der Prüfer bewusst nicht an**, und das ist der Befund, nicht
+seine Umgehung: `pandas_market_calendars` (17.5 sagt *„auf dem
+Betriebsrechner"*) und die Drift-Messung aus 17.8 (braucht einen echten
+yfinance-Abruf, nach T35.4 untersagt). ⭐ **Und die Jahreszahl 2022 wird aus dem
+Registertext gelesen, nicht im Werkzeug hinterlegt** — sonst prüfte es seine
+eigene Abschrift und meldete nach einer Berichtigung weiter die alte Abweichung.
+**Verschwindet der Satz, ist das `nicht pruefbar` (2), nicht „in Ordnung".**
+
+### ⚠️ Die 2019/2022-Frage — die Vermutung trägt nicht
+
+**Vermutet war:** 2022 ist die früheste **Krypto**-Falte, 2019 die über alle
+neun.
+
+```
+erstes Faltenjahr ueber alle neun Bots:        [2019]
+erstes Faltenjahr ueber die fuenf Krypto-Bots: [2019]
+```
+
+⚠️ **Alle neun beginnen 2019, Krypto eingeschlossen.** Es sind nicht zwei
+Fragen, sondern **eine Frage und zwei Antworten aus zwei
+Faltenplan-Generationen.**
+
+| | |
+|---|---|
+| **2019** | `research/faltenplan_neun/daten/faltenplan.json` — alle neun Bots, nach der Schranke `ERSTE_MOEGLICHE_FALTE = 2019` |
+| ⚠️ **2022** | `research/krypto_historie/daten/faltenplan_nach_tb34.json` — **`mindesttraining: 4`, nur Krypto**, Symbolreihe `[3, 6, 9, 13]` — ⭐ **zeichengleich die Reihe aus T34.9** |
+
+> ⭐ **Der schlagende Beleg stand im Register selbst.** Abschnitt **15.6** führt
+> eine Faltenliste je Bot und nennt für die Krypto-Bots **ebenfalls 2019**. **Die
+> 2022 in 17.3 widerspricht nicht einer Datei unter `research/`, sondern dem
+> eigenen Registertext an einer zweiten Stelle.** *Damit ist „welche der beiden
+> ist falsch" nicht mehr Auslegung, sondern abgelesen.*
+
+⭐ **Der eigentliche Gehalt ist nicht die Jahreszahl, sondern dass zwei
+Faltenpläne mit verschiedenen ersten Falten im Repo liegen und nur einer im
+Register steht.** Das ist **T34.10**, seit dem 15.09. offen.
+
+⭐ **Und die Schlussfolgerung trägt unabhängig davon:** Prüfung 16 rechnet
+maschinell nach — **null** der 36 kurzen ersten Kerzen fällt in ein
+Faltenfenster, in dem ihr Symbol geladen ist, über alle neun Bots und alle
+Falten.
+
+⚠️ **Eine Nebenbeobachtung, nicht aufgelöst:** `erstes_faltenjahr_ohne_schranke`
+steht bei **acht von neun** Bots auf **2017 oder 2018**. Die 2019 kommt also aus
+einer Schranke, nicht aus den Daten. **Ob diese Schranke im Register steht, ist
+nicht nachgesehen.**
+
+⚠️ **Kein Registertext ist geändert worden.** Der Auftrag sagte berichten.
+
+### Die Randbedingungen
+
+| | |
+|---|---|
+| Datenstand vorher = nachher | ✅ `d9449faf…`, 223 |
+| Snapshot gezogen | ✅ **nein** — nur in Wegwerf-Verzeichnisse, aus einer **Kopie** von `data/` |
+| Sperrlisten-Dateien | ✅ maschinell geprüft, **keine im Diff** |
+| Basislauf | **58 grün / 3 rot / 3 ungeprüft / 1 Zeitgrenze = 65** — ⭐ einer mehr grün als in TB-48, und es ist der neue Test |
+| ⭐ `git status --porcelain` | **zweimal genommen, vor und nach dem letzten Commit, beide im Beleg** — die zweite leer. *Dritter Versuch nach TB-46 und TB-48, erstes Mal richtig* |
+| ⭐ Nebenbeweis aus TB-47 | überlebende Prozesse nach der Zeitgrenze: **0** |
+
+### Der Mac-Lauf, 18.09. 15:05–15:57, Python 3.9.6
+
+**Alles bestätigt, in jedem Punkt:**
+
+| | |
+|---|---|
+| Trockenlauf | **rc 0**, 36 zugelassene Befunde mit Registerverweis |
+| `rand_letzte` · nicht-abgeleiteter `rand_erste` | je **rc 2**, Datei genannt, **kein Snapshot** |
+| `shared/test_snapshot.py` | **164/164**, ⭐ kein einziges `[FEHL` in der Ausgabe |
+| ⭐ **die neunzehn Zahlen, erstmals auf dem Betriebsrechner** | **19 von 19 geprüft, genau eine Abweichung (Nr. 15), rc 1 — zeichengleich zur Cloud**, keine `nicht pruefbar` |
+| Selbsttest des Prüfers | **24/24** |
+| ⭐ `pandas_market_calendars` | **4.6.1** — Registertext 5f (17.5) trifft zu |
+| Früheste Falte je Bot | **alle neun 2019** |
+| Neun Datenbanken | ⭐ `diff vorher/nachher` **leer**, 9 Zeilen |
+| Datenstand, `git status`, Snapshot-Ordner | identisch · leer · existiert nicht |
+
+### ⚠️⚠️ Und der Mac fand einen Fehler, den die Cloud nicht sehen konnte — meinen
+
+**In TB-47 hatte ich `system/test_log_rotation.py` aus `BEKANNT_ROT` gestrichen:**
+*„auf BEIDEN Rechnern grün, 117/117. Ein falscher Eintrag in dieser Liste ist
+teurer als gar keiner."*
+
+**Zehn Einzelläufe auf dem Mac:**
+
+| Lauf | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| | ⚠️ **116** | 117 | ⚠️ **116** | 117 | ⚠️ **116** | 117 | 117 | 117 | 117 | 117 |
+
+**Immer `116 von 117`, immer eine zeitabhängige Probe zum Restfenster beim
+Rotieren, ein bis zwei fehlende Zeilen von 238–512 — und die gefallene Probe
+wechselt.** Rate **~30 %**.
+
+> ⭐ ***„Die Streichung stützt sich auf je EINE Messung pro Rechner; bei ~30 %
+> Flackerrate trifft eine Einzelmessung mit 70 % Wahrscheinlichkeit grün."***
+
+⚠️ **Und es stand längst im Backlog — T38.10, seit dem 15.09.:** *„flattert —
+Rennbedingung zwischen Sichern und Leeren."* **Ich habe einen dokumentierten
+Befund mit einer Einzelmessung überstimmt, ohne im Backlog nachzusehen.**
+
+**Beide Listen sind damit falsch, in entgegengesetzte Richtungen:**
+`UMGEBUNGEN.md` sagt „bekannt rot", `basislauf.py` sagt „auf beiden Rechnern
+gruen". ⭐ **Richtig: grün im Regelfall, zeitabhängig flackernd — kein
+Zweigbefund, aber auch nicht „grün".**
+
+⭐ **Daraus das neue Prüfprinzip A6: Eine Einzelmessung kann die Abwesenheit
+eines flackernden Fehlers nicht belegen.**
+
+### Drei Stellen, an denen der Lauf die Vorgabe korrigiert hat
+
+| | |
+|---|---|
+| ⭐ **`$TMPDIR` statt nur `/tmp`** | Mein Testauftrag prüfte nur `/tmp` auf Wegwerf-Reste; die Sitzung mass zusätzlich `/var/folders/b_/…/T/`, *„wo `mkdtemp` auf dem Mac wirklich liegt"*. **Beide null.** *Ohne die Ergänzung hätte die Prüfung an der falschen Stelle gesucht und „sauber" gemeldet* — **A1** |
+| **62 → 65 Testdateien** | die Zahl in `UMGEBUNGEN.md` stammt aus TB-45 und ist gealtert |
+| **`pandas_market_calendars` fehlt in der Paketzeile** | obwohl Registertext 5f darauf verweist. Mac **4.6.1**, Cloud **5.4.0** |
+
+⭐ **Gegenrichtung ebenfalls belegt:** `shared/test_zuteilung.py` ist auf dem Mac
+**grün** — der Cloud-Rotbefund war eine Netzsperre, kein Fehler. Und nach der
+Zeitgrenze von `test_drawdown_beide_masse.py`: **null überlebende Prozesse**,
+wie seit TB-47.
+
+### In einfacher Sprache
+
+**Was wir wissen wollten:** Kann die eingefrorene Kopie der Kursdaten jetzt
+gezogen werden — und bleibt die Prüfung dabei so streng wie vorher?
+
+**Was herauskam:** Ja zu beidem. Der Nachweis ist eine einzige Zahl, die von 2
+auf 0 gesprungen ist, **bei unverändert 36 gemeldeten Fällen.** Die Prüfung ist
+also nicht weicher geworden, nur klüger. Eine Abkürzung zum Übergehen gibt es
+ausdrücklich nicht; es wurde eigens nachgemessen, dass es sie nicht gibt.
+
+**Warum das trägt:** Die Regel wurde an einer **absichtlich beschädigten Kopie**
+der echten Daten ausprobiert. Wird die **letzte** Kerze angeschnitten — der
+gefährliche Fall —, bricht das Programm ab und nennt die Datei. Die
+Originaldaten wurden nicht angefasst.
+
+⚠️ **Was falsch war:** Die Vermutung, die Jahreszahl 2022 in den Regeln sei für
+die Kryptowährungen richtig. **Alle neun Programme beginnen 2019.** Die 2022
+stammt aus einer älteren Planung mit einer anderen Vorgabe. ⭐ **Der Beweis stand
+im Regeldokument selbst**, das an anderer Stelle für die Krypto-Programme
+ebenfalls 2019 nennt.
+
+**Der eigentliche Punkt ist nicht die Jahreszahl**, sondern dass zwei Planungen
+mit verschiedenen Jahren im Projekt liegen — und welche gelten soll, ist eine
+offene Entscheidung des Betreibers.
+
+⚠️ **Und der Lauf auf dem MacBook hat noch einen zweiten Fehler von mir
+gefunden.** Gestern hatte ich einen Testeintrag aus einer Liste gestrichen mit
+der Begründung, dieser Test sei „auf beiden Rechnern grün". **Von zehn Läufen
+waren drei rot** — jedes Mal an einer zeitabhängigen Stelle, jedes Mal an einer
+anderen. Ich hatte **eine** Messung je Rechner; bei einem Fehler, der in drei von
+zehn Fällen auftritt, sieht eine einzelne Messung mit 70 Prozent
+Wahrscheinlichkeit gut aus. **Und im Projektplan stand seit dem 15. September,
+dass dieser Test flattert.**
+
+⭐ **Daraus wird eine Regel, und sie fehlte: Eine einzelne Messung kann nicht
+belegen, dass ein sprunghafter Fehler nicht da ist.** Sie zeigt nur, dass er
+diesmal nicht auftrat.
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
