@@ -450,7 +450,7 @@ Prüfungen einschliesslich `null_entfernte_zeilen`: **kein Befund.**
 ## 2h — Aus TB-49, die Ausnahme ins Werkzeug (Stand 18.09.2026)
 
 **TB-49 ist in der Cloud fertig, Zweig `claude/new-session-kfbw56`, gemergt `2f241d1`.**
-⚠️ **Mac-Lauf vor dem Merge, nicht danach.** Datenstand `d9449faf…`/223 vorher =
+⭐ **Mac-Lauf am 18.09. vor dem Merge gelaufen — alles bestätigt (T49.16), gemergt `2f241d1`.** Datenstand `d9449faf…`/223 vorher =
 nachher, **kein Snapshot gezogen**, Sperrliste maschinell geprüft unberührt.
 
 | # | Punkt |
@@ -477,6 +477,27 @@ nachher, **kein Snapshot gezogen**, Sperrliste maschinell geprüft unberührt.
 | **T49.20** | **Zwei weitere Alterungen in `docs/UMGEBUNGEN.md`, vom Mac gemessen:** *„sonst 1 312 statt **62** Testdateien"* — der Basislauf zählt jetzt **65** (die 62 ist von TB-45) · **`pandas_market_calendars` steht gar nicht in der Paketzeile**, obwohl Registertext 5f darauf verweist: **Mac 4.6.1, Cloud 5.4.0** · macOS-Fassung **15.7.9 (24G830), x86_64** fehlt ebenfalls. **Bestätigt** wurden: `node` v24.21.0 vorhanden, `scipy` fehlt, `pandas`/`numpy`/`dateparser` 2.3.3 / 2.0.2 / 1.2.2, und **`test_drawdown_beide_masse.py` hinterlässt seit TB-47 keinen Prozess mehr** |
 ---
 
+## 2i — Aus TB-50, Dokumentationspflege (Stand 18.09.2026)
+
+**TB-50 ist erledigt — Mac-Sitzung, Commits `02de1f7` und `93eb894` auf `main`.**
+⭐ **Erste Aufgabe nach dem neuen Regelweg (`ARBEITSWEISE.md` §5b): die
+Mac-Sitzung legt ab und pusht selbst, ohne Zweig und ohne PR.**
+
+| # | Punkt |
+|---|---|
+| **T50.1** | ⭐ **872 Zeilen hinzugefügt, 15 entfernt — jede der 15 einzeln ihrer Ersetzung zugeordnet.** `ARBEITSWEISE.md` 53/7 · `BACKLOG.md` 137/6 · `JOURNAL.md` **632/0** · `PRUEFPRINZIPIEN.md` **38/0** · `UMGEBUNGEN.md` 6/2 · `basislauf.py` **6/0**. ⭐ **Die Sicherung, die nicht zur Aufgabe gehört, hat gehalten:** `pruefe_register.py --basis a1e7fb4` **KEIN BEFUND, rc 0, vorher wie nachher**. Neun Datenbanken byteweise identisch, Datenstand `d9449faf…`/223 unverändert, kein Snapshot, `git status` nach dem letzten Commit leer |
+| **T50.2** | ⭐⭐ **DIE BUCHSTABENPRÜFUNG HAT SICH SOFORT BEZAHLT GEMACHT.** Meine Annahme war *„letzter Journalblock ist AX"*; gemessen: **AZ**, 40 Blocküberschriften. **Versatz 2** ⇒ AY→BA, AZ→BB, BA→BC, BB→BD, BC→BE, BD→BF. ⚠️ **Nach meiner Annahme hätten zwei bestehende Blöcke denselben Buchstaben bekommen.** Verweise maschinell gesucht: keine zu ziehen. *Derselbe Fehlertyp wie die 2022 und die 62 — eine Zahl aus dem Gedächtnis, diesmal abgefangen* |
+| **T50.3** | ⚠️⚠️ **`START_HIER.md` EXISTIERT NIRGENDS IM REPO** — weder unter `docs/`, noch im Wurzelverzeichnis, noch in `git ls-files`. **`ARBEITSWEISE.md` Abschnitt 10 führt sie als Pflichtbestandteil jedes Übergabepakets**, ebenso `STRATEGIEN_uebersicht.md`. ⚠️ **Das Übergabeverfahren verweist seit Wochen auf ein Dokument, das es nicht gibt — aufgefallen ist es erst, als jemand es öffnen wollte.** **Betreiberentscheidung: anlegen (der Stand-Text aus TB-50 Teil 4 liegt fertig vor) oder aus §10 streichen.** Teil 4 wurde ausdrücklich **nicht** ausgeführt, nichts angelegt |
+| **T50.4** | ⚠️⚠️ **`basislauf.py` KENNT KEINE STUFE „FLACKERND" — und beide Alternativen sind falsch.** Die Datei kennt genau drei Listen: `BEKANNT_ROT`, `UNGEPRUEFT`, `LAEUFT_WEITER`. **Kein Eintrag ⇒ ein roter Lauf wird als UNERWARTET gemeldet (~30 %). Eintrag in `BEKANNT_ROT` ⇒ jeder grüne Lauf wird als UNERWARTET gemeldet (~70 %).** ⭐ **Das ist kein Umsetzungsfehler, sondern eine Lücke im Messwerkzeug.** Die Sitzung hat **keine Stufe erfunden**, wie verlangt, und den freigegebenen Kommentar unter den Streichungsvermerk gesetzt. **Eine vierte Stufe ist eine Änderung am Messwerkzeug: eigener kleiner Auftrag mit Mutationsprobe** |
+| **T50.5** | ⭐ **Prüfprinzip A6 am Tag seiner Einführung angewandt:** `system/test_log_rotation.py` lief dreimal, **rc 0/0/0**. Die Sitzung rechnet selbst vor, dass das bei ~30 % Flackerrate **mit 34 % zu erwarten** ist und **nichts widerlegt** — und startet keinen weiteren Lauf, weil nicht beauftragt |
+| **T50.6** | ⚠️ **Zwei weitere gealterte Zahlen, berichtet statt geändert:** die **1 312** im Docstring von `basislauf.py` (heute **1 315** mit `trading-env/`) und dieselbe gealterte **62**, die dort ebenfalls steht. **Nur die Stelle in `UMGEBUNGEN.md` war freigegeben** |
+| **T50.7** | **Das Inhaltsverzeichnis des Journals (`## Inhalt`) endet bei AG** und wird seit langem nicht fortgeführt — auch AH–AZ fehlen. **Kein Handlungsdruck, aber es wächst** |
+| **T50.8** | ⚠️ **Block AZ und der neue Block BA behandeln denselben Gegenstand** (TB-46 und die Fable-Runden). **Mein Nachtrag (a) hat einen Block geschrieben, den es schon gab** — BA bringt den Merge-Commit `135c306` hinzu. **Nichts zusammengelegt, nichts entfernt.** ⭐ **Die Lehre: vor dem Schreiben eines Journalblocks prüfen, ob der Gegenstand schon einen hat** |
+| **T50.9** | ⚠️ **`ARBEITSWEISE.md` §5b widerspricht sich selbst:** Der neue Unterabschnitt sagt *„die Mac-Sitzung legt ab"*, der ältere Teil **„Der feste Ablauf"** darunter spricht weiter von `CLOUD_TB-<Nr>_dokumentationspflege.md` und *„Der Nutzer startet die Cloud-Sitzung"*. **Beim Einfügen nicht mitgezogen — meine Lücke.** ⭐ **In Berichtigung 3 dieses Nachtrags behoben** |
+| **T50.10** | **Formentscheidungen der Sitzung, offen benannt und unbeanstandet:** Backlog-Blöcke als `## 2e…2h` statt `###` (sonst Unterabschnitte von 2d) · T47.9-Berichtigung und T34.10-Ergänzung als eigene Tabellenzeile darunter · A6 **innerhalb** von Abschnitt A · Journal-Überschriften in der Form der Datei (`## BA — …` ohne „Block") · Journalblöcke **vor** `## Wiederkehrende Lehren` eingefügt, wie beim letzten Nachtrag |
+
+---
+
 ## 3 — Die Kette (Ränge 1 bis 5)
 
 | Rang | Schritt | Stand |
@@ -487,7 +508,7 @@ nachher, **kein Snapshot gezogen**, Sperrliste maschinell geprüft unberührt.
 | ~~0,7~~ | ~~TB-46 Erhebung + Snapshot-Werkzeug~~ | **ERLEDIGT, gemergt `135c306`** |
 | ~~0,8~~ | ~~TB-47 Snapshotgrenze~~ | **TEILWEISE ERLEDIGT, gemergt `a1e7fb4`** — Snapshot-Grenze, zwei Hashes, Teilkerzen-Prüfung, Prozessgruppe. ⚠️ **Der eigentliche Umbau der 90 Module steht noch aus** und ist jetzt Rang **0,85**. Siehe Block **2f** |
 | ~~0,9~~ | ~~Registernachtrag~~ | **ERLEDIGT durch TB-48, gemergt `db8913a`** — Abschnitt 17, `506 0`. Siehe Block **2g** |
-| ~~0,82~~ | ~~TB-49 — die Ausnahme ins Werkzeug~~ | ⭐ **CLOUD FERTIG 18.09.**, Zweig `claude/new-session-kfbw56`, gemergt `2f241d1`. ⚠️ **Mac-Lauf und Merge offen** — der Mac-Lauf trägt hier wirklich etwas. Siehe Block **2h** |
+| ~~0,82~~ | ~~TB-49 — die Ausnahme ins Werkzeug~~ | ⭐ **ERLEDIGT 18.09.** — Cloud, Mac-Lauf (15:05–15:57, Python 3.9.6) und Merge `2f241d1`. **Beide Rechner liefern dieselben Zahlen.** Siehe Block **2h** |
 | **0,84** | **Snapshot ziehen** | ⭐ **nach dem Merge nicht mehr blockiert.** ⚠️ **Eigene Entscheidung mit eigener Freigabe** — TB-49 hat ihn ausdrücklich nicht gezogen |
 | **0,85** | ⭐ **Der grosse Umbau:** 90 Module der Selektionsseite auf den Snapshot · **Resolver-Modus in `shared/paths.py` als eigener kleiner Schritt mit Mac-Lauf** · **zwei AST-Tests** (kein eigener Datenpfad · **keine Wanduhr**) · **Lese-Audit** · Cache nach **Snapshot-Hash UND Commit** | zu formulieren nach dem Snapshot |
 | **0,87** | ⚠️ **In einem Zug, braucht die Freigabe für `shared/entscheidungskerze.py`:** Gleichheitsprüfung aller Quellen · Datencron mit Prüfung vor den Bot-Läufen (**`TZ=UTC`**) · **Kein-Entscheid-Datensatz** in `melde()` · Datenstand-Hash und Kerzenwerte je Lauf ins Protokoll | Block **2e**, Betreiberfreigabe offen |
@@ -523,6 +544,10 @@ nachher, **kein Snapshot gezogen**, Sperrliste maschinell geprüft unberührt.
 | **K1k** | ⚠️ **Irreführende Fehlermeldung** in `test_stabile_sortierung.py` und `test_wellenauswahl.py`, siehe **T49.13** — gehört zu T45.6 |
 | **K1l** | **Verwechselbare Ausgabe** in `shared/test_umstellungstag.py`, siehe **T49.14** |
 | **K1m** | ⚠️ **`ERSTE_MOEGLICHE_FALTE = 2019` — steht diese Schranke im Register?** Siehe **T49.8**. *Nicht nachgesehen* |
+| **K1n** | ⚠️ **`basislauf.py` braucht eine vierte Stufe „flackernd"** — siehe **T50.4**. Eigener kleiner Auftrag, mit Mutationsprobe |
+| **K1o** | **Gealterte Zahlen im Docstring von `basislauf.py`** (1 312 und 62) — siehe **T50.6** |
+| **K1p** | **Journal-Inhaltsverzeichnis endet bei AG** — siehe **T50.7** |
+| **K1q** | ⚠️ **`STRATEGIEN_uebersicht.md` liegt ebenfalls nicht unter `docs/projektfuehrung/`** — dieselbe Frage wie **T50.3** |
 
 ---
 

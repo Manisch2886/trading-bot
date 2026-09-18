@@ -356,11 +356,12 @@ kommt **hinein**, nicht daneben.
 
 1. **Ich schreibe den Nachtrag** — neue Blöcke plus **benannte** Ersetzungen, mit
    Angabe, an welche Stelle sie gehören.
-2. **Ich formuliere die Aufgabe** (`CLOUD_TB-<Nr>_dokumentationspflege.md`), mit
-   der Numstat-Auflage je Datei und der ausdrücklichen Regel, dass **nichts
-   inhaltlich umformuliert** wird.
-3. **Der Nutzer startet die Cloud-Sitzung** und legt parallel die Dateien aus
-   Weg 1 selbst ab.
+2. **Ich formuliere die Aufgabe** (`MAC_TB-<Nr>_<Kurzname>.md`), mit der
+   Numstat-Auflage je Datei, dem wörtlichen Ankertext je Einfügestelle und der
+   ausdrücklichen Regel, dass **nichts inhaltlich umformuliert** wird.
+3. **Der Nutzer startet die Mac-Sitzung.** ⚠️ **Die Fassung v2.1.276 nimmt den
+   Auftragstext NICHT aus dem `--remote-control`-Einzeiler mit** — die Sitzung
+   öffnet und wartet; der Satz wird danach in ihre Eingabezeile eingefügt.
 4. **Vor dem Merge** wie immer: Merge-Basis-Vergleich, `numstat` gegenlesen,
    `git status` **nach** dem letzten Commit (Abschnitt 7).
 

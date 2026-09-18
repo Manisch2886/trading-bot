@@ -9,6 +9,12 @@ gemacht?** Dazu muss er drei Dinge auseinanderhalten, die sonst alle als
   **rot**          der Test lief und meldete Fehler
   **bekannt rot**  er war vor dieser Arbeit schon rot - mit dem Vermerk, auf
                    **welchem Rechner** gemessen wurde
+  **flackernd**    er ist gruen im Regelfall und zeitabhaengig rot (TB-51).
+                   ⚠️ **Beide** Ausgaenge sind erwartet - er zaehlt weder als
+                   gruen noch als rot, sondern eigens, mit seiner gemessenen
+                   Rate. Vorher war jede Einordnung falsch: ohne Eintrag war
+                   jeder rote Lauf UNERWARTET (~30 %), mit Eintrag in
+                   BEKANNT_ROT jeder gruene (~70 %). Siehe PRUEFPRINZIPIEN A6.
   **ungeprueft**   er verlangt ein Argument und gibt ohne eines nur seine
                    Nutzungszeile aus. ⚠️ Das ist Rueckgabewert 0 oder 1, aber
                    **keine Messung** - und es darf nicht als "gruen" gelten.
@@ -82,6 +88,23 @@ UNGEPRUEFT = {
 # Terminiert nicht - Zeitgrenze und danach beenden.
 LAEUFT_WEITER = {
     "shared/test_drawdown_beide_masse.py": "terminiert nicht (bekannt)",
+}
+
+# ---------------------------------------------------------------------------
+# Flackernd (TB-51, 18.09.2026): gruen im Regelfall, zeitabhaengig rot.
+# ⚠️ Ein Eintrag hier ist WEDER als rot NOCH als gruen UNERWARTET - beide
+# Ausgaenge sind erwartet. Er zaehlt in der Summenzeile eigens ("flackernd"),
+# nicht unter gruen und nicht unter rot; die Ausgabezeile nennt das Ergebnis
+# dieses Laufs und die hinterlegte Rate. Nur gruen und rot fallen darunter:
+# Zeitgrenze oder Nutzungszeile bleiben, was sie sind.
+# Der Wert nennt Rate, Datum und Herkunft der Messung - so wie BEKANNT_ROT
+# den Rechner nennt (docs/UMGEBUNGEN.md, Regel 3). Die Entstehung steht im
+# Kommentar ueber BEKANNT_ROT (TB-46b/TB-49), und im Selbsttest
+# test_flackerstufe.py daneben steht der Nachweis mit Mutationsprobe.
+# ---------------------------------------------------------------------------
+FLACKERND = {
+    "system/test_log_rotation.py":
+        "Mac ~30 %, 18.09.2026, TB-49-Maclauf: 3 von 10 rot, immer 116/117",
 }
 
 
@@ -227,6 +250,16 @@ def main(argv=None) -> int:
         elif rel in UNGEPRUEFT:
             e["einordnung"] = "ungeprueft: %s" % UNGEPRUEFT[rel]
             e["unerwartet"] = False
+        elif rel in FLACKERND and e["art"] in ("gruen", "rot"):
+            # ⭐ Die vierte Stufe (TB-51): beide Ausgaenge sind erwartet.
+            # Das Ergebnis dieses Laufs bleibt lesbar (`heute`), gezaehlt
+            # wird die Datei aber unter "flackernd" - nicht unter gruen,
+            # nicht unter rot, sonst verschiebt sie beide Zahlen.
+            e["heute"] = e["art"]
+            e["art"] = "flackernd"
+            e["einordnung"] = ("flackernd (%s): heute %s"
+                               % (FLACKERND[rel], e["heute"]))
+            e["unerwartet"] = False
         elif rel in BEKANNT_ROT:
             e["einordnung"] = "bekannt rot (%s)" % BEKANNT_ROT[rel]
             # ⚠️ Auch das Gegenteil ist eine Abweichung: ein bekannt roter
@@ -241,6 +274,7 @@ def main(argv=None) -> int:
         ergebnisse.append(e)
 
         zeichen = {"gruen": "OK  ", "rot": "ROT ", "ungeprueft": "----",
+                   "flackernd": "~~~~",
                    "zeitgrenze": "ZEIT"}[e["art"]]
         marke = " <-- UNERWARTET" if e["unerwartet"] else ""
         print("  [%s] %-62s %6.1fs %s%s"
@@ -253,8 +287,14 @@ def main(argv=None) -> int:
     unerwartet = [e for e in ergebnisse if e["unerwartet"]]
 
     print("\n" + "=" * 78)
-    for art in ("gruen", "rot", "ungeprueft", "zeitgrenze"):
+    for art in ("gruen", "rot", "flackernd", "ungeprueft", "zeitgrenze"):
         print("  %-12s %3d" % (art, je_art.get(art, 0)))
+    # ⚠️ Die Summe muss aufgehen: jede Datei steht in genau einer Stufe.
+    # Tut sie es nicht, zaehlt das Werkzeug falsch - und das sagt es (A5).
+    summe = sum(je_art.values())
+    print("  %-12s %3d  von %d Testdateien%s"
+          % ("SUMME", summe, len(dateien),
+             "" if summe == len(dateien) else "  <-- GEHT NICHT AUF"))
     print("  %-12s %3d" % ("UNERWARTET", len(unerwartet)))
     for e in unerwartet:
         print("    - %s (%s, Rueckgabewert %s)"
@@ -271,6 +311,8 @@ def main(argv=None) -> int:
                       ensure_ascii=False, sort_keys=True)
         print("\nJSON: %s" % ziel)
 
+    if summe != len(dateien):
+        return 1
     return 1 if unerwartet else 0
 
 
