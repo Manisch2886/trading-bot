@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Selbsttests zu TB-46, Teil 3: die Wache ueber `shared/snapshot.py`
+Selbsttests zu TB-46/47/49: die Wache ueber `shared/snapshot.py`
 ==============================================================================
 Der Snapshot ist die Grundlage des Selektionslaufs. Wenn das Werkzeug, das ihn
 zieht, eine Abweichung uebersieht, faellt das **niemals** auf: ein Snapshot,
@@ -48,6 +48,21 @@ Datenstand-Hash nicht (das Verfahren zaehlt nur `*.csv`). Wer nur die
 Manifesteintraege durchgeht oder nur den Gesamthash vergleicht, sieht sie
 nicht. Nur der Vergleich in **beide** Richtungen findet sie. Genau dieser Fall
 ist die Probe 3f.
+
+DIE AUSNAHME IST EINE REGEL - UND SIE WIRD ALS SOLCHE GEPRUEFT (TB-49)
+------------------------------------------------------------------------------
+Registertext 5a, Zusatz (Abschnitt 17.3) laesst `rand_erste` an der ersten
+Kerze zu, wenn die Kerze das Aggregat genau der vorhandenen feineren Kerzen
+ist. Abschnitt 3c prueft **die Regel**, nicht die 36 Dateien, die sie heute
+trifft: er baut einen Wegwerf-Bestand mit genau diesen 36 Befunden und stellt
+daneben die vier Faelle, die weiterhin abbrechen muessen.
+
+⚠️ **Zwei davon lassen sich aus Kursdateien nicht herstellen** - ein
+`rand_erste` an einer spaeteren Kerze und einer ohne Deckungspruefung. Die
+heutige `zeitabdeckung.py` vergibt beides nicht. Sie werden deshalb
+**gestellt** (`_stubpruefung`): `snapshot.py` darf sich nicht darauf
+verlassen, dass seine Eingabe wohlgeformt ist. Wer Bedingung (b) aus dem Namen
+der Befundart folgert, prueft nichts.
 
 WAS DIESER TEST NICHT ANFASST
 ------------------------------------------------------------------------------
@@ -1251,10 +1266,10 @@ def probe_3s_teilkerzen_schlagen_an():
         check("3s es entsteht KEIN Snapshot", not os.path.exists(ziel))
 
         ohne = _mutiert("teilkerzenpflicht", [
-            ('    if kerzen["befunde"]:\n'
-             '        namen =',
+            ('    if kerzen["nicht_zugelassen"]:\n'
+             '        offen =',
              '    if False:\n'
-             '        namen ='),
+             '        offen ='),
         ])
         gelungen, grund = _zieht(ohne, quelle, ziel)
         check("3s ohne die Wache: der Snapshot entsteht trotz Teilkerze",
@@ -1403,6 +1418,579 @@ def abschnitt_3b():
 
 
 # ===========================================================================
+# Abschnitt 3c - TB-49: DIE AUSNAHME `rand_erste`
+# ===========================================================================
+#
+# Registertext 5a, Zusatz (Vorregistrierung, Abschnitt 17.3) laesst eine
+# Befundart zu - und nur unter drei Bedingungen. Dieser Abschnitt zeigt an
+# einem Wegwerf-Bestand, dass genau diese drei gelten und keine vierte.
+#
+# ⚠️ **Die Bauform bleibt dieselbe wie in Abschnitt 3**: zu jeder Probe
+# gehoert die Fassung mit **entfernter Bedingung**, und die muss die
+# Abweichung UEBERSEHEN. Sonst prueft die Probe eine andere Stelle als
+# angenommen.
+
+# Wie viele Befunde `data/` traegt - dieselbe Zahl, gegen die der
+# Registereintrag geschrieben ist. Die Probe baut sie nach, statt sie zu
+# behaupten.
+BEFUNDE_IM_BESTAND = 36
+
+
+def _teilkerzen_quelle(ordner, symbole, erste_stunden=range(12, 24),
+                       letzte_stunden=range(0, 24), erste_verfaelschen=False):
+    """Ein Wegwerf-`data/`, das die Teilkerzen-Pruefung anschlagen laesst.
+
+    Je Symbol zwei Dateien - eine `_1h.csv` als **Zeuge** und eine `_1d.csv`,
+    deren Tageskerzen genau die Aggregate der jeweiligen Stunden sind:
+
+        Tag 1  nur `erste_stunden` belegt  -> die erste Tageskerze deckt
+                                              ihren Zeitraum nicht voll ab,
+                                              ist aber das Aggregat genau
+                                              dieser Stunden  -> `rand_erste`
+                                              mit Urteil `abgeleitete_teilkerze`
+        Tag 2  `letzte_stunden` belegt     -> voll und passend -> kein Befund
+
+    Mit `letzte_stunden=range(0, 12)` wird daraus zusaetzlich ein
+    **`rand_letzte`**; mit `erste_verfaelschen=True` stimmt die erste
+    Tageskerze nicht mehr mit dem Aggregat ueberein und das Urteil wird
+    `unbelegt`.
+
+    ⚠️ Die Werte sind so gewaehlt, dass Summe und Extremwerte **exakt** in
+    Gleitkomma aufgehen. Eine Probe, die an einem Rundungsrest scheitert,
+    sagt nichts ueber die Wache aus.
+    """
+    os.makedirs(ordner, exist_ok=True)
+
+    def kerzen(stunden, basis):
+        return [{"h": h, "open": basis + h, "high": basis + h + 0.5,
+                 "low": basis + h - 0.5, "close": basis + h + 0.25,
+                 "volume": 10.0} for h in stunden]
+
+    def aggregat(ks):
+        return {"open": ks[0]["open"], "high": max(k["high"] for k in ks),
+                "low": min(k["low"] for k in ks), "close": ks[-1]["close"],
+                "volume": sum(k["volume"] for k in ks)}
+
+    def zeile(stempel, w):
+        return "%s,%r,%r,%r,%r,%r\n" % (stempel, w["open"], w["high"],
+                                        w["low"], w["close"], w["volume"])
+
+    for i, symbol in enumerate(symbole):
+        tag1 = kerzen(list(erste_stunden), 100.0 + 10 * i)
+        tag2 = kerzen(list(letzte_stunden), 200.0 + 10 * i)
+        with open(os.path.join(ordner, "%s_1h.csv" % symbol), "w",
+                  encoding="utf-8") as f:
+            f.write("open_time,open,high,low,close,volume\n")
+            for k in tag1:
+                f.write(zeile("2026-01-01 %02d:00:00" % k["h"], k))
+            for k in tag2:
+                f.write(zeile("2026-01-02 %02d:00:00" % k["h"], k))
+        erste, letzte = aggregat(tag1), aggregat(tag2)
+        if erste_verfaelschen:
+            erste = dict(erste, close=erste["close"] + 1.0)
+        with open(os.path.join(ordner, "%s_1d.csv" % symbol), "w",
+                  encoding="utf-8") as f:
+            f.write("open_time,open,high,low,close,volume\n")
+            f.write(zeile("2026-01-01", erste))
+            f.write(zeile("2026-01-02", letzte))
+    return ordner
+
+
+def _stubpruefung(eintraege, urteil="abgeleitete_teilkerze"):
+    """Eine vorgetaeuschte Teilkerzen-Pruefung mit gestellten Befunden.
+
+    ⚠️ Zwei der vier Faelle des Auftrags lassen sich aus Kursdateien **nicht**
+    herstellen: `shared/zeitabdeckung.py` vergibt `rand_erste` heute nur an
+    der ersten Kerze und nur dort, wo eine Deckungspruefung vorliegt. Genau
+    deshalb muessen sie gestellt werden - die Regel in `snapshot.py` darf
+    sich nicht darauf verlassen, dass ihre Eingabe wohlgeformt ist. Wer die
+    Bedingung aus der Herkunft des Namens folgert, prueft nichts.
+    """
+    return types.SimpleNamespace(
+        ABGELEITETE_TEILKERZE=urteil,
+        jetzt_utc=lambda: __import__("datetime").datetime(2026, 9, 18),
+        pruefe_ordner=lambda ordner, stand=None: eintraege,
+    )
+
+
+def _zieht_mit(modul, quelle, ziel, zeitabdeckung=None):
+    """Wie `_zieht`, aber mit einer uebergebenen Teilkerzen-Pruefung."""
+    try:
+        bericht = modul.ziehen(quelle, ziel, wirklich=True, anker=False,
+                               wurzel=os.path.dirname(quelle), eingaben=(),
+                               zeitabdeckung=zeitabdeckung)
+        return bool(bericht.get("gezogen")), bericht
+    except Exception as fehler:                              # noqa: BLE001
+        return False, str(fehler)
+
+
+def probe_3w_sechsunddreissig_zugelassene_befunde():
+    """⭐ Der Hauptfall: 36 Befunde, alle zugelassen - und es wird gezogen.
+
+    Bis TB-48 brach dieser Lauf ab. Das ist die Aenderung, die TB-49 macht,
+    und sie wird hier an einem Bestand gemessen, der die **36** des
+    Registereintrags nachbaut.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb49_3w_")
+    try:
+        symbole = ["S%02d" % i for i in range(BEFUNDE_IM_BESTAND)]
+        quelle = _teilkerzen_quelle(os.path.join(arbeit, "quelle"), symbole)
+        ziel = os.path.join(arbeit, "snapshots")
+
+        kerzen = snapshot.teilkerzen(quelle)
+        check("3w die Pruefung schlaegt weiter an - %d Befunde, nicht null"
+              % BEFUNDE_IM_BESTAND,
+              len(kerzen["befunde"]) == BEFUNDE_IM_BESTAND
+              and kerzen["frei_von_teilkerzen"] is False,
+              "%d Befund(e)" % len(kerzen["befunde"]))
+        check("3w alle Befunde sind `rand_erste`",
+              {a for b in kerzen["befunde"] for a in b["arten"]}
+              == {"rand_erste"},
+              str(sorted({a for b in kerzen["befunde"] for a in b["arten"]})))
+        check("3w alle %d sind zugelassen, keiner offen" % BEFUNDE_IM_BESTAND,
+              kerzen["zugelassen_anzahl"] == BEFUNDE_IM_BESTAND
+              and not kerzen["nicht_zugelassen"],
+              "%d zugelassen / %d offen" % (kerzen["zugelassen_anzahl"],
+                                            len(kerzen["nicht_zugelassen"])))
+
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel", ziel,
+                            "--kein-anker", "--ziehen")
+        check("3w das Werkzeug ZIEHT (rc=0)", rc == 0, "rc=%d" % rc)
+        check("3w und sagt in der Ausgabe, dass es Befunde gab",
+              "Teilkerzen" in ausgabe and "zugelassen" in ausgabe,
+              ausgabe.strip()[-200:])
+
+        ordner = [d for d in os.listdir(ziel)
+                  if os.path.isdir(os.path.join(ziel, d))]
+        check("3w genau ein Snapshot ist entstanden", len(ordner) == 1,
+              str(ordner))
+        with open(os.path.join(ziel, ordner[0], "MANIFEST.json"),
+                  encoding="utf-8") as f:
+            m = json.load(f)
+
+        zug = m.get("zugelassene_befunde")
+        check("3w das Manifest fuehrt alle %d zugelassenen Befunde auf"
+              % BEFUNDE_IM_BESTAND,
+              isinstance(zug, list) and len(zug) == BEFUNDE_IM_BESTAND
+              and m.get("zugelassene_befunde_anzahl") == BEFUNDE_IM_BESTAND,
+              "%s Eintraege" % (len(zug) if isinstance(zug, list) else zug))
+        check("3w je Eintrag: Name, Art und erste Kerze",
+              all({"datei", "art", "erste_kerze"} <= set(e) and e["datei"]
+                  and e["art"] == "rand_erste" and e["erste_kerze"]
+                  for e in zug),
+              str(zug[0]) if zug else "")
+        check("3w die Dateinamen im Manifest sind die 36 Tagesdateien",
+              {e["datei"] for e in zug}
+              == {"%s_1d.csv" % s for s in symbole},
+              "%d verschiedene Namen" % len({e["datei"] for e in zug}))
+
+        herkunft = m.get("zugelassene_befunde_herkunft") or {}
+        check("3w das Manifest nennt die Herkunft der Erlaubnis: "
+              "Registertext 5a",
+              "5a" in str(herkunft.get("registertext")),
+              str(herkunft.get("registertext")))
+        check("3w und die Fundstelle: Abschnitt 17.3",
+              "17.3" in str(herkunft.get("fundstelle"))
+              and "VORREGISTRIERUNG" in str(herkunft.get("fundstelle")),
+              str(herkunft.get("fundstelle")))
+        check("3w das Ergebnis der Pruefung steht unveraendert daneben",
+              m["teilkerzen"]["frei_von_teilkerzen"] is False
+              and len(m["teilkerzen"]["befunde"]) == BEFUNDE_IM_BESTAND,
+              "%d Befunde im Manifest"
+              % len(m["teilkerzen"].get("befunde") or []))
+
+        # ⚠️ Und die Gegenprobe zur Aenderung selbst: OHNE die Ausnahme -
+        # also mit der Fassung, die TB-48 vorgefunden hat - wird NICHT
+        # gezogen. Sonst zeigte diese Probe nur, dass ein Snapshot entsteht.
+        alt = _mutiert("ausnahme", [
+            ('def _zulassung(eintrag, befund, abgeleitet):\n'
+             '    """Die drei Bedingungen der Ausnahme an EINEM Befund '
+             'pruefen.',
+             'def _zulassung(eintrag, befund, abgeleitet):\n'
+             '    return False, "keine Ausnahme - Stand vor TB-49"\n'
+             '    """Die drei Bedingungen der Ausnahme an EINEM Befund '
+             'pruefen.'),
+        ])
+        gelungen, grund = _zieht(alt, quelle, os.path.join(arbeit, "alt"))
+        check("3w ⭐ am Stand VOR der Ausnahme wird nicht gezogen",
+              not gelungen, (grund or "")[:100])
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3x_rand_letzte_bricht_ab():
+    """⚠️ `rand_letzte` bricht ab - ohne Ausnahme, auch bei EINER Datei.
+
+    Der gefaehrliche Rand: in die letzte Kerze kann ein Abruf mitten
+    hineingeschrieben haben. Registertext 5a, Zusatz nimmt sie ausdruecklich
+    aus.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb49_3x_")
+    try:
+        # 36 saubere Symbole - und EINES, dessen letzter Tag angeschnitten
+        # ist. Die Probe zeigt damit zugleich, dass eine einzige Datei
+        # genuegt.
+        quelle = _teilkerzen_quelle(os.path.join(arbeit, "quelle"),
+                                    ["S%02d" % i for i in range(3)])
+        _teilkerzen_quelle(quelle, ["ANGESCHNITTEN"],
+                           letzte_stunden=range(0, 12))
+        ziel = os.path.join(arbeit, "snapshots")
+
+        kerzen = snapshot.teilkerzen(quelle)
+        arten = {a for b in kerzen["befunde"] for a in b["arten"]}
+        check("3x der Bestand traegt einen `rand_letzte`",
+              "rand_letzte" in arten, str(sorted(arten)))
+        check("3x genau eine Datei ist nicht zugelassen",
+              len(kerzen["nicht_zugelassen"]) == 1,
+              str([e["datei"] for e in kerzen["nicht_zugelassen"]]))
+        # ⚠️ Vier, nicht drei: die angeschnittene Datei traegt BEIDE Befunde -
+        # ihr `rand_erste` ist zugelassen, ihr `rand_letzte` nicht. Die
+        # Zulassung wird je Befund entschieden, nicht je Datei; genau deshalb
+        # bricht die Datei trotzdem ab.
+        check("3x vier `rand_erste` bleiben zugelassen - je Befund, nicht "
+              "je Datei", kerzen["zugelassen_anzahl"] == 4,
+              "%d zugelassen" % kerzen["zugelassen_anzahl"])
+
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel", ziel,
+                            "--kein-anker", "--ziehen")
+        check("3x echtes Modul: Abbruch (2)", rc == 2, "rc=%d" % rc)
+        check("3x die Datei wird genannt",
+              "ANGESCHNITTEN_1d.csv" in ausgabe, ausgabe.strip()[:200])
+        check("3x und die Begruendung nennt die Art `rand_letzte`",
+              "rand_letzte" in ausgabe, ausgabe.strip()[:200])
+        check("3x es entsteht KEIN Snapshot", not os.path.exists(ziel))
+
+        # Ohne Bedingung (a) waere `rand_letzte` mit durchgegangen.
+        ohne = _mutiert("bedingung_a", [
+            ('    if art != ZUGELASSENE_ART:', '    if False:'),
+        ])
+        gelungen, grund = _zieht(ohne, quelle, ziel)
+        check("3x ohne Bedingung (a): der Snapshot entsteht trotz "
+              "`rand_letzte`", gelungen, grund or "")
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3y_nicht_abgeleitet_bricht_ab():
+    """⚠️ Ein `rand_erste`, der NICHT das Aggregat der feineren Kerzen ist.
+
+    Das ist der Fall, den die Ausnahme gerade nicht deckt: die Kerze
+    **widerspricht** ihren Stundenkerzen. Mindestens eine der beiden Dateien
+    ist am Rand angeschnitten - und welche, sagt niemand.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb49_3y_")
+    try:
+        quelle = _teilkerzen_quelle(os.path.join(arbeit, "quelle"),
+                                    ["S%02d" % i for i in range(3)])
+        _teilkerzen_quelle(quelle, ["VERFAELSCHT"], erste_verfaelschen=True)
+        ziel = os.path.join(arbeit, "snapshots")
+
+        kerzen = snapshot.teilkerzen(quelle)
+        check("3y der Befund ist weiterhin ein `rand_erste`",
+              all(b["arten"] == ["rand_erste"] for b in kerzen["befunde"]),
+              str(sorted({a for b in kerzen["befunde"] for a in b["arten"]})))
+        check("3y aber er ist NICHT zugelassen",
+              [e["datei"] for e in kerzen["nicht_zugelassen"]]
+              == ["VERFAELSCHT_1d.csv"],
+              str([e["datei"] for e in kerzen["nicht_zugelassen"]]))
+        check("3y und der Grund nennt das Urteil `unbelegt`",
+              any("unbelegt" in g["grund"]
+                  for e in kerzen["nicht_zugelassen"] for g in e["gruende"]),
+              str(kerzen["nicht_zugelassen"][:1])[:160])
+
+        rc, ausgabe = _lauf("--quelle", quelle, "--ziel", ziel,
+                            "--kein-anker", "--ziehen")
+        check("3y echtes Modul: Abbruch (2)", rc == 2, "rc=%d" % rc)
+        check("3y die Datei wird genannt",
+              "VERFAELSCHT_1d.csv" in ausgabe, ausgabe.strip()[:200])
+        check("3y es entsteht KEIN Snapshot", not os.path.exists(ziel))
+
+        ohne = _mutiert("bedingung_c", [
+            ('    if urteil != abgeleitet or deckung.get("aggregat_passt") '
+             'is not True:', '    if False:'),
+        ])
+        gelungen, grund = _zieht(ohne, quelle, ziel)
+        check("3y ohne Bedingung (c): der Snapshot entsteht trotz "
+              "widersprechender Kerze", gelungen, grund or "")
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3z_befund_an_spaeterer_kerze_bricht_ab():
+    """⚠️ Ein `rand_erste` an einer ANDEREN als der ersten Kerze.
+
+    ⚠️ Dieser Fall laesst sich aus Kursdateien nicht herstellen: die heutige
+    Pruefung vergibt `rand_erste` nur an der ersten Kerze. Genau deshalb wird
+    er **gestellt** - Bedingung (b) darf nicht aus dem Namen der Art gefolgert
+    werden, sondern muss die Kerze gegen die erste Kerze der Datei halten.
+    Zoege das Werkzeug hier, haette es die Bedingung nur behauptet.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb49_3z_")
+    try:
+        quelle = _quelle_bauen(os.path.join(arbeit, "quelle"))
+        ziel = os.path.join(arbeit, "snapshots")
+
+        gestellt = [{
+            "datei": "SPAET_1d.csv", "symbol": "SPAET", "intervall": "1d",
+            "erste": "2026-01-01", "letzte": "2026-01-09",
+            "befunde": [{"art": "rand_erste",
+                         "urteil": "abgeleitete_teilkerze",
+                         "text": "Erste Kerze 2026-01-05: …"}],
+            "hinweise": [],
+            "deckung": {"erste": {"kerze": "2026-01-05",
+                                  "urteil": "abgeleitete_teilkerze",
+                                  "aggregat_passt": True}},
+        }]
+        gelungen, grund = _zieht_mit(snapshot, quelle, ziel,
+                                     _stubpruefung(gestellt))
+        check("3z echtes Modul: es wird NICHT gezogen", not gelungen,
+              str(grund)[:120])
+        check("3z die Datei wird genannt",
+              "SPAET_1d.csv" in str(grund), str(grund)[:200])
+        check("3z der Grund nennt beide Kerzen",
+              "2026-01-05" in str(grund) and "2026-01-01" in str(grund),
+              str(grund)[:200])
+        check("3z es entsteht kein Snapshot", not os.path.exists(ziel))
+
+        ohne = _mutiert("bedingung_b", [
+            ('    if not erste or deckung.get("kerze") != erste:',
+             '    if False:'),
+        ])
+        gelungen2, _ = _zieht_mit(ohne, quelle, ziel, _stubpruefung(gestellt))
+        check("3z ohne Bedingung (b): der Snapshot entsteht trotz Befund an "
+              "spaeterer Kerze", gelungen2)
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3aa_kein_zeuge():
+    """⭐ Der fuenfte Fall: eine Datei OHNE feineren Zeugen.
+
+    ⚠️ **Die Entscheidung, und ihre Begruendung.** Bedingung (c) verlangt den
+    Nachweis, dass die Kerze das Aggregat genau der vorhandenen feineren
+    Kerzen ist. Ohne Zeugen gibt es diesen Nachweis nicht. **Nicht belegbar
+    ist nicht zugelassen** - dieselbe Regel, nach der dieses Projekt seit
+    TB-45 die **2** von der **0** trennt: wer nicht messen konnte, sagt es,
+    statt "in Ordnung" zu melden.
+
+    ⭐ **Folgenlos fuer den Bestand, und das wird hier gemessen:** 175 der 223
+    Dateien tragen `kein_zeuge`, und **keine einzige** von ihnen traegt einen
+    Befund. `pruefe_datei` kehrt bei fehlendem Zeugen um, **bevor** die
+    Deckungspruefung laeuft; die Art `rand_erste` entsteht allein aus dieser
+    Pruefung. Die Regel kann dort also gar nicht greifen - sie wird erst
+    scharf, wenn eine Eingabe von aussen einen Befund ohne Deckung behauptet.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb49_3aa_")
+    try:
+        # (1) Der echte Fall: eine Tagesdatei ohne Stundendatei.
+        quelle = os.path.join(arbeit, "quelle")
+        _teilkerzen_quelle(quelle, ["MITZEUGE"])
+        os.remove(os.path.join(quelle, "MITZEUGE_1h.csv"))
+        kerzen = snapshot.teilkerzen(quelle)
+        check("3aa ohne Zeugen entsteht ueberhaupt kein Befund",
+              kerzen["befunde"] == [] and kerzen["frei_von_teilkerzen"],
+              str(kerzen["befunde"]))
+
+        # (2) Der gestellte Fall: ein `rand_erste` OHNE Deckungspruefung.
+        quelle2 = _quelle_bauen(os.path.join(arbeit, "quelle2"))
+        ziel = os.path.join(arbeit, "snapshots")
+        gestellt = [{
+            "datei": "OHNEZEUGE_1d.csv", "symbol": "OHNEZEUGE",
+            "intervall": "1d", "erste": "2026-01-01", "letzte": "2026-01-09",
+            "befunde": [{"art": "rand_erste",
+                         "text": "Erste Kerze 2026-01-01: …"}],
+            "hinweise": [{"art": "kein_zeuge", "text": "keine feinere Datei"}],
+        }]
+        gelungen, grund = _zieht_mit(snapshot, quelle2, ziel,
+                                     _stubpruefung(gestellt))
+        check("3aa ein behaupteter `rand_erste` ohne Deckung zieht NICHT",
+              not gelungen, str(grund)[:120])
+        check("3aa und der Grund sagt, dass er nicht belegbar ist",
+              "nicht belegbar" in str(grund), str(grund)[:220])
+        check("3aa es entsteht kein Snapshot", not os.path.exists(ziel))
+
+        # ⚠️ Die Mutation baut genau den stillen Rueckfall ein, den das Modul
+        # verweigert: "keine Deckungspruefung vorhanden" wird zu "war schon in
+        # Ordnung". Das ist die Bauform aus TB-45 - ein gescheiterter Nachweis
+        # und ein gefuehrter Nachweis sehen dann gleich aus.
+        ohne = _mutiert("keine_deckung", [
+            ('    if deckung is None:\n',
+             '    if deckung is None:\n'
+             '        deckung = {"kerze": eintrag.get("erste"),\n'
+             '                   "urteil": abgeleitet,\n'
+             '                   "aggregat_passt": True}\n'
+             '    if False:\n'),
+        ])
+        gelungen2, _ = _zieht_mit(ohne, quelle2, ziel,
+                                  _stubpruefung(gestellt))
+        check("3aa ohne diese Wache: der Snapshot entsteht auf einem "
+              "unbelegten Befund", gelungen2)
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3ab_urteil_nicht_ermittelbar():
+    """⚠️ Bedingung (c) ist nicht pruefbar: **2**, nie 0.
+
+    Die Lehre aus TB-45 auf die Ausnahme angewandt. Bedingung (c) haengt am
+    Urteil `ABGELEITETE_TEILKERZE` der Teilkerzen-Pruefung. Zieht die Pruefung
+    diesen Namen ein, ist die Bedingung **nicht mehr pruefbar** - und dann
+    wird nicht gezogen, statt sie stillschweigend als erfuellt zu behandeln.
+
+    ⚠️ **Die gefaehrliche Reparatur waere, den Namen in `snapshot.py`
+    abzuschreiben.** Dann prueft das Werkzeug gegen ein Urteil, das die
+    Pruefung gar nicht mehr vergibt, und die Ausnahme greift entweder nie
+    oder - wie hier gezeigt - **immer**. Genau diese Fassung ist die Mutation.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb49_3ab_")
+    echter_pfad = snapshot.ZEITABDECKUNG_PFAD
+    try:
+        quelle = _teilkerzen_quelle(os.path.join(arbeit, "quelle"), ["AAA"])
+        ziel = os.path.join(arbeit, "snapshots")
+
+        # Eine echte Fassung von `zeitabdeckung.py`, in der das Urteil
+        # umbenannt ist - der Werteinhalt bleibt, nur der Name geht weg.
+        with open(echter_pfad, "r", encoding="utf-8") as f:
+            text = f.read()
+        if "ABGELEITETE_TEILKERZE" not in text:
+            raise AssertionError(
+                "zeitabdeckung.py kennt `ABGELEITETE_TEILKERZE` nicht mehr - "
+                "dann prueft diese Probe etwas anderes als angenommen.")
+        umbenannt = os.path.join(arbeit, "zeitabdeckung_umbenannt.py")
+        with open(umbenannt, "w", encoding="utf-8") as f:
+            f.write(text.replace("ABGELEITETE_TEILKERZE",
+                                 "ABGELEITETE_TEILKERZE_NEU"))
+
+        snapshot.ZEITABDECKUNG_PFAD = umbenannt
+        gelungen, grund = _zieht(snapshot, quelle, ziel)
+        check("3ab der eingezogene Name laesst NICHT ziehen", not gelungen,
+              str(grund)[:120])
+        check("3ab und die Begruendung nennt ihn beim Namen",
+              "ABGELEITETE_TEILKERZE" in str(grund), str(grund)[:200])
+        check("3ab es entsteht kein Snapshot", not os.path.exists(ziel))
+
+        rc = snapshot.main(["--quelle", quelle, "--ziel", ziel,
+                            "--kein-anker", "--ziehen"])
+        check("3ab der Rueckgabewert ist NICHT_PRUEFBAR (2), nie 0",
+              rc == snapshot.NICHT_PRUEFBAR, "rc=%s" % rc)
+
+        # ⚠️ Die Mutation: das Urteil wird abgeschrieben statt geholt.
+        abgeschrieben = _mutiert("urteil_abgeschrieben", [
+            ('    if not hasattr(modul, "ABGELEITETE_TEILKERZE"):',
+             '    if False:'),
+            ('    abgeleitet = getattr(modul, "ABGELEITETE_TEILKERZE", None)',
+             '    abgeleitet = getattr(modul, "ABGELEITETE_TEILKERZE", '
+             '"abgeleitete_teilkerze")'),
+        ])
+        abgeschrieben.ZEITABDECKUNG_PFAD = umbenannt
+        gelungen2, grund2 = _zieht(abgeschrieben, quelle,
+                                   os.path.join(arbeit, "snapshots2"))
+        check("3ab mit abgeschriebenem Urteil entsteht der Snapshot doch",
+              gelungen2, str(grund2)[:120])
+
+        # Und eine Pruefung, die den Namen gar nicht erst mitbringt.
+        stumpf = types.SimpleNamespace(
+            jetzt_utc=lambda: __import__("datetime").datetime(2026, 9, 18),
+            pruefe_ordner=lambda ordner, stand=None: [])
+        snapshot.ZEITABDECKUNG_PFAD = echter_pfad
+        gelungen3, grund3 = _zieht_mit(snapshot, quelle,
+                                       os.path.join(arbeit, "snapshots3"),
+                                       stumpf)
+        check("3ab auch eine uebergebene Pruefung ohne den Namen zieht nicht",
+              not gelungen3, str(grund3)[:120])
+    finally:
+        snapshot.ZEITABDECKUNG_PFAD = echter_pfad
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3ac_negativprobe_ohne_befund():
+    """Die Negativprobe: ein Bestand OHNE jeden Befund zieht unveraendert.
+
+    ⚠️ Ohne sie zeigte dieser Abschnitt nur, dass etwas abbricht. Eine Probe,
+    die nur rot sein kann, beweist nichts - dieselbe Bauform wie in
+    Abschnitt 3.
+    """
+    arbeit = tempfile.mkdtemp(prefix="tb49_3ac_")
+    try:
+        quelle, snap = _snapshot_bauen(arbeit)
+        with open(os.path.join(snap, "MANIFEST.json"), encoding="utf-8") as f:
+            m = json.load(f)
+        check("3ac ein Bestand ohne Befund zieht weiterhin",
+              os.path.isdir(snap))
+        check("3ac die Pruefung meldet ihn als frei von Teilkerzen",
+              m["teilkerzen"]["frei_von_teilkerzen"] is True
+              and m["teilkerzen"]["befunde"] == [])
+        check("3ac das Manifest fuehrt null zugelassene Befunde",
+              m.get("zugelassene_befunde") == []
+              and m.get("zugelassene_befunde_anzahl") == 0,
+              str(m.get("zugelassene_befunde_anzahl")))
+        check("3ac und nennt die Herkunft der Erlaubnis trotzdem",
+              "17.3" in str((m.get("zugelassene_befunde_herkunft")
+                             or {}).get("fundstelle")),
+              str((m.get("zugelassene_befunde_herkunft") or {})
+                  .get("fundstelle")))
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def probe_3ad_keine_uebergehen_flagge():
+    """⚠️ Es gibt KEINE Uebergehen-Flagge - und das wird gemessen.
+
+    Registertext 5a, Zusatz: *"Die Pruefung selbst wird nicht
+    abgeschwaecht."* Eine Option, die Befunde uebergeht, waere die Ausnahme
+    in ihr Gegenteil verkehrt. Diese Probe haelt die Befehlszeile dagegen.
+    """
+    with open(SNAPSHOT_PFAD, "r", encoding="utf-8") as f:
+        quelltext = f.read()
+    verdaechtig = [w for w in ("--teilkerzen-egal", "--ohne-teilkerzen",
+                               "--kein-teilkerzen", "--befunde-egal",
+                               "--trotzdem", "--erzwingen", "--force")
+                   if w in quelltext]
+    check("3ad snapshot.py kennt keine Option, die Befunde uebergeht",
+          not verdaechtig, str(verdaechtig))
+
+    arbeit = tempfile.mkdtemp(prefix="tb49_3ad_")
+    try:
+        quelle = _teilkerzen_quelle(os.path.join(arbeit, "quelle"),
+                                    ["VERFAELSCHT"], erste_verfaelschen=True)
+        ziel = os.path.join(arbeit, "snapshots")
+        for flagge in ("--trotzdem", "--erzwingen", "--force"):
+            rc, _ = _lauf("--quelle", quelle, "--ziel", ziel, "--kein-anker",
+                          "--ziehen", flagge)
+            check("3ad `%s` gibt es nicht (rc=2)" % flagge, rc == 2,
+                  "rc=%d" % rc)
+        check("3ad und ohne Flagge bleibt es beim Abbruch",
+              _lauf("--quelle", quelle, "--ziel", ziel, "--kein-anker",
+                    "--ziehen")[0] == 2)
+        check("3ad es entsteht kein Snapshot", not os.path.exists(ziel))
+    finally:
+        shutil.rmtree(arbeit, ignore_errors=True)
+
+
+def abschnitt_3c():
+    print("\n3c. TB-49 - DIE AUSNAHME `rand_erste` (Registertext 5a, 17.3)")
+    for probe in (probe_3w_sechsunddreissig_zugelassene_befunde,
+                  probe_3x_rand_letzte_bricht_ab,
+                  probe_3y_nicht_abgeleitet_bricht_ab,
+                  probe_3z_befund_an_spaeterer_kerze_bricht_ab,
+                  probe_3aa_kein_zeuge,
+                  probe_3ab_urteil_nicht_ermittelbar,
+                  probe_3ac_negativprobe_ohne_befund,
+                  probe_3ad_keine_uebergehen_flagge):
+        try:
+            probe()
+        except AssertionError as fehler:
+            FEHLER.append(probe.__name__ + " (Anker)")
+            print("  [FEHLER] %s: %s" % (probe.__name__, fehler))
+        except Exception as fehler:                          # noqa: BLE001
+            import traceback
+            FEHLER.append(probe.__name__ + " (Ausnahme)")
+            print("  [FEHLER] %s warf eine Ausnahme: %s"
+                  % (probe.__name__, fehler))
+            traceback.print_exc()
+
+
+# ===========================================================================
 # Abschnitt 4 - Die Rueckgabewerte sind unterscheidbar
 # ===========================================================================
 
@@ -1459,7 +2047,7 @@ def abschnitt_5(vorher):
 
 def main():
     print("=" * 78)
-    print("TB-46, Teil 3 und 4: das Snapshot-Werkzeug und seine Wache")
+    print("TB-46/47/49: das Snapshot-Werkzeug und seine Wache")
     print("=" * 78)
 
     vorher = None
@@ -1470,7 +2058,7 @@ def main():
             print("  ⚠️ Datenstand vorher nicht messbar: %s" % fehler)
 
     for abschnitt in (abschnitt_1, abschnitt_2, abschnitt_3, abschnitt_3b,
-                      abschnitt_4):
+                      abschnitt_3c, abschnitt_4):
         try:
             abschnitt()
         except Exception as fehler:                          # noqa: BLE001

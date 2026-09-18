@@ -102,7 +102,8 @@ Was ausdruecklich zum Abbruch fuehrt
     sie nicht deckt.
   * **Die Teilkerzen-Pruefung findet etwas** - oder sie ist nicht
     ausfuehrbar. Im ersten Fall wird nicht gezogen; im zweiten ist der
-    Ausgang **2**, nie 0.
+    Ausgang **2**, nie 0. ⚠️ **Seit TB-49 mit genau einer Ausnahme, siehe
+    unten** - der zweite Fall bleibt unveraendert die **2**.
 
 ⚠️ Ausserdem bricht `--ziehen` ab, wenn `datenstand_hash` **nicht** den
 verankerten Wert `d9449faf…` ergibt (abschaltbar mit `--kein-anker`, denn
@@ -152,6 +153,53 @@ Inhalt**. Deshalb fuehrt das Manifest sich selbst auch nicht in der Liste.
 `shared/zeitabdeckung.py` ueber die **Quelle** (nicht ueber die Kopie), und
 ihr Ergebnis wird festgehalten. ⚠️ **Findet sie etwas, wird nicht gezogen.**
 Ist sie nicht ausfuehrbar, ist das **2**, nie 0.
+
+TB-49: DIE AUSNAHME `rand_erste` - als REGEL, nicht als Liste
+------------------------------------------------------------------------------
+Registertext 5a, Zusatz (Vorregistrierung, **Abschnitt 17.3**, beschlossen am
+18.09.2026) laesst eine Befundart ausdruecklich zu. Bis TB-48 kannte dieses
+Modul die Ausnahme nicht und brach bei **jedem** Befund ab - an `data/` also
+immer, denn dort stehen 36.
+
+**Zugelassen ist ein Befund genau dann, wenn ALLE DREI zutreffen:**
+
+    (a) die Art ist `rand_erste`
+    (b) er betrifft die **erste** Kerze der Datei - eigens nachgestellt,
+        nicht aus dem Namen der Art gefolgert
+    (c) die Kerze ist nachweislich **das Aggregat genau der vorhandenen
+        feineren Kerzen** (Urteil `ABGELEITETE_TEILKERZE`, `aggregat_passt`)
+
+⚠️ **Warum eine Regel und keine Liste der 36 Dateien.** Eine Liste veraltet.
+Jedes neu gelistete Symbol bringt denselben Befund mit; eine ungepflegte Liste
+blockiert dann entweder zu Unrecht oder - schlimmer - laesst zu Unrecht durch.
+Die Regel deckt den kuenftigen Fall mit ab.
+
+⚠️ **Was sich NICHT geaendert hat:**
+
+  * Die Pruefung **schlaegt weiter an** und meldet weiter **jeden** Befund.
+    `teilkerzen()["befunde"]` fuehrt an `data/` unveraendert 36 Eintraege.
+  * **`rand_letzte` bricht ab** - ohne Ausnahme, auch bei einer einzigen
+    Datei. Das ist der Rand, in den ein Abruf mitten hineingeschrieben haben
+    koennte.
+  * Ein `rand_erste`, der **nicht** abgeleitet ist, und ein Befund an einer
+    **spaeteren** Kerze brechen ab, und die Datei wird genannt.
+  * Eine Datei **ohne feineren Zeugen** kann Bedingung (c) nicht belegen.
+    ⭐ **Entschieden: nicht belegbar ist nicht zugelassen.** An `data/` ist
+    das folgenlos - die 175 Dateien mit `kein_zeuge` tragen **keinen**
+    Befund, weil `pruefe_datei` die Deckungspruefung dort gar nicht erreicht.
+    Die Regel greift dort also nie; sie waere nur dann streng, wenn ein
+    kuenftiger Zeuge verschwindet - und genau dann soll sie es sein.
+  * ⚠️ **Es gibt KEINE Uebergehen-Flagge.** Keine Option der Befehlszeile,
+    kein Schalter, kein Umgebungsvorbehalt. Wer sie einbaut, hat die Ausnahme
+    in ihr Gegenteil verkehrt.
+
+**Das Manifest fuehrt die zugelassenen Befunde auf** - je Datei Name, Art und
+erste Kerze, dazu die Gesamtzahl (`zugelassene_befunde`,
+`zugelassene_befunde_anzahl`) und die **Herkunft der Erlaubnis**
+(`zugelassene_befunde_herkunft` -> Registertext 5a, Abschnitt 17.3).
+⭐ Der Snapshot dokumentiert damit selbst, was bei seiner Erzeugung erlaubt
+wurde, und ein Pruefer kann die Grundlage nachlesen, ohne diesen Code zu
+kennen.
 
 Der Ordneraufbau eines Snapshots
 ------------------------------------------------------------------------------
@@ -435,8 +483,84 @@ def eingabeliste(quelle, wurzel=None, eingaben=EINGABEN):
 
 
 # ===========================================================================
-# Teil 1d - Die Teilkerzen-Pruefung (TB-47)
+# Teil 1d - Die Teilkerzen-Pruefung (TB-47) und ihre Ausnahme (TB-49)
 # ===========================================================================
+#
+# ⚠️ **Die Ausnahme ist eine REGEL, keine Liste von Dateien.** Eine Liste
+# veraltet: jedes neu gelistete Symbol bringt denselben Befund mit, und eine
+# ungepflegte Liste blockiert dann entweder zu Unrecht oder laesst zu Unrecht
+# durch. Die Regel deckt den kuenftigen Fall mit ab.
+#
+# ⚠️ **Und es gibt keine Uebergehen-Flagge.** Registertext 5a, Zusatz sagt
+# ausdruecklich: *"Die Pruefung selbst wird nicht abgeschwaecht."* Sie schlaegt
+# weiter an, meldet weiter ihre 36 Befunde und liefert allein weiter
+# Rueckgabewert 1. Gezogen wird gegen den **Registereintrag**, nicht gegen ein
+# Schweigen der Pruefung und nicht gegen eine Befehlszeilenoption.
+
+# Wohin ein Pruefer sehen muss, der wissen will, worauf die Zulassung sich
+# stuetzt - ohne diesen Code zu kennen. Steht so im Manifest.
+REGISTERVERWEIS = {
+    "registertext": "5a, Zusatz - Ausnahme `rand_erste`",
+    "fundstelle": "docs/VORREGISTRIERUNG_neuselektion.md, Abschnitt 17.3",
+    "beschlossen": "18.09.2026",
+    "wortlaut": ("Diese Befundart ist fuer das Ziehen eines Snapshots "
+                 "zugelassen, wenn alle drei Bedingungen erfuellt sind: "
+                 "(a) der Befund betrifft ausschliesslich die erste Kerze der "
+                 "Datei - fuer `rand_letzte` gilt die Ausnahme nicht; "
+                 "(b) die Kerze ist nachweislich das Aggregat genau der "
+                 "vorhandenen feineren Kerzen; "
+                 "(c) die Ausnahme wird im Manifest des Snapshots je Datei "
+                 "aufgefuehrt, mit Art und erster Kerze."),
+    "umgesetzt_in": "shared/snapshot.py::_zulassung (TB-49)",
+}
+
+# Die eine zugelassene Befundart. ⚠️ `rand_letzte` steht hier NICHT und darf
+# hier nie stehen: das ist der Rand, in den ein Abruf mitten hineingeschrieben
+# haben koennte.
+ZUGELASSENE_ART = "rand_erste"
+
+
+def _zulassung(eintrag, befund, abgeleitet):
+    """Die drei Bedingungen der Ausnahme an EINEM Befund pruefen.
+
+    Rueckgabe: `(True, None)` oder `(False, "Grund")`. Der Grund geht
+    woertlich in die Abbruchmeldung - wer abbricht, sagt warum.
+
+    `eintrag` ist der Datei-Eintrag aus `pruefe_ordner`, `befund` einer seiner
+    Befunde, `abgeleitet` das Urteil `ABGELEITETE_TEILKERZE` **aus dem
+    geladenen Modul** - nicht als Abschrift hier.
+
+    ⚠️ (b) wird eigens nachgestellt, obwohl die Art `rand_erste` heute nur an
+    der ersten Kerze entstehen kann. Die Bedingung des Registers lautet "die
+    erste Kerze der Datei", nicht "ein Befund, der sich so nennt"; wer die
+    Herkunft des Namens fuer den Nachweis nimmt, prueft nichts.
+    """
+    art = befund.get("art")
+    # --- (a) Art ---------------------------------------------------------
+    if art != ZUGELASSENE_ART:
+        return False, ("Art `%s` - zugelassen ist allein `%s`"
+                       % (art, ZUGELASSENE_ART))
+
+    # --- (b) Es ist die erste Kerze der Datei ----------------------------
+    erste = eintrag.get("erste")
+    deckung = (eintrag.get("deckung") or {}).get("erste")
+    if deckung is None:
+        return False, ("fuer diese Datei liegt keine Deckungspruefung der "
+                       "ersten Kerze vor (kein feinerer Zeuge) - Bedingung "
+                       "(b)/(c) ist hier nicht belegbar, und nicht belegbar "
+                       "ist nicht zugelassen")
+    if not erste or deckung.get("kerze") != erste:
+        return False, ("der Befund sitzt auf Kerze %r, die erste Kerze der "
+                       "Datei ist %r" % (deckung.get("kerze"), erste))
+
+    # --- (c) Die Kerze ist das Aggregat genau der feineren Kerzen --------
+    urteil = befund.get("urteil") or deckung.get("urteil")
+    if urteil != abgeleitet or deckung.get("aggregat_passt") is not True:
+        return False, ("Urteil `%s` - zugelassen ist allein `%s`: die Kerze "
+                       "muss nachweislich das Aggregat genau der vorhandenen "
+                       "feineren Kerzen sein" % (urteil, abgeleitet))
+    return True, None
+
 
 def lade_zeitabdeckung(pfad=None):
     """Die bestehende Teilkerzen-Pruefung laden - ueber den Dateipfad.
@@ -465,6 +589,16 @@ def lade_zeitabdeckung(pfad=None):
         raise Snapshotfehler(
             "%s kennt kein `pruefe_ordner()` mehr. Die Pruefung ist umgezogen "
             "- dieses Modul darf dann nicht weiterziehen." % pfad)
+    # ⚠️ TB-49: Bedingung (c) der Ausnahme haengt am Urteil
+    # `ABGELEITETE_TEILKERZE`. Es wird von dort **geholt**, nicht hier
+    # abgeschrieben - sonst liefe die Zulassung eines Tages gegen einen Namen,
+    # den die Pruefung nicht mehr vergibt, und liesse **nichts** mehr durch
+    # oder, schlimmer, alles.
+    if not hasattr(modul, "ABGELEITETE_TEILKERZE"):
+        raise Snapshotfehler(
+            "%s kennt kein `ABGELEITETE_TEILKERZE` mehr. Daran haengt "
+            "Bedingung (c) der Ausnahme aus Registertext 5a, Zusatz - ohne "
+            "sie wird NICHT gezogen." % pfad)
     return modul
 
 
@@ -475,12 +609,25 @@ def teilkerzen(quelle, zeitabdeckung=None):
     frei von Teilkerzen ist. Eine Kopie zu pruefen beantwortete nur, ob das
     Kopieren funktioniert hat - und das prueft dieses Modul schon zweimal.
 
-    Rueckgabe:
-        {"ausfuehrbar": True, "befunde": [...], "dateien": 223, "stand": "…"}
+    ⚠️ **TB-49: die Pruefung wird nicht abgeschwaecht.** `befunde` fuehrt
+    weiterhin **jeden** Befund - an `data/` sind das unveraendert 36. Was
+    dazukommt, ist die Einordnung je Befund nach Registertext 5a, Zusatz
+    (Abschnitt 17.3): `zugelassen` oder `nicht_zugelassen`. **Nur letzteres
+    verhindert das Ziehen.**
 
-    Ein Eintrag in `befunde` heisst: **es wird nicht gezogen.**
+    Rueckgabe:
+        {"ausfuehrbar": True, "befunde": [...], "dateien_geprueft": 223,
+         "zugelassen": [...], "nicht_zugelassen": [...], "stand": "…"}
+
+    Ein Eintrag in `nicht_zugelassen` heisst: **es wird nicht gezogen.**
     """
     modul = zeitabdeckung or lade_zeitabdeckung()
+    abgeleitet = getattr(modul, "ABGELEITETE_TEILKERZE", None)
+    if not abgeleitet:
+        raise Snapshotfehler(
+            "Die Teilkerzen-Pruefung kennt kein `ABGELEITETE_TEILKERZE`. "
+            "Daran haengt Bedingung (c) der Ausnahme - ohne sie wird NICHT "
+            "gezogen.")
     try:
         stand = modul.jetzt_utc()
         rohbefunde = modul.pruefe_ordner(quelle, stand=stand)
@@ -491,15 +638,43 @@ def teilkerzen(quelle, zeitabdeckung=None):
             % (quelle, fehler))
 
     befunde = []
+    zugelassen = []
+    abgelehnt = []
     for eintrag in rohbefunde:
-        if eintrag.get("befunde"):
-            befunde.append({
-                "datei": eintrag.get("datei"),
-                "arten": sorted({b.get("art") if isinstance(b, dict) else str(b)
-                                 for b in eintrag["befunde"]}),
-                "texte": [b.get("text") if isinstance(b, dict) else str(b)
-                          for b in eintrag["befunde"]][:4],
-            })
+        if not eintrag.get("befunde"):
+            continue
+        datei = eintrag.get("datei")
+        erste = eintrag.get("erste")
+        gruende = []
+        for roh in eintrag["befunde"]:
+            b = roh if isinstance(roh, dict) else {"art": str(roh),
+                                                   "text": str(roh)}
+            passt, grund = _zulassung(eintrag, b, abgeleitet)
+            if passt:
+                # ⚠️ Genau das verlangt Bedingung (c) des Registereintrags:
+                # je Datei Name, Art und erste Kerze.
+                zugelassen.append({
+                    "datei": datei,
+                    "art": b.get("art"),
+                    "erste_kerze": erste,
+                    "urteil": b.get("urteil") or abgeleitet,
+                    "text": b.get("text"),
+                })
+            else:
+                gruende.append({"art": b.get("art"), "grund": grund,
+                                "text": b.get("text")})
+        if gruende:
+            abgelehnt.append({"datei": datei, "erste_kerze": erste,
+                              "gruende": gruende})
+        befunde.append({
+            "datei": datei,
+            "erste_kerze": erste,
+            "arten": sorted({b.get("art") if isinstance(b, dict) else str(b)
+                             for b in eintrag["befunde"]}),
+            "texte": [b.get("text") if isinstance(b, dict) else str(b)
+                      for b in eintrag["befunde"]][:4],
+            "zugelassen": not gruende,
+        })
     return {
         "ausfuehrbar": True,
         "werkzeug": "shared/zeitabdeckung.py::pruefe_ordner",
@@ -507,6 +682,13 @@ def teilkerzen(quelle, zeitabdeckung=None):
         "dateien_geprueft": len(rohbefunde),
         "befunde": befunde,
         "frei_von_teilkerzen": not befunde,
+        # --- TB-49: die Ausnahme, und woher sie kommt ---------------------
+        "ausnahme": REGISTERVERWEIS,
+        "zugelassen": zugelassen,
+        "zugelassen_anzahl": len(zugelassen),
+        "zugelassen_dateien": len({z["datei"] for z in zugelassen}),
+        "nicht_zugelassen": abgelehnt,
+        "zieht_trotz_befunden": bool(befunde) and not abgelehnt,
     }
 
 
@@ -609,18 +791,33 @@ def ziehen(quelle, ziel_basis, wirklich=False, herkunft=None, wurzel=None,
     dateien, kursdateien = _pruefe_quelle(quelle)
     liste = eingabeliste(quelle, wurzel, eingaben)
 
-    # ⚠️ Vor allem anderen: findet die Teilkerzen-Pruefung etwas, wird nicht
+    # ⚠️ Vor allem anderen: findet die Teilkerzen-Pruefung einen Befund, der
+    # NICHT unter die Ausnahme aus Registertext 5a, Zusatz faellt, wird nicht
     # gezogen. Sie laeuft ueber die Quelle, nicht ueber die Kopie.
+    #
+    # ⚠️ TB-49: geprueft wird `nicht_zugelassen`, nicht `befunde`. Die
+    # Pruefung schlaegt weiterhin an und meldet weiterhin jeden Befund; was
+    # sich geaendert hat, ist allein, welcher Befund das Ziehen verhindert.
+    # Es gibt **keine** Option, die diese Stelle uebergeht.
     kerzen = teilkerzen(quelle, zeitabdeckung)
-    if kerzen["befunde"]:
-        namen = ", ".join(b["datei"] for b in kerzen["befunde"][:8])
-        if len(kerzen["befunde"]) > 8:
-            namen += " und %d weitere" % (len(kerzen["befunde"]) - 8)
+    if kerzen["nicht_zugelassen"]:
+        offen = kerzen["nicht_zugelassen"]
+        zeilen = []
+        for eintrag in offen[:8]:
+            zeilen.append("%s (%s)" % (
+                eintrag["datei"],
+                "; ".join(g["grund"] for g in eintrag["gruende"][:2])))
+        namen = ", ".join(zeilen)
+        if len(offen) > 8:
+            namen += " und %d weitere" % (len(offen) - 8)
         raise Snapshotfehler(
-            "Die Teilkerzen-Pruefung hat %d Datei(en) mit Befund gefunden: "
-            "%s. Es wird NICHT gezogen - ein Snapshot haelt einen Bestand "
-            "fest, und ein Bestand mit unvollstaendigen Kerzen ist nicht der, "
-            "den er zu sein scheint." % (len(kerzen["befunde"]), namen))
+            "Die Teilkerzen-Pruefung hat %d Datei(en) mit einem Befund "
+            "gefunden, den Registertext 5a, Zusatz (%s) NICHT zulaesst: %s. "
+            "Es wird NICHT gezogen - ein Snapshot haelt einen Bestand fest, "
+            "und ein Bestand mit unvollstaendigen Kerzen ist nicht der, den "
+            "er zu sein scheint. (Zugelassen waren daneben %d Befund(e).)"
+            % (len(offen), REGISTERVERWEIS["fundstelle"], namen,
+               kerzen["zugelassen_anzahl"]))
 
     hash_, anzahl = gesamthash(quelle, herkunft)
 
@@ -789,6 +986,16 @@ def schreibe_manifest(ordner, bericht):
         # spaeter niemand eine Regel auslegen muss.
         "eingabeliste": bericht["eingabeliste"],
         "teilkerzen": bericht["teilkerzen"],
+        # ⭐ TB-49: Der Snapshot dokumentiert selbst, was bei seiner Erzeugung
+        # erlaubt wurde - und worauf sich die Erlaubnis stuetzt. Ein Pruefer
+        # muss das lesen koennen, ohne `snapshot.py` zu kennen. Die Felder
+        # stehen eigens auf oberster Ebene und nicht nur im Ergebnis der
+        # Pruefung: was erlaubt wurde, ist eine Aussage des Snapshots, nicht
+        # eine Beobachtung der Pruefung.
+        "zugelassene_befunde": bericht["teilkerzen"].get("zugelassen", []),
+        "zugelassene_befunde_anzahl": bericht["teilkerzen"].get(
+            "zugelassen_anzahl", 0),
+        "zugelassene_befunde_herkunft": REGISTERVERWEIS,
         "dateien": bericht["dateien"],
     }
     pfad = os.path.join(ordner, MANIFEST)
@@ -997,8 +1204,22 @@ def _drucke_ziehen(b):
         print("  Teilkerzen       keine (%d Datei(en) geprueft)"
               % k["dateien_geprueft"])
     else:
-        print("  ⚠️ Teilkerzen     %d Datei(en) mit Befund"
-              % len(k["befunde"]))
+        print("  ⚠️ Teilkerzen     %d Datei(en) mit Befund (%d Datei(en) "
+              "geprueft)" % (len(k["befunde"]), k["dateien_geprueft"]))
+        print("      davon zugelassen   %d Befund(e) in %d Datei(en) - %s"
+              % (k.get("zugelassen_anzahl", 0),
+                 k.get("zugelassen_dateien", 0),
+                 k.get("ausnahme", {}).get("fundstelle", "?")))
+        offen = k.get("nicht_zugelassen") or []
+        if offen:
+            print("      ⚠️ NICHT zugelassen %d Datei(en):" % len(offen))
+            for eintrag in offen[:8]:
+                print("          %s - %s" % (
+                    eintrag["datei"],
+                    "; ".join(g["grund"] for g in eintrag["gruende"][:2])))
+        else:
+            print("      ⚠️ Die Pruefung schlaegt weiter an - gezogen wird "
+                  "gegen den Registereintrag, nicht gegen ihr Schweigen.")
     print("  Ziel             %s" % b["ziel"])
     if b["gezogen"]:
         print("\n  GEZOGEN - %d Datei(en), %.1f MB, jede byteweise gegen die "
