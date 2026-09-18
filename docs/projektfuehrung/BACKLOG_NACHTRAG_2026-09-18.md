@@ -1,5 +1,9 @@
 # Backlog-Nachtrag 18.09.2026
 
+> ⚠️ EINGEARBEITET am 18.09.2026 in `docs/projektfuehrung/BACKLOG.md`, Commit 02de1f7.
+> Dieses Dokument bleibt als Beleg des Nachtrags stehen und wird nicht
+> mehr fortgeschrieben.
+
 **Nachzutragen in `docs/projektfuehrung/BACKLOG.md`.**
 **Umfasst: TB-46 Merge · TB-46b · zwei Fable-Runden · TB-47 · Registereintrag
 `rand_erste` · TB-48 · TB-49 (formuliert).**

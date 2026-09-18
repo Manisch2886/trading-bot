@@ -1,5 +1,9 @@
 # Journal-Nachtrag 18.09.2026
 
+> ⚠️ EINGEARBEITET am 18.09.2026 in `docs/projektfuehrung/JOURNAL.md` (als Blöcke BA–BE — der höchste vorhandene Block war AZ, nicht AX; alle fünf um zwei Stellen verschoben), Commit 02de1f7.
+> Dieses Dokument bleibt als Beleg des Nachtrags stehen und wird nicht
+> mehr fortgeschrieben.
+
 **Anzufügen am Ende von `docs/projektfuehrung/JOURNAL.md`. Nichts wird
 umgeschrieben.**
 

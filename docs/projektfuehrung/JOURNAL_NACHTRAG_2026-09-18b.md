@@ -1,5 +1,9 @@
 # Journal-Nachtrag 18.09.2026 (b) — TB-49
 
+> ⚠️ EINGEARBEITET am 18.09.2026 in `docs/projektfuehrung/JOURNAL.md` (als Block BF — um zwei Stellen verschoben, wie die fünf aus Nachtrag (a)), Commit 02de1f7.
+> Dieses Dokument bleibt als Beleg des Nachtrags stehen und wird nicht
+> mehr fortgeschrieben.
+
 **Anzufügen am Ende von `docs/projektfuehrung/JOURNAL.md`, NACH den Blöcken aus
 Nachtrag (a).** Nichts wird umgeschrieben.
 

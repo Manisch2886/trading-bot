@@ -1,5 +1,9 @@
 # Prüfprinzipien-Nachtrag 18.09.2026
 
+> ⚠️ EINGEARBEITET am 18.09.2026 in `docs/PRUEFPRINZIPIEN.md`, Commit 02de1f7.
+> Dieses Dokument bleibt als Beleg des Nachtrags stehen und wird nicht
+> mehr fortgeschrieben.
+
 **Einzufügen in `docs/PRUEFPRINZIPIEN.md`.** Ein neues Prinzip, eine
 Berichtigung an einer Tabellenzeile.
 
