@@ -84,6 +84,86 @@ Was ausdruecklich zum Abbruch fuehrt
     Manifest des Snapshots ueberschrieben - und weil das Manifest sich selbst
     nicht auffuehrt, faellt das beim Nachpruefen nicht auf.
 
+⚠️ TB-47 legt **drei weitere** daneben. Die acht oben bleiben unveraendert:
+
+  * **Eine Eingabedatei aus der Liste fehlt in der Quelle.** Sie wird
+    namentlich genannt. Ein Snapshot ohne eine Eingabe, die der Lauf liest,
+    ist kein Snapshot des Laufs.
+  * **Die Quelle enthaelt eine Datei, die nicht in der Liste steht.**
+    ⭐ **Entschieden wurde: ABBRUCH, nicht Meldung.** Begruendung: der Name
+    des Ordners ist der Hash ueber **genau die Dateien der Liste**. Eine
+    Datei daneben hat nur zwei moegliche Ausgaenge, und beide sind still -
+    entweder sie wird nicht mitkopiert, dann ist der Snapshot unvollstaendig
+    und sieht vollstaendig aus; oder sie wird mitkopiert, dann luegt die
+    Liste im Manifest. Genau dieses "sieht gueltig aus" ist die Bauform, die
+    dieses Modul an allen anderen Stellen schon abbricht (leere Quelle,
+    Unterordner, vorhandenes `MANIFEST.json`). Eine blosse Meldung waere hier
+    die einzige Ausnahme - und sie stuende im Manifest neben einem Hash, der
+    sie nicht deckt.
+  * **Die Teilkerzen-Pruefung findet etwas** - oder sie ist nicht
+    ausfuehrbar. Im ersten Fall wird nicht gezogen; im zweiten ist der
+    Ausgang **2**, nie 0.
+
+⚠️ Ausserdem bricht `--ziehen` ab, wenn `datenstand_hash` **nicht** den
+verankerten Wert `d9449faf…` ergibt (abschaltbar mit `--kein-anker`, denn
+Wegwerf-Verzeichnisse in Selbsttests koennen ihn naturgemaess nicht treffen).
+
+TB-47: DIE SNAPSHOT-GRENZE - alle Eingaben, zwei Hashes
+------------------------------------------------------------------------------
+⚠️ Dieses Modul ist in TB-46 gebaut worden - **vor** dem Registernachtrag.
+Registertext 5a verlangt seither drei Dinge, die es bis TB-47 nicht konnte:
+
+**1. Der Snapshot enthaelt ALLE Eingaben des Laufs**, die nicht Code unter
+dem registrierten Commit sind - nicht nur `data/*.csv`. TB-47 hat diese Menge
+ueber den Syntaxbaum **bestimmt statt geraten**
+(`research/snapshotgrenze/erhebung_eingaben.py`, ausgehend von den 90
+Selektionsmodulen aus TB-46). Ergebnis: neben den Kursdateien sind es genau
+**zwei** Dateien, beide versioniert, beide Symbollisten - siehe `EINGABEN`.
+
+⚠️ **Welche Dateien aufgenommen werden, steht in einer LISTE, die im Manifest
+mitgefuehrt wird** - nicht in einer Regel, die spaeter jemand anders auslegt.
+Eine Regel ("alles unter `config/`") haette beim naechsten hinzugefuegten
+Konfigurationsschnipsel stillschweigend ihren Umfang geaendert; eine Liste
+kann das nicht.
+
+⭐ **Der Handelskalender ist KEINE Eingabe.** Er kommt aus
+`pandas_market_calendars` (`mcal.get_calendar`), nicht aus einer Datei - er
+ist **Umgebung** und gehoert ins Lock. Damit haengt das Ergebnis an einer
+Paketfassung, und **ein Snapshot kann das nicht einfangen**. Das ist eine
+Eigenschaft des Aufbaus, keine Luecke dieses Moduls.
+
+**2. Zwei Hashes, zwei Funktionen, zwei Felder.**
+
+    snapshot_hash    ueber die sortierten (Pfad, Inhalts-Hash)-Paare DER
+                     DATEIEN. Er ist der **Name** des Ordners und beantwortet:
+                     *"ist das derselbe Eingabesatz?"*
+    datenstand_hash  ⚠️ **unveraendert** das registrierte Verfahren: `*.csv`
+                     auf der obersten Ebene, Name + Groesse + SHA-256,
+                     sortiert. Er beantwortet die **Herkunftsfrage**: *"sind
+                     das dieselben Kursdateien?"* - und muss weiterhin
+                     `d9449faf…` ergeben.
+
+⚠️ **Der Snapshot-Hash laeuft ueber die DATEIEN, nicht ueber das Manifest.**
+Liefe er ueber das Manifest, haenge der Name an der Metadaten-Formatierung,
+und ein zusaetzliches Feld ergaebe einen **anderen Namen fuer denselben
+Inhalt**. Deshalb fuehrt das Manifest sich selbst auch nicht in der Liste.
+
+**3. Die Teilkerzen-Pruefung steht im Manifest.** Vor dem Ziehen laeuft
+`shared/zeitabdeckung.py` ueber die **Quelle** (nicht ueber die Kopie), und
+ihr Ergebnis wird festgehalten. ⚠️ **Findet sie etwas, wird nicht gezogen.**
+Ist sie nicht ausfuehrbar, ist das **2**, nie 0.
+
+Der Ordneraufbau eines Snapshots
+------------------------------------------------------------------------------
+    <snapshot_hash>/
+        AAPL_1d.csv            die Kursdateien - flach, wie bisher
+        BTCUSDT_1h.csv         ⭐ damit bleibt `datenstand_hash` rechenbar:
+        ...                       das Verfahren ist NICHT rekursiv und sieht
+        config/                   genau diese oberste Ebene
+            top25_symbols.txt  die uebrigen Eingaben, mit ihrer
+            sp500_top150.txt   Ordnerstruktur
+        MANIFEST.json
+
 Rueckgabewerte - "konnte nicht messen" ist ein eigener, roter Ausgang
 ------------------------------------------------------------------------------
     0   in Ordnung: gezogen, oder `--pruefen` findet den Stand unveraendert
@@ -121,6 +201,46 @@ WERKZEUG = "shared/snapshot.py"
 # Wo das registrierte Hash-Verfahren steht. Ein Pfad, keine Abschrift.
 HERKUNFT_PFAD = os.path.join(BASE_DIR, "research", "vorregistrierung",
                              "herkunft.py")
+
+# Wo die Teilkerzen-Pruefung steht. Auch hier: ein Pfad, keine zweite
+# Fassung der Pruefung.
+ZEITABDECKUNG_PFAD = os.path.join(_SHARED_DIR, "zeitabdeckung.py")
+
+# ⚠️ Der verankerte Datenstand vom 15.09.2026 (Tatsachennotiz, 223 Dateien).
+# Er steht hier als **Pruefwert**, nicht als Rechenweg: gerechnet wird
+# weiterhin ausschliesslich von `herkunft.datenstand`.
+VERANKERTER_DATENSTAND = (
+    "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84")
+VERANKERTE_KURSDATEIEN = 223
+
+
+# ===========================================================================
+# Die Snapshot-Grenze (TB-47, Teil 1)
+# ===========================================================================
+#
+# ⚠️ Eine **Liste**, keine Regel. Wer hier etwas ergaenzt, aendert den
+# `snapshot_hash` - und das ist genau richtig so: ein anderer Eingabesatz
+# bekommt einen anderen Namen.
+#
+# Erhoben in TB-47 ueber den Syntaxbaum, ausgehend von den 90
+# Selektionsmodulen aus TB-46 und transitiv ueber alles, was sie importieren
+# (142 Module). Die Rohdaten stehen in
+# `research/snapshotgrenze/ergebnisse/eingaben.json`.
+
+EINGABEN = (
+    {
+        "pfad": "config/top25_symbols.txt",
+        "rolle": "Symbolliste Krypto - welche 25 Maerkte gehandelt werden",
+        "leser": "shared/symbols_config.py:28",
+    },
+    {
+        "pfad": "config/sp500_top150.txt",
+        "rolle": "Symbolliste Aktien - die S&P-500-Auswahl",
+        "leser": ("strategies/{elliott_wave_stocks,rsi2_mean_reversion,"
+                  "turtle_soup_stocks,volatility_breakout}/"
+                  "stocks_symbols_config.py"),
+    },
+)
 
 # Rueckgabewerte
 OK = 0
@@ -213,6 +333,184 @@ def quersumme(pfad):
 
 
 # ===========================================================================
+# Teil 1b - Der zweite Hash: der Name (TB-47)
+# ===========================================================================
+
+def snapshot_hash(paare):
+    """SHA-256 ueber die sortierten (Pfad, Inhalts-Hash)-Paare.
+
+    `paare` ist eine Abbildung `{pfad_im_snapshot: sha256}`. Der Pfad ist
+    relativ zur Wurzel des Snapshots und benutzt **immer** `/`, nie `os.sep` -
+    sonst hiesse derselbe Eingabesatz auf zwei Rechnern verschieden.
+
+    ⚠️ **Dieser Hash laeuft ueber die DATEIEN, nicht ueber das Manifest.**
+    Das ist der Grund, warum ein zusaetzliches Manifestfeld den Namen des
+    Snapshots nicht aendert - und warum `MANIFEST.json` selbst nicht eingeht.
+
+    ⚠️ Er ist bewusst **nicht** dasselbe Verfahren wie `datenstand`. Dort geht
+    die Dateigroesse mit ein und es zaehlen nur `*.csv`; hier zaehlt jede
+    Datei der Liste, und der Pfad steht mit seinem Ordner darin. Zwei Fragen,
+    zwei Rechnungen, zwei Felder.
+    """
+    if not paare:
+        raise Snapshotfehler(
+            "Der Snapshot-Hash soll ueber null Dateien gebildet werden. Der "
+            "Hash der leeren Menge sieht gueltig aus und ist es nicht.")
+    h = hashlib.sha256()
+    for pfad in sorted(paare):
+        if os.sep != "/" and os.sep in pfad:
+            raise Snapshotfehler(
+                "Der Pfad %r enthaelt einen Trenner dieses Betriebssystems. "
+                "Im Snapshot-Hash stehen Pfade immer mit `/`, sonst haengt "
+                "der Name des Snapshots am Rechner." % pfad)
+        h.update(pfad.encode("utf-8"))
+        h.update(b"\0")
+        h.update(paare[pfad].encode("utf-8"))
+        h.update(b"\0")
+    return h.hexdigest()
+
+
+# ===========================================================================
+# Teil 1c - Die Eingabeliste (TB-47)
+# ===========================================================================
+
+def eingabeliste(quelle, wurzel=None, eingaben=EINGABEN):
+    """Was in den Snapshot geht - als Liste, nicht als Regel.
+
+    Rueckgabe: Liste von Eintraegen
+
+        {"im_snapshot": "config/top25_symbols.txt",   # Pfad IM Snapshot
+         "herkunft":    "/…/trading-bot/config/top25_symbols.txt",
+         "art":         "Eingabe" | "Kursdatei",
+         "rolle":       "…", "leser": "…"}
+
+    ⚠️ Fehlt eine Datei der Liste, wird **abgebrochen und sie genannt**. Ein
+    Snapshot ohne eine Eingabe, die der Lauf liest, beschreibt den Lauf nicht.
+    """
+    wurzel = wurzel or BASE_DIR
+    liste = []
+
+    try:
+        vorhanden = sorted(os.listdir(quelle))
+    except OSError as fehler:
+        raise Snapshotfehler("Die Quelle %s ist nicht lesbar: %s"
+                             % (quelle, fehler))
+
+    for name in vorhanden:
+        if not os.path.isfile(os.path.join(quelle, name)):
+            continue
+        if not name.endswith(".csv"):
+            # ⚠️ Kein stilles Mitnehmen und kein stilles Weglassen - siehe
+            # die Begruendung im Modulkopf.
+            raise Snapshotfehler(
+                "Die Quelle %s enthaelt `%s` - eine Datei, die weder eine "
+                "Kursdatei noch ein Eintrag der Eingabeliste ist. Der Name "
+                "des Snapshots ist der Hash ueber genau die Dateien der "
+                "Liste; eine Datei daneben macht ihn zu einer Behauptung."
+                % (quelle, name))
+        liste.append({"im_snapshot": name,
+                      "herkunft": os.path.join(quelle, name),
+                      "art": "Kursdatei",
+                      "rolle": "Kursdaten des Laufs",
+                      "leser": "die neun Bots und der Selektionslauf"})
+
+    fehlend = []
+    for eintrag in eingaben:
+        pfad = os.path.join(wurzel, eintrag["pfad"].replace("/", os.sep))
+        if not os.path.isfile(pfad):
+            fehlend.append(eintrag["pfad"])
+            continue
+        liste.append({"im_snapshot": eintrag["pfad"],
+                      "herkunft": pfad,
+                      "art": "Eingabe",
+                      "rolle": eintrag["rolle"],
+                      "leser": eintrag["leser"]})
+
+    if fehlend:
+        raise Snapshotfehler(
+            "Diese Eingabedatei(en) der Liste fehlen unter %s: %s. Ein "
+            "Snapshot ohne eine Eingabe, die der Lauf liest, ist kein "
+            "Snapshot des Laufs." % (wurzel, ", ".join(fehlend)))
+    return liste
+
+
+# ===========================================================================
+# Teil 1d - Die Teilkerzen-Pruefung (TB-47)
+# ===========================================================================
+
+def lade_zeitabdeckung(pfad=None):
+    """Die bestehende Teilkerzen-Pruefung laden - ueber den Dateipfad.
+
+    Derselbe Weg wie bei `lade_herkunft`, aus demselben Grund (TB-40:
+    gleichnamige Module werden nicht ueber den Suchpfad importiert).
+
+    ⚠️ Faellt das Laden aus, wird **keine** Ersatzpruefung gebaut. Der
+    Aufrufer macht daraus "nicht pruefbar" - und das ist die **2**.
+    """
+    pfad = pfad or ZEITABDECKUNG_PFAD
+    if not os.path.exists(pfad):
+        raise Snapshotfehler(
+            "Die Teilkerzen-Pruefung ist nicht auffindbar: %s fehlt. Ohne sie "
+            "wird NICHT gezogen - eine Ersatzpruefung waere eine zweite "
+            "Wahrheit." % pfad)
+    spez = importlib.util.spec_from_file_location("tb47_zeitabdeckung", pfad)
+    if spez is None or spez.loader is None:
+        raise Snapshotfehler("%s ist nicht als Modul ladbar." % pfad)
+    modul = importlib.util.module_from_spec(spez)
+    try:
+        spez.loader.exec_module(modul)
+    except Exception as fehler:                       # noqa: BLE001
+        raise Snapshotfehler("%s laesst sich nicht laden: %s" % (pfad, fehler))
+    if not hasattr(modul, "pruefe_ordner"):
+        raise Snapshotfehler(
+            "%s kennt kein `pruefe_ordner()` mehr. Die Pruefung ist umgezogen "
+            "- dieses Modul darf dann nicht weiterziehen." % pfad)
+    return modul
+
+
+def teilkerzen(quelle, zeitabdeckung=None):
+    """Die Teilkerzen-Pruefung ueber die QUELLE. Ergebnis fuers Manifest.
+
+    ⚠️ Ueber die Quelle, nicht ueber die Kopie: gefragt ist, ob der **Bestand**
+    frei von Teilkerzen ist. Eine Kopie zu pruefen beantwortete nur, ob das
+    Kopieren funktioniert hat - und das prueft dieses Modul schon zweimal.
+
+    Rueckgabe:
+        {"ausfuehrbar": True, "befunde": [...], "dateien": 223, "stand": "…"}
+
+    Ein Eintrag in `befunde` heisst: **es wird nicht gezogen.**
+    """
+    modul = zeitabdeckung or lade_zeitabdeckung()
+    try:
+        stand = modul.jetzt_utc()
+        rohbefunde = modul.pruefe_ordner(quelle, stand=stand)
+    except Exception as fehler:                       # noqa: BLE001
+        raise Snapshotfehler(
+            "Die Teilkerzen-Pruefung ueber %s liess sich nicht ausfuehren: "
+            "%s. Das ist NICHT PRUEFBAR, nicht 'in Ordnung'."
+            % (quelle, fehler))
+
+    befunde = []
+    for eintrag in rohbefunde:
+        if eintrag.get("befunde"):
+            befunde.append({
+                "datei": eintrag.get("datei"),
+                "arten": sorted({b.get("art") if isinstance(b, dict) else str(b)
+                                 for b in eintrag["befunde"]}),
+                "texte": [b.get("text") if isinstance(b, dict) else str(b)
+                          for b in eintrag["befunde"]][:4],
+            })
+    return {
+        "ausfuehrbar": True,
+        "werkzeug": "shared/zeitabdeckung.py::pruefe_ordner",
+        "stand": stand.isoformat() if hasattr(stand, "isoformat") else str(stand),
+        "dateien_geprueft": len(rohbefunde),
+        "befunde": befunde,
+        "frei_von_teilkerzen": not befunde,
+    }
+
+
+# ===========================================================================
 # Teil 2 - Ziehen
 # ===========================================================================
 
@@ -257,6 +555,11 @@ def _pruefe_quelle(quelle):
     return dateien, kursdateien
 
 
+def _relativ(pfad, wurzel):
+    """Ein Pfad im Snapshot - immer mit `/`, nie mit `os.sep`."""
+    return os.path.relpath(pfad, wurzel).replace(os.sep, "/")
+
+
 def _pruefe_ziel(quelle, ziel_basis, hash_):
     """Der Zielordner, bevor er angelegt wird."""
     q = os.path.realpath(quelle)
@@ -274,47 +577,95 @@ def _pruefe_ziel(quelle, ziel_basis, hash_):
     return ziel
 
 
-def ziehen(quelle, ziel_basis, wirklich=False, herkunft=None):
-    """Eine Quelle vollstaendig nach `<ziel_basis>/<hash>/` kopieren.
+def ziehen(quelle, ziel_basis, wirklich=False, herkunft=None, wurzel=None,
+           eingaben=EINGABEN, anker=True, zeitabdeckung=None):
+    """Alle Eingaben des Laufs nach `<ziel_basis>/<snapshot_hash>/` kopieren.
 
     Die Reihenfolge ist nicht beliebig:
 
-      1. Quelle pruefen (leer? Unterordner?)
-      2. Hash der Quelle bilden - er ist der **Name** des Ziels
-      3. Ziel pruefen (existiert? liegt es in der Quelle?)
-      4. kopieren, Zeitstempel erhalten
-      5. **jede Datei byteweise** gegen die Quelle
-      6. Hash der Kopie bilden und gegen den der Quelle stellen
-      7. Manifest schreiben
+      1. Quelle pruefen (leer? Unterordner? fremdes `MANIFEST.json`?)
+      2. **Eingabeliste** bilden - Kursdateien plus die Liste (TB-47)
+      3. **Teilkerzen-Pruefung ueber die QUELLE** - findet sie etwas, ist
+         hier Schluss (TB-47)
+      4. `datenstand_hash` bilden und gegen den verankerten Wert stellen
+      5. Inhalts-Hashes der Eingaben bilden -> `snapshot_hash`, der **Name**
+      6. Ziel pruefen (existiert? liegt es in der Quelle?)
+      7. kopieren, Zeitstempel erhalten
+      8. **jede Datei byteweise** gegen ihre Herkunft
+      9. `datenstand_hash` der Kopie gegen den der Quelle
+     10. Manifest schreiben
 
-    Schritt 5 und 6 sind nicht dasselbe. Schritt 6 vergleicht den
-    **registrierten** Hash, und der zaehlt nur `*.csv` - eine beschaedigt
-    angekommene Datei, die keine Kursdatei ist (etwa eine `.json` neben ihnen),
-    geht dort nicht ein. Schritt 5 prueft **jede** Datei, unabhaengig von ihrer
-    Endung, und zwar zweimal: ueber die Quersumme und byteweise.
+    ⚠️ Schritt 3 und 4 stehen **vor** Schritt 7. Ein Snapshot, der erst
+    gezogen und dann verworfen wird, hat den Ordner schon angelegt; ein
+    Snapshot, der gar nicht erst beginnt, hinterlaesst nichts.
+
+    Schritt 8 und 9 sind nicht dasselbe. Schritt 9 vergleicht den
+    **registrierten** Hash, und der zaehlt nur `*.csv` auf der obersten Ebene -
+    eine beschaedigt angekommene Symbolliste geht dort nicht ein. Schritt 8
+    prueft **jede** Datei, unabhaengig von Endung und Ordner, und zwar
+    zweimal: ueber die Quersumme und byteweise.
     """
+    wurzel = wurzel or BASE_DIR
     dateien, kursdateien = _pruefe_quelle(quelle)
-    hash_, anzahl = gesamthash(quelle, herkunft)
-    ziel = _pruefe_ziel(quelle, ziel_basis, hash_)
+    liste = eingabeliste(quelle, wurzel, eingaben)
 
-    bericht = {
-        "werkzeug": WERKZEUG,
-        "zeitpunkt_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "quelle": os.path.realpath(quelle),
-        "ziel": os.path.realpath(ziel) if wirklich else ziel,
-        "datenstand": hash_,
-        "kursdateien": anzahl,
-        "dateien_gesamt": len(dateien),
-        "nicht_im_hash": sorted(d for d in dateien if not d.endswith(".csv")),
-        "gezogen": False,
-        "trockenlauf": not wirklich,
-    }
+    # ⚠️ Vor allem anderen: findet die Teilkerzen-Pruefung etwas, wird nicht
+    # gezogen. Sie laeuft ueber die Quelle, nicht ueber die Kopie.
+    kerzen = teilkerzen(quelle, zeitabdeckung)
+    if kerzen["befunde"]:
+        namen = ", ".join(b["datei"] for b in kerzen["befunde"][:8])
+        if len(kerzen["befunde"]) > 8:
+            namen += " und %d weitere" % (len(kerzen["befunde"]) - 8)
+        raise Snapshotfehler(
+            "Die Teilkerzen-Pruefung hat %d Datei(en) mit Befund gefunden: "
+            "%s. Es wird NICHT gezogen - ein Snapshot haelt einen Bestand "
+            "fest, und ein Bestand mit unvollstaendigen Kerzen ist nicht der, "
+            "den er zu sein scheint." % (len(kerzen["befunde"]), namen))
+
+    hash_, anzahl = gesamthash(quelle, herkunft)
+
     if anzahl != len(kursdateien):
         # Kann nur eintreten, wenn sich der Ordner zwischen zwei Blicken
         # aendert. Dann ist der Hash nicht der des kopierten Bestandes.
         raise Snapshotfehler(
             "Die Quelle hat sich waehrend des Laufs geaendert: %d Kursdateien "
             "gezaehlt, %d im Hash." % (len(kursdateien), anzahl))
+
+    if anker and (hash_ != VERANKERTER_DATENSTAND
+                  or anzahl != VERANKERTE_KURSDATEIEN):
+        raise Snapshotfehler(
+            "Der datenstand_hash der Quelle weicht vom verankerten Wert ab: "
+            "%s... / %d statt %s... / %d. Das ist die Tatsachennotiz vom "
+            "15.09.2026 - ein Snapshot auf einem anderen Bestand ist ein "
+            "anderer Lauf. (Mit --kein-anker fuer Wegwerf-Verzeichnisse.)"
+            % (hash_[:16], anzahl, VERANKERTER_DATENSTAND[:16],
+               VERANKERTE_KURSDATEIEN))
+
+    # Der zweite Hash: er laeuft ueber die DATEIEN und ist der Name.
+    paare = {}
+    for eintrag in liste:
+        paare[eintrag["im_snapshot"]] = quersumme(eintrag["herkunft"])
+    name_ = snapshot_hash(paare)
+
+    ziel = _pruefe_ziel(quelle, ziel_basis, name_)
+
+    bericht = {
+        "werkzeug": WERKZEUG,
+        "zeitpunkt_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "quelle": os.path.realpath(quelle),
+        "wurzel": os.path.realpath(wurzel),
+        "ziel": os.path.realpath(ziel) if wirklich else ziel,
+        "snapshot_hash": name_,
+        "datenstand_hash": hash_,
+        "kursdateien": anzahl,
+        "dateien_gesamt": len(liste),
+        "eingaben": sorted(e["im_snapshot"] for e in liste
+                           if e["art"] == "Eingabe"),
+        "eingabeliste": liste,
+        "teilkerzen": kerzen,
+        "gezogen": False,
+        "trockenlauf": not wirklich,
+    }
 
     if not wirklich:
         bericht["hinweis"] = ("Trockenlauf - es wurde nichts kopiert. "
@@ -324,9 +675,13 @@ def ziehen(quelle, ziel_basis, wirklich=False, herkunft=None):
     os.makedirs(ziel, exist_ok=False)
     eintraege = {}
     try:
-        for name in sorted(dateien):
-            q_pfad = os.path.join(quelle, name)
-            z_pfad = os.path.join(ziel, name)
+        for eintrag in sorted(liste, key=lambda e: e["im_snapshot"]):
+            name = eintrag["im_snapshot"]
+            q_pfad = eintrag["herkunft"]
+            z_pfad = os.path.join(ziel, name.replace("/", os.sep))
+            unterordner = os.path.dirname(z_pfad)
+            if unterordner and not os.path.isdir(unterordner):
+                os.makedirs(unterordner, exist_ok=True)
             try:
                 shutil.copy2(q_pfad, z_pfad)      # copy2: Zeitstempel bleiben
             except OSError as fehler:
@@ -346,15 +701,23 @@ def ziehen(quelle, ziel_basis, wirklich=False, herkunft=None):
             eintraege[name] = {
                 "sha256": summe_kopie,
                 "bytes": os.path.getsize(z_pfad),
-                "im_hash": name.endswith(".csv"),
+                "im_datenstand": name.endswith(".csv") and "/" not in name,
+                "art": eintrag["art"],
             }
 
         kopie_hash, kopie_anzahl = gesamthash(ziel, herkunft)
         if kopie_hash != hash_ or kopie_anzahl != anzahl:
             raise Snapshotfehler(
-                "Der Hash der Kopie weicht vom Hash der Quelle ab "
+                "Der datenstand_hash der Kopie weicht vom Hash der Quelle ab "
                 "(%s... / %d gegen %s... / %d)."
                 % (kopie_hash[:16], kopie_anzahl, hash_[:16], anzahl))
+
+        # ⚠️ Und der Name gegen die Kopie: der Ordner muss heissen, was in
+        # ihm liegt.
+        kopie_paare = {n: e["sha256"] for n, e in eintraege.items()}
+        if snapshot_hash(kopie_paare) != name_:
+            raise Snapshotfehler(
+                "Der snapshot_hash der Kopie weicht vom Namen des Ordners ab.")
 
         bericht["dateien"] = eintraege
         bericht["bytes_gesamt"] = sum(e["bytes"] for e in eintraege.values())
@@ -401,13 +764,31 @@ def schreibe_manifest(ordner, bericht):
         "werkzeug": bericht["werkzeug"],
         "zeitpunkt_utc": bericht["zeitpunkt_utc"],
         "quelle": bericht["quelle"],
-        "datenstand": bericht["datenstand"],
+        "wurzel": bericht.get("wurzel"),
+        # ⚠️ Zwei Hashes, zwei unverwechselbare Feldnamen. Das frueher
+        # einzelne Feld `datenstand` hiess wie die Sache, die es misst, und
+        # nicht wie die Frage, die es beantwortet - neben einem zweiten Hash
+        # waere das nicht mehr unterscheidbar gewesen.
+        "snapshot_hash": bericht["snapshot_hash"],
+        "datenstand_hash": bericht["datenstand_hash"],
         "kursdateien": bericht["kursdateien"],
         "dateien_gesamt": bericht["dateien_gesamt"],
         "bytes_gesamt": bericht.get("bytes_gesamt"),
-        "verfahren": ("research/vorregistrierung/herkunft.py::datenstand - "
-                      "SHA-256 ueber die *.csv direkt im Ordner, sortiert, "
-                      "je Datei Name + Groesse + SHA-256 des Inhalts"),
+        "verfahren": {
+            "snapshot_hash": (
+                "shared/snapshot.py::snapshot_hash - SHA-256 ueber die "
+                "sortierten (Pfad, Inhalts-Hash)-Paare DER DATEIEN. Laeuft "
+                "NICHT ueber das Manifest: ein zusaetzliches Feld ergaebe "
+                "sonst einen anderen Namen fuer denselben Inhalt."),
+            "datenstand_hash": (
+                "research/vorregistrierung/herkunft.py::datenstand - "
+                "SHA-256 ueber die *.csv direkt im Ordner, sortiert, "
+                "je Datei Name + Groesse + SHA-256 des Inhalts"),
+        },
+        # ⚠️ Die Liste, nach der aufgenommen wurde - mitgefuehrt, damit
+        # spaeter niemand eine Regel auslegen muss.
+        "eingabeliste": bericht["eingabeliste"],
+        "teilkerzen": bericht["teilkerzen"],
         "dateien": bericht["dateien"],
     }
     pfad = os.path.join(ordner, MANIFEST)
@@ -443,7 +824,8 @@ def _lies_manifest(ordner):
         return None, "%s ist nicht lesbar oder beschaedigt: %s" % (pfad, fehler)
     if not isinstance(manifest, dict):
         return None, "%s enthaelt kein Manifest-Objekt." % pfad
-    for schluessel in ("dateien", "datenstand", "kursdateien"):
+    for schluessel in ("dateien", "datenstand_hash", "snapshot_hash",
+                       "kursdateien"):
         if schluessel not in manifest:
             return None, ("%s ist beschaedigt: der Eintrag `%s` fehlt."
                           % (pfad, schluessel))
@@ -470,9 +852,15 @@ def pruefen(ordner, herkunft=None):
     abweichungen = []
     erwartet = manifest["dateien"]
 
+    # ⚠️ `os.walk`, nicht `os.listdir`: seit TB-47 liegen Eingaben in
+    # Unterordnern (`config/…`). Ein `listdir` sieht sie nicht - und eine
+    # dort veraenderte Datei fiele damit durch beide Richtungen.
     try:
-        vorhanden = sorted(e for e in os.listdir(ordner)
-                           if os.path.isfile(os.path.join(ordner, e)))
+        vorhanden = []
+        for wurzel_, unter, dateien_ in os.walk(ordner):
+            for d in dateien_:
+                vorhanden.append(_relativ(os.path.join(wurzel_, d), ordner))
+        vorhanden.sort()
     except OSError as fehler:
         return {"ausgang": UNPRUEFBAR, "ordner": ordner, "abweichungen": [],
                 "grund": "%s ist nicht lesbar: %s" % (ordner, fehler)}
@@ -480,7 +868,7 @@ def pruefen(ordner, herkunft=None):
     # Richtung 1: was das Manifest kennt
     for name in sorted(erwartet):
         eintrag = erwartet[name]
-        pfad = os.path.join(ordner, name)
+        pfad = os.path.join(ordner, name.replace("/", os.sep))
         if not os.path.exists(pfad):
             abweichungen.append({"datei": name, "art": "entfernt"})
             continue
@@ -514,19 +902,47 @@ def pruefen(ordner, herkunft=None):
         return {"ausgang": UNPRUEFBAR, "ordner": ordner,
                 "abweichungen": abweichungen, "grund": str(fehler)}
 
-    if ist_hash != manifest["datenstand"]:
-        abweichungen.append({"datei": "(Gesamthash)", "art": "veraendert",
-                             "soll": manifest["datenstand"], "ist": ist_hash})
+    if ist_hash != manifest["datenstand_hash"]:
+        abweichungen.append({"datei": "(datenstand_hash)", "art": "veraendert",
+                             "soll": manifest["datenstand_hash"],
+                             "ist": ist_hash})
     if ist_anzahl != manifest["kursdateien"]:
         abweichungen.append({"datei": "(Dateizahl)", "art": "veraendert",
                              "soll": manifest["kursdateien"],
                              "ist": ist_anzahl})
 
+    # ⚠️ Und der zweite Hash - der ueber die Dateien. Er ist die Aussage
+    # "derselbe Eingabesatz", und er faellt bei einer veraenderten
+    # Nicht-Kursdatei an, wo der datenstand_hash schweigt.
+    ist_snapshot = None
+    try:
+        paare = {}
+        for name in sorted(erwartet):
+            pfad = os.path.join(ordner, name.replace("/", os.sep))
+            if os.path.exists(pfad):
+                paare[name] = quersumme(pfad)
+        for name in vorhanden:
+            if name in (MANIFEST, MANIFEST + ".neu") or name in erwartet:
+                continue
+            paare[name] = quersumme(os.path.join(ordner,
+                                                 name.replace("/", os.sep)))
+        ist_snapshot = snapshot_hash(paare) if paare else None
+    except Snapshotfehler as fehler:
+        return {"ausgang": UNPRUEFBAR, "ordner": ordner,
+                "abweichungen": abweichungen, "grund": str(fehler)}
+
+    if ist_snapshot != manifest["snapshot_hash"]:
+        abweichungen.append({"datei": "(snapshot_hash)", "art": "veraendert",
+                             "soll": manifest["snapshot_hash"],
+                             "ist": ist_snapshot})
+
     return {
         "ausgang": VERAENDERT if abweichungen else UNVERAENDERT,
         "ordner": ordner,
         "grund": None,
-        "datenstand_soll": manifest["datenstand"],
+        "snapshot_soll": manifest["snapshot_hash"],
+        "snapshot_ist": ist_snapshot,
+        "datenstand_soll": manifest["datenstand_hash"],
         "datenstand_ist": ist_hash,
         "kursdateien_soll": manifest["kursdateien"],
         "kursdateien_ist": ist_anzahl,
@@ -544,9 +960,11 @@ def _drucke_pruefung(b):
         print("  NICHT PRUEFBAR")
         print("  %s" % b["grund"])
         return
-    print("  Soll   %s  (%d Kursdateien)"
+    print("  snapshot_hash    Soll %s" % b["snapshot_soll"])
+    print("                   Ist  %s" % b["snapshot_ist"])
+    print("  datenstand_hash  Soll %s  (%d Kursdateien)"
           % (b["datenstand_soll"], b["kursdateien_soll"]))
-    print("  Ist    %s  (%d Kursdateien)"
+    print("                   Ist  %s  (%d Kursdateien)"
           % (b["datenstand_ist"], b["kursdateien_ist"]))
     if b["ausgang"] == UNVERAENDERT:
         print("\n  UNVERAENDERT")
@@ -562,14 +980,26 @@ def _drucke_pruefung(b):
 
 def _drucke_ziehen(b):
     print("Snapshot ziehen\n")
-    print("  Quelle      %s" % b["quelle"])
-    print("  Datenstand  %s" % b["datenstand"])
-    print("  Kursdateien %d   (Dateien gesamt: %d)"
+    print("  Quelle           %s" % b["quelle"])
+    print("  Wurzel           %s" % b.get("wurzel"))
+    print("  snapshot_hash    %s   ⭐ der Name" % b["snapshot_hash"])
+    print("  datenstand_hash  %s" % b["datenstand_hash"])
+    print("  Kursdateien      %d   (Dateien gesamt: %d)"
           % (b["kursdateien"], b["dateien_gesamt"]))
-    if b["nicht_im_hash"]:
-        print("  ⚠️ nicht im Hash (keine .csv): %s"
-              % ", ".join(b["nicht_im_hash"]))
-    print("  Ziel        %s" % b["ziel"])
+    if b["eingaben"]:
+        print("  Weitere Eingaben (aus der Liste im Manifest):")
+        for e in b["eingaben"]:
+            print("      %s" % e)
+    else:
+        print("  ⚠️ Die Eingabeliste ist leer - nur Kursdateien.")
+    k = b["teilkerzen"]
+    if k["frei_von_teilkerzen"]:
+        print("  Teilkerzen       keine (%d Datei(en) geprueft)"
+              % k["dateien_geprueft"])
+    else:
+        print("  ⚠️ Teilkerzen     %d Datei(en) mit Befund"
+              % len(k["befunde"]))
+    print("  Ziel             %s" % b["ziel"])
     if b["gezogen"]:
         print("\n  GEZOGEN - %d Datei(en), %.1f MB, jede byteweise gegen die "
               "Quelle geprueft." % (len(b["dateien"]),
@@ -593,8 +1023,24 @@ def main(argv=None) -> int:
                    help="einen vorhandenen Snapshot gegen sein Manifest pruefen")
     z.add_argument("--nur-hash", action="store_true",
                    help="nur den Datenstand-Hash der Quelle ausgeben")
+    z.add_argument("--wurzel", default=BASE_DIR,
+                   help="Wurzel, auf die sich die Eingabeliste bezieht "
+                        "(Standard: das Projektverzeichnis)")
+    z.add_argument("--eingabe", action="append", default=None, metavar="PFAD",
+                   help="ein Eintrag der Eingabeliste, relativ zur Wurzel "
+                        "(mehrfach angebbar). Ohne Angabe gilt die in "
+                        "snapshot.py hinterlegte Liste EINGABEN.")
+    z.add_argument("--kein-anker", action="store_true",
+                   help="den verankerten datenstand_hash NICHT erzwingen - "
+                        "nur fuer Wegwerf-Verzeichnisse in Selbsttests")
     z.add_argument("--json", metavar="PFAD", default=None)
     a = z.parse_args(argv)
+
+    if a.eingabe is None:
+        eingaben = EINGABEN
+    else:
+        eingaben = tuple({"pfad": p, "rolle": "per --eingabe angegeben",
+                          "leser": "(Befehlszeile)"} for p in a.eingabe)
 
     try:
         if a.pruefen:
@@ -609,7 +1055,9 @@ def main(argv=None) -> int:
             print("%s  (%d Kursdateien)  %s" % (hash_, anzahl, a.quelle))
             rueckgabe = OK
         else:
-            bericht = ziehen(a.quelle, a.ziel, wirklich=a.ziehen)
+            bericht = ziehen(a.quelle, a.ziel, wirklich=a.ziehen,
+                             wurzel=a.wurzel, eingaben=eingaben,
+                             anker=not a.kein_anker)
             _drucke_ziehen(bericht)
             rueckgabe = OK
     except Snapshotfehler as fehler:
