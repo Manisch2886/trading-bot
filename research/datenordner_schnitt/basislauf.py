@@ -36,6 +36,7 @@ Rueckgabewert 0, wenn kein **unerwartet** roter Test dabei war; sonst 1.
 import argparse
 import json
 import os
+import signal
 import subprocess
 import sys
 import time
@@ -91,21 +92,77 @@ def testdateien(wurzel=_WURZEL):
     return sorted(gefunden)
 
 
+def beende_gruppe(prozess):
+    """Die ganze Prozessgruppe beenden - nicht nur den Kindprozess.
+
+    ⚠️ **TB-47, der Anlass.** `prozess.kill()` beendet genau **einen**
+    Prozess: den, den `Popen` gestartet hat. Startet der Test sich selbst
+    einen Unterprozess - und mehrere tun das, sie fuehren Bots oder
+    Wegwerf-Module in einem eigenen Prozess aus -, dann ueberlebt dieser
+    **Enkel** den `kill`. Er verliert nur seinen Elternprozess, haengt sich
+    an PID 1 und rechnet weiter.
+
+    Gemessen, nicht vermutet: in **beiden** Mac-Laeufen blieb nach der
+    Zeitgrenze von `shared/test_drawdown_beide_masse.py` ein
+    `--bot elliott_wave` zurueck, zuletzt **22 Minuten bei 99 % CPU**, bis
+    ihn ein Mensch von Hand beendet hat. Das kostet bei jedem Basislauf eine
+    Viertelstunde Rechenzeit und einen Handgriff.
+
+    Die Abhilfe hat zwei Haelften, und beide sind noetig:
+
+      * `start_new_session=True` beim Start - der Kindprozess wird
+        **Anfuehrer einer eigenen Prozessgruppe**, und jeder Enkel landet
+        in derselben Gruppe. Ohne das zeigte `os.killpg` auf die Gruppe
+        des Runners selbst - er braechte sich um.
+      * `os.killpg` statt `kill` - das Signal geht an **alle** Mitglieder
+        der Gruppe.
+
+    Erst `SIGTERM`, damit ein Test seine Wegwerf-Verzeichnisse noch
+    aufraeumen kann, nach kurzer Frist `SIGKILL`.
+    """
+    try:
+        gruppe = os.getpgid(prozess.pid)
+    except (OSError, AttributeError):
+        # Der Prozess ist schon weg, oder das Betriebssystem kennt keine
+        # Prozessgruppen (Windows). Dann bleibt nur der Kindprozess.
+        prozess.kill()
+        return
+    for signal_ in (signal.SIGTERM, signal.SIGKILL):
+        try:
+            os.killpg(gruppe, signal_)
+        except OSError:
+            return                      # niemand mehr da - fertig
+        try:
+            prozess.wait(timeout=5)
+            if signal_ is signal.SIGTERM:
+                # Der Kindprozess ist weg. Die Enkel koennen es trotzdem
+                # noch nicht sein - deshalb kommt SIGKILL auf die Gruppe
+                # in jedem Fall hinterher.
+                continue
+            return
+        except subprocess.TimeoutExpired:
+            continue
+
+
 def fuehre_aus(rel, wurzel, grenze):
-    """Eine Testdatei, eigener Prozess, Zeitgrenze. Der Kindprozess wird
-    danach wirklich beendet - `communicate(timeout=)` allein laesst ihn
-    weiterrechnen."""
+    """Eine Testdatei, eigener Prozess, Zeitgrenze.
+
+    ⚠️ Die **ganze Prozessgruppe** wird danach beendet, nicht nur der
+    Kindprozess - siehe `beende_gruppe`. `communicate(timeout=)` allein
+    laesst ihn weiterrechnen, und `kill()` allein laesst die Enkel
+    weiterrechnen.
+    """
     beginn = time.time()
     prozess = subprocess.Popen(
         [sys.executable, os.path.join(wurzel, rel)],
         cwd=wurzel, stdout=subprocess.PIPE, stderr=subprocess.STDOUT,
-        text=True)
+        text=True, start_new_session=True)
     abgebrochen = False
     try:
         ausgabe, _ = prozess.communicate(timeout=grenze)
     except subprocess.TimeoutExpired:
         abgebrochen = True
-        prozess.kill()                      # ⚠️ sonst rechnet er weiter
+        beende_gruppe(prozess)          # ⚠️ sonst rechnen die Enkel weiter
         try:
             ausgabe, _ = prozess.communicate(timeout=30)
         except subprocess.TimeoutExpired:
