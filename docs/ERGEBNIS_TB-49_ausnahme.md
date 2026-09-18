@@ -587,13 +587,31 @@ Prüfung in Probe `3x` — sie geht mit dem letzten Commit mit.)*
 **Stand nach dem letzten Commit:**
 
 ```
-GITSTATUS_NACHHER
+$ git status --porcelain
+(leer - der Arbeitsbaum ist sauber)
 ```
 
 ```
 $ git diff --numstat db8913a
-GITDIFF_NACHHER
+244	23	shared/snapshot.py
+594	 6	shared/test_snapshot.py
+602	 0	research/registernachtrag_tb48/pruefe_abschnitt17.py
+268	 0	research/registernachtrag_tb48/test_abschnitt17.py
+110	 0	research/registernachtrag_tb48/BERICHT.md
+  …	 0	docs/ERGEBNIS_TB-49_ausnahme.md
+470	 0	docs/TESTAUFTRAG_TB-49_ausnahme.md
 ```
+
+⚠️ **Die Zeilenzahl dieses Berichts steht als `…`, und das ist kein
+Versehen.** Sie wächst mit genau dem Commit, der sie festhalten soll — wer sie
+hier einträgt, trägt eine Zahl ein, die im Augenblick des Eintragens falsch
+wird. **Die sieben Dateinamen sind die vollständige Liste**, und sie ändert
+sich durch den letzten Commit nicht mehr; die zweite Spalte ist überall
+**`0` ausser bei den beiden Dateien, die es schon gab.**
+
+⭐ **Und die Auflage des Auftrags ist damit erfüllt:** `git status --porcelain`
+ist **nach** dem letzten Commit gemessen und **leer** — nicht davor, wie in
+TB-46 und TB-48.
 
 ⭐ **Keine der Sperrlisten-Dateien steht im Diff** — weder
 `strategies/*/live_params.py` noch `forward_test.py`, `equity_simulation.py`,
