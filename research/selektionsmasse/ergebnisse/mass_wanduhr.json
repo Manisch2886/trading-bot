@@ -1,0 +1,50 @@
+{
+  "ausgangszahl": 6,
+  "module_geprueft": 90,
+  "nicht_gemessen": [],
+  "stand": 6,
+  "treffer": [
+    {
+      "datei": "strategies/elliott_wave/quarterly_review.py",
+      "quelltext": "lines.append(f\"{datetime.utcnow().strftime('%d.%m.%Y %H:%M')} UTC\")",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "datetime.utcnow()",
+      "zeile": 119
+    },
+    {
+      "datei": "strategies/elliott_wave/quarterly_review.py",
+      "quelltext": "print(f\"Vierteljaehrliches Review [{STRATEGY_NAME}] - {datetime.utcnow().isoformat()}\\n\")",
+      "verwendung": "nur Protokollzeile",
+      "was": "datetime.utcnow()",
+      "zeile": 205
+    },
+    {
+      "datei": "strategies/elliott_wave_stocks/quarterly_review.py",
+      "quelltext": "lines.append(f\"{datetime.utcnow().strftime('%d.%m.%Y %H:%M')} UTC\")",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "datetime.utcnow()",
+      "zeile": 124
+    },
+    {
+      "datei": "strategies/elliott_wave_stocks/quarterly_review.py",
+      "quelltext": "print(f\"Vierteljaehrliches Review [{STRATEGY_NAME}] - {datetime.utcnow().isoformat()}\\n\")",
+      "verwendung": "nur Protokollzeile",
+      "was": "datetime.utcnow()",
+      "zeile": 210
+    },
+    {
+      "datei": "strategies/t3_supertrend/quarterly_review.py",
+      "quelltext": "lines.append(f\"{datetime.utcnow().strftime('%d.%m.%Y %H:%M')} UTC\")",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "datetime.utcnow()",
+      "zeile": 146
+    },
+    {
+      "datei": "strategies/t3_supertrend/quarterly_review.py",
+      "quelltext": "print(f\"Vierteljaehrliches Review [{STRATEGY_NAME}] - {datetime.utcnow().isoformat()}\\n\")",
+      "verwendung": "nur Protokollzeile",
+      "was": "datetime.utcnow()",
+      "zeile": 232
+    }
+  ]
+}
