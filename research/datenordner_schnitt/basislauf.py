@@ -50,11 +50,17 @@ AUSGENOMMEN = ("trading-env", "__pycache__", ".git", "node_modules")
 # dieses Projekts waren falsch, weil sie unbesehen von einer Umgebung in die
 # andere uebernommen wurden (docs/UMGEBUNGEN.md, Regel 3).
 # ---------------------------------------------------------------------------
+# ⚠️ GESTRICHEN (TB-46b, 17.09.2026): `system/test_log_rotation.py` stand hier
+# mit "Mac 17.09.: 1 Fehler". Der Eintrag war falsch - die Datei ist auf
+# BEIDEN Rechnern gruen (117/117; Mac-Messung im TB-46-Maclauf, Cloud-Messung
+# im TB-46b-Basislauf). Ein falscher Eintrag in dieser Liste ist teurer als
+# gar keiner: er macht einen Test, der eines Tages wirklich rot wird,
+# unsichtbar. Das ist genau die Fehlerfamilie, gegen die TB-45 und TB-46b
+# gebaut sind - eine Wache, die aufgehoert hat zu beissen, ohne es zu sagen.
 BEKANNT_ROT = {
     "dashboard/test_portfolio_sicht.py": "Mac 17.09.: 1 Fehler",
     "shared/test_stabile_sortierung.py": "Mac 17.09.: 3 Fehler",
     "shared/test_wellenauswahl.py": "Mac 17.09.: 1 Fehler",
-    "system/test_log_rotation.py": "Mac 17.09.: 1 Fehler",
     "research/exposure_messung/test_exposure_kern.py": "Mac 17.09.: 1 Fehler",
     "research/hrp_portfolio/test_hrp_core.py": "Mac 17.09.: scipy fehlt",
 }
