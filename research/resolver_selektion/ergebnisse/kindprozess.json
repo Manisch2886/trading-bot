@@ -1,0 +1,58 @@
+[
+  {
+    "nr": 1,
+    "frage": "Kind OHNE Modus - wohin zeigt DATA_DIR?",
+    "ergebnis": "/home/user/trading-bot/data",
+    "erwartet": "/home/user/trading-bot/data",
+    "trifft": true,
+    "bedeutung": "Der Regelfall und der Cron-Fall: der Live-Bestand."
+  },
+  {
+    "nr": 2,
+    "frage": "Kind MIT Modus (Umgebungsvariable) - erbt es ihn?",
+    "ergebnis": "/tmp/tb52_attrappe_8ddu1hhn",
+    "erwartet": "/tmp/tb52_attrappe_8ddu1hhn",
+    "trifft": true,
+    "bedeutung": "⭐ Die Umgebungsvariable wird vererbt. Das ist der Grund fuer diesen Weg."
+  },
+  {
+    "nr": 3,
+    "frage": "ENKEL MIT Modus - zwei Ebenen tief?",
+    "ergebnis": "/tmp/tb52_attrappe_8ddu1hhn",
+    "erwartet": "/tmp/tb52_attrappe_8ddu1hhn",
+    "trifft": true,
+    "bedeutung": "Auch der Kindeskindprozess erbt. Der Selektionslauf darf also beliebig tief starten."
+  },
+  {
+    "nr": 4,
+    "frage": "PROZESSLOKALER Modus im Eltern - was tut das Kind?",
+    "ergebnis": "/home/user/trading-bot/data",
+    "erwartet": "/home/user/trading-bot/data (STILL falsch)",
+    "trifft": true,
+    "bedeutung": "⚠️ **Das Loch des prozesslokalen Wegs, gemessen.** Der Eltern steht im Modus, das Kind liest den Live-Bestand - ohne Fehler, ohne Meldung. Genau deshalb faellt dieser Weg aus."
+  },
+  {
+    "nr": 5,
+    "frage": "Kind erbt einen ANDEREN Hash als der Snapshot traegt",
+    "ergebnis": "rc=1, stderr endet auf: paths.Selektionsfehler: Der Snapshot in /tmp/tb52_attrappe_8ddu1hhn traegt den H",
+    "erwartet": "rc != 0, Selektionsfehler",
+    "trifft": true,
+    "bedeutung": "⭐ Weil der Modus den Hash traegt und nicht nur 'an/aus', ist ein falsch geerbter Modus ein Abbruch statt eines stillen Danebengriffs."
+  },
+  {
+    "nr": 6,
+    "frage": "UEBRIGGEBLIEBENER Modus - sagt der Lauf es wenigstens?",
+    "ergebnis": "stderr: [paths] SELEKTIONSMODUS AKTIV - Kursdaten kommen aus /tmp/tb52_attrappe_8ddu1hhn (snapshot",
+    "erwartet": "eine Zeile auf stderr",
+    "trifft": true,
+    "bedeutung": "⭐ Prueffrage D1. Der Lauf rechnet gegen den Snapshot - aber **stumm ist er nicht**. Im Cron-Protokoll bliebe eine Spur."
+  },
+  {
+    "nr": 7,
+    "frage": "CRON-Nachbildung (leere Umgebung) - traegt sie den Modus?",
+    "ergebnis": "/home/user/trading-bot/data",
+    "erwartet": "/home/user/trading-bot/data",
+    "trifft": true,
+    "bedeutung": "⭐ Ein Cron-Lauf erbt die interaktive Shell nicht. Gegen einen in einer Shell uebriggebliebenen Modus ist er damit strukturell geschuetzt. ⚠️ **Nicht** geschuetzt waere er, stuende der Modus in der Crontab-Zeile selbst oder in einem von dort gesourcten Profil - das ist das benannte Restloch und gehoert auf den Mac."
+  }
+]

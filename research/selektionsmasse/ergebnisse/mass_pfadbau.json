@@ -1,0 +1,211 @@
+{
+  "ausgangszahl": 29,
+  "module_geprueft": 90,
+  "nicht_gemessen": [],
+  "stand": 29,
+  "treffer": [
+    {
+      "datei": "strategies/elliott_wave/backtest_elliott.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 46
+    },
+    {
+      "datei": "strategies/elliott_wave/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 32
+    },
+    {
+      "datei": "strategies/elliott_wave/optimise_elliott.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 31
+    },
+    {
+      "datei": "strategies/elliott_wave/quarterly_review.py",
+      "quelltext": "CONFIG_DIR = _P[\"CONFIG_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 28
+    },
+    {
+      "datei": "strategies/elliott_wave/walk_forward.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 35
+    },
+    {
+      "datei": "strategies/elliott_wave/zigzag_indicator.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 21
+    },
+    {
+      "datei": "strategies/elliott_wave_stocks/backtest_elliott.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 46
+    },
+    {
+      "datei": "strategies/elliott_wave_stocks/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 32
+    },
+    {
+      "datei": "strategies/elliott_wave_stocks/optimise_elliott.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 31
+    },
+    {
+      "datei": "strategies/elliott_wave_stocks/quarterly_review.py",
+      "quelltext": "CONFIG_DIR = _P[\"CONFIG_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 30
+    },
+    {
+      "datei": "strategies/elliott_wave_stocks/zigzag_indicator.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 21
+    },
+    {
+      "datei": "strategies/rsi2_crypto/backtest_rsi2.py",
+      "quelltext": "price_df = pd.read_csv(os.path.join(_P[\"DATA_DIR\"], \"BTCUSDT_1d.csv\"), parse_dates=[\"open_time\"])",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 143
+    },
+    {
+      "datei": "strategies/rsi2_crypto/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 39
+    },
+    {
+      "datei": "strategies/rsi2_mean_reversion/backtest_rsi2.py",
+      "quelltext": "price_df = pd.read_csv(os.path.join(_P[\"DATA_DIR\"], \"AAPL_1d.csv\"), parse_dates=[\"open_time\"])",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 179
+    },
+    {
+      "datei": "strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 21
+    },
+    {
+      "datei": "strategies/rsi2_mean_reversion/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 32
+    },
+    {
+      "datei": "strategies/t3_supertrend/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 27
+    },
+    {
+      "datei": "strategies/t3_supertrend/optimise_trend.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 20
+    },
+    {
+      "datei": "strategies/t3_supertrend/quarterly_review.py",
+      "quelltext": "CONFIG_DIR = _P[\"CONFIG_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 45
+    },
+    {
+      "datei": "strategies/turtle_soup_crypto/backtest_turtle_soup.py",
+      "quelltext": "price_df = pd.read_csv(os.path.join(_P[\"DATA_DIR\"], \"BTCUSDT_1d.csv\"), parse_dates=[\"open_time\"])",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 187
+    },
+    {
+      "datei": "strategies/turtle_soup_crypto/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 25
+    },
+    {
+      "datei": "strategies/turtle_soup_stocks/backtest_turtle_soup.py",
+      "quelltext": "price_df = pd.read_csv(os.path.join(_P[\"DATA_DIR\"], \"AAPL_1d.csv\"), parse_dates=[\"open_time\"])",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 183
+    },
+    {
+      "datei": "strategies/turtle_soup_stocks/buy_and_hold_benchmark.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 17
+    },
+    {
+      "datei": "strategies/turtle_soup_stocks/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 31
+    },
+    {
+      "datei": "strategies/volatility_breakout/backtest_breakout.py",
+      "quelltext": "price_df = pd.read_csv(os.path.join(_P[\"DATA_DIR\"], \"AAPL_1d.csv\"), parse_dates=[\"open_time\"])",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 216
+    },
+    {
+      "datei": "strategies/volatility_breakout/buy_and_hold_benchmark.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 19
+    },
+    {
+      "datei": "strategies/volatility_breakout/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 34
+    },
+    {
+      "datei": "strategies/volatility_breakout_crypto/backtest_breakout.py",
+      "quelltext": "price_df = pd.read_csv(os.path.join(_P[\"DATA_DIR\"], \"BTCUSDT_1d.csv\"), parse_dates=[\"open_time\"])",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 175
+    },
+    {
+      "datei": "strategies/volatility_breakout_crypto/multi_symbol_optimise.py",
+      "quelltext": "DATA_DIR = _P[\"DATA_DIR\"]",
+      "verwendung": "zu pruefen (von Hand ansehen)",
+      "was": "Datenpfad aus shared/strategy_paths.py",
+      "zeile": 27
+    }
+  ]
+}

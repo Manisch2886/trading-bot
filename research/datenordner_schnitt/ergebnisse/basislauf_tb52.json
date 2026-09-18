@@ -1,0 +1,1041 @@
+{
+  "ergebnisse": [
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "broker/test_broker.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] Und tauchen im Text auf",
+        "",
+        "==============================================================================",
+        "163 von 163 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "broker/test_ibkr.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "                                                     ^^^^^^^^^^^^^^",
+        "  File \"/usr/lib/python3.11/zoneinfo/_common.py\", line 24, in load_tzdata",
+        "    raise ZoneInfoNotFoundError(f\"No time zone found with key {key}\")",
+        "zoneinfo._common.ZoneInfoNotFoundError: 'No time zone found with key US/Eastern'"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 0.1,
+      "unerwartet": true
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "dashboard/test_dashboard.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "    ^^^^^^^^^^^^^^^^^^^^^^^^^^^",
+        "  File \"/home/user/trading-bot/dashboard/app.py\", line 83, in <module>",
+        "    from fastapi import FastAPI, HTTPException, Request",
+        "ModuleNotFoundError: No module named 'fastapi'"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 0.8,
+      "unerwartet": true
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "dashboard/test_portfolio_sicht.py",
+      "einordnung": "bekannt rot (Mac 17.09.: 1 Fehler)",
+      "letzte_zeilen": [
+        "==============================================================================",
+        "67 von 69 Pruefungen bestanden, 2 fehlgeschlagen.",
+        "  - test_endpunkte (Ausnahme)",
+        "  - test_notfallweg (Ausnahme)"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 2.6,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "notifications/test_manual_close.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  - test_nicht_freigeschalteter_bot_ueber_telegram",
+        "",
+        "118 Pruefungen bestanden, 0 fehlgeschlagen.",
+        "Alle Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 8.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "notifications/test_schliess_benachrichtigung.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] Eine EROEFFNUNG erzeugt weiterhin ein Ereignis   ['🟢 *T3/ADX/SuperTrend (Krypto)*: Neuer Trade eroeffnet\\nSymbol: `ETHUSDT`  |  Entry: 2000",
+        "",
+        "==============================================================================",
+        "99 von 99 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 1.0,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "notifications/test_waechter_melden.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] Mutante 'der Fingerabdruck laeuft ueber die ganze Ausgabe': genau die erwarteten Abschnitte schlagen an   fehlt: -; zuviel: -",
+        "",
+        "==============================================================================",
+        "149 von 149 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 20.7,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/backtest_defaults/test_backtest_defaults.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "3) Keine offenen Faelle mehr",
+        "  [OK ] Kein wirksamer Default ist mehr Kandidat oder Abweichung",
+        "",
+        "59/59 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 1.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/datenluecke_wurzelkorrektur/test_wurzelkorrektur.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "============================================================",
+        "25 Checks bestanden, 0 fehlgeschlagen.",
+        "============================================================"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 2.8,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/datenordner_schnitt/test_flackerstufe.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] 4.7 die Datei gibt es wirklich",
+        "",
+        "==============================================================================",
+        "24 von 24 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/datenordner_schnitt/test_prozessgruppe.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] 3.3 und `fuehre_aus` benutzt sie auch",
+        "",
+        "==============================================================================",
+        "11 von 11 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 43.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "ungeprueft",
+      "datei": "research/drawdown_reihenfolge/test_drawdown.py",
+      "einordnung": "ungeprueft: verlangt ein Bot-Argument",
+      "letzte_zeilen": [
+        "Aenderung folgt, entscheidet der Nutzer.",
+        "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!",
+        "Nutzung: python3 test_drawdown.py <bot>",
+        "Bots: elliott_wave, t3_supertrend, rsi2_crypto, turtle_soup_crypto, volatility_breakout_crypto, elliott_wave_stocks, rsi2_mean_reversion, turtle_soup_stocks, volatility_breakout"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 0.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/elliott_wave_lookahead/test_lookahead.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "============================================================",
+        "35 Checks bestanden, 0 fehlgeschlagen.",
+        "============================================================"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.6,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "ungeprueft",
+      "datei": "research/elliott_wave_params/test_params.py",
+      "einordnung": "ungeprueft: verlangt ein Bot-Argument",
+      "letzte_zeilen": [
+        "Nutzung: python3 test_params.py <elliott_wave|elliott_wave_stocks>"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 0.7,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/etf_trendfolge/test_etf_trendfolge.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  Teil J ...",
+        "",
+        "==============================================================================",
+        "64/64 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 3.8,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/exposure_messung/test_exposure_kern.py",
+      "einordnung": "bekannt rot (Mac 17.09.: 1 Fehler) - hier aber GRUEN",
+      "letzte_zeilen": [
+        "  ok    am Tag mit nur einem gueltigen Kurs zaehlt dieser allein (+10 %)",
+        "  ok    die 10 % schlechtesten Tage von zehn Tagen sind genau einer",
+        "",
+        "Alle Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.5,
+      "unerwartet": true
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/faltenplan_neun/test_faltenplan_neun.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "    ok   I3: und nur bei diesem Bot - die anderen acht bleiben stehen",
+        "",
+        "==============================================================================",
+        "145/145 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 88.5,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "ungeprueft",
+      "datei": "research/fib_score_stufen/test_stufen.py",
+      "einordnung": "ungeprueft: verlangt ein Bot-Argument",
+      "letzte_zeilen": [
+        "Nutzung: python3 test_stufen.py <elliott_wave|elliott_wave_stocks>"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 0.0,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/hrp_portfolio/test_corrected_curves.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "============================================================",
+        "14 Checks bestanden, 0 fehlgeschlagen.",
+        "============================================================"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "research/hrp_portfolio/test_hrp_core.py",
+      "einordnung": "bekannt rot (Mac 17.09.: scipy fehlt)",
+      "letzte_zeilen": [
+        "    from hrp_core import (",
+        "  File \"/home/user/trading-bot/research/hrp_portfolio/hrp_core.py\", line 28, in <module>",
+        "    from scipy.cluster.hierarchy import linkage",
+        "ModuleNotFoundError: No module named 'scipy'"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 0.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/krypto_historie/test_faltenplan.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  OK    mit Mutation: die ZAHL der Falten bleibt dabei unveraendert richtig",
+        "",
+        "==============================================================================",
+        "38/38 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/oos_take_profit/test_oos_take_profit.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] elliott_wave: OOS reicht alle 3 gesuchten Dimensionen durch   ['deviation_pct', 'stop_loss_pct', 'take_profit_fib']",
+        "  [OK ] elliott_wave_stocks: OOS reicht alle 4 gesuchten Dimensionen durch   ['deviation_pct', 'stop_loss_pct', 'take_profit_fib', 'use_take_profit']",
+        "",
+        "22/22 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.7,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/order_sensitivity/test_order_core.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "============================================================",
+        "32 Checks bestanden, 0 fehlgeschlagen.",
+        "============================================================"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 1.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/pnl_2025_fixed_size/test_pnl.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] volatility_breakout_crypto: Gewinnrate nachgerechnet   43.9 % vs 43.9 %",
+        "  [OK ] kein Bot-Code veraendert (git diff auf strategies/ ist leer)   leerer Diff",
+        "",
+        "93/93 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.6,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/registernachtrag_tb41/test_registernachtrag_tb41.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "==============================================================================",
+        "50/50 Pruefungen bestanden.",
+        "=============================================================================="
+      ],
+      "rueckgabe": 0,
+      "sekunden": 12.0,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/registernachtrag_tb48/test_abschnitt17.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] die Ausgabe weist die eine Abweichung als erwartet aus",
+        "",
+        "==============================================================================",
+        "24 von 24 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 134.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/selektionsmasse/test_eigener_pfadbau.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "⚠️ Und der Befund, den die Zahl allein nicht sagt: KEINES der 90 Selektionsmodule",
+        "   importiert `shared/paths.py`. Der Selektionsmodus aus TB-52 erreicht sie",
+        "   heute nicht - das Verdrahten ist TB-53."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.5,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/selektionsmasse/test_wanduhr.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "   nur Protokollzeile               3",
+        "   zu pruefen (von Hand ansehen)    3",
+        "",
+        "ERGEBNIS: GRUEN - 6, genau die Ausgangszahl. Nichts dazugekommen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/sync_check/test_sync_check.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "============================================================",
+        "33 Checks bestanden, 0 fehlgeschlagen.",
+        "============================================================"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.2,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/tb24_haltedauern/test_haltedauer_kern.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  ok    dieser Testlauf hat den Arbeitsbaum nicht veraendert",
+        "  ok    wer schreibt, schreibt in den eigenen Ordner (aussen vor: keine)",
+        "",
+        "Alle Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 2.0,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/tb27_kapitalsimulation/test_vergleich.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  OK    eine reine Ausgabe-Aenderung meldet der Waechter trotzdem - was auf dem Bildschirm steht, war hier schon einmal falsch",
+        "",
+        "======================================================================",
+        "23/23 bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 2.6,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/trailing_stops/test_atr_core.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "============================================================",
+        "51 Checks bestanden, 0 fehlgeschlagen.",
+        "============================================================"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.6,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/trend_overlay/test_corrected_curves.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "============================================================",
+        "14 Checks bestanden, 0 fehlgeschlagen.",
+        "============================================================"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/trend_overlay/test_trend_core.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "[OK] signal_active_stats: laengste Episode korrekt erkannt (3 Tage am Ende)",
+        "[OK] signal_active_stats: aktiver Anteil korrekt berechnet (60.0%)",
+        "",
+        "ALLE CHECKS OK"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/turn_of_month/test_turn_of_month.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "110/110 Pruefungen bestanden.",
+        "==============================================================================",
+        "WEG SAUBER - alle neun Pfadkriterien P1 bis P9 bestanden.",
+        "Keine Stelle, an der eine Entscheidung ausserhalb des Registers noetig war."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 112.5,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "research/universum_trockenlauf/test_universum_trockenlauf.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "    from fetch_multi_data import INTERVAL",
+        "  File \"/home/user/trading-bot/shared/fetch_multi_data.py\", line 39, in <module>",
+        "    from binance.client import Client",
+        "ModuleNotFoundError: No module named 'binance'"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 31.2,
+      "unerwartet": true
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/vbc_deepdive/test_vbc_core.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "============================================================",
+        "56 Checks bestanden, 0 fehlgeschlagen.",
+        "============================================================"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.7,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/versuchsregister/test_versuchsregister.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  OK    wo die Untersuchung schreibt, schreibt sie in ein Wegwerf-Verzeichnis (aussen vor: [])",
+        "",
+        "========================================================================",
+        "Alle 41 Zusicherungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 10.0,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/volatility_scaled_sizing/test_vol_sizing_core.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "[OK] MAX_CONCURRENT_POSITIONS=2 bei 3 sich ueberlappenden Trades: genau 1 wird uebersprungen",
+        "[OK] Max Drawdown ist <= 0 (per Definition, ein Rueckgang gegenueber dem bisherigen Hoechststand)",
+        "",
+        "ALLE CHECKS OK"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.6,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "research/vorregistrierung/test_vorregistrierung.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  Teil H ...",
+        "",
+        "==============================================================================",
+        "150/150 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 42.7,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_abrufschutz.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] die widerlegte Begruendung ist entfernt   []",
+        "",
+        "==============================================================================",
+        "77 von 77 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 31.5,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_agent2_kapitalmass.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "Auswahl-Zielgroesse: robustness_score_chronologisch (avg_return_pct x Wurzel(num_trades) / |max_drawdown_chronologisch_pct|); im Nenner steht der Drawdown auf der chronologischen Reihenfolge der Trades. ERSATZWEISE: max_drawdown_kapital_pct, das fuehrende Mass, lag in diesen Ergebnissen nicht vor. Gewaehlt mit 3.0; zum Vergleich robustness_score_kapital=None, robustness_score_chronologisch=3.0, robustness_score=1.0 - die uebrigen sind NICHT Auswahlgrundlage.",
+        "",
+        "==============================================================================",
+        "34/34 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.5,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_agent2_zielfunktion.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "==============================================================================",
+        "41 von 41 Pruefungen bestanden, 0 fehlgeschlagen.",
+        "=============================================================================="
+      ],
+      "rueckgabe": 0,
+      "sekunden": 3.8,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_binance_historie.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  OK    ohne Mutation urteilt sie eng genug (Teil H hat es gezeigt)",
+        "",
+        "==============================================================================",
+        "75/75 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.9,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_determinismus.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "",
+        "==============================================================================",
+        "Ergebnis: 54 bestanden, 0 fehlgeschlagen",
+        "=============================================================================="
+      ],
+      "rueckgabe": 0,
+      "sekunden": 34.3,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": true,
+      "art": "zeitgrenze",
+      "datei": "shared/test_drawdown_beide_masse.py",
+      "einordnung": "erwartet: terminiert nicht (bekannt)",
+      "letzte_zeilen": [
+        "==============================================================================",
+        "Selbsttests: beide Drawdown-Masse in multi_symbol_optimise.py",
+        "=============================================================================="
+      ],
+      "rueckgabe": -15,
+      "sekunden": 300.0,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_empfehlung_format.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] Wochenbericht ohne Hinweis: kein Hervorhebungs-Block",
+        "  [OK ] Wochenbericht ohne Hinweis: Einordnung trotzdem enthalten",
+        "",
+        "70/70 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.4,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_entscheidungskerze.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "--- 14 Was unberuehrt bleiben musste ------------------------------------------",
+        "",
+        "==============================================================================",
+        "Alle 122 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 7.2,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_ergebniskurven.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] Unterschied oberhalb der Rundung -> ABWEICHEND",
+        "",
+        "==============================================================================",
+        "44 von 44 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 26.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_fetch_binance_data.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "          und wird von keiner anderen mitgetragen.",
+        "",
+        "==============================================================================",
+        "77 von 77 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 2.7,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "shared/test_groessenfaktor.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  File \"/home/user/trading-bot/shared/test_groessenfaktor.py\", line 414, in _lauf",
+        "    raise RuntimeError(",
+        "RuntimeError: Der Lauf hat keine Datenbank in /tmp/tb42_lauf_lwimoulz/suche0/db angelegt - der Harnisch hat nicht gegriffen.",
+        "Ausgabe:"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 0.8,
+      "unerwartet": true
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "shared/test_kursdaten.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  - test_am_echten_bot (Ausnahme)",
+        "  - test_gegenprobe (Ausnahme)",
+        "  - simulate_portfolio liess sich aufrufen",
+        "  - fetch_historical_data liess sich aufrufen"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 9.2,
+      "unerwartet": true
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_kursdaten_neuaufbau.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  OK    deshalb laeuft die echte Probe auf Lage 1",
+        "",
+        "==============================================================================",
+        "67/67 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.9,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "shared/test_ladeprotokoll.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  - 2 t3_supertrend: Loader laeuft  [ModuleNotFoundError: No module named 'binance']",
+        "  - 3 elliott_wave: beide Laeufe gehen durch  [ModuleNotFoundError: No module named 'binance' | ModuleNotFoundError: No module named 'binance']",
+        "  - 3 elliott_wave_stocks: beide Laeufe gehen durch  [ModuleNotFoundError: No module named 'yfinance' | ModuleNotFoundError: No module named 'yfinance']",
+        "  - 3 t3_supertrend: beide Laeufe gehen durch  [ModuleNotFoundError: No module named 'binance' | ModuleNotFoundError: No module named 'binance']"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 47.8,
+      "unerwartet": true
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "shared/test_leeres_symbol.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  - turtle_soup_stocks: die Umfrage laeuft",
+        "  - volatility_breakout: die Umfrage laeuft",
+        "  - volatility_breakout_crypto: die Umfrage laeuft",
+        "  - die Indikatorrechnung bricht nur bei t3_supertrend ab - bekannt und eingefangen, kein neuer stiller Ausfall"
+      ],
+      "rueckgabe": 1,
+      "sekunden": 9.6,
+      "unerwartet": true
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_live_params_werte.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] Buy-and-Hold als Glied der Validierungskette loest NICHT aus   []",
+        "  [OK ] Quelle aus einem fremden Eintrag belegt nichts   ['- 2026-09-02: schlaegt Buy-and-Hold klar (1458% vs. 756%).']",
+        "",
+        "69/69 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.0,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_messkette.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  OK    elliott_wave: der gedruckte Max Drawdown traegt die Marke",
+        "",
+        "==============================================================================",
+        "93/93 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 34.2,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_paths.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [ok]     F5 Mutationsprobe beisst - mit den makedirs-Zeilen entsteht data/ beim Import - die Probe faellt dort durch, wie sie soll",
+        "",
+        "==============================================================================",
+        "24 von 24 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 1.6,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_regimewache.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "==============================================================================",
+        "16/16 Pruefungen bestanden.",
+        "",
+        "Einbaustand: 0 von 3 Stellen - offen: ['strategies/t3_supertrend/equity_simulation.py', 'strategies/t3_supertrend/multi_symbol_optimise.py', 'strategies/volatility_breakout_crypto/equity_simulation.py']"
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.0,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_snapshot.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] git sieht unter data/ nichts Geaendertes oder Unversioniertes   []",
+        "",
+        "==============================================================================",
+        "164 von 164 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 3.7,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "shared/test_stabile_sortierung.py",
+      "einordnung": "bekannt rot (Mac 17.09.: 3 Fehler)",
+      "letzte_zeilen": [
+        "==============================================================================",
+        "Ergebnis: 45 bestanden, 1 fehlgeschlagen",
+        "  - Abschnitt 6: shared/ergebniskurven.py meldet '9x AKTUELL' - Neu erzeugen mit:  python3 shared/ergebniskurven.py --erzeugen",
+        "=============================================================================="
+      ],
+      "rueckgabe": 1,
+      "sekunden": 56.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_stille_ausfaelle.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] und im Arbeitsbaum liegt unter data/ nichts Unversioniertes oder Geaendertes   []",
+        "",
+        "==============================================================================",
+        "27 von 27 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 5.3,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_umstellungstag.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "volatility_breakout_crypto   2026-09-18T18:59:09Z   1d         krypto",
+        "",
+        "==============================================================================",
+        "Alle 25 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "rot",
+      "datei": "shared/test_wellenauswahl.py",
+      "einordnung": "bekannt rot (Mac 17.09.: 1 Fehler)",
+      "letzte_zeilen": [
+        "==============================================================================",
+        "Ergebnis: 322 bestanden, 1 fehlgeschlagen",
+        "  - Abschnitt 10: shared/ergebniskurven.py meldet '9x AKTUELL' - Neu erzeugen mit:  python3 shared/ergebniskurven.py --erzeugen",
+        "=============================================================================="
+      ],
+      "rueckgabe": 1,
+      "sekunden": 88.3,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_zeitabdeckung.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  OK    deshalb laeuft die echte Probe auf Lage 1",
+        "",
+        "==============================================================================",
+        "40/40 Pruefungen bestanden."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.5,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "shared/test_zuteilung.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  ~ ausgelassen: elliott_wave: simulate_portfolio (Modul binance fehlt)",
+        "  ~ ausgelassen: elliott_wave_stocks: simulate_portfolio (Modul yfinance fehlt)",
+        "  ~ ausgelassen: t3_supertrend: simulate_portfolio (Modul binance fehlt)",
+        "=============================================================================="
+      ],
+      "rueckgabe": 0,
+      "sekunden": 19.5,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "system/test_caffeinate_plist.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "  [OK ] README dokumentiert die Grenze: -s wirkt nicht auf Batterie",
+        "",
+        "==============================================================================",
+        "53 von 53 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "gruen",
+      "datei": "system/test_dienst_plists.py",
+      "einordnung": "",
+      "letzte_zeilen": [
+        "==============================================================================",
+        "144 von 144 Pruefungen bestanden, 0 fehlgeschlagen, 0 offen (Platzhalter).",
+        "",
+        "Ergebnis: alles geprueft und in Ordnung. Rueckgabewert 0."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 0.1,
+      "unerwartet": false
+    },
+    {
+      "abgebrochen": false,
+      "art": "flackernd",
+      "datei": "system/test_log_rotation.py",
+      "einordnung": "flackernd (Mac ~30 %, 18.09.2026, TB-49-Maclauf: 3 von 10 rot, immer 116/117): heute gruen",
+      "heute": "gruen",
+      "letzte_zeilen": [
+        "  [OK ] README erwaehnt newsyslog und warum nicht",
+        "",
+        "==============================================================================",
+        "117 von 117 Pruefungen bestanden, 0 fehlgeschlagen."
+      ],
+      "rueckgabe": 0,
+      "sekunden": 5.0,
+      "unerwartet": false
+    }
+  ],
+  "grenze": 300,
+  "je_art": {
+    "flackernd": 1,
+    "gruen": 53,
+    "rot": 11,
+    "ungeprueft": 3,
+    "zeitgrenze": 1
+  }
+}

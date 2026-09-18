@@ -1,0 +1,147 @@
+{
+  "bezugscommit": "062bacf62638f41df55d3f861feb4f6281fdef18",
+  "bots": [
+    "elliott_wave",
+    "elliott_wave_stocks",
+    "rsi2_crypto",
+    "rsi2_mean_reversion",
+    "t3_supertrend",
+    "turtle_soup_crypto",
+    "turtle_soup_stocks",
+    "volatility_breakout",
+    "volatility_breakout_crypto"
+  ],
+  "nur_in_neu": [
+    "paths.LIVE_CONFIG_DIR",
+    "paths.LIVE_DATA_DIR",
+    "paths.MANIFEST",
+    "paths.UMGEBUNG_HASH",
+    "paths.UMGEBUNG_WURZEL"
+  ],
+  "selbstprobe": {
+    "gebissen": true,
+    "gefundene_unterschiede": 9,
+    "mutation": "\"data\" -> \"daten_verstellt\" in der alten Fassung"
+  },
+  "unterschiede": [],
+  "verglichen": 99,
+  "werte_je_bot": {
+    "elliott_wave": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_elliott_wave.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/elliott_wave",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/elliott_wave",
+      "strategy_paths.STRATEGY_NAME": "elliott_wave"
+    },
+    "elliott_wave_stocks": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_elliott_wave_stocks.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/elliott_wave_stocks",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/elliott_wave_stocks",
+      "strategy_paths.STRATEGY_NAME": "elliott_wave_stocks"
+    },
+    "rsi2_crypto": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_rsi2_crypto.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/rsi2_crypto",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/rsi2_crypto",
+      "strategy_paths.STRATEGY_NAME": "rsi2_crypto"
+    },
+    "rsi2_mean_reversion": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_rsi2_mean_reversion.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/rsi2_mean_reversion",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/rsi2_mean_reversion",
+      "strategy_paths.STRATEGY_NAME": "rsi2_mean_reversion"
+    },
+    "t3_supertrend": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_t3_supertrend.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/t3_supertrend",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/t3_supertrend",
+      "strategy_paths.STRATEGY_NAME": "t3_supertrend"
+    },
+    "turtle_soup_crypto": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_turtle_soup_crypto.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/turtle_soup_crypto",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/turtle_soup_crypto",
+      "strategy_paths.STRATEGY_NAME": "turtle_soup_crypto"
+    },
+    "turtle_soup_stocks": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_turtle_soup_stocks.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/turtle_soup_stocks",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/turtle_soup_stocks",
+      "strategy_paths.STRATEGY_NAME": "turtle_soup_stocks"
+    },
+    "volatility_breakout": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_volatility_breakout.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/volatility_breakout",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/volatility_breakout",
+      "strategy_paths.STRATEGY_NAME": "volatility_breakout"
+    },
+    "volatility_breakout_crypto": {
+      "paths.BASE_DIR": "<WURZEL>",
+      "paths.CONFIG_DIR": "<WURZEL>/config",
+      "paths.DATA_DIR": "<WURZEL>/data",
+      "paths.SHARED_DIR": "<WURZEL>/shared",
+      "strategy_paths.BASE_DIR": "<WURZEL>",
+      "strategy_paths.CONFIG_DIR": "<WURZEL>/config",
+      "strategy_paths.DATA_DIR": "<WURZEL>/data",
+      "strategy_paths.DB_FILE": "<WURZEL>/paper_trading_volatility_breakout_crypto.db",
+      "strategy_paths.LOGS_DIR": "<WURZEL>/logs/volatility_breakout_crypto",
+      "strategy_paths.RESULTS_DIR": "<WURZEL>/results/volatility_breakout_crypto",
+      "strategy_paths.STRATEGY_NAME": "volatility_breakout_crypto"
+    }
+  }
+}
