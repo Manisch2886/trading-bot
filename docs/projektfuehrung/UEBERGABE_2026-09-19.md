@@ -296,3 +296,47 @@ nachzumessen.** Dass eine Konstante „Stunden" heißt, sagt nichts über die
 Auflösung der Daten. Dass ein Bot „Ausbruch" heißt, sagt nichts über seine
 Gewinnverteilung. **Ab jetzt sagt jeder Satz, ob er gemessen oder geschlossen
 ist.**
+
+---
+
+# Nachtrag zur Übergabe — 21:45 Ortszeit
+
+⚠️ **Die Blöcke 1, 2, 4, 5 und 8 oben stehen auf dem Stand 21:15. Seither ist
+folgendes eingetreten. Bei Widerspruch gilt dieser Nachtrag.**
+
+## TB-56 ist abgeschlossen
+
+| | gemessen 21:42 |
+|---|---|
+| Commits | `04b42b3` (Teil A, Messung) → `7387cc5` (Teil B, Schranke entfernt) → **`8946217`** (Ergebnisdokument, 32 119 Bytes) |
+| **Basislauf nachher** | **60 grün / 6 rot / 1 flackernd / 3 ungeprüft / 1 Zeitgrenze = 71** |
+| ⭐ **`UNERWARTET 1`** | `research/vorregistrierung/test_vorregistrierung.py`, `KeyError: '2017'` in `auswertung.py:237` — **ausdrücklich als unerwartet geführt, nicht als „bekannt rot"** |
+| Datenstand nachher | `d9449faf…` ✓ · Snapshot `UNVERAENDERT` ✓ · Registerprüfer **KEIN BEFUND** ✓ |
+| ⭐ **12 Datenbanken** | alle `OK`, `rc=0` — byteweise identisch |
+
+## Die dreizehn Dateien sind committet
+
+**`HEAD` = `2723c16`**, 19.09.2026 21:40:36 +0200, auf `origin/main`.
+**13 Dateien, 7 032 Einfügungen, 0 Entfernungen.**
+
+⇒ **Block 8 oben ist damit erledigt**, mit einer Ausnahme: die fünf Nachträge
+(n)–(r) sind **abgelegt, aber in `BACKLOG.md` noch nicht eingearbeitet** —
+gemessen 0 Treffer für `AF`, `MI`, `QR`, `KG`, `RT`. ⚠️ **Und die erfundenen
+Nummern in (p) („Block 2v", „K2y/K2z") müssen beim Einarbeiten auf die gemessene
+freie Nummer umgeschrieben werden, mit Vermerk.** Frei: Block **`2s`**,
+K-Nummern ab **`K2l`**.
+
+## Die nächsten drei Punkte
+
+| | |
+|---|---|
+| **1** | ⚠️⚠️ **TB-56b — Registerberichtigung 15.6 Punkt 2.** Dort steht *„die Schranke dafür ist das Register, nicht die Datenlage"*; TB-56 hat gemessen, dass die Datenlage 2017/2018/2019 zulässt. **Solange das so dasteht, widerspricht der Code dem Register.** Dazu im selben Zug: das Amendment zu Sperrliste 4 (`benchmark_drawdowns.json`, `DD_Toleranz` bei zwei Bots), die Änderung an Registertext 5f, die Prüfung der Abschnitte 18/20 gegen den Tatsachennotiz-Test und die Drei-Kategorien-Regel in Registertext 0 |
+| **2** | **Einarbeitung von (n)–(r) in `BACKLOG.md`** samt den fünf Sichtungsdurchgängen und dem Ersatz von `ARBEITSWEISE.md` Abschnitt 10 durch den Verweis auf `UMZUG.md` (Ersatztext dort in Abschnitt 7) |
+| **3** | **`auswertung.py` auf Verfahren B** — damit fällt der unerwartete rote Test |
+
+## Zwei Umgebungsbefunde aus dem Umzug
+
+| | |
+|---|---|
+| ⚠️ | **Termius frisst Geviertstriche und Zeilenumbrüche in Befehlen.** Die vierzeilige Commitnachricht kam als **zwei** Zeilen an, und ein `—` verschwand aus einer Fehlermeldung. Folgenlos, aber: **in Befehlen für Termius keine Geviertstriche und keine Zeilenumbrüche verwenden** |
+| ⚠️ | **`logs/auftraege/` ist über `.gitignore:27` (`logs/`) ausgeschlossen.** Eine Datei dort ist kein Beleg. Der Ordner ist Zwischenlager, und jede Datei darin hat eine offene Bringschuld ins Repo |
