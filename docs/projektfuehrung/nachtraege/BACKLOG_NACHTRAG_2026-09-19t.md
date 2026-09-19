@@ -34,3 +34,13 @@ Wartezustand auf ihn besteht nicht mehr.
 | # | Punkt |
 |---|---|
 | **K2n** | ⭐⭐ **IMMER DIREKT WEITERMACHEN.** Ausdrückliche Anweisung des Betreibers, 19.09.2026: *„Mache immer direkt weiter ohne das ich dich fragen muss wie geht es weiter."* **Eine Antwort endet nie mit einem Stillstand**; der nächste Handwerksschritt wird **getan**, nicht angekündigt und nicht zur Entscheidung gestellt. ⚠️ **Die Grenze bleibt unverändert:** Verfahrensfragen vor dem Tag gehen weiter an den Betreiber oder an Fable — aber als **anklickbare Entscheidungsvorlage neben der laufenden Arbeit**, nicht als Haltepunkt; und freigabepflichtige Befehle bleiben beim Betreiber. *„Weitermachen" heisst, alles bis zu ihnen fertig zu haben.* **Eingetragen in `ARBEITSWEISE.md` Abschnitt 13 (neu), in die Erinnerung und in Übergabe-Nachtrag 3 — drei Träger** |
+
+---
+
+## Nachgetragen — eine zweite Regel aus einem eigenen Fehler
+
+*(nächste freie K-Nummer nach dem oben vorgeschlagenen `K2n`: `K2o`)*
+
+| # | Punkt |
+|---|---|
+| **K2o** | ⚠️ **EIGENER FEHLER, zweimal am selben Abend: eine SOLL-Zeilenzahl ausgegeben, die geschätzt und nicht gezählt war.** Beim Anhängen an das Register „SOLL 3108 / 92" (tatsächlich 3095 / 86) und beim Anhängen an den TB-59-Auftrag „SOLL 256" (tatsächlich 254). **Der Inhalt war beide Male richtig, die Vorhersage falsch** — und sie stand im Befehl wie eine Messung. ⭐ **Die Regel: Eine Zahl, die als SOLL ausgegeben wird, ist vorher gezählt worden. Sonst heisst sie ausdrücklich „geschätzt" oder entfällt.** ⚠️ **Warum das kein Formfehler ist:** Ein falsches SOLL neben einem richtigen IST sieht aus wie ein Befund und ist keiner — es verbraucht genau die Aufmerksamkeit, die ein echter Unterschied bräuchte. *Dieselbe Familie wie Block 7, Punkt 3: ein Name ist kein Messwert, und eine Schätzung ist keine Messung.* ⭐ **Was stattdessen trägt und beide Male getragen hat: die zweite `numstat`-Spalte.** Sie ist eine Messung, keine Vorhersage |
