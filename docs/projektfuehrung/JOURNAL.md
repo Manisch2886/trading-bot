@@ -5756,6 +5756,436 @@ belegen, dass ein sprunghafter Fehler nicht da ist.** Sie zeigt nur, dass er
 diesmal nicht auftrat.
 ---
 
+## BG — TB-55: die Sitzung, deren Ergebnis ein Nichthandeln ist
+
+**19.09.2026. Cloud-Sitzung, Basis `main` = `origin/main` = `7e48e1f`.
+Nichts committet ausser dem Ergebnisdokument.**
+
+⭐ **Dies ist die erste Sitzung dieses Projekts, deren Ergebnis darin besteht,
+dass sie die beauftragte Handlung nicht ausgeführt hat.**
+
+---
+
+### Was gemessen wurde, und es war alles in Ordnung
+
+| | |
+|---|---|
+| `datenstand_hash` | `d9449faf…a995f84` · **223** Kursdateien — ⭐ **dreimal gemessen, dreimal identisch** |
+| Dateien gesamt | **225** — genau `config/sp500_top150.txt` und `config/top25_symbols.txt`, ⚠️ **keine dritte** |
+| Teilkerzen | **36** Befunde von **223** geprüften Dateien |
+| davon zugelassen | ⭐ **36**, Herkunft *Abschnitt 17.3* · Arten `{'rand_erste': 36}` · Urteile `{'abgeleitete_teilkerze': 36}` |
+| `nicht_zugelassen` | ⭐ **`[]` — leer** |
+| Rückgabewert / stderr | **0** / **0 Byte** |
+
+⭐ **Damit ist die Ausnahme aus 17.3 vollständig gedeckt:** kein Befund wäre
+ohne sie durchgerutscht, und keiner ist von ihr nicht gedeckt.
+
+⭐ **Und Messung 2 rechnet an der Quelle:** `herkunft.py::datenstand('data')`
+importiert und direkt aufgerufen — nicht dreimal dasselbe Werkzeug.
+
+---
+
+### Warum trotzdem nicht gezogen wurde
+
+**Nicht eine der Abweichungen betrifft eine Zahl. Alle betreffen die
+Umgebung.**
+
+| | Soll (Auftrag) | Tatsächlich |
+|---|---|---|
+| Interpreter | `trading-env/bin/python3` (**3.9.6** auf dem Mac) | `/usr/local/bin/python3`, **3.11.15** — `trading-env/` existiert hier nicht |
+| Schritt 0 | neun `*.db` quersummen **und kopieren** | ⚠️ **keine einzige vorhanden** (gitignoriert, nur auf dem Mac) — die Sicherung ist **strukturell nicht herstellbar** |
+| Zweig | `main`, kein eigener Zweig | Sitzungsmandat: eigener Zweig, Push auf `main` untersagt |
+| Ort | *„diese Aufgabe **ist** der Mac-Lauf"* | **kein Mac-Lauf** |
+
+> ⭐ **Der Satz, auf den es ankam, und er stammt aus dem Bericht:** *„Daraus
+> folgt: ein Zug auf dem Mac wird sehr wahrscheinlich denselben `snapshot_hash`
+> ergeben. Es folgt aber **nicht**, dass dieser Lauf ihn ziehen durfte."*
+
+⭐ **Die Sitzung hat die Gegenargumente selbst aufgeschrieben**, statt sie zu
+verschweigen — Arbeitsbaum sauber, alle 225 Dateien versioniert,
+`.gitattributes` nicht vorhanden, Rechnung nur mit Standardbibliothek. **Und
+hat trotzdem nicht gezogen.**
+
+**Der Betreiber hat auf Rückfrage bestätigt:** *„Nicht ziehen, nur
+berichten."*
+
+---
+
+### ⭐⭐ Der Gewinn, der nicht bestellt war
+
+```
+63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+```
+
+**Dieselbe Zahl, dreimal gerechnet, auf zwei Maschinen:**
+
+| Lauf | Maschine | Interpreter | Art |
+|---|---|---|---|
+| **TB-49**, 18.09. | Cloud | 3.11.x | ⭐ **echter Zug**: `GEZOGEN - 225 Datei(en), 211.0 MB, jede byteweise gegen die Quelle geprueft`, Nachprüfung `UNVERAENDERT` |
+| **TB-49**, 18.09. | MacBook | **3.9.6** | Trockenlauf, rc 0 |
+| **TB-55**, 19.09. | Cloud | 3.11.15 | Trockenlauf, rc 0 |
+
+⚠️ **Was das nicht ist:** nicht F1b/Q2 — die fragt nach der Reproduktion des
+**gezogenen** Snapshots aus dem Repo, und es gibt bis heute **einen** echten
+Zug, in ein Wegwerf-Verzeichnis. ⚠️ **Und nichts über den Bestand:** alle drei
+lasen denselben. *Gleiche Eingabe → gleiche Ausgabe ist das Mindeste einer
+Hash-Funktion.*
+
+⭐ **Was es ist:** Der Name ist **unabhängig von Maschine und
+Python-Nebenversion** — und er steht **vor** dem Zug fest. ⚠️ **Meldet der Mac
+etwas anderes, wird nicht gezogen, sondern geklärt.**
+
+---
+
+### ⚠️⚠️ Der Befund über die Projektführung
+
+**Der Auftrag nennt den Mac an drei Stellen — und macht den Ort an keiner zum
+Abbruchkriterium.** Die Abbruchkriterien nannten ausschliesslich Zahlen.
+
+⭐ **Die Sitzung hat den Abbruch selbst abgeleitet und zusätzlich gefragt.**
+⚠️ **Bei der einen unwiederholbaren Handlung dieses Projekts darf die
+Absicherung nicht am Urteil der Sitzung und an der Anwesenheit des Betreibers
+hängen.**
+
+⇒ ⭐ **Schritt −1 Ortsprüfung**, ab sofort in jedem `MAC_`-Auftrag:
+`uname -s` = `Darwin` · `test -x trading-env/bin/python3` · Version 3.9.x ·
+neun `*.db` auffindbar · `~/trading-bot` auf `main`. ⚠️ **Weicht eine ab:
+Auftrag beendet** — nicht ziehen, nicht ersatzweise trocken laufen, nicht den
+Interpreter austauschen.
+
+> ⭐ **Der Satz, der die Regel trägt:** *Der Zug ist nicht wiederholbar; der
+> Abbruch ist es.*
+
+**`MAC_TB-55_snapshot_ziehen_v2.md`:** **+31 Zeilen, 0 entfernt, 2
+Einfügestellen** — mit `diff` gemessen, nicht geschätzt.
+
+---
+
+### ⚠️ Zwei Berichtigungen an eigenen Aussagen
+
+| | |
+|---|---|
+| **1** | Ich hatte behauptet, `63e4b6c8…` sei **auch in den TB-52-Berichten** aufgetaucht. **Gegengezählt: 0 Treffer in beiden TB-52-Archiven.** Er kommt aus TB-49 (Cloud **und** Mac) und TB-55. *Der Beleg wird dadurch nicht schwächer, aber die Aussage war falsch* |
+| **2** | ⚠️ **Nummernkollision im Backlog:** Nachtrag (g) hat Rang **0,86** für „TB-55 = Faltenschranke + Berichtigung 17.3" vergeben; **formuliert und ausgeführt wurde unter TB-55 der Snapshot.** Aufgelöst in Nachtrag (h): **0,86 = Snapshot**, **0,87 = TB-56 Faltenschranke**. Nach F17 eine **Berichtigung** — sie löst einen Widerspruch innerhalb des Backlogs auf |
+
+---
+
+### ⚠️ Was der Registerprüfer nicht gesagt hat
+
+Er meldet **`KEIN BEFUND`** — und im Nebensatz:
+`Quelle beleg: dokument (Trockenlauf nicht lauffaehig: No module named
+'pandas')`.
+
+⚠️⚠️ **Fall von A1: ein fehlgeschlagener Aufruf und ein leeres Ergebnis sehen
+gleich aus.** Das Urteil ist nicht falsch — auf dem Mac rechnet er wirklich —,
+**aber ein Glied der Kette ist Papier statt Messung, und das steht nicht im
+Urteil, sondern daneben.** ⇒ **T55.7.**
+
+---
+
+### Der Stand nach dieser Sitzung
+
+| | |
+|---|---|
+| `data/` | ⭐ **unberührt** — `git status --porcelain -- data` leer, dreimal derselbe Hash |
+| `snapshots/` | **existiert nicht** — weder dort noch unter `data/snapshots/` |
+| `.gitignore` | **nicht geändert** — `git check-ignore` Rückgabewert **1**, von keinem Muster erfasst |
+| Sperrliste, `shared/snapshot.py`, `shared/paths.py` | **unberührt** |
+| Register | **kein Text geändert** |
+| `size-pack` | **114.77 MiB** · `in-pack` **2496** — ⭐ Ausgangswert für die Zuwachsmessung auf dem Mac |
+| Auftrag | ⭐ **unverbraucht**, jetzt als v2 mit Ortsprüfung |
+
+---
+
+### In einfacher Sprache
+
+**Die eingefrorene Kopie der Kursdaten wurde nicht angelegt — und das war
+richtig.** Alle inhaltlichen Prüfungen waren in Ordnung, jede einzelne. Aber
+der Lauf fand auf dem falschen Rechner statt: In der Cloud fehlen das
+vorgeschriebene Python und die neun Datenbanken, die vorher gesichert werden
+sollen.
+
+**Der Fehler lag in der Aufgabenstellung.** Sie sagte dreimal, dass sie für den
+Mac ist, aber nie: *prüfe das zuerst und höre sonst auf.* Ab jetzt steht das als
+erster Schritt in jedem Mac-Auftrag.
+
+**Und es kam etwas heraus, das nicht bestellt war:** Der Name, den die Kopie
+tragen wird, ist inzwischen auf zwei verschiedenen Rechnern mit zwei
+verschiedenen Python-Versionen gerechnet worden und dreimal gleich
+herausgekommen. ⚠️ **Nennt der Mac sie anders, wird nicht gezogen, sondern
+nachgeforscht.**
+
+---
+
+## BH — TB-55: der Eingabezustand existiert
+
+**19.09.2026, auf dem MacBook. `main`, Basis `7e48e1f` → Commits `1075dec`
+(Snapshot) und `4c80588` (Ergebnisdokument), beide gepusht.
+Interpreter durchgehend `trading-env/bin/python3` = Python 3.9.6.**
+
+⭐⭐ **Die eine Handlung dieses Projekts, die sich nicht wiederholen lässt, ist
+vollzogen.**
+
+```
+63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+```
+
+---
+
+### Die Zahlen, aus dem Manifest gelesen
+
+| | |
+|---|---|
+| Dateien | **225** = 223 Kursdateien + `config/sp500_top150.txt` + `config/top25_symbols.txt` — **keine dritte** |
+| Bytes gesamt | **211 040 678** |
+| Zeitpunkt (UTC) | **2026-09-19T06:49:32+00:00** |
+| `datenstand_hash` | `d9449faf…a995f84`, **223** — ⭐ **dreimal gemessen** (06:46, 06:49, 06:52 UTC), dreimal gleich |
+| Zugelassene Befunde | **36**, alle `rand_erste`, *Abschnitt 17.3* · `nicht_zugelassen` **leer** |
+| Zug | `GEZOGEN - 225 Datei(en), 211.0 MB, **jede byteweise gegen die Quelle geprueft**`, rc 0 |
+| Nachprüfung | ⭐ **`UNVERAENDERT`**, Soll = Ist für **beide** Hashes, rc 0 |
+| `.gitignore` | **nicht geändert** — `snapshots/` war nie erfasst |
+| Datenbanken | **12** gesichert (nicht neun), am Ende **12/12** byteweise identisch |
+
+---
+
+### ⭐⭐ Fünf unabhängige Belege — und der stärkste war nicht bestellt
+
+| # | |
+|---|---|
+| **1** | Byteweise Prüfung **beim Kopieren**, alle 225 |
+| **2** | `--pruefen` **danach**: `UNVERAENDERT` |
+| **3** | ⭐⭐ **`git rev-list` + `cat-file`: 1 Commit, 4 Trees, 1 Blob — der eine Blob ist das Manifest.** *Für keine der 225 Dateien wurde ein neuer Blob angelegt. git adressiert über den Inhalt — es bezeugt die Byte-Gleichheit mit `data/`, ohne unser Werkzeug zu kennen* |
+| **4** | Der Registerprüfer lief in einem Worktree auf `7e48e1f` und mass dort ebenfalls `d9449faf…`/223 — ⭐ **der versionierte Inhalt ist gleich dem Arbeitsbaum**, vorher nie gemessen |
+| **5** | Der Name ist **viermal** gerechnet: TB-49 Cloud (echter Zug, 3.11) · TB-49 Mac (3.9.6) · TB-55 Cloud (3.11.15) · **TB-55 Mac (3.9.6, dieser Zug)** |
+
+⭐ **Beleg 3 entstand aus der Zuwachsmessung, die nur die Kosten prüfen sollte.**
+
+---
+
+### ⚠️ Die Abweichung von TB-46, und wie sie behandelt wurde
+
+**Erwartet +0,001 %. Gemessen: +6 lose Objekte, +0,04 MiB (0,026 %), `du`
++80 KiB (0,048 %), `size-pack` unverändert.**
+
+**Erklärung:** TB-46 mass den *Packfile*-Zuwachs von 30 Dateien **ohne
+Manifest**; hier kommen ein 133-KB-Manifest und vier Tree-Objekte für 226
+Einträge mit 64-stelligen Pfadnamen hinzu — und der Nenner ist ein Repo aus
+**156 MiB losen** Objekten bei 3,4 MiB Packfile.
+
+> ⭐⭐ **Der Schluss, von der Sitzung selbst gezogen:** *„Die strukturelle
+> Aussage, auf die es ankam — gleiche Inhalte einmal — ist mit ‚1 Blob' direkt
+> belegt."*
+>
+> ⭐ **Eine Kostenmessung ist nie die Aussage, sondern ihr Stellvertreter.
+> Weicht der Stellvertreter ab, wird die Aussage direkt geprüft.**
+
+---
+
+### ⭐⭐ Ein offengelegter Fehler, und daraus ein neues Prüfprinzip
+
+> *„Der ‚vorher'-Lauf wurde erst **nach** dem Commit nachgeholt, weil ich ihn
+> vor dem Commit übersprungen hatte. Statt zu behaupten, er wäre gleichwertig,
+> habe ich den Stand `7e48e1f` als Worktree ausgecheckt und den Prüfer dort
+> laufen lassen."*
+
+⭐ **Nicht als „gemacht" verbucht. Nicht als gleichwertig behauptet.
+Rekonstruiert — und als Rekonstruktion benannt.**
+
+⇒ **A7:** *„Eine nachgeholte Vorher-Messung ist nur dann eine Vorher-Messung,
+wenn der Zustand inhaltsadressiert wiederherstellbar ist — und sie muss sagen,
+dass sie nachgeholt wurde."* ⚠️ **Bei Uhrzeit, Umgebung oder laufenden
+Prozessen wäre dasselbe Vorgehen wertlos gewesen.**
+
+**Ein zweiter benannter Fehler:** das erste Leseskript der Sitzung nahm an, die
+Kursdateien stünden im Manifest mit Präfix `data/`; sie stehen flach. ⭐ *„Das
+Manifest selbst war nie in Frage — nur meine Annahme über seine Form."*
+
+---
+
+### Was die Cron-Prüfung ergab
+
+**22 aktive Einträge**, nur Zeitfelder ausgegeben, **kein Befehl**.
+Abruf-Zähler **0**. `*/5` und `*/15` feuerten um 08:45 und 08:50 **während**
+der Sitzung — ⭐ **ohne Wirkung auf eine einzige der 12 Datenbanken.**
+`broker_testnet_t3_supertrend.db` um 08:05 passt zu `5 */4 * * *`.
+
+⭐ **T46.4 („kein Datencron") war eine Regel. Jetzt ist sie gemessen.**
+
+---
+
+### ⚠️ Zwei fremde `MANIFEST.json`
+
+`data_sicherung/2026-09-15_115131/` (TB-34-Sicherung, gitignoriert) und
+`research/hrp_portfolio/corrected_curves_original/` (versioniert). **Beide sind
+keine Snapshots.** ⚠️ **Die Abbruchregel „existiert schon einer" hätte hier
+falsch auslösen können** — das Kennzeichen ist der Ordnername
+`snapshots/<64 Hex>/`, nicht die Anwesenheit einer Manifestdatei.
+
+---
+
+### Der Stand nach dieser Sitzung
+
+| | |
+|---|---|
+| Snapshot | ⭐ **existiert**, versioniert, gepusht, `UNVERAENDERT` |
+| `data/` | unberührt, dreimal gemessen |
+| Sperrliste, `shared/snapshot.py`, `shared/paths.py` | **unberührt** |
+| Register | ⚠️ **noch kein Eintrag** — TB-55b folgt |
+| Die 0-Byte-Doppelgängerin | **mitgesichert, nicht gelöscht** — Beweismaterial für TB-53 |
+| Registerprüfer | vorher **und** nachher **KEIN BEFUND** |
+| `git status --porcelain` | **0 Zeilen** |
+
+---
+
+### In einfacher Sprache
+
+**Die eingefrorene Kopie aller Kursdaten existiert.** Sie heisst nach ihrem
+Inhalt, liegt im Projekt und ist hochgeladen. Ab jetzt ist sie die Grundlage
+des Auswahllaufs — und sie lässt sich Jahre später noch nachprüfen.
+
+**Fünf getrennte Gründe sprechen dafür, dass sie stimmt.** Der schönste: beim
+Einchecken brauchte git für keine einzige der 225 Dateien neuen Speicher. git
+legt gleiche Inhalte nur einmal ab — **dass es nichts Neues anlegte, heisst,
+die Kopie ist identisch, und das sagt ein Programm, das unser Werkzeug gar
+nicht kennt.**
+
+**Was noch fehlt:** Die Zahl muss ins Regelwerk. Das ist klein — aber es ist
+der Schritt, auf den alles andere wartet.
+
+---
+
+## BI — TB-55b: der Snapshot steht im Register
+
+**19.09.2026. `main`, `4c80588` → `0fe61d7`, gepusht. Python 3.9.6.**
+
+`docs/VORREGISTRIERUNG_neuselektion.md` hat einen neuen **Abschnitt 18** —
+eine **Tatsachennotiz** zu Registertext 5 / 5a, in der Form von 15.6.
+**62 Zeilen hinzugefügt, 0 entfernt.**
+
+⭐⭐ **Keine Zahl im Eintrag ist getippt.** Ein Skript liest `MANIFEST.json`
+per `json.load`, holt den Commit aus `git log -- snapshots/`, prüft
+`origin/main` per `git branch -r --contains` und misst die höchste
+Abschnittsnummer selbst (`assert neu == 18`). Vorher **8/8 Werte maschinell**
+gegen die Auftragsliterale verglichen, String- **und** Typgleichheit.
+
+### ⭐⭐ Aus einer Falle wurde Dokumentation
+
+Abschnitt **17.9** führt `snapshot_hash` = **`4fee547d…`** — die TB-47-Messung
+über die **223 Kursdateien allein**, vor dem Ziehen. ⚠️ **Das ist die Stelle,
+an der später jemand die falsche Zahl abschreibt.**
+
+Abschnitt 18 grenzt sie ausdrücklich ab: *„`63e4b6c8…` läuft über die 225
+Dateien; `4fee547d…` lief nur über die 223 Kursdateien und bezeichnet nicht
+diesen Snapshot. Beide bleiben richtig; sie beantworten verschiedene Fragen."*
+
+### ⚠️⚠️ Und dort wurde gegen den Wortlaut eines Abbruchkriteriums entschieden
+
+Der Auftrag sagte: *„Gibt es einen Snapshot-Abschnitt **mit einer Zahl darin**:
+ABBRUCH."* 17.9 enthält eine. ⭐ **Die Sitzung entschied nach dem Zweck, schrieb
+es hin und nannte den Commit zur Nachprüfung.**
+
+| | |
+|---|---|
+| ⭐ | **Die Entscheidung war richtig** — `4fee547d…` ist kein Duplikat |
+| ⚠️⚠️ | **Die Regel war schlecht geschrieben, und das liegt beim Auftraggeber.** *„Eine Zahl darin"* war ein **Stellvertreter** für *„ein Eintrag, der DIESEN Snapshot bezeichnet"* |
+
+⇒ **Zwei Regeln:** *Ein Abbruchkriterium benennt die Sache, nie ihren
+Stellvertreter.* · *Fallen Wortlaut und Zweck auseinander und ist der Betreiber
+erreichbar — fragen, nicht entscheiden.*
+
+⚠️ **Ein Befund über ein Dokument des Betreuers:** Die Angabe „Python 3.11.15"
+in Abschnitt 18 hat **keinen Beleg im Repo**. ⇒ **Jede Behauptung im Register
+braucht ihren Beleg im Repo. Ein Beleg in `~/Downloads` ist kein Beleg.**
+
+⭐ **Warum Abschnitt 18 und nicht 17.12** — besser begründet als beauftragt:
+Abschnitt 17 ist der TB-48-Nachtrag vom 18.09. und sagt in **17.11**
+ausdrücklich *„Kein Snapshot gezogen"*.
+
+---
+
+## BJ — TB-54: acht Nachträge, eine Rückfrage
+
+**19.09.2026. `main`, `1124880` → `d9f3c4b` (d–g) → `3121ec2` (h–k), gepusht.**
+
+**`BACKLOG.md` 764 → 929 Zeilen, 167 hinzu / 2 entfernt.** Sieben neue Blöcke
+**2j, 2k, 2m, 2n, 2o, 2p, 2q**, sechs ersetzte Kettenzeilen — ⭐ **jede alte
+Zeile steht wörtlich darunter**, als ersetzt gekennzeichnet und datiert.
+
+### ⭐⭐ Die Regel aus TB-55b hielt, eine Stunde nach ihrer Formulierung
+
+Nachtrag (h) wollte die Faltenschranke als **`0,87`** eintragen. **`0,87` war
+belegt.** ⭐ **Die Sitzung fragte, statt zu entscheiden.** Betreiberentscheidung:
+**`0,88` mit Vermerk.** **(d)–(g) waren bereits als Teilerfolg committet** —
+der Teilerfolg war der eingebaute Weg, kein Notbehelf.
+
+### ⭐⭐ Ein A1-Fall, den die Sitzung selbst fand
+
+Vier Nachträge ersetzen Kettenzeilen, die **derselbe Arbeitsbaum** erst angelegt
+hatte. ⚠️ **Gegen `HEAD` sind solche Ersetzungen unsichtbar** — `numstat` hätte
+„0 entfernt" gemeldet. ⭐ **Deshalb zweifach gemessen**: kumulativ gegen `HEAD`
+**und** gegen eine Kopie des Standes davor. **171/6 in Schritten, 167/2 gesamt;
+die Differenz 4/4 vollständig zugeordnet.**
+
+⭐ **Jede Einfügung lief über einen Anker, der genau einmal vorkommen muss** —
+zwei Abbrüche **vor dem Schreiben**, Datei unverändert.
+
+### ⚠️⚠️ Drei Nummernkollisionen, alle aus Nachträgen des Betreuers
+
+`0,87` doppelt · **`V1` jetzt zweimal** (Abschnitt 2 und Block 2o) ·
+**„TB-54" bezeichnet zwei Vorhaben** (Lese-Audit und Backlog-Nachträge).
+
+⇒ ⭐ **Ein Nachtrag nennt keine konkrete Nummer, die er nicht selbst gemessen
+hat.** Er sagt *„die nächste freie Nummer, gemessen"*; die Nummer vergibt die
+ausführende Sitzung.
+
+### ⚠️⚠️ Und ein Befund über die Arbeitsweise selbst
+
+**Die Kette ist numerisch unsortiert** — `0,87` vor `0,86`, ersetzte Zeilen
+zwischen aktiven. ⭐ **Die Sitzung hat bewusst nicht umsortiert**, weil das
+entfernte Zeilen erzeugt hätte.
+
+> ⭐⭐ **Der Kern: Wir wenden Register-Disziplin auf ein Arbeitsdokument an.**
+> „Nur hinzufügen" ist richtig für `VORREGISTRIERUNG_neuselektion.md` — dort
+> schützt es die Nachvollziehbarkeit des Laufs. ⚠️ **`BACKLOG.md` ist kein
+> Registertext; dort schützt dieselbe Regel nichts und kostet Lesbarkeit.**
+
+**Betreiberentscheidung erforderlich.**
+
+⭐ **Ohne Auftrag getan, und richtig:** Sieben Nachtragsdateien wanderten nach
+`docs/projektfuehrung/nachtraege/`, byteidentisch per `cmp` — *„Ein Beleg in
+`~/Downloads` ist kein Beleg."*
+
+---
+
+### Der Stand am Ende des 19.09.
+
+| | |
+|---|---|
+| Snapshot | ⭐ gezogen (`1075dec`), **registriert** (Abschnitt 18), `--pruefen` `UNVERAENDERT` |
+| Backlog | ⭐ **(d)–(k) eingearbeitet**, 929 Zeilen |
+| Datenstand | `d9449faf…`/223 — an diesem Tag **neunmal** gemessen, neunmal gleich |
+| 12 Datenbanken | in allen drei Sitzungen **12/12** byteweise identisch |
+| Registerprüfer | in jeder Sitzung vorher und nachher **KEIN BEFUND**, `Quelle beleg: trockenlauf` |
+| Offen | Journal · A7 · die drei Kollisionen · die Kettensortierung · F1b/Q2 · TB-53 · die Faltenschranke |
+
+---
+
+### In einfacher Sprache
+
+**Das Regelwerk weiss jetzt, worauf gerechnet wird**, und die Vorhabenliste ist
+auf dem Stand von heute. Nichts ist verloren gegangen: Wo eine Zeile ersetzt
+wurde, steht die alte darunter, mit Datum.
+
+⭐ **Zweimal an diesem Tag hat eine Sitzung gefragt, statt zu entscheiden** —
+einmal beim Ziehen, einmal bei einer doppelt vergebenen Nummer. **Beide Male
+war die Frage die richtige Antwort.**
+
+⚠️ **Und dreimal haben sich Nummern überschnitten, alle drei durch den
+Betreuer**, der Nummern vergab, ohne den Zielstand zu kennen. Ab jetzt sagt er
+nur noch „die nächste freie" und begründet, wohin etwas gehört.
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
