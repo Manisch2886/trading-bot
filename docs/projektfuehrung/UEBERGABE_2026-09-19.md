@@ -1,0 +1,298 @@
+# Übergabe — Stand 19.09.2026, 21:15 Ortszeit
+
+**Fortgeschrieben nach dem Verfahren in `docs/projektfuehrung/UMZUG.md`,
+Abschnitt 4, Schritt 3. Neun Blöcke, jeder Wert mit Fundstelle.**
+
+⚠️ **Jede Aussage hier sagt, ob sie gemessen oder erschlossen ist.** *Das ist
+die Regel aus dem Fehler des Tages (Block 7, Punkt 3).*
+
+---
+
+## Block 1 — Der Stand in drei Zeilen
+
+**Fertig:** Die methodischen Grundlagen vor dem signierten Tag sind zu einem
+großen Teil repariert — Snapshot gezogen und registriert, Resolver mit
+Codeherkunft und Lock als blockierende Startprüfungen, und **TB-56 hat die
+Faltenschranke entfernt**, nachdem gemessen wurde, dass sie bei 8 von 9 Bots
+bindet und bei keinem die Zulassung ändert.
+
+**Läuft, Stand 21:15:** Die TB-56-Mac-Sitzung rechnet den **Basislauf nachher**
+(71 Testdateien, ~30 Minuten, `docs/belege/TB-56/basislauf_nachher.txt` noch
+0 Bytes — die Ausgabe wird am Ende geschrieben). Danach: Datenstand- und
+Datenbankvergleich, Snapshot-Nachprüfung, Ergebnisdokument.
+
+**Als Nächstes:** der Commit der elf zwischengelagerten Dateien, dann **TB-56b**
+(Registerberichtigung 15.6) und die Einarbeitung von (n) bis (r) ins Backlog.
+
+---
+
+## Block 2 — `HEAD`, Zweig, Commit-Kette
+
+| | gemessen 21:14 |
+|---|---|
+| Zweig | **`main`**, kein eigener Zweig, kein PR |
+| `HEAD` | **`7387cc5`**, 19.09.2026 20:58:08 +0200 — *„TB-56 Teil B: Faltenschranke entfernt"* |
+| Commits heute | **22** |
+
+**Die Kette, in Reihenfolge:**
+
+```
+1075dec 4c80588 0fe61d7 1124880 d9f3c4b 3121ec2 5a01e8b fade02c 2c4a20b
+fef279c eaf2572 29016cf 624853b d852bce 6518e41 6236c95 409d71d be6e72c
+02a58fb d66a2ce 04b42b3 7387cc5
+```
+
+⚠️ **Zeitstempel im Repo und in Belegdateien sind UTC; die Ortszeit ist +02:00.**
+*Siehe Block 7, Punkt 2.*
+
+---
+
+## Block 3 — Die tragenden Zahlen, jede mit Fundstelle
+
+| | Wert | Fundstelle |
+|---|---|---|
+| **Datenstand** | `d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84`, **223** Kursdateien | an einem Tag über 20× gemessen, immer gleich |
+| ⭐ **Auflösung** *(gemessen 19.09., 21:03)* | **174× `1d` · 25× `1h` · 24× `4h`** — Stundenauflösung **nur Krypto**, alle 174 Aktiendateien nur Tagesdaten | `ls data/*.csv`, erste Datenzeilen |
+| **Snapshot** | `63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2` — **225** Dateien, **211 040 678** Bytes, `2026-09-19T06:49:32+00:00` | Commit `1075dec`, Register **Abschnitt 18** |
+| ⚠️ **nicht verwechseln** | `4fee547d…` in Abschnitt **17.9** läuft nur über die **223** Kursdateien und bezeichnet **nicht** diesen Snapshot | in Abschnitt 18 ausdrücklich abgegrenzt |
+| **Lock** | `requirements.lock`, SHA-256 `96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5`, **67** Pakete | Register **Abschnitt 20**, Commit `d852bce` |
+| | `pandas==2.3.3` · `numpy==2.0.2` · `pandas-market-calendars==4.6.1` | |
+| | Interpreter `3.9.6 (Clang 17.0.0)`, Plattform `macOS-15.7.9-x86_64-i386-64bit` | |
+| **Registerabschnitte neu** | **18** (Tatsachennotiz Snapshot, `0fe61d7`) · **19** (Registertext 5e Codeherkunft, `409d71d`) · **20** (Tatsachennotiz 5f Lock) | |
+| **Sperrklinken** | Wanduhr **6** · eigener Pfadbau **29** — grün, solange die Zahlen nicht wachsen | `research/selektionsmasse/ergebnisse/` |
+| **Datenbanken** | **12** `*.db` außerhalb `trading-env/`, davon **9** `paper_trading_*` in der Wurzel | in jedem Lauf 12/12 byteweise identisch |
+
+### ⚠️ Gemessene Nummernstände — damit keine Nummern mehr erfunden werden
+
+**Gemessen 19.09., 20:47, in `docs/projektfuehrung/BACKLOG.md` (951 Zeilen,
+Stand `d66a2ce`):**
+
+| | gemessen | nächste freie |
+|---|---|---|
+| Blockbezeichner Abschnitt 2 | höchster **`2r`** | **`2s`** |
+| K-Nummern Abschnitt 4 | höchste **`K2k`** | **`K2l`** |
+| Kettenzeilen Abschnitt 3 | höchste **`0,97`** | — |
+
+⚠️ **Nachtrag (p) nennt „Block 2v" und „K2y/K2z" — beides von mir erfunden.**
+Beim Einarbeiten auf die gemessene freie Nummer umschreiben **und die
+ursprünglich genannte im Vermerk nennen**, wie bei `0,88` am 19.09. Mittag.
+
+---
+
+## Block 4 — Offen vor dem signierten Tag, in Reihenfolge
+
+| | | Begründung der Stelle |
+|---|---|---|
+| **1** | ⭐ **Commit der elf zwischengelagerten Dateien** | ohne ihn existieren fünf Epics nur auf einem Rechner |
+| **2** | **TB-56 zu Ende** — Basislauf nachher, Ergebnisdokument | läuft |
+| **3** | ⚠️⚠️ **TB-56b — die Registerberichtigung** | **15.6 Punkt 2 behauptet heute etwas, das TB-56 als falsch gemessen hat.** Solange das so steht, widerspricht der Code dem Register |
+| **4** | **`auswertung.py` auf Verfahren B** — und damit der rote Test aus TB-56 | der neue rote Test hängt daran |
+| **5** | **Lese-Audit** (Fables Schicht 3, Datenseite) | *„Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts darüber, welcher CODE gelesen hat"* — die Codeseite ist mit TB-58 erledigt, die Datenseite nicht |
+| **6** | **Lauf-Reproduktion gegen den Lock** — frischer Klon in isolierter Umgebung, gleiche Maschine zulässig | F1b/Q2 ist **für die Daten** bewiesen (SHA-256 ist pandas-unabhängig), **nicht für den Lauf** |
+| **7** | **Fables Q1** und die vier Fragen aus Block 5 | |
+| **8** | ⭐ **Der signierte Tag + Zeitanker** | alles davor |
+
+**Hinter dem Tag, in dieser Reihenfolge:** `AF → RT → QR → KG → MI`
+*(begründet in Nachtrag (r), RT9 — ich hatte zuvor `AF → QR → KG → MI` gesagt
+und mich korrigiert: RT braucht fast keine Vorbedingungen und macht AFs Ausgabe
+erst glaubwürdig).*
+
+---
+
+## Block 5 — Wartezustände
+
+| wartet auf | was | Stand |
+|---|---|---|
+| **Mac-Sitzung TB-56** | Basislauf nachher, dann Ergebnisdokument und Commit | ⏳ läuft seit ~21:00 |
+| ⚠️ **Fable** | **vier Fragen**, Text liegt als Kopierblock im Chat vom 19.09., 21:10 | **noch nicht gesendet** — erst nach TB-56 |
+| **Betreiber** | der Commit-Befehl für die elf Dateien | vorbereitet, **nicht ausführen während die Sitzung läuft** |
+
+**Die vier Fable-Fragen, inhaltlich:** (1) Ist *„Zahl und Identität der Prüfungen
+stehen vor dem Lauf fest"* eine Eigenschaft von Verfahren B oder eine allgemeine
+Registeranforderung? · (2) Fällt ein Kill-Test-Befund nach dem Tag unter
+Berichtigung, nachträgliche Wahl oder Quelle-des-Grundes? · (3) Ist *„ohne
+Kenntnis des Siegers entworfen"* nachträglich beweisbar — oder kollabiert das in
+*„vorher registrieren oder nie"*? · (4) Ist eine Abschaltregel bei
+Leistungsabweichung eine Betriebsentscheidung oder ändert sie, was die Selektion
+bedeutet?
+
+⚠️ **Die frühere, nur auf das Red Team bezogene Fassung der Fable-Nachricht ist
+verworfen** — sie hatte die übrigen vier Epics nicht einbezogen.
+
+---
+
+## Block 6 — Freigaben und Sperrliste
+
+**Die Sperrliste, unverändert:**
+
+`strategies/*/live_params.py` · `strategies/*/forward_test.py` ·
+`strategies/*/equity_simulation.py` (hart) · `strategies/*/multi_symbol_optimise.py` ·
+`shared/entscheidungskerze.py` · `shared/paths.py`
+
+⚠️ **Vor jedem Merge wird der Diff der Sperrlisten-Dateien angesehen, auch bei
+erteilter Freigabe:** *Die Freigabe sagt, dass geändert werden durfte; sie sagt
+nicht, was geändert wurde.*
+
+**Erteilte Freigaben, mit Aufgabe:**
+
+| Datei | freigegeben für | Stand |
+|---|---|---|
+| `shared/paths.py` | TB-52, erneut TB-58 | in Anspruch genommen |
+| `shared/strategy_paths.py` | TB-53b | in Anspruch genommen (`29016cf`) |
+| `research/vorregistrierung/registerdaten.py` | TB-56 | in Anspruch genommen (`7387cc5`) |
+| `research/vorregistrierung/faltenplan.py` | TB-56 | in Anspruch genommen |
+| `research/faltenplan_neun/faltenplan_neun.py` | TB-56 | ⚠️ **erteilt, NICHT in Anspruch genommen** — Antwort zu Frage 3: bis TB-56b unverändert |
+| `research/faltenplan_neun/test_faltenplan_neun.py` | TB-56 | ⚠️ **erteilt, NICHT in Anspruch genommen** |
+
+⚠️⚠️ **Ausdrücklich NICHT freigegeben:**
+`research/vorregistrierung/ergebnisse/benchmark_drawdowns.json` (Sperrliste 4).
+**Der gesperrte Wert `DD_Toleranz` würde sich bei zwei Bots ändern — das ist ein
+Amendment und gehört nach TB-56b.** Entscheidung des Betreibers zu Frage 4:
+**Option (a)** — neue Tabelle als eigene Datei daneben, die gesperrte byteweise
+unverändert, `test_vorregistrierung.py` bis TB-56b rot.
+
+⚠️ **Der neue rote Test darf NICHT als „bekannt rot" geführt werden.** Er braucht
+die Marke **„offen durch eigene Änderung — blockierend für den Tag"**. *So sind
+die fünf bestehenden roten Tests entstanden.*
+
+### Die Entscheidungsaufteilung, vom Betreiber bestätigt 19.09.2026
+
+| | |
+|---|---|
+| **Handwerk — ich entscheide allein** | Aufgabenreihenfolge, Schnitt, Nachweismethode, Dokumentstruktur |
+| ⚠️⚠️ **Verfahren vor dem Tag — nie nach erwartetem Effekt** | geht an den Betreiber oder an Fable. **Ausdrücklich nicht** nach „bestmöglicher Rentabilität" entschieden — das ist genau der Fehler, den das Register verhindert |
+
+---
+
+## Block 7 — ⭐⭐ Die Fehler dieses Chats und die Regeln daraus
+
+**Der wertvollste Block. Ohne ihn wiederholt der neue Chat sie.**
+
+| | Fehler | ⇒ Regel |
+|---|---|---|
+| **1** | ⚠️ **Vier Nummernkollisionen**: `0,87` doppelt · `V1` doppelt · „TB-54" für zwei Aufgaben · **(p) nennt „Block 2v"/„K2y" frei erfunden** | ⭐ **K2i: Ein Nachtrag nennt keine Nummer, die er nicht selbst gemessen hat.** Er sagt „die nächste freie, gemessen" |
+| **2** | ⚠️⚠️ **UTC als Ortszeit gelesen** → geschlossen, eine Sitzung sei seit zwei Stunden tot; sie arbeitete gerade und hatte 25 Minuten zuvor committet | ⭐ **Vor jeder Folgerung aus einem Zeitstempel `date -u` gegen `TZ=Europe/Berlin date` halten** |
+| **3** | ⚠️⚠️ **Name statt Messung, vier Fälle**: KG5 aus `MIN_HISTORY_HOURS` erschlossen · RT3 aus Botnamen · RT1 gar nicht nachgesehen · KG1s „196 000" als *„Struktur des Entwurfs"* bezeichnet, obwohl es meine Annahmen waren | ⭐⭐ **Ein Name ist kein Messwert. Jeder Satz sagt, ob er gemessen oder geschlossen ist.** Dieselbe Klasse wie Fables Schicht-3-Befund. Berichtigung liegt vor |
+| **4** | ⚠️ **Behauptet, `63e4b6c8…` stehe in den TB-52-Berichten** — gemessen: **0 Treffer** in beiden Archiven | Herkunft einer Zahl wird gezählt, nicht erinnert |
+| **5** | ⚠️ **„F1b/Q2 ist erledigt"** — Fable korrigierte: **für die Daten** bewiesen (SHA-256 ist pandas-unabhängig), **nicht für den Lauf** | Ein Nachweis gilt für den Gegenstand, den er berührt, nicht für den Zweck, den er dienen sollte |
+| **6** | ⚠️ **Abbruchkriterium nannte einen Stellvertreter** (*„ein Abschnitt mit einer Zahl darin"* statt *„der DIESEN Snapshot bezeichnet"*) | ⭐ **Ein Abbruchkriterium benennt die Sache, nie ihr Merkmal.** Und: fallen Wortlaut und Zweck auseinander und ist jemand erreichbar — **fragen**, nicht entscheiden |
+| **7** | ⚠️ **`device_commit_files` mit `force: true` meldete „written" und änderte die Datei nicht** | ⭐ **Nie überschreiben, immer neuer Dateiname, danach mit `wc -c` und `grep` nachprüfen** |
+| **8** | ⚠️ **`git status` über die Geräte-Brücke hinterließ ein `.git/index.lock`**, das die Brücke nicht löschen kann | ⭐ Über die Brücke **kein `git status`, kein `git add`**; lesende git-Befehle nur mit `--no-optional-locks` |
+| **9** | ⚠️ **Aufgabendateien nach `~/Downloads` gelegt** — macOS TCC verweigert Claude-Code-Sitzungen den Zugriff dort. **Kostete drei Sitzungsstarts** | ⭐ Zwischenlager ist `logs/auftraege/`; endgültiger Ort ist immer das Repo |
+| **10** | ⚠️ **Am Repo gearbeitet, während eine Mac-Sitzung lief.** Folgenlos, **weil der Zielordner gitignoriert ist** — das war die Vorsichtsmaßnahme, nicht mein Wissen | ⭐ Zustand der Sitzung **messen**, bevor am Repo gearbeitet wird |
+| **11** | ⚠️ **Reihenfolge der Epics nach ihrem Anspruch eingeordnet statt nach ihren Voraussetzungen** (`AF→QR→KG→MI`) | korrigiert zu **`AF→RT→QR→KG→MI`**; RT braucht fast keine Vorbedingungen |
+
+**Fremde Befunde, die diesen Chat geprägt haben:**
+
+| | |
+|---|---|
+| ⭐⭐ **Fable, Schicht 3** | *„Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts darüber, welcher CODE gelesen hat."* → TB-58 (Codeherkunft) |
+| ⭐⭐ **Fable, F17** | *„Die Grenze zwischen Berichtigung und nachträglicher Wahl ist nicht die Zeit, sondern die QUELLE DES GRUNDES."* |
+| ⭐ **Fable, Tatsachennotiz** | *„Eine Tatsachennotiz hält fest, sie schafft nicht."* Jeder Satz ist Messwert mit Herkunft oder Verweis |
+| ⭐ **Prüfprinzip A7** *(neu)* | Eine nachgeholte Vorher-Messung gilt nur, wenn der Zustand inhaltsadressiert wiederherstellbar ist — **und sie muss sagen, dass sie nachgeholt wurde** |
+| ⭐⭐ **TB-56, Nachweis 4a/4b** | Die Schranke künstlich wieder eingesetzt: Plan ändert sich bei **8 von 9**; in einer Wegwerf-Kopie beginnen unmutiert `2017/2018`, mutiert **alle vier 2019**. **Die Probe beißt** |
+
+---
+
+## Block 8 — ⚠️ Zwischengelagert, noch nicht eingearbeitet
+
+**Elf Dateien in `logs/auftraege/` — gitignoriert über `.gitignore:27` (`logs/`),
+also auf einem Rechner und in keiner Version.**
+
+| Datei | Bytes | Zielort |
+|---|---:|---|
+| `BACKLOG_NACHTRAG_2026-09-19n.md` — Epic **AF** | 8 915 | `docs/projektfuehrung/nachtraege/` |
+| `BACKLOG_NACHTRAG_2026-09-19o.md` — Epic **MI** | 9 052 | " |
+| `BACKLOG_NACHTRAG_2026-09-19p.md` — Epic **QR** | 8 905 | " ⚠️ *Nummern erfunden* |
+| `BACKLOG_NACHTRAG_2026-09-19q.md` — Epic **KG** | 23 902 | " |
+| `BACKLOG_NACHTRAG_2026-09-19r.md` — Epic **RT** | 22 335 | " |
+| `BACKLOG_NACHTRAG_2026-09-19q_r_berichtigung.md` | 8 781 | " |
+| `vorlage_forschungspipeline_2026-09-19.md` | 16 741 | `docs/vorlagen/` |
+| `vorlage_marktverstaendnis_2026-09-19.md` | 20 047 | " |
+| `vorlage_alpha_labor_2026-09-19.md` | 20 072 | " |
+| `vorlage_kausalgraph_2026-09-19.md` | 23 292 | " |
+| `vorlage_rotes_team_2026-09-19.md` | 19 599 | " |
+
+⭐ **Alle fünf Vorlagen sind byteidentisch zur Einreichung des Betreibers**
+(`cmp -s` je Datei).
+
+**Noch offen an Dokumentationsarbeit:**
+
+1. ⚠️ **Die fünf Nachträge sind in `BACKLOG.md` NICHT eingearbeitet** — gemessen:
+   0 Treffer für `AF`, `MI`, `QR`, `KG`, `RT`.
+2. ⚠️ **Die fünf Sichtungsdurchgänge** (Kollision · Abhängigkeit · Widerspruch ·
+   Ausscheiden · Kette) sind **nicht vollständig gemacht**. Zwei
+   Querschnittsbefunde stehen: **die Zerfallsfalle in vier Konzepten** und **das
+   Register in fünf von fünf** — das werden zwei Punkte mit Verweisen, nicht neun.
+3. ⚠️ **`ARBEITSWEISE.md` Abschnitt 10** (Zeilen 674–743) ist überholt und muss
+   durch den Verweis auf `UMZUG.md` ersetzt werden — Ersatztext steht dort in
+   Abschnitt 7.
+4. ⚠️ **Neun in diesem Chat vereinbarte Regeln stehen nicht in
+   `ARBEITSWEISE.md`** — sie stehen in der Erinnerung und hier:
+
+| | Regel, vereinbart 19.09.2026 |
+|---|---|
+| 1 | Schritt für Schritt, **ein Terminalbefehl je Nachricht**, nummeriert |
+| 2 | **Nie eine blosse Ankündigung** — entweder explizite Aufgabe oder fortfahren |
+| 3 | Jede Antwort endet mit dem abgesetzten Block **„Deine Aufgaben"** |
+| 4 | **Möglichst wenig eigener Aufwand** des Betreibers |
+| 5 | Rückfragen über die **anklickbaren Fragen in der App**, mit Empfehlung |
+| 6 | **`/remote-control` als eigener Block VOR** dem Anweisungstext |
+| 7 | Jede Aufgabe trägt **`[ortsunabhängig]` oder `[Mac-pflichtig]`** — und was theoretisch ortsunabhängig ginge, wird **immer** so ausgegeben |
+| 8 | **Fable-Texte als Kopierblock in der Antwort** — keine Datei, kein Anhang |
+| 9 | ⚠️ **Keine ZIPs, nichts nach `~/Downloads`** — was fürs Projekt gebraucht wird, gehört ins Repo |
+| 10 | ⭐ **Frühzeitiger Hinweis auf einen nötigen Umzug in einen neuen Chat**, bevor komprimiert wird |
+
+---
+
+## Block 9 — Der Eröffnungstext für den neuen Chat
+
+```
+Neue Sitzung zum Trading-Bot-Projekt. Das Projekt "Trading Bots" ist angehängt,
+du kommst also an alle Führungsdokumente.
+
+Lies in dieser Reihenfolge, über den Projects-Zugriff:
+
+1. projektfuehrung/UEBERGABE_2026-09-19.md  — der Stand, das Wichtigste
+2. projektfuehrung/UMZUG.md                 — wie Umzüge laufen, inkl. Auslöser
+3. projektfuehrung/ARBEITSWEISE.md          — wie ich arbeiten möchte, verbindlich
+                                              (Abschnitt 10 ist überholt, siehe UMZUG.md)
+4. projektfuehrung/PRUEFPRINZIPIEN.md       — die gemessenen Lehren
+5. projektfuehrung/BACKLOG.md               — die aktiven Punkte
+
+Das Repo liegt auf dem MacBook unter ~/trading-bot und ist über die
+Geräteanbindung lesbar. JOURNAL.md nur öffnen, wenn es um eine konkrete
+frühere Messung geht.
+
+Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt,
+und was gerade auf wen wartet. Dann fangen wir an.
+```
+
+---
+
+## In einfacher Sprache
+
+**Wo wir stehen:** Die Grundlagen für den großen Auswahllauf sind fast fertig
+repariert. Die eingefrorene Datenkopie steht im Regelwerk, die Startprüfungen
+brechen ab, wenn Code oder Programmversionen nicht die registrierten sind, und
+heute Abend ist die künstliche Jahresgrenze 2019 aus dem Code verschwunden —
+nachdem gemessen wurde, dass sie bei acht von neun Bots wirkt und bei keinem
+einzigen die Zulassung ändert.
+
+**Was gerade läuft:** Die Mac-Sitzung rechnet alle 71 Testdateien noch einmal
+durch, um zu belegen, dass die Änderung nichts kaputtgemacht hat außer der einen
+Stelle, die wir kennen und benannt haben.
+
+**Was als Nächstes dran ist:** Elf Dateien müssen ins Projektarchiv — fünf
+Konzeptschichten, die du eingereicht hast, samt meiner Bewertung und einer
+Berichtigung meiner eigenen Fehler. Danach muss das Regelwerk an der Stelle
+korrigiert werden, an der es heute noch etwas behauptet, das die Messung von
+heute widerlegt hat.
+
+⭐ **Das Wichtigste an diesem Dokument ist Block 7.** Dort stehen elf Fehler, die
+ich heute gemacht habe, und die Regel, die aus jedem folgt. **Der häufigste war
+derselbe in vier Gestalten: Ich habe aus einem Namen geschlossen, statt
+nachzumessen.** Dass eine Konstante „Stunden" heißt, sagt nichts über die
+Auflösung der Daten. Dass ein Bot „Ausbruch" heißt, sagt nichts über seine
+Gewinnverteilung. **Ab jetzt sagt jeder Satz, ob er gemessen oder geschlossen
+ist.**
