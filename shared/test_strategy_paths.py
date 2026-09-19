@@ -25,6 +25,15 @@ die alte Fassung kommt aus `git show <BEZUGSCOMMIT>:shared/strategy_paths.py`,
 nicht aus dem Gedaechtnis. Ist der Commit nicht zu finden, wird nichts
 behauptet.
 
+⚠️ **Seit TB-58 traegt der Modus drei Variablen und prueft beim Start die
+Codeherkunft.** Die Aufrufumgebung der Modus-Proben ist deshalb angepasst -
+nur die Aufrufumgebung, die Prueflogik nicht: der Wegwerfbaum ist ein
+Git-Repo mit einem Commit (`baue_baum`), der Probeprozess startet aus einer
+Datei statt mit `python -c` (die Startpruefung braucht einen Einstiegspunkt
+mit `__file__`), `TB_SELEKTIONSCOMMIT` nennt den Commit des Baums, und die
+echte `requirements.lock` liegt daneben. Die Startpruefungen selbst prueft
+`shared/test_startpruefungen.py`.
+
 Nutzung:  python3 shared/test_strategy_paths.py
 """
 
@@ -40,6 +49,7 @@ _HIER = os.path.dirname(os.path.abspath(__file__))
 _WURZEL = os.path.dirname(_HIER)
 _QUELLE = os.path.join(_HIER, "strategy_paths.py")
 _PATHS_QUELLE = os.path.join(_HIER, "paths.py")
+_ECHTER_LOCK = os.path.join(_WURZEL, "requirements.lock")
 
 # ⚠️ Festgenagelt (Prueffrage B3): der letzte Commit VOR TB-53b, in dem
 # `strategy_paths.py` den Datenpfad noch selbst gebaut hat.
@@ -109,7 +119,47 @@ def baue_baum(strategy_paths_quelle, mit_paths=True):
         os.makedirs(os.path.join(wurzel, "strategies", bot))
     os.makedirs(os.path.join(wurzel, "data"))
     os.makedirs(os.path.join(wurzel, "config"))
+    # TB-58: der Baum ist ein Git-Repo mit genau einem Commit, traegt die
+    # echte Lock-Datei und die Abfrage als Einstiegsdatei.
+    with open(os.path.join(wurzel, "abfrage.py"), "w", encoding="utf-8") as datei:
+        datei.write(_ABFRAGE)
+    if os.path.exists(_ECHTER_LOCK):
+        shutil.copy2(_ECHTER_LOCK, os.path.join(wurzel, "requirements.lock"))
+    _git(wurzel, "init", "-q")
+    _git(wurzel, "add", "-A")
+    _git(wurzel, "-c", "user.name=tb53b_test", "-c", "user.email=tb53b@test",
+         "commit", "-q", "-m", "Wegwerfbaum")
     return wurzel
+
+
+def _git(wurzel, *argumente):
+    lauf = subprocess.run(["git", "-C", wurzel] + list(argumente),
+                          capture_output=True, text=True)
+    if lauf.returncode != 0:
+        raise RuntimeError("git %s in %s: rc %d, %s"
+                           % (" ".join(argumente), wurzel, lauf.returncode,
+                              lauf.stderr.strip()))
+    return lauf.stdout.strip()
+
+
+def commit_von(wurzel):
+    """HEAD des Baums - der Wert fuer TB_SELEKTIONSCOMMIT."""
+    return _git(wurzel, "rev-parse", "HEAD")
+
+
+def _einstiegsdatei(caller):
+    """Die Abfrage als Datei: im Wegwerfbaum liegt sie an dessen Wurzel;
+    fuer den echten Baum (nur ohne Modus gefragt) eine Wegwerfdatei."""
+    wurzel = os.path.dirname(os.path.dirname(os.path.dirname(
+        os.path.abspath(caller))))
+    im_baum = os.path.join(wurzel, "abfrage.py")
+    if os.path.exists(im_baum):
+        return im_baum
+    return _ABFRAGE_DATEI
+
+
+_ABFRAGE_DATEI = os.path.join(tempfile.mkdtemp(prefix="tb53b_abfrage_"),
+                              "abfrage.py")
 
 
 def baue_attrappe(hash_=ATTRAPPEN_HASH):
@@ -154,11 +204,19 @@ def frage(caller, wurzel_env=None, hash_env=None):
     umgebung = dict(os.environ)
     umgebung.pop("TB_SELEKTIONSWURZEL", None)
     umgebung.pop("TB_SELEKTIONSHASH", None)
+    umgebung.pop("TB_SELEKTIONSCOMMIT", None)
     if wurzel_env is not None:
         umgebung["TB_SELEKTIONSWURZEL"] = wurzel_env
     if hash_env is not None:
         umgebung["TB_SELEKTIONSHASH"] = hash_env
-    lauf = subprocess.run([sys.executable, "-c", _ABFRAGE, caller],
+    einstieg = _einstiegsdatei(caller)
+    if wurzel_env is not None and hash_env is not None:
+        # TB-58: der vollstaendige Modus traegt den Commit des Baums.
+        umgebung["TB_SELEKTIONSCOMMIT"] = commit_von(os.path.dirname(einstieg))
+    if not os.path.exists(einstieg):
+        with open(einstieg, "w", encoding="utf-8") as datei:
+            datei.write(_ABFRAGE)
+    lauf = subprocess.run([sys.executable, einstieg, caller],
                           capture_output=True, text=True, env=umgebung)
     try:
         werte = json.loads(lauf.stdout) if lauf.stdout.strip() else {}

@@ -20,6 +20,15 @@ Test**, nicht ueber das Modul. Eine Mutation, die gar nicht greift (weil der
 gesuchte Text sich geaendert hat), ist **NICHT PRUEFBAR** (Prueffrage A2),
 nicht gruen.
 
+⚠️ **Seit TB-58 traegt der Modus drei Variablen und prueft beim Start die
+Codeherkunft.** Die Aufrufumgebung dieser Proben ist deshalb angepasst -
+nur die Aufrufumgebung, die Prueflogik nicht: der Wegwerfbaum ist ein
+Git-Repo mit einem Commit (`baue_baum`), der Probeprozess startet aus einer
+Datei darin statt mit `python -c` (die Startpruefung braucht einen
+Einstiegspunkt mit `__file__`), `TB_SELEKTIONSCOMMIT` nennt den Commit des
+Baums, und die echte `requirements.lock` liegt daneben. Die Startpruefungen
+selbst prueft `shared/test_startpruefungen.py`.
+
 Nutzung:  python3 shared/test_paths.py
 """
 
@@ -34,6 +43,7 @@ import tempfile
 _HIER = os.path.dirname(os.path.abspath(__file__))
 _WURZEL = os.path.dirname(_HIER)
 _ECHTE_QUELLE = os.path.join(_HIER, "paths.py")
+_ECHTER_LOCK = os.path.join(_WURZEL, "requirements.lock")
 
 BESTANDEN = 0
 FEHLER = []
@@ -81,7 +91,32 @@ def baue_baum(paths_quelle, mit_ordnern=True):
     if mit_ordnern:
         os.makedirs(os.path.join(wurzel, "data"))
         os.makedirs(os.path.join(wurzel, "config"))
+    # TB-58: der Baum ist ein Git-Repo mit genau einem Commit, traegt die
+    # echte Lock-Datei und die Abfrage als Einstiegsdatei.
+    with open(os.path.join(wurzel, "abfrage.py"), "w", encoding="utf-8") as datei:
+        datei.write(_ABFRAGE)
+    if os.path.exists(_ECHTER_LOCK):
+        shutil.copy2(_ECHTER_LOCK, os.path.join(wurzel, "requirements.lock"))
+    _git(wurzel, "init", "-q")
+    _git(wurzel, "add", "-A")
+    _git(wurzel, "-c", "user.name=tb52_test", "-c", "user.email=tb52@test",
+         "commit", "-q", "-m", "Wegwerfbaum")
     return wurzel
+
+
+def _git(wurzel, *argumente):
+    lauf = subprocess.run(["git", "-C", wurzel] + list(argumente),
+                          capture_output=True, text=True)
+    if lauf.returncode != 0:
+        raise RuntimeError("git %s in %s: rc %d, %s"
+                           % (" ".join(argumente), wurzel, lauf.returncode,
+                              lauf.stderr.strip()))
+    return lauf.stdout.strip()
+
+
+def commit_von(wurzel):
+    """HEAD des Wegwerfbaums - der Wert fuer TB_SELEKTIONSCOMMIT."""
+    return _git(wurzel, "rev-parse", "HEAD")
 
 
 def baue_attrappe(hash_="attrappe000000000000000000000000",
@@ -134,14 +169,19 @@ def frage(wurzel, wurzel_env=None, hash_env=None, umgebung_zusatz=None):
     umgebung = dict(os.environ)
     umgebung.pop("TB_SELEKTIONSWURZEL", None)
     umgebung.pop("TB_SELEKTIONSHASH", None)
+    umgebung.pop("TB_SELEKTIONSCOMMIT", None)
     if wurzel_env is not None:
         umgebung["TB_SELEKTIONSWURZEL"] = wurzel_env
     if hash_env is not None:
         umgebung["TB_SELEKTIONSHASH"] = hash_env
+    if wurzel_env is not None and hash_env is not None:
+        # TB-58: der vollstaendige Modus traegt den Commit des Baums.
+        umgebung["TB_SELEKTIONSCOMMIT"] = commit_von(wurzel)
     if umgebung_zusatz:
         umgebung.update(umgebung_zusatz)
     lauf = subprocess.run(
-        [sys.executable, "-c", _ABFRAGE, os.path.join(wurzel, "shared")],
+        [sys.executable, os.path.join(wurzel, "abfrage.py"),
+         os.path.join(wurzel, "shared")],
         capture_output=True, text=True, env=umgebung)
     try:
         werte = json.loads(lauf.stdout) if lauf.stdout.strip() else {}
@@ -370,16 +410,21 @@ def probe_e_kindprozess():
     kind_quelle = (
         "import json,sys;sys.path.insert(0,%r);import paths;"
         "json.dump({'DATA_DIR':paths.DATA_DIR},sys.stdout)" % shared)
+    # TB-58: das Kind startet aus einer Datei im Baum (Einstiegspunkt).
+    kind_datei = os.path.join(baum, "kind.py")
+    with open(kind_datei, "w", encoding="utf-8") as datei:
+        datei.write(kind_quelle + "\n")
     enkel = (
         "import subprocess, sys\n"
-        "lauf = subprocess.run([sys.executable, '-c', %r],"
+        "lauf = subprocess.run([sys.executable, %r],"
         " capture_output=True, text=True)\n"
         "sys.stdout.write(lauf.stdout)\n"
-        "sys.stderr.write(lauf.stderr)\n" % kind_quelle)
+        "sys.stderr.write(lauf.stderr)\n" % kind_datei)
     try:
         umgebung = dict(os.environ)
         umgebung["TB_SELEKTIONSWURZEL"] = attrappe
         umgebung["TB_SELEKTIONSHASH"] = "attrappe000000000000000000000000"
+        umgebung["TB_SELEKTIONSCOMMIT"] = commit_von(baum)
         lauf = subprocess.run([sys.executable, "-c", enkel],
                               capture_output=True, text=True, env=umgebung)
         try:
