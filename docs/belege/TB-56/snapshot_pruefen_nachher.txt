@@ -1,0 +1,10 @@
+Sat Sep 19 19:30:38 UTC 2026
+Snapshot nachpruefen: snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+
+  snapshot_hash    Soll 63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+                   Ist  63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+  datenstand_hash  Soll d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Kursdateien)
+                   Ist  d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Kursdateien)
+
+  UNVERAENDERT
+rc=0
