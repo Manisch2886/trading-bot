@@ -107,6 +107,22 @@ sondern ⭐ **„grün im Regelfall, zeitabhängig flackernd"** — mit der geme
 Rate dabei. *Ein flatternder Test untergräbt sonst die Aussagekraft jedes
 Basislaufs, ohne dass jemand weiss, wie oft.*
 
+### A7 — Eine nachgeholte Vorher-Messung
+
+*Eine „Vorher"-Messung, die erst nach der Änderung gemacht wird, ist nur dann
+eine Vorher-Messung, wenn der gemessene Zustand **inhaltsadressiert**
+wiederherstellbar ist — etwa ein Git-Commit, der genau einen Baum bezeichnet
+— und wenn die Rekonstruktion **ausdrücklich als solche benannt** wird.*
+
+**Herkunft:** TB-55 (19.09.2026). Der „vorher"-Lauf des Registerprüfers war
+übersprungen worden; die Sitzung hat den Stand `7e48e1f` als Worktree
+ausgecheckt, dort gemessen und es offengelegt, statt die Messung als
+gleichwertig zu behaupten.
+
+⚠️ **Die Grenze:** Bei einem Zustand, der nicht aus dem Inhalt bestimmt ist —
+Uhrzeit, Umgebung, laufende Prozesse, Netzlage — ist dasselbe Vorgehen
+**wertlos**. Dann gilt: die Messung fehlt, und das ist zu berichten.
+
 ---
 
 ## B — Wie eine Probe sich selbst täuscht
