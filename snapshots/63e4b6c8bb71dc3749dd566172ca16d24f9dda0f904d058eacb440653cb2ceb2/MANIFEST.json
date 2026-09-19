@@ -1,0 +1,3876 @@
+{
+  "bytes_gesamt": 211040678,
+  "dateien": {
+    "AAPL_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1117489,
+      "im_datenstand": true,
+      "sha256": "260fce6504588d8483b0434ea7245b4d70259e830d73bdcb4dce84aeea5c1caf"
+    },
+    "AAVEUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 100875,
+      "im_datenstand": true,
+      "sha256": "e19772434c73d0bb79f9b307d9f40e6f8a6ec58dfdcea22de05cee24577688f5"
+    },
+    "AAVEUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 2810235,
+      "im_datenstand": true,
+      "sha256": "b0b4d4e1743d6c5a2b4f0aa22a411ada4495753afb6faeb74079a3a78692872c"
+    },
+    "AAVEUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 711293,
+      "im_datenstand": true,
+      "sha256": "5d864c013f57a659a4239ef2143ce0db9279f69c47b62e2a80993f05795f06d9"
+    },
+    "ABBV_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 317566,
+      "im_datenstand": true,
+      "sha256": "3c4cb0d1103128d47f921d2415be5af8920ae1d909770ead7e2e0bab3b36e582"
+    },
+    "ABNB_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 127649,
+      "im_datenstand": true,
+      "sha256": "8120ad04c39e481dae70f37da42a98ddc442c8a1deda38dc1537bfc3a91251f8"
+    },
+    "ABT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1094979,
+      "im_datenstand": true,
+      "sha256": "297aec86d650e62b6018054106c98c87695322c9002ec6ffadc9889f4ef3e1c0"
+    },
+    "ACN_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 585594,
+      "im_datenstand": true,
+      "sha256": "ff39040db49d81d74372d7d9cc51e1be73c1860520a93770ddfb4c0a1766b708"
+    },
+    "ADAUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 157297,
+      "im_datenstand": true,
+      "sha256": "539cfe7b6ecf128b65aef810c7208c90cd199dcdffc584fcf249989016d5121e"
+    },
+    "ADAUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 4332544,
+      "im_datenstand": true,
+      "sha256": "6521b091f94ac6e32a4152811f7d96a80bd6f2c412d02222066579af815ddb85"
+    },
+    "ADAUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1095683,
+      "im_datenstand": true,
+      "sha256": "da3fe73f8489d4c0f3f885fa9a0a29371d395ddeef8ca9b638f2ad00e9d5246e"
+    },
+    "ADBE_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 914200,
+      "im_datenstand": true,
+      "sha256": "0ad48c46cc3b210b1ef13e37b748eb891d0e9ea1680ff9d618f6dd2a162f1a80"
+    },
+    "ADI_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1085944,
+      "im_datenstand": true,
+      "sha256": "4dfd928986c4a539684b78111cd261217d0273c5b65903d71396fada79fe5150"
+    },
+    "ADP_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1086171,
+      "im_datenstand": true,
+      "sha256": "24d1a8a642b7de8044df1cd9d8aa59c609d6d56d0c35d17c9126b9c99cfef5fc"
+    },
+    "AMAT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1109661,
+      "im_datenstand": true,
+      "sha256": "3daaaa73d6ba7509156fc6ceaddcbe99fb4220a829388f970a4538bbee29c4f7"
+    },
+    "AMD_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 840093,
+      "im_datenstand": true,
+      "sha256": "291a3af6c4c43314cf344b98010c391e5c5e9c940defee65287323eb8fc6a1dc"
+    },
+    "AMGN_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1015533,
+      "im_datenstand": true,
+      "sha256": "ff3a9fd818f170e8d389549b2ba504c397a045da60108b159b006a78f19b4b19"
+    },
+    "AMZN_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 679461,
+      "im_datenstand": true,
+      "sha256": "076dd7c759ae26288261a03cbeb351773be7de3ad3ee0df240ce152d3345beb0"
+    },
+    "ANET_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 271985,
+      "im_datenstand": true,
+      "sha256": "04b2b7b6f619a24415ec8eb5302365f44b5fffb29253367d11aab2de9438f1bd"
+    },
+    "APH_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 821714,
+      "im_datenstand": true,
+      "sha256": "8d5d53241fd60d4f53258e38422b07e39cc01a8a9133aaf8ed1bb8e8ef1edc71"
+    },
+    "APP_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 117210,
+      "im_datenstand": true,
+      "sha256": "74b4eb6005755c90b596bedf1164bb530a1255a319be4e2d669ee097f8ca8327"
+    },
+    "AVGO_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 402094,
+      "im_datenstand": true,
+      "sha256": "833d884e8c0db0dff8d82c313ba7b4d30d1d40a0115a661253c0906445aea448"
+    },
+    "AXP_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1267011,
+      "im_datenstand": true,
+      "sha256": "e326a742364aaccf8b4e55b74fedc0c8df3953429830b775384f411a19b8a3b1"
+    },
+    "BAC_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1262705,
+      "im_datenstand": true,
+      "sha256": "e6b75c11f162f9cdc18742ebeab9fae1a1d7bc92cd01b8c2473e7d13da7e0b0d"
+    },
+    "BA_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1515796,
+      "im_datenstand": true,
+      "sha256": "078196c270e53e6235c6b6fadb6e622b009a8fbbd970b5fac69488cc2b149117"
+    },
+    "BKNG_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 643054,
+      "im_datenstand": true,
+      "sha256": "cc70a0faa03bacb6da8dd0f3a80a4f3d5fecd2f1774b2ecfb0c59aa4f30313f5"
+    },
+    "BLK_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 616931,
+      "im_datenstand": true,
+      "sha256": "0c145e1ecf82949d5813347b9199b06443216c3ec2a04e06dbcb4ce545b0e208"
+    },
+    "BMTUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 28022,
+      "im_datenstand": true,
+      "sha256": "7f4721d157bfb1cb0bc5f11a3b18883f9f55c2cd405817c57676323be5bccc5a"
+    },
+    "BMTUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 769503,
+      "im_datenstand": true,
+      "sha256": "ec87fa39915985eabec496a57f198203566b6198af37ca8f00c50f4c42766031"
+    },
+    "BMTUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 194651,
+      "im_datenstand": true,
+      "sha256": "0e6fbdf29ffebea06bceee8539567389db1d3b370fb643006cc23807860b8340"
+    },
+    "BMY_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1278128,
+      "im_datenstand": true,
+      "sha256": "ab5c3b5ba88a254b407e73b988a005ed9045674ed03bfa99765662a25e39bfd0"
+    },
+    "BNBUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 158199,
+      "im_datenstand": true,
+      "sha256": "89163e1b5fed2270b8bc4183e0a074fad87b9bf15aa322fd1dee76c56a34613f"
+    },
+    "BNBUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 4388452,
+      "im_datenstand": true,
+      "sha256": "f8819eb32b56c62966181583aaf2ae3f9587372ecc27ee488e635a63a4c00b73"
+    },
+    "BNBUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1108210,
+      "im_datenstand": true,
+      "sha256": "19f443c4fca65130f33fb090dd81293d6e80eb919a9e75cafba4f6d929ef6bea"
+    },
+    "BNY_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1252389,
+      "im_datenstand": true,
+      "sha256": "43dcc6423f4f2a8c039acead097dd23a461b29bb8990f35e27133870184be19a"
+    },
+    "BRK-B_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 667187,
+      "im_datenstand": true,
+      "sha256": "0c2d9add27b2c27185cd166b5a31378ea54aad6fad8f7b0fe31f381653666140"
+    },
+    "BTCUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 189976,
+      "im_datenstand": true,
+      "sha256": "5bf59a664bc50690fdb137b4a33b59f5bb027395b54867f7120f44f56244626d"
+    },
+    "BTCUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 5173231,
+      "im_datenstand": true,
+      "sha256": "dccd53258612b9965ee86707d403736fe5520b2eda37ed99e44015c9ebf7fdb1"
+    },
+    "BTCUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1303920,
+      "im_datenstand": true,
+      "sha256": "276943f7f9ab93510f19186f7ba0423998e8bef64a48553693974ee202d97605"
+    },
+    "BX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 446157,
+      "im_datenstand": true,
+      "sha256": "2a9943d593cab7a6c8bb3576120a1f20326793fa73cc31027cc55ad29137a15b"
+    },
+    "CAT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1508517,
+      "im_datenstand": true,
+      "sha256": "1b0f4e15ff7d268c59ddb586ec2cb12133cc44a9c604df368526a9597c59818a"
+    },
+    "CB_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 776046,
+      "im_datenstand": true,
+      "sha256": "d5db7d26f756bf2f779457f84712745d2b6fd0bbd26e1b7ab192910ed7115b43"
+    },
+    "CDNS_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 821441,
+      "im_datenstand": true,
+      "sha256": "cebf79194447f87e20c732125a2754365c79ec98714a87bf8f9c37ae09299ee3"
+    },
+    "CEG_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 106862,
+      "im_datenstand": true,
+      "sha256": "ee6e4f35a4d48aed9889b83b8dbc15b1191364839c91c39c803bc207413aa0e5"
+    },
+    "CMCSA_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1096171,
+      "im_datenstand": true,
+      "sha256": "ec2a6ab56d6e5f302f3eeee944825accf0557be6657a1ba19931241e9157b9fd"
+    },
+    "CME_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 552097,
+      "im_datenstand": true,
+      "sha256": "ab5eeb4a6ea261849b6b3450926caf0b4d3032319d048747077a8426153f9fe0"
+    },
+    "COF_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 735438,
+      "im_datenstand": true,
+      "sha256": "247db89ad4dd20a8bdf534b184632db685eedbac60044125a3bc910bdb4fe51c"
+    },
+    "COP_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1042396,
+      "im_datenstand": true,
+      "sha256": "3e9779647a807b45193a511c243c45fe091cc2c251408dc7297cb78f26082406"
+    },
+    "COST_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 929276,
+      "im_datenstand": true,
+      "sha256": "4141f8112e94a7059e3903d45d2f5ded77e8ee92d56810e3745628ac642808e6"
+    },
+    "CRM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 516997,
+      "im_datenstand": true,
+      "sha256": "02ebea5fcaeecaa5ce1d9f6ce7538f646d2847ea1a7621365cb431a979df378e"
+    },
+    "CRWD_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 157910,
+      "im_datenstand": true,
+      "sha256": "56589ac362004ae8177f0112e0bd8b5598a37d72b94857b5179159b8f4dd7001"
+    },
+    "CSCO_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 868748,
+      "im_datenstand": true,
+      "sha256": "69ebeb7687941e61e7418c65f5f1d5fd625a8225f9b4493c46a2468b0e2d1872"
+    },
+    "CSX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1092683,
+      "im_datenstand": true,
+      "sha256": "d414326a4a680f63ebb9c73580a2957ffb6151b55d839187ad7195fc3b5c4aec"
+    },
+    "CVS_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1247859,
+      "im_datenstand": true,
+      "sha256": "dfb32e782aee24f155af89c3e6b123c142630f92da3217aa9cd13cb373e4cc89"
+    },
+    "CVX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1514775,
+      "im_datenstand": true,
+      "sha256": "ce01b735f3ddec979ff9ca66ed051eb6b9b9e8677e6c6ba0e59860f4dfcfa988"
+    },
+    "C_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1151682,
+      "im_datenstand": true,
+      "sha256": "05c71c752c30c0f3cca40899d6a5c68289b26b669ada99323ba59923163cd724"
+    },
+    "DASH_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 126709,
+      "im_datenstand": true,
+      "sha256": "0a24385ad7a83ccbba98ef9389e5ef1d5d0f71bb09ae0ae05c9c242d40beaae0"
+    },
+    "DELL_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 234477,
+      "im_datenstand": true,
+      "sha256": "b8db75143862db5585f877681114f135dbe85bbe5e490b4a2c128286eb535231"
+    },
+    "DE_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1264532,
+      "im_datenstand": true,
+      "sha256": "b24f20b9781a59efa94c20f92824981050a8ed2d8027db626bef46d189fadf37"
+    },
+    "DHR_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1129390,
+      "im_datenstand": true,
+      "sha256": "1f7b923a8eaddcbd85dca87143c969b63b74e2623ab9af71ce3e415d2889c284"
+    },
+    "DIS_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1529276,
+      "im_datenstand": true,
+      "sha256": "aeaa337349d96cb874447c39da1ee9a471a9194b2955e16c1a166375158b3307"
+    },
+    "DOGEUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 147470,
+      "im_datenstand": true,
+      "sha256": "47d7d16e1fe9be25035592adae89dd48c293372363d5126a981e7354642ad3b4"
+    },
+    "DOGEUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 4022732,
+      "im_datenstand": true,
+      "sha256": "a131063dde4ef9229719928feb4e5e45ab80640247b89a27e788d73a90dc98c7"
+    },
+    "DOGEUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1015270,
+      "im_datenstand": true,
+      "sha256": "01af280b1088d724a5b8f6c788162730711bf94099cf0e22ec952c65a232d669"
+    },
+    "DUK_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1079028,
+      "im_datenstand": true,
+      "sha256": "43bd4a553a2d8f1ed972d1a2c6cc84c7e5cf629b7dd6540897f0804295e09387"
+    },
+    "ELV_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 576249,
+      "im_datenstand": true,
+      "sha256": "76c0a71e45f456a90afbe189b465c457520b2a35a0641c01f4c844f07b75b065"
+    },
+    "ENAUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 45087,
+      "im_datenstand": true,
+      "sha256": "7710de41b5db2e3b8e6ca6c484b64bff7a17053d8660522b777071326f2e2da6"
+    },
+    "ENAUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1243133,
+      "im_datenstand": true,
+      "sha256": "35b0655adfb4452a1c89992058960c1fba7e4e0cfc4cbe2e287dc4017b24623a"
+    },
+    "ENAUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 314539,
+      "im_datenstand": true,
+      "sha256": "ae84cab20b0265ccc895e8e450c8da2800fc07fd89387bdd67300a44c53f11b2"
+    },
+    "ENSOUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 15293,
+      "im_datenstand": true,
+      "sha256": "041df249b00cfb3ffef923707652c67eae24643632c3df06f82c179ad877e0d3"
+    },
+    "ENSOUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 426018,
+      "im_datenstand": true,
+      "sha256": "7ba5cc5f68e28942e65c7b3b8f69da655096f3a4f8a30a0368baaea3e36a76dd"
+    },
+    "ENSOUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 107928,
+      "im_datenstand": true,
+      "sha256": "211137f48e89b5d7dea7e4b8ec109150e60c94ab3e3150007439f2d1481e8f8d"
+    },
+    "EQIX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 594721,
+      "im_datenstand": true,
+      "sha256": "c9cad7b47314034e7b4e01d81573db3e42700a3c1c7426b4cde5f7d2e08d0f53"
+    },
+    "ETHUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 175604,
+      "im_datenstand": true,
+      "sha256": "cf1ec28a664870692cd09c278aa74b23a6440859849077ba449b54833bcdecec"
+    },
+    "ETHUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 4824416,
+      "im_datenstand": true,
+      "sha256": "fefba05aed9c50c6a6a2db5859510125c0a29c670abf420e79418df22a1dc875"
+    },
+    "ETHUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1218060,
+      "im_datenstand": true,
+      "sha256": "a330788be1bde33ce6dd6177c633bc53972df6c5239ffcb8844bf48a2dbac3a4"
+    },
+    "ETN_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1268967,
+      "im_datenstand": true,
+      "sha256": "da9e75a6f890b02202d0a22c3399919348323c7529aa14e615f6b646c3ffc1c9"
+    },
+    "FCX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 728407,
+      "im_datenstand": true,
+      "sha256": "04f9f9fddcd0ea548e4304dc144940f73e7aee0e1fe6a8f18c502c1e0f052e04"
+    },
+    "FTNT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 383588,
+      "im_datenstand": true,
+      "sha256": "e543418890d5e2b78f4ba8245cd2cd8a5a18ef7ce75c8b27c5760fb9944cf6a0"
+    },
+    "GD_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1522373,
+      "im_datenstand": true,
+      "sha256": "988149f7bd339d84789d335c8ad07fa7e7f30b90609853a0d5d538677deaf0f8"
+    },
+    "GEV_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 55478,
+      "im_datenstand": true,
+      "sha256": "4e7feb00d200a74e8b49bdc5fa024279ad17a8f192a26716ba9ed1801066443c"
+    },
+    "GE_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1509791,
+      "im_datenstand": true,
+      "sha256": "0ce71e01e9ac6235f46045902cbf1c3c89cbc628ccfe955edf1e3436e5b00ff2"
+    },
+    "GILD_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 815724,
+      "im_datenstand": true,
+      "sha256": "1a6a71c56577f1f3c058c211fd07f8c01aeda8169396cfd9ab958d903da3b953"
+    },
+    "GLW_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1044754,
+      "im_datenstand": true,
+      "sha256": "7d35e1f90a21f70bee621b327d093f1b719980c3c88e6975f6af32a077819462"
+    },
+    "GOOGL_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 521738,
+      "im_datenstand": true,
+      "sha256": "1597555149baf6f74740750ecd43009a79f93bdc0b1238a32ebd9e33c0fb42aa"
+    },
+    "GOOG_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 521714,
+      "im_datenstand": true,
+      "sha256": "f30209c7ad9aa7938292c455647b13e7737bbc0ebdb40d0f922264582111e4cf"
+    },
+    "GS_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 635750,
+      "im_datenstand": true,
+      "sha256": "69aee57ef1b49aaeb40f5f9122d9803ca56f6d38effcf203b6270e457d2ff022"
+    },
+    "HCA_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 358480,
+      "im_datenstand": true,
+      "sha256": "94ce76b3629bbb364a39e85b2164b1564afe292cd925bfa5c78fd735d1933dbf"
+    },
+    "HD_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1061066,
+      "im_datenstand": true,
+      "sha256": "7df7d9c942a70a0e753facbf48b870f1fba14aa53630507e4501334270056f85"
+    },
+    "HOOD_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 115417,
+      "im_datenstand": true,
+      "sha256": "7e187a9c957264ec4a8d35a309e208bef2b2c872e4f43e09da0f9bd86b0276e3"
+    },
+    "HWM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 229505,
+      "im_datenstand": true,
+      "sha256": "c5e4a87cf9c7c9f1c2ec8d233b88e8997b2349c5bafb9016b226fed670f6423d"
+    },
+    "IBM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1505056,
+      "im_datenstand": true,
+      "sha256": "a002e75d2e679e0684eb4d42c52fff256d254207333fa46dbf1627b0c4046868"
+    },
+    "ICE_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 484621,
+      "im_datenstand": true,
+      "sha256": "57a945d2f54d71bcbc226205c8f5dd54541e82e0ed2d042b6c7f833b8cabda80"
+    },
+    "INTC_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1110665,
+      "im_datenstand": true,
+      "sha256": "d0e663e7f84edff845b70e382372812038ade1e6b6cbc006981d928926712642"
+    },
+    "INTU_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 777620,
+      "im_datenstand": true,
+      "sha256": "ff70881b9e6968c8985fe20727c5d92d4c006d7801ede5944808029a56211c9c"
+    },
+    "ISRG_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 596145,
+      "im_datenstand": true,
+      "sha256": "6bcfffca5444fd962d4a92f1db67cd29deb396a407e973975537353d2aaa4099"
+    },
+    "JCI_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 904726,
+      "im_datenstand": true,
+      "sha256": "7ac66b5a41a7d6b25bcc110494181358757c9cc11fb7ebb48d2453e4415686b6"
+    },
+    "JNJ_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1527825,
+      "im_datenstand": true,
+      "sha256": "be80ab92c357fb7beb47e893d67b80e6295de88889d28f2b128cfd3fc57c9751"
+    },
+    "JPM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1088692,
+      "im_datenstand": true,
+      "sha256": "861eed280361e64aa5dfe2af33f4a867d02c0fa0e3e3633238f645a6122c2080"
+    },
+    "KKR_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 375975,
+      "im_datenstand": true,
+      "sha256": "3ae0c56f13c5201ca7836dc4a69a50162c5684739c802d87f370930d50b19779"
+    },
+    "KLAC_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1098085,
+      "im_datenstand": true,
+      "sha256": "effe4373d1bb692c3b7da44b641beaafaa440def1c7ad813121c74bdaf302941"
+    },
+    "KO_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1547253,
+      "im_datenstand": true,
+      "sha256": "450752b707a4dea09d02e20c52df249f85c32d6a00af753cd93461db5cc9c776"
+    },
+    "LINKUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 132053,
+      "im_datenstand": true,
+      "sha256": "bbc73b62c8807662bac14fc4dd79fb77d7c642deb8f05dbb04374aa387d3686f"
+    },
+    "LINKUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 3685257,
+      "im_datenstand": true,
+      "sha256": "6c943a6b54a94e77a11bfea4f9be4d42695031470c617adb571d9481f54846b7"
+    },
+    "LINKUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 931224,
+      "im_datenstand": true,
+      "sha256": "324e8a429d8f326704706c216077393bae5510f143bab71295b8241515e0eb6d"
+    },
+    "LIN_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 793353,
+      "im_datenstand": true,
+      "sha256": "0ea901f9d7eb81ac52228045c2bce2b9f61936c80b2fed1e226343bfd1e6feec"
+    },
+    "LLY_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1265216,
+      "im_datenstand": true,
+      "sha256": "b52ffb8b23eb4414fcd3b8c03992b431f9256aca077dee05e02ee9232d990bde"
+    },
+    "LMT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1505968,
+      "im_datenstand": true,
+      "sha256": "f239dfe85bf1e66b79e7fc8de737732092d6b1ff1493ef2b80e9d47f4b09a721"
+    },
+    "LOW_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1097493,
+      "im_datenstand": true,
+      "sha256": "d7d69e637ddd3a460fa1228b7108e0e217ef541b9ff8c063ec81f36212c2be95"
+    },
+    "LRCX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1008409,
+      "im_datenstand": true,
+      "sha256": "5bbd0a570967b87cd7acf6e415b3333d95d66c7f2c4006789cbba41fbf48a689"
+    },
+    "MAR_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 664974,
+      "im_datenstand": true,
+      "sha256": "347cf1f09cd8967e45d7f8b9a284dda8423aa35ece5d254e0e5e1934dbfb041a"
+    },
+    "MA_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 471067,
+      "im_datenstand": true,
+      "sha256": "7495c19db889404aab84f69bed85d14828d113bba385bc8922a6cc8fc5fe7aa3"
+    },
+    "MCD_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1416540,
+      "im_datenstand": true,
+      "sha256": "52ec5be27a03ab04fe68a174dce2f830fc0eda296e3af1a39747356929ab83e8"
+    },
+    "MCK_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 737712,
+      "im_datenstand": true,
+      "sha256": "35e5be8b98c68633ef278aabf55ac9c5646e8095e517184919c95ee198ec306c"
+    },
+    "MCO_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 735234,
+      "im_datenstand": true,
+      "sha256": "3de5645d22426bf14c5918b72ca096ba88739f7c6d48988e5216893f84bfef53"
+    },
+    "MDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1258740,
+      "im_datenstand": true,
+      "sha256": "3330daff05ff7952b0bd40f981e3eb838726e621536a7a33cd5003b22d6dee6e"
+    },
+    "META_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 335031,
+      "im_datenstand": true,
+      "sha256": "a9d545825b855330ff1a69b807e79566e843b6aca9046a239133ac05e43bd7a5"
+    },
+    "MMM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1508359,
+      "im_datenstand": true,
+      "sha256": "498923f7cd17581c7855e26802900e04c60336a341bae2c9f811227c43b5aec1"
+    },
+    "MNST_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 964751,
+      "im_datenstand": true,
+      "sha256": "4b9fdd55f59024c6d84bdc570a517b9cacc35198ec0505b3cd2d20b00e605c5f"
+    },
+    "MO_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1574235,
+      "im_datenstand": true,
+      "sha256": "32b5a0cda124d15e8dbbe2a9d8ee14d5ef35c014bf8aa22b268412b91d8f08ee"
+    },
+    "MPC_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 354320,
+      "im_datenstand": true,
+      "sha256": "8d1cd50916dabb4efa75acb465e30b1421eeee03c66d39ddde832ee417911fe8"
+    },
+    "MRK_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1533297,
+      "im_datenstand": true,
+      "sha256": "78346ebc7ca08273a60117093834dac6fb47828c260a8fa7bf7fa08c37f475c1"
+    },
+    "MRSH_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1247675,
+      "im_datenstand": true,
+      "sha256": "3dcca4bb217d652f77d1caab25eee1503ee133f3be2f403e7df8cf23db550702"
+    },
+    "MRVL_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 611966,
+      "im_datenstand": true,
+      "sha256": "68c6f72b4d40642bf8ed7f76f5f7ba54f0396d5e286437fa7511dcb97dde7d4b"
+    },
+    "MSFT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 964488,
+      "im_datenstand": true,
+      "sha256": "6e59fd16ab9d6ef4a139c2f84224786135305dc9661e85b23cd1c4f5ce963b3b"
+    },
+    "MS_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 783418,
+      "im_datenstand": true,
+      "sha256": "d30e2a8115584e7dc50b6cf7e9d831939e08a498196472d9071d11b63d41ac3f"
+    },
+    "MU_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 992300,
+      "im_datenstand": true,
+      "sha256": "089a537d9945171d999774d40546416f7f810cf11565bc4ceb9af70c6896aba2"
+    },
+    "NEARUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 99251,
+      "im_datenstand": true,
+      "sha256": "4183de56b53a369bdced61493b7ad3e83cd602fb5e7a51d8b71d77ddc5cf6df7"
+    },
+    "NEARUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 2776561,
+      "im_datenstand": true,
+      "sha256": "e4c8e3922259c7c31918f265ae2c052902c9585b435e7a5c7281e07dd68f1080"
+    },
+    "NEARUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 702653,
+      "im_datenstand": true,
+      "sha256": "66da7b5aa0891c7c53a4e1896d00ee2b78f95ac26eecbc9fa448f0d872c0f38e"
+    },
+    "NEE_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1262336,
+      "im_datenstand": true,
+      "sha256": "ea033a4ef8bf98c2bb45db031bb9ca99f6e5d095081e6ba75790f97b20814c97"
+    },
+    "NEM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1080580,
+      "im_datenstand": true,
+      "sha256": "43b94b0d222999897325cda0ae5812a1f90d8ea8b038bfb12ecfa78ec7a7a4e0"
+    },
+    "NFLX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 576906,
+      "im_datenstand": true,
+      "sha256": "e3868620c87a47f6059396fe4635f12734911fe218c4a75e7866734163fe8d69"
+    },
+    "NOW_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 325165,
+      "im_datenstand": true,
+      "sha256": "93ddf3af1772816ac8f5594f8ac2acf0ff570f412c5f3f91f14f6368eab7566f"
+    },
+    "NVDA_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 676399,
+      "im_datenstand": true,
+      "sha256": "261163704df9ccc4d72cbe02f3fb3d570986de8944be6b63b26ef46a7d291b23"
+    },
+    "ORCL_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 962244,
+      "im_datenstand": true,
+      "sha256": "b0765b265ae9edd754dba1220ed5589436a1a049f90088148935615a3887f855"
+    },
+    "PANW_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 319858,
+      "im_datenstand": true,
+      "sha256": "21edd11e1febfaca2596acaee3227a5804a71175d5c53e1bfca3feaaa378229c"
+    },
+    "PEPEUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 78534,
+      "im_datenstand": true,
+      "sha256": "03cf166fc03be558c4297a3d2ad28e057c82df6202daac10e28a17e7304ade68"
+    },
+    "PEPEUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 2106199,
+      "im_datenstand": true,
+      "sha256": "cf71e752c72cd83b70e40d7dd0b7b85fb0cec4b8407cd6dc2a6d936b330c698f"
+    },
+    "PEPEUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 531344,
+      "im_datenstand": true,
+      "sha256": "a2cdba9ca4a6e514f82cb9f7404d3616461cc7a0c2a6701b23acd62dcc701897"
+    },
+    "PEP_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1275533,
+      "im_datenstand": true,
+      "sha256": "294ac665c51a5e2d20b9bcace945f8c28ef2f37f86608fd2b3f5fddd2d9f99d9"
+    },
+    "PFE_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1298613,
+      "im_datenstand": true,
+      "sha256": "d59386168cd5cf9f33b8f4574b065dbb3b285b75dab9e15c19d35775fa413915"
+    },
+    "PGR_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1096934,
+      "im_datenstand": true,
+      "sha256": "50b0e826c2ec3e16a67917cc8288014f860779bbd5906ce02bf5021a54ad3e7a"
+    },
+    "PG_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1522367,
+      "im_datenstand": true,
+      "sha256": "010f954dc75e28a2febb29d1461accb456b8b6cfcea27db431e94bc51eca82a5"
+    },
+    "PH_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1072154,
+      "im_datenstand": true,
+      "sha256": "ce9a083e51779bc4c37cf31cb19cfcb3af066a78c32556c79fe0e83b8040d451"
+    },
+    "PLD_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 668235,
+      "im_datenstand": true,
+      "sha256": "ca3e73a60347f5ca7f4ea851e5ea8a64ba24d2ae7e006ac13a4148f6bafa6083"
+    },
+    "PLTR_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 135317,
+      "im_datenstand": true,
+      "sha256": "aba10d329078b07d8ef2c9b12a744297c4720b606b20d319a7feb5dd414337c1"
+    },
+    "PM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 427033,
+      "im_datenstand": true,
+      "sha256": "df64861bed76a26cf31f5d8cde1937328017d833e9f90d7a8e37515e376b49de"
+    },
+    "PNC_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1177933,
+      "im_datenstand": true,
+      "sha256": "cbccc45dc9a168753ff7f04934086aefb432651a1cf0d5dd8967572a58558b4b"
+    },
+    "PROMUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 56175,
+      "im_datenstand": true,
+      "sha256": "e9cb25b2d54e635c9ad4f09b3cba0a2c73652e3af467cacaeba7fc6d75aff05e"
+    },
+    "PROMUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1579842,
+      "im_datenstand": true,
+      "sha256": "3e8916fd1318aeda45532ee696758e48e9e4db6b14f60e3efcedc2c40a946141"
+    },
+    "PROMUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 399841,
+      "im_datenstand": true,
+      "sha256": "d1e40f65f8740b742b51d75cf6fea881dd205a7d9023a70606f908b2f7fb6148"
+    },
+    "PSX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 332221,
+      "im_datenstand": true,
+      "sha256": "bf334a0969ed22d3670db39e88d92bd95a873501ec4a4c2bbbfbf5bf9a88e839"
+    },
+    "PUMPUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 22111,
+      "im_datenstand": true,
+      "sha256": "d9ac6c212f9b662ac57f810bcc320d9c3d32699875e122242db01b87e2d8be38"
+    },
+    "PUMPUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 596697,
+      "im_datenstand": true,
+      "sha256": "470ea0602a3df1bc4d0c28c4aa339e79b7504280419d03472dbc0bfd11a9ead8"
+    },
+    "PUMPUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 150664,
+      "im_datenstand": true,
+      "sha256": "6e8a0e22eb54258edcea9b4de266c83975055f98d6cbaa46dd69a14ded6ebf2f"
+    },
+    "PWR_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 662105,
+      "im_datenstand": true,
+      "sha256": "be939cac2a08e458b5ef79e89a1363f165e2ab01fcd26c39268bfe0b68bb984f"
+    },
+    "QCOM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 819308,
+      "im_datenstand": true,
+      "sha256": "7167296ded636aa7195803f76f6f9277fb46d72df464cc97fd017ba5d3ea22cb"
+    },
+    "REGN_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 813797,
+      "im_datenstand": true,
+      "sha256": "7a77495c1ccfae584d618d88b4a53866970582af24b3e5249e087ff4dc0733c2"
+    },
+    "RTX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1524258,
+      "im_datenstand": true,
+      "sha256": "780eb4eca5333bd12473a18d3c0610e58d79942772f32920c2eb5e8e2448701e"
+    },
+    "SBUX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 800117,
+      "im_datenstand": true,
+      "sha256": "c9677620d39b4cf5aab53e7d41e99c2adaddd9a72f239c75753cdd4dd5f1ce36"
+    },
+    "SCHW_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 916096,
+      "im_datenstand": true,
+      "sha256": "ee15d0744955e4b9b0dd02979e71f09519460c28f2b98587a4486b176d43b3ae"
+    },
+    "SLB_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1040299,
+      "im_datenstand": true,
+      "sha256": "e6d4bddd47821e6b93cd71d0ffe45ea0a85efdd0f857d1af86d16d74ee7b1cb5"
+    },
+    "SNDK_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 33008,
+      "im_datenstand": true,
+      "sha256": "9ec7c8effb314b49558afd4bdfd1d1d9c8a5449e2b5eab9ddc0a2e382a9589f0"
+    },
+    "SOLUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 107155,
+      "im_datenstand": true,
+      "sha256": "b49c7f788b34feafb761c478537aa0baf24da6a3f14743f616a84f351541c111"
+    },
+    "SOLUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 2981380,
+      "im_datenstand": true,
+      "sha256": "255d4d7db43f914c7c2c37ef5610451a243b5b4d3aa565f65b6084203f2ba8f0"
+    },
+    "SOLUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 753129,
+      "im_datenstand": true,
+      "sha256": "924742114ee0a8124915051d1876909be3d529382471c65db7bde96a0792806b"
+    },
+    "SO_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1046044,
+      "im_datenstand": true,
+      "sha256": "fc1d00f43482b76ba92111ec99ee259e5f0289aad9a1cbcd1df2f76ba07e2a3d"
+    },
+    "SPGI_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1250958,
+      "im_datenstand": true,
+      "sha256": "ac65e102a2dd092d453c18e763581501c6eb7690e6fb7c3cd738892efa3c7df0"
+    },
+    "STX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 549876,
+      "im_datenstand": true,
+      "sha256": "6e6f879f43002d85021b9219d58bfda49106ed45608dfd6be0f1c86203da393b"
+    },
+    "SUIUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 60896,
+      "im_datenstand": true,
+      "sha256": "64436ff95a4a76c49be06daa1c7af96d25f585368884d1f8064611faf4371056"
+    },
+    "SUIUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1689581,
+      "im_datenstand": true,
+      "sha256": "3006a29cfdfb147be372c01c2c954c8f5b2a0520041c57d296b6a9ab0f9f6d98"
+    },
+    "SUIUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 426529,
+      "im_datenstand": true,
+      "sha256": "652908b7fe25d81dd2c7cdb99b08751c88e081845f9d664cbaac6e2e5b59b5a4"
+    },
+    "SYK_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1086400,
+      "im_datenstand": true,
+      "sha256": "018013bbd1c5302d98ac0cebb1c412d377924b5892505d5edd5595a32b36f191"
+    },
+    "TJX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 923887,
+      "im_datenstand": true,
+      "sha256": "126af7393d71a96bc476458a409bf1d8f30d30b0d10949de1153fea2f8e45ca1"
+    },
+    "TMO_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1074919,
+      "im_datenstand": true,
+      "sha256": "2eb736270d0fd3290ebd8b11fce7941f093946175c608d4bdc38dec21c132f2b"
+    },
+    "TMUS_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 453011,
+      "im_datenstand": true,
+      "sha256": "8b7b8d1e7baba4efa766ae80e66bc6beb4b292e70cc23fd20e45befda38db8eb"
+    },
+    "TRUMPUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 27694,
+      "im_datenstand": true,
+      "sha256": "4bbbf6149c06d40c39a932707530025b8a54beb9cb772f1d8124ba957c5fa03a"
+    },
+    "TRUMPUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 772781,
+      "im_datenstand": true,
+      "sha256": "cb58e89a9c24ea34499a42029063ca6a56d43fe66f692cfc557dbe3efb890ec0"
+    },
+    "TRUMPUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 195439,
+      "im_datenstand": true,
+      "sha256": "e8c8621e2797261467383c91c2ba86c35a1ad18fc8545a70d19c47dbc2b3793f"
+    },
+    "TRXUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 161910,
+      "im_datenstand": true,
+      "sha256": "e38a993ce3e1bb9f1ba34b9182553ddfb786ce35ef7f662a28d9ed5ea9b44586"
+    },
+    "TRXUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 4431039,
+      "im_datenstand": true,
+      "sha256": "6485f14fc10653deb3bea4372034528c3eead35cdafb44f6a66a36695d759a29"
+    },
+    "TRXUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1119707,
+      "im_datenstand": true,
+      "sha256": "7ccd2dfcc14e381e79f4ffeabc8f20c9c06e7736985724002f8dcec19576edaa"
+    },
+    "TSLA_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 377065,
+      "im_datenstand": true,
+      "sha256": "955022ade6a7b5b2e21b5b32ea8ae9ff259afbf859c69b1f5efb891fdc745056"
+    },
+    "TT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1082427,
+      "im_datenstand": true,
+      "sha256": "160518ec7fdbffd6b1fc8d209156874a0828200c5c8980c1bc2abf6353e85822"
+    },
+    "TXN_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1280653,
+      "im_datenstand": true,
+      "sha256": "2840595220a10ecbb1ae739f06d25f381def33f6b5d59cc425f026d2f93765fe"
+    },
+    "T_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1009502,
+      "im_datenstand": true,
+      "sha256": "5ae47b6ca32127e8a3b904da9d1c38bb37f5610d0625d45323ced4246a607e38"
+    },
+    "UBER_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 163029,
+      "im_datenstand": true,
+      "sha256": "ab36ab501580c64027003f8f7090e55e512847debb04a78b429a4d286b3526ba"
+    },
+    "UNH_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 983485,
+      "im_datenstand": true,
+      "sha256": "1faf51657728b9ad1c30d4289ad1647300d9d3f21506b7eb655c7c285f635c34"
+    },
+    "UNIUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 100434,
+      "im_datenstand": true,
+      "sha256": "b17a420438c24b5ef39612ce6bd4e51f6ec6655ace7f53885ad32fd2e6c0b2a8"
+    },
+    "UNIUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 2809447,
+      "im_datenstand": true,
+      "sha256": "4044e2ca6e23f07cea55b6eaad90fed1723ce340da1928247bf97711e4021fee"
+    },
+    "UNIUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 710786,
+      "im_datenstand": true,
+      "sha256": "f0f23d88935f670ebc052a900defea8fd31a5c34d18bd96748bf9b6e4e9ea938"
+    },
+    "UNP_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1087490,
+      "im_datenstand": true,
+      "sha256": "37f5319ad7c346df764e599b8e0c720e5356245ff8189464d22a64587a7d66df"
+    },
+    "UPS_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 620988,
+      "im_datenstand": true,
+      "sha256": "a77429d613cdfd1ac37e6ab371845e95670de955f15f31f9ce0819d97c569e2e"
+    },
+    "USB_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1255626,
+      "im_datenstand": true,
+      "sha256": "0055a9deff73f9e6ef080406b2ced9ec214c3d8ab13c78482790094804c0a066"
+    },
+    "UUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 11970,
+      "im_datenstand": true,
+      "sha256": "cb29b28b7f1532ed21c9175ec2c4eae2e608ea5adf22dabeab7db8e8ac82dbec"
+    },
+    "UUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 328890,
+      "im_datenstand": true,
+      "sha256": "71748f96f92ef6bd1458baeabcdade7a3e09ebbd7afbdc6c6132c752bae70788"
+    },
+    "UUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 83321,
+      "im_datenstand": true,
+      "sha256": "dc1a256ad000919a155c36244f0da108a9582f1182f6adac026696104844e467"
+    },
+    "VLO_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1045081,
+      "im_datenstand": true,
+      "sha256": "73718776aaa64e8b5f231b9fe12edfb031c87aecf6077669b0c9a0d4fede623e"
+    },
+    "VRTX_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 668094,
+      "im_datenstand": true,
+      "sha256": "bf23b9b3f5974f81dd91d9f881c0a39b3006b2cd33ad537a66604d42be185fdb"
+    },
+    "VRT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 187462,
+      "im_datenstand": true,
+      "sha256": "33dd1066041989da69a374b57d4a6c1ea2bf87d53d398135551816368f24df24"
+    },
+    "VZ_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1003970,
+      "im_datenstand": true,
+      "sha256": "58d8557f7a063584679f3cfe7438fdfe7992d3ebe42393d01f8cb0b950c8988c"
+    },
+    "V_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 432706,
+      "im_datenstand": true,
+      "sha256": "472542baab6cf815d5eeb089a4ceedcd898915d4c7edb7e153e13cc13f2a2fc8"
+    },
+    "WDC_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1111305,
+      "im_datenstand": true,
+      "sha256": "43edcd738ce6bbb4e1f55324409a23d201da6c43d692a5a17b74fdd5cc1a8b26"
+    },
+    "WELL_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1072129,
+      "im_datenstand": true,
+      "sha256": "dc6e2b05602c91b0f0e8825451fd8a28cc3e313d968103ee1dae287cf1562dc3"
+    },
+    "WFC_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1287450,
+      "im_datenstand": true,
+      "sha256": "4ef46ba8ed9396fe2cd1c9edaf7b16a1fdc8d78d6c3cab7c88c13ce9769295c0"
+    },
+    "WLDUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 53285,
+      "im_datenstand": true,
+      "sha256": "251fafdd1dd2fd2d458e4d1f5b88e6447e7e7d4ed19230a33fb06b0a29ae0124"
+    },
+    "WLDUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1488459,
+      "im_datenstand": true,
+      "sha256": "ece52d7872929a08083d591d6982d55601147814545af11532a2423164a49856"
+    },
+    "WLDUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 376218,
+      "im_datenstand": true,
+      "sha256": "c5a5b7376b555b05ca3953eb1560bd428bb0d1619cb81139c103c78ae77dd144"
+    },
+    "WMB_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1047091,
+      "im_datenstand": true,
+      "sha256": "bc8d4c59531755fd86962b048caabae8a5e27300094b04ff8c0ae2169b743907"
+    },
+    "WMT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1305219,
+      "im_datenstand": true,
+      "sha256": "489cf2cfa47a8c38818aab6ced261080c6ae8b4d557d54e5c8e5ebc3458fbae7"
+    },
+    "WM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 888362,
+      "im_datenstand": true,
+      "sha256": "27995a9c5d708762a9193487e111f5428ba89b3c5af46984064e3caf931e5522"
+    },
+    "XAUTUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 225686,
+      "im_datenstand": true,
+      "sha256": "244bb9c09e47cb95271a6abfac85ed3a1e53f0662a43709cd6d2ac996dc76884"
+    },
+    "XOM_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 1533579,
+      "im_datenstand": true,
+      "sha256": "3c8d73031d6a04110fac3003143ae3967dd00b012c6a531602432b3c64b4156a"
+    },
+    "XRPUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 157211,
+      "im_datenstand": true,
+      "sha256": "db0d8840ff1e7e26e525cab27977b171fe446539d2d80641a302175545a27e88"
+    },
+    "XRPUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 4333651,
+      "im_datenstand": true,
+      "sha256": "62567100e315b3c2fd338a71e65c98e59ba9b182d75beaa3dca61d3718079675"
+    },
+    "XRPUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 1094145,
+      "im_datenstand": true,
+      "sha256": "9031b1047ef0eca87a8805b880e0970a974309e095e678e7d2d08863d2169f38"
+    },
+    "ZECUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 125765,
+      "im_datenstand": true,
+      "sha256": "fa0edd63cfccc7835f83920a1948f326840ffb3fc91ee00bedada90cc0de5aaf"
+    },
+    "ZECUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 3508767,
+      "im_datenstand": true,
+      "sha256": "d4300328391c680b83a5a685f900b5cc02b3a81e0a045f52461859fb4b949a02"
+    },
+    "ZECUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 888489,
+      "im_datenstand": true,
+      "sha256": "f30e127349d035b56edcf9578a80aab3a70998bd049d9aebad44a9f903abb91e"
+    },
+    "ZKCUSDT_1d.csv": {
+      "art": "Kursdatei",
+      "bytes": 17976,
+      "im_datenstand": true,
+      "sha256": "d6db8c7f8d189fa8e0504c678e68e3bc40a04bef3ad3db98f9f3d824e759718f"
+    },
+    "ZKCUSDT_1h.csv": {
+      "art": "Kursdatei",
+      "bytes": 496047,
+      "im_datenstand": true,
+      "sha256": "4828ce4906233969449f33324dde3b8c002b355d8f5a27cace32c31b4bbe5e7c"
+    },
+    "ZKCUSDT_4h.csv": {
+      "art": "Kursdatei",
+      "bytes": 125444,
+      "im_datenstand": true,
+      "sha256": "26d08f61f6899a89c81f3e60c6169d444adba38de1c9dbcb2ca89d9414409182"
+    },
+    "config/sp500_top150.txt": {
+      "art": "Eingabe",
+      "bytes": 626,
+      "im_datenstand": false,
+      "sha256": "6acba892f38e998cf43ae9e5594c4707945143aba481429c44a5c6005339f607"
+    },
+    "config/top25_symbols.txt": {
+      "art": "Eingabe",
+      "bytes": 208,
+      "im_datenstand": false,
+      "sha256": "3afc95a4f6b5ebc3a8f7bb7854b5dd59c4ecc4e3d86aa7b93c08066a3fccf810"
+    }
+  },
+  "dateien_gesamt": 225,
+  "datenstand_hash": "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84",
+  "eingabeliste": [
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AAPL_1d.csv",
+      "im_snapshot": "AAPL_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AAVEUSDT_1d.csv",
+      "im_snapshot": "AAVEUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AAVEUSDT_1h.csv",
+      "im_snapshot": "AAVEUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AAVEUSDT_4h.csv",
+      "im_snapshot": "AAVEUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ABBV_1d.csv",
+      "im_snapshot": "ABBV_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ABNB_1d.csv",
+      "im_snapshot": "ABNB_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ABT_1d.csv",
+      "im_snapshot": "ABT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ACN_1d.csv",
+      "im_snapshot": "ACN_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ADAUSDT_1d.csv",
+      "im_snapshot": "ADAUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ADAUSDT_1h.csv",
+      "im_snapshot": "ADAUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ADAUSDT_4h.csv",
+      "im_snapshot": "ADAUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ADBE_1d.csv",
+      "im_snapshot": "ADBE_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ADI_1d.csv",
+      "im_snapshot": "ADI_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ADP_1d.csv",
+      "im_snapshot": "ADP_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AMAT_1d.csv",
+      "im_snapshot": "AMAT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AMD_1d.csv",
+      "im_snapshot": "AMD_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AMGN_1d.csv",
+      "im_snapshot": "AMGN_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AMZN_1d.csv",
+      "im_snapshot": "AMZN_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ANET_1d.csv",
+      "im_snapshot": "ANET_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/APH_1d.csv",
+      "im_snapshot": "APH_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/APP_1d.csv",
+      "im_snapshot": "APP_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AVGO_1d.csv",
+      "im_snapshot": "AVGO_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/AXP_1d.csv",
+      "im_snapshot": "AXP_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BAC_1d.csv",
+      "im_snapshot": "BAC_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BA_1d.csv",
+      "im_snapshot": "BA_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BKNG_1d.csv",
+      "im_snapshot": "BKNG_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BLK_1d.csv",
+      "im_snapshot": "BLK_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BMTUSDT_1d.csv",
+      "im_snapshot": "BMTUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BMTUSDT_1h.csv",
+      "im_snapshot": "BMTUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BMTUSDT_4h.csv",
+      "im_snapshot": "BMTUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BMY_1d.csv",
+      "im_snapshot": "BMY_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BNBUSDT_1d.csv",
+      "im_snapshot": "BNBUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BNBUSDT_1h.csv",
+      "im_snapshot": "BNBUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BNBUSDT_4h.csv",
+      "im_snapshot": "BNBUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BNY_1d.csv",
+      "im_snapshot": "BNY_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BRK-B_1d.csv",
+      "im_snapshot": "BRK-B_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BTCUSDT_1d.csv",
+      "im_snapshot": "BTCUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BTCUSDT_1h.csv",
+      "im_snapshot": "BTCUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BTCUSDT_4h.csv",
+      "im_snapshot": "BTCUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/BX_1d.csv",
+      "im_snapshot": "BX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CAT_1d.csv",
+      "im_snapshot": "CAT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CB_1d.csv",
+      "im_snapshot": "CB_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CDNS_1d.csv",
+      "im_snapshot": "CDNS_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CEG_1d.csv",
+      "im_snapshot": "CEG_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CMCSA_1d.csv",
+      "im_snapshot": "CMCSA_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CME_1d.csv",
+      "im_snapshot": "CME_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/COF_1d.csv",
+      "im_snapshot": "COF_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/COP_1d.csv",
+      "im_snapshot": "COP_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/COST_1d.csv",
+      "im_snapshot": "COST_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CRM_1d.csv",
+      "im_snapshot": "CRM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CRWD_1d.csv",
+      "im_snapshot": "CRWD_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CSCO_1d.csv",
+      "im_snapshot": "CSCO_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CSX_1d.csv",
+      "im_snapshot": "CSX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CVS_1d.csv",
+      "im_snapshot": "CVS_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/CVX_1d.csv",
+      "im_snapshot": "CVX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/C_1d.csv",
+      "im_snapshot": "C_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DASH_1d.csv",
+      "im_snapshot": "DASH_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DELL_1d.csv",
+      "im_snapshot": "DELL_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DE_1d.csv",
+      "im_snapshot": "DE_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DHR_1d.csv",
+      "im_snapshot": "DHR_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DIS_1d.csv",
+      "im_snapshot": "DIS_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DOGEUSDT_1d.csv",
+      "im_snapshot": "DOGEUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DOGEUSDT_1h.csv",
+      "im_snapshot": "DOGEUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DOGEUSDT_4h.csv",
+      "im_snapshot": "DOGEUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/DUK_1d.csv",
+      "im_snapshot": "DUK_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ELV_1d.csv",
+      "im_snapshot": "ELV_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ENAUSDT_1d.csv",
+      "im_snapshot": "ENAUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ENAUSDT_1h.csv",
+      "im_snapshot": "ENAUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ENAUSDT_4h.csv",
+      "im_snapshot": "ENAUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ENSOUSDT_1d.csv",
+      "im_snapshot": "ENSOUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ENSOUSDT_1h.csv",
+      "im_snapshot": "ENSOUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ENSOUSDT_4h.csv",
+      "im_snapshot": "ENSOUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/EQIX_1d.csv",
+      "im_snapshot": "EQIX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ETHUSDT_1d.csv",
+      "im_snapshot": "ETHUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ETHUSDT_1h.csv",
+      "im_snapshot": "ETHUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ETHUSDT_4h.csv",
+      "im_snapshot": "ETHUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ETN_1d.csv",
+      "im_snapshot": "ETN_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/FCX_1d.csv",
+      "im_snapshot": "FCX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/FTNT_1d.csv",
+      "im_snapshot": "FTNT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/GD_1d.csv",
+      "im_snapshot": "GD_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/GEV_1d.csv",
+      "im_snapshot": "GEV_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/GE_1d.csv",
+      "im_snapshot": "GE_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/GILD_1d.csv",
+      "im_snapshot": "GILD_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/GLW_1d.csv",
+      "im_snapshot": "GLW_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/GOOGL_1d.csv",
+      "im_snapshot": "GOOGL_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/GOOG_1d.csv",
+      "im_snapshot": "GOOG_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/GS_1d.csv",
+      "im_snapshot": "GS_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/HCA_1d.csv",
+      "im_snapshot": "HCA_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/HD_1d.csv",
+      "im_snapshot": "HD_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/HOOD_1d.csv",
+      "im_snapshot": "HOOD_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/HWM_1d.csv",
+      "im_snapshot": "HWM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/IBM_1d.csv",
+      "im_snapshot": "IBM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ICE_1d.csv",
+      "im_snapshot": "ICE_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/INTC_1d.csv",
+      "im_snapshot": "INTC_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/INTU_1d.csv",
+      "im_snapshot": "INTU_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ISRG_1d.csv",
+      "im_snapshot": "ISRG_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/JCI_1d.csv",
+      "im_snapshot": "JCI_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/JNJ_1d.csv",
+      "im_snapshot": "JNJ_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/JPM_1d.csv",
+      "im_snapshot": "JPM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/KKR_1d.csv",
+      "im_snapshot": "KKR_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/KLAC_1d.csv",
+      "im_snapshot": "KLAC_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/KO_1d.csv",
+      "im_snapshot": "KO_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/LINKUSDT_1d.csv",
+      "im_snapshot": "LINKUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/LINKUSDT_1h.csv",
+      "im_snapshot": "LINKUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/LINKUSDT_4h.csv",
+      "im_snapshot": "LINKUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/LIN_1d.csv",
+      "im_snapshot": "LIN_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/LLY_1d.csv",
+      "im_snapshot": "LLY_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/LMT_1d.csv",
+      "im_snapshot": "LMT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/LOW_1d.csv",
+      "im_snapshot": "LOW_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/LRCX_1d.csv",
+      "im_snapshot": "LRCX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MAR_1d.csv",
+      "im_snapshot": "MAR_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MA_1d.csv",
+      "im_snapshot": "MA_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MCD_1d.csv",
+      "im_snapshot": "MCD_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MCK_1d.csv",
+      "im_snapshot": "MCK_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MCO_1d.csv",
+      "im_snapshot": "MCO_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MDT_1d.csv",
+      "im_snapshot": "MDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/META_1d.csv",
+      "im_snapshot": "META_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MMM_1d.csv",
+      "im_snapshot": "MMM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MNST_1d.csv",
+      "im_snapshot": "MNST_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MO_1d.csv",
+      "im_snapshot": "MO_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MPC_1d.csv",
+      "im_snapshot": "MPC_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MRK_1d.csv",
+      "im_snapshot": "MRK_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MRSH_1d.csv",
+      "im_snapshot": "MRSH_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MRVL_1d.csv",
+      "im_snapshot": "MRVL_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MSFT_1d.csv",
+      "im_snapshot": "MSFT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MS_1d.csv",
+      "im_snapshot": "MS_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/MU_1d.csv",
+      "im_snapshot": "MU_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/NEARUSDT_1d.csv",
+      "im_snapshot": "NEARUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/NEARUSDT_1h.csv",
+      "im_snapshot": "NEARUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/NEARUSDT_4h.csv",
+      "im_snapshot": "NEARUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/NEE_1d.csv",
+      "im_snapshot": "NEE_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/NEM_1d.csv",
+      "im_snapshot": "NEM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/NFLX_1d.csv",
+      "im_snapshot": "NFLX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/NOW_1d.csv",
+      "im_snapshot": "NOW_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/NVDA_1d.csv",
+      "im_snapshot": "NVDA_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ORCL_1d.csv",
+      "im_snapshot": "ORCL_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PANW_1d.csv",
+      "im_snapshot": "PANW_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PEPEUSDT_1d.csv",
+      "im_snapshot": "PEPEUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PEPEUSDT_1h.csv",
+      "im_snapshot": "PEPEUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PEPEUSDT_4h.csv",
+      "im_snapshot": "PEPEUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PEP_1d.csv",
+      "im_snapshot": "PEP_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PFE_1d.csv",
+      "im_snapshot": "PFE_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PGR_1d.csv",
+      "im_snapshot": "PGR_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PG_1d.csv",
+      "im_snapshot": "PG_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PH_1d.csv",
+      "im_snapshot": "PH_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PLD_1d.csv",
+      "im_snapshot": "PLD_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PLTR_1d.csv",
+      "im_snapshot": "PLTR_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PM_1d.csv",
+      "im_snapshot": "PM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PNC_1d.csv",
+      "im_snapshot": "PNC_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PROMUSDT_1d.csv",
+      "im_snapshot": "PROMUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PROMUSDT_1h.csv",
+      "im_snapshot": "PROMUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PROMUSDT_4h.csv",
+      "im_snapshot": "PROMUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PSX_1d.csv",
+      "im_snapshot": "PSX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PUMPUSDT_1d.csv",
+      "im_snapshot": "PUMPUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PUMPUSDT_1h.csv",
+      "im_snapshot": "PUMPUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PUMPUSDT_4h.csv",
+      "im_snapshot": "PUMPUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/PWR_1d.csv",
+      "im_snapshot": "PWR_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/QCOM_1d.csv",
+      "im_snapshot": "QCOM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/REGN_1d.csv",
+      "im_snapshot": "REGN_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/RTX_1d.csv",
+      "im_snapshot": "RTX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SBUX_1d.csv",
+      "im_snapshot": "SBUX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SCHW_1d.csv",
+      "im_snapshot": "SCHW_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SLB_1d.csv",
+      "im_snapshot": "SLB_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SNDK_1d.csv",
+      "im_snapshot": "SNDK_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SOLUSDT_1d.csv",
+      "im_snapshot": "SOLUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SOLUSDT_1h.csv",
+      "im_snapshot": "SOLUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SOLUSDT_4h.csv",
+      "im_snapshot": "SOLUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SO_1d.csv",
+      "im_snapshot": "SO_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SPGI_1d.csv",
+      "im_snapshot": "SPGI_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/STX_1d.csv",
+      "im_snapshot": "STX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SUIUSDT_1d.csv",
+      "im_snapshot": "SUIUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SUIUSDT_1h.csv",
+      "im_snapshot": "SUIUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SUIUSDT_4h.csv",
+      "im_snapshot": "SUIUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/SYK_1d.csv",
+      "im_snapshot": "SYK_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TJX_1d.csv",
+      "im_snapshot": "TJX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TMO_1d.csv",
+      "im_snapshot": "TMO_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TMUS_1d.csv",
+      "im_snapshot": "TMUS_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TRUMPUSDT_1d.csv",
+      "im_snapshot": "TRUMPUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TRUMPUSDT_1h.csv",
+      "im_snapshot": "TRUMPUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TRUMPUSDT_4h.csv",
+      "im_snapshot": "TRUMPUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TRXUSDT_1d.csv",
+      "im_snapshot": "TRXUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TRXUSDT_1h.csv",
+      "im_snapshot": "TRXUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TRXUSDT_4h.csv",
+      "im_snapshot": "TRXUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TSLA_1d.csv",
+      "im_snapshot": "TSLA_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TT_1d.csv",
+      "im_snapshot": "TT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/TXN_1d.csv",
+      "im_snapshot": "TXN_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/T_1d.csv",
+      "im_snapshot": "T_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UBER_1d.csv",
+      "im_snapshot": "UBER_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UNH_1d.csv",
+      "im_snapshot": "UNH_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UNIUSDT_1d.csv",
+      "im_snapshot": "UNIUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UNIUSDT_1h.csv",
+      "im_snapshot": "UNIUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UNIUSDT_4h.csv",
+      "im_snapshot": "UNIUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UNP_1d.csv",
+      "im_snapshot": "UNP_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UPS_1d.csv",
+      "im_snapshot": "UPS_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/USB_1d.csv",
+      "im_snapshot": "USB_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UUSDT_1d.csv",
+      "im_snapshot": "UUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UUSDT_1h.csv",
+      "im_snapshot": "UUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/UUSDT_4h.csv",
+      "im_snapshot": "UUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/VLO_1d.csv",
+      "im_snapshot": "VLO_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/VRTX_1d.csv",
+      "im_snapshot": "VRTX_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/VRT_1d.csv",
+      "im_snapshot": "VRT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/VZ_1d.csv",
+      "im_snapshot": "VZ_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/V_1d.csv",
+      "im_snapshot": "V_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WDC_1d.csv",
+      "im_snapshot": "WDC_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WELL_1d.csv",
+      "im_snapshot": "WELL_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WFC_1d.csv",
+      "im_snapshot": "WFC_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WLDUSDT_1d.csv",
+      "im_snapshot": "WLDUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WLDUSDT_1h.csv",
+      "im_snapshot": "WLDUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WLDUSDT_4h.csv",
+      "im_snapshot": "WLDUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WMB_1d.csv",
+      "im_snapshot": "WMB_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WMT_1d.csv",
+      "im_snapshot": "WMT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/WM_1d.csv",
+      "im_snapshot": "WM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/XAUTUSDT_1h.csv",
+      "im_snapshot": "XAUTUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/XOM_1d.csv",
+      "im_snapshot": "XOM_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/XRPUSDT_1d.csv",
+      "im_snapshot": "XRPUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/XRPUSDT_1h.csv",
+      "im_snapshot": "XRPUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/XRPUSDT_4h.csv",
+      "im_snapshot": "XRPUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ZECUSDT_1d.csv",
+      "im_snapshot": "ZECUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ZECUSDT_1h.csv",
+      "im_snapshot": "ZECUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ZECUSDT_4h.csv",
+      "im_snapshot": "ZECUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ZKCUSDT_1d.csv",
+      "im_snapshot": "ZKCUSDT_1d.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ZKCUSDT_1h.csv",
+      "im_snapshot": "ZKCUSDT_1h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Kursdatei",
+      "herkunft": "data/ZKCUSDT_4h.csv",
+      "im_snapshot": "ZKCUSDT_4h.csv",
+      "leser": "die neun Bots und der Selektionslauf",
+      "rolle": "Kursdaten des Laufs"
+    },
+    {
+      "art": "Eingabe",
+      "herkunft": "/Users/jaquelineloffler/trading-bot/config/top25_symbols.txt",
+      "im_snapshot": "config/top25_symbols.txt",
+      "leser": "shared/symbols_config.py:28",
+      "rolle": "Symbolliste Krypto - welche 25 Maerkte gehandelt werden"
+    },
+    {
+      "art": "Eingabe",
+      "herkunft": "/Users/jaquelineloffler/trading-bot/config/sp500_top150.txt",
+      "im_snapshot": "config/sp500_top150.txt",
+      "leser": "strategies/{elliott_wave_stocks,rsi2_mean_reversion,turtle_soup_stocks,volatility_breakout}/stocks_symbols_config.py",
+      "rolle": "Symbolliste Aktien - die S&P-500-Auswahl"
+    }
+  ],
+  "kursdateien": 223,
+  "quelle": "/Users/jaquelineloffler/trading-bot/data",
+  "snapshot_hash": "63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2",
+  "teilkerzen": {
+    "ausfuehrbar": true,
+    "ausnahme": {
+      "beschlossen": "18.09.2026",
+      "fundstelle": "docs/VORREGISTRIERUNG_neuselektion.md, Abschnitt 17.3",
+      "registertext": "5a, Zusatz - Ausnahme `rand_erste`",
+      "umgesetzt_in": "shared/snapshot.py::_zulassung (TB-49)",
+      "wortlaut": "Diese Befundart ist fuer das Ziehen eines Snapshots zugelassen, wenn alle drei Bedingungen erfuellt sind: (a) der Befund betrifft ausschliesslich die erste Kerze der Datei - fuer `rand_letzte` gilt die Ausnahme nicht; (b) die Kerze ist nachweislich das Aggregat genau der vorhandenen feineren Kerzen; (c) die Ausnahme wird im Manifest des Snapshots je Datei aufgefuehrt, mit Art und erster Kerze."
+    },
+    "befunde": [
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "AAVEUSDT_1d.csv",
+        "erste_kerze": "2020-10-15",
+        "texte": [
+          "Erste Kerze 2020-10-15: AAVEUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "AAVEUSDT_4h.csv",
+        "erste_kerze": "2020-10-15 00:00:00",
+        "texte": [
+          "Erste Kerze 2020-10-15 00:00:00: AAVEUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "ADAUSDT_1d.csv",
+        "erste_kerze": "2018-04-17",
+        "texte": [
+          "Erste Kerze 2018-04-17: ADAUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "BMTUSDT_1d.csv",
+        "erste_kerze": "2025-03-18",
+        "texte": [
+          "Erste Kerze 2025-03-18: BMTUSDT_1h.csv belegt 9 von 24 1h-Kerzen (9 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "BMTUSDT_4h.csv",
+        "erste_kerze": "2025-03-18 12:00:00",
+        "texte": [
+          "Erste Kerze 2025-03-18 12:00:00: BMTUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "BNBUSDT_1d.csv",
+        "erste_kerze": "2017-11-06",
+        "texte": [
+          "Erste Kerze 2017-11-06: BNBUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "BNBUSDT_4h.csv",
+        "erste_kerze": "2017-11-06 00:00:00",
+        "texte": [
+          "Erste Kerze 2017-11-06 00:00:00: BNBUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "BTCUSDT_1d.csv",
+        "erste_kerze": "2017-08-17",
+        "texte": [
+          "Erste Kerze 2017-08-17: BTCUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "DOGEUSDT_1d.csv",
+        "erste_kerze": "2019-07-05",
+        "texte": [
+          "Erste Kerze 2019-07-05: DOGEUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "ENAUSDT_1d.csv",
+        "erste_kerze": "2024-04-02",
+        "texte": [
+          "Erste Kerze 2024-04-02: ENAUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "ENSOUSDT_1d.csv",
+        "erste_kerze": "2025-10-14",
+        "texte": [
+          "Erste Kerze 2025-10-14: ENSOUSDT_1h.csv belegt 15 von 24 1h-Kerzen (15 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "ENSOUSDT_4h.csv",
+        "erste_kerze": "2025-10-14 08:00:00",
+        "texte": [
+          "Erste Kerze 2025-10-14 08:00:00: ENSOUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "ETHUSDT_1d.csv",
+        "erste_kerze": "2017-08-17",
+        "texte": [
+          "Erste Kerze 2017-08-17: ETHUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "LINKUSDT_1d.csv",
+        "erste_kerze": "2019-01-16",
+        "texte": [
+          "Erste Kerze 2019-01-16: LINKUSDT_1h.csv belegt 14 von 24 1h-Kerzen (14 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "LINKUSDT_4h.csv",
+        "erste_kerze": "2019-01-16 08:00:00",
+        "texte": [
+          "Erste Kerze 2019-01-16 08:00:00: LINKUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "NEARUSDT_1d.csv",
+        "erste_kerze": "2020-10-14",
+        "texte": [
+          "Erste Kerze 2020-10-14: NEARUSDT_1h.csv belegt 19 von 24 1h-Kerzen (19 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "NEARUSDT_4h.csv",
+        "erste_kerze": "2020-10-14 04:00:00",
+        "texte": [
+          "Erste Kerze 2020-10-14 04:00:00: NEARUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "PEPEUSDT_1d.csv",
+        "erste_kerze": "2023-05-05",
+        "texte": [
+          "Erste Kerze 2023-05-05: PEPEUSDT_1h.csv belegt 6 von 24 1h-Kerzen (6 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "PEPEUSDT_4h.csv",
+        "erste_kerze": "2023-05-05 16:00:00",
+        "texte": [
+          "Erste Kerze 2023-05-05 16:00:00: PEPEUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "PROMUSDT_1d.csv",
+        "erste_kerze": "2023-03-17",
+        "texte": [
+          "Erste Kerze 2023-03-17: PROMUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "PUMPUSDT_1d.csv",
+        "erste_kerze": "2025-09-11",
+        "texte": [
+          "Erste Kerze 2025-09-11: PUMPUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "SOLUSDT_1d.csv",
+        "erste_kerze": "2020-08-11",
+        "texte": [
+          "Erste Kerze 2020-08-11: SOLUSDT_1h.csv belegt 18 von 24 1h-Kerzen (18 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "SOLUSDT_4h.csv",
+        "erste_kerze": "2020-08-11 04:00:00",
+        "texte": [
+          "Erste Kerze 2020-08-11 04:00:00: SOLUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "SUIUSDT_1d.csv",
+        "erste_kerze": "2023-05-03",
+        "texte": [
+          "Erste Kerze 2023-05-03: SUIUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "TRUMPUSDT_1d.csv",
+        "erste_kerze": "2025-01-19",
+        "texte": [
+          "Erste Kerze 2025-01-19: TRUMPUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "TRXUSDT_1d.csv",
+        "erste_kerze": "2018-06-11",
+        "texte": [
+          "Erste Kerze 2018-06-11: TRXUSDT_1h.csv belegt 13 von 24 1h-Kerzen (13 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "TRXUSDT_4h.csv",
+        "erste_kerze": "2018-06-11 08:00:00",
+        "texte": [
+          "Erste Kerze 2018-06-11 08:00:00: TRXUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "UNIUSDT_1d.csv",
+        "erste_kerze": "2020-09-17",
+        "texte": [
+          "Erste Kerze 2020-09-17: UNIUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "UNIUSDT_4h.csv",
+        "erste_kerze": "2020-09-17 00:00:00",
+        "texte": [
+          "Erste Kerze 2020-09-17 00:00:00: UNIUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "UUSDT_1d.csv",
+        "erste_kerze": "2026-01-13",
+        "texte": [
+          "Erste Kerze 2026-01-13: UUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "WLDUSDT_1d.csv",
+        "erste_kerze": "2023-07-24",
+        "texte": [
+          "Erste Kerze 2023-07-24: WLDUSDT_1h.csv belegt 15 von 24 1h-Kerzen (15 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "WLDUSDT_4h.csv",
+        "erste_kerze": "2023-07-24 08:00:00",
+        "texte": [
+          "Erste Kerze 2023-07-24 08:00:00: WLDUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "XRPUSDT_1d.csv",
+        "erste_kerze": "2018-05-04",
+        "texte": [
+          "Erste Kerze 2018-05-04: XRPUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "ZECUSDT_1d.csv",
+        "erste_kerze": "2019-03-21",
+        "texte": [
+          "Erste Kerze 2019-03-21: ZECUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "ZKCUSDT_1d.csv",
+        "erste_kerze": "2025-09-15",
+        "texte": [
+          "Erste Kerze 2025-09-15: ZKCUSDT_1h.csv belegt 10 von 24 1h-Kerzen (10 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      },
+      {
+        "arten": [
+          "rand_erste"
+        ],
+        "datei": "ZKCUSDT_4h.csv",
+        "erste_kerze": "2025-09-15 12:00:00",
+        "texte": [
+          "Erste Kerze 2025-09-15 12:00:00: ZKCUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET."
+        ],
+        "zugelassen": true
+      }
+    ],
+    "dateien_geprueft": 223,
+    "frei_von_teilkerzen": false,
+    "nicht_zugelassen": [],
+    "stand": "2026-09-19T06:47:54.522648",
+    "werkzeug": "shared/zeitabdeckung.py::pruefe_ordner",
+    "zieht_trotz_befunden": true,
+    "zugelassen": [
+      {
+        "art": "rand_erste",
+        "datei": "AAVEUSDT_1d.csv",
+        "erste_kerze": "2020-10-15",
+        "text": "Erste Kerze 2020-10-15: AAVEUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "AAVEUSDT_4h.csv",
+        "erste_kerze": "2020-10-15 00:00:00",
+        "text": "Erste Kerze 2020-10-15 00:00:00: AAVEUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "ADAUSDT_1d.csv",
+        "erste_kerze": "2018-04-17",
+        "text": "Erste Kerze 2018-04-17: ADAUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "BMTUSDT_1d.csv",
+        "erste_kerze": "2025-03-18",
+        "text": "Erste Kerze 2025-03-18: BMTUSDT_1h.csv belegt 9 von 24 1h-Kerzen (9 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "BMTUSDT_4h.csv",
+        "erste_kerze": "2025-03-18 12:00:00",
+        "text": "Erste Kerze 2025-03-18 12:00:00: BMTUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "BNBUSDT_1d.csv",
+        "erste_kerze": "2017-11-06",
+        "text": "Erste Kerze 2017-11-06: BNBUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "BNBUSDT_4h.csv",
+        "erste_kerze": "2017-11-06 00:00:00",
+        "text": "Erste Kerze 2017-11-06 00:00:00: BNBUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "BTCUSDT_1d.csv",
+        "erste_kerze": "2017-08-17",
+        "text": "Erste Kerze 2017-08-17: BTCUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "DOGEUSDT_1d.csv",
+        "erste_kerze": "2019-07-05",
+        "text": "Erste Kerze 2019-07-05: DOGEUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "ENAUSDT_1d.csv",
+        "erste_kerze": "2024-04-02",
+        "text": "Erste Kerze 2024-04-02: ENAUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "ENSOUSDT_1d.csv",
+        "erste_kerze": "2025-10-14",
+        "text": "Erste Kerze 2025-10-14: ENSOUSDT_1h.csv belegt 15 von 24 1h-Kerzen (15 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "ENSOUSDT_4h.csv",
+        "erste_kerze": "2025-10-14 08:00:00",
+        "text": "Erste Kerze 2025-10-14 08:00:00: ENSOUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "ETHUSDT_1d.csv",
+        "erste_kerze": "2017-08-17",
+        "text": "Erste Kerze 2017-08-17: ETHUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "LINKUSDT_1d.csv",
+        "erste_kerze": "2019-01-16",
+        "text": "Erste Kerze 2019-01-16: LINKUSDT_1h.csv belegt 14 von 24 1h-Kerzen (14 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "LINKUSDT_4h.csv",
+        "erste_kerze": "2019-01-16 08:00:00",
+        "text": "Erste Kerze 2019-01-16 08:00:00: LINKUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "NEARUSDT_1d.csv",
+        "erste_kerze": "2020-10-14",
+        "text": "Erste Kerze 2020-10-14: NEARUSDT_1h.csv belegt 19 von 24 1h-Kerzen (19 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "NEARUSDT_4h.csv",
+        "erste_kerze": "2020-10-14 04:00:00",
+        "text": "Erste Kerze 2020-10-14 04:00:00: NEARUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "PEPEUSDT_1d.csv",
+        "erste_kerze": "2023-05-05",
+        "text": "Erste Kerze 2023-05-05: PEPEUSDT_1h.csv belegt 6 von 24 1h-Kerzen (6 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "PEPEUSDT_4h.csv",
+        "erste_kerze": "2023-05-05 16:00:00",
+        "text": "Erste Kerze 2023-05-05 16:00:00: PEPEUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "PROMUSDT_1d.csv",
+        "erste_kerze": "2023-03-17",
+        "text": "Erste Kerze 2023-03-17: PROMUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "PUMPUSDT_1d.csv",
+        "erste_kerze": "2025-09-11",
+        "text": "Erste Kerze 2025-09-11: PUMPUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "SOLUSDT_1d.csv",
+        "erste_kerze": "2020-08-11",
+        "text": "Erste Kerze 2020-08-11: SOLUSDT_1h.csv belegt 18 von 24 1h-Kerzen (18 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "SOLUSDT_4h.csv",
+        "erste_kerze": "2020-08-11 04:00:00",
+        "text": "Erste Kerze 2020-08-11 04:00:00: SOLUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "SUIUSDT_1d.csv",
+        "erste_kerze": "2023-05-03",
+        "text": "Erste Kerze 2023-05-03: SUIUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "TRUMPUSDT_1d.csv",
+        "erste_kerze": "2025-01-19",
+        "text": "Erste Kerze 2025-01-19: TRUMPUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "TRXUSDT_1d.csv",
+        "erste_kerze": "2018-06-11",
+        "text": "Erste Kerze 2018-06-11: TRXUSDT_1h.csv belegt 13 von 24 1h-Kerzen (13 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "TRXUSDT_4h.csv",
+        "erste_kerze": "2018-06-11 08:00:00",
+        "text": "Erste Kerze 2018-06-11 08:00:00: TRXUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "UNIUSDT_1d.csv",
+        "erste_kerze": "2020-09-17",
+        "text": "Erste Kerze 2020-09-17: UNIUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "UNIUSDT_4h.csv",
+        "erste_kerze": "2020-09-17 00:00:00",
+        "text": "Erste Kerze 2020-09-17 00:00:00: UNIUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "UUSDT_1d.csv",
+        "erste_kerze": "2026-01-13",
+        "text": "Erste Kerze 2026-01-13: UUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "WLDUSDT_1d.csv",
+        "erste_kerze": "2023-07-24",
+        "text": "Erste Kerze 2023-07-24: WLDUSDT_1h.csv belegt 15 von 24 1h-Kerzen (15 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "WLDUSDT_4h.csv",
+        "erste_kerze": "2023-07-24 08:00:00",
+        "text": "Erste Kerze 2023-07-24 08:00:00: WLDUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "XRPUSDT_1d.csv",
+        "erste_kerze": "2018-05-04",
+        "text": "Erste Kerze 2018-05-04: XRPUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "ZECUSDT_1d.csv",
+        "erste_kerze": "2019-03-21",
+        "text": "Erste Kerze 2019-03-21: ZECUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "ZKCUSDT_1d.csv",
+        "erste_kerze": "2025-09-15",
+        "text": "Erste Kerze 2025-09-15: ZKCUSDT_1h.csv belegt 10 von 24 1h-Kerzen (10 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      },
+      {
+        "art": "rand_erste",
+        "datei": "ZKCUSDT_4h.csv",
+        "erste_kerze": "2025-09-15 12:00:00",
+        "text": "Erste Kerze 2025-09-15 12:00:00: ZKCUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+        "urteil": "abgeleitete_teilkerze"
+      }
+    ],
+    "zugelassen_anzahl": 36,
+    "zugelassen_dateien": 36
+  },
+  "verfahren": {
+    "datenstand_hash": "research/vorregistrierung/herkunft.py::datenstand - SHA-256 ueber die *.csv direkt im Ordner, sortiert, je Datei Name + Groesse + SHA-256 des Inhalts",
+    "snapshot_hash": "shared/snapshot.py::snapshot_hash - SHA-256 ueber die sortierten (Pfad, Inhalts-Hash)-Paare DER DATEIEN. Laeuft NICHT ueber das Manifest: ein zusaetzliches Feld ergaebe sonst einen anderen Namen fuer denselben Inhalt."
+  },
+  "werkzeug": "shared/snapshot.py",
+  "wurzel": "/Users/jaquelineloffler/trading-bot",
+  "zeitpunkt_utc": "2026-09-19T06:49:32+00:00",
+  "zugelassene_befunde": [
+    {
+      "art": "rand_erste",
+      "datei": "AAVEUSDT_1d.csv",
+      "erste_kerze": "2020-10-15",
+      "text": "Erste Kerze 2020-10-15: AAVEUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "AAVEUSDT_4h.csv",
+      "erste_kerze": "2020-10-15 00:00:00",
+      "text": "Erste Kerze 2020-10-15 00:00:00: AAVEUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "ADAUSDT_1d.csv",
+      "erste_kerze": "2018-04-17",
+      "text": "Erste Kerze 2018-04-17: ADAUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "BMTUSDT_1d.csv",
+      "erste_kerze": "2025-03-18",
+      "text": "Erste Kerze 2025-03-18: BMTUSDT_1h.csv belegt 9 von 24 1h-Kerzen (9 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "BMTUSDT_4h.csv",
+      "erste_kerze": "2025-03-18 12:00:00",
+      "text": "Erste Kerze 2025-03-18 12:00:00: BMTUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "BNBUSDT_1d.csv",
+      "erste_kerze": "2017-11-06",
+      "text": "Erste Kerze 2017-11-06: BNBUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "BNBUSDT_4h.csv",
+      "erste_kerze": "2017-11-06 00:00:00",
+      "text": "Erste Kerze 2017-11-06 00:00:00: BNBUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "BTCUSDT_1d.csv",
+      "erste_kerze": "2017-08-17",
+      "text": "Erste Kerze 2017-08-17: BTCUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "DOGEUSDT_1d.csv",
+      "erste_kerze": "2019-07-05",
+      "text": "Erste Kerze 2019-07-05: DOGEUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "ENAUSDT_1d.csv",
+      "erste_kerze": "2024-04-02",
+      "text": "Erste Kerze 2024-04-02: ENAUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "ENSOUSDT_1d.csv",
+      "erste_kerze": "2025-10-14",
+      "text": "Erste Kerze 2025-10-14: ENSOUSDT_1h.csv belegt 15 von 24 1h-Kerzen (15 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "ENSOUSDT_4h.csv",
+      "erste_kerze": "2025-10-14 08:00:00",
+      "text": "Erste Kerze 2025-10-14 08:00:00: ENSOUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "ETHUSDT_1d.csv",
+      "erste_kerze": "2017-08-17",
+      "text": "Erste Kerze 2017-08-17: ETHUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "LINKUSDT_1d.csv",
+      "erste_kerze": "2019-01-16",
+      "text": "Erste Kerze 2019-01-16: LINKUSDT_1h.csv belegt 14 von 24 1h-Kerzen (14 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "LINKUSDT_4h.csv",
+      "erste_kerze": "2019-01-16 08:00:00",
+      "text": "Erste Kerze 2019-01-16 08:00:00: LINKUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "NEARUSDT_1d.csv",
+      "erste_kerze": "2020-10-14",
+      "text": "Erste Kerze 2020-10-14: NEARUSDT_1h.csv belegt 19 von 24 1h-Kerzen (19 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "NEARUSDT_4h.csv",
+      "erste_kerze": "2020-10-14 04:00:00",
+      "text": "Erste Kerze 2020-10-14 04:00:00: NEARUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "PEPEUSDT_1d.csv",
+      "erste_kerze": "2023-05-05",
+      "text": "Erste Kerze 2023-05-05: PEPEUSDT_1h.csv belegt 6 von 24 1h-Kerzen (6 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "PEPEUSDT_4h.csv",
+      "erste_kerze": "2023-05-05 16:00:00",
+      "text": "Erste Kerze 2023-05-05 16:00:00: PEPEUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "PROMUSDT_1d.csv",
+      "erste_kerze": "2023-03-17",
+      "text": "Erste Kerze 2023-03-17: PROMUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "PUMPUSDT_1d.csv",
+      "erste_kerze": "2025-09-11",
+      "text": "Erste Kerze 2025-09-11: PUMPUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "SOLUSDT_1d.csv",
+      "erste_kerze": "2020-08-11",
+      "text": "Erste Kerze 2020-08-11: SOLUSDT_1h.csv belegt 18 von 24 1h-Kerzen (18 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "SOLUSDT_4h.csv",
+      "erste_kerze": "2020-08-11 04:00:00",
+      "text": "Erste Kerze 2020-08-11 04:00:00: SOLUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "SUIUSDT_1d.csv",
+      "erste_kerze": "2023-05-03",
+      "text": "Erste Kerze 2023-05-03: SUIUSDT_1h.csv belegt 12 von 24 1h-Kerzen (12 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "TRUMPUSDT_1d.csv",
+      "erste_kerze": "2025-01-19",
+      "text": "Erste Kerze 2025-01-19: TRUMPUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "TRXUSDT_1d.csv",
+      "erste_kerze": "2018-06-11",
+      "text": "Erste Kerze 2018-06-11: TRXUSDT_1h.csv belegt 13 von 24 1h-Kerzen (13 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "TRXUSDT_4h.csv",
+      "erste_kerze": "2018-06-11 08:00:00",
+      "text": "Erste Kerze 2018-06-11 08:00:00: TRXUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "UNIUSDT_1d.csv",
+      "erste_kerze": "2020-09-17",
+      "text": "Erste Kerze 2020-09-17: UNIUSDT_1h.csv belegt 21 von 24 1h-Kerzen (21 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "UNIUSDT_4h.csv",
+      "erste_kerze": "2020-09-17 00:00:00",
+      "text": "Erste Kerze 2020-09-17 00:00:00: UNIUSDT_1h.csv belegt 1 von 4 1h-Kerzen (1 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "UUSDT_1d.csv",
+      "erste_kerze": "2026-01-13",
+      "text": "Erste Kerze 2026-01-13: UUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "WLDUSDT_1d.csv",
+      "erste_kerze": "2023-07-24",
+      "text": "Erste Kerze 2023-07-24: WLDUSDT_1h.csv belegt 15 von 24 1h-Kerzen (15 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "WLDUSDT_4h.csv",
+      "erste_kerze": "2023-07-24 08:00:00",
+      "text": "Erste Kerze 2023-07-24 08:00:00: WLDUSDT_1h.csv belegt 3 von 4 1h-Kerzen (3 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "XRPUSDT_1d.csv",
+      "erste_kerze": "2018-05-04",
+      "text": "Erste Kerze 2018-05-04: XRPUSDT_1h.csv belegt 16 von 24 1h-Kerzen (16 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "ZECUSDT_1d.csv",
+      "erste_kerze": "2019-03-21",
+      "text": "Erste Kerze 2019-03-21: ZECUSDT_1h.csv belegt 20 von 24 1h-Kerzen (20 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "ZKCUSDT_1d.csv",
+      "erste_kerze": "2025-09-15",
+      "text": "Erste Kerze 2025-09-15: ZKCUSDT_1h.csv belegt 10 von 24 1h-Kerzen (10 von 24 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    },
+    {
+      "art": "rand_erste",
+      "datei": "ZKCUSDT_4h.csv",
+      "erste_kerze": "2025-09-15 12:00:00",
+      "text": "Erste Kerze 2025-09-15 12:00:00: ZKCUSDT_1h.csv belegt 2 von 4 1h-Kerzen (2 von 4 Stunden) - und die Kerze ist auf die letzte Stelle das Aggregat genau dieser Teilmenge: sie ist daraus ABGELEITET.",
+      "urteil": "abgeleitete_teilkerze"
+    }
+  ],
+  "zugelassene_befunde_anzahl": 36,
+  "zugelassene_befunde_herkunft": {
+    "beschlossen": "18.09.2026",
+    "fundstelle": "docs/VORREGISTRIERUNG_neuselektion.md, Abschnitt 17.3",
+    "registertext": "5a, Zusatz - Ausnahme `rand_erste`",
+    "umgesetzt_in": "shared/snapshot.py::_zulassung (TB-49)",
+    "wortlaut": "Diese Befundart ist fuer das Ziehen eines Snapshots zugelassen, wenn alle drei Bedingungen erfuellt sind: (a) der Befund betrifft ausschliesslich die erste Kerze der Datei - fuer `rand_letzte` gilt die Ausnahme nicht; (b) die Kerze ist nachweislich das Aggregat genau der vorhandenen feineren Kerzen; (c) die Ausnahme wird im Manifest des Snapshots je Datei aufgefuehrt, mit Art und erster Kerze."
+  }
+}
