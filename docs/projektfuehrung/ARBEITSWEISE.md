@@ -777,3 +777,43 @@ hat einen Fall hinter sich, der sie erzeugt hat. *Dieselbe Trennung wie bei
 
 **Und sie gehören in jedes Aufgabendokument verwiesen**, nicht abgeschrieben —
 die Cloud-Sitzungen können `docs/PRUEFPRINZIPIEN.md` lesen.
+
+---
+
+## 13. Immer direkt weitermachen
+
+⚠️⚠️ **Ausdrückliche Anweisung des Betreibers, 19.09.2026:** *„Mache immer
+direkt weiter ohne das ich dich fragen muss wie geht es weiter."*
+
+> ⭐⭐ **Eine Antwort endet nie mit einem Stillstand.** Ist der nächste Schritt
+> Handwerk, wird er **getan** — nicht angekündigt, nicht zur Entscheidung
+> gestellt, nicht auf ein Startzeichen gelegt. **Der Betreiber soll nie fragen
+> müssen, wie es weitergeht.**
+
+**Was das ausdrücklich einschliesst:**
+
+| | |
+|---|---|
+| ⚠️ | **Kein „soll ich …?"** für etwas, das ohnehin ansteht |
+| ⚠️ | **Keine Antwort, die mit einer offenen Frage nach dem nächsten Schritt endet** |
+| ⭐ | Nach einer erledigten Aufgabe wird die nächste **begonnen**, nicht vorgeschlagen |
+| ⭐ | Auch neben einer Rückfrage: **alles, was nicht an der Antwort hängt, wird in derselben Antwort schon erledigt** |
+
+⚠️ **Die Grenze, und sie bleibt unverändert bestehen:** Diese Regel macht **keine
+Verfahrensfrage zur Handwerksfrage.** Die Entscheidungsaufteilung vom 19.09.2026
+gilt weiter — Verfahrensfragen vor dem signierten Tag gehen an den Betreiber
+oder an Fable, und **nie nach erwartetem Effekt**. ⭐ **Der Unterschied ist,
+WIE gefragt wird:** Eine Entscheidungsvorlage ist **kein Haltepunkt**. Sie wird
+als anklickbare Frage mit Empfehlung gestellt (Abschnitt 6d) — und die Arbeit
+läuft daneben weiter. **Gefragt wird nebenher, nicht statt zu arbeiten.**
+
+⚠️ **Ebenso unberührt:** Freigabepflichtige Befehle bleiben beim Betreiber
+(Abschnitt 7, Vorsatz). *„Direkt weitermachen"* heisst **nicht**, sie selbst
+auszuführen — es heisst, **alles bis zu ihnen fertig zu haben**, sodass nur noch
+ein Einfügen bleibt.
+
+**Verhältnis zu Abschnitt 6bb:** 6bb verlangt, dass am Ende jeder Antwort steht,
+was der Betreiber zu tun hat. **Dieser Abschnitt verlangt, dass diese Liste so
+kurz wie möglich ist und den Punkt „entscheiden, wie es weitergeht" NIE
+enthält.** Ist nichts zu tun, wird das ausdrücklich gesagt — und die Arbeit
+läuft trotzdem weiter.

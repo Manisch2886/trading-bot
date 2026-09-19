@@ -402,3 +402,20 @@ Mac-Auftrag):
 > Befehl. Ein Befehl an ihn wird nur noch formuliert, wenn er eine **Freigabe**
 > trägt (`git add`/`commit`/`push`, Sitzungsstart, Löschung) oder die Anbindung
 > fehlt.
+
+---
+
+# Nachtrag 3 zur Übergabe — 22:55, eine elfte stehende Regel
+
+⚠️ **Block 8 führt zehn im Chat vom 19.09.2026 vereinbarte Regeln. Dies ist die
+elfte, und sie ist nach dem Umzug entstanden.**
+
+| | Regel, vereinbart 19.09.2026 |
+|---|---|
+| **11** | ⭐⭐ **Immer direkt weitermachen.** *„Mache immer direkt weiter ohne das ich dich fragen muss wie geht es weiter."* Eine Antwort endet nie mit einem Stillstand; der nächste Handwerksschritt wird getan, nicht angekündigt. ⚠️ **Die Grenze bleibt:** Verfahrensfragen vor dem Tag gehen weiter an den Betreiber oder an Fable — aber als anklickbare Entscheidungsvorlage **neben** der laufenden Arbeit, nicht als Haltepunkt. Freigabepflichtige Befehle bleiben beim Betreiber; „weitermachen" heisst, alles bis zu ihnen fertig zu haben |
+
+**Eingetragen in:** `ARBEITSWEISE.md` **Abschnitt 13** (neu) · die Erinnerung
+(`/projects/<id>/preferences.md`) · Backlog-Nachtrag **(t)**, Punkt `K2n`
+(vorgeschlagene Nummer, gemessener Stand im Nachtrag). ⭐ **Drei Träger, wie es
+`UMZUG.md` Abschnitt 2 verlangt** — die Erinnerung wirkt davon als einzige ohne
+Zutun des Betreibers.
