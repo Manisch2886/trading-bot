@@ -1,0 +1,14 @@
+Sat Sep 19 18:06:19 UTC 2026
+==============================================================================
+TB-41 REGISTERNACHTRAG - Pruefung der eingetragenen Zahlen
+==============================================================================
+  Quelle basis:       {'commit': 'a1e7fb4', 'herkunft': 'ausdruecklich angegeben (--basis)'}
+  Quelle beleg:       trockenlauf
+  Quelle datenstand:  {'sha256': 'd9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84', 'dateien': 223}
+  Quelle numstat:     ['728\t0\tdocs/VORREGISTRIERUNG_neuselektion.md']
+
+  geprueft:      symbolzahl, faltenevidenz, min_history, umstellungstag, universumsdatei, datenstand, daten_unberuehrt, null_entfernte_zeilen, ersetzt_gekennzeichnet
+
+  KEIN BEFUND - jede eingetragene Zahl stimmt mit ihrer Quelle ueberein.
+==============================================================================
+rc=0

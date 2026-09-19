@@ -1,0 +1,12 @@
+./benachrichtigungen_schliessung.db
+./broker_testnet_t3_supertrend.db
+./paper_trading_elliott_wave.db
+./paper_trading_elliott_wave_stocks.db
+./paper_trading_rsi2_crypto.db
+./paper_trading_rsi2_mean_reversion.db
+./paper_trading_t3_supertrend.db
+./paper_trading_turtle_soup_crypto.db
+./paper_trading_turtle_soup_stocks.db
+./paper_trading_volatility_breakout.db
+./paper_trading_volatility_breakout_crypto.db
+./strategies/volatility_breakout/paper_trading_volatility_breakout.db

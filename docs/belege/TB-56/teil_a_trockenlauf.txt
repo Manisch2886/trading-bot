@@ -1,0 +1,31 @@
+Sat Sep 19 18:13:43 UTC 2026
+  ... Trockenlauf elliott_wave
+  ... Trockenlauf t3_supertrend
+  ... Trockenlauf rsi2_crypto
+  ... Trockenlauf turtle_soup_crypto
+  ... Trockenlauf volatility_breakout_crypto
+  ... Trockenlauf elliott_wave_stocks
+  ... Trockenlauf rsi2_mean_reversion
+  ... Trockenlauf turtle_soup_stocks
+  ... Trockenlauf volatility_breakout
+
+Trockenlauf des Laufcodes auf dem Plan OHNE Schranke (Registertext 3b, Lesart H)
+------------------------------------------------------------------------------------------------
+Bot                         1.Falte 4a  1.Falte H    #Sel 4a  #Sel H  4b(H)  H je Falte (Bestaetigung zuletzt)
+elliott_wave                2018-2019   2018-2019          4       4     ja  3 / 9 / 13 / 17 / 18
+t3_supertrend               2018        2019               8       7     ja  0 / 3 / 6 / 9 / 13 / 13 / 13 / 17 / 18
+                            leer nach H: ['2018']
+rsi2_crypto                 2019        2019               7       7     ja  6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+turtle_soup_crypto          2018        2018               8       8     ja  2 / 6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+volatility_breakout_crypto  2018        2018               8       8     ja  2 / 6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+elliott_wave_stocks         2017        2017               9       9     ja  135 / 136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+rsi2_mean_reversion         2018        2018               8       8     ja  136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+turtle_soup_stocks          2017        2017               9       9     ja  135 / 136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+volatility_breakout         2018        2018               8       8     ja  136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+Monotonie verletzt: nein; Schreibversuche: keine
+Trockenlauf: docs/belege/TB-56/teil_a_trockenlauf_ohne_schranke.json
+
+real	1m39.173s
+user	1m29.936s
+sys	0m8.037s
+rc=0
