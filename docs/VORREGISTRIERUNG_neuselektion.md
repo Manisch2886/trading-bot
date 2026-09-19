@@ -3060,3 +3060,36 @@ verhindern soll. Deshalb steht hier eine Vorlage mit Zahlen und einer Empfehlung
 
 *Nachgetragen in TB-56b, 19.09.2026. Berichtigung: sie nennt den falschen Satz,
 die Messung und den Ersatztext — und entfernt nichts.*
+
+---
+
+### 21.9 Ergänzung — die Entscheidung zu 21.6 (Betreiber, 19.09.2026)
+
+**Datiert angehängt. Nichts entfernt.** Abschnitt 21.6 hat drei Wege vorgelegt
+und ausdrücklich nichts entschieden. Hier steht die Entscheidung.
+
+> **Betreiberentscheidung 19.09.2026 zu Sperrliste Punkt 4.** Das Amendment wird
+> **einmal** vollzogen, **nach** der Berechnung der Krypto-Falten (TB-31), und
+> umfasst dann **alle neun Bots**. Bis dahin bleibt
+> `research/vorregistrierung/ergebnisse/benchmark_drawdowns.json` byteweise
+> unverändert; die neu gerechnete Tabelle liegt als eigene Datei daneben.
+
+**Der Grund — und ausdrücklich nicht der andere:**
+
+| ⭐ Der Grund | ⚠️ NICHT der Grund |
+|---|---|
+| **Gemessen:** Die fünf Krypto-Bots stehen in **beiden** Tabellenfassungen als `status: platzhalter` mit **leerer** `dd_toleranz`. Die Drawdown-Bedingung (Abschnitt 4) ist damit für fünf von neun Bots nicht auswertbar; *erschlossen, nicht gemessen: der signierte Tag kann davor nicht kommen.* Ein Amendment jetzt bewegte eine gesperrte Zahl, die kurz darauf erneut bewegt werden müsste — **einmal statt zweimal** | **Die Lockerung zu vermeiden oder hinauszuzögern.** Sie steht so oder so; die Zahlen liegen gemessen in 21.6 und werden durch Warten nicht kleiner. Eine Verfahrensfrage nach ihrem erwarteten Effekt zu entscheiden, ist genau der Fehler, den dieses Register ausschliessen soll |
+
+**Die Folgen, benannt statt in Kauf genommen:**
+
+| | |
+|---|---|
+| `test_vorregistrierung.py` | bleibt **rot**, weiterhin geführt als **„offen durch eigene Änderung — blockierend für den Tag"**, ausdrücklich nicht als „bekannt rot". ⚠️ Zulässig ist das, **weil die Marke den Grund nennt und den Tag blockiert** — nicht, weil ein dauerhaft roter Test hinnehmbar wäre (Prüfprinzip A4) |
+| Der Widerspruch zwischen berichtigtem Faltenplan und gesperrter Benchmark-Tabelle | **bleibt offen und ist hier benannt.** Er wird mit demselben Amendment geschlossen |
+| Abschnitt 3, *„teilt Universum und Faltenplan mit den übrigen aktien-Bots — dieselbe Tabelle"* | wird im selben Zug berichtigt; die Prämisse trägt seit 21.5 nicht mehr |
+
+⚠️ **Was diese Ergänzung nicht tut:** kein Amendment, keine Zahl der Sperrliste
+bewegt, kein Registertext umgeschrieben. Sie hält eine **Reihenfolge**-Entscheidung
+fest, nicht eine Sachentscheidung über die Tabelle.
+
+*Nachgetragen in TB-56b, 19.09.2026.*

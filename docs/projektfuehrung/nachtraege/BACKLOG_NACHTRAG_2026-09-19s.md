@@ -57,3 +57,30 @@ Der Ergebnisblock zu TB-56b steht in
 `docs/ERGEBNIS_TB-56b_registerberichtigung.md` und trägt „In einfacher Sprache"
 am Ende. Für das Journal genügt der Verweis plus die drei Zahlen, die tragen:
 **Abschnitt 21 angehängt, 0 entfernte Zeilen, keine gesperrte Datei berührt.**
+
+---
+
+## Nachgetragen nach dem TB-56b-Commit `8e87414` — ein geprüfter und verworfener Weg
+
+*(nächste freie K-Nummer nach dem oben vorgeschlagenen `K2l`: `K2m`)*
+
+| # | Punkt |
+|---|---|
+| **K2m** | ⛔ **FABLE-ANTWORTEN SELBST ABHOLEN — GEPRÜFT UND VERWORFEN (19.09.2026).** Betreiberwunsch: statt Fables Antwort einzufügen nur „fable fertig" schicken, und die Sitzung holt sie sich. ⭐ **Gemessen, nicht vermutet:** Der Browser-Bereich der Claude-Desktop-App erreicht `claude.ai`, ist dort aber **nicht angemeldet** — er führt ein **eigenes Profil**, getrennt von Chrome und von der Desktop-App selbst (es erschien die Anmeldeseite, nicht die Unterhaltungsliste). ⇒ Der Weg wäre gangbar, aber **nur nach einer einmaligen Anmeldung durch den Betreiber** im Browser-Bereich; Zugangsdaten gibt die Sitzung grundsätzlich nicht ein. **Betreiberentscheidung 19.09.2026: so lassen** — Fables Antworten werden weiter als Text in den Chat eingefügt. ⚠️ **Nicht erneut vorschlagen.** Preis der Entscheidung, benannt: der Handgriff bleibt beim Betreiber. ⚠️ **Nebenbefund:** Für den Browser-Bereich wurde `claude.ai` mit Geltung „site" freigegeben; **diese Freigabe bleibt bestehen, bis sie in den Einstellungen der Desktop-App entfernt wird.** Der geöffnete Reiter ist geschlossen, angemeldet wurde nichts, gelesen wurde nur die Anmeldeseite |
+
+⭐ **Warum das hier steht, obwohl nichts daraus folgt:** `BACKLOG.md`, Abschnitt 5 verlangt, dass auch **verworfene** Ideen mit Begründung eingetragen werden, damit sie nicht in sechs Monaten erneut vorgeschlagen werden. ⚠️ **Und die Begründung trägt nur in ihrer genauen Form:** Der Weg ist **technisch offen**; verworfen wurde er als **Entscheidung**, nicht als Unmöglichkeit. Wer das später verkürzt zu „geht nicht", hat den Eintrag falsch gelesen.
+
+---
+
+## Berichtigung zu T56b.3 in diesem Nachtrag — die Entscheidung ist gefallen
+
+⚠️ **T56b.3 oben lautet „OFFEN, BETREIBER". Das gilt nicht mehr; bei Widerspruch
+gilt dieser Block.** Der Punkt wird beim Einarbeiten in dieser Fassung übernommen.
+
+| # | Punkt |
+|---|---|
+| **T56b.3** *(berichtigt)* | ⭐ **BETREIBERENTSCHEIDUNG 19.09.2026: Das Amendment zu Sperrliste Punkt 4 wird EINMAL vollzogen, nach TB-31, für alle neun Bots.** `DD_Toleranz` wird dabei bei `rsi2_mean_reversion` und `volatility_breakout` **nachgiebiger** (100 % Exposure: −8,55 → **−12,89**); die Zahlen stehen gemessen in Registerabschnitt 21.6, die Entscheidung in **21.9**. ⭐ **Der Grund ist die Reihenfolge, nicht die Richtung:** fünf von neun Bots haben gemessen **keine** `DD_Toleranz` (Krypto, `status: platzhalter`), ein Amendment jetzt bewegte die gesperrte Zahl zweimal. ⚠️ **Ausdrücklich nicht entschieden wurde, die Lockerung zu vermeiden** — sie steht so oder so und wird durch Warten nicht kleiner |
+
+⇒ **Damit rückt TB-31 (Krypto-Falten) auf die Kette vor den Tag.** Es ist jetzt
+nicht mehr nur Vorbedingung des Faltenplans, sondern auch die des Amendments und
+damit des signierten Tags.
