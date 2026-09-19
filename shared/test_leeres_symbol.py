@@ -207,6 +207,8 @@ def teil_1():
         os.makedirs(os.path.join(altwurzel, "shared"))
         shutil.copy(os.path.join(BASE_DIR, "shared", "strategy_paths.py"),
                     os.path.join(altwurzel, "shared"))
+        shutil.copy(os.path.join(BASE_DIR, "shared", "paths.py"),
+                    os.path.join(altwurzel, "shared"))
         try:
             with open(os.path.join(altordner, "zigzag_indicator.py"), "w",
                       encoding="utf-8") as f:

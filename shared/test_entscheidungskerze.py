@@ -685,7 +685,7 @@ def baue_abbild(wurzel, bot, live_csv_quelle):
     # also - genau der Normalfall, in dem 1,0 gilt und der Bot unveraendert
     # weiterlaeuft. Diese Datei prueft das nicht, sie braucht das Modul nur.
     for name in ("entscheidungskerze.py", "abrufschutz.py", "kursdaten.py",
-                 "binance_historie.py", "strategy_paths.py",
+                 "binance_historie.py", "strategy_paths.py", "paths.py",
                  "data_quality.py", "groessenfaktor.py"):
         shutil.copy2(os.path.join(_SHARED, name), os.path.join(shared, name))
     for name in ("waechter_melden.py", "boersenkalender.py"):
