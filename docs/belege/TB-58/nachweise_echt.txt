@@ -1,0 +1,22 @@
+HEAD = 6518e413b17dd4b7f5c624549aa145f94fca3a96  Python = /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+  [ok ] 3  vollstaendiger Modus -> rc 0, Audit - rc=0, DATA_DIR im Snapshot=True, 8 Auditzeilen
+        [paths] SELEKTIONSMODUS AKTIV - Kursdaten kommen aus /Users/jaquelineloffler/trading-bot/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 (snapshot_hash 63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2), nicht aus /Users/jaquelineloffler/trading-bot/data.
+        [paths] codewurzel          /Users/jaquelineloffler/trading-bot
+        [paths] commit              6518e413b17dd4b7f5c624549aa145f94fca3a96
+        [paths] arbeitsbaum         sauber
+        [paths] lock_sha256         96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5
+        [paths] interpreter         3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+        [paths] plattform           macOS-15.7.9-x86_64-i386-64bit
+        [paths] snapshot_wurzel     /Users/jaquelineloffler/trading-bot/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+        [paths] snapshot_hash       63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+  [ok ] 4  falscher Commit -> rc 2 - rc=2, stdout leer=True
+  [ok ] 5  TB_SELEKTIONSCOMMIT fehlt -> rc 2 - rc=2
+  [ok ] 6  gespaltener Baum (ohne Git / eigenes Git) -> rc 2/2 - rc=2/2, Meldung 2 nennt beide Wurzeln
+        [paths] STARTPRUEFUNG VERLETZT - Gespaltener Baum: der Einstiegspunkt /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb58_fremdrepo_mh94jyy3/lauf.py liegt unter /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb...
+  [ok ] 7  schmutziger Arbeitsbaum -> rc 2, danach sauber -> rc 0 - rc=2 (nennt die Datei=True), zurueckgesetzt rc=0
+  [ok ] 8  verfaelschte Lock-Zeile -> Startpruefungsfehler nennt pandas - pandas: Lock 0.0.1, installiert 2.3.3). Hier wird nichts ins
+  [ok ] 8b /usr/bin/python3 unter dem Modus -> rc 2 - rc=2: (24 Abweichung/en, die ersten drei: aiohappyeyeballs: Lock 2.6.1, installiert NICHT | aiohttp: Lock 3.13.5, installiert NICHT | aiosignal: Lock 1.4.0, installiert NICHT)....
+  [ok ] 9b neun echte Bot-Einstiegspunkte: Codeherkunft bestanden - 9 von 9 (Wurzel, HEAD, sauber)
+  [ok ] 2  ohne Modus: Live-Pfad, keine Zeile auf stderr, startpruefung None - rc=0, DATA_DIR=/Users/jaquelineloffler/trading-bot/data, stderr leer=True
+git status --short danach: 0 Zeilen
+9 von 9 Nachweisen erbracht

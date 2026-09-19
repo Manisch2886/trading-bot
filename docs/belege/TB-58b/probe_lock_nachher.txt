@@ -1,0 +1,36 @@
+Klon HEAD: 409d71d3f199d8d623b217878c437e814700da03  (Haupt HEAD: 409d71d3f199d8d623b217878c437e814700da03)
+probe.py committet, HEAD=2d41109
+
+=== Kontrolle: unveraenderter Lock, TB_SELEKTIONSCOMMIT=HEAD ===
+[paths] commit              2d41109133394e9a8f209fe91372d4826ffb1ee9
+[paths] arbeitsbaum         sauber
+[paths] lock_sha256         96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5
+DATA_DIR = /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/5e02cfee-8817-4de3-b8e2-5f779fc4ca8d/scratchpad/klon_nachher/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+lock_sha256 = 96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5
+rc=0
+
+=== Probe: eine Lock-Zeile verfaelscht (pandas==2.3.3 -> pandas==0.0.1), committet ===
+52:pandas==0.0.1
+HEAD=bec022c, Arbeitsbaum: 0 Eintraege
+sha256 des abweichenden Locks: 2d19644bb61876a4ab8c30c3c4a31db1772cc45bf893dc47725745093418a670
+[paths] STARTPRUEFUNG VERLETZT - Die Umgebung weicht von /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/5e02cfee-8817-4de3-b8e2-5f779fc4ca8d/scratchpad/klon_nachher/requirements.lock ab (1 Abweichung/en, die ersten drei: pandas: Lock 0.0.1, installiert 2.3.3). Hier wird nichts installiert und nichts repariert - der Lauf bricht ab.
+[paths] Abbruch mit Rueckgabewert 2.
+rc=2
+
+=== Probe 2: Lock verfaelscht, aber NICHT committet (Arbeitsbaum schmutzig) ===
+[paths] STARTPRUEFUNG VERLETZT - Der Arbeitsbaum von /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/5e02cfee-8817-4de3-b8e2-5f779fc4ca8d/scratchpad/klon_nachher ist ueber shared, strategies, requirements.lock nicht sauber (1 Eintrag/Eintraege, die ersten:  M requirements.lock). Ein sauberer Commit ueber einem schmutzigen Arbeitsbaum beschreibt den Code so wenig wie ein gespaltener Baum.
+[paths] Abbruch mit Rueckgabewert 2.
+rc=2
+
+=== Probe 3: Lock fehlt (geloescht und committet) ===
+[paths] STARTPRUEFUNG VERLETZT - /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/5e02cfee-8817-4de3-b8e2-5f779fc4ca8d/scratchpad/klon_nachher/requirements.lock fehlt. Ohne Lock ist die Umgebung nicht pruefbar - und `nicht pruefbar` ist nicht gruen.
+[paths] Abbruch mit Rueckgabewert 2.
+rc=2
+
+=== Probe 4: richtiger Lock, /usr/bin/python3 (andere Pakete) ===
+       0
+[paths] STARTPRUEFUNG VERLETZT - Die Umgebung weicht von /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/5e02cfee-8817-4de3-b8e2-5f779fc4ca8d/scratchpad/klon_nachher/requirements.lock ab (24 Abweichung/en, die ersten drei: aiohappyeyeballs: Lock 2.6.1, installiert NICHT | aiohttp: Lock 3.13.5, installiert NICHT | aiosignal: Lock 1.4.0, installiert NICHT). Hier wird nichts installiert und nichts repariert - der Lauf bricht ab.
+[paths] Abbruch mit Rueckgabewert 2.
+rc=2
+
+Klon entfernt: ja

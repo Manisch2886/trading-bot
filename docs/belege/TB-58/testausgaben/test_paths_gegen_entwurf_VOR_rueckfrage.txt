@@ -1,0 +1,49 @@
+==============================================================================
+Selbsttests zu shared/paths.py - der Selektionsmodus (TB-52)
+==============================================================================
+
+Probe A - ohne Modus verhaelt sich paths.py wie im Bezugscommit
+  [ok]     A1 null Unterschiede - 99 Pfade verglichen (9 Bots), 0 Unterschiede
+  [ok]     A2 Mutationsprobe beisst - verstellte Fassung -> 18 Unterschiede (ohne die Mutation: 0)
+
+Probe B - mit Modus zeigt der Kursdatenpfad in den Snapshot
+  [FEHLER] B1 DATA_DIR zeigt in den Snapshot - None
+  [FEHLER] B2 CONFIG_DIR zeigt in den Snapshot - None
+  [ok]     B3 der Lauf SAGT, dass er im Modus ist - Prueffrage D1
+  [ok]     B4 Mutationsprobe beisst - ohne die Zuweisung zeigt DATA_DIR auf None - die Probe faellt dort durch, wie sie soll
+
+Probe C - mit Modus wirft die Anfrage nach dem Live-Bestand
+  [FEHLER] C1 LIVE_DATA_DIR wirft - (nichts geworfen)
+  [FEHLER] C2 die Meldung nennt das fragende Modul - Fundstelle in der Meldung
+  [FEHLER] C3 die Meldung nennt die Alternative - Verweis auf DATA_DIR
+  [ok]     C4 Mutationsprobe beisst - ohne die Auslassung liefert LIVE_DATA_DIR still None
+
+Probe D - Modus gesetzt, Snapshot fehlt / Hash passt nicht
+  [ok]     D1 Wurzel existiert nicht -> wirft - Selektionsfehler: TB_SELEKTIONSWURZEL ist auf /var/folders/b_/yqcfpq996cxb1_v02m
+  [ok]     D2 kein MANIFEST.json -> wirft - Selektionsfehler: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb52_attrappe
+  [ok]     D3 Manifest ohne snapshot_hash -> wirft - Selektionsfehler: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb52_attrappe
+  [ok]     D4 falscher Hash -> wirft - Selektionsfehler: Der Snapshot in /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn
+  [ok]     D5 nur eine der beiden Variablen -> wirft - Selektionsfehler: TB_SELEKTIONSWURZEL ist gesetzt, TB_SELEKTIONSHASH fehlt. Der 
+  [ok]     D6 Mutationsprobe beisst - mit stillem Rueckfall zeigt DATA_DIR auf /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb52_test_tu249u1v/data statt zu werfen
+
+Probe E - der Kindprozess
+  [FEHLER] E1 NICHT PRUEFBAR - der Enkel lieferte nichts (rc=0): MMIT fehlt. Der Modus braucht alle drei: Wurzel und Hash sagen, welche DATEN, der Commit sagt, welcher CODE. Ein halb gesetzter Modus ist gefaehrlicher als keiner.
+[paths] Abbruch mit Rueckgabewert 2.
+  [ok]     E2 magere Umgebung (Cron-Nachbildung) -> Live-Bestand - /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb52_test_7m7cvs3_/data
+  [ok]     E3 Mutationsprobe beisst - ohne Vererbung ueber die Umgebung liest das Kind STILL den Live-Bestand: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb52_test_o083ji9e/data
+
+Probe F - T46.8: der Import legt kein Verzeichnis an
+  [ok]     F1 vorher existiert data/ nicht - /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb52_test_9wmm407c/data
+  [ok]     F2 der Import gelingt - ohne Fehler
+  [ok]     F3 nachher existiert data/ IMMER NOCH nicht - nicht angelegt
+  [ok]     F4 nachher existiert config/ immer noch nicht - nicht angelegt
+  [ok]     F5 Mutationsprobe beisst - mit den makedirs-Zeilen entsteht data/ beim Import - die Probe faellt dort durch, wie sie soll
+
+==============================================================================
+18 von 24 Pruefungen bestanden, 6 fehlgeschlagen.
+  - B1 DATA_DIR zeigt in den Snapshot
+  - B2 CONFIG_DIR zeigt in den Snapshot
+  - C1 LIVE_DATA_DIR wirft
+  - C2 die Meldung nennt das fragende Modul
+  - C3 die Meldung nennt die Alternative
+  - E1 NICHT PRUEFBAR

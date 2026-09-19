@@ -1,0 +1,6 @@
+interpreter: /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version: 3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+kopf interpreter_voll: 3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform: macOS-15.7.9-x86_64-i386-64bit | kopf plattform: macOS-15.7.9-x86_64-i386-64bit
+pakete: 67 abweichungen: 0 []
+sha256: 96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5

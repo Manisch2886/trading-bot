@@ -1,0 +1,106 @@
+==============================================================================
+Selbsttests zu shared/paths.py - die Startpruefungen (TB-58)
+==============================================================================
+
+Probe N - ohne Modus: kein git-Aufruf, keine Paketabfrage, alle Pfade wie vor TB-58
+  [FEHLER] N1 NICHT PRUEFBAR - die Attrappe lieferte nichts (rc=1): Traceback (most recent call last): File "/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb58_repo_9urbxcta/zaehler.py", line 19, in <module> zaehler["startpru...
+  [ok]     N3 Syntaxbaum: subprocess/importlib/platform/hashlib werden auf Modulebene nicht importiert - auf Modulebene: keiner
+  [FEHLER] N1/N2 Mutationsprobe beisst - mit einem git-Aufruf und einer Paketabfrage im Import zaehlt die Attrappe None / None
+  [ok]     N3 Mutationsprobe beisst - 2 Import(e) auf Modulebene gefunden
+  [ok]     N4 ohne Modus: alle Pfade zeichengleich wie in 624853bd - 144 Pfade verglichen (9 Bots), 0 Unterschiede
+  [ok]     N4 Mutationsprobe beisst - verstellte Fassung -> 27 Unterschiede
+
+Probe S - vollstaendiger, richtiger Modus: rc 0, Auditzeilen
+  [FEHLER] S1 Lauf geht durch (rc 0), DATA_DIR im Snapshot - rc=1, DATA_DIR=None
+  [FEHLER] S2 startpruefung() traegt alle acht Schluessel
+  [FEHLER] S3 Werte stimmen: codewurzel, commit, arbeitsbaum, snapshot - commit , arbeitsbaum None
+  [FEHLER] S4 lock_sha256 ist der SHA-256 der Lock-Datei - 96a5c572a67c65af...
+  [FEHLER] S5 interpreter und plattform sind gemessen, nicht leer
+  [FEHLER] S6 dieselben acht Zeilen stehen auf stderr in der [paths]-Form - 0 Auditzeilen, Reihenfolge fest
+  [ok]     S7 der Lauf SAGT weiterhin, dass er im Modus ist - Prueffrage D1
+  [FEHLER] S8 ein Kindprozess erbt alle drei Variablen und geht durch - rc=1
+  [FEHLER] S9 `python -c` (kein __file__) -> rc 2, Meldung nennt den Grund - rc=0
+  [NICHT PRUEFBAR] Mutation S griff nicht: 'for _z in audit_zeilen()))' kommt 0-mal vor.
+  [FEHLER] S Mutationsprobe - Mutation griff nicht
+
+Probe C - falscher, fehlender, beweglicher Commit
+  [FEHLER] C1 falscher Commit -> rc 2, Meldung nennt HEAD und Soll - rc=1, kein stdout: True
+  [FEHLER] C2 TB_SELEKTIONSCOMMIT fehlt bei gesetzten anderen beiden -> rc 2 - rc=1
+  [FEHLER] C3 Zweigname statt Commit -> rc 2 (bewegliche Referenz, B3) - rc=1
+  [FEHLER] C4 abgekuerzter Commit (7 Zeichen) wird angenommen - rc=1
+  [FEHLER] C5 TB_SELEKTIONSCOMMIT allein -> Selektionsfehler, rc != 0 - rc=1
+  [NICHT PRUEFBAR] Mutation C1 griff nicht: '    if not head.lower().startswith(soll):' kommt 0-mal vor.
+  [FEHLER] C1 Mutationsprobe - Mutation griff nicht
+  [NICHT PRUEFBAR] Mutation C2 griff nicht: '    erwartet = (umg.get(UMGEBUNG_COMMIT) or "").strip()\n    ' kommt 0-mal vor.
+  [FEHLER] C2 Mutationsprobe - Mutation griff nicht
+
+Probe G - gespaltener Baum: Aufrufer woanders, shared/ hier
+  [FEHLER] G1 Aufrufer aus einem ANDEREN Git-Baum -> rc 2, Meldung nennt beide Wurzeln - rc=0, kein stdout: False
+  [FEHLER] G2 Aufrufer aus einem Ordner OHNE Git -> rc 2 - rc=0
+  [ok]     G3 derselbe Aufrufer im selben Baum -> rc 0 - rc=0
+  [NICHT PRUEFBAR] Mutation G griff nicht: '    if wurzel_code != wurzel_einstieg:' kommt 0-mal vor.
+  [FEHLER] G Mutationsprobe - Mutation griff nicht
+
+Probe A - schmutziger Arbeitsbaum ueber shared/, strategies/, Lock
+  [FEHLER] A1 veraenderte Datei unter shared/ -> rc 2, Meldung nennt sie - rc=1
+  [FEHLER] A2 neue Datei unter strategies/ -> rc 2 (?? zaehlt) - rc=1
+  [FEHLER] A3 veraenderte Lock-Datei -> rc 2 - rc=1
+  [FEHLER] A4 neue Datei unter data/ stoert nicht (data/ ist nicht Code) - rc=1
+  [FEHLER] A5 zurueckgesetzt -> rc 0, arbeitsbaum sauber - rc=1
+  [NICHT PRUEFBAR] Mutation A griff nicht: '    if zeilen:' kommt 0-mal vor.
+  [FEHLER] A Mutationsprobe - Mutation griff nicht
+
+Probe L - Lock: abweichendes Paket, fehlendes Paket, Interpreter, fehlende Datei
+  [FEHLER] L1 abweichendes Paket -> rc 2, Meldung nennt das Paket - rc=1
+  [FEHLER] L2 nicht installiertes Paket -> rc 2, 'NICHT' in der Meldung - rc=1
+  [FEHLER] L3 vier Abweichungen -> Zahl 4 und die ersten drei genannt - rc=1
+  [FEHLER] L4 Interpreter weicht von der Kopfzeile ab -> rc 2 - rc=1
+  [FEHLER] L5 Lock-Datei fehlt -> rc 2 (nicht pruefbar ist nicht gruen) - rc=1
+  [FEHLER] L6 `>=`-Zeile -> rc 2 ('ist kein Lock') - rc=1
+  [NICHT PRUEFBAR] Mutation L griff nicht: '    if abweichungen:' kommt 0-mal vor.
+  [FEHLER] L Mutationsprobe - Mutation griff nicht
+
+Probe R - Rueckgabewert 2, genau einmal im Modul
+  [FEHLER] R1 RUECKGABEWERT_STARTPRUEFUNG == 2, genau einmal zugewiesen - []
+  [ok]     R2 kein SystemExit mit Zahl-Literal - der Wert kommt aus der Konstante - 0 Literal(e)
+  [NICHT PRUEFBAR] Mutation R griff nicht: 'raise SystemExit(RUECKGABEWERT_STARTPRUEFUNG)' kommt 0-mal vor.
+  [FEHLER] R Mutationsprobe - Mutation griff nicht
+
+==============================================================================
+7 von 43 Pruefungen bestanden, 36 fehlgeschlagen.
+  - N1 NICHT PRUEFBAR
+  - N1/N2 Mutationsprobe beisst
+  - S1 Lauf geht durch (rc 0), DATA_DIR im Snapshot
+  - S2 startpruefung() traegt alle acht Schluessel
+  - S3 Werte stimmen: codewurzel, commit, arbeitsbaum, snapshot
+  - S4 lock_sha256 ist der SHA-256 der Lock-Datei
+  - S5 interpreter und plattform sind gemessen, nicht leer
+  - S6 dieselben acht Zeilen stehen auf stderr in der [paths]-Form
+  - S8 ein Kindprozess erbt alle drei Variablen und geht durch
+  - S9 `python -c` (kein __file__) -> rc 2, Meldung nennt den Grund
+  - S Mutationsprobe
+  - C1 falscher Commit -> rc 2, Meldung nennt HEAD und Soll
+  - C2 TB_SELEKTIONSCOMMIT fehlt bei gesetzten anderen beiden -> rc 2
+  - C3 Zweigname statt Commit -> rc 2 (bewegliche Referenz, B3)
+  - C4 abgekuerzter Commit (7 Zeichen) wird angenommen
+  - C5 TB_SELEKTIONSCOMMIT allein -> Selektionsfehler, rc != 0
+  - C1 Mutationsprobe
+  - C2 Mutationsprobe
+  - G1 Aufrufer aus einem ANDEREN Git-Baum -> rc 2, Meldung nennt beide Wurzeln
+  - G2 Aufrufer aus einem Ordner OHNE Git -> rc 2
+  - G Mutationsprobe
+  - A1 veraenderte Datei unter shared/ -> rc 2, Meldung nennt sie
+  - A2 neue Datei unter strategies/ -> rc 2 (?? zaehlt)
+  - A3 veraenderte Lock-Datei -> rc 2
+  - A4 neue Datei unter data/ stoert nicht (data/ ist nicht Code)
+  - A5 zurueckgesetzt -> rc 0, arbeitsbaum sauber
+  - A Mutationsprobe
+  - L1 abweichendes Paket -> rc 2, Meldung nennt das Paket
+  - L2 nicht installiertes Paket -> rc 2, 'NICHT' in der Meldung
+  - L3 vier Abweichungen -> Zahl 4 und die ersten drei genannt
+  - L4 Interpreter weicht von der Kopfzeile ab -> rc 2
+  - L5 Lock-Datei fehlt -> rc 2 (nicht pruefbar ist nicht gruen)
+  - L6 `>=`-Zeile -> rc 2 ('ist kein Lock')
+  - L Mutationsprobe
+  - R1 RUECKGABEWERT_STARTPRUEFUNG == 2, genau einmal zugewiesen
+  - R Mutationsprobe

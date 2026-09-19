@@ -1,0 +1,12 @@
+./benachrichtigungen_schliessung.db: OK
+./broker_testnet_t3_supertrend.db: OK
+./paper_trading_elliott_wave.db: OK
+./paper_trading_elliott_wave_stocks.db: OK
+./paper_trading_rsi2_crypto.db: OK
+./paper_trading_rsi2_mean_reversion.db: OK
+./paper_trading_t3_supertrend.db: OK
+./paper_trading_turtle_soup_crypto.db: OK
+./paper_trading_turtle_soup_stocks.db: OK
+./paper_trading_volatility_breakout.db: OK
+./paper_trading_volatility_breakout_crypto.db: OK
+./strategies/volatility_breakout/paper_trading_volatility_breakout.db: OK

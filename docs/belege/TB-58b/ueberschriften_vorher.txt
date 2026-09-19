@@ -1,0 +1,19 @@
+14:## 0. Warum es dieses Dokument gibt
+40:## 1. Die zwölf Festlegungen des Betreibers (14.09.2026)
+73:## 2. Die Rastergrenzen
+211:## 3. Der Zahlenteil — erzeugt, nicht abgetippt
+423:## 4. Die Drawdown-Bedingung
+529:## 5. Der Faltenplan
+631:## 6. Die Plateau-Regel
+677:## 7. Die Abbruchkriterien
+726:## 8. Die Beurteilung — und die Regel, dass alles berichtet wird
+772:## 9. Die DSR-Buchführung
+809:## 10. Die Sperrliste
+905:## 11. Voraussetzungen des Laufs (zwei Bug-Fixes, beide TB-30b)
+972:## 12. Der Vollständigkeitstest
+1005:## 13. Die Verankerung
+1021:## 14. Der Nulltest S-E1
+1036:## 15. Registernachtrag (TB-36, 15.09.2026)
+1447:## 16. Registernachtrag (TB-41, 16.09.2026)
+2121:## 17. Registernachtrag (TB-48, 18.09.2026)
+2575:## 18. Tatsachennotiz zu Registertext 5 / 5a — der gezogene Snapshot (TB-55, 19.09.2026)
