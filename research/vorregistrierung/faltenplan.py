@@ -12,18 +12,31 @@ DIE REGELN (eingefroren)
    Nicht rollierend: ein Verfahren, das alte Jahre vergisst, waehlt im
    Zweifel die Parameter des letzten Marktzustands.
 
-2. **Aktien: Testfalten sind Kalenderjahre 2019 bis zum Go-Live-Schnitt.**
-   Vor der ersten Falte stehen mindestens vier Jahre Training. Die
-   Kursdateien reichen fuer die Aktien Jahrzehnte zurueck; die Schranke
-   bindet dort nicht, sie ist die Regel, die auch fuer Krypto gelten wird.
+2. **Aktien: Testfalten sind Kalenderjahre ab der ersten Falte nach
+   Registertext 4a bis zum Go-Live-Schnitt.** Die erste Falte ist das erste
+   Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf
+   vorliegen - JE BOT aus der Datenlage gerechnet (`erste_falte()`, mit der
+   Regel aus `research/faltenplan_neun/`), nicht aus einer Konstante.
+   ⚠️ Bis TB-56 (19.09.2026) stand hier `ERSTE_MOEGLICHE_FALTE = 2019`. Die
+   Schranke stand in keinem Registertext; die Tatsachennotiz 15.6 Punkt 2
+   hatte den Code-Zustand als Registerregel ausgegeben. Gemessen vor der
+   Entfernung (docs/ERGEBNIS_TB-56_faltenschranke.md): ohne Schranke beginnen
+   die Aktienplaene 2017 (elliott_wave_stocks, turtle_soup_stocks) bzw. 2018
+   (rsi2_mean_reversion, volatility_breakout) - nicht in einem gemeinsamen
+   Jahr, weil der Indikator-Vorlauf je Bot verschieden ist.
+   Vor der ersten Falte stehen mindestens vier Jahre Training (Verfahren A);
+   die Kursdateien reichen fuer die Aktien Jahrzehnte zurueck, das
+   Mindesttraining bindet dort nicht.
 
 3. **Krypto: Platzhalter mit Regel, keine Jahreszahlen.** Die Kursdaten
-   beginnen heute erst 09/2021. Nach dem Mindesttraining blieben ZWEI
-   Testfalten - zu wenig fuer einen Median ueber Falten. TB-31 laedt die
-   Historie ueber /api/v3/klines zurueck. Der Krypto-Faltenplan wird
-   geschrieben, sobald TB-31 gemeldet hat, ab wann die Daten JE SYMBOL
-   reichen; bis dahin steht hier die Regel und der Platzhalter, den sie
-   erzeugt.
+   begannen zur Zeit von TB-30a erst 09/2021. Nach dem Mindesttraining
+   blieben ZWEI Testfalten - zu wenig fuer einen Median ueber Falten. TB-31
+   hat die Historie ueber /api/v3/klines zurueckgeladen; der Krypto-
+   Faltenplan nach Verfahren B steht seit TB-36 im Register (Abschnitt 15.6)
+   und wird von `research/faltenplan_neun/` gerechnet. Hier bleibt der
+   Platzhalter mit seiner Regel stehen - ohne die frueher darin genannte
+   Schranke "fruehestens 2019" (TB-56); nachrichtlich wird die erste Falte
+   nach Registertext 4a mit ausgegeben.
 
 4. **2020 und 2022 sind Testfalten, keine Trainingsjahre.** Das steht hier,
    weil es die einzige Stelle ist, an der die Versuchung entstehen koennte,
@@ -70,6 +83,12 @@ BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
 
 import registerdaten as rd  # noqa: E402
 
+# Die Regel fuer die erste Falte (Registertext 4a) steht GENAU EINMAL - in
+# research/faltenplan_neun/faltenplan_neun.py (reine Standardbibliothek).
+# Sie wird ueber den Pfad importiert, nicht abgeschrieben.
+sys.path.insert(0, os.path.join(BASE_DIR, "research", "faltenplan_neun"))
+import faltenplan_neun as fn  # noqa: E402
+
 TB24_DATEN = os.path.join(BASE_DIR, "research", "tb24_haltedauern", "daten")
 
 
@@ -115,6 +134,26 @@ def faltenlaenge_jahre(bot: str) -> tuple:
                        f"{rd.ZWEIJAHRES_SCHWELLE_TRADES}")
 
 
+def erste_falte(bot: str) -> int:
+    """Das erste Kalenderjahr, in dem am 1. Januar Universum und
+    Indikator-Vorlauf vorliegen - Registertext 4a, je Bot aus der Datenlage.
+
+    Gerechnet mit der Regel aus `faltenplan_neun` (Kursdaten am 1. Januar,
+    Zehnjahresfenster der Aktien-Bots, Indikator-Vorlauf in Balken). Bis zur
+    Registerberichtigung TB-56b traegt `faltenplan_neun.erstes_faltenjahr`
+    selbst noch die Schranke `FRUEHESTE_FALTE`; deshalb wird hier die
+    ungebremste Fassung derselben Regel aufgerufen. Sobald TB-56b die
+    Schranke dort entfernt hat, ist `erstes_faltenjahr` diese Funktion, und
+    der Aufruf wechselt dorthin.
+    """
+    eig = fn.BOTS[bot]
+    beginn = fn.symbolbeginn(bot, fn.fensteranker(eig["markt"]))
+    jahr = fn._ungebremstes_faltenjahr(beginn)
+    if jahr is None:
+        raise ValueError(f"{bot}: kein Symbol mit Kursdaten - keine erste Falte")
+    return jahr
+
+
 def purge_tage(bot: str, mess: dict) -> int:
     """Purge- und Embargo-Laenge: die maximale gemessene Haltedauer, aufgerundet."""
     return int(math.ceil(mess["haltedauer"][bot]["max_tage"]))
@@ -146,7 +185,8 @@ def _jahresfalten(von_jahr: int, bis_ausschliesslich: date, laenge: int) -> list
 def plan_aktien(bot: str, mess: dict) -> dict:
     laenge, trades, begruendung = faltenlaenge_jahre(bot)
     schnitt = date.fromisoformat(rd.GO_LIVE_SCHNITT)
-    falten = _jahresfalten(rd.ERSTE_MOEGLICHE_FALTE, schnitt, laenge)
+    erste = erste_falte(bot)
+    falten = _jahresfalten(erste, schnitt, laenge)
     purge = purge_tage(bot, mess)
     for i, f in enumerate(falten):
         von = date.fromisoformat(f["von"])
@@ -163,6 +203,10 @@ def plan_aktien(bot: str, mess: dict) -> dict:
         "embargo_tage": purge,
         "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,
         "go_live_schnitt": rd.GO_LIVE_SCHNITT,
+        "erste_falte": erste,
+        "erste_falte_quelle": ("Datenlage nach Registertext 4a: erstes Kalenderjahr, "
+                               "in dem am 1. Januar Universum und Indikator-Vorlauf "
+                               "vorliegen (research/faltenplan_neun); keine Konstante"),
         "falten": falten,
         "selektionsfalten": [f["name"] for f in falten if f["rolle"] == "selektion"],
         "bestaetigungsperiode": falten[-1]["name"] if falten else None,
@@ -186,16 +230,16 @@ def plan_krypto(bot: str, mess: dict) -> dict:
         "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,
         "go_live_schnitt": rd.GO_LIVE_SCHNITT,
         "datenbeginn_heute": heute_beginn,
+        "erste_falte_nach_4a": erste_falte(bot),
         "regel": (
             "Erste Testfalte ist das erste volle Kalenderjahr, vor dem JE "
-            "SYMBOL mindestens {n} Jahre Kursdaten liegen, fruehestens {e}. "
-            "Danach lueckenlose Falten der Laenge {l} Jahr(e) bis zum "
-            "Go-Live-Schnitt {s}; die letzte Falte ist die "
+            "SYMBOL mindestens {n} Jahre Kursdaten liegen - ohne feste "
+            "Untergrenze (TB-56). Danach lueckenlose Falten der Laenge {l} "
+            "Jahr(e) bis zum Go-Live-Schnitt {s}; die letzte Falte ist die "
             "Bestaetigungsperiode. Ein Symbol geht in eine Falte nur ein, "
             "wenn seine Kursdaten mindestens {n} Jahre vor Faltenbeginn "
             "einsetzen (point-in-time)."
-        ).format(n=rd.MINDESTTRAINING_JAHRE, e=rd.ERSTE_MOEGLICHE_FALTE,
-                 l=laenge, s=rd.GO_LIVE_SCHNITT),
+        ).format(n=rd.MINDESTTRAINING_JAHRE, l=laenge, s=rd.GO_LIVE_SCHNITT),
         "warum_platzhalter": (
             f"Die Kursdaten dieses Repos beginnen fuer Krypto am "
             f"{heute_beginn}. Nach {rd.MINDESTTRAINING_JAHRE} Jahren "

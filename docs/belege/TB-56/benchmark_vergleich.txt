@@ -1,0 +1,15 @@
+elliott_wave                Platzhalter, unveraendert: True
+elliott_wave_stocks         gemeinsame Falten 2019..2026 zeichengleich: True; neu: ['2017', '2018']; DD_Toleranz gleich: True (@0.50 -4.33 -> -4.33, @1.00 -8.55 -> -8.55)
+                              2017: 135 Titel, 251 Handelstage, DD @0.25 -0.59 @0.50 -1.18 @0.75 -1.78 @1.00 -2.37
+                              2018: 136 Titel, 251 Handelstage, DD @0.25 -4.93 @0.50 -9.69 @0.75 -14.28 @1.00 -18.69
+rsi2_crypto                 Platzhalter, unveraendert: True
+rsi2_mean_reversion         gemeinsame Falten 2019..2026 zeichengleich: True; neu: ['2018']; DD_Toleranz gleich: False (@0.50 -4.33 -> -6.61, @1.00 -8.55 -> -12.89)
+                              2018: 136 Titel, 251 Handelstage, DD @0.25 -4.93 @0.50 -9.69 @0.75 -14.28 @1.00 -18.69
+t3_supertrend               Platzhalter, unveraendert: True
+turtle_soup_crypto          Platzhalter, unveraendert: True
+turtle_soup_stocks          gemeinsame Falten 2019..2026 zeichengleich: True; neu: ['2017', '2018']; DD_Toleranz gleich: True (@0.50 -4.33 -> -4.33, @1.00 -8.55 -> -8.55)
+                              2017: 135 Titel, 251 Handelstage, DD @0.25 -0.59 @0.50 -1.18 @0.75 -1.78 @1.00 -2.37
+                              2018: 136 Titel, 251 Handelstage, DD @0.25 -4.93 @0.50 -9.69 @0.75 -14.28 @1.00 -18.69
+volatility_breakout         gemeinsame Falten 2019..2026 zeichengleich: True; neu: ['2018']; DD_Toleranz gleich: False (@0.50 -4.33 -> -6.61, @1.00 -8.55 -> -12.89)
+                              2018: 136 Titel, 251 Handelstage, DD @0.25 -4.93 @0.50 -9.69 @0.75 -14.28 @1.00 -18.69
+volatility_breakout_crypto  Platzhalter, unveraendert: True

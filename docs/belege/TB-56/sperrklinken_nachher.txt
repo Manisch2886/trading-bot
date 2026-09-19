@@ -1,0 +1,136 @@
+Sat Sep 19 18:56:06 UTC 2026
+==============================================================================
+Mutationsprobe zu Mass 1 (Prueffrage B1)
+==============================================================================
+  [ok]     7 von 7 eingebauten Wanduhren gefunden, davon 2 als Datenschnitt eingestuft; sauberes Modul: 0 Treffer
+
+==============================================================================
+Mass 1 - keine Wanduhr im Selektionspfad (TB-52)
+==============================================================================
+Gesucht wird am Syntaxbaum nach jeder Quelle, die die Wanduhr liest:
+datetime.now/utcnow/today, date.today, time.time/localtime/gmtime,
+pd.Timestamp.now/today/utcnow, np.datetime64("now"), os.path.getmtime und
+Verwandte - auch als blosse Referenz ohne Aufruf.
+
+⭐ Je Treffer wird gesagt, WOZU der Wert dient. Eine Wanduhr in einer
+Protokollzeile ist harmlos; eine im Datenschnitt entwertet den Lauf.
+⚠️ Im Zweifel steht `zu pruefen`, nie `nur Protokollzeile` - eine
+Einstufung, die im Zweifel entwarnt, macht aus einem Befund ein Schweigen.
+
+Selektionsmodule geprueft : 90
+Ausgangszahl (festgeschrieben) : 6
+Heutiger Stand                 : 6
+
+Treffer, je mit Datei, Zeile und Verwendung:
+   strategies/elliott_wave/quarterly_review.py        :119   datetime.utcnow()            zu pruefen (von Hand ansehen)
+                                                             | lines.append(f"{datetime.utcnow().strftime('%d.%m.%Y %H:%M')} UTC")
+   strategies/elliott_wave/quarterly_review.py        :205   datetime.utcnow()            nur Protokollzeile
+                                                             | print(f"Vierteljaehrliches Review [{STRATEGY_NAME}] - {datetime.utcnow().isoformat()}\n")
+   strategies/elliott_wave_stocks/quarterly_review.py :124   datetime.utcnow()            zu pruefen (von Hand ansehen)
+                                                             | lines.append(f"{datetime.utcnow().strftime('%d.%m.%Y %H:%M')} UTC")
+   strategies/elliott_wave_stocks/quarterly_review.py :210   datetime.utcnow()            nur Protokollzeile
+                                                             | print(f"Vierteljaehrliches Review [{STRATEGY_NAME}] - {datetime.utcnow().isoformat()}\n")
+   strategies/t3_supertrend/quarterly_review.py       :146   datetime.utcnow()            zu pruefen (von Hand ansehen)
+                                                             | lines.append(f"{datetime.utcnow().strftime('%d.%m.%Y %H:%M')} UTC")
+   strategies/t3_supertrend/quarterly_review.py       :232   datetime.utcnow()            nur Protokollzeile
+                                                             | print(f"Vierteljaehrliches Review [{STRATEGY_NAME}] - {datetime.utcnow().isoformat()}\n")
+
+Nach Verwendung:
+   nur Protokollzeile               3
+   zu pruefen (von Hand ansehen)    3
+
+ERGEBNIS: GRUEN - 6, genau die Ausgangszahl. Nichts dazugekommen.
+rc=0
+==============================================================================
+Mutationsprobe zu Mass 2 (Prueffrage B1)
+==============================================================================
+  [ok]     5 von 5 eingebauten eigenen Pfaden gefunden, 5 Bauarten (%-Formatierung, Path(...), blanke Konstante in read_csv(), f-String, os.path.join(...)); sauberes Modul: 0 Treffer
+
+==============================================================================
+Mass 2 - kein eigener Datenpfad im Selektionspfad (TB-52)
+==============================================================================
+Gezaehlt wird nur der AEUSSERSTE Ausdruck: `os.path.join(DATA_DIR,
+f"{symbol}_1d.csv")` ist EIN Fund und nicht zwei, und er faellt durch, weil
+seine Wurzel ueber eine zentrale Quelle geht.
+
+⚠️ Namen, die aus `paths.py` oder `strategy_paths.py` stammen (DATA_DIR,
+RESULTS_DIR, LOGS_DIR, DB_FILE, ...), gelten als zentral bezogen - ein
+`os.path.join(RESULTS_DIR, "equity_curve.csv")` ist eine Ergebnisdatei und
+kein eigener Datenpfad. ⚠️ Ohne diese Unterscheidung meldete das Mass im
+ersten Entwurf **127** statt 29 Treffer, fast alle davon gewoehnliche
+Ergebnisschreibvorgaenge.
+
+Selektionsmodule geprueft : 90
+Ausgangszahl (festgeschrieben) : 29
+Heutiger Stand                 : 29
+
+Treffer, je mit Datei, Zeile und Verwendung:
+   strategies/elliott_wave/backtest_elliott.py                    :46    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/elliott_wave/multi_symbol_optimise.py               :32    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/elliott_wave/optimise_elliott.py                    :31    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/elliott_wave/quarterly_review.py                    :28    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | CONFIG_DIR = _P["CONFIG_DIR"]
+   strategies/elliott_wave/walk_forward.py                        :35    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/elliott_wave/zigzag_indicator.py                    :21    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/elliott_wave_stocks/backtest_elliott.py             :46    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/elliott_wave_stocks/multi_symbol_optimise.py        :32    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/elliott_wave_stocks/optimise_elliott.py             :31    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/elliott_wave_stocks/quarterly_review.py             :30    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | CONFIG_DIR = _P["CONFIG_DIR"]
+   strategies/elliott_wave_stocks/zigzag_indicator.py             :21    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/rsi2_crypto/backtest_rsi2.py                        :143   Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "BTCUSDT_1d.csv"), parse_dates=["open_time"])
+   strategies/rsi2_crypto/multi_symbol_optimise.py                :39    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/rsi2_mean_reversion/backtest_rsi2.py                :179   Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "AAPL_1d.csv"), parse_dates=["open_time"])
+   strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py       :21    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/rsi2_mean_reversion/multi_symbol_optimise.py        :32    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/t3_supertrend/multi_symbol_optimise.py              :27    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/t3_supertrend/optimise_trend.py                     :20    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/t3_supertrend/quarterly_review.py                   :45    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | CONFIG_DIR = _P["CONFIG_DIR"]
+   strategies/turtle_soup_crypto/backtest_turtle_soup.py          :187   Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "BTCUSDT_1d.csv"), parse_dates=["open_time"])
+   strategies/turtle_soup_crypto/multi_symbol_optimise.py         :25    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/turtle_soup_stocks/backtest_turtle_soup.py          :183   Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "AAPL_1d.csv"), parse_dates=["open_time"])
+   strategies/turtle_soup_stocks/buy_and_hold_benchmark.py        :17    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/turtle_soup_stocks/multi_symbol_optimise.py         :31    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/volatility_breakout/backtest_breakout.py            :216   Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "AAPL_1d.csv"), parse_dates=["open_time"])
+   strategies/volatility_breakout/buy_and_hold_benchmark.py       :19    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/volatility_breakout/multi_symbol_optimise.py        :34    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+   strategies/volatility_breakout_crypto/backtest_breakout.py     :175   Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "BTCUSDT_1d.csv"), parse_dates=["open_time"])
+   strategies/volatility_breakout_crypto/multi_symbol_optimise.py :27    Datenpfad aus shared/strategy_paths.py zu pruefen (von Hand ansehen)
+                                                                         | DATA_DIR = _P["DATA_DIR"]
+
+Nach Verwendung:
+   zu pruefen (von Hand ansehen)    29
+
+ERGEBNIS: GRUEN - 29, genau die Ausgangszahl. Nichts dazugekommen.
+Betroffene Module: 29 von 90
+
+⚠️ Und der Befund, den die Zahl allein nicht sagt: KEINES der 90 Selektionsmodule
+   importiert `shared/paths.py`. Der Selektionsmodus aus TB-52 erreicht sie
+   heute nicht - das Verdrahten ist TB-53.
+rc=0

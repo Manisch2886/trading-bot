@@ -1,0 +1,85 @@
+==============================================================================
+TB-46 BASISLAUF - 71 Testdateien, Zeitgrenze 420 s je Datei
+==============================================================================
+  [OK  ] broker/test_broker.py                                             0.7s 
+  [OK  ] broker/test_ibkr.py                                               1.1s 
+  [OK  ] dashboard/test_dashboard.py                                      42.1s 
+  [ROT ] dashboard/test_portfolio_sicht.py                                11.5s bekannt rot (Mac 17.09.: 1 Fehler)
+  [OK  ] notifications/test_manual_close.py                                8.6s 
+  [OK  ] notifications/test_schliess_benachrichtigung.py                   1.1s 
+  [OK  ] notifications/test_waechter_melden.py                            33.0s 
+  [OK  ] research/backtest_defaults/test_backtest_defaults.py              1.1s 
+  [OK  ] research/datenluecke_wurzelkorrektur/test_wurzelkorrektur.py      4.1s 
+  [OK  ] research/datenordner_schnitt/test_flackerstufe.py                 0.2s 
+  [OK  ] research/datenordner_schnitt/test_prozessgruppe.py               43.2s 
+  [----] research/drawdown_reihenfolge/test_drawdown.py                    1.0s ungeprueft: verlangt ein Bot-Argument
+  [OK  ] research/elliott_wave_lookahead/test_lookahead.py                 0.7s 
+  [----] research/elliott_wave_params/test_params.py                       0.5s ungeprueft: verlangt ein Bot-Argument
+  [OK  ] research/etf_trendfolge/test_etf_trendfolge.py                    7.4s 
+  [ROT ] research/exposure_messung/test_exposure_kern.py                   0.6s bekannt rot (Mac 17.09.: 1 Fehler)
+  [OK  ] research/faltenplan_neun/test_faltenplan_neun.py                124.8s 
+  [----] research/fib_score_stufen/test_stufen.py                          0.1s ungeprueft: verlangt ein Bot-Argument
+  [OK  ] research/hrp_portfolio/test_corrected_curves.py                   0.5s 
+  [ROT ] research/hrp_portfolio/test_hrp_core.py                           0.5s bekannt rot (Mac 17.09.: scipy fehlt)
+  [OK  ] research/krypto_historie/test_faltenplan.py                       0.1s 
+  [OK  ] research/oos_take_profit/test_oos_take_profit.py                  0.5s 
+  [OK  ] research/order_sensitivity/test_order_core.py                     0.6s 
+  [OK  ] research/pnl_2025_fixed_size/test_pnl.py                          0.6s 
+  [OK  ] research/registernachtrag_tb41/test_registernachtrag_tb41.py     94.7s 
+  [OK  ] research/registernachtrag_tb48/test_abschnitt17.py              189.5s 
+  [OK  ] research/selektionsmasse/test_eigener_pfadbau.py                  0.5s 
+  [OK  ] research/selektionsmasse/test_wanduhr.py                          0.4s 
+  [OK  ] research/sync_check/test_sync_check.py                            0.2s 
+  [OK  ] research/tb24_haltedauern/test_haltedauer_kern.py                 2.6s 
+  [OK  ] research/tb27_kapitalsimulation/test_vergleich.py                 3.2s 
+  [OK  ] research/trailing_stops/test_atr_core.py                          0.6s 
+  [OK  ] research/trend_overlay/test_corrected_curves.py                   0.5s 
+  [OK  ] research/trend_overlay/test_trend_core.py                         0.5s 
+  [OK  ] research/turn_of_month/test_turn_of_month.py                    107.5s 
+  [OK  ] research/universum_trockenlauf/test_universum_trockenlauf.py     83.7s 
+  [OK  ] research/vbc_deepdive/test_vbc_core.py                            0.7s 
+  [OK  ] research/versuchsregister/test_versuchsregister.py               11.2s 
+  [OK  ] research/volatility_scaled_sizing/test_vol_sizing_core.py         0.5s 
+  [OK  ] research/vorregistrierung/test_vorregistrierung.py               31.0s 
+  [OK  ] shared/test_abrufschutz.py                                       32.6s 
+  [OK  ] shared/test_agent2_kapitalmass.py                                 0.5s 
+  [OK  ] shared/test_agent2_zielfunktion.py                                4.9s 
+  [OK  ] shared/test_binance_historie.py                                   1.1s 
+  [OK  ] shared/test_determinismus.py                                     28.3s 
+  [ZEIT] shared/test_drawdown_beide_masse.py                             420.0s erwartet: terminiert nicht (bekannt)
+  [OK  ] shared/test_empfehlung_format.py                                  1.1s 
+  [OK  ] shared/test_entscheidungskerze.py                                 9.6s 
+  [OK  ] shared/test_ergebniskurven.py                                    30.9s 
+  [OK  ] shared/test_fetch_binance_data.py                                 3.0s 
+  [OK  ] shared/test_groessenfaktor.py                                   161.1s 
+  [OK  ] shared/test_kursdaten.py                                         32.0s 
+  [OK  ] shared/test_kursdaten_neuaufbau.py                                1.3s 
+  [OK  ] shared/test_ladeprotokoll.py                                     94.7s 
+  [OK  ] shared/test_leeres_symbol.py                                     15.1s 
+  [OK  ] shared/test_live_params_werte.py                                  0.1s 
+  [OK  ] shared/test_messkette.py                                         34.7s 
+  [OK  ] shared/test_paths.py                                              5.4s 
+  [OK  ] shared/test_regimewache.py                                        0.0s 
+  [OK  ] shared/test_snapshot.py                                           6.5s 
+  [ROT ] shared/test_stabile_sortierung.py                                64.5s bekannt rot (Mac 17.09.: 3 Fehler)
+  [OK  ] shared/test_startpruefungen.py                                   11.4s 
+  [OK  ] shared/test_stille_ausfaelle.py                                  38.9s 
+  [OK  ] shared/test_strategy_paths.py                                    11.5s 
+  [OK  ] shared/test_umstellungstag.py                                     0.2s 
+  [ROT ] shared/test_wellenauswahl.py                                     95.8s bekannt rot (Mac 17.09.: 1 Fehler)
+  [OK  ] shared/test_zeitabdeckung.py                                      0.6s 
+  [OK  ] shared/test_zuteilung.py                                         23.9s 
+  [OK  ] system/test_caffeinate_plist.py                                   0.1s 
+  [OK  ] system/test_dienst_plists.py                                      0.1s 
+  [~~~~] system/test_log_rotation.py                                       6.0s flackernd (Mac ~30 %, 18.09.2026, TB-49-Maclauf: 3 von 10 rot, immer 116/117): heute gruen
+
+==============================================================================
+  gruen         61
+  rot            5
+  flackernd      1
+  ungeprueft     3
+  zeitgrenze     1
+  SUMME         71  von 71 Testdateien
+  UNERWARTET     0
+
+JSON: /Users/jaquelineloffler/trading-bot/docs/belege/TB-56/basislauf_vorher.json

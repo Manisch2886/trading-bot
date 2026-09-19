@@ -448,6 +448,9 @@ def main(argv=None) -> int:
     z.add_argument("--json", default=None, help="Messung als JSON ablegen")
     z.add_argument("--plan-ohne-schranke", default=None,
                    help="den Plan ohne Schranke im Format von faltenplan_neun --json ablegen")
+    z.add_argument("--mit-trockenlauf", action="store_true",
+                   help="dem Plan ohne Schranke das Ergebnis des Loader-Trockenlaufs "
+                        "(Registertext 3b, Lesart H) je Bot beilegen")
     z.add_argument("--mutation", type=int, default=None, metavar="JAHR",
                    help="Gegenprobe: Schranke kuenstlich bei JAHR wieder einsetzen")
     z.add_argument("--trockenlauf", default=None, metavar="AUS.json",
@@ -483,12 +486,27 @@ def main(argv=None) -> int:
             json.dump(m, f, indent=2, ensure_ascii=False, sort_keys=True)
         print(f"Messung: {a.json}")
     if a.plan_ohne_schranke:
+        datei = {"go_live": fp.GO_LIVE.isoformat(),
+                 "frueheste_falte": None,
+                 "schranke": "keine - Registertext 4a (TB-56)",
+                 "herkunft": ("research/faltenplan_neun/faltenschranke_messung.py: "
+                              "faltenplan_neun.py mit FRUEHESTE_FALTE im Speicher = 0; "
+                              "Falten nach Lesart A (Kursdaten am 1. Januar), "
+                              "Symbolzahlen nach Lesart A und B wie in faltenplan.json"),
+                 "plaene": plan_ohne_schranke()}
+        if a.mit_trockenlauf:
+            t = trockenlauf_ohne_schranke()
+            drucke_trockenlauf(t)
+            datei["trockenlauf_3b"] = {
+                "werkzeug": t["werkzeug"],
+                "lesart": "H - handelbar an mindestens einem Handelstag der Falte "
+                          "(Registertext 3b (a)); F - am Faltenbeginn",
+                "monotonie_verletzt": t["monotonie_verletzt"],
+                "schreibversuche": t["schreibversuche"],
+                "je_bot": t["je_bot"],
+            }
         with open(a.plan_ohne_schranke, "w", encoding="utf-8") as f:
-            json.dump({"go_live": fp.GO_LIVE.isoformat(),
-                       "frueheste_falte": None,
-                       "schranke": "keine - Registertext 4a (TB-56)",
-                       "plaene": plan_ohne_schranke()},
-                      f, indent=2, ensure_ascii=False, sort_keys=True, default=str)
+            json.dump(datei, f, indent=2, ensure_ascii=False, sort_keys=True, default=str)
         print(f"Plan ohne Schranke: {a.plan_ohne_schranke}")
     return 0 if m["werkzeug_stimmt_mit_festgehaltener_messung"] else 1
 

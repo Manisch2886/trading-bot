@@ -1,0 +1,40 @@
+Sat Sep 19 18:47:45 UTC 2026
+Nachweis 1 - neuer Plan gegen Messung Teil A, je Bot
+  ok   1: neuer Plan stimmt je Bot mit Teil A ueberein  9/9
+  ok   1b: die Datei traegt keine Schranke  None
+Nachweis 2 - Zulassung nach 4b (mindestens 3 Selektionsfalten)
+    elliott_wave                mit 3 (ja)  ohne 4 (ja)  Trockenlauf H: 4 (ja)
+    t3_supertrend               mit 7 (ja)  ohne 8 (ja)  Trockenlauf H: 7 (ja)
+    rsi2_crypto                 mit 7 (ja)  ohne 7 (ja)  Trockenlauf H: 7 (ja)
+    turtle_soup_crypto          mit 7 (ja)  ohne 8 (ja)  Trockenlauf H: 8 (ja)
+    volatility_breakout_crypto  mit 7 (ja)  ohne 8 (ja)  Trockenlauf H: 8 (ja)
+    elliott_wave_stocks         mit 7 (ja)  ohne 9 (ja)  Trockenlauf H: 9 (ja)
+    rsi2_mean_reversion         mit 7 (ja)  ohne 8 (ja)  Trockenlauf H: 8 (ja)
+    turtle_soup_stocks          mit 7 (ja)  ohne 9 (ja)  Trockenlauf H: 9 (ja)
+    volatility_breakout         mit 7 (ja)  ohne 8 (ja)  Trockenlauf H: 8 (ja)
+  ok   2: kein Bot aendert seine Zulassung nach 4b  []
+Nachweis 3 - ERSTE_MOEGLICHE_FALTE im Quelltext
+    Docstring/Kommentar research/faltenplan_neun/faltenplan_neun.py:61,119
+    Dokument            research/faltenplan_neun/BERICHT.md:104
+    Docstring/Kommentar research/faltenplan_neun/faltenschranke_messung.py:15
+    Docstring/Kommentar research/vorregistrierung/faltenplan.py:20
+  ok   3: 0 Treffer als Bezeichner im Code (research/, shared/, strategies/)  []
+Nachweis 4a - Schranke 2019 kuenstlich wieder eingesetzt (faltenplan_neun)
+  ok   4a: die Schranke veraendert den Plan messbar  8 von 9 Plaene: ['elliott_wave', 'elliott_wave_stocks', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']
+Nachweis 4b - Wegwerf-Kopie von research/vorregistrierung mit Schranke
+  ok   4b-0: unmutierte Kopie laeuft
+  ok   4b-1: mutierte Kopie laeuft
+    elliott_wave_stocks         ohne 2017..  mit 2019..
+    rsi2_mean_reversion         ohne 2018..  mit 2019..
+    turtle_soup_stocks          ohne 2017..  mit 2019..
+    volatility_breakout         ohne 2018..  mit 2019..
+  ok   4b-2: die wieder eingesetzte Schranke veraendert die Aktienplaene  4/4: ['elliott_wave_stocks', 'rsi2_mean_reversion', 'turtle_soup_stocks', 'volatility_breakout']
+  ok   4b-3: unmutiert beginnt kein Aktienplan mit 2019  {'elliott_wave_stocks': '2017', 'rsi2_mean_reversion': '2018', 'turtle_soup_stocks': '2017', 'volatility_breakout': '2018'}
+  ok   4b-4: mutiert beginnen alle vier mit 2019
+Nachweis 8 - faltenplan.json byteweise unveraendert
+    SHA-256 jetzt        93fbf09c608ff7a6bdded72aa62936ed8ca105b015c2f1134d77d8e8dbdf7839
+    SHA-256 unter d66a2ce 93fbf09c608ff7a6bdded72aa62936ed8ca105b015c2f1134d77d8e8dbdf7839
+  ok   8: identisch mit dem Stand vor dieser Arbeit (d66a2ce) und git status leer  ''
+
+11 bestanden, 0 gescheitert []
+rc=0

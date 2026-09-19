@@ -1,0 +1,161 @@
+Sat Sep 19 18:49:11 UTC 2026
+Selbsttest des Faltenplans fuer alle neun Bots (TB-36)
+==============================================================================
+  Teil A ...
+    ok   A0: das neue Werkzeug laeuft durch
+    ok   A1: das TB-31-Werkzeug laeuft durch
+    ok   A2 [elliott_wave]: dieselbe erste Falte
+    ok   A3 [elliott_wave]: dieselbe Zahl Selektionsfalten
+    ok   A4 [elliott_wave]: dieselben Faltengrenzen
+    ok   A5 [elliott_wave]: dieselben Symbole je Falte, namentlich
+    ok   A2 [t3_supertrend]: dieselbe erste Falte
+    ok   A3 [t3_supertrend]: dieselbe Zahl Selektionsfalten
+    ok   A4 [t3_supertrend]: dieselben Faltengrenzen
+    ok   A5 [t3_supertrend]: dieselben Symbole je Falte, namentlich
+    ok   A2 [rsi2_crypto]: dieselbe erste Falte
+    ok   A3 [rsi2_crypto]: dieselbe Zahl Selektionsfalten
+    ok   A4 [rsi2_crypto]: dieselben Faltengrenzen
+    ok   A5 [rsi2_crypto]: dieselben Symbole je Falte, namentlich
+    ok   A2 [turtle_soup_crypto]: dieselbe erste Falte
+    ok   A3 [turtle_soup_crypto]: dieselbe Zahl Selektionsfalten
+    ok   A4 [turtle_soup_crypto]: dieselben Faltengrenzen
+    ok   A5 [turtle_soup_crypto]: dieselben Symbole je Falte, namentlich
+    ok   A2 [volatility_breakout_crypto]: dieselbe erste Falte
+    ok   A3 [volatility_breakout_crypto]: dieselbe Zahl Selektionsfalten
+    ok   A4 [volatility_breakout_crypto]: dieselben Faltengrenzen
+    ok   A5 [volatility_breakout_crypto]: dieselben Symbole je Falte, namentlich
+  Teil B ...
+    ok   B0: die Symbolzahl-Tabelle steht im Register und hat neun Zeilen
+    ok   B1 [elliott_wave]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [elliott_wave]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [elliott_wave]: Universumsgroesse wie gerechnet
+    ok   B1 [t3_supertrend]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [t3_supertrend]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [t3_supertrend]: Universumsgroesse wie gerechnet
+    ok   B1 [rsi2_crypto]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [rsi2_crypto]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [rsi2_crypto]: Universumsgroesse wie gerechnet
+    ok   B1 [turtle_soup_crypto]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [turtle_soup_crypto]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [turtle_soup_crypto]: Universumsgroesse wie gerechnet
+    ok   B1 [volatility_breakout_crypto]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [volatility_breakout_crypto]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [volatility_breakout_crypto]: Universumsgroesse wie gerechnet
+    ok   B1 [elliott_wave_stocks]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [elliott_wave_stocks]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [elliott_wave_stocks]: Universumsgroesse wie gerechnet
+    ok   B1 [rsi2_mean_reversion]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [rsi2_mean_reversion]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [rsi2_mean_reversion]: Universumsgroesse wie gerechnet
+    ok   B1 [turtle_soup_stocks]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [turtle_soup_stocks]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [turtle_soup_stocks]: Universumsgroesse wie gerechnet
+    ok   B1 [volatility_breakout]: Symbolzahl je Selektionsfalte wie gerechnet
+    ok   B2 [volatility_breakout]: Symbolzahl der Bestaetigung wie gerechnet
+    ok   B3 [volatility_breakout]: Universumsgroesse wie gerechnet
+    ok   B4: die Faltenliste steht im Register und hat neun Zeilen
+    ok   B5 [elliott_wave]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [elliott_wave]: die Faltenjahre wie gerechnet
+    ok   B5 [t3_supertrend]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [t3_supertrend]: die Faltenjahre wie gerechnet
+    ok   B5 [rsi2_crypto]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [rsi2_crypto]: die Faltenjahre wie gerechnet
+    ok   B5 [turtle_soup_crypto]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [turtle_soup_crypto]: die Faltenjahre wie gerechnet
+    ok   B5 [volatility_breakout_crypto]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [volatility_breakout_crypto]: die Faltenjahre wie gerechnet
+    ok   B5 [elliott_wave_stocks]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [elliott_wave_stocks]: die Faltenjahre wie gerechnet
+    ok   B5 [rsi2_mean_reversion]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [rsi2_mean_reversion]: die Faltenjahre wie gerechnet
+    ok   B5 [turtle_soup_stocks]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [turtle_soup_stocks]: die Faltenjahre wie gerechnet
+    ok   B5 [volatility_breakout]: Zahl der Selektionsfalten wie gerechnet
+    ok   B6 [volatility_breakout]: die Faltenjahre wie gerechnet
+    ok   B7: die Embargo-Tabelle steht im Register und hat neun Zeilen
+    ok   B8 [elliott_wave]: Embargo wie gerechnet
+    ok   B8 [t3_supertrend]: Embargo wie gerechnet
+    ok   B8 [rsi2_crypto]: Embargo wie gerechnet
+    ok   B8 [turtle_soup_crypto]: Embargo wie gerechnet
+    ok   B8 [volatility_breakout_crypto]: Embargo wie gerechnet
+    ok   B8 [elliott_wave_stocks]: Embargo wie gerechnet
+    ok   B8 [rsi2_mean_reversion]: Embargo wie gerechnet
+    ok   B8 [turtle_soup_stocks]: Embargo wie gerechnet
+    ok   B8 [volatility_breakout]: Embargo wie gerechnet
+    ok   B9: kein Bot ist unterbestimmt (Registertext 4b: mindestens 3)
+  Teil C ...
+    ok   C0: das Werkzeug laeuft auf dem Wegwerf-Universum
+    ok   C1: das Universum behaelt alle drei Symbole
+    ok   C2: BBB ist am 1.1.2021 ohne Historie und zaehlt dort nicht mit
+    ok   C3: BBB steht in derselben Falte als 'ohne Historie' - es ist nicht verschwunden
+    ok   C4: in der naechsten Falte ist BBB dabei
+    ok   C5: in JEDER Falte gilt 'mit Historie + ohne Historie = Universum'
+    ok   C6: CCC hat in keiner Falte Historie und wird trotzdem namentlich gefuehrt
+    ok   C7: auch im echten Universum bleibt in jeder Falte die Summe vollstaendig
+  Teil D ...
+    ok   D0: P95 von 1..100 ist 95,05 (lineare Interpolation)
+    ok   D1: P50 von 1..100 ist 50,5
+    ok   D2: ein einziger Wert ist sein eigenes Perzentil
+    ok   D3: eine leere Reihe hat kein Perzentil
+    ok   D4 [elliott_wave]: P90 wie in TB-24 veroeffentlicht
+    ok   D4 [t3_supertrend]: P90 wie in TB-24 veroeffentlicht
+    ok   D4 [rsi2_crypto]: P90 wie in TB-24 veroeffentlicht
+    ok   D4 [turtle_soup_crypto]: P90 wie in TB-24 veroeffentlicht
+    ok   D4 [volatility_breakout_crypto]: P90 wie in TB-24 veroeffentlicht
+    ok   D4 [elliott_wave_stocks]: P90 wie in TB-24 veroeffentlicht
+    ok   D4 [rsi2_mean_reversion]: P90 wie in TB-24 veroeffentlicht
+    ok   D4 [turtle_soup_stocks]: P90 wie in TB-24 veroeffentlicht
+    ok   D4 [volatility_breakout]: P90 wie in TB-24 veroeffentlicht
+    ok   D5: rsi2_crypto wird ueber die Zeitbremse gerechnet
+    ok   D6: sein Embargo ist die Zeitbremse plus 1
+    ok   D7: t3_supertrend hat keine Zeitbremse und wird ueber P95 gerechnet
+    ok   D8: sein Embargo ist das aufgerundete P95 plus 1
+    ok   D9: genau ein Bot hat keine Zeitbremse
+    ok   D10: elliott_wave_stocks fuehrt zwei Zeitbremsen
+    ok   D11: gewaehlt wird die laengste in Handelstagen
+    ok   D12: 130 Kalendertage sind weniger Handelstage als 90 Balken
+  Teil E ...
+    ok   E0: Registertext 0 steht im Nachtrag
+    ok   E0: Registertext 1 steht im Nachtrag
+    ok   E0: Registertext 2 steht im Nachtrag
+    ok   E0: Registertext 3 steht im Nachtrag
+    ok   E0: Registertext 4 steht im Nachtrag
+    ok   E0: Registertext 5 steht im Nachtrag
+    ok   E1: als ersetzt gekennzeichnet - [ersetzt die frühere Fassung mit Mindestzahl 1...
+    ok   E1: als ersetzt gekennzeichnet - [ersetzt „mindestens 4"]...
+    ok   E1: als ersetzt gekennzeichnet - [ersetzt „behält seine heutigen Parameter"]...
+    ok   E1: als ersetzt gekennzeichnet - *(ersetzt die frühere Fassung vollständig)*...
+    ok   E2: die ersetzten Stellen im alten Text verweisen auf den Nachtrag
+    ok   E3: auch die Sperrliste traegt den Hinweis
+    ok   E4: nicht geloescht - ### 5.1 Die Regeln...
+    ok   E4: nicht geloescht - ### 5.3 Krypto: Platzhalter mit Regel...
+    ok   E4: nicht geloescht - 1. **Verankert, expandierend** (nicht rolliere...
+    ok   E4: nicht geloescht - 5. **Purge und Embargo** in Höhe der **maximal...
+    ok   E4: nicht geloescht - 8. **Universumsdateien und point-in-time-Regel...
+    ok   E4: nicht geloescht - ### Der Faltenplan...
+    ok   E5: jede Zeile der Vorfassung steht unveraendert und in derselben Reihenfolge noch im Register
+  Teil F ...
+    ok   F0: unmutiert beginnt jeder Plan 2019
+    ok   F1: das mutierte Werkzeug laeuft (sonst belegte F2 nichts)
+    ok   F2: ohne die Registerschranke beginnen acht der neun Plaene frueher - die Schranke traegt
+    ok   F3: bei rsi2_crypto bindet die Datenlage, nicht die Schranke
+  Teil G ...
+    ok   G0: unmutiert hat genau ein Bot Doppeljahre
+    ok   G1: und es ist elliott_wave mit drei Falten
+    ok   G2: das mutierte Werkzeug laeuft
+    ok   G3: ohne die Schwelle bekommt elliott_wave Einzeljahre - die Doppeljahr-Regel traegt
+    ok   G4: und KEINE andere Wache faengt das ab - erste Falte und Symbolzahlen bleiben unveraendert richtig
+  Teil H ...
+    ok   H0: unmutiert weicht Lesart B bei rsi2_crypto von Lesart A ab
+    ok   H1: das mutierte Werkzeug laeuft
+    ok   H2: ohne Vorlauf faellt Lesart B mit Lesart A zusammen - der Vorlauf wird wirklich gelesen
+    ok   H3: die EINGETRAGENE Zahl (Lesart A) bleibt davon unberuehrt - keine zweite Wache verdeckt das
+  Teil I ...
+    ok   I0: unmutiert ist das Embargo von rsi2_crypto 11
+    ok   I1: das Werkzeug laeuft auf dem mutierten Repo
+    ok   I2: eine geaenderte Zeitbremse im BOT aendert das Embargo - die Zahl kommt aus der Bot-Datei, nicht aus einer Abschrift
+    ok   I3: und nur bei diesem Bot - die anderen acht bleiben stehen
+
+==============================================================================
+145/145 Pruefungen bestanden.
+rc=0

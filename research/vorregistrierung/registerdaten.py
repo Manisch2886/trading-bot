@@ -100,7 +100,11 @@ CLUSTER_SCHWELLE = 0.90             # Festlegung 9
 DSR_BASIS_N = 653                   # Festlegung 10
 ZWEIJAHRES_SCHWELLE_TRADES = 30     # Festlegung 7: Trades je Jahr
 GO_LIVE_SCHNITT = "2026-09-01"      # siehe Abschnitt "Faltenplan" im Register
-ERSTE_MOEGLICHE_FALTE = 2019        # Aktien: Testfalten ab Kalenderjahr 2019
+# Die erste Falte je Bot ist KEINE Konstante mehr (TB-56, 19.09.2026): sie
+# entsteht aus der Datenlage nach Registertext 4a - siehe faltenplan.py,
+# erste_falte(). Die frueher hier gefuehrte Schranke 2019 stand in keinem
+# Registertext; die Tatsachennotiz 15.6 Punkt 2 hatte den Code-Zustand als
+# Registerregel ausgegeben (Berichtigung nach F17, TB-56b).
 MINDESTTRAINING_JAHRE = 4           # vor der ersten Falte
 HANDELSTAGE_JE_JAHR = 252
 RISIKOFREIER_SATZ = 0.0             # Netto-Sharpe ohne Zinsabzug - eine
