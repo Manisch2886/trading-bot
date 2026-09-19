@@ -340,3 +340,65 @@ K-Nummern ab **`K2l`**.
 |---|---|
 | ⚠️ | **Termius frisst Geviertstriche und Zeilenumbrüche in Befehlen.** Die vierzeilige Commitnachricht kam als **zwei** Zeilen an, und ein `—` verschwand aus einer Fehlermeldung. Folgenlos, aber: **in Befehlen für Termius keine Geviertstriche und keine Zeilenumbrüche verwenden** |
 | ⚠️ | **`logs/auftraege/` ist über `.gitignore:27` (`logs/`) ausgeschlossen.** Eine Datei dort ist kein Beleg. Der Ordner ist Zwischenlager, und jede Datei darin hat eine offene Bringschuld ins Repo |
+
+---
+
+# Nachtrag 2 zur Übergabe — 21:50, die Arbeitsteilung
+
+⚠️⚠️ **Dieser Nachtrag schließt eine Lücke, die beim Umzug aufgefallen ist.**
+`ARBEITSWEISE.md` Abschnitt 7 („ein Befehl je Nachricht") und Abschnitt 6b
+setzen voraus, dass der **Betreiber** Terminalbefehle ausführt und die Ausgabe
+zurückkopiert. **Am 19.09.2026 war das überwiegend nicht mehr nötig** — und
+niemand hatte es aufgeschrieben.
+
+## Die Geräteanbindung an das MacBook
+
+⭐⭐ **Wo eine Sitzung über die Geräteanbindung auf `~/trading-bot` zugreifen
+kann, MESSE ICH SELBST.** Der Betreiber kopiert keine Terminalausgaben mehr.
+
+**Was am 19.09. so gemessen wurde, ohne eine einzige Ausgabe von ihm:**
+
+| | |
+|---|---|
+| `HEAD`, Commit-Kette, `numstat`, ob ein Commit auf `origin/main` liegt | ⚠️ nur lesend, **immer mit `--no-optional-locks`** |
+| Dateigrößen, Zeilenzahlen, `cmp`-Vergleiche, `grep`-Zählungen | |
+| ⭐ **Die Datenauflösung** (174× `1d`, 25× `1h`, 24× `4h`) — der Befund, der Epic KG geschärft hat | |
+| Der Fortschritt einer laufenden Mac-Sitzung, ihre Belege, ihre Rückfragen | |
+| Gemessene Nummernstände im Backlog (`2r`, `K2k`, `0,97`) | |
+| Ablage von Dateien in `logs/auftraege/` | ⚠️ **nur dort, solange eine Sitzung läuft** |
+
+## ⚠️ Die Grenzen, ehrlich benannt
+
+| | |
+|---|---|
+| ⚠️⚠️ | **Die Anbindung ist nicht in jedem Chat vorhanden.** Sie hängt daran, dass die Unterhaltung mit dem Rechner verbunden ist. **Erst prüfen, dann behaupten** — und wenn sie fehlt, es sagen statt zu raten |
+| ⚠️⚠️ | **Kein `git status`, kein `git add`, kein Commit über die Anbindung.** `git status` hat am 19.09. ein `.git/index.lock` hinterlassen, das die Anbindung nicht löschen konnte. **Schreibende git-Befehle bleiben beim Betreiber** |
+| ⚠️ | **Keine SQLite-Datei öffnen, während eine Sitzung die Datenbanken quersummengesichert hat** — das kann `-wal`/`-shm` anlegen und den Byte-Vergleich scheitern lassen |
+| ⚠️ | **Nichts nach `docs/` schreiben, solange eine Sitzung läuft** — eine unversionierte Datei reißt deren `git status --short`-Prüfung |
+| ⚠️ | **Zeitstempel sind UTC**, Ortszeit +02:00 |
+
+## Was beim Betreiber bleibt
+
+| | |
+|---|---|
+| **1** | ⭐ **Befehle, die eine Freigabe brauchen**: `git add`/`commit`/`push`, Sitzungsstarts, Löschungen — **als EIN kopierfertiger Block, ohne Geviertstriche und ohne Zeilenumbrüche** (Termius frisst beides) |
+| **2** | ⭐ **Rückfragen beantworten, per Multiple Choice mit Empfehlung** — anklicken, nicht formulieren |
+| **3** | **Entscheidungen, die ihm gehören**: Freigaben für Sperrlisten-Dateien, Verfahrensfragen vor dem Tag, der Termin des Laufs |
+| **4** | **Nachrichten an Fable einfügen** — als Kopierblock aus der Antwort |
+
+⚠️ **Und Fables Antworten gehören in den Chat, in dem die betroffene Arbeit
+läuft** — nicht in den, der die Frage formuliert hat. *Die vier Fragen vom
+19.09. betreffen TB-56b und einen möglichen Registertext vor dem Tag; die Antwort
+gehört also in den Chat, der TB-56b bearbeitet.*
+
+## ⇒ Was daraus für `ARBEITSWEISE.md` folgt
+
+⚠️ **Abschnitt 7 braucht einen Vorsatz** (Ersatztext für den nächsten
+Mac-Auftrag):
+
+> ⭐ **Vorbedingung zu Abschnitt 7:** Die folgenden Regeln gelten für Befehle,
+> die der **Betreiber** ausführt. **Ist die Geräteanbindung an das MacBook
+> verfügbar, wird lesend selbst gemessen** — dann entsteht für ihn gar kein
+> Befehl. Ein Befehl an ihn wird nur noch formuliert, wenn er eine **Freigabe**
+> trägt (`git add`/`commit`/`push`, Sitzungsstart, Löschung) oder die Anbindung
+> fehlt.

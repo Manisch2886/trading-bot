@@ -310,3 +310,45 @@ längeren Arbeitsblock, nicht danach.
 **Wann nicht:** solange eine Sitzung läuft, solange etwas nicht gesichert ist,
 und solange eine Rückfrage offen ist. In diesen drei Fällen würde der Umzug genau
 das kosten, was er verhindern soll.
+
+---
+
+## 8. ⚠️⚠️ Die Geräteanbindung muss den Umzug überleben — sie tut es nicht von selbst
+
+**Nachgetragen 19.09.2026, 21:50, nach der Frage des Betreibers, ob im neuen
+Chat unmittelbar so weitergearbeitet wird.**
+
+**Der grösste Ertrag des 19.09. war nicht ein Dokument, sondern eine
+Arbeitsteilung:** Wo eine Sitzung über die Geräteanbindung auf `~/trading-bot`
+lesen kann, **messe ich selbst** — `HEAD`, `numstat`, Dateigrössen,
+`cmp`-Vergleiche, Backlog-Nummernstände, der Fortschritt einer laufenden
+Mac-Sitzung, die Datenauflösung. **Der Betreiber kopiert keine Terminalausgaben
+mehr.** *(Vollständig in `UEBERGABE_2026-09-19.md`, Nachtrag 2.)*
+
+⚠️⚠️ **Und genau das überlebt einen Umzug NICHT automatisch.** Die Anbindung
+hängt daran, dass die Unterhaltung mit dem Rechner verbunden ist — nicht am
+Projekt, nicht an der Erinnerung, nicht am Repo. **Ein neuer Chat ohne Anbindung
+fällt auf den alten, aufwendigen Weg zurück, und zwar unbemerkt.**
+
+### Die Regel für jeden Umzug
+
+| | |
+|---|---|
+| ⭐⭐ **1** | **Der neue Chat wird aus der Claude-Desktop-App auf dem MacBook geöffnet, mit dem Rechner ausgewählt** — nicht aus dem Browser, nicht vom Mobiltelefon. *Bietet die App für eine bestehende Unterhaltung „Link to this computer" an, geht auch das.* |
+| ⭐⭐ **2** | **Der erste Auftrag im neuen Chat ist eine Prüfung der Anbindung**, keine Behauptung. Eine gelesene Datei oder ein gelesener `HEAD` ist der Beleg; „die Tools sind da" ist keiner |
+| ⚠️ **3** | **Fehlt die Anbindung, wird das ausdrücklich gesagt** — mit dem Satz, dass Messungen dann wieder über den Betreiber laufen. **Nicht stillschweigend zurückfallen** |
+
+⭐ **Deshalb enthält der Eröffnungstext in Abschnitt 6 ab jetzt eine Zeile, die
+diese Prüfung verlangt.** Sie kostet eine Antwort und sichert den Ertrag eines
+ganzen Arbeitstages.
+
+### Ergänzung zur Vorlage in Abschnitt 6
+
+**Vor den letzten Satz des Eröffnungstextes gehört:**
+
+```
+Prüfe als Erstes, ob du über die Geräteanbindung auf ~/trading-bot lesen
+kannst — nenne mir HEAD und die Zeilenzahl von docs/projektfuehrung/BACKLOG.md
+als Beleg. Wenn das nicht geht, sag es ausdrücklich, denn dann müssen wir
+Messungen wieder über mich laufen lassen.
+```
