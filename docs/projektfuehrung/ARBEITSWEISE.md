@@ -974,6 +974,15 @@ elf Stunden ungesichert im Arbeitsbaum, auf einem Rechner und in keiner Version.
 > schreibt, hat ein Zeitfenster, in dem ein unerwarteter Abbruch Arbeit
 > vernichtet. Wer sie laufend pflegt, hat keins."*
 
+⭐ **Und gesichert wird nicht nur das Ergebnisdokument: die Sitzung committet
+ihren eigenen Auftrag und ihre Belege mit** *(Regel aus Backlog-Nachtrag (m)
+vom 19.09.2026, eingearbeitet 20.09.2026 durch TB-62 — sie stand bis dahin
+nirgends im Repo, siehe K4b)*. Der Auftrag nach `docs/auftraege/`, die Belege
+nach `docs/belege/TB-<Nr>/`, jeweils im Zug des Teils, zu dem sie gehören.
+*Ein Auftrag, der nur in `logs/auftraege/` oder im Chat liegt, steht nach
+`UMZUG.md` Abschnitt 2 in keinem Träger; ein Beleg, der nur im Sitzungsverlauf
+steht, verschwindet mit ihm.* Kein Archiv — Abschnitt 2.
+
 **4. ⭐⭐ Nach jedem Start wird gemessen, ob der Text angekommen ist.**
 
 ```
@@ -1033,6 +1042,25 @@ sondern der Weg.**
 erst **auf Nachfrage** in die Dokumente gelangt. *Eine Regel, die nur im Chat
 steht, überlebt den Chat nicht* — und der Chatverlauf ist nach `UMZUG.md`
 Abschnitt 2 ausdrücklich **kein Träger**.
+
+### Und jede Rückfrage an den Betreiber steht samt Antwort wörtlich im Bericht
+
+⭐⭐ **Regel aus Backlog-Nachtrag (m) vom 19.09.2026, eingearbeitet 20.09.2026
+durch TB-62:** *„Jede Rückfrage an den Betreiber und seine Antwort kommen
+wörtlich in den Bericht — sonst leben sie nur im Sitzungsverlauf, der mit der
+Sitzung verschwindet."*
+
+Das gilt für jede Sitzung, die einen Bericht schreibt — Mac, Cloud, Chat: Frage
+und Antwort **im Wortlaut**, mit Zeitpunkt, in das Ergebnisdokument
+(`docs/ERGEBNIS_TB-<Nr>_<Kurzname>.md`), nicht als Zusammenfassung und nicht als
+*„nach Rücksprache freigegeben"*. Dieselbe Begründung wie oben: der Chatverlauf
+ist kein Träger, und eine Betreiberentscheidung, die nur dort steht, ist beim
+nächsten Umzug weg.
+
+⚠️ *Die Regel hat ihre eigene Einarbeitung nicht überlebt: Vom 19.09. bis zum
+20.09.2026 stand sie nur im Nachtrag (m), dessen Nummern inzwischen anderweitig
+vergeben waren (K4b). Sie ist genau die Vorschrift, die verhindern soll, dass
+Entscheidungen nur im Chat leben — und sie ist selbst im Chat geblieben.*
 
 ---
 
