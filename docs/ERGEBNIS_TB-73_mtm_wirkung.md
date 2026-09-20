@@ -295,7 +295,7 @@ sind ausschliesslich:
 | `5e4dd95` | 3 — `messung.py`, `alle_bots.py`, `auswertung.py`, `richtungsfall.py`, Ergebnisse, Nachweise 4, 5, 6, 8 |
 | `f27b6c0` | 3 — `research/mtm_drawdown/BERICHT.md` |
 | `01da585` | 4 — Register 24.6, Nachweis 7 |
-| *(dieser Commit)* | 5 — `K4m`, Journal-Nachtrag `(20l)`, dieses Dokument, Nachweis 9 |
+| `bb6ab88` | 5 — `K4m`, Journal-Nachtrag `(20l)`, dieses Dokument, Nachweis 9 |
 
 ---
 
