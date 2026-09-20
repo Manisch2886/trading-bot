@@ -182,7 +182,14 @@ def je_bot(mess: dict) -> dict:
                                    date.fromisoformat(f["von"]),
                                    rd.MINDESTTRAINING_JAHRE)
             renditen = bh_tagesrenditen(reihen)
-            fenster = renditen[(renditen.index >= von) & (renditen.index < bis)]
+            # Leere Falte (kein Symbol point-in-time, TB-61: Krypto vor 2022
+            # bei MINDESTTRAINING_JAHRE = 4): die leere Reihe traegt keinen
+            # Zeitindex und liesse sich nicht filtern. Sie geht unveraendert
+            # weiter; drawdown_bei_exposure() definiert dafuer 0.0.
+            if renditen.empty:
+                fenster = renditen
+            else:
+                fenster = renditen[(renditen.index >= von) & (renditen.index < bis)]
             tab = {_schluessel(e): drawdown_bei_exposure(fenster, e)
                    for e in EXPOSURE_STUFEN}
             eintrag["falten"][f["name"]] = {
