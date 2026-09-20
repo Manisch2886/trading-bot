@@ -3392,11 +3392,41 @@ gefasst; die gemessenen Zahlen kommen in die Berichtigungsnotiz (23.4).
 > Der Benchmark einer Falte wird **tagesgenau** aus den Symbolen gebildet, die
 > der Loader des Bots an diesem Tag handelbar macht: gleichgewichtet, täglich
 > rebalanciert (Konvention; sie ist die einzige Gewichtung, die bei wechselnder
-> Menge ohne weitere Regel auskommt). ⚠️ **[PLATZHALTER — der Satz zu Tagen,
-> an denen kein Symbol handelbar ist; Fassung W oder C, siehe unten;
-> Betreiberentscheidung offen]** Derselbe Benchmark gilt für die
+> Menge ohne weitere Regel auskommt). Der Benchmark einer Falte ist an genau
+> den Tagen definiert, an denen mindestens ein Symbol des Bots nach 3b (b)
+> handelbar ist. Ein Tag, an dem kein Symbol handelbar ist, gehört nicht zum
+> Benchmark — er wird nicht mit Rendite 0 geführt, sondern gar nicht.
+> Derselbe Benchmark gilt für die
 > Drawdown-Nebenbedingung (Abschnitt 4) und für Rang 3. Bot und Benchmark leben
 > an jedem Tag in derselben Menge.
+
+⭐ **Geschlossen in TB-71, 20.09.2026 — der Platzhalter ist gefallen.** An
+seiner Stelle steht der Satz zur Zeitachse, verankert an Registertext 3b (b),
+der Grösse, die es gibt und die registriert ist. Er ist **nicht** Fables erste
+Fassung: seine lautete *„Tage, an denen kein Symbol handelbar ist, tragen
+Rendite 0"* und wurde von ihm selbst zurückgezogen, weil sie einen Mechanismus
+vorschrieb statt ein Prinzip (`docs/projektfuehrung/FABLE_ANTWORT_2026-09-20b_kalender.md`,
+Teil 2). Seine zweite Fassung band den Benchmark an den Kalender des
+Bot-Kapitalpfades — **den es nicht gibt**: der Pfad ist ereignisindiziert
+(`shared/zuteilung.py:720–735`, gemessen 20.09.2026). Die dritte Fassung, die
+jetzt hier steht, wurde in `FABLE_ANFRAGE_2026-09-20c_kapitalpfad.md`
+vorgeschlagen und von Fable übernommen (`FABLE_ANTWORT_2026-09-20c_kapitalpfad.md`,
+Teil 1): *„Meine Fassung hat einen Kalender vorausgesetzt, den der Kapitalpfad
+nicht hat; eure setzt nichts voraus."* Die Absätze und die Tabelle W/C darunter
+bleiben als Vorgeschichte stehen (append-only); die Tabelle trägt die Marke
+ERSETZT.
+
+**Tatsachennotiz zu 3b (c), Satz zur Zeitachse (TB-71, 20.09.2026):**
+
+> Die Umsetzung lässt den ersten Kurstag je Falte aus, weil `pct_change` dort
+> keine Rendite liefert. Abweichung gegenüber dem Satz: höchstens ein Tag je
+> Falte. Wirkung auf jede registrierte Zahl: null — 0 abweichende Stufen in
+> Drawdown und `DD_Toleranz` über 78 × 100 (TB-66, Nachweis 4). Wird
+> `bh_tagesrenditen` je aus anderem Grund angefasst, ist `fillna(0)` auf diesem
+> Tag eine Berichtigung des Codes an den Satz.
+
+**`handelstage`** bleibt unverändert die **W-Spalte** — die Länge des
+gemeinsamen Kalenders.
 
 **Der Wortlaut ist Fables**, mit einer Ausnahme, die er selbst verlangt hat:
 *„nur eines darf im Register stehen, und es muss das sein, was der Code tut.
@@ -3407,6 +3437,8 @@ statt sie mit 0 zu führen. ⚠️ **Ein Registertext, der etwas anderes sagt al
 der Code, ist genau der Fehler, den Abschnitt 21 berichtigt hat.** Deshalb steht
 an dieser Stelle ein sichtbarer Platzhalter und keine der beiden Fassungen, bis
 der Betreiber entscheidet:
+
+> ⚠️ **ERSETZT (TB-71, 20.09.2026) durch den Satz zur Zeitachse oben — keine der beiden Fassungen ist gewählt worden.** Die Tabelle bleibt stehen: sie hält fest, wogegen entschieden wurde, und sie enthält die Messung, die C_voll ausgeschlossen hat (`t3_supertrend` 2018 hätte 365 Handelstage statt 0; 23.4, Wirkung 3).
 
 | | Fassung | Folge |
 |---|---|---|
@@ -3572,6 +3604,16 @@ und danach in `docs/ERGEBNIS_TB-66_benchmark_tagesgenau.md`, Nachweis 7.
 | ⚠️ | **`T56b.6` nicht erledigt** (die Konstantenkopien `MINDESTTRAINING_JAHRE`, `FRUEHESTE_FALTE`); **G6/H3 aus TB-61 nicht repariert**; `docs/VORREGISTRIERUNG_S-E1_nulltest.md` nicht geändert (`K4f`) |
 | ⚠️ | **`registerbericht.py` nicht angefasst** — es liest die gesperrte Datei; der neue Schlüssel `symbole_handelbar_in_falte` ist beim Vollzug nachzuziehen (23.5) |
 | | **Kein Selektionslauf, kein signierter Tag, kein Zeitanker.** Der Tag bleibt der nächste Meilenstein und gehört dem Betreiber (Abschnitt 13) |
+
+⭐ *Nachtrag TB-71, 20.09.2026: Die erste und die zweite Zeile dieser Tabelle
+sind überholt — der Platzhalter in 23.3 ist gefallen, die Wahl W oder C ist
+durch den Satz zur Zeitachse gegenstandslos (keine der beiden Fassungen, keine
+Codeänderung, kein wiederholter Lauf); der Vollzug der Sperrlisten-Änderung
+braucht nur noch die Betreiberfreigabe aus 21.9. Die vierte Zeile (die leere
+Falte `t3_supertrend` 2018) ist als Berichtigung nach 21.3 (b) entschieden und
+wird in TB-72 vollzogen (`FABLE_ANTWORT_2026-09-20c_kapitalpfad.md`, Teil 2).
+Die Bewertungsachse des Bot-Drawdowns, die 23 nicht behandelt, steht in
+Abschnitt 24.*
 
 ---
 
