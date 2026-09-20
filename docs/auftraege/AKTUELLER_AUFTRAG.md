@@ -38,13 +38,16 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 |---|---|---|
 | **TB-61** | `docs/auftraege/MAC_TB-61_benchmark_neun.md` | Benchmark-Tabelle für alle neun Bots, Lauf **daneben** — rechnet, braucht `trading-env` |
 | **TB-62** | `docs/auftraege/MAC_TB-62_nachtraege_m_v.md` | Einarbeitung der Nachträge (m) und (v) — reine Dokumentation, rechnet nicht |
+| **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
 
 *Gesetzt 20.09.2026 (zuvor TB-60, erledigt mit `c04b348`, nachgemessen und
 geschlossen mit `79742d1`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
-⚠️⚠️ **ZWEI AUFTRÄGE, ZWEI SITZUNGEN — NIE GLEICHZEITIG IM SELBEN
-ARBEITSBAUM.** Beide schreiben nach `docs/`. Läuft eine, wartet die andere.
+⚠️⚠️ **DREI AUFTRÄGE — NIE ZWEI GLEICHZEITIG IM SELBEN ARBEITSBAUM.**
+Alle drei schreiben nach `docs/`. Läuft eine Sitzung, warten die anderen.
+⚠️ **Und TB-63 setzt TB-62 voraus** — beide ändern `BACKLOG.md`; TB-63 bricht
+ab, wenn TB-62 nicht auf `origin/main` steht.
 ⭐ *Deshalb steht die Nummer dem Einfügesatz voran: sie wählt die Zeile aus,
 und kommt sie nicht vor, bricht die Sitzung ab, statt zu raten.*
 
