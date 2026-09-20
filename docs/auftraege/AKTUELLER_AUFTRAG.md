@@ -37,11 +37,11 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | TB | Auftragsdokument | kurz |
 |---|---|---|
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
-| **TB-72** | `docs/auftraege/MAC_TB-72_erste_falte_aus_trockenlauf.md` | ⭐⭐ **Schritt 1 ist durch** (`7b73584`), **Fable hat geantwortet**: Neufassung als **Konjunktion** — ein Jahr zählt nur, wenn Datenhorizont **und** Trockenlauf es tragen. ⚠️ **Schritt 2–7 laufen jetzt**; Wirkung: ein Bot, `t3_supertrend` 2018 → 2019 |
+| **TB-73** | `docs/auftraege/MAC_TB-73_mtm_wirkung.md` | ⭐⭐ **Die Wirkung des MtM-Drawdowns messen** — je Bot und je Falte, 2020 und 2022 hervorgehoben. ⛔ **Keine Empfehlung, keine Abwägung**: Register 24.3 hat entschieden, bevor die Zahl existierte. ⚠️ **Rechnet** |
 | **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an. ⚠️ **Schritt 5b am 20.09. ergänzt** (Betreiberentscheidung): die drei übrigen `B`-Zeilen nach `docs/UMGEBUNGEN.md` |
 
-*Gesetzt 20.09.2026 (zuvor TB-71, erledigt mit `4af44da`, nachgemessen und
-geschlossen am 20.09.2026, 19:05 Ortszeit; davor TB-68 `97cbcef`, TB-67 `a15746f`, TB-66 `fe76857`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 20.09.2026 (zuvor TB-72, erledigt mit `537ca51`, nachgemessen und
+geschlossen am 20.09.2026, 21:30 Ortszeit; davor TB-71 `4af44da`, TB-68 `97cbcef`, TB-67 `a15746f`, TB-66 `fe76857`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
@@ -58,7 +58,6 @@ gemessen; nichts bricht.*
 |---|---|---|---|
 | **TB-69** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-68 | Dokumentation |
 | **TB-74** | ⚠️⚠️ **Die Uhr im Selektionspfad** — Fable 20.09.: `RECENT_YEARS_ONLY = 10` ist der wahre Inhalt von 4a *„Universum liegt vor“*, und die Konstante wird erst beim Rechnen zu einem Datum. **Gemessen:** Datenuhr (relativ zum letzten Kurs im Bestand), bei allen vier Aktien-Bots 10 Jahre — **und die Bots rechnen sie je SYMBOL, `faltenplan_neun.fensteranker` je MARKT.** Ohne `asof` hätte derselbe Snapshot 2027 einen anderen Faltenplan | TB-72, Fable-Antwort zu (1) je Bot/je Symbol | ⚠️ **rechnet**, vor dem Tag |
-| **TB-73** | Die Wirkung des MtM-Drawdowns messen — je Bot, an den TB-24-Trade-Listen und den Kursdateien, als **Forschungsskript ausserhalb des Laufcodes**. ⛔ **Erst nach TB-71 (b)**; das Ergebnis geht in die Notiz zu Festlegung 1, **nie in eine Entscheidung** | TB-71, TB-72 | **rechnet** |
 | **TB-70** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
 
 ⚠️⚠️ **Die Aufträge werden ERST GESCHRIEBEN, WENN IHR VORGÄNGER DURCH IST.**

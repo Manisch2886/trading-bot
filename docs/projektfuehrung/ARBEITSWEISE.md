@@ -488,6 +488,53 @@ Rückfrage**. ⚠️ *Beim Abbruch von TB-72 lag die fertige Messung unversionie
 Arbeitsbaum; verloren war nichts, weil Schritt 0 des nächsten Anlaufs sie
 gesichert hat.*
 
+### ⭐⭐ Das Ende einer Sitzung wird genauso vorgegeben wie ihr Anfang
+
+⚠⚠️ **Anweisung des Betreibers, 20.09.2026, 20:22:** *„Gib mir diese Eingaben
+zukünftig an der passenden Stelle vor.“* — **nachdem er fragen musste, wie man
+die Sitzung überhaupt schliesst.** ⚠️ *Er hatte das Schliessen schon am 19.09.
+verlangt; dieser Abschnitt beschrieb bis heute nur den Start.*
+
+⭐ **Der Unterschied, der zuerst genannt wird** — seit `screen` gibt es zwei
+Schichten, und die falsche Wahl kostet entweder die Sitzung oder eine Nacht
+Rechenzeit:
+
+| | Handgriff | Folge |
+|---|---|---|
+| **Ablegen** | `Strg`+`A`, loslassen, dann `D` | ⭐ Claude **läuft weiter**. Termius darf geschlossen werden. Wiedereinstieg `screen -r tb`. *Woran er es merkt:* `[detached from ...tb]` |
+| **Schliessen** | die Folge unten | Claude und die `screen`-Sitzung enden |
+
+⭐ **Ablegen ist der Normalfall**, solange ein Auftrag rechnet.
+
+**Die Schliessfolge, vier Schritte, je mit Erkennungszeichen:**
+
+| | Was | Woran er merkt, dass es geklappt hat |
+|---|---|---|
+| **1** | `Strg`+`D` an der **leeren** Eingabezeile — geht das nicht, zweimal `Strg`+`C`, erst dann `/exit` | `bash-3.2$` ist zurück |
+| **2** | `exit` | `[screen is terminating]` |
+| **3** | `screen -ls` | `No Sockets found` |
+| **4** | Termius trennen | — |
+
+⚠️ **`/exit` steht bewusst an letzter Stelle.** Gemessen am 20.09.: Es wird nur
+angenommen, wenn die Eingabezeile wartet, und ein offener Dialog fängt es ab
+(so der *„Teach auto mode“*-Kasten am selben Tag). ⭐ **`Strg`+`D` und `Strg`+`C`
+gehen daran vorbei, weil sie keine Eingabe sind, sondern ein Signal.**
+
+⚠️ **Auf dem Telefon:** In Termius liegt `Strg` in der Zusatz-Tastenreihe über
+der Bildschirmtastatur — erst `Strg` antippen, dann den Buchstaben.
+
+⛔ **Die Verbindung zu kappen, während oben noch etwas läuft, ist genau der
+Abbruch, gegen den `screen` eingeführt wurde.** Schritt 4 kommt zuletzt.
+
+⭐ **Wann was mitgegeben wird, ohne dass er fragt:**
+
+| Lage | was in der Antwort steht |
+|---|---|
+| Ein Auftrag wird gestartet | die Startblöcke **und** das Ablegen |
+| Ein Auftrag ist fertig, es geht weiter | nur die Startblöcke des nächsten |
+| Ein Auftrag ist fertig, es geht nicht weiter | die **vollständige Schliessfolge** |
+| Er meldet *„Abbruch“* | erst messen, wie weit die Sitzung kam, dann `screen -r tb` |
+
 ⛔ **Was bleibt: nie zusammengefasst, nie im Fließtext beschrieben, nie mit der
 Begründung weggelassen, dass es letztes Mal schon dastand.**
 
