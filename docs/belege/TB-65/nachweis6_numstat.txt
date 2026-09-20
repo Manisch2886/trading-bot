@@ -1,0 +1,12 @@
+TB-65 Nachweis 6 - git diff --cached --numstat ff98f0a (vor dem Abgabe-Commit, 2026-09-20T12:57Z)
+408	0	docs/ERGEBNIS_TB-65_benchmarkschranke.md
+80	0	docs/belege/TB-65/frage_c_handelbar_ab.txt
+150	0	docs/belege/TB-65/frage_c_lauf.txt
+37845	0	docs/belege/TB-65/frage_c_rechnung.json
+109	0	docs/belege/TB-65/frage_c_tabellen.md
+111	0	docs/belege/TB-65/nachweis3_suchmuster.txt
+2	0	docs/belege/TB-65/nachweis5_sha256.txt
+271	0	docs/belege/TB-65/tb65_rechnung.py
+116	0	docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20d.md
+
+Dateien ausserhalb docs/: 0

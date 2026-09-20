@@ -1,0 +1,111 @@
+TB-65 Nachweis 3 / Frage B.3 - Suchmuster, gemessen 2026-09-20T12:49Z auf 9ad37e4
+Datei: docs/VORREGISTRIERUNG_neuselektion.md (    3299 Zeilen)
+
+=== Muster 'Mindesttraining': 4 Zeilen im Register | 30 in docs/**/*.md | 2 in research/vorregistrierung/*.py ===
+381:Go-Live-Schnitt: **2026-09-01** (ausschliesslich). Mindesttraining vor der ersten Falte: **4 Jahre**.
+594:> Mindesttraining, und kein Symbol wird aus einer Falte ausgeschlossen.
+597:Jahren Mindesttraining blieben **zwei** Testfalten — zu wenig für einen
+1084:Registertexten: Es gibt **kein Mindesttraining**; die Selektionsfalten sind
+
+=== Muster 'MINDESTTRAINING': 0 Zeilen im Register | 10 in docs/**/*.md | 6 in research/vorregistrierung/*.py ===
+
+=== Muster 'vier Jahre': 7 Zeilen im Register | 17 in docs/**/*.md | 1 in research/vorregistrierung/*.py ===
+537:> mindestens vier Jahre), **Nr. 3** zusammen mit 5.3 (Krypto-Platzhalter) und
+551:   Go-Live-Schnitt**, Training ab Datenbeginn, mindestens **vier Jahre** vor
+592:> Jahreszahlen. Die hier zitierte Regel („mindestens vier Jahre Kursdaten je
+604:> mindestens vier Jahre Kursdaten liegen, frühestens 2019. Danach lückenlose
+607:> Kursdaten mindestens vier Jahre vor Faltenbeginn einsetzen
+829:   `config/sp500_top150.txt`, vier Jahre Vorlauf je Symbol
+830:   > ⚠️ Der Halbsatz „vier Jahre Vorlauf je Symbol" ist **ersetzt** (Abschnitt 15,
+
+=== Muster '4 Jahre': 1 Zeilen im Register | 8 in docs/**/*.md | 0 in research/vorregistrierung/*.py ===
+381:Go-Live-Schnitt: **2026-09-01** (ausschliesslich). Mindesttraining vor der ersten Falte: **4 Jahre**.
+
+=== Muster 'point-in-time': 12 Zeilen im Register | 29 in docs/**/*.md | 6 in research/vorregistrierung/*.py ===
+401:| Falte | Rolle | Titel (point-in-time) | Handelstage | DD @ 25 % | DD @ 50 % | DD @ 75 % | DD @ 100 % |
+443:im gleichgewichteten point-in-time-Universum. Im Lauf gilt die mittlere
+593:> Symbol", point-in-time-Ausschluss) gilt **nicht mehr** — es gibt kein
+608:> (point-in-time).
+685:| **(c)** | **Beta-Bereinigung:** Netto-Alpha gegen das gleichgewichtete point-in-time-Universum **≤ 0 UND** Calmar unter dem der konstanten Exposure |
+695:  gleichgewichteten point-in-time-Universums; `alpha` annualisiert. Beide
+738:| Alpha (p. a.) und Beta gegen das point-in-time-Universum | Beta-Bereinigung |
+825:   point-in-time, `benchmark.py::bh_tagesrenditen`
+828:8. **Universumsdateien und point-in-time-Regel** — `config/top25_symbols.txt`,
+1210:> **(d)** Ein Wechsel auf ein point-in-time-Universum ist eine
+1268:wer sie hätte, hätte ein point-in-time-Universum und damit einen anderen Lauf.
+1553:> wer sie hätte, hätte ein point-in-time-Universum und damit einen anderen Lauf.
+
+=== Muster 'Vorlauf': 19 Zeilen im Register | 63 in docs/**/*.md | 5 in research/vorregistrierung/*.py ===
+829:   `config/sp500_top150.txt`, vier Jahre Vorlauf je Symbol
+830:   > ⚠️ Der Halbsatz „vier Jahre Vorlauf je Symbol" ist **ersetzt** (Abschnitt 15,
+1195:> für die am 1. Januar der Falte Kursdaten einschliesslich Indikator-Vorlauf
+1270:**Wie „einschliesslich Indikator-Vorlauf" gerechnet ist** — und was es kostet:
+1273:liegen Kursdaten vor; der Indikator-Vorlauf speist sich aus der eigenen
+1276:genau wie es der nächste Satz von 3a vorschreibt. **Lesart B** (voller Vorlauf
+1281:| Bot | Indikator-Vorlauf | Lesart B je Selektionsfalte | Bestätigung | gegen A |
+1293:Die Vorlaufzahlen sind aus dem Bot-Code **gelesen**, je Bot mit Fundstelle im
+1296:**eine** Zahlenreihe für **alle** Krypto-Tagesbots — hinge die Zahl am Vorlauf,
+1305:> Januar Daten für Universum und Indikator-Vorlauf vorliegen, bis zum letzten
+1359:   Datenlage selbst (150 Tagesbalken Vorlauf, erst ab 2019 erfüllt); bei den
+2268:| **20 von 36** | erste Kerze **2017–2020**. Die erste Selektionsfalte beginnt **2022** — reiner Vorlauf |
+2283:sagt: *„Die erste Selektionsfalte beginnt **2022** — reiner Vorlauf."*
+2290:| ⚠️ **„Reiner Vorlauf" trifft nur auf 6 der 13 Symbole der Gruppe zu.** | Vor dem 01.01.2019 liegt die erste Kerze nur bei `ADA BNB BTC ETH TRX XRP`. Bei **sieben** Symbolen — `AAVE DOGE LINK NEAR SOL UNI ZEC` — liegt sie **
+2297:lässt sie dort gar nicht erst zu. **Nicht der Vorlauf schützt, sondern die
+2303:⚠️ **Warum das mehr ist als ein Tippfehler:** Die Begründung „Vorlauf" hängt an
+2825:> Datenlage selbst (150 Tagesbalken Vorlauf, erst ab 2019 erfüllt); bei den
+2836:| ⚠️⚠️ **Begründung** | *„die Schranke dafür ist das Register"* — **gemessen: kein Registertext nennt eine Jahreszahl.** Registertext 4a (Abschnitt 15.6) sagt *„vom ersten Jahr, in dem am 1. Januar Daten für Universum 
+2885:> Indikator-Vorlauf und an `MIN_HISTORY_*` des jeweiligen Loaders. Die Aussage
+
+=== Muster 'Benchmark': 29 Zeilen im Register | 103 in docs/**/*.md | 27 in research/vorregistrierung/*.py ===
+50:| 4 | Drawdown-Bedingung je Falte | **`erlaubt(f) = min(1,25 × DD_Benchmark(f), DD_Toleranz)`** — beide negativ, `min` ist der **tiefere** und damit grosszügigere Wert |
+51:| 5 | `DD_Toleranz` | **Median der Benchmark-Drawdowns über alle Selektionsfalten, je Bot** |
+395:### Die vorab berechneten Benchmark-Drawdowns
+428:erlaubt(f) = min(1,25 × DD_Benchmark(f), DD_Toleranz)
+440:### 4.2 Warum `DD_Benchmark` und `DD_Toleranz` ein Exposure-Argument tragen
+442:Der Benchmark ist eine **statische Position** in Höhe der mittleren Exposure
+450:**Funktion** `DD_Benchmark(f, e)` für `e = 1 %, 2 %, …, 100 %`. Diese Tabelle
+456:Festlegung 5 sagt: `DD_Toleranz` ist der **Median der Benchmark-Drawdowns
+457:über alle Selektionsfalten, je Bot**. Da der Benchmark-Drawdown nach
+462:DD_Toleranz(e) = Median über die Selektionsfalten von DD_Benchmark(f, e)
+477:Eine feste Untergrenze bindet **nur**, wenn `1,25 × DD_Benchmark` tiefer
+478:liegt — also wenn der Benchmark selbst unter **−28 %** fällt. Das passiert
+503:| Falte | `DD_Benchmark` | `1,25 ×` | `DD_Toleranz` | **erlaubt** | wer bindet |
+699:  Benchmark-Position in Höhe der mittleren Exposure des Gewinners über
+714:- Das **Kapital** geht in eine **statische Benchmark-Position** in Höhe des
+753:die Benchmark-Tagesrenditen gelegt: Zeit im Markt, Exposure-Verteilung und
+820:   Benchmark-Drawdowns** — `benchmark.py`,
+824:6. **Benchmark-Definitionen** — gleichgewichtete Tagesrenditen,
+1317:> Benchmark-Position in Höhe seines gemessenen mittleren Exposures**. Die
+1705:> sein Budgetanteil hält die statische Benchmark-Position in Höhe seines
+1756:> Benchmark-Position ihrer Anlage — nicht an andere Zellen.**
+1944:> **(c)** ⭐ **Der Benchmark einer Falte** — für die Drawdown-Nebenbedingung
+1947:> Benchmark leben in derselben Menge.**
+2066:| 7 | **3b (a)–(e)** — Loader entscheidet, Benchmark auf geladenen Symbolen, Faltenkohärenz | Gemessen ist das nur **einmal**, im Trockenlauf von TB-40. Der spätere Auswerter tut es noch nicht; `faltenplan_neun` beantwortet diese
+2940:| **Krypto-Benchmark** | unverändert offen | Die Benchmark-Tabelle führt die fünf Krypto-Bots als `status: platzhalter` mit **leerer** `dd_toleranz` — gemessen in beiden Tabellenfassungen. Das hängt an TB-31 und ist **nicht** Geg
+2948:berechneten Benchmark-Drawdowns stehen auf der Sperrliste (Abschnitt 10,
+2980:Aktien-Benchmark ein schlechtes Jahr und zieht den Median nach unten —, und er
+2992:| **B** | **Alte Tabelle behalten**, Faltenliste berichtigen, Benchmark auf dem alten Stand lassen | ⚠️ **Widerspruch bleibt bestehen**, nur an anderer Stelle: der Plan kennt 2017/2018, die Benchmark-Tabelle nicht — und `test_vor
+3088:| Der Widerspruch zwischen berichtigtem Faltenplan und gesperrter Benchmark-Tabelle | **bleibt offen und ist hier benannt.** Er wird mit demselben Amendment geschlossen |
+
+=== Muster 'geladen': 4 Zeilen im Register | 94 in docs/**/*.md | 1 in research/vorregistrierung/*.py ===
+1423:   kurzer Historie wird dort gar nicht erst geladen. Die Symbolzahlen aus 3b
+1945:> (Abschnitt 4) und für Rang 3 — **wird auf den in dieser Falte geladenen
+2066:| 7 | **3b (a)–(e)** — Loader entscheidet, Benchmark auf geladenen Symbolen, Faltenkohärenz | Gemessen ist das nur **einmal**, im Trockenlauf von TB-40. Der spätere Auswerter tut es noch nicht; `faltenplan_neun` beantwortet diese
+2295:fällt, in dem ihr Symbol **geladen** ist. Die sieben Symbole oben stehen in der
+
+=== Muster 'MINDESTTRAINING' im ganzen Repo (Code) ===
+research/etf_trendfolge/register.py:347:FALTEN_MINDESTTRAINING = None          # Verfahren B kennt keines
+research/etf_trendfolge/test_etf_trendfolge.py:503:           reg.VERFAHREN == "B" and reg.FALTEN_MINDESTTRAINING is None
+research/vorregistrierung/benchmark.py:51:nur ein, wenn seine Kursdaten mindestens `MINDESTTRAINING_JAHRE` vor dem
+research/vorregistrierung/benchmark.py:183:                                   rd.MINDESTTRAINING_JAHRE)
+research/vorregistrierung/benchmark.py:186:            # bei MINDESTTRAINING_JAHRE = 4): die leere Reihe traegt keinen
+research/vorregistrierung/registerbericht.py:140:          f"**{rd.MINDESTTRAINING_JAHRE} Jahre**.", "",
+research/vorregistrierung/registerdaten.py:108:MINDESTTRAINING_JAHRE = 4           # vor der ersten Falte
+research/vorregistrierung/faltenplan.py:208:        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,
+research/krypto_historie/faltenplan.py:65:MINDESTTRAINING_JAHRE = 4
+research/krypto_historie/faltenplan.py:116:def erste_faltenjahr(beginn, mindesttraining=MINDESTTRAINING_JAHRE,
+research/krypto_historie/faltenplan.py:148:def symbole_in_falte(beginn, faltenbeginn, mindesttraining=MINDESTTRAINING_JAHRE):
+research/krypto_historie/faltenplan.py:177:def plan_fuer_bot(bot, datenordner, symbole, mindesttraining=MINDESTTRAINING_JAHRE,
+research/krypto_historie/faltenplan.py:235:    zerleger.add_argument("--mindesttraining", type=int, default=MINDESTTRAINING_JAHRE,
+docs/belege/TB-65/tb65_rechnung.py:11:V0  "vorher": point_in_time(..., MINDESTTRAINING_JAHRE = 4) - exakt die
+docs/belege/TB-65/tb65_rechnung.py:108:                              rd.MINDESTTRAINING_JAHRE)
