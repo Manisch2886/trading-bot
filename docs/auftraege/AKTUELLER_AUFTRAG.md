@@ -57,7 +57,8 @@ gemessen; nichts bricht.*
 | | Vorhaben | hängt an | Art |
 |---|---|---|---|
 | **TB-69** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-68 | Dokumentation |
-| **TB-71** | ⭐⭐ **Die Wirkung des MtM-Drawdowns messen** — Fables Befund vom 20.09.: der Bot-Drawdown der Nebenbedingung ist ereignisindiziert und sieht keine unrealisierten Verluste, der Benchmark daneben ist tagesgenau bewertet. Richtung bekannt (täglich nie flacher), **Grösse unbekannt**. Betrifft **Festlegung 1** der zwölf vom 14.09.2026 | — | **rechnet**, steht vor dem Tag |
+| **TB-71** | ⭐⭐ **Das Register schliessen, was der 20.09. offen gelassen hat** — drei Einträge, alle durch Fable entschieden: **(a)** Platzhalter in 23.3 auflösen (Zeitachsen-Satz an 3b (b) verankert, Tatsachennotiz zum ersten Kurstag, `handelstage` unverändert); **(b)** Entscheidungsregel zu Festlegung 1 — Drawdown der Nebenbedingung auf der täglichen MtM-Reihe (1a), **die Grösse der Abweichung ist für die Entscheidung ohne Belang** (Betreiberentscheidung 20.09., 18:15); **(c)** Berichtigung `t3_supertrend` beginnt 2019 (21.3 (b) bindet) **plus** Schliessung der Klasse: `faltenplan.py` leitet die erste Falte aus dem Trockenlauf ab statt 4a nachzurechnen | TB-68 | ⚠️ **rechnet** (c), steht vor dem Tag |
+| **TB-72** | Die Wirkung des MtM-Drawdowns messen — je Bot, an den TB-24-Trade-Listen und den Kursdateien, als **Forschungsskript ausserhalb des Laufcodes**. ⛔ **Erst nach TB-71 (b)**; das Ergebnis geht in die Notiz zu Festlegung 1, **nie in eine Entscheidung** | TB-71 | **rechnet** |
 | **TB-70** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
 
 ⚠️⚠️ **Die Aufträge werden ERST GESCHRIEBEN, WENN IHR VORGÄNGER DURCH IST.**
