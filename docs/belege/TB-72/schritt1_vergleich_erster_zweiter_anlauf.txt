@@ -1,0 +1,5 @@
+# Nachmessung (zweiter Anlauf) gegen ersten Anlauf, 2026-09-20T17:59:37Z, trading-env/bin/python3 3.9.6, Laufzeit 4 min 51 s
+fb68537ad2d24be9736b8a223eac0cfcbe343e46e7a7f61aa2edd2849c05f6eb  docs/belege/TB-72/schritt1_erste_falte_trockenlauf.json
+fb68537ad2d24be9736b8a223eac0cfcbe343e46e7a7f61aa2edd2849c05f6eb  docs/belege/TB-72/schritt1_nachmessung_zweiter_anlauf.json
+# JSON byteweise gleich: ja
+# TXT ohne die Pfadzeile 'Messung:' zeichengleich: ja

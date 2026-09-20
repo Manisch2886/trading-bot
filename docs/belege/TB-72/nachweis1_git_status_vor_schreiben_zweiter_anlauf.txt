@@ -1,0 +1,9 @@
+# TB-72, zweiter Anlauf (20.09.2026, Sitzung nach dem Verbindungsabbruch)
+# `git status --short` beim Sitzungsstart, VOR dem ersten Schreiben. HEAD = 25f568a.
+ M docs/auftraege/MAC_TB-72_erste_falte_aus_trockenlauf.md
+?? docs/belege/TB-72/
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-09-20e_erste_falte.md
+?? research/faltenplan_neun/erste_falte_trockenlauf.py
+# Gesichert in zwei Commits nach Urheber getrennt: c63bfed (Betreiber: HALT-Nachtrag
+# im Auftrag, Fable-Anfrage 20e), 14c796b (erster Anlauf: Skript + Belege).
+# Danach `git status --short` leer (sauber).

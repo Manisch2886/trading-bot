@@ -1,0 +1,10 @@
+Bot                         Schranke              Wert  fruehestes Symbol handelbar ab    Jahr  Fensteranker
+elliott_wave                MIN_HISTORY_HOURS    17520  2019-08-20                        2019  None
+t3_supertrend               MIN_HISTORY_DAYS       730  2019-08-17                        2019  None
+rsi2_crypto                 MIN_HISTORY_DAYS       500  2018-12-30                        2018  None
+turtle_soup_crypto          MIN_HISTORY_DAYS       500  2018-12-30                        2018  None
+volatility_breakout_crypto  MIN_HISTORY_DAYS       500  2018-12-30                        2018  None
+elliott_wave_stocks         MIN_HISTORY_DAYS      1825  1967-01-01                        1967  2016-09-01
+rsi2_mean_reversion         MIN_HISTORY_DAYS      1825  1967-01-01                        1967  2016-09-01
+turtle_soup_stocks          MIN_HISTORY_DAYS      1825  1967-01-01                        1967  2016-09-01
+volatility_breakout         MIN_HISTORY_DAYS      1825  1967-01-01                        1967  2016-09-01

@@ -1,0 +1,10 @@
+<class 'dict'> ['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']
+elliott_wave                 erste Falte im Plan: 2018-2019  erste nicht-leere: 2018-2019  2018-2019:None/133 2020-2021:None/731 2022-2023:None/730 2024-2025:None/731 2026-2027:None/243
+elliott_wave_stocks          erste Falte im Plan: 2017       erste nicht-leere: 2017       2017:None/251 2018:None/251 2019:None/252 2020:None/253 2021:None/252 2022:None/251 2023:None/250 2024:None/252 2025:None/250 2026:None/166
+rsi2_crypto                  erste Falte im Plan: 2019       erste nicht-leere: 2019       2019:None/365 2020:None/366 2021:None/365 2022:None/365 2023:None/365 2024:None/366 2025:None/365 2026:None/243
+rsi2_mean_reversion          erste Falte im Plan: 2018       erste nicht-leere: 2018       2018:None/251 2019:None/252 2020:None/253 2021:None/252 2022:None/251 2023:None/250 2024:None/252 2025:None/250 2026:None/166
+t3_supertrend                erste Falte im Plan: 2018       erste nicht-leere: 2019       2018:None/0 2019:None/136 2020:None/366 2021:None/365 2022:None/365 2023:None/365 2024:None/366 2025:None/365 2026:None/243
+turtle_soup_crypto           erste Falte im Plan: 2018       erste nicht-leere: 2018       2018:None/1 2019:None/365 2020:None/366 2021:None/365 2022:None/365 2023:None/365 2024:None/366 2025:None/365 2026:None/243
+turtle_soup_stocks           erste Falte im Plan: 2017       erste nicht-leere: 2017       2017:None/251 2018:None/251 2019:None/252 2020:None/253 2021:None/252 2022:None/251 2023:None/250 2024:None/252 2025:None/250 2026:None/166
+volatility_breakout          erste Falte im Plan: 2018       erste nicht-leere: 2018       2018:None/251 2019:None/252 2020:None/253 2021:None/252 2022:None/251 2023:None/250 2024:None/252 2025:None/250 2026:None/166
+volatility_breakout_crypto   erste Falte im Plan: 2018       erste nicht-leere: 2018       2018:None/1 2019:None/365 2020:None/366 2021:None/365 2022:None/365 2023:None/365 2024:None/366 2025:None/365 2026:None/243

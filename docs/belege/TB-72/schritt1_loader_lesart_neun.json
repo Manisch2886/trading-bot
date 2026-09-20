@@ -1,0 +1,82 @@
+{
+  "elliott_wave": {
+    "erstes_jahr_loader": 2019,
+    "fruehestes_symbol_handelbar_ab": "2019-08-20",
+    "schranke": "MIN_HISTORY_HOURS",
+    "symbole_handelbar": 18,
+    "symbole_ohne_datei": 6,
+    "wert": 17520
+  },
+  "elliott_wave_stocks": {
+    "erstes_jahr_loader": 1967,
+    "fensteranker": "2016-09-01",
+    "fruehestes_symbol_handelbar_ab": "1967-01-01",
+    "schranke": "MIN_HISTORY_DAYS",
+    "symbole_handelbar": 150,
+    "symbole_ohne_datei": 0,
+    "wert": 1825
+  },
+  "rsi2_crypto": {
+    "erstes_jahr_loader": 2018,
+    "fensteranker": null,
+    "fruehestes_symbol_handelbar_ab": "2018-12-30",
+    "schranke": "MIN_HISTORY_DAYS",
+    "symbole_handelbar": 24,
+    "symbole_ohne_datei": 0,
+    "wert": 500
+  },
+  "rsi2_mean_reversion": {
+    "erstes_jahr_loader": 1967,
+    "fensteranker": "2016-09-01",
+    "fruehestes_symbol_handelbar_ab": "1967-01-01",
+    "schranke": "MIN_HISTORY_DAYS",
+    "symbole_handelbar": 150,
+    "symbole_ohne_datei": 0,
+    "wert": 1825
+  },
+  "t3_supertrend": {
+    "erstes_jahr_loader": 2019,
+    "fensteranker": null,
+    "fruehestes_symbol_handelbar_ab": "2019-08-17",
+    "schranke": "MIN_HISTORY_DAYS",
+    "symbole_handelbar": 24,
+    "symbole_ohne_datei": 0,
+    "wert": 730
+  },
+  "turtle_soup_crypto": {
+    "erstes_jahr_loader": 2018,
+    "fensteranker": null,
+    "fruehestes_symbol_handelbar_ab": "2018-12-30",
+    "schranke": "MIN_HISTORY_DAYS",
+    "symbole_handelbar": 24,
+    "symbole_ohne_datei": 0,
+    "wert": 500
+  },
+  "turtle_soup_stocks": {
+    "erstes_jahr_loader": 1967,
+    "fensteranker": "2016-09-01",
+    "fruehestes_symbol_handelbar_ab": "1967-01-01",
+    "schranke": "MIN_HISTORY_DAYS",
+    "symbole_handelbar": 150,
+    "symbole_ohne_datei": 0,
+    "wert": 1825
+  },
+  "volatility_breakout": {
+    "erstes_jahr_loader": 1967,
+    "fensteranker": "2016-09-01",
+    "fruehestes_symbol_handelbar_ab": "1967-01-01",
+    "schranke": "MIN_HISTORY_DAYS",
+    "symbole_handelbar": 150,
+    "symbole_ohne_datei": 0,
+    "wert": 1825
+  },
+  "volatility_breakout_crypto": {
+    "erstes_jahr_loader": 2018,
+    "fensteranker": null,
+    "fruehestes_symbol_handelbar_ab": "2018-12-30",
+    "schranke": "MIN_HISTORY_DAYS",
+    "symbole_handelbar": 24,
+    "symbole_ohne_datei": 0,
+    "wert": 500
+  }
+}
