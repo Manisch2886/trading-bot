@@ -1,0 +1,8 @@
+/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:175: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  return rahmen.pct_change().mean(axis=1, skipna=True).dropna()
+/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:175: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  return rahmen.pct_change().mean(axis=1, skipna=True).dropna()
+/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:175: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  return rahmen.pct_change().mean(axis=1, skipna=True).dropna()
+/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:175: FutureWarning: The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+  return rahmen.pct_change().mean(axis=1, skipna=True).dropna()

@@ -1,0 +1,17 @@
+Falte  Eintritte in der Falte (Symbol: Handelbar-Tag)               Tage abw. max |dR| bp   DD V0   DD VT    Peak VT  Trough VT
+2018   ABBV: 2018-01-01                                                     1        0.62  -18.69  -18.69 2018-09-21 2018-12-24
+2019   ANET: 2019-06-05                                                   107        8.32   -7.30   -7.23 2019-05-03 2019-05-31
+2020                                                                        0        0.00  -35.42  -35.42 2020-02-19 2020-03-23
+2021   DELL: 2021-08-16, HWM: 2021-10-31                                  210        6.93   -4.74   -4.74 2021-11-16 2021-12-01
+2022                                                                        0        0.00  -19.96  -19.96 2022-01-04 2022-09-30
+2023   VRT: 2023-08-01                                                    145        9.53   -8.55   -8.55 2023-08-01 2023-10-27
+2024   CRWD: 2024-06-10, UBER: 2024-05-08                                 111       11.68   -6.86   -6.86 2024-07-16 2024-08-05
+2025   ABNB: 2025-12-09, DASH: 2025-12-08, PLTR: 2025-09-29               235       17.78  -17.23  -16.99 2025-02-19 2025-04-08
+2026   APP: 2026-04-14, HOOD: 2026-07-28                                  142       17.69   -6.40   -6.31 2026-02-27 2026-03-30
+
+Tage abw. = Handelstage der Falte, an denen die Benchmark-Tagesrendite V0 != VT (Symbol vor seinem Handelbar-Tag in V0 enthalten).
+
+Lesart: V0 (TB-61) nimmt ein Symbol fuer die GANZE Falte, wenn seine Kursdaten >= 4 Jahre vor Faltenbeginn einsetzen; VT nimmt es erst ab seinem Handelbar-Tag.
+Der Max-Drawdown aendert sich genau in den Falten, in denen die Peak-Trough-Episode VOR einem Eintritt liegt (2019: ANET 06-05 nach Trough 05-31; 2025: PLTR/DASH/ABNB nach Trough 04-08; 2026: APP 04-14 nach Trough 03-30) -
+dort enthielt V0 das Symbol waehrend der Episode, VT nicht. Liegt die Episode NACH allen Eintritten (2021, 2023, 2024) oder faellt der Eintritt auf den Faltenbeginn (2018 ABBV), sind beide Pfade dort identisch.
+Gemessen fuer volatility_breakout; elliott_wave_stocks, rsi2_mean_reversion und turtle_soup_stocks teilen Universum, Kursreihen und Schranke (1825) und zeigen dieselben Faltenwerte.

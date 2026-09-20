@@ -45,20 +45,44 @@ wird trotzdem gerettet:
     Krisenfalte:  DD_Benchmark = -35 %, 1,25 x = -43,75 %, DD_Toleranz = -8 %
                   -> erlaubt = -43,75 %, die relative Grenze bindet
 
-DAS UNIVERSUM
+DAS UNIVERSUM - TAGESGENAU NACH DEM LOADER DES BOTS (Registertext 3b (c))
 ------------------------------------------------------------------------------
-Gleichgewichtet, taeglich, **point-in-time**: ein Symbol geht in eine Falte
-nur ein, wenn seine Kursdaten mindestens `MINDESTTRAINING_JAHRE` vor dem
-Faltenbeginn einsetzen. Gemittelt werden Tagesrenditen, nicht Kurse - die
-Summe roher Schlusskurse ist genau der Fehler, der beim APH-Vorfall die
-gesamte Portfoliosumme zu NaN gemacht hat (Protokoll 3.3).
+Der Benchmark einer Falte wird **tagesgenau** aus den Symbolen gebildet, die
+der Loader des Bots an diesem Tag handelbar macht (Registertext 3b (c) in der
+Fassung der Berichtigung TB-66, 20.09.2026; Lesart VT). Handelbar ist ein
+Symbol ab dem Tag, an dem seine Historie die registrierte Loader-Schranke
+erreicht (Registertext 3b (b): `MIN_HISTORY_DAYS` 500 / 730 / 1 825 als
+Zeitspanne, bei `elliott_wave` `MIN_HISTORY_HOURS` 17 520 als Kerzenzahl).
+Dieses Datum wird NICHT hier nachgebaut, sondern ueber
+`research/faltenplan_neun/faltenschranke_messung.py::loader_lesart` gelesen -
+dem TB-56-Werkzeug, dessen Mengen TB-65 in 78 von 78 Falten gegen den
+Trockenlauf des Laufcodes bestaetigt hat. Die Schranke selbst liest es aus
+der Bot-Datei; hier steht keine Kopie davon.
+
+Jede Kursreihe beginnt fuer den Benchmark an ihrem Handelbar-Tag; ihre erste
+Tagesrendite ist die vom Handelbar-Tag auf den Folgetag (frueher haette der
+Bot das Symbol nicht halten koennen). Innerhalb einer Falte wechselt die Menge
+deshalb von Tag zu Tag: gleichgewichtet, taeglich rebalanciert ueber die an
+diesem Tag handelbaren Symbole. Bot und Benchmark leben an jedem Tag in
+derselben Menge.
+
+⚠️ Bis TB-66 stand hier der Vierjahresfilter `point_in_time(...,
+MINDESTTRAINING_JAHRE)` - ein Symbol ging fuer die GANZE Falte ein, wenn seine
+Kursdaten vier Jahre vor Faltenbeginn einsetzten. Das war das Verfahren-A-
+Artefakt, das mit `MINDESTTRAINING` schon aus dem Faltenplan gegangen ist
+(Register 15.1, Sperrliste Punkt 8 Vermerk); in den Krypto-Falten 2018-2021
+liess es den Benchmark leer und die Drawdown-Nebenbedingung damit wirkungslos
+(docs/ERGEBNIS_TB-61_benchmark_neun.md, docs/ERGEBNIS_TB-65_benchmarkschranke.md).
+
+Gemittelt werden Tagesrenditen, nicht Kurse - die Summe roher Schlusskurse
+ist genau der Fehler, der beim APH-Vorfall die gesamte Portfoliosumme zu NaN
+gemacht hat (Protokoll 3.3).
 """
 
 import argparse
 import json
 import os
 import sys
-from datetime import date
 
 import numpy as np
 import pandas as pd
@@ -70,6 +94,10 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 
 import faltenplan as fp  # noqa: E402
 import registerdaten as rd  # noqa: E402
+
+# Das Handelbar-Datum je Symbol kommt aus dem TB-56-Werkzeug (siehe Kopf).
+sys.path.insert(0, os.path.join(BASE_DIR, "research", "faltenplan_neun"))
+import faltenschranke_messung as fsm  # noqa: E402
 
 # Stuetzstellen der Exposure-Achse: 1 % bis 100 % in Schritten von 1 %.
 # Feiner waere Genauigkeit ohne Aussage - die Kapitalpfade selbst sind auf
@@ -103,14 +131,41 @@ def tagesschluss(markt: str) -> dict:
     return reihen
 
 
-def point_in_time(reihen: dict, faltenbeginn: date, jahre: int) -> dict:
-    """Nur Symbole, deren Kursdaten `jahre` Jahre vor Faltenbeginn einsetzen."""
-    schranke = pd.Timestamp(faltenbeginn) - pd.DateOffset(years=jahre)
-    return {s: r for s, r in reihen.items() if r.index[0] <= schranke}
+def tagesgenau(reihen: dict, handelbar: dict) -> dict:
+    """Lesart VT: jede Reihe beginnt an ihrem Handelbar-Tag.
+
+    `handelbar` ist je Symbol der erste Tag, an dem der Loader des Bots es
+    handelbar macht - gelesen ueber `faltenschranke_messung.loader_lesart`
+    (Registertext 3b (b): erster Kurstag + MIN_HISTORY_DAYS; `elliott_wave`:
+    Tag der 17 520. 1h-Kerze).
+
+    Die Reihe behaelt den Schlusskurs des Handelbar-Tags, damit die erste
+    Tagesrendite die vom Handelbar-Tag auf den Folgetag ist - `pct_change`
+    liefert fuer den ersten Punkt NaN, und `bh_tagesrenditen` mittelt an jedem
+    Tag nur ueber die Symbole, die dort eine Rendite haben. So wechselt die
+    Menge innerhalb der Falte, ohne dass die Rechenfunktion etwas davon weiss.
+    Symbole ohne Handelbar-Tag (keine Kursdatei, Schranke nie erreicht) fallen
+    weg - sie sind an keinem Tag handelbar.
+    """
+    aus = {}
+    for s, r in reihen.items():
+        ab = handelbar.get(s)
+        if ab is None:
+            continue
+        r = r[r.index >= ab]
+        if not r.empty:
+            aus[s] = r
+    return aus
 
 
 def bh_tagesrenditen(reihen: dict) -> pd.Series:
-    """Gleichgewichteter Buy-and-Hold: Mittel der Tagesrenditen.
+    """Gleichgewichtet, taeglich rebalanciert: Mittel der Tagesrenditen.
+
+    An jedem Tag der Mittelwert der Tagesrenditen aller Symbole, die dort eine
+    Rendite haben - das ist ein taeglich auf Gleichgewicht zurueckgesetztes
+    Portfolio, KEIN Buy-and-Hold (dessen Gewichte drifteten mit den Kursen).
+    Bis TB-66 hiess es hier "Gleichgewichteter Buy-and-Hold"; der Name
+    versprach etwas anderes als die Rechnung tut (Fable, 20.09.2026).
 
     Zeichengleich zu research/exposure_messung/exposure_kern.py - dieselbe
     Rechnung, damit die Benchmark-Definition im Repo nicht zweimal
@@ -174,29 +229,45 @@ def je_bot(mess: dict) -> dict:
             "falten": {},
             "dd_toleranz": {},
         }
+        # Lesart VT (Registertext 3b (c), TB-66): die Menge haengt am Tag,
+        # nicht an der Falte. Die Renditereihe des Bots wird deshalb EINMAL
+        # ueber die tagesgenau beginnenden Kursreihen gebildet und je Falte
+        # nur noch ausgeschnitten.
+        lesart = fsm.loader_lesart(bot)
+        handelbar = {s: pd.Timestamp(d)
+                     for s, d in lesart["handelbar_ab"].items() if d}
+        reihen = tagesgenau(kurse[eig["markt"]], handelbar)
+        renditen = bh_tagesrenditen(reihen)
+        eintrag["benchmark"] = ("tagesgenau nach dem Loader des Bots "
+                                "(Registertext 3b (c), Lesart VT, TB-66)")
+        eintrag["loader_schranke"] = f"{lesart['schranke']} = {lesart['wert']}"
+        eintrag["handelbar_ab"] = dict(sorted(lesart["handelbar_ab"].items()))
         sel = []
         for f in p["falten"]:
             von = pd.Timestamp(f["von"])
             bis = pd.Timestamp(f["bis_ausschliesslich"])
-            reihen = point_in_time(kurse[eig["markt"]],
-                                   date.fromisoformat(f["von"]),
-                                   rd.MINDESTTRAINING_JAHRE)
-            renditen = bh_tagesrenditen(reihen)
-            # Leere Falte (kein Symbol point-in-time, TB-61: Krypto vor 2022
-            # bei MINDESTTRAINING_JAHRE = 4): die leere Reihe traegt keinen
-            # Zeitindex und liesse sich nicht filtern. Sie geht unveraendert
-            # weiter; drawdown_bei_exposure() definiert dafuer 0.0.
+            # Bot ohne ein einziges handelbares Symbol: die leere Reihe traegt
+            # keinen Zeitindex und liesse sich nicht filtern (Wache aus TB-61).
+            # Sie geht unveraendert weiter; drawdown_bei_exposure() definiert
+            # dafuer 0.0. Eine Falte VOR dem ersten Handelbar-Tag ergibt ein
+            # leeres Fenster mit demselben Ergebnis.
             if renditen.empty:
                 fenster = renditen
             else:
                 fenster = renditen[(renditen.index >= von) & (renditen.index < bis)]
             tab = {_schluessel(e): drawdown_bei_exposure(fenster, e)
                    for e in EXPOSURE_STUFEN}
+            # Symbole, die in dieser Falte an mindestens einem Tag eine
+            # Rendite beitragen: ein Kurstag im Fenster, der nicht der erste
+            # Punkt der (am Handelbar-Tag beginnenden) Reihe ist.
+            in_falte = sum(
+                1 for r in reihen.values()
+                if ((r.index >= von) & (r.index < bis) & (r.index != r.index[0])).any())
             eintrag["falten"][f["name"]] = {
                 "rolle": f["rolle"],
                 "von": f["von"],
                 "bis_ausschliesslich": f["bis_ausschliesslich"],
-                "symbole_point_in_time": len(reihen),
+                "symbole_handelbar_in_falte": int(in_falte),
                 "handelstage": int(len(fenster)),
                 "dd_benchmark": tab,
             }
@@ -243,11 +314,12 @@ def main(argv=None):
     print(__doc__.strip().split("\n")[0])
     for bot, e in tabellen.items():
         print(f"\n{bot}  ({e['markt']})")
-        print(f"    {'Falte':12s} {'Rolle':12s} {'Titel':>6s} {'Tage':>5s} "
+        print(f"    {e['benchmark']}; {e['loader_schranke']}")
+        print(f"    {'Falte':12s} {'Rolle':12s} {'Symb.':>6s} {'Tage':>5s} "
               f"{'DD@25%':>8s} {'DD@50%':>8s} {'DD@100%':>8s}")
         for name, f in e["falten"].items():
             print(f"    {name:12s} {f['rolle']:12s} "
-                  f"{f['symbole_point_in_time']:6d} {f['handelstage']:5d} "
+                  f"{f['symbole_handelbar_in_falte']:6d} {f['handelstage']:5d} "
                   f"{f['dd_benchmark']['0.25']:7.2f}% "
                   f"{f['dd_benchmark']['0.50']:7.2f}% "
                   f"{f['dd_benchmark']['1.00']:7.2f}%")

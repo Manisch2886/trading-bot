@@ -1,0 +1,12 @@
+['_gegenprobe_V0_gegen_benchmark_drawdowns_neu', '_gegenprobe_mengen_gegen_trockenlauf', 'elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto']
+elliott_wave                 dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+elliott_wave_stocks          dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+rsi2_crypto                  dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+rsi2_mean_reversion          dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+t3_supertrend                dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+turtle_soup_crypto           dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+turtle_soup_stocks           dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+volatility_breakout          dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+volatility_breakout_crypto   dd_toleranz gegen TB-65 VT: 0 Stufen verschieden
+
+Falten verglichen: 78; Falten mit Abweichung (DD-Stufen / Handelstage / Symbolzahl): 0
