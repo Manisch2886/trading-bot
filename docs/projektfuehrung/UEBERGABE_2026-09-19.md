@@ -1,4 +1,6 @@
-# Übergabe — Stand 19.09.2026, 21:15 Ortszeit
+# Übergabe — Stand 20.09.2026, 12:40 Ortszeit
+
+⚠️ **Der Dateiname trägt das Datum der Anlage, nicht des Standes.** *Fortgeschrieben statt neu angelegt, nach `UMZUG.md` Abschnitt 1 — eine zweite Übergabedatei neben dieser wäre Danebenstellen (`DOKUMENTATIONSSTANDARD.md` Regel 9). ⇒ **Offener Punkt: der Name sollte `UEBERGABE.md` ohne Datum lauten**; sechs Verweise im Repo wären mitzuziehen, plus der Eintrag in der Projektablage.*
 
 **Fortgeschrieben nach dem Verfahren in `docs/projektfuehrung/UMZUG.md`,
 Abschnitt 4, Schritt 3. Neun Blöcke, jeder Wert mit Fundstelle.**
@@ -10,40 +12,47 @@ die Regel aus dem Fehler des Tages (Block 7, Punkt 3).*
 
 ## Block 1 — Der Stand in drei Zeilen
 
-**Fertig:** Die methodischen Grundlagen vor dem signierten Tag sind zu einem
-großen Teil repariert — Snapshot gezogen und registriert, Resolver mit
-Codeherkunft und Lock als blockierende Startprüfungen, und **TB-56 hat die
-Faltenschranke entfernt**, nachdem gemessen wurde, dass sie bei 8 von 9 Bots
-bindet und bei keinem die Zulassung ändert.
+**Fertig, Stand 20.09.2026 12:40:** Die methodischen Grundlagen vor dem
+signierten Tag sind weitgehend repariert — Snapshot gezogen und registriert,
+Resolver mit Codeherkunft und Lock als blockierende Startprüfungen, **TB-56**
+hat die Faltenschranke entfernt, **TB-56b** die Registerberichtigung (Abschnitt
+21) eingetragen, **Fables Methodenantwort** ist als Abschnitt 22 verarbeitet,
+und **TB-59/TB-60** haben das Backlog eingearbeitet und archiviert.
 
-**Läuft, Stand 21:15:** Die TB-56-Mac-Sitzung rechnet den **Basislauf nachher**
-(71 Testdateien, ~30 Minuten, `docs/belege/TB-56/basislauf_nachher.txt` noch
-0 Bytes — die Ausgabe wird am Ende geschrieben). Danach: Datenstand- und
-Datenbankvergleich, Snapshot-Nachprüfung, Ergebnisdokument.
+⭐ **Der Befund des 20.09., und er verändert die Kette:**
+`research/vorregistrierung/ergebnisse/benchmark_drawdowns.json` ist für **alle
+neun Bots** überholt — fünf Krypto-Bots als `platzhalter` mit leerer
+`dd_toleranz`, **vier Aktien-Bots als `endgueltig` mit Falten ab 2019**, während
+Registerabschnitt 21 für sie **2017** bzw. **2018** nennt. ⚠️ **Damit erklärt
+sich auch der eine unerwartet rote Test** (`KeyError: '2017'` an
+`auswertung.py:237`).
 
-**Als Nächstes:** der Commit der elf zwischengelagerten Dateien, dann **TB-56b**
-(Registerberichtigung 15.6) und die Einarbeitung von (n) bis (r) ins Backlog.
+**Als Nächstes:** **TB-61** (Benchmark-Tabelle für alle neun, Lauf **daneben**,
+rechnet) und **TB-62** (Nachträge (m) und (v) einarbeiten, ZIP-Pflicht abbauen,
+rechnet nicht). ⚠️ **Nacheinander, nie gleichzeitig** — beide schreiben nach
+`docs/`.
 
 ---
 
 ## Block 2 — `HEAD`, Zweig, Commit-Kette
 
-| | gemessen 21:14 |
+| | gemessen 20.09.2026 12:37 |
 |---|---|
 | Zweig | **`main`**, kein eigener Zweig, kein PR |
-| `HEAD` | **`7387cc5`**, 19.09.2026 20:58:08 +0200 — *„TB-56 Teil B: Faltenschranke entfernt"* |
-| Commits heute | **22** |
+| `HEAD` | **`790f502`**, 20.09.2026 12:36:56 +0200 |
+| `origin/main` | **gleich** — alles gepusht |
+| Arbeitsbaum | **sauber**, 0 geänderte und 0 unversionierte Dateien unter `docs/` |
+| Commits am 20.09. | **neun** |
 
-**Die Kette, in Reihenfolge:**
+**Die Kette des 20.09., in Reihenfolge:**
 
 ```
-1075dec 4c80588 0fe61d7 1124880 d9f3c4b 3121ec2 5a01e8b fade02c 2c4a20b
-fef279c eaf2572 29016cf 624853b d852bce 6518e41 6236c95 409d71d be6e72c
-02a58fb d66a2ce 04b42b3 7387cc5
+64cc2b5 0bb4c92 85ff363 c04b348 3ac4710 79742d1 496bfa5 28eea5c 198fc32 48a526b 790f502
 ```
 
-⚠️ **Zeitstempel im Repo und in Belegdateien sind UTC; die Ortszeit ist +02:00.**
-*Siehe Block 7, Punkt 2.*
+⚠️ **Zeitstempel im Repo sind Ortszeit (+02:00), in der Projektablage UTC.**
+⭐ *Am 20.09. beinahe zu einem Fehlbefund geführt: ein Vergleich beider ergab
+scheinbar zwei Stunden Rückstand — es waren zwei Minuten.*
 
 ---
 
@@ -64,18 +73,27 @@ fef279c eaf2572 29016cf 624853b d852bce 6518e41 6236c95 409d71d be6e72c
 
 ### ⚠️ Gemessene Nummernstände — damit keine Nummern mehr erfunden werden
 
-**Gemessen 19.09., 20:47, in `docs/projektfuehrung/BACKLOG.md` (951 Zeilen,
-Stand `d66a2ce`):**
+**Gemessen 20.09.2026, 12:30, Stand `790f502`** — mit dem Muster
+`^\| \*\*(K\d[a-z])\*\*` **ohne schliessenden Balken**, damit Zeilen mit
+Vergabevermerk mitzählen:
 
-| | gemessen | nächste freie |
+| | in `BACKLOG.md` + `BACKLOG_ARCHIV.md` | nächste freie |
 |---|---|---|
-| Blockbezeichner Abschnitt 2 | höchster **`2r`** | **`2s`** |
-| K-Nummern Abschnitt 4 | höchste **`K2k`** | **`K2l`** |
-| Kettenzeilen Abschnitt 3 | höchste **`0,97`** | — |
+| Blockbezeichner Abschnitt 2 | höchster **`2y`** | **`2z`** — danach ist der `2x`-Raum erschöpft |
+| K-Nummern Abschnitt 4 | **64 Zeilen, 62 verschiedene**, höchste **`K3j`** | ⚠️ **selbst messen** — Nachtrag (v) belegt `K3k` aufwärts, und er wächst noch |
+| Kettenzeilen Abschnitt 3 | höchste **`0,98`** | — |
 
-⚠️ **Nachtrag (p) nennt „Block 2v" und „K2y/K2z" — beides von mir erfunden.**
-Beim Einarbeiten auf die gemessene freie Nummer umschreiben **und die
-ursprünglich genannte im Vermerk nennen**, wie bei `0,88` am 19.09. Mittag.
+⚠️ **Zwei echte Doppelbelegungen, gefunden am 20.09.:** `K1o` und `K1q` stehen
+je zweimal in `BACKLOG.md` (Zeilen 1331/1335 und 1333/1336). **In der Sache
+harmlos** — Fortschreibungen von TB-50 nach TB-51 mit dem Vermerk
+*"(unverändert)"*. **In der Form ein Verstoss gegen Regel 9**; TB-62 führt sie
+zusammen.
+
+⭐⭐ **Die Messregel selbst, und sie hat an einem Tag dreimal versagt:**
+`K2[a-z]` sah keine `K3`-Nummern · `^\| \*\*K..\*\* \|` sah keine Zeile mit
+Vergabevermerk · `sort -u` entfernte genau die Duplikate, die gesucht waren.
+⇒ **Eine Kollisionsprobe zählt, sie vereinheitlicht nicht — und ihr Muster
+darf an keinem Format hängen, das eine Ausnahme bekommen kann.**
 
 ---
 
@@ -83,19 +101,21 @@ ursprünglich genannte im Vermerk nennen**, wie bei `0,88` am 19.09. Mittag.
 
 | | | Begründung der Stelle |
 |---|---|---|
-| **1** | ⭐ **Commit der elf zwischengelagerten Dateien** | ohne ihn existieren fünf Epics nur auf einem Rechner |
-| **2** | **TB-56 zu Ende** — Basislauf nachher, Ergebnisdokument | läuft |
-| **3** | ⚠️⚠️ **TB-56b — die Registerberichtigung** | **15.6 Punkt 2 behauptet heute etwas, das TB-56 als falsch gemessen hat.** Solange das so steht, widerspricht der Code dem Register |
-| **4** | **`auswertung.py` auf Verfahren B** — und damit der rote Test aus TB-56 | der neue rote Test hängt daran |
-| **5** | **Lese-Audit** (Fables Schicht 3, Datenseite) | *„Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts darüber, welcher CODE gelesen hat"* — die Codeseite ist mit TB-58 erledigt, die Datenseite nicht |
+| **1** | ⭐⭐ **TB-61 — Benchmark-Tabelle für alle neun Bots** (`docs/auftraege/MAC_TB-61_benchmark_neun.md`) | **Sie ist für alle neun überholt.** Fünf Bots haben keine `DD_Toleranz`, vier tragen Falten der entfernten Schranke. ⛔ Lauf **daneben** nach `benchmark_drawdowns_neu.json`; die gesperrte Datei bleibt byteweise unverändert (Registerabschnitt 21.9), SHA-256 `a163c498…36d1ee` ist der Nachweis |
+| **2** | **TB-62 — Nachträge (m) und (v) einarbeiten, ZIP-Pflicht abbauen** (`docs/auftraege/MAC_TB-62_nachtraege_m_v.md`) | Reine Dokumentation, rechnet nicht. ⚠️ **Nachtrag (m) wurde nie eingearbeitet**, zwei seiner Regeln stehen nirgends im Repo |
+| **3** | **`auswertung.py` auf Verfahren B** | ⚠️ **Berichtigt gegenüber dem 19.09.:** Der rote Test `KeyError: '2017'` hängt **nicht** hieran, sondern an der überholten Benchmark-Tabelle. *Nicht gemessen, sondern erschlossen: dass TB-61 ihn grün macht — das ist zu prüfen* |
+| **4** | **Das Amendment zu Sperrliste Punkt 4** | **Eigene Betreiberfreigabe**, nach 21.9 einmal für alle neun. `DD_Toleranz` wird dabei nachgiebiger (100 % Exposure: −8,55 → **−12,89**) |
+| **5** | **Lese-Audit** (Fables Schicht 3, Datenseite) | *"Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts darüber, welcher CODE gelesen hat"* — die Codeseite ist mit TB-58 erledigt, die Datenseite nicht |
 | **6** | **Lauf-Reproduktion gegen den Lock** — frischer Klon in isolierter Umgebung, gleiche Maschine zulässig | F1b/Q2 ist **für die Daten** bewiesen (SHA-256 ist pandas-unabhängig), **nicht für den Lauf** |
-| **7** | **Fables Q1** und die vier Fragen aus Block 5 | |
-| **8** | ⭐ **Der signierte Tag + Zeitanker** | alles davor |
+| **7** | **T56b.6** — zwei Code-Kopien der Faltenschranke (`faltenplan_neun.py:120`, `krypto_historie/faltenplan.py:64`), mit Probe F in `test_faltenplan_neun.py:519` | Mac-Lauf, Freigabe liegt seit TB-56 vor |
+| **8** | **Fables Q1** | |
+| **9** | ⭐ **Der signierte Tag + Zeitanker** | alles davor |
+
+✅ **Erledigt seit dem 19.09.:** der Commit der elf zwischengelagerten Dateien ·
+TB-56 · TB-56b · Fables Methodenantwort (Registerabschnitt 22) · TB-59 · TB-60.
 
 **Hinter dem Tag, in dieser Reihenfolge:** `AF → RT → QR → KG → MI`
-*(begründet in Nachtrag (r), RT9 — ich hatte zuvor `AF → QR → KG → MI` gesagt
-und mich korrigiert: RT braucht fast keine Vorbedingungen und macht AFs Ausgabe
-erst glaubwürdig).*
+*(begründet in Nachtrag (r), RT9).*
 
 ---
 
@@ -103,21 +123,15 @@ erst glaubwürdig).*
 
 | wartet auf | was | Stand |
 |---|---|---|
-| **Mac-Sitzung TB-56** | Basislauf nachher, dann Ergebnisdokument und Commit | ⏳ läuft seit ~21:00 |
-| ⚠️ **Fable** | **vier Fragen**, Text liegt als Kopierblock im Chat vom 19.09., 21:10 | **noch nicht gesendet** — erst nach TB-56 |
-| **Betreiber** | der Commit-Befehl für die elf Dateien | vorbereitet, **nicht ausführen während die Sitzung läuft** |
+| **Betreiber** | **TB-61 und TB-62 starten** — Einfügesatz aus `docs/auftraege/AKTUELLER_AUFTRAG.md`, mit `TB-61:` bzw. `TB-62:` vorangestellt | ⏳ **beide bereit**, nacheinander |
+| **Betreiber** | **Freigabe für das Amendment** zu Sperrliste Punkt 4 | erst **nach** TB-61 |
+| **Betreiber** | **T46.1b/c** — der stille Stop-Loss-Übersprung in allen neun `forward_test.py`; Vorschlag *melden, nicht handeln* über `shared/ladeprotokoll.py` | freigabepflichtig, offen |
+| **Betreiber** | **T56b.7** — die Übergabe nennt eine *"Änderung an Registertext 5f"*, die im Repo nirgends spezifiziert ist | Rückfrage offen |
+| **Fable** | **Q1** — die Querprüfung zwischen Auswerter-Umbau und signiertem Tag | noch nicht gestellt |
 
-**Die vier Fable-Fragen, inhaltlich:** (1) Ist *„Zahl und Identität der Prüfungen
-stehen vor dem Lauf fest"* eine Eigenschaft von Verfahren B oder eine allgemeine
-Registeranforderung? · (2) Fällt ein Kill-Test-Befund nach dem Tag unter
-Berichtigung, nachträgliche Wahl oder Quelle-des-Grundes? · (3) Ist *„ohne
-Kenntnis des Siegers entworfen"* nachträglich beweisbar — oder kollabiert das in
-*„vorher registrieren oder nie"*? · (4) Ist eine Abschaltregel bei
-Leistungsabweichung eine Betriebsentscheidung oder ändert sie, was die Selektion
-bedeutet?
-
-⚠️ **Die frühere, nur auf das Red Team bezogene Fassung der Fable-Nachricht ist
-verworfen** — sie hatte die übrigen vier Epics nicht einbezogen.
+✅ **Aufgelöst seit dem 19.09.:** Fables vier Methodenfragen sind beantwortet und
+als Registerabschnitt 22 eingetragen — **ein offener Wartezustand auf ihn
+besteht nicht mehr** (T56b-Block). Die TB-56-Mac-Sitzung ist abgeschlossen.
 
 ---
 
@@ -182,6 +196,15 @@ die fünf bestehenden roten Tests entstanden.*
 | **10** | ⚠️ **Am Repo gearbeitet, während eine Mac-Sitzung lief.** Folgenlos, **weil der Zielordner gitignoriert ist** — das war die Vorsichtsmaßnahme, nicht mein Wissen | ⭐ Zustand der Sitzung **messen**, bevor am Repo gearbeitet wird |
 | **11** | ⚠️ **Reihenfolge der Epics nach ihrem Anspruch eingeordnet statt nach ihren Voraussetzungen** (`AF→QR→KG→MI`) | korrigiert zu **`AF→RT→QR→KG→MI`**; RT braucht fast keine Vorbedingungen |
 
+⚠️⚠️ **Die Fehler des 20.09.2026 stehen NICHT hier, sondern in
+`docs/projektfuehrung/nachtraege/BACKLOG_NACHTRAG_2026-09-19v.md`** als `K3t`
+bis `K4e` — sie werden mit TB-62 ins Backlog eingearbeitet. *Sie hier zu
+wiederholen wäre Danebenstellen.* ⭐ **Ihr gemeinsamer Kern, in einem Satz:**
+Fünf von ihnen sind Messungen, die mit einem Instrument gemacht wurden, das
+ihren Suchraum nicht abdeckte — ein zu enges Muster, eine falsche Bezugsmenge,
+ein `sort -u`. ⇒ **Ein Messergebnis wird gegen eine zweite, unabhängig
+geschriebene Zählung gehalten, bevor es als Nachweis gilt.**
+
 **Fremde Befunde, die diesen Chat geprägt haben:**
 
 | | |
@@ -194,54 +217,63 @@ die fünf bestehenden roten Tests entstanden.*
 
 ---
 
-## Block 8 — ⚠️ Zwischengelagert, noch nicht eingearbeitet
+## Block 8 — ✅ Zwischengelagert: abgearbeitet
 
-**Elf Dateien in `logs/auftraege/` — gitignoriert über `.gitignore:27` (`logs/`),
-also auf einem Rechner und in keiner Version.**
+✅ **Die elf Dateien aus `logs/auftraege/` sind committet** (19.09., `aa05cc1`
+und Vorgänger) — fünf Nachträge, eine Berichtigung, fünf Vorlagen. Sie liegen
+unter `docs/projektfuehrung/nachtraege/` und `docs/vorlagen/`.
 
-| Datei | Bytes | Zielort |
-|---|---:|---|
-| `BACKLOG_NACHTRAG_2026-09-19n.md` — Epic **AF** | 8 915 | `docs/projektfuehrung/nachtraege/` |
-| `BACKLOG_NACHTRAG_2026-09-19o.md` — Epic **MI** | 9 052 | " |
-| `BACKLOG_NACHTRAG_2026-09-19p.md` — Epic **QR** | 8 905 | " ⚠️ *Nummern erfunden* |
-| `BACKLOG_NACHTRAG_2026-09-19q.md` — Epic **KG** | 23 902 | " |
-| `BACKLOG_NACHTRAG_2026-09-19r.md` — Epic **RT** | 22 335 | " |
-| `BACKLOG_NACHTRAG_2026-09-19q_r_berichtigung.md` | 8 781 | " |
-| `vorlage_forschungspipeline_2026-09-19.md` | 16 741 | `docs/vorlagen/` |
-| `vorlage_marktverstaendnis_2026-09-19.md` | 20 047 | " |
-| `vorlage_alpha_labor_2026-09-19.md` | 20 072 | " |
-| `vorlage_kausalgraph_2026-09-19.md` | 23 292 | " |
-| `vorlage_rotes_team_2026-09-19.md` | 19 599 | " |
+⚠️ **Eine Datei hat noch eine offene Bringschuld:** `logs/auftraege/TB-58b_v2.md`
+— ohne Gegenstück im Repo, und `logs/` ist gitignoriert (`.gitignore:27`).
+*`logs/auftraege/` ist kein Träger (`UMZUG.md` Abschnitt 2).*
 
-⭐ **Alle fünf Vorlagen sind byteidentisch zur Einreichung des Betreibers**
-(`cmp -s` je Datei).
+⚠️⚠️ **Und zwei Einarbeitungen stehen trotzdem aus, gemessen am 20.09.2026:**
 
-**Noch offen an Dokumentationsarbeit:**
+| | |
+|---|---|
+| **Nachtrag (v)** | **nicht eingearbeitet** — seine Nummern ab `K3k` stehen nur dort. ⇒ **TB-62** |
+| **Nachtrag (m)** | ⚠️⚠️ **nie eingearbeitet, und seine sechs Nummern `K2l`–`K2q` sind im Backlog an andere Inhalte vergeben.** Vier seiner Regeln stehen inhaltlich anderswo; **zwei stehen nirgends im Repo**. ⇒ **TB-62** |
 
-1. ⚠️ **Die fünf Nachträge sind in `BACKLOG.md` NICHT eingearbeitet** — gemessen:
-   0 Treffer für `AF`, `MI`, `QR`, `KG`, `RT`.
-2. ⚠️ **Die fünf Sichtungsdurchgänge** (Kollision · Abhängigkeit · Widerspruch ·
-   Ausscheiden · Kette) sind **nicht vollständig gemacht**. Zwei
-   Querschnittsbefunde stehen: **die Zerfallsfalle in vier Konzepten** und **das
-   Register in fünf von fünf** — das werden zwei Punkte mit Verweisen, nicht neun.
-3. ⚠️ **`ARBEITSWEISE.md` Abschnitt 10** (Zeilen 674–743) ist überholt und muss
-   durch den Verweis auf `UMZUG.md` ersetzt werden — Ersatztext steht dort in
-   Abschnitt 7.
-4. ⚠️ **Neun in diesem Chat vereinbarte Regeln stehen nicht in
-   `ARBEITSWEISE.md`** — sie stehen in der Erinnerung und hier:
+**Die zwei verlorenen Regeln aus (m), wörtlich — damit sie diesen Text überleben:**
+
+> **(1)** „Jede Rückfrage an den Betreiber und seine Antwort kommen wörtlich in
+> den Bericht — sonst leben sie nur im Sitzungsverlauf, der mit der Sitzung
+> verschwindet.“
+>
+> **(2)** „Die Sitzung committet ihren eigenen Auftrag mit (`docs/auftraege/`)
+> und ihre Belege (`docs/belege/TB-xx/`).“
+
+⭐⭐ **Regel (1) ist die Pointe: sie ist genau die Vorschrift, die verhindern
+soll, dass Betreiberentscheidungen nur im Chat leben — und sie ist selbst im
+Chat geblieben.**
+
+### ⚠️ Und dasselbe ist der ZIP-Regel passiert
+
+**Die Liste unten stand schon am 19.09. in diesem Block.** Ihr Punkt 9 lautet
+*"Keine ZIPs, nichts nach `~/Downloads`"*. ⚠️ **Gemessen am 20.09.: `ARBEITSWEISE.md`
+Abschnitt 1 verlangte weiterhin auf acht Zeilen das Gegenteil**, während
+Abschnitt 10 derselben Datei ZIP als überholt bezeichnete. ⭐ **Betreiberentscheidung
+20.09.2026: ZIP wird überall abgeschafft**; der Umbau ist Schritt 4 von TB-62.
 
 | | Regel, vereinbart 19.09.2026 |
 |---|---|
 | 1 | Schritt für Schritt, **ein Terminalbefehl je Nachricht**, nummeriert |
 | 2 | **Nie eine blosse Ankündigung** — entweder explizite Aufgabe oder fortfahren |
-| 3 | Jede Antwort endet mit dem abgesetzten Block **„Deine Aufgaben"** |
+| 3 | Jede Antwort endet mit dem abgesetzten Block **"Deine Aufgaben"** |
 | 4 | **Möglichst wenig eigener Aufwand** des Betreibers |
 | 5 | Rückfragen über die **anklickbaren Fragen in der App**, mit Empfehlung |
 | 6 | **`/remote-control` als eigener Block VOR** dem Anweisungstext |
-| 7 | Jede Aufgabe trägt **`[ortsunabhängig]` oder `[Mac-pflichtig]`** — und was theoretisch ortsunabhängig ginge, wird **immer** so ausgegeben |
+| 7 | Jede Aufgabe trägt **`[ortsunabhängig]` oder `[Mac-pflichtig]`** |
 | 8 | **Fable-Texte als Kopierblock in der Antwort** — keine Datei, kein Anhang |
-| 9 | ⚠️ **Keine ZIPs, nichts nach `~/Downloads`** — was fürs Projekt gebraucht wird, gehört ins Repo |
-| 10 | ⭐ **Frühzeitiger Hinweis auf einen nötigen Umzug in einen neuen Chat**, bevor komprimiert wird |
+| 9 | ✅ **Keine ZIPs, nichts nach `~/Downloads`** — am 20.09. bestätigt und in Arbeit |
+| 10 | ⭐ **Frühzeitiger Hinweis auf einen nötigen Umzug**, bevor komprimiert wird |
+
+✅ **Aus dieser Liste seit dem 19.09. eingetragen:** Punkt 2 als `ARBEITSWEISE.md`
+Abschnitt 13, Punkt 6 und der Sitzungsstart als Abschnitt 14, dazu Abschnitt 15
+(*"zukünftig"*), 16, 17 (einleitender Satz) und 18.
+
+✅ **`ARBEITSWEISE.md` Abschnitt 10** ist durch den Verweis auf `UMZUG.md`
+ersetzt (TB-59, ein Hunk am Ankertext).
 
 ---
 
