@@ -14,10 +14,21 @@ DIE REGELN (eingefroren)
 
 2. **Testfalten sind Kalenderjahre ab der ersten Falte nach Registertext
    4a bis zum Go-Live-Schnitt - fuer alle neun Bots nach derselben Regel.**
-   Die erste Falte ist das erste Kalenderjahr, in dem am 1. Januar Universum
-   und Indikator-Vorlauf vorliegen - JE BOT aus der Datenlage gerechnet
-   (`erste_falte()`, mit der Regel aus `research/faltenplan_neun/`), nicht
-   aus einer Konstante.
+   Die erste Falte ist seit TB-72 (20.09.2026) das erste Kalenderjahr, das
+   ZWEI Bedingungen erfuellt (Neufassung von 4a / 21.3 (b) als Konjunktion,
+   Fable, docs/projektfuehrung/FABLE_ANTWORT_2026-09-20e_konjunktion.md):
+   (i) es liegt im Datenhorizont des Bots und am 1. Januar ist der
+   Indikator-Vorlauf erfuellt - JE BOT aus der Datenlage gerechnet
+   (`erste_falte_4a()`, mit der Regel aus `research/faltenplan_neun/`),
+   nicht aus einer Konstante; UND (ii) der Loader des Bots macht in ihm an
+   mindestens einem Handelstag mindestens ein Symbol handelbar - gemessen
+   im Trockenlauf des Laufcodes (Registertext 3b (a), Lesart H;
+   `research/faltenplan_neun/erste_falte_trockenlauf.py`), nicht
+   nachgerechnet. `erste_falte()` fuehrt beide zusammen: 4a bleibt die
+   Regel, der Trockenlauf ist ihre operative Form, der Plan ist eine
+   Ableitung daraus und keine Parallelrechnung - er kann in keiner
+   Richtung abweichen. (ii) kann den Beginn nie vorziehen, weil (i) weiter
+   gelten muss; (i) nie, weil (ii) weiter gelten muss.
    ⚠️ Bis TB-56 (19.09.2026) stand hier `ERSTE_MOEGLICHE_FALTE = 2019`. Die
    Schranke stand in keinem Registertext; die Tatsachennotiz 15.6 Punkt 2
    hatte den Code-Zustand als Registerregel ausgegeben. Gemessen vor der
@@ -35,11 +46,16 @@ DIE REGELN (eingefroren)
    wartete auf TB-31. TB-31 hat die Historie ueber /api/v3/klines
    zurueckgeladen (Kursdaten ab 2017-08-17), TB-34 hat den Kursbestand neu
    aufgebaut; der Krypto-Faltenplan steht gemessen in Register Abschnitt 21.
-   ⚠️ Diese Regel ist Registertext 4a allein. Register 21.3 (b) laesst bei
-   Abweichung 3b (a) binden (Trockenlauf des Laufcodes); das rechnet dieses
-   Modul nicht, und fuer `t3_supertrend` weichen beide ab (4a: 2018,
-   3b (a): 2019, weil `MIN_HISTORY_DAYS = 730` in der Falte 2018 kein Symbol
-   handelbar macht) - siehe docs/ERGEBNIS_TB-61_benchmark_neun.md.
+   ⚠️ Bis TB-72 (20.09.2026) stand hier: "Diese Regel ist Registertext 4a
+   allein. Register 21.3 (b) laesst bei Abweichung 3b (a) binden
+   (Trockenlauf des Laufcodes); das rechnet dieses Modul nicht, und fuer
+   `t3_supertrend` weichen beide ab (4a: 2018, 3b (a): 2019, weil
+   `MIN_HISTORY_DAYS = 730` in der Falte 2018 kein Symbol handelbar macht)"
+   - siehe docs/ERGEBNIS_TB-61_benchmark_neun.md. Seit TB-72 rechnet
+   `erste_falte()` Bedingung (ii) mit (Regel 2); `t3_supertrend` beginnt
+   damit 2019, mit sieben Selektionsfalten statt acht. Gemessen in beide
+   Richtungen (docs/ERGEBNIS_TB-72_schritt1_erste_falte.md): bei den acht
+   anderen Bots liegt (ii) nicht spaeter als (i), ihr Plan aendert sich nicht.
 
 4. **2020 und 2022 sind Testfalten, keine Trainingsjahre.** Das steht hier,
    weil es die einzige Stelle ist, an der die Versuchung entstehen koennte,
@@ -88,9 +104,14 @@ import registerdaten as rd  # noqa: E402
 
 # Die Regel fuer die erste Falte (Registertext 4a) steht GENAU EINMAL - in
 # research/faltenplan_neun/faltenplan_neun.py (reine Standardbibliothek).
-# Sie wird ueber den Pfad importiert, nicht abgeschrieben.
+# Sie wird ueber den Pfad importiert, nicht abgeschrieben. Dasselbe gilt seit
+# TB-72 fuer Bedingung (ii), den Trockenlauf des Laufcodes (Registertext
+# 3b (a)): research/faltenplan_neun/erste_falte_trockenlauf.py ruft den
+# Loader jedes Bots im Kindprozess des TB-40-Werkzeugs auf; die Schranke
+# MIN_HISTORY_* wirkt dort im Bot-Code und steht hier nirgends.
 sys.path.insert(0, os.path.join(BASE_DIR, "research", "faltenplan_neun"))
 import faltenplan_neun as fn  # noqa: E402
+import erste_falte_trockenlauf as eft  # noqa: E402
 
 TB24_DATEN = os.path.join(BASE_DIR, "research", "tb24_haltedauern", "daten")
 
@@ -137,9 +158,10 @@ def faltenlaenge_jahre(bot: str) -> tuple:
                        f"{rd.ZWEIJAHRES_SCHWELLE_TRADES}")
 
 
-def erste_falte(bot: str) -> int:
-    """Das erste Kalenderjahr, in dem am 1. Januar Universum und
-    Indikator-Vorlauf vorliegen - Registertext 4a, je Bot aus der Datenlage.
+def erste_falte_4a(bot: str) -> int:
+    """Bedingung (i): das erste Kalenderjahr, in dem am 1. Januar Universum
+    und Indikator-Vorlauf vorliegen - Registertext 4a, je Bot aus der
+    Datenlage. Bis TB-72 hiess diese Funktion `erste_falte`.
 
     Gerechnet mit der Regel aus `faltenplan_neun` (Kursdaten am 1. Januar,
     Zehnjahresfenster der Aktien-Bots, Indikator-Vorlauf in Balken). Bis zur
@@ -155,6 +177,33 @@ def erste_falte(bot: str) -> int:
     if jahr is None:
         raise ValueError(f"{bot}: kein Symbol mit Kursdaten - keine erste Falte")
     return jahr
+
+
+def erste_falte(bot: str, laenge: int = None, schnitt: date = None) -> tuple:
+    """(erste Falte, Messung) - die Konjunktion aus Regel 2.
+
+    Die Kandidaten sind die Falten ab `erste_falte_4a` (Bedingung (i), die
+    ab dort fuer jedes spaetere Jahr weiter gilt) bis zum Go-Live-Schnitt, im
+    Raster der Faltenlaenge des Bots. Bedingung (ii) entscheidet ueber den
+    Trockenlauf des Laufcodes (`erste_falte_trockenlauf.erste_falte_nach_3b`,
+    Registertext 3b (a), Lesart H): die erste Kandidatenfalte, in der der
+    Loader mindestens ein Symbol handelbar macht, ist die erste Falte. Die
+    Messung nennt je gepruefter Falte die Menge H - damit steht im Plan, WARUM
+    er dort beginnt, nicht nur dass.
+    """
+    if laenge is None:
+        laenge = faltenlaenge_jahre(bot)[0]
+    if schnitt is None:
+        schnitt = date.fromisoformat(rd.GO_LIVE_SCHNITT)
+    erste_4a = erste_falte_4a(bot)
+    kandidaten = _jahresfalten(erste_4a, schnitt, laenge)
+    jahr, messung = eft.erste_falte_nach_3b(bot, kandidaten)
+    if jahr is None:
+        raise ValueError(f"{bot}: der Loader macht in keiner Falte ab {erste_4a} "
+                         f"ein Symbol handelbar - keine erste Falte")
+    return jahr, {"erste_falte_4a": erste_4a,
+                  "H_je_gepruefter_falte": [{"falte": f["name"], "H": f["H"]}
+                                            for f in messung]}
 
 
 def purge_tage(bot: str, mess: dict) -> int:
@@ -189,7 +238,7 @@ def _plan(bot: str, mess: dict, markt: str) -> dict:
     """Der Faltenplan eines Bots - eine Regel fuer beide Maerkte (Regel 2)."""
     laenge, trades, begruendung = faltenlaenge_jahre(bot)
     schnitt = date.fromisoformat(rd.GO_LIVE_SCHNITT)
-    erste = erste_falte(bot)
+    erste, herkunft = erste_falte(bot, laenge, schnitt)
     falten = _jahresfalten(erste, schnitt, laenge)
     purge = purge_tage(bot, mess)
     for i, f in enumerate(falten):
@@ -208,9 +257,18 @@ def _plan(bot: str, mess: dict, markt: str) -> dict:
         "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,
         "go_live_schnitt": rd.GO_LIVE_SCHNITT,
         "erste_falte": erste,
-        "erste_falte_quelle": ("Datenlage nach Registertext 4a: erstes Kalenderjahr, "
-                               "in dem am 1. Januar Universum und Indikator-Vorlauf "
-                               "vorliegen (research/faltenplan_neun); keine Konstante"),
+        "erste_falte_quelle": ("Registertext 4a in der Neufassung als Konjunktion "
+                               "(TB-72, 20.09.2026): erstes Kalenderjahr, das (i) im "
+                               "Datenhorizont liegt und am 1. Januar den "
+                               "Indikator-Vorlauf erfuellt (Datenlage, "
+                               "research/faltenplan_neun; keine Konstante) UND (ii) in "
+                               "dem der Loader des Bots mindestens ein Symbol "
+                               "handelbar macht - Trockenlauf des Laufcodes, "
+                               "Registertext 3b (a), Register 21.3 (b); 4a ist die "
+                               "Regel, der Trockenlauf ihre operative Form, der Plan "
+                               "eine Ableitung daraus"),
+        "erste_falte_4a": herkunft["erste_falte_4a"],
+        "erste_falte_trockenlauf_H": herkunft["H_je_gepruefter_falte"],
         "falten": falten,
         "selektionsfalten": [f["name"] for f in falten if f["rolle"] == "selektion"],
         "bestaetigungsperiode": falten[-1]["name"] if falten else None,

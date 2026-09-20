@@ -27,8 +27,8 @@ WAS DIESES MODUL TUT
 ------------------------------------------------------------------------------
 `erste_falte_nach_3b(bot, kandidaten)` bekommt die Kalenderjahr-Falten, die
 Registertext 4a fuer den Bot ergibt (von seiner ersten Falte bis zum
-Go-Live-Schnitt), laesst den Loader des Bots am letzten Zeitpunkt jeder
-Falte laufen (Lesart H, Abschnitt 16.2 - genau die Stichtage, die
+Go-Live-Schnitt), laesst den Loader des Bots am letzten Zeitpunkt der Falten
+laufen (Lesart H, Abschnitt 16.2 - genau die Stichtage, die
 `universum_trockenlauf.trockenlauf` fuer H benutzt) und gibt das Jahr der
 ersten Falte zurueck, in der der Loader mindestens ein Symbol handelbar
 macht. Der Loader wird ueber `universum_trockenlauf.messe_bot` aufgerufen -
@@ -36,6 +36,18 @@ der Funktion, die der TB-40-Bericht ausdruecklich als Import-Stelle nennt
 ("... importiert messe_bot(), statt die Frage ein viertes Mal zu
 beantworten"). Die Schranke `MIN_HISTORY_*` steht nirgends hier: sie wirkt
 im Bot-Code, im Kindprozess.
+
+Seit TB-72 Schritt 2 ist diese Funktion Bedingung (ii) der Neufassung von
+Registertext 4a / 21.3 (b) (Fable, FABLE_ANTWORT_2026-09-20e_konjunktion.md):
+`research/vorregistrierung/faltenplan.py::erste_falte` ruft sie mit den
+4a-Kandidaten auf, und der Plan ist damit eine Ableitung aus dem Trockenlauf,
+keine Parallelrechnung. Fuer diesen Aufruf prueft sie die Kandidaten der
+Reihe nach - ein Kindprozess je geprueftem Faltenende, Schluss beim ersten
+H >= 1 -, weil `faltenplan()` in jedem Prozess, der es importiert, einmal
+gerechnet wird und der Loader eines Aktien-Bots je Kindprozess rund sechs
+Sekunden braucht. `vollstaendig=True` misst alle Kandidaten in einem
+Kindprozess (die Messung in `main()`); das Ergebnis je Falte ist dasselbe,
+weil jeder Stichtag im Kindprozess ein eigener Loader-Lauf ist.
 
 Die Messung `main()` (TB-72 Schritt 1) weist je Bot BEIDE Richtungen aus:
 
@@ -115,15 +127,26 @@ def handelbar_am_faltenende(bot: str, falten: list) -> list:
 # ==============================================================================
 # 2. Die Ableitung - Registertext 4a als Kandidatenliste, 3b (a) entscheidet
 # ==============================================================================
-def erste_falte_nach_3b(bot: str, kandidaten: list):
+def erste_falte_nach_3b(bot: str, kandidaten: list, vollstaendig: bool = False):
     """(Jahr der ersten Falte mit H >= 1 oder None, Messung je Kandidat).
 
     `kandidaten` sind die Falten nach Registertext 4a, aufsteigend. Zurueck
     kommt das Jahr, in dem die erste Falte beginnt, in der der Loader des
     Bots mindestens ein Symbol handelbar macht (3b (a), Lesart H). None,
     wenn er das in keiner Kandidatenfalte tut.
+
+    Ohne `vollstaendig` wird Falte fuer Falte gemessen und beim ersten
+    H >= 1 aufgehoert; die Messung enthaelt dann nur die geprueften Falten.
+    Mit `vollstaendig` laufen alle Kandidaten in einem Kindprozess.
     """
-    messung = handelbar_am_faltenende(bot, kandidaten)
+    if vollstaendig:
+        messung = handelbar_am_faltenende(bot, kandidaten)
+    else:
+        messung = []
+        for f in kandidaten:
+            messung += handelbar_am_faltenende(bot, [f])
+            if messung[-1]["H"] >= 1:
+                break
     for f in messung:
         if f["H"] >= 1:
             return int(f["von"][:4]), messung
@@ -190,7 +213,7 @@ def messung(gegenprobe: bool = True, fortschritt=None) -> dict:
         erste_4a = vfp.erste_falte_4a(bot) if hasattr(vfp, "erste_falte_4a") \
             else vfp.erste_falte(bot)
         kandidaten = vfp._jahresfalten(erste_4a, schnitt, laenge)
-        spaeter_jahr, spaeter = erste_falte_nach_3b(bot, kandidaten)
+        spaeter_jahr, spaeter = erste_falte_nach_3b(bot, kandidaten, vollstaendig=True)
 
         beginn = erster_kurstag_des_marktes(bot)
         frueher = []
