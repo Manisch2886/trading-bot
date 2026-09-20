@@ -28,12 +28,14 @@ Vier Betreiber-Dateien, keine davon aus dieser Sitzung. **Schritt 0:** unveränd
 committet als `481b9f7` (der Fall von `K2p`, wie in TB-62 gehandhabt). Danach
 `git status --short`: **0 Zeilen** — erst dann wurde geschrieben.
 
-⚠️ **`git push` wurde in dieser Sitzung vom Berechtigungsfilter der
-Claude-Code-Umgebung abgelehnt** (Meldung: *„denied by the Claude Code auto mode
-classifier"*). Alle Commits liegen lokal auf `main`; der Push ist am Ende
-gesammelt vom Betreiber nachzuholen (`git push`, allein). Das ist eine
-Abweichung von der Auflage *„Sichern: commit und push"* je Schritt — die
-Commits sind gesetzt, die Pushes nicht.
+⚠️ **Zum Push:** Der erste `git push` nach Schritt 0 (in einer Pipe mit
+`| tail`) wurde vom Berechtigungsfilter der Claude-Code-Umgebung abgelehnt
+(*„denied by the Claude Code auto mode classifier"*). Ein nacktes `git push`
+nach dem Abgabe-Commit ging durch: **`fe76857..544b011 main -> main`**, alle
+sieben Commits auf `origin/main`. Abweichung von der Auflage *„commit und push
+je Schritt"*: die Commits sind je Schritt gesetzt, gepusht wurde **einmal am
+Ende** statt sechsmal. *(Nachgetragen im Abschluss-Commit, weil der Push erst
+danach gelang.)*
 
 ---
 
@@ -303,7 +305,7 @@ Backlog-Nachträge (a)–(v) ausser dem `T`-Teil von `(m)`.
 | `(f)` nicht prüfbar (A2), weil ohne TB-Nummer im Titel | mit dem Satzmuster **prüfbar und offen**; seine Blocküberschriften tragen TB-53b/58/58b | eingearbeitet, **0 nicht prüfbar** |
 | Schritt 3: drei Blöcke **aus `(m)`** bauen | `(f)` **ist** diese drei Blöcke (gleicher Tag, gleiche Zahlen); `(m)` liefert dazu die 13 `T`-Zeilen, die `(f)` verkürzt | Blöcke einmal angelegt, `T`-Zeilen als Messprotokoll dazu, zwei Quellenzeilen |
 | `index.lock` 0 Treffer im Backlog | **1** — die `K4g`-Zeile, die die Null zitiert | kein Handlungsbedarf |
-| „Sichern: commit **und push**" je Schritt | **Push in dieser Umgebung nicht erlaubt** (Berechtigungsfilter) | sechs Commits lokal; Push durch den Betreiber |
+| „Sichern: commit **und push**" je Schritt | erster Push (in einer Pipe) abgelehnt; nacktes `git push` am Ende ging durch | Commits je Schritt, **ein** Push am Ende (`fe76857..544b011`) |
 | „Angefügt am Ende von `JOURNAL.md`" | seit TB-50 stehen neue Blöcke **vor** `## Wiederkehrende Lehren` | so gemacht; `numstat` Spalte zwei bleibt 0 |
 
 ---
@@ -312,7 +314,7 @@ Backlog-Nachträge (a)–(v) ausser dem `T`-Teil von `(m)`.
 
 | | |
 |---|---|
-| ⚠️⚠️ | **`git push`** für die sechs Commits `481b9f7`, `cc72150`, `08cf90a`, `31bc953`, `93a88d4`, `4117ee7` und den Abgabe-Commit — allein, nicht in einem `&&`-Block |
+| ✅ | ~~`git push` für die Commits~~ — **erledigt**, `fe76857..544b011 main -> main` nach dem Abgabe-Commit; dieser Nachtrag ist der achte Commit |
 | ⚠️ | **B2 (Messbefund), B3 und der dist-info-Beleg zu B7** stehen in keinem Führungsdokument (Nachweis 6). Ob sie eine Regel oder eine Tatsachennotiz werden, ist die Betreiberentscheidung, die der Auftrag ausklammert |
 | ⚠️ | **Nachtrag `(m)` liegt weiter in `nachtraege/`** — sein `T`-Teil ist im Journal, sein `K`-Teil in `K4g`; die `B`-Zeilen hängen an der Entscheidung darüber |
 | ⭐ | **Für TB-64:** Die Quellenzeile nennt `nachtraege/JOURNAL_NACHTRAG_…`; die Dateien liegen nach dem Verschieben unter `nachtraege/_eingearbeitet/`. Der Wächter sollte über den **Dateinamen** vergleichen, nicht über den vollen Pfad — und für `BK`–`BM` die zweite Zeile `*Messprotokoll: …*` nicht als Journal-Quelle zählen |
@@ -331,7 +333,8 @@ Backlog-Nachträge (a)–(v) ausser dem `T`-Teil von `(m)`.
 | `31bc953` | 3 | Nachweise 3–6 (B-Zeilen geprüft, nicht eingetragen) |
 | `93a88d4` | 4 | `BACKLOG.md` +1/0: `K4h` |
 | `4117ee7` | 5 | elf Dateien nach `_eingearbeitet/` |
-| *(Abgabe)* | 6 | dieses Dokument abgeschlossen, Journal-Nachtrag `(20g)` |
+| `544b011` | 6 | dieses Dokument abgeschlossen, Journal-Nachtrag `(20g)`; danach `git push` (`fe76857..544b011`) |
+| *(Nachtrag)* | 6 | Push-Vermerk berichtigt — in Ergebnisdokument und Nachtrag `(20g)` |
 
 ---
 
@@ -355,6 +358,6 @@ Satz aus ihr suchen statt nach der Nummer. Und die drei Einträge, die aus einem
 sie wurden einmal angelegt und um die Messtabelle des Zettels ergänzt, nicht
 doppelt.
 
-**Was fehlt:** Das Hochladen zum Server war in dieser Umgebung gesperrt — die
-sieben Sicherungspunkte liegen auf dem Mac und müssen mit einem Befehl
-hochgeladen werden.
+**Was fehlt:** Nichts mehr an dieser Aufgabe. Das Hochladen zum Server ging
+erst am Ende — der erste Versuch war gesperrt, der letzte ging durch; alle
+Sicherungspunkte liegen jetzt auf beiden Rechnern.

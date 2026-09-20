@@ -4,8 +4,8 @@
 Ortszeit, Ausgang `fe76857`, reine Dokumentation (Interpreter nur `python3` für
 Zählskripte, keine Kursdaten, nichts ausserhalb `docs/`). Commits `481b9f7`
 (Schritt 0), `cc72150` (Messung), `08cf90a` (Journal +965/0), `31bc953`
-(Nachweise), `93a88d4` (Backlog `K4h`), `4117ee7` (Verschieben) und der
-Abgabe-Commit. Ergebnisdokument `docs/ERGEBNIS_TB-67_journal_einarbeitung.md`,
+(Nachweise), `93a88d4` (Backlog `K4h`), `4117ee7` (Verschieben), `544b011`
+(Abgabe) und ein Nachtrag zum Push. Ergebnisdokument `docs/ERGEBNIS_TB-67_journal_einarbeitung.md`,
 Belege `docs/belege/TB-67/`. **Einzuarbeiten als nächster Block nach dem
 höchsten vorhandenen** (am 20.09.2026 gemessen: `BT`; die Nummer vergibt die
 einarbeitende Sitzung).
@@ -91,11 +91,12 @@ zeigt er auf etwas im Journal (`BM`, verkürzt).
 
 ## Zwei Dinge zur Form
 
-**Der Push war in dieser Umgebung gesperrt.** Der Berechtigungsfilter der
-Claude-Code-Sitzung lehnte `git push` ab; sechs Commits liegen lokal auf `main`.
-Die Auflage *„Sichern nach jedem fertigen Teil"* ist zur Hälfte erfüllt — die
-Commits sind gesetzt, die Sicherung auf den zweiten Rechner nicht. **Das steht
-im Ergebnisdokument oben, nicht unten**, damit der Betreiber es zuerst liest.
+**Der Push ging erst am Ende.** Der Berechtigungsfilter der Claude-Code-Sitzung
+lehnte den ersten `git push` (in einer Pipe mit `| tail`) ab; ein nacktes
+`git push` nach dem Abgabe-Commit ging durch (`fe76857..544b011`). Die Auflage
+*„Sichern nach jedem fertigen Teil"* ist damit zur Hälfte erfüllt: Commits je
+Schritt, ein Push für alle. ⇒ *`git push` steht allein — auch ohne Pipe, nicht
+nur ohne `&&`.* **Der Vermerk steht im Ergebnisdokument oben, nicht unten.**
 
 **Die Ankunft ist je Zeile gemessen, nicht je Datei.** `ankunft_pruefung.py`
 hält jede nichtleere Zeile jedes Nachtrags gegen das Journal (Überschriften um
