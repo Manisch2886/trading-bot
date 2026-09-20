@@ -1,0 +1,160 @@
+Geschrieben: research/vorregistrierung/ergebnisse/faltenplan_tb72.json
+
+====================================================================================================
+(a) Speicherstand vor TB-72 (4a allein) gegen neuen Plan
+  alt: docs/belege/TB-72/faltenplan_4a_stand_vor_tb72.json
+====================================================================================================
+Bot                         Feld                  alt                                     neu
+----------------------------------------------------------------------------------------------------
+elliott_wave                neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+t3_supertrend               erste_falte           2018                                    2019
+t3_supertrend               selektionsfalten      ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+t3_supertrend               Falte 2018            selektion                               entfaellt
+t3_supertrend               Falte 2019            {'embargo_nach_falten': (['2018'], [])}
+t3_supertrend               Falte 2020            {'embargo_nach_falten': (['2018', '2019'], ['2019'])}
+t3_supertrend               Falte 2021            {'embargo_nach_falten': (['2018', '2019', '2020'], ['2019', '2020'])}
+t3_supertrend               Falte 2022            {'embargo_nach_falten': (['2018', '2019', '2020', '2021'], ['2019', '2020', '2021'])}
+t3_supertrend               Falte 2023            {'embargo_nach_falten': (['2018', '2019', '2020', '2021', '2022'], ['2019', '2020', '2021', '2022'])}
+t3_supertrend               Falte 2024            {'embargo_nach_falten': (['2018', '2019', '2020', '2021', '2022', '2023'], ['2019', '2020', '2021', '2022', '2023'])}
+t3_supertrend               Falte 2025            {'embargo_nach_falten': (['2018', '2019', '2020', '2021', '2022', '2023', '2024'], ['2019', '2020', '2021', '2022', '2023', '2024'])}
+t3_supertrend               Falte 2026            {'embargo_nach_falten': (['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'], ['2019', '2020', '2021', '2022', '2023', '2024', '2025'])}
+t3_supertrend               neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+rsi2_crypto                 neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+turtle_soup_crypto          neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+volatility_breakout_crypto  neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+elliott_wave_stocks         neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+rsi2_mean_reversion         neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+turtle_soup_stocks          neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+volatility_breakout         neue Felder           -                                       ['erste_falte_4a', 'erste_falte_trockenlauf_H']
+----------------------------------------------------------------------------------------------------
+Bots mit Aenderung an den Feldern ('erste_falte', 'selektionsfalten', 'bestaetigungsperiode', 'faltenlaenge_jahre', 'purge_tage', 'embargo_tage', 'go_live_schnitt', 'status', 'trades_je_jahr') oder an einer Falte: 1 ['t3_supertrend']
+Geaenderte, neue oder entfallene Falten (Grenzen, Rolle, Training): 1 [('t3_supertrend', '2018')]
+Folgeaenderung nur an embargo_nach_falten: 8 [('t3_supertrend', '2019'), ('t3_supertrend', '2020'), ('t3_supertrend', '2021'), ('t3_supertrend', '2022'), ('t3_supertrend', '2023'), ('t3_supertrend', '2024'), ('t3_supertrend', '2025'), ('t3_supertrend', '2026')]
+
+====================================================================================================
+(b) faltenplan.json auf der Platte (TB-30a-Stand) gegen neuen Plan
+  alt: research/vorregistrierung/ergebnisse/faltenplan.json
+====================================================================================================
+Bot                         Feld                  alt                                     neu
+----------------------------------------------------------------------------------------------------
+elliott_wave                erste_falte           None                                    2018
+elliott_wave                selektionsfalten      []                                      ['2018-2019', '2020-2021', '2022-2023', '2024-2025']
+elliott_wave                bestaetigungsperiode  None                                    2026-2027
+elliott_wave                status                platzhalter                             endgueltig
+elliott_wave                Falte 2018-2019       -                                       neu: selektion
+elliott_wave                Falte 2020-2021       -                                       neu: selektion
+elliott_wave                Falte 2022-2023       -                                       neu: selektion
+elliott_wave                Falte 2024-2025       -                                       neu: selektion
+elliott_wave                Falte 2026-2027       -                                       neu: bestaetigung
+elliott_wave                neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+t3_supertrend               erste_falte           None                                    2019
+t3_supertrend               selektionsfalten      []                                      ['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+t3_supertrend               bestaetigungsperiode  None                                    2026
+t3_supertrend               status                platzhalter                             endgueltig
+t3_supertrend               Falte 2019            -                                       neu: selektion
+t3_supertrend               Falte 2020            -                                       neu: selektion
+t3_supertrend               Falte 2021            -                                       neu: selektion
+t3_supertrend               Falte 2022            -                                       neu: selektion
+t3_supertrend               Falte 2023            -                                       neu: selektion
+t3_supertrend               Falte 2024            -                                       neu: selektion
+t3_supertrend               Falte 2025            -                                       neu: selektion
+t3_supertrend               Falte 2026            -                                       neu: bestaetigung
+t3_supertrend               neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+rsi2_crypto                 erste_falte           None                                    2019
+rsi2_crypto                 selektionsfalten      []                                      ['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+rsi2_crypto                 bestaetigungsperiode  None                                    2026
+rsi2_crypto                 status                platzhalter                             endgueltig
+rsi2_crypto                 Falte 2019            -                                       neu: selektion
+rsi2_crypto                 Falte 2020            -                                       neu: selektion
+rsi2_crypto                 Falte 2021            -                                       neu: selektion
+rsi2_crypto                 Falte 2022            -                                       neu: selektion
+rsi2_crypto                 Falte 2023            -                                       neu: selektion
+rsi2_crypto                 Falte 2024            -                                       neu: selektion
+rsi2_crypto                 Falte 2025            -                                       neu: selektion
+rsi2_crypto                 Falte 2026            -                                       neu: bestaetigung
+rsi2_crypto                 neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+turtle_soup_crypto          erste_falte           None                                    2018
+turtle_soup_crypto          selektionsfalten      []                                      ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+turtle_soup_crypto          bestaetigungsperiode  None                                    2026
+turtle_soup_crypto          status                platzhalter                             endgueltig
+turtle_soup_crypto          Falte 2018            -                                       neu: selektion
+turtle_soup_crypto          Falte 2019            -                                       neu: selektion
+turtle_soup_crypto          Falte 2020            -                                       neu: selektion
+turtle_soup_crypto          Falte 2021            -                                       neu: selektion
+turtle_soup_crypto          Falte 2022            -                                       neu: selektion
+turtle_soup_crypto          Falte 2023            -                                       neu: selektion
+turtle_soup_crypto          Falte 2024            -                                       neu: selektion
+turtle_soup_crypto          Falte 2025            -                                       neu: selektion
+turtle_soup_crypto          Falte 2026            -                                       neu: bestaetigung
+turtle_soup_crypto          neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+volatility_breakout_crypto  erste_falte           None                                    2018
+volatility_breakout_crypto  selektionsfalten      []                                      ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+volatility_breakout_crypto  bestaetigungsperiode  None                                    2026
+volatility_breakout_crypto  status                platzhalter                             endgueltig
+volatility_breakout_crypto  Falte 2018            -                                       neu: selektion
+volatility_breakout_crypto  Falte 2019            -                                       neu: selektion
+volatility_breakout_crypto  Falte 2020            -                                       neu: selektion
+volatility_breakout_crypto  Falte 2021            -                                       neu: selektion
+volatility_breakout_crypto  Falte 2022            -                                       neu: selektion
+volatility_breakout_crypto  Falte 2023            -                                       neu: selektion
+volatility_breakout_crypto  Falte 2024            -                                       neu: selektion
+volatility_breakout_crypto  Falte 2025            -                                       neu: selektion
+volatility_breakout_crypto  Falte 2026            -                                       neu: bestaetigung
+volatility_breakout_crypto  neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+elliott_wave_stocks         erste_falte           None                                    2017
+elliott_wave_stocks         selektionsfalten      ['2019', '2020', '2021', '2022', '2023', '2024', '2025']['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+elliott_wave_stocks         Falte 2017            -                                       neu: selektion
+elliott_wave_stocks         Falte 2018            -                                       neu: selektion
+elliott_wave_stocks         Falte 2019            {'embargo_nach_falten': ([], ['2017', '2018'])}
+elliott_wave_stocks         Falte 2020            {'embargo_nach_falten': (['2019'], ['2017', '2018', '2019'])}
+elliott_wave_stocks         Falte 2021            {'embargo_nach_falten': (['2019', '2020'], ['2017', '2018', '2019', '2020'])}
+elliott_wave_stocks         Falte 2022            {'embargo_nach_falten': (['2019', '2020', '2021'], ['2017', '2018', '2019', '2020', '2021'])}
+elliott_wave_stocks         Falte 2023            {'embargo_nach_falten': (['2019', '2020', '2021', '2022'], ['2017', '2018', '2019', '2020', '2021', '2022'])}
+elliott_wave_stocks         Falte 2024            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023'], ['2017', '2018', '2019', '2020', '2021', '2022', '2023'])}
+elliott_wave_stocks         Falte 2025            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023', '2024'], ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'])}
+elliott_wave_stocks         Falte 2026            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023', '2024', '2025'], ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'])}
+elliott_wave_stocks         neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+rsi2_mean_reversion         erste_falte           None                                    2018
+rsi2_mean_reversion         selektionsfalten      ['2019', '2020', '2021', '2022', '2023', '2024', '2025']['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+rsi2_mean_reversion         Falte 2018            -                                       neu: selektion
+rsi2_mean_reversion         Falte 2019            {'embargo_nach_falten': ([], ['2018'])}
+rsi2_mean_reversion         Falte 2020            {'embargo_nach_falten': (['2019'], ['2018', '2019'])}
+rsi2_mean_reversion         Falte 2021            {'embargo_nach_falten': (['2019', '2020'], ['2018', '2019', '2020'])}
+rsi2_mean_reversion         Falte 2022            {'embargo_nach_falten': (['2019', '2020', '2021'], ['2018', '2019', '2020', '2021'])}
+rsi2_mean_reversion         Falte 2023            {'embargo_nach_falten': (['2019', '2020', '2021', '2022'], ['2018', '2019', '2020', '2021', '2022'])}
+rsi2_mean_reversion         Falte 2024            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023'], ['2018', '2019', '2020', '2021', '2022', '2023'])}
+rsi2_mean_reversion         Falte 2025            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023', '2024'], ['2018', '2019', '2020', '2021', '2022', '2023', '2024'])}
+rsi2_mean_reversion         Falte 2026            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023', '2024', '2025'], ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'])}
+rsi2_mean_reversion         neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+turtle_soup_stocks          erste_falte           None                                    2017
+turtle_soup_stocks          selektionsfalten      ['2019', '2020', '2021', '2022', '2023', '2024', '2025']['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+turtle_soup_stocks          Falte 2017            -                                       neu: selektion
+turtle_soup_stocks          Falte 2018            -                                       neu: selektion
+turtle_soup_stocks          Falte 2019            {'embargo_nach_falten': ([], ['2017', '2018'])}
+turtle_soup_stocks          Falte 2020            {'embargo_nach_falten': (['2019'], ['2017', '2018', '2019'])}
+turtle_soup_stocks          Falte 2021            {'embargo_nach_falten': (['2019', '2020'], ['2017', '2018', '2019', '2020'])}
+turtle_soup_stocks          Falte 2022            {'embargo_nach_falten': (['2019', '2020', '2021'], ['2017', '2018', '2019', '2020', '2021'])}
+turtle_soup_stocks          Falte 2023            {'embargo_nach_falten': (['2019', '2020', '2021', '2022'], ['2017', '2018', '2019', '2020', '2021', '2022'])}
+turtle_soup_stocks          Falte 2024            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023'], ['2017', '2018', '2019', '2020', '2021', '2022', '2023'])}
+turtle_soup_stocks          Falte 2025            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023', '2024'], ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'])}
+turtle_soup_stocks          Falte 2026            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023', '2024', '2025'], ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'])}
+turtle_soup_stocks          neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+volatility_breakout         erste_falte           None                                    2018
+volatility_breakout         selektionsfalten      ['2019', '2020', '2021', '2022', '2023', '2024', '2025']['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+volatility_breakout         Falte 2018            -                                       neu: selektion
+volatility_breakout         Falte 2019            {'embargo_nach_falten': ([], ['2018'])}
+volatility_breakout         Falte 2020            {'embargo_nach_falten': (['2019'], ['2018', '2019'])}
+volatility_breakout         Falte 2021            {'embargo_nach_falten': (['2019', '2020'], ['2018', '2019', '2020'])}
+volatility_breakout         Falte 2022            {'embargo_nach_falten': (['2019', '2020', '2021'], ['2018', '2019', '2020', '2021'])}
+volatility_breakout         Falte 2023            {'embargo_nach_falten': (['2019', '2020', '2021', '2022'], ['2018', '2019', '2020', '2021', '2022'])}
+volatility_breakout         Falte 2024            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023'], ['2018', '2019', '2020', '2021', '2022', '2023'])}
+volatility_breakout         Falte 2025            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023', '2024'], ['2018', '2019', '2020', '2021', '2022', '2023', '2024'])}
+volatility_breakout         Falte 2026            {'embargo_nach_falten': (['2019', '2020', '2021', '2022', '2023', '2024', '2025'], ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'])}
+volatility_breakout         neue Felder           -                                       ['erste_falte', 'erste_falte_4a', 'erste_falte_quelle', 'erste_falte_trockenlauf_H']
+----------------------------------------------------------------------------------------------------
+Bots mit Aenderung an den Feldern ('erste_falte', 'selektionsfalten', 'bestaetigungsperiode', 'faltenlaenge_jahre', 'purge_tage', 'embargo_tage', 'go_live_schnitt', 'status', 'trades_je_jahr') oder an einer Falte: 9 ['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']
+Geaenderte, neue oder entfallene Falten (Grenzen, Rolle, Training): 45 [('elliott_wave', '2018-2019'), ('elliott_wave', '2020-2021'), ('elliott_wave', '2022-2023'), ('elliott_wave', '2024-2025'), ('elliott_wave', '2026-2027'), ('t3_supertrend', '2019'), ('t3_supertrend', '2020'), ('t3_supertrend', '2021'), ('t3_supertrend', '2022'), ('t3_supertrend', '2023'), ('t3_supertrend', '2024'), ('t3_supertrend', '2025'), ('t3_supertrend', '2026'), ('rsi2_crypto', '2019'), ('rsi2_crypto', '2020'), ('rsi2_crypto', '2021'), ('rsi2_crypto', '2022'), ('rsi2_crypto', '2023'), ('rsi2_crypto', '2024'), ('rsi2_crypto', '2025'), ('rsi2_crypto', '2026'), ('turtle_soup_crypto', '2018'), ('turtle_soup_crypto', '2019'), ('turtle_soup_crypto', '2020'), ('turtle_soup_crypto', '2021'), ('turtle_soup_crypto', '2022'), ('turtle_soup_crypto', '2023'), ('turtle_soup_crypto', '2024'), ('turtle_soup_crypto', '2025'), ('turtle_soup_crypto', '2026'), ('volatility_breakout_crypto', '2018'), ('volatility_breakout_crypto', '2019'), ('volatility_breakout_crypto', '2020'), ('volatility_breakout_crypto', '2021'), ('volatility_breakout_crypto', '2022'), ('volatility_breakout_crypto', '2023'), ('volatility_breakout_crypto', '2024'), ('volatility_breakout_crypto', '2025'), ('volatility_breakout_crypto', '2026'), ('elliott_wave_stocks', '2017'), ('elliott_wave_stocks', '2018'), ('rsi2_mean_reversion', '2018'), ('turtle_soup_stocks', '2017'), ('turtle_soup_stocks', '2018'), ('volatility_breakout', '2018')]
+Folgeaenderung nur an embargo_nach_falten: 32 [('elliott_wave_stocks', '2019'), ('elliott_wave_stocks', '2020'), ('elliott_wave_stocks', '2021'), ('elliott_wave_stocks', '2022'), ('elliott_wave_stocks', '2023'), ('elliott_wave_stocks', '2024'), ('elliott_wave_stocks', '2025'), ('elliott_wave_stocks', '2026'), ('rsi2_mean_reversion', '2019'), ('rsi2_mean_reversion', '2020'), ('rsi2_mean_reversion', '2021'), ('rsi2_mean_reversion', '2022'), ('rsi2_mean_reversion', '2023'), ('rsi2_mean_reversion', '2024'), ('rsi2_mean_reversion', '2025'), ('rsi2_mean_reversion', '2026'), ('turtle_soup_stocks', '2019'), ('turtle_soup_stocks', '2020'), ('turtle_soup_stocks', '2021'), ('turtle_soup_stocks', '2022'), ('turtle_soup_stocks', '2023'), ('turtle_soup_stocks', '2024'), ('turtle_soup_stocks', '2025'), ('turtle_soup_stocks', '2026'), ('volatility_breakout', '2019'), ('volatility_breakout', '2020'), ('volatility_breakout', '2021'), ('volatility_breakout', '2022'), ('volatility_breakout', '2023'), ('volatility_breakout', '2024'), ('volatility_breakout', '2025'), ('volatility_breakout', '2026')]
+
+Erwartung aus dem Auftrag: genau ein Bot, genau eine Falte - gilt fuer (a): JA
+Neue Felder je Bot (Herkunft der Ableitung): ['erste_falte_4a', 'erste_falte_trockenlauf_H']
