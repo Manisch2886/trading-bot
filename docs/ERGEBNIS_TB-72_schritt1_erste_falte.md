@@ -278,7 +278,7 @@ stehen aus.
 | `14c796b` | 0 | erster Anlauf: Skript und fünf Belege, unverändert |
 | `0562c75` | 1 | Nachmessung (byteweise gleich), `loader_lesart` je Bot, Vormessung aus `_vt.json`, Nachweis 1, Hashes nachher |
 | `72e512f` | 1 | Belegskript pfadunabhängig, Ausgabe unverändert |
-| *(folgt)* | 4 | dieses Dokument, Journal-Nachtrag `(20j)`, eine Backlog-Zeile |
+| `5dcea37` | 4 | dieses Dokument, Journal-Nachtrag `(20j)`, eine Backlog-Zeile `K4k` |
 
 ---
 
