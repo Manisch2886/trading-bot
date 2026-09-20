@@ -246,36 +246,16 @@ und was gerade auf wen wartet. Dann fangen wir an.
 
 ---
 
-## 7. Der Ersatztext für `ARBEITSWEISE.md`, Abschnitt 10
+## 7. Der Ersatztext für `ARBEITSWEISE.md`, Abschnitt 10 — eingearbeitet
 
-⚠️ **Zeilen 674–743 der Fassung vom 19.09.2026 (779 Zeilen, 40 844 Bytes) werden
-ersetzt durch:**
-
-```markdown
-## 10. Der Umzug in einen neuen Chat
-
-⚠️⚠️ **Das Verfahren steht vollständig in
-`docs/projektfuehrung/UMZUG.md`** (angelegt 19.09.2026). Es ersetzt die
-frühere ZIP-und-Anhang-Übergabe, die durch zwei Anweisungen des Betreibers
-vom 19.09.2026 überholt ist: *„Ich lese die Zipp und berichte nie"* und
-die Weisung, ihn **frühzeitig** auf einen nötigen Umzug hinzuweisen.
-
-**Die drei Sätze, die auch ohne das Dokument gelten:**
-
-1. ⭐ **Die Übergabe wird laufend fortgeschrieben, nicht beim Umzug
-   geschrieben.** Dann kostet ein überraschender Abbruch nichts.
-2. ⚠️ **Nichts, was den Umzug überleben muss, steht in nur einem Träger —
-   und niemals nur im Chatverlauf.** Träger sind: Erinnerung
-   (Arbeitsweise), Projektablage (Stand), Repo (Belege).
-   **`logs/auftraege/` ist kein Träger** — der Ordner ist gitignoriert.
-3. ⚠️ **Nicht umziehen, während eine Sitzung läuft oder Arbeit
-   uncommittet ist.**
-
-**Und vor jedem Umzug unverändert:** der Betreiber wird gefragt, ob die
-Arbeitsweise noch passt oder ergänzt werden soll — dazu wird jede in
-diesem Chat vereinbarte Regel **gegen dieses Dokument geprüft, nicht
-erinnert.**
-```
+✅ **Eingearbeitet am 19.09.2026; der gültige Text steht nur noch in
+`ARBEITSWEISE.md` Abschnitt 10.** Die Kopie, die hier bis zum 20.09.2026 stand
+(23 Zeilen, zeichengleich mit der eingearbeiteten Fassung, per `diff` geprüft),
+ist mit TB-62 entfernt — `DOKUMENTATIONSSTANDARD.md` Regel 9: eine Kopie, deren
+Inhalt anderswo im Repo steht, läuft nur auseinander. ⚠️ **Genau das wäre hier
+passiert:** Abschnitt 10 wurde am 20.09.2026 umgestellt (ZIP ist überall
+abgeschafft, nicht nur beim Umzug — Betreiberentscheidung, `ARBEITSWEISE.md`
+Abschnitt 2), und die Kopie hätte weiterhin die Umzugs-Ausnahme behauptet.
 
 ⭐ **Warum ein Verweis und nicht der ganze Text:** dieselbe Begründung wie bei
 Abschnitt 12 und `PRUEFPRINZIPIEN.md`. `ARBEITSWEISE.md` enthält **stehende

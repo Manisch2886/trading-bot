@@ -17,6 +17,9 @@ Es gilt dauerhaft, nicht nur fuer einzelne Aufgaben.**
 > (Prüfprinzipien). Ergänzt: **2**, **6b**, **7**.
 > ⭐ **Und ein Formfehler behoben:** Die Zeile zu Fable stand in der Tabelle
 > von Abschnitt 1 mitten im Fliesstext; sie steht jetzt wieder in der Tabelle.
+> **Umgestellt 20.09.2026 (TB-62): ZIP überall abgeschafft** — Abschnitte 2,
+> 5b, 6bb, 7, 7c, 10, 11 und 18 tragen den Commit als Mittel; Abschnitt 14
+> Regel 3 und Abschnitt 15 um die zwei Regeln aus Nachtrag (m) ergänzt.
 
 ---
 
@@ -95,44 +98,42 @@ demselben Branch weiterarbeiten — das erzeugt tote PRs.
 
   Bei Fable gehört **bestehender oder neuer Chat** in die Überschrift, nicht nur
   in den Text.
-- ⚠️ **Immer gebündelt als ZIP — auch bei einer einzigen Datei, und immer ALLE
-  Ausgaben einer Antwort in EINEM Archiv** *(verschärft 15.09.2026)*. Nicht
-  mehrere Archive nebeneinander, nicht „ZIP erst ab zwei Dateien". Wer vom
-  iPhone arbeitet, lädt einmal und hat alles.
-- **Die einzelnen Dateien zusätzlich**, nicht nur das Archiv — ein kurzes
-  Dokument liest sich im Chat schneller als nach dem Entpacken.
-- ⚠️ **Das Archiv trägt IMMER den Namen der Sache, die es liefert**
-  *(ergänzt 15.09.2026)* — bei Aufgaben `TB-<Nr>_<Kurzname>.zip`. Gibt es keine
-  TB-Nummer, gilt das Kürzel des Backlog-Punkts oder der Dokumenttyp
-  (`V5b_…`, `UEBERGABE_…`, `RUECKFRAGE_…`). **Nie ein generischer Name wie
-  `AUSGABEN_<Datum>.zip`** — der Nutzer hat Dutzende Downloads im selben Ordner
-  und muss am Namen erkennen, wozu ein Archiv gehört.
-- Dasselbe verlangen die Aufgabendokumente von den Cloud-Sitzungen: ZIP,
-  benannt nach der Aufgabe (`TB-<Nr>_<Kurzname>.zip`), Einzeldateien daneben.
-- ⚠️ **Das gilt genauso für die lokale Claude-Code-Sitzung** *(ergänzt
-  15.09.2026, nachdem TB-34 am Mac kein Archiv erzeugte und der Nutzer es von
-  Hand anfordern musste)*. **Jedes `TESTAUFTRAG_*.md` muss die ZIP-Pflicht
-  selbst enthalten** — Lauf-Bericht, Ergebnisdokument und Protokolle gebündelt,
-  benannt nach der Aufgabe, Ablage in `~/Downloads` (**nicht** ins Repo, sonst
-  blockiert eine unversionierte Datei den nächsten Pull).
+- ⭐⭐ **Kein Archiv. Ergebnisse kommen als Commit im Repo und als einzelne
+  Dateien im Chat — nie als ZIP** *(Betreiberentscheidung 20.09.2026, 12:40, auf
+  Vorlage: „ZIP wird überall abgeschafft, nicht nur beim Umzug")*. Bis dahin
+  verlangte dieser Abschnitt das Gegenteil — ein Archiv je Antwort, benannt nach
+  der Aufgabe, nach `~/Downloads` —, während Abschnitt 10 ZIP seit dem 19.09.
+  als überholt führte; der Widerspruch stand einen Tag in derselben Datei
+  (`K4c`). **Der Zweck der alten Regel bleibt, nur das Mittel wechselt:** *ein
+  Beleg muss die Sitzung überleben.* Dafür sorgte das Archiv; jetzt sorgt der
+  Commit dafür, und er ist der stärkere Träger — **ein Archiv in `~/Downloads`
+  liegt in keiner Version, ein Commit schon.**
+
+  | Weg | Was am Ende wo liegt |
+  |---|---|
+  | **Mac-Sitzung** | Ergebnisdokument unter `docs/`, Belege unter `docs/belege/TB-<Nr>/`, der Auftrag selbst unter `docs/auftraege/` — **committet und gepusht, nach jedem fertigen Teil** (Abschnitt 14, Regel 3). Nichts nach `~/Downloads`: macOS sperrt Claude-Code-Sitzungen dort aus, und der Ordner liegt in keiner Version |
+  | **Cloud-Sitzung** | dasselbe über Zweig und PR — und das Testdokument, das sie für den Mac schreibt, verlangt von der Mac-Sitzung ebenfalls den Commit, kein Archiv |
+  | **Chat** (Fable, Beratung, Bewertung) | einzelne Dateien in der Antwort, jede mit dem Namen aus der Tabelle oben; kurze Dokumente lesen sich im Chat schneller als nach einem Download. Der Weg ins Repo ist Abschnitt 5b |
+
 - ⚠️ **Und für Mac-Läufe, die im Chat Schritt für Schritt angewiesen werden**
   *(ergänzt 15.09.2026)*. Erzeugt eine solche Folge von Befehlen einen Befund,
   der später noch gebraucht wird — eine Messung, eine Faltenzahl, ein Hash —,
-  wird die Ausgabe **in eine Datei geschrieben und am Ende als ZIP gesichert**,
-  nicht nur in den Chat kopiert. *Sonst existiert der Beleg nur als Text in
-  einer Sitzung, die endet.*
+  wird die Ausgabe **in eine Datei unter `docs/belege/` geschrieben und
+  committet**, nicht nur in den Chat kopiert. *Sonst existiert der Beleg nur als
+  Text in einer Sitzung, die endet.*
   > **Am 15.09.2026 betraf das mehrere Befunde:** den Faltenplan mit
   > `--mindesttraining 0` (der die ganze Umfangsentscheidung trug) und die
   > Ausgabe von `herkunft.py` mit dem neuen Datenstand-Hash.
   > **Die Kette, an der es lag:** Das Testdokument schreibt die *Cloud*-Sitzung.
   > Steht die Anforderung nur in ihrem eigenen Abgabeteil, gibt sie sie nicht
   > weiter. **Also gehört sie ausdrücklich in den Auftrag an die Cloud-Sitzung:**
-  > *„Das Testdokument verlangt am Ende ebenfalls ein ZIP der dort entstehenden
-  > Ergebnisse."*
+  > *„Das Testdokument verlangt am Ende ebenfalls, dass die dort entstehenden
+  > Ergebnisse unter `docs/` committet werden."*
 
   ⚠️ **Und beim Abnehmen jeder Cloud-Übergabe wird nachgesehen, ob das
-  Testdokument die ZIP-Pflicht wirklich enthält** *(ergänzt 16.09.2026)* — nicht
-  erst dann, wenn der Mac-Lauf ohne Archiv endet. *Ein Satz im Auftrag ist eine
+  Testdokument die Commit-Pflicht wirklich enthält** *(ergänzt 16.09.2026 für
+  die damalige ZIP-Pflicht, 20.09.2026 auf den Commit umgestellt)* — nicht erst
+  dann, wenn der Mac-Lauf ungesichert endet. *Ein Satz im Auftrag ist eine
   Anforderung; erst die Prüfung macht ihn zur Zusicherung.* Dasselbe gilt für
   „In einfacher Sprache": beides gehört auf dieselbe Abnahmeliste.
 - ⚠️ **`ARBEITSWEISE.md`, `JOURNAL.md` und `BACKLOG.md` werden NICHT bei jeder
@@ -150,8 +151,8 @@ demselben Branch weiterarbeiten — das erzeugt tote PRs.
   *(ergänzt 16.09.2026, eingerichtet am selben Tag)*. Nicht in den
   Downloads-Ordner und dort liegenlassen. **Der feste Ablauf, jedes Mal:**
 
-  1. **Einzeldateien** anbieten, nicht nur das Archiv — ein ZIP muss erst
-     entpackt werden, und der Downloads-Ordner benennt Doppelte still um.
+  1. **Einzeldateien** anbieten *(seit 20.09.2026 ohnehin der einzige Weg,
+     siehe oben)* — der Downloads-Ordner benennt Doppelte still um.
   2. `git branch --show-current && git status --short` — ⚠️ **auf `main` stehen
      und sauber sein**, sonst landet die Ablage auf einem Zweig.
   3. ⚠️ **`ls -lt` auf die heruntergeladenen Dateien, und die BYTEGRÖSSEN gegen
@@ -350,15 +351,15 @@ Mal eintritt:**
 
 | | |
 |---|---|
-| ⭐ **Jede Bewertung eines Ergebnisses bringt ihren Backlog- und Journal-Nachtrag im SELBEN Archiv mit** | Kommt ein ZIP von einer Cloud- oder Mac-Sitzung zurück, bekommt der Nutzer nicht nur die Einordnung, sondern auch die Blöcke zum Ablegen |
+| ⭐ **Jede Bewertung eines Ergebnisses bringt ihren Backlog- und Journal-Nachtrag in DERSELBEN Antwort mit** | Kommt ein Ergebnis von einer Cloud- oder Mac-Sitzung zurück — als Commit, als Ergebnisdokument —, bekommt der Nutzer nicht nur die Einordnung, sondern auch die Blöcke zum Ablegen |
 | **Gilt auch für Fable-Antworten** | eine methodische Festlegung ist ein Ergebnis wie jedes andere |
 | **Gilt auch, wenn der Nachtrag kurz ist** | drei Zeilen sind ein Nachtrag. *Ein ausgelassener kurzer Nachtrag ist der Anfang eines langen* |
 
 **Der Preis, benannt:** ein paar Dateien mehr je Runde.
 **Der Gewinn:** es gibt keinen Zeitpunkt mehr, an dem es *„später"* heisst.
 
-⚠️ **Und es bleibt bei EINEM Archiv je Antwort** (Abschnitt 2) — der Nachtrag
-kommt **hinein**, nicht daneben.
+⚠️ **Und der Nachtrag kommt in dieselbe Antwort wie die Bewertung** (Abschnitt
+2: einzelne Dateien, kein Archiv) — nicht in eine spätere.
 
 ### Der feste Ablauf
 
@@ -508,7 +509,7 @@ eigenen, abgesetzten Block — nicht in den Fliesstext eingestreut.**
 | **Überschrift** | „Deine Aufgaben" oder „Was du jetzt tust" — **sichtbar abgesetzt** |
 | **nummeriert** | in der Reihenfolge, in der sie zu tun sind |
 | **je Aufgabe** | **Was · Wo · Woran du merkst, dass es geklappt hat** (Abschnitt 6b) |
-| ⭐ **dazu, was NICHT von ihm abhängt** | *„läuft ohne dich"*, *„ich warte auf das Archiv"* — damit er nicht sucht, was er übersehen haben könnte |
+| ⭐ **dazu, was NICHT von ihm abhängt** | *„läuft ohne dich"*, *„ich warte auf den Commit der Mac-Sitzung"* — damit er nicht sucht, was er übersehen haben könnte |
 | ⚠️ **und wenn nichts zu tun ist: das ausdrücklich sagen** | *„Nichts zu tun. Ich warte auf X."* **Kein erfundener Aufgabenblock**, nur damit einer dasteht |
 
 **Warum das nicht schon in 6b stand:** 6b sagt, **wie** eine Anweisung aussieht.
@@ -517,8 +518,8 @@ steht** — auch dann, wenn die Aufgaben über die Antwort verstreut schon genan
 wurden. *Der Nutzer führt oft vier Sitzungen parallel; was nicht an einer Stelle
 gebündelt steht, geht unter.*
 
-⚠️ **Auch bei Wartezuständen.** Wartet eine Sitzung auf ein Archiv, gehört in den
-Block: **was wann von wem kommt, und was in der Zwischenzeit zu tun ist.**
+⚠️ **Auch bei Wartezuständen.** Wartet eine Sitzung auf das Ergebnis einer
+anderen, gehört in den Block: **was wann von wem kommt, und was in der Zwischenzeit zu tun ist.**
 
 ---
 
@@ -675,8 +676,8 @@ war die Messung meine Aufgabe, die Wahl seine.*
   18.09. habe ich aus dem TB-47-Bericht *„die letzte Kerze ist bei allen 223
   Dateien sauber"* übernommen — **175 davon tragen `kein_zeuge`**, dort ist
   überhaupt nichts belegbar. *Der Bericht war nicht falsch; meine
-  Zusammenfassung war es.* **Die Rohausgabe liegt im ZIP; sie anzusehen kostet
-  eine Minute.**
+  Zusammenfassung war es.* **Die Rohausgabe liegt unter `docs/belege/`; sie
+  anzusehen kostet eine Minute.**
 - **Zeilen, die kein Befehl sind, werden als solche gekennzeichnet.** Ein
   öffentlicher SSH-Schlüssel, ein Auszug aus einer Datei, ein Beispieltext
   gehören ins Web-Formular oder in den Editor, nicht in die Eingabezeile.
@@ -733,7 +734,7 @@ im Backlog, und jeder ist mindestens einmal vergessen worden.**
 | **Interpreter** | ⭐ **immer `trading-env/bin/python3`**, nie `/usr/bin/python3` — dort fehlt `binance` |
 | **Abbruchkriterium** | gilt nur für Fehlschläge, **die den Gegenstand der Aufgabe betreffen** (T44.11) |
 | **`git status --porcelain`** | am Ende, **nach dem letzten Commit** |
-| **ZIP** | verbindlich, benannt nach der Aufgabe, nach `~/Downloads` |
+| **Commit** | Ergebnisdokument unter `docs/`, Belege unter `docs/belege/TB-<Nr>/`, der Auftrag unter `docs/auftraege/` — committet und gepusht **nach jedem fertigen Teil** (Abschnitt 14, Regel 3). **Kein Archiv, nichts nach `~/Downloads`** (Abschnitt 2) |
 | **„In einfacher Sprache"** | am Ende des Ergebnisdokuments |
 
 ---
@@ -763,10 +764,13 @@ im Backlog, und jeder ist mindestens einmal vergessen worden.**
 ## 10. Der Umzug in einen neuen Chat
 
 ⚠️⚠️ **Das Verfahren steht vollständig in
-`docs/projektfuehrung/UMZUG.md`** (angelegt 19.09.2026). Es ersetzt die
-frühere ZIP-und-Anhang-Übergabe, die durch zwei Anweisungen des Betreibers
-vom 19.09.2026 überholt ist: *„Ich lese die Zipp und berichte nie"* und
-die Weisung, ihn **frühzeitig** auf einen nötigen Umzug hinzuweisen.
+`docs/projektfuehrung/UMZUG.md`** (angelegt 19.09.2026). Eine Übergabe über
+Archive oder Anhänge gibt es nicht — **für den Umzug gilt dieselbe Regel wie
+für jede Abgabe (Abschnitt 2): Commit im Repo und einzelne Dateien, kein
+Archiv.** Anlass waren zwei Anweisungen des Betreibers vom 19.09.2026, *„Ich
+lese die Zipp und berichte nie"* und die Weisung, ihn **frühzeitig** auf
+einen nötigen Umzug hinzuweisen; am 20.09.2026 wurde daraus die allgemeine
+Regel, nicht eine Ausnahme für den Umzug.
 
 **Die drei Sätze, die auch ohne das Dokument gelten:**
 
@@ -804,7 +808,7 @@ nur in einem ZIP-Archiv. Geht das verloren, ist die Nachrechnung verloren.
 |---|---|
 | **Ein Verbot nennt, wovor es schützt** | *„`research/` nicht ändern, damit keine vorhandene Messung überschrieben wird"* — dann ist eine **neue** Datei erkennbar nicht gemeint |
 | ⭐ **Prüfwerkzeuge, die eine Aufgabe erzeugt, gehören ins Repo** | ausdrücklich, mit Zielpfad. *Eine Prüfung, die es gibt, aber nicht dort, wo sie gebraucht wird, ist dieselbe Fehlerfamilie wie eine Wache, die nicht mehr misst* |
-| **Beim Abnehmen gegenprüfen** | Liegt alles, was die Aufgabe erzeugt hat, dort, wo es gebraucht wird? Oder nur im Archiv? |
+| **Beim Abnehmen gegenprüfen** | Liegt alles, was die Aufgabe erzeugt hat, dort, wo es gebraucht wird? Oder nur unter `docs/belege/` statt an seinem Zielpfad? |
 
 ---
 
@@ -1142,15 +1146,14 @@ Aus den Fehlern von TB-15 und TB-16:
   Werten ist schlimmer als ein roter.
 - **Sitzungstitel** `TB-<Nummer> <Kurzname>` an den Anfang.
 - **Frisch von `main` aufsetzen.**
-- **Alle Ergebnisdokumente am Ende gebuendelt als ZIP ausgeben** *(Nutzerwunsch
-  13.09.2026)*. Hat sich bei TB-18 bewaehrt: ein Download statt vier einzelner,
-  und am iPhone deutlich handlicher. Der Wortlaut fuer die Aufgabenbeschreibung:
+- **Alle Ergebnisdokumente am Ende im Repo, nicht gebündelt** *(der
+  Nutzerwunsch vom 13.09.2026 war ein ZIP je Aufgabe; am 20.09.2026 überall
+  durch den Commit ersetzt, Abschnitt 2)*. Der Wortlaut für die
+  Aufgabenbeschreibung:
 
-  > **Alle Ergebnisdokumente am Ende zusaetzlich gebuendelt als eine
-  > ZIP-Datei bereitstellen** — Uebergabe-Zusammenfassung, Testauftrag,
-  > Ergebnisdokument und etwaige Protokolle in einem Archiv, benannt nach der
-  > Aufgabe (`TB-<Nummer>_<Kurzname>.zip`).
+  > **Alle Ergebnisdokumente am Ende im Repo:** Übergabe-Zusammenfassung,
+  > Testauftrag und Ergebnisdokument unter `docs/`, Protokolle und Belege unter
+  > `docs/belege/TB-<Nummer>/`, committet und gepusht — **keine ZIP-Datei.**
 
-  Die einzelnen Dateien **zusaetzlich** anbieten, nicht nur das Archiv: Wenn
-  ein Dokument kurz ist, liest es sich im Chat schneller als nach dem
-  Entpacken.
+  Kurze Dokumente **zusätzlich** als einzelne Datei im Chat: sie lesen sich dort
+  schneller als nach einem Download.
