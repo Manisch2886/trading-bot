@@ -803,6 +803,51 @@ die Sitzung, **übergab den Text aber nicht**; Eingabezeile leer,
 Anführungszeichen unterwegs zerlegt, Text abgeschnitten, oder das Flag übergibt
 keinen ersten Zug. ⭐ **Die Abhilfe braucht die Diagnose nicht.**
 
+### ⭐⭐ Regel 0 — zuerst die Anmeldung prüfen
+
+⚠️⚠️ **Gemessen 20.09.2026, 10:44 und 10:48:** Der Terminalstart meldete
+*„`/remote-control` requires a claude.ai subscription. Run `/login`"*, Fusszeile
+**„Not logged in"**, Kopfzeile **„API Usage Billing"** statt „Claude Max" — und
+beim zweiten Versuch nannte Claude Code selbst die Ursache:
+**`Run in another terminal: security unlock-keychain`**.
+
+> ⭐⭐ **Die Anmeldung ist nicht abgelaufen — der macOS-Schlüsselbund ist
+> gesperrt.** Claude Code legt die Zugangsdaten dort ab. *Erschlossen, nicht
+> gemessen: Über Termius/SSH entsperrt sich der Schlüsselbund nicht, weil keine
+> grafische Anmeldung stattgefunden hat; am Mac selbst tritt der Fall nicht auf.*
+
+| | |
+|---|---|
+| ⚠️ **Ohne Anmeldung** | `/remote-control` **fehlt** — die Sitzung erscheint nicht in App und Web, und du kannst sie vom Telefon weder verfolgen noch steuern |
+| ⚠️⚠️ **Und sie kostet anders** | „API Usage Billing" heisst: der Lauf wird **direkt abgerechnet** statt über das Abo |
+
+> ⭐ **Deshalb ist der erste Befehl jeder Mac-Sitzung `/login`, nicht der Auftrag.**
+
+**Der Ablauf:**
+
+**1. Schlüsselbund entsperren** — in einem **zweiten** Terminalfenster:
+
+```
+security unlock-keychain
+```
+
+⚠️ **Das Passwort wird an der Eingabeaufforderung getippt** — nie als Argument
+an den Befehl gehängt, nie in einen Chat kopiert (Abschnitt 7).
+
+**2. Sitzung starten:**
+
+```
+cd ~/trading-bot && claude --remote-control
+```
+
+⭐ **Bleibt es bei „Not logged in", erst dann `/login`** — dann ist die Anmeldung
+wirklich weg und nicht nur eingeschlossen.
+
+⭐ **Woran du siehst, dass es gilt:** Die Kopfzeile nennt **„Claude Max"**, nicht
+„API Usage Billing", und die Fusszeile zeigt **kein** „Not logged in".
+
+---
+
 ### Die vier Regeln
 
 **1. ⭐⭐ Der Anweisungstext reist nie im Startbefehl mit.**

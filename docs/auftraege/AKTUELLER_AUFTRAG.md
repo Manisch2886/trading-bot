@@ -5,6 +5,13 @@ Sie existiert, damit der Satz, den der Betreiber in eine wartende
 Claude-Code-Eingabezeile einfügt, **bis auf ein einziges Zeichenpaar identisch**
 ist und deshalb weder getippt noch umformuliert werden muss.
 
+⚠️⚠️ **Vor allem anderen: Schlüsselbund entsperren.** In einem zweiten
+Terminalfenster `security unlock-keychain`, Passwort an der Eingabeaufforderung
+tippen. **Sonst fehlt `/remote-control`**, die Sitzung ist in App und Web
+unsichtbar und läuft über „API Usage Billing" statt über das Abo.
+⭐ **Kopfzeile muss „Claude Max" nennen.** Bleibt es danach bei „Not logged in",
+**erst dann** `/login` (`ARBEITSWEISE.md` Abschnitt 14, Regel 0).
+
 **Der einzufügende Satz. Nur die TB-Nummer am Anfang wechselt:**
 
 ```
