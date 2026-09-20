@@ -859,6 +859,35 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 
 ## 10. STARTPUNKT FÜR DIE WEITERE ARBEIT
 
+### ⭐⭐ Schritt 0 vor jeder Mac-Sitzung: den Schlüsselbund entsperren
+
+⚠️⚠️ **Gemessen und vom Betreiber bestätigt, 20.09.2026:** Ein Start über
+Termius/SSH meldete *„Not logged in · Please run `/login`"* und
+*„`/remote-control` requires a claude.ai subscription"*, Kopfzeile **„API Usage
+Billing"** statt „Claude Max". **Die Anmeldung war nicht abgelaufen — der
+macOS-Schlüsselbund war gesperrt.** Claude Code legt die Zugangsdaten dort ab;
+über SSH entsperrt er sich nicht, weil keine grafische Anmeldung stattfand.
+
+**Der erste Befehl, in einem ZWEITEN Terminalfenster:**
+
+```
+security unlock-keychain
+```
+
+⚠️ **Das Passwort wird an der Eingabeaufforderung getippt** — nie als Argument
+an den Befehl gehängt, nie in einen Chat kopiert (`ARBEITSWEISE.md` §7).
+
+| Ohne diesen Schritt | |
+|---|---|
+| ⚠️ `/remote-control` fehlt | Die Sitzung erscheint **nicht** in App und Web |
+| ⚠️⚠️ **Andere Abrechnung** | „API Usage Billing" heisst: **direkt abgerechnet** statt über das Abo |
+
+⭐ **Kontrolle:** Kopfzeile nennt **„Claude Max"**, Fusszeile zeigt **kein**
+„Not logged in". Bleibt es dabei, **erst dann** `/login`.
+
+*Vollständig in `ARBEITSWEISE.md` Abschnitt 14, Regel 0.*
+
+
 ### 1. Wo wir aktuell stehen
 **Neun** Bots sind aufgebaut, validiert und laufen automatisiert per Cronjob im Paper-Trading-Modus (Abschnitt 2). **Vier** Claude-Agenten sind produktiv im Einsatz, dazu das Quartals-Review-System. Zwei Beobachtungsebenen laufen: der Telegram-Bot (`/status`, `/positions`, `/pnl` plus Push-Nachrichten bei neuem Trade, Stop-Loss und ausgebliebenem Cronjob-Lauf) und das Web-Dashboard als PWA auf dem iPhone.
 

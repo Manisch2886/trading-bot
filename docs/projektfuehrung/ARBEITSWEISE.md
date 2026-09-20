@@ -430,6 +430,14 @@ welcher Ordner). Bei mehreren Wegen sagen, **welcher zuerst** kommt und ob die
 Reihenfolge zwingend ist. Und benennen, **was schiefgehen kann** und was dann
 zu tun ist.
 
+⚠️ **Das gilt ausdrücklich auch für Termius und für das Beenden einer Sitzung**
+*(ergänzt 20.09.2026)*. Der Betreiber arbeitet vom Telefon. **Jeder Schritt wird
+einzeln genannt — auch das Trennen und das Schliessen**, mit der Angabe, **was
+dabei mit dem laufenden Prozess geschieht**, woran er es sieht und wie er
+zurückkommt. ⛔ **Knopfnamen und Menüpfade, die die Sitzung nicht sehen kann,
+werden nicht erfunden** — stattdessen wird das Ziel benannt. *Ein erfundener
+Menüpfad kostet mehr Zeit als eine ehrliche Lücke.*
+
 ⚠️ **Auch dann, wenn der Schritt trivial aussieht** *(ergänzt 18.09.2026)*.
 Der Nutzer hat in dieser Sitzung **viermal** „leite mich step by step an"
 wiederholen müssen — jedes Mal an einer Stelle, die ich für offensichtlich
@@ -812,9 +820,9 @@ beim zweiten Versuch nannte Claude Code selbst die Ursache:
 **`Run in another terminal: security unlock-keychain`**.
 
 > ⭐⭐ **Die Anmeldung ist nicht abgelaufen — der macOS-Schlüsselbund ist
-> gesperrt.** Claude Code legt die Zugangsdaten dort ab. *Erschlossen, nicht
-> gemessen: Über Termius/SSH entsperrt sich der Schlüsselbund nicht, weil keine
-> grafische Anmeldung stattgefunden hat; am Mac selbst tritt der Fall nicht auf.*
+> gesperrt.** Claude Code legt die Zugangsdaten dort ab. ***Bestätigt** durch
+> den Betreiber am 20.09.2026: Über Termius/SSH entsperrt sich der Schlüsselbund
+> nicht, weil keine grafische Anmeldung stattgefunden hat.*
 
 | | |
 |---|---|
@@ -975,3 +983,26 @@ Abschnitt 2 ausdrücklich **kein Träger**.
    `PRUEFPRINZIPIEN.md`.
 3. ⚠️ **Gelöscht wird nur mit Nachweis** — byteweise gegen den Verbleib geprüft
    oder ausdrücklich als ersatzlos benannt.
+
+---
+
+## 17. Jede Aufgabe beginnt mit einem Satz in einfacher Sprache
+
+⚠️ **Anweisung des Betreibers, 20.09.2026:** *„…wenn du eine Aufgabe startest,
+in einem einleitenden Satz in einfacher Sprache kurz sagst, was du jetzt machst
+… ein, zwei Sätze, ohne stark auszuholen."*
+
+> ⭐ **Bevor die erste Messung läuft, stehen ein bis zwei Sätze, was jetzt
+> passiert** — Alltagssprache, keine Fachbegriffe, keine Vorgeschichte.
+
+| ⭐ so | ⛔ nicht so |
+|---|---|
+| *„Ich sehe nach, ob die Sitzung ihre Arbeit gespeichert hat."* | *„Ich führe eine Zustandsmessung des Arbeitsbaums durch, um die Konsistenz zu verifizieren."* |
+| *„Ich schreibe die Regel in die Dokumente und lege dir danach einen Befehl vor."* | Drei Absätze Begründung, bevor etwas passiert |
+
+⚠️ **Abgrenzung zu Abschnitt 4:** Das hier ist der **Einstieg** und gilt
+**immer**. Abschnitt 4 regelt den **Abschluss** „In einfacher Sprache" und gilt
+**nur bei aufbereiteten Rückmeldungen von aussen** — er bleibt unverändert.
+
+⭐ **Warum ein Satz genügt:** Der Betreiber muss erkennen können, ob er die
+richtige Sache bekommt, **bevor** sie gemacht ist. Dafür reicht das Was.
