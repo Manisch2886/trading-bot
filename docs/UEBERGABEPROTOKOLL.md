@@ -905,6 +905,21 @@ an den Befehl gehängt, nie in einen Chat kopiert (`ARBEITSWEISE.md` §7).
 
 *Vollständig in `ARBEITSWEISE.md` Abschnitt 14, Regel 0.*
 
+### ⭐ Welcher Auftrag gerade gilt — und warum er hier NICHT steht
+
+**Er steht in `docs/auftraege/AKTUELLER_AUFTRAG.md`, und zwar nur dort.**
+
+⭐⭐ **Diese Datei führt die Auftragsnummer bewusst nicht mit.** Eine Angabe an
+zwei Orten ist eine Angabe, die an einem von beiden veraltet — und ein Zeiger,
+den jemand zu aktualisieren vergisst, ist der häufigste Fehler beim Zeigen.
+*Dieselbe Begründung wie `DOKUMENTATIONSSTANDARD.md` Regel 9: was abgelöst wird,
+wird entfernt und nicht danebengestellt.*
+
+**Der Satz, den der Betreiber in die wartende Eingabezeile einfügt, steht
+ebenfalls dort** — mit vorangestellter TB-Nummer, damit die Sitzung in der
+Historie unterscheidbar ist, und mit einer Wache im letzten Satz: nennt die
+Zeigerdatei eine andere Nummer als die vorangestellte, bricht die Sitzung ab.
+
 
 ### 1. Wo wir aktuell stehen
 **Neun** Bots sind aufgebaut, validiert und laufen automatisiert per Cronjob im Paper-Trading-Modus (Abschnitt 2). **Vier** Claude-Agenten sind produktiv im Einsatz, dazu das Quartals-Review-System. Zwei Beobachtungsebenen laufen: der Telegram-Bot (`/status`, `/positions`, `/pnl` plus Push-Nachrichten bei neuem Trade, Stop-Loss und ausgebliebenem Cronjob-Lauf) und das Web-Dashboard als PWA auf dem iPhone.

@@ -268,18 +268,44 @@ wurde nie vergeben) stehen seit dem 20.09.2026 **zeichengleich** in
 |---|---|
 | **T56b.1** | ⭐⭐ **DER SATZ BEGRÜNDETE SICH SELBST.** Abschnitt 15.6 Punkt 2 sagte *„die Schranke dafür ist das Register, nicht die Datenlage"*. **Gemessen: kein Registertext nennt eine Jahreszahl** — 4a sagt „erstes Jahr mit Daten und Vorlauf", 3b (a) sagt „ab einem handelbaren Symbol". `ERSTE_MOEGLICHE_FALTE = 2019` stand **nur im Code und in diesem Satz**. Berichtigt in **Abschnitt 21**, null entfernte Zeilen. *Fehlerklasse C4: eine Angabe, die nicht sagt, gegen was sie prüft* |
 | **T56b.2** | ⭐ **BETREIBERENTSCHEIDUNG 19.09.2026: Wo 4a und 3b (a) verschiedene erste Falten ergeben, bindet 3b (a).** Betroffen genau ein Bot: `t3_supertrend`, dessen Zeile dadurch **unverändert** bei 2019 / 7 Falten bleibt (Loader `MIN_HISTORY_DAYS = 730`, BTC/ETH handelbar erst ab 2019-08-17, Falte 2018 hat 0 Symbole). ⚠️ Begründung **strukturell**, nicht ergebnisbezogen: eine Falte ohne handelbares Symbol erzeugt keinen Falten-Sharpe |
-| **T56b.3** *(berichtigt)* | ⭐ **BETREIBERENTSCHEIDUNG 19.09.2026: Das Amendment zu Sperrliste Punkt 4 wird EINMAL vollzogen, nach TB-31, für alle neun Bots.** `DD_Toleranz` wird dabei bei `rsi2_mean_reversion` und `volatility_breakout` **nachgiebiger** (100 % Exposure: −8,55 → **−12,89**); die Zahlen stehen gemessen in Registerabschnitt 21.6, die Entscheidung in **21.9**. ⭐ **Der Grund ist die Reihenfolge, nicht die Richtung:** fünf von neun Bots haben gemessen **keine** `DD_Toleranz` (Krypto, `status: platzhalter`), ein Amendment jetzt bewegte die gesperrte Zahl zweimal. ⚠️ **Ausdrücklich nicht entschieden wurde, die Lockerung zu vermeiden** — sie steht so oder so und wird durch Warten nicht kleiner |
+| **T56b.3** *(berichtigt)* | ⭐ **BETREIBERENTSCHEIDUNG 19.09.2026: Das Amendment zu Sperrliste Punkt 4 wird EINMAL vollzogen, nach **TB-61**, für alle neun Bots.** *(Bis 20.09.2026 stand hier „nach TB-31“. TB-31 ist erledigt; der Lauf, auf den gewartet wird, heißt jetzt TB-61.)* `DD_Toleranz` wird dabei bei `rsi2_mean_reversion` und `volatility_breakout` **nachgiebiger** (100 % Exposure: −8,55 → **−12,89**); die Zahlen stehen gemessen in Registerabschnitt 21.6, die Entscheidung in **21.9**. ⭐ **Der Grund ist die Reihenfolge, nicht die Richtung:** fünf von neun Bots haben gemessen **keine** `DD_Toleranz` (Krypto, `status: platzhalter`), ein Amendment jetzt bewegte die gesperrte Zahl zweimal. ⚠️ **Ausdrücklich nicht entschieden wurde, die Lockerung zu vermeiden** — sie steht so oder so und wird durch Warten nicht kleiner |
 | **T56b.4** | ⚠️ **Die vier Aktien-Bots teilen keinen Faltenplan mehr.** `elliott_wave_stocks` und `turtle_soup_stocks` beginnen **2017**, `rsi2_mean_reversion` und `volatility_breakout` **2018**. Abschnitt 3 des Registers sagt dreimal *„teilt Universum und Faltenplan mit den übrigen aktien-Bots — dieselbe Tabelle"*. **Diese Prämisse trägt nicht mehr**; gehört mit T56b.3 in denselben Zug |
-| **T56b.5** | ⚠️ **Fünf von neun Bots haben KEINE `DD_Toleranz.`** Die Krypto-Bots stehen in **beiden** Benchmark-Tabellen als `status: platzhalter` mit leerer `dd_toleranz`; das hängt an TB-31. **Gemessen, nicht vermutet.** Die Drawdown-Bedingung (Abschnitt 4) braucht die Zahl — **vor dem Tag** |
+| **T56b.5** *(berichtigt 20.09.2026)* | ⚠️ **Fünf von neun Bots haben KEINE `DD_Toleranz.`** Die Krypto-Bots stehen in **beiden** Benchmark-Tabellen als `status: platzhalter` mit leerer `dd_toleranz`. **Gemessen, nicht vermutet.** Die Drawdown-Bedingung (Abschnitt 4) braucht die Zahl — **vor dem Tag.** ⭐⭐ **Berichtigt: es hängt NICHT an TB-31** — der Halbsatz ist entfernt, nicht danebengestellt. **Der Platzhalter hängt an einer Codezeile:** `research/vorregistrierung/faltenplan.py:216` setzt in `plan_krypto()` hart `"status": "platzhalter"`; `benchmark.py:176` prüft `if p["status"] != "endgueltig"` und überspringt den Bot mit `continue`. ⇒ **TB-61** |
 | **T56b.6** | **Zwei Code-Kopien der Schranke stehen noch:** `research/faltenplan_neun/faltenplan_neun.py:120` und `research/krypto_historie/faltenplan.py:64`. ⚠️ **Der Kommentar in `faltenplan_neun.py:119` verweist auf `registerdaten.py::ERSTE_MOEGLICHE_FALTE` — eine Konstante mit 0 Treffern im Quelltext.** Eigene Aufgabe **mit Mac-Lauf**; Freigabe liegt seit TB-56 vor, nicht in Anspruch genommen. ⚠️ **Dabei mit zu lösen: `test_faltenplan_neun.py:519` (Probe F) verfälscht genau diese Konstante** — fällt sie weg, misst die Probe nichts mehr (A5) |
 | **T56b.7** | **„Änderung an Registertext 5f" ist nicht spezifiziert.** Die Übergabe vom 19.09. führt sie als Punkt; **gemessen: im gesamten Repo steht nirgends, worin sie bestehen soll** (einziger Treffer ist die Übergabezeile selbst). Der offene Teil von 5f — der fehlende Lock-Hash — ist mit Abschnitt 20 geschlossen. **Nichts erfunden; Rückfrage an den Betreiber** |
 | **T56b.8** | **Abschnitte 18 und 20 bestehen den Tatsachennotiz-Test** (jeder Satz Messwert mit Herkunft oder Verweis, Schlussabsatz nennt die Grenzen). ⚠️ **Ein Formbefund:** beide verweisen auf *„die Form der Tatsachennotiz zu 4d (Abschnitt 15.6)"* — und genau diese Tabelle ist jetzt ERSETZT. Der Verweis bleibt gültig (er zeigt auf die Form), ist aber in Abschnitt 21.7 festgehalten, damit er nicht stillschweigend in die Irre führt |
 
 *T56b.3 steht in der berichtigten Fassung aus dem Schlussblock des Nachtrags (s) („Berichtigung zu T56b.3 in diesem Nachtrag — die Entscheidung ist gefallen"); die ursprüngliche Fassung „OFFEN, BETREIBER" ist nicht übernommen, wie der Nachtrag es verlangt.*
 
-⇒ **Damit rückt TB-31 (Krypto-Falten) auf die Kette vor den Tag.** Es ist jetzt
-nicht mehr nur Vorbedingung des Faltenplans, sondern auch die des Amendments und
-damit des signierten Tags.
+⇒ ⚠️⚠️ **BERICHTIGT AM 20.09.2026 — der Satz, der hier stand, ist
+entfernt.** Er lautete *„Damit rückt TB-31 (Krypto-Falten) auf die Kette vor den
+Tag"* und setzte voraus, dass TB-31 noch aussteht. **Gemessen an `79742d1`: TB-31
+ist erledigt (PR #105), TB-34 hat den Kursbestand neu aufgebaut (`data/`: 223
+Dateien, gezählt), und die Krypto-Falten stehen in Registerabschnitt 21.** Die
+Bedingung, auf die fünf Bots warten, ist eingetreten — **nur sagt es ihnen
+niemand.**
+
+⚠️⚠️ **Und dabei ein grösserer Befund, der vorher niemandem aufgefallen ist:
+`benchmark_drawdowns.json` ist auch für die VIER AKTIEN-BOTS überholt.** Sie
+stehen dort als `status: endgueltig` mit Falten **ab 2019** — nach
+Registerabschnitt 21 beginnen sie **2017** (`elliott_wave_stocks`,
+`turtle_soup_stocks`) bzw. **2018** (`rsi2_mean_reversion`,
+`volatility_breakout`). Die Datei trägt noch die Falten der entfernten Schranke.
+⭐ *Ein Zustand, der sich selbst als fertig bezeichnet, ist gefährlicher als
+einer, der sich Platzhalter nennt.*
+
+⇒ ⭐ **Damit erklärt sich der eine unerwartet rote Test vollständig:**
+`auswertung.py:237` liest `eintrag["falten"][z["falte"]]`, sucht die Falte `2017`
+und findet in der Tabelle erst `2019`. *Nicht gemessen, sondern erschlossen:
+dass er nach dem neuen Lauf grün wird. Das ist zu prüfen, nicht vorauszusetzen.*
+
+⇒ **Die Kette vor dem Tag heißt jetzt TB-61**
+(`docs/auftraege/MAC_TB-61_benchmark_neun.md`, beauftragt am 20.09.2026 mit
+`496bfa5`): Ausgabeschalter in `benchmark.py`, `plan_krypto()` liefert den
+gemessenen Plan, Lauf **daneben** nach `benchmark_drawdowns_neu.json`.
+⛔ **Die gesperrte Datei bleibt byteweise unverändert** (Registerabschnitt 21.9);
+SHA-256 `a163c498…36d1ee`, am 20.09. nachgemessen, ist der Nachweis.
+**Das Amendment selbst braucht danach eine eigene Betreiberfreigabe.**
 
 ### Aus Fables Methodenantwort — Nachtrag (t)
 
