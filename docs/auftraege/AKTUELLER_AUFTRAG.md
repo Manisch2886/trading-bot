@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-61** | `docs/auftraege/MAC_TB-61_benchmark_neun.md` | Benchmark-Tabelle für alle neun Bots, Lauf **daneben** — rechnet, braucht `trading-env` |
+| **TB-65** | `docs/auftraege/MAC_TB-65_benchmarkschranke_pruefen.md` | ⭐⭐ **Welche Schranke gilt für den Benchmark?** Rein lesend, entscheidet nichts — ⚠️ **blockiert das Amendment für die fünf Krypto-Bots** |
 | **TB-62** | `docs/auftraege/MAC_TB-62_nachtraege_m_v.md` | Einarbeitung der Nachträge (m) und (v) — reine Dokumentation, rechnet nicht |
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
 | **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an |
@@ -49,13 +49,16 @@ gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ⭐ **Betreiberentscheidung 20.09.2026:** Alle fünf Punkte der Bestandsaufnahme
 werden umgesetzt, in dieser Reihenfolge. **TB-64 ist bereits formuliert und
-steht oben in der Auftragstabelle.**
+steht oben in der Auftragstabelle.** ⚠️ **Umnummeriert am 20.09.2026, 14:40:**
+Die Planungsnummern `TB-65`–`TB-67` sind zu `TB-66`–`TB-68` geworden, weil `TB-65`
+an den Prüfauftrag zur Benchmark-Schranke ging — er ist dringender und blockiert
+das Amendment. *Kein Auftragsdokument trug diese Nummern, gemessen; nichts bricht.*
 
 | | Vorhaben | hängt an | Art |
 |---|---|---|---|
-| **TB-65** | Entdoppelung: der Eröffnungstext und *"In einfacher Sprache"* stehen je mehrfach | TB-62 | Dokumentation |
-| **TB-66** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-65 | Dokumentation |
-| **TB-67** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
+| **TB-66** | Entdoppelung: der Eröffnungstext und *"In einfacher Sprache"* stehen je mehrfach | TB-62 | Dokumentation |
+| **TB-67** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-66 | Dokumentation |
+| **TB-68** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
 
 ⚠️⚠️ **Die Aufträge werden ERST GESCHRIEBEN, WENN IHR VORGÄNGER DURCH IST.**
 *Gemessen am 20.09.2026: Der TB-62-Auftrag trug eine Nummer und eine Anzahl, die

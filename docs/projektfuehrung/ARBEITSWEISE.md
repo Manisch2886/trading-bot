@@ -554,6 +554,25 @@ Aber *„hier sind drei Wege"* ohne Empfehlung verlagert die Vorarbeit zurück a
 ihn, und er hat die Möglichkeiten nicht selbst durchgerechnet. **Eine benannte
 Empfehlung ist widersprechbar; eine ausgelassene ist nur Arbeit.**
 
+⚠️⚠️ **AM 20.09.2026 DREIMAL VERLETZT — und der Betreiber musste zum
+VIERTEN Mal nachfragen.** Betroffen: die ZIP-Frage (12:40), die Epic-Frage
+(12:58) und die Frage zur Benchmark-Schranke (14:25). **Alle drei Vorlagen
+nannten die Möglichkeiten mit ihrem Preis — und keine nannte eine Empfehlung.**
+
+⭐⭐ **Die Ursache ist gemessen und strukturell, nicht Nachlässigkeit im
+Einzelfall:** Die Regeln für die AUSGABE einer Antwort stehen verstreut in
+**6b** (Schritt für Schritt), **6bb** (Aufgabenblock am Ende), **6c** (keine
+Arbeitszeitangaben), **6d** (Empfehlung) und seit dem 20.09. im Unterabschnitt
+zu den Kopierblöcken. ⚠️ **Es gibt keine Stelle, die vor dem Absenden einer
+Antwort als Liste gilt** — und verstreute Regeln werden beim Schreiben nicht
+gelesen, sondern erinnert. *Am selben Tag ist dasselbe mit den Kopierblöcken
+passiert: Regel vorhanden, Ablauf beschrieben statt geliefert.*
+
+⇒ ⭐ **Daraus folgt die Aufgabe `TB-67`** (`ARBEITSWEISE.md` neu ordnen): Die
+Ausgaberegeln gehören in **eine** Liste, die vor jeder Antwort gilt, nicht in
+fünf Unterabschnitte. **Der Anlass dafür ist damit nicht mehr kosmetisch,
+sondern zweimal gemessen.**
+
 ⚠️ **Die Grenze:** Wo die Entscheidung von etwas abhängt, das nur der Betreiber
 weiss — seine Risikotragfähigkeit, seine verfügbare Zeit, sein Wohnsitzrecht —
 wird das **gesagt** statt geraten. *Beispiel 16.09.: beim Aktien/Krypto-Schlüssel
