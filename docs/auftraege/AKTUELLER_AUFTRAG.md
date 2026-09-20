@@ -37,11 +37,11 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | TB | Auftragsdokument | kurz |
 |---|---|---|
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
-| **TB-71** | `docs/auftraege/MAC_TB-71_register_schliessen.md` | ⭐⭐ **Das Register schliessen** — Platzhalter in 23.3 fällt (Zeitachsen-Satz an 3b (b)), neuer Abschnitt **24** mit der Entscheidungsregel zu Festlegung 1 **vor jeder Messung**. ⛔ **Rechnet nicht** |
+| **TB-72** | `docs/auftraege/MAC_TB-72_erste_falte_aus_trockenlauf.md` | ⭐⭐ **`t3_supertrend` beginnt 2019** (21.3 (b) bindet) **plus Schliessung der Klasse**: `faltenplan.py` leitet die erste Falte aus dem Trockenlauf ab. ⚠️ **Rechnet**, Tabellen **daneben**, steht vor dem Tag |
 | **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an. ⚠️ **Schritt 5b am 20.09. ergänzt** (Betreiberentscheidung): die drei übrigen `B`-Zeilen nach `docs/UMGEBUNGEN.md` |
 
-*Gesetzt 20.09.2026 (zuvor TB-68, erledigt mit `97cbcef`, nachgemessen und
-geschlossen am 20.09.2026, 18:40 Ortszeit; davor TB-67 `a15746f`, TB-66 `fe76857`, TB-60 `c04b348`/`79742d1`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 20.09.2026 (zuvor TB-71, erledigt mit `4af44da`, nachgemessen und
+geschlossen am 20.09.2026, 19:05 Ortszeit; davor TB-68 `97cbcef`, TB-67 `a15746f`, TB-66 `fe76857`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
@@ -57,7 +57,6 @@ gemessen; nichts bricht.*
 | | Vorhaben | hängt an | Art |
 |---|---|---|---|
 | **TB-69** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-68 | Dokumentation |
-| **TB-72** | ⭐⭐ **`t3_supertrend` beginnt 2019** — Berichtigung nach 21.3 (b) (der Trockenlauf bindet bei Abweichung von 4a), **plus Schliessung der Klasse**: `faltenplan.py` leitet die erste Falte aus dem Trockenlauf ab statt 4a nachzurechnen. Wirkung bekannt und in die Notiz: `DD_Toleranz` −45,16 → −48,10 bei 100 % | TB-71 | ⚠️ **rechnet**, vor dem Tag |
 | **TB-73** | Die Wirkung des MtM-Drawdowns messen — je Bot, an den TB-24-Trade-Listen und den Kursdateien, als **Forschungsskript ausserhalb des Laufcodes**. ⛔ **Erst nach TB-71 (b)**; das Ergebnis geht in die Notiz zu Festlegung 1, **nie in eine Entscheidung** | TB-71, TB-72 | **rechnet** |
 | **TB-70** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
 
