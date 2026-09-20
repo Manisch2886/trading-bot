@@ -221,3 +221,22 @@ mass 0) — es ist die `K4g`-Zeile selbst, die die Null-Messung zitiert, kein
 Regeleintrag. **Ob B2 (Messbefund), B3 und der B7-Beleg irgendwo als Regel oder
 Tatsache hingehören, ist die Betreiberentscheidung, die der Auftrag ausdrücklich
 offen lässt.**
+
+---
+
+## Schritt 4 — eine Zeile im Backlog
+
+**Nächste freie K-Nummer, gemessen** mit `^\| \*\*(K\d[a-z])\*\*` (ohne
+schliessenden Balken, ohne `sort -u`) über `BACKLOG.md` **und**
+`BACKLOG_ARCHIV.md`: höchste vergebene **`K4g`** (Zählung 1: `grep -oE … | sort
+| tail`; Zählung 2: Python `max()` über Ziffer und Buchstabe — beide `K4g`).
+⇒ vergeben **`K4h`**, eingefügt in **Abschnitt 4** direkt nach der Zeile `K3j`
+(dem Ende der Tabelle; Anker genau einmal vorhanden, vor dem Schreiben geprüft).
+
+`git diff --numstat`: `BACKLOG.md` **1 / 0**. K-Zeilen im Backlog 85 → 86, über
+beide Dateien **keine Nummer doppelt** (`sort | uniq -d` leer).
+
+⚠️ *Zur Lage von `K4g`:* Sie steht nicht in Abschnitt 4, sondern in Block `2z`
+(Z. 1290, TB-62). `K4h` steht in Abschnitt 4, wie der Auftrag verlangt, und
+nennt `K4g` — die offene Ortsfrage aus `K4g` ist damit an ihrer Antwort
+verlinkt, ohne `K4g` anzufassen.
