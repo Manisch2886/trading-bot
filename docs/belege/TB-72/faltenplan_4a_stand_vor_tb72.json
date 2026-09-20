@@ -1,0 +1,1312 @@
+{
+  "elliott_wave": {
+    "bestaetigungsperiode": "2026-2027",
+    "embargo_tage": 11,
+    "erste_falte": 2018,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [],
+        "name": "2018-2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2017-12-21",
+        "von": "2018-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2018-2019"
+        ],
+        "name": "2020-2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-12-21",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2018-2019",
+          "2020-2021"
+        ],
+        "name": "2022-2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-12-21",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2018-2019",
+          "2020-2021",
+          "2022-2023"
+        ],
+        "name": "2024-2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-12-21",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2018-2019",
+          "2020-2021",
+          "2022-2023",
+          "2024-2025"
+        ],
+        "name": "2026-2027",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-12-21",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "26.0 gefundene Trades je vollem Kalenderjahr liegen unter der Schwelle von 30",
+    "faltenlaenge_jahre": 2,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "krypto",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 11,
+    "selektionsfalten": [
+      "2018-2019",
+      "2020-2021",
+      "2022-2023",
+      "2024-2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 26.0
+  },
+  "elliott_wave_stocks": {
+    "bestaetigungsperiode": "2026",
+    "embargo_tage": 134,
+    "erste_falte": 2017,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2018-01-01",
+        "embargo_nach_falten": [],
+        "name": "2017",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2016-08-20",
+        "von": "2017-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2019-01-01",
+        "embargo_nach_falten": [
+          "2017"
+        ],
+        "name": "2018",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2017-08-20",
+        "von": "2018-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018"
+        ],
+        "name": "2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2018-08-20",
+        "von": "2019-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2021-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019"
+        ],
+        "name": "2020",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-08-20",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "name": "2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2020-08-20",
+        "von": "2021-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2023-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "2022",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-08-20",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ],
+        "name": "2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2022-08-20",
+        "von": "2023-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2025-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "name": "2024",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-08-20",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "name": "2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2024-08-20",
+        "von": "2025-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "name": "2026",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-08-20",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "50.9 gefundene Trades je vollem Kalenderjahr liegen ueber der Schwelle von 30",
+    "faltenlaenge_jahre": 1,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "aktien",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 134,
+    "selektionsfalten": [
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 50.9
+  },
+  "rsi2_crypto": {
+    "bestaetigungsperiode": "2026",
+    "embargo_tage": 10,
+    "erste_falte": 2019,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [],
+        "name": "2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2018-12-22",
+        "von": "2019-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2021-01-01",
+        "embargo_nach_falten": [
+          "2019"
+        ],
+        "name": "2020",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-12-22",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2019",
+          "2020"
+        ],
+        "name": "2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2020-12-22",
+        "von": "2021-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2023-01-01",
+        "embargo_nach_falten": [
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "2022",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-12-22",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ],
+        "name": "2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2022-12-22",
+        "von": "2023-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2025-01-01",
+        "embargo_nach_falten": [
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "name": "2024",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-12-22",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "name": "2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2024-12-22",
+        "von": "2025-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "name": "2026",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-12-22",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "134.0 gefundene Trades je vollem Kalenderjahr liegen ueber der Schwelle von 30",
+    "faltenlaenge_jahre": 1,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "krypto",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 10,
+    "selektionsfalten": [
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 134.0
+  },
+  "rsi2_mean_reversion": {
+    "bestaetigungsperiode": "2026",
+    "embargo_tage": 18,
+    "erste_falte": 2018,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2019-01-01",
+        "embargo_nach_falten": [],
+        "name": "2018",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2017-12-14",
+        "von": "2018-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [
+          "2018"
+        ],
+        "name": "2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2018-12-14",
+        "von": "2019-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2021-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019"
+        ],
+        "name": "2020",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-12-14",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "name": "2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2020-12-14",
+        "von": "2021-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2023-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "2022",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-12-14",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ],
+        "name": "2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2022-12-14",
+        "von": "2023-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2025-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "name": "2024",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-12-14",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "name": "2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2024-12-14",
+        "von": "2025-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "name": "2026",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-12-14",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "537.3 gefundene Trades je vollem Kalenderjahr liegen ueber der Schwelle von 30",
+    "faltenlaenge_jahre": 1,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "aktien",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 18,
+    "selektionsfalten": [
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 537.3
+  },
+  "t3_supertrend": {
+    "bestaetigungsperiode": "2026",
+    "embargo_tage": 23,
+    "erste_falte": 2018,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2019-01-01",
+        "embargo_nach_falten": [],
+        "name": "2018",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2017-12-09",
+        "von": "2018-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [
+          "2018"
+        ],
+        "name": "2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2018-12-09",
+        "von": "2019-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2021-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019"
+        ],
+        "name": "2020",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-12-09",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "name": "2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2020-12-09",
+        "von": "2021-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2023-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "2022",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-12-09",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ],
+        "name": "2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2022-12-09",
+        "von": "2023-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2025-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "name": "2024",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-12-09",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "name": "2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2024-12-09",
+        "von": "2025-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "name": "2026",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-12-09",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "193.2 gefundene Trades je vollem Kalenderjahr liegen ueber der Schwelle von 30",
+    "faltenlaenge_jahre": 1,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "krypto",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 23,
+    "selektionsfalten": [
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 193.2
+  },
+  "turtle_soup_crypto": {
+    "bestaetigungsperiode": "2026",
+    "embargo_tage": 10,
+    "erste_falte": 2018,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2019-01-01",
+        "embargo_nach_falten": [],
+        "name": "2018",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2017-12-22",
+        "von": "2018-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [
+          "2018"
+        ],
+        "name": "2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2018-12-22",
+        "von": "2019-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2021-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019"
+        ],
+        "name": "2020",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-12-22",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "name": "2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2020-12-22",
+        "von": "2021-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2023-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "2022",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-12-22",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ],
+        "name": "2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2022-12-22",
+        "von": "2023-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2025-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "name": "2024",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-12-22",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "name": "2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2024-12-22",
+        "von": "2025-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "name": "2026",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-12-22",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "314.5 gefundene Trades je vollem Kalenderjahr liegen ueber der Schwelle von 30",
+    "faltenlaenge_jahre": 1,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "krypto",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 10,
+    "selektionsfalten": [
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 314.5
+  },
+  "turtle_soup_stocks": {
+    "bestaetigungsperiode": "2026",
+    "embargo_tage": 18,
+    "erste_falte": 2017,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2018-01-01",
+        "embargo_nach_falten": [],
+        "name": "2017",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2016-12-14",
+        "von": "2017-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2019-01-01",
+        "embargo_nach_falten": [
+          "2017"
+        ],
+        "name": "2018",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2017-12-14",
+        "von": "2018-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018"
+        ],
+        "name": "2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2018-12-14",
+        "von": "2019-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2021-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019"
+        ],
+        "name": "2020",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-12-14",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "name": "2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2020-12-14",
+        "von": "2021-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2023-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "2022",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-12-14",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ],
+        "name": "2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2022-12-14",
+        "von": "2023-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2025-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "name": "2024",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-12-14",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "name": "2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2024-12-14",
+        "von": "2025-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2017",
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "name": "2026",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-12-14",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "1202.2 gefundene Trades je vollem Kalenderjahr liegen ueber der Schwelle von 30",
+    "faltenlaenge_jahre": 1,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "aktien",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 18,
+    "selektionsfalten": [
+      "2017",
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 1202.2
+  },
+  "volatility_breakout": {
+    "bestaetigungsperiode": "2026",
+    "embargo_tage": 26,
+    "erste_falte": 2018,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2019-01-01",
+        "embargo_nach_falten": [],
+        "name": "2018",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2017-12-06",
+        "von": "2018-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [
+          "2018"
+        ],
+        "name": "2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2018-12-06",
+        "von": "2019-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2021-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019"
+        ],
+        "name": "2020",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-12-06",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "name": "2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2020-12-06",
+        "von": "2021-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2023-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "2022",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-12-06",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ],
+        "name": "2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2022-12-06",
+        "von": "2023-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2025-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "name": "2024",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-12-06",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "name": "2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2024-12-06",
+        "von": "2025-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "name": "2026",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-12-06",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "456.7 gefundene Trades je vollem Kalenderjahr liegen ueber der Schwelle von 30",
+    "faltenlaenge_jahre": 1,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "aktien",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 26,
+    "selektionsfalten": [
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 456.7
+  },
+  "volatility_breakout_crypto": {
+    "bestaetigungsperiode": "2026",
+    "embargo_tage": 15,
+    "erste_falte": 2018,
+    "erste_falte_quelle": "Datenlage nach Registertext 4a: erstes Kalenderjahr, in dem am 1. Januar Universum und Indikator-Vorlauf vorliegen (research/faltenplan_neun); keine Konstante",
+    "falten": [
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2019-01-01",
+        "embargo_nach_falten": [],
+        "name": "2018",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2017-12-17",
+        "von": "2018-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2020-01-01",
+        "embargo_nach_falten": [
+          "2018"
+        ],
+        "name": "2019",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2018-12-17",
+        "von": "2019-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2021-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019"
+        ],
+        "name": "2020",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2019-12-17",
+        "von": "2020-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2022-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020"
+        ],
+        "name": "2021",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2020-12-17",
+        "von": "2021-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2023-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021"
+        ],
+        "name": "2022",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2021-12-17",
+        "von": "2022-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2024-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022"
+        ],
+        "name": "2023",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2022-12-17",
+        "von": "2023-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2025-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023"
+        ],
+        "name": "2024",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2023-12-17",
+        "von": "2024-01-01"
+      },
+      {
+        "angeschnitten": false,
+        "bis_ausschliesslich": "2026-01-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024"
+        ],
+        "name": "2025",
+        "rolle": "selektion",
+        "training_bis_ausschliesslich": "2024-12-17",
+        "von": "2025-01-01"
+      },
+      {
+        "angeschnitten": true,
+        "bis_ausschliesslich": "2026-09-01",
+        "embargo_nach_falten": [
+          "2018",
+          "2019",
+          "2020",
+          "2021",
+          "2022",
+          "2023",
+          "2024",
+          "2025"
+        ],
+        "name": "2026",
+        "rolle": "bestaetigung",
+        "training_bis_ausschliesslich": "2025-12-17",
+        "von": "2026-01-01"
+      }
+    ],
+    "faltenlaenge_begruendung": "53.3 gefundene Trades je vollem Kalenderjahr liegen ueber der Schwelle von 30",
+    "faltenlaenge_jahre": 1,
+    "go_live_schnitt": "2026-09-01",
+    "markt": "krypto",
+    "mindesttraining_jahre": 4,
+    "purge_tage": 15,
+    "selektionsfalten": [
+      "2018",
+      "2019",
+      "2020",
+      "2021",
+      "2022",
+      "2023",
+      "2024",
+      "2025"
+    ],
+    "status": "endgueltig",
+    "trades_je_jahr": 53.3
+  }
+}
