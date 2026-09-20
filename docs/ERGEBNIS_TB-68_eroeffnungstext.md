@@ -362,7 +362,7 @@ stammen aus dem Betreiber-Stand vor Sitzungsbeginn (Nachweis 1).
 | `4326ff2` | 5 | `K4i`, Journal-Nachtrag (20h) |
 | `5c63510` | Abgabe | dieses Dokument abgeschlossen; Hash per Nachtrag-Commit eingesetzt |
 | `976ca98` | — | Abgabe-Hash nachgetragen |
-| *(folgt)* | Entscheidung | Betreiberentscheidungen (a) und (b) in `UMZUG.md` Abschnitt 6 umgesetzt — „bei Bedarf“-Zeile für `UEBERGABEPROTOKOLL.md`, fester Name als Entscheidung gekennzeichnet |
+| `1a301b0` | Entscheidung | Betreiberentscheidungen (a) und (b) in `UMZUG.md` Abschnitt 6 umgesetzt — „bei Bedarf“-Zeile für `UEBERGABEPROTOKOLL.md`, fester Name als Entscheidung gekennzeichnet |
 
 Alle auf `main`, jeder Schritt einzeln gepusht (`git push` allein, nie in einem
 `&&`-Block).
