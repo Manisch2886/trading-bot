@@ -859,6 +859,24 @@ Diese Prinzipien haben sich über die gesamte Entwicklung etabliert und sollten 
 
 ## 10. STARTPUNKT FÜR DIE WEITERE ARBEIT
 
+### ⭐ Nach jedem Merge: was neu gestartet werden muss
+
+| Aenderung betrifft | Danach noetig |
+|---|---|
+| `dashboard/` | `git pull` **und** `launchctl kickstart -k gui/$(id -u)/com.manisch.trading-dashboard` |
+| `notifications/` | `git pull` **und** Telegram-Dienst neu starten |
+| `broker/`, `strategies/` | nur `git pull` (laufen per Cron) |
+| `docs/`, `research/`, `*.md` | nur `git pull` |
+| `results/*/equity_curve.csv` | `git pull`, danach `python3 shared/ergebniskurven.py` zur Gegenprobe |
+
+---
+
+⚠️ **Zurückgeholt am 20.09.2026 aus `BACKLOG_ARCHIV.md`.** Der Inhalt stand
+zuvor als `P.5` in `BACKLOG.md` Abschnitt 9 und wanderte mit TB-60 ins Archiv —
+**das ist für eine Betriebsanweisung der falsche Ort**, weil das Archiv
+ausdrücklich nicht in jede Sitzung gehört. *Wer nach einem Merge am Dashboard
+den Neustart vergisst, sieht alte Zahlen und merkt es nicht.*
+
 ### ⭐⭐ Schritt 0 vor jeder Mac-Sitzung: den Schlüsselbund entsperren
 
 ⚠️⚠️ **Gemessen und vom Betreiber bestätigt, 20.09.2026:** Ein Start über

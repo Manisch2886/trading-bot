@@ -1006,3 +1006,56 @@ in einem einleitenden Satz in einfacher Sprache kurz sagst, was du jetzt machst
 
 ⭐ **Warum ein Satz genügt:** Der Betreiber muss erkennen können, ob er die
 richtige Sache bekommt, **bevor** sie gemacht ist. Dafür reicht das Was.
+
+---
+
+## 18. Zurückgeholt aus dem Archiv (20.09.2026)
+
+⚠️ **TB-60 hat `BACKLOG.md` Abschnitt 9 ins Archiv verschoben — im Auftrag stand,
+sein Inhalt sei in `ARBEITSWEISE.md` bereits geführt. Gemessen traf das nur auf
+drei von sechs Regeln zu.** Die folgenden zwei standen nirgends sonst; `P.5` ist
+als Betriebsanweisung ins `UEBERGABEPROTOKOLL.md` zurückgeholt.
+
+⭐ *Regel 9 wirkt in beide Richtungen: Aufräumen heißt auch zurückholen, was am
+falschen Ort gelandet ist.*
+
+### P.3 — Dateien, die der Betrieb selbst schreibt
+
+Diese aendern sich ohne Zutun und blockieren Pulls:
+
+| Datei | Wer schreibt |
+|---|---|
+| `results/portfolio_overview/portfolio_overview_curve_live.csv` | `portfolio_overview.py` und die Dashboard-Portfolio-Sicht |
+| `results/*/equity_curve.csv` | `shared/ergebniskurven.py --erzeugen` |
+| `dashboard_snapshot.json` | Dashboard (gitignored) |
+
+> **Offener Punkt P1:** Gehoert `portfolio_overview_curve_live.csv` ueberhaupt
+> ins Repo? Sie ist ein **Berechnungsergebnis**, das bei jedem Aufruf neu
+> entsteht — dieselbe Klasse wie `dashboard_snapshot.json`, der bereits
+> gitignored ist. Sie zu ignorieren wuerde eine wiederkehrende
+> Pull-Blockade beseitigen. Dagegen spricht, dass sie mitversioniert
+> nachvollziehbar macht, worauf eine Montags-Mail beruhte.
+
+### P.4 — Was in jede Aufgabenbeschreibung gehoert
+
+Aus den Fehlern von TB-15 und TB-16:
+
+- **Belegt, erschlossen und offen trennen.** Was ich aus dem Arbeitsordner des
+  Mac weiss, ist fuer eine Cloud-Sitzung **nicht belegt** — sie sieht nur den
+  versionierten Stand.
+- **Raten verbieten, Platzhalter verlangen.** Ein gruener Test ueber erfundenen
+  Werten ist schlimmer als ein roter.
+- **Sitzungstitel** `TB-<Nummer> <Kurzname>` an den Anfang.
+- **Frisch von `main` aufsetzen.**
+- **Alle Ergebnisdokumente am Ende gebuendelt als ZIP ausgeben** *(Nutzerwunsch
+  13.09.2026)*. Hat sich bei TB-18 bewaehrt: ein Download statt vier einzelner,
+  und am iPhone deutlich handlicher. Der Wortlaut fuer die Aufgabenbeschreibung:
+
+  > **Alle Ergebnisdokumente am Ende zusaetzlich gebuendelt als eine
+  > ZIP-Datei bereitstellen** — Uebergabe-Zusammenfassung, Testauftrag,
+  > Ergebnisdokument und etwaige Protokolle in einem Archiv, benannt nach der
+  > Aufgabe (`TB-<Nummer>_<Kurzname>.zip`).
+
+  Die einzelnen Dateien **zusaetzlich** anbieten, nicht nur das Archiv: Wenn
+  ein Dokument kurz ist, liest es sich im Chat schneller als nach dem
+  Entpacken.
