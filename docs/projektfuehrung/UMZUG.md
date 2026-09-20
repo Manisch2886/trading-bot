@@ -242,6 +242,10 @@ Repo, falls du dort liest):
 5. projektfuehrung/BACKLOG.md               — die aktiven Punkte
                                               (docs/projektfuehrung/BACKLOG.md)
 
+Bei Bedarf, nicht als Pflicht: docs/UEBERGABEPROTOKOLL.md — der Betrieb
+(Cronjobs, Neustarts, Schlüsselbund); die Claude-Code-Sitzungen lesen es
+ohnehin über CLAUDE.md.
+
 Das Repo liegt auf dem MacBook unter ~/trading-bot und ist über die
 Geräteanbindung lesbar. JOURNAL.md nur öffnen, wenn es um eine konkrete
 frühere Messung geht.
@@ -265,7 +269,8 @@ und was gerade auf wen wartet. Dann fangen wir an.
 |---|---|---|
 | `PRUEFPRINZIPIEN.md` | `projektfuehrung/PRUEFPRINZIPIEN.md` — **die Datei hat dort nie gelegen** (`git log --all`, 0 Commits); ein zweites Projekt ist am 20.09. genau daran gescheitert | `PRUEFPRINZIPIEN.md`, mit dem Repo-Pfad `docs/PRUEFPRINZIPIEN.md` daneben |
 | `UMZUG.md` | fehlte hier, stand nur in der Kopie in der Übergabe | Nr. 2 — der Chat soll nach Abschnitt 3 **selbst** auf den Umzug hinweisen, dazu muss er die Auslöser kennen |
-| Übergabe-Name | `UEBERGABE_<datum>.md` (Platzhalter) hier, `UEBERGABE_2026-09-19.md` (fest) in der Kopie | **vorläufig der feste Name** — der Platzhalter ist robuster gegen Umbenennung, der feste Name ist der, den ein Chat wörtlich einfügen und finden kann. ⚠️ **Empfehlung von TB-68, nicht Entscheidung** (`ERGEBNIS_TB-68`, Nachweis 6): fester Name, und beim Umbenennen der Übergabe (offener Punkt in ihrem Kopf: `UEBERGABE.md` ohne Datum) wird diese eine Zeile mitgezogen |
+| Übergabe-Name | `UEBERGABE_<datum>.md` (Platzhalter) hier, `UEBERGABE_2026-09-19.md` (fest) in der Kopie | **der feste Name** — Betreiberentscheidung 20.09.2026 (TB-68, Nachweis 6): der Platzhalter wäre robuster gegen Umbenennung, aber ein eingefügter Platzhalter schickt den Chat auf eine Datei, die es nicht gibt. ⚠️ Beim Umbenennen der Übergabe (offener Punkt in ihrem Kopf: `UEBERGABE.md` ohne Datum) wird diese eine Zeile mitgezogen |
+| `UEBERGABEPROTOKOLL.md` | nirgends genannt | **eine Zeile „bei Bedarf“ mit Repo-Pfad**, nicht in der Pflichtliste — Betreiberentscheidung 20.09.2026 (TB-68, Nachweis 6). Gemessen: jede Claude-Code-Sitzung liest es über `CLAUDE.md` Z. 3; der steuernde Chat hat es in keinem seiner Führungsdokumente und in 32 von 40 Ergebnisdokumenten nicht gebraucht; 141 KB Pflicht mehr widersprächen `K3p` |
 | Prüfung der Geräteanbindung | als *„Ergänzung zur Vorlage"* am Ende von Abschnitt 8, **nicht im Text** | im Text, vor dem letzten Absatz |
 | Repo-Pfade | fehlten | je Dokument in Klammern — ein Chat, der im Repo statt in der Projektablage liest, findet jede Datei |
 

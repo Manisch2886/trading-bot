@@ -213,8 +213,9 @@ Bedarf" mit richtigem Pfad deckt das.
 
 **Die drei Wege, zum Anklicken:** (1) eine Zeile „bei Bedarf" mit Pfad
 (empfohlen) · (2) als Nr. 6 in die Pflichtliste · (3) gar nicht nennen.
-**Bis zur Entscheidung steht es nicht im Text** (Auflage ⛔ *nicht selbst
-entscheiden*).
+**Bis zur Entscheidung stand es nicht im Text** (Auflage ⛔ *nicht selbst
+entscheiden*). ✅ **Entschieden vom Betreiber am Ende der Sitzung (anklickbare
+Frage, `ARBEITSWEISE.md` 6d): Weg (1)** — die Zeile steht jetzt im Text.
 
 ### (b) `UEBERGABE_<datum>.md` (Platzhalter) oder `UEBERGABE_2026-09-19.md` (fest)?
 
@@ -339,8 +340,8 @@ stammen aus dem Betreiber-Stand vor Sitzungsbeginn (Nachweis 1).
 
 | | wer | Empfehlung |
 |---|---|---|
-| **(a)** `UEBERGABEPROTOKOLL.md` im Lesepfad — drei Wege (Nachweis 6) | **Betreiber** | eine „bei Bedarf“-Zeile mit Pfad |
-| **(b)** Platzhalter oder fester Name (Nachweis 6) | **Betreiber** | fest; danach Umbenennung nach `UEBERGABE.md` aus dem Kopf der Übergabe |
+| **(a)** `UEBERGABEPROTOKOLL.md` im Lesepfad — drei Wege (Nachweis 6) | ~~Betreiber~~ ✅ **entschieden 20.09.2026, per anklickbarer Frage am Ende der Sitzung: „bei Bedarf“-Zeile** | umgesetzt in `UMZUG.md` Abschnitt 6 (Commit unten) |
+| **(b)** Platzhalter oder fester Name (Nachweis 6) | ~~Betreiber~~ ✅ **entschieden 20.09.2026: fester Name** | Text bleibt wie eingesetzt; die Tabelle in Abschnitt 6 nennt es jetzt Entscheidung statt Empfehlung. Umbenennung nach `UEBERGABE.md` bleibt offener Punkt im Kopf der Übergabe |
 | **(c)** ⚠️ **Projektablage nachziehen:** `UMZUG.md` und `UEBERGABE_2026-09-19.md` sind geändert, beide Fassungen müssen gleich lauten (`UMZUG.md` Schritt 4, `K4e`) | steuernder Chat / Betreiber | im nächsten Chat als Erstes, sonst liest der nächste Umzug die alte Fassung aus der Ablage |
 | **(d)** `logs/auftraege/_erledigt/UMZUG.md` und `…/UEBERGABE_2026-09-19.md` tragen den alten Text; Bringschuld erfüllt | Betreiber | löschen (Regel 9) — auf Nachfrage, nicht von selbst |
 | **(e)** `START_HIER.md`: dritte Leseliste, toter Verweis auf „Abschnitt 10, Schritt 2", Stand 18.09. | **TB-69** | eine Regel, welche Liste für welche Leserschaft; Datei auf Stand oder zurückführen |
@@ -360,6 +361,8 @@ stammen aus dem Betreiber-Stand vor Sitzungsbeginn (Nachweis 1).
 | `42fc34d` | 4 | Suche nach der dritten Fassung, Nachweis 4 |
 | `4326ff2` | 5 | `K4i`, Journal-Nachtrag (20h) |
 | `5c63510` | Abgabe | dieses Dokument abgeschlossen; Hash per Nachtrag-Commit eingesetzt |
+| `976ca98` | — | Abgabe-Hash nachgetragen |
+| *(folgt)* | Entscheidung | Betreiberentscheidungen (a) und (b) in `UMZUG.md` Abschnitt 6 umgesetzt — „bei Bedarf“-Zeile für `UEBERGABEPROTOKOLL.md`, fester Name als Entscheidung gekennzeichnet |
 
 Alle auf `main`, jeder Schritt einzeln gepusht (`git push` allein, nie in einem
 `&&`-Block).

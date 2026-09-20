@@ -101,8 +101,8 @@ gescheitert ist.*
 
 | | wer |
 |---|---|
-| `UEBERGABEPROTOKOLL.md` im Lesepfad — drei Wege, Empfehlung „bei Bedarf“-Zeile | Betreiber |
-| Platzhalter oder fester Name — Empfehlung fest; danach der offene Punkt aus dem Kopf der Übergabe (Umbenennung nach `UEBERGABE.md`) | Betreiber |
+| ~~`UEBERGABEPROTOKOLL.md` im Lesepfad~~ ✅ entschieden am Ende der Sitzung (anklickbare Frage): „bei Bedarf“-Zeile, umgesetzt in `UMZUG.md` Abschnitt 6 | — |
+| ~~Platzhalter oder fester Name~~ ✅ entschieden: fest; offen bleibt nur die Umbenennung nach `UEBERGABE.md` aus dem Kopf der Übergabe | Betreiber |
 | ⚠️ **Projektablage nachziehen:** `UMZUG.md` und `UEBERGABE_2026-09-19.md` sind geändert; nach `UMZUG.md` Schritt 4 und `K4e` müssen beide Fassungen gleich lauten | steuernder Chat / Betreiber |
 | `logs/auftraege/_erledigt/UMZUG.md`, `…/UEBERGABE_2026-09-19.md`: Zwischenlager-Kopien mit erfüllter Bringschuld, tragen den alten Eröffnungstext — dürfen nach Regel 9 weg, Löschen fragt vorher | Betreiber |
 | `START_HIER.md` — Leseliste, toter Verweis, Stand | TB-69 |
