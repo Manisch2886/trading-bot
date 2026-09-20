@@ -37,7 +37,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | TB | Auftragsdokument | kurz |
 |---|---|---|
 | **TB-66** | `docs/auftraege/MAC_TB-66_benchmark_tagesgenau.md` | ⭐⭐ **Fables Festlegung VT umsetzen:** Registertext 3b (c) neu, `benchmark.py` tagesgenau, Lauf **daneben** — rechnet, steht vor dem Tag |
-| **TB-62** | `docs/auftraege/MAC_TB-62_nachtraege_m_v.md` | Einarbeitung der Nachträge (m) und (v) — reine Dokumentation, rechnet nicht |
+| **TB-67** | `docs/auftraege/MAC_TB-67_journal_einarbeitung.md` | Die Journal-Seite nachziehen — **sechs offene Journal-Nachträge** und drei Aufgaben ohne Journalblock; führt die Quellenzeile ein, die `TB-64` braucht |
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
 | **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an |
 
@@ -49,17 +49,17 @@ gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ⭐ **Betreiberentscheidung 20.09.2026:** Alle fünf Punkte der Bestandsaufnahme
 werden umgesetzt, in dieser Reihenfolge. **TB-64 ist bereits formuliert und
-steht oben in der Auftragstabelle.** ⚠️ **Zweimal umnummeriert (14:40 und 15:30):**
-Die Planungsnummern sind jetzt `TB-67`–`TB-69`. `TB-65` ging an den Prüfauftrag
-zur Benchmark-Schranke, `TB-66` an die Umsetzung von Fables Festlegung — beide
-stehen vor dem Tag. *Kein Auftragsdokument trug die verschobenen Nummern,
+steht oben in der Auftragstabelle.** ⚠️ **Dreimal umnummeriert (14:40, 15:30, 15:55):**
+Die Planungsnummern sind jetzt `TB-68`–`TB-70`. `TB-65` ging an den Prüfauftrag
+zur Benchmark-Schranke, `TB-66` an die Umsetzung von Fables Festlegung — beide stehen vor dem Tag —
+und `TB-67` an die Journal-Einarbeitung, die TB-62 als Rueckstand aufgedeckt hat. *Kein Auftragsdokument trug die verschobenen Nummern,
 gemessen; nichts bricht.*
 
 | | Vorhaben | hängt an | Art |
 |---|---|---|---|
-| **TB-67** | Entdoppelung: der Eröffnungstext und *"In einfacher Sprache"* stehen je mehrfach | TB-62 | Dokumentation |
-| **TB-68** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-67 | Dokumentation |
-| **TB-69** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
+| **TB-68** | Entdoppelung: der Eröffnungstext und *"In einfacher Sprache"* stehen je mehrfach | TB-62 | Dokumentation |
+| **TB-69** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-68 | Dokumentation |
+| **TB-70** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
 
 ⚠️⚠️ **Die Aufträge werden ERST GESCHRIEBEN, WENN IHR VORGÄNGER DURCH IST.**
 *Gemessen am 20.09.2026: Der TB-62-Auftrag trug eine Nummer und eine Anzahl, die
