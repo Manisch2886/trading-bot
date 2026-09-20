@@ -1,0 +1,26 @@
+Bot                          status G/N/V           Sel.-Falten G/N/V    |     gesperrt 25/50/100 |        TB-61 25/50/100 |     TB-66 VT 25/50/100 | Faktor VT/TB-61 @100
+elliott_wave                 platzhalter/endgueltig/endgueltig 0/4/4                |              - / - / - | -6.07 / -11.89 / -22.42 | -16.42 / -31.21 / -55.91 | x2.49
+elliott_wave_stocks          endgueltig/endgueltig/endgueltig 7/9/9                |  -2.18 / -4.33 / -8.55 |  -2.18 / -4.33 / -8.55 |  -2.18 / -4.33 / -8.55 | x1.00
+rsi2_crypto                  platzhalter/endgueltig/endgueltig 0/7/7                |              - / - / - | -6.48 / -12.64 / -24.02 | -17.26 / -32.59 / -57.29 | x2.39
+rsi2_mean_reversion          endgueltig/endgueltig/endgueltig 7/8/8                |  -2.18 / -4.33 / -8.55 | -3.35 / -6.61 / -12.89 | -3.32 / -6.55 / -12.77 | x0.99
+t3_supertrend                platzhalter/endgueltig/endgueltig 0/8/8                |              - / - / - | -3.24 / -6.32 / -12.01 | -12.89 / -24.73 / -45.16 | x3.76
+turtle_soup_crypto           platzhalter/endgueltig/endgueltig 0/8/8                |              - / - / - | -3.24 / -6.32 / -12.01 | -16.13 / -30.52 / -54.05 | x4.50
+turtle_soup_stocks           endgueltig/endgueltig/endgueltig 7/9/9                |  -2.18 / -4.33 / -8.55 |  -2.18 / -4.33 / -8.55 |  -2.18 / -4.33 / -8.55 | x1.00
+volatility_breakout          endgueltig/endgueltig/endgueltig 7/8/8                |  -2.18 / -4.33 / -8.55 | -3.35 / -6.61 / -12.89 | -3.32 / -6.55 / -12.77 | x0.99
+volatility_breakout_crypto   platzhalter/endgueltig/endgueltig 0/8/8                |              - / - / - | -3.24 / -6.32 / -12.01 | -16.13 / -30.52 / -54.05 | x4.50
+
+status in benchmark_drawdowns_vt.json je Bot: {'elliott_wave': 'endgueltig', 'elliott_wave_stocks': 'endgueltig', 'rsi2_crypto': 'endgueltig', 'rsi2_mean_reversion': 'endgueltig', 't3_supertrend': 'endgueltig', 'turtle_soup_crypto': 'endgueltig', 'turtle_soup_stocks': 'endgueltig', 'volatility_breakout': 'endgueltig', 'volatility_breakout_crypto': 'endgueltig'}
+Anzahl 'endgueltig': 9 von 9
+
+Aktien-Bots gegen TB-61 (alle Falten, alle 100 Stufen):
+  elliott_wave_stocks          Falten mit abweichenden Stufen: {'2019': 92, '2025': 99, '2026': 97}  DD_Toleranz-Stufen verschieden: 0
+  rsi2_mean_reversion          Falten mit abweichenden Stufen: {'2019': 92, '2025': 99, '2026': 97}  DD_Toleranz-Stufen verschieden: 98
+  turtle_soup_stocks           Falten mit abweichenden Stufen: {'2019': 92, '2025': 99, '2026': 97}  DD_Toleranz-Stufen verschieden: 0
+  volatility_breakout          Falten mit abweichenden Stufen: {'2019': 92, '2025': 99, '2026': 97}  DD_Toleranz-Stufen verschieden: 98
+
+Krypto-Bots: Verhaeltnis VT / TB-61 je Stufe 25/50/100:
+  elliott_wave                 x2.71 / x2.62 / x2.49
+  t3_supertrend                x3.98 / x3.91 / x3.76
+  rsi2_crypto                  x2.66 / x2.58 / x2.39
+  turtle_soup_crypto           x4.98 / x4.83 / x4.50
+  volatility_breakout_crypto   x4.98 / x4.83 / x4.50

@@ -1,0 +1,19 @@
+# git diff --cached --numstat 1e6fcc7 (Ausgang TB-66) -> Abgabestand, 20.09.2026; diese Datei selbst ist danach hinzugekommen
+352	0	docs/ERGEBNIS_TB-66_benchmark_tagesgenau.md
+313	0	docs/VORREGISTRIERUNG_neuselektion.md
+3	0	docs/belege/TB-66/nachweis2_sha256_nachher.txt
+2	0	docs/belege/TB-66/nachweis2_sha256_vorher.txt
+14	0	docs/belege/TB-66/nachweis8_test_in_kopie_mit_vt_tabelle.txt
+16	0	docs/belege/TB-66/nachweis8_test_vorregistrierung.txt
+126	0	docs/belege/TB-66/schritt2_benchmark_lauf.txt
+8	0	docs/belege/TB-66/schritt2_benchmark_lauf_stderr.txt
+4181	0	docs/belege/TB-66/schritt3_dropna_gegen_fillna.json
+93	0	docs/belege/TB-66/schritt3_dropna_gegen_fillna.txt
+17	0	docs/belege/TB-66/schritt4_aktien_gegenprobe.txt
+26	0	docs/belege/TB-66/schritt4_dreispalten_vergleich.txt
+12	0	docs/belege/TB-66/schritt4_vergleich_tb65_vt.txt
+152	0	docs/belege/TB-66/tb66_dropna_gegen_fillna.py
+2	2	docs/projektfuehrung/BACKLOG.md
+122	0	docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20f.md
+95	23	research/vorregistrierung/benchmark.py
+10241	0	research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
