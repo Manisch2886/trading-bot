@@ -15,7 +15,7 @@ unsichtbar und läuft über „API Usage Billing" statt über das Abo.
 **Der einzufügende Satz. Nur die TB-Nummer am Anfang wechselt:**
 
 ```
-TB-<Nummer>: Lies docs/auftraege/AKTUELLER_AUFTRAG.md, arbeite den dort genannten Auftrag vollstaendig eigenstaendig ab, und antworte zuerst mit einer Zeile, welchen Auftrag du gelesen hast. Nennt diese Datei eine andere TB-Nummer als die vorangestellte, brich ab und melde es.
+TB-<Nummer>: Lies docs/auftraege/AKTUELLER_AUFTRAG.md, suche dort die Zeile mit genau der TB-Nummer, die diesem Satz vorangestellt ist, und arbeite den in dieser Zeile genannten Auftrag vollstaendig eigenstaendig ab. Antworte zuerst mit einer Zeile, welchen Auftrag du gelesen hast. Kommt deine Nummer dort nicht vor, brich ab und melde es.
 ```
 
 ⭐ **Warum die Nummer vorn steht und nicht im Auftrag allein:** Der Betreiber
@@ -34,9 +34,19 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 ## Gültiger Auftrag
 
-**TB-61 — `docs/auftraege/MAC_TB-61_benchmark_neun.md`**
+| TB | Auftragsdokument | kurz |
+|---|---|---|
+| **TB-61** | `docs/auftraege/MAC_TB-61_benchmark_neun.md` | Benchmark-Tabelle für alle neun Bots, Lauf **daneben** — rechnet, braucht `trading-env` |
+| **TB-62** | `docs/auftraege/MAC_TB-62_nachtraege_m_v.md` | Einarbeitung der Nachträge (m) und (v) — reine Dokumentation, rechnet nicht |
 
-*Gesetzt 20.09.2026 (zuvor TB-60, erledigt mit `c04b348`, nachgemessen und geschlossen mit `79742d1`). Bei jedem neuen Auftrag wird **nur diese Zeile** ersetzt.*
+*Gesetzt 20.09.2026 (zuvor TB-60, erledigt mit `c04b348`, nachgemessen und
+geschlossen mit `79742d1`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
+
+⚠️⚠️ **ZWEI AUFTRÄGE, ZWEI SITZUNGEN — NIE GLEICHZEITIG IM SELBEN
+ARBEITSBAUM.** Beide schreiben nach `docs/`. Läuft eine, wartet die andere.
+⭐ *Deshalb steht die Nummer dem Einfügesatz voran: sie wählt die Zeile aus,
+und kommt sie nicht vor, bricht die Sitzung ab, statt zu raten.*
 
 ---
 
