@@ -107,3 +107,117 @@ verlangt, **nicht** als Regeln eingetragen, sondern in Nachweis 6 geprüft.
 *Was `(f)` gegenüber den `T`-Zeilen nicht enthält, gezählt:* `T58.2` (Fables
 drei Fälle) fehlt in `(f)` ganz; `T53.3` steht in `(f)` ohne die Zahlen 63 /
 9/9 / 23 / 14. Beides ist der Grund, die `T`-Tabellen mitzunehmen.
+
+---
+
+## Schritt 2 und 3 — die Einarbeitung (Commit `08cf90a`)
+
+**Zehn neue Blöcke `BK`–`BT`, eingefügt vor `## Wiederkehrende Lehren`** — so,
+wie es seit TB-50 für `BA`–`BF` und in TB-54/55 für `BG`–`BJ` gemacht wurde
+(*„Angefügt am Ende"* im Auftrag meint das Ende der Blockfolge; die Lehren
+bleiben der Schluss der Datei). Reihenfolge = Entstehung der Nachträge:
+
+| Block | aus Nachtrag | Inhalt |
+|---|---|---|
+| `BK` | `(f)` + `(m)` `2s` | TB-53b: der Resolver erreicht die Selektionsseite — mit `T53.1`–`T53.4` |
+| `BL` | `(f)` + `(m)` `2s` | TB-58: Codeherkunft und Lock — mit `T58.1`–`T58.6` |
+| `BM` | `(f)` + `(m)` `2s` | TB-58b: Abschnitte 19 und 20 — mit `T58b.1`–`T58b.3`; dazu als Unterabschnitte *„Was der Nachmittag über die Arbeitsweise ergab"*, *„Der Stand am Abend des 19.09."*, *„In einfacher Sprache"* (in `(f)` der Schluss nach den drei Blöcken; nach dem Vorbild von `BJ`, wo *„Der Stand am Ende des 19.09."* ebenfalls im letzten Block steht) |
+| `BN` | `(g)` | TB-59: die Backlog-Einarbeitung (nachgeholt) |
+| `BO` | `(20a)` | TB-60: das Backlog-Archiv (nachgeholt) |
+| `BP` | `(20b)` | Die Beauftragung von TB-61 und TB-62 (Chat-Sitzung, Mittag) |
+| `BQ` | `(20c)` | TB-61: die Benchmark-Tabelle für neun Bots |
+| `BR` | `(20d)` | TB-65: welche Schranke für den Benchmark gilt |
+| `BS` | `(20e)` | TB-62: die Nachträge (m) und (v), Ende der ZIP-Pflicht |
+| `BT` | `(20f)` | TB-66: der Benchmark wird tagesgenau |
+
+**Wie der Text übernommen wurde** (Skript `docs/belege/TB-67/schritt2_einfuegen.py`):
+die Titelzeile `# Journal-Nachtrag …` jedes Nachtrags entfällt (sie wird zur
+`## XX — `-Kopfzeile), die Einfüge-Anweisungen an den Einarbeiter (*„Anzufügen
+am Ende … Blockbuchstaben messen"*) in `(c)`–`(f)` entfallen; alle
+Überschriften innerhalb eines Nachtrags sind um **eine** Stufe abgesenkt
+(`##` → `###`, `###` → `####`), damit nur Blockbuchstaben auf `##` stehen —
+sonst zählte jede Zwischenüberschrift als Block. **Jede andere Zeile steht
+zeichengleich im Journal** — geprüft mit `docs/belege/TB-67/ankunft_pruefung.py`
+(`schritt2_ankunft.txt`): je Nachtrag *„fehlend: 0"*, ausser den genannten
+Einfüge-Anweisungen (`(c)` 7, `(d)` 4, `(e)` 3, `(f)` 4 Zeilen — alle vier
+Fälle sind ausschliesslich die Anweisung an den Einarbeiter).
+
+**Nachweis 3 — `git diff --numstat`, Schritt 2+3 (`cc72150` → `08cf90a`):**
+
+| Datei | hinzu | entfernt |
+|---|---:|---:|
+| `docs/projektfuehrung/JOURNAL.md` | **965** | **0** |
+| `docs/belege/TB-67/ankunft_pruefung.py`, `schritt2_ankunft.txt`, `schritt2_numstat.txt`, `schritt2_einfuegen.py` | neu | — |
+
+`JOURNAL.md` **6 526 → 7 491 Zeilen** (`wc -l`, Differenz 965 = `numstat`).
+⭐ **Spalte zwei = 0: nichts umgeschrieben, nur eingefügt** — auch die
+Quellenzeilen bei `BG`–`BJ` sind reine Einfügungen (je eine Leer- und eine
+Textzeile nach der Kopfzeile).
+
+**Nachweis 4 — Blockbuchstaben:** letzter vorher **`BJ`** (gemessen mit
+`grep -n "^## " JOURNAL.md | tail`, nicht aus Abschnitt 0 übernommen — dort
+stand er richtig), letzter nachher **`BT`**. Über alle 60 Blöcke `## XX — `:
+**kein Buchstabe doppelt** (`ankunft_pruefung.py`: `doppelt: []`; zweite
+Zählung `grep -oE "^## [A-Z]{1,2} — " | sort | uniq -d` → leer).
+
+**Nachweis 5 — Quellenzeilen** (Form aus dem Auftrag, wörtlich
+`*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_<datum><buchstabe>.md`*`,
+direkt unter der Kopfzeile):
+
+| | Anzahl | Blöcke |
+|---|---:|---|
+| neu | **10** | `BK`–`BT` |
+| nachgetragen | **4** | `BG` ← `(c)`, `BH` ← `(d)`, `BI` ← `(e)`, `BJ` ← `(e)` — Zuordnung eindeutig über Muster B (je ein wörtlicher Satz je Block, Nachweis 2) |
+| nicht zuordenbar | **0** | — |
+| Summe im Journal | **14** | `grep -c "^\*Quelle: "` |
+
+`BK`, `BL`, `BM` tragen **zusätzlich** eine zweite Zeile
+`*Messprotokoll: `…/BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s`*`, weil ihre
+`T`-Tabellen aus `(m)` stammen — Schritt 3 verlangt *„die Quellenzeile … mit
+dem Backlog-Nachtrag als Quelle"*. Die Zeile ist absichtlich anders benannt,
+damit ein Wächter, der `JOURNAL_NACHTRAG_`-Quellen zählt, keinen Backlog-Nachtrag
+als Journal-Nachtrag liest.
+
+⚠️ **Zum Pfad in der Quellenzeile:** Er nennt `nachtraege/…`, wie der Auftrag
+und TB-64 es vorschreiben. Nach Schritt 5 liegen die Dateien physisch unter
+`nachtraege/_eingearbeitet/`. **Die Kennung ist der Dateiname**; wer die Datei
+sucht, findet sie eine Ebene tiefer. Ein Wächter, der die Quellenzeile prüft,
+muss beide Orte kennen — das steht als Hinweis für TB-64 in Abschnitt „Offen".
+
+⚠️ **Nicht angefasst:** das Inhaltsverzeichnis am Kopf des Journals endet bei
+`AG` (seit TB-50 bekannt, Backlog `K1p`). Es fehlen jetzt `AH`–`BT`. Der Auftrag
+erlaubt im Journal nur Anfügen und die Quellenzeile; die Tabelle nachzuziehen
+wäre ein dritter Eingriff und bleibt bei `K1p`.
+
+---
+
+## Nachweis 6 — Schritt 3: die sieben `B`-Zeilen aus `(m)`, je Zeile geprüft
+
+⛔ **Keine der sieben ist als Regel eingetragen worden.** Im Journal stehen sie
+nur so, wie `(f)` sie am 19.09. verkürzt hatte (Tabelle *„Was der Nachmittag
+über die Arbeitsweise ergab"* in `BM`) — das ist der Bericht des Tages, keine
+Regelübernahme; zeichengleich steht keine `B`-Zeile im Journal
+(`ankunft_pruefung.py`: *„B-Zeilen … im Journal zeichengleich: 0"*).
+
+Geprüft mit `grep -n -i` über `ARBEITSWEISE.md`, `DOKUMENTATIONSSTANDARD.md`,
+`UMZUG.md`, `UEBERGABE_2026-09-19.md`, `BACKLOG.md`, `BACKLOG_ARCHIV.md`,
+`docs/PRUEFPRINZIPIEN.md`, `docs/UMGEBUNGEN.md`, `docs/UEBERGABEPROTOKOLL.md`,
+`docs/START_HIER.md`, `docs/VORREGISTRIERUNG_neuselektion.md` — je Zeile mit
+zwei bis drei Suchbegriffen; Fundstellen mit Zeilennummer (Stand `08cf90a`):
+
+| | Kern der Zeile | steht in einem Führungsdokument? | Fundstelle |
+|---|---|---|---|
+| **B1** | F1b/Q2 ist für die **Daten** belegt, nicht für den **Lauf**; der Lock existiert seit `d852bce` | **ja** | `UEBERGABE_2026-09-19.md` Block 4 Punkt 6 (Z. 109) und Block 7 Punkt 5 (Z. 191); `BACKLOG.md` Kettenzeile **0,99** (Z. 1331, aus TB-62) |
+| **B2** | Die Cloud hat 3.10–3.13, kein 3.9, kein `pyenv` ⇒ fällt als zweite Maschine für die Laufreproduktion aus; offene Frage an Fable | **teilweise** — die **Folgerung** steht (`0,99`: *„In der Cloud nicht möglich (B2)"*; Übergabe Block 4 Punkt 6: *„gleiche Maschine zulässig"*), der **Messbefund** (welche Python-Fassungen die Cloud hat) steht in keinem Führungsdokument, auch nicht in `docs/UMGEBUNGEN.md` (0 Treffer für `3.13`, `pyenv`, `kein 3.9`). ⚠️ *Und `0,99` verweist mit „(B2)" auf eine Zeile, die bis TB-67 nur in `(m)` existierte* — jetzt in `BM` | `BACKLOG.md` Z. 1331; `UEBERGABE_2026-09-19.md` Z. 109 |
+| **B3** | Die Sperre gegen den zweiten Snapshot greift auch im Wegwerf-Klon (rc 2); der Schutz sitzt im Code | **nein** — kein Führungsdokument nennt die Probe. Das Register (Abschnitt 20, Z. 2755 ff.) beschreibt eine Wegwerf-Klon-Probe, aber die des **Locks**, nicht der Snapshot-Sperre; `ERGEBNIS_TB-46_datenordner.md` Z. 260 nennt die Regel *„ein bestehendes `<hash>/` wird nie überschrieben"* als Entwurfsentscheidung, nicht die Messung im Klon | nur `BM` (verkürzt) |
+| **B4** | macOS schützt `~/Downloads`; Aufträge nach `logs/auftraege/` | **ja** — inhaltlich, mit inzwischen weiterem Stand: Zwischenlager `logs/auftraege/`, endgültiger Ort `docs/auftraege/` | `UEBERGABE_2026-09-19.md` Block 7 Punkt 9 (Z. 195); `ARBEITSWEISE.md` Abschnitt 14 (Z. 986, 1041) und Z. 782; `DOKUMENTATIONSSTANDARD.md` Z. 139; `BACKLOG.md` `K4g` (als `K2l`) |
+| **B5** | Ortsunabhängig seit dem 19.09.; Ursache verschlossener Schlüsselbund; `security unlock-keychain` ohne `-p` | **ja** | `ARBEITSWEISE.md` Abschnitt 14 **Regel 0** (Z. 885–911, dreimal `unlock-keychain`); `BACKLOG.md` `K3t` (Z. 1277); `docs/UEBERGABEPROTOKOLL.md` Z. 892 |
+| **B6** | Nie überschreiben, immer neuer Dateiname, gegenprüfen; über die Geräteverbindung kein `git status`/`git log` | **ja** | `UEBERGABE_2026-09-19.md` Block 7 Punkte 7 und 8 (Z. 193–194) und Abschnitt *„Die Geräteanbindung"* (Z. 386 ff., `--no-optional-locks`); `ARBEITSWEISE.md` Abschnitt 14 (Z. 1013, dort nur `git status`); `BACKLOG.md` `K4g` (als `K2q`) |
+| **B7** | Vorprüfung vor die Sitzung, nicht in sie (K2b); dist-info ohne Ausführung lesbar, aus „erzeugen" wurde „gegenprüfen" | **ja** für die Regel, **nein** für den Beleg | Regel: `BACKLOG.md` **`K2b`** (Z. 1376); Vorprüfung als Vorgang: `BACKLOG_ARCHIV.md` Abschnitt `2o` (Z. 398). Der dist-info-Weg selbst: 0 Treffer für `dist-info` in allen elf Dokumenten einschliesslich Register Abschnitt 20 |
+
+**Zählung: 5 × ja (B1, B4, B5, B6, B7-Regel), 1 × teilweise (B2), 1 × nein (B3).**
+⚠️ Nebenbefund: `index.lock` hat im Backlog inzwischen **1** Treffer (der Auftrag
+mass 0) — es ist die `K4g`-Zeile selbst, die die Null-Messung zitiert, kein
+Regeleintrag. **Ob B2 (Messbefund), B3 und der B7-Beleg irgendwo als Regel oder
+Tatsache hingehören, ist die Betreiberentscheidung, die der Auftrag ausdrücklich
+offen lässt.**
