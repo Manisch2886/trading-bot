@@ -39,13 +39,39 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | **TB-61** | `docs/auftraege/MAC_TB-61_benchmark_neun.md` | Benchmark-Tabelle für alle neun Bots, Lauf **daneben** — rechnet, braucht `trading-env` |
 | **TB-62** | `docs/auftraege/MAC_TB-62_nachtraege_m_v.md` | Einarbeitung der Nachträge (m) und (v) — reine Dokumentation, rechnet nicht |
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
+| **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an |
 
 *Gesetzt 20.09.2026 (zuvor TB-60, erledigt mit `c04b348`, nachgemessen und
 geschlossen mit `79742d1`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
-⚠️⚠️ **DREI AUFTRÄGE — NIE ZWEI GLEICHZEITIG IM SELBEN ARBEITSBAUM.**
-Alle drei schreiben nach `docs/`. Läuft eine Sitzung, warten die anderen.
+### Geplant, noch nicht formuliert — die Dokumentationskette
+
+⭐ **Betreiberentscheidung 20.09.2026:** Alle fünf Punkte der Bestandsaufnahme
+werden umgesetzt, in dieser Reihenfolge. **TB-64 ist bereits formuliert und
+steht oben in der Auftragstabelle.**
+
+| | Vorhaben | hängt an | Art |
+|---|---|---|---|
+| **TB-65** | Entdoppelung: der Eröffnungstext und *"In einfacher Sprache"* stehen je mehrfach | TB-62 | Dokumentation |
+| **TB-66** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-65 | Dokumentation |
+| **TB-67** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
+
+⚠️⚠️ **Die Aufträge werden ERST GESCHRIEBEN, WENN IHR VORGÄNGER DURCH IST.**
+*Gemessen am 20.09.2026: Der TB-62-Auftrag trug eine Nummer und eine Anzahl, die
+beim Schreiben richtig und eine halbe Stunde später falsch waren, weil der
+Nachtrag weiterwuchs. Ein Auftrag, der auf einen Stand zeigt, der sich noch
+ändert, veraltet — und sein SOLL liest die nächste Sitzung als Anweisung.*
+
+⚠️ **Der Anlass, gemessen am 20.09.2026, 12:58:** Fünf Einarbeitungen sind
+offen, und **keine davon war irgendwo als offen geführt** — Backlog-Nachträge
+`(m)` und `(v)`, Journal-Nachträge `(g)`, `(20a)` und `(20b)`; `(f)` ist mit dem
+verwendeten Muster **nicht prüfbar**, weil sein Titel keine TB-Nummer nennt.
+
+---
+
+⚠️⚠️ **VIER AUFTRÄGE — NIE ZWEI GLEICHZEITIG IM SELBEN ARBEITSBAUM.**
+Alle vier schreiben nach `docs/`. Läuft eine Sitzung, warten die anderen.
 ⚠️ **Und TB-63 setzt TB-62 voraus** — beide ändern `BACKLOG.md`; TB-63 bricht
 ab, wenn TB-62 nicht auf `origin/main` steht.
 ⭐ *Deshalb steht die Nummer dem Einfügesatz voran: sie wählt die Zeile aus,
