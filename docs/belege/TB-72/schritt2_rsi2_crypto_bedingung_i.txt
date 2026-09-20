@@ -1,0 +1,11 @@
+rsi2_crypto: vorlauf_balken = 150 (1d), Fensteranker = None
+Symbol      erster Kurstag  warm ab (150. Balken)   Balken bis 2017-12-31
+BTCUSDT     2017-08-17      2018-01-14              137
+ETHUSDT     2017-08-17      2018-01-14              137
+BNBUSDT     2017-11-06      2018-04-05              56
+ADAUSDT     2018-04-17      2018-09-14              0
+XRPUSDT     2018-05-04      2018-10-01              0
+TRXUSDT     2018-06-11      2018-11-08              0
+...
+fruehestes 'warm ab' im Universum: 2018-01-14 -> erstes Faltenjahr nach 4a (i): 2019
+Bedingung (i) am 2018-01-01: NICHT erfuellt
