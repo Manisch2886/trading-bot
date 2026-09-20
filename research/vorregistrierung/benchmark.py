@@ -174,14 +174,6 @@ def je_bot(mess: dict) -> dict:
             "falten": {},
             "dd_toleranz": {},
         }
-        if p["status"] != "endgueltig":
-            eintrag["hinweis"] = (
-                "Platzhalter: der Faltenplan dieses Marktes haengt an TB-31. "
-                "Die Tabelle wird mit derselben Rechnung erzeugt, sobald die "
-                "Falten stehen.")
-            aus[bot] = eintrag
-            continue
-
         sel = []
         for f in p["falten"]:
             von = pd.Timestamp(f["von"])
@@ -243,9 +235,6 @@ def main(argv=None):
 
     print(__doc__.strip().split("\n")[0])
     for bot, e in tabellen.items():
-        if e["status"] != "endgueltig":
-            print(f"\n{bot}: Platzhalter (TB-31)")
-            continue
         print(f"\n{bot}  ({e['markt']})")
         print(f"    {'Falte':12s} {'Rolle':12s} {'Titel':>6s} {'Tage':>5s} "
               f"{'DD@25%':>8s} {'DD@50%':>8s} {'DD@100%':>8s}")
