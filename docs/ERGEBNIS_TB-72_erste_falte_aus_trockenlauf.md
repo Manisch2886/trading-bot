@@ -334,7 +334,7 @@ Unter `research/` geändert: `vorregistrierung/faltenplan.py` (75/17),
 | `27c58a2` | 4 | `benchmark_drawdowns_tb72.json` daneben, Gegenprobe acht Bots, `t3_supertrend`, `rsi2_crypto`-Nachmessung |
 | `814c2c5` | 5 | `test_erste_falte_trockenlauf.py` (50/50), Mutation 38/12, `BERICHT.md`-Nachtrag |
 | `b5a1a80` | 6 | Register Abschnitt 25, Marken in 15.6 und 21.3 (220/0) |
-| *(dieser)* | 7 | dieses Dokument, Journal-Nachtrag `(20k)`, Backlog `K4l`, Nachweis-8-Belege |
+| `68c8ca2` | 7 | dieses Dokument, Journal-Nachtrag `(20k)`, Backlog `K4l`, Nachweis-8-Belege |
 
 ---
 
