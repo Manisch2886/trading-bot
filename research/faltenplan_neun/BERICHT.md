@@ -269,6 +269,26 @@ kippt und die anderen stehen bleiben:
   das Embargo stehen, käme die Zahl nicht aus dem Bot, sondern aus einer
   Abschrift — und nur bei diesem einen Bot darf sie sich ändern.
 
+**Nachtrag TB-72 (20.09.2026) — zwei weitere Dateien in diesem Ordner.**
+`erste_falte_trockenlauf.py` misst Bedingung (ii) der Neufassung von
+Registertext 4a / 21.3 (b) (Register Abschnitt 25): ob der Loader eines Bots in
+einer Falte mindestens ein Symbol handelbar macht — über `messe_bot` des
+TB-40-Trockenlaufs im Kindprozess, nicht nachgerechnet. Seit TB-72 leitet
+`research/vorregistrierung/faltenplan.py::erste_falte` die erste Falte daraus
+ab (4a-Kandidaten, erste mit `H ≥ 1`); die Regel steht im Register, die
+Messung hier, die Ableitung dort — keine Parallelrechnung. Sein `main()` ist
+die Messung aus TB-72 Schritt 1 in beide Richtungen
+(`docs/ERGEBNIS_TB-72_schritt1_erste_falte.md`).
+`test_erste_falte_trockenlauf.py` (`trading-env/bin/python3`, rund drei
+Minuten, **50 Prüfungen**) ist der Neun-Zahlen-Vergleich: erste Falte laut Plan
+= erste 4a-Kandidatenfalte mit `H ≥ 1` (eigener `messe_bot`-Aufruf, unabhängig
+von `erste_falte_trockenlauf`) = Register 21.4, erste Falte nie vor 4a, und
+eine Mutationsprobe in einer Wegwerf-Kopie im eigenen Prozess: setzt jemand in
+`faltenplan.py` die 4a-Nachrechnung wieder an die Stelle der Ableitung, meldet
+die Probe `t3_supertrend` 2018 statt 2019. Nach Fable ist der Test damit
+*„nicht mehr eine Wache gegen Abweichung, sondern der Nachweis, dass die
+Ableitung nicht regrediert"*.
+
 ---
 
 ## 8. In einfacher Sprache

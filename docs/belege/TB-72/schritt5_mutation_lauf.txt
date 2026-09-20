@@ -1,0 +1,43 @@
+== Mutation: in research/vorregistrierung/faltenplan.py
+   alt:     jahr, messung = eft.erste_falte_nach_3b(bot, kandidaten)
+   neu:     jahr, messung = erste_4a, []  # MUTATION Nachweis 7: 4a allein, ohne Trockenlauf
+== git diff --numstat nach der Mutation:
+1	1	research/vorregistrierung/faltenplan.py
+== Testlauf mit Mutation:
+TB-72 - Der Neun-Zahlen-Vergleich: erste Falte laut Plan gegen Trockenlauf
+  Trockenlauf je Bot (unabhaengig, messe_bot) ...
+  Plan (faltenplan.faltenplan) ...
+
+Bot                             4a Trockenl.  Plan  21.4  H je Kandidat ab 4a
+------------------------------------------------------------------------------------------------
+elliott_wave                  2018      2018  2018  2018  3 / 9 / 13 / 17 / 18
+t3_supertrend                 2018      2019  2018  2019  0 / 3 / 6 / 9 / 13 / 13 / 13 / 17 / 18
+rsi2_crypto                   2019      2019  2019  2019  6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+turtle_soup_crypto            2018      2018  2018  2018  2 / 6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+volatility_breakout_crypto    2018      2018  2018  2018  2 / 6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+elliott_wave_stocks           2017      2017  2017  2017  135 / 136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+rsi2_mean_reversion           2018      2018  2018  2018  136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+turtle_soup_stocks            2017      2017  2017  2017  135 / 136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+volatility_breakout           2018      2018  2018  2018  136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+
+  Teil D: Wegwerf-Kopie ohne und mit Mutation ...
+  D: Kopie ohne Mutation = Trockenlauf: False; mit Mutation abweichend bei ['t3_supertrend'] (t3_supertrend: 2018)
+
+==============================================================================
+38 bestanden, 12 GESCHEITERT:
+  - A: elliott_wave - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - A: t3_supertrend - erste Falte laut Plan = erste Kandidatenfalte mit H >= 1 - Plan 2018, Trockenlauf 2019
+  - A: t3_supertrend - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - C: t3_supertrend - erste Falte = Register 21.4 - Register 2019
+  - A: rsi2_crypto - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - A: turtle_soup_crypto - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - A: volatility_breakout_crypto - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - A: elliott_wave_stocks - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - A: rsi2_mean_reversion - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - A: turtle_soup_stocks - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - A: volatility_breakout - der Plan fuehrt die Messung mit (erste_falte_trockenlauf_H) - []
+  - D0: die unveraenderte Kopie sieht im eigenen Prozess die neun Zahlen des Trockenlaufs - {'elliott_wave': 2018, 't3_supertrend': 2018, 'rsi2_crypto': 2019, 'turtle_soup_crypto': 2018, 'volatility_breakout_crypto': 2018, 'elliott_wave_stocks': 2017, 'rsi2_mean_reversion': 2018, 'turtle_soup_stocks': 2017, 'volatility_breakout': 2018}
+rc=1
+== Mutation zurueckgenommen (git checkout):
+numstat leer = zurueckgenommen
+0
