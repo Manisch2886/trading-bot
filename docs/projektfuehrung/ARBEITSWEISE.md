@@ -445,6 +445,54 @@ hielt (ein Merge, ein Pfad, ein Kopierbefehl). *Was für mich ein Schritt ist,
 sind im Terminal drei.* **Die Regel gilt ohne Ausnahme; sie einmal abzukürzen
 kostet mehr Nachrichten, als sie spart.**
 
+### ⭐⭐ Der Start einer Mac-Sitzung wird als getrennte Kopierblöcke ausgegeben
+
+⚠️⚠️ **Anweisung des Betreibers, 20.09.2026, nach einem Verstoß:** *"Ich hatte
+bereits für die Zukunft definiert, dass du mir auch den Code für das Eröffnen
+einer Claude-Sitzung im Terminal und Termius schickst, zudem auch separiert zum
+Kopieren den Befehl `/remote-control`."*
+
+⚠️ **Der Ablauf stand bereits vollständig in Abschnitt 14 — er wurde
+beschrieben statt geliefert.** *Ein Befehl im Fließtext ist auf dem Telefon
+nicht kopierbar; der Betreiber müsste ihn abtippen, und genau das erzeugt die
+Tippfehler, gegen die der feste Zeiger gebaut wurde.*
+
+**Zwei Blöcke immer, zwei nur im Bedarfsfall — in dieser Reihenfolge:**
+
+| | Block | wann |
+|---|---|---|
+| **1** | `cd ~/trading-bot && claude --remote-control` | ⭐ **immer** — der nackte Start |
+| **2** | Der Einfügesatz mit vorangestellter TB-Nummer | ⭐ **immer** |
+| **3** | `security unlock-keychain` | ⚠️ **nur wenn Block 1 klemmt** — Kopfzeile *"API Usage Billing"* statt *"Claude Max"* oder Fusszeile *"Not logged in"*. Zweites Terminalfenster, danach Block 1 wiederholen |
+| **4** | `/remote-control` | ⚠️ **nur wenn die Sitzung schon läuft** oder ohne das Flag gestartet wurde |
+
+⚠️⚠️ **BERICHTIGT 20.09.2026, 13:10, auf Hinweis des Betreibers.** Eine
+Stunde zuvor stand hier *"VIER getrennte Blöcke — auch wenn einer davon gerade
+nicht nötig scheint"*. **Zwei davon waren überflüssig:**
+
+| | |
+|---|---|
+| ⚠️ **`/remote-control` doppelt** | Das Flag `--remote-control` im Startbefehl **aktiviert es bereits**. Ein zweiter Aufruf in der Eingabezeile ist ein Handgriff ohne Wirkung |
+| ⚠️ **Schlüsselbund vorsorglich** | Er wird nur gebraucht, **wenn** die Anmeldung klemmt — und ob das nach jedem Termius-Neuverbinden der Fall ist, ist **nicht gemessen**. ⭐ *Deshalb erst starten und an der Kopfzeile prüfen, statt vorsorglich ein Passwort zu tippen* |
+
+⭐⭐ **Die Lehre, und sie ist größer als der Fall:** *Eine Regel, die "immer
+alles" verlangt, kostet bei jedem Durchlauf Aufwand und wird deshalb irgendwann
+abgekürzt — und dann fällt auch der Teil weg, der nötig war.* **Regel 4 dieses
+Dokuments (möglichst wenig eigener Aufwand des Betreibers) ist hier nicht
+Bequemlichkeit, sondern Haltbarkeit.**
+
+⛔ **Was bleibt: nie zusammengefasst, nie im Fließtext beschrieben, nie mit der
+Begründung weggelassen, dass es letztes Mal schon dastand.**
+
+⭐ **Die Kontrolle nach Abschnitt 14 bleibt unverändert:** Kopfzeile nennt
+**"Claude Max"**, Fusszeile zeigt **kein** "Not logged in". Bleibt es dabei,
+**erst dann** `/login`.
+
+⚠️ **Offen, nicht gemessen:** ob der macOS-Schlüsselbund nach jedem Neuaufbau
+der Termius-Verbindung wieder gesperrt ist oder nur nach einem Neustart des
+Rechners. **Kostet beim nächsten Start einen Blick auf die Kopfzeile** — und
+die Antwort gehört dann hierher.
+
 ---
 
 ## 6bb. Die Aufgaben des Betreibers werden am Ende jeder Antwort benannt
