@@ -230,3 +230,48 @@ feste Name** (er stand schon in einer der beiden Fassungen und ist der einzige,
 der existiert); die Tabelle in `UMZUG.md` Abschnitt 6 kennzeichnet ihn als
 Empfehlung.
 
+---
+
+## Nachweis 4 — Schritt 4: die dritte Fassung gesucht, Trefferzahl je Muster
+
+`grep -rlF` / `grep -rnF`, im ganzen `docs/`-Baum und in `logs/auftraege/`,
+**vor** und **nach** der Änderung aus Schritt 2/3 (jeweils Dateien / Zeilen):
+
+| Muster | `docs/` vorher | `docs/` nachher | `logs/auftraege/` |
+|---|---|---|---|
+| `Lies in dieser Reihenfolge` | 3 / 3 (`UMZUG.md`, `UEBERGABE_2026-09-19.md`, `MAC_TB-68` im Suchauftrag) | 3 / 4 (`UMZUG.md`, `MAC_TB-68`, **dieses Ergebnisdokument** zweimal — Zitate in Nachweis 2 und 4) | 2 / 2 |
+| `Neue Sitzung zum Trading-Bot-Projekt` | 2 / 2 (`UMZUG.md`, `UEBERGABE_2026-09-19.md`) | 2 / 2 (`UMZUG.md`, dieses Dokument) | 2 / 2 |
+| `Das Projekt "Trading Bots" ist angehängt` | 3 / 3 (`UMZUG.md`, `UEBERGABE_2026-09-19.md`, `MAC_TB-68`) | 3 / 3 (`UMZUG.md`, `MAC_TB-68`, dieses Dokument) | 2 / 2 |
+
+⭐ **Keine dritte Fassung im `docs/`-Baum** — jeder Treffer ausserhalb
+`UMZUG.md` ist ein Zitat im Auftrag oder in diesem Ergebnisdokument, kein Text
+zum Einfügen. **Nach der Änderung steht der Eröffnungstext im Repo genau einmal.**
+
+**`logs/auftraege/`, 2 Treffer je Muster:** `logs/auftraege/_erledigt/UMZUG.md`
+und `…/_erledigt/UEBERGABE_2026-09-19.md` — die Zwischenlager-Kopien vom 19.09.
+(21:47 bzw. 21:45), deren Bringschuld mit `2723c16` erfüllt ist. Ihr
+Eröffnungstext-Block ist **zeichengleich mit der jeweiligen alten Repo-Fassung**
+(`diff` über die Zeilenbereiche: leer); die Dateien im Ganzen weichen ab
+(`cmp`: `UMZUG.md` ab Z. 249, die Übergabe ab Z. 1 — beide Repo-Fassungen sind
+seither fortgeschrieben). ⚠️ **Nicht angefasst:** der Ordner ist gitignoriert
+und kein Träger (`UMZUG.md` Abschnitt 2); er liegt ausserhalb `docs/`
+(Nachweis 7); Löschen fragt vorher (`ARBEITSWEISE.md` Abschnitt 6). *Nach
+`DOKUMENTATIONSSTANDARD.md` Regel 9 dürften Zwischenlager-Dateien mit erfüllter
+Bringschuld weg — das ist eine Aufgabe für den Betreiber, siehe „Offen".*
+
+### ⚠️ Ausserhalb der drei Muster: eine dritte **Leseliste**, kein dritter Eröffnungstext
+
+`docs/START_HIER.md` (*„Der Einstieg für jede neue Sitzung"*, TB-51, 18.09.)
+trägt in Abschnitt 2 *„In dieser Reihenfolge lesen"* eine **eigene** Liste —
+**fünf** Dokumente, **andere Menge**: `ARBEITSWEISE.md`, `PRUEFPRINZIPIEN.md`,
+`BACKLOG.md`, `UMGEBUNGEN.md`, `JOURNAL.md`; die Übergabe und `UMZUG.md` fehlen,
+`UEBERGABEPROTOKOLL.md` steht als *„bei Bedarf"*. Die Suchmuster treffen sie
+nicht, weil sie anders formuliert ist. **Gemessen, nicht geändert:**
+
+| | |
+|---|---|
+| Zielgruppe | Claude-Code-Sitzungen im Repo (Pfade mit `docs/`), nicht der steuernde Chat — **eine andere Leserschaft**, deshalb kein Widerspruch im engen Sinn |
+| ⚠️ toter Verweis | Z. 6: *„`ARBEITSWEISE.md` Abschnitt 10, Schritt 2"* — Abschnitt 10 ist seit TB-62 ein Verweis ohne Schritte |
+| ⚠️ Stand | Z. 3–7 versprechen Aktualisierung *„bei jeder Sitzungsübergabe"*; Abschnitt 3 nennt den Snapshot als *„wird erst am Tag gezogen"* (er ist seit TB-55, 19.09., gezogen), Z. 34 nennt `JOURNAL.md` mit *„rund 4 000 Zeilen"* (gemessen 7 491) |
+| ⭐ Vorschlag | in **TB-69** (`ARBEITSWEISE.md` neu ordnen) mitnehmen: **eine** Regel, welche Leseliste für welche Leserschaft gilt, und `START_HIER.md` entweder auf den Stand bringen oder auf `UMZUG.md` Abschnitt 6 + `CLAUDE.md` zurückführen. ⛔ **Hier nicht geändert** — es ist kein Eröffnungstext, und der Auftrag erlaubt nur dessen Reparatur |
+
