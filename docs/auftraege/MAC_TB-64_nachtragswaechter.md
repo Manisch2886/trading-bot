@@ -206,6 +206,36 @@ Ergebnisdokument, zum Kopieren, nach dem Muster der vier bestehenden Wächter.
 ⚠️ **`crontab -l` wird nie ungefiltert ausgegeben** (`K2a`) — zulässig ist
 `awk '{print $1,$2,$3,$4,$5}'` oder `grep -c`.
 
+### ⭐⭐ Schritt 5b — die drei übrigen `B`-Zeilen nach `docs/UMGEBUNGEN.md`
+
+⚠️⚠️ **Nachgetragen am 20.09.2026, 18:10, nach Betreiberentscheidung.**
+TB-67 hat die sieben `B`-Zeilen aus Backlog-Nachtrag `(m)` einzeln geprüft
+(Ergebnisdokument TB-67, Nachweis 6): **fünf stehen bereits** in einem
+Führungsdokument, **drei nicht**. ⭐ **Der Betreiber hat entschieden: die drei
+kommen nach `docs/UMGEBUNGEN.md`, in dieser Aufgabe.**
+
+| | was fehlt | Stand laut TB-67 |
+|---|---|---|
+| **B2** | der **Messbefund**, dass die Cloud Python 3.10–3.13 hat, **kein 3.9, kein `pyenv`** ⇒ sie fällt als zweite Maschine für die Laufreproduktion aus | die **Folgerung** steht (`BACKLOG.md` Kettenzeile `0,99`; Übergabe Block 4 Punkt 6), der Befund nirgends — auch nicht in `UMGEBUNGEN.md` (0 Treffer für `3.13`, `pyenv`) |
+| **B3** | die Probe, dass die **Sperre gegen den zweiten Snapshot auch im Wegwerf-Klon greift** (rc 2) | 0 Treffer in elf Führungsdokumenten; Register Abschnitt 20 beschreibt die Klon-Probe des **Locks**, nicht der Snapshot-Sperre |
+| **B7** | der **`dist-info`-Weg**: Vorprüfung der Abhängigkeiten ohne Ausführung | die **Regel** steht als `K2b`, der **Weg** nirgends — 0 Treffer für `dist-info` in elf Dokumenten |
+
+⛔ **Erfinde keine Formulierung.** ⭐ **Nimm den Wortlaut aus
+`BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s`, Zeilen `B2`, `B3`, `B7`** und
+kürze ihn nur, wo er auf den Sitzungsverlauf zeigt. **Jede der drei bekommt
+die Quellenzeile**, die `TB-67` eingeführt hat, mit dem Backlog-Nachtrag als
+Quelle.
+
+⚠️ **Liegt `docs/UMGEBUNGEN.md` nicht vor oder passt keine der drei dorthin,
+entscheide das nicht selbst** — benenne den Ort, den du für richtig hältst,
+und lege ihn vor (`A2`).
+
+⭐ **Danach, und nur danach, gilt `(m)` als eingearbeitet** und darf nach
+`nachtraege/_eingearbeitet/` — TB-67 hat es ausdrücklich liegen lassen, weil
+diese Entscheidung offen war.
+
+**Sichern: commit und push.**
+
 ### Schritt 6 — die Abgabe
 
 `docs/ERGEBNIS_TB-64_nachtragswaechter.md` und ein Journal-Nachtrag

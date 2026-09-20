@@ -536,7 +536,7 @@ Lauf". Gemeint ist die **Aufforderung**, nicht die Information.
 
 ---
 
-## 6d. Jede Entscheidungsvorlage trägt eine Empfehlung
+## 6d. Jede Entscheidung wird als anklickbare Frage gestellt — mit Empfehlung
 
 ⚠️ **Neu am 18.09.2026, weil der Nutzer in dieser Sitzung dreimal nachfragen
 musste: *„was würdest du empfehlen?"***
@@ -569,10 +569,38 @@ Antwort als Liste gilt** — und verstreute Regeln werden beim Schreiben nicht
 gelesen, sondern erinnert. *Am selben Tag ist dasselbe mit den Kopierblöcken
 passiert: Regel vorhanden, Ablauf beschrieben statt geliefert.*
 
-⇒ ⭐ **Daraus folgt die Aufgabe `TB-67`** (`ARBEITSWEISE.md` neu ordnen): Die
+⇒ ⭐ **Daraus folgt die Aufgabe `TB-69`** (`ARBEITSWEISE.md` neu ordnen; bis zum 20.09., 15:55 trug sie die Nummer TB-67): Die
 Ausgaberegeln gehören in **eine** Liste, die vor jeder Antwort gilt, nicht in
 fünf Unterabschnitte. **Der Anlass dafür ist damit nicht mehr kosmetisch,
 sondern zweimal gemessen.**
+
+### ⭐⭐ Die Form: anklickbare Multiple-Choice-Frage, nicht Fließtext
+
+⚠⚠️ **Anweisung des Betreibers, 20.09.2026, 17:58, nach einem Verstoß:**
+*„Du sollst mir Entscheidungen doch immer per Multiple Choice abfragen, mit
+einer Empfehlung deinerseits. Merke dir das für die Zukunft.“*
+
+⚠️ **Die Regel stand schon zweimal in der Erinnerung** (19.09.2026) — und dieses
+Dokument nannte nur den **Inhalt** einer Entscheidungsvorlage, nicht ihre
+**Form**. *Eine Empfehlung im Fließtext ist keine Vorlage, sondern ein Absatz,
+den er auf dem Telefon lesen, verstehen und beantworten muss.*
+
+| | |
+|---|---|
+| ⭐ | **Jede Entscheidung, die beim Betreiber liegt, wird als anklickbare Frage gestellt** — nicht beschrieben, nicht als Tabelle mit Empfehlung darunter |
+| ⭐ | **Die empfohlene Antwort steht an erster Stelle** und ist als Empfehlung gekennzeichnet |
+| ⚠️ | **Auch wenn nur zwei Wege offenstehen** — gerade dann, weil das Klicken dann am billigsten ist |
+| ⚠️ | **Auch wenn die Entscheidung klein wirkt.** Der Betreiber entscheidet, was klein ist |
+| ⛔ | **Nicht gesammelt ans Ende der Antwort**, wo sie zwischen den Aufgaben steht |
+
+⭐⭐ **Die Lehre, und sie ist dieselbe wie bei den Kopierblöcken:** *Eine Regel,
+die nur den Inhalt festlegt und die Form offenlässt, wird in der Form
+ausgeführt, die beim Schreiben am nächsten liegt — und das ist Fließtext.*
+**Die Form gehört in die Regel.**
+
+⚠️ **Vierter Vorfall derselben Familie an einem Tag** (dreimal Empfehlung
+vergessen, einmal Form verfehlt). **Das ist der Anlass für `TB-69`**, und er ist
+damit nicht mehr zweimal, sondern viermal gemessen.
 
 ⚠️ **Die Grenze:** Wo die Entscheidung von etwas abhängt, das nur der Betreiber
 weiss — seine Risikotragfähigkeit, seine verfügbare Zeit, sein Wohnsitzrecht —

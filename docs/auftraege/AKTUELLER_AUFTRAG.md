@@ -36,13 +36,12 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-67** | `docs/auftraege/MAC_TB-67_journal_einarbeitung.md` | Die Journal-Seite nachziehen — **sechs offene Journal-Nachträge** und drei Aufgaben ohne Journalblock; führt die Quellenzeile ein, die `TB-64` braucht |
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
 | **TB-68** | `docs/auftraege/MAC_TB-68_eroeffnungstext.md` | ⚠️⚠️ **Der Eröffnungstext steht zweimal — und die Fassungen widersprechen sich** (vier gegen fünf Dokumente, beide mit totem Verweis auf `PRUEFPRINZIPIEN.md`) |
-| **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an |
+| **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an. ⚠️ **Schritt 5b am 20.09. ergänzt** (Betreiberentscheidung): die drei übrigen `B`-Zeilen nach `docs/UMGEBUNGEN.md` |
 
-*Gesetzt 20.09.2026 (zuvor TB-66, erledigt mit `fe76857`, nachgemessen und
-geschlossen am 20.09.2026, 17:25 Ortszeit; davor TB-60 mit `c04b348`/`79742d1`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 20.09.2026 (zuvor TB-67, erledigt mit `a15746f`, nachgemessen und
+geschlossen am 20.09.2026, 18:00 Ortszeit; davor TB-66 mit `fe76857`, TB-60 mit `c04b348`/`79742d1`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
@@ -58,6 +57,7 @@ gemessen; nichts bricht.*
 | | Vorhaben | hängt an | Art |
 |---|---|---|---|
 | **TB-69** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-68 | Dokumentation |
+| **TB-71** | ⭐⭐ **Die Wirkung des MtM-Drawdowns messen** — Fables Befund vom 20.09.: der Bot-Drawdown der Nebenbedingung ist ereignisindiziert und sieht keine unrealisierten Verluste, der Benchmark daneben ist tagesgenau bewertet. Richtung bekannt (täglich nie flacher), **Grösse unbekannt**. Betrifft **Festlegung 1** der zwölf vom 14.09.2026 | — | **rechnet**, steht vor dem Tag |
 | **TB-70** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
 
 ⚠️⚠️ **Die Aufträge werden ERST GESCHRIEBEN, WENN IHR VORGÄNGER DURCH IST.**
@@ -66,15 +66,18 @@ beim Schreiben richtig und eine halbe Stunde später falsch waren, weil der
 Nachtrag weiterwuchs. Ein Auftrag, der auf einen Stand zeigt, der sich noch
 ändert, veraltet — und sein SOLL liest die nächste Sitzung als Anweisung.*
 
-⚠️ **Der Anlass, gemessen am 20.09.2026, 12:58:** Fünf Einarbeitungen sind
-offen, und **keine davon war irgendwo als offen geführt** — Backlog-Nachträge
-`(m)` und `(v)`, Journal-Nachträge `(g)`, `(20a)` und `(20b)`; `(f)` ist mit dem
-verwendeten Muster **nicht prüfbar**, weil sein Titel keine TB-Nummer nennt.
+⚠️ **Der Anlass, gemessen am 20.09.2026, 12:58:** Fünf Einarbeitungen waren
+offen, und **keine davon war irgendwo als offen geführt**. ⭐ **Erledigt durch
+TB-67 (`a15746f`):** elf Journal-Nachträge gemessen, acht eingearbeitet (Blöcke
+`BK`–`BT`), Quellenzeile eingeführt, alle elf nach `nachtraege/_eingearbeitet/`
+verschoben. ⚠️ **Offen bleiben die Backlog-Nachträge** — das ist `TB-64`,
+Prüfung B; `(m)` hängt zusätzlich an der Betreiberentscheidung zu seinen sieben
+`B`-Zeilen (TB-67, Nachweis 6).
 
 ---
 
-⚠️⚠️ **VIER AUFTRÄGE — NIE ZWEI GLEICHZEITIG IM SELBEN ARBEITSBAUM.**
-Alle vier schreiben nach `docs/`. Läuft eine Sitzung, warten die anderen.
+⚠️⚠️ **DREI AUFTRÄGE — NIE ZWEI GLEICHZEITIG IM SELBEN ARBEITSBAUM.**
+Alle drei schreiben nach `docs/`. Läuft eine Sitzung, warten die anderen.
 ⚠️ **Und TB-63 setzt TB-62 voraus** — beide ändern `BACKLOG.md`; TB-63 bricht
 ab, wenn TB-62 nicht auf `origin/main` steht.
 ⭐ *Deshalb steht die Nummer dem Einfügesatz voran: sie wählt die Zeile aus,
