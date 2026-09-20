@@ -1,0 +1,93 @@
+TB-66, Abschnitt 1 - die Messung, die vor der Formulierungsentscheidung steht:
+
+Bot                          Falte      Rolle        Tage W  C_lit C_voll DD-Stufen W!=C_lit    max DD-Stufen W!=C_voll    max  DD@100 W    C_lit   C_voll
+elliott_wave                 2018-2019  selektion       133    134    730                  0   0.00                   0   0.00    -42.14   -42.14   -42.14
+elliott_wave                 2020-2021  selektion       731    731    731                  0   0.00                   0   0.00    -60.35   -60.35   -60.35
+elliott_wave                 2022-2023  selektion       730    730    730                  0   0.00                   0   0.00    -66.92   -66.92   -66.92
+elliott_wave                 2024-2025  selektion       731    731    731                  0   0.00                   0   0.00    -51.46   -51.46   -51.46
+elliott_wave                 2026-2027  bestaetigung    243    243    243                  0   0.00                   0   0.00    -47.00   -47.00   -47.00
+t3_supertrend                2018       selektion         0      0    365                  0   0.00                   0   0.00      0.00     0.00     0.00
+t3_supertrend                2019       selektion       136    137    365                  0   0.00                   0   0.00    -42.21   -42.21   -42.21
+t3_supertrend                2020       selektion       366    366    366                  0   0.00                   0   0.00    -60.35   -60.35   -60.35
+t3_supertrend                2021       selektion       365    365    365                  0   0.00                   0   0.00    -60.28   -60.28   -60.28
+t3_supertrend                2022       selektion       365    365    365                  0   0.00                   0   0.00    -66.76   -66.76   -66.76
+t3_supertrend                2023       selektion       365    365    365                  0   0.00                   0   0.00    -30.90   -30.90   -30.90
+t3_supertrend                2024       selektion       366    366    366                  0   0.00                   0   0.00    -35.84   -35.84   -35.84
+t3_supertrend                2025       selektion       365    365    365                  0   0.00                   0   0.00    -48.10   -48.10   -48.10
+t3_supertrend                2026       bestaetigung    243    243    243                  0   0.00                   0   0.00    -47.00   -47.00   -47.00
+rsi2_crypto                  2019       selektion       365    365    365                  0   0.00                   0   0.00    -57.29   -57.29   -57.29
+rsi2_crypto                  2020       selektion       366    366    366                  0   0.00                   0   0.00    -62.71   -62.71   -62.71
+rsi2_crypto                  2021       selektion       365    365    365                  0   0.00                   0   0.00    -60.65   -60.65   -60.65
+rsi2_crypto                  2022       selektion       365    365    365                  0   0.00                   0   0.00    -69.64   -69.64   -69.64
+rsi2_crypto                  2023       selektion       365    365    365                  0   0.00                   0   0.00    -30.90   -30.90   -30.90
+rsi2_crypto                  2024       selektion       366    366    366                  0   0.00                   0   0.00    -36.38   -36.38   -36.38
+rsi2_crypto                  2025       selektion       365    365    365                  0   0.00                   0   0.00    -50.81   -50.81   -50.81
+rsi2_crypto                  2026       bestaetigung    243    243    243                  0   0.00                   0   0.00    -47.50   -47.50   -47.50
+turtle_soup_crypto           2018       selektion         1      2    365                  0   0.00                   0   0.00     -3.60    -3.60    -3.60
+turtle_soup_crypto           2019       selektion       365    365    365                  0   0.00                   0   0.00    -57.29   -57.29   -57.29
+turtle_soup_crypto           2020       selektion       366    366    366                  0   0.00                   0   0.00    -62.71   -62.71   -62.71
+turtle_soup_crypto           2021       selektion       365    365    365                  0   0.00                   0   0.00    -60.65   -60.65   -60.65
+turtle_soup_crypto           2022       selektion       365    365    365                  0   0.00                   0   0.00    -69.64   -69.64   -69.64
+turtle_soup_crypto           2023       selektion       365    365    365                  0   0.00                   0   0.00    -30.90   -30.90   -30.90
+turtle_soup_crypto           2024       selektion       366    366    366                  0   0.00                   0   0.00    -36.38   -36.38   -36.38
+turtle_soup_crypto           2025       selektion       365    365    365                  0   0.00                   0   0.00    -50.81   -50.81   -50.81
+turtle_soup_crypto           2026       bestaetigung    243    243    243                  0   0.00                   0   0.00    -47.50   -47.50   -47.50
+volatility_breakout_crypto   2018       selektion         1      2    365                  0   0.00                   0   0.00     -3.60    -3.60    -3.60
+volatility_breakout_crypto   2019       selektion       365    365    365                  0   0.00                   0   0.00    -57.29   -57.29   -57.29
+volatility_breakout_crypto   2020       selektion       366    366    366                  0   0.00                   0   0.00    -62.71   -62.71   -62.71
+volatility_breakout_crypto   2021       selektion       365    365    365                  0   0.00                   0   0.00    -60.65   -60.65   -60.65
+volatility_breakout_crypto   2022       selektion       365    365    365                  0   0.00                   0   0.00    -69.64   -69.64   -69.64
+volatility_breakout_crypto   2023       selektion       365    365    365                  0   0.00                   0   0.00    -30.90   -30.90   -30.90
+volatility_breakout_crypto   2024       selektion       366    366    366                  0   0.00                   0   0.00    -36.38   -36.38   -36.38
+volatility_breakout_crypto   2025       selektion       365    365    365                  0   0.00                   0   0.00    -50.81   -50.81   -50.81
+volatility_breakout_crypto   2026       bestaetigung    243    243    243                  0   0.00                   0   0.00    -47.50   -47.50   -47.50
+elliott_wave_stocks          2017       selektion       251    251    251                  0   0.00                   0   0.00     -2.37    -2.37    -2.37
+elliott_wave_stocks          2018       selektion       251    251    251                  0   0.00                   0   0.00    -18.69   -18.69   -18.69
+elliott_wave_stocks          2019       selektion       252    252    252                  0   0.00                   0   0.00     -7.23    -7.23    -7.23
+elliott_wave_stocks          2020       selektion       253    253    253                  0   0.00                   0   0.00    -35.42   -35.42   -35.42
+elliott_wave_stocks          2021       selektion       252    252    252                  0   0.00                   0   0.00     -4.74    -4.74    -4.74
+elliott_wave_stocks          2022       selektion       251    251    251                  0   0.00                   0   0.00    -19.96   -19.96   -19.96
+elliott_wave_stocks          2023       selektion       250    250    250                  0   0.00                   0   0.00     -8.55    -8.55    -8.55
+elliott_wave_stocks          2024       selektion       252    252    252                  0   0.00                   0   0.00     -6.86    -6.86    -6.86
+elliott_wave_stocks          2025       selektion       250    250    250                  0   0.00                   0   0.00    -16.99   -16.99   -16.99
+elliott_wave_stocks          2026       bestaetigung    166    166    166                  0   0.00                   0   0.00     -6.31    -6.31    -6.31
+rsi2_mean_reversion          2018       selektion       251    251    251                  0   0.00                   0   0.00    -18.69   -18.69   -18.69
+rsi2_mean_reversion          2019       selektion       252    252    252                  0   0.00                   0   0.00     -7.23    -7.23    -7.23
+rsi2_mean_reversion          2020       selektion       253    253    253                  0   0.00                   0   0.00    -35.42   -35.42   -35.42
+rsi2_mean_reversion          2021       selektion       252    252    252                  0   0.00                   0   0.00     -4.74    -4.74    -4.74
+rsi2_mean_reversion          2022       selektion       251    251    251                  0   0.00                   0   0.00    -19.96   -19.96   -19.96
+rsi2_mean_reversion          2023       selektion       250    250    250                  0   0.00                   0   0.00     -8.55    -8.55    -8.55
+rsi2_mean_reversion          2024       selektion       252    252    252                  0   0.00                   0   0.00     -6.86    -6.86    -6.86
+rsi2_mean_reversion          2025       selektion       250    250    250                  0   0.00                   0   0.00    -16.99   -16.99   -16.99
+rsi2_mean_reversion          2026       bestaetigung    166    166    166                  0   0.00                   0   0.00     -6.31    -6.31    -6.31
+turtle_soup_stocks           2017       selektion       251    251    251                  0   0.00                   0   0.00     -2.37    -2.37    -2.37
+turtle_soup_stocks           2018       selektion       251    251    251                  0   0.00                   0   0.00    -18.69   -18.69   -18.69
+turtle_soup_stocks           2019       selektion       252    252    252                  0   0.00                   0   0.00     -7.23    -7.23    -7.23
+turtle_soup_stocks           2020       selektion       253    253    253                  0   0.00                   0   0.00    -35.42   -35.42   -35.42
+turtle_soup_stocks           2021       selektion       252    252    252                  0   0.00                   0   0.00     -4.74    -4.74    -4.74
+turtle_soup_stocks           2022       selektion       251    251    251                  0   0.00                   0   0.00    -19.96   -19.96   -19.96
+turtle_soup_stocks           2023       selektion       250    250    250                  0   0.00                   0   0.00     -8.55    -8.55    -8.55
+turtle_soup_stocks           2024       selektion       252    252    252                  0   0.00                   0   0.00     -6.86    -6.86    -6.86
+turtle_soup_stocks           2025       selektion       250    250    250                  0   0.00                   0   0.00    -16.99   -16.99   -16.99
+turtle_soup_stocks           2026       bestaetigung    166    166    166                  0   0.00                   0   0.00     -6.31    -6.31    -6.31
+volatility_breakout          2018       selektion       251    251    251                  0   0.00                   0   0.00    -18.69   -18.69   -18.69
+volatility_breakout          2019       selektion       252    252    252                  0   0.00                   0   0.00     -7.23    -7.23    -7.23
+volatility_breakout          2020       selektion       253    253    253                  0   0.00                   0   0.00    -35.42   -35.42   -35.42
+volatility_breakout          2021       selektion       252    252    252                  0   0.00                   0   0.00     -4.74    -4.74    -4.74
+volatility_breakout          2022       selektion       251    251    251                  0   0.00                   0   0.00    -19.96   -19.96   -19.96
+volatility_breakout          2023       selektion       250    250    250                  0   0.00                   0   0.00     -8.55    -8.55    -8.55
+volatility_breakout          2024       selektion       252    252    252                  0   0.00                   0   0.00     -6.86    -6.86    -6.86
+volatility_breakout          2025       selektion       250    250    250                  0   0.00                   0   0.00    -16.99   -16.99   -16.99
+volatility_breakout          2026       bestaetigung    166    166    166                  0   0.00                   0   0.00     -6.31    -6.31    -6.31
+
+elliott_wave                 DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+t3_supertrend                DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+rsi2_crypto                  DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+turtle_soup_crypto           DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+volatility_breakout_crypto   DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+elliott_wave_stocks          DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+rsi2_mean_reversion          DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+turtle_soup_stocks           DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+volatility_breakout          DD_Toleranz-Stufen verschieden: W gegen C_lit   0, W gegen C_voll   0
+
+Summe ueber 78 Falten: DD-Stufen verschieden W/C_lit = 0, W/C_voll = 0; Falten mit anderer handelstage-Zahl: C_lit 4, C_voll 5
