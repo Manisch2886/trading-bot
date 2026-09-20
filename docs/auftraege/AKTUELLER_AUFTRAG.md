@@ -39,6 +39,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | **TB-66** | `docs/auftraege/MAC_TB-66_benchmark_tagesgenau.md` | ⭐⭐ **Fables Festlegung VT umsetzen:** Registertext 3b (c) neu, `benchmark.py` tagesgenau, Lauf **daneben** — rechnet, steht vor dem Tag |
 | **TB-67** | `docs/auftraege/MAC_TB-67_journal_einarbeitung.md` | Die Journal-Seite nachziehen — **sechs offene Journal-Nachträge** und drei Aufgaben ohne Journalblock; führt die Quellenzeile ein, die `TB-64` braucht |
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
+| **TB-68** | `docs/auftraege/MAC_TB-68_eroeffnungstext.md` | ⚠️⚠️ **Der Eröffnungstext steht zweimal — und die Fassungen widersprechen sich** (vier gegen fünf Dokumente, beide mit totem Verweis auf `PRUEFPRINZIPIEN.md`) |
 | **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an |
 
 *Gesetzt 20.09.2026 (zuvor TB-60, erledigt mit `c04b348`, nachgemessen und
@@ -57,7 +58,6 @@ gemessen; nichts bricht.*
 
 | | Vorhaben | hängt an | Art |
 |---|---|---|---|
-| **TB-68** | Entdoppelung: der Eröffnungstext und *"In einfacher Sprache"* stehen je mehrfach | TB-62 | Dokumentation |
 | **TB-69** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-68 | Dokumentation |
 | **TB-70** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
 
@@ -74,8 +74,8 @@ verwendeten Muster **nicht prüfbar**, weil sein Titel keine TB-Nummer nennt.
 
 ---
 
-⚠️⚠️ **VIER AUFTRÄGE — NIE ZWEI GLEICHZEITIG IM SELBEN ARBEITSBAUM.**
-Alle vier schreiben nach `docs/`. Läuft eine Sitzung, warten die anderen.
+⚠️⚠️ **FÜNF AUFTRÄGE — NIE ZWEI GLEICHZEITIG IM SELBEN ARBEITSBAUM.**
+Alle fünf schreiben nach `docs/`. Läuft eine Sitzung, warten die anderen.
 ⚠️ **Und TB-63 setzt TB-62 voraus** — beide ändern `BACKLOG.md`; TB-63 bricht
 ab, wenn TB-62 nicht auf `origin/main` steht.
 ⭐ *Deshalb steht die Nummer dem Einfügesatz voran: sie wählt die Zeile aus,
