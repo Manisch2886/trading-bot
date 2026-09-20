@@ -97,6 +97,55 @@ Zwischencommit, im Text als „nicht von dieser Sitzung geschrieben" vermerkt.
 
 **Sichern: commit und push.**
 
+### ⛔⛔ HALT — Schritt 1 ist gelaufen und hat diesen Auftrag angehalten
+
+⚠⚠️ **Nachgetragen am 20.09.2026, 19:40. Ein erster Anlauf dieser Aufgabe hat
+Schritt 0 und Schritt 1 ausgeführt und ist dann durch einen Verbindungsabbruch
+beendet worden.** Die Messung liegt unversioniert im Arbeitsbaum
+(`docs/belege/TB-72/`, `research/faltenplan_neun/erste_falte_trockenlauf.py`).
+**Geändert wurde nichts.**
+
+⭐⭐ **Das Ergebnis hält den Auftrag an, und zwar zu Recht:** Das
+Auseinanderlaufen von 4a und 3b (a) ist **nicht einseitig**.
+
+| Bot | Plan (4a) | Trockenlauf | Kandidatenfalten vor 4a (davon H ≥ 1) |
+|---|---|---|---|
+| `t3_supertrend` | 2018 | **2019** | 1 (0) — **später** |
+| `elliott_wave` | 2018-2019 | 2018-2019 | 1 (0) |
+| `turtle_soup_crypto` | 2018 | 2018 | 1 (0) |
+| `volatility_breakout_crypto` | 2018 | 2018 | 1 (0) |
+| `rsi2_crypto` | 2019 | **2018** | 2 (1) — **früher** |
+| `elliott_wave_stocks` | 2017 | **1967** | 55 (50) — **früher** |
+| `turtle_soup_stocks` | 2017 | **1967** | 55 (50) — **früher** |
+| `rsi2_mean_reversion` | 2018 | **1967** | 56 (51) — **früher** |
+| `volatility_breakout` | 2018 | **1967** | 56 (51) — **früher** |
+
+⛔ **Schritt 2 in der unten stehenden Fassung würde vier Aktien-Bots
+Selektionsfalten ab 1967 geben.** Das ist nicht gemeint, und es ist nicht
+selbst zu entscheiden: 21.3 (b) sagt *„bindet 3b (a)“* ohne Richtung, seine
+eigene Begründung nennt nur den Fall der leeren Falte, und 4a trägt mit
+*„Universum ... liegt vor“* eine Bedingung, die der Trockenlauf gar nicht prüft.
+
+⭐ **Die Frage liegt bei Fable** (`docs/projektfuehrung/FABLE_ANFRAGE_2026-09-20e_erste_falte.md`),
+mit der vorgelegten Lesart **erste Falte = max(4a, 3b (a))**. Unter ihr ändert
+sich genau ein Bot: `t3_supertrend`.
+
+### ⭐ Was diese Sitzung stattdessen tut, bis die Antwort da ist
+
+| | |
+|---|---|
+| **1** | **Schritt 0** wie unten — committe, was im Arbeitsbaum liegt, getrennt nach Urheber |
+| **2** | **Schritt 1 nachmessen und committen.** ⚠️ **Verlass dich nicht auf die Tabelle oben** — sie stammt aus dem abgebrochenen Anlauf. Lauf die Messung erneut, mit dem vorgefundenen Skript oder einem eigenen, und **sag, ob beide übereinstimmen** |
+| **3** | ⭐ **Die Gegenprobe gegen TB-56** (`trockenlauf_ohne_schranke`) mitführen — der erste Anlauf meldet *„alle gleich: ja“*; prüfe das nach |
+| **4** | **Ein Ergebnisdokument nur über Schritt 1**, `docs/ERGEBNIS_TB-72_schritt1_erste_falte.md`, plus Journal-Nachtrag mit Quellenzeile. ⛔ **Keine Backlog-Zeile mit der Behauptung, TB-72 sei erledigt** — eine Zeile, die den Befund und die offene Frage führt |
+| **5** | ⛔ **STOPP vor Schritt 2.** Schritt 2 bis 7 bleiben unten stehen und gelten **erst nach Fables Antwort** |
+
+⚠️ **Widersprich auch diesem Nachtrag, wo er falsch ist.** ⭐ *Der erste Anlauf
+hat genau das getan — er hat gemessen, bevor er änderte, und deshalb steht hier
+ein Befund statt eines Plans ab 1967.*
+
+---
+
 ### Schritt 2 — `faltenplan.py` leitet die erste Falte ab, statt sie nachzurechnen
 
 **In `_plan`:** `erste` kommt aus dem Trockenlauf, nicht aus der 4a-Nachrechnung.
