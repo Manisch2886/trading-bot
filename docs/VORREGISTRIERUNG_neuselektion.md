@@ -3804,6 +3804,8 @@ stehen; hier steht daneben:
 | **Betreiberentscheidung** | 20.09.2026, 18:15 Ortszeit, per anklickbarer Frage: erst die Regel (dieser Abschnitt), dann die Messung (TB-73) |
 | **Wirkung, gemessen** | *noch nicht* — der Eintrag steht absichtlich vor der Zahl (24.3). Bekannt ist die Richtung: gegen alle neun Bots, am stärksten bei langen Haltedauern und hoher Exposure (`turtle_soup_stocks`: 100 % im Markt, 14 Tage Median). Die Zahl wird hier nachgetragen, wenn TB-73 gelaufen ist |
 
+> ⭐ **NACHGETRAGEN in Abschnitt 24.6 (TB-73, 20.09.2026):** die Wirkung ist gemessen — je Bot und je Falte, mit den fünf Falten, in denen die Richtung *nicht* gegen den Bot geht. Die Zeile oben bleibt, wie sie war.
+
 **Die Vorgeschichte gehört ausdrücklich dazu, sonst liest sich dieser Abschnitt
 wie ein Widerruf:** `research/drawdown_reihenfolge/` (Commits vom 12.09.2026,
 `26bdd97`, `971c001`, `027fe2b`) hat **drei** Drawdown-Begriffe verglichen —
@@ -3874,6 +3876,128 @@ unbequem ist: Die neue Messung ist für alle neun Bots strenger, nie milder.
 *Nachgetragen in TB-71, 20.09.2026. Präzisierung nach Betreiberentscheidung:
 sie nennt den Widerspruch, die Fundstellen, den Registertext, die
 Entscheidungsregel und die Vorgeschichte — und entfernt nichts.*
+
+---
+
+### 24.6 Tatsachennotiz zu 24.3 und 24.4 — die gemessene Wirkung (TB-73, 20.09.2026)
+
+**Datiert angehängt. Nichts entfernt, kein bestehender Satz umgeschrieben.**
+Die Zeile *„Wirkung, gemessen — noch nicht"* in 24.4 bleibt stehen; hier steht
+die Zahl, die sie ankündigt. **Diese Notiz berichtet. 24.3 hat entschieden,
+bevor sie existierte, und sie wirft nichts erneut auf.** Kein Satz hier ist
+eine Bewertung, eine Empfehlung oder eine Abwägung; keine Bot-Zahl steht neben
+`erlaubt(f)`, `DD_Benchmark` oder `DD_Toleranz`.
+
+**Herkunft:** `research/mtm_drawdown/` (Forschungsskript ausserhalb des
+Laufcodes, `BERICHT.md` dort), gemessen am 20.09.2026 auf dem Mac
+(`trading-env/bin/python3` 3.9.6) an den TB-24-Trade-Listen
+(`research/tb24_haltedauern/daten/<bot>_positionen.csv`) und den Kursdateien in
+`data/`; Falten aus `research/vorregistrierung/ergebnisse/faltenplan_tb72.json`
+(TB-72). Ergebnisdokument `docs/ERGEBNIS_TB-73_mtm_wirkung.md`. Nichts in
+`research/vorregistrierung/`, `shared/`, `strategies/` berührt; die drei
+Sperrlisten-Hashes (`a163c498…`, `4549395f…`, `0e54ac5c…`) und die beiden
+`_tb72`-Dateien byteweise unverändert.
+
+**Was gemessen wurde, in einem Satz je Grösse:**
+
+| | |
+|---|---|
+| **E** | der ereignisindizierte Drawdown je Falte — `capital_after` je Ausstieg aus `shared/zuteilung.py::simuliere_portfolio` (TB-24-Liste), Drawdown mit `shared/messkette.py::max_drawdown_ungerundet`, Basis der Kapitalstand vor Faltenbeginn. Das ist die Grösse, die Festlegung 1 bis 24.2 meinte |
+| **M** | der tägliche Mark-to-Market-Drawdown je Falte auf **denselben ausgeführten Positionen**: an jedem Kurstag der 1d-Dateien Buchwert plus Bewertung der am Tagesschluss offenen Positionen zum Schlusskurs (`allocation · (close/entry − 1 − Kosten_Seite)`), Ausstiege mit dem realisierten `pnl_pct`; Kosten aus dem Backtest-Modul des Bots importiert. Das ist die Grösse aus 24.2 / Registertext 1a |
+| **Grundlage** | die neun TB-24-Listen: Kapitalkette schliesst bei allen neun, `entry_price` = Schlusskurs der Einstiegskerze (max. Abweichung 2,2e-16), 1d-Kurse decken jeden Tagesschluss mit offener Position (0 fortgeschriebene Kurstage bei 149 000 Positionstagen) |
+
+⚠️ **Was nicht messbar ist:** Die fünf Krypto-Listen beginnen zwischen
+2021-09-01 und 2022-03-17 (Datenstand vor dem TB-34-Neuaufbau, 1 826
+Tageszeilen). **Die Falten 2018, 2019 und 2020 aller Krypto-Bots haben keine
+Grundlage** (dazu 2021 bei `rsi2_crypto` und `volatility_breakout_crypto`), je
+eine Falte ist nur teilweise gedeckt. **2020 ist bei keinem Krypto-Bot
+messbar.** Diese Falten tragen keine Zahl. Die Aktien-Listen (ab 2016-09-01)
+decken alle Falten.
+
+**Die Wirkung, je Bot und je Falte** (E → M, Prozent; **fett: 2020 und 2022**;
+ᵗ = Liste beginnt in der Falte; ⚠️ = M flacher als E; „keine" = keine
+Grundlage; „″" = zweites Jahr einer Zweijahresfalte; 2026 = Bestätigungsperiode
+bis 2026-09-01 ausschliesslich, nicht im Median):
+
+| Bot | 2017 | 2018 | 2019 | 2020 | 2021 | 2022 | 2023 | 2024 | 2025 | 2026 | Median Sel. E → M |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `elliott_wave` | · | keine | ″ | **-2,81** → **-4,48** ᵗ | ″ | **-10,17** → **-15,40** | ″ | -4,51 → -7,43 | ″ | -3,11 → -3,34 | -4,51 → -7,43 |
+| `t3_supertrend` | · | · | keine | keine | -5,58 → -8,67 ᵗ | **-12,28** → **-14,11** | -11,55 → -11,25 ⚠️ | -6,20 → -10,79 | -16,41 → -19,61 | -9,92 → -11,79 | -11,55 → -11,25 |
+| `rsi2_crypto` | · | · | keine | keine | keine | **-8,65** → **-10,15** ᵗ | -2,75 → -4,01 | -13,30 → -16,53 | -11,43 → -12,71 | -3,14 → -4,28 | -10,04 → -11,43 |
+| `turtle_soup_crypto` | · | keine | keine | keine | -15,29 → -16,43 ᵗ | **-27,86** → **-30,38** | -20,68 → -21,53 | -18,00 → -19,42 | -27,42 → -35,29 | -16,03 → -22,25 | -20,68 → -21,53 |
+| `volatility_breakout_crypto` | · | keine | keine | keine | keine | **-6,07** → **-10,39** ᵗ | -12,90 → -12,84 ⚠️ | -14,40 → -15,42 | -5,22 → -7,86 | -7,27 → -9,63 | -9,48 → -11,62 |
+| `elliott_wave_stocks` | -0,99 → -5,26 | -4,85 → -9,22 | -4,86 → -8,61 | **-13,35** → **-9,45** ⚠️ | -3,88 → -5,34 | **-19,31** → **-18,11** ⚠️ | -1,96 → -4,53 | -3,26 → -6,14 | -8,92 → -11,91 | -5,74 → -11,71 | -4,85 → -8,61 |
+| `rsi2_mean_reversion` | · | -11,49 → -14,92 | -6,46 → -7,66 | **-9,01** → **-11,28** | -3,53 → -5,53 | **-10,52** → **-11,93** | -8,69 → -9,21 | -4,45 → -5,48 | -5,33 → -7,49 | -3,84 → -5,51 | -7,57 → -8,44 |
+| `turtle_soup_stocks` | -1,26 → -2,42 | -12,15 → -14,93 | -4,74 → -6,86 | **-29,91** → **-34,45** | -3,30 → -6,39 | **-18,73** → **-20,69** | -4,54 → -7,07 | -5,19 → -7,42 | -12,02 → -18,74 | -3,81 → -6,24 | -5,19 → -7,42 |
+| `volatility_breakout` | · | -14,78 → -15,36 | -7,85 → -9,05 | **-9,41** → **-12,60** | -3,38 → -5,55 | **-23,97** → **-25,80** | -10,70 → -12,08 | -5,39 → -6,15 | -12,31 → -15,36 | -4,90 → -4,37 ⚠️ | -10,05 → -12,34 |
+
+**Die beiden Falten aus Fables Warnung (24.3), einzeln:**
+
+| Bot | 2020: E → M | Differenz | Faktor M/E | 2022: E → M | Differenz | Faktor M/E |
+|---|---|---:|---:|---|---:|---:|
+| `elliott_wave` | 2020-2021 (ab 2021-09-22): −2,81 → −4,48 | −1,67 pp | 1,59 | 2022-2023: −10,17 → −15,40 | −5,23 pp | 1,51 |
+| `t3_supertrend` | keine Grundlage | | | −12,28 → −14,11 | −1,83 pp | 1,15 |
+| `rsi2_crypto` | keine Grundlage | | | (ab 2022-02-11) −8,65 → −10,15 | −1,50 pp | 1,17 |
+| `turtle_soup_crypto` | keine Grundlage | | | −27,86 → −30,38 | −2,52 pp | 1,09 |
+| `volatility_breakout_crypto` | keine Grundlage | | | (ab 2022-03-17) −6,07 → −10,39 | −4,32 pp | 1,71 |
+| `elliott_wave_stocks` | −13,35 → −9,45 ⚠️ | +3,90 pp | 0,71 | −19,31 → −18,11 ⚠️ | +1,20 pp | 0,94 |
+| `rsi2_mean_reversion` | −9,01 → −11,28 | −2,27 pp | 1,25 | −10,52 → −11,93 | −1,41 pp | 1,13 |
+| `turtle_soup_stocks` | −29,91 → −34,45 | −4,54 pp | 1,15 | −18,73 → −20,69 | −1,96 pp | 1,11 |
+| `volatility_breakout` | −9,41 → −12,60 | −3,19 pp | 1,34 | −23,97 → −25,80 | −1,83 pp | 1,08 |
+
+**Die Zahlen, zusammengefasst — und nur neben den Faltenwerten oben gültig:**
+In **59 von 64** Falten mit Grundlage ist M tiefer als E. Der Median der
+Differenzen je Bot über seine Selektionsfalten mit Grundlage liegt zwischen
+**−1,39 pp** (`rsi2_crypto`) und **−3,09 pp** (`t3_supertrend`); der Faktor
+M/E je Falte zwischen 1,04 (10.-Perzentil) und 1,88 (90.-Perzentil), Median
+1,30. Die grössten Differenzen in Prozentpunkten liegen nicht in 2020 oder
+2022, sondern in 2025 (`turtle_soup_crypto` −7,87 pp, `turtle_soup_stocks`
+−6,72 pp) und in der Bestätigungsperiode 2026 (`turtle_soup_crypto` −6,22 pp,
+`elliott_wave_stocks` −5,97 pp). Bei den vier Aktien-Bots ist 2020 in drei
+Fällen die Falte mit der grössten oder zweitgrössten Differenz des Bots.
+
+⚠️ **Tatsachennotiz zur Richtung — der Satz im Kopf dieses Abschnitts
+(*„der tägliche Drawdown ist nie flacher als der ereignisweise"*) ist eine
+Näherung, keine Eigenschaft der Rechnung.** Gemessen: in **5 von 64** Falten
+ist M flacher als E — `t3_supertrend` 2023 (+0,30 pp),
+`volatility_breakout_crypto` 2023 (+0,06 pp), `elliott_wave_stocks` **2020**
+(+3,90 pp) und **2022** (+1,20 pp), `volatility_breakout` 2026 (+0,53 pp).
+In jedem der fünf Fälle liegen am Tiefpunkt der Ereigniskurve **unrealisierte
+Gewinne** in offenen Positionen (`elliott_wave_stocks` 2020: +2 055 in sechs
+März-Einstiegen, die E erst beim Ausstieg im Juli/August sieht; das Tief von M
+liegt am 18.03.2020 bei −9,45 %, das von E am 13.05.2020 bei −13,35 %). Die
+Ereigniskurve bewertet offene Positionen zum Einstand — das lässt sie
+unrealisierte Verluste **und** unrealisierte Gewinne nicht sehen; welche
+Richtung die Abweichung nimmt, hängt davon ab, was am Tiefpunkt im Buch liegt.
+Von Hand nachgerechnet in `research/mtm_drawdown/test_mtm_kern.py`, Probe 3;
+jeder Fall zerlegt in `research/mtm_drawdown/ergebnisse/richtungsfaelle.md`.
+Der Pfad ist in keinem der fünf Fälle falsch: ein Pfad, der „M ≤ E" erzwänge,
+müsste unrealisierte Gewinne ignorieren und wäre nicht mehr Mark-to-Market.
+Gegenprobe: in 0 von 64 Falten ist E flacher als die Ereigniskurve am
+Tagesende (E_tag) — erwartet, jeder Tagesendwert ist ein E-Punkt.
+
+**Zwei Feststellungen zum Auftrag, gemessen statt übernommen:** (a) Der
+Auftrag verlangte E gegen M *„bei 25 / 50 / 100 % Exposure"*. Diese Stufen
+sind das Argument des **Benchmarks** (`DD_Benchmark(f, e)`, Abschnitt 4.2); ein
+Bot hat je Falte **eine** Exposure, die aus seinen Positionen folgt — sie
+steht in `research/mtm_drawdown/ergebnisse/messung.md` neben jeder Falte (z. B.
+`turtle_soup_stocks` 0,66–0,86; `elliott_wave` 0,04–0,06). Sie auf drei Stufen
+zu setzen hiesse andere Positionen oder Hebel; beides wäre eine erfundene
+Zahl. (b) Der Bot-Median über die Selektionsfalten führt zu keiner Grösse
+dieses Registers — `DD_Toleranz` ist der Median der **Benchmark**-Drawdowns
+(Festlegung 5). Er steht oben als Beschreibung, nicht als Grösse der Regel.
+
+**Was diese Notiz ausdrücklich NICHT tut:** Sie bewertet nichts, empfiehlt
+nichts, wirft 24.3 nicht erneut auf. Sie vergleicht keine Bot-Zahl mit einer
+Grenze. Sie ändert keinen Code, keine Sperrlisten-Datei, keinen Registertext;
+`K4j` (drei Code-Stellen, sobald der Laufcode geschrieben wird) bleibt, wie
+es ist, und die Grösse der Abweichung ist für keine dieser Stellen ein
+Argument (24.3). Sie ersetzt die fehlenden Krypto-Falten 2018–2020 nicht durch
+neue Backtests. Sie setzt keinen Tag.
+
+*Nachgetragen in TB-73, 20.09.2026. Tatsachennotiz: sie nennt die Grundlage,
+die Lücke, die Zahlen je Falte, die fünf Gegenfälle mit ihrem Grund — und
+entscheidet nichts.*
 
 ---
 
