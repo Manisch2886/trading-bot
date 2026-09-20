@@ -240,3 +240,37 @@ beide Dateien **keine Nummer doppelt** (`sort | uniq -d` leer).
 (Z. 1290, TB-62). `K4h` steht in Abschnitt 4, wie der Auftrag verlangt, und
 nennt `K4g` — die offene Ortsfrage aus `K4g` ist damit an ihrer Antwort
 verlinkt, ohne `K4g` anzufassen.
+
+---
+
+## Nachweis 7 — Schritt 5: was nach `_eingearbeitet/` verschoben wurde, und was offen bleibt
+
+`docs/projektfuehrung/nachtraege/_eingearbeitet/` **existierte nicht** (TB-64
+ist noch nicht gelaufen) — **in dieser Sitzung neu angelegt**, per `git mv`
+verschoben (git führt die elf als `R`, Umbenennung ohne Inhaltsänderung):
+
+| verschoben | Grund |
+|---|---|
+| `JOURNAL_NACHTRAG_2026-09-19c.md`, `…19d.md`, `…19e.md` | in Schritt 1 als eingearbeitet gemessen (`BG`, `BH`, `BI`+`BJ`), Quellenzeile nachgetragen |
+| `JOURNAL_NACHTRAG_2026-09-19f.md`, `…19g.md`, `…20a.md`, `…20b.md`, `…20c.md`, `…20d.md`, `…20e.md`, `…20f.md` | in Schritt 2 eingearbeitet (`BK`–`BT`), Ankunft je Zeile geprüft |
+
+**Nach dem Verschieben erneut geprüft** (`ankunft_pruefung.py` liest beide
+Orte; `schritt5_ankunft_nach_verschieben.txt`): elf Dateien, **7 × „fehlend: 0"**,
+4 × nur die Einfüge-Anweisungen (`(c)`–`(f)`, wie in Schritt 2); `T`-Zeilen
+13/13; Quellenzeilen 14. Im Hauptverzeichnis `nachtraege/` liegen jetzt
+**0** `JOURNAL_NACHTRAG_*.md`.
+
+**Nicht verschoben, absichtlich — die 19 `BACKLOG_NACHTRAG_*.md`:** Der
+Auftrag erlaubt nur, was in Schritt 1 oder 2 als angekommen gemessen wurde.
+Gemessen wurde von den Backlog-Nachträgen **nur `(m)`, und nur teilweise**: seine
+13 `T`-Zeilen sind im Journal (13/13), seine 7 `B`-Zeilen sind — wie
+beauftragt — **nicht** eingetragen, seine sechs `K`-Zeilen hat TB-62 geprüft
+(`K4g`), seine 0,85-Berichtigung ist laut `K4g` überholt, seine drei
+Kettenzeilen-Vorschläge stehen laut `K4g` als `0,85c` / erledigt / `0,99`.
+⚠️ **Ob `(m)` damit „eingearbeitet" ist, hängt an der Betreiberentscheidung zu
+den `B`-Zeilen** — deshalb bleibt es liegen, ebenso die 18 anderen
+Backlog-Nachträge, die diese Sitzung nicht geprüft hat. Das ist TB-64,
+Prüfung B.
+
+**Offen bleibt damit:** `(m)` (B-Zeilen, Betreiberentscheidung) und die
+Backlog-Nachträge (a)–(v) ausser dem `T`-Teil von `(m)`.
