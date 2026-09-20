@@ -1,7 +1,11 @@
 """TB-72 Schritt 1, zweite Methode: loader_lesart (Nachrechnung nach MIN_HISTORY_*)
-je Bot - unabhaengig vom Trockenlauf-Kindprozess. Rein lesend."""
+je Bot - unabhaengig vom Trockenlauf-Kindprozess. Rein lesend.
+
+    trading-env/bin/python3 docs/belege/TB-72/schritt1_loader_lesart_neun.py aus.json
+"""
 import json, os, sys
-BASE = "/Users/jaquelineloffler/trading-bot"
+BASE = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__)))))  # docs/belege/TB-72 -> Repo-Wurzel
 sys.path.insert(0, os.path.join(BASE, "research", "faltenplan_neun"))
 import faltenschranke_messung as fsm
 import faltenplan_neun as fn
