@@ -40,6 +40,14 @@ und dem Dateipfad im selben Befehl:
 cd ~/trading-bot && claude --remote-control "Lies die Datei <PFAD> und arbeite sie als autonome Claude-Code-Sitzung vollständig eigenständig ab, wie darin beschrieben."
 ```
 
+⚠️⚠️ **BERICHTIGT 20.09.2026 — siehe Abschnitt 14.** Dieser Einzeiler hat am
+19.09.2026 den Anweisungstext **verloren**: Die Sitzung startete, `/remote-control`
+war aktiv, die Eingabezeile blieb leer. **Der Anweisungstext reist seither nicht
+mehr im Startbefehl mit**; gestartet wird nackt, der Text kommt als eigener Block
+in die wartende Eingabezeile. *Der Grundsatz „Pfad immer mitgeben, nie
+beschreiben" bleibt unverändert — er gilt jetzt für den Text, nicht für die
+Befehlszeile.*
+
 ⚠️ **Das `--remote-control` gehört immer dazu** *(ergänzt 15.09.2026)*. Ohne
 das Flag läuft die Sitzung rein lokal und erscheint **nicht** im Projekt auf
 claude.ai oder in der Mobil-App — der Nutzer kann sie dann vom iPhone aus weder
@@ -362,6 +370,12 @@ kommt **hinein**, nicht daneben.
 3. **Der Nutzer startet die Mac-Sitzung.** ⚠️ **Die Fassung v2.1.276 nimmt den
    Auftragstext NICHT aus dem `--remote-control`-Einzeiler mit** — die Sitzung
    öffnet und wartet; der Satz wird danach in ihre Eingabezeile eingefügt.
+   ⚠️⚠️ **BERICHTIGT 20.09.2026:** Der Befund stimmt, **die Begründung ist nicht
+   gemessen.** Gemessen ist am 19.09.2026 nur, **dass** der Text nicht ankam, und
+   die Fassung war **v2.1.278**, nicht 2.1.276. Drei Ursachen kommen in Frage
+   (Anführungszeichen unterwegs zerlegt · Text abgeschnitten · das Flag übergibt
+   keinen ersten Zug); **welche es war, ist offen.** ⭐ Die Abhilfe in Abschnitt 14
+   braucht die Ursache nicht.
 4. **Vor dem Merge** wie immer: Merge-Basis-Vergleich, `numstat` gegenlesen,
    `git status` **nach** dem letzten Commit (Abschnitt 7).
 
@@ -773,3 +787,146 @@ was der Betreiber zu tun hat. **Dieser Abschnitt verlangt, dass diese Liste so
 kurz wie möglich ist und den Punkt „entscheiden, wie es weitergeht" NIE
 enthält.** Ist nichts zu tun, wird das ausdrücklich gesagt — und die Arbeit
 läuft trotzdem weiter.
+
+---
+
+## 14. Wie eine Mac-Sitzung gestartet wird
+
+⚠️⚠️ **Berichtigt Abschnitt 1 und schärft Abschnitt 5b, Punkt 3** — nach dem
+Hänger vom 19.09.2026, 23:11.
+
+**Was gemessen ist:** Der Startbefehl
+`cd ~/trading-bot && claude --remote-control "<langer Anweisungstext>"` startete
+die Sitzung, **übergab den Text aber nicht**; Eingabezeile leer,
+`/remote-control` aktiv, Fassung **v2.1.278**.
+⚠️ **Was NICHT gemessen ist:** warum. Drei Ursachen kommen in Frage —
+Anführungszeichen unterwegs zerlegt, Text abgeschnitten, oder das Flag übergibt
+keinen ersten Zug. ⭐ **Die Abhilfe braucht die Diagnose nicht.**
+
+### Die vier Regeln
+
+**1. ⭐⭐ Der Anweisungstext reist nie im Startbefehl mit.**
+
+Gestartet wird nackt, in einer Zeile:
+
+```
+cd ~/trading-bot && claude --remote-control
+```
+
+Der Anweisungstext kommt **danach** als eigener Block in die wartende
+Eingabezeile. *Was nicht durch eine Shell und durch Anführungszeichen muss, kann
+dort auch nicht verlorengehen.* Läuft die Sitzung schon, gehört
+`/remote-control` als eigener Block **davor**.
+
+**2. ⭐ Ein fester Zeiger — und die TB-Nummer steht vorn.**
+
+`docs/auftraege/AKTUELLER_AUFTRAG.md` enthält nichts als den Pfad des gerade
+gültigen Auftrags. Der einzufügende Text lautet dadurch **bis auf die Nummer**
+immer gleich:
+
+```
+TB-<Nummer>: Lies docs/auftraege/AKTUELLER_AUFTRAG.md, arbeite den dort genannten Auftrag vollstaendig eigenstaendig ab, und antworte zuerst mit einer Zeile, welchen Auftrag du gelesen hast. Nennt diese Datei eine andere TB-Nummer als die vorangestellte, brich ab und melde es.
+```
+
+| | |
+|---|---|
+| ⭐ | **Nur die Nummer wechselt** — der Rest liegt als Textbaustein im Telefon |
+| ⭐ | Die **TB-Nummer steht vorn**, damit der Betreiber die Sitzungen **in der Historie** auseinanderhalten kann. *Abschnitt 3 verlangt den Sitzungstitel seit dem 15.09.2026 — aber nur im Kopf des Aufgabendokuments, und der erreicht die Sitzungsliste nicht* |
+| ⭐⭐ | **Der letzte Satz macht aus dem Titel eine Wache:** Wurde der Zeiger nicht umgestellt, nennt er eine andere Nummer als die vorangestellte, und die Sitzung bricht ab, statt den falschen Auftrag abzuarbeiten. *Der häufigste Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst* |
+| ⭐ | **Die Empfangsbestätigung:** Kommt die Zeile mit dem Auftragsnamen, ist der Text angekommen. Bleibt sie aus, ist er es nicht |
+
+⚠️ **Nicht gemessen:** ob Claude Code den Eintrag in der Historie wirklich aus der
+ersten Nachricht bildet. **Kostet beim nächsten Start einen Blick.**
+
+**3. ⚠️ Gesichert wird nach jedem fertigen Teil, nicht am Ende.**
+
+Jeder Mac-Auftrag trägt einen **Schritt 0** (*„Committe, was im Arbeitsbaum
+liegt, bevor du anfängst"*), und der Nachweis „Arbeitsbaum sauber" wird
+**danach** geprüft.
+
+⚠️⚠️ **Und Commit und Push stehen NICHT als letzter Nachweis in der Liste.**
+*Grund, gemessen: In TB-59 stand das Sichern als Nachweis 6 am Ende. Die Sitzung
+hielt ihre inhaltliche Arbeit für fertig und war damit fertig — die Arbeit lag
+elf Stunden ungesichert im Arbeitsbaum, auf einem Rechner und in keiner Version.*
+
+> ⭐⭐ **Sichern ist keine Abgabe, sondern ein Schritt.** Dieselbe Begründung, die
+> `UMZUG.md` Abschnitt 1 für die Übergabe führt: *„Wer sie erst beim Umzug
+> schreibt, hat ein Zeitfenster, in dem ein unerwarteter Abbruch Arbeit
+> vernichtet. Wer sie laufend pflegt, hat keins."*
+
+**4. ⭐⭐ Nach jedem Start wird gemessen, ob der Text angekommen ist.**
+
+```
+git --no-optional-locks log -1 --format='%h %ad' --date=iso-local
+git --no-optional-locks ls-files --others --exclude-standard
+```
+
+⚠️ **Die Messung beweist den EMPFANG, nicht den FORTSCHRITT:**
+
+| Beobachtung | heisst |
+|---|---|
+| Binnen ~2 Minuten bewegt sich `HEAD` oder der Arbeitsbaum | ⭐ Text angekommen |
+| Nichts bewegt sich, **und** Schritt 0 hat nicht committet | ⚠️ Text **nicht** angekommen — erneut einfügen |
+| Nichts bewegt sich, **aber** Schritt 0 hat committet | ⭐ **Sie liest. Kein Befund** |
+
+*Am 19.09. stand `HEAD` nach dem Schritt-0-Commit dreieinhalb Minuten still,
+während die Sitzung 1 544 Zeilen Nachträge und ein 951-Zeilen-Backlog las. Wer
+das für einen Hänger hält, unterbricht eine arbeitende Sitzung — dieselbe
+Fehlerklasse wie Block 7, Punkt 2.*
+
+⭐ **Für eine Sitzung, die liest statt schreibt, ist der Fortschritt in Web und
+App sichtbar, nicht im Repo.** Dort wird nachgesehen.
+
+⚠️ **Und `git status` bleibt über die Geräteanbindung verboten** (Block 7,
+Punkt 8) — die beiden Befehle oben beantworten dieselbe Frage lesend.
+
+---
+
+## 15. Was mit „zukünftig" gesagt wird, wird eingetragen — ohne weitere Aufforderung
+
+⚠️⚠️ **Ausdrückliche Anweisung des Betreibers, 19.09.2026:** *„Füge zukünftig
+auch immer alle Angaben, die ich mit zukünftig erwähne, in die entsprechenden
+Dokumentationen nach."*
+
+> ⭐⭐ **Leitet der Betreiber eine Angabe mit „zukünftig" ein, ist das eine
+> stehende Anforderung und keine Bemerkung.** Sie wird **in derselben Antwort**
+> in die zuständigen Dokumente eingetragen — ohne Rückfrage, ohne Erinnerung,
+> ohne dass er ein zweites Mal darum bitten muss.
+
+**Die Träger, jedes Mal geprüft statt erinnert** (`UMZUG.md` Abschnitt 2):
+
+| Träger | wofür |
+|---|---|
+| ⭐ **Erinnerung** | **immer** — der einzige Träger, der ohne Zutun des Betreibers wirkt |
+| **`ARBEITSWEISE.md`** | stehende Anforderung an die Arbeitsweise |
+| **`DOKUMENTATIONSSTANDARD.md`** | Form von Dokumenten |
+| **`UMZUG.md`** | Chatwechsel |
+| **Backlog-Nachtrag** | **immer** — mit gemessener Nummer nach K2i |
+| **Projektablage** | sobald ein Führungsdokument geändert wurde; beide Fassungen müssen gleich lauten |
+
+⚠️ **Läuft gerade eine Mac-Sitzung, ist `docs/` gesperrt.** Dann geht der Text
+ins **Zwischenlager `logs/auftraege/`**, mit der Bringschuld im Kopf der Datei —
+und wird übertragen, sobald die Sitzung fertig ist. **Das ist kein Aufschub,
+sondern der Weg.**
+
+⭐ **Warum diese Regel nötig war:** Die Anweisungen vom 19.09.2026 sind mehrfach
+erst **auf Nachfrage** in die Dokumente gelangt. *Eine Regel, die nur im Chat
+steht, überlebt den Chat nicht* — und der Chatverlauf ist nach `UMZUG.md`
+Abschnitt 2 ausdrücklich **kein Träger**.
+
+---
+
+## 16. Dokumentation aktuell halten statt anhäufen
+
+⚠️ **Anweisung des Betreibers, 20.09.2026.** Das Verfahren steht vollständig in
+`DOKUMENTATIONSSTANDARD.md` **Regel 9**.
+
+**Die drei Sätze, die auch ohne das Dokument gelten:**
+
+1. ⭐ **Jede Änderung sagt, was sie ablöst** — und das Abgelöste wird **entfernt**,
+   nicht danebengestellt.
+2. ⚠️ **Vier Träger sind ausgenommen, weil dort die Aufzeichnung das Produkt
+   ist:** das Register, `JOURNAL.md`, Backlog-Abschnitt 8 (Gestrichen),
+   `PRUEFPRINZIPIEN.md`.
+3. ⚠️ **Gelöscht wird nur mit Nachweis** — byteweise gegen den Verbleib geprüft
+   oder ausdrücklich als ersatzlos benannt.

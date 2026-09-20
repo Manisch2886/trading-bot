@@ -170,6 +170,39 @@ und sie waren nicht dokumentiert, sondern geparkt.*
 
 ---
 
+## 9. Aktuell halten statt anhäufen — und was gelöscht werden darf
+
+⚠️⚠️ **Anweisung des Betreibers, 20.09.2026:** *„…dass wir keinen unnötigen
+Datenwachstum erzeugen, sondern die Dokumentation lediglich auf dem neuesten
+Stand halten … alte, obsolete Informationen, die keinerlei Relevanz haben,
+dürfen natürlich gerne gelöscht werden."*
+
+> ⭐⭐ **Jede Änderung sagt, was sie ablöst — und das Abgelöste wird entfernt,
+> nicht danebengestellt.**
+
+| ⭐ darf gelöscht werden | ⚠️ darf NICHT gelöscht werden |
+|---|---|
+| Kopien und Entwürfe, deren Inhalt anderswo im Repo steht | **Das Register** `VORREGISTRIERUNG_neuselektion.md` samt Nachträgen |
+| Rückblicke auf erledigte Aufgaben, **deren Lehre bereits als Regel geführt wird** | **`JOURNAL.md`** — ergänzen, nie umschreiben |
+| Überholte Fassungen einer Regel, sobald die neue steht | **Backlog-Abschnitt 8** (Gestrichen) |
+| Zwischenlager-Dateien mit erfüllter Bringschuld | **`PRUEFPRINZIPIEN.md`** |
+
+⚠️ **Warum die vier Ausnahmen keine Bürokratie sind: dort IST die Aufzeichnung
+das Produkt.** Ein Register, aus dem etwas entfernt werden kann, beweist nichts
+mehr; eine Liste verworfener Ideen, die schrumpft, lässt sie zurückkommen. *Der
+Rest der Dokumentation beschreibt einen Zustand — diese vier beschreiben, dass
+etwas vorher feststand.*
+
+⭐ **Die Faustregel für alles andere: die Regel behalten, den Fall streichen** —
+aber nur, wenn die Regel den Fall wirklich trägt. Ein Satz Fall **innerhalb** der
+Regel reicht; die lange Erzählung nicht.
+
+⚠️ **Gelöscht wird nur mit Nachweis** (`ARBEITSWEISE.md` §6 bleibt): Was
+verschwindet, wird vorher **byteweise gegen seinen Verbleib geprüft** oder
+ausdrücklich als **ersatzlos** benannt.
+
+---
+
 ## In einfacher Sprache
 
 **Warum dieses Dokument existiert:** Du hast vor dem Umzug gefragt, ob im neuen
