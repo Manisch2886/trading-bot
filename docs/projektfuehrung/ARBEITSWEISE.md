@@ -671,73 +671,29 @@ im Backlog, und jeder ist mindestens einmal vergessen worden.**
 
 ---
 
-## 10. Die Sitzungsuebergabe
+## 10. Der Umzug in einen neuen Chat
 
-**Wenn eine Sitzung lang geworden ist oder ein Arbeitsabschnitt endet**, wird
-sie an eine neue uebergeben. Der Ablauf ist festgelegt:
+⚠️⚠️ **Das Verfahren steht vollständig in
+`docs/projektfuehrung/UMZUG.md`** (angelegt 19.09.2026). Es ersetzt die
+frühere ZIP-und-Anhang-Übergabe, die durch zwei Anweisungen des Betreibers
+vom 19.09.2026 überholt ist: *„Ich lese die Zipp und berichte nie"* und
+die Weisung, ihn **frühzeitig** auf einen nötigen Umzug hinzuweisen.
 
-### Schritt 1 — Diese Datei zur Pruefung vorlegen
+**Die drei Sätze, die auch ohne das Dokument gelten:**
 
-> **Vor jeder Uebergabe wird der Nutzer gefragt, ob die Arbeitsweise noch passt
-> oder erweitert werden soll.**
+1. ⭐ **Die Übergabe wird laufend fortgeschrieben, nicht beim Umzug
+   geschrieben.** Dann kostet ein überraschender Abbruch nichts.
+2. ⚠️ **Nichts, was den Umzug überleben muss, steht in nur einem Träger —
+   und niemals nur im Chatverlauf.** Träger sind: Erinnerung
+   (Arbeitsweise), Projektablage (Stand), Repo (Belege).
+   **`logs/auftraege/` ist kein Träger** — der Ordner ist gitignoriert.
+3. ⚠️ **Nicht umziehen, während eine Sitzung läuft oder Arbeit
+   uncommittet ist.**
 
-Nicht als Formalie: Die Abschnitte 1 bis 9 sind alle nachtraeglich entstanden,
-weil im Lauf der Arbeit etwas fehlte. Die Frage ist die Stelle, an der das
-Gelernte einer Sitzung dauerhaft wird statt mit ihr zu verschwinden.
-
-**Konkret zu fragen:**
-
-- Gibt es etwas, das in dieser Sitzung wiederholt gesagt werden musste?
-- Hat sich eine Regel als unpraktisch erwiesen?
-- Ist eine neue Gewohnheit entstanden, die noch nirgends steht?
-
-**Erweiterungen kommen in dieses Dokument**, mit Datum, und werden mit
-uebergeben.
-
-### Schritt 2 — Das Paket schnueren
-
-| Datei | immer dabei |
-|---|---|
-| **`ARBEITSWEISE.md`** | ✅ **diese Datei, in der gepruefeten Fassung** |
-| `START_HIER.md` | ✅ Einstieg, auf den aktuellen Stand gebracht |
-| `BACKLOG.md` | ✅ die kanonische Quelle *(oder der Nachtrag dazu, siehe Abschnitt 2)* |
-| `STRATEGIEN_uebersicht.md` | ✅ |
-| `JOURNAL.md` | ✅ *(Hinweis mitgeben: nur bei Bedarf oeffnen)* |
-| ⭐ **`PRUEFPRINZIPIEN.md`** | ✅ **neu seit 18.09.2026, siehe Abschnitt 12** |
-| offene Aufgabendokumente | die, die noch nicht uebergeben sind |
-
-**Als ZIP**, wie alles andere auch.
-
-### Schritt 3 — Den ersten Prompt mitliefern
-
-**Der Nutzer bekommt einen fertigen Eroeffnungstext zum Kopieren**, nicht nur
-das Archiv. Er nennt: was das Projekt ist, was im Anhang liegt, in welcher
-Reihenfolge zu lesen ist, wo es gerade steht, und was als Naechstes ansteht.
-
-**Vorlage:**
-
-```
-Neue Sitzung zum Trading-Bot-Projekt.
-
-Im Anhang liegt die vollstaendige Uebergabe. Bitte lies in dieser
-Reihenfolge:
-
-1. ARBEITSWEISE.md   - wie ich arbeiten moechte, das ist verbindlich
-2. START_HIER.md     - das Projekt und der aktuelle Stand
-3. BACKLOG.md        - die aktiven Punkte
-
-JOURNAL.md ist das Archiv (rund 4 000 Zeilen) - bitte nur oeffnen, wenn
-es um eine konkrete frueher Messung geht. Die Blockbuchstaben werden im
-Backlog referenziert.
-
-Stand: <hier der aktuelle Stand in zwei bis drei Zeilen>
-Als Naechstes: <die naechste Aufgabe>
-
-Sag mir kurz, was du verstanden hast, bevor wir anfangen.
-```
-
-> Der letzte Satz ist Absicht: Er zeigt sofort, ob die Uebergabe angekommen ist
-> — und ob etwas fehlt.
+**Und vor jedem Umzug unverändert:** der Betreiber wird gefragt, ob die
+Arbeitsweise noch passt oder ergänzt werden soll — dazu wird jede in
+diesem Chat vereinbarte Regel **gegen dieses Dokument geprüft, nicht
+erinnert.**
 
 ---
 
