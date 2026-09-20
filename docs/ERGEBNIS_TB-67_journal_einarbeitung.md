@@ -274,3 +274,87 @@ Prüfung B.
 
 **Offen bleibt damit:** `(m)` (B-Zeilen, Betreiberentscheidung) und die
 Backlog-Nachträge (a)–(v) ausser dem `T`-Teil von `(m)`.
+
+---
+
+## Nachweis 8 — nichts ausserhalb `docs/` geändert
+
+`git diff --stat fe76857..HEAD -- . ':!docs'` → **0 Zeilen Ausgabe.**
+`git diff --numstat fe76857..HEAD` (vollständig, Stand vor dem Abgabe-Commit):
+
+| Datei | hinzu | entfernt |
+|---|---:|---:|
+| `docs/projektfuehrung/JOURNAL.md` | 965 | **0** |
+| `docs/projektfuehrung/BACKLOG.md` | 1 | **0** |
+| `docs/ERGEBNIS_TB-67_journal_einarbeitung.md` | neu | — |
+| `docs/belege/TB-67/` (7 Dateien: 2 Skripte, 5 Ausgaben) | neu | — |
+| `docs/projektfuehrung/nachtraege/{ => _eingearbeitet}/JOURNAL_NACHTRAG_*.md` (11) | 0 | 0 — reine Umbenennung |
+| `docs/auftraege/AKTUELLER_AUFTRAG.md` | 4 | 5 — **Betreiberstand aus Schritt 0**, nicht von dieser Sitzung geändert |
+| `docs/projektfuehrung/FABLE_ANFRAGE_2026-09-20b_…`, `…20c_…`, `FABLE_ANTWORT_2026-09-20b_…` | 158 / 162 / 87 | 0 — **Betreiberdateien aus Schritt 0** |
+
+---
+
+## Was der Auftrag vorgab, und wo die Messung abweicht
+
+| Auftrag sagt | gemessen | Folge |
+|---|---|---|
+| zehn Journal-Nachträge | **elf** — `(20f)` aus TB-66 (16:50) kam nach dem Schreiben des Auftrags | mit eingearbeitet (`BT`) |
+| „sechs offene" (`g`, `20a`–`20e`) | **acht** — dazu `(f)` und `(20f)` | alle acht eingearbeitet |
+| `(f)` nicht prüfbar (A2), weil ohne TB-Nummer im Titel | mit dem Satzmuster **prüfbar und offen**; seine Blocküberschriften tragen TB-53b/58/58b | eingearbeitet, **0 nicht prüfbar** |
+| Schritt 3: drei Blöcke **aus `(m)`** bauen | `(f)` **ist** diese drei Blöcke (gleicher Tag, gleiche Zahlen); `(m)` liefert dazu die 13 `T`-Zeilen, die `(f)` verkürzt | Blöcke einmal angelegt, `T`-Zeilen als Messprotokoll dazu, zwei Quellenzeilen |
+| `index.lock` 0 Treffer im Backlog | **1** — die `K4g`-Zeile, die die Null zitiert | kein Handlungsbedarf |
+| „Sichern: commit **und push**" je Schritt | **Push in dieser Umgebung nicht erlaubt** (Berechtigungsfilter) | sechs Commits lokal; Push durch den Betreiber |
+| „Angefügt am Ende von `JOURNAL.md`" | seit TB-50 stehen neue Blöcke **vor** `## Wiederkehrende Lehren` | so gemacht; `numstat` Spalte zwei bleibt 0 |
+
+---
+
+## Offen — für den Betreiber und für TB-64
+
+| | |
+|---|---|
+| ⚠️⚠️ | **`git push`** für die sechs Commits `481b9f7`, `cc72150`, `08cf90a`, `31bc953`, `93a88d4`, `4117ee7` und den Abgabe-Commit — allein, nicht in einem `&&`-Block |
+| ⚠️ | **B2 (Messbefund), B3 und der dist-info-Beleg zu B7** stehen in keinem Führungsdokument (Nachweis 6). Ob sie eine Regel oder eine Tatsachennotiz werden, ist die Betreiberentscheidung, die der Auftrag ausklammert |
+| ⚠️ | **Nachtrag `(m)` liegt weiter in `nachtraege/`** — sein `T`-Teil ist im Journal, sein `K`-Teil in `K4g`; die `B`-Zeilen hängen an der Entscheidung darüber |
+| ⭐ | **Für TB-64:** Die Quellenzeile nennt `nachtraege/JOURNAL_NACHTRAG_…`; die Dateien liegen nach dem Verschieben unter `nachtraege/_eingearbeitet/`. Der Wächter sollte über den **Dateinamen** vergleichen, nicht über den vollen Pfad — und für `BK`–`BM` die zweite Zeile `*Messprotokoll: …*` nicht als Journal-Quelle zählen |
+| | **Journal-Inhaltsverzeichnis** endet weiter bei `AG` — `K1p`, unverändert |
+| | Der Journal-Nachtrag dieser Sitzung (`JOURNAL_NACHTRAG_2026-09-20g.md`) liegt **offen** in `nachtraege/` — er ist die nächste Bringschuld an das Journal, als Block `BU` |
+
+---
+
+## Die Commits dieser Sitzung
+
+| Commit | Schritt | Inhalt |
+|---|---|---|
+| `481b9f7` | 0 | Betreiberstand (vier Dateien) unverändert committet |
+| `cc72150` | 1 | Messung, Ergebnisdokument angelegt, `docs/belege/TB-67/messung1.py` |
+| `08cf90a` | 2+3 | `JOURNAL.md` +965/0: `BK`–`BT`, Quellenzeilen `BG`–`BJ`, `T`-Tabellen |
+| `31bc953` | 3 | Nachweise 3–6 (B-Zeilen geprüft, nicht eingetragen) |
+| `93a88d4` | 4 | `BACKLOG.md` +1/0: `K4h` |
+| `4117ee7` | 5 | elf Dateien nach `_eingearbeitet/` |
+| *(Abgabe)* | 6 | dieses Dokument abgeschlossen, Journal-Nachtrag `(20g)` |
+
+---
+
+## In einfacher Sprache
+
+**Was zu tun war:** Acht Notizdateien lagen seit gestern neben dem Journal und
+waren nie übertragen worden — drei erledigte Aufgaben hatten deshalb keinen
+Eintrag.
+
+**Was jetzt ist:** Das Journal hat zehn neue Einträge, jeder sagt in einer
+Zeile, aus welcher Notiz er stammt, und die vier älteren Einträge haben diese
+Zeile nachträglich bekommen. Nichts Altes wurde verändert — das lässt sich an
+einer einzigen Zahl ablesen: **0 entfernte Zeilen.** Die elf übertragenen
+Notizen liegen jetzt in einem Unterordner „eingearbeitet", der Hauptordner ist
+für Journal-Notizen leer.
+
+**Zwei Stellen, an denen der Auftrag danebenlag, und die Sitzung recht behielt:**
+Die Notiz ohne Nummer im Titel war sehr wohl prüfbar — man muss nur nach einem
+Satz aus ihr suchen statt nach der Nummer. Und die drei Einträge, die aus einem
+älteren Zettel neu gebaut werden sollten, existierten in dieser Notiz schon;
+sie wurden einmal angelegt und um die Messtabelle des Zettels ergänzt, nicht
+doppelt.
+
+**Was fehlt:** Das Hochladen zum Server war in dieser Umgebung gesperrt — die
+sieben Sicherungspunkte liegen auf dem Mac und müssen mit einem Befehl
+hochgeladen werden.
