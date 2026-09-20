@@ -1357,12 +1357,10 @@ Backtest allein nicht reicht, und zwar an unseren eigenen Bots.
 | **K1l** | **Verwechselbare Ausgabe** in `shared/test_umstellungstag.py`, siehe **T49.14** |
 | **K1m** | ⚠️ **`ERSTE_MOEGLICHE_FALTE = 2019` — steht diese Schranke im Register?** Siehe **T49.8**. *Nicht nachgesehen* |
 | **K1n** | ⚠️ **`basislauf.py` braucht eine vierte Stufe „flackernd"** — siehe **T50.4**. Eigener kleiner Auftrag, mit Mutationsprobe |
-| **K1o** | **Gealterte Zahlen im Docstring von `basislauf.py`** (1 312 und 62) — siehe **T50.6** |
+| **K1o** | **Gealterte Zahlen im Docstring von `basislauf.py`** (1 312 und 62) — siehe **T50.6**. *Fortgeschrieben mit TB-51: jetzt **drei** Angaben, siehe **T51.6**.* *(Zwei Zeilen zu einer zusammengeführt 20.09.2026, TB-62, nach `DOKUMENTATIONSSTANDARD.md` Regel 9)* |
 | **K1p** | **Journal-Inhaltsverzeichnis endet bei AG** — siehe **T50.7** |
-| **K1q** | ⚠️ **`STRATEGIEN_uebersicht.md` liegt ebenfalls nicht unter `docs/projektfuehrung/`** — dieselbe Frage wie **T50.3** |
+| **K1q** | ⚠️ **`STRATEGIEN_uebersicht.md` liegt ebenfalls nicht unter `docs/projektfuehrung/`** — dieselbe Frage wie **T50.3**. *Fortgeschrieben mit TB-51: Entscheidung offen, siehe **T51.5**.* *(Zwei Zeilen zu einer zusammengeführt 20.09.2026, TB-62, nach `DOKUMENTATIONSSTANDARD.md` Regel 9)* |
 | ~~K1n~~ | ~~`basislauf.py` braucht eine vierte Stufe~~ **ERLEDIGT durch TB-51 (T51.2)** |
-| **K1o** | *(unverändert)* gealterte Zahlen im Docstring von `basislauf.py` — jetzt **drei** Angaben, siehe **T51.6** |
-| **K1q** | *(unverändert)* `STRATEGIEN_uebersicht.md` — Entscheidung offen, siehe **T51.5** |
 | **K1r** | ⚠️ **`strategy_paths.get_strategy_paths()` legt `results/` und `logs/` an** — T46.8-Muster, siehe **T52.11** |
 | **K1s** | ⚠️ **`CONFIG_DIR` im Selektionsmodus umfasst `email_config.py`** — siehe **T52.12** |
 | **K1t** | **Modus deckt Verzeichnisse ab, keine Einzeldateien** — siehe **T52.13** |
