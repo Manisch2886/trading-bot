@@ -1,0 +1,83 @@
+== Nachweis 6: status je Bot (neu) ==
+  elliott_wave                 endgueltig  falten=5  sel=4
+  elliott_wave_stocks          endgueltig  falten=10  sel=9
+  rsi2_crypto                  endgueltig  falten=8  sel=7
+  rsi2_mean_reversion          endgueltig  falten=9  sel=8
+  t3_supertrend                endgueltig  falten=9  sel=8
+  turtle_soup_crypto           endgueltig  falten=9  sel=8
+  turtle_soup_stocks           endgueltig  falten=10  sel=9
+  volatility_breakout          endgueltig  falten=9  sel=8
+  volatility_breakout_crypto   endgueltig  falten=9  sel=8
+
+== Nachweis 5: DD_Toleranz alt -> neu, drei Stufen ==
+Bot                                           @0.25                   @0.50                   @1.00
+elliott_wave                      leer ->   -6.07   (neu)     leer ->  -11.89   (neu)     leer ->  -22.42   (neu)
+elliott_wave_stocks              -2.18 ->   -2.18   +0.00    -4.33 ->   -4.33   +0.00    -8.55 ->   -8.55   +0.00
+rsi2_crypto                       leer ->   -6.48   (neu)     leer ->  -12.64   (neu)     leer ->  -24.02   (neu)
+rsi2_mean_reversion              -2.18 ->   -3.35   -1.17    -4.33 ->   -6.61   -2.28    -8.55 ->  -12.89   -4.34
+t3_supertrend                     leer ->   -3.24   (neu)     leer ->   -6.32   (neu)     leer ->  -12.01   (neu)
+turtle_soup_crypto                leer ->   -3.24   (neu)     leer ->   -6.32   (neu)     leer ->  -12.01   (neu)
+turtle_soup_stocks               -2.18 ->   -2.18   +0.00    -4.33 ->   -4.33   +0.00    -8.55 ->   -8.55   +0.00
+volatility_breakout              -2.18 ->   -3.35   -1.17    -4.33 ->   -6.61   -2.28    -8.55 ->  -12.89   -4.34
+volatility_breakout_crypto        leer ->   -3.24   (neu)     leer ->   -6.32   (neu)     leer ->  -12.01   (neu)
+
+== Zweite Zaehlung: Median der Selektionsfalten aus der Datei selbst (np.median ueber alle 100 Stufen) ==
+  elliott_wave                 median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 2/4
+  elliott_wave_stocks          median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 0/9
+  rsi2_crypto                  median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 3/7
+  rsi2_mean_reversion          median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 0/8
+  t3_supertrend                median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 4/8
+  turtle_soup_crypto           median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 4/8
+  turtle_soup_stocks           median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 0/9
+  volatility_breakout          median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 0/8
+  volatility_breakout_crypto   median stimmt auf 100/100 Stufen: True   leere Selektionsfalten: 4/8
+
+== Faltenwerte gegen die gesperrte Datei (Aktien 2019-2026) und gegen TB-56 ohne_schranke (alle vorhandenen Falten): identisch? ==
+  elliott_wave                 gesperrt: Platzhalter, kein Vergleich
+Traceback (most recent call last):
+  File "<stdin>", line 27, in <module>
+KeyError: 'elliott_wave'
+ohne_schranke.json enthaelt Bots: ['_herkunft', 'bots']
+
+== Faltenwerte gegen die gesperrte Datei und gegen TB-56 ohne_schranke: identisch? ==
+  elliott_wave                 gesperrt              : Platzhalter, kein Vergleich
+  elliott_wave                 ohne_schranke(TB-56)  : Bot nicht enthalten
+  elliott_wave_stocks          gesperrt              : 8 gemeinsame Falten (2019..2026), abweichend: 0 []
+  elliott_wave_stocks          ohne_schranke(TB-56)  : Bot nicht enthalten
+  rsi2_crypto                  gesperrt              : Platzhalter, kein Vergleich
+  rsi2_crypto                  ohne_schranke(TB-56)  : Bot nicht enthalten
+  rsi2_mean_reversion          gesperrt              : 8 gemeinsame Falten (2019..2026), abweichend: 0 []
+  rsi2_mean_reversion          ohne_schranke(TB-56)  : Bot nicht enthalten
+  t3_supertrend                gesperrt              : Platzhalter, kein Vergleich
+  t3_supertrend                ohne_schranke(TB-56)  : Bot nicht enthalten
+  turtle_soup_crypto           gesperrt              : Platzhalter, kein Vergleich
+  turtle_soup_crypto           ohne_schranke(TB-56)  : Bot nicht enthalten
+  turtle_soup_stocks           gesperrt              : 8 gemeinsame Falten (2019..2026), abweichend: 0 []
+  turtle_soup_stocks           ohne_schranke(TB-56)  : Bot nicht enthalten
+  volatility_breakout          gesperrt              : 8 gemeinsame Falten (2019..2026), abweichend: 0 []
+  volatility_breakout          ohne_schranke(TB-56)  : Bot nicht enthalten
+  volatility_breakout_crypto   gesperrt              : Platzhalter, kein Vergleich
+  volatility_breakout_crypto   ohne_schranke(TB-56)  : Bot nicht enthalten
+
+== Nachrichtlich (keine Entscheidung): Krypto-DD_Toleranz als Median NUR ueber nicht-leere Falten; t3_supertrend nur 2019-2025 (Register 21.4) ==
+  elliott_wave                 ohne leere (2 Falten): 0.25:  -16.81  0.50:  -31.59  1.00:  -55.30
+  t3_supertrend                ohne leere (4 Falten): 0.25:  -11.31  0.50:  -21.93  1.00:  -40.94
+  rsi2_crypto                  ohne leere (4 Falten): 0.25:  -11.31  0.50:  -21.93  1.00:  -40.94
+  turtle_soup_crypto           ohne leere (4 Falten): 0.25:  -11.31  0.50:  -21.93  1.00:  -40.94
+  volatility_breakout_crypto   ohne leere (4 Falten): 0.25:  -11.31  0.50:  -21.93  1.00:  -40.94
+  t3_supertrend 2019-2025      mit leeren (7 Falten): 0.25:   -6.48  0.50:  -12.64  1.00:  -24.02
+
+== Falten mit Symbolzahl und Handelstagen (Krypto) ==
+  t3_supertrend {'2018': (0, 0), '2019': (0, 0), '2020': (0, 0), '2021': (0, 0), '2022': (3, 365), '2023': (6, 365), '2024': (9, 366), '2025': (13, 365), '2026': (13, 243)}
+  rsi2_crypto {'2019': (0, 0), '2020': (0, 0), '2021': (0, 0), '2022': (3, 365), '2023': (6, 365), '2024': (9, 366), '2025': (13, 365), '2026': (13, 243)}
+_herkunft: "TB-56 (19.09.2026): benchmark.je_bot() auf dem Faltenplan nach Registertext 4a (faltenplan.py ohne ERSTE_MOEGLICHE_FALTE). Eigene Datei neben der gesperrten benchmark_drawdowns.json (Sperrliste, Abschnitt 10 Punkt 4), die unveraendert bleibt. Registrierte Faltenzeilen 2019-2026 zeichengleich; neu 2017/2018 bei den Aktien-Bots; DD_Toleranz aendert sich bei rsi2_mean_reversion und volatility_breakout - Amendment-Entscheidung in TB-56b."
+Bots: ['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']
+  elliott_wave                 status=platzhalter
+  elliott_wave_stocks          10 gemeinsame Falten (2017..2026), abweichend 0 []; dd_toleranz 100/100 gleich: True
+  rsi2_crypto                  status=platzhalter
+  rsi2_mean_reversion          9 gemeinsame Falten (2018..2026), abweichend 0 []; dd_toleranz 100/100 gleich: True
+  t3_supertrend                status=platzhalter
+  turtle_soup_crypto           status=platzhalter
+  turtle_soup_stocks           10 gemeinsame Falten (2017..2026), abweichend 0 []; dd_toleranz 100/100 gleich: True
+  volatility_breakout          9 gemeinsame Falten (2018..2026), abweichend 0 []; dd_toleranz 100/100 gleich: True
+  volatility_breakout_crypto   status=platzhalter

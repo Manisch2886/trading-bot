@@ -1,0 +1,21 @@
+== git diff --numstat c493b1b..b29f695 ==
+48	0	docs/projektfuehrung/ARBEITSWEISE.md
+22	14	research/vorregistrierung/benchmark.py
+9485	0	research/vorregistrierung/ergebnisse/benchmark_drawdowns_neu.json
+31	54	research/vorregistrierung/faltenplan.py
+
+== je Commit ==
+3c3e2c8
+
+48	0	docs/projektfuehrung/ARBEITSWEISE.md
+d1b2175
+
+14	2	research/vorregistrierung/benchmark.py
+3d46a7b
+
+0	11	research/vorregistrierung/benchmark.py
+31	54	research/vorregistrierung/faltenplan.py
+b29f695
+
+8	1	research/vorregistrierung/benchmark.py
+9485	0	research/vorregistrierung/ergebnisse/benchmark_drawdowns_neu.json

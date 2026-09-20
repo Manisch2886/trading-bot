@@ -1,0 +1,64 @@
+==============================================================================
+Faltenplan fuer alle NEUN Bots - Verfahren B (TB-36)
+Go-Live-Schnitt 2026-09-01 (ausschliesslich), frueheste Falte 2019, kein Mindesttraining
+==============================================================================
+
+Bot                         Markt   ZR  Laenge  Vorlauf  1. Falte  #Sel  Falten
+----------------------------------------------------------------------------------------------------------------------
+elliott_wave                krypto  1h  2 J     0 B      2019      3     2019-2020, 2021-2022, 2023-2024  |  Best.: 2025-2026 (bis Go-Live)
+t3_supertrend               krypto  4h  1 J     1 B      2019      7     2019, 2020, 2021, 2022, 2023, 2024, 2025  |  Best.: 2026 (bis Go-Live)
+rsi2_crypto                 krypto  1d  1 J     150 B    2019      7     2019, 2020, 2021, 2022, 2023, 2024, 2025  |  Best.: 2026 (bis Go-Live)
+turtle_soup_crypto          krypto  1d  1 J     30 B     2019      7     2019, 2020, 2021, 2022, 2023, 2024, 2025  |  Best.: 2026 (bis Go-Live)
+volatility_breakout_crypto  krypto  1d  1 J     127 B    2019      7     2019, 2020, 2021, 2022, 2023, 2024, 2025  |  Best.: 2026 (bis Go-Live)
+elliott_wave_stocks         aktien  1d  1 J     0 B      2019      7     2019, 2020, 2021, 2022, 2023, 2024, 2025  |  Best.: 2026 (bis Go-Live)
+rsi2_mean_reversion         aktien  1d  1 J     200 B    2019      7     2019, 2020, 2021, 2022, 2023, 2024, 2025  |  Best.: 2026 (bis Go-Live)
+turtle_soup_stocks          aktien  1d  1 J     30 B     2019      7     2019, 2020, 2021, 2022, 2023, 2024, 2025  |  Best.: 2026 (bis Go-Live)
+volatility_breakout         aktien  1d  1 J     127 B    2019      7     2019, 2020, 2021, 2022, 2023, 2024, 2025  |  Best.: 2026 (bis Go-Live)
+
+Symbolzahl je Falte (Lesart A - Kursdaten liegen am 1. Januar vor)
+----------------------------------------------------------------------------------------------------------------------
+elliott_wave                6 / 13 / 13   |  Bestaetigung: 18  (von 24)
+t3_supertrend               6 / 9 / 13 / 13 / 13 / 17 / 18   |  Bestaetigung: 23  (von 24)
+rsi2_crypto                 6 / 9 / 13 / 13 / 13 / 17 / 18   |  Bestaetigung: 23  (von 24)
+turtle_soup_crypto          6 / 9 / 13 / 13 / 13 / 17 / 18   |  Bestaetigung: 23  (von 24)
+volatility_breakout_crypto  6 / 9 / 13 / 13 / 13 / 17 / 18   |  Bestaetigung: 23  (von 24)
+elliott_wave_stocks         140 / 142 / 145 / 147 / 148 / 148 / 149   |  Bestaetigung: 150  (von 150)
+rsi2_mean_reversion         140 / 142 / 145 / 147 / 148 / 148 / 149   |  Bestaetigung: 150  (von 150)
+turtle_soup_stocks          140 / 142 / 145 / 147 / 148 / 148 / 149   |  Bestaetigung: 150  (von 150)
+volatility_breakout         140 / 142 / 145 / 147 / 148 / 148 / 149   |  Bestaetigung: 150  (von 150)
+
+Nachrichtlich, Lesart B - voller Indikator-Vorlauf am 1. Januar
+----------------------------------------------------------------------------------------------------------------------
+elliott_wave                6 / 13 / 13   |  Bestaetigung: 18   [gleich]
+t3_supertrend               6 / 9 / 13 / 13 / 13 / 17 / 18   |  Bestaetigung: 23   [gleich]
+rsi2_crypto                 6 / 9 / 9 / 13 / 13 / 17 / 18   |  Bestaetigung: 20   [ABWEICHEND]
+turtle_soup_crypto          6 / 9 / 13 / 13 / 13 / 17 / 18   |  Bestaetigung: 23   [gleich]
+volatility_breakout_crypto  6 / 9 / 10 / 13 / 13 / 17 / 18   |  Bestaetigung: 20   [ABWEICHEND]
+elliott_wave_stocks         140 / 142 / 145 / 147 / 148 / 148 / 149   |  Bestaetigung: 150   [gleich]
+rsi2_mean_reversion         139 / 140 / 142 / 145 / 148 / 148 / 148   |  Bestaetigung: 150   [ABWEICHEND]
+turtle_soup_stocks          140 / 142 / 143 / 147 / 148 / 148 / 149   |  Bestaetigung: 150   [ABWEICHEND]
+volatility_breakout         139 / 142 / 142 / 146 / 148 / 148 / 149   |  Bestaetigung: 150   [ABWEICHEND]
+
+Welche Schranke bindet die erste Falte?
+----------------------------------------------------------------------------------------------------------------------
+elliott_wave                erste Falte 2019, ohne Schranke 2018  -> Registerschranke 2019
+t3_supertrend               erste Falte 2019, ohne Schranke 2018  -> Registerschranke 2019
+rsi2_crypto                 erste Falte 2019, ohne Schranke 2019  -> Daten/Indikator-Vorlauf
+turtle_soup_crypto          erste Falte 2019, ohne Schranke 2018  -> Registerschranke 2019
+volatility_breakout_crypto  erste Falte 2019, ohne Schranke 2018  -> Registerschranke 2019
+elliott_wave_stocks         erste Falte 2019, ohne Schranke 2017  -> Registerschranke 2019
+rsi2_mean_reversion         erste Falte 2019, ohne Schranke 2018  -> Registerschranke 2019
+turtle_soup_stocks          erste Falte 2019, ohne Schranke 2017  -> Registerschranke 2019
+volatility_breakout         erste Falte 2019, ohne Schranke 2018  -> Registerschranke 2019
+
+6 Krypto-Symbole kommen in KEINER Selektionsfalte vor (Beispiel rsi2_crypto):
+  BMTUSDT      ab 2025-03-18
+  ENSOUSDT     ab 2025-10-14
+  PUMPUSDT     ab 2025-09-11
+  TRUMPUSDT    ab 2025-01-19
+  UUSDT        ab 2026-01-13
+  ZKCUSDT      ab 2025-09-15
+
+Bericht: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/2b22eaa4-3d7c-4469-ada0-f84c35c5bacc/scratchpad/faltenplan_neun_lauf.json
+
+Rein lesend - es wurde nichts geaendert.

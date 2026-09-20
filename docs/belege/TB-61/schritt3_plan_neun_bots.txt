@@ -1,0 +1,9 @@
+elliott_wave                 endgueltig 2J erste 2018 #sel 4 2018-2019..2024-2025 best 2026-2027 purge 11
+t3_supertrend                endgueltig 1J erste 2018 #sel 8 2018..2025 best 2026 purge 23
+rsi2_crypto                  endgueltig 1J erste 2019 #sel 7 2019..2025 best 2026 purge 10
+turtle_soup_crypto           endgueltig 1J erste 2018 #sel 8 2018..2025 best 2026 purge 10
+volatility_breakout_crypto   endgueltig 1J erste 2018 #sel 8 2018..2025 best 2026 purge 15
+elliott_wave_stocks          endgueltig 1J erste 2017 #sel 9 2017..2025 best 2026 purge 134
+rsi2_mean_reversion          endgueltig 1J erste 2018 #sel 8 2018..2025 best 2026 purge 18
+turtle_soup_stocks           endgueltig 1J erste 2017 #sel 9 2017..2025 best 2026 purge 18
+volatility_breakout          endgueltig 1J erste 2018 #sel 8 2018..2025 best 2026 purge 26

@@ -1,0 +1,21 @@
+Bot                           4a (fp.erste_falte)  Laenge  #Sel   Best. ab
+elliott_wave                                 2018      2J     4 2026-01-01
+t3_supertrend                                2018      1J     8 2026-01-01
+rsi2_crypto                                  2019      1J     7 2026-01-01
+turtle_soup_crypto                           2018      1J     8 2026-01-01
+volatility_breakout_crypto                   2018      1J     8 2026-01-01
+elliott_wave_stocks                          2017      1J     9 2026-01-01
+rsi2_mean_reversion                          2018      1J     8 2026-01-01
+turtle_soup_stocks                           2017      1J     9 2026-01-01
+volatility_breakout                          2018      1J     8 2026-01-01
+
+TB-56-Messung (faltenplan_ohne_schranke.json), Lesart A vs. H:
+elliott_wave                 A=2018-2019  H=2018-2019
+elliott_wave_stocks          A=2017       H=2017
+rsi2_crypto                  A=2019       H=2019
+rsi2_mean_reversion          A=2018       H=2018
+t3_supertrend                A=2018       H=2019
+turtle_soup_crypto           A=2018       H=2018
+turtle_soup_stocks           A=2017       H=2017
+volatility_breakout          A=2018       H=2018
+volatility_breakout_crypto   A=2018       H=2018
