@@ -130,19 +130,53 @@ eigene Begründung nennt nur den Fall der leeren Falte, und 4a trägt mit
 mit der vorgelegten Lesart **erste Falte = max(4a, 3b (a))**. Unter ihr ändert
 sich genau ein Bot: `t3_supertrend`.
 
-### ⭐ Was diese Sitzung stattdessen tut, bis die Antwort da ist
+### ✅ ERLEDIGT — und Fables Antwort ist da (20.09.2026, 20:15)
 
-| | |
-|---|---|
-| **1** | **Schritt 0** wie unten — committe, was im Arbeitsbaum liegt, getrennt nach Urheber |
-| **2** | **Schritt 1 nachmessen und committen.** ⚠️ **Verlass dich nicht auf die Tabelle oben** — sie stammt aus dem abgebrochenen Anlauf. Lauf die Messung erneut, mit dem vorgefundenen Skript oder einem eigenen, und **sag, ob beide übereinstimmen** |
-| **3** | ⭐ **Die Gegenprobe gegen TB-56** (`trockenlauf_ohne_schranke`) mitführen — der erste Anlauf meldet *„alle gleich: ja“*; prüfe das nach |
-| **4** | **Ein Ergebnisdokument nur über Schritt 1**, `docs/ERGEBNIS_TB-72_schritt1_erste_falte.md`, plus Journal-Nachtrag mit Quellenzeile. ⛔ **Keine Backlog-Zeile mit der Behauptung, TB-72 sei erledigt** — eine Zeile, die den Befund und die offene Frage führt |
-| **5** | ⛔ **STOPP vor Schritt 2.** Schritt 2 bis 7 bleiben unten stehen und gelten **erst nach Fables Antwort** |
+⭐ **Ein zweiter Anlauf hat Schritt 1 nachgemessen, committet und korrekt vor
+Schritt 2 gestoppt** (`7b73584`). Er hat dabei die Gegenprobe des ersten Anlaufs
+widerlegt: *„alle gleich: ja“* aus TB-56 vergleicht **nur ab 4a** und ist für die
+Richtung *„früher“* blind; Ersatz war `loader_lesart`, 9 von 9.
 
-⚠️ **Widersprich auch diesem Nachtrag, wo er falsch ist.** ⭐ *Der erste Anlauf
-hat genau das getan — er hat gemessen, bevor er änderte, und deshalb steht hier
-ein Befund statt eines Plans ab 1967.*
+⭐⭐ **Fable hat geantwortet** (`docs/projektfuehrung/FABLE_ANTWORT_2026-09-20e_konjunktion.md`).
+**Er nimmt seinen eigenen Vorschlag zurück** — *„hätte den Aktien-Bots 1967
+gegeben … zurückgenommen“* — und liefert die Neufassung **als Konjunktion**,
+nicht als Richtungsregel:
+
+> **Registertext 4a / 21.3 (b), Neufassung als ein Satz.** Ein Kalenderjahr ist
+> Selektionsfalte eines Bots, wenn **(i)** es im registrierten Datenhorizont des
+> Bots liegt und am 1. Januar der Indikator-Vorlauf erfüllt ist, **und**
+> **(ii)** der Loader des Bots in ihm an mindestens einem Handelstag mindestens
+> ein Symbol handelbar macht (Trockenlauf, 3b (b)). Die erste Selektionsfalte ist
+> das erste Jahr, das **beide** Bedingungen erfüllt.
+
+⭐ **Warum das stärker ist als `max(...)`:** *„(ii) kann den Beginn nie vorziehen,
+weil (i) weiter gelten muss — und (i) nie, weil (ii) weiter gelten muss.“*
+**21.3 (b) ist der Sonderfall, in dem (ii) später liegt** — genau der Fall, den
+seine eigene Begründung beschreibt. ⇒ **Berichtigung mit Ersatztext**, alter
+Wortlaut bleibt als ersetzt stehen. **Wirkung: ein Bot, `t3_supertrend`,
+2018 → 2019.**
+
+⭐ **`rsi2_crypto` bleibt 2019**, geprüft an der Konjunktion: (ii) ist 2018
+erfüllt, **(i) nicht** — 150 Tagesbalken Vorlauf am 1.1.2018 bräuchten Daten ab
+August 2017, BTC beginnt am 17.08.2017, das sind **137**. ⚠️ **Miss das selbst
+nach**, statt es zu übernehmen.
+
+### ⛔ Was **nicht** zu dieser Aufgabe gehört — die Horizontfrage
+
+⚠️⚠️ Fables Antwort (3) wirft einen dritten Befund auf: *„Daten für Universum
+liegen vor“* ist als Messgrösse unbrauchbar; was der Plan wirklich rechnet, ist
+der **Datenhorizont** — `RECENT_YEARS_ONLY = 10`, **eine Uhr im Selektionspfad**.
+Dazu ein vierter Befund aus dem Chat: **die Bots rechnen `entry_cutoff` je
+SYMBOL**, `faltenplan_neun.fensteranker` dagegen je **Markt**.
+
+⛔ **Beides ist `TB-74` und nicht Gegenstand dieser Aufgabe.** ⭐ **Für Schritt 2
+heisst das: Bedingung (i) bleibt, wie der Plan sie heute rechnet.** Neu ist
+allein, dass **(ii) als zweite Untergrenze dazukommt** und die spätere der
+beiden gilt. *Die Präzisierung von (i) folgt in TB-74; sie ändert an
+`t3_supertrend` nichts.*
+
+⚠️ **In Schritt 6 (Registernotiz) tritt Fables Konjunktionssatz an die Stelle
+von 25.3** — zeichengleich übernommen, mit seiner Rücknahme als Herkunft.
 
 ---
 

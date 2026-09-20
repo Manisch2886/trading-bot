@@ -462,25 +462,31 @@ Tippfehler, gegen die der feste Zeiger gebaut wurde.*
 
 | | Block | wann |
 |---|---|---|
-| **1** | `cd ~/trading-bot && claude --remote-control` | ⭐ **immer** — der nackte Start |
-| **2** | Der Einfügesatz mit vorangestellter TB-Nummer | ⭐ **immer** |
-| **3** | `security unlock-keychain` | ⚠️ **nur wenn Block 1 klemmt** — Kopfzeile *"API Usage Billing"* statt *"Claude Max"* oder Fusszeile *"Not logged in"*. Zweites Terminalfenster, danach Block 1 wiederholen |
-| **4** | `/remote-control` | ⚠️ **nur wenn die Sitzung schon läuft** oder ohne das Flag gestartet wurde |
+| **1** | `screen -U -S tb` | ⭐⭐ **immer, zuerst** — hält die Sitzung am Leben, wenn Termius abbricht. ⚠️ **Der Schalter `-U` ist nötig**, sonst erscheinen im Terminal überall Fragezeichen |
+| **2** | `security unlock-keychain` | ⭐⭐ **immer**, in einem **zweiten** Termius-Fenster, Passwort an der Eingabeaufforderung |
+| **3** | `cd ~/trading-bot && claude --remote-control` | ⭐ **immer** — der nackte Start |
+| **4** | Der Einfügesatz mit vorangestellter TB-Nummer | ⭐ **immer** |
+| **5** | `screen -r tb` | ⚠️ **nach einem Verbindungsabbruch** — neu verbinden, diesen Befehl, und man steht mitten in der laufenden Sitzung |
+| **6** | `/remote-control` | ⚠️ **nur wenn die Sitzung schon läuft** oder ohne das Flag gestartet wurde |
 
-⚠️⚠️ **BERICHTIGT 20.09.2026, 13:10, auf Hinweis des Betreibers.** Eine
-Stunde zuvor stand hier *"VIER getrennte Blöcke — auch wenn einer davon gerade
-nicht nötig scheint"*. **Zwei davon waren überflüssig:**
+⚠️⚠️ **ZWEIMAL BERICHTIGT.** Am **20.09.2026, 13:10** wurde die Forderung
+*„VIER getrennte Blöcke, auch wenn einer gerade nicht nötig scheint“* auf zwei
+immer und zwei im Bedarfsfall zurückgenommen. **Am selben Abend, 19:52, ist sie
+zurückgekehrt — mit Messung statt mit Vermutung:**
 
 | | |
 |---|---|
-| ⚠️ **`/remote-control` doppelt** | Das Flag `--remote-control` im Startbefehl **aktiviert es bereits**. Ein zweiter Aufruf in der Eingabezeile ist ein Handgriff ohne Wirkung |
-| ⚠️ **Schlüsselbund vorsorglich** | Er wird nur gebraucht, **wenn** die Anmeldung klemmt — und ob das nach jedem Termius-Neuverbinden der Fall ist, ist **nicht gemessen**. ⭐ *Deshalb erst starten und an der Kopfzeile prüfen, statt vorsorglich ein Passwort zu tippen* |
+| ⭐⭐ **Der Schlüsselbund ist nach JEDEM Termius-Neuverbinden gesperrt** | Das stand bis 19:52 als *„offen, nicht gemessen“* in diesem Abschnitt. **Gemessen am 20.09. zweimal**: die Kopfzeile zeigte *„API Usage Billing“*, nach `security unlock-keychain` *„Claude Max“*. ⇒ **Block 2 ist Regel, nicht Bedarfsfall** |
+| ⭐⭐ **`screen` kommt vor allem anderen** | Die Termius-Verbindung brach am 20.09. **dreimal** ab und nahm jedes Mal die Mac-Sitzung mit — zuletzt TB-72 mitten in Schritt 1, nach der Messung und vor dem Commit. `claude` läuft im Vordergrund der SSH-Sitzung und bekommt beim Abbruch ein Abbruchsignal. **In `screen` überlebt die Sitzung**, und der Wiedereinstieg ist ein Befehl |
+| ⚠️ **`tmux` gibt es auf dem MacBook nicht** | `command not found`, gemessen 20.09., 19:37. **`screen` liegt macOS bei** und wurde derselben Minute erfolgreich gestartet |
+| ⚠️ **`/remote-control` bleibt Bedarfsfall** | Das Flag `--remote-control` im Startbefehl aktiviert es bereits; ein zweiter Aufruf ist ein Handgriff ohne Wirkung |
 
-⭐⭐ **Die Lehre, und sie ist größer als der Fall:** *Eine Regel, die "immer
-alles" verlangt, kostet bei jedem Durchlauf Aufwand und wird deshalb irgendwann
-abgekürzt — und dann fällt auch der Teil weg, der nötig war.* **Regel 4 dieses
-Dokuments (möglichst wenig eigener Aufwand des Betreibers) ist hier nicht
-Bequemlichkeit, sondern Haltbarkeit.**
+⭐ **Der Betreiber meldet einen Abbruch mit dem einen Wort „Abbruch“** *(Anweisung
+20.09.2026, 19:52)*. Darauf wird **gemessen**, wie weit die Sitzung gekommen ist
+— Commits, Arbeitsbaum, `index.lock` —, und die passenden Blöcke kommen **ohne
+Rückfrage**. ⚠️ *Beim Abbruch von TB-72 lag die fertige Messung unversioniert im
+Arbeitsbaum; verloren war nichts, weil Schritt 0 des nächsten Anlaufs sie
+gesichert hat.*
 
 ⛔ **Was bleibt: nie zusammengefasst, nie im Fließtext beschrieben, nie mit der
 Begründung weggelassen, dass es letztes Mal schon dastand.**
@@ -489,10 +495,11 @@ Begründung weggelassen, dass es letztes Mal schon dastand.**
 **"Claude Max"**, Fusszeile zeigt **kein** "Not logged in". Bleibt es dabei,
 **erst dann** `/login`.
 
-⚠️ **Offen, nicht gemessen:** ob der macOS-Schlüsselbund nach jedem Neuaufbau
-der Termius-Verbindung wieder gesperrt ist oder nur nach einem Neustart des
-Rechners. **Kostet beim nächsten Start einen Blick auf die Kopfzeile** — und
-die Antwort gehört dann hierher.
+⭐ **Gemessen 20.09.2026, 19:45 und 19:50 — die Frage ist beantwortet:** Der
+macOS-Schlüsselbund ist nach **jedem** Neuaufbau der Termius-Verbindung wieder
+gesperrt, nicht nur nach einem Neustart des Rechners. *Die Kopfzeile zeigte
+`API Usage Billing`; nach `security unlock-keychain` im zweiten Fenster
+`Claude Max`.* ⇒ **Block 2 der Tabelle oben ist Regel geworden.**
 
 ---
 
