@@ -1,0 +1,65 @@
+Probe 1 - alle Positionen innerhalb eines Tages geschlossen (t3_supertrend, Ausstieg = Einstieg + 1 h)
+  [bestanden ] Vorbedingung: jeder Ausstieg liegt am Tag seines Einstiegs
+  1a: 337 Positionen an 337 Tagen
+           2019  E    0.00  E_tag    0.00  M    0.00  (Ausstiege 0)
+           2020  E    0.00  E_tag    0.00  M    0.00  (Ausstiege 0)
+           2021  E   -3.59  E_tag   -3.59  M   -3.59  (Ausstiege 21)
+           2022  E   -9.77  E_tag   -9.77  M   -9.77  (Ausstiege 52)
+           2023  E   -4.80  E_tag   -4.80  M   -4.80  (Ausstiege 65)
+           2024  E   -7.87  E_tag   -7.87  M   -7.87  (Ausstiege 84)
+           2025  E  -16.94  E_tag  -16.94  M  -16.94  (Ausstiege 64)
+           2026  E   -8.91  E_tag   -8.91  M   -8.91  (Ausstiege 51)
+  [bestanden ] 1a: E = M in jeder Falte
+  [bestanden ] 1a: E_tag = M in jeder Falte
+  [bestanden ] 1a: an keinem Tagesschluss eine offene Position
+  [bestanden ] 1a: die Probe ist nicht leer - mindestens eine Falte mit Drawdown < 0
+  [bestanden ] 1a: Gesamt-Drawdown E (calculate_max_drawdown) -23.47 = M -23.47
+  1b: 656 Positionen an 337 Tagen
+           2019  E    0.00  E_tag    0.00  M    0.00  (Ausstiege 0)
+           2020  E    0.00  E_tag    0.00  M    0.00  (Ausstiege 0)
+           2021  E   -5.17  E_tag   -5.17  M   -5.17  (Ausstiege 43)
+           2022  E  -12.28  E_tag  -12.28  M  -12.28  (Ausstiege 102)
+           2023  E  -11.55  E_tag  -11.12  M  -11.12  (Ausstiege 123)
+           2024  E   -6.50  E_tag   -6.50  M   -6.50  (Ausstiege 155)
+           2025  E  -15.68  E_tag  -15.68  M  -15.68  (Ausstiege 136)
+           2026  E   -9.02  E_tag   -9.02  M   -9.02  (Ausstiege 97)
+  [bestanden ] 1b: E_tag = M in jeder Falte
+  [bestanden ] 1b: an keinem Tagesschluss eine offene Position
+  [bestanden ] 1b: E nie flacher als E_tag (feineres Raster)
+  [bestanden ] 1b: der Raster-Effekt ist sichtbar - mindestens eine Falte mit E tiefer als E_tag
+
+Probe 2 - eine Position von Hand
+  Tagespfad M: [9997.0, 9797.0, 9597.0, 9897.0, 10094.0] erwartet [9997.0, 9797.0, 9597.0, 9897.0, 10094.0]
+  Tagespfad E_tag: [10000.0, 10000.0, 10000.0, 10000.0, 10094.0]
+  E 0.0  E_tag 0.0  M -4.03
+  [bestanden ] 2: Tagespfad M = Handrechnung
+  [bestanden ] 2: Tagespfad E_tag = Handrechnung
+  [bestanden ] 2: E = 0,00 - die Ereigniskurve sieht den Zwischenverlust nicht
+  [bestanden ] 2: E_tag = 0,00
+  [bestanden ] 2: M = -4,03 (gemessen -4.03) - der bekannte Zwischenverlust
+  [bestanden ] 2: offen an den Schluessen der Tage 1-4, nicht am Ausstiegstag
+  [bestanden ] 2: groesster unrealisierter Verlust -403
+
+Probe 3 (Zusatz) - unrealisierter Gewinn in A, realisierter Verlust in B
+  Tagespfad M: [10000.0, 10200.0, 10100.0, 10100.0, 10100.0] erwartet [10000, 10200, 10100, 10100, 10100]
+  E -1.0  E_tag -1.0  M -0.98  M_flacher_als_E True
+  [bestanden ] 3: Tagespfad M = Handrechnung
+  [bestanden ] 3: E = E_tag = -1,00
+  [bestanden ] 3: M = -0,98 (gemessen -0.98) - flacher als E, wie von Hand gerechnet
+  [bestanden ] 3: der Kern meldet den Fall (M_flacher_als_E)
+
+Gegenproben am Kern
+  [bestanden ] K1: Reihenfolge aus der Kette rekonstruiert (Q vor P)
+  [bestanden ] K1: Kette, die nicht schliesst, wird erkannt (ValueError)
+  [bestanden ] K2: fehlender Kurs einer offenen Position bricht ab (ValueError)
+
+24 von 24 Pruefungen bestanden, 0 gescheitert, Laufzeit 0.3 s
+
+=== Mutationsprobe (Prueffrage B1), Wegwerf-Kopie im Scratchpad, Original unberuehrt ===
+Mutation 1: "mtm": buch + unreal  ->  buch + 0.0 * unreal  (unrealisierter Wert ignoriert)
+  19 von 24 bestanden, 5 gescheitert: Probe 2 (Tagespfad, M = -4,03 -> 0,0), Probe 3 (Tagespfad, M -> -1,0, Fall nicht gemeldet)
+Mutation 2: faktor_kosten = 1.0 + kosten_seite_pct/100  ->  1.0  (Einstiegskosten nicht in der Bewertung)
+  21 von 24 bestanden, 3 gescheitert: Probe 2 (Tagespfad, M -4,03 -> -4,00, unrealisiert -403)
+Mutation 3: letzter = searchsorted(tagesende, exit, 'right') - 1  ->  ohne -1  (Position am Ausstiegstag noch offen)
+  10 gescheitert: Probe 1a (E != M, offene Positionen am Tagesschluss, Gesamt -23,47 vs -24,21), 1b, 2, 3
+Danach: Kopie byteweise gleich dem Original (diff leer); git status im Repo unveraendert.
