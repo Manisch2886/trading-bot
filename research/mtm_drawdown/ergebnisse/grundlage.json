@@ -1,0 +1,1078 @@
+[
+ {
+  "bot": "elliott_wave",
+  "trade_liste": true,
+  "zeitrahmen": "1h",
+  "anlageklasse": "krypto",
+  "positionen": 130,
+  "symbole": 18,
+  "erster_einstieg": "2021-09-22 07:00:00",
+  "letzter_ausstieg": "2026-08-20 05:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.1,
+  "positionslimit_meta": null,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 16777.45,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 16,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 0.0,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 130
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 1794,
+   "tage_mit_position": 349,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 660
+  },
+  "falten": [
+   {
+    "falte": "2018-2019",
+    "rolle": "selektion",
+    "von": "2018-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2020-2021",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "teilweise",
+    "liste_ab": "2021-09-22",
+    "ausstiege_in_falte": 8,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2022-2023",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 43,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2024-2025",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 61,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2026-2027",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 18,
+    "offen_ueber_faltenbeginn": 0
+   }
+  ],
+  "laufzeit_s": 1.5
+ },
+ {
+  "bot": "t3_supertrend",
+  "trade_liste": true,
+  "zeitrahmen": "4h",
+  "anlageklasse": "krypto",
+  "positionen": 656,
+  "symbole": 18,
+  "erster_einstieg": "2021-09-01 20:00:00",
+  "letzter_ausstieg": "2026-08-29 16:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.1,
+  "positionslimit_meta": 5,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 22963.95,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 101,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 0.0,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 656
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 1824,
+   "tage_mit_position": 899,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 2614
+  },
+  "falten": [
+   {
+    "falte": "2019",
+    "rolle": "selektion",
+    "von": "2019-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2020",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2021",
+    "rolle": "selektion",
+    "von": "2021-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "teilweise",
+    "liste_ab": "2021-09-01",
+    "ausstiege_in_falte": 43,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2022",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2023-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 102,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2023",
+    "rolle": "selektion",
+    "von": "2023-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 122,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2024",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2025-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 156,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2025",
+    "rolle": "selektion",
+    "von": "2025-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 133,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2026",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 100,
+    "offen_ueber_faltenbeginn": 3
+   }
+  ],
+  "laufzeit_s": 0.6
+ },
+ {
+  "bot": "rsi2_crypto",
+  "trade_liste": true,
+  "zeitrahmen": "1d",
+  "anlageklasse": "krypto",
+  "positionen": 392,
+  "symbole": 18,
+  "erster_einstieg": "2022-02-11 00:00:00",
+  "letzter_ausstieg": "2026-08-20 00:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.1,
+  "positionslimit_meta": 8,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 12837.09,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 75,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 0.0,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 392
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 1652,
+   "tage_mit_position": 627,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 1584
+  },
+  "falten": [
+   {
+    "falte": "2019",
+    "rolle": "selektion",
+    "von": "2019-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2020",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2021",
+    "rolle": "selektion",
+    "von": "2021-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2022",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2023-01-01",
+    "grundlage": "teilweise",
+    "liste_ab": "2022-02-11",
+    "ausstiege_in_falte": 13,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2023",
+    "rolle": "selektion",
+    "von": "2023-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 87,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2024",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2025-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 148,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2025",
+    "rolle": "selektion",
+    "von": "2025-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 120,
+    "offen_ueber_faltenbeginn": 2
+   },
+   {
+    "falte": "2026",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 24,
+    "offen_ueber_faltenbeginn": 0
+   }
+  ],
+  "laufzeit_s": 0.3
+ },
+ {
+  "bot": "turtle_soup_crypto",
+  "trade_liste": true,
+  "zeitrahmen": "1d",
+  "anlageklasse": "krypto",
+  "positionen": 1414,
+  "symbole": 20,
+  "erster_einstieg": "2021-10-12 00:00:00",
+  "letzter_ausstieg": "2026-08-28 00:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.1,
+  "positionslimit_meta": 8,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 27759.42,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 308,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 0.0,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 1414
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 1782,
+   "tage_mit_position": 1580,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 7037
+  },
+  "falten": [
+   {
+    "falte": "2018",
+    "rolle": "selektion",
+    "von": "2018-01-01",
+    "bis_ausschliesslich": "2019-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2019",
+    "rolle": "selektion",
+    "von": "2019-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2020",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2021",
+    "rolle": "selektion",
+    "von": "2021-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "teilweise",
+    "liste_ab": "2021-10-12",
+    "ausstiege_in_falte": 44,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2022",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2023-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 260,
+    "offen_ueber_faltenbeginn": 4
+   },
+   {
+    "falte": "2023",
+    "rolle": "selektion",
+    "von": "2023-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 239,
+    "offen_ueber_faltenbeginn": 7
+   },
+   {
+    "falte": "2024",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2025-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 285,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2025",
+    "rolle": "selektion",
+    "von": "2025-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 340,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2026",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 246,
+    "offen_ueber_faltenbeginn": 4
+   }
+  ],
+  "laufzeit_s": 0.4
+ },
+ {
+  "bot": "volatility_breakout_crypto",
+  "trade_liste": true,
+  "zeitrahmen": "1d",
+  "anlageklasse": "krypto",
+  "positionen": 207,
+  "symbole": 19,
+  "erster_einstieg": "2022-03-17 00:00:00",
+  "letzter_ausstieg": "2026-08-30 00:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.1,
+  "positionslimit_meta": 8,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 14902.58,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 36,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 0.0,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 207
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 1628,
+   "tage_mit_position": 517,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 1557
+  },
+  "falten": [
+   {
+    "falte": "2018",
+    "rolle": "selektion",
+    "von": "2018-01-01",
+    "bis_ausschliesslich": "2019-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2019",
+    "rolle": "selektion",
+    "von": "2019-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2020",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2021",
+    "rolle": "selektion",
+    "von": "2021-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "keine",
+    "liste_ab": null,
+    "ausstiege_in_falte": 0,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2022",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2023-01-01",
+    "grundlage": "teilweise",
+    "liste_ab": "2022-03-17",
+    "ausstiege_in_falte": 19,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2023",
+    "rolle": "selektion",
+    "von": "2023-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 48,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2024",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2025-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 67,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2025",
+    "rolle": "selektion",
+    "von": "2025-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 34,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2026",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 39,
+    "offen_ueber_faltenbeginn": 0
+   }
+  ],
+  "laufzeit_s": 0.3
+ },
+ {
+  "bot": "elliott_wave_stocks",
+  "trade_liste": true,
+  "zeitrahmen": "1d",
+  "anlageklasse": "aktien",
+  "positionen": 395,
+  "symbole": 127,
+  "erster_einstieg": "2016-10-28 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.1,
+  "positionslimit_meta": 8,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 45272.24,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 59,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 2.220446049250313e-16,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 395
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 2473,
+   "tage_mit_position": 2239,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 9884
+  },
+  "falten": [
+   {
+    "falte": "2017",
+    "rolle": "selektion",
+    "von": "2017-01-01",
+    "bis_ausschliesslich": "2018-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 10,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2018",
+    "rolle": "selektion",
+    "von": "2018-01-01",
+    "bis_ausschliesslich": "2019-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 43,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2019",
+    "rolle": "selektion",
+    "von": "2019-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 32,
+    "offen_ueber_faltenbeginn": 6
+   },
+   {
+    "falte": "2020",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 60,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2021",
+    "rolle": "selektion",
+    "von": "2021-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 26,
+    "offen_ueber_faltenbeginn": 4
+   },
+   {
+    "falte": "2022",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2023-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 82,
+    "offen_ueber_faltenbeginn": 4
+   },
+   {
+    "falte": "2023",
+    "rolle": "selektion",
+    "von": "2023-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 31,
+    "offen_ueber_faltenbeginn": 7
+   },
+   {
+    "falte": "2024",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2025-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 21,
+    "offen_ueber_faltenbeginn": 8
+   },
+   {
+    "falte": "2025",
+    "rolle": "selektion",
+    "von": "2025-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 44,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2026",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 38,
+    "offen_ueber_faltenbeginn": 7
+   }
+  ],
+  "laufzeit_s": 4.9
+ },
+ {
+  "bot": "rsi2_mean_reversion",
+  "trade_liste": true,
+  "zeitrahmen": "1d",
+  "anlageklasse": "aktien",
+  "positionen": 4232,
+  "symbole": 147,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.05,
+  "positionslimit_meta": 20,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 13675.2,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 856,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 2.220446049250313e-16,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 4232
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 2513,
+   "tage_mit_position": 2187,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 16645
+  },
+  "falten": [
+   {
+    "falte": "2018",
+    "rolle": "selektion",
+    "von": "2018-01-01",
+    "bis_ausschliesslich": "2019-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 385,
+    "offen_ueber_faltenbeginn": 8
+   },
+   {
+    "falte": "2019",
+    "rolle": "selektion",
+    "von": "2019-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 357,
+    "offen_ueber_faltenbeginn": 0
+   },
+   {
+    "falte": "2020",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 326,
+    "offen_ueber_faltenbeginn": 8
+   },
+   {
+    "falte": "2021",
+    "rolle": "selektion",
+    "von": "2021-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 493,
+    "offen_ueber_faltenbeginn": 3
+   },
+   {
+    "falte": "2022",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2023-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 288,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2023",
+    "rolle": "selektion",
+    "von": "2023-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 425,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2024",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2025-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 522,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2025",
+    "rolle": "selektion",
+    "von": "2025-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 429,
+    "offen_ueber_faltenbeginn": 5
+   },
+   {
+    "falte": "2026",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 341,
+    "offen_ueber_faltenbeginn": 19
+   }
+  ],
+  "laufzeit_s": 5.9
+ },
+ {
+  "bot": "turtle_soup_stocks",
+  "trade_liste": true,
+  "zeitrahmen": "1d",
+  "anlageklasse": "aktien",
+  "positionen": 8915,
+  "symbole": 147,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.02,
+  "positionslimit_meta": null,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 24559.08,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 1548,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 2.220446049250313e-16,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 8915
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 2513,
+   "tage_mit_position": 2512,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 89150
+  },
+  "falten": [
+   {
+    "falte": "2017",
+    "rolle": "selektion",
+    "von": "2017-01-01",
+    "bis_ausschliesslich": "2018-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 922,
+    "offen_ueber_faltenbeginn": 45
+   },
+   {
+    "falte": "2018",
+    "rolle": "selektion",
+    "von": "2018-01-01",
+    "bis_ausschliesslich": "2019-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 872,
+    "offen_ueber_faltenbeginn": 37
+   },
+   {
+    "falte": "2019",
+    "rolle": "selektion",
+    "von": "2019-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 810,
+    "offen_ueber_faltenbeginn": 47
+   },
+   {
+    "falte": "2020",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 775,
+    "offen_ueber_faltenbeginn": 24
+   },
+   {
+    "falte": "2021",
+    "rolle": "selektion",
+    "von": "2021-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 918,
+    "offen_ueber_faltenbeginn": 30
+   },
+   {
+    "falte": "2022",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2023-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 858,
+    "offen_ueber_faltenbeginn": 27
+   },
+   {
+    "falte": "2023",
+    "rolle": "selektion",
+    "von": "2023-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 923,
+    "offen_ueber_faltenbeginn": 34
+   },
+   {
+    "falte": "2024",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2025-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 929,
+    "offen_ueber_faltenbeginn": 18
+   },
+   {
+    "falte": "2025",
+    "rolle": "selektion",
+    "von": "2025-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 952,
+    "offen_ueber_faltenbeginn": 32
+   },
+   {
+    "falte": "2026",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 679,
+    "offen_ueber_faltenbeginn": 23
+   }
+  ],
+  "laufzeit_s": 6.2
+ },
+ {
+  "bot": "volatility_breakout",
+  "trade_liste": true,
+  "zeitrahmen": "1d",
+  "anlageklasse": "aktien",
+  "positionen": 1454,
+  "symbole": 147,
+  "erster_einstieg": "2016-09-01 00:00:00",
+  "letzter_ausstieg": "2026-09-01 00:00:00",
+  "startkapital_meta": 10000.0,
+  "allocation_pct_meta": 0.1,
+  "positionslimit_meta": 15,
+  "abgleich_exposure_messung_identisch": true,
+  "kapitalkette_schliesst": true,
+  "endkapital": 32441.42,
+  "ausstiegs_zeitstempel_mit_mehreren_ausstiegen": 339,
+  "symbole_ohne_kerzendatei": [],
+  "symbole_ohne_1d_datei": [],
+  "einstand_gegen_einstiegskerze": {
+   "max_rel_abweichung": 2.220446049250313e-16,
+   "positionen_ohne_kerze": 0,
+   "geprueft": 1454
+  },
+  "abdeckung_haltedauern_1d": {
+   "vollstaendig": true,
+   "rastertage": 2513,
+   "tage_mit_position": 2431,
+   "fortgeschriebene_kurstage": 0,
+   "positionstage_gesamt": 19850
+  },
+  "falten": [
+   {
+    "falte": "2018",
+    "rolle": "selektion",
+    "von": "2018-01-01",
+    "bis_ausschliesslich": "2019-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 131,
+    "offen_ueber_faltenbeginn": 10
+   },
+   {
+    "falte": "2019",
+    "rolle": "selektion",
+    "von": "2019-01-01",
+    "bis_ausschliesslich": "2020-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 144,
+    "offen_ueber_faltenbeginn": 1
+   },
+   {
+    "falte": "2020",
+    "rolle": "selektion",
+    "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 119,
+    "offen_ueber_faltenbeginn": 9
+   },
+   {
+    "falte": "2021",
+    "rolle": "selektion",
+    "von": "2021-01-01",
+    "bis_ausschliesslich": "2022-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 155,
+    "offen_ueber_faltenbeginn": 10
+   },
+   {
+    "falte": "2022",
+    "rolle": "selektion",
+    "von": "2022-01-01",
+    "bis_ausschliesslich": "2023-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 140,
+    "offen_ueber_faltenbeginn": 7
+   },
+   {
+    "falte": "2023",
+    "rolle": "selektion",
+    "von": "2023-01-01",
+    "bis_ausschliesslich": "2024-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 157,
+    "offen_ueber_faltenbeginn": 6
+   },
+   {
+    "falte": "2024",
+    "rolle": "selektion",
+    "von": "2024-01-01",
+    "bis_ausschliesslich": "2025-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 160,
+    "offen_ueber_faltenbeginn": 5
+   },
+   {
+    "falte": "2025",
+    "rolle": "selektion",
+    "von": "2025-01-01",
+    "bis_ausschliesslich": "2026-01-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 145,
+    "offen_ueber_faltenbeginn": 6
+   },
+   {
+    "falte": "2026",
+    "rolle": "bestaetigung",
+    "von": "2026-01-01",
+    "bis_ausschliesslich": "2026-09-01",
+    "grundlage": "vollstaendig",
+    "liste_ab": null,
+    "ausstiege_in_falte": 101,
+    "offen_ueber_faltenbeginn": 5
+   }
+  ],
+  "laufzeit_s": 5.8
+ }
+]

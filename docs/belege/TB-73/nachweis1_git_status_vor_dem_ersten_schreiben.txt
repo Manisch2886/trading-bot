@@ -1,0 +1,4 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/ARBEITSWEISE.md
+?? docs/auftraege/MAC_TB-73_mtm_wirkung.md
+?? docs/belege/TB-73/

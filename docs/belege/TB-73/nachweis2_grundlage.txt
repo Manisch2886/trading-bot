@@ -1,0 +1,23 @@
+| Bot | Liste | Positionen | erster Einstieg | letzter Ausstieg | Kette | Einstand = Kerzenschluss | 1d-Abdeckung | Falten ohne Grundlage | Falten teilweise |
+|---|---|---:|---|---|---|---|---|---|---|
+| `elliott_wave` | ja | 130 | 2021-09-22 | 2026-08-20 | schliesst | max 0.0e+00, 0 ohne Kerze | ja (0 fortgeschrieben von 660 Positionstagen) | 2018-2019 | 2020-2021 (ab 2021-09-22) |
+| `t3_supertrend` | ja | 656 | 2021-09-01 | 2026-08-29 | schliesst | max 0.0e+00, 0 ohne Kerze | ja (0 fortgeschrieben von 2614 Positionstagen) | 2019, 2020 | 2021 (ab 2021-09-01) |
+| `rsi2_crypto` | ja | 392 | 2022-02-11 | 2026-08-20 | schliesst | max 0.0e+00, 0 ohne Kerze | ja (0 fortgeschrieben von 1584 Positionstagen) | 2019, 2020, 2021 | 2022 (ab 2022-02-11) |
+| `turtle_soup_crypto` | ja | 1414 | 2021-10-12 | 2026-08-28 | schliesst | max 0.0e+00, 0 ohne Kerze | ja (0 fortgeschrieben von 7037 Positionstagen) | 2018, 2019, 2020 | 2021 (ab 2021-10-12) |
+| `volatility_breakout_crypto` | ja | 207 | 2022-03-17 | 2026-08-30 | schliesst | max 0.0e+00, 0 ohne Kerze | ja (0 fortgeschrieben von 1557 Positionstagen) | 2018, 2019, 2020, 2021 | 2022 (ab 2022-03-17) |
+| `elliott_wave_stocks` | ja | 395 | 2016-10-28 | 2026-09-01 | schliesst | max 2.2e-16, 0 ohne Kerze | ja (0 fortgeschrieben von 9884 Positionstagen) | — | — |
+| `rsi2_mean_reversion` | ja | 4232 | 2016-09-01 | 2026-09-01 | schliesst | max 2.2e-16, 0 ohne Kerze | ja (0 fortgeschrieben von 16645 Positionstagen) | — | — |
+| `turtle_soup_stocks` | ja | 8915 | 2016-09-01 | 2026-09-01 | schliesst | max 2.2e-16, 0 ohne Kerze | ja (0 fortgeschrieben von 89150 Positionstagen) | — | — |
+| `volatility_breakout` | ja | 1454 | 2016-09-01 | 2026-09-01 | schliesst | max 2.2e-16, 0 ohne Kerze | ja (0 fortgeschrieben von 19850 Positionstagen) | — | — |
+
+elliott_wave: Falten - 2018-2019=K(0/0), 2020-2021=T(8/0), 2022-2023=V(43/0), 2024-2025=V(61/0), 2026-2027=V(18/0) - 1.5 s
+t3_supertrend: Falten - 2019=K(0/0), 2020=K(0/0), 2021=T(43/0), 2022=V(102/0), 2023=V(122/0), 2024=V(156/1), 2025=V(133/0), 2026=V(100/3) - 0.6 s
+rsi2_crypto: Falten - 2019=K(0/0), 2020=K(0/0), 2021=K(0/0), 2022=T(13/0), 2023=V(87/0), 2024=V(148/0), 2025=V(120/2), 2026=V(24/0) - 0.3 s
+turtle_soup_crypto: Falten - 2018=K(0/0), 2019=K(0/0), 2020=K(0/0), 2021=T(44/0), 2022=V(260/4), 2023=V(239/7), 2024=V(285/1), 2025=V(340/0), 2026=V(246/4) - 0.4 s
+volatility_breakout_crypto: Falten - 2018=K(0/0), 2019=K(0/0), 2020=K(0/0), 2021=K(0/0), 2022=T(19/0), 2023=V(48/0), 2024=V(67/0), 2025=V(34/0), 2026=V(39/0) - 0.3 s
+elliott_wave_stocks: Falten - 2017=V(10/1), 2018=V(43/0), 2019=V(32/6), 2020=V(60/1), 2021=V(26/4), 2022=V(82/4), 2023=V(31/7), 2024=V(21/8), 2025=V(44/1), 2026=V(38/7) - 4.9 s
+rsi2_mean_reversion: Falten - 2018=V(385/8), 2019=V(357/0), 2020=V(326/8), 2021=V(493/3), 2022=V(288/1), 2023=V(425/1), 2024=V(522/1), 2025=V(429/5), 2026=V(341/19) - 5.9 s
+turtle_soup_stocks: Falten - 2017=V(922/45), 2018=V(872/37), 2019=V(810/47), 2020=V(775/24), 2021=V(918/30), 2022=V(858/27), 2023=V(923/34), 2024=V(929/18), 2025=V(952/32), 2026=V(679/23) - 6.2 s
+volatility_breakout: Falten - 2018=V(131/10), 2019=V(144/1), 2020=V(119/9), 2021=V(155/10), 2022=V(140/7), 2023=V(157/6), 2024=V(160/5), 2025=V(145/6), 2026=V(101/5) - 5.8 s
+
+(Klammer: Ausstiege in der Falte / Positionen, die ueber den Faltenbeginn offen sind; V = vollstaendig, T = teilweise, K = keine Grundlage)
