@@ -54,6 +54,7 @@ Summe roher Schlusskurse ist genau der Fehler, der beim APH-Vorfall die
 gesamte Portfoliosumme zu NaN gemacht hat (Protokoll 3.3).
 """
 
+import argparse
 import json
 import os
 import sys
@@ -221,10 +222,21 @@ def erlaubt(dd_benchmark: float, dd_toleranz: float) -> float:
     return min(rd.DD_RELATIVER_FAKTOR * dd_benchmark, dd_toleranz)
 
 
-def main():
+def main(argv=None):
+    # --ziel (TB-61): wohin die Tabelle geschrieben wird. Ohne Angabe die
+    # registrierte Datei - unveraendertes Verhalten. Mit Angabe eine Datei
+    # DANEBEN: Register 21.9 haelt benchmark_drawdowns.json bis zum Amendment
+    # byteweise fest, und ohne diesen Schalter ueberschriebe jeder Lauf sie.
+    zerleger = argparse.ArgumentParser(
+        description="Benchmark-Drawdowns je Falte, DD_Toleranz je Bot.")
+    zerleger.add_argument(
+        "--ziel", default=os.path.join(_HIER, "ergebnisse",
+                                       "benchmark_drawdowns.json"),
+        help="Ausgabedatei (Standard: ergebnisse/benchmark_drawdowns.json)")
+    ziel = zerleger.parse_args(argv).ziel
+
     mess = rd._mess()
     tabellen = je_bot(mess)
-    ziel = os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json")
     with open(ziel, "w", encoding="utf-8") as f:
         json.dump(tabellen, f, indent=1, ensure_ascii=False, sort_keys=True)
         f.write("\n")
