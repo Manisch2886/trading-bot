@@ -1,0 +1,190 @@
+{
+ "bot": "elliott_wave",
+ "zeitrahmen": "1h",
+ "anlageklasse": "krypto",
+ "quelle_positionen": "research/tb24_haltedauern/daten/elliott_wave_positionen.csv",
+ "quelle_falten": "research/vorregistrierung/ergebnisse/faltenplan_tb72.json",
+ "positionen": 130,
+ "erster_einstieg": "2021-09-22 07:00:00",
+ "letzter_ausstieg": "2026-08-20 05:00:00",
+ "startkapital": 10000.0,
+ "abgleich_meta": {
+  "startkapital": {
+   "es": 10000.0,
+   "meta": 10000.0,
+   "gleich": true
+  },
+  "allocation_pct": {
+   "es": 0.1,
+   "meta": 0.1,
+   "gleich": true
+  },
+  "positionslimit": {
+   "es": null,
+   "meta": null
+  }
+ },
+ "kosten": {
+  "modul": "backtest_elliott",
+  "TRADING_FEE_PCT": 0.1,
+  "SLIPPAGE_PCT": 0.05,
+  "je_seite_pct": 0.15000000000000002,
+  "rundreise_pct": 0.30000000000000004,
+  "gegen_liste": {
+   "max_abweichung_pp": 0.004991273996516554,
+   "innerhalb_rundung": true
+  }
+ },
+ "zuteilung_seed_protokolliert": 20260913,
+ "raster": {
+  "von": "2018-01-01",
+  "bis_einschliesslich": "2026-08-31",
+  "tage": 3165,
+  "fortgeschriebene_kurstage": 0
+ },
+ "gesamt": {
+  "E_calculate_max_drawdown": -10.17,
+  "E_tag": -10.17,
+  "M": -15.4
+ },
+ "falten": [
+  {
+   "falte": "2018-2019",
+   "rolle": "selektion",
+   "von": "2018-01-01",
+   "bis_ausschliesslich": "2020-01-01",
+   "E": null,
+   "E_tag": null,
+   "M": null,
+   "M_minus_E_pp": null,
+   "faktor_M_zu_E": null,
+   "M_flacher_als_E": null,
+   "M_flacher_als_E_tag": null,
+   "n_ausstiege": 0,
+   "n_rastertage": 730,
+   "n_tage_mit_position": 0,
+   "offen_am_faltenbeginn": 0,
+   "max_unrealisiert_minus": 0.0,
+   "fortgeschriebene_kurse": 0,
+   "basis_E": 10000.0,
+   "basis_M": 10000.0,
+   "grundlage": "keine",
+   "liste_ab": null,
+   "exposure_mittel": null
+  },
+  {
+   "falte": "2020-2021",
+   "rolle": "selektion",
+   "von": "2020-01-01",
+   "bis_ausschliesslich": "2022-01-01",
+   "E": -2.81,
+   "E_tag": -2.81,
+   "M": -4.48,
+   "M_minus_E_pp": -1.67,
+   "faktor_M_zu_E": 1.594,
+   "M_flacher_als_E": false,
+   "M_flacher_als_E_tag": false,
+   "n_ausstiege": 8,
+   "n_rastertage": 731,
+   "n_tage_mit_position": 34,
+   "offen_am_faltenbeginn": 0,
+   "max_unrealisiert_minus": -51.85,
+   "fortgeschriebene_kurse": 0,
+   "basis_E": 10000.0,
+   "basis_M": 10000.0,
+   "grundlage": "teilweise",
+   "liste_ab": "2021-09-22",
+   "exposure_mittel": 0.0625
+  },
+  {
+   "falte": "2022-2023",
+   "rolle": "selektion",
+   "von": "2022-01-01",
+   "bis_ausschliesslich": "2024-01-01",
+   "E": -10.17,
+   "E_tag": -10.17,
+   "M": -15.4,
+   "M_minus_E_pp": -5.23,
+   "faktor_M_zu_E": 1.514,
+   "M_flacher_als_E": false,
+   "M_flacher_als_E_tag": false,
+   "n_ausstiege": 43,
+   "n_rastertage": 730,
+   "n_tage_mit_position": 91,
+   "offen_am_faltenbeginn": 0,
+   "max_unrealisiert_minus": -48.0,
+   "fortgeschriebene_kurse": 0,
+   "basis_E": 9821.44,
+   "basis_M": 9821.44,
+   "grundlage": "vollstaendig",
+   "liste_ab": null,
+   "exposure_mittel": 0.0356
+  },
+  {
+   "falte": "2024-2025",
+   "rolle": "selektion",
+   "von": "2024-01-01",
+   "bis_ausschliesslich": "2026-01-01",
+   "E": -4.51,
+   "E_tag": -4.51,
+   "M": -7.43,
+   "M_minus_E_pp": -2.92,
+   "faktor_M_zu_E": 1.647,
+   "M_flacher_als_E": false,
+   "M_flacher_als_E_tag": false,
+   "n_ausstiege": 61,
+   "n_rastertage": 731,
+   "n_tage_mit_position": 168,
+   "offen_am_faltenbeginn": 0,
+   "max_unrealisiert_minus": -124.12,
+   "fortgeschriebene_kurse": 0,
+   "basis_E": 10252.43,
+   "basis_M": 10252.43,
+   "grundlage": "vollstaendig",
+   "liste_ab": null,
+   "exposure_mittel": 0.0491
+  },
+  {
+   "falte": "2026-2027",
+   "rolle": "bestaetigung",
+   "von": "2026-01-01",
+   "bis_ausschliesslich": "2026-09-01",
+   "E": -3.11,
+   "E_tag": -3.11,
+   "M": -3.34,
+   "M_minus_E_pp": -0.23,
+   "faktor_M_zu_E": 1.074,
+   "M_flacher_als_E": false,
+   "M_flacher_als_E_tag": false,
+   "n_ausstiege": 18,
+   "n_rastertage": 243,
+   "n_tage_mit_position": 56,
+   "offen_am_faltenbeginn": 0,
+   "max_unrealisiert_minus": -75.28,
+   "fortgeschriebene_kurse": 0,
+   "basis_E": 14895.03,
+   "basis_M": 14895.03,
+   "grundlage": "vollstaendig",
+   "liste_ab": null,
+   "exposure_mittel": 0.0465
+  }
+ ],
+ "median_selektion": {
+  "E": -4.51,
+  "E_tag": -4.51,
+  "M": -7.43,
+  "M_minus_E_pp": -2.92,
+  "selektionsfalten_mit_grundlage": [
+   "2020-2021",
+   "2022-2023",
+   "2024-2025"
+  ]
+ },
+ "richtungsprobe": {
+  "faelle_M_flacher_als_E": [],
+  "faelle_M_flacher_als_E_tag": [],
+  "faelle_E_flacher_als_E_tag": []
+ },
+ "laufzeit_s": 0.2,
+ "interpreter": "3.9.6"
+}

@@ -1,0 +1,1084 @@
+{
+ "elliott_wave": {
+  "median_selektion": {
+   "E": -4.51,
+   "E_tag": -4.51,
+   "M": -7.43,
+   "M_minus_E_pp": -2.92,
+   "selektionsfalten_mit_grundlage": [
+    "2020-2021",
+    "2022-2023",
+    "2024-2025"
+   ]
+  },
+  "falten": {
+   "2018-2019": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2020-2021": {
+    "rolle": "selektion",
+    "grundlage": "teilweise",
+    "E": -2.81,
+    "E_tag": -2.81,
+    "M": -4.48,
+    "M_minus_E_pp": -1.67,
+    "faktor_M_zu_E": 1.594,
+    "exposure_mittel": 0.0625,
+    "M_flacher_als_E": false
+   },
+   "2022-2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -10.17,
+    "E_tag": -10.17,
+    "M": -15.4,
+    "M_minus_E_pp": -5.23,
+    "faktor_M_zu_E": 1.514,
+    "exposure_mittel": 0.0356,
+    "M_flacher_als_E": false
+   },
+   "2024-2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -4.51,
+    "E_tag": -4.51,
+    "M": -7.43,
+    "M_minus_E_pp": -2.92,
+    "faktor_M_zu_E": 1.647,
+    "exposure_mittel": 0.0491,
+    "M_flacher_als_E": false
+   },
+   "2026-2027": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -3.11,
+    "E_tag": -3.11,
+    "M": -3.34,
+    "M_minus_E_pp": -0.23,
+    "faktor_M_zu_E": 1.074,
+    "exposure_mittel": 0.0465,
+    "M_flacher_als_E": false
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [],
+   "faelle_M_flacher_als_E_tag": [],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 0.2
+ },
+ "t3_supertrend": {
+  "median_selektion": {
+   "E": -11.55,
+   "E_tag": -11.55,
+   "M": -11.25,
+   "M_minus_E_pp": -3.09,
+   "selektionsfalten_mit_grundlage": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ]
+  },
+  "falten": {
+   "2019": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2020": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2021": {
+    "rolle": "selektion",
+    "grundlage": "teilweise",
+    "E": -5.58,
+    "E_tag": -4.76,
+    "M": -8.67,
+    "M_minus_E_pp": -3.09,
+    "faktor_M_zu_E": 1.554,
+    "exposure_mittel": 0.157,
+    "M_flacher_als_E": false
+   },
+   "2022": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -12.28,
+    "E_tag": -12.28,
+    "M": -14.11,
+    "M_minus_E_pp": -1.83,
+    "faktor_M_zu_E": 1.149,
+    "exposure_mittel": 0.1315,
+    "M_flacher_als_E": false
+   },
+   "2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -11.55,
+    "E_tag": -11.55,
+    "M": -11.25,
+    "M_minus_E_pp": 0.3,
+    "faktor_M_zu_E": 0.974,
+    "exposure_mittel": 0.1847,
+    "M_flacher_als_E": true
+   },
+   "2024": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -6.2,
+    "E_tag": -6.09,
+    "M": -10.79,
+    "M_minus_E_pp": -4.59,
+    "faktor_M_zu_E": 1.74,
+    "exposure_mittel": 0.2305,
+    "M_flacher_als_E": false
+   },
+   "2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -16.41,
+    "E_tag": -16.41,
+    "M": -19.61,
+    "M_minus_E_pp": -3.2,
+    "faktor_M_zu_E": 1.195,
+    "exposure_mittel": 0.1607,
+    "M_flacher_als_E": false
+   },
+   "2026": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -9.92,
+    "E_tag": -9.8,
+    "M": -11.79,
+    "M_minus_E_pp": -1.87,
+    "faktor_M_zu_E": 1.189,
+    "exposure_mittel": 0.2032,
+    "M_flacher_als_E": false
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [
+    "2023"
+   ],
+   "faelle_M_flacher_als_E_tag": [
+    "2023"
+   ],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 0.3
+ },
+ "rsi2_crypto": {
+  "median_selektion": {
+   "E": -10.04,
+   "E_tag": -10.02,
+   "M": -11.43,
+   "M_minus_E_pp": -1.39,
+   "selektionsfalten_mit_grundlage": [
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ]
+  },
+  "falten": {
+   "2019": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2020": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2021": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2022": {
+    "rolle": "selektion",
+    "grundlage": "teilweise",
+    "E": -8.65,
+    "E_tag": -8.65,
+    "M": -10.15,
+    "M_minus_E_pp": -1.5,
+    "faktor_M_zu_E": 1.173,
+    "exposure_mittel": 0.0253,
+    "M_flacher_als_E": false
+   },
+   "2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -2.75,
+    "E_tag": -2.74,
+    "M": -4.01,
+    "M_minus_E_pp": -1.26,
+    "faktor_M_zu_E": 1.458,
+    "exposure_mittel": 0.1096,
+    "M_flacher_als_E": false
+   },
+   "2024": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -13.3,
+    "E_tag": -13.3,
+    "M": -16.53,
+    "M_minus_E_pp": -3.23,
+    "faktor_M_zu_E": 1.243,
+    "exposure_mittel": 0.2064,
+    "M_flacher_als_E": false
+   },
+   "2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -11.43,
+    "E_tag": -11.38,
+    "M": -12.71,
+    "M_minus_E_pp": -1.28,
+    "faktor_M_zu_E": 1.112,
+    "exposure_mittel": 0.1689,
+    "M_flacher_als_E": false
+   },
+   "2026": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -3.14,
+    "E_tag": -3.14,
+    "M": -4.28,
+    "M_minus_E_pp": -1.14,
+    "faktor_M_zu_E": 1.363,
+    "exposure_mittel": 0.0526,
+    "M_flacher_als_E": false
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [],
+   "faelle_M_flacher_als_E_tag": [],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 0.2
+ },
+ "turtle_soup_crypto": {
+  "median_selektion": {
+   "E": -20.68,
+   "E_tag": -20.68,
+   "M": -21.53,
+   "M_minus_E_pp": -1.42,
+   "selektionsfalten_mit_grundlage": [
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ]
+  },
+  "falten": {
+   "2018": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2019": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2020": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2021": {
+    "rolle": "selektion",
+    "grundlage": "teilweise",
+    "E": -15.29,
+    "E_tag": -15.29,
+    "M": -16.43,
+    "M_minus_E_pp": -1.14,
+    "faktor_M_zu_E": 1.075,
+    "exposure_mittel": 0.4028,
+    "M_flacher_als_E": false
+   },
+   "2022": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -27.86,
+    "E_tag": -27.86,
+    "M": -30.38,
+    "M_minus_E_pp": -2.52,
+    "faktor_M_zu_E": 1.09,
+    "exposure_mittel": 0.4152,
+    "M_flacher_als_E": false
+   },
+   "2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -20.68,
+    "E_tag": -20.68,
+    "M": -21.53,
+    "M_minus_E_pp": -0.85,
+    "faktor_M_zu_E": 1.041,
+    "exposure_mittel": 0.4227,
+    "M_flacher_als_E": false
+   },
+   "2024": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -18.0,
+    "E_tag": -17.84,
+    "M": -19.42,
+    "M_minus_E_pp": -1.42,
+    "faktor_M_zu_E": 1.079,
+    "exposure_mittel": 0.4845,
+    "M_flacher_als_E": false
+   },
+   "2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -27.42,
+    "E_tag": -27.42,
+    "M": -35.29,
+    "M_minus_E_pp": -7.87,
+    "faktor_M_zu_E": 1.287,
+    "exposure_mittel": 0.5343,
+    "M_flacher_als_E": false
+   },
+   "2026": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -16.03,
+    "E_tag": -15.9,
+    "M": -22.25,
+    "M_minus_E_pp": -6.22,
+    "faktor_M_zu_E": 1.388,
+    "exposure_mittel": 0.5511,
+    "M_flacher_als_E": false
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [],
+   "faelle_M_flacher_als_E_tag": [],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 0.3
+ },
+ "volatility_breakout_crypto": {
+  "median_selektion": {
+   "E": -9.48,
+   "E_tag": -9.48,
+   "M": -11.62,
+   "M_minus_E_pp": -1.83,
+   "selektionsfalten_mit_grundlage": [
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ]
+  },
+  "falten": {
+   "2018": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2019": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2020": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2021": {
+    "rolle": "selektion",
+    "grundlage": "keine",
+    "E": null,
+    "E_tag": null,
+    "M": null,
+    "M_minus_E_pp": null,
+    "faktor_M_zu_E": null,
+    "exposure_mittel": null,
+    "M_flacher_als_E": null
+   },
+   "2022": {
+    "rolle": "selektion",
+    "grundlage": "teilweise",
+    "E": -6.07,
+    "E_tag": -6.07,
+    "M": -10.39,
+    "M_minus_E_pp": -4.32,
+    "faktor_M_zu_E": 1.712,
+    "exposure_mittel": 0.0539,
+    "M_flacher_als_E": false
+   },
+   "2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -12.9,
+    "E_tag": -12.9,
+    "M": -12.84,
+    "M_minus_E_pp": 0.06,
+    "faktor_M_zu_E": 0.995,
+    "exposure_mittel": 0.0995,
+    "M_flacher_als_E": true
+   },
+   "2024": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -14.4,
+    "E_tag": -14.4,
+    "M": -15.42,
+    "M_minus_E_pp": -1.02,
+    "faktor_M_zu_E": 1.071,
+    "exposure_mittel": 0.1444,
+    "M_flacher_als_E": false
+   },
+   "2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -5.22,
+    "E_tag": -5.22,
+    "M": -7.86,
+    "M_minus_E_pp": -2.64,
+    "faktor_M_zu_E": 1.506,
+    "exposure_mittel": 0.1039,
+    "M_flacher_als_E": false
+   },
+   "2026": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -7.27,
+    "E_tag": -7.27,
+    "M": -9.63,
+    "M_minus_E_pp": -2.36,
+    "faktor_M_zu_E": 1.325,
+    "exposure_mittel": 0.1412,
+    "M_flacher_als_E": false
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [
+    "2023"
+   ],
+   "faelle_M_flacher_als_E_tag": [
+    "2023"
+   ],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 0.2
+ },
+ "elliott_wave_stocks": {
+  "median_selektion": {
+   "E": -4.85,
+   "E_tag": -4.54,
+   "M": -8.61,
+   "M_minus_E_pp": -2.88,
+   "selektionsfalten_mit_grundlage": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ]
+  },
+  "falten": {
+   "2017": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -0.99,
+    "E_tag": -0.99,
+    "M": -5.26,
+    "M_minus_E_pp": -4.27,
+    "faktor_M_zu_E": 5.313,
+    "exposure_mittel": 0.1497,
+    "M_flacher_als_E": false
+   },
+   "2018": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -4.85,
+    "E_tag": -4.54,
+    "M": -9.22,
+    "M_minus_E_pp": -4.37,
+    "faktor_M_zu_E": 1.901,
+    "exposure_mittel": 0.4018,
+    "M_flacher_als_E": false
+   },
+   "2019": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -4.86,
+    "E_tag": -4.86,
+    "M": -8.61,
+    "M_minus_E_pp": -3.75,
+    "faktor_M_zu_E": 1.772,
+    "exposure_mittel": 0.5065,
+    "M_flacher_als_E": false
+   },
+   "2020": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -13.35,
+    "E_tag": -13.35,
+    "M": -9.45,
+    "M_minus_E_pp": 3.9,
+    "faktor_M_zu_E": 0.708,
+    "exposure_mittel": 0.435,
+    "M_flacher_als_E": true
+   },
+   "2021": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -3.88,
+    "E_tag": -3.88,
+    "M": -5.34,
+    "M_minus_E_pp": -1.46,
+    "faktor_M_zu_E": 1.376,
+    "exposure_mittel": 0.2854,
+    "M_flacher_als_E": false
+   },
+   "2022": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -19.31,
+    "E_tag": -19.31,
+    "M": -18.11,
+    "M_minus_E_pp": 1.2,
+    "faktor_M_zu_E": 0.938,
+    "exposure_mittel": 0.4903,
+    "M_flacher_als_E": true
+   },
+   "2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -1.96,
+    "E_tag": -1.96,
+    "M": -4.53,
+    "M_minus_E_pp": -2.57,
+    "faktor_M_zu_E": 2.311,
+    "exposure_mittel": 0.5554,
+    "M_flacher_als_E": false
+   },
+   "2024": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -3.26,
+    "E_tag": -3.26,
+    "M": -6.14,
+    "M_minus_E_pp": -2.88,
+    "faktor_M_zu_E": 1.883,
+    "exposure_mittel": 0.243,
+    "M_flacher_als_E": false
+   },
+   "2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -8.92,
+    "E_tag": -8.92,
+    "M": -11.91,
+    "M_minus_E_pp": -2.99,
+    "faktor_M_zu_E": 1.335,
+    "exposure_mittel": 0.5197,
+    "M_flacher_als_E": false
+   },
+   "2026": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -5.74,
+    "E_tag": -5.74,
+    "M": -11.71,
+    "M_minus_E_pp": -5.97,
+    "faktor_M_zu_E": 2.04,
+    "exposure_mittel": 0.5942,
+    "M_flacher_als_E": false
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [
+    "2020",
+    "2022"
+   ],
+   "faelle_M_flacher_als_E_tag": [
+    "2020",
+    "2022"
+   ],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 2.8
+ },
+ "rsi2_mean_reversion": {
+  "median_selektion": {
+   "E": -7.57,
+   "E_tag": -7.49,
+   "M": -8.44,
+   "M_minus_E_pp": -1.71,
+   "selektionsfalten_mit_grundlage": [
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ]
+  },
+  "falten": {
+   "2018": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -11.49,
+    "E_tag": -11.49,
+    "M": -14.92,
+    "M_minus_E_pp": -3.43,
+    "faktor_M_zu_E": 1.299,
+    "exposure_mittel": 0.3704,
+    "M_flacher_als_E": false
+   },
+   "2019": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -6.46,
+    "E_tag": -6.39,
+    "M": -7.66,
+    "M_minus_E_pp": -1.2,
+    "faktor_M_zu_E": 1.186,
+    "exposure_mittel": 0.3182,
+    "M_flacher_als_E": false
+   },
+   "2020": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -9.01,
+    "E_tag": -9.01,
+    "M": -11.28,
+    "M_minus_E_pp": -2.27,
+    "faktor_M_zu_E": 1.252,
+    "exposure_mittel": 0.2998,
+    "M_flacher_als_E": false
+   },
+   "2021": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -3.53,
+    "E_tag": -3.53,
+    "M": -5.53,
+    "M_minus_E_pp": -2.0,
+    "faktor_M_zu_E": 1.567,
+    "exposure_mittel": 0.4404,
+    "M_flacher_als_E": false
+   },
+   "2022": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -10.52,
+    "E_tag": -10.49,
+    "M": -11.93,
+    "M_minus_E_pp": -1.41,
+    "faktor_M_zu_E": 1.134,
+    "exposure_mittel": 0.2955,
+    "M_flacher_als_E": false
+   },
+   "2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -8.69,
+    "E_tag": -8.6,
+    "M": -9.21,
+    "M_minus_E_pp": -0.52,
+    "faktor_M_zu_E": 1.06,
+    "exposure_mittel": 0.413,
+    "M_flacher_als_E": false
+   },
+   "2024": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -4.45,
+    "E_tag": -4.19,
+    "M": -5.48,
+    "M_minus_E_pp": -1.03,
+    "faktor_M_zu_E": 1.231,
+    "exposure_mittel": 0.4627,
+    "M_flacher_als_E": false
+   },
+   "2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -5.33,
+    "E_tag": -4.88,
+    "M": -7.49,
+    "M_minus_E_pp": -2.16,
+    "faktor_M_zu_E": 1.405,
+    "exposure_mittel": 0.397,
+    "M_flacher_als_E": false
+   },
+   "2026": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -3.84,
+    "E_tag": -3.79,
+    "M": -5.51,
+    "M_minus_E_pp": -1.67,
+    "faktor_M_zu_E": 1.435,
+    "exposure_mittel": 0.4396,
+    "M_flacher_als_E": false
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [],
+   "faelle_M_flacher_als_E_tag": [],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 3.5
+ },
+ "turtle_soup_stocks": {
+  "median_selektion": {
+   "E": -5.19,
+   "E_tag": -5.11,
+   "M": -7.42,
+   "M_minus_E_pp": -2.53,
+   "selektionsfalten_mit_grundlage": [
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ]
+  },
+  "falten": {
+   "2017": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -1.26,
+    "E_tag": -1.13,
+    "M": -2.42,
+    "M_minus_E_pp": -1.16,
+    "faktor_M_zu_E": 1.921,
+    "exposure_mittel": 0.7831,
+    "M_flacher_als_E": false
+   },
+   "2018": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -12.15,
+    "E_tag": -12.03,
+    "M": -14.93,
+    "M_minus_E_pp": -2.78,
+    "faktor_M_zu_E": 1.229,
+    "exposure_mittel": 0.7478,
+    "M_flacher_als_E": false
+   },
+   "2019": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -4.74,
+    "E_tag": -4.74,
+    "M": -6.86,
+    "M_minus_E_pp": -2.12,
+    "faktor_M_zu_E": 1.447,
+    "exposure_mittel": 0.6673,
+    "M_flacher_als_E": false
+   },
+   "2020": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -29.91,
+    "E_tag": -29.83,
+    "M": -34.45,
+    "M_minus_E_pp": -4.54,
+    "faktor_M_zu_E": 1.152,
+    "exposure_mittel": 0.6632,
+    "M_flacher_als_E": false
+   },
+   "2021": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -3.3,
+    "E_tag": -3.18,
+    "M": -6.39,
+    "M_minus_E_pp": -3.09,
+    "faktor_M_zu_E": 1.936,
+    "exposure_mittel": 0.7816,
+    "M_flacher_als_E": false
+   },
+   "2022": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -18.73,
+    "E_tag": -18.71,
+    "M": -20.69,
+    "M_minus_E_pp": -1.96,
+    "faktor_M_zu_E": 1.105,
+    "exposure_mittel": 0.7361,
+    "M_flacher_als_E": false
+   },
+   "2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -4.54,
+    "E_tag": -4.49,
+    "M": -7.07,
+    "M_minus_E_pp": -2.53,
+    "faktor_M_zu_E": 1.557,
+    "exposure_mittel": 0.7768,
+    "M_flacher_als_E": false
+   },
+   "2024": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -5.19,
+    "E_tag": -5.11,
+    "M": -7.42,
+    "M_minus_E_pp": -2.23,
+    "faktor_M_zu_E": 1.43,
+    "exposure_mittel": 0.7925,
+    "M_flacher_als_E": false
+   },
+   "2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -12.02,
+    "E_tag": -11.99,
+    "M": -18.74,
+    "M_minus_E_pp": -6.72,
+    "faktor_M_zu_E": 1.559,
+    "exposure_mittel": 0.8109,
+    "M_flacher_als_E": false
+   },
+   "2026": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -3.81,
+    "E_tag": -3.77,
+    "M": -6.24,
+    "M_minus_E_pp": -2.43,
+    "faktor_M_zu_E": 1.638,
+    "exposure_mittel": 0.86,
+    "M_flacher_als_E": false
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [],
+   "faelle_M_flacher_als_E_tag": [],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 3.7
+ },
+ "volatility_breakout": {
+  "median_selektion": {
+   "E": -10.05,
+   "E_tag": -9.57,
+   "M": -12.34,
+   "M_minus_E_pp": -1.6,
+   "selektionsfalten_mit_grundlage": [
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025"
+   ]
+  },
+  "falten": {
+   "2018": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -14.78,
+    "E_tag": -14.78,
+    "M": -15.36,
+    "M_minus_E_pp": -0.58,
+    "faktor_M_zu_E": 1.039,
+    "exposure_mittel": 0.6998,
+    "M_flacher_als_E": false
+   },
+   "2019": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -7.85,
+    "E_tag": -7.6,
+    "M": -9.05,
+    "M_minus_E_pp": -1.2,
+    "faktor_M_zu_E": 1.153,
+    "exposure_mittel": 0.8573,
+    "M_flacher_als_E": false
+   },
+   "2020": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -9.41,
+    "E_tag": -8.45,
+    "M": -12.6,
+    "M_minus_E_pp": -3.19,
+    "faktor_M_zu_E": 1.339,
+    "exposure_mittel": 0.6768,
+    "M_flacher_als_E": false
+   },
+   "2021": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -3.38,
+    "E_tag": -3.38,
+    "M": -5.55,
+    "M_minus_E_pp": -2.17,
+    "faktor_M_zu_E": 1.642,
+    "exposure_mittel": 0.9071,
+    "M_flacher_als_E": false
+   },
+   "2022": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -23.97,
+    "E_tag": -23.97,
+    "M": -25.8,
+    "M_minus_E_pp": -1.83,
+    "faktor_M_zu_E": 1.076,
+    "exposure_mittel": 0.7051,
+    "M_flacher_als_E": false
+   },
+   "2023": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -10.7,
+    "E_tag": -10.7,
+    "M": -12.08,
+    "M_minus_E_pp": -1.38,
+    "faktor_M_zu_E": 1.129,
+    "exposure_mittel": 0.9015,
+    "M_flacher_als_E": false
+   },
+   "2024": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -5.39,
+    "E_tag": -5.39,
+    "M": -6.15,
+    "M_minus_E_pp": -0.76,
+    "faktor_M_zu_E": 1.141,
+    "exposure_mittel": 0.912,
+    "M_flacher_als_E": false
+   },
+   "2025": {
+    "rolle": "selektion",
+    "grundlage": "vollstaendig",
+    "E": -12.31,
+    "E_tag": -12.31,
+    "M": -15.36,
+    "M_minus_E_pp": -3.05,
+    "faktor_M_zu_E": 1.248,
+    "exposure_mittel": 0.8136,
+    "M_flacher_als_E": false
+   },
+   "2026": {
+    "rolle": "bestaetigung",
+    "grundlage": "vollstaendig",
+    "E": -4.9,
+    "E_tag": -4.9,
+    "M": -4.37,
+    "M_minus_E_pp": 0.53,
+    "faktor_M_zu_E": 0.892,
+    "exposure_mittel": 0.8121,
+    "M_flacher_als_E": true
+   }
+  },
+  "richtungsprobe": {
+   "faelle_M_flacher_als_E": [
+    "2026"
+   ],
+   "faelle_M_flacher_als_E_tag": [
+    "2026"
+   ],
+   "faelle_E_flacher_als_E_tag": []
+  },
+  "laufzeit_s": 3.3
+ }
+}

@@ -1,0 +1,124 @@
+9 Bots ausgewertet -> research/mtm_drawdown/ergebnisse/messung.md
+elliott_wave: 130 Positionen, Raster 3165 Tage, Kosten je Seite 0.15 % (backtest_elliott), Kostenabgleich {'max_abweichung_pp': 0.004991273996516554, 'innerhalb_rundung': True}
+  gesamt: E -10.17  E_tag -10.17  M -15.4
+  2018-2019 sel  keine Grundlage
+  2020-2021 sel  E   -2.81  E_tag   -2.81  M   -4.48  dM-E  -1.67 pp  x1.594  expo 0.062  offen@Start 0  TEILWEISE ab 2021-09-22
+  2022-2023 sel  E  -10.17  E_tag  -10.17  M  -15.40  dM-E  -5.23 pp  x1.514  expo 0.036  offen@Start 0
+  2024-2025 sel  E   -4.51  E_tag   -4.51  M   -7.43  dM-E  -2.92 pp  x1.647  expo 0.049  offen@Start 0
+  2026-2027 bes  E   -3.11  E_tag   -3.11  M   -3.34  dM-E  -0.23 pp  x1.074  expo 0.046  offen@Start 0
+  Median Selektion: E -4.51  M -7.43  Richtung: {'faelle_M_flacher_als_E': [], 'faelle_M_flacher_als_E_tag': [], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 0.2 s
+--- elliott_wave: rc 0, 0.8 s
+
+t3_supertrend: 656 Positionen, Raster 2800 Tage, Kosten je Seite 0.15 % (backtest_trend), Kostenabgleich {'max_abweichung_pp': 0.004996243425989366, 'innerhalb_rundung': True}
+  gesamt: E -22.2  E_tag -22.2  M -24.22
+       2019 sel  keine Grundlage
+       2020 sel  keine Grundlage
+       2021 sel  E   -5.58  E_tag   -4.76  M   -8.67  dM-E  -3.09 pp  x1.554  expo 0.157  offen@Start 0  TEILWEISE ab 2021-09-01
+       2022 sel  E  -12.28  E_tag  -12.28  M  -14.11  dM-E  -1.83 pp  x1.149  expo 0.132  offen@Start 0
+       2023 sel  E  -11.55  E_tag  -11.55  M  -11.25  dM-E   0.30 pp  x0.974  expo 0.185  offen@Start 0  M FLACHER ALS E
+       2024 sel  E   -6.20  E_tag   -6.09  M  -10.79  dM-E  -4.59 pp  x1.74  expo 0.231  offen@Start 1
+       2025 sel  E  -16.41  E_tag  -16.41  M  -19.61  dM-E  -3.20 pp  x1.195  expo 0.161  offen@Start 0
+       2026 bes  E   -9.92  E_tag   -9.80  M  -11.79  dM-E  -1.87 pp  x1.189  expo 0.203  offen@Start 3
+  Median Selektion: E -11.55  M -11.25  Richtung: {'faelle_M_flacher_als_E': ['2023'], 'faelle_M_flacher_als_E_tag': ['2023'], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 0.3 s
+--- t3_supertrend: rc 0, 0.8 s
+
+rsi2_crypto: 392 Positionen, Raster 2800 Tage, Kosten je Seite 0.15 % (backtest_rsi2), Kostenabgleich {'max_abweichung_pp': 0.0049986191659705526, 'innerhalb_rundung': True}
+  gesamt: E -13.3  E_tag -13.3  M -16.53
+       2019 sel  keine Grundlage
+       2020 sel  keine Grundlage
+       2021 sel  keine Grundlage
+       2022 sel  E   -8.65  E_tag   -8.65  M  -10.15  dM-E  -1.50 pp  x1.173  expo 0.025  offen@Start 0  TEILWEISE ab 2022-02-11
+       2023 sel  E   -2.75  E_tag   -2.74  M   -4.01  dM-E  -1.26 pp  x1.458  expo 0.110  offen@Start 0
+       2024 sel  E  -13.30  E_tag  -13.30  M  -16.53  dM-E  -3.23 pp  x1.243  expo 0.206  offen@Start 0
+       2025 sel  E  -11.43  E_tag  -11.38  M  -12.71  dM-E  -1.28 pp  x1.112  expo 0.169  offen@Start 2
+       2026 bes  E   -3.14  E_tag   -3.14  M   -4.28  dM-E  -1.14 pp  x1.363  expo 0.053  offen@Start 0
+  Median Selektion: E -10.04  M -11.43  Richtung: {'faelle_M_flacher_als_E': [], 'faelle_M_flacher_als_E_tag': [], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 0.2 s
+--- rsi2_crypto: rc 0, 0.8 s
+
+turtle_soup_crypto: 1414 Positionen, Raster 3165 Tage, Kosten je Seite 0.15 % (backtest_turtle_soup), Kostenabgleich {'max_abweichung_pp': 0.004998959150675386, 'innerhalb_rundung': True}
+  gesamt: E -32.4  E_tag -32.4  M -38.94
+       2018 sel  keine Grundlage
+       2019 sel  keine Grundlage
+       2020 sel  keine Grundlage
+       2021 sel  E  -15.29  E_tag  -15.29  M  -16.43  dM-E  -1.14 pp  x1.075  expo 0.403  offen@Start 0  TEILWEISE ab 2021-10-12
+       2022 sel  E  -27.86  E_tag  -27.86  M  -30.38  dM-E  -2.52 pp  x1.09  expo 0.415  offen@Start 4
+       2023 sel  E  -20.68  E_tag  -20.68  M  -21.53  dM-E  -0.85 pp  x1.041  expo 0.423  offen@Start 7
+       2024 sel  E  -18.00  E_tag  -17.84  M  -19.42  dM-E  -1.42 pp  x1.079  expo 0.484  offen@Start 1
+       2025 sel  E  -27.42  E_tag  -27.42  M  -35.29  dM-E  -7.87 pp  x1.287  expo 0.534  offen@Start 0
+       2026 bes  E  -16.03  E_tag  -15.90  M  -22.25  dM-E  -6.22 pp  x1.388  expo 0.551  offen@Start 4
+  Median Selektion: E -20.68  M -21.53  Richtung: {'faelle_M_flacher_als_E': [], 'faelle_M_flacher_als_E_tag': [], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 0.3 s
+--- turtle_soup_crypto: rc 0, 0.8 s
+
+volatility_breakout_crypto: 207 Positionen, Raster 3165 Tage, Kosten je Seite 0.15 % (backtest_breakout), Kostenabgleich {'max_abweichung_pp': 0.004884840151242464, 'innerhalb_rundung': True}
+  gesamt: E -16.29  E_tag -16.29  M -19.3
+       2018 sel  keine Grundlage
+       2019 sel  keine Grundlage
+       2020 sel  keine Grundlage
+       2021 sel  keine Grundlage
+       2022 sel  E   -6.07  E_tag   -6.07  M  -10.39  dM-E  -4.32 pp  x1.712  expo 0.054  offen@Start 0  TEILWEISE ab 2022-03-17
+       2023 sel  E  -12.90  E_tag  -12.90  M  -12.84  dM-E   0.06 pp  x0.995  expo 0.100  offen@Start 0  M FLACHER ALS E
+       2024 sel  E  -14.40  E_tag  -14.40  M  -15.42  dM-E  -1.02 pp  x1.071  expo 0.144  offen@Start 0
+       2025 sel  E   -5.22  E_tag   -5.22  M   -7.86  dM-E  -2.64 pp  x1.506  expo 0.104  offen@Start 0
+       2026 bes  E   -7.27  E_tag   -7.27  M   -9.63  dM-E  -2.36 pp  x1.325  expo 0.141  offen@Start 0
+  Median Selektion: E -9.48  M -11.62  Richtung: {'faelle_M_flacher_als_E': ['2023'], 'faelle_M_flacher_als_E_tag': ['2023'], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 0.2 s
+--- volatility_breakout_crypto: rc 0, 0.7 s
+
+elliott_wave_stocks: 395 Positionen, Raster 2473 Tage, Kosten je Seite 0.15 % (backtest_elliott), Kostenabgleich {'max_abweichung_pp': 0.004971659747114998, 'innerhalb_rundung': True}
+  gesamt: E -22.44  E_tag -22.44  M -20.63
+       2017 sel  E   -0.99  E_tag   -0.99  M   -5.26  dM-E  -4.27 pp  x5.313  expo 0.150  offen@Start 1
+       2018 sel  E   -4.85  E_tag   -4.54  M   -9.22  dM-E  -4.37 pp  x1.901  expo 0.402  offen@Start 0
+       2019 sel  E   -4.86  E_tag   -4.86  M   -8.61  dM-E  -3.75 pp  x1.772  expo 0.506  offen@Start 6
+       2020 sel  E  -13.35  E_tag  -13.35  M   -9.45  dM-E   3.90 pp  x0.708  expo 0.435  offen@Start 1  M FLACHER ALS E
+       2021 sel  E   -3.88  E_tag   -3.88  M   -5.34  dM-E  -1.46 pp  x1.376  expo 0.285  offen@Start 4
+       2022 sel  E  -19.31  E_tag  -19.31  M  -18.11  dM-E   1.20 pp  x0.938  expo 0.490  offen@Start 4  M FLACHER ALS E
+       2023 sel  E   -1.96  E_tag   -1.96  M   -4.53  dM-E  -2.57 pp  x2.311  expo 0.555  offen@Start 7
+       2024 sel  E   -3.26  E_tag   -3.26  M   -6.14  dM-E  -2.88 pp  x1.883  expo 0.243  offen@Start 8
+       2025 sel  E   -8.92  E_tag   -8.92  M  -11.91  dM-E  -2.99 pp  x1.335  expo 0.520  offen@Start 1
+       2026 bes  E   -5.74  E_tag   -5.74  M  -11.71  dM-E  -5.97 pp  x2.04  expo 0.594  offen@Start 7
+  Median Selektion: E -4.85  M -8.61  Richtung: {'faelle_M_flacher_als_E': ['2020', '2022'], 'faelle_M_flacher_als_E_tag': ['2020', '2022'], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 2.8 s
+--- elliott_wave_stocks: rc 0, 3.3 s
+
+rsi2_mean_reversion: 4232 Positionen, Raster 2513 Tage, Kosten je Seite 0.15 % (backtest_rsi2), Kostenabgleich {'max_abweichung_pp': 0.004998278766283559, 'innerhalb_rundung': True}
+  gesamt: E -21.05  E_tag -21.05  M -23.39
+       2018 sel  E  -11.49  E_tag  -11.49  M  -14.92  dM-E  -3.43 pp  x1.299  expo 0.370  offen@Start 8
+       2019 sel  E   -6.46  E_tag   -6.39  M   -7.66  dM-E  -1.20 pp  x1.186  expo 0.318  offen@Start 0
+       2020 sel  E   -9.01  E_tag   -9.01  M  -11.28  dM-E  -2.27 pp  x1.252  expo 0.300  offen@Start 8
+       2021 sel  E   -3.53  E_tag   -3.53  M   -5.53  dM-E  -2.00 pp  x1.567  expo 0.440  offen@Start 3
+       2022 sel  E  -10.52  E_tag  -10.49  M  -11.93  dM-E  -1.41 pp  x1.134  expo 0.295  offen@Start 1
+       2023 sel  E   -8.69  E_tag   -8.60  M   -9.21  dM-E  -0.52 pp  x1.06  expo 0.413  offen@Start 1
+       2024 sel  E   -4.45  E_tag   -4.19  M   -5.48  dM-E  -1.03 pp  x1.231  expo 0.463  offen@Start 1
+       2025 sel  E   -5.33  E_tag   -4.88  M   -7.49  dM-E  -2.16 pp  x1.405  expo 0.397  offen@Start 5
+       2026 bes  E   -3.84  E_tag   -3.79  M   -5.51  dM-E  -1.67 pp  x1.435  expo 0.440  offen@Start 19
+  Median Selektion: E -7.57  M -8.44  Richtung: {'faelle_M_flacher_als_E': [], 'faelle_M_flacher_als_E_tag': [], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 3.5 s
+--- rsi2_mean_reversion: rc 0, 4.0 s
+
+turtle_soup_stocks: 8915 Positionen, Raster 2513 Tage, Kosten je Seite 0.15 % (backtest_turtle_soup), Kostenabgleich {'max_abweichung_pp': 0.0049997745144976236, 'innerhalb_rundung': True}
+  gesamt: E -29.91  E_tag -29.83  M -34.45
+       2017 sel  E   -1.26  E_tag   -1.13  M   -2.42  dM-E  -1.16 pp  x1.921  expo 0.783  offen@Start 45
+       2018 sel  E  -12.15  E_tag  -12.03  M  -14.93  dM-E  -2.78 pp  x1.229  expo 0.748  offen@Start 37
+       2019 sel  E   -4.74  E_tag   -4.74  M   -6.86  dM-E  -2.12 pp  x1.447  expo 0.667  offen@Start 47
+       2020 sel  E  -29.91  E_tag  -29.83  M  -34.45  dM-E  -4.54 pp  x1.152  expo 0.663  offen@Start 24
+       2021 sel  E   -3.30  E_tag   -3.18  M   -6.39  dM-E  -3.09 pp  x1.936  expo 0.782  offen@Start 30
+       2022 sel  E  -18.73  E_tag  -18.71  M  -20.69  dM-E  -1.96 pp  x1.105  expo 0.736  offen@Start 27
+       2023 sel  E   -4.54  E_tag   -4.49  M   -7.07  dM-E  -2.53 pp  x1.557  expo 0.777  offen@Start 34
+       2024 sel  E   -5.19  E_tag   -5.11  M   -7.42  dM-E  -2.23 pp  x1.43  expo 0.792  offen@Start 18
+       2025 sel  E  -12.02  E_tag  -11.99  M  -18.74  dM-E  -6.72 pp  x1.559  expo 0.811  offen@Start 32
+       2026 bes  E   -3.81  E_tag   -3.77  M   -6.24  dM-E  -2.43 pp  x1.638  expo 0.860  offen@Start 23
+  Median Selektion: E -5.19  M -7.42  Richtung: {'faelle_M_flacher_als_E': [], 'faelle_M_flacher_als_E_tag': [], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 3.7 s
+--- turtle_soup_stocks: rc 0, 4.3 s
+
+volatility_breakout: 1454 Positionen, Raster 2513 Tage, Kosten je Seite 0.15 % (backtest_breakout), Kostenabgleich {'max_abweichung_pp': 0.004998666855891898, 'innerhalb_rundung': True}
+  gesamt: E -23.97  E_tag -23.97  M -25.8
+       2018 sel  E  -14.78  E_tag  -14.78  M  -15.36  dM-E  -0.58 pp  x1.039  expo 0.700  offen@Start 10
+       2019 sel  E   -7.85  E_tag   -7.60  M   -9.05  dM-E  -1.20 pp  x1.153  expo 0.857  offen@Start 1
+       2020 sel  E   -9.41  E_tag   -8.45  M  -12.60  dM-E  -3.19 pp  x1.339  expo 0.677  offen@Start 9
+       2021 sel  E   -3.38  E_tag   -3.38  M   -5.55  dM-E  -2.17 pp  x1.642  expo 0.907  offen@Start 10
+       2022 sel  E  -23.97  E_tag  -23.97  M  -25.80  dM-E  -1.83 pp  x1.076  expo 0.705  offen@Start 7
+       2023 sel  E  -10.70  E_tag  -10.70  M  -12.08  dM-E  -1.38 pp  x1.129  expo 0.901  offen@Start 6
+       2024 sel  E   -5.39  E_tag   -5.39  M   -6.15  dM-E  -0.76 pp  x1.141  expo 0.912  offen@Start 5
+       2025 sel  E  -12.31  E_tag  -12.31  M  -15.36  dM-E  -3.05 pp  x1.248  expo 0.814  offen@Start 6
+       2026 bes  E   -4.90  E_tag   -4.90  M   -4.37  dM-E   0.53 pp  x0.892  expo 0.812  offen@Start 5  M FLACHER ALS E
+  Median Selektion: E -10.05  M -12.34  Richtung: {'faelle_M_flacher_als_E': ['2026'], 'faelle_M_flacher_als_E_tag': ['2026'], 'faelle_E_flacher_als_E_tag': []}  Laufzeit 3.3 s
+--- volatility_breakout: rc 0, 3.8 s
+
+Messung gesamt 19.3 s -> research/mtm_drawdown/ergebnisse/laufprotokoll.json

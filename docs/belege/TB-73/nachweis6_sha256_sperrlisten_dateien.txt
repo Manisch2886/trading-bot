@@ -1,0 +1,9 @@
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  benchmark_drawdowns_vt.json
+e4ba341d3177d455b1c3151f4bb2e0cf7f16fbd516d9b30edd45d0c7dc005e56  benchmark_drawdowns_tb72.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  faltenplan.json
+19e8cbca874d6e7455f2f3bc0723def9ea058d0b314fa1772e04cd64ff1c9d24  faltenplan_tb72.json
+
+Vergleich: a163c498..., 4549395f..., 0e54ac5c... = TB-72 Nachweis 3 (docs/belege/TB-72/nachweis3_sha256_nachher_schritt4.txt), unveraendert.
+_tb72.json: e4ba341d... = Stand des Commits 27c58a2 (TB-72 Schritt 4), unveraendert; faltenplan_tb72.json 19e8cbca... = HEAD, unveraendert.
+git status --short research/vorregistrierung/ shared/ strategies/ : leer.
