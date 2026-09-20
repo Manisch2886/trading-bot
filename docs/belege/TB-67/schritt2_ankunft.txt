@@ -1,0 +1,33 @@
+Bloecke: 60 letzter: BT doppelt: []
+JOURNAL_NACHTRAG_2026-09-19c.md Zeilen: 123 fehlend: 7
+    **Anzufügen am Ende von `docs/projektfuehrung/JOURNAL.md`.** Nichts wird
+    umgeschrieben.
+    > ⚠️ **Zum Blockbuchstaben:** Der letzte eingearbeitete Block stammt aus
+    > Nachtrag (b) — nach der damaligen Messung **BF**. ⚠️ **Vor dem Einfügen
+    > messen, welcher Buchstabe wirklich der letzte ist** — genau hier hat der
+    > Betreuer am 18.09. falsch geraten (AX statt AZ), und TB-50 musste fünf Blöcke
+    > verschieben.
+JOURNAL_NACHTRAG_2026-09-19d.md Zeilen: 103 fehlend: 4
+    **Anzufügen am Ende von `docs/projektfuehrung/JOURNAL.md`, NACH dem Block aus
+    Nachtrag (c).** Nichts wird umgeschrieben.
+    > ⚠️ **Zum Blockbuchstaben: messen, nicht raten.** Am 18.09. wurde AX
+    > angenommen, es war AZ, und TB-50 musste fünf Blöcke verschieben.
+JOURNAL_NACHTRAG_2026-09-19e.md Zeilen: 96 fehlend: 3
+    **Anzufügen am Ende von `docs/projektfuehrung/JOURNAL.md`, NACH den Blöcken aus
+    Nachtrag (c) und (d).** Nichts wird umgeschrieben.
+    > ⚠️ **Zum Blockbuchstaben: messen, nicht raten.**
+JOURNAL_NACHTRAG_2026-09-19f.md Zeilen: 106 fehlend: 4
+    **Anzufügen am Ende von `docs/projektfuehrung/JOURNAL.md`, NACH Block BJ.**
+    ⚠️ **Blockbuchstaben messen, nicht raten** — und ⚠️ **das Muster prüfen, bevor
+    gesucht wird**: in TB-54b traf `"Block "` nichts, und ein leerer Treffer hätte
+    den nächsten Buchstaben falsch gemacht.
+JOURNAL_NACHTRAG_2026-09-19g.md Zeilen: 63 fehlend: 0
+JOURNAL_NACHTRAG_2026-09-20a.md Zeilen: 35 fehlend: 0
+JOURNAL_NACHTRAG_2026-09-20b.md Zeilen: 145 fehlend: 0
+JOURNAL_NACHTRAG_2026-09-20c.md Zeilen: 76 fehlend: 0
+JOURNAL_NACHTRAG_2026-09-20d.md Zeilen: 88 fehlend: 0
+JOURNAL_NACHTRAG_2026-09-20e.md Zeilen: 45 fehlend: 0
+JOURNAL_NACHTRAG_2026-09-20f.md Zeilen: 94 fehlend: 0
+T-Zeilen in (m): 13 im Journal zeichengleich: 13
+B-Zeilen in (m): 7 im Journal zeichengleich: 0 (Soll 0: nicht als Regel eingetragen)
+Quellenzeilen: 14

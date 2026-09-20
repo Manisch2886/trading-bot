@@ -5758,6 +5758,8 @@ diesmal nicht auftrat.
 
 ## BG — TB-55: die Sitzung, deren Ergebnis ein Nichthandeln ist
 
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-19c.md`*
+
 **19.09.2026. Cloud-Sitzung, Basis `main` = `origin/main` = `7e48e1f`.
 Nichts committet ausser dem Ergebnisdokument.**
 
@@ -5919,6 +5921,8 @@ nachgeforscht.**
 
 ## BH — TB-55: der Eingabezustand existiert
 
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-19d.md`*
+
 **19.09.2026, auf dem MacBook. `main`, Basis `7e48e1f` → Commits `1075dec`
 (Snapshot) und `4c80588` (Ergebnisdokument), beide gepusht.
 Interpreter durchgehend `trading-env/bin/python3` = Python 3.9.6.**
@@ -6056,6 +6060,8 @@ der Schritt, auf den alles andere wartet.
 
 ## BI — TB-55b: der Snapshot steht im Register
 
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-19e.md`*
+
 **19.09.2026. `main`, `4c80588` → `0fe61d7`, gepusht. Python 3.9.6.**
 
 `docs/VORREGISTRIERUNG_neuselektion.md` hat einen neuen **Abschnitt 18** —
@@ -6104,6 +6110,8 @@ ausdrücklich *„Kein Snapshot gezogen"*.
 ---
 
 ## BJ — TB-54: acht Nachträge, eine Rückfrage
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-19e.md`*
 
 **19.09.2026. `main`, `1124880` → `d9f3c4b` (d–g) → `3121ec2` (h–k), gepusht.**
 
@@ -6183,6 +6191,963 @@ war die Frage die richtige Antwort.**
 ⚠️ **Und dreimal haben sich Nummern überschnitten, alle drei durch den
 Betreuer**, der Nummern vergab, ohne den Zielstand zu kennen. Ab jetzt sagt er
 nur noch „die nächste freie" und begründet, wohin etwas gehört.
+
+---
+
+## BK — TB-53b: der Resolver erreicht die Selektionsseite (19.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-19f.md`*
+
+*Messprotokoll: `docs/projektfuehrung/nachtraege/BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s`*
+
+**19.09.2026. `main`, `eaf2572` → `29016cf`, gepusht. Python 3.9.6.**
+
+⭐⭐ **Der Engpass war eine Datei, nicht 90 Module.** Rein lesend gemessen, ohne
+Sitzung: von den 90 Selektionsmodulen erreichen **71 direkt** und **19 über
+`multi_symbol_optimise`** die Funktion `get_strategy_paths()`. **Module mit
+eigenem `data`-Pfad: 0 von 90.**
+
+⭐ **Und die Sperrliste blieb unberührt:** Alle neun `multi_symbol_optimise.py`
+nehmen `DATA_DIR = _P["DATA_DIR"]` — **sie bauen keinen Pfad, sie bekommen
+einen.**
+
+### ⚠️⚠️ Eine wörtliche Zusicherung hätte ein legitimes Muster verboten
+
+Die geforderte Prüfung „Wurzel des Aufrufers == Wurzel des Resolvers" machte
+**vier grüne Tests rot**. Der Grund ist kein Fehler, sondern ein bewusstes
+Muster: `test_determinismus`, `test_ladeprotokoll` und `test_wellenauswahl`
+laden **absichtlich** eine Bot-Kopie aus einem Wegwerfbaum mit der **echten
+`shared/`**.
+
+⭐ **Die Sitzung fuhr den Basislauf, bevor sie committete, setzte den
+Arbeitsbaum währenddessen auf `HEAD` zurück, damit der Cron nichts Ungeprüftes
+sah — und fragte, statt zu entscheiden.** Gewählt: **Nachbar-Prüfung per
+`realpath`**; die Wurzelgleichheit der neun Bots misst Probe E1 bei jedem Lauf.
+
+#### Das Messprotokoll aus Nachtrag (m), Block `2s` — zeichengleich übernommen
+
+*4 Zeilen zu TB-53b, gemessen am 19.09.2026; sie standen bis TB-67 in keinem Führungsdokument.*
+
+| # | Punkt |
+|---|---|
+| **T53.1** | ⭐⭐ **TB-53a, rein lesend und ohne Sitzung gemessen: der Engpass ist EINE Datei, nicht 90 Module.** Von den 90 Selektionsmodulen (`rolle == "Selektion/Backtest"`, TB-46) erreichen **71 direkt** und **19 über `multi_symbol_optimise`** die Funktion `get_strategy_paths()`. ⭐ **Module mit eigenem `data`-Pfad: 0 von 90.** Module über `shared/paths.py`: 0 von 90. ⇒ ⚠️ **Die Backlog-Beschreibung „der grosse Umbau: 90 Selektionsmodule" (Rang 0,85) ist falsch — Berichtigung nötig** |
+| **T53.2** | ⭐⭐ **DIE SPERRLISTE MUSSTE NICHT ANGEFASST WERDEN.** Alle neun `multi_symbol_optimise.py` nehmen `_P = get_strategy_paths(__file__)` und `DATA_DIR = _P["DATA_DIR"]` — **sie bauen keinen Pfad, sie bekommen einen.** Suche nach eigenem Pfadbau in `multi_symbol_optimise.py` und `multi_symbol_walk_forward.py`: **nichts** |
+| **T53.3** | ⭐ **TB-53b ausgeführt** (`29016cf`): `get_strategy_paths()` bezieht `DATA_DIR` und `CONFIG_DIR` aus `shared/paths.py` statt sie selbst zu bauen — **eine Umsetzung des Resolvers, nicht zwei** (gegen T55.8/T54.3). Gemessen: **63 Pfade ohne Modus zeichengleich** · **9/9 unter Modus in der Snapshot-Wurzel** · falscher Hash wirft (9/9, rc 1) · `LIVE_DATA_DIR` wirft · Sperrklinken 6/29 · Basislauf UNERWARTET 0 · **23 neue Proben, gegen die alte Fassung 14 rot** |
+| **T53.4** | ⚠️⚠️ **EINE WÖRTLICHE ZUSICHERUNG HÄTTE EIN LEGITIMES MUSTER VERBOTEN.** Die geforderte Prüfung „Wurzel des Aufrufers == Wurzel des Resolvers" machte **vier grüne Tests rot**: `test_determinismus`, `test_ladeprotokoll` und `test_wellenauswahl` laden **absichtlich** eine Bot-Kopie aus einem Wegwerfbaum mit der **echten `shared/`**. ⭐ **Gewählt (Betreiberentscheidung nach T55b.5): Nachbar-Prüfung per `realpath`** — das antwortende `paths.py` muss physisch neben `strategy_paths.py` liegen; die Wurzelgleichheit der neun Bots misst Probe E1 bei jedem Testlauf. ⚠️ **Mutation ohne die Prüfung liefert STILL einen Pfad aus einem fremden Baum (E5)** |
+
+---
+
+## BL — TB-58: Codeherkunft und Lock (19.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-19f.md`*
+
+*Messprotokoll: `docs/projektfuehrung/nachtraege/BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s`*
+
+**19.09.2026. `624853b` → `d852bce` (Lock) → `6518e41` (Startprüfungen).**
+
+> ⭐⭐ **Fables Satz, der die Aufgabe ausgelöst hat:** *„Der Lese-Audit beweist,
+> welche **Daten** gelesen wurden. Er sagt nichts darüber, welcher **Code**
+> gelesen hat."*
+
+⚠️ **Ein Lauf mit gespaltenem Baum hätte ein sauberes Lese-Audit und wäre
+trotzdem nicht reproduzierbar.**
+
+### Der Lock
+
+```
+SHA-256      96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5
+67 Pakete    pandas==2.3.3 · numpy==2.0.2 · pandas-market-calendars==4.6.1
+Interpreter  3.9.6 (Clang 17.0.0)
+Plattform    macOS-15.7.9-x86_64-i386-64bit · x86_64
+```
+
+⭐⭐ **Drei unabhängige Wege — `pip freeze --all`, `dist-info`,
+`importlib.metadata` — null Unterschiede.** *Der Entwurf entstand ausserhalb
+der Sitzung aus den dist-info-Ordnern; aus „erzeugen" wurde dadurch
+„gegenprüfen".*
+
+### ⭐⭐ „Ohne Modus passiert nichts" — dreifach belegt
+
+| | |
+|---|---|
+| **N1** | Eine **zählende Attrappe** ersetzt `subprocess`, `importlib.metadata`, `os.system` **vor** dem Import → **0/0/0**; mit Mutation **2/2** — die Probe beisst |
+| **N3** | Am Syntaxbaum: kein Modulimport von `subprocess`/`importlib`/`platform`/`hashlib` |
+| **N4** | **144 Pfade über neun Bots zeichengleich** gegen den Vorgänger |
+
+**Fünf Abbruchproben, jede beisst einzeln, jede geht ohne ihre Prüfung durch.**
+44/44 neue Proben, 9/9 gegen den echten Arbeitsbaum. Sperrklinken 6/29,
+Basislauf **UNERWARTET 0**.
+
+⭐ **Dritte Umgebungsvariable `TB_SELEKTIONSCOMMIT`** — dieselbe Bauart wie der
+Snapshot-Hash: **der Modus trägt den erwarteten Wert.**
+
+⚠️ **Abweichung, gefragt und freigegeben:** Teil B wörtlich machte 18/24 und
+18/23 Proben in den bestehenden Testdateien rot. ⭐ **Die Freigabe wurde auf die
+Aufrufumgebung erweitert, nicht auf die Zusicherungen** — *geändert wurde, WIE
+die Tests aufrufen, nicht WAS sie behaupten.*
+
+#### Das Messprotokoll aus Nachtrag (m), Block `2s` — zeichengleich übernommen
+
+*6 Zeilen zu TB-58, gemessen am 19.09.2026; sie standen bis TB-67 in keinem Führungsdokument.*
+
+| # | Punkt |
+|---|---|
+| **T58.1** | ⭐⭐ **FABLES BEFUND, der TB-58 ausgelöst hat:** *„Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts darüber, welcher CODE gelesen hat."* ⚠️ **Ein Lauf mit gespaltenem Baum hätte ein sauberes Lese-Audit und wäre trotzdem nicht reproduzierbar** — kein einzelner Commit beschriebe den gelaufenen Code. ⇒ **Codeherkunft neben Datenherkunft, und der Lock als dritte Achse** |
+| **T58.2** | ⭐⭐ **FABLES DREI FÄLLE statt unserer zwei.** Nicht „Quelltext oder Messung", sondern: **Probe im Testlauf** (genügt nicht — ein Selektionslauf ist kein Testlauf) · **Messung im Lauf, berichtet** (genügt allein nicht — belegt den Zustand, verhindert ihn nicht) · ⭐ **Messung im Lauf, BLOCKIEREND, ins Audit geschrieben — das IST die Zusicherung.** *„Der Lauf prüft sich selbst, oder etwas anderes prüft ihn gelegentlich. Für ein Register zählt nur das Erste"* |
+| **T58.3** | ⭐ **TB-58 ausgeführt** (`d852bce`, `6518e41`). **`requirements.lock`: SHA-256 `96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5`**, **67 Pakete**, `pandas==2.3.3`, `numpy==2.0.2`, `pandas-market-calendars==4.6.1`; Interpreter `3.9.6 (Clang 17.0.0)`, Plattform `macOS-15.7.9-x86_64-i386-64bit`, Maschine `x86_64`. ⭐⭐ **Drei unabhängige Wege — `pip freeze --all`, `dist-info`, `importlib.metadata` — null Unterschiede** |
+| **T58.4** | ⭐⭐ **„OHNE MODUS PASSIERT NICHTS" IST DREIFACH BELEGT, nicht behauptet.** **N1:** eine zählende Attrappe ersetzt `subprocess`, `importlib.metadata` und `os.system` **vor** dem Import → **0/0/0**; mit eingebauter Mutation **2/2** — die Probe beisst. **N3:** am Syntaxbaum kein Modulimport von `subprocess`/`importlib`/`platform`/`hashlib` (B5). **N4:** **144 Pfade über neun Bots zeichengleich** gegen den Vorgänger-Commit |
+| **T58.5** | ⭐ **Fünf Abbruchproben, jede beisst einzeln, jede geht ohne ihre Prüfung durch:** falscher Commit · fehlende `TB_SELEKTIONSCOMMIT` · **gespaltener Baum** · **schmutziger Arbeitsbaum** · verfälschte Lock-Zeile. **44/44** in `shared/test_startpruefungen.py`, **9/9** gegen den echten Arbeitsbaum. ⭐ **Dritte Umgebungsvariable `TB_SELEKTIONSCOMMIT`** — dieselbe Bauart wie der Snapshot-Hash: der Modus **trägt** den erwarteten Wert |
+| **T58.6** | ⚠️ **ABWEICHUNG, gefragt und freigegeben:** Teil B wörtlich machte **18/24** Proben in `test_paths.py` und **18/23** in `test_strategy_paths.py` rot — sie setzen nur zwei Variablen, starten mit `python -c` (**kein `__file__`**) und legen `paths.py` in einen Ordner ohne Git. ⭐ **Freigabe auf die AUFRUFUMGEBUNG beider Dateien erweitert — nicht auf ihre Zusicherungen.** *Geändert wurde, WIE die Tests aufrufen, nicht WAS sie behaupten* |
+
+---
+
+## BM — TB-58b: Abschnitte 19 und 20 — und was der Nachmittag des 19.09. über die Arbeitsweise ergab
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-19f.md`*
+
+*Messprotokoll: `docs/projektfuehrung/nachtraege/BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s`*
+
+**19.09.2026. `6236c95` → `409d71d` → `be6e72c` → `02a58fb`.**
+
+**Abschnitt 19** — Registertext 5e, Ergänzung **Codeherkunft** (Entscheidung
+nach F17). **Abschnitt 20** — Tatsachennotiz zu 5f, **der Lock**.
+**160 Zeilen hinzu, 0 entfernt.**
+
+⭐ **Das Wegwerfbaum-Muster steht jetzt im Register als Testtechnik benannt und
+im Selektionsmodus ausdrücklich unzulässig.** *„Sonst kommt in einem Jahr
+jemand auf die Idee, die Selektion zur Isolation in einer Kopie laufen zu
+lassen."*
+
+> ⭐⭐ **Und die Probe, die den Eintrag wahr macht:** nach dem Commit ein Lauf
+> unter dem Modus mit **`pandas==0.0.1`** im Lock, Arbeitsbaum sauber → **rc 2**,
+> die Meldung nennt das Paket. **Ein Registertext, den der Code nicht einhält,
+> wäre schlimmer als keiner.**
+
+⭐ **Seit `be6e72c` liegen Belege und Aufträge im Repo** —
+`docs/belege/TB-58/` (25 Dateien, 8 byteweise Duplikate weggelassen, mit
+`HERKUNFT.md`), `docs/belege/TB-58b/`, `docs/auftraege/`. **Keine ZIP mehr.**
+
+#### Das Messprotokoll aus Nachtrag (m), Block `2s` — zeichengleich übernommen
+
+*3 Zeilen zu TB-58b, gemessen am 19.09.2026; sie standen bis TB-67 in keinem Führungsdokument.*
+
+| # | Punkt |
+|---|---|
+| **T58b.1** | ⭐⭐ **DAS REGISTER KENNT JETZT CODEHERKUNFT UND LOCK.** **Abschnitt 19** (Registertext 5e, Ergänzung Codeherkunft — **Entscheidung** nach F17) und **Abschnitt 20** (Tatsachennotiz zu 5f — der Lock), Commit **`409d71d`**, **160 Zeilen hinzu / 0 entfernt**. ⭐ **Das Wegwerfbaum-Muster ist im Register als Testtechnik benannt und im Selektionsmodus ausdrücklich unzulässig** |
+| **T58b.2** | ⭐⭐ **DIE PROBE, DIE DEN EINTRAG WAHR MACHT:** Nach dem Commit ein Lauf unter dem Modus mit **`pandas==0.0.1`** im Lock, Baum sauber → **rc 2**, Meldung nennt das Paket. *Ein Registertext, den der Code nicht einhält, wäre schlimmer als keiner* |
+| **T58b.3** | ⭐ **Belege und Aufträge sind ab jetzt im Repo** (`be6e72c`): `docs/belege/TB-58/` (25 Dateien, 8 byteweise Duplikate weggelassen, mit `HERKUNFT.md`), `docs/belege/TB-58b/`, `docs/auftraege/TB-58.md` und `TB-58b.md`. ⚠️ **Keine ZIP mehr** — Begründung T54.5 |
+
+---
+
+### Was der Nachmittag über die Arbeitsweise ergab
+
+| | |
+|---|---|
+| ⚠️⚠️ **Berichtigung** | **F1b/Q2 ist für die DATEN belegt, nicht für den LAUF.** Ein Klon auf einer dritten Umgebung (3.11.15) bestätigte den Snapshot — ⚠️ **den Lauf entscheiden pandas und numpy**, und dafür fehlte bis heute der Lock |
+| ⚠️ **Gemessen** | **Die Cloud hat 3.10–3.13, kein 3.9, kein `pyenv`** ⇒ **sie fällt als zweite Maschine für die Laufreproduktion aus.** Offene Frage an Fable |
+| ⭐ | **Die Sperre gegen den zweiten Snapshot greift auch im Wegwerf-Klon** (rc 2) — der Schutz sitzt im Code, nicht in der Umgebung |
+| ⚠️⚠️ | **macOS schützt `~/Downloads`: Claude-Code-Sitzungen können dort nicht lesen** — drei Sitzungsstarts gingen daran verloren, bis eine Sitzung die Ursache benannte. ⇒ **Aufträge nach `logs/auftraege/`** |
+| ⭐⭐ | **Das Projekt ist seit heute ortsunabhängig.** Ursache der Sperre war der in SSH-Sitzungen verschlossene **Schlüsselbund**; `security unlock-keychain` behebt es, danach meldet die Kopfzeile `Claude Max` |
+| ⚠️ | **Zwei Werkzeugfehler des Betreuers:** ein Überschreiben meldete Erfolg und änderte nichts; ein `git status` über die Geräteverbindung hinterliess eine verwaiste `.git/index.lock`. ⇒ **nie überschreiben, immer gegenprüfen; über die Verbindung nur lesen** |
+
+---
+
+### Der Stand am Abend des 19.09.
+
+| | |
+|---|---|
+| **Snapshot** | ⭐ gezogen, registriert (Abschnitt 18), reproduziert (Daten) |
+| **Resolver** | ⭐ **Schicht 1 und 2 im Repo; Startprüfungen aktiv.** ⚠️ Schicht 3, das Lese-Audit: **offen** |
+| **Register** | ⭐ **Abschnitte 18, 19, 20** — Snapshot, Codeherkunft, Lock |
+| **Datenstand** | `d9449faf…`/223 — an diesem Tag **über zwanzigmal** gemessen, immer gleich |
+| **Offen vor dem Tag** | Lese-Audit · Faltenschranke + Berichtigung 17.3 + Drei-Kategorien-Regel · `auswertung.py` auf Verfahren B · Laufreproduktion gegen den Lock · Fables Q1 |
+
+---
+
+### In einfacher Sprache
+
+**Der Auswahllauf kann ab heute beweisen, woher sein Programmcode stammt und
+auf welcher Umgebung er rechnet** — nicht mehr nur, welche Daten er gelesen
+hat. Stimmt eines davon nicht, hört er auf, statt weiterzurechnen.
+
+⭐ **Das Beste daran ist nicht der neue Text im Regelwerk, sondern die Probe
+danach:** Es wurde absichtlich eine falsche Angabe eingetragen, und das
+Programm hat aufgehört. **Erst dadurch ist der Regeltext mehr als eine
+Behauptung.**
+
+**Und ein praktischer Fortschritt:** Von heute an lässt sich am Projekt von
+überall arbeiten — der Grund, warum es bisher nicht ging, war ein verschlossener
+Schlüsselbund, nicht die Technik.
+
+---
+
+## BN — TB-59: die Backlog-Einarbeitung (19./20.09.2026, nachgeholt)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-19g.md`*
+
+⚠️ **Nachgeholt am 20.09.2026 durch die Chat-Sitzung, nicht durch die
+ausführende Mac-Sitzung** (Prüfprinzip A7: eine nachgeholte Messung sagt, dass
+sie nachgeholt wurde). Der Zustand war inhaltsadressiert wiederherstellbar — der
+Arbeitsbaum lag unverändert vor.
+
+**Beleg:** `docs/ERGEBNIS_TB-59_backlog_einarbeitung.md`.
+
+---
+
+### Der Ergebnisblock
+
+**TB-59 — Einarbeitung der Backlog-Nachträge (n) bis (u).** Mac-Sitzung,
+19.09.2026, 23:14 bis 23:28 Ortszeit. Ausgangsstand `aa05cc1`.
+
+| | gemessen |
+|---|---|
+| `BACKLOG.md` | **951 → 1 959 Zeilen**, `numstat` **1008 / 0** |
+| `ARBEITSWEISE.md` | **819 → 775 Zeilen**, `numstat` **23 / 67**, ein einziger Hunk `@@ -674,67 +674,23 @@` am Ankertext |
+| Kollisionsprobe | **24 Blockbezeichner**, keiner doppelt · **`K2a`–`K2z` und `K3a`–`K3j`** je genau einmal |
+| Nummernvermerke | **20**, alle in der Form *„im Nachtrag (x) als `Y` vorgeschlagen; … vergeben als `Z`, gemessen"* |
+| Ausserhalb `docs/` geändert | **0 Dateien** |
+
+**Neue Blöcke:** `2s` (TB-56b und Fables Methodenantwort), `2t` Epic **AF**,
+`2u` Epic **MI**, `2v` Epic **QR**, `2w` Epic **KG**, `2x` Epic **RT**,
+`2y` Querschnitt über (n)–(r).
+
+**`ARBEITSWEISE.md` Abschnitt 10** ist durch den Verweis auf `UMZUG.md` ersetzt.
+
+---
+
+### ⭐⭐ Zwei Stellen, an denen die Sitzung dem Auftrag widersprach — und beide Male recht hatte
+
+| | Der Auftrag sagte | Gemessen |
+|---|---|---|
+| **1** | *„erwartet werden **70** entfernte Zeilen"* | **67.** Die 70 war aus `743 − 674 + 1` **gerechnet, nicht nachgezählt**; die drei Zeilen vor Abschnitt 11 sind Trenner. ⭐ **Die Sitzung hielt sich an die Ankertexte statt an die Zahl.** Hätte sie die 70 treffen wollen, hätte sie drei Zeilen entfernt, die niemand entfernen wollte |
+| **2** | *„betroffen sind (n), (o), (p) und (q), mit **drei** Doppelbelegungen"* | **Vier.** `(p)` und `(q)` nennen zusätzlich `K3a` und `K3b`. ⚠️ **Das Suchmuster im Auftrag deckte nur `K2[a-z]` ab** und konnte `K3`-Nummern strukturell nicht sehen |
+
+> ⭐⭐ **Die Lehre aus beiden: Ein falsches SOLL in einem *Auftrag* ist
+> gefährlicher als eines in einem *Bericht* — dort liest es jemand als
+> Anweisung.** Regel `K2o` (*„eine SOLL-Zahl ist gezählt, nicht geschätzt"*) gilt
+> verschärft für Zahlen, die einer anderen Sitzung vorgegeben werden.
+
+⚠️ **Und Fall 2 ist eine eigene Fehlerfamilie, eine Ebene über Block 7, Punkt 3:**
+nicht *ein Name statt einer Messung*, sondern **eine Messung mit einem
+Instrument, das den Suchraum nicht abdeckt.** ⭐ *Ein leeres Ergebnis und ein
+blinder Sucher sehen gleich aus* (A1).
+
+---
+
+### ⚠️ Der Befund über die Auftragsform
+
+**Drei von acht Auflagen blieben offen:** Commit und Push, Ergebnisdokument,
+Journal-Nachtrag. **Die Arbeit lag rund elf Stunden ungesichert im
+Arbeitsbaum** — auf einem Rechner, in keiner Version.
+
+**Die Ursache liegt in der Form, nicht in der Sitzung:** Der Auftrag führte
+Commit und Push als **Nachweis 6 am Ende der Liste**. Eine Sitzung, die ihre
+inhaltliche Arbeit für fertig hält, ist damit fertig, **bevor sie gesichert
+hat**.
+
+> ⭐⭐ **Sichern ist keine Abgabe, sondern ein Schritt — und er gehört nicht ans
+> Ende, sondern nach jeden abgeschlossenen Teil.**
+
+⭐ **Dieselbe Begründung, die `UMZUG.md` Abschnitt 1 für die Übergabe führt:**
+*„Wer sie erst beim Umzug schreibt, hat ein Zeitfenster, in dem ein unerwarteter
+Abbruch Arbeit vernichtet. Wer sie laufend pflegt, hat keins."* **Für das Sichern
+von Arbeit galt derselbe Satz bisher nicht.**
+
+---
+
+### In einfacher Sprache
+
+**Was wir wissen wollten:** Sind die acht Notizen korrekt in die Aufgabenliste
+eingearbeitet — ohne Verlust, ohne doppelte Nummern?
+
+**Was herauskam:** Ja. Die Liste wuchs um 1 008 Zeilen, **keine einzige wurde
+entfernt**, und jede der 36 Nummern kommt genau einmal vor. Zwanzig Nummern
+mussten neu vergeben werden, weil die Notizen geratene Nummern enthielten; zu
+jeder steht daneben, was ursprünglich dastand.
+
+**Warum das so ist:** Der Auftrag verlangte Nachzählen statt Übernehmen — und an
+zwei Stellen hat die Sitzung der Vorgabe widersprochen und hatte recht. Beide
+Male stand in meinem Auftrag eine Zahl, die ich nicht nachgezählt hatte.
+
+**Was das bedeutet:** Inhaltlich in Ordnung. Aber die Sitzung hat elf Stunden
+nicht gespeichert, weil mein Auftrag das Sichern ans Ende gestellt hat. Künftig
+wird nach jedem fertigen Teil gesichert.
+
+---
+
+## BO — TB-60: das Backlog-Archiv (20.09.2026, nachgeholt)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20a.md`*
+
+⚠️ **Nachgeholt durch die Chat-Sitzung** (A7). Die Mac-Sitzung wurde um **10:57**
+durch einen Abbruch der SSH-Verbindung beendet. Beleg:
+`docs/ERGEBNIS_TB-60_backlog_archiv.md`.
+
+### Der Ergebnisblock
+
+**TB-60 — Backlog-Archiv mit Verschiebenachweis.** Commit `c04b348` auf
+`origin/main`.
+
+| | gemessen |
+|---|---|
+| `BACKLOG.md` | **1 959 → 1 443 Zeilen**, `numstat` **44 / 561** |
+| `BACKLOG_ARCHIV.md` | **600 Zeilen** neu |
+| ⭐ **Verschiebenachweis** | **561 entfernte Zeilen, 0 nicht zeichengleich im Archiv**; 23 Archivzeilen sind Kopf und Verweise |
+| ⭐ **Pflichtlektüre** | **469 837 → 346 695 Bytes (−26 %)** |
+| Löschungen | beide Beleg-Dubletten entfernt, Inhalt wörtlich im Register |
+
+### ⭐⭐ Die Lehre des Tages, und sie ist doppelt
+
+**1. Ein Nachweis, der nur eine Richtung prüft, wird zum Anreiz in diese
+Richtung.** Das Projekt wies Dokumentationsarbeit über `numstat`-Spalte
+zwei = 0 nach. Diese Null ist ein Beweis — **und war zugleich die Ursache des
+Wachstums.** Sie wurde in jeder Runde vorgezeigt und nie als Preis benannt.
+*Dieselbe Familie wie A4: ein Nachweis, der nicht durchfallen kann, hört auf,
+eine Wache zu sein.*
+
+**2. Verschieben ist beweisbarer als Behalten.** Die neue Regel für diesen Fall
+— *jede entfernte Zeile erscheint zeichengleich im Archiv* — prüft **beide
+Seiten** statt einer.
+
+⚠️ **Und ein eigener Fehler:** Der erste Prüflauf zählte **546** statt 561
+Zeilen, weil der Filter entfernte Markdown-Trennlinien `---` mit Diff-Kopfzeilen
+verwechselte. **Dritter Fall an diesem Tag, in dem ein Messmuster den Suchraum
+nicht abdeckte** — nach dem `K2`-Muster, das keine `K3`-Nummern sah, und der
+geschätzten Zeilenzahl 70 statt 67.
+
+⇒ ⭐ **Regel, die daraus folgt: Ein Messergebnis wird gegen eine zweite,
+unabhängige Zählung gehalten, bevor es als Nachweis gilt.** Hier war der
+`numstat` diese zweite Zählung — und nur deshalb fiel der Fehler auf.
+
+### ⚠️ Offen
+
+Kollisionsprobe über `BACKLOG.md` und `BACKLOG_ARCHIV.md` zusammen; der Befund
+zu Abschnitt 9 (was darin stand und in `ARBEITSWEISE.md` fehlt) ist **nicht
+prüfbar**, weil die Sitzung vor dem Bericht endete.
+
+---
+
+## BP — Die Beauftragung von TB-61 und TB-62 (Chat-Sitzung, 20.09.2026, Mittag)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20b.md`*
+
+**Chat-Sitzung, 11:55 bis 12:45 Ortszeit.** Keine Mac-Sitzung, keine Rechnung —
+alles rein lesend über die Geräteanbindung gemessen, Stand `79742d1` bis
+`104fb1f` (fünf Commits).
+
+---
+
+### Der Befund, der die Kette vor dem Tag verändert
+
+⭐⭐ **`benchmark_drawdowns.json` ist für ALLE NEUN Bots überholt** — und vier
+davon behaupten das Gegenteil.
+
+| Bot | `status` in der Datei | `falten` dort | nach Registerabschnitt 21 |
+|---|---|---|---|
+| fünf Krypto-Bots | `platzhalter` | *leer* | 2018/2019, 4 bis 8 Falten |
+| `elliott_wave_stocks`, `turtle_soup_stocks` | ⚠️ **`endgueltig`** | **ab 2019** | **2017**, 9 Falten |
+| `rsi2_mean_reversion`, `volatility_breakout` | ⚠️ **`endgueltig`** | **ab 2019** | **2018**, 8 Falten |
+
+⚠️ **Die vier Aktienzeilen tragen noch die Falten der mit TB-56 entfernten
+Schranke.** Gesucht wurde die leere `dd_toleranz` der fünf Krypto-Bots; die vier
+überholten Aktienzeilen fielen nur auf, **weil die Gegenprobe alle neun ausgab
+statt nur der fünf**.
+
+⇒ ⭐⭐ **Die Lehre: Ein Zustand, der sich selbst als fertig bezeichnet, wird
+nicht nachgeprüft — ein Platzhalter schon.** *Eine Gegenprobe gibt alle Zeilen
+aus, nicht nur die verdächtigen.*
+
+#### Die Ursache des Platzhalters besteht seit Tagen nicht mehr
+
+`research/vorregistrierung/faltenplan.py:216`, `plan_krypto()`, Docstring:
+*„keine Jahreszahlen bis TB-31 gemeldet hat"* — und `benchmark.py:176`
+überspringt den Bot daraufhin mit `continue`.
+
+**Gemessen: TB-31 ist seit PR #105 erledigt, TB-34 hat den Kursbestand neu
+aufgebaut (`data/`: 223 Dateien, gezählt), die Krypto-Falten stehen seit TB-56b
+in Registerabschnitt 21.** Drei Dokumente schrieben *„das hängt an TB-31"*
+voneinander ab.
+
+⇒ ⭐ **Wer einen Platzhalter setzt, nennt die Bedingung UND den Ort, an dem ihr
+Eintreten sichtbar wird.** Sonst wartet der Code auf ein Ereignis, das längst
+stattgefunden hat, und niemand prüft es nach, weil die Begründung plausibel
+klingt.
+
+#### Und damit erklärt sich der eine rote Test
+
+`auswertung.py:237` liest `eintrag["falten"][z["falte"]]`, sucht die Falte
+`2017` und findet in der Tabelle erst `2019`. **Das ist der `KeyError: '2017'`.**
+
+⚠️ *Nicht gemessen, sondern erschlossen: dass TB-61 ihn grün macht. Das ist zu
+prüfen, nicht vorauszusetzen* (Nachweis 7 des Auftrags).
+
+---
+
+### ⚠️⚠️ Die Lehre des Tages, und sie ist unangenehm: fünf Messfehler derselben Familie
+
+**An einem Tag, alle mit demselben Muster: ein Instrument, das seinen eigenen
+Suchraum nicht abdeckt.**
+
+| | Muster | Folge |
+|---|---|---|
+| **1** | `K2[a-z]` | sah `K3`-Nummern strukturell nicht — „drei Doppelbelegungen" statt vier |
+| **2** | `743 − 674 + 1` | **gerechnet statt gezählt** — 70 entfernte Zeilen statt 67, und die Zahl stand in einem *Auftrag* |
+| **3** | Filter auf `---` | verwechselte Markdown-Trenner mit Diff-Kopfzeilen — 546 statt 561 |
+| **4** | `^\| \*\*K..\*\* \|` **mit** schliessendem Balken | übersah jede Zeile mit Vergabevermerk — „43 Zeilen, 41 Nummern" statt **64 und 62** |
+| **5** | „Pflichtlektüre, sechs Dokumente" | ⚠️ **falsche Bezugsmenge** — der Lesepfad nennt **vier**. Die Erfolgszahl −111 747 Bytes war sechsmal richtig gerechnet, über die falschen Dateien |
+
+⭐⭐ **Fall 4 ist der lehrreichste: Die Ausnahme, an der das Muster scheiterte,
+war ausgerechnet der Vergabevermerk, den TB-59 eingeführt hat, um genau diese
+Nummern nachvollziehbar zu machen.** *Die Sorgfaltsmassnahme hat die Kontrolle
+blind gemacht.*
+
+⭐ **Fall 5 ist eine eigene Klasse:** nicht ein zu enges Muster, sondern eine
+**Bezugsmenge, die nie an der Quelle nachgelesen wurde.**
+
+⇒ **Zwei Regeln:**
+1. **Ein Messergebnis wird gegen eine zweite, unabhängig geschriebene Zählung
+   gehalten, bevor es als Nachweis gilt.**
+2. **Eine Kennzahl nennt die Menge, über die sie läuft — und die Menge wird an
+   ihrer Quelle nachgelesen, nicht erinnert.**
+
+#### Der richtige Verlauf der Pflichtlektüre, je Commit nachgerechnet
+
+| Commit | Zeit | Bytes |
+|---|---|---:|
+| `aa05cc1` | 19.09. 23:14 | 348 090 |
+| `0bb4c92` | 20.09. 10:43 | **443 587** ← Höchststand |
+| `c04b348` | 20.09. 11:37 | **318 005** ← Tiefstand, nach dem Archiv |
+| `198fc32` | 20.09. 12:27 | 324 330 |
+
+**Vom Höchststand −119 257 (−26,9 %), vom Sitzungsbeginn nur −23 760 (−6,8 %)** —
+weil `ARBEITSWEISE.md` am selben Tag um **+12 571 Bytes** gewachsen ist.
+
+⚠️ **Und seit dem Tiefstand um 11:37 ist die Pflichtlektüre in 50 Minuten wieder
+um 6 325 Bytes gewachsen** — genau das, was `K3q` vorhergesagt hat.
+
+---
+
+### Zwei Träger, die auseinandergelaufen sind
+
+#### ⚠️⚠️ Nachtrag (m) wurde nie eingearbeitet
+
+Seine sechs Nummern `K2l`–`K2q` sind im Backlog an **andere Inhalte** vergeben.
+Vier seiner Regeln stehen inhaltlich anderswo. **Zwei stehen nirgends im Repo**,
+mit vier Mustern gesucht:
+
+> **(1)** *„Jede Rückfrage an den Betreiber und seine Antwort kommen wörtlich in
+> den Bericht — sonst leben sie nur im Sitzungsverlauf, der mit der Sitzung
+> verschwindet."*
+>
+> **(2)** *„Die Sitzung committet ihren eigenen Auftrag mit und ihre Belege."*
+
+⭐⭐ **Regel (1) ist die Pointe: sie ist genau die Vorschrift, die verhindern
+soll, dass Betreiberentscheidungen nur im Chat leben — und sie ist selbst im
+Chat geblieben.**
+
+#### ⚠️⚠️ Die Projektablage ist ein Träger ohne Nachziehverfahren
+
+**Gemessen 12:34:** Die Ablage trug `BACKLOG.md` im Stand von **09:43 UTC**, also
+**vor** den TB-61-Berichtigungen. Eine neue Sitzung hätte nach dem
+Eröffnungstext gelesen: *„das hängt an TB-31"* — **genau den Satz, den dieselbe
+Stunde als überholt nachgewiesen hat.**
+
+⭐ **Die Ursache ist kein Versäumnis, sondern eine Lücke:** Das Repo wird per
+Commit nachgezogen, die Erinnerung beim Schreiben — **für die Ablage gab es
+keinen Schritt, der sie auslöst.**
+
+⇒ ⭐⭐ **Regel: Wer ein Führungsdokument committet, lädt es im selben Zug in die
+Projektablage.** Nachgezogen: alle sieben Dokumente, per Suche gegengeprüft.
+
+---
+
+### ⭐ Betreiberentscheidung: ZIP wird überall abgeschafft
+
+**Vorgelegt als Widerspruch in EINER Datei:** `ARBEITSWEISE.md` Abschnitt 1
+verlangte auf acht Zeilen *„Immer gebündelt als ZIP"*, Abschnitt 10 derselben
+Datei nannte ZIP *„überholt"*.
+
+⚠️ **Und die Entscheidung stand bereits seit dem 19.09. in der Übergabe**,
+Block 8, Regel 9: *„Keine ZIPs, nichts nach `~/Downloads`"* — **sie war
+aufgeschrieben und nie in den zuständigen Träger übernommen.** Derselbe
+Mechanismus wie bei Nachtrag (m).
+
+**Entscheidung 20.09.2026: (a) — ZIP überall abgeschafft.** Ergebnisse kommen als
+Commit im Repo und als einzelne Dateien im Chat.
+
+⭐ **Der Zweck der alten Regel bleibt und wechselt nur das Mittel:** *ein Beleg
+muss die Sitzung überleben.* Dafür sorgte das Archiv, künftig der Commit — **und
+er ist der stärkere Träger**, weil ein Archiv in `~/Downloads` in keiner Version
+liegt.
+
+⚠️ **Der Umbau (TB-62, Schritt 4) unterscheidet drei Gruppen:** Vorschrift
+(umschreiben) · Redewendung (umformulieren) · **historischer Beleg (unverändert
+lassen)**. *Eine veränderte Beleg-Stelle wäre der einzige Fehler dieser Aufgabe,
+der niemandem auffällt.*
+
+---
+
+### Was beauftragt wurde
+
+| | | Art |
+|---|---|---|
+| **TB-61** | `docs/auftraege/MAC_TB-61_benchmark_neun.md`, 277 Zeilen | ⚠️ **rechnet**, braucht `trading-env`. Lauf **daneben** nach `benchmark_drawdowns_neu.json`; ⛔ die gesperrte Datei bleibt byteweise unverändert (SHA-256 `a163c498…36d1ee` als Nachweis) |
+| **TB-62** | `docs/auftraege/MAC_TB-62_nachtraege_m_v.md`, 325 Zeilen | Dokumentation, rechnet nicht |
+
+⭐ **`AKTUELLER_AUFTRAG.md` führt jetzt beide als Tabelle**, und der Einfügesatz
+wählt die Zeile über die vorangestellte TB-Nummer aus — **kommt sie nicht vor,
+bricht die Sitzung ab.**
+
+⚠️ **Nie gleichzeitig starten** — beide schreiben nach `docs/`.
+
+---
+
+### ⚠️ Zwei eigene Fehlgriffe, ohne die es unvollständig wäre
+
+| | |
+|---|---|
+| **1** | **Zweimal `git status --porcelain` über die Geräteanbindung** benutzt, was Block 7 Punkt 8 verbietet. Sofort geprüft: **kein `.git/index.lock` zurückgeblieben.** *Folgenlos aus Glück, nicht aus Wissen* |
+| **2** | **Der TB-62-Auftrag trug ein falsches SOLL** — `K4d` als nächste freie Nummer und „19 Nummern". Beides war beim Schreiben richtig und **eine halbe Stunde später falsch**, weil der Nachtrag weiter wuchs. ⭐ **Nicht korrigiert, sondern entfernt:** die Sitzung zählt selbst |
+| **3** | **Ein Python-Skript scheiterte am deutschen Schlusszeichen** `"` im Quelltext — dieselbe Falle wie gestern. **Es scheiterte beim Parsen, also wurde keine Datei berührt.** Neu geschrieben mit Hilfsvariablen statt Literalen |
+
+---
+
+### In einfacher Sprache
+
+**Was wir wissen wollten:** Was blockiert eigentlich den signierten Tag?
+
+**Was herauskam:** Eine einzige Datei — die Tabelle, die für jeden Bot festlegt,
+wie tief er fallen darf. Sie ist bei fünf Bots leer und bei den anderen vier auf
+falschen Jahren. **Und der Grund, warum sie leer ist, besteht seit Tagen nicht
+mehr:** Der Code wartet auf eine Aufgabe, die längst erledigt ist, weil niemand
+ihm gesagt hat, dass sie fertig ist.
+
+**Was das für dich heisst:** Ein Lauf schliesst drei offene Punkte auf einmal —
+die fehlenden Zahlen, die falschen Jahre und den einen roten Test. Der Auftrag
+dafür liegt bereit und fasst die gesperrte Datei nicht an.
+
+**Und was mich heute beschäftigt hat:** Fünf meiner Messungen waren falsch, alle
+auf dieselbe Weise — ich habe mit einem Werkzeug gesucht, das einen Teil des
+Suchraums gar nicht sehen konnte. Darunter die Erfolgszahl, die ich dir heute
+Vormittag gemeldet habe. Die Dokumentation ist geschrumpft, aber um 24 000
+statt um 112 000 Bytes.
+
+---
+
+## BQ — TB-61: die Benchmark-Tabelle für neun Bots, und drei Befunde, die keiner bestellt hat (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20c.md`*
+
+**Quelle:** Mac-Sitzung **TB-61 Benchmark neun Bots**, 20.09.2026, 11:05 bis
+etwa 12:00 UTC, `trading-env/bin/python3` 3.9.6, Ausgang `c493b1b`, Commits
+`3c3e2c8`, `d1b2175`, `3d46a7b`, `b29f695` und der Abgabe-Commit.
+Ergebnisdokument `docs/ERGEBNIS_TB-61_benchmark_neun.md`, Belege
+`docs/belege/TB-61/`.
+
+---
+
+### Was der Auftrag wollte und was er bekam
+
+Die Benchmark-Tabelle neu rechnen, **daneben**, für alle neun Bots. Das ist
+geschehen: `benchmark_drawdowns_neu.json`, neunmal `endgueltig`, die gesperrte
+Datei viermal nachgemessen unverändert (`a163c498…`). Die vier Vorhersagen aus
+Register 21.6 treffen auf die Stelle, und drei Gegenproben bestätigen jede
+Aktienzahl unabhängig — die 21.6-Zahlen stammten, anders als der Auftrag
+annahm, aus **derselben** Rechnung.
+
+**Und der Test bleibt rot.** `test_vorregistrierung.py:82` liest die gesperrte
+Datei. Solange die Sperre gilt, kann ihn kein Lauf grün machen — der Auftrag
+hatte das als *„erschlossen, nicht gemessen"* markiert und die Prüfung
+verlangt. Gemessen: rot, aus genau dem Grund, den die Sperre erzwingt.
+
+---
+
+### Drei Befunde, und warum sie nicht im Auftrag standen
+
+#### 1. Der Krypto-Benchmark ist bis 2021 leer
+
+`MINDESTTRAINING_JAHRE = 4` verlangt vier Jahre Kursgeschichte, bevor ein
+Symbol point-in-time in eine Falte eingeht. Krypto-Daten beginnen 2017-08-17.
+Folge: **die Falten 2018 bis 2021 haben null Symbole**, der Median der
+DD_Toleranz läuft bei vier von fünf Krypto-Bots über vier Nullen und vier
+echte Zahlen. Der Lauf brach daran zunächst mit `TypeError` ab (leere Reihe
+ohne Zeitindex); die kleinste Wache, die ihn durchlässt, ist eingesetzt und im
+Ergebnis als Abweichung von *„Nur der Schalter"* benannt.
+
+⇒ ⭐⭐ **Der Auftrag führte den Vier-Jahres-Wert als „Befund zum Melden, nicht
+zum Lösen" — und er ist ergebnisbestimmend.** *Eine Frage, die man vorab als
+Nebensache einstuft, hat man noch nicht gemessen.* Die Meldepflicht war
+richtig; die Einstufung „Nebensache" hat der Lauf widerlegt.
+
+#### 2. Register 21.3 (b) steht in keinem Code
+
+*„Ergeben 4a und 3b (a) verschiedene erste Falten, bindet 3b (a)."* Das steht
+seit TB-56b im Register. `plan_aktien()` rechnet nur 4a — bei Aktien fällt das
+nicht auf, weil beide Lesarten dasselbe Jahr geben. Bei `t3_supertrend` nicht:
+4a sagt 2018, 3b (a) sagt 2019 (Loader `MIN_HISTORY_DAYS = 730`), und die neue
+Tabelle trägt 8 statt 7 Falten. Der Auftrag verlangte *„dieselbe Regel wie
+`plan_aktien`"*; genau das erzeugt die Abweichung.
+
+⇒ ⭐ **Eine Registerregel, die der Code nicht rechnet, gilt nur dort, wo sie
+zufällig nichts ändert.** Das Register sagt, was der Code tun soll (21.8) — der
+Code tut es nicht, und es ist erst heute aufgefallen, weil erstmals ein Bot
+betroffen war.
+
+#### 3. Schritt 1 des Auftrags hätte zum Abbruch geführt — und der wäre falsch gewesen
+
+*„Rechne `faltenplan_neun.py` und halte es gegen die Tabelle in Abschnitt 0;
+stimmt es nicht, brich ab."* Das Werkzeug trägt auf der Platte noch die
+Schranke 2019 (der Auftrag nennt sie selbst als eigene Aufgabe): mit Schranke
+2/9 Treffer, ohne 8/9. Die Tabelle in Abschnitt 0 ist die 3b (a)-Tabelle aus
+21.4; das Werkzeug rechnet 4a. Beide haben exakt den gemessenen Stand — der
+Auftrag verglich zwei Lesarten und hätte die erwartbare Differenz als Befund
+gelesen.
+
+⇒ ⭐ **Eine Abbruchklausel nennt, wogegen sie prüft — und mit welcher Lesart.**
+Hier half die Auflage *„Widersprich dem Auftrag, wo er falsch ist"*: nicht
+abgebrochen, sondern beide Zählungen ausgewiesen und weitergemacht.
+
+---
+
+### Ein vierter, kleiner, aber mit Datum
+
+In einer Wegwerf-Kopie mit der neuen Tabelle an der Stelle der gesperrten
+läuft der Test durch: **163 bestanden, 2 gescheitert**, der `KeyError` ist dort
+weg. Die zwei Roten sind neu: **G6** prüft `"2020" in namen and "2022" in
+namen`, Doppeljahr-Falten heissen aber `2020-2021` und `2022-2023` — bis heute
+erreichte kein Doppeljahr-Bot G6, weil Krypto Platzhalter war. **H3** setzt vier
+Falten ohne Trade und erwartet einen verschobenen Median — gebaut für sieben
+Falten; `turtle_soup_stocks` hat seit TB-56 neun, vier Nullen bewegen den Median
+nicht mehr. **Nach dem Amendment wird der Test aus zwei neuen Gründen rot.** Wer
+das Amendment vollzieht, repariert beides vorher.
+
+⇒ *Ein Test, der seit Tagen aus einem bekannten Grund rot ist, versteckt jeden
+neuen Grund dahinter.* Prüfprinzip A4 in Reinform — und der Grund, den Test in
+der Kopie laufen zu lassen, statt auf das Amendment zu warten.
+
+---
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Wert, den ein Auftrag als „nur melden" einstuft, wird trotzdem am Ergebnis gemessen** — die Einstufung ist eine Vermutung, bis der Lauf sie bestätigt |
+| ⭐ | **Registerregeln, die Code betreffen, bekommen eine Probe, die sie an einem Bot beisst, bei dem sie etwas ändern** — sonst ist ihre Umsetzung nicht prüfbar |
+| ⭐ | **Eine Abbruchklausel nennt Instrument, Bezugstabelle und Lesart.** „Stimmt es nicht überein" ohne diese drei ist ein Abbruch auf Verdacht |
+| | Nachweis 7 „pytest je Testdatei" war in `trading-env` nicht ausführbar (kein pytest, Skript mit `main()`); der Skriptstart ist der Weg, den TB-56 auch gegangen ist — gehört nach `UMGEBUNGEN.md` |
+
+*Nachgetragen 20.09.2026 aus der Mac-Sitzung TB-61. Quellenvermerk: siehe Kopf.*
+
+---
+
+## BR — TB-65: welche Schranke für den Benchmark gilt — und was das Register dazu wirklich sagt (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20d.md`*
+
+**Quelle:** Mac-Sitzung **TB-65 Benchmarkschranke pruefen**, 20.09.2026, 12:38
+bis etwa 13:00 UTC, `trading-env/bin/python3` 3.9.6, Ausgang `ff98f0a`, Commits
+`9ad37e4` (Frage C mit Belegen) und der Abgabe-Commit. Ergebnisdokument
+`docs/ERGEBNIS_TB-65_benchmarkschranke.md`, Belege `docs/belege/TB-65/`.
+**Rein lesend**: kein Code, kein Registertext, keine Tabelle angefasst.
+
+---
+
+### Was der Auftrag wollte und was er bekam
+
+Eine Prüfung, die auch zum Gegenteil kommen darf: Ist `MINDESTTRAINING_JAHRE =
+4` im Krypto-Benchmark eine offene Frage (TB-61) oder ein Verstoss
+(Chat-Sitzung)? Drei Fragen, offen gestellt, mit der Gegenthese gleichberechtigt
+daneben.
+
+**Bekommen hat er ein Ergebnis, das keine der beiden Sitzungen so gesagt hat:**
+Die Chat-Sitzung hat mit der **Folgerung** recht (die Krypto-Zahlen aus TB-61
+ruhen auf einer Menge, die kein Registertext vorsieht) und mit der
+**Fundstelle** nur zur Hälfte (5.3 allein trägt es nicht — Sperrliste 8,
+Registertext 3b (c) und 15.1 tragen es). TB-61 hat mit der **Zurückhaltung**
+recht (nichts zu ändern war richtig) und mit der **Rahmung** nicht („4 behalten
+/ 0 / andere Regel" — keine der drei Optionen ist das, was 3b (c) sagt). Und das
+Register selbst nennt den Zustand seit dem 16.09. weder „offen" noch „Verstoss",
+sondern **„Registertext und Umsetzung fallen auseinander"** (16.11, Zeile 7,
+Schliesser TB-30b).
+
+---
+
+### Vier Befunde, und was aus jedem folgt
+
+#### 1. Acht Zeilen „vier Jahre" im Register — alle acht ersetzt
+
+Gesucht mit acht Mustern, jede Trefferzahl genannt, auch die Nullen
+(`MINDESTTRAINING`: null). Jede Zeile mit „vier Jahre" oder „4 Jahre" liegt in
+einem ERSETZT-Block oder trägt einen Ersetzungsvermerk — darunter **Sperrliste
+Punkt 8**, wo die vier Jahre als **Universums**regel standen, nicht als
+Faltenplanregel. Der einzige Text, der die Menge des Benchmarks positiv nennt,
+ist 3b (c): die **geladenen** Symbole.
+
+⇒ ⭐ **Ein Vermerk, der nur an einer Stelle gesucht wird, wird nur dort
+gefunden.** Die Chat-Sitzung las 5.3 und 3b (c); die tragende Stelle war
+Sperrliste 8, drei Bildschirmseiten weiter. *Der Registertext gilt dort, wo er
+steht — und die Frage „für was" beantwortet die Überschrift des Kapitels, nicht
+der Satz.*
+
+#### 2. Bei den Aktien-Bots sind beide Regeln dieselbe Menge — deshalb fiel es nie auf
+
+Gemessen: „Kursdaten ≥ 4 Jahre vor dem 1. Januar der Falte" und „≥ 1 825 Tage
+vor dem 31. Dezember" (Loader, Lesart H) grenzen in **40 von 40**
+Aktien-Falten dieselben Symbole ab; alle 100 DD-Stufen sind zeichengleich.
+Jede Benchmark-Zahl, die bisher im Register stand oder in 21.6 vorhergesagt
+wurde, war eine Aktienzahl.
+
+⇒ ⭐⭐ **Eine Regel, die an allen bisherigen Fällen dasselbe liefert wie die
+richtige, ist nicht geprüft, sondern unbemerkt.** Dieselbe Lehre wie TB-61
+Befund 2 (21.3 (b) fiel erst am ersten Bot auf, bei dem sie etwas ändert) —
+hier an einer Zahl, die vier Tage lang als bestätigt galt.
+
+#### 3. Der Faktor ist nicht die Nachricht; `erlaubt(f)` ist es
+
+Bei den fünf Krypto-Bots liegt die `DD_Toleranz` bei 100 % je nach Fassung beim
+**2,4- bis 5,0-fachen** — „rund dreimal" war die Grössenordnung. Entscheidend ist
+etwas anderes: In den Falten 2019–2021 ist der TB-61-Benchmark **leer**, also
+`DD_Benchmark(f) = 0`, also `erlaubt(f) = DD_Toleranz = −12,01 %` — in Jahren, in
+denen der Loader 6 bis 10 Symbole lädt und der gleichgewichtete Markt −57 bis
+−63 % verlor. Unter der geladenen Menge liegt `erlaubt(f)` dort bei −72 bis
+−78 %.
+
+⇒ ⭐ **Eine Nebenbedingung wird dort gemessen, wo sie bindet, nicht dort, wo
+ihre Zahl steht.** Der Median sah nach „zu streng um Faktor drei" aus; die Falte
+sah nach „Abbruchkriterium (b) für alle Krypto-Bots" aus.
+
+#### 4. Was das Register wirklich nicht regelt — und was die Chat-Sitzung nicht gesehen hat
+
+3b (c) sagt „in dieser Falte geladen", Lesart H sagt „an mindestens einem
+Handelstag". Ob das Symbol dann für die **ganze Falte** (VH) oder **ab dem
+Ladetag** (VT) in den Benchmark geht, sagt kein Text. Gemessen ist der
+Unterschied gross: `turtle_soup_crypto` 2018 **−87,92 %** (BTC/ETH das ganze
+Jahr) gegen **−3,60 %** (ein Handelstag, Loader ab 30.12.2018); `t3_supertrend`
+bei 25 % −16,13 gegen −12,89.
+
+⇒ ⭐⭐ **Die offene Frage lag eine Ebene tiefer als der Streit.** Beide
+Sitzungen stritten über die Schranke; keine hatte den Zeitbezug der Menge
+angesehen. *Wer eine Regel „umsetzt", trifft die Entscheidungen, die der Text
+offen lässt — und genau die gehören vor die Rechnung ins Register (K3f).*
+
+---
+
+### Zwei Dinge zur Form
+
+**Die Auflage „die Gegenthese bekommt denselben Platz" hat gewirkt.** Ohne sie
+wäre A2 als „Ort und Überschrift" abgetan worden; mit ihr fand sich, dass A2
+in der Fundstellenfrage **recht hat** und die tragenden Stellen woanders liegen.
+Das Ergebnis ist genauer als beide Ausgangsthesen — und keine von beiden ist
+„bestätigt" worden.
+
+**Die Wegwerf-Kopie hat vor der ersten neuen Zahl die alte reproduziert:** V0
+gegen `benchmark_drawdowns_neu.json` **0 Abweichungen**, die geladenen Mengen
+gegen den Trockenlauf **78 / 78**. Erst danach wurde etwas Neues gerechnet. Ohne
+diese Reihenfolge hätte jede Abweichung zwei Erklärungen gehabt.
+
+---
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Registervermerk gilt für das Kapitel, in dem er steht.** Wer ihn auf ein anderes Kapitel anwenden will, braucht dort eine eigene Fundstelle — und findet sie oft (hier Sperrliste 8), aber erst, wenn er sucht |
+| ⭐⭐ | **Eine Regel, die an allen bisherigen Fällen dasselbe liefert wie die richtige, gilt als ungeprüft.** Vor dem Eintrag einer Zahl: einen Fall nennen, an dem die Regel etwas anderes liefert als ihre Alternative |
+| ⭐ | **Ein Prüfauftrag, der die Gegenthese gleichberechtigt stellt, bekommt ein drittes Ergebnis** — meistens das richtige. Die Form aus `MAC_TB-65` (Tabelle dafür/dagegen mit Fundstellen, ausdrücklicher Satz zur Quellenlage) taugt als Vorlage |
+| ⭐ | **Eine Umsetzung, die eine Lücke im Text schliesst, benennt die Lücke** (hier: ganze Falte oder ab Ladetag) **und rechnet beide Seiten vor**, statt eine zu wählen |
+| | Ein Skript in einer Wegwerf-Kopie gehört als Beleg ins Repo (`docs/belege/TB-65/tb65_rechnung.py`), sonst ist die Zahl nicht nachrechenbar, sobald die Kopie weg ist |
+
+*Nachgetragen 20.09.2026 aus der Mac-Sitzung TB-65. Quellenvermerk: siehe Kopf.*
+
+---
+
+## BS — TB-62: die Nachträge (m) und (v), und das Ende der ZIP-Pflicht (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20e.md`*
+
+**Quelle:** Mac-Sitzung **TB-62 Nachtraege m und v**, 20.09.2026, etwa 15:00 bis
+15:45 Ortszeit, Ausgang `7a696be`, reine Dokumentation (kein Interpreter, keine
+Kursdaten). Commits `e3a25ae`, `4b55a33`, `e270e63`, `62828df`, `73000be`,
+`5cbd625` und der Abgabe-Commit. Ergebnisdokument
+`docs/ERGEBNIS_TB-62_nachtraege_m_v.md`. **Einzuarbeiten als nächster Block
+nach dem höchsten vorhandenen** (am 20.09.2026 gemessen: `BJ`; die Nachträge (g),
+(20a)–(20d) stehen davor an — die Nummer vergibt die einarbeitende Sitzung).
+
+---
+
+### Was gemessen wurde
+
+| | Messung |
+|---|---|
+| Nachtrag (v) | **22** Zeilen `K3k`–`K4f`, keine im Backlog oder Archiv belegt (Muster `^\| \*\*(K\d[a-z])\*\*`, ohne `-u`); als Block `2z` eingefügt, alle 22 zeichengleich (`grep -xF`, 22/22). `numstat 29/0` |
+| Nachtrag (m) | sechs Nummern `K2l`–`K2q` an (s)/(t)/(n) vergeben — bestätigt. Zwei Regeln in keinem Regeldokument (nur als Zitat in `UEBERGABE_2026-09-19.md` 239/243) → `ARBEITSWEISE.md` 14 Regel 3 und 15. Vier Regeln „anderswo" — gemessen in `UEBERGABE_2026-09-19.md` Block 7 Punkte 7–10 und Block 8 Punkt 7, `ARBEITSWEISE.md` 14 und 15; **nicht** in `UMZUG.md` oder dem Protokoll, wie der Auftrag annahm; `K2m` nur in der Übergabe. Vermerk `K4g` |
+| ⚠️ (m) darüber hinaus | Rückblick-Block „2s" mit **20** Zeilen (`T53.x`, `T58.x`, `T58b.x`, `B1`–`B7`) zu TB-53b/58/58b, eine überholte 0,85-Berichtigung, drei Kettenzeilen (eine — „Laufreproduktion gegen den Lock" — nirgends geführt). **Nicht eingearbeitet, Ort offen** (Empfehlung: Journal) |
+| K1o/K1q | 64 Zeilen / 62 Nummern vorher — bestätigt; zusammengeführt, `numstat 2/4` (nicht 2/2, wie der Auftrag erwartete: die älteren Zeilen zählt git als entfernt und neu). Nachher **85 / 85 / 0 doppelt**, zwei unabhängige Zählungen |
+| ZIP-Umbau | `ARBEITSWEISE.md` **37** Fundstellen (44 roh — das Muster traf „Prüfprinzipien" und „Disziplin"): 25 Vorschrift getauscht, 6 Redewendungen umformuliert, 4 historische Belege unverändert (byteweise geprüft), 2 ohne ZIP-Bezug. `UMZUG.md` 4: 2 Entstehung (bleiben), 2 in einer 23-zeiligen Kopie von Abschnitt 10, die nach Regel 9 entfernt ist (per `diff` zeichengleich mit der eingearbeiteten Fassung). Protokoll 1 (bleibt), `DOKUMENTATIONSSTANDARD.md` 0, `BACKLOG.md` 0 |
+| Zeilen `BACKLOG.md` | 1469 → **1497** (`wc -l` und `awk`, gleich) |
+| ausserhalb `docs/` | `git diff --stat 7a696be..HEAD -- . ':!docs'` → 0 |
+
+### Was der Auftrag falsch hatte, und was daraus folgt
+
+1. **Die ZIP-Pflicht stand in Abschnitt 2, nicht in Abschnitt 1.** Abschnitt 10
+   verweist jetzt auf Abschnitt 2.
+2. **Nachtrag (m) ist mehr als sechs Zeilen.** Der Auftrag hat ihn auf die
+   Abschnitt-4-Ergänzungen verkürzt; 20 Rückblick-Zeilen und eine offene
+   Kettenzeile blieben ungenannt. *Fehlerklasse wie K4a: die Suche nach den
+   Nummern sah nur das, was Nummern trug.*
+3. **Die Fundort-Tabelle der vier (m)-Regeln war teils erschlossen, nicht
+   gemessen** — `UMZUG.md` und das Protokoll tragen die Regeln nicht.
+
+### Was während der Sitzung passierte
+
+Um 15:21–15:23 schrieb der Betreiber über die Geräteanbindung drei Dateien in
+den Arbeitsbaum (`AKTUELLER_AUFTRAG.md` geändert, `MAC_TB-66_…` und
+`FABLE_ANTWORT_2026-09-20_…` neu), während die Sitzung lief — der Fall von
+`K2p`, folgenlos, weil es nicht die Dateien dieser Sitzung waren. **Die Sitzung
+hat sie unverändert in `5cbd625` committet**, damit der Baum für TB-63 sauber
+ist und nichts nur auf einem Rechner liegt.
+
+### Fehler dieser Sitzung (Regel 3)
+
+| Fehler | ⇒ Regel |
+|---|---|
+| „in sechs Schüben gewachsen" geschrieben, dann gezählt: 5 Überschriften | Kontextzahlen zählen wie Ergebniszahlen |
+| Suchmuster traf „Prüfprinzipien" — 44 statt 37 | Treffer lesen, Ausschlüsse benennen |
+| Commit-Text `73000be` mit falscher Gruppenzählung (24/5/6 statt 25/6/4) | Gruppenzahlen aus der Zeilenliste ableiten, nicht umgekehrt; berichtigt im Ergebnisdokument |
+
+### In einfacher Sprache
+
+Zwei liegengebliebene Notizzettel sind in die Aufgabenliste und die
+Arbeitsweise übertragen, zwei verlorene Regeln wieder da, und „schick es als
+ZIP" heisst überall „committe es". Offen bleibt, wohin zwanzig Zeilen Rückblick
+aus dem älteren Zettel gehören — vorgeschlagen ist das Journal.
+
+---
+
+## BT — TB-66: der Benchmark wird tagesgenau — Fables Festlegung VT im Register, im Code und im Lauf (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20f.md`*
+
+**Quelle:** Mac-Sitzung **TB-66 Benchmark tagesgenau**, 20.09.2026, 14:19 bis
+etwa 15:10 UTC, `trading-env/bin/python3` 3.9.6, Ausgang `1e6fcc7`, Commits
+`19a1996` (Code auf VT, Lauf daneben), `ec7eff4` (Messung W gegen C), `a901e03`
+(Register Abschnitt 23, Backlog-Begriff) und der Abgabe-Commit. Ergebnisdokument
+`docs/ERGEBNIS_TB-66_benchmark_tagesgenau.md`, Belege `docs/belege/TB-66/`.
+**Ändert einen Registertext** (3b (c), freigegeben durch den Auftrag) und
+`benchmark.py`; die gesperrte Tabelle `a163c498…` und die TB-61-Tabelle
+`e06812d2…` sind byteweise unverändert.
+
+---
+
+### Was der Auftrag wollte und was er bekam
+
+Fables Festlegung vom Nachmittag umsetzen: Registertext 3b (c) neu (tagesgenau
+nach dem Loader des Bots), `benchmark.py` ohne Vierjahresfilter, Lauf daneben,
+Dreispalten-Vergleich, eine Formulierungsfrage messen statt entscheiden, und
+nebenbei den Begriff „Amendment" dort berichtigen, wo er das Register meint.
+
+**Bekommen hat er alles davon — und an drei Stellen etwas anderes als
+erwartet:** Die vier Aktien-Bots sind gegenüber TB-61 **nicht** unverändert
+(der Auftrag hatte die VH-Zeichengleichheit aus TB-65 auf VT übertragen); die
+Begriffsstellen 21.9 und `T56b.3`, die der Auftrag zum Berichtigen nennt,
+sprechen genau von der Tabelle, für die er den Begriff zugleich richtig nennt
+(aufgelöst über vor/nach dem Tag); und Fassung C („`.fillna(0)`") setzt Fables
+Satz nur teilweise um. Alles drei steht als Widerspruch im Ergebnisdokument.
+
+---
+
+### Vier Befunde, und was aus jedem folgt
+
+#### 1. Der Registertext, der etwas anderes sagt als der Code — diesmal vor dem Eintrag gefunden
+
+Fable selbst hatte die Unsicherheit benannt („nur eines darf im Register stehen,
+und es muss das sein, was der Code tut"). Nachgesehen: *„gleichgewichtet, täglich
+rebalanciert"* trifft `bh_tagesrenditen` — *„Tage ohne handelbares Symbol tragen
+Rendite 0"* trifft es nicht (`.dropna()`). Gemessen über 78 Falten × 100 Stufen:
+für den Drawdown **null** Unterschied, für `handelstage` einer in vier bzw. fünf
+Krypto-Falten. Im Register steht an der Stelle ein **sichtbarer Platzhalter**,
+keine der beiden Fassungen.
+
+⇒ ⭐⭐ **Ein Platzhalter im Register ist ehrlicher als ein Satz, der den Code
+nicht trifft.** Abschnitt 21 hat berichtigt, was 15.6 über den Code behauptete;
+hier wäre dieselbe Fehlerklasse mit Fables eigenem Wortlaut entstanden. *Vor dem
+Eintrag nachsehen* heisst: messen, ob es einen Zahlenunterschied macht, und
+wenn ja, die Entscheidung dem Betreiber lassen — auch wenn der Satz vom
+Methodenberater kommt.
+
+#### 2. „Nichts ändert sich" galt für die Lesart, die nicht gewählt wurde
+
+TB-65 hatte gemessen: V0 und VH sind bei den Aktien-Bots in 40 von 40 Falten
+zeichengleich. Der Auftrag machte daraus eine Gegenprobe für VT. Unter VT
+ändern sich 2019, 2025 und 2026 bei allen vier Aktien-Bots — weil `ANET`,
+`PLTR`/`DASH`/`ABNB` und `APP` mitten im Jahr handelbar werden und TB-61 sie für
+das ganze Jahr zählte, auch während der Peak-Trough-Episode davor. Zwei Bots
+bekommen dadurch eine um 0,12 Punkte **strengere** Toleranz als in TB-61.
+
+⇒ ⭐ **Eine Gegenprobe erbt die Lesart, unter der sie gemessen wurde.** Wer sie
+in einen Auftrag übernimmt, nennt die Lesart mit — sonst wird ein richtiges
+Ergebnis als „Lauf nicht fertig" gelesen. Hier hat *„Widersprich diesem Auftrag,
+wo er falsch ist"* die Sitzung davor bewahrt, einen korrekten Lauf zu verwerfen;
+der Mechanismus (Eintritt vor oder nach der Drawdown-Episode) ist je Falte
+vorgerechnet, nicht behauptet.
+
+#### 3. Die Loader-Menge kommt aus einem Werkzeug, nicht aus einer dritten Konstantenkopie
+
+`benchmark.py` liest das Handelbar-Datum je Symbol über
+`faltenschranke_messung.loader_lesart` — das TB-56-Werkzeug, das `MIN_HISTORY_*`
+aus der Bot-Datei liest und dessen Mengen TB-65 in 78 von 78 Falten gegen den
+Trockenlauf bestätigt hat. Vorab gemessen, dass seine Zählung die des Loaders
+ist (keine unvollständigen 1h-Kerzen, keine unvollständige erste Zeile in 1d/4h).
+Gegen die VT-Spalte von TB-65: 78 / 78 Falten gleich.
+
+⇒ ⭐ **Wo eine Regel schon einmal als Werkzeug steht und gegen den Laufcode
+geprüft ist, wird sie importiert, nicht nachgebaut.** Die Alternative — eine
+Tabelle 500 / 730 / 1 825 / 17 520 in `benchmark.py` — wäre die vierte Kopie einer
+Zahl gewesen, die in diesem Projekt schon dreimal auseinandergelaufen ist
+(`FRUEHESTE_FALTE`, `MINDESTTRAINING_JAHRE`, `K4f`).
+
+#### 4. Die vier gesperrten Funktionen sind unberührt, obwohl die Menge jetzt täglich wechselt
+
+Die Mengenwahl steckt in den **Eingabereihen** (jede Reihe beginnt an ihrem
+Handelbar-Tag), nicht in der Rechenfunktion: `pct_change` liefert am ersten
+Punkt NaN, `mean(skipna=True)` mittelt über die Symbole, die an dem Tag eine
+Rendite haben. `bh_tagesrenditen`, `drawdown_bei_exposure`, `nachschlagen`,
+`erlaubt` und die Medianbildung haben keinen Diff-Hunk im Körper.
+
+⇒ **Eine Änderung der Menge ist eine Änderung der Eingabe.** Wer sie in der
+Rechenfunktion unterbringen wollte, hätte Sperrliste 6 anfassen müssen — genau
+das, was Fassung C täte und was deshalb zur Betreiberentscheidung gehört.
+
+---
+
+### Zwei Dinge zur Form
+
+**Der Registereintrag ist eine Berichtigung nach der Form von Abschnitt 21:**
+Marke am alten Satz, neuer Abschnitt am Ende, `numstat 313 0`. Die
+Begriffsberichtigung „Amendment" ist im Register **nicht** als Umschreiben
+ausgeführt, sondern als Tabelle „Satz, wie er dasteht / Satz, wie er zu lesen
+ist" (23.6) — das Register bleibt append-only, und trotzdem ist jede Stelle
+einzeln benannt. Im Backlog, das kein append-only-Dokument ist, ist der Wortlaut
+geändert (Regel 9).
+
+**Der Test wurde zweimal ausgeführt:** im Repo (bricht am `KeyError: '2017'`
+der gesperrten Tabelle, erwartet) und in einer Wegwerf-Kopie mit der VT-Tabelle
+an der Stelle der gesperrten — damit vor dem Vollzug bekannt ist, was der Test
+mit der neuen Tabelle tut. Ergebnis im Ergebnisdokument, Nachweis 8.
+
+---
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Registertext wird gegen den Code gemessen, bevor er eingetragen wird — auch wenn er vom Methodenberater kommt.** Trifft ein Satz den Code nicht, steht ein sichtbarer Platzhalter, und die Messung, ob es einen Zahlenunterschied macht, geht mit der Frage zum Betreiber |
+| ⭐⭐ | **Eine Gegenprobe nennt die Lesart, unter der sie gilt.** „Bei den Aktien-Bots ändert sich nichts" war eine VH-Aussage; unter VT ist sie falsch, und der Lauf trotzdem richtig |
+| ⭐ | **Eine Menge, die täglich wechselt, gehört in die Eingabe, nicht in die gesperrte Rechenfunktion** — dann bleibt die Sperrliste unberührt und die Änderung ist eine Berichtigung des Auswerters, kein Eingriff in die Rechnung |
+| ⭐ | **Ein geprüftes Werkzeug wird importiert, nicht nachgebaut** — die vierte Kopie einer Schranke ist die, die beim nächsten Mal auseinanderläuft |
+| | „Amendment" heisst nach 10.1 *der Lauf beginnt von vorn*; vor dem Tag gibt es keinen Lauf, also ist es eine Berichtigung (Register) und ein Bug-Fix (Auswerter). Der Begriff bleibt für die Sperrliste **nach** dem Tag |
+
+*Nachgetragen 20.09.2026 aus der Mac-Sitzung TB-66. Quellenvermerk: siehe Kopf.*
 
 ---
 
