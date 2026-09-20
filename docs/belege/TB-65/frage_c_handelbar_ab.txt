@@ -1,0 +1,80 @@
+elliott_wave: Schranke MIN_HISTORY_HOURS 17520 | fruehestes Symbol handelbar ab 2019-08-20
+Symbol       erster Tag  17520. Kerze  lueckenlos waere   Verzoegerung d  fehlende Kerzen
+AAVEUSDT     2020-10-15  2022-10-15    2022-10-15                      0               38
+ADAUSDT      2018-04-17  2020-04-18    2020-04-16                      2              107
+BMTUSDT      2025-03-18  None          2027-03-18                   None               30
+BNBUSDT      2017-11-06  2019-11-09    2019-11-06                      3              140
+BTCUSDT      2017-08-17  2019-08-20    2019-08-17                      3              147
+DOGEUSDT     2019-07-05  2021-07-06    2021-07-04                      2               71
+ENAUSDT      2024-04-02  2026-04-02    2026-04-02                      0               23
+ENSOUSDT     2025-10-14  None          2027-10-14                   None               24
+ETHUSDT      2017-08-17  2019-08-20    2019-08-17                      3              147
+LINKUSDT     2019-01-16  2021-01-17    2021-01-15                      2               85
+NEARUSDT     2020-10-14  2022-10-14    2022-10-14                      0               40
+PEPEUSDT     2023-05-05  2025-05-04    2025-05-04                      0               33
+PROMUSDT     2023-03-17  2025-03-16    2025-03-16                      0               24
+PUMPUSDT     2025-09-11  None          2027-09-11                   None               27
+SOLUSDT      2020-08-11  2022-08-12    2022-08-11                      1               41
+SUIUSDT      2023-05-03  2025-05-02    2025-05-02                      0               27
+TRUMPUSDT    2025-01-19  None          2027-01-19                   None               23
+TRXUSDT      2018-06-11  2020-06-13    2020-06-10                      3              114
+UNIUSDT      2020-09-17  2022-09-17    2022-09-17                      0               38
+UUSDT        2026-01-13  None          2028-01-13                   None               23
+WLDUSDT      2023-07-24  2025-07-23    2025-07-23                      0               24
+XRPUSDT      2018-05-04  2020-05-06    2020-05-03                      3              111
+ZECUSDT      2019-03-21  2021-03-21    2021-03-20                      1               73
+ZKCUSDT      2025-09-15  None          2027-09-15                   None               29
+
+t3_supertrend MIN_HISTORY_DAYS 730 fruehestes handelbar ab 2019-08-17
+   BTCUSDT      2019-08-17
+   ETHUSDT      2019-08-17
+   BNBUSDT      2019-11-06
+   ADAUSDT      2020-04-16
+   XRPUSDT      2020-05-03
+   TRXUSDT      2020-06-10
+   LINKUSDT     2021-01-15
+   ZECUSDT      2021-03-20
+   DOGEUSDT     2021-07-04
+   SOLUSDT      2022-08-11
+   UNIUSDT      2022-09-17
+   NEARUSDT     2022-10-14
+   AAVEUSDT     2022-10-15
+   PROMUSDT     2025-03-16
+   SUIUSDT      2025-05-02
+   PEPEUSDT     2025-05-04
+   WLDUSDT      2025-07-23
+   ENAUSDT      2026-04-02
+   TRUMPUSDT    2027-01-19
+   BMTUSDT      2027-03-18
+   PUMPUSDT     2027-09-11
+   ZKCUSDT      2027-09-15
+   ENSOUSDT     2027-10-14
+   UUSDT        2028-01-13
+rsi2_crypto MIN_HISTORY_DAYS 500 fruehestes handelbar ab 2018-12-30
+   BTCUSDT      2018-12-30
+   ETHUSDT      2018-12-30
+   BNBUSDT      2019-03-21
+   ADAUSDT      2019-08-30
+   XRPUSDT      2019-09-16
+   TRXUSDT      2019-10-24
+   LINKUSDT     2020-05-30
+   ZECUSDT      2020-08-02
+   DOGEUSDT     2020-11-16
+   SOLUSDT      2021-12-24
+   UNIUSDT      2022-01-30
+   NEARUSDT     2022-02-26
+   AAVEUSDT     2022-02-27
+   PROMUSDT     2024-07-29
+   SUIUSDT      2024-09-14
+   PEPEUSDT     2024-09-16
+   WLDUSDT      2024-12-05
+   ENAUSDT      2025-08-15
+   TRUMPUSDT    2026-06-03
+   BMTUSDT      2026-07-31
+   PUMPUSDT     2027-01-24
+   ZKCUSDT      2027-01-28
+   ENSOUSDT     2027-02-26
+   UUSDT        2027-05-28
+elliott_wave_stocks MIN_HISTORY_DAYS 1825 fruehestes handelbar ab 1967-01-01
+
+Aktien: handelbar_ab nahe 2018-01-01: [('ABBV', '2018-01-01')]
