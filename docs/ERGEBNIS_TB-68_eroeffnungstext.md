@@ -275,3 +275,127 @@ nicht, weil sie anders formuliert ist. **Gemessen, nicht geändert:**
 | ⚠️ Stand | Z. 3–7 versprechen Aktualisierung *„bei jeder Sitzungsübergabe"*; Abschnitt 3 nennt den Snapshot als *„wird erst am Tag gezogen"* (er ist seit TB-55, 19.09., gezogen), Z. 34 nennt `JOURNAL.md` mit *„rund 4 000 Zeilen"* (gemessen 7 491) |
 | ⭐ Vorschlag | in **TB-69** (`ARBEITSWEISE.md` neu ordnen) mitnehmen: **eine** Regel, welche Leseliste für welche Leserschaft gilt, und `START_HIER.md` entweder auf den Stand bringen oder auf `UMZUG.md` Abschnitt 6 + `CLAUDE.md` zurückführen. ⛔ **Hier nicht geändert** — es ist kein Eröffnungstext, und der Auftrag erlaubt nur dessen Reparatur |
 
+---
+
+## Schritt 5 — eine Zeile im Backlog, der Journal-Nachtrag
+
+| | gemessen |
+|---|---|
+| Höchste K-Nummer, Muster `^\| \*\*(K[0-9][a-z])\*\*` ohne schliessenden Balken, kein `sort -u` | **`K4h`** (86 Treffer in `BACKLOG.md`; `K4i` in `BACKLOG.md` und allen Nachträgen 0 Treffer) |
+| Eingetragen | **`K4i`**, Abschnitt 4, direkt nach `K4h`; `numstat` `BACKLOG.md` **1/0** |
+| Journal-Nachtrag | `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20h.md` — Buchstabe **h** (20a–20f liegen in `_eingearbeitet/`, 20g offen, 20h nirgends vergeben; gemessen). Trägt die **Quellenzeile aus TB-67** im Kopf, wörtlich zu übernehmen |
+
+Commit `4326ff2`.
+
+---
+
+## Nachweis 7 — nichts ausserhalb `docs/` geändert
+
+`git diff --stat a15746f HEAD -- . ':!docs'` → **leer**. Alle zwölf Dateien der
+Sitzung liegen unter `docs/` (Liste unten). `logs/auftraege/` unangetastet
+(Nachweis 4).
+
+`git diff --numstat a15746f HEAD` — **alle Dateien seit Sitzungsbeginn**, mit
+Zuordnung, wer sie geschrieben hat:
+
+| Datei | + | − | von |
+|---|---:|---:|---|
+| `docs/ERGEBNIS_TB-68_eroeffnungstext.md` | 277 + Abgabe | 0 | diese Sitzung |
+| `docs/projektfuehrung/UMZUG.md` | 39 | 17 | diese Sitzung — Nachweis 5 |
+| `docs/projektfuehrung/UEBERGABE_2026-09-19.md` | 9 | 20 | diese Sitzung — Nachweis 5 |
+| `docs/auftraege/MAC_TB-63_epics_auslagern.md` | 1 | 1 | diese Sitzung — Nachweis 5 |
+| `docs/projektfuehrung/BACKLOG.md` | 1 | 0 | diese Sitzung — `K4i` |
+| `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20h.md` | 109 | 0 | diese Sitzung |
+| `docs/auftraege/AKTUELLER_AUFTRAG.md` | 14 | 10 | **Betreiber** (Schritt 0 + Zwischencommit) |
+| `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | 30 | 0 | **Betreiber** (Schritt 0) |
+| `docs/projektfuehrung/ARBEITSWEISE.md` | 30 | 2 | **Betreiber** (Schritt 0 — Abschnitt 6d) |
+| `docs/projektfuehrung/FABLE_ANFRAGE_2026-09-20d_tagesreihe.md` | 125 | 0 | **Betreiber** (Schritt 0) |
+| `docs/projektfuehrung/FABLE_ANTWORT_2026-09-20c_kapitalpfad.md` | 112 | 0 | **Betreiber** (Schritt 0) |
+| `docs/projektfuehrung/FABLE_ANTWORT_2026-09-20d_mtm_messung.md` | 107 | 0 | **Betreiber** (Zwischencommit) |
+
+⛔ **Auflage „In einfacher Sprache" bleibt unangetastet — eingehalten:**
+`ARBEITSWEISE.md` Abschnitte 4 und 17, `DOKUMENTATIONSSTANDARD.md` Z. 150/168,
+`UMZUG.md` Z. 267 (jetzt verschoben, inhaltlich unverändert) — keine dieser
+Stellen von dieser Sitzung berührt; die 2 entfernten Zeilen in `ARBEITSWEISE.md`
+stammen aus dem Betreiber-Stand vor Sitzungsbeginn (Nachweis 1).
+
+---
+
+## Was der Auftrag vorgab, und wo die Messung abweicht
+
+| Auftrag | Messung / Handlung |
+|---|---|
+| *„keine Kopie mehr, sondern ein Widerspruch"* — unterstellt Auseinanderlaufen | **als Widerspruch geboren:** derselbe Commit `2723c16`, seither unverändert (Nachweis 2) |
+| Abschnitt 6 bleibt, Block 9 wird Verweis — **nur diese zwei Stellen** | ⭐ **zusätzlich `UMZUG.md` Schritt 3, Zeile 9** — das Verfahren ordnete die Kopie an; ohne die Änderung käme sie mit der nächsten Übergabe zurück (Nachweis 2). **Und Abschnitt 8, „Ergänzung zur Vorlage"** — der Vierzeiler stand neben dem Text statt darin; jetzt darin, der Nachsatz ist Vermerk |
+| „vier gegen fünf" — offen gelassen, welcher Inhalt gilt | **fünf**, mit Begründung (Schritt 2/3); der offene Auftrag TB-63 nennt „VIER" — markiert, nicht umgeschrieben |
+| Schritt 4: drei Suchmuster | **plus** `START_HIER.md` als Leseliste anderer Formulierung — gemessen, nicht geändert, an TB-69 vorgelegt (Nachweis 4) |
+| Nachweis 3: *„jeden Pfad mit `test -f`"* | ausgeführt für den Repo-Pfad; **die Projektablage ist vom Mac nicht messbar** — deshalb Repo-Pfade im Text (Nachweis 3) |
+| Schritt 1: *„Welche Fassung hat der Betreiber zuletzt benutzt"* | **nicht messbar** (Chatverlauf ist kein Träger); ersetzt durch die Messung, was das Verfahren vorschreibt (Nachweis 2) |
+| Arbeitsbaum sauber nach Schritt 0 | ja — aber der Betreiber hat **während der Sitzung zweimal** ins Repo geschrieben; je eigener Zwischencommit, damit kein Diff dieser Sitzung fremde Zeilen trägt |
+
+---
+
+## Offen — für den Betreiber und für Folgeaufträge
+
+| | wer | Empfehlung |
+|---|---|---|
+| **(a)** `UEBERGABEPROTOKOLL.md` im Lesepfad — drei Wege (Nachweis 6) | **Betreiber** | eine „bei Bedarf“-Zeile mit Pfad |
+| **(b)** Platzhalter oder fester Name (Nachweis 6) | **Betreiber** | fest; danach Umbenennung nach `UEBERGABE.md` aus dem Kopf der Übergabe |
+| **(c)** ⚠️ **Projektablage nachziehen:** `UMZUG.md` und `UEBERGABE_2026-09-19.md` sind geändert, beide Fassungen müssen gleich lauten (`UMZUG.md` Schritt 4, `K4e`) | steuernder Chat / Betreiber | im nächsten Chat als Erstes, sonst liest der nächste Umzug die alte Fassung aus der Ablage |
+| **(d)** `logs/auftraege/_erledigt/UMZUG.md` und `…/UEBERGABE_2026-09-19.md` tragen den alten Text; Bringschuld erfüllt | Betreiber | löschen (Regel 9) — auf Nachfrage, nicht von selbst |
+| **(e)** `START_HIER.md`: dritte Leseliste, toter Verweis auf „Abschnitt 10, Schritt 2", Stand 18.09. | **TB-69** | eine Regel, welche Liste für welche Leserschaft; Datei auf Stand oder zurückführen |
+| **(f)** Journal-Nachtrag (20h) einarbeiten | nächste Einarbeitung / TB-64 | Block nach `BU` |
+
+---
+
+## Die Commits dieser Sitzung
+
+| Commit | Schritt | Inhalt |
+|---|---|---|
+| `b1d8429` | 0 | fünf Betreiber-Dateien aus dem Arbeitsbaum gesichert |
+| `30d44f7` | — | Zwischencommit: Auftragszeiger (Betreiber, während der Sitzung) |
+| `6e0378f` | — | Zwischencommit: Fable-Antwort 20d (Betreiber, während der Sitzung) |
+| `643fadd` | 1 | Messung, Nachweise 1–3 |
+| `fa6b6ed` | 2/3 | eine Fassung, berichtigte Pfade, Block 9 → Verweis, TB-63-Vermerk, Nachweise 5 und 6 |
+| `42fc34d` | 4 | Suche nach der dritten Fassung, Nachweis 4 |
+| `4326ff2` | 5 | `K4i`, Journal-Nachtrag (20h) |
+| *(folgt)* | Abgabe | dieses Dokument abgeschlossen |
+
+Alle auf `main`, jeder Schritt einzeln gepusht (`git push` allein, nie in einem
+`&&`-Block).
+
+---
+
+## In einfacher Sprache
+
+**Was wir wissen wollten:** Warum steht der Text, den ein neuer Chat als Erstes
+liest, zweimal im Repo — und was gilt?
+
+**Was herauskam:** Die beiden Texte sind nicht mit der Zeit auseinandergelaufen,
+sie waren **von der ersten Minute an verschieden** — beide kamen im selben
+Commit ins Repo und wurden danach nie angefasst. Und der eigentliche Grund für
+die Doppelung stand im Verfahren selbst: Es verlangte eine Vorlage **und** eine
+Abschrift in jeder Übergabe. Hätte man nur die Abschrift entfernt, wäre sie bei
+der nächsten Übergabe vorschriftsmässig wieder aufgetaucht.
+
+**Was jetzt gilt:** Der Text steht **einmal**, in `UMZUG.md` Abschnitt 6, und
+sagt selbst, dass er die verbindliche Fassung ist. Er nennt fünf Dokumente,
+jedes mit dem Pfad, unter dem es im Repo wirklich liegt — vor allem
+`PRUEFPRINZIPIEN.md`, das nie dort lag, wo beide Texte es behauptet haben. Die
+Prüfung der Geräteanbindung, die bisher als Nachsatz neben dem Text stand,
+steht jetzt im Text. In der Übergabe steht statt der Abschrift ein Verweis, und
+das Verfahren verlangt künftig den Verweis statt der Kopie.
+
+**Was du entscheidest:** Ob das Betriebshandbuch (`UEBERGABEPROTOKOLL.md`,
+141 KB) mit in die Leseliste soll. Gemessen: Die Claude-Code-Sitzungen lesen es
+ohnehin, weil `CLAUDE.md` es verlangt; der steuernde Chat hat es in 32 von 40
+Ergebnisdokumenten und in keinem seiner eigenen Führungsdokumente gebraucht.
+**Empfehlung: eine Zeile „bei Bedarf" mit dem Pfad, nicht als Pflicht.** Und ob
+im Text der feste Dateiname der Übergabe steht oder ein Platzhalter —
+**Empfehlung: fest**, weil ein eingefügter Platzhalter den Chat auf eine Datei
+schickt, die es nicht gibt.
+
+**Was noch auffiel, aber nicht angefasst wurde:** `START_HIER.md` trägt eine
+dritte Leseliste — für eine andere Leserschaft, mit anderer Menge und einem
+Verweis, der ins Leere geht. Das gehört in die Neuordnung der Arbeitsweise
+(TB-69), nicht in diese Reparatur.
