@@ -1,0 +1,6 @@
+TB-65 Nachweis 7 - git status --short nach dem Abgabe-Commit 9a8a2ee (2026-09-20T12:58Z)
+--- git status --short (leer = sauber) ---
+?? docs/belege/TB-65/nachweis7_status.txt
+--- Wegwerf-Kopie ---
+ls: research/_tb65_kopie: No such file or directory
+--- git diff --numstat ff98f0a..9a8a2ee, Dateien ausserhalb docs/: 0 ---
