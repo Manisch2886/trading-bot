@@ -359,7 +359,7 @@ stammen aus dem Betreiber-Stand vor Sitzungsbeginn (Nachweis 1).
 | `fa6b6ed` | 2/3 | eine Fassung, berichtigte Pfade, Block 9 → Verweis, TB-63-Vermerk, Nachweise 5 und 6 |
 | `42fc34d` | 4 | Suche nach der dritten Fassung, Nachweis 4 |
 | `4326ff2` | 5 | `K4i`, Journal-Nachtrag (20h) |
-| *(folgt)* | Abgabe | dieses Dokument abgeschlossen |
+| `5c63510` | Abgabe | dieses Dokument abgeschlossen; Hash per Nachtrag-Commit eingesetzt |
 
 Alle auf `main`, jeder Schritt einzeln gepusht (`git push` allein, nie in einem
 `&&`-Block).
