@@ -19,7 +19,7 @@ seit zwei — und der ältere hat bereits Schaden angerichtet.**
 
 | Nachtrag | Nummern | Kollisionen mit dem Backlog |
 |---|---:|---|
-| `BACKLOG_NACHTRAG_2026-09-19v.md` | **19** (`K3k`–`K4c`) | **keine** |
+| `BACKLOG_NACHTRAG_2026-09-19v.md` | ⚠️ **selbst zählen** (`K3k` aufwärts) | am 20.09. gemessen: **keine** — nachprüfen |
 | `BACKLOG_NACHTRAG_2026-09-19m.md` | **6** (`K2l`–`K2q`) | ⚠️⚠️ **alle sechs** |
 
 ### ⚠️⚠️ Der Befund zu (m), und er ist der Grund für diese Aufgabe
@@ -108,8 +108,13 @@ Schätzung.
 ⚠️ **Damit ist auch der `2x`-Namensraum erschöpft** — nenne im Bericht, welchen
 Bezeichner du für den nächsten Block vorschlägst.
 
-⭐ **Die 19 Nummern `K3k`–`K4c` werden UNVERÄNDERT übernommen** — gemessen:
-keine davon ist im Backlog oder Archiv belegt. **Kein Vergabevermerk nötig.**
+⭐ **Die Nummern ab `K3k` werden UNVERÄNDERT übernommen**, sofern deine eigene
+Messung bestätigt, dass keine davon im Backlog oder Archiv belegt ist. Am
+20.09.2026 war das der Fall. **Dann kein Vergabevermerk nötig.**
+
+⚠️⚠️ **Der Nachtrag ist am 20.09. mehrfach gewachsen, während dieser Auftrag
+schon geschrieben war.** Verlass dich auf keine Nummer und keine Anzahl aus
+diesem Dokument — **zähle beides am Nachtrag selbst.**
 
 ⚠️ **Prüfe das selbst nach**, bevor du schreibst. Findest du eine Kollision,
 vergib neu und setze den Vermerk in der Form aus TB-59:
@@ -142,8 +147,9 @@ noch einmal ins Backlog schreiben.**
 
 Stattdessen **eine einzige Zeile** im neuen Block `2z`, die festhält, dass (m)
 nachträglich geprüft wurde, welche vier Regeln wo stehen und welche zwei
-nachgetragen wurden. ⭐ **Nächste freie K-Nummer ist `K4d`** — prüfe auch das
-selbst nach.
+nachgetragen wurden. ⛔ **Dieser Auftrag nennt die nächste freie K-Nummer bewusst NICHT** — er hat
+schon einmal eine genannt, und sie war beim Schreiben richtig und eine halbe
+Stunde später falsch. **Miss sie mit dem Muster aus Abschnitt 5.**
 
 **Sichern: commit und push.**
 
