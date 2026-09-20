@@ -201,7 +201,7 @@ entschieden, die Sitzung hat keine Frage gestellt.
 | `cc096e1` | Schritt (a) — Platzhalter in 23.3 gefallen, Herkunft, Tatsachennotiz, `handelstage`, Marke ERSETZT, Nachtragszeile 23.7 (45/3) |
 | `9eab386` | Schritt (b) — Abschnitt 24 und Marke in Abschnitt 1 (218/0) |
 | `295b17f` | Schritt (c) — `K4j` (1/0) |
-| *(folgt)* | Abgabe — dieses Dokument und `JOURNAL_NACHTRAG_2026-09-20i.md` |
+| `b3b37f0` | Abgabe — dieses Dokument und `JOURNAL_NACHTRAG_2026-09-20i.md` |
 
 Alle Commits direkt auf `main`, je einzeln gepusht.
 
