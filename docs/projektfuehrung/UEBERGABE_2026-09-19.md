@@ -279,26 +279,15 @@ ersetzt (TB-59, ein Hunk am Ankertext).
 
 ## Block 9 — Der Eröffnungstext für den neuen Chat
 
-```
-Neue Sitzung zum Trading-Bot-Projekt. Das Projekt "Trading Bots" ist angehängt,
-du kommst also an alle Führungsdokumente.
-
-Lies in dieser Reihenfolge, über den Projects-Zugriff:
-
-1. projektfuehrung/UEBERGABE_2026-09-19.md  — der Stand, das Wichtigste
-2. projektfuehrung/UMZUG.md                 — wie Umzüge laufen, inkl. Auslöser
-3. projektfuehrung/ARBEITSWEISE.md          — wie ich arbeiten möchte, verbindlich
-                                              (Abschnitt 10 ist überholt, siehe UMZUG.md)
-4. projektfuehrung/PRUEFPRINZIPIEN.md       — die gemessenen Lehren
-5. projektfuehrung/BACKLOG.md               — die aktiven Punkte
-
-Das Repo liegt auf dem MacBook unter ~/trading-bot und ist über die
-Geräteanbindung lesbar. JOURNAL.md nur öffnen, wenn es um eine konkrete
-frühere Messung geht.
-
-Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt,
-und was gerade auf wen wartet. Dann fangen wir an.
-```
+⭐ **Der Text steht nur noch an einer Stelle: `UMZUG.md` Abschnitt 6** — die
+verbindliche Fassung, mit den berichtigten Pfaden und der Prüfung der
+Geräteanbindung im Text. *Die Kopie, die hier bis zum 20.09.2026 stand
+(20 Zeilen, seit `2723c16` unverändert), wich von der Vorlage ab — fünf Dokumente
+statt vier, fester Dateiname statt Platzhalter, ein Hinweis auf `ARBEITSWEISE.md`
+Abschnitt 10, der seit TB-62 überholt war — und beide zeigten auf
+`projektfuehrung/PRUEFPRINZIPIEN.md`, wo die Datei nie lag. Entfernt mit TB-68,
+`DOKUMENTATIONSSTANDARD.md` Regel 9; `UMZUG.md` Schritt 3, Zeile 9 verlangt
+seither hier einen Verweis, keinen zweiten Text.*
 
 ---
 

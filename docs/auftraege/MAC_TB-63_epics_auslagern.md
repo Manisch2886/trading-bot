@@ -174,7 +174,7 @@ und nenne im Bericht, wie viele du gefunden hast und ob sie noch stimmen.
 | **2** | ⭐⭐ **Verschiebenachweis** — entfernte Zeilen, davon wie viele **nicht** zeichengleich in `BACKLOG_EPICS.md` (erwartet **0**); Gegenprobe: wie viele Zielzeilen sind Kopf und Verweise |
 | **3** | `git diff --numstat` je Datei — **als zweite, unabhängige Zählung gegen Nachweis 2** |
 | **4** | `BACKLOG.md` vorher → nachher: Zeilen **und** Bytes, selbst gezählt |
-| **5** | ⭐ **Pflichtlektüre vorher → nachher.** ⚠️ **Die Menge ist: `UEBERGABE_2026-09-19.md`, `ARBEITSWEISE.md`, `PRUEFPRINZIPIEN.md`, `BACKLOG.md` — VIER Dokumente**, so nennt sie der Eröffnungstext in `UMZUG.md` Abschnitt 6. *Am 20.09. wurde dieselbe Zahl dreimal über sechs Dokumente gerechnet und war dreimal falsch.* **Lies die Menge dort nach, bevor du rechnest** |
+| **5** | ⭐ **Pflichtlektüre vorher → nachher.** ⚠️ **Die Menge ist: `UEBERGABE_2026-09-19.md`, `ARBEITSWEISE.md`, `PRUEFPRINZIPIEN.md`, `BACKLOG.md` — VIER Dokumente**, so nennt sie der Eröffnungstext in `UMZUG.md` Abschnitt 6. *Am 20.09. wurde dieselbe Zahl dreimal über sechs Dokumente gerechnet und war dreimal falsch.* **Lies die Menge dort nach, bevor du rechnest** — ⚠️ *Nachtrag TB-68, 20.09.2026: seither sind es **FÜNF**, `UMZUG.md` ist dazugekommen; die Zahl „VIER“ oben ist überholt, das Nachlesen gilt* |
 | **6** | Kollisionsprobe über **beide** Dateien: Blockbezeichner und K-Nummern, jede genau einmal. ⚠️ **Muster `^\| \*\*(K\d[a-z])\*\*` ohne schliessenden Balken, kein `sort -u`** — siehe TB-62 Abschnitt 5 |
 | **7** | Verweise auf `2t`–`2y` im `docs/`-Baum: wie viele, und stimmen sie noch |
 | **8** | Nichts ausserhalb `docs/` geändert |

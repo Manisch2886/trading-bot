@@ -166,7 +166,7 @@ Blöcke:**
 | **6** | **Freigaben und Sperrlisten-Stand** | ⚠️ **Freigaben verfallen nicht von selbst — sie müssen aufgeführt sein** |
 | **7** | **Die Fehler dieses Chats und die daraus abgeleiteten Regeln** | ⭐ *das Wertvollste; ohne diesen Block wiederholt der neue Chat sie* |
 | **8** | **Was zwischengelagert und noch nicht eingearbeitet ist** | mit Zielort |
-| **9** | ⭐ **Der Eröffnungstext für den neuen Chat**, fertig zum Kopieren | |
+| **9** | ⭐ **Verweis auf den Eröffnungstext in Abschnitt 6** — dort steht die einzige Fassung | ⚠️ **kein zweiter Text in der Übergabe.** *Bis TB-68 (20.09.2026) verlangte diese Zeile eine Kopie; die beiden Fassungen widersprachen sich vom ersten Commit an* |
 
 ### Schritt 4 — In die Projektablage schreiben
 
@@ -217,24 +217,39 @@ eingetreten.**
 
 ---
 
-## 6. Der Eröffnungstext — Vorlage
+## 6. Der Eröffnungstext — die einzige Fassung
 
-⚠️ **Keine Anhänge. Keine Dateien. Der neue Chat holt sich alles selbst.**
+⭐ **Dies ist die verbindliche Fassung des Eröffnungstextes; sie steht nur hier.**
+`UEBERGABE_2026-09-19.md` Block 9 verweist hierher (TB-68, 20.09.2026 — davor
+stand dort eine abweichende Kopie). ⚠️ **Keine Anhänge. Keine Dateien. Der neue
+Chat holt sich alles selbst.**
 
 ```
 Neue Sitzung zum Trading-Bot-Projekt. Das Projekt "Trading Bots" ist angehängt,
 du kommst also an alle Führungsdokumente.
 
-Lies in dieser Reihenfolge, über den Projects-Zugriff:
+Lies in dieser Reihenfolge, über den Projects-Zugriff (in Klammern der Pfad im
+Repo, falls du dort liest):
 
-1. projektfuehrung/UEBERGABE_<datum>.md   — der Stand, das Wichtigste
-2. projektfuehrung/ARBEITSWEISE.md        — wie ich arbeiten möchte, verbindlich
-3. projektfuehrung/PRUEFPRINZIPIEN.md     — die gemessenen Lehren
-4. projektfuehrung/BACKLOG.md             — die aktiven Punkte
+1. projektfuehrung/UEBERGABE_2026-09-19.md  — der Stand, das Wichtigste
+                                              (docs/projektfuehrung/UEBERGABE_2026-09-19.md)
+2. projektfuehrung/UMZUG.md                 — wann und wie umgezogen wird, inkl. Auslöser
+                                              (docs/projektfuehrung/UMZUG.md)
+3. projektfuehrung/ARBEITSWEISE.md          — wie ich arbeiten möchte, verbindlich
+                                              (docs/projektfuehrung/ARBEITSWEISE.md)
+4. PRUEFPRINZIPIEN.md                       — die gemessenen Lehren
+                                              (docs/PRUEFPRINZIPIEN.md — NICHT unter projektfuehrung/)
+5. projektfuehrung/BACKLOG.md               — die aktiven Punkte
+                                              (docs/projektfuehrung/BACKLOG.md)
 
 Das Repo liegt auf dem MacBook unter ~/trading-bot und ist über die
 Geräteanbindung lesbar. JOURNAL.md nur öffnen, wenn es um eine konkrete
 frühere Messung geht.
+
+Prüfe als Erstes, ob du über die Geräteanbindung auf ~/trading-bot lesen
+kannst — nenne mir HEAD und die Zeilenzahl von docs/projektfuehrung/BACKLOG.md
+als Beleg. Wenn das nicht geht, sag es ausdrücklich, denn dann müssen wir
+Messungen wieder über mich laufen lassen.
 
 Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt,
 und was gerade auf wen wartet. Dann fangen wir an.
@@ -243,6 +258,16 @@ und was gerade auf wen wartet. Dann fangen wir an.
 > ⭐ **Der letzte Satz ist Absicht.** Er zeigt sofort, ob die Übergabe angekommen
 > ist — und er nennt ausdrücklich die **Wartezustände**, weil das der Block ist,
 > der am leichtesten durchfällt.
+
+⚠️ **Was sich mit TB-68 (20.09.2026) geändert hat, gemessen:**
+
+| | vorher | jetzt |
+|---|---|---|
+| `PRUEFPRINZIPIEN.md` | `projektfuehrung/PRUEFPRINZIPIEN.md` — **die Datei hat dort nie gelegen** (`git log --all`, 0 Commits); ein zweites Projekt ist am 20.09. genau daran gescheitert | `PRUEFPRINZIPIEN.md`, mit dem Repo-Pfad `docs/PRUEFPRINZIPIEN.md` daneben |
+| `UMZUG.md` | fehlte hier, stand nur in der Kopie in der Übergabe | Nr. 2 — der Chat soll nach Abschnitt 3 **selbst** auf den Umzug hinweisen, dazu muss er die Auslöser kennen |
+| Übergabe-Name | `UEBERGABE_<datum>.md` (Platzhalter) hier, `UEBERGABE_2026-09-19.md` (fest) in der Kopie | **vorläufig der feste Name** — der Platzhalter ist robuster gegen Umbenennung, der feste Name ist der, den ein Chat wörtlich einfügen und finden kann. ⚠️ **Empfehlung von TB-68, nicht Entscheidung** (`ERGEBNIS_TB-68`, Nachweis 6): fester Name, und beim Umbenennen der Übergabe (offener Punkt in ihrem Kopf: `UEBERGABE.md` ohne Datum) wird diese eine Zeile mitgezogen |
+| Prüfung der Geräteanbindung | als *„Ergänzung zur Vorlage"* am Ende von Abschnitt 8, **nicht im Text** | im Text, vor dem letzten Absatz |
+| Repo-Pfade | fehlten | je Dokument in Klammern — ein Chat, der im Repo statt in der Projektablage liest, findet jede Datei |
 
 ---
 
@@ -322,13 +347,10 @@ fällt auf den alten, aufwendigen Weg zurück, und zwar unbemerkt.**
 diese Prüfung verlangt.** Sie kostet eine Antwort und sichert den Ertrag eines
 ganzen Arbeitstages.
 
-### Ergänzung zur Vorlage in Abschnitt 6
+### Ergänzung zur Vorlage in Abschnitt 6 — eingearbeitet
 
-**Vor den letzten Satz des Eröffnungstextes gehört:**
-
-```
-Prüfe als Erstes, ob du über die Geräteanbindung auf ~/trading-bot lesen
-kannst — nenne mir HEAD und die Zeilenzahl von docs/projektfuehrung/BACKLOG.md
-als Beleg. Wenn das nicht geht, sag es ausdrücklich, denn dann müssen wir
-Messungen wieder über mich laufen lassen.
-```
+✅ **Seit TB-68 (20.09.2026) steht der Vierzeiler zur Prüfung der
+Geräteanbindung im Eröffnungstext selbst** (Abschnitt 6, vor dem letzten Absatz;
+per `diff` wortgleich mit dem Text, der hier bis dahin als Nachsatz stand). Ein
+Text mit angehängtem Flicken ist dieselbe Fehlerklasse wie zwei Fassungen —
+`DOKUMENTATIONSSTANDARD.md` Regel 9.
