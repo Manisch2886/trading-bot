@@ -1,0 +1,78 @@
+TB-80 Schritt 3 - Mutationsprobe im Speicher
+Python 3.9.6  (/Users/jaquelineloffler/trading-bot/trading-env/bin/python3)
+Zeit (UTC): 2026-09-21T20:25:43Z
+Original HORIZONTBEGINN: {'aktien': datetime.date(2016, 9, 19), 'krypto': None}
+
+Richtung 1: Datenuhr wieder eingesetzt -> {'aktien': datetime.date(2016, 9, 1), 'krypto': None}
+  faltenplan() unter der Datenuhr in 34 s
+
+  Bot                          4a alt/uhr/neu   erste alt/uhr/neu   warm alt    warm uhr    warm neu    horizont uhr/neu
+  elliott_wave                 2018/2018/2018   2018/2018/2018      2017-08-17  2017-08-17  2017-08-17  None/None
+  [OK] R1 elliott_wave: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 elliott_wave: Warm-Datum (Tagesebene) = Schritt 0 - 2017-08-17 gegen 2017-08-17
+  [OK] R1 elliott_wave: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  t3_supertrend                2018/2018/2018   2019/2019/2019      2017-08-17  2017-08-17  2017-08-17  None/None
+  [OK] R1 t3_supertrend: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 t3_supertrend: Warm-Datum (Tagesebene) = Schritt 0 - 2017-08-17 gegen 2017-08-17
+  [OK] R1 t3_supertrend: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  rsi2_crypto                  2019/2019/2019   2019/2019/2019      2018-01-14  2018-01-14  2018-01-14  None/None
+  [OK] R1 rsi2_crypto: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 rsi2_crypto: Warm-Datum (Tagesebene) = Schritt 0 - 2018-01-14 gegen 2018-01-14
+  [OK] R1 rsi2_crypto: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  turtle_soup_crypto           2018/2018/2018   2018/2018/2018      2017-09-16  2017-09-16  2017-09-16  None/None
+  [OK] R1 turtle_soup_crypto: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 turtle_soup_crypto: Warm-Datum (Tagesebene) = Schritt 0 - 2017-09-16 gegen 2017-09-16
+  [OK] R1 turtle_soup_crypto: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  volatility_breakout_crypto   2018/2018/2018   2018/2018/2018      2017-12-22  2017-12-22  2017-12-22  None/None
+  [OK] R1 volatility_breakout_crypto: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 volatility_breakout_crypto: Warm-Datum (Tagesebene) = Schritt 0 - 2017-12-22 gegen 2017-12-22
+  [OK] R1 volatility_breakout_crypto: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  elliott_wave_stocks          2017/2017/2017   2017/2017/2017      2016-09-01  2016-09-01  2016-09-19  2016-09-01/2016-09-19
+  [OK] R1 elliott_wave_stocks: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 elliott_wave_stocks: Warm-Datum (Tagesebene) = Schritt 0 - 2016-09-01 gegen 2016-09-01
+  [OK] R1 elliott_wave_stocks: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  rsi2_mean_reversion          2018/2018/2018   2018/2018/2018      2017-06-20  2017-06-20  2017-07-06  2016-09-01/2016-09-19
+  [OK] R1 rsi2_mean_reversion: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 rsi2_mean_reversion: Warm-Datum (Tagesebene) = Schritt 0 - 2017-06-20 gegen 2017-06-20
+  [OK] R1 rsi2_mean_reversion: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  turtle_soup_stocks           2017/2017/2017   2017/2017/2017      2016-10-14  2016-10-14  2016-10-31  2016-09-01/2016-09-19
+  [OK] R1 turtle_soup_stocks: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 turtle_soup_stocks: Warm-Datum (Tagesebene) = Schritt 0 - 2016-10-14 gegen 2016-10-14
+  [OK] R1 turtle_soup_stocks: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  volatility_breakout          2018/2018/2018   2018/2018/2018      2017-03-07  2017-03-07  2017-03-22  2016-09-01/2016-09-19
+  [OK] R1 volatility_breakout: erste_falte_4a / erste_falte / Selektionsfalten = Schritt 0
+  [OK] R1 volatility_breakout: Warm-Datum (Tagesebene) = Schritt 0 - 2017-03-07 gegen 2017-03-07
+  [OK] R1 volatility_breakout: Falten (Grenzen/Rolle/Training/Embargo) = Schritt 0
+  [OK] R1 beisst: alle vier Aktien-Bots weichen unter der Datenuhr von faltenplan_tb80.json in horizontbeginn UND erste_falte_4a_warm_ab ab - {'elliott_wave_stocks': ('2016-09-01', '2016-09-01'), 'rsi2_mean_reversion': ('2016-09-01', '2017-06-20'), 'turtle_soup_stocks': ('2016-09-01', '2016-10-14'), 'volatility_breakout': ('2016-09-01', '2017-03-07')}
+  [OK] R1: die fuenf Krypto-Bots sind unter der Datenuhr zeichengleich mit faltenplan_tb80.json
+  [OK] R1 (Jahresebene, zur Kenntnis): unter der Datenuhr = neuer Plan in erste_falte_4a/erste_falte bei allen neun - die Richtung beisst NUR auf Tagesebene
+
+Richtung 2: Horizontbeginn ein Jahr nach hinten -> {'aktien': datetime.date(2017, 9, 19), 'krypto': None}
+  Bot                          4a neu -> +1J  erste neu -> +1J  warm +1J    H je Kandidat
+  elliott_wave_stocks          2017 -> 2018    2017 -> 2018       2017-09-19  [136]
+  [OK] R2 elliott_wave_stocks: Konjunktion haelt, erste_falte >= erste_falte_4a
+  rsi2_mean_reversion          2018 -> 2019    2018 -> 2019       2018-07-06  [137]
+  [OK] R2 rsi2_mean_reversion: Konjunktion haelt, erste_falte >= erste_falte_4a
+  turtle_soup_stocks           2017 -> 2018    2017 -> 2018       2017-10-31  [136]
+  [OK] R2 turtle_soup_stocks: Konjunktion haelt, erste_falte >= erste_falte_4a
+  volatility_breakout          2018 -> 2019    2018 -> 2019       2018-03-22  [137]
+  [OK] R2 volatility_breakout: Konjunktion haelt, erste_falte >= erste_falte_4a
+  [OK] R2 elliott_wave: Krypto unveraendert (kein Horizont)
+  [OK] R2 t3_supertrend: Krypto unveraendert (kein Horizont)
+  [OK] R2 rsi2_crypto: Krypto unveraendert (kein Horizont)
+  [OK] R2 turtle_soup_crypto: Krypto unveraendert (kein Horizont)
+  [OK] R2 volatility_breakout_crypto: Krypto unveraendert (kein Horizont)
+  [OK] R2 beisst: mindestens eine erste Falte bewegt sich - [('elliott_wave_stocks', 2017, 2018, 2017, 2018), ('rsi2_mean_reversion', 2018, 2019, 2018, 2019), ('turtle_soup_stocks', 2017, 2018, 2017, 2018), ('volatility_breakout', 2018, 2019, 2018, 2019)]
+
+Original wiederhergestellt: {'aktien': datetime.date(2016, 9, 19), 'krypto': None}
+  [OK] Orig elliott_wave: erste_falte_4a_messung = faltenplan_tb80.json
+  [OK] Orig t3_supertrend: erste_falte_4a_messung = faltenplan_tb80.json
+  [OK] Orig rsi2_crypto: erste_falte_4a_messung = faltenplan_tb80.json
+  [OK] Orig turtle_soup_crypto: erste_falte_4a_messung = faltenplan_tb80.json
+  [OK] Orig volatility_breakout_crypto: erste_falte_4a_messung = faltenplan_tb80.json
+  [OK] Orig elliott_wave_stocks: erste_falte_4a_messung = faltenplan_tb80.json
+  [OK] Orig rsi2_mean_reversion: erste_falte_4a_messung = faltenplan_tb80.json
+  [OK] Orig turtle_soup_stocks: erste_falte_4a_messung = faltenplan_tb80.json
+  [OK] Orig volatility_breakout: erste_falte_4a_messung = faltenplan_tb80.json
+
+49/49 Proben wie erwartet.
