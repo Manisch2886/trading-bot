@@ -1106,7 +1106,7 @@ uncommittet, keine offene Rückfrage.
 
 | | |
 |---|---|
-| **Aktive Freigabe für eine Sperrlisten-Datei** | **keine** |
+| ⭐⭐ **Aktive Freigabe für eine Sperrlisten-Datei** | **`research/vorregistrierung/faltenplan.py`** — Betreiberfreigabe 21.09.2026, 21:47 Ortszeit, für die Umstellung von Bedingung (i) auf `asof` (**TB-80**). ⚠️ *Die Freigabe sagt, dass geändert werden durfte; sie sagt nicht, was geändert wurde — der Diff wird vor dem Abschluss angesehen.* ⛔ Sie deckt `ergebnisse/faltenplan.json` (`0e54ac5c…`) ausdrücklich **nicht** |
 | **Sperrlisten-Vollzug neun Bots** | steht aus, braucht **eigene** Freigabe (Register 21.9) — *Freigaben verfallen nicht von selbst; diese wurde nie erteilt* |
 | ⭐ **Neu auf der Sperrliste zu erwarten** | **eine** Abbild-Datei des Faltenplans, mit Hash, als neuer Punkt (30.2 (3)) |
 | ⭐ **Neu unter Punkt 2** | eine **Tatsachennotiz** (kein Ersatz, keine Streichung): `faltenplan.json` ist registrierter historischer Stand, nicht der Plan nach 4a (30.3) |

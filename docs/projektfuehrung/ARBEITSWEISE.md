@@ -122,6 +122,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | | Regel | steht in |
 |---|---|---|
 | ☐ | Der Start als getrennte Kopierblöcke in fester Reihenfolge: `screen -U -S tb` · `security unlock-keychain` (zweites Fenster) · `cd ~/trading-bot && claude --remote-control` · Einfügesatz mit TB-Nummer; `screen -r tb` nach Abbruch; `/remote-control` nur bei laufender Sitzung | 6b, Start |
+| ☐ | ⭐ **Jeder Kopierblock nennt über sich seinen Empfänger** — Mac-Sitzung, Fable-Chat, Terminal; auch wenn es aus dem Zusammenhang hervorzugehen scheint | 6b, Empfänger |
 | ☐ | Der Startbefehl ist kopierfertig, `--remote-control` immer dabei, der Anweisungstext nie im Startbefehl | 1; 14, Regel 1 |
 | ☐ | Zuerst die Anmeldung: Schlüsselbund entsperrt, Kopfzeile „Claude Max", kein „Not logged in"; erst dann `/login` | 14, Regel 0; 6b, Ende |
 | ☐ | Der Einfügesatz aus dem festen Zeiger — nur die TB-Nummer vorn wechselt | 14, Regel 2 |
@@ -615,6 +616,32 @@ niemand rät.*
 `crontab -l | grep -c <muster>` mit der erwarteten Zahl daneben.
 
 ---
+
+### ⭐⭐ Jeder Kopierblock nennt seinen Empfänger
+
+⚠️⚠️ **Entstanden aus einem Verstoss am 21.09.2026:** Ein Einfügesatz für die
+Mac-Sitzung wurde ohne Empfängervermerk ausgegeben und landete im
+**Fable-Chat**. Fable hat ihn zurückgewiesen — in jedem Punkt richtig, auch in
+dem, der nicht dastand: *„Ich soll ihn auch nicht abarbeiten. TB-78 trägt
+Registertext ein — das ist Handwerk der ausführenden Sitzung. Meine Rolle ist
+der Wortlaut, den sie einträgt, nicht das Eintragen."*
+
+> ⭐ **Jeder Kopierblock trägt über sich, für wen er ist** — Mac-Sitzung,
+> Fable-Chat, Terminal des Betreibers. **Auch dann, wenn es aus dem Zusammenhang
+> hervorzugehen scheint.**
+
+⚠️ **Die Regel stand der Sache nach schon in Abschnitt 1** (*„Bei jedem Dokument
+und jeder Aufgabe wird ausdrücklich gesagt, wohin es geht — nicht nur in der
+Datei, auch in der Begleitnachricht"*) und in Abschnitt 2 (Dateiname und
+Überschrift nennen den Empfänger). ⭐⭐ **Was fehlte, war ihre Anwendung auf den
+Kopierblock im Chat** — das Format, das keinen Dateinamen und keine Überschrift
+hat und deshalb durch die Regel fiel.
+
+⭐ **Warum es nicht aus dem Zusammenhang hervorgeht:** Der Betreiber führt
+mehrere Sitzungen parallel und arbeitet oft vom Telefon. *Ein Block ohne Adresse
+ist eine Wette darauf, dass der Leser denselben Zusammenhang im Kopf hat wie der
+Schreiber.* **Dieselbe Fehlerklasse wie „ein Name ist kein Messwert", nur auf
+der Ausgabeseite: an einen Empfänger geschrieben, den niemand gemessen hat.**
 
 ### ⭐⭐ Der Start einer Mac-Sitzung wird als getrennte Kopierblöcke ausgegeben
 
