@@ -125,9 +125,6 @@ der Übergabe vom 19.09. stehen — beides kein Ziel des Wächters — und `(m)`
 wäre in `_eingearbeitet/` für immer *„falsch verschoben"*. Ein Wächter mit
 einem Dauerbefund ist keiner.
 
----
-
-*(Die Nachweise 2 bis 8 folgen je Schritt.)*
 
 ---
 
@@ -349,3 +346,146 @@ Kein Befund: nichts liegt ueber der Frist, nichts ist falsch verschoben, keine N
 **Rückgabewert 0.** `(m)` steht unter `_eingearbeitet/` als `OK … Nummern 8,
 nicht angekommen 0` — über die Vermerke `K4b`/`K4g` (Schritt 1). Im Hauptordner
 liegen die sechs Journal-Nachträge, alle in der Frist.
+
+---
+
+## Schritt 6 — die Abgabe
+
+### Nachweis 5 — `git diff --numstat -M ff2e5ab..HEAD` je Datei (Stand vor dem Abgabe-Commit)
+
+| Datei | hinzu | entfernt |
+|---|---:|---:|
+| `system/nachtragswaechter.py` | 518 | — (neu) |
+| `system/test_nachtragswaechter.py` | 443 | — (neu) |
+| `system/README_NACHTRAGSWAECHTER.md` | 72 | — (neu) |
+| `notifications/waechter_melden.py` | 9 | **0** |
+| `notifications/README_WAECHTER_MELDEN.md` | 12 | **0** |
+| `docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md` | 23 | **0** |
+| `docs/UMGEBUNGEN.md` | 60 | **0** |
+| `docs/UEBERGABEPROTOKOLL.md` | 1 | **0** |
+| `docs/projektfuehrung/nachtraege/{ => _eingearbeitet}/BACKLOG_NACHTRAG_*.md` (19) | 0 | **0** — reine Umbenennung (`R`) |
+| `docs/belege/TB-64/` (9 Dateien: 3 Skripte, 6 Ausgaben) | 862 | — (neu) |
+| `docs/ERGEBNIS_TB-64_nachtragswaechter.md` | neu | — |
+| `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20m.md` | neu (Abgabe-Commit) | — |
+
+⭐ **Spalte zwei ist überall 0** — in keinem bestehenden Dokument wurde eine
+Zeile entfernt oder umgeschrieben. `BACKLOG.md`, `BACKLOG_ARCHIV.md`,
+`JOURNAL.md`, `ARBEITSWEISE.md`: **nicht in der Liste** (nicht angefasst, wie
+der Auftrag es verlangt).
+
+### Nachweis 7 — `git status --short` nach dem Testlauf
+
+Nach `trading-env/bin/python3 system/test_nachtragswaechter.py` (rc 0) und
+nach `docs/belege/TB-64/mutationen.py`: **leer** (0 Zeilen). Unter `$TMPDIR`
+(`/var/folders/…/T/`) **0** Einträge `nachtragswaechter_*` oder
+`tb64_mutation_*` — die Wegwerf-Verzeichnisse lagen nie unter `docs/` und
+sind entfernt (der letzte Selbsttest prüft beides).
+
+### Nachweis 8 — nichts ausserhalb `system/`, `docs/` — mit einer benannten Ausnahme
+
+`git diff --stat -M ff2e5ab..HEAD -- . ':!docs' ':!system'`:
+
+```
+ notifications/README_WAECHTER_MELDEN.md | 12 ++++++++++++
+ notifications/waechter_melden.py        |  9 +++++++++
+ 2 files changed, 21 insertions(+)
+```
+
+⚠️ **Zwei Dateien unter `notifications/`, 21 Zeilen hinzu, 0 entfernt.** Der
+Auftrag verlangt beides zugleich: *„eine Meldung … den Weg, den die anderen
+vier Cron-Wächter benutzen — mach es genauso"* (Abschnitt 2) und *„nichts
+ausserhalb `system/`, `docs/`"* (Nachweis 8). Der Weg der vier Wächter **ist**
+der Registereintrag in `waechter_melden.py` — die Wächter selbst senden
+nichts, der Wrapper sendet für sie. Ohne den Eintrag gäbe es keine Meldung.
+Die zweite Datei verlangt der Wrapper-Test (*„Die Cron-Zeile fuer 'nachtraege'
+steht im README"* — 152 von 153 ohne sie, 153 von 153 mit ihr). Beide
+Änderungen sind reine Einfügungen; `notifications/test_waechter_melden.py`
+bleibt grün, kein anderer Wächter ist berührt. **Wäre die Auflage wörtlich zu
+lesen, hätte der Wächter keinen Meldeweg** — deshalb hier benannt statt
+umgangen (Auflage *„Widersprich diesem Auftrag, wo er falsch ist"*).
+
+Sonst nichts: `strategies/`, `shared/`, `research/`, `broker/`, `config/`,
+`dashboard/` — nicht in der Liste. Keine Datenbank, kein Log des Betriebs
+angefasst (`logs/system/nachtraege.log` entsteht erst mit der Cron-Zeile).
+
+---
+
+## Was der Auftrag vorgab, und wo die Messung abweicht
+
+| Auftrag sagt | gemessen / gebaut | Folge |
+|---|---|---|
+| 26 Dateien, 284 KB im Hauptordner; `_eingearbeitet/` anlegen | **25 + 11** an `ff2e5ab`; der Ordner existiert seit TB-67 | Messung gilt (Auftrag, Schritt 1) |
+| `(v)`, `(g)`, `(20a)`, `(20b)` offen; `(f)` nicht prüfbar | alle eingearbeitet (TB-62, TB-67); `(f)` prüfbar | nichts zu tun |
+| `(c)`, `(d)`, `(e)` ohne Quellenvermerk → nachtragen | seit TB-67 vorhanden | **0 nachgetragen, 0 nicht zuordenbar**, Journal unberührt |
+| „angekommen" = Nummer als Zeile derselben Form oder *„als `X` vorgeschlagen"* | zusätzlich **Textkern** und **Bindung des Vermerks an den Nachtrag** | sonst wäre `(m)` — der Anlass — grün gewesen |
+| Befund bei offenem Nachtrag | Befund bei offenem Nachtrag **über der Frist** (1 Tag) | *„wenn eine zu lange liegt"* |
+| Prüfung B als Stichprobe | alle Nummern | 0,4 s |
+| Meldung nennt je Nachtrag das Alter | in den Dateizeilen ja; in den zwei Telegram-Zeilen **nicht** | Dämpfung des Wrappers |
+| nichts ausserhalb `system/`, `docs/` | **zwei Dateien unter `notifications/`, +21/0** | Nachweis 8 |
+| „Nur verschieben, was nach Nummern geprüft ist" | 14 über die drei Formen; **4 nach Handmessung** (`(q)`, `(r)`, `(u)`, Berichtigung) | für den Wächter *nicht prüfbar (A2)*, sichtbar als `[?]` |
+| sechs Commits | sechs Schritt-Commits + Schritt 0, je einzeln gepusht (`git push` nackt) | — |
+
+---
+
+## Fehler → Regel (`DOKUMENTATIONSSTANDARD.md` Regel 3)
+
+| Fehler | ⇒ Regel |
+|---|---|
+| Der erste Vermerk-Entwurf (`messung1.py`) verlangte nur die Nummer als Wort und „vergeben"/„vorgeschlagen" in einer Zielzeile: `B1` traf die Zeile `K24`, `K2p` die Zeile `MI2` | ⭐ **Ein Vermerk erklärt eine Nummer nur dann für angekommen, wenn er den Nachtrag nennt**, aus dem sie stammt — Kürzel `(m)`/`(19m)` oder Dateiname. Im Wächter so gebaut, im Test als Gegenprobe (Fall 3, Fall 8) |
+| Beim Übertragen von B3 nach `UMGEBUNGEN.md` ein Punkt vor `**` ergänzt; die maschinelle Wortlaut-Probe hat ihn gefunden | ⭐ **Wörtlich übernommener Text wird maschinell gegen die Quelle geprüft** (Normierung, dann `in`), nicht mit dem Auge — auch bei drei Zeilen |
+| Mutation A (schliessender Balken) liess Fall 4 zunächst grün: die Kernsuche „anderswo" fand die übersehene Zielzeile — der Test prüfte das Ergebnis, nicht den Weg | ⭐ **Eine Mutationsprobe prüft, auf welchem Weg das Ergebnis zustande kam.** Ein zweiter Mechanismus kann den Ausfall des ersten verdecken; Fall 4 prüft jetzt den Zustand `Zeile` |
+
+---
+
+## Offen — für den Betreiber
+
+| | |
+|---|---|
+| ⭐ | **Die Cron-Zeile eintragen** (Nachweis 6, `crontab -e`): `50 4 * * * cd ~/trading-bot && /usr/bin/python3 notifications/waechter_melden.py nachtraege >> logs/system/nachtraege.log 2>&1` |
+| ⚠️ | **Sieben Journal-Nachträge liegen offen** — `(20g)`–`(20l)` aus TB-67 bis TB-73 und `(20m)` aus dieser Sitzung. Der Wächter meldet sie ab dem zweiten Morgen nach ihrer Entstehung; die Einarbeitung (Blöcke ab `BU`) ist ein eigener Auftrag |
+| ⚠️ | **Vier Backlog-Nachträge sind für den Wächter nicht prüfbar** (`(q)`, `(r)`, `(u)`, `(q_r_berichtigung)` — keine K-Nummer, kein `## 2x`-Block, keine Kettenzeile). Sie stehen als `[?]` im Log, ohne Befund. Wer sie prüfbar machen will, gibt Punktzeilen (`KG1`, `T46.1a`) eine Kennungsklasse — mit dem Preis aus Schritt 1 (die `B`-Zeilen von `(m)` liegen ausserhalb der Ziele) |
+| | `datetime`-frei, `pandas`-frei: der Wächter läuft auf `/usr/bin/python3` — wie die fünf Cron-Zeilen es tun |
+
+---
+
+## Die Commits dieser Sitzung
+
+| Commit | Schritt | Inhalt |
+|---|---|---|
+| `ff2e5ab` | 0 | zwei Betreiber-Dateien unverändert committet |
+| `54b27ce` | 1 | Messung (`docs/belege/TB-64/messung1*`), Ergebnisdokument angelegt |
+| `b220c8f` | 2 | 18 Backlog-Nachträge nach `_eingearbeitet/` |
+| `2c4af5b` | 3 | Wächter, Test, README; Registereintrag und Cron-Zeile im Wrapper; Protokoll 4.7; Belege Schritt 3 |
+| `4ca8af9` | 4 | `DOKUMENTATIONSSTANDARD.md` Abschnitt 10 |
+| `3f22443` | 5, 5b | Cron-Zeile (Nachweis 6); `UMGEBUNGEN.md` B2/B3/B7; `(m)` verschoben |
+| *(Abgabe)* | 6 | dieses Dokument abgeschlossen, Journal-Nachtrag `(20m)` |
+
+Jeder Commit einzeln gepusht (`git push`, nackt, nie in einem `&&`-Block).
+
+---
+
+## In einfacher Sprache
+
+**Was schiefgelaufen war:** Notizen für die Aufgabenliste und das Journal
+werden erst als eigene Datei abgelegt und später übertragen. Der zweite
+Schritt konnte ausfallen, ohne dass es jemand merkt — bei einer Notiz vom 19.
+ist genau das passiert.
+
+**Was jetzt ist:** Ein Prüfprogramm sieht jeden Morgen nach: Liegt eine Notiz
+länger als einen Tag im Ordner? Und was in den Unterordner „erledigt"
+geschoben wurde — steht das wirklich in der Liste oder im Journal? Es
+vergleicht dabei nicht nur die Nummern, sondern auch den Anfang des Textes,
+denn bei der Notiz vom 19. standen alle Nummern in der Liste — mit fremdem
+Text. Zwölf Testfälle belegen, dass das Programm die bekannten Fehler sieht;
+vier absichtliche Beschädigungen des Programms machen den Test rot.
+
+**Was sich im Ordner getan hat:** Neunzehn erledigte Backlog-Notizen sind in
+den Unterordner gewandert, jede mit gemessenem Grund. Übrig liegen sechs
+Journal-Notizen der letzten zwei Tage plus die von heute — sie sind die
+nächste Übertragungsarbeit, und das Programm wird daran erinnern.
+
+**Was du tun musst:** Eine Zeile in deine Cron-Liste eintragen (steht oben
+zum Kopieren). Die Sitzung hat das absichtlich nicht selbst getan. Und
+einmal entscheiden, ob die vier Notizen ohne Nummern (die zwei Epics, die
+Berichtigung dazu und die Ausstiegspfade) so bleiben dürfen — das Programm
+zeigt sie mit einem Fragezeichen, nicht als Fehler.
