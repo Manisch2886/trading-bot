@@ -1,0 +1,21 @@
+# Nachweis 8 - geaenderte Dateien f2e0a68..HEAD (a288452) plus Arbeitsbaum
+A	docs/belege/TB-63/nachweis1_status_vor_schreiben.txt
+A	docs/belege/TB-63/nachweis5_pflichtlektuere_vorher.txt
+A	docs/belege/TB-63/schritt0_mtime.txt
+A	docs/belege/TB-63/schritt0_numstat.txt
+A	docs/belege/TB-63/schritt0_status_vorher.txt
+A	docs/belege/TB-63/schritt1_numstat.txt
+A	docs/belege/TB-63/schritt1_verschiebenachweis.txt
+A	docs/belege/TB-63/schritt2_numstat_gegen_f2e0a68.txt
+A	docs/belege/TB-63/schritt2_verschiebenachweis.txt
+A	docs/belege/TB-63/verschiebenachweis.py
+M	docs/projektfuehrung/BACKLOG.md
+A	docs/projektfuehrung/BACKLOG_EPICS.md
+--- Arbeitsbaum (git status --porcelain):
+?? docs/belege/TB-63/nachweis4_5_masse.txt
+?? docs/belege/TB-63/nachweis6_kollisionsprobe.txt
+?? docs/belege/TB-63/nachweis7_verweise_backlog.txt
+?? docs/belege/TB-63/nachweis7_verweise_fremd.txt
+?? docs/belege/TB-63/nachweis7_verweise_je_datei.txt
+?? docs/belege/TB-63/nachweis8_nur_docs.txt
+--- ausserhalb docs/: 0 (committet), 0 (Arbeitsbaum)

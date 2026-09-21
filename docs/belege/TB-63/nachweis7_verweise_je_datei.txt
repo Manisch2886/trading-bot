@@ -1,0 +1,16 @@
+  39 docs/projektfuehrung/BACKLOG_EPICS.md
+  16 docs/projektfuehrung/BACKLOG.md
+  16 docs/auftraege/MAC_TB-63_epics_auslagern.md
+  11 docs/auftraege/MAC_TB-59_backlog_einarbeitung.md
+   6 docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-19g.md
+   6 docs/projektfuehrung/JOURNAL.md
+   5 docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19q.md
+   5 docs/ERGEBNIS_TB-64_nachtragswaechter.md
+   4 docs/projektfuehrung/UEBERGABE_2026-09-19.md
+   3 docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19p.md
+   3 docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19o.md
+   2 docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19n.md
+   2 docs/ERGEBNIS_TB-62_nachtraege_m_v.md
+   2 docs/auftraege/MAC_TB-62_nachtraege_m_v.md
+   1 docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
+   1 docs/auftraege/MAC_TB-60_backlog_archiv.md

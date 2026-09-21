@@ -1,0 +1,37 @@
+docs/ERGEBNIS_TB-62_nachtraege_m_v.md:23:   `BACKLOG.md` oder `BACKLOG_ARCHIV.md` belegt, höchster Block `2y`. **Kein
+docs/ERGEBNIS_TB-62_nachtraege_m_v.md:114:⭐ **Der `2x`-Namensraum ist erschöpft.** Vorschlag für den nächsten Block:
+docs/auftraege/MAC_TB-60_backlog_archiv.md:81:| ⛔ | **Die neuen Abschnitte `2s` bis `2y`** — sie sind von gestern und aktiv |
+docs/projektfuehrung/UEBERGABE_2026-09-19.md:82:| Blockbezeichner Abschnitt 2 | höchster **`2y`** | **`2z`** — danach ist der `2x`-Raum erschöpft |
+docs/projektfuehrung/UEBERGABE_2026-09-19.md:187:| **1** | ⚠️ **Vier Nummernkollisionen**: `0,87` doppelt · `V1` doppelt · „TB-54" für zwei Aufgaben · **(p) nennt „Block 2v"/„K2y" frei erfunden** | ⭐ **K2i: Ein Nachtrag nennt keine Nummer, die er nicht selbst 
+docs/projektfuehrung/UEBERGABE_2026-09-19.md:346:Nummern in (p) („Block 2v", „K2y/K2z") müssen beim Einarbeiten auf die gemessene
+docs/ERGEBNIS_TB-64_nachtragswaechter.md:64:| `(19n)` | K2r K2s K2t / 2t / — | 4 von 4 — die drei K unter `K2p`–`K2r` mit Vergabevermerk | eingearbeitet (TB-59) |
+docs/ERGEBNIS_TB-64_nachtragswaechter.md:65:| `(19o)` | K2u K2v K2w K2x / 2u / — | 5 von 5 — die vier K unter `K2s`–`K2v` | eingearbeitet (TB-59) |
+docs/ERGEBNIS_TB-64_nachtragswaechter.md:66:| `(19p)` | K2y K2z K3a K3b / 2v / — | 5 von 5 — die vier K unter `K2w`–`K2z` | eingearbeitet (TB-59) |
+docs/ERGEBNIS_TB-64_nachtragswaechter.md:198:| **5** | zwei gleiche Nummern im Ziel (`K9a` zweimal) | Befund „Doppelbelegung" | **rc 1**, `BEFUND: Doppelbelegung K K9a 2x`; Mutationsprobe: die Liste trägt `K9a` zweimal, die Menge einmal. Dazu: Kette mit *„alte
+docs/ERGEBNIS_TB-64_nachtragswaechter.md:446:| ⚠️ | **Vier Backlog-Nachträge sind für den Wächter nicht prüfbar** (`(q)`, `(r)`, `(u)`, `(q_r_berichtigung)` — keine K-Nummer, kein `## 2x`-Block, keine Kettenzeile). Sie stehen als `[?]` im Log, ohne Befund. Wer
+docs/auftraege/MAC_TB-62_nachtraege_m_v.md:107:⭐ **`2z` ist gemessen die nächste freie** (höchster Block: `2y`).
+docs/auftraege/MAC_TB-62_nachtraege_m_v.md:108:⚠️ **Damit ist auch der `2x`-Namensraum erschöpft** — nenne im Bericht, welchen
+docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-19g.md:25:**Neue Blöcke:** `2s` (TB-56b und Fables Methodenantwort), `2t` Epic **AF**,
+docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-19g.md:26:`2u` Epic **MI**, `2v` Epic **QR**, `2w` Epic **KG**, `2x` Epic **RT**,
+docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-19g.md:27:`2y` Querschnitt über (n)–(r).
+docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md:216:| ⭐ **Backlog** | Eine Nummer, die bei der Einarbeitung anders vergeben wird als im Nachtrag vorgeschlagen, trägt den **Vergabevermerk, der den Nachtrag nennt** (Regel 5) | `| **K2p** *(im Nachtrag (n) als `K2
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19q.md:30:| (n) — Epic AF | Block 2t | **`2s`** |
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19q.md:31:| (o) — Epic MI | Block 2u | **`2t`** |
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19q.md:32:| (p) — Epic QR | **Block 2v**, `K2y`, `K2z`, `K3a`, `K3b` | **`2u`**; K-Nummern ab **`K2l`** |
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19p.md:4:⚠️ **Setzt (a)–(o) voraus.** Einzufügen als **Block 2v**, nach Block 2u.
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19p.md:12:### 2v — Epic QR: Alpha-Discovery-Labor
+docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:57:`(n)` verlangt Block **`2t`**, *„nach Block 2s"*; `(o)` verlangt **`2u`**, `(p)`
+docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:58:verlangt **`2v`**. **Das ist richtig, sobald `(s)` den Block `2s` besetzt.**
+docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:98:| **3** | `(n)` | **`2t`** | Epic **AF** — Autonome Strategie-Forschungspipeline |
+docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:99:| **4** | `(o)` | **`2u`** | Epic **MI** — KI-Marktverständnis und adaptive Allokation |
+docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:100:| **5** | `(p)` | **`2v`** | Epic **QR** — Alpha-Discovery-Labor |
+docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:101:| **6** | `(q)` + `(q_r_berichtigung)` | **`2w`** *(gemessen frei nach 2v)* | Epic **KG** — Kausalgraph. ⚠️ **Die Berichtigung wird ZUSAMMEN mit (q) eingearbeitet**, und die berichtigten Stellen tragen den V
+docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:102:| **7** | `(r)` + `(q_r_berichtigung)` | **`2x`** *(gemessen frei nach 2w)* | Epic **RT** — Rotes Team. ⚠️ Dieselbe Berichtigung betrifft auch `(r)` |
+docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:254:bleibt Block `2t`.
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19n.md:4:⚠️ **Setzt (a)–(m) voraus.** Einzufügen als **Block 2t**, nach Block 2s.
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19n.md:14:### 2t — Epic AF: Autonome Strategie-Forschungspipeline
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19o.md:4:⚠️ **Setzt (a)–(n) voraus.** Einzufügen als **Block 2u**, nach Block 2t.
+docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19o.md:12:### 2u — Epic MI: KI-Marktverständnis und adaptive Allokation
+docs/projektfuehrung/JOURNAL.md:6410:**Neue Blöcke:** `2s` (TB-56b und Fables Methodenantwort), `2t` Epic **AF**,
+docs/projektfuehrung/JOURNAL.md:6411:`2u` Epic **MI**, `2v` Epic **QR**, `2w` Epic **KG**, `2x` Epic **RT**,
+docs/projektfuehrung/JOURNAL.md:6412:`2y` Querschnitt über (n)–(r).

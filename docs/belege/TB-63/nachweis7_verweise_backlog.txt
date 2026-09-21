@@ -1,0 +1,8 @@
+335:## Die fünf Epics 2t bis 2y — nach `BACKLOG_EPICS.md` verschoben (21.09.2026, TB-63)
+347:| `2t` | AF — Autonome Strategie-Forschungspipeline | `BACKLOG_EPICS.md`, Abschnitt `2t` |
+348:| `2u` | MI — KI-Marktverständnis und adaptive Allokation | `BACKLOG_EPICS.md`, Abschnitt `2u` |
+349:| `2v` | QR — Alpha-Discovery-Labor | `BACKLOG_EPICS.md`, Abschnitt `2v` |
+350:| `2w` | KG — Market Causal Graph & Market Physics Engine | `BACKLOG_EPICS.md`, Abschnitt `2w` |
+351:| `2x` | RT — Autonomous Adversarial Trading Lab | `BACKLOG_EPICS.md`, Abschnitt `2x` |
+352:| `2y` | Querschnitt über die fünf Epic-Nachträge (n) bis (r), TB-59 | `BACKLOG_EPICS.md`, Abschnitt `2y` |
+358:*Aus Backlog-Nachtrag (v) (`nachtraege/BACKLOG_NACHTRAG_2026-09-19v.md`, 19./20.09.2026, fünf datierte Nachträge unter der ersten Tabelle, der letzte bis 15:10 fortgeschrieben), eingearbeitet 20.0

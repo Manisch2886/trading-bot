@@ -1,0 +1,12 @@
+# Nachweis 4/5 - Masse nachher (Stand a288452, 2026-09-21 11:31)
+## BACKLOG.md vorher (f2e0a68) -> nachher
+    1505  264481
+     599  201085 docs/projektfuehrung/BACKLOG.md
+## BACKLOG_EPICS.md
+     961   66701 docs/projektfuehrung/BACKLOG_EPICS.md
+## Pflichtlektuere (5 Dokumente nach UMZUG.md Abschnitt 6) - vorher aus f2e0a68, nachher Arbeitsbaum
+28953 -> 28953  docs/projektfuehrung/UEBERGABE_2026-09-19.md
+20051 -> 20051  docs/projektfuehrung/UMZUG.md
+70905 -> 70905  docs/projektfuehrung/ARBEITSWEISE.md
+17647 -> 17647  docs/PRUEFPRINZIPIEN.md
+264481 -> 201085  docs/projektfuehrung/BACKLOG.md

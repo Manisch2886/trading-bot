@@ -1,0 +1,22 @@
+# Nachweis 6 - Kollisionsprobe (Stand a288452)
+## Blockbezeichner ^## (2[a-z]+) ueber BACKLOG.md + BACKLOG_EPICS.md
+   1 ## 2z 
+   1 ## 2y 
+   1 ## 2x 
+   1 ## 2w 
+   1 ## 2v 
+   1 ## 2u 
+   1 ## 2t 
+   1 ## 2s 
+Zeilen: 8, verschiedene: 8
+je Datei: BACKLOG 2, EPICS 6
+## K-Nummern ^\| \*\*(K\d[a-z])\*\* ohne schliessenden Balken, kein sort -u
+docs/projektfuehrung/BACKLOG.md: Zeilen 92
+docs/projektfuehrung/BACKLOG_EPICS.md: Zeilen 0
+gesamt Zeilen: 92, verschiedene Nummern: 92
+## dieselbe Probe ueber DREI Dateien (mit BACKLOG_ARCHIV.md)
+Bloecke: Zeilen 24, verschiedene 24
+K: Zeilen 92, verschiedene 92
+## Epic-Punktnummern (AF/MI/QR/KG/RT/QS) in BACKLOG.md verblieben?
+0
+in EPICS: 28
