@@ -7608,6 +7608,61 @@ TB-70); die Projektablage nachziehen (`K4e`, Betreiber); TB-70 ist frei.
 
 ---
 
+## CD — TB-76: der Nachtragswächter liest seine Zielmenge aus `BACKLOG.md`, statt sie aufzuzählen (21.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-76_waechter_ziele.md`*
+
+**Quelle:** Mac-Sitzung **TB-76 Waechter-Ziele**, 21.09.2026, ab 12:42
+Ortszeit, Ausgang `437428d`, Interpreter `/usr/bin/python3` 3.9.6 (der der
+Cron-Zeile). Commits `6f5f986` (Schritt 0: Auftrag und Zeiger des
+Betreibers), `bad7dc7` (Schritt 1, Befund vorher), `cf22316` (Schritt 2+3,
+Wächter 82/23, Selbsttest 123/9, README 17/3), `bd3e559` (Mutationsprobe,
+Lauf gegen den Bestand) und der Abgabe-Commit. Belege `docs/belege/TB-76/`.
+Anlass: `K4o` aus TB-63 — der Wächter meldete seit der Auslagerung der Epics
+**rc 1, 3 falsch verschoben**, und seine Cron-Zeile ist seit dem 21.09.,
+10:50 eingetragen (gemessen: `crontab -l` Zeile 41; erster Lauf 22.09.,
+04:50).
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Befund vorher (`6f5f986`) | **rc 1**: `(19n)`, `(19o)`, `(19p)` mit Block `2t`/`2u`/`2v` „Nummer nicht im Ziel, Kern nirgends“; Kopfzeile ohne `BACKLOG_EPICS.md`; 4× nicht prüfbar. Deckt sich mit Abschnitt 0 des Auftrags |
+| Woran man eine Zieldatei erkennt | **Namensmuster `BACKLOG*.md`: 7 Treffer, davon 4 alte Nachträge im Wurzelordner** — `BACKLOG_NACHTRAG_2026-09-18.md` (ohne Buchstaben) erkennt `RE_DATEINAME` nicht als Nachtrag, sie trüge 9 K-, 3 Block- und 10 Kettennummern ins Ziel. **Was `BACKLOG.md` selbst nennt: `BACKLOG_ARCHIV.md` 34×, `BACKLOG_EPICS.md` 11×**, sonst nur ein Nachtrag |
+| Die Regel (gewählt) | Ziel = `BACKLOG.md` + jede dort mit Namen genannte `BACKLOG_<name>.md` neben ihr, die kein Nachtrag ist (`_NACHTRAG_`); genannt-aber-fehlend → rc 2. Beide Fehlerrichtungen laut: nicht genannt → rc 1 mit Fingerzeig auf den fehlenden Verweis. Die dreistufige Ankunftsprüfung ist zeichengleich geblieben |
+| Drei Testfälle | **13** angekommen in der ausgelagerten Datei → rc 0 (Gegenprobe ohne sie: FEHLT); **14** nirgends → rc 1, Kern nirgends, Datei war im Ziel; **15** `BACKLOG_ZUKUNFT.md` — Name im Quelltext 0×, `ARCHIV`/`EPICS` nur im Docstring — vorhanden-nicht-genannt rc 1, genannt rc 0 **ohne Codeänderung**, genannter Nachtrag kein Ziel, Pfad-/Wortbestandteil keine Nennung, genannt-aber-fehlend rc 2. **82/82** (vorher 62) |
+| Mutationsprobe | M1 Nennung ignoriert 73/9, M2 alte Aufzählung 72/10, M3 Nachtrag nicht ausgeschlossen 81/1, M4 nur Backticks 80/2 — je rot, je `numstat` leer, danach 82/0 |
+| Lauf gegen den Bestand (`cf22316`) | **rc 0**, Ziel `BACKLOG.md 600, BACKLOG_ARCHIV.md 566, BACKLOG_EPICS.md 961`; 0 offen, 0 falsch verschoben, 0 doppelt, die vier `[?]` unverändert; gegen den Befund vorher genau drei Zeilen anders (`19n/o/p` von `[!!]` auf `OK`) |
+| ausserhalb `system/` und `docs/` | 0 Dateien |
+
+### Was der Weg kostet, benannt
+
+Die nächste ausgelagerte Datei muss `BACKLOG_<name>.md` heissen und in
+`BACKLOG.md` mit Namen stehen — das Präfix ist die eine Konvention, die
+bleibt. Gelesen wird nur `BACKLOG.md`, nicht, was die ausgelagerten Dateien
+ihrerseits nennen. Die Kopfzeile jedes Laufs nennt die gelesene Menge, damit
+sichtbar ist, was der Wächter für das Ziel hält.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Eine Wache liest ihre Zielmenge aus dem Bestand, der sie erzeugt** — nicht aus einer Liste im Code. Die Liste ist immer der Stand des Tages, an dem sie geschrieben wurde |
+| ⭐ | **Ein Namensmuster wird gegen den Ordner gemessen, bevor es Regel wird.** `BACKLOG*.md` sah richtig aus und traf vier Nachträge |
+| ⭐ | **Beide Fehlerrichtungen einer Regel werden benannt, und die leise ist die gefährliche.** Nennung statt Muster, weil ein Verweis ins Leere rc 2 gibt und eine fremde Datei nicht still zum Ziel wird |
+| ⭐ | **Eine Zählzeile wird über ihr Muster gegriffen, nicht über ihre Position** — `tail -1` traf bei rotem Lauf die Fehlerliste statt der Zählung |
+| | Eine Probe, die man nicht lesen kann, fällt nicht auf, wenn sie falsch ist — die erste Fassung der Docstring-Probe wurde durch `ast` ersetzt |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen“):** der erste automatische Lauf
+22.09., 04:50 (erwartet rc 0, keine Meldung); `notifications/README_WAECHTER_MELDEN.md`
+sagt weiter „nicht eingetragen“ (ausserhalb des Auftrags); die Wache für
+Mac-Journalblöcke aus TB-75 bleibt ungebaut; der Kopf von `BACKLOG.md` nennt
+`BACKLOG_EPICS.md` weiter nicht (TB-63, Offen 1).
+
+*Geschrieben 21.09.2026 von der Mac-Sitzung TB-76 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

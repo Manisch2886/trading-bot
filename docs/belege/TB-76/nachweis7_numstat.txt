@@ -1,0 +1,25 @@
+Nachweis 7 - git diff --numstat 437428d gegen den Arbeitsbaum (Abgabe eingeschlossen), 2026-09-21 12:56 CEST
+227	0	docs/ERGEBNIS_TB-76_waechter_ziele.md
+1	1	docs/UEBERGABEPROTOKOLL.md
+3	3	docs/auftraege/AKTUELLER_AUFTRAG.md
+157	0	docs/auftraege/MAC_TB-76_waechter_ziele.md
+1	0	docs/belege/TB-76/nachweis1_status_vor_schreiben.txt
+2	0	docs/belege/TB-76/schritt0_mtime.txt
+1	0	docs/belege/TB-76/schritt0_numstat.txt
+3	0	docs/belege/TB-76/schritt0_status_vorher.txt
+59	0	docs/belege/TB-76/schritt1_befund_vorher.txt
+3	0	docs/belege/TB-76/schritt2_3_numstat.txt
+69	0	docs/belege/TB-76/schritt2_zielregel_messung.txt
+57	0	docs/belege/TB-76/schritt3_mutationen.txt
+119	0	docs/belege/TB-76/schritt3_selbsttest.txt
+1043	0	docs/belege/TB-76/schritt4_lauf_echt.json
+58	0	docs/belege/TB-76/schritt4_lauf_echt.txt
+1	0	docs/projektfuehrung/BACKLOG.md
+1	0	docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
+55	0	docs/projektfuehrung/JOURNAL.md
+17	3	system/README_NACHTRAGSWAECHTER.md
+82	23	system/nachtragswaechter.py
+123	9	system/test_nachtragswaechter.py
+
+Dateien ausserhalb system/ und docs/:
+0
