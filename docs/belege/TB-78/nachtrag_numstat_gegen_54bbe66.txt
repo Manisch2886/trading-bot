@@ -1,0 +1,7 @@
+135	0	docs/VORREGISTRIERUNG_neuselektion.md
+87	1	docs/auftraege/AKTUELLER_AUFTRAG.md
+1	0	docs/belege/TB-78/schritt3b_numstat.txt
+6	0	docs/belege/TB-78/schritt6b_numstat.txt
+10	1	docs/projektfuehrung/ARBEITSWEISE.md
+204	0	docs/projektfuehrung/FABLE_ANFRAGE_2026-09-21c_einarbeitung_21i_und_manifest.md
+52	0	docs/projektfuehrung/FABLE_ANTWORT_2026-09-21i_gesperrter_faltenplan.md

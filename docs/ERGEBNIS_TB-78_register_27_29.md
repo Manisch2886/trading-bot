@@ -189,3 +189,85 @@ bekommen ungefragt eine Empfehlung.
 Eine Auffälligkeit: Die kleine Zeigerdatei, die sagt, welcher Auftrag gerade
 gilt, wurde vom Betreiber vor der Sitzung auf eine Zeile gekürzt. Das war die
 einzige Löschung im ganzen Vorgang, und sie war nicht meine.
+
+---
+
+## ⚠️ Nachtrag v2, abgearbeitet nach der Abgabe (21.09.2026, gelesen 19:42)
+
+**Quelle:** `logs/auftraege/NACHTRAG_TB-78_fable_21i_v2.md` (315 Zeilen; v1 nicht
+verwendet). Anlass: Fables Antwort 21i (18:54). Zwei Schritte, zwei Commits,
+je gepusht: `c843fd5` (3b) und `e47ddfe` (6b). Abschnitte 27–29 **nicht
+angefasst**; alles Präzisierende steht als 30.6/30.7 daneben.
+
+### Schritt 3b — Registerabschnitt 30 und die Tatsachennotiz an Sperrlistenpunkt 2 (`c843fd5`)
+
+| Nachweis | Ergebnis |
+|---|---|
+| `numstat` Register | **135 / 0** (`schritt3b_numstat.txt`); gesamt seit `83e3a85` **411 / 0** |
+| Ankertext Punkt 2 **vor** dem Einfügen | `grep -c` → **1** |
+| `faltenplan.json`, voller Pfad | `0e54ac5cf6d554d2…` unverändert (sechs `faltenplan*.json` im Repo, nur diese auf der Sperrliste) |
+| `##` 30 genau einmal; 26–30 je einmal | `grep` Z. 4233/4557/4622/4760/4833; python `{26:1,27:1,28:1,29:1,30:1}` |
+| Abschnitt 10 gegen `83e3a85` | **0 entfernt, 7 hinzugefügt** — Punkte 1–14 zeichengleich, die Notiz ist Zusatz |
+| Registertext (1)–(4) und alle Zitate | zeichengleich in `FABLE_ANTWORT_2026-09-21i` (diff leer, je 1 Treffer) |
+| Befunde 30.1 an der Datei | `training_bis_ausschliesslich` 32× (Beispiel `2018-12-14` 2×), `embargo_tage: 18`, `turtle_soup_stocks` erste Selektionsfalte **2019** — treffen |
+| 30.4 | Z. 3897 (`83e3a85`) nennt `faltenplan_tb72.json`; 25.4 Z. 4131 *„der neue Plan, daneben; `faltenplan.json` unberührt"* — steht |
+| mitcommittet | `FABLE_ANTWORT_2026-09-21i_gesperrter_faltenplan.md`, `FABLE_ANFRAGE_2026-09-21c_einarbeitung_21i_und_manifest.md` (Secrets-Probe 0) |
+
+⚠️⚠️ **Abweichung 1 — eine Behauptung des Nachtrags war an der Datei widerlegt.**
+30.5 sollte lauten *„Die Datei [`faltenplan_tb72.json`] trägt keine
+Trainingsfelder; das macht sie nach 30.2 (4) nicht zum Abbild"*. **Gemessen:**
+die Datei trägt `training_bis_ausschliesslich` **77×** und `embargo_tage`
+**9×** — dieselben Felder wie der gesperrte Plan (je Bot zusätzlich
+`erste_falte_4a`, `erste_falte_trockenlauf_H`). Die Zelle trägt jetzt den
+Messbefund statt der Behauptung; die Entscheidung, ob sie das Abbild ist,
+bleibt nach 30.2 (4) beim Abgleich — 30.2 (3) spricht in ihrer heutigen Form
+dagegen. *Grund für die Abweichung: ein append-only-Register verträgt keinen
+Satz, der beim Eintragen schon widerlegt ist; die Berichtigung hätte einen
+weiteren Abschnitt gekostet.*
+
+⚠️ **Abweichung 2 — Zeilenverschiebung.** Die sieben Notizzeilen unter Punkt 2
+verschieben jede Zeilennummer unterhalb Z. 818 um **+7**; die Zeilenangaben in
+26–29 (Z. 4296, 4307, 3897 …) gelten für `83e3a85`. Dazu ein Vermerk am Ende
+von 30.3 (nicht im Nachtrag vorgesehen).
+
+### Schritt 6b — `AKTUELLER_AUFTRAG.md` wiederhergestellt, Einfügesatz vereinheitlicht (`e47ddfe`)
+
+| | Ergebnis |
+|---|---|
+| Wiederherstellung | `git show 83e3a85:… >` — **86 Zeilen** (der Nachtrag sagt 87; `wc -l` am Stand `83e3a85` gibt 86, Datei endet mit Zeilenumbruch). `numstat` gegen HEAD (Einzeiler) 87 / 1, gegen `83e3a85` 8 / 7 |
+| Auftragstabelle | TB-77-Zeile durch die TB-78-Zeile aus dem Nachtrag ersetzt (genau eine Zeile) |
+| Datumsvermerk | *„zuvor TB-77, erledigt mit `83e3a85`, 21.09.2026; davor TB-69 `1ded755`, TB-76, TB-63, TB-75"* |
+| Block „DREI AUFTRÄGE" | auf **„NIE ZWEI AUFTRÄGE GLEICHZEITIG IM SELBEN ARBEITSBAUM"** zurückgenommen, Klammervermerk nennt, was dort stand (TB-63 → TB-62, beide erledigt `437428d`/`6e29eec`) und die Regel (`DOKUMENTATIONSSTANDARD.md` Abschnitt 9) |
+| `ARBEITSWEISE.md` 14, Regel 2 | Einfügesatz = Wortlaut aus `AKTUELLER_AUFTRAG.md`, in beiden Trägern **zeichengleich** (diff leer); bisherige Fassung darunter als ERSETZT mit Grund. `numstat` **10 / 1** — die eine entfernte Zeile ist der ersetzte Satz, der als Zitat weiterhin steht |
+
+⚠️ **Vermerk:** Regel 2 sagt weiter *„enthält nichts als den Pfad des gerade
+gültigen Auftrags"* — die wiederhergestellte Datei führt eine Tabelle mit
+Nummer, Pfad und Kurztext. Nicht bestellt, nicht geändert; gemeldet.
+
+### Abschlussprüfung, erweitert (8, 9) und wiederholt
+
+8: `##` 30 genau einmal, 26–30 je einmal (grep und python). 9: Abschnitt 10
+gegen `83e3a85` 0 / 7. Wiederholt: nichts ausserhalb `docs/`
+(`git diff --stat 83e3a85..HEAD -- . ":(exclude)docs"` leer); drei
+Sperrlisten-Hashes unverändert; A1–A8 ohne Doppel; `git status --porcelain`
+nach dem letzten Commit leer. Beleg `nachtrag_numstat_gegen_54bbe66.txt`.
+
+### Offen, zusätzlich
+
+- Der Nachtrag hat für `faltenplan_tb72.json` eine Eigenschaft angenommen, die
+  nicht stimmt — die Aufgabe „Faltenplan nach 4a als Registertext, Abbild-Datei,
+  Abgleich" (30.5) startet mit der Tatsache, dass **keine** der sechs
+  `faltenplan*.json` im Repo ohne Trainingsfelder ist (Krypto-Ebenen nicht
+  geprüft; gemessen nur die zwei unter `ergebnisse/`).
+- `FABLE_ANFRAGE_2026-09-21c` Punkt 5 (Manifest-Verfahrensfrage) wartet auf Fable.
+
+### In einfacher Sprache, zum Nachtrag
+
+Der Prüfer hatte den eingefrorenen Faltenplan für den gültigen gehalten; er ist
+es nicht, sondern ein alter Stand mit Feldern, die das heutige Verfahren nicht
+kennt. Das steht jetzt als Abschnitt 30 im Regelwerk und als Vermerk an der
+Sperrliste — gestrichen wird nichts. Beim Eintragen fiel auf, dass der Nachtrag
+über die neuere Plandatei etwas behauptet, was nicht stimmt: auch sie trägt die
+alten Felder. Ich habe die gemessene Tatsache eingetragen, nicht die Behauptung.
+Ausserdem ist die kleine Zeigerdatei wieder vollständig, und der Satz, mit dem
+eine Sitzung gestartet wird, steht jetzt in beiden Dateien gleich.

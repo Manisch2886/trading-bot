@@ -7832,6 +7832,33 @@ zu Anfrage 21b C; `RECENT_YEARS_ONLY` als registrierte Grösse.
 
 *Geschrieben 21.09.2026 von der Mac-Sitzung TB-78 selbst. Quellenvermerk: siehe Kopf.*
 
+### ⚠️ Fortgeschrieben nach Nachtrag v2 (21.09.2026, 19:42 gelesen) — Abschnitt 30 und die Zeigerdatei
+
+Zwei weitere Commits, `c843fd5` (3b) und `e47ddfe` (6b), nach Fables Antwort
+21i. **Abschnitt 30:** der gesperrte `faltenplan.json` (`0e54ac5c…`) ist
+registrierter historischer Stand mit Trainingsfenster und Embargo, nicht der
+Plan nach 4a; der Plan nach 4a wird Registertext, genau eine Abbild-Datei kommt
+als neuer Sperrlistenpunkt — nichts wird gestrichen. Tatsachennotiz an Punkt 2
+nach dem Muster von Punkt 8 (Anker 1×, Abschnitt 10 gegen `83e3a85` 0 / 7).
+Register jetzt **411 / 0** seit `83e3a85`, 26–30 je genau einmal.
+**Zeigerdatei** aus `83e3a85` zurück (86 Zeilen), TB-78-Zeile, überholter
+„DREI AUFTRÄGE"-Block zurückgenommen; der Einfügesatz steht in
+`ARBEITSWEISE.md` 14/2 und `AKTUELLER_AUFTRAG.md` jetzt zeichengleich, die
+ältere Fassung als ERSETZT.
+
+⚠️⚠️ **Gemessen, gegen den Nachtrag:** `faltenplan_tb72.json` trägt
+`training_bis_ausschliesslich` **77×** und `embargo_tage` **9×** — der Nachtrag
+hatte *„keine Trainingsfelder"* angenommen. Eingetragen ist der Messbefund, die
+Behauptung nicht. ⚠️ Die Notiz unter Punkt 2 verschiebt alle Zeilennummern
+unterhalb Z. 818 um +7; Vermerk in 30.3, die Angaben in 26–29 gelten für
+`83e3a85`.
+
+| | Regel, zusätzlich |
+|---|---|
+| ⭐⭐ | **Ein Satz über eine Datei wird an der Datei gemessen, bevor er ins Register geht — auch wenn er aus dem Nachtrag kommt.** Zwei Zeilen python, und die Behauptung war widerlegt |
+| ⭐ | **Eine Einfügung mitten in einer Datei verschiebt jede Zeilenangabe darunter** — wer Zeilen zitiert, nennt den Commit-Stand |
+| ⭐ | **Ein Nachtrag in die laufende Sitzung ist angekommen, wenn die Sitzung ihn mit Fassung und Uhrzeit bestätigt** — hier v2, 19:42 |
+
 ---
 
 ## Wiederkehrende Lehren
