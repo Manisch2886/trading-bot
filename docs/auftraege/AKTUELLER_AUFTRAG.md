@@ -37,10 +37,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | TB | Auftragsdokument | kurz |
 |---|---|---|
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
-| **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an. ⚠️ **Schritt 5b am 20.09. ergänzt** (Betreiberentscheidung): die drei übrigen `B`-Zeilen nach `docs/UMGEBUNGEN.md` |
+| **TB-75** | `docs/auftraege/MAC_TB-75_journal_nachziehen.md` | ⭐⭐ **Sieben Journal-Nachträge einarbeiten** (`20g`–`20m`) — zugleich die **zweite Bewährung des Wächters** aus TB-64. ⭐ Dazu eine Messung ohne Änderung: ist der Umweg über Nachtragsdateien noch nötig? ⛔ **Rechnet nicht** |
 
-*Gesetzt 20.09.2026 (zuvor TB-73, erledigt mit `2150318`, nachgemessen und
-geschlossen am 20.09.2026, 22:20 Ortszeit; davor TB-72 `537ca51`, TB-71 `4af44da`, TB-68 `97cbcef`, TB-67 `a15746f`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 21.09.2026 (zuvor TB-64, erledigt mit `f0ca921`, nachgemessen und
+geschlossen am 21.09.2026, 08:05 Ortszeit; davor TB-73 `2150318`, TB-72 `537ca51`, TB-71 `4af44da`, TB-68 `97cbcef`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
