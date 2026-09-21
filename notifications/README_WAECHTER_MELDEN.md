@@ -181,6 +181,18 @@ nur mit Meldung.
 
 Vorher einmalig: `mkdir -p ~/trading-bot/logs/system`.
 
+**Dazu seit TB-64 (21.09.2026) eine sechste Zeile — neu, sie ersetzt nichts:**
+der Nachtragswächter (`system/nachtragswaechter.py`) meldet Nachträge unter
+`docs/projektfuehrung/nachtraege/`, die länger als einen Tag offen liegen, und
+Dateien unter `_eingearbeitet/`, deren Nummern nicht in Backlog oder Journal
+angekommen sind. Er braucht nur die Standardbibliothek. **Ebenfalls nicht
+eingetragen** — der Eintrag ist Betreiberarbeit
+(`docs/ERGEBNIS_TB-64_nachtragswaechter.md`, Nachweis 6).
+
+```cron
+50 4 * * * cd ~/trading-bot && /usr/bin/python3 notifications/waechter_melden.py nachtraege >> logs/system/nachtraege.log 2>&1
+```
+
 **Warum die Log-Rotation mitläuft, obwohl sie kein Wächter ist.** Sie gibt bei
 einem echten Fehlschlag denselben Rückgabewert 1 und schreibt in dasselbe
 stille Verzeichnis. Eine Rotation, die scheitert und schweigt, füllt die

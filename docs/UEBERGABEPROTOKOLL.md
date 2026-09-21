@@ -559,6 +559,7 @@ Am **14.09.2026** wurden fünf Werkzeuge in die Crontab eingetragen — die in 4
 | 4:10 | `shared/determinismus.py --schnell` | ein Backtest von der Symbolreihenfolge abhängt |
 | 4:30 | `research/versuchsregister/versuchsregister.py --pruefen` | die Zahl der gefahrenen Versuche vom Register abweicht |
 | 4:40 | `research/tb27_kapitalsimulation/vergleich.py --pruefen` | die neun `equity_simulation.py` still divergieren |
+| 4:50 *(seit TB-64, 21.09.2026 — Zeile vorgeschlagen, **nicht eingetragen**)* | `system/nachtragswaechter.py` | ein Nachtrag unter `docs/projektfuehrung/nachtraege/` länger als einen Tag offen liegt, eine nach `_eingearbeitet/` verschobene Datei Nummern hat, die nicht in Backlog oder Journal stehen, oder eine Nummer doppelt vergeben ist (`system/README_NACHTRAGSWAECHTER.md`) |
 
 Alle fünf schreiben nach `logs/system/` — **und dorthin sieht niemand.** Ein Wächter, dessen Befund in einer Datei landet, die nie jemand öffnet, ist ein Wächter, den es nicht gibt.
 

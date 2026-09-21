@@ -243,6 +243,15 @@ WAECHTER = collections.OrderedDict((w.schluessel, w) for w in [
         marken=("ABWEICHUNG", "NEUE FUNKTION", "FUNKTION FEHLT", "GRUPPEN ANDERS"),
         zweck="prueft die neun equity_simulation.py auf stille Divergenz",
     ),
+    Waechter(
+        schluessel="nachtraege",
+        klartext="Nachtraege an Backlog und Journal",
+        befehl=("system/nachtragswaechter.py",),
+        log="logs/system/nachtraege.log",
+        marken=("BEFUND", "Zusammenfassung:"),
+        zweck="meldet Nachtraege, die ueber der Frist offen liegen oder "
+              "verschoben wurden, ohne angekommen zu sein",
+    ),
 ])
 
 

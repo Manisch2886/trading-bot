@@ -169,3 +169,86 @@ sechs Journal-Nachträge `(20g)`–`(20l)` (0 von 6 Quellenzeilen; ihre
 Einarbeitung ist nicht Gegenstand dieses Auftrags, Abschnitt 7).
 
 Im Hauptordner liegen danach **7** Dateien, unter `_eingearbeitet/` **29**.
+
+---
+
+## Schritt 3 — der Wächter und sein Test
+
+**`system/nachtragswaechter.py`** (rein lesend, nur Standardbibliothek, läuft
+auf `trading-env/bin/python3` 3.9.6 und `/usr/bin/python3` 3.9.6) und
+**`system/test_nachtragswaechter.py`** (62 Prüfungen in zwölf Fällen, 0,2 s),
+dazu `system/README_NACHTRAGSWAECHTER.md`. Der Kopf des Skripts erklärt die
+Prüfregeln vollständig; hier das, was vom Auftrag abweicht oder ihn ergänzt:
+
+| Auftrag sagt | gebaut | warum |
+|---|---|---|
+| Nummer „gilt als angekommen", wenn sie als Zeile derselben Form im Ziel steht oder als *„als `X` vorgeschlagen"* vermerkt ist | **dreistufig:** Zielzeile derselben Nummer **mit demselben Textkern** → Kern irgendwo im Ziel (Nummer geändert) → Vergabevermerk, **der den Nachtrag nennt** | Schritt 1: für `(m)` stehen alle sechs Nummern im Ziel — mit fremdem Inhalt. Die Nummer allein hätte den Fall, für den der Wächter gebaut wird, grün gemeldet |
+| Meldung nennt je offenem Nachtrag Dateiname, Alter, Zahl der nicht angekommenen Nummern | so — in den Dateizeilen der Ausgabe (vollständig im Log). Die zwei Zeilen, die per Telegram gehen (`Zusammenfassung:`, `BEFUND:`), nennen **kein Alter** | `waechter_melden.py` dämpft über den Fingerabdruck der gesendeten Zeilen; ein täglich wachsendes Alter wäre täglich ein „geänderter Befund" und die Dämpfung griffe nie (README des Wrappers, Regel 2) |
+| „Meldung über `shared/telegram_*` bzw. den Weg der vier Cron-Wächter — mach es genauso" | genauso: Rückgabewert 1 + Marken, **Registereintrag `nachtraege` in `notifications/waechter_melden.py`** (9 Zeilen) und die Cron-Zeile im `README_WAECHTER_MELDEN.md` (12 Zeilen, der Wrapper-Test verlangt sie: *„Die Cron-Zeile fuer 'nachtraege' steht im README"*) | ⚠️ das sind **zwei Dateien ausserhalb `system/` und `docs/`** — Nachweis 8 nennt sie. Ohne den Registereintrag gäbe es keine Meldung, und der Auftrag verlangt sie |
+| Befund = offener Nachtrag | offener Nachtrag **über der Frist** (Standard 1 Tag, `--frist-tage`), Alter aus der Änderungszeit der Datei | *„eine Nachricht, wenn eine zu lange liegt"* (Auftrag, einfache Sprache). Ohne Frist meldete der Wächter jeden Nachtrag schon in der Nacht nach der Sitzung, die ihn geschrieben hat |
+| Prüfung B: Stichprobe über die Nummern | **alle** Nummern jeder Datei, nicht eine Stichprobe | 0,4 s für 36 Dateien — es gibt keinen Grund, zu sparen |
+| — | Kettenzeilen mit *„alter Wortlaut"* / *„Vermerk"* in der Nummernzelle zählen bei der Doppelbelegung nicht; Journal-Blockbuchstaben werden mitgezählt | Regel 4 des Dokumentationsstandards lässt die abgelöste Fassung stehen; fünf Kettennummern stehen deshalb legitim doppelt (Schritt 1) |
+| Wegwerf-Verzeichnis „nicht unter `docs/`" | `tempfile.mkdtemp` → `$TMPDIR` (`/var/folders/…`), am Ende entfernt, der letzte Test prüft beides | — |
+
+### Nachweis 2 — die sieben Mutationsfälle, einzeln (`docs/belege/TB-64/schritt3_selbsttest.txt`)
+
+| Fall | Gegenstand | erwartet | gemessen |
+|---|---|---|---|
+| **1** | Nachtrag (in `_eingearbeitet/`) mit einer Nummer, die im Ziel steht | kein Befund | **rc 0**, keine `BEFUND:`-Zeile, Datei als `OK` geführt |
+| **2** | offener Nachtrag (3 Tage alt) mit einer Nummer, die nicht im Ziel steht | Befund, rc 1 | **rc 1**, `BEFUND: 1 Nachtrag … (B-09-01y)`, Dateizeile `Alter 3.0 d … nicht angekommen 1`, Nummer als `FEHLT`, Rat *„einarbeiten"* |
+| **3** | Nummer im Ziel nur als Vergabevermerk (`als `K9z` vorgeschlagen`, an einer Zeile mit anderem Kern) | kein Befund | **rc 0**, kein `FEHLT`. **Gegenprobe:** derselbe Vermerk gilt **nicht** für einen anderen Nachtrag `(w)` → rc 1, *falsch verschoben* |
+| **4** | Zielzeile **mit** Vergabevermerk in der Nummernzelle (`| **K9b** *(…)* |`) | kein Befund | **rc 0**; Mutationsprobe im Test: das Muster mit `\|` am Ende übersieht die Zeile, das Wächter-Muster nicht; `K9b` ist als **Zielzeile** gefunden, nicht erst über den Kern |
+| **5** | zwei gleiche Nummern im Ziel (`K9a` zweimal) | Befund „Doppelbelegung" | **rc 1**, `BEFUND: Doppelbelegung K K9a 2x`; Mutationsprobe: die Liste trägt `K9a` zweimal, die Menge einmal. Dazu: Kette mit *„alter Wortlaut"* ist keine Doppelbelegung, zwei zählende Ketten `0,90` sind eine, doppelter Journalblock `AB` wird gemeldet |
+| **6** | Journal-Nachtrag ohne Quellenvermerk im Journal | Befund | **rc 1** — in `_eingearbeitet/` als *falsch verschoben* (`Quellenzeile FEHLT im Journal`), offen über der Frist als `BEFUND … (J-09-01c)` |
+| **7** | Datei in `_eingearbeitet/`, deren Nummern nicht im Ziel stehen (Block `2q`, `K9c`; `K9a` steht) | Befund | **rc 1**, `1x FALSCH VERSCHOBEN`, `BEFUND: … falsch verschoben (B-09-01y)`, `Nummern 3, nicht angekommen 2`, `Block 2q FEHLT` |
+| *8* | ⭐ Nummer im Ziel, aber mit **fremdem Inhalt** — der Fall `(m)` | Befund | **rc 1**, Beleg *„Nummer im Ziel 1x vergeben, aber mit anderem Inhalt"*; ein Abschlussvermerk, der `(m)` und `` `K9a` `` nennt, heilt es (rc 0); derselbe Vermerk für `(y)` heilt `(m)` **nicht** (rc 1) |
+| *9* | offener Nachtrag 0,2 Tage alt | kein Befund | **rc 0** (`1x offen in der Frist`); mit `--frist-tage 0.1` rc 1; angekommen, aber 4 Tage liegengelassen → rc 1 mit Rat *„verschieben"*; nicht prüfbar → `[?]`, `1x NICHT PRUEFBAR`; `BEFUND:` und `Zusammenfassung:` nennen kein Alter |
+| *10* | Quellenzeile nennt `nachtraege/…`, Datei liegt unter `_eingearbeitet/` | gefunden | **rc 0**, beide über den Dateinamen gefunden; `*Messprotokoll:` ist keine Quelle; Backlog-Nachtrag ohne Nummer in `_eingearbeitet/` → nicht prüfbar, kein Befund |
+| *11* | echter Unterprozess | rc erreicht die Shell | **rc 1** mit `BEFUND:` auf stdout, stderr leer, Marken vorhanden; ohne Befund **rc 0** und keine `BEFUND:`-Zeile |
+| *12* | Ziel fehlt | Werkzeugfehler, nicht Befund | **rc 2**, Meldung auf stderr — der Wrapper meldet das als `[ABGESTUERZT]`, nicht als Befund |
+
+**Alle sieben Fälle des Auftrags fallen wie erwartet aus** — 62 von 62
+Prüfungen grün auf `trading-env/bin/python3` und auf `/usr/bin/python3`.
+
+**Gegenprobe, dass der Test auch rot werden kann** (Protokoll Abschnitt 7,
+Punkt 12; `docs/belege/TB-64/mutationen.py` → `schritt3_mutationen.txt`, je
+Mutation in einer Kopie unter `$TMPDIR`):
+
+| Mutation am Wächter | Selbsttest |
+|---|---|
+| A — schliessender Balken im K-Muster (`\*\* \|`) | **rot, 3 Prüfungen** (Fall 4) |
+| B — `sorted(set(liste))` in der Doppelbelegung (= `sort -u`) | **rot, 3** (Fall 5: rc 0 statt 1) |
+| C — Kernprüfung abgeschaltet, die Nummer genügt | **rot, 4** (Fall 8: der `(m)`-Fall wird grün gemeldet) |
+| D — Vergabevermerk ohne Bindung an den Nachtrag | **rot, 3** (Fall 3 Gegenprobe, Fall 8) |
+
+### Nachweis 3 — der Lauf gegen den echten Bestand (`docs/belege/TB-64/schritt3_lauf_echt.txt`)
+
+Nach Schritt 2, Stand `b220c8f`, 21.09.2026 ≈ 07:45, `trading-env/bin/python3`, **0,4 s**:
+
+| | Datei | Alter | Stand |
+|---|---|---|---|
+| **offen, über der Frist** | `BACKLOG_NACHTRAG_2026-09-19m.md` | 1,5 d | 8 Nummern, 0 nicht angekommen — Rat: verschieben (**wartet auf Schritt 5b**) |
+| offen, in der Frist | `JOURNAL_NACHTRAG_2026-09-20g.md` … `20l.md` (6) | 0,4–0,7 d | Quellenzeile fehlt — die nächste Bringschuld an das Journal, nicht dieser Auftrag |
+| **nicht prüfbar (A2)** | `(19q)`, `(19q_r_berichtigung)`, `(19r)`, `(19u)` in `_eingearbeitet/` | 1,4–1,5 d | keine Nummer der drei Formen; von Hand geprüft in Schritt 1 |
+| eingearbeitet, geprüft | 14 Backlog- und 11 Journal-Nachträge in `_eingearbeitet/` | | **0 falsch verschoben** |
+| Doppelbelegung | — | | **keine** |
+
+```
+Zusammenfassung: 1x OFFEN UEBER DER FRIST, 6x offen in der Frist, 4x NICHT PRUEFBAR, 0x FALSCH VERSCHOBEN, 0x DOPPELBELEGUNG
+BEFUND: 1 Nachtrag/Nachtraege ueber der Frist offen (B-09-19m).
+```
+
+Rückgabewert **1** — der Wächter meldet heute genau das, was der Auftrag
+offen lässt: `(m)`. Über den Wrapper geprüft (`waechter_melden.py nachtraege
+--trockenlauf`, **nichts gesendet, nichts vermerkt**): Ausgang *befund*,
+Entscheidung *MELDEN (neu)*, Nachricht `[BEFUND] Nachtraege an Backlog und
+Journal - neu` mit genau diesen zwei Zeilen und *„Nachsehen: tail -n 60
+~/trading-bot/logs/system/nachtraege.log"*. `notifications/test_waechter_melden.py`:
+**153 von 153** (vorher 152 von 153 — die fehlende Prüfung war die Cron-Zeile
+im README). `waechter_melden.py --status` führt `nachtraege` als sechsten
+Wächter, *still*.
+
+⚠️ `(m)` erscheint schon jetzt als *„alles angekommen"*, weil `K4b`/`K4g`
+seine Nummern mit dem Kürzel `(m)` und „vergeben" nennen — ein Vermerk, der
+einen Abschluss dokumentiert, ist für den Wächter ein Abschluss. Verschoben
+wird `(m)` trotzdem erst nach Schritt 5b, wie der Auftrag es verlangt.

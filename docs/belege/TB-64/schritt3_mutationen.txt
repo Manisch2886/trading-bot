@@ -1,0 +1,26 @@
+Interpreter: /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+
+Mutation A  schliessender Balken im K-Muster
+  rc=1  59 bestanden, 3 fehlgeschlagen, 0.2s
+  [FEHLER] Mutationsprobe: das Muster mit `\|` am Ende uebersieht K9b
+  [FEHLER] das Waechter-Muster endet nicht mit einem Balken   ^\| \*\*(K\d[a-z])\*\* \|
+  [FEHLER] K9b ist als ZIELZEILE gefunden, nicht erst ueber den Kern anderswo
+
+Mutation B  sort -u (set) in der Doppelbelegung
+  rc=1  59 bestanden, 3 fehlgeschlagen, 0.2s
+  [FEHLER] rc 1   rc=0
+  [FEHLER] BEFUND nennt Doppelbelegung K K9a 2x
+  [FEHLER] Abschnitt C zaehlt 1
+
+Mutation C  Kernpruefung abgeschaltet - die Nummer genuegt
+  rc=1  58 bestanden, 4 fehlgeschlagen, 0.2s
+  [FEHLER] rc 1 - die Nummer steht im Ziel, der Inhalt nicht   rc=0
+  [FEHLER] Beleg nennt den fremden Inhalt
+  [FEHLER] Mutationsprobe: ohne Kern meldet die Nummernpruefung Zeile
+  [FEHLER] Vermerk fuer (y) heilt (m) nicht: rc 1   rc=0
+
+Mutation D  Vergabevermerk ohne Bindung an den Nachtrag
+  rc=1  59 bestanden, 3 fehlgeschlagen, 0.2s
+  [FEHLER] Gegenprobe: Vermerk fuer (x) gilt nicht fuer (w) -> rc 1   rc=0
+  [FEHLER] Gegenprobe: (w) falsch verschoben
+  [FEHLER] Vermerk fuer (y) heilt (m) nicht: rc 1   rc=0
