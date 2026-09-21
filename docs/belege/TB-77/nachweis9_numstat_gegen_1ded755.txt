@@ -1,0 +1,9 @@
+330	0	docs/VORREGISTRIERUNG_neuselektion.md
+3	4	docs/auftraege/AKTUELLER_AUFTRAG.md
+183	0	docs/auftraege/MAC_TB-77_horizont_je_bot.md
+143	0	docs/belege/TB-77/schritt1_blocker_nachgemessen.md
+1	0	docs/belege/TB-77/schritt2_numstat.txt
+2	0	docs/belege/TB-77/schritt3_numstat.txt
+1	0	docs/projektfuehrung/BACKLOG.md
+248	0	docs/projektfuehrung/FABLE_UEBERGABE_2026-09-21_neuer_chat.md
+63	0	docs/projektfuehrung/JOURNAL.md

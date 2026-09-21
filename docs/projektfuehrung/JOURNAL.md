@@ -7718,6 +7718,69 @@ wirkt, zeigt der nächste Tag.
 
 ---
 
+## CF — TB-77: der Datenhorizont wird eine Zahl je Bot — Registerabschnitt 26 mit Platzhalter, und der Grenzfall als Kette (21.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-77_horizont_je_bot.md`*
+
+**Quelle:** Mac-Sitzung **TB-77 Horizont je Bot**, 21.09.2026, Ausgang
+`1ded755`. Rechnet nicht, kein Bot-Code. Commits `9250570`/`2e9cdf9`
+(Schritt 0 und ein Betreiber-Posten während der Sitzung), `3bc62f4`
+(Schritt 1, Blocker nachgemessen), `729443c` (Schritt 2, Abschnitt 26.1–26.6),
+`fbde499` (Schritt 3, 26.7 und die 24.6-Nachtragszeile) und der Abgabe-Commit.
+Belege `docs/belege/TB-77/`. Anlass: Fables Entscheidung vom 21.09. — der
+Datenhorizont eines Bots ist ein absolutes Datum je Bot, nicht je Symbol,
+weil ein Fenster je Symbol Einstiege aus Jahren vor der ersten Falte durch
+den Kapitalpfad laufen lässt, die der Lese-Audit (5e) nicht sieht.
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| `asof` als Wert | **nirgends** — alle `.py` (8 Zeilen, alle `merge_asof`), alle `.json` (1 Bezeichner), Register (3 Zeilen, Formel und Herkunft in **17.1**), `ergebnisse/` 0, Snapshot-Manifest 15 Schlüssel ohne `asof`, `registerdaten.py` 0, `docs/` 11 Dateien ohne Wert. Der Schnitt des Auftrags bleibt |
+| `auswertung.py` eingefroren | Register Z. 29–31, 15.8 Nr. 3 (TB-30b), 24.5, 25.5, Sperrliste 10 Nr. 5, Docstring Z. 3 |
+| Festlegungsnummern | `registerdaten.FESTLEGUNGEN`: 10 DSR-Basis · **11** Bleibt-Geht über Abbruchkriterien · **12** kein einziger Bot — Fables 10/11 sind falsch, der Auftrag hatte recht |
+| 4a-Fassung vom 20.09. im Register | `Horizontbeginn` **0**, `4a, Präzisierung` **0** — nie Registertext; keine ERSETZT-Stelle, Marke „PRÄZISIERT" an 25.3 (i) |
+| Fundstellen je Symbol / je Markt | `multi_symbol_optimise.py` 54/52/46/49 und 93/93/81/88 in der Ladeschleife; `fensteranker` 271–278 — treffen |
+| Ergebnisdateien der Aktien-Bots | je ein Commit, je mit Je-Symbol-Optimierer (`0f6491b`/`f56c6d2`/`88b9050`/`b603861`) — 26.5 |
+| Snapshot und Krypto 2018–2020 | BTC/ETH 1d ab 2017-08-17, 6 von 24 Krypto-1d-Dateien vor 2019 — Fables Berichtigung zu 24.6 trifft, als Nachtragszeile eingetragen |
+| Register `numstat` | **330 / 0** gegen `1ded755`; Sperrlisten-Hashes `a163c498…`/`0e54ac5c…` unverändert; 0 Dateien ausserhalb `docs/` |
+
+### Was der Auftrag falsch hatte
+
+Die Fundstelle *„16.3"* für den `asof`-Satz — er steht in **17.1**, 16.3 (a) ist
+die ersetzte Fassung ohne das Wort. Und er zitiert
+`FABLE_ANTWORT_2026-09-21a_…` als Quelle — **die Datei liegt nicht im Repo**;
+Träger des Wortlauts ist Abschnitt 0 des Auftrags, und so steht es in 26.
+Das von Fable genannte `FABLE_ANTWORT_2026-09-20a_grenzfall` existiert
+ebenfalls nicht und ist nicht zitiert.
+
+### Was der Weg kostet, benannt
+
+Ein Registertext, der auf einen Wert zeigt, den es nicht gibt: 26.3 trägt
+vier Platzhalter, und die Faltenliste 21.4 ist in Bedingung (i) vorläufig,
+bis `asof` gesetzt ist. Die vier Optimierer rechnen weiter je Symbol, bis
+TB-30b sie umstellt; die Wache dagegen kann erst mit ihnen kommen, weil das
+Skript, in das sie gehört, eingefroren ist. Beides steht in 26.6 als Schuld.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Registertext darf auf einen fehlenden Wert zeigen — wenn er sagt, dass er fehlt.** Sichtbarer Platzhalter mit Grund, nie eine Zahl aus der nächstbesten Quelle (hier lag 2016-09-01 aus der Datenuhr bereit) |
+| ⭐ | **Ein Aktenzeichen aus einem Auftrag wird mit `grep -n` an die Zeile gebunden und die Überschrift darüber gelesen** — ersetzte Abschnitte tragen den Vermerk, aber nicht mehr den Satz |
+| ⭐ | **Wird ein Dokument zitiert, misst die Sitzung zuerst, ob es liegt** (`find`); liegt es nicht, nennt der Registertext den Träger, aus dem er wirklich stammt |
+| ⭐ | **Ein Fenster ist ein Lesezugriff** — der Lese-Audit sieht Dateien, nicht Zeiträume; ein Zeitraum je Symbol ist eine Lücke, die kein Manifest zeigt |
+| | Ein Grenzfall, der „nirgends steht", steht oft an vier Stellen — die Kette benennen, nicht neu regeln |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen"):** `asof` setzen (Fable, Frage
+(1)); Fables Antwort vom 21.09. ablegen (steuernder Chat); TB-30b (vier
+Optimierer, Wache samt Mutationsprobe); `RECENT_YEARS_ONLY` als registrierte
+Grösse (Entscheidungsvorlage); Projektablage (`K4e`).
+
+*Geschrieben 21.09.2026 von der Mac-Sitzung TB-77 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
