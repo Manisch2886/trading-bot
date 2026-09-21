@@ -1,0 +1,3 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+?? docs/auftraege/MAC_TB-76_waechter_ziele.md
+?? docs/belege/TB-76/
