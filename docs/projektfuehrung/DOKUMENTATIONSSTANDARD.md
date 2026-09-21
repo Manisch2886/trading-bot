@@ -203,6 +203,29 @@ ausdrücklich als **ersatzlos** benannt.
 
 ---
 
+## 10. Jeder Nachtrag hinterlässt eine prüfbare Spur
+
+**Eingeführt 21.09.2026 (TB-64), nach dem Fall `(m)`:** ein Backlog-Nachtrag
+vom 19.09. wurde nie eingearbeitet, seine sechs Nummern wurden an andere
+Inhalte vergeben, und aufgefallen ist es zwei Tage später durch Zufall.
+*Die einzige Wache war, dass jemand daran denkt — das ist keine.*
+
+| | Regel | Form |
+|---|---|---|
+| ⭐ **Journal** | **Jeder Journalblock, der aus einem Nachtrag entstanden ist, nennt seine Quelldatei** in einer eigenen Zeile direkt unter der Kopfzeile | `*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_<datum><buchstabe>.md`*` — der Pfad nennt den Hauptordner, auch wenn die Datei später unter `_eingearbeitet/` liegt; die Kennung ist der **Dateiname**. Eine zweite Herkunft (etwa ein Messprotokoll aus einem Backlog-Nachtrag) heisst **anders**: `*Messprotokoll: …*` |
+| ⭐ **Backlog** | Eine Nummer, die bei der Einarbeitung anders vergeben wird als im Nachtrag vorgeschlagen, trägt den **Vergabevermerk, der den Nachtrag nennt** (Regel 5) | `| **K2p** *(im Nachtrag (n) als `K2r` vorgeschlagen; … vergeben als `K2p`, gemessen)* |` — bzw. für einen Block: *„Nummer `2t` im Nachtrag (n) vorgeschlagen …"* |
+| ⭐ **Ort** | **Ein eingearbeiteter Nachtrag wird nach `docs/projektfuehrung/nachtraege/_eingearbeitet/` verschoben.** Was im Hauptordner liegt, ist offen | `git mv`, kein Byte geändert — **erst, wenn jede seiner Nummern bzw. seine Quellenzeile im Ziel gemessen ist** |
+| ⚠️ **Wache** | `system/nachtragswaechter.py` prüft täglich beides: was länger als einen Tag offen liegt, und ob von den verschobenen wirklich alles angekommen ist — **über Nummer *und* Textkern**, nicht über die Nummer allein | Meldung wie bei den vier Cron-Wächtern (`notifications/waechter_melden.py nachtraege`); `system/README_NACHTRAGSWAECHTER.md` |
+
+⚠️ **Warum die Quellenzeile den Dateinamen und nicht die TB-Nummer trägt:** Ein
+Nachtrag ohne TB-Nummer im Titel (`(f)` vom 19.09.) war über die Nummer nicht
+prüfbar; über den Dateinamen ist jeder prüfbar. ⚠️ **Und warum der Wächter den
+Textkern mitprüft:** bei `(m)` standen alle sechs Nummern im Backlog — mit
+fremdem Inhalt. Eine Prüfung, die nur die Nummer sieht, hätte genau den Fall
+grün gemeldet, für den sie gebaut wurde.
+
+---
+
 ## In einfacher Sprache
 
 **Warum dieses Dokument existiert:** Du hast vor dem Umzug gefragt, ob im neuen

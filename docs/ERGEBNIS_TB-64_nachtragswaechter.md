@@ -252,3 +252,27 @@ Wächter, *still*.
 seine Nummern mit dem Kürzel `(m)` und „vergeben" nennen — ein Vermerk, der
 einen Abschluss dokumentiert, ist für den Wächter ein Abschluss. Verschoben
 wird `(m)` trotzdem erst nach Schritt 5b, wie der Auftrag es verlangt.
+
+---
+
+## Schritt 4 — der Quellenvermerk
+
+**`docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md`, neuer Abschnitt 10** *„Jeder
+Nachtrag hinterlässt eine prüfbare Spur"* (`numstat` **23 / 0**, eingefügt vor
+*„In einfacher Sprache"*): die Form der Quellenzeile wörtlich, der
+Vergabevermerk mit Nachtragskürzel (Verweis auf Regel 5), der Ort
+`_eingearbeitet/` als Zustand, der Wächter als Wache — mit den zwei
+Begründungen (Dateiname statt TB-Nummer wegen `(f)`; Textkern wegen `(m)`).
+Regel 8 (die Prüfliste) bleibt bei acht Fragen; nichts Bestehendes wurde
+umgeschrieben.
+
+**Nachtragen im Journal:** gemessen mit `grep -c "^\*Quelle:.*<Dateiname>"`
+über alle 11 Dateien unter `_eingearbeitet/` — **jede hat mindestens eine
+Quellenzeile** (14 Zeilen auf 60 Blöcke; `(e)` 2, `(f)` 3). `(c)`, `(d)`,
+`(e)`, die der Auftrag als „ohne Vermerk" nennt, haben ihn seit TB-67
+(`08cf90a`). Blöcke vor `BG` stammen aus keiner Nachtragsdatei (die
+Nachtragsdateien beginnen am 18./19.09.2026) — **nichts nachzutragen, nichts
+zu raten, 0 nicht zuordenbar.** Die sechs offenen `(20g)`–`(20l)` haben noch
+keinen Block; ihre Quellenzeile setzt die Sitzung, die sie einarbeitet
+(jeder der sechs Nachträge nennt sie wörtlich in seinem Kopf).
+`JOURNAL.md` **unberührt** (`git diff --numstat` nennt es nicht).
