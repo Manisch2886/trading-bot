@@ -20,7 +20,10 @@ DIE REGELN (eingefroren)
    (i) es liegt im Datenhorizont des Bots und am 1. Januar ist der
    Indikator-Vorlauf erfuellt - JE BOT aus der Datenlage gerechnet
    (`erste_falte_4a()`, mit der Regel aus `research/faltenplan_neun/`),
-   nicht aus einer Konstante; UND (ii) der Loader des Bots macht in ihm an
+   nicht aus einer Konstante; der Datenhorizont ist seit TB-80
+   (21.09.2026) das absolute Datum je Bot aus Register 26.2 / 28.4
+   (`HORIZONTBEGINN`, unten), nicht mehr die Datenuhr; UND (ii) der
+   Loader des Bots macht in ihm an
    mindestens einem Handelstag mindestens ein Symbol handelbar - gemessen
    im Trockenlauf des Laufcodes (Registertext 3b (a), Lesart H;
    `research/faltenplan_neun/erste_falte_trockenlauf.py`), nicht
@@ -158,25 +161,78 @@ def faltenlaenge_jahre(bot: str) -> tuple:
                        f"{rd.ZWEIJAHRES_SCHWELLE_TRADES}")
 
 
+# ==============================================================================
+# Der Horizontbeginn - Bedingung (i), "im registrierten Datenhorizont des Bots"
+# ==============================================================================
+# Register 26.2 (TB-77, 21.09.2026), Registertext 4a, Praezisierung: "Der
+# Datenhorizont eines Bots ist ein absolutes Datum je Bot: Horizontbeginn =
+# asof (5a) minus RECENT_YEARS_ONLY des Bots; Bots ohne diese Konstante haben
+# keinen Horizont (Krypto). [...] Es gilt fuer alle Symbole des Bots gleich."
+# Der Wert steht in Register 28.4 (TB-78, gueltige Fassung der Tatsachennotiz
+# zu 4d; asof = 2026-09-19 nach 28.3): elliott_wave_stocks, rsi2_mean_reversion,
+# turtle_soup_stocks, volatility_breakout -> 2016-09-19; die fuenf Krypto-Bots
+# -> kein Horizont.
+#
+# Er steht hier so, wie 28.4 ihn fuehrt - als absolutes Datum. NICHT als
+# `asof - RECENT_YEARS_ONLY` gerechnet und NICHT aus
+# strategies/*/multi_symbol_optimise.py gelesen: die vier Dateien stehen auf
+# der Sperrliste, und eine Kopie ihrer Konstante waere der Fehler aus T56b.6
+# (Konstantenkopien). Eine Quelle, keine Kopie.
+#
+# Bis TB-80 (21.09.2026) nahm `erste_falte_4a()` hier
+# `fn.fensteranker(markt)`: zehn Jahre vor dem SPAETESTEN letzten Kurstag des
+# Marktes - die Datenuhr, 2016-09-01 am Stand vom 21.09.2026 (Messung
+# docs/belege/TB-80/schritt0_ausgangsstand.txt). Das ist genau der Bezug, den
+# 26.2 abloest (28.4, "Abgegrenzt, damit es niemand verwechselt").
+# `fensteranker` bleibt in faltenplan_neun bestehen; andere Stellen benutzen
+# ihn (embargo_neun.py, faltenschranke_messung.py, plan_fuer_bot).
+#
+# ⚠️ Zwischenstand: ein benanntes Literal mit Registerfundstelle. Wo der
+# Horizontbeginn dauerhaft lebt (registerdaten.py als registrierte Groesse,
+# Register 26.6 letzte Zeilen / 28.7; aus dem Registertext gelesen; Literal
+# mit Test gegen das Register), ist Entscheidungsvorlage in Register 32.5.
+# research/faltenplan_neun/test_horizontbeginn.py liest den Wert aus dem
+# Registertext 28.4 und vergleicht ihn mit diesem Literal.
+HORIZONTBEGINN = {"aktien": date(2016, 9, 19), "krypto": None}
+
+
+def horizontbeginn(bot: str):
+    """Der Horizontbeginn des Bots (Register 26.2 / 28.4): ein absolutes
+    Datum je Bot; None fuer Bots ohne Horizont (Krypto)."""
+    return HORIZONTBEGINN[fn.BOTS[bot]["markt"]]
+
+
+def erste_falte_4a_messung(bot: str) -> dict:
+    """Bedingung (i) mit ihrer Messung: {horizontbeginn, warm_ab_fruehestes,
+    erste_falte_4a} - damit im Plan steht, gegen welches Datum (i) gerechnet
+    wurde und ab welchem Tag das erste Symbol warm ist, nicht nur das Jahr."""
+    horizont = horizontbeginn(bot)
+    beginn = fn.symbolbeginn(bot, horizont)
+    jahr = fn._ungebremstes_faltenjahr(beginn)
+    if jahr is None:
+        raise ValueError(f"{bot}: kein Symbol mit Kursdaten - keine erste Falte")
+    warm = min(w for _, w in beginn.values() if w is not None)
+    return {"horizontbeginn": horizont.isoformat() if horizont else None,
+            "warm_ab_fruehestes": warm.isoformat(),
+            "erste_falte_4a": jahr}
+
+
 def erste_falte_4a(bot: str) -> int:
     """Bedingung (i): das erste Kalenderjahr, in dem am 1. Januar Universum
     und Indikator-Vorlauf vorliegen - Registertext 4a, je Bot aus der
     Datenlage. Bis TB-72 hiess diese Funktion `erste_falte`.
 
     Gerechnet mit der Regel aus `faltenplan_neun` (Kursdaten am 1. Januar,
-    Zehnjahresfenster der Aktien-Bots, Indikator-Vorlauf in Balken). Bis zur
-    Registerberichtigung TB-56b traegt `faltenplan_neun.erstes_faltenjahr`
-    selbst noch die Schranke `FRUEHESTE_FALTE`; deshalb wird hier die
-    ungebremste Fassung derselben Regel aufgerufen. Sobald TB-56b die
-    Schranke dort entfernt hat, ist `erstes_faltenjahr` diese Funktion, und
-    der Aufruf wechselt dorthin.
+    Indikator-Vorlauf in Balken) ab dem Horizontbeginn des Bots
+    (`HORIZONTBEGINN`, Register 26.2 / 28.4 - seit TB-80; bis dahin ab der
+    Datenuhr `fn.fensteranker`, dem Zehnjahresfenster vor dem letzten
+    Kurstag). Bis zur Registerberichtigung TB-56b traegt
+    `faltenplan_neun.erstes_faltenjahr` selbst noch die Schranke
+    `FRUEHESTE_FALTE`; deshalb wird hier die ungebremste Fassung derselben
+    Regel aufgerufen. Sobald TB-56b die Schranke dort entfernt hat, ist
+    `erstes_faltenjahr` diese Funktion, und der Aufruf wechselt dorthin.
     """
-    eig = fn.BOTS[bot]
-    beginn = fn.symbolbeginn(bot, fn.fensteranker(eig["markt"]))
-    jahr = fn._ungebremstes_faltenjahr(beginn)
-    if jahr is None:
-        raise ValueError(f"{bot}: kein Symbol mit Kursdaten - keine erste Falte")
-    return jahr
+    return erste_falte_4a_messung(bot)["erste_falte_4a"]
 
 
 def erste_falte(bot: str, laenge: int = None, schnitt: date = None) -> tuple:
@@ -195,13 +251,16 @@ def erste_falte(bot: str, laenge: int = None, schnitt: date = None) -> tuple:
         laenge = faltenlaenge_jahre(bot)[0]
     if schnitt is None:
         schnitt = date.fromisoformat(rd.GO_LIVE_SCHNITT)
-    erste_4a = erste_falte_4a(bot)
+    m4a = erste_falte_4a_messung(bot)
+    erste_4a = m4a["erste_falte_4a"]
     kandidaten = _jahresfalten(erste_4a, schnitt, laenge)
     jahr, messung = eft.erste_falte_nach_3b(bot, kandidaten)
     if jahr is None:
         raise ValueError(f"{bot}: der Loader macht in keiner Falte ab {erste_4a} "
                          f"ein Symbol handelbar - keine erste Falte")
     return jahr, {"erste_falte_4a": erste_4a,
+                  "horizontbeginn": m4a["horizontbeginn"],
+                  "erste_falte_4a_warm_ab": m4a["warm_ab_fruehestes"],
                   "H_je_gepruefter_falte": [{"falte": f["name"], "H": f["H"]}
                                             for f in messung]}
 
@@ -259,8 +318,9 @@ def _plan(bot: str, mess: dict, markt: str) -> dict:
         "erste_falte": erste,
         "erste_falte_quelle": ("Registertext 4a in der Neufassung als Konjunktion "
                                "(TB-72, 20.09.2026): erstes Kalenderjahr, das (i) im "
-                               "Datenhorizont liegt und am 1. Januar den "
-                               "Indikator-Vorlauf erfuellt (Datenlage, "
+                               "Datenhorizont liegt - dem absoluten Datum je Bot aus "
+                               "Register 26.2 / 28.4 (TB-80, 21.09.2026) - und am "
+                               "1. Januar den Indikator-Vorlauf erfuellt (Datenlage, "
                                "research/faltenplan_neun; keine Konstante) UND (ii) in "
                                "dem der Loader des Bots mindestens ein Symbol "
                                "handelbar macht - Trockenlauf des Laufcodes, "
@@ -268,6 +328,8 @@ def _plan(bot: str, mess: dict, markt: str) -> dict:
                                "Regel, der Trockenlauf ihre operative Form, der Plan "
                                "eine Ableitung daraus"),
         "erste_falte_4a": herkunft["erste_falte_4a"],
+        "horizontbeginn": herkunft["horizontbeginn"],
+        "erste_falte_4a_warm_ab": herkunft["erste_falte_4a_warm_ab"],
         "erste_falte_trockenlauf_H": herkunft["H_je_gepruefter_falte"],
         "falten": falten,
         "selektionsfalten": [f["name"] for f in falten if f["rolle"] == "selektion"],
