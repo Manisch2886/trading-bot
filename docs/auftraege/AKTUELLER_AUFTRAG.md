@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-79** | `docs/auftraege/MAC_TB-79_register_31.md` | ⭐ **Registerabschnitt 31** — Fable nimmt sein eigenes 28.2 zurück: das Manifest bekommt kein Feld `asof`, der Wert heisst dort `zeitpunkt_utc`. Dazu die Präzisierung zu 5a/17.1 (Ersteintrag), zwei eigene Messungen (`datenende`, Manifest-Schlüssel) und eine Zahlberichtigung zu Abschnitt 26. ⛔ **Kein Code, keine Sperrlisten-Datei, Manifest byteweise unberührt** |
+| **TB-80** | `docs/auftraege/MAC_TB-80_bedingung_i_auf_asof.md` | ⭐⭐ **Bedingung (i) rechnet gegen die Datenuhr, das Register verlangt das absolute Datum** — Umstellung auf den Horizontbeginn aus Register 28.4 (`2016-09-19`), Wirkung gemessen und berichtet, Mutationsprobe in beide Richtungen, Registerabschnitt 32. ⭐ **Betreiberfreigabe fuer `research/vorregistrierung/faltenplan.py` liegt vor** (21.09.2026, 21:47). ⛔ **Kein Bot-Code, keine Sperrlisten-Datei, neuer Plan daneben** |
 
 *Gesetzt 21.09.2026 (zuvor TB-77, erledigt mit `83e3a85`, 21.09.2026; davor
 TB-69 `1ded755`, TB-76 `3c25d94`, TB-63 `437428d`, TB-75 `c96c208`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
