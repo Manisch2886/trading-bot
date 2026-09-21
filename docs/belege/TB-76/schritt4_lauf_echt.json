@@ -1,0 +1,1043 @@
+{
+  "frist_tage": 1.0,
+  "umfang": {
+    "ziel": {
+      "BACKLOG.md": 600,
+      "BACKLOG_ARCHIV.md": 566,
+      "BACKLOG_EPICS.md": 961
+    },
+    "journal": 7948,
+    "quellenzeilen": 23
+  },
+  "offen": [],
+  "eingearbeitet": [
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-18e.md",
+      "alter_tage": 2.136140920139021,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Kette",
+          "nummer": "0,85a",
+          "zustand": "Zeile",
+          "beleg": "2 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,85b",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,85c",
+          "zustand": "Zeile",
+          "beleg": "2 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Block",
+          "nummer": "2k",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K1r",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K1s",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K1t",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-18f.md",
+      "alter_tage": 2.1361350653927635,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "K",
+          "nummer": "K1u",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K1v",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,85a",
+          "zustand": "Zeile",
+          "beleg": "2 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-18g.md",
+      "alter_tage": 2.1361291881623092,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2m",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,86",
+          "zustand": "Zeile",
+          "beleg": "3 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K1w",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19h.md",
+      "alter_tage": 2.1361244936425376,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2n",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,86",
+          "zustand": "Zeile",
+          "beleg": "3 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,87",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **0,88** *(im Nachtrag (h) als 0,87 vergeben; 0,87 war bereits belegt — Betrei"
+        },
+        {
+          "art": "K",
+          "nummer": "K1x",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K1y",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K1z",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19i.md",
+      "alter_tage": 2.136119799150361,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2o",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2a",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2b",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19j.md",
+      "alter_tage": 2.13611501722976,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2p",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2c",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2d",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2e",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,86",
+          "zustand": "Zeile",
+          "beleg": "3 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,86a",
+          "zustand": "Zeile",
+          "beleg": "2 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19k.md",
+      "alter_tage": 2.1361090315188522,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2q",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2f",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2g",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2h",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,86a",
+          "zustand": "Zeile",
+          "beleg": "2 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "Kette",
+          "nummer": "0,86b",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19l.md",
+      "alter_tage": 2.1066992979910637,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2r",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2i",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2j",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2k",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19m.md",
+      "alter_tage": 1.710371640978588,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2s",
+          "zustand": "Vermerk",
+          "beleg": "| **K4g** | ⭐ **NACHTRAG (m) NACHTRÄGLICH GEPRÜFT UND ABGESCHLOSSEN (20.09.2026,"
+        },
+        {
+          "art": "Block",
+          "nummer": "2s",
+          "zustand": "Vermerk",
+          "beleg": "| **K4g** | ⭐ **NACHTRAG (m) NACHTRÄGLICH GEPRÜFT UND ABGESCHLOSSEN (20.09.2026,"
+        },
+        {
+          "art": "K",
+          "nummer": "K2l",
+          "zustand": "Vermerk",
+          "beleg": "| **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs N"
+        },
+        {
+          "art": "K",
+          "nummer": "K2m",
+          "zustand": "Vermerk",
+          "beleg": "| **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs N"
+        },
+        {
+          "art": "K",
+          "nummer": "K2n",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs N"
+        },
+        {
+          "art": "K",
+          "nummer": "K2o",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs N"
+        },
+        {
+          "art": "K",
+          "nummer": "K2p",
+          "zustand": "Vermerk",
+          "beleg": "| **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs N"
+        },
+        {
+          "art": "K",
+          "nummer": "K2q",
+          "zustand": "Vermerk",
+          "beleg": "| **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs N"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19n.md",
+      "alter_tage": 1.6327974081867271,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2t",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2r",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2p** *(im Nachtrag (n) als `K2r` vorgeschlagen; `K2r` war zum Zeitpunkt der"
+        },
+        {
+          "art": "K",
+          "nummer": "K2s",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2q** *(im Nachtrag (n) als `K2s` vorgeschlagen; `K2s` war zum Zeitpunkt der"
+        },
+        {
+          "art": "K",
+          "nummer": "K2t",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2r** *(im Nachtrag (n) als `K2t` vorgeschlagen; `K2t` war zum Zeitpunkt der"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19o.md",
+      "alter_tage": 1.6327978481159167,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2u",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2u",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2s** *(im Nachtrag (o) als `K2u` vorgeschlagen; `K2u` war zum Zeitpunkt der"
+        },
+        {
+          "art": "K",
+          "nummer": "K2v",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2t** *(im Nachtrag (o) als `K2v` vorgeschlagen; `K2v` war zum Zeitpunkt der"
+        },
+        {
+          "art": "K",
+          "nummer": "K2w",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2u** *(im Nachtrag (o) als `K2w` vorgeschlagen; `K2w` war zum Zeitpunkt der"
+        },
+        {
+          "art": "K",
+          "nummer": "K2x",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2v** *(im Nachtrag (o) als `K2x` vorgeschlagen; `K2x` war zum Zeitpunkt der"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19p.md",
+      "alter_tage": 1.6327984214270557,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "Block",
+          "nummer": "2v",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2y",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2w** *(im Nachtrag (p) als `K2y` vorgeschlagen; `K2y` war zum Zeitpunkt der"
+        },
+        {
+          "art": "K",
+          "nummer": "K2z",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2x** *(im Nachtrag (p) als `K2z` vorgeschlagen; `K2z` war zum Zeitpunkt der"
+        },
+        {
+          "art": "K",
+          "nummer": "K3a",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2y** *(im Nachtrag (p) als `K3a` vorgeschlagen; `K3a` war zum Zeitpunkt der"
+        },
+        {
+          "art": "K",
+          "nummer": "K3b",
+          "zustand": "anderswo",
+          "beleg": "Kern in: | **K2z** *(im Nachtrag (p) als `K3b` vorgeschlagen; `K3b` war zum Zeitpunkt der"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19q.md",
+      "alter_tage": 1.6327990061072288,
+      "art": "Backlog",
+      "nummern": [],
+      "nicht_angekommen": 0,
+      "pruefbar": false,
+      "hinweis": "keine Nummer der drei Formen (K, Block, Kette)",
+      "zustand": "NICHT PRUEFBAR"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19q_r_berichtigung.md",
+      "alter_tage": 1.632799005398044,
+      "art": "Backlog",
+      "nummern": [],
+      "nicht_angekommen": 0,
+      "pruefbar": false,
+      "hinweis": "keine Nummer der drei Formen (K, Block, Kette)",
+      "zustand": "NICHT PRUEFBAR"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19r.md",
+      "alter_tage": 1.6327990132846215,
+      "art": "Backlog",
+      "nummern": [],
+      "nicht_angekommen": 0,
+      "pruefbar": false,
+      "hinweis": "keine Nummer der drei Formen (K, Block, Kette)",
+      "zustand": "NICHT PRUEFBAR"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19s.md",
+      "alter_tage": 1.6039135278623413,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "K",
+          "nummer": "K2l",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2m",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19t.md",
+      "alter_tage": 1.5714225592905724,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "K",
+          "nummer": "K2n",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K2o",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19u.md",
+      "alter_tage": 1.571696579332153,
+      "art": "Backlog",
+      "nummern": [],
+      "nicht_angekommen": 0,
+      "pruefbar": false,
+      "hinweis": "keine Nummer der drei Formen (K, Block, Kette)",
+      "zustand": "NICHT PRUEFBAR"
+    },
+    {
+      "datei": "BACKLOG_NACHTRAG_2026-09-19v.md",
+      "alter_tage": 0.9036954204075867,
+      "art": "Backlog",
+      "nummern": [
+        {
+          "art": "K",
+          "nummer": "K3k",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3l",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3m",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3n",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3o",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3p",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3q",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3r",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3s",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3t",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3u",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3v",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3w",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3x",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3y",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K3z",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K4a",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K4b",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K4c",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K4d",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K4e",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        },
+        {
+          "art": "K",
+          "nummer": "K4f",
+          "zustand": "Zeile",
+          "beleg": "1 Zielzeile(n) mit dieser Nummer, Kern bestaetigt"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-19c.md",
+      "alter_tage": 2.1067044512651583,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-19c.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-19d.md",
+      "alter_tage": 2.1067040157042167,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-19d.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-19e.md",
+      "alter_tage": 2.1067036003067536,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-19e.md",
+          "zustand": "Zeile",
+          "beleg": "2 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-19f.md",
+      "alter_tage": 1.7103709936417915,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-19f.md",
+          "zustand": "Zeile",
+          "beleg": "3 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-19g.md",
+      "alter_tage": 1.1169480155960276,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-19g.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20a.md",
+      "alter_tage": 1.0482973058521747,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20a.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20b.md",
+      "alter_tage": 1.0030925564219555,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20b.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20c.md",
+      "alter_tage": 0.9623078530833677,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20c.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20d.md",
+      "alter_tage": 0.9126457083142466,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20d.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20e.md",
+      "alter_tage": 0.8846508451468414,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20e.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20f.md",
+      "alter_tage": 0.8342280567409815,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20f.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20g.md",
+      "alter_tage": 0.7906411237987103,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20g.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20h.md",
+      "alter_tage": 0.7673931525564855,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20h.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20i.md",
+      "alter_tage": 0.7500104335033231,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20i.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20j.md",
+      "alter_tage": 0.6988778739781292,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20j.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20k.md",
+      "alter_tage": 0.6728476617926801,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20k.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20l.md",
+      "alter_tage": 0.6165001837716059,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20l.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    },
+    {
+      "datei": "JOURNAL_NACHTRAG_2026-09-20m.md",
+      "alter_tage": 0.22311113812305308,
+      "art": "Journal",
+      "nummern": [
+        {
+          "art": "Quelle",
+          "nummer": "JOURNAL_NACHTRAG_2026-09-20m.md",
+          "zustand": "Zeile",
+          "beleg": "1 *Quelle:-Zeile(n) im Journal"
+        }
+      ],
+      "nicht_angekommen": 0,
+      "pruefbar": true,
+      "hinweis": "",
+      "zustand": "eingearbeitet"
+    }
+  ],
+  "doppelbelegungen": []
+}

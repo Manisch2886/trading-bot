@@ -1,0 +1,58 @@
+Schritt 4 - Lauf gegen den echten Bestand, Stand cf22316, 2026-09-21 12:51:49 CEST
+==============================================================================
+NACHTRAGSWAECHTER - die Bringschuld der Nachtraege
+==============================================================================
+Ziel (aus BACKLOG.md gelesen): BACKLOG.md 600, BACKLOG_ARCHIV.md 566, BACKLOG_EPICS.md 961 Zeilen; JOURNAL.md 7948 (23 Quellenzeilen)
+Frist: 1 Tag(e), Alter aus der Aenderungszeit der Datei
+
+A - OFFEN im Hauptverzeichnis: 0 Datei(en)
+
+B - EINGEARBEITET (_eingearbeitet/): 37 Datei(en)
+  OK  BACKLOG_NACHTRAG_2026-09-18e.md                  Alter   2.1 d   Nummern 7, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-18f.md                  Alter   2.1 d   Nummern 3, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-18g.md                  Alter   2.1 d   Nummern 3, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19h.md                  Alter   2.1 d   Nummern 6, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19i.md                  Alter   2.1 d   Nummern 3, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19j.md                  Alter   2.1 d   Nummern 6, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19k.md                  Alter   2.1 d   Nummern 6, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19l.md                  Alter   2.1 d   Nummern 4, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19m.md                  Alter   1.7 d   Nummern 8, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19n.md                  Alter   1.6 d   Nummern 4, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19o.md                  Alter   1.6 d   Nummern 5, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19p.md                  Alter   1.6 d   Nummern 5, nicht angekommen 0
+  [?] BACKLOG_NACHTRAG_2026-09-19q.md                  Alter   1.6 d   nicht pruefbar - keine Nummer der drei Formen (K, Block, Kette)
+  [?] BACKLOG_NACHTRAG_2026-09-19q_r_berichtigung.md   Alter   1.6 d   nicht pruefbar - keine Nummer der drei Formen (K, Block, Kette)
+  [?] BACKLOG_NACHTRAG_2026-09-19r.md                  Alter   1.6 d   nicht pruefbar - keine Nummer der drei Formen (K, Block, Kette)
+  OK  BACKLOG_NACHTRAG_2026-09-19s.md                  Alter   1.6 d   Nummern 2, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19t.md                  Alter   1.6 d   Nummern 2, nicht angekommen 0
+  [?] BACKLOG_NACHTRAG_2026-09-19u.md                  Alter   1.6 d   nicht pruefbar - keine Nummer der drei Formen (K, Block, Kette)
+  OK  BACKLOG_NACHTRAG_2026-09-19v.md                  Alter   0.9 d   Nummern 22, nicht angekommen 0
+  OK  JOURNAL_NACHTRAG_2026-09-19c.md                  Alter   2.1 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-19d.md                  Alter   2.1 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-19e.md                  Alter   2.1 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-19f.md                  Alter   1.7 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-19g.md                  Alter   1.1 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20a.md                  Alter   1.0 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20b.md                  Alter   1.0 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20c.md                  Alter   1.0 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20d.md                  Alter   0.9 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20e.md                  Alter   0.9 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20f.md                  Alter   0.8 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20g.md                  Alter   0.8 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20h.md                  Alter   0.8 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20i.md                  Alter   0.8 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20j.md                  Alter   0.7 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20k.md                  Alter   0.7 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20l.md                  Alter   0.6 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20m.md                  Alter   0.2 d   Quellenzeile im Journal
+
+C - DOPPELBELEGUNG im Ziel (ohne sort -u): keine
+
+Ergebnis als JSON: docs/belege/TB-76/schritt4_lauf_echt.json
+
+Laufzeit: 0.38s
+
+==============================================================================
+Zusammenfassung: 0x OFFEN UEBER DER FRIST, 0x offen in der Frist, 4x NICHT PRUEFBAR, 0x FALSCH VERSCHOBEN, 0x DOPPELBELEGUNG
+Kein Befund: nichts liegt ueber der Frist, nichts ist falsch verschoben, keine Nummer doppelt.
+rc=0

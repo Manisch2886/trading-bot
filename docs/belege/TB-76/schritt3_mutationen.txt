@@ -1,0 +1,57 @@
+Mutationsprobe TB-76 (2026-09-21 12:51 CEST, Stand cf22316)
+Jede Mutation: Aenderung an system/nachtragswaechter.py, Selbsttest, dann git checkout -- system/nachtragswaechter.py und git diff --numstat.
+
+=== M1 - genannte Dateien werden ignoriert (Ziel = nur BACKLOG.md) ===
+--- diff der Mutation:
+-    for name in sorted(genannt):
++    for name in sorted(()):
+--- Selbsttest rc=1: 73 bestanden, 9 fehlgeschlagen
+      [FEHLER] rc 0   rc=1
+      [FEHLER] Block 2t ist angekommen (kein FEHLT)
+      [FEHLER] Kopfzeile nennt alle drei Zieldateien in dieser Reihenfolge
+      [FEHLER] zieldateien(): BACKLOG.md, BACKLOG_ARCHIV.md, BACKLOG_EPICS.md; nichts fehlt
+      [FEHLER] die ausgelagerte Datei war im Ziel (also wurde dort gesucht)
+      [FEHLER] in BACKLOG.md genannt: rc 0 ohne Codeaenderung   rc=1
+      [FEHLER] Kopfzeile nennt sie mit Zeilenzahl
+      [FEHLER] genannt, aber fehlend: rc 2   rc=1
+      [FEHLER] stderr nennt die fehlende Datei
+--- zurueckgenommen: git diff --numstat -> '' (leer = sauber)
+
+=== M2 - die alte feste Aufzaehlung BACKLOG.md + BACKLOG_ARCHIV.md ===
+--- diff der Mutation:
+-    return vorhanden, fehlend
++    return [backlog, os.path.join(ordner, "BACKLOG_ARCHIV.md")], []
+--- Selbsttest rc=1: 72 bestanden, 10 fehlgeschlagen
+      [FEHLER] rc 0   rc=1
+      [FEHLER] Block 2t ist angekommen (kein FEHLT)
+      [FEHLER] Kopfzeile nennt alle drei Zieldateien in dieser Reihenfolge
+      [FEHLER] zieldateien(): BACKLOG.md, BACKLOG_ARCHIV.md, BACKLOG_EPICS.md; nichts fehlt
+      [FEHLER] die ausgelagerte Datei war im Ziel (also wurde dort gesucht)
+      [FEHLER] BACKLOG_ARCHIV.md und BACKLOG_EPICS.md kommen im Code nicht vor (nur im Docstring)
+      [FEHLER] in BACKLOG.md genannt: rc 0 ohne Codeaenderung   rc=1
+      [FEHLER] Kopfzeile nennt sie mit Zeilenzahl
+      [FEHLER] genannt, aber fehlend: rc 2   rc=1
+      [FEHLER] stderr nennt die fehlende Datei
+--- zurueckgenommen: git diff --numstat -> '' (leer = sauber)
+
+=== M3 - Nachtragsdateien werden nicht mehr ausgeschlossen ===
+--- diff der Mutation:
+-        if NACHTRAGSKENNUNG in name:
+-            continue
++        pass
+--- Selbsttest rc=1: 81 bestanden, 1 fehlgeschlagen
+      [FEHLER] genannter Nachtrag ist kein Ziel
+--- zurueckgenommen: git diff --numstat -> '' (leer = sauber)
+
+=== M4 - Nennung nur mit Backticks (ein Verweis ohne Backticks wuerde uebersehen) ===
+--- diff der Mutation:
+-RE_ZIELNENNUNG = re.compile(r"(?<![\w/])(BACKLOG_[\w.-]+\.md)\b")
++RE_ZIELNENNUNG = re.compile(r"`(BACKLOG_[\w.-]+\.md)`")
+--- Selbsttest rc=1: 80 bestanden, 2 fehlgeschlagen
+      [FEHLER] in BACKLOG.md genannt: rc 0 ohne Codeaenderung   rc=1
+      [FEHLER] Kopfzeile nennt sie mit Zeilenzahl
+--- zurueckgenommen: git diff --numstat -> '' (leer = sauber)
+
+=== Kontrolle nach allen Mutationen: Selbsttest auf dem Stand cf22316 ===
+82 bestanden, 0 fehlgeschlagen
+git status --short: '?? docs/belege/TB-76/schritt3_mutationen.txt '
