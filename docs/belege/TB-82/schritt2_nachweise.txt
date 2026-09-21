@@ -1,0 +1,41 @@
+# TB-82 Schritt 2 — Nachweise zu Registerabschnitt 34 (gemessen 2026-09-21T22:09:22Z, Mac, main, Ausgang 9614624)
+
+## 1. numstat nach dem Anhaengen (vor dem Commit)
+    200	0	docs/VORREGISTRIERUNG_neuselektion.md
+
+## 2. Abschnitt 34 genau einmal
+    grep -c '^## 34\.' -> 1   (Z. 5450); awk -> 1; Unterabschnitte: 7 (Soll 7)
+    hoechste ##-Nummer: 34
+
+## 3. Zeichengleichheit — jede Fable-Zeile im Register (ab Z. 5450) gegen ihre Quellzeile, per Zeilenvergleich
+    34.1 Text  | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.19 | Zeile im Register ab 5450 exakt vorhanden: 1x
+    34.1 Grund | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.21 | Zeile im Register ab 5450 exakt vorhanden: 0x
+    34.2 Text  | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.25 | Zeile im Register ab 5450 exakt vorhanden: 1x
+    34.2 Grund | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.27 | Zeile im Register ab 5450 exakt vorhanden: 0x
+    34.3 Text  | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.45 | Zeile im Register ab 5450 exakt vorhanden: 1x
+    34.3 Grund | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.47 | Zeile im Register ab 5450 exakt vorhanden: 0x
+    34.4 Text  | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.53 | Zeile im Register ab 5450 exakt vorhanden: 1x
+    34.4 Grund | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.55 | Zeile im Register ab 5450 exakt vorhanden: 0x
+    34.5 Text  | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21l_standpruefung.md Z.38 | Zeile im Register ab 5450 exakt vorhanden: 1x
+    34.5 Grund | Quelle docs/projektfuehrung/FABLE_ANTWORT_2026-09-21l_standpruefung.md Z.40 | Zeile im Register ab 5450 exakt vorhanden: 0x
+    (Grund-Zeilen stehen im Register mit vorangestelltem '> '; der Vergleich unten zieht das ab:)
+    34.1 Grund | ohne '> ' exakt vorhanden: 1x
+    34.2 Grund | ohne '> ' exakt vorhanden: 1x
+    34.3 Grund | ohne '> ' exakt vorhanden: 1x
+    34.4 Grund | ohne '> ' exakt vorhanden: 1x
+    34.5 Grund | ohne '> ' exakt vorhanden: 1x
+
+## 4. Teilzitate (Substring-Pruefung gegen die Quellzeile)
+    Kopf: Wer 30.2 (2) liest ... Ruecknahme. | Substring in docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.47: JA
+    Kopf: Fables Regel aus dem Vorab | Substring in docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.9: JA
+    34.2: Fables Unsicherheit | Substring in docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.73: JA
+    34.4: das war es nach 33.3 schon nicht | Substring in docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.55: JA
+    34.5: Einordnung Kategorie | Substring in docs/projektfuehrung/FABLE_ANTWORT_2026-09-21l_standpruefung.md Z.42: JA
+    34.6: 33.2 nennt sie nicht | Substring in docs/projektfuehrung/FABLE_ANTWORT_2026-09-21m_faltenplan_pruefung.md Z.39: JA
+    34.6: der 33.4-Satz, zeichengleich gegen Z. 5431: 1x
+
+## 5. M2 nach dem Eintrag (zur Einordnung, nicht Soll): grep -c '2026-2027' -> 6 — die neuen Treffer liegen alle in 34.6 (Z. 5431 5602 5605 5608 5610 5625 )
+
+## 6. git status --short
+     M docs/VORREGISTRIERUNG_neuselektion.md
+    ?? docs/belege/TB-82/schritt2_nachweise.txt
