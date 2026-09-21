@@ -35,3 +35,17 @@
 
 ## 6. git status --porcelain (vor Ergebnisdokument und Journalblock; wird nach dem letzten Commit erneut gemessen, s. u.)
     ?? docs/belege/TB-81/schritt3_abschluss.txt
+
+## 6 (nachgetragen) — git status --porcelain nach dem Abgabe-Commit 48aa32f, gemessen 2026-09-21T21:07:29Z VOR dem Oeffnen dieser Datei
+    0 Zeilen (Soll: nur .claude/settings.local.json; diese Datei existiert im Arbeitsbaum nicht -> leer)
+    (Dieser Nachtrag selbst wird als eigener Commit abgelegt; danach ist der Status wieder leer, s. Ergebnisdokument.)
+
+## 1 (nachgetragen) — numstat 0509c5e..48aa32f
+    164	0	docs/ERGEBNIS_TB-81_faltenplan_registertext.md
+    146	0	docs/VORREGISTRIERUNG_neuselektion.md
+    30	0	docs/belege/TB-81/schritt0_ausgangsstand.txt
+    168	0	docs/belege/TB-81/schritt1_faltenlisten.txt
+    30	0	docs/belege/TB-81/schritt2_nachweise.txt
+    37	0	docs/belege/TB-81/schritt3_abschluss.txt
+    55	0	docs/projektfuehrung/JOURNAL.md
+    Zeilen mit zweiter Spalte != 0: 0
