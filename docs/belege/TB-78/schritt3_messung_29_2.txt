@@ -1,0 +1,19 @@
+TB-78 Schritt 3 - eigene Messung zu 29.2 (C1), 21.09.2026
+Gegenstand: docs/VORREGISTRIERUNG_neuselektion.md im Stand 83e3a85 (vor TB-78) und im Stand nach Schritt 2 (003f894); Ergebnis in beiden gleich.
+
+Zaehlung 1 (grep, dieselbe Zeile):
+  grep -c 'Startkapital'                                                      -> 0
+  grep -c 'Kapitalpfad'                                                       -> 19 Zeilen
+  grep -nE 'Kapitalpfad' | grep -iE 'Beginn|Start|1\. Januar|erste[n]? Falte' -> 1 Treffer: Z. 4296
+     "der Kapitalpfad (Registertext 1a) beginnt die erste Falte mit einem Kapitalstand, der aus nicht registrierten Jahren stammt"
+     (beschreibt den Schaden, nicht die Regel)
+
+Zaehlung 2 (python, unabhaengig, Kontextfenster +-1 Zeile, zusaetzlich 'beginnt'):
+  Kapitalpfad + Beginn-Kontext -> 2 Treffer: Z. 4288 und Z. 4296
+     Z. 4288: Zitat des (d)-Grundes "verändern das Kapital, mit dem die erste Falte beginnt" - ebenfalls Schadensbeschreibung, keine Regel
+  Startkapital -> 0
+
+Sichtung aller 19 Kapitalpfad-Zeilen (60, 448, 1106, 1116, 1820, 2054, 3418, 3422, 3535, 3675, 3677, 3683, 3730, 3745, 3804, 4267, 4288, 4296, 4489):
+  keine regelt den Beginn des Kapitalpfads (1820 = Registertext 7 Backtester-Pruefung; 1106/1116/3745/3804 = MtM-Reihe; Rest Verweise/Befunde).
+
+Ergebnis: Neuaufnahme, keine Berichtigung. Kein Abbruchkriterium 3 ausgeloest.
