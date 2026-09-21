@@ -4818,6 +4818,13 @@ gilt:
 ⚠️ **Ort der Wache unverändert:** in den vier `multi_symbol_optimise.py`, **nicht**
 in `auswertung.py` (eingefroren, Abschnitt 0 Z. 31; Fables Rücknahme in 21b).
 
+> ⚠️ **Berichtigt (34.5, TB-82, 22.09.2026):** „in den vier `multi_symbol_optimise.py`"
+> lies **„in allen neun"** — Fable 21l, Punkt 4 (b), zeichengleich: *„Die Wache
+> „frühester Einstieg ≥ Beginn der ersten Selektionsfalte" wird in **allen neun**
+> `multi_symbol_optimise.py` eingebaut, nicht nur in den vier Aktien-Optimierern."*
+> Der Absatz oben bleibt zeichengleich; unverändert gilt: **nicht** in `auswertung.py`.
+> Gemessen (TB-82, Beleg M4): heute in keinem der neun eine Wache — Ersteinbau, TB-30b.
+
 ### 29.5 Was noch zu messen ist — nur das Ob, nicht die Wirkung
 
 | | zu messen | ⚠️ |
@@ -4860,6 +4867,7 @@ zeichengleich. Anlass: die Messmeldung
 > **Registertext (zu 26 / Sperrliste):**
 > **(1)** `faltenplan.json` (0e54ac5c…) bleibt gesperrt und unverändert. Er ist der **registrierte historische Stand** eines früheren Verfahrensstands (Trainingsfenster, Embargo); er ist **nicht** der Faltenplan nach 4a und wird vom Lauf nicht gelesen. Sperrlistenpunkt 2 erhält eine Tatsachennotiz mit diesem Satz — kein Ersatz, keine Streichung.
 > **(2)** Der Faltenplan nach 4a ist **Registertext**: je Bot die Liste der Selektionsfalten (Kalenderjahre), abgeleitet aus asof, `RECENT_YEARS_ONLY`, dem Indikator-Vorlauf gegen den Horizontbeginn und dem Trockenlauf nach 3b (b). Der Registertext ist die Quelle; jede Datei, die ihn maschinenlesbar wiedergibt, ist Abbild.
+> > ⚠️ **Berichtigt (34.3, TB-82, 22.09.2026):** „Trockenlauf nach 3b (b)" lies **„3b (a)"** — Fable 21m, Frage 3, zeichengleich: *„Gemeint ist der Trockenlauf aus 3b (a), der die `MIN_HISTORY_*`-Tabelle aus 3b (b) anwendet; ein zweiter Trockenlauf existiert nicht."* Der Satz oben bleibt zeichengleich stehen; 16.7: 3b (a) ist der Trockenlauf-Satz, 3b (b) die `MIN_HISTORY_*`-Tabelle.
 > **(3)** Genau **eine** solche Datei wird vor dem Tag mit Hash in die Sperrliste aufgenommen (neuer Punkt), und der Lauf liest genau diese. Ihr Inhalt muss dem Registertext aus (2) entsprechen; der Abgleich (Datei gegen Registertext, je Bot, je Jahr) ist eine Prüfung vor dem Tag und wird als Tatsachennotiz mit Ergebnis eingetragen. Trägt eine Datei Felder, die 4a nicht kennt (Trainingsgrenzen, Embargo), ist sie nicht dieses Abbild.
 > **(4)** Ob `faltenplan_tb72.json` diese Datei ist, entscheidet allein der Abgleich nach (3) — nicht ihre Herkunft.
 
@@ -5345,6 +5353,14 @@ ist — wörtlich:**
 > maschinenlesbar wiedergibt, ist sein **Abbild** (33.3); der Registertext ist
 > die Quelle.
 
+> ⭐ **Ergänzt (34.1 und 34.2, TB-82, 22.09.2026):** Zwei Sätze von Fable (21m,
+> Frage 1) schliessen diesen Registertext, Wortlaut in 34: **34.1** — bei
+> Faltenlänge L > 1 werden (i) und (ii) am **ersten Jahr** der Falte geprüft, die
+> Falte umfasst J bis J + L − 1, die folgenden schliessen lückenlos an; **34.2** —
+> ein Rest von weniger als L Kalenderjahren zwischen der letzten vollen Falte und
+> dem Go-Live-Schnitt ist **keine** Selektionsfalte. Der Text oben bleibt
+> zeichengleich; die Tabelle unten ändert sich um nichts (Beleg M5).
+
 **Tatsachennotiz — der Plan, gemessen am 21.09.2026 (TB-81, HEAD `a0c6eb0`) aus
 `research/vorregistrierung/ergebnisse/faltenplan_tb80.json` (Commit `cadb968`,
 SHA-256 `2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794`;
@@ -5387,6 +5403,9 @@ Symbol an mindestens einem Handelstag handelbar"), **3b (b)** die
 ist an beiden Stellen derselbe Trockenlauf; der Wortlaut von 30.2 (2) wird hier
 nicht geändert (append-only), der Hinweis steht, damit niemand nach einem
 zweiten Trockenlauf sucht.
+⭐ *Nachtrag (TB-82, 22.09.2026):* Die ausdrückliche Berichtigung — „3b (b)" lies
+„3b (a)" — steht jetzt als eigener Registersatz in **34.3** (Fable 21m, Frage 3);
+die Marke am Satz selbst steht unter 30.2 (2).
 
 ### 33.3 Die Feldliste des Abbilds — abschliessend
 
@@ -5401,6 +5420,7 @@ zweiten Trockenlauf sucht.
 | | `asof` | das Datum aus 28.2/28.3 |
 | je Bot | `bot` | der Name |
 | je Bot | `horizontbeginn` | Datum **oder** ausdrücklich „kein Horizont" — ⭐ **gesetzt, nicht weggelassen** |
+| | ↳ ⭐ **Ergänzt (34.4, TB-82, 22.09.2026)** | Der Wert ist entweder ein Datum im Format `JJJJ-MM-TT` oder die Zeichenkette `"kein Horizont"` — genau eine der beiden Formen; JSON-`null`, ein fehlender Schlüssel oder eine leere Zeichenkette sind Fehlschläge der Sonde, die den Wert **positiv** gegen die zwei Formen prüft (Fable 21m, Frage 4, Wortlaut in 34.4). `faltenplan_tb80.json` (`null`) ist auch daran kein Abbild |
 | je Bot | ⭐ **`faltenlaenge_jahre`** | ⚠️ **Ergänzung gegenüber Fables Vorschlag — Begründung in 33.4** |
 | je Bot | `erste_selektionsfalte` | die erste Falte |
 | je Bot | `selektionsfalten` | die Liste, aufsteigend und lückenlos |
@@ -5429,6 +5449,7 @@ Feldliste zusammen"*) und eine Unsicherheit benannt.
 | **1** | ⚠️⚠️ **`selektionsfalten` als „Liste von Kalenderjahren" deckt `elliott_wave` nicht ab.** Gemessen: Seine vier Falten sind **Doppeljahre** (`2018-2019`, `2020-2021`, `2022-2023`, `2024-2025`), die der acht übrigen Bots Einzeljahre | Der Registertext in 33.2 sagt **„zusammenhängende Kalenderjahre in Schritten der Faltenlänge"** statt „Kalenderjahre" |
 | **2** | ⭐ **Ohne `faltenlaenge_jahre` ist die Liste nicht prüfbar.** Aus `['2018-2019', …]` allein folgt nicht, ob die Faltenlänge 2 ist oder ob zwei Einzeljahre zusammengeschrieben wurden | Das Feld kommt in die Liste |
 | **3** | **Seine Unsicherheit — die Bestätigungsperiode je Bot:** Sie steht **bereits** in Register 21.4 und folgt aus Faltenlänge und Go-Live-Schnitt (`elliott_wave` `2026-2027`, die acht übrigen `2026`) | ⭐ **Nicht in die Feldliste.** *Ein Abbild bildet ab, was sein Abschnitt sagt; eine Grösse, die anderswo registriert ist, wäre ein zweiter Ort für denselben Wert* — die Bauart, die er in 21j selbst abgelehnt hat |
+| | ⚠️ **Berichtigt (34.6, TB-82, 22.09.2026):** Die Fundstelle „21.4" trägt den Satz nicht — 21.4 führt „Bestätigung ab" `2026-01-01` bei allen neun Bots (gemessen, Beleg M3); `2026-2027` und `2026` sind Faltennamen aus `faltenplan.py:336`, nicht aus dem Register (Beleg M2). Registriert ist die Bestätigungsperiode als **Datumsspanne**: Beginn 21.4 (`2026-01-01`), Ende 5.2 (`2026-09-01`, ausschliesslich) | Die Folge bleibt: **kein Feld** — Fables Halbsatz *„33.2 nennt sie nicht"* trägt allein. ⚠️ Welche der zwei Formen (Datumsspanne / Faltenname) gilt, ist **offen** — bei Fable, Anfrage 21g Punkt 3 (34.6) |
 
 ⚠️ **Alle drei sind dem Verfahrensprüfer vorzulegen.** Punkt 1 und 2 ändern
 seinen Wortlaut; Punkt 3 beantwortet seine Unsicherheit. ⛔ **Der Abschnitt gilt

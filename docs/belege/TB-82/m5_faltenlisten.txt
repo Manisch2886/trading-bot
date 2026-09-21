@@ -47,3 +47,14 @@
     `rsi2_mean_reversion` | gezaehlt 8 | Spalte # 8 | gleich
     `turtle_soup_stocks` | gezaehlt 9 | Spalte # 9 | gleich
     `volatility_breakout` | gezaehlt 8 | Spalte # 8 | gleich
+
+## NACHHER — dieselbe Messung nach Abschnitt 34 (6cbbf95) und den sechs Marken (Arbeitsbaum), gemessen 2026-09-21T22:11:02Z; 33.2 liegt jetzt in Z. 5345..5410
+    Anzahl Zeilen: 9 (Soll 9)
+    SHA-256 der neun Zeilen: e5ab322e4aedb67c4a95d828d631e6eaadff7d7f17054187d829a049b973b5a2
+    diff vorher/nachher (leer = 0 Abweichungen):
+    (leer) -> 0 Abweichungen
+    Zweite Lesung: die neun Zeilen von 33.2 gegen 21.4 (Z. 2919-2927) wie oben:
+    (leer) -> 0 Abweichungen gegen 21.4
+    Dritte Lesung: die 21.4-Zeilen selbst unveraendert? git diff 9614624 -- Register, Zeilen 2919-2927 betroffen: 0 entfernte Tabellenzeilen (Soll 0)
+
+## Ergebnis M5: Faltenliste vorher == nachher (SHA gleich, diff leer), gegen 21.4 0 Abweichungen. Abbruchkriterium 2 nicht eingetreten.

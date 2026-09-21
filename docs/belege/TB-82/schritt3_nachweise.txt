@@ -1,0 +1,35 @@
+# TB-82 Schritt 3 — Nachweise zu den sechs Marken am alten Ort (gemessen 2026-09-21T22:11:27Z, Mac, main, Ausgang 9614624, Schritt 2 = 6cbbf95)
+
+## 1. numstat Arbeitsbaum gegen 6cbbf95 (nur die Marken)
+    21	0	docs/VORREGISTRIERUNG_neuselektion.md
+## 1b. numstat gegen den Ausgang 9614624 (Abschnitt 34 + Marken)
+    221	0	docs/VORREGISTRIERUNG_neuselektion.md
+    Zeilen mit zweiter Spalte != 0: 0
+
+## 2. Die sechs Marken — Fundstelle (Zeile im Arbeitsbaum) und Ankersatz davor
+    Z. 4821  'Berichtigt (34.5, TB-82'  — Anker Z. 4819: in `auswertung.py` (eingefroren, Abschnitt 0 Z. 31; Fables Rücknahme in 21b).
+    Z. 4870  'Berichtigt (34.3, TB-82'  — Anker Z. 4869: > **(2)** Der Faltenplan nach 4a ist **Registertext**: je Bot die Liste der Selektionsfalt
+    Z. 5356  'Ergänzt (34.1 und 34.2, TB-82'  — Anker Z. 5354: > die Quelle.
+    Z. 5406  'Nachtrag (TB-82, 22.09.2026):* Die ausdrückliche'  — Anker Z. 5405: zweiten Trockenlauf sucht.   (erster Anlauf dieser Zeile hatte einen Backslash im Suchmuster und fand nichts; hier nachgemessen)
+    Z. 5423  'Ergänzt (34.4, TB-82'  — Anker Z. 5422: | je Bot | `horizontbeginn` | Datum **oder** ausdrücklich „kein Horizont" — ⭐ **gesetzt, n
+    Z. 5452  'Berichtigt (34.6, TB-82'  — Anker Z. 5451: | **3** | **Seine Unsicherheit — die Bestätigungsperiode je Bot:** Sie steht **bereits** i
+    Anzahl Marken mit 'TB-82, 22.09.2026' ausserhalb von Abschnitt 34 (Z. < 5471): 6  (Soll 6)
+
+## 3. Zeichengleichheit der Zitate in den Marken (Substring der Quellzeile)
+    Marke 34.3 (30.2 (2)) gegen 21m Z.45: 1x im Quelltext; in der Marke: 2x im Register gesamt (Marke + 34.3 + ggf. Kopf)
+    Marke 34.5 (29.4): Zitat ist im Register ueber vier Zeilen umbrochen; Pruefung nach Zusammenfuegen:
+    -> zusammengefuegter Markentext enthaelt das Zitat aus 21l Z.38 zeichengleich: JA
+    Gegenprobe: Zitat in 21l Z.38 vorhanden: 1x
+    Marke 34.6: Halbsatz '33.2 nennt sie nicht' in 21m Z.39: 1x
+
+## 4. Sperrlisten-Hashes (unveraendert?)
+    0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+    a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+    4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+## 5. Alte Zeilen als Teilfolge erhalten (Kontrolle des Einfuegewerkzeugs): 5647 / 5647 — siehe Ausgabe des Einmalskripts; Gegenprobe per git: entfernte Zeilen gegen 9614624 = 0 (Soll 0)
+
+## 6. git status --short
+     M docs/VORREGISTRIERUNG_neuselektion.md
+     M docs/belege/TB-82/m5_faltenlisten.txt
+    ?? docs/belege/TB-82/schritt3_nachweise.txt
