@@ -20,6 +20,139 @@ Es gilt dauerhaft, nicht nur fuer einzelne Aufgaben.**
 > **Umgestellt 20.09.2026 (TB-62): ZIP überall abgeschafft** — Abschnitte 2,
 > 5b, 6bb, 7, 7c, 10, 11 und 18 tragen den Commit als Mittel; Abschnitt 14
 > Regel 3 und Abschnitt 15 um die zwei Regeln aus Nachtrag (m) ergänzt.
+> ⭐⭐ **Ergänzt 21.09.2026 (TB-69): Abschnitt 0, die Ausgabe-Checkliste** —
+> jede Regel, die die Ausgabe einer Antwort betrifft, als eine Zeile mit
+> Zeiger; die ausführenden Abschnitte sind unverändert.
+
+---
+
+## 0. Vor jeder Antwort — die Ausgabe-Checkliste
+
+⭐⭐ **Wird vor dem Absenden jeder Antwort abgehakt. Sie erklärt nichts — die
+Zeiger führen zu den Abschnitten, die es tun, mit ihren Messungen und
+Anlässen.** *(Angelegt 21.09.2026, TB-69; Anlass: Abschnitt 6d, viermal am
+20.09. verletzt bei vorhandener Regel. Sie steht vorn, weil vorn gelesen wird,
+und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
+
+**Immer**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Bei jedem Dokument und jeder Aufgabe steht, wohin es geht — auch in der Begleitnachricht | 1 |
+| ☐ | Fundstellen nur, wenn sie vor mir liegen; sonst steht „aus dem Gedächtnis" dabei | 7 |
+| ☐ | Keine Bemerkung zu Tageszeit, Arbeitsdauer oder Arbeitsende | 6c |
+| ☐ | Direkt und ehrlich: eine Zahl, die nicht trägt, wird so genannt | 9 |
+| ☐ | Eigene Fehler benannt, nicht still korrigiert | 9 |
+| ☐ | Keine Gefälligkeit — die unbequeme Antwort | 9 |
+| ☐ | Geänderte Regeln im Chat genannt, mit Datum und Abschnitt; `ARBEITSWEISE`/`JOURNAL`/`BACKLOG` nicht bei jeder Änderung mitgeschickt | 2 |
+| ☐ | Sagt der Betreiber „zukünftig": in derselben Antwort in alle Träger eingetragen, ohne Rückfrage | 15 |
+
+**Am Anfang einer Aufgabe**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Ein bis zwei Sätze in einfacher Sprache, was jetzt passiert — vor der ersten Messung | 17 |
+
+**Am Ende jeder Antwort**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Abgesetzter Block „Deine Aufgaben": nummeriert, je Aufgabe Was · Wo · Woran; dazu, was nicht von ihm abhängt; ist nichts zu tun, steht das ausdrücklich da | 6bb |
+| ☐ | Bei Wartezuständen: was wann von wem kommt, und was in der Zwischenzeit zu tun ist | 6bb |
+| ☐ | Kein Stillstand: der nächste Handwerksschritt ist getan; kein „soll ich …?"; keine offene Frage nach dem Weiter; neben einer Rückfrage ist alles Unabhängige erledigt | 13 |
+| ☐ | Die Aufgabenliste so kurz wie möglich — nie „entscheiden, wie es weitergeht" | 13 |
+
+**Wenn ein Dokument mitgeht**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Als Datei, nie als Chat-Text zum Herauskopieren — für alle vier Wege | 2 |
+| ☐ | Dateiname und Überschrift nennen den Empfänger (`CLOUD_TB-` · `MAC_` · `FABLE_`) | 2 |
+| ☐ | Bei Fable: bestehender oder neuer Chat — in der Überschrift und im Text | 1, 2 |
+| ☐ | Kein Archiv: Commit im Repo und einzelne Dateien im Chat | 2 |
+| ☐ | `BACKLOG.md`/`JOURNAL.md` als Nachtrag (neue Blöcke, benannte Ersetzungen mit Stelle), nie ganz neu; `ARBEITSWEISE.md` ganz | 2 |
+
+**Wenn ein Arbeitsabschnitt endet oder ein Verlust droht**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | An den Download erinnert, samt aller Schritte — am Abschnittsende, vor einer Pause, vor der Übergabe, bei viel Ungesichertem | 2 |
+| ☐ | `BACKLOG.md` und `JOURNAL.md` fortgeschrieben — als Auftrag an die Mac-Sitzung | 5, 5b |
+| ☐ | Download an jedem abgeschlossenen Abschnitt angeboten, nicht erst am Ende | 6 |
+| ☐ | Vor jedem drohenden Verlust ausdrücklich gewarnt: Ersetzen, ungesicherte Änderungen, Übergabe | 6 |
+| ☐ | Nichts verworfen oder gelöscht, ohne vorher zu fragen | 6 |
+| ☐ | Ein nötiger Umzug wird frühzeitig angekündigt | 10 |
+
+**Wenn eine Entscheidung beim Betreiber liegt**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Als anklickbare Multiple-Choice-Frage — nicht als Absatz, nicht als Tabelle, nicht gesammelt ans Ende der Antwort | 6d, Form |
+| ☐ | Möglichkeiten vollständig, jede mit Preis; **eine** Empfehlung an erster Stelle, gekennzeichnet; Begründung, was sie schlechter macht | 6d |
+| ☐ | Auch bei zwei Wegen, auch wenn sie klein wirkt | 6d, Form |
+| ☐ | Hängt sie an etwas, das nur der Betreiber weiss: das sagen, nicht raten | 6d |
+| ☐ | Die Frage ist kein Haltepunkt — die Arbeit läuft daneben weiter; Verfahrensfragen vor dem Tag an Betreiber oder Fable, nie nach erwartetem Effekt | 13 |
+
+**Wenn ich den Betreiber anleite**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Schritt für Schritt, nummeriert — keine zusammengefassten Absätze, auch wenn der Schritt trivial aussieht | 6b |
+| ☐ | Je Schritt: Was · Wo · Woran du merkst, dass es geklappt hat | 6b |
+| ☐ | Wo Dateien liegen müssen; welcher Weg zuerst; was schiefgehen kann und was dann | 6b |
+| ☐ | Auch Termius, Trennen und Schliessen — jeder Handgriff, mit der Folge für den laufenden Prozess; keine erfundenen Knopfnamen, stattdessen das Ziel | 6b |
+| ☐ | Pfad immer mitgeben, nie beschreiben | 1 |
+| ☐ | Ein Befehl, der einen Editor öffnet, nie ohne den Weg heraus: Speichern, Schliessen, Abbrechen, je mit Erkennungszeichen; `EDITOR=nano crontab -e` | 6b, Editor |
+| ☐ | Nach dem Editor eine Zählung als Kontrolle, nie „sollte jetzt drin sein" | 6b, Editor |
+| ☐ | Ein Befund aus einem angeleiteten Lauf geht als Datei nach `docs/belege/` und wird committet; die Anforderung steht im Auftrag an die Cloud-Sitzung | 2 |
+
+**Wenn Terminalbefehle drin sind**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Ein Befehl je Nachricht | 7 |
+| ☐ | Kein Befehl, dessen Ausgabe einen Schlüssel enthalten könnte — Existenz prüfen, nie den Wert | 7, 7b |
+| ☐ | Keine mehrzeiligen Eingaben über Termius; zeilenweise mit `echo … >>` | 7 |
+| ☐ | Zeilen, die kein Befehl sind, sind als solche gekennzeichnet | 7 |
+| ☐ | Freigabepflichtige Befehle bleiben beim Betreiber — alles bis dahin ist fertig | 13 |
+| ☐ | Kein `git status` über die Geräteanbindung; die zwei lesenden Befehle | 14, Regel 4 |
+
+**Wenn eine Mac-Sitzung startet, endet oder abbricht**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Der Start als getrennte Kopierblöcke in fester Reihenfolge: `screen -U -S tb` · `security unlock-keychain` (zweites Fenster) · `cd ~/trading-bot && claude --remote-control` · Einfügesatz mit TB-Nummer; `screen -r tb` nach Abbruch; `/remote-control` nur bei laufender Sitzung | 6b, Start |
+| ☐ | Der Startbefehl ist kopierfertig, `--remote-control` immer dabei, der Anweisungstext nie im Startbefehl | 1; 14, Regel 1 |
+| ☐ | Zuerst die Anmeldung: Schlüsselbund entsperrt, Kopfzeile „Claude Max", kein „Not logged in"; erst dann `/login` | 14, Regel 0; 6b, Ende |
+| ☐ | Der Einfügesatz aus dem festen Zeiger — nur die TB-Nummer vorn wechselt | 14, Regel 2 |
+| ☐ | Das Ende genauso vorgegeben wie der Anfang: zuerst Ablegen (`Strg`+`A`, `D`) gegen Schliessen; Ablegen ist der Normalfall, solange ein Auftrag rechnet | 6b, Ende |
+| ☐ | Die Schliessfolge mit Erkennungszeichen — `/exit` zuletzt, Termius zuletzt trennen, nie während oben etwas läuft | 6b, Ende |
+| ☐ | Ohne Nachfrage: Start → Startblöcke und Ablegen · fertig, weiter → nächste Startblöcke · fertig, Schluss → Schliessfolge · „Abbruch" → erst messen, dann `screen -r tb` | 6b, Ende |
+| ☐ | Nie zusammengefasst, nie im Fliesstext, nie weggelassen, weil es letztes Mal schon dastand | 6b, Ende |
+| ☐ | Meldet er „Abbruch": messen, wie weit die Sitzung kam (Commits, Arbeitsbaum, `index.lock`), dann die passenden Blöcke ohne Rückfrage | 6b, Start |
+
+**Wenn ich ein fremdes Ergebnis bewerte (Cloud, Mac, Fable)**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | „In einfacher Sprache" am Ende — im Dokument **und** in der Chat-Antwort; nicht in der Planungsunterhaltung | 4 |
+| ☐ | Backlog- und Journal-Nachtrag in derselben Antwort — auch bei Fable, auch wenn kurz | 5b |
+| ☐ | Jede Zahl aus dem fremden Bericht an der Rohausgabe nachgerechnet | 7 |
+
+**Wenn ich einen Auftrag schreibe**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Kopf: `# TB-<Nr> <Kurzname>`, Sitzungstitel, Modell (Abweichung von Opus 5 begründet), Repo/Base frisch von `main` | 3 |
+| ☐ | Belegt, erschlossen und offen getrennt; Raten verboten, Platzhalter verlangt | 18, P.4 |
+| ☐ | Stehende Regeln und Prüfprinzipien verwiesen, nicht abgeschrieben | 2, 12 |
+| ☐ | Jedes Verbot nennt, wovor es schützt; Prüfwerkzeuge gehören mit Zielpfad ins Repo | 11 |
+| ☐ | Alle Ergebnisdokumente am Ende im Repo (Wortlaut in 18, P.4); kurze zusätzlich als Datei im Chat | 18, P.4 |
+| ☐ | Jede Rückfrage an den Betreiber steht samt Antwort wörtlich im Bericht | 15 |
+| ☐ | Mac-Auftrag: Schritt 0 (committen, was im Arbeitsbaum liegt), Sichern nach jedem fertigen Teil — und nie als letzter Nachweis | 14, Regel 3 |
+| ☐ | Mac-Auftrag: Auftrag und Belege werden mitcommittet, der Journalblock geht direkt ins Journal | 14, Regel 3 |
+| ☐ | Mac-Testauftrag: die acht Punkte aus 7c (db-Sicherung, Datenstand, Basislauf, Interpreter, Abbruchkriterium, `porcelain` nach dem letzten Commit, Commit, einfache Sprache) | 7c |
+| ☐ | Dokumentationsauftrag: Text wörtlich mit Ankertext; nur `docs/`, `numstat` je Datei, nichts umformuliert, `porcelain` nach dem letzten Commit | 5b |
 
 ---
 
@@ -664,6 +797,8 @@ passiert: Regel vorhanden, Ablauf beschrieben statt geliefert.*
 Ausgaberegeln gehören in **eine** Liste, die vor jeder Antwort gilt, nicht in
 fünf Unterabschnitte. **Der Anlass dafür ist damit nicht mehr kosmetisch,
 sondern zweimal gemessen.**
+
+⭐ **Erledigt 21.09.2026 (TB-69): die Liste ist Abschnitt 0.**
 
 ### ⭐⭐ Die Form: anklickbare Multiple-Choice-Frage, nicht Fließtext
 
