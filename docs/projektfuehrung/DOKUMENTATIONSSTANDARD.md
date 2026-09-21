@@ -217,6 +217,33 @@ Inhalte vergeben, und aufgefallen ist es zwei Tage später durch Zufall.
 | ⭐ **Ort** | **Ein eingearbeiteter Nachtrag wird nach `docs/projektfuehrung/nachtraege/_eingearbeitet/` verschoben.** Was im Hauptordner liegt, ist offen | `git mv`, kein Byte geändert — **erst, wenn jede seiner Nummern bzw. seine Quellenzeile im Ziel gemessen ist** |
 | ⚠️ **Wache** | `system/nachtragswaechter.py` prüft täglich beides: was länger als einen Tag offen liegt, und ob von den verschobenen wirklich alles angekommen ist — **über Nummer *und* Textkern**, nicht über die Nummer allein | Meldung wie bei den vier Cron-Wächtern (`notifications/waechter_melden.py nachtraege`); `system/README_NACHTRAGSWAECHTER.md` |
 
+### ⭐⭐ Berichtigt am 21.09.2026 (TB-75, Betreiberentscheidung): Eine Mac-Sitzung schreibt ihren Journalblock DIREKT
+
+⚠️ **Der Umweg über eine Nachtragsdatei war eine Sitzung lang die Regel und ist
+es für Mac-Sitzungen nicht mehr.** TB-75 hat gemessen, was gegen den direkten
+Weg spricht — und nichts davon trug:
+
+| geprüft | Befund |
+|---|---|
+| Laufen zwei Sitzungen gleichzeitig? | **Nein** — seit dem 19.09. kein verschränktes Paar auf `main`, je TB-Nummer getrennt gemessen |
+| Was, wenn eine Sitzung mitten im Schreiben abbricht? | Am 20./21.09. brachen **vier** ab; keine hinterliess einen halben Block. Ein Kollisionsversuch im Wegwerf-Repo endete in `push rejected` und `CONFLICT` — **kein stiller Doppelbuchstabe** |
+| Trägt der Nachtrag etwas, das im Journal keinen Platz hat? | `(20m)` gegen Block `CA` je Abschnitt verglichen: **nein** |
+| Was kostet der Wegfall? | ⚠️ **Der Wächter verliert die Sicht auf Mac-Blöcke** — ohne Nachtragsdatei gibt es nichts, was offen liegen könnte. Prüfung B und C bleiben |
+| Wie lange dauerte der Umweg? | **0,7 bis 21,9 Stunden** je Nachtrag, bis er im Journal ankam |
+
+**Was seither gilt:**
+
+| | |
+|---|---|
+| ⭐ | **Eine Mac-Sitzung fügt ihren Journalblock bei der Abgabe selbst ans Ende von `JOURNAL.md` an** — keine Nachtragsdatei mehr. Die Quellenzeile zeigt dann auf ihr **Ergebnisdokument**: `*Quelle: `docs/ERGEBNIS_TB-<nr>_<stichwort>.md`*` |
+| ⚠️ | **Chat-Nachträge bleiben unverändert** — was der steuernde Chat schreibt, geht weiter als Nachtragsdatei in den Hauptordner und wird eingearbeitet wie bisher. **Der Wächter bleibt dafür zuständig** |
+| ⚠️ | **Der Blockbuchstabe wird weiterhin gemessen**, nicht geraten — letzter Block plus eins, und `git` fängt eine Kollision ab, statt sie zu verschlucken |
+| ⭐ | **Erster Block auf dem neuen Weg: `CB`** (TB-75, 21.09.2026) |
+
+⚠️ **Offen, benannt und nicht geschlossen:** Für Mac-Blöcke gibt es keine Wache
+mehr. Eine Probe *„Ergebnisdokument ab Stichtag ohne Quellenzeile im Journal“*
+würde sie ersetzen; sie ist nicht gebaut.
+
 ⚠️ **Warum die Quellenzeile den Dateinamen und nicht die TB-Nummer trägt:** Ein
 Nachtrag ohne TB-Nummer im Titel (`(f)` vom 19.09.) war über die Nummer nicht
 prüfbar; über den Dateinamen ist jeder prüfbar. ⚠️ **Und warum der Wächter den

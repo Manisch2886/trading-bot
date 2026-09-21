@@ -446,6 +446,43 @@ hielt (ein Merge, ein Pfad, ein Kopierbefehl). *Was für mich ein Schritt ist,
 sind im Terminal drei.* **Die Regel gilt ohne Ausnahme; sie einmal abzukürzen
 kostet mehr Nachrichten, als sie spart.**
 
+### ⭐⭐ Ein Befehl, der einen Editor öffnet, wird nie ohne den Weg heraus gegeben
+
+⚠⚠️ **Anweisung des Betreibers, 21.09.2026, 10:28, nach einer Rückfrage:**
+*„Wie speichere und schliesse ich nochmals crontab? Bitte zukünftig in die
+Anweisung aufnehmen.“*
+
+⚠️ **`crontab -e` wurde zweimal ohne den Ausstieg ausgegeben** (20.09. und
+21.09.). *Ein Editor, der sich öffnet und nicht schliessen lässt, ist auf dem
+Telefon kein kleiner Umstand — `vi` verlässt man mit einer Zeichenfolge, die
+niemand rät.*
+
+⛔ **Die Regel gilt für jeden Befehl, der einen Editor aufruft** — `crontab -e`,
+`git rebase -i`, `git commit` ohne `-m`, jedes `EDITOR`-gestützte Werkzeug.
+
+| | |
+|---|---|
+| ⭐ | **Speichern und Schliessen stehen in derselben Anweisung**, Tastendruck für Tastendruck |
+| ⭐ | **Mit dem Erkennungszeichen**, dass es geklappt hat — nicht nur den Handgriffen |
+| ⭐ | **Für `crontab` wird `nano` vorangestellt**: `EDITOR=nano crontab -e`. *`nano` liegt macOS bei und ist auf dem Telefon bedienbar; `vi` ist die Vorbelegung und nicht* |
+| ⚠️ | **Und der Weg hinaus ohne zu speichern** gehört dazu, falls etwas schiefging |
+
+**Die Folge für `crontab -e`, wie sie künftig ausgegeben wird:**
+
+| | Was | Woran er merkt, dass es geklappt hat |
+|---|---|---|
+| **1** | `EDITOR=nano crontab -e` | Der Bildschirm füllt sich mit der crontab; unten steht eine Leiste mit `^O Write Out` und `^X Exit` |
+| **2** | `Strg`+`Umschalt`+`Ende` — ans Ende; ist die Taste nicht da: `Strg`+`W`, `Strg`+`V` | Der Blinkstrich steht unter der letzten Zeile |
+| **3** | Die Zeile einfügen, danach `Enter` | Die Zeile steht da, die nächste ist leer |
+| **4** | `Strg`+`O`, dann `Enter` | `[ Wrote N lines ]` |
+| **5** | `Strg`+`X` | Zurück an der Eingabezeile, darüber `crontab: installing new crontab` |
+| ⚠️ **Abbrechen ohne zu speichern** | `Strg`+`X`, dann `N` | Zurück an der Eingabezeile, **ohne** die Installationsmeldung |
+
+⭐ **Danach immer eine Zählung als Kontrolle**, nie *„sollte jetzt drin sein“*:
+`crontab -l | grep -c <muster>` mit der erwarteten Zahl daneben.
+
+---
+
 ### ⭐⭐ Der Start einer Mac-Sitzung wird als getrennte Kopierblöcke ausgegeben
 
 ⚠️⚠️ **Anweisung des Betreibers, 20.09.2026, nach einem Verstoß:** *"Ich hatte
@@ -1068,6 +1105,21 @@ nach `docs/belege/TB-<Nr>/`, jeweils im Zug des Teils, zu dem sie gehören.
 *Ein Auftrag, der nur in `logs/auftraege/` oder im Chat liegt, steht nach
 `UMZUG.md` Abschnitt 2 in keinem Träger; ein Beleg, der nur im Sitzungsverlauf
 steht, verschwindet mit ihm.* Kein Archiv — Abschnitt 2.
+
+⭐⭐ **Zur Abgabe gehört seit dem 21.09.2026 der Journalblock selbst — nicht
+mehr eine Nachtragsdatei.** *(Betreiberentscheidung 21.09.2026, TB-75; der
+Umweg war eine Sitzung lang die Regel und ist gemessen worden.)*
+
+| | |
+|---|---|
+| ⭐ | **Die Mac-Sitzung fügt ihren Block bei der Abgabe selbst ans Ende von `JOURNAL.md` an**, mit der Quellenzeile auf ihr eigenes Ergebnisdokument: `*Quelle: `docs/ERGEBNIS_TB-<nr>_<stichwort>.md`*` |
+| ⚠️ | **Der Blockbuchstabe wird gemessen**, nicht geraten — letzter Block plus eins. Bei einer Kollision bricht `git` ab; gemessen im Wegwerf-Repo: `push rejected`, danach `CONFLICT`, **nie ein stiller Doppelbuchstabe** |
+| ⛔ | **Nichts im Journal wird umgeschrieben** — nur angefügt, wie bisher (`DOKUMENTATIONSSTANDARD.md` Regel 9, eine der vier Ausnahmen) |
+| ⚠️ | **Chat-Nachträge bleiben unverändert** — was der steuernde Chat schreibt, geht weiter als Nachtragsdatei und wird eingearbeitet. Der Wächter bleibt dafür zuständig |
+| ⚠️ | **Der Preis, benannt:** Für Mac-Blöcke gibt es keine Wache mehr — ohne Nachtragsdatei kann nichts offen liegen, also fällt auch nichts auf. Eine Probe *„Ergebnisdokument ohne Quellenzeile im Journal“* würde sie ersetzen; **sie ist nicht gebaut** |
+
+*Die Einzelheiten und die Messung dahinter stehen in `DOKUMENTATIONSSTANDARD.md`
+Abschnitt 10.*
 
 **4. ⭐⭐ Nach jedem Start wird gemessen, ob der Text angekommen ist.**
 
