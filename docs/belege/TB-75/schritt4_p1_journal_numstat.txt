@@ -1,0 +1,7 @@
+534c2c8 5079	0	docs/projektfuehrung/JOURNAL.md
+6bca601 0	1	docs/projektfuehrung/JOURNAL.md
+66530f4 391	5	docs/projektfuehrung/JOURNAL.md
+02de1f7 632	0	docs/projektfuehrung/JOURNAL.md
+fade02c 430	0	docs/projektfuehrung/JOURNAL.md
+08cf90a 965	0	docs/projektfuehrung/JOURNAL.md
+a096a7f 352	0	docs/projektfuehrung/JOURNAL.md

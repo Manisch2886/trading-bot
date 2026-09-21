@@ -1,0 +1,10 @@
+Nachtrag (20m): 133 Zeilen, Block CA: 54 Zeilen (41 %)
+
+Abschnitt des Nachtrags | Zeilen | nichtleere | Wortformen (>=5 Zeichen) | davon in CA
+Kopf                                          |  24 |  19 |  64 |  47 (73 %)
+Was der Auftrag wollte und was er bekam       |  22 |  18 |  67 |  38 (57 %)
+Vier Befunde, die keiner bestellt hat         |  39 |  33 | 129 |  84 (65 %)
+Wo der Auftrag danebenlag, und was gilt       |  13 |  10 |  71 |  34 (48 %)
+Fehler → Regel                                |  10 |   7 |  55 |  31 (56 %)
+Der Stand am Morgen des 21.09.                |  10 |   7 |  28 |  16 (57 %)
+In einfacher Sprache                          |  15 |  12 |  53 |   8 (15 %)

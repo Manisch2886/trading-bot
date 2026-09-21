@@ -1,0 +1,7 @@
+B 2026-09-16 21:32 534c2c8 Projektfuehrung versioniert: BACKLOG, JOURNAL, ARBEITSWEISE unter docs/projektfuehrung/
+B 2026-09-16 22:03 6bca601 Projektfuehrung nachgezogen: Journal AN-AX, Backlog TB-42 und Termin, Arbeitsweise Sicheru
+S 2026-09-17 22:01 66530f4 Fuehrungsdokumente nach TB-45, TB-46 und den Fable-Runden fortgeschrieben
+S 2026-09-18 16:35 02de1f7 TB-50 Dokumentationspflege: Nachtraege (a) und (b) vom 18.09.2026 eingearbeitet
+S 2026-09-19 10:14 fade02c TB-54b: Journal-Nachtraege (c), (d), (e) eingearbeitet - Bloecke BG, BH, BI, BJ vor 'Wiede
+S 2026-09-20 17:46 08cf90a TB-67 Schritt 2+3: zehn Journalbloecke BK-BT aus den acht offenen Nachtraegen (f), (g), (2
+S 2026-09-21 09:20 a096a7f TB-75 Schritt 2: sieben Journalbloecke BU-CA vor '## Wiederkehrende Lehren' angefuegt (TB-

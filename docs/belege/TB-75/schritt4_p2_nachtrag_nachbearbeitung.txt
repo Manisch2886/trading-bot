@@ -1,0 +1,27 @@
+=== a15746f (20g): TB-67 Nachtrag zur Abgabe: Push-Vermerk berichtigt - der erste Push (in einer Pipe) war abgelehnt, der nackte git push n
+8	7	docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20g.md
+-(Nachweise), `93a88d4` (Backlog `K4h`), `4117ee7` (Verschieben) und der
+-Abgabe-Commit. Ergebnisdokument `docs/ERGEBNIS_TB-67_journal_einarbeitung.md`,
++(Nachweise), `93a88d4` (Backlog `K4h`), `4117ee7` (Verschieben), `544b011`
++(Abgabe) und ein Nachtrag zum Push. Ergebnisdokument `docs/ERGEBNIS_TB-67_journal_einarbeitung.md`,
+-**Der Push war in dieser Umgebung gesperrt.** Der Berechtigungsfilter der
+-Claude-Code-Sitzung lehnte `git push` ab; sechs Commits liegen lokal auf `main`.
+-Die Auflage *„Sichern nach jedem fertigen Teil"* ist zur Hälfte erfüllt — die
+-Commits sind gesetzt, die Sicherung auf den zweiten Rechner nicht. **Das steht
+-im Ergebnisdokument oben, nicht unten**, damit der Betreiber es zuerst liest.
++**Der Push ging erst am Ende.** Der Berechtigungsfilter der Claude-Code-Sitzung
++lehnte den ersten `git push` (in einer Pipe mit `| tail`) ab; ein nacktes
++`git push` nach dem Abgabe-Commit ging durch (`fe76857..544b011`). Die Auflage
++*„Sichern nach jedem fertigen Teil"* ist damit zur Hälfte erfüllt: Commits je
++Schritt, ein Push für alle. ⇒ *`git push` steht allein — auch ohne Pipe, nicht
++nur ohne `&&`.* **Der Vermerk steht im Ergebnisdokument oben, nicht unten.**
+=== 1a301b0 (20h): TB-68 Entscheidung: Betreiber hat am Ende der Sitzung per anklickbarer Frage entschieden - UEBERGABEPROTOKOLL.md als Zei
+2	2	docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20h.md
+-| `UEBERGABEPROTOKOLL.md` im Lesepfad — drei Wege, Empfehlung „bei Bedarf“-Zeile | Betreiber |
+-| Platzhalter oder fester Name — Empfehlung fest; danach der offene Punkt aus dem Kopf der Übergabe (Umbenennung nach `UEBERGABE.md`) | Betreiber |
++| ~~`UEBERGABEPROTOKOLL.md` im Lesepfad~~ ✅ entschieden am Ende der Sitzung (anklickbare Frage): „bei Bedarf“-Zeile, umgesetzt in `UMZUG.md` Abschnitt 6 | — |
++| ~~Platzhalter oder fester Name~~ ✅ entschieden: fest; offen bleibt nur die Umbenennung nach `UEBERGABE.md` aus dem Kopf der Übergabe | Betreiber |
+=== f0ca921 (20m): TB-64 Nachtrag zur Abgabe: Abgabe-Hash 9a51add in der Commit-Liste des Ergebnisdokuments und im Kopf des Journal-Nachtra
+1	1	docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20m.md
+-und 5b, Cron-Zeile und `UMGEBUNGEN.md`), dann Schritt 6 (dieser Nachtrag,
++und 5b, Cron-Zeile und `UMGEBUNGEN.md`), `9a51add` (Schritt 6, dieser Nachtrag,

@@ -1,0 +1,12 @@
+TB-75 Schritt 4, Punkt 3 - Versuch in einem Wegwerf-Repo (Scratchpad, nicht im Projekt):
+zwei Klone a und b messen denselben letzten Block BT und fuegen je einen Block BU vor
+'## Wiederkehrende Lehren' ein, a pusht zuerst.
+  push b:               ! [rejected]  HEAD -> main (fetch first)
+  pull --rebase in b:   CONFLICT (content): Merge conflict in JOURNAL.md   (UU JOURNAL.md)
+  merge statt rebase:   CONFLICT (content): Merge conflict in JOURNAL.md
+Befund: Bei getrennten Arbeitsbaeumen entsteht kein stiller Doppelbuchstabe - dieselbe
+Einfuegestelle (die Zeile vor '## Wiederkehrende Lehren') ist fuer git immer ein Konflikt.
+Ein stiller Doppelbuchstabe ist nur im SELBEN Arbeitsbaum moeglich, wenn zwei Sitzungen
+zwischen Messen und Schreiben einander ueberholen - der Fall, den die Regel 'nie zwei
+gleichzeitig im selben Arbeitsbaum' ausschliesst und der auf main seit 19.09. nicht
+vorgekommen ist (Punkt 1).

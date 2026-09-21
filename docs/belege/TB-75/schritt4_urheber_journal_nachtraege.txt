@@ -1,0 +1,18 @@
+JOURNAL_NACHTRAG_2026-09-19c.md | eaf2572 | Sitzung | TB-54b: Ergebnisdokument und die vier Nachtragsdateien (c), (d), (e), (l) als Be
+JOURNAL_NACHTRAG_2026-09-19d.md | eaf2572 | Sitzung | TB-54b: Ergebnisdokument und die vier Nachtragsdateien (c), (d), (e), (l) als Be
+JOURNAL_NACHTRAG_2026-09-19e.md | eaf2572 | Sitzung | TB-54b: Ergebnisdokument und die vier Nachtragsdateien (c), (d), (e), (l) als Be
+JOURNAL_NACHTRAG_2026-09-19f.md | d66a2ce | Chat/Betreiber | Nachtraege (m) Backlog und (f) Journal vom 19.09.2026
+JOURNAL_NACHTRAG_2026-09-19g.md | 64cc2b5 | Chat/Betreiber | TB-59: Einarbeitung der Nachtraege (n) bis (u), plus nachgeholte Abgabe. BACKLOG
+JOURNAL_NACHTRAG_2026-09-20a.md | 3ac4710 | Chat/Betreiber | TB-60 Abgabe nachgeholt und vier Regeln eingetragen. Ergebnisdokument und Journa
+JOURNAL_NACHTRAG_2026-09-20b.md | e5720ed | Chat/Betreiber | Journal-Nachtrag b zum 20.09.2026 Mittag: die Beauftragung von TB-61 und TB-62. 
+JOURNAL_NACHTRAG_2026-09-20c.md | efef74c | Sitzung | TB-61 Schritt 6: Ergebnisdokument, Belege und Journal-Nachtrag c. Das wichtigste
+JOURNAL_NACHTRAG_2026-09-20d.md | 9a8a2ee | Sitzung | TB-65 Teil 2: Ergebnisdokument, Journal-Nachtrag d und die Nachweise 3, 5 und 6.
+JOURNAL_NACHTRAG_2026-09-20e.md | 6e29eec | Sitzung | TB-62 Schritt 5: Ergebnisdokument und Journal-Nachtrag (e). Acht Nachweise, jede
+JOURNAL_NACHTRAG_2026-09-20f.md | fe76857 | Sitzung | TB-66 Abgabe: Ergebnisdokument, Journal-Nachtrag (f), Nachweise 2 (nachher), 6, 
+JOURNAL_NACHTRAG_2026-09-20g.md | 544b011 | Sitzung | TB-67 Abgabe: Ergebnisdokument abgeschlossen (Nachweise 7 und 8, Abweichungen, O
+JOURNAL_NACHTRAG_2026-09-20h.md | 4326ff2 | Sitzung | TB-68 Schritt 5: eine Zeile K4i in BACKLOG.md Abschnitt 4 (numstat 1/0, naechste
+JOURNAL_NACHTRAG_2026-09-20i.md | b3b37f0 | Sitzung | TB-71 Abgabe: Ergebnisdokument ERGEBNIS_TB-71_register_schliessen.md (Nachweise 
+JOURNAL_NACHTRAG_2026-09-20j.md | 5dcea37 | Sitzung | TB-72 Abgabe Schritt 1 (HALT-Nachtrag Punkt 4): Ergebnisdokument ERGEBNIS_TB-72_
+JOURNAL_NACHTRAG_2026-09-20k.md | 68c8ca2 | Sitzung | TB-72 Schritt 7 (Abgabe): Ergebnisdokument ERGEBNIS_TB-72_erste_falte_aus_trocke
+JOURNAL_NACHTRAG_2026-09-20l.md | bb6ab88 | Sitzung | TB-73 Schritt 5 (Abgabe): Ergebnisdokument docs/ERGEBNIS_TB-73_mtm_wirkung.md (N
+JOURNAL_NACHTRAG_2026-09-20m.md | 9a51add | Sitzung | TB-64 Schritt 6 (Abgabe): Ergebnisdokument docs/ERGEBNIS_TB-64_nachtragswaechter
