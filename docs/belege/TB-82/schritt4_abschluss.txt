@@ -1,0 +1,47 @@
+# TB-82 Schritt 4-8 — Abschlusspruefung (gemessen 2026-09-21T22:12:17Z, Mac, main, HEAD 04cf1da, Ausgang 9614624)
+
+## 4. M5 nachher gegen vorher: siehe m5_faltenlisten.txt — SHA e5ab322e… vorher == nachher, diff leer, gegen 21.4 0 Abweichungen
+
+## 5. numstat je Datei ueber alle Commits (9614624..HEAD)
+    221	0	docs/VORREGISTRIERUNG_neuselektion.md
+    11	0	docs/belege/TB-82/m1_rest.txt
+    9	0	docs/belege/TB-82/m2_2026-2027.txt
+    36	0	docs/belege/TB-82/m3_bestaetigung_ab.txt
+    24	0	docs/belege/TB-82/m4_wachen_optimierer.txt
+    60	0	docs/belege/TB-82/m5_faltenlisten.txt
+    23	0	docs/belege/TB-82/schritt0_ausgangsstand.txt
+    41	0	docs/belege/TB-82/schritt2_nachweise.txt
+    35	0	docs/belege/TB-82/schritt3_nachweise.txt
+    Zeilen mit zweiter Spalte != 0: 0
+    Dateien ausserhalb docs/: 0
+
+## 6. Abschnitt 34 genau einmal
+    grep -c '^## 34\.' -> 1 (Z. 5471); awk -> 1
+    ## 26. -> 1
+    ## 27. -> 1
+    ## 28. -> 1
+    ## 29. -> 1
+    ## 30. -> 1
+    ## 31. -> 1
+    ## 32. -> 1
+    ## 33. -> 1
+    ## 34. -> 1
+    hoechste ##-Nummer: 34
+
+## 7. Drei Sperrlisten-Hashes gegen Schritt 0
+    0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+    a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+    4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+    Soll (Schritt 0): 0e54ac5c… / a163c498… / 4549395f…
+    git log der drei seit Ausgang: 0 Commits (Soll 0)
+
+## 8. AKTUELLER_AUFTRAG.md — nur gelesen
+    grep -c 'TB-82' -> 1 (Soll >= 1); wc -l -> 87 (Schritt 0: 87)
+    numstat 9614624..HEAD fuer diese Datei: '' (leer = nicht angefasst)
+    Tabelle 'Gueltiger Auftrag' (Z. 35 ff.): genau eine Datenzeile, TB-82:
+    | **TB-82** | `docs/auftraege/MAC_TB-82_register_34.md` | ⭐⭐ **Registerabschnitt
+    | **TB-70** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einze
+    (Die zweite Zeile, TB-70, gehoert zur Tabelle unter '### Geplant, noch nicht formuliert' (Z. 45 ff.), die derselbe ##-Abschnitt traegt; die Zeigertabelle 'TB | Auftragsdokument | kurz' in Z. 37-39 hat genau eine Datenzeile, TB-82.)
+
+## 9. git status --porcelain (vor Ergebnisdokument und Journalblock)
+    ?? docs/belege/TB-82/schritt4_abschluss.txt
