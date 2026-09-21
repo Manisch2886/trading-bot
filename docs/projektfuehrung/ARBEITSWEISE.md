@@ -833,6 +833,18 @@ weiss — seine Risikotragfähigkeit, seine verfügbare Zeit, sein Wohnsitzrecht
 wird das **gesagt** statt geraten. *Beispiel 16.09.: beim Aktien/Krypto-Schlüssel
 war die Messung meine Aufgabe, die Wahl seine.*
 
+### ⭐ Auch Fables Fragen an den Betreiber werden ungefragt mit einer Empfehlung beantwortet
+
+⚠️ **Anweisung des Betreibers, 21.09.2026, nach zwei Nachfragen an einem
+Nachmittag.** Stellt der Verfahrensprüfer dem Betreiber eine Entscheidungsfrage,
+**beantwortet der steuernde Chat sie mit einer Empfehlung, bevor der Betreiber
+klickt** — gemessen statt geraten, und mit ausdrücklicher Nennung der Stelle, an
+der Fable falsch oder unbelegt liegt.
+
+⭐ **Der Betreiber soll nicht erst „Deine Empfehlung?" fragen müssen.** Dieselbe
+Begründung wie 6d selbst: *eine benannte Empfehlung ist widersprechbar; eine
+ausgelassene ist nur Arbeit.*
+
 ---
 
 ## 7. Terminal-Arbeit
@@ -1334,6 +1346,31 @@ nächsten Umzug weg.
 20.09.2026 stand sie nur im Nachtrag (m), dessen Nummern inzwischen anderweitig
 vergeben waren (K4b). Sie ist genau die Vorschrift, die verhindern soll, dass
 Entscheidungen nur im Chat leben — und sie ist selbst im Chat geblieben.*
+
+### ⭐⭐ Und dasselbe gilt für den Verfahrensprüfer — in beide Richtungen
+
+⚠️⚠️ **Gemessen am 21.09.2026 an der Projektablage: der Austausch war halb
+abgelegt.** Fable hatte neun Antworten dort liegen; von uns lag **eine einzige**
+Anfrage. Die Rückmeldung von 16:24, die Sichtschutz-Antwort und die
+Festlegungs-11-Berichtigung von 17:36 existierten nur im Chatverlauf — und der
+ist nach `UMZUG.md` Abschnitt 2 **kein Träger**.
+
+> ⭐ **Jede Anfrage und jede Rückmeldung an den Verfahrensprüfer wird abgelegt
+> wie seine Antwort** — `projektfuehrung/FABLE_ANFRAGE_<datum><buchstabe>_<stichwort>.md`,
+> im Wortlaut des gesendeten Textes, nicht als Zusammenfassung.
+
+⚠️ **Warum das schlimmer ist als gar keine Ablage:** *Ein halb abgelegter
+Austausch sieht im Streitfall vollständig aus.* Wer nur Fables Seite liest,
+sieht neun Entscheidungen ohne die Fragen, die sie ausgelöst haben — und kann
+nicht prüfen, ob die Frage die Antwort schon enthielt.
+
+### ⭐ Bei jeder Übergabe wird ungefragt gesagt, was mitgeht und was nicht
+
+**Anweisung des Betreibers, 21.09.2026.** Der Regelfall ist: **nichts
+mitschicken** — der Übergabetext ist selbsttragend, und zwei Quellen für
+denselben Sachverhalt lassen bei jeder Abweichung offen, welche gilt.
+**Ausnahme:** der Beleg auf Widerspruch. Die Entscheidung wird **genannt**, nicht
+stillschweigend getroffen.
 
 ---
 
