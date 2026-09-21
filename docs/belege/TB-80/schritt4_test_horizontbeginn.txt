@@ -1,0 +1,20 @@
+TB-80 - Bedingung (i) rechnet gegen den Horizontbeginn aus dem Register
+  Python 3.9.6 (/Users/jaquelineloffler/trading-bot/trading-env/bin/python3)
+
+Bot                         Horizont    warm ab        4a  Reg. 28.4   Datenuhr    warm (Uhr)  
+------------------------------------------------------------------------------------------------
+elliott_wave                None        2017-08-17   2018  None        None        2017-08-17  
+t3_supertrend               None        2017-08-17   2018  None        None        2017-08-17  
+rsi2_crypto                 None        2018-01-14   2019  None        None        2018-01-14  
+turtle_soup_crypto          None        2017-09-16   2018  None        None        2017-09-16  
+volatility_breakout_crypto  None        2017-12-22   2018  None        None        2017-12-22  
+elliott_wave_stocks         2016-09-19  2016-09-19   2017  2016-09-19  2016-09-01  2016-09-01  
+rsi2_mean_reversion         2016-09-19  2017-07-06   2018  2016-09-19  2016-09-01  2017-06-20  
+turtle_soup_stocks          2016-09-19  2016-10-31   2017  2016-09-19  2016-09-01  2016-10-14  
+volatility_breakout         2016-09-19  2017-03-22   2018  2016-09-19  2016-09-01  2017-03-07  
+
+  Plan mit Trockenlauf (faltenplan.faltenplan) ...
+  erste_falte je Bot: {elliott_wave: 2018, t3_supertrend: 2019, rsi2_crypto: 2019, turtle_soup_crypto: 2018, volatility_breakout_crypto: 2018, elliott_wave_stocks: 2017, rsi2_mean_reversion: 2018, turtle_soup_stocks: 2017, volatility_breakout: 2018}
+
+==============================================================================
+61/61 Pruefungen bestanden.

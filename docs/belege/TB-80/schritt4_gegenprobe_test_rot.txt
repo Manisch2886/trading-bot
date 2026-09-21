@@ -1,0 +1,20 @@
+  Plan mit Trockenlauf (faltenplan.faltenplan) ...
+  erste_falte je Bot: {elliott_wave: 2018, t3_supertrend: 2019, rsi2_crypto: 2019, turtle_soup_crypto: 2018, volatility_breakout_crypto: 2018, elliott_wave_stocks: 2017, rsi2_mean_reversion: 2018, turtle_soup_stocks: 2017, volatility_breakout: 2018}
+
+==============================================================================
+46 bestanden, 15 GESCHEITERT:
+  - 1: elliott_wave_stocks - Horizontbeginn 2016-09-19 - 2016-09-01
+  - 1: elliott_wave_stocks - fruehestes Warm-Datum nicht vor dem Horizontbeginn - 2016-09-01
+  - 1: elliott_wave_stocks - mit der Datenuhr (2016-09-01) als Anker aendert sich das Warm-Datum: der Anker ist nicht die Datenuhr - 2016-09-01 = 2016-09-01
+  - 1: rsi2_mean_reversion - Horizontbeginn 2016-09-19 - 2016-09-01
+  - 1: rsi2_mean_reversion - mit der Datenuhr (2016-09-01) als Anker aendert sich das Warm-Datum: der Anker ist nicht die Datenuhr - 2017-06-20 = 2017-06-20
+  - 1: turtle_soup_stocks - Horizontbeginn 2016-09-19 - 2016-09-01
+  - 1: turtle_soup_stocks - mit der Datenuhr (2016-09-01) als Anker aendert sich das Warm-Datum: der Anker ist nicht die Datenuhr - 2016-10-14 = 2016-10-14
+  - 1: volatility_breakout - Horizontbeginn 2016-09-19 - 2016-09-01
+  - 1: volatility_breakout - mit der Datenuhr (2016-09-01) als Anker aendert sich das Warm-Datum: der Anker ist nicht die Datenuhr - 2017-03-07 = 2017-03-07
+  - 1: HORIZONTBEGINN['aktien'] ist ein date-Literal, kein gerechneter Wert
+  - 4: elliott_wave_stocks - Literal im Faltenplan = Register 28.4 - Code 2016-09-01, Register 2016-09-19
+  - 4: rsi2_mean_reversion - Literal im Faltenplan = Register 28.4 - Code 2016-09-01, Register 2016-09-19
+  - 4: turtle_soup_stocks - Literal im Faltenplan = Register 28.4 - Code 2016-09-01, Register 2016-09-19
+  - 4: volatility_breakout - Literal im Faltenplan = Register 28.4 - Code 2016-09-01, Register 2016-09-19
+  - 4: nach den Proben ist das Original wiederhergestellt - {'aktien': datetime.date(2016, 9, 1), 'krypto': None}

@@ -1,0 +1,21 @@
+TB-72 - Der Neun-Zahlen-Vergleich: erste Falte laut Plan gegen Trockenlauf
+  Trockenlauf je Bot (unabhaengig, messe_bot) ...
+  Plan (faltenplan.faltenplan) ...
+
+Bot                             4a Trockenl.  Plan  21.4  H je Kandidat ab 4a
+------------------------------------------------------------------------------------------------
+elliott_wave                  2018      2018  2018  2018  3 / 9 / 13 / 17 / 18
+t3_supertrend                 2018      2019  2019  2019  0 / 3 / 6 / 9 / 13 / 13 / 13 / 17 / 18
+rsi2_crypto                   2019      2019  2019  2019  6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+turtle_soup_crypto            2018      2018  2018  2018  2 / 6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+volatility_breakout_crypto    2018      2018  2018  2018  2 / 6 / 9 / 10 / 13 / 13 / 17 / 18 / 20
+elliott_wave_stocks           2017      2017  2017  2017  135 / 136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+rsi2_mean_reversion           2018      2018  2018  2018  136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+turtle_soup_stocks            2017      2017  2017  2017  135 / 136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+volatility_breakout           2018      2018  2018  2018  136 / 137 / 137 / 139 / 139 / 140 / 142 / 145 / 147
+
+  Teil D: Wegwerf-Kopie ohne und mit Mutation ...
+  D: Kopie ohne Mutation = Trockenlauf: True; mit Mutation abweichend bei ['t3_supertrend'] (t3_supertrend: 2018)
+
+==============================================================================
+50/50 Pruefungen bestanden.

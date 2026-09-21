@@ -143,8 +143,14 @@ def register_21_4():
 # Die Wegwerf-Kopie im eigenen Prozess
 # ==============================================================================
 MUTATIONSSTELLE = "    erste, herkunft = erste_falte(bot, laenge, schnitt)\n"
-MUTATION = ('    erste = erste_falte_4a(bot)  # MUTATION: 4a allein, wie vor TB-72\n'
-            '    herkunft = {"erste_falte_4a": erste, "H_je_gepruefter_falte": []}\n')
+# Seit TB-80 (21.09.2026) traegt `herkunft` auch horizontbeginn und
+# erste_falte_4a_warm_ab; die Mutation fuellt sie aus erste_falte_4a_messung,
+# damit die Kopie an der Mutation scheitert und nicht an einem KeyError in _plan.
+MUTATION = ('    m4a = erste_falte_4a_messung(bot)  # MUTATION: 4a allein, wie vor TB-72\n'
+            '    erste = m4a["erste_falte_4a"]\n'
+            '    herkunft = {"erste_falte_4a": erste, "horizontbeginn": m4a["horizontbeginn"],\n'
+            '                "erste_falte_4a_warm_ab": m4a["warm_ab_fruehestes"],\n'
+            '                "H_je_gepruefter_falte": []}\n')
 
 
 def _kopie(ziel):
