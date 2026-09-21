@@ -982,3 +982,234 @@ offen ist.
 keine Rückfrage offen im Sinn von `UMZUG.md` Abschnitt 3 — es ist eine
 dokumentierte Aufgabe, die der neue Chat als Erstes erledigt. Der Umzug bleibt
 zulässig.
+
+
+---
+
+# Nachtrag 5 zur Übergabe — 21.09.2026, 21:35 Ortszeit: der Tag der vier Registerabschnitte
+
+⚠️⚠️ **Ab hier gilt der Stand vom 21.09., 21:35.** Nachtrag 4 und seine drei
+Ergänzungen bleiben stehen (append-only), sind aber überholt, wo dieser Nachtrag
+etwas anderes sagt.
+
+⭐ **Alle Zahlen unten sind am 21.09. zwischen 21:30 und 21:35 über die
+Geräteanbindung gemessen**, nicht erinnert. Wo etwas erschlossen ist, steht es
+dabei.
+
+---
+
+## Block 1 — Der Stand in drei Zeilen
+
+| | |
+|---|---|
+| **Fertig** | **TB-78** und **TB-79** — Registerabschnitte **27** (Sichtschutz), **28** (`asof` gesetzt, Horizontbeginn, Vorlauf-Satz), **29** (Kapitalpfad ab erster Falte), **30** (der gesperrte Faltenplan), **31** (kein Manifest-Feld `asof`). Dazu Prüfprinzip **`A8`**, drei Regeln in `ARBEITSWEISE.md`, die Berichtigung der TB-77-Offen-Liste und die Wiederherstellung von `AKTUELLER_AUFTRAG.md` |
+| **Läuft** | **nichts.** Keine Mac-Sitzung, Baum sauber |
+| **Als Nächstes** | ⭐⭐ **Der Faltenplan nach 4a als Registertext** (30.2 (2)) → die Abbild-Datei mit Hash auf die Sperrliste (30.2 (3)) → der Abgleich Datei↔Registertext → **TB-30b** → Sperrlisten-Vollzug → **der signierte Tag** |
+
+---
+
+## Block 2 — `HEAD`, Zweig, Commit-Kette
+
+```
+HEAD    2250ed1   Zweig main
+Baum    0 geändert · 1 unversioniert: .claude/settings.local.json
+```
+
+**Die Kette des Abends, von früh nach spät** (Ortszeit):
+
+`83e3a85` (TB-77-Abgabe, 17:18) → `ee0b799` (TB-78 Schritt 0, 19:18) →
+`2848b7a` `003f894` `94b3b3b` `2fd9498` `5d32be4` `7d2f739` (Schritte 1–6,
+19:19–19:23) → `54bbe66` (Abgabe, 19:26) → `c843fd5` `e47ddfe` (Nachtrag v2:
+Schritte 3b und 6b, 19:45–19:46) → `6f19aff` `0592af3` (Fortschreibung, 19:48) →
+`85e80a2` `31a4665` (TB-79 Schritt 0, 21:08) → `b99214a` (Abschnitt 31, 21:10) →
+**`2250ed1`** (Abgabe, 21:12).
+
+⚠️ **Zeitstempel über die Geräteanbindung sind UTC**, auch mit
+`--date=iso-local` — die Brücke läuft in UTC, nicht in Ortszeit. ⭐ *Neu gemessen
+am 21.09.: `git log --date=format-local` liefert dort `+0000`. Zwei Stunden
+Unterschied, dieselbe Fehlerklasse wie Block 7, Punkt 2 vom 20.09.*
+
+---
+
+## Block 3 — Die tragenden Zahlen, jede mit Fundstelle
+
+| Grösse | Wert | Fundstelle |
+|---|---|---|
+| ⭐⭐ **`asof`** | **2026-09-19** | Abschnitt **28.3**; Quelle `zeitpunkt_utc` im Manifest, Abschnitt 18 Z. 2596 |
+| ⭐⭐ **Horizontbeginn** | **2016-09-19**, alle vier Aktien-Bots; Krypto-Bots **kein Horizont** | Abschnitt **28.4** (ersetzt den Platzhalter in 26.3) |
+| ⭐ **`datenende`** | **2026-09-15**, Abstand zu `asof` **4 Tage** | Abschnitt **31.5**, Mac-Lauf TB-79, zwei Zählungen (csv-Modul und pandas 2.3.3) |
+| ⚠️ **je Markt verschieden** | 150 Aktien-Tagesdateien enden **2026-09-01** · 24 Krypto-Tagesdateien 2026-09-14 · 48 Krypto-4h/1h 2026-09-15 · `XAUTUSDT_1h` 2026-08-30. **Das Datenende der Aktien-Bots liegt 18 Tage vor `asof`** | Abschnitt **31.5**, Messnotiz |
+| **Das Register** | `docs/VORREGISTRIERUNG_neuselektion.md` · **5 089 Zeilen · 313 878 B** · SHA-256 `aa3b4cf3…` | gemessen bei `2250ed1` |
+| **Höchster Abschnitt** | **31** | `grep -nE "^## 3[0-9]\."` |
+| **Manifest-Schlüssel** | **16**, keiner heisst `asof`; ohne die Dateiliste `dateien` sind es 15 | Abschnitt **31.6**, zwei unabhängige Zählungen |
+| **Sperrlisten-Hashes** | `a163c498…` · `0e54ac5c…` · `4549395f…` | **unverändert** seit dem 20.09. |
+| **Manifest-Hash** | `5cf1103e7487514b…` | vor und nach TB-79 identisch — Nachweis zu 31.3 |
+| **Prüfprinzipien** | Gruppe A: **`A1`–`A8`**, keine Nummer doppelt | `docs/PRUEFPRINZIPIEN.md` |
+| **Journal** | letzter Block **`CG`** | |
+
+### ⚠️ Gemessene Nummernstände
+
+| | Stand | nächste freie |
+|---|---|---|
+| Registerabschnitte | **31** | **32** |
+| Prüfprinzipien Gruppe A | **`A7`** vor heute, **`A8`** seit TB-78 | **`A9`** |
+| Journalblöcke | **`CG`** | **`CH`** |
+
+⭐⭐ **`A5` war belegt, und das hat der Übergabe-Nachtrag 4 nicht gemessen.**
+Ergänzung 1 zu Nachtrag 4 (17:25) schlug `A5` für das neue Prinzip vor — dort
+steht seit dem 18.09. *„Ein Werkzeug, das nicht mehr misst, sagt es"*. Vergeben
+wurde **`A8`**, gemessen. ⇒ **`K2i` gilt auch für unsere eigenen Nachträge:**
+*ein Nachtrag nennt keine Nummer, die er nicht selbst gemessen hat.*
+
+---
+
+## Block 4 — Offen vor dem signierten Tag, in Reihenfolge
+
+⭐ **Die Reihenfolge ist Fables, aus 21b und 21i, und sie ist begründet.**
+
+| | Schritt | warum hier |
+|---|---|---|
+| **1** | ⭐⭐ **Der Faltenplan nach 4a als Registertext** — je Bot die Liste der Selektionsfalten, abgeleitet aus `asof`, `RECENT_YEARS_ONLY`, dem Indikator-Vorlauf gegen den Horizontbeginn und dem Trockenlauf nach 3b (b) | **30.2 (2)**. Alle vier Eingangsgrössen stehen jetzt im Register — vor heute fehlte `asof` |
+| **2** | **Genau eine Abbild-Datei mit Hash auf die Sperrliste**, als neuer Punkt; der Lauf liest nur sie | **30.2 (3)** |
+| **3** | **Der Abgleich Datei ↔ Registertext**, je Bot, je Jahr, als Tatsachennotiz mit Ergebnis | **30.2 (3)**. ⚠️ Ob `faltenplan_tb72.json` das Abbild ist, entscheidet **allein dieser Abgleich**, nicht ihre Herkunft (30.2 (4)) |
+| **4** | **TB-30b** — die vier `multi_symbol_optimise.py` (`entry_cutoff` einmal je Bot aus dem Register) **plus die Wache**: frühester Einstieg ≥ **Beginn der ersten Selektionsfalte**, sonst rc 2; Bericht führt je Bot Horizontbeginn, Beginn der ersten Falte und frühesten Einstieg nebeneinander | **29.4**. ⚠️ Die Fassung aus 21b (nur Horizontbeginn) ist **ersetzt** |
+| **5** | **Sperrlisten-Vollzug** über alle neun Bots | braucht die **eigene** Betreiberfreigabe aus Register 21.9 |
+| **6** | **Der Tag** | |
+
+**Daneben, nicht blockierend:** `TB-70` · `T56b.6` (Konstantenkopien, dazu `K4f`
+Zeile 65) · `T56b.7` · `T46.1b/c` · die zwei roten Proben `G6`/`H3` · die
+Kettenzeile `0,99` (Lauf-Reproduktion gegen den Lock).
+
+⭐ **Zwei Messungen, die 29.5 verlangt und die noch niemand gemacht hat:**
+(1) wo der Kapitalpfad der neun Optimierer **heute** beginnt; (2) **ob** es in
+den vorhandenen Trade-Listen Einstiege zwischen Horizontbeginn und dem
+1. Januar der ersten Falte gibt. ⛔ **Nur das Ob, nicht die Wirkung** — eine
+Aussage über Kennzahlen fiele unter 27.1. ⚠️ **Und jede Messung an den neun
+`paper_trading_*.db` läuft auf einer Kopie.**
+
+---
+
+## Block 5 — Wartezustände
+
+| wartet | worauf |
+|---|---|
+| **Mac-Sitzung** | keine läuft; Baum sauber, `HEAD 2250ed1` |
+| ✅ **Fable** | **auf nichts.** 21j ist eingearbeitet (Abschnitt 31), die Rückmeldung 21d ist abgelegt und stellt keine Frage. Nächste Frage an ihn erst, wenn der Faltenplan als Registertext steht |
+| **Betreiber** | **Start des nächsten Auftrags** (Faltenplan nach 4a) |
+
+⭐ **Kein Umzugshindernis nach `UMZUG.md` Abschnitt 3:** keine Sitzung, nichts
+uncommittet, keine offene Rückfrage.
+
+---
+
+## Block 6 — Freigaben und Sperrliste
+
+| | |
+|---|---|
+| **Aktive Freigabe für eine Sperrlisten-Datei** | **keine** |
+| **Sperrlisten-Vollzug neun Bots** | steht aus, braucht **eigene** Freigabe (Register 21.9) — *Freigaben verfallen nicht von selbst; diese wurde nie erteilt* |
+| ⭐ **Neu auf der Sperrliste zu erwarten** | **eine** Abbild-Datei des Faltenplans, mit Hash, als neuer Punkt (30.2 (3)) |
+| ⭐ **Neu unter Punkt 2** | eine **Tatsachennotiz** (kein Ersatz, keine Streichung): `faltenplan.json` ist registrierter historischer Stand, nicht der Plan nach 4a (30.3) |
+| **`auswertung.py`** | eingefroren (Abschnitt 0, Z. 31). Fables Ausnahme dafür bleibt **zurückgezogen** |
+| **Der Snapshot** | ⭐ **einschliesslich Manifest** nach seiner Erzeugung nicht mehr zu schreiben (31.3, Ersteintrag) |
+
+---
+
+## Block 7 — ⭐⭐ Die Fehler dieses Chats und die Regeln daraus
+
+| | Fehler | ⇒ Regel |
+|---|---|---|
+| **1** | ⚠️⚠️ **`AKTUELLER_AUFTRAG.md` mit einer Zeile überschrieben, ohne sie anzusehen.** Sie hatte **87 Zeilen** — Wache, Begründung, Planungstabelle; `numstat` zeigte `1 86`, und der Einzeiler ging mit einem Commit in die Historie | ⭐⭐ **Block 7, Punkt 7 vom 20.09. gilt unverändert: nie überschreiben.** Vor jedem Schreiben auf eine vorhandene Datei wird sie **gelesen**, nicht angenommen. *Verloren war nichts, weil git die Fassung hielt — das war Glück, nicht Verfahren* |
+| **2** | ⚠️⚠️ **Ein Kopierblock ohne Empfänger — der Einfügesatz für die Mac-Sitzung landete im Fable-Chat.** Er hat ihn zurückgewiesen, in jedem Punkt richtig, auch in dem, der nicht dastand: dass das Eintragen von Registertext nicht seine Rolle ist | ⭐⭐ **`ARBEITSWEISE.md` Abschnitt 1 gilt für jeden Kopierblock:** *bei jedem Dokument und jeder Aufgabe wird ausdrücklich gesagt, wohin es geht — nicht nur in der Datei, auch in der Begleitnachricht.* **Der Betreiber führt mehrere Sitzungen parallel; ein Block ohne Adresse ist eine Wette** |
+| **3** | ⚠️ **`A5` als Nummer vorgeschlagen, ohne sie zu messen** (Übergabe-Nachtrag 4, Ergänzung 1). Sie war seit dem 18.09. belegt | ⭐ **`K2i` gilt für unsere eigenen Nachträge:** die nächste freie Nummer wird **gemessen**, nicht geschätzt — auch in der Übergabe |
+| **4** | ⚠️ **Ein Nachtrag wollte Registertext ändern, der zehn Minuten zuvor committet worden war** (v1 gegen 28.6/29.2) | ⭐⭐ **Append-only kennt kein „noch frisch".** Der Nachtrag wurde zurückgezogen (v2), die Präzisierungen stehen als **30.6/30.7** daneben. *Fable hat das unabhängig bestätigt: „ich sehe es nicht anders"* |
+| **5** | ⚠️ **Ein Nachtrag erreichte eine bereits abgeschlossene Sitzung nicht** (TB-78b). Er lag in `logs/auftraege/` — **kein Träger** | ⭐ **Ein Nachtrag, der eine Sitzung nicht mehr erreicht, wird zum Auftrag** (`TB-79`) und geht nach `docs/auftraege/`, **bevor** er in `logs/` altert |
+
+⭐⭐ **Der gemeinsame Kern der Fehler 1 und 2, in einem Satz:** *Beide entstanden
+beim Schreiben an einen Empfänger, den ich nicht gemessen hatte* — einmal eine
+Datei, deren Inhalt ich nicht gelesen hatte, einmal ein Chat, den ich nicht
+benannt hatte. **Dieselbe Klasse wie „ein Name ist kein Messwert", nur auf der
+Ausgabeseite.**
+
+### Fremde Befunde, die diesen Chat geprägt haben
+
+| | |
+|---|---|
+| ⭐⭐ **Fable, 21i** | *„Ich habe ‚gesperrt' als ‚gültig' gelesen. Gesperrt heisst nur: unverändert."* — die Frage, aus der Abschnitt 30 entstand |
+| ⭐⭐ **Fable, 21i** | *„Die Sperrliste beweist, dass nichts bewegt wurde. Einen Punkt zu entfernen, weil er obsolet ist, öffnet die Frage, wer ‚obsolet' entscheidet."* |
+| ⭐⭐ **Fable, 21j** | *„Ich habe einen zweiten Feldnamen für denselben Wert angeordnet — genau die Bauart ‚zwei Träger, die auseinanderlaufen können', die ich selbst abgelehnt habe."* — **zweite Rücknahme einer eigenen Anordnung an einem Tag** |
+| ⭐ **Fable, 21j** | *„Ein Träger, der nach der Registrierung noch beschrieben wird, kann nicht mehr bezeugen, was bei der Registrierung galt, auch wenn der Hash ihn nicht deckt."* |
+| ⭐⭐ **TB-79** | Die Messnotiz zu 31.5 — **von der Sitzung selbst gefunden**, nicht beauftragt: die 223 Kursdateien enden nicht am selben Tag, die Aktienseite 18 Tage vor `asof` |
+
+---
+
+## Block 8 — Was zwischengelagert und noch nicht eingearbeitet ist
+
+| | Wo es liegt | Zielort |
+|---|---|---|
+| ✅ | **Alle Fable-Dokumente 20a bis 21j** und unsere Anfragen 21b, 21c, 21d | **im Repo**, `docs/projektfuehrung/`, committet |
+| ✅ | Der Übergabe-Nachtrag 4 samt drei Ergänzungen | **im Repo**, 442 → 984 Zeilen, `542 0` |
+| ⚠️ | `logs/auftraege/NACHTRAG_TB-78_fable_21i.md` (v1, **ersetzt**), `…_v2.md` und `NACHTRAG_TB-78b_fable_21j.md` | `logs/` ist gitignoriert. **v2 und TB-78b sind inhaltlich im Repo aufgegangen** (Abschnitte 30/31 und `MAC_TB-79_register_31.md`); v1 ist ersatzlos erledigt. **Keine offene Bringschuld** |
+| ⚠️ | `logs/auftraege/TB-58b_v2.md` (19.09.) | **offene Bringschuld**, unverändert seit dem 19.09. |
+| | `.claude/settings.local.json` unversioniert | `.gitignore`-Entscheidung offen |
+
+### Regeln, die in diesem Chat vereinbart wurden — abgeglichen, nicht erinnert
+
+| | Regel | Stand |
+|---|---|---|
+| ✅ | **Jede Anfrage und jede Rückmeldung an den Verfahrensprüfer wird abgelegt wie seine Antwort** | `ARBEITSWEISE.md` Abschnitt 15, eingetragen durch TB-78 Schritt 5 |
+| ✅ | **Bei jeder Übergabe an ihn wird ungefragt gesagt, was mitgeht und was nicht** | dito |
+| ✅ | **Seine Fragen an den Betreiber werden ungefragt mit einer Empfehlung beantwortet** | `ARBEITSWEISE.md` Abschnitt 6d, dito |
+| ✅ | **Der Einfügesatz steht nur noch in einer Fassung** | `ARBEITSWEISE.md` Abschnitt 14 Regel 2 folgt jetzt `AKTUELLER_AUFTRAG.md`, mit ERSETZT-Marke und dem alten Wortlaut daneben |
+| ⛔ | **Ein Kopierblock nennt seinen Empfänger** (Fehler 2) | **neu, noch nirgends eingetragen** → nächster Dokumentationsauftrag |
+
+---
+
+## Block 9 — Der Eröffnungstext für den neuen Chat
+
+⭐ **`UMZUG.md` Abschnitt 6, unverändert gültig.** Kein zweiter Text hier
+(TB-68).
+
+⚠️ **Eine Ergänzung, nur für den nächsten Umzug**, als zusätzlicher Absatz
+anzuhängen:
+
+```
+Zusatz fuer diesen Umzug: Lies in UEBERGABE_2026-09-19.md zuerst NACHTRAG 5
+(ganz am Ende) - das ist der Stand vom 21.09., 21:35. Die Bloecke davor und
+Nachtrag 4 bleiben stehen, sind aber ueberholt, wo Nachtrag 5 etwas anderes
+sagt. Danach diese Dateien, in dieser Reihenfolge:
+  projektfuehrung/FABLE_ANTWORT_2026-09-21i_gesperrter_faltenplan.md
+  projektfuehrung/FABLE_ANTWORT_2026-09-21j_manifest_asof.md
+  projektfuehrung/REGISTER_KOPIE_2026-09-21.md   (Abschnitte 27 bis 31)
+An diesen Entscheidungen haengt der naechste Schritt: der Faltenplan nach 4a
+als Registertext.
+```
+
+---
+
+## In einfacher Sprache
+
+**Wo wir stehen:** Heute Abend sind fünf Regelblöcke ins Regelwerk gekommen. Der
+wichtigste setzt das Stichtagsdatum: Ab dem 19. September 2026 wird zehn Jahre
+zurückgerechnet, also bis zum 19. September 2016 — und vorher darf kein Bot
+rechnen. Bis heute stand dort ein Platzhalter.
+
+**Was sonst entschieden wurde:** Der Prüfer, der die Regeln festlegt, darf vor
+dem grossen Lauf nicht wissen, wie er ausgeht. Das Depot jedes Bots startet am
+1. Januar seines ersten Auswertungsjahres mit leerem Bestand. Der alte
+eingefrorene Auswertungsplan bleibt eingefroren, bekommt aber den Vermerk
+„historisch, wird nicht benutzt". Und die Beschreibungsdatei des eingefrorenen
+Datenbestands wird nach dem Einfrieren nicht mehr angefasst — auch nicht für
+harmlose Zusätze.
+
+**Was als Nächstes kommt:** Der eigentliche Auswertungsplan — welche Jahre bei
+welchem Bot geprüft werden. Alle vier Zutaten dafür stehen seit heute im
+Regelwerk; bis heute Abend fehlte das Stichtagsdatum. Danach sind es noch drei
+Schritte bis zu dem Moment, in dem die Regeln versiegelt werden und der Lauf
+beginnen darf.
+
+**Zwei eigene Fehler, die hier stehen bleiben:** Ich habe eine Datei
+überschrieben, ohne hineinzusehen — nichts ging verloren, aber nur, weil die
+Versionsverwaltung sie noch hatte. Und ich habe einen Befehl für den Rechner in
+den falschen Chat geschickt, weil ich nicht dazugeschrieben hatte, für wen er
+ist.
