@@ -8011,6 +8011,66 @@ Sonde und Sperrlistenpunkt als eigene Aufgabe mit Freigabe; Entscheidung 33.5
 
 ---
 
+## CJ — TB-82: Registerabschnitt 34 — Fables fünf Einträge aus 21l/21m und eine eigene Berichtigung, und jede Berichtigung bekommt eine Marke am alten Ort (22.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-82_register_34.md`*
+
+**Quelle:** Mac-Sitzung **TB-82 Register 34 — Faltenregeln, horizontbeginn,
+vier→neun**, 22.09.2026 (Ortszeit; UTC-Stempel in den Belegen 21.09.), Ausgang
+`9614624`. Commits `1b8da04` (Schritt 0/1), `6cbbf95` (2), `04cf1da` (3),
+`d82f82d` (4–8) und der Abgabe-Commit — jeder einzeln gepusht. Belege
+`docs/belege/TB-82/`. **Nur `docs/`** geändert, Register **221 / 0**; kein
+Code, keine Abbild-Datei, keine Sonde, kein Hash, keine Wache. Anlass: Fable
+21m (Prüfung von 33.2/33.3, vier Antworten) und 21l (Standprüfung, „vier" →
+„neun"); dazu die Anfrage 21g des steuernden Chats, in der eine eigene
+Fundstelle in 33.4 als falsch erkannt wurde.
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Ausgangsstand | Arbeitsbaum leer (die sechs Dateien lagen schon in `9614624`); `## 34.` **0**; drei Sperrlisten-Hashes `0e54ac5c…` · `a163c498…` · `4549395f…` |
+| M1 `Rest`/`Teilfalte`/`angebrochene` im Register | **0** in zwei Lesungen mit Positivkontrolle ⇒ Fables (1b) ist eine **Regel**, kein Verweis auf 21.4 |
+| M2 `2026-2027` im Register | **1** Treffer — der berichtigte Satz in 33.4 selbst; die Werte stammen aus `faltenplan.py:336` |
+| M3 21.4 „Bestätigung ab" | **9/9 `2026-01-01`**; kein Faltenname in dieser Spalte |
+| M4 Wachen in den neun `multi_symbol_optimise.py` | **alle 0**, eng und weit gelesen ⇒ die Wache aus 29.4/34.5 ist ein **Ersteinbau** (TB-30b) |
+| M5 Faltenliste 33.2 vor/nach | neun Zeilen, SHA-256 `e5ab322e…` **gleich**, gegen 21.4 **0 Abweichungen** — keine Zahl bewegt |
+| Register | Abschnitt **34** (Z. 5471, `200 0`), 34.1–34.7; alle fünf Fable-Texte und fünf *Grund*-Absätze **je 1× exakt** gegen die Quellzeile; sechs Marken am alten Ort (`21 0`, alte Zeilen als Teilfolge 5647/5647 erhalten); 26–34 je genau einmal |
+| Abschluss | numstat zweite Spalte 0 überall, 0 Dateien ausserhalb `docs/`, Hashes unverändert, `AKTUELLER_AUFTRAG.md` nur gelesen (numstat leer, 87 = 87) |
+
+### Was der Auftrag nicht wusste
+
+Die *Grund*-Zitate im Auftrag waren Kurzformen der Quellabsätze (Sätze
+weggelassen, „…"); ins Register kamen die vollen Absätze, zeichengleich (`C1`,
+wie in TB-81). Zwei der sechs alten Sätze stehen in Tabellen — ein `>`-Block
+zerrisse sie; die Marken zu 34.4 und 34.6 sind deshalb eigene Tabellenzeilen
+(Muster aus TB-54b). „Direkt unter 30.2 (2)" ist eine Zeile mitten in Fables
+Registertext-Block — die Marke steht dort als verschachtelter `> >`-Block, kein
+Zeichen des Blocks geändert. Das erste Zeilenfenster für M3 traf Kopf- und
+Trennzeile statt der letzten zwei Bots (7 von 9) — am Tabellenkopf nachgemessen,
+9 von 9. Das Ergebnisdokument liegt nach `ARBEITSWEISE` unter `docs/`, nicht
+unter `docs/auftraege/`, wie der Auftrag schrieb.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Jede Berichtigung oder Ergänzung eines Registersatzes wird an zwei Stellen sichtbar: im neuen Abschnitt mit Text, Herkunft und Grund — und als Marke direkt unter dem alten Satz, mit Verweis.** Die Marke fügt nur hinzu; prüfbar mit `git diff --numstat`, zweite Spalte 0. *Fable, 21m: „Eine Marke am falschen Satz kostet eine Zeile; ein Hinweis drei Abschnitte weiter kostet irgendwann eine Rücknahme."* |
+| ⭐ | **Steht der alte Satz in einer Tabelle, ist die Marke eine eigene Tabellenzeile direkt darunter; steht er in einem Zitatblock, ein verschachtelter Block direkt darunter** — die Form folgt dem Ort, der Inhalt (Verweis, Datum, Sitzung) ist immer gleich |
+| ⭐ | **Wo Fables Registertext eine Tatsache über den Bestand voraussetzt, wird sie vor dem Eintrag gemessen und als Tatsachennotiz danebengestellt** (Fable 21m, Vorab) — hier M1 für 34.2, M4 für 34.5, M2/M3 für 34.6 |
+| | Ein Tabellenfenster für `sed -n` wird am Tabellenkopf verankert, nicht geschätzt; eine Messung, die „alle" oder „0" liefern soll, bekommt eine Positivkontrolle |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen"):** ⚠️ zwei Formen der
+Bestätigungsperiode (Datumsspanne im Register, Faltenname in `faltenplan.py`;
+für `elliott_wave` klaffen sie) — bei Fable, Anfrage 21g Punkt 3, in 34.6 als
+offen eingetragen; danach Abbild-Datei, Sonde (mit der positiven Prüfung aus
+34.4) und Sperrlistenpunkt mit Freigabe; Entscheidung 33.5; TB-30b (Wache in
+allen neun, Erzeuger der `zellen.csv`); unverändert 32.5, (20g)–(20m), `K4t`.
+
+*Geschrieben 22.09.2026 von der Mac-Sitzung TB-82 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
