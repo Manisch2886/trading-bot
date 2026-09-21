@@ -1,0 +1,2 @@
+Teilfolgenprobe: jede alte Zeile (5a1f5e1) in Reihenfolge und byteweise gleich in der neuen Datei (HEAD)?
+alte Zeilen: 1293 neue Zeilen: 1428 nicht wiedergefunden: 0 []
