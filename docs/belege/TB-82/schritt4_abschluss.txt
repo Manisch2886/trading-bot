@@ -64,3 +64,7 @@
     47	0	docs/belege/TB-82/schritt4_abschluss.txt
     60	0	docs/projektfuehrung/JOURNAL.md
     Zeilen mit zweiter Spalte != 0: 0; Dateien ausserhalb docs/: 0
+
+## 9 (Berichtigung des Nachtrags, gemessen 2026-09-21T22:15:51Z nach 5b9f644)
+    Die Zeile '1 Zeilen (leer; ...)' oben ist in sich falsch: Die eine Zeile war ' M docs/belege/TB-82/schritt4_abschluss.txt' - die Umleitung '>>' hatte diese Datei bereits geoeffnet, bevor git status lief. Nach dem Abgabe-Commit 058d7d0 war ausser dieser gerade beschriebenen Datei nichts offen.
+    git status --porcelain jetzt, VOR dem Oeffnen dieser Datei durch diesen Nachtrag: 0 Zeilen (Soll 0)
