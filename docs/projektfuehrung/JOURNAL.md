@@ -7151,6 +7151,358 @@ mit der neuen Tabelle tut. Ergebnis im Ergebnisdokument, Nachweis 8.
 
 ---
 
+## BU — TB-67: das Journal zieht nach — zehn Blöcke, die Quellenzeile, und ein Auftrag, der an zwei Stellen danebenlag (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20g.md`*
+
+**Quelle:** Mac-Sitzung **TB-67 Journal nachziehen**, 20.09.2026, ab etwa 17:35
+Ortszeit, Ausgang `fe76857`, reine Dokumentation (`python3` nur für Zählskripte,
+nichts ausserhalb `docs/`). Commits `481b9f7`, `cc72150`, `08cf90a` (Journal
++965/0), `31bc953`, `93a88d4` (`K4h`), `4117ee7`, `544b011` (Abgabe).
+Ergebnisdokument `docs/ERGEBNIS_TB-67_journal_einarbeitung.md`, Belege
+`docs/belege/TB-67/`.
+
+### Was gemessen wurde
+
+| | Auftrag | gemessen |
+|---|---|---|
+| offene Journal-Nachträge | sechs, `(f)` „nicht prüfbar" | **acht** — `(f)` war über das zweite Muster des Auftrags (charakteristischer Satz, viermal 0 Treffer) prüfbar und offen; `(20f)` aus TB-66 war jünger als der Auftrag |
+| Blöcke | — | **zehn**, `BK`–`BT`; `JOURNAL.md` 6 526 → 7 491 Zeilen, **0** entfernt |
+| Quellenzeilen | — | **14** (10 neu, 4 bei `BG`–`BJ` nachgetragen, 0 nicht zuordenbar) |
+| drei Blöcke zu TB-53b/58/58b | aus den 20 Rückblick-Zeilen in Backlog-Nachtrag `(m)` bauen | `(f)` **ist** diese Journalfassung (dieselben Zahlen: 71/19, 0 von 90, `96a5c572…`, 44/44, 160/0) — einmal aus `(f)` gebaut, `T`-Zeilen aus `(m)` zeichengleich darunter (13/13), zwei Quellenzeilen: `*Quelle: …(f)*` und `*Messprotokoll: …(m), Block 2s*` |
+| sieben `B`-Zeilen aus `(m)` | prüfen, nicht eintragen | B1, B4, B5, B6, B7-Regel stehen; **B2 halb** (Folgerung in `0,99` mit totem Verweis „(B2)", Messbefund nirgends); **B3 gar nicht** — Betreiberentscheidung, nichts eingetragen |
+| Ankunft | — | je Zeile gemessen (`ankunft_pruefung.py`), fehlend nur die Einfüge-Anweisungen an den Einarbeiter (7/4/3/4) |
+| verschoben | — | **elf** Dateien nach `nachtraege/_eingearbeitet/` (Ordner neu) |
+
+### Was daraus folgt
+
+1. ⭐⭐ **„Nicht prüfbar" ist ein Nachtrag erst, wenn jedes vorgesehene Muster
+   versagt.** Ein Nummernmuster, das den Suchraum nicht abdeckt (`K4a`-Familie),
+   disqualifiziert das Muster, nicht die Datei.
+2. ⭐⭐ **Jeder Block aus einem Nachtrag nennt seine Quelldatei in der ersten
+   Zeile unter der Kopfzeile** — `*Quelle: …*` für Journal-Nachträge,
+   `*Messprotokoll: …*` für zeichengleich übernommene Tabellen aus
+   Backlog-Nachträgen. Die zweite Form ist absichtlich anders benannt, damit ein
+   Wächter, der `JOURNAL_NACHTRAG_`-Quellen zählt, keinen Backlog-Nachtrag
+   mitzählt.
+3. ⭐ **Vor dem Bauen den Zwilling suchen:** zwei Notizen aus derselben Stunde
+   zum selben Gegenstand (`(f)` und `(m)`, beide 19:48) werden einmal
+   eingearbeitet, mit beiden Quellen.
+4. ⭐ **Ankunft je Zeile messen**, nicht je Nummer.
+5. Neue Journalblöcke stehen vor `## Wiederkehrende Lehren`; „am Ende anfügen"
+   meint das Ende der Blockfolge. Das Inhaltsverzeichnis am Kopf bleibt bei
+   `AG` (`K1p`).
+
+**Zur Form:** Der erste `git push` (in einer Pipe mit `| tail`) wurde vom
+Berechtigungsfilter abgelehnt; ein nacktes `git push` ging durch. ⇒ *`git push`
+steht allein — auch ohne Pipe, nicht nur ohne `&&`.*
+
+*Nachgetragen 21.09.2026 aus der Mac-Sitzung TB-67 (Sitzung TB-75).
+Quellenvermerk: siehe Kopf.*
+
+---
+
+## BV — TB-68: der Eröffnungstext steht nur noch einmal — und das Verfahren hatte die Kopie selbst bestellt (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20h.md`*
+
+**Quelle:** Mac-Sitzung **TB-68 Eroeffnungstext**, 20.09.2026, ab etwa 18:20
+Ortszeit, Ausgang `a15746f`, reine Dokumentation (kein Interpreter, nichts
+ausserhalb `docs/`). Commits `b1d8429`, `30d44f7`, `6e0378f` (Zwischencommits
+für Betreiber-Dateien), `643fadd`, `fa6b6ed`, `42fc34d`, dann `K4i`, Nachtrag
+und Abgabe. Ergebnisdokument `docs/ERGEBNIS_TB-68_eroeffnungstext.md`.
+
+### Was gemessen wurde
+
+| | Auftrag | gemessen |
+|---|---|---|
+| zwei Fassungen des Eröffnungstextes (`UMZUG.md` 6, `UEBERGABE_2026-09-19.md` Block 9) | „keine Kopie mehr, sondern ein Widerspruch" | `git log -L`: **derselbe Commit `2723c16`** (19.09., 21:40), seither keine Änderung — nie eine Kopie, so geboren. Bleibende Fassung: Ort der einen (Abschnitt 6), Inhalt der anderen |
+| Menge der Pflichtlektüre | „vier gegen fünf" | **fünf**, je mit Repo-Pfad in Klammern; Block 9 ist jetzt ein Verweis (9/20 Zeilen, jede entfernte zugeordnet) |
+| Pfad `projektfuehrung/PRUEFPRINZIPIEN.md` | tot | `git log --all --diff-filter=A`: **0 Commits** — die Datei lag nie dort, seit `e456756` in `docs/` |
+| dritte Fassung in `docs/` | suchen | drei Muster, keine dritte Fassung; **ausserhalb der Muster** eine dritte Leseliste anderer Formulierung in `START_HIER.md` Abschnitt 2 (andere Menge, toter Verweis, Stand 18.09.) — nicht geändert, an TB-69 vorgelegt |
+| `UEBERGABEPROTOKOLL.md` im Lesepfad | Nutzung messen | über Auftrags-, Ergebnis-, Führungsdokumente, Journal, Commits gemessen; entschieden (anklickbare Frage): „bei Bedarf"-Zeile mit Pfad |
+| Platzhalter oder fester Name | entscheiden lassen | entschieden: fest; offen nur die Umbenennung nach `UEBERGABE.md` |
+
+### Was daraus folgt
+
+1. ⭐ **Ein Verfahren, das eine Vorlage und eine Abschrift verlangt, hat die
+   zweite Fassung nicht zugelassen, sondern bestellt.** `UMZUG.md` Abschnitt 4,
+   Schritt 3, Zeile 9 forderte *„Der Eröffnungstext … fertig zum Kopieren"*;
+   wer nur Block 9 kürzt, bekommt die Kopie bei der nächsten Übergabe zurück.
+   Deshalb ist Zeile 9 mitgeändert (verlangt jetzt den Verweis) — das stand
+   nicht im Auftrag und ist der Teil, ohne den die Reparatur eine Übergabe lang
+   gehalten hätte.
+2. Dieselbe Fehlerklasse hat ein drittes Mitglied: ein Text mit angehängtem
+   Flicken („Ergänzung zur Vorlage" am Dateiende) ist zwei Fassungen. Der
+   Vierzeiler zur Geräteanbindung steht jetzt im Text (per `diff` wortgleich).
+3. Ob die Projektablage eine Datei unter dem Repo-Namen führt, kann eine
+   Mac-Sitzung nicht prüfen — deshalb trägt jedes Dokument seinen Repo-Pfad mit.
+
+**Offen:** Projektablage nachziehen (`UMZUG.md`, Übergabe, `K4e`); die
+Zwischenlager-Kopien in `logs/auftraege/_erledigt/` tragen den alten Text
+(Regel 9, Löschen fragt); `START_HIER.md` an TB-69; `MAC_TB-63` nennt „VIER
+Dokumente" — dort nur eine markierte Vermerkzeile.
+
+*Nachgetragen 21.09.2026 aus der Mac-Sitzung TB-68 (Sitzung TB-75).
+Quellenvermerk: siehe Kopf.*
+
+---
+
+## BW — TB-71: das Register ist geschlossen — der Platzhalter fällt, und Festlegung 1 bekommt ihre Regel, bevor die Zahl existiert (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20i.md`*
+
+**Quelle:** Mac-Sitzung **TB-71 Register schliessen**, 20.09.2026, ab etwa 18:45
+Ortszeit, Ausgang `97cbcef`, reine Registerarbeit (kein Interpreter, gar kein
+Python, nichts unter `research/`). Commits `d908b73`, `cc096e1` (Platzhalter),
+`9eab386` (Abschnitt 24), `295b17f` (`K4j`), Nachtrag und Abgabe.
+Ergebnisdokument `docs/ERGEBNIS_TB-71_register_schliessen.md`.
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Register 23.3 | Platzhalter (W oder C) fällt, `grep -c` = 0; an seiner Stelle der Satz zur Zeitachse, verankert an 3b (b) — die **dritte** Fassung aus `FABLE_ANFRAGE_2026-09-20c`, nicht die erste („Rendite 0", zurückgezogen) und nicht die zweite (Kalender des Kapitalpfades, den es nicht gibt: der Pfad ist ereignisindiziert, `shared/zuteilung.py:720–735`); 23.3 hält die Herkunft aller drei fest |
+| Register 24 (neu) | Widerspruch Festlegung 1 (*„Kapital-Drawdown aus `equity_simulation.py`"*) gegen Registertext 1a (tägliche MtM-Renditen) aufgelöst zugunsten der täglichen Reihe; sieben Fundstellen gelesen, nicht ausgeführt; **24.3 trägt die Entscheidungsregel, bevor die Wirkung gemessen ist** |
+| `numstat` Register | **263/3** über die Sitzung — die drei entfernten Zeilen sind die drei physischen Zeilen des umbrochenen Platzhalters (der Auftrag sprach von *einer* Zeile) |
+| Benchmark-Tabellen | `a163c498…`, `4549395f…` byteweise unverändert; die JSONs liegen unter `research/vorregistrierung/ergebnisse/`, nicht unter `ergebnisse/` |
+| Backlog | `K4j` (die drei Code-Stellen, die 24 folgen müssen), 1/0; dadurch bleibt Z. 308 (Halbsatz zu W/C) überholt stehen — in `K4j` benannt |
+
+### Was daraus folgt
+
+1. ⭐ **Eine Regel, die eine Zahl für belanglos erklärt, muss vor der Zahl
+   stehen — sonst ist die Zahl ein Argument.** Register 24.3 sagt: die
+   Abweichung zwischen ereignisindiziertem und Mark-to-Market-Drawdown wird
+   gemessen und berichtet **und ist für die Entscheidung ohne Belang**; die
+   Messung (TB-73) läuft danach. F17 auf die Zeitachse angewendet: eine Zahl,
+   die nichts entscheiden darf, liegt nicht auf dem Tisch, während entschieden
+   wird — sonst wirkt sie in beide Richtungen („ändert wenig" / „zu riskant").
+2. **Die Vorgeschichte gehört in die Präzisierung, sonst liest sie sich als
+   Widerruf.** `research/drawdown_reihenfolge/` (12.09.) verglich drei
+   Drawdown-Begriffe und wählte „der erlebbare Verlauf"; Mark-to-Market war
+   nicht dabei und erfüllt das Kriterium am besten. 24.4 sagt beides: Kriterium
+   richtig, Vergleich unvollständig. Z. 47 bleibt stehen, mit Marke.
+3. Schritt (a) nannte nur 23.3; ohne Marke wären 23.7 und Abschnitt 1 (Z. 47)
+   irreführend geblieben — je eine angehängte Nachtragszeile, nichts entfernt.
+
+**Offen (Stand 20.09.):** TB-72 (rechnet), TB-73 (Messung nach der Regel),
+Vollzug 21.9 mit `registerbericht.py:178`, Backlog Z. 308, `K4j` bei TB-30b.
+
+*Nachgetragen 21.09.2026 aus der Mac-Sitzung TB-71 (Sitzung TB-75).
+Quellenvermerk: siehe Kopf.*
+
+---
+
+## BX — TB-72 Schritt 1: die Messung, die den Auftrag angehalten hat — 4a und 3b (a) laufen bei sechs Bots auseinander, fünfmal in die andere Richtung (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20j.md`*
+
+**Quelle:** Mac-Sitzung **TB-72 erste Falte aus Trockenlauf**, 20.09.2026,
+zweiter Anlauf ab 19:50 Ortszeit (der erste bis 19:20, Verbindungsabbruch nach
+Schritt 1), Ausgang `25f568a`, `trading-env/bin/python3` 3.9.6, rein lesend am
+Code. Commits `c63bfed`, `14c796b`, `0562c75`, `72e512f`, dann Nachtrag, `K4k`
+und `docs/ERGEBNIS_TB-72_schritt1_erste_falte.md`.
+
+### Was gemessen wurde
+
+Register 21.3 (b): *„Ergeben 4a und 3b (a) für einen Bot verschiedene erste
+Falten, bindet 3b (a)."* Der Auftrag verlangte, beide Richtungen zu prüfen —
+später **und** früher — bevor eine Zeile Code fällt.
+
+| Bot | Plan = 4a | Trockenlauf ab 4a | Trockenlauf beide Richtungen | |
+|---|---:|---:|---:|---|
+| `t3_supertrend` | 2018 | **2019** | 2019 | später (1 Bot) |
+| `rsi2_crypto` | 2019 | 2019 | **2018** (`H = 2`) | früher |
+| vier Aktien-Bots | 2017 / 2018 | 2017 / 2018 | **1967** (`H = 16`, 1962-01-02 + 1 825 Tage) | früher |
+| drei andere Krypto-Bots | 2018 | 2018 | 2018 | gleich |
+
+Nachmessung im zweiten Anlauf **byteweise gleich** mit dem ersten (JSON
+`fb68537a…`, 4 min 51 s, rc 0); zweite, vom Kindprozess unabhängige Methode
+(`faltenschranke_messung.loader_lesart`) nennt 9/9 dieselben Jahre; drei
+Sperrlisten-Hashes vorher = nachher. Der Betreiber hat den Auftrag per
+HALT-Nachtrag (19:40) vor Schritt 2 angehalten; Fable wurde mit drei Fragen
+gefragt (`FABLE_ANFRAGE_2026-09-20e_erste_falte.md`).
+
+### Was daraus folgt
+
+1. ⭐⭐ **Eine Regel ohne Richtung bindet in beide — und die Begründung daneben
+   meint nur eine.** Die Begründung von 21.3 (b) (*„eine Falte, in der der
+   Loader kein Symbol handelbar macht, erzeugt keinen Trade"*) rechtfertigt nur
+   das Nach-hinten-Schieben; Fables Vorschlag trug dieselbe Einseitigkeit als
+   Prämisse. 4a trägt mit *„Universum … liegt vor"* eine Bedingung, die der
+   Trockenlauf gar nicht prüft — bei den Aktien reicht der Kursbestand bis
+   1962. ⇒ *Bevor „X bindet" umgesetzt wird, messen, in welche Richtungen X
+   abweichen kann, und ob die Begründung alle deckt; sonst ist die Umsetzung
+   eine Auslegung.* Ohne den Satz „beide Richtungen" hätte Schritt 2 vier Bots
+   fünfzig Jahre gegeben.
+2. ⭐ **„Alle gleich: ja" war wahr — und hätte in die Irre geführt.** Die
+   Gegenprobe gegen TB-56 vergleicht die Falte **ab 4a**, für die Richtung
+   „früher" ist sie konstruktionsbedingt blind. ⇒ *Eine Gegenprobe nennt, welche
+   Grösse sie vergleicht* (A1 in anderer Form).
+3. Die Vormessung des Chats aus `_vt.json` („nur `t3_supertrend` weicht ab")
+   traf für „später" Zahl für Zahl und als Gesamtaussage nicht — die Datei
+   enthält nur Falten, die im Plan stehen; der Auftrag hatte den blinden Fleck
+   selbst benannt.
+4. `ergebnisse/faltenplan.json` ist TB-30a-Stand (`K4k`); die Gegenüberstellung
+   in Schritt 3 gilt nur gegen den Speicherstand `faltenplan.faltenplan()`, als
+   `faltenplan_4a_stand_vor_tb72.json` festgehalten.
+
+*Nachgetragen 21.09.2026 aus der Mac-Sitzung TB-72 (Sitzung TB-75).
+Quellenvermerk: siehe Kopf.*
+
+---
+
+## BY — TB-72 Schritte 2–7: die erste Falte ist eine Konjunktion, der Plan leitet sie aus dem Trockenlauf ab, und genau ein Bot ändert sich (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20k.md`*
+
+**Quelle:** Mac-Sitzung **TB-72 erste Falte aus Trockenlauf**, 20.09.2026,
+dritter Anlauf ab 20:20 Ortszeit, Ausgang `7b73584`, `trading-env/bin/python3`
+3.9.6. Commits `96cc9c7`, `e7a4108` (Schritt 2, `faltenplan.py`), `edd1bce`
+(`faltenplan_tb72.json`), `27c58a2` (`benchmark_drawdowns_tb72.json`), dann
+Test, Register 25, Nachtrag, `K4l` und
+`docs/ERGEBNIS_TB-72_erste_falte_aus_trockenlauf.md`.
+
+### Was gemessen wurde
+
+Nach dem Halt (Block `BX`) hat Fable seinen Vorschlag zurückgenommen und 4a und
+21.3 (b) als **Konjunktion** neu gefasst: ein Jahr ist Selektionsfalte, wenn
+**(i)** Datenhorizont und Indikator-Vorlauf am 1. Januar **und** **(ii)** der
+Trockenlauf es tragen.
+
+| | Ergebnis |
+|---|---|
+| Erwartung *„genau ein Bot, genau eine Falte"* | **gehalten** — gegen den Speicherstand vor TB-72: `t3_supertrend` 2018 → 2019, sieben Selektionsfalten, `DD_Toleranz` −12,89 / −24,73 / −45,16 → **−13,90 / −26,57 / −48,10** (Zahl für Zahl TB-65 C1); acht Bots gegen `_vt.json` zeichengleich (69 Falten × 100 Stufen); drei Sperrlisten-Hashes unverändert |
+| Gegenüberstellung, erste Fassung | zählte **neun** geänderte Falten und meldete „NEIN (Befund)" — acht davon nur `embargo_nach_falten`, aus dem die entfallene Falte 2018 verschwindet. Zweite Fassung zählt getrennt (**1** entfallen, **8** Folgeänderungen) und meldet „JA"; beide im Beleg |
+| Laufzeit | Loader im Kindprozess ~6 s + ~1,7 s je Stichtag; Ableitung Falte für Falte, Schluss beim ersten `H ≥ 1`: `faltenplan()` **12,4 s → 37,6 s** im ersten Aufruf je Prozess, zahlt jeder Importeur (`benchmark.py`, `registerbericht.py`, `auswertung.py`, `test_vorregistrierung.py` Teil H sechsmal) |
+| Register 21.4 | sagte **längst 2019** („7 Falten", TB-56b) — der Code hinkte der eigenen Tatsachennotiz hinterher und sagte es im Modulkopf selbst; der neue Test vergleicht Plan, eigenen `messe_bot`-Aufruf und 21.4 |
+| Fables Nachrechnung `rsi2_crypto` | nachgemessen, nicht übernommen: BTC/ETH bis 31.12.2017 **137** Balken, der 150. am 2018-01-14; (i) am 1.1.2018 nicht erfüllt, (ii) schon (`H = 2`), Konjunktion 2019 unverändert (`docs/belege/TB-72/schritt2_rsi2_crypto_bedingung_i.txt`) |
+| Test | `research/faltenplan_neun/test_erste_falte_trockenlauf.py`, neben `faltenschranke_messung.py` — `test_vorregistrierung.py` bricht im Repo in Teil A ab (`KeyError: '2017'`) und erreicht die Prüfung nicht |
+| Plan | zwei neue Felder je Bot (`erste_falte_4a`, `erste_falte_trockenlauf_H`), damit im Plan steht, **warum** er dort beginnt; Modulkopf mitgeändert, alter Wortlaut als ersetzt stehen gelassen |
+
+### Was daraus folgt
+
+1. ⭐ **Wer eine Nachrechnung durch eine Messung ersetzt, nennt die Laufzeit
+   und wer sie zahlt** — der Preis steht dorthin, wo der nächste Aufrufer ihn
+   sieht (Modulkopf, Test-Docstring, Backlog).
+2. ⭐ **Ein Modulkopf, der sagt „das rechnet dieses Modul nicht", ist ein
+   offener Befund, kein Hinweis** — er gehört in den Backlog oder einen Auftrag,
+   mit der Zahl, die er kostet.
+3. ⭐ **Eine Gegenüberstellung trennt Folgeänderungen von Änderungen**, bevor
+   sie „Befund" meldet — sonst widerspricht sie einer richtigen Erwartung.
+
+**Offen:** Vollzug 21.9 (jetzt mit `_tb72`-Dateien, `registerbericht.py:178`);
+**TB-74** — Bedingung (i) als `asof` minus `RECENT_YEARS_ONLY`, Datenuhr statt
+Wanduhr, `entry_cutoff` je Symbol gegen `fensteranker` je Markt; Laufzeit
+(+25 s je Prozess) erst messen, ob sie stört — ein Cache daneben wäre eine
+Konstantenkopie durch die Hintertür.
+
+*Nachgetragen 21.09.2026 aus der Mac-Sitzung TB-72 (Sitzung TB-75).
+Quellenvermerk: siehe Kopf.*
+
+---
+
+## BZ — TB-73: die MtM-Wirkung ist gemessen, berichtet und nicht bewertet (20.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20l.md`*
+
+**Quelle:** Mac-Sitzung **TB-73 MtM-Wirkung**, 20.09.2026, ab ca. 21:35
+Ortszeit, Ausgang `537ca51`, `trading-env/bin/python3` 3.9.6. Commits
+`1b6cde7`, `5e9ef2b`, `732440c`, `5e4dd95`, `f27b6c0`, `01da585` (Register
+24.6), dann Nachtrag, `K4m` und `docs/ERGEBNIS_TB-73_mtm_wirkung.md`.
+Forschungsordner `research/mtm_drawdown/`.
+
+### Was gemessen wurde
+
+Die Zahl, die Register 24.3 (Block `BW`) vorab für belanglos erklärt hat: je
+Bot, je Falte der tägliche Mark-to-Market-Drawdown (M) gegen den
+ereignisindizierten (E), als Forschungsskript ausserhalb des Laufcodes.
+
+| | Ergebnis |
+|---|---|
+| Falten | **64**; in **59** ist M tiefer als E; Median der Differenzen je Bot **−1,39 bis −3,09 pp**; Register 24.6 als Tatsachennotiz (124/0), keine Empfehlung, auch nicht als „Offen"-Zeile |
+| *„M nie flacher als E, sonst Pfad falsch"* | von Hand in fünf Zeilen widerlegt (Probe 3: +20 % unrealisiert im Buch, zweite Position schliesst −10 % — E −1,00 %, M −0,98 %); gemessen **fünf** Falten, darunter `elliott_wave_stocks` 2020 mit +3,90 pp (sechs März-Einstiege +2 055 unrealisiert, CRWD +98 %, die E erst im Juli/August sieht). Pfad richtig |
+| *„Grundlage liegt vor"*, 2020 hervorheben | TB-24-Trade-Listen vom 13.09.; TB-34 baute zwei Tage später die Krypto-Kursdateien auf volle Historie neu. Fünf Krypto-Bots beginnen 2021-09 bis 2022-03 — **2020 Krypto nicht messbar**, keine Zahl statt einer erfundenen |
+| *„bei 25 / 50 / 100 % Exposure"* | Form des Benchmarks (`DD_Benchmark(f, e)`), auf den Bot übertragen; ein Bot hat je Falte **eine** Exposure (0,04 `elliott_wave` bis 0,86 `turtle_soup_stocks`), sie steht neben jeder Falte. Der Median, der zur `DD_Toleranz` führt, ist der der **Benchmark**-Drawdowns (Festlegung 5) |
+| Probe 1 *„E = M, wenn alles am Tag schliesst"* | exakt nur mit höchstens einem Ausstieg je Tag; bei mehreren zum selben Zeitstempel sieht E Zwischenstände, deren Reihenfolge `shared/zuteilung.py::ausstiegsreihenfolge` per gesätem Zufall ordnet — Raster-Effekt höchstens 0,96 pp (`volatility_breakout` 2020); E_tag steht deshalb in allen Tabellen zwischen E und M |
+
+### Was daraus folgt
+
+1. ⭐ **Bevor eine Richtungsaussage über zwei Masse zur Prüfregel wird, wird
+   versucht, sie an einem Handbeispiel zu widerlegen.** Gelingt das, ist sie
+   eine Näherung, und die Prüfung lautet: jeden Gegenfall zerlegen und seinen
+   Grund benennen — nicht den Pfad an die Aussage anpassen. Wörtlich genommen
+   hätte die Prüfregel einen Pfad erzeugt, der kein Mark-to-Market mehr ist.
+2. ⭐ **Wer eine frühere Messung als Grundlage nennt, nennt ihren Datenstand mit
+   Datum** und prüft, ob sich der Bestand seither geändert hat
+   (`research/kursdaten_neuaufbau/BERICHT.md`).
+3. ⭐ **Bevor eine Tabellenform aus dem Register auf ein anderes Objekt
+   angewendet wird, wird gefragt, wessen Argument die Spalte ist.** Beim
+   Benchmark ein Regler, beim Bot ein Ergebnis — ein Ergebnis setzt man nicht.
+
+**Offen:** Krypto-Falten 2018–2020 ohne Grundlage (neue Listen wären ein neuer
+Backtest, nicht vorgelegt, weil nach 24.3 keine Zahl hier entscheidet); `K4j`
+unverändert.
+
+*Nachgetragen 21.09.2026 aus der Mac-Sitzung TB-73 (Sitzung TB-75).
+Quellenvermerk: siehe Kopf.*
+
+---
+
+## CA — TB-64: der Wächter für die Bringschuld der Nachträge (21.09.2026)
+
+*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_2026-09-20m.md`*
+
+**Quelle:** Mac-Sitzung **TB-64 Nachtragswaechter**, 21.09.2026, ab 07:01
+Ortszeit, Ausgang `2150318`, `trading-env/bin/python3` 3.9.6. Commits
+`ff2e5ab`, `54b27ce`, `b220c8f` (18 Dateien verschoben), `2c4af5b` (Wächter und
+Test), `4ca8af9` (Regel 10 im Dokumentationsstandard), `3f22443` (Cron-Zeile,
+`UMGEBUNGEN.md`), `9a51add` (Abgabe), `f0ca921`. Ergebnisdokument
+`docs/ERGEBNIS_TB-64_nachtragswaechter.md`, Belege `docs/belege/TB-64/`.
+*Der Buchstabe `(20m)` fällt zufällig mit dem Backlog-Nachtrag `(m)` vom 19.09.
+zusammen, der der Anlass dieser Aufgabe war.*
+
+### Was gebaut und gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| `system/nachtragswaechter.py` | rein lesend, Standardbibliothek, 518 Zeilen, 0,4 s für 36 Dateien. Prüfung A: offen über der Frist (Standard 1 Tag, Alter aus mtime); B: falsch verschoben; C: Doppelbelegung ohne `sort -u`. Journal-Nachträge über den Dateinamen der Quellenzeile, `Messprotokoll:` zählt nicht |
+| `system/test_nachtragswaechter.py` | 62 Prüfungen in zwölf Fällen (die sieben des Auftrags plus `(m)`-Fall, Frist, Dateiname, Unterprozess, rc 2); vier Mutationen am Wächter machen ihn rot mit 3/3/4/3 (`docs/belege/TB-64/mutationen.py`) |
+| Meldeweg | sechster Eintrag `nachtraege` in `notifications/waechter_melden.py` und Cron-Zeile im Wrapper-README — **21 Zeilen ausserhalb `system/` und `docs/`**, benannt; **Cron-Zeile nicht eingetragen** (Betreiber) |
+| Stand des Auftrags | Abschnitt 0 (`4b85f0e`) nannte 26 offene Dateien; gemessen an `ff2e5ab`: 25 + 11 unter `_eingearbeitet/`, TB-62 und TB-67 waren dazwischen gelaufen — *„Weicht es ab, gilt deine Messung"* |
+| verschoben | 19 Backlog-Nachträge nach `_eingearbeitet/`, 140 geprüfte Nummern; vier ohne Nummer der drei Klassen (`(q)`, `(r)`, `(u)`, `(q_r)`) einmalig von Hand gemessen (10/10, 13/13, 10/10, 12/12, 4/4) und liegen für den Wächter als `[?]` |
+| Schritt 5b | drei `B`-Zeilen aus Backlog-Nachtrag `(m)` nach `UMGEBUNGEN.md` (B2 Cloud ohne 3.9/pyenv, B3 Snapshot-Sperre im Wegwerf-Klon, B7 dist-info), Wortlaut maschinell geprüft — ein ergänzter Punkt vor `**` wurde dabei gefunden |
+| Lauf gegen den echten Bestand | rc 0 — 0 über der Frist, `(20g)`–`(20m)` in der Frist, 4 nicht prüfbar, 0 falsch verschoben, 0 doppelt |
+
+### Was daraus folgt
+
+1. ⭐⭐ **Ein Wächter, der nur Nummern vergleicht, hätte den Fall, für den er
+   gebaut wird, grün gemeldet.** Für `(m)` meldete die grep-Zählung 6 von 6
+   K-Nummern und 2 von 2 Blöcke „im Ziel" — mit fremdem Inhalt (`K2l`–`K2o`
+   tragen `(s)`/`(t)`, Block `2s` ist der aus `(s)`/`(t)`/`(u)`). Deshalb
+   prüft der Wächter je Nummer den **Textkern** (40 Zeichen hinter der
+   Nummernzelle) und akzeptiert einen Vergabevermerk nur, wenn er **den
+   Nachtrag selbst nennt** — ohne diese Bindung hatte er `B1` über `K24` als
+   angekommen gewertet.
+2. **Eine vierte Kennungsklasse** (Punktzeilen `T46.1a`, `B1`, `F0`) hätte den
+   Wächter zum Dauermelder gemacht: `(m)` wäre für immer *falsch verschoben*
+   gewesen, weil seine `B`-Zeilen in `UMGEBUNGEN.md` und der Übergabe stehen,
+   beides kein Ziel. Gewählt: die drei Klassen des Auftrags; der Rest ist A2.
+3. **Die zwei Telegram-Zeilen dürfen kein Alter tragen** — der Wrapper dämpft
+   über den Fingerabdruck dieser Zeilen; ein täglich wachsendes Alter wäre
+   täglich ein neuer Befund.
+4. ⭐ **Wörtlich übernommener Text wird maschinell gegen die Quelle geprüft**,
+   nicht mit dem Auge — auch bei drei Zeilen.
+5. ⭐ **Eine Mutationsprobe prüft, auf welchem Weg das Ergebnis zustande kam**
+   — Mutation A liess Fall 4 zunächst grün, weil die Kernsuche „anderswo" die
+   übersehene Zielzeile fand (Wiederkehrende Lehre „eine zweite Wache verdeckt
+   das Fehlen der ersten", zum dritten Mal).
+
+*Nachgetragen 21.09.2026 aus der Mac-Sitzung TB-64 (Sitzung TB-75).
+Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
