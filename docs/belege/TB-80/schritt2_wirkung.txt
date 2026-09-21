@@ -1,0 +1,45 @@
+TB-80 Schritt 2 - Wirkung der Umstellung, gemessen
+Python 3.9.6  (/Users/jaquelineloffler/trading-bot/trading-env/bin/python3)
+Zeit (UTC): 2026-09-21T20:22:58Z
+HORIZONTBEGINN im Code: {'aktien': datetime.date(2016, 9, 19), 'krypto': None}
+
+faltenplan() gerechnet in 34 s
+Geschrieben: research/vorregistrierung/ergebnisse/faltenplan_tb80.json  SHA-256 2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794
+
+Vorher: docs/belege/TB-80/faltenplan_stand_vor_tb80.json  SHA-256 19e8cbca874d6e7455f2f3bc0723def9ea058d0b314fa1772e04cd64ff1c9d24
+
+| Bot | Markt | erste_falte_4a vorher | nachher | erste_falte vorher | nachher | Selektionsfalten vorher -> nachher |
+|---|---|---:|---:|---:|---:|---|
+| `elliott_wave` | krypto | 2018 | 2018 | 2018 | 2018 | 4 -> 4 |
+| `t3_supertrend` | krypto | 2018 | 2018 | 2019 | 2019 | 7 -> 7 |
+| `rsi2_crypto` | krypto | 2019 | 2019 | 2019 | 2019 | 7 -> 7 |
+| `turtle_soup_crypto` | krypto | 2018 | 2018 | 2018 | 2018 | 8 -> 8 |
+| `volatility_breakout_crypto` | krypto | 2018 | 2018 | 2018 | 2018 | 8 -> 8 |
+| `elliott_wave_stocks` | aktien | 2017 | 2017 | 2017 | 2017 | 9 -> 9 |
+| `rsi2_mean_reversion` | aktien | 2018 | 2018 | 2018 | 2018 | 8 -> 8 |
+| `turtle_soup_stocks` | aktien | 2017 | 2017 | 2017 | 2017 | 9 -> 9 |
+| `volatility_breakout` | aktien | 2018 | 2018 | 2018 | 2018 | 8 -> 8 |
+
+| Bot | Anker vorher (Datenuhr) | Horizontbeginn nachher | warm ab vorher | warm ab nachher | Verschiebung |
+|---|---|---|---|---|---:|
+| `elliott_wave` | None | None | 2017-08-17 | 2017-08-17 | +0 Tage |
+| `t3_supertrend` | None | None | 2017-08-17 | 2017-08-17 | +0 Tage |
+| `rsi2_crypto` | None | None | 2018-01-14 | 2018-01-14 | +0 Tage |
+| `turtle_soup_crypto` | None | None | 2017-09-16 | 2017-09-16 | +0 Tage |
+| `volatility_breakout_crypto` | None | None | 2017-12-22 | 2017-12-22 | +0 Tage |
+| `elliott_wave_stocks` | 2016-09-01 | 2016-09-19 | 2016-09-01 | 2016-09-19 | +18 Tage |
+| `rsi2_mean_reversion` | 2016-09-01 | 2016-09-19 | 2017-06-20 | 2017-07-06 | +16 Tage |
+| `turtle_soup_stocks` | 2016-09-01 | 2016-09-19 | 2016-10-14 | 2016-10-31 | +17 Tage |
+| `volatility_breakout` | 2016-09-01 | 2016-09-19 | 2017-03-07 | 2017-03-22 | +15 Tage |
+
+Bots mit Aenderung an erste_falte_4a / erste_falte / selektionsfalten: 0 []
+Geaenderte, neue oder entfallene Falten (Grenzen, Rolle, Training, Embargo): 0 []
+Neue Felder je Bot: ['erste_falte_4a_warm_ab', 'horizontbeginn']
+Krypto elliott_wave: abweichende Felder gegen Schritt 0: ['erste_falte_4a_warm_ab', 'erste_falte_quelle']
+Krypto t3_supertrend: abweichende Felder gegen Schritt 0: ['erste_falte_4a_warm_ab', 'erste_falte_quelle']
+Krypto rsi2_crypto: abweichende Felder gegen Schritt 0: ['erste_falte_4a_warm_ab', 'erste_falte_quelle']
+Krypto turtle_soup_crypto: abweichende Felder gegen Schritt 0: ['erste_falte_4a_warm_ab', 'erste_falte_quelle']
+Krypto volatility_breakout_crypto: abweichende Felder gegen Schritt 0: ['erste_falte_4a_warm_ab', 'erste_falte_quelle']
+Fuenf Krypto-Bots ohne die zwei neuen Felder und ohne den Text erste_falte_quelle zeichengleich mit Schritt 0: True
+Krypto horizontbeginn: [None, None, None, None, None], warm ab vorher = nachher: True
+Alle neun Bots ohne neue Felder und ohne erste_falte_quelle zeichengleich: True
