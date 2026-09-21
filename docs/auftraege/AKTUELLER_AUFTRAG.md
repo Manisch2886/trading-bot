@@ -37,11 +37,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | TB | Auftragsdokument | kurz |
 |---|---|---|
 | **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
-| **TB-73** | `docs/auftraege/MAC_TB-73_mtm_wirkung.md` | ⭐⭐ **Die Wirkung des MtM-Drawdowns messen** — je Bot und je Falte, 2020 und 2022 hervorgehoben. ⛔ **Keine Empfehlung, keine Abwägung**: Register 24.3 hat entschieden, bevor die Zahl existierte. ⚠️ **Rechnet** |
 | **TB-64** | `docs/auftraege/MAC_TB-64_nachtragswaechter.md` | ⭐⭐ Wächter für die Bringschuld der Nachträge — **unabhängig**, fässt Backlog und Journal nicht an. ⚠️ **Schritt 5b am 20.09. ergänzt** (Betreiberentscheidung): die drei übrigen `B`-Zeilen nach `docs/UMGEBUNGEN.md` |
 
-*Gesetzt 20.09.2026 (zuvor TB-72, erledigt mit `537ca51`, nachgemessen und
-geschlossen am 20.09.2026, 21:30 Ortszeit; davor TB-71 `4af44da`, TB-68 `97cbcef`, TB-67 `a15746f`, TB-66 `fe76857`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 20.09.2026 (zuvor TB-73, erledigt mit `2150318`, nachgemessen und
+geschlossen am 20.09.2026, 22:20 Ortszeit; davor TB-72 `537ca51`, TB-71 `4af44da`, TB-68 `97cbcef`, TB-67 `a15746f`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
