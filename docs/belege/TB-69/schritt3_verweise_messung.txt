@@ -1,0 +1,249 @@
+ 37 Zeilen (7 mit Buchstabenabschnitt)  ./docs/projektfuehrung/ARBEITSWEISE.md
+ 16 Zeilen (6 mit Buchstabenabschnitt)  ./docs/projektfuehrung/BACKLOG_ARCHIV.md
+ 10 Zeilen (3 mit Buchstabenabschnitt)  ./docs/projektfuehrung/BACKLOG.md
+  8 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/JOURNAL.md
+  7 Zeilen (0 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-62_nachtraege_m_v.md
+  7 Zeilen (2 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-68_eroeffnungstext.md
+  6 Zeilen (2 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-51_startdatei.md
+  5 Zeilen (1 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19v.md
+  4 Zeilen (3 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-75_journal_nachziehen.md
+  4 Zeilen (3 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-59_backlog_einarbeitung.md
+  4 Zeilen (1 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-60_backlog_archiv.md
+  4 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/UMZUG.md
+  4 Zeilen (3 mit Buchstabenabschnitt)  ./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18c.md
+  3 Zeilen (1 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-50_dokumentationspflege.md
+  3 Zeilen (0 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-67_journal_einarbeitung.md
+  3 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
+  3 Zeilen (1 mit Buchstabenabschnitt)  ./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18b.md
+  3 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18.md
+  3 Zeilen (1 mit Buchstabenabschnitt)  ./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18d.md
+  3 Zeilen (1 mit Buchstabenabschnitt)  ./docs/projektfuehrung/UEBERGABE_2026-09-19.md
+  3 Zeilen (0 mit Buchstabenabschnitt)  ./logs/auftraege/_erledigt/UMZUG.md
+  3 Zeilen (0 mit Buchstabenabschnitt)  ./logs/auftraege/_erledigt/NACHTRAG_schluesselbund_2026-09-20.md
+  3 Zeilen (1 mit Buchstabenabschnitt)  ./logs/auftraege/_erledigt/NACHTRAG_termius_anleitung_2026-09-20.md
+  3 Zeilen (1 mit Buchstabenabschnitt)  ./logs/auftraege/_erledigt/UEBERGABE_2026-09-19.md
+  2 Zeilen (0 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-52_resolver.md
+  2 Zeilen (0 mit Buchstabenabschnitt)  ./docs/UEBERGABEPROTOKOLL.md
+  2 Zeilen (1 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-62_nachtraege_m_v.md
+  2 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/JOURNAL_NACHTRAG_2026-09-18.md
+  2 Zeilen (2 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19h.md
+  2 Zeilen (0 mit Buchstabenabschnitt)  ./logs/auftraege/_erledigt/DOKUMENTATIONSSTANDARD.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./.claude/settings.local.json
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./shared/paths.py
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-63_epics_auslagern.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/START_HIER.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/TESTAUFTRAG_TB-52_resolver.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-60_backlog_archiv.md
+  1 Zeilen (1 mit Buchstabenabschnitt)  ./docs/ERGEBNIS_TB-71_register_schliessen.md
+  1 Zeilen (1 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-73_mtm_wirkung.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-67_journal_einarbeitung.md
+  1 Zeilen (1 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-61_benchmark_neun.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-76_waechter_ziele.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-68_eroeffnungstext.md
+  1 Zeilen (1 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-63_epics_auslagern.md
+  1 Zeilen (1 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-75_journal_nachziehen.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/auftraege/AKTUELLER_AUFTRAG.md
+  1 Zeilen (1 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-71_register_schliessen.md
+  1 Zeilen (1 mit Buchstabenabschnitt)  ./docs/auftraege/MAC_TB-72_erste_falte_aus_trockenlauf.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20h.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19t.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20b.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-19g.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-18f.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20g.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20a.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20e.md
+  1 Zeilen (1 mit Buchstabenabschnitt)  ./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19k.md
+  1 Zeilen (0 mit Buchstabenabschnitt)  ./logs/auftraege/_erledigt/NACHTRAG_einleitungssatz_2026-09-20.md
+
+SUMME: 188 Zeilen in 57 Dateien, davon 48 mit Buchstabenabschnitt
+
+== Zeilen ==
+./.claude/settings.local.json:25:       "Bash(git commit -q -m 'TB-75 Schritt 5 \\(Abgabe\\): eine Backlog-Zeile K4n in Abschnitt 4 \\(numstat 1/0; K4a-K4m belegt, 0 doppelt ueber BACKLOG.md und BACKLOG_ARCHIV.md\\) - Rueckstand abgea
+./shared/paths.py:31: ⚠️ Mehrere stehende Texte (`CLAUDE.md`, `ARBEITSWEISE.md` §7, Backlog T46.3)
+./docs/ERGEBNIS_TB-63_epics_auslagern.md:219: | Schritt 4, „ein Journal-Nachtrag“ | Nachtragsdatei | **Journalblock direkt** (`CC`), Quellenzeile auf dieses Dokument — Regel seit TB-75 (Betreiberentscheidung 21.09.), in `ARBEITSWEISE.md` 14 und `
+./docs/START_HIER.md:6: > (`ARBEITSWEISE.md` Abschnitt 10, Schritt 2). *Ein Einstiegsdokument, dessen
+./docs/ERGEBNIS_TB-52_resolver.md:223: Dieser Satz steht in **`CLAUDE.md`**, **`ARBEITSWEISE.md` §7**, **Backlog T46.3**
+./docs/ERGEBNIS_TB-52_resolver.md:436: Commits wie Löschungen aus** — der Merge-Basis-Vergleich aus `ARBEITSWEISE.md` §7
+./docs/UEBERGABEPROTOKOLL.md:897: an den Befehl gehängt, nie in einen Chat kopiert (`ARBEITSWEISE.md` §7).
+./docs/UEBERGABEPROTOKOLL.md:907: *Vollständig in `ARBEITSWEISE.md` Abschnitt 14, Regel 0.*
+./docs/TESTAUFTRAG_TB-52_resolver.md:122: können Zugangsdaten stehen, ARBEITSWEISE §7.)*
+./docs/ERGEBNIS_TB-51_startdatei.md:4: PR — `ARBEITSWEISE.md` §5b). Ausgangsstand `58c0ab9` (der Auftrag nennt
+./docs/ERGEBNIS_TB-51_startdatei.md:24: | **Wie viele Zeilen je Datei, jede entfernte erklärt?** | `START_HIER.md` 95/0 · `ARBEITSWEISE.md` 6/**5** · `BACKLOG.md` 27/2 · `basislauf.py` 43/**1** · `test_flackerstufe.py` 497/0 · Nachtrag (c) 
+./docs/ERGEBNIS_TB-51_startdatei.md:68: ### Warum ARBEITSWEISE 5 und nicht 4
+./docs/ERGEBNIS_TB-51_startdatei.md:106: ⭐ **`ARBEITSWEISE.md` Abschnitt 10, Schritt 2 führt `START_HIER.md` weiterhin
+./docs/ERGEBNIS_TB-51_startdatei.md:125: | Berichtigung 3 | in `ARBEITSWEISE.md` 5b, „Der feste Ablauf", Schritte 2 und 3 |
+./docs/ERGEBNIS_TB-51_startdatei.md:247:    `find` und `git ls-files` leer. `ARBEITSWEISE.md` §10 führt sie im Paket.
+./docs/ERGEBNIS_TB-75_journal_nachziehen.md:200: `ARBEITSWEISE.md` 5b (*„IMMER als Auftrag an eine Sitzung, nie von Hand"*)
+./docs/ERGEBNIS_TB-75_journal_nachziehen.md:235: Anklickbare Frage mit Empfehlung (`ARBEITSWEISE.md` 6d), drei Wege mit Preis:
+./docs/ERGEBNIS_TB-75_journal_nachziehen.md:282: | Schritt 4: *„ist der Umweg noch nötig?"* | für Mac-Sitzungen nein (11 von 18); für Chat-Nachträge ja (7 von 18, `ARBEITSWEISE.md` 5b) — die Frage war eine für zwei Wege |
+./docs/ERGEBNIS_TB-75_journal_nachziehen.md:297: | ⭐ **Die Entscheidung (a) eintragen:** `ARBEITSWEISE.md` 14 (Abgabe-Liste einer Mac-Sitzung: Block direkt statt Nachtrag), `DOKUMENTATIONSSTANDARD.md` 10 (Quellenzeile darf auf `ERGEBNIS_TB-*.md` zei
+./docs/ERGEBNIS_TB-50_dokumentationspflege.md:22: | **Zeilen je Datei hinzugefügt / entfernt — ist jede entfernte erklärt?** | **Ja, alle 15.** `ARBEITSWEISE.md` 53/7 · `BACKLOG.md` 137/6 · `JOURNAL.md` 632/0 · `PRUEFPRINZIPIEN.md` 38/0 · `UMGEBUNGEN
+./docs/ERGEBNIS_TB-50_dokumentationspflege.md:273: 7. **`ARBEITSWEISE.md` 5b, Abschnitt „Der feste Ablauf", Schritt 2 und 3** sprechen weiter von `CLOUD_TB-<Nr>_dokumentationspflege.md` und „Der Nutzer startet die Cloud-Sitzung" — das widerspricht dem
+./docs/ERGEBNIS_TB-50_dokumentationspflege.md:274: 8. **`ARBEITSWEISE.md` Abschnitt 10, Schritt 2** führt `START_HIER.md` und `STRATEGIEN_uebersicht.md` als Paketbestandteile; beide liegen nicht unter `docs/projektfuehrung/`.
+./docs/ERGEBNIS_TB-67_journal_einarbeitung.md:215: | **B4** | macOS schützt `~/Downloads`; Aufträge nach `logs/auftraege/` | **ja** — inhaltlich, mit inzwischen weiterem Stand: Zwischenlager `logs/auftraege/`, endgültiger Ort `docs/auftraege/` | `UEBE
+./docs/ERGEBNIS_TB-67_journal_einarbeitung.md:216: | **B5** | Ortsunabhängig seit dem 19.09.; Ursache verschlossener Schlüsselbund; `security unlock-keychain` ohne `-p` | **ja** | `ARBEITSWEISE.md` Abschnitt 14 **Regel 0** (Z. 885–911, dreimal `unlock
+./docs/ERGEBNIS_TB-67_journal_einarbeitung.md:217: | **B6** | Nie überschreiben, immer neuer Dateiname, gegenprüfen; über die Geräteverbindung kein `git status`/`git log` | **ja** | `UEBERGABE_2026-09-19.md` Block 7 Punkte 7 und 8 (Z. 193–194) und Abs
+./docs/ERGEBNIS_TB-60_backlog_archiv.md:47: | **2** | **Der Befund zu Abschnitt 9** (Nachweis 7) — was darin stand und in `ARBEITSWEISE.md` fehlt, ist nicht berichtet |
+./docs/ERGEBNIS_TB-71_register_schliessen.md:40: `DOKUMENTATIONSSTANDARD.md` Regel 4, `ARBEITSWEISE.md` 6d, BACKLOG Abschnitt 4.
+./docs/ERGEBNIS_TB-62_nachtraege_m_v.md:124: | (1) Rückfrage und Antwort wörtlich in den Bericht | 0 in `ARBEITSWEISE.md`, `DOKUMENTATIONSSTANDARD.md`, `UMZUG.md`, `PRUEFPRINZIPIEN.md`, `UEBERGABEPROTOKOLL.md`, `BACKLOG.md`; 1 Zitat `UEBERGABE_2
+./docs/ERGEBNIS_TB-62_nachtraege_m_v.md:125: | (2) Die Sitzung committet Auftrag und Belege mit | 0 in denselben sechs; 1 Zitat `UEBERGABE_2026-09-19.md:243`. `UMZUG.md` Schritt 1 nennt nur die Zielorte beim Umzug, nicht die Pflicht der Sitzung 
+./docs/ERGEBNIS_TB-62_nachtraege_m_v.md:226: | `K2l` | Aufträge nie nach `~/Downloads` | `ARBEITSWEISE.md`, `UMZUG.md`, Protokoll | `UEBERGABE_2026-09-19.md` Block 7 Punkt 9 und Block 8 Punkt 9; `ARBEITSWEISE.md` Abschnitt 14 Regel 2 (`docs/auft
+./docs/ERGEBNIS_TB-62_nachtraege_m_v.md:228: | `K2p` | nicht am Repo arbeiten, solange eine Mac-Sitzung läuft | `UMZUG.md` | `ARBEITSWEISE.md` Abschnitt 15 („Läuft gerade eine Mac-Sitzung, ist `docs/` gesperrt"); `UEBERGABE_2026-09-19.md` Block 
+./docs/ERGEBNIS_TB-62_nachtraege_m_v.md:229: | `K2q` | über die Geräteanbindung nie überschreiben, kein `git status`/`git log` | `ARBEITSWEISE.md` | `UEBERGABE_2026-09-19.md` Block 7 Punkte 7 und 8 sowie Abschnitt „Die Geräteanbindung" (Z. 407);
+./docs/ERGEBNIS_TB-62_nachtraege_m_v.md:310: Nach `ARBEITSWEISE.md` Abschnitt 15 (neu) steht das hier wörtlich, weil es eine
+./docs/ERGEBNIS_TB-62_nachtraege_m_v.md:321: | Das Suchmuster `ZIP\|Zip\|zip\|Archiv` traf `Prüfprinzipien`, `PRUEFPRINZIPIEN` und `Disziplin`: 44 statt 37 in `ARBEITSWEISE.md`, 4 statt 0 in `DOKUMENTATIONSSTANDARD.md` | ⭐ Ein Wortmuster wird vo
+./docs/ERGEBNIS_TB-68_eroeffnungstext.md:31: `ARBEITSWEISE.md` 6d, zwei Fable-Dateien). Danach `git status --short` = 0 Zeilen
+./docs/ERGEBNIS_TB-68_eroeffnungstext.md:55: | Nr. 2 / 3 | `projektfuehrung/ARBEITSWEISE.md — wie ich arbeiten möchte, verbindlich` | dito **plus** Folgezeile `(Abschnitt 10 ist überholt, siehe UMZUG.md)` | ⛔ Zusatzzeile rechts — und die ist **s
+./docs/ERGEBNIS_TB-68_eroeffnungstext.md:140: | Zusatzzeile *„(Abschnitt 10 ist überholt, siehe UMZUG.md)"* **nicht** übernommen | seit TB-62 ist Abschnitt 10 selbst der Verweis (`ARBEITSWEISE.md` Z. 792 ff.); der Hinweis wäre ein Hinweis auf ein
+./docs/ERGEBNIS_TB-68_eroeffnungstext.md:218: Frage, `ARBEITSWEISE.md` 6d): Weg (1)** — die Zeile steht jetzt im Text.
+./docs/ERGEBNIS_TB-68_eroeffnungstext.md:259: (Nachweis 7); Löschen fragt vorher (`ARBEITSWEISE.md` Abschnitt 6). *Nach
+./docs/ERGEBNIS_TB-68_eroeffnungstext.md:275: | ⚠️ toter Verweis | Z. 6: *„`ARBEITSWEISE.md` Abschnitt 10, Schritt 2"* — Abschnitt 10 ist seit TB-62 ein Verweis ohne Schritte |
+./docs/ERGEBNIS_TB-68_eroeffnungstext.md:318: `ARBEITSWEISE.md` Abschnitte 4 und 17, `DOKUMENTATIONSSTANDARD.md` Z. 150/168,
+./docs/auftraege/MAC_TB-73_mtm_wirkung.md:180: | ⭐ | **Entscheidungen an den Betreiber gehen als anklickbare Frage mit Empfehlung** (`ARBEITSWEISE.md` 6d) — *für diese Aufgabe ist keine vorgesehen* |
+./docs/auftraege/MAC_TB-67_journal_einarbeitung.md:10: Stelle an (Abschnitt 4, eine Zeile) und `ARBEITSWEISE.md` gar nicht.
+./docs/auftraege/MAC_TB-61_benchmark_neun.md:7: (Regelweg, `ARBEITSWEISE.md` Abschnitt 5b).
+./docs/auftraege/MAC_TB-76_waechter_ziele.md:104: das eigene Ergebnisdokument (`ARBEITSWEISE.md` 14, seit dem 21.09.).
+./docs/auftraege/MAC_TB-68_eroeffnungstext.md:57: | `DOKUMENTATIONSSTANDARD.md` Z. 150, 168 | ⭐ **Verweise** auf `ARBEITSWEISE.md §4` — keine Kopie |
+./docs/auftraege/MAC_TB-63_epics_auslagern.md:7: (Regelweg für Dokumentation, `ARBEITSWEISE.md` Abschnitt 5b).
+./docs/auftraege/MAC_TB-75_journal_nachziehen.md:90: Empfehlung vor** (`ARBEITSWEISE.md` 6d) — **und nenne ausdrücklich, was ein
+./docs/auftraege/AKTUELLER_AUFTRAG.md:13: **erst dann** `/login` (`ARBEITSWEISE.md` Abschnitt 14, Regel 0).
+./docs/auftraege/MAC_TB-71_register_schliessen.md:236: | ⭐ | **Entscheidungen an den Betreiber gehen als anklickbare Frage mit Empfehlung** (`ARBEITSWEISE.md` 6d, Form-Unterabschnitt vom 20.09.) — nicht als Absatz im Ergebnisdokument |
+./docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:7: Zweig, kein PR (Regelweg für Dokumentation, `ARBEITSWEISE.md` Abschnitt 5b).
+./docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:16: eingearbeitet, und `ARBEITSWEISE.md` Abschnitt 10 wird durch einen Verweis
+./docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:21: Auflagen aus `ARBEITSWEISE.md` Abschnitt 7c gelten für Aufgaben, die den
+./docs/auftraege/MAC_TB-59_backlog_einarbeitung.md:37: | ⛔ | **KEIN ZIP, nichts nach `~/Downloads`.** *Das überschreibt `ARBEITSWEISE.md` Abschnitt 2 und 7c, die noch ein ZIP verlangen — die Regel vom 19.09.2026 („Keine ZIPs, nichts nach `~/Downloads`; wa
+./docs/auftraege/MAC_TB-62_nachtraege_m_v.md:7: (Regelweg für Dokumentation, `ARBEITSWEISE.md` Abschnitt 5b).
+./docs/auftraege/MAC_TB-62_nachtraege_m_v.md:163: `ARBEITSWEISE.md` Abschnitt 1 verlangte „Immer gebündelt als ZIP“,
+./docs/auftraege/MAC_TB-72_erste_falte_aus_trockenlauf.md:306: | ⭐ | **Entscheidungen an den Betreiber gehen als anklickbare Frage mit Empfehlung** (`ARBEITSWEISE.md` 6d) |
+./docs/auftraege/MAC_TB-60_backlog_archiv.md:7: (Regelweg für Dokumentation, `ARBEITSWEISE.md` Abschnitt 5b).
+./docs/auftraege/MAC_TB-60_backlog_archiv.md:26: | Abschnitt 9 „Arbeitsregeln" — inhaltlich Doppel zu `ARBEITSWEISE.md` | 5 946 | 1,7 % |
+./docs/auftraege/MAC_TB-60_backlog_archiv.md:73: | **4** | **Abschnitt 9 „Arbeitsregeln"** | ⚠️ **Kein Archiveintrag, sondern ein Verweis auf `ARBEITSWEISE.md`** — der Inhalt ist dort bereits geführt. ⭐ **Vorher prüfen und berichten, ob Abschnitt 9 
+./docs/auftraege/MAC_TB-60_backlog_archiv.md:149: | **7** | **Befundbericht zu Abschnitt 9:** was darin steht und in `ARBEITSWEISE.md` fehlt |
+./docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md:75: **`ARBEITSWEISE.md` §9 sagt, dass eigene Fehler benannt werden. Dieses Dokument
+./docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md:150: | ⭐ **„In einfacher Sprache"** | `ARBEITSWEISE.md` §4 — bei jeder aufbereiteten Rückmeldung von aussen, **im Dokument und am Ende der Chatantwort** |
+./docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md:200: ⚠️ **Gelöscht wird nur mit Nachweis** (`ARBEITSWEISE.md` §6 bleibt): Was
+./docs/projektfuehrung/UMZUG.md:8: ⚠️⚠️ **Dieses Dokument ersetzt Abschnitt 10 von `ARBEITSWEISE.md`** (dort Zeilen
+./docs/projektfuehrung/UMZUG.md:279: ## 7. Der Ersatztext für `ARBEITSWEISE.md`, Abschnitt 10 — eingearbeitet
+./docs/projektfuehrung/UMZUG.md:282: `ARBEITSWEISE.md` Abschnitt 10.** Die Kopie, die hier bis zum 20.09.2026 stand
+./docs/projektfuehrung/UMZUG.md:291: Abschnitt 12 und `PRUEFPRINZIPIEN.md`. `ARBEITSWEISE.md` enthält **stehende
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18c.md:66: ⭐ **Erste Aufgabe nach dem neuen Regelweg (`ARBEITSWEISE.md` §5b): die
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18c.md:73: | **T50.3** | ⚠️⚠️ **`START_HIER.md` EXISTIERT NIRGENDS IM REPO** — weder unter `docs/`, noch im Wurzelverzeichnis, noch in `git ls-files`. **`ARBEITSWEISE.md` Abschnitt 10 führt sie als Pflichtbestan
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18c.md:79: | **T50.9** | ⚠️ **`ARBEITSWEISE.md` §5b widerspricht sich selbst:** Der neue Unterabschnitt sagt *„die Mac-Sitzung legt ab"*, der ältere Teil **„Der feste Ablauf"** darunter spricht weiter von `CLOUD
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18c.md:84: ## Berichtigung 3 — `ARBEITSWEISE.md` §5b, „Der feste Ablauf"
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:216: | **T46b.6** | ⭐ **EINE der neun Datenbanken wich im Mac-Lauf ab — und die Erklärung ist belegt, nicht plausibilisiert.** `turtle_soup_crypto` hat einen Cronjob `15 0 * * *`; die Änderungszeit 00:15:2
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:256: | **T48.3** | ⚠️ **MEINE REGEL HAT DAS FALSCHE BEWIRKT.** Ich hatte verboten, unter `research/` etwas zu ändern. Die Sitzung hat sich daran gehalten — und **`pruefe_abschnitt17.py` deshalb NICHT ins R
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:258: | **T48.5** | ⚠️ **`git status` im Beleg war VOR dem letzten Commit aufgenommen — zweiter Fall nach TB-46.** Beide Male trug der Zweig die aktuellen Fassungen; **beide Male war der Beleg wertlos.** ⭐ 
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:278: | **T49.9** | ⚠️⚠️ **DER PREIS VON T48.3 IST BEZIFFERBAR: `pruefe_abschnitt17.py` lag den Unterlagen der TB-49-Sitzung NICHT bei** — das Archiv enthielt allein den Auftragstext, und im Repo war die Da
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:288: | **T49.19** | ⚠️ **Mein Testauftrag prüfte nur `/tmp` auf Wegwerf-Reste.** Die Sitzung hat zusätzlich **`$TMPDIR`** gemessen (`/var/folders/b_/…/T/`) — *„wo `mkdtemp` auf dem Mac wirklich liegt"*. **
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:295: ⭐ **Erste Aufgabe nach dem neuen Regelweg (`ARBEITSWEISE.md` §5b): die
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:302: | **T50.3** | ⚠️⚠️ **`START_HIER.md` EXISTIERT NIRGENDS IM REPO** — weder unter `docs/`, noch im Wurzelverzeichnis, noch in `git ls-files`. **`ARBEITSWEISE.md` Abschnitt 10 führt sie als Pflichtbestan
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:308: | **T50.9** | ⚠️ **`ARBEITSWEISE.md` §5b widerspricht sich selbst:** Der neue Unterabschnitt sagt *„die Mac-Sitzung legt ab"*, der ältere Teil **„Der feste Ablauf"** darunter spricht weiter von `CLOUD
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:322: | **T51.1** | ⭐ **`docs/START_HIER.md` existiert** — 95 Zeilen, `numstat` **95/0**. Sie trägt: was das Projekt ist · die Lesereihenfolge der fünf Führungsdokumente · die Kette mit Stand · die Sperrlis
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:325: | **T51.4** | **Nachtrag (c) eingearbeitet:** Kettenzeile 0,82 (Widerspruch „gemergt" neben „Merge offen") berichtigt, Kopf von Block 2h berichtigt, Block 2i eingefügt, **`ARBEITSWEISE.md` §5b „Der fe
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:326: | **T51.5** | ⚠️ **`STRATEGIEN_uebersicht.md` existiert weiterhin nirgends im Repo** (`find` und `git ls-files` leer), und `ARBEITSWEISE.md` §10 führt sie weiter im Übergabepaket. **Dieselbe Betreiber
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:356: | **T52.16** | ⭐ **EINE DATENBANK ÄNDERTE SICH — und die Prüfung war die richtige.** 22:30:58 **9 von 9 identisch**; nach dem Basislauf 23:02:34 **8 von 9**. `paper_trading_volatility_breakout.db`, ge
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:388: | **T55.6** | ⭐⭐ **NEUE REGEL: JEDER `MAC_`-AUFTRAG BEGINNT MIT SCHRITT −1 ORTSPRÜFUNG.** Gemessen wird: `uname -s` = **`Darwin`** · ⭐ `test -x trading-env/bin/python3` *(der eigentliche Nachweis)* · 
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:394: | **T55.12** | ⭐ **Wie der Datenstand gemessen wurde, und warum das besser ist als verlangt.** Der Auftrag verlangte „dreimal messen"; die Sitzung hat **nicht dreimal dasselbe Werkzeug** benutzt: Mess
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:520: ⚠️ **Am 20.09.2026 zurückgeholt nach `ARBEITSWEISE.md` Abschnitt 18** — dort steht der vollständige Text. Hier bleibt der Verweis, damit die Stelle auffindbar bleibt.
+./docs/projektfuehrung/BACKLOG_ARCHIV.md:526: ⚠️ **Am 20.09.2026 zurückgeholt nach `ARBEITSWEISE.md` Abschnitt 18** — dort steht der vollständige Text. Hier bleibt der Verweis, damit die Stelle auffindbar bleibt.
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18b.md:64: | **T49.9** | ⚠️⚠️ **DER PREIS VON T48.3 IST BEZIFFERBAR: `pruefe_abschnitt17.py` lag den Unterlagen der TB-49-Sitzung NICHT bei** — das Archiv enthielt allein den Auftragstext, und im Repo war die Da
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18b.md:74: | **T49.19** | ⚠️ **Mein Testauftrag prüfte nur `/tmp` auf Wegwerf-Reste.** Die Sitzung hat zusätzlich **`$TMPDIR`** gemessen (`/var/folders/b_/…/T/`) — *„wo `mkdtemp` auf dem Mac wirklich liegt"*. **
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18b.md:99: damit ihn niemand wiederholt (`ARBEITSWEISE.md` §9).
+./docs/projektfuehrung/ARBEITSWEISE.md:9: > (Abschnitt 10).
+./docs/projektfuehrung/ARBEITSWEISE.md:19: > von Abschnitt 1 mitten im Fliesstext; sie steht jetzt wieder in der Tabelle.
+./docs/projektfuehrung/ARBEITSWEISE.md:20: > **Umgestellt 20.09.2026 (TB-62): ZIP überall abgeschafft** — Abschnitte 2,
+./docs/projektfuehrung/ARBEITSWEISE.md:21: > 5b, 6bb, 7, 7c, 10, 11 und 18 tragen den Commit als Mittel; Abschnitt 14
+./docs/projektfuehrung/ARBEITSWEISE.md:22: > Regel 3 und Abschnitt 15 um die zwei Regeln aus Nachtrag (m) ergänzt.
+./docs/projektfuehrung/ARBEITSWEISE.md:46: ⚠️⚠️ **BERICHTIGT 20.09.2026 — siehe Abschnitt 14.** Dieser Einzeiler hat am
+./docs/projektfuehrung/ARBEITSWEISE.md:105:   der Aufgabe, nach `~/Downloads` —, während Abschnitt 10 ZIP seit dem 19.09.
+./docs/projektfuehrung/ARBEITSWEISE.md:114:   | **Mac-Sitzung** | Ergebnisdokument unter `docs/`, Belege unter `docs/belege/TB-<Nr>/`, der Auftrag selbst unter `docs/auftraege/` — **committet und gepusht, nach jedem fertigen Teil** (Abschnitt 1
+./docs/projektfuehrung/ARBEITSWEISE.md:116:   | **Chat** (Fable, Beratung, Bewertung) | einzelne Dateien in der Antwort, jede mit dem Namen aus der Tabelle oben; kurze Dokumente lesen sich im Chat schneller als nach einem Download. Der Weg ins 
+./docs/projektfuehrung/ARBEITSWEISE.md:169:   **Der Regelweg steht in Abschnitt 5b: die Mac-Sitzung legt ab und pusht
+./docs/projektfuehrung/ARBEITSWEISE.md:277: | **1 — ganz ersetzen** | Dokumente, die kurz genug sind, um sie vollständig zu schreiben: `ARBEITSWEISE.md`, `PRUEFPRINZIPIEN.md`, `UMGEBUNGEN.md`, `START_HIER.md` | ⭐ **Regelweg: Auftrag an die Mac-
+./docs/projektfuehrung/ARBEITSWEISE.md:343: > **„Fortlaufend führen" stand schon vor dem 18.09. in Abschnitt 5 — und diese
+./docs/projektfuehrung/ARBEITSWEISE.md:378:    keinen ersten Zug); **welche es war, ist offen.** ⭐ Die Abhilfe in Abschnitt 14
+./docs/projektfuehrung/ARBEITSWEISE.md:381:    `git status` **nach** dem letzten Commit (Abschnitt 7).
+./docs/projektfuehrung/ARBEITSWEISE.md:493: ⚠️ **Der Ablauf stand bereits vollständig in Abschnitt 14 — er wurde
+./docs/projektfuehrung/ARBEITSWEISE.md:578: ⭐ **Die Kontrolle nach Abschnitt 14 bleibt unverändert:** Kopfzeile nennt
+./docs/projektfuehrung/ARBEITSWEISE.md:602: | **je Aufgabe** | **Was · Wo · Woran du merkst, dass es geklappt hat** (Abschnitt 6b) |
+./docs/projektfuehrung/ARBEITSWEISE.md:839: ⚠️ **Für alle gilt Abschnitt 7 ohne Ausnahme: Existenz prüfen, nie den Wert.**
+./docs/projektfuehrung/ARBEITSWEISE.md:856: | **Commit** | Ergebnisdokument unter `docs/`, Belege unter `docs/belege/TB-<Nr>/`, der Auftrag unter `docs/auftraege/` — committet und gepusht **nach jedem fertigen Teil** (Abschnitt 14, Regel 3). **
+./docs/projektfuehrung/ARBEITSWEISE.md:888: für jede Abgabe (Abschnitt 2): Commit im Repo und einzelne Dateien, kein
+./docs/projektfuehrung/ARBEITSWEISE.md:975: als anklickbare Frage mit Empfehlung gestellt (Abschnitt 6d) — und die Arbeit
+./docs/projektfuehrung/ARBEITSWEISE.md:979: (Abschnitt 7, Vorsatz). *„Direkt weitermachen"* heisst **nicht**, sie selbst
+./docs/projektfuehrung/ARBEITSWEISE.md:983: **Verhältnis zu Abschnitt 6bb:** 6bb verlangt, dass am Ende jeder Antwort steht,
+./docs/projektfuehrung/ARBEITSWEISE.md:993: ⚠️⚠️ **Berichtigt Abschnitt 1 und schärft Abschnitt 5b, Punkt 3** — nach dem
+./docs/projektfuehrung/ARBEITSWEISE.md:1033: an den Befehl gehängt, nie in einen Chat kopiert (Abschnitt 7).
+./docs/projektfuehrung/ARBEITSWEISE.md:1077: | ⭐ | Die **TB-Nummer steht vorn**, damit der Betreiber die Sitzungen **in der Historie** auseinanderhalten kann. *Abschnitt 3 verlangt den Sitzungstitel seit dem 15.09.2026 — aber nur im Kopf des Auf
+./docs/projektfuehrung/ARBEITSWEISE.md:1096: > `UMZUG.md` Abschnitt 1 für die Übergabe führt: *„Wer sie erst beim Umzug
+./docs/projektfuehrung/ARBEITSWEISE.md:1106: `UMZUG.md` Abschnitt 2 in keinem Träger; ein Beleg, der nur im Sitzungsverlauf
+./docs/projektfuehrung/ARBEITSWEISE.md:1107: steht, verschwindet mit ihm.* Kein Archiv — Abschnitt 2.
+./docs/projektfuehrung/ARBEITSWEISE.md:1122: Abschnitt 10.*
+./docs/projektfuehrung/ARBEITSWEISE.md:1163: **Die Träger, jedes Mal geprüft statt erinnert** (`UMZUG.md` Abschnitt 2):
+./docs/projektfuehrung/ARBEITSWEISE.md:1182: Abschnitt 2 ausdrücklich **kein Träger**.
+./docs/projektfuehrung/ARBEITSWEISE.md:1215:    ist:** das Register, `JOURNAL.md`, Backlog-Abschnitt 8 (Gestrichen),
+./docs/projektfuehrung/ARBEITSWEISE.md:1236: ⚠️ **Abgrenzung zu Abschnitt 4:** Das hier ist der **Einstieg** und gilt
+./docs/projektfuehrung/ARBEITSWEISE.md:1237: **immer**. Abschnitt 4 regelt den **Abschluss** „In einfacher Sprache" und gilt
+./docs/projektfuehrung/ARBEITSWEISE.md:1247: ⚠️ **TB-60 hat `BACKLOG.md` Abschnitt 9 ins Archiv verschoben — im Auftrag stand,
+./docs/projektfuehrung/ARBEITSWEISE.md:1285:   durch den Commit ersetzt, Abschnitt 2)*. Der Wortlaut für die
+./docs/projektfuehrung/JOURNAL.md:5458: zu breit.** **Daraus `ARBEITSWEISE.md` §11 (neu):** Ein Änderungsverbot nennt,
+./docs/projektfuehrung/JOURNAL.md:5466: Male war der Beleg wertlos.** **Daraus die Regel in `ARBEITSWEISE.md` §7.**
+./docs/projektfuehrung/JOURNAL.md:6414: **`ARBEITSWEISE.md` Abschnitt 10** ist durch den Verweis auf `UMZUG.md` ersetzt.
+./docs/projektfuehrung/JOURNAL.md:6525: zu Abschnitt 9 (was darin stand und in `ARBEITSWEISE.md` fehlt) ist **nicht
+./docs/projektfuehrung/JOURNAL.md:6666: **Vorgelegt als Widerspruch in EINER Datei:** `ARBEITSWEISE.md` Abschnitt 1
+./docs/projektfuehrung/JOURNAL.md:6983: | Nachtrag (m) | sechs Nummern `K2l`–`K2q` an (s)/(t)/(n) vergeben — bestätigt. Zwei Regeln in keinem Regeldokument (nur als Zitat in `UEBERGABE_2026-09-19.md` 239/243) → `ARBEITSWEISE.md` 14 Regel 3 
+./docs/projektfuehrung/JOURNAL.md:7541: heute ihren Dateinamen im Journal). Die Regeltexte (`ARBEITSWEISE.md` 14,
+./docs/projektfuehrung/JOURNAL.md:7590: die Regel aus TB-75, vom Betreiber heute früh in `ARBEITSWEISE.md` 14 und
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18.md:96: | **T46b.6** | ⭐ **EINE der neun Datenbanken wich im Mac-Lauf ab — und die Erklärung ist belegt, nicht plausibilisiert.** `turtle_soup_crypto` hat einen Cronjob `15 0 * * *`; die Änderungszeit 00:15:2
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18.md:147: | **T48.3** | ⚠️ **MEINE REGEL HAT DAS FALSCHE BEWIRKT.** Ich hatte verboten, unter `research/` etwas zu ändern. Die Sitzung hat sich daran gehalten — und **`pruefe_abschnitt17.py` deshalb NICHT ins R
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18.md:149: | **T48.5** | ⚠️ **`git status` im Beleg war VOR dem letzten Commit aufgenommen — zweiter Fall nach TB-46.** Beide Male trug der Zweig die aktuellen Fassungen; **beide Male war der Beleg wertlos.** ⭐ 
+./docs/projektfuehrung/JOURNAL_NACHTRAG_2026-09-18.md:349: zu breit.** **Daraus `ARBEITSWEISE.md` §11 (neu):** Ein Änderungsverbot nennt,
+./docs/projektfuehrung/JOURNAL_NACHTRAG_2026-09-18.md:357: Male war der Beleg wertlos.** **Daraus die Regel in `ARBEITSWEISE.md` §7.**
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18d.md:47: | **T51.1** | ⭐ **`docs/START_HIER.md` existiert** — 95 Zeilen, `numstat` **95/0**. Sie trägt: was das Projekt ist · die Lesereihenfolge der fünf Führungsdokumente · die Kette mit Stand · die Sperrlis
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18d.md:50: | **T51.4** | **Nachtrag (c) eingearbeitet:** Kettenzeile 0,82 (Widerspruch „gemergt" neben „Merge offen") berichtigt, Kopf von Block 2h berichtigt, Block 2i eingefügt, **`ARBEITSWEISE.md` §5b „Der fe
+./docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18d.md:51: | **T51.5** | ⚠️ **`STRATEGIEN_uebersicht.md` existiert weiterhin nirgends im Repo** (`find` und `git ls-files` leer), und `ARBEITSWEISE.md` §10 führt sie weiter im Übergabepaket. **Dieselbe Betreiber
+./docs/projektfuehrung/BACKLOG.md:367: | **K3p** | ⭐⭐ **DER LESEPFAD HAT KEINE REGEL, DER AUFBEWAHRUNGSPFAD SCHON — und deshalb erbt er dessen Wachstum.** Gemessen 20.09.2026: Die sechs Dokumente des Eröffnungstextes umfassen **462 594 Byt
+./docs/projektfuehrung/BACKLOG.md:370: | **K3s** | ⭐⭐ **DOKUMENTATION WIRD AKTUELL GEHALTEN, NICHT ANGEHÄUFT.** Anweisung des Betreibers 20.09.2026. **Jede Änderung sagt, was sie ablöst; das Abgelöste wird entfernt statt danebengestellt.**
+./docs/projektfuehrung/BACKLOG.md:371: | **K3t** | ⚠️⚠️ **ANMELDUNG IST REGEL 0 JEDER MAC-SITZUNG.** Gemessen 20.09.2026, 10:44: Der Start meldete *„`/remote-control` requires a claude.ai subscription. Run `/login`"*, Fusszeile **„Not logg
+./docs/projektfuehrung/BACKLOG.md:373: | **K3v** | ⛔ **`screen`/`tmux` und Mosh gegen Verbindungsabbrüche: VERWORFEN 20.09.2026, Betreiberentscheidung** — zu komplex bzw. zwei Installationen auf dem Betriebsrechner (Homebrew fehlt, `ARBEIT
+./docs/projektfuehrung/BACKLOG.md:374: | **K3w** | ⭐⭐ **EINE NEUE REGEL GILT AUCH FÜR SCHON GESCHRIEBENE, NOCH NICHT GESTARTETE AUFTRÄGE.** `ARBEITSWEISE.md` Abschnitt 14, Regel 3 („sichern nach jedem fertigen Teil") entstand am 20.09. um 
+./docs/projektfuehrung/BACKLOG.md:384: | **K4g** | ⭐ **NACHTRAG (m) NACHTRÄGLICH GEPRÜFT UND ABGESCHLOSSEN (20.09.2026, TB-62)** — Folge von `K4b`. Seine sechs Nummern `K2l`–`K2q` waren an (s)/(t)/(n) vergeben und bleiben dort; **keine der
+./docs/projektfuehrung/BACKLOG.md:476: | **K2h** | ⭐ **Fallen Wortlaut und Zweck eines Abbruchkriteriums auseinander und ist jemand erreichbar: fragen** (T55b.5) — in ARBEITSWEISE §7c |
+./docs/projektfuehrung/BACKLOG.md:482: | **K2n** | ⭐⭐ **IMMER DIREKT WEITERMACHEN.** Ausdrückliche Anweisung des Betreibers, 19.09.2026: *„Mache immer direkt weiter ohne das ich dich fragen muss wie geht es weiter."* **Eine Antwort endet n
+./docs/projektfuehrung/BACKLOG.md:511: | **K4n** | ✅ **JOURNAL-RÜCKSTAND ZUM ZWEITEN MAL ABGEARBEITET — UND DER UMWEG ÜBER NACHTRAGSDATEIEN FÄLLT FÜR MAC-SITZUNGEN (21.09.2026, TB-75).** Sieben Blöcke `BU`–`CA` aus `(20g)`–`(20m)` (`JOURNA
+./docs/projektfuehrung/BACKLOG.md:601: Die Arbeitsregeln führt `ARBEITSWEISE.md` (P.1 in Abschnitt 1, P.2 in Abschnitt 7, P.4 in Abschnitt 3, P.6 in Abschnitt 8). ⚠️ Der Wortlaut von P.1 bis P.6 liegt zeichengleich in `BACKLOG_ARCHIV.md`, 
+./docs/projektfuehrung/UEBERGABE_2026-09-19.md:275: ✅ **`ARBEITSWEISE.md` Abschnitt 10** ist durch den Verweis auf `UMZUG.md`
+./docs/projektfuehrung/UEBERGABE_2026-09-19.md:355: | **2** | **Einarbeitung von (n)–(r) in `BACKLOG.md`** samt den fünf Sichtungsdurchgängen und dem Ersatz von `ARBEITSWEISE.md` Abschnitt 10 durch den Verweis auf `UMZUG.md` (Ersatztext dort in Abschni
+./docs/projektfuehrung/UEBERGABE_2026-09-19.md:370: `ARBEITSWEISE.md` Abschnitt 7 („ein Befehl je Nachricht") und Abschnitt 6b
+./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20h.md:52: einer unrecht (die Zusatzzeile zu `ARBEITSWEISE.md` Abschnitt 10 war seit
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19t.md:36: | **K2n** | ⭐⭐ **IMMER DIREKT WEITERMACHEN.** Ausdrückliche Anweisung des Betreibers, 19.09.2026: *„Mache immer direkt weiter ohne das ich dich fragen muss wie geht es weiter."* **Eine Antwort endet n
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19h.md:24: | **T55.6** | ⭐⭐ **NEUE REGEL: JEDER `MAC_`-AUFTRAG BEGINNT MIT SCHRITT −1 ORTSPRÜFUNG.** Gemessen wird: `uname -s` = **`Darwin`** · ⭐ `test -x trading-env/bin/python3` *(der eigentliche Nachweis)* · 
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19h.md:30: | **T55.12** | ⭐ **Wie der Datenstand gemessen wurde, und warum das besser ist als verlangt.** Der Auftrag verlangte „dreimal messen"; die Sitzung hat **nicht dreimal dasselbe Werkzeug** benutzt: Mess
+./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20b.md:135: **Vorgelegt als Widerspruch in EINER Datei:** `ARBEITSWEISE.md` Abschnitt 1
+./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-19g.md:29: **`ARBEITSWEISE.md` Abschnitt 10** ist durch den Verweis auf `UMZUG.md` ersetzt.
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-18f.md:18: | **T52.16** | ⭐ **EINE DATENBANK ÄNDERTE SICH — und die Prüfung war die richtige.** 22:30:58 **9 von 9 identisch**; nach dem Basislauf 23:02:34 **8 von 9**. `paper_trading_volatility_breakout.db`, ge
+./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20g.md:77: B6 und die Regel aus B7 stehen** (Übergabe Block 7, `ARBEITSWEISE.md` 14 Regel
+./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20a.md:46: zu Abschnitt 9 (was darin stand und in `ARBEITSWEISE.md` fehlt) ist **nicht
+./docs/projektfuehrung/nachtraege/_eingearbeitet/JOURNAL_NACHTRAG_2026-09-20e.md:18: | Nachtrag (m) | sechs Nummern `K2l`–`K2q` an (s)/(t)/(n) vergeben — bestätigt. Zwei Regeln in keinem Regeldokument (nur als Zitat in `UEBERGABE_2026-09-19.md` 239/243) → `ARBEITSWEISE.md` 14 Regel 3 
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19k.md:31: | **K2h** | ⭐ **Fallen Wortlaut und Zweck eines Abbruchkriteriums auseinander und ist jemand erreichbar: fragen** (T55b.5) — in ARBEITSWEISE §7c |
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19v.md:38: | **K3p** | ⭐⭐ **DER LESEPFAD HAT KEINE REGEL, DER AUFBEWAHRUNGSPFAD SCHON — und deshalb erbt er dessen Wachstum.** Gemessen 20.09.2026: Die sechs Dokumente des Eröffnungstextes umfassen **462 594 Byt
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19v.md:50: | **K3s** | ⭐⭐ **DOKUMENTATION WIRD AKTUELL GEHALTEN, NICHT ANGEHÄUFT.** Anweisung des Betreibers 20.09.2026. **Jede Änderung sagt, was sie ablöst; das Abgelöste wird entfernt statt danebengestellt.**
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19v.md:52: | **K3t** | ⚠️⚠️ **ANMELDUNG IST REGEL 0 JEDER MAC-SITZUNG.** Gemessen 20.09.2026, 10:44: Der Start meldete *„`/remote-control` requires a claude.ai subscription. Run `/login`"*, Fusszeile **„Not logg
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19v.md:64: | **K3v** | ⛔ **`screen`/`tmux` und Mosh gegen Verbindungsabbrüche: VERWORFEN 20.09.2026, Betreiberentscheidung** — zu komplex bzw. zwei Installationen auf dem Betriebsrechner (Homebrew fehlt, `ARBEIT
+./docs/projektfuehrung/nachtraege/_eingearbeitet/BACKLOG_NACHTRAG_2026-09-19v.md:65: | **K3w** | ⭐⭐ **EINE NEUE REGEL GILT AUCH FÜR SCHON GESCHRIEBENE, NOCH NICHT GESTARTETE AUFTRÄGE.** `ARBEITSWEISE.md` Abschnitt 14, Regel 3 („sichern nach jedem fertigen Teil") entstand am 20.09. um 
+./logs/auftraege/_erledigt/DOKUMENTATIONSSTANDARD.md:75: **`ARBEITSWEISE.md` §9 sagt, dass eigene Fehler benannt werden. Dieses Dokument
+./logs/auftraege/_erledigt/DOKUMENTATIONSSTANDARD.md:150: | ⭐ **„In einfacher Sprache"** | `ARBEITSWEISE.md` §4 — bei jeder aufbereiteten Rückmeldung von aussen, **im Dokument und am Ende der Chatantwort** |
+./logs/auftraege/_erledigt/UMZUG.md:8: ⚠️⚠️ **Dieses Dokument ersetzt Abschnitt 10 von `ARBEITSWEISE.md`** (dort Zeilen
+./logs/auftraege/_erledigt/UMZUG.md:249: ## 7. Der Ersatztext für `ARBEITSWEISE.md`, Abschnitt 10
+./logs/auftraege/_erledigt/UMZUG.md:281: Abschnitt 12 und `PRUEFPRINZIPIEN.md`. `ARBEITSWEISE.md` enthält **stehende
+./logs/auftraege/_erledigt/NACHTRAG_einleitungssatz_2026-09-20.md:43: | **K3u** | ⭐ **JEDE AUFGABE BEGINNT MIT EINEM SATZ IN EINFACHER SPRACHE.** Anweisung des Betreibers 20.09.2026: ein bis zwei Sätze, was jetzt gemacht wird, ohne auszuholen. ⚠️ **Nicht zu verwechseln 
+./logs/auftraege/_erledigt/NACHTRAG_schluesselbund_2026-09-20.md:34: (`ARBEITSWEISE.md` Abschnitt 7).
+./logs/auftraege/_erledigt/NACHTRAG_schluesselbund_2026-09-20.md:45: *Vollständig in `ARBEITSWEISE.md` Abschnitt 14, Regel 0.*
+./logs/auftraege/_erledigt/NACHTRAG_schluesselbund_2026-09-20.md:50: ## B. `ARBEITSWEISE.md` Abschnitt 14, Regel 0 — ein Etikett berichtigen
+./logs/auftraege/_erledigt/NACHTRAG_termius_anleitung_2026-09-20.md:24: | **Mosh** | ⛔ Löst den Netzwechsel sauber, verlangt aber erst Homebrew auf dem Betriebsrechner (`ARBEITSWEISE.md` 7b: nicht installiert). **Zwei Installationen auf dem Rechner, der den gesamten Live-
+./logs/auftraege/_erledigt/NACHTRAG_termius_anleitung_2026-09-20.md:35: `ARBEITSWEISE.md` Abschnitt 14, Regel 3 entstanden ist** — und die ich auf den
+./logs/auftraege/_erledigt/NACHTRAG_termius_anleitung_2026-09-20.md:48: | **K3w** | ⭐ **EINE NEUE REGEL GILT AUCH FÜR SCHON GESCHRIEBENE, NOCH NICHT GESTARTETE AUFTRÄGE.** `ARBEITSWEISE.md` Abschnitt 14, Regel 3 („sichern nach jedem fertigen Teil") entstand am 20.09. um 1
+./logs/auftraege/_erledigt/UEBERGABE_2026-09-19.md:227: 3. ⚠️ **`ARBEITSWEISE.md` Abschnitt 10** (Zeilen 674–743) ist überholt und muss
+./logs/auftraege/_erledigt/UEBERGABE_2026-09-19.md:334: | **2** | **Einarbeitung von (n)–(r) in `BACKLOG.md`** samt den fünf Sichtungsdurchgängen und dem Ersatz von `ARBEITSWEISE.md` Abschnitt 10 durch den Verweis auf `UMZUG.md` (Ersatztext dort in Abschni
+./logs/auftraege/_erledigt/UEBERGABE_2026-09-19.md:349: `ARBEITSWEISE.md` Abschnitt 7 („ein Befehl je Nachricht") und Abschnitt 6b

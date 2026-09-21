@@ -1,0 +1,5 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+?? docs/auftraege/MAC_TB-69_arbeitsweise_ordnen.md
+?? docs/belege/TB-69/
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-09-21a_horizont_und_grenzfall.md
+3	4	docs/auftraege/AKTUELLER_AUFTRAG.md
