@@ -1,0 +1,10 @@
+Bot                          Anker       warm ab (fruehestes)  Symbol(e)  -> 4a-Jahr
+elliott_wave                 None        2017-08-17            BTCUSDT,ETHUSDT (2) -> 2018
+t3_supertrend                None        2017-08-17            BTCUSDT,ETHUSDT (2) -> 2018
+rsi2_crypto                  None        2018-01-14            BTCUSDT,ETHUSDT (2) -> 2019
+turtle_soup_crypto           None        2017-09-16            BTCUSDT,ETHUSDT (2) -> 2018
+volatility_breakout_crypto   None        2017-12-22            BTCUSDT,ETHUSDT (2) -> 2018
+elliott_wave_stocks          2016-09-01  2016-09-01            AAPL,ABBV,ABT,ACN... (138) -> 2017
+rsi2_mean_reversion          2016-09-01  2017-06-20            AAPL,ABBV,ABT,ACN... (138) -> 2018
+turtle_soup_stocks           2016-09-01  2016-10-14            AAPL,ABBV,ABT,ACN... (138) -> 2017
+volatility_breakout          2016-09-01  2017-03-07            AAPL,ABBV,ABT,ACN... (138) -> 2018
