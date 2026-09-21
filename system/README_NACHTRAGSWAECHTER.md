@@ -32,7 +32,21 @@ Textes** (die ersten 40 Zeichen hinter der Nummernzelle) in der Zielzeile
 derselben Nummer, sonst irgendwo im Ziel (Nummer bei der Einarbeitung
 geändert), sonst ein **Vergabevermerk, der den Nachtrag selbst nennt**
 (`(m)`, `(19m)` oder der Dateiname, dazu die Nummer in Backticks und
-„vorgeschlagen"/„vergeben"). Ziel: `BACKLOG.md` und `BACKLOG_ARCHIV.md`.
+„vorgeschlagen"/„vergeben").
+
+**Das Ziel wird gelesen, nicht aufgezählt (seit 21.09.2026, TB-76):**
+`BACKLOG.md` selbst und **jede Datei `BACKLOG_<name>.md`, die `BACKLOG.md`
+mit blossem Dateinamen nennt**, die neben ihr liegt und keine Nachtragsdatei
+ist (kein `_NACHTRAG_` im Namen). Heute sind das `BACKLOG_ARCHIV.md` (TB-60)
+und `BACKLOG_EPICS.md` (TB-63); die Kopfzeile des Laufs nennt die gelesene
+Menge mit Zeilenzahlen. *Warum so:* bis TB-76 stand das Ziel fest im Code,
+und die Auslagerung der Epics machte den Wächter rot, obwohl alles angekommen
+war — die nächste Auslagerung hätte dasselbe getan. Wer auslagert, lässt im
+Backlog ohnehin einen Verweis zurück; der Wächter liest ihn. ⚠️ **Was das
+kostet:** die nächste ausgelagerte Datei muss `BACKLOG_<name>.md` heissen und
+in `BACKLOG.md` genannt sein. Fehlt die Nennung, meldet der Wächter die dorthin
+verschobenen Nummern als nicht angekommen (rc 1) — und zeigt damit auf den
+fehlenden Verweis; eine genannte Datei, die es nicht gibt, ist rc 2.
 
 **Kennung eines Journal-Nachtrags:** sein Dateiname in einer Zeile
 `*Quelle: `docs/projektfuehrung/nachtraege/JOURNAL_NACHTRAG_<datum><buchstabe>.md`*`
@@ -56,10 +70,10 @@ steht in den Zeilen darüber, die vollständig im Log
 python3 system/nachtragswaechter.py                # gegen das Repo, rc 0/1/2
 python3 system/nachtragswaechter.py --knapp        # ohne Einzelzeilen je Nummer
 python3 system/nachtragswaechter.py --json PFAD    # Ergebnis zusätzlich als JSON
-python3 system/test_nachtragswaechter.py           # Selbsttest, 62 Prüfungen
+python3 system/test_nachtragswaechter.py           # Selbsttest, 82 Prüfungen
 ```
 
-## Die Cron-Zeile (Vorschlag — **nicht eingetragen**, Betreiberarbeit)
+## Die Cron-Zeile (eingetragen 21.09.2026 durch den Betreiber, erster Lauf 22.09., 04:50)
 
 ```cron
 50 4 * * * cd ~/trading-bot && /usr/bin/python3 notifications/waechter_melden.py nachtraege >> logs/system/nachtraege.log 2>&1

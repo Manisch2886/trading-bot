@@ -7,8 +7,9 @@ weil er nicht hinsehen kann, ist schlimmer als keiner.
 
 Jeder Fall baut in einem WEGWERF-VERZEICHNIS (tempfile.mkdtemp, also unter
 $TMPDIR - nie unter docs/) einen kleinen Nachtragsordner samt BACKLOG.md,
-BACKLOG_ARCHIV.md und JOURNAL.md, laesst den Waechter darueber laufen und
-prueft Rueckgabewert und Meldung. Das Verzeichnis wird am Ende entfernt; der
+BACKLOG_ARCHIV.md (im Kopf von BACKLOG.md genannt, wie im echten Bestand) und
+JOURNAL.md, laesst den Waechter darueber laufen und prueft Rueckgabewert und
+Meldung. Das Verzeichnis wird am Ende entfernt; der
 letzte Test prueft, dass nichts uebrigblieb.
 
 Die sieben Faelle aus dem Auftrag (Abschnitt 3):
@@ -29,6 +30,14 @@ Dazu:
  10  Quellenzeile ueber den Dateinamen, *Messprotokoll: zaehlt nicht
  11  Rueckgabewert im echten Unterprozess (rc 1 erreicht die Shell)
  12  Werkzeugfehler (Ziel fehlt) -> rc 2, nicht 1
+Die Zielmenge wird gelesen, nicht aufgezaehlt (TB-76, Abschnitt 3 des Auftrags):
+ 13  Inhalt in einer ausgelagerten Datei angekommen, die BACKLOG.md nennt
+                                                          -> kein Befund
+ 14  Inhalt NIRGENDS angekommen, auch nicht in der ausgelagerten -> Befund
+ 15  eine WEITERE ausgelagerte Datei kommt dazu, deren Name im Waechter
+     nicht vorkommt                                       -> kein Befund
+     dazu: nicht genannte Datei ist kein Ziel; genannter Nachtrag ist kein
+     Ziel; genannte, aber fehlende Datei -> rc 2
 
 Kein Test-Framework, wie in allen uebrigen Selbsttests dieses Projekts.
 
@@ -66,6 +75,8 @@ def check(name, bedingung, detail=""):
 
 # ---------------------------------------------------------------------------
 ZIEL_GRUND = """# Backlog
+
+> Rückblicke stehen in `BACKLOG_ARCHIV.md` (angelegt 20.09.2026, TB-60).
 
 ## 4 — Laufend, klein
 
@@ -132,11 +143,15 @@ class Wegwerf:
         with open(self.backlog, "a", encoding="utf-8") as f:
             f.write(text)
 
+    def ziel(self):
+        """Das Ziel, wie main() es baut: aus BACKLOG.md gelesen."""
+        return nw.Ziel(nw.zieldateien(self.backlog)[0], self.journal)
+
     def lauf(self, *extra):
         """(rc, ausgabe) des Waechters im Prozess."""
         puffer = io.StringIO()
         argv = ["--nachtraege", self.nachtraege, "--backlog", self.backlog,
-                "--archiv", self.archiv, "--journal", self.journal] + list(extra)
+                "--journal", self.journal] + list(extra)
         with redirect_stdout(puffer):
             rc = nw.main(argv)
         return rc, puffer.getvalue()
@@ -224,7 +239,7 @@ def test_fall_4_zielzeile_mit_vermerk():
               and any(nw.RE_K.match(z) and "K9b" in z for z in zeilen))
         check("das Waechter-Muster endet nicht mit einem Balken",
               not nw.RE_K.pattern.endswith("\\|"), nw.RE_K.pattern)
-        ziel = nw.Ziel(w.backlog, w.archiv, w.journal)
+        ziel = w.ziel()
         zeile = "| **K9b** | ⚠️ **Die zweite Regel, mit Vergabevermerk in der Nummernzelle** |"
         check("K9b ist als ZIELZEILE gefunden, nicht erst ueber den Kern anderswo",
               ziel.pruefe_nummer(nw.ART_K, "K9b", nw.kern(zeile), ("(y)",))[0] == nw.ZEILE
@@ -241,7 +256,7 @@ def test_fall_5_doppelbelegung():
               _befundzeile(aus))
         check("Abschnitt C zaehlt 1", "DOPPELBELEGUNG im Ziel (ohne sort -u): 1" in aus)
         # Mutationsprobe: `sort -u` haette die Doppelung entfernt.
-        nummern = nw.Ziel(w.backlog, w.archiv, w.journal).nummern[nw.ART_K]
+        nummern = w.ziel().nummern[nw.ART_K]
         check("Mutationsprobe: die Liste traegt K9a zweimal, die Menge einmal",
               nummern.count("K9a") == 2 and len(set(nummern)) == len(nummern) - 1)
 
@@ -308,7 +323,7 @@ def test_fall_8_nummer_mit_fremdem_inhalt():
         check("Beleg nennt den fremden Inhalt",
               "Nummer im Ziel 1x vergeben, aber mit anderem Inhalt" in aus)
         # Mutationsprobe: ohne Kernpruefung waere die Nummer 'angekommen'.
-        ziel = nw.Ziel(w.backlog, w.archiv, w.journal)
+        ziel = w.ziel()
         check("Mutationsprobe: ohne Kern meldet die Nummernpruefung Zeile",
               ziel.pruefe_nummer(nw.ART_K, "K9a", "", ("(m)",))[0] == nw.FEHLT
               and "K9a" in ziel.nummern[nw.ART_K])
@@ -365,7 +380,7 @@ def test_fall_10_quelle_ueber_dateinamen():
         check("(a) und (b) ueber den Dateinamen gefunden, obwohl die Quellenzeile "
               "den Hauptordner nennt",
               "OK  JOURNAL_NACHTRAG_2026-09-01a.md" in aus and "OK  JOURNAL_NACHTRAG_2026-09-01b.md" in aus)
-        ziel = nw.Ziel(w.backlog, w.archiv, w.journal)
+        ziel = w.ziel()
         check("*Messprotokoll: ist keine Quelle fuer (m)",
               ziel.quellenzeilen("BACKLOG_NACHTRAG_2026-09-01m.md") == [])
         check("(m) ohne Nummer in _eingearbeitet/: nicht pruefbar, kein Befund",
@@ -379,7 +394,7 @@ def test_fall_11_unterprozess():
                    "# (y)\n\n| # | Punkt |\n|---|---|\n| **K9c** | nie angekommen |\n", alter_tage=3)
         cmd = [sys.executable, os.path.join(_DIR, "nachtragswaechter.py"),
                "--nachtraege", w.nachtraege, "--backlog", w.backlog,
-               "--archiv", w.archiv, "--journal", w.journal]
+               "--journal", w.journal]
         p = subprocess.run(cmd, capture_output=True, text=True)
         check("rc 1 im Unterprozess", p.returncode == 1, f"rc={p.returncode}")
         check("BEFUND auf stdout", "BEFUND:" in p.stdout)
@@ -400,10 +415,106 @@ def test_fall_12_werkzeugfehler():
         puffer, fehler = io.StringIO(), io.StringIO()
         with redirect_stdout(puffer), redirect_stderr(fehler):
             rc = nw.main(["--nachtraege", w.nachtraege, "--backlog", w.backlog,
-                          "--archiv", w.archiv, "--journal", w.journal])
+                          "--journal", w.journal])
         check("rc 2", rc == 2, f"rc={rc}")
         check("Fehlermeldung nennt die fehlende Datei auf stderr",
               "JOURNAL.md" in fehler.getvalue())
+
+
+# ---------------------------------------------------------------------------
+# TB-76: die Zielmenge wird aus BACKLOG.md gelesen, nicht im Code aufgezaehlt.
+# ---------------------------------------------------------------------------
+NACHTRAG_EPIC = ("# Nachtrag (n)\n\n### 2t — Epic AF: Autonome Strategie-Forschungspipeline\n\n"
+                 "Text des Epics.\n")
+ZIEL_EPIC = "## 2t — Epic AF: Autonome Strategie-Forschungspipeline\n\nText des Epics.\n"
+
+
+def test_fall_13_in_ausgelagerter_datei_angekommen():
+    print("\nFall 13 - Inhalt in der ausgelagerten Datei angekommen, die BACKLOG.md nennt -> kein Befund")
+    with Wegwerf() as w:
+        w.nachtrag("BACKLOG_NACHTRAG_2026-09-01n.md", NACHTRAG_EPIC, verschoben=True)
+        w.ziel_anhaengen("\n## Die Epics — nach `BACKLOG_EPICS.md` verschoben\n")
+        w.schreibe(os.path.join(w.wurzel, "BACKLOG_EPICS.md"), "# Epics\n\n" + ZIEL_EPIC)
+        rc, aus = w.lauf()
+        check("rc 0", rc == 0, f"rc={rc}")
+        check("Block 2t ist angekommen (kein FEHLT)", "FEHLT" not in aus)
+        check("Kopfzeile nennt alle drei Zieldateien in dieser Reihenfolge",
+              "BACKLOG.md " in aus and aus.find("BACKLOG_ARCHIV.md") < aus.find("BACKLOG_EPICS.md")
+              and "aus BACKLOG.md gelesen" in aus)
+        vorhanden, fehlend = nw.zieldateien(w.backlog)
+        check("zieldateien(): BACKLOG.md, BACKLOG_ARCHIV.md, BACKLOG_EPICS.md; nichts fehlt",
+              [os.path.basename(p) for p in vorhanden]
+              == ["BACKLOG.md", "BACKLOG_ARCHIV.md", "BACKLOG_EPICS.md"] and fehlend == [])
+        # Der Vergleich, an dem der alte Waechter scheiterte: ohne die
+        # ausgelagerte Datei im Ziel ist derselbe Block FEHLT.
+        ohne = nw.Ziel([w.backlog, w.archiv], w.journal)
+        check("Gegenprobe: ohne BACKLOG_EPICS.md im Ziel waere 2t FEHLT",
+              ohne.pruefe_nummer(nw.ART_BLOCK, "2t", nw.kern(ZIEL_EPIC.splitlines()[0]),
+                                 ("(n)",))[0] == nw.FEHLT)
+
+
+def test_fall_14_nirgends_angekommen():
+    print("\nFall 14 - Inhalt NIRGENDS angekommen, auch nicht in der ausgelagerten Datei -> Befund")
+    with Wegwerf() as w:
+        w.nachtrag("BACKLOG_NACHTRAG_2026-09-01n.md", NACHTRAG_EPIC, verschoben=True)
+        w.ziel_anhaengen("\n## Die Epics — nach `BACKLOG_EPICS.md` verschoben\n")
+        w.schreibe(os.path.join(w.wurzel, "BACKLOG_EPICS.md"),
+                   "# Epics\n\n## 2u — Ein anderer Block\n\nAnderer Text.\n")
+        rc, aus = w.lauf()
+        check("rc 1", rc == 1, f"rc={rc}")
+        check("Block 2t als FEHLT", "Block 2t       FEHLT" in aus)
+        check("Kern nirgends - auch nicht in der ausgelagerten Datei",
+              "Kern 'Epic AF: Autonome Strategie-Forschungspi' nirgends" in aus)
+        check("die ausgelagerte Datei war im Ziel (also wurde dort gesucht)",
+              "BACKLOG_EPICS.md 5" in aus)
+        check("BEFUND nennt (n)", "falsch verschoben (B-09-01n)" in _befundzeile(aus))
+
+
+def test_fall_15_weitere_datei_ohne_codeaenderung():
+    print("\nFall 15 - eine WEITERE ausgelagerte Datei kommt dazu -> kein Befund, ohne Codeaenderung")
+    with Wegwerf() as w:
+        name = "BACKLOG_ZUKUNFT.md"
+        with open(os.path.join(_DIR, "nachtragswaechter.py"), encoding="utf-8") as f:
+            quelle = f.read()
+        check(f"der Waechter kennt den Namen {name} nicht (0 Treffer im Quelltext)",
+              name not in quelle and "ZUKUNFT" not in quelle)
+        # Auch die heutigen Namen stehen nur in der Erklaerung, nicht im Code:
+        # alles nach dem Modul-Docstring, ohne Kommentarzeilen.
+        import ast
+        ende_docstring = ast.parse(quelle).body[0].end_lineno
+        code = [z for z in quelle.splitlines()[ende_docstring:] if not z.lstrip().startswith("#")]
+        check("BACKLOG_ARCHIV.md und BACKLOG_EPICS.md kommen im Code nicht vor (nur im Docstring)",
+              not any("BACKLOG_ARCHIV" in z or "BACKLOG_EPICS" in z for z in code))
+        w.nachtrag("BACKLOG_NACHTRAG_2026-09-01n.md", NACHTRAG_EPIC, verschoben=True)
+        # 1. Datei existiert, ist aber NICHT genannt: kein Ziel -> rc 1.
+        w.schreibe(os.path.join(w.wurzel, name), "# Zukunft\n\n" + ZIEL_EPIC)
+        rc, aus = w.lauf()
+        check("Datei vorhanden, aber in BACKLOG.md nicht genannt: kein Ziel, rc 1", rc == 1, f"rc={rc}")
+        check("Kopfzeile nennt sie nicht", name not in aus)
+        # 2. BACKLOG.md nennt sie (ohne Backticks genuegt): Ziel -> rc 0.
+        w.ziel_anhaengen(f"\nVerschoben nach {name} (Abschnitt 2t).\n")
+        rc, aus = w.lauf()
+        check("in BACKLOG.md genannt: rc 0 ohne Codeaenderung", rc == 0, f"rc={rc}")
+        check("Kopfzeile nennt sie mit Zeilenzahl", f"{name} 5" in aus)
+        # 3. Ein genannter NACHTRAG ist kein Ziel - sonst pruefte er sich selbst.
+        w.ziel_anhaengen("\nNachtrag `BACKLOG_NACHTRAG_2026-09-01n.md` abgeschlossen.\n")
+        vorhanden, fehlend = nw.zieldateien(w.backlog)
+        check("genannter Nachtrag ist kein Ziel",
+              not any("NACHTRAG" in p for p in vorhanden + fehlend))
+        # 4. Ein Pfadbestandteil ist keine Nennung; ein laengerer Name auch nicht.
+        w.ziel_anhaengen("\nsiehe alt/BACKLOG_ALT.md und XBACKLOG_X.md\n")
+        vorhanden, fehlend = nw.zieldateien(w.backlog)
+        check("Pfad- und Wortbestandteile zaehlen nicht als Nennung",
+              not any(os.path.basename(p) in ("BACKLOG_ALT.md", "XBACKLOG_X.md")
+                      for p in vorhanden + fehlend))
+        # 5. Genannt, aber nicht vorhanden: Werkzeugfehler rc 2, nicht rc 0/1.
+        w.ziel_anhaengen("\nund `BACKLOG_FEHLT.md`\n")
+        puffer, fehler = io.StringIO(), io.StringIO()
+        with redirect_stdout(puffer), redirect_stderr(fehler):
+            rc = nw.main(["--nachtraege", w.nachtraege, "--backlog", w.backlog,
+                          "--journal", w.journal])
+        check("genannt, aber fehlend: rc 2", rc == 2, f"rc={rc}")
+        check("stderr nennt die fehlende Datei", "BACKLOG_FEHLT.md" in fehler.getvalue())
 
 
 def test_nichts_uebrig():
@@ -425,6 +536,9 @@ def main():
                  test_fall_7_falsch_verschoben, test_fall_8_nummer_mit_fremdem_inhalt,
                  test_fall_9_frist, test_fall_10_quelle_ueber_dateinamen,
                  test_fall_11_unterprozess, test_fall_12_werkzeugfehler,
+                 test_fall_13_in_ausgelagerter_datei_angekommen,
+                 test_fall_14_nirgends_angekommen,
+                 test_fall_15_weitere_datei_ohne_codeaenderung,
                  test_nichts_uebrig):
         try:
             test()

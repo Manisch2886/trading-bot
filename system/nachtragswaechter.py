@@ -8,7 +8,8 @@ zweite Schritt kann ausfallen, ohne dass es jemand merkt: Nachtrag (m) vom
 vergeben, und aufgefallen ist es zwei Tage spaeter durch Zufall.
 
 Dieses Skript ist rein lesend. Es meldet, es aendert nichts - weder eine
-Nachtragsdatei noch BACKLOG.md, BACKLOG_ARCHIV.md oder JOURNAL.md.
+Nachtragsdatei noch eine Zieldatei (BACKLOG.md, die aus ihm ausgelagerten
+Dateien, JOURNAL.md).
 
 Der Zustand wird durch den Ort ausgedrueckt
 ------------------------------------------------------------------------------
@@ -56,7 +57,35 @@ Stufe 3 ist absichtlich an den Nachtrag gebunden: "Nummer `2s` im Nachtrag (s)
 vorgeschlagen" ist ein Vermerk fuer (s), nicht fuer jeden Nachtrag, der einen
 Block 2s vorschlaegt.
 
-Ziel fuer Backlog-Nachtraege: BACKLOG.md und BACKLOG_ARCHIV.md.
+Das Ziel fuer Backlog-Nachtraege wird GELESEN, nicht aufgezaehlt (TB-76)
+------------------------------------------------------------------------------
+Bis zum 21.09.2026 stand das Ziel fest im Code: BACKLOG.md + BACKLOG_ARCHIV.md.
+Am selben Tag hat TB-63 die Epics nach BACKLOG_EPICS.md ausgelagert, und der
+Waechter meldete drei Nachtraege als "falsch verschoben", deren Inhalt laengst
+angekommen war - nur eben in einer Datei, die er nicht kannte. Die naechste
+Auslagerung haette dasselbe getan. Deshalb:
+
+  Zieldatei ist BACKLOG.md selbst und jede Datei BACKLOG_<name>.md, die
+  BACKLOG.md mit blossem Dateinamen nennt, die neben BACKLOG.md liegt und
+  die keine Nachtragsdatei ist (kein "_NACHTRAG_" im Namen).
+
+Begruendung: Wer etwas aus dem Backlog auslagert, laesst dort einen Verweis
+auf die neue Datei zurueck (TB-60 und TB-63 haben das beide getan: Kopf und
+Verweistabelle). Das Backlog ist damit das Verzeichnis seiner eigenen
+Auslagerungen, und der Waechter liest es. Ein blosses Namensmuster
+(BACKLOG*.md im Ordner) wuerde heute vier alte Nachtragsdateien im
+Wurzelordner mit einsammeln - eine davon, BACKLOG_NACHTRAG_2026-09-18.md ohne
+Buchstaben, erkennt RE_DATEINAME nicht -, und eine fremde Datei mit passendem
+Namen wuerde still zum Ziel. Ueber die Nennung kann das nicht passieren.
+
+Was der Weg kostet: Die naechste ausgelagerte Datei muss BACKLOG_<name>.md
+heissen und in BACKLOG.md mit Namen stehen - beides tut eine Auslagerung nach
+dem bisherigen Muster ohnehin. Fehlt die Nennung, meldet der Waechter die
+verschobenen Nummern als nicht angekommen (rc 1) und zeigt damit auf den
+fehlenden Verweis. Eine genannte Datei, die nicht existiert, ist ein
+Werkzeugfehler (rc 2) wie ein fehlendes Journal - der Verweis zeigt ins Leere.
+Genannt wird nur gelesen, was in BACKLOG.md steht, nicht, was die
+ausgelagerten Dateien ihrerseits nennen.
 
 Journal-Nachtraege (JOURNAL_NACHTRAG_*.md)
 ------------------------------------------------------------------------------
@@ -90,7 +119,8 @@ Rueckgabewert und Meldung
   0  kein Befund, keine Meldung
   1  Befund - offener Nachtrag ueber der Frist, falsch verschobene Datei oder
      Doppelbelegung
-  2  Werkzeugfehler (Ziel- oder Nachtragsordner fehlt)
+  2  Werkzeugfehler (Ziel- oder Nachtragsordner fehlt, oder BACKLOG.md nennt
+     eine ausgelagerte Datei, die es neben ihr nicht gibt)
 
 Die Meldung geht denselben Weg wie bei den vier anderen Cron-Waechtern:
 notifications/waechter_melden.py fuehrt dieses Skript aus, reicht die Ausgabe
@@ -120,7 +150,6 @@ BASE_DIR = os.path.dirname(_DIR)
 PROJEKTFUEHRUNG = os.path.join(BASE_DIR, "docs", "projektfuehrung")
 STANDARD_NACHTRAEGE = os.path.join(PROJEKTFUEHRUNG, "nachtraege")
 STANDARD_BACKLOG = os.path.join(PROJEKTFUEHRUNG, "BACKLOG.md")
-STANDARD_ARCHIV = os.path.join(PROJEKTFUEHRUNG, "BACKLOG_ARCHIV.md")
 STANDARD_JOURNAL = os.path.join(PROJEKTFUEHRUNG, "JOURNAL.md")
 EINGEARBEITET = "_eingearbeitet"
 FRIST_TAGE = 1.0
@@ -134,6 +163,10 @@ RE_KETTE = re.compile(r"^\| (?:\*\*|~~)?(\d+,\d+[a-z]?)(?:\*\*|~~)?")
 RE_JOURNALBLOCK = re.compile(r"^## ([A-Z]{1,2}) — ")
 RE_DATEINAME = re.compile(
     r"^(BACKLOG|JOURNAL)_NACHTRAG_(\d{4})-(\d{2})-(\d{2})([A-Za-z0-9_]+)\.md$")
+# Eine in BACKLOG.md genannte Datei BACKLOG_<name>.md - blosser Dateiname, mit
+# oder ohne Backticks, nicht als Teil eines Pfads oder eines laengeren Worts.
+RE_ZIELNENNUNG = re.compile(r"(?<![\w/])(BACKLOG_[\w.-]+\.md)\b")
+NACHTRAGSKENNUNG = "_NACHTRAG_"
 
 ART_K, ART_BLOCK, ART_KETTE = "K", "Block", "Kette"
 ZIELMUSTER = {ART_K: RE_K, ART_BLOCK: RE_BLOCK_ZIEL, ART_KETTE: RE_KETTE}
@@ -216,18 +249,42 @@ def kuerzel(dateiname):
 # ---------------------------------------------------------------------------
 # Das Ziel
 # ---------------------------------------------------------------------------
-class Ziel:
-    """BACKLOG.md + BACKLOG_ARCHIV.md (Nummern) und JOURNAL.md (Quellen)."""
+def zieldateien(backlog):
+    """Die Zieldateien fuer Backlog-Nachtraege, aus BACKLOG.md GELESEN:
+    BACKLOG.md selbst, dann jede dort genannte BACKLOG_<name>.md, die neben
+    ihr liegt und keine Nachtragsdatei ist - alphabetisch, damit die Reihen-
+    folge nicht von der Stelle der Nennung abhaengt.
+    Rueckgabe (vorhanden, fehlend): fehlend sind genannte Dateien, die es
+    neben BACKLOG.md nicht gibt - ein Werkzeugfehler fuer main()."""
+    ordner = os.path.dirname(os.path.abspath(backlog))
+    eigener_name = os.path.basename(backlog)
+    genannt = set()
+    for zeile in lies_zeilen(backlog):
+        genannt.update(RE_ZIELNENNUNG.findall(zeile))
+    genannt.discard(eigener_name)
+    vorhanden, fehlend = [backlog], []
+    for name in sorted(genannt):
+        if NACHTRAGSKENNUNG in name:
+            continue
+        pfad = os.path.join(ordner, name)
+        (vorhanden if os.path.isfile(pfad) else fehlend).append(pfad)
+    return vorhanden, fehlend
 
-    def __init__(self, backlog, archiv, journal):
-        self.backlog_zeilen = lies_zeilen(backlog) + lies_zeilen(archiv)
+
+class Ziel:
+    """Die Zieldateien (Nummern; siehe zieldateien()) und JOURNAL.md (Quellen)."""
+
+    def __init__(self, ziele, journal):
+        self.backlog_zeilen = []
+        self.umfang = {"ziel": {}}
+        for pfad in ziele:
+            zeilen = lies_zeilen(pfad)
+            self.backlog_zeilen += zeilen
+            self.umfang["ziel"][os.path.basename(pfad)] = len(zeilen)
         self.journal_zeilen = lies_zeilen(journal)
-        self.umfang = {
-            "backlog": _zeilenzahl(backlog), "archiv": _zeilenzahl(archiv),
-            "journal": len(self.journal_zeilen),
-            "quellenzeilen": sum(1 for z in self.journal_zeilen
-                                 if z.startswith("*Quelle:")),
-        }
+        self.umfang["journal"] = len(self.journal_zeilen)
+        self.umfang["quellenzeilen"] = sum(1 for z in self.journal_zeilen
+                                           if z.startswith("*Quelle:"))
         # Alle Nummern des Ziels je Art, als Liste - Duplikate bleiben.
         self.nummern = {art: [] for art in ZIELMUSTER}
         self.zeilen_je_nummer = {}
@@ -295,10 +352,6 @@ class Ziel:
             zaehler[("Journalblock", buchstabe)] = \
                 zaehler.get(("Journalblock", buchstabe), 0) + 1
         return sorted((a, n, c) for (a, n), c in zaehler.items() if c > 1)
-
-
-def _zeilenzahl(pfad):
-    return len(lies_zeilen(pfad))
 
 
 # ---------------------------------------------------------------------------
@@ -389,7 +442,8 @@ def berichte(ergebnis, ausfuehrlich=True):
     print("=" * 78)
     print("NACHTRAGSWAECHTER - die Bringschuld der Nachtraege")
     print("=" * 78)
-    print(f"Ziel: BACKLOG.md {u['backlog']} Zeilen, BACKLOG_ARCHIV.md {u['archiv']}, "
+    ziele = ", ".join(f"{name} {n}" for name, n in u["ziel"].items())
+    print(f"Ziel (aus BACKLOG.md gelesen): {ziele} Zeilen; "
           f"JOURNAL.md {u['journal']} ({u['quellenzeilen']} Quellenzeilen)")
     print(f"Frist: {ergebnis['frist_tage']:g} Tag(e), Alter aus der Aenderungszeit der Datei")
 
@@ -473,8 +527,8 @@ def main(argv=None):
                     "wirklich eingearbeitet wurden. Rein lesend.")
     parser.add_argument("--nachtraege", default=STANDARD_NACHTRAEGE,
                         help="Ordner der Nachtraege (mit Unterordner _eingearbeitet/)")
-    parser.add_argument("--backlog", default=STANDARD_BACKLOG)
-    parser.add_argument("--archiv", default=STANDARD_ARCHIV)
+    parser.add_argument("--backlog", default=STANDARD_BACKLOG,
+                        help="BACKLOG.md; die weiteren Zieldateien werden daraus gelesen")
     parser.add_argument("--journal", default=STANDARD_JOURNAL)
     parser.add_argument("--frist-tage", type=float, default=FRIST_TAGE,
                         help=f"ab diesem Alter ist ein offener Nachtrag ein Befund "
@@ -485,14 +539,19 @@ def main(argv=None):
                         help="ohne die Einzelzeilen je Nummer")
     args = parser.parse_args(argv)
 
-    fehlend = [p for p in (args.nachtraege, args.backlog, args.archiv, args.journal)
+    fehlend = [p for p in (args.nachtraege, args.backlog, args.journal)
                if not os.path.exists(p)]
     if fehlend:
         print("Fehlt: " + ", ".join(fehlend), file=sys.stderr)
         return 2
+    ziele, fehlend = zieldateien(args.backlog)
+    if fehlend:
+        print("In BACKLOG.md genannt, aber nicht vorhanden: " + ", ".join(fehlend),
+              file=sys.stderr)
+        return 2
 
     start = time.time()
-    ziel = Ziel(args.backlog, args.archiv, args.journal)
+    ziel = Ziel(ziele, args.journal)
     ergebnis = pruefe_alles(args.nachtraege, ziel, args.frist_tage)
     berichte(ergebnis, ausfuehrlich=not args.knapp)
     zeile1, zeile2, befund = zusammenfassung(ergebnis)

@@ -1,0 +1,69 @@
+Messung Schritt 2 - woran erkennt man eine Zieldatei? (2026-09-21 12:46 CEST, HEAD bad7dc7)
+
+== Kandidat 1: Muster im Dateinamen docs/projektfuehrung/BACKLOG*.md ==
+  docs/projektfuehrung/BACKLOG.md
+  docs/projektfuehrung/BACKLOG_ARCHIV.md
+  docs/projektfuehrung/BACKLOG_EPICS.md
+  docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18.md
+  docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18b.md
+  docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18c.md
+  docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18d.md
+  Treffer: 7
+  davon Nachtragsdateien (_NACHTRAG_ im Namen): 4
+  davon von RE_DATEINAME des Waechters erkannt:
+    BACKLOG.md                                    RE_DATEINAME=NEIN
+    BACKLOG_ARCHIV.md                             RE_DATEINAME=NEIN
+    BACKLOG_EPICS.md                              RE_DATEINAME=NEIN
+    BACKLOG_NACHTRAG_2026-09-18.md                RE_DATEINAME=NEIN
+    BACKLOG_NACHTRAG_2026-09-18b.md               RE_DATEINAME=ja
+    BACKLOG_NACHTRAG_2026-09-18c.md               RE_DATEINAME=ja
+    BACKLOG_NACHTRAG_2026-09-18d.md               RE_DATEINAME=ja
+
+== Kandidat 1b: Muster BACKLOG_*.md ohne _NACHTRAG_ ==
+  docs/projektfuehrung/BACKLOG_ARCHIV.md
+  docs/projektfuehrung/BACKLOG_EPICS.md
+
+== Kandidat 2: was BACKLOG.md selbst in Backticks als BACKLOG_*.md nennt ==
+    34 `BACKLOG_ARCHIV.md`
+    11 `BACKLOG_EPICS.md`
+     1 `BACKLOG_NACHTRAG_2026-09-19m.md`
+  ohne Backticks (Wortgrenze):
+    34 BACKLOG_ARCHIV.md
+    11 BACKLOG_EPICS.md
+     1 BACKLOG_NACHTRAG_2026-09-19m.md
+  alle *.md in Backticks, die neben BACKLOG.md existieren:
+    29 ARBEITSWEISE.md
+    7 BACKLOG.md
+    34 BACKLOG_ARCHIV.md
+    11 BACKLOG_EPICS.md
+    10 DOKUMENTATIONSSTANDARD.md
+    1 FABLE_ANFRAGE_2026-09-20e_erste_falte.md
+    6 JOURNAL.md
+    7 UEBERGABE_2026-09-19.md
+    10 UMZUG.md
+
+== Kandidat 2 fuer die anderen Zieldateien (nennen ARCHIV/EPICS weitere?) ==
+  BACKLOG_ARCHIV.md:
+  BACKLOG_EPICS.md:
+       1 `BACKLOG_ARCHIV.md`
+       4 `BACKLOG_NACHTRAG_2026-09-19q_r_berichtigung.md`
+
+== Wo steht die Nennung von BACKLOG_EPICS.md in BACKLOG.md (Zeilen)? ==
+  335:## Die fünf Epics 2t bis 2y — nach `BACKLOG_EPICS.md` verschoben (21.09.2026, TB-63)
+  339:seit dem 21.09.2026 **zeichengleich** in `BACKLOG_EPICS.md`, Nachweis in
+  347:| `2t` | AF — Autonome Strategie-Forschungspipeline | `BACKLOG_EPICS.md`, Abschnitt `2t` |
+  348:| `2u` | MI — KI-Marktverständnis und adaptive Allokation | `BACKLOG_EPICS.md`, Abschnitt `2u` |
+  349:| `2v` | QR — Alpha-Discovery-Labor | `BACKLOG_EPICS.md`, Abschnitt `2v` |
+  350:| `2w` | KG — Market Causal Graph & Market Physics Engine | `BACKLOG_EPICS.md`, Abschnitt `2w` |
+  351:| `2x` | RT — Autonomous Adversarial Trading Lab | `BACKLOG_EPICS.md`, Abschnitt `2x` |
+  352:| `2y` | Querschnitt über die fünf Epic-Nachträge (n) bis (r), TB-59 | `BACKLOG_EPICS.md`, Abschnitt `2y` |
+  512:| **K4o** | ⚠️ **DER NACHTRAGSWÄCHTER KENNT `BACKLOG_EPICS.md` NICHT (21.09.2026, TB-63).** Sein Ziel für Back
+== erste Nennung von BACKLOG_ARCHIV.md ==
+  7:> `BACKLOG_ARCHIV.md`** (angelegt 20.09.2026, TB-60), Messprotokolle im
+  71:| **TB-38** | erledigt (Cloud) 15.09.2026, Mac-Lauf offen — Befunde im Archiv (`BACKLOG_ARCHIV.md`, Abschnitt „Au
+
+== Tragen die vier BACKLOG_NACHTRAG_2026-09-18*.md im Wurzelordner Nummern der drei Formen? (waeren sie Ziel, pruefte sich ein Nachtrag selbst) ==
+  BACKLOG_NACHTRAG_2026-09-18.md: K 9, Block 3, Kette 10
+  BACKLOG_NACHTRAG_2026-09-18b.md: K 4, Block 1, Kette 4
+  BACKLOG_NACHTRAG_2026-09-18c.md: K 4, Block 1, Kette 2
+  BACKLOG_NACHTRAG_2026-09-18d.md: K 2, Block 1, Kette 2

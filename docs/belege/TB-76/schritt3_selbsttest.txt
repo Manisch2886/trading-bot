@@ -1,0 +1,119 @@
+Selbsttests des Nachtragswaechters
+Interpreter: 3.9.6 (/Library/Developer/CommandLineTools/usr/bin/python3)
+
+Fall 1 - Nachtrag mit einer Nummer, die im Ziel steht -> kein Befund
+  [OK ] rc 0   rc=0
+  [OK ] keine BEFUND-Zeile
+  [OK ] Datei als eingearbeitet gefuehrt
+  [OK ] Zusammenfassung ohne Befundzahlen
+
+Fall 2 - Nachtrag mit einer Nummer, die NICHT im Ziel steht -> Befund, rc 1
+  [OK ] rc 1   rc=1
+  [OK ] BEFUND nennt den Nachtrag   BEFUND: 1 Nachtrag/Nachtraege ueber der Frist offen (B-09-01y).
+  [OK ] Zeile nennt Alter in Tagen und nicht angekommene Nummern
+  [OK ] die Nummer steht als FEHLT
+  [OK ] Rat lautet: einarbeiten
+
+Fall 3 - Nummer im Ziel nur als Vergabevermerk -> kein Befund
+  [OK ] rc 0   rc=0
+  [OK ] Nummer ueber den Vermerk angekommen
+  [OK ] kein FEHLT
+  [OK ] Gegenprobe: Vermerk fuer (x) gilt nicht fuer (w) -> rc 1   rc=1
+  [OK ] Gegenprobe: (w) falsch verschoben
+
+Fall 4 - Zielzeile MIT Vergabevermerk in der Nummernzelle -> kein Befund
+  [OK ] rc 0   rc=0
+  [OK ] kein FEHLT
+  [OK ] Mutationsprobe: das Muster mit `\|` am Ende uebersieht K9b
+  [OK ] das Waechter-Muster endet nicht mit einem Balken   ^\| \*\*(K\d[a-z])\*\*
+  [OK ] K9b ist als ZIELZEILE gefunden, nicht erst ueber den Kern anderswo
+
+Fall 5 - zwei gleiche Nummern im Ziel -> Befund Doppelbelegung
+  [OK ] rc 1   rc=1
+  [OK ] BEFUND nennt Doppelbelegung K K9a 2x   BEFUND: Doppelbelegung K K9a 2x.
+  [OK ] Abschnitt C zaehlt 1
+  [OK ] Mutationsprobe: die Liste traegt K9a zweimal, die Menge einmal
+  [OK ] Kette mit 'alter Wortlaut' ist keine Doppelbelegung
+  [OK ] zwei zaehlende Kettenzeilen 0,90 sind eine Doppelbelegung
+  [OK ] doppelter Journalblock AB gemeldet
+
+Fall 6 - Journal-Nachtrag ohne Quellenvermerk im Journal -> Befund
+  [OK ] rc 1   rc=1
+  [OK ] falsch verschoben gemeldet
+  [OK ] Grund: Quellenzeile fehlt
+  [OK ] offen ueber der Frist: rc 1   rc=1
+  [OK ] BEFUND nennt J-09-01c
+
+Fall 7 - Datei in _eingearbeitet/, deren Nummern nicht im Ziel stehen -> Befund
+  [OK ] rc 1   rc=1
+  [OK ] FALSCH VERSCHOBEN in der Zusammenfassung
+  [OK ] BEFUND nennt die Datei
+  [OK ] Nummern 3, nicht angekommen 2
+  [OK ] Block 2q als FEHLT
+
+Fall 8 - Nummer im Ziel, aber mit fremdem Inhalt (der Fall (m)) -> Befund
+  [OK ] rc 1 - die Nummer steht im Ziel, der Inhalt nicht   rc=1
+  [OK ] Beleg nennt den fremden Inhalt
+  [OK ] Mutationsprobe: ohne Kern meldet die Nummernpruefung Zeile
+  [OK ] mit Vermerk, der (m) und `K9a` nennt: rc 0   rc=0
+  [OK ] Vermerk fuer (y) heilt (m) nicht: rc 1   rc=1
+
+Fall 9 - frischer offener Nachtrag innerhalb der Frist -> kein Befund
+  [OK ] rc 0 (0,2 Tage < Frist 1)   rc=0
+  [OK ] als offen in der Frist gezaehlt
+  [OK ] mit --frist-tage 0.1: rc 1   rc=1
+  [OK ] angekommen, aber offen ueber der Frist: rc 1   rc=1
+  [OK ] Rat: verschieben
+  [OK ] nicht pruefbar getrennt gemeldet
+  [OK ] Zusammenfassung und BEFUND nennen kein Alter
+
+Fall 10 - Quellenzeile ueber den Dateinamen; *Messprotokoll: zaehlt nicht
+  [OK ] rc 0   rc=0
+  [OK ] (a) und (b) ueber den Dateinamen gefunden, obwohl die Quellenzeile den Hauptordner nennt
+  [OK ] *Messprotokoll: ist keine Quelle fuer (m)
+  [OK ] (m) ohne Nummer in _eingearbeitet/: nicht pruefbar, kein Befund
+
+Fall 11 - Rueckgabewert im echten Unterprozess
+  [OK ] rc 1 im Unterprozess   rc=1
+  [OK ] BEFUND auf stdout
+  [OK ] stderr leer
+  [OK ] Marken fuer waechter_melden vorhanden
+  [OK ] rc 0 im Unterprozess ohne Befund   rc=0
+  [OK ] keine BEFUND-Zeile ohne Befund
+
+Fall 12 - Werkzeugfehler: fehlendes Ziel -> rc 2, nicht 1
+  [OK ] rc 2   rc=2
+  [OK ] Fehlermeldung nennt die fehlende Datei auf stderr
+
+Fall 13 - Inhalt in der ausgelagerten Datei angekommen, die BACKLOG.md nennt -> kein Befund
+  [OK ] rc 0   rc=0
+  [OK ] Block 2t ist angekommen (kein FEHLT)
+  [OK ] Kopfzeile nennt alle drei Zieldateien in dieser Reihenfolge
+  [OK ] zieldateien(): BACKLOG.md, BACKLOG_ARCHIV.md, BACKLOG_EPICS.md; nichts fehlt
+  [OK ] Gegenprobe: ohne BACKLOG_EPICS.md im Ziel waere 2t FEHLT
+
+Fall 14 - Inhalt NIRGENDS angekommen, auch nicht in der ausgelagerten Datei -> Befund
+  [OK ] rc 1   rc=1
+  [OK ] Block 2t als FEHLT
+  [OK ] Kern nirgends - auch nicht in der ausgelagerten Datei
+  [OK ] die ausgelagerte Datei war im Ziel (also wurde dort gesucht)
+  [OK ] BEFUND nennt (n)
+
+Fall 15 - eine WEITERE ausgelagerte Datei kommt dazu -> kein Befund, ohne Codeaenderung
+  [OK ] der Waechter kennt den Namen BACKLOG_ZUKUNFT.md nicht (0 Treffer im Quelltext)
+  [OK ] BACKLOG_ARCHIV.md und BACKLOG_EPICS.md kommen im Code nicht vor (nur im Docstring)
+  [OK ] Datei vorhanden, aber in BACKLOG.md nicht genannt: kein Ziel, rc 1   rc=1
+  [OK ] Kopfzeile nennt sie nicht
+  [OK ] in BACKLOG.md genannt: rc 0 ohne Codeaenderung   rc=0
+  [OK ] Kopfzeile nennt sie mit Zeilenzahl
+  [OK ] genannter Nachtrag ist kein Ziel
+  [OK ] Pfad- und Wortbestandteile zaehlen nicht als Nennung
+  [OK ] genannt, aber fehlend: rc 2   rc=2
+  [OK ] stderr nennt die fehlende Datei
+
+Abschluss - kein Wegwerf-Rest
+  [OK ] alle Wegwerf-Verzeichnisse entfernt   15 angelegt
+  [OK ] Wegwerf-Verzeichnisse lagen nicht unter docs/
+
+==============================================================================
+82 bestanden, 0 fehlgeschlagen, 0.2s
