@@ -1,0 +1,30 @@
+# TB-81 Schritt 2 — Nachweise (gemessen 2026-09-21T21:03:36Z, Mac, main, vor dem Commit von Schritt 2)
+
+## 1. numstat (append-only)
+    146	0	docs/VORREGISTRIERUNG_neuselektion.md
+
+## 2. '## 33.' genau einmal — zwei Zaehlungen
+    grep -cE '^## 33\.' -> 1
+    awk '/^## 33\./{n++} END{print n+0}' -> 1
+    5304:## 33. Der Faltenplan als Registertext, und was die Abbild-Datei tragen muss (Fable 21k, 21.09.2026)
+
+## 3. Tabelle 33.2 gegen die Messung aus Schritt 1 (dritte Lesung, direkt aus faltenplan_tb80.json)
+    elliott_wave IDENTISCH
+    t3_supertrend IDENTISCH
+    rsi2_crypto IDENTISCH
+    turtle_soup_crypto IDENTISCH
+    volatility_breakout_crypto IDENTISCH
+    elliott_wave_stocks IDENTISCH
+    rsi2_mean_reversion IDENTISCH
+    turtle_soup_stocks IDENTISCH
+    volatility_breakout IDENTISCH
+    Zeilen: 9
+
+## 4. Zeichengleichheit der Zitate in 33 gegen FABLE_ANTWORT_2026-09-21k_abbild_schema.md
+    33.3 Ersatztext (ganzer Absatz): True
+    33.1 zitierter 30.2(3)-Satz: im Register vor 33 genau 1 mal; in Fable 21k: True
+    33.1 Grund-Zitat (Blockzitat, Zeilenumbrueche zusammengezogen): True
+    33.3/33.4/33.5 Zitat: True | Verfahren B hat kein Trainingsfenster (Übergabe Ab…
+    33.3/33.4/33.5 Zitat: True | das ist die Folge der Regel, nicht die Regel.…
+    33.3/33.4/33.5 Zitat: True | gleichwertig, solange der Code registriert ist…
+    33.3/33.4/33.5 Zitat: True | ich prüfe dann Text und Feldliste zusammen…
