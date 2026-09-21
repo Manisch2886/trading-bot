@@ -36,10 +36,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-76** | `docs/auftraege/MAC_TB-76_waechter_ziele.md` | ⚠️⚠️ **EILIG — der Wächter meldet seit TB-63 falsch** (rc 1, drei Nachträge als „falsch verschoben“), weil er `BACKLOG_EPICS.md` nicht kennt. **Erster automatischer Lauf: 22.09., 04:50.** `A4` — eine dauerhaft rote Wache ist keine. Klein, nur `system/` |
+| **TB-69** | `docs/auftraege/MAC_TB-69_arbeitsweise_ordnen.md` | ⭐⭐ **Die Ausgaberegeln an EINE Stelle** — heute verstreut über 6b, 6bb, 6c, 6d; **am 20.09. viermal verletzt, jedes Mal mit vorhandener Regel.** ⛔ **Rechnet nicht**, aber keine Regel darf still verschwinden |
 
-*Gesetzt 21.09.2026 (zuvor TB-63, erledigt mit `437428d`, nachgemessen und
-geschlossen am 21.09.2026, 12:35 Ortszeit; davor TB-75 `c96c208`, TB-64 `f0ca921`, TB-73 `2150318`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 21.09.2026 (zuvor TB-76, erledigt mit `3c25d94`, nachgemessen und
+geschlossen am 21.09.2026, 13:10 Ortszeit; davor TB-63 `437428d`, TB-75 `c96c208`, TB-64 `f0ca921`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
@@ -54,7 +54,6 @@ gemessen; nichts bricht.*
 
 | | Vorhaben | hängt an | Art |
 |---|---|---|---|
-| **TB-69** | `ARBEITSWEISE.md` neu ordnen — 24 Abschnitte, sieben davon nachträglich eingeschoben (`5b`, `6b`, `6bb`, `6c`, `6d`, `7b`, `7c`) | TB-62, TB-68 | Dokumentation |
 | **TB-74** | ⚠️⚠️ **Die Uhr im Selektionspfad** — Fable 20.09.: `RECENT_YEARS_ONLY = 10` ist der wahre Inhalt von 4a *„Universum liegt vor“*, und die Konstante wird erst beim Rechnen zu einem Datum. **Gemessen:** Datenuhr (relativ zum letzten Kurs im Bestand), bei allen vier Aktien-Bots 10 Jahre — **und die Bots rechnen sie je SYMBOL, `faltenplan_neun.fensteranker` je MARKT.** Ohne `asof` hätte derselbe Snapshot 2027 einen anderen Faltenplan | TB-72, Fable-Antwort zu (1) je Bot/je Symbol | ⚠️ **rechnet**, vor dem Tag |
 | **TB-70** | `BACKLOG.md` Abschnitt 2 aufräumen — **107 135 B**, grösster Einzelposten; Aktives und Erledigtes vermischt | TB-63 | Dokumentation, **vorsichtig** |
 
