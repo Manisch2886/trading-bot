@@ -1,0 +1,51 @@
+Stand: ff2e5ab, 2026-09-21 07:15 +0200
+K-Zeilen im Ziel: 91  verschieden: 91  doppelt: 
+Bloecke im Ziel:  24  doppelt: 
+Quellenzeilen im Journal: 14
+
+Nachtrag                                           K-Nr K-Ziel Bloecke Bl-Ziel
+BACKLOG_NACHTRAG_2026-09-18e.md                       3      3      1      1
+BACKLOG_NACHTRAG_2026-09-18f.md                       2      2      0      0
+BACKLOG_NACHTRAG_2026-09-18g.md                       1      1      1      1
+BACKLOG_NACHTRAG_2026-09-19h.md                       3      3      1      1
+BACKLOG_NACHTRAG_2026-09-19i.md                       2      2      1      1
+BACKLOG_NACHTRAG_2026-09-19j.md                       3      3      1      1
+BACKLOG_NACHTRAG_2026-09-19k.md                       3      3      1      1
+BACKLOG_NACHTRAG_2026-09-19l.md                       3      3      1      1
+BACKLOG_NACHTRAG_2026-09-19m.md                       6      6      2      2
+BACKLOG_NACHTRAG_2026-09-19n.md                       3      3      1      1
+BACKLOG_NACHTRAG_2026-09-19o.md                       4      4      1      1
+BACKLOG_NACHTRAG_2026-09-19p.md                       4      4      1      1
+BACKLOG_NACHTRAG_2026-09-19q.md                       0      0      0      0
+BACKLOG_NACHTRAG_2026-09-19q_r_berichtigung.md        0      0      0      0
+BACKLOG_NACHTRAG_2026-09-19r.md                       0      0      0      0
+BACKLOG_NACHTRAG_2026-09-19s.md                       2      2      0      0
+BACKLOG_NACHTRAG_2026-09-19t.md                       2      2      0      0
+BACKLOG_NACHTRAG_2026-09-19u.md                       0      0      0      0
+BACKLOG_NACHTRAG_2026-09-19v.md                      22     22      0      0
+
+Journal-Nachtraege (Dateiname in einer *Quelle:-Zeile):
+  JOURNAL_NACHTRAG_2026-09-20g.md      0
+  JOURNAL_NACHTRAG_2026-09-20h.md      0
+  JOURNAL_NACHTRAG_2026-09-20i.md      0
+  JOURNAL_NACHTRAG_2026-09-20j.md      0
+  JOURNAL_NACHTRAG_2026-09-20k.md      0
+  JOURNAL_NACHTRAG_2026-09-20l.md      0
+  JOURNAL_NACHTRAG_2026-09-19c.md      1
+  JOURNAL_NACHTRAG_2026-09-19d.md      1
+  JOURNAL_NACHTRAG_2026-09-19e.md      2
+  JOURNAL_NACHTRAG_2026-09-19f.md      3
+  JOURNAL_NACHTRAG_2026-09-19g.md      1
+  JOURNAL_NACHTRAG_2026-09-20a.md      1
+  JOURNAL_NACHTRAG_2026-09-20b.md      1
+  JOURNAL_NACHTRAG_2026-09-20c.md      1
+  JOURNAL_NACHTRAG_2026-09-20d.md      1
+  JOURNAL_NACHTRAG_2026-09-20e.md      1
+  JOURNAL_NACHTRAG_2026-09-20f.md      1
+
+Handpruefung der vier Nachtraege ohne Nummer der drei Formen:
+  (u)  T46.1a-d als Zeilen im Ziel: 1 1 1 1 
+  (q)  KG0-KG9 als Ueberschrift im Ziel: 1 1 1 1 1 1 1 1 1 1  ; KG-F0..F12 als Zeilen: 1 1 1 1 1 1 1 1 1 1 1 1 1 
+  (r)  RT0-RT9 als Ueberschrift im Ziel: 1 1 1 1 1 1 1 1 1 1  ; RT-F0..F11 als Zeilen: 1 1 1 1 1 1 1 1 1 1 1 1 
+  (q_r_berichtigung)  Zeilen im Ziel, die die Datei nennen: 4 ; davon 'Punkt 1..5': 1 1 1 1 0  ; Punkt 5 als K3e: 1
+  (q)  Vermerk zum Praefix KG-F (TB-59): 1 ; (r) Praefix RT-F: 1

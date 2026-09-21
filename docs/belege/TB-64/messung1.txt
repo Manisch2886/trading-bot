@@ -1,0 +1,290 @@
+Stand 2026-09-21 07:10:13 +0200
+Ziel: BACKLOG.md 1504 + BACKLOG_ARCHIV.md 566 Zeilen; JOURNAL.md 7491 Zeilen, *Quelle:-Zeilen 14
+Doppelbelegung im Ziel (ohne sort -u): keine
+
+==============================================================================
+OFFEN (Hauptverzeichnis)
+==============================================================================
+BACKLOG_NACHTRAG_2026-09-18e.md  Alter 1.9 d  Kennungen 20  angekommen 20  FEHLT 0
+    Kette 0,85a   Zeile    2 Zielzeile(n), Kern bestaetigt
+    Kette 0,85b   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Kette 0,85c   Zeile    2 Zielzeile(n), Kern bestaetigt
+    Block 2k      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.1   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.2   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.3   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.4   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.5   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.6   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.7   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.8   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.9   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.10  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.11  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.12  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.13  Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K1r     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K1s     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K1t     Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-18f.md  Alter 1.9 d  Kennungen 10  angekommen 10  FEHLT 0
+    Punkt T52.14  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.15  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.16  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.17  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.18  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.19  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T52.20  Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K1u     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K1v     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Kette 0,85a   Zeile    2 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-18g.md  Alter 1.9 d  Kennungen 12  angekommen 12  FEHLT 0
+    Punkt T34.10  Zeile    3 Zielzeile(n), Kern bestaetigt
+    Block 2m      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F13     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F14     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F15     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F16     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F17     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F18     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F19     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F20     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Kette 0,86    Zeile    3 Zielzeile(n), Kern bestaetigt
+    K     K1w     Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19h.md  Alter 1.9 d  Kennungen 18  angekommen 18  FEHLT 0
+    Block 2n      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.1   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.2   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.3   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.4   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.5   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.6   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.7   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.8   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.9   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.10  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.11  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.12  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Kette 0,86    Zeile    3 Zielzeile(n), Kern bestaetigt
+    Kette 0,87    anderswo Kern in Zielzeile: | **0,88** *(im Nachtrag (h) als 0,87 vergeben; 0,87 war bereits beleg
+    K     K1x     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K1y     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K1z     Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19i.md  Alter 1.9 d  Kennungen 10  angekommen 10  FEHLT 0
+    Block 2o      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt V1      Zeile    4 Zielzeile(n), Kern bestaetigt
+    Punkt V2      Zeile    2 Zielzeile(n), Kern bestaetigt
+    Punkt V3      Zeile    2 Zielzeile(n), Kern bestaetigt
+    Punkt V4      Zeile    2 Zielzeile(n), Kern bestaetigt
+    Punkt V5      Zeile    2 Zielzeile(n), Kern bestaetigt
+    Punkt V6      Zeile    2 Zielzeile(n), Kern bestaetigt
+    Punkt V7      Zeile    2 Zielzeile(n), Kern bestaetigt
+    K     K2a     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2b     Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19j.md  Alter 1.9 d  Kennungen 15  angekommen 15  FEHLT 0
+    Block 2p      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.13  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.14  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.15  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.16  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.17  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.18  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.19  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.20  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T55.21  Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2c     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2d     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2e     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Kette 0,86    Zeile    3 Zielzeile(n), Kern bestaetigt
+    Kette 0,86a   Zeile    2 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19k.md  Alter 1.9 d  Kennungen 6  angekommen 6  FEHLT 0
+    Block 2q      Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2f     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2g     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2h     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Kette 0,86a   Zeile    2 Zielzeile(n), Kern bestaetigt
+    Kette 0,86b   Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19l.md  Alter 1.9 d  Kennungen 12  angekommen 12  FEHLT 0
+    Block 2r      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T54.1   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T54.2   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T54.3   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T54.4   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T54.5   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T54.6   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T54.7   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T54.8   Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2i     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2j     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2k     Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19m.md  Alter 1.5 d  Kennungen 25  angekommen 22  FEHLT 3  -> Punkt B4, Punkt B5, Punkt B6
+    Block 2s      Vermerk  *Eingearbeitet durch TB-59 aus den Nachträgen (s), (t) und (u) — drei Nachträge derselben 
+    Punkt T53.1   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T53.2   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T53.3   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T53.4   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T58.1   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T58.2   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T58.3   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T58.4   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T58.5   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T58.6   Zeile    1 Zielzeile(n), Kern bestaetigt
+    Block 2s      Vermerk  *Eingearbeitet durch TB-59 aus den Nachträgen (s), (t) und (u) — drei Nachträge derselben 
+    Punkt B1      Vermerk  | **K24** | **Betreiberidee 16.09.: „marktsituative Strategieauswahl, KI bewertet den Mark
+    Punkt B2      Vermerk  | **T44.10** | ⚠️ **MEIN EINWAND: `_ist_geraet` heisst nicht, was es tut.** Eine Funktion 
+    Punkt B3      anderswo Kern in Zielzeile: | ⭐ | **Die Sperre gegen den zweiten Snapshot greift auch im Wegwerf-K
+    Punkt B4      FEHLT    Nummer nicht im Ziel, Kern nicht gefunden: 'macOS SCHÜTZT /Downloads — Claude-Code-S'
+    Punkt B5      FEHLT    Nummer nicht im Ziel, Kern nicht gefunden: 'DAS PROJEKT IST SEIT HEUTE ORTSUNABHÄNGI'
+    Punkt B6      FEHLT    Nummer nicht im Ziel, Kern nicht gefunden: 'Zwei Werkzeugfehler des Betreuers, beide'
+    Punkt B7      Vermerk  | **K4g** | ⭐ **NACHTRAG (m) NACHTRÄGLICH GEPRÜFT UND ABGESCHLOSSEN (20.09.2026, TB-62)** 
+    K     K2l     Vermerk  | **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs Nummern sin
+    K     K2m     Vermerk  | **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs Nummern sin
+    K     K2n     anderswo Kern in Zielzeile: | **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und sei
+    K     K2o     anderswo Kern in Zielzeile: | **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und sei
+    K     K2p     Vermerk  | **MI2** | ⚠️⚠️ **DER STRUKTURELLE HAUPTBEFUND: Regime-bedingte Kennzahlen vervielfachen 
+    K     K2q     Vermerk  | **K4b** | ⚠️⚠️ **NACHTRAG (m) IST NIE EINGEARBEITET WORDEN — und seine sechs Nummern sin
+BACKLOG_NACHTRAG_2026-09-19n.md  Alter 1.4 d  Kennungen 11  angekommen 11  FEHLT 0
+    Block 2t      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt AF0     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt AF1     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt AF2     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt AF3     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt AF4     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt AF5     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt AF6     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2r     anderswo Kern in Zielzeile: | **K2p** *(im Nachtrag (n) als `K2r` vorgeschlagen; `K2r` war zum Zei
+    K     K2s     anderswo Kern in Zielzeile: | **K2q** *(im Nachtrag (n) als `K2s` vorgeschlagen; `K2s` war zum Zei
+    K     K2t     anderswo Kern in Zielzeile: | **K2r** *(im Nachtrag (n) als `K2t` vorgeschlagen; `K2t` war zum Zei
+BACKLOG_NACHTRAG_2026-09-19o.md  Alter 1.4 d  Kennungen 14  angekommen 14  FEHLT 0
+    Block 2u      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI0     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI1     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI2     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI3     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI4     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI5     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI6     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI7     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt MI8     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2u     anderswo Kern in Zielzeile: | **K2s** *(im Nachtrag (o) als `K2u` vorgeschlagen; `K2u` war zum Zei
+    K     K2v     anderswo Kern in Zielzeile: | **K2t** *(im Nachtrag (o) als `K2v` vorgeschlagen; `K2v` war zum Zei
+    K     K2w     anderswo Kern in Zielzeile: | **K2u** *(im Nachtrag (o) als `K2w` vorgeschlagen; `K2w` war zum Zei
+    K     K2x     anderswo Kern in Zielzeile: | **K2v** *(im Nachtrag (o) als `K2x` vorgeschlagen; `K2x` war zum Zei
+BACKLOG_NACHTRAG_2026-09-19p.md  Alter 1.4 d  Kennungen 14  angekommen 14  FEHLT 0
+    Block 2v      Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR0     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR1     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR2     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR3     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR4     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR5     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR6     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR7     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt QR8     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2y     anderswo Kern in Zielzeile: | **K2w** *(im Nachtrag (p) als `K2y` vorgeschlagen; `K2y` war zum Zei
+    K     K2z     anderswo Kern in Zielzeile: | **K2x** *(im Nachtrag (p) als `K2z` vorgeschlagen; `K2z` war zum Zei
+    K     K3a     anderswo Kern in Zielzeile: | **K2y** *(im Nachtrag (p) als `K3a` vorgeschlagen; `K3a` war zum Zei
+    K     K3b     anderswo Kern in Zielzeile: | **K2z** *(im Nachtrag (p) als `K3b` vorgeschlagen; `K3b` war zum Zei
+BACKLOG_NACHTRAG_2026-09-19q.md  Alter 1.4 d  Kennungen 23  angekommen 23  FEHLT 0
+    Punkt KG0     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG1     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG2     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG3     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG4     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG5     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG6     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG7     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG8     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt KG9     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F0      anderswo Kern in Zielzeile: | **KG-F0** | **Registrierung eines Graphenlaufs**: Knotensatz, Kanten
+    Punkt F1      anderswo Kern in Zielzeile: | **KG-F1** | **Relationship Registry** mit **zwei Kantenklassen** (be
+    Punkt F2      anderswo Kern in Zielzeile: | **KG-F2** | **Pflichtfeld Auflösung** je Beziehung (1 h / 1 d), und 
+    Punkt F3      anderswo Kern in Zielzeile: | **KG-F3** | **Abbruchkriterium je Beziehung**, maschinell prüfbar, v
+    Punkt F4      anderswo Kern in Zielzeile: | **KG-F4** | **Ereignisdatenbank** — Ereignisart, Zeitpunkt, Überrasc
+    Punkt F5      anderswo Kern in Zielzeile: | **KG-F5** | **Ereignisreaktion** auf den tatsächlich vorhandenen Hor
+    Punkt F6      anderswo Kern in Zielzeile: | **KG-F6** | **Ähnlichkeitsmaß**, vor seiner ersten Anwendung registr
+    Punkt F7      anderswo Kern in Zielzeile: | **KG-F7** | **Vergleichsstichproben-Schätzung** statt „Kontrafaktum"
+    Punkt F8      anderswo Kern in Zielzeile: | **KG-F8** | **FDR über registriertes N**, nicht über die Treffer | F
+    Punkt F9      anderswo Kern in Zielzeile: | **KG-F9** | **Herkunft je Beziehung** (`data_version`, `research_run
+    Punkt F10     anderswo Kern in Zielzeile: | **KG-F10** | **Zerfallsüberwachung**, die zwischen „Abschwächung" un
+    Punkt F11     anderswo Kern in Zielzeile: | **KG-F11** | **Alternativerklärungen als Pflichtfeld**, nicht als Be
+    Punkt F12     anderswo Kern in Zielzeile: | **KG-F12** | **Kosten je Beziehung** — LLM, Compute, Daten; gemessen
+BACKLOG_NACHTRAG_2026-09-19q_r_berichtigung.md  Alter 1.4 d  NICHT PRUEFBAR (0 Kennungen)
+BACKLOG_NACHTRAG_2026-09-19r.md  Alter 1.4 d  Kennungen 22  angekommen 22  FEHLT 0
+    Punkt RT0     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT1     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT2     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT3     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT4     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT5     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT6     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT7     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT8     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt RT9     Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt F0      anderswo Kern in Zielzeile: | **RT-F0** | ⭐⭐ **Kaputt-Strategien-Sammlung**: mindestens drei absic
+    Punkt F1      anderswo Kern in Zielzeile: | **RT-F1** | ⭐⭐ **Bissprüfung je Angriff** gegen F0 — kein Angriff lä
+    Punkt F2      anderswo Kern in Zielzeile: | **RT-F2** | **Registrierung eines Angriffslaufs**: welche Angriffe, 
+    Punkt F3      anderswo Kern in Zielzeile: | **RT-F3** | **Kill Tests 1, 3, 4, 5 mit Schwellen** — die vier heute
+    Punkt F4      anderswo Kern in Zielzeile: | **RT-F4** | **Kill Test 7 / §14 mit Nullmodell** (RT3) — Abhängigkei
+    Punkt F5      anderswo Kern in Zielzeile: | **RT-F5** | **Parameterstabilitätskarten** aus dem **vorhandenen** G
+    Punkt F6      anderswo Kern in Zielzeile: | **RT-F6** | **Zeit- und Regimezerlegung** je Bot auf den gemessenen 
+    Punkt F7      anderswo Kern in Zielzeile: | **RT-F7** | **Block-Bootstrap mit registrierter Blocklänge**; `shuff
+    Punkt F8      anderswo Kern in Zielzeile: | **RT-F8** | **Drawdown-Zerlegung** — Start, Dauer, Tiefe, Erholung j
+    Punkt F9      anderswo Kern in Zielzeile: | **RT-F9** | **Failure-Mode-Register** mit Verknüpfung Strategie ↔ Fe
+    Punkt F10     anderswo Kern in Zielzeile: | **RT-F10** | **Angreiferbewertung**: Redundanz und Bissquote je Angr
+    Punkt F11     anderswo Kern in Zielzeile: | **RT-F11** | **Schwellen statt Gewichte** für die Gesamtbeurteilung 
+BACKLOG_NACHTRAG_2026-09-19s.md  Alter 1.4 d  Kennungen 2  angekommen 2  FEHLT 0
+    K     K2l     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2m     Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19t.md  Alter 1.3 d  Kennungen 2  angekommen 2  FEHLT 0
+    K     K2n     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K2o     Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19u.md  Alter 1.3 d  Kennungen 4  angekommen 4  FEHLT 0
+    Punkt T46.1a  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T46.1b  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T46.1c  Zeile    1 Zielzeile(n), Kern bestaetigt
+    Punkt T46.1d  Zeile    1 Zielzeile(n), Kern bestaetigt
+BACKLOG_NACHTRAG_2026-09-19v.md  Alter 0.7 d  Kennungen 22  angekommen 22  FEHLT 0
+    K     K3k     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3l     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3m     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3n     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3o     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3p     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3q     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3r     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3s     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3t     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3u     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3v     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3w     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3x     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3y     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K3z     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K4a     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K4b     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K4c     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K4d     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K4e     Zeile    1 Zielzeile(n), Kern bestaetigt
+    K     K4f     Zeile    1 Zielzeile(n), Kern bestaetigt
+JOURNAL_NACHTRAG_2026-09-20g.md  Alter 0.6 d  *Quelle:-Zeilen im Journal: 0  FEHLT
+JOURNAL_NACHTRAG_2026-09-20h.md  Alter 0.5 d  *Quelle:-Zeilen im Journal: 0  FEHLT
+JOURNAL_NACHTRAG_2026-09-20i.md  Alter 0.5 d  *Quelle:-Zeilen im Journal: 0  FEHLT
+JOURNAL_NACHTRAG_2026-09-20j.md  Alter 0.5 d  *Quelle:-Zeilen im Journal: 0  FEHLT
+JOURNAL_NACHTRAG_2026-09-20k.md  Alter 0.4 d  *Quelle:-Zeilen im Journal: 0  FEHLT
+JOURNAL_NACHTRAG_2026-09-20l.md  Alter 0.4 d  *Quelle:-Zeilen im Journal: 0  FEHLT
+
+==============================================================================
+_eingearbeitet/
+==============================================================================
+JOURNAL_NACHTRAG_2026-09-19c.md  Alter 1.9 d  *Quelle:-Zeilen im Journal: 1
+JOURNAL_NACHTRAG_2026-09-19d.md  Alter 1.9 d  *Quelle:-Zeilen im Journal: 1
+JOURNAL_NACHTRAG_2026-09-19e.md  Alter 1.9 d  *Quelle:-Zeilen im Journal: 2
+JOURNAL_NACHTRAG_2026-09-19f.md  Alter 1.5 d  *Quelle:-Zeilen im Journal: 3
+JOURNAL_NACHTRAG_2026-09-19g.md  Alter 0.9 d  *Quelle:-Zeilen im Journal: 1
+JOURNAL_NACHTRAG_2026-09-20a.md  Alter 0.8 d  *Quelle:-Zeilen im Journal: 1
+JOURNAL_NACHTRAG_2026-09-20b.md  Alter 0.8 d  *Quelle:-Zeilen im Journal: 1
+JOURNAL_NACHTRAG_2026-09-20c.md  Alter 0.7 d  *Quelle:-Zeilen im Journal: 1
+JOURNAL_NACHTRAG_2026-09-20d.md  Alter 0.7 d  *Quelle:-Zeilen im Journal: 1
+JOURNAL_NACHTRAG_2026-09-20e.md  Alter 0.6 d  *Quelle:-Zeilen im Journal: 1
+JOURNAL_NACHTRAG_2026-09-20f.md  Alter 0.6 d  *Quelle:-Zeilen im Journal: 1
+
