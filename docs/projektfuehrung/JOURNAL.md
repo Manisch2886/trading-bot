@@ -7781,6 +7781,59 @@ Grösse (Entscheidungsvorlage); Projektablage (`K4e`).
 
 ---
 
+## CG — TB-78: Sichtschutz, `asof` und der Beginn des Kapitalpfads — Registerabschnitte 27–29, Prüfprinzip A8, drei Regeln zum Verfahrensprüfer (21.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-78_register_27_29.md`*
+
+**Quelle:** Mac-Sitzung **TB-78 Register 27-29**, 21.09.2026, Ausgang
+`83e3a85`. Rechnet nicht, kein Code, keine Sperrlisten-Datei. Sieben
+Commits, jeder einzeln gepusht: `ee0b799` (Schritt 0, zehn Fable-Dokumente
+und der Übergabe-Nachtrag des steuernden Chats), `2848b7a` (27), `003f894`
+(28), `94b3b3b` (29), `2fd9498` (A8), `5d32be4` (ARBEITSWEISE), `7d2f739`
+(Berichtigung zu TB-77) und der Abgabe-Commit. Belege `docs/belege/TB-78/`.
+Anlass: vier Entscheidungen des 21.09. (Fable 21b, 21c, 21g; Betreiber),
+die nur im Chat und in der Projektablage lagen.
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Übergabe-Nachtrag 4 | `numstat` **542 / 0**, alte Fassung ist Präfix der neuen (diff der ersten 442 Zeilen leer) |
+| 27.1–27.5 gegen Fable 21g Abschnitt 3 | 14 Zeilen, **zeichengleich** |
+| `RECENT_YEARS_ONLY` aus dem Code | **10** in allen vier Aktien-Optimierern (Z. 54/52/46/49) — Horizontbeginn **2016-09-19** selbst gerechnet, nicht abgeschrieben |
+| Vorlauf-Satz im Register | genau einmal, Z. 4307–4308, im Zitat der ersetzten Fassung in 26.2 |
+| 29.2, zweimal gezählt | `Startkapital` **0**; `Kapitalpfad`+Beginn **1** (Z. 4296, Schaden) in derselben Zeile, **2** mit ±1 Zeile Kontext (dazu Z. 4288, ebenfalls Schaden) — alle 19 Zeilen gesichtet, keine Regel: **Neuaufnahme** |
+| Prüfprinzip-Nummer | A1–A7 vergeben, **A8** frei; nachher A1–A8, keine doppelt |
+| Abschluss | Register **276 / 0**; nichts ausserhalb `docs/`; Sperrlisten-Hashes `a163c498…`/`0e54ac5c…`/`4549395f…` unverändert; 26–29 je genau einmal (grep und python) |
+
+### Was der Auftrag nicht wusste
+
+`.claude/settings.local.json` erscheint im Status nicht (global ignoriert).
+Die Zeigerdatei `AKTUELLER_AUFTRAG.md` war vom Betreiber auf **eine Zeile**
+gekürzt (`numstat` 1 / 86) — die einzige Löschung der Aufgabe, keine dieser
+Sitzung, gemeldet statt abgebrochen. Die in 28.6 zitierten Zählungen
+(`Horizontbeginn` 0) sind die TB-77-Messung vor Abschnitt 26; heute 9 / 3,
+alle innerhalb von 26 — Wortlaut belassen, im Bericht vermerkt.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Nach jeder Antwort des Verfahrensprüfers werden die laufenden Aufträge gegen sie geprüft, nicht nur die kommenden** (Register 28.1) — der TB-77-Nachtrag kam nie an, und die Berichtigung kostete einen Registerabschnitt |
+| ⭐ | **Eine Berichtigung des Verfahrensprüfers wird gemessen wie jede andere Behauptung** — gerade wenn sie uns berichtigt (TB-77 hatte gegen 21b recht; 21h nahm es zurück) |
+| ⭐ | **Eine Zählung aus einem Auftrag wird am selben Stand wiederholt, an dem der Auftrag sie gemacht hat**, und zusätzlich am aktuellen — sonst liest man die eigene Anfügung als Treffer |
+| | Eine Selbstauskunft ist keine Wache (`A8`): geprüft wird das Erzeugnis, nicht das Protokoll |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen"):** Register-KOPIE in die
+Projektablage (steuernder Chat, jetzt möglich); `asof`/`datenende` im
+Manifest (Verfahrensfrage); TB-30b mit Wache gegen den Beginn der ersten
+Falte; Messung 29.5 (nur das Ob, auf KOPIE); Faltenplan nach Fables Antwort
+zu Anfrage 21b C; `RECENT_YEARS_ONLY` als registrierte Grösse.
+
+*Geschrieben 21.09.2026 von der Mac-Sitzung TB-78 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
