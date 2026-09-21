@@ -123,6 +123,30 @@ gleichwertig zu behaupten.
 Uhrzeit, Umgebung, laufende Prozesse, Netzlage — ist dasselbe Vorgehen
 **wertlos**. Dann gilt: die Messung fehlt, und das ist zu berichten.
 
+### A8 — Eine Selbstauskunft ist erst dann eine Wache, wenn ein anderer sie gegenprüfen kann
+
+*Wo keine Gegenprüfung möglich ist, wird die Prüfung auf das verlagert, was nach
+aussen sichtbar ist.*
+
+**Der Fall (21.09.2026, Registerabschnitt 27):** Der Verfahrensprüfer führt nach
+27.4 in jeder Antwort ein Leseprotokoll. ⚠️ **Niemand kann messen, was er
+gelesen hat.** Er sagt es selbst, 21d: *„Das Leseprotokoll ist eine
+Selbstauskunft. Ihr könnt nicht messen, was ich gelesen habe; ihr könnt nur
+messen, ob meine Begründungen Zahlen enthalten, die ich nicht haben dürfte."*
+
+⭐ **Die Verlagerung ist die ganze Regel:** geprüft wird nicht das Protokoll,
+sondern die **Begründung** — das einzige Erzeugnis, das nach aussen sichtbar ist
+und in dem eine unzulässige Grösse auftauchen müsste, wenn sie gewirkt hätte.
+
+⚠️ **Warum das nicht unter `A4` fällt:** `A4` trifft einen Test, der dauerhaft
+dieselbe Farbe zeigt und dadurch blind wird. Hier zeigt der Test **gar keine
+Farbe** — es gibt keinen Prüfer, nur eine Aussage. **Eine andere Fehlerklasse,
+und unter `A4` bliebe sie unsichtbar.**
+
+⭐ **Die Prüffrage:** Gibt es ausser der Aussage des Geprüften irgendeine Spur,
+an der ein Dritter sie widerlegen könnte? Wenn nein, ist es keine Wache — dann
+gehört die Prüfung an die Stelle, wo eine Spur entsteht.
+
 ---
 
 ## B — Wie eine Probe sich selbst täuscht
