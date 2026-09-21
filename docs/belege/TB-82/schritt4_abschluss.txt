@@ -45,3 +45,22 @@
 
 ## 9. git status --porcelain (vor Ergebnisdokument und Journalblock)
     ?? docs/belege/TB-82/schritt4_abschluss.txt
+
+## 9 (nachgetragen) — git status --porcelain nach dem Abgabe-Commit 058d7d0, gemessen 2026-09-21T22:15:33Z VOR dem Oeffnen dieser Datei
+    1 Zeilen (leer; .claude/settings.local.json existiert im Arbeitsbaum nicht)
+    (Dieser Nachtrag wird als eigener Commit abgelegt; danach ist der Status wieder leer.)
+
+## 5 (nachgetragen) — numstat 9614624..058d7d0
+    193	0	docs/ERGEBNIS_TB-82_register_34.md
+    221	0	docs/VORREGISTRIERUNG_neuselektion.md
+    11	0	docs/belege/TB-82/m1_rest.txt
+    9	0	docs/belege/TB-82/m2_2026-2027.txt
+    36	0	docs/belege/TB-82/m3_bestaetigung_ab.txt
+    24	0	docs/belege/TB-82/m4_wachen_optimierer.txt
+    60	0	docs/belege/TB-82/m5_faltenlisten.txt
+    23	0	docs/belege/TB-82/schritt0_ausgangsstand.txt
+    41	0	docs/belege/TB-82/schritt2_nachweise.txt
+    35	0	docs/belege/TB-82/schritt3_nachweise.txt
+    47	0	docs/belege/TB-82/schritt4_abschluss.txt
+    60	0	docs/projektfuehrung/JOURNAL.md
+    Zeilen mit zweiter Spalte != 0: 0; Dateien ausserhalb docs/: 0
