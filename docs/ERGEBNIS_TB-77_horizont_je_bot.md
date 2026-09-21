@@ -188,3 +188,37 @@ Parametersatz besteht" als Kette aus vier Regeln benannt, die es alle schon
 gab. Sie hat zwei falsche Aktenzeichen und eine falsche Fundstelle nicht
 übernommen. Und sie hat nichts gerechnet und keinen Bot-Code angefasst — das
 ist nachgewiesen.
+
+---
+
+## ⚠️ Berichtigung, nachgetragen am 21.09.2026 (TB-78)
+
+**Diese Sitzung hat gegen die ursprüngliche Auftragsfassung gearbeitet.** Ein
+Nachtrag, der zwei Blocker aufhob, ist nie angekommen — gemessen, `grep` über
+dieses Dokument und `docs/belege/TB-77/`: **0 Treffer** für *„Nachtrag zu TB-77"*
+und `FABLE_ANTWORT_2026-09-21b`. **Das Dokument bleibt unverändert stehen; was
+überholt ist, steht hier.**
+
+| | steht oben | richtig ist, seit |
+|---|---|---|
+| **1** | Der Platzhalter für `asof` in Registerabschnitt 26.3 | `asof` = **2026-09-19** (Fable 21b; Register **28.2/28.3**, Fundstelle Abschnitt 18) |
+| **2** | 26.6: *„`asof` setzen. Wann und wodurch, ist Fables Frage (1)"* | entschieden: **durch den Snapshot, nicht durch den Tag** (Register **28.5**) |
+| **3** | „Offen": *„Wache samt Mutationsprobe in `auswertung.py`"* | Fable hat das **zurückgezogen** (*„Mein Vorschlag ‚in den Auswerter' war falsch adressiert"*): die Wache geht in die vier `multi_symbol_optimise.py`, **und sie prüft gegen den Beginn der ersten Selektionsfalte**, nicht gegen den Horizontbeginn (Register **29.4**) |
+
+⭐⭐ **Und ein Befund, der der Sitzung zugutekommt:** Sie hat
+`registerdaten.FESTLEGUNGEN` selbst gelesen und die Kette in 26.7 an der Quelle
+belegt. Fables Berichtigung (*„keine Festlegung trägt diesen Satz"*) war
+**falsch**; er hat sie in 21h vollständig zurückgenommen. ⚠️ **Hätte der
+Nachtrag diese Sitzung erreicht, hätte sie Festlegung 11 aus der Kette entfernt
+— auf fremde Autorität, gegen die Quelle.** *Das Nichtankommen hat einen
+Registerfehler verhindert.*
+
+⭐ **Regel daraus:** *Eine Berichtigung des Verfahrensprüfers wird gemessen wie
+jede andere Behauptung — gerade dann, wenn sie uns berichtigt. Wer sagt „ich
+kann die Quelle nicht lesen", liefert damit den Grund, seine Quellenangabe zu
+prüfen, nicht sie zu übernehmen.*
+
+**Zwei Befunde dieser Sitzung, die übernommen sind:** Der Auftrag nannte **16.3**
+als Fundstelle für *„asof kommt aus dem Register, nie aus der Uhr"* — der Satz
+steht in **17.1**. Und `FABLE_ANTWORT_2026-09-21a` lag in keinem Träger ausser
+der Projektablage; sie liegt seit TB-78 Schritt 0 im Repo.
