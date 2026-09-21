@@ -1,0 +1,168 @@
+# TB-81 Schritt 1 — Faltenlisten gemessen (gemessen 2026-09-21T21:00:22Z, Mac, main, HEAD 955dced)
+
+Quelle: research/vorregistrierung/ergebnisse/faltenplan_tb80.json — NICHT aus dem Auftrag uebernommen (C1).
+Umgebung: macOS 15.7.9 (Darwin 24.6.0), x86_64; zweimal gelaufen, einmal mit /usr/bin/python3 (3.9.6, Xcode CommandLineTools)
+und einmal mit trading-env/bin/python3 (3.9.6); die Ausgaben sind bis auf die Zeile 'Python:' byteweise gleich (diff leer).
+Nur Standardbibliothek (json, hashlib). Das Messskript ist unten eingebettet und liegt NICHT als eigene Datei im Repo
+(kein Code, keine Sonde — Auftrag TB-81); es kann aus diesem Beleg heraus nachgelaufen werden.
+
+## Ausgabe (/usr/bin/python3)
+
+    Datei: research/vorregistrierung/ergebnisse/faltenplan_tb80.json
+    SHA-256: 2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794
+    Python: 3.9.6 | /Library/Developer/CommandLineTools/usr/bin/python3 | macOS-15.7.9-x86_64-i386-64bit
+    Bots: 9
+    
+    ERSTE ZAEHLUNG (Felder horizontbeginn / faltenlaenge_jahre / erste_falte / selektionsfalten):
+    bot | markt | horizontbeginn | faltenlaenge_jahre | erste_falte | selektionsfalten | anzahl
+    elliott_wave | krypto | kein Horizont (null) | 2 | 2018 | ['2018-2019', '2020-2021', '2022-2023', '2024-2025'] | 4
+    elliott_wave_stocks | aktien | 2016-09-19 | 1 | 2017 | ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 9
+    rsi2_crypto | krypto | kein Horizont (null) | 1 | 2019 | ['2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 7
+    rsi2_mean_reversion | aktien | 2016-09-19 | 1 | 2018 | ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 8
+    t3_supertrend | krypto | kein Horizont (null) | 1 | 2019 | ['2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 7
+    turtle_soup_crypto | krypto | kein Horizont (null) | 1 | 2018 | ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 8
+    turtle_soup_stocks | aktien | 2016-09-19 | 1 | 2017 | ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 9
+    volatility_breakout | aktien | 2016-09-19 | 1 | 2018 | ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 8
+    volatility_breakout_crypto | krypto | kein Horizont (null) | 1 | 2018 | ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 8
+    
+    ZWEITE ZAEHLUNG (aus 'falten', rolle == 'selektion'):
+    bot | liste aus falten | anzahl | erste (aus 'von') | laenge aus von/bis (Jahre) | gleich selektionsfalten?
+    elliott_wave | ['2018-2019', '2020-2021', '2022-2023', '2024-2025'] | 4 | 2018 | [2] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    elliott_wave_stocks | ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 9 | 2017 | [1] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    rsi2_crypto | ['2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 7 | 2019 | [1] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    rsi2_mean_reversion | ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 8 | 2018 | [1] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    t3_supertrend | ['2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 7 | 2019 | [1] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    turtle_soup_crypto | ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 8 | 2018 | [1] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    turtle_soup_stocks | ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 9 | 2017 | [1] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    volatility_breakout | ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 8 | 2018 | [1] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    volatility_breakout_crypto | ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025'] | 8 | 2018 | [1] | GLEICH | lueckenlos+aufsteigend=True | Anschluss Bestaetigung->Go-Live=True | andere Rollen=[]
+    
+    Abweichungen zwischen erster und zweiter Zaehlung: 0
+    
+    GEGEN REGISTER 21.4 (erste Falte als Name, # Selektionsfalten, Faltenlaenge):
+    elliott_wave | 21.4: 2018-2019/4/2 J | gemessen: 2018-2019/4/2 J | GLEICH
+    elliott_wave_stocks | 21.4: 2017/9/1 J | gemessen: 2017/9/1 J | GLEICH
+    rsi2_crypto | 21.4: 2019/7/1 J | gemessen: 2019/7/1 J | GLEICH
+    rsi2_mean_reversion | 21.4: 2018/8/1 J | gemessen: 2018/8/1 J | GLEICH
+    t3_supertrend | 21.4: 2019/7/1 J | gemessen: 2019/7/1 J | GLEICH
+    turtle_soup_crypto | 21.4: 2018/8/1 J | gemessen: 2018/8/1 J | GLEICH
+    turtle_soup_stocks | 21.4: 2017/9/1 J | gemessen: 2017/9/1 J | GLEICH
+    volatility_breakout | 21.4: 2018/8/1 J | gemessen: 2018/8/1 J | GLEICH
+    volatility_breakout_crypto | 21.4: 2018/8/1 J | gemessen: 2018/8/1 J | GLEICH
+    Abweichungen gegen 21.4: 0
+    
+    Weitere Felder je Bot (zur Einordnung, nicht Teil der Feldliste):
+    elliott_wave | erste_falte_4a=2018 | bestaetigungsperiode=2026-2027 | go_live_schnitt=2026-09-01 | status=endgueltig
+    elliott_wave_stocks | erste_falte_4a=2017 | bestaetigungsperiode=2026 | go_live_schnitt=2026-09-01 | status=endgueltig
+    rsi2_crypto | erste_falte_4a=2019 | bestaetigungsperiode=2026 | go_live_schnitt=2026-09-01 | status=endgueltig
+    rsi2_mean_reversion | erste_falte_4a=2018 | bestaetigungsperiode=2026 | go_live_schnitt=2026-09-01 | status=endgueltig
+    t3_supertrend | erste_falte_4a=2018 | bestaetigungsperiode=2026 | go_live_schnitt=2026-09-01 | status=endgueltig
+    turtle_soup_crypto | erste_falte_4a=2018 | bestaetigungsperiode=2026 | go_live_schnitt=2026-09-01 | status=endgueltig
+    turtle_soup_stocks | erste_falte_4a=2017 | bestaetigungsperiode=2026 | go_live_schnitt=2026-09-01 | status=endgueltig
+    volatility_breakout | erste_falte_4a=2018 | bestaetigungsperiode=2026 | go_live_schnitt=2026-09-01 | status=endgueltig
+    volatility_breakout_crypto | erste_falte_4a=2018 | bestaetigungsperiode=2026 | go_live_schnitt=2026-09-01 | status=endgueltig
+    
+    Feldmenge je Bot in faltenplan_tb80.json (alle Bots gleich?):
+    gleich: True | Felder: ['bestaetigungsperiode', 'embargo_tage', 'erste_falte', 'erste_falte_4a', 'erste_falte_4a_warm_ab', 'erste_falte_quelle', 'erste_falte_trockenlauf_H', 'falten', 'faltenlaenge_begruendung', 'faltenlaenge_jahre', 'go_live_schnitt', 'horizontbeginn', 'markt', 'mindesttraining_jahre', 'purge_tage', 'selektionsfalten', 'status', 'trades_je_jahr']
+    Felder der obersten Ebene: ['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto'] (keine Felder 'asof' oder 'quelle' auf oberster Ebene)
+
+## Register 21.4 — die Tabellenzeilen woertlich (grep aus docs/VORREGISTRIERUNG_neuselektion.md, Stand HEAD)
+
+    2919:| `elliott_wave` | krypto | 2 J | **2018–2019** | **4** | ⚠️ **2026-01-01** | ja |
+    2920:| `t3_supertrend` | krypto | 1 J | **2019** | **7** | 2026-01-01 | ja |
+    2921:| `rsi2_crypto` | krypto | 1 J | 2019 | 7 | 2026-01-01 | ja |
+    2922:| `turtle_soup_crypto` | krypto | 1 J | **2018** | **8** | 2026-01-01 | ja |
+    2923:| `volatility_breakout_crypto` | krypto | 1 J | **2018** | **8** | 2026-01-01 | ja |
+    2924:| `elliott_wave_stocks` | aktien | 1 J | **2017** | **9** | 2026-01-01 | ja |
+    2925:| `rsi2_mean_reversion` | aktien | 1 J | **2018** | **8** | 2026-01-01 | ja |
+    2926:| `turtle_soup_stocks` | aktien | 1 J | **2017** | **9** | 2026-01-01 | ja |
+    2927:| `volatility_breakout` | aktien | 1 J | **2018** | **8** | 2026-01-01 | ja |
+
+Abgleich: erste Falte, # Selektionsfalten und Faltenlaenge stimmen fuer alle neun Bots mit 21.4 ueberein (0 Abweichungen, s. o.).
+Anmerkung: 21.4 nennt 'Bestaetigung ab 2026-01-01' fuer alle neun; die Datei traegt bestaetigungsperiode '2026-2027' (elliott_wave)
+bzw. '2026' (acht uebrige) — dieselbe Aussage in anderer Schreibweise, kein Widerspruch.
+
+## Befunde am Rand (nichts davon ein Abbruchgrund)
+
+1. 'horizontbeginn' ist bei den fuenf Krypto-Bots als JSON-null gesetzt (Schluessel vorhanden, Wert null), bei den vier
+   Aktien-Bots '2016-09-19'. Fuer 33.3 ('gesetzt, nicht weggelassen') ist das die Frage, ob null als ausdrueckliches
+   'kein Horizont' gilt — Handwerk der Abbild-Datei, hier nur festgehalten.
+2. t3_supertrend: erste_falte 2019, erste_falte_4a 2018 — die Konjunktion aus 25.3 (Trockenlauf, 0 Symbole 2018) hebt (i) auf 2019;
+   das ist der in 21.4 beschriebene Fall. Die Tabelle in 33.2 nennt die erste SELEKTIONSFALTE (2019).
+3. Die Feldmenge je Bot in faltenplan_tb80.json umfasst 18 Felder (u. a. embargo_tage, purge_tage, mindesttraining_jahre,
+   in 'falten' training_bis_ausschliesslich und embargo_nach_falten); 'asof' und 'quelle' fehlen. Damit ist die Feldmenge
+   nicht die Feldliste aus 33.3 — der Befund aus Fable 21k, hier nachgemessen.
+4. Zusatzpruefung: je Bot ist die Selektionsfolge aufsteigend und lueckenlos (bis_ausschliesslich der Falte n == von der Falte n+1),
+   die Faltenlaenge aus von/bis ist je Bot einheitlich und gleich faltenlaenge_jahre, und die einzige Bestaetigungsfalte
+   beginnt am Ende der letzten Selektionsfalte und endet am go_live_schnitt 2026-09-01. Andere Rollen als
+   'selektion'/'bestaetigung' kommen nicht vor.
+
+## Das Messskript (eingebettet)
+
+```python
+import json, hashlib, sys, platform
+PFAD = "research/vorregistrierung/ergebnisse/faltenplan_tb80.json"
+roh = open(PFAD, "rb").read()
+print("Datei:", PFAD)
+print("SHA-256:", hashlib.sha256(roh).hexdigest())
+print("Python:", sys.version.split()[0], "|", sys.executable, "|", platform.platform())
+d = json.loads(roh)
+print("Bots:", len(d))
+print()
+# Erste Zaehlung: direkt aus den Feldern
+print("ERSTE ZAEHLUNG (Felder horizontbeginn / faltenlaenge_jahre / erste_falte / selektionsfalten):")
+print("bot | markt | horizontbeginn | faltenlaenge_jahre | erste_falte | selektionsfalten | anzahl")
+erste = {}
+for bot in sorted(d):
+    v = d[bot]
+    hb = v["horizontbeginn"] if v["horizontbeginn"] is not None else "kein Horizont (null)"
+    erste[bot] = (hb, v["faltenlaenge_jahre"], v["erste_falte"], list(v["selektionsfalten"]), len(v["selektionsfalten"]))
+    print(f"{bot} | {v['markt']} | {hb} | {v['faltenlaenge_jahre']} | {v['erste_falte']} | {v['selektionsfalten']} | {len(v['selektionsfalten'])}")
+print()
+# Zweite, unabhaengige Zaehlung: aus 'falten' mit rolle == 'selektion'
+print("ZWEITE ZAEHLUNG (aus 'falten', rolle == 'selektion'):")
+print("bot | liste aus falten | anzahl | erste (aus 'von') | laenge aus von/bis (Jahre) | gleich selektionsfalten?")
+abweichungen = 0
+for bot in sorted(d):
+    falten = [f for f in d[bot]["falten"] if f["rolle"] == "selektion"]
+    namen = [f["name"] for f in falten]
+    von = [int(f["von"][:4]) for f in falten]
+    bis = [int(f["bis_ausschliesslich"][:4]) for f in falten]
+    laengen = sorted(set(b - a for a, b in zip(von, bis)))
+    gleich = (namen == erste[bot][3]) and (len(namen) == erste[bot][4]) and (von[0] == erste[bot][2]) and (laengen == [erste[bot][1]])
+    # lueckenlos und aufsteigend: jede Falte beginnt, wo die vorige endet
+    lueckenlos = all(bis[i] == von[i+1] for i in range(len(von)-1)) and von == sorted(von)
+    # Anschluss an die Bestaetigungsperiode / Go-Live-Schnitt
+    best = [f for f in d[bot]["falten"] if f["rolle"] == "bestaetigung"]
+    anschluss = len(best) == 1 and int(best[0]["von"][:4]) == bis[-1] and best[0]["bis_ausschliesslich"] == d[bot]["go_live_schnitt"]
+    andere_rollen = sorted(set(f["rolle"] for f in d[bot]["falten"]) - {"selektion", "bestaetigung"})
+    if not gleich: abweichungen += 1
+    print(f"{bot} | {namen} | {len(namen)} | {von[0]} | {laengen} | {'GLEICH' if gleich else 'ABWEICHUNG'} | lueckenlos+aufsteigend={lueckenlos} | Anschluss Bestaetigung->Go-Live={anschluss} | andere Rollen={andere_rollen}")
+print()
+print("Abweichungen zwischen erster und zweiter Zaehlung:", abweichungen)
+# Register 21.4 (abgetippt aus docs/VORREGISTRIERUNG_neuselektion.md, Zeilen 2919-2927; erste Falte, Anzahl)
+r214 = {"elliott_wave": ("2018-2019", 4, 2), "t3_supertrend": ("2019", 7, 1), "rsi2_crypto": ("2019", 7, 1),
+        "turtle_soup_crypto": ("2018", 8, 1), "volatility_breakout_crypto": ("2018", 8, 1),
+        "elliott_wave_stocks": ("2017", 9, 1), "rsi2_mean_reversion": ("2018", 8, 1),
+        "turtle_soup_stocks": ("2017", 9, 1), "volatility_breakout": ("2018", 8, 1)}
+print()
+print("GEGEN REGISTER 21.4 (erste Falte als Name, # Selektionsfalten, Faltenlaenge):")
+abw214 = 0
+for bot in sorted(d):
+    ef, n, fl = r214[bot]
+    mess = (erste[bot][3][0], erste[bot][4], erste[bot][1])
+    ok = mess == (ef, n, fl)
+    if not ok: abw214 += 1
+    print(f"{bot} | 21.4: {ef}/{n}/{fl} J | gemessen: {mess[0]}/{mess[1]}/{mess[2]} J | {'GLEICH' if ok else 'ABWEICHUNG'}")
+print("Abweichungen gegen 21.4:", abw214)
+print()
+print("Weitere Felder je Bot (zur Einordnung, nicht Teil der Feldliste):")
+for bot in sorted(d):
+    v = d[bot]
+    print(f"{bot} | erste_falte_4a={v['erste_falte_4a']} | bestaetigungsperiode={v['bestaetigungsperiode']} | go_live_schnitt={v['go_live_schnitt']} | status={v['status']}")
+print()
+print("Feldmenge je Bot in faltenplan_tb80.json (alle Bots gleich?):")
+mengen = {bot: tuple(sorted(d[bot].keys())) for bot in d}
+print("gleich:", len(set(mengen.values())) == 1, "| Felder:", list(mengen[sorted(d)[0]]))
+print("Felder der obersten Ebene:", sorted(d.keys()), "(keine Felder 'asof' oder 'quelle' auf oberster Ebene)")
+```
