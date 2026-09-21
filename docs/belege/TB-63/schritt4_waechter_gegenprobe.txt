@@ -1,0 +1,4 @@
+# Gegenprobe: Waechter mit --archiv <BACKLOG_ARCHIV.md + BACKLOG_EPICS.md aneinandergehaengt> (Wegwerfdatei im Scratchpad, keine Codeaenderung)
+==============================================================================
+Zusammenfassung: 0x OFFEN UEBER DER FRIST, 0x offen in der Frist, 4x NICHT PRUEFBAR, 0x FALSCH VERSCHOBEN, 0x DOPPELBELEGUNG
+Kein Befund: nichts liegt ueber der Frist, nichts ist falsch verschoben, keine Nummer doppelt.

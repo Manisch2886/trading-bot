@@ -7554,6 +7554,60 @@ heute ihren Dateinamen im Journal). Die Regeltexte (`ARBEITSWEISE.md` 14,
 
 ---
 
+## CC — TB-63: die fünf Epics aus dem Backlog nach `BACKLOG_EPICS.md`, zeichengleich (21.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-63_epics_auslagern.md`*
+
+**Quelle:** Mac-Sitzung **TB-63 Epics auslagern**, 21.09.2026, ab 11:27
+Ortszeit, Ausgang `c96c208`, reine Dokumentation (`python3` nur für das
+Zählskript, nichts ausserhalb `docs/`). Commits `f2e0a68` (Schritt 0: drei
+Betreiber-Dateien, darunter die Regeltexte aus TB-75), `79d31fb` (Schritt 1,
+Verschiebung 0/925), `a288452` (Schritt 2, Kopf 34/0 und Verweistabelle
+19/0), `161de90` (Schritt 3, Belege) und der Abgabe-Commit. Belege
+`docs/belege/TB-63/`. Vorbedingung gemessen: TB-62 auf `origin/main`
+(`e3a25ae`–`6e29eec`).
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Bereich | an den Ankertexten: `## 2t` bis vor den Trenner vor `## 2z` — **925 Zeilen, 64 633 B**, sechs Blöcke `2t`–`2y`. Der Endanker des Auftrags (`## 3`) liegt seit TB-62 hinter `2z`, das bleibt. Die Blöcke sind seit `e5720ed` unverändert (diff leer bis auf einen zweiten Trenner) |
+| Verschiebenachweis | Zeilen-Multimengen ohne `git diff` (`verschiebenachweis.py`): **925 entfernt, 0 nicht zeichengleich im Ziel**; Gegenprobe nach Schritt 2: 40 Zeilen nur im Ziel = 36 Kopfzeilen + 4 verrechnete Leerzeilen. `numstat` als zweite Zählung: `0 925` (Schritt 1), kumuliert `15 921` / `961 0` — deckungsgleich |
+| `BACKLOG.md` | 1 505 → **599** Zeilen, 264 481 → **201 085** B (**−24,0 %**); `BACKLOG_EPICS.md` 961 Zeilen, 66 701 B |
+| Pflichtlektüre | **fünf** Dokumente nach `UMZUG.md` 6 (nicht „vier“): 402 037 → **338 641 B (−15,8 %)**, zwei Zählwege |
+| Kollisionsprobe | Blöcke `^## 2[a-z]+` über beide Dateien 8/8, K-Nummern (Muster ohne schliessenden Balken, ohne `sort -u`) **92 Zeilen / 92 Nummern**, 0 doppelt — alle K im Backlog, 0 in EPICS; über drei Dateien mit dem Archiv 24/24 und 92/92 |
+| Verweise `2t`–`2y` | **122 Treffer in 16 Dateien** unter `docs/`: 39 EPICS, 16 Backlog, 16 der Auftrag, 51 in 13 weiteren — Nummernangaben und Rückblicke, keiner nennt einen jetzt falschen Ort; Bezeichner unverändert |
+| ausserhalb `docs/` | 0 Dateien |
+| ⚠️⚠️ Wächter danach | **rc 1, 3 falsch verschoben** (`(19n)`–`(19p)`, Blöcke `2t`–`2v` „nicht im Ziel“): `system/nachtragswaechter.py` hat `BACKLOG.md` + `BACKLOG_ARCHIV.md` fest als Ziel, kennt `BACKLOG_EPICS.md` nicht. Gegenprobe mit `--archiv <Archiv+Epics>` ohne Codeänderung: rc 0. Nicht behoben (ausserhalb `docs/`), als **`K4o`** eingetragen |
+
+### Was blieb, was ging
+
+Geblieben im Backlog: Block `2z`, die Kettenzeilen der Ränge 6–8 und
+`0,96`–`0,98`, Abschnitt 4 samt `K2p`–`K3j`. Gegangen: nur die sechs
+Blöcke. An ihrer Stelle eine Verweistabelle mit zwei Sätzen; im Kopf der
+neuen Datei die Reihenfolge `AF → RT → QR → KG → MI` (RT9), damit sie nicht
+verlorengeht. Der Journalblock steht direkt hier statt als Nachtragsdatei —
+die Regel aus TB-75, vom Betreiber heute früh in `ARBEITSWEISE.md` 14 und
+`DOKUMENTATIONSSTANDARD.md` 10 eingetragen und in Schritt 0 committet.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Ein Zählskript wird an `wc -l` derselben Datei geeicht, bevor seine Zahl gilt.** Der erste Lauf zählte 928 statt 927 (`split("\n")` liefert nach dem Schlusszeilenumbruch ein leeres Element); die zweite Zählung daneben hat es aufgedeckt — das Instrument, nicht der Bestand, wie bei TB-60 |
+| ⭐ | **Je Schritt und kumuliert sind zwei verschiedene Zahlen, und beide werden genannt.** 925/19 je Schritt, 921/15 kumuliert — `git` und die Multimengen-Rechnung verrechnen Leerzeilen gleich |
+| ⭐⭐ | **Wer eine Zieldatei aufteilt, prüft, welche Wache die alte Zielmenge fest verdrahtet hat.** Der Wächter von TB-64 wurde einen Tag nach seiner Bewährung von einer Dokumentationsaufgabe rot — und hätte es still getan, weil seine Cron-Zeile nicht eingetragen ist |
+| | Ein Endanker, der auf einen Block zeigt, wird vor dem Schneiden gegen den aktuellen Stand gemessen — hier lag ein neuer Block davor, den der Auftrag richtig vorhergesagt hatte |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen“):** den Wächter um
+`BACKLOG_EPICS.md` erweitern (`K4o`, ein Zeiler plus Test unter `system/`);
+ein Satz zu `BACKLOG_EPICS.md` im Kopf von `BACKLOG.md` (Vorschlag für
+TB-70); die Projektablage nachziehen (`K4e`, Betreiber); TB-70 ist frei.
+
+*Geschrieben 21.09.2026 von der Mac-Sitzung TB-63 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
