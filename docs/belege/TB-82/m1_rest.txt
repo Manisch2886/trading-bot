@@ -1,0 +1,11 @@
+# M1 — grep -n -i "\brest\b\|Teilfalte\|angebrochene" docs/VORREGISTRIERUNG_neuselektion.md   (gemessen 2026-09-21T22:04:04Z, HEAD 9614624, VOR dem Eintrag)
+## Treffer (Auftrag erwartet 0):
+    (keine)
+## Anzahl: 0
+## Gegenprobe ohne Wortgrenze (grep -n -i 'rest' liefert auch Teilwoerter wie 'Rest' in 'Restlaufzeit' — nur zur Einordnung):
+872:verwaisten `*_15m.csv`** aus `data/` entfernt — Reste eines verworfenen
+## Positivkontrolle, dass \b in diesem grep (ugrep 7.8.4 x86_64-apple-macosx +sse2; -P:pcre2jit; -z:zlib,bzip2,zstd,brotli,7z,tar/pax/cpio/zip) wirkt:
+    echo 'ein Rest vor Go-Live' | grep -c -i '\brest\b' -> 1
+    echo 'Reste' | grep -c -i '\brest\b' -> 0
+## Zweite Lesung mit grep -w: 0 Treffer fuer -w rest; Teilfalte: 0; angebrochene: 0
+## Ergebnis M1: 0 Treffer — bestaetigt. (1b) ist eine Regel, kein Verweis.

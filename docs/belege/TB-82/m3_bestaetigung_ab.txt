@@ -1,0 +1,36 @@
+# M3 — sed -n 2919,2927p docs/VORREGISTRIERUNG_neuselektion.md | awk -F'|' '{print $2, $7}'   (Spalte Bestaetigung ab in 21.4; gemessen 2026-09-21T22:04:59Z, HEAD 9614624)
+## (Erster Anlauf mit dem Fenster 2917,2925 traf Kopf- und Trennzeile statt der letzten zwei Bots; das Fenster wurde am Tabellenkopf Z. 2917 nachgemessen und auf die neun Datenzeilen 2919-2927 gesetzt.)
+## Kopfzeile der Tabelle 21.4 (Z. 2917):
+| Bot | Markt | Faltenlänge | erste Falte | # Selektionsfalten | Bestätigung ab | 4b erfüllt |
+## Bot | Bestaetigung ab (Spalte 7), neun Datenzeilen:
+    `elliott_wave` | ⚠️ **2026-01-01**
+    `t3_supertrend` | 2026-01-01
+    `rsi2_crypto` | 2026-01-01
+    `turtle_soup_crypto` | 2026-01-01
+    `volatility_breakout_crypto` | 2026-01-01
+    `elliott_wave_stocks` | 2026-01-01
+    `rsi2_mean_reversion` | 2026-01-01
+    `turtle_soup_stocks` | 2026-01-01
+    `volatility_breakout` | 2026-01-01
+## Anzahl Zeilen mit 2026-01-01 in Spalte 7: 9 von 9
+## Vorkommen von 2026 in Spalte 7, das NICHT 2026-01-01 ist: 0
+## Vorkommen von 2026-2027 (beide Strichformen) in den neun Zeilen: 0
+## Ganze Tabelle 21.4 woertlich (Z. 2917-2927):
+| Bot | Markt | Faltenlänge | erste Falte | # Selektionsfalten | Bestätigung ab | 4b erfüllt |
+|---|---|---:|---:|---:|---|---|
+| `elliott_wave` | krypto | 2 J | **2018–2019** | **4** | ⚠️ **2026-01-01** | ja |
+| `t3_supertrend` | krypto | 1 J | **2019** | **7** | 2026-01-01 | ja |
+| `rsi2_crypto` | krypto | 1 J | 2019 | 7 | 2026-01-01 | ja |
+| `turtle_soup_crypto` | krypto | 1 J | **2018** | **8** | 2026-01-01 | ja |
+| `volatility_breakout_crypto` | krypto | 1 J | **2018** | **8** | 2026-01-01 | ja |
+| `elliott_wave_stocks` | aktien | 1 J | **2017** | **9** | 2026-01-01 | ja |
+| `rsi2_mean_reversion` | aktien | 1 J | **2018** | **8** | 2026-01-01 | ja |
+| `turtle_soup_stocks` | aktien | 1 J | **2017** | **9** | 2026-01-01 | ja |
+| `volatility_breakout` | aktien | 1 J | **2018** | **8** | 2026-01-01 | ja |
+## Das Ende der Bestaetigungsperiode (5.2), Fundstellen von 2026-09-01 im Register (erste fuenf):
+383:Go-Live-Schnitt: **2026-09-01** (ausschliesslich). Mindesttraining vor der ersten Falte: **4 Jahre**.
+582:**`2026-09-01`, ausschliesslich.** Alle neun Bots laufen seit Anfang
+584:2026-09-01 (Aktien) bzw. 2026-08-31 (Krypto). Alles davor ist
+1341:| `elliott_wave` | krypto | 2 J | 2019–2020, 2021–2022, 2023–2024 | 3 | 2025-01-01 … 2026-09-01 |
+1342:| `t3_supertrend` | krypto | 1 J | 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 7 | 2026-01-01 … 2026-09-01 |
+## Ergebnis M3: 2026-01-01 bei allen neun (9/9) — bestaetigt; 2026-2027 und 2026 als Faltenname kommen in 21.4 nicht vor.

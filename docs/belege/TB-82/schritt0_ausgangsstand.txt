@@ -1,0 +1,23 @@
+# TB-82 Schritt 0 — Ausgangsstand (gemessen 2026-09-21T22:03:49Z, Mac, main)
+
+## git status --short (vor dem Anlegen dieses Belegordners)
+    (leer — die sechs im Auftrag genannten Dateien unter docs/projektfuehrung/ lagen bereits versioniert in 9614624; nichts vom Betreiber unversioniert, also nichts mitzucommitten)
+
+## HEAD
+9614624 Fable 21l und 21m abgelegt; Anfrage 21g (eigene Fundstelle in 33.4 berichtigt, zwei Formen der Bestaetigungsperiode); TB-30b-Dokumente um Herkunftszeile und Zeitstempel berichtigt; TB-82 beauftragt
+    origin/main: 9614624  (Auftrag erwartete ad020b5 oder juenger)
+
+## Registerabschnitt 34 vor dem Eintrag (Abbruchkriterium 6)
+    grep -cE '^## 34\.' docs/VORREGISTRIERUNG_neuselektion.md -> 0
+    hoechste ##-Nummer: 33
+    wc -l docs/VORREGISTRIERUNG_neuselektion.md ->     5446
+
+## SHA-256 der drei Sperrlisten-Dateien (voller Pfad)
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+## AKTUELLER_AUFTRAG.md (nur gelesen)
+    wc -l ->       87
+    grep -c 'TB-82' -> 1
+    Tabellenzeilen mit '| **TB-' : 2

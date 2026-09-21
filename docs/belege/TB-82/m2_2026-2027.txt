@@ -1,0 +1,9 @@
+# M2 — grep -c "2026-2027" docs/VORREGISTRIERUNG_neuselektion.md   (gemessen 2026-09-21T22:04:25Z, HEAD 9614624, VOR dem Eintrag)
+## Anzahl (Auftrag erwartet 1, nur 33.4): 1
+## Fundstellen mit Zeilennummer:
+5431:| **3** | **Seine Unsicherheit — die Bestätigungsperiode je Bot:** Sie steht **bereits** in Register 21.4 und folgt aus Faltenlänge und Go-Live-Schnitt (`elliott_wave` `2026-2027`, die acht übrig
+## Gegenprobe mit Halbgeviertstrich '2026–2027' (Schreibweise der Tabellen): 0
+## Gegenprobe: 'faltenplan.py:336' im Register vorhanden? 0
+## Die Codestelle, aus der die Werte stammen (nur gelesen):
+336:        "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+## Ergebnis M2: siehe Anzahl oben.

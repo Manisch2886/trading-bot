@@ -1,0 +1,49 @@
+# M5 — awk -v s=$S -v e=$E 'NR>s && NR<e && /^\| `/' docs/VORREGISTRIERUNG_neuselektion.md   (Faltenliste aus 33.2, Zeilen 5337..5391; VORHER gemessen 2026-09-21T22:05:40Z, HEAD 9614624)
+
+## VORHER — die neun Tabellenzeilen aus 33.2, woertlich:
+| `elliott_wave` | krypto | kein Horizont | 2 J | 2018–2019 | 2018–2019 · 2020–2021 · 2022–2023 · 2024–2025 | 4 |
+| `t3_supertrend` | krypto | kein Horizont | 1 J | 2019 | 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 7 |
+| `rsi2_crypto` | krypto | kein Horizont | 1 J | 2019 | 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 7 |
+| `turtle_soup_crypto` | krypto | kein Horizont | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
+| `volatility_breakout_crypto` | krypto | kein Horizont | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
+| `elliott_wave_stocks` | aktien | 2016-09-19 | 1 J | 2017 | 2017 · 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 9 |
+| `rsi2_mean_reversion` | aktien | 2016-09-19 | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
+| `turtle_soup_stocks` | aktien | 2016-09-19 | 1 J | 2017 | 2017 · 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 9 |
+| `volatility_breakout` | aktien | 2016-09-19 | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
+    Anzahl Zeilen: 9 (Soll 9)
+    SHA-256 der neun Zeilen: e5ab322e4aedb67c4a95d828d631e6eaadff7d7f17054187d829a049b973b5a2
+
+## VORHER — gegen 21.4 (Z. 2919-2927): Bot, Faltenlaenge, erste Falte, Anzahl
+    aus 33.2 (Spalten 2,5,6,8):
+    `elliott_wave` | 2 J | 2018–2019 | 4
+    `t3_supertrend` | 1 J | 2019 | 7
+    `rsi2_crypto` | 1 J | 2019 | 7
+    `turtle_soup_crypto` | 1 J | 2018 | 8
+    `volatility_breakout_crypto` | 1 J | 2018 | 8
+    `elliott_wave_stocks` | 1 J | 2017 | 9
+    `rsi2_mean_reversion` | 1 J | 2018 | 8
+    `turtle_soup_stocks` | 1 J | 2017 | 9
+    `volatility_breakout` | 1 J | 2018 | 8
+    aus 21.4 (Spalten 2,4,5,6; Fettmarkierung ** entfernt):
+    `elliott_wave` | 2 J | 2018–2019 | 4
+    `t3_supertrend` | 1 J | 2019 | 7
+    `rsi2_crypto` | 1 J | 2019 | 7
+    `turtle_soup_crypto` | 1 J | 2018 | 8
+    `volatility_breakout_crypto` | 1 J | 2018 | 8
+    `elliott_wave_stocks` | 1 J | 2017 | 9
+    `rsi2_mean_reversion` | 1 J | 2018 | 8
+    `turtle_soup_stocks` | 1 J | 2017 | 9
+    `volatility_breakout` | 1 J | 2018 | 8
+    diff 33.2 gegen 21.4 (leer = 0 Abweichungen):
+    (leer) -> 0 Abweichungen
+
+## VORHER — Faltenanzahl je Bot aus der Liste selbst nachgezaehlt (Trennzeichen ' · ' in Spalte 7) gegen Spalte 8:
+    `elliott_wave` | gezaehlt 4 | Spalte # 4 | gleich
+    `t3_supertrend` | gezaehlt 7 | Spalte # 7 | gleich
+    `rsi2_crypto` | gezaehlt 7 | Spalte # 7 | gleich
+    `turtle_soup_crypto` | gezaehlt 8 | Spalte # 8 | gleich
+    `volatility_breakout_crypto` | gezaehlt 8 | Spalte # 8 | gleich
+    `elliott_wave_stocks` | gezaehlt 9 | Spalte # 9 | gleich
+    `rsi2_mean_reversion` | gezaehlt 8 | Spalte # 8 | gleich
+    `turtle_soup_stocks` | gezaehlt 9 | Spalte # 9 | gleich
+    `volatility_breakout` | gezaehlt 8 | Spalte # 8 | gleich
