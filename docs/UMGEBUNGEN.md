@@ -71,6 +71,66 @@ nicht sehen konnte:**
 
 ---
 
+## Drei Befunde vom 19.09.2026, die bis hierher nirgends standen
+
+*Nachgetragen 21.09.2026 (TB-64, Schritt 5b) nach Betreiberentscheidung vom
+20.09.2026: TB-67 hatte die sieben `B`-Zeilen aus Backlog-Nachtrag `(m)` einzeln
+geprüft — fünf standen bereits in einem Führungsdokument, diese drei nicht.
+Wortlaut aus dem Nachtrag, gekürzt nur dort, wo er auf den Sitzungsverlauf
+zeigt.*
+
+### Die Cloud fällt als zweite Maschine für die Laufreproduktion aus (B2)
+
+> ⚠️⚠️ **DIE CLOUD FÄLLT ALS ZWEITE MASCHINE FÜR DIE LAUFREPRODUKTION AUS.**
+> Gemessen: die Cloud-Umgebung hat Python **3.10, 3.11, 3.12, 3.13**, **kein
+> 3.9**, kein `pyenv`. Der Lock schreibt **3.9.6 mit pandas 2.3.3** fest.
+> ⭐ **Verbleibend: ein frischer Klon auf demselben Mac mit demselben Lock** —
+> das belegt Reproduzierbarkeit aus dem Repo, **nicht Maschinenunabhängigkeit.**
+
+*Quelle: `docs/projektfuehrung/nachtraege/BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s (Fortsetzung)`, Zeile `B2`*
+
+Die **Folgerung** stand schon (`BACKLOG.md` Kettenzeile `0,99`: *„In der Cloud
+nicht möglich (B2)"*; `UEBERGABE_2026-09-19.md` Block 4 Punkt 6: *„gleiche
+Maschine zulässig"*) — der **Messbefund**, auf den `0,99` mit „(B2)" zeigt,
+stand bis zu diesem Nachtrag nur im Nachtrag selbst. ⚠️ *Gemessen am
+19.09.2026 in einer Cloud-Sitzung; nach dem Vermerk im Kopf dieser Datei ist
+das der Stand einer Sitzung, keine Zusicherung.*
+
+### Die Sperre gegen den zweiten Snapshot greift auch im Wegwerf-Klon (B3)
+
+> ⭐ **Die Sperre gegen den zweiten Snapshot greift auch im Wegwerf-Klon** — rc
+> **2**: *„Ein bestehender Snapshot wird NIE überschrieben."* **Der Schutz sitzt
+> im Code, nicht in der Umgebung**
+
+*Quelle: `docs/projektfuehrung/nachtraege/BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s (Fortsetzung)`, Zeile `B3`*
+
+Nicht zu verwechseln mit der Klon-Probe des **Locks** in Register Abschnitt 20
+(`docs/VORREGISTRIERUNG_neuselektion.md`): dort wird geprüft, dass ein Lauf
+unter dem Selektionsmodus ohne passenden Lock abbricht; hier, dass ein zweiter
+`--ziehen` gegen einen bestehenden Snapshot-Ordner auch dann mit rc 2 abbricht,
+wenn er aus einem frischen Klon heraus versucht wird.
+
+### Der Paketstand ist ohne Ausführung lesbar — Vorprüfung vor die Sitzung (B7)
+
+> ⭐ **Vorprüfung vor die Sitzung, nicht in sie** (K2b, bestätigt): Die
+> dist-info-Ordner unter `trading-env/lib/python3.9/site-packages` sind **ohne
+> jede Ausführung lesbar** — daraus entstand der Lock-Entwurf ausserhalb der
+> Sitzung, und **aus „erzeugen" wurde „gegenprüfen"**. ⭐⭐ *Eine Datei aus einer
+> Quelle ist eine Behauptung; eine, bei der zwei unabhängige Wege dasselbe sagen,
+> ist eine Messung*
+
+*Quelle: `docs/projektfuehrung/nachtraege/BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s (Fortsetzung)`, Zeile `B7`*
+
+Die **Regel** steht als `BACKLOG.md` `K2b`; das hier ist der **Weg**: wer den
+Paketstand des Mac braucht, ohne eine Sitzung zu starten, liest die
+`*.dist-info`-Ordner (am 21.09.2026: **67** unter
+`trading-env/lib/python3.9/site-packages`, gleich der Paketzahl des
+`requirements.lock` aus TB-58) — `pip freeze --all`, `dist-info` und
+`importlib.metadata` haben am 19.09.2026 null Unterschiede ergeben
+(`JOURNAL.md`, Block `BL`, `T58.3`).
+
+---
+
 ## Was ein Basislauf auf dem Mac nicht erreicht
 
 *Gemessen im TB-45-Maclauf. Wer „alle Tests grün" schreibt, meint diese nicht.*

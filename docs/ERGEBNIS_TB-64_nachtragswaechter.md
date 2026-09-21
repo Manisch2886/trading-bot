@@ -276,3 +276,76 @@ zu raten, 0 nicht zuordenbar.** Die sechs offenen `(20g)`–`(20l)` haben noch
 keinen Block; ihre Quellenzeile setzt die Sitzung, die sie einarbeitet
 (jeder der sechs Nachträge nennt sie wörtlich in seinem Kopf).
 `JOURNAL.md` **unberührt** (`git diff --numstat` nennt es nicht).
+
+---
+
+## Schritt 5 — die Cron-Zeile (Nachweis 6), vorbereitet, **nicht eingetragen**
+
+Die fünf bestehenden Wächter-Zeilen, gefiltert gelesen (`crontab -l | grep -c`
+und `awk '{print $1,$2,$3,$4,$5}'`, nie ungefiltert — `K2a`): **5** Zeilen
+`waechter_melden`, alle **5** nach dem Muster `cd ~/trading-bot &&
+/usr/bin/python3 notifications/waechter_melden.py <name> >> logs/system/<name>.log
+2>&1`, Zeiten `30 3`, `50 3`, `10 4`, `30 4`, `40 4`; **0** Zeilen für
+`nachtraege`. Die sechste Zeile, nach demselben Muster, zum Kopieren
+(`crontab -e`, der Eintrag ist Betreiberarbeit):
+
+```cron
+50 4 * * * cd ~/trading-bot && /usr/bin/python3 notifications/waechter_melden.py nachtraege >> logs/system/nachtraege.log 2>&1
+```
+
+`/usr/bin/python3` genügt — der Wächter braucht nur die Standardbibliothek
+(mit beiden Interpretern gelaufen, Schritt 3). `logs/system/` existiert
+(Cron hat es angelegt). Dieselbe Zeile steht in
+`notifications/README_WAECHTER_MELDEN.md` (Vorschlagsblock, wo die fünf
+anderen stehen) und in `system/README_NACHTRAGSWAECHTER.md`;
+`docs/UEBERGABEPROTOKOLL.md` 4.7 führt den Wächter als sechste Zeile der
+Tabelle, als *vorgeschlagen, nicht eingetragen*.
+
+**Was die erste Meldung sein wird:** Solange die sechs Journal-Nachträge
+`(20g)`–`(20l)` im Hauptordner liegen, meldet der Wächter ab dem zweiten
+Morgen nach ihrer Entstehung *„6 Nachtraege ueber der Frist offen"* — das ist
+kein Fehlalarm, sondern die Bringschuld an das Journal (Blöcke ab `BU`), die
+seit TB-67 offen ist. Nach dem Journal-Nachtrag dieser Sitzung sind es sieben.
+
+---
+
+## Schritt 5b — die drei `B`-Zeilen nach `docs/UMGEBUNGEN.md`
+
+**`docs/UMGEBUNGEN.md`, neuer Abschnitt** *„Drei Befunde vom 19.09.2026, die
+bis hierher nirgends standen"* (`numstat` **60 / 0**, eingefügt zwischen
+*„Bekannte Unterschiede im Verhalten"* und *„Was ein Basislauf auf dem Mac
+nicht erreicht"*), drei Unterabschnitte **B2**, **B3**, **B7**:
+
+| | Wortlaut | gekürzt | Quellenzeile | dazu |
+|---|---|---|---|---|
+| **B2** | aus `(m)`, Block `2s (Fortsetzung)`, als Blockzitat | **ja, ein Satz:** *„⚠️ Offene Frage an Fable"* — zeigt auf den Sitzungsverlauf | `*Quelle: `…/BACKLOG_NACHTRAG_2026-09-19m.md`, Block `2s (Fortsetzung)`, Zeile `B2`*` | wo die Folgerung schon stand (`0,99`, Übergabe Block 4 Punkt 6) und dass `0,99` mit „(B2)" bisher auf eine Zeile zeigte, die nur im Nachtrag existierte; der Vermerk aus dem Dateikopf (Stand einer Sitzung, keine Zusicherung) |
+| **B3** | wörtlich | nein | dito, Zeile `B3` | Abgrenzung zur Klon-Probe des **Locks** in Register Abschnitt 20 — TB-67 hatte gemessen, dass das Register nur die Lock-Probe beschreibt |
+| **B7** | wörtlich | nein | dito, Zeile `B7` | dass die **Regel** `K2b` ist und dies der **Weg**; am 21.09.2026 gezählt: **67** `*.dist-info` unter `trading-env/lib/python3.9/site-packages`, gleich der Paketzahl des Locks (`T58.3`, Journal `BL`) |
+
+**Wortlaut-Probe** (`python3`, Blockquote-Präfixe und Zeilenumbrüche
+normalisiert, dann `in`): **B2, B3, B7 je zeichengleich** mit der Zeile im
+Nachtrag (bei B2 nach Abzug des gekürzten Satzes). ⚠️ Der erste Entwurf hatte
+bei B3 einen Punkt vor `**` ergänzt — die Probe hat es gefunden, der Punkt ist
+wieder weg. *Erfunden wurde keine Formulierung; die Absätze unter den Zitaten
+sind Einordnung mit Fundstellen, keine Regeln.*
+
+**Passt keine der drei nach `UMGEBUNGEN.md`?** Alle drei passen: B2 ist ein
+Messbefund über die Cloud-Umgebung (der Gegenstand der Datei), B3 sagt, dass
+ein Schutz **von der Umgebung unabhängig** ist, B7 beschreibt, wie der
+Paketstand des Mac ohne Sitzung gelesen wird. Nichts vorzulegen (A2 nicht
+nötig). ⚠️ Der Kopf der Datei sagt, eine Sitzung könne eine neue Fassung
+nicht selbst eintragen, sondern berichte sie — hier hat der Betreiber am
+20.09.2026 ausdrücklich entschieden, dass diese drei Zeilen in dieser
+Aufgabe dorthin kommen (Auftrag, Schritt 5b); der Abschnitt nennt das.
+
+**Danach, und erst danach: `(m)` nach `_eingearbeitet/`** (`git mv`, Datei
+unverändert). Lauf des Wächters (`docs/belege/TB-64/schritt5b_lauf_echt.txt`):
+
+```
+Zusammenfassung: 0x OFFEN UEBER DER FRIST, 6x offen in der Frist, 4x NICHT PRUEFBAR, 0x FALSCH VERSCHOBEN, 0x DOPPELBELEGUNG
+Kein Befund: nichts liegt ueber der Frist, nichts ist falsch verschoben, keine Nummer doppelt.
+```
+
+**Rückgabewert 0.** `(m)` steht unter `_eingearbeitet/` als `OK … Nummern 8,
+nicht angekommen 0` — über die Vermerke `K4b`/`K4g` (Schritt 1). Im Hauptordner
+liegen die sechs Journal-Nachträge, alle in der Frist.
