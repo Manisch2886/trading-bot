@@ -1,0 +1,11 @@
+TB-75 Schritt 1 - Alter der sieben offenen Journal-Nachtraege (gemessen 2026-09-21 09:12 Ortszeit)
+Datei | erstellt (erster Commit) | letzte Aenderung (Commit) | mtime im Arbeitsbaum
+JOURNAL_NACHTRAG_2026-09-20g.md | 2026-09-20 17:52:33 544b011 | 2026-09-20 17:53:18 a15746f | 2026-09-20 17:53:18
+JOURNAL_NACHTRAG_2026-09-20h.md | 2026-09-20 18:22:28 4326ff2 | 2026-09-20 18:26:47 1a301b0 | 2026-09-20 18:26:47
+JOURNAL_NACHTRAG_2026-09-20i.md | 2026-09-20 18:53:50 b3b37f0 | 2026-09-20 18:53:50 b3b37f0 | 2026-09-20 18:51:49
+JOURNAL_NACHTRAG_2026-09-20j.md | 2026-09-20 20:06:09 5dcea37 | 2026-09-20 20:06:09 5dcea37 | 2026-09-20 20:05:27
+JOURNAL_NACHTRAG_2026-09-20k.md | 2026-09-20 21:18:09 68c8ca2 | 2026-09-20 21:18:09 68c8ca2 | 2026-09-20 20:42:56
+JOURNAL_NACHTRAG_2026-09-20l.md | 2026-09-20 22:04:27 bb6ab88 | 2026-09-20 22:04:27 bb6ab88 | 2026-09-20 22:04:04
+JOURNAL_NACHTRAG_2026-09-20m.md | 2026-09-21 07:30:13 9a51add | 2026-09-21 07:30:33 f0ca921 | 2026-09-21 07:30:33
+Befund: mtime und Commit-Zeit stimmen auf die Minute ueberein (alle Sitzungen liefen auf dem Mac, kein Klon dazwischen).
+Der aelteste Nachtrag (20g) ist 0,6 Tage alt; die Frist von 1 Tag ist am 21.09. 17:53 erreicht - der Cron-Lauf am 22.09. frueh haette ihn gemeldet.
