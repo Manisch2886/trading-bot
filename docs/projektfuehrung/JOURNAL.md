@@ -7503,6 +7503,57 @@ Quellenvermerk: siehe Kopf.*
 
 ---
 
+## CB — TB-75: sieben Nachträge, die zweite Bewährung des Wächters, und der Umweg fällt für Mac-Sitzungen (21.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-75_journal_nachziehen.md`*
+
+**Quelle:** Mac-Sitzung **TB-75 Journal nachziehen**, 21.09.2026, ab 09:11
+Ortszeit, Ausgang `f0ca921`, reine Dokumentation (`python3` nur für Zählskripte
+und den Wächter, nichts ausserhalb `docs/`). Commits `f1124ba` (Schritt 0),
+`ac8bb9b` (Wächter vorher), `a096a7f` (Blöcke `BU`–`CA`, 352/0), `d83ee02`
+(sieben `git mv`, Wächter nachher), `8d486ac` (Belege der Messung) und der
+Abgabe-Commit. Belege `docs/belege/TB-75/`. ⭐ **Erster Block, den eine
+Mac-Sitzung selbst ins Journal schreibt** — nach Betreiberentscheidung in
+dieser Sitzung; die Quellenzeile zeigt deshalb auf das Ergebnisdokument, nicht
+auf eine Nachtragsdatei.
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Wächter vorher | rc 0: **7 offen in der Frist** (`(20g)`–`(20m)`, ältester 0,6 d), 0 darüber, 0 falsch verschoben, 4 nicht prüfbar. Menge wie im Auftrag; Status anders — er hätte erst am 22.09. gemeldet, der Auftrag kam ihm einen Tag zuvor |
+| Blöcke | `BU`–`CA`, 352 Zeilen für 869 Zeilen Nachtrag (41 %), `numstat 352 0`, Quellenzeilen 14 → 21, kein Buchstabe doppelt |
+| Wächter nachher | rc 0: 0 offen, 37 unter `_eingearbeitet/`, alle sieben „Quellenzeile im Journal" |
+| Umweg, Punkt 1 | auf `main` seit 19.09. **kein** Sitzungslauf von einem anderen unterbrochen (Trailer als Kennzeichen); der Betreiber schrieb dreimal während Sitzungen in den Baum — nie `JOURNAL.md` (7 Commits, seit TB-50 Spalte zwei 0) |
+| Punkt 2 | drei Abbrüche (TB-59, TB-60, TB-72), zwei davon an der Abgabe; nie eine halbe Datei, immer die ganze fehlend. **3 von 7 Nachträge wurden nach dem ersten Commit umgeschrieben** (`20g` sachlich, `20h` Entscheidungen, `20m` Hash) — im Journal wären das Berichtigungszeilen |
+| Punkt 3 | Buchstabe von den Nachträgen 3/3 richtig vorhergesagt; Wegwerf-Repo: derselbe Buchstabe aus zwei Klonen → `rejected`, `rebase` und `merge` je `CONFLICT`, nie still |
+| Punkt 4 | Journal-Anteil des Wächters: 7 Zeilen in `pruefe_datei`, `Ziel.quellenzeilen`, 2 von 12 Tests; B und C unberührt. **7 von 18 Journal-Nachträgen kamen vom Chat** ohne Terminal — für sie bleibt der Umweg (5b); 11 von Mac-Sitzungen |
+| Punkt 5 | `(20m)` → `CA` 41 %; nicht übernommen nur, was den Umweg selbst beschreibt, und die Alltagsfassung (Platz vorhanden). TB-67 hatte **965 Zeilen für 882** geschrieben — die Verdichtung kam in 1 von 2 Einarbeitungen. Verzug 0,7–21,9 h, drei Sitzungen für 18 |
+
+### Die Entscheidung
+
+Anklickbare Frage, drei Wege mit Preis, Empfehlung (a). **Der Betreiber wählte
+(a): Mac-Sitzungen schreiben ihren Block bei der Abgabe direkt** vor
+`## Wiederkehrende Lehren`, Buchstabe gemessen, Quellenzeile auf das
+Ergebnisdokument; Chat-Nachträge bleiben Dateien. **Preis, benannt:** der
+Wächter sieht einen fehlenden Mac-Block nicht mehr — kein Objekt, kein Befund;
+Ersatz wäre eine Wache über `ERGEBNIS_TB-*.md` ab Stichtag (13 von 46 nennen
+heute ihren Dateinamen im Journal). Die Regeltexte (`ARBEITSWEISE.md` 14,
+`DOKUMENTATIONSSTANDARD.md` 10) ändert diese Sitzung nicht — `K4n`.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Eine TB-Nummer im Commit-Text ist kein Sitzungskennzeichen.** Beauftragung, Nachtrag und Merge tragen sie auch; Sitzung ist, was den Trailer trägt. Die wörtliche Spannenmessung fand 102 Überlappungen, die richtige 0 |
+| ⭐ | **Ein Umweg wird an dem gemessen, was er verspricht.** Der Nachtragsweg versprach Verdichtung und lieferte sie in einer von zwei Einarbeitungen; was er wirklich trug, war eine Entwurfsstufe — 3 von 7 Notizen wurden berichtigt, bevor sie append-only wurden |
+| ⭐ | **Eine Frage „ist X noch nötig?" hat oft zwei Antworten, weil X zwei Wege bedient.** Hier: nein für Sitzungen mit Terminal, ja für den Chat ohne |
+| | Eine Wache, die auf einer Datei sitzt, verliert mit der Datei ihre Sicht — wer den Weg kürzt, nennt, was die Wache stattdessen ansehen soll |
+
+*Geschrieben 21.09.2026 von der Mac-Sitzung TB-75 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
