@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-80** | `docs/auftraege/MAC_TB-80_bedingung_i_auf_asof.md` | ⭐⭐ **Bedingung (i) rechnet gegen die Datenuhr, das Register verlangt das absolute Datum** — Umstellung auf den Horizontbeginn aus Register 28.4 (`2016-09-19`), Wirkung gemessen und berichtet, Mutationsprobe in beide Richtungen, Registerabschnitt 32. ⭐ **Betreiberfreigabe fuer `research/vorregistrierung/faltenplan.py` liegt vor** (21.09.2026, 21:47). ⛔ **Kein Bot-Code, keine Sperrlisten-Datei, neuer Plan daneben** |
+| **TB-81** | `docs/auftraege/MAC_TB-81_faltenplan_als_registertext.md` | ⭐⭐ **Der Faltenplan wird Registertext** (Fable 30.2 (2)) — je Bot Horizontbeginn, Faltenlaenge, erste Falte, Faltenliste; dazu die **Berichtigung zu 30.2 (3)**: statt eines Urteils ueber tote Felder eine **abschliessende Feldliste** (Fable 21k, er hat sein eigenes Kriterium zurueckgenommen). ⛔ **Kein Code, keine Abbild-Datei, keine Sonde** — die folgen nach seiner Pruefung und mit eigener Freigabe |
 
 *Gesetzt 21.09.2026 (zuvor TB-77, erledigt mit `83e3a85`, 21.09.2026; davor
 TB-69 `1ded755`, TB-76 `3c25d94`, TB-63 `437428d`, TB-75 `c96c208`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
