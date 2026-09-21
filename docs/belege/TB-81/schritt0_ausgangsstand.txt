@@ -1,0 +1,30 @@
+# TB-81 Schritt 0 — Ausgangsstand (gemessen 2026-09-21T20:58:38Z, Mac, main)
+
+## git status --short (vor dem Schreiben)
+    ?? docs/belege/TB-81/
+    (nur der von diesem Schritt selbst angelegte Belegordner; vor dem Anlegen war der Arbeitsbaum leer. FABLE_ANTWORT_2026-09-21k_abbild_schema.md liegt bereits versioniert in Commit 0509c5e, nichts vom Betreiber unversioniert)
+
+## HEAD
+0509c5e TB-81 beauftragt: Faltenplan als Registertext (30.2 (2)) und Berichtigung zu 30.2 (3) - abschliessende Feldliste statt Urteil ueber tote Felder; Fable 21k abgelegt
+
+## Registerabschnitt 33 vor dem Eintrag
+    grep -cE '^## 33\.' docs/VORREGISTRIERUNG_neuselektion.md -> 0
+
+## SHA-256 der drei Sperrlisten-Dateien (voller Pfad)
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+## SHA-256 der zwei Nachbardateien (Abschlusspruefung 4)
+19e8cbca874d6e7455f2f3bc0723def9ea058d0b314fa1772e04cd64ff1c9d24  research/vorregistrierung/ergebnisse/faltenplan_tb72.json
+2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794  research/vorregistrierung/ergebnisse/faltenplan_tb80.json
+
+## Alle faltenplan*.json im Repo (ohne trading-env/)
+    ./docs/belege/TB-72/faltenplan_4a_stand_vor_tb72.json
+    ./docs/belege/TB-80/faltenplan_stand_vor_tb80.json
+    ./research/faltenplan_neun/daten/faltenplan_ohne_schranke.json
+    ./research/faltenplan_neun/daten/faltenplan.json
+    ./research/krypto_historie/daten/faltenplan_nach_tb34.json
+    ./research/vorregistrierung/ergebnisse/faltenplan_tb72.json
+    ./research/vorregistrierung/ergebnisse/faltenplan_tb80.json
+    ./research/vorregistrierung/ergebnisse/faltenplan.json
