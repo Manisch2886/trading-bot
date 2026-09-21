@@ -1,5 +1,39 @@
 # Backlog-Epics Trading-Bot-Projekt
 
+**Angelegt 21.09.2026 (TB-63).** Diese Datei gehört **nicht** in jede
+Sitzung. Sie trägt die fünf Epics **AF, MI, QR, KG, RT** und den Querschnitt
+über ihre Nachträge — die Blöcke `2t` bis `2y`, die bis zum 21.09.2026 in
+`BACKLOG.md` standen und dort nichts entschieden haben, weil **alle fünf
+ausdrücklich hinter dem signierten Tag geparkt sind** (jeder Block sagt das
+in seinem ersten Punkt selbst) — **zeichengleich verschoben, nicht
+umformuliert**, nachgewiesen in `docs/ERGEBNIS_TB-63_epics_auslagern.md`.
+
+> ⚠️ **Hier wird nichts entschieden.** Die aktiven Punkte stehen in
+> `BACKLOG.md` — dort bleiben auch, was heute etwas entscheidet: die
+> Kettenzeilen der Epics in Abschnitt 3 (Ränge 6, 7, 8 für AF, QR, MI), die
+> ortsunabhängigen, rein lesenden Vorarbeiten `0,96` / `0,97` / `0,98`
+> (`AF-F0`, Backlog-Sichtung, `MI-F0 / MI-T0.1`) und die allgemeinen Regeln
+> aus den Epic-Nachträgen in Abschnitt 4 (`K2p`–`K3j`). **Diese Datei wird
+> nur gelesen, wenn es um die Epics geht** — wenn eine ihrer Kettenzeilen
+> fällig wird oder ein Konzept fortgeschrieben werden soll.
+
+> ⭐ **Die Reihenfolge, in der die Epics kommen: `AF → RT → QR → KG → MI`**
+> *(begründet in Nachtrag (r), `RT9` — nicht nach Anspruch, sondern nach
+> Voraussetzungen: RT braucht fast keine und macht AFs Ausgabe erst
+> glaubwürdig).*
+
+> ⭐ **Was hier steht, in der Reihenfolge der Ablage:** `2t` (Epic AF, aus
+> Nachtrag (n)), `2u` (Epic MI, aus (o)), `2v` (Epic QR, aus (p)), `2w`
+> (Epic KG, aus (q)), `2x` (Epic RT, aus (r)) und `2y` (Querschnitt über
+> (n)–(r)) — alle sechs eingearbeitet durch TB-59 am 19.09.2026, hier im
+> Wortlaut vom 21.09.2026 (Stand `f2e0a68`; gemessen gegen `e5720ed` seit
+> der Einarbeitung unverändert). Bezeichner und Nummern sind unverändert;
+> jeder kommt in `BACKLOG.md`, `BACKLOG_ARCHIV.md` und hier zusammen genau
+> einmal vor. Statusangaben sind der damalige Wortlaut und wurden beim
+> Verschieben nicht nachgeprüft. ⚠️ **Nichts davon ist gelöscht.**
+
+---
+
 ## 2t — Epic AF: Autonome Strategie-Forschungspipeline
 
 *Eingearbeitet durch TB-59 aus Nachtrag (n); Nummer `2t` dort vorgeschlagen und bei der Einarbeitung als nächste freie nach `2s` gemessen. Die Vorlage liegt im Repo unter `docs/vorlagen/vorlage_forschungspipeline_2026-09-19.md`.*

@@ -332,6 +332,25 @@ Wartezustand auf ihn besteht nicht mehr.
 | **T46.1c** | ⭐ **Der Vorschlag, und ausdrücklich nicht der naheliegende.** ⛔ **Nicht** den `continue` entfernen — ohne Kerze liesse sich der Stop nur auf einem veralteten Kurs bewerten, **genau der Trade, den Fables Frage verhindern will**. ⭐ **Stattdessen melden:** eine Zeile über `shared/ladeprotokoll.py` mit Symbol, Trade-Kennung und Grund. **Ändert kein Verhalten, nur Sichtbarkeit** — dieselbe Klasse wie TB-42 Teil 1, **kein Amendment**. ⚠️ **Berührt alle neun `forward_test.py`, Sperrliste, freigabepflichtig — Betreiberentscheidung** |
 | **T46.1d** | ⚠️ **REGISTERFRAGE, offen:** Registertext 7, Ergänzung I (Abschnitt 17.6) kennt den **Kein-Entscheid-Tag**. Ob ein Tag, an dem ein Symbol keine Kerze hatte und sein Stop deshalb ungeprüft blieb, darunter fällt, **steht nirgends**. Gehört geklärt, **bevor** der Backtester-Vergleich solche Tage zählt — sonst entscheidet es sich beim ersten Auftreten, und dann ist der Sieger bekannt |
 
+## Die fünf Epics 2t bis 2y — nach `BACKLOG_EPICS.md` verschoben (21.09.2026, TB-63)
+
+Alle fünf Epics sind **hinter dem signierten Tag geparkt** — jeder Block sagt
+das in seinem ersten Punkt selbst — und entscheiden heute nichts; sie stehen
+seit dem 21.09.2026 **zeichengleich** in `BACKLOG_EPICS.md`, Nachweis in
+`docs/ERGEBNIS_TB-63_epics_auslagern.md`. **Die Datei wird nur gelesen, wenn
+es um die Epics geht.** Was heute etwas entscheidet, bleibt hier: die
+Kettenzeilen in Abschnitt 3 (Ränge 6–8 und `0,96`–`0,98`) und die Regeln in
+Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
+
+| Block | Epic | Datei |
+|---|---|---|
+| `2t` | AF — Autonome Strategie-Forschungspipeline | `BACKLOG_EPICS.md`, Abschnitt `2t` |
+| `2u` | MI — KI-Marktverständnis und adaptive Allokation | `BACKLOG_EPICS.md`, Abschnitt `2u` |
+| `2v` | QR — Alpha-Discovery-Labor | `BACKLOG_EPICS.md`, Abschnitt `2v` |
+| `2w` | KG — Market Causal Graph & Market Physics Engine | `BACKLOG_EPICS.md`, Abschnitt `2w` |
+| `2x` | RT — Autonomous Adversarial Trading Lab | `BACKLOG_EPICS.md`, Abschnitt `2x` |
+| `2y` | Querschnitt über die fünf Epic-Nachträge (n) bis (r), TB-59 | `BACKLOG_EPICS.md`, Abschnitt `2y` |
+
 ---
 
 ## 2z — Der Sitzungstag 20.09.2026: Start, Dokumentationsregel, Verbindungsabbrüche
