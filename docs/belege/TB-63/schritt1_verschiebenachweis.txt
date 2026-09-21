@@ -1,0 +1,8 @@
+Basis f2e0a68 -> WORKTREE
+BACKLOG.md entfernte Zeilen (Multimenge): 925   hinzugefuegte: 0
+davon NICHT zeichengleich in BACKLOG_EPICS.md: 0
+Gegenprobe - Zeilen nur im Ziel (Kopf und Verweise): 2
+   NUR IM ZIEL (1x): ''
+   NUR IM ZIEL (1x): '# Backlog-Epics Trading-Bot-Projekt'
+Zeilen im Ziel gesamt: 927  (= 925 verschoben + 2 eigene  -> stimmt)
+--- hinzugefuegte Backlog-Zeilen (die Verweistabelle):

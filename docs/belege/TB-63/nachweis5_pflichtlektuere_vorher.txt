@@ -1,0 +1,6 @@
+   28953 docs/projektfuehrung/UEBERGABE_2026-09-19.md
+   20051 docs/projektfuehrung/UMZUG.md
+   70905 docs/projektfuehrung/ARBEITSWEISE.md
+   17647 docs/PRUEFPRINZIPIEN.md
+  264481 docs/projektfuehrung/BACKLOG.md
+  402037 total

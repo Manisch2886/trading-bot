@@ -1,0 +1,3 @@
+2	3	docs/auftraege/AKTUELLER_AUFTRAG.md
+52	0	docs/projektfuehrung/ARBEITSWEISE.md
+27	0	docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
