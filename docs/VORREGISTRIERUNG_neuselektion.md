@@ -4001,6 +4001,8 @@ neue Backtests. Sie setzt keinen Tag.
 die Lücke, die Zahlen je Falte, die fünf Gegenfälle mit ihrem Grund — und
 entscheidet nichts.*
 
+> ⭐ **Nachtrag zur Lücke (TB-77, 21.09.2026; Fable, Kurzfassung vom 21.09., Teil 2 (5)):** Die Lücke *„Krypto 2018–2020 nicht messbar"* betrifft **nur die TB-24-Trade-Listen dieser Messung**, nicht den Lauf. Fable stellt klar: *„der Snapshot enthält Krypto 2018–2020, die Nebenbedingung wird dort gerechnet."* Nachgemessen 21.09.2026 am gezogenen Snapshot `63e4b6c8…` (Abschnitt 18): `BTCUSDT_1d.csv` und `ETHUSDT_1d.csv` beginnen am **2017-08-17** (3 317 Zeilen bis 2026-09-14); **6 der 24** Krypto-1d-Dateien beginnen vor dem 01.01.2019. Der Selektionslauf rechnet die Nebenbedingung in den Falten 2018–2020 auf diesem Bestand; was oben fehlt, ist allein die Vorab-Messung der MtM-Wirkung für diese Falten. Die Tabelle oben bleibt, wie sie ist.
+
 ---
 
 ## 25. Berichtigung zu Registertext 4a und zu 21.3 (b) — die erste Falte ist eine Konjunktion, und der Plan leitet sie aus dem Trockenlauf ab (TB-72, 20.09.2026)
@@ -4444,3 +4446,101 @@ Loader importiert haben; wo sie es taten, gilt dasselbe.
 Docstring), kein `registerdaten.py`, keine Sperrlisten-Datei
 (`benchmark_drawdowns.json` `a163c498…`, `faltenplan.json` `0e54ac5c…`
 byteweise unverändert), kein Tag, kein Lauf.
+
+---
+
+### 26.7 Der Grenzfall — was gilt, wenn für einen Bot kein Parametersatz besteht: die Kette (b) → Festlegung 11 → Registertext 6 (b) → Schatten
+
+**Das ist ein Verweis, keine Berichtigung.** Fables Teil 2 vom 21.09.2026
+(Antwort auf `FABLE_ANFRAGE_2026-09-21a…`, Teil 2, Fragen (3) und (4))
+entscheidet den Fall, den die Anfrage für ungeregelt hielt — und die
+Entscheidung steht bereits im Register, an vier Stellen, die bisher niemand als
+Kette gelesen hat. **Jede Stelle nachgemessen 21.09.2026 (Stand `2e9cdf9`):**
+
+| Glied | Fundstelle | Wortlaut |
+|---|---|---|
+| **1. Der Fall ist ein Abbruchkriterium** | Abschnitt 7, **(b)**, Z. 686; Präzisierung Z. 692–694 | *„**(b)** Kein Parametersatz erfüllt die Drawdown-Bedingung in allen Falten"* — *„Gewinnen kann nur ein zulässiger Punkt. Ist keiner zulässig, greift (b); berichtet wird dann der Plateau-Gewinner über alle Zellen, ausdrücklich mit der Markierung ‚nicht zulässig'."* |
+| **2. Bleibt/Geht läuft über die Abbruchkriterien** | Abschnitt 1, **Festlegung 11** (`registerdaten.FESTLEGUNGEN[11]`) | *„DSR ist Bericht, nicht Tor — Bleibt-Geht läuft über die Abbruchkriterien."* Ein Bot, der (b) erfüllt, **bleibt nicht** |
+| **3. Die Stufe** | 16.4, **Registertext 6, Buchstabe (b)** | *„jeder, der eines erfüllt, auf **Schatten** — sein Budgetanteil hält die statische Benchmark-Position in Höhe seines mittleren Exposures. Die Zuweisung ist Ergebnis des eingefrorenen Skripts, keine Lesung."* |
+| **4. Was Schatten heisst, und der Weg zurück** | Registertext 6 (a) und (d), 16.4; Abschnitt 7.1 | Schatten: *„läuft, kein Portfoliogewicht, nicht in Portfolio-Zahlen und nicht am Crash-Knopf"* — mit seinen heutigen Parametern. Kapital: *„statische Benchmark-Position in Höhe des mittleren Exposures — nicht in Kasse, nicht zu den Überlebenden."* Rückkehr: *„nur über einen neuen registrierten Lauf"* (6 (d)); *„Kein ‚vorerst behalten'"* (7.1) |
+| **5. Das Ergebnis ist zulässig, auch bei mehreren oder allen** | **Festlegung 12** (wörtlich, Abschnitt 1) und 7.1 | *„Es kann sein, dass kein einziger Bot die Schwelle erreicht."* — *„Die Anzahl ausscheidender Bots ist KEIN Grund, eine Schwelle zu ändern."* |
+
+**Die Kette ist im eingefrorenen Skript bereits Code:** `auswertung.py::kapitalregel`
+(Z. 554–576) gibt `kapitalregel`, `schattenregel`, `schwellenregel` und
+`zulaessiges_ergebnis` (`rd.FESTLEGUNGEN[12][1]`) am Ende jeder Bleibt-Geht-Liste
+aus; `test_vorregistrierung.py` Teil D prüft
+`b_kein_satz_besteht_die_drawdown_bedingung` (Z. 288, 348–350). **Fällt ein
+Bot nach (b), gibt es nach dem Lauf keine Entscheidung, nur eine Lektüre**
+(Abschnitt 0).
+
+⚠️ **Zwei Aktenzeichen aus Fables Antwort, nachgemessen und nicht übernommen**
+(`registerdaten.FESTLEGUNGEN`, `docs/belege/TB-77/schritt1_blocker_nachgemessen.md`,
+Nachweis 4): Fable nannte *„Festlegung 10"* für Bleibt/Geht über die
+Abbruchkriterien — das ist **11** (10 ist die DSR-Basis, N = 653); und
+*„Festlegung 11"* für „mehrere oder alle" — das ist **12**. Sein Vorbehalt
+*„fehlt (b) im Registertext"* ist gegenstandslos: (b) steht in Abschnitt 7,
+wörtlich.
+
+⚠️ **Quelle, nicht geglättet:** Fable verweist für Teil 2 auf ein Dokument
+`FABLE_ANTWORT_2026-09-20a_grenzfall`. **Es existiert nicht** — weder im Repo
+(gemessen 21.09.2026, 13:50 durch den steuernden Chat; hier nachgemessen:
+`find` 0 Treffer für `*grenzfall*` ausser der Anfrage vom 21.09.) noch in der
+Projektablage (`FABLE_UEBERGABE_2026-09-21_neuer_chat.md`, Abschnitt 4 (3)).
+Vom 20.09. liegen vier Antworten vor: Kalender, Kapitalpfad, MtM-Messung,
+Konjunktion. **Quelle dieses Abschnitts ist allein seine Kurzfassung vom
+21.09.2026**, wie sie der Auftrag (`MAC_TB-77_horizont_je_bot.md`, Schritt 3)
+und die Übergabe an den neuen Chat (`FABLE_UEBERGABE…`, Abschnitt 3 (e))
+wiedergeben — das fehlende Dokument wird nicht zitiert.
+
+⭐ **Und die Antwort auf Frage (4) der Anfrage — ob vorab gemessen werden darf,
+wie viele Sätze die härtere Bedingung kostet:** *nein.* Fable, nach
+`FABLE_UEBERGABE…` Abschnitt 3 (e): *„Die Zahl der zulässigen Sätze je Bot ist
+der Ausgang des Laufs — die erste Hälfte des Laufs selbst."* Das ist dieselbe
+Linie wie 24.3 (*„vor jeder Messung"*), nur eine Stufe strenger: dort war die
+Zahl folgenlos, hier wäre sie eine Aussage über den Ausgang. **Es wird nicht
+gemessen.** Diese Sitzung hat es nicht getan (26.6, letzte Zeile).
+
+---
+
+### In einfacher Sprache
+
+**Was entschieden ist:** Die „letzten zehn Jahre", auf die ein Aktien-Bot bei
+der Auswahl schaut, gelten künftig für den ganzen Bot — nicht für jedes
+Wertpapier einzeln. Heute rechnet jeder Bot das Fenster für jedes Wertpapier
+von dessen letztem Kurs aus zurück. Endet die Kursdatei eines Wertpapiers
+früher, liegt sein Fenster früher — und der Bot handelt darin in Jahren, die
+offiziell gar nicht ausgewertet werden. Diese Geschäfte tauchen in keiner
+Jahresfalte auf, aber sie verändern still das Kapital, mit dem das erste
+ausgewertete Jahr beginnt. Der Lesewächter merkt das nicht, weil die Datei
+selbst erlaubt ist.
+
+**Was dabei auffiel:** Die neue Regel braucht ein Stichtagsdatum (`asof`), von
+dem aus die zehn Jahre zurückgerechnet werden. Das Regelwerk sagt seit dem
+18.09., dass es dieses Datum aus dem Register bekommt — **aber es steht
+nirgends.** Gesucht wurde im ganzen Code, in allen Ergebnisdateien, im
+Datenschnappschuss und im Register selbst. Und die Wache, die Fable
+vorschlägt, gehört in eine Datei, die eingefroren ist und bis zum Umbau
+(TB-30b) nicht angefasst wird.
+
+**Was dieser Abschnitt deshalb tut:** Er schreibt die Regel wörtlich auf und
+setzt dort, wo das Datum stehen müsste, einen sichtbaren Platzhalter — statt
+eine Zahl zu erfinden. Das Datum, das dem Wert am nächsten kommt (2016-09-01
+aus dem Jahr 2026 zurück), steht ausdrücklich daneben als das, was es ist: der
+alte Bezug, nicht der neue. Ausserdem hält er fest, dass alle bisherigen
+Auswahltabellen der vier Aktien-Bots noch mit dem alten Fenster je Wertpapier
+gerechnet sind — ein Grund mehr, sie nicht mit dem Lauf zu vergleichen.
+
+**Und der Grenzfall:** Was passiert, wenn für einen Bot am Ende gar keine
+Einstellung die Verlustgrenze in allen Jahren einhält? Die Antwort stand
+schon da, verteilt auf vier Stellen: Das ist Abbruchkriterium (b); der Bot
+bleibt nicht; er läuft mit seinen heutigen Einstellungen als Schatten ohne
+Geld weiter; sein Geld geht in eine feste Marktposition; zurück kommt er nur
+über einen neuen, vorher registrierten Lauf. Und vorher nachzuzählen, wie
+viele Einstellungen die härtere Grenze kostet, ist verboten — die Zahl verriete
+den Ausgang.
+
+*Nachgetragen in TB-77, 21.09.2026. Präzisierung mit Registertext, Platzhalter
+und Verweis: sie nennt den Befund mit seinen Fundstellen, den Registertext mit
+seiner Herkunft, den fehlenden Wert als fehlend, die Ergänzung zu 3 (c), die
+Herkunft der bisherigen Ergebnisse, die Kette des Grenzfalls und das, was
+nicht getan wird — und entfernt nichts.*
