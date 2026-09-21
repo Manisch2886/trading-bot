@@ -128,3 +128,44 @@ einem Dauerbefund ist keiner.
 ---
 
 *(Die Nachweise 2 bis 8 folgen je Schritt.)*
+
+---
+
+## Schritt 2 — nach `_eingearbeitet/` verschoben (Nachweis 4)
+
+`docs/projektfuehrung/nachtraege/_eingearbeitet/` existierte bereits (TB-67,
+`4117ee7`). Verschoben per `git mv` (git führt sie als `R`, reine
+Umbenennung, kein Byte geändert) — **nur, was in Schritt 1 geprüft war:**
+
+| verschoben | geprüfte Nummern | Grundlage |
+|---|---:|---|
+| `BACKLOG_NACHTRAG_2026-09-18e.md` | 7 | 7 von 7 angekommen |
+| `…18f.md` | 3 | 3 von 3 |
+| `…18g.md` | 3 | 3 von 3 |
+| `…19h.md` | 6 | 6 von 6 (`0,87` → `0,88` mit Vergabevermerk) |
+| `…19i.md` | 3 | 3 von 3 |
+| `…19j.md` | 6 | 6 von 6 |
+| `…19k.md` | 6 | 6 von 6 |
+| `…19l.md` | 4 | 4 von 4 |
+| `…19n.md` | 4 | 4 von 4 (drei K unter neuer Nummer, Vermerk) |
+| `…19o.md` | 5 | 5 von 5 (vier K unter neuer Nummer, Vermerk) |
+| `…19p.md` | 5 | 5 von 5 (vier K unter neuer Nummer, Vermerk) |
+| `…19s.md` | 2 | 2 von 2 |
+| `…19t.md` | 2 | 2 von 2 |
+| `…19v.md` | 22 | 22 von 22 |
+| `…19q.md` | 23 *(Handprüfung)* | `KG0`–`KG9` 10/10, `KG-F0`–`KG-F12` 13/13 |
+| `…19r.md` | 22 *(Handprüfung)* | `RT0`–`RT9` 10/10, `RT-F0`–`RT-F11` 12/12 |
+| `…19u.md` | 4 *(Handprüfung)* | `T46.1a`–`T46.1d` 4/4 |
+| `…19q_r_berichtigung.md` | 5 *(Handprüfung)* | Punkt 1–4 je einmal zitiert, Punkt 5 = `K3e` |
+
+**18 Dateien, 132 geprüfte Nummern.** ⚠️ Die vier mit *Handprüfung* nennen
+keine Nummer der drei Wächter-Formen; sie sind durch die Messung dieser
+Sitzung verschoben, und der Wächter führt sie unter `_eingearbeitet/` als
+**nicht prüfbar (A2)** — sichtbar im Log, kein Befund.
+
+**Nicht verschoben:** `BACKLOG_NACHTRAG_2026-09-19m.md` (wartet auf Schritt
+5b — Auftrag: *„Danach, und nur danach, gilt (m) als eingearbeitet"*) und die
+sechs Journal-Nachträge `(20g)`–`(20l)` (0 von 6 Quellenzeilen; ihre
+Einarbeitung ist nicht Gegenstand dieses Auftrags, Abschnitt 7).
+
+Im Hauptordner liegen danach **7** Dateien, unter `_eingearbeitet/` **29**.
