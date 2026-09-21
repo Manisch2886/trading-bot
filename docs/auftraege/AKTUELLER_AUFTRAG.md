@@ -36,10 +36,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-63** | `docs/auftraege/MAC_TB-63_epics_auslagern.md` | Die fünf Epics nach `BACKLOG_EPICS.md` — ⚠️ **setzt TB-62 voraus**, rechnet nicht |
+| **TB-76** | `docs/auftraege/MAC_TB-76_waechter_ziele.md` | ⚠️⚠️ **EILIG — der Wächter meldet seit TB-63 falsch** (rc 1, drei Nachträge als „falsch verschoben“), weil er `BACKLOG_EPICS.md` nicht kennt. **Erster automatischer Lauf: 22.09., 04:50.** `A4` — eine dauerhaft rote Wache ist keine. Klein, nur `system/` |
 
-*Gesetzt 21.09.2026 (zuvor TB-75, erledigt mit `c96c208`, nachgemessen und
-geschlossen am 21.09.2026, 10:30 Ortszeit; davor TB-64 `f0ca921`, TB-73 `2150318`, TB-72 `537ca51`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 21.09.2026 (zuvor TB-63, erledigt mit `437428d`, nachgemessen und
+geschlossen am 21.09.2026, 12:35 Ortszeit; davor TB-75 `c96c208`, TB-64 `f0ca921`, TB-73 `2150318`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
