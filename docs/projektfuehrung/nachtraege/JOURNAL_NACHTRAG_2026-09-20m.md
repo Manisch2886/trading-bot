@@ -6,7 +6,7 @@ Ortszeit, Ausgang `2150318` (= `origin/main` beim Start), Interpreter
 Betreiber-Dateien), `54b27ce` (Schritt 1, Messung), `b220c8f` (Schritt 2, 18
 Dateien verschoben), `2c4af5b` (Schritt 3, Wächter und Test), `4ca8af9`
 (Schritt 4, Quellenvermerk im Dokumentationsstandard), `3f22443` (Schritt 5
-und 5b, Cron-Zeile und `UMGEBUNGEN.md`), dann Schritt 6 (dieser Nachtrag,
+und 5b, Cron-Zeile und `UMGEBUNGEN.md`), `9a51add` (Schritt 6, dieser Nachtrag,
 `docs/ERGEBNIS_TB-64_nachtragswaechter.md`). **Einzuarbeiten als nächster
 Block nach dem höchsten vorhandenen** (am 21.09.2026 gemessen: `BT`;
 `(20g)` bis `(20l)` liegen davor — die Nummer vergibt die einarbeitende

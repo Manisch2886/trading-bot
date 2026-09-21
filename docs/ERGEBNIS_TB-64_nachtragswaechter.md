@@ -458,7 +458,7 @@ angefasst (`logs/system/nachtraege.log` entsteht erst mit der Cron-Zeile).
 | `2c4af5b` | 3 | Wächter, Test, README; Registereintrag und Cron-Zeile im Wrapper; Protokoll 4.7; Belege Schritt 3 |
 | `4ca8af9` | 4 | `DOKUMENTATIONSSTANDARD.md` Abschnitt 10 |
 | `3f22443` | 5, 5b | Cron-Zeile (Nachweis 6); `UMGEBUNGEN.md` B2/B3/B7; `(m)` verschoben |
-| *(Abgabe)* | 6 | dieses Dokument abgeschlossen, Journal-Nachtrag `(20m)` |
+| `9a51add` | 6 | dieses Dokument abgeschlossen, Journal-Nachtrag `(20m)` |
 
 Jeder Commit einzeln gepusht (`git push`, nackt, nie in einem `&&`-Block).
 
