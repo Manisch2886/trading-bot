@@ -271,3 +271,119 @@ Sperrliste — gestrichen wird nichts. Beim Eintragen fiel auf, dass der Nachtra
 alten Felder. Ich habe die gemessene Tatsache eingetragen, nicht die Behauptung.
 Ausserdem ist die kleine Zeigerdatei wieder vollständig, und der Satz, mit dem
 eine Sitzung gestartet wird, steht jetzt in beiden Dateien gleich.
+
+---
+
+## ⚠️ Nachtrag TB-78b, ausgeführt als eigener Auftrag TB-79 (21.09.2026)
+
+**Quelle:** `docs/auftraege/MAC_TB-79_register_31.md` (256 Zeilen; Zeiger
+`AKTUELLER_AUFTRAG.md` nannte TB-79, gleich der vorangestellten Nummer) — der
+Nachtrag `logs/auftraege/NACHTRAG_TB-78b_fable_21j.md`, der die TB-78-Sitzung
+nicht mehr erreichte, unverändert im Inhalt. Anlass: Fables Antwort 21j.
+**Ausgeführt am MacBook**, Zweig `main`, Ausgang `0592af3`. Commits, je
+gepusht: `85e80a2` (Schritt 0), `31a4665` (vorgefundene Datei), `b99214a`
+(Schritt 3c) und der Abgabe-Commit. ⛔ Kein Code, keine Sperrlisten-Datei,
+nichts unter `research/`, `strategies/`, `shared/`, `snapshots/` — das
+Manifest **byteweise unberührt** (shasum vorher = nachher).
+
+⭐ **Vermerk zum Dateinamen:** Dieses Dokument heisst weiter
+`ERGEBNIS_TB-78_register_27_29.md`, obwohl jetzt die Abschnitte 27–31 darin
+stehen. Journalblock CG und Commit `54bbe66` zeigen auf diesen Namen; eine
+Umbenennung kostete mehr als der ungenaue Name einbringt.
+
+*In einfacher Sprache, zu Beginn:* Der Prüfer nimmt eine eigene Anordnung vom
+Vormittag zurück — das Stichtagsdatum steht in der Beschreibungsdatei des
+eingefrorenen Datenbestands längst, nur unter einem anderen Namen. Das steht
+jetzt als Abschnitt 31 im Regelwerk, zusammen mit zwei Zahlen, die diese
+Sitzung selbst auf dem Mac nachgemessen hat.
+
+### Schritt 0 — Sichern, was dastand (`85e80a2`, `31a4665`)
+
+| geprüft | Ergebnis |
+|---|---|
+| `git status --short` | `AKTUELLER_AUFTRAG.md` (geändert), `MAC_TB-79_register_31.md` (neu) — und **eine dritte, im Auftrag nicht genannte Datei:** `docs/projektfuehrung/FABLE_ANFRAGE_2026-09-21d_21j_beauftragt_und_gemessen.md` (117 Zeilen, Rückmeldung des steuernden Chats an Fable nach `ARBEITSWEISE.md` 15). `.claude/settings.local.json` erscheint wie in TB-78 nicht (global ignoriert) |
+| `grep -cE "^## 31\."` | **0** — Abschnitt 31 fehlte, kein Abbruch |
+| `numstat` Zeigerdatei | **1 / 1** — die TB-78-Zeile der Auftragstabelle durch die TB-79-Zeile ersetzt (Betreiber, vor der Sitzung) |
+| Secrets-Probe über die drei Dateien | 0 / 0 / 1 — der eine Treffer ist der Schlüsselbund-Hinweis (*„Passwort an der Eingabeaufforderung"*, seit `83e3a85` in der Zeigerdatei), kein Secret |
+| Commits | Auftragsdatei und Zeiger im bestellten Commit `85e80a2`; die 21d-Datei getrennt in `31a4665` nach dem Muster von `0592af3` |
+
+### Schritt 3c — Registerabschnitt 31 (`b99214a`)
+
+Angehängt ans Ende von `docs/VORREGISTRIERUNG_neuselektion.md`, `numstat`
+**132 / 0** (`docs/belege/TB-78/schritt3c_numstat.txt`); gesamt seit
+`83e3a85` **543 / 0**.
+
+| Nachweis | Ergebnis |
+|---|---|
+| 1 `numstat` zweite Spalte | **0** |
+| 2 `^#+ *31\.` | `## 31.` genau einmal (Z. 4961), 31.1–31.7 je einmal; python `{26:1, 27:1, 28:1, 29:1, 30:1, 31:1}` |
+| 3 eigene Messungen | siehe unten, `schritt3c_messung_31_5_31_6.txt` (Ausgabe **und** Skript) |
+| 4 `shasum -a 256` Manifest vorher / nachher | **`5cf1103e7487514b7c37c1c17cd2ed3a32df584be3f68d9de8fe00f304650c12`** — beide Male, identisch (`schritt3c_manifest_und_sperrlisten_hashes.txt`). Abbruchkriterium nicht ausgelöst |
+| 5 Sperrlisten-Hashes | `a163c498…` · `0e54ac5c…` · `4549395f…` — unverändert gegen `abschluss_sperrlisten_hashes.txt` |
+| Zeichengleichheit 31.2 / 31.3 gegen 21j Z. 17–18 / Z. 20 | `diff` **leer** |
+| Fable-Zitate (*„ein Träger, der nach der Registrierung noch beschrieben wird …"*, *„Warum nicht c: zweiter Träger"*, *„ob 17.1 den Begriff ‚Snapshot' …"*, *„nicht zu tun"*, *„Der Fehler ist meiner"*) | je **1** Treffer in 21j |
+| Ersetzter Halbsatz *„Es wird im `MANIFEST.json` als Feld `asof` geführt"* | genau **1** Treffer im Register (28.2, Z. 4648) — steht, wie 31.2 sagt |
+| `C7`, `K4d` | `PRUEFPRINZIPIEN.md` Z. 302 *„Zwei Zahlen, zwei Fragen"*; `BACKLOG.md` Z. 381 *„Eine Kennzahl nennt die Menge, über die sie läuft"* — treffen |
+
+⭐ **Die zwei Messungen, Umgebung genannt** — MacBook, macOS 15.7.9 (x86_64),
+`trading-env/bin/python3` = **Python 3.9.6**, pandas 2.3.3; *nicht* die
+Geräteanbindung (Linux, 3.10.12), auf der der steuernde Chat vorab gemessen
+hat:
+
+| | Zählung 1 | Zählung 2 | Ergebnis |
+|---|---|---|---|
+| **31.5 `datenende`** | `csv`-Modul, `open_time` als Text, Maximum je Datei und gesamt über die 223 `*.csv` | pandas `to_datetime`, Maximum gesamt | **`2026-09-15 08:00:00`** → **2026-09-15**; Abstand zu `asof` **4 Tage**. ✅ Gleich der Vorabmessung — **keine Abweichung zu melden** |
+| **31.6 Manifest-Schlüssel** | `json.load`, `len()` der obersten Ebene | Textmuster `^  "…":` (Einrückung 2) | **16**, beide gleich; `dateien` (225 Einträge) mitgezählt, ohne sie 15. `asof` weder Schlüssel noch sonst im Text |
+
+⚠️ **Dabei gemessen, im Auftrag nicht vorgesehen:** die 223 Kursdateien enden
+nicht am selben Tag — **150 Aktien-Tagesdateien am 2026-09-01**, 24
+Krypto-Tagesdateien am 2026-09-14, 48 Krypto-4h/1h-Dateien am 2026-09-15
+(Ausnahme `XAUTUSDT_1h.csv`: 2026-08-30). Das Maximum, und damit `datenende`,
+stammt allein aus den 24 Krypto-1h-Dateien; das Datenende der **vier
+Aktien-Bots liegt 18 Tage vor `asof`**, nicht vier. Als Messnotiz in 31.5
+eingetragen (Kalenderaussage). Ob das für den Vorlauf oder den Horizont der
+Aktien-Bots etwas bedeutet, entscheidet diese Sitzung nicht.
+
+### Abweichungen vom Auftrag — mit Begründung
+
+| | Auftrag | tatsächlich |
+|---|---|---|
+| 1 | Status: Zeiger und Auftragsdatei | dazu die 21d-Datei des steuernden Chats — getrennt committet (`31a4665`), damit der bestellte Commit-Text nur das Bestellte trägt |
+| 2 | 31.5: Platzhalter *„von dir zu messen"* / *„von dir auszurechnen"* | durch die eigenen Werte ersetzt, Herkunftsspalte um Umgebung, Sitzung und Beleg ergänzt; **zusätzlich** ein Absatz *„Messnotiz der Mac-Sitzung"* mit den Enddaten je Dateigruppe (s. o.) — eine gemessene Tatsache, kein umformulierter Text |
+| 3 | 31.6: *„nenne deine Zählweise"* | als eigener Absatz *„Eigene Nachmessung der Mac-Sitzung (TB-79), Zählweise genannt"* zwischen der Schlüsselliste und der Tabelle eingefügt — `K4d` verlangt die Bezugsmenge an der Zahl, nicht nur im Beleg |
+| 4 | Commit-Text `TB-78 Schritt 3c: …` | wörtlich übernommen, obwohl die Sitzung TB-79 heisst; der Commit-Rumpf nennt die Sitzung. Belege wie bestellt unter `docs/belege/TB-78/` (Dateinamen `schritt3c_*`) |
+| 5 | *„Drei unversionierte Dateien … gehören mitcommittet"* (21i, 21c, 21j) | alle drei lagen bereits im Repo (`c843fd5`, `0592af3`) — nichts zu melden, nichts zu committen |
+| 6 | 31.5 Herkunft *„Mac-Lauf, `trading-env/bin/python3`"* | so eingetragen, mit Python-Fassung — die Messung nennt die Umgebung, in der sie lief (Fehlerregel zu `K2l`) |
+
+Rückfragen an den Betreiber: **keine**.
+
+### Fehler → Regel
+
+Keiner dieser Sitzung. Der Fehler, den der Abschnitt einträgt, ist Fables (28.2:
+ein Feld angeordnet, ohne das Manifest zu kennen) und einer von TB-77 (26: eine
+Zahl ohne Bezugsmenge, `K4d`); beide stehen als Berichtigung im Register.
+
+### Offen, zusätzlich
+
+- Die Zeile *„`asof`/`datenende` ins `MANIFEST.json` — Verfahrensfrage vor dem
+  Tag (28.7)"* in der Offen-Liste oben ist **erledigt**: entschieden durch 31
+  (nicht zu tun). Die Zeile bleibt stehen, append-only.
+- Backlog-Zeile zu TB-78/TB-79: `K4r` ist die höchste vergebene, `K4s` frei
+  (gemessen 21.09.2026 in `BACKLOG.md`); nicht bestellt, nicht angelegt.
+- Aktien-Datenende 2026-09-01 (18 Tage vor `asof`) — Kenntnisnahme durch den
+  steuernden Chat; ob es ins Register oder an Fable geht, ist dort zu entscheiden.
+
+### In einfacher Sprache, zum Nachtrag
+
+Der Prüfer hatte verlangt, das Stichtagsdatum zusätzlich in die Beschreibungsdatei
+des eingefrorenen Datenbestands zu schreiben; nachgemessen steht es dort schon,
+unter einem anderen Namen. Er nimmt die Anordnung zurück, und ab jetzt gilt
+ausdrücklich: Die Beschreibungsdatei wird nach dem Einfrieren nicht mehr
+angefasst, auch nicht um harmlose Zusätze. Das steht jetzt als Abschnitt 31 im
+Regelwerk. Zwei Zahlen habe ich selbst auf dem Mac nachgemessen, nicht aus dem
+Auftrag abgeschrieben: Der letzte Kurs im Datenbestand ist vom 15. September
+(vier Tage vor dem Stichtag), und die Beschreibungsdatei hat 16 Einträge, nicht
+15 — je nachdem, ob man die Dateiliste mitzählt, und das steht jetzt dabei.
+Aufgefallen ist dabei, dass die Aktienkurse schon am 1. September enden, also
+18 Tage vor dem Stichtag. Die Beschreibungsdatei selbst ist unverändert, mit
+Prüfsumme belegt.

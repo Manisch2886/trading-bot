@@ -7859,6 +7859,43 @@ unterhalb Z. 818 um +7; Vermerk in 30.3, die Angaben in 26–29 gelten für
 | ⭐ | **Eine Einfügung mitten in einer Datei verschiebt jede Zeilenangabe darunter** — wer Zeilen zitiert, nennt den Commit-Stand |
 | ⭐ | **Ein Nachtrag in die laufende Sitzung ist angekommen, wenn die Sitzung ihn mit Fassung und Uhrzeit bestätigt** — hier v2, 19:42 |
 
+### ⚠️ Fortgeschrieben nach Nachtrag TB-78b, ausgeführt als TB-79 (21.09.2026) — Abschnitt 31: kein Manifest-Feld `asof`
+
+*Quelle: `docs/ERGEBNIS_TB-78_register_27_29.md`, Nachtrag TB-78b (Dateiname
+bleibt, obwohl 27–31 darin stehen — Block und Commit `54bbe66` zeigen darauf).*
+
+Der Nachtrag erreichte die TB-78-Sitzung nicht mehr und lief als eigener
+Auftrag `TB-79`; Commits `85e80a2` (Schritt 0), `31a4665` (vorgefundene
+21d-Datei), `b99214a` (3c) und der Abgabe-Commit. Fable nimmt in 21j sein
+eigenes 28.2 zurück: das Manifest bekommt **kein** Feld `asof` — der Wert steht
+dort als `zeitpunkt_utc`; ein zweiter Feldname für denselben Wert wäre die
+Bauart „zwei Träger", die er selbst bei `fensteranker` abgelehnt hatte. Dazu
+der Ersteintrag zu 5a/17.1: *„nicht mehr geschrieben"* gilt für den Snapshot
+**einschliesslich Manifest**; Tatsachen nach der Erzeugung (`datenende`) stehen
+im Register. Seine Unsicherheit dazu ist gemessen: 17.1 definiert den Snapshot
+als Ordner, das Manifest liegt darin, keine Stelle nimmt es aus — Ersteintrag,
+keine Berichtigung (`C7`: „gehört dazu" und „vom Hash gedeckt" sind zwei
+Fragen). Register **132 / 0**, gesamt seit `83e3a85` **543 / 0**; 26–31 je
+genau einmal. **Manifest byteweise unberührt:** `shasum` vorher = nachher
+(`5cf1103e…`), Sperrlisten-Hashes unverändert.
+
+⭐ **Zwei Messungen auf dem Mac** (`trading-env/bin/python3` 3.9.6, je zwei
+Zählungen, gleich): `datenende` = **2026-09-15**, vier Tage vor `asof` —
+gleich der Vorabmessung des steuernden Chats auf Linux, die nach `K2l`
+deshalb nicht galt; Manifest **16** Schlüssel der obersten Ebene (`dateien`
+mitgezählt), Abschnitt 26 sagte 15 ohne Zählweise → 31.6, `K4d`.
+⚠️ **Dabei aufgefallen:** die 150 Aktien-Tagesdateien enden am
+**2026-09-01** — das Datenende der vier Aktien-Bots liegt 18 Tage vor `asof`,
+nicht vier; `datenende` stammt allein aus den 24 Krypto-1h-Dateien. Als
+Messnotiz in 31.5, Kalenderaussage, nicht entschieden.
+
+| | Regel, zusätzlich |
+|---|---|
+| ⭐⭐ | **Bevor ein Feld angeordnet wird, wird der Träger gelesen** — 28.2 verlangte `asof`, ohne das Manifest zu kennen; der Wert stand seit dem 19.09. darin. Ein Registersatz über eine Datei wird an der Datei gemessen, auch wenn er vom Verfahrensprüfer kommt |
+| ⭐ | **Eine Vorabmessung in der falschen Umgebung wird vorgelegt, nicht eingetragen** (`K2l`) — die Sitzung misst selbst, nennt ihre Umgebung und meldet Abweichungen; hier keine |
+| ⭐ | **Ein Maximum über Dateigruppen nennt die Gruppe, aus der es stammt** — „Datenende 15.09." ist für die Aktien-Bots der 01.09.; wer nur die Zahl trägt, trägt die falsche Frische |
+| | Ein Nachtrag, der die Sitzung nicht mehr erreicht, wird ein eigener Auftrag mit eigener Nummer — `logs/` ist kein Träger (`UMZUG.md` 2) |
+
 ---
 
 ## Wiederkehrende Lehren

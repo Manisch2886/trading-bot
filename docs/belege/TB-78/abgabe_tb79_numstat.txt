@@ -1,0 +1,19 @@
+# TB-79 Abgabe — git diff --numstat je Datei (Ergebnisdokument, Journal) und Gesamt gegen 0592af3 (Sitzungsausgang)
+116	0	docs/ERGEBNIS_TB-78_register_27_29.md
+37	0	docs/projektfuehrung/JOURNAL.md
+
+# gegen 0592af3 (HEAD vor der Sitzung), alles:
+116	0	docs/ERGEBNIS_TB-78_register_27_29.md
+132	0	docs/VORREGISTRIERUNG_neuselektion.md
+1	1	docs/auftraege/AKTUELLER_AUFTRAG.md
+256	0	docs/auftraege/MAC_TB-79_register_31.md
+12	0	docs/belege/TB-78/schritt3c_manifest_und_sperrlisten_hashes.txt
+80	0	docs/belege/TB-78/schritt3c_messung_31_5_31_6.txt
+13	0	docs/belege/TB-78/schritt3c_numstat.txt
+117	0	docs/projektfuehrung/FABLE_ANFRAGE_2026-09-21d_21j_beauftragt_und_gemessen.md
+37	0	docs/projektfuehrung/JOURNAL.md
+
+# nichts ausserhalb docs/:
+       0
+# Manifest nach der Abgabe:
+5cf1103e7487514b7c37c1c17cd2ed3a32df584be3f68d9de8fe00f304650c12  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
