@@ -7663,6 +7663,61 @@ Mac-Journalblöcke aus TB-75 bleibt ungebaut; der Kopf von `BACKLOG.md` nennt
 
 ---
 
+## CE — TB-69: die Ausgaberegeln an einer Stelle — Abschnitt 0 in `ARBEITSWEISE.md`, 117 Regeln vorher, 117 nachher (21.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-69_arbeitsweise_ordnen.md`*
+
+**Quelle:** Mac-Sitzung **TB-69 ARBEITSWEISE ordnen**, 21.09.2026, ab 13:38
+Ortszeit, Ausgang `3c25d94`. Rechnet nicht. Commits `495b7fc`/`5a1f5e1`
+(Schritt 0: Auftrag, Zeiger und eine Fable-Anfrage des Betreibers),
+`067e473` (Schritt 1, Regelliste vorher), `dfc4422` (Schritt 2, Abschnitt 0),
+`3b74651` (Schritt 3, Entscheidung), `50e3da7` (Schritt 4, Nachweis) und der
+Abgabe-Commit. Belege `docs/belege/TB-69/`. Anlass: 6d — am 20.09. viermal
+eine Ausgaberegel verletzt, die dastand, weil *„es keine Stelle gibt, die vor
+dem Absenden einer Antwort als Liste gilt“*.
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Regelliste vorher (`5a1f5e1`, 70 905 B, 1 293 Zeilen, 25 Abschnitte) | **117 Regeln**, davon **76** betreffen die Ausgabe einer Antwort, 41 anderes; Messungen, Anlässe, Zitate, Berichtigungen nicht gezählt und wörtlich belassen |
+| Abschnitt 0 | 65 Zeilen zum Abhaken in elf Lagen, je Regelkern + Zeiger; 130 Zeilen, 8 835 B; ganz vorn, weil vorn gelesen wird, und 0, weil keine Nummer wandert |
+| Wiederfind-Prüfung | **117 / 117**, 0 fehlen; alle 65 Zeilen von A-Regeln belegt, keine A-Regel ohne Zeile |
+| Zeichengleich | `numstat` **135 / 0** gegen `5a1f5e1`, genau zwei Hunks, Teilfolgenprobe 1 293 / 1 293 alte Zeilen in Reihenfolge byteweise wiedergefunden |
+| Gestrichen | **nichts**, ausdrücklich |
+| Verweise, vor der Entscheidung über das Umnummerieren | **188 Zeilen in 57 Dateien**, 48 mit Buchstabenabschnitt; `JOURNAL.md` 8 (§7, §11, Abschnitt 10, 14 Regel 3 und 15 …), `logs/` 15 (keine Version), 86 in abgeschlossenen Belegen |
+| Entscheidung | **nicht umnummerieren** — Einreihen verschöbe jede Nummer ab 6 und liesse acht Journalverweise tot; Kontrollmessung nachher: ausserhalb `ARBEITSWEISE.md` alle Zeilenzahlen identisch |
+| Grösse | 70 905 → **80 018 B** (+9 113), davon Checkliste 97 %, zwei Vermerke (Kopf, 6d) 3 % |
+| ausserhalb `docs/` | 0 Dateien |
+
+### Was der Weg kostet, benannt
+
+Die Regeln stehen jetzt zweimal: als Zeile in 0 und ausgeführt in 1–18. Wer
+eine Ausgaberegel ändert, ändert beide Stellen — sonst zeigt die Liste auf
+einen Abschnitt, der etwas anderes sagt. Und die Liste wirkt nur, wenn sie
+vor dem Absenden gelesen wird; ob sie das tut, misst erst der nächste Tag.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Vor einer Umordnung steht die Liste dessen, was da ist** — 117 Zeilen, festgelegt vor dem ersten Eingriff. Ohne sie ist „nichts verloren“ ein Gefühl, mit ihr eine Zählung |
+| ⭐ | **Eine Umnummerierung wird gegen die Verweise gemessen, bevor sie entschieden wird** — und ein einziges unveränderliches Dokument mit Verweisen entscheidet sie |
+| ⭐ | **„Nichts verloren“ hat drei Zeugen:** `numstat` (keine Zeile weg), Hunk-Zahl (keine unerwartete Stelle), Teilfolge (jede alte Zeile in Reihenfolge da) |
+| ⭐ | **Eine Checkliste erklärt nichts** — sie zeigt. Erklärung, Messung und Anlass bleiben im ausführenden Abschnitt, sonst wird sie wieder nicht gelesen |
+| | Ein neuer Abschnitt, der keine Nummer verschieben darf, heisst 0 |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen“):** die Projektablage ist
+nachzuziehen (`K4e`, steuernder Chat); die Erinnerung des Chats kennt
+Abschnitt 0 noch nicht; fünf Nebenbefunde N1–N5 (u. a. `/login` in 14 Regel 0
+einmal als erster Befehl, einmal als letzter Ausweg; der Einfügesatz in 14
+Regel 2 weicht vom gelebten ab) sind Kandidaten für Regel 9; ob die Liste
+wirkt, zeigt der nächste Tag.
+
+*Geschrieben 21.09.2026 von der Mac-Sitzung TB-69 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

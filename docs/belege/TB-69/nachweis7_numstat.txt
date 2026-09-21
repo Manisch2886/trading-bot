@@ -1,0 +1,18 @@
+1	0	docs/belege/TB-69/nachweis1_status_vor_schreiben.txt
+167	0	docs/belege/TB-69/regelliste_nachher.md
+149	0	docs/belege/TB-69/regelliste_vorher.md
+5	0	docs/belege/TB-69/schritt0_status.txt
+1	0	docs/belege/TB-69/schritt2_numstat.txt
+47	0	docs/belege/TB-69/schritt3_entscheidung_umnummerieren.md
+61	0	docs/belege/TB-69/schritt3_verweise_kontrolle.txt
+32	0	docs/belege/TB-69/schritt3_verweise_messung.py
+249	0	docs/belege/TB-69/schritt3_verweise_messung.txt
+1	0	docs/belege/TB-69/schritt4_numstat_gegen_5a1f5e1.txt
+2	0	docs/belege/TB-69/schritt4_teilfolge.txt
+135	0	docs/projektfuehrung/ARBEITSWEISE.md
+1	0	docs/projektfuehrung/BACKLOG.md
+55	0	docs/projektfuehrung/JOURNAL.md
+# neu, noch nicht versioniert (git status --short):
+?? docs/ERGEBNIS_TB-69_arbeitsweise_ordnen.md
+?? docs/belege/TB-69/nachweis7_numstat.txt
+     214	0	docs/ERGEBNIS_TB-69_arbeitsweise_ordnen.md (neu)
