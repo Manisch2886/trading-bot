@@ -1,0 +1,13 @@
+# TB-79 Schritt 3c — git diff --numstat, Register (Nachweis 1) und Ueberschriften (Nachweis 2)
+132	0	docs/VORREGISTRIERUNG_neuselektion.md
+
+4961:## 31. Berichtigung zu 28.2 — das Manifest bekommt kein Feld `asof` (Fable 21j, 21.09.2026)
+4974:### 31.1 Der Befund — der Wert steht im Manifest, unter einem anderen Namen
+4986:### 31.2 Der Ersatztext zu 28.2, zeichengleich
+4994:### 31.3 Präzisierung zu 5a / 17.1 — Ersteintrag, zeichengleich
+5008:### 31.4 Tatsachennotiz — seine Unsicherheit, gemessen
+5030:### 31.5 Tatsachennotiz — `datenende` des registrierten Snapshots
+5046:### 31.6 ⚠️ Berichtigung einer Zahl aus Abschnitt 26 — 15 Schlüssel sind 16
+5081:### 31.7 Was hier ausdrücklich NICHT getan wird
+
+python-Zaehlung der ##-Abschnitte 26-31: {26: 1, 27: 1, 28: 1, 29: 1, 30: 1, 31: 1}

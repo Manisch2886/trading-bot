@@ -1,0 +1,80 @@
+# TB-79 (Nachtrag TB-78b), Schritt 3c — Messungen 31.5 (datenende) und 31.6 (Manifest-Schluessel), 21.09.2026
+# Umgebung: MacBook, trading-env/bin/python3 = Python 3.9.6, macOS 15.7.9 (x86_64), pandas 2.3.3
+# Aufruf: cd trading-bot && trading-env/bin/python3 messung_tb79.py   (Skript unten angehaengt)
+
+Umgebung: macOS-15.7.9-x86_64-i386-64bit | Python 3.9.6 | /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+
+[31.6] Zaehlung 1 (json.load, oberste Ebene): 16
+        bytes_gesamt · dateien · dateien_gesamt · datenstand_hash · eingabeliste · kursdateien · quelle · snapshot_hash · teilkerzen · verfahren · werkzeug · wurzel · zeitpunkt_utc · zugelassene_befunde · zugelassene_befunde_anzahl · zugelassene_befunde_herkunft
+[31.6] Zaehlung 2 (Textmuster, Einrueckung 2): 16 | gleich: True
+[31.6] 'asof' als Schluessel: False | 'asof' irgendwo im Text: False
+[31.6] Metadaten ohne 'dateien': 15 | Eintraege in 'dateien': 225 | kursdateien laut Manifest: 223
+
+[31.5] Kursdateien (*.csv oberste Ebene): 223
+[31.5] Zaehlung 1 (csv, Text-Maximum) gesamt: 2026-09-15 08:00:00
+       je Datei-Gruppe (Datum der letzten Kerze -> Anzahl Dateien):
+          2026-08-30 1
+          2026-09-01 150
+          2026-09-14 24
+          2026-09-15 48
+       Dateien mit dem groessten open_time: AAVEUSDT_1h.csv, ADAUSDT_1h.csv, BMTUSDT_1h.csv, BNBUSDT_1h.csv, BTCUSDT_1h.csv, DOGEUSDT_1h.csv, ENAUSDT_1h.csv, ENSOUSDT_1h.csv, ETHUSDT_1h.csv, LINKUSDT_1h.csv, NEARUSDT_1h.csv, PEPEUSDT_1h.csv, PROMUSDT_1h.csv, PUMPUSDT_1h.csv, SOLUSDT_1h.csv, SUIUSDT_1h.csv, TRUMPUSDT_1h.csv, TRXUSDT_1h.csv, UNIUSDT_1h.csv, UUSDT_1h.csv, WLDUSDT_1h.csv, XRPUSDT_1h.csv, ZECUSDT_1h.csv, ZKCUSDT_1h.csv
+       Beispiele: AAPL_1d.csv 2026-09-01 | BTCUSDT_1h.csv 2026-09-15 08:00:00 | BTCUSDT_1d.csv 2026-09-14
+[31.5] Zaehlung 2 (pandas 2.3.3, to_datetime) gesamt: 2026-09-15 08:00:00
+[31.5] datenende = 2026-09-15 | asof = 2026-09-19 | Abstand = 4 Tage
+[31.5] gleich mit Zaehlung 1: True
+
+# ---- Skript (rein lesend) ----
+"""TB-79, Messungen 31.5 und 31.6 am registrierten Snapshot — rein lesend.
+
+Zwei unabhaengige Zaehlungen je Groesse:
+  datenende:  (1) csv-Modul, Spalte open_time als Text, Maximum je Datei und gesamt;
+              (2) pandas, pd.to_datetime, Maximum gesamt.
+  Schluessel: (1) json.load, len(dict) der obersten Ebene;
+              (2) Textzaehlung der Zeilen mit Einrueckung 2 und Muster '  "name":'.
+"""
+import csv, glob, json, os, platform, re, sys
+from collections import Counter
+from datetime import date
+
+S = "snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2"
+print("Umgebung:", platform.platform(), "| Python", sys.version.split()[0], "|", sys.executable)
+
+# --- 31.6 Schluessel ------------------------------------------------------
+m = json.load(open(os.path.join(S, "MANIFEST.json")))
+keys = sorted(m)
+print("\n[31.6] Zaehlung 1 (json.load, oberste Ebene):", len(keys))
+print("       ", " · ".join(keys))
+txt = open(os.path.join(S, "MANIFEST.json"), encoding="utf-8").read()
+keys2 = re.findall(r'^  "([^"]+)":', txt, flags=re.M)
+print("[31.6] Zaehlung 2 (Textmuster, Einrueckung 2):", len(keys2), "| gleich:", sorted(keys2) == keys)
+print("[31.6] 'asof' als Schluessel:", "asof" in m, "| 'asof' irgendwo im Text:", "asof" in txt)
+print("[31.6] Metadaten ohne 'dateien':", len(keys) - 1, "| Eintraege in 'dateien':", len(m["dateien"]),
+      "| kursdateien laut Manifest:", m["kursdateien"])
+
+# --- 31.5 datenende ------------------------------------------------------
+files = sorted(glob.glob(os.path.join(S, "*.csv")))
+print("\n[31.5] Kursdateien (*.csv oberste Ebene):", len(files))
+maxima = {}
+for f in files:
+    with open(f, newline="") as fh:
+        r = csv.DictReader(fh)
+        assert "open_time" in r.fieldnames, f
+        mx = max(row["open_time"] for row in r)
+    maxima[os.path.basename(f)] = mx
+gesamt1 = max(maxima.values())
+print("[31.5] Zaehlung 1 (csv, Text-Maximum) gesamt:", gesamt1)
+print("       je Datei-Gruppe (Datum der letzten Kerze -> Anzahl Dateien):")
+for k, v in sorted(Counter(x[:10] for x in maxima.values()).items()):
+    print("         ", k, v)
+print("       Dateien mit dem groessten open_time:",
+      ", ".join(n for n, v in sorted(maxima.items()) if v == gesamt1))
+print("       Beispiele:", "AAPL_1d.csv", maxima["AAPL_1d.csv"], "| BTCUSDT_1h.csv", maxima["BTCUSDT_1h.csv"],
+      "| BTCUSDT_1d.csv", maxima["BTCUSDT_1d.csv"])
+
+import pandas as pd
+gesamt2 = max(pd.to_datetime(pd.read_csv(f, usecols=["open_time"])["open_time"]).max() for f in files)
+print("[31.5] Zaehlung 2 (pandas %s, to_datetime) gesamt:" % pd.__version__, gesamt2)
+datenende = gesamt2.date()
+asof = date(2026, 9, 19)
+print("[31.5] datenende =", datenende, "| asof =", asof, "| Abstand =", (asof - datenende).days, "Tage")
+print("[31.5] gleich mit Zaehlung 1:", str(datenende) == gesamt1[:10])

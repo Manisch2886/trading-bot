@@ -1,0 +1,12 @@
+# TB-79 Schritt 3c — shasum -a 256 des Manifests VOR und NACH der Arbeit (Nachweis 4, Abbruchkriterium)
+vorher  (Sitzungsbeginn, HEAD 0592af3):
+5cf1103e7487514b7c37c1c17cd2ed3a32df584be3f68d9de8fe00f304650c12  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
+nachher (nach Anfuegen von Abschnitt 31):
+5cf1103e7487514b7c37c1c17cd2ed3a32df584be3f68d9de8fe00f304650c12  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
+identisch: ja
+
+# Sperrlisten-Hashes (Nachweis 5), nachher:
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+gleich mit abschluss_sperrlisten_hashes.txt (TB-78): ja
