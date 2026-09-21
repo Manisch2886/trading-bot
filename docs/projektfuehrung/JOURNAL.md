@@ -7956,6 +7956,61 @@ Journal-Nachträge (20g)–(20m) und Backlog-Zeile `K4t`.
 
 ---
 
+## CI — TB-81: der Faltenplan wird Registertext (Abschnitt 33), und die Abbild-Datei bekommt eine abschliessende Feldliste statt eines Urteils über tote Felder (21.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-81_faltenplan_registertext.md`*
+
+**Quelle:** Mac-Sitzung **TB-81 Faltenplan als Registertext**, 21.09.2026,
+Ausgang `0509c5e`, `/usr/bin/python3` und `trading-env/bin/python3`, beide
+3.9.6, Ausgaben gleich. Commits `955dced` (Schritt 0), `a0c6eb0` (1),
+`5ff34a4` (2) und der Abgabe-Commit — jeder einzeln gepusht. Belege
+`docs/belege/TB-81/`. **Nur `docs/`** geändert; kein Code, keine Abbild-Datei,
+keine Sonde, kein Sperrlistenpunkt. Anlass: Fable 21k nimmt sein Kriterium in
+30.2 (3) zurück und gibt 30.2 (2) frei.
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Ausgangsstand | Arbeitsbaum leer, Fable 21k schon in `0509c5e`; `## 33.` **0**; drei Sperrlisten-Hashes `0e54ac5c…` · `a163c498…` · `4549395f…` mit vollem Pfad; **acht** `faltenplan*.json` im Repo (Auftrag sagte sechs) |
+| Faltenlisten aus `faltenplan_tb80.json` (`2dd28291…`) | je Bot Horizontbeginn (Krypto `null`, Aktien `2016-09-19`), Faltenlänge (`elliott_wave` 2, sonst 1), erste Falte, Liste, Anzahl: 4 · 7 · 7 · 8 · 8 · 9 · 8 · 9 · 8 |
+| Zweite Zählung aus `falten` (`rolle == "selektion"`) | **0 Abweichungen**; dazu lückenlos, aufsteigend, Anschluss an die Bestätigungsfalte und den Go-Live-Schnitt bei allen neun |
+| Gegen Register 21.4 | **0 Abweichungen** (die neun Zeilen wörtlich per `grep` im Beleg) |
+| Feldmenge der Datei | je Bot 18 Felder, kein `asof`, kein `quelle` — die Datei ist nach 33.3 nicht das Abbild, nachgemessen statt übernommen |
+| Register | Abschnitt **33**, 146 / 0, Z. 5304; 26–33 je genau einmal (grep und awk); Tabelle 33.2 in dritter Lesung 9/9 gegen die JSON; alle Zitate gegen 21k zeichengleich geprüft |
+| Abschluss | numstat zweite Spalte 0 überall, nichts ausserhalb `docs/`, fünf Hashes unverändert, Status leer |
+
+### Was der Auftrag nicht wusste
+
+Das *Fable:*-Zitat zur „Folge der Regel" im Auftragsblock war aus zwei Stellen
+von 21k zusammengezogen und in dieser Form **nicht** zeichengleich; im
+Register stehen jetzt die zwei Sätze einzeln und wörtlich. „Trockenlauf nach
+3b (b)" in 30.2 (2) zeigt in 16.7 auf die `MIN_HISTORY_*`-Tabelle, der
+Trockenlauf-Satz ist 3b (a) — der Wortlaut bleibt (append-only), 33.2 trägt
+einen Zitierhinweis, Fable bekommt die Frage. „Kein Horizont" ist in der Datei
+ein `null` unter gesetztem Schlüssel; ob das das „ausdrücklich gesetzt" aus
+33.3 ist, entscheidet das Handwerk der Abbild-Datei, nicht dieser Auftrag.
+`JOURNAL.md` liegt unter `docs/projektfuehrung/`, `.claude/settings.local.json`
+gibt es in diesem Arbeitsbaum nicht.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Ein als „wörtlich" gekennzeichnetes Zitat in einem Auftrag wird wie eine Zahl an der Quelle geprüft, bevor es als zeichengleich ins Register geht** (`C1`); die Prüfung steht als Nachweis im Beleg, für jedes Zitat einzeln |
+| ⭐ | **Ein Registertext, der einen anderen Abschnitt zitiert, wird beim Eintrag gegen den zitierten Abschnitt gehalten** — trifft der Verweis den Nachbarabsatz, bleibt der Wortlaut stehen und ein Zitierhinweis kommt daneben; angleichen tut der, der den Text verantwortet |
+| | Eine Messung, die der Auftrag verbietet als Code abzulegen, wird im Beleg eingebettet — nachlaufbar, aber keine Datei, die jemand für die Sonde halten könnte |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen"):** Fables Prüfung von
+33.2/33.3/33.4 samt Zitierhinweis und `null`-Frage; danach Abbild-Datei,
+Sonde und Sperrlistenpunkt als eigene Aufgabe mit Freigabe; Entscheidung 33.5
+(`faltenplan.py` ändern oder neuer Schreiber); unverändert 32.5, TB-30b,
+(20g)–(20m), `K4t`.
+
+*Geschrieben 21.09.2026 von der Mac-Sitzung TB-81 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

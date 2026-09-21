@@ -1,0 +1,37 @@
+# TB-81 Schritt 3 — Abschlusspruefung (gemessen 2026-09-21T21:04:16Z, Mac, main, HEAD 5ff34a4, Ausgang 0509c5e)
+
+## 1. numstat je Datei ueber alle Commits (0509c5e..HEAD)
+    146	0	docs/VORREGISTRIERUNG_neuselektion.md
+    30	0	docs/belege/TB-81/schritt0_ausgangsstand.txt
+    168	0	docs/belege/TB-81/schritt1_faltenlisten.txt
+    30	0	docs/belege/TB-81/schritt2_nachweise.txt
+    Zeilen mit zweiter Spalte != 0: 0
+
+## 2. Nichts ausserhalb docs/
+    0 Dateien ausserhalb docs/ (Liste folgt, leer = keine):
+
+## 3. Drei Sperrlisten-Hashes gegen Schritt 0
+    0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+    a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+    4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+    Soll (Schritt 0): 0e54ac5c… / a163c498… / 4549395f…
+
+## 4. faltenplan_tb80.json und faltenplan_tb72.json
+    19e8cbca874d6e7455f2f3bc0723def9ea058d0b314fa1772e04cd64ff1c9d24  research/vorregistrierung/ergebnisse/faltenplan_tb72.json
+    2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794  research/vorregistrierung/ergebnisse/faltenplan_tb80.json
+    Soll (Schritt 0): 19e8cbca… / 2dd28291…
+    git log der beiden seit Ausgang: 0 Commits (Soll 0)
+
+## 5. Registerabschnitte 26…33, jeder genau einmal
+    ## 26. -> 1 (grep) / 1 (awk)
+    ## 27. -> 1 (grep) / 1 (awk)
+    ## 28. -> 1 (grep) / 1 (awk)
+    ## 29. -> 1 (grep) / 1 (awk)
+    ## 30. -> 1 (grep) / 1 (awk)
+    ## 31. -> 1 (grep) / 1 (awk)
+    ## 32. -> 1 (grep) / 1 (awk)
+    ## 33. -> 1 (grep) / 1 (awk)
+    hoechste ##-Nummer: 33
+
+## 6. git status --porcelain (vor Ergebnisdokument und Journalblock; wird nach dem letzten Commit erneut gemessen, s. u.)
+    ?? docs/belege/TB-81/schritt3_abschluss.txt
