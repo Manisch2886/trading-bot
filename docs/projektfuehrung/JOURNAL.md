@@ -7898,6 +7898,64 @@ Messnotiz in 31.5, Kalenderaussage, nicht entschieden.
 
 ---
 
+## CH — TB-80: Bedingung (i) rechnet gegen den Horizontbeginn aus 28.4 — Umstellung von der Datenuhr, Wirkung gemessen: an den Jahren nichts, 15 bis 18 Tage darunter (21.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-80_bedingung_i_auf_asof.md`*
+
+**Quelle:** Mac-Sitzung **TB-80 Bedingung i auf asof**, 21.09.2026, Ausgang
+`41db199`, `trading-env/bin/python3` 3.9.6. Betreiberfreigabe (21:47) für
+**eine** Datei: `research/vorregistrierung/faltenplan.py`. Commits `120a39d`
+(Vorgefundenes des Betreibers), `fd0d505` (Schritt 0), `76c20ec` (1),
+`cadb968` (2), `4c26e25` (3), `cb7f495` (4), `62c587e` (5) und der
+Abgabe-Commit — jeder einzeln gepusht. Belege `docs/belege/TB-80/`. Anlass:
+Register 26.2 verlangt seit dem 21.09. das absolute Datum je Bot, der
+Faltenplan rechnete (i) gegen `fn.fensteranker` (Datenuhr).
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Ausgangsstand, **vor** der Änderung aus dem Code | `fensteranker` aktien **2016-09-01**, krypto `None`; Plan byteweise = `faltenplan_tb72.json` (`19e8cbca…`); zusätzlich das früheste Warm-Datum je Bot auf Tagesebene |
+| Register nachgelesen | 26.2 Z. 4323–4329, 28.4 Z. 4684–4687: **2016-09-19** bei vier Aktien-Bots, fünf Krypto-Bots kein Horizont; Abbruchkriterium 5 nicht eingetreten |
+| Umstellung | `HORIZONTBEGINN = {"aktien": date(2016, 9, 19), "krypto": None}`, Literal mit Registerfundstelle; `erste_falte_4a` wird Hülle über `erste_falte_4a_messung`; Signaturen, (ii) und Konjunktion unverändert; `fensteranker` bleibt (drei andere Aufrufer gemessen). `numstat` **78 / 16**, jede entfernte Zeile zugeordnet |
+| Wirkung | **0 Bots** mit Änderung an `erste_falte_4a` / `erste_falte` / Selektionsfalten, 0 Falten geändert; Warm-Datum der vier Aktien-Bots **+15 bis +18 Tage**, fünf Krypto-Bots **+0 Tage** (kein Jahr, kein Tag) |
+| Neuer Plan daneben | `faltenplan_tb80.json` `2dd28291…`, zwei Läufe byteweise gleich; `faltenplan.json` `0e54ac5c…`, `faltenplan_tb72.json` `19e8cbca…`, Benchmark-Tabellen unverändert |
+| Mutationsprobe | Richtung 1 (Datenuhr zurück): alter Stand Bot für Bot, **beisst nur auf Tagesebene** — auf Jahresebene sind alt und neu gleich; Richtung 2 (+1 Jahr): **vier erste Falten bewegen sich** um ein Jahr, Krypto nicht; 49/49 |
+| Test | `test_horizontbeginn.py` **61/61**, liest das Datum aus Register 28.4 und vergleicht; Gegenprobe mit Literal 2016-09-01: **rot, 15**. `test_erste_falte_trockenlauf.py` 50/50 nach Anpassung der Mutation an die zwei neuen Felder |
+| Register | Abschnitt **32**, 211 / 0, append-only; 26–32 je genau einmal (grep und python); 32.5 Entscheidungsvorlage ohne Empfehlung |
+
+### Was der Auftrag nicht wusste
+
+Die Jahresebene war stumm — 18 Tage Anker-Verschiebung gegen Monate Abstand
+zum Jahreswechsel. Eine Mutationsprobe „Datenuhr wieder einsetzen" hätte auf
+Jahresebene nichts verwerfen können und den Auftrag nach Kriterium 3 zum
+Abbruch gebracht; deshalb wurde in Schritt 0 vor der Änderung das Warm-Datum
+je Bot gemessen, und der Plan trägt es seither (`erste_falte_4a_warm_ab`,
+`horizontbeginn`). Der Auftrag nennt 26.2 mit 19:19 Ortszeit; der Commit
+`729443c` liegt bei 17:13, 28.4 (`003f894`) bei 19:20 — die gemessenen Zeiten
+stehen im Register. `UEBERGABE_2026-09-19.md` 1/1 und
+`test_erste_falte_trockenlauf.py` 8/2 sind die einzigen weiteren Zeilen mit
+zweiter Spalte ≠ 0 (Betreiber-Änderung bzw. alte `MUTATION`-Konstante).
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Bevor eine Probe läuft, wird gemessen, ob die Ebene, auf der sie vergleicht, überhaupt reagieren kann** — sonst „beisst" sie nicht, weil die Grösse zu grob ist, nicht weil die Umstellung fehlt. Die feinere Ebene wird **vorher** gemessen und in das Erzeugnis aufgenommen |
+| ⭐ | **Ein Test wird in der Betriebsumgebung geschrieben und dort zuerst gestartet** — auch Syntax ist versionsabhängig (f-String mit gleichen Anführungszeichen innen: 3.12 ja, 3.9 nein) |
+| ⭐ | **Ein Gleichheitsvergleich nennt die Felder, die abweichen** — ein nacktes `False` über einen Datensatz ist eine Kennzahl ohne Bezugsmenge (`K4d`) |
+| | Eine Uhrzeit aus einem Auftrag wird an der Git-Historie nachgemessen, bevor sie ins Register geht (`C1`) |
+| | `pgrep -f` trifft den eigenen Shell-Umschlag (bekannt aus TB-46b) — Prozesse über `ps` mit `[x]`-Muster oder über die Ausgabedatei erkennen |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen"):** 32.5 (wo der Horizontbeginn
+dauerhaft lebt — Betreiber); der Plan nach 4a ins Register (Abschnitt 30,
+Abbild-Datei, Freigabe); `fensteranker` in den drei Messwerkzeugen; TB-30b;
+Journal-Nachträge (20g)–(20m) und Backlog-Zeile `K4t`.
+
+*Geschrieben 21.09.2026 von der Mac-Sitzung TB-80 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

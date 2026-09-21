@@ -1,0 +1,41 @@
+== numstat je Datei 41db199..HEAD (62c587e)
+211	0	docs/VORREGISTRIERUNG_neuselektion.md
+1360	0	docs/belege/TB-80/faltenplan_stand_vor_tb80.json
+75	0	docs/belege/TB-80/schritt0_ausgangsstand.py
+41	0	docs/belege/TB-80/schritt0_ausgangsstand.txt
+25	0	docs/belege/TB-80/schritt0_warm_ab.py
+10	0	docs/belege/TB-80/schritt0_warm_ab.txt
+110	0	docs/belege/TB-80/schritt2_faltenplan_tb80.py
+45	0	docs/belege/TB-80/schritt2_wirkung.txt
+127	0	docs/belege/TB-80/schritt3_mutationsprobe.py
+78	0	docs/belege/TB-80/schritt3_mutationsprobe.txt
+20	0	docs/belege/TB-80/schritt4_gegenprobe_test_rot.txt
+21	0	docs/belege/TB-80/schritt4_test_erste_falte_trockenlauf.txt
+20	0	docs/belege/TB-80/schritt4_test_horizontbeginn.txt
+27	0	docs/projektfuehrung/ARBEITSWEISE.md
+1	1	docs/projektfuehrung/UEBERGABE_2026-09-19.md
+8	2	research/faltenplan_neun/test_erste_falte_trockenlauf.py
+221	0	research/faltenplan_neun/test_horizontbeginn.py
+1378	0	research/vorregistrierung/ergebnisse/faltenplan_tb80.json
+78	16	research/vorregistrierung/faltenplan.py
+
+== ausserhalb docs/, faltenplan.py, faltenplan_neun/, ergebnisse/faltenplan_tb80.json:
+(leer = nichts)
+
+== Sperrlisten-Hashes + tb72:
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+19e8cbca874d6e7455f2f3bc0723def9ea058d0b314fa1772e04cd64ff1c9d24  research/vorregistrierung/ergebnisse/faltenplan_tb72.json
+2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794  research/vorregistrierung/ergebnisse/faltenplan_tb80.json
+
+== Registerabschnitte 26..32 (grep):
+26: 1
+27: 1
+28: 1
+29: 1
+30: 1
+31: 1
+32: 1
+== zweite Zaehlung (python):
+{26: 1, 27: 1, 28: 1, 29: 1, 30: 1, 31: 1, 32: 1} doppelt: [] hoechste: 32
