@@ -36,10 +36,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-81** | `docs/auftraege/MAC_TB-81_faltenplan_als_registertext.md` | ⭐⭐ **Der Faltenplan wird Registertext** (Fable 30.2 (2)) — je Bot Horizontbeginn, Faltenlaenge, erste Falte, Faltenliste; dazu die **Berichtigung zu 30.2 (3)**: statt eines Urteils ueber tote Felder eine **abschliessende Feldliste** (Fable 21k, er hat sein eigenes Kriterium zurueckgenommen). ⛔ **Kein Code, keine Abbild-Datei, keine Sonde** — die folgen nach seiner Pruefung und mit eigener Freigabe |
+| **TB-82** | `docs/auftraege/MAC_TB-82_register_34.md` | ⭐⭐ **Registerabschnitt 34** — Fables fuenf Eintraege aus 21l/21m (Falten mit Laenge > 1, Rest vor Go-Live, `3b (a)` statt `3b (b)`, `horizontbeginn` als Zeichenkette, „vier" → „neun" Optimierer) plus **eine Berichtigung von uns** (eine Fundstelle in 33.4 trug ihren Satz nicht). ⭐ **Neu: jede Berichtigung bekommt eine Marke AM ALTEN ORT**, nicht nur im neuen Abschnitt. ⛔ **Nur Text — kein Code, keine Abbild-Datei, keine Sonde, kein Hash, keine Wache.** Bewegt sich eine Faltenliste, bricht die Sitzung ab |
 
-*Gesetzt 21.09.2026 (zuvor TB-77, erledigt mit `83e3a85`, 21.09.2026; davor
-TB-69 `1ded755`, TB-76 `3c25d94`, TB-63 `437428d`, TB-75 `c96c208`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 21.09.2026 (zuvor TB-81, erledigt mit `6071f32`, 21.09.2026; davor
+TB-77 `83e3a85`, TB-69 `1ded755`, TB-76 `3c25d94`, TB-63 `437428d`, TB-75 `c96c208`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
