@@ -1,0 +1,6 @@
+AKTUELLER_AUFTRAG.md gegen HEAD (Einzeiler):
+87	1	docs/auftraege/AKTUELLER_AUFTRAG.md
+AKTUELLER_AUFTRAG.md gegen 83e3a85 (alte Fassung):
+8	7	docs/auftraege/AKTUELLER_AUFTRAG.md
+ARBEITSWEISE.md:
+10	1	docs/projektfuehrung/ARBEITSWEISE.md

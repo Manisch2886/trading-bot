@@ -1215,8 +1215,17 @@ gültigen Auftrags. Der einzufügende Text lautet dadurch **bis auf die Nummer**
 immer gleich:
 
 ```
-TB-<Nummer>: Lies docs/auftraege/AKTUELLER_AUFTRAG.md, arbeite den dort genannten Auftrag vollstaendig eigenstaendig ab, und antworte zuerst mit einer Zeile, welchen Auftrag du gelesen hast. Nennt diese Datei eine andere TB-Nummer als die vorangestellte, brich ab und melde es.
+TB-<Nummer>: Lies docs/auftraege/AKTUELLER_AUFTRAG.md, suche dort die Zeile mit genau der TB-Nummer, die diesem Satz vorangestellt ist, und arbeite den in dieser Zeile genannten Auftrag vollstaendig eigenstaendig ab. Antworte zuerst mit einer Zeile, welchen Auftrag du gelesen hast. Kommt deine Nummer dort nicht vor, brich ab und melde es.
 ```
+
+> ⚠️ **Ersetzt am 21.09.2026 (TB-78, Nachtrag v2).** Bis dahin stand hier:
+> *„TB-<Nummer>: Lies docs/auftraege/AKTUELLER_AUFTRAG.md, arbeite den dort genannten Auftrag vollstaendig eigenstaendig ab, und antworte zuerst mit einer Zeile, welchen Auftrag du gelesen hast. Nennt diese Datei eine andere TB-Nummer als die vorangestellte, brich ab und melde es."*
+> **Grund:** derselbe Satz stand in zwei Trägern in zwei Fassungen — hier die
+> ältere, in `AKTUELLER_AUFTRAG.md` die stärkere: sie **sucht die Zeile mit der
+> vorangestellten Nummer** und trägt auch, wenn die Datei mehrere Aufträge
+> führt; die ältere brach nur, wenn die Datei „eine andere Nummer nennt". Beim
+> Umzug hätte die falsche gegolten (Fehlerklasse `K4i`, `K4c`). Gültig ist der
+> Wortlaut aus `AKTUELLER_AUFTRAG.md`; **diese Datei folgt ihm, nicht umgekehrt.**
 
 | | |
 |---|---|
