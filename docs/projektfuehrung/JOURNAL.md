@@ -8071,6 +8071,65 @@ allen neun, Erzeuger der `zellen.csv`); unverändert 32.5, (20g)–(20m), `K4t`.
 
 ---
 
+## CK — TB-83: Registerabschnitt 35 — die Bestätigungsperiode bekommt ihren Bezeichner und wird Feld (Fables sechste Rücknahme), 30.2 (3) wird präzisiert, und die gesperrte Datei hat vor und nach der Arbeit denselben Hash (22.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-83_register_35.md`*
+
+**Quelle:** Mac-Sitzung **TB-83 Register 35 — Bestaetigungsperiode und
+Sondenzeitpunkt**, 22.09.2026, Ausgang `9dac8d4`. Commits `c410fc1` (Schritt
+0/1), `f0fc58b` (2), `d30af22` (3), `15b87b0` (4–8) und der Abgabe-Commit —
+jeder einzeln gepusht. Belege `docs/belege/TB-83/`. **Nur `docs/`** geändert,
+Register **172 / 0**; kein Code, **kein `python3 faltenplan.py`**, keine
+Abbild-Datei, keine Sonde, kein Wrapper, kein Hash. Anlass: Fable 22a
+(Antwort auf Anfrage 21g: die Datumsspanne gilt, der Name ist ein Schlüssel,
+30.2 (3) braucht den Sondenzeitpunkt); parallel wartet Anfrage 22a
+(Sperrlistenfalle: `faltenplan.py main()` schreibt nach `ergebnisse/faltenplan.json`).
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Ausgangsstand | Arbeitsbaum leer (22a-Dateien schon in `9dac8d4`); `## 35.` **0**; drei Hashes `0e54ac5c…` · `a163c498…` · `4549395f…` |
+| M1 21.4 „Bestätigung ab" | **9/9 `2026-01-01`** (Tabellenkopf per `grep` verankert); die ⚠️-Zelle bei `elliott_wave` ist im Register unbegründet — gemessen, nicht gedeutet |
+| M2 5.2 | **`2026-09-01`, ausschliesslich** ⇒ Bezeichner `2026-01-01/2026-09-01` bei allen neun, aus 21.4 und 5.2 gebildet |
+| M3 `auswertung.py` | **genau ein** `fp.faltenplan(mess)`, Z. 589 — rechnet den Plan, liest keine `faltenplan*.json`; der Schlüssel Z. 432 `plan[bot]["bestaetigungsperiode"]` |
+| M4 `faltenplan.py` | **zwei** Treffer, Z. 336 (Erzeugung, Faltenname) und **Z. 368** (Ausgabe; Auftrag sagte 369) — nur gelesen |
+| M5 Faltenliste 33.2 | SHA `e5ab322e…` vorher = nachher, `diff` leer |
+| ⚠️⚠️ M6 `ergebnisse/faltenplan.json` | **`0e54ac5c…` vor UND nach**, mtime 14.09. unverändert, 0 Commits auf `ergebnisse/` — Sperrlistenpunkt 2 unangetastet |
+| Register | Abschnitt **35** (Z. 5691, `152 0`), 35.1–35.5; vier Registertexte und sechs Begründungszeilen je 1× exakt gegen 22a; fünf Marken (`20 0`, Teilfolge 5820/5820): 30.2 (3) als `> >`, 33.2 als `>`-Block, 33.3 als **angefügte** Feldzeile `bestaetigungsperiode`, 33.4 Punkt 3 als „ERSETZT"-Zeile, 34.6 als „beantwortet und ersetzt"-Block |
+| Abschluss | numstat zweite Spalte 0 überall, 0 Dateien ausserhalb `docs/`, Zeiger nur gelesen |
+
+### Was der Auftrag nicht wusste
+
+Die Ausgabezeile des Bezeichners in `faltenplan.py` ist **368**, nicht 369 —
+Auftrag und Anfrage 22a trugen die `print`-Zeile darunter. Drei
+Begründungszitate im Auftrag waren Kurz- oder Mischformen (Z. 41 und 43 mit
+„…" zusammengezogen); ins Register kamen die vollen Zeilen (`C1`). Die erste
+Zeichengleichheits-Lesung zog `> ` von den Registerzeilen ab, das die
+Quellzeilen selbst tragen — vier `0x`, die keine waren; ohne Abzug `1x`.
+Mit 35.1/35.3 ist die in 34.6 offen eingetragene Frage entschieden und 33.4
+Punkt 3 ersetzt — beides trägt die Marke am alten Ort.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Auftrag, der ein Werkzeug nahe der Sperrliste berührt, misst den Hash der gesperrten Datei vor UND nach der Arbeit** — auch wenn nur Text geschrieben wird. Das Werkzeug wird nicht ausgeführt; der Hash beweist es (M6) |
+| ⭐ | **Eine Zeilennummer aus einem Auftrag wird beim Messen nachgeschlagen, nicht bestätigt** — 368 statt 369: kleine Abweichung, aber eine Zahl, die in ein Register geht |
+| ⭐ | **Eine Prüfung, die 0 liefert, wo 1 erwartet ist, wird zuerst gegen sich selbst geprüft** (Positivkontrolle: stimmt die Normalisierung?), bevor sie ein Befund ist |
+| | Wird eine offen eingetragene Frage später entschieden, bekommt der Offen-Block die Marke „beantwortet" mit Verweis — er bleibt stehen, damit die Kette lesbar bleibt |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen"):** ⚠️⚠️ Umstellung von
+`faltenplan.py:336`/368 auf den Bezeichner — hängt an Fables Antwort auf die
+Sperrlistenfalle (Wege a/b/c); bis dahin `python3 faltenplan.py` nicht
+aufrufen. Fables Unsicherheit zu weiteren Fundstellen (gemessen in Anfrage
+22a Punkt 2, Antwort aus). Abbild-Datei (mit `bestaetigungsperiode`), Sonde,
+Wrapper, Sperrlistenpunkt mit Freigabe; 33.5; TB-30b; 32.5, (20g)–(20m), `K4t`.
+
+*Geschrieben 22.09.2026 von der Mac-Sitzung TB-83 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
