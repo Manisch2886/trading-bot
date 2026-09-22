@@ -1,0 +1,73 @@
+TB-85 Schritt 1 — Registerabschnitt 10 ausgelesen und die 14 Punkte klassifiziert (A2)
+Quelle: docs/VORREGISTRIERUNG_neuselektion.md, "## 10. Die Sperrliste" Z. 811, Liste Z. 824–871
+(gelesen mit: sed -n 822,871p docs/VORREGISTRIERUNG_neuselektion.md | cat -v), HEAD 1b9c96f
+Gezählt: grep -cE "^[0-9]{1,2}\. \*\*" auf Z. 822–871 = 14 (Punkte 1–14, lückenlos)
+
+Regeln dieser Messung (dieselben, die der Parser in shared/sperrlistensonde.py anwendet):
+  R1  Ein Punkt beginnt mit "<n>. **" in Spalte 0; eingerückte Folgezeilen gehören dazu.
+  R2  Eingerückte Blockquote-Zeilen ("   > …") sind Tatsachennotizen/Marken, NICHT der Punkt
+      (betrifft Punkt 2: Notizen aus Abschnitt 30 und 36.1; Punkt 8: Notiz aus Abschnitt 15).
+  R3  Titel = der erste **…**-Block (kann umbrochen sein; Punkt 4 enthält `DD_Toleranz` im Titel).
+  R4  Ein Dateipfad ist ein `…`-Token mit Dateiendung (.py .json .txt …), ggf. vor "::".
+      Ein "datei::funktion"-Token nennt die Datei (Pfad) UND die Funktion (nicht dateibezogen).
+      Ein "modul.KONSTANTE"-Token ist KEIN Pfad (keine Endung) — Punkte 3 und 7.
+  R5  Auflösung: kein "/" oder Präfix "ergebnisse/" → relativ zu research/vorregistrierung/;
+      sonst repo-relativ (config/…, shared/…).
+  R6  "nicht_dateibezogen" = alles, was der Punkt nach dem Titel nennt und was nicht nur
+      Dateipfade und Trennzeichen sind — wörtlich.
+
+ #  Titel (zeichengleich)                                              Pfade (repo-relativ)                                        nicht dateibezogen (wörtlich)                                           messbar?
+--  ------------------------------------------------------------------  ----------------------------------------------------------  ----------------------------------------------------------------------  ---------------
+ 1  Rastergrenzen und Grenzsätze                                        research/vorregistrierung/registerdaten.py                  "`registerdaten.py`, Abschnitt 3 dieses Registers"                     Datei + Registerverweis  → 2
+ 2  Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen          research/vorregistrierung/faltenplan.py                     (leer)                                                                  nur Dateien              → 0
+                                                                        research/vorregistrierung/ergebnisse/faltenplan.json
+ 3  Selektionsstatistik, Plateau-Regel, Spitzen-Schwelle                research/vorregistrierung/auswertung.py                     "`auswertung.py`, `registerdaten.SPITZEN_SCHWELLE`"                    Datei + Konstante        → 2
+ 4  Drawdown-Bedingung, `DD_Toleranz` und die vorab berechneten         research/vorregistrierung/benchmark.py                      "`benchmark.py`, `ergebnisse/benchmark_drawdowns.json`,                Dateien + Regel im Text  → 2
+    Benchmark-Drawdowns                                                 research/vorregistrierung/ergebnisse/benchmark_drawdowns.json  **einschliesslich der Interpolationsregel**"
+ 5  Abbruchkriterien und Kapitalregel                                   research/vorregistrierung/auswertung.py                     (leer)                                                                  nur Datei                → 0
+ 6  Benchmark-Definitionen                                              research/vorregistrierung/benchmark.py                      "gleichgewichtete Tagesrenditen, point-in-time,                        Datei (via ::) + Funktion + Definition → 2
+                                                                                                                                    `benchmark.py::bh_tagesrenditen`"
+ 7  N-Buchführung und Clusterschwelle                                   (keine)                                                     "`registerdaten.N_HISTORISCH_JE_BOT`, `CLUSTER_SCHWELLE = 0,9`"        nur Konstanten           → 2
+ 8  Universumsdateien und point-in-time-Regel                           config/top25_symbols.txt                                    "`config/top25_symbols.txt`, `config/sp500_top150.txt`,                Dateien + Regel (ersetzt lt. Notiz) → 2
+                                                                        config/sp500_top150.txt                                     vier Jahre Vorlauf je Symbol"
+ 9  Kosten (0,30 %) und Fill-Konvention                                 (keine)                                                     "`TRADING_FEE_PCT = 0,1` und `SLIPPAGE_PCT = 0,05` je Order,           nur Konstanten + Konvention → 2
+                                                                                                                                    Ein- und Ausstieg; Einstieg zum Schlusskurs des Bestätigungsbalkens"
+10  Zuteilungskaskade inklusive Seed                                    shared/zuteilung.py                                         "`shared/zuteilung.py`, `SEED = 20260913`"                             Datei + Konstante        → 2
+11  Commit-Hashes von Simulation, Erkennung, Optimierern und            research/vorregistrierung/herkunft.py                       "`herkunft.py::register()` und der Repo-Commit"                        Datei (via ::) + Funktion + Grösse ausserhalb des Repos → 2
+    Auswertungsskript
+12  Hash des Datenstands                                                research/vorregistrierung/herkunft.py                       "`herkunft.py::datenstand()`"                                          Datei (via ::) + Funktion → 2
+13  Die Liste der berichteten Kennzahlen und die Regel, dass alle       (keine)                                                     "Abschnitt 8"                                                           nur Registertext         → 2
+    berichtet werden, auch die unangenehmen
+14  Die Reihenfolge Selektion → Bestätigungsperiode → Bericht           research/vorregistrierung/auswertung.py                     "im Kopftext von `auswertung.py` als Ablauf festgeschrieben"           Datei + Docstring-Anteil → 2
+
+Bilanz meiner Messung:
+  allein über Datei-Hashes prüfbar (nicht_dateibezogen leer):        2, 5                                  → zwei
+  Datei(en) genannt, dazu Nicht-Dateibezogenes:                        1, 3, 4, 6, 8, 10, 11, 12, 14         → neun
+  keine Datei genannt:                                                 7, 9, 13                              → drei
+  Eindeutige Dateipfade: ZEHN —
+    research/vorregistrierung/{registerdaten.py, faltenplan.py, ergebnisse/faltenplan.json, auswertung.py,
+    benchmark.py, ergebnisse/benchmark_drawdowns.json, herkunft.py}, config/top25_symbols.txt,
+    config/sp500_top150.txt, shared/zuteilung.py
+
+Vergleich mit der Vorarbeit (docs/projektfuehrung/VORARBEIT_sperrlisten_sonde.md, Abschnitt 1) — ABWEICHUNGEN:
+  V1  Vorarbeit: Punkte 1, 2, 5, 8 "allein über Datei-Hashes prüfbar" (vier).
+      Gemessen: nur 2 und 5. Punkt 1 nennt zusätzlich "Abschnitt 3 dieses Registers" (Registerverweis);
+      Punkt 8 nennt zusätzlich "vier Jahre Vorlauf je Symbol" (eine Regel — lt. Notiz durch Abschnitt 15
+      ersetzt, der Halbsatz steht aber zeichengleich im Punkt). Beide bekommen von der Sonde 2, nicht 0.
+  V2  Vorarbeit: Punkte 6, 12 (und 11) meinen "eine Funktion, nicht die Datei" — kein Pfad.
+      Gemessen nach R4: die Tokens `benchmark.py::bh_tagesrenditen`, `herkunft.py::register()`,
+      `herkunft.py::datenstand()` NENNEN die Datei ausdrücklich; sie wird gehasht, die Funktion bleibt
+      nicht messbar → Punkt 2. Folge: herkunft.py ist ZEHNTER Pfad (Vorarbeit: neun).
+  V3  Vorarbeit: Punkt 14 "Docstring, nicht die Datei als ganze". Gemessen nach R4: `auswertung.py`
+      ist genannt und wird gehasht (dieselbe Datei wie 3 und 5); der Docstring-Anteil bleibt nicht messbar → 2.
+  V4  Vorarbeit: Punkt 9 "keine Datei genannt" — bestätigt. TRADING_FEE_PCT = 0.1 steht (grep) in
+      strategies/*/forward_test.py, SLIPPAGE_PCT = 0.05 in research/vorregistrierung/messgroessen.py:59 —
+      der Registertext nennt keinen dieser Orte; die Sonde erfindet keinen.
+  V5  Vorarbeit: Punkt 7 "zwei Konstanten" — bestätigt (registerdaten.py:99 CLUSTER_SCHWELLE = 0.90,
+      :115 N_HISTORISCH_JE_BOT; nicht im Punkt genannt, daher nicht Pfad).
+  V6  Vorarbeit: Punkt 13 "reiner Registertext" — bestätigt.
+  V7  Vorarbeit Abschnitt 2: benchmark_drawdowns_vt.json in keinem der 14 Punkte — bestätigt
+      (grep -c "benchmark_drawdowns_vt" auf Z. 822–871 = 0).
+  Folge für den Nullpunkt-Lauf, erwartet: 0 Punkte mit 1, 12 Punkte mit 2, 2 Punkte mit 0 → Gesamt 2.
+
+Zeichengleichheit der 14 Titel: nachgeprüft mit grep -c auf das Register (siehe schritt1_titel_grep.txt).

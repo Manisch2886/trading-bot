@@ -1,0 +1,21 @@
+TB-85 Schritt 1 — Zählung und Titel-Zeichengleichheit, HEAD 1b9c96f
+sed -n 822,871p docs/VORREGISTRIERUNG_neuselektion.md | grep -cE '^[0-9]{1,2}\. \*\*' =
+14
+sed -n 822,871p docs/VORREGISTRIERUNG_neuselektion.md | grep -c 'benchmark_drawdowns_vt' =
+0
+
+Titel einzeilig (grep -cF auf das Register, je Titelanfang der ersten Zeile):
+1  <- 1. **Rastergrenzen und Grenzsätze**
+1  <- 2. **Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen**
+1  <- 3. **Selektionsstatistik, Plateau-Regel, Spitzen-Schwelle**
+1  <- 4. **Drawdown-Bedingung, `DD_Toleranz` und die vorab berechneten
+1  <- 5. **Abbruchkriterien und Kapitalregel**
+1  <- 6. **Benchmark-Definitionen**
+1  <- 7. **N-Buchführung und Clusterschwelle**
+1  <- 8. **Universumsdateien und point-in-time-Regel**
+1  <- 9. **Kosten (0,30 %) und Fill-Konvention**
+1  <- 10. **Zuteilungskaskade inklusive Seed**
+1  <- 11. **Commit-Hashes von Simulation, Erkennung, Optimierern und
+1  <- 12. **Hash des Datenstands**
+1  <- 13. **Die Liste der berichteten Kennzahlen und die Regel, dass alle
+1  <- 14. **Die Reihenfolge Selektion → Bestätigungsperiode → Bericht**

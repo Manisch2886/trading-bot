@@ -1,0 +1,10 @@
+TB-85 Schritt 0 — Nullmessung der drei Sperrlisten-Hashes (vorher)
+Zeitpunkt: 2026-09-22 08:33:38 CEST
+HEAD: 1b9c96f2ee7f46ceab07740bf896abe89620076e  origin/main: 1b9c96f2ee7f46ceab07740bf896abe89620076e
+git status --short: 1 Zeilen
+
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+Soll: 0e54ac5c… / a163c498… / 4549395f… — alle drei stimmen.
