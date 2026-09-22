@@ -8353,6 +8353,66 @@ benannt. Dazu unverändert: 35.5, 33.5, TB-30b, 32.5, (20g)–(20m), `K4t`.
 
 ---
 
+## CO — TB-87: Registerabschnitt 37 — was ein Sondenbefund `1` bedeutet, hängt vom Tag ab, jeder registrierte Wert bekommt einen Ort, und beim Nachmessen stimmen vier Einzelheiten der Vorlagen nicht (22.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-87_register_37.md`*
+
+**Quelle:** Mac-Sitzung **TB-87 Register 37 — Sondenausgänge, Abbildgruppen,
+Ort registrierter Werte**, 22.09.2026, Eingang `40aa715`. Commits `b6b3a61`
+(Schritt 0/1), `bd15895` (Abschnitt 37), `c474da7` (sieben Marken, M5/M6
+nachher) und der Abgabe-Commit. Belege `docs/belege/TB-87/`. Stufe I, Punkt 4
+aus `PLAN_VOR_DEM_TAG.md`; reiner Registertext, keine Freigabe nötig.
+
+### Was eingetragen wurde
+
+| | |
+|---|---|
+| **37.1** | Die Sonde meldet **je Punkt je Bestandteil** (Fable 22d) — sie **gibt** heute schon je Bestandteil **aus**, ihr **Rückgabewert** steht aber je Punkt |
+| **37.2** | Das Abbild führt **zwei Gruppen**, Punkte und „bestimmte" Pfade; am Tag ist die zweite leer. Heute **nennt** die Sonde `_vt.json` nur |
+| ⭐⭐ **37.3** | **Was ein Befund `1` bedeutet, hängt vom Tag ab** (Fable 22g): vorher, wenn beauftragt, planmässig — Tatsachennotiz und neues Abbild; nachher Sperrlistenbruch nach 10.1. Erster Anwendungsfall mit beiden Hashes: `faltenplan.py` in TB-86 (`6f96b95d…` → `fd3e5018…`) |
+| **37.4** | Fables Tatsachennotiz zu `EINGEFROREN`/`SPERRLISTE_DATEIEN` — die in 36.6 als ausstehend geführte — mit Nachmess-Tabelle |
+| **37.5** | Ersteintrag **„Ort registrierter Werte"**: ein Modul, eine Konstante, auf der Sperrliste, Sonde prüft Datei **und** Wert. *„Ein Sperrlistenpunkt, der einen Wert nennt und keinen Ort, sperrt nichts — er legt fest."* |
+
+Register `317 / 0`, 22 Fable-Zeilen je 1× exakt, drei Sperrlisten-Hashes und
+die Faltenliste 33.2 vor und nach gleich.
+
+### ⭐ Was beim Nachmessen nicht stimmte
+
+| | Vorlage | gemessen |
+|---|---|---|
+| (a) | Datenvertrag `auswertung.py` Z. 41 | **Z. 51** |
+| (b) | `EINGEFROREN` weicht „an fünf Stellen" ab (drei fehlend, drei zusätzlich) — sechs Namen | **vier fehlend** (dazu `herkunft.py`, `shared/zuteilung.py`) plus der bestimmte `_vt.json`, **vier zusätzlich** (dazu `ergebnisse/messgroessen.json`) |
+| (c) | `messgroessen.py:59` als Ort der Kosten | Z. 59 ist nur `SLIPPAGE_PCT`; die Gebühr heisst dort **`GEBUEHR_PCT`** (Z. 58) |
+| (d) | Orte: neun `forward_test.py` und zwei Module | **auch neun `backtest_*.py`** tragen eigene Kopien |
+
+Fables Sätze stehen zeichengleich; die Messung steht daneben. Keine der vier
+ändert seine Folgerungen — aber (c) und (d) gehören zu der Frage, die er selbst
+vor die Umsetzung gestellt hat (Plan Punkt 5).
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Wer Text in einen Bereich schreibt, den ein Programm liest, lässt das Programm vorher und nachher laufen.** Die Sonde liest Abschnitt 10; eine Leerzeile zwischen Punkt und Marke hätte die Liste nach Punkt 7 abgeschnitten. Gemessen: Prüfung (ii) vorher und nachher `0`, Listentext unverändert |
+| ⭐ | **Eine Zählung in einer Vorlage wird nachgezählt, nicht nur ihre Namen geprüft.** „Fünf Stellen" mit sechs Namen fiel erst beim mechanischen Mengenvergleich auf — und der fand drei weitere |
+| ⭐ | **Ein Ort ist erst gemessen, wenn der Name gemessen ist.** `messgroessen.py:59` war richtig — nur für die Hälfte des Paares; die andere Hälfte heisst dort anders |
+| | **Eine Marke, die nicht bestellt ist, kommt vor dem Commit wieder heraus**, wenn der eigene Schlusstext schon eine Zahl nennt — sonst stimmt der Abschnitt nicht mit sich selbst |
+
+### Was offen bleibt
+
+Die Sonde muss je Bestandteil **zurückgeben** und „bestimmt" **prüfen** (37.1,
+37.2) · **das neue Abbild** (Plan 2b, schliesst 37.3) — ⚠️ der Hash des
+geltenden Abbilds `6a1b732e…` steht nur in Tatsachennotizen, nicht als
+Eintrag nach 36.6; CN hatte das TB-87 zugeschrieben, der Auftrag enthielt es
+nicht · **Plan Punkt 5** (woher lesen die Optimierer Kosten?) · Fables
+Unsicherheit zu den eingefrorenen Modulen · die vier Abweichungen an Fable.
+Dazu unverändert: Schritt 3 aus 36.3, 35.5, 33.5, TB-30b, 32.5, (20g)–(20m),
+`K4t`.
+
+*Geschrieben 22.09.2026 von der Mac-Sitzung TB-87 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
