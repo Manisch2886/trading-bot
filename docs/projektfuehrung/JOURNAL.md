@@ -8130,6 +8130,71 @@ Wrapper, Sperrlistenpunkt mit Freigabe; 33.5; TB-30b; 32.5, (20g)–(20m), `K4t`
 
 ---
 
+## CL — TB-84: Registerabschnitt 36 — die Schreibregel für Sperrlistenpfade, die Sperrlisten-Sonde mit drei Ausgängen, das Abbild der Sperrliste als neue Datei, die Reihenfolge des Handwerks — und der Auftrag wuchs während der Sitzung (22.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-84_register_36.md`*
+
+**Quelle:** Mac-Sitzung **TB-84 Register 36 — Schreibregel und
+Sperrlisten-Sonde**, 22.09.2026, Ausgang `4bbd720`. Commits `a7c4cea` (Schritt
+0/1), `9122775` (Betreiber-Dateien, unverändert), `5f0c80e` (2), `61c52a0` (3),
+`a245902` (4–8) und der Abgabe-Commit — jeder einzeln gepusht. Belege
+`docs/belege/TB-84/`. **Nur `docs/`** geändert, Register **345 / 0**; kein
+Code, **kein `python3 faltenplan.py`**, keine Sonde, kein `main()`-Umbau, kein
+Z. 336, `herkunft.py` unberührt, keine Freigabe. Anlass: Fable 22b (Antwort auf
+die Sperrlistenfalle 22a: statt Weg a/b/c eine allgemeine Schreibregel plus
+Sonde plus Reihenfolge) und — während der Sitzung — Fable 22c (drei Ausgänge
+für jede Sonde, Berichtigung seines „≠ 0"; Abbild der Sperrliste als neue
+Datei).
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| Ausgangsstand | Arbeitsbaum leer (22b-Dateien schon in `4bbd720`); `## 36.` **0**; drei Hashes `0e54ac5c…` · `a163c498…` · `4549395f…` |
+| M1 Abschnitt 10 | **14 Punkte**; 11 und 12 nennen `herkunft.py` |
+| ⚠️⚠️ M2 `ergebnisse/faltenplan.json` | **`0e54ac5c…` vor UND nach**, mtime 14.09., 0 Commits auf `ergebnisse/`; Schreibstelle `main()` Z. 372–374 nur gelesen |
+| M3 `snapshot.py` | **drei Ausgänge, Z. 217–219**, `2` = NICHT PRUEFBAR (Auftrag sagte 214–232 und ein Muster ohne Einrückung) |
+| M4 `herkunft.py` | `EINGEFROREN` **Z. 57** (10 Einträge), `SPERRLISTE_DATEIEN` **Z. 66** (5 Muster) |
+| M5 | `benchmark_drawdowns_vt.json` in **keiner** Liste (0 Treffer, Positivkontrolle 1) |
+| M6 Faltenliste 33.2 | SHA `e5ab322e…` vorher = nachher, `diff` leer |
+| Register | Abschnitt **36** (Z. 5875, `309 0`), 36.1–36.7; 28 Fable-Zeilen aus 22b/22c je 1× exakt, fünf Teilzeichenketten; sechs Marken (`36 0`, Teilfolge 6149/6149): Überschrift 10, Sperrliste Punkt 2, 21.4, 35.1, und zwei `> >` in 36.1/36.2 für die Berichtigung aus 36.5 |
+| Abschluss | numstat zweite Spalte 0 für alles von TB-84; 0 Dateien ausserhalb `docs/`; Zeiger nur gelesen |
+
+### Was der Auftrag nicht wusste
+
+Der Auftrag **änderte sich nach Schritt 1**: Der Betreiber erweiterte ihn um
+36.5 und 36.6 aus Fable 22c — und die Quelle `FABLE_ANTWORT_2026-09-22c_…`
+erschien erst einige Minuten **nach** dem erweiterten Auftrag. Bis sie da war,
+hätte kein Zitat zeichengleich geprüft werden können (Abbruchkriterium 3);
+gewartet, dann geprüft, dann eingetragen. Drei Begründungszitate im Auftrag
+waren Kurz- oder Mischformen, eines mit „…"-Auslassungen (`C1`); ins Register
+kamen die vollen Quellzeilen. Das M3-Muster des Auftrags war an der Einrückung
+unverankert. Und beim Gegencheck der Anfrage 22c fiel ein dritter Nutzer von
+`herkunft.py` auf (`research/etf_trendfolge/datenstand.py` ruft
+`herkunft.datenstand()` über `lade_fremdes_modul` auf) — nur im
+Ergebnisdokument notiert, nicht bewertet, nicht eingetragen.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Auftrag kann sich während der Sitzung ändern.** Meldet die Umgebung eine geänderte Auftragsdatei: `git status`, Diff lesen, prüfen, ob die genannten Quellen existieren — erst dann weiter. Betreiber-Dateien kommen in einen eigenen, unveränderten Commit |
+| ⭐ | **Ein Fable-Zitat steht im Register auf einer Zeile, wie in der Quelle** — ein umbrochenes Zitat ist für die Zeichengleichheitsprüfung unsichtbar (0× statt 1×), auch wenn kein Zeichen fehlt |
+| ⭐ | **Eine Frage, die beim Eintrag schon beantwortet ist, wird nicht als offen eingetragen** — sie bekommt den Vermerk „beantwortet in …", die Herkunft bleibt genannt |
+| | Ein Auftragsmuster (`grep`) wird vor dem Messen gegen die Datei geprüft (Einrückung, Anker); trifft es nichts, ist das ein Muster-Befund, kein Messwert |
+
+**Offen (Ergebnisdokument, Abschnitt „Offen"):** ⚠️⚠️ Betreiberfreigabe für
+die vier Schritte aus 36.3 (Sonde → `main()` absichern → Z. 336 → Abbild) —
+keine erteilt; bis dahin `python3 faltenplan.py` nicht aufrufen. Fables
+Tatsachennotiz zu `EINGEFROREN`/`SPERRLISTE_DATEIEN` (Anfrage 22c, plus
+Randbefund); seine Antworten zu „bestimmten Pfaden" und zur
+Maschinenlesbarkeit von Abschnitt 10; 35.5-Unsicherheit; 33.5; TB-30b; 32.5,
+(20g)–(20m), `K4t`.
+
+*Geschrieben 22.09.2026 von der Mac-Sitzung TB-84 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
