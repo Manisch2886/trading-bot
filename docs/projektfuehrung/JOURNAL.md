@@ -8272,6 +8272,87 @@ freigegeben, aber noch nicht beauftragt. Dazu unverändert: 35.5, 33.5, TB-30b,
 
 ---
 
+## CN — TB-86: die Sperrlistenfalle ist zu — `faltenplan.py main()` schreibt nicht mehr blind in die gesperrte Datei, und der Beweis ist ein Lauf, der sie absichtlich angreift (22.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-86_faltenplan_schreibsperre.md`*
+
+**Quelle:** Mac-Sitzung **TB-86 `faltenplan main()` — Zielpfad und
+Einmal-Schreibsperre**, 22.09.2026, Eingang `2144825`. Commits `4daa254`
+(Schritt 2 und 3), `6278888` (Berechtigungsdatei, **kein TB-86-Inhalt**),
+`75bb792` (Belege) und der Abgabe-Commit. Belege `docs/belege/TB-86/`.
+Schritt 2 von Fables Reihenfolge 36.3, Betreiberfreigabe 22.09., 07:50.
+⚠️ Auch diese Sitzung wurde durch einen **Verbindungsabbruch** geteilt; Teil 2
+hat vor allem anderen den Stand nachgemessen, bevor er weiterarbeitete.
+
+### Was repariert wurde
+
+`main()` schrieb fest verdrahtet nach `ergebnisse/faltenplan.json` —
+**Sperrlistenpunkt 2**. Ein einziges `python3 faltenplan.py` hätte die
+gesperrte Datei überschrieben. Sie hielt seit dem 14.09. nur deshalb, weil
+niemand den Befehl getippt hat.
+
+| | |
+|---|---|
+| **Voreinstellung** | nicht mehr der gesperrte Pfad, sondern `ergebnisse/faltenplan_<JJJJ-MM-TT-HHMMSS>.json` (UTC) — 36.1 (3)/(4) |
+| **`--ziel`** | ein anderer Pfad ist erlaubt, ⚠️ **das Überschreiben nicht** |
+| **Einmal-Schreibsperre** | 36.1 (2) mit `O_EXCL`; Ziel existiert → **1**, Pfad **und Hash** genannt, nichts geschrieben, **auch nicht bei gleichem Inhalt** |
+| **Rückgabewerte** | `0` geschrieben · `1` Ziel existiert (36.5: *„er hat geprüft und einen Befund"*) · `2` nicht prüfbar. ⭐ Vorher gab `main()` **immer 0** |
+| Umfang | `100+/10-`, **eine** Datei, drei Hunks: Importblock, drei neue Funktionen, der Schreibteil |
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| ⭐⭐ **M4 — der gesperrte Pfad selbst als `--ziel`** | **rc 1.** `0e54ac5c…` vorher = nachher, 18 736 B = 18 736 B, **und dieselbe mtime** (`Sep 14 17:55:17`) — sie wurde nicht einmal zum Schreiben geöffnet |
+| M1 / M2 / M3 | `0` (neues Zeitstempelziel) · `1` (dieselbe Datei erneut) · `1` (Kopie der gesperrten Datei) — alle wie erwartet |
+| **Ausgabevergleich** | **0 Abweichungen** im Planteil, vorher gegen nachher |
+| ⭐⭐ **Die schärfere Probe** | drei Läufe, **ein** Plan-Hash `2dd28291…`. Der Bildschirm zeigt nur sechs Felder und schneidet bei 40 Zeichen ab — ein Unterschied in einem nicht gedruckten Feld wäre dort unsichtbar |
+| Drei Sperrlisten-Hashes | `0e54ac5c…` · `a163c498…` · `4549395f…` — **drei Messungen an einem Tag, alle gleich** |
+| Zeile 336 | im Wortlaut unverändert, nur um die zwei neuen Importzeilen auf 338 verschoben. `grep -c` im Diff: **0** |
+
+### ⭐ Der Befund, der nicht im Auftrag stand
+
+**M5 gab `1` statt der erwarteten `2` — und das ist richtig so.**
+Sperrlistenpunkt 2 nennt **zwei** Pfade. Der zweite ist `faltenplan.py` selbst,
+also genau die Datei, die dieser Auftrag ändern sollte (`6f96b95d…` →
+`fd3e5018…`). Die Sonde aus TB-85 hat eine Änderung an einer gesperrten Datei
+gefunden und beim Namen genannt. **Dass die Änderung beauftragt und freigegeben
+war, kann sie nicht wissen — und soll es nicht.** Inhaltlich schützt Punkt 2
+Faltengrenzen, Go-Live-Schnitt, Purge- und Faltenlängen; **keine dieser Grössen
+hat sich bewegt**, geändert wurde allein, *wohin* geschrieben wird.
+
+Bilanz: Nullpunkt TB-85 `2 / 0 / 12` → rc 2; nach TB-86 `1 / 1 / 12` → rc 1.
+Die zwölf nicht prüfbaren Punkte sind unverändert dieselben.
+
+⛔ Das Abbild wurde **nicht** neu erzeugt, der Hash **nicht** nachgezogen, kein
+Registereintrag. 36.2: ein Sperrlistenbruch ist *„eine Tatsachennotiz — nie eine
+stille Reparatur"*.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Eine Einmal-Schreibsperre und ein fester Voreinstellungsname vertragen sich nicht.** Die Sperre bricht ab, sobald das Ziel existiert — bei festem Namen wäre das Werkzeug nach dem ersten Lauf unbrauchbar. Der Zeitstempel ist kein Schmuck, er ist die Bedingung dafür, dass die Sperre schützt statt lähmt. **Und er hat den Nebeneffekt, der eigentlich der Zweck ist: der gesperrte Pfad ist nur noch über ein ausdrückliches Argument erreichbar** |
+| ⭐⭐ | **Der Beweis, dass eine Datei unberührt blieb, ist die mtime, nicht der Hash.** Ein Hash bliebe auch dann gleich, wenn die Datei geöffnet und mit identischem Inhalt neu geschrieben worden wäre. Wer „nicht angefasst" belegen will, misst den Zeitstempel mit |
+| ⭐⭐ | **Eine Konsolenausgabe ist kein Beleg für Unverändertheit.** Sie druckt eine Auswahl und kürzt sie (hier: sechs von mehr Feldern, `sel[:40]`). Der Vergleich gehört auf das **erzeugte Artefakt**, nicht auf seine Anzeige |
+| ⭐ | **Ein Prüfwerkzeug, das nach einer freigegebenen Änderung anschlägt, hat recht.** Der Befund wird stehen gelassen, nicht weggeräumt — und der Auftrag, der ihn wegräumt, ist ein eigener mit eigener Freigabe |
+| ⭐ | **Eine Sperre prüft nicht `exists` und schreibt dann.** Dazwischen liegt ein Wettlauf. `O_EXCL` legt Prüfung und Anlegen in denselben Systemaufruf; die `exists`-Prüfung bleibt nur davor stehen, weil sie den Hash für die Meldung liefert |
+| | **Wer aufräumt, committet Fremdes getrennt.** Die Berechtigungsdatei der Sitzungen kam in einen **eigenen** Commit, ausserhalb der TB-86-Arbeit — sie ist ein Nachweis eigener Art (*was durfte eine Sitzung vor dem signierten Tag ausführen*) und hat im Diff eines Codeauftrags nichts verloren |
+| | ⚠️ **Eine Datei kann von einer `.gitignore` ignoriert sein, die nicht im Repo liegt.** `.claude/settings.local.json` steht in der **globalen** `~/.config/git/ignore` — im Repo war nichts zu finden. Die Aufnahme brauchte `git add -f` |
+
+### Was offen bleibt
+
+**Schritt 3 von 36.3** (Zeile 336, Bezeichner der Bestätigungsperiode nach
+35.1) — ⛔ **eigene Betreiberfreigabe nötig**, die vom 22.09. deckt nur
+Schritt 1 und 2. **TB-87**: der Registereintrag des Abbild-Hashes `6a1b732e…`.
+⚠️ **Neu:** ein **neues Sperrlisten-Abbild unter neuem Namen** (36.6), weil
+`faltenplan.py` sich beauftragt geändert hat — ohne Auftrag, ohne Freigabe, nur
+benannt. Dazu unverändert: 35.5, 33.5, TB-30b, 32.5, (20g)–(20m), `K4t`.
+
+*Geschrieben 22.09.2026 von der Mac-Sitzung TB-86 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
