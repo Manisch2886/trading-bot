@@ -1,7 +1,9 @@
 # Was vor dem signierten Tag fertig sein muss — die konsolidierte Liste
 
 **Von:** dem steuernden Chat (Sitzung vom 21.09.2026, 18:53)
-**Stand:** 22.09.2026, 18:15 Ortszeit · **HEAD:** `755b3c4`
+**Stand:** 22.09.2026, **19:00** Ortszeit · **HEAD:** `ee4e65c`
+⭐ **Fortgeschrieben** nach TB-86 und Fable 22f (Punkt 2 fertig, Punkt 2b neu,
+eine Zuschreibung berichtigt)
 **Geprüft von:** Fable 5.1, `FABLE_ANTWORT_2026-09-22e_liste_vor_dem_tag.md`
 **Art:** Planungsdokument. ⛔ **Kein Registertext.** Bei jeder Abweichung gilt
 das Register.
@@ -29,7 +31,8 @@ an **sieben** Stellen verstreut — Registerabschnitte 10, 11, 13, 16.4, 16.11,
 | # | Was | Stand |
 |---|---|---|
 | **1** | Sperrlisten-Sonde, Abbild, Selbstprüfung, Nullpunkt-Lauf | ⭐⭐ **fertig** (TB-85, `755b3c4`) |
-| **2** | `faltenplan.py main()` absichern — Zielpfad und Einmal-Schreibsperre (36.1 (4)) | ⭐ **beauftragt** (TB-86), Freigabe liegt vor |
+| **2** | `faltenplan.py main()` absichern — Zielpfad und Einmal-Schreibsperre (36.1 (4)) | ⭐⭐ **fertig** (TB-86, `ee4e65c`, 22.09.). ⭐ **M4 bestanden:** `main()` auf den echten gesperrten Pfad → Rückgabe `1`, *„die Datei wurde nicht einmal geöffnet zum Schreiben"*, `0e54ac5c…` unverändert |
+| **2b** | ⚠️⚠️ **NEU — das Abbild der Sperrliste ist überholt** | ⛔ **nicht beauftragt.** Sperrlistenpunkt 2 nennt **zwei** Pfade; `faltenplan.py` hat sich durch TB-86 beauftragt geändert (`6f96b95d…` → `fd3e5018…`). ⭐ **Die Sonde meldet es als Befund (`1`) und hat nichts repariert** — genau nach 36.2. Nach **36.6** braucht es ein **neues Abbild unter neuem Namen**, das alte bleibt |
 | **4** | Registertext aus 22c/22d: Präzisierung 36.5 (je Bestandteil) · Ergänzung 36.6 (Gruppe „bestimmt") · Tatsachennotiz zu Abschnitt 10 · Registertext „Ort registrierter Werte" samt Tatsachennotiz | ⛔ nicht beauftragt |
 
 ### Stufe II — untereinander unabhängig
@@ -42,10 +45,18 @@ an **sieben** Stellen verstreut — Registerabschnitte 10, 11, 13, 16.4, 16.11,
 | **8** | **Vollzug der Sperrlisten-Änderung** `benchmark_drawdowns_vt.json` (21.9, 23.7) — ⭐ **erweitert:** fertig erst, wenn `test_vorregistrierung.py` **grün** ist und `registerbericht.py` den neuen Schlüssel liest (23.5) | ⛔ Freigabe. ⚠️⚠️ **Blockiert den Tag** (roter Test) — ⭐ **Fable: nicht nach hinten stellen** |
 
 ⛔ **Gestrichen aus Punkt 8:** der Zusatz *„plus die Entscheidung W oder C aus
-23.3"*. ⭐ **Fable, 22e:** *„die Wahl W oder C ist durch den Satz zur Zeitachse
-gegenstandslos … der Vollzug braucht nur noch die Betreiberfreigabe aus 21.9."*
+23.3"*. ⭐ **Registerabschnitt 23.7, Nachtrag TB-71** (zitiert in Fable 22e):
+*„die Wahl W oder C ist durch den Satz zur Zeitachse gegenstandslos … der
+Vollzug braucht nur noch die Betreiberfreigabe aus 21.9."*
 ⚠️ **Wer den Zusatz in einen Auftrag übernimmt, wartet auf eine Entscheidung, die
 es nicht mehr gibt.**
+
+> ⚠️ **Berichtigt am 22.09.2026 nach Fable 22f:** Die erste Fassung schrieb
+> diesen Satz **Fable** zu (*„Fable, 22e: …"*). **Er ist Registertext.** Fables
+> Begründung, wörtlich: *„Wer in einem Jahr liest, der Verfahrensprüfer habe
+> W/C für gegenstandslos erklärt, sucht die Begründung bei mir und findet sie
+> nicht — sie steht im Register, und dort gehört sie hin."* ⭐ Dieselbe
+> Sorgfalt, die das Projekt bei Aktenzeichen verlangt.
 
 ### Stufe III — nach Stufe II
 
