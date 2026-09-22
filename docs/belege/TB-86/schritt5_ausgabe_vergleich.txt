@@ -1,0 +1,51 @@
+TB-86 Schritt 5 — die Konsolenausgabe VOR und NACH dem Umbau
+Zeitpunkt: 2026-09-22 18:20:51 CEST   HEAD: 4daa254cefc36e76c1ee4ce6a7d1115a7ef0fed4
+
+Verglichen wird der Planteil der Ausgabe — alles ausser der letzten Zeile
+('Geschrieben: <pfad>'), die den Zielpfad nennt und sich zwangslaeufig
+unterscheidet, weil genau dieser Pfad der Gegenstand des Auftrags ist.
+
+VORHER  (Schritt 1, Stand 2144825, main() ueber _HIER auf einen Wegwerfordner)
+NACHHER (Schritt 4 / M1, Stand 4daa254, main() ohne Argument)
+
+$ diff vorher_plan.txt nachher_plan.txt
+Abweichungen:        0 Zeilen — die Ausgabe ist zeichengleich.
+
+--- Die verglichene Ausgabe im Wortlaut ---
+TB-30a - Faltenplan: verankert, expandierend, mit Purge und Embargo
+
+Go-Live-Schnitt: 2026-09-01 (ausschliesslich)
+
+Bot                          Markt    Laenge  Trades/J  Purge  Selektionsfalten  Bestaetigung
+elliott_wave                 krypto       2J      26.0    11T  2018-2019, 2020-2021, 2022-2023, 2024-20 2026-2027
+t3_supertrend                krypto       1J     193.2    23T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+rsi2_crypto                  krypto       1J     134.0    10T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+turtle_soup_crypto           krypto       1J     314.5    10T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+volatility_breakout_crypto   krypto       1J      53.3    15T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+elliott_wave_stocks          aktien       1J      50.9   134T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+rsi2_mean_reversion          aktien       1J     537.3    18T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+turtle_soup_stocks           aktien       1J    1202.2    18T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+volatility_breakout          aktien       1J     456.7    26T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+
+--- Ende ---
+
+⭐⭐ Die schaerfere Probe: nicht die Bildschirmausgabe, sondern der erzeugte Plan.
+Die Konsolenausgabe zeigt je Bot nur sechs Felder und schneidet die
+Selektionsfalten bei 40 Zeichen ab (sel[:40]). Ein Unterschied in einem nicht
+gedruckten Feld waere dort unsichtbar. Deshalb zusaetzlich die JSON-Dateien:
+
+  vorher  (Wegwerflauf vor dem Umbau):      2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794
+  nachher (M1-Vorlauf, 16:13:05):           2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794
+  nachher (M1, 16:15:05):                   2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794
+
+$ diff plan_vorher.json faltenplan_2026-09-22-161505.json
+  ->        0 Zeilen Unterschied.
+
+Drei Laeufe, ein Hash: 2dd28291… Der Plan ist byteweise identisch. Keine
+Planzahl hat sich bewegt — Abbruchkriterium 4 ist nicht erfuellt.
+
+⚠️ Zu den zwei Zeitstempel-Dateien in ergebnisse/: die erste (16:13:05) stammt
+aus einem Vorlauf von M1, bei dem der Rueckgabewert nicht mitgeschrieben wurde;
+die zweite (16:15:05) ist die protokollierte Probe M1. Beide sind inhaltlich
+identisch. Ein Loeschen der ersten wurde abgelehnt (Schreibschutz im Repo), sie
+bleibt deshalb stehen und ist hier benannt.

@@ -1,0 +1,32 @@
+TB-86 Schritt 0 — Nullmessung der drei Sperrlisten-Hashes (vorher)
+Zeitpunkt: 2026-09-22 18:09:16 CEST
+HEAD: 21448253586edc60cf0d3dd479878d1eb77613c7  origin/main: 21448253586edc60cf0d3dd479878d1eb77613c7
+git status --short: 2 Zeilen
+Python: /usr/bin/python3 3.9.6 · trading-env 3.9.6
+
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+Soll: 0e54ac5c… / a163c498… / 4549395f… — alle drei stimmen.
+
+--- Vorbedingung (Auftrag Abschnitt 0): die Sperrlisten-Sonde aus TB-85 laeuft ---
+$ python3 shared/sperrlistensonde.py --abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+Rueckgabewert 2; Bilanz: 2 Punkte in Ordnung (0), 0 mit Befund (1), 12 nicht pruefbar (2); (ii) 0 in Ordnung
+-> zeichengleich mit dem Nullpunkt aus TB-85. Vorbedingung erfuellt.
+
+--- Stand des Repos gegenueber der TB-85-Abgabe (755b3c4) ---
+2144825 Fable 22d und 22e abgelegt; Wochenrueckmeldung 22.09.; frische Registerkopie (0-36); Anfrage 22e mit zwei Messungen (Selektionsmodus liest aus dem Snapshot, Raster enthaelt die 11.3-Achsen); PLAN_VOR_DEM_TAG konsolidiert; TB-86 beauftragt
+
+Der Betreiber hat seither ausschliesslich docs/ geschrieben (Fable 22d/22e,
+Wochenrueckmeldung, Registerkopie, PLAN_VOR_DEM_TAG, der TB-86-Auftrag,
+Zeigerdatei) — kein Code, keine gesperrte Datei:
+3	3	docs/auftraege/AKTUELLER_AUFTRAG.md
+204	0	docs/auftraege/MAC_TB-86_faltenplan_schreibsperre.md
+114	0	docs/projektfuehrung/FABLE_ANFRAGE_2026-09-22d_klassifikation_berichtigt.md
+131	0	docs/projektfuehrung/FABLE_ANFRAGE_2026-09-22e_zwei_messungen.md
+67	0	docs/projektfuehrung/FABLE_ANTWORT_2026-09-22d_wert_ohne_ort.md
+82	0	docs/projektfuehrung/FABLE_ANTWORT_2026-09-22e_liste_vor_dem_tag.md
+220	0	docs/projektfuehrung/FABLE_WOCHENRUECKMELDUNG_2026-09-22.md
+131	0	docs/projektfuehrung/PLAN_VOR_DEM_TAG.md
+6216	0	docs/projektfuehrung/REGISTER_KOPIE_2026-09-22.md

@@ -73,3 +73,14 @@ data_sicherung/
 # VOR einer Aenderung steht im Repo bereits in der Historie; eine zweite
 # Fassung daneben waere eine doppelt gefuehrte Zahl (CLAUDE.md).
 *.bak
+
+# Laufausgabe von research/vorregistrierung/faltenplan.py (seit TB-86).
+# Das Werkzeug schreibt seit 36.1 (3)/(4) voreingestellt nach
+# ergebnisse/faltenplan_<JJJJ-MM-TT-HHMMSS>.json - jeder Lauf legt also eine
+# neue Datei an. Das ist Absicht (die Einmal-Schreibsperre aus 36.1 (2) wuerde
+# das Werkzeug bei festem Namen nach dem ersten Lauf unbrauchbar machen), aber
+# es fuellt den Ordner, der unter Sperrlisten-Aufsicht steht, mit Laufresten.
+# ⚠️ Das Muster verlangt den Unterstrich und trifft die GESPERRTE Datei
+# ergebnisse/faltenplan.json NICHT - die bleibt verfolgt.
+# Laeufe, die als Beleg gelten, werden nach docs/belege/ kopiert (TB-86).
+research/vorregistrierung/ergebnisse/faltenplan_*.json

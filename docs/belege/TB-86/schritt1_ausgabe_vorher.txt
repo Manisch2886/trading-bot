@@ -1,0 +1,95 @@
+TB-86 Schritt 1 — die Konsolenausgabe von main() VOR dem Umbau
+Zeitpunkt: 2026-09-22 18:09:35 CEST   HEAD: 21448253586edc60cf0d3dd479878d1eb77613c7
+Python: trading-env/bin/python3 3.9.6
+  (⚠️ /usr/bin/python3 scheitert hier: der Trockenlauf laedt die Bot-Loader,
+   und dort fehlt 'binance' — ModuleNotFoundError. Bekannt seit TB-45.)
+
+⚠️⚠️ ABWEICHUNG VOM AUFTRAG, benannt:
+Der Auftrag verlangt den Aufruf 'mit --ziel auf einen Wegwerfpfad'. VOR dem
+Umbau gibt es --ziel aber noch nicht — main() hat heute kein argparse (Abschnitt 0
+des Auftrags sagt das selbst). Der Aufruf ohne Argument ist ausdruecklich verboten,
+weil er den gesperrten Pfad ueberschreibt. Gleichwertig und ohne den gesperrten
+Pfad zu beruehren: _HIER wird NACH dem Import auf einen Wegwerfordner umgebogen.
+
+Begruendung, dass das nur das Schreibziel verschiebt und nichts rechnet:
+$ grep -n _HIER research/vorregistrierung/faltenplan.py
+102:_HIER = os.path.dirname(os.path.abspath(__file__))
+104:    os.path.dirname(_HIER))
+372:    ziel = os.path.join(_HIER, "ergebnisse", "faltenplan.json")
+  Z. 102 Definition, Z. 104 sys.path (beim Import laengst ausgewertet),
+  Z. 372 der Schreibpfad. Die Rechnung benutzt _HIER an keiner Stelle.
+
+--- Treiber ---
+#!/usr/bin/env python3
+"""TB-86 Schritt 1 — die Konsolenausgabe von main() VOR dem Umbau.
+
+⚠️ Der Auftrag verlangt den Aufruf "mit --ziel auf einen Wegwerfpfad". VOR dem
+Umbau gibt es `--ziel` noch nicht (main() hat heute kein argparse). Gleichwertig
+und ohne den gesperrten Pfad zu beruehren: `_HIER` wird nach dem Import auf einen
+Wegwerfordner umgebogen. `_HIER` steht in faltenplan.py an genau drei Stellen -
+Z. 102 (Definition), Z. 104 (sys.path, beim Import schon ausgewertet) und
+Z. 372 (der Schreibpfad). Die Rechnung benutzt es nicht. Umgebogen wird also
+ausschliesslich das Schreibziel.
+"""
+import os
+import sys
+import tempfile
+
+WURZEL = "/Users/jaquelineloffler/trading-bot"
+sys.path.insert(0, os.path.join(WURZEL, "research", "vorregistrierung"))
+
+import faltenplan  # noqa: E402
+
+ECHT = os.path.join(faltenplan._HIER, "ergebnisse", "faltenplan.json")
+weg = tempfile.mkdtemp(prefix="tb86_vorher_")
+os.makedirs(os.path.join(weg, "ergebnisse"))
+faltenplan._HIER = weg
+
+print("# Wegwerfziel: %s/ergebnisse/faltenplan.json" % weg, file=sys.stderr)
+print("# Gesperrter Pfad NICHT angesprochen: %s" % ECHT, file=sys.stderr)
+
+rc = faltenplan.main()
+print("# Rueckgabewert: %r" % rc, file=sys.stderr)
+print("# Geschrieben wurde nach: %s" % os.path.join(weg, "ergebnisse"), file=sys.stderr)
+
+--- stderr ---
+# Wegwerfziel: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb86_vorher_m7rzembw/ergebnisse/faltenplan.json
+# Gesperrter Pfad NICHT angesprochen: /Users/jaquelineloffler/trading-bot/research/vorregistrierung/ergebnisse/faltenplan.json
+# Rueckgabewert: 0
+# Geschrieben wurde nach: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb86_vorher_m7rzembw/ergebnisse
+
+--- stdout: DIE KONSOLENAUSGABE VOR DEM UMBAU ---
+TB-30a - Faltenplan: verankert, expandierend, mit Purge und Embargo
+
+Go-Live-Schnitt: 2026-09-01 (ausschliesslich)
+
+Bot                          Markt    Laenge  Trades/J  Purge  Selektionsfalten  Bestaetigung
+elliott_wave                 krypto       2J      26.0    11T  2018-2019, 2020-2021, 2022-2023, 2024-20 2026-2027
+t3_supertrend                krypto       1J     193.2    23T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+rsi2_crypto                  krypto       1J     134.0    10T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+turtle_soup_crypto           krypto       1J     314.5    10T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+volatility_breakout_crypto   krypto       1J      53.3    15T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+elliott_wave_stocks          aktien       1J      50.9   134T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+rsi2_mean_reversion          aktien       1J     537.3    18T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+turtle_soup_stocks           aktien       1J    1202.2    18T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+volatility_breakout          aktien       1J     456.7    26T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+
+Geschrieben: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb86_vorher_m7rzembw/ergebnisse/faltenplan.json
+--- Ende stdout ---
+
+Rueckgabewert: 0 (main() gibt heute immer 0 zurueck)
+
+--- Der gesperrte Pfad vor und nach diesem Lauf ---
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+-> unveraendert.
+
+--- ⭐ Nebenbefund: die gesperrte Datei ist NICHT das, was main() heute rechnet ---
+Der Wegwerfplan dieses Laufs gegen ergebnisse/faltenplan.json (0e54ac5c…, mtime 14.09.):
+$ diff <(normalisiert) <(normalisiert) | wc -l
+     946
+Zeilen Unterschied. Die gesperrte Datei traegt noch 'bestaetigungsperiode': null
+und ein Feld 'datenbeginn_heute'; sie stammt aus der Zeit vor TB-61/TB-72/TB-80.
+⚠️ Ein versehentliches 'python3 faltenplan.py' haette den eingefrorenen Plan also
+nicht durch denselben Inhalt ersetzt, sondern durch einen inhaltlich anderen.
+Das ist kein Auftragsgegenstand und wird hier nur festgehalten.

@@ -1,0 +1,216 @@
+TB-86 Schritt 4 — Mutationsproben M1-M4
+Zeitpunkt: 2026-09-22 18:14:32 CEST
+Arbeitsverzeichnis: /Users/jaquelineloffler/trading-bot/research/vorregistrierung
+Python: Python 3.9.6
+Gesperrte Datei zu Beginn: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+
+==============================================================================
+M1 — main() OHNE Argumente. Erwartet: schreibt nach faltenplan_<stempel>.json,
+     Rueckgabewert 0. ⭐ Die Voreinstellung darf den gesperrten Pfad nicht treffen.
+==============================================================================
+$ python3 faltenplan.py
+TB-30a - Faltenplan: verankert, expandierend, mit Purge und Embargo
+
+Go-Live-Schnitt: 2026-09-01 (ausschliesslich)
+
+Bot                          Markt    Laenge  Trades/J  Purge  Selektionsfalten  Bestaetigung
+elliott_wave                 krypto       2J      26.0    11T  2018-2019, 2020-2021, 2022-2023, 2024-20 2026-2027
+t3_supertrend                krypto       1J     193.2    23T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+rsi2_crypto                  krypto       1J     134.0    10T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+turtle_soup_crypto           krypto       1J     314.5    10T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+volatility_breakout_crypto   krypto       1J      53.3    15T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+elliott_wave_stocks          aktien       1J      50.9   134T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+rsi2_mean_reversion          aktien       1J     537.3    18T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+turtle_soup_stocks           aktien       1J    1202.2    18T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+volatility_breakout          aktien       1J     456.7    26T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+
+Geschrieben: /Users/jaquelineloffler/trading-bot/research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+Rueckgabewert: 0
+Geschriebenes Ziel: /Users/jaquelineloffler/trading-bot/research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+  existiert: ja   sha256: 2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794
+Gesperrte Datei vorher : 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+Gesperrte Datei nachher: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+
+==============================================================================
+M2 — DIESELBE Datei erneut als --ziel. Erwartet: Rueckgabewert 1, Pfad UND Hash
+     in der Ausgabe, Datei byteweise unveraendert.
+==============================================================================
+$ python3 faltenplan.py --ziel /Users/jaquelineloffler/trading-bot/research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+TB-30a - Faltenplan: verankert, expandierend, mit Purge und Embargo
+
+Go-Live-Schnitt: 2026-09-01 (ausschliesslich)
+
+Bot                          Markt    Laenge  Trades/J  Purge  Selektionsfalten  Bestaetigung
+elliott_wave                 krypto       2J      26.0    11T  2018-2019, 2020-2021, 2022-2023, 2024-20 2026-2027
+t3_supertrend                krypto       1J     193.2    23T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+rsi2_crypto                  krypto       1J     134.0    10T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+turtle_soup_crypto           krypto       1J     314.5    10T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+volatility_breakout_crypto   krypto       1J      53.3    15T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+elliott_wave_stocks          aktien       1J      50.9   134T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+rsi2_mean_reversion          aktien       1J     537.3    18T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+turtle_soup_stocks           aktien       1J    1202.2    18T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+volatility_breakout          aktien       1J     456.7    26T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+
+ABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben.
+  Pfad:    /Users/jaquelineloffler/trading-bot/research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+  SHA-256: 2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794
+Rueckgabewert: 1
+Ziel vorher : 2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794  (   38684 Bytes)
+Ziel nachher: 2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794  (   38684 Bytes)
+
+==============================================================================
+M3 — --ziel auf eine KOPIE von faltenplan.json an einem nicht gesperrten Ort.
+     ⭐ Genau Fables Fall. Erwartet: Rueckgabewert 1.
+==============================================================================
+Kopie angelegt: /tmp/claude-501/-Users-jaquelineloffler-trading-bot/d060d7c2-aff3-45fe-835b-c90b2a14add8/scratchpad/kopie_faltenplan.json
+  sha256 der Kopie: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339   (gleich der gesperrten Datei: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339)
+$ python3 faltenplan.py --ziel /tmp/claude-501/-Users-jaquelineloffler-trading-bot/d060d7c2-aff3-45fe-835b-c90b2a14add8/scratchpad/kopie_faltenplan.json
+TB-30a - Faltenplan: verankert, expandierend, mit Purge und Embargo
+
+Go-Live-Schnitt: 2026-09-01 (ausschliesslich)
+
+Bot                          Markt    Laenge  Trades/J  Purge  Selektionsfalten  Bestaetigung
+elliott_wave                 krypto       2J      26.0    11T  2018-2019, 2020-2021, 2022-2023, 2024-20 2026-2027
+t3_supertrend                krypto       1J     193.2    23T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+rsi2_crypto                  krypto       1J     134.0    10T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+turtle_soup_crypto           krypto       1J     314.5    10T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+volatility_breakout_crypto   krypto       1J      53.3    15T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+elliott_wave_stocks          aktien       1J      50.9   134T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+rsi2_mean_reversion          aktien       1J     537.3    18T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+turtle_soup_stocks           aktien       1J    1202.2    18T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+volatility_breakout          aktien       1J     456.7    26T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+
+ABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben.
+  Pfad:    /tmp/claude-501/-Users-jaquelineloffler-trading-bot/d060d7c2-aff3-45fe-835b-c90b2a14add8/scratchpad/kopie_faltenplan.json
+  SHA-256: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+Rueckgabewert: 1
+Kopie vorher : 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+Kopie nachher: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+
+==============================================================================
+M4 — ⛔⛔ DER KERN: --ziel auf den ECHTEN gesperrten Pfad.
+     Erwartet: Rueckgabewert 1, und 0e54ac5c… ist nachher unveraendert.
+==============================================================================
+Gesperrte Datei UNMITTELBAR VORHER:
+  sha256: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+  Bytes :    18736
+  mtime : 1789401317 Sep 14 17:55:17 2026
+$ python3 faltenplan.py --ziel ergebnisse/faltenplan.json
+TB-30a - Faltenplan: verankert, expandierend, mit Purge und Embargo
+
+Go-Live-Schnitt: 2026-09-01 (ausschliesslich)
+
+Bot                          Markt    Laenge  Trades/J  Purge  Selektionsfalten  Bestaetigung
+elliott_wave                 krypto       2J      26.0    11T  2018-2019, 2020-2021, 2022-2023, 2024-20 2026-2027
+t3_supertrend                krypto       1J     193.2    23T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+rsi2_crypto                  krypto       1J     134.0    10T  2019, 2020, 2021, 2022, 2023, 2024, 2025 2026
+turtle_soup_crypto           krypto       1J     314.5    10T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+volatility_breakout_crypto   krypto       1J      53.3    15T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+elliott_wave_stocks          aktien       1J      50.9   134T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+rsi2_mean_reversion          aktien       1J     537.3    18T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+turtle_soup_stocks           aktien       1J    1202.2    18T  2017, 2018, 2019, 2020, 2021, 2022, 2023 2026
+volatility_breakout          aktien       1J     456.7    26T  2018, 2019, 2020, 2021, 2022, 2023, 2024 2026
+
+ABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben.
+  Pfad:    ergebnisse/faltenplan.json
+  SHA-256: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+Rueckgabewert: 1
+Gesperrte Datei UNMITTELBAR NACHHER:
+  sha256: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+  Bytes :    18736
+  mtime : 1789401317 Sep 14 17:55:17 2026
+  -> ⭐ UNVERAENDERT. Der Beweis ist gefuehrt.
+
+==============================================================================
+Bilanz
+==============================================================================
+  M1 (ohne Argument, neues Ziel)   Rueckgabewert 0   erwartet 0
+  M2 (dieselbe Datei als --ziel)   Rueckgabewert 1   erwartet 1
+  M3 (Kopie der gesperrten Datei)  Rueckgabewert 1   erwartet 1
+  M4 (der gesperrte Pfad selbst)   Rueckgabewert 1   erwartet 1
+  ZIEL1=/Users/jaquelineloffler/trading-bot/research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+
+==============================================================================
+M5 — die Sperrlisten-Sonde nach allen vier Proben
+==============================================================================
+$ python3 shared/sperrlistensonde.py --abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+Sperrlisten-Sonde (Register 36.2/36.5/36.6)
+  Abbild:   research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+  Register: /Users/jaquelineloffler/trading-bot/docs/VORREGISTRIERUNG_neuselektion.md
+  Wurzel:   /Users/jaquelineloffler/trading-bot
+  Abbild-Hash: 6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c
+  erzeugt: 2026-09-22T14:52:05Z  HEAD cf8b3faa157f  von research/vorregistrierung/sperrliste_abbild.py
+
+(i) Jeder Punkt des Abbilds gegen die Datei im Repo:
+  Punkt  1  [2 NICHT PRUEFBAR]  Rastergrenzen und Grenzsätze
+            research/vorregistrierung/registerdaten.py                     gleich     141fa14b6742aae0
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `registerdaten.py`, Abschnitt 3 dieses Registers
+  Punkt  2  [1 BEFUND]  Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen
+            research/vorregistrierung/faltenplan.py                        ABWEICHUNG fd3e5018ae930c2e
+            research/vorregistrierung/ergebnisse/faltenplan.json           gleich     0e54ac5cf6d554d2
+            -> Hash weicht ab: research/vorregistrierung/faltenplan.py soll 6f96b95d1356… ist fd3e5018ae93…
+  Punkt  3  [2 NICHT PRUEFBAR]  Selektionsstatistik, Plateau-Regel, Spitzen-Schwelle
+            research/vorregistrierung/auswertung.py                        gleich     1c2e2daec562d997
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `auswertung.py`, `registerdaten.SPITZEN_SCHWELLE`
+  Punkt  4  [2 NICHT PRUEFBAR]  Drawdown-Bedingung, `DD_Toleranz` und die vorab berechneten Benchmark-Drawdowns
+            research/vorregistrierung/benchmark.py                         gleich     3960375a539de832
+            research/vorregistrierung/ergebnisse/benchmark_drawdowns.json  gleich     a163c49814b9af0c
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `benchmark.py`, `ergebnisse/benchmark_drawdowns.json`, **einschliesslich der Interpolationsregel**
+  Punkt  5  [0 in Ordnung]  Abbruchkriterien und Kapitalregel
+            research/vorregistrierung/auswertung.py                        gleich     1c2e2daec562d997
+  Punkt  6  [2 NICHT PRUEFBAR]  Benchmark-Definitionen
+            research/vorregistrierung/benchmark.py                         gleich     3960375a539de832
+            -> nennt Nicht-Dateibezogenes - nicht messbar: gleichgewichtete Tagesrenditen, point-in-time, `benchmark.py::bh_tagesrenditen`
+  Punkt  7  [2 NICHT PRUEFBAR]  N-Buchführung und Clusterschwelle
+            -> kein Dateipfad im Registertext - nicht messbar: `registerdaten.N_HISTORISCH_JE_BOT`, `CLUSTER_SCHWELLE = 0,9`
+  Punkt  8  [2 NICHT PRUEFBAR]  Universumsdateien und point-in-time-Regel
+            config/top25_symbols.txt                                       gleich     3afc95a4f6b5ebc3
+            config/sp500_top150.txt                                        gleich     6acba892f38e998c
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `config/top25_symbols.txt`, `config/sp500_top150.txt`, vier Jahre Vorlauf je Symbol
+  Punkt  9  [2 NICHT PRUEFBAR]  Kosten (0,30 %) und Fill-Konvention
+            -> kein Dateipfad im Registertext - nicht messbar: `TRADING_FEE_PCT = 0,1` und `SLIPPAGE_PCT = 0,05` je Order, Ein- und Ausstieg; Einstieg zum Schlusskurs des Bestätigungsbalkens
+  Punkt 10  [2 NICHT PRUEFBAR]  Zuteilungskaskade inklusive Seed
+            shared/zuteilung.py                                            gleich     68a812a0567dec8b
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `shared/zuteilung.py`, `SEED = 20260913`
+  Punkt 11  [2 NICHT PRUEFBAR]  Commit-Hashes von Simulation, Erkennung, Optimierern und Auswertungsskript
+            research/vorregistrierung/herkunft.py                          gleich     56a1c2e1514385ac
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `herkunft.py::register()` und der Repo-Commit
+  Punkt 12  [2 NICHT PRUEFBAR]  Hash des Datenstands
+            research/vorregistrierung/herkunft.py                          gleich     56a1c2e1514385ac
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `herkunft.py::datenstand()`
+  Punkt 13  [2 NICHT PRUEFBAR]  Die Liste der berichteten Kennzahlen und die Regel, dass alle berichtet werden, auch die unangenehmen
+            -> kein Dateipfad im Registertext - nicht messbar: Abschnitt 8
+  Punkt 14  [2 NICHT PRUEFBAR]  Die Reihenfolge Selektion → Bestätigungsperiode → Bericht
+            research/vorregistrierung/auswertung.py                        gleich     1c2e2daec562d997
+            -> nennt Nicht-Dateibezogenes - nicht messbar: im Kopftext von `auswertung.py` als Ablauf festgeschrieben
+
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 824-871, Listentext wie bei Erzeugung: ja
+
+Bestimmt, nicht eingetragen (kein Punkt des Abschnitts 10; nicht geprueft, nur genannt):
+  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json  4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  (Register 21.9/23.7 - fuer die Sperrliste bestimmt, Vollzug steht aus)
+
+Bilanz: 1 Punkte in Ordnung (0), 1 mit Befund (1), 12 nicht pruefbar (2); (ii) 0 in Ordnung
+RUECKGABEWERT 1 BEFUND - BEFUND in Punkt(en) [2]
+
+Rueckgabewert: 1
+
+⚠️⚠️ ERWARTUNG DES AUFTRAGS NICHT ERFUELLT — und zwar mit Ansage:
+Der Auftrag erwartet fuer M5 'denselben Rueckgabewert wie beim Nullpunkt in TB-85',
+also 2. Gemessen: 1, Befund in Punkt 2.
+
+Der Grund ist der Auftrag selbst: Sperrlistenpunkt 2 nennt ZWEI Pfade —
+  research/vorregistrierung/ergebnisse/faltenplan.json   -> gleich (0e54ac5c…)
+  research/vorregistrierung/faltenplan.py                -> ABWEICHUNG
+     soll 6f96b95d1356… (Abbild aus TB-85)   ist fd3e5018ae93…
+
+faltenplan.py steht selbst auf der Sperrliste, und dieser Auftrag aendert sie.
+Die Sonde meldet das korrekt. Das ist ein RICHTIG-POSITIV, kein Sondenfehler:
+Sie hat eine freigegebene Aenderung an einer gesperrten Datei erkannt und benannt.
+
+⛔ NICHT getan: das Abbild neu erzeugt. Nach 36.2 ist ein Sperrlistenbruch eine
+Tatsachennotiz, nie eine stille Reparatur; und der Auftrag sagt ausdruecklich, der
+Eintrag des Abbilds ins Register sei TB-87, nicht dieser Auftrag.
+
+Kein Abbruchkriterium ist erfuellt: 1 betrifft faltenplan.json (unveraendert),
+3 betrifft M2/M3/M4 (alle 1), 6 betrifft a163c498…/4549395f… (beide unveraendert).
