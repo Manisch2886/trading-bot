@@ -2,8 +2,15 @@
 
 **Sitzungstitel:** `TB-84 Register 36 — Schreibregel und Sperrlisten-Sonde`
 **Auftraggeber:** der steuernde Chat (Sitzung vom 21.09.2026, 18:53)
-**Erstellt:** 22.09.2026, 07:40 Ortszeit · **Vorgänger:** TB-83 (`fdb181a`)
-**Erwarteter Ausgangsstand:** `HEAD` = `origin/main` = `fdb181a` oder jünger
+**Erstellt:** 22.09.2026, 07:40 Ortszeit · ⭐ **erweitert 08:05 um 36.5 und 36.6**
+(Fable 22c, **vor** dem Start des Auftrags — nichts war eingetragen)
+**Vorgänger:** TB-83 (`fdb181a`) · **Erwarteter Ausgangsstand:** `HEAD` =
+`origin/main` = `4bbd720` oder jünger
+
+⚠️ **Warum erweitert:** Fables 22c **berichtigt** den Satz aus 36.2, den dieser
+Auftrag eintragen soll (*„Rückgabewert ≠ 0"*), und bringt zwei neue
+Registertexte. Ohne die Erweiterung trüge das Register einen Satz ein, der am
+selben Tag schon berichtigt ist.
 
 ---
 
@@ -138,6 +145,55 @@ als Beleg.
 **Marke am alten Ort:** ⚠️ **direkt in 21.4**, als Zeile unter der Tabelle —
 *die Tabellenzeile selbst bleibt zeichengleich, samt `⚠️`.*
 
+### 36.5 — ⭐⭐ Drei Ausgänge für jede Sonde und jede Wache (Ersteintrag) — und die Berichtigung zu 36.2
+
+⚠️ **Fable berichtigt hier seinen eigenen Text aus 22b**, nachdem wir ihm
+`shared/snapshot.py` vorgelegt haben. **Seine Begründung, zeichengleich:**
+
+> *„Mein ‚Rückgabewert ≠ 0' war zu grob, und der Kopf von `snapshot.py` sagt genau, warum: Ein gescheiterter Aufruf und ein Befund sahen in TB-45 gleich aus. A2 verlangt, dass ‚konnte nicht messen' ein eigenes Ergebnis ist; ein Rückgabewert, der Befund und Nichtprüfbarkeit zusammenlegt, ist keine Wache im Sinn von A8, weil niemand am Wert erkennen kann, ob gemessen wurde."*
+
+**Herkunft:** `FABLE_ANTWORT_2026-09-22c_drei_ausgaenge_und_abbild.md`, Frage 1,
+**zeichengleich:**
+
+> **Registertext, Ersteintrag — Ausgänge von Sonden und Wachen:**
+> Jede Sonde und jede Wache des Verfahrens (Sperrlisten-Sonde, Faltenplan-Sonde nach 33.3, Einmal-Schreibsperre der Erzeuger, Wache nach 29.4, Laufwrapper) endet mit genau einem von drei Rückgabewerten, Bauart `snapshot.py --pruefen`: **0** = geprüft und in Ordnung; **1** = geprüft und **Befund** (Abweichung, Verweigerung, Abbruch nach Regel); **2** = **nicht prüfbar** (Eingabe fehlt, Quelle nicht lesbar, Aufruf gescheitert). Ein Wrapper behandelt 1 und 2 verschieden: 1 ist eine Tatsachennotiz mit dem genannten Punkt; 2 ist kein Ergebnis und darf nirgends als „bestanden" oder „nicht bestanden" geführt werden. Kein Aufruf endet mit 0, ohne dass gemessen wurde.
+>
+> **Berichtigung zu 22b, Sperrlisten-Sonde:** „mit Rückgabewert ≠ 0 endet und den Punkt nennt" lies „mit Rückgabewert 1 endet und den Punkt nennt; kann ein Punkt nicht geprüft werden (Datei fehlt, Registertext nicht lesbar), endet sie mit 2 und nennt ihn".
+
+**Und sein Zusatz zur Schreibsperre, zeichengleich:**
+
+> *„Der Erzeuger, der wegen vorhandener Zieldatei nicht schreibt, endet mit **1** — er hat geprüft und einen Befund („Ziel existiert, Hash …"). Nicht mit 2: Er konnte prüfen. Das ist die Wache, die ihre Arbeit tut; der Wert 1 sagt es dem Aufrufer."*
+
+**Marken am alten Ort — hier ZWEI:**
+- ⚠️ **in 36.2**, direkt am Satz *„mit Rückgabewert ≠ 0 endet"* — **berichtigt
+  durch 36.5**; der Satz bleibt zeichengleich stehen
+- in **36.1 (2)**, beim *„bricht er ab (Rückgabewert ≠ 0)"* — dasselbe, Verweis
+  auf 36.5
+
+### 36.6 — Das Abbild der Sperrliste ist eine neue Datei (Ersteintrag)
+
+**Herkunft:** 22c, Frage 2, **zeichengleich:**
+
+> **Registertext, Ersteintrag — Abbild der Sperrliste:**
+> Das Abbild der Sperrliste ist eine **eigene, neue Datei** (Handwerk: Name, Form), die genau die Punkte des Registerabschnitts 10 mit Pfad und Hash trägt — nicht mehr, nicht weniger (Bauart 33.3). Sie wird einmalig geschrieben (Schreibregel 22b); jede Fortschreibung der Sperrliste vor dem Tag erzeugt ein neues Abbild unter neuem Namen, das alte bleibt. Das aktuelle Abbild steht selbst mit Hash im Register. Die Sperrlisten-Sonde prüft (i) jeden Punkt des Abbilds gegen die Datei im Repo und (ii) das Abbild gegen den Registertext von Abschnitt 10; weicht das Abbild vom Registertext ab, ist das ein Befund (1), kein Anlass zur Anpassung des Abbilds ohne Registereintrag.
+>
+> `herkunft.py` `EINGEFROREN` (Z. 57) und `SPERRLISTE_DATEIEN` (Z. 66) sind **nicht** das Abbild der Sperrliste und werden nicht dazu. Beide erhalten eine Tatsachennotiz zu Abschnitt 10: Was sie sind, wer sie liest, was daraus entsteht, und dass sie mit dem Registertext an fünf Stellen nicht übereinstimmen (zwei Dateien fehlen, drei stehen zusätzlich).
+
+**Seine drei Gründe, zeichengleich zu übernehmen:**
+
+> *„**(1)** Beide Listen liegen in `herkunft.py`, das mit Punkt 11/12 auf der Sperrliste steht. Ein Abbild, das mit der Sperrliste wachsen muss …, kann nicht in einer Datei liegen, die nicht geöffnet werden darf. **(2)** Sie weichen heute vom Registertext ab, und ihr Zweck ist nirgends registriert — eine Liste, von der man nicht weiss, was sie darstellen soll, kann nicht zum Abbild von etwas erklärt werden. **(3)** Der Registertext ist die Quelle …: Ein Abbild wird aus ihm gebildet und gegen ihn geprüft, nicht aus einer vorhandenen Datei übernommen, weil sie schon da ist."*
+
+⚠️⚠️ **Die Tatsachennotiz zu den zwei Listen wird in diesem Auftrag NOCH NICHT
+geschrieben.** Fable hat dafür eine Messung erbeten (*„Welche Funktionen von
+`herkunft.py` lesen `EINGEFROREN` und `SPERRLISTE_DATEIEN`, und in welche
+Ausgabe gehen die daraus gebildeten Hashes ein?"*). ⭐ **Sie ist am 22.09.2026,
+08:00 gemacht und ihm mit `FABLE_ANFRAGE_2026-09-22c_herkunft_gemessen.md`
+vorgelegt; seine Tatsachennotiz folgt.** Einzutragen ist hier nur, **dass** sie
+aussteht — mit dieser Fundstelle.
+
+**Marke am alten Ort:** unter der Überschrift von **Abschnitt 10**, zusammen mit
+der Marke aus 36.2.
+
 ---
 
 ## 4. Die Messungen (bestätigen, nicht übernehmen)
@@ -179,11 +235,11 @@ ab: **eintragen, was du misst**, und melden.
 | **0** | Schlüsselbund, Arbeitsbaum, HEAD | Status leer |
 | **1** | **M1–M5 und M2 (vorher)** messen | fünf Belege |
 | **1b** | **M6 vorher**: Faltenlisten festhalten | `m6_faltenlisten.txt` |
-| **2** | **Abschnitt 36** schreiben — 36.1 bis 36.4, Fable zeichengleich, dazu Schlussteil „Was hier NICHT getan wird" | Commit |
-| **3** | **Die vier Marken am alten Ort**: Sperrliste Punkt 2, Überschrift Abschnitt 10, 35.1, 21.4 — ⚠️ **nur einfügen** | Commit |
+| **2** | **Abschnitt 36** schreiben — 36.1 bis **36.6**, Fable zeichengleich, dazu Schlussteil „Was hier NICHT getan wird" | Commit |
+| **3** | **Die Marken am alten Ort**: Sperrliste Punkt 2 · Überschrift Abschnitt 10 (zweimal: 36.2 und 36.6) · 35.1 · 21.4 · ⭐ **36.2 und 36.1 (2)** (berichtigt durch 36.5) — ⚠️ **nur einfügen** | Commit |
 | **4** | **M6 und M2 nachher** | 0 Abweichungen, Hash gleich |
 | **5** | `numstat` Spalte 2 = `0` | Abschlussbeleg |
-| **6** | `grep -c "^## 36\."` = `1` | Beleg |
+| **6** | `grep -c "^## 36\."` = `1` **und** `grep -c "^### 36\."` = **`7`** (36.1–36.6 plus Schlussteil) | Beleg |
 | **7** | Alle drei Sperrlisten-Hashes | unverändert |
 | **8** | **`AKTUELLER_AUFTRAG.md`**: ⭐ **bereits auf TB-84 gesetzt** — ⚠️ **nur lesen.** Zeigt `numstat` dafür etwas, hast du sie angefasst: anhalten | `grep -c "TB-84"` ≥ 1 |
 | **9** | **Journalblock** und `docs/auftraege/ERGEBNIS_TB-84.md` | Commit |
