@@ -1,0 +1,43 @@
+# TB-84 Schritt 4-8 — Abschlusspruefung (gemessen 2026-09-22T06:04:58Z, HEAD 61c52a0, Ausgang 4bbd720; Betreiber-Commit 9122775 dazwischen)
+
+## 4. M6/M2 nachher: siehe m6_faltenlisten.txt (SHA gleich, diff leer) und m2_sperrlisten_hash.txt (0e54ac5c… beide Male)
+
+## 5. numstat 4bbd720..HEAD (alle Commits, einschliesslich Betreiber-Commit 9122775)
+    345	0	docs/VORREGISTRIERUNG_neuselektion.md
+    61	5	docs/auftraege/MAC_TB-84_register_36.md
+    18	0	docs/belege/TB-84/m1_sperrlistenpunkte.txt
+    16	0	docs/belege/TB-84/m2_sperrlisten_hash.txt
+    12	0	docs/belege/TB-84/m3_snapshot_ausgaenge.txt
+    21	0	docs/belege/TB-84/m4_herkunft_listen.txt
+    4	0	docs/belege/TB-84/m5_vt_in_listen.txt
+    22	0	docs/belege/TB-84/m6_faltenlisten.txt
+    24	0	docs/belege/TB-84/schritt0_ausgangsstand.txt
+    54	0	docs/belege/TB-84/schritt2_nachweise.txt
+    19	0	docs/belege/TB-84/schritt3_nachweise.txt
+    191	0	docs/projektfuehrung/FABLE_ANFRAGE_2026-09-22c_herkunft_gemessen.md
+    57	0	docs/projektfuehrung/FABLE_ANTWORT_2026-09-22c_drei_ausgaenge_und_abbild.md
+    119	0	docs/projektfuehrung/VORARBEIT_sperrlisten_sonde.md
+    Zeilen mit zweiter Spalte != 0: 1 — davon TB-84-eigene: 0 (die 5 entfernten Zeilen liegen in docs/auftraege/MAC_TB-84_register_36.md = Erweiterung des Auftrags durch den Betreiber, unveraendert uebernommen in 9122775)
+    Register: 345	0	docs/VORREGISTRIERUNG_neuselektion.md  (Soll zweite Spalte 0)
+    Dateien ausserhalb docs/: 0
+
+## 6. Abschnitt 36 genau einmal: grep -c '^## 36\.' -> 1 (Z. 5875); '^### 36\.' -> 7 (Soll 7)
+    ## 30. -> 1
+    ## 31. -> 1
+    ## 32. -> 1
+    ## 33. -> 1
+    ## 34. -> 1
+    ## 35. -> 1
+    ## 36. -> 1
+    hoechste ##-Nummer: 36; Register 6184 Zeilen
+
+## 7. Drei Sperrlisten-Hashes:
+    0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+    a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+    4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+    Commits auf ergebnisse/ seit Ausgang: 0 (Soll 0); Commits auf research/ oder *.py: 0 (Soll 0)
+
+## 8. AKTUELLER_AUFTRAG.md nur gelesen: grep -c TB-84 -> 1; wc -l -> 87 (Schritt 0: 87); numstat 4bbd720..HEAD: '' (leer = nicht angefasst)
+
+## 9. git status --porcelain (vor Ergebnisdokument und Journalblock; diese Datei ist noch untracked):
+    ?? docs/belege/TB-84/schritt4_abschluss.txt
