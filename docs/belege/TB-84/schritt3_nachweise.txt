@@ -1,0 +1,19 @@
+# TB-84 Schritt 3 — die sechs Marken am alten Ort (gemessen 2026-09-22T06:04:29Z, Arbeitsbaum nach 5f0c80e, nur eingefuegt)
+## numstat gegen 5f0c80e: 36	0	docs/VORREGISTRIERUNG_neuselektion.md
+## entfernte Zeilen laut git diff: 0 (Soll 0); alte Zeilen als Teilfolge erhalten: 6149/6149 (Pruefung im Einfuegeskript)
+## Marken mit 'TB-84, 22.09.2026' im Register (Zeile: Anfang):
+813:> ⚠️ **Hinweis (36.2 und 36.6, Fable 22b/22c, TB-84, 22.09.2026):** Ab 36.2 prüft
+836:   > ⚠️ **Schreibregel (Abschnitt 36.1, Fable 22b, TB-84, 22.09.2026):** Kein
+2947:> ⚠️ **Tatsachennotiz zu dieser Tabelle (36.4, Fable 22b, TB-84, 22.09.2026):**
+5769:> ⚠️ **Marke (36.1 (4) und 36.3, Fable 22b, TB-84, 22.09.2026):** Die Umstellung
+5875:## 36. Die Schreibregel für Sperrlistenpfade, die Sperrlisten-Sonde mit drei Ausgängen, das Abbild der Sp
+5914:> > ⚠️ **Präzisiert durch 36.5 (Fable 22c, TB-84, 22.09.2026):** „bricht er ab (Rückgabewert ≠ 0)" in (2)
+5964:> > ⚠️ **Berichtigt durch 36.5 (Fable 22c, TB-84, 22.09.2026):** „mit Rückgabewert ≠ 0 endet und den Punk
+6065:**Tatsachennotiz zu 21.4 (TB-84, 22.09.2026; Messung `m1_bestaetigung_ab.txt`
+    Anzahl vor Abschnitt 36 (Z. < 5875): 4 (Soll 4: Ueberschrift 10, Punkt 2, 21.4, 35.1); innerhalb 36: 2 (Soll 2: 36.1 (2), 36.2)
+## Zitat in der Marke 36.2 gegen 22c Z. 20 (Berichtigungstext als Teilzeichenkette):
+    Teilzeichenkette aus Z.20: „mit Rückgabewert ≠ 0 endet und den Punkt nennt" lies „mit R… -> im Register 2 x (Soll 2: Abschnitt 36.5 und Marke in 36.2)
+    22b Z.40 Teilsatz (Marke 35.1): 2 x (Soll 2: Abschnitt 36.3 und Marke in 35.1)
+    Notizsatz 21.4 (einzeilig, 36.4): 1 x; die Marke in 21.4 traegt ihn umbrochen
+## Alte Saetze zeichengleich: 21.4-Zeile elliott_wave: 1 (Soll 1); Tatsachennotiz Abschnitt 30 unter Punkt 2: 1 (Soll 1)
+## M6 nachher: siehe m6_faltenlisten.txt (SHA e5ab322e… gleich, diff leer); M2 nachher: siehe m2_sperrlisten_hash.txt (0e54ac5c… gleich)

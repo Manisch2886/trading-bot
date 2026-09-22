@@ -810,6 +810,15 @@ Acklam.
 
 ## 10. Die Sperrliste
 
+> ⚠️ **Hinweis (36.2 und 36.6, Fable 22b/22c, TB-84, 22.09.2026):** Ab 36.2 prüft
+> eine Sonde diese Liste — für jeden Punkt Pfad und Hash gegen diesen
+> Registertext, mit drei Ausgängen (36.5). **Die maschinenlesbare Fassung ist
+> Abbild, nicht Quelle**; das Abbild ist nach 36.6 eine **eigene, neue Datei**,
+> einmalig geschrieben und selbst mit Hash im Register. `herkunft.py`
+> `EINGEFROREN` (Z. 57) und `SPERRLISTE_DATEIEN` (Z. 66) sind **nicht** das
+> Abbild und werden es nicht; ihre Tatsachennotiz steht bei Fable aus
+> (Anfrage 22c). Sonde und Abbild sind nicht gebaut (36.7).
+
 Ab dem signierten Tag sind unveränderlich:
 
 1. **Rastergrenzen und Grenzsätze** — `registerdaten.py`, Abschnitt 3 dieses
@@ -823,6 +832,15 @@ Ab dem signierten Tag sind unveränderlich:
    > Kein Ersatz, keine Streichung — **die Sperrliste beweist, dass nichts
    > bewegt wurde.** Der Plan nach 4a ist Registertext; genau eine Abbild-Datei
    > kommt vor dem Tag mit Hash als **neuer Punkt** auf diese Liste.
+   >
+   > ⚠️ **Schreibregel (Abschnitt 36.1, Fable 22b, TB-84, 22.09.2026):** Kein
+   > Programm im Repo schreibt an einen Pfad, der auf dieser Liste steht oder
+   > für sie bestimmt ist; Erzeuger schreiben **einmalig** und brechen bei
+   > vorhandener Zieldatei ab (Rückgabewert 1 nach 36.5), auch bei gleichem
+   > Inhalt. `faltenplan.py main()` schreibt heute ohne Abfrage genau hierher
+   > (Z. 372–374, nur gelesen) — Voreinstellung und Schreibsperre sind nach
+   > 36.1 (4) zu ändern, **vor** Z. 336, Reihenfolge 36.3; Freigabe steht aus.
+   > Hash `0e54ac5c…` am 22.09.2026 vor und nach TB-84 gemessen und gleich.
 3. **Selektionsstatistik, Plateau-Regel, Spitzen-Schwelle** —
    `auswertung.py`, `registerdaten.SPITZEN_SCHWELLE`
 4. **Drawdown-Bedingung, `DD_Toleranz` und die vorab berechneten
@@ -2925,6 +2943,11 @@ ausschliesslich (Abschnitt 5.2).
 | `rsi2_mean_reversion` | aktien | 1 J | **2018** | **8** | 2026-01-01 | ja |
 | `turtle_soup_stocks` | aktien | 1 J | **2017** | **9** | 2026-01-01 | ja |
 | `volatility_breakout` | aktien | 1 J | **2018** | **8** | 2026-01-01 | ja |
+
+> ⚠️ **Tatsachennotiz zu dieser Tabelle (36.4, Fable 22b, TB-84, 22.09.2026):**
+> ⚠️ bei `elliott_wave`, Spalte Bestätigung ab, trägt keine Erklärung; nicht
+> als Beleg verwendbar. Die Zeile bleibt zeichengleich stehen, samt `⚠️`; die
+> Deutung aus Anfrage 21g Punkt 3 ist zurückgezogen (36.4).
 
 ⭐ **`t3_supertrend` steht unverändert bei 2019 und 7 Falten.** Nach 4a begänne
 sein Plan 2018; sein Loader verlangt jedoch `MIN_HISTORY_DAYS = 730`, und BTC/ETH
@@ -5743,6 +5766,15 @@ zeichengleich:*
 
 > *Folge, Handwerk:* `faltenplan.py:336` bildet den Namen heute aus dem Faltennamen; die Änderung ist eine Zeile und braucht eine Betreiberfreigabe. `auswertung.py` bleibt unberührt — es liest den Namen aus dem Plan, wie auch immer er lautet. Der Erzeuger schreibt denselben Bezeichner in `zellen.csv`; er ist noch nicht geschrieben, es kostet dort nichts. Die ⚠️-Markierung in 21.4 bei `elliott_wave`: bitte den ganzen Eintrag vorlegen, bevor jemand sie als Beleg nimmt — ich habe nur eure Vermutung dazu.
 
+> ⚠️ **Marke (36.1 (4) und 36.3, Fable 22b, TB-84, 22.09.2026):** Die Umstellung
+> von `faltenplan.py:336` (und der Ausgabe Z. 368) auf den Bezeichner ist
+> **Schritt 3** der Reihenfolge in 36.3 und kommt **erst nach Schritt 2** —
+> Voreinstellung von `main()` weg von `ergebnisse/faltenplan.json` und
+> Einmal-Schreibsperre (36.1 (4)); davor Schritt 1, die Sperrlisten-Sonde.
+> Fable, 22b: *„Wer Schritt 3 vor Schritt 2 macht, hat genau den Fall, den ihr beschreibt."*
+> Betreiberfreigabe für alle vier Schritte steht aus (Stand 22.09.2026). Bis
+> dahin: `python3 faltenplan.py` nicht aufrufen.
+
 ⚠️ Zur ⚠️-Markierung bei `elliott_wave` in 21.4: Die Zelle lautet wörtlich
 `⚠️ **2026-01-01**`; 21.4 trägt keinen Satz, der sie begründet. Fable bat, den
 ganzen Eintrag vorzulegen, bevor jemand sie als Beleg nimmt (Anfrage 22a
@@ -5878,6 +5910,8 @@ eine Tatsachennotiz und eine Frage aus (36.6).
 
 > **Registertext, Ersteintrag — Schreibregel für Sperrlistenpfade:**
 > **(1)** Kein Programm im Repo schreibt an einen Pfad, der auf der Sperrliste steht oder für sie bestimmt ist. **(2)** Jeder Erzeuger einer solchen Datei schreibt **einmalig**: Existiert die Zieldatei bereits, bricht er ab (Rückgabewert ≠ 0), nennt Pfad und Hash der vorhandenen Datei und schreibt nichts. Er überschreibt nie, auch nicht mit identischem Inhalt. **(3)** Ein anderes Ziel nur durch ausdrückliches Argument; die Voreinstellung eines Erzeugers ist nie ein Pfad, der auf der Sperrliste steht. **(4)** Für `faltenplan.py main()`: Voreinstellung weg von `ergebnisse/faltenplan.json` (Sperrlistenpunkt 2) auf einen nicht gesperrten Pfad, und die Einmal-Schreibsperre nach (2). Beides vor jeder weiteren Änderung an `faltenplan.py`, insbesondere vor Z. 336.
+>
+> > ⚠️ **Präzisiert durch 36.5 (Fable 22c, TB-84, 22.09.2026):** „bricht er ab (Rückgabewert ≠ 0)" in (2) — der Wert ist **1**: der Erzeuger hat geprüft und einen Befund („Ziel existiert, Hash …"), nicht 2. Der Satz oben bleibt zeichengleich stehen.
 
 **Fables Abwägung der drei Wege aus der Anfrage 22a, zeichengleich:**
 
@@ -5926,6 +5960,8 @@ oben, am „(Rückgabewert ≠ 0)" in (2).
 
 > **Registertext, Ersteintrag — Sperrlisten-Sonde:**
 > Vor dem signierten Tag existiert ein Prüfskript, das für **jeden** Sperrlistenpunkt Pfad und Hash gegen den Registertext prüft und bei einer Abweichung mit Rückgabewert ≠ 0 endet und den Punkt nennt. Der Registertext der Sperrliste ist die Quelle; eine maschinenlesbare Fassung ist Abbild und wird von der Sonde selbst gegen den Registertext geprüft (Bauart 33.3). Die Sonde läuft (a) als Nachweis vor dem Tag, (b) im Laufwrapper vor `auswertung.py`, (c) am Ende jedes Auftrags, der Sperrlisten-nahen Code berührt. Ein Sperrlistenbruch, den die Sonde findet, ist eine Tatsachennotiz — nie eine stille Reparatur.
+>
+> > ⚠️ **Berichtigt durch 36.5 (Fable 22c, TB-84, 22.09.2026):** „mit Rückgabewert ≠ 0 endet und den Punkt nennt" lies „mit Rückgabewert 1 endet und den Punkt nennt; kann ein Punkt nicht geprüft werden (Datei fehlt, Registertext nicht lesbar), endet sie mit 2 und nennt ihn". Der Satz oben bleibt zeichengleich stehen; die drei Ausgänge gelten nach 36.5 für jede Sonde und jede Wache.
 
 **Fables Unsicherheit dazu, 22b, zeichengleich:**
 
