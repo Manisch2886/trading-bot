@@ -91,11 +91,13 @@ alles davor ist Backtest-Material, alles ab diesem Tag ist Forward-Test und
 geht in KEINE Selektion ein - auch nicht in die Bestaetigungsperiode.
 """
 
+import argparse
+import hashlib
 import json
 import math
 import os
 import sys
-from datetime import date, timedelta
+from datetime import date, datetime, timedelta, timezone
 
 import pandas as pd
 
@@ -356,9 +358,99 @@ def faltenplan(mess=None) -> dict:
             for bot, eig in rd.BOTS.items()}
 
 
-def main():
-    mess = rd._mess()
-    plan = faltenplan(mess)
+def _sha256_datei(pfad: str) -> str:
+    h = hashlib.sha256()
+    with open(pfad, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def voreinstellung_ziel() -> str:
+    """Das voreingestellte Schreibziel - Registertext 36.1 (3), (4).
+
+    ⚠️ Bis TB-86 (22.09.2026) schrieb `main()` fest verdrahtet nach
+    `ergebnisse/faltenplan.json` - Sperrlistenpunkt 2. Ein einziger Aufruf
+    ohne Argument haette die gesperrte Datei ueberschrieben. 36.1 (3): die
+    Voreinstellung eines Erzeugers ist nie ein Pfad, der auf der Sperrliste
+    steht; der gesperrte Pfad ist seither nur noch ueber `--ziel` erreichbar,
+    wo die Sperre aus 36.1 (2) dann zuschlaegt.
+
+    ⭐ Der Zeitstempel (UTC) ist kein Schmuck: Die Einmal-Schreibsperre bricht
+    ab, sobald die Zieldatei existiert. Bei einem FESTEN Voreinstellungsnamen
+    liesse sich `main()` nach dem ersten Lauf nie wieder aufrufen - die Sperre
+    machte das Werkzeug unbrauchbar, statt es zu schuetzen. So ist jeder Lauf
+    ein neuer Name.
+    """
+    stempel = datetime.now(timezone.utc).strftime("%Y-%m-%d-%H%M%S")
+    return os.path.join(_HIER, "ergebnisse", f"faltenplan_{stempel}.json")
+
+
+def schreibe_plan(plan: dict, ziel: str):
+    """Schreibt den Plan GENAU EINMAL. Liefert (rueckgabewert, text).
+
+    Registertext 36.1 (2), zeichengleich: *"Jeder Erzeuger einer solchen Datei
+    schreibt einmalig: Existiert die Zieldatei bereits, bricht er ab
+    (Rueckgabewert != 0), nennt Pfad und Hash der vorhandenen Datei und
+    schreibt nichts. Er ueberschreibt nie, auch nicht mit identischem
+    Inhalt."* Berichtigt durch 36.5 (Fable 22c): der Erzeuger, der wegen
+    vorhandener Zieldatei nicht schreibt, endet mit **1** - er hat geprueft
+    und einen Befund, nicht mit 2.
+
+    ⛔ Kein Inhaltsvergleich. Fable, zeichengleich: *"Eine Sperre, die bei
+    gleichem Inhalt durchlaesst, muss den Inhalt vergleichen - und wer den
+    Vergleich programmiert, entscheidet, was 'gleich' heisst … Die Sperre ist
+    staerker, wenn sie duemmer ist."*
+
+        0   geschrieben, das Ziel existierte nicht
+        1   BEFUND: Ziel existiert - Pfad und Hash genannt, nichts geschrieben
+        2   NICHT PRUEFBAR: Zielordner fehlt, Ziel nicht anlegbar
+    """
+    if os.path.exists(ziel):
+        try:
+            h = _sha256_datei(ziel)
+        except OSError:
+            h = "(nicht lesbar)"
+        return 1, (f"\nABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben."
+                   f"\n  Pfad:    {ziel}\n  SHA-256: {h}")
+    ordner = os.path.dirname(os.path.abspath(ziel))
+    if not os.path.isdir(ordner):
+        return 2, f"\nABBRUCH: Zielordner fehlt: {ordner}"
+    try:
+        # O_EXCL statt open(..., "w"): faengt auch ein Ziel ab, das zwischen
+        # der Pruefung oben und dem Schreiben entsteht.
+        fd = os.open(ziel, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+    except FileExistsError:
+        return 1, (f"\nABBRUCH (36.1 (2)): Ziel entstand waehrend des Laufs, "
+                   f"nichts geschrieben.\n  Pfad:    {ziel}"
+                   f"\n  SHA-256: {_sha256_datei(ziel)}")
+    except OSError as e:
+        return 2, f"\nABBRUCH: Ziel nicht anlegbar: {ziel} ({e})"
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        json.dump(plan, f, indent=2, ensure_ascii=False, sort_keys=True)
+        f.write("\n")
+    return 0, f"\nGeschrieben: {ziel}"
+
+
+def main(argv=None):
+    z = argparse.ArgumentParser(
+        description="Rechnet den Faltenplan und schreibt ihn einmalig. "
+                    "Voreinstellung ist ein Name mit Zeitstempel (36.1 (3)); "
+                    "ein vorhandenes Ziel wird nie ueberschrieben (36.1 (2)).")
+    z.add_argument("--ziel", default=None, metavar="PFAD",
+                   help="Schreibziel (Standard: ergebnisse/faltenplan_<UTC-Stempel>.json). "
+                        "⚠️ Auch mit --ziel gilt die Sperre: ein ausdrueckliches "
+                        "Argument erlaubt einen ANDEREN Pfad, nicht das Ueberschreiben.")
+    a = z.parse_args(argv)
+    try:
+        mess = rd._mess()
+        plan = faltenplan(mess)
+    except Exception:                       # nicht berechenbar ist 2, nie 0
+        import traceback
+        traceback.print_exc()
+        print("\nABBRUCH: Plan nicht berechenbar - nichts geschrieben.",
+              file=sys.stderr)
+        return 2
     print(__doc__.strip().split("\n")[0])
     print(f"\nGo-Live-Schnitt: {rd.GO_LIVE_SCHNITT} (ausschliesslich)\n")
     print(f"{'Bot':28s} {'Markt':7s} {'Laenge':>7s} {'Trades/J':>9s} "
@@ -369,12 +461,10 @@ def main():
         print(f"{bot:28s} {p['markt']:7s} {p['faltenlaenge_jahre']:6d}J "
               f"{p['trades_je_jahr']:9.1f} {p['purge_tage']:5d}T  "
               f"{sel[:40]:40s} {best}")
-    ziel = os.path.join(_HIER, "ergebnisse", "faltenplan.json")
-    with open(ziel, "w", encoding="utf-8") as f:
-        json.dump(plan, f, indent=2, ensure_ascii=False, sort_keys=True)
-        f.write("\n")
-    print(f"\nGeschrieben: {ziel}")
-    return 0
+    ziel = a.ziel or voreinstellung_ziel()
+    rc, text = schreibe_plan(plan, ziel)
+    print(text, file=sys.stderr if rc else sys.stdout)
+    return rc
 
 
 if __name__ == "__main__":
