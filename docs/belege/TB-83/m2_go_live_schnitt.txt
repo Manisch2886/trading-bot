@@ -1,0 +1,11 @@
+# M2 — sed -n 580,586p docs/VORREGISTRIERUNG_neuselektion.md   (5.2 Go-Live-Schnitt; Ueberschrift per grep: Z. 580; gemessen 2026-09-22T05:12:54Z, HEAD 9dac8d4)
+    ### 5.2 Der Go-Live-Schnitt
+    
+    **`2026-09-01`, ausschliesslich.** Alle neun Bots laufen seit Anfang
+    September 2026 im Paper-Trading; die Kursdateien dieses Repos enden am
+    2026-09-01 (Aktien) bzw. 2026-08-31 (Krypto). Alles davor ist
+    Backtest-Material, alles ab diesem Tag ist Forward-Test und geht in **keine**
+    Selektion ein — auch nicht in die Bestätigungsperiode.
+## Treffer '2026-09-01' in 5.2 (Z. 580-586): 2; 'ausschliesslich' dort: 1
+## Gegenprobe 21.4 Vorsatz: '2914:in TB-56 Teil A). Bestätigungsperiode unverändert bis `2026-09-01`,'
+## Ergebnis M2: 2026-09-01, ausschliesslich — bestaetigt. Die Spanne 2026-01-01/2026-09-01 ist damit aus 21.4 und 5.2 gebildet, nicht uebernommen.

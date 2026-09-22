@@ -1,0 +1,17 @@
+# M3 — grep -n "fp.faltenplan" research/vorregistrierung/auswertung.py   (gemessen 2026-09-22T05:13:09Z, HEAD 9dac8d4, nur gelesen)
+## Treffer:
+    589:    plan = fp.faltenplan(mess)
+## Anzahl: 1 (Soll 1, Z. 589)
+## Gegenprobe — liest auswertung.py eine Plandatei? grep -n 'faltenplan.json\|json.load\|open(' research/vorregistrierung/auswertung.py:
+    590:    with open(os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json"),
+    592:        tabellen = json.load(f)
+    660:        with open(args.json, "w", encoding="utf-8") as f:
+    674:    return json.loads(json.dumps(e, default=lambda o: None))
+## Gegenprobe — wie faltenplan importiert wird: 96:import faltenplan as fp  # noqa: E402;
+## Gegenprobe — der Name der Bestaetigungsperiode als Schluessel (Fable 22a, Nachtrag 2 Z. 432-435): grep -n 'bestaetigungsperiode' research/vorregistrierung/auswertung.py:
+    430:def bestaetigungsperiode(bot: str, df: pd.DataFrame, zid: str, plan: dict) -> dict:
+    432:    name = plan[bot]["bestaetigungsperiode"]
+    550:        "bestaetigungsperiode": bestaetigungsperiode(bot, df, gew["zelle_id"], plan),
+    638:        bp = e["bestaetigungsperiode"]
+## SHA-256 research/vorregistrierung/auswertung.py: 1c2e2daec562d997…  (unveraendert nach der Messung, git status unten)
+## Ergebnis M3: genau ein Aufruf fp.faltenplan(mess), Z. 589 — auswertung.py rechnet den Plan, liest keine Plandatei. Bestaetigt.

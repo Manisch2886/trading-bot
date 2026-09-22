@@ -1,0 +1,22 @@
+# TB-83 Schritt 0 — Ausgangsstand (gemessen 2026-09-22T05:12:35Z, Mac, main)
+
+## git status --short (vor dem Anlegen dieses Belegordners)
+    (leer — FABLE_ANTWORT_2026-09-22a_bestaetigungsperiode.md und FABLE_ANFRAGE_2026-09-22a_sperrlistenfalle.md lagen bereits versioniert in 9dac8d4; nichts mitzucommitten)
+
+## HEAD
+9dac8d4 Fable 22a abgelegt; Anfrage 22a (Sperrlistenfalle: faltenplan.py main() ueberschreibt den gesperrten faltenplan.json); TB-83 beauftragt
+    origin/main: 9dac8d4  (Auftrag erwartete f1a0dc7 oder juenger)
+
+## Registerabschnitt 35 vor dem Eintrag (Abbruchkriterium 6)
+    grep -cE '^## 35\.' -> 0; hoechste ##-Nummer: 34; wc -l -> 5667
+
+## SHA-256 der drei Sperrlisten-Dateien (voller Pfad)
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+## Sperrlistenpunkt 2 — Dateizustand von research/vorregistrierung/ergebnisse/faltenplan.json
+-rw-r--r--  1 jaquelineloffler  staff  18736 14 Sep 17:55 research/vorregistrierung/ergebnisse/faltenplan.json
+    letzter beruehrender Commit: a2fcf01 TB-30a: Vorregistrierung der Neuselektion
+
+## AKTUELLER_AUFTRAG.md (nur gelesen): wc -l 87; grep -c TB-83 -> 1

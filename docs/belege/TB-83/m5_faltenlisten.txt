@@ -1,0 +1,14 @@
+# M5 — awk -v s=5345 -v e=5410 'NR>s && NR<e && /^\| `/' docs/VORREGISTRIERUNG_neuselektion.md   (Faltenliste aus 33.2, Z. 5345..5410; VORHER gemessen 2026-09-22T05:13:29Z, HEAD 9dac8d4)
+
+## VORHER — die neun Tabellenzeilen aus 33.2, woertlich:
+| `elliott_wave` | krypto | kein Horizont | 2 J | 2018–2019 | 2018–2019 · 2020–2021 · 2022–2023 · 2024–2025 | 4 |
+| `t3_supertrend` | krypto | kein Horizont | 1 J | 2019 | 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 7 |
+| `rsi2_crypto` | krypto | kein Horizont | 1 J | 2019 | 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 7 |
+| `turtle_soup_crypto` | krypto | kein Horizont | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
+| `volatility_breakout_crypto` | krypto | kein Horizont | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
+| `elliott_wave_stocks` | aktien | 2016-09-19 | 1 J | 2017 | 2017 · 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 9 |
+| `rsi2_mean_reversion` | aktien | 2016-09-19 | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
+| `turtle_soup_stocks` | aktien | 2016-09-19 | 1 J | 2017 | 2017 · 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 9 |
+| `volatility_breakout` | aktien | 2016-09-19 | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
+    Anzahl: 9 (Soll 9); SHA-256 der neun Zeilen: e5ab322e4aedb67c4a95d828d631e6eaadff7d7f17054187d829a049b973b5a2
+    (Zum Vergleich TB-82, m5_faltenlisten.txt: e5ab322e4aedb67c4a95d828d631e6eaadff7d7f17054187d829a049b973b5a2)

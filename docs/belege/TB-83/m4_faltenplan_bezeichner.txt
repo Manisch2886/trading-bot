@@ -1,0 +1,26 @@
+# M4 — grep -n "bestaetigungsperiode" research/vorregistrierung/faltenplan.py   (gemessen 2026-09-22T05:13:09Z, HEAD 9dac8d4, nur gelesen; faltenplan.py NICHT ausgefuehrt)
+## Treffer:
+    336:        "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+    368:        best = p["bestaetigungsperiode"]
+## Anzahl: 2 (Soll 2: 336 Erzeugung, 369 Ausgabe)
+## Umfeld Z. 334-338 und 367-371 (nur gelesen):
+            "falten": falten,
+            "selektionsfalten": [f["name"] for f in falten if f["rolle"] == "selektion"],
+            "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+        }
+    
+    ...
+            sel = ", ".join(p["selektionsfalten"])
+            best = p["bestaetigungsperiode"]
+            print(f"{bot:28s} {p['markt']:7s} {p['faltenlaenge_jahre']:6d}J "
+                  f"{p['trades_je_jahr']:9.1f} {p['purge_tage']:5d}T  "
+                  f"{sel[:40]:40s} {best}")
+## Die Falle (Anfrage 22a Punkt 3), Z. 372-377 woertlich, nur gelesen:
+        ziel = os.path.join(_HIER, "ergebnisse", "faltenplan.json")
+        with open(ziel, "w", encoding="utf-8") as f:
+            json.dump(plan, f, indent=2, ensure_ascii=False, sort_keys=True)
+            f.write("\n")
+        print(f"\nGeschrieben: {ziel}")
+        return 0
+## SHA-256 research/vorregistrierung/faltenplan.py: 6f96b95d13563f73…
+## Ergebnis M4: zwei Treffer wie erwartet — Z. 336 (Erzeugung aus falten[-1]["name"]) und Z. 368 (Konsolenausgabe in main; der Auftrag und Anfrage 22a nannten 369, das ist die print-Zeile darunter — ABWEICHUNG um eine Zeile, Zahl der Fundstellen bestaetigt). Der heutige Bezeichner ist der Faltenname.

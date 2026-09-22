@@ -1,0 +1,16 @@
+# M1 — sed -n 2919,2927p docs/VORREGISTRIERUNG_neuselektion.md | awk -F'|' '{print $2, $7}'   (21.4 Spalte Bestaetigung ab; Tabellenkopf per grep in Z. 2917 verankert; gemessen 2026-09-22T05:12:54Z, HEAD 9dac8d4, VOR dem Eintrag)
+## Kopfzeile Z. 2917:
+| Bot | Markt | Faltenlänge | erste Falte | # Selektionsfalten | Bestätigung ab | 4b erfüllt |
+## Bot | Bestaetigung ab:
+    `elliott_wave` | ⚠️ **2026-01-01**
+    `t3_supertrend` | 2026-01-01
+    `rsi2_crypto` | 2026-01-01
+    `turtle_soup_crypto` | 2026-01-01
+    `volatility_breakout_crypto` | 2026-01-01
+    `elliott_wave_stocks` | 2026-01-01
+    `rsi2_mean_reversion` | 2026-01-01
+    `turtle_soup_stocks` | 2026-01-01
+    `volatility_breakout` | 2026-01-01
+## Zeilen mit 2026-01-01 in Spalte 7: 9 von 9; Zeilen ohne: 0
+## Der ganze Eintrag bei elliott_wave (Fable 22a bat um den ganzen Eintrag, bevor die Warnmarke als Beleg gilt): Zelle 7 lautet woertlich '⚠️ **2026-01-01**' — die Markierung ist im Register selbst nicht begruendet (21.4 traegt keinen Satz dazu); Einordnung liegt beim steuernden Chat / Fable (Anfrage 22a Punkt 1)
+## Ergebnis M1: 2026-01-01 bei allen neun (9/9) — bestaetigt.
