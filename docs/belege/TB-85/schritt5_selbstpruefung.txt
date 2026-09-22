@@ -1,0 +1,102 @@
+TB-85 Schritt 5 — die Selbstpruefung der Sonde, alle sieben Faelle (B5)
+Zeitpunkt: 2026-09-22 16:54:09 CEST   HEAD: cf8b3faa157f8d22fe190c539b4ea6ee34de9b1d
+Python: Python 3.9.6
+
+$ python3 shared/test_sperrlistensonde.py
+Selbstpruefung der Sperrlisten-Sonde (TB-85, Auftrag B5)
+Kopie unter /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb85_sonde_xhaxna4f
+
+fall_0  Der Erzeuger legt das Abbild in der Kopie an.
+  [ OK ] 0: der Erzeuger schreibt das Abbild in die Kopie (rc 0)
+
+fall_1  Abbild stimmt mit Repo und Registertext -> 2 (nicht-pruefbare Punkte dabei).
+  [ OK ] 1a: unveraendert -> Gesamtwert 2 (nicht-pruefbare Punkte dabei)
+  [ OK ] 1b: kein Punkt mit 1
+  [ OK ] 1c: Punkte 2 und 5 (nur Dateien) sind 0
+  [ OK ] 1d: (ii) Abbild = Registertext
+  [ OK ] 1e: 14 Punkte im Bericht
+  [ OK ] 1f: jeder 2er-Punkt nennt seinen Grund
+  [ OK ] 1g: jede gemessene Datei steht mit Hash und 'gleich' im Bericht
+
+fall_2  Eine Datei der Kopie um ein Byte veraendert -> 1, Punkt genannt.
+  [ OK ] 2a: ein Byte anders -> Gesamtwert 1
+  [ OK ] 2b: Punkt 1 traegt den Befund
+  [ OK ] 2c: der Grund nennt die Datei
+  [ OK ] 2d: der Gesamtgrund nennt den Punkt
+  [ OK ] 2e: die uebrigen Punkte sind unveraendert (kein zweiter 1er)
+  [ OK ] 2f: zurueckgesetzt -> wieder 2, kein 1er
+
+fall_3  Ein Punkt fehlt im Abbild -> 1 (ii).
+  [ OK ] 3a: Punkt fehlt -> 1
+  [ OK ] 3b: (ii) nennt die Punktzahl 13 gegen 14
+
+fall_4  Ein Punkt zu viel im Abbild -> 1 (ii).
+  [ OK ] 4a: Punkt zu viel -> 1
+  [ OK ] 4b: (ii) nennt die Punktzahl 15 gegen 14
+  [ OK ] 4c: ein 1 aus (ii) schlaegt die 2 des erfundenen Punktes
+
+fall_5  Abbilddatei fehlt -> 2.
+  [ OK ] 5a: Abbild fehlt -> 2
+  [ OK ] 5b: der Grund sagt es
+  [ OK ] 5c: kein Punkt wurde als geprueft gefuehrt
+  [ OK ] 5d: Abbild kein JSON -> 2
+
+fall_6  Registerdatei nicht lesbar -> 2 - und ein Befund in (i) schlaegt das trotzdem.
+  [ OK ] 6a: Register fehlt -> 2
+  [ OK ] 6b: (ii) ist 2 und nennt das Register
+  [ OK ] 6c: (i) wurde trotzdem gemessen (14 Punkte im Bericht)
+  [ OK ] 6d: Register ohne Leserecht -> 2
+  [ OK ] 6e: Registertext mit 15. Punkt -> 1
+  [ OK ] 6f: (ii) nennt 14 gegen 15
+
+fall_7  Ein Punkt ohne Pfade (13) -> 2, mit Nennung.
+  [ OK ] 7a: Punkt 13 hat im Abbild keine Pfade
+  [ OK ] 7b: Punkt 13 -> 2
+  [ OK ] 7c: der Grund nennt 'kein Dateipfad' und den Wortlaut 'Abschnitt 8'
+  [ OK ] 7d: der Gesamtgrund nennt Punkt 13
+  [ OK ] 7e: Punkte 7 und 9 (nur Konstanten) ebenso 2
+
+teil_h  Weitere Mutationsproben ueber die sieben Faelle hinaus.
+  [ OK ] H1: 1 schlaegt 2 - Gesamt 1 bei 12 nicht-pruefbaren Punkten
+  [ OK ] H2: Titel veraendert -> 1 mit 'Feld titel'
+  [ OK ] H3: zusaetzlicher Pfad im Abbild -> 1 aus (ii), obwohl (i) gleich
+  [ OK ] H4: genannte Datei fehlt -> Punkt 2 mit 'Datei fehlt'
+  [ OK ] H5: falscher Hash im Abbild -> 1, Punkt 5
+  [ OK ] H6a: zweiter Aufruf des Erzeugers -> 1
+  [ OK ] H6b: er nennt Pfad und Hash der vorhandenen Datei
+  [ OK ] H6c: die Datei ist unveraendert
+  [ OK ] H6d: Erzeuger ohne lesbares Register -> 2, nichts geschrieben
+  [ OK ] H7a: Befehlszeile liefert 2 wie die Funktion
+  [ OK ] H7b: die Textausgabe endet mit dem Rueckgabewert
+  [ OK ] H7c: die Textausgabe nennt benchmark_drawdowns_vt.json als 'bestimmt, nicht eingetragen'
+  [ OK ] H7d: --json ist gueltiges JSON mit ausgang 2
+  [ OK ] H7e: fehlendes Abbild ueber die Befehlszeile -> 2
+  [ OK ] H8: die Sonde schreibt nichts (Dateiliste und Groessen gleich)
+
+==============================================================================
+49/49 Pruefungen bestanden.
+
+Rueckgabewert: 0
+
+--- Zuordnung der sieben Faelle aus B5 ---
+  B5-Fall 1  Abbild stimmt mit Repo und Registertext   -> fall_1 (7 Proben)   erwartet 2, gemessen 2
+  B5-Fall 2  Eine Datei im Repo veraendert (ein Byte)  -> fall_2 (6 Proben)   erwartet 1, gemessen 1, Punkt 1 genannt
+  B5-Fall 3  Ein Punkt fehlt im Abbild                 -> fall_3 (2 Proben)   erwartet 1, gemessen 1
+  B5-Fall 4  Ein Punkt zu viel im Abbild               -> fall_4 (3 Proben)   erwartet 1, gemessen 1
+  B5-Fall 5  Abbilddatei fehlt                         -> fall_5 (4 Proben)   erwartet 2, gemessen 2
+  B5-Fall 6  Registerdatei nicht lesbar                -> fall_6 (6 Proben)   erwartet 2, gemessen 2
+  B5-Fall 7  Ein Punkt ohne Pfade (13)                 -> fall_7 (5 Proben)   erwartet 2, gemessen 2, Punkt 13 genannt
+  darueber hinaus (Teil H)                             -> teil_h (15 Proben)
+  plus fall_0 (Erzeuger legt das Probe-Abbild an)      -> 1 Probe
+  Summe: 49 Proben, 49 bestanden, 0 gescheitert.
+
+--- Alles lief auf Kopien (B5, Warnung) ---
+Wegwerf-Ordner unter $TMPDIR (tempfile.mkdtemp, Praefix tb85_sonde_), am Ende entfernt:
+$ ls -d ${TMPDIR}tb85_sonde_* 2>&1
+ls: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb85_sonde_*: No such file or directory
+
+Die drei Sperrlisten-Hashes unmittelbar nach der Selbstpruefung:
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+(unveraendert gegen schritt0_hashes_vorher.txt)

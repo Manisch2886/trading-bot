@@ -1,0 +1,34 @@
+TB-85 Schritt 7 — Mutationsprobe am Erzeuger: der zweite Aufruf muss abbrechen (36.1 (2))
+Zeitpunkt: 2026-09-22 17:37:24 CEST   HEAD: cf8b3faa157f8d22fe190c539b4ea6ee34de9b1d
+
+Die Regel, gegen die geprueft wird — Auftrag A4 / Registertext 36.1 (2):
+  Der Erzeuger schreibt einmalig. Existiert das Ziel, bricht er mit Rueckgabewert 1
+  ab und nennt Pfad und Hash der vorhandenen Datei — er ueberschreibt nie, auch nicht
+  mit identischem Inhalt.
+
+--- Die Datei VOR dem zweiten Aufruf ---
+SHA-256: 6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c
+Groesse: 6948 Bytes
+
+--- Zweiter Aufruf, dasselbe Ziel ---
+$ python3 research/vorregistrierung/sperrliste_abbild.py --ziel research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+ABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben.
+  Pfad:   research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+  SHA-256: 6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c
+$ echo $?
+1
+
+--- Die Datei NACH dem zweiten Aufruf ---
+$ shasum -a 256 research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json ; wc -c research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+    6948 research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+
+Ergebnis:
+  Rueckgabewert 1 (BEFUND) — wie verlangt.
+  Pfad und SHA-256 der vorhandenen Datei stehen in der Ausgabe — wie verlangt.
+  Hash und Groesse vorher = nachher: nichts geschrieben, auch nicht identisch.
+  Die Ausgabe ging nach stderr (rc != 0), nicht nach stdout.
+
+Zweite Absicherung, die nicht auf os.path.exists beruht: geoeffnet wird mit
+O_CREAT|O_EXCL, das faengt auch ein Ziel ab, das zwischen Pruefung und Schreiben
+entsteht (FileExistsError -> ebenfalls 1). Geprueft in der Selbstpruefung als H6a-H6c.

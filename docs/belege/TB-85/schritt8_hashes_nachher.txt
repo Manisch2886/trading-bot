@@ -1,0 +1,18 @@
+TB-85 Schritt 8 — die drei Sperrlisten-Hashes nachher
+Zeitpunkt: 2026-09-22 17:37:40 CEST
+HEAD: cf8b3faa157f8d22fe190c539b4ea6ee34de9b1d   git status --short: 7 Zeilen
+
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+Soll (schritt0_hashes_vorher.txt, gemessen 08:33:38 CEST):
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+Alle drei zeichengleich — vorher wie nachher. Abbruchkriterium 1 nicht eingetreten.
+
+Zwischenmessung: dieselben drei Hashes wurden auch zu Beginn dieser Fortsetzung
+(nach dem Verbindungsabbruch, vor Schritt 3) und unmittelbar nach der Selbstpruefung
+gemessen — siehe schritt5_selbstpruefung.txt. Vier Messungen, ein Ergebnis.

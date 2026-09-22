@@ -1,0 +1,93 @@
+TB-85 Schritt 3 — das Abbild der Sperrliste erzeugt und gemessen (A1/A2/A4)
+Zeitpunkt: 2026-09-22 16:52:56 CEST   HEAD: cf8b3faa157f8d22fe190c539b4ea6ee34de9b1d
+Python: Python 3.9.6
+
+--- Vorher: das Ziel gab es nicht (Voraussetzung fuer 36.1 (2)) ---
+$ ls -l research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+ls: research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json: No such file or directory
+
+--- Aufruf ---
+$ python3 research/vorregistrierung/sperrliste_abbild.py --ziel research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+Abbild geschrieben.
+  Pfad:    research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+  Groesse: 6948 Bytes
+  SHA-256: 6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c
+  Punkte:  14 (aus docs/VORREGISTRIERUNG_neuselektion.md Z. 824-871), 14 Pfadnennungen, HEAD cf8b3faa157f
+Rueckgabewert: 0
+
+--- Messung der erzeugten Datei ---
+$ wc -c research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+    6948 research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+$ shasum -a 256 research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+
+--- Inhalt: die 14 Punkte, wie sie im Abbild stehen ---
+Quelle: docs/VORREGISTRIERUNG_neuselektion.md, Abschnitt 10, Z. 824-871, sha256(Listentext) 48a9a9dfbeafe9fcd1eaebc1a50021ea73b00cc93857e0bf86d91dbff8341694
+Pfadregel: kein '/' oder Praefix 'ergebnisse/' -> relativ zu research/vorregistrierung/; sonst repo-relativ
+
+ 1  Rastergrenzen und Grenzsätze
+      research/vorregistrierung/registerdaten.py                     141fa14b6742aae085f95377d406bb9ec4639c06d4de01c4c8c7f855641865fa
+      nicht_dateibezogen: `registerdaten.py`, Abschnitt 3 dieses Registers
+ 2  Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen
+      research/vorregistrierung/faltenplan.py                        6f96b95d13563f73b11be69c2bd6996037854df794da61315029216ad0b22bd9
+      research/vorregistrierung/ergebnisse/faltenplan.json           0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+      nicht_dateibezogen: (leer) -> allein ueber Datei-Hashes pruefbar
+ 3  Selektionsstatistik, Plateau-Regel, Spitzen-Schwelle
+      research/vorregistrierung/auswertung.py                        1c2e2daec562d9973f87809fd29ef369db76614ee4bc31c04c6ca201c52a3db0
+      nicht_dateibezogen: `auswertung.py`, `registerdaten.SPITZEN_SCHWELLE`
+ 4  Drawdown-Bedingung, `DD_Toleranz` und die vorab berechneten Benchmark-Drawdowns
+      research/vorregistrierung/benchmark.py                         3960375a539de8324ccfafaa42596a056fb5dd5c154cd2e05c0ba6a634f3611b
+      research/vorregistrierung/ergebnisse/benchmark_drawdowns.json  a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee
+      nicht_dateibezogen: `benchmark.py`, `ergebnisse/benchmark_drawdowns.json`, **einschliesslich der Interpolationsregel**
+ 5  Abbruchkriterien und Kapitalregel
+      research/vorregistrierung/auswertung.py                        1c2e2daec562d9973f87809fd29ef369db76614ee4bc31c04c6ca201c52a3db0
+      nicht_dateibezogen: (leer) -> allein ueber Datei-Hashes pruefbar
+ 6  Benchmark-Definitionen
+      research/vorregistrierung/benchmark.py                         3960375a539de8324ccfafaa42596a056fb5dd5c154cd2e05c0ba6a634f3611b
+      nicht_dateibezogen: gleichgewichtete Tagesrenditen, point-in-time, `benchmark.py::bh_tagesrenditen`
+ 7  N-Buchführung und Clusterschwelle
+      nicht_dateibezogen: `registerdaten.N_HISTORISCH_JE_BOT`, `CLUSTER_SCHWELLE = 0,9`
+ 8  Universumsdateien und point-in-time-Regel
+      config/top25_symbols.txt                                       3afc95a4f6b5ebc3a8f7bb7854b5dd59c4ecc4e3d86aa7b93c08066a3fccf810
+      config/sp500_top150.txt                                        6acba892f38e998cf43ae9e5594c4707945143aba481429c44a5c6005339f607
+      nicht_dateibezogen: `config/top25_symbols.txt`, `config/sp500_top150.txt`, vier Jahre Vorlauf je Symbol
+ 9  Kosten (0,30 %) und Fill-Konvention
+      nicht_dateibezogen: `TRADING_FEE_PCT = 0,1` und `SLIPPAGE_PCT = 0,05` je Order, Ein- und Ausstieg; Einstieg zum Schlusskurs des Bestätigungsbalkens
+10  Zuteilungskaskade inklusive Seed
+      shared/zuteilung.py                                            68a812a0567dec8b72e6d60fd891091aff546d1adaddf03ddd9b4459ca73da47
+      nicht_dateibezogen: `shared/zuteilung.py`, `SEED = 20260913`
+11  Commit-Hashes von Simulation, Erkennung, Optimierern und Auswertungsskript
+      research/vorregistrierung/herkunft.py                          56a1c2e1514385acd26c3432bd111f3588846c80d173a4d4a471ecae723fb502
+      nicht_dateibezogen: `herkunft.py::register()` und der Repo-Commit
+12  Hash des Datenstands
+      research/vorregistrierung/herkunft.py                          56a1c2e1514385acd26c3432bd111f3588846c80d173a4d4a471ecae723fb502
+      nicht_dateibezogen: `herkunft.py::datenstand()`
+13  Die Liste der berichteten Kennzahlen und die Regel, dass alle berichtet werden, auch die unangenehmen
+      nicht_dateibezogen: Abschnitt 8
+14  Die Reihenfolge Selektion → Bestätigungsperiode → Bericht
+      research/vorregistrierung/auswertung.py                        1c2e2daec562d9973f87809fd29ef369db76614ee4bc31c04c6ca201c52a3db0
+      nicht_dateibezogen: im Kopftext von `auswertung.py` als Ablauf festgeschrieben
+
+Punkte: 14   Pfadnennungen: 14   eindeutige Pfade: 10
+   config/sp500_top150.txt
+   config/top25_symbols.txt
+   research/vorregistrierung/auswertung.py
+   research/vorregistrierung/benchmark.py
+   research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+   research/vorregistrierung/ergebnisse/faltenplan.json
+   research/vorregistrierung/faltenplan.py
+   research/vorregistrierung/herkunft.py
+   research/vorregistrierung/registerdaten.py
+   shared/zuteilung.py
+
+Abgleich mit der Handmessung aus Schritt 1 (schritt1_klassifikation.txt):
+  rein dateibezogen: [2, 5]   (Schritt 1: 2, 5)
+  ohne Pfade:        [7, 9, 13]   (Schritt 1: 7, 9, 13)
+  eindeutige Pfade:  10   (Schritt 1: ZEHN, mit herkunft.py als zehntem)
+  benchmark_drawdowns_vt.json im Abbild: nein   (A3: darf NICHT drin sein)
+  -> keine Abweichung zur Handmessung.
+
+--- Die zwei Sperrlisten-Hashes, die im Abbild selbst vorkommen ---
+faltenplan.json           im Abbild: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+benchmark_drawdowns.json  im Abbild: a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee
+beide zeichengleich mit schritt0_hashes_vorher.txt.
