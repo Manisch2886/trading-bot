@@ -36,10 +36,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-86** | `docs/auftraege/MAC_TB-86_faltenplan_schreibsperre.md` | ⭐⭐ **Schritt 2 von Fables Reihenfolge (36.3) — die Reparatur der Sperrlistenfalle.** ⭐ **Betreiberfreigabe liegt vor (22.09., 07:50, fuer Schritt 1+2).** `faltenplan.py main()` bekommt `argparse` mit `--ziel`, eine **Voreinstellung mit Zeitstempel** (nicht mehr der gesperrte Pfad) und die **Einmal-Schreibsperre** nach 36.1 (2): Ziel existiert → Rueckgabe **1**, Pfad und Hash genannt, nichts geschrieben, **auch nicht bei gleichem Inhalt**. ⭐⭐ **Kern ist M4:** `main()` absichtlich auf den echten gesperrten Pfad ansetzen — es muss sich weigern, und `0e54ac5c…` ist nachher unveraendert. ⛔ **Zeile 336 NICHT** (das ist Schritt 3, eigene Freigabe), **Rechenlogik NICHT** — keine Planzahl darf sich bewegen, belegt durch Ausgabevergleich vorher/nachher. Vorbedingung: die Sonde aus TB-85 muss laufen |
+| **TB-87** | `docs/auftraege/MAC_TB-87_register_37.md` | ⭐⭐ **Registerabschnitt 37 — Stufe I, Punkt 4 aus `PLAN_VOR_DEM_TAG.md`.** Fuenf Eintraege aus Fables 22d und 22g, ⛔ **nur Text, keine neue Freigabe noetig.** Die Sonde meldet kuenftig **je Punkt je Bestandteil** (37.1) · das Abbild fuehrt **zwei Gruppen**, Punkte und „bestimmte" Pfade (37.2) · ⭐⭐ **was ein Befund `1` bedeutet, haengt vom Tag ab** — davor planmaessig mit Tatsachennotiz und neuem Abbild, danach Sperrlistenbruch nach 10.1 (37.3, schliesst die Luecke, die TB-86 sichtbar gemacht hat) · Tatsachennotiz zu den zwei Listen in `herkunft.py` (37.4) · **„Ort registrierter Werte"** — jeder registrierte Zahlenwert bekommt genau ein Modul und eine Konstante (37.5). ⛔ **Keine `.py` aendern**, kein neues Abbild, keine Sonde anpassen, keine Werte verschieben. Drei Hashes vorher UND nachher |
 
-*Gesetzt 22.09.2026 (zuvor TB-85, erledigt mit `755b3c4`, 22.09.2026; davor
-TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`, TB-77 `83e3a85`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 22.09.2026 (zuvor TB-86, erledigt mit `ee4e65c`, 22.09.2026; davor
+TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
