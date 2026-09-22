@@ -58,3 +58,61 @@ def register() -> dict:
     return {"register": h.hexdigest(), "teile": teile, "fehlend": fehlend}
 
 
+
+## Mengenvergleich EINGEFROREN gegen die Pfade der 14 Punkte (python3-Heredoc: ast.literal_eval der Liste Z. 57, Pfade aus dem Abbild 6a1b732e…, das die Sonde gegen Abschnitt 10 mit (ii)=0 prueft)
+EINGEFROREN (auf Repo-Pfade aufgeloest): 10
+Pfade der 14 Punkte laut Abbild 6a1b732e (Abschnitt 10): 10
+
+in Abschnitt 10, fehlt in EINGEFROREN:
+   config/sp500_top150.txt
+   config/top25_symbols.txt
+   research/vorregistrierung/herkunft.py
+   shared/zuteilung.py
+
+in EINGEFROREN, kein Pfad eines Punktes in Abschnitt 10:
+   research/vorregistrierung/ergebnisse/messgroessen.json
+   research/vorregistrierung/kennzahlen.py
+   research/vorregistrierung/messgroessen.py
+   research/vorregistrierung/pruefe_grenzsaetze.py
+
+bestimmt (21.9/23.7), in EINGEFROREN: False
+Schluessel des Abbilds: ['art', 'erzeugt', 'pfadregel', 'punkte', 'quelle']
+
+## Weitere Tatsachen aus Fables Notiz, nachgemessen
+### grep -rn 'SPERRLISTE_DATEIEN' --include=*.py . (ohne trading-env)
+research/vorregistrierung/herkunft.py:66:SPERRLISTE_DATEIEN = [
+shared/sperrlistensonde.py:70:`SPERRLISTE_DATEIEN` nicht (36.6: die sind nicht das Abbild). Und sie prueft
+### grep -rn 'EINGEFROREN' --include=*.py research/vorregistrierung
+research/vorregistrierung/herkunft.py:57:EINGEFROREN = [
+research/vorregistrierung/herkunft.py:114:    for rel in ([os.path.relpath(REGISTERDATEI, _HIER)] + EINGEFROREN):
+### grep -rln -E 'import herkunft|herkunft\.py' --include=*.py research/vorregistrierung (ohne herkunft.py selbst)
+research/vorregistrierung/auswertung.py
+research/vorregistrierung/beispieldaten.py
+### grep -rn -E '\.block\(' --include=*.py research shared strategies
+research/turn_of_month/auswertung.py:206:        "herkunft": hk.block("auswertung", daten_dir),
+research/turn_of_month/staging.py:127:        "herkunft": hk.block("staging", daten_dir),
+### Dateien herkunft.json / herkunft_protokoll.jsonl unter research/vorregistrierung
+   (find-Ausgabe oben; leer = existieren nicht)
+### sed -n '41p' research/vorregistrierung/auswertung.py
+        mittlere_exposure
+### Randbefund TB-84 nachgemessen: grep -n 'herkunft' research/etf_trendfolge/datenstand.py
+19:Er kommt aus `research/vorregistrierung/herkunft.py::datenstand` - derselben
+25:`herkunft.py` achtet auf `TB30A_BASE_DIR`. Der Selbsttest nutzt das, um die
+43:herkunft = reg.lade_fremdes_modul(
+44:    "herkunft", os.path.join(reg.VORREGISTRIERUNG_DIR, "herkunft.py"))
+48:    """{'datenstand': ..., 'dateien': ...} - aus `herkunft.py`, nicht neu."""
+49:    return herkunft.datenstand(daten_dir or reg.KURSDATEN_DIR_VERBOTEN)
+### Nachprobe zu den zwei Treffern oben und zu 'Z. 41': grep -n 'herkunft' research/vorregistrierung/auswertung.py research/vorregistrierung/beispieldaten.py; grep -n -E '^(import|from) ' beider Dateien auf herkunft
+research/vorregistrierung/auswertung.py:51:    <wurzel>/<bot>/herkunft.json
+research/vorregistrierung/auswertung.py:52:        Commit-Hash, Datenstand-Hash, Register-Hash - siehe herkunft.py.
+research/vorregistrierung/beispieldaten.py:142:    with open(os.path.join(ordner, "herkunft.json"), "w", encoding="utf-8") as f:
+research/vorregistrierung/beispieldaten.py:145:                              "aus herkunft.py.",
+   import/from mit herkunft: 0 Treffer
+
+## Ergebnis M3
+   Z. 57 EINGEFROREN (zehn Eintraege), Z. 66 SPERRLISTE_DATEIEN (fuenf Muster), Z. 114 Verwendung in register() — wie erwartet.
+   SPERRLISTE_DATEIEN: ausser der Definition nur in einem Kommentar von shared/sperrlistensonde.py:70 genannt, nirgends gelesen — 'toter Code' bestaetigt.
+   herkunft.py in research/vorregistrierung/ von keinem Modul importiert (die zwei Treffer sind Text: Docstring auswertung.py, Beispieldaten-Schreiber beispieldaten.py:142/145); herkunft*.json* existieren nicht; block() nur in research/turn_of_month/ (auswertung.py:206, staging.py:127) — bestaetigt.
+   ⚠️ ABWEICHUNG 1: Der Datenvertrag nennt herkunft.json in auswertung.py Z. **51** (Z. 52 'siehe herkunft.py'), nicht Z. 41. Z. 41 ist '        mittlere_exposure'.
+   ⚠️ ABWEICHUNG 2: 'an fuenf Stellen ab (fehlend: 3; zusaetzlich: 3)' — Fable zaehlt fuenf und nennt sechs. Der mechanische Mengenvergleich gegen die Pfade der 14 Punkte ergibt: in Abschnitt 10, nicht in EINGEFROREN: VIER (config/sp500_top150.txt, config/top25_symbols.txt, research/vorregistrierung/herkunft.py, shared/zuteilung.py), dazu der BESTIMMTE Pfad benchmark_drawdowns_vt.json (kein Punkt); in EINGEFROREN, kein Pfad eines Punktes: VIER (kennzahlen.py, messgroessen.py, pruefe_grenzsaetze.py, ergebnisse/messgroessen.json). Fables sechs Namen stimmen alle; es fehlen in seiner Aufzaehlung herkunft.py, shared/zuteilung.py und ergebnisse/messgroessen.json.
+   Randbefund TB-84 bestaetigt: research/etf_trendfolge/datenstand.py:43-49 laedt herkunft.py und ruft datenstand() auf (ausserhalb des Laufbereichs der Vorregistrierung).

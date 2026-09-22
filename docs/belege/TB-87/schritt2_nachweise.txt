@@ -1,0 +1,31 @@
+# TB-87 Schritt 2 — Nachweise Abschnitt 37 (python3-Heredoc; Quellzeilen je exakt als Registerzeile, mit oder ohne vorangestelltes '> ')
+Abschnitt 37 beginnt in Z. 6186; Register 6463 Zeilen
+  22d Z. 13: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 11: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 15: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 21: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 23: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 27: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 29: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 39: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 40: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 41: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 42: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 43: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 33: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 35: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 45: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 47: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22d Z. 59: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22g Z. 13: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22g Z. 11: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22g Z. 15: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22g Z.  9: 1x in Abschnitt 37, 1x im ganzen Register  OK
+  22g Z. 17: 1x in Abschnitt 37, 1x im ganzen Register  OK
+Teilzeichenketten (Auftrag):
+  22d: in Quelle True, in Abschnitt 37 1x — Ein Sperrlistenpunkt, der einen Wert nennt und keinen Ort, s…
+  22g: in Quelle True, in Abschnitt 37 2x — Eine Sonde, die den neuen Hash von selbst übernähme, wäre ke…
+  22d: in Quelle True, in Abschnitt 37 1x — Die Werte selbst (0,1 / 0,05 / die beiden aus Punkt 7) änder…
+Positivkontrolle: 22d Z. 11 ohne Praefix gesucht -> 0 (Soll 0: die Registerzeile traegt '> ')
+grep -c '^## 37\.' -> 1   grep -c '^### 37\.' -> 6
+git diff --numstat Register: 279	0	docs/VORREGISTRIERUNG_neuselektion.md

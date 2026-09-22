@@ -118,3 +118,9 @@ N_HISTORISCH_JE_BOT = {
     "rsi2_mean_reversion": 6,
 ### grep -n 'FEE' research/vorregistrierung/messgroessen.py
 15:  * Handelskosten     - `TRADING_FEE_PCT` + `SLIPPAGE_PCT` aus dem Bot-Code,
+
+## Ergebnis M4
+   Neun forward_test.py: je TRADING_FEE_PCT = 0.1 und SLIPPAGE_PCT = 0.05 — bestaetigt.
+   registerdaten.py:99 CLUSTER_SCHWELLE = 0.90 · registerdaten.py:115 N_HISTORISCH_JE_BOT = { … } (neun Eintraege, Z. 115–125; das Fenster oben zeigt nur die ersten sieben; Summe laut Kommentar 653) — bestaetigt.
+   ⚠️ ABWEICHUNG: messgroessen.py:59 ist SLIPPAGE_PCT = 0.05; die Gebuehr steht eine Zeile davor als messgroessen.py:58 GEBUEHR_PCT = 0.1 — unter ANDEREM NAMEN als TRADING_FEE_PCT (Punkt 9 und Fable 22d (3) nennen TRADING_FEE_PCT).
+   ⚠️ ZUSAETZLICH gemessen, von Fable nicht genannt: neun backtest_*.py tragen je eine eigene Zuweisung TRADING_FEE_PCT = 0.1 / SLIPPAGE_PCT = 0.05 (Liste oben), dazu elliott_wave_stocks/signal_quality_test.py:37-38 als Verweis auf backtest_elliott. Ob der Laufpfad (multi_symbol_optimise.py, equity_simulation.py) daraus liest, ist die Messung aus Plan Punkt 5 — hier NICHT gemessen.
