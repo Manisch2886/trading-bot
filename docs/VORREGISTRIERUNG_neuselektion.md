@@ -4869,6 +4869,7 @@ zeichengleich. Anlass: die Messmeldung
 > **(2)** Der Faltenplan nach 4a ist **Registertext**: je Bot die Liste der Selektionsfalten (Kalenderjahre), abgeleitet aus asof, `RECENT_YEARS_ONLY`, dem Indikator-Vorlauf gegen den Horizontbeginn und dem Trockenlauf nach 3b (b). Der Registertext ist die Quelle; jede Datei, die ihn maschinenlesbar wiedergibt, ist Abbild.
 > > ⚠️ **Berichtigt (34.3, TB-82, 22.09.2026):** „Trockenlauf nach 3b (b)" lies **„3b (a)"** — Fable 21m, Frage 3, zeichengleich: *„Gemeint ist der Trockenlauf aus 3b (a), der die `MIN_HISTORY_*`-Tabelle aus 3b (b) anwendet; ein zweiter Trockenlauf existiert nicht."* Der Satz oben bleibt zeichengleich stehen; 16.7: 3b (a) ist der Trockenlauf-Satz, 3b (b) die `MIN_HISTORY_*`-Tabelle.
 > **(3)** Genau **eine** solche Datei wird vor dem Tag mit Hash in die Sperrliste aufgenommen (neuer Punkt), und der Lauf liest genau diese. Ihr Inhalt muss dem Registertext aus (2) entsprechen; der Abgleich (Datei gegen Registertext, je Bot, je Jahr) ist eine Prüfung vor dem Tag und wird als Tatsachennotiz mit Ergebnis eingetragen. Trägt eine Datei Felder, die 4a nicht kennt (Trainingsgrenzen, Embargo), ist sie nicht dieses Abbild.
+> > ⭐ **Präzisiert (35.4, TB-83, 22.09.2026):** „und der Lauf liest genau diese" — Fable 22a, zeichengleich: *„Der Lauf verwendet den Plan, den `faltenplan.py` zur Laufzeit bildet. Die Sonde vergleicht diesen Plan **vor dem Start des Laufs** mit dem Abbild (Feldmenge und Werte); bei Abweichung bricht der Laufwrapper ab, bevor `auswertung.py` aufgerufen wird. Das Abbild ist damit der registrierte Sollzustand, gegen den der gerechnete Plan geprüft wird — nicht die Datei, die `auswertung.py` öffnet."* Gemessen (Beleg M3): `auswertung.py` rechnet den Plan über genau einen Aufruf, `fp.faltenplan(mess)`, Z. 589. Der Satz oben bleibt zeichengleich; Sonde und Wrapper sind nicht geschrieben.
 > **(4)** Ob `faltenplan_tb72.json` diese Datei ist, entscheidet allein der Abgleich nach (3) — nicht ihre Herkunft.
 
 **Quelle des Grundes,** Fable wörtlich: *„Das Register ist append-only …
@@ -5361,6 +5362,15 @@ ist — wörtlich:**
 > dem Go-Live-Schnitt ist **keine** Selektionsfalte. Der Text oben bleibt
 > zeichengleich; die Tabelle unten ändert sich um nichts (Beleg M5).
 
+> ⭐ **Ergänzt (35.1, TB-83, 22.09.2026):** Fable 22a fügt diesem Registertext die
+> **Bestätigungsperiode** hinzu, Wortlaut in 35.1: die Datumsspanne von „Bestätigung
+> ab" (21.4) bis zum Go-Live-Schnitt (5.2), Ende ausschliesslich; keine Falte im Sinn
+> von 4a, (1b)/34.2 betrifft sie nicht. Ihr **Bezeichner** in Plan, Abbild,
+> `zellen.csv` und Berichten ist die Spanne selbst, `JJJJ-MM-TT/JJJJ-MM-TT` — für
+> alle neun Bots `2026-01-01/2026-09-01` (gemessen, Beleg M1/M2). Der heutige
+> Faltenname in `faltenplan.py:336` ist danach unzulässig; die Umstellung ist nicht
+> Teil von TB-83. Text und Tabelle oben bleiben zeichengleich (Beleg M5).
+
 **Tatsachennotiz — der Plan, gemessen am 21.09.2026 (TB-81, HEAD `a0c6eb0`) aus
 `research/vorregistrierung/ergebnisse/faltenplan_tb80.json` (Commit `cadb968`,
 SHA-256 `2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794`;
@@ -5425,6 +5435,7 @@ die Marke am Satz selbst steht unter 30.2 (2).
 | je Bot | `erste_selektionsfalte` | die erste Falte |
 | je Bot | `selektionsfalten` | die Liste, aufsteigend und lückenlos |
 | | `quelle` | der Registerabschnitt, dessen Wortlaut die Datei abbildet |
+| je Bot | ⭐ **`bestaetigungsperiode`** | ⚠️ **Angefügt (35.2, TB-83, 22.09.2026)** — der Bezeichner nach 33.2/35.1, genau in der Form `JJJJ-MM-TT/JJJJ-MM-TT` (Beginn/Ende, Ende ausschliesslich; registrierter Bestand: `2026-01-01/2026-09-01` bei allen neun); die Sonde prüft ihn positiv gegen die aus 21.4 und 5.2 gebildete Spanne. Fable 22a; Grund in 35.3 — ersetzt 33.4 Punkt 3 |
 
 ⛔ **Nicht in der Liste und damit nicht in der Datei:** Trainingsgrenzen,
 Embargo, Purge. ⭐ *Fable, zwei Sätze aus 21k, je wörtlich:* *„Verfahren B hat
@@ -5450,6 +5461,7 @@ Feldliste zusammen"*) und eine Unsicherheit benannt.
 | **2** | ⭐ **Ohne `faltenlaenge_jahre` ist die Liste nicht prüfbar.** Aus `['2018-2019', …]` allein folgt nicht, ob die Faltenlänge 2 ist oder ob zwei Einzeljahre zusammengeschrieben wurden | Das Feld kommt in die Liste |
 | **3** | **Seine Unsicherheit — die Bestätigungsperiode je Bot:** Sie steht **bereits** in Register 21.4 und folgt aus Faltenlänge und Go-Live-Schnitt (`elliott_wave` `2026-2027`, die acht übrigen `2026`) | ⭐ **Nicht in die Feldliste.** *Ein Abbild bildet ab, was sein Abschnitt sagt; eine Grösse, die anderswo registriert ist, wäre ein zweiter Ort für denselben Wert* — die Bauart, die er in 21j selbst abgelehnt hat |
 | | ⚠️ **Berichtigt (34.6, TB-82, 22.09.2026):** Die Fundstelle „21.4" trägt den Satz nicht — 21.4 führt „Bestätigung ab" `2026-01-01` bei allen neun Bots (gemessen, Beleg M3); `2026-2027` und `2026` sind Faltennamen aus `faltenplan.py:336`, nicht aus dem Register (Beleg M2). Registriert ist die Bestätigungsperiode als **Datumsspanne**: Beginn 21.4 (`2026-01-01`), Ende 5.2 (`2026-09-01`, ausschliesslich) | Die Folge bleibt: **kein Feld** — Fables Halbsatz *„33.2 nennt sie nicht"* trägt allein. ⚠️ Welche der zwei Formen (Datumsspanne / Faltenname) gilt, ist **offen** — bei Fable, Anfrage 21g Punkt 3 (34.6) |
+| | ⚠️ **ERSETZT (35.3, TB-83, 22.09.2026):** „Nicht in die Feldliste" gilt nicht mehr — Fable 22a, zeichengleich: *„Die Bestätigungsperiode ist Feld des Abbilds — weil 33.2 sie nennen muss (siehe 3), nicht weil 21.4 sie registriert. Mein Massstab bleibt; seine Anwendung ändert sich mit der Tatsache, dass der Name operativ ist."* Der Name ist ein Schlüssel, den `auswertung.py` (Z. 432) und der Erzeuger teilen (sechste Rücknahme). Feld `bestaetigungsperiode` in 33.3 angefügt (35.2); Punkt 3 oben bleibt zeichengleich | — |
 
 ⚠️ **Alle drei sind dem Verfahrensprüfer vorzulegen.** Punkt 1 und 2 ändern
 seinen Wortlaut; Punkt 3 beantwortet seine Unsicherheit. ⛔ **Der Abschnitt gilt
@@ -5646,6 +5658,14 @@ Register 21.4 und folgt aus Faltenlänge und Go-Live-Schnitt (`elliott_wave`
 > klaffen sie: Der Name lautet `2026-2027`, die Periode endet am `2026-09-01`.
 > ⚠️ **Welche Form gilt, ist nicht registriert.** Die Frage liegt bei Fable
 > (Anfrage 21g); **dieser Abschnitt entscheidet sie nicht.**
+
+> ⭐ **Beantwortet und ersetzt (35.1 / 35.3, TB-83, 22.09.2026):** Fable 22a hat
+> entschieden — **die Datumsspanne gilt**; der Bezeichner ist die Spanne selbst,
+> `JJJJ-MM-TT/JJJJ-MM-TT`, für alle neun Bots `2026-01-01/2026-09-01`; der Faltenname
+> `2026-2027` ist unzulässig (35.1). Und der Schluss oben *„die Bestätigungsperiode
+> ist **kein Feld** der Feldliste"* ist **ERSETZT**: `bestaetigungsperiode` ist Feld
+> (35.2/35.3, Fables sechste Rücknahme — der Name ist ein Schlüssel, den
+> `auswertung.py` und der Erzeuger teilen). Der Block oben bleibt zeichengleich.
 
 **Marke am alten Ort:** in der Tabelle 33.4, als eigene Zeile direkt unter
 Punkt 3.

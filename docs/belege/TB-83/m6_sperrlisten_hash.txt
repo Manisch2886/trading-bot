@@ -3,3 +3,8 @@
     0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
     Soll: 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
     mtime: Sep 14 17:55:17 2026
+
+## NACHHER (gemessen 2026-09-22T05:16:29Z, nach Abschnitt 35 und den Marken):
+    0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+    mtime: Sep 14 17:55:17 2026
+## Ergebnis M6: 0e54ac5c… vor UND nach der Arbeit gleich; faltenplan.py wurde nicht ausgefuehrt (git status research/ leer, mtime unveraendert 14.09.). Abbruchkriterium 5 nicht eingetreten.
