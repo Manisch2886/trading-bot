@@ -36,10 +36,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-83** | `docs/auftraege/MAC_TB-83_register_35.md` | ⭐⭐ **Registerabschnitt 35** — Fables zwei Eintraege aus 22a: die **Bestaetigungsperiode** bekommt als Bezeichner ihre Datumsspanne (`2026-01-01/2026-09-01` statt des Faltennamens `2026-2027`) und wird **Feld** der Abbildliste (⭐ **Fables sechste Ruecknahme** — der Name ist ein Schluessel, den `auswertung.py` und der Erzeuger teilen); dazu die **Praezisierung zu 30.2 (3)**: die Sonde prueft den gerechneten Plan **vor** dem Start gegen das Abbild, der Wrapper bricht ab. ⛔ **Nur Text.** ⚠️⚠️ **`python3 faltenplan.py` NIEMALS ausfuehren** — `main()` ueberschreibt `ergebnisse/faltenplan.json` (Sperrlistenpunkt 2). Hash vor UND nach messen (M6) |
+| **TB-84** | `docs/auftraege/MAC_TB-84_register_36.md` | ⭐⭐ **Registerabschnitt 36** — Fables Antwort auf die Sperrlistenfalle (22b): die **Schreibregel fuer Sperrlistenpfade** (kein Programm schreibt gesperrte Pfade; Erzeuger schreiben **einmalig** und brechen bei vorhandener Datei ab, auch bei gleichem Inhalt — *„die Sperre ist staerker, wenn sie duemmer ist"*), die **Sperrlisten-Sonde** (prueft jeden der 14 Punkte gegen den Registertext; laeuft vor dem Tag, im Laufwrapper und nach jedem sperrlistennahen Auftrag), die **Reihenfolge** (Sonde → `main()` absichern → erst dann Z. 336 → Abbild) und die **Tatsachennotiz zu 21.4** (die ⚠️-Markierung traegt keine Erklaerung, nicht als Beleg verwendbar). ⛔ **Nur Text — keine Sonde, kein `main()`-Umbau, keine Freigabe erteilt.** ⚠️⚠️ **`python3 faltenplan.py` NIEMALS ausfuehren.** Ein Hashbruch wird **gemeldet, nie repariert** |
 
-*Gesetzt 22.09.2026 (zuvor TB-82, erledigt mit `f1a0dc7`, 22.09.2026; davor
-TB-81 `6071f32`, TB-77 `83e3a85`, TB-69 `1ded755`, TB-76 `3c25d94`, TB-63 `437428d`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 22.09.2026 (zuvor TB-83, erledigt mit `fdb181a`, 22.09.2026; davor
+TB-82 `f1a0dc7`, TB-81 `6071f32`, TB-77 `83e3a85`, TB-69 `1ded755`, TB-76 `3c25d94`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
