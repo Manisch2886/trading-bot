@@ -1,0 +1,29 @@
+# M1 — sed -n '1,20p' docs/belege/TB-85/nullpunkt.txt  (gemessen 2026-09-22T17:09:37Z); dazu grep -n 'Bestimmt' docs/belege/TB-85/nullpunkt.txt
+
+RUECKGABEWERT: 2 (NICHT PRUEFBAR) — erwartet und kein Fehler: kein Punkt mit 1, 12 Punkte mit 2 (Teil C, Punkt 3)
+TB-85 Schritt 6 — der Nullpunkt-Lauf (Teil C)
+Zeitpunkt: 2026-09-22 17:22:37 CEST   HEAD: cf8b3faa157f8d22fe190c539b4ea6ee34de9b1d
+Python: Python 3.9.6
+$ python3 shared/sperrlistensonde.py --abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+------------------------------------------------------------------------------
+Sperrlisten-Sonde (Register 36.2/36.5/36.6)
+  Abbild:   research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+  Register: /Users/jaquelineloffler/trading-bot/docs/VORREGISTRIERUNG_neuselektion.md
+  Wurzel:   /Users/jaquelineloffler/trading-bot
+  Abbild-Hash: 6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c
+  erzeugt: 2026-09-22T14:52:05Z  HEAD cf8b3faa157f  von research/vorregistrierung/sperrliste_abbild.py
+
+(i) Jeder Punkt des Abbilds gegen die Datei im Repo:
+  Punkt  1  [2 NICHT PRUEFBAR]  Rastergrenzen und Grenzsätze
+            research/vorregistrierung/registerdaten.py                     gleich     141fa14b6742aae0
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `registerdaten.py`, Abschnitt 3 dieses Registers
+  Punkt  2  [0 in Ordnung]  Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen
+            research/vorregistrierung/faltenplan.py                        gleich     6f96b95d13563f73
+            research/vorregistrierung/ergebnisse/faltenplan.json           gleich     0e54ac5cf6d554d2
+
+59:Bestimmt, nicht eingetragen (kein Punkt des Abschnitts 10; nicht geprueft, nur genannt):
+60-  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json  4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  (Register 21.9/23.7 - fuer die Sperrliste bestimmt, Vollzug steht aus)
+
+## Ergebnis M1: JA — Punkt 1 zeigt in Zeile 16 den Datei-Hash (registerdaten.py, 'gleich', 141fa14b…) und in Zeile 17 daneben den unmessbaren Teil ('-> nennt Nicht-Dateibezogenes - nicht messbar: …'). Die AUSGABE ist je Bestandteil.
+   Der RUECKGABEWERT dagegen steht je Punkt ('Punkt 1 [2 NICHT PRUEFBAR]', obwohl der einzige Pfad 'gleich' ist) und einmal je Lauf (Zeile 1: 2) — es fehlt der Rueckgabewert je Bestandteil (Handwerk, nicht TB-87).
+   Randbefund zu 37.2: die Gruppe 'bestimmt' wird von der Sonde heute nur GENANNT, nicht geprueft (Wortlaut der Ausgabe: 'nicht geprueft, nur genannt').

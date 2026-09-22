@@ -1,0 +1,60 @@
+# M3 — grep -n "EINGEFROREN\|SPERRLISTE_DATEIEN\|EINGEFROREN)" research/vorregistrierung/herkunft.py ; sed -n '50,80p;105,125p' research/vorregistrierung/herkunft.py  (gemessen 2026-09-22T17:09:49Z)
+
+57:EINGEFROREN = [
+66:SPERRLISTE_DATEIEN = [
+114:    for rel in ([os.path.relpath(REGISTERDATEI, _HIER)] + EINGEFROREN):
+
+## Listen woertlich
+_HIER = os.path.dirname(os.path.abspath(__file__))
+BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+    os.path.dirname(_HIER))
+
+PROTOKOLL = os.path.join(_HIER, "ergebnisse", "herkunft_protokoll.jsonl")
+
+REGISTERDATEI = os.path.join(BASE_DIR, "docs", "VORREGISTRIERUNG_neuselektion.md")
+EINGEFROREN = [
+    "registerdaten.py", "faltenplan.py", "benchmark.py", "kennzahlen.py",
+    "auswertung.py", "messgroessen.py", "pruefe_grenzsaetze.py",
+    "ergebnisse/messgroessen.json", "ergebnisse/faltenplan.json",
+    "ergebnisse/benchmark_drawdowns.json",
+]
+# Die Commit-Hashes, die zusaetzlich auf die Sperrliste gehoeren: Simulation,
+# Erkennung und Optimierer je Bot. Sie liegen ausserhalb dieses Ordners und
+# werden ueber den Git-Commit des Repos mit erfasst.
+SPERRLISTE_DATEIEN = [
+    "shared/messkette.py", "shared/zuteilung.py",
+    "strategies/*/equity_simulation.py", "strategies/*/multi_symbol_optimise.py",
+    "strategies/*/multi_symbol_walk_forward.py",
+]
+
+
+def _sha256_datei(pfad: str) -> str:
+    h = hashlib.sha256()
+    with open(pfad, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+...
+        h.update(_sha256_datei(pfad).encode("utf-8"))
+    return {"datenstand": h.hexdigest(), "dateien": len(dateien)}
+
+
+def register() -> dict:
+    """SHA-256 ueber die eingefrorenen Festlegungen."""
+    h = hashlib.sha256()
+    fehlend = []
+    teile = []
+    for rel in ([os.path.relpath(REGISTERDATEI, _HIER)] + EINGEFROREN):
+        pfad = os.path.normpath(os.path.join(_HIER, rel))
+        if not os.path.exists(pfad):
+            fehlend.append(rel)
+            continue
+        d = _sha256_datei(pfad)
+        teile.append({"datei": rel, "sha256": d})
+        h.update(rel.encode("utf-8"))
+        h.update(d.encode("utf-8"))
+    return {"register": h.hexdigest(), "teile": teile, "fehlend": fehlend}
+
+

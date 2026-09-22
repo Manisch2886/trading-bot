@@ -1,0 +1,120 @@
+# M4 — grep -rn -E '^\s*(TRADING_FEE_PCT|SLIPPAGE_PCT|CLUSTER_SCHWELLE|N_HISTORISCH_JE_BOT)\s*=' --include=*.py strategies shared research config  (Zuweisungen; gemessen 2026-09-22T17:10:08Z)
+
+research/vorregistrierung/messgroessen.py:59:SLIPPAGE_PCT = 0.05
+research/vorregistrierung/registerdaten.py:115:N_HISTORISCH_JE_BOT = {
+research/vorregistrierung/registerdaten.py:99:CLUSTER_SCHWELLE = 0.90             # Festlegung 9
+strategies/elliott_wave_stocks/backtest_elliott.py:77:TRADING_FEE_PCT = 0.1     # pro Order (Entry und Exit je einmal)
+strategies/elliott_wave_stocks/backtest_elliott.py:78:SLIPPAGE_PCT = 0.05       # angenommene Abweichung vom gewuenschten Preis, je Order
+strategies/elliott_wave_stocks/forward_test.py:69:TRADING_FEE_PCT = 0.1
+strategies/elliott_wave_stocks/forward_test.py:70:SLIPPAGE_PCT = 0.05
+strategies/elliott_wave_stocks/signal_quality_test.py:37:TRADING_FEE_PCT = backtest_elliott.TRADING_FEE_PCT
+strategies/elliott_wave_stocks/signal_quality_test.py:38:SLIPPAGE_PCT = backtest_elliott.SLIPPAGE_PCT
+strategies/elliott_wave/backtest_elliott.py:73:TRADING_FEE_PCT = 0.1     # pro Order (Entry und Exit je einmal)
+strategies/elliott_wave/backtest_elliott.py:74:SLIPPAGE_PCT = 0.05       # angenommene Abweichung vom gewuenschten Preis, je Order
+strategies/elliott_wave/forward_test.py:68:TRADING_FEE_PCT = 0.1
+strategies/elliott_wave/forward_test.py:69:SLIPPAGE_PCT = 0.05
+strategies/rsi2_crypto/backtest_rsi2.py:58:TRADING_FEE_PCT = 0.1
+strategies/rsi2_crypto/backtest_rsi2.py:59:SLIPPAGE_PCT = 0.05
+strategies/rsi2_crypto/forward_test.py:67:TRADING_FEE_PCT = 0.1
+strategies/rsi2_crypto/forward_test.py:68:SLIPPAGE_PCT = 0.05
+strategies/rsi2_mean_reversion/backtest_rsi2.py:85:TRADING_FEE_PCT = 0.1
+strategies/rsi2_mean_reversion/backtest_rsi2.py:86:SLIPPAGE_PCT = 0.05
+strategies/rsi2_mean_reversion/forward_test.py:67:TRADING_FEE_PCT = 0.1
+strategies/rsi2_mean_reversion/forward_test.py:68:SLIPPAGE_PCT = 0.05
+strategies/t3_supertrend/backtest_trend.py:27:TRADING_FEE_PCT = 0.1
+strategies/t3_supertrend/backtest_trend.py:28:SLIPPAGE_PCT = 0.05
+strategies/t3_supertrend/forward_test.py:57:TRADING_FEE_PCT = 0.1
+strategies/t3_supertrend/forward_test.py:58:SLIPPAGE_PCT = 0.05
+strategies/turtle_soup_crypto/backtest_turtle_soup.py:96:TRADING_FEE_PCT = 0.1
+strategies/turtle_soup_crypto/backtest_turtle_soup.py:97:SLIPPAGE_PCT = 0.05
+strategies/turtle_soup_crypto/forward_test.py:68:TRADING_FEE_PCT = 0.1
+strategies/turtle_soup_crypto/forward_test.py:69:SLIPPAGE_PCT = 0.05
+strategies/turtle_soup_stocks/backtest_turtle_soup.py:92:TRADING_FEE_PCT = 0.1
+strategies/turtle_soup_stocks/backtest_turtle_soup.py:93:SLIPPAGE_PCT = 0.05
+strategies/turtle_soup_stocks/forward_test.py:61:TRADING_FEE_PCT = 0.1
+strategies/turtle_soup_stocks/forward_test.py:62:SLIPPAGE_PCT = 0.05
+strategies/volatility_breakout_crypto/backtest_breakout.py:73:TRADING_FEE_PCT = 0.1
+strategies/volatility_breakout_crypto/backtest_breakout.py:74:SLIPPAGE_PCT = 0.05
+strategies/volatility_breakout_crypto/forward_test.py:72:TRADING_FEE_PCT = 0.1
+strategies/volatility_breakout_crypto/forward_test.py:73:SLIPPAGE_PCT = 0.05
+strategies/volatility_breakout/backtest_breakout.py:105:TRADING_FEE_PCT = 0.1
+strategies/volatility_breakout/backtest_breakout.py:106:SLIPPAGE_PCT = 0.05
+strategies/volatility_breakout/forward_test.py:59:TRADING_FEE_PCT = 0.1
+strategies/volatility_breakout/forward_test.py:60:SLIPPAGE_PCT = 0.05
+
+## Gegenprobe: alle Fundstellen der vier Namen (ohne Zuweisung), gezaehlt je Datei
+broker/abgleich.py
+broker/ibkr_abgleich.py
+broker/test_broker.py
+broker/test_ibkr.py
+dashboard/test_dashboard.py
+notifications/manual_close.py
+notifications/test_manual_close.py
+research/elliott_wave_lookahead/compare_channels.py
+research/elliott_wave_lookahead/decisions.py
+research/elliott_wave_lookahead/grid.py
+research/elliott_wave_lookahead/run_one_bot.py
+research/elliott_wave_lookahead/verify_baseline.py
+research/etf_trendfolge/kosten.py
+research/etf_trendfolge/register.py
+research/fib_score_stufen/lauf.py
+research/mtm_drawdown/messung.py
+research/mtm_drawdown/mtm_kern.py
+research/turn_of_month/register.py
+research/vorregistrierung/auswertung.py
+research/vorregistrierung/messgroessen.py
+research/vorregistrierung/registerbericht.py
+research/vorregistrierung/registerdaten.py
+research/vorregistrierung/test_vorregistrierung.py
+shared/test_stille_ausfaelle.py
+strategies/elliott_wave_stocks/backtest_elliott.py
+strategies/elliott_wave_stocks/forward_test.py
+strategies/elliott_wave_stocks/signal_quality_test.py
+strategies/elliott_wave/backtest_elliott.py
+strategies/elliott_wave/forward_test.py
+strategies/rsi2_crypto/backtest_rsi2.py
+strategies/rsi2_crypto/forward_test.py
+strategies/rsi2_mean_reversion/backtest_rsi2.py
+strategies/rsi2_mean_reversion/forward_test.py
+strategies/t3_supertrend/backtest_trend.py
+strategies/t3_supertrend/forward_test.py
+strategies/turtle_soup_crypto/backtest_turtle_soup.py
+strategies/turtle_soup_crypto/forward_test.py
+strategies/turtle_soup_stocks/backtest_turtle_soup.py
+strategies/turtle_soup_stocks/forward_test.py
+strategies/volatility_breakout_crypto/backtest_breakout.py
+strategies/volatility_breakout_crypto/forward_test.py
+strategies/volatility_breakout/backtest_breakout.py
+strategies/volatility_breakout/experiment_trailing_stop.py
+strategies/volatility_breakout/forward_test.py
+
+## Kontext der drei Orte in research/vorregistrierung/ (sed -n)
+### messgroessen.py 52-62
+
+# --- Kostenkonvention ---------------------------------------------------------
+# 0,1 % Gebuehr + 0,05 % Slippage je Order, Ein- und Ausstieg: 0,30 % je
+# Round-Trip. Der Wert steht in allen neun Bots zeichengleich; er ist eine
+# Konvention der Messkette, kein Handelsparameter, und deshalb als Grundlage
+# einer Rastergrenze zugelassen.
+GEBUEHR_PCT = 0.1
+SLIPPAGE_PCT = 0.05
+ROUND_TRIP_KOSTEN_PCT = 2 * (GEBUEHR_PCT + SLIPPAGE_PCT)
+
+# --- Zeitrahmen ---------------------------------------------------------------
+### registerdaten.py 97-100, 113-122
+DD_RELATIVER_FAKTOR = 1.25          # Festlegung 4
+SPITZEN_SCHWELLE = 0.50             # Festlegung 8: 50 % ueber dem Nachbarmittel
+CLUSTER_SCHWELLE = 0.90             # Festlegung 9
+DSR_BASIS_N = 653                   # Festlegung 10
+# N je Bot aus dem Versuchsregister (research/versuchsregister/REGISTER.md,
+# Stand 13.09.2026, Spalte "verschiedene Kombinationen"). Summe 653.
+N_HISTORISCH_JE_BOT = {
+    "elliott_wave_stocks": 264,
+    "elliott_wave": 252,
+    "t3_supertrend": 81,
+    "rsi2_crypto": 18,
+    "turtle_soup_crypto": 12,
+    "turtle_soup_stocks": 12,
+    "rsi2_mean_reversion": 6,
+### grep -n 'FEE' research/vorregistrierung/messgroessen.py
+15:  * Handelskosten     - `TRADING_FEE_PCT` + `SLIPPAGE_PCT` aus dem Bot-Code,

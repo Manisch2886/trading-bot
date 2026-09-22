@@ -1,0 +1,38 @@
+# M2 — shasum -a 256 research/vorregistrierung/faltenplan.py ; grep -n -A3 faltenplan.py research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json  (gemessen 2026-09-22T17:09:37Z)
+
+## heute
+fd3e5018ae930c2e29747562a140506d5d9a6bb70b87e96cf5c0089e09afdd79  research/vorregistrierung/faltenplan.py
+4daa254 TB-86 Schritt 2 und 3: faltenplan.py main() bekommt --ziel, eine Voreinstellung mit Zeitstempel und die Einmal-Schreibsperre
+
+## im Abbild aus TB-85 (grep -n faltenplan.py -A3)
+26:        "research/vorregistrierung/faltenplan.py": "6f96b95d13563f73b11be69c2bd6996037854df794da61315029216ad0b22bd9"
+27-      },
+28-      "nicht_dateibezogen": "",
+29-      "pfade": [
+30:        "research/vorregistrierung/faltenplan.py",
+31-        "research/vorregistrierung/ergebnisse/faltenplan.json"
+32-      ],
+33-      "punkt": 2,
+
+## Abbild selbst
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+
+## TB-86 Sondenbeleg, Punkt 2
+16:  Punkt  2  [1 BEFUND]  Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen
+17-            research/vorregistrierung/faltenplan.py                        ABWEICHUNG fd3e5018ae930c2e
+18-            research/vorregistrierung/ergebnisse/faltenplan.json           gleich     0e54ac5cf6d554d2
+19-            -> Hash weicht ab: research/vorregistrierung/faltenplan.py soll 6f96b95d1356… ist fd3e5018ae93…
+3:$ python3 shared/sperrlistensonde.py --abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+6:  Abbild:   research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+10:  erzeugt: 2026-09-22T14:52:05Z  HEAD cf8b3faa157f  von research/vorregistrierung/sperrliste_abbild.py
+14:            research/vorregistrierung/registerdaten.py                     gleich     141fa14b6742aae0
+17:            research/vorregistrierung/faltenplan.py                        ABWEICHUNG fd3e5018ae930c2e
+
+## Freigabe und Auftrag der Aenderung (grep -n '07:50' docs/auftraege/MAC_TB-86_faltenplan_schreibsperre.md | head -1)
+8:⭐⭐ **BETREIBERFREIGABE LIEGT VOR:** 22.09.2026, 07:50 — für **Schritt 1 und 2**
+## Bilanz der Sonde in TB-86 (tail -3 docs/belege/TB-86/schritt8_sonde.txt)
+  Bilanz damals: 2 in Ordnung (0), 0 mit Befund (1), 12 nicht pruefbar (2) -> 2
+  Bilanz heute:  1 in Ordnung (0), 1 mit Befund (1), 12 nicht pruefbar (2) -> 1
+  Die 12 nicht pruefbaren Punkte sind unveraendert dieselben.
+
+## Ergebnis M2: heute fd3e5018… (letzter Commit 4daa254, TB-86) · im Abbild 6a1b732e… (TB-85) 6f96b95d… — wie erwartet. Sonde seither Befund 1 an Punkt 2 (Lauf gesamt 1).
