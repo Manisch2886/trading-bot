@@ -36,10 +36,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-84** | `docs/auftraege/MAC_TB-84_register_36.md` | ⭐⭐ **Registerabschnitt 36** — Fables Antwort auf die Sperrlistenfalle (22b): die **Schreibregel fuer Sperrlistenpfade** (kein Programm schreibt gesperrte Pfade; Erzeuger schreiben **einmalig** und brechen bei vorhandener Datei ab, auch bei gleichem Inhalt — *„die Sperre ist staerker, wenn sie duemmer ist"*), die **Sperrlisten-Sonde** (prueft jeden der 14 Punkte gegen den Registertext; laeuft vor dem Tag, im Laufwrapper und nach jedem sperrlistennahen Auftrag), die **Reihenfolge** (Sonde → `main()` absichern → erst dann Z. 336 → Abbild) und die **Tatsachennotiz zu 21.4** (die ⚠️-Markierung traegt keine Erklaerung, nicht als Beleg verwendbar). ⛔ **Nur Text — keine Sonde, kein `main()`-Umbau, keine Freigabe erteilt.** ⚠️⚠️ **`python3 faltenplan.py` NIEMALS ausfuehren.** Ein Hashbruch wird **gemeldet, nie repariert** |
+| **TB-85** | `docs/auftraege/MAC_TB-85_sperrlisten_sonde.md` | ⭐⭐ **Schritt 1 von Fables Reihenfolge (36.3) — der erste Auftrag seit Tagen, der CODE schreibt.** ⭐ **Betreiberfreigabe liegt vor (22.09., 07:50, fuer Schritt 1+2).** Drei neue Dateien: das **Abbild der Sperrliste** (die 14 Punkte aus Abschnitt 10 mit Pfad und Hash, einmalig geschrieben nach 36.1), die **Sonde** (`shared/sperrlistensonde.py`, drei Ausgaenge nach 36.5: `0`/`1`/**`2` nicht pruefbar**) und ihre **Selbstpruefung** (sieben Mutationsproben). Dann der **Nullpunkt-Lauf**. ⛔ **Keine vorhandene `.py` aendern**, kein Registereintrag, kein Hash auf die Sperrliste. ⚠️⚠️ **`python3 faltenplan.py` NIEMALS** — das ist Schritt 2 (TB-86). Drei Hashes vorher UND nachher; bei `1` in der Sonde: ABBRUCH, **melden statt reparieren** |
 
-*Gesetzt 22.09.2026 (zuvor TB-83, erledigt mit `fdb181a`, 22.09.2026; davor
-TB-82 `f1a0dc7`, TB-81 `6071f32`, TB-77 `83e3a85`, TB-69 `1ded755`, TB-76 `3c25d94`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 22.09.2026 (zuvor TB-84, erledigt mit `03e544e`, 22.09.2026; davor
+TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`, TB-77 `83e3a85`, TB-69 `1ded755`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
