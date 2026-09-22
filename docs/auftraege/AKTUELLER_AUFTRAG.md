@@ -36,10 +36,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-82** | `docs/auftraege/MAC_TB-82_register_34.md` | ⭐⭐ **Registerabschnitt 34** — Fables fuenf Eintraege aus 21l/21m (Falten mit Laenge > 1, Rest vor Go-Live, `3b (a)` statt `3b (b)`, `horizontbeginn` als Zeichenkette, „vier" → „neun" Optimierer) plus **eine Berichtigung von uns** (eine Fundstelle in 33.4 trug ihren Satz nicht). ⭐ **Neu: jede Berichtigung bekommt eine Marke AM ALTEN ORT**, nicht nur im neuen Abschnitt. ⛔ **Nur Text — kein Code, keine Abbild-Datei, keine Sonde, kein Hash, keine Wache.** Bewegt sich eine Faltenliste, bricht die Sitzung ab |
+| **TB-83** | `docs/auftraege/MAC_TB-83_register_35.md` | ⭐⭐ **Registerabschnitt 35** — Fables zwei Eintraege aus 22a: die **Bestaetigungsperiode** bekommt als Bezeichner ihre Datumsspanne (`2026-01-01/2026-09-01` statt des Faltennamens `2026-2027`) und wird **Feld** der Abbildliste (⭐ **Fables sechste Ruecknahme** — der Name ist ein Schluessel, den `auswertung.py` und der Erzeuger teilen); dazu die **Praezisierung zu 30.2 (3)**: die Sonde prueft den gerechneten Plan **vor** dem Start gegen das Abbild, der Wrapper bricht ab. ⛔ **Nur Text.** ⚠️⚠️ **`python3 faltenplan.py` NIEMALS ausfuehren** — `main()` ueberschreibt `ergebnisse/faltenplan.json` (Sperrlistenpunkt 2). Hash vor UND nach messen (M6) |
 
-*Gesetzt 21.09.2026 (zuvor TB-81, erledigt mit `6071f32`, 21.09.2026; davor
-TB-77 `83e3a85`, TB-69 `1ded755`, TB-76 `3c25d94`, TB-63 `437428d`, TB-75 `c96c208`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 22.09.2026 (zuvor TB-82, erledigt mit `f1a0dc7`, 22.09.2026; davor
+TB-81 `6071f32`, TB-77 `83e3a85`, TB-69 `1ded755`, TB-76 `3c25d94`, TB-63 `437428d`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
