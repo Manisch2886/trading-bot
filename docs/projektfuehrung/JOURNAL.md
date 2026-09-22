@@ -8195,6 +8195,83 @@ Maschinenlesbarkeit von Abschnitt 10; 35.5-Unsicherheit; 33.5; TB-30b; 32.5,
 
 ---
 
+## CM — TB-85: die Sperrlisten-Sonde läuft — und ihr erster Befund ist, dass zwölf von vierzehn Sperrlistenpunkten gar nicht maschinell prüfbar sind (22.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-85_sperrlisten_sonde.md`*
+
+**Quelle:** Mac-Sitzung **TB-85 Sperrlisten-Sonde — Abbild, Sonde,
+Nullpunkt**, 22.09.2026, Eingang `03e544e`. Commits `082c7b1` (Schritt 0/1),
+`cf8b3fa` (2 und 4), `f3dc9a2` (3 und 5–8) und der Abgabe-Commit. Belege
+`docs/belege/TB-85/`. **Der erste Auftrag seit Tagen, der Code schreibt** —
+Schritt 1 von Fables Reihenfolge 36.3, Betreiberfreigabe 22.09., 07:50.
+⚠️ Die Sitzung wurde durch einen **Verbindungsabbruch** geteilt; Teil 2 hat vor
+allem anderen die drei Sperrlisten-Hashes erneut gemessen und gegen Schritt 0
+gehalten.
+
+### Was gebaut wurde
+
+| Datei | |
+|---|---|
+| `research/vorregistrierung/sperrliste_abbild.py` (107 Z.) | der **Erzeuger** — Einmal-Schreibsperre nach 36.1 (2) mit `O_EXCL`, kein Ziel als Voreinstellung |
+| `shared/sperrlistensonde.py` (502 Z.) | die **Sonde** — drei Ausgänge nach Bauart `snapshot.py`, (i) Abbild gegen Repo, (ii) Abbild gegen Registertext |
+| `shared/test_sperrlistensonde.py` (385 Z.) | die **Selbstprüfung** — 49 Mutationsproben, alle auf Kopien |
+| `ergebnisse/sperrliste_abbild_2026-09-22.json` | das **Abbild**, `6a1b732e…`, 6948 B, 14 Punkte |
+
+### Was gemessen wurde
+
+| | Ergebnis |
+|---|---|
+| ⭐⭐ **Nullpunkt-Lauf** | **Rückgabewert 2.** `0` × Befund, **2** Punkte in Ordnung (2, 5), **12** nicht prüfbar, (ii) Abbild = Registertext. Alle 14 Pfadnennungen gemessen, alle `gleich` |
+| Klassifikation Abschnitt 10 | 14 Punkte, **zehn** eindeutige Pfade, 14 Nennungen; rein dateibezogen nur **2 und 5**; ohne Pfad **7, 9, 13** |
+| Selbstprüfung | **49/49**, alle sieben B5-Fälle plus 15 weitere Proben; Wegwerf-Ordner unter `$TMPDIR`, am Ende entfernt |
+| Mutationsprobe Erzeuger | zweiter Aufruf → **1**, nennt Pfad und Hash, Datei vorher = nachher |
+| Drei Sperrlisten-Hashes | `0e54ac5c…` · `a163c498…` · `4549395f…` — **vier Messungen an einem Tag, alle gleich** |
+| Abschluss | `numstat` ab `082c7b1`: neun Dateien, zweite Spalte durchweg **0**; **das Register kommt in keinem Diff vor** |
+
+### ⭐ Der eigentliche Befund
+
+**Die Sperrliste ist zu zwei Vierzehnteln maschinell prüfbar.** Zwölf Punkte
+nennen neben Dateien (oder statt ihrer) Konstanten, Funktionen, Rechen- und
+Datenregeln, einen Docstring-Ablauf, den Repo-Commit oder schlicht einen
+anderen Registerabschnitt. Die Sonde hasht, was eine Datei ist, und meldet
+jeden dieser Punkte **einzeln mit `2` und mit Wortlaut** — statt ihn still zu
+überspringen oder als geprüft zu führen. Genau das war der Fehler, der das
+Thema ausgelöst hat.
+
+### Was der Auftrag nicht wusste
+
+Die **Vorarbeit lag mit drei von sieben Aussagen daneben**, und der Auftrag
+hatte richtig verlangt, sie nachzumessen statt zu übernehmen. Sie führte vier
+Punkte (1, 2, 5, 8) als „allein über Datei-Hashes prüfbar" — es sind **zwei**:
+Punkt 1 nennt zusätzlich einen Registerverweis, Punkt 8 eine Datenregel. Und
+sie hielt `datei::funktion` für „die Funktion, nicht die Datei" — das Token
+nennt **beides**, weshalb `herkunft.py` als **zehnter** Pfad hinzukam (Vorarbeit:
+neun).
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Punkt, der teilweise messbar ist, ist nicht geprüft.** Sind seine Dateien gleich, aber nennt er darüber hinaus eine Konstante oder eine Regel, ist er `2` und nicht `0` — die gemessenen Hashes stehen trotzdem im Bericht. Eine Teilmessung, die als Gesamturteil auftritt, ist der Ursprung dieser ganzen Baustelle |
+| ⭐ | **Ein Prüfwerkzeug darf sagen „das kann ich nicht messen".** Der dritte Ausgang ist kein Notbehelf, sondern der Messwert: Der erste Lauf der Sonde ist die Bestandsaufnahme, wie viel vom Regelwerk überhaupt maschinell fassbar ist |
+| ⭐ | **Ein Erzeuger, der einmalig schreibt, wird gegen sich selbst geprüft** — zweiter Aufruf gegen dasselbe Ziel, Hash vorher und nachher. Die Sperre hängt nicht an `os.path.exists`, sondern an `O_EXCL`, sonst rutscht ein Wettlauf durch |
+| ⭐ | **Wenn Erzeuger und Prüfung denselben Parser teilen, ist ein Parserfehler unsichtbar.** Das ist tragbar, solange das Gegengewicht benannt ist: eine von Hand erhobene Klassifikation und Mutationsproben, die die Quelle selbst verändern |
+| | Nach einem **Verbindungsabbruch** wird nicht dort weitergearbeitet, wo die Sitzung abbrach, sondern **erst die Nullmessung wiederholt** — der Arbeitsbaum kann sich zwischenzeitlich bewegt haben |
+
+**Offen (Ergebnisdokument, Abschnitt 8):** ⚠️⚠️ **Fables Antwort auf Anfrage
+22c steht aus** — (a) prüft die Sonde auch „für die Sperrliste bestimmte"
+Pfade (`benchmark_drawdowns_vt.json`, bis dahin im Bericht als eigener
+Abschnitt ohne Wertung)? und (b) gilt sein `2` auch für nicht-messbare
+Registerpunkte (unser Vorschlag, hier gebaut — daran hinge der Wert von zwölf
+Punkten)? Der **Registereintrag des Abbild-Hashes `6a1b732e…` ist TB-87**;
+**Schritt 2 von 36.3** (`faltenplan.py main()` absichern) ist **TB-86**,
+freigegeben, aber noch nicht beauftragt. Dazu unverändert: 35.5, 33.5, TB-30b,
+32.5, (20g)–(20m), `K4t`.
+
+*Geschrieben 22.09.2026 von der Mac-Sitzung TB-85 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
