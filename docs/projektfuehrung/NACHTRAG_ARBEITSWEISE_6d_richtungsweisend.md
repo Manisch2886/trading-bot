@@ -10,6 +10,10 @@ choice."*
 
 ---
 
+> ⭐⭐ **EINGEARBEITET am 22.09.2026, 22:0x in `ARBEITSWEISE.md`**, am Ende von Abschnitt 6d, `numstat 80 0` — nichts entfernt. **Dieses Dokument bleibt als Herkunftsbeleg stehen.** ⚠️ Der eingetragene Text ist **nicht zeichengleich mit diesem hier**: Er trägt zusätzlich die Lockerung vom selben Abend (alles ausser der Sperrliste, 83 allow / 76 deny) und lässt den überholten Absatz zu `python3 faltenplan.py` weg — TB-86 hat die Einmal-Schreibsperre inzwischen eingebaut.
+
+---
+
 ## Der einzutragende Text
 
 ### ⭐⭐ Nur richtungsweisende Rückfragen — und die als Multiple Choice (22.09.2026)

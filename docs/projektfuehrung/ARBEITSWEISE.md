@@ -872,6 +872,86 @@ der Fable falsch oder unbelegt liegt.
 Begründung wie 6d selbst: *eine benannte Empfehlung ist widersprechbar; eine
 ausgelassene ist nur Arbeit.*
 
+### ⭐⭐ Nur richtungsweisende Rückfragen — und die als Multiple Choice (22.09.2026)
+
+⚠️ **Die Regel oben sagt, WIE gefragt wird. Dieser Zusatz sagt, WANN.**
+*Der Anlass: Der Betreiber musste in den Claude-Code-Sitzungen fortlaufend
+Werkzeugaufrufe bestätigen — Bestätigungen, die keine Entscheidung enthalten.*
+
+**Gefragt wird nur, wenn die Frage richtungsweisend ist. Richtungsweisend
+heisst — abschliessend:**
+
+| | Fall |
+|---|---|
+| **1** | ⭐ **Verfahrensfrage vor dem signierten Tag** — geht an den Betreiber oder an Fable (Aufteilung vom 19.09.2026) |
+| **2** | ⭐ **Freigabe** für eine Code-Änderung, für sperrlistennahe Arbeit oder für einen Schritt aus Fables Reihenfolge (36.3) |
+| **3** | ⚠️ **Eine Entscheidung, die sich nicht rückgängig machen lässt** — ein Commit auf `main`, ein Hash auf der Sperrliste, der Tag selbst |
+| **4** | ⭐ **Zwei gleichwertige Wege, deren Wahl das Ergebnis prägt** — nicht: zwei Wege, die zum selben Ergebnis führen |
+
+⛔ **NICHT richtungsweisend — allein entscheiden und weiterarbeiten:**
+
+| | |
+|---|---|
+| ⛔ | **Handwerk:** Dateiname, Ablageort, Reihenfolge der Schritte, Schnitt eines Auftrags, Nachweismethode, Dokumentstruktur *(so schon in der Aufteilung vom 19.09.2026)* |
+| ⛔ | **Jede Werkzeug-Bestätigung.** ⭐ Werkzeuge werden über `.claude/settings.local.json` freigegeben, nicht einzeln bestätigt |
+| ⛔ | **Ein Zwischenstand.** Er wird gemeldet, nicht zur Abstimmung gestellt |
+| ⛔ | ⚠️⚠️ **Ein Abbruchkriterium.** Es führt zu **ABBRUCH und Meldung** — nie zu einer Rückfrage. *Wer bei einem Abbruchkriterium fragt, verwandelt eine Wache in eine Verhandlung* |
+
+**Die Form bleibt, wie 6d sie festlegt:** Möglichkeiten vollständig · **eine**
+Empfehlung ausdrücklich benannt · Begründung samt dem, was die Empfehlung
+schlechter macht · **anklickbar, nicht im Fließtext.**
+
+### ⚠️⚠️ Eine Regel, die am selben Tag ein Problem verursacht hat
+
+**Der Vorfall, 22.09.2026, 18:26:** Der steuernde Chat legte drei Dateien in den
+Arbeitsbaum, kurz bevor TB-86 startete. **Die Sitzung fand sie vor, erkannte sie
+als nicht von ihr stammend und konnte ihren Schritt „Status leer" nicht
+herstellen, ohne über fremde Dateien zu entscheiden.** Sie hat richtig gehandelt
+und gefragt; die Frage kostete einen Umlauf.
+
+> ⭐⭐ **Regel:** Wer eine Datei in den Arbeitsbaum legt, gibt **im selben Zug**
+> an, was damit geschehen soll — committen, ignorieren oder vor dem nächsten
+> Auftrag entfernen. **Eine Datei ohne Anweisung ist für die nächste Sitzung
+> eine Entscheidung, die sie nicht treffen darf.**
+>
+> ⚠️ Und: Die Regel *„nichts nach `docs/` schreiben, solange eine Sitzung
+> läuft"* gilt **sinngemäss für den ganzen Arbeitsbaum**, nicht nur für `docs/`.
+
+### ⭐⭐ Die Berechtigungen, Stand 22.09.2026 abends — alles ausser der Sperrliste
+
+⚠️ **Betreiberentscheidung 22.09.2026, 21:49** (*„Ich möchte nicht andauernd
+bestätigen und will auch nicht, dass der Prozess daher immer ins Stocken
+gerät"*). Zuvor trug die Datei **74 Erlaubnismuster und 55 Sperren** und keinen
+`defaultMode` — erlaubt war nur, was namentlich dastand. ⭐ *Deshalb das
+Stocken: Jeder Befehl in einem neuen Auftrag ist ein neuer Befehl.*
+
+**Seither gilt: erlaubt ist alles, gesperrt ist die Sperrliste.**
+
+| | |
+|---|---|
+| ⭐ **allow** | `Bash(*)`, `Read(*)`, `Edit(*)`, `Write(*)`, `Glob(*)`, `Grep(*)` — dazu die 74 Einzelmuster, **die stehen bleiben**: sie sind der Beleg, welche Befehle eine Sitzung vor dem Tag tatsächlich brauchte |
+| ⛔ **deny, und deny hat Vorrang** | **76 Sperren.** Schlüsselausgabe · Zerstörung · Netz · Historie umschreiben (`git commit --amend`, `rebase`, `filter-branch`, `push --mirror`) · Umgebung ändern (`pip install`, `brew`) · Rohschreiben (`dd`, `truncate`, `shred`) · **jede Sperrlisten-Datei**, und seit heute auch die **vier Sperrlisten-Programmdateien**: `registerdaten.py`, `faltenplan.py`, `auswertung.py`, `benchmark.py` |
+
+⭐⭐ **Warum die vier `.py` gesperrt bleiben:** „Alles ausser der Sperrliste"
+heisst wörtlich, dass die Sperrliste geschützt bleibt — und ihre Programmdateien
+sind Sperrliste. ⭐ **Damit fragt eine Sitzung genau noch an einer Stelle: wenn
+sie eine gesperrte Datei anfassen will.** Das ist Fall 2 der Tabelle oben, also
+richtungsweisend, also richtig gefragt.
+
+⚠️⚠️ **Die Grenze, die dazugehört — sie ist jetzt wichtiger als vorher:** Eine
+Berechtigung sperrt den **benannten Befehl**, nicht dieselbe Wirkung anders
+verpackt. `Bash(*)` erlaubt `python3 -c "open(…, 'w')"` und `cp`; die
+Schreibsperre auf `faltenplan.json` greift dort nicht. ⭐ **Der eigentliche
+Schutz ist deshalb nicht die Berechtigungsdatei, sondern dreierlei:** die
+**Einmal-Schreibsperre im Programm** (36.1 (2)) · die **Abbruchkriterien im
+Auftrag** · die **drei Hashes vorher UND nachher**. *Das ist `A8` in Reinform —
+eine Regel ist erst eine Wache, wenn jemand sie ausführt.*
+
+⭐ **Die Berechtigungsdatei bleibt im Repo** (Commit `6278888`, 22.09.). Sie
+sagt, welche Befehle eine Sitzung vor dem signierten Tag ausführen durfte —
+Nachweis derselben Art wie die Sperrliste. Jede Fassung wird vor der Änderung
+als `.bak` gesichert; ⛔ nichts wird überschrieben.
+
 ---
 
 ## 7. Terminal-Arbeit
