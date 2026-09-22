@@ -1,0 +1,87 @@
+TB-86 Schritt 11 — Abschlussbeleg: Stand nach dem Abgabe-Commit
+Zeitpunkt: 2026-09-22 18:39:52 CEST
+HEAD: 7057b47a9bcb5584d60cbdf5762497fa144a330c   origin/main: 21448253586edc60cf0d3dd479878d1eb77613c7
+
+--- git status --short (soll leer sein) ---
+?? docs/belege/TB-86/schritt11_abschluss.txt
+(Zeilen: 1; dieser Beleg selbst ist noch nicht vorgemerkt)
+
+--- git diff --numstat 2144825 HEAD (der ganze Auftrag, ab dem Ausgangsstand) ---
+130	0	.claude/settings.local.json
+18	0	.gitignore
+449	0	docs/ERGEBNIS_TB-86_faltenplan_schreibsperre.md
+1378	0	docs/belege/TB-86/faltenplan_2026-09-22-161305.json
+1378	0	docs/belege/TB-86/faltenplan_2026-09-22-161505.json
+32	0	docs/belege/TB-86/schritt0_hashes_vorher.txt
+95	0	docs/belege/TB-86/schritt1_ausgabe_vorher.txt
+216	0	docs/belege/TB-86/schritt4_mutationsprobe.txt
+51	0	docs/belege/TB-86/schritt5_ausgabe_vergleich.txt
+25	0	docs/belege/TB-86/schritt6_hashes_nachher.txt
+97	0	docs/belege/TB-86/schritt8_sonde.txt
+81	0	docs/projektfuehrung/JOURNAL.md
+130	0	docs/projektfuehrung/settings.local.json.vorschlag
+100	10	research/vorregistrierung/faltenplan.py
+
+--- Die vier Commits dieser Sitzung ---
+7057b47 TB-86 Abgabe: Ergebnisdokument, Journalblock CN
+75bb792 TB-86 Belege: Schritt 0, 1, 4, 5, 6, 8 und die zwei Laufdateien aus M1
+6278888 Die Berechtigungsdatei der Sitzungen kommt ins Repo (kein TB-86-Inhalt)
+4daa254 TB-86 Schritt 2 und 3: faltenplan.py main() bekommt --ziel, eine Voreinstellung mit Zeitstempel und die Einmal-Schreibsperre
+
+==============================================================================
+Schritt 7 — Umfang des Diffs an faltenplan.py
+==============================================================================
+Erlaubt sind nur main() und die Importzeile. Gemessene Hunkgrenzen:
+@@ -93,0 +94,2 @@ geht in KEINE Selektion ein - auch nicht in die Bestaetigungsperiode.
+@@ -98 +100 @@ import sys
+@@ -359,3 +361,93 @@ def faltenplan(mess=None) -> dict:
+@@ -372,6 +464,4 @@ def main():
+
+  @@ -93,0 +94,2    Importblock   (argparse, hashlib)
+  @@ -98 +100       Importblock   (datetime, timezone ergaenzt)
+  @@ -359,3 +361,93 vor main()    (die drei neuen Funktionen)
+  @@ -372,6 +464,4  Ende main()   (der Schreibteil)
+  -> nichts dazwischen. Rechenlogik und Konsolenausgabe nur als Kontext.
+
+Zeile 336 (bestaetigungsperiode) — Abbruchkriterium 5:
+  im Diff: 0 Treffer (soll 0)
+  Ausgangsstand 2144825, Zeile 336:
+            "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+  HEAD, Zeile 338 (um die zwei neuen Importzeilen verschoben):
+            "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+
+==============================================================================
+Die drei Sperrlisten-Hashes — dritte Messung des Tages
+==============================================================================
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+
+Soll: 0e54ac5c… / a163c498… / 4549395f…
+Messung 1 (Schritt 0, 18:09:16), Messung 2 (Schritt 6, 18:21:13), Messung 3 (jetzt)
+-> alle drei Messungen gleich. Abbruchkriterium 1 und 6 nicht erfuellt.
+
+mtime der gesperrten Datei (sie wurde in M4 ausdruecklich angesprochen):
+  1789401317  Sep 14 17:55:17 2026  18736 Bytes  research/vorregistrierung/ergebnisse/faltenplan.json
+  -> 1789401317 = Sep 14 17:55:17 2026, unveraendert seit der Erzeugung.
+
+Der vierte Hash, den dieser Auftrag beauftragt geaendert hat:
+fd3e5018ae930c2e29747562a140506d5d9a6bb70b87e96cf5c0089e09afdd79  research/vorregistrierung/faltenplan.py
+  im Abbild aus TB-85 steht 6f96b95d1356… — der Befund steht in
+  schritt8_sonde.txt und wurde NICHT repariert (36.2).
+
+==============================================================================
+Schritt 9 — AKTUELLER_AUFTRAG.md, nur gelesen
+==============================================================================
+grep -c "TB-86" docs/auftraege/AKTUELLER_AUFTRAG.md: 1 (soll >= 1)
+Die Datei steht in keinem Diff dieser Sitzung:
+  0 Zeilen in numstat (soll 0)
+
+==============================================================================
+Probe: das Ignoriermuster trifft die gesperrte Datei nicht
+==============================================================================
+  rc=1 (1 = NICHT ignoriert, richtig)
+.gitignore:86:research/vorregistrierung/ergebnisse/faltenplan_*.json	research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+  rc=0 (0 = ignoriert, richtig)
+
+--- Ende ---
