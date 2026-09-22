@@ -12,3 +12,10 @@
 | `volatility_breakout` | aktien | 2016-09-19 | 1 J | 2018 | 2018 · 2019 · 2020 · 2021 · 2022 · 2023 · 2024 · 2025 | 8 |
     Anzahl: 9 (Soll 9); SHA-256: e5ab322e4aedb67c4a95d828d631e6eaadff7d7f17054187d829a049b973b5a2
     (Zum Vergleich TB-84 m6_faltenlisten.txt: e5ab322e4aedb67c4a95d828d631e6eaadff7d7f17054187d829a049b973b5a2)
+
+## NACHHER — gemessen 2026-09-22T17:15:20Z nach Abschnitt 37 (bd15895) und den sieben Marken (Arbeitsbaum); 33.2 in Z. 5399..5473
+    Anzahl: 9 (Soll 9); SHA-256: e5ab322e4aedb67c4a95d828d631e6eaadff7d7f17054187d829a049b973b5a2
+    diff vorher/nachher:
+    (leer) -> 0 Abweichungen
+
+## Ergebnis M5: Faltenliste vorher == nachher. Abbruchkriterium 2 nicht eingetreten.

@@ -819,6 +819,18 @@ Acklam.
 > Abbild und werden es nicht; ihre Tatsachennotiz steht bei Fable aus
 > (Anfrage 22c). Sonde und Abbild sind nicht gebaut (36.7).
 
+> ⚠️ **Hinweis (37.1–37.5, Fable 22d/22g, TB-87, 22.09.2026):** Die
+> Tatsachennotiz zu `EINGEFROREN` und `SPERRLISTE_DATEIEN` steht jetzt in
+> **37.4**: `EINGEFROREN` bildet die Abschnitt-0-Menge ab, nicht diese Liste;
+> `SPERRLISTE_DATEIEN` liest niemand; `herkunft.py` wird nicht geöffnet. Sonde
+> und Abbild sind seit TB-85 gebaut (`shared/sperrlistensonde.py`, Abbild
+> `sperrliste_abbild_2026-09-22.json`, `6a1b732e…`); nach 37.1 meldet sie
+> künftig je Bestandteil, nach 37.2 führt das Abbild Punkte und bestimmte Pfade.
+> ⭐⭐ **Was ein Befund `1` bedeutet, hängt vom Tag ab (37.3):** Diese Liste gilt
+> „ab dem signierten Tag"; vorher ist ein beauftragter Befund planmässig und
+> wird mit Tatsachennotiz und neuem Abbild geschlossen, danach ist er ein
+> Bruch nach 10.1. Punkte 7 und 9 nennen Werte ohne Ort (37.5).
+
 Ab dem signierten Tag sind unveränderlich:
 
 1. **Rastergrenzen und Grenzsätze** — `registerdaten.py`, Abschnitt 3 dieses
@@ -852,6 +864,15 @@ Ab dem signierten Tag sind unveränderlich:
    point-in-time, `benchmark.py::bh_tagesrenditen`
 7. **N-Buchführung und Clusterschwelle** —
    `registerdaten.N_HISTORISCH_JE_BOT`, `CLUSTER_SCHWELLE = 0,9`
+   > ⚠️ **Ort registrierter Werte (37.5, Fable 22d, TB-87, 22.09.2026):**
+   > `CLUSTER_SCHWELLE` steht hier ohne Ort, `N_HISTORISCH_JE_BOT` mit Modulnamen,
+   > aber ohne Pfad und Hash (Sonde: „kein Dateipfad“). Nach 37.5 (1)–(3) bekommen
+   > `CLUSTER_SCHWELLE` und `N_HISTORISCH_JE_BOT` **genau ein** Modul, das mit
+   > Hash auf die Sperrliste kommt (Handwerk mit Freigabe, offen). Heute
+   > gemessen (37.5 (4)): `registerdaten.py:99` `CLUSTER_SCHWELLE = 0.90`,
+   > `registerdaten.py:115` `N_HISTORISCH_JE_BOT` — keiner davon steht mit Hash
+   > auf dieser Liste; bis zur Umsetzung **ungeschützt**. Die Werte ändern sich
+   > nicht.
 8. **Universumsdateien und point-in-time-Regel** — `config/top25_symbols.txt`,
    `config/sp500_top150.txt`, vier Jahre Vorlauf je Symbol
    > ⚠️ Der Halbsatz „vier Jahre Vorlauf je Symbol" ist **ersetzt** (Abschnitt 15,
@@ -860,6 +881,15 @@ Ab dem signierten Tag sind unveränderlich:
 9. **Kosten (0,30 %) und Fill-Konvention** — `TRADING_FEE_PCT = 0,1` und
    `SLIPPAGE_PCT = 0,05` je Order, Ein- und Ausstieg; Einstieg zum
    Schlusskurs des Bestätigungsbalkens
+   > ⚠️ **Ort registrierter Werte (37.5, Fable 22d, TB-87, 22.09.2026):** Dieser
+   > Punkt nennt Werte, aber keinen Ort — *„Ein Sperrlistenpunkt, der einen Wert
+   > nennt und keinen Ort, sperrt nichts — er legt fest."* Nach 37.5 (1)–(3)
+   > bekommt er **genau ein** Modul mit `TRADING_FEE_PCT` und `SLIPPAGE_PCT`,
+   > das mit Hash auf die Sperrliste kommt (Handwerk mit Freigabe, offen).
+   > Heute gemessen (37.5 (4)): je eine Kopie in neun `forward_test.py` und
+   > neun `backtest_*.py`; `messgroessen.py:59` `SLIPPAGE_PCT`, die Gebühr dort
+   > als `GEBUEHR_PCT` (Z. 58) — keinen davon nennt dieser Text; bis zur
+   > Umsetzung **ungeschützt**. Die Werte `0,1` / `0,05` ändern sich nicht.
 10. **Zuteilungskaskade inklusive Seed** — `shared/zuteilung.py`,
     `SEED = 20260913`
 11. **Commit-Hashes von Simulation, Erkennung, Optimierern und
@@ -5962,6 +5992,8 @@ oben, am „(Rückgabewert ≠ 0)" in (2).
 > Vor dem signierten Tag existiert ein Prüfskript, das für **jeden** Sperrlistenpunkt Pfad und Hash gegen den Registertext prüft und bei einer Abweichung mit Rückgabewert ≠ 0 endet und den Punkt nennt. Der Registertext der Sperrliste ist die Quelle; eine maschinenlesbare Fassung ist Abbild und wird von der Sonde selbst gegen den Registertext geprüft (Bauart 33.3). Die Sonde läuft (a) als Nachweis vor dem Tag, (b) im Laufwrapper vor `auswertung.py`, (c) am Ende jedes Auftrags, der Sperrlisten-nahen Code berührt. Ein Sperrlistenbruch, den die Sonde findet, ist eine Tatsachennotiz — nie eine stille Reparatur.
 >
 > > ⚠️ **Berichtigt durch 36.5 (Fable 22c, TB-84, 22.09.2026):** „mit Rückgabewert ≠ 0 endet und den Punkt nennt" lies „mit Rückgabewert 1 endet und den Punkt nennt; kann ein Punkt nicht geprüft werden (Datei fehlt, Registertext nicht lesbar), endet sie mit 2 und nennt ihn". Der Satz oben bleibt zeichengleich stehen; die drei Ausgänge gelten nach 36.5 für jede Sonde und jede Wache.
+>
+> > ⚠️⚠️ **Ergänzt durch 37.3 (Fable 22g, TB-87, 22.09.2026):** „bei einer Abweichung … endet" — **was ein Befund bedeutet, hängt vom Tag ab.** Vor dem signierten Tag ist ein Befund `1` zulässig, wenn die Änderung beauftragt war (Auftrag, Freigabe, alter und neuer Hash als Tatsachennotiz), und wird durch ein neues Abbild unter neuem Namen geschlossen; **nach** dem Tag ist er ein Sperrlistenbruch und wird nach 10.1 behandelt (Amendment, Lauf von vorn). Der Satz oben bleibt zeichengleich stehen.
 
 **Fables Unsicherheit dazu, 22b, zeichengleich:**
 
@@ -6094,6 +6126,8 @@ die Tabellenzeile selbst bleibt zeichengleich, samt `⚠️`.
 > Jede Sonde und jede Wache des Verfahrens (Sperrlisten-Sonde, Faltenplan-Sonde nach 33.3, Einmal-Schreibsperre der Erzeuger, Wache nach 29.4, Laufwrapper) endet mit genau einem von drei Rückgabewerten, Bauart `snapshot.py --pruefen`: **0** = geprüft und in Ordnung; **1** = geprüft und **Befund** (Abweichung, Verweigerung, Abbruch nach Regel); **2** = **nicht prüfbar** (Eingabe fehlt, Quelle nicht lesbar, Aufruf gescheitert). Ein Wrapper behandelt 1 und 2 verschieden: 1 ist eine Tatsachennotiz mit dem genannten Punkt; 2 ist kein Ergebnis und darf nirgends als „bestanden" oder „nicht bestanden" geführt werden. Kein Aufruf endet mit 0, ohne dass gemessen wurde.
 >
 > **Berichtigung zu 22b, Sperrlisten-Sonde:** „mit Rückgabewert ≠ 0 endet und den Punkt nennt" lies „mit Rückgabewert 1 endet und den Punkt nennt; kann ein Punkt nicht geprüft werden (Datei fehlt, Registertext nicht lesbar), endet sie mit 2 und nennt ihn".
+>
+> > ⚠️ **Präzisiert durch 37.1 (Fable 22d, TB-87, 22.09.2026):** Die Sperrlisten-Sonde meldet **je Punkt je Bestandteil** — für jeden genannten Pfad 0 oder 1, für jeden nicht messbaren Bestandteil 2 unter Nennung des Wortlauts; der Punkt ist 1, wenn ein Bestandteil 1 ist, sonst 2, wenn einer 2 ist, sonst 0. Am Tag: kein Pfad-Bestandteil mit 1, jede 2 mit Tatsachennotiz. Der Text oben bleibt zeichengleich stehen.
 
 **Fables Quelle des Grundes, zeichengleich:**
 
@@ -6124,6 +6158,10 @@ in **36.1**, direkt unter dem Registertext, am *„bricht er ab (Rückgabewert
 > Das Abbild der Sperrliste ist eine **eigene, neue Datei** (Handwerk: Name, Form), die genau die Punkte des Registerabschnitts 10 mit Pfad und Hash trägt — nicht mehr, nicht weniger (Bauart 33.3). Sie wird einmalig geschrieben (Schreibregel 22b); jede Fortschreibung der Sperrliste vor dem Tag erzeugt ein neues Abbild unter neuem Namen, das alte bleibt. Das aktuelle Abbild steht selbst mit Hash im Register. Die Sperrlisten-Sonde prüft (i) jeden Punkt des Abbilds gegen die Datei im Repo und (ii) das Abbild gegen den Registertext von Abschnitt 10; weicht das Abbild vom Registertext ab, ist das ein Befund (1), kein Anlass zur Anpassung des Abbilds ohne Registereintrag.
 >
 > `herkunft.py` `EINGEFROREN` (Z. 57) und `SPERRLISTE_DATEIEN` (Z. 66) sind **nicht** das Abbild der Sperrliste und werden nicht dazu. Beide erhalten eine Tatsachennotiz zu Abschnitt 10: Was sie sind, wer sie liest, was daraus entsteht, und dass sie mit dem Registertext an fünf Stellen nicht übereinstimmen (zwei Dateien fehlen, drei stehen zusätzlich).
+>
+> > ⚠️ **Ergänzt durch 37.2 (Fable 22d, TB-87, 22.09.2026):** Das Abbild führt **zwei Gruppen** — die **Punkte** des Abschnitts 10 und die **bestimmten** Pfade (heute `ergebnisse/benchmark_drawdowns_vt.json`); die Sonde prüft beide gleich und weist die Gruppe aus; am Tag ist die zweite Gruppe leer. Der Satz oben bleibt zeichengleich stehen.
+>
+> > ⚠️⚠️ **Ergänzt durch 37.3 (Fable 22g, TB-87, 22.09.2026):** „jede Fortschreibung … erzeugt ein neues Abbild unter neuem Namen, das alte bleibt" — ein Befund `1` **vor** dem signierten Tag ist zulässig, wenn die Änderung beauftragt war (Auftrag, Freigabe, alter und neuer Hash als Tatsachennotiz), und wird durch ein **neues** Abbild geschlossen, nie durch Anpassung des alten; **nach** dem Tag ist derselbe Befund ein Sperrlistenbruch nach 10.1. Das letzte Abbild vor dem Tag trägt die Hashes des Tag-Commits. Erster Anwendungsfall: `faltenplan.py` in TB-86 (37.3).
 
 **Seine drei Gründe, zeichengleich:**
 

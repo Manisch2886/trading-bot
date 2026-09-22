@@ -1,0 +1,18 @@
+# TB-87 Schritt 3 — Marken am alten Ort (gemessen 2026-09-22T17:15:40Z)
+
+## git diff --numstat -- Register (Arbeitsbaum gegen bd15895)
+38	0	docs/VORREGISTRIERUNG_neuselektion.md
+## entfernte Zeilen laut git diff: 0
+
+## grep -n 'TB-87, 22.09.2026' Register, nur Zeilen vor Abschnitt 37 (Z. 6224)
+822:> ⚠️ **Hinweis (37.1–37.5, Fable 22d/22g, TB-87, 22.09.2026):** Die
+867:   > ⚠️ **Ort registrierter Werte (37.5, Fable 22d, TB-87, 22.09.2026):**
+884:   > ⚠️ **Ort registrierter Werte (37.5, Fable 22d, TB-87, 22.09.2026):** Dieser
+5996:> > ⚠️⚠️ **Ergänzt durch 37.3 (Fable 22g, TB-87, 22.09.2026):** „bei einer Abweichung … endet" — **was ein Befund bedeutet, hängt vom T
+6130:> > ⚠️ **Präzisiert durch 37.1 (Fable 22d, TB-87, 22.09.2026):** Die Sperrlisten-Sonde meldet **je Punkt je Bestandteil** — für jeden g
+6162:> > ⚠️ **Ergänzt durch 37.2 (Fable 22d, TB-87, 22.09.2026):** Das Abbild führt **zwei Gruppen** — die **Punkte** des Abschnitts 10 und 
+6164:> > ⚠️⚠️ **Ergänzt durch 37.3 (Fable 22g, TB-87, 22.09.2026):** „jede Fortschreibung … erzeugt ein neues Abbild unter neuem Namen, das 
+   Anzahl: 7 (Soll 7: Ueberschrift 10 [37.4 und Uebersicht], Punkt 7, Punkt 9 [37.5], 36.2 [37.3], 36.5 [37.1], 36.6 zweimal [37.2, 37.3])
+   Vermerk: Ein zunaechst gesetzter achter Hinweis (37.4 in 36.6) wurde VOR dem Commit wieder herausgenommen — nicht im Auftrag, und 37.6 sagt 'sieben Marken'.
+
+## Sonde, M5, M6 nachher: sonde_nachher.txt, m5_faltenlisten.txt, m6_hashes.txt (gemessen mit acht Marken; die herausgenommene Marke stand in 36.6, ausserhalb der von der Sonde gelesenen Liste und ausserhalb von 33.2)
