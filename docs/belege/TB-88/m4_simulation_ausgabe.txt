@@ -1,0 +1,36 @@
+=== Fall gegenprobe (2026-09-22T19:56:58Z)
+sha256 benchmark_drawdowns.json in der Kopie: a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee
+TB-30a - Selbsttest der Vorregistrierung
+  Teil A ...
+Traceback (most recent call last):
+  File "/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb88_m4.YOrh2y/gegenprobe/research/vorregistrierung/test_vorregistrierung.py", line 696, in <module>
+    sys.exit(main())
+  File "/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb88_m4.YOrh2y/gegenprobe/research/vorregistrierung/test_vorregistrierung.py", line 684, in main
+    teil()
+  File "/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb88_m4.YOrh2y/gegenprobe/research/vorregistrierung/test_vorregistrierung.py", line 98, in teil_a
+    e = lauf(d)
+  File "/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb88_m4.YOrh2y/gegenprobe/research/vorregistrierung/test_vorregistrierung.py", line 90, in lauf
+    return aw.ein_bot(bot, ordner, _mess(), _plan(), _tabellen())
+  File "/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb88_m4.YOrh2y/gegenprobe/research/vorregistrierung/auswertung.py", line 470, in ein_bot
+    zul = zulaessigkeit(bot, df, sel, tabellen)
+  File "/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb88_m4.YOrh2y/gegenprobe/research/vorregistrierung/auswertung.py", line 237, in zulaessigkeit
+    falte = eintrag["falten"][z["falte"]]
+KeyError: '2017'
+rc=1
+=== Fall tausch (2026-09-22T19:57:43Z)
+sha256 benchmark_drawdowns.json in der Kopie: 4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d
+TB-30a - Selbsttest der Vorregistrierung
+  Teil A ...
+  Teil B ...
+  Teil C ...
+  Teil D ...
+  Teil E ...
+  Teil F ...
+  Teil G ...
+  Teil H ...
+
+==============================================================================
+163 bestanden, 2 GESCHEITERT:
+  - G6: elliott_wave - 2020 und 2022 sind Testfalten, keine Trainingsjahre - ['2018-2019', '2020-2021', '2022-2023', '2024-2025', '2026-2027']
+  - H3: ohne die gesetzte Null aendert sich die Statistik - 'Netto-Sharpe (Med.) 0.1000' / 'Netto-Sharpe (Med.) 0.1000'
+rc=1

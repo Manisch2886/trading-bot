@@ -1,0 +1,49 @@
+# M5 2026-09-22T19:58:40Z HEAD 8851f67
+## (a) registerbericht.py
+64:    with open(os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json"),
+157:          "`research/vorregistrierung/ergebnisse/benchmark_drawdowns.json`; "
+178:            z.append(f"| {name} | {f['rolle']} | {f['symbole_point_in_time']} | "
+## (d) Leser von benchmark_drawdowns.json (alle .py ohne trading-env/)
+research/faltenplan_neun/erste_falte_trockenlauf.py:59:  der Vormessung aus `benchmark_drawdowns_vt.json`: die kennt nur Falten,
+research/vorregistrierung/registerbericht.py:64:    with open(os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json"),
+research/vorregistrierung/registerbericht.py:157:          "`research/vorregistrierung/ergebnisse/benchmark_drawdowns.json`; "
+research/vorregistrierung/herkunft.py:61:    "ergebnisse/benchmark_drawdowns.json",
+research/vorregistrierung/test_vorregistrierung.py:82:    with open(os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json"),
+research/vorregistrierung/benchmark.py:298:    # DANEBEN: Register 21.9 haelt benchmark_drawdowns.json bis zum Amendment
+research/vorregistrierung/benchmark.py:304:                                       "benchmark_drawdowns.json"),
+research/vorregistrierung/benchmark.py:305:        help="Ausgabedatei (Standard: ergebnisse/benchmark_drawdowns.json)")
+research/vorregistrierung/auswertung.py:590:    with open(os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json"),
+shared/sperrlistensonde.py:71:`ergebnisse/benchmark_drawdowns_vt.json` **nicht** - die Datei ist kein Punkt
+shared/sperrlistensonde.py:105:    (os.path.join(CODEORDNER, "ergebnisse", "benchmark_drawdowns_vt.json"),
+shared/test_sperrlistensonde.py:334:    pruefe("H7c: die Textausgabe nennt benchmark_drawdowns_vt.json als 'bestimmt, nicht eingetragen'",
+shared/test_sperrlistensonde.py:335:           "Bestimmt, nicht eingetragen" in r.stdout and "benchmark_drawdowns_vt.json" in r.stdout)
+docs/belege/TB-72/schritt4_gegenprobe_vt.py:1:"""TB-72 Schritt 4: benchmark_drawdowns_tb72.json gegen benchmark_drawdowns_vt.json.
+docs/belege/TB-72/schritt4_gegenprobe_vt.py:14:vt = json.load(open(os.path.join(E, "benchmark_drawdowns_vt.json"), encoding="utf-8"))
+docs/belege/TB-72/schritt4_gegenprobe_vt.py:15:neu = json.load(open(os.path.join(E, "benchmark_drawdowns_tb72.json"), encoding="utf-8"))
+docs/belege/TB-72/schritt4_gegenprobe_vt.py:18:print("Gegenprobe der acht anderen Bots: benchmark_drawdowns_tb72.json gegen _vt.json")
+docs/belege/TB-72/schritt3_faltenplan_tb72.py:11:      benchmark_drawdowns_vt.json und die Register-Abschnitte 21-24 tragen;
+docs/belege/TB-88/m2_bezeichner_probe.py:48:QUELLEN = ["benchmark_drawdowns.json", "benchmark_drawdowns_vt.json"]
+docs/belege/TB-80/schritt0_ausgangsstand.py:28:GESPERRT = ["research/vorregistrierung/ergebnisse/benchmark_drawdowns.json",
+docs/belege/TB-80/schritt0_ausgangsstand.py:30:            "research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json",
+docs/belege/TB-56/skripte/benchmark_vergleich.py:8:alt = json.load(open(os.path.join(E, "benchmark_drawdowns.json"), encoding="utf-8"))
+docs/belege/TB-56/skripte/benchmark_vergleich.py:9:neu = json.load(open(os.path.join(E, "benchmark_drawdowns_ohne_schranke.json"), encoding="utf-8"))["bots"]
+docs/belege/TB-65/tb65_rechnung.py:12:    Rechnung aus benchmark.py::je_bot. Muss benchmark_drawdowns_neu.json
+docs/belege/TB-65/tb65_rechnung.py:59:                   "benchmark_drawdowns_neu.json")
+docs/belege/TB-65/tb65_rechnung.py:185:    # Gegenprobe 1: V0 zeichengleich mit benchmark_drawdowns_neu.json?
+docs/belege/TB-65/tb65_rechnung.py:196:    ergebnis["_gegenprobe_V0_gegen_benchmark_drawdowns_neu"] = {
+docs/belege/TB-65/tb65_rechnung.py:234:    print("Gegenprobe V0 gegen benchmark_drawdowns_neu.json: "
+## (e) Protokollort
+fehlt research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl
+fehlt research/vorregistrierung/ergebnisse/herkunft.json
+gleichnamige Dateien im Repo:
+./research/turn_of_month/ergebnisse/herkunft_protokoll.jsonl
+Pfaddefinition:
+54:PROTOKOLL = os.path.join(_HIER, "ergebnisse", "herkunft_protokoll.jsonl")
+109:def register() -> dict:
+Aufrufer von register():
+research/turn_of_month/staging.py:61:import herkunft as hk  # noqa: E402
+research/turn_of_month/auswertung.py:51:import herkunft as hk  # noqa: E402
+research/turn_of_month/test_turn_of_month.py:61:import herkunft as hk  # noqa: E402
+research/universum_trockenlauf/test_universum_trockenlauf.py:84:import herkunft                                                  # noqa: E402
+shared/test_stille_ausfaelle.py:469:    import herkunft                                            # noqa: PLC0415
+shared/test_abrufschutz.py:476:    import herkunft                                            # noqa: PLC0415

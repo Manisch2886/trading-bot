@@ -1,0 +1,33 @@
+research/faltenplan_neun/faltenschranke_messung.py:122:        "bestaetigungsperiode": (fp.faltenname(p["bestaetigungsperiode"])
+research/faltenplan_neun/faltenschranke_messung.py:123:                                 if p["bestaetigungsperiode"] else None),
+research/faltenplan_neun/faltenschranke_messung.py:124:        "bestaetigung_von": (p["bestaetigungsperiode"]["von"]
+research/faltenplan_neun/faltenschranke_messung.py:125:                             if p["bestaetigungsperiode"] else None),
+research/faltenplan_neun/faltenschranke_messung.py:424:              f"{ko['bestaetigungsperiode']}")
+research/faltenplan_neun/test_faltenplan_neun.py:138:        n_falten = n["selektionsfalten"] + [n["bestaetigungsperiode"]]
+research/faltenplan_neun/test_faltenplan_neun.py:139:        a_falten = a["selektionsfalten"] + [a["bestaetigungsperiode"]]
+research/faltenplan_neun/test_faltenplan_neun.py:310:                   for f in p["selektionsfalten"] + [p["bestaetigungsperiode"]]))
+research/faltenplan_neun/test_faltenplan_neun.py:324:                   for f in pl["selektionsfalten"] + [pl["bestaetigungsperiode"]]))
+research/faltenplan_neun/faltenplan_neun.py:458:        "bestaetigungsperiode": bestaetigung,
+research/faltenplan_neun/faltenplan_neun.py:508:        best = (faltenname(plan["bestaetigungsperiode"])
+research/faltenplan_neun/faltenplan_neun.py:509:                if plan["bestaetigungsperiode"] else "-")
+research/vorregistrierung/registerbericht.py:146:        best = p["bestaetigungsperiode"] or "*Platzhalter (TB-31)*"
+research/vorregistrierung/auswertung.py:430:def bestaetigungsperiode(bot: str, df: pd.DataFrame, zid: str, plan: dict) -> dict:
+research/vorregistrierung/auswertung.py:432:    name = plan[bot]["bestaetigungsperiode"]
+research/vorregistrierung/auswertung.py:550:        "bestaetigungsperiode": bestaetigungsperiode(bot, df, gew["zelle_id"], plan),
+research/vorregistrierung/auswertung.py:638:        bp = e["bestaetigungsperiode"]
+research/vorregistrierung/faltenplan.py:338:        "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+research/vorregistrierung/faltenplan.py:460:        best = p["bestaetigungsperiode"]
+research/vorregistrierung/test_vorregistrierung.py:105:               e["bestaetigungsperiode"]["bestimmt"]
+research/vorregistrierung/test_vorregistrierung.py:106:               and e["bestaetigungsperiode"]["falte"]
+research/turn_of_month/auswertung.py:229:        "bestaetigungsperiode": bestaetigung,
+research/turn_of_month/auswertung.py:291:    b = e["bestaetigungsperiode"]
+research/krypto_historie/faltenplan.py:197:        "bestaetigungsperiode": bestaetigung,
+research/krypto_historie/faltenplan.py:266:        bestaetigung = (_block_text(p["bestaetigungsperiode"])
+research/krypto_historie/faltenplan.py:267:                        if p["bestaetigungsperiode"] else "-")
+research/krypto_historie/faltenplan.py:286:        for block in beispiel["selektionsfalten"] + [beispiel["bestaetigungsperiode"]]:
+research/krypto_historie/faltenplan.py:287:            rolle = ("Bestaetigung" if block is beispiel["bestaetigungsperiode"]
+research/krypto_historie/test_faltenplan.py:215:               plan["bestaetigungsperiode"]["jahre"] == [2026])
+research/krypto_historie/test_faltenplan.py:232:               plan["bestaetigungsperiode"] is not None)
+research/universum_trockenlauf/universum_trockenlauf.py:278:    b = plan["bestaetigungsperiode"]
+docs/belege/TB-72/schritt3_faltenplan_tb72.py:37:FELDER = ("erste_falte", "selektionsfalten", "bestaetigungsperiode",
+docs/belege/TB-72/schritt3_faltenplan_tb72.py:98:       "falten", "selektionsfalten", "bestaetigungsperiode"}))

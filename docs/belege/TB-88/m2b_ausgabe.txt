@@ -1,0 +1,18 @@
+
+--- Weg (A): letzte Falte heisst die Spanne (Plan fuer Erzeugung UND Auswertung)
+falte-Werte in zellen.csv: ['2025', '2026-01-01/2026-09-01'] ...
+ERGEBNIS: LAEUFT DURCH - kein Abbruch.
+bestaetigungsperiode: {'bestimmt': True, 'falte': '2026-01-01/2026-09-01'}
+
+--- Weg (B): Faltenname bleibt, Bezeichner = Spanne, zellen.csv traegt den Bezeichner
+falte-Werte in zellen.csv: ['2025', '2026-01-01/2026-09-01'] ...
+ERGEBNIS: auswertung.Abbruch
+Wortlaut: turtle_soup_stocks/donchian_period=11|max_concurrent_positions=18|stop_mode=1.111: Falten stimmen nicht mit dem Faltenplan ueberein (['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'] statt ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024'
+Ort     : research/vorregistrierung/auswertung.py Z. 180 in lies_zellen
+
+--- Weg (B'): wie (B), zellen.csv traegt den Faltennamen (= Probe m2)
+falte-Werte in zellen.csv: ['2025', '2026'] ...
+ERGEBNIS: auswertung.Abbruch
+Wortlaut: turtle_soup_stocks: die Bestaetigungsperiode '2026-01-01/2026-09-01' fehlt fuer den Gewinner.
+Ort     : research/vorregistrierung/auswertung.py Z. 437 in bestaetigungsperiode
+rc=0

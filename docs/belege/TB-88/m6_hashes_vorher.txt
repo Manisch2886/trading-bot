@@ -1,0 +1,20 @@
+2026-09-22T18:41:06Z
+afe6192c23c613a1a0985bbfc92ff6ec7a7eedc1
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+total 1952
+drwxr-xr-x  14 jaquelineloffler  staff     448 22 Sep 18:15:05 2026 .
+drwxr-xr-x  17 jaquelineloffler  staff     544 22 Sep 18:11:50 2026 ..
+-rw-r--r--   1 jaquelineloffler  staff  187660 20 Sep 13:23:31 2026 benchmark_drawdowns_neu.json
+-rw-r--r--   1 jaquelineloffler  staff   98444 19 Sep 20:55:37 2026 benchmark_drawdowns_ohne_schranke.json
+-rw-r--r--   1 jaquelineloffler  staff  209958 20 Sep 20:31:23 2026 benchmark_drawdowns_tb72.json
+-rw-r--r--   1 jaquelineloffler  staff  211948 20 Sep 16:30:52 2026 benchmark_drawdowns_vt.json
+-rw-r--r--   1 jaquelineloffler  staff   80025 14 Sep 17:55:17 2026 benchmark_drawdowns.json
+-rw-r--r--   1 jaquelineloffler  staff   38684 22 Sep 18:13:05 2026 faltenplan_2026-09-22-161305.json
+-rw-r--r--   1 jaquelineloffler  staff   38684 22 Sep 18:15:05 2026 faltenplan_2026-09-22-161505.json
+-rw-r--r--   1 jaquelineloffler  staff   37320 20 Sep 20:29:57 2026 faltenplan_tb72.json
+-rw-r--r--   1 jaquelineloffler  staff   38684 21 Sep 22:23:32 2026 faltenplan_tb80.json
+-rw-r--r--   1 jaquelineloffler  staff   18736 14 Sep 17:55:17 2026 faltenplan.json
+-rw-r--r--   1 jaquelineloffler  staff    4567 14 Sep 17:55:17 2026 messgroessen.json
+-rw-r--r--   1 jaquelineloffler  staff    6948 22 Sep 16:52:05 2026 sperrliste_abbild_2026-09-22.json

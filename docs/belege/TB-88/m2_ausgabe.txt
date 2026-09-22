@@ -1,0 +1,30 @@
+Bot: turtle_soup_stocks
+falten[-1]['name']        : '2026'
+falten[-1]['rolle']       : 'bestaetigung'
+bestaetigungsperiode (Plan): '2026'
+gleicher String?          : True
+Spalte falte, Werte       : ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026']
+
+========== Tabellen aus ergebnisse/benchmark_drawdowns.json
+
+--- Kontrolle: UNVERAENDERTER Plan
+ERGEBNIS: builtins.KeyError
+Wortlaut: '2017'
+Ort     : research/vorregistrierung/auswertung.py Z. 237 in zulaessigkeit
+
+--- Probe: bestaetigungsperiode = '2026-01-01/2026-09-01'
+ERGEBNIS: builtins.KeyError
+Wortlaut: '2017'
+Ort     : research/vorregistrierung/auswertung.py Z. 237 in zulaessigkeit
+
+========== Tabellen aus ergebnisse/benchmark_drawdowns_vt.json
+
+--- Kontrolle: UNVERAENDERTER Plan
+ERGEBNIS: LAEUFT DURCH - kein Abbruch.
+bestaetigungsperiode: {'bestimmt': True, 'falte': '2026'}
+
+--- Probe: bestaetigungsperiode = '2026-01-01/2026-09-01'
+ERGEBNIS: auswertung.Abbruch
+Wortlaut: turtle_soup_stocks: die Bestaetigungsperiode '2026-01-01/2026-09-01' fehlt fuer den Gewinner.
+Ort     : research/vorregistrierung/auswertung.py Z. 437 in bestaetigungsperiode
+rc=0

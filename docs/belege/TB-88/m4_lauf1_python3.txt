@@ -1,0 +1,46 @@
+# M4 Lauf 1: 2026-09-22T19:53:28Z, Aufruf wie im Auftrag: python3 test_vorregistrierung.py
+# python3 = /usr/bin/python3, Python 3.9.6, venv aktiviert: nein
+TB-30a - Selbsttest der Vorregistrierung
+  Teil A ...
+Traceback (most recent call last):
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 696, in <module>
+    sys.exit(main())
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 684, in main
+    teil()
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 98, in teil_a
+    e = lauf(d)
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 89, in lauf
+    bd.erzeuge(ordner, bot, mess=_mess(), plan=_plan(), **kwargs)
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 78, in _plan
+    return fp.faltenplan(_mess())
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py", line 356, in faltenplan
+    return {bot: (plan_aktien(bot, mess) if eig["markt"] == "aktien"
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py", line 357, in <dictcomp>
+    else plan_krypto(bot, mess))
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py", line 351, in plan_krypto
+    return _plan(bot, mess, "krypto")
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py", line 302, in _plan
+    erste, herkunft = erste_falte(bot, laenge, schnitt)
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py", line 259, in erste_falte
+    jahr, messung = eft.erste_falte_nach_3b(bot, kandidaten)
+  File "/Users/jaquelineloffler/trading-bot/research/faltenplan_neun/erste_falte_trockenlauf.py", line 147, in erste_falte_nach_3b
+    messung += handelbar_am_faltenende(bot, [f])
+  File "/Users/jaquelineloffler/trading-bot/research/faltenplan_neun/erste_falte_trockenlauf.py", line 119, in handelbar_am_faltenende
+    mengen = _handelbar_am_faltenende(bot, enden)
+  File "/Users/jaquelineloffler/trading-bot/research/faltenplan_neun/erste_falte_trockenlauf.py", line 105, in _handelbar_am_faltenende
+    raise RuntimeError("Loader %s: %s\n%s" % (bot, roh["fehler"],
+RuntimeError: Loader elliott_wave: ModuleNotFoundError: No module named 'binance'
+Traceback (most recent call last):
+  File "/Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py", line 580, in main
+    modul = lade_botmodul(args.bot, args.daten)
+  File "/Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py", line 533, in lade_botmodul
+    spec.loader.exec_module(modul)
+  File "<frozen importlib._bootstrap_external>", line 850, in exec_module
+  File "<frozen importlib._bootstrap>", line 228, in _call_with_frames_removed
+  File "/Users/jaquelineloffler/trading-bot/strategies/elliott_wave/multi_symbol_optimise.py", line 40, in <module>
+    from fetch_multi_data import INTERVAL
+  File "/Users/jaquelineloffler/trading-bot/shared/fetch_multi_data.py", line 39, in <module>
+    from binance.client import Client
+ModuleNotFoundError: No module named 'binance'
+
+rc=1

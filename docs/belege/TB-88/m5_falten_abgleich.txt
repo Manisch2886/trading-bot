@@ -1,0 +1,28 @@
+elliott_wave: Plan 2018-2019..2026-2027 (5), bestaetigungsperiode='2026-2027'
+   benchmark_drawdowns.json       fehlt=['2018-2019', '2020-2021', '2022-2023', '2024-2025', '2026-2027'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=[] rolle_abweichend=[]
+t3_supertrend: Plan 2019..2026 (8), bestaetigungsperiode='2026'
+   benchmark_drawdowns.json       fehlt=['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=['2018'] rolle_abweichend=[]
+rsi2_crypto: Plan 2019..2026 (8), bestaetigungsperiode='2026'
+   benchmark_drawdowns.json       fehlt=['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=[] rolle_abweichend=[]
+turtle_soup_crypto: Plan 2018..2026 (9), bestaetigungsperiode='2026'
+   benchmark_drawdowns.json       fehlt=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=[] rolle_abweichend=[]
+volatility_breakout_crypto: Plan 2018..2026 (9), bestaetigungsperiode='2026'
+   benchmark_drawdowns.json       fehlt=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=[] rolle_abweichend=[]
+elliott_wave_stocks: Plan 2017..2026 (10), bestaetigungsperiode='2026'
+   benchmark_drawdowns.json       fehlt=['2017', '2018'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=[] rolle_abweichend=[]
+rsi2_mean_reversion: Plan 2018..2026 (9), bestaetigungsperiode='2026'
+   benchmark_drawdowns.json       fehlt=['2018'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=[] rolle_abweichend=[]
+turtle_soup_stocks: Plan 2017..2026 (10), bestaetigungsperiode='2026'
+   benchmark_drawdowns.json       fehlt=['2017', '2018'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=[] rolle_abweichend=[]
+volatility_breakout: Plan 2018..2026 (9), bestaetigungsperiode='2026'
+   benchmark_drawdowns.json       fehlt=['2018'] zusaetzlich=[] rolle_abweichend=[]
+   benchmark_drawdowns_vt.json    fehlt=[] zusaetzlich=[] rolle_abweichend=[]
+rc=0

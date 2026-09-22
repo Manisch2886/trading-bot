@@ -1,0 +1,14 @@
+# M3 2026-09-22T19:52:11Z HEAD 8851f67
+## heute
+338:        "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+460:        best = p["bestaetigungsperiode"]
+## blame
+a2fcf01a (Claude 2026-09-14 10:38:43 +0000 338)         "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+3d46a7b7 (Manuel Löffler 2026-09-20 13:21:10 +0200 460)         best = p["bestaetigungsperiode"]
+## Zeilen je Commit (Stelle 1 und Stelle 2)
+4daa254 2026-09-22 TB-86 Schritt 2 und 3: faltenplan.py main() bekommt --ziel, eine Voreinstellung | erzeugung=338 ausgabe=460
+76c20ec 2026-09-21 TB-80 Schritt 1: Bedingung (i) rechnet gegen den Horizontbeginn aus Register 28 | erzeugung=336 ausgabe=368
+e7a4108 2026-09-20 TB-72 Schritt 2: faltenplan.py leitet die erste Falte ab, statt sie nachzurechn | erzeugung=274 ausgabe=306
+3d46a7b 2026-09-20 TB-61 Schritt 3: plan_krypto() liefert den Faltenplan nach derselben Regel wie  | erzeugung=216 ausgabe=248
+7387cc5 2026-09-19 TB-56 Teil B: Faltenschranke entfernt - ERSTE_MOEGLICHE_FALTE aus registerdaten | erzeugung=212 ausgabe=271
+a2fcf01 2026-09-14 TB-30a: Vorregistrierung der Neuselektion | erzeugung=168 ausgabe=227

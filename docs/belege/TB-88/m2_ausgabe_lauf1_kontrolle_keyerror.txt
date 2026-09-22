@@ -1,0 +1,17 @@
+Bot: turtle_soup_stocks
+falten[-1]['name']        : '2026'
+falten[-1]['rolle']       : 'bestaetigung'
+bestaetigungsperiode (Plan): '2026'
+gleicher String?          : True
+Spalte falte, Werte       : ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026']
+
+--- Kontrolle: ein_bot mit UNVERAENDERTEM Plan
+Traceback (most recent call last):
+  File "/Users/jaquelineloffler/trading-bot/docs/belege/TB-88/m2_bezeichner_probe.py", line 58, in <module>
+    e = aw.ein_bot(BOT, d, mess, plan, tabellen)
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/auswertung.py", line 470, in ein_bot
+    zul = zulaessigkeit(bot, df, sel, tabellen)
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/auswertung.py", line 237, in zulaessigkeit
+    falte = eintrag["falten"][z["falte"]]
+KeyError: '2017'
+rc=1

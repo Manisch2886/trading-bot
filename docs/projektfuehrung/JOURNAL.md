@@ -8413,6 +8413,51 @@ Dazu unverändert: Schritt 3 aus 36.3, 35.5, 33.5, TB-30b, 32.5, (20g)–(20m),
 
 ---
 
+## CP — TB-88: Nachmessung vor Punkt 3 und Punkt 8 — der Bezeichner ist ein Schlüssel, Weg (B) bricht schon eine Stelle früher, und „rot" heisst: der Test stürzt ab (22.09.2026)
+
+*Quelle: `docs/belege/TB-88/ERGEBNIS_TB-88.md`*
+
+**Quelle:** Mac-Sitzung **TB-88 Nachmessung Punkt 3 und Punkt 8**, 22.09.2026,
+Eingang `afe6192`. Commits `8851f67` (Schritt 0: Anfragen 22f/22h, Auftrag,
+Zeiger) und der Abgabe-Commit. Belege `docs/belege/TB-88/`. Rein messend: keine
+Programmdatei, kein Abbild, keine Registerzeile, drei Hashes vorher und nachher
+gleich.
+
+### Was gemessen wurde
+
+| | |
+|---|---|
+| ⭐⭐ **M1/M2** | **Der Bezeichner ist ein Schlüssel.** `auswertung.py:435` filtert `falte == name`, Z. 437 wirft `Abbruch`. Probe nur im Speicher: Bezeichner auf die Spanne → *„die Bestaetigungsperiode '2026-01-01/2026-09-01' fehlt fuer den Gewinner"*. Vormessung bestätigt |
+| ⭐⭐ **M2b** | **Weg (A) läuft durch, Weg (B) nicht** — mit dem Bezeichner in `zellen.csv` bricht schon `auswertung.py:180` ab (Faltenabgleich gegen die Faltennamen des Plans). (B) braucht damit eine Änderung an `auswertung.py` (Sperrliste Nr. 5) |
+| **M3** | 336 → **338**, 368 → **460**, beide seit **`4daa254`** (TB-86 Schritt 2/3), nicht `ee4e65c` |
+| ⭐⭐ **M4** | `test_vorregistrierung.py` **läuft keine einzige Prüfung**: `KeyError: '2017'` in `zulaessigkeit` — die registrierte Benchmark-Datei kennt die Falten des heutigen Plans nicht. Hängt **direkt an Punkt 8**. In einer Wegwerf-Kopie mit dem Inhalt von `_vt.json`: **163/2** — G6 (Zweijahresfalten `elliott_wave`) und H3 (Median über neun statt sieben Falten) bleiben rot und hängen **nicht** an Punkt 8 |
+| **M5** | `registerbericht.py:178` liest `symbole_point_in_time`, `_vt.json` trägt **statt** dessen `symbole_handelbar_in_falte`; neunmal `endgueltig`; Leser `test_vorregistrierung.py:82`, `auswertung.py:590`, `registerbericht.py:64`. `herkunft_protokoll.jsonl` und `herkunft.json` fehlen. `_vt.json` trägt für `t3_supertrend` noch die Falte `2018` |
+
+Sieben Abweichungen von der Vormessung, einzeln im Ergebnisdokument.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **„Rot" ist erst eine Diagnose, wenn die Liste der gescheiterten Prüfungen dasteht.** Hier war „rot" ein Absturz vor der ersten Prüfung — und nach der Reparatur, die ihn behebt, bleibt der Test trotzdem rot, aus zwei ganz anderen Gründen |
+| ⭐⭐ | **Eine Probe für einen Weg prüft den ganzen Weg, nicht nur die Stelle, die ihn begründet.** Die Vormessung hat Z. 437 gefunden und dort aufgehört; drei Zeilen weiter oben (Z. 180) vergleicht dieselbe Datei die Faltennamen noch einmal |
+| ⭐ | **Die Kontrolle einer Probe muss selbst laufen.** Mit der registrierten Tabelle scheiterte schon die Kontrolle — ohne diesen Lauf hätte ein `KeyError` wie ein Befund zum Bezeichner ausgesehen |
+| | Test-Kopien, deren Unterprozesse die Repo-Wurzel aus ihrem eigenen Pfad ableiten, brauchen einen Spiegel der Repo-Struktur (Symlinks), nicht nur den kopierten Ordner |
+
+### Was offen bleibt
+
+Fable: Punkt 3 Weg (A)/(B) mit dem neuen Befund zu (B); 35.1-Zeilennummern ·
+Punkt 8: 10.1 oder 37.3, Form (i)/(ii)/(iii), dazu welche Tabelle für
+`t3_supertrend` gilt und dass drei lesende Stellen mitgehen · G6 und H3 brauchen
+eine eigene Entscheidung. ⚠️ Vier Dateien des Betreibers aus der laufenden
+Sitzung liegen uncommittet im Arbeitsbaum (Berechtigungen, `ARBEITSWEISE.md`).
+Dazu unverändert: das neue Abbild (37.3), Plan Punkt 5, 35.5, 33.5, TB-30b, 32.5,
+(20g)–(20m), `K4t`.
+
+*Geschrieben 22.09.2026 von der Mac-Sitzung TB-88 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
