@@ -41,3 +41,28 @@
 
 ## 9. git status --porcelain (vor Ergebnisdokument und Journalblock; diese Datei ist noch untracked):
     ?? docs/belege/TB-84/schritt4_abschluss.txt
+
+## 9 (nachgetragen) — git status --porcelain nach dem Abgabe-Commit 13888a6, gemessen 2026-09-22T06:08:04Z VOR dem Oeffnen dieser Datei: 1 Zeilen (Soll 0)
+    (Dieser Nachtrag wird als eigener Commit abgelegt; danach ist der Status wieder leer.)
+
+## 5 (nachgetragen) — numstat 4bbd720..13888a6
+    224	0	docs/ERGEBNIS_TB-84_register_36.md
+    345	0	docs/VORREGISTRIERUNG_neuselektion.md
+    61	5	docs/auftraege/MAC_TB-84_register_36.md
+    18	0	docs/belege/TB-84/m1_sperrlistenpunkte.txt
+    16	0	docs/belege/TB-84/m2_sperrlisten_hash.txt
+    12	0	docs/belege/TB-84/m3_snapshot_ausgaenge.txt
+    21	0	docs/belege/TB-84/m4_herkunft_listen.txt
+    4	0	docs/belege/TB-84/m5_vt_in_listen.txt
+    22	0	docs/belege/TB-84/m6_faltenlisten.txt
+    24	0	docs/belege/TB-84/schritt0_ausgangsstand.txt
+    54	0	docs/belege/TB-84/schritt2_nachweise.txt
+    19	0	docs/belege/TB-84/schritt3_nachweise.txt
+    43	0	docs/belege/TB-84/schritt4_abschluss.txt
+    191	0	docs/projektfuehrung/FABLE_ANFRAGE_2026-09-22c_herkunft_gemessen.md
+    57	0	docs/projektfuehrung/FABLE_ANTWORT_2026-09-22c_drei_ausgaenge_und_abbild.md
+    65	0	docs/projektfuehrung/JOURNAL.md
+    119	0	docs/projektfuehrung/VORARBEIT_sperrlisten_sonde.md
+    Zeilen mit zweiter Spalte != 0: 1 (nur MAC_TB-84_register_36.md, Betreiber-Erweiterung in 9122775); Dateien ausserhalb docs/: 0
+
+## M2 (letzte Messung, 2026-09-22T06:08:04Z): 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
