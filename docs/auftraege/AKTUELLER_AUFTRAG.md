@@ -36,9 +36,9 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-87** | `docs/auftraege/MAC_TB-87_register_37.md` | ⭐⭐ **Registerabschnitt 37 — Stufe I, Punkt 4 aus `PLAN_VOR_DEM_TAG.md`.** Fuenf Eintraege aus Fables 22d und 22g, ⛔ **nur Text, keine neue Freigabe noetig.** Die Sonde meldet kuenftig **je Punkt je Bestandteil** (37.1) · das Abbild fuehrt **zwei Gruppen**, Punkte und „bestimmte" Pfade (37.2) · ⭐⭐ **was ein Befund `1` bedeutet, haengt vom Tag ab** — davor planmaessig mit Tatsachennotiz und neuem Abbild, danach Sperrlistenbruch nach 10.1 (37.3, schliesst die Luecke, die TB-86 sichtbar gemacht hat) · Tatsachennotiz zu den zwei Listen in `herkunft.py` (37.4) · **„Ort registrierter Werte"** — jeder registrierte Zahlenwert bekommt genau ein Modul und eine Konstante (37.5). ⛔ **Keine `.py` aendern**, kein neues Abbild, keine Sonde anpassen, keine Werte verschieben. Drei Hashes vorher UND nachher |
+| **TB-88** | `docs/auftraege/MAC_TB-88_messung_punkt3_punkt8.md` | ⭐⭐ **Nachmessung vor Plan-Punkt 3 und Punkt 8 — ⛔⛔ KEINE Programmdatei aendern, kein Abbild, keine Registerzeile, kein Hash bewegt.** Der Betreiber hat 3+8 freigegeben; die Vormessung des steuernden Chats sagt, beide sind so nicht ausfuehrbar. **M1/M2:** ist der Bezeichner der Bestaetigungsperiode ein **Schluessel** gegen die Spalte `falte` (`auswertung.py` vergleicht ihn, `beispieldaten.py` schreibt den Faltennamen)? Probe **nur im Speicher**, `faltenplan.py` wird nicht angefasst · **M3:** Zeilennummern 336/368 gegen heute · ⭐ **M4: WELCHE Pruefungen in `test_vorregistrierung.py` sind rot und woran haengt jede** · **M5:** was der Vollzug von Punkt 8 beruehrt, und ob `herkunft_protokoll.jsonl` existiert · **M6:** drei Hashes vorher UND nachher, alle drei gleich. ⛔ Abbruchkriterium = Abbruch und Meldung, nie Rueckfrage |
 
-*Gesetzt 22.09.2026 (zuvor TB-86, erledigt mit `ee4e65c`, 22.09.2026; davor
+*Gesetzt 22.09.2026 (zuvor TB-87, erledigt mit `afe6192`, 22.09.2026; davor TB-86 `ee4e65c`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
