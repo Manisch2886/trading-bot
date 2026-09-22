@@ -34,3 +34,24 @@
 
 ## 9. git status --porcelain (vor Ergebnisdokument und Journalblock; diese Datei ist noch untracked):
     ?? docs/belege/TB-83/schritt4_abschluss.txt
+
+## 9 (nachgetragen) — git status --porcelain nach dem Abgabe-Commit 7b97faf, gemessen 2026-09-22T05:19:11Z VOR dem Oeffnen dieser Datei: 0 Zeilen (Soll 0)
+    (Dieser Nachtrag wird als eigener Commit abgelegt; danach ist der Status wieder leer.)
+
+## 5 (nachgetragen) — numstat 9dac8d4..7b97faf
+    176	0	docs/ERGEBNIS_TB-83_register_35.md
+    172	0	docs/VORREGISTRIERUNG_neuselektion.md
+    16	0	docs/belege/TB-83/m1_bestaetigung_ab.txt
+    11	0	docs/belege/TB-83/m2_go_live_schnitt.txt
+    17	0	docs/belege/TB-83/m3_auswertung_faltenplan.txt
+    26	0	docs/belege/TB-83/m4_faltenplan_bezeichner.txt
+    22	0	docs/belege/TB-83/m5_faltenlisten.txt
+    10	0	docs/belege/TB-83/m6_sperrlisten_hash.txt
+    22	0	docs/belege/TB-83/schritt0_ausgangsstand.txt
+    36	0	docs/belege/TB-83/schritt2_nachweise.txt
+    30	0	docs/belege/TB-83/schritt3_nachweise.txt
+    36	0	docs/belege/TB-83/schritt4_abschluss.txt
+    59	0	docs/projektfuehrung/JOURNAL.md
+    Zeilen mit zweiter Spalte != 0: 0; Dateien ausserhalb docs/: 0
+
+## M6 (letzte Messung, 2026-09-22T05:19:11Z): 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
