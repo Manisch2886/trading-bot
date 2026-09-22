@@ -36,10 +36,10 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-85** | `docs/auftraege/MAC_TB-85_sperrlisten_sonde.md` | ⭐⭐ **Schritt 1 von Fables Reihenfolge (36.3) — der erste Auftrag seit Tagen, der CODE schreibt.** ⭐ **Betreiberfreigabe liegt vor (22.09., 07:50, fuer Schritt 1+2).** Drei neue Dateien: das **Abbild der Sperrliste** (die 14 Punkte aus Abschnitt 10 mit Pfad und Hash, einmalig geschrieben nach 36.1), die **Sonde** (`shared/sperrlistensonde.py`, drei Ausgaenge nach 36.5: `0`/`1`/**`2` nicht pruefbar**) und ihre **Selbstpruefung** (sieben Mutationsproben). Dann der **Nullpunkt-Lauf**. ⛔ **Keine vorhandene `.py` aendern**, kein Registereintrag, kein Hash auf die Sperrliste. ⚠️⚠️ **`python3 faltenplan.py` NIEMALS** — das ist Schritt 2 (TB-86). Drei Hashes vorher UND nachher; bei `1` in der Sonde: ABBRUCH, **melden statt reparieren** |
+| **TB-86** | `docs/auftraege/MAC_TB-86_faltenplan_schreibsperre.md` | ⭐⭐ **Schritt 2 von Fables Reihenfolge (36.3) — die Reparatur der Sperrlistenfalle.** ⭐ **Betreiberfreigabe liegt vor (22.09., 07:50, fuer Schritt 1+2).** `faltenplan.py main()` bekommt `argparse` mit `--ziel`, eine **Voreinstellung mit Zeitstempel** (nicht mehr der gesperrte Pfad) und die **Einmal-Schreibsperre** nach 36.1 (2): Ziel existiert → Rueckgabe **1**, Pfad und Hash genannt, nichts geschrieben, **auch nicht bei gleichem Inhalt**. ⭐⭐ **Kern ist M4:** `main()` absichtlich auf den echten gesperrten Pfad ansetzen — es muss sich weigern, und `0e54ac5c…` ist nachher unveraendert. ⛔ **Zeile 336 NICHT** (das ist Schritt 3, eigene Freigabe), **Rechenlogik NICHT** — keine Planzahl darf sich bewegen, belegt durch Ausgabevergleich vorher/nachher. Vorbedingung: die Sonde aus TB-85 muss laufen |
 
-*Gesetzt 22.09.2026 (zuvor TB-84, erledigt mit `03e544e`, 22.09.2026; davor
-TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`, TB-77 `83e3a85`, TB-69 `1ded755`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
+*Gesetzt 22.09.2026 (zuvor TB-85, erledigt mit `755b3c4`, 22.09.2026; davor
+TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`, TB-77 `83e3a85`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
 ### Geplant, noch nicht formuliert — die Dokumentationskette
