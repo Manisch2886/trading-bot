@@ -1,0 +1,54 @@
+# TB-84 Schritt 2 — Nachweise Abschnitt 36 (gemessen 2026-09-22T06:02:13Z, Arbeitsbaum vor dem Commit, Ausgang 4bbd720 / Betreiber-Commit 9122775)
+## Abschnitt 36 beginnt Z. 5843; Register 6149 Zeilen; numstat: 309	0	docs/VORREGISTRIERUNG_neuselektion.md
+## '^## 36\.' : 1  '^### 36\.' : 7 (Soll 1 und 7)
+     5875 ### 36.1 Schreibregel für Sperrlistenpfade — Ersteintrag
+     5923 ### 36.2 Die Sperrlisten-Sonde — Ersteintrag
+     5993 ### 36.3 Die Reihenfolge der Handwerksschritte
+     6022 ### 36.4 Tatsachennotiz zu 21.4 — die ⚠️-Markierung ohne Erklärung
+     6047 ### 36.5 ⭐⭐ Drei Ausgänge für jede Sonde und jede Wache — Ersteintrag, und die Berichtigun
+     6083 ### 36.6 Das Abbild der Sperrliste ist eine neue Datei — Ersteintrag
+     6127 ### 36.7 Was hier ausdrücklich NICHT getan wird
+## Zeichengleichheit — volle Quellzeilen (mit '> '-Präfix, ohne Abzug), je 1x erwartet:
+  22b (FABLE_ANTWORT_2026-09-22b):
+    22b Z.19: 1x exakt als Registerzeile in Abschnitt 36  [> **Registertext, Ersteintrag — Schreibregel für Sperrlisten…]
+    22b Z.20: 1x exakt als Registerzeile in Abschnitt 36  [> **(1)** Kein Programm im Repo schreibt an einen Pfad, der …]
+    22b Z.15: 1x exakt als Registerzeile in Abschnitt 36  [**Zu den drei Wegen:** (c) fällt nach A8 — eine Regel, die n…]
+    22b Z.25: 1x exakt als Registerzeile in Abschnitt 36  [*Quelle des Grundes:* Zweck der Sperrliste („nichts Gesperrt…]
+    22b Z.27: 1x exakt als Registerzeile in Abschnitt 36  [*Warum „nie überschreiben, auch nicht mit identischem Inhalt…]
+    22b Z.29: 1x exakt als Registerzeile in Abschnitt 36  [**Tatsachennotiz dazu:** `ergebnisse/faltenplan.json` (Hash …]
+    22b Z.22: 1x exakt als Registerzeile in Abschnitt 36  [> **Registertext, Ersteintrag — Sperrlisten-Sonde:**…]
+    22b Z.23: 1x exakt als Registerzeile in Abschnitt 36  [> Vor dem signierten Tag existiert ein Prüfskript, das für *…]
+    22b Z.48: 1x exakt als Registerzeile in Abschnitt 36  [**Unsicher:** ob es bereits ein Prüfskript für die Sperrlist…]
+    22b Z.33: 1x exakt als Registerzeile in Abschnitt 36  [Alle mit Betreiberfreigabe; die Reihenfolge ist Verfahren, w…]
+    22b Z.35: 1x exakt als Registerzeile in Abschnitt 36  [1. **Sperrlisten-Sonde** schreiben und einmal laufen lassen …]
+    22b Z.36: 1x exakt als Registerzeile in Abschnitt 36  [2. **`faltenplan.py main()`:** Voreinstellung ändern, Einmal…]
+    22b Z.37: 1x exakt als Registerzeile in Abschnitt 36  [3. **Erst jetzt** Z. 336 (Bezeichner der Bestätigungsperiode…]
+    22b Z.38: 1x exakt als Registerzeile in Abschnitt 36  [4. Abbild-Datei, Faltenplan-Sonde (33.3), Hash auf die Sperr…]
+    22b Z.40: 1x exakt als Registerzeile in Abschnitt 36  [Wer Schritt 3 vor Schritt 2 macht, hat genau den Fall, den i…]
+  22c (FABLE_ANTWORT_2026-09-22c):
+    22c Z.13: 1x exakt als Registerzeile in Abschnitt 36  [Mein „Rückgabewert ≠ 0" war zu grob, und der Kopf von `snaps…]
+    22c Z.17: 1x exakt als Registerzeile in Abschnitt 36  [> **Registertext, Ersteintrag — Ausgänge von Sonden und Wach…]
+    22c Z.18: 1x exakt als Registerzeile in Abschnitt 36  [> Jede Sonde und jede Wache des Verfahrens (Sperrlisten-Sond…]
+    22c Z.20: 1x exakt als Registerzeile in Abschnitt 36  [> **Berichtigung zu 22b, Sperrlisten-Sonde:** „mit Rückgabew…]
+    22c Z.22: 1x exakt als Registerzeile in Abschnitt 36  [*Quelle des Grundes:* A2 und A8, im Register vorhanden; der …]
+    22c Z.24: 1x exakt als Registerzeile in Abschnitt 36  [*Zur Einmal-Schreibsperre:* Der Erzeuger, der wegen vorhande…]
+    22c Z.30: 1x exakt als Registerzeile in Abschnitt 36  [> **Registertext, Ersteintrag — Abbild der Sperrliste:**…]
+    22c Z.31: 1x exakt als Registerzeile in Abschnitt 36  [> Das Abbild der Sperrliste ist eine **eigene, neue Datei** …]
+    22c Z.33: 1x exakt als Registerzeile in Abschnitt 36  [> `herkunft.py` `EINGEFROREN` (Z. 57) und `SPERRLISTE_DATEIE…]
+    22c Z.35: 1x exakt als Registerzeile in Abschnitt 36  [*Quelle des Grundes — drei, alle aus dem Bestand:* **(1)** B…]
+    22c Z.37: 1x exakt als Registerzeile in Abschnitt 36  [**Was der Fund bedeutet, und was er nicht bedeutet:** Der Zu…]
+    22c Z.39: 1x exakt als Registerzeile in Abschnitt 36  [> **Nur das Ob:** Welche Funktionen von `herkunft.py` lesen …]
+    22c Z.49: 1x exakt als Registerzeile in Abschnitt 36  [**Unsicher:** ob Abschnitt 10 in einer Form vorliegt, aus de…]
+## Teilzeichenketten (Zitat ist Teil einer laengeren Quellzeile), je >=1x erwartet:
+    22b Z.9 (36.4): in Quelle ja; im Abschnitt 36: 1x  [Die ⚠️-Markierung in 21.4 hat keinen Text. Dann is…]
+    22b Z.13 (Kopf): in Quelle ja; im Abschnitt 36: 1x  [Was ihr gemessen habt, ist nicht ein Fehler in `fa…]
+    22c Z.9 (36.2 b): in Quelle ja; im Abschnitt 36: 1x  [angenommen, und es bestätigt die Bauart aus 22b (S…]
+    22c Z.41 (36.6): in Quelle ja; im Abschnitt 36: 1x  [**Meine Linie dazu, vorab und nicht als Entscheidu…]
+    21g Z.87+88 (36.4 Ruecknahme): in Quelle ja; im Abschnitt 36: 1x  [*(Möglicherweise ist das der Grund für die ⚠️-Mark…]
+## Positivkontrolle der Methode: 22b Z.19 mit abgezogenem '> ' gesucht -> 0 (erwartet 0: Registerzeile traegt das Praefix wie die Quelle)
+## Erste Lesung (vor diesem Beleg): 22c Z.41 stand als dreizeiliges Zitat im Register -> 0x; auf eine Zeile gesetzt (noch vor dem Commit), jetzt 1x. Kein Fable-Zitat wurde geglaettet.
+## Fable-Zitate im Auftrag, die von der Quelle abweichen (C1, volle Quellzeile eingetragen):
+    36.1 Grund: Auftrag ohne '21b (3): …' und 'Kein Ergebnis: …' (22b Z.25 hat beides)
+    36.5 Zusatz: Auftrag beginnt bei 'Der Erzeuger…', Quelle Z.24 beginnt mit '*Zur Einmal-Schreibsperre:*'
+    36.6 drei Gruende: Auftrag mit zwei '…'-Auslassungen; Quelle Z.35 voll, mit 'Kein Ergebnis.' am Ende
+## Gesamt: ALLE ZEICHENGLEICH
