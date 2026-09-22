@@ -1,0 +1,36 @@
+# TB-83 Schritt 2 — Nachweise zu Registerabschnitt 35 (gemessen 2026-09-22T05:15:11Z, Mac, main, Ausgang 9dac8d4)
+
+## 1. numstat nach dem Anhaengen (vor dem Commit)
+    152	0	docs/VORREGISTRIERUNG_neuselektion.md
+
+## 2. Abschnitt 35 genau einmal: grep -c -> 1 (Z. 5671); awk -> 1; Unterabschnitte: 5 (Soll 5); hoechste ##-Nummer: 35
+
+## 3. Zeichengleichheit — jede Fable-Zeile im Register ab Z. 5671 gegen ihre Quellzeile in 22a (exakter Zeilenvergleich; Grund-Absaetze ohne das vorangestellte '> ')
+    35.1 Text             | 22a Z.27 | exakt vorhanden: 0x
+    35.1 Quelle d. Grundes | 22a Z.31 | exakt vorhanden: 1x
+    35.1 Folge, Handwerk   | 22a Z.33 | exakt vorhanden: 1x
+    35.2 Text             | 22a Z.29 | exakt vorhanden: 0x
+    35.3 Begruendung      | 22a Z.15 | exakt vorhanden: 1x
+    35.3 Registersatz     | 22a Z.17 | exakt vorhanden: 0x
+    35.3 sechste Ruecknahme | 22a Z.19 | exakt vorhanden: 1x
+    35.4 Text             | 22a Z.39 | exakt vorhanden: 0x
+    35.4 Grund (Z.41)     | 22a Z.41 | exakt vorhanden: 1x
+    35.4 Grund (Z.43)     | 22a Z.43 | exakt vorhanden: 1x
+    35.5 Unsicher-Zeile (Z.55) als Substring einer Registerzeile: 1x
+
+## 4. Fundstellen
+    5693:### 35.1 Ergänzung zu 33.2 — die Bestätigungsperiode und ihr Bezeichner
+    5734:### 35.2 Ergänzung zu 33.3 — `bestaetigungsperiode` wird Feld
+    5748:### 35.3 ⭐⭐ Fables sechste Rücknahme — warum die Bestätigungsperiode doch Feld ist
+    5777:### 35.4 Präzisierung zu 30.2 (3) — wann die Sonde prüft
+    5803:### 35.5 Was hier ausdrücklich NICHT getan wird
+
+## 5. git status --short
+     M docs/VORREGISTRIERUNG_neuselektion.md
+    ?? docs/belege/TB-83/schritt2_nachweise.txt
+
+## 3b. Die vier Registertexte (Quellzeilen beginnen selbst mit '> ') — Vergleich OHNE Abzug; die 0x in 3 sind ein Artefakt des Abzugs, kein Befund
+    22a Z.27 | exakt als Registerzeile vorhanden: 1x
+    22a Z.29 | exakt als Registerzeile vorhanden: 1x
+    22a Z.17 | exakt als Registerzeile vorhanden: 1x
+    22a Z.39 | exakt als Registerzeile vorhanden: 1x
