@@ -1,0 +1,4 @@
+# M5 — grep -n "benchmark_drawdowns_vt\|top25_symbols\|sp500_top150" research/vorregistrierung/herkunft.py   (gemessen 2026-09-22T05:54:05Z, HEAD 4bbd720)
+## Ergebnis: 0 Treffer, rc=1 — ergebnisse/benchmark_drawdowns_vt.json (4549395f…) steht in KEINER der beiden Listen (Soll: nein); ebenso fehlen config/top25_symbols.txt und config/sp500_top150.txt (Punkt 8)
+## Positivkontrolle (dass die Maske trifft): grep -c "faltenplan.json" research/vorregistrierung/herkunft.py -> 1 (Z. 60, in EINGEFROREN)
+## Umgekehrt in EINGEFROREN, aber im Registertext nicht als eigener Punkt: kennzahlen.py, messgroessen.py, pruefe_grenzsaetze.py, ergebnisse/messgroessen.json — nicht bewertet (Anfrage 22b Punkt 2, offen bei Fable)

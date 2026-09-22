@@ -1,0 +1,21 @@
+# M4 — grep -n "EINGEFROREN\|SPERRLISTE_DATEIEN" research/vorregistrierung/herkunft.py   (260 Zeilen; gemessen 2026-09-22T05:54:05Z, HEAD 4bbd720; nur gelesen — Datei steht selbst auf der Sperrliste, Punkte 11/12)
+## Ergebnis: Z. 57 und Z. 66 (Soll: 57 und 66); dritte Fundstelle Z. 114 ist die Verwendung von EINGEFROREN
+57:EINGEFROREN = [
+66:SPERRLISTE_DATEIEN = [
+114:    for rel in ([os.path.relpath(REGISTERDATEI, _HIER)] + EINGEFROREN):
+## Die beiden Listen woertlich (Z. 57-70):
+EINGEFROREN = [
+    "registerdaten.py", "faltenplan.py", "benchmark.py", "kennzahlen.py",
+    "auswertung.py", "messgroessen.py", "pruefe_grenzsaetze.py",
+    "ergebnisse/messgroessen.json", "ergebnisse/faltenplan.json",
+    "ergebnisse/benchmark_drawdowns.json",
+]
+# Die Commit-Hashes, die zusaetzlich auf die Sperrliste gehoeren: Simulation,
+# Erkennung und Optimierer je Bot. Sie liegen ausserhalb dieses Ordners und
+# werden ueber den Git-Commit des Repos mit erfasst.
+SPERRLISTE_DATEIEN = [
+    "shared/messkette.py", "shared/zuteilung.py",
+    "strategies/*/equity_simulation.py", "strategies/*/multi_symbol_optimise.py",
+    "strategies/*/multi_symbol_walk_forward.py",
+]
+## Zaehlung: EINGEFROREN 10 Eintraege, SPERRLISTE_DATEIEN 5 Muster (gegen 14 Registerpunkte, M1)

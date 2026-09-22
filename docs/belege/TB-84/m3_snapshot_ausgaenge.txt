@@ -1,0 +1,12 @@
+# M3 — grep -n "^    [012]   " shared/snapshot.py   (Kopf von shared/snapshot.py, 1306 Zeilen; gemessen 2026-09-22T05:54:05Z, HEAD 4bbd720)
+## Ergebnis: drei Ausgaenge, Z. 217-219; die 2 = NICHT PRUEFBAR (Soll: drei Ausgaenge, 2 = NICHT PRUEFBAR)
+215:Rueckgabewerte - "konnte nicht messen" ist ein eigener, roter Ausgang
+217:    0   in Ordnung: gezogen, oder `--pruefen` findet den Stand unveraendert
+218:    1   Befund: `--pruefen` findet den Snapshot VERAENDERT
+219:    2   NICHT PRUEFBAR / abgebrochen
+## Begruendung im Kopf (Z. 221-224), woertlich:
+⚠️ Die 2 ist der Grund, warum es sie gibt. In TB-45 haben zwei Wachen
+"bestanden" gemeldet, ohne etwas gemessen zu haben - ein gescheiterter Aufruf
+und ein leeres Ergebnis sahen gleich aus. Hier nicht: wer nicht messen
+konnte, sagt es mit einem eigenen Wert.
+## Anmerkung: der Auftrag nannte "Z. 214-232" und das Muster grep -n "^0\|^1\|^2" — die Ziffern stehen eingerueckt (vier Leerzeichen), das unverankerte Muster traefe sie nicht; gemessen mit Einrueckung.
