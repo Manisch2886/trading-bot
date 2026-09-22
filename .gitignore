@@ -66,3 +66,10 @@ results/portfolio_overview/_dashboard_arbeit/
 # gross wie data/ selbst und werden bewusst nicht automatisch geloescht -
 # ins Repo gehoeren sie trotzdem nicht.
 data_sicherung/
+
+# Handsicherungen (*.bak). Sie entstehen, wenn eine Sitzung eine Datei vor
+# einer Aenderung zur Seite legt - zum Beispiel
+# .claude/settings.local.json.2026-09-22_vor_TB86.bak vor TB-86. Der Stand
+# VOR einer Aenderung steht im Repo bereits in der Historie; eine zweite
+# Fassung daneben waere eine doppelt gefuehrte Zahl (CLAUDE.md).
+*.bak
