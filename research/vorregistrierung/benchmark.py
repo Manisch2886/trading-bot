@@ -80,9 +80,11 @@ gemacht hat (Protokoll 3.3).
 """
 
 import argparse
+import hashlib
 import json
 import os
 import sys
+from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
@@ -292,24 +294,111 @@ def erlaubt(dd_benchmark: float, dd_toleranz: float) -> float:
     return min(rd.DD_RELATIVER_FAKTOR * dd_benchmark, dd_toleranz)
 
 
+def _sha256_datei(pfad: str) -> str:
+    h = hashlib.sha256()
+    with open(pfad, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def voreinstellung_ziel() -> str:
+    """Das voreingestellte Schreibziel - Registertext 36.1 (3), (4).
+
+    ⚠️ Bis TB-91 (23.09.2026) war die Voreinstellung von `--ziel`
+    `ergebnisse/benchmark_drawdowns.json` - Sperrlistenpunkt 4. Ein einziger
+    Aufruf ohne Argument haette die gesperrte Tabelle ueberschrieben, und der
+    Kommentar an der Stelle sagte es selbst: *"ohne diesen Schalter
+    ueberschriebe jeder Lauf sie"*. 36.1 (3): die Voreinstellung eines
+    Erzeugers ist nie ein Pfad, der auf der Sperrliste steht; der gesperrte
+    Pfad ist seither nur noch ueber `--ziel` erreichbar, wo die Sperre aus
+    36.1 (2) dann zuschlaegt.
+
+    ⭐ Gleichartig zu `faltenplan.voreinstellung_ziel` (TB-86, `4daa254`),
+    nicht neu erfunden. Der Zeitstempel (UTC) ist kein Schmuck: Die
+    Einmal-Schreibsperre bricht ab, sobald die Zieldatei existiert - bei einem
+    FESTEN Voreinstellungsnamen liesse sich `main()` nach dem ersten Lauf nie
+    wieder aufrufen.
+    """
+    stempel = datetime.now(timezone.utc).strftime("%Y-%m-%d-%H%M%S")
+    return os.path.join(_HIER, "ergebnisse", f"benchmark_drawdowns_{stempel}.json")
+
+
+def schreibe_tabellen(tabellen: dict, ziel: str):
+    """Schreibt die Tabellen GENAU EINMAL. Liefert (rueckgabewert, text).
+
+    Registertext 36.1 (2), zeichengleich: *"Jeder Erzeuger einer solchen Datei
+    schreibt einmalig: Existiert die Zieldatei bereits, bricht er ab
+    (Rueckgabewert != 0), nennt Pfad und Hash der vorhandenen Datei und
+    schreibt nichts. Er ueberschreibt nie, auch nicht mit identischem
+    Inhalt."* Nach 36.5 endet der Erzeuger, der wegen vorhandener Zieldatei
+    nicht schreibt, mit **1** - er hat geprueft und einen Befund.
+
+    ⚠️ `indent=1` und `sort_keys=True` sind die Formatierung seit TB-61
+    und bleiben unveraendert: Eine Neurechnung muss mit den vorhandenen
+    Tabellen vergleichbar bleiben (Fable 23b, Determinismusnachweis).
+    """
+    if os.path.exists(ziel):
+        try:
+            h = _sha256_datei(ziel)
+        except OSError:
+            h = "(nicht lesbar)"
+        return 1, (f"\nABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben."
+                   f"\n  Pfad:    {ziel}\n  SHA-256: {h}")
+    ordner = os.path.dirname(os.path.abspath(ziel))
+    if not os.path.isdir(ordner):
+        return 2, f"\nABBRUCH: Zielordner fehlt: {ordner}"
+    try:
+        # O_EXCL statt open(..., "w"): faengt auch ein Ziel ab, das zwischen
+        # der Pruefung oben und dem Schreiben entsteht.
+        fd = os.open(ziel, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+    except FileExistsError:
+        return 1, (f"\nABBRUCH (36.1 (2)): Ziel entstand waehrend des Laufs, "
+                   f"nichts geschrieben.\n  Pfad:    {ziel}"
+                   f"\n  SHA-256: {_sha256_datei(ziel)}")
+    except OSError as e:
+        return 2, f"\nABBRUCH: Ziel nicht anlegbar: {ziel} ({e})"
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        json.dump(tabellen, f, indent=1, ensure_ascii=False, sort_keys=True)
+        f.write("\n")
+    return 0, f"\nGeschrieben: {ziel}"
+
+
 def main(argv=None):
-    # --ziel (TB-61): wohin die Tabelle geschrieben wird. Ohne Angabe die
-    # registrierte Datei - unveraendertes Verhalten. Mit Angabe eine Datei
-    # DANEBEN: Register 21.9 haelt benchmark_drawdowns.json bis zum Amendment
-    # byteweise fest, und ohne diesen Schalter ueberschriebe jeder Lauf sie.
+    # --ziel (TB-61): wohin die Tabelle geschrieben wird.
+    #
+    # ⚠️ BERICHTIGT in TB-91 (23.09.2026): Die Voreinstellung war bis dahin
+    # `ergebnisse/benchmark_drawdowns.json` - Sperrlistenpunkt 4 - und der
+    # Kommentar an dieser Stelle beschrieb die Gefahr, ohne sie abzustellen
+    # ("ohne diesen Schalter ueberschriebe jeder Lauf sie"). Registertext
+    # 36.1 (3) verlangt das Gegenteil: Die Voreinstellung eines Erzeugers ist
+    # nie ein Pfad, der auf der Sperrliste steht. Seither ist sie ein Name mit
+    # Zeitstempel; der gesperrte Pfad ist nur noch ueber `--ziel` erreichbar,
+    # und dort greift die Einmal-Schreibsperre aus 36.1 (2).
     zerleger = argparse.ArgumentParser(
-        description="Benchmark-Drawdowns je Falte, DD_Toleranz je Bot.")
+        description="Benchmark-Drawdowns je Falte, DD_Toleranz je Bot. "
+                    "Schreibt einmalig; Voreinstellung ist ein Name mit "
+                    "Zeitstempel (36.1 (3)).")
     zerleger.add_argument(
-        "--ziel", default=os.path.join(_HIER, "ergebnisse",
-                                       "benchmark_drawdowns.json"),
-        help="Ausgabedatei (Standard: ergebnisse/benchmark_drawdowns.json)")
-    ziel = zerleger.parse_args(argv).ziel
+        "--ziel", default=None,
+        help="Ausgabedatei (Standard: ergebnisse/benchmark_drawdowns_"
+             "<UTC-Zeitstempel>.json). Ein vorhandenes Ziel wird NIE "
+             "ueberschrieben - der Lauf endet dann mit 1.")
+    ziel = zerleger.parse_args(argv).ziel or voreinstellung_ziel()
+
+    # ⚠️ Die Sperre greift VOR der Rechnung, wenn das Ziel schon da ist:
+    # eine halbe Stunde rechnen und dann abbrechen waere Verschwendung.
+    if os.path.exists(ziel):
+        rc, text = schreibe_tabellen(None, ziel)
+        print(text)
+        return rc
 
     mess = rd._mess()
     tabellen = je_bot(mess)
-    with open(ziel, "w", encoding="utf-8") as f:
-        json.dump(tabellen, f, indent=1, ensure_ascii=False, sort_keys=True)
-        f.write("\n")
+    rc, text = schreibe_tabellen(tabellen, ziel)
+    if rc != 0:
+        print(text)
+        return rc
 
     print(__doc__.strip().split("\n")[0])
     for bot, e in tabellen.items():
