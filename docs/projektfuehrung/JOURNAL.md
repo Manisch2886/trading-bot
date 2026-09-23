@@ -8506,6 +8506,50 @@ Abbild (37.3), 35.5, 33.5, TB-30b, 32.5, (20g)–(20m), `K4t`.
 
 ---
 
+## CR — TB-90: Weg (A) und das Kostenmodul — die Bestätigungsfalte heisst ihre Spanne, neun Importe statt neun Kopien, und vier Anläufe bis zum Nachweis (23.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-90_wegA_und_kostenmodul.md`*
+
+**Quelle:** Mac-Sitzungen **TB-90 Weg (A) und Kostenmodul**, 23.09.2026, vier
+Anläufe, Eingang `563fb54`. Commits `53b35ce` (Schritt 0), `04d6ce6` (Block B),
+`5194a0a` (Abbruch an deny), `66eec94`/`709caf2` (Berechtigungen, Vormessung),
+`303a7fd` (Block A mit Belegen) und der Abgabe-Commit. Belege
+`docs/belege/TB-90/`. Freigabe Betreiber 22.09., Registergrundlage 38.1/38.5.
+
+### Was geändert und belegt ist
+
+| | |
+|---|---|
+| ⭐⭐ **Block A** | `faltenplan.py::_plan`: die Falte mit Rolle `bestaetigung` heisst `von/bis_ausschliesslich`. **A1** 9/9 `2026-01-01/2026-09-01`; **A2** je Bot ein Name ersetzt, sonst nichts; **A5** dieselbe Absturzstelle (`KeyError: '2017'`); **A6** 163/2 vorher und nachher, G6 und H3, keine dritte. Hash `fd3e5018…` → `7aa0b8cc…`, planmässig nach 37.3 |
+| ⭐⭐ **Block B** | `shared/handelskosten.py` mit zwei Konstanten; neun `backtest_*.py` importieren; Mutationsprobe `0.999` zieht neunmal mit, Rücknahme vollständig; Backtests byte-identisch 9/9 |
+| **Block C** | Selektionsfalten in `_tb72` bei allen neun gleich dem Plan, in `_vt` bei acht (`t3_supertrend` +`2018`); nach (A) weicht bei allen die Bestätigungszeile ab — gemessen, nicht repariert |
+| **Sonde** | Punkt 2 bleibt **ein** Befund (seit TB-86), nur der Ist-Hash wechselt — der Auftrag erwartete einen zweiten |
+
+Drei JSON-Hashes und alle zwölf Dateien in `ergebnisse/` vorher und nachher
+gleich. Die Vormessung aus der Brücken-VM ist auf dem Mac inhaltsgleich
+nachgemessen; der dort offene A6-Tausch-Fall ist jetzt gemessen.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **`deny` fragt nicht, es lehnt ab — in 4 ms.** Wer „einen Genehmigungsklick" will, braucht `ask`. Gemessen an zwei Anläufen: deny 4 ms Ablehnung, ask 35 min Wartezeit bis zum Erfolg |
+| ⭐ | **Ein Protokoll, das die Frage nicht verzeichnet, beweist sie nicht.** Die Wartezeit ist ein Indiz; den Dialog kann nur der Betreiber bezeugen |
+| ⭐ | **„Genau ein String" braucht eine Zählregel.** Ein abgeleitetes Feld, das den geänderten Namen nur liest, erscheint im Text-`diff` als zweite Zeile — die Zählung muss das sagen, sonst sieht ein Bestehen wie ein Abbruchkriterium aus |
+| | Eine Arbeit, die über Anläufe verteilt ist, braucht im Ergebnisdokument die Angabe, **welche Sitzung was getan hat** |
+
+### Was offen bleibt
+
+Punkt 8 mit Neurechnung nach (A) (Fable 23b) · danach das neue Abbild (schliesst
+den Punkt-2-Befund, 37.3) · G6/H3 · `forward_test.py`-Kosten (eigene Freigabe) ·
+`handelskosten.py` auf die Sperrliste (Registertext) · Bestätigung des Betreibers,
+dass die ask-Frage erschien. Dazu unverändert: Plan Punkt 5, 35.5, 33.5, TB-30b,
+32.5, (20g)–(20m), `K4t`.
+
+*Geschrieben 23.09.2026 von der Mac-Sitzung, die TB-90 abgeschlossen hat. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

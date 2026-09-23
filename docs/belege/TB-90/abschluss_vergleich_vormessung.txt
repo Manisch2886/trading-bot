@@ -1,0 +1,6 @@
+TB-90 Vergleich Mac-Nachmessung gegen Vormessung des steuernden Chats — 2026-09-23 10:17:26 CEST
+A2 Plan-JSON inhaltsgleich (json.load ==): True | Bots: 9 9
+   Bytes Mac/VM: 33850 38980 (Formatierung, nicht Inhalt)
+C2/C3 Tabellenzeilen Mac/VM: 18 18 zeichengleich: True
+A1 Zeilen zeichengleich: True 9
+A6 Tausch-Fall: Vormessung ohne Ergebnis (vormessung_a6_nachher.txt endet nach 'Teil A ...'), Mac: siehe a6_simulation_nachher.txt

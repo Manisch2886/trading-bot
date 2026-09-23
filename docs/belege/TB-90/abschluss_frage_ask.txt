@@ -1,0 +1,20 @@
+TB-90 — Wurde beim Aendern von faltenplan.py gefragt? (gelesen aus den lokalen Sitzungsprotokollen
+~/.claude/projects/-Users-jaquelineloffler-trading-bot/*.jsonl, nur Zeitstempel und Werkzeugergebnis)
+
+Sitzung ffd44be8 (Anlauf mit deny):
+  Edit faltenplan.py  aufgerufen 2026-09-23T06:46:20.029Z
+  Ergebnis            2026-09-23T06:46:20.033Z  "File is in a directory that is denied by your permission settings."
+  -> 4 ms, Ablehnung ohne Frage (deny)
+
+Sitzung 3d9a74f7 (Anlauf nach 66eec94, Sperrlisten-.py unter ask):
+  Edit faltenplan.py  aufgerufen 2026-09-23T07:06:28.093Z
+  Ergebnis            2026-09-23T07:41:34.416Z  "The file ... faltenplan.py has been updated successfully."
+  -> 35 min 06 s ohne jeden Protokolleintrag dazwischen, dann Erfolg.
+
+Deutung: Ein Eintrag unter allow wird in Millisekunden ausgefuehrt, einer unter deny
+ebenso schnell abgelehnt (oben gemessen). 35 Minuten Wartezeit bis zum Erfolg passen nur
+zu einer offenen Genehmigungsfrage, die dann bestaetigt wurde. Das Protokoll verzeichnet
+die Frage selbst NICHT - das ist ein Indiz, kein direkter Nachweis. Den direkten
+Nachweis (Dialog gesehen und bestaetigt) hat nur der Betreiber.
+
+Die Sitzung, die dieses Dokument schreibt (9a6024be), hat faltenplan.py NICHT geaendert.
