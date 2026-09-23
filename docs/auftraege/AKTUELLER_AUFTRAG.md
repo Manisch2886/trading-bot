@@ -36,15 +36,23 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-92** | `docs/auftraege/MAC_TB-92_vollzug_punkt8.md` | ⭐⭐⭐ **Vollzug von Plan-Punkt 8 — der Tagblocker.** ⭐ **ALLE SPERREN GELÖST:** Fable frei (23c), Betreiberfreigabe 21.9 erteilt (18:12), `auswertung.py` entschieden (23d), `data/` = Snapshot gemessen (225/225) ⇒ keine Vorab-Nachrechnung. **Block A:** neue Tabelle + `registerbericht.py` (`symbole_point_in_time` → `symbole_handelbar_in_falte`) ⚠️ **in EINEM Commit** — jede Einzelmassnahme bricht. **Block A1a (NEU, Fable 23d):** `auswertung.py` liest die Tabelle über **eine Konstante** am Modulanfang, ⛔ **KEIN Schalter** (Abschnitt 12); `test_vorregistrierung.py` und `beispieldaten.py` lesen DIESELBE Konstante; AST aller Funktionskörper unverändert, genau eine Zuweisung geändert; ⛔ `herkunft.py::EINGEFROREN` **unverändert**. **Block B:** `test_vorregistrierung.py` vollständig — wird er grün? ⚠️ Rot ist ein Ergebnis, nicht nachbessern. **Block C:** `G6`/`H3`. **Block D:** Registertext. ⭐ **Fables fünf Schritte in Abschnitt 5b sind verbindlich**, darunter das **neue Abbild** |
+| **TB-94** | `docs/auftraege/MAC_TB-94_register_39.md` | ⭐⭐⭐ **Der Vollzug von Punkt 8 IM REGISTER — der Tagblocker.** TB-92 hat ihn im Code vollzogen (`fcc3265`) und richtig abgebrochen, weil 38.4 „grün“ verlangt. Fable 23f: **23a gilt, 38.4 wird berichtigt.** Registerabschnitt **39**, Pfadzeile und Vollzugsmarke an Abschnitt 10 Punkt 4, fünf Hash-Übergänge nach 37.3, Determinismus- und Modus-Notiz, **neues Abbild**, Sonde `0`. ⛔ **Keine `.py` ändern, nichts rechnen.** ⚠️ `numstat` zweite Spalte `0` |
+| **TB-95** | `docs/auftraege/MAC_TB-95_testannahmen_und_lesehaken.md` | ⭐⭐ **„Testannahmen folgen dem Register“** — `G6` und `H3` ausmessen und an den Faltenplan anpassen (Fable 23a/23f: Faltennamen aus dem Plan, nie als Literale; die Mutationsprobe muss wieder **beissen**). Dazu Fables **Messbitte**: Wer öffnet die neun Handelslisten im Modus-Lauf, und gehen ihre Inhalte in die Tabelle ein? ⛔ **Erst nach TB-94.** ⛔ Nichts löschen, nichts abschwächen |
 
-⭐⭐ **TB-94 wartet (noch nicht formuliert):** `messgroessen.json` — Fable hat in
+⭐⭐ **TB-96 wartet (noch nicht formuliert):** `messgroessen.json` — Fable hat in
 23d entschieden, dass eine **Eingabe des Laufs** aus dem registrierten Snapshot
 reproduzierbar sein muss, nicht aus der Git-Historie. ⭐ Gemessen: Die
 Nachweisdatei aus TB-93 **lief bereits auf dem Snapshot**, muss also nur nach
-36.1 an ihren Platz. Danach: `registerdaten.py` auf die neue Datei, und die
-**12 abweichenden Rasterachsen** nachziehen (Falten und Zellenzahl bleiben —
-gemessen). ⛔ **Erst nach TB-92.**
+36.1 an ihren Platz — ⚠️ **plus** ein Lauf im Selektionsmodus gegen
+`snapshots/<hash>/` mit `diff` bytegleich (Fable 23e: „ein Nachweis muss
+denselben Weg gehen wie der Lauf“). Danach: `registerdaten.py` auf die neue
+Datei, und die **12 abweichenden Rasterachsen** nachziehen (Falten und
+Zellenzahl bleiben — gemessen, N = 653 unberührt). ⛔ **Erst nach TB-95.**
+
+⚠️ **Nummern gerückt am 23.09.2026, 20:00:** Fable nennt in 23f für
+`messgroessen.json` noch die Nummer **TB-94**; so stand es im Plan vom
+Vormittag. Der Registervollzug wurde vorgezogen. **TB-94 = Register,
+TB-95 = G6/H3 und Messbitte, TB-96 = `messgroessen.json`.**
 
 *Gesetzt 23.09.2026 (zuvor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**

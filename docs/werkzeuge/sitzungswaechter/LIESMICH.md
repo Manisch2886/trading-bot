@@ -137,6 +137,81 @@ ohnehin in einer Login-Shell aus. Der Startbefehl nennt deshalb schlicht
 
 ---
 
+## ⛔⛔ Zweimal versucht, zweimal gescheitert: der Auftrag als Argument
+
+⚠️ **Wer das ein drittes Mal versuchen will, liest zuerst hier.**
+
+`claude --help` nennt in der ersten Zeile ein positionales Argument:
+
+```
+Usage: claude [options] [command] [prompt]
+Arguments:
+  prompt        Your prompt
+```
+
+**Das verführt zu dem Schluss, der Auftrag könne beim Start mitgehen — dann
+bräuchte es weder AppleScript-Tippen noch das Enter des Betreibers.** Der
+Schluss ist falsch.
+
+| Versuch | Umstände | Ergebnis |
+|---|---|---|
+| **19.09.2026**, v2.1.278 | `claude --remote-control "<Text>"` über Termius/SSH | ⛔ Sitzung startete, **Eingabezeile leer** (`ARBEITSWEISE` Abschnitt 14) |
+| **23.09.2026, 18:16**, v2.1.280 | Satz in einer **Datei**, `exec claude --remote-control "$(cat …)"`, über AppleScript — ⛔ **kein Termius im Spiel** | ⛔ Sitzung startete, **in der App leer**, kein Auftrag angekommen |
+
+⇒ ⚠️⚠️ **Der Verdacht von 2026-09-19 — „Termius hat die Anführungszeichen
+zerlegt" — ist damit WIDERLEGT.** Beim zweiten Versuch lief nichts über Termius,
+der Satz ging als Dateiinhalt in die Shell, und durch AppleScript lief nur der
+Dateipfad. Er kam trotzdem nicht an.
+
+⭐ **Die verbleibende Erklärung:** Die **interaktive** Sitzung (`--remote-control`)
+nimmt das positionale Argument nicht an. Es dürfte dem nicht-interaktiven Betrieb
+(`-p`/`--print`) vorbehalten sein — dort gäbe es aber keine Sitzung in der App
+und keine Fernsteuerung.
+
+### ⚠️ Und ein Fehler beim Messen, der dazugehört
+
+Der Wächter meldete beim zweiten Versuch **fälschlich Erfolg**:
+
+```
+Rechenzeit nach 20 s: 0:03.15 (PID 19953)
+⭐⭐ Der Auftrag ist als Argument angekommen - TB-92 LAEUFT bereits.
+```
+
+⚠️ **Die Schwelle „arbeitet ab 2 Sekunden Rechenzeit" war GERATEN, nicht
+gemessen.** Das blosse Hochfahren von Claude Code verbraucht rund drei Sekunden.
+Dadurch griff der eingebaute Rückfall nicht, der den Satz sonst ins Fenster
+gelegt hätte. **Gemessen wurde es erst, als der Betreiber sechs Minuten später
+eine leere Sitzung sah** — bis dahin standen 7 Sekunden Rechenzeit auf der Uhr,
+Zustand `S+`.
+
+⇒ ⭐ **Zwei Lehren, beide allgemein:**
+1. Eine Schwelle, die über „bestanden" entscheidet, wird **gemessen**, nicht
+   geschätzt — hier hätte ein einziger Leerlauf-Start die 3 Sekunden gezeigt.
+2. Rechenzeit allein sagt nicht, **was** gerechnet wurde. Der belastbare Beleg
+   ist, was im Fenster steht — und den kann nur der Betreiber liefern.
+
+---
+
+## ⭐ So wird es gehandhabt (Betreiberentscheidung 23.09.2026, 18:28)
+
+**Der Wächter öffnet das Fenster und legt den Auftrag hinein. Abgeschickt wird
+er vom Betreiber.** Das ist keine Notlösung mehr, sondern der Weg.
+
+| | |
+|---|---|
+| ⭐ **Der Wächter nimmt ab** | Terminal suchen · `cd` · Start · Anlaufzeit · Text einfügen · **sechs Wachen** davor |
+| ⚠️ **Beim Betreiber bleibt** | **ein** Abschicken |
+| **Wo** | In der Claude-App unter der **Gerätesitzung** (Laptop-Symbol). ⚠️ Sie trägt dort zunächst einen **erzeugten Gerätenamen** wie `macbookpro-binary-aurora`, **nicht** die TB-Nummer — der Titel entsteht erst aus dem abgeschickten Satz |
+| **Oder** | im Terminalfenster mit Enter |
+| **Rückfall** | Der Satz steht in `logs/sitzungswaechter/letzter_satz.txt` |
+
+⛔ **Was ausdrücklich NICHT mehr versucht wird:** den Auftrag als Argument
+mitzugeben (siehe oben, zweimal gescheitert) und den Wächter Enter drücken zu
+lassen (Betreiberentscheidung 23.09. Mittag — die Geräteanbindung untersagt
+Tastendrücke an ein Terminal, und der Wächter berührt diese Schranke schon).
+
+---
+
 ## ⚠️ Eine Lehre für den steuernden Chat, nicht für den Wächter
 
 **Die Brücken-VM ist nicht der Mac.** Ein `pgrep` dort meldete *null* laufende

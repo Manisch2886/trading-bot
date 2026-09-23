@@ -1667,7 +1667,10 @@ Aus den Fehlern von TB-15 und TB-16:
 
 ---
 
-## 15. Der Sitzungswächter — eine Datei startet eine Mac-Sitzung
+## 19. Der Sitzungswächter — eine Datei startet eine Mac-Sitzung
+
+⚠️ **Nummer berichtigt am 23.09.2026, 20:10.** Dieser Abschnitt trug seit seiner Anlage die Nummer **15**, die es in dieser Datei bereits gab — ein Fehler des steuernden Chats. Ergebnisdokumente von **TB-91, TB-92 und TB-93** verweisen noch unter der alten Nummer; gemeint ist dieser Abschnitt.
+
 
 ⭐ **Seit 23.09.2026.** Ergänzt Abschnitt 14; der Weg von Hand bleibt gültig.
 
@@ -1729,7 +1732,10 @@ Sitzung läuft" zum ersten Mal prüfbar statt geschätzt.**
 
 ---
 
-## 16. ⭐ Rückfragen an den Betreiber kommen als Auswahlkarte
+## 20. ⭐ Rückfragen an den Betreiber kommen als Auswahlkarte
+
+⚠️ **Nummer berichtigt am 23.09.2026, 20:10.** Dieser Abschnitt trug seit seiner Anlage die Nummer **16**, die es in dieser Datei bereits gab — ein Fehler des steuernden Chats. Ergebnisdokumente von **TB-91, TB-92 und TB-93** verweisen noch unter der alten Nummer; gemeint ist dieser Abschnitt.
+
 
 ⚠️ **Betreiberanweisung 23.09.2026, zum zweiten Mal:** *„kannst du mir zukünftig
 fragen per multiple choice stellen wie vereinbart"*.
@@ -1752,3 +1758,121 @@ Sprache" — die Frage war gestellt, aber nicht als Wahl erkennbar.*
 
 ⇒ **Gibt es nichts zu entscheiden, wird auch nicht gefragt.** Eine Auswahlkarte
 ohne echte Alternative ist eine Rückfrage, die Abschnitt 6d verbietet.
+
+---
+
+## 21. ⛔ Der Auftrag geht NICHT als Argument mit — zweimal gemessen
+
+⚠️ **Nummer berichtigt am 23.09.2026, 20:10.** Dieser Abschnitt trug seit seiner Anlage die Nummer **17**, die es in dieser Datei bereits gab — ein Fehler des steuernden Chats. Ergebnisdokumente von **TB-91, TB-92 und TB-93** verweisen noch unter der alten Nummer; gemeint ist dieser Abschnitt.
+
+
+⚠️⚠️ **Berichtigt Abschnitt 14.** Dort steht seit dem 19.09.2026, der Startbefehl
+`claude --remote-control "<Text>"` habe die Sitzung gestartet, **den Text aber
+nicht übergeben** — und es stünden drei Ursachen im Raum, darunter
+*„Anführungszeichen unterwegs zerlegt"*.
+
+⭐ **Diese Ursache ist am 23.09.2026 widerlegt.**
+
+| Versuch | Umstände | Ergebnis |
+|---|---|---|
+| **19.09.**, v2.1.278 | über **Termius/SSH** | ⛔ Eingabezeile leer |
+| **23.09., 18:16**, v2.1.280 | Satz in einer **Datei**, über **AppleScript**, ⛔ **kein Termius** | ⛔ Sitzung in der App **leer** |
+
+⇒ ⚠️ Beim zweiten Versuch konnte nichts zerlegt werden: Der Satz ging als
+Dateiinhalt in die Shell, durch AppleScript lief nur der Dateipfad.
+⭐ **Die verbleibende Erklärung:** Die **interaktive** Sitzung nimmt das
+positionale Argument aus `claude --help` nicht an; es dürfte dem
+nicht-interaktiven Betrieb (`-p`) vorbehalten sein — der hätte aber keine
+Sitzung in der App und keine Fernsteuerung.
+
+⛔ **Wird nicht ein drittes Mal versucht.** Wer es doch will, liest zuerst
+`docs/werkzeuge/sitzungswaechter/LIESMICH.md`.
+
+### ⭐ Betreiberentscheidung 23.09.2026, 18:28 — so wird es gehandhabt
+
+**Der Sitzungswächter öffnet das Fenster und legt den Auftrag hinein. Abgeschickt
+wird er vom Betreiber.** Das ist der Weg, keine Notlösung.
+
+| | |
+|---|---|
+| ⭐ Der Wächter nimmt ab | Terminal suchen · `cd` · Start · Anlaufzeit · Text einfügen · **sechs Wachen** davor |
+| ⚠️ Beim Betreiber bleibt | **ein** Abschicken |
+| **Wo** | Claude-App, **Gerätesitzung** (Laptop-Symbol) |
+| ⚠️ **Woran man sie erkennt** | Sie trägt dort zunächst einen **erzeugten Gerätenamen** (`macbookpro-binary-aurora`), **nicht** die TB-Nummer. ⭐ Der Titel entsteht erst aus dem **abgeschickten** Satz — wer nach „TB-92" sucht, findet nichts |
+| **Rückfall** | `logs/sitzungswaechter/letzter_satz.txt` |
+
+### ⚠️ Und eine Messlehre, die dazugehört
+
+Der Wächter meldete beim zweiten Versuch **fälschlich Erfolg** — die Schwelle
+„arbeitet ab 2 Sekunden Rechenzeit" war **geraten**. Das blosse Hochfahren
+verbraucht drei. Der eingebaute Rückfall griff deshalb nicht.
+
+⇒ ⭐ **Zwei Sätze, die über diesen Fall hinausgehen:**
+1. Eine Schwelle, die über „bestanden" entscheidet, wird **gemessen**, nicht
+   geschätzt.
+2. Rechenzeit sagt nicht, **was** gerechnet wurde. Der belastbare Beleg ist,
+   was im Fenster steht.
+
+---
+
+## 22. Drei Festlegungen zum Betrieb der Mac-Sitzungen (23.09.2026)
+
+### 22.1 ⭐ Aufwandsstufe: **hoch**
+
+**Betreiberentscheidung 23.09.2026.** Für die Mac-Sitzungen wird die
+Aufwandsstufe **„Hoch"** hinterlegt.
+
+⭐ **Der Grund steht in der Sache, nicht im Komfort:** Die Aufträge dieser Phase
+sind Registerarbeit — append-only, zeichengleiche Zitate, Marken am alten Ort,
+`numstat` zweite Spalte `0`. Ein Fehler darin ist nicht teuer zu **finden**,
+sondern teuer zu **heilen**: Das Register wird nicht umgeschrieben, sondern
+berichtigt, und jede Berichtigung ist ein Abschnitt, den künftig jeder mitlesen
+muss. Eine Sitzung, die eine Stunde länger misst, ist billiger als ein
+Registerabschnitt, der einen Irrtum trägt.
+
+⚠️ **Was daraus folgt, und was nicht:** Hoher Aufwand heisst gründlicher messen,
+nicht mehr bauen. ⛔ Er ist **kein** Freibrief, über den Auftrag hinauszugehen.
+
+### 22.2 ⭐⭐ Der Wächter kann messen, ohne zu starten
+
+**Gemessen am 23.09.2026, 17:42.** Die Vorbedingungen des Sitzungswächters
+(Abschnitt 19) laufen in fester Reihenfolge. Die Prüfung **„läuft schon eine
+claude-Sitzung im Repo?"** kommt **vor** der Prüfung „steht die Nummer in
+`AKTUELLER_AUFTRAG.md`?".
+
+⇒ ⭐ **Ein Auslöser mit einer gültigen, aber nicht eingetragenen TB-Nummer ist
+eine Sonde:** Der Wächter misst die Prozesse, schreibt das Ergebnis ins
+Protokoll — und bricht danach folgenlos ab, ohne ein Fenster zu öffnen.
+
+```
+docs/auftraege/_ausloeser/starte_TB-99
+```
+
+⭐ **Wozu das gut ist:** Der steuernde Chat arbeitet aus der Brücken-VM. Von dort
+sind die Prozesse des Macs **nicht** sichtbar — das war am 23.09. schon einmal
+eine Fehlmessung („null Sitzungen", während eine lief). Die Sonde ist der einzige
+Weg, die stehende Regel *„nichts nach `docs/` schreiben, solange eine Sitzung
+läuft"* **zu messen statt zu hoffen**.
+
+⚠️ **Die Nummer muss gültig geformt und im Zeiger unbekannt sein.** Ein
+ungültiger Name (etwa `starte_pruefung`) wird von der Namensschranke abgewiesen,
+**bevor** gemessen wird, und taugt deshalb nicht. `TB-99` ist dafür reserviert.
+
+### 22.3 ⛔ Der eine Klick bleibt — dreifach gemessen
+
+**Betreiberfrage 23.09.2026:** *„Können wir im Zuge der TB-Automatisierung
+lediglich den einen Klick erlauben?"* **Gemessen: nein.**
+
+| Weg | Befund |
+|---|---|
+| Berechtigungsstufe für Terminal auf `read` senken | ⛔ Terminals und Entwicklungsumgebungen *„can only be granted in 'click' mode"* — die Stufe ist nicht feiner einstellbar |
+| Kurzbefehle / Skripteditor statt Terminal | ⛔ dieselbe Stufe |
+| Die Claude-App selbst ansteuern | ⛔ nicht ansteuerbar |
+| Den Auftrag als Argument übergeben, damit kein Enter nötig ist | ⛔ zweimal gescheitert (Abschnitt 21) |
+
+⇒ **Der Auslöser nimmt dem Betreiber das Tippen ab, nicht das Bestätigen.** Ein
+Klick pro Sitzung bleibt, und das ist die richtige Stelle für ihn: Er ist der
+Punkt, an dem ein Mensch sieht, welcher Auftrag anläuft.
+
+⭐ *Eine Automatisierung, die auch die Bestätigung verschluckt, hätte keine
+Wache mehr — und eine Wache, die niemand sieht, ist keine.*
