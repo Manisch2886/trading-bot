@@ -141,14 +141,6 @@
       "Edit(.env)",
       "Write(**/.env)",
       "Edit(**/.env)",
-      "Write(research/vorregistrierung/registerdaten.py)",
-      "Edit(research/vorregistrierung/registerdaten.py)",
-      "Write(research/vorregistrierung/faltenplan.py)",
-      "Edit(research/vorregistrierung/faltenplan.py)",
-      "Write(research/vorregistrierung/auswertung.py)",
-      "Edit(research/vorregistrierung/auswertung.py)",
-      "Write(research/vorregistrierung/benchmark.py)",
-      "Edit(research/vorregistrierung/benchmark.py)",
       "Bash(git commit --amend:*)",
       "Bash(git rebase:*)",
       "Bash(git filter-branch:*)",
@@ -162,6 +154,16 @@
       "Bash(shred:*)",
       "Bash(mkfifo:*)",
       "Bash(chown:*)"
+    ],
+    "ask": [
+      "Write(research/vorregistrierung/registerdaten.py)",
+      "Edit(research/vorregistrierung/registerdaten.py)",
+      "Write(research/vorregistrierung/faltenplan.py)",
+      "Edit(research/vorregistrierung/faltenplan.py)",
+      "Write(research/vorregistrierung/auswertung.py)",
+      "Edit(research/vorregistrierung/auswertung.py)",
+      "Write(research/vorregistrierung/benchmark.py)",
+      "Edit(research/vorregistrierung/benchmark.py)"
     ]
   }
 }

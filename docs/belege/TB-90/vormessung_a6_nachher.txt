@@ -1,0 +1,4 @@
+=== Fall gegenprobe (2026-09-23T07:57:22Z)
+sha256 benchmark_drawdowns.json in der Kopie: a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee
+TB-30a - Selbsttest der Vorregistrierung
+  Teil A ...

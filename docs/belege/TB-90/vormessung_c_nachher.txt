@@ -1,0 +1,20 @@
+| Bot | Tabelle | alle: Einstufung | fehlt in Tabelle | nur in Tabelle | sel: Einstufung | Bestaetigung Plan | Bestaetigung Tabelle |
+|---|---|---|---|---|---|---|---|
+| `elliott_wave` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026-2027 | gleich | `2026-01-01/2026-09-01` | `2026-2027` |
+| `elliott_wave` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2026-2027 | gleich | `2026-01-01/2026-09-01` | `2026-2027` |
+| `t3_supertrend` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `t3_supertrend` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2018, 2026 | Uebermenge | `2026-01-01/2026-09-01` | `2026` |
+| `rsi2_crypto` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `rsi2_crypto` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `turtle_soup_crypto` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `turtle_soup_crypto` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `volatility_breakout_crypto` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `volatility_breakout_crypto` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `elliott_wave_stocks` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `elliott_wave_stocks` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `rsi2_mean_reversion` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `rsi2_mean_reversion` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `turtle_soup_stocks` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `turtle_soup_stocks` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `volatility_breakout` | `bd_tb72.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
+| `volatility_breakout` | `bd_vt.json` | verschieden | 2026-01-01/2026-09-01 | 2026 | gleich | `2026-01-01/2026-09-01` | `2026` |
