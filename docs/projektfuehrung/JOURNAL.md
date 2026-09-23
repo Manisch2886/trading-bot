@@ -8703,6 +8703,42 @@ löschen (rm/mv in der Sitzung abgelehnt).
 
 ---
 
+## CW — TB-95: Testannahmen folgen dem Register — G6 und H3 aus dem Faltenplan, Test 165/165 grün; die neun TB-24-Listen gehen über die Faltenlänge ein (23.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-95_testannahmen_und_lesehaken.md`*
+
+**Quelle:** Mac-Sitzung **TB-95**, 23.09.2026, Eingang `4faef05`. Commits `b83105b`
+(Schritt 0), `9e2a071` (Block A/B), `069370d` (Block D) und der Abgabe-Commit. Belege
+`docs/belege/TB-95/`. Grundlage Fable 23a (Abschnitt 2) und 23f (Abschnitte 5 und 6).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **A** | G6 war nur für `elliott_wave` rot. Die Sache aus 5.1 Nr. 4 ist bei allen neun erfüllt. Bei H3 treffen alle vier Namen (Erwartung „null“ widerlegt); die Probe beisst nicht, weil vier Nullen bei neun Selektionsfalten den Median nicht verschieben (gerechnet: ab k = 5) |
+| ⭐ **B** | G6 liest die Jahre aus dem Registertext und rechnet die Abdeckung aus den Faltengrenzen. H3 nimmt eine strikte Mehrheit der Selektionsfalten aus dem Plan (5 von 9). Die Gegenproben greifen: B1 b/c/d, und B2 mit leerer Menge scheitert |
+| ⭐ **C** | **165/165, rc 0, 534 s**. Nur `test_vorregistrierung.py` geändert (79/25), alle Sperrlistenhashes gleich, Sonde 0 Befunde / 15 Pfade gleich / Ausgang 2 (R6) |
+| ⭐ **D** | `benchmark.py::je_bot` → `fp.faltenplan` → `faltenlaenge_jahre` öffnet die neun Listen. Modus-Lauf `64fb2912…` bytegleich (fünfte Wiederholung). Die Störprobe zeigt: eine Zeile → bytegleich, Schwellenübertritt → verschieden. Die Inhalte gehen ein, aber nur über die Faltenlänge. Quelle `78e2bc6` (TB-24), nicht im Snapshot |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Eine Störprobe an einer Schwelle braucht zwei Stufen.** Wirkt eine Eingabe nur über eine Schwellenentscheidung, meldet eine kleine Störung „kein Einfluss“, und das ist falsch. Erst der Datenfluss sagt, wo die Schwelle liegt; dann eine Störung darunter und eine darüber |
+| ⭐ | **Eine Mutationsprobe über einen Median braucht eine strikte Mehrheit**, und diese Zahl muss aus der Faltenzahl kommen, nicht aus einem Kommentar. Gegenprobe mit leerer Menge: Die Probe muss dann scheitern |
+| ⭐ | **Die Quelle, die ein Auftrag nennt, am Register prüfen.** A1 nannte `faltenplan.json`, doch das Register (30.2 (1)) sagt, dass der Lauf diese Datei nicht liest. Gemessen wird dann beides, massgeblich ist, was der Lauf liest |
+| | Eine Prüfung mit `<=`, deren Text „unter“ sagt, kann nie beissen (F4) |
+
+### Was offen bleibt
+
+Registerabschnitt 40 (Vorschlag im Ergebnisdokument, Abschnitt 5, braucht Fables Kenntnisnahme) ·
+Fable: Einordnung der neun Listen nach 23d, D/F/`beispieldaten.py`-Literale, F4 · TB-96
+(`messgroessen.json`).
+
+*Geschrieben 23.09.2026 von der Mac-Sitzung TB-95. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
