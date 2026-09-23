@@ -1,0 +1,35 @@
+# TB-91 Schritt 0a - Umgebungspruefung, gemessen 2026-09-23T10:01:05+00:00
+
+## (a) Repo-Wurzel
+$ pwd
+/home/user/trading-bot
+$ git rev-parse --show-toplevel
+/home/user/trading-bot
+$ git --no-optional-locks log --oneline -1
+d23bdd1 Doku: Auftrag TB-91 (benchmark.py nach 36.1 absichern, Neurechnung), Anfrage 23c an Fable, ARBEITSWEISE Abschnitt 14, Zeiger auf TB-91
+$ git merge-base --is-ancestor 40bda97 HEAD
+ja (Rueckgabe 0)
+$ uname -a
+Linux vm 6.18.44-fc-v37 #1 SMP PREEMPT_DYNAMIC @0 x86_64 x86_64 x86_64 GNU/Linux
+
+## (b) trading-env
+$ trading-env/bin/python3 --version
+/bin/bash: line 23: trading-env/bin/python3: No such file or directory
+$ ls -d trading-env
+ls: cannot access 'trading-env': No such file or directory
+$ python3 --version  (System-Python der Sitzung)
+Python 3.11.15
+$ python3 -c "import binance, yfinance, pandas"
+ModuleNotFoundError: No module named 'binance'
+
+## (c) Berechtigungen
+$ .claude/settings.local.json, Laengen der Listen
+{'allow': 83, 'deny': 68, 'ask': 8}
+ask = ['Write(research/vorregistrierung/registerdaten.py)', 'Edit(research/vorregistrierung/registerdaten.py)', 'Write(research/vorregistrierung/faltenplan.py)', 'Edit(research/vorregistrierung/faltenplan.py)', 'Write(research/vorregistrierung/auswertung.py)', 'Edit(research/vorregistrierung/auswertung.py)', 'Write(research/vorregistrierung/benchmark.py)', 'Edit(research/vorregistrierung/benchmark.py)']
+
+## Hashes (unveraendert gelassen, nur gemessen)
+3960375a539de8324ccfafaa42596a056fb5dd5c154cd2e05c0ba6a634f3611b  research/vorregistrierung/benchmark.py
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+e4ba341d3177d455b1c3151f4bb2e0cf7f16fbd516d9b30edd45d0c7dc005e56  research/vorregistrierung/ergebnisse/benchmark_drawdowns_tb72.json
