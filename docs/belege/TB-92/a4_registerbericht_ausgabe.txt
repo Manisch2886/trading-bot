@@ -1,0 +1,252 @@
+<!-- ERZEUGT: registerbericht.py -- nicht von Hand aendern -->
+
+### Die gemessenen Groessen, auf denen jede Grenze ruht
+
+Erzeugt von `research/vorregistrierung/messgroessen.py` aus `data/` und `config/` — **keine Bot-Ergebnisse.**
+
+| Zeitrahmen | Titel | σ je Balken | Median 20-Balken-Spanne | ATR(14) | Median Schluss→Tief |
+|---|---:|---:|---:|---:|---:|
+| `aktien_1d` | 150 | 2,2218 % | 11,381 % | 2,34 % | 0,9158 % |
+| `krypto_1d` | 23 | 5,2782 % | 34,2726 % | 7,2669 % | 2,6836 % |
+| `krypto_1h` | 24 | 1,1082 % | 5,846 % | 1,2662 % | 0,501 % |
+| `krypto_4h` | 24 | 2,178 % | 12,1902 % | 2,6952 % | 1,0537 % |
+
+Round-Trip-Kosten: **0,3 %** (0,1 % Gebühr + 0,05 % Slippage je Order, Ein- und Ausstieg).
+
+### Die neun Raster
+
+| Bot | Achse | Stufen | Untergrenze | Obergrenze |
+|---|---|---|---|---|
+| `elliott_wave` | `deviation_pct` | 1,108, 1,929, 3,358, 5,846 | *kosten* | *volatilitaet* |
+| `elliott_wave` | `stop_loss_pct` | 2,639, 4,796, 8,714, 15,835 | *volatilitaet* | *volatilitaet* |
+| `elliott_wave` | `take_profit_fib` | 0,236, 0,382, 0,5, 0,618, kein | *methode* | *methode* |
+| `t3_supertrend` | `t3_fast_length` | 2, 12, 21, 31 | *datenfrequenz* | *volatilitaet* |
+| `t3_supertrend` | `t3_slow_length` | 2, 12, 21, 31 | *datenfrequenz* | *volatilitaet* |
+| `t3_supertrend` | `adx_threshold` | 24,948, 27,825, 31,492, 36,492 | *volatilitaet* | *volatilitaet* |
+| `t3_supertrend` | `stop_loss_pct` | 2,639, 4,796, 8,714, 15,835 | *volatilitaet* | *volatilitaet* |
+| `t3_supertrend` | `max_concurrent_positions` | 2, 5, 7, 10 | *volatilitaet* | *ableitung* |
+| `rsi2_crypto` | `rsi_threshold` | 0,899, 1,729, 3,728, 7,655 | *volatilitaet* | *volatilitaet* |
+| `rsi2_crypto` | `sma_trend_filter` | 42, 123, 204, 284, 365 | *volatilitaet* | *datenfrequenz* |
+| `rsi2_crypto` | `stop_loss_pct` | 2,639, 4,796, 8,714, 15,835, kein | *volatilitaet* | *volatilitaet* |
+| `rsi2_crypto` | `max_concurrent_positions` | 2, 5, 7, 10 | *volatilitaet* | *ableitung* |
+| `turtle_soup_crypto` | `donchian_period` | 5, 17, 30, 42 | *haltedauer* | *volatilitaet* |
+| `turtle_soup_crypto` | `stop_mode` | 2,639, structural, 4,796, 8,714, 15,835, kein | *volatilitaet* | *volatilitaet* |
+| `turtle_soup_crypto` | `max_concurrent_positions` | 2, 5, 7, 10 | *volatilitaet* | *ableitung* |
+| `volatility_breakout_crypto` | `bb_squeeze_percentile` | 5, 20, 35, 50 | *datenfrequenz* | *ableitung* |
+| `volatility_breakout_crypto` | `bb_lookback` | 20, 135, 250, 365 | *methode* | *datenfrequenz* |
+| `volatility_breakout_crypto` | `stop_loss_pct` | 2,639, 4,796, 8,714, 15,835, kein | *volatilitaet* | *volatilitaet* |
+| `volatility_breakout_crypto` | `max_concurrent_positions` | 2, 5, 7, 10 | *volatilitaet* | *ableitung* |
+| `elliott_wave_stocks` | `deviation_pct` | 2,222, 3,83, 6,602, 11,381 | *kosten* | *volatilitaet* |
+| `elliott_wave_stocks` | `stop_loss_pct` | 1,111, 2,019, 3,668, 6,665 | *volatilitaet* | *volatilitaet* |
+| `elliott_wave_stocks` | `take_profit_fib` | 0,236, 0,382, 0,5, 0,618, kein | *methode* | *methode* |
+| `elliott_wave_stocks` | `max_concurrent_positions` | 2, 5, 7, 10 | *volatilitaet* | *ableitung* |
+| `rsi2_mean_reversion` | `rsi_threshold` | 0,767, 1,527, 3,906, 8,225 | *volatilitaet* | *volatilitaet* |
+| `rsi2_mean_reversion` | `sma_trend_filter` | 26, 82, 139, 196, 252 | *volatilitaet* | *datenfrequenz* |
+| `rsi2_mean_reversion` | `stop_loss_pct` | 1,111, 2,019, 3,668, 6,665, kein | *volatilitaet* | *volatilitaet* |
+| `rsi2_mean_reversion` | `max_concurrent_positions` | 2, 8, 14, 20 | *volatilitaet* | *ableitung* |
+| `turtle_soup_stocks` | `donchian_period` | 11, 16, 21, 26 | *haltedauer* | *volatilitaet* |
+| `turtle_soup_stocks` | `stop_mode` | structural, 1,111, 2,019, 3,668, 6,665, kein | *volatilitaet* | *volatilitaet* |
+| `turtle_soup_stocks` | `max_concurrent_positions` | 2, 18, 34, 50 | *volatilitaet* | *ableitung* |
+| `volatility_breakout` | `bb_squeeze_percentile` | 5, 20, 35, 50 | *datenfrequenz* | *ableitung* |
+| `volatility_breakout` | `bb_lookback` | 20, 97, 175, 252 | *methode* | *datenfrequenz* |
+| `volatility_breakout` | `stop_loss_pct` | 1,111, 2,019, 3,668, 6,665, kein | *volatilitaet* | *volatilitaet* |
+| `volatility_breakout` | `max_concurrent_positions` | 2, 5, 7, 10 | *volatilitaet* | *ableitung* |
+
+### Die Grenzsätze
+
+Ein Satz je Grenze, der **kein Ergebnis nennt** — gestützt nur auf Handelskosten, Datenfrequenz, Volatilität des Universums oder die Haltedauer-Hypothese des Bots. Gleiche Achsen tragen in der Aktien- und der Krypto-Variante **dieselbe Regel**, nicht denselben Wert; sie stehen deshalb nur einmal.
+
+**`deviation_pct` — unten** *(Grundlage: kosten)*
+
+> Eine Deviation unter dem Zweifachen der Round-Trip-Kosten ist Rauschen, dessen Bewegung die Kosten nicht traegt; unter einem Balken-Sigma laesst sich ein Wendepunkt ausserdem nicht vom einzelnen Balken trennen. Es gilt die hoehere der beiden Schranken.
+
+**`deviation_pct` — oben** *(Grundlage: volatilitaet)*
+
+> Eine Deviation ueber dem Median der Zwanzig-Balken-Spanne erzeugt kaum noch Muster - die Bewegung, die sie verlangt, kommt im typischen Fenster nicht vor.
+
+**`stop_loss_pct` — unten** *(Grundlage: volatilitaet)*
+
+> Ein Stop enger als ein halbes Tages-Sigma des Universums wird vom gewoehnlichen Tagesrauschen ausgeloest und misst keine Strategieannahme mehr.
+
+**`stop_loss_pct` — oben** *(Grundlage: volatilitaet)*
+
+> Ein Stop weiter als drei Tages-Sigma des Universums wird im typischen Verlauf nicht mehr erreicht - er ist dann keine Begrenzung, sondern eine Verzierung.
+
+**`take_profit_fib` — achse** *(Grundlage: methode)*
+
+> Die Stufen sind die Retracement-Verhaeltnisse der Elliott-Methode, aufsteigend, und als Grenzfall nach oben das Weglassen des Ziels. Sie sind eine Eigenschaft des Verfahrens, keine Einstellung.
+
+**`t3_fast_length` — unten** *(Grundlage: datenfrequenz)*
+
+> Unter zwei Balken glaettet eine Glaettung nicht mehr - sie wiederholt den Kurs.
+
+**`t3_fast_length` — oben** *(Grundlage: volatilitaet)*
+
+> Ueber diesen Horizont ist eine typische Bewegung ausgespielt: so viele Balken braucht das Balken-Sigma, um auf den Median der Zwanzig-Balken-Spanne anzuwachsen. Die Zahl steht bewusst ausgeschrieben - eine Ziffer im Grenzsatz koennte mit einem Live-Wert zusammenfallen, und die maschinelle Pruefung nimmt das nicht hin.
+
+**`adx_threshold` — achse** *(Grundlage: volatilitaet)*
+
+> Die Schwelle ist als Quantil der gemessenen ADX-Verteilung des Universums gesetzt: unter dem Median verwirft der Filter nichts, ueber dem Vierfuenftel-Quantil verwirft er mehr als vier Fuenftel aller Balken und laesst zu wenige Einstiege uebrig, um ihn zu bewerten.
+
+**`max_concurrent_positions` — unten** *(Grundlage: volatilitaet)*
+
+> Bei einem Limit von einer Position ist die Kapitalkurve die Kurve eines einzelnen Titels; die Volatilitaet des Universums geht dann ungedaempft durch, und das Limit misst die Titelauswahl statt der Streuung.
+
+**`max_concurrent_positions` — oben** *(Grundlage: ableitung)*
+
+> Mehr Positionen als Kehrwert der Positionsgroesse sind nicht finanzierbar; ein Rasterpunkt darueber ist derselbe Punkt.
+
+**`rsi_threshold` — achse** *(Grundlage: volatilitaet)*
+
+> Die Schwelle ist als Quantil der gemessenen RSI(2)-Verteilung des Universums gesetzt: unten das Quantil, unter dem im Mittel nur jeder hundertste Balken liegt (seltener laesst sich kein Einstieg mehr bewerten), oben das Quantil, ab dem jeder zehnte Balken ein Signal waere und die Schwelle nichts mehr aussortiert.
+
+**`sma_trend_filter` — unten** *(Grundlage: volatilitaet)*
+
+> Ein Trendfilter kuerzer als der Horizont, ueber den eine typische Bewegung ausgespielt ist, folgt dem eigenen Trade statt dem Marktzustand.
+
+**`sma_trend_filter` — oben** *(Grundlage: datenfrequenz)*
+
+> Ein Trendfilter ueber mehr als ein Kalenderjahr misst kein Regime mehr, sondern die Gesamtdrift des Universums.
+
+**`stop_loss_pct` — zusatzstufe** *(Grundlage: methode)*
+
+> Die Strategie ist in ihrer Urfassung ohne Stop beschrieben; 'kein Stop' ist der Grenzfall der Achse nach oben und steht deshalb als oberste Stufe, nicht als eigene Dimension.
+
+**`donchian_period` — unten** *(Grundlage: haltedauer)*
+
+> Ein Rueckblick kuerzer als die gemessene Median-Haltedauer dieses Bots ueberlebt die eigene Position nicht - das Muster, das den Einstieg begruendet, ist beim Ausstieg schon nicht mehr im Fenster.
+
+**`stop_mode` — zusatzstufe_gemessen** *(Grundlage: volatilitaet)*
+
+> Der Stop auf dem Tief des Setup-Balkens hat keine eingestellte Weite; er steht auf der Achse an der Stelle, die seiner GEMESSENEN Median-Weite entspricht - dem Median des Abstands Schluss zu Tief desselben Balkens. Wo das ist, rechnet das Register aus, es behauptet es nicht.
+
+**`bb_squeeze_percentile` — unten** *(Grundlage: datenfrequenz)*
+
+> Unterhalb von hundert geteilt durch das Bollinger-Fenster waehlt das Quantil weniger als einen Balken aus - dort ist 'Verengung' keine Aussage ueber das Fenster mehr.
+
+**`bb_squeeze_percentile` — oben** *(Grundlage: ableitung)*
+
+> Ueber dem Median ist die Verengung keine mehr: die Haelfte aller Balken erfuellte die Bedingung.
+
+**`bb_lookback` — unten** *(Grundlage: methode)*
+
+> Ein Rueckblick, der kuerzer ist als das Bollinger-Fenster selbst, vergleicht die Bandbreite mit sich selbst.
+
+**`bb_lookback` — oben** *(Grundlage: datenfrequenz)*
+
+> Ueber ein Kalenderjahr hinaus vergleicht der Rueckblick Marktphasen, nicht Verengungen.
+
+
+| Bot | Zellen dieses Laufs | N historisch | N nominal |
+|---|---:|---:|---:|
+| `elliott_wave` | 80 | 252 | 332 |
+| `t3_supertrend` | 384 | 81 | 465 |
+| `rsi2_crypto` | 400 | 18 | 418 |
+| `turtle_soup_crypto` | 96 | 12 | 108 |
+| `volatility_breakout_crypto` | 320 | 4 | 324 |
+| `elliott_wave_stocks` | 320 | 264 | 584 |
+| `rsi2_mean_reversion` | 400 | 6 | 406 |
+| `turtle_soup_stocks` | 96 | 12 | 108 |
+| `volatility_breakout` | 320 | 4 | 324 |
+| **Summe** | **2416** | **653** | **3069** |
+
+### Der Faltenplan
+
+Go-Live-Schnitt: **2026-09-01** (ausschliesslich). Mindesttraining vor der ersten Falte: **4 Jahre**.
+
+| Bot | Markt | Faltenlänge | gefundene Trades/Jahr | Purge = Embargo | Selektionsfalten | Bestätigungsperiode |
+|---|---|---:|---:|---:|---|---|
+| `elliott_wave` | krypto | 2 J | 26 | 11 Tage | 2018-2019, 2020-2021, 2022-2023, 2024-2025 | 2026-01-01/2026-09-01 |
+| `t3_supertrend` | krypto | 1 J | 193,2 | 23 Tage | 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 2026-01-01/2026-09-01 |
+| `rsi2_crypto` | krypto | 1 J | 134 | 10 Tage | 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 2026-01-01/2026-09-01 |
+| `turtle_soup_crypto` | krypto | 1 J | 314,5 | 10 Tage | 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 2026-01-01/2026-09-01 |
+| `volatility_breakout_crypto` | krypto | 1 J | 53,3 | 15 Tage | 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 2026-01-01/2026-09-01 |
+| `elliott_wave_stocks` | aktien | 1 J | 50,9 | 134 Tage | 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 2026-01-01/2026-09-01 |
+| `rsi2_mean_reversion` | aktien | 1 J | 537,3 | 18 Tage | 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 2026-01-01/2026-09-01 |
+| `turtle_soup_stocks` | aktien | 1 J | 1202,2 | 18 Tage | 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 2026-01-01/2026-09-01 |
+| `volatility_breakout` | aktien | 1 J | 456,7 | 26 Tage | 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 | 2026-01-01/2026-09-01 |
+
+### Die vorab berechneten Benchmark-Drawdowns
+
+Je Falte, je Exposure-Stufe. Die vollständige Tabelle (1 % bis 100 % in Schritten von 1 %) steht in `research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json`; hier vier Stützstellen.
+
+**krypto** (`config/top25_symbols.txt`) — gilt für alle Bots dieses Marktes mit gleichem Faltenplan:
+
+| Falte | Rolle | Titel (point-in-time) | Handelstage | DD @ 25 % | DD @ 50 % | DD @ 75 % | DD @ 100 % |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 2018-2019 | selektion | 3 | 133 | -11,85 % | -22,84 % | -32,94 % | -42,14 % |
+| 2020-2021 | selektion | 9 | 731 | -18,1 % | -34,11 % | -48,15 % | -60,35 % |
+| 2022-2023 | selektion | 13 | 730 | -19,9 % | -38,11 % | -53,89 % | -66,92 % |
+| 2024-2025 | selektion | 17 | 731 | -14,74 % | -28,31 % | -40,58 % | -51,46 % |
+| 2026-01-01/2026-09-01 | bestaetigung | 18 | 243 | -14,16 % | -26,61 % | -37,5 % | -47 % |
+| **DD_Toleranz** | *Median über die Selektionsfalten* | | | -16,42 % | -31,21 % | -44,36 % | -55,91 % |
+
+**aktien** (`config/sp500_top150.txt`) — gilt für alle Bots dieses Marktes mit gleichem Faltenplan:
+
+| Falte | Rolle | Titel (point-in-time) | Handelstage | DD @ 25 % | DD @ 50 % | DD @ 75 % | DD @ 100 % |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 2017 | selektion | 135 | 251 | -0,59 % | -1,18 % | -1,78 % | -2,37 % |
+| 2018 | selektion | 136 | 251 | -4,93 % | -9,69 % | -14,28 % | -18,69 % |
+| 2019 | selektion | 137 | 252 | -1,84 % | -3,66 % | -5,46 % | -7,23 % |
+| 2020 | selektion | 137 | 253 | -9,77 % | -18,93 % | -27,48 % | -35,42 % |
+| 2021 | selektion | 139 | 252 | -1,19 % | -2,38 % | -3,56 % | -4,74 % |
+| 2022 | selektion | 139 | 251 | -5,07 % | -10,09 % | -15,06 % | -19,96 % |
+| 2023 | selektion | 140 | 250 | -2,18 % | -4,33 % | -6,45 % | -8,55 % |
+| 2024 | selektion | 142 | 252 | -1,74 % | -3,47 % | -5,17 % | -6,86 % |
+| 2025 | selektion | 145 | 250 | -4,45 % | -8,77 % | -12,94 % | -16,99 % |
+| 2026-01-01/2026-09-01 | bestaetigung | 147 | 166 | -1,6 % | -3,19 % | -4,76 % | -6,31 % |
+| **DD_Toleranz** | *Median über die Selektionsfalten* | | | -2,18 % | -4,33 % | -6,45 % | -8,55 % |
+
+**krypto** (`config/top25_symbols.txt`) — gilt für alle Bots dieses Marktes mit gleichem Faltenplan:
+
+| Falte | Rolle | Titel (point-in-time) | Handelstage | DD @ 25 % | DD @ 50 % | DD @ 75 % | DD @ 100 % |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 2019 | selektion | 6 | 365 | -17,27 % | -32,59 % | -45,91 % | -57,29 % |
+| 2020 | selektion | 9 | 366 | -19,45 % | -36,24 % | -50,58 % | -62,71 % |
+| 2021 | selektion | 10 | 365 | -17,26 % | -33,43 % | -48 % | -60,65 % |
+| 2022 | selektion | 13 | 365 | -21,51 % | -40,41 % | -56,4 % | -69,64 % |
+| 2023 | selektion | 13 | 365 | -8,49 % | -16,46 % | -23,93 % | -30,9 % |
+| 2024 | selektion | 17 | 366 | -9,28 % | -18,54 % | -27,63 % | -36,38 % |
+| 2025 | selektion | 18 | 365 | -15 % | -28,45 % | -40,37 % | -50,81 % |
+| 2026-01-01/2026-09-01 | bestaetigung | 20 | 243 | -14,34 % | -26,91 % | -37,89 % | -47,5 % |
+| **DD_Toleranz** | *Median über die Selektionsfalten* | | | -17,26 % | -32,59 % | -45,91 % | -57,29 % |
+
+**aktien** (`config/sp500_top150.txt`) — gilt für alle Bots dieses Marktes mit gleichem Faltenplan:
+
+| Falte | Rolle | Titel (point-in-time) | Handelstage | DD @ 25 % | DD @ 50 % | DD @ 75 % | DD @ 100 % |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 2018 | selektion | 136 | 251 | -4,93 % | -9,69 % | -14,28 % | -18,69 % |
+| 2019 | selektion | 137 | 252 | -1,84 % | -3,66 % | -5,46 % | -7,23 % |
+| 2020 | selektion | 137 | 253 | -9,77 % | -18,93 % | -27,48 % | -35,42 % |
+| 2021 | selektion | 139 | 252 | -1,19 % | -2,38 % | -3,56 % | -4,74 % |
+| 2022 | selektion | 139 | 251 | -5,07 % | -10,09 % | -15,06 % | -19,96 % |
+| 2023 | selektion | 140 | 250 | -2,18 % | -4,33 % | -6,45 % | -8,55 % |
+| 2024 | selektion | 142 | 252 | -1,74 % | -3,47 % | -5,17 % | -6,86 % |
+| 2025 | selektion | 145 | 250 | -4,45 % | -8,77 % | -12,94 % | -16,99 % |
+| 2026-01-01/2026-09-01 | bestaetigung | 147 | 166 | -1,6 % | -3,19 % | -4,76 % | -6,31 % |
+| **DD_Toleranz** | *Median über die Selektionsfalten* | | | -3,32 % | -6,55 % | -9,7 % | -12,77 % |
+
+`t3_supertrend` teilt Universum und Faltenplan mit den übrigen krypto-Bots — dieselbe Tabelle.
+
+**krypto** (`config/top25_symbols.txt`) — gilt für alle Bots dieses Marktes mit gleichem Faltenplan:
+
+| Falte | Rolle | Titel (point-in-time) | Handelstage | DD @ 25 % | DD @ 50 % | DD @ 75 % | DD @ 100 % |
+|---|---|---:|---:|---:|---:|---:|---:|
+| 2018 | selektion | 2 | 1 | -0,9 % | -1,8 % | -2,7 % | -3,6 % |
+| 2019 | selektion | 6 | 365 | -17,27 % | -32,59 % | -45,91 % | -57,29 % |
+| 2020 | selektion | 9 | 366 | -19,45 % | -36,24 % | -50,58 % | -62,71 % |
+| 2021 | selektion | 10 | 365 | -17,26 % | -33,43 % | -48 % | -60,65 % |
+| 2022 | selektion | 13 | 365 | -21,51 % | -40,41 % | -56,4 % | -69,64 % |
+| 2023 | selektion | 13 | 365 | -8,49 % | -16,46 % | -23,93 % | -30,9 % |
+| 2024 | selektion | 17 | 366 | -9,28 % | -18,54 % | -27,63 % | -36,38 % |
+| 2025 | selektion | 18 | 365 | -15 % | -28,45 % | -40,37 % | -50,81 % |
+| 2026-01-01/2026-09-01 | bestaetigung | 20 | 243 | -14,34 % | -26,91 % | -37,89 % | -47,5 % |
+| **DD_Toleranz** | *Median über die Selektionsfalten* | | | -16,13 % | -30,52 % | -43,14 % | -54,05 % |
+
+`turtle_soup_stocks` teilt Universum und Faltenplan mit den übrigen aktien-Bots — dieselbe Tabelle.
+
+`volatility_breakout` teilt Universum und Faltenplan mit den übrigen aktien-Bots — dieselbe Tabelle.
+
+`volatility_breakout_crypto` teilt Universum und Faltenplan mit den übrigen krypto-Bots — dieselbe Tabelle.
+
+<!-- ENDE ERZEUGT -->

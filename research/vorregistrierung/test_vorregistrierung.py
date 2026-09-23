@@ -79,8 +79,7 @@ def _plan():
 
 
 def _tabellen():
-    with open(os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json"),
-              encoding="utf-8") as f:
+    with open(aw.BENCHMARK_TABELLE, encoding="utf-8") as f:
         return json.load(f)
 
 

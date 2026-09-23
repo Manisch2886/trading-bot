@@ -1,0 +1,7 @@
+Funktionen/Klassen: HEAD 27, neu 27, gleich 26, verschieden 1, nur HEAD [], nur neu []
+  VERSCHIEDEN: main
+Modulebene (ohne def/class): HEAD 17, neu 18; nur neu 1, nur HEAD 0
+  NUR NEU (Assign): BENCHMARK_TABELLE = os.path.join(_HIER, 'ergebnisse', 'benchmark_drawdowns_2026-09-23_nach_wegA.json')
+  Unterschied in main (ast.unparse):
+    -    with open(os.path.join(_HIER, 'ergebnisse', 'benchmark_drawdowns.json'), encoding='utf-8') as f:
+    +    with open(BENCHMARK_TABELLE, encoding='utf-8') as f:

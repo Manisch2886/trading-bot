@@ -92,6 +92,14 @@ _HIER = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
     os.path.dirname(_HIER))
 
+# Die Tabelle der Benchmark-Drawdowns, die der Lauf liest - Sperrlistenpunkt 4
+# in Form (ii), vollzogen in TB-92 (Register 39, Fable 23c/23d). Eine
+# Konstante, KEIN Schalter (Abschnitt 12); `registerbericht.py` und
+# `test_vorregistrierung.py` lesen dieselbe. `ergebnisse/benchmark_drawdowns.json`
+# bleibt als registrierter historischer Stand liegen und wird nicht gelesen.
+BENCHMARK_TABELLE = os.path.join(_HIER, "ergebnisse",
+                                 "benchmark_drawdowns_2026-09-23_nach_wegA.json")
+
 import benchmark as bm  # noqa: E402
 import faltenplan as fp  # noqa: E402
 import kennzahlen as kz  # noqa: E402
@@ -587,8 +595,7 @@ def main():
 
     mess = rd._mess()
     plan = fp.faltenplan(mess)
-    with open(os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json"),
-              encoding="utf-8") as f:
+    with open(BENCHMARK_TABELLE, encoding="utf-8") as f:
         tabellen = json.load(f)
 
     bots = args.bot or list(rd.BOTS)

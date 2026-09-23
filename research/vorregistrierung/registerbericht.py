@@ -61,8 +61,7 @@ def block() -> str:
     mess = rd._mess()
     plan = fp.faltenplan(mess)
     raster = rd.raster(mess)
-    with open(os.path.join(_HIER, "ergebnisse", "benchmark_drawdowns.json"),
-              encoding="utf-8") as f:
+    with open(aw.BENCHMARK_TABELLE, encoding="utf-8") as f:
         tabellen = json.load(f)
 
     z = [ANFANG, ""]
@@ -154,7 +153,8 @@ def block() -> str:
           "",
           "Je Falte, je Exposure-Stufe. Die vollständige Tabelle (1 % bis "
           "100 % in Schritten von 1 %) steht in "
-          "`research/vorregistrierung/ergebnisse/benchmark_drawdowns.json`; "
+          "`research/vorregistrierung/ergebnisse/"
+          f"{os.path.basename(aw.BENCHMARK_TABELLE)}`; "
           "hier vier Stützstellen.",
           ""]
     gezeigt = set()
@@ -175,7 +175,7 @@ def block() -> str:
               + " |",
               "|---|---|---:|---:|" + "---:|" * len(EXPOSURE_SPALTEN)]
         for name, f in e["falten"].items():
-            z.append(f"| {name} | {f['rolle']} | {f['symbole_point_in_time']} | "
+            z.append(f"| {name} | {f['rolle']} | {f['symbole_handelbar_in_falte']} | "
                      f"{f['handelstage']} | "
                      + " | ".join(_wert(f["dd_benchmark"][s]) + " %"
                                   for s in EXPOSURE_SPALTEN) + " |")

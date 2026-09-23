@@ -1,0 +1,4 @@
+Lauf 3 rc=0 Dauer 51 s, Prozesse 11
+Lauf 3 BYTEGLEICH mit research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+Lauf 4 rc=0 Dauer 52 s, Prozesse 11
+Lauf 4 BYTEGLEICH mit research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json

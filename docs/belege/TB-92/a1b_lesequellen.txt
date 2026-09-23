@@ -1,0 +1,16 @@
+  426  Python/Pakete
+   10  repo *.py
+    1  repo logs/notifications/manuelle_eingriffe.log
+    1  repo research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+    1  repo research/vorregistrierung/ergebnisse/messgroessen.json
+    2  snapshot/config
+  222  snapshot/csv
+   23  sonst

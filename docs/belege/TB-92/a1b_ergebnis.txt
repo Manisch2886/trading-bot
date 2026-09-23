@@ -1,0 +1,8 @@
+Verknuepfungen data/: 223
+Lauf 1 rc=0 Dauer 51 s
+Lauf 2 rc=0 Dauer 51 s
+Lauf 1 BYTEGLEICH mit research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+Lauf 2 BYTEGLEICH mit research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  /Users/jaquelineloffler/trading-bot/docs/belege/TB-92/benchmark_modusnachweis.json
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/ce7d3176-738e-427c-9a92-30c6195b08c5/scratchpad/benchmark_modusnachweis_lauf2.json
