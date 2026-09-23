@@ -1,0 +1,6 @@
+# Ausloeserdateien sind fluechtig - sie leben Sekunden und gehoeren nicht in git.
+starte_TB-*
+_erledigt/
+# Diese Datei und die Erklaerung bleiben verfolgt.
+!.gitignore
+!LIESMICH.md

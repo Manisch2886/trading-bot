@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Sitzungswaechter — laeuft NUR, wenn im Ausloeserordner etwas passiert.
+  Kein Zeitplan, kein Dauerlauf, keine Schleife.
+
+  ⚠️ __HOME__ wird beim Einschalten durch den echten Pfad ersetzt.
+     launchd kann ~ nicht aufloesen.
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>de.trading-bot.sitzungswaechter</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>__HOME__/trading-bot/docs/werkzeuge/sitzungswaechter/starte_sitzung.sh</string>
+    </array>
+
+    <!-- Der Ausloeser: launchd weckt das Skript, wenn sich dieser Ordner
+         aendert. Das Skript prueft dann selbst, ob wirklich etwas da ist. -->
+    <key>WatchPaths</key>
+    <array>
+        <string>__HOME__/trading-bot/docs/auftraege/_ausloeser</string>
+    </array>
+
+    <!-- ⛔ NICHT beim Anmelden starten und nicht neu starten. Nur auf den
+         Ausloeser reagieren. -->
+    <key>RunAtLoad</key>
+    <false/>
+    <key>KeepAlive</key>
+    <false/>
+
+    <!-- Schutz gegen Dauerfeuer: hoechstens alle 30 s. -->
+    <key>ThrottleInterval</key>
+    <integer>30</integer>
+
+    <key>StandardOutPath</key>
+    <string>__HOME__/trading-bot/logs/sitzungswaechter/launchd_aus.log</string>
+    <key>StandardErrorPath</key>
+    <string>__HOME__/trading-bot/logs/sitzungswaechter/launchd_fehler.log</string>
+</dict>
+</plist>

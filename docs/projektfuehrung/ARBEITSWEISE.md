@@ -1664,3 +1664,65 @@ Aus den Fehlern von TB-15 und TB-16:
 
   Kurze Dokumente **zusätzlich** als einzelne Datei im Chat: sie lesen sich dort
   schneller als nach einem Download.
+
+---
+
+## 15. Der Sitzungswächter — eine Datei startet eine Mac-Sitzung
+
+⭐ **Seit 23.09.2026.** Ergänzt Abschnitt 14; der Weg von Hand bleibt gültig.
+
+**Der Anlass, gemessen:** Der steuernde Chat kann auf dem Mac **sehen und
+klicken, aber nicht tippen** — Terminal, Kurzbefehle und Skripteditor stehen
+alle auf Stufe `click` (*„Terminals and IDEs **can only** be granted in 'click'
+mode"*). Dateien im Repo anlegen kann er dagegen. **Der Wächter macht aus einer
+Datei einen Sitzungsstart.**
+
+| | |
+|---|---|
+| **Auslösen** | eine Datei `docs/auftraege/_ausloeser/starte_TB-<Nummer>` |
+| **Einschalten** | `bash docs/werkzeuge/sitzungswaechter/einschalten.sh` |
+| **Nachsehen** | `bash docs/werkzeuge/sitzungswaechter/einschalten.sh stand` |
+| **Protokoll** | `logs/sitzungswaechter/waechter.log` |
+| **Alles Weitere** | `docs/werkzeuge/sitzungswaechter/LIESMICH.md` |
+
+### ⭐⭐ Was er dir abnimmt — und was nicht
+
+**Er erledigt:** Terminal öffnen, `cd`, Start, Anlaufzeit abwarten, den
+Auftragssatz einsetzen (zeichengleich, aus der geprüften Nummer selbst gebaut).
+
+⚠️ **Er schickt den Satz NICHT ab.** Den letzten Tastendruck machst du —
+**Betreiberentscheidung 23.09.2026.** Der Grund steht in der `LIESMICH.md`:
+Die Geräteanbindung untersagt ausdrücklich, Tastendrücke an ein Terminal zu
+schicken; der Wächter berührt diese Schranke schon, und das Return nachzurüsten
+machte aus dem Grenzfall eine vollständige Umgehung.
+
+⭐ **Du musst dafür nicht am Mac sitzen.** Die Sitzung läuft mit
+`--remote-control` und ist in der App sichtbar — der Satz lässt sich **vom
+Telefon** abschicken.
+
+### Die sechs Wachen
+
+| | | ⛔ Abbruch wenn |
+|---|---|---|
+| **1** | Gültige TB-Nummer **im Dateinamen** | passt nicht |
+| **2** | Auslöser weggeräumt | *sonst weckt er sich selbst wieder* |
+| **3** | Keine `claude`-Sitzung **mit cwd im Repo** | eine läuft |
+| **4** | `claude` auffindbar (über Login-Shell) | nicht da |
+| **5** | ⚠️⚠️ **Schlüsselbund entsperrt** | *sonst „API Usage Billing" statt Abo* |
+| **6** | Die Nummer steht in `AKTUELLER_AUFTRAG.md` | *meist: nicht gepusht* |
+
+⚠️⚠️ **Übertragen werden kann GENAU EINE ZAHL.** Der **Inhalt** der
+Auslöserdatei wird nie gelesen und nie ausgeführt; den Auftragssatz baut das
+Skript selbst aus der geprüften Nummer.
+
+### ⭐⭐ Wach 3 ist zugleich das Messgerät für „läuft eine Sitzung?"
+
+⚠️ **Die Brücken-VM ist nicht der Mac** — ihre Prozessliste sagt nichts über
+laufende Sitzungen. Nach `A2` heisst das: **nicht messbar**, nicht „nichts da".
+
+⭐ **Der Wächter misst es.** Ein Auslöser protokolliert, welche Sitzungen im Repo
+laufen. *Beim ersten Lauf fand er eine, die seit 20.09., 20:18 offen stand — zwei
+Tage und 18 Stunden, von niemandem bemerkt.*
+
+⇒ **Damit ist die stehende Regel „nichts nach `docs/` schreiben, solange eine
+Sitzung läuft" zum ersten Mal prüfbar statt geschätzt.**
