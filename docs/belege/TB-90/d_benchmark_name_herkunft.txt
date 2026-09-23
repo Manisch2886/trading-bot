@@ -1,0 +1,58 @@
+TB-90 Punkt 4 - Herkunft der Faltennamen in den Benchmark-Tabellen (NUR LESEND)
+Zeitpunkt: 2026-09-23 08:47:27 CEST   HEAD 04d6ce6
+benchmark.py  3960375a539de8324ccfafaa42596a056fb5dd5c154cd2e05c0ba6a634f3611b  research/vorregistrierung/benchmark.py
+faltenplan.py fd3e5018ae930c2e29747562a140506d5d9a6bb70b87e96cf5c0089e09afdd79  research/vorregistrierung/faltenplan.py
+
+== (1) Fundstellen in benchmark.py (grep -n) ==
+95:import faltenplan as fp  # noqa: E402
+220:    plan = fp.faltenplan(mess)
+224:        p = plan[bot]
+246:        for f in p["falten"]:
+266:            eintrag["falten"][f["name"]] = {
+
+== (2) Fundstellen in faltenplan.py: wo der Name entsteht ==
+291:            "name": (f"{jahr}" if laenge == 1 else f"{jahr}-{jahr + laenge - 1}"),
+337:        "selektionsfalten": [f["name"] for f in falten if f["rolle"] == "selektion"],
+338:        "bestaetigungsperiode": falten[-1]["name"] if falten else None,
+
+== (3) AST: jede Zuweisung/Schluesselbildung an eintrag["falten"] in benchmark.py ==
+  Zeile 266: eintrag['falten'][f['name']] = ...
+  Zeile 266: Lesen von f['name']
+  Zuweisungen an ...['falten'][...]: 1
+
+== (4) Die zwei Kandidatentabellen: Namen je Bot und Rolle (gelesen, nicht geaendert) ==
+benchmark_drawdowns_tb72.json
+   elliott_wave                 bestaetigung=['2026-2027']  selektion=['2018-2019', '2020-2021', '2022-2023', '2024-2025']
+   elliott_wave_stocks          bestaetigung=['2026']  selektion=['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   rsi2_crypto                  bestaetigung=['2026']  selektion=['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   rsi2_mean_reversion          bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   t3_supertrend                bestaetigung=['2026']  selektion=['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   turtle_soup_crypto           bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   turtle_soup_stocks           bestaetigung=['2026']  selektion=['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   volatility_breakout          bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   volatility_breakout_crypto   bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+benchmark_drawdowns_vt.json
+   elliott_wave                 bestaetigung=['2026-2027']  selektion=['2018-2019', '2020-2021', '2022-2023', '2024-2025']
+   elliott_wave_stocks          bestaetigung=['2026']  selektion=['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   rsi2_crypto                  bestaetigung=['2026']  selektion=['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   rsi2_mean_reversion          bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   t3_supertrend                bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   turtle_soup_crypto           bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   turtle_soup_stocks           bestaetigung=['2026']  selektion=['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   volatility_breakout          bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   volatility_breakout_crypto   bestaetigung=['2026']  selektion=['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+benchmark_drawdowns.json
+   elliott_wave                 bestaetigung=[]  selektion=[]
+   elliott_wave_stocks          bestaetigung=['2026']  selektion=['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   rsi2_crypto                  bestaetigung=[]  selektion=[]
+   rsi2_mean_reversion          bestaetigung=['2026']  selektion=['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   t3_supertrend                bestaetigung=[]  selektion=[]
+   turtle_soup_crypto           bestaetigung=[]  selektion=[]
+   turtle_soup_stocks           bestaetigung=['2026']  selektion=['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   volatility_breakout          bestaetigung=['2026']  selektion=['2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   volatility_breakout_crypto   bestaetigung=[]  selektion=[]
+
+== Befund ==
+benchmark.py bildet KEINEN eigenen Faltennamen: der Schluessel von eintrag["falten"] ist f["name"] aus fp.faltenplan(mess).
+Der Name entsteht allein in faltenplan._jahresfalten; unter Weg (A) wuerde ihn _plan fuer die Bestaetigungsfalte ueberschreiben,
+und eine NEU gerechnete Tabelle truege dann die Spanne. Die vorhandenen Tabellen tragen den Namen ihres Rechenzeitpunkts.
