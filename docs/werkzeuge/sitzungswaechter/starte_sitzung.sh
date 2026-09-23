@@ -112,16 +112,35 @@ abbruch() {
 #    Zugangsdaten enthalten koennte (ARBEITSWEISE Abschnitt 7).
 FREMD=0
 IM_REPO=0
+IM_REPO_INFO=""
 for pid in $(pgrep -x claude 2>/dev/null); do
     cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | grep '^n' | cut -c2-)
     case "$cwd" in
-        "$REPO"|"$REPO"/*) IM_REPO=$((IM_REPO+1)); sage "  claude im Repo: PID $pid" ;;
+        "$REPO"|"$REPO"/*)
+            IM_REPO=$((IM_REPO+1))
+            # ⭐ Seit 23.09.2026, 16:45: nicht nur MELDEN, dass eine laeuft,
+            #    sondern SEIT WANN und OB SIE NOCH ARBEITET. Zweimal an einem
+            #    Tag stand eine fertige Sitzung im Weg, deren Fenster nur
+            #    offen geblieben war - einmal seit zwei Tagen und 18 Stunden.
+            # ⛔ Gelesen werden nur Prozesszeiten, NIE die Kommandozeile.
+            daten=$(ps -o etime=,time=,stat= -p "$pid" 2>/dev/null | tr -s ' ')
+            IM_REPO_INFO="${IM_REPO_INFO}PID $pid:${daten} · "
+            sage "  claude im Repo: PID $pid  (Laufzeit/Rechenzeit/Zustand:${daten})"
+            ;;
         *)                 FREMD=$((FREMD+1));    sage "  claude ausserhalb (zaehlt nicht): PID $pid cwd=${cwd:-unbekannt}" ;;
     esac
 done
 sage "claude-Prozesse: $IM_REPO im Repo, $FREMD ausserhalb."
 if [ "$IM_REPO" -gt 0 ]; then
-    abbruch "Es arbeitet bereits eine claude-Sitzung im Repo ($IM_REPO). Der Waechter startet keine zweite."
+    hinweis=""
+    case "$IM_REPO_INFO" in
+        *" S+ "*|*" S "*|*"S+ ·"*)
+            hinweis=" ⭐ Zustand 'S' heisst SCHLAFEND - die Sitzung wartet auf Eingabe."
+            hinweis="$hinweis Ist die Rechenzeit klein gegen die Laufzeit, ist sie"
+            hinweis="$hinweis fertig und nur das Fenster blieb offen: mit /exit oder Ctrl+D schliessen."
+            ;;
+    esac
+    abbruch "Es arbeitet bereits eine claude-Sitzung im Repo ($IM_REPO). Der Waechter startet keine zweite. ${IM_REPO_INFO}${hinweis}"
 fi
 
 # 4b. Ist claude ueberhaupt da?

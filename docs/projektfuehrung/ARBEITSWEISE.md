@@ -1726,3 +1726,29 @@ Tage und 18 Stunden, von niemandem bemerkt.*
 
 ⇒ **Damit ist die stehende Regel „nichts nach `docs/` schreiben, solange eine
 Sitzung läuft" zum ersten Mal prüfbar statt geschätzt.**
+
+---
+
+## 16. ⭐ Rückfragen an den Betreiber kommen als Auswahlkarte
+
+⚠️ **Betreiberanweisung 23.09.2026, zum zweiten Mal:** *„kannst du mir zukünftig
+fragen per multiple choice stellen wie vereinbart"*.
+
+**Schärft Abschnitt 6d.** Dort steht, **wann** gefragt wird (nur
+richtungsweisend). Hier steht, **wie**:
+
+| | |
+|---|---|
+| ⭐ **Form** | Eine Auswahlkarte mit benannten Möglichkeiten, nicht eine offene Frage im Fliesstext |
+| ⭐ **Reihenfolge** | Die empfohlene Möglichkeit zuerst, als solche gekennzeichnet |
+| ⭐ **Inhalt** | Zu jeder Möglichkeit, **was sie kostet und was sie bedeutet** — nicht nur ihr Name |
+| ⚠️ **Grenze** | Die Karte ersetzt nicht die Begründung. Was gemessen wurde und warum es eine Entscheidung braucht, steht **vor** der Karte |
+
+⚠️ **Warum das zweimal gesagt werden musste:** Eine offene Frage am Ende einer
+langen Meldung geht unter — der Betreiber muss dann erst herauslesen, was
+überhaupt zur Wahl steht. *Gemessen am 23.09.2026: Auf die Frage, ob das Return
+nachgerüstet werden soll, kam „Was soll ich nun entscheiden? In einfacher
+Sprache" — die Frage war gestellt, aber nicht als Wahl erkennbar.*
+
+⇒ **Gibt es nichts zu entscheiden, wird auch nicht gefragt.** Eine Auswahlkarte
+ohne echte Alternative ist eine Rückfrage, die Abschnitt 6d verbietet.

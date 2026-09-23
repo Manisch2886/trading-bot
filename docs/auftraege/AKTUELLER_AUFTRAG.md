@@ -36,18 +36,13 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-91** | `docs/auftraege/MAC_TB-91_benchmark_absichern_und_neurechnung.md` | ⭐⭐ **`benchmark.py` nach 36.1 absichern, dann die Tabelle EINMAL neu rechnen.** ⚠⚠ **Schritt 0a: Umgebungspruefung** — diese Sitzung wird zum ersten Mal aus der Claude-App gestartet; vier Fragen (Repo-Wurzel, `trading-env`, Berechtigungen, Abo), ⛔ ABBRUCH wenn eine offen bleibt. **Block A:** `benchmark.py` hat dieselbe Falle wie `faltenplan.py` — Voreinstellung `--ziel` zeigt auf Sperrlistenpunkt 4, `open(ziel,'w')` ohne Sperre. Muster: `faltenplan.py::voreinstellung_ziel` und `O_CREAT|O_EXCL` (TB-86, `4daa254`). Mutationsprobe auf den gesperrten Pfad → Rueckgabe 1, Hash unveraendert. **Block B:** Neurechnung mit `--ziel ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json`. ⭐⭐⭐ **Block C, der Determinismusnachweis (Fable 23b):** die neue Tabelle muss `_tb72.json` in ALLEN Werten reproduzieren, einzige zulaessige Abweichung der Name der Bestaetigungszeile — jede andere ist ein BEFUND und stoppt den Vollzug (kein Abbruch, sondern ausmessen). **Block D:** Wache, Faltenmenge gegen den Plan, Erwartung 18/18 gleich. ⛔ Kein Vollzug, kein Registertext, kein Abbild, keine alte Tabelle anfassen |
+| **TB-93** | `docs/auftraege/MAC_TB-93_messgroessen_absichern.md` | ⭐⭐ **`messgroessen.py` nach 36.1 absichern** (Fable 23c: „ändern", 37.3). ⭐ **Block A ist VORGEMESSEN** — der steuernde Chat hat die Absicherung gemacht, sie liegt uncommittet im Arbeitsbaum (`numstat 66 6`); du misst sechs Punkte `A-N1`–`A-N6` nach, statt neu zu bauen. ⚠️ **Schritt 0: committen, nicht verwerfen** — im Baum liegen ausserdem `ARBEITSWEISE.md` (Abschnitt 16), Anfragen 23d/23e, Fables Antwort 23c, TB-92, TB-93 und Belege. ⭐⭐⭐ **Block B ist der Kern:** Determinismusnachweis — ein Lauf mit `--ziel` auf einen neuen Pfad muss `ergebnisse/messgroessen.json` **BYTEGLEICH** reproduzieren. ⚠️ **Nicht bytegleich = BEFUND UND STOPP, melden statt reparieren.** **Block C:** Tatsachennotiz 37.3, ⚠️ der Register-Gesamthash wandert mit (`messgroessen.py` steht selbst in `EINGEFROREN`). ⛔ Die eingefrorene Datei wird NICHT ersetzt — die Nachweisdatei liegt daneben. ⛔ Kein neues Abbild. ⛔ Nichts aus Punkt 8 / TB-92 |
 
-⚠️⚠️ **TB-91: ZUERST DEN NACHTRAG LESEN —**
-`docs/auftraege/NACHTRAG_1_MAC_TB-91_blockA_vorgemessen.md`
-
-⭐ **Block A ist bereits ausgefuehrt** (steuernder Chat, 23.09.2026). Die
-Aenderung an `research/vorregistrierung/benchmark.py` liegt **uncommittet** im
-Arbeitsbaum, `numstat 101 12`. **Baue sie NICHT noch einmal** — der Nachtrag
-macht aus Block A sechs Nachmessungen (`A-N1`–`A-N6`) mit vorgerechneten
-Vergleichswerten. Weicht eine ab, gilt DEINE Messung.
-⚠️ **Schritt 0 (committen) gilt trotzdem** — aber committe die vorhandene
-Aenderung, statt sie zu verwerfen. **Block B, C und D sind unveraendert.**
+⛔⛔ **TB-92 (Vollzug Punkt 8) ist GESCHRIEBEN, aber ANGEHALTEN** —
+`docs/auftraege/MAC_TB-92_vollzug_punkt8.md`. Er wartet auf **zwei** Dinge:
+Fables Antwort auf **Anfrage 23e** (die dritte Leserin `auswertung.py::main`,
+eingefroren, in keiner seiner Antworten genannt) und die **Betreiberfreigabe
+nach 21.9**. ⛔ **Nicht anfangen, solange eines fehlt.**
 
 *Gesetzt 23.09.2026 (zuvor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**

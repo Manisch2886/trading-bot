@@ -1,0 +1,54 @@
+TB-91 / A-N6 — Betreiberauskunft, 23.09.2026, 15:05
+================================================================================
+FRAGE: Erschien ein Genehmigungsdialog, als benchmark.py geaendert wurde?
+
+ANTWORT DES BETREIBERS: "Kein Dialog gesehen."
+
+⚠️⚠️ DAS BELEGT NICHT, DASS DIE `ask`-REGEL WIRKT — und das ist wichtig.
+
+Der Grund liegt in der Messanordnung, nicht in der Regel:
+  Die Aenderung an benchmark.py wurde vom steuernden Chat UEBER DIE BRUECKE
+  gemacht (device_bash in der Linux-VM). Dort gilt `.claude/settings.local.json`
+  ueberhaupt nicht — die Datei steuert Claude-Code-Sitzungen, nicht die
+  Geraeteanbindung.
+
+⇒ Es war KEIN Dialog zu erwarten. Die Auskunft ist mit beiden Moeglichkeiten
+  vereinbar:
+    (a) die ask-Regel wirkt, wurde aber gar nicht angesprochen  ← erwartbar
+    (b) die ask-Regel wirkt nicht
+
+⇒ A-N6 bleibt nach Pruefprinzip A2 "NICHT GEMESSEN". Nicht "bestanden",
+  nicht "gescheitert".
+
+--------------------------------------------------------------------------------
+WAS BISHER UEBER `ask` BEKANNT IST
+--------------------------------------------------------------------------------
+Am 23.09.2026 wurden vier Sperrlisten-.py von `deny` nach `ask` verschoben,
+nachdem TB-90 unter `deny` nach 4 ms abbrach (Commit 5194a0a). Danach lief
+TB-90 35 Minuten durch. ⚠️ Das ist ein INDIZ, kein Nachweis: der laengere Lauf
+kann auch andere Gruende haben.
+
+--------------------------------------------------------------------------------
+WIE A-N6 ZU MESSEN WAERE
+--------------------------------------------------------------------------------
+Nur in einer Claude-Code-Sitzung AUF DEM MAC, die eine der vier unter `ask`
+stehenden Dateien aendert. Die naechste Sitzung, die das tut, meldet:
+  - ob ein Dialog erschien
+  - wie lange sie darauf wartete
+  - ob der Lauf ohne Genehmigung weiterlief
+
+⛔ Der steuernde Chat kann das NICHT messen. Ueber die Bruecke greift die Regel
+   nicht, und in ein Terminal tippen darf er nicht (Stufe "click").
+
+--------------------------------------------------------------------------------
+IN EINFACHER SPRACHE
+--------------------------------------------------------------------------------
+Gefragt war, ob beim Aendern einer geschuetzten Datei eine Rueckfrage auf dem
+Bildschirm erscheint. Der Betreiber hat keine gesehen.
+
+Das beweist aber nichts — denn die Aenderung lief ueber einen Weg, auf dem die
+Schutzregel gar nicht gilt. Es war also keine Rueckfrage zu erwarten, egal ob
+die Regel funktioniert oder nicht.
+
+Die Frage bleibt damit ausdruecklich offen. Sie laesst sich nur beantworten,
+wenn eine Sitzung auf dem MacBook selbst eine geschuetzte Datei anfasst.

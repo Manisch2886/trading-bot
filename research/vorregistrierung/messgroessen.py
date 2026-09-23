@@ -36,10 +36,13 @@ Purge-Laengen und in die Donchian-Untergrenze ein, beides Groessen, die die
 Aufgabenstellung ausdruecklich aus `research/tb24_haltedauern/` verlangt.
 """
 
+import argparse
+import hashlib
 import json
 import math
 import os
 import sys
+from datetime import datetime, timezone
 
 import numpy as np
 import pandas as pd
@@ -249,8 +252,65 @@ def datenbereiche() -> dict:
     return out
 
 
-def main():
+def _sha256_datei(pfad: str) -> str:
+    h = hashlib.sha256()
+    with open(pfad, "rb") as f:
+        for stueck in iter(lambda: f.read(65536), b""):
+            h.update(stueck)
+    return h.hexdigest()
+
+
+def voreinstellung_ziel() -> str:
+    """36.1 (3): nie ein Sperrlistenpfad als Voreinstellung.
+
+    `ergebnisse/messgroessen.json` steht in `herkunft.py::EINGEFROREN`; sein
+    Hash wird am Tag bezeugt. Nach Fables Praezisierung zu 36.1 (1) (Antwort
+    23c) ist es damit gesperrt, gleich unter welchem Namen die Liste laeuft.
+    """
+    stempel = datetime.now(timezone.utc).strftime("%Y-%m-%d-%H%M%S")
+    return os.path.join(ERGEBNISSE, f"messgroessen_{stempel}.json")
+
+
+def schreibe_messgroessen(mess: dict, ziel: str):
+    """36.1 (2): Einmal-Schreibsperre. Rueckgabe 1, wenn das Ziel existiert.
+
+    ⚠️ Das Ausgabeformat ist UNVERAENDERT: indent=2, ensure_ascii=False,
+    sort_keys=True, abschliessender Zeilenumbruch. Jede Abweichung hier
+    entwertete Fables Determinismusnachweis (Antwort 23c: der Lauf auf einen
+    neuen Pfad muss `ergebnisse/messgroessen.json` BYTEGLEICH reproduzieren).
+    """
+    if os.path.exists(ziel):
+        return 1, ("\nABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben."
+                   "\n  Pfad:    %s\n  SHA-256: %s"
+                   % (os.path.relpath(ziel), _sha256_datei(ziel)))
+    fd = os.open(ziel, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
+        json.dump(mess, f, indent=2, ensure_ascii=False, sort_keys=True)
+        f.write("\n")
+    return 0, "\nGeschrieben: %s\n  SHA-256: %s" % (ziel, _sha256_datei(ziel))
+
+
+def main(argv=None):
+    p = argparse.ArgumentParser(
+        description=("Messgroessen des Vorregistrierungslaufs. Schreibt einmalig; "
+                     "Voreinstellung ist ein Name mit Zeitstempel (36.1 (3))."))
+    p.add_argument("--ziel", default=None,
+                   help=("Ausgabedatei (Standard: ergebnisse/messgroessen_"
+                         "<UTC-Zeitstempel>.json). Ein vorhandenes Ziel wird NIE "
+                         "ueberschrieben - der Lauf endet dann mit 1."))
+    args = p.parse_args(argv)
+    ziel = args.ziel or voreinstellung_ziel()
+
     os.makedirs(ERGEBNISSE, exist_ok=True)
+
+    # ⚠️ Die Sperre greift VOR der Rechnung. `je_zeitrahmen` laeuft ueber alle
+    #    Symbole; ein Lauf gegen ein vorhandenes Ziel soll nichts verbrauchen.
+    if os.path.exists(ziel):
+        print("\nABBRUCH (36.1 (2)): Ziel existiert, nichts gerechnet, nichts geschrieben."
+              "\n  Pfad:    %s\n  SHA-256: %s"
+              % (os.path.relpath(ziel), _sha256_datei(ziel)))
+        return 1
+
     krypto = universum("top25_symbols.txt")
     aktien = universum("sp500_top150.txt")
 
@@ -279,10 +339,10 @@ def main():
         for suffix in suffixe:
             mess["volatilitaet"][f"{markt}_{suffix}"] = je_zeitrahmen(symbole, suffix)
 
-    ziel = os.path.join(ERGEBNISSE, "messgroessen.json")
-    with open(ziel, "w", encoding="utf-8") as f:
-        json.dump(mess, f, indent=2, ensure_ascii=False, sort_keys=True)
-        f.write("\n")
+    rc, meldung = schreibe_messgroessen(mess, ziel)
+    if rc != 0:
+        print(meldung)
+        return rc
 
     print(__doc__.strip().split("\n")[0])
     print(f"\nRound-Trip-Kosten: {ROUND_TRIP_KOSTEN_PCT:.2f} %")
@@ -292,7 +352,7 @@ def main():
         print(f"{k:14s} {v['symbole_gemessen']:4d} {v['balken_sigma_pct']:12.3f}% "
               f"{v['spanne20_median_pct']:9.2f}% {v['atr14_median_pct']:7.2f}% "
               f"{v['tiefabstand_median_pct']:12.2f}%")
-    print(f"\nGeschrieben: {ziel}")
+    print(meldung)
     return 0
 
 
