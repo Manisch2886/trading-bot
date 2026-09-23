@@ -1,0 +1,18 @@
+# TB-94 D1 — neues Abbild, HEAD 27b68b9d3a584c6d72678439963587563c57b5ea, 2026-09-23 20:21:35 +0200
+# vorher:
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+# trading-env/bin/python3 research/vorregistrierung/sperrliste_abbild.py --ziel research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
+Abbild geschrieben.
+  Pfad:    research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
+  Groesse: 7351 Bytes
+  SHA-256: 2f23f76c99e22991e4a331ec1107dc0f090a425bc9e050793470ee3cd52dd4fe
+  Punkte:  14 (aus docs/VORREGISTRIERUNG_neuselektion.md Z. 845-958), 15 Pfadnennungen, HEAD 27b68b9d3a58
+rc 0
+# nachher:
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+2f23f76c99e22991e4a331ec1107dc0f090a425bc9e050793470ee3cd52dd4fe  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
+    7351 research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
+# git status ergebnisse/:
+?? research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json

@@ -1,0 +1,40 @@
+# TB-94 A1 — sha256 am HEAD 12f60892abcefd8defe3f22cbfad715629a8c13c (Code-Stand fcc3265, Schritt-0-Commit aendert nur docs/)
+# 2026-09-23 20:12:46 +0200
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+e4ba341d3177d455b1c3151f4bb2e0cf7f16fbd516d9b30edd45d0c7dc005e56  research/vorregistrierung/ergebnisse/benchmark_drawdowns_tb72.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+c3b4e69d8f207d0c1982a538203dcf184072554fdc1beb0f612bf054cd2a0062  research/vorregistrierung/auswertung.py
+dace1b01826fa6a999beb9a15a8eda41a4e0c97dec584e451cfc0d9b26daac01  research/vorregistrierung/registerbericht.py
+6e7defefb46903ccec8df60a350136f5961c137b45fb1a921407e7a8e76f3fbe  research/vorregistrierung/test_vorregistrierung.py
+d6bdd55805344da09b6b43d791267b43c9702687fc1c7cdbad1473079443e061  research/vorregistrierung/benchmark.py
+7aa0b8ccf5619a21d5f082f68d81cb412f98ae9c9724e799da8b48dce7498cfb  research/vorregistrierung/faltenplan.py
+56a1c2e1514385acd26c3432bd111f3588846c80d173a4d4a471ecae723fb502  research/vorregistrierung/herkunft.py
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+3e547014652aa01154fc4b2eb88e8600a9560e5dff194f1385de9a765889fc3b  research/vorregistrierung/beispieldaten.py
+623f8d771ffd5ae9dc1b979fbe383c85268371ba4f1dfeff055379662be41f25  research/vorregistrierung/messgroessen.py
+aff8eaa0f207ee451c91b04246995bd9655d3685fd94fd7de668b78266df501f  shared/sperrlistensonde.py
+851ee4ae9c0906d418fbe8b65dbbf6c8ee30028550a6fc1a14321a43e1298648  research/vorregistrierung/sperrliste_abbild.py
+# git diff fcc3265..HEAD --stat (nur docs/ erwartet):
+ 9 files changed, 1401 insertions(+), 7 deletions(-)
+docs/auftraege/AKTUELLER_AUFTRAG.md
+docs/auftraege/MAC_TB-94_register_39.md
+docs/auftraege/MAC_TB-95_testannahmen_und_lesehaken.md
+docs/projektfuehrung/ARBEITSWEISE.md
+docs/projektfuehrung/FABLE_ANFRAGE_2026-09-23h_vollzug_im_code_nicht_im_register.md
+docs/projektfuehrung/FABLE_ANTWORT_2026-09-23d_dritte_leserin_und_eingabestand.md
+docs/projektfuehrung/FABLE_ANTWORT_2026-09-23e_nachweislauf_im_modus.md
+docs/projektfuehrung/FABLE_ANTWORT_2026-09-23f_fertigkriterium_38_4.md
+docs/werkzeuge/sitzungswaechter/LIESMICH.md
+# Hash-Uebergaenge aus der Historie (git show <commit>:<pfad> | sha256)
+faltenplan.py  4daa254^ 6f96b95d13563f73b11be69c2bd6996037854df794da61315029216ad0b22bd9  ->  4daa254 fd3e5018ae930c2e29747562a140506d5d9a6bb70b87e96cf5c0089e09afdd79
+faltenplan.py  303a7fd^ fd3e5018ae930c2e29747562a140506d5d9a6bb70b87e96cf5c0089e09afdd79  ->  303a7fd 7aa0b8ccf5619a21d5f082f68d81cb412f98ae9c9724e799da8b48dce7498cfb
+benchmark.py   31008b6^ 3960375a539de8324ccfafaa42596a056fb5dd5c154cd2e05c0ba6a634f3611b  ->  31008b6 d6bdd55805344da09b6b43d791267b43c9702687fc1c7cdbad1473079443e061
+auswertung.py  0292e92^ 1c2e2daec562d9973f87809fd29ef369db76614ee4bc31c04c6ca201c52a3db0  ->  0292e92 c3b4e69d8f207d0c1982a538203dcf184072554fdc1beb0f612bf054cd2a0062
+registerbericht.py  0292e92^ 2b1ce24a8f9b2ece8c98fe2aa84f1f5fdc6ac3da544c0aa765e381505bb1d78f  ->  0292e92 dace1b01826fa6a999beb9a15a8eda41a4e0c97dec584e451cfc0d9b26daac01
+test_vorregistrierung.py  0292e92^ 55553739c819b78de2f7ac608af2341ec43b7c856c3e8699d5a6ffde67bd15c0  ->  0292e92 6e7defefb46903ccec8df60a350136f5961c137b45fb1a921407e7a8e76f3fbe
+4daa254 2026-09-22 18:12:24 +0200 TB-86 Schritt 2 und 3: faltenplan.py main() bekommt --ziel, eine Voreinstellung mit Ze
+303a7fd 2026-09-23 10:19:19 +0200 TB-90 Block A: faltenplan.py Weg (A) - die Bestaetigungsfalte heisst ihre Spanne; Nach
+31008b6 2026-09-23 14:41:10 +0200 TB-91 Schritt 0: benchmark.py nach 36.1 abgesichert (Vormessung des steuernden Chats, 
+0292e92 2026-09-23 18:42:32 +0200 TB-92 Block A/A1a: Vollzug Sperrlistenpunkt 4 in Form (ii) - die drei Leser lesen die 
