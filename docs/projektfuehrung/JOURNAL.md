@@ -8458,6 +8458,54 @@ Dazu unverändert: das neue Abbild (37.3), Plan Punkt 5, 35.5, 33.5, TB-30b, 32.
 
 ---
 
+## CQ — TB-89: Registerabschnitt 38 — Weg (A), Fundstellen als Datei und Bezeichner, Punkt 4 in Form (ii) ohne Amendment, neun Importe statt überwachter Kopien, und „grün" steht als offene Frage im Register (23.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-89_register_38.md`*
+
+**Quelle:** Mac-Sitzung **TB-89 Registerabschnitt 38**, 23.09.2026, Eingang
+`c140ca9`. Commits `da251da` (Schritt 0: `ARBEITSWEISE.md` Abschnitt 7, Antwort
+22h, Auftrag, Zeiger) und der Abgabe-Commit. Belege `docs/belege/TB-89/`. Nur
+Registertext: `numstat 454 0`, drei Hashes vorher und nachher gleich, Sonde
+lesend vorher und nachher unverändert.
+
+### Was eingetragen wurde
+
+| | |
+|---|---|
+| ⭐⭐ **38.1** | **Weg (A):** die letzte Falte **heisst** die Spanne `2026-01-01/2026-09-01`; Weg (B) — zwei Namen für eine Periode — unzulässig. Daneben die TB-88-Messung, dass (B) Sperrlistenpunkt 5 (`auswertung.py`, `lies_zellen`) berührt hätte |
+| ⭐ **38.2** | **Fundstellen als Datei und Bezeichner**, Zeilennummern nur in Tatsachennotizen mit Commit. Marke im **Kopf von Abschnitt 0** — Registertext gehört ins Register, nicht zu den Prüfprinzipien |
+| ⭐⭐ **38.3** | Der Vollzug von Punkt 4 vor dem Tag ist eine **beauftragte Änderung nach 37.3** — kein Amendment nach 10.1, kein Protokolleintrag |
+| ⭐ **38.4** | Punkt 4 bekommt **Form (ii)** (beide Dateien, die alte als historischer Stand wie Punkt 2). **Form steht fest, Vollzug steht aus** |
+| ⭐⭐ **38.5** | **Kein Laufmodul trägt eine eigene Kostenkopie** — neun Importe aus einem neuen Modul; Papierpfad und `GEBUEHR_PCT` bleiben überwachte Kopien; Punkt 7 hat seinen Ort schon (`registerdaten.py`) |
+| ⚠️ **38.6** | Fables zwei Selbstberichtigungen: Z. 51 statt 41; acht Stellen statt fünf — ERSETZT-Marke bei 37.4, alter Satz bleibt |
+| ⭐ **38.7** | TB-88: Z. 338/460 seit `4daa254`; Slippage 9/9, 0,30 %; (B) bricht an `lies_zellen`; ⚠️⚠️ der Test stürzt ab und bleibt nach dem Vollzug **163/2** — **offene Frage**, nicht beantwortet |
+
+Vierzehn Marken am alten Ort, 22 Blockzitate, per `diff` je Zitat
+zeichengleich (0 Abweichungen). Acht Abweichungen vom Auftrag im
+Ergebnisdokument, die wichtigste: die Slippage-Messung stammt nicht aus
+TB-88, sondern aus Anfrage 22i — nachgemessen, gleich.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Zitate werden eingesetzt, nicht abgetippt.** Platzhalter mit Quellzeile in einer Vorlage, ein Skript setzt die Zeile ein, ein zweites vergleicht unabhängig per `diff`. Beides liegt im Beleg und ist in einem Wegwerf-Worktree byte-gleich wiederholbar |
+| ⭐ | **Die Quellenangabe eines Auftrags ist selbst zu prüfen.** Der Auftrag führte die Slippage-Messung unter TB-88; sie stand in 22i. Eine Tatsachennotiz mit falscher Herkunft ist eine falsche Tatsachennotiz, auch wenn die Zahl stimmt |
+| ⭐ | **Eine neue Schreibregel gilt ab dem Abschnitt, der sie einträgt** — 38 nennt Fundstellen schon als Datei und Funktion, Zeilennummern nur mit Commit |
+| | Kurzzitate in Marken nur als zeichengleiche Teilstücke; wer den Inhalt nur benennt, setzt keine Anführungszeichen |
+
+### Was offen bleibt
+
+Fable (Anfrage 22i): „grün" als Fertigkriterium von Plan-Punkt 8 · welche
+Tabelle für `t3_supertrend` · G6/H3 als eigener Punkt. TB-90: Namensbildung in
+`faltenplan.py`, Kostenmodul und neun Importe, Ort bei Punkt 7, danach ein
+Abbild. Dazu unverändert: der Vollzug von Punkt 4 (Plan-Punkt 8), das neue
+Abbild (37.3), 35.5, 33.5, TB-30b, 32.5, (20g)–(20m), `K4t`.
+
+*Geschrieben 23.09.2026 von der Mac-Sitzung TB-89 selbst. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

@@ -1,0 +1,23 @@
+Quelle Z.  33  Register Z. 6652   251 Zeichen  diff rc 0  gleich
+Quelle Z.  37  Register Z. 6656   626 Zeichen  diff rc 0  gleich
+Quelle Z.  39  Register Z. 6660   288 Zeichen  diff rc 0  gleich
+Quelle Z.  41  Register Z. 6666   897 Zeichen  diff rc 0  gleich
+Quelle Z.  43  Register Z. 6671   294 Zeichen  diff rc 0  gleich
+Quelle Z.  73  Register Z. 6675   263 Zeichen  diff rc 0  gleich
+Quelle Z.  47  Register Z. 6709   195 Zeichen  diff rc 0  gleich
+Quelle Z.  49  Register Z. 6713   337 Zeichen  diff rc 0  gleich
+Quelle Z.  51  Register Z. 6717   153 Zeichen  diff rc 0  gleich
+Quelle Z.  55  Register Z. 6748   654 Zeichen  diff rc 0  gleich
+Quelle Z.  57  Register Z. 6752   321 Zeichen  diff rc 0  gleich
+Quelle Z.  59  Register Z. 6771   588 Zeichen  diff rc 0  gleich
+Quelle Z.  61  Register Z. 6775   259 Zeichen  diff rc 0  gleich
+Quelle Z.  21  Register Z. 6805   460 Zeichen  diff rc 0  gleich
+Quelle Z.  23  Register Z. 6810   633 Zeichen  diff rc 0  gleich
+Quelle Z.  25  Register Z. 6814   395 Zeichen  diff rc 0  gleich
+Quelle Z.  27  Register Z. 6818   196 Zeichen  diff rc 0  gleich
+Quelle Z.   9  Register Z. 6842   236 Zeichen  diff rc 0  gleich
+Quelle Z.  11  Register Z. 6844   198 Zeichen  diff rc 0  gleich
+Quelle Z.  13  Register Z. 6848   384 Zeichen  diff rc 0  gleich
+Quelle Z.  15  Register Z. 6850    74 Zeichen  diff rc 0  gleich
+Quelle Z.  29  Register Z. 6885   556 Zeichen  diff rc 0  gleich
+Zitate: 22, Abweichungen: 0

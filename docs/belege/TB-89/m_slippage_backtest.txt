@@ -1,0 +1,36 @@
+== strategies/elliott_wave/backtest_elliott.py
+73:TRADING_FEE_PCT = 0.1     # pro Order (Entry und Exit je einmal)
+74:SLIPPAGE_PCT = 0.05       # angenommene Abweichung vom gewuenschten Preis, je Order
+150:        total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
+== strategies/elliott_wave_stocks/backtest_elliott.py
+77:TRADING_FEE_PCT = 0.1     # pro Order (Entry und Exit je einmal)
+78:SLIPPAGE_PCT = 0.05       # angenommene Abweichung vom gewuenschten Preis, je Order
+162:        total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
+== strategies/rsi2_crypto/backtest_rsi2.py
+58:TRADING_FEE_PCT = 0.1
+59:SLIPPAGE_PCT = 0.05
+120:            total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
+== strategies/rsi2_mean_reversion/backtest_rsi2.py
+85:TRADING_FEE_PCT = 0.1
+86:SLIPPAGE_PCT = 0.05
+156:            total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
+== strategies/t3_supertrend/backtest_trend.py
+27:TRADING_FEE_PCT = 0.1
+28:SLIPPAGE_PCT = 0.05
+121:                pnl_pct -= 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)  # Gebuehren/Slippage wie Elliott-Wave-Bot
+== strategies/turtle_soup_crypto/backtest_turtle_soup.py
+96:TRADING_FEE_PCT = 0.1
+97:SLIPPAGE_PCT = 0.05
+164:            total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
+== strategies/turtle_soup_stocks/backtest_turtle_soup.py
+92:TRADING_FEE_PCT = 0.1
+93:SLIPPAGE_PCT = 0.05
+160:            total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
+== strategies/volatility_breakout/backtest_breakout.py
+105:TRADING_FEE_PCT = 0.1
+106:SLIPPAGE_PCT = 0.05
+193:            total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
+== strategies/volatility_breakout_crypto/backtest_breakout.py
+73:TRADING_FEE_PCT = 0.1
+74:SLIPPAGE_PCT = 0.05
+152:            total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
