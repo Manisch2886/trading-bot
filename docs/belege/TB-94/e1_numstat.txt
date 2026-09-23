@@ -1,0 +1,41 @@
+# TB-94 E1 — numstat des Registers, 2026-09-23 20:22:35 +0200
+$ git --no-optional-locks log -1 --numstat -- docs/VORREGISTRIERUNG_neuselektion.md
+f65a0a0 TB-94 Block D: neues Abbild sperrliste_abbild_2026-09-23.json (2f23f76c...), Sonde dagegen rc 2 ohne Befund (alle 15 Pfade gleich, (ii) 0, Punkte 2/5 = 0, 12 Punkte 2 wegen Nicht-Dateibezogenem), Ergebnis additiv in 39.9, Belege A1/A2/D1/D2/E2
+
+25	0	docs/VORREGISTRIERUNG_neuselektion.md
+
+# je TB-94-Commit auf das Register:
+27b68b9  550	0	docs/VORREGISTRIERUNG_neuselektion.md 
+f65a0a0  25	0	docs/VORREGISTRIERUNG_neuselektion.md 
+# gesamt 12f6089..HEAD:
+575	0	docs/VORREGISTRIERUNG_neuselektion.md
+# '-'-Zeilen im Gesamtdiff: 0
+# wc -l:     7530 (Eingang 6955)
+
+# Abschluss-Hashes:
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+e4ba341d3177d455b1c3151f4bb2e0cf7f16fbd516d9b30edd45d0c7dc005e56  research/vorregistrierung/ergebnisse/benchmark_drawdowns_tb72.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+2f23f76c99e22991e4a331ec1107dc0f090a425bc9e050793470ee3cd52dd4fe  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
+c3b4e69d8f207d0c1982a538203dcf184072554fdc1beb0f612bf054cd2a0062  research/vorregistrierung/auswertung.py
+3e547014652aa01154fc4b2eb88e8600a9560e5dff194f1385de9a765889fc3b  research/vorregistrierung/beispieldaten.py
+d6bdd55805344da09b6b43d791267b43c9702687fc1c7cdbad1473079443e061  research/vorregistrierung/benchmark.py
+7aa0b8ccf5619a21d5f082f68d81cb412f98ae9c9724e799da8b48dce7498cfb  research/vorregistrierung/faltenplan.py
+56a1c2e1514385acd26c3432bd111f3588846c80d173a4d4a471ecae723fb502  research/vorregistrierung/herkunft.py
+d130e15cf2c9b9c1359610aeac715c39c43823314273d8c9f8c78d555e2ea137  research/vorregistrierung/kennzahlen.py
+623f8d771ffd5ae9dc1b979fbe383c85268371ba4f1dfeff055379662be41f25  research/vorregistrierung/messgroessen.py
+1d7358dafc6ecbe14c18b5fafb286f7c59674f53f2875dadc30d28b91d278015  research/vorregistrierung/pruefe_grenzsaetze.py
+dace1b01826fa6a999beb9a15a8eda41a4e0c97dec584e451cfc0d9b26daac01  research/vorregistrierung/registerbericht.py
+141fa14b6742aae085f95377d406bb9ec4639c06d4de01c4c8c7f855641865fa  research/vorregistrierung/registerdaten.py
+851ee4ae9c0906d418fbe8b65dbbf6c8ee30028550a6fc1a14321a43e1298648  research/vorregistrierung/sperrliste_abbild.py
+6e7defefb46903ccec8df60a350136f5961c137b45fb1a921407e7a8e76f3fbe  research/vorregistrierung/test_vorregistrierung.py
+aff8eaa0f207ee451c91b04246995bd9655d3685fd94fd7de668b78266df501f  shared/sperrlistensonde.py
+# .py geaendert seit fcc3265: 3 (nur Beleg-Skripte unter docs/belege/TB-94/):
+docs/belege/TB-94/e2_zitate.py
+docs/belege/TB-94/eintrag_39_9_ergebnis.py
+docs/belege/TB-94/eintrag_register_39.py
+# ergebnisse/ seit fcc3265:
+A	research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
