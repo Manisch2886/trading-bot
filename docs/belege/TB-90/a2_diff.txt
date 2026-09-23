@@ -1,0 +1,72 @@
+3c3
+<   "bestaetigungsperiode": "2026-2027",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+70c70
+<     "name": "2026-2027",
+---
+>     "name": "2026-01-01/2026-09-01",
+93c93
+<   "bestaetigungsperiode": "2026",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+245c245
+<     "name": "2026",
+---
+>     "name": "2026-01-01/2026-09-01",
+273c273
+<   "bestaetigungsperiode": "2026",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+388c388
+<     "name": "2026",
+---
+>     "name": "2026-01-01/2026-09-01",
+414c414
+<   "bestaetigungsperiode": "2026",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+547c547
+<     "name": "2026",
+---
+>     "name": "2026-01-01/2026-09-01",
+574c574
+<   "bestaetigungsperiode": "2026",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+693c693
+<     "name": "2026",
+---
+>     "name": "2026-01-01/2026-09-01",
+719c719
+<   "bestaetigungsperiode": "2026",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+852c852
+<     "name": "2026",
+---
+>     "name": "2026-01-01/2026-09-01",
+879c879
+<   "bestaetigungsperiode": "2026",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+1031c1031
+<     "name": "2026",
+---
+>     "name": "2026-01-01/2026-09-01",
+1059c1059
+<   "bestaetigungsperiode": "2026",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+1192c1192
+<     "name": "2026",
+---
+>     "name": "2026-01-01/2026-09-01",
+1219c1219
+<   "bestaetigungsperiode": "2026",
+---
+>   "bestaetigungsperiode": "2026-01-01/2026-09-01",
+1352c1352
+<     "name": "2026",
+---
+>     "name": "2026-01-01/2026-09-01",

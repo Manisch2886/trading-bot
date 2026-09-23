@@ -305,6 +305,8 @@ def _plan(bot: str, mess: dict, markt: str) -> dict:
     for i, f in enumerate(falten):
         von = date.fromisoformat(f["von"])
         f["rolle"] = "bestaetigung" if i == len(falten) - 1 else "selektion"
+        if f["rolle"] == "bestaetigung":
+            f["name"] = "%s/%s" % (f["von"], f["bis_ausschliesslich"])
         f["training_bis_ausschliesslich"] = (von - timedelta(days=purge)).isoformat()
         f["embargo_nach_falten"] = [g["name"] for g in falten[:i]]
     return {

@@ -1,0 +1,19 @@
+# A5: 2026-09-23T08:03:44Z  HEAD 66eec94  faltenplan.py 7aa0b8ccf5619a21
+# python3 = /Users/jaquelineloffler/trading-bot/trading-env/bin/python3, Python 3.9.6
+TB-30a - Selbsttest der Vorregistrierung
+  Teil A ...
+Traceback (most recent call last):
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 696, in <module>
+    sys.exit(main())
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 684, in main
+    teil()
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 98, in teil_a
+    e = lauf(d)
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/test_vorregistrierung.py", line 90, in lauf
+    return aw.ein_bot(bot, ordner, _mess(), _plan(), _tabellen())
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/auswertung.py", line 470, in ein_bot
+    zul = zulaessigkeit(bot, df, sel, tabellen)
+  File "/Users/jaquelineloffler/trading-bot/research/vorregistrierung/auswertung.py", line 237, in zulaessigkeit
+    falte = eintrag["falten"][z["falte"]]
+KeyError: '2017'
+rc=1

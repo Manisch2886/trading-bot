@@ -1,0 +1,46 @@
+A1 - Bezeichner je Bot (Soll: 2026-01-01/2026-09-01 bei allen neun)
+   elliott_wave               2026-01-01/2026-09-01
+   elliott_wave_stocks        2026-01-01/2026-09-01
+   rsi2_crypto                2026-01-01/2026-09-01
+   rsi2_mean_reversion        2026-01-01/2026-09-01
+   t3_supertrend              2026-01-01/2026-09-01
+   turtle_soup_crypto         2026-01-01/2026-09-01
+   turtle_soup_stocks         2026-01-01/2026-09-01
+   volatility_breakout        2026-01-01/2026-09-01
+   volatility_breakout_crypto 2026-01-01/2026-09-01
+   A1: BESTANDEN (9/9)
+
+A2 - je Bot: veraenderte Strings (Faltennamen und Plan-Felder)
+   elliott_wave               weg:['2026-2027'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+   elliott_wave_stocks        weg:['2026'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+   rsi2_crypto                weg:['2026'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+   rsi2_mean_reversion        weg:['2026'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+   t3_supertrend              weg:['2026'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+   turtle_soup_crypto         weg:['2026'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+   turtle_soup_stocks         weg:['2026'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+   volatility_breakout        weg:['2026'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+   volatility_breakout_crypto weg:['2026'] neu:['2026-01-01/2026-09-01'] gemeinsame ungleich:0 uebrige Planfelder ungleich:0 Bestaetigungsfalte sonst ungleich:0 -> ok
+
+A3 - selektionsfalten ohne Spanne (Schraegstrich)
+   elliott_wave               4 Falten, mit Schraegstrich: keine, gleich vorher: True
+   elliott_wave_stocks        9 Falten, mit Schraegstrich: keine, gleich vorher: True
+   rsi2_crypto                7 Falten, mit Schraegstrich: keine, gleich vorher: True
+   rsi2_mean_reversion        8 Falten, mit Schraegstrich: keine, gleich vorher: True
+   t3_supertrend              7 Falten, mit Schraegstrich: keine, gleich vorher: True
+   turtle_soup_crypto         8 Falten, mit Schraegstrich: keine, gleich vorher: True
+   turtle_soup_stocks         9 Falten, mit Schraegstrich: keine, gleich vorher: True
+   volatility_breakout        8 Falten, mit Schraegstrich: keine, gleich vorher: True
+   volatility_breakout_crypto 8 Falten, mit Schraegstrich: keine, gleich vorher: True
+
+A4 - embargo_nach_falten der Selektionsfalten
+   elliott_wave               4 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+   elliott_wave_stocks        9 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+   rsi2_crypto                7 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+   rsi2_mean_reversion        8 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+   t3_supertrend              7 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+   turtle_soup_crypto         8 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+   turtle_soup_stocks         9 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+   volatility_breakout        8 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+   volatility_breakout_crypto 8 Selektionsfalten, gleich: True, Bestaetigungsfalte in einer Embargo-Liste: False
+
+GESAMT: BESTANDEN
