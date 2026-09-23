@@ -1876,3 +1876,24 @@ Punkt, an dem ein Mensch sieht, welcher Auftrag anläuft.
 
 ⭐ *Eine Automatisierung, die auch die Bestätigung verschluckt, hätte keine
 Wache mehr — und eine Wache, die niemand sieht, ist keine.*
+
+### 22.4 ⭐ Der Einfügesatz steht IMMER am Schluss der Antwort, in einem Kopierfeld
+
+⚠️ **Betreiberanweisung 23.09.2026, 20:10** — auf die Frage *„was soll ich code
+nun mitgeben?"*: *„schicke mir das zukünftig immer ganz zum Schluss des chats in
+einem kopierfeld"*.
+
+**Die Regel:** Jede Antwort, die eine Mac-Sitzung anstösst, endet mit dem
+Einfügesatz in einem Codeblock. Nicht im Fliesstext, nicht in der Mitte, nicht
+als blosser Hinweis.
+
+⚠️⚠️ **Auch dann, wenn der Sitzungswächter den Satz bereits ins Terminalfenster
+gelegt hat.** Das war der Anlass: Der Wächter hatte gemeldet „Satz ins Fenster
+gelegt", und die Antwort verwies nur darauf. ⭐ **Der Betreiber arbeitet aber
+meist in der Claude-App und nicht am Terminal** — dort muss er den Satz
+einfügen, und dann braucht er ihn im Chat.
+
+**Auf dem Mac steht er zusätzlich in** `logs/sitzungswaechter/letzter_satz.txt`.
+
+⭐ *Der Satz ist bis auf die Nummer immer derselbe (Abschnitt 14). Ihn
+mitzuliefern kostet nichts; ihn wegzulassen kostet eine Nachfrage.*
