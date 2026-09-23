@@ -1,0 +1,45 @@
+# TB-95 D1 - Wer öffnet die neun Handelslisten research/tb24_haltedauern/daten/*_alle_trades.csv?
+# HEAD 9e2a071 (Code-Stand wie b83105b/fcc3265 für alle Dateien des Laufs), 2026-09-23
+
+## 1. Statisch (grep -rn 'tb24_haltedauern\|_alle_trades' über research/vorregistrierung/, shared/,
+##    research/universum_trockenlauf/{universum_trockenlauf,loaderlauf}.py; faltenplan_neun.py ohne Treffer)
+
+| Datei:Zeile | Funktion | was |
+|---|---|---|
+| research/vorregistrierung/faltenplan.py:121 | (Modulebene) | TB24_DATEN = BASE_DIR/research/tb24_haltedauern/daten |
+| research/vorregistrierung/faltenplan.py:132-133 | gefundene_trades_je_jahr(bot) | pfad = TB24_DATEN/<bot>_alle_trades.csv; pd.read_csv(parse_dates=["entry_time"]) |
+| research/vorregistrierung/messgroessen.py:207 | haltedauern() | liest research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv - eine ANDERE Datei (keine der neun Listen); im Modus-Lauf NICHT geöffnet (Lauf liest messgroessen.json) |
+
+Kein Treffer in benchmark.py, registerdaten.py, faltenplan_neun.py, universum_trockenlauf.py, loaderlauf.py.
+
+## 2. Dynamisch - ein Modus-Lauf mit Lesehaken und Aufrufstapel
+
+Werkzeug: docs/belege/TB-95/d_lauf.sh (Hilfsordner wie TB-92: data/ und config/ aus dem Snapshot
+63e4b6c8..., alles andere Repo) + docs/belege/TB-95/haken/sitecustomize.py (Lesehaken aus TB-92,
+ergänzt um traceback.extract_stack für Pfade mit '_alle_trades').
+Ziel: <scratchpad>/d1_modus.json - nie ergebnisse/.
+
+Ergebnis (d_lauf_log.txt):
+  Lauf d1_modus: rc=0, Dauer 56 s, Prozesse 11
+  sha256 64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7
+  BYTEGLEICH mit ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+  => fünfte Wiederholung des Determinismusnachweises: bestanden (Abbruchkriterium 6 greift nicht).
+
+Geöffnet: alle neun Listen je GENAU EINMAL, ausschliesslich im Hauptprozess
+(benchmark.py --ziel ...; die zehn Kindprozesse - Trockenlauf/Loader - öffnen keine davon).
+Aufrufstapel, bei allen neun gleich bis auf plan_krypto (5) / plan_aktien (4)
+(vollständig: d1_protokoll_auszug.tsv):
+
+  benchmark.py:424   <module>
+  benchmark.py:397   main
+  benchmark.py:222   je_bot                    plan = fp.faltenplan(mess)
+  faltenplan.py:358  faltenplan
+  faltenplan.py:353/345 plan_krypto / plan_aktien
+  faltenplan.py:300  _plan                     laenge, trades, begruendung = faltenlaenge_jahre(bot)
+  faltenplan.py:153  faltenlaenge_jahre        zaehlung = volle_jahre(gefundene_trades_je_jahr(bot))
+  faltenplan.py:133  gefundene_trades_je_jahr  pd.read_csv(pfad, parse_dates=["entry_time"])
+  pandas read_csv ...
+
+=> Öffnender Schritt: benchmark.py selbst, über seinen EINEN Aufruf des Faltenplans
+   (je_bot -> fp.faltenplan). Kein Nebenweg über registerdaten.py oder den Trockenlauf.
+   TB-92s Notiz „über den Faltenplan" ist damit bestätigt und auf die Funktion genau belegt.

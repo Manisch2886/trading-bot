@@ -1,0 +1,34 @@
+# TB-95 D2 - Gehen die Inhalte der neun Listen in die Benchmark-Tabelle ein?
+# HEAD 9e2a071, 2026-09-23. Rohprotokoll: d_lauf_log.txt. Sichtschutz 27.1: keine Ergebnisgrössen.
+
+## (a) Datenfluss gelesen
+
+faltenplan.py:124-135  gefundene_trades_je_jahr: DataFrame -> nur die Spalte entry_time -> Zählung je Kalenderjahr.
+faltenplan.py:138-148  volle_jahre: erstes und letztes Jahr weg.
+faltenplan.py:151-165  faltenlaenge_jahre: Mittel der Zählung; < rd.ZWEIJAHRES_SCHWELLE_TRADES (30) -> Länge 2, sonst 1.
+faltenplan.py:298-303  _plan: Länge -> erste_falte(bot, laenge, ...) und _jahresfalten(erste, schnitt, laenge)
+                       -> die Faltengrenzen (von/bis) und Namen.
+benchmark.py:222-260   je_bot: für jede Falte des Plans eine Zeile der Tabelle, Fenster = [von, bis).
+Nebenbei: trades_je_jahr und faltenlaenge_begruendung landen im Plan, NICHT in der Tabelle.
+
+=> Die Inhalte gehen ein - aber nur über EINE Grösse: die Faltenlänge (1 oder 2 Jahre), eine Schwellen-
+   entscheidung über die Zahl der Einträge je vollem Kalenderjahr. Welche Trades es sind, was sie
+   verdient haben, andere Spalten: nichts davon erreicht die Tabelle. Nur entry_time wird gelesen.
+
+## (b) Störprobe - auf KOPIEN im Scratchpad (d_stoerung.py verweigert Pfade im Repo)
+
+| Probe | Änderung an der Kopie von volatility_breakout_crypto_alle_trades.csv | Tabelle (sha256) | Befund |
+|---|---|---|---|
+| b0 (= D1) | keine | 64fb2912... | bytegleich |
+| b1 | EINE Datenzeile entfernt (erste mit Einstieg 2024), 234 -> 233 Zeilen | 64fb2912... | BYTEGLEICH - die Schwelle wird nicht überschritten |
+| b2 | nur jede dritte Datenzeile behalten, 234 -> 79 Zeilen (Mittel fällt unter die Schwelle) | 97cf224f8fd0cf4a2d70ceb483c5d012e51032ca64b0dbc3c5f66f2977f5ca8a | VERSCHIEDEN |
+
+Vergleich b2 gegen die registrierte Tabelle je Bot: acht Bots gleich; nur volatility_breakout_crypto
+verschieden - Falten vorher 2018 · 2019 · ... · 2025 (Einjahresfalten), nachher 2018-2019 · 2020-2021 ·
+2022-2023 · 2024-2025 (Zweijahresfalten); Bestätigung unverändert 2026-01-01/2026-09-01.
+
+⚠️ Die Probe, wie der Auftrag sie vorschlägt („eine Zeile entfernen genügt"), hätte allein das falsche
+   Ergebnis „geht nicht ein" geliefert (b1). Erst b2 zeigt den Weg. (a) und (b) widersprechen sich nicht:
+   (a) sagt voraus, dass nur ein Schwellenübertritt wirkt, (b) bestätigt genau das in beide Richtungen.
+
+Originale: sha256 der neun Listen vorher = nachher (d_lauf_log.txt, Kopf und Schluss; auch hashes_vorher.txt).

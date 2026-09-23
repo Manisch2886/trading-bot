@@ -1,0 +1,39 @@
+# Originale der neun Listen VORHER
+27e319287502144aa0f1445c79e9a8f30dca36f80018a1c0a45b1a8da7f31228  research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+862cbc728cb52aad5e0343cacb0f8ba7755ceb094fb3250c12458e91b1ef0b2c  research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+b5f74c7c691876008e58f4086e49a439d0b7c0c48c2446690ed2527837046674  research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+63c7bc2449b215ba3fef95715294dd420d38b8f4a4636b5449497987fa7e70ab  research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv
+530e20fe3d4604eb655eabec573205b63322c92a753dfa281bad37ff8f424827  research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv
+017c661d51d703f9b40044d8302bf888452095c16df35d8b18c8bde4e7a7fbbc  research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv
+f5e4076670942c7272fbe5810c67aa079f2a91ced0fd8a68371c4318bfc6eb0b  research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv
+f45253699c041cb676b8f76cb933b39f9b31bb60cb7479eb3ffc610b293e768f  research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv
+96e5c4ff36d708d1b4ad4a4991873a469cb67de5de1358ca834098854e176c6c  research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+# D1 - Modus-Lauf mit Lesehaken und Stapel
+  /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/6be25834-d9f1-4ebd-82ae-02d79a0fe32d/scratchpad/d1_hilf: data/ 223 Verknuepfungen, tb24 = Verknuepfung
+  Lauf d1_modus: rc=0, Dauer 56 s, Prozesse 11
+    sha256 64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7
+    BYTEGLEICH mit research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+# D2 (b1) - Kopie, EINE Zeile entfernt (volatility_breakout_crypto, erste Zeile mit Einstieg 2024)
+  /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/6be25834-d9f1-4ebd-82ae-02d79a0fe32d/scratchpad/d2b1_hilf: data/ 223 Verknuepfungen, tb24 = KOPIE
+    entfernt: Zeile 69 der Datei (Einstiegsjahr 2024); 234 -> 233 Zeilen
+    geaendert: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/6be25834-d9f1-4ebd-82ae-02d79a0fe32d/scratchpad/d2b1_hilf/research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+  Lauf d2b1_eine_zeile: rc=0, Dauer 57 s
+    sha256 64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7
+    BYTEGLEICH mit research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+# D2 (b2) - Kopie, zwei von drei Datenzeilen entfernt (volatility_breakout_crypto) - ueber die Schwelle der Faltenlaenge
+  /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/6be25834-d9f1-4ebd-82ae-02d79a0fe32d/scratchpad/d2b2_hilf: data/ 223 Verknuepfungen, tb24 = KOPIE
+    behalten: jede dritte Datenzeile; 234 -> 79 Zeilen
+    geaendert: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/6be25834-d9f1-4ebd-82ae-02d79a0fe32d/scratchpad/d2b2_hilf/research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+  Lauf d2b2_schwelle: rc=0, Dauer 54 s
+    sha256 97cf224f8fd0cf4a2d70ceb483c5d012e51032ca64b0dbc3c5f66f2977f5ca8a
+    VERSCHIEDEN von research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+# Originale der neun Listen NACHHER
+27e319287502144aa0f1445c79e9a8f30dca36f80018a1c0a45b1a8da7f31228  research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+862cbc728cb52aad5e0343cacb0f8ba7755ceb094fb3250c12458e91b1ef0b2c  research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+b5f74c7c691876008e58f4086e49a439d0b7c0c48c2446690ed2527837046674  research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+63c7bc2449b215ba3fef95715294dd420d38b8f4a4636b5449497987fa7e70ab  research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv
+530e20fe3d4604eb655eabec573205b63322c92a753dfa281bad37ff8f424827  research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv
+017c661d51d703f9b40044d8302bf888452095c16df35d8b18c8bde4e7a7fbbc  research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv
+f5e4076670942c7272fbe5810c67aa079f2a91ced0fd8a68371c4318bfc6eb0b  research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv
+f45253699c041cb676b8f76cb933b39f9b31bb60cb7479eb3ffc610b293e768f  research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv
+96e5c4ff36d708d1b4ad4a4991873a469cb67de5de1358ca834098854e176c6c  research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv

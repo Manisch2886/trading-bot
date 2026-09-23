@@ -1,0 +1,91 @@
+#argv	research/vorregistrierung/benchmark.py --ziel <scratchpad>/d1_modus.json
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:359	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:353	plan_krypto
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:359	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:353	plan_krypto
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:359	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:353	plan_krypto
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:359	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:353	plan_krypto
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:359	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:353	plan_krypto
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:345	plan_aktien
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:345	plan_aktien
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:345	plan_aktien
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
+r	<scratchpad>/d1_hilf/research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:424	<module>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:397	main
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/benchmark.py:222	je_bot
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	faltenplan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:358	<dictcomp>
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:345	plan_aktien
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:300	_plan
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:153	faltenlaenge_jahre
+#stapel	/Users/jaquelineloffler/trading-bot/research/vorregistrierung/faltenplan.py:133	gefundene_trades_je_jahr
