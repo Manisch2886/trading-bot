@@ -1,0 +1,32 @@
+# TB-95 A4 - Jahresliterale in Faltenzusammenhaengen, test_vorregistrierung.py und beispieldaten.py
+# HEAD b83105b (vor Block B), 2026-09-23. Suche:
+#   grep -nE '"20(1[7-9]|2[0-7])[^"]*"|20(1[7-9]|2[0-7])-20' test_vorregistrierung.py beispieldaten.py
+#   grep -nE '\b20(1[7-9]|2[0-7])\b' (Gegenprobe, auch ohne Anfuehrungszeichen)
+# Faltenplan zur Laufzeit: siehe a1_faltenplan_ist.txt (B). BOT des Tests = turtle_soup_stocks (9 Selektionsfalten 2017-2025).
+
+Treffer (6 Zeilen, 4 Pruefstellen + 2 Generatorstellen):
+
+| Datei:Zeile | Pruefung/Funktion | Literal | heute | Bauart wie G6/H3? | in TB-95 |
+|---|---|---|---|---|---|
+| test_vorregistrierung.py:495-496 | G6 | "2020", "2022" als Faltennamen | ROT (elliott_wave) | - (ist G6) | geaendert (B1) |
+| test_vorregistrierung.py:590 | H3 | {"2019","2020","2021","2022"} + Anzahl 4 | ROT (beisst nicht, n=9) | - (ist H3) | geaendert (B2) |
+| test_vorregistrierung.py:246 | teil_d (D1, D2, D4, D6, D7) | ruhig, krise = "2021", "2020" als Schluessel in die Benchmark-Tabelle von BOT | gruen, weil BOT Einjahresfalten hat; die Jahre stammen aus Register 4.4 (Tabelle: 2021 bindet DD_Toleranz, 2020 die relative Grenze) | teilweise: Faltenname als Literal; die WAHL der Jahre ist Registerinhalt 4.4 (Stand TB-30a, Falten 2019-2023) | nur gelistet |
+| test_vorregistrierung.py:442 | teil_f (F1-F4) | ohne = "2022" | gruen (Faltenname existiert bei BOT) | teilweise | nur gelistet |
+| beispieldaten.py:69 | standard_drawdown | falte in ("2020", "2022") | trifft bei 8 Bots, bei elliott_wave NIE (Doppeljahre) - dort gibt es keine Krisenfalte | Generator, keine Pruefung | nur gelistet |
+| beispieldaten.py:77 | standard_exposure | falte in ("2020", "2022") | bei elliott_wave NIE -> Exposure konstant 0,40 ueber alle Falten; nach dem eigenen Docstring ist der Zufalls-Timing-Test dann ENTARTET | Generator, keine Pruefung | nur gelistet |
+
+Warum nur G6/H3 geaendert:
+- G6/H3 sind heute ROT und ihr Mangel ist die Faltenbenennung/Faltenzahl selbst. Die Aenderung nimmt Namen und Zahl aus dem Plan.
+- D und F sind heute gruen, weil BOT Einjahresfalten hat. Die Umstellung auf "Falte, die Jahr J abdeckt" waere dieselbe Technik,
+  aber die Jahre 2020/2021 (D) und 2022 (F) sind in D Registerinhalt (4.4) und in F ein frei gewaehltes Beispiel;
+  welche Registerstelle sie traegt, ist eine Entscheidung, die dieser Auftrag nicht trifft. Bruchstelle: bekommt BOT einmal
+  Zweijahresfalten, endet teil_d mit KeyError (tab["falten"]["2021"]) und teil_f mit F1/F2 rot.
+- beispieldaten.py ist keine Pruefung. Die Wirkung trifft nur Beispieldaten fuer elliott_wave, die der Test nicht erzeugt
+  (alle Laeufe nutzen BOT). beispieldaten.py main() ohne --bot erzeugt aber auch elliott_wave - dort ohne Krise und mit
+  konstanter Exposure.
+
+Zusatzbefund bei der Durchsicht (KEIN Jahresliteral, aber dieselbe Median-Robustheit wie H3):
+- F4 (test_vorregistrierung.py:463-465) "der Median mit der Null liegt UNTER dem Median ohne sie" prueft mit <=.
+  Eine Null unter 9 Falten (sonst 0,10): Median mit Null 0,10, ohne sie 0,10 -> 0,10 <= 0,10 wahr. Der Text sagt "unter",
+  der Code laesst "gleich" zu; bei n = 7 war es genauso (Median 0,10 = 0,10). F4 hat also NIE gebissen, unabhaengig vom
+  Plan. Nicht Bauart G6/H3, nicht geaendert - fuer die Liste im Ergebnisdokument.

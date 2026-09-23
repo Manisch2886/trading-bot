@@ -1,0 +1,48 @@
+# TB-95 Block B - HEAD b83105b + Arbeitsbaum (test_vorregistrierung.py geaendert), 2026-09-23 23:34:19 +0200
+
+# B1 - G6
+   Jahre aus dem Register: [2020, 2022]  (Register: docs/VORREGISTRIERUNG_neuselektion.md)
+
+## B1-a echter Plan: erwartet 0 G6 rot
+   Teil G: 107 bestanden, 0 gescheitert; davon G6: 0
+
+## B1-b Gegenprobe: elliott_wave '2020-2021' als Rolle bestaetigung -> erwartet genau 1 G6 rot (elliott_wave)
+   Teil G: 105 bestanden, 2 gescheitert; davon G6: 1
+   - G6: elliott_wave - die Jahre aus Register 5.1 Nr. 4 [2020, 2022] liegen in Selektionsfalten, sind keine Trainingsjahre - ['2018-2019', '2020-2021', '2022-2023', '2024-2025', '2026-01-01/2026-09-01'], abgedeckt [2018, 201
+   (anderes) G7: elliott_wave - die letzte Falte ist die Bestaetigungsperiode
+
+## B1-c Gegenprobe: turtle_soup_stocks ohne Falte 2022 -> erwartet genau 1 G6 rot (turtle_soup_stocks)
+   Teil G: 106 bestanden, 1 gescheitert; davon G6: 1
+   - G6: turtle_soup_stocks - die Jahre aus Register 5.1 Nr. 4 [2020, 2022] liegen in Selektionsfalten, sind keine Trainingsjahre - ['2017', '2018', '2019', '2020', '2021', '2023', '2024', '2025', '2026-01-01/2026-09-01'], ab
+
+## B1-d Gegenprobe: Registersatz 5.1 Nr. 4 fehlt (Kopie) -> erwartet 9 G6 rot, Jahre None
+   Teil G: 98 bestanden, 9 gescheitert; davon G6: 9
+   - G6: elliott_wave - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2018-2019', '2020-2021', '2022-2023', '2024-2025', '2026-01-01/2026-09-01'], abgedeckt [2018, 2019, 2020,
+   - G6: t3_supertrend - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'], abgedeckt [2019, 2020, 
+   - G6: rsi2_crypto - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'], abgedeckt [2019, 2020, 20
+   - G6: turtle_soup_crypto - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'], abgedeckt 
+   - G6: volatility_breakout_crypto - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'], ab
+   - G6: elliott_wave_stocks - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'], a
+   - G6: rsi2_mean_reversion - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'], abgedeckt
+   - G6: turtle_soup_stocks - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'], ab
+   - G6: volatility_breakout - die Jahre aus Register 5.1 Nr. 4 None liegen in Selektionsfalten, sind keine Trainingsjahre - ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01'], abgedeckt
+
+# B2 - H3
+
+## B2-a neue Menge aus dem Plan (strikte Mehrheit) - muss BEISSEN
+   ohne = ['2017', '2018', '2019', '2020', '2021'] (5 von 9 Selektionsfalten)
+   mit Regel:  rc 0  'Netto-Sharpe (Med.) 0.0000'
+   ohne Regel: rc 0  'Netto-Sharpe (Med.) 9.0000'
+   H3-Bedingung: BESTANDEN
+
+## B2-b Gegenprobe ohne = leer - darf NICHT beissen (H3 muesste scheitern)
+   ohne = [] (0 von 9 Selektionsfalten)
+   mit Regel:  rc 0  'Netto-Sharpe (Med.) 0.1000'
+   ohne Regel: rc 0  'Netto-Sharpe (Med.) 0.1000'
+   H3-Bedingung: GESCHEITERT
+
+## B2-c alte Menge {2019..2022} - Vergleich, beisst nicht
+   ohne = ['2019', '2020', '2021', '2022'] (4 von 9 Selektionsfalten)
+   mit Regel:  rc 0  'Netto-Sharpe (Med.) 0.1000'
+   ohne Regel: rc 0  'Netto-Sharpe (Med.) 0.1000'
+   H3-Bedingung: GESCHEITERT

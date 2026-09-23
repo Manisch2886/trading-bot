@@ -35,8 +35,10 @@ Aufgabenstellung ausdruecklich:
    dann DURCHKOMMT. Eine Wache, deren Wegfall nichts aendert, waere keine.
 """
 
+import datetime as dt
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -76,6 +78,36 @@ def _mess():
 
 def _plan():
     return fp.faltenplan(_mess())
+
+
+def _selektionsfalten(p):
+    """Die Namen der Selektionsfalten eines Bots, in Planreihenfolge."""
+    return [f["name"] for f in p["falten"] if f["rolle"] == "selektion"]
+
+
+def _abgedeckte_jahre(falte):
+    """Die Kalenderjahre, die eine Falte VOLL abdeckt - gerechnet aus ihren
+    Grenzen, nicht aus ihrem Namen (`2020-2021` deckt 2020 und 2021 ab)."""
+    von = dt.date.fromisoformat(falte["von"])
+    bis = dt.date.fromisoformat(falte["bis_ausschliesslich"])
+    return {j for j in range(von.year, bis.year + 1)
+            if von <= dt.date(j, 1, 1) and dt.date(j, 12, 31) < bis}
+
+
+REGISTER = os.path.join(os.path.dirname(os.path.dirname(_HIER)), "docs",
+                        "VORREGISTRIERUNG_neuselektion.md")
+
+
+def _testjahre_aus_register():
+    """Register 5.1 Nr. 4: die Jahre, die Testfalten sind und keine
+    Trainingsjahre. Aus dem Registertext gelesen, nicht als Literal (Fable 23a:
+    ein Literal ist eine Kopie des Registers im Code, und Kopien altern).
+    Genau ein Treffer, sonst None - dann scheitert G6 sichtbar."""
+    muster = re.compile(r"^4\. \*\*(\d{4}) und (\d{4}) sind Testfalten, "
+                        r"keine Trainingsjahre\.\*\*")
+    with open(REGISTER, encoding="utf-8") as f:
+        treffer = [m.groups() for m in map(muster.match, f) if m]
+    return sorted(int(j) for j in treffer[0]) if len(treffer) == 1 else None
 
 
 def _tabellen():
@@ -486,14 +518,23 @@ def teil_g():
                    len(werte) == len({aw._wert_text(w) for w in werte}), str(werte))
 
     plan = _plan()
+    testjahre = _testjahre_aus_register()
     for bot, p in plan.items():
         if p["status"] != "endgueltig":
             pruefe(f"G5: {bot} steht als Platzhalter MIT REGEL da",
                    bool(p.get("regel")) and not p["falten"])
             continue
+        # Die Sache aus Register 5.1 Nr. 4, gerechnet: jedes der Jahre liegt
+        # in einer Falte der Rolle `selektion`. Die Bestaetigungsperiode zaehlt
+        # nicht. Bis TB-95 stand hier `"2020" in namen` - seit den
+        # Zweijahresfalten von elliott_wave (TB-61) traf das nichts mehr.
         namen = [f["name"] for f in p["falten"]]
-        pruefe(f"G6: {bot} - 2020 und 2022 sind Testfalten, keine Trainingsjahre",
-               "2020" in namen and "2022" in namen, str(namen))
+        abgedeckt = set().union(*(_abgedeckte_jahre(f) for f in p["falten"]
+                                  if f["rolle"] == "selektion"))
+        pruefe(f"G6: {bot} - die Jahre aus Register 5.1 Nr. 4 {testjahre} liegen "
+               f"in Selektionsfalten, sind keine Trainingsjahre",
+               testjahre is not None and set(testjahre) <= abgedeckt,
+               f"{namen}, abgedeckt {sorted(abgedeckt)}")
         pruefe(f"G7: {bot} - die letzte Falte ist die Bestaetigungsperiode",
                p["falten"][-1]["rolle"] == "bestaetigung"
                and all(f["rolle"] == "selektion" for f in p["falten"][:-1]))
@@ -541,6 +582,24 @@ def _auswerten_in(ordner_modul, rohergebnisse, bot=BOT):
     return r
 
 
+def _h3_lauf(mess, plan, ohne):
+    """Probe 3: dieselben Beispieldaten einmal mit, einmal ohne die Regel
+    'Netto-Sharpe = 0 fuer Falten ohne Trade' auswerten. Eigene Funktion,
+    damit die Gegenprobe (ohne = leer) denselben Weg geht."""
+    with tempfile.TemporaryDirectory() as roh2, tempfile.TemporaryDirectory() as m:
+        bd.erzeuge(roh2, BOT, mess=mess, plan=plan,
+                   trades_fn=lambda w, i, f, a: 0 if f in ohne else 40,
+                   sharpe_fn=lambda w, i, f, a: 9.0 if f in ohne else 0.10)
+        vorher = _auswerten_in(_HIER, roh2)
+        _kopie(m)
+        _ersetze(os.path.join(m, "auswertung.py"),
+                 'df["netto_sharpe"] = np.where(df["n_trades"].to_numpy() == 0, 0.0,\n'
+                 '                                  df["netto_sharpe"].to_numpy(dtype=float))',
+                 'df["netto_sharpe"] = df["netto_sharpe"].to_numpy(dtype=float)')
+        nachher = _auswerten_in(m, roh2)
+    return vorher, nachher
+
+
 def teil_h():
     mess, plan = _mess(), _plan()
     achsen = aw.gitterachsen(BOT, mess)
@@ -579,29 +638,24 @@ def teil_h():
                    f"{_gewinnerzeile(r.stdout)!r}")
 
         # --- Probe 3: die Null fuer Falten ohne Trade ist wirksam ---------
-        with tempfile.TemporaryDirectory() as roh2, tempfile.TemporaryDirectory() as m:
-            # VIER Falten ohne Trade, nicht eine: die Selektionsstatistik
-            # ist ein MEDIAN und damit robust - eine einzelne gesetzte Null
-            # verschiebt ihn bei sieben Falten gar nicht. Die Probe muesste
-            # sonst gruen bleiben, obwohl die Regel entfernt wurde, und
-            # waere damit wertlos. (Dass der Median so robust ist, steht
-            # auch im Register - es ist eine Eigenschaft von Festlegung 2,
-            # kein Zufall dieses Tests.)
-            ohne = {"2019", "2020", "2021", "2022"}
-            bd.erzeuge(roh2, BOT, mess=mess, plan=plan,
-                       trades_fn=lambda w, i, f, a: 0 if f in ohne else 40,
-                       sharpe_fn=lambda w, i, f, a: 9.0 if f in ohne else 0.10)
-            vorher = _auswerten_in(_HIER, roh2)
-            _kopie(m)
-            _ersetze(os.path.join(m, "auswertung.py"),
-                     'df["netto_sharpe"] = np.where(df["n_trades"].to_numpy() == 0, 0.0,\n'
-                     '                                  df["netto_sharpe"].to_numpy(dtype=float))',
-                     'df["netto_sharpe"] = df["netto_sharpe"].to_numpy(dtype=float)')
-            nachher = _auswerten_in(m, roh2)
-            pruefe("H3: ohne die gesetzte Null aendert sich die Statistik",
-                   vorher.returncode == 0 and nachher.returncode == 0
-                   and _sharpezeile(vorher.stdout) != _sharpezeile(nachher.stdout),
-                   f"{_sharpezeile(vorher.stdout)!r} / {_sharpezeile(nachher.stdout)!r}")
+        # MEHR ALS DIE HAELFTE der Selektionsfalten ohne Trade, nicht eine:
+        # die Selektionsstatistik ist ein MEDIAN und damit robust - erst eine
+        # strikte Mehrheit gesetzter Nullen verschiebt ihn, bei gerader wie
+        # ungerader Faltenzahl. Mit weniger aendert das Entfernen der Regel
+        # nichts, und die Probe kann nicht zeigen, dass sie wirkt. (Dass der Median so
+        # robust ist, steht auch im Register - es ist eine Eigenschaft von
+        # Festlegung 2, kein Zufall dieses Tests.)
+        # Namen UND Zahl kommen aus dem Plan des Bots (Fable 23a). Bis TB-95
+        # standen hier vier Namen als Literale, begruendet mit "sieben Falten";
+        # beim Plan von TB-95 (neun Selektionsfalten) sind es fuenf.
+        sel = _selektionsfalten(plan[BOT])
+        ohne = set(sel[:len(sel) // 2 + 1])
+        vorher, nachher = _h3_lauf(mess, plan, ohne)
+        pruefe("H3: ohne die gesetzte Null aendert sich die Statistik",
+               vorher.returncode == 0 and nachher.returncode == 0
+               and _sharpezeile(vorher.stdout) != _sharpezeile(nachher.stdout),
+               f"{_sharpezeile(vorher.stdout)!r} / {_sharpezeile(nachher.stdout)!r}"
+               f" - ohne Trade: {sorted(ohne)} von {sel}")
 
         # --- Probe 4: die Drawdown-Bedingung traegt ----------------------
         with tempfile.TemporaryDirectory() as m:

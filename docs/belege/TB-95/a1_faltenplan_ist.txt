@@ -1,0 +1,126 @@
+# TB-95 Block A - HEAD b83105b94a5652db1889aee91bdd168cf37879e3, 2026-09-23 23:30:24 +0200
+# Werkzeug: docs/belege/TB-95/a_messung.py, Python 3.9.6
+
+# A1 - der Ist-Stand des Faltenplans, je Bot
+#
+# ⚠️ Der Auftrag nennt als Quelle ergebnisse/faltenplan.json (0e54ac5c...). Nach Register
+# 30.2 (1) ist das der 'registrierte historische Stand eines frueheren Verfahrensstands' und
+# 'wird vom Lauf nicht gelesen'; nach 35.4 verwendet der Lauf den Plan, den faltenplan.py zur
+# Laufzeit bildet. Der Test liest ebenfalls fp.faltenplan(rd._mess()) (test_vorregistrierung.py
+# _plan()). Gemessen werden deshalb BEIDE; massgeblich fuer G6/H3 ist (B).
+#
+# (A) gesperrt: research/vorregistrierung/ergebnisse/faltenplan.json sha256 0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339
+# (B) Laufzeit: faltenplan.py sha256 7aa0b8ccf5619a21d5f082f68d81cb412f98ae9c9724e799da8b48dce7498cfb, fp.faltenplan(rd._mess())
+# Sichtschutz 27.1: nur Verfahrensseite (Namen, Rollen, Zahl, Jahre) - keine Ergebnisgroessen.
+
+## (A) gesperrte Datei faltenplan.json - NUR zum Vergleich, vom Lauf nicht gelesen
+elliott_wave                 status=platzhalter Falten=0  
+elliott_wave_stocks          status=endgueltig  Falten=8  2019[sel] · 2020[sel] · 2021[sel] · 2022[sel] · 2023[sel] · 2024[sel] · 2025[sel] · 2026[bes]
+rsi2_crypto                  status=platzhalter Falten=0  
+rsi2_mean_reversion          status=endgueltig  Falten=8  2019[sel] · 2020[sel] · 2021[sel] · 2022[sel] · 2023[sel] · 2024[sel] · 2025[sel] · 2026[bes]
+t3_supertrend                status=platzhalter Falten=0  
+turtle_soup_crypto           status=platzhalter Falten=0  
+turtle_soup_stocks           status=endgueltig  Falten=8  2019[sel] · 2020[sel] · 2021[sel] · 2022[sel] · 2023[sel] · 2024[sel] · 2025[sel] · 2026[bes]
+volatility_breakout          status=endgueltig  Falten=8  2019[sel] · 2020[sel] · 2021[sel] · 2022[sel] · 2023[sel] · 2024[sel] · 2025[sel] · 2026[bes]
+volatility_breakout_crypto   status=platzhalter Falten=0  
+
+## (B) Laufzeitplan (der Plan, den Test und Lauf verwenden)
+Bot                           L #sel #ges  Falten (Name [Rolle] -> abgedeckte Kalenderjahre)
+elliott_wave                  2    4    5  status=endgueltig
+                                  2018-2019                selektion     2018-01-01 .. 2020-01-01 (ausschl.)  Jahre [2018, 2019]
+                                  2020-2021                selektion     2020-01-01 .. 2022-01-01 (ausschl.)  Jahre [2020, 2021]
+                                  2022-2023                selektion     2022-01-01 .. 2024-01-01 (ausschl.)  Jahre [2022, 2023]
+                                  2024-2025                selektion     2024-01-01 .. 2026-01-01 (ausschl.)  Jahre [2024, 2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+t3_supertrend                 1    7    8  status=endgueltig
+                                  2019                     selektion     2019-01-01 .. 2020-01-01 (ausschl.)  Jahre [2019]
+                                  2020                     selektion     2020-01-01 .. 2021-01-01 (ausschl.)  Jahre [2020]
+                                  2021                     selektion     2021-01-01 .. 2022-01-01 (ausschl.)  Jahre [2021]
+                                  2022                     selektion     2022-01-01 .. 2023-01-01 (ausschl.)  Jahre [2022]
+                                  2023                     selektion     2023-01-01 .. 2024-01-01 (ausschl.)  Jahre [2023]
+                                  2024                     selektion     2024-01-01 .. 2025-01-01 (ausschl.)  Jahre [2024]
+                                  2025                     selektion     2025-01-01 .. 2026-01-01 (ausschl.)  Jahre [2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+rsi2_crypto                   1    7    8  status=endgueltig
+                                  2019                     selektion     2019-01-01 .. 2020-01-01 (ausschl.)  Jahre [2019]
+                                  2020                     selektion     2020-01-01 .. 2021-01-01 (ausschl.)  Jahre [2020]
+                                  2021                     selektion     2021-01-01 .. 2022-01-01 (ausschl.)  Jahre [2021]
+                                  2022                     selektion     2022-01-01 .. 2023-01-01 (ausschl.)  Jahre [2022]
+                                  2023                     selektion     2023-01-01 .. 2024-01-01 (ausschl.)  Jahre [2023]
+                                  2024                     selektion     2024-01-01 .. 2025-01-01 (ausschl.)  Jahre [2024]
+                                  2025                     selektion     2025-01-01 .. 2026-01-01 (ausschl.)  Jahre [2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+turtle_soup_crypto            1    8    9  status=endgueltig
+                                  2018                     selektion     2018-01-01 .. 2019-01-01 (ausschl.)  Jahre [2018]
+                                  2019                     selektion     2019-01-01 .. 2020-01-01 (ausschl.)  Jahre [2019]
+                                  2020                     selektion     2020-01-01 .. 2021-01-01 (ausschl.)  Jahre [2020]
+                                  2021                     selektion     2021-01-01 .. 2022-01-01 (ausschl.)  Jahre [2021]
+                                  2022                     selektion     2022-01-01 .. 2023-01-01 (ausschl.)  Jahre [2022]
+                                  2023                     selektion     2023-01-01 .. 2024-01-01 (ausschl.)  Jahre [2023]
+                                  2024                     selektion     2024-01-01 .. 2025-01-01 (ausschl.)  Jahre [2024]
+                                  2025                     selektion     2025-01-01 .. 2026-01-01 (ausschl.)  Jahre [2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+volatility_breakout_crypto    1    8    9  status=endgueltig
+                                  2018                     selektion     2018-01-01 .. 2019-01-01 (ausschl.)  Jahre [2018]
+                                  2019                     selektion     2019-01-01 .. 2020-01-01 (ausschl.)  Jahre [2019]
+                                  2020                     selektion     2020-01-01 .. 2021-01-01 (ausschl.)  Jahre [2020]
+                                  2021                     selektion     2021-01-01 .. 2022-01-01 (ausschl.)  Jahre [2021]
+                                  2022                     selektion     2022-01-01 .. 2023-01-01 (ausschl.)  Jahre [2022]
+                                  2023                     selektion     2023-01-01 .. 2024-01-01 (ausschl.)  Jahre [2023]
+                                  2024                     selektion     2024-01-01 .. 2025-01-01 (ausschl.)  Jahre [2024]
+                                  2025                     selektion     2025-01-01 .. 2026-01-01 (ausschl.)  Jahre [2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+elliott_wave_stocks           1    9   10  status=endgueltig
+                                  2017                     selektion     2017-01-01 .. 2018-01-01 (ausschl.)  Jahre [2017]
+                                  2018                     selektion     2018-01-01 .. 2019-01-01 (ausschl.)  Jahre [2018]
+                                  2019                     selektion     2019-01-01 .. 2020-01-01 (ausschl.)  Jahre [2019]
+                                  2020                     selektion     2020-01-01 .. 2021-01-01 (ausschl.)  Jahre [2020]
+                                  2021                     selektion     2021-01-01 .. 2022-01-01 (ausschl.)  Jahre [2021]
+                                  2022                     selektion     2022-01-01 .. 2023-01-01 (ausschl.)  Jahre [2022]
+                                  2023                     selektion     2023-01-01 .. 2024-01-01 (ausschl.)  Jahre [2023]
+                                  2024                     selektion     2024-01-01 .. 2025-01-01 (ausschl.)  Jahre [2024]
+                                  2025                     selektion     2025-01-01 .. 2026-01-01 (ausschl.)  Jahre [2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+rsi2_mean_reversion           1    8    9  status=endgueltig
+                                  2018                     selektion     2018-01-01 .. 2019-01-01 (ausschl.)  Jahre [2018]
+                                  2019                     selektion     2019-01-01 .. 2020-01-01 (ausschl.)  Jahre [2019]
+                                  2020                     selektion     2020-01-01 .. 2021-01-01 (ausschl.)  Jahre [2020]
+                                  2021                     selektion     2021-01-01 .. 2022-01-01 (ausschl.)  Jahre [2021]
+                                  2022                     selektion     2022-01-01 .. 2023-01-01 (ausschl.)  Jahre [2022]
+                                  2023                     selektion     2023-01-01 .. 2024-01-01 (ausschl.)  Jahre [2023]
+                                  2024                     selektion     2024-01-01 .. 2025-01-01 (ausschl.)  Jahre [2024]
+                                  2025                     selektion     2025-01-01 .. 2026-01-01 (ausschl.)  Jahre [2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+turtle_soup_stocks            1    9   10  status=endgueltig
+                                  2017                     selektion     2017-01-01 .. 2018-01-01 (ausschl.)  Jahre [2017]
+                                  2018                     selektion     2018-01-01 .. 2019-01-01 (ausschl.)  Jahre [2018]
+                                  2019                     selektion     2019-01-01 .. 2020-01-01 (ausschl.)  Jahre [2019]
+                                  2020                     selektion     2020-01-01 .. 2021-01-01 (ausschl.)  Jahre [2020]
+                                  2021                     selektion     2021-01-01 .. 2022-01-01 (ausschl.)  Jahre [2021]
+                                  2022                     selektion     2022-01-01 .. 2023-01-01 (ausschl.)  Jahre [2022]
+                                  2023                     selektion     2023-01-01 .. 2024-01-01 (ausschl.)  Jahre [2023]
+                                  2024                     selektion     2024-01-01 .. 2025-01-01 (ausschl.)  Jahre [2024]
+                                  2025                     selektion     2025-01-01 .. 2026-01-01 (ausschl.)  Jahre [2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+volatility_breakout           1    8    9  status=endgueltig
+                                  2018                     selektion     2018-01-01 .. 2019-01-01 (ausschl.)  Jahre [2018]
+                                  2019                     selektion     2019-01-01 .. 2020-01-01 (ausschl.)  Jahre [2019]
+                                  2020                     selektion     2020-01-01 .. 2021-01-01 (ausschl.)  Jahre [2020]
+                                  2021                     selektion     2021-01-01 .. 2022-01-01 (ausschl.)  Jahre [2021]
+                                  2022                     selektion     2022-01-01 .. 2023-01-01 (ausschl.)  Jahre [2022]
+                                  2023                     selektion     2023-01-01 .. 2024-01-01 (ausschl.)  Jahre [2023]
+                                  2024                     selektion     2024-01-01 .. 2025-01-01 (ausschl.)  Jahre [2024]
+                                  2025                     selektion     2025-01-01 .. 2026-01-01 (ausschl.)  Jahre [2025]
+                                  2026-01-01/2026-09-01    bestaetigung  2026-01-01 .. 2026-09-01 (ausschl.)  Jahre []
+
+## Abgleich (B) gegen die Tabelle in Register 33.2 (Selektionsfalten je Bot, Zahl)
+  elliott_wave                 33.2: 4  Laufzeit: 4  gleich
+  t3_supertrend                33.2: 7  Laufzeit: 7  gleich
+  rsi2_crypto                  33.2: 7  Laufzeit: 7  gleich
+  turtle_soup_crypto           33.2: 8  Laufzeit: 8  gleich
+  volatility_breakout_crypto   33.2: 8  Laufzeit: 8  gleich
+  elliott_wave_stocks          33.2: 9  Laufzeit: 9  gleich
+  rsi2_mean_reversion          33.2: 8  Laufzeit: 8  gleich
+  turtle_soup_stocks           33.2: 9  Laufzeit: 9  gleich
+  volatility_breakout          33.2: 8  Laufzeit: 8  gleich
+  Abweichungen: 0

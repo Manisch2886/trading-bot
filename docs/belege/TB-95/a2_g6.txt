@@ -1,0 +1,47 @@
+# TB-95 Block A - HEAD b83105b94a5652db1889aee91bdd168cf37879e3, 2026-09-23 23:30:24 +0200
+# Werkzeug: docs/belege/TB-95/a_messung.py, Python 3.9.6
+
+# A2 - G6 ausmessen
+
+## A2-1 Fuer welche Bots schlaegt die HEUTIGE Pruefung fehl? ("2020" in namen and "2022" in namen)
+  elliott_wave                 ROT    ['2018-2019', '2020-2021', '2022-2023', '2024-2025', '2026-01-01/2026-09-01']
+  t3_supertrend                gruen  ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01']
+  rsi2_crypto                  gruen  ['2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01']
+  turtle_soup_crypto           gruen  ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01']
+  volatility_breakout_crypto   gruen  ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01']
+  elliott_wave_stocks          gruen  ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01']
+  rsi2_mean_reversion          gruen  ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01']
+  turtle_soup_stocks           gruen  ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01']
+  volatility_breakout          gruen  ['2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025', '2026-01-01/2026-09-01']
+  => rot: ['elliott_wave']  (erwartet: nur elliott_wave)
+
+## A2-2 Die Sache: sind 2020 und 2022 bei jedem Bot von einer Falte der Rolle 'selektion' abgedeckt?
+   (Abdeckung gerechnet aus von/bis_ausschliesslich; Bestaetigungsfalten zaehlen nicht)
+  elliott_wave                 2020: Selektionsfalte ['2020-2021']  Bestaetigung []
+  elliott_wave                 2022: Selektionsfalte ['2022-2023']  Bestaetigung []
+  t3_supertrend                2020: Selektionsfalte ['2020']  Bestaetigung []
+  t3_supertrend                2022: Selektionsfalte ['2022']  Bestaetigung []
+  rsi2_crypto                  2020: Selektionsfalte ['2020']  Bestaetigung []
+  rsi2_crypto                  2022: Selektionsfalte ['2022']  Bestaetigung []
+  turtle_soup_crypto           2020: Selektionsfalte ['2020']  Bestaetigung []
+  turtle_soup_crypto           2022: Selektionsfalte ['2022']  Bestaetigung []
+  volatility_breakout_crypto   2020: Selektionsfalte ['2020']  Bestaetigung []
+  volatility_breakout_crypto   2022: Selektionsfalte ['2022']  Bestaetigung []
+  elliott_wave_stocks          2020: Selektionsfalte ['2020']  Bestaetigung []
+  elliott_wave_stocks          2022: Selektionsfalte ['2022']  Bestaetigung []
+  rsi2_mean_reversion          2020: Selektionsfalte ['2020']  Bestaetigung []
+  rsi2_mean_reversion          2022: Selektionsfalte ['2022']  Bestaetigung []
+  turtle_soup_stocks           2020: Selektionsfalte ['2020']  Bestaetigung []
+  turtle_soup_stocks           2022: Selektionsfalte ['2022']  Bestaetigung []
+  volatility_breakout          2020: Selektionsfalte ['2020']  Bestaetigung []
+  volatility_breakout          2022: Selektionsfalte ['2022']  Bestaetigung []
+  => A2-2: JA - jedes der zwei Jahre liegt bei allen neun Bots in genau einer Selektionsfalte
+
+## A2-3 Woher stammt das Literal?
+  Register Z. 552: > **Unberührt** bleiben Nr. 4 (2020 und 2022 sind keine Trainingsjahre — unter
+  Register Z. 565: 4. **2020 und 2022 sind Testfalten, keine Trainingsjahre.** Der Satz steht
+  Register Z. 3962: > Nebenbedingung binden soll — 2020 und 2022 sind die Falten mit den grössten
+  Register Z. 7022: | `G6` (*„2020 und 2022 sind Testfalten, keine Trainingsjahre"*) | **nicht an Punkt 4.** Sucht die Faltennamen `2020` und `2022`; `elliott_wave` hat seit TB-61 
+  (Zeilennummern am HEAD oben, 38.2)
+  Pruefung eingefuehrt mit a2fcf01 (TB-30a, 14.09.2026) - git log -S.
+  Listenpunkt-Muster '^(\\d)\\. \\*\\*(\\d{4}) und (\\d{4}) sind Testfalten, keine Trainingsjahre\\.\\*\\*': 1 Treffer [(565, ('4', '2020', '2022'))]

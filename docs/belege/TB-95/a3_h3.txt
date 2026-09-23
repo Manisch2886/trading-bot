@@ -1,0 +1,55 @@
+# TB-95 Block A - HEAD b83105b94a5652db1889aee91bdd168cf37879e3, 2026-09-23 23:30:24 +0200
+# Werkzeug: docs/belege/TB-95/a_messung.py, Python 3.9.6
+
+# A3 - H3 ausmessen
+
+## A3-1 BOT = 'turtle_soup_stocks'; Falten im Laufzeitplan: 10, davon Selektion: 9
+   Selektionsfalten: ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+   Bestaetigung: ['2026-01-01/2026-09-01']
+
+## A3-2 Treffer von ohne = ['2019', '2020', '2021', '2022'] in den Falten des BOT: 4 von 4  -> ['2019', '2020', '2021', '2022']
+   ⚠️ Erwartung des Auftrags war 'null'. WIDERLEGT: alle vier treffen. Die Probe greift nicht ins Leere;
+   sie beisst nicht, weil vier gesetzte Nullen bei NEUN Selektionsfalten den Median nicht verschieben (A3-4).
+   Das deckt sich mit Register 38 (Tabelle zu H3, 'seit der ersten Falte 2017 sind es neun').
+
+## A3-4 Rechnung: Median des Netto-Sharpe ueber die Selektionsfalten (auswertung.py Z. 234-236,
+   groupby(zelle_id).median ueber rolle == selektion). Beispieldaten der Probe: k Falten mit 0 Trades
+   und Dateiwert 9.0, die uebrigen n-k mit 40 Trades und 0.10.
+   mit Regel:  k Werte 0.0 und n-k Werte 0.10;  ohne Regel: k Werte 9.0 und n-k Werte 0.10.
+   Der Median ist fuer ungerades n der ((n+1)/2)-te Wert der sortierten Liste; er wechselt erst,
+   wenn k >= (n+1)/2. Fuer gerades n (Mittel der zwei mittleren) genuegt k >= n/2.
+   Allgemein: kleinstes beissendes k = ceil(n/2); strikte Mehrheit floor(n/2)+1 beisst bei jeder Paritaet.
+   n = 7:
+     k=0: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=1: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=2: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=3: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=4: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+     k=5: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+     k=6: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+     k=7: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+   n = 9:
+     k=0: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=1: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=2: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=3: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=4: mit Regel 0.1000  ohne Regel 0.1000  beisst nicht
+     k=5: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+     k=6: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+     k=7: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+     k=8: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+     k=9: mit Regel 0.0000  ohne Regel 9.0000  BEISST
+   => bei der registrierten Zahl n = 9 beisst die Probe ab k = 5; die heutige Vier ist zu KLEIN.
+      (Der Kommentar Z. 583-589 begruendet die Vier mit 'sieben Falten' - fuer n = 7 stimmt sie: k_min = 4.)
+
+## A3-3 Die heutige Probe, nachgestellt wie im Test (zwei Unterprozesse auswertung.py)
+   mit Regel:  rc 0  'Netto-Sharpe (Med.) 0.1000'
+   ohne Regel: rc 0  'Netto-Sharpe (Med.) 0.1000'
+   => gleich: True  (TB-92-Meldetext: 'Netto-Sharpe (Med.) 0.1000' / 'Netto-Sharpe (Med.) 0.1000') - BESTAETIGT
+
+## A3-5 Ist 'ohne' ein Literal, das aus dem Plan kommen muesste?
+   Ja - dieselbe Klasse wie G6: vier Faltennamen als Zeichenketten, dazu eine Anzahl (4), die aus
+   einer Faltenzahl (7) abgeleitet war, die nirgends im Code steht. Beides ist eine Kopie des Plans.
+
+## B3 - Mutationsstelle in auswertung.py (H3 _ersetze)
+   Vorkommen im heutigen auswertung.py (sha256 c3b4e69d8f207d0c...): 1  (verlangt: genau 1)
