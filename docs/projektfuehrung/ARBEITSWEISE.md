@@ -957,6 +957,16 @@ als `.bak` gesichert; ⛔ nichts wird überschrieben.
 ## 7. Terminal-Arbeit
 
 - **Ein Befehl je Nachricht.** Nicht mehrere hintereinander.
+- ⭐⭐ **Und dieser eine Befehl ist EINE ZEILE.** ⚠️ *Gemessen am 22.09.2026,
+  22:29:* Beim Einfügen über Termius vom Telefon **fallen die Zeilenumbrüche
+  weg**. Ein Heredoc (`python3 - <<'PY' … PY`) fällt dadurch zu einer einzigen
+  Zeile zusammen, Python sieht Unsinn, und die Shell bleibt an der
+  Fortsetzungs-Eingabeaufforderung `>` hängen. **Rettung: `Strg`+`C`.**
+  ⭐ **Alles, was länger als eine Zeile ist, wird als Datei ins Repo gelegt**
+  (Werkzeuge nach `docs/werkzeuge/`), und der Betreiber bekommt nur den Aufruf
+  — plus die Zeile, an der er erkennt, dass es geklappt hat. *Ein Skript im
+  Repo ist ausserdem wiederholbar, nachlesbar und versioniert; ein
+  eingefügter Block ist keines von dreien.*
 - **Vor jedem `git pull`: `git status --short`.** Lokale Änderungen haben
   bereits mehrfach einen Pull abgebrochen.
 - Bei SSH-Sitzungen vorher `pwd` und `git branch --show-current` prüfen.
