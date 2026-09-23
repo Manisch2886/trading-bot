@@ -1,0 +1,46 @@
+TB-91 Block C auf dem Mac (trading-env 3.9.6), 2026-09-23T12:44:31Z, HEAD 31008b60c13aa666032c8f35ca5639728cb08195
+alt: e4ba341d3177d455b1c3151f4bb2e0cf7f16fbd516d9b30edd45d0c7dc005e56  research/vorregistrierung/ergebnisse/benchmark_drawdowns_tb72.json
+neu: 64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+
+C1 Zaehlung des Verglichenen:
+  Bots: 9   Falten: 77   Botfelder (ohne falten): 63   Blattwerte gesamt: 9750
+
+Zulaessige Umbenennung der Bestaetigungszeile:
+  elliott_wave                 '2026-2027'    -> '2026-01-01/2026-09-01'
+  elliott_wave_stocks          '2026'         -> '2026-01-01/2026-09-01'
+  rsi2_crypto                  '2026'         -> '2026-01-01/2026-09-01'
+  rsi2_mean_reversion          '2026'         -> '2026-01-01/2026-09-01'
+  t3_supertrend                '2026'         -> '2026-01-01/2026-09-01'
+  turtle_soup_crypto           '2026'         -> '2026-01-01/2026-09-01'
+  turtle_soup_stocks           '2026'         -> '2026-01-01/2026-09-01'
+  volatility_breakout          '2026'         -> '2026-01-01/2026-09-01'
+  volatility_breakout_crypto   '2026'         -> '2026-01-01/2026-09-01'
+  (9 von 9)
+
+C2 Abweichungen ausser dem Namen: 0
+
+C3 dd_toleranz je Bot:
+  elliott_wave                 gleich  (100 Stufen; 0.25/0.50/1.00 alt -16.42/-31.21/-55.91 neu -16.42/-31.21/-55.91)
+  elliott_wave_stocks          gleich  (100 Stufen; 0.25/0.50/1.00 alt -2.18/-4.33/-8.55 neu -2.18/-4.33/-8.55)
+  rsi2_crypto                  gleich  (100 Stufen; 0.25/0.50/1.00 alt -17.26/-32.59/-57.29 neu -17.26/-32.59/-57.29)
+  rsi2_mean_reversion          gleich  (100 Stufen; 0.25/0.50/1.00 alt -3.32/-6.55/-12.77 neu -3.32/-6.55/-12.77)
+  t3_supertrend                gleich  (100 Stufen; 0.25/0.50/1.00 alt -13.9/-26.57/-48.1 neu -13.9/-26.57/-48.1)
+  turtle_soup_crypto           gleich  (100 Stufen; 0.25/0.50/1.00 alt -16.13/-30.52/-54.05 neu -16.13/-30.52/-54.05)
+  turtle_soup_stocks           gleich  (100 Stufen; 0.25/0.50/1.00 alt -2.18/-4.33/-8.55 neu -2.18/-4.33/-8.55)
+  volatility_breakout          gleich  (100 Stufen; 0.25/0.50/1.00 alt -3.32/-6.55/-12.77 neu -3.32/-6.55/-12.77)
+  volatility_breakout_crypto   gleich  (100 Stufen; 0.25/0.50/1.00 alt -16.13/-30.52/-54.05 neu -16.13/-30.52/-54.05)
+
+C4 status:
+  elliott_wave                 neu endgueltig   alt endgueltig
+  elliott_wave_stocks          neu endgueltig   alt endgueltig
+  rsi2_crypto                  neu endgueltig   alt endgueltig
+  rsi2_mean_reversion          neu endgueltig   alt endgueltig
+  t3_supertrend                neu endgueltig   alt endgueltig
+  turtle_soup_crypto           neu endgueltig   alt endgueltig
+  turtle_soup_stocks           neu endgueltig   alt endgueltig
+  volatility_breakout          neu endgueltig   alt endgueltig
+  volatility_breakout_crypto   neu endgueltig   alt endgueltig
+  endgueltig: 9 von 9
+
+ERGEBNIS: REPRODUZIERT - einzige Abweichung der Name der Bestaetigungszeile
+rc=0

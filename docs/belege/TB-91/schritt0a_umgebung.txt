@@ -1,0 +1,46 @@
+TB-91 Schritt 0a — Umgebungspruefung, Mac, 2026-09-23 ab 12:37:53Z
+
+(a) Repo-Wurzel
+  pwd                         /Users/jaquelineloffler/trading-bot
+  git rev-parse --show-toplevel  /Users/jaquelineloffler/trading-bot
+  git --no-optional-locks log --oneline -1
+                              d23bdd1 Doku: Auftrag TB-91 (...)   (>= 40bda97: ja, d23bdd1 folgt direkt)
+  => JA
+
+(b) trading-env
+  trading-env/bin/python3 --version   Python 3.9.6
+  trading-env/bin/python3 -c "import binance, yfinance, pandas, numpy"
+                              import ok, pandas 2.3.3, numpy 2.0.2
+                              (nur die bekannte urllib3/LibreSSL-Warnung)
+  => JA
+
+(c) Berechtigungen, .claude/settings.local.json
+  allow 83 (Soll >= 83), deny 68 (Soll >= 68), ask 8 (Soll = 8)
+  ask: Write/Edit je fuer registerdaten.py, faltenplan.py, auswertung.py, benchmark.py
+  Gewoehnliche Befehle ohne Nachfrage: ja (git, grep, sed, shasum, trading-env/bin/python3,
+  Write unter docs/). Zwei Ablehnungen in der Sitzung, beide erklaert:
+   1. Der allererste Sammelbefehl enthielt `env | grep ...` -> deny-Regel Bash(env:*) griff
+      (Ablehnung ohne Frage, wie in TB-90 gemessen). Ohne den env-Teil lief derselbe Befehl.
+   2. Ein Leseversuch an ~/.claude.json (oauthAccount-Felder) fuer Frage (d) wurde vom
+      Auto-Modus-Klassifikator abgelehnt ("Credential Exploration"). Nicht umgangen.
+   3. (spaeter) Ein reiner sed/grep-Lesebefehl auf benchmark.py/faltenplan.py wurde vom
+      Klassifikator als "Irreversible Local Destruction" abgelehnt — Fehleinstufung; derselbe
+      Inhalt wurde mit dem Read-Werkzeug gelesen.
+  => JA
+
+(d) Abo oder API-Abrechnung
+  Die Kopf-/Statuszeile ist fuer die Sitzung selbst NICHT sichtbar. Direkte Messung
+  (oauthAccount in ~/.claude.json) abgelehnt, siehe (c) 2. Indirekt belegt:
+   - logs/sitzungswaechter/waechter.log 12:05:40Z: "Schluesselbund entsperrt." (Wache 5 —
+     die in ARBEITSWEISE dokumentierte einzige Ursache fuer "API Usage Billing")
+   - die Sitzung traegt eine claude.ai-Sitzungskennung (Remote Control,
+     https://claude.ai/code/session_01Leqdhe3GsBCNvxVGBxEMsY) — Remote Control setzt
+     eine claude.ai-Anmeldung voraus, keinen API-Schluessel
+   - ANTHROPIC_API_KEY: nicht geprueft (die Pruefung stand im abgelehnten Befehl)
+  => JA, INDIREKT. Die Bestaetigung aus der Kopfzeile kann nur der Betreiber geben.
+
+Start der Sitzung (waechter.log): Auslöser starte_TB-91, 12:05:40Z Terminal-Fenster,
+12:07:25Z Satz uebergeben; erster Befehl dieser Sitzung 12:37:53Z (der Satz wurde also
+rund 30 min nach Uebergabe abgeschickt — der letzte Tastendruck liegt beim Betreiber).
+Vier fruehere Ausloeser (11:58–12:04Z) brachen an Wache 3 (laufende Sitzung) bzw. 4
+(claude nicht auffindbar) ab.

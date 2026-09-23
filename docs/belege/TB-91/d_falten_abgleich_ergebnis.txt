@@ -1,0 +1,13 @@
+TB-91 Block D auf dem Mac (trading-env 3.9.6), 2026-09-23T12:44:45Z, HEAD 31008b60c13aa666032c8f35ca5639728cb08195, faltenplan.py 7aa0b8ccf5619a21
+| Bot | Tabelle | alle: Einstufung | fehlt in Tabelle | nur in Tabelle | sel: Einstufung | Bestaetigung Plan | Bestaetigung Tabelle |
+|---|---|---|---|---|---|---|---|
+| `elliott_wave` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+| `t3_supertrend` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+| `rsi2_crypto` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+| `turtle_soup_crypto` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+| `volatility_breakout_crypto` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+| `elliott_wave_stocks` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+| `rsi2_mean_reversion` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+| `turtle_soup_stocks` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+| `volatility_breakout` | `bd_2026-09-23_nach_wegA.json` | gleich | - | - | gleich | `2026-01-01/2026-09-01` | `2026-01-01/2026-09-01` |
+rc=0

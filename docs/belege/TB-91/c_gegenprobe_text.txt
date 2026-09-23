@@ -1,0 +1,6 @@
+TB-91 C Gegenprobe auf Textebene, 2026-09-23T12:44:45Z
+Bytes alt/neu: 209958 210106
+alt mit umbenannter Bestaetigungszeile, sha256: 64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7
+neu, sha256:                                    64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7
+BYTEGLEICH: True
+Vorkommen '2026-01-01/2026-09-01' in neu: 9

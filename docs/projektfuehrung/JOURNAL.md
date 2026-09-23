@@ -8550,6 +8550,47 @@ dass die ask-Frage erschien. Dazu unverändert: Plan Punkt 5, 35.5, 33.5, TB-30b
 
 ---
 
+## CS — TB-91: `benchmark.py` nach 36.1 abgesichert, und die Neurechnung ist nach Umbenennung bytegleich mit `_tb72` (23.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-91_benchmark_absichern_und_neurechnung.md`*
+
+**Quelle:** Mac-Sitzung **TB-91**, 23.09.2026, erster Start über den
+Sitzungswächter, Eingang `d23bdd1`. Commits `de06567`/`31008b6` (Schritt 0) und
+der Abgabe-Commit. Belege `docs/belege/TB-91/`. Freigabe Betreiber 23.09., 10:40;
+Registergrundlage 36.1, 38.1, Fable 23b.
+
+### Was geändert und belegt ist
+
+| | |
+|---|---|
+| **0a** | Repo-Wurzel, `trading-env` 3.9.6, Berechtigungen 83/68/8: ja. Abo: **nur indirekt** (Schlüsselbund laut Wächter entsperrt, claude.ai-Sitzung) — Kopfzeile für die Sitzung unsichtbar, Betreiber-Bestätigung offen |
+| **Block A** | Vormessung aus der Brücken-VM A-N1–A-N5 auf dem Mac **inhaltsgleich** nachgemessen: Hash `d6bdd558…`, vier Rechenfunktionen AST-gleich, Mutationsprobe `rc=1` ohne Schreiben, Voreinstellung mit Stempel, Sonde 1/3/10 [2, 4, 6]. A-N6 nicht messbar (diese Sitzung hat nichts geändert) |
+| **Block B** | `--ziel …_2026-09-23_nach_wegA.json`, **56 s**, `rc=0`, `64fb2912…`; alle 12 alten Dateien in `ergebnisse/` unverändert |
+| ⭐⭐⭐ **Block C** | 9 Bots / 77 Falten / 9750 Blattwerte, **0 Abweichungen ausser dem Namen** (9/9 umbenannt), `dd_toleranz` 9/9 gleich, `status` 9/9 endgültig. Nach Umbenennung in `_tb72` **bytegleich** |
+| **Block D** | 9 Bots × (alle, sel) = 18/18 gleich, Bestätigung überall `2026-01-01/2026-09-01` |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Vergleicher braucht einen Selbsttest, der etwas finden MUSS.** `_tb72` gegen `_vt` ergab 101 Abweichungen, bevor der eigentliche Vergleich 0 ergab; erst damit heisst die Null „gleich" und nicht „nicht hingesehen" |
+| ⭐⭐ | **Die stärkste Form von „gleich" ist bytegleich nach der erlaubten Änderung.** Den Unterschied gezielt einsetzen und neu schreiben ist prüfbarer als jede Liste von Feldern |
+| ⭐ | **Commits aus der Brücken-VM können verwaiste Sperrdateien hinterlassen** (`index.lock`, `HEAD.lock`, `objects/maintenance.lock`, 0 Byte, mtime = Commitzeit). Die nächste Mac-Sitzung kann dann nicht committen; `rm` ist gesperrt, `mv` beiseite geht |
+| ⭐ | **Eine Frage, die die Sitzung nicht sehen kann, ist nur indirekt zu beantworten.** Die Kopfzeile (Abo/API) gehört in die Bestätigung des Betreibers, nicht in die Selbstprüfung |
+| | Die Sonde stuft einen `[2]`-Punkt auf `[1]` hoch, sobald eine genannte Datei abweicht — „nicht prüfbar" ist keine feste Zahl (Nachtrag 1, am Mac bestätigt) |
+
+### Was offen bleibt
+
+Vollzug von Punkt 8 mit der neuen Tabelle (eigene Freigabe; Bedingung 23b jetzt
+erfüllt) · danach das neue Abbild (Befunde 2/4/6, 37.3) · Betreiber: Kopfzeile
+dieser Sitzung und A-N6 · Sondenfund fürs Register · `messgroessen.py` bei Fable
+(23c). Dazu unverändert: G6/H3, `forward_test.py`-Kosten, `handelskosten.py` auf
+die Sperrliste, Plan Punkt 5, 35.5, 33.5, TB-30b, 32.5, (20g)–(20m), `K4t`.
+
+*Geschrieben 23.09.2026 von der Mac-Sitzung TB-91. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

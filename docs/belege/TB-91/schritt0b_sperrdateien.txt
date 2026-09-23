@@ -1,0 +1,6 @@
+TB-91: verwaiste git-Sperrdateien, beiseitegeschoben (mv, nicht geloescht) am 2026-09-23 ~12:40Z
+Ursprung vermutlich Commit d23bdd1 (08:44:15Z) aus der Bruecken-VM; kein git-Prozess lief
+/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4df01dc9-0e2f-4d9b-840f-99661283aa0d/scratchpad/index.lock_verwaist_d23bdd1  0 B  mtime Sep 23 10:44:15 2026
+/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4df01dc9-0e2f-4d9b-840f-99661283aa0d/scratchpad/HEAD.lock_verwaist  0 B  mtime Sep 23 10:44:15 2026
+/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4df01dc9-0e2f-4d9b-840f-99661283aa0d/scratchpad/maintenance.lock_verwaist  0 B  mtime Sep 23 10:44:15 2026
+Ziel: Sitzungs-Scratchpad /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4df01dc9-0e2f-4d9b-840f-99661283aa0d/scratchpad

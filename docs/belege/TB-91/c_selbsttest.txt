@@ -1,0 +1,9 @@
+== Selbsttest 1: tb72 gegen tb72
+  Bots: 9   Falten: 77   Botfelder (ohne falten): 63   Blattwerte gesamt: 9750
+C2 Abweichungen ausser dem Namen: 0
+ERGEBNIS: REPRODUZIERT - einzige Abweichung der Name der Bestaetigungszeile
+rc=0
+== Selbsttest 2: tb72 gegen vt
+  Bots: 9   Falten: 77   Botfelder (ohne falten): 63   Blattwerte gesamt: 9750
+C2 Abweichungen ausser dem Namen: 101
+ERGEBNIS: BEFUND - Abweichungen ausser dem Namen

@@ -1,0 +1,24 @@
+TB-91 A-N3/A-N4 auf dem Mac, 2026-09-23T12:42:28Z
+
+A-N3 Mutationsprobe
+vorher:
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+      12
+Sep 14 17:55:17 2026 80025
+$ trading-env/bin/python3 -W ignore research/vorregistrierung/benchmark.py --ziel research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+
+ABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben.
+  Pfad:    research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+  SHA-256: a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee
+rc=1  Dauer 1 s
+nachher:
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+      12
+Sep 14 17:55:17 2026 80025
+
+A-N4 Voreinstellung:
+  ergebnisse/benchmark_drawdowns_2026-09-23-124230.json
+  ergebnisse/benchmark_drawdowns_2026-09-23-124231.json
+  gleich Sperrlistenname: False  existiert: False  verschieden: True
+  --ziel default im Parser: None (Quelltext), Rueckfall voreinstellung_ziel()
+      12
