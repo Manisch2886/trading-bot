@@ -1,0 +1,17 @@
+A-N4 Mutationsprobe  2026-09-23T15:40:12Z
+Hash vorher : 2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  ergebnisse/messgroessen.json
+mtime vorher: 1789401317
+Dateien vorher:       13
+
+ABBRUCH (36.1 (2)): Ziel existiert, nichts gerechnet, nichts geschrieben.
+  Pfad:    ergebnisse/messgroessen.json
+  SHA-256: 2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8
+rc=1  Dauer 1 s
+Hash nachher: 2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  ergebnisse/messgroessen.json
+mtime nachher: 1789401317
+Dateien nachher:       13
+
+A-N5 Voreinstellung
+ergebnisse/messgroessen_2026-09-23-154013.json
+gleich eingefrorenem Namen: False
+Dateien nach Import:       13

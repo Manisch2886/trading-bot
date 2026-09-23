@@ -1,0 +1,27 @@
+Blaetter alt/neu: 127 127 | nur alt: [] | nur neu: []
+abweichend: 48 von 127
+  datenbereiche.aktien_1d        5 Blaetter,   0 abweichend
+  datenbereiche.krypto_1d        5 Blaetter,   3 abweichend
+  datenbereiche.krypto_1h        5 Blaetter,   3 abweichend
+  datenbereiche.krypto_4h        5 Blaetter,   3 abweichend
+  datenfrequenz.balken_je_handelswoche   4 Blaetter,   0 abweichend
+  datenfrequenz.balken_je_jahr   4 Blaetter,   0 abweichend
+  haltedauer.elliott_wave        4 Blaetter,   0 abweichend
+  haltedauer.elliott_wave_stocks   4 Blaetter,   0 abweichend
+  haltedauer.rsi2_crypto         4 Blaetter,   0 abweichend
+  haltedauer.rsi2_mean_reversion   4 Blaetter,   0 abweichend
+  haltedauer.t3_supertrend       4 Blaetter,   0 abweichend
+  haltedauer.turtle_soup_crypto   4 Blaetter,   0 abweichend
+  haltedauer.turtle_soup_stocks   4 Blaetter,   0 abweichend
+  haltedauer.volatility_breakout   4 Blaetter,   0 abweichend
+  haltedauer.volatility_breakout_crypto   4 Blaetter,   0 abweichend
+  kosten.gebuehr_pct_je_order    1 Blaetter,   0 abweichend
+  kosten.round_trip_pct          1 Blaetter,   0 abweichend
+  kosten.slippage_pct_je_order   1 Blaetter,   0 abweichend
+  universum.aktien               2 Blaetter,   0 abweichend
+  universum.krypto               2 Blaetter,   0 abweichend
+  volatilitaet.aktien_1d        14 Blaetter,   0 abweichend
+  volatilitaet.krypto_1d        14 Blaetter,  13 abweichend
+  volatilitaet.krypto_1h        14 Blaetter,  13 abweichend
+  volatilitaet.krypto_4h        14 Blaetter,  13 abweichend
+Erste Abweichung in Dateireihenfolge (sort_keys): datenbereiche.krypto_1d.frueheste | 2021-09-01 -> 2017-08-17

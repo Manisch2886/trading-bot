@@ -1,0 +1,15 @@
+Gegenprobe 2026-09-23T15:41:28Z: Code HEAD b11a6f6 (messgroessen.py 623f8d77), Eingaben aus a2fcf01 via TB30A_BASE_DIR, Ziel im Scratchpad
+
+Geschrieben: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/f47e7f32-97f5-4e64-a8c7-03aa7f12466e/scratchpad/gegenprobe_a2fcf01.json
+  SHA-256: 2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8
+rc=0 Dauer 11 s
+2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  research/vorregistrierung/ergebnisse/messgroessen.json
+2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/f47e7f32-97f5-4e64-a8c7-03aa7f12466e/scratchpad/gegenprobe_a2fcf01.json
+BYTEGLEICH
+Dateien in ergebnisse/:       14
+
+Eingabeunterschied a2fcf01 -> HEAD:
+  data/: 242 Dateien -> 223; geaendert/entfernt 91, davon Aktien (nicht *USDT*): 0
+  einziger data/-Commit dazwischen: 90e3cbd 2026-09-15 TB-34: Kursdaten nativ neu geladen (72 Dateien, +382039 Zeilen, BTC/ETH ab 2017-08-17); 19 verwaiste 15m-Dateien entfernt
+  config/: nur config/groessenfaktor.beispiel.json (von messgroessen.py nicht gelesen)
+  research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv: unveraendert

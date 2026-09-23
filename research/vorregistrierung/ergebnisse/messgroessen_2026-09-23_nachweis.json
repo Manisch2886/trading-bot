@@ -1,0 +1,199 @@
+{
+  "datenbereiche": {
+    "aktien_1d": {
+      "frueheste": "1962-01-02",
+      "letzter_balken": "2026-09-01",
+      "median_beginn": "1986-03-12",
+      "spaeteste_beginn": "2025-02-13",
+      "symbole": 150
+    },
+    "krypto_1d": {
+      "frueheste": "2017-08-17",
+      "letzter_balken": "2026-09-14",
+      "median_beginn": "2020-10-14",
+      "spaeteste_beginn": "2025-10-14",
+      "symbole": 23
+    },
+    "krypto_1h": {
+      "frueheste": "2017-08-17",
+      "letzter_balken": "2026-09-15",
+      "median_beginn": "2020-10-14",
+      "spaeteste_beginn": "2026-01-13",
+      "symbole": 24
+    },
+    "krypto_4h": {
+      "frueheste": "2017-08-17",
+      "letzter_balken": "2026-09-15",
+      "median_beginn": "2020-10-14",
+      "spaeteste_beginn": "2026-01-13",
+      "symbole": 24
+    }
+  },
+  "datenfrequenz": {
+    "balken_je_handelswoche": {
+      "aktien_1d": 5,
+      "krypto_1d": 7,
+      "krypto_1h": 168,
+      "krypto_4h": 42
+    },
+    "balken_je_jahr": {
+      "aktien_1d": 252,
+      "krypto_1d": 365,
+      "krypto_1h": 8760,
+      "krypto_4h": 2190
+    }
+  },
+  "haltedauer": {
+    "elliott_wave": {
+      "max_tage": 10.08,
+      "median_balken": 94.5,
+      "median_tage": 3.9,
+      "n_positionen": 130
+    },
+    "elliott_wave_stocks": {
+      "max_tage": 134.0,
+      "median_balken": 6.0,
+      "median_tage": 7.0,
+      "n_positionen": 395
+    },
+    "rsi2_crypto": {
+      "max_tage": 10.0,
+      "median_balken": 5.0,
+      "median_tage": 4.0,
+      "n_positionen": 392
+    },
+    "rsi2_mean_reversion": {
+      "max_tage": 18.0,
+      "median_balken": 4.0,
+      "median_tage": 5.0,
+      "n_positionen": 4232
+    },
+    "t3_supertrend": {
+      "max_tage": 22.67,
+      "median_balken": 17.0,
+      "median_tage": 2.67,
+      "n_positionen": 656
+    },
+    "turtle_soup_crypto": {
+      "max_tage": 10.0,
+      "median_balken": 5.0,
+      "median_tage": 4.0,
+      "n_positionen": 1414
+    },
+    "turtle_soup_stocks": {
+      "max_tage": 18.0,
+      "median_balken": 11.0,
+      "median_tage": 14.0,
+      "n_positionen": 8915
+    },
+    "volatility_breakout": {
+      "max_tage": 26.0,
+      "median_balken": 16.0,
+      "median_tage": 21.0,
+      "n_positionen": 1454
+    },
+    "volatility_breakout_crypto": {
+      "max_tage": 15.0,
+      "median_balken": 7.0,
+      "median_tage": 6.0,
+      "n_positionen": 207
+    }
+  },
+  "kosten": {
+    "gebuehr_pct_je_order": 0.1,
+    "round_trip_pct": 0.30000000000000004,
+    "slippage_pct_je_order": 0.05
+  },
+  "universum": {
+    "aktien": {
+      "datei": "config/sp500_top150.txt",
+      "symbole": 150
+    },
+    "krypto": {
+      "datei": "config/top25_symbols.txt",
+      "symbole": 24
+    }
+  },
+  "volatilitaet": {
+    "aktien_1d": {
+      "adx_quantile": {
+        "50": 22.595,
+        "60": 25.0322,
+        "70": 27.9346,
+        "80": 31.7692,
+        "90": 37.8452
+      },
+      "atr14_median_pct": 2.34,
+      "balken_sigma_pct": 2.2218,
+      "rsi2_quantile": {
+        "1": 0.7673,
+        "10": 8.2252,
+        "2": 1.5267,
+        "5": 3.9062
+      },
+      "spanne20_median_pct": 11.381,
+      "symbole_gemessen": 150,
+      "tiefabstand_median_pct": 0.9158
+    },
+    "krypto_1d": {
+      "adx_quantile": {
+        "50": 25.437,
+        "60": 28.3156,
+        "70": 31.8919,
+        "80": 36.7479,
+        "90": 43.4004
+      },
+      "atr14_median_pct": 7.6262,
+      "balken_sigma_pct": 5.9591,
+      "rsi2_quantile": {
+        "1": 0.9548,
+        "10": 7.8806,
+        "2": 1.8197,
+        "5": 3.9056
+      },
+      "spanne20_median_pct": 35.8546,
+      "symbole_gemessen": 23,
+      "tiefabstand_median_pct": 2.9969
+    },
+    "krypto_1h": {
+      "adx_quantile": {
+        "50": 24.2755,
+        "60": 27.1925,
+        "70": 30.7981,
+        "80": 35.2873,
+        "90": 42.315
+      },
+      "atr14_median_pct": 1.3626,
+      "balken_sigma_pct": 1.2634,
+      "rsi2_quantile": {
+        "1": 0.7849,
+        "10": 8.1487,
+        "2": 1.5304,
+        "5": 3.8885
+      },
+      "spanne20_median_pct": 6.1364,
+      "symbole_gemessen": 24,
+      "tiefabstand_median_pct": 0.5462
+    },
+    "krypto_4h": {
+      "adx_quantile": {
+        "50": 24.8359,
+        "60": 27.8149,
+        "70": 31.4096,
+        "80": 36.0414,
+        "90": 42.9319
+      },
+      "atr14_median_pct": 2.858,
+      "balken_sigma_pct": 2.4495,
+      "rsi2_quantile": {
+        "1": 0.745,
+        "10": 7.7868,
+        "2": 1.4586,
+        "5": 3.7026
+      },
+      "spanne20_median_pct": 13.1305,
+      "symbole_gemessen": 24,
+      "tiefabstand_median_pct": 1.1439
+    }
+  }
+}

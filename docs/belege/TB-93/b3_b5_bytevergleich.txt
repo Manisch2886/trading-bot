@@ -1,0 +1,150 @@
+B3 2026-09-23T15:41:06Z
+2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  ergebnisse/messgroessen.json
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  ergebnisse/messgroessen_2026-09-23_nachweis.json
+    4567 ergebnisse/messgroessen.json
+    4569 ergebnisse/messgroessen_2026-09-23_nachweis.json
+    9136 total
+ergebnisse/messgroessen.json ergebnisse/messgroessen_2026-09-23_nachweis.json differ: char 260, line 11
+cmp rc=1
+B5 Dateien jetzt:       14
+1789401317 4567 ergebnisse/messgroessen.json
+
+diff -u (alt -> neu):
+--- ergebnisse/messgroessen.json	2026-09-14 17:55:17
++++ ergebnisse/messgroessen_2026-09-23_nachweis.json	2026-09-23 17:40:51
+@@ -8,23 +8,23 @@
+       "symbole": 150
+     },
+     "krypto_1d": {
+-      "frueheste": "2021-09-01",
+-      "letzter_balken": "2026-08-31",
+-      "median_beginn": "2021-09-01",
++      "frueheste": "2017-08-17",
++      "letzter_balken": "2026-09-14",
++      "median_beginn": "2020-10-14",
+       "spaeteste_beginn": "2025-10-14",
+       "symbole": 23
+     },
+     "krypto_1h": {
+-      "frueheste": "2021-09-01",
+-      "letzter_balken": "2026-08-31",
+-      "median_beginn": "2021-09-01",
++      "frueheste": "2017-08-17",
++      "letzter_balken": "2026-09-15",
++      "median_beginn": "2020-10-14",
+       "spaeteste_beginn": "2026-01-13",
+       "symbole": 24
+     },
+     "krypto_4h": {
+-      "frueheste": "2021-09-01",
+-      "letzter_balken": "2026-08-31",
+-      "median_beginn": "2021-09-01",
++      "frueheste": "2017-08-17",
++      "letzter_balken": "2026-09-15",
++      "median_beginn": "2020-10-14",
+       "spaeteste_beginn": "2026-01-13",
+       "symbole": 24
+     }
+@@ -137,63 +137,63 @@
+     },
+     "krypto_1d": {
+       "adx_quantile": {
+-        "50": 25.1004,
+-        "60": 28.2342,
+-        "70": 31.8748,
+-        "80": 36.3425,
+-        "90": 43.4761
++        "50": 25.437,
++        "60": 28.3156,
++        "70": 31.8919,
++        "80": 36.7479,
++        "90": 43.4004
+       },
+-      "atr14_median_pct": 7.2669,
+-      "balken_sigma_pct": 5.2782,
++      "atr14_median_pct": 7.6262,
++      "balken_sigma_pct": 5.9591,
+       "rsi2_quantile": {
+-        "1": 0.8994,
+-        "10": 7.6552,
+-        "2": 1.7294,
+-        "5": 3.7275
++        "1": 0.9548,
++        "10": 7.8806,
++        "2": 1.8197,
++        "5": 3.9056
+       },
+-      "spanne20_median_pct": 34.2726,
++      "spanne20_median_pct": 35.8546,
+       "symbole_gemessen": 23,
+-      "tiefabstand_median_pct": 2.6836
++      "tiefabstand_median_pct": 2.9969
+     },
+     "krypto_1h": {
+       "adx_quantile": {
+-        "50": 24.3622,
+-        "60": 27.286,
+-        "70": 30.8184,
+-        "80": 35.3279,
+-        "90": 42.5707
++        "50": 24.2755,
++        "60": 27.1925,
++        "70": 30.7981,
++        "80": 35.2873,
++        "90": 42.315
+       },
+-      "atr14_median_pct": 1.2662,
+-      "balken_sigma_pct": 1.1082,
++      "atr14_median_pct": 1.3626,
++      "balken_sigma_pct": 1.2634,
+       "rsi2_quantile": {
+-        "1": 0.7632,
+-        "10": 7.9983,
+-        "2": 1.4891,
+-        "5": 3.7955
++        "1": 0.7849,
++        "10": 8.1487,
++        "2": 1.5304,
++        "5": 3.8885
+       },
+-      "spanne20_median_pct": 5.846,
++      "spanne20_median_pct": 6.1364,
+       "symbole_gemessen": 24,
+-      "tiefabstand_median_pct": 0.501
++      "tiefabstand_median_pct": 0.5462
+     },
+     "krypto_4h": {
+       "adx_quantile": {
+-        "50": 24.9485,
+-        "60": 27.825,
+-        "70": 31.4922,
+-        "80": 36.4922,
+-        "90": 43.5301
++        "50": 24.8359,
++        "60": 27.8149,
++        "70": 31.4096,
++        "80": 36.0414,
++        "90": 42.9319
+       },
+-      "atr14_median_pct": 2.6952,
+-      "balken_sigma_pct": 2.178,
++      "atr14_median_pct": 2.858,
++      "balken_sigma_pct": 2.4495,
+       "rsi2_quantile": {
+-        "1": 0.7245,
+-        "10": 7.5372,
+-        "2": 1.436,
+-        "5": 3.5729
++        "1": 0.745,
++        "10": 7.7868,
++        "2": 1.4586,
++        "5": 3.7026
+       },
+-      "spanne20_median_pct": 12.1902,
++      "spanne20_median_pct": 13.1305,
+       "symbole_gemessen": 24,
+-      "tiefabstand_median_pct": 1.0537
++      "tiefabstand_median_pct": 1.1439
+     }
+   }
+ }

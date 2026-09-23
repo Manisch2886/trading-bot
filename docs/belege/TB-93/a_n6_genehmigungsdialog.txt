@@ -1,0 +1,26 @@
+TB-93 / A-N6 — Erschien beim Aendern ein Genehmigungsdialog?
+================================================================================
+Ergebnis: NICHT GEMESSEN (A2) — auf dem Mac aus zwei Gruenden nicht messbar.
+
+(1) Diese Sitzung hat messgroessen.py NICHT geaendert. Die Aenderung kam als
+    Vormessung des steuernden Chats (Bruecken-VM) und wurde in Schritt 0 nur
+    committet (b11a6f6). Kein Edit/Write auf die Datei, also keine Gelegenheit
+    fuer einen Dialog.
+
+(2) ⭐ NEU GEMESSEN: messgroessen.py steht in KEINER ask-Regel und
+    ergebnisse/messgroessen.json in KEINER deny-Regel von
+    .claude/settings.local.json. Die ask-Liste nennt genau vier Dateien
+    (registerdaten.py, faltenplan.py, auswertung.py, benchmark.py, je Write/Edit);
+    die deny-Liste fuer ergebnisse/ nennt faltenplan.json,
+    benchmark_drawdowns.json, benchmark_drawdowns_vt.json und
+    sperrliste_abbild_*.json.
+
+    ⇒ Selbst eine Mac-Sitzung, die messgroessen.py aendert, bekaeme nach der
+      heutigen Konfiguration KEINEN Dialog — nicht weil ask nicht wirkt,
+      sondern weil die Regel die Datei nicht nennt. Nach Fables Praezisierung
+      zu 36.1 (1) (23c: "gesperrt" umfasst EINGEFROREN) fehlen damit in den
+      Berechtigungen: messgroessen.py (ask), kennzahlen.py und
+      pruefe_grenzsaetze.py (ask, ebenfalls EINGEFROREN) sowie
+      ergebnisse/messgroessen.json (deny).
+    ⛔ Nicht geaendert — die Berechtigungen gehoeren dem Betreiber, und der
+      Auftrag verlangt es nicht.

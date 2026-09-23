@@ -8591,6 +8591,44 @@ die Sperrliste, Plan Punkt 5, 35.5, 33.5, TB-30b, 32.5, (20g)–(20m), `K4t`.
 
 ---
 
+## CT — TB-93: `messgroessen.py` nach 36.1 abgesichert, aber der Determinismusnachweis ist ein Befund — die eingefrorene Datei ruht auf Krypto-Daten vor TB-34 (23.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-93_messgroessen_absichern.md`*
+
+**Quelle:** Mac-Sitzung **TB-93**, 23.09.2026, Eingang `02f2574`. Commit `b11a6f6`
+(Schritt 0) und der Abgabe-Commit. Belege `docs/belege/TB-93/`. Grundlage Fable 23c
+Abschnitt 2, 36.1, 37.3.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **Block A** | A-N1–A-N5 auf dem Mac **gleich** der Vormessung: `5f707500…` → `623f8d77…` (66/6), acht Messfunktionen AST-gleich (auch die Kurzhashes), `json.dump` zeichengleich 284 → 288, Mutationsprobe `rc=1` nach 1 s ohne Schreiben, Voreinstellung mit Stempel. A-N6 nicht gemessen |
+| ⛔⛔ **Block B** | Nachweislauf `rc 0`, `7f46d5f5…` ≠ `2a9b9166…`, **erste Abweichung Byte 260** (`datenbereiche.krypto_1d.frueheste` 2021-09-01 → 2017-08-17). 48 von 127 Blättern, **nur Krypto**; Aktien, Kosten, Haltedauer, Universum, Frequenz gleich. ⇒ **Befund, Block C entfällt** |
+| ⭐⭐ **Gegenprobe** | Derselbe Code auf den Eingaben von `a2fcf01` (Scratchpad, `TB30A_BASE_DIR`) ergibt `2a9b9166…` **bytegleich**. Ursache ist `90e3cbd` (TB-34, 15.09., Krypto neu geladen, keine Aktiendatei berührt), nicht der Code |
+| **Nebenbefund** | `messgroessen.py`, `kennzahlen.py`, `pruefe_grenzsaetze.py` (ask) und `ergebnisse/messgroessen.json` (deny) fehlen in `.claude/settings.local.json`, obwohl sie in `EINGEFROREN` stehen |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Determinismusnachweis gegen eine alte Datei prüft Code UND Eingaben.** Schlägt er fehl, trennt erst die Gegenprobe mit den historischen Eingaben (`git archive <Erzeugercommit>` + Umlenkung) die beiden Ursachen. Ohne sie hiesse der Befund „nicht reproduzierbar", obwohl der Code es ist |
+| ⭐ | **Was nicht bezeugt wird, läuft weg.** `data/` steht nicht in `EINGEFROREN`; eine eingefrorene Ableitung aus `data/` ist nach jedem Neuladen nur noch über die Git-Historie reproduzierbar |
+| | Ein AST-Vergleich über Modulfunktionen übersieht verschachtelte Funktionen (`rma` in `adx`) — `ast.walk` statt `tree.body` |
+
+### Was offen bleibt
+
+Fable: gilt die Gegenprobe als Nachweis; worauf ruhen die Krypto-Rastergrenzen
+(vor TB-34); gehört der Datenstand in die Bezeugung am Tag · danach Tatsachennotiz
+37.3 für `623f8d77…` (die Änderung ist committet, die Notiz fehlt) · Betreiber:
+Berechtigungen für die übrigen `EINGEFROREN`-Pfade · A-N6 weiter offen. Dazu
+unverändert: TB-92 (wartet auf 23e und Freigabe), Sonde „Schreibziele", G6/H3,
+Plan Punkt 5, 35.5, 33.5, TB-30b, 32.5, (20g)–(20m), `K4t`.
+
+*Geschrieben 23.09.2026 von der Mac-Sitzung TB-93. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

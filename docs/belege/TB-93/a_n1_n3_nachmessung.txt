@@ -1,0 +1,30 @@
+TB-93 A-N1 bis A-N3 — Nachmessung auf dem Mac, trading-env/bin/python3
+Vorher-Stand: git show 02f2574:research/vorregistrierung/messgroessen.py
+
+A-N1 Hash messgroessen.py
+  vorher  5f7075003c9dc291baf2d8235b1be8ce73a29db0859e7adc04cba35cf499fadc  (02f2574)
+  nachher 623f8d771ffd5ae9dc1b979fbe383c85268371ba4f1dfeff055379662be41f25  (b11a6f6)
+  numstat: 66	6	research/vorregistrierung/messgroessen.py
+
+A-N2/A-N3 (a_n2_ast_vergleich.py, FunctionDefs per ast.walk — rma ist in adx verschachtelt):
+Python 3.9.6
+  universum      GLEICH   2d965f89ddb1cc7a
+  lies           GLEICH   1fe1f3e06e3082c2
+  rsi            GLEICH   1b32d92b34641a0b
+  adx            GLEICH   0b08e4665ec0992c
+  rma            GLEICH   2db2f1415f91e965
+  je_zeitrahmen  GLEICH   39c73ee202010241
+  haltedauern    GLEICH   383bbc08dd240f89
+  datenbereiche  GLEICH   0a49da24f614a678
+  nur vorher: []
+  nur nachher: ['_sha256_datei', 'schreibe_messgroessen', 'voreinstellung_ziel']
+  geaendert: ['main']
+  json.dump vorher : [(284, 'json.dump(mess, f, indent=2, ensure_ascii=False, sort_keys=True)')]
+  json.dump nachher: [(288, 'json.dump(mess, f, indent=2, ensure_ascii=False, sort_keys=True)')]
+  zeichengleich (Quelltext): True
+  AST gleich: True
+  Schreib-/Oeffnungsaufrufe vorher [(88, 'open'), (253, 'makedirs'), (283, 'open'), (284, 'dump')]
+  Schreib-/Oeffnungsaufrufe nachher [(91, 'open'), (257, 'open'), (286, 'open'), (287, 'fdopen'), (288, 'dump'), (304, 'makedirs')]
+
+grep -c 'indent=2'  vorher/nachher: 1 / 2  (zweiter Treffer: Docstring schreibe_messgroessen)
+grep -c 'f.write("\\n")' vorher/nachher: 1 / 1
