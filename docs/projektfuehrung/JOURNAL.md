@@ -8666,6 +8666,43 @@ im Beleg-Ordner) · `G6`/`H3` · Antworten 23d/23e ins Repo · TB-94 · Sonde
 
 ---
 
+## CV — TB-94: Vollzug von Punkt 8 im Register — Berichtigung 38.4, Abschnitt 39, neues Abbild, Sonde ohne Befund; Plan-Punkt 8 fertig (23.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-94_register_39.md`*
+
+**Quelle:** Mac-Sitzung **TB-94**, 23.09.2026, Eingang `fcc3265`. Commits `12f6089`
+(Schritt 0), `27b68b9` (Block B und C in einem Commit), `f65a0a0` (Block D) und der
+Abgabe-Commit. Belege `docs/belege/TB-94/`. Grundlage Fable 23f (23a–23e, 22g).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **Block A** | Alle zwölf Hashes und die fünf Übergänge aus der Historie gleich der Vormessung; Sonde vorher rc 1 an 2/3/4/5/6/14, (ii) 0 |
+| ⭐ **Block B/C** | Punkt 4 nennt beide Dateien (drei Folgezeilen + Vollzugsmarke), Abschnitt 39 (39.1–39.10), zehn Marken; **575/0**; 29 Zitate eingesetzt, 29× `diff` rc 0; `benchmark_drawdowns.json` durchgehend `a163c498…` |
+| ⭐ **Block D** | Abbild `sperrliste_abbild_2026-09-23.json` `2f23f76c…`; Sonde **0 Befunde**, 15/15 Pfade gleich, (ii) 0, Punkte 2/5 `0` — Gesamtausgang **2** (zwölf Punkte mit Nicht-Dateibezogenem), nicht 0 wie im Auftrag erwartet |
+| **D3** | Alle acht Teile des berichtigten Fertigkriteriums erfüllt ⇒ **Plan-Punkt 8 fertig**; der Tag bleibt durch den roten Test blockiert (TB-95) |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **„Sonde 0" und „Sonde 0 für die Pfade" sind zwei Aussagen.** Nach R6 ist jeder Punkt mit Nicht-Dateibezogenem `2`; der Gesamtausgang `0` ist für diese Liste nicht erreichbar, solange Werte und Regeln keinen Ort haben. Ein Auftrag, der „Gesamtausgang 0" erwartet, muss „0 Befunde, alle Pfade gleich" meinen |
+| ⭐ | **Ein Registereintrag, dessen Ergebnis erst nach seinem Commit entsteht** (Abbild liest den Listentext), bekommt sein Ergebnis als additiven Nachtrag im selben Unterabschnitt, in eigenem Commit — der Listentext von Abschnitt 10 bleibt dabei unberührt, (ii) bleibt 0 |
+| | Ein Teilzitat, das auch in einem Vollzitat steht, wird im Beleg nach Ort zugeordnet, sonst bezeugt der Vergleich die falsche Stelle |
+
+### Was offen bleibt
+
+TB-95 (`G6`/`H3`, Messbitte zu den neun Trade-Listen) · TB-96 (`messgroessen.json`,
+Registertext „Eingabestand" aus 23d) · Sonde: `BESTIMMT_NICHT_EINGETRAGEN` veraltet,
+dritte Gruppe, Schreibziele, Lesequellen · Marke „aktuelles Abbild" unter der
+Überschrift von Abschnitt 10 · Hilfsdatei `_anhang_arbeitsweise_22.md` von Hand
+löschen (rm/mv in der Sitzung abgelehnt).
+
+*Geschrieben 23.09.2026 von der Mac-Sitzung TB-94. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
