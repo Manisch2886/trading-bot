@@ -1422,6 +1422,81 @@ Punkt 8) — die beiden Befehle oben beantworten dieselbe Frage lesend.
 
 ---
 
+### ⭐⭐ Die Sitzung wird aus der Claude-App gestartet, nicht über Termius (23.09.2026)
+
+⚠️⚠️ **Betreiberentscheidung 23.09.2026, 10:14**, nach einem Vormittag mit
+**vier Anläufen** für einen Auftrag (TB-90). *Die Diagnose war jedes Mal
+dieselbe: nicht die Arbeit brach ab, sondern die Sicht darauf.*
+
+**Der neue Weg:** In der Claude-App **„Neue Sitzung"**, und dabei das **GERÄT**
+wählen — in der Liste am Laptop-Symbol zu erkennen (`trading-bot · main`).
+
+⛔⛔ **NICHT die Cloud wählen.** Cloud-Sitzungen (Wolkensymbol) haben **kein**
+lokales Repo: keine Kursdaten, kein `trading-env`, keine
+`.claude/settings.local.json`. Sie können nichts messen, was den gerechneten
+Plan braucht.
+
+⭐ **Was damit wegfällt — vier von fünf Reibungsquellen auf einmal:**
+
+| | |
+|---|---|
+| Verbindungsabbrüche | Es gibt keine SSH-Verbindung mehr, an der etwas hängen kann |
+| `security unlock-keychain` | ⭐ Der Schlüsselbund ist **nur deshalb** gesperrt, weil der Zugang über SSH kommt. Eine Sitzung, die die Desktop-App startet, läuft in der angemeldeten Sitzung — Keychain offen, `/remote-control` und Abo-Abrechnung inhärent da |
+| `screen`, `Strg`+`A`, `screen -r` | Nicht mehr nötig |
+| Mehrzeilige Blöcke (Abschnitt 7) | Kein Terminal, das Zeilenumbrüche frisst |
+
+⚠️⚠️ **Was dabei gemessen werden muss, bevor man sich darauf verlässt:** ob die
+App-Sitzung dieselbe Umgebung vorfindet — Repo-Ordner, **`trading-env`**,
+Berechtigungen aus `.claude/settings.local.json`, Abo statt API-Abrechnung.
+**Der erste Auftrag nach der Umstellung trägt diese Prüfung als Schritt 0, mit
+ABBRUCH statt Rückfrage, wenn etwas fehlt.**
+
+### ⚠️ Der Sitzungstitel altert — die TB-Nummer in der App ist nicht die des Auftrags
+
+**Gemessen am 23.09.2026:** Die App führte die laufende Mac-Sitzung als
+**`TB-88`**, während sie an **TB-90** arbeitete. Der Titel wird beim Start einer
+Claude-Code-Instanz gesetzt; wer den nächsten Auftrag in dieselbe Instanz
+einfügt, ohne sie mit `/exit` zu schliessen, behält den alten Namen.
+
+> ⭐ **Regel:** Jeder Aufgabenblock nennt **den Namen, unter dem die Sitzung in
+> der App zu finden ist** — nicht die TB-Nummer des Auftrags, sofern beide
+> auseinanderfallen. *Ein Zeiger, den niemand pflegt, zeigt irgendwohin
+> (dieselbe Lehre wie bei `AKTUELLER_AUFTRAG.md`).*
+
+### ⭐⭐ „Abgebrochen" wird gemessen, nicht geglaubt
+
+⚠️ **Gemessen am 23.09.2026: Von drei gemeldeten Abbrüchen war keiner einer.**
+
+| gemeldet | tatsächlich |
+|---|---|
+| „abgebrochen" | Die Sitzung hatte **regelkonform abgebrochen** und den Grund committet (`5194a0a`): `faltenplan.py` stand unter `deny` statt `ask` |
+| „wieder abgebrochen" | Dieselbe Sperre, danach ein Verbindungsabbruch |
+| „alles ist weg" | ⭐ Die Sitzung **lief weiter** und schrieb Belege, während sie verloren schien — `screen` hatte sie beim Trennen abgelöst, genau wie vorgesehen |
+
+> ⭐⭐ **Regel:** Bei jeder Abbruchmeldung misst der steuernde Chat **zuerst den
+> Arbeitsbaum und die jüngsten Dateizeiten**, bevor irgendetwas neu gestartet
+> wird. *Der Bildschirm ist weg, die Arbeit meistens nicht.* Ein Neuanlauf ohne
+> diese Messung wirft fertige Arbeit weg — und hat am 23.09. zweimal gedroht.
+
+### ⚠️ `deny` ist eine Sperre, `ask` ist eine Nachfrage
+
+**Der Vorfall, 23.09.2026:** Die Berechtigungsdatei führte die vier
+Sperrlisten-`.py` unter **`deny`**, und der Aufgabenblock kündigte „einen
+Genehmigungsklick" an. ⛔ **Den gibt es bei `deny` nicht:** Die Sitzung wurde
+**nach 4 ms** abgewiesen (*„File is in a directory that is denied by your
+permission settings"*) und brach ab — richtig gehandelt, aber an einer Wand, die
+niemand gewollt hatte.
+
+> ⭐ **Regel:** Was **gefragt** werden soll, steht unter `ask`. Was **nie**
+> geschehen darf, steht unter `deny`. Seit dem 23.09.2026 stehen die vier
+> Sperrlisten-**Programmdateien** unter `ask`, die Sperrlisten-**Datendateien**
+> weiter unter `deny`. ⚠️ Gemessen ist die Wirkung nur **indirekt**: `deny`
+> lehnt in Millisekunden ab, der Edit unter `ask` gelang nach 35 Minuten — das
+> passt nur zu einer offenen Frage, die bestätigt wurde. Ein Protokolleintrag
+> über die Frage selbst existiert nicht.
+
+---
+
 ## 15. Was mit „zukünftig" gesagt wird, wird eingetragen — ohne weitere Aufforderung
 
 ⚠️⚠️ **Ausdrückliche Anweisung des Betreibers, 19.09.2026:** *„Füge zukünftig
