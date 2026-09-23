@@ -1,0 +1,10 @@
+elliott_wave                 80
+t3_supertrend                384
+rsi2_crypto                  400
+turtle_soup_crypto           96
+volatility_breakout_crypto   320
+elliott_wave_stocks          320
+rsi2_mean_reversion          400
+turtle_soup_stocks           96
+volatility_breakout          320
+Summe                        2416

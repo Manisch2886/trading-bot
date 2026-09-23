@@ -1,0 +1,135 @@
+diff --git a/shared/sperrlistensonde.py b/shared/sperrlistensonde.py
+index fb175ea..ba13042 100644
+--- a/shared/sperrlistensonde.py
++++ b/shared/sperrlistensonde.py
+@@ -72,6 +72,14 @@ eine Tatsachennotiz. Sie kennt `herkunft.py` `EINGEFROREN` und
+ des Abschnitts 10, sondern "fuer die Sperrliste bestimmt" (21.9/23.7); ob die
+ Sonde sie pruefen soll, liegt bei Fable (Anfrage 22c). Bis dahin nennt der
+ Bericht sie in einem eigenen Abschnitt mit ihrem heutigen Hash, ohne Wertung.
++⭐ Seit TB-92 (Register 39) ist dieser Abschnitt LEER: Die Neurechnung
++`benchmark_drawdowns_2026-09-23_nach_wegA.json` steht als Pfad unter Punkt 4
++und wird damit gemessen wie jede andere Datei; `_vt.json` bleibt liegen und
++kommt nicht auf die Liste (Fable 23c, Schritt 2).
++
++Seit TB-92 druckt der Bericht ausserdem eine Zusammenfassung **je Datei**
++(welche Punkte sie beruehrt, ein Hash-Uebergang) - Fable 23c: "dann liest
++niemand 'drei Befunde', wo einer ist". Sie aendert keinen Ausgang.
+ 
+ Nutzung
+ ------------------------------------------------------------------------------
+@@ -101,10 +109,11 @@ CODEORDNER = os.path.join("research", "vorregistrierung")
+ 
+ # Fuer die Sperrliste bestimmt, aber kein Punkt des Abschnitts 10 (21.9/23.7):
+ # im Bericht genannt, nicht geprueft - Entscheidung bei Fable (Anfrage 22c).
+-BESTIMMT_NICHT_EINGETRAGEN = (
+-    (os.path.join(CODEORDNER, "ergebnisse", "benchmark_drawdowns_vt.json"),
+-     "Register 21.9/23.7 - fuer die Sperrliste bestimmt, Vollzug steht aus"),
+-)
++# ⭐ Seit TB-92 (Register 39, Fable 23c Schritt 2) LEER: "bestimmt" wechselte
++# auf die Neurechnung `benchmark_drawdowns_2026-09-23_nach_wegA.json`, und mit
++# dem Vollzug wurde sie Punkt 4. `benchmark_drawdowns_vt.json` (bis dahin hier
++# genannt) und `_tb72.json` bleiben liegen und kommen NICHT auf die Liste.
++BESTIMMT_NICHT_EINGETRAGEN = ()
+ 
+ _RE_PUNKT = re.compile(r"^(\d{1,2})\. \*\*")
+ _RE_TITEL = re.compile(r"^(\d{1,2})\. \*\*(.+?)\*\*(.*)$")
+@@ -402,6 +411,18 @@ def pruefen(abbild_pfad, register_pfad, wurzel):
+     ausgang_ii, befunde, notiz = _vergleiche_mit_register(abbild, register_pfad)
+     bericht["ii"] = {"ausgang": ausgang_ii, "befunde": befunde, **notiz}
+ 
++    # je Datei (Fable 23c, Handwerk): eine Datei an mehreren Punkten ist EIN
++    # Hash-Uebergang - "dann liest niemand 'drei Befunde', wo einer ist".
++    # Reine Zusammenfassung von (i); aendert keinen Ausgang.
++    je_datei = {}
++    for p, g in zip(abbild["punkte"], bericht["punkte"]):
++        for d in g["dateien"]:
++            e = je_datei.setdefault(d["pfad"], {
++                "pfad": d["pfad"], "punkte": [], "stand": d["stand"],
++                "soll": p.get("hashes", {}).get(d["pfad"]), "ist": d["sha256"]})
++            e["punkte"].append(p["punkt"])
++    bericht["je_datei"] = list(je_datei.values())
++
+     # bestimmt, nicht eingetragen - ohne Wertung
+     for rel, warum in BESTIMMT_NICHT_EINGETRAGEN:
+         voll = os.path.join(wurzel, rel)
+@@ -455,6 +476,14 @@ def _drucke(b):
+                                                   (d["sha256"] or "")[:16]))
+         for g in p["gruende"]:
+             print("            -> %s" % g)
++    print("\nJe Datei (eine Datei an mehreren Punkten ist EIN Uebergang, Fable 23c):")
++    for d in b.get("je_datei", []):
++        punkte = ", ".join(str(n) for n in d["punkte"])
++        if d["stand"] == "ABWEICHUNG":
++            print("  %-62s Punkt(e) %-9s ABWEICHUNG soll %s… ist %s…"
++                  % (d["pfad"], punkte, (d["soll"] or "?")[:12], (d["ist"] or "?")[:12]))
++        else:
++            print("  %-62s Punkt(e) %-9s %s" % (d["pfad"], punkte, d["stand"]))
+     ii = b["ii"]
+     print("\n(ii) Abbild gegen den Registertext von Abschnitt 10:  [%s]" % _WORT[ii["ausgang"]])
+     if ii.get("punkte") is not None:
+@@ -466,6 +495,8 @@ def _drucke(b):
+     print("\nBestimmt, nicht eingetragen (kein Punkt des Abschnitts 10; nicht geprueft, nur genannt):")
+     for d in b["bestimmt"]:
+         print("  %s  %s  (%s)" % (d["pfad"], d["sha256"] or "FEHLT", d["warum"]))
++    if not b["bestimmt"]:
++        print("  (keine - seit TB-92 leer: die Neurechnung ist Punkt 4, Register 39)")
+     n = {k: sum(1 for p in b["punkte"] if p["ausgang"] == k) for k in (OK, BEFUND, NICHT_PRUEFBAR)}
+     print("\nBilanz: %d Punkte in Ordnung (0), %d mit Befund (1), %d nicht pruefbar (2); (ii) %s"
+           % (n[OK], n[BEFUND], n[NICHT_PRUEFBAR], _WORT[ii["ausgang"]]))
+diff --git a/shared/test_sperrlistensonde.py b/shared/test_sperrlistensonde.py
+index 43c5c73..564db75 100644
+--- a/shared/test_sperrlistensonde.py
++++ b/shared/test_sperrlistensonde.py
+@@ -331,8 +331,12 @@ def teil_h(wurzel, abbild):
+     pruefe("H7a: Befehlszeile liefert 2 wie die Funktion", r.returncode == 2, r.stderr[:200])
+     pruefe("H7b: die Textausgabe endet mit dem Rueckgabewert",
+            "RUECKGABEWERT 2 NICHT PRUEFBAR" in r.stdout, r.stdout[-200:])
+-    pruefe("H7c: die Textausgabe nennt benchmark_drawdowns_vt.json als 'bestimmt, nicht eingetragen'",
+-           "Bestimmt, nicht eingetragen" in r.stdout and "benchmark_drawdowns_vt.json" in r.stdout)
++    # Bis TB-92 stand hier: "nennt benchmark_drawdowns_vt.json als 'bestimmt,
++    # nicht eingetragen'". Mit dem Vollzug von Punkt 4 ist die Gruppe leer
++    # (Register 39, Fable 23c Schritt 2) - die Pruefung folgt dem Stand.
++    pruefe("H7c: die Textausgabe nennt die Gruppe 'Bestimmt, nicht eingetragen' - leer seit TB-92",
++           "Bestimmt, nicht eingetragen" in r.stdout and "(keine" in r.stdout
++           and "benchmark_drawdowns_vt.json" not in r.stdout, r.stdout[-400:])
+     r = subprocess.run(cmd + ["--json"], capture_output=True, text=True)
+     try:
+         j = json.loads(r.stdout)
+@@ -344,6 +348,37 @@ def teil_h(wurzel, abbild):
+                        capture_output=True, text=True)
+     pruefe("H7e: fehlendes Abbild ueber die Befehlszeile -> 2", r.returncode == 2)
+ 
++    # H9: je Datei (Fable 23c) - eine Datei an drei Punkten ist EIN Eintrag,
++    # auch wenn sie abweicht; die Punktausgaenge bleiben je Punkt.
++    rel = "research/vorregistrierung/auswertung.py"
++    b = sonde.pruefen(abbild, _register(wurzel), wurzel)
++    eintraege = [d for d in b["je_datei"] if d["pfad"] == rel]
++    pruefe("H9a: auswertung.py steht einmal je Datei, mit den Punkten 3, 5, 14, gleich",
++           len(eintraege) == 1 and eintraege[0]["punkte"] == [3, 5, 14]
++           and eintraege[0]["stand"] == "gleich", eintraege)
++    pfade = [d["pfad"] for d in b["je_datei"]]
++    pruefe("H9b: jede Datei steht genau einmal je Datei", len(pfade) == len(set(pfade)), pfade)
++    voll = os.path.join(wurzel, rel)
++    with open(voll, "rb") as f:
++        original = f.read()
++    try:
++        with open(voll, "wb") as f:
++            f.write(original + b"\n")
++        b = sonde.pruefen(abbild, _register(wurzel), wurzel)
++        eintraege = [d for d in b["je_datei"] if d["pfad"] == rel]
++        befund = [p["punkt"] for p in b["punkte"] if p["ausgang"] == 1]
++        pruefe("H9c: abweichende Datei an drei Punkten -> drei Punkte mit 1, EIN Eintrag je Datei",
++               befund == [3, 5, 14] and len(eintraege) == 1
++               and eintraege[0]["stand"] == "ABWEICHUNG"
++               and eintraege[0]["soll"] != eintraege[0]["ist"], (befund, eintraege))
++        r = subprocess.run(cmd, capture_output=True, text=True)
++        pruefe("H9d: die Textausgabe fuehrt den Abschnitt 'Je Datei' mit der Abweichung",
++               "Je Datei" in r.stdout and "Punkt(e) 3, 5, 14" in r.stdout
++               and "ABWEICHUNG soll" in r.stdout, r.stdout[-600:])
++    finally:
++        with open(voll, "wb") as f:
++            f.write(original)
++
+     # H8: die Sonde schreibt nichts
+     def _stand():
+         return sorted((os.path.relpath(os.path.join(d, f), wurzel), os.path.getsize(os.path.join(d, f)))

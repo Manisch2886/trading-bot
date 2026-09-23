@@ -8629,6 +8629,43 @@ Plan Punkt 5, 35.5, 33.5, TB-30b, 32.5, (20g)–(20m), `K4t`.
 
 ---
 
+## CU — TB-92: Vollzug Punkt 8 im Code — drei Leser über eine Konstante, Modus-Nachweis bytegleich, aber der Test bleibt rot (163/2) und Block C/D entfallen (23.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-92_vollzug_punkt8.md`*
+
+**Quelle:** Mac-Sitzung **TB-92**, 23.09.2026, Eingang `ad94b38`. Commits `d136251`
+(Schritt 0), `0292e92` (Block A/A1a in einem Commit) und der Abgabe-Commit. Belege
+`docs/belege/TB-92/`. Grundlage Fable 23c Abschnitt 4, 23d/23e (nur als Zitat im Auftrag, nicht im Repo).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **Block A/A1a** | Form (ii): `benchmark_drawdowns.json` unverändert. `auswertung.py` trägt `BENCHMARK_TABELLE` (Neurechnung `64fb2912…`), `registerbericht.py` und `test_vorregistrierung.py` lesen dieselbe Konstante, `registerbericht.py` liest `symbole_handelbar_in_falte`. AST: 26/27 gleich, `main` nur im `open`-Argument, eine neue Zuweisung. `auswertung.py` `1c2e2dae…` → `c3b4e69d…`. `beispieldaten.py` liest keine Tabelle. `registerbericht.py` rc 0, alle neun Bots |
+| ⭐ **A1b** | Vier Läufe über einen Hilfsordner auf Snapshot `63e4b6c8…`: alle **bytegleich** `64fb2912…`, je ~51 s. Prozessübergreifender Lesehaken über 11 Prozesse: 0 Zugriffe auf `data/`/`config/` des Repos |
+| ⛔ **Block B** | Test läuft bis zur Schlusszeile (kein `KeyError` mehr), aber **rc 1, 163/2 (`G6`, `H3`), 501 s** ⇒ Block C/D entfallen: kein Registertext, keine Marken, kein neues Abbild |
+| **Randbefunde** | Kindprozesse lesen über `TB36_BASE_DIR`/`TB40_BASE_DIR`. `messgroessen.json` und TB-24-Trades liegen ausserhalb des Snapshots. `herkunft.register()` hasht weiter die alte Tabelle. Der ERZEUGT-Block im Register war schon vorher veraltet (`--pruefen` rc 1 vor und nach) |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Form (ii) heisst: Leser umlenken, nicht Datei tauschen.** Das „Henne-Ei“ des Auftrags gilt nur für Form (i). Unter (ii) muss jeder Leser den Pfad wechseln, also auch der zweite Lesepunkt in `registerbericht.py` |
+| ⭐ | **Ein Lesehaken reicht nicht über Prozessgrenzen.** `sitecustomize` über `PYTHONPATH` erfasst die Kinder. Geschrieben wird per `os.write` auf einen vorab geöffneten Deskriptor, sonst schluckt eine Schreibsperre (`loaderlauf.py`) das Protokoll |
+| | Ein Auftrag, dessen Blöcke nacheinander entstanden sind, widerspricht sich. Gefolgt wird der jüngsten verbindlichen Stelle, und jeder Widerspruch wird im Ergebnis benannt |
+
+### Was offen bleibt
+
+Fable/Betreiber: Gilt „läuft durch“ (23c Schritt 3) oder „grün“ (38.4, Auftrag B3)?
+Danach Block D (Abschnitt 39, Marken 10/4, 37.2, 38.4, Tatsachennotizen zu drei
+Hash-Übergängen und zu `_vt`/`_tb72`), neues Abbild, Sonde „je Datei“ (Patch liegt
+im Beleg-Ordner) · `G6`/`H3` · Antworten 23d/23e ins Repo · TB-94 · Sonde
+„Lesequellen“ (TB36/TB40) · ERZEUGT-Block veraltet.
+
+*Geschrieben 23.09.2026 von der Mac-Sitzung TB-92. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
