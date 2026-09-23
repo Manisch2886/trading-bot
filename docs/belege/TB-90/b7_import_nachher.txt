@@ -1,0 +1,11 @@
+B7 NACHHER — 2026-09-23 07:41:57  HEAD 53b35ce + Arbeitsbaum
+Ausgabe: FEE SLIPPAGE handelskosten-geladen
+elliott_wave/backtest_elliott: rc=0  0.1 0.05 True
+elliott_wave_stocks/backtest_elliott: rc=0  0.1 0.05 True
+rsi2_crypto/backtest_rsi2: rc=0  0.1 0.05 True
+rsi2_mean_reversion/backtest_rsi2: rc=0  0.1 0.05 True
+t3_supertrend/backtest_trend: rc=0  0.1 0.05 True
+turtle_soup_crypto/backtest_turtle_soup: rc=0  0.1 0.05 True
+turtle_soup_stocks/backtest_turtle_soup: rc=0  0.1 0.05 True
+volatility_breakout/backtest_breakout: rc=0  0.1 0.05 True
+volatility_breakout_crypto/backtest_breakout: rc=0  0.1 0.05 True

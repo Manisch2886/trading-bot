@@ -68,8 +68,14 @@ REGELN (exakt, keine Mehrdeutigkeit):
 Kosten: 0.1% Gebuehr + 0.05% Slippage je Entry/Exit (Projekt-Konvention).
 """
 
+import os
+import sys
 import numpy as np
 import pandas as pd
+
+_STRATEGY_DIR = os.path.dirname(os.path.abspath(__file__))
+_SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "shared")
+sys.path.insert(0, _SHARED_DIR)
 
 from indicators import donchian_low
 
@@ -93,8 +99,7 @@ from live_params import MAX_HOLD_DAYS
 # equity_simulation.py und forward_test.py lesen ihn von dort.
 DONCHIAN_PERIOD = 20
 
-TRADING_FEE_PCT = 0.1
-SLIPPAGE_PCT = 0.05
+from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
 
 WARMUP_PERIOD = DONCHIAN_PERIOD
 

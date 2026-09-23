@@ -39,8 +39,14 @@ Kosten: 0.1% Gebuehr + 0.05% Slippage je Entry/Exit (Binance-Spot-Konvention,
 gleiche Annahme wie bei den bestehenden Krypto-Bots).
 """
 
+import os
+import sys
 import numpy as np
 import pandas as pd
+
+_STRATEGY_DIR = os.path.dirname(os.path.abspath(__file__))
+_SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "shared")
+sys.path.insert(0, _SHARED_DIR)
 
 from indicators import sma, rsi
 
@@ -55,8 +61,7 @@ from live_params import MAX_HOLD_DAYS
 RSI_PERIOD = 2
 SMA_EXIT_PERIOD = 5
 
-TRADING_FEE_PCT = 0.1
-SLIPPAGE_PCT = 0.05
+from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
 
 
 def compute_indicators(price_df: pd.DataFrame, sma_trend_period: int) -> pd.DataFrame:

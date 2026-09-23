@@ -1,0 +1,54 @@
+=== elliott_wave  rc=0
+modul=strategies/elliott_wave/backtest_elliott.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=40
+sha256=a30173ca80bfedb55ed8fb324de6c613f41fcdbea86534d56fde9f4f436ab6b6
+=== elliott_wave_stocks  rc=0
+modul=strategies/elliott_wave_stocks/backtest_elliott.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=31
+sha256=b69aedc84cc9d0ae3bf6beda05eb1bd0fb92492cdb4c58e02ef667dc7d7b83b2
+=== rsi2_crypto  rc=0
+modul=strategies/rsi2_crypto/backtest_rsi2.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=37
+sha256=fb07268a0076b6c02b238690f7e8661f1bd70af1c947ed54408417e54d653eb4
+=== rsi2_mean_reversion  rc=0
+modul=strategies/rsi2_mean_reversion/backtest_rsi2.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=196
+sha256=8971aa6218b82c7363821edb3b9d8550f663a5e5c057b3b3732f634901042cbc
+=== t3_supertrend  rc=0
+modul=strategies/t3_supertrend/backtest_trend.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=122
+sha256=0094df4e0d25a2cbe26af291b6412bc2c4447a1a816947a59e090dddbab576bb
+=== turtle_soup_crypto  rc=0
+modul=strategies/turtle_soup_crypto/backtest_turtle_soup.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=104
+sha256=a1af283993196ec943b93f5fb85c54a560f601ea6ca1ecc02159d82db99c54d8
+=== turtle_soup_stocks  rc=0
+modul=strategies/turtle_soup_stocks/backtest_turtle_soup.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=326
+sha256=09ab2f6be763a0d83d5aa65830dfed637707ed25256f8a87d11f8a0782fd07ec
+=== volatility_breakout  rc=0
+modul=strategies/volatility_breakout/backtest_breakout.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=161
+sha256=de5f633972c9f262e4a0a0db50be5826894469f839ce1f7b0619075f668ddc9c
+=== volatility_breakout_crypto  rc=0
+modul=strategies/volatility_breakout_crypto/backtest_breakout.py
+TRADING_FEE_PCT=0.1 SLIPPAGE_PCT=0.05
+handelskosten geladen: nein
+trades=38
+sha256=e913fe74eed2c832d42fb459525e42e82304007fd65e17a66e83dd0654960f1b

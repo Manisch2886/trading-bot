@@ -1,0 +1,117 @@
+B5 Mutationsprobe — 2026-09-23 07:42:36  HEAD 53b35ce + Arbeitsbaum (nie committet)
+## vorher
+eb6855313767f9b0ef0b5e4945b24b42ec917a4837da76c0bff5f0668eedb9fb  shared/handelskosten.py
+5358994a2d3d61800a031f14035fdcc516f4cdaa7da0a11ad59394e139e16187  strategies/elliott_wave/backtest_elliott.py
+174ba29d24ffb9eefa99f7a7466d31df870493cb92d9a69abc1bbbfa6074633c  strategies/elliott_wave_stocks/backtest_elliott.py
+84930445e34940775f6fcc6715616eb77589fc960f988a19b26199f1393e1aca  strategies/rsi2_crypto/backtest_rsi2.py
+c0a59a43e90477746074eced93c396b1b12e1a730a4873d71fd4da56f3590c5a  strategies/rsi2_mean_reversion/backtest_rsi2.py
+7a764353d092e521cc24b80ae97193d624224b38a6a62a45394360fe50cb04bb  strategies/t3_supertrend/backtest_trend.py
+0704c9a96898ede99e9cf2b153da33d0cb885bf16c89e642d8514f277e8a0089  strategies/turtle_soup_crypto/backtest_turtle_soup.py
+0de39bf20bbbd3c0988b270262728a08cddc79a448fd0300c2f6b94998df50bb  strategies/turtle_soup_stocks/backtest_turtle_soup.py
+8dce183df74e8f622530a836a7cd1c3053b2bed06884fd444147c8de50ede4ea  strategies/volatility_breakout/backtest_breakout.py
+b7923b084165d47dba99305151f59e8aa7c2e5989e364a7501a604575a555d1b  strategies/volatility_breakout_crypto/backtest_breakout.py
+
+## Mutation: TRADING_FEE_PCT = 0.1 -> 0.999 (nur shared/handelskosten.py)
+29:TRADING_FEE_PCT = 0.999    # je Order (Einstieg und Ausstieg je einmal)
+30:SLIPPAGE_PCT = 0.05        # angenommene Abweichung vom gewuenschten Preis, je Order
+
+## die neun Module unter der Mutation (FEE SLIPPAGE handelskosten-geladen)
+elliott_wave/backtest_elliott: rc=0  0.999 0.05 True
+elliott_wave_stocks/backtest_elliott: rc=0  0.999 0.05 True
+rsi2_crypto/backtest_rsi2: rc=0  0.999 0.05 True
+rsi2_mean_reversion/backtest_rsi2: rc=0  0.999 0.05 True
+t3_supertrend/backtest_trend: rc=0  0.999 0.05 True
+turtle_soup_crypto/backtest_turtle_soup: rc=0  0.999 0.05 True
+turtle_soup_stocks/backtest_turtle_soup: rc=0  0.999 0.05 True
+volatility_breakout/backtest_breakout: rc=0  0.999 0.05 True
+volatility_breakout_crypto/backtest_breakout: rc=0  0.999 0.05 True
+
+## Backtest je Bot unter der Mutation (Tradeanzahl, Hash - muss vom Referenzlauf abweichen)
+=== elliott_wave  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=40
+sha256=bdab600ba8d2355d378efde6dfaf01cf2275fdc8190a46354f58c2369686c4a8
+=== elliott_wave_stocks  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=31
+sha256=2dc8ee75caff4565764496b51fee7136d71ce28cb4f772fcbf7ab003bf207eee
+=== rsi2_crypto  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=37
+sha256=168b76be553fd5bc0457c2c2debb86c510bd1bfb68d6502377aa9088774c4395
+=== rsi2_mean_reversion  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=196
+sha256=53801b00aa052a8c3d6d190505db3288e8fcb93b8954cc21f44d32c32cf96beb
+=== t3_supertrend  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=122
+sha256=5aba3e07d3d77b2e6ce9b5c8379aa00fdb6576afb31d1dbbc64daff9e53c0483
+=== turtle_soup_crypto  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=104
+sha256=a3da753a535553689d2ad8867d02181cae20b4b138ed785380c11e7c774c1854
+=== turtle_soup_stocks  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=326
+sha256=9ad86ef6f3a7d2e061775d85d666166ecd03e5e77bb5d205cdfcacc625159057
+=== volatility_breakout  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=161
+sha256=7bf96f53e8f8640c8b0a30b18bfca920773b4fc8d1c49435a55c13728a67e1ce
+=== volatility_breakout_crypto  rc=0
+TRADING_FEE_PCT=0.999 SLIPPAGE_PCT=0.05
+trades=38
+sha256=74da5b6ef7059c4445d61039a188cbfb9d284d59c18d767117a85900cd935018
+
+## Ruecknahme
+$ diff <Sicherung> shared/handelskosten.py
+diff: leer (rc=0)
+
+## nachher
+eb6855313767f9b0ef0b5e4945b24b42ec917a4837da76c0bff5f0668eedb9fb  shared/handelskosten.py
+5358994a2d3d61800a031f14035fdcc516f4cdaa7da0a11ad59394e139e16187  strategies/elliott_wave/backtest_elliott.py
+174ba29d24ffb9eefa99f7a7466d31df870493cb92d9a69abc1bbbfa6074633c  strategies/elliott_wave_stocks/backtest_elliott.py
+84930445e34940775f6fcc6715616eb77589fc960f988a19b26199f1393e1aca  strategies/rsi2_crypto/backtest_rsi2.py
+c0a59a43e90477746074eced93c396b1b12e1a730a4873d71fd4da56f3590c5a  strategies/rsi2_mean_reversion/backtest_rsi2.py
+7a764353d092e521cc24b80ae97193d624224b38a6a62a45394360fe50cb04bb  strategies/t3_supertrend/backtest_trend.py
+0704c9a96898ede99e9cf2b153da33d0cb885bf16c89e642d8514f277e8a0089  strategies/turtle_soup_crypto/backtest_turtle_soup.py
+0de39bf20bbbd3c0988b270262728a08cddc79a448fd0300c2f6b94998df50bb  strategies/turtle_soup_stocks/backtest_turtle_soup.py
+8dce183df74e8f622530a836a7cd1c3053b2bed06884fd444147c8de50ede4ea  strategies/volatility_breakout/backtest_breakout.py
+b7923b084165d47dba99305151f59e8aa7c2e5989e364a7501a604575a555d1b  strategies/volatility_breakout_crypto/backtest_breakout.py
+
+$ git status --porcelain
+ M strategies/elliott_wave/backtest_elliott.py
+ M strategies/elliott_wave_stocks/backtest_elliott.py
+ M strategies/rsi2_crypto/backtest_rsi2.py
+ M strategies/rsi2_mean_reversion/backtest_rsi2.py
+ M strategies/t3_supertrend/backtest_trend.py
+ M strategies/turtle_soup_crypto/backtest_turtle_soup.py
+ M strategies/turtle_soup_stocks/backtest_turtle_soup.py
+ M strategies/volatility_breakout/backtest_breakout.py
+ M strategies/volatility_breakout_crypto/backtest_breakout.py
+?? docs/belege/TB-90/
+?? shared/handelskosten.py
+
+$ git diff --stat
+ strategies/elliott_wave/backtest_elliott.py                |  4 +---
+ strategies/elliott_wave_stocks/backtest_elliott.py         |  4 +---
+ strategies/rsi2_crypto/backtest_rsi2.py                    |  9 +++++++--
+ strategies/rsi2_mean_reversion/backtest_rsi2.py            |  9 +++++++--
+ strategies/t3_supertrend/backtest_trend.py                 | 10 +++++++---
+ strategies/turtle_soup_crypto/backtest_turtle_soup.py      |  9 +++++++--
+ strategies/turtle_soup_stocks/backtest_turtle_soup.py      |  9 +++++++--
+ strategies/volatility_breakout/backtest_breakout.py        |  9 +++++++--
+ strategies/volatility_breakout_crypto/backtest_breakout.py |  9 +++++++--
+ 9 files changed, 51 insertions(+), 21 deletions(-)
+
+## die neun Module nach der Ruecknahme
+elliott_wave/backtest_elliott: rc=0  0.1 0.05 True
+elliott_wave_stocks/backtest_elliott: rc=0  0.1 0.05 True
+rsi2_crypto/backtest_rsi2: rc=0  0.1 0.05 True
+rsi2_mean_reversion/backtest_rsi2: rc=0  0.1 0.05 True
+t3_supertrend/backtest_trend: rc=0  0.1 0.05 True
+turtle_soup_crypto/backtest_turtle_soup: rc=0  0.1 0.05 True
+turtle_soup_stocks/backtest_turtle_soup: rc=0  0.1 0.05 True
+volatility_breakout/backtest_breakout: rc=0  0.1 0.05 True
+volatility_breakout_crypto/backtest_breakout: rc=0  0.1 0.05 True

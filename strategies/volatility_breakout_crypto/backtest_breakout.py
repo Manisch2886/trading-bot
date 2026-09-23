@@ -38,8 +38,14 @@ Kosten: 0.1% Gebuehr + 0.05% Slippage je Entry/Exit (Binance-Spot-
 Konvention, gleiche Annahme wie bei den bestehenden Krypto-Bots).
 """
 
+import os
+import sys
 import numpy as np
 import pandas as pd
+
+_STRATEGY_DIR = os.path.dirname(os.path.abspath(__file__))
+_SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "shared")
+sys.path.insert(0, _SHARED_DIR)
 
 from indicators import bollinger_bands, band_width, squeeze_threshold
 
@@ -70,8 +76,7 @@ VOLUME_AVG_PERIOD = 20
 # nichts zu koppeln.
 VOLUME_FILTER_MULTIPLIER = 1.5
 
-TRADING_FEE_PCT = 0.1
-SLIPPAGE_PCT = 0.05
+from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
 
 WARMUP_PERIOD = max(BB_PERIOD, SQUEEZE_LOOKBACK_DAYS, VOLUME_AVG_PERIOD)
 

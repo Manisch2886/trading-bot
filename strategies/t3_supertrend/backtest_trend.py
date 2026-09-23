@@ -19,13 +19,17 @@ bewusst KEIN festes Take-Profit-Ziel - Trendfolge will Gewinne
 laufen lassen, solange der Trend haelt.
 """
 
+import os
+import sys
 import pandas as pd
+
+_STRATEGY_DIR = os.path.dirname(os.path.abspath(__file__))
+_SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "shared")
+sys.path.insert(0, _SHARED_DIR)
 
 from indicators import compute_indicators
 
-# Trading-Kosten (gleiche Annahmen wie bei der Elliott-Wave-Strategie)
-TRADING_FEE_PCT = 0.1
-SLIPPAGE_PCT = 0.05
+from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
 
 # Standard-Parameter (Ausgangspunkt fuer die Optimierung).
 #

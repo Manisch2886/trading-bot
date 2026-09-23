@@ -1,0 +1,10 @@
+B6 — Vergleich vorher/nachher, byte-genau (cmp) je Bot
+elliott_wave.csv  a30173ca80bfedb5  a30173ca80bfedb5        41 Zeilen  IDENTISCH
+elliott_wave_stocks.csv  b69aedc84cc9d0ae  b69aedc84cc9d0ae        32 Zeilen  IDENTISCH
+rsi2_crypto.csv  fb07268a0076b6c0  fb07268a0076b6c0        38 Zeilen  IDENTISCH
+rsi2_mean_reversion.csv  8971aa6218b82c73  8971aa6218b82c73       197 Zeilen  IDENTISCH
+t3_supertrend.csv  0094df4e0d25a2cb  0094df4e0d25a2cb       123 Zeilen  IDENTISCH
+turtle_soup_crypto.csv  a1af283993196ec9  a1af283993196ec9       105 Zeilen  IDENTISCH
+turtle_soup_stocks.csv  09ab2f6be763a0d8  09ab2f6be763a0d8       327 Zeilen  IDENTISCH
+volatility_breakout.csv  de5f633972c9f262  de5f633972c9f262       162 Zeilen  IDENTISCH
+volatility_breakout_crypto.csv  e913fe74eed2c832  e913fe74eed2c832        39 Zeilen  IDENTISCH

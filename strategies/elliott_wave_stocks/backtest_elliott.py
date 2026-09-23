@@ -73,9 +73,7 @@ MAX_HOLD_HOURS = 90       # Notausstieg, falls weder TP noch SL erreicht (90 Tag
                           # bei Tages-Kerzen entsprechen 90 Balken 90 Handelstage (~4-5 Monate),
                           # passend fuer Aktien-Elliott-Wellen auf Tages-Basis.
 
-# Realistische Handelskosten (Binance Spot: ~0.1% pro Order als Standard)
-TRADING_FEE_PCT = 0.1     # pro Order (Entry und Exit je einmal)
-SLIPPAGE_PCT = 0.05       # angenommene Abweichung vom gewuenschten Preis, je Order
+from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
 
 
 def simulate_trade(price_df: pd.DataFrame, entry_time, entry_price: float,

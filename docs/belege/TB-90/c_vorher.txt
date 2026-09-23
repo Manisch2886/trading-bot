@@ -1,0 +1,22 @@
+TB-90 C1/C3 VOR Block A — 2026-09-23 07:29:04 CEST  HEAD 53b35ce  faltenplan.py fd3e5018ae930c2e
+| Bot | Tabelle | alle: Einstufung | fehlt in Tabelle | nur in Tabelle | sel: Einstufung | Bestaetigung Plan | Bestaetigung Tabelle |
+|---|---|---|---|---|---|---|---|
+| `elliott_wave` | `bd_tb72.json` | gleich | - | - | gleich | `2026-2027` | `2026-2027` |
+| `elliott_wave` | `bd_vt.json` | gleich | - | - | gleich | `2026-2027` | `2026-2027` |
+| `t3_supertrend` | `bd_tb72.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `t3_supertrend` | `bd_vt.json` | Uebermenge | - | 2018 | Uebermenge | `2026` | `2026` |
+| `rsi2_crypto` | `bd_tb72.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `rsi2_crypto` | `bd_vt.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `turtle_soup_crypto` | `bd_tb72.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `turtle_soup_crypto` | `bd_vt.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `volatility_breakout_crypto` | `bd_tb72.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `volatility_breakout_crypto` | `bd_vt.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `elliott_wave_stocks` | `bd_tb72.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `elliott_wave_stocks` | `bd_vt.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `rsi2_mean_reversion` | `bd_tb72.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `rsi2_mean_reversion` | `bd_vt.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `turtle_soup_stocks` | `bd_tb72.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `turtle_soup_stocks` | `bd_vt.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `volatility_breakout` | `bd_tb72.json` | gleich | - | - | gleich | `2026` | `2026` |
+| `volatility_breakout` | `bd_vt.json` | gleich | - | - | gleich | `2026` | `2026` |
+rc=0

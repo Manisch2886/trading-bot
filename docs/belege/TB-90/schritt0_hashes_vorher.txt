@@ -1,0 +1,46 @@
+TB-90 Schritt 0 — Hashes vorher
+Zeitpunkt: 2026-09-23 07:27:40 CEST   HEAD: 53b35ce885c21beebe3a43ba8fb5ee03d48fe8ae
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+e06812d2f5c26e73aee7265039e6b320b3de253837483c29e164ea07d404a062  research/vorregistrierung/ergebnisse/benchmark_drawdowns_neu.json
+e588410d5a1f1b8defbba2366f09fc1bbed0f8cb6bf4f19287c2e630e8ed09e0  research/vorregistrierung/ergebnisse/benchmark_drawdowns_ohne_schranke.json
+e4ba341d3177d455b1c3151f4bb2e0cf7f16fbd516d9b30edd45d0c7dc005e56  research/vorregistrierung/ergebnisse/benchmark_drawdowns_tb72.json
+4549395fb3ac30f852362ba586b3ac73cdb6b32e5e944a921f0adb239818745d  research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794  research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161305.json
+2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794  research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+19e8cbca874d6e7455f2f3bc0723def9ea058d0b314fa1772e04cd64ff1c9d24  research/vorregistrierung/ergebnisse/faltenplan_tb72.json
+2dd28291497e1233f6854651688f77d5d0a268370ef1ce423a42820917316794  research/vorregistrierung/ergebnisse/faltenplan_tb80.json
+2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  research/vorregistrierung/ergebnisse/messgroessen.json
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+fd3e5018ae930c2e29747562a140506d5d9a6bb70b87e96cf5c0089e09afdd79  research/vorregistrierung/faltenplan.py
+
+mtimes ergebnisse/:
+1789401317 research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+1789903411 research/vorregistrierung/ergebnisse/benchmark_drawdowns_neu.json
+1789844137 research/vorregistrierung/ergebnisse/benchmark_drawdowns_ohne_schranke.json
+1789929083 research/vorregistrierung/ergebnisse/benchmark_drawdowns_tb72.json
+1789914652 research/vorregistrierung/ergebnisse/benchmark_drawdowns_vt.json
+1789401317 research/vorregistrierung/ergebnisse/faltenplan.json
+1790093585 research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161305.json
+1790093705 research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+1789928997 research/vorregistrierung/ergebnisse/faltenplan_tb72.json
+1790022212 research/vorregistrierung/ergebnisse/faltenplan_tb80.json
+1789401317 research/vorregistrierung/ergebnisse/messgroessen.json
+1790088725 research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+
+ls ergebnisse/:
+total 1952
+drwxr-xr-x  14 jaquelineloffler  staff     448 Sep 22 18:15 .
+drwxr-xr-x  17 jaquelineloffler  staff     544 Sep 22 18:11 ..
+-rw-r--r--   1 jaquelineloffler  staff   80025 Sep 14 17:55 benchmark_drawdowns.json
+-rw-r--r--   1 jaquelineloffler  staff  187660 Sep 20 13:23 benchmark_drawdowns_neu.json
+-rw-r--r--   1 jaquelineloffler  staff   98444 Sep 19 20:55 benchmark_drawdowns_ohne_schranke.json
+-rw-r--r--   1 jaquelineloffler  staff  209958 Sep 20 20:31 benchmark_drawdowns_tb72.json
+-rw-r--r--   1 jaquelineloffler  staff  211948 Sep 20 16:30 benchmark_drawdowns_vt.json
+-rw-r--r--   1 jaquelineloffler  staff   18736 Sep 14 17:55 faltenplan.json
+-rw-r--r--   1 jaquelineloffler  staff   38684 Sep 22 18:13 faltenplan_2026-09-22-161305.json
+-rw-r--r--   1 jaquelineloffler  staff   38684 Sep 22 18:15 faltenplan_2026-09-22-161505.json
+-rw-r--r--   1 jaquelineloffler  staff   37320 Sep 20 20:29 faltenplan_tb72.json
+-rw-r--r--   1 jaquelineloffler  staff   38684 Sep 21 22:23 faltenplan_tb80.json
+-rw-r--r--   1 jaquelineloffler  staff    4567 Sep 14 17:55 messgroessen.json
+-rw-r--r--   1 jaquelineloffler  staff    6948 Sep 22 16:52 sperrliste_abbild_2026-09-22.json

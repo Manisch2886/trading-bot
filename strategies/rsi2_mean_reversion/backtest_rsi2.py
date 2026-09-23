@@ -62,8 +62,14 @@ Kosten: dieselbe Konvention wie bei den bestehenden Bots (0.1% Gebuehr +
 0.05% Slippage, je einmal fuer Entry und Exit).
 """
 
+import os
+import sys
 import numpy as np
 import pandas as pd
+
+_STRATEGY_DIR = os.path.dirname(os.path.abspath(__file__))
+_SHARED_DIR = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "shared")
+sys.path.insert(0, _SHARED_DIR)
 
 from indicators import sma, rsi
 
@@ -82,8 +88,7 @@ RSI_PERIOD = 2
 SMA_TREND_PERIOD = 200
 SMA_EXIT_PERIOD = 5
 
-TRADING_FEE_PCT = 0.1
-SLIPPAGE_PCT = 0.05
+from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
 
 
 def compute_indicators(price_df: pd.DataFrame) -> pd.DataFrame:
