@@ -36,13 +36,15 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-93** | `docs/auftraege/MAC_TB-93_messgroessen_absichern.md` | ⭐⭐ **`messgroessen.py` nach 36.1 absichern** (Fable 23c: „ändern", 37.3). ⭐ **Block A ist VORGEMESSEN** — der steuernde Chat hat die Absicherung gemacht, sie liegt uncommittet im Arbeitsbaum (`numstat 66 6`); du misst sechs Punkte `A-N1`–`A-N6` nach, statt neu zu bauen. ⚠️ **Schritt 0: committen, nicht verwerfen** — im Baum liegen ausserdem `ARBEITSWEISE.md` (Abschnitt 16), Anfragen 23d/23e, Fables Antwort 23c, TB-92, TB-93 und Belege. ⭐⭐⭐ **Block B ist der Kern:** Determinismusnachweis — ein Lauf mit `--ziel` auf einen neuen Pfad muss `ergebnisse/messgroessen.json` **BYTEGLEICH** reproduzieren. ⚠️ **Nicht bytegleich = BEFUND UND STOPP, melden statt reparieren.** **Block C:** Tatsachennotiz 37.3, ⚠️ der Register-Gesamthash wandert mit (`messgroessen.py` steht selbst in `EINGEFROREN`). ⛔ Die eingefrorene Datei wird NICHT ersetzt — die Nachweisdatei liegt daneben. ⛔ Kein neues Abbild. ⛔ Nichts aus Punkt 8 / TB-92 |
+| **TB-92** | `docs/auftraege/MAC_TB-92_vollzug_punkt8.md` | ⭐⭐⭐ **Vollzug von Plan-Punkt 8 — der Tagblocker.** ⭐ **ALLE SPERREN GELÖST:** Fable frei (23c), Betreiberfreigabe 21.9 erteilt (18:12), `auswertung.py` entschieden (23d), `data/` = Snapshot gemessen (225/225) ⇒ keine Vorab-Nachrechnung. **Block A:** neue Tabelle + `registerbericht.py` (`symbole_point_in_time` → `symbole_handelbar_in_falte`) ⚠️ **in EINEM Commit** — jede Einzelmassnahme bricht. **Block A1a (NEU, Fable 23d):** `auswertung.py` liest die Tabelle über **eine Konstante** am Modulanfang, ⛔ **KEIN Schalter** (Abschnitt 12); `test_vorregistrierung.py` und `beispieldaten.py` lesen DIESELBE Konstante; AST aller Funktionskörper unverändert, genau eine Zuweisung geändert; ⛔ `herkunft.py::EINGEFROREN` **unverändert**. **Block B:** `test_vorregistrierung.py` vollständig — wird er grün? ⚠️ Rot ist ein Ergebnis, nicht nachbessern. **Block C:** `G6`/`H3`. **Block D:** Registertext. ⭐ **Fables fünf Schritte in Abschnitt 5b sind verbindlich**, darunter das **neue Abbild** |
 
-⛔⛔ **TB-92 (Vollzug Punkt 8) ist GESCHRIEBEN, aber ANGEHALTEN** —
-`docs/auftraege/MAC_TB-92_vollzug_punkt8.md`. Er wartet auf **zwei** Dinge:
-Fables Antwort auf **Anfrage 23e** (die dritte Leserin `auswertung.py::main`,
-eingefroren, in keiner seiner Antworten genannt) und die **Betreiberfreigabe
-nach 21.9**. ⛔ **Nicht anfangen, solange eines fehlt.**
+⭐⭐ **TB-94 wartet (noch nicht formuliert):** `messgroessen.json` — Fable hat in
+23d entschieden, dass eine **Eingabe des Laufs** aus dem registrierten Snapshot
+reproduzierbar sein muss, nicht aus der Git-Historie. ⭐ Gemessen: Die
+Nachweisdatei aus TB-93 **lief bereits auf dem Snapshot**, muss also nur nach
+36.1 an ihren Platz. Danach: `registerdaten.py` auf die neue Datei, und die
+**12 abweichenden Rasterachsen** nachziehen (Falten und Zellenzahl bleiben —
+gemessen). ⛔ **Erst nach TB-92.**
 
 *Gesetzt 23.09.2026 (zuvor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**

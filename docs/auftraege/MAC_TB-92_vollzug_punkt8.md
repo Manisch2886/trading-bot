@@ -1,15 +1,13 @@
 # TB-92 — Vollzug der Sperrlisten-Änderung (Plan-Punkt 8): Tabelle und `registerbericht.py` **in einem Zug**
 
-⚠️⚠️ **DIESER AUFTRAG STARTET NICHT VON SELBST.** Er wird erst gültig, wenn
-**zwei** Bedingungen stehen:
+⭐⭐ **ALLE SPERREN SIND GELÖST.** Stand 23.09.2026, 18:15:
 
 | | |
 |---|---|
-| **(1)** | ✔ **ERFÜLLT (23c, 16:00):** Fable hat den Vollzug ausdrücklich freigegeben — *„Meine Bedingung aus 23b ist erfüllt und übererfüllt. Der Vollzug ist frei"* |
-| **(2)** | ⛔ **OFFEN:** Die **Betreiberfreigabe aus 21.9** für diesen konkreten Vollzug |
-| **(3)** | ⛔⛔ **OFFEN — NEU, 16:15:** Fables Antwort auf **Anfrage 23e**. ⚠️ Gemessen nach 23c: Es gibt eine **dritte Leserin** der Tabelle, die Fable in 22h, 23a und 23c **nie genannt** hat — `auswertung.py::main` (Z. 590), **eingefroren**, Sperrliste 3+5, fest verdrahtet ohne Schalter. Stellt man nur die zwei genannten Leser um, liest der **Selektionslauf am Tag** weiter die alte Tabelle, die bei fünf Bots keine einzige Falte enthält |
-
-⛔ **Fehlt eine davon: NICHT ANFANGEN.** Melde, welche fehlt, und brich ab.
+| **(1)** | ✔ **Fables Freigabe (23c):** *„Meine Bedingung aus 23b ist erfüllt und übererfüllt. Der Vollzug ist frei"* |
+| **(2)** | ✔ **Betreiberfreigabe nach 21.9** — erteilt 23.09.2026, 18:12 |
+| **(3)** | ✔ **Fables Antwort 23d auf Anfrage 23e:** `auswertung.py` **gehört in den Vollzug**. Siehe Block A1a |
+| **(4)** | ✔ **Messbitte (b) beantwortet:** `data/` ist **byteweise der Snapshot** (225 von 225 Dateien, `datenstand_hash d9449faf…` wie im Register). ⇒ ⭐ **Fables Vorbedingung „wenn `data/` ≠ Snapshot, vorher nachrechnen" ENTFÄLLT** — TB-91 hat bereits auf dem Snapshot gerechnet |
 
 **Vorbereitet:** 23.09.2026 vom steuernden Chat, nach TB-91
 **Messstand:** HEAD `02f2574`
@@ -118,6 +116,89 @@ kaputter Arbeitsbaum.
 
 ⛔ **`auswertung.py` wird nicht angefasst.** Es liest nur.
 
+## 3b. ⭐⭐⭐ Block A1a — `auswertung.py`, die dritte Leserin (Fable 23d)
+
+⚠️⚠️ **Das ist neu und war in der ersten Fassung dieses Auftrags nicht
+enthalten.** Fable hat in 23d seinen eigenen Fehler benannt: Seine fünf
+Vollzugsschritte nannten zwei Leser der Tabelle, die Tatsachennotiz aus TB-88
+nennt **drei**.
+
+> **Seine Entscheidung, wörtlich:** *„`auswertung.py` liest die vollzogene
+> Tabelle über **eine** Konstante am Modulanfang, deren Wert der registrierte
+> Pfad der neuen Tabelle ist. **Kein Kommandozeilenschalter** — Abschnitt 12
+> sagt „`auswertung.py` hat keinen Schalter", und eine Option, die bestimmt,
+> welche Tabelle gilt, wäre einer."*
+
+| | |
+|---|---|
+| **A1a-1** | In `auswertung.py` eine **Konstante am Modulanfang** anlegen, die den Pfad der vollzogenen Tabelle trägt. ⛔ **KEIN `--tabellen`-Schalter, kein argparse-Argument** |
+| **A1a-2** | `auswertung.py::main` (heute Z. 590) liest diese Konstante statt des festen Pfads |
+| **A1a-3** | ⭐⭐ **`test_vorregistrierung.py` und `beispieldaten.py` lesen DIESELBE Konstante** — Fable: *„damit Test und Lauf nicht auseinanderfallen können"* |
+| **A1a-4** | ⭐ **AST-Vergleich aller Funktionskörper von `auswertung.py`: unverändert.** Genau **eine** Zuweisung verändert — die Pfadkonstante |
+| **A1a-5** | Tatsachennotiz mit **altem und neuem Hash** von `auswertung.py` |
+| **A1a-6** | ⛔ **`herkunft.py::EINGEFROREN` bleibt UNVERÄNDERT** — Fable: *„herkunft.py nicht öffnen (22d); die neue Tabelle ist durch Punkt 4 und das Abbild geschützt"*. Der alte Pfad bleibt darin als historischer Stand |
+
+⚠️ **Warum das Öffnen zulässig ist** (Fable 23d, zur Gegenprüfung mitgegeben):
+Das Einfrieren schützt das **Urteil** — Selektionsstatistik, Plateau-Regel,
+Abbruchkriterien. *„Ein Lesepfad ist kein Urteil. Und die Änderung ist erzwungen,
+nicht gewählt: Mit der alten Tabelle kann der Lauf am Tag nicht einmal starten
+(fünf Bots ohne Falte)."*
+
+⛔ **Was trotzdem nicht geschieht:** keine Zeile Logik, keine Wache, kein Schalter,
+keine zweite Lesart. **Eine Konstante, sonst nichts.**
+
+## 3c. ⭐⭐⭐ Block A1b — der Modus-Nachweis (Fable 23e)
+
+⚠️ **Neu am 23.09., 18:20.** Fable hat in 23e präzisiert:
+
+> *„Der Reproduzierbarkeitsnachweis einer Eingabedatei wird **im
+> Selektionsmodus** geführt — der Erzeuger liest aus `snapshots/<hash>/`, nicht
+> aus `data/`. Dass `data/` zum Messzeitpunkt bytegleich zum Snapshot war, ist
+> eine eigene Tatsache und ersetzt den Modus-Lauf nicht: Der Lauf am Tag liest
+> den Snapshot-Pfad, und der Nachweis muss denselben Weg gehen wie der Lauf."*
+
+### ⚠️⚠️ Vorgemessen: der Modus greift bei `benchmark.py` NICHT
+
+**Gemessen vom steuernden Chat am 23.09., 18:20 — das ist genau der Befund, den
+Fable in seiner Unsicherheit erwartet hat:**
+
+| | |
+|---|---|
+| `shared/paths.py` im Modus | `DATA_DIR = CONFIG_DIR = <Snapshot-Wurzel>` (Z. 569/570) |
+| ⛔ `benchmark.py` Z. 93/95 | `BASE_DIR = os.environ.get("TB30A_BASE_DIR") or …` · `DATA_DIR = <BASE_DIR>/data` |
+| ⛔ `messgroessen.py` Z. 50/52 | **dasselbe** |
+| ⛔ Nutzen sie `shared/paths.py`? | **NEIN — beide nicht** |
+
+⇒ ⚠️⚠️ **`TB_SELEKTIONSWURZEL` wirkt auf `benchmark.py` nicht.** Die
+Pfadsteuerung des Laufs greift an diesen beiden Erzeugern vorbei.
+
+⚠️ **Und die Ordnerform passt nicht:** Der Snapshot hat die **223 CSV-Dateien
+direkt in der Wurzel** und die Universumsdateien in `<Wurzel>/config/`.
+`benchmark.py` sucht `<BASE_DIR>/data/`. Ein blosses
+`TB30A_BASE_DIR=<Snapshot>` schlüge fehl.
+
+### Wie der Nachweis trotzdem geführt wird
+
+⭐ **TB-93 hat den Weg schon benutzt** (`b4_gegenprobe.sh`): einen Hilfsordner
+bauen, dessen `data/` und `config/` auf den Snapshot zeigen, und
+`TB30A_BASE_DIR` darauf setzen.
+
+| | |
+|---|---|
+| **A1b-1** | Hilfsordner im **Scratchpad** (⛔ nicht im Repo): `data/` → die 223 CSV der Snapshot-Wurzel, `config/` → `<Snapshot>/config/`. Verweise genügen, kein Kopieren |
+| **A1b-2** | `TB30A_BASE_DIR=<Hilfsordner> … benchmark.py --ziel <Beleg-Pfad>` — ⛔ **Ziel im Beleg-Ordner, nicht in `ergebnisse/`** |
+| **A1b-3** | ⭐ `diff` gegen `ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json` → **bytegleich erwartet** |
+| **A1b-4** | Tatsachennotiz: Snapshot-Hash `63e4b6c8bb71dc37…`, `datenstand_hash d9449faf…`, Code-Commit, **und der Modus** |
+| **A1b-5** | ⚠️ **Nicht bytegleich ⇒ BEFUND UND STOPP** — Fable: *„ein Befund über `benchmark.py` im Modus, nicht über die Datei — und genau der, den man vor dem Tag finden will"* |
+| **A1b-6** | ⭐ Den Pfad-Befund oben **im Ergebnisdokument festhalten**: Zwei Erzeuger des Laufbereichs lesen an `shared/paths.py` vorbei. Das ist ein Fall für Fables Sonde „Lesequellen" und **kein** Auftrag dieser Sitzung |
+
+⛔ **`benchmark.py` wird NICHT auf `shared/paths.py` umgestellt.** Das wäre eine
+zweite Änderung an einer gesperrten Datei ohne Anordnung — Fable hat den
+**Nachweis** verlangt, nicht die Reparatur.
+
+⚠️ **Wenn `benchmark.py` länger braucht als erwartet:** Fable, 23e — *„dann ist
+das Handwerk; der Nachweis gehört trotzdem vor den Tag, einmal."*
+
 ## 4. Block B ⭐⭐⭐ — ist der Test jetzt grün?
 
 **Das ist die Frage, an der Plan-Punkt 8 hängt.**
@@ -155,6 +236,10 @@ zusammenfassen, welche Punkte sie berührt — *„dann liest niemand ‚drei Be
 wo einer ist."*
 
 ## 6. Block D — der Registertext
+
+⭐ **Fable, 23e, ausdrücklich für die Tatsachennotiz:** *„Die Zellenzahl je Bot
+ist unverändert, also ist N (Festlegung 10, 653) unberührt — das gehört
+ausdrücklich in die Notiz, weil sonst jemand fragt."*
 
 ⭐ **Erst wenn B grün ist.** Register Zeile 6775: *„Vollzug fertig, wenn:
 Registertext eingetragen, `registerbericht.py` liest `symbole_handelbar_in_falte`

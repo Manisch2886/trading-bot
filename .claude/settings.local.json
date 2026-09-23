@@ -153,7 +153,9 @@
       "Bash(truncate:*)",
       "Bash(shred:*)",
       "Bash(mkfifo:*)",
-      "Bash(chown:*)"
+      "Bash(chown:*)",
+      "Edit(research/vorregistrierung/ergebnisse/messgroessen.json)",
+      "Write(research/vorregistrierung/ergebnisse/messgroessen.json)"
     ],
     "ask": [
       "Write(research/vorregistrierung/registerdaten.py)",
@@ -163,7 +165,13 @@
       "Write(research/vorregistrierung/auswertung.py)",
       "Edit(research/vorregistrierung/auswertung.py)",
       "Write(research/vorregistrierung/benchmark.py)",
-      "Edit(research/vorregistrierung/benchmark.py)"
+      "Edit(research/vorregistrierung/benchmark.py)",
+      "Edit(research/vorregistrierung/messgroessen.py)",
+      "Write(research/vorregistrierung/messgroessen.py)",
+      "Edit(research/vorregistrierung/kennzahlen.py)",
+      "Write(research/vorregistrierung/kennzahlen.py)",
+      "Edit(research/vorregistrierung/pruefe_grenzsaetze.py)",
+      "Write(research/vorregistrierung/pruefe_grenzsaetze.py)"
     ]
   }
 }

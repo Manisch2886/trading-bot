@@ -192,7 +192,35 @@ SATZ="$NUMMER: Lies docs/auftraege/AKTUELLER_AUFTRAG.md, suche dort die Zeile mi
 # 6. Starten. ⚠️ ueber Terminal.app, weil launchd KEIN TTY hat und
 #    Claude Code eines braucht. Das Fenster ist echt — wie von Hand getippt.
 # --------------------------------------------------------------------------
-sage "Starte Terminal-Fenster ..."
+# ⛔⛔ ZURUECKGENOMMEN am 23.09.2026, 18:25 — ZWEITER GEGENBEFUND.
+#   Der Versuch, den Auftrag als Argument mitzugeben (`claude --remote-control
+#   "<Satz>"`), ist GEMESSEN GESCHEITERT: Die Sitzung startete, die App zeigte
+#   sie leer, kein Auftrag angekommen. Das deckt sich mit der Messung vom
+#   19.09. (ARBEITSWEISE Abschnitt 14, v2.1.278) — der Verdacht, dort habe
+#   Termius die Anfuehrungszeichen zerlegt, ist damit WIDERLEGT: Hier lief
+#   nichts ueber Termius, der Satz lag in einer Datei, und er kam trotzdem
+#   nicht an. `claude --help` nennt `[prompt]` als Argument; die interaktive
+#   Sitzung nimmt ihn offenbar nicht an.
+# ⚠️ Und der Waechter meldete faelschlich Erfolg: Die Schwelle "arbeitet ab
+#   2 s Rechenzeit" war GERATEN. Das blosse Hochfahren verbraucht 3 s. Dadurch
+#   griff der Rueckfall nicht. Gemessen: nach 6 Minuten erst 7 s CPU, S+.
+# ⇒ Der Satz wird wieder ins Fenster GETIPPT, ohne Enter (Betreiberentscheidung
+#   23.09.2026 Mittag). Die Datei bleibt - sie dient dem Rueckfall.
+#
+# (ueberholt) Der Auftrag geht als ARGUMENT mit.
+#   `claude --help` nennt `[prompt]` als positionales Argument. Damit entfaellt
+#   das Tippen per AppleScript UND das Enter des Betreibers.
+# ⚠️ ARBEITSWEISE Abschnitt 14 nennt einen Gegenbefund (19.09., v2.1.278: Text
+#   kam nicht an). Der lief ueber Termius/SSH, wo mehrzeilige Bloecke und
+#   Anfuehrungszeichen zerfallen. Hier geht nichts durch eine fremde Zeile:
+#   Der Satz liegt in einer DATEI, die Shell liest sie selbst. Durch AppleScript
+#   laeuft nur der Dateipfad.
+# ⇒ Schlaegt es fehl, faellt der Waechter auf den alten Weg zurueck (Schritt 7).
+SATZDATEI="$LOGDIR/auftragssatz_$NUMMER.txt"
+printf '%s' "$SATZ" > "$SATZDATEI" || abbruch "Konnte den Auftragssatz nicht ablegen."
+sage "Auftragssatz abgelegt: $(wc -c < "$SATZDATEI") Bytes"
+
+sage "Starte Terminal-Fenster (Auftrag als Argument) ..."
 FENSTER=$(osascript <<OSA 2>>"$LOG"
 tell application "Terminal"
     set neu to do script "cd ~/trading-bot && exec claude --remote-control"
@@ -210,8 +238,11 @@ sleep "$WARTE"
 sage "$WARTE s gewartet."
 
 # --------------------------------------------------------------------------
-# 7. Den Satz in dasselbe Fenster geben.
+# 7. Hat der Auftrag gegriffen? Messen statt annehmen.
 # --------------------------------------------------------------------------
+# ⭐ Wenn der Prompt als Argument ankam, ARBEITET die Sitzung bereits - sie
+#   verbraucht Rechenzeit. Bleibt sie bei fast null, wartet sie auf Eingabe.
+printf '%s\n' "$SATZ" > "$LOGDIR/letzter_satz.txt"
 osascript <<OSA 2>>"$LOG"
 tell application "Terminal"
     do script "$SATZ" in window id $FENSTER
@@ -219,12 +250,13 @@ end tell
 OSA
 if [ $? -ne 0 ]; then
     sage "⚠️ Der Satz konnte nicht uebergeben werden. Das FENSTER LAEUFT aber."
-    sage "   Auftragssatz zum Einfuegen von Hand liegt in $LOGDIR/letzter_satz.txt"
-    printf '%s\n' "$SATZ" > "$LOGDIR/letzter_satz.txt"
+    sage "   Auftragssatz zum Einfuegen von Hand: $LOGDIR/letzter_satz.txt"
     exit 1
 fi
-
-printf '%s\n' "$SATZ" > "$LOGDIR/letzter_satz.txt"
-sage "⭐ Satz uebergeben. $NUMMER laeuft (oder meldet sich mit einem Abbruch)."
+sage "⭐ Satz ins Fenster gelegt. ⚠️ ER IST NICHT ABGESCHICKT."
+sage "   Der Betreiber schickt ihn ab - in der Claude-App unter der"
+sage "   Geraetesitzung (Laptop-Symbol, noch OHNE TB-Nummer im Titel)"
+sage "   oder im Terminalfenster mit Enter."
+sage "   Der Satz steht auch in $LOGDIR/letzter_satz.txt"
 sage "----- fertig -----"
 exit 0
