@@ -8550,6 +8550,44 @@ dass die ask-Frage erschien. Dazu unverändert: Plan Punkt 5, 35.5, 33.5, TB-30b
 
 ---
 
+## CS — TB-91: Abbruch in Schritt 0a — die App startete die Sitzung in der Cloud, nicht auf dem Mac (23.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-91_benchmark_absichern_und_neurechnung.md`*
+
+**Quelle:** App-Sitzung **TB-91 Auftrag aus AKTUELLER_AUFTRAG.md**, 23.09.2026,
+08:56 UTC, `HEAD` `d23bdd1`, Zweig `claude/tb-91-auftrag-b47rmj`. Beleg
+`docs/belege/TB-91/0a_umgebungspruefung.txt`.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| ⛔ **(b)** | Kein `trading-env`, `import binance` scheitert — **Abbruchkriterium** |
+| ⭐⭐ **Ort** | `environment_kind: anthropic_cloud`, `origin: ios` — die Sitzung lief in einem Cloud-Container, nicht auf dem Mac |
+| (a) | Repo-Wurzel formal ja (Cloud-Klon), `HEAD` nach `40bda97` |
+| (c) | `settings.local.json` 83/68/8 im Klon, Wirkung in der Cloud nicht gemessen |
+| (d) | Keine Kopfzeile; Metadaten `five_hour`, keine Overage — kein Beleg für „Claude Max" |
+
+`benchmark.py` und alle vier Tabellen unberührt, Hashes im Ergebnisdokument.
+Block A–D nicht begonnen.
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **„Aus der App gestartet" heisst nicht „auf dem Mac".** Eine neue Sitzung in der App kann eine Cloud-Sitzung sein; für Mac-Aufträge muss die App sich mit einer auf dem Mac laufenden Sitzung verbinden |
+| ⭐ | Schritt 0a hat als Wache funktioniert: ein Abbruch in der ersten Minute statt einer Neurechnung in der falschen Umgebung |
+
+### Was offen bleibt
+
+TB-91 vollständig (Block A–D), neu zu starten auf dem Mac · ARBEITSWEISE
+Abschnitt 14 um den gemessenen Ort der App-Sitzung ergänzen (steuernder Chat) ·
+alles aus Block CR unverändert.
+
+*Geschrieben 23.09.2026 von der App-Sitzung (Cloud), die TB-91 abgebrochen hat. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
