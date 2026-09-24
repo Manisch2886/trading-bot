@@ -1,0 +1,30 @@
+# TB-96 D1 - numstat des Registers, 2026-09-24 09:21:49 +0200
+$ git --no-optional-locks log -1 --numstat -- docs/VORREGISTRIERUNG_neuselektion.md
+d0dc890eb0e804019a8e4410184107c9c9f89926 TB-96 Block B und C: Register Abschnitt 40 nach Fable 24a (Test gruen als Tag-Vorbedingung, G6/H3, 
+
+463	0	docs/VORREGISTRIERUNG_neuselektion.md
+
+$ git diff --numstat fc8d44c d0dc890 -- docs/VORREGISTRIERUNG_neuselektion.md
+463	0	docs/VORREGISTRIERUNG_neuselektion.md
+$ git diff fc8d44c d0dc890 -- docs/VORREGISTRIERUNG_neuselektion.md | grep -c '^-[^-]'   (entfernte Zeilen)
+0
+$ git diff --numstat fc8d44c d0dc890   (alle Dateien des Commits)
+463	0	docs/VORREGISTRIERUNG_neuselektion.md
+118	0	docs/belege/TB-96/a_messungen.txt
+362	0	docs/belege/TB-96/abschnitt40_vorlage.md
+154	0	docs/belege/TB-96/eintrag_register_40.py
+26	0	docs/belege/TB-96/nachtrag_39_8_vorlage.md
+182	0	docs/belege/TB-96/zitate.json
+
+Einfuegestellen (Hunks):
+@@ -568,0 +569,10 @@ darüber.
+@@ -639,0 +650,13 @@ Abschnitt 3.
+@@ -1124,0 +1148,9 @@ ab — es füllt nichts auf und überspringt nichts.
+@@ -3257,0 +3290,8 @@ und ausdrücklich nichts entschieden. Hier steht die Entscheidung.
+@@ -5600,0 +5641,9 @@ die Marke am Satz selbst steht unter 30.2 (2).
+@@ -5661,0 +5711,8 @@ aus.
+@@ -6314,0 +6372,2 @@ in **36.1**, direkt unter dem Registertext, am *„bricht er ab (Rückgabewert
+@@ -6460,0 +6520,7 @@ ausweisen) ist Handwerk mit eigener Freigabe; hier nur festgehalten.
+@@ -7389,0 +7456,7 @@ Benchmark-Tabelle verlangt.
+@@ -7463,0 +7537,27 @@ diesen Eintrag.
+@@ -7530,0 +7631,363 @@ Ort — und entfernt nichts. Gebaut und gerechnet wird nichts.*

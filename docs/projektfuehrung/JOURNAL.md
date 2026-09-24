@@ -8739,6 +8739,43 @@ Fable: Einordnung der neun Listen nach 23d, D/F/`beispieldaten.py`-Literale, F4 
 
 ---
 
+## CX — TB-96: Registerabschnitt 40 nach Fable 24a — Test grün als Tag-Vorbedingung, `G6` an 5.1 Nr. 4 gekoppelt, die neun Handelslisten als Eingabedateien nach 23d, jede Mutationsprobe mit Gegenprobe (24.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-96_register_40.md`*
+
+**Quelle:** Mac-Sitzung **TB-96**, 24.09.2026, Eingang `2938145`. Commits `fc8d44c`
+(Schritt 0), `d0dc890` (Block B und C) und der Abgabe-Commit. Belege
+`docs/belege/TB-96/`. Grundlage Fable 24a.
+
+### Was gemessen und eingetragen ist
+
+| | |
+|---|---|
+| **A** | Alle sechs Vormessungen bestätigt. Die Schwelle 30 ist registriert (Festlegung 7, 5.1 Nr. 6) und wird in `faltenplan.py` nicht als Literal geführt. Der Parameterstand der TB-24-Listen steht nirgends im Register. `G6` liest 5.1 Nr. 4 per Muster, das am Zeilenanfang verankert ist, und braucht genau einen Treffer |
+| ⭐ **B/C** | Abschnitt 40 (40.1–40.10), Nachtrag am Ende von 39.8, neun Marken (5.1 Nr. 4, 5.4, 12, 21.9, 33.2, 33.5, 36.6, 37.2, 39.6). **463/0**, 30 Zitate eingesetzt, 30 × `diff` rc 0 |
+| **D** | 28 Hashes vorher = nachher, nichts ausserhalb von `docs/`. Sonde 0 Befunde vorher und nachher; einzige Änderung: Abschnitt 10 steht 23 Zeilen tiefer (Listentext gleich) |
+| ⚠️ | Fables „TB-90 hat gezeigt …" gilt für die Bot-Backtests (B6), nicht für den Erzeuger der TB-24-Listen. `positionen_holen.py` schreibt fest in `daten/` und würde die alten Listen überschreiben. `messgroessen.json` ist jetzt TB-101, nicht TB-96 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Liest Code einen Registersatz maschinell, gehört die Marke an diesen Satz.** Umformulieren bricht den Test, und ebenso eine **zweite** Zeile mit demselben Anfang. Ein Zitat dieses Satzes steht deshalb nie in Spalte 0. Das Einsetzskript prüft es vor dem Schreiben mit dem Muster des Tests selbst |
+| ⭐ | **Eine Voraussetzung in Fables Text wird nachgemessen, bevor sie als Tatsache im Register steht.** Stimmt sie nur für etwas Verwandtes, kommt eine Tatsachennotiz dazu, nicht eine stille Übernahme |
+| ⭐ | **Vor einer Neu-Erzeugung prüfen, wohin der alte Erzeuger schreibt.** Schreibt er fest an den Ort des historischen Stands, ist er kein Erzeuger nach 36.1 |
+| | Marken vor Abschnitt 10 verschieben nur die Zeilenangabe der Sonde, nicht ihr Ergebnis. Die Sonde vergleicht den Listentext |
+
+### Was offen bleibt
+
+TB-97 (`F4`, vier Literale, Gegenproben für alle acht Mutationsproben, deren Liste erst zu
+messen ist; Sonde: getrennte Schlusszeilen, Gruppen aus dem Abbild) · TB-98 (Neu-Erzeugung
+mit neuem Erzeuger, Pfadkonstante in `faltenplan.py` = Hash-Übergang Punkt 2) · TB-100 ·
+TB-101 · Fable: der TB-90-Fall und der methodische Satz im Nachtrag zu 39.8.
+
+*Geschrieben 24.09.2026 von der Mac-Sitzung TB-96. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
