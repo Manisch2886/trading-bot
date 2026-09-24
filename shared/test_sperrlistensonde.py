@@ -29,6 +29,10 @@ Dazu (Teil H): 1 schlaegt 2; Titel im Abbild veraendert; Registertext mit
 einem 15. Punkt; eine im Abbild genannte Datei fehlt (2, nicht 0); der
 Erzeuger schreibt nur einmal (1, Hash genannt); die Befehlszeile liefert
 denselben Wert wie die Funktion; die Sonde schreibt nichts.
+
+Und (fall_8, TB-97, 40.8 (e)): die Gruppen `bestimmt` und `eingefroren` kommen
+aus dem Abbild. Ein erfundener bestimmt-Pfad wird gemeldet - und ohne ihn
+(Gegenprobe) nicht; ein Abbild ohne die Gruppen ist dort 2, nie 0.
 """
 
 import json
@@ -83,8 +87,8 @@ def baue_kopie():
     for p in punkte:
         for rel in p["pfade"]:
             _kopiere(rel, wurzel)
-    for rel, _ in sonde.BESTIMMT_NICHT_EINGETRAGEN:
-        if os.path.isfile(os.path.join(BASE_DIR, rel)):
+    for rel in sonde.lies_eingefroren(BASE_DIR):   # die Gruppe eingefroren
+        if not os.path.isfile(os.path.join(wurzel, rel)):
             _kopiere(rel, wurzel)
     return wurzel
 
@@ -331,8 +335,16 @@ def teil_h(wurzel, abbild):
     pruefe("H7a: Befehlszeile liefert 2 wie die Funktion", r.returncode == 2, r.stderr[:200])
     pruefe("H7b: die Textausgabe endet mit dem Rueckgabewert",
            "RUECKGABEWERT 2 NICHT PRUEFBAR" in r.stdout, r.stdout[-200:])
-    pruefe("H7c: die Textausgabe nennt benchmark_drawdowns_vt.json als 'bestimmt, nicht eingetragen'",
-           "Bestimmt, nicht eingetragen" in r.stdout and "benchmark_drawdowns_vt.json" in r.stdout)
+    # Bis TB-97: "nennt benchmark_drawdowns_vt.json als 'bestimmt, nicht
+    # eingetragen'" - das war die feste Konstante. Seit TB-97 kommt die Gruppe
+    # aus dem Abbild; der Erzeuger schreibt sie hier leer.
+    pruefe("H7c: die Textausgabe nennt die Gruppe bestimmt aus dem Abbild (leer) "
+           "und keinen Pfad aus dem Code der Sonde",
+           "Gruppe bestimmt (37.2):  [0 in Ordnung]" in r.stdout
+           and "benchmark_drawdowns_vt.json" not in r.stdout, r.stdout[-400:])
+    pruefe("H7f: die Schlusszeilen trennen Pfad- und Regel-Bestandteile (40.8 (d))",
+           "Pfad-Bestandteile: 25 geprueft, davon 25 mit 0 / 0 mit 1 / 0 mit 2" in r.stdout
+           and "Regel-Bestandteile: 12 nicht pruefbar (2)" in r.stdout, r.stdout[-600:])
     r = subprocess.run(cmd + ["--json"], capture_output=True, text=True)
     try:
         j = json.loads(r.stdout)
@@ -353,6 +365,93 @@ def teil_h(wurzel, abbild):
     pruefe("H8: die Sonde schreibt nichts (Dateiliste und Groessen gleich)", _stand() == vorher)
 
 
+def fall_8(wurzel, abbild):
+    """Die Gruppen kommen aus dem Abbild (40.8 (e)) - mit Gegenprobe."""
+    a = _lade(abbild)
+    pruefe("8a: der Erzeuger schreibt die Gruppe bestimmt leer und eingefroren "
+           "mit den zehn Eintraegen aus herkunft.py",
+           a.get("bestimmt") == [] and len(a.get("eingefroren", [])) == 10
+           and [e["pfad"] for e in a["eingefroren"]] == sonde.lies_eingefroren(wurzel),
+           (a.get("bestimmt"), len(a.get("eingefroren", []))))
+    b = sonde.pruefen(abbild, _register(wurzel), wurzel)
+    pruefe("8b: beide Gruppen gemessen und 0, Gesamtwert unveraendert 2",
+           b["gruppen"]["bestimmt"]["ausgang"] == 0
+           and b["gruppen"]["eingefroren"]["ausgang"] == 0 and b["ausgang"] == 2,
+           b["grund"])
+
+    # E3: ein erfundener bestimmt-Pfad -> die Sonde meldet ihn
+    erfunden = "research/vorregistrierung/ergebnisse/erfunden_tb97.json"
+    mut = os.path.join(wurzel, "abbild_erfunden.json")
+    a2 = _lade(abbild)
+    a2["bestimmt"] = [{"pfad": erfunden, "sha256": "0" * 64, "grund": "erfunden (TB-97, E3)"}]
+    _schreibe(mut, a2)
+    b = sonde.pruefen(mut, _register(wurzel), wurzel)
+    g = b["gruppen"]["bestimmt"]
+    pruefe("8c: erfundener bestimmt-Pfad (Datei fehlt) -> Gruppe 2, Pfad genannt",
+           g["ausgang"] == 2 and any(d["pfad"] == erfunden and d["stand"] == "FEHLT"
+                                     for d in g["dateien"])
+           and "bestimmt" in b["grund"], (g, b["grund"]))
+    # ... mit existierender Datei und falschem Hash -> 1
+    rel = "config/top25_symbols.txt"
+    a2["bestimmt"] = [{"pfad": rel, "sha256": "0" * 64, "grund": "erfunden (TB-97, E3)"}]
+    _schreibe(mut, a2)
+    b = sonde.pruefen(mut, _register(wurzel), wurzel)
+    pruefe("8d: bestimmt-Pfad mit falschem Hash im Abbild -> Gesamt 1, Gruppe genannt",
+           b["ausgang"] == 1 and b["gruppen"]["bestimmt"]["ausgang"] == 1
+           and "bestimmt" in b["grund"], b["grund"])
+    # Gegenprobe: dasselbe Abbild ohne den erfundenen Pfad -> nicht gemeldet
+    a2["bestimmt"] = []
+    _schreibe(mut, a2)
+    b = sonde.pruefen(mut, _register(wurzel), wurzel)
+    pruefe("8e: Gegenprobe - ohne den erfundenen Pfad keine Meldung, Gruppe 0",
+           b["gruppen"]["bestimmt"] == {"ausgang": 0, "im_abbild": True,
+                                         "dateien": [], "gruende": []}
+           and b["ausgang"] == 2, b["gruppen"]["bestimmt"])
+    # Abbild ohne die Gruppen (Bauart vor TB-97) -> 2, nie 0, kein Befund
+    a3 = _lade(abbild)
+    del a3["bestimmt"], a3["eingefroren"]
+    _schreibe(mut, a3)
+    b = sonde.pruefen(mut, _register(wurzel), wurzel)
+    pruefe("8f: Abbild ohne Gruppen -> beide Gruppen 2 'nicht im Abbild', kein 1",
+           all(not g["im_abbild"] and g["ausgang"] == 2 for g in b["gruppen"].values())
+           and b["ausgang"] == 2
+           and b["bilanz"]["pfad"]["gruppen_nicht_im_abbild"] == ["bestimmt", "eingefroren"],
+           b["grund"])
+    # Eine Datei nur der Gruppe eingefroren veraendert -> 1 in dieser Gruppe
+    rel = "research/vorregistrierung/kennzahlen.py"
+    voll = os.path.join(wurzel, rel)
+    with open(voll, "rb") as f:
+        original = f.read()
+    try:
+        with open(voll, "ab") as f:
+            f.write(b"\n")
+        b = sonde.pruefen(abbild, _register(wurzel), wurzel)
+        pruefe("8g: kennzahlen.py (nur EINGEFROREN) veraendert -> 1 in Gruppe "
+               "eingefroren, kein Punkt mit 1",
+               b["ausgang"] == 1 and b["gruppen"]["eingefroren"]["ausgang"] == 1
+               and all(p["ausgang"] != 1 for p in b["punkte"]), b["grund"])
+    finally:
+        with open(voll, "wb") as f:
+            f.write(original)
+    # Der Erzeuger nimmt --bestimmt ueber die Befehlszeile
+    ziel = os.path.join(wurzel, "abbild_mit_bestimmt.json")
+    r = subprocess.run([sys.executable, os.path.join(BASE_DIR, "research", "vorregistrierung",
+                                                     "sperrliste_abbild.py"),
+                        "--ziel", ziel, "--register", _register(wurzel), "--wurzel", wurzel,
+                        "--bestimmt", "config/top25_symbols.txt=Register 37.2 (Probe)"],
+                       capture_output=True, text=True)
+    ok = r.returncode == 0 and _lade(ziel)["bestimmt"][0]["pfad"] == "config/top25_symbols.txt"
+    pruefe("8h: Erzeuger --bestimmt PFAD=GRUND schreibt die Gruppe", ok, r.stderr[:200])
+    r = subprocess.run([sys.executable, os.path.join(BASE_DIR, "research", "vorregistrierung",
+                                                     "sperrliste_abbild.py"),
+                        "--ziel", os.path.join(wurzel, "nie.json"), "--register",
+                        _register(wurzel), "--wurzel", wurzel, "--bestimmt", "ohne_grund"],
+                       capture_output=True, text=True)
+    pruefe("8i: --bestimmt ohne GRUND -> 2, nichts geschrieben",
+           r.returncode == 2 and not os.path.exists(os.path.join(wurzel, "nie.json")),
+           r.stderr[:200])
+
+
 # ---------------------------------------------------------------------------
 
 def main():
@@ -366,7 +465,7 @@ def main():
         pruefe("0: der Erzeuger schreibt das Abbild in die Kopie (rc 0)", rc == 0, text)
         if rc != 0:
             raise SystemExit(text)
-        for fall in (fall_1, fall_2, fall_3, fall_4, fall_5, fall_6, fall_7, teil_h):
+        for fall in (fall_1, fall_2, fall_3, fall_4, fall_5, fall_6, fall_7, teil_h, fall_8):
             print("\n%s  %s" % (fall.__name__, (fall.__doc__ or "").strip().split("\n")[0]))
             fall(wurzel, abbild)
     finally:

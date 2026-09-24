@@ -66,12 +66,34 @@ dagegen stehen die von Hand gemessene Klassifikation
 Was die Sonde NICHT tut
 ------------------------------------------------------------------------------
 Sie schreibt nichts. Sie repariert nichts - ein Sperrlistenbruch ist nach 36.2
-eine Tatsachennotiz. Sie kennt `herkunft.py` `EINGEFROREN` und
-`SPERRLISTE_DATEIEN` nicht (36.6: die sind nicht das Abbild). Und sie prueft
-`ergebnisse/benchmark_drawdowns_vt.json` **nicht** - die Datei ist kein Punkt
-des Abschnitts 10, sondern "fuer die Sperrliste bestimmt" (21.9/23.7); ob die
-Sonde sie pruefen soll, liegt bei Fable (Anfrage 22c). Bis dahin nennt der
-Bericht sie in einem eigenen Abschnitt mit ihrem heutigen Hash, ohne Wertung.
+eine Tatsachennotiz. `SPERRLISTE_DATEIEN` in `herkunft.py` kennt sie nicht
+(toter Code, 37.4).
+
+Die drei Gruppen kommen AUS DEM ABBILD (40.8 (e), TB-97)
+------------------------------------------------------------------------------
+Fable 24a: "Eine Gruppe, die im Code der Sonde steht, ist ein Literal in einer
+Wache." Bis TB-97 stand die Gruppe "bestimmt" hier als Konstante
+(`BESTIMMT_NICHT_EINGETRAGEN`, nur genannt, nicht geprueft). Seit TB-97 liest
+die Sonde alle drei Gruppen aus dem Abbild und prueft sie gleich (Hash gegen
+Abbild, 37.2):
+
+  punkte       die Punkte des Abschnitts 10 (36.6)
+  bestimmt     Pfade, die das Register fuer die Sperrliste vorsieht, deren
+               Vollzug aussteht (37.2); am Tag leer. Je Eintrag pfad, sha256,
+               grund.
+  eingefroren  `herkunft.py::EINGEFROREN`, die Abschnitt-0-Menge, ueber die
+               `register()` hasht (39.7, Fable 23c: "dritte Gruppe"). Je
+               Eintrag pfad, sha256; der Erzeuger liest die Liste mit
+               `lies_eingefroren` (ast, ohne `herkunft.py` auszufuehren).
+
+Fuehrt ein Abbild eine Gruppe NICHT (Abbilder vor TB-97), ist sie nicht
+pruefbar (2) und wird so genannt - eine leere Gruppe (`[]`) ist dagegen
+gemessen und 0. Leer und fehlend sind verschiedene Aussagen.
+
+Die Schlusszeilen trennen Pfad- und Regel-Bestandteile (40.8 (d), Fable 24a);
+der Gesamtwert bleibt, wie 36.5 ihn definiert. Ein Punkt kann im Abbild ein
+Feld `tatsachennotiz` tragen - den Verweis, den die Regelzeile je Punkt nennt;
+fehlt es, sagt die Zeile "keine im Abbild" (Tag-Vorbedingung 23c).
 
 Nutzung
 ------------------------------------------------------------------------------
@@ -99,12 +121,12 @@ REGISTER = os.path.join("docs", "VORREGISTRIERUNG_neuselektion.md")
 ABSCHNITT_UEBERSCHRIFT = "## 10. Die Sperrliste"
 CODEORDNER = os.path.join("research", "vorregistrierung")
 
-# Fuer die Sperrliste bestimmt, aber kein Punkt des Abschnitts 10 (21.9/23.7):
-# im Bericht genannt, nicht geprueft - Entscheidung bei Fable (Anfrage 22c).
-BESTIMMT_NICHT_EINGETRAGEN = (
-    (os.path.join(CODEORDNER, "ergebnisse", "benchmark_drawdowns_vt.json"),
-     "Register 21.9/23.7 - fuer die Sperrliste bestimmt, Vollzug steht aus"),
-)
+HERKUNFT = os.path.join(CODEORDNER, "herkunft.py")
+
+# Die zwei Gruppen neben den Punkten - Schluessel im Abbild und Name im Bericht
+# (37.2, 39.7). Die INHALTE stehen im Abbild, nicht hier.
+GRUPPEN = (("bestimmt", "bestimmt (37.2)"),
+           ("eingefroren", "Abschnitt 0 - herkunft.py::EINGEFROREN (39.7)"))
 
 _RE_PUNKT = re.compile(r"^(\d{1,2})\. \*\*")
 _RE_TITEL = re.compile(r"^(\d{1,2})\. \*\*(.+?)\*\*(.*)$")
@@ -233,6 +255,31 @@ def lies_abschnitt_10(register_pfad):
     return punkte, (von, bis), "\n".join(listentext)
 
 
+def lies_eingefroren(wurzel):
+    """Die Liste `EINGEFROREN` aus `herkunft.py` - mit `ast` gelesen, nicht
+    importiert (herkunft.py steht auf der Sperrliste, Punkte 11/12; gelesen
+    wird, ausgefuehrt nicht). Aufgeloest nach R5. Wirft Sondenfehler, wenn die
+    Datei fehlt oder die Liste nicht als Liste von Zeichenketten dasteht."""
+    import ast
+    pfad = os.path.join(wurzel, HERKUNFT)
+    try:
+        with open(pfad, encoding="utf-8") as f:
+            baum = ast.parse(f.read())
+    except (OSError, SyntaxError) as e:
+        raise Sondenfehler("herkunft.py nicht lesbar: %s (%s)" % (pfad, e))
+    for knoten in baum.body:
+        if (isinstance(knoten, ast.Assign) and len(knoten.targets) == 1
+                and getattr(knoten.targets[0], "id", None) == "EINGEFROREN"):
+            try:
+                werte = ast.literal_eval(knoten.value)
+            except ValueError:
+                break
+            if isinstance(werte, list) and all(isinstance(w, str) for w in werte):
+                return [_aufloesen(w) for w in werte]
+            break
+    raise Sondenfehler("EINGEFROREN in %s nicht als Liste von Pfaden lesbar" % pfad)
+
+
 # ---------------------------------------------------------------------------
 # Das Abbild bilden (fuer den Erzeuger - der schreibt, diese Datei nicht)
 # ---------------------------------------------------------------------------
@@ -246,20 +293,30 @@ def _head(wurzel):
         return "unbekannt"
 
 
-def bilde_abbild(register_pfad, wurzel, erzeuger="?"):
-    """Das Abbild als Datenstruktur: die Punkte des Abschnitts 10, je mit
-    frisch gemessenen Hashes. Fehlt eine genannte Datei, ist das Abbild nicht
-    bildbar (Sondenfehler) - ein Abbild mit Luecke ist keins."""
+def _hash_oder_fehler(wurzel, rel, wer):
+    voll = os.path.join(wurzel, rel)
+    if not os.path.isfile(voll):
+        raise Sondenfehler("%s nennt %s - Datei fehlt unter %s" % (wer, rel, wurzel))
+    return sha256_datei(voll)
+
+
+def bilde_abbild(register_pfad, wurzel, erzeuger="?", bestimmt=()):
+    """Das Abbild als Datenstruktur: die Punkte des Abschnitts 10 und die zwei
+    Gruppen `bestimmt` und `eingefroren`, je mit frisch gemessenen Hashes.
+    `bestimmt` ist eine Folge (pfad, grund) - Handwerk des Aufrufers, weil das
+    Register die Gruppe nicht als Liste fuehrt; leer heisst leer (37.2: am Tag
+    leer). Fehlt eine genannte Datei, ist das Abbild nicht bildbar
+    (Sondenfehler) - ein Abbild mit Luecke ist keins."""
     punkte, (von, bis), listentext = lies_abschnitt_10(register_pfad)
     for p in punkte:
-        hashes = {}
-        for rel in p["pfade"]:
-            voll = os.path.join(wurzel, rel)
-            if not os.path.isfile(voll):
-                raise Sondenfehler("Punkt %d nennt %s - Datei fehlt unter %s"
-                                   % (p["punkt"], rel, wurzel))
-            hashes[rel] = sha256_datei(voll)
-        p["hashes"] = hashes
+        p["hashes"] = {rel: _hash_oder_fehler(wurzel, rel, "Punkt %d" % p["punkt"])
+                       for rel in p["pfade"]}
+    gruppe_bestimmt = [{"pfad": rel, "grund": grund,
+                        "sha256": _hash_oder_fehler(wurzel, rel, "Gruppe bestimmt")}
+                       for rel, grund in bestimmt]
+    gruppe_eingefroren = [{"pfad": rel,
+                           "sha256": _hash_oder_fehler(wurzel, rel, "EINGEFROREN")}
+                          for rel in lies_eingefroren(wurzel)]
     return {
         "art": "Abbild der Sperrliste - Registerabschnitt 10 (Registertext 36.6)",
         "erzeugt": {
@@ -277,6 +334,12 @@ def bilde_abbild(register_pfad, wurzel, erzeuger="?"):
         "pfadregel": ("kein '/' oder Praefix 'ergebnisse/' -> relativ zu "
                       "research/vorregistrierung/; sonst repo-relativ"),
         "punkte": punkte,
+        "bestimmt": gruppe_bestimmt,
+        "eingefroren": gruppe_eingefroren,
+        "gruppenquelle": {
+            "bestimmt": "Aufruf des Erzeugers (--bestimmt), Register 37.2/39.3",
+            "eingefroren": "%s::EINGEFROREN, gelesen mit lies_eingefroren (ast)" % HERKUNFT,
+        },
     }
 
 
@@ -352,6 +415,54 @@ def _pruefe_punkt(p, wurzel):
     return OK, gruende, dateien
 
 
+def _pruefe_gruppe(abbild, schluessel, wurzel):
+    """Eine der zwei Gruppen neben den Punkten, gleich geprueft (37.2): Hash
+    gegen Abbild. Fehlt die Gruppe im Abbild, ist sie nicht pruefbar (2) -
+    nie 0. Liefert dict mit ausgang, im_abbild, dateien, gruende."""
+    if schluessel not in abbild:
+        return {"ausgang": NICHT_PRUEFBAR, "im_abbild": False, "dateien": [],
+                "gruende": ["Gruppe nicht im Abbild gefuehrt - nicht pruefbar "
+                            "(Abbild vor TB-97 erzeugt, oder Feld fehlt)"]}
+    eintraege = abbild[schluessel]
+    if not isinstance(eintraege, list):
+        return {"ausgang": NICHT_PRUEFBAR, "im_abbild": True, "dateien": [],
+                "gruende": ["Gruppe im Abbild keine Liste: %r" % (eintraege,)]}
+    ausgang, dateien, gruende = OK, [], []
+    for e in eintraege:
+        rel = e.get("pfad") if isinstance(e, dict) else None
+        soll = e.get("sha256") if isinstance(e, dict) else None
+        if not rel or not soll:
+            gruende.append("Eintrag ohne pfad oder sha256: %r" % (e,))
+            ausgang = max(ausgang, NICHT_PRUEFBAR)
+            continue
+        voll = os.path.join(wurzel, rel)
+        if not os.path.isfile(voll):
+            dateien.append({"pfad": rel, "stand": "FEHLT", "sha256": None,
+                            "grund": e.get("grund")})
+            gruende.append("Datei fehlt: %s" % rel)
+            ausgang = max(ausgang, NICHT_PRUEFBAR)
+            continue
+        try:
+            ist = sha256_datei(voll)
+        except OSError as fehler:
+            dateien.append({"pfad": rel, "stand": "nicht lesbar", "sha256": None,
+                            "grund": e.get("grund")})
+            gruende.append("Datei nicht lesbar: %s (%s)" % (rel, fehler))
+            ausgang = max(ausgang, NICHT_PRUEFBAR)
+            continue
+        if ist == soll:
+            dateien.append({"pfad": rel, "stand": "gleich", "sha256": ist,
+                            "grund": e.get("grund")})
+        else:
+            dateien.append({"pfad": rel, "stand": "ABWEICHUNG", "sha256": ist,
+                            "grund": e.get("grund")})
+            gruende.append("Hash weicht ab: %s soll %s… ist %s…"
+                           % (rel, soll[:12], ist[:12]))
+            ausgang = BEFUND
+    return {"ausgang": ausgang, "im_abbild": True, "dateien": dateien,
+            "gruende": gruende}
+
+
 def _vergleiche_mit_register(abbild, register_pfad):
     """(ii): Abbild gegen den Registertext. Liefert (ausgang, befunde, notiz)."""
     try:
@@ -378,7 +489,7 @@ def _vergleiche_mit_register(abbild, register_pfad):
 def pruefen(abbild_pfad, register_pfad, wurzel):
     """Die ganze Sonde. Liefert den Bericht als dict; ["ausgang"] ist 0/1/2."""
     bericht = {"abbild": abbild_pfad, "register": register_pfad,
-               "wurzel": wurzel, "punkte": [], "ii": {}, "bestimmt": [],
+               "wurzel": wurzel, "punkte": [], "ii": {}, "gruppen": {},
                "ausgang": None, "grund": None}
     try:
         abbild = _lade_abbild(abbild_pfad)
@@ -395,6 +506,10 @@ def pruefen(abbild_pfad, register_pfad, wurzel):
         bericht["punkte"].append({
             "punkt": p["punkt"], "titel": p["titel"], "ausgang": ausgang,
             "gruende": gruende,
+            # Regel-Bestandteil: der Punkt nennt Nicht-Dateibezogenes oder
+            # gar keinen Pfad (R6) - getrennt vom Pfad-Bestandteil (40.8 (d))
+            "regel_bestandteil": bool(p["nicht_dateibezogen"] or not p["pfade"]),
+            "tatsachennotiz": p.get("tatsachennotiz"),
             "dateien": [{"pfad": rel, "stand": stand, "sha256": h}
                         for rel, stand, h in dateien]})
 
@@ -402,28 +517,62 @@ def pruefen(abbild_pfad, register_pfad, wurzel):
     ausgang_ii, befunde, notiz = _vergleiche_mit_register(abbild, register_pfad)
     bericht["ii"] = {"ausgang": ausgang_ii, "befunde": befunde, **notiz}
 
-    # bestimmt, nicht eingetragen - ohne Wertung
-    for rel, warum in BESTIMMT_NICHT_EINGETRAGEN:
-        voll = os.path.join(wurzel, rel)
-        bericht["bestimmt"].append({
-            "pfad": rel, "warum": warum,
-            "sha256": sha256_datei(voll) if os.path.isfile(voll) else None})
+    # die zwei Gruppen neben den Punkten - aus dem Abbild (40.8 (e))
+    for schluessel, _ in GRUPPEN:
+        bericht["gruppen"][schluessel] = _pruefe_gruppe(abbild, schluessel, wurzel)
+    bericht["bilanz"] = _bilanz(bericht)
 
-    ausgaenge = [p["ausgang"] for p in bericht["punkte"]] + [ausgang_ii]
+    gruppen = bericht["gruppen"]
+    ausgaenge = ([p["ausgang"] for p in bericht["punkte"]] + [ausgang_ii]
+                 + [g["ausgang"] for g in gruppen.values()])
+
+    def _gruppen_mit(wert):
+        namen = [k for k, g in gruppen.items() if g["ausgang"] == wert]
+        return (" und in Gruppe(n) %s" % namen) if namen else ""
+
     if BEFUND in ausgaenge:
         bericht["ausgang"] = BEFUND
-        bericht["grund"] = ("BEFUND in Punkt(en) %s%s" % (
+        bericht["grund"] = ("BEFUND in Punkt(en) %s%s%s" % (
             [p["punkt"] for p in bericht["punkte"] if p["ausgang"] == BEFUND],
-            " und in (ii) Abbild/Registertext" if ausgang_ii == BEFUND else ""))
+            " und in (ii) Abbild/Registertext" if ausgang_ii == BEFUND else "",
+            _gruppen_mit(BEFUND)))
     elif NICHT_PRUEFBAR in ausgaenge:
         bericht["ausgang"] = NICHT_PRUEFBAR
-        bericht["grund"] = ("NICHT PRUEFBAR: Punkt(e) %s%s" % (
+        bericht["grund"] = ("NICHT PRUEFBAR: Punkt(e) %s%s%s" % (
             [p["punkt"] for p in bericht["punkte"] if p["ausgang"] == NICHT_PRUEFBAR],
-            " und (ii) Registertext nicht lesbar" if ausgang_ii == NICHT_PRUEFBAR else ""))
+            " und (ii) Registertext nicht lesbar" if ausgang_ii == NICHT_PRUEFBAR else "",
+            _gruppen_mit(NICHT_PRUEFBAR)))
     else:
         bericht["ausgang"] = OK
         bericht["grund"] = "alle Punkte gemessen und gleich, Abbild = Registertext"
     return bericht
+
+
+def _bilanz(b):
+    """Die zwei Schlusszeilen als Zahlen (40.8 (d)): Pfad-Bestandteile je Datei
+    ueber alle drei Gruppen, Regel-Bestandteile je Punkt. Aendert den
+    Gesamtwert nicht - der bleibt, wie 36.5 ihn definiert."""
+    stand_zu_wert = {"gleich": OK, "ABWEICHUNG": BEFUND}
+    pfad = {OK: 0, BEFUND: 0, NICHT_PRUEFBAR: 0}
+    je_gruppe = {"punkte": 0}
+    for p in b["punkte"]:
+        for d in p["dateien"]:
+            pfad[stand_zu_wert.get(d["stand"], NICHT_PRUEFBAR)] += 1
+            je_gruppe["punkte"] += 1
+    fehlende = []
+    for k, g in b["gruppen"].items():
+        if not g["im_abbild"]:
+            fehlende.append(k)
+            continue
+        je_gruppe[k] = len(g["dateien"])
+        for d in g["dateien"]:
+            pfad[stand_zu_wert.get(d["stand"], NICHT_PRUEFBAR)] += 1
+    regel = [{"punkt": p["punkt"], "tatsachennotiz": p.get("tatsachennotiz")}
+             for p in b["punkte"] if p.get("regel_bestandteil")]
+    return {"pfad": {"geprueft": sum(pfad.values()), "0": pfad[OK],
+                     "1": pfad[BEFUND], "2": pfad[NICHT_PRUEFBAR],
+                     "je_gruppe": je_gruppe, "gruppen_nicht_im_abbild": fehlende},
+            "regel": regel}
 
 
 # ---------------------------------------------------------------------------
@@ -463,12 +612,29 @@ def _drucke(b):
                  "ja" if ii["listentext_wie_bei_erzeugung"] else "NEIN (nur Hinweis)"))
     for f in ii["befunde"]:
         print("  -> %s" % f)
-    print("\nBestimmt, nicht eingetragen (kein Punkt des Abschnitts 10; nicht geprueft, nur genannt):")
-    for d in b["bestimmt"]:
-        print("  %s  %s  (%s)" % (d["pfad"], d["sha256"] or "FEHLT", d["warum"]))
-    n = {k: sum(1 for p in b["punkte"] if p["ausgang"] == k) for k in (OK, BEFUND, NICHT_PRUEFBAR)}
-    print("\nBilanz: %d Punkte in Ordnung (0), %d mit Befund (1), %d nicht pruefbar (2); (ii) %s"
-          % (n[OK], n[BEFUND], n[NICHT_PRUEFBAR], _WORT[ii["ausgang"]]))
+    for schluessel, name in GRUPPEN:
+        g = b["gruppen"][schluessel]
+        print("\nGruppe %s:  [%s]" % (name, _WORT[g["ausgang"]]))
+        if g["im_abbild"] and not g["dateien"] and not g["gruende"]:
+            print("  leer (im Abbild gefuehrt, kein Eintrag)")
+        for d in g["dateien"]:
+            print("  %-64s %-10s %s%s" % (d["pfad"], d["stand"], (d["sha256"] or "")[:16],
+                                          ("  (%s)" % d["grund"]) if d.get("grund") else ""))
+        for grund in g["gruende"]:
+            print("  -> %s" % grund)
+
+    # Die zwei Schlusszeilen (40.8 (d), Fable 24a): Pfad- und Regel-
+    # Bestandteile getrennt, damit "kein Pfad-Bestandteil 1, jede 2 mit
+    # Notiz" (22d) ablesbar ist, ohne zu rechnen.
+    pf, rg = b["bilanz"]["pfad"], b["bilanz"]["regel"]
+    teile = ", ".join("%s %d" % (k, n) for k, n in pf["je_gruppe"].items())
+    if pf["gruppen_nicht_im_abbild"]:
+        teile += "; nicht im Abbild (2): %s" % ", ".join(pf["gruppen_nicht_im_abbild"])
+    print("\nPfad-Bestandteile: %d geprueft, davon %d mit 0 / %d mit 1 / %d mit 2  (%s)"
+          % (pf["geprueft"], pf["0"], pf["1"], pf["2"], teile))
+    print("Regel-Bestandteile: %d nicht pruefbar (2), je mit Verweis auf die Tatsachennotiz: %s"
+          % (len(rg), "; ".join("Punkt %d -> %s" % (r["punkt"], r["tatsachennotiz"] or "keine im Abbild")
+                                for r in rg) or "-"))
     print("RUECKGABEWERT %s - %s" % (_WORT[b["ausgang"]], b["grund"]))
 
 

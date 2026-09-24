@@ -19,6 +19,16 @@ Pruefung (ii) dieselbe Lesart haben; die Hashes werden hier frisch gemessen.
        36.6 verlangt je Fortschreibung der Sperrliste ein neues Abbild unter
        neuem Namen; der Name traegt deshalb das Datum (Handwerk).
 
+Die zwei Gruppen neben den Punkten (37.2, 39.7; seit TB-97, 40.8 (e))
+------------------------------------------------------------------------------
+Das Abbild fuehrt ausser den Punkten die Gruppe `bestimmt` und die Gruppe
+`eingefroren` (`herkunft.py::EINGEFROREN`, mit dem Parser der Sonde per `ast`
+gelesen) - je Pfad mit Hash. Die Sonde liest die Gruppen von dort, nicht aus
+ihrem Code. `bestimmt` fuehrt das Register nicht als Liste; der Aufruf nennt
+sie mit `--bestimmt PFAD=GRUND` (mehrfach). Ohne `--bestimmt` ist die Gruppe
+LEER und steht so im Abbild - das ist der Registerstand nach 39.3 ("die Gruppe
+'bestimmt' ist nach dem Registertext leer").
+
 Rueckgabewerte (36.5)
 ------------------------------------------------------------------------------
     0   geschrieben - Pfad, Groesse und SHA-256 stehen in der Ausgabe
@@ -47,8 +57,9 @@ OK, BEFUND, NICHT_MOEGLICH = sonde.OK, sonde.BEFUND, sonde.NICHT_PRUEFBAR
 ERZEUGER = "research/vorregistrierung/sperrliste_abbild.py"
 
 
-def erzeugen(ziel, register, wurzel):
-    """Bildet das Abbild und schreibt es genau einmal. Liefert (rc, text)."""
+def erzeugen(ziel, register, wurzel, bestimmt=()):
+    """Bildet das Abbild und schreibt es genau einmal. Liefert (rc, text).
+    `bestimmt`: Folge (pfad, grund) fuer die Gruppe bestimmt (37.2)."""
     if os.path.exists(ziel):
         try:
             h = sonde.sha256_datei(ziel)
@@ -57,7 +68,8 @@ def erzeugen(ziel, register, wurzel):
         return BEFUND, ("ABBRUCH (36.1 (2)): Ziel existiert, nichts geschrieben.\n"
                         "  Pfad:   %s\n  SHA-256: %s" % (ziel, h))
     try:
-        abbild = sonde.bilde_abbild(register, wurzel, erzeuger=ERZEUGER)
+        abbild = sonde.bilde_abbild(register, wurzel, erzeuger=ERZEUGER,
+                                    bestimmt=bestimmt)
     except sonde.Sondenfehler as e:
         return NICHT_MOEGLICH, "ABBRUCH: Abbild nicht bildbar - %s" % e
 
@@ -79,11 +91,12 @@ def erzeugen(ziel, register, wurzel):
     n_pfade = sum(len(p["pfade"]) for p in abbild["punkte"])
     return OK, ("Abbild geschrieben.\n  Pfad:    %s\n  Groesse: %d Bytes\n"
                 "  SHA-256: %s\n  Punkte:  %d (aus %s Z. %d-%d), %d Pfadnennungen, "
-                "HEAD %s"
+                "HEAD %s\n  Gruppen: bestimmt %d, eingefroren %d"
                 % (ziel, os.path.getsize(ziel), sonde.sha256_datei(ziel),
                    len(abbild["punkte"]), abbild["quelle"]["register"],
                    abbild["quelle"]["zeilen"][0], abbild["quelle"]["zeilen"][1],
-                   n_pfade, abbild["erzeugt"]["head"][:12]))
+                   n_pfade, abbild["erzeugt"]["head"][:12],
+                   len(abbild["bestimmt"]), len(abbild["eingefroren"])))
 
 
 def main(argv=None):
@@ -96,9 +109,20 @@ def main(argv=None):
                    help="das Register (Standard: <wurzel>/%s)" % sonde.REGISTER)
     z.add_argument("--wurzel", default=BASE_DIR,
                    help="Repo-Wurzel, auf die sich die Pfade beziehen")
+    z.add_argument("--bestimmt", action="append", default=[], metavar="PFAD=GRUND",
+                   help="ein Pfad der Gruppe 'bestimmt' (37.2), repo-relativ, mit "
+                        "Registerstelle als Grund; mehrfach moeglich; ohne: Gruppe leer")
     a = z.parse_args(argv)
     register = a.register or os.path.join(a.wurzel, sonde.REGISTER)
-    rc, text = erzeugen(a.ziel, register, a.wurzel)
+    bestimmt = []
+    for eintrag in a.bestimmt:
+        pfad, trenner, grund = eintrag.partition("=")
+        if not trenner or not pfad.strip() or not grund.strip():
+            print("ABBRUCH: --bestimmt braucht PFAD=GRUND, nicht %r" % eintrag,
+                  file=sys.stderr)
+            return NICHT_MOEGLICH
+        bestimmt.append((pfad.strip(), grund.strip()))
+    rc, text = erzeugen(a.ziel, register, a.wurzel, bestimmt)
     print(text, file=sys.stderr if rc else sys.stdout)
     return rc
 
