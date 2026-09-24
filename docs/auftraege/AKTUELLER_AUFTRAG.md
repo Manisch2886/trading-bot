@@ -36,15 +36,15 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-97** | `docs/auftraege/MAC_TB-97_testannahmen_zweite_runde.md` | ⭐⭐⭐ **Testannahmen, zweite Runde** (Register 40.7, 40.8 (a)–(e)). ⭐ **Block A zuerst: die acht Mutationsproben BENENNEN** — Abschnitt 12 nennt die Zahl, keine Namen — und je Probe messen, ob sie heute überhaupt beissen kann. Dann `F4` (`<=` → `<`, Mehrheit wie `H3`, Gegenprobe), die vier Jahresliterale aus Registerstelle oder Plan, **dauerhafte Gegenproben für alle acht**, und die Sonde: getrennte Schlusszeilen plus Gruppen **aus dem Abbild** statt aus dem Code. ⛔ **Kein echtes Abbild erzeugen** — Gegenprobe nur auf einer Kopie. ⚠⚠ **Muss vor TB-98 laufen** |
+| **TB-98** | `docs/auftraege/MAC_TB-98_neun_listen_auf_dem_snapshot.md` | ⭐⭐⭐ **Die neun Handelslisten auf dem Snapshot neu erzeugen und die Faltenlänge ableiten** (Register 40.6). ⭐ **Block A zuerst: Liest der Erzeuger überhaupt über den Selektionsmodus?** — bei `benchmark.py` und `messgroessen.py` war es nicht so. Dann `positionen_holen.py` nach 36.1 (`--ziel` Pflicht, O_EXCL, AST unverändert), neun Listen im Modus, **zweimal bytegleich** (23e), Faltenlänge nach 5.4 ableiten und **gegen 33.2 vergleichen**. ⛔ **Hört dort auf:** kein `faltenplan.py`, kein Sperrlistenpunkt, kein Abbild — die hängen am Ausgang des Vergleichs. ⚠⚠ Nur die Faltenlänge melden, keine Trade-Zahlen (27.1) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
 | | Sache | ⚠️ Abhängigkeit |
 |---|---|---|
-| **TB-98** | Neun Trade-Listen auf dem Snapshot **neu erzeugen** (Erzeuger unter 36.1), Sperrlistenpunkt, Notizen; Faltenlänge nach 5.4 ableiten und **gegen 33.2 vergleichen**. Abweichung ist Berichtigung, keine Wahl | nach TB-97 |
-| **TB-100** | Plan-Punkt 7 **rückt vor**: Abbild des Faltenplans (33.3) und Faltenplan-Sonde | ⚠️ **nach** der Ableitung — sonst bildet es einen Stand ab, der gerade geprüft wird |
-| **TB-101** | `messgroessen.json` auf dem Snapshot (23d/23e), `registerdaten.py`, die 12 Rasterachsen | unabhängig |
+| **TB-100** | Folge aus TB-98: Registerabschnitt 41 (Sperrlistenpunkt für die neuen Listen, Tatsachennotiz zu 5.4, Berichtigung „sieben statt acht“ nach Fables Antwort auf 24c), `faltenplan.py` auf die registrierte Pfadkonstante (⭐ **Freigabe liegt vor, 24.09. 11:25**), **ein** neues Sperrlisten-Abbild, das zugleich die Gruppen `bestimmt` und `eingefroren` führt | nach TB-98 |
+| **TB-101** | Plan-Punkt 7: Abbild des Faltenplans (33.3) und Faltenplan-Sonde | ⚠️ **nach** der Ableitung |
+| **TB-102** | `messgroessen.json` auf dem Snapshot (23d/23e), `registerdaten.py`, die 12 Rasterachsen | unabhängig |
 
 ⚠️ **TB-99 ist vergeben und wird nie ein Auftrag:** Die Nummer ist für die
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
