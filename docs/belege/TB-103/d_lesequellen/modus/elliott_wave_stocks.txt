@@ -1,0 +1,51 @@
+# rc=0
+## ausgabe.txt (stdout+stderr, ohne Rechnungsausgabe)
+[paths] SELEKTIONSMODUS AKTIV - Kursdaten kommen aus <repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 (snapshot_hash 63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2), nicht aus <repo>/data.
+[paths] codewurzel          <repo>
+[paths] commit              d87997eac0dd95225c66c943d32f04fbfa317ee3
+[paths] arbeitsbaum         sauber
+[paths] lock_sha256         96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5
+[paths] interpreter         3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+[paths] plattform           macOS-15.7.9-x86_64-i386-64bit
+[paths] snapshot_wurzel     <repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+[paths] snapshot_hash       63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+Hinweis: GEV deckt nur 888 Tage ab (< 1825 noetig), wird uebersprungen.
+Hinweis: SNDK deckt nur 565 Tage ab (< 1825 noetig), wird uebersprungen.
+Hinweis: CEG deckt nur 1686 Tage ab (< 1825 noetig), wird uebersprungen.
+Datenqualitaet: insgesamt 1 unvollstaendige Kerze(n) in 1 Symbol(en) gestrichen - APH (1). Diese Kerzen gehen in KEINE Kennzahl ein.
+Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz.
+elliott_wave_stocks: Trockenlauf fertig (Laden, Signalpfad, eine Simulation)
+## zusammenfassung.json
+{
+  "bot": "elliott_wave_stocks",
+  "erwartet_nach_exclude": 150,
+  "exclude_symbols": [],
+  "geladen_gleich_liste": false,
+  "geladen_n": 147,
+  "geladen_nicht_in_liste": [],
+  "ladeprotokoll": [
+    "Hinweis: GEV deckt nur 888 Tage ab (< 1825 noetig), wird uebersprungen.",
+    "Hinweis: SNDK deckt nur 565 Tage ab (< 1825 noetig), wird uebersprungen.",
+    "Hinweis: CEG deckt nur 1686 Tage ab (< 1825 noetig), wird uebersprungen.",
+    "Datenqualitaet: insgesamt 1 unvollstaendige Kerze(n) in 1 Symbol(en) gestrichen - APH (1). Diese Kerzen gehen in KEINE Kennzahl ein.",
+    "Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz."
+  ],
+  "nicht_geladen": [
+    "CEG",
+    "GEV",
+    "SNDK"
+  ],
+  "signalpfad_gelaufen": true,
+  "simulation_gelaufen": true,
+  "summenzeile": [
+    "Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz."
+  ],
+  "symbolliste_datei": "<repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt",
+  "symbolliste_datei_existiert": true,
+  "symbolliste_gleich_universum": true,
+  "symbolliste_ist_standardliste": false,
+  "symbolliste_modul": "strategies/elliott_wave_stocks/stocks_symbols_config.py",
+  "symbolliste_n": 150,
+  "universum_zeilen": 150
+}
+## rechnung_stdout.txt (ROHPROTOKOLL - Ausgabe von Signalpfad und Simulation, nicht ins Ergebnisdokument, Sichtschutz 27.1)

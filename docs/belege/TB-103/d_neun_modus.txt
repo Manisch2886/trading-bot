@@ -1,0 +1,93 @@
+# TB-103 D - Trockenlauf aller neun Bots IM SELEKTIONSMODUS gegen den echten Snapshot 63e4b6c8 (d_lauf.sh modus)
+# TB-103 D neun Bots 'modus', HEAD d87997eac0dd95225c66c943d32f04fbfa317ee3, 2026-09-25 00:10:00 +0200
+# Arbeitsbaum ueber shared/ strategies/ requirements.lock (leer = sauber):
+elliott_wave modus rc=0 9s
+t3_supertrend modus rc=0 3s
+rsi2_crypto modus rc=0 2s
+turtle_soup_crypto modus rc=0 1s
+volatility_breakout_crypto modus rc=0 1s
+elliott_wave_stocks modus rc=0 15s
+rsi2_mean_reversion modus rc=0 5s
+turtle_soup_stocks modus rc=0 5s
+volatility_breakout modus rc=0 6s
+FERTIG
+
+Art: modus
+Bot                         rc  Universumsdatei                    Zeilen nach Excl Liste  =Uni  geladen  Std.  SnapCSV  Daten  Umgeb.
+elliott_wave                0   <snapshot>/config/top25_symbols.txt 25     24        24     ja    18       0     24       0      5     
+t3_supertrend               0   <snapshot>/config/top25_symbols.txt 25     24        24     ja    18       0     24       0      5     
+rsi2_crypto                 0   <snapshot>/config/top25_symbols.txt 25     24        24     ja    20       0     24       0      5     
+turtle_soup_crypto          0   <snapshot>/config/top25_symbols.txt 25     24        24     ja    20       0     24       0      5     
+volatility_breakout_crypto  0   <snapshot>/config/top25_symbols.txt 25     24        24     ja    20       0     24       0      5     
+elliott_wave_stocks         0   <snapshot>/config/sp500_top150.txt 150    150       150    ja    147      0     150      0      5     
+rsi2_mean_reversion         0   <snapshot>/config/sp500_top150.txt 150    150       150    ja    147      0     150      0      5     
+turtle_soup_stocks          0   <snapshot>/config/sp500_top150.txt 150    150       150    ja    147      0     150      0      5     
+volatility_breakout         0   <snapshot>/config/sp500_top150.txt 150    150       150    ja    147      0     150      0      5     
+
+  elliott_wave                Summenzeile: Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Kerzenzahl zu klein.
+                              nicht geladen: BMTUSDT, ENSOUSDT, PUMPUSDT, TRUMPUSDT, UUSDT, ZKCUSDT
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 491 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+  t3_supertrend               Summenzeile: Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Historie zu kurz.
+                              nicht geladen: BMTUSDT, ENSOUSDT, PUMPUSDT, TRUMPUSDT, UUSDT, ZKCUSDT
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 491 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+  rsi2_crypto                 Summenzeile: Geladen: 20 von 24 Symbolen. 4 ausgelassen: 4x Historie zu kurz.
+                              nicht geladen: ENSOUSDT, PUMPUSDT, UUSDT, ZKCUSDT
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 481 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+  turtle_soup_crypto          Summenzeile: Geladen: 20 von 24 Symbolen. 4 ausgelassen: 4x Historie zu kurz.
+                              nicht geladen: ENSOUSDT, PUMPUSDT, UUSDT, ZKCUSDT
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 481 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+  volatility_breakout_crypto  Summenzeile: Geladen: 20 von 24 Symbolen. 4 ausgelassen: 4x Historie zu kurz.
+                              nicht geladen: ENSOUSDT, PUMPUSDT, UUSDT, ZKCUSDT
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 482 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+  elliott_wave_stocks         Summenzeile: Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz.
+                              nicht geladen: CEG, GEV, SNDK
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 492 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+  rsi2_mean_reversion         Summenzeile: Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz.
+                              nicht geladen: CEG, GEV, SNDK
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 482 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+  turtle_soup_stocks          Summenzeile: Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz.
+                              nicht geladen: CEG, GEV, SNDK
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 482 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+  volatility_breakout         Summenzeile: Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz.
+                              nicht geladen: CEG, GEV, SNDK
+                              Signalpfad gelaufen: True, eine Simulation gelaufen: True
+                              Daten ausserhalb Snapshot (data/config/research/results/logs): keine
+                              Laufumgebung ausserhalb (Repo sonst, System): ['/System/Library/CoreServices/SystemVersion.plist', '/dev/null', '/dev/urandom', '/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC', '<repo>/requirements.lock']
+                              Code-Dateien: 482 (davon im Repo 1) - getrennt gezaehlt, nicht Daten
+==============================================================================================================
+
+## Vergleich mit der Gegenprobe ohne Modus
+Vergleich der geladenen Menge mit und ohne Modus
+  elliott_wave                modus 18 von 24 / ohne 18 von 24  -> GLEICH
+  t3_supertrend               modus 18 von 24 / ohne 18 von 24  -> GLEICH
+  rsi2_crypto                 modus 20 von 24 / ohne 20 von 24  -> GLEICH
+  turtle_soup_crypto          modus 20 von 24 / ohne 20 von 24  -> GLEICH
+  volatility_breakout_crypto  modus 20 von 24 / ohne 20 von 24  -> GLEICH
+  elliott_wave_stocks         modus 147 von 150 / ohne 147 von 150  -> GLEICH
+  rsi2_mean_reversion         modus 147 von 150 / ohne 147 von 150  -> GLEICH
+  turtle_soup_stocks          modus 147 von 150 / ohne 147 von 150  -> GLEICH
+  volatility_breakout         modus 147 von 150 / ohne 147 von 150  -> GLEICH

@@ -1,0 +1,61 @@
+# rc=0
+## ausgabe.txt (stdout+stderr, ohne Rechnungsausgabe)
+[paths] SELEKTIONSMODUS AKTIV - Kursdaten kommen aus <repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 (snapshot_hash 63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2), nicht aus <repo>/data.
+[paths] codewurzel          <repo>
+[paths] commit              d87997eac0dd95225c66c943d32f04fbfa317ee3
+[paths] arbeitsbaum         sauber
+[paths] lock_sha256         96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5
+[paths] interpreter         3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+[paths] plattform           macOS-15.7.9-x86_64-i386-64bit
+[paths] snapshot_wurzel     <repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+[paths] snapshot_hash       63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+Hinweis: ENSOUSDT deckt nur 335 Tage ab (< 730 noetig), wird uebersprungen.
+Hinweis: TRUMPUSDT deckt nur 603 Tage ab (< 730 noetig), wird uebersprungen.
+Hinweis: PUMPUSDT deckt nur 368 Tage ab (< 730 noetig), wird uebersprungen.
+Hinweis: ZKCUSDT deckt nur 364 Tage ab (< 730 noetig), wird uebersprungen.
+Hinweis: UUSDT deckt nur 244 Tage ab (< 730 noetig), wird uebersprungen.
+Hinweis: BMTUSDT deckt nur 545 Tage ab (< 730 noetig), wird uebersprungen.
+Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Historie zu kurz.
+t3_supertrend: Trockenlauf fertig (Laden, Signalpfad, eine Simulation)
+## zusammenfassung.json
+{
+  "bot": "t3_supertrend",
+  "erwartet_nach_exclude": 24,
+  "exclude_symbols": [
+    "PAXGUSDT",
+    "XAUTUSDT"
+  ],
+  "geladen_gleich_liste": false,
+  "geladen_n": 18,
+  "geladen_nicht_in_liste": [],
+  "ladeprotokoll": [
+    "Hinweis: ENSOUSDT deckt nur 335 Tage ab (< 730 noetig), wird uebersprungen.",
+    "Hinweis: TRUMPUSDT deckt nur 603 Tage ab (< 730 noetig), wird uebersprungen.",
+    "Hinweis: PUMPUSDT deckt nur 368 Tage ab (< 730 noetig), wird uebersprungen.",
+    "Hinweis: ZKCUSDT deckt nur 364 Tage ab (< 730 noetig), wird uebersprungen.",
+    "Hinweis: UUSDT deckt nur 244 Tage ab (< 730 noetig), wird uebersprungen.",
+    "Hinweis: BMTUSDT deckt nur 545 Tage ab (< 730 noetig), wird uebersprungen.",
+    "Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Historie zu kurz."
+  ],
+  "nicht_geladen": [
+    "BMTUSDT",
+    "ENSOUSDT",
+    "PUMPUSDT",
+    "TRUMPUSDT",
+    "UUSDT",
+    "ZKCUSDT"
+  ],
+  "signalpfad_gelaufen": true,
+  "simulation_gelaufen": true,
+  "summenzeile": [
+    "Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Historie zu kurz."
+  ],
+  "symbolliste_datei": "<repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt",
+  "symbolliste_datei_existiert": true,
+  "symbolliste_gleich_universum": true,
+  "symbolliste_ist_standardliste": false,
+  "symbolliste_modul": "shared/symbols_config.py",
+  "symbolliste_n": 24,
+  "universum_zeilen": 25
+}
+## rechnung_stdout.txt (ROHPROTOKOLL - Ausgabe von Signalpfad und Simulation, nicht ins Ergebnisdokument, Sichtschutz 27.1)

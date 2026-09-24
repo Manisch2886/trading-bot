@@ -1,0 +1,82 @@
+# TB-103 C1 - Umbau messgroessen.py (Commit ae136fd), diff gegen d87997e
+diff --git a/research/vorregistrierung/messgroessen.py b/research/vorregistrierung/messgroessen.py
+index 71693b5..6b61488 100644
+--- a/research/vorregistrierung/messgroessen.py
++++ b/research/vorregistrierung/messgroessen.py
+@@ -47,10 +47,10 @@ from datetime import datetime, timezone
+ import numpy as np
+ import pandas as pd
+ 
+-BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+-DATA_DIR = os.path.join(BASE_DIR, "data")
+-CONFIG_DIR = os.path.join(BASE_DIR, "config")
++_REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
++# TB30A_BASE_DIR ersetzt die Repo-Wurzel fuer Mutationsproben - KEIN Weg zum
++# Snapshot (TB-103). Kurs- und Universumspfade: unten, ueber den Resolver.
++BASE_DIR = os.environ.get("TB30A_BASE_DIR") or _REPO
+ ERGEBNISSE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ergebnisse")
+ 
+ # --- Kostenkonvention ---------------------------------------------------------
+@@ -85,6 +85,29 @@ AUSGESCHLOSSEN = {"XAUTUSDT", "PAXGUSDT"}
+ 
+ MIN_BALKEN = 300  # ein Symbol mit weniger Balken traegt kein Quantil
+ 
++# --- Pfade der Kurs- und Universumsdateien: der Resolver (TB-103) -----------
++# ⚠️ Fable 24c Abschnitt 2: Jedes Modul des Laufbereichs, das Kursdaten oder
++# Universumsdateien liest, bezieht seine Pfade ueber `shared/paths.py` -
++# denselben Resolver wie die Bots. Ohne Selektionsmodus sind das `data/` und
++# `config/` der Repo-Wurzel (wie vorher), unter dem Modus der Snapshot (Kurse
++# flach, Universum unter `config/`). Bis TB-103 baute diese Datei beide Pfade
++# selbst aus `BASE_DIR` und kannte den Modus nicht (TB-102: rc 0, bytegleich,
++# 0 Zugriffe auf den Snapshot).
++# Warum `paths` und nicht `strategy_paths.get_strategy_paths()`: jene reicht
++# nur `paths.DATA_DIR`/`paths.CONFIG_DIR` durch und legt dazu
++# `results/<name>/` und `logs/<name>/` an - fuer diese Datei waeren das
++# `results/vorregistrierung/` und `logs/vorregistrierung/`. Die Krypto-Bots
++# holen ihre Symbolliste ebenso direkt aus `paths` (`shared/symbols_config.py`).
++# `BASE_DIR` (oben) traegt danach nur noch
++# `research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv` (haltedauern()) -
++# unter dem Modus der eine erwartete Zugriff ausserhalb des Snapshots, bis die
++# Haltedauern aus den neuen Listen kommen (Plan-Punkt 3, Fable 24c Abschnitt 4).
++sys.path.insert(0, os.path.join(_REPO, "shared"))
++import paths  # noqa: E402
++
++DATA_DIR = paths.DATA_DIR
++CONFIG_DIR = paths.CONFIG_DIR
++
+ 
+ def universum(datei: str) -> list:
+     pfad = os.path.join(CONFIG_DIR, datei)
+@@ -293,7 +316,10 @@ def schreibe_messgroessen(mess: dict, ziel: str):
+ def main(argv=None):
+     p = argparse.ArgumentParser(
+         description=("Messgroessen des Vorregistrierungslaufs. Schreibt einmalig; "
+-                     "Voreinstellung ist ein Name mit Zeitstempel (36.1 (3))."))
++                     "Voreinstellung ist ein Name mit Zeitstempel (36.1 (3)). "
++                     "Kurs- und Universumsdateien kommen ueber shared/paths.py - "
++                     "unter dem Selektionsmodus (TB_SELEKTIONS*) aus dem Snapshot. "
++                     "TB30A_BASE_DIR ist KEIN Weg zum Snapshot (TB-103)."))
+     p.add_argument("--ziel", default=None,
+                    help=("Ausgabedatei (Standard: ergebnisse/messgroessen_"
+                          "<UTC-Zeitstempel>.json). Ein vorhandenes Ziel wird NIE "
+
+## A7: Kostenzeilen vorher/nachher
+vorher Z. 61:GEBUEHR_PCT = 0.1
+vorher Z. 62:SLIPPAGE_PCT = 0.05
+nachher Z. 61:GEBUEHR_PCT = 0.1
+nachher Z. 62:SLIPPAGE_PCT = 0.05
+=> Inhalt und Zeilennummer unveraendert (Register nennt Z. 58/59 - schon vorher veraltet, siehe a_vormessung.txt A7)
+
+## Warum paths und nicht strategy_paths.get_strategy_paths(): shared/strategy_paths.py
+112:def get_strategy_paths(caller_file: str) -> dict:
+114:    base_dir = os.path.dirname(os.path.dirname(strategy_dir))  # .../strategies/<name> -> .../strategies -> BASE
+126:    results_dir = os.path.join(base_dir, "results", strategy_name)
+127:    logs_dir = os.path.join(base_dir, "logs", strategy_name)
+130:    os.makedirs(results_dir, exist_ok=True)
+131:    os.makedirs(logs_dir, exist_ok=True)
+136:        "DATA_DIR": paths.DATA_DIR,
+137:        "CONFIG_DIR": paths.CONFIG_DIR,
+=> fuer research/vorregistrierung/messgroessen.py waeren strategy_name='vorregistrierung', base_dir=<repo>: makedirs results/vorregistrierung, logs/vorregistrierung
+## Schreibsperre 36.1 unberuehrt: voreinstellung_ziel/schreibe_messgroessen/main-Sperre im diff nicht beruehrt; '--ziel' ist NICHT Pflicht (Voreinstellung
+## ergebnisse/messgroessen_<Zeitstempel>.json seit TB-93) - der Auftrag sagt 'weiterhin Pflicht'; alle Laeufe dieser Sitzung mit --ziel im Scratchpad.

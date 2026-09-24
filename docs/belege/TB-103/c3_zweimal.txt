@@ -1,0 +1,7 @@
+# TB-103 C3 (a) - Ergebnisvergleich zweimal im Modus (23e)
+Lauf 1: rc=0 Dauer 12 s 7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6
+Lauf 2: rc=0 Dauer 12 s 7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6
+Lauf 1 == Nachweisdatei: bytegleich
+Lauf 2 == Nachweisdatei: bytegleich
+Lauf 2 Lesequellen gleich Lauf 1 (ohne Scratchpad-Pfade): ja
+⛔ Nachweis fuer messgroessen.json NICHT gefuehrt: Teil (b) hat einen Zugriff ausserhalb (haltedauern_je_bot.csv) -> Status 2 nach 24c Abschnitt 1.

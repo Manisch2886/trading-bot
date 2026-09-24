@@ -1,0 +1,209 @@
+====================================================================================================
+elliott_wave  rc=0  Prozesse=1
+    491  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+     27  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 24 Kurs-CSV, Universumsdateien ['config/sp500_top150.txt', 'config/top25_symbols.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/elliott_wave/equity_simulation.py:35
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/elliott_wave/equity_simulation.py:35 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/elliott_wave/equity_simulation.py:35 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/elliott_wave/equity_simulation.py:35 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+elliott_wave_stocks  rc=0  Prozesse=1
+    492  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+    153  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 150 Kurs-CSV, Universumsdateien ['config/top25_symbols.txt', 'config/sp500_top150.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/elliott_wave_stocks/equity_simulation.py:35
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/elliott_wave_stocks/equity_simulation.py:35 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/elliott_wave_stocks/equity_simulation.py:35 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/elliott_wave_stocks/equity_simulation.py:35 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+rsi2_crypto  rc=0  Prozesse=1
+    481  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+     27  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 24 Kurs-CSV, Universumsdateien ['config/sp500_top150.txt', 'config/top25_symbols.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/rsi2_crypto/equity_simulation.py:19
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/rsi2_crypto/equity_simulation.py:19 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/rsi2_crypto/equity_simulation.py:19 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/rsi2_crypto/equity_simulation.py:19 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+rsi2_mean_reversion  rc=0  Prozesse=1
+    482  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+    153  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 150 Kurs-CSV, Universumsdateien ['config/top25_symbols.txt', 'config/sp500_top150.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/rsi2_mean_reversion/equity_simulation.py:21
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/rsi2_mean_reversion/equity_simulation.py:21 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/rsi2_mean_reversion/equity_simulation.py:21 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/rsi2_mean_reversion/equity_simulation.py:21 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+t3_supertrend  rc=0  Prozesse=1
+    491  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+     27  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 24 Kurs-CSV, Universumsdateien ['config/sp500_top150.txt', 'config/top25_symbols.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/t3_supertrend/equity_simulation.py:17
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/t3_supertrend/equity_simulation.py:17 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/t3_supertrend/equity_simulation.py:17 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/t3_supertrend/equity_simulation.py:17 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+turtle_soup_crypto  rc=0  Prozesse=1
+    481  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+     27  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 24 Kurs-CSV, Universumsdateien ['config/sp500_top150.txt', 'config/top25_symbols.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/turtle_soup_crypto/equity_simulation.py:16
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/turtle_soup_crypto/equity_simulation.py:16 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/turtle_soup_crypto/equity_simulation.py:16 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/turtle_soup_crypto/equity_simulation.py:16 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+turtle_soup_stocks  rc=0  Prozesse=1
+    482  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+    153  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 150 Kurs-CSV, Universumsdateien ['config/top25_symbols.txt', 'config/sp500_top150.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/turtle_soup_stocks/equity_simulation.py:23
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/turtle_soup_stocks/equity_simulation.py:23 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/turtle_soup_stocks/equity_simulation.py:23 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/turtle_soup_stocks/equity_simulation.py:23 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+volatility_breakout  rc=0  Prozesse=1
+    482  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+    153  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 150 Kurs-CSV, Universumsdateien ['config/top25_symbols.txt', 'config/sp500_top150.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/volatility_breakout/equity_simulation.py:18
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/volatility_breakout/equity_simulation.py:18 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/volatility_breakout/equity_simulation.py:18 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/volatility_breakout/equity_simulation.py:18 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+volatility_breakout_crypto  rc=0  Prozesse=1
+    482  Code                                     lesend
+     68  Python/Pakete                            lesend
+      1  REPO sonst                               lesend
+     27  SNAPSHOT                                 lesend
+      2  Scratchpad (eigene Ausgabe/Protokoll)    schreibend
+      4  anderswo                                 lesend
+  Snapshot: 24 Kurs-CSV, Universumsdateien ['config/sp500_top150.txt', 'config/top25_symbols.txt']
+  Nicht-Code-Zugriffe ausserhalb des Snapshots: 5
+    [REPO sonst, lesend] <repo>/requirements.lock
+        1x  <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/volatility_breakout_crypto/equity_simulation.py:16
+        1x  <repo>/shared/paths.py:529 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/volatility_breakout_crypto/equity_simulation.py:16 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /System/Library/CoreServices/SystemVersion.plist
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+        1x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/volatility_breakout_crypto/equity_simulation.py:16 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/null
+        2x  <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/shared/strategy_paths.py:88 < <repo>/strategies/volatility_breakout_crypto/equity_simulation.py:16 < <repo>/docs/belege/TB-103/d_trockenlauf.py:53
+    [anderswo, lesend] /dev/urandom
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+    [anderswo, lesend] /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        1x  <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+====================================================================================================
+UEBERSICHT  bot | rc | Snapshot-CSV | Universum aus Snapshot | Nicht-Code ausserhalb (Klasse, Art, Pfad)
+  elliott_wave                 rc=0  csv= 24  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+  elliott_wave_stocks          rc=0  csv=150  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+  rsi2_crypto                  rc=0  csv= 24  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+  rsi2_mean_reversion          rc=0  csv=150  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+  t3_supertrend                rc=0  csv= 24  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+  turtle_soup_crypto           rc=0  csv= 24  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+  turtle_soup_stocks           rc=0  csv=150  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+  volatility_breakout          rc=0  csv=150  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+  volatility_breakout_crypto   rc=0  csv= 24  cfg=config/sp500_top150.txt,config/top25_symbols.txt  aussen=5 REPO sonst/lesend:<repo>/requirements.lock; anderswo/lesend:/System/Library/CoreServices/SystemVersion.plist; anderswo/lesend:/dev/null; anderswo/lesend:/dev/urandom; anderswo/lesend:/private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC

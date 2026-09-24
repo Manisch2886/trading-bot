@@ -1,0 +1,52 @@
+# rc=0
+## ausgabe.txt (stdout+stderr, ohne Rechnungsausgabe)
+Hinweis: ENSOUSDT hat nur 8064 Kerzen (< 17520 noetig), wird uebersprungen.
+Hinweis: TRUMPUSDT hat nur 14497 Kerzen (< 17520 noetig), wird uebersprungen.
+Hinweis: PUMPUSDT hat nur 8853 Kerzen (< 17520 noetig), wird uebersprungen.
+Hinweis: ZKCUSDT hat nur 8755 Kerzen (< 17520 noetig), wird uebersprungen.
+Hinweis: UUSDT hat nur 5881 Kerzen (< 17520 noetig), wird uebersprungen.
+Hinweis: BMTUSDT hat nur 13098 Kerzen (< 17520 noetig), wird uebersprungen.
+Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Kerzenzahl zu klein.
+elliott_wave: Trockenlauf fertig (Laden, Signalpfad, eine Simulation)
+## zusammenfassung.json
+{
+  "bot": "elliott_wave",
+  "erwartet_nach_exclude": 24,
+  "exclude_symbols": [
+    "PAXGUSDT",
+    "XAUTUSDT"
+  ],
+  "geladen_gleich_liste": false,
+  "geladen_n": 18,
+  "geladen_nicht_in_liste": [],
+  "ladeprotokoll": [
+    "Hinweis: ENSOUSDT hat nur 8064 Kerzen (< 17520 noetig), wird uebersprungen.",
+    "Hinweis: TRUMPUSDT hat nur 14497 Kerzen (< 17520 noetig), wird uebersprungen.",
+    "Hinweis: PUMPUSDT hat nur 8853 Kerzen (< 17520 noetig), wird uebersprungen.",
+    "Hinweis: ZKCUSDT hat nur 8755 Kerzen (< 17520 noetig), wird uebersprungen.",
+    "Hinweis: UUSDT hat nur 5881 Kerzen (< 17520 noetig), wird uebersprungen.",
+    "Hinweis: BMTUSDT hat nur 13098 Kerzen (< 17520 noetig), wird uebersprungen.",
+    "Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Kerzenzahl zu klein."
+  ],
+  "nicht_geladen": [
+    "BMTUSDT",
+    "ENSOUSDT",
+    "PUMPUSDT",
+    "TRUMPUSDT",
+    "UUSDT",
+    "ZKCUSDT"
+  ],
+  "signalpfad_gelaufen": true,
+  "simulation_gelaufen": true,
+  "summenzeile": [
+    "Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Kerzenzahl zu klein."
+  ],
+  "symbolliste_datei": "<repo>/config/top25_symbols.txt",
+  "symbolliste_datei_existiert": true,
+  "symbolliste_gleich_universum": true,
+  "symbolliste_ist_standardliste": false,
+  "symbolliste_modul": "shared/symbols_config.py",
+  "symbolliste_n": 24,
+  "universum_zeilen": 25
+}
+## rechnung_stdout.txt (ROHPROTOKOLL - Ausgabe von Signalpfad und Simulation, nicht ins Ergebnisdokument, Sichtschutz 27.1)

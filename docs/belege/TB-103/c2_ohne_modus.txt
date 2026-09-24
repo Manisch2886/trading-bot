@@ -1,0 +1,19 @@
+# TB-103 C2 - ohne Modus, Lauf in den Scratchpad (TB-102 lauf.sh ohne)
+## Code VOR C1 (d87997e-Stand von messgroessen.py = d05e3ff)
+# TB-102 Lauf 'ohne', HEAD 1d2b836, 2026-09-24 23:59:38 +0200
+# Umgebung: TB102_ART=ohne
+rc=0 Dauer 12 s
+## Ausgabe (letzte 15 Zeilen)
+## Ergebnis
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  <scratch>/c2_vor_c1/messgroessen.json
+## Code NACH C1 (Arbeitsbaum = ae136fd)
+# TB-102 Lauf 'ohne', HEAD d87997e, 2026-09-25 00:10:44 +0200
+# Umgebung: TB102_ART=ohne
+rc=0 Dauer 13 s
+## Ausgabe (letzte 15 Zeilen)
+## Ergebnis
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  <scratch>/c2_nach_c1/messgroessen.json
+## Vergleiche
+nach C1 == messgroessen_2026-09-23_nachweis.json (7f46d5f5): bytegleich
+nach C1 == vor C1: bytegleich
+=> keine Abweichung, keine Ursache auszumessen.

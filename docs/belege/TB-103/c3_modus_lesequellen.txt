@@ -1,0 +1,69 @@
+# TB-103 C3 - messgroessen.py IM SELEKTIONSMODUS (nur TB_SELEKTIONS*, TB-102 lauf.sh selektion), HEAD ae136fd, Lesehaken TB-98
+# TB-102 Lauf 'selektion', HEAD ae136fd, 2026-09-25 00:25:13 +0200
+# Umgebung: TB_SELEKTIONSWURZEL=<repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 TB_SELEKTIONSHASH=63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 TB_SELEKTIONSCOMMIT=ae136fda1a3e76eca668d6d9e047d3723317b166
+rc=0 Dauer 12 s
+## Ausgabe (letzte 15 Zeilen)
+[paths] plattform           macOS-15.7.9-x86_64-i386-64bit
+[paths] snapshot_wurzel     <repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+[paths] snapshot_hash       63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+TB-30a - Messgroessen: die Zahlen, auf denen die Rastergrenzen ruhen
+
+Round-Trip-Kosten: 0.30 %
+
+Zeitrahmen        n  Sigma/Balken   Spanne20    ATR14  Schluss-Tief
+aktien_1d       150        2.222%     11.38%    2.34%         0.92%
+krypto_1d        23        5.959%     35.85%    7.63%         3.00%
+krypto_1h        24        1.263%      6.14%    1.36%         0.55%
+krypto_4h        24        2.450%     13.13%    2.86%         1.14%
+
+Geschrieben: <scratch>/c3_modus_1/messgroessen.json
+  SHA-256: 7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6
+## Ergebnis
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  <scratch>/c3_modus_1/messgroessen.json
+
+## Lesequellen Lauf 1
+Prozesse: 1
+  #argv	research/vorregistrierung/messgroessen.py --ziel <scratch>/c3_modus_1/messgroessen.json
+
+Dateien je Herkunft (verschieden, nach Aufloesung):
+    534  Python/Pakete
+      1  REPO Code
+      1  REPO research/
+      1  REPO sonst
+    225  SNAPSHOT
+      5  anderswo
+
+Nicht-Code-Dateien mit oeffnendem Rahmen (Snapshot-CSV zusammengefasst):
+  [REPO research/] research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv
+        geoeffnet von research/vorregistrierung/messgroessen.py:232 (1 x)
+  [REPO sonst] requirements.lock
+        geoeffnet von shared/paths.py:470 (1 x)
+        geoeffnet von shared/paths.py:529 (1 x)
+  [SNAPSHOT] snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
+        geoeffnet von shared/paths.py:292 (2 x)
+  [SNAPSHOT] snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:114 (2 x)
+        geoeffnet von shared/paths.py:570 (1 x)
+  [SNAPSHOT] snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:114 (2 x)
+        geoeffnet von shared/paths.py:570 (1 x)
+  [anderswo] ../../../System/Library/CoreServices/SystemVersion.plist
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+        geoeffnet von shared/paths.py:501 (1 x)
+  [anderswo] ../../../dev/null
+        geoeffnet von shared/paths.py:501 (2 x)
+  [anderswo] ../../../dev/urandom
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../..<scratch>/c3_modus_1/messgroessen.json
+        geoeffnet von research/vorregistrierung/messgroessen.py:280 (1 x)
+        geoeffnet von research/vorregistrierung/messgroessen.py:309 (1 x)
+  [anderswo] ../../../usr/share/zoneinfo/UTC  ->  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [SNAPSHOT] Kurs-CSV (444 Oeffnungen) geoeffnet von research/vorregistrierung/messgroessen.py:123
+
+## Zaehlung (b) Leseprotokoll
+Kurs-CSV aus dem Snapshot (verschieden): 222
+Universumsdateien aus dem Snapshot: 2
+aus <repo>/data/: 0   aus <repo>/config/: 0
+ausserhalb, Nicht-Code: haltedauern_je_bot.csv (ERWARTET, 1), requirements.lock (BEFUND: Lock-Pruefung der Startpruefung paths.py:470/529),
+  System: SystemVersion.plist, /dev/null, /dev/urandom (platform.platform() in der Lock-Pruefung und numpy/pandas-Import), eigene Ausgabe im Scratchpad

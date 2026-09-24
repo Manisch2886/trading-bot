@@ -8897,6 +8897,48 @@ manuellen Eingriffe zum Anhängen.
 
 ---
 
+## DB — TB-103: Resolver-Fix, `messgroessen.py` auf den Resolver, Trockenlauf aller neun Bots im Modus — Symbollisten kommen jetzt aus dem Snapshot, fehlende Liste ist rc 2, neun Bots laden im Modus dieselbe Menge wie im Betrieb (25.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-103_resolver_und_trockenlauf.md`*
+
+**Quelle:** Mac-Sitzung **TB-103**, 24./25.09.2026, Eingang `d05e3ff`. Commits `1d2b836` (Schritt 0),
+`d87997e` (`paths.py` + Tests), `ae136fd` (`messgroessen.py` + Tests) und der Abgabe-Commit.
+Belege `docs/belege/TB-103/`. Grundlage Fable 24b A2, 24c Abschnitte 1, 2, 6.
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **0** | Die Registerkopie ist zeichengleich mit `d0dc890`. Die Hilfsdatei ist gleich dem Kopf und liegt jetzt im Scratchpad (`rm` gesperrt) |
+| **A** | Abweichungen: Alle vier `stocks_symbols_config.py` holen `CONFIG_DIR` über `strategy_paths`, nicht nur eine. Die Kostenzeilen stehen in `messgroessen.py` Z. 61/62, nicht in 58/59. Der Fix trifft keinen Mutationsanker, aber die Attrappen dreier Tests. `messgroessen.py` steht in `EINGEFROREN`, auf keinem Sperrlistenpunkt. Das Rückfall-Inventar umfasst gut 50 Fundstellen |
+| ⭐ **B** | `CONFIG_DIR = <snapshot>/config`. Die Universumsdateien nennt das **MANIFEST**, keine zweite Namensliste. Fehlt eine, ist sie leer, oder nennt das MANIFEST keine: `SystemExit(2)` beim Import. G1–G6 und G3b neu, Mutationen G7–G10 beissen je allein, B2 ist umgeschrieben. Ohne Modus 99/0. `test_strategy_paths` hat die Betreiber-Freigabe um 23:49 bekommen |
+| **C** | `messgroessen.py` importiert `paths` direkt, weil `get_strategy_paths()` `results/`- und `logs/`-Ordner angelegt hätte. Ohne Modus bytegleich; im Modus zweimal bytegleich aus 222+2 Snapshot-Dateien, 0 aus `data/`. Nachweis **2** wegen `haltedauern_je_bot.csv`. Teil I (I1, I2, I2-G), 191/191 |
+| ⭐⭐ **D** | **9/9 rc 0, Liste aus `<snapshot>/config/`, 0-mal Standardliste, geladene Menge mit und ohne Modus gleich (18/20/147)**, 0 Kurs- oder Universumsdateien ausserhalb. Je Bot 5 Umgebungszugriffe (`requirements.lock` und Systemdateien). Der Tagblocker aus TB-98 ist weg |
+| **E** | Geändert sind nur die sechs freigegebenen Dateien. Datenstand, Snapshot und `ergebnisse/` sind unverändert, Sonde vorher = nachher. Zwei DBs hat der Cron um 00:05 und 00:15 geändert |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Eine Reparatur am Resolver trifft zuerst die Attrappen der Tests, nicht ihre Anker.** Drei Testdateien bauten den Snapshot in der falschen Anordnung nach, die der Fix beseitigt. Die Kreuzprobe (neuer Code mit alten Tests, alter Code mit neuen Tests) zeigt beides |
+| ⭐ | **Die Liste der Pflichtdateien steht dort, wo die Anordnung entsteht.** Das MANIFEST nennt sie; `paths.py` liest sie dort, statt eine zweite Liste zu führen. „Keine genannt“ ist ein Abbruch, kein „alles da“ |
+| ⭐ | **„Resolver“ ist ein Modul, kein Funktionsname.** `get_strategy_paths()` reicht nur durch und legt nebenbei Ordner an; ein Aufrufer ausserhalb von `strategies/<bot>/` nimmt `paths` direkt |
+| ⭐ | **„0 Zugriffe ausserhalb“ braucht eine Klasse.** Die Startprüfung selbst liest `requirements.lock`, und pandas öffnet Systemdateien. Daten, Code und Laufumgebung werden getrennt gezählt |
+
+### Was offen bleibt
+
+- Zwei Auslegungsfragen an Fable zur Tag-Vorbedingung: Zählt die Laufumgebung? Meint „gleiche
+  Menge“ die Liste oder die geladene Menge?
+- Das Ladeprotokoll nennt die Quelle der Liste nicht (eigene Freigabe).
+- Rückfälle, die der Modus noch erreicht: `EXCLUDE`-leere Liste, Regimefilter `t3_supertrend`,
+  `exit()` mit rc 0, Pfadlogik von `benchmark`, `faltenplan` und `herkunft`.
+- Register 41/42.
+- Der `messgroessen`-Nachweis wartet auf Plan-Punkt 3.
+
+*Geschrieben 25.09.2026 von der Mac-Sitzung TB-103. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
