@@ -1,0 +1,37 @@
+# TB-103 B3 - Mutationsproben, jede ALLEIN gegen den Grundzustand (Fable 24b B3)
+# Jede Mutation aendert genau eine Stelle von paths.py; alle uebrigen Stellen im Grundzustand.
+#  M1 (G7)  'CONFIG_DIR = os.path.join(_MODUS[0], CONFIG_UNTERORDNER)' -> 'CONFIG_DIR = _MODUS[0]'  (Fix zurueckgenommen)
+#  M2 (G8)  Aufruf '_pruefe_universum(_MODUS[0])' beim Import entfernt                          (Existenzpruefung entfernt)
+#  M3 (G9)  Leer-Pruefung 'if not any(zeile.strip() ...)' -> 'if False'                           (nur G3/G3b duerfen rot werden)
+#  M4 (G10) 'if not namen:' -> 'if False:'                                                       (nur G4 darf rot werden)
+# Stoerproben beide Richtungen: G1-G4 MUSS abbrechen, G5/G6 darf NICHT abbrechen.
+
+  [ok]     G1 Modus, config/ fehlt in der Attrappe -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - <tmp>/tb52_attrappe_m4n3utf9/confi, Standardliste nein
+  [ok]     G2 Modus, config/ da, eine Universumsdatei fehlt -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+  [ok]     G3 Modus, eine Universumsdatei leer (0 Bytes) -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+  [ok]     G3b Modus, eine Universumsdatei nur aus Leerzeilen -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+  [ok]     G4 Modus, das MANIFEST nennt keine Datei unter config/ -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - <tmp>/tb52_attrappe_fjs41d9z/MANIF, Standardliste nein
+  [ok]     G5 Modus, alles da -> rc 0, CONFIG_DIR endet auf /config, Liste aus dem Snapshot - rc=0, CONFIG_DIR=<tmp>/tb52_attrappe_qmr4kfan/config, 3 Symbole aus <tmp>/tb52_attrappe_qmr4kfan/config/top25_symbols.txt
+  [ok]     G6 Modus, leere Zusatzdatei in config/, vom MANIFEST nicht genannt -> rc 0 (Stoerprobe: darf nichts ausloesen) - rc=0
+  [ok]     G7 Mutationsprobe M1 (Fix zurueckgenommen) beisst: G5 rot - mutiert: rc=0, CONFIG_DIR=<tmp>/tb52_attrappe_qmr4kfan, Standardliste JA
+  [ok]     G8 Mutationsprobe M2 (Existenzpruefung entfernt) beisst: G1-G4 alle rot - rot unter der Mutation: G1(rc=0, Standardliste), G2(rc=0, Standardliste), G3(rc=0), G3b(rc=0, Standardliste), G4(rc=0)
+  [ok]     G9 Mutationsprobe M3 (Leer-Pruefung entfernt) beisst: G3 und G3b rot, G2 bleibt gruen - G3 rc=0, keine Startpruefungszeile, Standardliste nein / G3b rc=0, keine Startpruefungszeile, Standardliste JA / G2 rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+  [ok]     G10 Mutationsprobe M4 (leere Namensmenge zugelassen) beisst: G4 rot, G2 bleibt gruen - G4 rc=0, keine Startpruefungszeile, Standardliste nein / G2 rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+
+## Kreuzprobe im lokalen Klon (1d2b836): ALTE paths.py gegen die NEUEN Tests - die neuen Proben muessen dort rot sein
+  [FEHLER] B2 CONFIG_DIR zeigt in den Snapshot-Unterordner config/ - <tmp>/tb52_attrappe_6tdwg0a_
+  [FEHLER] G1 Modus, config/ fehlt in der Attrappe -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste JA
+  [FEHLER] G2 Modus, config/ da, eine Universumsdatei fehlt -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste JA
+  [FEHLER] G3 Modus, eine Universumsdatei leer (0 Bytes) -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste JA
+  [FEHLER] G3b Modus, eine Universumsdatei nur aus Leerzeilen -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste JA
+  [FEHLER] G4 Modus, das MANIFEST nennt keine Datei unter config/ -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste JA
+  [FEHLER] G5 Modus, alles da -> rc 0, CONFIG_DIR endet auf /config, Liste aus dem Snapshot - rc=0, CONFIG_DIR=<tmp>/tb52_attrappe_wanxi67w, 5 Symbole aus <tmp>/tb52_attrappe_wanxi67w/top25_symbols.txt
+  [FEHLER] G6 Modus, leere Zusatzdatei in config/, vom MANIFEST nicht genannt -> rc 0 (Stoerprobe: darf nichts ausloesen) - rc=0
+  [FEHLER] G7 Mutationsprobe M1 - Mutation griff nicht
+  [FEHLER] G8 Mutationsprobe M2 - Mutation griff nicht
+  [FEHLER] G9 Mutationsprobe M3 - Mutation griff nicht
+  [FEHLER] G10 Mutationsprobe M4 - Mutation griff nicht
+23 von 35 Pruefungen bestanden, 12 fehlgeschlagen.
+  [FEHLER] B2 CONFIG_DIR zeigt bei allen Bots in den Snapshot-Unterordner config/ - 0 von 9
+22 von 23 Pruefungen bestanden, 1 fehlgeschlagen.
+(G7-G10 'Mutation griff nicht' in der alten Fassung ist richtig: die zitierten Stellen gibt es dort nicht.)

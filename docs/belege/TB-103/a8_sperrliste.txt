@@ -1,0 +1,61 @@
+# TB-103 A8 - Sperrlistenpruefung der Dateien, die dieser Auftrag aendern darf, 2026-09-24 23:58:47 +0200
+Register Abschnitt 10: Z. 843-1049 (Auftrag: 843-1050)
+Die 14 Punkte (Kopfzeilen):
+1. **Rastergrenzen und Grenzsätze** — `registerdaten.py`, Abschnitt 3 dieses
+2. **Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen** —
+3. **Selektionsstatistik, Plateau-Regel, Spitzen-Schwelle** —
+4. **Drawdown-Bedingung, `DD_Toleranz` und die vorab berechneten
+5. **Abbruchkriterien und Kapitalregel** — `auswertung.py`
+6. **Benchmark-Definitionen** — gleichgewichtete Tagesrenditen,
+7. **N-Buchführung und Clusterschwelle** —
+8. **Universumsdateien und point-in-time-Regel** — `config/top25_symbols.txt`,
+9. **Kosten (0,30 %) und Fill-Konvention** — `TRADING_FEE_PCT = 0,1` und
+10. **Zuteilungskaskade inklusive Seed** — `shared/zuteilung.py`,
+11. **Commit-Hashes von Simulation, Erkennung, Optimierern und
+12. **Hash des Datenstands** — `herkunft.py::datenstand()`
+13. **Die Liste der berichteten Kennzahlen und die Regel, dass alle
+14. **Die Reihenfolge Selektion → Bestätigungsperiode → Bericht** — im
+
+== shared/paths.py
+   Abschnitt 10 (Z. 843-1049), Treffer 'paths.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== shared/test_paths.py
+   Abschnitt 10 (Z. 843-1049), Treffer 'test_paths.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== shared/test_startpruefungen.py
+   Abschnitt 10 (Z. 843-1049), Treffer 'test_startpruefungen.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== shared/test_strategy_paths.py
+   Abschnitt 10 (Z. 843-1049), Treffer 'test_strategy_paths.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/vorregistrierung/messgroessen.py
+   Abschnitt 10 (Z. 843-1049), Treffer 'messgroessen.py': 2
+      955:    > neun `backtest_*.py`; `messgroessen.py:59` `SLIPPAGE_PCT`, die Gebühr dort
+      964:    > `messgroessen.py` (`GEBUEHR_PCT`) bleiben **überwachte** Kopien. Modul und
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: True
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/vorregistrierung/test_vorregistrierung.py
+   Abschnitt 10 (Z. 843-1049), Treffer 'test_vorregistrierung.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+
+## Ergebnis
+Keine der Dateien steht auf einem der 14 Punkte, in SPERRLISTE_DATEIEN oder im Abbild -> Abbruchkriterium 1 greift nicht.
+⚠️ Drei Beruehrungen, benannt:
+ (a) messgroessen.py steht in herkunft.py::EINGEFROREN (Abschnitt-0-Menge, Eingabe von register(), Tatsachennotiz
+     37.4/Register Z. 6595). Das ist keine Sperrlistenposition; die Aenderung aendert den Gesamthash von register(),
+     der erst am Tag bezeugt wird. Die Sonde fuehrt die Gruppe 'eingefroren' heute als 2 (nicht im Abbild).
+ (b) Punkt 9 (Kosten) nennt messgroessen.py in einer Marke (Z. 955-964) als 'ueberwachte Kopie' von GEBUEHR_PCT/
+     SLIPPAGE_PCT. Diese beiden Zeilen (Z. 61/62) aendert der Umbau NICHT (A7, c1_umbau.txt).
+ (c) test_strategy_paths.py war nicht in der Freigabe; Freigabe des Betreibers 24.09.2026 23:49 (Auswahlkarte in dieser
+     Sitzung, Antwort 'Ja, freigeben (Empfohlen)'): Attrappe um config/ + MANIFEST-Eintraege, Probe B2 umschreiben.

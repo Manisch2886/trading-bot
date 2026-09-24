@@ -1,0 +1,36 @@
+# TB-103 B2 - Probe A (ohne Modus, 99 Pfade ueber neun Bots) und Probe N1, nach dem Fix
+Probe A - ohne Modus verhaelt sich paths.py wie im Bezugscommit
+  [ok]     A1 null Unterschiede - 99 Pfade verglichen (9 Bots), 0 Unterschiede
+  [ok]     A2 Mutationsprobe beisst - verstellte Fassung -> 18 Unterschiede (ohne die Mutation: 0)
+  [ok]     N1 ohne Modus: 0 subprocess-Aufrufe, 0 Paketabfragen - subprocess 0 / importlib.metadata 0 / os.system,popen 0
+  [ok]     N2 ohne Modus: startpruefung() ist None, audit_zeilen() leer, kein subprocess/platform/hashlib/metadata im Modul - Modulnamen im Namensraum: keine
+  [ok]     N3 Syntaxbaum: subprocess/importlib/platform/hashlib werden auf Modulebene nicht importiert - auf Modulebene: keiner
+  [ok]     N1/N2 Mutationsprobe beisst - mit einem git-Aufruf und einer Paketabfrage im Import zaehlt die Attrappe 2 / 2
+  [ok]     N3 Mutationsprobe beisst - 2 Import(e) auf Modulebene gefunden
+  [ok]     N4 ohne Modus: alle Pfade zeichengleich wie in 624853bd - 144 Pfade verglichen (9 Bots), 0 Unterschiede
+  [ok]     N4 Mutationsprobe beisst - verstellte Fassung -> 27 Unterschiede
+
+## Dateizugriffe beim Import von paths OHNE Modus (Audit-Haken open/listdir/scandir/Popen/system, ohne .py/.pyc)
+## Skript: <scratch>/zugriffe_ohne_modus.py (Kopie unten)
+vor dem Fix (Klon 1d2b836): <scratch>/basis/shared: 1 Zugriffe ["os.listdir ('<scratch>/basis/shared',)"] | DATA_DIR=<scratch>/basis/data CONFIG_DIR=<scratch>/basis/config
+nach dem Fix (Arbeitsbaum): shared: 1 Zugriffe ["os.listdir ('<repo>/shared',)"] | DATA_DIR=<repo>/data CONFIG_DIR=<repo>/config
+=> derselbe eine Zugriff (listdir des Import-Finders auf shared/), kein zusaetzlicher. Pfade gleich.
+
+## zugriffe_ohne_modus.py
+"""TB-103 B2: Dateizugriffe (audit 'open', ohne .py/.pyc) beim Import von paths OHNE Modus."""
+import os, sys
+ordner = sys.argv[1]
+for v in ("TB_SELEKTIONSWURZEL", "TB_SELEKTIONSHASH", "TB_SELEKTIONSCOMMIT"):
+    os.environ.pop(v, None)
+zugriffe = []
+def haken(e, a):
+    if e == "open" and a and isinstance(a[0], (str, bytes)):
+        p = os.fsdecode(a[0])
+        if not p.endswith((".py", ".pyc")) and "__pycache__" not in p:
+            zugriffe.append(p)
+    if e in ("subprocess.Popen", "os.system", "os.listdir", "os.scandir"):
+        zugriffe.append("%s %r" % (e, a[:1]))
+sys.addaudithook(haken)
+sys.path.insert(0, ordner)
+import paths
+print("%s: %d Zugriffe %s | DATA_DIR=%s CONFIG_DIR=%s" % (ordner, len(zugriffe), zugriffe, paths.DATA_DIR, paths.CONFIG_DIR))

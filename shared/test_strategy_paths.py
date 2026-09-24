@@ -73,6 +73,11 @@ BETRIEB = ("RESULTS_DIR", "LOGS_DIR", "DB_FILE")
 
 ATTRAPPEN_HASH = "attrappe000000000000000000000000"
 
+# TB-103: die Universumsdateien der Attrappe, Anordnung wie im echten Snapshot
+# (`config/` unter der Wurzel, im MANIFEST unter `dateien` genannt).
+UNIVERSUM = {"config/top25_symbols.txt": "AAAUSDT\nBBBUSDT\nCCCUSDT\n",
+             "config/sp500_top150.txt": "AAA\nBBB\n"}
+
 BESTANDEN = 0
 FEHLER = []
 
@@ -169,7 +174,15 @@ def baue_attrappe(hash_=ATTRAPPEN_HASH):
         datei.write("timestamp,close\n2020-01-01,1.0\n")
     with open(os.path.join(ordner, "MANIFEST.json"), "w") as datei:
         json.dump({"snapshot_hash": hash_, "datenstand_hash": "egal",
-                   "kursdateien": 1, "dateien": {"XXXTEST_1d.csv": {}}}, datei)
+                   "kursdateien": 1,
+                   "dateien": dict({"XXXTEST_1d.csv": {}},
+                                   **{name: {} for name in UNIVERSUM})}, datei)
+    # TB-103: seit dem Resolver-Fix verlangt der Modus die Universumsdateien
+    # unter <snapshot>/config/, wie sie das MANIFEST nennt - sonst rc 2.
+    os.makedirs(os.path.join(ordner, "config"))
+    for name, text in UNIVERSUM.items():
+        with open(os.path.join(ordner, name), "w") as datei:
+            datei.write(text)
     return ordner
 
 
@@ -335,9 +348,13 @@ def probe_b_modus():
         check("B1 DATA_DIR zeigt bei allen Bots in den Snapshot",
               len(im_snapshot) == len(BOTS),
               "%d von %d" % (len(im_snapshot), len(BOTS)))
+        # ⚠️ TB-103 umgeschrieben (Freigabe des Betreibers 24.09.2026, 23:49):
+        # bis dahin `== attrappe`, die falsche flache Anordnung (TB-98 Befund 1).
         config = [b for b in BOTS
-                  if alle[b].get("pfade", {}).get("CONFIG_DIR") == attrappe]
-        check("B2 CONFIG_DIR zeigt bei allen Bots in den Snapshot",
+                  if alle[b].get("pfade", {}).get("CONFIG_DIR")
+                  == os.path.join(attrappe, "config")]
+        check("B2 CONFIG_DIR zeigt bei allen Bots in den Snapshot-Unterordner "
+              "config/",
               len(config) == len(BOTS), "%d von %d" % (len(config), len(BOTS)))
         # ⚠️ Der Betrieb bleibt im Baum: kein Ergebnis, kein Log, keine
         # Datenbank darf in den Snapshot zeigen.

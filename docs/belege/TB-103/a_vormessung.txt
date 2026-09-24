@@ -1,0 +1,98 @@
+# TB-103 Block A - Nachmessung der Vormessung, HEAD 1d2b836 (Code-Stand = d05e3ff, nur docs/ dazu), 2026-09-24 23:57:37 +0200
+
+## A1 shared/paths.py im Stand HEAD (vor dem Fix): else-Zweig und Kopftext
+91:Dasselbe Paar fuer `CONFIG_DIR` / `LIVE_CONFIG_DIR`. Die Snapshot-Wurzel ist
+92:flach: die Symbollisten (`top25_symbols.txt`, `sp500_top150.txt`) liegen dort
+93:neben den Kursdateien, deshalb zeigen unter dem Modus beide dorthin.
+569:    DATA_DIR = _MODUS[0]
+570:    CONFIG_DIR = _MODUS[0]
+=> ja: beide auf die flache Wurzel (Z. 569/570), Kopftext Z. 91-93 begruendet es mit der flachen Anordnung. Befund: Kopftext falsch (A2).
+
+## A2 Snapshot-Anordnung
+Eintraege in der Wurzel: 225 (davon *.csv: 223, MANIFEST.json, config/)
+config/:
+  sp500_top150.txt 626 Bytes
+  top25_symbols.txt 208 Bytes
+Zeilen: top25_symbols.txt 24, sp500_top150.txt 149
+Flach in der Wurzel: top25_symbols.txt 0 / sp500_top150.txt 0 (0 = nicht vorhanden)
+MANIFEST.dateien mit Praefix config/:
+   config/sp500_top150.txt {'art': 'Eingabe', 'bytes': 626, 'im_datenstand': False, 'sha256': '6acba892f38e998cf43ae9e5594c4707945143aba481429c44a5c6005339f607'}
+   config/top25_symbols.txt {'art': 'Eingabe', 'bytes': 208, 'im_datenstand': False, 'sha256': '3afc95a4f6b5ebc3a8f7bb7854b5dd59c4ecc4e3d86aa7b93c08066a3fccf810'}
+  eingabeliste art=Eingabe: ['config/top25_symbols.txt', 'config/sp500_top150.txt']
+cmp mit config/ im Repo: beide bytegleich
+=> ja
+
+## A3 Wo der Rueckfall sitzt (md5 der vier stocks_symbols_config.py)
+949ee8255f6088a7614d5d02475d389d shared/symbols_config.py
+148daf0c587969d4e4b6820f6c63dad5 strategies/elliott_wave_stocks/stocks_symbols_config.py
+5a3d0c33fb4a633e4342bb5f008f599f strategies/rsi2_mean_reversion/stocks_symbols_config.py
+5a3d0c33fb4a633e4342bb5f008f599f strategies/turtle_soup_stocks/stocks_symbols_config.py
+fd4ade355d1336c32f07c17c5024e5f7 strategies/volatility_breakout/stocks_symbols_config.py
+strategies/rsi2_mean_reversion/stocks_symbols_config.py:17:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/stocks_symbols_config.py:18:_P = get_strategy_paths(__file__)
+strategies/rsi2_mean_reversion/stocks_symbols_config.py:22:DEFAULT_SYMBOLS = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN"]
+strategies/rsi2_mean_reversion/stocks_symbols_config.py:31:    print(f"Warnung: {SYMBOLS_FILE} nicht gefunden. Nutze Standardliste (5 Aktien).")
+shared/symbols_config.py:16:from paths import CONFIG_DIR
+shared/symbols_config.py:19:DEFAULT_SYMBOLS = ["BTCUSDT", "ETHUSDT", "SOLUSDT", "BNBUSDT", "XRPUSDT"]
+shared/symbols_config.py:33:    print(f"Warnung: {SYMBOLS_FILE} nicht gefunden. Nutze Standardliste (5 Symbole).")
+strategies/elliott_wave_stocks/stocks_symbols_config.py:16:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/stocks_symbols_config.py:17:_P = get_strategy_paths(__file__)
+strategies/elliott_wave_stocks/stocks_symbols_config.py:21:DEFAULT_SYMBOLS = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN"]
+strategies/elliott_wave_stocks/stocks_symbols_config.py:30:    print(f"Warnung: {SYMBOLS_FILE} nicht gefunden. Nutze Standardliste (5 Aktien).")
+strategies/turtle_soup_stocks/stocks_symbols_config.py:17:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/stocks_symbols_config.py:18:_P = get_strategy_paths(__file__)
+strategies/turtle_soup_stocks/stocks_symbols_config.py:22:DEFAULT_SYMBOLS = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN"]
+strategies/turtle_soup_stocks/stocks_symbols_config.py:31:    print(f"Warnung: {SYMBOLS_FILE} nicht gefunden. Nutze Standardliste (5 Aktien).")
+strategies/volatility_breakout/stocks_symbols_config.py:17:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/stocks_symbols_config.py:18:_P = get_strategy_paths(__file__)
+strategies/volatility_breakout/stocks_symbols_config.py:22:DEFAULT_SYMBOLS = ["AAPL", "MSFT", "NVDA", "GOOGL", "AMZN"]
+strategies/volatility_breakout/stocks_symbols_config.py:31:    print(f"Warnung: {SYMBOLS_FILE} nicht gefunden. Nutze Standardliste (5 Aktien).")
+=> 5 Dateien, 3 verschiedene Fassungen der Aktien-Datei (rsi2_mean_reversion == turtle_soup_stocks).
+   ⚠️ ABWEICHUNG zur Vormessung: nicht nur volatility_breakout, sondern ALLE VIER stocks_symbols_config.py
+   holen CONFIG_DIR ueber strategy_paths.get_strategy_paths() (Z. 16/17). Die drei Fassungen unterscheiden
+   sich nur im Kopftext und in einer Hinweiszeile (elliott_wave_stocks: 'python3 get_top_stocks.py').
+   Zusatz: symbols_config.py faellt auch zurueck, wenn die Datei existiert, aber nach EXCLUDE_SYMBOLS
+   leer ist (Z. 31 'if symbols:'), die Meldung sagt dann faelschlich 'nicht gefunden'.
+
+## A5 test_paths.py Probe B2 (HEAD) und die Mutationsproben, die paths.py woertlich zitieren
+256:        check("B2 CONFIG_DIR zeigt in den Snapshot",
+257:              w.get("CONFIG_DIR") == attrappe, str(w.get("CONFIG_DIR")))
+Mutationsanker (alt -> nach dem Fix noch vorhanden?):
+      DATA_DIR = _MODUS[0]                           HEAD 1 / Fix 1
+      import sys as _sys                             HEAD 1 / Fix 1
+      gefunden = _lies_snapshot_hash(wurzel)         HEAD 1 / Fix 1
+  _MODUS = _modus_aus_umgebung()                     HEAD 1 / Fix 1
+  # Die Namen der beiden Umgebungsvariablen          HEAD 1 / Fix 1
+  os.path.join(BASE_DIR, "data")                     HEAD 1 / Fix 1
+      if zeilen:                                     HEAD 1 / Fix 1
+      if abweichungen:                               HEAD 1 / Fix 1
+  raise SystemExit(RUECKGABEWERT_STARTPRUEFUNG)      HEAD 1 / Fix 1
+=> B2 prueft die flache Wurzel (HEAD Z. 256-257) und ist mit dem Fix absichtlich rot -> umgeschrieben (b_proben.txt).
+   Vom Fix GETROFFEN wird keiner der zitierten Anker: alle greifen weiter (0 x NICHT PRUEFBAR in allen vier Tests).
+   Die Vormessung 'um Z. 308, 368, 504' sind Zeilen in test_paths.py (Mutationen C, D, F), nicht in paths.py.
+   ⚠️ Getroffen hat der Fix stattdessen die ATTRAPPEN: test_paths, test_startpruefungen und test_strategy_paths
+   bauen einen Snapshot ohne config/ - mit dem Fix rc 2 in jedem Modus-Lauf (Kreuzprobe in b4_tests.txt).
+
+## A6 messgroessen.py (HEAD)
+39:import argparse
+40:import hashlib
+41:import json
+42:import math
+43:import os
+44:import sys
+45:from datetime import datetime, timezone
+47:import numpy as np
+48:import pandas as pd
+50:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+52:DATA_DIR = os.path.join(BASE_DIR, "data")
+53:CONFIG_DIR = os.path.join(BASE_DIR, "config")
+207:    pfad = os.path.join(BASE_DIR, "research", "tb24_haltedauern",
+208:                        "ergebnisse", "haltedauern_je_bot.csv")
+Importe von paths/strategy_paths: 0
+=> ja, wie TB-102. haltedauern() liegt jetzt Z. 200-218, liest Z. 207-208.
+
+## A7 Kostenzeilen in messgroessen.py
+61:GEBUEHR_PCT = 0.1
+62:SLIPPAGE_PCT = 0.05
+⚠️ ABWEICHUNG: Register Abschnitt 10 Punkt 9 (Marke 37.5 (4)) nennt 'messgroessen.py:59 SLIPPAGE_PCT' und
+   'GEBUEHR_PCT (Z. 58)'; gemessen stehen sie in Z. 61/62. Der Umbau C1 beruehrt beide Zeilen nicht (c1_umbau.txt).

@@ -1,0 +1,307 @@
+# TB-103 B4 - die Testlandschaft nach dem Fix (Arbeitsbaum mit paths.py + Tests, vor Commit 2)
+# und dieselben Tests im lokalen Klon 1d2b836 (vor dem Fix) als Vergleich.
+
+Test                       vor dem Fix (1d2b836)  nach dem Fix          
+test_paths                 24 von 24              35 von 35             
+test_startpruefungen       44 von 44              44 von 44             
+test_strategy_paths        23 von 23              23 von 23             
+test_stille_ausfaelle      27 von 27              27 von 27             
+test_vorregistrierung      188/188 (TB-97, Register) 188/188 Pruefungen bestanden.
+
+## Namen - was neu ist, was umgeschrieben ist (Fable 24b B2: Namen, nicht die Zahl)
+test_paths.py            NEU: G1, G2, G3, G3b, G4, G5, G6 (Proben), G7, G8, G9, G10 (Mutationsproben M1-M4)
+                         UMGESCHRIEBEN: B2 ('CONFIG_DIR zeigt in den Snapshot' -> '... in den Snapshot-Unterordner config/')
+                         ANGEPASST (Aufrufumgebung, nicht Prueflogik): baue_attrappe (config/ + MANIFEST-Eintraege),
+                         baue_baum (Kopie der echten symbols_config.py + abfrage_symbole.py), frage(abfrage=...)
+test_startpruefungen.py  NEU: keine. UMGESCHRIEBEN: keine. ANGEPASST: baue_attrappe (config/ + MANIFEST-Eintraege)
+test_strategy_paths.py   UMGESCHRIEBEN: B2 (-> '... in den Snapshot-Unterordner config/'). ANGEPASST: baue_attrappe
+                         (Freigabe des Betreibers 24.09.2026 23:49, in dieser Sitzung eingeholt)
+test_stille_ausfaelle.py unveraendert
+Keine Probe entfernt, keine abgeschwaecht; 0 x 'NICHT PRUEFBAR' in allen Laeufen: 0
+
+## Kreuzprobe 1: NEUE paths.py gegen die ALTEN Tests (Klon 1d2b836) - warum die Attrappen angepasst werden mussten
+--- test_paths: 18 von 24 Pruefungen bestanden, 6 fehlgeschlagen.
+  [FEHLER] B1 DATA_DIR zeigt in den Snapshot - None
+  [FEHLER] B2 CONFIG_DIR zeigt in den Snapshot - None
+  [FEHLER] C1 LIVE_DATA_DIR wirft - (nichts geworfen)
+  [FEHLER] C2 die Meldung nennt das fragende Modul - Fundstelle in der Meldung
+  [FEHLER] C3 die Meldung nennt die Alternative - Verweis auf DATA_DIR
+  [FEHLER] E1 NICHT PRUEFBAR - der Enkel lieferte nichts (rc=0): i unter config/. Ohne Universumsdatei faellt jede Symbolliste auf eine eing
+--- test_startpruefungen: 12 von 44 Pruefungen bestanden, 32 fehlgeschlagen.
+  [FEHLER] S1 Lauf geht durch (rc 0), DATA_DIR im Snapshot - rc=2, DATA_DIR=None
+  [FEHLER] S2 startpruefung() traegt alle acht Schluessel
+  [FEHLER] S3 Werte stimmen: codewurzel, commit, arbeitsbaum, snapshot - commit , arbeitsbaum None
+  [FEHLER] S4 lock_sha256 ist der SHA-256 der Lock-Datei - 96a5c572a67c65af...
+  [FEHLER] S5 interpreter und plattform sind gemessen, nicht leer
+  [FEHLER] S6 dieselben acht Zeilen stehen auf stderr in der [paths]-Form - 0 Auditzeilen, Reihenfolge fest
+  [FEHLER] S8 ein Kindprozess erbt alle drei Variablen und geht durch - rc=2
+  [FEHLER] S9 `python -c` (kein __file__) -> rc 2, Meldung nennt den Grund - rc=2
+  [FEHLER] S6 Mutationsprobe beisst - ohne die Schleife: rc 2, 0 Auditzeilen auf stderr
+  [FEHLER] C1 falscher Commit -> rc 2, Meldung nennt HEAD und Soll - rc=2, kein stdout: True
+  [FEHLER] C2 TB_SELEKTIONSCOMMIT fehlt bei gesetzten anderen beiden -> rc 2 - rc=2
+  [FEHLER] C3 Zweigname statt Commit -> rc 2 (bewegliche Referenz, B3) - rc=2
+  [FEHLER] C4 abgekuerzter Commit (7 Zeichen) wird angenommen - rc=2
+  [FEHLER] C1 Mutationsprobe beisst - ohne die Pruefung laeuft der falsche Commit durch: rc 2
+  [FEHLER] C2 Mutationsprobe beisst - mit stillem HEAD-Rueckfall laeuft der halbe Modus durch: rc 2
+  [FEHLER] G1 Aufrufer aus einem ANDEREN Git-Baum -> rc 2, Meldung nennt beide Wurzeln - rc=2, kein stdout: True
+  [FEHLER] G2 Aufrufer aus einem Ordner OHNE Git -> rc 2 - rc=2
+  [FEHLER] G3 derselbe Aufrufer im selben Baum -> rc 0 - rc=2
+  [FEHLER] G1 Mutationsprobe beisst - ohne Bedingung 1 rechnet der gespaltene Baum still weiter: rc 2
+  [FEHLER] A1 veraenderte Datei unter shared/ -> rc 2, Meldung nennt sie - rc=2
+  [FEHLER] A2 neue Datei unter strategies/ -> rc 2 (?? zaehlt) - rc=2
+  [FEHLER] A3 veraenderte Lock-Datei -> rc 2 - rc=2
+  [FEHLER] A4 neue Datei unter data/ stoert nicht (data/ ist nicht Code) - rc=2
+  [FEHLER] A5 zurueckgesetzt -> rc 0, arbeitsbaum sauber - rc=2
+  [FEHLER] A1 Mutationsprobe beisst - ohne Bedingung 3 rechnet der schmutzige Baum still weiter: rc 2
+  [FEHLER] L1 abweichendes Paket -> rc 2, Meldung nennt das Paket - rc=2
+  [FEHLER] L2 nicht installiertes Paket -> rc 2, 'NICHT' in der Meldung - rc=2
+  [FEHLER] L3 vier Abweichungen -> Zahl 4 und die ersten drei genannt - rc=2
+  [FEHLER] L4 Interpreter weicht von der Kopfzeile ab -> rc 2 - rc=2
+  [FEHLER] L5 Lock-Datei fehlt -> rc 2 (nicht pruefbar ist nicht gruen) - rc=2
+  [FEHLER] L6 `>=`-Zeile -> rc 2 ('ist kein Lock') - rc=2
+  [FEHLER] L1 Mutationsprobe beisst - ohne die Pruefung laeuft das abweichende Paket durch: rc 2
+--- test_strategy_paths: 18 von 23 Pruefungen bestanden, 5 fehlgeschlagen.
+  [FEHLER] B1 DATA_DIR zeigt bei allen Bots in den Snapshot - 0 von 9
+  [FEHLER] B2 CONFIG_DIR zeigt bei allen Bots in den Snapshot - 0 von 9
+  [FEHLER] B3 RESULTS_DIR, LOGS_DIR, DB_FILE bleiben im Betrieb - 27 Werte, keiner im Snapshot
+  [FEHLER] D1 LIVE_DATA_DIR wirft Selektionsfehler - bei allen Bots - 0 von 9
+  [FEHLER] D3 Mutationsprobe beisst - mit dem Zusatzschluessel steht der Live-Pfad im Ergebnis
+--- test_stille_ausfaelle: 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+
+## Kreuzprobe 2: ALTE paths.py gegen die NEUEN Tests - die neuen Proben sehen den Fehler
+--- test_paths: 23 von 35 Pruefungen bestanden, 12 fehlgeschlagen.
+  [FEHLER] B2 CONFIG_DIR zeigt in den Snapshot-Unterordner config/ - <tmp>/tb52_attrappe_6tdwg0a_
+  [FEHLER] G1 Modus, config/ fehlt in der Attrappe -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste JA
+  [FEHLER] G2 Modus, config/ da, eine Universumsdatei fehlt -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste JA
+  [FEHLER] G3 Modus, eine Universumsdatei leer (0 Bytes) -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste JA
+  [FEHLER] G3b Modus, eine Universumsdatei nur aus Leerzeilen -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardliste 
+  [FEHLER] G4 Modus, das MANIFEST nennt keine Datei unter config/ -> rc 2, keine Standardliste - rc=0, keine Startpruefungszeile, Standardli
+  [FEHLER] G5 Modus, alles da -> rc 0, CONFIG_DIR endet auf /config, Liste aus dem Snapshot - rc=0, CONFIG_DIR=/var/folders/b_/yqcfpq996cxb1
+  [FEHLER] G6 Modus, leere Zusatzdatei in config/, vom MANIFEST nicht genannt -> rc 0 (Stoerprobe: darf nichts ausloesen) - rc=0
+  [FEHLER] G7 Mutationsprobe M1 - Mutation griff nicht
+  [FEHLER] G8 Mutationsprobe M2 - Mutation griff nicht
+  [FEHLER] G9 Mutationsprobe M3 - Mutation griff nicht
+  [FEHLER] G10 Mutationsprobe M4 - Mutation griff nicht
+--- test_startpruefungen: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+--- test_strategy_paths: 22 von 23 Pruefungen bestanden, 1 fehlgeschlagen.
+  [FEHLER] B2 CONFIG_DIR zeigt bei allen Bots in den Snapshot-Unterordner config/ - 0 von 9
+
+## Volle Ausgaben
+=================== test_paths
+==============================================================================
+Selbsttests zu shared/paths.py - der Selektionsmodus (TB-52)
+==============================================================================
+
+Probe A - ohne Modus verhaelt sich paths.py wie im Bezugscommit
+  [ok]     A1 null Unterschiede - 99 Pfade verglichen (9 Bots), 0 Unterschiede
+  [ok]     A2 Mutationsprobe beisst - verstellte Fassung -> 18 Unterschiede (ohne die Mutation: 0)
+
+Probe B - mit Modus zeigt der Kursdatenpfad in den Snapshot
+  [ok]     B1 DATA_DIR zeigt in den Snapshot - <tmp>/tb52_attrappe_x29g6kjr
+  [ok]     B2 CONFIG_DIR zeigt in den Snapshot-Unterordner config/ - <tmp>/tb52_attrappe_x29g6kjr/config
+  [ok]     B3 der Lauf SAGT, dass er im Modus ist - Prueffrage D1
+  [ok]     B4 Mutationsprobe beisst - ohne die Zuweisung zeigt DATA_DIR auf <tmp>/tb52_test_q28cvlcx/data - die Probe faellt dort durch, wie sie soll
+
+Probe C - mit Modus wirft die Anfrage nach dem Live-Bestand
+  [ok]     C1 LIVE_DATA_DIR wirft - Selektionsfehler: <tmp>/tb52_test_oo6
+  [ok]     C2 die Meldung nennt das fragende Modul - Fundstelle in der Meldung
+  [ok]     C3 die Meldung nennt die Alternative - Verweis auf DATA_DIR
+  [ok]     C4 Mutationsprobe beisst - ohne die Auslassung liefert LIVE_DATA_DIR still <tmp>/tb52_test_u0woa846/data
+
+Probe D - Modus gesetzt, Snapshot fehlt / Hash passt nicht
+  [ok]     D1 Wurzel existiert nicht -> wirft - Selektionsfehler: TB_SELEKTIONSWURZEL ist auf /var/folders/b_/yqcfpq996cxb1_v02m
+  [ok]     D2 kein MANIFEST.json -> wirft - Selektionsfehler: <tmp>/tb52_attrappe
+  [ok]     D3 Manifest ohne snapshot_hash -> wirft - Selektionsfehler: <tmp>/tb52_attrappe
+  [ok]     D4 falscher Hash -> wirft - Selektionsfehler: Der Snapshot in /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn
+  [ok]     D5 nur eine der beiden Variablen -> wirft - Selektionsfehler: TB_SELEKTIONSWURZEL ist gesetzt, TB_SELEKTIONSHASH fehlt. Der 
+  [ok]     D6 Mutationsprobe beisst - mit stillem Rueckfall zeigt DATA_DIR auf <tmp>/tb52_test_53hs6l3j/data statt zu werfen
+
+Probe E - der Kindprozess
+  [ok]     E1 der Enkelprozess erbt den Modus - zwei Ebenen tief: <tmp>/tb52_attrappe_0hhadrp_
+  [ok]     E2 magere Umgebung (Cron-Nachbildung) -> Live-Bestand - <tmp>/tb52_test_utvlv5a5/data
+  [ok]     E3 Mutationsprobe beisst - ohne Vererbung ueber die Umgebung liest das Kind STILL den Live-Bestand: <tmp>/tb52_test_dan9w6iy/data
+
+Probe F - T46.8: der Import legt kein Verzeichnis an
+  [ok]     F1 vorher existiert data/ nicht - <tmp>/tb52_test__83kxk89/data
+  [ok]     F2 der Import gelingt - ohne Fehler
+  [ok]     F3 nachher existiert data/ IMMER NOCH nicht - nicht angelegt
+  [ok]     F4 nachher existiert config/ immer noch nicht - nicht angelegt
+  [ok]     F5 Mutationsprobe beisst - mit den makedirs-Zeilen entsteht data/ beim Import - die Probe faellt dort durch, wie sie soll
+
+Probe G - TB-103: Universumsdateien unter <snapshot>/config/, kein Rueckfall unter dem Modus
+  [ok]     G1 Modus, config/ fehlt in der Attrappe -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - <tmp>/tb52_attrappe_m4n3utf9/confi, Standardliste nein
+  [ok]     G2 Modus, config/ da, eine Universumsdatei fehlt -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+  [ok]     G3 Modus, eine Universumsdatei leer (0 Bytes) -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+  [ok]     G3b Modus, eine Universumsdatei nur aus Leerzeilen -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+  [ok]     G4 Modus, das MANIFEST nennt keine Datei unter config/ -> rc 2, keine Standardliste - rc=2, [paths] STARTPRUEFUNG VERLETZT - <tmp>/tb52_attrappe_fjs41d9z/MANIF, Standardliste nein
+  [ok]     G5 Modus, alles da -> rc 0, CONFIG_DIR endet auf /config, Liste aus dem Snapshot - rc=0, CONFIG_DIR=<tmp>/tb52_attrappe_qmr4kfan/config, 3 Symbole aus <tmp>/tb52_attrappe_qmr4kfan/config/top25_symbols.txt
+  [ok]     G6 Modus, leere Zusatzdatei in config/, vom MANIFEST nicht genannt -> rc 0 (Stoerprobe: darf nichts ausloesen) - rc=0
+  [ok]     G7 Mutationsprobe M1 (Fix zurueckgenommen) beisst: G5 rot - mutiert: rc=0, CONFIG_DIR=<tmp>/tb52_attrappe_qmr4kfan, Standardliste JA
+  [ok]     G8 Mutationsprobe M2 (Existenzpruefung entfernt) beisst: G1-G4 alle rot - rot unter der Mutation: G1(rc=0, Standardliste), G2(rc=0, Standardliste), G3(rc=0), G3b(rc=0, Standardliste), G4(rc=0)
+  [ok]     G9 Mutationsprobe M3 (Leer-Pruefung entfernt) beisst: G3 und G3b rot, G2 bleibt gruen - G3 rc=0, keine Startpruefungszeile, Standardliste nein / G3b rc=0, keine Startpruefungszeile, Standardliste JA / G2 rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+  [ok]     G10 Mutationsprobe M4 (leere Namensmenge zugelassen) beisst: G4 rot, G2 bleibt gruen - G4 rc=0, keine Startpruefungszeile, Standardliste nein / G2 rc=2, [paths] STARTPRUEFUNG VERLETZT - Universumsdatei(en) im Snapshot /var/folders/b_/yqcfpq996cxb1_v02m180f580000g, Standardliste nein
+
+==============================================================================
+35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+=================== test_startpruefungen
+==============================================================================
+Selbsttests zu shared/paths.py - die Startpruefungen (TB-58)
+==============================================================================
+
+Probe N - ohne Modus: kein git-Aufruf, keine Paketabfrage, alle Pfade wie vor TB-58
+  [ok]     N1 ohne Modus: 0 subprocess-Aufrufe, 0 Paketabfragen - subprocess 0 / importlib.metadata 0 / os.system,popen 0
+  [ok]     N2 ohne Modus: startpruefung() ist None, audit_zeilen() leer, kein subprocess/platform/hashlib/metadata im Modul - Modulnamen im Namensraum: keine
+  [ok]     N3 Syntaxbaum: subprocess/importlib/platform/hashlib werden auf Modulebene nicht importiert - auf Modulebene: keiner
+  [ok]     N1/N2 Mutationsprobe beisst - mit einem git-Aufruf und einer Paketabfrage im Import zaehlt die Attrappe 2 / 2
+  [ok]     N3 Mutationsprobe beisst - 2 Import(e) auf Modulebene gefunden
+  [ok]     N4 ohne Modus: alle Pfade zeichengleich wie in 624853bd - 144 Pfade verglichen (9 Bots), 0 Unterschiede
+  [ok]     N4 Mutationsprobe beisst - verstellte Fassung -> 27 Unterschiede
+
+Probe S - vollstaendiger, richtiger Modus: rc 0, Auditzeilen
+  [ok]     S1 Lauf geht durch (rc 0), DATA_DIR im Snapshot - rc=0, DATA_DIR=<tmp>/tb58_attrappe_5qyvbsx8
+  [ok]     S2 startpruefung() traegt alle acht Schluessel - arbeitsbaum, codewurzel, commit, interpreter, lock_sha256, plattform, snapshot_hash, snapshot_wurzel
+  [ok]     S3 Werte stimmen: codewurzel, commit, arbeitsbaum, snapshot - commit 0d1aceaf, arbeitsbaum sauber
+  [ok]     S4 lock_sha256 ist der SHA-256 der Lock-Datei - 96a5c572a67c65af...
+  [ok]     S5 interpreter und plattform sind gemessen, nicht leer - 3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-...
+  [ok]     S6 dieselben acht Zeilen stehen auf stderr in der [paths]-Form - 8 Auditzeilen, Reihenfolge fest
+  [ok]     S7 der Lauf SAGT weiterhin, dass er im Modus ist - Prueffrage D1
+  [ok]     S8 ein Kindprozess erbt alle drei Variablen und geht durch - rc=0
+  [ok]     S9 `python -c` (kein __file__) -> rc 2, Meldung nennt den Grund - rc=2
+  [ok]     S6 Mutationsprobe beisst - ohne die Schleife: rc 0, 0 Auditzeilen auf stderr
+
+Probe C - falscher, fehlender, beweglicher Commit
+  [ok]     C1 falscher Commit -> rc 2, Meldung nennt HEAD und Soll - rc=2, kein stdout: True
+  [ok]     C2 TB_SELEKTIONSCOMMIT fehlt bei gesetzten anderen beiden -> rc 2 - rc=2
+  [ok]     C3 Zweigname statt Commit -> rc 2 (bewegliche Referenz, B3) - rc=2
+  [ok]     C4 abgekuerzter Commit (7 Zeichen) wird angenommen - rc=0
+  [ok]     C5 TB_SELEKTIONSCOMMIT allein -> Selektionsfehler, rc != 0 - rc=1
+  [ok]     C1 Mutationsprobe beisst - ohne die Pruefung laeuft der falsche Commit durch: rc 0
+  [ok]     C2 Mutationsprobe beisst - mit stillem HEAD-Rueckfall laeuft der halbe Modus durch: rc 0
+
+Probe G - gespaltener Baum: Aufrufer woanders, shared/ hier
+  [ok]     G1 Aufrufer aus einem ANDEREN Git-Baum -> rc 2, Meldung nennt beide Wurzeln - rc=2, kein stdout: True
+  [ok]     G2 Aufrufer aus einem Ordner OHNE Git -> rc 2 - rc=2
+  [ok]     G3 derselbe Aufrufer im selben Baum -> rc 0 - rc=0
+  [ok]     G1 Mutationsprobe beisst - ohne Bedingung 1 rechnet der gespaltene Baum still weiter: rc 0
+
+Probe A - schmutziger Arbeitsbaum ueber shared/, strategies/, Lock
+  [ok]     A1 veraenderte Datei unter shared/ -> rc 2, Meldung nennt sie - rc=2
+  [ok]     A2 neue Datei unter strategies/ -> rc 2 (?? zaehlt) - rc=2
+  [ok]     A3 veraenderte Lock-Datei -> rc 2 - rc=2
+  [ok]     A4 neue Datei unter data/ stoert nicht (data/ ist nicht Code) - rc=0
+  [ok]     A5 zurueckgesetzt -> rc 0, arbeitsbaum sauber - rc=0
+  [ok]     A1 Mutationsprobe beisst - ohne Bedingung 3 rechnet der schmutzige Baum still weiter: rc 0
+
+Probe L - Lock: abweichendes Paket, fehlendes Paket, Interpreter, fehlende Datei
+  [ok]     L1 abweichendes Paket -> rc 2, Meldung nennt das Paket - rc=2
+  [ok]     L2 nicht installiertes Paket -> rc 2, 'NICHT' in der Meldung - rc=2
+  [ok]     L3 vier Abweichungen -> Zahl 4 und die ersten drei genannt - rc=2
+  [ok]     L4 Interpreter weicht von der Kopfzeile ab -> rc 2 - rc=2
+  [ok]     L5 Lock-Datei fehlt -> rc 2 (nicht pruefbar ist nicht gruen) - rc=2
+  [ok]     L6 `>=`-Zeile -> rc 2 ('ist kein Lock') - rc=2
+  [ok]     L1 Mutationsprobe beisst - ohne die Pruefung laeuft das abweichende Paket durch: rc 0
+
+Probe R - Rueckgabewert 2, genau einmal im Modul
+  [ok]     R1 RUECKGABEWERT_STARTPRUEFUNG == 2, genau einmal zugewiesen - [2]
+  [ok]     R2 kein SystemExit mit Zahl-Literal - der Wert kommt aus der Konstante - 0 Literal(e)
+  [ok]     R2 Mutationsprobe beisst - 1 Literal
+
+==============================================================================
+44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+=================== test_strategy_paths
+==============================================================================
+Selbsttests zu shared/strategy_paths.py - DATA_DIR aus dem Resolver (TB-53b)
+==============================================================================
+
+Probe A - ohne Modus liefert get_strategy_paths() je Bot dieselben Zeichenketten wie im Bezugscommit
+  [ok]     A1 null Unterschiede - 63 Pfade verglichen (9 Bots x 7 Schluessel), 0 Unterschiede
+  [ok]     A2 im Arbeitsbaum zeigt DATA_DIR bei allen Bots auf data/ - 9 von 9: <repo>/data
+  [ok]     A3 Mutationsprobe beisst - verstellte Fassung -> 9 Unterschiede (ohne die Mutation: 0)
+
+Probe B - mit Modus zeigt DATA_DIR je Bot in den Snapshot, RESULTS_DIR/LOGS_DIR/DB_FILE nicht
+  [ok]     B1 DATA_DIR zeigt bei allen Bots in den Snapshot - 9 von 9
+  [ok]     B2 CONFIG_DIR zeigt bei allen Bots in den Snapshot-Unterordner config/ - 9 von 9
+  [ok]     B3 RESULTS_DIR, LOGS_DIR, DB_FILE bleiben im Betrieb - 27 Werte, keiner im Snapshot
+  [ok]     B4 der Lauf SAGT, dass er im Modus ist - Prueffrage D1, bei jedem der 9 Prozesse
+  [ok]     B5 Mutationsprobe beisst - selbst gebaut zeigt DATA_DIR auf <tmp>/tb53b_test_c16eeyqg/data - die Probe faellt dort durch, wie sie soll
+
+Probe C - mit FALSCHEM Hash wirft schon der Import von strategy_paths, rc != 0
+  [ok]     C1 rc != 0 - rc=1
+  [ok]     C2 es ist der Selektionsfehler aus paths.py - paths.Selektionsfehler: Der Snapshot in <tmp>/tb53b_attra
+  [ok]     C3 nichts auf stdout - kein Pfad wurde geliefert - ''
+  [ok]     C4 Mutationsprobe beisst - mit eigenem Resolver geht der falsche Hash still durch (rc=0, DATA_DIR=<tmp>/tb53b_test_zxd1uijm/data)
+
+Probe D - mit Modus wirft die Anfrage nach LIVE_DATA_DIR (unveraendert aus TB-52), und get_strategy_paths() verraet den Live-Pfad nicht
+  [ok]     D1 LIVE_DATA_DIR wirft Selektionsfehler - bei allen Bots - 9 von 9
+  [ok]     D2 kein Wert aus get_strategy_paths() zeigt unter dem Modus auf den Live-Bestand - 0 Lecks
+  [ok]     D3 Mutationsprobe beisst - mit dem Zusatzschluessel steht der Live-Pfad im Ergebnis
+
+Probe E - die Wurzel jedes echten Bots ist die Wurzel von paths.py (gemessen), und ein fremdes paths wirft (zugesichert)
+  [ok]     E1 alle echten Bots: base_dir zeichengleich mit paths.BASE_DIR - 9 von 9, Wurzel <repo>
+  [ok]     E2 fremdes paths -> Resolverfehler, rc != 0 - rc=1
+  [ok]     E3 die Meldung nennt das fremde und das erwartete paths.py - beide Orte
+  [ok]     E4 Werkzeugmuster (Bot-Kopie, echte shared/) laeuft durch - DATA_DIR aus dem Resolver, DB_FILE in der Kopie
+  [ok]     E5 Mutationsprobe beisst - ohne Zusicherung: DATA_DIR still aus dem fremden Resolver (<tmp>/tb53b_fremd_9hdknh1_/data)
+
+Probe F - strategy_paths.py traegt keinen zweiten Resolver
+  [ok]     F1 keine Umgebungsvariable, kein Manifest, kein eigener Selektionsfehler - 0 Funde
+  [ok]     F2 paths.py wird importiert, nicht nachgebaut - import paths
+  [ok]     F3 Mutationsprobe beisst - 2 Funde in der Fassung mit eigener Umgebungslese
+
+==============================================================================
+23 von 23 Pruefungen bestanden, 0 fehlgeschlagen.
+=================== test_stille_ausfaelle
+==============================================================================
+TB-45, Teil 1 und 2: stille Ausfaelle zweier git-gestuetzter Wachen
+==============================================================================
+
+1) Ein gescheiterter git-Aufruf ist ein Fehlschlag, kein Erfolg
+  [OK ] test_kursdaten.py: Lage A (origin/main da, nichts veraendert) - gruen   29 Pruefungen
+  [OK ] test_kursdaten.py: Lage B (origin/main fehlt, rc 128) - ROT   ['der Vergleich gegen origin/main kam zustande (sonst ist jede Aussage darunter unbelegt)', 'keine equity_simulation.py veraendert', 'forward_test.py: kein Hand
+  [OK ] test_kursdaten.py: Lage B nennt den gescheiterten Vergleich beim Namen   ['der Vergleich gegen origin/main kam zustande (sonst ist jede Aussage darunter unbelegt)', 'keine equity_simulation.py veraendert', 'forward_test.py: kein Hand
+  [OK ] test_kursdaten.py: Lage B meldet nichts faelschlich als unveraendert   25 gruene Pruefungen statt 29
+  [OK ] test_portfolio_sicht.py: Lage A (origin/main da, nichts veraendert) - gruen   7 Pruefungen
+  [OK ] test_portfolio_sicht.py: Lage B (origin/main fehlt, rc 128) - ROT   ['der Vergleich gegen origin/main kam zustande (sonst ist die Aussage darunter unbelegt)', 'shared/portfolio_overview.py ist unveraendert']
+  [OK ] test_portfolio_sicht.py: Lage B nennt den gescheiterten Vergleich beim Namen   ['der Vergleich gegen origin/main kam zustande (sonst ist die Aussage darunter unbelegt)', 'shared/portfolio_overview.py ist unveraendert']
+  [OK ] test_portfolio_sicht.py: Lage B meldet nichts faelschlich als unveraendert   5 gruene Pruefungen statt 7
+  [OK ] test_kursdaten.py: Lage C (ein Parameterwert veraendert) - ROT   ['strategies/t3_supertrend/live_params.py: kein Parameterwert veraendert (nur Kommentartext)']
+  [OK ] test_kursdaten.py: Lage C nennt den alten und den neuen Wert - die Schleife erzeugt also wirklich Pruefungen   ['strategies/t3_supertrend/live_params.py: kein Parameterwert veraendert (nur Kommentartext)']
+
+2) Gegenprobe - der Stand aus 97aea88 (vor der Reparatur) meldet in Lage B 'bestanden'
+  [OK ] test_kursdaten.py: der Stand aus 97aea88 meldet in Lage B faelschlich 'bestanden' - DAS ist der Befund   None
+  [OK ] test_kursdaten.py: und zwar mit 28 gruenen Pruefungen, ohne etwas gemessen zu haben   28
+  [OK ] test_portfolio_sicht.py: der Stand aus 97aea88 meldet in Lage B faelschlich 'bestanden' - DAS ist der Befund   None
+  [OK ] test_portfolio_sicht.py: und zwar mit 6 gruenen Pruefungen, ohne etwas gemessen zu haben   6
+
+3) T38.9 - Zwei-Punkt-, Drei-Punkt- und Merge-Basis-Vergleich, gemessen
+  [OK ] T38.9 bestaetigt: der Zwei-Punkt-Vergleich meldet eine Datei, die DIESER Zweig nie angefasst hat   ['forward_test.py']
+  [OK ] die Drei-Punkt-Form meldet sie nicht - sie loest T38.9   []
+  [OK ] der Vergleich gegen die Merge-Basis ebenfalls nicht   []
+  [OK ] eine UNKOMMITTIERTE Parameteraenderung sieht der Zwei-Punkt-Vergleich   ['forward_test.py']
+  [OK ] ⚠ die Drei-Punkt-Form sieht sie NICHT - sie vergleicht zwei Commits, der Arbeitsbaum kommt darin nicht vor   []
+  [OK ] der Vergleich gegen die Merge-Basis sieht sie - er loest T38.9, OHNE den Arbeitsbaum aufzugeben   ['forward_test.py']
+  [OK ] T43.2 bestaetigt: ist der Zweig gemergt, sieht die Drei-Punkt-Form seine eigene Aenderung nicht mehr   []
+  [OK ] und der Merge-Basis-Vergleich ebenso wenig - der Vorbehalt trifft beide Formen gleich   []
+  [OK ] fehlt origin/main, scheitert der Aufruf mit rc != 0 und LEERER Ausgabe - genau die Verwechslung aus Teil 1 und 2   rc=128, Ausgabe=[]
+
+4) Randbedingung: keine Kursdatei veraendert
+  [OK ] der Datenstand ist der registrierte (d9449faf..., 223 Dateien)   d9449faf51bffaaa / 223
+  [OK ] der git-Vergleich fuer diese Pruefung kam zustande
+  [OK ] keine Datei unter data/ gegenueber origin/main veraendert   []
+  [OK ] und im Arbeitsbaum liegt unter data/ nichts Unversioniertes oder Geaendertes   []
+
+==============================================================================
+27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+=================== test_vorregistrierung
+TB-30a - Selbsttest der Vorregistrierung
+  Teil A ...
+  Teil B ...
+  Teil C ...
+  Teil D ...
+  Teil E ...
+  Teil F ...
+  Teil G ...
+  Teil H ...
+
+==============================================================================
+188/188 Pruefungen bestanden.

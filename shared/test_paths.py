@@ -44,6 +44,7 @@ _HIER = os.path.dirname(os.path.abspath(__file__))
 _WURZEL = os.path.dirname(_HIER)
 _ECHTE_QUELLE = os.path.join(_HIER, "paths.py")
 _ECHTER_LOCK = os.path.join(_WURZEL, "requirements.lock")
+_ECHTE_SYMBOLE = os.path.join(_HIER, "symbols_config.py")
 
 BESTANDEN = 0
 FEHLER = []
@@ -95,6 +96,14 @@ def baue_baum(paths_quelle, mit_ordnern=True):
     # echte Lock-Datei und die Abfrage als Einstiegsdatei.
     with open(os.path.join(wurzel, "abfrage.py"), "w", encoding="utf-8") as datei:
         datei.write(_ABFRAGE)
+    # TB-103: die ECHTE `symbols_config.py` (unveraendert kopiert) und eine
+    # zweite Abfrage, die sie laedt - damit Probe G am wirklichen Rueckfall
+    # misst, ob die Standardliste unter dem Modus noch erreichbar ist.
+    shutil.copy2(_ECHTE_SYMBOLE, os.path.join(wurzel, "shared",
+                                              "symbols_config.py"))
+    with open(os.path.join(wurzel, "abfrage_symbole.py"), "w",
+              encoding="utf-8") as datei:
+        datei.write(_ABFRAGE_SYMBOLE)
     if os.path.exists(_ECHTER_LOCK):
         shutil.copy2(_ECHTER_LOCK, os.path.join(wurzel, "requirements.lock"))
     _git(wurzel, "init", "-q")
@@ -119,20 +128,50 @@ def commit_von(wurzel):
     return _git(wurzel, "rev-parse", "HEAD")
 
 
+# TB-103: die Universumsdateien der Attrappe - Anordnung wie im echten Snapshot
+# (`config/` unter der Wurzel, im MANIFEST unter `dateien` genannt). Erfundene
+# Symbole; drei Krypto-Zeilen, zwei Aktien-Zeilen.
+UNIVERSUM = {"config/top25_symbols.txt": "AAAUSDT\nBBBUSDT\nCCCUSDT\n",
+             "config/sp500_top150.txt": "AAA\nBBB\n"}
+
+
 def baue_attrappe(hash_="attrappe000000000000000000000000",
-                  mit_manifest=True, mit_hashfeld=True):
+                  mit_manifest=True, mit_hashfeld=True, mit_config=True,
+                  fehlend=(), inhalt_ersatz=None, manifest_universum=True,
+                  zusatz_config=None):
     """⚠️ **KEIN Snapshot von `data/`.**
 
     Nach Registertext 5 / F1a wird der Snapshot erst am Tag des signierten
     Tags gezogen. Hier liegt ein Wegwerf-Ordner mit einer erfundenen Datei -
     er beantwortet jede Frage dieser Datei genauso gut.
+
+    TB-103: seit dem Resolver-Fix traegt die Attrappe auch `config/` mit den
+    Universumsdateien aus `UNIVERSUM`, und das MANIFEST nennt sie. Die
+    Schalter stoeren genau eine Sache: `mit_config=False` (Ordner fehlt),
+    `fehlend` (diese Dateien nicht anlegen), `inhalt_ersatz` ({name: text}),
+    `manifest_universum=False` (MANIFEST nennt keine), `zusatz_config`
+    ({name: text}, liegt im Ordner, MANIFEST nennt sie NICHT).
     """
     ordner = tempfile.mkdtemp(prefix="tb52_attrappe_")
     with open(os.path.join(ordner, "XXXTEST_1d.csv"), "w") as datei:
         datei.write("timestamp,close\n2020-01-01,1.0\n")
+    if mit_config:
+        os.makedirs(os.path.join(ordner, "config"))
+        texte = dict(UNIVERSUM)
+        texte.update(inhalt_ersatz or {})
+        for name, text in texte.items():
+            if name not in fehlend:
+                with open(os.path.join(ordner, name), "w") as datei:
+                    datei.write(text)
+        for name, text in (zusatz_config or {}).items():
+            with open(os.path.join(ordner, name), "w") as datei:
+                datei.write(text)
     if mit_manifest:
+        dateien = {"XXXTEST_1d.csv": {}}
+        if manifest_universum:
+            dateien.update({name: {} for name in UNIVERSUM})
         inhalt = {"datenstand_hash": "egal", "kursdateien": 1,
-                  "dateien": {"XXXTEST_1d.csv": {}}}
+                  "dateien": dateien}
         if mit_hashfeld:
             inhalt["snapshot_hash"] = hash_
         with open(os.path.join(ordner, "MANIFEST.json"), "w") as datei:
@@ -159,8 +198,27 @@ except Exception as fehler:
 json.dump(ergebnis, sys.stdout)
 '''
 
+# TB-103: laedt nach `paths` die echte `symbols_config` und haelt fest, was sie
+# auf stdout sagt (die Warnzeile der Standardliste) und was sie geladen hat.
+# ⚠️ Scheitert schon der Import von `paths` mit SystemExit, endet der Prozess
+# mit dessen Rueckgabewert und schreibt nichts auf stdout - das ist der Fall,
+# den Probe G erwartet.
+_ABFRAGE_SYMBOLE = r'''
+import contextlib, io, json, sys
+sys.path.insert(0, sys.argv[1])
+import paths
+puffer = io.StringIO()
+with contextlib.redirect_stdout(puffer):
+    import symbols_config
+json.dump({"CONFIG_DIR": paths.CONFIG_DIR,
+           "SYMBOLS_FILE": symbols_config.SYMBOLS_FILE,
+           "SYMBOLS": list(symbols_config.SYMBOLS),
+           "ausgabe": puffer.getvalue()}, sys.stdout)
+'''
 
-def frage(wurzel, wurzel_env=None, hash_env=None, umgebung_zusatz=None):
+
+def frage(wurzel, wurzel_env=None, hash_env=None, umgebung_zusatz=None,
+          abfrage="abfrage.py"):
     """Die Pfade aus einem eigenen Prozess erfragen.
 
     ⚠️ Eigener Prozess je Frage: zwei Fassungen desselben Moduls verdecken
@@ -180,7 +238,7 @@ def frage(wurzel, wurzel_env=None, hash_env=None, umgebung_zusatz=None):
     if umgebung_zusatz:
         umgebung.update(umgebung_zusatz)
     lauf = subprocess.run(
-        [sys.executable, os.path.join(wurzel, "abfrage.py"),
+        [sys.executable, os.path.join(wurzel, abfrage),
          os.path.join(wurzel, "shared")],
         capture_output=True, text=True, env=umgebung)
     try:
@@ -253,8 +311,11 @@ def probe_b_modus_zeigt_in_snapshot():
         w = frage(baum, attrappe, "attrappe000000000000000000000000")
         check("B1 DATA_DIR zeigt in den Snapshot",
               w.get("DATA_DIR") == attrappe, str(w.get("DATA_DIR")))
-        check("B2 CONFIG_DIR zeigt in den Snapshot",
-              w.get("CONFIG_DIR") == attrappe, str(w.get("CONFIG_DIR")))
+        # ⚠️ TB-103 umgeschrieben: bis dahin pruefte B2 `CONFIG_DIR ==
+        # attrappe` - also die falsche, flache Anordnung (TB-98 Befund 1).
+        check("B2 CONFIG_DIR zeigt in den Snapshot-Unterordner config/",
+              w.get("CONFIG_DIR") == os.path.join(attrappe, "config"),
+              str(w.get("CONFIG_DIR")))
         check("B3 der Lauf SAGT, dass er im Modus ist",
               "SELEKTIONSMODUS AKTIV" in w.get("_stderr", ""),
               "Prueffrage D1")
@@ -519,6 +580,164 @@ def probe_f_kein_verzeichnis():
         shutil.rmtree(baum, ignore_errors=True)
 
 
+# ===========================================================================
+# Probe G - TB-103: Universumsdateien unter <snapshot>/config/, kein Rueckfall
+# ===========================================================================
+
+_FUENFERLISTE = "Standardliste"      # die Warnzeile der Symboldateien
+
+
+def _g_lauf(attrappe, quelle_text):
+    """Ein Lauf der Symbol-Abfrage im Modus gegen `quelle_text` als paths.py."""
+    baum = baue_baum(quelle_text)
+    try:
+        return frage(baum, attrappe, "attrappe000000000000000000000000",
+                     abfrage="abfrage_symbole.py")
+    finally:
+        shutil.rmtree(baum, ignore_errors=True)
+
+
+def _g_abbruch(w):
+    """rc 2, Meldung der Startpruefung, keine Standardliste - Soll fuer G1-G4."""
+    text = w.get("_stderr", "") + w.get("ausgabe", "")
+    return (w["_rc"] == 2 and "STARTPRUEFUNG VERLETZT" in w.get("_stderr", "")
+            and _FUENFERLISTE not in text)
+
+
+def _g_kurz(w):
+    zeilen = [z for z in w.get("_stderr", "").splitlines()
+              if "STARTPRUEFUNG" in z]
+    return "rc=%d, %s, Standardliste %s" % (
+        w["_rc"], (zeilen[0][:110] if zeilen else "keine Startpruefungszeile"),
+        "JA" if _FUENFERLISTE in (w.get("_stderr", "") + w.get("ausgabe", ""))
+        else "nein")
+
+
+# Die Faelle, in denen etwas passieren MUSS (G1-G4), und die, in denen nichts
+# passieren darf (G5, G6) - Stoerproben in beide Richtungen (Fable 24b C2).
+_G_FAELLE = (
+    ("G1", "Modus, config/ fehlt in der Attrappe",
+     dict(mit_config=False)),
+    ("G2", "Modus, config/ da, eine Universumsdatei fehlt",
+     dict(fehlend=("config/top25_symbols.txt",))),
+    ("G3", "Modus, eine Universumsdatei leer (0 Bytes)",
+     dict(inhalt_ersatz={"config/sp500_top150.txt": ""})),
+    ("G3b", "Modus, eine Universumsdatei nur aus Leerzeilen",
+     dict(inhalt_ersatz={"config/top25_symbols.txt": "\n  \n\n"})),
+    ("G4", "Modus, das MANIFEST nennt keine Datei unter config/",
+     dict(manifest_universum=False)),
+)
+
+
+def probe_g_universum():
+    print("\nProbe G - TB-103: Universumsdateien unter <snapshot>/config/, "
+          "kein Rueckfall unter dem Modus")
+    attrappen = {}
+    try:
+        for marke, _, schalter in _G_FAELLE:
+            attrappen[marke] = baue_attrappe(**schalter)
+        attrappen["G5"] = baue_attrappe()
+        attrappen["G6"] = baue_attrappe(
+            zusatz_config={"config/nicht_im_manifest.txt": ""})
+
+        ergebnisse = {}
+        for marke, text, _ in _G_FAELLE:
+            w = _g_lauf(attrappen[marke], quelle())
+            ergebnisse[marke] = w
+            check("%s %s -> rc 2, keine Standardliste" % (marke, text),
+                  _g_abbruch(w), _g_kurz(w))
+
+        # --- nichts darf passieren -----------------------------------------
+        erwartet = UNIVERSUM["config/top25_symbols.txt"].split()
+
+        def g5_gruen(w):
+            return (w["_rc"] == 0
+                    and w.get("CONFIG_DIR", "").endswith(os.sep + "config")
+                    and w.get("SYMBOLS_FILE") == os.path.join(
+                        attrappen["G5"], "config", "top25_symbols.txt")
+                    and w.get("SYMBOLS") == erwartet
+                    and _FUENFERLISTE not in w.get("ausgabe", ""))
+
+        w = _g_lauf(attrappen["G5"], quelle())
+        check("G5 Modus, alles da -> rc 0, CONFIG_DIR endet auf /config, "
+              "Liste aus dem Snapshot", g5_gruen(w),
+              "rc=%d, CONFIG_DIR=%s, %d Symbole aus %s"
+              % (w["_rc"], w.get("CONFIG_DIR"), len(w.get("SYMBOLS", [])),
+                 w.get("SYMBOLS_FILE")))
+        w = _g_lauf(attrappen["G6"], quelle())
+        check("G6 Modus, leere Zusatzdatei in config/, vom MANIFEST nicht "
+              "genannt -> rc 0 (Stoerprobe: darf nichts ausloesen)",
+              w["_rc"] == 0 and w.get("SYMBOLS") == erwartet,
+              "rc=%d" % w["_rc"])
+
+        # --- Mutationsproben, jede allein gegen den Grundzustand ----------
+        # M1: der Fix zurueckgenommen - CONFIG_DIR wieder die flache Wurzel.
+        mutiert, griff = mutiere(
+            quelle(),
+            "    CONFIG_DIR = os.path.join(_MODUS[0], CONFIG_UNTERORDNER)",
+            "    CONFIG_DIR = _MODUS[0]", "G-M1")
+        if griff:
+            wm = _g_lauf(attrappen["G5"], mutiert)
+            check("G7 Mutationsprobe M1 (Fix zurueckgenommen) beisst: G5 rot",
+                  not g5_gruen(wm),
+                  "mutiert: rc=%d, CONFIG_DIR=%s, Standardliste %s"
+                  % (wm["_rc"], wm.get("CONFIG_DIR"),
+                     "JA" if _FUENFERLISTE in wm.get("ausgabe", "") else "nein"))
+        else:
+            check("G7 Mutationsprobe M1", False, "Mutation griff nicht")
+
+        # M2: die Existenzpruefung entfernt - der Aufruf beim Import faellt weg.
+        mutiert, griff = mutiere(
+            quelle(), "        _pruefe_universum(_MODUS[0])\n", "", "G-M2")
+        if griff:
+            rot = []
+            for marke in ("G1", "G2", "G3", "G3b", "G4"):
+                wm = _g_lauf(attrappen[marke], mutiert)
+                if not _g_abbruch(wm):
+                    rot.append("%s(rc=%d%s)" % (
+                        marke, wm["_rc"],
+                        ", Standardliste" if _FUENFERLISTE in wm.get("ausgabe", "")
+                        else ""))
+            check("G8 Mutationsprobe M2 (Existenzpruefung entfernt) beisst: "
+                  "G1-G4 alle rot", len(rot) == 5,
+                  "rot unter der Mutation: %s" % ", ".join(rot))
+        else:
+            check("G8 Mutationsprobe M2", False, "Mutation griff nicht")
+
+        # M3: nur die Leer-Pruefung entfernt - allein G3/G3b muessen rot werden.
+        mutiert, griff = mutiere(
+            quelle(),
+            "            if not any(zeile.strip() for zeile in inhalt):",
+            "            if False:", "G-M3")
+        if griff:
+            w3 = _g_lauf(attrappen["G3"], mutiert)
+            w3b = _g_lauf(attrappen["G3b"], mutiert)
+            w2 = _g_lauf(attrappen["G2"], mutiert)
+            check("G9 Mutationsprobe M3 (Leer-Pruefung entfernt) beisst: G3 und "
+                  "G3b rot, G2 bleibt gruen",
+                  not _g_abbruch(w3) and not _g_abbruch(w3b) and _g_abbruch(w2),
+                  "G3 %s / G3b %s / G2 %s" % (_g_kurz(w3), _g_kurz(w3b),
+                                              _g_kurz(w2)))
+        else:
+            check("G9 Mutationsprobe M3", False, "Mutation griff nicht")
+
+        # M4: nur die Pruefung "MANIFEST nennt keine" entfernt - allein G4 rot.
+        mutiert, griff = mutiere(
+            quelle(), "    if not namen:\n", "    if False:\n", "G-M4")
+        if griff:
+            w4 = _g_lauf(attrappen["G4"], mutiert)
+            w2 = _g_lauf(attrappen["G2"], mutiert)
+            check("G10 Mutationsprobe M4 (leere Namensmenge zugelassen) beisst: "
+                  "G4 rot, G2 bleibt gruen",
+                  not _g_abbruch(w4) and _g_abbruch(w2),
+                  "G4 %s / G2 %s" % (_g_kurz(w4), _g_kurz(w2)))
+        else:
+            check("G10 Mutationsprobe M4", False, "Mutation griff nicht")
+    finally:
+        for o in attrappen.values():
+            shutil.rmtree(o, ignore_errors=True)
+
+
 def main():
     print("=" * 78)
     print("Selbsttests zu shared/paths.py - der Selektionsmodus (TB-52)")
@@ -528,7 +747,8 @@ def main():
                         ("C", probe_c_live_wirft),
                         ("D", probe_d_fehlender_snapshot),
                         ("E", probe_e_kindprozess),
-                        ("F", probe_f_kein_verzeichnis)):
+                        ("F", probe_f_kein_verzeichnis),
+                        ("G", probe_g_universum)):
         try:
             probe()
         except Exception as fehler:                            # noqa: BLE001

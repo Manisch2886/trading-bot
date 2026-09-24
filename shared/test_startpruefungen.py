@@ -57,6 +57,11 @@ _PFADVERGLEICH = os.path.join(_WURZEL, "research", "resolver_selektion",
 BEZUGSCOMMIT = "624853bde3ac8ca362f4f43aa86a2ae0c7d30741"
 
 ATTRAPPEN_HASH = "attrappe000000000000000000000000"
+
+# TB-103: die Universumsdateien der Attrappe, Anordnung wie im echten Snapshot
+# (`config/` unter der Wurzel, im MANIFEST unter `dateien` genannt).
+UNIVERSUM = {"config/top25_symbols.txt": "AAAUSDT\nBBBUSDT\nCCCUSDT\n",
+             "config/sp500_top150.txt": "AAA\nBBB\n"}
 RC_ERWARTET = 2
 AUDIT_SCHLUESSEL = ("codewurzel", "commit", "arbeitsbaum", "lock_sha256",
                     "interpreter", "plattform", "snapshot_wurzel",
@@ -162,7 +167,15 @@ def baue_attrappe(hash_=ATTRAPPEN_HASH):
         datei.write("timestamp,close\n2020-01-01,1.0\n")
     with open(os.path.join(ordner, "MANIFEST.json"), "w") as datei:
         json.dump({"snapshot_hash": hash_, "datenstand_hash": "egal",
-                   "kursdateien": 1, "dateien": {"XXXTEST_1d.csv": {}}}, datei)
+                   "kursdateien": 1,
+                   "dateien": dict({"XXXTEST_1d.csv": {}},
+                                   **{name: {} for name in UNIVERSUM})}, datei)
+    # TB-103: seit dem Resolver-Fix verlangt der Modus die Universumsdateien
+    # unter <snapshot>/config/, wie sie das MANIFEST nennt - sonst rc 2.
+    os.makedirs(os.path.join(ordner, "config"))
+    for name, text in UNIVERSUM.items():
+        with open(os.path.join(ordner, name), "w") as datei:
+            datei.write(text)
     return ordner
 
 

@@ -88,9 +88,33 @@ im Mac-Testauftrag zu TB-52.
                     ⚠️ **Mit Modus wirft er** - mit einer Meldung, die sagt,
                     welches Modul gefragt hat und was es haette fragen sollen.
 
-Dasselbe Paar fuer `CONFIG_DIR` / `LIVE_CONFIG_DIR`. Die Snapshot-Wurzel ist
-flach: die Symbollisten (`top25_symbols.txt`, `sp500_top150.txt`) liegen dort
-neben den Kursdateien, deshalb zeigen unter dem Modus beide dorthin.
+Dasselbe Paar fuer `CONFIG_DIR` / `LIVE_CONFIG_DIR`.
+
+⚠️ **Berichtigt am 24.09.2026 (TB-103).** Hier stand bis dahin: *"Die
+Snapshot-Wurzel ist flach: die Symbollisten (`top25_symbols.txt`,
+`sp500_top150.txt`) liegen dort neben den Kursdateien, deshalb zeigen unter
+dem Modus beide dorthin."* **Das war falsch.** Flach liegen nur die
+Kursdateien; die Universumsdateien liegen im Snapshot unter `config/` (so
+zieht sie `shared/snapshot.py`, so nennt sie das MANIFEST). Unter dem Modus
+fand deshalb kein Bot seine Symbolliste, und die Symboldateien fielen still
+auf ihre eingebaute Fuenferliste zurueck - gemessen in TB-98 (Befund 1, 9/9
+Bots), entschieden in Fable 24b A2: behoben im Resolver, nicht im Snapshot.
+
+Seitdem gilt unter dem Modus:
+
+    DATA_DIR     die Snapshot-Wurzel (flach, Kursdateien)
+    CONFIG_DIR   <Snapshot-Wurzel>/config   (Unterordnername: CONFIG_UNTERORDNER)
+
+⭐ **Kein Rueckfall unter dem Modus** (Fable 24b A2): Beim Import prueft dieses
+Modul, dass jede Universumsdatei, die das MANIFEST unter `config/` nennt, im
+Snapshot liegt und mindestens eine nichtleere Zeile hat. Fehlt eine, ist sie
+leer, oder nennt das MANIFEST keine, steht die Meldung auf `stderr` und der
+Import endet mit `SystemExit(RUECKGABEWERT_STARTPRUEFUNG)` - **bevor** ein
+Aufrufer `CONFIG_DIR` benutzen kann. Damit ist der Rueckfall in den
+Symboldateien unter dem Modus unerreichbar, ohne dass sie geaendert werden.
+⚠️ Welche Dateien das sind, steht **nicht** in diesem Modul: das MANIFEST des
+Snapshots ist der eine Ort, der die Anordnung kennt (Fable 24c Abschnitt 2);
+eine zweite Namensliste hier wuerde getrennt altern.
 
 `SHARED_DIR` und `BASE_DIR` bezeichnen **Code**, nicht Daten, und aendern
 sich unter dem Modus nicht.
@@ -183,6 +207,10 @@ UMGEBUNG_COMMIT = "TB_SELEKTIONSCOMMIT"
 
 MANIFEST = "MANIFEST.json"
 LOCK = "requirements.lock"
+# TB-103: unter dem Modus liegen die Universumsdateien in diesem Unterordner
+# der Snapshot-Wurzel (die Kursdateien flach daneben). Der Name steht genau
+# einmal.
+CONFIG_UNTERORDNER = "config"
 
 # Rueckgabewert einer gescheiterten Startpruefung. ⚠️ Nicht 1: der ist der
 # gewoehnliche Traceback (auch der `Selektionsfehler`), nicht 0: das ist
@@ -240,8 +268,8 @@ def _fragendes_modul():
     return "unbekannt"
 
 
-def _lies_snapshot_hash(wurzel):
-    """Den `snapshot_hash` aus dem Manifest der Wurzel - oder werfen.
+def _lies_manifest(wurzel):
+    """(pfad, manifest) der Wurzel - oder werfen.
 
     ⚠️ Hier wird **nicht** `shared/snapshot.py` importiert. Der Modus muss in
     jedem importierenden Modul tragen, auch in denen, die `snapshot`
@@ -266,6 +294,12 @@ def _lies_snapshot_hash(wurzel):
     except (OSError, ValueError) as fehler:
         raise Selektionsfehler(
             "%s ist nicht lesbar oder beschaedigt: %s" % (pfad, fehler))
+    return pfad, manifest
+
+
+def _lies_snapshot_hash(wurzel):
+    """Den `snapshot_hash` aus dem Manifest der Wurzel - oder werfen."""
+    pfad, manifest = _lies_manifest(wurzel)
     if not isinstance(manifest, dict) or "snapshot_hash" not in manifest:
         raise Selektionsfehler(
             "%s traegt keinen `snapshot_hash`. Der Modus kann den Snapshot "
@@ -497,6 +531,54 @@ def _pruefe_lock(pfad):
     return lock_sha256, interpreter, plattform
 
 
+def _pruefe_universum(wurzel):
+    """TB-103: die Universumsdateien unter `<wurzel>/config/`; ihre Namen.
+
+    Welche Dateien, sagt das MANIFEST (`dateien`, Schluessel mit dem Praefix
+    `config/`) - nicht dieses Modul. Jede muss im Snapshot liegen und
+    mindestens eine nichtleere Zeile haben; nennt das MANIFEST keine, ist das
+    ebenso ein Abbruch. ⚠️ Eine leere Menge ist kein "alles da": die
+    Symboldateien fielen dann genauso still auf ihre Fuenferliste zurueck.
+    """
+    pfad, manifest = _lies_manifest(wurzel)
+    dateien = manifest.get("dateien") if isinstance(manifest, dict) else None
+    if not isinstance(dateien, dict):
+        raise Startpruefungsfehler(
+            "%s fuehrt kein Feld `dateien` - welche Universumsdateien unter "
+            "%s/ liegen muessen, ist damit nicht pruefbar, und `nicht "
+            "pruefbar` ist nicht gruen." % (pfad, CONFIG_UNTERORDNER))
+    praefix = CONFIG_UNTERORDNER + "/"
+    namen = sorted(n for n in dateien if n.startswith(praefix))
+    if not namen:
+        raise Startpruefungsfehler(
+            "%s nennt keine Datei unter %s/. Ohne Universumsdatei faellt jede "
+            "Symbolliste auf eine eingebaute Voreinstellung zurueck - unter "
+            "dem Modus gibt es keinen Rueckfall (Fable 24b A2)."
+            % (pfad, CONFIG_UNTERORDNER))
+    ordner = os.path.join(wurzel, CONFIG_UNTERORDNER)
+    if not os.path.isdir(ordner):
+        raise Startpruefungsfehler(
+            "%s fehlt, das MANIFEST nennt aber %s. Unter dem Modus gibt es "
+            "keinen Rueckfall auf eingebaute Listen (Fable 24b A2)."
+            % (ordner, ", ".join(namen)))
+    maengel = []
+    for name in namen:
+        datei = os.path.join(wurzel, *name.split("/"))
+        if not os.path.isfile(datei):
+            maengel.append("%s fehlt" % name)
+            continue
+        with open(datei, "r", encoding="utf-8") as inhalt:
+            if not any(zeile.strip() for zeile in inhalt):
+                maengel.append("%s ist leer" % name)
+    if maengel:
+        raise Startpruefungsfehler(
+            "Universumsdatei(en) im Snapshot %s nicht nutzbar: %s. Unter dem "
+            "Modus gibt es keinen Rueckfall auf eingebaute Listen - der Lauf "
+            "bricht ab, bevor gerechnet wird (Fable 24b A2)."
+            % (wurzel, "; ".join(maengel)))
+    return namen
+
+
 def _startpruefungen(modus, umgebung=None, einstiegspunkt=None,
                      lock_pfad=None, hier=None):
     """Alle Startpruefungen (Teile B und C); das Audit-dict (Teil D).
@@ -565,9 +647,10 @@ if _MODUS is None:
     LIVE_DATA_DIR = _LIVE_DATA_DIR
     LIVE_CONFIG_DIR = _LIVE_CONFIG_DIR
 else:
-    # Unter dem Modus zeigen die beiden gewoehnlichen Namen in den Snapshot.
+    # Unter dem Modus zeigen die beiden gewoehnlichen Namen in den Snapshot:
+    # Kursdaten flach in der Wurzel, Universumsdateien im Unterordner (TB-103).
     DATA_DIR = _MODUS[0]
-    CONFIG_DIR = _MODUS[0]
+    CONFIG_DIR = os.path.join(_MODUS[0], CONFIG_UNTERORDNER)
     # ⚠️ `LIVE_DATA_DIR` und `LIVE_CONFIG_DIR` werden hier **nicht** gesetzt.
     # Genau dadurch greift `__getattr__` (PEP 562) und die Anfrage nach dem
     # Live-Bestand wirft, statt einen Pfad zu liefern.
@@ -580,6 +663,8 @@ else:
     # Exception, damit kein `except Exception` im Aufrufer den Abbruch in
     # einen stillen Weiterlauf verwandelt (Prueffrage D1).
     try:
+        # TB-103: zuerst die Universumsdateien - kein Rueckfall unter dem Modus.
+        _pruefe_universum(_MODUS[0])
         _STARTPRUEFUNG = _startpruefungen(_MODUS)
     except Startpruefungsfehler as _fehler:
         _sys.stderr.write(
