@@ -15,6 +15,8 @@ Geprueft wird, was die Aufgabenstellung ausdruecklich verlangt:
   F  Falten ohne Trade zaehlen mit Sharpe 0.
   G  Kein Grenzsatz erwaehnt einen Live-Wert - maschinell.
   H  Mutationsproben.
+  I  messgroessen.py liest unter dem Selektionsmodus keine Kursdatei aus
+     data/ - mit Mutationsprobe "Resolver-Import entfernt" (TB-103).
 
 ZU DEN MUTATIONSPROBEN - WARUM SIE SO GEBAUT SIND
 ------------------------------------------------------------------------------
@@ -914,10 +916,154 @@ def _zulaessigzeile(text):
     return None
 
 
+# ===========================================================================
+# I  messgroessen.py unter dem Selektionsmodus: keine Kursdatei aus data/
+#    (TB-103, Fable 24c Abschnitte 1 und 2)
+# ===========================================================================
+_MESS_SNAP_HASH = "attrappe_tb103_messgroessen_0000000000"
+
+# Der Lesehaken des Probeprozesses, als sitecustomize ueber PYTHONPATH: jede
+# geoeffnete Datei eine Zeile, sofort geschrieben.
+_I_HAKEN = r'''
+import os, sys
+_ziel = os.environ.get("TB103_I_PROTOKOLL")
+if _ziel:
+    _fd = os.open(_ziel, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o644)
+    def _haken(e, a, _fd=_fd, _w=os.write):
+        if e == "open" and a and isinstance(a[0], (str, bytes, os.PathLike)):
+            _w(_fd, (os.fsdecode(a[0]) + "\n").encode("utf-8", "replace"))
+    sys.addaudithook(_haken)
+'''
+
+# Dieselbe Stelle, die die Mutation "Resolver-Import entfernt" ersetzt - die
+# Zuweisungen von vor TB-103, aus BASE_DIR gebaut.
+_I_RESOLVER = ('sys.path.insert(0, os.path.join(_REPO, "shared"))\n'
+               'import paths  # noqa: E402\n\n'
+               'DATA_DIR = paths.DATA_DIR\n'
+               'CONFIG_DIR = paths.CONFIG_DIR\n')
+_I_OHNE_RESOLVER = ('DATA_DIR = os.path.join(BASE_DIR, "data")\n'
+                    'CONFIG_DIR = os.path.join(BASE_DIR, "config")\n')
+
+
+def _i_kurs_csv(pfad, zeilen, frequenz, start):
+    """Erfundene Kursreihe (Irrfahrt, positiv), genug Balken fuer MIN_BALKEN."""
+    rng = np.random.default_rng(20260925)
+    close = 100.0 * np.exp(np.cumsum(rng.normal(0, 0.01, zeilen)))
+    hoch = close * (1 + np.abs(rng.normal(0, 0.005, zeilen)))
+    tief = close * (1 - np.abs(rng.normal(0, 0.005, zeilen)))
+    pd.DataFrame({"open_time": pd.date_range(start, periods=zeilen, freq=frequenz),
+                  "open": close, "high": hoch, "low": tief, "close": close,
+                  "volume": 1000.0}).to_csv(pfad, index=False)
+
+
+def _i_kursdateien(ordner):
+    namen = []
+    for symbol, suffix, freq in (("AAAUSDT", "1d", "D"), ("AAAUSDT", "4h", "4h"),
+                                 ("AAAUSDT", "1h", "h"), ("AAA", "1d", "B")):
+        name = f"{symbol}_{suffix}.csv"
+        _i_kurs_csv(os.path.join(ordner, name), 400, freq, "2020-01-01")
+        namen.append(name)
+    os.makedirs(os.path.join(ordner, "config"), exist_ok=True)
+    for name, text in (("top25_symbols.txt", "AAAUSDT\n"), ("sp500_top150.txt", "AAA\n")):
+        with open(os.path.join(ordner, "config", name), "w") as f:
+            f.write(text)
+    return namen
+
+
+def _i_git(baum, *argumente):
+    subprocess.run(["git", "-C", baum] + list(argumente), check=True,
+                   capture_output=True, text=True)
+
+
+def _i_lauf(mutieren):
+    """Ein Lauf von messgroessen.py im Modus, in einem Wegwerfbaum.
+
+    Der Baum ist ein Git-Repo mit einem Commit (die Startpruefung von
+    `paths.py` verlangt Einstiegspunkt, HEAD und sauberen Arbeitsbaum) und
+    traegt die ECHTE `paths.py`, die ECHTE `messgroessen.py` (oder ihre
+    Mutation), die echte Lock-Datei und `haltedauern_je_bot.csv`, dazu
+    `data/`/`config/` mit erfundenen Kursreihen. Daneben eine Snapshot-
+    Attrappe mit denselben Reihen flach und dem Universum unter `config/`.
+    Rueckgabe: rc, Zugriffe auf <baum>/data/*.csv, auf <snapshot>/*.csv, auf
+    <snapshot>/config/* (verschiedene Dateien).
+    """
+    repo = os.path.dirname(os.path.dirname(_HIER))
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, haken = (os.path.join(t, n) for n in ("baum", "snap", "haken"))
+        for o in (os.path.join(baum, "shared"), os.path.join(baum, "data"),
+                  os.path.join(baum, "research", "vorregistrierung"),
+                  os.path.join(baum, "research", "tb24_haltedauern", "ergebnisse"),
+                  snap, haken):
+            os.makedirs(o)
+        shutil.copy2(os.path.join(repo, "shared", "paths.py"),
+                     os.path.join(baum, "shared", "paths.py"))
+        shutil.copy2(os.path.join(repo, "requirements.lock"),
+                     os.path.join(baum, "requirements.lock"))
+        shutil.copy2(os.path.join(repo, "research", "tb24_haltedauern", "ergebnisse",
+                                  "haltedauern_je_bot.csv"),
+                     os.path.join(baum, "research", "tb24_haltedauern", "ergebnisse",
+                                  "haltedauern_je_bot.csv"))
+        ziel_mg = os.path.join(baum, "research", "vorregistrierung", "messgroessen.py")
+        shutil.copy2(os.path.join(_HIER, "messgroessen.py"), ziel_mg)
+        _ersetze(ziel_mg, _I_RESOLVER, _I_OHNE_RESOLVER, mutieren)
+        _i_kursdateien(os.path.join(baum, "data"))
+        os.rename(os.path.join(baum, "data", "config"), os.path.join(baum, "config"))
+        namen = _i_kursdateien(snap)
+        with open(os.path.join(snap, "MANIFEST.json"), "w") as f:
+            json.dump({"snapshot_hash": _MESS_SNAP_HASH,
+                       "dateien": dict({n: {} for n in namen},
+                                       **{"config/top25_symbols.txt": {},
+                                          "config/sp500_top150.txt": {}})}, f)
+        with open(os.path.join(haken, "sitecustomize.py"), "w") as f:
+            f.write(_I_HAKEN)
+        _i_git(baum, "init", "-q")
+        _i_git(baum, "add", "-A")
+        _i_git(baum, "-c", "user.name=tb103", "-c", "user.email=tb103@test",
+               "commit", "-q", "-m", "Wegwerfbaum")
+        head = subprocess.run(["git", "-C", baum, "rev-parse", "HEAD"],
+                              capture_output=True, text=True).stdout.strip()
+        u = dict(os.environ)
+        u.pop("TB30A_BASE_DIR", None)
+        u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": _MESS_SNAP_HASH,
+                  "TB_SELEKTIONSCOMMIT": head, "PYTHONPATH": haken,
+                  "TB103_I_PROTOKOLL": os.path.join(t, "protokoll.txt")})
+        r = subprocess.run([sys.executable, "-W", "ignore", ziel_mg,
+                            "--ziel", os.path.join(t, "messgroessen.json")],
+                           capture_output=True, text=True, env=u)
+        pfade = []
+        if os.path.exists(u["TB103_I_PROTOKOLL"]):
+            with open(u["TB103_I_PROTOKOLL"], encoding="utf-8") as f:
+                pfade = [os.path.realpath(z.strip()) for z in f if z.strip()]
+        daten = os.path.realpath(os.path.join(baum, "data")) + os.sep
+        snapr = os.path.realpath(snap) + os.sep
+        return {"rc": r.returncode,
+                "data_csv": sum(p.startswith(daten) and p.endswith(".csv") for p in pfade),
+                "snap_csv": sum(p.startswith(snapr) and p.endswith(".csv") for p in pfade),
+                "snap_config": len({p for p in pfade
+                                    if p.startswith(snapr + "config" + os.sep)}),
+                "stderr": r.stderr[-300:]}
+
+
+def teil_i():
+    r = _i_lauf(False)
+    pruefe("I1: messgroessen.py im Selektionsmodus - 0 Kursdateien aus data/, "
+           "Kurse und Universum aus dem Snapshot, rc 0",
+           r["rc"] == 0 and r["data_csv"] == 0 and r["snap_csv"] > 0
+           and r["snap_config"] == 2,
+           f"rc {r['rc']}, data/ {r['data_csv']}, Snapshot-CSV {r['snap_csv']}, "
+           f"Snapshot-config {r['snap_config']} Dateien; {r['stderr']}")
+    _mit_gegenprobe(
+        "I2", "Mutationsprobe 'Resolver-Import entfernt' - messgroessen.py liest "
+        "im Modus Kursdateien aus data/ (I1 waere rot)",
+        _i_lauf, lambda r: r["data_csv"] > 0,
+        lambda r: f"rc {r['rc']}, data/ {r['data_csv']}, Snapshot-CSV {r['snap_csv']}")
+
+
 def main():
     print(__doc__.strip().split("\n")[0])
     for name, teil in (("A", teil_a), ("B", teil_b), ("C", teil_c), ("D", teil_d),
-                       ("E", teil_e), ("F", teil_f), ("G", teil_g), ("H", teil_h)):
+                       ("E", teil_e), ("F", teil_f), ("G", teil_g), ("H", teil_h),
+                       ("I", teil_i)):
         print(f"  Teil {name} ...", flush=True)
         teil()
     print("\n" + "=" * 78)

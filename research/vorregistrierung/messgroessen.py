@@ -47,10 +47,10 @@ from datetime import datetime, timezone
 import numpy as np
 import pandas as pd
 
-BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
-    os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-DATA_DIR = os.path.join(BASE_DIR, "data")
-CONFIG_DIR = os.path.join(BASE_DIR, "config")
+_REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# TB30A_BASE_DIR ersetzt die Repo-Wurzel fuer Mutationsproben - KEIN Weg zum
+# Snapshot (TB-103). Kurs- und Universumspfade: unten, ueber den Resolver.
+BASE_DIR = os.environ.get("TB30A_BASE_DIR") or _REPO
 ERGEBNISSE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ergebnisse")
 
 # --- Kostenkonvention ---------------------------------------------------------
@@ -84,6 +84,29 @@ BALKEN_JE_HANDELSWOCHE = {
 AUSGESCHLOSSEN = {"XAUTUSDT", "PAXGUSDT"}
 
 MIN_BALKEN = 300  # ein Symbol mit weniger Balken traegt kein Quantil
+
+# --- Pfade der Kurs- und Universumsdateien: der Resolver (TB-103) -----------
+# ⚠️ Fable 24c Abschnitt 2: Jedes Modul des Laufbereichs, das Kursdaten oder
+# Universumsdateien liest, bezieht seine Pfade ueber `shared/paths.py` -
+# denselben Resolver wie die Bots. Ohne Selektionsmodus sind das `data/` und
+# `config/` der Repo-Wurzel (wie vorher), unter dem Modus der Snapshot (Kurse
+# flach, Universum unter `config/`). Bis TB-103 baute diese Datei beide Pfade
+# selbst aus `BASE_DIR` und kannte den Modus nicht (TB-102: rc 0, bytegleich,
+# 0 Zugriffe auf den Snapshot).
+# Warum `paths` und nicht `strategy_paths.get_strategy_paths()`: jene reicht
+# nur `paths.DATA_DIR`/`paths.CONFIG_DIR` durch und legt dazu
+# `results/<name>/` und `logs/<name>/` an - fuer diese Datei waeren das
+# `results/vorregistrierung/` und `logs/vorregistrierung/`. Die Krypto-Bots
+# holen ihre Symbolliste ebenso direkt aus `paths` (`shared/symbols_config.py`).
+# `BASE_DIR` (oben) traegt danach nur noch
+# `research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv` (haltedauern()) -
+# unter dem Modus der eine erwartete Zugriff ausserhalb des Snapshots, bis die
+# Haltedauern aus den neuen Listen kommen (Plan-Punkt 3, Fable 24c Abschnitt 4).
+sys.path.insert(0, os.path.join(_REPO, "shared"))
+import paths  # noqa: E402
+
+DATA_DIR = paths.DATA_DIR
+CONFIG_DIR = paths.CONFIG_DIR
 
 
 def universum(datei: str) -> list:
@@ -293,7 +316,10 @@ def schreibe_messgroessen(mess: dict, ziel: str):
 def main(argv=None):
     p = argparse.ArgumentParser(
         description=("Messgroessen des Vorregistrierungslaufs. Schreibt einmalig; "
-                     "Voreinstellung ist ein Name mit Zeitstempel (36.1 (3))."))
+                     "Voreinstellung ist ein Name mit Zeitstempel (36.1 (3)). "
+                     "Kurs- und Universumsdateien kommen ueber shared/paths.py - "
+                     "unter dem Selektionsmodus (TB_SELEKTIONS*) aus dem Snapshot. "
+                     "TB30A_BASE_DIR ist KEIN Weg zum Snapshot (TB-103)."))
     p.add_argument("--ziel", default=None,
                    help=("Ausgabedatei (Standard: ergebnisse/messgroessen_"
                          "<UTC-Zeitstempel>.json). Ein vorhandenes Ziel wird NIE "
