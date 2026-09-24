@@ -1,0 +1,118 @@
+# TB-96 Block A - Messungen vor dem Schreiben, HEAD fc8d44c (Schritt-0-Commit), 2026-09-24 09:15:39 +0200
+# Umgebung: Mac, trading-env/bin/python3 (Python 3.9.6)
+
+== A1 Register-Ende und naechster freier Abschnitt
+$ grep -n '^## [0-9]' docs/VORREGISTRIERUNG_neuselektion.md | tail -2
+6700:## 38. Weg (A) — die letzte Falte heisst die Spanne, Fundstellen als Datei und Bezeichner, der Vollzug von Punkt 4 
+7073:## 39. Der Vollzug von Sperrlistenpunkt 4 im Register — Berichtigung des Fertigkriteriums in 38.4, Form (ii) vollzo
+$ grep -n '^### 39\.' docs/VORREGISTRIERUNG_neuselektion.md | tail -1
+7511:### 39.10 Was hier ausdrücklich NICHT getan wird
+$ grep -c '^## 40\|^### 40\.' docs/VORREGISTRIERUNG_neuselektion.md
+0
+$ wc -l docs/VORREGISTRIERUNG_neuselektion.md
+    7530
+=> Register endet bei 39.10, naechster freier Abschnitt 40 (wie Vormessung)
+
+== A2 test_vorregistrierung.py
+73c9b837e96767ae725b3651bf78e22ff972857b7285b0d76764e529cf7ccf16  research/vorregistrierung/test_vorregistrierung.py
+letzter Commit: 9e2a071 2026-09-23 TB-95 Block A/B: G6 und H3 folgen dem Faltenplan - G6 rechnet die Abdeckung der J
+=> 73c9b837..., 9e2a071 (wie Vormessung)
+
+== A3 Sperrlistendateien, beide Abbilder, neun Listen - gegen TB-95 c_hashes.txt (nachher)
+28 Pfade aus docs/belege/TB-95/c_hashes.txt; volle Liste in d3_hashes.txt
+diff rc=0 (0 = alle 28 gleich)
+Sonde gegen sperrliste_abbild_2026-09-23.json (volle Ausgabe d3_sonde.txt, Teil VORHER):
+  Pfadnennungen gleich: 15
+  Pfadnennungen verschieden/fehlt: 0
+  (ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Bilanz: 2 Punkte in Ordnung (0), 0 mit Befund (1), 12 nicht pruefbar (2); (ii) 0 in Ordnung
+  RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+  rc=2
+=> 0 Befunde, 15/15 gleich, (ii) 0, Gesamtausgang 2 (wie Vormessung)
+
+== A4 Ist die Schwelle registriert?
+$ grep -n '| 7 | Schwelle' docs/VORREGISTRIERUNG_neuselektion.md
+62:| 7 | Schwelle für Zweijahres-Falten | **30 Trades je Jahr** |
+$ grep -n '^6\. \*\*Faltenl' -A1 docs/VORREGISTRIERUNG_neuselektion.md
+574:6. **Faltenlänge ein Jahr, zwei Jahre bei unter 30 gefundenen Trades je
+575-   Jahr.** Welche Bots das trifft, steht vorher fest (5.4).
+$ grep -n 'ZWEIJAHRES_SCHWELLE_TRADES' research/vorregistrierung/registerdaten.py research/vorregistrierung/faltenplan.py
+research/vorregistrierung/registerdaten.py:101:ZWEIJAHRES_SCHWELLE_TRADES = 30     # Festlegung 7: Trades je Jahr
+research/vorregistrierung/faltenplan.py:157:    if mittel < rd.ZWEIJAHRES_SCHWELLE_TRADES:
+research/vorregistrierung/faltenplan.py:160:                           f"{rd.ZWEIJAHRES_SCHWELLE_TRADES}")
+research/vorregistrierung/faltenplan.py:163:                       f"{rd.ZWEIJAHRES_SCHWELLE_TRADES}")
+$ grep -nE '(<|>|==) *30\b' research/vorregistrierung/faltenplan.py  (Literal 30 als Vergleich?)
+  Treffer: 0
+=> Schwelle registriert: Festlegung 7 (Z. 62) und 5.1 Nr. 6 (Z. 574); faltenplan.py::faltenlaenge_jahre liest rd.ZWEIJAHRES_SCHWELLE_TRADES, kein Literal (wie Vormessung)
+
+== A5 Nennt 5.4 (oder sonst das Register) den Parameterstand der Listen?
+$ sed -n 624,640p docs/VORREGISTRIERUNG_neuselektion.md
+### 5.4 Welche Bots Zweijahres-Falten bekommen
+
+Gerechnet aus den **gefundenen** Trades je vollem Kalenderjahr
+(`research/tb24_haltedauern/daten/<bot>_alle_trades.csv`). Gefunden, nicht
+ausgeführt: ob ein Trade ausgeführt wird, hängt am Positionslimit — und das
+ist in diesem Lauf ein Rasterparameter. Eine Faltenlänge, die vom
+Positionslimit abhinge, wäre keine Festlegung vor dem Lauf.
+
+Angeschnittene Randjahre zählen nicht mit; sie zögen die Trades je Jahr nach
+unten und schöben einen Bot fälschlich in die Zweijahres-Falten.
+
+**Ergebnis: genau ein Bot.** `elliott_wave` liegt bei **26,0** gefundenen
+Trades je Jahr und bekommt Zweijahres-Falten; die übrigen acht liegen
+zwischen 50,9 und 1.202,2. Die Zahlen stehen in der Faltenplan-Tabelle in
+Abschnitt 3.
+
+---
+$ grep -c 'heutigen Parameter' in 5.4 (Z. 624-640)
+0
+$ grep -n '78e2bc6' docs/VORREGISTRIERUNG_neuselektion.md
+  Treffer: 0
+Ausserhalb des Registers (nur Tatsache, keine Registerstelle):
+$ sed -n 532,534p research/tb24_haltedauern/BERICHT.md
+* **Die Look-Ahead-Korrektur ist berücksichtigt, nicht umgangen.** Gerechnet
+  wird mit den heutigen `live_params.py` über die heutigen Bot-Funktionen —
+  also auf kausal sauberer Grundlage (Protokoll 3.1). Die Zahlen dieses
+$ Schluessel von research/tb24_haltedauern/daten/elliott_wave_meta.json
+['abgleich_exposure_messung', 'allocation_pct', 'anlageklasse', 'ausstiegsarten', 'bot', 'bot_hat_limit_parameter', 'erster_einstieg', 'kennzeichnung_neutral', 'kerzen_ohne_wert', 'letzter_ausstieg', 'max_concurrent_positions', 'spalte_result_vorhanden', 'startkapital', 'symbole_ausgefuehrt', 'symbole_gefunden', 'trades_ausgefuehrt', 'trades_gefunden', 'trades_uebersprungen', 'zeitrahmen']
+  -> Kapital, Allokation, Positionslimit und Zaehlungen; KEINE Strategieparameter
+$ git log --format='%h %ad' --date=short -- research/tb24_haltedauern/daten/
+78e2bc6 2026-09-13
+$ git diff --stat 78e2bc6 HEAD -- 'strategies/*/live_params.py'
+ strategies/t3_supertrend/live_params.py              | 2 +-
+ strategies/volatility_breakout/live_params.py        | 2 +-
+ strategies/volatility_breakout_crypto/live_params.py | 2 +-
+ 3 files changed, 3 insertions(+), 3 deletions(-)
+$ git diff 78e2bc6 HEAD -- 'strategies/*/live_params.py' | grep '^[-+][^-+]'
+-# equity_simulation.py:66 ruft die Funktion ohne Argumente auf, die Literale
++# equity_simulation.py:78 ruft die Funktion ohne Argumente auf, die Literale
+-# equity_simulation.py:160 ruft collect_all_trades() ohne use_volume_filter
++# equity_simulation.py:151 ruft collect_all_trades() ohne use_volume_filter
+-# equity_simulation.py:176 ruft collect_all_trades() ohne use_volume_filter
++# equity_simulation.py:166 ruft collect_all_trades() ohne use_volume_filter
+  -> seit 78e2bc6 nur drei Kommentarzeilen (Zeilenverweise auf equity_simulation.py), keine Zuweisung
+=> 5.4 nennt den Parameterstand der Erzeugung NICHT (wie Vormessung). Der TB-24-Bericht sagt 'mit den heutigen live_params.py' (Stand 13.09.);
+   die meta.json tragen keine Strategieparameter. Die live_params-Werte sind seit 78e2bc6 unveraendert - der uebrige Code (Bots, Simulation, TB-38) nicht gemessen.
+
+== A6 G6 liest 5.1 Nr. 4 maschinell
+$ sed -n 101,110p research/vorregistrierung/test_vorregistrierung.py
+def _testjahre_aus_register():
+    """Register 5.1 Nr. 4: die Jahre, die Testfalten sind und keine
+    Trainingsjahre. Aus dem Registertext gelesen, nicht als Literal (Fable 23a:
+    ein Literal ist eine Kopie des Registers im Code, und Kopien altern).
+    Genau ein Treffer, sonst None - dann scheitert G6 sichtbar."""
+    muster = re.compile(r"^4\. \*\*(\d{4}) und (\d{4}) sind Testfalten, "
+                        r"keine Trainingsjahre\.\*\*")
+    with open(REGISTER, encoding="utf-8") as f:
+        treffer = [m.groups() for m in map(muster.match, f) if m]
+    return sorted(int(j) for j in treffer[0]) if len(treffer) == 1 else None
+$ Muster gegen das Register, zeilenweise re.match (wie der Test):
+  Treffer: 1
+  Z. 565: 4. **2020 und 2022 sind Testfalten, keine Trainingsjahre.** Der Satz steht
+$ Funktion des Tests selbst:
+  _testjahre_aus_register() = [2020, 2022]
+$ G6-Aufruf: grep -n '_testjahre_aus_register()' research/vorregistrierung/test_vorregistrierung.py
+101:def _testjahre_aus_register():
+521:    testjahre = _testjahre_aus_register()
+=> genau ein Treffer (Z. 565), Muster an Zeilenanfang verankert, Jahre [2020, 2022]; kein Treffer oder zwei => None => G6 rot fuer alle Bots.
+   Folge fuer TB-96: keine neue Zeile darf mit '4. **JJJJ und JJJJ sind Testfalten, keine Trainingsjahre.**' beginnen (Zitate nur eingerueckt/als Blockzitat).
