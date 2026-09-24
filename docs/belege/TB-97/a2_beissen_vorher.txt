@@ -1,0 +1,51 @@
+# TB-97 A2 - beisst jede Mutationsprobe heute? HEAD 79eda3c5eff021a158c2dd818bf55ef480732ff8, 2026-09-24 10:02:22 +0200
+# Werkzeug: docs/belege/TB-97/a2_beissen.py, Python 3.9.6; test_vorregistrierung.py unveraendert (Mutation per Ersatz von _ersetze weggelassen)
+
+Grundlauf teil_h (alle Mutationen): 8 bestanden, gescheitert []  [231 s]
+
+H1 ohne ihre Mutation (registerdaten.py): BEISST
+   gescheitert: ['H1: eine verfaelschte Spitzen-Schwelle aendert das Urteil']
+   bestanden 7, Mutation weggelassen: ['H1']  [205 s]
+
+H2 ohne ihre Mutation (auswertung.py): BEISST
+   gescheitert: ["H2: ohne den Punkt selbst faellt ein anderes Urteil - 'Gewinner            donchian_period=11|max_concurrent_positions=2|stop_mode=structural'"]
+   bestanden 7, Mutation weggelassen: ['H2']  [207 s]
+
+H3 ohne ihre Mutation (auswertung.py): BEISST
+   gescheitert: ["H3: ohne die gesetzte Null aendert sich die Statistik - 'Netto-Sharpe (Med.) 0.0000' / 'Netto-Sharpe (Med.) 0.0000' - ohne Trade: ['2017', '2018', '2019', '2020', '2021'] von ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']"]
+   bestanden 7, Mutation weggelassen: ['H3']  [207 s]
+
+H4 ohne ihre Mutation (registerdaten.py): BEISST
+   gescheitert: ["H4: ein verfaelschter Drawdown-Faktor aendert die Zulaessigkeit - 'Zellen              96 im Raster, 96 zulaessig'"]
+   bestanden 7, Mutation weggelassen: ['H4']  [209 s]
+
+H5 ohne ihre Mutation (registerdaten.py): BEISST
+   gescheitert: ['H5: eine Live-Zahl im Grenzsatz laesst die Pruefung scheitern - TB-30a - Maschinelle Pruefung der Rastergrenzen\n\n==============================================================================\n395/395 Pruefungen bestanden.\n\nKein Grenzsatz erwaehnt einen Live-Wert; jede Grenze ist gerechnet.\n']
+   bestanden 7, Mutation weggelassen: ['H5']  [209 s]
+
+H6 ohne ihre Mutation (pruefe_grenzsaetze.py): BEISST
+   gescheitert: ['H6: ohne Wache 2 bleibt derselbe Fehler unbemerkt - keine andere Wache faengt ihn auf - nt keinen Live-Wert - nennt [8.0]\n  - turtle_soup_crypto/stop_mode[unten]: Satz nennt keinen Live-Wert - nennt [8.0]\n  - volatility_breakout/stop_loss_pct[unten]: Satz nennt keinen Live-Wert - nennt [8.0]\n  - volatility_breakout_crypto/stop_loss_pct[unten]: Satz nennt keinen Live-Wert - nennt [8.0]\n']
+   bestanden 7, Mutation weggelassen: ['H6']  [210 s]
+
+H7 ohne ihre Mutation (registerdaten.py): BEISST
+   gescheitert: ['H7: eine Stufung ausserhalb 1,5 bis 2,0 faellt auf - und zwar mit genau dieser Begruendung - TB-30a - Maschinelle Pruefung der Rastergrenzen\n\n==============================================================================\n395/395 Pruefungen bestanden.\n\nKein Grenzsatz erwaehnt einen Live-Wert; jede Grenze ist gerechnet.\n']
+   bestanden 7, Mutation weggelassen: ['H7']  [210 s]
+
+Zusatz: H5 UND H6 ohne Mutation: gescheitert ['H5: eine Live-Zahl im Grenzsatz laesst die Pruefung scheitern - TB-30a - Maschinelle Pruefung der Rastergrenzen\n\n==============================================================================\n395/395 Pruefungen bestanden.\n\nKein Grenzsatz erwaehnt einen Live-Wert; jede Grenze ist gerechnet.\n']
+   -> H6 besteht ohne jede Mutation (prueft rc 0; ohne den Live-Wert aus H5 ist rc 0 trivial) - H6 traegt nur zusammen mit H5  [207 s]
+
+H3 mit leerer Menge (ohne = {}): Bedingung False -> BEISST
+   'Netto-Sharpe (Med.) 0.1000' / 'Netto-Sharpe (Med.) 0.1000'  [74 s]
+
+F4 (keine Code-Mutation) ohne Falte ohne Trade: Bedingung (<=) True -> BEISST NICHT  [16 s]
+
+Gesamtzeit 1985 s
+
+# Zusammenfassung A2 (vorher, am unveraenderten Test):
+#   H1 BEISST · H2 BEISST · H3 BEISST (Mutation weggelassen) und BEISST (leere Menge) · H4 BEISST
+#   H5 BEISST · H6 BEISST (eigene Mutation weggelassen; ohne die H5-Mutation besteht H6 trivial)
+#   H7 BEISST · F4 (keine Code-Mutation) BEISST NICHT - der bekannte Fall
+# Hinweis zum Verfahren: Das Skript importiert test_vorregistrierung.py und beispieldaten.py beim Start
+# (10:02:22, HEAD-Stand 73c9b837 / 3e547014). Waehrend des Laufs wurden beide Dateien im Arbeitsbaum
+# bearbeitet; die Kopien in Teil H nehmen den Ordner mit, ausgefuehrt werden in den Kopien aber nur
+# auswertung.py und pruefe_grenzsaetze.py (beide unveraendert). Gemessen ist also der HEAD-Stand.

@@ -1,0 +1,21 @@
+# TB-97 C - Jahresliterale nach der Umstellung (Arbeitsbaum), 2026-09-24 10:38:09 +0200
+$ grep -nE '"20[12][0-9]' test_vorregistrierung.py beispieldaten.py
+beispieldaten.py:98:    Bis TB-97 stand hier `falte in ("2020", "2022")` - bei Zweijahresfalten
+test_vorregistrierung.py:278:    standen hier "2021" und "2020", die Beispieljahre aus Register 4.4 (Stand
+test_vorregistrierung.py:536:    # stand hier ohne = "2022", eine Falte). Und es ist eine STRIKTE MEHRHEIT
+test_vorregistrierung.py:602:        # nicht. Bis TB-95 stand hier `"2020" in namen` - seit den
+test_vorregistrierung.py:625:    # TB-97 das Literal ("2020", "2022")) - je Bot aus dem Plan und Register
+
+$ grep -nE '\b20(1[7-9]|2[0-7])\b' test_vorregistrierung.py beispieldaten.py
+beispieldaten.py:87:    Grenzen, nicht aus ihrem Namen (`2020-2021` deckt 2020 und 2021 ab)."""
+beispieldaten.py:98:    Bis TB-97 stand hier `falte in ("2020", "2022")` - bei Zweijahresfalten
+beispieldaten.py:99:    (`elliott_wave`: `2020-2021`, `2022-2023`) traf das nie, die Exposure war
+test_vorregistrierung.py:95:    Grenzen, nicht aus ihrem Namen (`2020-2021` deckt 2020 und 2021 ab).
+test_vorregistrierung.py:278:    standen hier "2021" und "2020", die Beispieljahre aus Register 4.4 (Stand
+test_vorregistrierung.py:279:    14.09.2026); Fable 24a: die Pruefung prueft die Regel, nicht das Beispiel."""
+test_vorregistrierung.py:536:    # stand hier ohne = "2022", eine Falte). Und es ist eine STRIKTE MEHRHEIT
+test_vorregistrierung.py:541:    # neun Selektionsfalten (2017-2021).
+test_vorregistrierung.py:602:        # nicht. Bis TB-95 stand hier `"2020" in namen` - seit den
+test_vorregistrierung.py:625:    # TB-97 das Literal ("2020", "2022")) - je Bot aus dem Plan und Register
+
+=> jeder Treffer steht in einem Kommentar oder Docstring (Zeilen oben einzeln gelesen); kein Literal in einer Bedingung oder Zuweisung.

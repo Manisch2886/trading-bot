@@ -1,0 +1,87 @@
+# TB-97 Block E - Selbsttest der Sonde, HEAD 3b60ca8, 2026-09-24 10:49:44 +0200
+# vorher (Eingang 79eda3c): 49/49 rc 0
+Selbstpruefung der Sperrlisten-Sonde (TB-85, Auftrag B5)
+Kopie unter /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb85_sonde_fdghv_rx
+
+fall_0  Der Erzeuger legt das Abbild in der Kopie an.
+  [ OK ] 0: der Erzeuger schreibt das Abbild in die Kopie (rc 0)
+
+fall_1  Abbild stimmt mit Repo und Registertext -> 2 (nicht-pruefbare Punkte dabei).
+  [ OK ] 1a: unveraendert -> Gesamtwert 2 (nicht-pruefbare Punkte dabei)
+  [ OK ] 1b: kein Punkt mit 1
+  [ OK ] 1c: Punkte 2 und 5 (nur Dateien) sind 0
+  [ OK ] 1d: (ii) Abbild = Registertext
+  [ OK ] 1e: 14 Punkte im Bericht
+  [ OK ] 1f: jeder 2er-Punkt nennt seinen Grund
+  [ OK ] 1g: jede gemessene Datei steht mit Hash und 'gleich' im Bericht
+
+fall_2  Eine Datei der Kopie um ein Byte veraendert -> 1, Punkt genannt.
+  [ OK ] 2a: ein Byte anders -> Gesamtwert 1
+  [ OK ] 2b: Punkt 1 traegt den Befund
+  [ OK ] 2c: der Grund nennt die Datei
+  [ OK ] 2d: der Gesamtgrund nennt den Punkt
+  [ OK ] 2e: die uebrigen Punkte sind unveraendert (kein zweiter 1er)
+  [ OK ] 2f: zurueckgesetzt -> wieder 2, kein 1er
+
+fall_3  Ein Punkt fehlt im Abbild -> 1 (ii).
+  [ OK ] 3a: Punkt fehlt -> 1
+  [ OK ] 3b: (ii) nennt die Punktzahl 13 gegen 14
+
+fall_4  Ein Punkt zu viel im Abbild -> 1 (ii).
+  [ OK ] 4a: Punkt zu viel -> 1
+  [ OK ] 4b: (ii) nennt die Punktzahl 15 gegen 14
+  [ OK ] 4c: ein 1 aus (ii) schlaegt die 2 des erfundenen Punktes
+
+fall_5  Abbilddatei fehlt -> 2.
+  [ OK ] 5a: Abbild fehlt -> 2
+  [ OK ] 5b: der Grund sagt es
+  [ OK ] 5c: kein Punkt wurde als geprueft gefuehrt
+  [ OK ] 5d: Abbild kein JSON -> 2
+
+fall_6  Registerdatei nicht lesbar -> 2 - und ein Befund in (i) schlaegt das trotzdem.
+  [ OK ] 6a: Register fehlt -> 2
+  [ OK ] 6b: (ii) ist 2 und nennt das Register
+  [ OK ] 6c: (i) wurde trotzdem gemessen (14 Punkte im Bericht)
+  [ OK ] 6d: Register ohne Leserecht -> 2
+  [ OK ] 6e: Registertext mit 15. Punkt -> 1
+  [ OK ] 6f: (ii) nennt 14 gegen 15
+
+fall_7  Ein Punkt ohne Pfade (13) -> 2, mit Nennung.
+  [ OK ] 7a: Punkt 13 hat im Abbild keine Pfade
+  [ OK ] 7b: Punkt 13 -> 2
+  [ OK ] 7c: der Grund nennt 'kein Dateipfad' und den Wortlaut 'Abschnitt 8'
+  [ OK ] 7d: der Gesamtgrund nennt Punkt 13
+  [ OK ] 7e: Punkte 7 und 9 (nur Konstanten) ebenso 2
+
+teil_h  Weitere Mutationsproben ueber die sieben Faelle hinaus.
+  [ OK ] H1: 1 schlaegt 2 - Gesamt 1 bei 12 nicht-pruefbaren Punkten
+  [ OK ] H2: Titel veraendert -> 1 mit 'Feld titel'
+  [ OK ] H3: zusaetzlicher Pfad im Abbild -> 1 aus (ii), obwohl (i) gleich
+  [ OK ] H4: genannte Datei fehlt -> Punkt 2 mit 'Datei fehlt'
+  [ OK ] H5: falscher Hash im Abbild -> 1, Punkt 5
+  [ OK ] H6a: zweiter Aufruf des Erzeugers -> 1
+  [ OK ] H6b: er nennt Pfad und Hash der vorhandenen Datei
+  [ OK ] H6c: die Datei ist unveraendert
+  [ OK ] H6d: Erzeuger ohne lesbares Register -> 2, nichts geschrieben
+  [ OK ] H7a: Befehlszeile liefert 2 wie die Funktion
+  [ OK ] H7b: die Textausgabe endet mit dem Rueckgabewert
+  [ OK ] H7c: die Textausgabe nennt die Gruppe bestimmt aus dem Abbild (leer) und keinen Pfad aus dem Code der Sonde
+  [ OK ] H7f: die Schlusszeilen trennen Pfad- und Regel-Bestandteile (40.8 (d))
+  [ OK ] H7d: --json ist gueltiges JSON mit ausgang 2
+  [ OK ] H7e: fehlendes Abbild ueber die Befehlszeile -> 2
+  [ OK ] H8: die Sonde schreibt nichts (Dateiliste und Groessen gleich)
+
+fall_8  Die Gruppen kommen aus dem Abbild (40.8 (e)) - mit Gegenprobe.
+  [ OK ] 8a: der Erzeuger schreibt die Gruppe bestimmt leer und eingefroren mit den zehn Eintraegen aus herkunft.py
+  [ OK ] 8b: beide Gruppen gemessen und 0, Gesamtwert unveraendert 2
+  [ OK ] 8c: erfundener bestimmt-Pfad (Datei fehlt) -> Gruppe 2, Pfad genannt
+  [ OK ] 8d: bestimmt-Pfad mit falschem Hash im Abbild -> Gesamt 1, Gruppe genannt
+  [ OK ] 8e: Gegenprobe - ohne den erfundenen Pfad keine Meldung, Gruppe 0
+  [ OK ] 8f: Abbild ohne Gruppen -> beide Gruppen 2 'nicht im Abbild', kein 1
+  [ OK ] 8g: kennzahlen.py (nur EINGEFROREN) veraendert -> 1 in Gruppe eingefroren, kein Punkt mit 1
+  [ OK ] 8h: Erzeuger --bestimmt PFAD=GRUND schreibt die Gruppe
+  [ OK ] 8i: --bestimmt ohne GRUND -> 2, nichts geschrieben
+
+==============================================================================
+59/59 Pruefungen bestanden.
+rc=0

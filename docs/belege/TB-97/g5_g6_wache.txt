@@ -1,0 +1,29 @@
+# TB-97 - Wache 40.2: Zeilen, die mit dem Anfang von 5.1 Nr. 4 beginnen, 2026-09-24 10:49:24 +0200
+# Muster (wie G6): ^4\. \*\*[0-9]{4} und [0-9]{4} sind Testfalten, keine Trainingsjahre\.\*\*
+## im Register (erwartet genau 1):
+1
+## in allen Dateien dieser Sitzung (erwartet 0 je Datei):
+0 research/vorregistrierung/test_vorregistrierung.py
+0 research/vorregistrierung/beispieldaten.py
+0 research/vorregistrierung/sperrliste_abbild.py
+0 shared/sperrlistensonde.py
+0 shared/test_sperrlistensonde.py
+0 docs/ERGEBNIS_TB-97_testannahmen_zweite_runde.md
+0 journal_cy.md
+0 docs/belege/TB-97/a_messung.py
+0 docs/belege/TB-97/a1_mutationsproben.txt
+0 docs/belege/TB-97/a2_beissen_vorher.txt
+0 docs/belege/TB-97/a2_beissen.py
+0 docs/belege/TB-97/a3_f4.txt
+0 docs/belege/TB-97/a4_literale.txt
+0 docs/belege/TB-97/a6_hashes_vorher.txt
+0 docs/belege/TB-97/a6_sonde_vorher.txt
+0 docs/belege/TB-97/c_literale_nachher.txt
+0 docs/belege/TB-97/e2_e3_sonde.txt
+0 docs/belege/TB-97/f_test.txt
+0 docs/belege/TB-97/g5_g6_wache.txt
+0 docs/belege/TB-97/g5_hashes_nachher.txt
+0 docs/belege/TB-97/g5_sonde_nachher.txt
+0 docs/belege/TB-97/hashes.sh
+0 docs/belege/TB-97/pfade_28.txt
+## G6 im Lauf f_test.txt: 0 Meldungen unter GESCHEITERT (0 = gruen)

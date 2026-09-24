@@ -1,0 +1,12 @@
+# TB-97 A6 - der Test am Eingang (HEAD 79eda3c, test_vorregistrierung.py 73c9b837), Zeit je Teil
+# Werkzeug: Scratchpad-Skript zeit_je_teil.py (importiert den Test und ruft teil_a ... teil_h nacheinander, wie main())
+# Lauf 09:53:31-10:01:55 (Ende = Dateizeit von zeit_vorher.txt, Beginn = Ende - 504 s); a_messung.py (81 s, 09:55:55-09:57:16) lief dabei PARALLEL - die 504 s sind eher zu hoch als zu niedrig
+Teil A: 66.3 s, bestanden 10, gescheitert 0
+Teil B: 23.2 s, bestanden 18, gescheitert 0
+Teil C: 16.1 s, bestanden 22, gescheitert 0
+Teil D: 32.0 s, bestanden 29, gescheitert 0
+Teil E: 135.1 s, bestanden 46, gescheitert 0
+Teil F: 16.1 s, bestanden 50, gescheitert 0
+Teil G: 7.4 s, bestanden 157, gescheitert 0
+Teil H: 207.8 s, bestanden 165, gescheitert 0
+gesamt 503.9 s; 165 bestanden, 0 gescheitert

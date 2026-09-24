@@ -1,0 +1,47 @@
+# TB-97 A1 - die Mutationsproben in test_vorregistrierung.py, benannt
+# Stand: HEAD 79eda3c (Schritt 0), test_vorregistrierung.py 73c9b837... (unveraendert seit 9e2a071, TB-95)
+# Suche (Repo-Wurzel, research/vorregistrierung/):
+#   grep -n "_ersetze(\|_kopie(\|os.remove\|to_csv(\|copytree\|pruefe(\"H" test_vorregistrierung.py
+# Kriterium des Auftrags: eine Probe VERAENDERT DEN CODE (Kopie des Ordners, _ersetze(...)),
+# wertet erneut aus und prueft, dass sich das Ergebnis aendert.
+
+## Treffer: 7 Code-Mutationen, alle in Teil H (teil_h, Z. 603-708)
+
+| Name | Teil | Zeile (pruefe / _ersetze) | was mutiert wird (Datei: alt -> neu) | woran der Unterschied gemessen wird | Erwartung |
+|---|---|---|---|---|---|
+| H1 | H | 624 / 621 | registerdaten.py: SPITZEN_SCHWELLE = 0.50 -> 99.0 | "Spitze" in der Ausgabe von auswertung.py, Kopie gegen Original (gleiche Beispieldaten `roh`) | Urteil anders, rc 0 |
+| H2 | H | 635 / 631 | auswertung.py: Plateau-Mittel np.mean([s] + nachbar_werte) -> nur Nachbarn | Gewinnerzeile ("Gewinner ...") Kopie gegen Original | Gewinner anders, rc 0 |
+| H3 | H | 654 / 595 (in _h3_lauf, Z. 585-600) | auswertung.py: Null fuer Falten ohne Trade (np.where(n_trades == 0, 0.0, ...)) entfernt | Zeile "Netto-Sharpe (Med.)" vorher (Original) gegen nachher (Kopie), auf eigenen Daten `roh2` mit strikter Mehrheit der Selektionsfalten ohne Trade (5 von 9) | Statistik anders, beide rc 0 |
+| H4 | H | 666 / 663 | registerdaten.py: DD_RELATIVER_FAKTOR = 1.25 -> 0.01 | Zeile "... im Raster, ..." (Zulaessigkeit) Kopie gegen Original | Zulaessigkeit anders, rc 0 |
+| H5 | H | 681 / 676 | registerdaten.py: Grenzsatz "halbes Tages-Sigma" -> "8.0 Prozent" (eine Live-Zahl) | Rueckgabewert und Ausgabe von pruefe_grenzsaetze.py in der Kopie | rc 1 und "Live-Wert" |
+| H6 | H | 689 / 684 | ZUSAETZLICH zu H5 (dieselbe Kopie): pruefe_grenzsaetze.py Wache 2 (treffer = zahlen_im_satz(...) & alle_live) -> treffer = set() | Rueckgabewert von pruefe_grenzsaetze.py | rc 0 (der Fehler aus H5 kommt durch) |
+| H7 | H | 704 / 697 | registerdaten.py: "stufen": 4 -> 3 in einer sigma_vielfaches-Achse | Rueckgabewert und Ausgabe von pruefe_grenzsaetze.py | rc != 0 und "ausserhalb 1,5 bis 2,0" |
+
+## Nicht gezaehlt, weil keine Code-Mutation
+
+| Name | Teil | Zeile | was es ist |
+|---|---|---|---|
+| H0 | H | 615 | Grundlauf: der UNVERAENDERTE Ordner wertet aus (rc 0). Vergleichsbasis fuer H1, H2, H4 - selbst keine Mutation |
+| A9 | A | 162 | Datenmutation: eine Tagesreihe geloescht -> SystemExit erwartet (Vertrag), kein Code geaendert |
+| A10 | A | 175 | Datenmutation: eine Rasterzelle aus zellen.csv entfernt -> SystemExit erwartet |
+| E-a1..3, E-c1..4 | E | 348-435 | Datenmutation: Tagesreihe des Gewinners ueberschrieben, um einen Fall zu bauen |
+| F4 | F | 496 | kein Code geaendert: vergleicht im selben Prozess zwei Mediane derselben Faltenwerte (mit und ohne die Falte ohne Trade). Der Anlass von 40.7 - aber nach dem Kriterium des Auftrags KEINE Mutationsprobe |
+
+## Befund A1 - die Zahl
+
+- **Gemessen: sieben Code-Mutationsproben (H1-H7), nicht acht.** Teil H hat acht Pruefungen (H0-H7);
+  H0 ist der Grundlauf ohne Mutation. Die Zahl "acht Mutationsproben" in Abschnitt 12 und in
+  research/vorregistrierung/BERICHT.md:29 ("150 Pruefungen, davon acht Mutationsproben") stammt aus TB-30a
+  (a2fcf01) und zaehlt - so am Stand a2fcf01 nachgesehen, dort dieselben acht pruefe("H...")-Aufrufe H0-H7 - offenbar die
+  Pruefungen von Teil H. Der TB-30a-Testauftrag (docs/TESTAUFTRAG_TB-30a_vorregistrierung.md:143) sagt
+  "Teil H startet acht eigene Prozesse" - auch das zaehlt Prozesse, nicht Mutationen.
+- **H5 und H6 teilen sich EINE Kopie**; H6 ist eine Doppelmutation (H5-Mutation + Wache 2 entfernt). H6 traegt nur
+  zusammen mit H5: ohne die H5-Mutation ist "rc 0" trivial (gemessen in A2, Zusatzzeile).
+- **F4 ist keine Mutationsprobe.** Register 40.7 nennt F4 als Anlass ("F4 hat drei Wochen bestanden") und die
+  Auftragsprosa ("Bei einer dieser acht ...") zaehlt F4 zu den acht - gemessen gehoert F4 nicht dazu. F4 bekommt seine
+  Gegenprobe trotzdem (Block B, B3).
+- Abschnitt 12 beschreibt die Proben nicht einzeln (keine Namen); der Kopf von test_vorregistrierung.py (Z. 19-35)
+  beschreibt die Bauart ("kopieren den GANZEN Ordner ..., aendern dort EINE Zeile") und die Wachen-Paare H5/H6 -
+  das stimmt mit dem Gemessenen ueberein, bis auf "EINE Zeile": H6 aendert zwei.
+
+=> Nach Abbruchkriterium 2: gemeldet, Zahl 7, weitergearbeitet mit der gemessenen Menge H1-H7 (plus F4 aus Block B).

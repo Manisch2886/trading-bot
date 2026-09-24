@@ -8776,6 +8776,44 @@ TB-101 · Fable: der TB-90-Fall und der methodische Satz im Nachtrag zu 39.8.
 
 ---
 
+## CY — TB-97: Testannahmen, zweite Runde — sieben Mutationsproben benannt und mit Gegenprobe, `F4` beisst, die vier Literale aus Plan und Register, die Sonde liest ihre Gruppen aus dem Abbild (24.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-97_testannahmen_zweite_runde.md`*
+
+**Quelle:** Mac-Sitzung **TB-97**, 24.09.2026, Eingang `4777d18`. Commits `79eda3c`
+(Schritt 0), `ae8db0b` (Block B+C+D, Test), `3b60ca8` (Block E, Sonde) und der Abgabe-Commit.
+Belege `docs/belege/TB-97/`. Grundlage Fable 24a, Register 40.7/40.8.
+
+### Was gemessen und gebaut ist
+
+| | |
+|---|---|
+| ⚠️⚠️ **A1** | **Sieben** Code-Mutationsproben (H1–H7), nicht acht: H0 ist der Grundlauf, `F4` keine Mutationsprobe. „Acht" zählte die Prüfungen von Teil H |
+| **A2** | Alle sieben **beissen** (Mutation weggelassen ⇒ scheitert). H6 nur zusammen mit H5. `F4` beisst nicht (`<=`, 1 Null unter 9) |
+| **B** | `F4`: `<`, strikte Mehrheit aus dem Plan (5 von 9), Gegenprobe `F4-G` |
+| **C** | Teil D: ruhigste/schwerste Falte des Plans (heute 2017/2020), D1-G/D2-G. Teil F: Mehrheit aus dem Plan, F1-G. ⚠️ `beispieldaten.py`: Die Krisenfalten brauchen tiefen Benchmark-Drawdown, **nicht irgendeine Falte** (Fables Beispiel fiele bei zwei Bots durch) ⇒ Jahre aus 5.1 Nr. 4 per Abdeckung, neue Prüfung `G11` je Bot mit zwei Gegenproben. 5.1 Nr. 4 hat jetzt zwei Leser, einen Parser |
+| ⭐ **D** | `_mit_gegenprobe`: jede Probe läuft mit und ohne Mutation, bei jedem Lauf. **188/188, rc 0, 781 s** (vorher 165, 504 s am Eingang) |
+| **E** | Sonde: getrennte Schlusszeilen (Pfad / Regel), Gruppen `bestimmt` und `eingefroren` aus dem Abbild; der Erzeuger schreibt sie. Das echte Abbild führt sie nicht ⇒ dort 2, **neues Abbild steht aus (Freigabe)**. Gegenprobe erfundener Pfad an Kopie im Scratchpad. Sonde echtes Abbild 0 Befunde, Hash gleich; Selbsttest 59/59 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Eine Zahl im Register, die Prüfungen zählt, wird benannt, bevor man sie erfüllt.** „Acht Mutationsproben" war eine Zählung von Prüfungsnamen, nicht von Mutationen |
+| ⭐ | **Eine Gegenprobe lässt nur die EIGENE Mutation weg.** Hängt eine Probe an einer anderen (H6 an H5), macht das Weglassen beider sie trivial grün |
+| ⭐ | **„Irgendeine Falte" wird nachgerechnet, bevor man sie nimmt.** Ein Generator-Literal kann eine Eigenschaft tragen (tiefer Benchmark-Drawdown), die sein Text nicht nennt |
+| ⭐ | **Eine fehlende Gruppe ist nicht dasselbe wie eine leere.** Fehlend ⇒ 2, leer ⇒ 0 |
+
+### Was offen bleibt
+
+Registerabschnitt 41 und Tatsachennotiz zu 4.4 (Vorschlag im Ergebnisdokument) · Fable:
+sieben oder acht (40.7), `beispieldaten.py` aus 5.1 Nr. 4 statt „irgendeine Falte" · neues
+echtes Abbild mit Gruppen (Freigabe) · TB-98 · TB-100 · TB-101.
+
+*Geschrieben 24.09.2026 von der Mac-Sitzung TB-97. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

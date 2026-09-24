@@ -1,0 +1,33 @@
+# TB-97 Block A - HEAD 79eda3c5eff021a158c2dd818bf55ef480732ff8, 2026-09-24 09:57:16 +0200
+# Werkzeug: docs/belege/TB-97/a_messung.py, Python 3.9.6
+# A3 - F4 ausgemessen. BOT = turtle_soup_stocks
+
+Selektionsfalten (9): ['2017', '2018', '2019', '2020', '2021', '2022', '2023', '2024', '2025']
+Bestaetigung: ['2026-01-01/2026-09-01']
+
+Code (Stand HEAD, test_vorregistrierung.py Teil F):
+  ohne = "2022"   (ein Literal, eine Falte)
+  F4 Text:  "der Median mit der Null liegt unter dem Median ohne sie"
+  F4 Code:  median(werte) <= median([v for k, v in falten.items() if k != ohne])
+  Vergleichszeichen <=  -  der Text sagt "unter" (<)
+
+Heutiger Lauf (ohne = {'2022'}): falten_sharpe = {'2017': 0.1, '2018': 0.1, '2019': 0.1, '2020': 0.1, '2021': 0.1, '2022': 0.0, '2023': 0.1, '2024': 0.1, '2025': 0.1}
+  Falten auf null gesetzt: 1 von 9
+  Median mit der Null 0.1000, ohne sie 0.1000
+  <= : True   < : False   -> F4 heute bestanden, mit < waere es GESCHEITERT
+
+Ab welchem k verschiebt sich der Median? (k Nullen unter n Falten, sonst 0,10; Rechnung wie TB-95)
+  k=0: Median mit 0.1000, ohne die Nullen 0.1000, < False
+  k=1: Median mit 0.1000, ohne die Nullen 0.1000, < False
+  k=2: Median mit 0.1000, ohne die Nullen 0.1000, < False
+  k=3: Median mit 0.1000, ohne die Nullen 0.1000, < False
+  k=4: Median mit 0.1000, ohne die Nullen 0.1000, < False
+  k=5: Median mit 0.0000, ohne die Nullen 0.1000, < True
+  k=6: Median mit 0.0000, ohne die Nullen 0.1000, < True
+  k=7: Median mit 0.0000, ohne die Nullen 0.1000, < True
+  k=8: Median mit 0.0000, ohne die Nullen 0.1000, < True
+  k=9: Median mit 0.0000, ohne die Nullen nan, < False
+  -> kleinstes wirksames k = 5 (strikte Mehrheit len(sel)//2+1) bei n = 9
+
+Am Ablauf mit der Mehrheit ['2017', '2018', '2019', '2020', '2021']: Median mit 0.0000, ohne 0.1000, < True
+Am Ablauf mit leerer Menge: Median mit 0.1000, ohne 0.1000, < False (Gegenprobe scheitert wie gefordert)
