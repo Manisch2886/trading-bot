@@ -1,0 +1,12 @@
+# TB-98 E1b - Snapshot unveraendert? HEAD 46e3ed0, 2026-09-24 15:16:21 +0200
+$ trading-env/bin/python3 shared/snapshot.py --pruefen snapshots/63e4b6c8...
+  snapshot_hash    Soll 63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+                   Ist  63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+  datenstand_hash  Soll d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Kursdateien)
+                   Ist  d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Kursdateien)
+
+  UNVERAENDERT
+rc=0
+
+$ git status --porcelain (ohne docs/belege/TB-98/)
+(Ende git status)

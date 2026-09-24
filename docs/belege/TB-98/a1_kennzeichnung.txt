@@ -1,0 +1,119 @@
+# TB-98 A1 Nachmessung Kennzeichnung, OHNE Modus, HEAD a58ed1d, 2026-09-24 15:07:18 +0200
+# $ trading-env/bin/python3 -W ignore docs/belege/TB-98/a1_kennzeichnung.py <bot>   (nur gleich/VERSCHIEDEN, keine Zahlen - 27.1)
+== elliott_wave: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          VERSCHIEDEN
+   allocation             gleich
+== elliott_wave: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0
+== t3_supertrend: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    VERSCHIEDEN
+   num_executed           VERSCHIEDEN
+   num_skipped            VERSCHIEDEN
+   capital_after          VERSCHIEDEN
+   allocation             VERSCHIEDEN
+== t3_supertrend: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0
+== rsi2_crypto: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          VERSCHIEDEN
+   allocation             VERSCHIEDEN
+== rsi2_crypto: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0
+== turtle_soup_crypto: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          VERSCHIEDEN
+   allocation             VERSCHIEDEN
+== turtle_soup_crypto: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0
+== volatility_breakout_crypto: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    VERSCHIEDEN
+   num_executed           VERSCHIEDEN
+   num_skipped            VERSCHIEDEN
+   capital_after          VERSCHIEDEN
+   allocation             VERSCHIEDEN
+== volatility_breakout_crypto: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0
+== elliott_wave_stocks: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    VERSCHIEDEN
+   num_executed           VERSCHIEDEN
+   num_skipped            VERSCHIEDEN
+   capital_after          VERSCHIEDEN
+   allocation             VERSCHIEDEN
+== elliott_wave_stocks: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0
+== rsi2_mean_reversion: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          VERSCHIEDEN
+   allocation             VERSCHIEDEN
+== rsi2_mean_reversion: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0
+== turtle_soup_stocks: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    VERSCHIEDEN
+   num_executed           VERSCHIEDEN
+   num_skipped            VERSCHIEDEN
+   capital_after          VERSCHIEDEN
+   allocation             VERSCHIEDEN
+== turtle_soup_stocks: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0
+== volatility_breakout: unveraendert gegen markiert (Erzeuger, heutiger Code)
+   Laenge Kapitalkurve    VERSCHIEDEN
+   num_executed           VERSCHIEDEN
+   num_skipped            VERSCHIEDEN
+   capital_after          VERSCHIEDEN
+   allocation             VERSCHIEDEN
+== volatility_breakout: unveraendert gegen markiert, Stufe-4-Schluessel ohne Zeilenkennung (Gegenprobe)
+   Laenge Kapitalkurve    gleich
+   num_executed           gleich
+   num_skipped            gleich
+   capital_after          gleich
+   allocation             gleich
+   rc=0

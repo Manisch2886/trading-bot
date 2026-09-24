@@ -1,0 +1,109 @@
+# TB-98 A1 - Liest der Erzeuger ueber den Selektionsmodus?
+# HEAD a58ed1d (Schritt 0), 24.09.2026 15:03-15:11, trading-env/bin/python3 (3.9.6)
+# Keine Trade-Zahlen (27.1). "Geladen: x von y" sind Symbolzahlen, keine Trades.
+
+## Ergebnis in drei Saetzen
+
+(1) KURSDATEN: ja. Der Erzeuger liest seine Kursdateien ueber
+    get_strategy_paths() -> shared/paths.py; unter dem Modus kommen sie aus
+    snapshots/63e4b6c8.../, 0 Zugriffe auf data/ oder config/ (9/9 Bots,
+    Lesehaken mit Aufrufstapel). Nicht dieselbe Klasse wie benchmark.py.
+(2) ⚠️ BEFUND 1 - SYMBOLLISTEN: nein. Der Snapshot legt die zwei Listen unter
+    config/ ab (shared/snapshot.py Z. 207-211), shared/paths.py laesst unter
+    dem Modus CONFIG_DIR auf die flache Snapshot-Wurzel zeigen (Z. 570, Kopf
+    Z. 91-93: "Die Snapshot-Wurzel ist flach"). symbols_config.py und die vier
+    stocks_symbols_config.py finden die Liste nicht (os.path.exists, kein
+    open) und fallen STILL auf eine Standardliste von 5 Symbolen zurueck -
+    nur eine "Warnung:"-Zeile auf stdout; das Ladeprotokoll meldet
+    "Geladen: 5 von 5 Symbolen. Keines ausgelassen." 9/9 Bots.
+(3) ⚠️ BEFUND 2 - DER ERZEUGER LAEUFT MIT DEM HEUTIGEN CODE NICHT: 9/9 Bots
+    brechen mit "Kennzeichnung hat die Simulation veraendert - Abbruch." ab,
+    MIT und OHNE Modus, bevor eine Datei geschrieben wird. Ursache (gemessen,
+    mit Gegenprobe): die Zuteilungskaskade (shared/zuteilung.py, TB-26
+    f6d9a28, NACH der Erzeugung der alten Listen in 78e2bc6) bildet auf Stufe
+    4 einen Zufallsschluessel aus dem Trade-Inhalt EINSCHLIESSLICH `symbol`
+    (Z. 492-497). Die Zeilenkennung "AAPL#417", mit der positionen_holen.py
+    (Z. 208-224) die ausgefuehrten Trades zuordnet, veraendert diesen
+    Schluessel und damit die Zuteilung. Die Zusicherung "Beschriftung ohne
+    Wirkung" aus bot_lauf.py (Kopf Z. 32-37) gilt seit TB-26 nicht mehr.
+
+## Statisch - der Weg der Kursdaten (Datei:Zeile, Stand a58ed1d)
+
+  research/tb24_haltedauern/positionen_holen.py:73-74   sys.path + import bot_lauf
+  research/exposure_messung/bot_lauf.py:59-60           sys.path: strategies/<BOT>, shared/
+  research/tb24_haltedauern/positionen_holen.py:182-184 import equity_simulation; es.load_all_symbol_data()
+  strategies/<bot>/equity_simulation.py                 from multi_symbol_optimise import load_all_symbol_data
+  strategies/rsi2_crypto/multi_symbol_optimise.py:38-39 _P = get_strategy_paths(__file__); DATA_DIR = _P["DATA_DIR"]
+  strategies/rsi2_crypto/multi_symbol_optimise.py:64    csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+  shared/strategy_paths.py:88, 136-137                  import paths; "DATA_DIR": paths.DATA_DIR, "CONFIG_DIR": paths.CONFIG_DIR
+  shared/paths.py:569-570                               unter Modus: DATA_DIR = CONFIG_DIR = Snapshot-Wurzel
+  (die uebrigen acht Bots gleich gebaut; Zeile des Oeffnens je Bot unten, dynamisch)
+
+## Statisch - der Weg der Symbollisten
+
+  strategies/rsi2_crypto/multi_symbol_optimise.py:43    from symbols_config import SYMBOLS   (Krypto: 5 Bots)
+  shared/symbols_config.py:16-18                        from paths import CONFIG_DIR; SYMBOLS_FILE = CONFIG_DIR/top25_symbols.txt
+  shared/symbols_config.py:26-35                        if os.path.exists(...) ... sonst "Warnung" + DEFAULT_SYMBOLS (5)
+  strategies/<aktienbot>/stocks_symbols_config.py:19-32 CONFIG_DIR = _P["CONFIG_DIR"]; sp500_top150.txt; sonst 5 Aktien
+  shared/snapshot.py:207-211                            <snapshot>/config/top25_symbols.txt, config/sp500_top150.txt
+  MANIFEST.json des Snapshots, dateien:                 'config/sp500_top150.txt', 'config/top25_symbols.txt'
+  ⇒ Unter dem Modus wird <snapshot>/top25_symbols.txt gesucht; die Datei liegt in <snapshot>/config/.
+
+## Dynamisch 1 - der unveraenderte Erzeuger, 9 Bots, mit und ohne Modus
+
+Werkzeug: a1_probe.py (Umschlag: importiert positionen_holen, setzt NUR
+DATEN_DIR auf einen leeren Scratchpad-Ordner, ruft main()), a1_neun.sh,
+Lesehaken haken/sitecustomize.py (Aufrufstapel je open). Startpruefung unter
+dem Modus 9/9 bestanden (commit a58ed1d..., arbeitsbaum sauber, lock 96a5c572...).
+Ausgabe: a1_neun_lauf.txt.
+
+  alle 18 Laeufe: rc=1, geschrieben=0, Abbruch "Kennzeichnung hat die Simulation veraendert"
+  mit Modus:  9/9 "Warnung: <snapshot>/top25_symbols.txt bzw. sp500_top150.txt nicht gefunden",
+              9/9 "Geladen: 5 von 5 Symbolen. Keines ausgelassen."
+  ohne Modus: Krypto 18/24 bzw. 20/24, Aktien 147/150 geladen (aus data/)
+
+Lesequellen mit Modus (a1_lesequellen_dynamisch.txt): je Bot 1x MANIFEST
+(shared/paths.py:264), 5x snapshot/csv (multi_symbol_optimise.py), 0x REPO
+data/, 0x REPO config/, 0x snapshot/config.
+
+## Dynamisch 2 - dieselben Laeufe, Listen zusaetzlich flach (a1_flach.sh)
+
+Hilfsordner im Scratchpad aus Verknuepfungen auf den echten Snapshot plus die
+zwei Listen flach in der Wurzel (Verknuepfung auf <snapshot>/config/...). Der
+Modus laesst ihn zu, weil er nur das MANIFEST-Feld prueft. Ausgabe:
+a1_flach_lauf.txt, a1_lesequellen_flach.txt.
+
+  9/9 rc=1, geschrieben=0, derselbe Kennzeichnungs-Abbruch
+  Geladen: Krypto 18/24 bzw. 20/24, Aktien 147/150 - wie ohne Modus
+  Lesequellen: je Bot 1x MANIFEST, 1x snapshot/config (die Liste, ueber die
+  flache Verknuepfung), 24 bzw. 150 snapshot/csv; 0x REPO data/, 0x REPO config/
+
+⇒ Mit gefundener Liste liest der Erzeuger AUSSCHLIESSLICH aus dem Snapshot.
+  Der Befund 1 liegt im Zusammenspiel Resolver <-> Snapshot-Aufbau, nicht im
+  Erzeuger.
+
+## Dynamisch 3 - Ursache von Befund 2 (a1_kennzeichnung.py/.txt, Uebersicht)
+
+Ohne Modus, nur im Speicher, je Bot: Lauf unveraendert gegen Lauf mit
+Zeilenkennung, fuenf Teilbedingungen aus positionen_holen.py Z. 214-222.
+Gegenprobe: derselbe markierte Lauf, aber der Stufe-4-Schluessel rechnet mit
+dem Symbol OHNE Kennung (zuteilung.zufallsschluessel im Speicher umgelegt).
+
+  Erzeuger:   9/9 Bots mit 1-5 von 5 Teilbedingungen VERSCHIEDEN
+  Gegenprobe: 9/9 Bots mit 0 von 5 verschieden
+  ⇒ Die Kennung wirkt ausschliesslich ueber den Stufe-4-Schluessel.
+
+## Was daraus fuer diesen Auftrag folgt
+
+Block C (neun Listen im Modus) ist unter den Auftragsregeln NICHT ausfuehrbar:
+  - Befund 2 laesst sich nur beheben, indem der Rechenweg des Erzeugers oder
+    der Zuteilung geaendert wird - B3 verlangt "Rechenwege unveraendert (AST)".
+  - Befund 1 laesst sich nur in shared/paths.py, in den Symbol-Modulen oder am
+    Aufbau des Snapshots beheben - E1 erlaubt Bewegung nur an
+    positionen_holen.py und alle_bots.py. Den Listenpfad im Erzeuger selbst zu
+    setzen waere ein zweiter Resolver (shared/strategy_paths.py: "Hier steht
+    KEIN zweiter Resolver").
+  - Ein Lauf mit 5 Standardsymbolen ist kein Lauf "auf dem registrierten
+    Snapshot" - er wuerde still eine andere Eingabe verwenden.
+Die Faltenlaenge wurde NICHT auf einem Ersatzweg gerechnet (24.3: die Regel
+steht vor der Messung; ein Ersatzweg waere ein unregistrierter Rechenweg).

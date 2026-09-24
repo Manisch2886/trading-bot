@@ -1,0 +1,99 @@
+== elliott_wave
+    540  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+     24  snapshot/csv
+     23  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von shared/symbols_config.py:28 (1 x)
+         snapshot/csv           geoeffnet von strategies/elliott_wave/multi_symbol_optimise.py:63 (24 x)
+== elliott_wave_stocks
+    540  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+    150  snapshot/csv
+     24  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von strategies/elliott_wave_stocks/stocks_symbols_config.py:26 (1 x)
+         snapshot/csv           geoeffnet von strategies/elliott_wave_stocks/multi_symbol_optimise.py:72 (150 x)
+== rsi2_crypto
+    534  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+     24  snapshot/csv
+     19  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von shared/symbols_config.py:28 (1 x)
+         snapshot/csv           geoeffnet von strategies/rsi2_crypto/multi_symbol_optimise.py:66 (24 x)
+== rsi2_mean_reversion
+    534  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+    150  snapshot/csv
+     20  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von strategies/rsi2_mean_reversion/stocks_symbols_config.py:27 (1 x)
+         snapshot/csv           geoeffnet von strategies/rsi2_mean_reversion/multi_symbol_optimise.py:67 (150 x)
+== t3_supertrend
+    540  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+     24  snapshot/csv
+     23  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von shared/symbols_config.py:28 (1 x)
+         snapshot/csv           geoeffnet von strategies/t3_supertrend/multi_symbol_optimise.py:57 (24 x)
+== turtle_soup_crypto
+    534  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+     24  snapshot/csv
+     19  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von shared/symbols_config.py:28 (1 x)
+         snapshot/csv           geoeffnet von strategies/turtle_soup_crypto/multi_symbol_optimise.py:49 (24 x)
+== turtle_soup_stocks
+    534  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+    150  snapshot/csv
+     20  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von strategies/turtle_soup_stocks/stocks_symbols_config.py:27 (1 x)
+         snapshot/csv           geoeffnet von strategies/turtle_soup_stocks/multi_symbol_optimise.py:56 (150 x)
+== volatility_breakout
+    534  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+    150  snapshot/csv
+     20  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von strategies/volatility_breakout/stocks_symbols_config.py:27 (1 x)
+         snapshot/csv           geoeffnet von strategies/volatility_breakout/multi_symbol_optimise.py:62 (150 x)
+== volatility_breakout_crypto
+    534  Python/Pakete
+      1  repo *.py/*.pyc
+      1  repo requirements.lock
+      1  snapshot/MANIFEST
+      1  snapshot/config
+     24  snapshot/csv
+     20  sonst
+         snapshot/MANIFEST      geoeffnet von shared/paths.py:264 (1 x)
+         snapshot/config        geoeffnet von shared/symbols_config.py:28 (1 x)
+         snapshot/csv           geoeffnet von strategies/volatility_breakout_crypto/multi_symbol_optimise.py:50 (24 x)

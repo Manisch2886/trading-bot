@@ -1,0 +1,55 @@
+# TB-98 A2 - Spalten der neun alten _alle_trades.csv (Kopfzeile) und was der Faltenplan davon liest, HEAD a58ed1d, 2026-09-24 15:05:27 +0200
+
+elliott_wave_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+elliott_wave_stocks_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+rsi2_crypto_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+rsi2_mean_reversion_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+t3_supertrend_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+turtle_soup_crypto_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+turtle_soup_stocks_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+volatility_breakout_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+volatility_breakout_crypto_alle_trades.csv: trade_zeile,symbol,entry_time,exit_time,result,pnl_pct,entry_price,exit_price,kerzen,ausgefuehrt
+
+## Leser im Faltenplan (research/vorregistrierung/faltenplan.py):
+121:TB24_DATEN = os.path.join(BASE_DIR, "research", "tb24_haltedauern", "daten")
+132:    pfad = os.path.join(TB24_DATEN, f"{bot}_alle_trades.csv")
+133:    df = pd.read_csv(pfad, parse_dates=["entry_time"])
+134:    jahre = df["entry_time"].dt.year
+
+## Schreiber im Erzeuger (research/tb24_haltedauern/positionen_holen.py, Stand a58ed1d):
+78:DATEN_DIR = os.path.join(_DIR, "daten")
+79:os.makedirs(DATEN_DIR, exist_ok=True)
+235:    ausgabespalten = [s for s in ("symbol", "entry_time", "exit_time", "result",
+239:    alle = trades[ausgabespalten].copy()
+242:    positionen = trades.loc[kennungen.values, ausgabespalten].copy()
+257:    positionen.to_csv(os.path.join(DATEN_DIR, f"{BOT}_positionen.csv"), index=False)
+258:    alle.to_csv(os.path.join(DATEN_DIR, f"{BOT}_alle_trades.csv"), index=False)
+286:    with open(os.path.join(DATEN_DIR, f"{BOT}_meta.json"), "w") as f:
+287:        json.dump(meta, f, indent=2, default=str)
+
+## Weitere Leser der neun Listen im Repo (grep 'alle_trades', ohne docs/ und trading-env/):
+research/tb24_haltedauern/positionen_holen.py
+research/tb24_haltedauern/auswertung.py
+research/faltenplan_neun/faltenplan_neun.py
+research/vorregistrierung/faltenplan.py
+docs/belege/TB-95/haken/sitecustomize.py
+
+## Nachtrag (gemessen): ein ZWEITER Leser mit eigener Pfadangabe
+research/faltenplan_neun/faltenplan_neun.py
+  Z. 207  TB24_DATEN = os.path.join("research", "tb24_haltedauern", "daten")
+  Z. 302-310  gefundene_trades_je_jahr(bot, basis=None): oeffnet <basis>/TB24_DATEN/<bot>_alle_trades.csv,
+              liest nur die Spalte entry_time (erste vier Zeichen = Jahr)
+  Kopf Abschnitt 2: "Faltenlaenge - die bestehende Registerregel, nachgerechnet"
+faltenplan.py (Z. 121/124-135) hat eine EIGENE Funktion gleichen Namens mit eigener
+Konstante TB24_DATEN und ruft die aus faltenplan_neun NICHT auf.
+=> Fuer den Folgeauftrag: eine registrierte Pfadkonstante in faltenplan.py allein lenkt
+   faltenplan_neun.py nicht um; dort steht der alte Pfad ein zweites Mal.
+
+## Zusammenfassung A2
+Die neun Listen tragen 10 Spalten (trade_zeile, symbol, entry_time, exit_time, result,
+pnl_pct, entry_price, exit_price, kerzen, ausgefuehrt). Der Faltenplan liest davon nur
+entry_time (faltenplan.py Z. 133-134; faltenplan_neun.py Z. 307-308). Der Inhalt von
+entry_time haengt an den GEFUNDENEN Trades (basis.hole_trades -> collect_all_trades),
+nicht an der Simulation; die Simulation bestimmt nur die Spalte `ausgefuehrt`. Der
+Erzeuger schreibt die Liste aber erst, nachdem die Kennzeichnungsprobe bestanden ist
+(positionen_holen.py, main, Abbruch vor dem Schreiben) - siehe a1, Befund 2.

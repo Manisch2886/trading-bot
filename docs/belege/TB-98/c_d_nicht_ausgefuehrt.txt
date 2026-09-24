@@ -1,0 +1,37 @@
+# TB-98 Block C und D - NICHT ausgefuehrt, mit Grund (24.09.2026, HEAD 46e3ed0)
+
+Beauftragte Belege c1_erzeugung.txt, c2_determinismus.txt, c3_vergleich.txt,
+d1_ableitung.txt, d2_vergleich_33_2.txt, d3_folgen.txt: entfallen. Keine der
+neun Listen ist erzeugt, keine Faltenlaenge abgeleitet, kein Vergleich gegen
+33.2 gerechnet - auch nicht auf einem Ersatzweg.
+
+Grund - zwei Befunde aus Block A (a1_lesequellen.txt):
+
+  Befund 2  Der Erzeuger laeuft mit dem heutigen Code nicht (9/9 Bots, mit und
+            ohne Modus): die Kennzeichnungsprobe (positionen_holen.py, main)
+            scheitert, weil der Stufe-4-Schluessel der Zuteilungskaskade
+            (shared/zuteilung.py Z. 492-497, TB-26) das Symbol liest. Behebbar
+            nur durch eine Aenderung eines Rechenwegs - B3 verbietet das.
+
+  Befund 1  Unter dem Selektionsmodus finden die Symbol-Module die zwei Listen
+            nicht (Snapshot: config/, Resolver: flach) und nehmen still 5
+            Standardsymbole. Behebbar nur in shared/paths.py, in den
+            Symbol-Modulen oder am Aufbau des Snapshots - E1 erlaubt nur
+            positionen_holen.py und alle_bots.py; im Erzeuger waere es ein
+            zweiter Resolver.
+
+Beide Befunde sind je fuer sich hinreichend. Ein Lauf trotz Befund 1 ergaebe
+Listen aus 5 statt 24 bzw. 150 Symbolen - still, mit "Keines ausgelassen" im
+Ladeprotokoll - und waere kein Lauf auf dem registrierten Snapshot.
+
+Warum die Faltenlaenge auch nicht "zur Orientierung" gerechnet ist: 24.3 - die
+Regel steht vor der Messung. Wie die zwei Befunde behoben werden, ist noch
+nicht entschieden; ein vorab gemessenes Ergebnis wuerde diese Entscheidung
+nach Wirkung faerben (40.6, Fable: "Wer jetzt 'Hash genuegt' sagt, weil ein
+Nachrechnen Falten bewegen koennte, waehlt nach Wirkung").
+
+Abbruchkriterien des Auftrags: 1-3, 6, 7 nicht eingetreten (Register 40 da;
+alte Listen, Sperrlistendateien, Abbilder, faltenplan.py unveraendert -
+e1_hashes_nachher.txt; nicht gesperrt - b0). 4 und 5 nicht erreicht, weil
+Block C nicht laufen konnte. Der Abbruch liegt VOR Block C, am Ergebnis von A1,
+das der Auftrag ausdruecklich als die Frage bezeichnet, "an der alles haengt".

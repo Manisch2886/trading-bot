@@ -1,0 +1,12 @@
+# TB-98 A1 flach, HEAD a58ed1d873d2d6162b6953241f6f50d94ba11795, 2026-09-24 15:10:10 +0200
+# Verknuepfungen im Hilfsordner: 227 (Snapshot: 225 + 2 flache Listen)
+elliott_wave rc=1 8s geschrieben=0 | Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Kerzenzahl zu klein. elliott_wave: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+t3_supertrend rc=1 3s geschrieben=0 | Geladen: 18 von 24 Symbolen. 6 ausgelassen: 6x Historie zu kurz. t3_supertrend: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+rsi2_crypto rc=1 2s geschrieben=0 | Geladen: 20 von 24 Symbolen. 4 ausgelassen: 4x Historie zu kurz. rsi2_crypto: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+turtle_soup_crypto rc=1 1s geschrieben=0 | Geladen: 20 von 24 Symbolen. 4 ausgelassen: 4x Historie zu kurz. turtle_soup_crypto: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+volatility_breakout_crypto rc=1 1s geschrieben=0 | Geladen: 20 von 24 Symbolen. 4 ausgelassen: 4x Historie zu kurz. volatility_breakout_crypto: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+elliott_wave_stocks rc=1 13s geschrieben=0 | Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz. elliott_wave_stocks: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+rsi2_mean_reversion rc=1 6s geschrieben=0 | Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz. rsi2_mean_reversion: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+turtle_soup_stocks rc=1 6s geschrieben=0 | Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz. turtle_soup_stocks: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+volatility_breakout rc=1 6s geschrieben=0 | Geladen: 147 von 150 Symbolen. 3 ausgelassen: 3x Historie zu kurz. volatility_breakout: Kennzeichnung hat die Simulation veraendert - Abbruch. 
+FERTIG
