@@ -1,0 +1,51 @@
+# TB-102 C - Stoerprobe im Speicher (c_lauf.sh / c_stoerprobe.py)
+P0 Referenz: 9 Bots, Faltenplan im Speicher (37 s)
+   Zellen je Bot (Referenz, Verfahrensseite): {'elliott_wave': 80, 't3_supertrend': 384, 'rsi2_crypto': 400, 'turtle_soup_crypto': 96, 'volatility_breakout_crypto': 320, 'elliott_wave_stocks': 320, 'rsi2_mean_reversion': 400, 'turtle_soup_stocks': 96, 'volatility_breakout': 320}
+
+P1 max_tage +400  (8 s)
+   Faltenplan: 95 Blaetter geaendert, Bots: ['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']
+        9 x  /embargo_tage
+       77 x  /falten[*]/training_bis_ausschliesslich
+        9 x  /purge_tage
+   Zellen je Bot: {'elliott_wave': 'gleich', 't3_supertrend': 'gleich', 'rsi2_crypto': 'gleich', 'turtle_soup_crypto': 'gleich', 'volatility_breakout_crypto': 'gleich', 'elliott_wave_stocks': 'gleich', 'rsi2_mean_reversion': 'gleich', 'turtle_soup_stocks': 'gleich', 'volatility_breakout': 'gleich'}
+   Raster (Achsenwerte): 0 Blaetter geaendert, Bots: []
+
+P2 median_balken x3  (9 s)
+   Faltenplan: 0 Blaetter geaendert, Bots: []
+   Zellen je Bot: {'elliott_wave': 'gleich', 't3_supertrend': 'gleich', 'rsi2_crypto': 'gleich', 'turtle_soup_crypto': 'gleich', 'volatility_breakout_crypto': 'gleich', 'elliott_wave_stocks': 'gleich', 'rsi2_mean_reversion': 'gleich', 'turtle_soup_stocks': 'gleich', 'volatility_breakout': 'gleich'}
+   Raster (Achsenwerte): 7 Blaetter geaendert, Bots: ['turtle_soup_crypto', 'turtle_soup_stocks']
+        7 x  /donchian_period
+
+P3 n_positionen, median_tage x3  (9 s)
+   Faltenplan: 0 Blaetter geaendert, Bots: []
+   Zellen je Bot: {'elliott_wave': 'gleich', 't3_supertrend': 'gleich', 'rsi2_crypto': 'gleich', 'turtle_soup_crypto': 'gleich', 'volatility_breakout_crypto': 'gleich', 'elliott_wave_stocks': 'gleich', 'rsi2_mean_reversion': 'gleich', 'turtle_soup_stocks': 'gleich', 'volatility_breakout': 'gleich'}
+   Raster (Achsenwerte): 0 Blaetter geaendert, Bots: []
+
+P4 Gruppe haltedauer entfernt
+   faltenplan: KeyError 'haltedauer' in research/vorregistrierung/faltenplan.py:272
+   rd.raster: KeyError 'haltedauer' in research/vorregistrierung/registerdaten.py:231
+
+Gesamt 62 s
+
+## Lesequellen der Stoerprobe (faltenplan() + rd.raster), ohne Python/Pakete
+Dateien je Herkunft (verschieden, nach Aufloesung):
+    961  Python/Pakete
+     18  REPO Code
+      2  REPO config/
+    222  REPO data/
+     10  REPO research/
+      1  REPO sonst
+     14  anderswo
+
+Nicht-Code-Dateien mit oeffnendem Rahmen (Snapshot-CSV zusammengefasst):
+   1 a	<repo>/logs/notifications/manuelle_eingriffe.log
+   5 r	<repo>/research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+   4 r	<repo>/research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+   4 r	<repo>/research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+   4 r	<repo>/research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv
+   4 r	<repo>/research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv
+   4 r	<repo>/research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv
+   4 r	<repo>/research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv
+   4 r	<repo>/research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv
+   4 r	<repo>/research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+   1 r	<repo>/research/vorregistrierung/ergebnisse/messgroessen.json

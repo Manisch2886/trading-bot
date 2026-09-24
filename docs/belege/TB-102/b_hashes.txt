@@ -1,0 +1,6 @@
+# TB-102 b_hashes - vorher/nachher (hashes.sh), diff ohne Kopfzeile:
+KEIN UNTERSCHIED
+Einzeldateien: b_hashes_vorher.txt, b_hashes_nachher.txt
+
+# Sonde vorher/nachher (d1_sonde_*.txt), diff ohne Kopfzeile:
+KEIN UNTERSCHIED

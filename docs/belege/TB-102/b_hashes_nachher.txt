@@ -1,0 +1,43 @@
+# TB-102 sha256 nachher, HEAD 1c09f3e, 2026-09-24 21:29:11 +0200
+2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  research/vorregistrierung/ergebnisse/messgroessen.json
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  research/vorregistrierung/ergebnisse/messgroessen_2026-09-23_nachweis.json
+ad12be6cef08fb6ad2596497deafbcb08d0d5783fc73c41598898ce9e24f7fcb  research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv
+623f8d771ffd5ae9dc1b979fbe383c85268371ba4f1dfeff055379662be41f25  research/vorregistrierung/messgroessen.py
+141fa14b6742aae085f95377d406bb9ec4639c06d4de01c4c8c7f855641865fa  research/vorregistrierung/registerdaten.py
+7aa0b8ccf5619a21d5f082f68d81cb412f98ae9c9724e799da8b48dce7498cfb  research/vorregistrierung/faltenplan.py
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+2f23f76c99e22991e4a331ec1107dc0f090a425bc9e050793470ee3cd52dd4fe  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
+5cf1103e7487514b7c37c1c17cd2ed3a32df584be3f68d9de8fe00f304650c12  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
+## ergebnisse/ (Name Groesse)
+benchmark_drawdowns_2026-09-23_nach_wegA.json 210106
+benchmark_drawdowns_neu.json 187660
+benchmark_drawdowns_ohne_schranke.json 98444
+benchmark_drawdowns_tb72.json 209958
+benchmark_drawdowns_vt.json 211948
+benchmark_drawdowns.json 80025
+faltenplan_2026-09-22-161305.json 38684
+faltenplan_2026-09-22-161505.json 38684
+faltenplan_tb72.json 37320
+faltenplan_tb80.json 38684
+faltenplan.json 18736
+messgroessen_2026-09-23_nachweis.json 4569
+messgroessen.json 4567
+sperrliste_abbild_2026-09-22.json 6948
+sperrliste_abbild_2026-09-23.json 7351
+## tb24_haltedauern/ergebnisse/ (Name Groesse)
+gegenprobe_positionslimit.csv 480
+haltedauern_histogramm.csv 584
+haltedauern_je_ausstiegsart.csv 1335
+haltedauern_je_bot.csv 1110
+naehe_der_einstiege.csv 2331
+ueberlappungsmatrix.csv 6483
+versatz_der_einstiege.csv 3105
+verteilungsform.csv 1274
+zusammenfassung.json 6929
+## Summenhash ueber alle versionierten Dateien ausserhalb von docs/
+c56af49be998785197d435a3c4e1a3718fccb36266ed43b8175deb919a77dd50  -
+   Anzahl: 1528
+## Snapshot (alle Dateien, Summenhash)
+1c2d6aa846c5429d58359d2ff7de42d459d3d86b2cfb9c080cea65cfbc692e24  -
+## git status ausserhalb docs/ (muss leer sein)
+## Ende

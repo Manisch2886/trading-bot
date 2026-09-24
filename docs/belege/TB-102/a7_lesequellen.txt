@@ -1,0 +1,30 @@
+# TB-102 A7 - Lesequellen von messgroessen.py, EIN Lauf ohne Modus (= B2), Lesehaken TB-98
+# Spalten: Modus <TAB> Pfad <TAB> Aufrufstapel (innen zuerst). Rohprotokoll nur im Scratchpad.
+# Alle Oeffnungen ausser Python/Pakete und ausser data/*.csv im Wortlaut:
+r	<repo>/research/vorregistrierung/messgroessen.py	
+rb	<repo>/research/vorregistrierung/messgroessen.py	
+r	/System/Library/CoreServices/SystemVersion.plist	<repo>/research/vorregistrierung/messgroessen.py:48
+None	/dev/urandom	<repo>/research/vorregistrierung/messgroessen.py:48
+r	/usr/share/zoneinfo/UTC	<repo>/research/vorregistrierung/messgroessen.py:48
+r	<repo>/config/top25_symbols.txt	<repo>/research/vorregistrierung/messgroessen.py:91 < <repo>/research/vorregistrierung/messgroessen.py:314 < <repo>/research/vorregistrierung/messgroessen.py:360
+r	<repo>/config/sp500_top150.txt	<repo>/research/vorregistrierung/messgroessen.py:91 < <repo>/research/vorregistrierung/messgroessen.py:315 < <repo>/research/vorregistrierung/messgroessen.py:360
+r	<repo>/research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv	<repo>/research/vorregistrierung/messgroessen.py:209 < <repo>/research/vorregistrierung/messgroessen.py:329 < <repo>/research/vorregistrierung/messgroessen.py:360
+r	<repo>/config/top25_symbols.txt	<repo>/research/vorregistrierung/messgroessen.py:91 < <repo>/research/vorregistrierung/messgroessen.py:233 < <repo>/research/vorregistrierung/messgroessen.py:330 < <repo>/research/vorregistrierung/messgroessen.py:360
+r	<repo>/config/sp500_top150.txt	<repo>/research/vorregistrierung/messgroessen.py:91 < <repo>/research/vorregistrierung/messgroessen.py:233 < <repo>/research/vorregistrierung/messgroessen.py:330 < <repo>/research/vorregistrierung/messgroessen.py:360
+None	<scratch>/b2_ohne/messgroessen.json	<repo>/research/vorregistrierung/messgroessen.py:286 < <repo>/research/vorregistrierung/messgroessen.py:342 < <repo>/research/vorregistrierung/messgroessen.py:360
+r	<scratch>/b2_ohne/messgroessen.json	<repo>/research/vorregistrierung/messgroessen.py:257 < <repo>/research/vorregistrierung/messgroessen.py:290 < <repo>/research/vorregistrierung/messgroessen.py:342 < <repo>/research/vorregistrierung/messgroessen.py:360
+# ... dazu 444 Oeffnungen von 222 verschiedenen data/*.csv, alle von messgroessen.py:100
+
+Prozesse: 1
+  #argv	research/vorregistrierung/messgroessen.py --ziel <scratch>/b2_ohne/messgroessen.json
+
+Dateien je Herkunft (verschieden, nach Aufloesung):
+    441  Python/Pakete
+      1  REPO Code
+      2  REPO config/
+    222  REPO data/
+      1  REPO research/
+      4  anderswo
+
+# 'anderswo' = SystemVersion.plist, /dev/urandom, zoneinfo/UTC (alle beim Import von pandas, Z. 48) und die Ausgabedatei im Scratchpad.
+# Grenze des Hakens: os.path.exists (Z. 98) ist kein 'open'-Ereignis. Welche Symbole FEHLEN, sieht der Haken nicht - nur, welche gelesen wurden.

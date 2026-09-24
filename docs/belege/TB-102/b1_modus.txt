@@ -1,0 +1,177 @@
+# TB-102 B1 - messgroessen.py im Selektionsmodus gegen Snapshot 63e4b6c8 (lauf.sh modus)
+# TB-102 Lauf 'modus', HEAD 1c09f3e, 2026-09-24 21:18:37 +0200
+# Umgebung: TB30A_BASE_DIR=<repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 TB_SELEKTIONSWURZEL=<repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 TB_SELEKTIONSHASH=63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 TB_SELEKTIONSCOMMIT=1c09f3e54ed5895c7cc0e33b9d7531ae9c56cf3a
+rc=1 Dauer 1 s
+## Ausgabe (letzte 15 Zeilen)
+  File "<repo>/research/vorregistrierung/messgroessen.py", line 329, in main
+    "haltedauer": haltedauern(),
+  File "<repo>/research/vorregistrierung/messgroessen.py", line 209, in haltedauern
+    df = pd.read_csv(pfad)
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '<repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv'
+## Ergebnis: keine Datei geschrieben
+
+## Volle Ausgabe
+Traceback (most recent call last):
+  File "<repo>/research/vorregistrierung/messgroessen.py", line 360, in <module>
+    sys.exit(main())
+  File "<repo>/research/vorregistrierung/messgroessen.py", line 329, in main
+    "haltedauer": haltedauern(),
+  File "<repo>/research/vorregistrierung/messgroessen.py", line 209, in haltedauern
+    df = pd.read_csv(pfad)
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "<repo>/trading-env/lib/python3.9/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: '<repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv'
+
+## Lesequellen (Lesehaken TB-98, lesequellen.py)
+Prozesse: 1
+  #argv	research/vorregistrierung/messgroessen.py --ziel <scratch>/b1_modus/messgroessen.json
+
+Dateien je Herkunft (verschieden, nach Aufloesung):
+    442  Python/Pakete
+      1  REPO Code
+      3  SNAPSHOT
+      3  anderswo
+
+Nicht-Code-Dateien mit oeffnendem Rahmen (Snapshot-CSV zusammengefasst):
+  [SNAPSHOT] snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:91 (1 x)
+  [SNAPSHOT] snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:91 (1 x)
+  [SNAPSHOT] snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv   <- EXISTIERT NICHT (Oeffnungsversuch)
+        geoeffnet von research/vorregistrierung/messgroessen.py:209 (1 x)
+  [anderswo] ../../../System/Library/CoreServices/SystemVersion.plist
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../../dev/urandom
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../../usr/share/zoneinfo/UTC  ->  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+
+==================================================================
+# ZUSATZPROBEN (Hilfsbaeume aus Verknuepfungen im Scratchpad, nur TB30A_BASE_DIR)
+# Z1: Snapshot unveraendert (alle Eintraege verknuepft) + NUR haltedauern_je_bot.csv aus dem Repo
+# TB-102 Lauf 'basis', HEAD 1c09f3e, 2026-09-24 21:19:14 +0200
+# Umgebung: TB30A_BASE_DIR=<scratch>/hilf1
+rc=1 Dauer 1 s
+## Ausgabe (letzte 15 Zeilen)
+Keine Kursdaten fuer Suffix 1d gefunden.
+## Ergebnis: keine Datei geschrieben
+Dateien je Herkunft (verschieden, nach Aufloesung):
+    441  Python/Pakete
+      1  REPO Code
+      1  REPO research/
+      2  SNAPSHOT
+      3  anderswo
+
+Nicht-Code-Dateien mit oeffnendem Rahmen (Snapshot-CSV zusammengefasst):
+  [REPO research/] ../../..<scratch>/hilf1/research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv  ->  research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv
+        geoeffnet von research/vorregistrierung/messgroessen.py:209 (1 x)
+  [SNAPSHOT] ../../..<scratch>/hilf1/config/sp500_top150.txt  ->  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:91 (2 x)
+  [SNAPSHOT] ../../..<scratch>/hilf1/config/top25_symbols.txt  ->  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:91 (2 x)
+  [anderswo] ../../../System/Library/CoreServices/SystemVersion.plist
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../../dev/urandom
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../../usr/share/zoneinfo/UTC  ->  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+
+# Z2: Snapshot-Inhalt in Repo-Anordnung (data -> Snapshot-Wurzel, config -> Snapshot/config) + haltedauern_je_bot.csv aus dem Repo
+# TB-102 Lauf 'basis', HEAD 1c09f3e, 2026-09-24 21:19:15 +0200
+# Umgebung: TB30A_BASE_DIR=<scratch>/hilf2
+rc=0 Dauer 13 s
+## Ausgabe (letzte 15 Zeilen)
+TB-30a - Messgroessen: die Zahlen, auf denen die Rastergrenzen ruhen
+
+Round-Trip-Kosten: 0.30 %
+
+Zeitrahmen        n  Sigma/Balken   Spanne20    ATR14  Schluss-Tief
+aktien_1d       150        2.222%     11.38%    2.34%         0.92%
+krypto_1d        23        5.959%     35.85%    7.63%         3.00%
+krypto_1h        24        1.263%      6.14%    1.36%         0.55%
+krypto_4h        24        2.450%     13.13%    2.86%         1.14%
+
+Geschrieben: <scratch>/z2/messgroessen.json
+  SHA-256: 7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6
+## Ergebnis
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  <scratch>/z2/messgroessen.json
+Dateien je Herkunft (verschieden, nach Aufloesung):
+    441  Python/Pakete
+      1  REPO Code
+      1  REPO research/
+    224  SNAPSHOT
+      4  anderswo
+
+Nicht-Code-Dateien mit oeffnendem Rahmen (Snapshot-CSV zusammengefasst):
+  [REPO research/] ../../..<scratch>/hilf2/research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv  ->  research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv
+        geoeffnet von research/vorregistrierung/messgroessen.py:209 (1 x)
+  [SNAPSHOT] ../../..<scratch>/hilf2/config/sp500_top150.txt  ->  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:91 (2 x)
+  [SNAPSHOT] ../../..<scratch>/hilf2/config/top25_symbols.txt  ->  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:91 (2 x)
+  [anderswo] ../../../System/Library/CoreServices/SystemVersion.plist
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../../dev/urandom
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../..<scratch>/z2/messgroessen.json
+        geoeffnet von research/vorregistrierung/messgroessen.py:257 (1 x)
+        geoeffnet von research/vorregistrierung/messgroessen.py:286 (1 x)
+  [anderswo] ../../../usr/share/zoneinfo/UTC  ->  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [SNAPSHOT] Kurs-CSV (444 Oeffnungen) geoeffnet von research/vorregistrierung/messgroessen.py:100
+
+# Z2 wiederholt (z2b):
+rc=0 Dauer 12 s
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  <scratch>/z2b/messgroessen.json
+
+# Z3: NUR die TB_SELEKTIONS*-Variablen der Bots (Selektionsmodus von shared/paths.py), OHNE TB30A_BASE_DIR
+# TB-102 Lauf 'selektion', HEAD 1c09f3e, 2026-09-24 21:27:25 +0200
+# Umgebung: TB_SELEKTIONSWURZEL=<repo>/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 TB_SELEKTIONSHASH=63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 TB_SELEKTIONSCOMMIT=1c09f3e54ed5895c7cc0e33b9d7531ae9c56cf3a
+rc=0 Dauer 12 s
+## Ausgabe (letzte 15 Zeilen)
+## Ergebnis
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  <scratch>/z3/messgroessen.json
+Z3 bytegleich zu messgroessen_2026-09-23_nachweis.json (7f46d5f5)
+Dateien je Herkunft (verschieden, nach Aufloesung):
+    441  Python/Pakete
+      1  REPO Code
+      2  REPO config/
+    222  REPO data/
+      1  REPO research/
+      4  anderswo
+
+Nicht-Code-Dateien mit oeffnendem Rahmen (Snapshot-CSV zusammengefasst):
+  [REPO config/] config/sp500_top150.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:91 (2 x)
+  [REPO config/] config/top25_symbols.txt
+        geoeffnet von research/vorregistrierung/messgroessen.py:91 (2 x)
+  [REPO research/] research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv
+        geoeffnet von research/vorregistrierung/messgroessen.py:209 (1 x)
+  [anderswo] ../../../System/Library/CoreServices/SystemVersion.plist
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../../dev/urandom
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+  [anderswo] ../../..<scratch>/z3/messgroessen.json
+        geoeffnet von research/vorregistrierung/messgroessen.py:257 (1 x)
+        geoeffnet von research/vorregistrierung/messgroessen.py:286 (1 x)
+  [anderswo] ../../../usr/share/zoneinfo/UTC  ->  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+        geoeffnet von research/vorregistrierung/messgroessen.py:48 (1 x)
+(die 222 Zeilen [REPO data/] ... messgroessen.py:100 sind oben ausgelassen; Zahl siehe Herkunftstabelle)

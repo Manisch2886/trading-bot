@@ -8854,6 +8854,49 @@ TB-100 erst danach, mit **zwei** Lesern für die Pfadkonstante · Freigabe 24.09
 
 ---
 
+## DA — TB-102: `messgroessen.py` im Selektionsmodus — unter `TB30A_BASE_DIR` Abbruch (Haltedauer-Datei fehlt im Snapshot, dahinter die flache Anordnung), unter den Modus-Variablen der Bots rc 0 und bytegleich, aber 100 % aus dem Repo (24.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-102_messgroessen_im_modus.md`*
+
+**Quelle:** Mac-Sitzung **TB-102**, 24.09.2026, Eingang `bba6f25`. Commits `1c09f3e`
+(Schritt 0) und der Abgabe-Commit. Belege `docs/belege/TB-102/`. Grundlage Fable 23d/23e.
+Reines Messen, nichts platziert.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **A** | Vormessung bestätigt (A1–A5). A6 präzisiert: `datenbereiche` weicht auch ab (9/20), hat aber keinen Leser. `haltedauer` fliesst zusätzlich über `median_balken` in die Donchian-Untergrenze. „G8 prüft `median_balken`“ widerlegt, G8 prüft `max_tage` |
+| **A7** | Drei Eingabeklassen: 222 Kurs-CSV, 2 Universumsdateien, `haltedauern_je_bot.csv`. **Keine vierte.** Aus `shared/` wird kein Modul importiert |
+| ⚠️ **B1** | `TB30A_BASE_DIR` = Snapshot: rc 1, `FileNotFoundError` bei `messgroessen.py:209`. B3 zweimal gleich |
+| **B2** | Ohne Modus: bytegleich `7f46d5f5`; `data/` = Snapshot 222/222 byteweise |
+| ⚠️ **Z1** | Haltedauer-Datei ergänzt: zweiter Abbruch, weil der Snapshot flach ist und `messgroessen.py` `data/` sucht |
+| ⭐ **Z2** | Snapshot-Inhalt in Repo-Anordnung: zweimal bytegleich. Einzige Fremdeingabe ist dann die Haltedauer-Datei |
+| ⚠️⚠️⚠️ **Z3** | **Nur `TB_SELEKTIONS*`: rc 0, bytegleich, 0 Zugriffe auf den Snapshot.** Der Modus der Bots wirkt in `messgroessen.py` nicht |
+| **C** | `max_tage` → `purge_tage` verschiebt nur Purge, Embargo und Trainingsende (95 Blätter, 0 Faltengrenzen; `training_bis_ausschliesslich` hat 0 Leser; Benchmark-Tabelle unberührt). `median_balken` → 7 Achsenwerte `donchian_period` (2 Bots). Die CSV entsteht aus **ausgeführten** Trades, die Faltenlänge aus **gefundenen**. Kein dritter Eingang in den Faltenplan; die Faltenlänge bestimmt aber auch die erste Falte |
+| **D1** | Summenhash über 1528 Dateien ausserhalb `docs/` gleich, `ergebnisse/` unverändert, Sonde vorher = nachher |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **„Im Modus“ heisst: der Schalter, den DIESES Skript liest.** `messgroessen.py` liest `TB30A_BASE_DIR`, die Bots lesen `TB_SELEKTIONS*`. Wer den falschen setzt, bekommt einen sauberen Lauf auf dem Repo |
+| ⭐⭐ | **Bytegleich gegen einen Nachweis, der auf demselben Repo entstand, beweist nichts über den Snapshot, solange `data/` und Snapshot gleich sind.** Erst der Lesehaken trennt die Fälle |
+| ⭐ | **Nach einem Abbruch die nächste Hürde gleich mitmessen.** Hinter der fehlenden Datei lag die Anordnung. Eine Reparatur nur der ersten Hürde hätte den nächsten Befund erzeugt |
+| ⭐ | **Der Lesehaken sieht `open`, nicht `exists`.** Ein still übersprungenes Symbol zeigt sich nur in der Ausgabezahl |
+
+### Was offen bleibt
+
+Drei Fragen an Fable (Ergebnisdokument Abschnitt 5): welcher Modus für den Nachweis aus 23e gilt,
+ob `haltedauern_je_bot.csv` nach 23d neu erzeugt werden muss, und ob Purge und Donchian-Grenze
+auf den ausgeführten Trades ruhen sollen · TB-100 hat fünf Leser der TB-24-Pfade · TB-101 erst
+nach Frage 2 · Randbefund: der Import von `registerdaten.py` öffnet das Betriebsprotokoll der
+manuellen Eingriffe zum Anhängen.
+
+*Geschrieben 24.09.2026 von der Mac-Sitzung TB-102. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

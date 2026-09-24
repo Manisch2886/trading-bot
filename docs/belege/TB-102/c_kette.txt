@@ -1,0 +1,88 @@
+# TB-102 Block C - Was die Kette bewegt (nur gerechnet, nichts geschrieben)
+# Grundlage: statisch (grep, Zeilen unten) + dynamisch (c_stoerprobe.py im Speicher, Lesehaken;
+# Ausgabe c_stoerprobe_lauf.txt). faltenplan.json vorher = nachher 0e54ac5c. main() nie gerufen.
+# Sichtschutz 27.1: keine Haltedauer- und keine Trade-Zahl. Gemeldet: welche Groesse wohin fliesst.
+
+C1  Felder von haltedauern_je_bot.csv in messgroessen.json (messgroessen.py:212-217), je Bot vier:
+      median_tage   <- tage_median    Leser: KEINER
+      max_tage      <- tage_max       Leser: faltenplan.py:272 (purge_tage), test_vorregistrierung.py:615 (G8)
+      median_balken <- kerzen_median  Leser: registerdaten.py:231 (Donchian-Untergrenze)
+      n_positionen  <- n              Leser: KEINER
+    Stoerprobe P3 (median_tage und n_positionen x3): Faltenplan 0 Blaetter, Raster 0 Blaetter bewegt.
+    Weiterer, DIREKTER Leser der CSV (nicht ueber messgroessen.json):
+      research/faltenplan_neun/test_faltenplan_neun.py:346-355 (D4: tage_p90 gegen eine Neurechnung aus
+      <bot>_positionen.csv ueber embargo_neun.py). Liest die CSV aus BASE_DIR, nicht aus dem Snapshot.
+
+C2  max_tage -> purge_tage -> was?
+      faltenplan.py:304 purge = purge_tage(bot, mess)
+                    :310 falte["training_bis_ausschliesslich"] = von - purge Tage
+                    :318 "purge_tage", :319 "embargo_tage" (= purge)
+      Stoerprobe P1 (max_tage aller Bots +400 Tage): 95 Blaetter bewegt, alle neun Bots, genau:
+         9 x purge_tage · 9 x embargo_tage · 77 x falten[*]/training_bis_ausschliesslich
+         0 x von · 0 x bis_ausschliesslich · 0 x name · 0 x rolle · 0 x faltenlaenge_jahre · 0 x erste_falte
+      => purge_tage verschiebt KEINE Faltengrenze. Es verschiebt nur den Rand (Trainingsende vor jeder Falte)
+         und die zwei Laengenfelder.
+      Leser dieser drei Felder im Code (grep ueber alle *.py ausser trading-env/ und docs/):
+         training_bis_ausschliesslich : 0 Leser (nur geschrieben, faltenplan.py:310)
+         embargo_tage                 : test_vorregistrierung.py:617 (G9 purge == embargo)
+         purge_tage                   : registerbericht.py:147 (Tabellentext), faltenplan.py:464 (Ausgabe),
+                                        test_vorregistrierung.py:615 (G8)
+         benchmark.py liest vom Plan nur Falten von/bis/Name/Status (Z. 219-275: status, falten[*] von/bis_ausschliesslich/name/rolle) - kein Purge-Feld.
+      => Heute wirkt purge_tage auf: den Inhalt (und damit den Hash) von faltenplan.json, den Registerbericht
+         und G8/G9. Auf die Benchmark-Tabelle wirkt es NICHT. Ein Laufcode, der training_bis_ausschliesslich
+         liest, existiert (noch) nicht.
+
+C3  median_balken - wer sonst?
+      Genau ein Leser: registerdaten.py:231 -> donchian_achse (Z. 385) -> Achse donchian_period
+      von turtle_soup_crypto und turtle_soup_stocks (Z. 510-512), Untergrenze ("unten") einer linearen
+      Achse mit 4 Stufen (horizont_achse Z. 366-372).
+      Stoerprobe P2 (median_balken x3): Faltenplan 0 Blaetter; Raster 7 Blaetter bewegt, nur
+      turtle_soup_crypto/_stocks, nur donchian_period; Zellenzahl je Bot unveraendert (4 Stufen bleiben 4).
+      Ueber rd.raster fliesst das weiter in auswertung.gitterachsen (Z. 124) -> zelle_id (Z. 127) ->
+      die Zellnamen, die lies_zellen gegen zellen.csv prueft (Z. 161-175), in beispieldaten.py und in
+      test_vorregistrierung.py A2 (Z. 132-134, nur die Anzahl).
+      ABWEICHUNG zur Vormessung: G8 prueft NICHT median_balken, sondern max_tage (siehe a_vormessung.txt A6).
+
+C4  Umkehrfrage: Weg der neun Listen in den Faltenplan ausser 5.4 und purge_tage?
+      Gesucht dynamisch: Lesehaken ueber faltenplan() und rd.raster (c_stoerprobe_lauf.txt). Aus
+      research/tb24_haltedauern/ oeffnet faltenplan() NUR:
+        daten/<bot>_alle_trades.csv (9 Dateien, faltenplan.py:133)          -> Weg 1 (5.4)
+        und ueber ergebnisse/messgroessen.json (registerdaten.py:169) mittelbar haltedauern_je_bot.csv -> Weg 2
+      NICHT geoeffnet: <bot>_positionen.csv, <bot>_meta.json, haltedauern_je_bot.csv selbst,
+        faltenplan_neun.py:304 (zweiter Listenleser, TB-98) und embargo_neun.py:232 werden von faltenplan()
+        nicht gerufen.
+      Statisch: faltenplan.py importiert faltenplan_neun (Z. 118) und erste_falte_trockenlauf (Z. 119);
+        deren Oeffnungen im Lauf: nur config/*.txt, data/*.csv, Temp-JSONs des Loaderlaufs.
+      GEFUNDEN - aber kein dritter EINGANG, sondern eine VERZWEIGUNG von Weg 1:
+        Die Faltenlaenge (Weg 1) geht nicht nur in _jahresfalten, sondern auch als Argument in
+        erste_falte(bot, laenge, schnitt) (faltenplan.py:302) - die neun Listen bestimmen also ueber
+        5.4 AUCH die erste Falte. Das ist in 5.4 enthalten, aber nicht nur "Laenge".
+      GEFUNDEN - ausserhalb des Faltenplans: Weg 3 = median_balken -> Donchian-Achse (C3). Er beruehrt den
+        Faltenplan nicht, aber das Raster, auf dem selektiert wird.
+      Ergebnis: Innerhalb von faltenplan() genau zwei Eingaenge der neun Listen (5.4 ueber alle_trades,
+        Purge ueber positionen -> haltedauern_je_bot.csv -> messgroessen.json). Ein dritter nicht gefunden.
+        Grenze der Suche: Der Lesehaken sieht nur Dateien, die dieser Prozess oeffnet; ein Weg ueber eine
+        andere, schon fertige Datei, die aus den Listen abgeleitet ist (wie messgroessen.json), zeigt sich
+        nur als deren Oeffnung - er ist hier genau einmal aufgetreten (messgroessen.json).
+
+## Die Kette als Bild (Verfahrensseite, ohne Zahlen)
+
+  positionen_holen.py (Erzeuger, TB-24 / TB-98)
+   |-- <bot>_alle_trades.csv  (gefundene Trades)
+   |     `--> faltenplan.py:133 faltenlaenge_jahre  ---------------------------------  Weg 1 (5.4)
+   |            |--> _jahresfalten: Faltengrenzen von/bis             --> benchmark.py (Falten) --> Benchmark-Tabelle
+   |            `--> erste_falte(bot, laenge, ...)                     --> erste Falte
+   |
+   `-- <bot>_positionen.csv   (AUSGEFUEHRTE Trades, haengen am Positionslimit)
+         `--> tb24_haltedauern/auswertung.py:296/310  (fester Ausgabepfad, kein --ziel)
+                `--> ergebnisse/haltedauern_je_bot.csv   (78e2bc6, NICHT im Snapshot)
+                       |--> test_faltenplan_neun.py:346 D4 (direkt, tage_p90)
+                       `--> messgroessen.py:209  -->  ergebnisse/messgroessen.json (eingefroren, 2a9b9166)
+                              |-- haltedauer/max_tage -----> faltenplan.py:272 purge_tage   ------  Weg 2
+                              |       `--> purge_tage, embargo_tage, training_bis_ausschliesslich
+                              |            (KEINE Faltengrenze; 0 Leser im Code fuer training_bis;
+                              |             aendert Inhalt/Hash von faltenplan.json, Registerbericht, G8/G9)
+                              |-- haltedauer/median_balken -> registerdaten.py:231 ------------  Weg 3
+                              |       `--> donchian_period (turtle_soup_crypto/_stocks), Untergrenze
+                              |            --> rd.raster --> Achsenwerte/Zellnamen der Selektion
+                              `-- haltedauer/median_tage, n_positionen  -> kein Leser

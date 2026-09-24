@@ -1,0 +1,58 @@
+# TB-102 Block A - Vormessung des steuernden Chats nachgemessen
+# HEAD 1c09f3e (Schritt 0 auf bba6f25), 24.09.2026, Mac, trading-env/bin/python3 3.9.6
+# Gilt: die Messung dieser Sitzung. Abweichungen zur Vormessung sind mit "ABWEICHUNG" markiert.
+
+A1  messgroessen.py Z. 207-209 liest BASE_DIR/research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv
+    BESTAETIGT. Z. 207-208 bauen den Pfad, Z. 209 pd.read_csv. BASE_DIR = TB30A_BASE_DIR oder Repo-Wurzel (Z. 50-51).
+    Dynamisch (a7_lesequellen.txt): geoeffnet von messgroessen.py:209 < :329 < :360.
+
+A2  Die Datei stammt aus auswertung.py Z. 310 derselben TB-24-Messung, einziger Commit 78e2bc6
+    BESTAETIGT. research/tb24_haltedauern/auswertung.py:310 haltedauern.to_csv(ERGEBNIS_DIR/haltedauern_je_bot.csv).
+    git log -- research/tb24_haltedauern/ergebnisse/haltedauern_je_bot.csv: genau 1 Commit,
+    78e2bc6 2026-09-13 14:49:30 +0000 "TB-24: Haltedauern und Zeithorizonte der neun Bots gemessen".
+    ERGAENZUNG: Die Tabelle wird aus <bot>_positionen.csv gerechnet (auswertung.py:71 lade(nur_ausgefuehrt=True),
+    :296 main), also aus den AUSGEFUEHRTEN Trades - nicht aus <bot>_alle_trades.csv (gefundene Trades), aus
+    denen faltenplan.py:132-133 die Faltenlaenge zaehlt.
+    ERGAENZUNG: auswertung.py schreibt fest nach ERGEBNIS_DIR (Z. 24, 310-317, 333) und liest fest aus
+    DATEN_DIR (Z. 23) - kein --ziel, kein Quellordner-Argument (Stand 36.1 wie positionen_holen.py vor TB-98).
+
+A3  Sie liegt nicht im Snapshot 63e4b6c8...
+    BESTAETIGT. find snapshots/63e4b6c8.../ -name 'haltedauern*' -> 0 Treffer.
+    Der Snapshot hat 225 Eintraege: 223 Kurs-CSV FLACH in der Wurzel, MANIFEST.json, config/ (2 Universumsdateien).
+    Es gibt KEIN Unterverzeichnis data/ und KEIN research/.
+
+A4  faltenplan.py Z. 272 liest mess["haltedauer"][bot]["max_tage"] fuer purge_tage
+    BESTAETIGT. faltenplan.py:270-272 purge_tage = ceil(max_tage); verwendet in _plan Z. 304, 310, 318, 319.
+
+A5  Hashes
+    BESTAETIGT.
+    2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  ergebnisse/messgroessen.json
+    7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  ergebnisse/messgroessen_2026-09-23_nachweis.json
+    dazu: haltedauern_je_bot.csv ad12be6c..., messgroessen.py 623f8d77..., faltenplan.py 7aa0b8cc...,
+          registerdaten.py 141fa14b..., faltenplan.json 0e54ac5c... (b_hashes_vorher.txt)
+
+A6  Welche Gruppen von messgroessen.json liest registerdaten.py, wohin fliessen sie?
+    Leser: registerdaten._mess() Z. 168-170 (Datei Z. 64 MESSGROESSEN_DATEI = ergebnisse/messgroessen.json).
+    Gelesene Gruppen (statisch, grep):
+      kosten         registerdaten.py:186  (round_trip_pct)             -> Rastergrenzen; registerbericht.py:82-84
+      datenfrequenz  registerdaten.py:200, :202                         -> Rastergrenzen
+      volatilitaet   registerdaten.py:174, :564                         -> Rastergrenzen; registerbericht.py:76
+      haltedauer     registerdaten.py:231 (median_balken)               -> Donchian-Untergrenze
+                     faltenplan.py:272 (max_tage)                       -> purge_tage
+                     test_vorregistrierung.py:615 (max_tage, G8)
+    NICHT gelesen (0 Leser ausserhalb messgroessen.py): datenbereiche, universum,
+                     haltedauer/*/median_tage, haltedauer/*/n_positionen.
+    Abweichung Nachweis 7f46d5f5 gegen eingefrorene 2a9b9166 je Gruppe (Blaetter gesamt / abweichend):
+      datenbereiche 20/9 · datenfrequenz 8/0 · haltedauer 36/0 · kosten 3/0 · universum 4/0 · volatilitaet 56/39
+      (zusammen 48 von 127, wie TB-93).
+    => "Vier Gruppen gelesen, nur volatilitaet weicht ab" STIMMT fuer die GELESENEN Gruppen.
+       PRAEZISIERUNG: datenbereiche weicht AUCH ab (9), fliesst aber nirgends hin - wie TB-93/95 sagten.
+    ERGAENZUNG (Auftragsfrage): haltedauer fliesst AUSSER ueber purge_tage noch an EINE weitere Stelle:
+       median_balken -> registerdaten.py:231 (Regel haltedauer_median_balken) -> donchian_achse (Z. 385-392)
+       -> Untergrenze der Achse donchian_period von turtle_soup_crypto und turtle_soup_stocks (Z. 510-512)
+       -> rd.raster -> Achsenwerte und damit die Zellnamen (auswertung.py:124 gitterachsen, :127 zelle_id).
+       Dynamisch bestaetigt: c_stoerprobe_lauf.txt P2 (7 Achsenwerte bewegt, nur diese zwei Bots, Faltenplan 0).
+    ABWEICHUNG zur Vormessung in Block C3: "test_vorregistrierung.py G8 prueft median_balken" trifft nicht zu.
+       G8 (Z. 614-615) prueft purge_tage >= max_tage. median_balken hat genau EINEN Leser: registerdaten.py:231.
+
+A7  siehe a7_lesequellen.txt

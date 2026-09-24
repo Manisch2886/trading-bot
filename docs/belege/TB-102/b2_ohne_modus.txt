@@ -1,0 +1,44 @@
+# TB-102 B2 - Gegenprobe ohne Modus (lauf.sh ohne)
+# TB-102 Lauf 'ohne', HEAD 1c09f3e, 2026-09-24 21:18:06 +0200
+# Umgebung: TB102_ART=ohne
+rc=0 Dauer 14 s
+## Ausgabe (letzte 15 Zeilen)
+TB-30a - Messgroessen: die Zahlen, auf denen die Rastergrenzen ruhen
+
+Round-Trip-Kosten: 0.30 %
+
+Zeitrahmen        n  Sigma/Balken   Spanne20    ATR14  Schluss-Tief
+aktien_1d       150        2.222%     11.38%    2.34%         0.92%
+krypto_1d        23        5.959%     35.85%    7.63%         3.00%
+krypto_1h        24        1.263%      6.14%    1.36%         0.55%
+krypto_4h        24        2.450%     13.13%    2.86%         1.14%
+
+Geschrieben: <scratch>/b2_ohne/messgroessen.json
+  SHA-256: 7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6
+## Ergebnis
+7f46d5f511dde6825dd33bfa88a7175aafe6bda9e93c8c29aa8790388dce7fa6  <scratch>/b2_ohne/messgroessen.json
+
+## Vergleiche
+B2 bytegleich zu ergebnisse/messgroessen_2026-09-23_nachweis.json (7f46d5f5)
+B2 gegen ergebnisse/messgroessen.json (2a9b9166):
+<scratch>/b2_ohne/messgroessen.json research/vorregistrierung/ergebnisse/messgroessen.json differ: char 260, line 11
+B2 gegen B1: B1 hat keine Datei geschrieben (rc 1) - kein Vergleich moeglich
+B2 bytegleich zu Z2 (Snapshot-Inhalt in Repo-Anordnung)
+
+## Byte-Vergleich der von B2 gelesenen Eingaben: Repo gegen Snapshot
+data/*.csv: 222 verglichen, 0 abweichend
+config/*.txt: 2 verglichen, 0 abweichend
+haltedauern_je_bot.csv im Snapshot: 0 Treffer
+
+## Lesequellen B2
+Prozesse: 1
+  #argv	research/vorregistrierung/messgroessen.py --ziel <scratch>/b2_ohne/messgroessen.json
+
+Dateien je Herkunft (verschieden, nach Aufloesung):
+    441  Python/Pakete
+      1  REPO Code
+      2  REPO config/
+    222  REPO data/
+      1  REPO research/
+      4  anderswo
+
