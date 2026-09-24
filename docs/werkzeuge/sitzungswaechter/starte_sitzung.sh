@@ -228,9 +228,17 @@ if [ "$IM_REPO" -gt 0 ]; then
     hinweis=""
     case "$IM_REPO_INFO" in
         *" S+ "*|*" S "*|*"S+ ·"*)
+            # ⚠⚠ BERICHTIGT 24.09.2026 (ARBEITSWEISE 22.7): Hier stand
+            #    "Ist die Rechenzeit klein gegen die Laufzeit, ist sie fertig."
+            #    GEMESSEN ist das FALSCH: untaetige Sitzung 1,6 % (45 s in 48 min),
+            #    ARBEITENDE Sitzung 4,8 % (24 s in 8,5 min) - beide Zustand S+.
+            #    Die Rechenzeit trennt "arbeitet" nicht von "wartet".
             hinweis=" ⭐ Zustand 'S' heisst SCHLAFEND - die Sitzung wartet auf Eingabe."
-            hinweis="$hinweis Ist die Rechenzeit klein gegen die Laufzeit, ist sie"
-            hinweis="$hinweis fertig und nur das Fenster blieb offen: mit /exit oder Ctrl+D schliessen."
+            hinweis="$hinweis ⚠ Das heisst NICHT, dass sie fertig ist: eine arbeitende"
+            hinweis="$hinweis Sitzung wartet die meiste Zeit auf Antworten und steht ebenso auf S."
+            hinweis="$hinweis ⭐ Belastbar ist das ALTER DES LETZTEN COMMITS. Ist die Abgabe da,"
+            hinweis="$hinweis gelesen und mindestens 10 min alt, schliesst der Schliess-Ausloeser"
+            hinweis="$hinweis die Sitzung: Datei _ausloeser/schliesse_<HEAD-Hash> (ARBEITSWEISE 22.8)."
             ;;
     esac
     abbruch "Es arbeitet bereits eine claude-Sitzung im Repo ($IM_REPO). Der Waechter startet keine zweite. ${IM_REPO_INFO}${hinweis}"

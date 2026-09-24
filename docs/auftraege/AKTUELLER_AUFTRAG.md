@@ -36,13 +36,12 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-96** | `docs/auftraege/MAC_TB-96_register_40.md` | ⭐⭐⭐ **Registerabschnitt 40** nach Fable 24a. Nachtrag zu 39.8 (Messbitte beantwortet), 40.1–40.10: Test grün als Tag-Vorbedingung, `G6`/`H3`, ⭐⭐ **die neun Handelslisten sind Eingabedateien nach 23d** (Fables Registertext zeichengleich), **jede Mutationsprobe braucht eine Gegenprobe**, drei angenommene Berichtigungen an Fable. ⚠️ **Marke bei 5.1 Nr. 4** — `G6` liest diese Zeile maschinell, wer sie umformuliert bricht den Test. ⛔ Keine `.py`, nichts gerechnet. ⚠️ `numstat` zweite Spalte `0` |
+| **TB-97** | `docs/auftraege/MAC_TB-97_testannahmen_zweite_runde.md` | ⭐⭐⭐ **Testannahmen, zweite Runde** (Register 40.7, 40.8 (a)–(e)). ⭐ **Block A zuerst: die acht Mutationsproben BENENNEN** — Abschnitt 12 nennt die Zahl, keine Namen — und je Probe messen, ob sie heute überhaupt beissen kann. Dann `F4` (`<=` → `<`, Mehrheit wie `H3`, Gegenprobe), die vier Jahresliterale aus Registerstelle oder Plan, **dauerhafte Gegenproben für alle acht**, und die Sonde: getrennte Schlusszeilen plus Gruppen **aus dem Abbild** statt aus dem Code. ⛔ **Kein echtes Abbild erzeugen** — Gegenprobe nur auf einer Kopie. ⚠⚠ **Muss vor TB-98 laufen** |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
 | | Sache | ⚠️ Abhängigkeit |
 |---|---|---|
-| **TB-97** | Testannahmen, zweite Runde: `F4` (`<=` → `<`, Mehrheit, Gegenprobe) · die vier Literale aus Registerstelle oder Plan · Gegenproben für **alle acht** Mutationsproben · Sonde: getrennte Schlusszeilen und Gruppen **aus dem Abbild** statt aus dem Code | ⚠️ **vor TB-98** — Teil D bricht mit `KeyError`, sobald ein Bot Zweijahresfalten bekommt |
 | **TB-98** | Neun Trade-Listen auf dem Snapshot **neu erzeugen** (Erzeuger unter 36.1), Sperrlistenpunkt, Notizen; Faltenlänge nach 5.4 ableiten und **gegen 33.2 vergleichen**. Abweichung ist Berichtigung, keine Wahl | nach TB-97 |
 | **TB-100** | Plan-Punkt 7 **rückt vor**: Abbild des Faltenplans (33.3) und Faltenplan-Sonde | ⚠️ **nach** der Ableitung — sonst bildet es einen Stand ab, der gerade geprüft wird |
 | **TB-101** | `messgroessen.json` auf dem Snapshot (23d/23e), `registerdaten.py`, die 12 Rasterachsen | unabhängig |
