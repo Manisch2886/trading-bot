@@ -36,23 +36,20 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-94** | `docs/auftraege/MAC_TB-94_register_39.md` | ⭐⭐⭐ **Der Vollzug von Punkt 8 IM REGISTER — der Tagblocker.** TB-92 hat ihn im Code vollzogen (`fcc3265`) und richtig abgebrochen, weil 38.4 „grün“ verlangt. Fable 23f: **23a gilt, 38.4 wird berichtigt.** Registerabschnitt **39**, Pfadzeile und Vollzugsmarke an Abschnitt 10 Punkt 4, fünf Hash-Übergänge nach 37.3, Determinismus- und Modus-Notiz, **neues Abbild**, Sonde `0`. ⛔ **Keine `.py` ändern, nichts rechnen.** ⚠️ `numstat` zweite Spalte `0` |
-| **TB-95** | `docs/auftraege/MAC_TB-95_testannahmen_und_lesehaken.md` | ⭐⭐ **„Testannahmen folgen dem Register“** — `G6` und `H3` ausmessen und an den Faltenplan anpassen (Fable 23a/23f: Faltennamen aus dem Plan, nie als Literale; die Mutationsprobe muss wieder **beissen**). Dazu Fables **Messbitte**: Wer öffnet die neun Handelslisten im Modus-Lauf, und gehen ihre Inhalte in die Tabelle ein? ⛔ **Erst nach TB-94.** ⛔ Nichts löschen, nichts abschwächen |
+| **TB-96** | `docs/auftraege/MAC_TB-96_register_40.md` | ⭐⭐⭐ **Registerabschnitt 40** nach Fable 24a. Nachtrag zu 39.8 (Messbitte beantwortet), 40.1–40.10: Test grün als Tag-Vorbedingung, `G6`/`H3`, ⭐⭐ **die neun Handelslisten sind Eingabedateien nach 23d** (Fables Registertext zeichengleich), **jede Mutationsprobe braucht eine Gegenprobe**, drei angenommene Berichtigungen an Fable. ⚠️ **Marke bei 5.1 Nr. 4** — `G6` liest diese Zeile maschinell, wer sie umformuliert bricht den Test. ⛔ Keine `.py`, nichts gerechnet. ⚠️ `numstat` zweite Spalte `0` |
 
-⭐⭐ **TB-96 wartet (noch nicht formuliert):** `messgroessen.json` — Fable hat in
-23d entschieden, dass eine **Eingabe des Laufs** aus dem registrierten Snapshot
-reproduzierbar sein muss, nicht aus der Git-Historie. ⭐ Gemessen: Die
-Nachweisdatei aus TB-93 **lief bereits auf dem Snapshot**, muss also nur nach
-36.1 an ihren Platz — ⚠️ **plus** ein Lauf im Selektionsmodus gegen
-`snapshots/<hash>/` mit `diff` bytegleich (Fable 23e: „ein Nachweis muss
-denselben Weg gehen wie der Lauf“). Danach: `registerdaten.py` auf die neue
-Datei, und die **12 abweichenden Rasterachsen** nachziehen (Falten und
-Zellenzahl bleiben — gemessen, N = 653 unberührt). ⛔ **Erst nach TB-95.**
+⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
-⚠️ **Nummern gerückt am 23.09.2026, 20:00:** Fable nennt in 23f für
-`messgroessen.json` noch die Nummer **TB-94**; so stand es im Plan vom
-Vormittag. Der Registervollzug wurde vorgezogen. **TB-94 = Register,
-TB-95 = G6/H3 und Messbitte, TB-96 = `messgroessen.json`.**
+| | Sache | ⚠️ Abhängigkeit |
+|---|---|---|
+| **TB-97** | Testannahmen, zweite Runde: `F4` (`<=` → `<`, Mehrheit, Gegenprobe) · die vier Literale aus Registerstelle oder Plan · Gegenproben für **alle acht** Mutationsproben · Sonde: getrennte Schlusszeilen und Gruppen **aus dem Abbild** statt aus dem Code | ⚠️ **vor TB-98** — Teil D bricht mit `KeyError`, sobald ein Bot Zweijahresfalten bekommt |
+| **TB-98** | Neun Trade-Listen auf dem Snapshot **neu erzeugen** (Erzeuger unter 36.1), Sperrlistenpunkt, Notizen; Faltenlänge nach 5.4 ableiten und **gegen 33.2 vergleichen**. Abweichung ist Berichtigung, keine Wahl | nach TB-97 |
+| **TB-100** | Plan-Punkt 7 **rückt vor**: Abbild des Faltenplans (33.3) und Faltenplan-Sonde | ⚠️ **nach** der Ableitung — sonst bildet es einen Stand ab, der gerade geprüft wird |
+| **TB-101** | `messgroessen.json` auf dem Snapshot (23d/23e), `registerdaten.py`, die 12 Rasterachsen | unabhängig |
+
+⚠️ **TB-99 ist vergeben und wird nie ein Auftrag:** Die Nummer ist für die
+Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
+misst, ob eine Sitzung läuft, und bricht danach folgenlos ab.
 
 *Gesetzt 23.09.2026 (zuvor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**

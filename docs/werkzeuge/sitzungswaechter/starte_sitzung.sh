@@ -43,6 +43,99 @@ sage() { echo "$(date -u '+%Y-%m-%dT%H:%M:%SZ')  $*" >> "$LOG"; }
 sage "----- Waechter geweckt -----"
 
 # --------------------------------------------------------------------------
+# 0. ⭐⭐ SCHLIESS-AUSLOESER (seit 24.09.2026) — eine Sitzung beenden,
+#    ohne Tastenkombination. Anlass: Betreiberanweisung 24.09., 08:41 —
+#    `Strg`+`D` ist vom iPhone aus nicht tippbar.
+#
+#    Dateiname:  schliesse_<40 Hex-Zeichen>
+#    Die vierzig Zeichen sind der Commit, den der steuernde Chat zuletzt
+#    GELESEN hat. Stimmt HEAD damit nicht ueberein, wird NICHT geschlossen.
+#
+#    ⚠️ Auch hier wird NUR DER DATEINAME gelesen, nie der Inhalt (Zusage (1)
+#       im Kopf dieser Datei). Uebertragen wird genau ein Bezeichner.
+#
+#    ⭐ Warum der Hash und nicht die Rechenzeit: GEMESSEN am 24.09.2026 ist
+#       die Rechenzeit KEIN Unterscheidungsmerkmal. Eine untaetige Sitzung
+#       verbrauchte 1,6 % (45 s in 48 min), eine ARBEITENDE 4,8 % (24 s in
+#       8,5 min) — beide im Zustand S+. Wer daraus "untaetig" schliesst,
+#       raet. Belastbar ist: Der Abgabe-Commit liegt vor, ist gelesen, und
+#       seitdem hat sich HEAD nicht bewegt.
+# --------------------------------------------------------------------------
+SCHLIESSER=""
+for f in "$AUSLOESER"/schliesse_*; do
+    [ -e "$f" ] || continue
+    SCHLIESSER="$f"
+    break
+done
+
+if [ -n "$SCHLIESSER" ]; then
+    SNAME="$(basename "$SCHLIESSER")"
+    ERWARTET="${SNAME#schliesse_}"
+    STEMPEL="$(date -u '+%Y%m%dT%H%M%SZ')"
+    mv "$SCHLIESSER" "$ERLEDIGT/${STEMPEL}_$SNAME" 2>/dev/null
+    sage "----- Schliess-Ausloeser: $SNAME -----"
+
+    # Schranke: genau 40 Zeichen, nur 0-9a-f. Ein Zeilenumbruch im Namen
+    # faellt durch beide Pruefungen (Laenge und Zeichenklasse).
+    case "$ERWARTET" in
+        *[!0-9a-f]*) ERWARTET="" ;;
+    esac
+    if [ -z "$ERWARTET" ] || [ ${#ERWARTET} -ne 40 ]; then
+        sage "⛔ ABGEWIESEN: Der Name nennt keinen gueltigen Commit. Nichts geschlossen."
+        exit 1
+    fi
+
+    IST="$(cd "$REPO" && git --no-optional-locks rev-parse HEAD 2>/dev/null || true)"
+    CTIME="$(cd "$REPO" && git --no-optional-locks log -1 --format=%ct 2>/dev/null || echo 0)"
+    ALTER=$(( $(date +%s) - CTIME ))
+    sage "  erwartet: $ERWARTET"
+    sage "  HEAD:     ${IST:-<unbekannt>}  (Alter ${ALTER}s)"
+
+    if [ "$ERWARTET" != "$IST" ]; then
+        sage "⛔ ABBRUCH: HEAD ist nicht der gelesene Stand. Die Sitzung hat seither"
+        sage "   committet - sie arbeitet oder hat gerade abgegeben. Nichts geschlossen."
+        exit 1
+    fi
+    if [ "$ALTER" -lt 600 ]; then
+        sage "⛔ ABBRUCH: Der letzte Commit ist erst ${ALTER}s alt (Schwelle 600)."
+        sage "   Eine Sitzung, die eben committet hat, arbeitet womoeglich weiter."
+        exit 1
+    fi
+
+    ANZ=0
+    for pid in $(pgrep -x claude 2>/dev/null); do
+        cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | grep '^n' | cut -c2-)
+        case "$cwd" in
+            "$REPO"|"$REPO"/*) : ;;
+            *) continue ;;
+        esac
+        daten=$(ps -o etime=,time=,stat= -p "$pid" 2>/dev/null | tr -s ' ')
+        sage "  schliesse PID $pid (Laufzeit/Rechenzeit/Zustand:${daten})"
+        kill -TERM "$pid" 2>/dev/null
+        ANZ=$((ANZ+1))
+    done
+
+    if [ "$ANZ" -eq 0 ]; then
+        sage "  Keine claude-Sitzung im Repo. Nichts zu schliessen."
+    else
+        sleep 5
+        UEBRIG=0
+        for pid in $(pgrep -x claude 2>/dev/null); do
+            cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | grep '^n' | cut -c2-)
+            case "$cwd" in "$REPO"|"$REPO"/*) UEBRIG=$((UEBRIG+1)) ;; esac
+        done
+        sage "  $ANZ Sitzung(en) mit TERM beendet, $UEBRIG noch da."
+        if [ "$UEBRIG" -gt 0 ]; then
+            sage "  ⚠️ Nicht alle sind weg. KEIN -KILL: Was TERM nicht annimmt,"
+            sage "     haengt an etwas, das ein Mensch ansehen sollte."
+        fi
+    fi
+    sage "----- fertig (schliessen) -----"
+    exit 0
+fi
+
+
+# --------------------------------------------------------------------------
 # 1. Die Ausloeserdatei finden. Nur der NAME zaehlt.
 # --------------------------------------------------------------------------
 DATEI=""

@@ -1897,3 +1897,118 @@ einfügen, und dann braucht er ihn im Chat.
 
 ⭐ *Der Satz ist bis auf die Nummer immer derselbe (Abschnitt 14). Ihn
 mitzuliefern kostet nichts; ihn wegzulassen kostet eine Nachfrage.*
+
+### 22.5 ⭐⭐ Der steuernde Chat wartet nicht auf „fertig" — er plant die Nachschau
+
+⚠️ **Betreiberrüge 24.09.2026, 07:07:** *„Wieso holst du dir das Ergebnis TB 95
+nicht selbstständig ab?"* — TB-95 war seit 21:56 des Vorabends abgegeben, und der
+steuernde Chat hatte bis zum nächsten Morgen nicht nachgesehen.
+
+⭐ **Der Fehler war strukturell, nicht Vergesslichkeit:** Es gibt **keine**
+Benachrichtigung, wenn eine Mac-Sitzung fertig ist. Wer auf ein Signal wartet,
+das nie kommt, wartet für immer.
+
+**Die Regel:** Nach jedem ausgelösten Auftrag plant der steuernde Chat eine
+**Nachschau in dieselbe Sitzung** ein (`send_later`) — erster Blick etwa nach der
+erwarteten Laufzeit, danach in grösseren Abständen. Die Nachschau besteht aus
+drei Messungen:
+
+| | |
+|---|---|
+| 1 | Wächter-Sonde legen (22.2), Protokoll lesen — läuft noch eine Sitzung? |
+| 2 | `git --no-optional-locks log --oneline <letzter bekannter Stand>..HEAD` |
+| 3 | Ist ein Ergebnisdokument da, wird es gelesen — ohne Aufforderung |
+
+⇒ **Die Meldung des Betreibers ist eine Bequemlichkeit, kein Auslöser.**
+⭐ **Dasselbe gilt für Fable:** Liegt eine Antwort in der Projektablage, wird sie
+beim nächsten Kontakt von selbst gelesen. Der Betreiber muss nicht „Fable ist
+fertig" sagen, damit sie gefunden wird.
+
+### 22.6 ⭐ Eine untätige Sitzung ist kein Schreibverbot — aber sie wird gemessen
+
+**Die stehende Regel** lautet: *nichts nach `docs/` schreiben, solange eine
+Sitzung läuft.* Ihr Zweck ist, einer **arbeitenden** Sitzung nicht in den
+Arbeitsbaum zu greifen, während sie committet.
+
+⚠️ **Gemessen am 23./24.09.2026:** Der Betreiber lässt Fenster nach dem Abschluss
+offen stehen, oft über Stunden. Die Sitzung schläft dann (`Zustand S+`) und
+schreibt nichts. Ein Schreibverbot, das daran hängt, blockiert die Arbeit ohne
+Gegenwert.
+
+**Die Präzisierung — der Wächter liefert die Zahlen dafür selbst:**
+
+| Befund der Sonde | Schreiben nach `docs/` |
+|---|---|
+| `0 im Repo` | ✔ frei |
+| Sitzung mit **Rechenzeit klein gegen Laufzeit** und seit dem letzten Commit deutlich Zeit vergangen | ✔ frei, ⭐ **der Befund wird genannt** (PID, Laufzeit, Rechenzeit) |
+| Rechenzeit wächst, oder ein Commit liegt wenige Minuten zurück | ⛔ warten |
+
+⚠️⚠️ **Geschätzt wird nicht.** Wer „die ist bestimmt fertig" denkt, ohne die
+Sonde gelegt zu haben, arbeitet wie am 23.09., als der steuernde Chat während
+einer laufenden TB-92-Sitzung nach `docs/` schrieb — es ging gut aus, aber es war
+Glück statt Methode.
+
+⭐ *Und in jedem Fall bleibt: committen darf nur die Mac-Sitzung. Der steuernde
+Chat legt Dateien hin, Schritt 0 des nächsten Auftrags nimmt sie mit.*
+
+### 22.7 ⛔ BERICHTIGUNG zu 22.6 — die Rechenzeit trennt „arbeitet" nicht von „wartet"
+
+⚠️⚠️ **22.6 (oben, 24.09.2026, 07:59) nennt als Merkmal einer untätigen Sitzung
+„Rechenzeit klein gegen Laufzeit". Das ist falsch, und zwar gemessen.** Der
+Abschnitt bleibt stehen (append-only), gilt aber mit dieser Berichtigung.
+
+**Die Gegenprobe, die beim Schreiben fehlte** (Protokoll des Wächters,
+23./24.09.2026):
+
+| Sitzung | Laufzeit | Rechenzeit | Anteil | Zustand |
+|---|---|---|---|---|
+| TB-95, **untätig** | 48 min | 45 s | **1,6 %** | `S+` |
+| TB-92, **arbeitend** | 8,5 min | 24 s | **4,8 %** | `S+` |
+
+⇒ Beide niedrig, beide `S+`. Eine arbeitende Sitzung wartet die meiste Zeit auf
+Antworten und verbraucht dabei kaum Rechenzeit. ⭐ *Ich hatte aus zwei Zahlen
+derselben Sitzung geschlossen, ohne einen Gegenfall zu messen — genau der
+Fehler, den `A8` verhindern soll.*
+
+⭐⭐ **Was stattdessen gilt:** Belastbar ist, dass der **Abgabe-Commit vorliegt
+und gelesen ist** und **HEAD sich seitdem nicht bewegt hat**. Die Zahl dafür ist
+das **Alter des letzten Commits** (`git log -1 --format=%ct`), nicht die
+Rechenzeit.
+
+### 22.8 ⭐⭐ Der Schliess-Auslöser — eine Sitzung beenden ohne Tastenkombination
+
+⚠️ **Betreiberanweisung 24.09.2026, 08:41:** *„Ich benötige auch zukünftig immer
+noch eine iPhone-Alternative zu Strg+D."*
+
+⭐ **Die Antwort ist nicht eine andere Taste, sondern keine.** Der Wächter hat
+seit dem 24.09.2026 einen zweiten Auslöser:
+
+```
+docs/auftraege/_ausloeser/schliesse_<40 Hex-Zeichen>
+```
+
+Die vierzig Zeichen sind **der Commit, den der steuernde Chat zuletzt gelesen
+hat**. Damit hängt das Schliessen an einem Nachweis statt an einer Vermutung.
+
+**Zwei Wachen, beide gemessen:**
+
+| | |
+|---|---|
+| **HEAD-Gleichheit** | Stimmt HEAD nicht mit dem Namen überein, hat die Sitzung seither committet — sie arbeitet oder hat gerade abgegeben. ⛔ Abbruch |
+| **Alter ≥ 600 s** | Eine Sitzung, die eben committet hat, arbeitet womöglich weiter. ⛔ Abbruch |
+
+**Nach `TERM` wird nicht nachgetreten.** ⭐ *Was `TERM` nicht annimmt, hängt an
+etwas, das ein Mensch ansehen sollte.*
+
+⚠️ **Auch hier wird nur der DATEINAME gelesen, nie der Inhalt** — die Zusage (1)
+im Kopf von `starte_sitzung.sh` gilt unverändert. Deshalb steht der Hash im
+Namen und nicht in der Datei.
+
+**Probe am 24.09.2026, 06:44–06:45 UTC:** falscher Hash ⇒ abgewiesen ·
+unsinniger Name ⇒ abgewiesen · richtiger Hash bei 8,8 h altem Commit ⇒ PID 31471
+beendet, 0 übrig.
+
+⭐ **Für den Notfall, wenn der Wächter nicht greift:** In der Claude-App in der
+Gerätesitzung `/exit` **tippen** und abschicken. Das ist Text, keine Taste, und
+geht vom Telefon. Verlässlich nur, wenn die Eingabezeile wartet; ein offener
+Dialog fängt es ab.
