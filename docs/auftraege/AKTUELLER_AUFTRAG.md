@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-102** | `docs/auftraege/MAC_TB-102_messgroessen_im_modus.md` | ⭐⭐⭐ **Läuft `messgroessen.py` im Selektionsmodus überhaupt?** (Fable 23e). ⚠⚠ **Vormessung hat den Zuschnitt gekippt:** `messgroessen.py` liest `haltedauern_je_bot.csv` — aus denselben neun Listen, **nicht im Snapshot**. Kette: neun Listen → Haltedauern → `messgroessen.json` → `purge_tage` → Faltenplan → Benchmark-Tabelle. ⛔ **Deshalb wird nichts platziert, nichts eingetragen, nichts verdrahtet** — der Auftrag misst nur. ⭐ Mit Lesehaken: nicht nur **ob** bytegleich, sondern **woher** gelesen wurde |
+| **TB-103** | `docs/auftraege/MAC_TB-103_resolver_und_trockenlauf.md` | ⭐⭐⭐ **Resolver-Fix, `messgroessen.py` auf den Resolver, Trockenlauf aller neun Bots im Modus** (Fable 24b A2, 24c Abschnitte 1, 2, 6). ⭐ **Freigabe des Betreibers 24.09.2026, 22:52** für `shared/paths.py` und `messgroessen.py`. Unter dem Modus `CONFIG_DIR = <snapshot>/config`, fehlende Universumsdatei ⇒ rc 2. ⛔ Symboldateien, `ladeprotokoll.py`, Register **nicht** freigegeben |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
@@ -49,7 +49,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
 misst, ob eine Sitzung läuft, und bricht danach folgenlos ab.
 
-*Gesetzt 23.09.2026 (zuvor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
+*Gesetzt 24.09.2026, 23:00 (zuvor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 

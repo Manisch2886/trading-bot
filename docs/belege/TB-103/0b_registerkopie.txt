@@ -1,0 +1,10 @@
+TB-103 Schritt 0b — Registerkopie
+REGISTER_KOPIE_2026-09-24.md:   552130 Bytes,     8029 Zeilen
+Kopf: 2158 Bytes / 36 Zeilen; Rumpf = Bytes ab 2159
+Rumpf sha256:     10ffa7b3a7b0652e8f9da0eedac1af5cb82ae045317a3d05118de6568c5092aa  -
+d0dc890 sha256:   10ffa7b3a7b0652e8f9da0eedac1af5cb82ae045317a3d05118de6568c5092aa  -
+cmp Rumpf vs git show d0dc890:docs/VORREGISTRIERUNG_neuselektion.md: zeichengleich
+Zeilen Quelle:     7993 (Soll 7993), Bytes   549972 (Kopf nennt 549 972)
+Abschnittsköpfe in der Quelle (^## [0-9]): 41, letzter: ## 40. Testannahmen folgen dem Register, und die neun Handelslisten sind Eingabe
+Stimmt der SHA im Kopf? 1 Treffer
+Register im HEAD gleich d0dc890? ja

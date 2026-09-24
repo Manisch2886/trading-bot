@@ -231,8 +231,8 @@ du kommst also an alle Führungsdokumente.
 Lies in dieser Reihenfolge, über den Projects-Zugriff (in Klammern der Pfad im
 Repo, falls du dort liest):
 
-1. projektfuehrung/UEBERGABE_2026-09-19.md  — der Stand, das Wichtigste
-                                              (docs/projektfuehrung/UEBERGABE_2026-09-19.md)
+1. projektfuehrung/UEBERGABE_2026-09-24.md  — der Stand, das Wichtigste
+                                              (docs/projektfuehrung/UEBERGABE_2026-09-24.md)
 2. projektfuehrung/UMZUG.md                 — wann und wie umgezogen wird, inkl. Auslöser
                                               (docs/projektfuehrung/UMZUG.md)
 3. projektfuehrung/ARBEITSWEISE.md          — wie ich arbeiten möchte, verbindlich

@@ -1,0 +1,18 @@
+TB-103 Schritt 0a — 2026-09-24 23:32:08 +0200
+HEAD am Eingang: d05e3ff3417f617b79bb82e93d3b0592270414ba
+origin/main: 2938145358fffd441730c2456c811808e7cbc25b
+--- git status --porcelain vorher
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UMZUG.md
+?? docs/auftraege/MAC_TB-103_resolver_und_trockenlauf.md
+?? docs/belege/TB-103/
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-09-24e_richtiges_ergebnis_falscher_ort.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-09-24_neuer_chat.md
+?? docs/projektfuehrung/REGISTER_KOPIE_2026-09-24.md
+?? docs/projektfuehrung/UEBERGABE_2026-09-24.md
+--- Hilfsdatei _kopf_register_kopie_24.md: 2158 Bytes, 36 Zeilen
+cmp mit den ersten 2158 Bytes von REGISTER_KOPIE_2026-09-24.md: zeichengleich (KOPF_GLEICH)
+rm: vom Berechtigungssystem abgelehnt; stattdessen mv ins Scratchpad der Sitzung (= aus dem Repo entfernt)
+--- nicht in der Tabelle des Auftrags, aber im Arbeitsbaum: FABLE_UEBERGABE_2026-09-24_neuer_chat.md (mitcommittet, Datei des steuernden Chats)
