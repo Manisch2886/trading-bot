@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-98** | `docs/auftraege/MAC_TB-98_neun_listen_auf_dem_snapshot.md` | ⭐⭐⭐ **Die neun Handelslisten auf dem Snapshot neu erzeugen und die Faltenlänge ableiten** (Register 40.6). ⭐ **Block A zuerst: Liest der Erzeuger überhaupt über den Selektionsmodus?** — bei `benchmark.py` und `messgroessen.py` war es nicht so. Dann `positionen_holen.py` nach 36.1 (`--ziel` Pflicht, O_EXCL, AST unverändert), neun Listen im Modus, **zweimal bytegleich** (23e), Faltenlänge nach 5.4 ableiten und **gegen 33.2 vergleichen**. ⛔ **Hört dort auf:** kein `faltenplan.py`, kein Sperrlistenpunkt, kein Abbild — die hängen am Ausgang des Vergleichs. ⚠⚠ Nur die Faltenlänge melden, keine Trade-Zahlen (27.1) |
+| **TB-102** | `docs/auftraege/MAC_TB-102_messgroessen_im_modus.md` | ⭐⭐⭐ **Läuft `messgroessen.py` im Selektionsmodus überhaupt?** (Fable 23e). ⚠⚠ **Vormessung hat den Zuschnitt gekippt:** `messgroessen.py` liest `haltedauern_je_bot.csv` — aus denselben neun Listen, **nicht im Snapshot**. Kette: neun Listen → Haltedauern → `messgroessen.json` → `purge_tage` → Faltenplan → Benchmark-Tabelle. ⛔ **Deshalb wird nichts platziert, nichts eingetragen, nichts verdrahtet** — der Auftrag misst nur. ⭐ Mit Lesehaken: nicht nur **ob** bytegleich, sondern **woher** gelesen wurde |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
@@ -44,7 +44,6 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 |---|---|---|
 | **TB-100** | Folge aus TB-98: Registerabschnitt 41 (Sperrlistenpunkt für die neuen Listen, Tatsachennotiz zu 5.4, Berichtigung „sieben statt acht“ nach Fables Antwort auf 24c), `faltenplan.py` auf die registrierte Pfadkonstante (⭐ **Freigabe liegt vor, 24.09. 11:25**), **ein** neues Sperrlisten-Abbild, das zugleich die Gruppen `bestimmt` und `eingefroren` führt | nach TB-98 |
 | **TB-101** | Plan-Punkt 7: Abbild des Faltenplans (33.3) und Faltenplan-Sonde | ⚠️ **nach** der Ableitung |
-| **TB-102** | `messgroessen.json` auf dem Snapshot (23d/23e), `registerdaten.py`, die 12 Rasterachsen | unabhängig |
 
 ⚠️ **TB-99 ist vergeben und wird nie ein Auftrag:** Die Nummer ist für die
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
