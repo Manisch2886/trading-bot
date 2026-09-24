@@ -1,0 +1,78 @@
+# TB-98 B-Proben, HEAD a58ed1d + Arbeitsbaum (Block B), 2026-09-24 15:15:08 +0200
+
+## B1a ohne --ziel
+    | usage: positionen_holen.py [-h] --ziel ORDNER bot
+    | positionen_holen.py: error: the following arguments are required: --ziel
+    rc=2
+
+## B1b ganz ohne Argument
+    | Aufruf: python3 positionen_holen.py <bot_name> --ziel <ordner>
+    rc=1
+
+## B1c --ziel auf einen fehlenden Ordner
+    | ABBRUCH: Zielordner fehlt: gibt_es_nicht - er wird nicht angelegt.
+    rc=2
+    Ordner nicht angelegt
+
+## B1d Bot-Name nicht an erster Stelle
+    | ABBRUCH: der Bot-Name muss das erste Argument sein.
+    rc=2
+    Inhalt /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/baf3388d-88fe-4f64-95b8-ed97ad92726f/scratchpad/b_proben/b1d: []
+
+## B2a Zieldatei besteht (Kopie der alten Liste) - mit Lesehaken: wird gerechnet?
+    | ABBRUCH (36.1 (2)): Ziel existiert, nichts gerechnet, nichts geschrieben.
+    |   Pfad:    b2a/rsi2_crypto_alle_trades.csv
+    |   SHA-256: b5f74c7c691876008e58f4086e49a439d0b7c0c48c2446690ed2527837046674
+    rc=1, 1 s
+    vorhandene Datei: Hash und mtime unveraendert
+    Inhalt /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/baf3388d-88fe-4f64-95b8-ed97ad92726f/scratchpad/b_proben/b2a: [rsi2_crypto_alle_trades.csv ]
+    Kursdateien geoeffnet (Lesehaken, *_1d.csv/_4h.csv/_1h.csv): 0
+    equity_simulation geladen (Lesehaken): 0
+
+## B2b _schreibe_einmal auf eine Datei, die waehrend des Laufs entsteht (Import, im Speicher)
+    | neu geschrieben, Hash stimmt mit dem Inhalt: True
+    | ABBRUCH (36.1 (2)): Ziel entstand waehrend des Laufs, nichts ueberschrieben.
+    |   Pfad:    b2b/da.txt
+    |   SHA-256: 2b71e55be1d168a726aaa649b31d1b72bcddf8623c629b622a2739c8d38a0971
+    | SystemExit 1 - Inhalt danach: 'vorher\n'
+
+## B2c --ziel auf den historischen Ordner research/tb24_haltedauern/daten
+    | ABBRUCH (36.1 (2)): Ziel existiert, nichts gerechnet, nichts geschrieben.
+    |   Pfad:    research/tb24_haltedauern/daten/rsi2_crypto_positionen.csv
+    |   SHA-256: b8a16c617ca230a3d6eb6de92d6c37e09af249f56b40bd886515196a4984f73f
+    | ABBRUCH (36.1 (2)): Ziel existiert, nichts gerechnet, nichts geschrieben.
+    |   Pfad:    research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+    |   SHA-256: b5f74c7c691876008e58f4086e49a439d0b7c0c48c2446690ed2527837046674
+    | ABBRUCH (36.1 (2)): Ziel existiert, nichts gerechnet, nichts geschrieben.
+    |   Pfad:    research/tb24_haltedauern/daten/rsi2_crypto_meta.json
+    |   SHA-256: e024472a9e81b285d0e41ec12e9db1a28ab11ffd4c6574d9ee05e4080e51234d
+    rc=1
+    27 Dateien unter daten/: Hash vorher = nachher
+    mtime vorher = nachher, Dateizahl 27
+
+## B4a alle_bots.py ohne --ziel
+    | usage: alle_bots.py [-h] --ziel ORDNER [bots ...]
+    | alle_bots.py: error: the following arguments are required: --ziel
+    rc=2
+
+## B4b alle_bots.py --ziel (relativ) auf einen Ordner mit vorhandener Zieldatei
+    | 
+    | === turtle_soup_crypto
+    | ABBRUCH (36.1 (2)): Ziel existiert, nichts gerechnet, nichts geschrieben.
+    |   Pfad:    b4b/turtle_soup_crypto_meta.json
+    |   SHA-256: e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    | 
+    | FEHLGESCHLAGEN: turtle_soup_crypto
+    rc=1
+    Inhalt /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/baf3388d-88fe-4f64-95b8-ed97ad92726f/scratchpad/b_proben/b4b: [turtle_soup_crypto_meta.json ]
+
+## B4c alle_bots.py --ziel auf einen leeren Ordner: Kind laeuft bis Befund 2 (a1), schreibt nichts
+    | 
+    | === rsi2_crypto
+    | Geladen: 20 von 24 Symbolen. 4 ausgelassen: 4x Historie zu kurz.
+    | rsi2_crypto: Kennzeichnung hat die Simulation veraendert - Abbruch.
+    | 
+    | FEHLGESCHLAGEN: rsi2_crypto
+    rc=1
+    Inhalt /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/baf3388d-88fe-4f64-95b8-ed97ad92726f/scratchpad/b_proben/b4c: []
+FERTIG

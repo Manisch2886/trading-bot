@@ -1,0 +1,39 @@
+# TB-98 B3 Ausgabeformat, Arbeitsbaum auf HEAD a58ed1d, 2026-09-24 15:14:15 +0200
+# $ trading-env/bin/python3 -W ignore docs/belege/TB-98/b_format.py <scratch>/b_format
+elliott_wave_alle_trades.csv                  alt==neu JA    neu==Original NEIN
+elliott_wave_positionen.csv                   alt==neu JA    neu==Original NEIN
+elliott_wave_meta.json                        alt==neu JA    neu==Original JA
+t3_supertrend_alle_trades.csv                 alt==neu JA    neu==Original NEIN
+t3_supertrend_positionen.csv                  alt==neu JA    neu==Original NEIN
+t3_supertrend_meta.json                       alt==neu JA    neu==Original JA
+rsi2_crypto_alle_trades.csv                   alt==neu JA    neu==Original JA
+rsi2_crypto_positionen.csv                    alt==neu JA    neu==Original JA
+rsi2_crypto_meta.json                         alt==neu JA    neu==Original JA
+turtle_soup_crypto_alle_trades.csv            alt==neu JA    neu==Original JA
+turtle_soup_crypto_positionen.csv             alt==neu JA    neu==Original JA
+turtle_soup_crypto_meta.json                  alt==neu JA    neu==Original JA
+volatility_breakout_crypto_alle_trades.csv    alt==neu JA    neu==Original NEIN
+volatility_breakout_crypto_positionen.csv     alt==neu JA    neu==Original NEIN
+volatility_breakout_crypto_meta.json          alt==neu JA    neu==Original JA
+elliott_wave_stocks_alle_trades.csv           alt==neu JA    neu==Original NEIN
+elliott_wave_stocks_positionen.csv            alt==neu JA    neu==Original NEIN
+elliott_wave_stocks_meta.json                 alt==neu JA    neu==Original JA
+rsi2_mean_reversion_alle_trades.csv           alt==neu JA    neu==Original NEIN
+rsi2_mean_reversion_positionen.csv            alt==neu JA    neu==Original NEIN
+rsi2_mean_reversion_meta.json                 alt==neu JA    neu==Original JA
+turtle_soup_stocks_alle_trades.csv            alt==neu JA    neu==Original NEIN
+turtle_soup_stocks_positionen.csv             alt==neu JA    neu==Original NEIN
+turtle_soup_stocks_meta.json                  alt==neu JA    neu==Original JA
+volatility_breakout_alle_trades.csv           alt==neu JA    neu==Original NEIN
+volatility_breakout_positionen.csv            alt==neu JA    neu==Original NEIN
+volatility_breakout_meta.json                 alt==neu JA    neu==Original JA
+
+alt==neu: 27 von 27
+rc=0
+
+# Lesart: "alt==neu" ist die Pruefung (dieselben Daten, alte gegen neue
+# Schreibstelle): 27/27 bytegleich. "neu==Original" ist ein Einlese-Schreib-
+# Rundlauf und keine Pruefung der Schreibstelle: pandas' Standard-Parser liest
+# manche Gleitkommazahlen nicht verlustfrei (gemessen elliott_wave Zeile 21:
+# Original 0.10104999999999999, Rundlauf 0.1010499999999999) - die Abweichung
+# entsteht beim Einlesen, auf beiden Schreibwegen gleich.

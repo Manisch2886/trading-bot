@@ -1,0 +1,83 @@
+=== research/tb24_haltedauern/positionen_holen.py  (e87b06f gegen Arbeitsbaum)
+Funktionen/Klassen: e87b06f 5, neu 9, gleich 4, verschieden 1
+  gleich:        ['abgleich_exposure_messung', 'kerzen_je_trade', 'kursreihe', 'ordne']
+  verschieden:   ['main']
+  nur e87b06f:   []
+  nur neu:       ['_schreibe_einmal', '_schreibe_herkunft', '_sha256', 'sperre_vor_der_rechnung']
+  Unterschied in main (ast.unparse):
+    @@ -46,2 +46,3 @@
+    -    positionen.to_csv(os.path.join(DATEN_DIR, f'{BOT}_positionen.csv'), index=False)
+    -    alle.to_csv(os.path.join(DATEN_DIR, f'{BOT}_alle_trades.csv'), index=False)
+    +    hashes = {}
+    +    hashes[f'{BOT}_positionen.csv'] = _schreibe_einmal(f'{BOT}_positionen.csv', positionen.to_csv(index=False))
+    +    hashes[f'{BOT}_alle_trades.csv'] = _schreibe_einmal(f'{BOT}_alle_trades.csv', alle.to_csv(index=False))
+    @@ -51,2 +52,2 @@
+    -    with open(os.path.join(DATEN_DIR, f'{BOT}_meta.json'), 'w') as f:
+    -        json.dump(meta, f, indent=2, default=str)
+    +    hashes[f'{BOT}_meta.json'] = _schreibe_einmal(f'{BOT}_meta.json', json.dumps(meta, indent=2, default=str))
+    +    _schreibe_herkunft(hashes)
+Modulebene (ohne def/class): e87b06f 19, neu 31 Anweisungen
+    @@ -1 +1,3 @@
+    -'\nEin Bot, ein Prozess: Positionen MIT Ausstiegsart und Kerzenzahl herausholen\n===========================================================================...
+    +'\nEin Bot, ein Prozess: Positionen MIT Ausstiegsart und Kerzenzahl herausholen\n===========================================================================...
+    +import argparse
+    +import hashlib
+    @@ -3,0 +6 @@
+    +import subprocess
+    @@ -4,0 +8 @@
+    +from datetime import datetime, timezone
+    @@ -9 +13 @@
+    -if len(sys.argv) < 2:
+        raise SystemExit('Aufruf: python3 positionen_holen.py <bot_name>')
+    +if len(sys.argv) < 2:
+        raise SystemExit('Aufruf: python3 positionen_holen.py <bot_name> --ziel <ordner>')
+    @@ -10,0 +15,10 @@
+    +BEFUND = 1
+    +NICHT_MOEGLICH = 2
+    +_aufruf = argparse.ArgumentParser(description='Positionen und alle gefundenen Trades eines Bots (TB-24). Schreibt einmalig in den Ordner aus --ziel (Registe...
+    +_aufruf.add_argument('bot')
+    +_aufruf.add_argument('--ziel', required=True, metavar='ORDNER', help='bestehender Ordner; vorhandene Zieldateien werden NIE ueberschrieben - der Lauf endet ...
+    +_args = _aufruf.parse_args(sys.argv[1:])
+    +if _args.bot != BOT:
+        sys.stderr.write('ABBRUCH: der Bot-Name muss das erste Argument sein.\n')
+        sys.exit(NICHT_MOEGLICH)
+    +ZIEL_DIR = os.path.abspath(_args.ziel)
+    +if not os.path.isdir(ZIEL_DIR):
+        sys.stderr.write('ABBRUCH: Zielordner fehlt: %s - er wird nicht angelegt.\n' % ZIEL_DIR)
+        sys.exit(NICHT_MOEGLICH)
+    +ZIELDATEIEN = [f'{BOT}_positionen.csv', f'{BOT}_alle_trades.csv', f'{BOT}_meta.json', f'{BOT}_herkunft.json']
+    @@ -14,2 +27,0 @@
+    -DATEN_DIR = os.path.join(_DIR, 'daten')
+    -os.makedirs(DATEN_DIR, exist_ok=True)
+    @@ -19 +31 @@
+    -if __name__ == '__main__':
+        main()
+    +if __name__ == '__main__':
+        if sperre_vor_der_rechnung():
+            sys.exit(BEFUND)
+        main()
+
+=== research/tb24_haltedauern/alle_bots.py  (e87b06f gegen Arbeitsbaum)
+Funktionen/Klassen: e87b06f 1, neu 1, gleich 0, verschieden 1
+  gleich:        []
+  verschieden:   ['main']
+  nur e87b06f:   []
+  nur neu:       []
+  Unterschied in main (ast.unparse):
+    @@ -2 +2,6 @@
+    -    bots = sys.argv[1:] or BOTS
+    +    aufruf = argparse.ArgumentParser(description='positionen_holen.py fuer mehrere Bots.')
+    +    aufruf.add_argument('--ziel', required=True, metavar='ORDNER')
+    +    aufruf.add_argument('bots', nargs='*')
+    +    args = aufruf.parse_args()
+    +    ziel = os.path.abspath(args.ziel)
+    +    bots = args.bots or BOTS
+    @@ -6 +11 @@
+    -        ergebnis = subprocess.run([sys.executable, os.path.join(_DIR, 'positionen_holen.py'), bot], cwd=_DIR)
+    +        ergebnis = subprocess.run([sys.executable, os.path.join(_DIR, 'positionen_holen.py'), bot, '--ziel', ziel], cwd=_DIR)
+Modulebene (ohne def/class): e87b06f 7, neu 8 Anweisungen
+    @@ -1 +1,2 @@
+    -'\nAlle neun Bots nacheinander, je in einem eigenen Prozess.\n\nEin eigener Prozess je Bot ist nicht Vorsicht, sondern Notwendigkeit: alle\nneun Bots haben ...
+    +'\nAlle neun Bots nacheinander, je in einem eigenen Prozess.\n\nEin eigener Prozess je Bot ist nicht Vorsicht, sondern Notwendigkeit: alle\nneun Bots haben ...
+    +import argparse
+

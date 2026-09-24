@@ -1,0 +1,8 @@
+# TB-98 Block B, Vorpruefung: steht positionen_holen.py / alle_bots.py auf einer Sperrliste oder in EINGEFROREN? HEAD a58ed1d, 2026-09-24 15:15:31 +0200
+Register Abschnitt 10 = Z. 843-1049
+  Treffer 'positionen_holen|alle_bots|tb24_haltedauern' in Abschnitt 10: 0
+  Treffer im Abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json: 0
+  Treffer in EINGEFROREN/SPERRLISTE_DATEIEN (research/vorregistrierung/herkunft.py Z. 57-70): 0
+  Treffer in shared/sperrlistensonde.py: 0
+  Treffer in research/vorregistrierung/sperrliste_abbild.py: 0
+=> nicht gesperrt, nicht eingefroren (Abbruchkriterium 3 greift nicht)

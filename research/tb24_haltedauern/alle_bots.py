@@ -9,9 +9,15 @@ Fassung. Vorbild: `shared/portfolio_overview.py` und
 `research/exposure_messung/alle_bots.py`.
 
 Nutzung:
-    python3 alle_bots.py [bot ...]
+    python3 alle_bots.py --ziel <ordner> [bot ...]
+
+`--ziel` ist Pflicht und wird an jeden `positionen_holen.py`-Aufruf
+durchgereicht (TB-98 B4, Register 36.1): keine Voreinstellung, und ein Bot,
+dessen Zieldateien schon bestehen, endet dort mit 1, ohne zu rechnen. Der
+Pfad wird hier absolut gemacht, weil die Kindprozesse in diesem Ordner laufen.
 """
 
+import argparse
 import os
 import subprocess
 import sys
@@ -32,12 +38,18 @@ BOTS = [
 
 
 def main():
-    bots = sys.argv[1:] or BOTS
+    aufruf = argparse.ArgumentParser(description="positionen_holen.py fuer mehrere Bots.")
+    aufruf.add_argument("--ziel", required=True, metavar="ORDNER")
+    aufruf.add_argument("bots", nargs="*")
+    args = aufruf.parse_args()
+    ziel = os.path.abspath(args.ziel)
+    bots = args.bots or BOTS
     fehler = []
     for bot in bots:
         print(f"\n=== {bot}", flush=True)
         ergebnis = subprocess.run(
-            [sys.executable, os.path.join(_DIR, "positionen_holen.py"), bot], cwd=_DIR)
+            [sys.executable, os.path.join(_DIR, "positionen_holen.py"), bot,
+             "--ziel", ziel], cwd=_DIR)
         if ergebnis.returncode != 0:
             fehler.append(bot)
 

@@ -3,7 +3,33 @@ Ein Bot, ein Prozess: Positionen MIT Ausstiegsart und Kerzenzahl herausholen
 ==============================================================================
 Untersuchung TB-24 (Haltedauern und Zeithorizonte). **Liest nur.** An
 Bot-, Backtest- oder Live-Dateien wird nichts geaendert; geschrieben wird
-ausschliesslich unter `research/tb24_haltedauern/daten/`.
+ausschliesslich in den Ordner, den `--ziel` nennt.
+
+ZIEL UND EINMAL-SCHREIBSPERRE (TB-98, Register 36.1 und 40.6)
+------------------------------------------------------------------------------
+Bis TB-98 schrieb dieses Skript fest nach `research/tb24_haltedauern/daten/`.
+Die neun `<bot>_alle_trades.csv` dort sind seit Register 40.6 Eingabedateien
+einer Herleitung von Registertext (33.2) und bleiben als historischer Stand
+(`78e2bc6`) liegen - ein Aufruf haette sie ueberschrieben. Seitdem:
+
+  (3)  `--ziel ORDNER` ist **Pflicht**, es gibt **keine Voreinstellung**. Ohne
+       Argument endet der Aufruf mit 2, bevor irgendetwas geladen wird. Der
+       Ordner muss bestehen; er wird nicht angelegt (sonst 2).
+  (2)  **Einmal-Schreibsperre, vor der Rechnung:** Besteht eine der vier
+       Zieldateien des Bots schon, endet der Aufruf mit 1, nennt Pfad und
+       SHA-256 der vorhandenen Datei(en) und hat weder gerechnet noch
+       geschrieben. Geschrieben wird mit `O_CREAT|O_EXCL`; entsteht eine Datei
+       waehrend des Laufs, ebenfalls 1. Nie ueberschreiben, auch nicht mit
+       identischem Inhalt (36.1: "Die Sperre ist staerker, wenn sie duemmer ist").
+  B5   Neben die drei Dateien kommt `<bot>_herkunft.json`: Erzeuger, Zeit,
+       Code-Commit, Selektionsmodus (Audit aus `shared/paths.py`, sonst null)
+       und je geschriebener Datei der SHA-256. **Keine Trade-Zahlen** (27.1).
+
+⚠️ Die Rechenwege sind unveraendert (TB-98 B3, AST-Vergleich gegen
+`e87b06f`): anders sind nur die Zielbestimmung und die Schreibaufrufe. Das
+Ausgabeformat ist bytegleich - `to_csv(index=False)` und
+`json.dumps(indent=2, default=str)` erzeugen denselben Text wie vorher der
+Aufruf mit Dateipfad bzw. Dateiobjekt.
 
 WAS DIESES SKRIPT ANDERS MACHT ALS `research/exposure_messung/bot_lauf.py`
 ------------------------------------------------------------------------------
@@ -51,12 +77,19 @@ unveraendert, einmal mit einer Zeilenkennung in der `symbol`-Spalte
 Simulation nicht veraendert hat, wird geprueft, nicht angenommen.
 
 Nutzung:
-    python3 positionen_holen.py <bot_name>
+    python3 positionen_holen.py <bot_name> --ziel <ordner>
+
+Rueckgabewerte (Register 36.5): 0 geschrieben, 1 Ziel existiert (Befund),
+2 Aufruf unvollstaendig oder Zielordner fehlt.
 """
 
+import argparse
+import hashlib
 import json
 import os
+import subprocess
 import sys
+from datetime import datetime, timezone
 
 import pandas as pd
 
@@ -65,8 +98,36 @@ _REPO_ROOT = os.path.dirname(os.path.dirname(_DIR))
 _EXPOSURE_DIR = os.path.join(_REPO_ROOT, "research", "exposure_messung")
 
 if len(sys.argv) < 2:
-    raise SystemExit("Aufruf: python3 positionen_holen.py <bot_name>")
+    raise SystemExit("Aufruf: python3 positionen_holen.py <bot_name> --ziel <ordner>")
 BOT = sys.argv[1]
+
+# Rueckgabewerte nach 36.5. BEFUND: das Ziel existiert; NICHT_MOEGLICH: ohne
+# Ziel oder ohne Zielordner laesst sich nicht erzeugen.
+BEFUND = 1
+NICHT_MOEGLICH = 2
+
+# ⚠️ 36.1 (3): das Ziel nur durch ausdrueckliches Argument, KEINE
+# Voreinstellung. Geprueft wird hier, vor dem Import von bot_lauf.py und vor
+# jedem Laden - ein Aufruf ohne Ziel verbraucht nichts.
+_aufruf = argparse.ArgumentParser(
+    description="Positionen und alle gefundenen Trades eines Bots (TB-24). "
+                "Schreibt einmalig in den Ordner aus --ziel (Register 36.1).")
+_aufruf.add_argument("bot")
+_aufruf.add_argument("--ziel", required=True, metavar="ORDNER",
+                     help="bestehender Ordner; vorhandene Zieldateien werden NIE "
+                          "ueberschrieben - der Lauf endet dann mit 1")
+_args = _aufruf.parse_args(sys.argv[1:])
+if _args.bot != BOT:
+    # bot_lauf.py liest den Bot-Namen fest aus sys.argv[1].
+    sys.stderr.write("ABBRUCH: der Bot-Name muss das erste Argument sein.\n")
+    sys.exit(NICHT_MOEGLICH)
+ZIEL_DIR = os.path.abspath(_args.ziel)
+if not os.path.isdir(ZIEL_DIR):
+    sys.stderr.write("ABBRUCH: Zielordner fehlt: %s - er wird nicht angelegt.\n" % ZIEL_DIR)
+    sys.exit(NICHT_MOEGLICH)
+
+ZIELDATEIEN = [f"{BOT}_positionen.csv", f"{BOT}_alle_trades.csv",
+               f"{BOT}_meta.json", f"{BOT}_herkunft.json"]
 
 # Der Modulkopf von bot_lauf.py setzt sys.path fuer strategies/<BOT> und
 # shared/ und legt die Stubs an; er liest den Bot-Namen aus sys.argv[1].
@@ -74,9 +135,6 @@ sys.path.insert(0, _EXPOSURE_DIR)
 import bot_lauf as basis                                    # noqa: E402
 
 assert basis.BOT == BOT, f"bot_lauf.py hat '{basis.BOT}' gelesen, erwartet '{BOT}'"
-
-DATEN_DIR = os.path.join(_DIR, "daten")
-os.makedirs(DATEN_DIR, exist_ok=True)
 
 TRENNER = basis.TRENNER
 
@@ -106,6 +164,60 @@ ANLAGEKLASSE = {
     "turtle_soup_stocks": "aktien",
     "volatility_breakout": "aktien",
 }
+
+
+def _sha256(pfad):
+    h = hashlib.sha256()
+    with open(pfad, "rb") as f:
+        for block in iter(lambda: f.read(1 << 20), b""):
+            h.update(block)
+    return h.hexdigest()
+
+
+def sperre_vor_der_rechnung() -> bool:
+    """36.1 (2), vor der Rechnung: True (und Meldung), wenn eine Zieldatei
+    schon besteht. Dann wird nichts geladen, gerechnet oder geschrieben."""
+    vorhanden = [os.path.join(ZIEL_DIR, n) for n in ZIELDATEIEN
+                 if os.path.lexists(os.path.join(ZIEL_DIR, n))]
+    for pfad in vorhanden:
+        print("ABBRUCH (36.1 (2)): Ziel existiert, nichts gerechnet, nichts geschrieben."
+              "\n  Pfad:    %s\n  SHA-256: %s" % (pfad, _sha256(pfad)))
+    return bool(vorhanden)
+
+
+def _schreibe_einmal(name: str, inhalt: str) -> str:
+    """Genau einmal schreiben (`O_CREAT|O_EXCL`); SHA-256 des Geschriebenen.
+
+    `newline=""`: kein Uebersetzen von Zeilenenden - der Text geht so auf die
+    Platte, wie `to_csv`/`json.dumps` ihn liefern."""
+    pfad = os.path.join(ZIEL_DIR, name)
+    try:
+        fd = os.open(pfad, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+    except FileExistsError:
+        print("ABBRUCH (36.1 (2)): Ziel entstand waehrend des Laufs, nichts "
+              "ueberschrieben.\n  Pfad:    %s\n  SHA-256: %s" % (pfad, _sha256(pfad)))
+        sys.exit(BEFUND)
+    with os.fdopen(fd, "w", encoding="utf-8", newline="") as f:
+        f.write(inhalt)
+    return _sha256(pfad)
+
+
+def _schreibe_herkunft(hashes: dict):
+    """B5: die Herkunftsnotiz neben den Listen. Keine Trade-Zahlen (27.1)."""
+    import paths
+    audit = paths.startpruefung()
+    lauf = subprocess.run(["git", "-C", _REPO_ROOT, "rev-parse", "HEAD"],
+                          capture_output=True, text=True)
+    notiz = {
+        "erzeuger": "research/tb24_haltedauern/positionen_holen.py",
+        "bot": BOT,
+        "zeit_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "code_commit": lauf.stdout.strip() if lauf.returncode == 0 else None,
+        "selektionsmodus": audit,
+        "dateien_sha256": hashes,
+    }
+    _schreibe_einmal(f"{BOT}_herkunft.json",
+                     json.dumps(notiz, indent=2, ensure_ascii=False, sort_keys=True) + "\n")
 
 
 def kursreihe(eintrag):
@@ -254,8 +366,11 @@ def main():
 
     positionen = positionen.sort_values("entry_time", kind="stable").reset_index(drop=True)
     alle = alle.sort_values("entry_time", kind="stable").reset_index(drop=True)
-    positionen.to_csv(os.path.join(DATEN_DIR, f"{BOT}_positionen.csv"), index=False)
-    alle.to_csv(os.path.join(DATEN_DIR, f"{BOT}_alle_trades.csv"), index=False)
+    hashes = {}
+    hashes[f"{BOT}_positionen.csv"] = _schreibe_einmal(
+        f"{BOT}_positionen.csv", positionen.to_csv(index=False))
+    hashes[f"{BOT}_alle_trades.csv"] = _schreibe_einmal(
+        f"{BOT}_alle_trades.csv", alle.to_csv(index=False))
 
     fehlende_kerzen = int(alle["kerzen"].isna().sum())
     ohne_result = "result" not in trades.columns
@@ -283,8 +398,9 @@ def main():
         "kennzeichnung_neutral": kennzeichnung_neutral,
         "abgleich_exposure_messung": abgleich_exposure_messung(positionen),
     }
-    with open(os.path.join(DATEN_DIR, f"{BOT}_meta.json"), "w") as f:
-        json.dump(meta, f, indent=2, default=str)
+    hashes[f"{BOT}_meta.json"] = _schreibe_einmal(
+        f"{BOT}_meta.json", json.dumps(meta, indent=2, default=str))
+    _schreibe_herkunft(hashes)
 
     abgleich = meta["abgleich_exposure_messung"]
     marke = "identisch" if abgleich.get("identisch") else f"ABWEICHEND ({abgleich})"
@@ -296,4 +412,6 @@ def main():
 
 
 if __name__ == "__main__":
+    if sperre_vor_der_rechnung():
+        sys.exit(BEFUND)
     main()
