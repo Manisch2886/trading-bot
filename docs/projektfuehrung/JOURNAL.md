@@ -8814,6 +8814,46 @@ echtes Abbild mit Gruppen (Freigabe) · TB-98 · TB-100 · TB-101.
 
 ---
 
+## CZ — TB-98: Die neun Listen auf dem Snapshot — Erzeuger nach 36.1 umgebaut, Erzeugung an zwei Befunden gestoppt: Symbollisten unter dem Modus nicht gefunden, Kennzeichnungsprobe scheitert seit TB-26 (24.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-98_neun_listen_auf_dem_snapshot.md`*
+
+**Quelle:** Mac-Sitzung **TB-98**, 24.09.2026, Eingang `e87b06f`. Commits `a58ed1d`
+(Schritt 0), `46e3ed0` (Block B, Erzeuger), `c25a91f` (Block A, Befund) und der Abgabe-Commit.
+Belege `docs/belege/TB-98/`. Grundlage Register 40.6, 40.8 (f).
+
+### Was gemessen und gebaut ist
+
+| | |
+|---|---|
+| **A1 Kursdaten** | Über den Resolver: unter dem Modus 0 Zugriffe auf `data/`, 9/9 Bots (Lesehaken mit Aufrufstapel) — nicht die Klasse von `benchmark.py` |
+| ⚠️⚠️ **A1 Befund 1** | Symbollisten liegen im Snapshot unter `config/`, `paths.py` sucht sie flach ⇒ 9/9 Bots **still** auf 5 Standardsymbole, Ladeprotokoll „Keines ausgelassen". Mit flach verknüpften Listen: ausschliesslich Snapshot, Symbolzahlen wie ohne Modus |
+| ⚠️⚠️ **A1 Befund 2** | Erzeuger läuft mit heutigem Code nicht (9/9, mit und ohne Modus): Zeilenkennung im Symbol verschiebt den Stufe-4-Zufallsschlüssel der Zuteilung (TB-26, Sperrlistenpunkt 10). Gegenprobe ohne Kennung 9/9 gleich |
+| **A2** | Faltenplan liest nur `entry_time`; **zweiter Leser** `faltenplan_neun.py:207/302` mit eigenem Pfad |
+| **B** | `--ziel` Pflicht, Sperre vor der Rechnung (0 Kursdateien geöffnet), `O_EXCL`, Herkunftsnotiz; gegen `daten/` rc 1, 27 Dateien Hash+mtime gleich; AST: nur Schreibstellen; Format 27/27 bytegleich |
+| **C/D** | **Nicht ausgeführt** — keine Liste, keine Faltenlänge, auch nicht vorläufig |
+| **E** | 54/56 Hashes gleich (nur die zwei Erzeuger-Dateien bewegt), Snapshot UNVERÄNDERT, Sonde vorher = nachher |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **„Liest über den Modus" hat zwei Hälften: Kursdaten UND Universum.** Ein Resolver-Test, der nur `DATA_DIR` prüft, sieht einen Rückfall auf eine Standardliste nicht — der meldet sich als Warnung und „Keines ausgelassen" |
+| ⭐⭐ | **Ein Erzeuger, der seit Wochen nicht lief, wird zuerst ohne Modus probiert.** Befund 2 hatte mit dem Snapshot nichts zu tun; erst der Lauf ohne Modus trennte die zwei Befunde |
+| ⭐ | **Eine Selbstprüfung eines Werkzeugs („Beschriftung ohne Wirkung") altert mit dem Code, den sie beschreibt.** TB-26 hat sie still ungültig gemacht; der Erzeuger hat es gemerkt, weil er prüft statt annimmt |
+| ⭐ | **Was vor einer offenen Entscheidung gerechnet wird, färbt sie.** Die Faltenlänge wäre ohne Simulation zu haben gewesen — nicht gerechnet (24.3) |
+
+### Was offen bleibt
+
+Zwei Entscheidungen (Ergebnisdokument Abschnitt 6): wo Befund 1 behoben wird (Resolver /
+Symbol-Module / Snapshot; Rückfall unter dem Modus als Abbruch?) und wie der Erzeuger ohne
+bestandene Kennzeichnungsprobe zu „registriertem Code" wird · danach TB-98 Block C/D erneut ·
+TB-100 erst danach, mit **zwei** Lesern für die Pfadkonstante · Freigabe 24.09. 11:25 unverbraucht.
+
+*Geschrieben 24.09.2026 von der Mac-Sitzung TB-98. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
