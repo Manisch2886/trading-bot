@@ -33,12 +33,17 @@ Aufgabenstellung ausdruecklich:
    `pruefe_grenzsaetze.py` pruefen Verschiedenes; Teil H zeigt das, indem es
    jede einzeln entfernt und nachweist, dass der jeweils zugehoerige Fehler
    dann DURCHKOMMT. Eine Wache, deren Wegfall nichts aendert, waere keine.
+
+3. **Eine Mutationsprobe ohne Gegenprobe zaehlt nicht als Pruefung**
+   (Register 40.7, Fable 24a). Seit TB-97 laeuft jede der sieben Proben
+   H1-H7 ein zweites Mal OHNE ihre Mutation und muss dann scheitern
+   (`<name>-G`, `_mit_gegenprobe`). Anlass: F4 hat mit `<=` bestanden, ohne
+   je gemessen zu haben. Dieselbe Regel gilt fuer F4 und fuer die Stellen,
+   die bis TB-97 Jahresliterale trugen (D1-G, D2-G, F1-G, F4-G, G11-G1/G2).
 """
 
-import datetime as dt
 import json
 import os
-import re
 import shutil
 import subprocess
 import sys
@@ -87,27 +92,22 @@ def _selektionsfalten(p):
 
 def _abgedeckte_jahre(falte):
     """Die Kalenderjahre, die eine Falte VOLL abdeckt - gerechnet aus ihren
-    Grenzen, nicht aus ihrem Namen (`2020-2021` deckt 2020 und 2021 ab)."""
-    von = dt.date.fromisoformat(falte["von"])
-    bis = dt.date.fromisoformat(falte["bis_ausschliesslich"])
-    return {j for j in range(von.year, bis.year + 1)
-            if von <= dt.date(j, 1, 1) and dt.date(j, 12, 31) < bis}
+    Grenzen, nicht aus ihrem Namen (`2020-2021` deckt 2020 und 2021 ab).
+    Seit TB-97 in `beispieldaten.py`, das die Krisenfalten damit bildet."""
+    return bd.abgedeckte_jahre(falte)
 
 
-REGISTER = os.path.join(os.path.dirname(os.path.dirname(_HIER)), "docs",
-                        "VORREGISTRIERUNG_neuselektion.md")
+REGISTER = bd.REGISTER
 
 
 def _testjahre_aus_register():
     """Register 5.1 Nr. 4: die Jahre, die Testfalten sind und keine
     Trainingsjahre. Aus dem Registertext gelesen, nicht als Literal (Fable 23a:
     ein Literal ist eine Kopie des Registers im Code, und Kopien altern).
-    Genau ein Treffer, sonst None - dann scheitert G6 sichtbar."""
-    muster = re.compile(r"^4\. \*\*(\d{4}) und (\d{4}) sind Testfalten, "
-                        r"keine Trainingsjahre\.\*\*")
-    with open(REGISTER, encoding="utf-8") as f:
-        treffer = [m.groups() for m in map(muster.match, f) if m]
-    return sorted(int(j) for j in treffer[0]) if len(treffer) == 1 else None
+    Genau ein Treffer, sonst None - dann scheitert G6 sichtbar.
+    Seit TB-97 liest der Parser in `beispieldaten.py`: ein Leser fuer G6 und
+    fuer die Krisenfalten der Beispieldaten, keine zweite Kopie des Musters."""
+    return bd.jahre_aus_register_5_1_nr_4(REGISTER)
 
 
 def _tabellen():
@@ -272,10 +272,35 @@ def teil_c():
 # ===========================================================================
 # D  Drawdown-Bedingung in beide Richtungen
 # ===========================================================================
+def _ruhig_und_krise(tab, sel, e):
+    """Die ruhigste und die schwerste Selektionsfalte des HEUTIGEN Plans, nach
+    dem Benchmark-Drawdown bei Exposure e - nicht nach Jahreszahl. Bis TB-97
+    standen hier "2021" und "2020", die Beispieljahre aus Register 4.4 (Stand
+    14.09.2026); Fable 24a: die Pruefung prueft die Regel, nicht das Beispiel."""
+    dd = {f: bm.nachschlagen(tab["falten"][f]["dd_benchmark"], e) for f in sel}
+    return max(sel, key=dd.get), min(sel, key=dd.get)
+
+
+def _toleranz_rettet(tab, falte, e):
+    """D1 als Aussage ueber eine Falte: dort setzt DD_Toleranz die Grenze."""
+    dd_tol = bm.nachschlagen(tab["dd_toleranz"], e)
+    dd = bm.nachschlagen(tab["falten"][falte]["dd_benchmark"], e)
+    return (bm.erlaubt(dd, dd_tol) == dd_tol
+            and dd_tol < rd.DD_RELATIVER_FAKTOR * dd)
+
+
+def _relativ_bindet(tab, falte, e):
+    """D2 als Aussage ueber eine Falte: dort setzt die relative Grenze sie."""
+    dd_tol = bm.nachschlagen(tab["dd_toleranz"], e)
+    dd = bm.nachschlagen(tab["falten"][falte]["dd_benchmark"], e)
+    return (bm.erlaubt(dd, dd_tol) == rd.DD_RELATIVER_FAKTOR * dd
+            and rd.DD_RELATIVER_FAKTOR * dd < dd_tol)
+
+
 def teil_d():
     tab = _tabellen()[BOT]
     e = 0.50
-    ruhig, krise = "2021", "2020"
+    ruhig, krise = _ruhig_und_krise(tab, _selektionsfalten(_plan()[BOT]), e)
     dd_tol = bm.nachschlagen(tab["dd_toleranz"], e)
     dd_ruhig = bm.nachschlagen(tab["falten"][ruhig]["dd_benchmark"], e)
     dd_krise = bm.nachschlagen(tab["falten"][krise]["dd_benchmark"], e)
@@ -283,14 +308,21 @@ def teil_d():
     grenze_krise = bm.erlaubt(dd_krise, dd_tol)
 
     pruefe("D1: in der ruhigen Falte rettet DD_Toleranz",
-           grenze_ruhig == dd_tol
-           and dd_tol < rd.DD_RELATIVER_FAKTOR * dd_ruhig,
-           f"erlaubt {grenze_ruhig:.2f}, relativ "
+           _toleranz_rettet(tab, ruhig, e),
+           f"ruhigste Falte {ruhig}: erlaubt {grenze_ruhig:.2f}, relativ "
            f"{rd.DD_RELATIVER_FAKTOR * dd_ruhig:.2f}, Toleranz {dd_tol:.2f}")
     pruefe("D2: in der Krisenfalte bindet die relative Grenze",
-           grenze_krise == rd.DD_RELATIVER_FAKTOR * dd_krise
-           and rd.DD_RELATIVER_FAKTOR * dd_krise < dd_tol,
-           f"erlaubt {grenze_krise:.2f}, Toleranz {dd_tol:.2f}")
+           _relativ_bindet(tab, krise, e),
+           f"schwerste Falte {krise}: erlaubt {grenze_krise:.2f}, "
+           f"Toleranz {dd_tol:.2f}")
+    # Gegenproben (Block C, TB-97): die Aussagen unterscheiden die Falten -
+    # umgewidmet, also die schwerste als ruhige gelesen und umgekehrt,
+    # muessen D1 und D2 scheitern. Sonst waere die Falte aus dem Plan nur ein
+    # Platzhalter fuer das alte Literal.
+    pruefe("D1-G: Gegenprobe zu D1 - die schwerste Falte als ruhige gelesen, "
+           "scheitert sie", not _toleranz_rettet(tab, krise, e), krise)
+    pruefe("D2-G: Gegenprobe zu D2 - die ruhigste Falte als Krisenfalte "
+           "gelesen, scheitert sie", not _relativ_bindet(tab, ruhig, e), ruhig)
     pruefe("D3: min liefert den TIEFEREN und damit grosszuegigeren Wert",
            bm.erlaubt(-2.5, -8.0) == -8.0
            and bm.erlaubt(-40.0, -8.0) == -50.0)
@@ -470,32 +502,73 @@ def teil_e():
 # ===========================================================================
 # F  Falten ohne Trade zaehlen mit Sharpe 0
 # ===========================================================================
-def teil_f():
-    ohne = "2022"
-
+def _f_lauf(ohne):
+    """Beispieldaten, in denen die Falten `ohne` keinen Trade haben, und ihre
+    Auswertung. Eigene Funktion, damit die Gegenproben denselben Weg gehen."""
     def keine_trades(werte, idx, falte, ach):
-        return 0 if falte == ohne else 40
+        return 0 if falte in ohne else 40
 
     def guter_sharpe(werte, idx, falte, ach):
-        # In der Falte OHNE Trades steht absichtlich ein schoener Wert in der
+        # In den Falten OHNE Trades steht absichtlich ein schoener Wert in der
         # Datei. Er darf nicht gelten.
-        return 9.0 if falte == ohne else 0.10
+        return 9.0 if falte in ohne else 0.10
 
     with tempfile.TemporaryDirectory() as d:
-        e = lauf(d, trades_fn=keine_trades, sharpe_fn=guter_sharpe)
-        falten = e["beurteilung"]["falten_sharpe"]
-        pruefe("F1: die Falte ohne Trade wird als solche erkannt",
-               ohne in e["beurteilung"]["falten_ohne_trade"])
-        pruefe("F2: sie zaehlt mit Sharpe 0 - nicht mit dem Wert aus der Datei",
-               falten[ohne] == 0.0, str(falten[ohne]))
-        pruefe("F3: sie wird NICHT ausgelassen",
-               len(falten) == len(e["selektionsfalten"]),
-               f"{len(falten)} von {len(e['selektionsfalten'])}")
-        # Und der Beleg, dass das Auslassen etwas anderes ergaebe:
-        werte = [v for k, v in falten.items()]
-        pruefe("F4: der Median mit der Null liegt unter dem Median ohne sie",
-               float(np.median(werte))
-               <= float(np.median([v for k, v in falten.items() if k != ohne])))
+        return lauf(d, trades_fn=keine_trades, sharpe_fn=guter_sharpe)
+
+
+def _f1(e, ohne):
+    return bool(ohne) and all(f in e["beurteilung"]["falten_ohne_trade"]
+                              for f in ohne)
+
+
+def _f4_mediane(e, ohne):
+    falten = e["beurteilung"]["falten_sharpe"]
+    rest = [v for k, v in falten.items() if k not in ohne]
+    return (float(np.median(list(falten.values()))),
+            float(np.median(rest)) if rest else float("nan"))
+
+
+def teil_f():
+    plan = _plan()[BOT]
+    sel = _selektionsfalten(plan)
+    # Die Falten ohne Trade kommen aus dem Plan, nicht als Literal (bis TB-97
+    # stand hier ohne = "2022", eine Falte). Und es ist eine STRIKTE MEHRHEIT
+    # der Selektionsfalten, wie in H3: die Statistik ist ein Median, erst eine
+    # strikte Mehrheit gesetzter Nullen verschiebt ihn - mit einer Null unter
+    # neun lagen beide Mediane gleich, und F4 pruefte mit `<=` (TB-95/TB-97,
+    # Register 40.4). Beim Plan von TB-97 fuer turtle_soup_stocks: fuenf von
+    # neun Selektionsfalten (2017-2021).
+    ohne = set(sel[:len(sel) // 2 + 1])
+    e = _f_lauf(ohne)
+    falten = e["beurteilung"]["falten_sharpe"]
+    pruefe("F1: die Falten ohne Trade werden als solche erkannt",
+           _f1(e, ohne), f"{sorted(ohne)} gegen {e['beurteilung']['falten_ohne_trade']}")
+    pruefe("F2: sie zaehlen mit Sharpe 0 - nicht mit dem Wert aus der Datei",
+           all(falten[f] == 0.0 for f in ohne),
+           str({f: falten.get(f) for f in sorted(ohne)}))
+    pruefe("F3: sie werden NICHT ausgelassen",
+           len(falten) == len(e["selektionsfalten"]),
+           f"{len(falten)} von {len(e['selektionsfalten'])}")
+    # Und der Beleg, dass das Auslassen etwas anderes ergaebe - "unter" heisst
+    # `<` (bis TB-97 `<=`: bei gleichen Medianen bestand F4, ohne zu messen).
+    mit, ohne_sie = _f4_mediane(e, ohne)
+    pruefe("F4: der Median mit der Null liegt unter dem Median ohne sie",
+           mit < ohne_sie,
+           f"{mit:.4f} / {ohne_sie:.4f} - ohne Trade: {sorted(ohne)} von {sel}")
+
+    # Gegenproben (Block B/C, TB-97, Register 40.7). F4: leere Menge - keine
+    # Falte ohne Trade - dann liegen beide Mediane gleich, F4 muss scheitern.
+    mit, ohne_sie = _f4_mediane(_f_lauf(set()), set())
+    pruefe("F4-G: Gegenprobe zu F4 - ohne Falte ohne Trade scheitert sie",
+           not mit < ohne_sie, f"{mit:.4f} / {ohne_sie:.4f}")
+    # F1: die Falte umgewidmet - die Bestaetigungsperiode statt einer
+    # Selektionsfalte ohne Trade - dann darf F1 sie nicht finden.
+    best = {f["name"] for f in plan["falten"] if f["rolle"] == "bestaetigung"}
+    e_um = _f_lauf(best)
+    pruefe("F1-G: Gegenprobe zu F1 - die Bestaetigungsperiode als Falte ohne "
+           "Trade, scheitert sie", not _f1(e_um, best),
+           f"{sorted(best)} gegen {e_um['beurteilung']['falten_ohne_trade']}")
 
 
 # ===========================================================================
@@ -548,6 +621,61 @@ def teil_g():
                == (p["trades_je_jahr"] < rd.ZWEIJAHRES_SCHWELLE_TRADES)
                for p in plan.values()))
 
+    # G11 (TB-97): die Krisenfalten der Beispieldaten (beispieldaten.py, bis
+    # TB-97 das Literal ("2020", "2022")) - je Bot aus dem Plan und Register
+    # 5.1 Nr. 4. Gemessen in TB-97 (A4): es braucht nicht irgendeine
+    # Selektionsfalte, sondern eine mit tiefem Benchmark-Drawdown; das prueft
+    # die zweite Haelfte der Bedingung.
+    tabellen = _tabellen()
+    for bot, p in plan.items():
+        if p["status"] != "endgueltig":
+            continue
+        ok, zusatz = _g11(bot, p, tabellen,
+                          bd.krisenfalten(p["falten"], testjahre))
+        pruefe(f"G11: {bot} - die Beispieldaten haben Krisenfalten, eine nicht "
+               f"konstante Exposure und bestehen die Drawdown-Bedingung", ok,
+               zusatz)
+    # Gegenproben (Block C): (1) der Plan verbogen - die Krisenfalten zu
+    # Bestaetigungsfalten umgewidmet - dann gibt es keine Krise und die
+    # Exposure ist konstant; (2) die Krise auf die ruhigste Falte verbogen -
+    # dann reisst der Krisen-Drawdown die Grenze. Beides muss G11 scheitern.
+    p = plan[BOT]
+    krise = set(bd.krisenfalten(p["falten"], testjahre))
+    verbogen = dict(p, falten=[dict(f, rolle="bestaetigung") if f["name"] in krise
+                               else f for f in p["falten"]])
+    ok, zusatz = _g11(BOT, verbogen, tabellen,
+                      bd.krisenfalten(verbogen["falten"], testjahre))
+    pruefe(f"G11-G1: Gegenprobe zu G11 - Krisenfalten umgewidmet, scheitert "
+           f"sie ({BOT})", not ok, zusatz)
+    ruhig, _ = _ruhig_und_krise(tabellen[BOT], _selektionsfalten(p), 0.60)
+    ok, zusatz = _g11(BOT, p, tabellen, [ruhig])
+    pruefe(f"G11-G2: Gegenprobe zu G11 - die ruhigste Falte als Krisenfalte, "
+           f"scheitert sie ({BOT})", not ok, zusatz)
+
+
+def _g11(bot, p, tabellen, krise):
+    """Die Standard-Beispieldaten eines Bots, Falte fuer Falte: mindestens eine
+    Krisenfalte unter den Selektionsfalten, nicht alle (sonst ist die
+    Exposure konstant und der Zufalls-Timing-Test entartet), und der
+    Standard-Drawdown besteht die Drawdown-Bedingung in jeder
+    Selektionsfalte (sonst greift Abbruchkriterium (b) in jedem Lauf)."""
+    sel = _selektionsfalten(p)
+    if not krise or bot not in tabellen:
+        return False, f"Krisenfalten {krise}, Tabelle {'da' if bot in tabellen else 'FEHLT'}"
+    dd_fn, ex_fn = bd.standard_drawdown(krise), bd.standard_exposure(krise)
+    expo = {f: ex_fn(None, None, f, None) for f in sel}
+    reisst = []
+    for f in sel:
+        e = expo[f]
+        grenze = bm.erlaubt(
+            bm.nachschlagen(tabellen[bot]["falten"][f]["dd_benchmark"], e),
+            bm.nachschlagen(tabellen[bot]["dd_toleranz"], e))
+        if dd_fn(None, None, f, None) < grenze:
+            reisst.append(f"{f} ({dd_fn(None, None, f, None):.2f} < {grenze:.2f})")
+    ok = (set(krise) <= set(sel) and len(set(expo.values())) > 1
+          and not reisst)
+    return ok, f"Krisenfalten {krise}, Exposure {sorted(set(expo.values()))}, reisst {reisst}"
+
 
 # ===========================================================================
 # H  Mutationsproben - am Ablauf, nicht an einer gesetzten Variablen
@@ -558,13 +686,33 @@ def _kopie(ziel):
     return ziel
 
 
-def _ersetze(pfad, alt, neu):
+def _ersetze(pfad, alt, neu, mutieren=True):
+    """Die Mutation. Mit `mutieren=False` die Gegenprobe (Register 40.7): die
+    Stelle muss trotzdem existieren - sonst AssertionError wie bei der
+    Mutation -, geschrieben wird aber nicht. So geht die Gegenprobe denselben
+    Weg wie die Probe, nur ohne die Mutation."""
     with open(pfad, encoding="utf-8") as f:
         s = f.read()
     if alt not in s:
         raise AssertionError(f"Mutationsstelle nicht gefunden in {pfad}: {alt!r}")
+    if not mutieren:
+        return
     with open(pfad, "w", encoding="utf-8") as f:
         f.write(s.replace(alt, neu, 1))
+
+
+def _mit_gegenprobe(name, text, lauf, bedingung, zusatz=lambda r: ""):
+    """Eine Mutationsprobe und ihre Gegenprobe (Register 40.7, Fable 24a):
+    "Eine Mutationsprobe ohne Gegenprobe zaehlt nicht als Pruefung." Die Probe
+    laeuft mit der Mutation und muss bestehen; dieselbe Probe laeuft ohne die
+    Mutation und muss SCHEITERN - sonst besteht sie aus einem anderen Grund
+    als der Mutation (wie F4 mit `<=`, bis TB-97). Bei jedem Lauf, nicht von
+    Hand."""
+    r = lauf(True)
+    pruefe(f"{name}: {text}", bedingung(r), zusatz(r))
+    g = lauf(False)
+    pruefe(f"{name}-G: Gegenprobe zu {name} - ohne die Mutation scheitert sie",
+           not bedingung(g), zusatz(g))
 
 
 def _umgebung():
@@ -582,10 +730,30 @@ def _auswerten_in(ordner_modul, rohergebnisse, bot=BOT):
     return r
 
 
-def _h3_lauf(mess, plan, ohne):
+def _auswerten_in_kopie(roh, datei, alt, neu, mutieren):
+    """Ordner kopieren, EINE Stelle mutieren (oder nicht), auswerten."""
+    with tempfile.TemporaryDirectory() as m:
+        _kopie(m)
+        _ersetze(os.path.join(m, datei), alt, neu, mutieren)
+        return _auswerten_in(m, roh)
+
+
+def _grenzsaetze_in_kopie(mutationen):
+    """Ordner kopieren, die Mutationen (datei, alt, neu, mutieren) anwenden,
+    pruefe_grenzsaetze.py dort laufen lassen."""
+    with tempfile.TemporaryDirectory() as m:
+        _kopie(m)
+        for datei, alt, neu, mutieren in mutationen:
+            _ersetze(os.path.join(m, datei), alt, neu, mutieren)
+        return subprocess.run([sys.executable, os.path.join(m, "pruefe_grenzsaetze.py")],
+                              capture_output=True, text=True, env=_umgebung())
+
+
+def _h3_lauf(mess, plan, ohne, mutieren=True):
     """Probe 3: dieselben Beispieldaten einmal mit, einmal ohne die Regel
     'Netto-Sharpe = 0 fuer Falten ohne Trade' auswerten. Eigene Funktion,
-    damit die Gegenprobe (ohne = leer) denselben Weg geht."""
+    damit die Gegenproben (ohne = leer; Mutation weggelassen) denselben Weg
+    gehen."""
     with tempfile.TemporaryDirectory() as roh2, tempfile.TemporaryDirectory() as m:
         bd.erzeuge(roh2, BOT, mess=mess, plan=plan,
                    trades_fn=lambda w, i, f, a: 0 if f in ohne else 40,
@@ -595,9 +763,25 @@ def _h3_lauf(mess, plan, ohne):
         _ersetze(os.path.join(m, "auswertung.py"),
                  'df["netto_sharpe"] = np.where(df["n_trades"].to_numpy() == 0, 0.0,\n'
                  '                                  df["netto_sharpe"].to_numpy(dtype=float))',
-                 'df["netto_sharpe"] = df["netto_sharpe"].to_numpy(dtype=float)')
+                 'df["netto_sharpe"] = df["netto_sharpe"].to_numpy(dtype=float)',
+                 mutieren)
         nachher = _auswerten_in(m, roh2)
     return vorher, nachher
+
+
+# Die Mutation von H5 ist Voraussetzung von H6: ohne die Live-Zahl im
+# Grenzsatz waere "rc 0 ohne Wache 2" trivial (gemessen TB-97, A2).
+_LIVE_ZAHL = ("registerdaten.py",
+              '"Ein Stop enger als ein halbes Tages-Sigma des Universums wird vom "',
+              '"Ein Stop enger als 8.0 Prozent wird vom "')
+_OHNE_WACHE_2 = ("pruefe_grenzsaetze.py",
+                 'treffer = zahlen_im_satz(g.get("satz")) & alle_live',
+                 'treffer = set()')
+_STUFUNG = ("registerdaten.py",
+            '        "stufen": 4,\n        "unten": _grenze(\n'
+            '            {"regel": "sigma_vielfaches", "zeitrahmen": zr, "faktor": 0.5},',
+            '        "stufen": 3,\n        "unten": _grenze(\n'
+            '            {"regel": "sigma_vielfaches", "zeitrahmen": zr, "faktor": 0.5},')
 
 
 def teil_h():
@@ -609,6 +793,9 @@ def teil_h():
     def spitze_allein(werte, idx, falte, ach):
         return 3.0 if idx == spitze_idx else 0.30
 
+    # Jede Probe steht mit ihrer Gegenprobe da (_mit_gegenprobe, Register
+    # 40.7): mit der Mutation muss sie bestehen, ohne sie scheitern. Gemessen
+    # in TB-97 (A1): sieben Code-Mutationen, H1-H7; H0 ist der Grundlauf.
     with tempfile.TemporaryDirectory() as roh:
         bd.erzeuge(roh, BOT, mess=mess, plan=plan, sharpe_fn=spitze_allein)
         original = _auswerten_in(_HIER, roh)
@@ -616,26 +803,24 @@ def teil_h():
                original.returncode == 0, original.stderr[-300:])
 
         # --- Probe 1: die Spitzen-Schwelle traegt wirklich ----------------
-        with tempfile.TemporaryDirectory() as m:
-            _kopie(m)
-            _ersetze(os.path.join(m, "registerdaten.py"),
-                     "SPITZEN_SCHWELLE = 0.50", "SPITZEN_SCHWELLE = 99.0")
-            r = _auswerten_in(m, roh)
-            pruefe("H1: eine verfaelschte Spitzen-Schwelle aendert das Urteil",
-                   r.returncode == 0 and ("Spitze" in original.stdout)
-                   != ("Spitze" in r.stdout))
+        _mit_gegenprobe(
+            "H1", "eine verfaelschte Spitzen-Schwelle aendert das Urteil",
+            lambda mut: _auswerten_in_kopie(
+                roh, "registerdaten.py",
+                "SPITZEN_SCHWELLE = 0.50", "SPITZEN_SCHWELLE = 99.0", mut),
+            lambda r: r.returncode == 0 and ("Spitze" in original.stdout)
+            != ("Spitze" in r.stdout))
 
         # --- Probe 2: das Plateau-Mittel zaehlt den Punkt mit -------------
-        with tempfile.TemporaryDirectory() as m:
-            _kopie(m)
-            _ersetze(os.path.join(m, "auswertung.py"),
-                     'float(np.mean([s] + nachbar_werte))',
-                     'float(np.mean(nachbar_werte)) if nachbar_werte else float(s)')
-            r = _auswerten_in(m, roh)
-            pruefe("H2: ohne den Punkt selbst faellt ein anderes Urteil",
-                   r.returncode == 0
-                   and _gewinnerzeile(r.stdout) != _gewinnerzeile(original.stdout),
-                   f"{_gewinnerzeile(r.stdout)!r}")
+        _mit_gegenprobe(
+            "H2", "ohne den Punkt selbst faellt ein anderes Urteil",
+            lambda mut: _auswerten_in_kopie(
+                roh, "auswertung.py",
+                'float(np.mean([s] + nachbar_werte))',
+                'float(np.mean(nachbar_werte)) if nachbar_werte else float(s)', mut),
+            lambda r: r.returncode == 0
+            and _gewinnerzeile(r.stdout) != _gewinnerzeile(original.stdout),
+            lambda r: f"{_gewinnerzeile(r.stdout)!r}")
 
         # --- Probe 3: die Null fuer Falten ohne Trade ist wirksam ---------
         # MEHR ALS DIE HAELFTE der Selektionsfalten ohne Trade, nicht eine:
@@ -650,62 +835,62 @@ def teil_h():
         # beim Plan von TB-95 (neun Selektionsfalten) sind es fuenf.
         sel = _selektionsfalten(plan[BOT])
         ohne = set(sel[:len(sel) // 2 + 1])
-        vorher, nachher = _h3_lauf(mess, plan, ohne)
-        pruefe("H3: ohne die gesetzte Null aendert sich die Statistik",
-               vorher.returncode == 0 and nachher.returncode == 0
-               and _sharpezeile(vorher.stdout) != _sharpezeile(nachher.stdout),
-               f"{_sharpezeile(vorher.stdout)!r} / {_sharpezeile(nachher.stdout)!r}"
-               f" - ohne Trade: {sorted(ohne)} von {sel}")
+
+        def h3_bedingung(vn):
+            vorher, nachher = vn
+            return (vorher.returncode == 0 and nachher.returncode == 0
+                    and _sharpezeile(vorher.stdout) != _sharpezeile(nachher.stdout))
+
+        def h3_zusatz(vn):
+            return (f"{_sharpezeile(vn[0].stdout)!r} / {_sharpezeile(vn[1].stdout)!r}"
+                    f" - ohne Trade: {sorted(ohne)} von {sel}")
+
+        _mit_gegenprobe(
+            "H3", "ohne die gesetzte Null aendert sich die Statistik",
+            lambda mut: _h3_lauf(mess, plan, ohne, mut), h3_bedingung, h3_zusatz)
+        # Und die zweite Gegenprobe aus TB-95 (40.3), jetzt dauerhaft: mit
+        # LEERER Menge - keine Falte ohne Trade - aendert die Mutation nichts.
+        vn = _h3_lauf(mess, plan, set())
+        pruefe("H3-L: Gegenprobe zu H3 - ohne Falte ohne Trade scheitert sie",
+               not h3_bedingung(vn),
+               f"{_sharpezeile(vn[0].stdout)!r} / {_sharpezeile(vn[1].stdout)!r}")
 
         # --- Probe 4: die Drawdown-Bedingung traegt ----------------------
-        with tempfile.TemporaryDirectory() as m:
-            _kopie(m)
-            _ersetze(os.path.join(m, "registerdaten.py"),
-                     "DD_RELATIVER_FAKTOR = 1.25", "DD_RELATIVER_FAKTOR = 0.01")
-            r = _auswerten_in(m, roh)
-            pruefe("H4: ein verfaelschter Drawdown-Faktor aendert die "
-                   "Zulaessigkeit",
-                   r.returncode == 0
-                   and _zulaessigzeile(r.stdout) != _zulaessigzeile(original.stdout),
-                   f"{_zulaessigzeile(r.stdout)!r}")
+        _mit_gegenprobe(
+            "H4", "ein verfaelschter Drawdown-Faktor aendert die Zulaessigkeit",
+            lambda mut: _auswerten_in_kopie(
+                roh, "registerdaten.py",
+                "DD_RELATIVER_FAKTOR = 1.25", "DD_RELATIVER_FAKTOR = 0.01", mut),
+            lambda r: r.returncode == 0
+            and _zulaessigzeile(r.stdout) != _zulaessigzeile(original.stdout),
+            lambda r: f"{_zulaessigzeile(r.stdout)!r}")
 
     # --- Probe 5 und 6: die beiden Wachen decken sich NICHT gegenseitig --
     # 5a: ein Live-Wert im Grenzsatz wird gefunden ...
-    with tempfile.TemporaryDirectory() as m:
-        _kopie(m)
-        _ersetze(os.path.join(m, "registerdaten.py"),
-                 '"Ein Stop enger als ein halbes Tages-Sigma des Universums wird vom "',
-                 '"Ein Stop enger als 8.0 Prozent wird vom "')
-        r = subprocess.run([sys.executable, os.path.join(m, "pruefe_grenzsaetze.py")],
-                           capture_output=True, text=True, env=_umgebung())
-        pruefe("H5: eine Live-Zahl im Grenzsatz laesst die Pruefung scheitern",
-               r.returncode == 1 and "Live-Wert" in r.stdout, r.stdout[-300:])
-        # ... 5b: und ohne Wache 2 kaeme genau dieser Fehler DURCH.
-        _ersetze(os.path.join(m, "pruefe_grenzsaetze.py"),
-                 'treffer = zahlen_im_satz(g.get("satz")) & alle_live',
-                 'treffer = set()')
-        r2 = subprocess.run([sys.executable, os.path.join(m, "pruefe_grenzsaetze.py")],
-                            capture_output=True, text=True, env=_umgebung())
-        pruefe("H6: ohne Wache 2 bleibt derselbe Fehler unbemerkt - keine "
-               "andere Wache faengt ihn auf",
-               r2.returncode == 0, r2.stdout[-300:])
+    _mit_gegenprobe(
+        "H5", "eine Live-Zahl im Grenzsatz laesst die Pruefung scheitern",
+        lambda mut: _grenzsaetze_in_kopie([_LIVE_ZAHL + (mut,)]),
+        lambda r: r.returncode == 1 and "Live-Wert" in r.stdout,
+        lambda r: r.stdout[-300:])
+    # ... 5b: und ohne Wache 2 kaeme genau dieser Fehler DURCH. Die Live-Zahl
+    # bleibt dabei immer eingesetzt; weggelassen wird nur H6s eigene Mutation.
+    _mit_gegenprobe(
+        "H6", "ohne Wache 2 bleibt derselbe Fehler unbemerkt - keine "
+              "andere Wache faengt ihn auf",
+        lambda mut: _grenzsaetze_in_kopie([_LIVE_ZAHL + (True,),
+                                           _OHNE_WACHE_2 + (mut,)]),
+        lambda r: r.returncode == 0,
+        lambda r: r.stdout[-300:])
 
     # 6: eine verfaelschte Stufung wird von Wache 1/4 gefunden, und Wache 2
     #    faengt sie NICHT auf.
-    with tempfile.TemporaryDirectory() as m:
-        _kopie(m)
-        _ersetze(os.path.join(m, "registerdaten.py"),
-                 '        "stufen": 4,\n        "unten": _grenze(\n'
-                 '            {"regel": "sigma_vielfaches", "zeitrahmen": zr, "faktor": 0.5},',
-                 '        "stufen": 3,\n        "unten": _grenze(\n'
-                 '            {"regel": "sigma_vielfaches", "zeitrahmen": zr, "faktor": 0.5},')
-        r = subprocess.run([sys.executable, os.path.join(m, "pruefe_grenzsaetze.py")],
-                           capture_output=True, text=True, env=_umgebung())
-        pruefe("H7: eine Stufung ausserhalb 1,5 bis 2,0 faellt auf - und zwar "
-               "mit genau dieser Begruendung",
-               r.returncode != 0
-               and "ausserhalb 1,5 bis 2,0" in (r.stdout + r.stderr),
-               (r.stdout + r.stderr)[-300:])
+    _mit_gegenprobe(
+        "H7", "eine Stufung ausserhalb 1,5 bis 2,0 faellt auf - und zwar "
+              "mit genau dieser Begruendung",
+        lambda mut: _grenzsaetze_in_kopie([_STUFUNG + (mut,)]),
+        lambda r: r.returncode != 0
+        and "ausserhalb 1,5 bis 2,0" in (r.stdout + r.stderr),
+        lambda r: (r.stdout + r.stderr)[-300:])
 
 
 def _gewinnerzeile(text):

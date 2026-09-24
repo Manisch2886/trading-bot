@@ -27,9 +27,11 @@ nicht aus der Tagesreihe nachgerechnet wird. Das ist auch im echten Lauf so.
 """
 
 import argparse
+import datetime as dt
 import json
 import math
 import os
+import re
 import sys
 
 import numpy as np
@@ -59,22 +61,79 @@ def standard_sharpe(werte, idx, falte, achsen):
     return round(0.20 * s / len(namen), 6)
 
 
-def standard_drawdown(werte, idx, falte, achsen):
+REGISTER = os.path.join(os.path.dirname(os.path.dirname(_HIER)), "docs",
+                        "VORREGISTRIERUNG_neuselektion.md")
+
+
+def jahre_aus_register_5_1_nr_4(register=REGISTER):
+    """Register 5.1 Nr. 4: die zwei schweren Jahre, die Testfalten sind und
+    keine Trainingsjahre. Aus dem Registertext gelesen, nicht als Literal (Fable
+    23a: ein Literal ist eine Kopie des Registers im Code, und Kopien altern).
+    Genau ein Treffer, sonst None.
+
+    Der EINE Leser dieser Zeile: `test_vorregistrierung.py` (G6, ueber
+    `_testjahre_aus_register`) und die Krisenfalten unten lesen beide hier.
+    Seit TB-97 steht der Parser in diesem Modul, weil der Test es ohnehin
+    importiert; bis TB-97 stand er im Test (TB-95)."""
+    muster = re.compile(r"^4\. \*\*(\d{4}) und (\d{4}) sind Testfalten, "
+                        r"keine Trainingsjahre\.\*\*")
+    with open(register, encoding="utf-8") as f:
+        treffer = [m.groups() for m in map(muster.match, f) if m]
+    return sorted(int(j) for j in treffer[0]) if len(treffer) == 1 else None
+
+
+def abgedeckte_jahre(falte):
+    """Die Kalenderjahre, die eine Falte VOLL abdeckt - gerechnet aus ihren
+    Grenzen, nicht aus ihrem Namen (`2020-2021` deckt 2020 und 2021 ab)."""
+    von = dt.date.fromisoformat(falte["von"])
+    bis = dt.date.fromisoformat(falte["bis_ausschliesslich"])
+    return {j for j in range(von.year, bis.year + 1)
+            if von <= dt.date(j, 1, 1) and dt.date(j, 12, 31) < bis}
+
+
+def krisenfalten(falten, jahre):
+    """Die Krisenfalten der Beispieldaten: die Selektionsfalten des Plans, die
+    eines der schweren Jahre aus Register 5.1 Nr. 4 abdecken.
+
+    Bis TB-97 stand hier `falte in ("2020", "2022")` - bei Zweijahresfalten
+    (`elliott_wave`: `2020-2021`, `2022-2023`) traf das nie, die Exposure war
+    dort konstant und der Zufalls-Timing-Test nach dem Docstring unten
+    entartet. ⚠️ Gemessen in TB-97 (A4): Es genuegt NICHT irgendeine
+    Selektionsfalte - der Krisen-Drawdown von -11 % besteht die
+    Drawdown-Bedingung nur in Falten mit tiefem Benchmark-Drawdown (bei
+    `turtle_soup_stocks` 4 von 9; die zweite Selektionsfalte faellt bei
+    `rsi2_mean_reversion` und `volatility_breakout` durch). Die schweren
+    Jahre aus dem Register treffen es bei allen neun; `G11` im Test prueft es
+    je Bot. Ohne lesbare Jahre (None) gibt es keine Krisenfalte - dann wird
+    `G11` rot, nicht still."""
+    if not jahre:
+        return []
+    return [f["name"] for f in falten if f["rolle"] == "selektion"
+            and abgedeckte_jahre(f) & set(jahre)]
+
+
+def standard_drawdown(krise):
     """Ein Drawdown, der in den Krisenfalten tiefer liegt als sonst.
 
     Die Werte sind so gewaehlt, dass die Standard-Beispieldaten die
     Drawdown-Bedingung BESTEHEN - sonst liefe jeder Test gegen
     Abbruchkriterium (b) und die uebrigen Regeln kaemen nie dran.
+    Seit TB-97 eine Fabrik: die Krisenfalten kommen aus dem Plan.
     """
-    schwer = falte in ("2020", "2022")
-    return round(-3.0 - (8.0 if schwer else 0.0), 2)
+    def drawdown(werte, idx, falte, achsen):
+        schwer = falte in krise
+        return round(-3.0 - (8.0 if schwer else 0.0), 2)
+    return drawdown
 
 
-def standard_exposure(werte, idx, falte, achsen):
+def standard_exposure(krise):
     """Nicht ueber alle Falten gleich - sonst waere der Zufalls-Timing-Test
     entartet: bei konstanter Exposure liefert jede Verschiebung denselben
-    Wert, und das Perzentil ist keine Verteilung mehr."""
-    return 0.60 if falte in ("2020", "2022") else 0.40
+    Wert, und das Perzentil ist keine Verteilung mehr.
+    Seit TB-97 eine Fabrik: die Krisenfalten kommen aus dem Plan."""
+    def exposure(werte, idx, falte, achsen):
+        return 0.60 if falte in krise else 0.40
+    return exposure
 
 
 def standard_trades(werte, idx, falte, achsen):
@@ -82,14 +141,18 @@ def standard_trades(werte, idx, falte, achsen):
 
 
 def erzeuge(wurzel: str, bot: str, *, mess=None, plan=None,
-            sharpe_fn=standard_sharpe, drawdown_fn=standard_drawdown,
-            exposure_fn=standard_exposure, trades_fn=standard_trades,
-            tagesreihen_fuer=None) -> dict:
+            sharpe_fn=standard_sharpe, drawdown_fn=None,
+            exposure_fn=None, trades_fn=standard_trades,
+            tagesreihen_fuer=None, krisenjahre=None) -> dict:
     """Schreibt vollstaendige Rohergebnisse fuer einen Bot.
 
     `tagesreihen_fuer` begrenzt, fuer welche Zellen eine Tagesreihe
     geschrieben wird (None = alle). Der Vertrag verlangt sie fuer jede
     ZULAESSIGE Zelle; das Auswertungsskript liest nur die des Gewinners.
+
+    `drawdown_fn`/`exposure_fn` = None: die Standardformen mit den
+    Krisenfalten des Plans (`krisenfalten`); `krisenjahre` = None: die Jahre
+    aus Register 5.1 Nr. 4.
     """
     mess = mess or rd._mess()
     plan = plan or fp.faltenplan(mess)
@@ -99,6 +162,11 @@ def erzeuge(wurzel: str, bot: str, *, mess=None, plan=None,
     if not falten:
         raise SystemExit(f"{bot}: Faltenplan ist ein Platzhalter - "
                          f"Beispieldaten waeren sinnlos.")
+    if drawdown_fn is None or exposure_fn is None:
+        krise = krisenfalten(falten, jahre_aus_register_5_1_nr_4()
+                             if krisenjahre is None else krisenjahre)
+        drawdown_fn = drawdown_fn or standard_drawdown(krise)
+        exposure_fn = exposure_fn or standard_exposure(krise)
 
     ordner = os.path.join(wurzel, bot)
     os.makedirs(os.path.join(ordner, "tagesreihen"), exist_ok=True)
