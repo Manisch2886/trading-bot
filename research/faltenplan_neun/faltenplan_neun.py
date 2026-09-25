@@ -360,6 +360,14 @@ def gefundene_trades_je_jahr(bot: str, basis: str = None) -> dict:
     return dict(sorted(zaehlung.items()))
 
 
+def _abbruch_2(stelle: str, text: str):
+    """Laut abbrechen statt still einen Ersatzwert zu nehmen (TB-107, Bauart
+    TB-106 B1 in `research/vorregistrierung/faltenplan.py`). Unabhaengig vom
+    Modus."""
+    print(f"ABBRUCH (faltenplan_neun.py::{stelle}): {text}", file=sys.stderr)
+    raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
+
+
 def volle_jahre(zaehlung: dict) -> dict:
     """Ohne die angeschnittenen Randjahre (Register, Abschnitt 5.4).
 
@@ -369,14 +377,21 @@ def volle_jahre(zaehlung: dict) -> dict:
     if not zaehlung:
         return {}
     jahre = sorted(zaehlung)
-    return {j: zaehlung[j] for j in jahre[1:-1]} or {jahre[0]: zaehlung[jahre[0]]}
+    innen = {j: zaehlung[j] for j in jahre[1:-1]}
+    if not innen:
+        _abbruch_2("volle_jahre",
+                   f"kein volles Kalenderjahr unter {jahre} - bis TB-107 stand "
+                   f"hier still das erste, angeschnittene Jahr als Ersatz")
+    return innen
 
 
 def faltenlaenge(bot: str, basis: str = None) -> tuple:
     """(Laenge in Jahren, Trades je Jahr) nach Registerregel 5.1 Nr. 6."""
     zaehlung = volle_jahre(gefundene_trades_je_jahr(bot, basis))
     if not zaehlung:
-        return 2, 0.0
+        _abbruch_2("faltenlaenge",
+                   f"{bot}: keine gefundenen Trades in der TB-24-Zaehlung - bis "
+                   f"TB-107 stand hier still die Faltenlaenge 2 mit 0.0 Trades je Jahr")
     mittel = sum(zaehlung.values()) / len(zaehlung)
     return (2 if mittel < ZWEIJAHRES_SCHWELLE_TRADES else 1), mittel
 
