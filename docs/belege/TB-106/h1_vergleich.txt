@@ -1,0 +1,48 @@
+# TB-106 H1 Vergleich 0_hashes_vorher.txt gegen h1_hashes_nachher.txt (2026-09-25 19:35:47 +0200)
+(1) VERSCHIEDEN:
+< d57fe9c977e572e1d344971913e3acbb1cd765d2bf145b52cefab69d75e10f41  research/vorregistrierung/faltenplan.py
+< 4c923cd907c6aa9b14fd035fd775ced00bfcaff0795288dc4b1ccd48d19fc5b8  research/vorregistrierung/benchmark.py
+< c3b4e69d8f207d0c1982a538203dcf184072554fdc1beb0f612bf054cd2a0062  research/vorregistrierung/auswertung.py
+< 56a1c2e1514385acd26c3432bd111f3588846c80d173a4d4a471ecae723fb502  research/vorregistrierung/herkunft.py
+< de35a5a09d103def310d473170d6e638cfd1f1a24f46f7b1d1e033a674134db7  research/vorregistrierung/registerbericht.py
+< fc27e006022a02789fc21dbf14c5980474db5a4e1c97ad36dac7159e40d9d153  research/vorregistrierung/test_vorregistrierung.py
+> 63dafeb44e027cb5d93ac19cddfc7d4e98b468cece116512c2b3f1601bd4a4c7  research/vorregistrierung/faltenplan.py
+> aeeec9b89bdadd1b2dc2be76b722dc90c328c9482014bbbbfcabd78edccae219  research/vorregistrierung/benchmark.py
+> 83c6bc3c9b683d0bfd9d8c445492060f93759a551d0dcf329b2bd21b0f1cc5a1  research/vorregistrierung/auswertung.py
+> 351f24c2d6a3a512dc1eb1a80b536b99d47c266db38f7dd93b9d1c0199397eef  research/vorregistrierung/herkunft.py
+> 74a22daec99dd4ba2057206fca22596bdc1d3bd7de5dbf465c14c44bb952eb89  research/vorregistrierung/registerbericht.py
+> db50e1870ea66bde37ce61d3e92bf755a5741f5cfcf16a6df71379f82fa53cba  research/vorregistrierung/test_vorregistrierung.py
+(2) gleich
+(3) VERSCHIEDEN:
+> 40ffe18d6a6345d1ab88aa993535cfb10264d8cf2e02e804406bbe85236642c8  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+(4) VERSCHIEDEN:
+> sperrliste_abbild_2026-09-25b.json 9191
+(6) gleich
+(7) gleich
+(8) gleich
+(9) VERSCHIEDEN:
+< register 57ec6573eb44f18bccaa461da41ac0b835ba1afa1446ef27b4c3409ead56e46e
+> register 0ece95e2fd4f5bd2787ea40f6a12988aadb0a414c5132553522b55000c6052d7
+<    d57fe9c977e572e1d344971913e3acbb1cd765d2bf145b52cefab69d75e10f41 faltenplan.py
+<    4c923cd907c6aa9b14fd035fd775ced00bfcaff0795288dc4b1ccd48d19fc5b8 benchmark.py
+>    63dafeb44e027cb5d93ac19cddfc7d4e98b468cece116512c2b3f1601bd4a4c7 faltenplan.py
+>    aeeec9b89bdadd1b2dc2be76b722dc90c328c9482014bbbbfcabd78edccae219 benchmark.py
+<    c3b4e69d8f207d0c1982a538203dcf184072554fdc1beb0f612bf054cd2a0062 auswertung.py
+>    83c6bc3c9b683d0bfd9d8c445492060f93759a551d0dcf329b2bd21b0f1cc5a1 auswertung.py
+(10) gleich
+(11) gleich
+(5) je versionierte Datei: diff 5_alle_vorher.txt 5_alle_nachher.txt
+    < c3b4e69d8f207d0c research/vorregistrierung/auswertung.py
+    > 83c6bc3c9b683d0b research/vorregistrierung/auswertung.py
+    < 4c923cd907c6aa9b research/vorregistrierung/benchmark.py
+    > aeeec9b89bdadd1b research/vorregistrierung/benchmark.py
+    < d57fe9c977e572e1 research/vorregistrierung/faltenplan.py
+    < 56a1c2e1514385ac research/vorregistrierung/herkunft.py
+    > 40ffe18d6a6345d1 research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+    > 63dafeb44e027cb5 research/vorregistrierung/faltenplan.py
+    > 351f24c2d6a3a512 research/vorregistrierung/herkunft.py
+    < de35a5a09d103def research/vorregistrierung/registerbericht.py
+    > 74a22daec99dd4ba research/vorregistrierung/registerbericht.py
+    < fc27e006022a0278 research/vorregistrierung/test_vorregistrierung.py
+    > 6a4bb82ceea7aac2 research/vorregistrierung/test_ersatzwerte.py
+    > db50e1870ea66bde research/vorregistrierung/test_vorregistrierung.py

@@ -1,0 +1,63 @@
+# TB-106 A8, HEAD 327bc79, 2026-09-25 18:48:27 +0200
+Benchmark-Tabelle des Laufs: research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json sha256 64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7
+
+== A1/A2 faltenplan.volle_jahre / faltenlaenge_jahre (Eingabe: research/tb24_haltedauern/daten)
+  elliott_wave                 Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+  t3_supertrend                Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+  rsi2_crypto                  Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+  turtle_soup_crypto           Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+  volatility_breakout_crypto   Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+  elliott_wave_stocks          Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+  rsi2_mean_reversion          Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+  turtle_soup_stocks           Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+  volatility_breakout          Zaehlung leer: False  innere Jahre vorhanden: True   -> A1 erreicht: False A2 erreicht: False
+
+== A3 benchmark.drawdown_bei_exposure mit leerer Reihe - Handelstage je Falte in der Tabelle
+  Falten in der Tabelle: 77 (alle Rollen), davon mit 0 Handelstagen: 0 []
+  Falten der Tabelle = Falten des gerechneten Plans (Name und Rolle): True
+
+== A4 benchmark.je_bot: dd_toleranz ohne Selektionsfalte
+  elliott_wave                 Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+  t3_supertrend                Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+  rsi2_crypto                  Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+  turtle_soup_crypto           Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+  volatility_breakout_crypto   Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+  elliott_wave_stocks          Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+  rsi2_mean_reversion          Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+  turtle_soup_stocks           Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+  volatility_breakout          Plan hat Selektionsfalten: True   Tabelle hat Selektionsfalten: True  -> A4 erreicht: False
+
+== A5 benchmark.nachschlagen, e <= 0 -> 0.0: Grenzwert der Interpolation unterhalb der ersten Stufe
+  erste Stufe: 0.01; Formel unterhalb: tabelle[stufe0] * e / stufe0
+  Tabellen (dd_toleranz + dd_benchmark je Falte, alle Bots): 86
+  max |nachschlagen(t,e)/nachschlagen(t,stufe0) - e/stufe0| ueber alle Tabellen und e: 1.39e-17
+  e = 0.001   max |nachschlagen(t,e)| <= 100*e/stufe0 = 10: True
+  e = 0.0001  max |nachschlagen(t,e)| <= 100*e/stufe0 = 1: True
+  e = 1e-06   max |nachschlagen(t,e)| <= 100*e/stufe0 = 0.01: True
+  e = 1e-09   max |nachschlagen(t,e)| <= 100*e/stufe0 = 1e-05: True
+  nachschlagen(t, 0.0) == 0.0 fuer alle 86 Tabellen: True
+  -> die Formel geht fuer e -> 0 stetig gegen 0; der Zweig 'e <= 0 -> 0.0' ist ihr Grenzwert, keine Ersatzzahl
+
+== A7c registerdaten.raster_definition()['_bedingung'] je Bot
+  elliott_wave                 _bedingung vorhanden: False Text: None
+  elliott_wave_stocks          _bedingung vorhanden: False Text: None
+  t3_supertrend                _bedingung vorhanden: True  Text: 't3_fast_length < t3_slow_length'
+  rsi2_crypto                  _bedingung vorhanden: False Text: None
+  rsi2_mean_reversion          _bedingung vorhanden: False Text: None
+  turtle_soup_crypto           _bedingung vorhanden: False Text: None
+  turtle_soup_stocks           _bedingung vorhanden: False Text: None
+  volatility_breakout          _bedingung vorhanden: False Text: None
+  volatility_breakout_crypto   _bedingung vorhanden: False Text: None
+
+== A6/A7/A7b auswertung auf den Beispieldaten (/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/dc108c26-39af-46db-acd7-86433cf6f924/scratchpad/bsp) - Zweigtreffer instrumentiert
+  elliott_wave                 auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  t3_supertrend                auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  rsi2_crypto                  auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  turtle_soup_crypto           auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  volatility_breakout_crypto   auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  elliott_wave_stocks          auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  rsi2_mean_reversion          auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  turtle_soup_stocks           auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  volatility_breakout          auswertbar True   Treffer A6 Zelle 0, A6 Nachbar 0, A7 0
+  Summe: {'A6_zelle_fehlt': 0, 'A6_nachbar_fehlt': 0, 'A7_ohne_selektionsfalten': 0}
+ENDE

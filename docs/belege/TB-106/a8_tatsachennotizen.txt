@@ -1,0 +1,68 @@
+# TB-106 A8 - Tatsachennotizen je Stelle (Fable 25a Abschnitt 4 Rang 3), Stand 327bc79 vor Block B-E
+# Messung: a8_messung.py -> a8_messung.txt (registrierte Eingabe: gerechneter Plan aus rd._mess() und
+# research/tb24_haltedauern/daten, Benchmark-Tabelle 64fb2912; gemessene Laeufe: Beispieldaten aller 9 Bots,
+# Hash der Auswertung fc178106 in g3_vorher). Snapshot 63e4b6c8 / Datenstand d9449faf.
+
+A1  faltenplan.py:152-153 volle_jahre(), Ersatz "erstes angeschnittenes Jahr"
+    Registrierte Eingabe erreicht den Zweig: NEIN. Alle neun Bots haben in research/tb24_haltedauern/daten
+    innere (volle) Kalenderjahre. Gemessene Laeufe (Plan im Modus und ohne, TB-105 F2/F3; Trockenlauf) laufen
+    ueber dieselbe Funktion mit derselben Eingabe -> ebenfalls nicht erreicht.
+    Hinweis: TB24_DATEN haengt an BASE_DIR, nicht an paths (unter dem Modus dieselbe Datei im Repo) - Befund
+    aus TB-98/TB-102, nicht Gegenstand hier.
+
+A2  faltenplan.py:159-160 faltenlaenge_jahre(), leere Zaehlung -> (2, 0.0, ...)
+    Registrierte Eingabe erreicht den Zweig: NEIN (keine Zaehlung ist leer).
+
+A3  benchmark.py:206-207 drawdown_bei_exposure(), leere Reihe -> 0.0
+    Registrierte Eingabe erreicht den Zweig: NEIN. Die Tabelle 64fb2912 ist die Ausgabe von je_bot() und
+    fuehrt je Falte "handelstage" = len(fenster): 77 Falten (alle Rollen, alle Bots), keine mit 0; die Falten
+    der Tabelle sind Name fuer Name und Rolle fuer Rolle die des gerechneten Plans. 64fb2912 wurde in TB-105
+    im Modus (Repo und Klon) und ohne Modus bytegleich gerechnet.
+
+A4  benchmark.py:302 je_bot(), keine Selektionsfalte -> dd_toleranz 0.0
+    Registrierte Eingabe erreicht den Zweig: NEIN. Jeder der neun Plaene hat Selektionsfalten (Plan und Tabelle).
+
+A5  benchmark.py:221-222 nachschlagen(), e <= 0 -> 0.0
+    KEIN Ersatzwert, sondern der Grenzwert der Rechenregel: unterhalb der ersten Stufe (0.01) gilt
+    tabelle[0.01] * e / 0.01; gemessen an allen 86 Tabellen (dd_toleranz und dd_benchmark je Falte, 9 Bots):
+    nachschlagen(t,e)/nachschlagen(t,0.01) = e/0.01 bis auf 1.4e-17 fuer e = 1e-3, 1e-4, 1e-6, 1e-9; der Betrag
+    faellt linear mit e und ist durch 100*e/0.01 beschraenkt; nachschlagen(t, 0.0) = 0.0 fuer alle 86. Der
+    Zweig setzt den Wert, den die Formel fuer e -> 0 selbst annimmt (Stetigkeitsfortsetzung bei e = 0; eine
+    Division durch 0 gibt es dort nicht, weil stufen[0] = 0.01 > 0 ist). Nicht geaendert (C2).
+
+A6  auswertung.py:284, 286 plateau(), statistik.get(..., 0.0)
+    Registrierte Eingabe: es gibt noch keine Rohergebnisse; die Zweige haengen an den Rohergebnissen.
+    Gemessene Laeufe: Beispieldaten aller neun Bots (Zweigtreffer instrumentiert) -> 0 fehlende Zellen,
+    0 fehlende Nachbarn. Grund: lies_zellen() bricht ab, wenn eine Rasterzelle fehlt oder eine Zelle nicht
+    genau die Falten des Plans traegt; bei nicht leeren Selektionsfalten liegt damit jede Zelle in der
+    Statistik. Erreichbar waere der Zweig nur mit leeren Selektionsfalten (dann greift jetzt D2 bzw. D1).
+
+A7  auswertung.py:333-334 beta_bereinigung(), ohne Selektionsfalten -> {"bestimmt": False}
+    und 380-385 abbruchkriterien() else: c = False
+    Registrierte Eingabe erreicht den Zweig: NEIN (alle neun Plaene "endgueltig" mit Selektionsfalten;
+    Platzhalter-Plaene weist ein_bot() vorher ab, Z. 466-470). Beispieldaten: 0 Treffer.
+
+A7b auswertung.py:500-521 bereinigung.get(...) -> None / []
+    Nur erreichbar ueber A7 -> ebenfalls NEIN (0 Treffer).
+
+A7c auswertung.py:154-158 bedingung_fuer(), unbekannter nicht leerer Text -> None
+    Registrierte Eingabe erreicht den Zweig: NEIN. Genau ein Bot traegt einen Text (t3_supertrend,
+    "t3_fast_length < t3_slow_length"), und das ist der bekannte; die acht anderen tragen keinen Schluessel.
+    Leser in auswertung.py: lies_zellen() (Z. 174) und ein_bot() (Z. 475) rufen bedingung_fuer() - kein zweiter
+    Textvergleich in auswertung.py. Ausserhalb: beispieldaten.py:160 ruft ebenfalls bedingung_fuer().
+    ZWEITE DEUTUNGSSTELLE: registerdaten.py:605 (zellen()) vergleicht denselben String selbst (Punkt 1,
+    nicht freigegeben; Tatsachennotiz bis 40.8 (h)).
+
+A7d faltenplan.py:308/315, registerbericht.py:139 - tote Felder und tote Zeile
+    Leser von "mindesttraining_jahre"/"embargo_nach_falten" im Code: keine (ausser G8/G8M im Test).
+    rd.MINDESTTRAINING_JAHRE: gelesen nur von faltenplan.py:315 und registerbericht.py:139; nach B2
+    tot, kein Leser (registerdaten.py:108 bleibt stehen, bis 40.8 (h)). benchmark.py:70 ist Kommentartext.
+
+A7e herkunft.py:126/128 block() ruft datenstand() ohne Argument, :155-167 anhaengen() ueber block(), :164 makedirs
+    herkunft.py importiert paths nicht (a11_tb30a.txt (2)/(3)): unter dem Modus hasht die Kette
+    BASE_DIR/data; heute gleich dem Snapshot (d9449faf, 223 Dateien), aber keine Eigenschaft des Codes.
+    Einziger Aufrufer von block()/anhaengen() ist herkunft.py::main (a9_aufrufer.txt (4)).
+    ergebnisse/ traegt 14 versionierte Dateien, existiert also in jedem Klon; herkunft_protokoll.jsonl
+    existiert HEUTE NICHT (weder versioniert noch lokal) - es gibt noch keine Zeile.
+
+Abbruchkriterium 2 ("registrierte Eingabe erreicht einen Ersatzwert-Zweig"): fuer keine Stelle erfuellt.

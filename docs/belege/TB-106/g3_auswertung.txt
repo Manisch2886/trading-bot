@@ -1,0 +1,10 @@
+== vorher
+# TB-106 G3, HEAD 327bc79, 2026-09-25 18:44:30 +0200
+beispieldaten rc=0 81s
+auswertung rc=0 44s
+fc1781067e73bd7d229449d06ffb1b7742812484b7e7bd4e5110cb3f67d82a79  g3_vorher.json
+== nachher
+# TB-106 G3, HEAD e1e6652, 2026-09-25 19:21:27 +0200
+auswertung rc=0 39s
+fc1781067e73bd7d229449d06ffb1b7742812484b7e7bd4e5110cb3f67d82a79  g3_nachher.json
+cmp: zeichengleich

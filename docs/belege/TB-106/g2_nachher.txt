@@ -1,0 +1,20 @@
+# TB-106 G2 Ausgaben ohne Modus, HEAD e1e6652, 2026-09-25 19:09:26 +0200
+1 faltenplan_neun.py --json
+2 embargo_neun.py --json
+3 faltenschranke_messung.py --json
+4 loader_lesart (9 Bots) + faltenplan.faltenplan() im Speicher
+5 universum_trockenlauf.py --json
+6 universum_trockenlauf.py --stille-filter --json
+7 erste_falte_trockenlauf.py --json
+## sha256 der JSON-Ausgaben
+93fbf09c608ff7a6bdded72aa62936ed8ca105b015c2f1134d77d8e8dbdf7839  fn.json
+8c4caf4e44bda07afe1b4c2743697e0e43d7e560b4383f27a4562db618b89428  embargo.json
+db72ca326c62bf89db872270b561135c4a8105cc2f5a274119a605cc3521785c  fsm.json
+4bacd86f438ff0b91b4a80d4a72a0f7d4fd8f5727aa9170a8b837787cf95ea88  lesart.json
+5988abd1fe3e8c944387e5d865c662eeac7be951c54253040f4eb23785f3f8d0  plan.json
+2546cadf5079bcc3d9c1ebf0a385267cb1aa68581f99bf243fbc1c2f598e865b  ut.json
+78e4f524676a4979e051a91509f1d3b65d768db28d89c0cc2687776fec76f41f  sf.json
+1bf4679712f6d29c579e7987b2b3a510b154dacffdb253483b47dca3c100ac15  eft.json
+FERTIG
+benchmark ohne Modus rc 0
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/dc108c26-39af-46db-acd7-86433cf6f924/scratchpad/g2_bm_ohne_modus.json

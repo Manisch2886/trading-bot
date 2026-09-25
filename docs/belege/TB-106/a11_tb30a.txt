@@ -1,0 +1,31 @@
+# TB-106 A11, HEAD 327bc79, 2026-09-25 18:46:01 +0200
+== (1) Setzer und Leser im Repo ausserhalb docs/ (git grep)
+research/etf_trendfolge/datenstand.py:25:`herkunft.py` achtet auf `TB30A_BASE_DIR`. Der Selbsttest nutzt das, um die
+research/faltenplan_neun/test_erste_falte_trockenlauf.py:173:    u["TB30A_BASE_DIR"] = BASE_DIR
+research/faltenplan_neun/test_faltenplan_neun.py:775:        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+research/universum_trockenlauf/test_universum_trockenlauf.py:1405:        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+research/vorregistrierung/auswertung.py:92:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+research/vorregistrierung/benchmark.py:93:# TB30A_BASE_DIR ersetzt die Repo-Wurzel fuer Mutationsproben (Kopien dieses
+research/vorregistrierung/benchmark.py:96:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+research/vorregistrierung/benchmark.py:402:                    "Snapshot); TB30A_BASE_DIR ist KEIN Weg zum Snapshot "
+research/vorregistrierung/faltenplan.py:110:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+research/vorregistrierung/herkunft.py:51:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+research/vorregistrierung/messgroessen.py:51:# TB30A_BASE_DIR ersetzt die Repo-Wurzel fuer Mutationsproben - KEIN Weg zum
+research/vorregistrierung/messgroessen.py:53:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or _REPO
+research/vorregistrierung/messgroessen.py:322:                     "TB30A_BASE_DIR ist KEIN Weg zum Snapshot (TB-103)."))
+research/vorregistrierung/pruefe_grenzsaetze.py:49:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+research/vorregistrierung/registerbericht.py:31:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+research/vorregistrierung/registerdaten.py:52:# Die Wurzel des Repos. Ueberschreibbar ueber TB30A_BASE_DIR - das brauchen
+research/vorregistrierung/registerdaten.py:58:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+research/vorregistrierung/test_vorregistrierung.py:806:    u["TB30A_BASE_DIR"] = os.path.dirname(os.path.dirname(_HIER))
+research/vorregistrierung/test_vorregistrierung.py:1109:        u.pop("TB30A_BASE_DIR", None)
+research/vorregistrierung/test_vorregistrierung.py:1217:        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+== (2) herkunft.py liest paths / selektionsmodus? (Zeilen mit 'paths' oder 'selektion')
+56:REGISTERDATEI = os.path.join(BASE_DIR, "docs", "VORREGISTRIERUNG_neuselektion.md")
+== (3) Wirkung: TB30A_BASE_DIR=/gibt/es/nicht, zusaetzlich die drei Modus-Variablen gesetzt (herkunft importiert paths nicht)
+   BASE_DIR       /gibt/es/nicht
+   REGISTERDATEI  /gibt/es/nicht/docs/VORREGISTRIERUNG_neuselektion.md
+   paths geladen  False
+   register fehlend ['../../../../../gibt/es/nicht/docs/VORREGISTRIERUNG_neuselektion.md']
+   commit()       {'commit': 'unbekannt', 'arbeitsbaum_sauber': False, 'geaenderte_dateien': 0}
+   rc=0

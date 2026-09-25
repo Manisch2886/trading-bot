@@ -1,0 +1,86 @@
+# TB-106 A - Vormessung nachgemessen (Zeilen am Stand 327bc79; die drei Dateien seit f334a7b unveraendert: 0 Commits)
+== A1 faltenplan.py
+152	    jahre = sorted(zaehlung)
+153	    return {j: zaehlung[j] for j in jahre[1:-1]} or {jahre[0]: zaehlung[jahre[0]]}
+== A2 faltenplan.py
+159:     if not zaehlung:
+160:         return 2, 0.0, "keine vollen Kalenderjahre gemessen"
+== A3 benchmark.py
+206:     if renditen.empty:
+207:         return 0.0
+== A4 benchmark.py
+302:             eintrag["dd_toleranz"][k] = round(float(np.median(werte)), 2) if werte else 0.0
+== A5 benchmark.py
+221:     if e <= 0:
+222:         return 0.0
+223:     stufen = sorted(float(k) for k in tabelle)
+224:     if e <= stufen[0]:
+225:         return float(tabelle[_schluessel(stufen[0])]) * e / stufen[0]
+== A6 auswertung.py
+284:         s = float(statistik.get(zid, 0.0))
+286:         nachbar_werte = [float(statistik.get(n, 0.0)) for n in nachbar_ids]
+== A7 auswertung.py
+333:                for f in plan[bot]["falten"] if f["name"] in selektionsfalten]
+334:     if not fenster:
+380:     if bereinigung.get("bestimmt"):
+381:         c = (bereinigung["alpha_pct_pa"] <= 0.0
+382:              and bereinigung["strategie_calmar"]
+383:              < bereinigung["konstante_exposure"]["calmar"])
+384:     else:
+385:         c = False
+466:     if plan[bot]["status"] != "endgueltig":
+467:         return {"bot": bot, "auswertbar": False,
+468:                 "grund": ("Der Faltenplan dieses Marktes ist ein Platzhalter "
+469:                           "(TB-31). Ohne Falten gibt es keine Selektion - und "
+470:                           "keine Zahl, die so tut als gaebe es eine.")}
+471: 
+== A7b auswertung.py (bereinigung.get)
+380:    if bereinigung.get("bestimmt"):
+500:    dsr = dsr_drei_werte(bereinigung.get("renditen", []), buch)
+506:            bereinigung.get("strategie_rendite_pct"),
+508:            bereinigung.get("strategie_drawdown_pct"),
+509:        "netto_calmar": bereinigung.get("strategie_calmar"),
+518:        "alpha_pct_pa": bereinigung.get("alpha_pct_pa"),
+519:        "beta": bereinigung.get("beta"),
+520:        "konstante_exposure": bereinigung.get("konstante_exposure"),
+521:        "zufalls_timing": bereinigung.get("zufalls_timing"),
+== A7c auswertung.py
+154: def bedingung_fuer(bot: str):
+155:     definition = rd.raster_definition()[bot]
+156:     if definition.get("_bedingung") == "t3_fast_length < t3_slow_length":
+157:         return lambda w: w["t3_fast_length"] < w["t3_slow_length"]
+158:     return None
+   Aufrufer von bedingung_fuer in auswertung.py:
+154:def bedingung_fuer(bot: str):
+174:                alle_zellen(achsen, bedingung_fuer(bot))}
+475:    bedingung = bedingung_fuer(bot)
+   zweite Deutungsstelle:
+501:        "_bedingung": "t3_fast_length < t3_slow_length",
+605:    if definition.get("_bedingung") == "t3_fast_length < t3_slow_length":
+== A7d
+faltenplan.py:308:         f["embargo_nach_falten"] = [g["name"] for g in falten[:i]]
+faltenplan.py:315:         "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,
+registerbericht.py:137:           f"Go-Live-Schnitt: **{rd.GO_LIVE_SCHNITT}** (ausschliesslich). "
+registerbericht.py:138:           f"Mindesttraining vor der ersten Falte: "
+registerbericht.py:139:           f"**{rd.MINDESTTRAINING_JAHRE} Jahre**.", "",
+benchmark.py:69: ⚠️ Bis TB-66 stand hier der Vierjahresfilter `point_in_time(...,
+benchmark.py:70: MINDESTTRAINING_JAHRE)` - ein Symbol ging fuer die GANZE Falte ein, wenn seine
+benchmark.py:71: Kursdaten vier Jahre vor Faltenbeginn einsetzten. Das war das Verfahren-A-
+   Leser im Repo ausserhalb docs/ (research/vorregistrierung/, ohne ergebnisse/: 213 Treffer in den historischen Plan-JSONs weggelassen, research/krypto_historie hat eine eigene Konstante):
+benchmark.py:70:MINDESTTRAINING_JAHRE)` - ein Symbol ging fuer die GANZE Falte ein, wenn seine
+faltenplan.py:308:        f["embargo_nach_falten"] = [g["name"] for g in falten[:i]]
+faltenplan.py:315:        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,
+registerbericht.py:139:          f"**{rd.MINDESTTRAINING_JAHRE} Jahre**.", "",
+registerdaten.py:108:MINDESTTRAINING_JAHRE = 4           # vor der ersten Falte
+test_vorregistrierung.py:106:    "go_live_schnitt", "horizontbeginn", "markt", "mindesttraining_jahre",
+test_vorregistrierung.py:109:    "angeschnitten", "bis_ausschliesslich", "embargo_nach_falten", "name",
+test_vorregistrierung.py:735:_G8M_STELLE = '        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,\n'
+test_vorregistrierung.py:737:                 '        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,\n')
+== A7e herkunft.py
+126: def block(anlass: str = "lauf") -> dict:
+128:     c, d, r = commit(), datenstand(), register()
+155: def anhaengen(anlass: str = "lauf") -> dict:
+158:     eintrag = block(anlass)
+164:     os.makedirs(os.path.dirname(PROTOKOLL), exist_ok=True)
+   versionierte Dateien unter ergebnisse/: 14
+   herkunft_protokoll.jsonl vorhanden: nein

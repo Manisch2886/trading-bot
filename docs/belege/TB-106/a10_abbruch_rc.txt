@@ -1,0 +1,9 @@
+# TB-106 A10, HEAD 327bc79, 2026-09-25 18:45:07 +0200
+== (1) direkt: raise auswertung.Abbruch('Probe')
+Probe
+   rc=1
+== (2) Ablauf: auswertung.py --rohergebnisse <leer> --bot turtle_soup_stocks (lies_zellen: zellen.csv fehlt)
+turtle_soup_stocks: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/dc108c26-39af-46db-acd7-86433cf6f924/scratchpad/leer_roh/turtle_soup_stocks/zellen.csv fehlt - der Lauf ist unvollstaendig.
+   rc=1
+== (3) Klasse: (<class 'auswertung.Abbruch'>, <class 'SystemExit'>, <class 'BaseException'>, <class 'object'>)
+== (4) Stellen 'raise Abbruch' in auswertung.py: 12

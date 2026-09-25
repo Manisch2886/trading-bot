@@ -1,0 +1,61 @@
+# TB-106 A9, HEAD 327bc79, 2026-09-25 18:46:28 +0200
+== (1) crontab -l: in dieser Sitzung abgelehnt (Werkzeugfreigabe) - nicht gemessen
+== (2) Importe/Starts der vier Module im Repo ausserhalb docs/, belege, trading-env (Python-Dateien)
+research/datenordner_schnitt/erhebung.py:100:    "research/vorregistrierung/herkunft.py": ["daten_dir"],
+research/datenordner_schnitt/erhebung.py:120:    "research/vorregistrierung/herkunft.py",
+research/etf_trendfolge/datenstand.py:43:herkunft = reg.lade_fremdes_modul(
+research/etf_trendfolge/datenstand.py:44:    "herkunft", os.path.join(reg.VORREGISTRIERUNG_DIR, "herkunft.py"))
+research/etf_trendfolge/register.py:82:registerdaten = lade_fremdes_modul(
+research/faltenplan_neun/erste_falte_trockenlauf.py:193:    import faltenplan as vfp  # noqa: E402
+research/faltenplan_neun/test_erste_falte_trockenlauf.py:71:import faltenplan as vfp  # noqa: E402
+research/faltenplan_neun/test_horizontbeginn.py:55:import faltenplan as vfp  # noqa: E402
+research/fib_score_stufen/test_stufen.py:30:import auswertung as aus                                          # noqa: E402
+research/krypto_historie/test_faltenplan.py:55:import faltenplan as fp                                    # noqa: E402
+research/turn_of_month/auswertung.py:51:import herkunft as hk  # noqa: E402
+research/turn_of_month/staging.py:61:import herkunft as hk  # noqa: E402
+research/turn_of_month/test_turn_of_month.py:58:import auswertung as aw  # noqa: E402
+research/turn_of_month/test_turn_of_month.py:61:import herkunft as hk  # noqa: E402
+research/universum_trockenlauf/test_universum_trockenlauf.py:88:import herkunft                                                  # noqa: E402
+research/vorregistrierung/auswertung.py:103:import benchmark as bm  # noqa: E402
+research/vorregistrierung/auswertung.py:104:import faltenplan as fp  # noqa: E402
+research/vorregistrierung/beispieldaten.py:42:import auswertung as aw  # noqa: E402
+research/vorregistrierung/beispieldaten.py:43:import faltenplan as fp  # noqa: E402
+research/vorregistrierung/benchmark.py:99:import faltenplan as fp  # noqa: E402
+research/vorregistrierung/registerbericht.py:34:import auswertung as aw  # noqa: E402
+research/vorregistrierung/registerbericht.py:35:import faltenplan as fp  # noqa: E402
+research/vorregistrierung/test_vorregistrierung.py:63:import auswertung as aw
+research/vorregistrierung/test_vorregistrierung.py:65:import benchmark as bm
+research/vorregistrierung/test_vorregistrierung.py:66:import faltenplan as fp
+research/vorregistrierung/test_vorregistrierung.py:741:import faltenplan as fp, registerdaten as rd
+research/vorregistrierung/test_vorregistrierung.py:1166:import benchmark as bm
+shared/snapshot.py:334:    spez = importlib.util.spec_from_file_location("tb46_herkunft", pfad)
+shared/test_abrufschutz.py:476:    import herkunft                                            # noqa: PLC0415
+shared/test_stille_ausfaelle.py:469:    import herkunft                                            # noqa: PLC0415
+== (3) davon im Regelbetrieb (system/ dashboard/ notifications/ broker/ strategies/ shared/ ohne test_*)
+   notifications/manual_close.py:
+   shared/abrufschutz.py:
+      23:Vorregistrierung (`research/vorregistrierung/herkunft.py`, eingetragen in
+   shared/groessenfaktor.py:
+      17:`research/vorregistrierung/auswertung.py` auf Verfahren B umgebaut ist. Bis
+   shared/handelskosten.py:
+   shared/snapshot.py:
+      26:    research/vorregistrierung/herkunft.py :: datenstand(daten_dir)
+      251:                             "herkunft.py")
+      981:                "research/vorregistrierung/herkunft.py::datenstand - "
+   shared/sperrlistensonde.py:
+      18:Funktionen (`herkunft.py::register()`), einen Docstring, einen Repo-Commit
+      69:eine Tatsachennotiz. `SPERRLISTE_DATEIEN` in `herkunft.py` kennt sie nicht
+      84:  eingefroren  `herkunft.py::EINGEFROREN`, die Abschnitt-0-Menge, ueber die
+      87:               `lies_eingefroren` (ast, ohne `herkunft.py` auszufuehren).
+      124:HERKUNFT = os.path.join(CODEORDNER, "herkunft.py")
+      129:           ("eingefroren", "Abschnitt 0 - herkunft.py::EINGEFROREN (39.7)"))
+      259:    """Die Liste `EINGEFROREN` aus `herkunft.py` - mit `ast` gelesen, nicht
+      260:    importiert (herkunft.py steht auf der Sperrliste, Punkte 11/12; gelesen
+      269:        raise Sondenfehler("herkunft.py nicht lesbar: %s (%s)" % (pfad, e))
+== (4) Nutzer von herkunft.block / herkunft.anhaengen (ausser herkunft.py selbst)
+   keine
+== (5) shared/snapshot.py ruft herkunft.datenstand MIT Pfad (unberuehrt von E1):
+26:    research/vorregistrierung/herkunft.py :: datenstand(daten_dir)
+54:   die Voreinstellung von `datenstand()` auf einen Ordner ohne eine einzige
+344:            "%s kennt kein `datenstand()` mehr. Das Verfahren ist umgezogen - "
+358:        stand = h.datenstand(ordner)

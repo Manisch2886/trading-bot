@@ -1,0 +1,542 @@
+====================================================================================================
+LAUF <scratch>/bm_repo  (Prozesse: 11, rc 0)
+
+(i) EINGABEN: 246 verschiedene Dateien, davon 225 im Snapshot (222 CSV, 2 config/, 1 sonst), 21 AUSSERHALB
+      1x  <repo>/research/vorregistrierung/ergebnisse/messgroessen.json
+          <- <repo>/research/vorregistrierung/registerdaten.py:169 < <repo>/research/vorregistrierung/benchmark.py:435 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/8h1r3rwy
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_3pqdcl1w/elliott_wave.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_8up5wbcf/t3_supertrend.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_5kfnsoqp/t3_supertrend.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_542a0usx/rsi2_crypto.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_rj22mxvp/turtle_soup_crypto.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_gih4kjvm/volatility_breakout_crypto.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:363 < <repo>/research/vorregistrierung/faltenplan.py:376 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_f_zmf7ab/elliott_wave_stocks.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:363 < <repo>/research/vorregistrierung/faltenplan.py:376 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_8eghtioj/rsi2_mean_reversion.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:363 < <repo>/research/vorregistrierung/faltenplan.py:376 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_qwblwibh/turtle_soup_stocks.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:363 < <repo>/research/vorregistrierung/faltenplan.py:376 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_qvj6wpc4/volatility_breakout.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:323 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 9
+      2x  <repo>/strategies/elliott_wave/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/t3_supertrend/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/rsi2_crypto/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/turtle_soup_crypto/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/elliott_wave_stocks/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/turtle_soup_stocks/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/volatility_breakout/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:140 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:213 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+
+(ii) UMGEBUNG: 10686 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+     22x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/vorregistrierung/benchmark.py:90
+     11x  /dev/urandom
+          <- <repo>/research/vorregistrierung/benchmark.py:90
+     11x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/vorregistrierung/benchmark.py:90
+     22x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/faltenplan_neun/faltenplan_neun.py:130 < <repo>/research/vorregistrierung/faltenplan.py:126
+     22x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/faltenplan_neun/faltenplan_neun.py:130 < <repo>/research/vorregistrierung/faltenplan.py:126 < <repo>/research/vorregistrierung/benchmark.py:99
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 20
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_3pqdcl1w
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_8up5wbcf
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_5kfnsoqp
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_542a0usx
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_rj22mxvp
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_gih4kjvm
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_f_zmf7ab
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_8eghtioj
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_qwblwibh
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_qvj6wpc4
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:306 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_3pqdcl1w/elliott_wave.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_8up5wbcf/t3_supertrend.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_5kfnsoqp/t3_supertrend.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_542a0usx/rsi2_crypto.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_rj22mxvp/turtle_soup_crypto.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_gih4kjvm/volatility_breakout_crypto.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_f_zmf7ab/elliott_wave_stocks.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_8eghtioj/rsi2_mean_reversion.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_qwblwibh/turtle_soup_stocks.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_qvj6wpc4/volatility_breakout.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41611 (10 Repo-Module) argv research/vorregistrierung/benchmark.py --ziel /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/dc108c26-39af-46db-acd7-86433cf6f924/scratchpad/gl/bm_
+   pid 41620: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot elliott_wave --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_
+   pid 41635: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot t3_supertrend --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40
+   pid 41651: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot t3_supertrend --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40
+   pid 41662: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot rsi2_crypto --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_l
+   pid 41674: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot turtle_soup_crypto --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T
+   pid 41684: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot volatility_breakout_crypto --aus /var/folders/b_/yqcfpq996cxb1_v02m180f58
+   pid 41703: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot elliott_wave_stocks --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/
+   pid 41729: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot rsi2_mean_reversion --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/
+   pid 41739: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot turtle_soup_stocks --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T
+   pid 41751: KEINE Modulliste (Prozess ohne atexit beendet) - argv /Users/jaquelineloffler/trading-bot/research/universum_trockenlauf/loaderlauf.py --bot volatility_breakout --aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/
+
+   VEREINIGUNG dieses Laufs: 10 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/notifications/manual_close.py
+      <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py
+      <repo>/research/faltenplan_neun/faltenplan_neun.py
+      <repo>/research/faltenplan_neun/faltenschranke_messung.py
+      <repo>/research/universum_trockenlauf/universum_trockenlauf.py
+      <repo>/research/vorregistrierung/benchmark.py
+      <repo>/research/vorregistrierung/faltenplan.py
+      <repo>/research/vorregistrierung/registerdaten.py
+      <repo>/shared/paths.py
+====================================================================================================
+LAUF <scratch>/bot_elliott_wave  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 691 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41793 (19 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py elliott_wave
+
+   VEREINIGUNG dieses Laufs: 19 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/abrufschutz.py
+      <repo>/shared/binance_historie.py
+      <repo>/shared/fetch_multi_data.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/elliott_wave/backtest_elliott.py
+      <repo>/strategies/elliott_wave/elliott_wave_counter.py
+      <repo>/strategies/elliott_wave/equity_simulation.py
+      <repo>/strategies/elliott_wave/live_params.py
+      <repo>/strategies/elliott_wave/multi_symbol_optimise.py
+      <repo>/strategies/elliott_wave/zigzag_indicator.py
+====================================================================================================
+LAUF <scratch>/bot_elliott_wave_stocks  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 153 verschiedene Dateien, davon 153 im Snapshot (150 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 692 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41888 (20 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py elliott_wave_stocks
+
+   VEREINIGUNG dieses Laufs: 20 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/abrufschutz.py
+      <repo>/shared/binance_historie.py
+      <repo>/shared/data_quality.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/elliott_wave_stocks/backtest_elliott.py
+      <repo>/strategies/elliott_wave_stocks/elliott_wave_counter.py
+      <repo>/strategies/elliott_wave_stocks/equity_simulation.py
+      <repo>/strategies/elliott_wave_stocks/fetch_stock_data.py
+      <repo>/strategies/elliott_wave_stocks/live_params.py
+      <repo>/strategies/elliott_wave_stocks/multi_symbol_optimise.py
+      <repo>/strategies/elliott_wave_stocks/stocks_symbols_config.py
+      <repo>/strategies/elliott_wave_stocks/zigzag_indicator.py
+====================================================================================================
+LAUF <scratch>/bot_rsi2_crypto  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 681 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41835 (15 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py rsi2_crypto
+
+   VEREINIGUNG dieses Laufs: 15 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/rsi2_crypto/backtest_rsi2.py
+      <repo>/strategies/rsi2_crypto/equity_simulation.py
+      <repo>/strategies/rsi2_crypto/indicators.py
+      <repo>/strategies/rsi2_crypto/live_params.py
+      <repo>/strategies/rsi2_crypto/multi_symbol_optimise.py
+====================================================================================================
+LAUF <scratch>/bot_rsi2_mean_reversion  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 153 verschiedene Dateien, davon 153 im Snapshot (150 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 682 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41916 (16 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py rsi2_mean_reversion
+
+   VEREINIGUNG dieses Laufs: 16 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/data_quality.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/rsi2_mean_reversion/backtest_rsi2.py
+      <repo>/strategies/rsi2_mean_reversion/equity_simulation.py
+      <repo>/strategies/rsi2_mean_reversion/indicators.py
+      <repo>/strategies/rsi2_mean_reversion/live_params.py
+      <repo>/strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+      <repo>/strategies/rsi2_mean_reversion/stocks_symbols_config.py
+====================================================================================================
+LAUF <scratch>/bot_t3_supertrend  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 692 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41818 (20 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py t3_supertrend
+
+   VEREINIGUNG dieses Laufs: 20 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/abrufschutz.py
+      <repo>/shared/binance_historie.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/regimewache.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/t3_supertrend/backtest_trend.py
+      <repo>/strategies/t3_supertrend/equity_simulation.py
+      <repo>/strategies/t3_supertrend/fetch_4h_data.py
+      <repo>/strategies/t3_supertrend/indicators.py
+      <repo>/strategies/t3_supertrend/live_params.py
+      <repo>/strategies/t3_supertrend/multi_symbol_optimise.py
+      <repo>/strategies/t3_supertrend/regime_filter.py
+====================================================================================================
+LAUF <scratch>/bot_turtle_soup_crypto  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 681 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41853 (15 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py turtle_soup_crypto
+
+   VEREINIGUNG dieses Laufs: 15 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/turtle_soup_crypto/backtest_turtle_soup.py
+      <repo>/strategies/turtle_soup_crypto/equity_simulation.py
+      <repo>/strategies/turtle_soup_crypto/indicators.py
+      <repo>/strategies/turtle_soup_crypto/live_params.py
+      <repo>/strategies/turtle_soup_crypto/multi_symbol_optimise.py
+====================================================================================================
+LAUF <scratch>/bot_turtle_soup_stocks  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 153 verschiedene Dateien, davon 153 im Snapshot (150 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 682 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41937 (16 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py turtle_soup_stocks
+
+   VEREINIGUNG dieses Laufs: 16 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/data_quality.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/turtle_soup_stocks/backtest_turtle_soup.py
+      <repo>/strategies/turtle_soup_stocks/equity_simulation.py
+      <repo>/strategies/turtle_soup_stocks/indicators.py
+      <repo>/strategies/turtle_soup_stocks/live_params.py
+      <repo>/strategies/turtle_soup_stocks/multi_symbol_optimise.py
+      <repo>/strategies/turtle_soup_stocks/stocks_symbols_config.py
+====================================================================================================
+LAUF <scratch>/bot_volatility_breakout  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 153 verschiedene Dateien, davon 153 im Snapshot (150 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 682 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41956 (16 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py volatility_breakout
+
+   VEREINIGUNG dieses Laufs: 16 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/data_quality.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/volatility_breakout/backtest_breakout.py
+      <repo>/strategies/volatility_breakout/equity_simulation.py
+      <repo>/strategies/volatility_breakout/indicators.py
+      <repo>/strategies/volatility_breakout/live_params.py
+      <repo>/strategies/volatility_breakout/multi_symbol_optimise.py
+      <repo>/strategies/volatility_breakout/stocks_symbols_config.py
+====================================================================================================
+LAUF <scratch>/bot_volatility_breakout_crypto  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 683 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 41870 (17 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py volatility_breakout_crypto
+
+   VEREINIGUNG dieses Laufs: 17 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/regimewache.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/volatility_breakout_crypto/backtest_breakout.py
+      <repo>/strategies/volatility_breakout_crypto/equity_simulation.py
+      <repo>/strategies/volatility_breakout_crypto/indicators.py
+      <repo>/strategies/volatility_breakout_crypto/live_params.py
+      <repo>/strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+      <repo>/strategies/volatility_breakout_crypto/regime_filter.py

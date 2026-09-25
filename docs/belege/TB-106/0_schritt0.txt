@@ -1,0 +1,15 @@
+# TB-106 Schritt 0, 2026-09-25 18:4x +0200
+0a: Commit 327bc79 (5 Dateien des steuernden Chats: Auftrag TB-106, Zeiger, FABLE_ANFRAGE 25c,
+    FABLE_ANTWORT 25b, FABLE_ANTWORT 25c) - der Arbeitsbaum entsprach genau der Erwartung des Auftrags.
+0b: .git/*.lock: keine (ls: No such file or directory)
+    HEAD am Eingang (vor 0a): 2e21471 (Soll 2e21471)
+    Datenstand vorher: d9449faf51bffaaa... / 223 (0_hashes_vorher.txt (7)) = Soll
+    Quersummen *.db vorher: 0_hashes_vorher.txt (8)
+    Hashes freigegeben/gesperrt/ergebnisse einzeln: 0_hashes_vorher.txt (1)-(3), 5_alle_vorher.txt (1532 Dateien)
+    herkunft.register() vorher: 57ec6573eb44f18bccaa461da41ac0b835ba1afa1446ef27b4c3409ead56e46e, fehlend [],
+        11 teile (0_hashes_vorher.txt (9))
+    herkunft_protokoll.jsonl: existiert nicht (0_hashes_vorher.txt (10))
+    Sonde vorher gegen sperrliste_abbild_2026-09-25.json (cb4eb1b4): 0_sonde_vorher.txt - Pfad-Bestandteile
+        25 geprueft, 25/0/0; rc 2 nur NICHT PRUEFBAR (Punkte 1,3,4,6-14), wie TB-105
+Vorher-Laeufe fuer die Abnahme (Scratchpad, nicht im Repo): G2 g2_ausgaben.sh -> g2_vorher/, G3 g3_auswertung.sh
+    -> g3_vorher.json fc1781067e73bd7d229449d06ffb1b7742812484b7e7bd4e5110cb3f67d82a79 (Beispieldaten aller 9 Bots)

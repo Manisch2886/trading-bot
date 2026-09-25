@@ -1,0 +1,17 @@
+# TB-106 G2 - 8 Ausgaben ohne Modus, vorher (327bc79) und nachher (e1e6652)
+fn.json        vorher 93fbf09c608ff7a6  nachher 93fbf09c608ff7a6  gleich
+embargo.json   vorher 8c4caf4e44bda07a  nachher 8c4caf4e44bda07a  gleich
+fsm.json       vorher db72ca326c62bf89  nachher db72ca326c62bf89  gleich
+lesart.json    vorher 4bacd86f438ff0b9  nachher 4bacd86f438ff0b9  gleich
+plan.json      vorher 3dad5615fe0efcce  nachher 5988abd1fe3e8c94  VERSCHIEDEN
+ut.json        vorher 2546cadf5079bcc3  nachher 2546cadf5079bcc3  gleich
+sf.json        vorher 78e4f524676a4979  nachher 78e4f524676a4979  gleich
+eft.json       vorher 1bf4679712f6d29c  nachher 1bf4679712f6d29c  gleich
+
+entfernt aus der Vorher-Fassung: mindesttraining_jahre 9 x (Plaene), embargo_nach_falten 77 x (Falten)
+Falten insgesamt nachher: 77
+vorher (ohne die zwei Schluessel) == nachher, zeichengleich: True
+
+benchmark ohne Modus rc 0
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  g2_bm_ohne_modus.json
+rc-Zeilen je Schritt nachher: 7 von 7 mit rc=0

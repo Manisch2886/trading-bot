@@ -1,0 +1,28 @@
+# TB-106 G1 - benchmark.py --ziel <scratch> im Modus, echtes Repo und frischer Klon (git clone, HEAD e1e6652)
+== G1 Repo
+# TB-106 benchmark bm_repo , Wurzel /Users/jaquelineloffler/trading-bot, HEAD e1e6652f38c4f4fe1903dd68b2878f0384fb603f, 2026-09-25 19:09:46 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+benchmark bm_repo  rc=0 67s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_repo/benchmark.json
+== G5 Repo, 9 Bots
+bot bot_elliott_wave elliott_wave rc=0 10s
+bot bot_t3_supertrend t3_supertrend rc=0 4s
+bot bot_rsi2_crypto rsi2_crypto rc=0 1s
+bot bot_turtle_soup_crypto turtle_soup_crypto rc=0 2s
+bot bot_volatility_breakout_crypto volatility_breakout_crypto rc=0 1s
+bot bot_elliott_wave_stocks elliott_wave_stocks rc=0 17s
+bot bot_rsi2_mean_reversion rsi2_mean_reversion rc=0 6s
+bot bot_turtle_soup_stocks turtle_soup_stocks rc=0 6s
+bot bot_volatility_breakout volatility_breakout rc=0 7s
+== G1 Klon
+Klon HEAD e1e6652, status --ignored vorher        0 Zeilen
+# TB-106 benchmark bm_klon , Wurzel <scratch>/klon, HEAD e1e6652f38c4f4fe1903dd68b2878f0384fb603f, 2026-09-25 19:11:48 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+benchmark bm_klon  rc=0 74s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_klon/benchmark.json
+Klon status --ignored nachher:        0 Zeilen
+FERTIG
+
+Klassen (d_auswerten.py aus TB-104): g_klassen_repo.txt, g_klassen_klon.txt
+Repo:  (i) 246 Dateien, 225 im Snapshot, 21 ausserhalb (dieselben wie TB-105); (ii) 5; (iii) 20 = 10 mkdir + 10 w unter $TMPDIR/tb40_lauf_* (TB-107)
+Klon:  (i) 246/225/21; (ii) 5; (iii) 36 = dieselben 20 tb40_lauf_* + 16 mkdir Apple-Bytecode-Cache ~/Library/Caches/com.apple.python/<klon>/... (Klasse (ii) nach Fable 25c 4 (4)(a)); im Klon selbst 0, git status --porcelain --ignored vorher und nachher leer

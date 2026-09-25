@@ -1,0 +1,18 @@
+# TB-106 E5, HEAD 5cc1de4, 2026-09-25 19:07:45 +0200
+echtes herkunft_protokoll.jsonl vorher: (fehlt)
+
+(1) Modus, echter Snapshot, --anhaengen im Wegwerfbaum: rc 0
+    Zeile: datenstand d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84, datendateien 223
+    herkunft.datenstand(<Snapshot>): d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84, 223 Dateien
+    Zeile == Snapshot: True;  == registrierter Datenstand d9449faf: True
+    data/ des Wegwerfbaums (eine erfundene Datei): e1a98c05ac79d8fe - nicht gehasht: True
+
+(2) Modus, block() ohne daten_dir: rc 2; stderr: 4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+ABBRUCH (herkunft.py::block): unter dem Selektionsmodus ohne daten_dir aufgerufen - keine Voreinstellung unter dem Modus (Fable 25c 2 (a))
+
+(3) ohne Modus: block() alt (327bc79) == neu, ohne zeitpunkt_utc: True
+    Felder: ['anlass', 'arbeitsbaum_sauber', 'commit', 'datendateien', 'datenstand', 'geaenderte_dateien', 'register', 'register_fehlend']
+    datenstand d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84, datendateien 223, register 0ece95e2fd4f5bd2787ea40f6a12988aadb0a414c5132553522b55000c6052d7
+    (commit/arbeitsbaum_sauber/geaenderte_dateien stammen aus dem Arbeitsbaum zum Messzeitpunkt)
+
+echtes herkunft_protokoll.jsonl nachher: (fehlt) - unveraendert: True

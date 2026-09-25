@@ -1,0 +1,41 @@
+# TB-106 G4 Tests, HEAD e1e6652 (Code-Stand 5791b4c), trading-env 3.9.6
+== research/vorregistrierung/test_vorregistrierung.py
+196/196 Pruefungen bestanden.
+
+real	16m45.160s
+user	14m43.266s
+sys	1m39.008s
+== research/faltenplan_neun/test_faltenplan_neun.py
+==============================================================================
+156/156 Pruefungen bestanden.
+
+real	2m24.513s
+user	2m10.584s
+sys	0m9.348s
+== research/universum_trockenlauf/test_universum_trockenlauf.py
+==============================================================================
+163/163 Pruefungen bestanden.
+
+real	1m42.921s
+user	1m26.633s
+sys	0m12.142s
+== shared/test_paths.py
+==============================================================================
+35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+rc 0
+== shared/test_strategy_paths.py
+==============================================================================
+23 von 23 Pruefungen bestanden, 0 fehlgeschlagen.
+rc 0
+== research/vorregistrierung/test_ersatzwerte.py
+==============================================================================
+40/40 Pruefungen bestanden.
+rc 0
+== research/faltenplan_neun/test_horizontbeginn.py
+==============================================================================
+61/61 Pruefungen bestanden.
+rc 0
+== research/faltenplan_neun/test_erste_falte_trockenlauf.py
+==============================================================================
+50/50 Pruefungen bestanden.
+rc 0

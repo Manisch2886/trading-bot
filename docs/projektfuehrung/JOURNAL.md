@@ -9020,6 +9020,44 @@ Freigabe 10:52 (drei Auswahlkarten).
 
 ---
 
+## DE — TB-106: Rückfall (d) in den eingefrorenen Dateien geschlossen — sieben stille Ersatzwerte und der unbekannte Bedingungstext enden mit 2, tote Felder raus, `herkunft.py` hasht im Modus den Snapshot, neues Abbild; Benchmark im Modus (Repo und Klon) und ohne Modus bytegleich (25.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-106_ersatzwerte_eingefroren_und_herkunft.md`*
+
+**Quelle:** Mac-Sitzung **TB-106**, 25.09.2026, Eingang `2e21471`. Commits `327bc79` (Schritt 0),
+`abeca36` (Block B), `a08c13a` (Block C), `5cc1de4` (Block D), `5791b4c` (Block E), `e1e6652` (Abbild) und der
+Abgabe-Commit. Belege `docs/belege/TB-106/`. Grundlage Fable 24b A2, 25a Rang 3, 25b (4), 25c 1/2 (a)/4 (4)(b),
+Register 37.3. Freigabe 18:09 (drei Auswahlkarten).
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **A** | Vormessung Zeile für Zeile bestätigt. Keine Stelle wird von der registrierten Eingabe erreicht (A8). A5 ist Rechenregel (Grenzwert 0, an 86 Tabellen belegt). Kein Aufrufer im Regelbetrieb (statisch, `crontab -l` gesperrt). `Abbruch` endet mit 1 (12 Stellen). `TB30A_BASE_DIR` greift in `herkunft.py` auch unter dem Modus |
+| ⭐ **B–D** | `faltenplan.py` A1/A2, `benchmark.py` A3/A4, `auswertung.py` A6/A7 und unbekannter `_bedingung`-Text ⇒ rc 2, unabhängig vom Modus; `c` und `ein_bot()` ohne `.get`. `embargo_nach_falten`/`mindesttraining_jahre` und die Berichtszeile raus, G8/G8M angepasst. `nachschlagen()` unverändert |
+| ⭐⭐ **E** | `herkunft.py`: `daten_dir` durch `block()`/`anhaengen()`, im Modus Pflicht; `--anhaengen` übergibt `paths.DATA_DIR`; kein `makedirs`. Im Modus auf den echten Snapshot: `d9449faf…` = registrierter Datenstand. Ohne Modus `block()` alt = neu |
+| **F** | Abbild `…_2026-09-25b.json` `40ffe18d`. Sonde alt: Befund genau an 2/3/4/5/6/11/12/14, neu: 25/0/0. `register()` `57ec6573` ⇒ `0ece95e2` |
+| ⭐⭐ **G/H** | Benchmark im Modus Repo und Klon `64fb2912`, ohne Modus `64fb2912`; 7/8 Ausgaben bytegleich, `plan.json` nur ohne die zwei Schlüssel; Auswertung Beispieldaten `fc178106` = vorher; Trockenlauf 9 × rc 0. Tests 196/156/163/35/23/61/50, neu `test_ersatzwerte` 40/40. Nur Freigegebene, Tests, Abbild, `docs/` geändert; alle `*.db` gleich |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Eine Regel mit Ersatzwert steht oft zweimal.** `volle_jahre()`/`faltenlaenge()` gibt es in `faltenplan_neun.py` ein zweites Mal mit denselben Ersatzwerten. Wer einen stillen Zweig schliesst, sucht zuerst den Funktionsnamen im ganzen Repo |
+| ⭐ | **Ein Abbruch am Pflichtargument trifft auch die Nebenwege.** Die Prüfansicht `herkunft.py` ruft `block()` ohne Pfad und endet im Modus jetzt mit 2. Alle Aufrufer der geänderten Funktion messen, nicht nur den beauftragten |
+| ⭐ | **Ein Modul, das viele laden, lädt den Resolver erst bei Bedarf.** Ein `import paths` im Kopf von `herkunft.py` hätte Importeure mit einer `TB30A_BASE_DIR` ohne `shared/` gebrochen |
+| ⭐ | **Ein Werkzeug aus dem Repo lässt sich auf einen Klon ansetzen**, ohne es erst zu committen: aus der Klonwurzel mit dem Pfad des Repo-Skripts aufrufen |
+
+### Was offen bleibt
+
+- TB-107: `_min_history`, `getattr` in `strategy_paths.py`, `tb40_lauf_*`, Gegenprobe `__main__`; dazu evtl. die Kopie in `faltenplan_neun.py`.
+- Drei Fragen an Fable (Ergebnis, Abschnitt 9): Kopie in `faltenplan_neun.py`, Prüfansicht `herkunft.py` im Modus, `TB30A_BASE_DIR` unter dem Modus.
+- `registerbericht.py --pruefen` war schon vorher rot (Register-Zahlenteil veraltet); `rd.MINDESTTRAINING_JAHRE` tot bis 40.8 (h); `registerdaten.py:605` zweite Deutungsstelle bis 40.8 (h).
+
+*Geschrieben 25.09.2026 von der Mac-Sitzung TB-106. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

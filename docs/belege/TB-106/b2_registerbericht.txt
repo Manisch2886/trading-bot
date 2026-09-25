@@ -1,0 +1,17 @@
+# TB-106 B2 registerbericht --pruefen, HEAD 327bc79, 2026-09-25 18:57:43 +0200
+== vorher (327bc79, Kopie unter /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/dc108c26-39af-46db-acd7-86433cf6f924/scratchpad/rb_alt)
+GESCHEITERT: der erzeugte Block steht nicht woertlich im Register - die Zahlen dort sind veraltet.
+  Neu erzeugen mit:
+    python3 research/vorregistrierung/registerbericht.py
+rc 1
+== nachher (Arbeitsbaum)
+GESCHEITERT: der erzeugte Block steht nicht woertlich im Register - die Zahlen dort sind veraltet.
+  Neu erzeugen mit:
+    python3 research/vorregistrierung/registerbericht.py
+rc 1
+== Unterschied erzeugter Block vorher/nachher
+155c155
+< Go-Live-Schnitt: **2026-09-01** (ausschliesslich). Mindesttraining vor der ersten Falte: **4 Jahre**.
+---
+> Go-Live-Schnitt: **2026-09-01** (ausschliesslich).
+diff rc 1
