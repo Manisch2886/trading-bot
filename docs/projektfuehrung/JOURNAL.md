@@ -9058,6 +9058,45 @@ Register 37.3. Freigabe 18:09 (drei Auswahlkarten).
 
 ---
 
+## DF — TB-107: Die nicht gesperrten Rückfälle geschlossen — `_min_history` genau ein Treffer, zweite Kopie in `faltenplan_neun.py` rc 2, kein `getattr` in `strategy_paths.py`, `tb40_lauf_*` entfernt; Laufbereich 81 Module, Gegenprobe über alle `__main__`-Stellen ohne Fund; Benchmark im Modus (Repo und Klon) und ohne Modus bytegleich (25.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-107_nicht_gesperrte_rueckfaelle.md`*
+
+**Quelle:** Mac-Sitzung **TB-107**, 25.09.2026, Eingang `f22f91e`. Commits `404c7e4` (Schritt 0),
+`33d50f2` (Block B), `f5fdb53` (Block C, eigener Commit), `5cfe472` (Block D), `a79e715` (Block E), `9827a3e` (Block F)
+und der Abgabe-Commit. Belege `docs/belege/TB-107/`. Grundlage Fable 25b 3 (1)/(5), 25c 4 (2)/(3)(a)/(3)(b),
+Ergebnis TB-106 Befund 1. Freigabe 18:09 und 20:27 (zwei Auswahlkarten).
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **A** | Vormessung bestätigt. `elliott_wave` trägt `MIN_HISTORY_HOURS`, alle 9 Bot-Dateien genau einen Treffer. Die Kopie in `faltenplan_neun.py` wird mit der echten Eingabe nicht erreicht, auch nicht über `basis`. Kein Aufrufer im Regelbetrieb außer `strategy_paths` (statisch) |
+| ⭐ **B/C** | `faltenschranke_messung.py`: `re.findall`, genau ein Treffer, sonst rc 2; `kerzen_elliott_wave` ohne `MIN_HISTORY_HOURS` rc 2. `faltenplan_neun.py` `volle_jahre`/`faltenlaenge` rc 2 (eigener Commit, Fable 25d offen). `fsm`/`lesart`/`fn`/`eft` bytegleich |
+| ⭐⭐ **D** | `strategy_paths._im_selektionsmodus()` ohne `getattr`. Ohne Modus 101 Aufrufer in 9 Bots: Pfade und Ordner gleich. `test_paths` A 99/0, neue Probe G. ⚠️ `pfadvergleich.py` (TB-52, nicht freigegeben) eigenständig jetzt rc 1 |
+| ⭐ **E** | `messe_bot()` entfernt `tb40_lauf_*` nach dem Lesen; ohne Ergebnis bleibt der Ordner mit Pfad in der Meldung. Ein Lauf der alten Fassung hinterließ 74 Ordner, seit E 0 |
+| ⭐⭐ **F** | Laufbereich 81 Module (+ `regimewache.py` gegen TB-104). `shared/test_main_gegenprobe.py` liest die Liste aus der Messdatei: 14 Datenstellen, alle mit Abfrage; 10 `trades.empty`-Stellen ausgewiesen, nicht gezählt |
+| ⭐⭐ **G/H** | Benchmark `64fb2912` im Modus (Repo und Klon) und ohne Modus; 8/8 Ausgaben bytegleich; Trockenlauf 9 × rc 0; Sonde vorher = nachher, `register()` `0ece95e2`. Tests 196/156/163/35/27/48/44/44/40/61/50, neu 14/7/4/7. Nur Freigegebenes, Tests, `docs/` geändert; alle `*.db` gleich |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Wer eine Duldung entfernt, sucht alle, die sie genutzt haben – auch Werkzeuge außerhalb der Tests.** Die Vormessung nannte zwei Proben; ein drittes, eigenständiges Werkzeug (`pfadvergleich.py`) nutzte sie ebenfalls und endet jetzt laut |
+| ⭐ | **Eine Mutation, die einen alten Fehlerpfad zurückholt, braucht die Eingabe, die ihn erreicht.** `B-A3M` blieb rot, bis der Wegwerfbaum eine Kursdatei bekam – ohne sie hätte die Mutation nie den `TypeError` gezeigt |
+| ⭐ | **Eine Liste, die ein Test liest, entsteht vor dem Test-Commit.** F1 wurde am Code-Endstand gemessen, die Testdatei lag dafür im Scratchpad (Modus verlangt sauberes `shared/`) |
+| ⭐ | **Vorher-Läufe zuerst, dann erst Code anfassen:** Der G2-Vorher-Lauf liest die Werkzeuge über zehn Minuten; Änderungen in dieser Zeit hätten ihn verfälscht |
+
+### Was offen bleibt
+
+- Fables Antwort auf 25d (Block C: bleibt oder `git revert f5fdb53`).
+- Drei Fragen an Fable (Ergebnis, Abschnitt 9): Ablagen `tb40_faltenplan_`/`tb40_proben_`, die `trades.empty`-Stellen, `pfadvergleich.py`.
+- Die Liste der Gegenprobe wird am Tag-Commit durch die Tag-Messung ersetzt (Fable 25b (5)).
+
+*Geschrieben 25.09.2026 von der Mac-Sitzung TB-107. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

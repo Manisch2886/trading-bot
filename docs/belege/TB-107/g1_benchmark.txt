@@ -1,0 +1,21 @@
+# TB-107 G1/G3 Modus-Laeufe, Repo, HEAD 9827a3e, 2026-09-25 21:42:52 +0200
+tb40_lauf_* vorher: 4765
+benchmark bm_repo  rc=0 62s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_repo/benchmark.json
+bot bot_elliott_wave elliott_wave rc=0 9s
+bot bot_t3_supertrend t3_supertrend rc=0 4s
+bot bot_rsi2_crypto rsi2_crypto rc=0 3s
+bot bot_turtle_soup_crypto turtle_soup_crypto rc=0 2s
+bot bot_volatility_breakout_crypto volatility_breakout_crypto rc=0 2s
+bot bot_elliott_wave_stocks elliott_wave_stocks rc=0 16s
+bot bot_rsi2_mean_reversion rsi2_mean_reversion rc=0 6s
+bot bot_turtle_soup_stocks turtle_soup_stocks rc=0 5s
+bot bot_volatility_breakout volatility_breakout rc=0 7s
+tb40_lauf_* nachher: 4765
+
+# TB-107 G1 Modus-Lauf im frischen Klon <scratch>/klon, HEAD 9827a3e, 2026-09-25 21:45:05 +0200
+tb40_lauf_* vorher: 4766
+benchmark bm_klon  rc=0 61s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_klon/benchmark.json
+tb40_lauf_* nachher: 4766
+status --ignored nachher: []

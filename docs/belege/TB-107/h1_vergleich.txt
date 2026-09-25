@@ -1,0 +1,62 @@
+# TB-107 H1 Vergleich vorher (0b, HEAD 404c7e4) / nachher (HEAD 9827a3e)
+## (1)-(4),(6)-(10b) diff der Hashdateien ohne Kopfzeile
+2,5c2,5
+< 0147612a0ed89b3f0a6b9e18afe5fc577a19c6cec2dfa50497739a666b5cce67  research/faltenplan_neun/faltenschranke_messung.py
+< f3441143389a86f633864633ef53f5a397236c8a8d027a2704b491698510b05f  research/faltenplan_neun/faltenplan_neun.py
+< 6fe0cfaeb818735fed3d83a62b694a37f3a571c301a003fdb5622a5ea4400f83  shared/strategy_paths.py
+< 6530c67836cc8f84e30150236aa29dc1c67f6c8779db639fa947f94245d1e545  research/universum_trockenlauf/universum_trockenlauf.py
+---
+> 049bb657ff9d4f81e8fcfda94559d4e40668bcca7a76bc07488dce80510cf91b  research/faltenplan_neun/faltenschranke_messung.py
+> 251029be744e9ba9124d58325e2641a65fa277bd18cfc181ea38be82624e408d  research/faltenplan_neun/faltenplan_neun.py
+> 0581aaf3ff24366496bb8da199b8aaae4d1fcb84bafddc0c5fc81e6d605bb671  shared/strategy_paths.py
+> b360497f90e3e769af4201f14e4dd2c6bf17a0b77af690904d074f6573648bfd  research/universum_trockenlauf/universum_trockenlauf.py
+8a9,10
+> c650f966c91b3cfc70d922ef52cfeac1a2f6a69bc76b93556f7f7dbd3bd98fd5  research/faltenplan_neun/test_min_history.py
+> e57a2e49f47aefca45df10140ae1fb3b81d305ba07820692d91a576529ad211d  research/faltenplan_neun/test_volle_jahre.py
+10,11c12,14
+< 0e478ee372ce255569b25e416d52706adf96f005282df1a155141ecddfa056b8  shared/test_paths.py
+< f5dcf37bc344e860e892d5a5a604ab4981be138e008c6dbc06d701e8d2a24a4a  shared/test_strategy_paths.py
+---
+> 23825df518183b14ffeaea8d607047bd236bc7cae218c78f8b512f5d4d54501c  research/universum_trockenlauf/test_zwischenablage.py
+> 0514b7dcd9e04cfbcb07daf6e275ee7e188602559206cadff5bf1b2cdf04f856  shared/test_paths.py
+> 23972e6eb1cf7352e3ee989b6864b9e720ac42d07a0b2367cc53b529c7f948ac  shared/test_strategy_paths.py
+124,125c127,128
+< ## (5) je versionierte Datei ausserhalb docs/ -> docs/belege/TB-107/5_alle_vorher.txt
+<    Anzahl: 1534
+---
+> ## (5) je versionierte Datei ausserhalb docs/ -> docs/belege/TB-107/5_alle_nachher.txt
+>    Anzahl: 1538
+166c169
+< 4615
+---
+> 4765
+## (5) je versionierte Datei ausserhalb docs/: diff
+526,527c526,527
+< f3441143389a86f633864633ef53f5a397236c8a8d027a2704b491698510b05f  research/faltenplan_neun/faltenplan_neun.py
+< 0147612a0ed89b3f0a6b9e18afe5fc577a19c6cec2dfa50497739a666b5cce67  research/faltenplan_neun/faltenschranke_messung.py
+---
+> 251029be744e9ba9124d58325e2641a65fa277bd18cfc181ea38be82624e408d  research/faltenplan_neun/faltenplan_neun.py
+> 049bb657ff9d4f81e8fcfda94559d4e40668bcca7a76bc07488dce80510cf91b  research/faltenplan_neun/faltenschranke_messung.py
+530a531,532
+> c650f966c91b3cfc70d922ef52cfeac1a2f6a69bc76b93556f7f7dbd3bd98fd5  research/faltenplan_neun/test_min_history.py
+> e57a2e49f47aefca45df10140ae1fb3b81d305ba07820692d91a576529ad211d  research/faltenplan_neun/test_volle_jahre.py
+913c915,916
+< 6530c67836cc8f84e30150236aa29dc1c67f6c8779db639fa947f94245d1e545  research/universum_trockenlauf/universum_trockenlauf.py
+---
+> 23825df518183b14ffeaea8d607047bd236bc7cae218c78f8b512f5d4d54501c  research/universum_trockenlauf/test_zwischenablage.py
+> b360497f90e3e769af4201f14e4dd2c6bf17a0b77af690904d074f6573648bfd  research/universum_trockenlauf/universum_trockenlauf.py
+1108c1111
+< 6fe0cfaeb818735fed3d83a62b694a37f3a571c301a003fdb5622a5ea4400f83  shared/strategy_paths.py
+---
+> 0581aaf3ff24366496bb8da199b8aaae4d1fcb84bafddc0c5fc81e6d605bb671  shared/strategy_paths.py
+1125a1129
+> 196b5675bee74f9407fae2fc361946711983c5ef553dc671033af8a907d323f0  shared/test_main_gegenprobe.py
+1127c1131
+< 0e478ee372ce255569b25e416d52706adf96f005282df1a155141ecddfa056b8  shared/test_paths.py
+---
+> 0514b7dcd9e04cfbcb07daf6e275ee7e188602559206cadff5bf1b2cdf04f856  shared/test_paths.py
+1136c1140
+< f5dcf37bc344e860e892d5a5a604ab4981be138e008c6dbc06d701e8d2a24a4a  shared/test_strategy_paths.py
+---
+> 23972e6eb1cf7352e3ee989b6864b9e720ac42d07a0b2367cc53b529c7f948ac  shared/test_strategy_paths.py
+## Ende

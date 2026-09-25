@@ -1,0 +1,6 @@
+# TB-107 D Tests, HEAD f5fdb53, Arbeitsbaum [ M shared/strategy_paths.py  M shared/test_paths.py  M shared/test_strategy_paths.py ?? research/universum_trockenlauf/test_zwischenablage.py ?? shared/test_main_gegenprobe.py ], 2026-09-25 21:34:45 +0200
+test_paths rc=0 14s: 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+test_strategy_paths rc=0 12s: 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+test_ergebniskurven rc=0 33s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_rueckfaelle_modus rc=0 44s: 48/48 Pruefungen bestanden.
+test_startpruefungen rc=0 13s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.

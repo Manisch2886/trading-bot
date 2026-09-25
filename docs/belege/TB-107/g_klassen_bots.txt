@@ -1,0 +1,397 @@
+====================================================================================================
+LAUF <scratch>/bot_elliott_wave  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 691 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56749 (19 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py elliott_wave
+
+   VEREINIGUNG dieses Laufs: 19 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/abrufschutz.py
+      <repo>/shared/binance_historie.py
+      <repo>/shared/fetch_multi_data.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/elliott_wave/backtest_elliott.py
+      <repo>/strategies/elliott_wave/elliott_wave_counter.py
+      <repo>/strategies/elliott_wave/equity_simulation.py
+      <repo>/strategies/elliott_wave/live_params.py
+      <repo>/strategies/elliott_wave/multi_symbol_optimise.py
+      <repo>/strategies/elliott_wave/zigzag_indicator.py
+====================================================================================================
+LAUF <scratch>/bot_elliott_wave_stocks  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 153 verschiedene Dateien, davon 153 im Snapshot (150 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 692 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56853 (20 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py elliott_wave_stocks
+
+   VEREINIGUNG dieses Laufs: 20 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/abrufschutz.py
+      <repo>/shared/binance_historie.py
+      <repo>/shared/data_quality.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/elliott_wave_stocks/backtest_elliott.py
+      <repo>/strategies/elliott_wave_stocks/elliott_wave_counter.py
+      <repo>/strategies/elliott_wave_stocks/equity_simulation.py
+      <repo>/strategies/elliott_wave_stocks/fetch_stock_data.py
+      <repo>/strategies/elliott_wave_stocks/live_params.py
+      <repo>/strategies/elliott_wave_stocks/multi_symbol_optimise.py
+      <repo>/strategies/elliott_wave_stocks/stocks_symbols_config.py
+      <repo>/strategies/elliott_wave_stocks/zigzag_indicator.py
+====================================================================================================
+LAUF <scratch>/bot_rsi2_crypto  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 681 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56793 (15 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py rsi2_crypto
+
+   VEREINIGUNG dieses Laufs: 15 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/rsi2_crypto/backtest_rsi2.py
+      <repo>/strategies/rsi2_crypto/equity_simulation.py
+      <repo>/strategies/rsi2_crypto/indicators.py
+      <repo>/strategies/rsi2_crypto/live_params.py
+      <repo>/strategies/rsi2_crypto/multi_symbol_optimise.py
+====================================================================================================
+LAUF <scratch>/bot_rsi2_mean_reversion  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 153 verschiedene Dateien, davon 153 im Snapshot (150 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 682 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56876 (16 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py rsi2_mean_reversion
+
+   VEREINIGUNG dieses Laufs: 16 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/data_quality.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/rsi2_mean_reversion/backtest_rsi2.py
+      <repo>/strategies/rsi2_mean_reversion/equity_simulation.py
+      <repo>/strategies/rsi2_mean_reversion/indicators.py
+      <repo>/strategies/rsi2_mean_reversion/live_params.py
+      <repo>/strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+      <repo>/strategies/rsi2_mean_reversion/stocks_symbols_config.py
+====================================================================================================
+LAUF <scratch>/bot_t3_supertrend  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 692 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56775 (20 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py t3_supertrend
+
+   VEREINIGUNG dieses Laufs: 20 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/abrufschutz.py
+      <repo>/shared/binance_historie.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/regimewache.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/t3_supertrend/backtest_trend.py
+      <repo>/strategies/t3_supertrend/equity_simulation.py
+      <repo>/strategies/t3_supertrend/fetch_4h_data.py
+      <repo>/strategies/t3_supertrend/indicators.py
+      <repo>/strategies/t3_supertrend/live_params.py
+      <repo>/strategies/t3_supertrend/multi_symbol_optimise.py
+      <repo>/strategies/t3_supertrend/regime_filter.py
+====================================================================================================
+LAUF <scratch>/bot_turtle_soup_crypto  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 681 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56816 (15 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py turtle_soup_crypto
+
+   VEREINIGUNG dieses Laufs: 15 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/turtle_soup_crypto/backtest_turtle_soup.py
+      <repo>/strategies/turtle_soup_crypto/equity_simulation.py
+      <repo>/strategies/turtle_soup_crypto/indicators.py
+      <repo>/strategies/turtle_soup_crypto/live_params.py
+      <repo>/strategies/turtle_soup_crypto/multi_symbol_optimise.py
+====================================================================================================
+LAUF <scratch>/bot_turtle_soup_stocks  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 153 verschiedene Dateien, davon 153 im Snapshot (150 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 682 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56902 (16 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py turtle_soup_stocks
+
+   VEREINIGUNG dieses Laufs: 16 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/data_quality.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/turtle_soup_stocks/backtest_turtle_soup.py
+      <repo>/strategies/turtle_soup_stocks/equity_simulation.py
+      <repo>/strategies/turtle_soup_stocks/indicators.py
+      <repo>/strategies/turtle_soup_stocks/live_params.py
+      <repo>/strategies/turtle_soup_stocks/multi_symbol_optimise.py
+      <repo>/strategies/turtle_soup_stocks/stocks_symbols_config.py
+====================================================================================================
+LAUF <scratch>/bot_volatility_breakout  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 153 verschiedene Dateien, davon 153 im Snapshot (150 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 682 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56924 (16 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py volatility_breakout
+
+   VEREINIGUNG dieses Laufs: 16 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/data_quality.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/volatility_breakout/backtest_breakout.py
+      <repo>/strategies/volatility_breakout/equity_simulation.py
+      <repo>/strategies/volatility_breakout/indicators.py
+      <repo>/strategies/volatility_breakout/live_params.py
+      <repo>/strategies/volatility_breakout/multi_symbol_optimise.py
+      <repo>/strategies/volatility_breakout/stocks_symbols_config.py
+====================================================================================================
+LAUF <scratch>/bot_volatility_breakout_crypto  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 27 verschiedene Dateien, davon 27 im Snapshot (24 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-103/d_trockenlauf.py
+          <- 
+
+(ii) UMGEBUNG: 683 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /dev/urandom
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/exposure_messung/bot_lauf.py:53 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/exposure_messung/bot_lauf.py:66 < <repo>/docs/belege/TB-103/d_trockenlauf.py:52
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 0
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 56836 (17 Repo-Module) argv docs/belege/TB-103/d_trockenlauf.py volatility_breakout_crypto
+
+   VEREINIGUNG dieses Laufs: 17 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/research/exposure_messung/bot_lauf.py
+      <repo>/shared/handelskosten.py
+      <repo>/shared/kursdaten.py
+      <repo>/shared/ladeprotokoll.py
+      <repo>/shared/messkette.py
+      <repo>/shared/paths.py
+      <repo>/shared/regimewache.py
+      <repo>/shared/strategy_paths.py
+      <repo>/shared/symbols_config.py
+      <repo>/shared/zuteilung.py
+      <repo>/strategies/volatility_breakout_crypto/backtest_breakout.py
+      <repo>/strategies/volatility_breakout_crypto/equity_simulation.py
+      <repo>/strategies/volatility_breakout_crypto/indicators.py
+      <repo>/strategies/volatility_breakout_crypto/live_params.py
+      <repo>/strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+      <repo>/strategies/volatility_breakout_crypto/regime_filter.py

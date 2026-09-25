@@ -1,0 +1,17 @@
+# TB-107 G4 Tests, HEAD 9827a3e, Arbeitsbaum ausserhalb docs/ [], 2026-09-25 21:47:33 +0200
+test_faltenplan_neun rc=0 145s: 156/156 Pruefungen bestanden.
+test_erste_falte_trockenlauf rc=0 150s: 50/50 Pruefungen bestanden.
+test_horizontbeginn rc=0 61s: 61/61 Pruefungen bestanden.
+test_min_history rc=0 1s: 14/14 Pruefungen bestanden.
+test_volle_jahre rc=0 1s: 7/7 Pruefungen bestanden.
+test_universum_trockenlauf rc=0 95s: 163/163 Pruefungen bestanden.
+test_zwischenablage rc=0 0s: 4/4 Pruefungen bestanden.
+test_paths rc=0 12s: 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+test_strategy_paths rc=0 12s: 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+test_rueckfaelle_modus rc=0 39s: 48/48 Pruefungen bestanden.
+test_ergebniskurven rc=0 31s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_startpruefungen rc=0 14s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_main_gegenprobe rc=0 1s: 7/7 Pruefungen bestanden.
+test_ersatzwerte rc=0 22s: 40/40 Pruefungen bestanden.
+test_vorregistrierung rc=0 926s: 196/196 Pruefungen bestanden.
+tb40_lauf_* in $TMPDIR nach den Tests: 4765

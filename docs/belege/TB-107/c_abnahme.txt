@@ -1,0 +1,10 @@
+# TB-107 Teilabnahme ohne Modus, HEAD 33d50f2, Arbeitsbaum: [ M research/faltenplan_neun/faltenplan_neun.py ?? research/faltenplan_neun/test_volle_jahre.py ?? research/universum_trockenlauf/test_zwischenablage.py ], 2026-09-25 21:21:42 +0200
+fn rc=0
+eft rc=0
+93fbf09c608ff7a6bdded72aa62936ed8ca105b015c2f1134d77d8e8dbdf7839  fn.json
+1bf4679712f6d29c579e7987b2b3a510b154dacffdb253483b47dca3c100ac15  eft.json
+fn BYTEGLEICH
+eft BYTEGLEICH
+test_faltenplan_neun rc=0 148s: 156/156 Pruefungen bestanden. 
+test_erste_falte_trockenlauf rc=0 149s: 50/50 Pruefungen bestanden. 
+test_horizontbeginn rc=0 62s: 61/61 Pruefungen bestanden. 

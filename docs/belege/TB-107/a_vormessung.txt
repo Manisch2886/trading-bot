@@ -1,0 +1,39 @@
+== A1 _min_history: Treffer je Bot-Datei (re.findall, gleiches Muster, re.M)
+   elliott_wave                 1 Treffer ['MIN_HISTORY_HOURS'] | _min_history() = MIN_HISTORY_HOURS
+   t3_supertrend                1 Treffer ['MIN_HISTORY_DAYS'] | _min_history() = MIN_HISTORY_DAYS
+   rsi2_crypto                  1 Treffer ['MIN_HISTORY_DAYS'] | _min_history() = MIN_HISTORY_DAYS
+   turtle_soup_crypto           1 Treffer ['MIN_HISTORY_DAYS'] | _min_history() = MIN_HISTORY_DAYS
+   volatility_breakout_crypto   1 Treffer ['MIN_HISTORY_DAYS'] | _min_history() = MIN_HISTORY_DAYS
+   elliott_wave_stocks          1 Treffer ['MIN_HISTORY_DAYS'] | _min_history() = MIN_HISTORY_DAYS
+   rsi2_mean_reversion          1 Treffer ['MIN_HISTORY_DAYS'] | _min_history() = MIN_HISTORY_DAYS
+   turtle_soup_stocks           1 Treffer ['MIN_HISTORY_DAYS'] | _min_history() = MIN_HISTORY_DAYS
+   volatility_breakout          1 Treffer ['MIN_HISTORY_DAYS'] | _min_history() = MIN_HISTORY_DAYS
+== A2 Name der Schranke in strategies/elliott_wave/multi_symbol_optimise.py: MIN_HISTORY_HOURS
+== A3 loader_lesart: n = None nur wenn _min_history (None, None) liefert; heute bei keinem Bot (A1)
+== A4 faltenplan_neun.volle_jahre()/faltenlaenge() mit der echten Eingabe (basis=None -> BASE_DIR /Users/jaquelineloffler/trading-bot)
+   elliott_wave                 Jahre 6, innere Jahre 4 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   t3_supertrend                Jahre 6, innere Jahre 4 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   rsi2_crypto                  Jahre 5, innere Jahre 3 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   turtle_soup_crypto           Jahre 6, innere Jahre 4 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   volatility_breakout_crypto   Jahre 5, innere Jahre 3 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   elliott_wave_stocks          Jahre 11, innere Jahre 9 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   rsi2_mean_reversion          Jahre 11, innere Jahre 9 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   turtle_soup_stocks           Jahre 11, innere Jahre 9 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   volatility_breakout          Jahre 11, innere Jahre 9 -> Ersatz 'erstes Jahr' erreicht: nein; leere Zaehlung: nein
+   Aufrufer von faltenlaenge(): nur plan_fuer_bot() (faltenplan_neun.py), basis aus faltenplan(basis=...)
+   faltenplan_neun.py:363 def volle_jahre(zaehlung: dict) -> dict:
+   faltenplan_neun.py:375 def faltenlaenge(bot: str, basis: str = None) -> tuple:
+   faltenplan_neun.py:377 zaehlung = volle_jahre(gefundene_trades_je_jahr(bot, basis))
+   faltenplan_neun.py:463 def plan_fuer_bot(bot: str, basis: str = None) -> dict:
+   faltenplan_neun.py:467 laenge, trades = faltenlaenge(bot, basis)
+   faltenplan_neun.py:525 def faltenplan(basis: str = None) -> dict:
+   faltenplan_neun.py:526 return {bot: plan_fuer_bot(bot, basis) for bot in BOTS}
+   faltenplan_neun.py:555 plaene = faltenplan()
+== A5 strategy_paths._im_selektionsmodus
+   strategy_paths.py:112 def _im_selektionsmodus():
+   strategy_paths.py:122 frage = getattr(paths, "selektionsmodus", None)
+   strategy_paths.py:149 if not _im_selektionsmodus():
+== A6 universum_trockenlauf.py: mkdtemp-Stellen
+   universum_trockenlauf.py:259 ordner = tempfile.mkdtemp(prefix="tb40_faltenplan_")
+   universum_trockenlauf.py:306 ordner = tempfile.mkdtemp(prefix="tb40_lauf_")
+   universum_trockenlauf.py:671 ordner = tempfile.mkdtemp(prefix="tb40_proben_")

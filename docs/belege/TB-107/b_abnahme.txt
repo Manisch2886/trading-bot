@@ -1,0 +1,5 @@
+# TB-107 Teilabnahme ohne Modus, HEAD 404c7e4, Arbeitsbaum: [ M research/faltenplan_neun/faltenschranke_messung.py ?? research/faltenplan_neun/test_min_history.py ?? research/universum_trockenlauf/test_zwischenablage.py ], 2026-09-25 21:19:42 +0200
+fsm rc=0
+lesart rc=0
+db72ca326c62bf89db872270b561135c4a8105cc2f5a274119a605cc3521785c  fsm.json
+4bacd86f438ff0b91b4a80d4a72a0f7d4fd8f5727aa9170a8b837787cf95ea88  lesart.json

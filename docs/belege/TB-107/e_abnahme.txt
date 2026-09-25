@@ -1,0 +1,13 @@
+# TB-107 E Abnahme ohne Modus, HEAD f5fdb53, Arbeitsbaum [ M research/universum_trockenlauf/universum_trockenlauf.py  M shared/strategy_paths.py  M shared/test_paths.py  M shared/test_strategy_paths.py ?? research/universum_trockenlauf/test_zwischenablage.py ?? shared/test_main_gegenprobe.py ], 2026-09-25 21:35:26 +0200
+tb40_lauf_* vor ut: 4765
+ut rc=0
+tb40_lauf_* nach ut: 4765
+sf rc=0
+tb40_lauf_* nach sf: 4765
+2546cadf5079bcc3d9c1ebf0a385267cb1aa68581f99bf243fbc1c2f598e865b  ut.json
+78e4f524676a4979e051a91509f1d3b65d768db28d89c0cc2687776fec76f41f  sf.json
+test_universum_trockenlauf rc=0 99s: 163/163 Pruefungen bestanden.
+test_zwischenablage rc=0 1s: 4/4 Pruefungen bestanden.
+tb40_lauf_* nach den Tests: 4765
+ut BYTEGLEICH
+sf BYTEGLEICH

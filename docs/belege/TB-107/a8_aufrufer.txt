@@ -1,0 +1,513 @@
+# TB-107 A8, HEAD 404c7e4, 2026-09-25 21:09:58 +0200
+== (1) crontab -l: gesperrt - nicht gemessen
+== (2) faltenschranke_messung: Importe/Nennungen in versionierten .py/.sh ausserhalb docs/ (ohne die Datei selbst)
+research/faltenplan_neun/erste_falte_trockenlauf.py:62:Dazu die Gegenprobe gegen `faltenschranke_messung.trockenlauf_ohne_schranke`
+research/faltenplan_neun/erste_falte_trockenlauf.py:252:        import faltenschranke_messung as fsm  # noqa: E402
+research/vorregistrierung/benchmark.py:57:`research/faltenplan_neun/faltenschranke_messung.py::loader_lesart` gelesen -
+research/vorregistrierung/benchmark.py:104:import faltenschranke_messung as fsm  # noqa: E402
+research/vorregistrierung/benchmark.py:168:    handelbar macht - gelesen ueber `faltenschranke_messung.loader_lesart`
+research/vorregistrierung/faltenplan.py:220:# ihn (embargo_neun.py, faltenschranke_messung.py, plan_fuer_bot).
+   -- davon im Regelbetrieb (system/ dashboard/ notifications/ broker/ strategies/ shared/ ohne test_*):
+== (2) faltenplan_neun: Importe/Nennungen in versionierten .py/.sh ausserhalb docs/ (ohne die Datei selbst)
+research/faltenplan_neun/embargo_neun.py:46:    python3 research/faltenplan_neun/embargo_neun.py
+research/faltenplan_neun/embargo_neun.py:47:    python3 research/faltenplan_neun/embargo_neun.py --json bericht.json
+research/faltenplan_neun/embargo_neun.py:65:from faltenplan_neun import (BOTS, fensteranker, kursdatei,  # noqa: E402
+research/faltenplan_neun/erste_falte_trockenlauf.py:67:    python3 research/faltenplan_neun/erste_falte_trockenlauf.py
+research/faltenplan_neun/erste_falte_trockenlauf.py:68:    python3 research/faltenplan_neun/erste_falte_trockenlauf.py --json aus.json
+research/faltenplan_neun/erste_falte_trockenlauf.py:69:    python3 research/faltenplan_neun/erste_falte_trockenlauf.py --ohne-gegenprobe
+research/faltenplan_neun/erste_falte_trockenlauf.py:81:import faltenplan_neun as fn  # noqa: E402
+research/faltenplan_neun/faltenschranke_messung.py:7:`faltenplan_neun.py` ausgeschaltet, die Datei auf der Platte bleibt, wie sie
+research/faltenplan_neun/faltenschranke_messung.py:16:und - als **Kopie** - `FRUEHESTE_FALTE = 2019` in `faltenplan_neun.py`. Die
+research/faltenplan_neun/faltenschranke_messung.py:45:    python3 research/faltenplan_neun/faltenschranke_messung.py
+research/faltenplan_neun/faltenschranke_messung.py:46:    python3 research/faltenplan_neun/faltenschranke_messung.py \\
+research/faltenplan_neun/faltenschranke_messung.py:48:    python3 research/faltenplan_neun/faltenschranke_messung.py --mutation 2019
+research/faltenplan_neun/faltenschranke_messung.py:49:    python3 research/faltenplan_neun/faltenschranke_messung.py --trockenlauf tl.json
+research/faltenplan_neun/faltenschranke_messung.py:68:import faltenplan_neun as fp  # noqa: E402
+research/faltenplan_neun/faltenschranke_messung.py:79:    """JSON-Rundreise wie in `faltenplan_neun.main` (date -> str)."""
+research/faltenplan_neun/faltenschranke_messung.py:275:        "werkzeug": "research/faltenplan_neun/faltenplan_neun.py, Schranke im Speicher ausgeschaltet",
+research/faltenplan_neun/faltenschranke_messung.py:334:           "plan": "ohne Schranke (faltenplan_neun, FRUEHESTE_FALTE im Speicher = 0)",
+research/faltenplan_neun/faltenschranke_messung.py:450:                   help="den Plan ohne Schranke im Format von faltenplan_neun --json ablegen")
+research/faltenplan_neun/faltenschranke_messung.py:492:                 "herkunft": ("research/faltenplan_neun/faltenschranke_messung.py: "
+research/faltenplan_neun/faltenschranke_messung.py:493:                              "faltenplan_neun.py mit FRUEHESTE_FALTE im Speicher = 0; "
+research/faltenplan_neun/test_erste_falte_trockenlauf.py:46:    trading-env/bin/python3 research/faltenplan_neun/test_erste_falte_trockenlauf.py
+research/faltenplan_neun/test_erste_falte_trockenlauf.py:65:import faltenplan_neun as fn  # noqa: E402
+research/faltenplan_neun/test_faltenplan_neun.py:16:  K  **TB-104:** `faltenplan_neun.py` und `erste_falte_trockenlauf.py`
+research/faltenplan_neun/test_faltenplan_neun.py:60:    python3 research/faltenplan_neun/test_faltenplan_neun.py
+research/faltenplan_neun/test_faltenplan_neun.py:79:import faltenplan_neun as fp       # noqa: E402
+research/faltenplan_neun/test_faltenplan_neun.py:121:    neu, r_neu = _plan_json(os.path.join(_HIER, "faltenplan_neun.py"), [])
+research/faltenplan_neun/test_faltenplan_neun.py:288:        bericht, r = _plan_json(os.path.join(_HIER, "faltenplan_neun.py"), [],
+research/faltenplan_neun/test_faltenplan_neun.py:500:def _mutiert(datei, alt, neu, werkzeug="faltenplan_neun.py"):
+research/faltenplan_neun/test_faltenplan_neun.py:505:        # Kopie liegt deshalb unter `research/faltenplan_neun/`, daneben
+research/faltenplan_neun/test_faltenplan_neun.py:508:        ordner = _werkzeugkopie(os.path.join(m, "research", "faltenplan_neun"))
+research/faltenplan_neun/test_faltenplan_neun.py:527:    bericht, r = _mutiert("faltenplan_neun.py",
+research/faltenplan_neun/test_faltenplan_neun.py:553:    bericht, r = _mutiert("faltenplan_neun.py",
+research/faltenplan_neun/test_faltenplan_neun.py:579:    bericht, r = _mutiert("faltenplan_neun.py",
+research/faltenplan_neun/test_faltenplan_neun.py:682:                                "research", "faltenplan_neun"))
+research/faltenplan_neun/test_faltenplan_neun.py:683:import faltenplan_neun as fn
+research/faltenplan_neun/test_faltenplan_neun.py:691:                                "research", "faltenplan_neun"))
+research/faltenplan_neun/test_faltenplan_neun.py:737:    `mutation`: (alt, neu) in faltenplan_neun.py des Baums, oder None.
+research/faltenplan_neun/test_faltenplan_neun.py:748:        for ordner in ("faltenplan_neun", "universum_trockenlauf"):
+research/faltenplan_neun/test_faltenplan_neun.py:754:            _ersetze(os.path.join(baum, "research", "faltenplan_neun",
+research/faltenplan_neun/test_faltenplan_neun.py:755:                                  "faltenplan_neun.py"), *mutation)
+research/faltenplan_neun/test_faltenplan_neun.py:819:    with open(os.path.join(_HIER, "faltenplan_neun.py"), encoding="utf-8") as d:
+research/faltenplan_neun/test_faltenplan_neun.py:828:    pruefe("K1: faltenplan_neun.py im Selektionsmodus - 0 Kursdateien aus "
+research/faltenplan_neun/test_faltenplan_neun.py:833:           "(es liest ueber faltenplan_neun, ohne eigene Pfadlogik)",
+research/faltenplan_neun/test_faltenplan_neun.py:842:        "zurueckgenommen' - faltenplan_neun.py liest im Modus aus data/ (K1 "
+research/faltenplan_neun/test_faltenplan_neun.py:846:        "zurueckgenommen' - faltenplan_neun.py liest im Modus aus config/ (K1 "
+research/faltenplan_neun/test_faltenplan_neun.py:850:        "erste_falte_trockenlauf.py (Stelle in faltenplan_neun.py) - K2 waere rot",
+research/faltenplan_neun/test_horizontbeginn.py:8:(`faltenplan_neun.fensteranker`: zehn Jahre vor dem letzten Kurstag des
+research/faltenplan_neun/test_horizontbeginn.py:32:    trading-env/bin/python3 research/faltenplan_neun/test_horizontbeginn.py
+research/faltenplan_neun/test_horizontbeginn.py:50:import faltenplan_neun as fn  # noqa: E402
+research/registernachtrag_tb48/pruefe_abschnitt17.py:35:Selektionsfalte beginnt 2022"*; `research/faltenplan_neun/daten/
+research/registernachtrag_tb48/pruefe_abschnitt17.py:86:FALTENPLAN = os.path.join(BASE_DIR, "research", "faltenplan_neun", "daten",
+research/registernachtrag_tb48/pruefe_abschnitt17.py:540:    print("FRUEHESTE SELEKTIONSFALTE JE BOT  (research/faltenplan_neun/daten/"
+research/universum_trockenlauf/test_universum_trockenlauf.py:125:        r = _lauf([os.path.join(BASE_DIR, "research", "faltenplan_neun",
+research/universum_trockenlauf/test_universum_trockenlauf.py:126:                                "faltenplan_neun.py"), "--json", ziel])
+research/universum_trockenlauf/test_universum_trockenlauf.py:128:            raise RuntimeError("faltenplan_neun.py lief nicht:\n%s" % r.stdout[-2000:])
+research/universum_trockenlauf/universum_trockenlauf.py:18:* `research/faltenplan_neun/faltenplan_neun.py` fragt **"liegen Kursdaten
+research/universum_trockenlauf/universum_trockenlauf.py:93:* die **namentlichen Listen** aus `research/faltenplan_neun/faltenplan_neun.py`
+research/universum_trockenlauf/universum_trockenlauf.py:109:FALTENPLAN = os.path.join(BASIS, "research", "faltenplan_neun", "faltenplan_neun.py")
+research/universum_trockenlauf/universum_trockenlauf.py:264:        raise RuntimeError("faltenplan_neun.py fehlgeschlagen:\n%s"
+research/universum_trockenlauf/universum_trockenlauf.py:742:                   help="fertigen faltenplan_neun-Bericht wiederverwenden statt neu zu rechnen")
+research/vorregistrierung/benchmark.py:57:`research/faltenplan_neun/faltenschranke_messung.py::loader_lesart` gelesen -
+research/vorregistrierung/benchmark.py:94:# Ordners finden so `shared/` und `research/faltenplan_neun/`) - KEIN Weg zum
+research/vorregistrierung/benchmark.py:103:sys.path.insert(0, os.path.join(BASE_DIR, "research", "faltenplan_neun"))
+research/vorregistrierung/faltenplan.py:22:   (`erste_falte_4a()`, mit der Regel aus `research/faltenplan_neun/`),
+research/vorregistrierung/faltenplan.py:29:   `research/faltenplan_neun/erste_falte_trockenlauf.py`), nicht
+research/vorregistrierung/faltenplan.py:119:# research/faltenplan_neun/faltenplan_neun.py (reine Standardbibliothek).
+research/vorregistrierung/faltenplan.py:122:# 3b (a)): research/faltenplan_neun/erste_falte_trockenlauf.py ruft den
+research/vorregistrierung/faltenplan.py:125:sys.path.insert(0, os.path.join(BASE_DIR, "research", "faltenplan_neun"))
+research/vorregistrierung/faltenplan.py:126:import faltenplan_neun as fn  # noqa: E402
+research/vorregistrierung/faltenplan.py:219:# `fensteranker` bleibt in faltenplan_neun bestehen; andere Stellen benutzen
+research/vorregistrierung/faltenplan.py:226:# research/faltenplan_neun/test_horizontbeginn.py liest den Wert aus dem
+research/vorregistrierung/faltenplan.py:257:    Gerechnet mit der Regel aus `faltenplan_neun` (Kursdaten am 1. Januar,
+research/vorregistrierung/faltenplan.py:262:    `faltenplan_neun.erstes_faltenjahr` selbst noch die Schranke
+research/vorregistrierung/faltenplan.py:346:                               "research/faltenplan_neun; keine Konstante) UND (ii) in "
+research/vorregistrierung/test_vorregistrierung.py:1179:    (research/vorregistrierung, research/faltenplan_neun,
+research/vorregistrierung/test_vorregistrierung.py:1195:        for ordner in ("vorregistrierung", "faltenplan_neun", "universum_trockenlauf"):
+   -- davon im Regelbetrieb (system/ dashboard/ notifications/ broker/ strategies/ shared/ ohne test_*):
+== (2) universum_trockenlauf: Importe/Nennungen in versionierten .py/.sh ausserhalb docs/ (ohne die Datei selbst)
+research/faltenplan_neun/erste_falte_trockenlauf.py:32:`universum_trockenlauf.trockenlauf` fuer H benutzt) und gibt das Jahr der
+research/faltenplan_neun/erste_falte_trockenlauf.py:34:macht. Der Loader wird ueber `universum_trockenlauf.messe_bot` aufgerufen -
+research/faltenplan_neun/erste_falte_trockenlauf.py:84:sys.path.insert(0, os.path.join(BASE_DIR, "research", "universum_trockenlauf"))
+research/faltenplan_neun/erste_falte_trockenlauf.py:85:import universum_trockenlauf as ut  # noqa: E402
+research/faltenplan_neun/erste_falte_trockenlauf.py:93:    vor `bis`, wie in `universum_trockenlauf.stichtage_der_falte`."""
+research/faltenplan_neun/erste_falte_trockenlauf.py:200:           "werkzeug": "research/universum_trockenlauf/universum_trockenlauf.py::messe_bot "
+research/faltenplan_neun/faltenschranke_messung.py:36:   der Trockenlauf des Laufcodes (`research/universum_trockenlauf/`), der mit
+research/faltenplan_neun/faltenschranke_messung.py:210:    Laufcode selbst macht `universum_trockenlauf.py`.
+research/faltenplan_neun/faltenschranke_messung.py:318:    sys.path.insert(0, os.path.join(BASE_DIR, "research", "universum_trockenlauf"))
+research/faltenplan_neun/faltenschranke_messung.py:319:    import universum_trockenlauf as ut  # noqa: E402
+research/faltenplan_neun/faltenschranke_messung.py:333:    aus = {"werkzeug": "research/universum_trockenlauf/universum_trockenlauf.py::trockenlauf",
+research/faltenplan_neun/test_erste_falte_trockenlauf.py:26:(`universum_trockenlauf.messe_bot`, TB-40; Registertext 3b: "ein anderes
+research/faltenplan_neun/test_erste_falte_trockenlauf.py:70:sys.path.insert(0, os.path.join(BASE_DIR, "research", "universum_trockenlauf"))
+research/faltenplan_neun/test_erste_falte_trockenlauf.py:73:import universum_trockenlauf as ut  # noqa: E402
+research/faltenplan_neun/test_faltenplan_neun.py:748:        for ordner in ("faltenplan_neun", "universum_trockenlauf"):
+research/registernachtrag_tb41/pruefe_register.py:49:weder data/ noch strategies/ noch research/universum_trockenlauf/ an.
+research/registernachtrag_tb41/pruefe_register.py:65:TROCKENLAUF = os.path.join(BASE_DIR, "research", "universum_trockenlauf",
+research/registernachtrag_tb41/pruefe_register.py:66:                           "universum_trockenlauf.py")
+research/registernachtrag_tb41/pruefe_register.py:211:    """Ruft research/universum_trockenlauf/universum_trockenlauf.py auf und
+research/universum_trockenlauf/loaderlauf.py:6:`universum_trockenlauf.py` je Bot einmal als eigener Prozess gestartet.
+research/universum_trockenlauf/test_universum_trockenlauf.py:70:    python3 research/universum_trockenlauf/test_universum_trockenlauf.py
+research/universum_trockenlauf/test_universum_trockenlauf.py:89:import universum_trockenlauf as ut                               # noqa: E402
+research/universum_trockenlauf/test_universum_trockenlauf.py:91:WERKZEUG = os.path.join(_HIER, "universum_trockenlauf.py")
+research/universum_trockenlauf/test_universum_trockenlauf.py:445:            werkzeug=os.path.join(ordner, "universum_trockenlauf.py"),
+research/universum_trockenlauf/test_universum_trockenlauf.py:1342:# Einstiegspunkt fuer die Probe ueber universum_trockenlauf.messe_bot().
+research/universum_trockenlauf/test_universum_trockenlauf.py:1345:                                "research", "universum_trockenlauf"))
+research/universum_trockenlauf/test_universum_trockenlauf.py:1346:import universum_trockenlauf as ut
+research/universum_trockenlauf/test_universum_trockenlauf.py:1356:    loaderlauf.py/universum_trockenlauf.py, Attrappen-Bot, data/ und config/
+research/universum_trockenlauf/test_universum_trockenlauf.py:1371:        shutil.copytree(_HIER, os.path.join(baum, "research", "universum_trockenlauf"),
+research/universum_trockenlauf/test_universum_trockenlauf.py:1373:        loader = os.path.join(baum, "research", "universum_trockenlauf",
+research/universum_trockenlauf/test_universum_trockenlauf.py:1465:    pruefe("O3: universum_trockenlauf.messe_bot(datenordner=...) im "
+research/vorregistrierung/test_vorregistrierung.py:1180:    research/universum_trockenlauf, notifications/manual_close.py), dazu
+research/vorregistrierung/test_vorregistrierung.py:1195:        for ordner in ("vorregistrierung", "faltenplan_neun", "universum_trockenlauf"):
+shared/test_leeres_symbol.py:39:`research/universum_trockenlauf`). Verschoben werden ausschliesslich die
+   -- davon im Regelbetrieb (system/ dashboard/ notifications/ broker/ strategies/ shared/ ohne test_*):
+== (2) strategy_paths: Importe/Nennungen in versionierten .py/.sh ausserhalb docs/ (ohne die Datei selbst)
+broker/bot_db.py:23:    """Dieselbe Namensregel wie shared/strategy_paths.py - hier nachgebildet
+research/abrufskripte/echtlauf.py:130:    schreibe(os.path.join(shared, "strategy_paths.py"), STRATEGY_PATHS)
+research/ausstiegspfade/probe.py:25:  Strategieordner). Weil `strategy_paths.get_strategy_paths()` die Datenbank
+research/ausstiegspfade/probe.py:277:                 "strategy_paths.py", "data_quality.py"):
+research/backtest_defaults/kopplungsnachweis.py:41:import strategy_paths
+research/backtest_defaults/kopplungsnachweis.py:42:_echt = strategy_paths.get_strategy_paths
+research/backtest_defaults/kopplungsnachweis.py:53:strategy_paths.get_strategy_paths = _umgeleitet
+research/backtest_defaults/regression.py:17:  2. UMGELEITETE ERGEBNISPFADE. strategy_paths.get_strategy_paths wird so
+research/backtest_defaults/regression.py:54:import strategy_paths
+research/backtest_defaults/regression.py:55:_echt = strategy_paths.get_strategy_paths
+research/backtest_defaults/regression.py:66:strategy_paths.get_strategy_paths = _umgeleitet
+research/datenordner_schnitt/erhebung.py:95:    "shared/strategy_paths.py": ["DATA_DIR"],
+research/datenordner_schnitt/erhebung.py:464:                "strategy_paths.py", "kursdaten.py", "get_top_symbols.py",
+research/faltenplan_neun/faltenplan_neun.py:123:# direkt, nicht ueber `strategy_paths.get_strategy_paths()` (legt
+research/forward_test_sync/backtest_regression.py:46:import strategy_paths
+research/forward_test_sync/backtest_regression.py:47:_echt = strategy_paths.get_strategy_paths
+research/forward_test_sync/backtest_regression.py:72:strategy_paths.get_strategy_paths = _umgeleitet
+research/forward_test_sync/trockentest.py:18:import strategy_paths
+research/forward_test_sync/trockentest.py:19:echt = strategy_paths.get_strategy_paths
+research/forward_test_sync/trockentest.py:20:strategy_paths.get_strategy_paths = lambda f: {
+research/forward_test_sync/vergleich.py:149:    import strategy_paths
+research/forward_test_sync/vergleich.py:150:    echt = strategy_paths.get_strategy_paths
+research/forward_test_sync/vergleich.py:161:    strategy_paths.get_strategy_paths = umgeleitet
+research/forward_test_sync/vergleich.py:168:        strategy_paths.get_strategy_paths = echt
+research/fromisoformat_registerfrage/messung.py:267:import strategy_paths
+research/fromisoformat_registerfrage/messung.py:268:_echt_pfade = strategy_paths.get_strategy_paths
+research/fromisoformat_registerfrage/messung.py:274:strategy_paths.get_strategy_paths = _wegwerf
+research/hrp_portfolio/corrected_curves.py:407:import strategy_paths
+research/hrp_portfolio/corrected_curves.py:409:_echt = strategy_paths.get_strategy_paths
+research/hrp_portfolio/corrected_curves.py:423:strategy_paths.get_strategy_paths = _umgeleitet
+research/oos_positionslimit/oos_lauf.py:21:  1. UMGELEITETE ERGEBNISPFADE. strategy_paths.get_strategy_paths wird so
+research/oos_positionslimit/oos_lauf.py:58:import strategy_paths
+research/oos_positionslimit/oos_lauf.py:59:_echt = strategy_paths.get_strategy_paths
+research/oos_positionslimit/oos_lauf.py:70:strategy_paths.get_strategy_paths = _umgeleitet
+research/oos_take_profit/oos_lauf.py:16:  1. UMGELEITETE ERGEBNISPFADE. strategy_paths.get_strategy_paths wird so
+research/oos_take_profit/oos_lauf.py:55:import strategy_paths
+research/oos_take_profit/oos_lauf.py:56:_echt = strategy_paths.get_strategy_paths
+research/oos_take_profit/oos_lauf.py:67:strategy_paths.get_strategy_paths = _umgeleitet
+research/resolver_selektion/pfadvergleich.py:28:  * Zusaetzlich `shared/strategy_paths.py` mit seinen sieben Schluesseln je
+research/resolver_selektion/pfadvergleich.py:99:import strategy_paths
+research/resolver_selektion/pfadvergleich.py:101:        strategy_paths.get_strategy_paths(
+research/resolver_selektion/pfadvergleich.py:103:    werte["strategy_paths." + schluessel] = wert
+research/resolver_selektion/pfadvergleich.py:116:    shutil.copy2(os.path.join(_WURZEL, "shared", "strategy_paths.py"),
+research/resolver_selektion/pfadvergleich.py:117:                 os.path.join(wurzel, "shared", "strategy_paths.py"))
+research/selektionsmasse/masse.py:38:#   `shared/strategy_paths.py` - ⚠️ leitet `DATA_DIR` SELBST ab
+research/selektionsmasse/masse.py:43:# seinen Datenpfad aus `strategy_paths` zieht, geht an `paths.py` vorbei -
+research/selektionsmasse/masse.py:47:ZWEITE_QUELLE = "shared/strategy_paths.py"
+research/selektionsmasse/masse.py:48:# ⚠️ **Alle** Namen, die aus `paths.py` oder `strategy_paths.py` stammen -
+research/selektionsmasse/masse.py:51:# aus `strategy_paths.get_strategy_paths()`, also **aus** dem Resolver.
+research/selektionsmasse/masse.py:386:            # Datenpfad wird aus `strategy_paths` gezogen. Zentral versorgt -
+research/selektionsmasse/test_eigener_pfadbau.py:17:**71 von 90** beziehen ihre Pfade aus `shared/strategy_paths.py`, und das
+research/selektionsmasse/test_eigener_pfadbau.py:20:    "DATA_DIR": os.path.join(base_dir, "data")     # strategy_paths.py
+research/selektionsmasse/test_eigener_pfadbau.py:28:den Bezug aus `strategy_paths` mit.** Ein Modul, das zentral versorgt ist,
+research/selektionsmasse/test_eigener_pfadbau.py:54:# `_P["CONFIG_DIR"]` aus `shared/strategy_paths.py`. **Null** Modul setzt
+research/selektionsmasse/test_eigener_pfadbau.py:74:⚠️ Namen, die aus `paths.py` oder `strategy_paths.py` stammen (DATA_DIR,
+research/trend_overlay/corrected_curves.py:407:import strategy_paths
+research/trend_overlay/corrected_curves.py:409:_echt = strategy_paths.get_strategy_paths
+research/trend_overlay/corrected_curves.py:423:strategy_paths.get_strategy_paths = _umgeleitet
+research/turn_of_month/staging.py:18:  * `strategy_paths.get_strategy_paths()` legt `paper_trading_<name>.db`
+research/uebersprungene_trades/aufschluesselung.py:65:import strategy_paths  # noqa: E402
+research/uebersprungene_trades/aufschluesselung.py:67:_echt = strategy_paths.get_strategy_paths
+research/uebersprungene_trades/aufschluesselung.py:81:strategy_paths.get_strategy_paths = _umgeleitet
+research/universum_trockenlauf/loaderlauf.py:64:Pfad-Hilfe `shared/strategy_paths.py` legt beim Import `results/<bot>/` und
+research/universum_trockenlauf/loaderlauf.py:82:Resolver (`shared/paths.py` ueber `strategy_paths`), nie von aussen.
+research/universum_trockenlauf/test_universum_trockenlauf.py:257:    # sich daran, dass er etwas zu tun hatte: shared/strategy_paths.py will
+research/universum_trockenlauf/test_universum_trockenlauf.py:273:    #    jeden gelaufenen Bot beide Pfade, die `shared/strategy_paths.py`
+research/universum_trockenlauf/test_universum_trockenlauf.py:289:    # results/<bot> und logs/<bot> legt shared/strategy_paths.py beim Import an.
+research/universum_trockenlauf/test_universum_trockenlauf.py:481:    was der Loader dann anlegen will - `shared/strategy_paths.py` will beim
+research/universum_trockenlauf/test_universum_trockenlauf.py:1033:            # sonst kaeme `shared/strategy_paths.py` beim Import nicht durch.
+research/versuchsregister/versuchsregister.py:83:# strategy_paths.py. Dieselbe Aufloesung wie shared/ergebniskurven.py:
+research/vorregistrierung/auswertung.py:110:# strategy_paths.
+research/vorregistrierung/benchmark.py:110:# `strategy_paths.get_strategy_paths()` (legt `results/<name>/` und
+research/vorregistrierung/faltenplan.py:133:# nicht ueber strategy_paths.
+research/vorregistrierung/herkunft.py:128:    dieses Moduls unveraendert bleibt; nicht ueber strategy_paths."""
+research/vorregistrierung/messgroessen.py:96:# Warum `paths` und nicht `strategy_paths.get_strategy_paths()`: jene reicht
+research/zuteilungskaskade/messung_primaerschluessel.py:109:    import strategy_paths as echt
+research/zuteilungskaskade/messung_primaerschluessel.py:110:    ersatz = types.ModuleType("strategy_paths")
+research/zuteilungskaskade/messung_primaerschluessel.py:119:    sys.modules["strategy_paths"] = ersatz
+shared/determinismus_lauf.py:147:    """Ersetzt `strategy_paths` durch eine Fassung, die alles an die echte
+shared/determinismus_lauf.py:149:    import strategy_paths as echt
+shared/determinismus_lauf.py:151:    ersatz = types.ModuleType("strategy_paths")
+shared/determinismus_lauf.py:162:    sys.modules["strategy_paths"] = ersatz
+shared/entscheidungskerze.py:785:    (`strategy_paths` leitet ihn genauso ab).
+shared/ergebniskurven.py:139:# strategy_paths.py). Dieselbe Aufloesung wie in
+shared/groessenfaktor.py:135:    Ordnername unter strategies/ IST der Bot-Name (siehe strategy_paths.py).
+shared/kurven_lauf.py:40:Umgelenkt wird ueber ein Ersatzmodul `strategy_paths` in `sys.modules`, das
+shared/kurven_lauf.py:114:    """Ersetzt `strategy_paths` durch eine Fassung, die alles an die echte
+shared/kurven_lauf.py:116:    import strategy_paths as echt
+shared/kurven_lauf.py:118:    ersatz = types.ModuleType("strategy_paths")
+shared/kurven_lauf.py:129:    sys.modules["strategy_paths"] = ersatz
+shared/paths.py:28:         aus `strategy_paths.py`. Sie ist **nicht** die Zahl der Importe
+shared/portfolio_overview.py:120:# strategy_paths.py-Konvention) - explizit hier vermerkt statt stillschweigend
+shared/test_abrufschutz.py:232:    schreibe(os.path.join(shared, "strategy_paths.py"), STUB_STRATEGY_PATHS)
+shared/test_entscheidungskerze.py:688:                 "binance_historie.py", "strategy_paths.py", "paths.py",
+shared/test_ergebniskurven.py:92:    sowohl `strategy_paths.get_strategy_paths()` als auch die beiden
+shared/test_groessenfaktor.py:294:import strategy_paths
+shared/test_groessenfaktor.py:295:_echt = strategy_paths.get_strategy_paths
+shared/test_groessenfaktor.py:300:strategy_paths.get_strategy_paths = _neu
+shared/test_ladeprotokoll.py:371:            # alte ist. strategy_paths.py leitet BASE_DIR aus der Lage der
+shared/test_leeres_symbol.py:208:        shutil.copy(os.path.join(BASE_DIR, "shared", "strategy_paths.py"),
+shared/test_leeres_symbol.py:256:import strategy_paths
+shared/test_leeres_symbol.py:257:_echte_pfade = strategy_paths.get_strategy_paths
+shared/test_leeres_symbol.py:263:strategy_paths.get_strategy_paths = _wegwerf
+shared/test_leeres_symbol.py:410:import strategy_paths
+shared/test_leeres_symbol.py:415:strategy_paths.get_strategy_paths = _wegwerf
+shared/test_messkette.py:211:# `strategy_paths` umlenkt - und der einzige, der zuverlaessig greift: der Bot
+shared/test_rueckfaelle_modus.py:14:        `strategy_paths`: kurven_lauf.py, determinismus_lauf.py und
+shared/test_rueckfaelle_modus.py:15:        messung_primaerschluessel.py ersetzen `strategy_paths` durch ein
+shared/test_rueckfaelle_modus.py:24:        (strategy_paths.py, bot_lauf.py), mit Gegenprobe.
+shared/test_rueckfaelle_modus.py:261:        ("E4 Mutation strategy_paths.py: Anlage auch unter dem Modus", "shared/strategy_paths.py",
+shared/test_strategy_paths.py:3:Selbsttests zu shared/strategy_paths.py - DATA_DIR aus dem Resolver (TB-53b)
+shared/test_strategy_paths.py:12:Jede Probe laeuft gegen eine `strategy_paths.py`, die zusammen mit der
+shared/test_strategy_paths.py:24:die alte Fassung kommt aus `git show <BEZUGSCOMMIT>:shared/strategy_paths.py`,
+shared/test_strategy_paths.py:50:_QUELLE = os.path.join(_HIER, "strategy_paths.py")
+shared/test_strategy_paths.py:55:# `strategy_paths.py` den Datenpfad noch selbst gebaut hat.
+shared/test_strategy_paths.py:118:    with open(os.path.join(shared, "strategy_paths.py"), "w",
+shared/test_strategy_paths.py:200:    from strategy_paths import get_strategy_paths
+shared/test_strategy_paths.py:258:         "%s:shared/strategy_paths.py" % BEZUGSCOMMIT],
+shared/test_strategy_paths.py:400:          "strategy_paths, rc != 0")
+shared/test_strategy_paths.py:413:             "from strategy_paths import get_strategy_paths; "
+shared/test_strategy_paths.py:425:        # Mutation: der zweite Resolver. strategy_paths baut sich sein eigenes
+shared/test_strategy_paths.py:441:                     "from strategy_paths import get_strategy_paths; "
+shared/test_strategy_paths.py:461:# Probe D - mit Modus wirft LIVE_DATA_DIR, und strategy_paths verraet den
+shared/test_strategy_paths.py:483:        # Mutation: strategy_paths gibt den Live-Pfad unter einem eigenen
+shared/test_strategy_paths.py:518:    # Quelltext von strategy_paths.py (Entscheidung des Betreibers 19.09.2026:
+shared/test_strategy_paths.py:534:        # der shared/ des Baums auf sys.path. strategy_paths muss es ablehnen.
+shared/test_strategy_paths.py:539:                    "from strategy_paths import get_strategy_paths; "
+shared/test_strategy_paths.py:565:             "from strategy_paths import get_strategy_paths; "
+shared/test_strategy_paths.py:630:    print("\nProbe F - strategy_paths.py traegt keinen zweiten Resolver")
+shared/test_strategy_paths.py:651:    print("Selbsttests zu shared/strategy_paths.py - DATA_DIR aus dem Resolver (TB-53b)")
+shared/test_wellenauswahl.py:244:    den Suchpfad, weil `elliott_wave_counter.py` `strategy_paths` aus
+strategies/elliott_wave/backtest_elliott.py:44:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/daily_summary_email.py:54:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/elliott_wave_counter.py:22:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/equity_simulation.py:35:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/forward_test.py:38:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/multi_symbol_optimise.py:24:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/oos_equity_simulation.py:23:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/optimise_elliott.py:29:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/quarterly_review.py:24:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/walk_forward.py:33:from strategy_paths import get_strategy_paths
+strategies/elliott_wave/zigzag_indicator.py:19:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/backtest_elliott.py:44:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/buy_and_hold_benchmark.py:28:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/daily_summary_email.py:54:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/elliott_wave_counter.py:22:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/equity_simulation.py:35:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/experiment_combined.py:25:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/experiment_concurrency_stats.py:31:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/experiment_no_take_profit.py:26:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/experiment_position_limit.py:29:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/fetch_stock_data.py:59:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/forward_test.py:37:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/get_top_stocks.py:25:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/multi_symbol_optimise.py:24:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/oos_equity_simulation.py:23:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/optimise_elliott.py:29:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/quarterly_review.py:26:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/signal_quality_test.py:29:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/stocks_symbols_config.py:16:from strategy_paths import get_strategy_paths
+strategies/elliott_wave_stocks/zigzag_indicator.py:19:from strategy_paths import get_strategy_paths
+strategies/rsi2_crypto/backtest_rsi2.py:145:    from strategy_paths import get_strategy_paths
+strategies/rsi2_crypto/buy_and_hold_benchmark.py:17:from strategy_paths import get_strategy_paths
+strategies/rsi2_crypto/daily_summary_email.py:47:from strategy_paths import get_strategy_paths
+strategies/rsi2_crypto/equity_simulation.py:19:from strategy_paths import get_strategy_paths
+strategies/rsi2_crypto/experiment_btc_regime_filter.py:20:from strategy_paths import get_strategy_paths
+strategies/rsi2_crypto/forward_test.py:36:from strategy_paths import get_strategy_paths
+strategies/rsi2_crypto/multi_symbol_optimise.py:31:from strategy_paths import get_strategy_paths
+strategies/rsi2_crypto/pipeline_report.py:20:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/backtest_rsi2.py:181:    from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py:19:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/daily_summary_email.py:49:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/equity_simulation.py:9:(shared/strategy_paths.py-Kommentar: "neue Strategie hinzufuegen = Ordner
+strategies/rsi2_mean_reversion/equity_simulation.py:21:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/experiment_position_size_limit.py:21:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/fetch_stock_data.py:59:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/forward_test.py:7:strategy_paths.py). Zum WIEDERHOLTEN Ausfuehren gedacht (z.B. taeglich
+strategies/rsi2_mean_reversion/forward_test.py:38:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/multi_symbol_optimise.py:24:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/pipeline_report.py:18:from strategy_paths import get_strategy_paths
+strategies/rsi2_mean_reversion/stocks_symbols_config.py:17:from strategy_paths import get_strategy_paths
+strategies/t3_supertrend/daily_summary_email.py:6:strategy_paths.py) und markiert die Mail im Betreff mit dem
+strategies/t3_supertrend/daily_summary_email.py:50:from strategy_paths import get_strategy_paths
+strategies/t3_supertrend/equity_simulation.py:17:from strategy_paths import get_strategy_paths
+strategies/t3_supertrend/forward_test.py:7:benannt durch strategy_paths.py - vermischt sich nicht mit dem
+strategies/t3_supertrend/forward_test.py:27:from strategy_paths import get_strategy_paths
+strategies/t3_supertrend/multi_symbol_optimise.py:19:from strategy_paths import get_strategy_paths
+strategies/t3_supertrend/optimise_trend.py:18:from strategy_paths import get_strategy_paths
+strategies/t3_supertrend/quarterly_review.py:41:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/backtest_turtle_soup.py:189:    from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/buy_and_hold_benchmark.py:15:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/daily_summary_email.py:46:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/equity_simulation.py:16:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/experiment_capital_management_summary.py:19:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/experiment_position_size_limit.py:23:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/experiment_stress_new_config.py:28:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/experiment_volatility_breakout_overlap.py:25:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/forward_test.py:42:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/multi_symbol_optimise.py:17:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/pipeline_report.py:17:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_crypto/stress_periods.py:18:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/backtest_turtle_soup.py:185:    from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/buy_and_hold_benchmark.py:15:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/daily_summary_email.py:46:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/equity_simulation.py:23:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/experiment_capital_management_summary.py:20:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/experiment_position_size_limit.py:24:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/experiment_stress_new_config.py:27:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/experiment_volatility_breakout_overlap.py:52:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/fetch_stock_data.py:59:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/forward_test.py:36:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/multi_symbol_optimise.py:23:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/pipeline_report.py:18:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/stocks_symbols_config.py:17:from strategy_paths import get_strategy_paths
+strategies/turtle_soup_stocks/stress_periods.py:20:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/backtest_breakout.py:218:    from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/buy_and_hold_benchmark.py:17:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/capital_management_summary.py:19:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/daily_summary_email.py:46:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/equity_simulation.py:18:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/experiment_position_size_limit.py:21:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/experiment_trailing_stop.py:28:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/fetch_stock_data.py:59:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/forward_test.py:31:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/multi_symbol_optimise.py:26:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/pipeline_report.py:19:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout/stocks_symbols_config.py:17:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/backtest_breakout.py:177:    from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/buy_and_hold_benchmark.py:15:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/daily_summary_email.py:47:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/equity_simulation.py:16:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/experiment_btc_regime_filter.py:21:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/experiment_btc_regime_filter_robustness.py:24:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/forward_test.py:41:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/multi_symbol_optimise.py:19:from strategy_paths import get_strategy_paths
+strategies/volatility_breakout_crypto/pipeline_report.py:20:from strategy_paths import get_strategy_paths
+   -- davon im Regelbetrieb (system/ dashboard/ notifications/ broker/ strategies/ shared/ ohne test_*):
+      broker/bot_db.py
+      shared/determinismus_lauf.py
+      shared/entscheidungskerze.py
+      shared/ergebniskurven.py
+      shared/groessenfaktor.py
+      shared/kurven_lauf.py
+      shared/paths.py
+      shared/portfolio_overview.py
+      strategies/elliott_wave_stocks/backtest_elliott.py
+      strategies/elliott_wave_stocks/buy_and_hold_benchmark.py
+      strategies/elliott_wave_stocks/daily_summary_email.py
+      strategies/elliott_wave_stocks/elliott_wave_counter.py
+      strategies/elliott_wave_stocks/equity_simulation.py
+      strategies/elliott_wave_stocks/experiment_combined.py
+      strategies/elliott_wave_stocks/experiment_concurrency_stats.py
+      strategies/elliott_wave_stocks/experiment_no_take_profit.py
+      strategies/elliott_wave_stocks/experiment_position_limit.py
+      strategies/elliott_wave_stocks/fetch_stock_data.py
+      strategies/elliott_wave_stocks/forward_test.py
+      strategies/elliott_wave_stocks/get_top_stocks.py
+      strategies/elliott_wave_stocks/multi_symbol_optimise.py
+      strategies/elliott_wave_stocks/oos_equity_simulation.py
+      strategies/elliott_wave_stocks/optimise_elliott.py
+      strategies/elliott_wave_stocks/quarterly_review.py
+      strategies/elliott_wave_stocks/signal_quality_test.py
+      strategies/elliott_wave_stocks/stocks_symbols_config.py
+      strategies/elliott_wave_stocks/zigzag_indicator.py
+      strategies/elliott_wave/backtest_elliott.py
+      strategies/elliott_wave/daily_summary_email.py
+      strategies/elliott_wave/elliott_wave_counter.py
+      strategies/elliott_wave/equity_simulation.py
+      strategies/elliott_wave/forward_test.py
+      strategies/elliott_wave/multi_symbol_optimise.py
+      strategies/elliott_wave/oos_equity_simulation.py
+      strategies/elliott_wave/optimise_elliott.py
+      strategies/elliott_wave/quarterly_review.py
+      strategies/elliott_wave/walk_forward.py
+      strategies/elliott_wave/zigzag_indicator.py
+      strategies/rsi2_crypto/backtest_rsi2.py
+      strategies/rsi2_crypto/buy_and_hold_benchmark.py
+      strategies/rsi2_crypto/daily_summary_email.py
+      strategies/rsi2_crypto/equity_simulation.py
+      strategies/rsi2_crypto/experiment_btc_regime_filter.py
+      strategies/rsi2_crypto/forward_test.py
+      strategies/rsi2_crypto/multi_symbol_optimise.py
+      strategies/rsi2_crypto/pipeline_report.py
+      strategies/rsi2_mean_reversion/backtest_rsi2.py
+      strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py
+      strategies/rsi2_mean_reversion/daily_summary_email.py
+      strategies/rsi2_mean_reversion/equity_simulation.py
+      strategies/rsi2_mean_reversion/experiment_position_size_limit.py
+      strategies/rsi2_mean_reversion/fetch_stock_data.py
+      strategies/rsi2_mean_reversion/forward_test.py
+      strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+      strategies/rsi2_mean_reversion/pipeline_report.py
+      strategies/rsi2_mean_reversion/stocks_symbols_config.py
+      strategies/t3_supertrend/daily_summary_email.py
+      strategies/t3_supertrend/equity_simulation.py
+      strategies/t3_supertrend/forward_test.py
+      strategies/t3_supertrend/multi_symbol_optimise.py
+      strategies/t3_supertrend/optimise_trend.py
+      strategies/t3_supertrend/quarterly_review.py
+      strategies/turtle_soup_crypto/backtest_turtle_soup.py
+      strategies/turtle_soup_crypto/buy_and_hold_benchmark.py
+      strategies/turtle_soup_crypto/daily_summary_email.py
+      strategies/turtle_soup_crypto/equity_simulation.py
+      strategies/turtle_soup_crypto/experiment_capital_management_summary.py
+      strategies/turtle_soup_crypto/experiment_position_size_limit.py
+      strategies/turtle_soup_crypto/experiment_stress_new_config.py
+      strategies/turtle_soup_crypto/experiment_volatility_breakout_overlap.py
+      strategies/turtle_soup_crypto/forward_test.py
+      strategies/turtle_soup_crypto/multi_symbol_optimise.py
+      strategies/turtle_soup_crypto/pipeline_report.py
+      strategies/turtle_soup_crypto/stress_periods.py
+      strategies/turtle_soup_stocks/backtest_turtle_soup.py
+      strategies/turtle_soup_stocks/buy_and_hold_benchmark.py
+      strategies/turtle_soup_stocks/daily_summary_email.py
+      strategies/turtle_soup_stocks/equity_simulation.py
+      strategies/turtle_soup_stocks/experiment_capital_management_summary.py
+      strategies/turtle_soup_stocks/experiment_position_size_limit.py
+      strategies/turtle_soup_stocks/experiment_stress_new_config.py
+      strategies/turtle_soup_stocks/experiment_volatility_breakout_overlap.py
+      strategies/turtle_soup_stocks/fetch_stock_data.py
+      strategies/turtle_soup_stocks/forward_test.py
+      strategies/turtle_soup_stocks/multi_symbol_optimise.py
+      strategies/turtle_soup_stocks/pipeline_report.py
+      strategies/turtle_soup_stocks/stocks_symbols_config.py
+      strategies/turtle_soup_stocks/stress_periods.py
+      strategies/volatility_breakout_crypto/backtest_breakout.py
+      strategies/volatility_breakout_crypto/buy_and_hold_benchmark.py
+      strategies/volatility_breakout_crypto/daily_summary_email.py
+      strategies/volatility_breakout_crypto/equity_simulation.py
+      strategies/volatility_breakout_crypto/experiment_btc_regime_filter_robustness.py
+      strategies/volatility_breakout_crypto/experiment_btc_regime_filter.py
+      strategies/volatility_breakout_crypto/forward_test.py
+      strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+      strategies/volatility_breakout_crypto/pipeline_report.py
+      strategies/volatility_breakout/backtest_breakout.py
+      strategies/volatility_breakout/buy_and_hold_benchmark.py
+      strategies/volatility_breakout/capital_management_summary.py
+      strategies/volatility_breakout/daily_summary_email.py
+      strategies/volatility_breakout/equity_simulation.py
+      strategies/volatility_breakout/experiment_position_size_limit.py
+      strategies/volatility_breakout/experiment_trailing_stop.py
+      strategies/volatility_breakout/fetch_stock_data.py
+      strategies/volatility_breakout/forward_test.py
+      strategies/volatility_breakout/multi_symbol_optimise.py
+      strategies/volatility_breakout/pipeline_report.py
+      strategies/volatility_breakout/stocks_symbols_config.py
+== (3) strategy_paths: Nutzer in strategies/ (forward_test.py je Bot und Werkzeuge)
+   2 backtest_breakout.py
+   2 backtest_elliott.py
+   2 backtest_rsi2.py
+   2 backtest_turtle_soup.py
+   7 buy_and_hold_benchmark.py
+   1 capital_management_summary.py
+   9 daily_summary_email.py
+   2 elliott_wave_counter.py
+   9 equity_simulation.py
+   1 experiment_btc_regime_filter_robustness.py
+   2 experiment_btc_regime_filter.py
+   2 experiment_capital_management_summary.py
+   1 experiment_combined.py
+   1 experiment_concurrency_stats.py
+   1 experiment_no_take_profit.py
+   1 experiment_position_limit.py
+   4 experiment_position_size_limit.py
+   2 experiment_stress_new_config.py
+   1 experiment_trailing_stop.py
+   2 experiment_volatility_breakout_overlap.py
+   4 fetch_stock_data.py
+   9 forward_test.py
+   1 get_top_stocks.py
+   9 multi_symbol_optimise.py
+   2 oos_equity_simulation.py
+   2 optimise_elliott.py
+   1 optimise_trend.py
+   6 pipeline_report.py
+   3 quarterly_review.py
+   1 signal_quality_test.py
+   4 stocks_symbols_config.py
+   2 stress_periods.py
+   1 walk_forward.py
+   2 zigzag_indicator.py
+== (4) Ersatzmodule fuer strategy_paths (TB-105 Befund 1)
+research/zuteilungskaskade/messung_primaerschluessel.py:110:    ersatz = types.ModuleType("strategy_paths")
+research/zuteilungskaskade/messung_primaerschluessel.py:119:    sys.modules["strategy_paths"] = ersatz
+shared/determinismus_lauf.py:151:    ersatz = types.ModuleType("strategy_paths")
+shared/determinismus_lauf.py:162:    sys.modules["strategy_paths"] = ersatz
+shared/kurven_lauf.py:118:    ersatz = types.ModuleType("strategy_paths")
+shared/kurven_lauf.py:129:    sys.modules["strategy_paths"] = ersatz

@@ -1,0 +1,6 @@
+# TB-107 D Vergleich strategy_paths.py f5fdb53 (vorher) gegen Arbeitsbaum, ohne Modus
+Aufrufer (Dateien unter strategies/ mit get_strategy_paths): 101, Bots: 9
+rc != 0 vorher: 0, nachher: 0
+Schluessel je Aufruf: ['BASE_DIR', 'CONFIG_DIR', 'DATA_DIR', 'DB_FILE', 'LOGS_DIR', 'RESULTS_DIR', 'STRATEGY_NAME']
+Beispiel strategies/elliott_wave/backtest_elliott.py: Pfade {"BASE_DIR": "<WURZEL>", "CONFIG_DIR": "<WURZEL>/config", "DATA_DIR": "<WURZEL>/data", "DB_FILE": "<WURZEL>/paper_trading_elliott_wave.db", "LOGS_DIR": "<WURZEL>/logs/elliott_wave", "RESULTS_DIR": "<WURZEL>/results/elliott_wave", "STRATEGY_NAME": "elliott_wave"}; Ordner ['logs', 'logs/elliott_wave', 'results', 'results/elliott_wave', 'shared', 'strategies', 'strategies/elliott_wave']
+UNTERSCHIEDE (Pfade oder angelegte Ordner): 0 []

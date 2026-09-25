@@ -1,0 +1,15 @@
+# TB-107 Schritt 0, 2026-09-25 21:07 +0200
+0a: Commit 404c7e4 (3 Dateien des steuernden Chats: Auftrag TB-107, Zeiger AKTUELLER_AUFTRAG.md,
+    FABLE_ANFRAGE_2026-09-25d) - der Arbeitsbaum entsprach genau der Erwartung des Auftrags.
+0b: .git/*.lock: keine (ls: No such file or directory)
+    HEAD am Eingang (vor 0a): f22f91e (Soll f22f91e)
+    Datenstand vorher: d9449faf51bffaaa... / 223 (0_hashes_vorher.txt (7)) = Soll; Snapshot --pruefen Soll = Ist (6)
+    Quersummen *.db vorher: 0_hashes_vorher.txt (8)
+    Hashes freigegeben/gesperrt/ergebnisse einzeln: 0_hashes_vorher.txt (1)-(3), 5_alle_vorher.txt (1534 Dateien)
+    herkunft.register() vorher: 0ece95e2fd4f5bd2787ea40f6a12988aadb0a414c5132553522b55000c6052d7, fehlend [] (9)
+    herkunft_protokoll.jsonl: existiert nicht (10)
+    tb40_lauf_* in $TMPDIR vorher: 4615 (10b) - nur gezaehlt, nichts geloescht
+    Sonde vorher gegen sperrliste_abbild_2026-09-25b.json (40ffe18d): 0_sonde_vorher.txt - Pfad-Bestandteile
+        25/0/0; rc 2 nur NICHT PRUEFBAR (Punkte 1,3,4,6-14)
+Vorher-Lauf fuer die Abnahme (vor jeder Code-Aenderung): g2_ausgaben.sh -> g2_vorher.txt (8 x rc 0);
+    dieser Lauf der alten Fassung hinterliess 74 tb40_lauf_* (4615 -> 4689).

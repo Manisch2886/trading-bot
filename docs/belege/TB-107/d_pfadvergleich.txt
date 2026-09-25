@@ -1,0 +1,14 @@
+# TB-107 Nebenwirkung D: research/resolver_selektion/pfadvergleich.py (nicht freigegeben, unveraendert) eigenstaendig, ohne Modus
+## vorher: Worktree f22f91e
+rc=0
+Selbstprobe (beisst der Vergleich?): JA, 18 Unterschiede gefunden
+
+ERGEBNIS: GRUEN - null Unterschiede, und der Vergleich beisst.
+## nachher: Repo 9827a3e
+rc=1
+  File "<string>", line 21, in <module>
+  File "<tmp>/tb52_vergleich_*/shared/strategy_paths.py", line 148, in get_strategy_paths
+    if not _im_selektionsmodus():
+  File "<tmp>/tb52_vergleich_*/shared/strategy_paths.py", line 122, in _im_selektionsmodus
+    return paths.selektionsmodus() is not None
+AttributeError: module 'paths' has no attribute 'selektionsmodus'
