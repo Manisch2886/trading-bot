@@ -81,3 +81,17 @@ Für dich bleibt:
 3. Bis Dienstag, 29.09., den Speicher-Export machen.
 
 Alles Weitere lege ich dir als Auswahlkarten vor, sobald Fable geantwortet hat.
+
+---
+
+## Nachtrag 23:30 — was sich seit 22:55 geändert hat
+
+- **Punkt 1a und 1b sind erledigt:** Fable hat 25d und 25e beantwortet. **Offen bleibt 1c**, die Gesamtanalyse 25f (vorher im Fable-Chat die Websuche einschalten, danach wieder aus).
+- **Über Nacht laufen zwei Sitzungen:**
+  - **A**, Hauptordner: TB-109, danach TB-110.
+  - **B**, eigener Ordner `~/trading-bot-tb111`: TB-111.
+- **Was du dafür tun musst, nur einmal:**
+  1. Im Terminalfenster des Wächters **Enter** drücken. Damit startet A.
+  2. **Warten, bis A den Ordner `~/trading-bot-tb111` angelegt hat.** Das ist etwa zwei bis fünf Minuten nach dem Start der Fall; ich melde es im Chat.
+  3. In der Claude-App **„Neu“** ⇒ Sitzung auf dem Laptop im Ordner **`trading-bot-tb111`** öffnen ⇒ den Einfügesatz für **TB-111** senden.
+- **Morgen:** Sitzung B schliesst sich nicht von selbst, also das Fenster schliessen, wenn ihr Ergebnis da ist. Danach folgt die Zusammenführung (TB-112) per Auswahlkarte.

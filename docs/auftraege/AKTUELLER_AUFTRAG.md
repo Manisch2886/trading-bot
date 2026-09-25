@@ -36,7 +36,8 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-108** | `docs/auftraege/MAC_TB-108_register_41_42.md` | ⭐⭐ **Register 41 und 42** (Stoffsammlung `docs/projektfuehrung/STOFFSAMMLUNG_REGISTER_41_42.md`): die entschiedenen Einträge aus Fable 24b–24d (41) und 25a–25c samt Tatsachennotizen TB-103 bis TB-107 (42), zeichengleich eingesetzt, Ketten mit Verweis, Marken an alten Stellen (keine in Abschnitt 10); keine `.py`, kein neues Abbild; 25d/25e/25f später als 43. Freigabe 25.09.2026, 22:34 (Auswahlkarte, wörtlich im Auftrag) |
+| **TB-109** | `docs/auftraege/MAC_TB-109_nulltrades_ablagen_stummel.md` | ⭐⭐ **Sitzung A, Hauptordner** (Fable 25e): „null Trades ist ein Wert“ an 10 Stellen der `equity_simulation.py` (unter dem Modus rc 2, ohne Modus bytegleich), zwei weitere Zwischenablagen in `universum_trockenlauf.py`, benannter Stummel in `pfadvergleich.py` (`None`), Gegenprobe über jedes `exit()` ohne Ausgabe, Klasse (iv) im Audit. **Schritt 0c legt den Worktree `../trading-bot-tb111` (Zweig `tb-111`) an.** **Danach in derselben Sitzung: TB-110** (`docs/auftraege/MAC_TB-110_register_43.md`, Register 43 aus Fable 25d/25e). Freigabe 25.09.2026, 23:04 und 23:14 (Auswahlkarten, wörtlich im Auftrag) |
+| **TB-111** | `docs/auftraege/MAC_TB-111_herkunft_auswertung_oeffnung.md` | ⭐⭐ **Sitzung B, parallel, nur im Worktree `~/trading-bot-tb111` auf Zweig `tb-111`** (Fable 25d): `herkunft.py` Prüfansicht und `TB30A_BASE_DIR` unter dem Modus rc 2, `auswertung.Abbruch` rc 2, neues Abbild. Kein Merge nach `main`, kein Eintrag in `JOURNAL.md`. Freigabe 25.09.2026, 23:14 (Auswahlkarten, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
@@ -49,7 +50,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
 misst, ob eine Sitzung läuft, und bricht danach folgenlos ab.
 
-*Gesetzt 25.09.2026, 22:45 (zuvor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
+*Gesetzt 25.09.2026, 23:30 (zuvor TB-108, erledigt mit `486032d`, 25.09.2026; davor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 

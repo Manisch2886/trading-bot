@@ -177,3 +177,19 @@ Als Nächstes werden die übrigen Programme auf die zentrale Pfadstelle umgestel
 | 2 | Im Auftrag TB-106 „13 `Abbruch`-Stellen“ geschrieben, gezählt sind 12 | Zahlen im Auftrag nur aus einer Messung übernehmen, sonst „vermutlich“ schreiben |
 | 3 | Ein erster Entwurf von 25d behauptete „von 12 Registerstellen als Abbruch beschrieben“, ohne Messung. Vor dem Ablegen gefunden und ersetzt | ⭐ **Vor dem Ablegen jeden Satz mit einer Zahl oder Fundstelle gegen seine Quelle lesen** |
 | 4 | TB-107: Das Terminalfenster des Wächters wurde zweimal geschlossen, bevor der Satz abgeschickt war; erst der dritte Auslöser lief | Nach jedem Start-Auslöser mit der Sonde `starte_TB-99` prüfen, ob `claude-Prozesse: 1 im Repo`; nach 15 Minuten ohne Schritt-0-Commit den Betreiber erinnern |
+
+---
+
+## Nachtrag 3 — fortgeschrieben 25.09.2026, 23:30
+
+**Gemessen.** TB-108 ist abgegeben (`486032d`, 23:12) und um 23:24 per Schliess-Auslöser beendet. **Register jetzt 0–42**: 41 und 42 mit 67 Einträgen aus Fable 24b–25c, 108 Zitate mit `diff` rc 0, `numstat` 1134/0. Sonde vorher = nachher. **`register()` `0ece95e2…` ⇒ `c85dd6c3…`** (die Registerdatei ist Teil). Befund der Sitzung: **H6 ist bis heute nicht eigenständig** (TB-97), in 42.6 als offen eingetragen.
+
+| | |
+|---|---|
+| **Fable** | **25d und 25e beantwortet** (Projektablage 22:36, abgeschrieben ins Repo mit TB-109 Schritt 0). 25d: TB-106 angenommen, `f5fdb53` steht; `herkunft.py` ein zweites Mal öffnen (Prüfansicht, `TB30A_BASE_DIR`); `auswertung.py` hat nur die Ausgänge 0 und 2. 25e: TB-107 angenommen; zwei weitere Ablagen; „null Trades ist ein Wert“; Stummel in `pfadvergleich.py`. ⚠️ **Fehler in 25e (3):** Stummel `lambda: False` würde den Modus fälschlich einschalten (`strategy_paths` fragt `is not None`); gebaut wird mit `None`, Berichtigung in Register 43 als vorläufig. **25f (Gesamtanalyse) offen** |
+| **Freigaben 23:04 und 23:14** | TB-109 (alles aus 25e, inkl. 10 Live-Stellen) · TB-110 (Register 43) · **zwei Sitzungen parallel** · TB-111 (`herkunft.py` und `auswertung.py` nach 25d, neues Abbild) |
+| **Nacht** | **Sitzung A** im Hauptordner: TB-109, danach TB-110 in derselben Sitzung. **Sitzung B** im Worktree `~/trading-bot-tb111`, Zweig `tb-111`: TB-111. Der Worktree wird von TB-109 in Schritt 0c angelegt; B startet der Betreiber von Hand. B wird nicht vom Wächter geschlossen und schreibt nicht in `JOURNAL.md` |
+| **Danach** | Zusammenführung `tb-111` ⇒ `main` als eigener Auftrag (TB-112) · Register 44 für TB-111 · Fable 25f lesen · Erweiterung von 19 · Erzeuger |
+| **Freie Nummern** | frei ab **TB-112** · Fable-Anfrage frei ab **25g** |
+
+**Fehler dieses Abschnitts, mit Regel:** Keiner neu. Beobachtung: Fable hat 25d/25e beantwortet, während ich die Antworten noch als ausstehend meldete. Die Projektablage war dabei aktuell, meine Suche über `project_search` fand sie nicht sofort. ⇒ **Neue Fable-Antworten über `project_info` (Liste) prüfen, nicht über die Suche.**
