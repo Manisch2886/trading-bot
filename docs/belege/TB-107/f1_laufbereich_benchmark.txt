@@ -1,0 +1,74 @@
+# TB-104 D1 Laufbereich 'benchmark' - Laeufe: <scratch>/f1/bm_repo
+# Prozesse 11, davon ohne Modulliste 10 (Prozess konnte sie beim Ende nicht schreiben: os._exit oder eigener Schreibschutz wie loaderlauf.py)
+# (a) Modulliste: 10 Repo-Module; (b) aus Oeffnungen: 64; (b) ohne (a) = als Daten gelesen: 0
+# (a) ohne (b) (geladen, aber keine Oeffnung protokolliert - z. B. vor dem Haken): 0
+# (c) Einstiegspunkte (ausgefuehrt): 2
+#    research/universum_trockenlauf/loaderlauf.py
+#    research/vorregistrierung/benchmark.py
+# Quelltext als DATEN gelesen und in keinem Prozess geladen (nicht im Laufbereich):
+# Laufbereich (Vereinigung): 64 Repo-Module
+LISTE
+benchmark	docs/belege/TB-104/haken/sitecustomize.py
+benchmark	notifications/manual_close.py
+benchmark	research/faltenplan_neun/erste_falte_trockenlauf.py
+benchmark	research/faltenplan_neun/faltenplan_neun.py
+benchmark	research/faltenplan_neun/faltenschranke_messung.py
+benchmark	research/universum_trockenlauf/loaderlauf.py
+benchmark	research/universum_trockenlauf/universum_trockenlauf.py
+benchmark	research/vorregistrierung/benchmark.py
+benchmark	research/vorregistrierung/faltenplan.py
+benchmark	research/vorregistrierung/registerdaten.py
+benchmark	shared/abrufschutz.py
+benchmark	shared/binance_historie.py
+benchmark	shared/fetch_binance_data.py
+benchmark	shared/fetch_multi_data.py
+benchmark	shared/handelskosten.py
+benchmark	shared/kursdaten.py
+benchmark	shared/ladeprotokoll.py
+benchmark	shared/paths.py
+benchmark	shared/regimewache.py
+benchmark	shared/strategy_paths.py
+benchmark	shared/symbols_config.py
+benchmark	strategies/elliott_wave/backtest_elliott.py
+benchmark	strategies/elliott_wave/elliott_wave_counter.py
+benchmark	strategies/elliott_wave/multi_symbol_optimise.py
+benchmark	strategies/elliott_wave/zigzag_indicator.py
+benchmark	strategies/elliott_wave_stocks/backtest_elliott.py
+benchmark	strategies/elliott_wave_stocks/elliott_wave_counter.py
+benchmark	strategies/elliott_wave_stocks/fetch_stock_data.py
+benchmark	strategies/elliott_wave_stocks/multi_symbol_optimise.py
+benchmark	strategies/elliott_wave_stocks/stocks_symbols_config.py
+benchmark	strategies/elliott_wave_stocks/zigzag_indicator.py
+benchmark	strategies/rsi2_crypto/backtest_rsi2.py
+benchmark	strategies/rsi2_crypto/indicators.py
+benchmark	strategies/rsi2_crypto/live_params.py
+benchmark	strategies/rsi2_crypto/multi_symbol_optimise.py
+benchmark	strategies/rsi2_mean_reversion/backtest_rsi2.py
+benchmark	strategies/rsi2_mean_reversion/indicators.py
+benchmark	strategies/rsi2_mean_reversion/live_params.py
+benchmark	strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+benchmark	strategies/rsi2_mean_reversion/stocks_symbols_config.py
+benchmark	strategies/t3_supertrend/backtest_trend.py
+benchmark	strategies/t3_supertrend/fetch_4h_data.py
+benchmark	strategies/t3_supertrend/indicators.py
+benchmark	strategies/t3_supertrend/live_params.py
+benchmark	strategies/t3_supertrend/multi_symbol_optimise.py
+benchmark	strategies/t3_supertrend/regime_filter.py
+benchmark	strategies/turtle_soup_crypto/backtest_turtle_soup.py
+benchmark	strategies/turtle_soup_crypto/indicators.py
+benchmark	strategies/turtle_soup_crypto/live_params.py
+benchmark	strategies/turtle_soup_crypto/multi_symbol_optimise.py
+benchmark	strategies/turtle_soup_stocks/backtest_turtle_soup.py
+benchmark	strategies/turtle_soup_stocks/indicators.py
+benchmark	strategies/turtle_soup_stocks/live_params.py
+benchmark	strategies/turtle_soup_stocks/multi_symbol_optimise.py
+benchmark	strategies/turtle_soup_stocks/stocks_symbols_config.py
+benchmark	strategies/volatility_breakout/backtest_breakout.py
+benchmark	strategies/volatility_breakout/indicators.py
+benchmark	strategies/volatility_breakout/live_params.py
+benchmark	strategies/volatility_breakout/multi_symbol_optimise.py
+benchmark	strategies/volatility_breakout/stocks_symbols_config.py
+benchmark	strategies/volatility_breakout_crypto/backtest_breakout.py
+benchmark	strategies/volatility_breakout_crypto/indicators.py
+benchmark	strategies/volatility_breakout_crypto/live_params.py
+benchmark	strategies/volatility_breakout_crypto/multi_symbol_optimise.py

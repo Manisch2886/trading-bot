@@ -1,0 +1,38 @@
+TB-107 Block F - Gegenprobe ueber alle `__main__`-Stellen des Laufbereichs
+  Liste: docs/belege/TB-107/f1_laufbereich_vereinigung.txt
+  [ok]     F0: Liste gelesen, nicht leer - 81 Module
+  [ok]     F0b: jede Datei der Liste existiert - fehlend []
+  [ok]     F2: jede Datenstelle im __main__-Block traegt paths.selektionsmodus() - 14 mit Abfrage, 0 ohne: []
+       Datenstellen mit Abfrage (14; TB-105: 14):
+         strategies/elliott_wave/equity_simulation.py:143
+         strategies/elliott_wave/multi_symbol_optimise.py:209
+         strategies/elliott_wave_stocks/equity_simulation.py:166
+         strategies/elliott_wave_stocks/multi_symbol_optimise.py:234
+         strategies/rsi2_crypto/equity_simulation.py:131
+         strategies/rsi2_mean_reversion/equity_simulation.py:162
+         strategies/rsi2_mean_reversion/multi_symbol_optimise.py:192
+         strategies/t3_supertrend/equity_simulation.py:137
+         strategies/t3_supertrend/multi_symbol_optimise.py:206
+         strategies/turtle_soup_crypto/equity_simulation.py:114
+         strategies/turtle_soup_stocks/equity_simulation.py:153
+         strategies/volatility_breakout/equity_simulation.py:147
+         strategies/volatility_breakout/multi_symbol_optimise.py:186
+         strategies/volatility_breakout_crypto/equity_simulation.py:162
+       ausgewiesen, nicht gezaehlt - Ende bei fehlenden Trades (10):
+         strategies/elliott_wave/equity_simulation.py:155
+         strategies/elliott_wave_stocks/equity_simulation.py:178
+         strategies/rsi2_crypto/equity_simulation.py:142
+         strategies/rsi2_mean_reversion/equity_simulation.py:173
+         strategies/t3_supertrend/equity_simulation.py:149
+         strategies/turtle_soup_crypto/equity_simulation.py:125
+         strategies/turtle_soup_stocks/equity_simulation.py:164
+         strategies/volatility_breakout/equity_simulation.py:158
+         strategies/volatility_breakout_crypto/equity_simulation.py:173
+         strategies/volatility_breakout_crypto/equity_simulation.py:179
+  [ok]     F3a: Kopie von strategies/elliott_wave/equity_simulation.py ohne Abfrage in der Liste => rot - Befunde 1
+  [ok]     F3a-G: Gegenprobe - dieselbe Kopie MIT Abfrage => gezaehlt, kein Befund an ihr - Befunde 0
+  [ok]     F3b: erfundene Datei 'Keine Daten gefunden' + exit() ohne Abfrage => rot - Befunde 1
+  [ok]     F3b-G: Gegenprobe - dieselbe Datei mit Abfrage => gezaehlt, kein Befund - Befunde 0
+
+==============================================================================
+7/7 Pruefungen bestanden.

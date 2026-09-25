@@ -1,0 +1,5 @@
+# TB-107 F1 Unterschied zur Laufbereichsmessung TB-104 (d1_laufbereich_vereinigung.txt)
+TB-104: 80 Module, TB-107: 81 Module, gemeinsam 80
+neu in TB-107 (1):
+  + shared/regimewache.py	trockenlauf,benchmark
+nicht mehr in TB-107 (0):
