@@ -123,9 +123,35 @@ def register() -> dict:
     return {"register": h.hexdigest(), "teile": teile, "fehlend": fehlend}
 
 
-def block(anlass: str = "lauf") -> dict:
-    """Der Herkunftsblock, der in jede Ergebnisdatei gehoert."""
-    c, d, r = commit(), datenstand(), register()
+def _paths():
+    """shared/paths.py - erst bei Bedarf geladen (TB-106), damit der Import
+    dieses Moduls unveraendert bleibt; nicht ueber strategy_paths."""
+    ordner = os.path.join(BASE_DIR, "shared")
+    if ordner not in sys.path:
+        sys.path.insert(0, ordner)
+    import paths
+    return paths
+
+
+def _abbruch_2(stelle: str, text: str):
+    """Meldung auf stderr, dann `SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)`."""
+    print(f"ABBRUCH (herkunft.py::{stelle}): {text}", file=sys.stderr)
+    raise SystemExit(_paths().RUECKGABEWERT_STARTPRUEFUNG)
+
+
+def block(anlass: str = "lauf", daten_dir=None) -> dict:
+    """Der Herkunftsblock, der in jede Ergebnisdatei gehoert.
+
+    TB-106 (Fable 25c 2 (a), Berichtigung zu 37.4): `daten_dir` geht an
+    `datenstand()`. Unter dem Selektionsmodus ist er Pflicht - keine
+    Voreinstellung, sonst hashte die Kette `BASE_DIR/data` statt des
+    Snapshots. Ohne Modus bleibt die Voreinstellung `BASE_DIR/data`.
+    """
+    if daten_dir is None and _paths().selektionsmodus() is not None:
+        _abbruch_2("block",
+                   "unter dem Selektionsmodus ohne daten_dir aufgerufen - keine "
+                   "Voreinstellung unter dem Modus (Fable 25c 2 (a))")
+    c, d, r = commit(), datenstand(daten_dir), register()
     return {
         "zeitpunkt_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "anlass": anlass,
@@ -152,16 +178,25 @@ def _kettenhash(eintrag: dict) -> str:
                                      ensure_ascii=False).encode("utf-8")).hexdigest()
 
 
-def anhaengen(anlass: str = "lauf") -> dict:
-    """Eine Zeile ans append-only-Protokoll. Nichts wird ueberschrieben."""
+def anhaengen(anlass: str = "lauf", daten_dir=None) -> dict:
+    """Eine Zeile ans append-only-Protokoll. Nichts wird ueberschrieben.
+
+    `daten_dir` wie bei `block()`. Der Ordner des Protokolls wird nicht
+    angelegt (TB-106, Fable 25c 4 (4)(b)): fehlt der registrierte Ort, ist das
+    ein Baum, der nicht der registrierte ist - Abbruch mit 2, unabhaengig vom
+    Modus.
+    """
     vorher = _letzte_zeile()
-    eintrag = block(anlass)
+    eintrag = block(anlass, daten_dir)
     eintrag["vorgaenger"] = (_kettenhash({k: v for k, v in vorher.items()
                                           if k != "kette"})
                              if vorher else None)
     eintrag["kette"] = _kettenhash({k: v for k, v in eintrag.items()
                                     if k != "kette"})
-    os.makedirs(os.path.dirname(PROTOKOLL), exist_ok=True)
+    if not os.path.isdir(os.path.dirname(PROTOKOLL)):
+        _abbruch_2("anhaengen",
+                   f"der Ordner des registrierten Protokolls fehlt: "
+                   f"{os.path.dirname(PROTOKOLL)} - er wird nicht angelegt")
     with open(PROTOKOLL, "a", encoding="utf-8") as f:
         f.write(json.dumps(eintrag, ensure_ascii=False, sort_keys=True) + "\n")
     return eintrag
@@ -227,7 +262,11 @@ def main():
     args = p.parse_args()
 
     if args.anhaengen:
-        e = anhaengen(args.anhaengen)
+        # Unter dem Modus der Datenordner des Snapshots aus dem Resolver
+        # (TB-106); ohne Modus die Voreinstellung.
+        resolver = _paths()
+        e = anhaengen(args.anhaengen, resolver.DATA_DIR
+                      if resolver.selektionsmodus() is not None else None)
         print(json.dumps(e, indent=2, ensure_ascii=False, sort_keys=True))
         return 0
 

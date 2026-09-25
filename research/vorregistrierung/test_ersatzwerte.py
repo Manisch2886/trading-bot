@@ -1,0 +1,494 @@
+#!/usr/bin/env python3
+"""
+TB-106 - Rueckfall (d): stille Ersatzwerte in faltenplan.py, benchmark.py,
+auswertung.py und der Datenpfad in herkunft.py
+==============================================================================
+Geprueft wird je Stelle aus dem Auftrag TB-106 (Block A, Fable 24b A2, 25a
+Rang 3, 25c 1 und 2 (a), 4 (4)(b)):
+
+  P   Die Probe: der Zweig wird erreicht und der Prozess endet mit 2
+      (`paths.RUECKGABEWERT_STARTPRUEFUNG`), die Meldung auf stderr nennt die
+      Stelle.
+  M   Die Mutationsprobe: in einer Kopie des Ordners steht an GENAU dieser
+      Stelle wieder der alte Ersatzwert - dann ist P rot. Jede Mutation
+      beisst allein (24b B3): die anderen Stellen bleiben unveraendert.
+  M-G Die Gegenprobe (Register 40.7): dieselbe Mutationsprobe OHNE die
+      Mutation muss scheitern.
+
+Gerechnet wird immer in einem EIGENEN Prozess auf einer Kopie des Ordners -
+nie im laufenden Prozess an einer umgebogenen Variablen (Kopf von
+test_vorregistrierung.py, Falle 1).
+
+Die Proben zu `herkunft.py` (E) laufen in einem Wegwerfbaum (Git-Repo mit
+einem Commit, echte `paths.py`, Snapshot-Attrappe): `PROTOKOLL` haengt an
+`_HIER`, und das echte `ergebnisse/herkunft_protokoll.jsonl` darf keine Probe
+beschreiben. Am Ende prueft die Datei, dass es unberuehrt ist.
+
+Aufruf: trading-env/bin/python3 research/vorregistrierung/test_ersatzwerte.py
+"""
+
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+
+_HIER = os.path.dirname(os.path.abspath(__file__))
+_REPO = os.path.dirname(os.path.dirname(_HIER))
+sys.path.insert(0, _HIER)
+
+import herkunft  # noqa: E402
+
+RC_ZWEI = 2       # paths.RUECKGABEWERT_STARTPRUEFUNG - hier als Erwartung
+BOT = "turtle_soup_stocks"
+ECHTES_PROTOKOLL = os.path.join(_HIER, "ergebnisse", "herkunft_protokoll.jsonl")
+
+bestanden = 0
+gescheitert = []
+
+
+def pruefe(name, bedingung, zusatz=""):
+    global bestanden
+    if bedingung:
+        bestanden += 1
+    else:
+        gescheitert.append(f"{name}{(' - ' + zusatz) if zusatz else ''}")
+
+
+def _mit_gegenprobe(name, text, lauf, bedingung, zusatz=lambda r: ""):
+    """Wie in test_vorregistrierung.py: mit Mutation muss `bedingung` gelten,
+    ohne Mutation darf sie nicht gelten (Register 40.7)."""
+    r = lauf(True)
+    pruefe(f"{name}: {text}", bedingung(r), zusatz(r))
+    g = lauf(False)
+    pruefe(f"{name}-G: Gegenprobe zu {name} - ohne die Mutation scheitert sie",
+           not bedingung(g), zusatz(g))
+
+
+def _umgebung():
+    """Die Repo-Wurzel wandert mit (siehe registerdaten.BASE_DIR); kein Modus."""
+    u = {k: v for k, v in os.environ.items() if not k.startswith("TB_SELEKTIONS")}
+    u["TB30A_BASE_DIR"] = _REPO
+    return u
+
+
+def _ersetze(pfad, alt, neu, mutieren=True):
+    """Die Mutation; mit `mutieren=False` nur die Pruefung, dass die Stelle
+    existiert (die Gegenprobe geht denselben Weg ohne die Aenderung)."""
+    with open(pfad, encoding="utf-8") as f:
+        s = f.read()
+    if s.count(alt) != 1:
+        raise AssertionError(f"Mutationsstelle nicht genau einmal in {pfad}: {alt!r}")
+    if mutieren:
+        with open(pfad, "w", encoding="utf-8") as f:
+            f.write(s.replace(alt, neu, 1))
+
+
+def _in_kopie(treiber, datei=None, alt=None, neu=None, mutieren=False):
+    """Ordner kopieren, hoechstens EINE Stelle mutieren, `treiber` (Python-
+    Text) dort als eigenen Prozess laufen lassen. Rueckgabe rc/stdout/stderr."""
+    with tempfile.TemporaryDirectory() as m:
+        shutil.copytree(_HIER, m, dirs_exist_ok=True,
+                        ignore=shutil.ignore_patterns("__pycache__", "ergebnisse"))
+        # ergebnisse/ wird nicht kopiert (keine Probe hier liest daraus, und
+        # eine Kopie des Protokolls darf es nicht geben); auswertung.py nennt
+        # die Tabelle nur als Pfad.
+        if datei:
+            _ersetze(os.path.join(m, datei), alt, neu, mutieren)
+        r = subprocess.run([sys.executable, "-W", "ignore", "-c",
+                            f"import sys; sys.path.insert(0, {m!r})\n" + treiber],
+                           capture_output=True, text=True, env=_umgebung())
+    return {"rc": r.returncode, "out": r.stdout[-400:], "err": r.stderr[-600:]}
+
+
+def _rc2(r, stelle):
+    return r["rc"] == RC_ZWEI and stelle in r["err"]
+
+
+def _info(r):
+    return f"rc {r['rc']}; stderr {r['err'][-300:]!r}"
+
+
+# ===========================================================================
+# B  faltenplan.py
+# ===========================================================================
+T_A1 = "import faltenplan as fp\nprint(fp.volle_jahre({2019: 3, 2020: 4}))\n"
+T_A2 = ("import faltenplan as fp\nfp.gefundene_trades_je_jahr = lambda bot: {}\n"
+        f"print(fp.faltenlaenge_jahre({BOT!r}))\n")
+
+A1_NEU = ('    innen = {j: zaehlung[j] for j in jahre[1:-1]}\n'
+          '    if not innen:\n'
+          '        _abbruch_2("volle_jahre",')
+A1_ALT = ('    innen = {j: zaehlung[j] for j in jahre[1:-1]} or {jahre[0]: zaehlung[jahre[0]]}\n'
+          '    if not innen:\n'
+          '        _abbruch_2("volle_jahre",')
+A2_NEU = '    if not zaehlung:\n        _abbruch_2("faltenlaenge_jahre",'
+A2_ALT = ('    if not zaehlung:\n        return 2, 0.0, "keine vollen Kalenderjahre gemessen"\n'
+          '        _abbruch_2("faltenlaenge_jahre",')
+
+
+def teil_b():
+    r = _in_kopie(T_A1)
+    pruefe("B-A1: volle_jahre ohne inneres Jahr endet mit 2", _rc2(r, "volle_jahre"), _info(r))
+    r = _in_kopie("import faltenplan as fp\nassert fp.volle_jahre({2018: 1, 2019: 3, 2020: 4}) == {2019: 3}\n"
+                  "assert fp.volle_jahre({}) == {}\n")
+    pruefe("B-A1b: mit innerem Jahr unveraendert, leere Zaehlung bleibt {}", r["rc"] == 0, _info(r))
+    _mit_gegenprobe(
+        "B-A1M", "Mutationsprobe 'erstes angeschnittenes Jahr als Ersatz zurueck' - B-A1 waere rot",
+        lambda mut: _in_kopie(T_A1, "faltenplan.py", A1_NEU, A1_ALT, mut),
+        lambda r: r["rc"] == 0, _info)
+
+    r = _in_kopie(T_A2)
+    pruefe("B-A2: faltenlaenge_jahre mit leerer Zaehlung endet mit 2",
+           _rc2(r, "faltenlaenge_jahre"), _info(r))
+    _mit_gegenprobe(
+        "B-A2M", "Mutationsprobe 'Faltenlaenge 2 als Ersatz zurueck' - B-A2 waere rot",
+        lambda mut: _in_kopie(T_A2, "faltenplan.py", A2_NEU, A2_ALT, mut),
+        lambda r: r["rc"] == 0, _info)
+
+
+# ===========================================================================
+# C  benchmark.py
+# ===========================================================================
+T_A3 = ("import benchmark as bm, pandas as pd\n"
+        "print(bm.drawdown_bei_exposure(pd.Series([], dtype=float), 0.5))\n")
+T_A4 = ("import benchmark as bm, registerdaten as rd\n"
+        f"bm.fp.faltenplan = lambda mess: {{{BOT!r}: {{'status': 'endgueltig', 'falten': []}}}}\n"
+        "bm.tagesschluss = lambda markt: {}\n"
+        "bm.fsm.loader_lesart = lambda bot: {'handelbar_ab': {}, 'schranke': 'S', 'wert': 0}\n"
+        f"rd.BOTS = {{{BOT!r}: rd.BOTS[{BOT!r}]}}\n"
+        f"print(bm.je_bot({{}})[{BOT!r}]['dd_toleranz']['0.50'])\n")
+
+A3_NEU = '    if renditen.empty:\n        _abbruch_2("drawdown_bei_exposure",'
+A3_ALT = '    if renditen.empty:\n        return 0.0\n        _abbruch_2("drawdown_bei_exposure",'
+A4_NEU = '        if not sel:\n            _abbruch_2("je_bot",'
+A4_ALT = '        if not sel:\n            pass\n        if False:\n            _abbruch_2("je_bot",'
+A4_MEDIAN_NEU = 'round(float(np.median(werte)), 2)\n'
+A4_MEDIAN_ALT = 'round(float(np.median(werte)), 2) if werte else 0.0\n'
+
+
+def _a4_lauf(mut):
+    """Beide Zeilen der alten Stelle zurueck: die Wache weg UND `if werte
+    else 0.0` wieder da - sonst scheitert die Mutation an np.median([]) (NaN
+    mit Warnung) statt am Ersatzwert."""
+    with tempfile.TemporaryDirectory() as m:
+        shutil.copytree(_HIER, m, dirs_exist_ok=True,
+                        ignore=shutil.ignore_patterns("__pycache__", "ergebnisse"))
+        pfad = os.path.join(m, "benchmark.py")
+        _ersetze(pfad, A4_NEU, A4_ALT, mut)
+        _ersetze(pfad, A4_MEDIAN_NEU, A4_MEDIAN_ALT, mut)
+        r = subprocess.run([sys.executable, "-W", "ignore", "-c",
+                            f"import sys; sys.path.insert(0, {m!r})\n" + T_A4],
+                           capture_output=True, text=True, env=_umgebung())
+    return {"rc": r.returncode, "out": r.stdout[-400:], "err": r.stderr[-600:]}
+
+
+def teil_c():
+    r = _in_kopie(T_A3)
+    pruefe("C-A3: drawdown_bei_exposure mit leerer Reihe endet mit 2",
+           _rc2(r, "drawdown_bei_exposure"), _info(r))
+    _mit_gegenprobe(
+        "C-A3M", "Mutationsprobe '0.0 fuer die leere Reihe zurueck' - C-A3 waere rot",
+        lambda mut: _in_kopie(T_A3, "benchmark.py", A3_NEU, A3_ALT, mut),
+        lambda r: r["rc"] == 0 and r["out"].strip().endswith("0.0"), _info)
+
+    r = _in_kopie(T_A4)
+    pruefe("C-A4: je_bot ohne Selektionsfalte endet mit 2", _rc2(r, "je_bot"), _info(r))
+    _mit_gegenprobe(
+        "C-A4M", "Mutationsprobe 'dd_toleranz 0.0 ohne Selektionsfalte zurueck' - C-A4 waere rot",
+        _a4_lauf, lambda r: r["rc"] == 0 and r["out"].strip().endswith("0.0"), _info)
+
+    r = _in_kopie("import benchmark as bm\nt = {'0.01': -2.0, '0.02': -4.0}\n"
+                  "assert bm.nachschlagen(t, 0.0) == 0.0 and bm.nachschlagen(t, -1) == 0.0\n"
+                  "assert abs(bm.nachschlagen(t, 0.005) + 1.0) < 1e-12\n")
+    pruefe("C-A5: nachschlagen(e <= 0) bleibt 0.0 - Rechenregel, nicht geaendert (C2)",
+           r["rc"] == 0, _info(r))
+
+
+# ===========================================================================
+# D  auswertung.py
+# ===========================================================================
+T_A6_ZELLE = ("import auswertung as aw, pandas as pd\n"
+              "aw.plateau({'a': [1, 2, 3]}, None, pd.Series({'a=2': 0.2, 'a=3': 0.3}))\n")
+T_A6_NACHBAR = ("import auswertung as aw, pandas as pd\n"
+                "aw.plateau({'a': [1, 2, 3]}, None, pd.Series({'a=1': 0.1, 'a=2': 0.2}))\n")
+A6_NEU = ('    if zid not in statistik.index:\n'
+          '        _abbruch_2("plateau",')
+A6_ALT = ('    if zid not in statistik.index:\n'
+          '        return 0.0\n'
+          '        _abbruch_2("plateau",')
+
+T_A7 = f"""
+import os, tempfile, pandas as pd, auswertung as aw
+w = tempfile.mkdtemp()
+os.makedirs(os.path.join(w, {BOT!r}, "tagesreihen"))
+os.makedirs(os.path.join(w, "benchmark_tagesreihen"))
+tage = pd.date_range("2020-01-01", periods=10, freq="B")
+pd.DataFrame({{"datum": tage, "netto_rendite": 0.001, "exposure": 0.5}}).to_csv(
+    os.path.join(w, {BOT!r}, "tagesreihen", "z.csv"), index=False)
+pd.DataFrame({{"datum": tage, "netto_rendite": 0.001}}).to_csv(
+    os.path.join(w, "benchmark_tagesreihen", "aktien.csv"), index=False)
+plan = {{{BOT!r}: {{"falten": [{{"name": "2020", "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01", "rolle": "bestaetigung"}}]}}}}
+print(aw.beta_bereinigung({BOT!r}, w, "z", plan, []))
+"""
+A7_NEU = '    if not fenster:\n        _abbruch_2("beta_bereinigung",'
+A7_ALT = ('    if not fenster:\n'
+          '        return {"bestimmt": False, "grund": "keine Selektionsfalten (Platzhalter)"}\n'
+          '        _abbruch_2("beta_bereinigung",')
+
+T_A7B = ("import auswertung as aw\n"
+         "k = aw.abbruchkriterien('x', {'statistik': 1.0, 'spitze': False}, None, {'z'}, None,\n"
+         "                        {'bestimmt': False, 'grund': 'Platzhalter'}, None)\n"
+         "print('c =', k['c_beta_bereinigung'])\n")
+A7B_NEU = ('    c = (bereinigung["alpha_pct_pa"] <= 0.0\n'
+           '         and bereinigung["strategie_calmar"]\n'
+           '         < bereinigung["konstante_exposure"]["calmar"])\n')
+A7B_ALT = ('    if bereinigung.get("bestimmt"):\n'
+           '        c = (bereinigung["alpha_pct_pa"] <= 0.0\n'
+           '             and bereinigung["strategie_calmar"]\n'
+           '             < bereinigung["konstante_exposure"]["calmar"])\n'
+           '    else:\n'
+           '        c = False\n')
+T_A7B_EIN_BOT = ("import auswertung as aw\n"
+                 "print('get', open(aw.__file__, encoding='utf-8').read().count('bereinigung.get('))\n")
+A7B_EB_NEU = 'dsr_drei_werte(bereinigung["renditen"], buch)'
+A7B_EB_ALT = 'dsr_drei_werte(bereinigung.get("renditen", []), buch)'
+
+T_A7C = ("import auswertung as aw\n"
+         "aw.rd.raster_definition = lambda: {'x': {'_bedingung': 'a < b'}}\n"
+         "print(aw.bedingung_fuer('x'))\n")
+A7C_NEU = '    _abbruch_2("bedingung_fuer",'
+A7C_ALT = '    return None\n    _abbruch_2("bedingung_fuer",'
+
+
+def teil_d():
+    r = _in_kopie(T_A6_ZELLE)
+    pruefe("D-A6: plateau ohne Statistik fuer eine existierende Zelle endet mit 2",
+           _rc2(r, "plateau") and "Zelle" in r["err"], _info(r))
+    r = _in_kopie(T_A6_NACHBAR)
+    pruefe("D-A6n: plateau ohne Statistik fuer einen Nachbarn endet mit 2",
+           _rc2(r, "plateau") and "Nachbar" in r["err"], _info(r))
+    _mit_gegenprobe(
+        "D-A6M", "Mutationsprobe 'statistik.get(..., 0.0) zurueck' - D-A6 waere rot",
+        lambda mut: _in_kopie(T_A6_ZELLE, "auswertung.py", A6_NEU, A6_ALT, mut),
+        lambda r: r["rc"] == 0, _info)
+
+    r = _in_kopie(T_A7)
+    pruefe("D-A7: beta_bereinigung ohne Selektionsfalten endet mit 2",
+           _rc2(r, "beta_bereinigung"), _info(r))
+    _mit_gegenprobe(
+        "D-A7M", "Mutationsprobe \"'bestimmt: False' zurueck\" - D-A7 waere rot",
+        lambda mut: _in_kopie(T_A7, "auswertung.py", A7_NEU, A7_ALT, mut),
+        lambda r: r["rc"] == 0 and "'bestimmt': False" in r["out"], _info)
+
+    # A7b: nach D2 ist der Zweig unerreichbar; geprueft wird, dass eine
+    # unvollstaendige Bereinigung nicht mehr still c = False ergibt.
+    r = _in_kopie(T_A7B)
+    pruefe("D-A7b: abbruchkriterien mit unvollstaendiger Bereinigung liefert kein stilles c = False",
+           r["rc"] != 0 and "KeyError" in r["err"], _info(r))
+    _mit_gegenprobe(
+        "D-A7bM", "Mutationsprobe \"'else: c = False' zurueck\" - D-A7b waere rot",
+        lambda mut: _in_kopie(T_A7B, "auswertung.py", A7B_NEU, A7B_ALT, mut),
+        lambda r: r["rc"] == 0 and "c = False" in r["out"], _info)
+    r = _in_kopie(T_A7B_EIN_BOT)
+    pruefe("D-A7b2: ein_bot liest die Bereinigung ohne .get(...)",
+           r["rc"] == 0 and r["out"].strip().endswith("get 0"), _info(r))
+    _mit_gegenprobe(
+        "D-A7b2M", "Mutationsprobe \"'.get(\"renditen\", [])' zurueck\" - D-A7b2 waere rot",
+        lambda mut: _in_kopie(T_A7B_EIN_BOT, "auswertung.py", A7B_EB_NEU, A7B_EB_ALT, mut),
+        lambda r: r["rc"] == 0 and r["out"].strip().endswith("get 1"), _info)
+
+    r = _in_kopie(T_A7C)
+    pruefe("D-A7c: unbekannter _bedingung-Text endet mit 2", _rc2(r, "bedingung_fuer"), _info(r))
+    r = _in_kopie("import auswertung as aw\n"
+                  "aw.rd.raster_definition = lambda: {'o': {}, 'l': {'_bedingung': ''}}\n"
+                  "assert aw.bedingung_fuer('o') is None and aw.bedingung_fuer('l') is None\n"
+                  "aw.rd.raster_definition = lambda: {'t': {'_bedingung': 't3_fast_length < t3_slow_length'}}\n"
+                  "b = aw.bedingung_fuer('t')\n"
+                  "assert b({'t3_fast_length': 1, 't3_slow_length': 2}) and not b({'t3_fast_length': 2, 't3_slow_length': 2})\n")
+    pruefe("D-A7c2: ohne Text keine Rasterbedingung, der bekannte Text unveraendert", r["rc"] == 0, _info(r))
+    _mit_gegenprobe(
+        "D-A7cM", "Mutationsprobe 'stilles None zurueck' - D-A7c waere rot",
+        lambda mut: _in_kopie(T_A7C, "auswertung.py", A7C_NEU, A7C_ALT, mut),
+        lambda r: r["rc"] == 0 and r["out"].strip().endswith("None"), _info)
+
+
+# ===========================================================================
+# E  herkunft.py - Datenpfad und Protokollordner, im Wegwerfbaum
+# ===========================================================================
+_E_SNAP_HASH = "attrappe_tb106_herkunft_00000000000000"
+E1_NEU = '    if daten_dir is None and _paths().selektionsmodus() is not None:\n'
+E1_ALT = '    if False:\n'
+E3_NEU = ('    if not os.path.isdir(os.path.dirname(PROTOKOLL)):\n'
+          '        _abbruch_2("anhaengen",')
+E3_ALT = ('    os.makedirs(os.path.dirname(PROTOKOLL), exist_ok=True)\n'
+          '    if not os.path.isdir(os.path.dirname(PROTOKOLL)):\n'
+          '        _abbruch_2("anhaengen",')
+_E_TREIBER = ("import sys, os, json\n"
+              "sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n"
+              "import herkunft\n"
+              "print(json.dumps(herkunft.block('probe'), sort_keys=True))\n")
+
+
+def _git(baum, *a):
+    subprocess.run(["git", "-C", baum] + list(a), check=True, capture_output=True, text=True)
+
+
+def _csv(pfad, text):
+    with open(pfad, "w", encoding="utf-8") as f:
+        f.write("open_time,close\n2020-01-01,%s\n" % text)
+
+
+def _e_baum(t, mutation=None, mit_ergebnisse=True, git=True):
+    """Ein Baum mit echter paths.py und (mutierter) herkunft.py; data/ und
+    die Snapshot-Attrappe tragen VERSCHIEDENE Kursdateien, damit sich zeigt,
+    welcher Ordner gehasht wurde."""
+    baum, snap = os.path.join(t, "baum"), os.path.join(t, "snap")
+    v = os.path.join(baum, "research", "vorregistrierung")
+    for o in (os.path.join(baum, "shared"), os.path.join(baum, "data"), v,
+              os.path.join(snap, "config")):
+        os.makedirs(o)
+    shutil.copy2(os.path.join(_REPO, "shared", "paths.py"), os.path.join(baum, "shared"))
+    shutil.copy2(os.path.join(_REPO, "requirements.lock"), baum)
+    shutil.copy2(os.path.join(_HIER, "herkunft.py"), v)
+    if mutation:
+        _ersetze(os.path.join(v, "herkunft.py"), *mutation)
+    with open(os.path.join(v, "probe_block.py"), "w", encoding="utf-8") as f:
+        f.write(_E_TREIBER)
+    if mit_ergebnisse:
+        os.makedirs(os.path.join(v, "ergebnisse"))
+        with open(os.path.join(v, "ergebnisse", "LIESMICH.txt"), "w") as f:
+            f.write("versioniert, damit der Ordner im Klon existiert\n")
+    _csv(os.path.join(baum, "data", "AAA_1d.csv"), "1.0")
+    _csv(os.path.join(snap, "AAA_1d.csv"), "2.0")
+    _csv(os.path.join(snap, "BBB_1d.csv"), "3.0")
+    for name, text in (("top25_symbols.txt", "AAAUSDT\n"), ("sp500_top150.txt", "AAA\n")):
+        with open(os.path.join(snap, "config", name), "w") as f:
+            f.write(text)
+    with open(os.path.join(snap, "MANIFEST.json"), "w") as f:
+        json.dump({"snapshot_hash": _E_SNAP_HASH,
+                   "dateien": {"AAA_1d.csv": {}, "BBB_1d.csv": {},
+                               "config/top25_symbols.txt": {},
+                               "config/sp500_top150.txt": {}}}, f)
+    head = None
+    if git:
+        # Wie im Repo: Bytecode-Caches sind ignoriert (Fable 25c 4 (4)(a)) -
+        # sonst machte der Import von paths.py den Baum selbst schmutzig.
+        with open(os.path.join(baum, ".gitignore"), "w") as f:
+            f.write("__pycache__/\n")
+        _git(baum, "init", "-q")
+        _git(baum, "add", "-A")
+        _git(baum, "-c", "user.name=tb106", "-c", "user.email=tb106@test",
+             "commit", "-q", "-m", "Wegwerfbaum")
+        head = subprocess.run(["git", "-C", baum, "rev-parse", "HEAD"],
+                              capture_output=True, text=True).stdout.strip()
+    return baum, snap, v, head
+
+
+def _e_lauf(t, baum, snap, head, argv, modus=True):
+    u = {k: v for k, v in os.environ.items()
+         if k not in ("TB30A_BASE_DIR", "PYTHONPATH") and not k.startswith("TB_SELEKTIONS")}
+    if modus:
+        u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": _E_SNAP_HASH,
+                  "TB_SELEKTIONSCOMMIT": head})
+    r = subprocess.run([sys.executable, "-W", "ignore"] + argv,
+                       capture_output=True, text=True, env=u)
+    return {"rc": r.returncode, "out": r.stdout, "err": r.stderr[-600:]}
+
+
+def _e2_lauf(mut):
+    """Modus, block() ohne daten_dir."""
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, v, head = _e_baum(t, (E1_NEU, E1_ALT, mut))
+        return _e_lauf(t, baum, snap, head, [os.path.join(v, "probe_block.py")])
+
+
+def _e3_lauf(mut):
+    """Ohne Modus, ergebnisse/ fehlt: anhaengen() endet mit 2, kein Ordner."""
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, v, head = _e_baum(t, (E3_NEU, E3_ALT, mut), mit_ergebnisse=False, git=False)
+        r = _e_lauf(t, baum, snap, head, [os.path.join(v, "herkunft.py"), "--anhaengen", "probe"],
+                    modus=False)
+        r["ordner_angelegt"] = os.path.exists(os.path.join(v, "ergebnisse"))
+        return r
+
+
+def teil_e():
+    vorher = _sha(ECHTES_PROTOKOLL)
+
+    # E1/E2: Modus, CLI --anhaengen uebergibt paths.DATA_DIR = Snapshot.
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, v, head = _e_baum(t)
+        r = _e_lauf(t, baum, snap, head, [os.path.join(v, "herkunft.py"), "--anhaengen", "probe"])
+        prot = os.path.join(v, "ergebnisse", "herkunft_protokoll.jsonl")
+        zeile = {}
+        if r["rc"] == 0 and os.path.exists(prot):
+            with open(prot, encoding="utf-8") as f:
+                zeile = json.loads(f.read().splitlines()[-1])
+        soll = herkunft.datenstand(snap)
+        falsch = herkunft.datenstand(os.path.join(baum, "data"))
+        pruefe("E-a: Modus, --anhaengen hasht den Snapshot (paths.DATA_DIR), nicht data/",
+               r["rc"] == 0 and zeile.get("datenstand") == soll["datenstand"]
+               and zeile.get("datendateien") == soll["dateien"] == 2
+               and soll["datenstand"] != falsch["datenstand"],
+               f"{_info(r)}; Zeile {zeile.get('datenstand')}, Snapshot {soll}, data/ {falsch}")
+
+    r = _e2_lauf(False)
+    pruefe("E-b: Modus, block() ohne daten_dir endet mit 2", _rc2(r, "block"), _info(r))
+    _mit_gegenprobe(
+        "E-bM", "Mutationsprobe 'Voreinstellung BASE_DIR/data unter dem Modus zurueck' - E-b waere rot",
+        _e2_lauf, lambda r: r["rc"] == 0, _info)
+
+    r = _e3_lauf(False)
+    pruefe("E-c: ohne Modus, Protokollordner fehlt -> 2, kein Ordner angelegt",
+           _rc2(r, "anhaengen") and not r["ordner_angelegt"], _info(r))
+    _mit_gegenprobe(
+        "E-cM", "Mutationsprobe 'makedirs zurueck' - E-c waere rot",
+        _e3_lauf, lambda r: r["rc"] == 0 and r["ordner_angelegt"],
+        lambda r: _info(r) + f"; Ordner angelegt {r['ordner_angelegt']}")
+
+    # E-d: ohne Modus liefert block() dieselben Felder wie vorher und hasht
+    # BASE_DIR/data (die Voreinstellung bleibt).
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, v, head = _e_baum(t)
+        r = _e_lauf(t, baum, snap, head, [os.path.join(v, "probe_block.py")], modus=False)
+        b = json.loads(r["out"].strip().splitlines()[-1]) if r["rc"] == 0 else {}
+        felder = {"zeitpunkt_utc", "anlass", "commit", "arbeitsbaum_sauber",
+                  "geaenderte_dateien", "datenstand", "datendateien", "register",
+                  "register_fehlend"}
+        pruefe("E-d: ohne Modus block() wie vorher - dieselben Felder, Datenstand von BASE_DIR/data",
+               set(b) == felder and b.get("datenstand")
+               == herkunft.datenstand(os.path.join(baum, "data"))["datenstand"],
+               f"{_info(r)}; Felder {sorted(b)}")
+
+    pruefe("E-e: das echte herkunft_protokoll.jsonl ist unberuehrt",
+           _sha(ECHTES_PROTOKOLL) == vorher, f"vorher {vorher}, nachher {_sha(ECHTES_PROTOKOLL)}")
+
+
+def _sha(pfad):
+    if not os.path.exists(pfad):
+        return "(fehlt)"
+    with open(pfad, "rb") as f:
+        return hashlib.sha256(f.read()).hexdigest()
+
+
+def main():
+    print(__doc__.strip().split("\n")[0])
+    for name, teil in (("B", teil_b), ("C", teil_c), ("D", teil_d), ("E", teil_e)):
+        print(f"  Teil {name} ...", flush=True)
+        teil()
+    print("\n" + "=" * 78)
+    if gescheitert:
+        print(f"{bestanden} bestanden, {len(gescheitert)} GESCHEITERT:")
+        for g in gescheitert:
+            print(f"  - {g}")
+        return 1
+    print(f"{bestanden}/{bestanden} Pruefungen bestanden.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
