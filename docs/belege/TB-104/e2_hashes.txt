@@ -1,0 +1,5 @@
+# TB-104 E2 - Tatsachennotiz alter/neuer Hash der geaenderten Sperrlisten-Dateien
+research/vorregistrierung/faltenplan.py  alt (be31276) 7aa0b8ccf5619a21d5f082f68d81cb412f98ae9c9724e799da8b48dce7498cfb  neu (f334a7b) d57fe9c977e572e1d344971913e3acbb1cd765d2bf145b52cefab69d75e10f41
+research/vorregistrierung/benchmark.py  alt (be31276) d6bdd55805344da09b6b43d791267b43c9702687fc1c7cdbad1473079443e061  neu (f334a7b) 4c923cd907c6aa9b14fd035fd775ced00bfcaff0795288dc4b1ccd48d19fc5b8
+neues Abbild: research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25.json  sha256 cb4eb1b4cf998efcded95acd4d712bb3a0856722489a80ce10bfce511eeb5f89  9191 B, HEAD f334a7bdfedf, 14 Punkte (Register Z. 868-981), 15 Pfadnennungen, Gruppen bestimmt 0 / eingefroren 10
+altes Abbild bleibt: sperrliste_abbild_2026-09-23.json 2f23f76c... (36.6)
