@@ -303,6 +303,7 @@ def messe_bot(bot, stichtage, datenordner=None,
     Eigener Prozess, weil neun gleichnamige Module sich sonst in `sys.modules`
     verdraengen - siehe Kopf von `loaderlauf.py`.
     """
+    import shutil
     ordner = tempfile.mkdtemp(prefix="tb40_lauf_")
     ziel = os.path.join(ordner, "%s.json" % bot)
     befehl = [sys.executable, os.path.join(HIER, "loaderlauf.py"),
@@ -318,10 +319,19 @@ def messe_bot(bot, stichtage, datenordner=None,
     if zeige_ausgabe:
         sys.stdout.write(r.stdout.decode("utf-8", "replace"))
     if not os.path.exists(ziel):
-        raise RuntimeError("Kindprozess %s ohne Ergebnis (Rueckgabe %d):\n%s"
-                           % (bot, r.returncode, r.stdout.decode("utf-8", "replace")[-3000:]))
-    with open(ziel, encoding="utf-8") as f:
-        return json.load(f)
+        # Die Ablage bleibt stehen, ihr Pfad steht in der Meldung (TB-107,
+        # Fable 25b 3 (1) Bedingung (3): "entfernt oder Pfad im Beleg").
+        raise RuntimeError("Kindprozess %s ohne Ergebnis (Rueckgabe %d), Ablage bleibt stehen: %s\n%s"
+                           % (bot, r.returncode, ordner,
+                              r.stdout.decode("utf-8", "replace")[-3000:]))
+    # TB-107: die Zwischenablage `tb40_lauf_*` wird entfernt, sobald das
+    # Ergebnis gelesen ist (Klasse (iv), Fable 25b 3 (1)); bis TB-107 blieb
+    # sie nach jedem Lauf liegen.
+    try:
+        with open(ziel, encoding="utf-8") as f:
+            return json.load(f)
+    finally:
+        shutil.rmtree(ordner)
 
 
 # ---------------------------------------------------------------------------
