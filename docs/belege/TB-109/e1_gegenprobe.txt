@@ -1,0 +1,60 @@
+TB-107 Block F / TB-109 Block E1 - Gegenprobe ueber alle `__main__`-Stellen des Laufbereichs
+  Liste: docs/belege/TB-107/f1_laufbereich_vereinigung.txt
+  [ok]     F0: Liste gelesen, nicht leer - 81 Module
+  [ok]     F0b: jede Datei der Liste existiert - fehlend []
+  [ok]     F2: jeder Ausstieg ohne geschriebenes Ergebnis im __main__-Block traegt paths.selektionsmodus() - 24 mit Abfrage, 0 ohne: []
+  [ok]     F2b: es sind 24 Stellen (TB-105: 14, TB-109: 10) - 24 gezaehlt
+       Stellen mit Abfrage (24):
+         strategies/elliott_wave/equity_simulation.py:143 (daten)
+         strategies/elliott_wave/equity_simulation.py:155 (trades)
+         strategies/elliott_wave/multi_symbol_optimise.py:209 (daten)
+         strategies/elliott_wave_stocks/equity_simulation.py:166 (daten)
+         strategies/elliott_wave_stocks/equity_simulation.py:178 (trades)
+         strategies/elliott_wave_stocks/multi_symbol_optimise.py:234 (daten)
+         strategies/rsi2_crypto/equity_simulation.py:131 (daten)
+         strategies/rsi2_crypto/equity_simulation.py:142 (trades)
+         strategies/rsi2_mean_reversion/equity_simulation.py:162 (daten)
+         strategies/rsi2_mean_reversion/equity_simulation.py:173 (trades)
+         strategies/rsi2_mean_reversion/multi_symbol_optimise.py:192 (daten)
+         strategies/t3_supertrend/equity_simulation.py:137 (daten)
+         strategies/t3_supertrend/equity_simulation.py:149 (trades)
+         strategies/t3_supertrend/multi_symbol_optimise.py:206 (daten)
+         strategies/turtle_soup_crypto/equity_simulation.py:114 (daten)
+         strategies/turtle_soup_crypto/equity_simulation.py:125 (trades)
+         strategies/turtle_soup_stocks/equity_simulation.py:153 (daten)
+         strategies/turtle_soup_stocks/equity_simulation.py:164 (trades)
+         strategies/volatility_breakout/equity_simulation.py:147 (daten)
+         strategies/volatility_breakout/equity_simulation.py:158 (trades)
+         strategies/volatility_breakout/multi_symbol_optimise.py:186 (daten)
+         strategies/volatility_breakout_crypto/equity_simulation.py:162 (daten)
+         strategies/volatility_breakout_crypto/equity_simulation.py:173 (trades)
+         strategies/volatility_breakout_crypto/equity_simulation.py:186 (trades)
+       ausgewiesen, nicht gezaehlt - Ende des Blocks bzw. nach geschriebenem Ergebnis (16):
+         research/faltenplan_neun/erste_falte_trockenlauf.py:331 (ende)
+         research/faltenplan_neun/faltenplan_neun.py:634 (ende)
+         research/faltenplan_neun/faltenschranke_messung.py:533 (ende)
+         research/universum_trockenlauf/loaderlauf.py:645 (ende)
+         research/universum_trockenlauf/universum_trockenlauf.py:810 (ende)
+         research/vorregistrierung/auswertung.py:726 (ende)
+         research/vorregistrierung/benchmark.py:463 (ende)
+         research/vorregistrierung/faltenplan.py:491 (ende)
+         research/vorregistrierung/registerdaten.py:633 (ende)
+         shared/abrufschutz.py:574 (ende)
+         shared/binance_historie.py:830 (ende)
+         shared/fetch_binance_data.py:384 (ende)
+         shared/fetch_multi_data.py:88 (ende)
+         shared/kursdaten.py:189 (ende)
+         strategies/elliott_wave_stocks/fetch_stock_data.py:147 (ende)
+         strategies/t3_supertrend/fetch_4h_data.py:90 (ende)
+  [ok]     F3a: Kopie von strategies/elliott_wave/equity_simulation.py, Datenstelle ohne Abfrage, in der Liste => rot - Befunde 1
+  [ok]     F3a-G: Gegenprobe - dieselbe Kopie MIT Abfrage => gezaehlt, kein Befund an ihr - Befunde 0
+  [ok]     F3c: Kopie von strategies/elliott_wave/equity_simulation.py, Stelle 'Keine Trades' (die 25.) ohne Abfrage, in der Liste => rot - Befunde 1
+  [ok]     F3c-G: Gegenprobe - dieselbe Kopie MIT Abfrage => gezaehlt, kein Befund an ihr - Befunde 0
+  [ok]     F3b: erfundene Datei 'Keine Daten gefunden' + exit() ohne Abfrage => rot - Befunde 1
+  [ok]     F3b-G: Gegenprobe - dieselbe Datei mit Abfrage => gezaehlt, kein Befund - Befunde 0
+  [ok]     F3d: erfundene Datei, exit() ohne Daten-/Trades-Bezug, ohne Abfrage => rot - Befunde ['/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpcsvdxb2f/F3d/sonst.py:10 (sonst)']
+  [ok]     F3d-G: Gegenprobe - dieselbe Datei mit Abfrage => gezaehlt, kein Befund - mit ['/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpcsvdxb2f/F3d-G/sonst.py:10 (sonst)'], Befunde []
+  [ok]     F3e: json.dump vor dem exit(), ohne Abfrage => nicht gezaehlt (nach_ergebnis); sys.exit(main()) am Blockende => nicht gezaehlt (ende) - ausgewiesen ['/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpcsvdxb2f/F3e/sonst.py:15 (ende)', '/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpcsvdxb2f/F3e/sonst.py:10 (nach_ergebnis)'], Befunde []
+
+==============================================================================
+13/13 Pruefungen bestanden.

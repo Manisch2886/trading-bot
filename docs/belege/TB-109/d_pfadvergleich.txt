@@ -1,0 +1,21 @@
+==========================================================================
+Pfadvergleich alt/neu - shared/paths.py, OHNE gesetzten Modus
+==========================================================================
+Bezugscommit      : 062bacf62638f41df55d3f861feb4f6281fdef18
+Bots              : 9
+Verglichene Pfade : 99
+Unterschiede      : 0
+
+Nur in der neuen Fassung (Zugaenge, keine Unterschiede): 8
+   + paths.CONFIG_UNTERORDNER
+   + paths.LIVE_CONFIG_DIR
+   + paths.LIVE_DATA_DIR
+   + paths.LOCK
+   + paths.MANIFEST
+   + paths.UMGEBUNG_COMMIT
+   + paths.UMGEBUNG_HASH
+   + paths.UMGEBUNG_WURZEL
+
+Selbstprobe (beisst der Vergleich?): JA, 18 Unterschiede gefunden
+
+ERGEBNIS: GRUEN - null Unterschiede, und der Vergleich beisst.

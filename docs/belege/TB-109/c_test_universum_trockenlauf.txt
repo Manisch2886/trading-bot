@@ -1,0 +1,184 @@
+Selbsttest des Universum-Trockenlaufs (TB-40)
+==============================================================================
+  Teil A ...
+    ok   A0: der Datenstand ist der registrierte (223 Dateien, d9449faf...)
+    ok   A1: das Werkzeug laeuft
+    ok   A2: der Loader laedt heute 20 von 24 Symbolen - der Befund vom Mac
+    ok   A3: und es sind namentlich dieselben vier
+    ok   A4: die eingetragene Zahl fuer die Bestaetigungsperiode ist 20 - der Wert aus der GUELTIGEN Tabelle 16.1.1 (die historische in 15.5 sagt 23)
+  Teil B ...
+    ok   B0: der Lauf kommt durch
+    ok   B1: der Datenstand-Hash ist vor und nach dem Lauf identisch
+    ok   B2: der Schreibschutz war waehrend des Laufs nachweislich aktiv - je Bot sind results/<bot> UND logs/<bot> als unterdrueckter Versuch verzeichnet
+    ok   B3: der Lauf hat unter logs/ nichts angelegt
+    ok   B4: und unter results/ ebenfalls nichts
+  Teil C ...
+    ok   C0: beide Laeufe kommen durch
+    ok   C1: zweiter Lauf, gleiche Listen - Symbol fuer Symbol, nicht nur gleiche Anzahl
+    ok   C2: und es sind ueberhaupt Symbole drin (sonst waere C1 leer wahr)
+  Teil D ...
+    ok   D0: der Loader laeuft auf den Beispieldaten
+    ok   D1: das lange Symbol wird geladen
+    ok   D2: das kuenstlich verkuerzte Symbol faellt heraus (499 Tage < 500)
+    ok   D3: genau an der Grenze (exakt 500 Tage) wird GELADEN - die Schranke ist einschliesslich
+    ok   D4: die Schranke, gegen die geprueft wurde, ist die des Bots (500), nicht eine Zahl im Werkzeug
+    ok   D5: der Loader von elliott_wave laeuft auf den Beispieldaten
+    ok   D6: genau an der Grenze (exakt 17520 Kerzen) wird geladen, eine Kerze weniger nicht
+    ok   D7: dieselbe Zeitspanne mit zu wenig Kerzen faellt heraus - dieser Bot misst Kerzen, nicht Tage
+    ok   D8: und seine Schranke heisst auch anders
+  Teil E ...
+    ok   E0: unmutiert liest das Werkzeug die eingetragene Reihe 6 / 9 / 10 / 13 / 13 / 17 / 18 - aus der gueltigen Tabelle 16.1.1
+    ok   E1: das Werkzeug laeuft auf dem veraenderten Register
+    ok   E2: eine veraenderte eingetragene Zahl aendert die gemeldete Differenz - der Vergleich prueft wirklich gegen das Register
+    ok   E3: die GEMESSENE Liste bleibt dabei gleich - es hat sich nur die eingetragene Zahl bewegt, nicht die Messung
+  Teil F ...
+    ok   F0: unmutiert misst die erste Falte WENIGER als heute
+    ok   F1: das mutierte Werkzeug laeuft (sonst belegte F2 nichts)
+    ok   F2: ohne wirksamen Stichtag misst JEDE Falte den heutigen Stand - und das faellt auf
+    ok   F3: die Mutation macht die Zahlen GROESSER, nicht kleiner - sie sieht also besser aus als das Richtige
+    ok   F4: keine andere Wache schlaegt dabei an - die Monotonie gilt trivial weiter, also braucht es genau diese Probe
+  Teil G ...
+    ok   G0: unmutiert laeuft der Kindprozess ohne Fehler
+    ok   G1: der Schreibschutz ALLEIN bricht den Lauf ab - ohne dass ein Datenstand-Hash gefragt wurde
+    ok   G2: und die Datei ist gar nicht erst entstanden
+    ok   G3: der Datenstand des Wegwerf-Ordners steht unveraendert
+  Teil H ...
+    ok   H1: ohne Schreibschutz laeuft derselbe Defekt OHNE Klage durch - die erste Wache fehlt wirklich
+    ok   H2: die Datei ist jetzt da
+    ok   H3: der Datenstand-Hash ALLEIN findet es - die zweite Wache greift fuer sich
+    ok   H4: und zwar an der Dateizahl wie am Inhalt
+  Teil I ...
+    ok   I0: der Lauf kommt durch
+    ok   I1: ueber alle Stichtage waechst die Menge der handelbaren Symbole nur - Lesart H am Faltenende ist damit gleichbedeutend mit 'an mindestens einem Handelstag der Falte'
+    ok   I2: und die Pruefung ist nicht leer - F ist echt strenger als H
+  Teil J ...
+    ok   J0: der Standard ist die GUELTIGE Tabelle 16.1.1
+    ok   J1: beide Tabellen werden ueberhaupt gefunden - je neun Bots
+    ok   J2: die beiden Tabellen sind wirklich verschieden - und zwar in acht der neun Reihen
+    ok   J3: genau elliott_wave stimmt in beiden ueberein - der neunte Bot
+    ok   J4: aus 16.1.1 kommt t3_supertrend = 3 / 6 / 9 / 13 / 13 / 13 / 17
+    ok   J5: aus 15.5 kommt dieselbe Zeile als 6 / 9 / 13 / 13 / 13 / 17 / 18
+    ok   J6-16.1.1: der Lauf gegen 16.1.1 kommt durch
+    ok   J7-16.1.1: der Bericht nennt den benutzten Abschnitt
+    ok   J8-16.1.1: und die Ausgabe nennt ihn auch
+    ok   J9-16.1.1: und die eingetragene Reihe stammt aus dieser Tabelle
+    ok   J6-15.5: der Lauf gegen 15.5 kommt durch
+    ok   J7-15.5: der Bericht nennt den benutzten Abschnitt
+    ok   J8-15.5: und die Ausgabe nennt ihn auch
+    ok   J9-15.5: und die eingetragene Reihe stammt aus dieser Tabelle
+    ok   J10: gegen die historische Tabelle warnt das Werkzeug ausdruecklich
+  Teil K ...
+    ok   K0: die Probe laeuft ueberhaupt durch
+    ok   K1: open(pfad, "rb") - positional - liest
+    ok   K2: open(pfad, mode="rb") - benannt - liest AUCH (vorher: TypeError)
+    ok   K3: und beide liefern dasselbe Ergebnis
+    ok   K4 open(pfad, "w")        wird abgefangen
+    ok   K4 open(pfad, mode="w")   wird abgefangen
+    ok   K4 open(file=…, mode="w") wird abgefangen
+    ok   K4 io.open(pfad, "w")     wird abgefangen
+    ok   K4 pathlib.Path(pfad).open("w") wird abgefangen
+    ok   K4 Path(pfad).write_text(…) wird abgefangen
+    ok   K4 os.open(pfad, O_WRONLY|O_CREAT) wird abgefangen
+    ok   K5: erlaubtes Schreiben geht weiter - der Schutz ist nicht bloss ein Totalverbot
+    ok   K6: und es ist wirklich keine verbotene Datei entstanden - am Dateibestand geprueft, nicht an der Ausnahme
+  Teil L ...
+      Python-Fassungen: python3=3.9
+    ok   L0 python3/frueh          die Probe laeuft durch
+    ok   L1 3.9.6 frueh      Kopie NACH der Wache: os.open LIEST
+    ok   L1 3.9.6 frueh      Kopie NACH der Wache: io.open LIEST
+    ok   L1 3.9.6 frueh      und os.open SCHREIBT trotzdem nicht
+    ok   L1 3.9.6 frueh      und io.open SCHREIBT trotzdem nicht
+    ok   L1 3.9.6 frueh      und os.unlink loescht nicht
+    ok   L2 3.9.6 frueh      Kopie VOR der Wache: LESEN geht durch
+    ok   L2 3.9.6 frueh      und os.open SCHREIBT nicht - nachgezogen
+    ok   L2 3.9.6 frueh      und io.open SCHREIBT nicht - nachgezogen
+    ok   L2 3.9.6 frueh      und os.unlink loescht nicht
+    ok   L2 3.9.6 frueh      das Nachziehen ist nachweislich passiert
+    ok   L3 3.9.6 frueh      pathlib: read_text() liest
+    ok   L3 3.9.6 frueh      pathlib: Path().open("r") liest
+    ok   L3 3.9.6 frueh      pathlib: write_text() abgefangen
+    ok   L3 3.9.6 frueh      pathlib: open("w")    abgefangen
+    ok   L3 3.9.6 frueh      pathlib: touch()      abgefangen
+    ok   L3 3.9.6 frueh      pathlib: unlink()     abgefangen
+    ok   L3 3.9.6 frueh      pathlib: mkdir() bleibt folgenlos
+    ok   L4 3.9.6 frueh      open(devnull,r+)       ausgenommen
+    ok   L4 3.9.6 frueh      io.open(devnull,w)     ausgenommen
+    ok   L4 3.9.6 frueh      os.open(devnull,RDWR)  ausgenommen
+    ok   L4 3.9.6 frueh      Path(devnull).open     ausgenommen
+    ok   L4 3.9.6 frueh      erlaubtes Schreiben geht weiter
+    ok   L5 3.9.6 frueh      keine verbotene Datei entstanden
+    ok   L5 3.9.6 frueh      und keine Datei verschwunden
+    ok   L0 python3/spaet          die Probe laeuft durch
+    ok   L1 3.9.6 spaet      Kopie NACH der Wache: os.open LIEST
+    ok   L1 3.9.6 spaet      Kopie NACH der Wache: io.open LIEST
+    ok   L1 3.9.6 spaet      und os.open SCHREIBT trotzdem nicht
+    ok   L1 3.9.6 spaet      und io.open SCHREIBT trotzdem nicht
+    ok   L1 3.9.6 spaet      und os.unlink loescht nicht
+    ok   L2 3.9.6 spaet      Kopie VOR der Wache: LESEN geht durch
+    ok   L2 3.9.6 spaet      und os.open SCHREIBT nicht - nachgezogen
+    ok   L2 3.9.6 spaet      und io.open SCHREIBT nicht - nachgezogen
+    ok   L2 3.9.6 spaet      und os.unlink loescht nicht
+    ok   L2 3.9.6 spaet      das Nachziehen ist nachweislich passiert
+    ok   L3 3.9.6 spaet      pathlib: read_text() liest
+    ok   L3 3.9.6 spaet      pathlib: Path().open("r") liest
+    ok   L3 3.9.6 spaet      pathlib: write_text() abgefangen
+    ok   L3 3.9.6 spaet      pathlib: open("w")    abgefangen
+    ok   L3 3.9.6 spaet      pathlib: touch()      abgefangen
+    ok   L3 3.9.6 spaet      pathlib: unlink()     abgefangen
+    ok   L3 3.9.6 spaet      pathlib: mkdir() bleibt folgenlos
+    ok   L4 3.9.6 spaet      open(devnull,r+)       ausgenommen
+    ok   L4 3.9.6 spaet      io.open(devnull,w)     ausgenommen
+    ok   L4 3.9.6 spaet      os.open(devnull,RDWR)  ausgenommen
+    ok   L4 3.9.6 spaet      Path(devnull).open     ausgenommen
+    ok   L4 3.9.6 spaet      erlaubtes Schreiben geht weiter
+    ok   L5 3.9.6 spaet      keine verbotene Datei entstanden
+    ok   L5 3.9.6 spaet      und keine Datei verschwunden
+    ok   L6: es lief eine Fassung mit, die `pathlib._NormalAccessor` noch hat (3.9/3.10) - sonst sagt L3 auf diesem Rechner nichts ueber den Befund
+  Teil M ...
+    ok   M0: die Probe laeuft unmutiert durch
+    ok   M0a: unmutiert liest eine NACH der Wache gebundene Kopie - und schreibt nicht
+    ok   M0b: unmutiert schreibt eine VOR der Wache gebundene Kopie ebenfalls nicht
+    ok   M1: die Probe laeuft auch mit der Mutation durch
+    ok   M1a: ohne die Huelle bricht eine NACH der Wache gebundene Kopie ab - auch beim LESEN. Das ist der TB-44-Befund
+    ok   M1b: ohne die Huelle schreibt die VOR der Wache gebundene Kopie zwar immer noch nicht - das Nachziehen greift -, ...
+    ok   M1c: ... aber sie bricht jetzt AUCH beim Lesen ab. Die zwei Wachen sind nicht unabhaengig: das Nachziehen setzt die Huelle voraus, die Huelle nicht das Nachziehen (M2b)
+    ok   M2: die Probe laeuft auch mit der Mutation durch
+    ok   M2a: ohne das Nachziehen SCHREIBT eine VOR der Wache gebundene Kopie wieder - das Loch ist wieder offen
+    ok   M2b: und die ANDERE Wache steht dabei noch - eine NACH der Wache gebundene Kopie liest und schreibt weiterhin richtig
+    ok   M2c: und es ist dabei wirklich eine verbotene Datei entstanden - am Dateibestand, nicht an der Ausnahme
+  Teil N ...
+    ok   N0 fehlt     die Probe laeuft durch
+    ok   N0 vorhanden die Probe laeuft durch
+    ok   N1 fehlt     /dev/null gilt weiterhin als Geraet
+    ok   N2 fehlt     ein VERZEICHNIS gilt nicht mehr als Geraet - das ist der Befund
+    ok   N3 fehlt     eine regulaere Datei ebenfalls nicht
+    ok   N4 fehlt     ein Pfad, den es noch nicht gibt, faellt nicht heraus - der wuerde ja gerade angelegt
+    ok   N5 fehlt     der makedirs-Versuch wird aufgezeichnet
+    ok   N6 fehlt     und er bricht den Lauf nicht ab
+    ok   N7 fehlt     /dev/null bleibt schreibend offen - sonst kaeme python-binance nicht durch den Import
+    ok   N8 fehlt     ein Verzeichnis ausserhalb wird als Schreibversuch gefuehrt, nicht als Geraet durchgewunken
+    ok   N9 fehlt     und es ist wirklich nichts angelegt worden
+    ok   N1 vorhanden /dev/null gilt weiterhin als Geraet
+    ok   N2 vorhanden ein VERZEICHNIS gilt nicht mehr als Geraet - das ist der Befund
+    ok   N3 vorhanden eine regulaere Datei ebenfalls nicht
+    ok   N4 vorhanden ein Pfad, den es noch nicht gibt, faellt nicht heraus - der wuerde ja gerade angelegt
+    ok   N5 vorhanden der makedirs-Versuch wird aufgezeichnet
+    ok   N6 vorhanden und er bricht den Lauf nicht ab
+    ok   N7 vorhanden /dev/null bleibt schreibend offen - sonst kaeme python-binance nicht durch den Import
+    ok   N8 vorhanden ein Verzeichnis ausserhalb wird als Schreibversuch gefuehrt, nicht als Geraet durchgewunken
+    ok   N9 vorhanden und es ist wirklich nichts angelegt worden
+    ok   N10 fehlt      makedirs ohne exist_ok laeuft durch, wenn es den Ordner nicht gibt
+    ok   N11 vorhanden  makedirs ohne exist_ok wirft weiterhin FileExistsError - der Aufrufer sieht, was er im Betrieb saehe
+    ok   N12 vorhanden  os.mkdir ebenso - es kennt gar kein exist_ok
+    ok   N13 fehlt      und ohne bestehenden Ordner wirft os.mkdir nicht
+  Teil O ...
+    ok   O1: loaderlauf.py im Selektionsmodus ohne --daten - der Loader liest aus dem Snapshot, 0 Kursdateien aus data/, 0 aus config/
+    ok   O2: loaderlauf.py --daten im Selektionsmodus endet mit 2, nennt den Grund und liest keine Kursdatei - weder aus dem Ersatzordner noch aus dem Snapshot
+    ok   O3: universum_trockenlauf.messe_bot(datenordner=...) im Selektionsmodus - der Kindprozess lehnt ab, 0 Kursdateien aus dem Ersatzordner
+    ok   O4: Mutationsprobe 'Modus-Wache fuer --daten entfernt' - loaderlauf.py liest im Modus aus dem Ersatzordner (O2 waere rot)
+    ok   O4-G: Gegenprobe zu O4 - ohne die Mutation scheitert sie
+    ok   O5: Mutationsprobe 'Modus-Wache fuer --daten entfernt' - messe_bot() liest im Modus aus dem Ersatzordner (O3 waere rot)
+    ok   O5-G: Gegenprobe zu O5 - ohne die Mutation scheitert sie
+
+==============================================================================
+163/163 Pruefungen bestanden.

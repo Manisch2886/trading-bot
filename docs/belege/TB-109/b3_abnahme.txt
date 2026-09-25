@@ -1,0 +1,52 @@
+# TB-109 B3, HEAD f4d6d6d, Arbeitsbaum strategies/ shared/: [ M shared/test_rueckfaelle_modus.py  M strategies/elliott_wave/equity_simulation.py  M strategies/elliott_wave_stocks/equity_simulation.py  M strategies/rsi2_crypto/equity_simulation.py  M strategies/rsi2_mean_reversion/equity_simulation.py  M strategies/t3_supertrend/equity_simulation.py  M strategies/turtle_soup_crypto/equity_simulation.py  M strategies/turtle_soup_stocks/equity_simulation.py  M strategies/volatility_breakout/equity_simulation.py  M strategies/volatility_breakout_crypto/equity_simulation.py ?? shared/test_nulltrades_modus.py ], 2026-09-25 23:57:11 +0200
+## (1) Trade-Listen der neun Bots nachher (a3_b3_alle.sh) und Vergleich gegen a3_b3_vorher.txt
+3c3
+<   Z.161  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.168  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+7c7
+<   Z.184  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.191  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+11c11
+<   Z.147  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.154  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+15c15
+<   Z.178  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.185  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+19c19
+<   Z.155  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.162  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+23c23
+<   Z.130  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.137  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+27c27
+<   Z.169  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.176  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+31c31
+<   Z.163  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.170  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+35,36c35,36
+<   Z.179  if trades.empty: leer nein, sha256 e66730033613bd3c1431888e2ed88968a8892a6b216003631f6705e91d5844e3
+<   Z.183  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+---
+>   Z.186  if trades.empty: leer nein, sha256 e66730033613bd3c1431888e2ed88968a8892a6b216003631f6705e91d5844e3
+>   Z.197  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+## (2) research/tb27_kapitalsimulation/vergleich.py --pruefen
+   rc=0
+   UNVERAENDERT gegenueber dem Stand TB-27 (13.09.2026). 4 Funktionen ueber 9 Bots geprueft.
+## shared/test_ergebniskurven.py -> docs/belege/TB-109/b3_test_ergebniskurven.txt
+   rc=0 30s  44 von 44 Pruefungen bestanden, 0 fehlgeschlagen. 
+## shared/test_rueckfaelle_modus.py -> docs/belege/TB-109/b3_test_rueckfaelle_modus.txt
+   rc=0 39s  48/48 Pruefungen bestanden. 
+## shared/test_nulltrades_modus.py -> docs/belege/TB-109/b3_test_nulltrades_modus.txt
+   rc=0 28s  34/34 Pruefungen bestanden. 
+## Ende 23:59:30
+## (1b) Vergleich ohne Zeilennummern (die Einbauten verschieben den Rest der Datei um 7 bzw. 14 Zeilen):
+   vorher = nachher: 10 Stellen 'leer nein' mit gleichem sha256, 9 x simulate_portfolio erreicht, 9 x rc 0

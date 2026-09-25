@@ -1,0 +1,39 @@
+# TB-109 a3_b3_alle.sh, HEAD f4d6d6d, 2026-09-25 23:45:11 +0200
+# elliott_wave (strategies/elliott_wave/equity_simulation.py)
+  Z.155  if trades.empty: leer nein, sha256 df5fe8a7554fd90d35a0ce60fdf6425edeff2b74e42bb47e2c7d4aaebcece977
+  Z.161  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# elliott_wave_stocks (strategies/elliott_wave_stocks/equity_simulation.py)
+  Z.178  if trades.empty: leer nein, sha256 c0d2f4179a7a219dd72f3c23d91ec0801919f1422a41626b30a7417d07a35eff
+  Z.184  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# rsi2_crypto (strategies/rsi2_crypto/equity_simulation.py)
+  Z.142  if trades.empty: leer nein, sha256 dd8da1cf978525ad22477340c2260ab2017a584b225bdad4f0f742d8fdeea6cc
+  Z.147  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# rsi2_mean_reversion (strategies/rsi2_mean_reversion/equity_simulation.py)
+  Z.173  if trades.empty: leer nein, sha256 52e9237aeada7842204d820865f85386b88add22058c7f2468a86ad31b6f672c
+  Z.178  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# t3_supertrend (strategies/t3_supertrend/equity_simulation.py)
+  Z.149  if trades.empty: leer nein, sha256 87760a15c67aacfeaf5d9b2ea6b9091bb73f0c0c0ddb32d665ba9aa89b1c1a2b
+  Z.155  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# turtle_soup_crypto (strategies/turtle_soup_crypto/equity_simulation.py)
+  Z.125  if trades.empty: leer nein, sha256 988359a337d7d672228735c4e3aa135e32106eab9cec87335d7108988885a066
+  Z.130  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# turtle_soup_stocks (strategies/turtle_soup_stocks/equity_simulation.py)
+  Z.164  if trades.empty: leer nein, sha256 52022b917075fe95ebcbb890f5a2d709ad1353059e556910e635046a00577017
+  Z.169  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# volatility_breakout (strategies/volatility_breakout/equity_simulation.py)
+  Z.158  if trades.empty: leer nein, sha256 6bbff7b5565a4f193d80140300dcdc5d06f9b26d7595973a742b48b6083a44dc
+  Z.163  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# volatility_breakout_crypto (strategies/volatility_breakout_crypto/equity_simulation.py)
+  Z.173  if trades.empty: leer nein, sha256 6c8b39b2d9bada2cf47c8b8e28b19aa99e44dd45528edc2b1a5abb2c596f66fa
+  Z.179  if trades.empty: leer nein, sha256 e66730033613bd3c1431888e2ed88968a8892a6b216003631f6705e91d5844e3
+  Z.183  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+  rc 0
+# Ende 23:46:18

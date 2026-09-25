@@ -1,0 +1,22 @@
+# TB-109 C Abnahme, HEAD 53896e4, Arbeitsbaum research/universum_trockenlauf: [ M research/universum_trockenlauf/test_zwischenablage.py  M research/universum_trockenlauf/universum_trockenlauf.py ], 2026-09-26 00:00:09 +0200
+## eigenes TMPDIR /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/c_tmp
+   vorher:            tb40_lauf_ 0  tb40_faltenplan_ 0  tb40_proben_ 0  
+   ut --json rc=0
+   nach ut --json:    tb40_lauf_ 0  tb40_faltenplan_ 0  tb40_proben_ 0     (hole_faltenplan() ohne --faltenplan-json + 9 x messe_bot)
+   sf --json rc=0
+   nach --stille-filter: tb40_lauf_ 0  tb40_faltenplan_ 0  tb40_proben_ 0  
+   alles unter /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/c_tmp: []
+## Vergleich gegen g2_vorher
+2546cadf5079bcc3d9c1ebf0a385267cb1aa68581f99bf243fbc1c2f598e865b  c_nachher/ut.json
+   ut BYTEGLEICH
+78e4f524676a4979e051a91509f1d3b65d768db28d89c0cc2687776fec76f41f  c_nachher/sf.json
+   sf BYTEGLEICH
+## System-TMPDIR (/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/), ein Lauf ut --json (Zaehlung kann durch die parallele Sitzung gestoert sein)
+   vorher:  tb40_lauf_ 4765  tb40_faltenplan_ 68  tb40_proben_ 90  
+   ut --json rc=0
+   nachher: tb40_lauf_ 4765  tb40_faltenplan_ 68  tb40_proben_ 90  
+   ut2 BYTEGLEICH
+## test_universum_trockenlauf.py, test_zwischenablage.py
+   test_universum_trockenlauf rc=0 93s  163/163 Pruefungen bestanden.
+   test_zwischenablage rc=0 1s  12/12 Pruefungen bestanden.
+## Ende 00:05:29

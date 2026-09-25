@@ -1,0 +1,8 @@
+Selbsttest zu TB-109 Block B: null Trades unter dem Modus - Rueckgabe 2
+
+==============================================================================
+34/34 Pruefungen bestanden.
+
+real	0m31.696s
+user	0m17.247s
+sys	0m10.527s

@@ -1,0 +1,16 @@
+TB-107 Block E / TB-109 Block C - die Zwischenablagen von `universum_trockenlauf.py`
+  [ok]     E-a: Normallauf - Ergebnis gelesen, danach kein tb40_lauf_* mehr
+  [ok]     E-b: Kindprozess ohne Ergebnis - RuntimeError, Ordner steht, Pfad in der Meldung
+  [ok]     E-aM: Mutationsprobe 'Aufraeumen weg' - der Ordner bliebe liegen, E-a waere rot
+  [ok]     E-aM-G: Gegenprobe zu E-aM - ohne die Mutation scheitert sie
+  [ok]     C-fa: hole_faltenplan() ohne JSON - Ergebnis gelesen, danach kein tb40_faltenplan_* mehr
+  [ok]     C-fb: Faltenplan ohne Ergebnis - RuntimeError, Ordner steht, Pfad in der Meldung
+  [ok]     C-faM: Mutationsprobe 'Aufraeumen weg' in hole_faltenplan() - C-fa waere rot
+  [ok]     C-faM-G: Gegenprobe zu C-faM - ohne die Mutation scheitert sie
+  [ok]     C-pa: stille_filter() - Ergebnis gelesen, danach kein tb40_proben_* und kein tb40_lauf_* mehr
+  [ok]     C-pb: Probelauf ohne Ergebnis - RuntimeError, tb40_proben_* steht, Pfad in der Meldung
+  [ok]     C-paM: Mutationsprobe 'Aufraeumen weg' in stille_filter() - C-pa waere rot
+  [ok]     C-paM-G: Gegenprobe zu C-paM - ohne die Mutation scheitert sie
+
+==============================================================================
+12/12 Pruefungen bestanden.

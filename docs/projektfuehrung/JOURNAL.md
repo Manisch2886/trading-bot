@@ -9135,6 +9135,45 @@ Ergebnis TB-106 Befund 1. Freigabe 18:09 und 20:27 (zwei Auswahlkarten).
 
 ---
 
+## DH — TB-109: „Null Trades ist ein Wert" — die 10 Stellen `trades.empty ⇒ exit()` unter dem Modus rc 2, ohne Modus gleich; `tb40_faltenplan_*`/`tb40_proben_*` entfernt; `pfadvergleich.py` mit benanntem Stummel rc 0; Gegenprobe 24 Stellen; Klasse (iv) im Audit; Benchmark im Modus (Repo und Klon) und ohne Modus bytegleich (26.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-109_nulltrades_ablagen_stummel.md`*
+
+**Quelle:** Mac-Sitzung **TB-109**, 25./26.09.2026, Eingang `486032d`. Commits `f4d6d6d` (Schritt 0, dazu Worktree
+`../trading-bot-tb111` auf Zweig `tb-111` für Sitzung B), `53896e4` (Block B), `29640ca` (Block C), `8570ce8` (Block D),
+`a02f035` (Block E) und der Abgabe-Commit. Belege `docs/belege/TB-109/`. Grundlage Fable 25e (1)–(3), 3 (b), 25d (1).
+Freigabe 23:04 (zwei Auswahlkarten).
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| ⭐ **A** | Vormessung bestätigt. **A3: kein Cron-Lauf erreicht heute eine der 10 Stellen** – `__main__` der neun Bots einzeln bis vor `simulate_portfolio` ausgeführt (Stubs wie `kurven_lauf`), 10 × Trade-Liste nicht leer |
+| ⭐⭐ **B** | Live-Code: 10 Stellen in 9 `equity_simulation.py` unter dem Modus stderr + rc 2, Abfrage über `paths`. Ohne Modus: Trade-Listen gleich, `vergleich.py --pruefen` rc 0, `test_ergebniskurven` 44/44. Neu `test_nulltrades_modus.py` 34/34 (nur der Erzeuger in der Kopie ersetzt, die Stelle zeichengleich) |
+| ⭐ **C** | `hole_faltenplan()` und `stille_filter()` räumen ihre Ablage im `finally` weg, ohne Ergebnis Pfad in der Meldung. `ut`/`sf` bytegleich, eigenes `TMPDIR` 0 ⇒ 0; `test_zwischenablage` 12/12 |
+| ⭐ **D** | `pfadvergleich.py` mit Stummel `selektionsmodus()` → `None`: rc 0 GRÜN. Mit `False` meldet das Werkzeug **ebenfalls** 0 Unterschiede – der Widerspruch zeigt sich nur im Zweig (`strategy_paths` legt 0/9 statt 9/9 Ordnerpaare an) |
+| ⭐⭐ **E** | Gegenprobe zählt jedes vorzeitige `exit()` im `__main__` ohne geschriebenes Ergebnis: 24 Stellen, alle mit Abfrage, keine neue; 16 Blockenden ausgewiesen; 13/13. Audit TB-109: eigene Ablage ⇒ (iv); (i) außerhalb 11 statt 31 (Auftrag erwartete 21, Frage an Fable) |
+| ⭐⭐ **F** | Benchmark `64fb2912` im Modus (Repo und Klon) und ohne Modus; 8/8 Ausgaben bytegleich; Trockenlauf 9 × rc 0; Sonde vorher = nachher; `register()` `c85dd6c3`; 17 Testdateien grün, `test_vorregistrierung` 196/196. Eine DB geändert (Binance-Brücke, Cron 00:05) |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Ein Verhaltensbeleg misst den Zweig, nicht nur die Ausgabe.** Der erwartete Beleg „mit `False` meldet das Werkzeug Unterschiede" traf nicht zu: Das Werkzeug vergleicht Zeichenketten, und die sind in beiden Zweigen gleich. Belegt wurde der Widerspruch erst über die Ordneranlage im Wegwerfbaum |
+| ⭐ | **Wer eine Zeile an einer zweiten Stelle derselben Datei einbaut, prüft die Mutationsproben, die diese Zeile suchen.** `test_rueckfaelle_modus` C3 und die Gegenprobe F3a suchten „genau einmal" – nach B stand die Abfrage zweimal in `elliott_wave/equity_simulation.py` |
+| ⭐ | **Eine Probe für „leere Liste" ersetzt in der Kopie den Erzeuger, nicht die Stelle.** `x if True else collect_all_trades(` hält die Argumentliste syntaktisch stehen; die geprüfte Stelle bleibt zeichengleich |
+| ⭐ | **Zählungen in `$TMPDIR` mit eigenem `TMPDIR`,** wenn eine zweite Sitzung parallel läuft (Worktree) |
+
+### Was offen bleibt
+
+- Drei Fragen an Fable (Ergebnis, Abschnitt 8): Berichtigung `None`/`False` und ob das Werkzeug den Zweig prüfen soll; welche Zugriffe (iv) umfasst (11 oder 21); Gegenprobe auch über `main()`.
+- TB-110 (Register 43) folgt in dieser Sitzung; TB-111 läuft in Sitzung B im Worktree.
+- `auswertung.Abbruch` ⇒ 2 und die `herkunft.py`-Öffnung (25d (2)–(4)) – nicht in diesem Auftrag.
+
+*Geschrieben 26.09.2026 von der Mac-Sitzung TB-109. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

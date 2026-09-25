@@ -1,0 +1,9 @@
+# gebauter Stummel im Werkzeug: pv.STUMMEL == None-Fassung: True
+
+== Stummel None (gebaut, wie test_paths Probe A)
+   (1) verglichen 99, Unterschiede 0, Selbstprobe beisst True => main() urteilte GRUEN (rc 0)
+   (2) strategy_paths legt results/<bot> und logs/<bot> an: 9 von 9 Bots (wie ohne Modus)
+
+== Stummel False (Fable 25e (3): selektionsmodus = lambda: False)
+   (1) verglichen 99, Unterschiede 0, Selbstprobe beisst True => main() urteilte GRUEN (rc 0)
+   (2) strategy_paths legt results/<bot> und logs/<bot> an: 0 von 9 Bots (haelt den Modus fuer AKTIV)

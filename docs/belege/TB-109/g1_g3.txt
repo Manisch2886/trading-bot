@@ -1,0 +1,44 @@
+# TB-109 F Modus-Laeufe, Repo, HEAD a02f035, 2026-09-26 00:06:15 +0200
+tb40_* vorher: tb40_lauf_ 4765  tb40_faltenplan_ 68  tb40_proben_ 90  
+# TB-109 benchmark bm_repo , Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:06:16 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+benchmark bm_repo  rc=0 57s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_repo/benchmark.json
+# TB-109 bot bot_elliott_wave elliott_wave, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:13 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_elliott_wave elliott_wave rc=0 9s
+# TB-109 bot bot_t3_supertrend t3_supertrend, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:22 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_t3_supertrend t3_supertrend rc=0 3s
+# TB-109 bot bot_rsi2_crypto rsi2_crypto, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:25 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_rsi2_crypto rsi2_crypto rc=0 1s
+# TB-109 bot bot_turtle_soup_crypto turtle_soup_crypto, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:26 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_turtle_soup_crypto turtle_soup_crypto rc=0 1s
+# TB-109 bot bot_volatility_breakout_crypto volatility_breakout_crypto, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:27 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_volatility_breakout_crypto volatility_breakout_crypto rc=0 2s
+# TB-109 bot bot_elliott_wave_stocks elliott_wave_stocks, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:29 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_elliott_wave_stocks elliott_wave_stocks rc=0 12s
+# TB-109 bot bot_rsi2_mean_reversion rsi2_mean_reversion, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:41 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_rsi2_mean_reversion rsi2_mean_reversion rc=0 5s
+# TB-109 bot bot_turtle_soup_stocks turtle_soup_stocks, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:47 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_turtle_soup_stocks turtle_soup_stocks rc=0 5s
+# TB-109 bot bot_volatility_breakout volatility_breakout, Wurzel /Users/jaquelineloffler/trading-bot, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:07:52 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_volatility_breakout volatility_breakout rc=0 6s
+tb40_* nachher: tb40_lauf_ 4765  tb40_faltenplan_ 68  tb40_proben_ 90  
+
+# TB-109 F Modus-Lauf im frischen Klon <scratch>/klon, HEAD a02f035, 2026-09-26 00:08:07 +0200
+status --ignored vorher: []
+tb40_* vorher: tb40_lauf_ 4765  tb40_faltenplan_ 68  tb40_proben_ 90  
+# TB-109 benchmark bm_klon , Wurzel /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon, HEAD a02f035e2b13ba6205b5a66fb5cd2b045a92d3d8, 2026-09-26 00:08:07 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+benchmark bm_klon  rc=0 57s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_klon/benchmark.json
+tb40_* nachher: tb40_lauf_ 4765  tb40_faltenplan_ 68  tb40_proben_ 90  
+status --ignored nachher: []

@@ -1,0 +1,28 @@
+# TB-109 E2 - Audit mit Klasse (iv), Abnahme am Benchmark-Lauf aus F (g1_g3.txt), 2026-09-26 00:12 +0200
+Werkzeug alt: docs/belege/TB-104/d_auswerten.py (unveraendert), neu: docs/belege/TB-109/d_auswerten.py
+Aufruf: trading-env/bin/python3 <werkzeug> <wurzel> <laufordner> <laufordner>   (Klon: <wurzel> = <scratch>/klon)
+
+| Lauf | Werkzeug | (i) im Snapshot | (i) ausserhalb | (iii) | (iv) Ablagen / Zugriffe (Verzeichnis + Dateien) |
+|---|---|---|---|---|---|
+| bm_repo | alt TB-104 | 225 | 31 | 20 | - |
+| bm_repo | neu TB-109 | 225 | 11 | 20 | 10 / 20 (10 + 10), alle 10 bei der Auswertung entfernt |
+| bm_klon | alt TB-104 | 225 | 31 | 36 | - |
+| bm_klon | neu TB-109 | 225 | 11 | 36 | 10 / 20 (10 + 10), alle 10 bei der Auswertung entfernt |
+| 9 Bots (Trockenlauf) | neu TB-109 | 27 bzw. 153 | 0 | - | 0 / 0 |
+
+(i) ausserhalb nach dem neuen Werkzeug (bm_repo, e2_klassen_bm_repo_neu.txt), 11:
+  9 x research/tb24_haltedauern/daten/<bot>_alle_trades.csv, 1 x ergebnisse/messgroessen.json,
+  1 x die Tempfile-Probe von mkdtemp ($TMPDIR/<8 Zeichen>, von tempfile._get_default_tempdir angelegt und
+  sofort entfernt; kein mkdir im Protokoll, deshalb keine Ablage nach der Regel des Werkzeugs).
+(iv): 10 Ablagen tb40_lauf_* (je Bot eine Loader-Messung von erste_falte_trockenlauf ueber messe_bot), je
+  1 Lesezugriff auf das Ergebnis-JSON (universum_trockenlauf.py:331) und 1 Verzeichnis-Oeffnung durch
+  shutil.rmtree (universum_trockenlauf.py:334).
+
+⚠️ Abweichung gegen die Erwartung des Auftrags ("Klasse (i) ausserhalb wieder 21 (wie TB-106); die 10 Oeffnungen
+unter (iv)"): Das Werkzeug folgt dem Regeltext des Auftrags (E2: "ordnet Zugriffe eines Laufs auf seine eigene
+Klasse-(iv)-Ablage ... der Klasse (iv) zu") und fuehrt deshalb ALLE Zugriffe auf die eigene Ablage unter (iv) -
+die 10 Verzeichnis-Oeffnungen UND die 10 Lesezugriffe auf das Ergebnis-JSON darin. Damit ist (i) ausserhalb 11,
+nicht 21. Die 21 aus TB-106 enthielten die 10 JSON-Lesungen; 21 - 10 = 11. Wuerde nur die Verzeichnis-Oeffnung
+umgeordnet, bliebe (i) 21 - aber ein Lesen im eigenen Zwischenordner waere dann weiter "Eingabe ausserhalb des
+Snapshots", und genau das soll (iv) nicht sein. Entscheidung, welche Lesart gilt: bei Fable (Ergebnis, "Fuer Fable").
+Die Schreibzugriffe (10 mkdir, 10 w) stehen weiter unter (iii), wie in TB-104 definiert.

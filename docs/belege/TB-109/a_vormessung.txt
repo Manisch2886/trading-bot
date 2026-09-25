@@ -1,0 +1,70 @@
+# TB-109 Block A - Vormessung nachgemessen, HEAD f4d6d6d, 2026-09-25 23:55:57 +0200
+
+A1 die 10 Stellen 'if trades.empty: ... exit()' (b1_einbau.py --probe, Textsuche, nicht Zeilennummer):
+   strategies/elliott_wave/equity_simulation.py       1  ['Keine Trades fuer diese Parameter-Kombination gefunden.']
+   strategies/elliott_wave_stocks/equity_simulation.py 1  ['Keine Trades fuer diese Parameter-Kombination gefunden.']
+   strategies/rsi2_crypto/equity_simulation.py        1  ['Keine Trades fuer diese Parameter-Kombination gefunden.']
+   strategies/rsi2_mean_reversion/equity_simulation.py 1  ['Keine Trades fuer diese Parameter-Kombination gefunden.']
+   strategies/t3_supertrend/equity_simulation.py      1  ['Keine Trades fuer diese Parameter-Kombination gefunden.']
+   strategies/turtle_soup_crypto/equity_simulation.py 1  ['Keine Trades fuer diese Parameter-Kombination gefunden.']
+   strategies/turtle_soup_stocks/equity_simulation.py 1  ['Keine Trades fuer diese Parameter-Kombination gefunden.']
+   strategies/volatility_breakout/equity_simulation.py 1  ['Keine Trades fuer diese Parameter-Kombination gefunden.']
+   strategies/volatility_breakout_crypto/equity_simulation.py 2  ['Keine Trades fuer diese Parameter-Kombination gefunden.', 'Nach dem BTC-Regimefilter bleibt kein Trade uebrig.']
+   Stellen: 10 in 9 Dateien
+   Zeilen (a3_b3_vorher.txt): elliott_wave:155, elliott_wave_stocks:178, rsi2_crypto:142, rsi2_mean_reversion:173,
+   t3_supertrend:149, turtle_soup_crypto:125, turtle_soup_stocks:164, volatility_breakout:158, volatility_breakout_crypto:173 und :179
+   = Vormessung TB-107 f_gegenprobe.txt Z. 21-31
+
+A2 Wer startet diese __main__-Bloecke im Betrieb? statisch wie TB-105 A3 (crontab -l nicht aufgerufen):
+   shared/kurven_lauf.py:152:    globalen = runpy.run_path(skript, run_name="__main__")
+   shared/determinismus_lauf.py:602:                globalen = runpy.run_path(skript, run_name="__main__")
+   kurven_lauf.py <- shared/ergebniskurven.py (Cron 3:50), determinismus_lauf.py <- shared/determinismus.py (Cron 4:10), Protokoll 4.7
+
+A3 Erreicht ein Cron-Lauf heute eine der 10 Stellen? GEMESSEN (a3_b3_trades.py, Stubs wie kurven_lauf, Anweisungen des
+   __main__-Blocks einzeln bis vor simulate_portfolio, Daten data/ wie der Cron-Lauf ohne Modus):
+   # elliott_wave (strategies/elliott_wave/equity_simulation.py)
+     Z.155  if trades.empty: leer nein
+     Z.161  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   # elliott_wave_stocks (strategies/elliott_wave_stocks/equity_simulation.py)
+     Z.178  if trades.empty: leer nein
+     Z.184  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   # rsi2_crypto (strategies/rsi2_crypto/equity_simulation.py)
+     Z.142  if trades.empty: leer nein
+     Z.147  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   # rsi2_mean_reversion (strategies/rsi2_mean_reversion/equity_simulation.py)
+     Z.173  if trades.empty: leer nein
+     Z.178  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   # t3_supertrend (strategies/t3_supertrend/equity_simulation.py)
+     Z.149  if trades.empty: leer nein
+     Z.155  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   # turtle_soup_crypto (strategies/turtle_soup_crypto/equity_simulation.py)
+     Z.125  if trades.empty: leer nein
+     Z.130  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   # turtle_soup_stocks (strategies/turtle_soup_stocks/equity_simulation.py)
+     Z.164  if trades.empty: leer nein
+     Z.169  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   # volatility_breakout (strategies/volatility_breakout/equity_simulation.py)
+     Z.158  if trades.empty: leer nein
+     Z.163  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   # volatility_breakout_crypto (strategies/volatility_breakout_crypto/equity_simulation.py)
+     Z.173  if trades.empty: leer nein
+     Z.179  if trades.empty: leer nein
+     Z.183  simulate_portfolio erreicht - Ende der Messung (keine der Stellen hat beendet)
+   => an keiner der 10 Stellen ist die Trade-Liste leer; jeder der neun Laeufe erreicht simulate_portfolio.
+   determinismus.py permutiert nur die Reihenfolge der vollen Symbolliste (TB-105 A3) - die Menge der Trades, und damit
+   leer ja/nein, haengt nicht von der Reihenfolge ab (Tatsache ueber heute, data/ Stand d9449faf).
+
+A4 universum_trockenlauf.py: beide Ablagen ohne Aufraeumen:
+   259:    ordner = tempfile.mkdtemp(prefix="tb40_faltenplan_")
+   306:    import shutil
+   334:        shutil.rmtree(ordner)
+   681:        ordner = tempfile.mkdtemp(prefix="tb40_proben_")
+   (shutil nur in messe_bot, TB-107 E)
+
+A5 pfadvergleich.py eigenstaendig:
+   rc 1, AttributeError: module 'paths' has no attribute 'selektionsmodus'
+
+A6 Gegenprobe heute (shared/test_main_gegenprobe.py) rc 0:
+     [ok]     F2: jede Datenstelle im __main__-Block traegt paths.selektionsmodus() - 14 mit Abfrage, 0 ohne: []
+          ausgewiesen, nicht gezaehlt - Ende bei fehlenden Trades (10):
+   7/7 Pruefungen bestanden.

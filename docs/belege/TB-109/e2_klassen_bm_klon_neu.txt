@@ -1,0 +1,209 @@
+====================================================================================================
+LAUF <scratch>  (Prozesse: 11, rc 0)
+
+(i) EINGABEN: 236 verschiedene Dateien, davon 225 im Snapshot (222 CSV, 2 config/, 1 sonst), 11 AUSSERHALB
+      1x  <repo>/research/vorregistrierung/ergebnisse/messgroessen.json
+          <- <repo>/research/vorregistrierung/registerdaten.py:169 < <repo>/research/vorregistrierung/benchmark.py:435 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/_0o2t8j6
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  <repo>/research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  <repo>/research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  <repo>/research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  <repo>/research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:371 < <repo>/research/vorregistrierung/faltenplan.py:377 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  <repo>/research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:363 < <repo>/research/vorregistrierung/faltenplan.py:376 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  <repo>/research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:363 < <repo>/research/vorregistrierung/faltenplan.py:376 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  <repo>/research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:363 < <repo>/research/vorregistrierung/faltenplan.py:376 < <repo>/research/vorregistrierung/faltenplan.py:376
+      1x  <repo>/research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv
+          <- <repo>/research/vorregistrierung/faltenplan.py:156 < <repo>/research/vorregistrierung/faltenplan.py:181 < <repo>/research/vorregistrierung/faltenplan.py:325 < <repo>/research/vorregistrierung/faltenplan.py:363 < <repo>/research/vorregistrierung/faltenplan.py:376 < <repo>/research/vorregistrierung/faltenplan.py:376
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 9
+      2x  <repo>/strategies/elliott_wave/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/t3_supertrend/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/rsi2_crypto/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/turtle_soup_crypto/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/elliott_wave_stocks/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/turtle_soup_stocks/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+      1x  <repo>/strategies/volatility_breakout/multi_symbol_optimise.py
+          <- <repo>/research/faltenplan_neun/faltenschranke_messung.py:154 < <repo>/research/faltenplan_neun/faltenschranke_messung.py:231 < <repo>/research/vorregistrierung/benchmark.py:268 < <repo>/research/vorregistrierung/benchmark.py:436 < <repo>/research/vorregistrierung/benchmark.py:463
+
+(ii) UMGEBUNG: 10747 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+     22x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/vorregistrierung/benchmark.py:90
+     11x  /dev/urandom
+          <- <repo>/research/vorregistrierung/benchmark.py:90
+     11x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/vorregistrierung/benchmark.py:90
+     22x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/faltenplan_neun/faltenplan_neun.py:130 < <repo>/research/vorregistrierung/faltenplan.py:126
+     22x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/faltenplan_neun/faltenplan_neun.py:130 < <repo>/research/vorregistrierung/faltenplan.py:126 < <repo>/research/vorregistrierung/benchmark.py:99
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 36
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research
+          <- <repo>/research/vorregistrierung/benchmark.py:99
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/vorregistrierung
+          <- <repo>/research/vorregistrierung/benchmark.py:99
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/notifications
+          <- <repo>/research/vorregistrierung/registerdaten.py:62 < <repo>/research/vorregistrierung/faltenplan.py:116 < <repo>/research/vorregistrierung/benchmark.py:99
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/faltenplan_neun
+          <- <repo>/research/vorregistrierung/faltenplan.py:126 < <repo>/research/vorregistrierung/benchmark.py:99
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/shared
+          <- <repo>/research/faltenplan_neun/faltenplan_neun.py:130 < <repo>/research/vorregistrierung/faltenplan.py:126 < <repo>/research/vorregistrierung/benchmark.py:99
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf
+          <- <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:85 < <repo>/research/vorregistrierung/faltenplan.py:127 < <repo>/research/vorregistrierung/benchmark.py:99
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_io9vz50u
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_ml9nwjj6
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_zy8zuof_
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_79166bcv
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_670giyfk
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf__uf149ar
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_p5o58h0p
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_96jtur4z
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_rtinryfy
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_v9cj711j
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:316 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/elliott_wave
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_io9vz50u/elliott_wave.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/t3_supertrend
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_ml9nwjj6/t3_supertrend.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_zy8zuof_/t3_supertrend.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/rsi2_crypto
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_79166bcv/rsi2_crypto.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/turtle_soup_crypto
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_670giyfk/turtle_soup_crypto.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/volatility_breakout_crypto
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf__uf149ar/volatility_breakout_crypto.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/elliott_wave_stocks
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_p5o58h0p/elliott_wave_stocks.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/rsi2_mean_reversion
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_96jtur4z/rsi2_mean_reversion.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/turtle_soup_stocks
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_rtinryfy/turtle_soup_stocks.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  mkdir  /Users/jaquelineloffler/Library/Caches/com.apple.python/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/strategies/volatility_breakout
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:552 < <repo>/research/universum_trockenlauf/loaderlauf.py:611 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+      1x  w      /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_v9cj711j/volatility_breakout.json
+          <- <repo>/research/universum_trockenlauf/loaderlauf.py:361 < <repo>/research/universum_trockenlauf/loaderlauf.py:165 < <repo>/research/universum_trockenlauf/loaderlauf.py:639 < <repo>/research/universum_trockenlauf/loaderlauf.py:645
+
+(iv) ZWISCHENABLAGEN: 10 eigene Ablagen im Temp-Verzeichnis, 20 verschiedene lesende Zugriffe darauf (10 Verzeichnis-Oeffnungen, 10 Dateien darin)
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_670giyfk  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_79166bcv  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_96jtur4z  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf__uf149ar  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_io9vz50u  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_ml9nwjj6  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_p5o58h0p  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_rtinryfy  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_v9cj711j  - bei der Auswertung entfernt
+   Ablage /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_zy8zuof_  - bei der Auswertung entfernt
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_io9vz50u/elliott_wave.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_io9vz50u  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_ml9nwjj6/t3_supertrend.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_ml9nwjj6  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_zy8zuof_/t3_supertrend.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_zy8zuof_  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_79166bcv/rsi2_crypto.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_79166bcv  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_670giyfk/turtle_soup_crypto.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_670giyfk  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf__uf149ar/volatility_breakout_crypto.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf__uf149ar  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_p5o58h0p/elliott_wave_stocks.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_p5o58h0p  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_96jtur4z/rsi2_mean_reversion.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_96jtur4z  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_rtinryfy/turtle_soup_stocks.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_rtinryfy  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_v9cj711j/volatility_breakout.json
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:340 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+      1x  /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb40_lauf_v9cj711j  (Verzeichnis)
+          <- <repo>/research/universum_trockenlauf/universum_trockenlauf.py:343 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:103 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:119 < <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py:147 < <repo>/research/vorregistrierung/faltenplan.py:289 < <repo>/research/vorregistrierung/faltenplan.py:327
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 78840 (10 Repo-Module) argv research/vorregistrierung/benchmark.py --ziel /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/g/bm_k
+   pid 78849: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78856: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78864: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78873: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78880: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78889: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78897: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78908: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78918: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+   pid 78931: KEINE Modulliste (Prozess ohne atexit beendet) - argv /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/4a289870-7549-4934-b2f9-cb05f413aa4f/scratchpad/klon/research/universum_trockenlauf/loaderlauf.py --
+
+   VEREINIGUNG dieses Laufs: 10 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/notifications/manual_close.py
+      <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py
+      <repo>/research/faltenplan_neun/faltenplan_neun.py
+      <repo>/research/faltenplan_neun/faltenschranke_messung.py
+      <repo>/research/universum_trockenlauf/universum_trockenlauf.py
+      <repo>/research/vorregistrierung/benchmark.py
+      <repo>/research/vorregistrierung/faltenplan.py
+      <repo>/research/vorregistrierung/registerdaten.py
+      <repo>/shared/paths.py

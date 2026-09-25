@@ -1,0 +1,10 @@
+Selbsttest zu TB-105 Block C, D und E2-E4: kein Rueckfall und keine Ordner unter dem Modus
+
+Teil C - 'Keine Daten gefunden' unter dem Modus: Rueckgabe 2
+
+Teil D - symbols_config: nach EXCLUDE_SYMBOLS leer
+
+Teil E - Import eines Bots: Ordneranlage nur ohne Modus
+
+==============================================================================
+48/48 Pruefungen bestanden.

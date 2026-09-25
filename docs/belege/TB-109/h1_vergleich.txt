@@ -1,0 +1,84 @@
+# TB-109 H1 Vergleich vorher/nachher, 2026-09-26 00:35:15 +0200
+## (1)-(4),(6)-(10b) diff ohne Kopfzeile
+2,13c2,13
+< 704b38bb9cb746403f387eca902d7f9da1f8652063d592b7a5d93ad8c86d1690  strategies/elliott_wave_stocks/equity_simulation.py
+< 40c00e8da7be8cfccd04cc887f65f13e431757b3fa6045590ef3f78fa5395f87  strategies/elliott_wave/equity_simulation.py
+< 53891df03178ae7b194bb40bbb0ef33d15ade7b9bff75c6355104f3fe52bb959  strategies/rsi2_crypto/equity_simulation.py
+< 51b91d98a44755fb4b6a4ec9f37c5d287fdc150817acef4cdca551dd6c2c032e  strategies/rsi2_mean_reversion/equity_simulation.py
+< c56ce89c41f6fb75613f94458d931be70ae05f49126578dd0493a8376b96133a  strategies/t3_supertrend/equity_simulation.py
+< a4732c09457d9bcf6cf8f6b077359767bbb9e14443b894e0d8d70a0cbe640d47  strategies/turtle_soup_crypto/equity_simulation.py
+< 753afa4959157e667c7b617839d03b53ee6ca67b8c3987f1aeaaa46316a9179a  strategies/turtle_soup_stocks/equity_simulation.py
+< 4ecf9e447a054cdb74a0323da428594ff0478a43f63bce0b0f20fafea78b3f97  strategies/volatility_breakout_crypto/equity_simulation.py
+< e5fdc8d5855441e827add337e9d3373829ef2ec37f7c7f7417b350a882aacd0b  strategies/volatility_breakout/equity_simulation.py
+< b360497f90e3e769af4201f14e4dd2c6bf17a0b77af690904d074f6573648bfd  research/universum_trockenlauf/universum_trockenlauf.py
+< 6000bac0a1591d61e3c9d3664beb63e1854bddff4c4837597419e61b89028218  research/resolver_selektion/pfadvergleich.py
+< 196b5675bee74f9407fae2fc361946711983c5ef553dc671033af8a907d323f0  shared/test_main_gegenprobe.py
+---
+> 80ea2a331538bbe6270a97c03627c3393c56848bfff00d9a9d44024fc0768a21  strategies/elliott_wave_stocks/equity_simulation.py
+> f45e92cdac5a4f03d3bd2f10165034d27b20603846e3072d02a7baf807cd127b  strategies/elliott_wave/equity_simulation.py
+> 1406de58ad920116d15a08384b88b78d37ee4944c925ff36fddedd123963e9ab  strategies/rsi2_crypto/equity_simulation.py
+> 3a29a4f13e331e33d2a48bb1405a6546ae875e6594b9ab2bd572d7e5cb638c3c  strategies/rsi2_mean_reversion/equity_simulation.py
+> 0aed45b7e8d1a0386c381fc462f96233723ff9036e863e70741e2c224fc6ef1b  strategies/t3_supertrend/equity_simulation.py
+> f0638e8e92ae98683385ea3082fbc8c56db4bc74631001c147eef54f70d7ea03  strategies/turtle_soup_crypto/equity_simulation.py
+> a76d360bb14dfe9a53d2607902ec0dcceecee8e5908cb6095439d5084a39f769  strategies/turtle_soup_stocks/equity_simulation.py
+> c760c6b8d63ea0c175f8b339b9c25bd9326830064e13db93734fe22bef982b3d  strategies/volatility_breakout_crypto/equity_simulation.py
+> fde65dbb27e4c654678a94f266f84b953458ec2ddbaf85193d79b67c2f2047d3  strategies/volatility_breakout/equity_simulation.py
+> 83d35d228de4806319a1b95ec5ca3bc9e81e6ca11781b345fe6e3be8bd97a795  research/universum_trockenlauf/universum_trockenlauf.py
+> bb609d08dcae7d6695647c8669412cf1426e72b82fc47d061f989bebca8c77ae  research/resolver_selektion/pfadvergleich.py
+> afdeb903660a9c1b9a2af927066554028d3fc83a1b21cb5e39063408b3683734  shared/test_main_gegenprobe.py
+16c16
+< 23825df518183b14ffeaea8d607047bd236bc7cae218c78f8b512f5d4d54501c  research/universum_trockenlauf/test_zwischenablage.py
+---
+> 71657d40c25368aa94c25b139b2328d371a30f2d0874c0be64ec9d41a0c24690  research/universum_trockenlauf/test_zwischenablage.py
+19c19
+< 795005249a78e22395c0122396ac3f2ce122b26f98380d787d7d6f220badb61b  shared/test_rueckfaelle_modus.py
+---
+> f053429afc7b77b9eeef01b357fa108bfd22481b7c5cd720b45f3c9819ab3125  shared/test_rueckfaelle_modus.py
+126c126
+< ## (5) je versionierte Datei ausserhalb docs/ -> docs/belege/TB-109/5_alle_vorher.txt
+---
+> ## (5) je versionierte Datei ausserhalb docs/ -> docs/belege/TB-109/5_alle_nachher.txt
+138c138
+< 8422fc6b258e241c92bafdc65efdba9f0949fa136c16dc7a646fd181a00dbfc2  broker_testnet_t3_supertrend.db
+---
+> 9cadbf2f32f5cad578adc90c4f1186b525415b5e837549e068ac53c058cab1d9  broker_testnet_t3_supertrend.db
+168,170c168,171
+<    tb40_faltenplan_ 67
+<    tb40_proben_ 81
+<    tb40_* gesamt 5369
+---
+>    tb40_faltenplan_ 68
+>    tb40_proben_ 90
+>    tb40_test_ 492
+>    tb40_* gesamt 5415
+## (5) je versionierte Datei ausserhalb docs/ (5_alle)
+< research/resolver_selektion/pfadvergleich.py
+> research/resolver_selektion/pfadvergleich.py
+< research/universum_trockenlauf/test_zwischenablage.py
+< research/universum_trockenlauf/universum_trockenlauf.py
+> research/universum_trockenlauf/test_zwischenablage.py
+> research/universum_trockenlauf/universum_trockenlauf.py
+< shared/test_main_gegenprobe.py
+> shared/test_main_gegenprobe.py
+> shared/test_nulltrades_modus.py
+< shared/test_rueckfaelle_modus.py
+> shared/test_rueckfaelle_modus.py
+< strategies/elliott_wave/equity_simulation.py
+> strategies/elliott_wave/equity_simulation.py
+< strategies/elliott_wave_stocks/equity_simulation.py
+> strategies/elliott_wave_stocks/equity_simulation.py
+< strategies/rsi2_crypto/equity_simulation.py
+> strategies/rsi2_crypto/equity_simulation.py
+< strategies/rsi2_mean_reversion/equity_simulation.py
+> strategies/rsi2_mean_reversion/equity_simulation.py
+< strategies/t3_supertrend/equity_simulation.py
+> strategies/t3_supertrend/equity_simulation.py
+< strategies/turtle_soup_crypto/equity_simulation.py
+> strategies/turtle_soup_crypto/equity_simulation.py
+< strategies/turtle_soup_stocks/equity_simulation.py
+> strategies/turtle_soup_stocks/equity_simulation.py
+< strategies/volatility_breakout/equity_simulation.py
+> strategies/volatility_breakout/equity_simulation.py
+< strategies/volatility_breakout_crypto/equity_simulation.py
+> strategies/volatility_breakout_crypto/equity_simulation.py
+Anzahl vorher 1538, nachher 1539

@@ -1,0 +1,18 @@
+# TB-109 F Tests, HEAD a02f035, Arbeitsbaum ausserhalb docs/ [], 2026-09-26 00:09:59 +0200
+test_faltenplan_neun rc=0 134s: 156/156 Pruefungen bestanden.
+test_erste_falte_trockenlauf rc=0 132s: 50/50 Pruefungen bestanden.
+test_horizontbeginn rc=0 57s: 61/61 Pruefungen bestanden.
+test_min_history rc=0 1s: 14/14 Pruefungen bestanden.
+test_volle_jahre rc=0 1s: 7/7 Pruefungen bestanden.
+test_universum_trockenlauf rc=0 90s: 163/163 Pruefungen bestanden.
+test_zwischenablage rc=0 2s: 12/12 Pruefungen bestanden.
+test_paths rc=0 12s: 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+test_nulltrades_modus rc=0 28s: 34/34 Pruefungen bestanden.
+test_strategy_paths rc=0 12s: 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+test_rueckfaelle_modus rc=0 38s: 48/48 Pruefungen bestanden.
+test_ergebniskurven rc=0 29s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_startpruefungen rc=0 11s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_main_gegenprobe rc=0 2s: 13/13 Pruefungen bestanden.
+test_ersatzwerte rc=0 20s: 40/40 Pruefungen bestanden.
+test_vorregistrierung rc=0 870s: 196/196 Pruefungen bestanden.
+tb40_* in $TMPDIR nach den Tests: tb40_lauf_ 4765  tb40_faltenplan_ 68  tb40_proben_ 90  

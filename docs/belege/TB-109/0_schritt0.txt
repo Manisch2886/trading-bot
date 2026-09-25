@@ -1,0 +1,23 @@
+# TB-109 Schritt 0, 2026-09-25 23:35 +0200
+0a: Commit f4d6d6d (8 Dateien des steuernden Chats: Auftraege TB-109/TB-110/TB-111, Zeiger AKTUELLER_AUFTRAG.md,
+    FABLE_ANTWORT_2026-09-25d, FABLE_ANTWORT_2026-09-25e, Nachtraege UEBERGABE_2026-09-25.md und
+    AUFGABEN_BETREIBER_2026-09-26.md) - der Arbeitsbaum entsprach genau der Erwartung des Auftrags.
+0c: git worktree add ../trading-bot-tb111 -b tb-111 HEAD -> 'HEAD is now at f4d6d6d';
+    git --no-optional-locks worktree list:
+      /Users/jaquelineloffler/trading-bot        f4d6d6d [main]
+      /Users/jaquelineloffler/trading-bot-tb111  f4d6d6d [tb-111]
+    docs/auftraege/MAC_TB-111_herkunft_auswertung_oeffnung.md liegt dort. Worktree danach nicht betreten.
+0b: .git/*.lock: keine
+    HEAD am Eingang (vor 0a): 486032d = Abgabe-Commit TB-108
+    Datenstand vorher: d9449faf51bffaaa... / 223 (0_hashes_vorher.txt (7)) = Soll; Snapshot --pruefen Soll = Ist (6)
+    Quersummen *.db vorher: 0_hashes_vorher.txt (8)
+    Hashes freigegeben/gesperrt/ergebnisse einzeln: 0_hashes_vorher.txt (1)-(3), 5_alle_vorher.txt
+    herkunft.register() vorher: c85dd6c3b6de7a302627f84244226b9ba1ad5e22d6a8cc260cc5c48b588c12e2 (= TB-108 D4), fehlend [] (9)
+    herkunft_protokoll.jsonl: existiert nicht (10)
+    tb40_* in $TMPDIR vorher, je Praefix (10b): tb40_lauf_ 4765, tb40_faltenplan_ 67, tb40_proben_ 81;
+        dazu tb40_test_ 456 (Praefix der Testdatei test_universum_trockenlauf.py, nicht Gegenstand) - nur gezaehlt
+    Sonde vorher gegen sperrliste_abbild_2026-09-25b.json (40ffe18d): Pfad-Bestandteile 25/0/0,
+        Pruefung (ii) 0, rc 2 nur NICHT PRUEFBAR (0_sonde_vorher.txt) = Soll
+Vorher-Laeufe fuer die Abnahme (vor jeder Code-Aenderung, am Stand f4d6d6d):
+    a3_b3_alle.sh -> a3_b3_vorher.txt (A3 und B3: Trade-Listen der neun Bots, 9 x rc 0)
+    g2_vorher.sh  -> g2_vorher.txt (8 Ausgaben ohne Modus, 8 x rc 0)

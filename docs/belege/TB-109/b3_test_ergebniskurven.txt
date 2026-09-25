@@ -1,0 +1,70 @@
+==============================================================================
+Selbsttests der Ergebniskurven-Pruefung
+==============================================================================
+
+1) Die Erzeugung ist wiederholbar
+  [OK ] Lauf nach kurve_a_u4riyfgw erfolgreich
+  [OK ] Lauf nach kurve_b_5ei1uvpi erfolgreich
+  [OK ] zwei Laeufe ergeben byteweise dieselbe Datei
+  [OK ] die Datei ist nicht leer   14163 Bytes
+
+2) Gegenprobe: bei aktueller Kurve schlaegt die Pruefung NICHT an
+  [OK ] Erzeugen laeuft durch
+  [OK ] Rueckgabewert 0
+  [OK ] meldet AKTUELL
+  [OK ] sagt es ausdruecklich
+
+3) KERN: Befund trotz unveraenderter Zeilenzahl
+  [OK ] vor der Aenderung gruen
+  [OK ] die Konfigurationsaenderung ist angekommen   1
+  [OK ] nach der Aenderung Rueckgabewert 1   1
+  [OK ] meldet ABWEICHEND
+  [OK ] die Zeilenzahl ist unveraendert geblieben   342 vorher, 342 nachher
+  [OK ] eine reine Zeilenzahl-Wache waere hier blind geblieben
+  [OK ] der Inhaltsvergleich sieht den Unterschied
+  [OK ] und benennt die betroffenen Spalten   ['allocation', 'capital_after']
+
+4) Der HRP-Fall selbst: nicht angewendeter Regimefilter
+  [OK ] Ausgangslage gruen
+  [OK ] der Filteraufruf ist entfernt   1
+  [OK ] Rueckgabewert 1   1
+  [OK ] meldet ABWEICHEND
+  [OK ] live_params.py ist dabei unveraendert geblieben
+
+5) Nur laenger geworden ist etwas anderes als auseinandergelaufen
+  [OK ] meldet VERALTET, nicht ABWEICHEND
+  [OK ] Rueckgabewert 1 (Voreinstellung meldet auch das)   1
+  [OK ] mit --nur-abweichung Rueckgabewert 0
+  [OK ] --nur-abweichung meldet die echte Abweichung weiterhin   1
+
+6) Eine fehlende Kurve ist ein Befund, kein Schweigen
+  [OK ] Rueckgabewert 1   1
+  [OK ] meldet FEHLT
+  [OK ] nennt die Folge (faellt aus der Summe)
+
+7) Die Pruefung schreibt nicht in die Ablage
+  [OK ] die Pruefung meldet einen Befund
+  [OK ] die abgelegte Datei ist unveraendert
+  [OK ] und wurde nicht einmal neu geschrieben
+
+8) Am echten Repo: die Pruefung laesst results/ in Ruhe
+  [OK ] es gibt Kurven zu beobachten   9
+  [OK ] der Lauf ist durchgelaufen
+  [OK ] keine einzige abgelegte Kurve wurde angefasst
+
+9) Randfaelle des Werkzeugs
+  [OK ] unbekannter Bot: Rueckgabewert 2 (kein stilles 0)   2
+  [OK ] alle neun Bots werden automatisch gefunden   ['elliott_wave', 'elliott_wave_stocks', 'rsi2_crypto', 'rsi2_mean_reversion', 't3_supertrend', 'turtle_soup_crypto', 'turtle_soup_stocks', 'volatility_breakout', 'volatility_breakout_crypto']
+  [OK ] der historische Pfad des Krypto-Elliott-Bots wird beruecksichtigt   /Users/jaquelineloffler/trading-bot/results/equity_curve.csv
+
+10) Die Einstufung selbst, in beide Richtungen
+  [OK ] identisch -> AKTUELL
+  [OK ] nur angewachsen -> VERALTET
+  [OK ] abgelegte laenger als heute -> ABWEICHEND
+  [OK ] gleiches PnL, anderes Symbol -> ABWEICHEND
+  [OK ] Unterschied unterhalb der Rundung -> AKTUELL (kein Rauschen)
+  [OK ] andere Zeitschreibweise, gleicher Zeitpunkt -> AKTUELL
+  [OK ] Unterschied oberhalb der Rundung -> ABWEICHEND
+
+==============================================================================
+44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
