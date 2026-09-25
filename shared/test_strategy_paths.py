@@ -431,7 +431,10 @@ def probe_c_falscher_hash():
             "    __file__=__file__,\n"
             "    BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__))))\n"
             "paths.DATA_DIR = os.path.join(paths.BASE_DIR, 'data')\n"
-            "paths.CONFIG_DIR = os.path.join(paths.BASE_DIR, 'config')\n", "C")
+            "paths.CONFIG_DIR = os.path.join(paths.BASE_DIR, 'config')\n"
+            # TB-107: strategy_paths fragt paths.selektionsmodus() direkt; der
+            # nachgebaute Resolver fuehrt die Funktion (kein Modus).
+            "paths.selektionsmodus = lambda: None\n", "C")
         if griff:
             baum_m = baue_baum(mutiert)
             try:
@@ -646,6 +649,60 @@ def probe_f_kein_zweiter_resolver():
         check("F3 Mutationsprobe", False, "Mutation griff nicht")
 
 
+# ===========================================================================
+# Probe G - TB-107: ein `paths` OHNE selektionsmodus() bricht ab, legt nichts an
+# ===========================================================================
+# Die Stelle, die die Mutationsprobe zuruecknimmt: der direkte Aufruf. Die
+# Mutation setzt die Duldung bis TB-106 wieder ein.
+_G_NEU = "    return paths.selektionsmodus() is not None\n"
+_G_ALT = ("    frage = getattr(paths, \"selektionsmodus\", None)\n"
+          "    return frage is not None and frage() is not None\n")
+
+
+def _g_lauf(sp_quelle):
+    """Baum mit dieser `strategy_paths.py` und der echten `paths.py`, der am
+    Ende `selektionsmodus` entzogen wird. Ohne Modus, ein Bot. Rueckgabe:
+    Antwort und die im Baum angelegten Betriebsordner."""
+    baum = baue_baum(sp_quelle)
+    try:
+        with open(os.path.join(baum, "shared", "paths.py"), "a",
+                  encoding="utf-8") as datei:
+            datei.write("\n\ndel selektionsmodus   # Probe G (TB-107)\n")
+        w = frage(os.path.join(baum, "strategies", BOTS[0],
+                               "multi_symbol_optimise.py"))
+        angelegt = [o for o in ("results", "logs")
+                    if os.path.isdir(os.path.join(baum, o, BOTS[0]))]
+        return w, angelegt
+    finally:
+        shutil.rmtree(baum, ignore_errors=True)
+
+
+def probe_g_ohne_selektionsmodus():
+    print("\nProbe G - ein paths OHNE selektionsmodus() bricht ab, ohne "
+          "Ordneranlage (TB-107)")
+    w, angelegt = _g_lauf(quelle())
+    check("G1 Abbruch mit AttributeError, kein Pfad geliefert",
+          "pfade" not in w and "AttributeError" in w.get("fehler", "")
+          and "selektionsmodus" in w.get("fehler", ""),
+          w.get("fehler", "(kein Fehler)")[:100])
+    check("G2 keine Ordneranlage (results/<bot>, logs/<bot>)", not angelegt,
+          "angelegt: %s" % angelegt)
+
+    def beisst(ergebnis):
+        w_m, angelegt_m = ergebnis
+        return "pfade" in w_m and len(angelegt_m) == 2
+
+    mutiert, griff = mutiere(quelle(), _G_NEU, _G_ALT, "G")
+    if griff:
+        check("G3 Mutationsprobe 'getattr zurueck' beisst - G1/G2 waeren rot",
+              beisst(_g_lauf(mutiert)),
+              "mit Duldung gilt ein paths ohne die Funktion still als 'kein Modus'")
+        check("G3-G Gegenprobe - ohne die Mutation beisst sie nicht",
+              not beisst(_g_lauf(quelle())))
+    else:
+        check("G3 Mutationsprobe", False, "Mutation griff nicht")
+
+
 def main():
     print("=" * 78)
     print("Selbsttests zu shared/strategy_paths.py - DATA_DIR aus dem Resolver (TB-53b)")
@@ -655,7 +712,8 @@ def main():
                         ("C", probe_c_falscher_hash),
                         ("D", probe_d_live_wirft),
                         ("E", probe_e_wurzel_und_nachbar),
-                        ("F", probe_f_kein_zweiter_resolver)):
+                        ("F", probe_f_kein_zweiter_resolver),
+                        ("G", probe_g_ohne_selektionsmodus)):
         try:
             probe()
         except Exception as fehler:                            # noqa: BLE001

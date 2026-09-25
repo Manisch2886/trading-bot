@@ -278,6 +278,12 @@ def probe_a_ohne_modus():
         check("A NICHT PRUEFBAR", False,
               "Bezugscommit %s nicht auffindbar" % modul.BEZUGSCOMMIT[:8])
         return
+    # TB-107 (Fable 25c 4 (3)(b)): `strategy_paths` fragt
+    # `paths.selektionsmodus()` direkt, ohne Ersatz. Die Fassung aus TB-52
+    # kennt die Funktion nicht; sie bekommt hier eine, die `None` liefert
+    # (kein Modus). Verglichen werden weiter nur Zeichenketten - eine Funktion
+    # ist keine, die Zahl der Pfade bleibt.
+    alt = alt + "\n\ndef selektionsmodus():\n    return None\n"
     ergebnis = modul.vergleiche(alt, quelle())
     check("A1 null Unterschiede", not ergebnis["unterschiede"],
           "%d Pfade verglichen (%d Bots), %d Unterschiede"
