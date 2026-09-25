@@ -105,12 +105,28 @@ import faltenplan as fp  # noqa: E402
 import kennzahlen as kz  # noqa: E402
 import registerdaten as rd  # noqa: E402
 
+# TB-106: der Rueckgabewert der neuen Abbrueche steht genau einmal in
+# shared/paths.py; importiert wie in benchmark.py (TB-104), nicht ueber
+# strategy_paths.
+sys.path.insert(0, os.path.join(BASE_DIR, "shared"))
+import paths  # noqa: E402
+
 PFLICHTSPALTEN = ["zelle_id", "falte", "rolle", "n_trades", "netto_sharpe",
                   "netto_rendite_pct", "kapital_drawdown_pct", "mittlere_exposure"]
 
 
 class Abbruch(SystemExit):
     """Ein Vertragsbruch in den Rohergebnissen. Nie eine stille Annahme."""
+
+
+def _abbruch_2(stelle: str, text: str):
+    """TB-106 (Fable 24b A2, 25a Rang 3, 25c 1): ein fehlender Wert oder ein
+    unbekannter Bedingungstext ist ein Widerspruch zwischen Register und Code
+    oder Eingabe, kein Laufzustand. Meldung auf stderr, dann
+    `SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)` - unabhaengig vom Modus.
+    (`Abbruch` oben endet mit 1 und bleibt, wie er ist.)"""
+    print(f"ABBRUCH (auswertung.py::{stelle}): {text}", file=sys.stderr)
+    raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
 
 
 # ---------------------------------------------------------------------------
@@ -152,10 +168,24 @@ def alle_zellen(achsen: dict, bedingung=None):
 
 
 def bedingung_fuer(bot: str):
-    definition = rd.raster_definition()[bot]
-    if definition.get("_bedingung") == "t3_fast_length < t3_slow_length":
+    """Die Rasterbedingung des Bots (Register Abschnitt 6: Zellen, in denen die
+    Strategie nicht definiert ist, existieren nicht) - oder None.
+
+    Der `_bedingung`-Text wird NUR hier gedeutet; jeder Leser in diesem Modul
+    (`lies_zellen`, `ein_bot`) ruft diese Funktion (Fable 25c 1). Ein nicht
+    leerer Text, den der Code nicht kennt, endet mit 2 - ein stilles None
+    rechnete ein anderes Raster (TB-106; bis dahin None).
+    ⚠️ Zweite Deutungsstelle: `registerdaten.py::zellen()` vergleicht denselben
+    Text selbst (Punkt 1, nicht geoeffnet; Tatsachennotiz bis 40.8 (h)).
+    """
+    text = rd.raster_definition()[bot].get("_bedingung")
+    if not text:
+        return None     # keine Rasterbedingung (Register Abschnitt 6)
+    if text == "t3_fast_length < t3_slow_length":
         return lambda w: w["t3_fast_length"] < w["t3_slow_length"]
-    return None
+    _abbruch_2("bedingung_fuer",
+               f"{bot}: unbekannter Bedingungstext {text!r} - der Code kennt "
+               f"keine solche Rasterbedingung (Register Abschnitt 6)")
 
 
 def lies_zellen(bot: str, wurzel: str, mess: dict, plan: dict) -> pd.DataFrame:
@@ -276,14 +306,25 @@ def nachbarschaften(achsen: dict, bedingung) -> dict:
     return vorhanden, nachbarn
 
 
+def _statistik_von(statistik: pd.Series, zid: str, wer: str) -> float:
+    """Die Selektionsstatistik einer existierenden Zelle - fehlt sie, endet
+    der Lauf mit 2 (TB-106; bis dahin still 0.0)."""
+    if zid not in statistik.index:
+        _abbruch_2("plateau",
+                   f"keine Selektionsstatistik fuer {wer} '{zid}' - bis TB-106 "
+                   f"stand hier still 0.0")
+    return float(statistik[zid])
+
+
 def plateau(achsen: dict, bedingung, statistik: pd.Series) -> pd.DataFrame:
     vorhanden, nachbarn = nachbarschaften(achsen, bedingung)
     zeilen = []
     for idx, werte in vorhanden.items():
         zid = zelle_id(achsen, werte)
-        s = float(statistik.get(zid, 0.0))
+        s = _statistik_von(statistik, zid, "die Zelle")
         nachbar_ids = [zelle_id(achsen, vorhanden[n]) for n in nachbarn[idx]]
-        nachbar_werte = [float(statistik.get(n, 0.0)) for n in nachbar_ids]
+        nachbar_werte = [_statistik_von(statistik, n, "den Nachbarn")
+                         for n in nachbar_ids]
         mittel_ohne = float(np.mean(nachbar_werte)) if nachbar_werte else float("nan")
         zeilen.append({
             "zelle_id": zid,
@@ -332,7 +373,10 @@ def beta_bereinigung(bot: str, wurzel: str, zid: str, plan: dict,
     fenster = [(pd.Timestamp(f["von"]), pd.Timestamp(f["bis_ausschliesslich"]))
                for f in plan[bot]["falten"] if f["name"] in selektionsfalten]
     if not fenster:
-        return {"bestimmt": False, "grund": "keine Selektionsfalten (Platzhalter)"}
+        _abbruch_2("beta_bereinigung",
+                   f"{bot}: der Plan hat keine Selektionsfalten - Abbruchkriterium "
+                   f"(c) ist ohne sie nicht entscheidbar; bis TB-106 stand hier "
+                   f"still 'bestimmt: False' und damit (c) = False")
 
     def im_fenster(d):
         return any((d >= a) & (d < b) for a, b in fenster)
@@ -377,12 +421,9 @@ def abbruchkriterien(bot: str, gew: dict, tafel: pd.DataFrame,
     """Die vier Kriterien, jedes einzeln ausgewiesen."""
     a = gew is not None and gew["statistik"] <= 0.0
     b = len(zulaessige) == 0
-    if bereinigung.get("bestimmt"):
-        c = (bereinigung["alpha_pct_pa"] <= 0.0
-             and bereinigung["strategie_calmar"]
-             < bereinigung["konstante_exposure"]["calmar"])
-    else:
-        c = False
+    c = (bereinigung["alpha_pct_pa"] <= 0.0
+         and bereinigung["strategie_calmar"]
+         < bereinigung["konstante_exposure"]["calmar"])
     d = bool(gew is not None and gew["spitze"]
              and bester_nicht_spitze is not None
              and bester_nicht_spitze["statistik"] <= 0.0)
@@ -497,16 +538,16 @@ def ein_bot(bot: str, wurzel: str, mess: dict, plan: dict, tabellen: dict) -> di
                                  bester_nicht_spitze)
 
     buch = n_buchfuehrung(bot, tafel, statistik, df, sel)
-    dsr = dsr_drei_werte(bereinigung.get("renditen", []), buch)
+    dsr = dsr_drei_werte(bereinigung["renditen"], buch)
 
     gew_falten = df[(df["zelle_id"] == gew["zelle_id"]) & (df["falte"].isin(sel))]
     beurteilung = {
         "netto_sharpe_median": float(gew["statistik"]),
         "netto_rendite_pct_ueber_selektionsfalten":
-            bereinigung.get("strategie_rendite_pct"),
+            bereinigung["strategie_rendite_pct"],
         "netto_drawdown_pct_ueber_selektionsfalten":
-            bereinigung.get("strategie_drawdown_pct"),
-        "netto_calmar": bereinigung.get("strategie_calmar"),
+            bereinigung["strategie_drawdown_pct"],
+        "netto_calmar": bereinigung["strategie_calmar"],
         "mittel_der_drei_tiefsten_falten_drawdowns":
             kz.drei_tiefste_drawdowns(gew_falten["kapital_drawdown_pct"]),
         "falten_drawdowns": {r["falte"]: float(r["kapital_drawdown_pct"])
@@ -515,10 +556,10 @@ def ein_bot(bot: str, wurzel: str, mess: dict, plan: dict, tabellen: dict) -> di
                           for _, r in gew_falten.iterrows()},
         "falten_ohne_trade": [r["falte"] for _, r in gew_falten.iterrows()
                               if int(r["n_trades"]) == 0],
-        "alpha_pct_pa": bereinigung.get("alpha_pct_pa"),
-        "beta": bereinigung.get("beta"),
-        "konstante_exposure": bereinigung.get("konstante_exposure"),
-        "zufalls_timing": bereinigung.get("zufalls_timing"),
+        "alpha_pct_pa": bereinigung["alpha_pct_pa"],
+        "beta": bereinigung["beta"],
+        "konstante_exposure": bereinigung["konstante_exposure"],
+        "zufalls_timing": bereinigung["zufalls_timing"],
     }
 
     # Die berichtete Zeile zum Risikoappetit (Festlegung 6): keine Grenze,
