@@ -69,6 +69,12 @@ DIE REGELN (eingefroren)
    faellt aus dem Training. Embargo: nach dem Ende einer Falte faellt
    dieselbe Laenge aus dem Training aller SPAETEREN Falten - sonst lernt
    Falte f+1 auf Positionen, die in Falte f noch offen waren.
+   ⚠️ Verfahren A. Seit TB-104 (25.09.2026) traegt der Plan die Felder
+   `purge_tage`, `embargo_tage` und `training_bis_ausschliesslich` nicht mehr
+   (Fable 25a, Praezisierung zu 33.3/35.4: der zur Laufzeit gerechnete Plan
+   traegt keine Groesse, die 33.2/33.3 nicht kennt). Dieser Absatz bleibt als
+   Verlauf stehen; `ergebnisse/faltenplan.json` (Sperrlistenpunkt 2) traegt
+   die Felder als registrierter historischer Stand weiter.
 
 6. **Faltenlaenge ein Jahr, zwei Jahre bei unter 30 gefundenen Trades je
    Jahr.** Welche Bots das trifft, steht VOR dem Lauf fest und wird hier aus
@@ -94,10 +100,9 @@ geht in KEINE Selektion ein - auch nicht in die Bestaetigungsperiode.
 import argparse
 import hashlib
 import json
-import math
 import os
 import sys
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, datetime, timezone
 
 import pandas as pd
 
@@ -267,11 +272,6 @@ def erste_falte(bot: str, laenge: int = None, schnitt: date = None) -> tuple:
                                             for f in messung]}
 
 
-def purge_tage(bot: str, mess: dict) -> int:
-    """Purge- und Embargo-Laenge: die maximale gemessene Haltedauer, aufgerundet."""
-    return int(math.ceil(mess["haltedauer"][bot]["max_tage"]))
-
-
 def _jahresfalten(von_jahr: int, bis_ausschliesslich: date, laenge: int) -> list:
     """Kalenderjahr-Falten der gegebenen Laenge, aufsteigend.
 
@@ -301,13 +301,10 @@ def _plan(bot: str, mess: dict, markt: str) -> dict:
     schnitt = date.fromisoformat(rd.GO_LIVE_SCHNITT)
     erste, herkunft = erste_falte(bot, laenge, schnitt)
     falten = _jahresfalten(erste, schnitt, laenge)
-    purge = purge_tage(bot, mess)
     for i, f in enumerate(falten):
-        von = date.fromisoformat(f["von"])
         f["rolle"] = "bestaetigung" if i == len(falten) - 1 else "selektion"
         if f["rolle"] == "bestaetigung":
             f["name"] = "%s/%s" % (f["von"], f["bis_ausschliesslich"])
-        f["training_bis_ausschliesslich"] = (von - timedelta(days=purge)).isoformat()
         f["embargo_nach_falten"] = [g["name"] for g in falten[:i]]
     return {
         "markt": markt,
@@ -315,8 +312,6 @@ def _plan(bot: str, mess: dict, markt: str) -> dict:
         "faltenlaenge_jahre": laenge,
         "trades_je_jahr": round(trades, 1),
         "faltenlaenge_begruendung": begruendung,
-        "purge_tage": purge,
-        "embargo_tage": purge,
         "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,
         "go_live_schnitt": rd.GO_LIVE_SCHNITT,
         "erste_falte": erste,
@@ -456,12 +451,12 @@ def main(argv=None):
     print(__doc__.strip().split("\n")[0])
     print(f"\nGo-Live-Schnitt: {rd.GO_LIVE_SCHNITT} (ausschliesslich)\n")
     print(f"{'Bot':28s} {'Markt':7s} {'Laenge':>7s} {'Trades/J':>9s} "
-          f"{'Purge':>6s} {'Selektionsfalten':>17s} {'Bestaetigung':>13s}")
+          f"{'Selektionsfalten':>17s} {'Bestaetigung':>13s}")
     for bot, p in plan.items():
         sel = ", ".join(p["selektionsfalten"])
         best = p["bestaetigungsperiode"]
         print(f"{bot:28s} {p['markt']:7s} {p['faltenlaenge_jahre']:6d}J "
-              f"{p['trades_je_jahr']:9.1f} {p['purge_tage']:5d}T  "
+              f"{p['trades_je_jahr']:9.1f}  "
               f"{sel[:40]:40s} {best}")
     ziel = a.ziel or voreinstellung_ziel()
     rc, text = schreibe_plan(plan, ziel)

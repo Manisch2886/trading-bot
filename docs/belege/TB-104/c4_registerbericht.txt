@@ -1,0 +1,36 @@
+# TB-104 C4 - registerbericht.py nach C1 (Freigabe Betreiber 25.09.2026 09:10:49, Auswahlkarte: nur Spalte 'Purge = Embargo' der Faltenplan-Tabelle in block())
+## Diff
+diff --git a/research/vorregistrierung/registerbericht.py b/research/vorregistrierung/registerbericht.py
+index cb0e6d0..41be429 100644
+--- a/research/vorregistrierung/registerbericht.py
++++ b/research/vorregistrierung/registerbericht.py
+@@ -137,14 +137,14 @@ def block() -> str:
+           f"Go-Live-Schnitt: **{rd.GO_LIVE_SCHNITT}** (ausschliesslich). "
+           f"Mindesttraining vor der ersten Falte: "
+           f"**{rd.MINDESTTRAINING_JAHRE} Jahre**.", "",
+-          "| Bot | Markt | Faltenlänge | gefundene Trades/Jahr | Purge = Embargo | "
++          "| Bot | Markt | Faltenlänge | gefundene Trades/Jahr | "
+           "Selektionsfalten | Bestätigungsperiode |",
+-          "|---|---|---:|---:|---:|---|---|"]
++          "|---|---|---:|---:|---|---|"]
+     for bot, p in plan.items():
+         sel = ", ".join(p["selektionsfalten"]) or "*Platzhalter (TB-31)*"
+         best = p["bestaetigungsperiode"] or "*Platzhalter (TB-31)*"
+         z.append(f"| `{bot}` | {p['markt']} | {p['faltenlaenge_jahre']} J | "
+-                 f"{_wert(p['trades_je_jahr'])} | {p['purge_tage']} Tage | "
++                 f"{_wert(p['trades_je_jahr'])} | "
+                  f"{sel} | {best} |")
+     z.append("")
+ 
+## Hash alt/neu
+alt dace1b01826fa6a999beb9a15a8eda41a4e0c97dec584e451cfc0d9b26daac01
+neu de35a5a09d103def310d473170d6e638cfd1f1a24f46f7b1d1e033a674134db7
+## Lauf: registerbericht.block() im Prozess (schreibt nichts), Ausschnitt Faltenplan-Tabelle
+### Der Faltenplan
+
+Go-Live-Schnitt: **2026-09-01** (ausschliesslich). Mindesttraining vor der ersten Falte: **4 Jahre**.
+
+| Bot | Markt | Faltenlänge | gefundene Trades/Jahr | Selektionsfalten | Bestätigungsperiode |
+|---|---|---:|---:|---|---|
+(9 Zeilen, je 6 Spalten - Werte aus Sichtschutzgruenden (27.1, Trade-Zahlen) nicht wiedergegeben; jede Zeile hat 6 Zellen wie der Kopf)
+## Nebenbefund (nicht geaendert, nicht freigegeben): die Zeile 'Mindesttraining vor der ersten Falte: 4 Jahre' (registerbericht.py Z. 137-139, rd.MINDESTTRAINING_JAHRE) ist ebenfalls Verfahren A.

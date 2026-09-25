@@ -90,6 +90,38 @@ def _plan():
     return fp.faltenplan(_mess())
 
 
+# Die Feldliste des GERECHNETEN Plans (G8, TB-104; Fable 25a, Praezisierung
+# zu 33.3/35.4: "Der Plan, den faltenplan.py zur Laufzeit bildet, traegt keine
+# Groesse, die 33.2/33.3 nicht kennt").
+# ⚠️ Aus dem Code, nicht aus dem Register: 33.3 fuehrt die Feldliste des
+# ABBILDS (asof, bot, horizontbeginn, faltenlaenge_jahre,
+# erste_selektionsfalte, selektionsfalten, quelle, bestaetigungsperiode), keine
+# des gerechneten Plans. Bis zum Abbild (33.3, Plan-Punkt 7) sind das hier die
+# Schluessel des gerechneten Plans NACH dem Entfernen der Verfahren-A-Felder
+# (TB-104 C1), am Stand vor diesem Eintrag gemessen.
+FELDLISTE_PLAN = frozenset({
+    "bestaetigungsperiode", "erste_falte", "erste_falte_4a",
+    "erste_falte_4a_warm_ab", "erste_falte_quelle", "erste_falte_trockenlauf_H",
+    "falten", "faltenlaenge_begruendung", "faltenlaenge_jahre",
+    "go_live_schnitt", "horizontbeginn", "markt", "mindesttraining_jahre",
+    "selektionsfalten", "status", "trades_je_jahr"})
+FELDLISTE_FALTE = frozenset({
+    "angeschnitten", "bis_ausschliesslich", "embargo_nach_falten", "name",
+    "rolle", "von"})
+# Die drei Felder, die Fable 25a ausdruecklich aus dem Plan nimmt.
+VERFAHREN_A_FELDER = frozenset({
+    "purge_tage", "embargo_tage", "training_bis_ausschliesslich"})
+
+
+def _fremde_felder(p):
+    """Die Schluessel eines Bot-Plans und seiner Falten ausserhalb der
+    Feldlisten - sortiert; leer, wenn der Plan nur Bekanntes traegt."""
+    fremd = set(p) - FELDLISTE_PLAN
+    for f in p.get("falten", []):
+        fremd |= {"falten[]." + k for k in set(f) - FELDLISTE_FALTE}
+    return sorted(fremd)
+
+
 def _selektionsfalten(p):
     """Die Namen der Selektionsfalten eines Bots, in Planreihenfolge."""
     return [f["name"] for f in p["falten"] if f["rolle"] == "selektion"]
@@ -616,10 +648,25 @@ def teil_g():
         pruefe(f"G7: {bot} - die letzte Falte ist die Bestaetigungsperiode",
                p["falten"][-1]["rolle"] == "bestaetigung"
                and all(f["rolle"] == "selektion" for f in p["falten"][:-1]))
-        pruefe(f"G8: {bot} - Purge ist die maximale Haltedauer, aufgerundet",
-               p["purge_tage"] >= _mess()["haltedauer"][bot]["max_tage"])
-        pruefe(f"G9: {bot} - Purge und Embargo sind gleich lang",
-               p["purge_tage"] == p["embargo_tage"])
+        # G8/G9 bis TB-104: "Purge ist die maximale Haltedauer" und "Purge
+        # und Embargo sind gleich lang" - Pruefungen eines Relikts aus
+        # Verfahren A (Fable 24d Eintrag e, 25a (1)). Angepasst, nicht
+        # geloescht (23a): dieselbe Stelle prueft jetzt die registrierte
+        # Erwartung an den gerechneten Plan.
+        pruefe(f"G8: {bot} - der gerechnete Plan traegt je Plan und je Falte "
+               f"keine Felder ausserhalb der Feldliste",
+               not _fremde_felder(p), str(_fremde_felder(p)))
+        pruefe(f"G9: {bot} - keins der drei Verfahren-A-Felder im Plan, in "
+               f"einer Falte oder in der Feldliste",
+               not (VERFAHREN_A_FELDER & (set(p) | FELDLISTE_PLAN | FELDLISTE_FALTE
+                                          | set().union(*map(set, p["falten"])))),
+               str(sorted(VERFAHREN_A_FELDER & (set(p) | FELDLISTE_PLAN))))
+    # G8M: Mutationsprobe zu G8 - ein Verfahren-A-Feld wieder eingefuegt.
+    _mit_gegenprobe(
+        "G8M", "Mutationsprobe 'purge_tage wieder im Plan' - G8 waere rot",
+        _g8m_lauf, lambda r: r["rc"] == 0 and any(
+            "purge_tage" in f for f in r["fremd"].values()),
+        lambda r: f"rc {r['rc']}, fremd {r['fremd']}; {r['stderr']}")
     pruefe("G10: genau die Bots mit unter 30 Trades je Jahr bekommen "
            "Zweijahres-Falten",
            all((p["faltenlaenge_jahre"] == 2)
@@ -685,6 +732,39 @@ def _g11(bot, p, tabellen, krise):
 # ===========================================================================
 # H  Mutationsproben - am Ablauf, nicht an einer gesetzten Variablen
 # ===========================================================================
+_G8M_STELLE = '        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,\n'
+_G8M_MUTATION = ('        "purge_tage": 0,\n'
+                 '        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,\n')
+_G8M_SKRIPT = r'''
+import json, sys
+sys.path.insert(0, sys.argv[1])
+import faltenplan as fp, registerdaten as rd
+plan = fp.faltenplan(rd._mess())
+print(json.dumps({b: {"plan": sorted(p), "falten": sorted(set().union(
+    *map(set, p["falten"])))} for b, p in plan.items()}))
+'''
+
+
+def _g8m_lauf(mutieren):
+    """faltenplan.py in einer Kopie des Ordners, mit (oder ohne) einem wieder
+    eingefuegten Verfahren-A-Feld; der Plan wird in einem EIGENEN Prozess
+    gerechnet und hier gegen die Feldlisten gehalten wie in G8."""
+    with tempfile.TemporaryDirectory() as m:
+        _kopie(m)
+        _ersetze(os.path.join(m, "faltenplan.py"), _G8M_STELLE, _G8M_MUTATION,
+                 mutieren)
+        r = subprocess.run([sys.executable, "-W", "ignore", "-c", _G8M_SKRIPT, m],
+                           capture_output=True, text=True, env=_umgebung())
+    fremd = {}
+    if r.returncode == 0:
+        for bot, k in json.loads(r.stdout.strip().splitlines()[-1]).items():
+            f = _fremde_felder({**{x: None for x in k["plan"]},
+                                "falten": [{x: None for x in k["falten"]}]})
+            if f:
+                fremd[bot] = f
+    return {"rc": r.returncode, "fremd": fremd, "stderr": r.stderr[-300:]}
+
+
 def _kopie(ziel):
     shutil.copytree(_HIER, ziel, dirs_exist_ok=True,
                     ignore=shutil.ignore_patterns("__pycache__"))

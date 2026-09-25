@@ -137,14 +137,14 @@ def block() -> str:
           f"Go-Live-Schnitt: **{rd.GO_LIVE_SCHNITT}** (ausschliesslich). "
           f"Mindesttraining vor der ersten Falte: "
           f"**{rd.MINDESTTRAINING_JAHRE} Jahre**.", "",
-          "| Bot | Markt | Faltenlänge | gefundene Trades/Jahr | Purge = Embargo | "
+          "| Bot | Markt | Faltenlänge | gefundene Trades/Jahr | "
           "Selektionsfalten | Bestätigungsperiode |",
-          "|---|---|---:|---:|---:|---|---|"]
+          "|---|---|---:|---:|---|---|"]
     for bot, p in plan.items():
         sel = ", ".join(p["selektionsfalten"]) or "*Platzhalter (TB-31)*"
         best = p["bestaetigungsperiode"] or "*Platzhalter (TB-31)*"
         z.append(f"| `{bot}` | {p['markt']} | {p['faltenlaenge_jahre']} J | "
-                 f"{_wert(p['trades_je_jahr'])} | {p['purge_tage']} Tage | "
+                 f"{_wert(p['trades_je_jahr'])} | "
                  f"{sel} | {best} |")
     z.append("")
 

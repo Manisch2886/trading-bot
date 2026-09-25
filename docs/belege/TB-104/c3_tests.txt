@@ -1,0 +1,14 @@
+# TB-104 C3 - Tests nach Block C (trading-env/bin/python3 3.9.6), 2026-09-25 10:19:06 +0200
+research/faltenplan_neun/test_faltenplan_neun.py rc=0 145s 156/156 Pruefungen bestanden.
+research/faltenplan_neun/test_erste_falte_trockenlauf.py rc=0 138s 50/50 Pruefungen bestanden.
+research/faltenplan_neun/test_horizontbeginn.py rc=0 56s 61/61 Pruefungen bestanden.
+research/universum_trockenlauf/test_universum_trockenlauf.py rc=0 102s 163/163 Pruefungen bestanden.
+shared/test_paths.py rc=0 12s 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+research/vorregistrierung/test_vorregistrierung.py rc=0 901s 196/196 Pruefungen bestanden.
+TESTS_FERTIG
+
+test_vorregistrierung 196 = 194 (nach B) + G8M + G8M-G; G8 und G9 je 9 Pruefungen wie vorher, jetzt:
+656:        pruefe(f"G8: {bot} - der gerechnete Plan traegt je Plan und je Falte "
+659:        pruefe(f"G9: {bot} - keins der drei Verfahren-A-Felder im Plan, in "
+666:        "G8M", "Mutationsprobe 'purge_tage wieder im Plan' - G8 waere rot",
+Einzellauf Teil G (vor dem Volllauf): 120 bestanden, 0 gescheitert, 102 s

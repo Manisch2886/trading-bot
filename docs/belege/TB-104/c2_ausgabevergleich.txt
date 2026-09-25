@@ -1,0 +1,9 @@
+# TB-104 C2 - Faltenplan vor/nach C1 im Speicher, HEAD 572d725 + Arbeitsbaum (C1), 2026-09-25 09:52:21 +0200
+# vorher = <scratch>/b0_vorher/plan.json (b0_ausgaben.sh Schritt 4 am Stand be31276, sha256 e54b48de...)
+Bots vorher/nachher: 9 9 True
+aus 'vorher' entfernt (Anzahl Vorkommen): {"falte": {"training_bis_ausschliesslich": 77}, "plan": {"embargo_tage": 9, "purge_tage": 9}}
+die drei Felder im Plan NACH C1: keins
+vorher minus die drei Felder == nachher (zeichengleich, JSON sort_keys): True
+Faltengrenzen (name, von, bis, rolle) je Bot gleich: True
+rc=0
+faltenplan.py alt 7aa0b8ccf5619a21d5f082f68d81cb412f98ae9c9724e799da8b48dce7498cfb neu d57fe9c977e572e1d344971913e3acbb1cd765d2bf145b52cefab69d75e10f41
