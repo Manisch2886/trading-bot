@@ -256,15 +256,24 @@ def hole_faltenplan(pfad_json=None):
     if pfad_json:
         with open(pfad_json, encoding="utf-8") as f:
             return json.load(f)
+    import shutil
     ordner = tempfile.mkdtemp(prefix="tb40_faltenplan_")
     ziel = os.path.join(ordner, "faltenplan.json")
     r = subprocess.run([sys.executable, FALTENPLAN, "--json", ziel],
                        stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
     if r.returncode != 0 or not os.path.exists(ziel):
-        raise RuntimeError("faltenplan_neun.py fehlgeschlagen:\n%s"
-                           % r.stdout.decode("utf-8", "replace")[-3000:])
-    with open(ziel, encoding="utf-8") as f:
-        return json.load(f)
+        # Die Ablage bleibt stehen, ihr Pfad steht in der Meldung (TB-109,
+        # Bauart TB-107 E, Fable 25e (1)).
+        raise RuntimeError("faltenplan_neun.py fehlgeschlagen, Ablage bleibt stehen: %s\n%s"
+                           % (ordner, r.stdout.decode("utf-8", "replace")[-3000:]))
+    # TB-109: die Zwischenablage `tb40_faltenplan_*` wird entfernt, sobald das
+    # Ergebnis gelesen ist (Klasse (iv), Fable 25e (1)); bis TB-109 blieb sie
+    # nach jedem Lauf ohne --faltenplan-json liegen.
+    try:
+        with open(ziel, encoding="utf-8") as f:
+            return json.load(f)
+    finally:
+        shutil.rmtree(ordner)
 
 
 def falten_des_bots(plan):
@@ -660,6 +669,7 @@ def stille_filter(bots=None):
     """Haelt jedem der neun Loader dieselben sieben Faelle hin und schaut zu,
     welche er schluckt. Antwortet damit auf 'Gibt es weitere stille Filter?'
     ohne den Quelltext zu befragen."""
+    import shutil
     bots = bots or BOTS
     ergebnis = {}
     for bot in bots:
@@ -681,22 +691,34 @@ def stille_filter(bots=None):
         ordner = tempfile.mkdtemp(prefix="tb40_proben_")
         zuordnung = baue_probendaten(ordner, symbole[:len(PROBEN)], interval,
                                      schranke, einheit)
-        lauf = messe_bot(bot, [], datenordner=ordner)
+        # Ohne Ergebnis bleibt die Ablage stehen, ihr Pfad steht in der
+        # Meldung (TB-109, Bauart TB-107 E, Fable 25e (1)).
+        try:
+            lauf = messe_bot(bot, [], datenordner=ordner)
+        except RuntimeError as fehler:
+            raise RuntimeError("%s (Proben), Ablage bleibt stehen: %s\n%s"
+                               % (bot, ordner, fehler))
         if lauf["fehler"]:
-            raise RuntimeError("%s (Proben): %s\n%s" % (bot, lauf["fehler"],
-                                                        lauf.get("spur", "")))
-        geladen = set(lauf["laeufe"][0]["symbole"])
-        ausgabe = lauf["laeufe"][0].get("ausgabe", "")
-        ergebnis[bot] = {
-            "schranke": schranke, "einheit": einheit, "zeitrahmen": interval,
-            "proben": {rolle: (zuordnung[rolle] in geladen) for rolle in PROBEN},
-            # "still" heisst: aussortiert, ohne dass der Loader das Symbol
-            # ueberhaupt erwaehnt. Gemessen an seiner eigenen Ausgabe.
-            "still": {rolle: (zuordnung[rolle] not in geladen
-                              and zuordnung[rolle] not in ausgabe)
-                      for rolle in PROBEN},
-            "zuordnung": zuordnung,
-        }
+            raise RuntimeError("%s (Proben), Ablage bleibt stehen: %s: %s\n%s"
+                               % (bot, ordner, lauf["fehler"], lauf.get("spur", "")))
+        # TB-109: die Zwischenablage `tb40_proben_*` wird entfernt, sobald das
+        # Ergebnis gelesen ist (Klasse (iv), Fable 25e (1)); bis TB-109 blieb
+        # sie nach jedem Lauf --stille-filter liegen.
+        try:
+            geladen = set(lauf["laeufe"][0]["symbole"])
+            ausgabe = lauf["laeufe"][0].get("ausgabe", "")
+            ergebnis[bot] = {
+                "schranke": schranke, "einheit": einheit, "zeitrahmen": interval,
+                "proben": {rolle: (zuordnung[rolle] in geladen) for rolle in PROBEN},
+                # "still" heisst: aussortiert, ohne dass der Loader das Symbol
+                # ueberhaupt erwaehnt. Gemessen an seiner eigenen Ausgabe.
+                "still": {rolle: (zuordnung[rolle] not in geladen
+                                  and zuordnung[rolle] not in ausgabe)
+                          for rolle in PROBEN},
+                "zuordnung": zuordnung,
+            }
+        finally:
+            shutil.rmtree(ordner)
     return ergebnis
 
 
