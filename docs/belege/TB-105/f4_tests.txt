@@ -1,0 +1,14 @@
+# TB-105 F4 - Tests am Ende (Mac, trading-env/bin/python3 3.9.6), Code-Stand d48a195
+research/vorregistrierung/test_vorregistrierung.py rc=0 990s | 196/196
+shared/test_paths.py rc=0 | 35/35
+shared/test_strategy_paths.py rc=0 | 23/23
+shared/test_stille_ausfaelle.py rc=0 | 27/27
+shared/test_startpruefungen.py rc=0 | 44/44
+NEU shared/test_regimewache_einbau.py rc=0 | 21/21
+NEU shared/test_rueckfaelle_modus.py rc=0 | 48/48
+NEU notifications/test_manual_close_protokoll.py rc=0 | 12/12
+weitere (cde_tests.txt): test_manual_close, test_schliess_benachrichtigung 99/99, test_dashboard 784/784, test_vergleich 23/23,
+  vergleich.py --pruefen rc 0, test_ergebniskurven 44/44, test_leeres_symbol 45/45, test_regimewache 13/13, test_determinismus 54/54,
+  test_entscheidungskerze 130/130, test_groessenfaktor 171/171, test_abrufschutz 77/77; B: test_agent2_zielfunktion 41/41,
+  hrp/trend_overlay test_corrected_curves 14/14, test_vbc_core 56/56, test_sync_check 33/33 (b_tests.txt).
+test_drawdown_beide_masse.py: je Einzellauf t3/vbc vorher = nachher (21 OK, 4 FEHLER in Abschnitt 5, seit TB-34 dauerhaft rot).

@@ -8981,6 +8981,45 @@ Belege `docs/belege/TB-103/`. Grundlage Fable 24b A2, 24c Abschnitte 1, 2, 6.
 
 ---
 
+## DD — TB-105: Drei Rückfälle geschlossen und keine Schreibziele beim Import — Regimewache 3 von 3, im Modus rc 2 statt 0, Klasse (iii) im Trockenlauf leer, Benchmark im Modus und ohne Modus bytegleich (25.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-105_rueckfaelle_und_schreibziele.md`*
+
+**Quelle:** Mac-Sitzung **TB-105**, 25.09.2026, Eingang `516badc`. Commits `b83e6b9` (Schritt 0),
+`f524327` (Block B), `f65c344` (Block C+D), `d48a195` (Block E) und der Abgabe-Commit. Belege
+`docs/belege/TB-105/`. Grundlage Fable 24b A2, 25a Abschnitte 3 (A) (iii) und 4, Register 11.1.
+Freigabe 10:52 (drei Auswahlkarten).
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **A** | 0 von 3 eingebaut; t3 rechnete ohne BTCUSDT still weiter, vbc brach ohne die Wache ab. 14 `exit()` in `__main__`. `crontab -l` war gesperrt, A3 deshalb statisch über Importketten: die Bot-Simulationen laufen im Betrieb nur über die Cron-Wächter `ergebniskurven`/`determinismus` (runpy) und `quarterly_review`, nicht über `forward_test.py`. Punkt 11 sperrt den Commit beim Lauf, keinen Datei-Hash |
+| ⭐ **B** | Wache an allen drei Stellen, `pruefe_einbau()` 3/3. Mit BTCUSDT Trade-Hashes gleich, ohne Abbruch. `test_regimewache_einbau` 21/21 mit vier Mutationen. `test_drawdown_beide_masse` neutralisiert den Filter jetzt ausdrücklich statt über fehlendes BTCUSDT |
+| ⭐ **C/D** | Die 14 Stellen und `symbols_config` enden unter dem Modus mit rc 2, ohne Modus wie bisher. `test_rueckfaelle_modus` C/D |
+| ⭐ **E** | `manual_close` legt das Protokoll erst bei der ersten Zeile an (Format zeichengleich), `strategy_paths` und `bot_lauf` legen unter dem Modus keine Ordner an. `test_manual_close_protokoll` 12/12, `test_rueckfaelle_modus` E |
+| ⭐⭐ **F** | Trockenlauf 9 × rc 0 im Repo und im frischen Klon, Mengen 18/18/20/20/20/147 × 4, Klasse (i) ausserhalb 0, (ii) die 5, **(iii) im Repo 0**. Benchmark im Modus `64fb2912`, ohne `manuelle_eingriffe.log`. Ohne Modus 8/8 Ausgaben gleich, Benchmark `64fb2912`. `test_vorregistrierung` 196/196 |
+| **G** | Nur Freigegebene, ihre Tests und `docs/` geändert; gesperrte Dateien, Datenstand, Snapshot, `ergebnisse/` gleich; eine `*.db` vom Brücken-Cron 12:05. Sonde vorher = nachher |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **`strategy_paths` ist in drei Werkzeugen ein Ersatzmodul** (`kurven_lauf`, `determinismus_lauf`, `messung_primaerschluessel`). Ein neuer Name, den Bot-Dateien daraus importieren, bricht die Cron-Wächter. Neues Verhalten an den Bot-Stellen fragt `paths` |
+| ⭐⭐ | **Eine Probe, die einen Rückfall als Voraussetzung nutzt, bricht mit seiner Behebung.** `test_drawdown_beide_masse` liess BTCUSDT weg, um den Filter zu umgehen. Wer einen stillen Zweig schliesst, sucht zuerst die Tests, die ihn benutzen |
+| ⭐ | **Proben, die ein fremdes `paths` einsetzen, gibt es mehrere** (`test_paths` A, `test_strategy_paths` C4). Eine neue Abfrage am Resolver muss ihr Fehlen dulden oder die Probe muss mitziehen |
+| ⭐ | **Ein Vorher-Lauf im Worktree unterscheidet sich in den Wurzelpfaden.** Ausgaben, die Pfade enthalten, erst nach Angleichung vergleichen |
+
+### Was offen bleibt
+
+- TB-106: Rückfall (d) (Stellen im Ergebnis, Abschnitt 5; neue Abbildpflicht).
+- Vier Fragen an Fable (Ergebnis, Abschnitt 5): Bauart C, Duldung in `strategy_paths`, Apple-Bytecode-Cache, A3 per Hand.
+- Die `$TMPDIR`-Ablagen des Benchmarks (Frage aus 25b) und Register 41/42.
+
+*Geschrieben 25.09.2026 von der Mac-Sitzung TB-105. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

@@ -1,0 +1,36 @@
+# TB-105 F1 - Trockenlauf aller neun im Modus, echtes Repo und frischer Klon (git clone, HEAD d48a195), 2026-09-25 12:59:30 +0200
+# Skript docs/belege/TB-105/f_lauf.sh (Bauart TB-104 c5_lauf.sh), Einstieg docs/belege/TB-103/d_trockenlauf.py, Haken TB-104
+## f1_repo
+| Bot | rc | Liste = Universumsdatei | Standardliste | geladen | signalpfad | simulation | [paths] SELEKTIONSMODUS AKTIV |
+|---|---|---|---|---|---|---|---|
+| elliott_wave | 0 | True | False | 18 | True | True | True |
+| t3_supertrend | 0 | True | False | 18 | True | True | True |
+| rsi2_crypto | 0 | True | False | 20 | True | True | True |
+| turtle_soup_crypto | 0 | True | False | 20 | True | True | True |
+| volatility_breakout_crypto | 0 | True | False | 20 | True | True | True |
+| elliott_wave_stocks | 0 | True | False | 147 | True | True | True |
+| rsi2_mean_reversion | 0 | True | False | 147 | True | True | True |
+| turtle_soup_stocks | 0 | True | False | 147 | True | True | True |
+| volatility_breakout | 0 | True | False | 147 | True | True | True |
+## f1_klon
+| Bot | rc | Liste = Universumsdatei | Standardliste | geladen | signalpfad | simulation | [paths] SELEKTIONSMODUS AKTIV |
+|---|---|---|---|---|---|---|---|
+| elliott_wave | 0 | True | False | 18 | True | True | True |
+| t3_supertrend | 0 | True | False | 18 | True | True | True |
+| rsi2_crypto | 0 | True | False | 20 | True | True | True |
+| turtle_soup_crypto | 0 | True | False | 20 | True | True | True |
+| volatility_breakout_crypto | 0 | True | False | 20 | True | True | True |
+| elliott_wave_stocks | 0 | True | False | 147 | True | True | True |
+| rsi2_mean_reversion | 0 | True | False | 147 | True | True | True |
+| turtle_soup_stocks | 0 | True | False | 147 | True | True | True |
+| volatility_breakout | 0 | True | False | 147 | True | True | True |
+
+## Klassen je Lauf (d_auswerten.py aus TB-104): f1_klassen_repo.txt, f1_klassen_klon.txt
+Repo: (i) ausserhalb 0 bei 9/9; (ii) dieselben 5 Dateien bei 9/9 (/dev/null, /dev/urandom, SystemVersion.plist, requirements.lock, zoneinfo/UTC); (iii) 0 bei 9/9.
+Klon: (i) ausserhalb 0 bei 9/9; (ii) dieselben 5 bei 9/9; (iii) NUR Bytecode-Cache-Ordner der macOS-Python-Installation
+      unter <APPLE-PYCACHE>/<klonpfad>/... (13 mkdir beim ersten Import der Klon-Module, ausserhalb des Repos, Klasse (ii) der Sache nach);
+      im Klon selbst: 0. Gegenprobe Klon:
+vorher: ls: logs: No such file or directory research/exposure_messung/daten results/BTCUSDT_backtest_trades.csv results/BTCUSDT_impulse_waves.csv results/BTCUSD
+nachher: ls: logs: No such file or directory research/exposure_messung/daten results/BTCUSDT_backtest_trades.csv results/BTCUSDT_impulse_waves.csv results/BTCUS
+git status --porcelain --ignored (Klon):
+      (vorher = nachher zeichengleich: JA; git status --porcelain --ignored im Klon danach leer)

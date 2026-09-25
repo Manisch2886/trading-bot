@@ -1,0 +1,8 @@
+# TB-105 F2 - benchmark.py --ziel <scratch> im Modus, echtes Repo
+# TB-105 benchmark bm_repo , Wurzel /Users/jaquelineloffler/trading-bot, HEAD d48a19581f8c949e0ec7a8b193ae7043a9cc961e, 2026-09-25 12:57:54 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+benchmark bm_repo  rc=0 58s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_repo/benchmark.json
+Klassen: f2_klassen_benchmark.txt. (i) 246 Dateien, 225 im Snapshot, 21 ausserhalb = dieselbe Liste wie TB-104 c5_klassen_bm_lauf1.txt
+(bis auf die Zufallsnamen der $TMPDIR-Ablagen). (ii) dieselben 5. (iii) 20 statt 22 in TB-104: logs/notifications (mkdir) und
+logs/notifications/manuelle_eingriffe.log (a) sind WEG; uebrig nur die 10 mkdir + 10 w unter <TMPDIR>/tb40_lauf_* (erwartet, Frage an Fable).

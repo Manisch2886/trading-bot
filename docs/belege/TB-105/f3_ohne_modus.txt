@@ -1,0 +1,31 @@
+# TB-105 F3 - ohne Modus, vollstaendige Daten: die 8 Ausgaben aus TB-104 b0_ausgaben.sh (Skript f3_ausgaben.sh) und benchmark.py
+# vorher = git worktree b83e6b9 (data/ als Symlink auf data/), nachher = Repo HEAD d48a195
+| Ausgabe | vorher | nachher | gleich |
+|---|---|---|---|
+| fn.json | 93fbf09c608ff7a6 | 93fbf09c608ff7a6 | JA |
+| embargo.json | 8c4caf4e44bda07a | 8c4caf4e44bda07a | JA |
+| fsm.json | db72ca326c62bf89 | db72ca326c62bf89 | JA |
+| lesart.json | 4bacd86f438ff0b9 | 4bacd86f438ff0b9 | JA |
+| plan.json | 3dad5615fe0efcce | 3dad5615fe0efcce | JA |
+| ut.json | c3b84301bd46f15d | 2546cadf5079bcc3 | NEIN |
+| sf.json | 78e4f524676a4979 | 78e4f524676a4979 | JA |
+| eft.json | 1bf4679712f6d29c | 1bf4679712f6d29c | JA |
+
+ut.json: die Abweichung sind NUR Wurzelpfade (DATA_DIR, logs/<bot>, results/<bot> zeigen in den Worktree).
+Nach Ersetzen der Wurzel durch <W> in beiden Dateien: 0 Unterschiedszeilen.
+Der nachher-Hash 2546cadf... ist ausserdem zeichengleich mit TB-104 b0_nach_B.txt (im Repo gemessen).
+plan.json 3dad5615... in beiden (weicht von TB-104 b0_* ab, weil TB-104 Block C danach die drei Felder entfernte).
+
+benchmark.py --ziel <scratch> ohne Modus: benchmark ohne Modus rc=0 54s
+  sha256 64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7
+
+Laufprotokolle: vorher
+1 faltenplan_neun.py --json
+2 embargo_neun.py --json
+3 faltenschranke_messung.py --json
+4 loader_lesart (9 Bots) + faltenplan.faltenplan() im Speicher
+5 universum_trockenlauf.py --json
+6 universum_trockenlauf.py --stille-filter --json
+7 erste_falte_trockenlauf.py --json
+## sha256 der JSON-Ausgaben
+FERTIG

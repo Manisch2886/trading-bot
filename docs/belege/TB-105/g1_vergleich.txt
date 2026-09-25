@@ -1,0 +1,19 @@
+# TB-105 G1 - vorher (0_hashes_vorher.txt, HEAD b83e6b9, 11:47:59) gegen nachher (g1_hashes_nachher.txt, HEAD d48a195, 13:20:25)
+(1) freigegeben: 18 von 18 geaendert (erwartet).
+(2) gesperrt / nicht freigegeben (regimewache.py, paths.py, ladeprotokoll.py, research/vorregistrierung/*.py,
+    research/universum_trockenlauf/*.py, 9 forward_test.py, 9 live_params.py, stocks_symbols_config.py, zuteilung.py,
+    sperrlistensonde.py, Register, Universumsdateien): alle gleich.
+(3) Ergebnisdateien der Kette (messgroessen.json, haltedauern_je_bot.csv, faltenplan.json, Abbild 2026-09-25,
+    benchmark_drawdowns.json, Snapshot-MANIFEST): gleich. (4) ergebnisse/-Listing: gleich.
+(5) je versionierte Datei ausserhalb docs/ (5_alle_vorher/nachher.txt, diff): geaendert die 18 freigegebenen und
+    shared/test_drawdown_beide_masse.py (Test von multi_symbol_optimise, siehe b_tests.txt); neu
+    shared/test_regimewache_einbau.py, shared/test_rueckfaelle_modus.py, notifications/test_manual_close_protokoll.py.
+    Sonst nichts (1529 -> 1532 Dateien = 3 neue Tests).
+(6) Snapshot-Summenhash und --pruefen: gleich (snapshot_hash Soll = Ist 63e4b6c8...).
+(7) Datenstand data/: d9449faf... / 223, gleich.
+(8) *.db: 11 von 12 gleich; broker_testnet_t3_supertrend.db geaendert, mtime 2026-09-25 12:05:01 = Cron der
+    Binance-Bruecke (alle 4 h zur Minute 5; logs/broker/testnet_spiegel.log und cron.log ebenfalls 12:05). Kein Code
+    dieser Sitzung beruehrt broker/.
+(9) git status ausserhalb docs/: leer.
+Sonde gegen sperrliste_abbild_2026-09-25.json (cb4eb1b4...): 0_sonde_vorher.txt und g1_sonde_nachher.txt ab Zeile 2
+zeichengleich (Pfad-Bestandteile 25/0/0, rc 2 nur NICHT PRUEFBAR) - kein Sperrlistenpfad bewegt.
