@@ -120,6 +120,15 @@ import paths  # noqa: E402
 DATA_DIR = paths.DATA_DIR
 CONFIG_DIR = paths.CONFIG_DIR
 
+
+def _abbruch_2(stelle: str, text: str):
+    """TB-106 (Fable 24b A2, 25a Rang 3): ein fehlender Wert ist ein
+    Widerspruch zwischen Register und Eingabe, kein Laufzustand. Meldung auf
+    stderr, dann `SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)` -
+    unabhaengig vom Modus."""
+    print(f"ABBRUCH (benchmark.py::{stelle}): {text}", file=sys.stderr)
+    raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
+
 # Stuetzstellen der Exposure-Achse: 1 % bis 100 % in Schritten von 1 %.
 # Feiner waere Genauigkeit ohne Aussage - die Kapitalpfade selbst sind auf
 # zwei Nachkommastellen ausgewiesen.
@@ -204,7 +213,9 @@ def drawdown_bei_exposure(renditen: pd.Series, exposure: float) -> float:
     in der Messkette (shared/messkette.py).
     """
     if renditen.empty:
-        return 0.0
+        _abbruch_2("drawdown_bei_exposure",
+                   "leere Renditereihe - kein Drawdown bestimmbar; bis TB-106 "
+                   "stand hier still 0.0")
     kapital = np.cumprod(1.0 + exposure * renditen.to_numpy(dtype=float))
     hoch = np.maximum.accumulate(np.concatenate(([1.0], kapital)))[1:]
     return round(float(np.min(kapital / hoch - 1.0) * 100.0), 2)
@@ -269,9 +280,10 @@ def je_bot(mess: dict) -> dict:
             bis = pd.Timestamp(f["bis_ausschliesslich"])
             # Bot ohne ein einziges handelbares Symbol: die leere Reihe traegt
             # keinen Zeitindex und liesse sich nicht filtern (Wache aus TB-61).
-            # Sie geht unveraendert weiter; drawdown_bei_exposure() definiert
-            # dafuer 0.0. Eine Falte VOR dem ersten Handelbar-Tag ergibt ein
-            # leeres Fenster mit demselben Ergebnis.
+            # Sie geht unveraendert weiter; drawdown_bei_exposure() bricht
+            # dafuer seit TB-106 mit 2 ab (bis dahin 0.0). Eine Falte VOR dem
+            # ersten Handelbar-Tag ergibt ein leeres Fenster mit demselben
+            # Ergebnis.
             if renditen.empty:
                 fenster = renditen
             else:
@@ -296,10 +308,15 @@ def je_bot(mess: dict) -> dict:
                 sel.append(tab)
 
         # DD_Toleranz: Median ueber die SELEKTIONSFALTEN, je Exposure-Stufe.
+        # Ohne Selektionsfalte ist er nicht definiert (TB-106; bis dahin 0.0).
+        if not sel:
+            _abbruch_2("je_bot",
+                       f"{bot}: keine Selektionsfalte - DD_Toleranz ist der Median "
+                       f"ueber die Selektionsfalten; bis TB-106 stand hier still 0.0")
         for e in EXPOSURE_STUFEN:
             k = _schluessel(e)
             werte = [t[k] for t in sel]
-            eintrag["dd_toleranz"][k] = round(float(np.median(werte)), 2) if werte else 0.0
+            eintrag["dd_toleranz"][k] = round(float(np.median(werte)), 2)
         aus[bot] = eintrag
     return aus
 
