@@ -147,6 +147,13 @@ if __name__ == "__main__":
     trades = collect_all_trades(all_data, T3_FAST, T3_SLOW, ADX_THRESHOLD, STOP_LOSS_PCT)
 
     if trades.empty:
+        # TB-109 Block B (Fable 25e (2)): null Trades ist ein Wert (5.1 Nr. 8,
+        # 1c) - unter dem Selektionsmodus endet ein exit() ohne geschriebenes
+        # Ergebnis mit Rueckgabewert 2, nicht mit 0. Ohne Modus wie bisher.
+        import paths
+        if paths.selektionsmodus() is not None:
+            sys.stderr.write("Keine Trades fuer diese Parameter-Kombination gefunden." + "\n")
+            raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
         print("Keine Trades fuer diese Parameter-Kombination gefunden.")
         exit()
 

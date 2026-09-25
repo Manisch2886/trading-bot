@@ -184,8 +184,10 @@ def teil_c(arbeit):
     # Mutation der Bauart (eine, nicht vierzehn): an einer Stelle faellt die
     # Modus-Abfrage weg.
     probe = STELLEN[0]
-    alt = "        if paths.selektionsmodus() is not None:\n            sys.stderr.write("
-    neu = "        if False:\n            sys.stderr.write("
+    # TB-109: seit Block B steht dieselbe Abfrage auch an der Stelle "Keine
+    # Trades" derselben Datei - das Muster nennt deshalb die Meldung mit.
+    alt = "        if paths.selektionsmodus() is not None:\n            sys.stderr.write(\"Keine Daten"
+    neu = "        if False:\n            sys.stderr.write(\"Keine Daten"
     baum_m, griff = baue_baum(arbeit, "c_mut", (probe, alt, neu))
     pruefe("C3 Mutation 'Modus-Abfrage weg' griff", griff)
     rc, out, err = lauf(baum_m, [os.path.join(baum_m, probe)], attrappe)
