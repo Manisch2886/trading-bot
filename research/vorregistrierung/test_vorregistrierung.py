@@ -98,15 +98,18 @@ def _plan():
 # erste_selektionsfalte, selektionsfalten, quelle, bestaetigungsperiode), keine
 # des gerechneten Plans. Bis zum Abbild (33.3, Plan-Punkt 7) sind das hier die
 # Schluessel des gerechneten Plans NACH dem Entfernen der Verfahren-A-Felder
-# (TB-104 C1), am Stand vor diesem Eintrag gemessen.
+# (TB-104 C1), am Stand vor diesem Eintrag gemessen. Seit TB-106 ohne die
+# beiden toten Felder `mindesttraining_jahre` (je Plan) und
+# `embargo_nach_falten` (je Falte) - Fable 25b (4), 25c 2 (c). Benannter
+# Zwischenstand, bis die Feldliste in den Registertext wandert (25b 3 (3)).
 FELDLISTE_PLAN = frozenset({
     "bestaetigungsperiode", "erste_falte", "erste_falte_4a",
     "erste_falte_4a_warm_ab", "erste_falte_quelle", "erste_falte_trockenlauf_H",
     "falten", "faltenlaenge_begruendung", "faltenlaenge_jahre",
-    "go_live_schnitt", "horizontbeginn", "markt", "mindesttraining_jahre",
+    "go_live_schnitt", "horizontbeginn", "markt",
     "selektionsfalten", "status", "trades_je_jahr"})
 FELDLISTE_FALTE = frozenset({
-    "angeschnitten", "bis_ausschliesslich", "embargo_nach_falten", "name",
+    "angeschnitten", "bis_ausschliesslich", "name",
     "rolle", "von"})
 # Die drei Felder, die Fable 25a ausdruecklich aus dem Plan nimmt.
 VERFAHREN_A_FELDER = frozenset({
@@ -661,11 +664,12 @@ def teil_g():
                not (VERFAHREN_A_FELDER & (set(p) | FELDLISTE_PLAN | FELDLISTE_FALTE
                                           | set().union(*map(set, p["falten"])))),
                str(sorted(VERFAHREN_A_FELDER & (set(p) | FELDLISTE_PLAN))))
-    # G8M: Mutationsprobe zu G8 - ein Verfahren-A-Feld wieder eingefuegt.
+    # G8M: Mutationsprobe zu G8 - ein totes Feld wieder eingefuegt (bis
+    # TB-106: purge_tage; seit TB-106 das entfernte mindesttraining_jahre).
     _mit_gegenprobe(
-        "G8M", "Mutationsprobe 'purge_tage wieder im Plan' - G8 waere rot",
+        "G8M", "Mutationsprobe 'mindesttraining_jahre wieder im Plan' - G8 waere rot",
         _g8m_lauf, lambda r: r["rc"] == 0 and any(
-            "purge_tage" in f for f in r["fremd"].values()),
+            "mindesttraining_jahre" in f for f in r["fremd"].values()),
         lambda r: f"rc {r['rc']}, fremd {r['fremd']}; {r['stderr']}")
     pruefe("G10: genau die Bots mit unter 30 Trades je Jahr bekommen "
            "Zweijahres-Falten",
@@ -732,9 +736,9 @@ def _g11(bot, p, tabellen, krise):
 # ===========================================================================
 # H  Mutationsproben - am Ablauf, nicht an einer gesetzten Variablen
 # ===========================================================================
-_G8M_STELLE = '        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,\n'
-_G8M_MUTATION = ('        "purge_tage": 0,\n'
-                 '        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,\n')
+_G8M_STELLE = '        "go_live_schnitt": rd.GO_LIVE_SCHNITT,\n'
+_G8M_MUTATION = ('        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,\n'
+                 '        "go_live_schnitt": rd.GO_LIVE_SCHNITT,\n')
 _G8M_SKRIPT = r'''
 import json, sys
 sys.path.insert(0, sys.argv[1])
@@ -747,7 +751,7 @@ print(json.dumps({b: {"plan": sorted(p), "falten": sorted(set().union(
 
 def _g8m_lauf(mutieren):
     """faltenplan.py in einer Kopie des Ordners, mit (oder ohne) einem wieder
-    eingefuegten Verfahren-A-Feld; der Plan wird in einem EIGENEN Prozess
+    eingefuegten toten Feld; der Plan wird in einem EIGENEN Prozess
     gerechnet und hier gegen die Feldlisten gehalten wie in G8."""
     with tempfile.TemporaryDirectory() as m:
         _kopie(m)

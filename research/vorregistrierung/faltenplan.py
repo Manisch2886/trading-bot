@@ -74,7 +74,10 @@ DIE REGELN (eingefroren)
    (Fable 25a, Praezisierung zu 33.3/35.4: der zur Laufzeit gerechnete Plan
    traegt keine Groesse, die 33.2/33.3 nicht kennt). Dieser Absatz bleibt als
    Verlauf stehen; `ergebnisse/faltenplan.json` (Sperrlistenpunkt 2) traegt
-   die Felder als registrierter historischer Stand weiter.
+   die Felder als registrierter historischer Stand weiter. Seit TB-106
+   (25.09.2026, Fable 25b (4), 25c 2 (c)) fehlen auch `embargo_nach_falten`
+   (je Falte) und `mindesttraining_jahre` (je Plan): kein Leser, und
+   `MINDESTTRAINING_JAHRE` geht nicht in die erste Falte ein.
 
 6. **Faltenlaenge ein Jahr, zwei Jahre bei unter 30 gefundenen Trades je
    Jahr.** Welche Bots das trifft, steht VOR dem Lauf fest und wird hier aus
@@ -123,6 +126,21 @@ sys.path.insert(0, os.path.join(BASE_DIR, "research", "faltenplan_neun"))
 import faltenplan_neun as fn  # noqa: E402
 import erste_falte_trockenlauf as eft  # noqa: E402
 
+# TB-106 (Fable 24b A2, 25a Rang 3): fehlt hier ein Wert, ist das ein
+# Widerspruch zwischen Register und Eingabe, kein Laufzustand - Abbruch mit
+# dem Rueckgabewert der Startpruefung, unabhaengig vom Modus. Der Wert steht
+# genau einmal in shared/paths.py; importiert wie in benchmark.py (TB-104),
+# nicht ueber strategy_paths.
+sys.path.insert(0, os.path.join(BASE_DIR, "shared"))
+import paths  # noqa: E402
+
+
+def _abbruch_2(stelle: str, text: str):
+    """Meldung auf stderr, dann `SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)`."""
+    print(f"ABBRUCH (faltenplan.py::{stelle}): {text}", file=sys.stderr)
+    raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
+
+
 TB24_DATEN = os.path.join(BASE_DIR, "research", "tb24_haltedauern", "daten")
 
 
@@ -150,14 +168,21 @@ def volle_jahre(zaehlung: dict) -> dict:
     if not zaehlung:
         return {}
     jahre = sorted(zaehlung)
-    return {j: zaehlung[j] for j in jahre[1:-1]} or {jahre[0]: zaehlung[jahre[0]]}
+    innen = {j: zaehlung[j] for j in jahre[1:-1]}
+    if not innen:
+        _abbruch_2("volle_jahre",
+                   f"kein volles Kalenderjahr unter {jahre} - bis TB-106 stand "
+                   f"hier still das erste, angeschnittene Jahr als Ersatz")
+    return innen
 
 
 def faltenlaenge_jahre(bot: str) -> tuple:
     """(Laenge in Jahren, Trades je Jahr, Begruendung) - Festlegung 7."""
     zaehlung = volle_jahre(gefundene_trades_je_jahr(bot))
     if not zaehlung:
-        return 2, 0.0, "keine vollen Kalenderjahre gemessen"
+        _abbruch_2("faltenlaenge_jahre",
+                   f"{bot}: keine gefundenen Trades in {TB24_DATEN} - bis TB-106 "
+                   f"stand hier still die Faltenlaenge 2")
     mittel = sum(zaehlung.values()) / len(zaehlung)
     if mittel < rd.ZWEIJAHRES_SCHWELLE_TRADES:
         return 2, mittel, (f"{mittel:.1f} gefundene Trades je vollem Kalenderjahr "
@@ -305,14 +330,12 @@ def _plan(bot: str, mess: dict, markt: str) -> dict:
         f["rolle"] = "bestaetigung" if i == len(falten) - 1 else "selektion"
         if f["rolle"] == "bestaetigung":
             f["name"] = "%s/%s" % (f["von"], f["bis_ausschliesslich"])
-        f["embargo_nach_falten"] = [g["name"] for g in falten[:i]]
     return {
         "markt": markt,
         "status": "endgueltig",
         "faltenlaenge_jahre": laenge,
         "trades_je_jahr": round(trades, 1),
         "faltenlaenge_begruendung": begruendung,
-        "mindesttraining_jahre": rd.MINDESTTRAINING_JAHRE,
         "go_live_schnitt": rd.GO_LIVE_SCHNITT,
         "erste_falte": erste,
         "erste_falte_quelle": ("Registertext 4a in der Neufassung als Konjunktion "

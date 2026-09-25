@@ -134,9 +134,7 @@ def block() -> str:
 
     # --- Faltenplan ------------------------------------------------------
     z += ["### Der Faltenplan", "",
-          f"Go-Live-Schnitt: **{rd.GO_LIVE_SCHNITT}** (ausschliesslich). "
-          f"Mindesttraining vor der ersten Falte: "
-          f"**{rd.MINDESTTRAINING_JAHRE} Jahre**.", "",
+          f"Go-Live-Schnitt: **{rd.GO_LIVE_SCHNITT}** (ausschliesslich).", "",
           "| Bot | Markt | Faltenlänge | gefundene Trades/Jahr | "
           "Selektionsfalten | Bestätigungsperiode |",
           "|---|---|---:|---:|---|---|"]
