@@ -1,0 +1,50 @@
+# Basis 4faef05 (TB-94 Ende, 39.5), HEAD f4d3e2a
+
+config/sp500_top150.txt  [Punkt 8]  0 Commits seit 4faef05
+
+config/top25_symbols.txt  [Punkt 8]  0 Commits seit 4faef05
+
+research/vorregistrierung/auswertung.py  [Punkt 3, Punkt 5, Punkt 14, eingefroren]  1 Commits seit 4faef05
+   5cc1de4 25.09.2026 19:06  c3b4e69d8f207d0c1982a538203dcf184072554fdc1beb0f612bf054cd2a0062 -> 83c6bc3c9b683d0bfd9d8c445492060f93759a551d0dcf329b2bd21b0f1cc5a1   TB-106 Block D: auswertung.py plateau ohne Statistik, beta_bereinigung ohne Selektionsfalt
+
+research/vorregistrierung/benchmark.py  [Punkt 4, Punkt 6, eingefroren]  2 Commits seit 4faef05
+   572d725 25.09.2026 09:52  d6bdd55805344da09b6b43d791267b43c9702687fc1c7cdbad1473079443e061 -> 4c923cd907c6aa9b14fd035fd775ced00bfcaff0795288dc4b1ccd48d19fc5b8   TB-104 Block A+B: Leser des Laufbereichs auf den Resolver (Fable 24c Abschnitt 2, 24d Absc
+   a08c13a 25.09.2026 19:01  4c923cd907c6aa9b14fd035fd775ced00bfcaff0795288dc4b1ccd48d19fc5b8 -> aeeec9b89bdadd1b2dc2be76b722dc90c328c9482014bbbbfcabd78edccae219   TB-106 Block C: benchmark.py drawdown_bei_exposure (leere Reihe) und je_bot (keine Selekti
+
+research/vorregistrierung/ergebnisse/benchmark_drawdowns.json  [Punkt 4, eingefroren]  0 Commits seit 4faef05
+
+research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json  [Punkt 4]  0 Commits seit 4faef05
+
+research/vorregistrierung/ergebnisse/faltenplan.json  [Punkt 2, eingefroren]  0 Commits seit 4faef05
+
+research/vorregistrierung/ergebnisse/messgroessen.json  [eingefroren]  0 Commits seit 4faef05
+
+research/vorregistrierung/faltenplan.py  [Punkt 2, eingefroren]  2 Commits seit 4faef05
+   f334a7b 25.09.2026 10:19  7aa0b8ccf5619a21d5f082f68d81cb412f98ae9c9724e799da8b48dce7498cfb -> d57fe9c977e572e1d344971913e3acbb1cd765d2bf145b52cefab69d75e10f41   TB-104 Block C: Verfahren-A-Felder aus dem gerechneten Faltenplan (Fable 25a (1), Praezisi
+   abeca36 25.09.2026 18:59  d57fe9c977e572e1d344971913e3acbb1cd765d2bf145b52cefab69d75e10f41 -> 63dafeb44e027cb5d93ac19cddfc7d4e98b468cece116512c2b3f1601bd4a4c7   TB-106 Block B: faltenplan.py volle_jahre/faltenlaenge_jahre ohne stillen Ersatz (rc 2), t
+
+research/vorregistrierung/herkunft.py  [Punkt 11, Punkt 12]  1 Commits seit 4faef05
+   5791b4c 25.09.2026 19:08  56a1c2e1514385acd26c3432bd111f3588846c80d173a4d4a471ecae723fb502 -> 351f24c2d6a3a512dc1eb1a80b536b99d47c266db38f7dd93b9d1c0199397eef   TB-106 Block E: herkunft.py block()/anhaengen() reichen daten_dir an datenstand() durch (u
+
+research/vorregistrierung/kennzahlen.py  [eingefroren]  0 Commits seit 4faef05
+
+research/vorregistrierung/messgroessen.py  [eingefroren]  1 Commits seit 4faef05
+   ae136fd 25.09.2026 00:25  623f8d771ffd5ae9dc1b979fbe383c85268371ba4f1dfeff055379662be41f25 -> 59b396e76af33dfc5549c7a40032d44963b02d3305bf4bf9e721b06001d0301c   TB-103 Block C: messgroessen.py auf den Resolver - Kurs- und Universumsdateien ueber share
+
+research/vorregistrierung/pruefe_grenzsaetze.py  [eingefroren]  0 Commits seit 4faef05
+
+research/vorregistrierung/registerdaten.py  [Punkt 1, eingefroren]  0 Commits seit 4faef05
+
+shared/zuteilung.py  [Punkt 10]  0 Commits seit 4faef05
+
+# register() nachgebaut (Teile: Registerdatei + EINGEFROREN), je Commit, der einen Teil aendert
+   4faef05 (Basis, TB-94 Ende)  f63c181bd46e5ae481b34bbdddd9178f42255214f892cc73468948c26f54ebc5
+   d0dc890  89f0ab5f9be1cee9cc8978ac9e6012623a6bc922775c658debf9f84c957c61cc   24.09.2026 09:21 TB-96 Block B und C: Register Abschnitt 40 nach Fable 24a (Test
+   ae136fd  becfa3c9430946a1021e7a990e5804290cb8f0520e5355a8f2e077f9a7678476   25.09.2026 00:25 TB-103 Block C: messgroessen.py auf den Resolver - Kurs- und Un
+   572d725  cca9bb787629136dc2d742b09be9f1e18e4fa3964324a505be295dac1384f795   25.09.2026 09:52 TB-104 Block A+B: Leser des Laufbereichs auf den Resolver (Fabl
+   f334a7b  57ec6573eb44f18bccaa461da41ac0b835ba1afa1446ef27b4c3409ead56e46e   25.09.2026 10:19 TB-104 Block C: Verfahren-A-Felder aus dem gerechneten Faltenpl
+   abeca36  f42d6d84515aba19765a2d25cb542afeea8dec81433eb5d79d43f3d6a9df1561   25.09.2026 18:59 TB-106 Block B: faltenplan.py volle_jahre/faltenlaenge_jahre oh
+   a08c13a  cad1495b4fc42f156a15a92c7cd8be7cfe9a7bae1dc7c443d6303729dc4ce107   25.09.2026 19:01 TB-106 Block C: benchmark.py drawdown_bei_exposure (leere Reihe
+   5cc1de4  0ece95e2fd4f5bd2787ea40f6a12988aadb0a414c5132553522b55000c6052d7   25.09.2026 19:06 TB-106 Block D: auswertung.py plateau ohne Statistik, beta_bere
+   f4d3e2a  c85dd6c3b6de7a302627f84244226b9ba1ad5e22d6a8cc260cc5c48b588c12e2   25.09.2026 22:56 TB-108 Register: Abschnitt 41 (Fable 24b/24c/24d: kein Fallback
+   HEAD c85dd6c3b6de7a302627f84244226b9ba1ad5e22d6a8cc260cc5c48b588c12e2

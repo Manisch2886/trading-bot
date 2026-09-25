@@ -1,0 +1,77 @@
+# TB-108 Block A - je Eintrag der Stoffsammlung: Quelle (Zeilen), Art, Zieltext gefunden, Stand gemessen, Registerort, Markenort
+# Quellen: docs/projektfuehrung/FABLE_ANTWORT_2026-09-<q>_*.md (q = 24b, 24c, 24d, 25a, 25b, 25c), Zeilennummern am Stand 4a84086.
+# "Z" = ganze Zeile als Blockzitat, "T" = Teilzitat; jedes Zitat mit diff rc 0 in d2_zitate.txt.
+# Stand-Messung: a3_stand.txt (Nummern in Klammern), c_hashuebergaenge.txt, Ergebnisdokumente TB-97, TB-103 bis TB-107.
+
+Eintrag | Quelle, Zeilen          | Art                         | Text gefunden               | Stand gemessen (Abweichung zur Stoffsammlung: !)                        | Register  | Marke
+A1      | 24b Z57, T61            | Berichtigung                | ja                          | Test 196 Pruefungen (19), H1-H7 im Test                                 | 41.1      | 12
+A2      | 24b Z59                 | Berichtigung                | ja                          | Gegenproben TB-97                                                       | 41.1      | 40.7
+A3      | 24b Z91                 | Berichtigung                | ja                          | -                                                                       | 41.1      | 40.6
+A4      | 24b Z67, T69            | Registertext                | ja                          | ! H6 bis heute nicht eigenstaendig (TB-97, Test Z.861/965, ae8db0b)     | 41.1      | 12, 40.7
+A5      | 24b Z99, T101           | Registertext                | ja                          | -                                                                       | 41.1      | 12
+A6      | 24b Z75                 | Marke                       | ja                          | ein Parser beispieldaten.jahre_aus_register_5_1_nr_4, zwei Leser        | 41.1      | 5.1 Nr. 4
+A7      | 24b Z107                | Tatsachennotiz              | ! ja, in 24b C4 (Stoffsammlung: nur Stichwort D5) | -                                             | 41.1      | 12
+A8      | 24b Z39                 | Tatsachennotiz              | ja                          | Kopf bot_lauf.py Z.32-37 unveraendert (16)                              | 41.1      | -
+A9      | 24b T39                 | Registertext                | ja                          | -                                                                       | 41.1      | -
+A10     | 24b Z19, Z21            | Registertext                | ja                          | umgesetzt; ! letzter Satz (Ladeprotokoll) nicht: ladeprotokoll.py seit 55b991d (7) | 41.1 | 19
+A11     | 24b Z27                 | Registertext                | ja                          | Trockenlaeufe TB-103/105/106/107                                        | 41.1      | -
+A12     | 24b Z35, Z37            | Registertext (Praez. 40.6)  | ja                          | Erzeuger nicht gebaut                                                   | 41.1      | 40.6
+(Liste) | 24b Z119                | Fables Liste                | ja                          |                                                                         | 41.1      |
+B4      | 24c Z15, T17            | Registertext                | ja                          | Benchmark-Nachweis 2                                                    | 41.2      | 39.6
+B8      | 24c Z19                 | Tatsachennotiz              | ja                          | -                                                                       | 41.2      | -
+B5      | 24c Z25, T27            | Registertext                | ja                          | Leser auf paths.py TB-103/104                                           | 41.2      | 19
+B1      | 24c Z49, Z57            | Registertext                | ja                          | 5.4 sagt "gefundene" (17)                                               | 41.2      | 5.4
+B2      | 24c Z51, T24d:95        | Berichtigung, zurueckgenommen| ja                         | nie eingetragen                                                         | 41.2      | 16.6
+B3      | 24c Z53, T24d:41        | Registertext                | ja                          | offen (Erzeuger)                                                        | 41.2      | -
+B6/B7   | 24c Z55                 | Tatsachennotiz              | ja                          | CSV und Erzeuger unveraendert, messgroessen liest weiter                | 41.2      | 40.6
+(Liste) | 24c Z70                 | Fables Liste                | ja                          |                                                                         | 41.2      |
+C1      | 24d Z23, T25, T95, T39  | Ruecknahme mit Grund        | ja                          | -                                                                       | 41.3      | 16.6
+C2      | 24d Z29, Z31            | Registertext                | ja                          | Deckel nicht neu gerechnet                                              | 41.3      | 15.4, 16.6
+C3      | 24d Z35, T37, T25a:29   | Registertext (Praezisierung)| ja                          | -                                                                       | 41.3      | 16.6
+C4      | 24d Z55                 | Tatsachennotiz              | ja (Notiz selbst eigene Fassung, gekennzeichnet) | -                                    | 41.3      | 5.4
+C5      | 24d T39, T25a:19        | entschieden                 | ja                          | Felder raus f334a7b (21)                                                | 41.3      | -
+C6      | 24d Z71, Z73            | Registertext                | ja                          | TB30A_BASE_DIR in herkunft.py:51 (4)                                    | 41.3      | 19, 39.6
+C7      | 24d Z75                 | Tatsachennotiz              | ja                          | -                                                                       | 41.3      | 39.6
+C8      | 24d Z61                 | Berichtigung                | ja                          | -                                                                       | 41.3      | -
+C9      | 24d Z63, T25a:27 (2x)   | nach Messung                | ja                          | a1b_lesehaken.py/a1b_lesequellen_kinder.txt seit 0292e92 (15)           | 41.3      | 39.8
+(Liste) | 24d Z91                 | Fables Liste                | ja                          |                                                                         | 41.3      |
+D1      | 25a Z67                 | Berichtigung                | ja                          | -                                                                       | 42.1      | 19
+D6      | 25a Z53, Z55            | Registertext                | ja                          | -                                                                       | 42.1      | 39.8
+D2      | 25a Z53 (letzter Satz)  | Praezisierung               | ja (in D6)                  | -                                                                       | 42.1      | -
+D3/D7   | 25a Z61, Z63            | Praez. + Registertext       | ! derselbe Text zweimal in der Stoffsammlung, einmal eingetragen | Teil (4) offen (7)             | 42.1      | -
+D4      | 25a Z39, T41            | Ergaenzung                  | ja                          | -                                                                       | 42.1      | -
+D5      | 25a Z21, Z23            | Praezisierung, berichtigt   | ja                          | Felder raus f334a7b                                                     | 42.1      | 33.3, 35.4
+D8      | 25a Z77, T79            | Registertext, berichtigt    | ja                          | -                                                                       | 42.1      | 36.5
+D9      | 25a Z35, T63            | Tatsachennotiz              | ja                          | CONFIG_UNTERORDNER Z.213 (5); Ladeprotokoll (4) offen (7)               | 42.1      | -
+D10     | 25a (in C9)             | Tatsachennotiz              | ja (41.3 C9)                | wie C9                                                                  | 42.1      | 39.8
+D11     | 25a T27 (2x)            | Tatsachennotiz              | ja                          | behoben d48a195, manual_close.py Z.245-255 (13)                         | 42.1      | 39.8
+D12     | 25a Z85, Z87-92, Z94    | Registertext                | ja                          | alle vier geschlossen; pruefe_einbau vollstaendig True (8)              | 42.1      | 11, 36.5
+(Liste) | 25a Z108                | Fables Liste                | ja                          |                                                                         | 42.1      |
+E1      | 25b Z46, Z48            | Registertext                | ja                          | tb40_lauf_* seit a79e715                                                | 42.2      | -
+E2      | 25b Z54, Z58, Z60, Z62  | Registertext                | ja                          | ARBEITSBAUM_PFADE unveraendert Z.225 (5), Register 19 Z.2840 (18)       | 42.2      | 19
+E3      | 25b Z68, Z70            | Berichtigung + Registertext | ja                          | FELDLISTE_PLAN/FALTE Z.105/111 (11); ! Zuordnung je Schluessel fehlt    | 42.2      | 33.3, 35.4
+E4      | 25b Z74, Z78, T25c:33   | Berichtigung                | ja                          | MINDESTTRAINING_JAHRE Z.108 ohne Leser (10)                             | 42.2      | 23.5
+E5      | 25b Z84, Z86            | Berichtigung + Registertext | ja                          | 81 Module, Liste 84 Zeilen davon 3 docs/ (3)                            | 42.2      | 36.5
+E6      | 25b Z25, T27            | Praezisierung               | ja                          | -                                                                       | 42.2      | -
+E7      | 25b T19 (nur ein Satz)  | Tatsachennotiz              | ! nein - nur Stichworte (Z100): eigene Fassung, gekennzeichnet | ERGEBNIS_TB-104                  | 42.2      | -
+E8      | 25b T101                | offen -> beantwortet        | ja                          | alle vier beantwortet und umgesetzt                                     | 42.2      | -
+(Liste) | 25b Z90                 | Fables Liste                | ja                          |                                                                         | 42.2      |
+F1      | 25c Z13, Z17, Z19       | Berichtigung + Registertext | ja                          | registerdaten.py:605 unveraendert (10)                                  | 42.3      | 6
+F2      | 25c Z27, Z29            | Berichtigung                | ja                          | herkunft.py 351f24c2, 5791b4c (4)                                       | 42.3      | 37.4, 39.7
+F3      | 25c Z43                 | Tatsachennotiz              | ja                          | pruefe_einbau vollstaendig True (8)                                     | 42.3      | 11 (Abschnitt 10: nein, Text in 42.3)
+F4      | 25c Z57, Z45            | Registertext                | ja                          | _min_history 33d50f2; Erzeugerkette offen                               | 42.3      | 33.3, 36.5
+F5      | 25c Z61                 | Tatsachennotiz + Registertext| ja                         | Ersatzmodule unveraendert (12)                                          | 42.3      | -
+F6      | 25c Z63                 | Tatsachennotiz              | ja                          | kein getattr, Z.122 (6); pfadvergleich rc 1 (20)                        | 42.3      | -
+F7      | 25c Z67                 | Registertext                | ja                          | -                                                                       | 42.3      | -
+F8      | 25c Z71, Z73, Z75       | Registertext                | ja                          | herkunft_protokoll.jsonl existiert nicht (2)                            | 42.3      | 19 (10.1: nein, Text in 42.3)
+G1-G10  | Ergebnisse TB-105..107  | Tatsachennotizen            | eigene Fassung (Sitzungsfakten) | G1 (8), G9 (9), G10 (2); G5 ohne Nachzaehlung der 12 Stellen   | 42.4      | 11 (G1)
+41.0    | 23f T25                 | Zitat (benannter Abstand)   | ja                          |                                                                         | 41.0      |
+42.5    | -                       | Tatsachennotiz zu 37.3      | -                           | ! dritter Uebergang TB-103 messgroessen.py (EINGEFROREN), c_hashuebergaenge.txt | 42.5 | 37.3
+
+A2 (Eintraege ohne zitierbaren Text): 1 (E7), als eigene Fassung gekennzeichnet. Dazu eine eigene Formulierung neben
+   vorhandenem Fable-Text (C4, die Tatsachennotiz selbst) und die zehn Sitzungsfakten G1-G10 (eigene Fassung ihrer Natur nach).
+   A7 war in der Stoffsammlung nur Stichwort, der Text steht aber in derselben Antwort (24b C4) - A2 (a).
+
+A4 (Zielabschnitte gelesen, am Stand 4a84086): 5.1, 5.4, 6, 11 (11.1-11.3), 12, 15.4, 16.6, 19, 23.5, 33.3, 35.4, 36.5,
+   37.3, 37.4, 39.6, 39.7, 39.8, 40.6, 40.7; dazu 5.2, 38.1-38.3 (Kopfzeilen), 39.5 (Form fuer 42.5), 40 ganz (Bauart).
+   Abschnitt 10 (Z. 843-1049) gelesen, dort keine Marke.

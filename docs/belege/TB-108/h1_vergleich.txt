@@ -1,0 +1,25 @@
+# TB-108 H1 Vergleich vorher/nachher, 2026-09-25 22:58:31 +0200
+## (1)-(4) und (6)-(11): diff der Hash-Dateien (ohne Kopfzeile)
+86c86
+< 10ffa7b3a7b0652e8f9da0eedac1af5cb82ae045317a3d05118de6568c5092aa  docs/VORREGISTRIERUNG_neuselektion.md
+---
+> ed20408c269e283efb2af42141c5a3390fcdbcdb68645b791313e16d13a351b1  docs/VORREGISTRIERUNG_neuselektion.md
+127c127
+< ## (5) je versionierte Datei ausserhalb docs/ -> docs/belege/TB-108/5_alle_vorher.txt
+---
+> ## (5) je versionierte Datei ausserhalb docs/ -> docs/belege/TB-108/5_alle_nachher.txt
+149c149
+< 9309408c8a782fbfdcf6e57f4590c5dbab40e3f78b0ea2f30796060b0ed859b3  paper_trading_volatility_breakout.db
+---
+> 6761e7aab8b00316e7f96e2ec677d56017f29e7d7d3540bf9b0b51bc8a378951  paper_trading_volatility_breakout.db
+152c152
+< register 0ece95e2fd4f5bd2787ea40f6a12988aadb0a414c5132553522b55000c6052d7
+---
+> register c85dd6c3b6de7a302627f84244226b9ba1ad5e22d6a8cc260cc5c48b588c12e2
+154c154
+<    10ffa7b3a7b0652e8f9da0eedac1af5cb82ae045317a3d05118de6568c5092aa ../../docs/VORREGISTRIERUNG_neuselektion.md
+---
+>    ed20408c269e283efb2af42141c5a3390fcdbcdb68645b791313e16d13a351b1 ../../docs/VORREGISTRIERUNG_neuselektion.md
+diff rc 1
+## (5) je versionierte Datei ausserhalb docs/
+diff rc 0

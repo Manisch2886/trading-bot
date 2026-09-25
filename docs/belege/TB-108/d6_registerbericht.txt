@@ -1,0 +1,5 @@
+# TB-108 D6 registerbericht.py --pruefen am Register-Commit, HEAD f4d3e2a, 2026-09-25 22:56:51 +0200
+GESCHEITERT: der erzeugte Block steht nicht woertlich im Register - die Zahlen dort sind veraltet.
+  Neu erzeugen mit:
+    python3 research/vorregistrierung/registerbericht.py
+rc 1

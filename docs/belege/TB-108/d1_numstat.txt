@@ -1,0 +1,3 @@
+f4d3e2a TB-108 Register: Abschnitt 41 (Fable 24b/24c/24d: kein Fallback unter dem Modus, Nachweis mit zwei Teilen, Resolver-Pflicht, Reichweite 5.4, Deckel statt Purge, Ruecknahme mit Grund, sieben Mutationsproben, H6 offen) und 42 (Fable 25a/25b/25c: drei Klassen plus (iv)/Code/Caches/Protokolle, Laufbereich als Vereinigung, vier Rueckfaelle geschlossen, herkunft.py einmal geoeffnet, Tatsachennotizen TB-103 bis TB-107, Hash-Uebergaenge seit 39.5); 20 Marken am alten Ort, keine in Abschnitt 10; 108 Zitate eingesetzt, diff 108/108 rc 0; numstat 1134/0
+
+1134	0	docs/VORREGISTRIERUNG_neuselektion.md

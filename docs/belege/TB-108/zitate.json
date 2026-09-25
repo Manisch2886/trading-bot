@@ -1,0 +1,758 @@
+[
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 119,
+  "text": "5. **Register 41:** Berichtigung 12 (sieben, Namen, F4), 40.7 („sieben\"), 40.6 (TB-90-Satz), Regel „allein beissen\" und H6, Störproben-Satz, Marke 5.1 Nr. 4, Testrahmen-Notiz, Tatsachennotiz `bot_lauf.py`/`symbol`, Regel „keine Kennzeichnung in Laufcode-Feldern\".",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 57,
+  "text": "**Berichtigung zu 12 (Ersatztext für den Halbsatz „davon acht Mutationsproben\"):** … davon **sieben Mutationsproben, H1 bis H7** (Teil H); H0 ist der Grundlauf ohne Mutation und keine Probe. F4 ist keine Mutationsprobe (ändert keinen Code), hat aber nach 40.7 eine Gegenprobe. Die Zahl der Prüfungen ist eine Tatsachennotiz mit Stand (heute 188, Commit …), kein Registertext; die **Namen** der Mutationsproben sind Registertext. Ändert sich die Menge, ist das eine Berichtigung mit Namen.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 59,
+  "text": "**Berichtigung zu 40.7:** „alle acht\" lies „alle sieben (H1–H7)\".",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 91,
+  "text": "**Berichtigung zu 40.6:** „TB-90 hat gezeigt, dass diese Backtests byte-identisch reproduzieren\" lies „Der Reproduzierbarkeitsnachweis für die Listen-Erzeugung ist der Modus-Lauf nach 23e (zweimal, bytegleich) und stand am 24.09. noch aus; TB-90 B6 betraf die Backtest-Skripte auf `data/`, nicht den Listen-Erzeuger.\"",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 67,
+  "text": "**Regel (Ergänzung zu 12/40.7):** Jede Mutationsprobe beisst **allein**: Ihre Gegenprobe (nur ihre eigene Mutation weggelassen, alles andere im Grundzustand) scheitert. Eine Probe, die das nur im Verbund mit einer anderen leistet, wird vor dem Tag **eigenständig** gemacht — H6 braucht einen eigenen eingesetzten Fehler, den die entfernte Wache hätte fangen müssen, statt sich H5s Fehler zu leihen. Ist das strukturell nicht möglich, wird das Paar als **eine** Probe mit zwei Mutationen registriert und gezählt — sechs plus ein Paar, nicht sieben.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 99,
+  "text": "**Registertext, Ergänzung zu 12 (Gegenproben) — Störproben:** Eine Störprobe nach „geht es ein?\" wird in **beide** Richtungen geführt: klein genug, dass nichts passieren darf, und gross genug, dass etwas passieren muss. Eine Störprobe nur in eine Richtung belegt nichts. *(Formuliert von TB-95 am 23.09.2026, übernommen als Registertext durch den Verfahrensprüfer, 24.09.2026.)*",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 75,
+  "text": "**Marke bei 5.1 Nr. 4:** ja, um den zweiten Leser ergänzen. Und: zwei Leser, **ein Parser** — die Funktion, die 5.1 Nr. 4 liest, ist eine, und beide rufen sie; sonst altern zwei Parser getrennt. Handwerk, aber die Anforderung ist Verfahren (ein Wert, ein Ort).",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 107,
+  "text": "Es ist keine Prüfung, sondern der Testrahmen (12: „erzeugte Beispieldaten mit frei erfundenen Werten\"). Literale dort sind kein Prüffehler, aber ein **Befund am Testrahmen**: Ein Rahmen, der bei Doppeljahren entartet (Z. 77) oder nie trifft (Z. 69), prüft den Auswerter nur für Bots mit Einjahresfalten — und `elliott_wave` hat Doppeljahre. Eigene Tatsachennotiz (zu 12): der Testrahmen deckt seit 24c beide Faltenlängen ab; vorher nicht. Die Umstellung selbst ist nach 24c geschehen (5.1 Nr. 4 über Abdeckung) und angenommen.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 39,
+  "text": "*Eine Regel aus dem Nebenbefund:* Seit TB-26 ist `symbol` kein reines Etikett mehr; der Kopf von `bot_lauf.py` sagt das Gegenteil. Tatsachennotiz — und: **Kein Messwerkzeug schreibt Kennzeichnungen in Felder, die der Laufcode liest.** Ein Etikett, das in einen Zufallsschlüssel fliesst, ist kein Etikett.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 19,
+  "text": "**Registertext, Ersteintrag (zu 5a/5e, Selektionsmodus) — kein Fallback unter dem Modus:** Unter dem Selektionsmodus gibt es **keinen Rückfall auf eingebaute Voreinstellungen**, gleich welcher Art (Symbollisten, Parameter, Pfade, Schwellen). Eine Eingabe, die im Snapshot nicht gefunden wird, ist Rückgabewert **2** (nicht prüfbar) und beendet den Lauf, bevor gerechnet wird — nach demselben Muster, mit dem `paths.py` den Live-Pfad unter dem Modus unerreichbar macht (`SystemExit`, nicht Exception). Eine Meldung „Keines ausgelassen\" darf nur stehen, wenn die geladene Symbolmenge gleich der Universumsdatei aus dem Snapshot ist; das Ladeprotokoll (3b (d)) nennt beide Zahlen und die Quelle der Liste.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 21,
+  "text": "*Quelle des Grundes:* 22e/17.x — der Modus ist gebaut, „damit kein `except Exception` im Aufrufer den Abbruch in einen stillen Weiterlauf verwandelt\"; ein Fallback ist genau dieser stille Weiterlauf, nur eingebaut statt gefangen. A8. Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 27,
+  "text": "**Tag-Vorbedingung, Ergänzung zum Plan:** Vor dem Tag läuft für **alle neun Bots** ein Trockenlauf im Selektionsmodus gegen den echten Snapshot, mit Lesehaken und Aufrufstapel: 0 Zugriffe ausserhalb `snapshots/<hash>/`; geladene Symbolmenge gleich Universumsdatei; kein Fallback; Rückgabe 0. Das Protokoll ist Tatsachennotiz. Ein Modus, unter dem noch nie ein Bot gelaufen ist, ist keine registrierte Umgebung, sondern eine behauptete.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 35,
+  "text": "**Entscheidung (Präzisierung zu 40.6):** „Der registrierte Code\" für die Neu-Erzeugung der Listen ist der **Signalpfad** (die neun Backtests mit registrierten heutigen Parametern, `run_backtest`), nicht der Ausführungspfad (Zuteilung). Die neuen Listen enthalten die **gefundenen** Trades mit den Feldern, die 5.4 braucht (`bot`, `symbol`, `entry_time`, dazu die Felder, die der Signalpfad ohnehin liefert), **ohne** Simulationsspalte `ausgefuehrt` und **ohne** Kennzeichnung im Symbolfeld. Das Format wird als Feldliste registriert (Bauart 33.3), der Erzeuger schreibt genau diese Felder. Vergleichbarkeit mit den historischen Listen (`78e2bc6`) ist **nicht** gefordert — die sind historischer Stand mit Notiz; verglichen wird die abgeleitete **Faltenlänge** gegen 33.2, nicht Liste gegen Liste.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 37,
+  "text": "*Quelle des Grundes:* 5.4 (Schwelle auf gefundene Trades je Jahr) und 33.2; der Grund für ein Feld in einer Eingabedatei ist, dass die Herleitung es liest — 33.3-Logik. Kein Ergebnis. **Folge:** Der Erzeuger braucht die Zuordnung ausgeführt/gefunden nicht mehr, die Kennung entfällt, der Konflikt mit Punkt 10 entsteht gar nicht; keine Änderung an der Zuteilung, keine Suche nach einer durchgereichten Spalte.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 70,
+  "text": "4. **Register 41/42:** Reichweite 5.4, Berichtigung 2d-Herleitung, Donchian-Herleitung, Nachweis mit zwei Teilen, Resolver-Pflicht, Tatsachennotizen (`haltedauern_je_bot.csv` historisch, `tb24_haltedauern/auswertung.py` historisch, TB-93/102-Nachweis = 2).",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 15,
+  "text": "**Registertext, Ersatz für den Nachweisbegriff aus 23e (Eingabestand):** Ein Reproduzierbarkeitsnachweis besteht aus **zwei** Teilen, und beide sind Pflicht: **(a)** dem Ergebnisvergleich — die erzeugte Datei ist bytegleich zur eingefrorenen; **(b)** dem **Leseprotokoll** — alle Lesezugriffe des Laufs auf Kurs-, Universums- und Ergebnisdateien liegen innerhalb `snapshots/<hash>/` oder auf registrierten Eingabedateien, **null** im Repo-Arbeitsstand (`data/`, `config/`, `ergebnisse/` ausserhalb der registrierten Pfade). Fehlt (b) oder zeigt es einen Zugriff ausserhalb, ist der Nachweis **2**, gleich was (a) sagt. „Bytegleich\" ohne Leseprotokoll ist kein Nachweis, sondern ein Zufall, der heute stimmt.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 19,
+  "text": "*Für alle bisherigen Nachweise heisst das:* TB-91 A1b (`benchmark.py` im Modus, zweimal bytegleich) — hatte es ein Leseprotokoll? TB-95 hat später mit Lesehaken gemessen, dass `benchmark.py` 222 + 2 Dateien aus dem Snapshot liest; wenn diese Messung derselbe Lauf-Typ war, gilt A1b als vollständig; wenn nicht, ist das Leseprotokoll für die Benchmark-Tabelle einmal nachzuholen. **Nur das Ob.** Der TB-93/TB-102-Nachweis für `messgroessen.json` ist nach dieser Regel **2** — nicht geführt.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 25,
+  "text": "**Registertext, Ergänzung zu 5a/5e:** Jedes Modul des Laufbereichs, das Kursdaten oder Universumsdateien liest, bezieht seine Pfade über den Resolver (`shared/paths.py`, `get_strategy_paths()`). Eine eigene Pfadlogik für diese Dateien ist ein Befund der Lesequellen-Sonde (1). Es gibt **eine** Anordnung, die der Snapshot vorgibt (Kurse flach, Universum unter `config/`), und der Resolver ist der einzige Ort, der sie kennt.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 49,
+  "text": "**Registertext, Ersteintrag — Reichweite des Grundsatzes aus 5.4:** Keine Festlegung des Verfahrens, die vor dem Lauf steht (Faltenlänge, Purge, Embargo, Trainingsende, Rastergrenzen), wird aus Grössen hergeleitet, die vom **Positionslimit** oder von der **Ausführung** abhängen. Herleitungen aus Trades verwenden **gefundene** Trades (Signalpfad), nie ausgeführte. Der Grundsatz gilt für alle Stellen, an denen 5.4 ihn heute allein anwendet.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 57,
+  "text": "*Quelle des Grundes:* 5.4 im Wortlaut („keine Festlegung vor dem Lauf, die vom Positionslimit abhinge\"), 2d im Zweck (kein Leck zwischen Falten), 3 („erzeugt, nicht abgetippt\"). **Kein Ergebnis — und hier gilt es besonders:** Ich weiss nicht, ob `purge_tage` länger, die Donchian-Untergrenze anders, `messgroessen.json` wie stark verändert herauskommt. Ihr habt es nicht gerechnet, ich habe es nicht gefragt. Die Regel ist dieselbe, wie auch immer es ausgeht, und deshalb steht sie jetzt — bevor der Erzeuger läuft (24.3). Wer nach der Messung sagt „das verändert den Raster zu sehr\", wählt nach Wirkung; wer vorher sagt „lassen wir es, es ist ja nicht zirkulär im Lauf\", wählt auch — für die Zellen mit kurzen Haltedauern.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 51,
+  "text": "**Berichtigung zu 2d (Purge/Embargo), Herleitung:** `purge_tage` wird nicht aus der maximalen Haltedauer eines Parameterstands hergeleitet, sondern als **Schranke über das registrierte Raster**: die grösste Haltedauer, die ein Trade in irgendeiner Zelle des Rasters erreichen kann — aus den registrierten Rastergrenzen der Ausstiegsachsen (Zeitausstieg, maximale Haltedauer), wo eine Strategie keinen begrenzten Ausstiegshorizont hat, aus dem Maximum der gefundenen Trades über den gesamten Datenhorizont, mit Aufschlag als Tatsachennotiz. Ein Purge, das für eine Zelle des Rasters zu kurz ist, ist ein Befund.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 53,
+  "text": "**Berichtigung zur Herleitung der Donchian-Untergrenze (zwei Bots):** aus `median_balken` der **gefundenen** Trades, nicht der ausgeführten. Die Rastergrenze selbst bleibt eine gemessene Grösse (Abschnitt 2/3, „erzeugt, nicht abgetippt\") — nur ihre Eingabe wechselt auf den Signalpfad.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 55,
+  "text": "**Folge für die Eingabedateien:** Die Haltedauern werden aus **denselben neuen Listen gefundener Trades** abgeleitet, die 24b A3 für die Faltenlänge anordnet — jede gefundene Trade-Zeile trägt `entry_time` und `exit_time`, die Haltedauer folgt daraus. **Ein Erzeuger, eine Eingabedatei je Bot, zwei Herleitungen** (Faltenlänge nach 5.4, Haltedauern für 2d und die Rastergrenze). `haltedauern_je_bot.csv` in heutiger Form und ihr Erzeuger `tb24_haltedauern/auswertung.py` werden historischer Stand mit Tatsachennotiz; `messgroessen.py` liest die Haltedauern aus der neuen Quelle (Konstante, unter dem Resolver). Die Feldliste der neuen Listen (24b A3) bekommt `exit_time` und `haltedauer_balken` ausdrücklich.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 91,
+  "text": "**Register 41/42, zusätzlich zu 24c Abschnitt 6 Punkt 4:**",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 23,
+  "text": "**Rücknahme (zu 24c, „Berichtigung zu 2d (Purge/Embargo), Herleitung\"):** Der Satz *„`purge_tage` wird … als Schranke über das registrierte Raster bemessen\"* ist zurückgenommen. Unter Verfahren B gibt es zwischen Selektionsfalten weder Purge noch Embargo (2c) und vor der Bestätigungsperiode keine Lücke, sondern Bedingung plus Deckel mit Attribution je Position (16.6). Eine Grösse, die eine Trainingsgrenze oder eine Lücke bemisst, gehört zu Verfahren A und wird **nicht neu hergeleitet**.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 29,
+  "text": "**Präzisierung zu 2d (Fassung 16.6), Deckel für Bots ohne Zeitbremse:** Das 95. Perzentil der Haltedauer wird aus den **gefundenen** Trades gerechnet (Signalpfad, die neuen Listen nach 24b A3 / 24c), plus 1, aufgerundet wie in 15.4 Anmerkung 4; Tatsachennotiz mit Hash der Liste, Snapshot-Hash und Commit. Der Deckel ist keine Leckschranke — das Leck schliesst die Attribution je Position —, und er ist deshalb ausdrücklich **nicht** als Maximum über alle Rasterzellen zu bemessen. Der Zusatz aus 24c *„Maximum der gefundenen Trades über den gesamten Datenhorizont, mit Aufschlag\"* ist zurückgenommen.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 31,
+  "text": "*Quelle des Grundes:* 24c, Registertext „Reichweite des Grundsatzes aus 5.4\" (Herleitungen aus Trades verwenden gefundene Trades) — und TB-98 Befund 2: ausgeführte Positionen sind seit TB-26 nicht reproduzierbar erzeugbar, gefundene sind es. Die Wirkung kenne ich nicht (der Wert 13 kann sich bewegen); sie beschränkt sich auf den spätesten Beginn der Bestätigungsperiode des Gewinners. Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 35,
+  "text": "**Präzisierung zu 2d (Fassung 16.6), Auswertungsebene:** Die Bedingung wird im Selektionslauf **für den Gewinner auf dessen eigenen simulierten Positionen** ausgewertet; der Deckel ist je Bot eine Konstante über alle Zellen. Das Journal des Papierpfads ist dafür keine Quelle. *(Ob der heutige Code eine der beiden Lesarten schon umsetzt, ist nicht gemessen; nach 24.5 existiert der Laufcode, der die Tagesreihe je Zelle erzeugt, nicht.)*",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 55,
+  "text": "**Zum Nebenbefund `elliott_wave`:** richtig — bei ihm ist das Positionslimit keine Achse (2.4: keine Limitachse, Kapitalschranke `floor(1/ALLOCATION_PCT) = 10`). Der Grundsatz greift dort über das zweite Wort im Registertext aus 24c, *„oder von der Ausführung\"*: Die Zuteilung entscheidet auch bei ihm, welche gefundenen Trades ausgeführt werden, und die Kapitalschranke ist eine Ausführungsgrösse. Der Registertext braucht keine Ergänzung; die Tatsachennotiz zu 5.4 sollte den anderen Grund nennen, damit niemand bei diesem Bot „gefundene\" für überflüssig hält.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 71,
+  "text": "**Registertext, Ergänzung zu 5e und zur Resolver-Pflicht (24c):** Ein Modus-Lauf ist ein Lauf unter dem Selektionsmodus des Resolvers (`shared/paths.py`, `TB_SELEKTIONSWURZEL`). Eine Anordnung des Snapshot-Inhalts in Repo-Form — Verknüpfungen, Hilfsordner, Ersatzwurzeln wie `TB30A_BASE_DIR`, `TB36_BASE_DIR`, `TB40_BASE_DIR` — ist **kein Modus-Lauf** und trägt keinen Nachweisteil (b). Ein Modul, das den Resolver nicht kennt, hat keinen Nachweis (2), bis es ihn kennt; ein Hilfsordner ersetzt den Resolver nicht. Als **Messwerkzeug** ausserhalb eines Nachweises (Störproben, Diagnose) bleibt die Anordnung zulässig und wird als solche benannt.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 73,
+  "text": "*Quelle des Grundes:* (1) 23e: *„der Nachweis muss denselben Weg gehen wie der Lauf\"* — der Lauf am Tag geht durch den Resolver; ein Hilfsordner prüft den **Inhalt** des Snapshots, nicht den **Weg** dorthin, und TB-98 Befund 1 war ein Fehler des Weges bei richtigem Inhalt. (2) Das Verknüpfungsskript des Hilfsordners ist selbst Pfadlogik ausserhalb des Resolvers — genau der Befund 1 der Lesequellen-Sonde, nur ausserhalb des Repos, wo die Sonde ihn nicht sieht. (3) 24c: eine Anordnung, ein Ort, der sie kennt. Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 75,
+  "text": "**Tatsachennotiz dazu, damit niemand alte Läufe umdeutet:** TB-92 A1b (39.6: *„`TB_SELEKTIONSWURZEL` wirkt in `research/vorregistrierung/` nicht (0 Treffer)\"*) und TB-95 D1 waren nach dieser Regel beide Hilfsordner-Läufe. Ihre Ergebnisvergleiche bleiben Tatsachen (fünfmal `64fb2912…`); als Nachweise sind sie 2 — aus zwei Gründen, von denen 39.8 der ältere ist.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 61,
+  "text": "**Erst mein Fehler, dann der Widerspruch.** Ich habe in 24c „TB-91 A1b\" geschrieben. Das Register nennt den Modus-Nachweis der Benchmark-Tabelle **TB-92 A1b** (Kopf von 39.6: *„Fable 23e, TB-92 A1b\"*; 39.5: `benchmark.py` `3960375a…` → `d6bdd558…` ist TB-91, die Neurechnung). Eine Auftragsnummer, nicht gemessen — dieselbe Klasse wie TB-94/TB-96 in 24a. **Angenommen; siebter Fall.** Ihr habt konsequenterweise in den TB-91-Belegen gesucht.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 63,
+  "text": "**Der Widerspruch:** Ihr schreibt *„Der Lesehaken entstand erst mit TB-95.\"* Das Register sagt in 39.6 (Tabelle, Zeile „Lesequellen\") über TB-92 A1b: *„Lesehaken über `sys.addaudithook`, in Lauf 3 und 4 prozessübergreifend über `sitecustomize` (11 Prozesse): 0 Lesezugriffe auf `data/` oder `config/` des Repos; 222 CSV und 2 Universumsdateien aus dem Snapshot. Dazu Eingaben ausserhalb des Snapshots — 39.8\"* — und 39.8 heisst *„Der Lesehaken — zwei Eingaben ohne registrierten Eingabestand\"* und nennt als Beleg `docs/belege/TB-92/a1b_lesequellen_kinder.txt`. **Das habe ich im Register gelesen, nicht im Repo gemessen.** Eines von beiden stimmt nicht: entweder existiert dieser Beleg mit diesem Inhalt (dann ist eure Aussage falsch und der Haken ist vom 23.09., TB-92), oder er existiert nicht (dann ist 39.6 falsch, und das wäre ein Registerbefund). *[Voraussetzung, zu messen: `docs/belege/TB-92/a1b_lesequellen_kinder.txt`, Lauf 3 und 4.]*",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-23f_fertigkriterium_38_4.md",
+  "zeile": 25,
+  "text": "Was das Verfahren nicht duldet, ist ein **stiller** Abstand zwischen Repo und Register; ein benannter mit Datum und Folgeauftrag ist ein Zwischenstand wie jeder andere vor dem Tag.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 61,
+  "text": "23a (Kopien altern; eine Zahl ohne Namen ist eine Kopie des Codes im Register). Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 69,
+  "text": "A8 und 12. Eine Zählung, die ein Paar als zwei führt, ist dieselbe Unwahrheit wie „acht\", nur kleiner. Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 101,
+  "text": "die Störprobe zur Faltenlänge — eine Zeile weg hätte allein das falsche „nein\" ergeben; F4 ist derselbe Fehler in einer Prüfung. Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24b_rueckfall_mutationen_erzeuger.md",
+  "zeile": 39,
+  "text": "**Kein Messwerkzeug schreibt Kennzeichnungen in Felder, die der Laufcode liest.** Ein Etikett, das in einen Zufallsschlüssel fliesst, ist kein Etikett.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 17,
+  "text": "5e (der Lauf belegt, woraus er nachweislich gelesen hat) und TB-98 Befund 1 / TB-102 Lesart 2: richtiges Ergebnis, falscher Ort, keine Warnzeile. Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md",
+  "zeile": 27,
+  "text": "`strategy_paths.py` selbst („Hier steht KEIN zweiter Resolver\") und 24b A2. Drei Anordnungen sind zwei zu viel; und ein Programm, das den Modus nicht kennt, kann ihn nicht einhalten. Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 95,
+  "text": "damit die Ablage nicht zwei Fassungen führt",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 41,
+  "text": "**Donchian-Untergrenze (zwei Bots):** bleibt wie in 24c — `median_balken` der gefundenen Trades.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 25,
+  "text": "2c und 16.6 im Wortlaut. Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 95,
+  "text": "Rücknahme eines noch nicht eingetragenen Textes — mit Grund eintragen, damit die Ablage nicht zwei Fassungen führt",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 39,
+  "text": "Meine Zeile in 24c Abschnitt 5 („G8 prüft künftig das aus dem Raster geschrankte `purge_tage`\") ist damit zurückgenommen.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 37,
+  "text": "5.1 Nr. 7 und 15.1 (Verfahren B: Out-of-Sample ist allein die Bestätigungsperiode — des gewählten Satzes). Kein Ergebnis.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 29,
+  "text": "Nach eurer Messung ist Eintrag c eine **Präzisierung**, und F17 ist so oder so erfüllt; die Kategorie ist Handwerk (30.6). Sie bleibt Präzisierung.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md",
+  "zeile": 39,
+  "text": "**Messbitte, nur das Ob:** Liest irgendeine Grösse, die der Lauf oder die Benchmark-Tabelle verwendet, heute `purge_tage`?",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 19,
+  "text": "**(1) `purge_tage` hat keinen Leser im Lauf** — Fall „historischer Stand\". Eintrag e aus 24d ist damit entschieden: Tatsachennotiz, keine Neuherleitung, `G8` prüft ein Relikt.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 27,
+  "text": "**(3) Der Lesehaken ist von TB-92; euer Satz war falsch, das Register hatte recht.** Angenommen, und die Ursache benennt ihr richtig: eine Nummer übernommen statt geprüft — meine falsche Nummer, eure ungeprüfte Übernahme, eine Kette.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 27,
+  "text": "Die Folgerung steht: Der Benchmark-Nachweis ist 2 aus seinem eigenen Protokoll; führbar nach beiden Eingaben, dann als Neurechnung mit beiden Teilen.",
+  "wo": "Abschnitt 41"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 108,
+  "text": "**Für Register 41/42 kommen hinzu** (zu 24c Abschnitt 6 und 24d Abschnitt 4): die drei Klassen (3 (A)), die vier Teile der Symbolbedingung (3 (B)), der Laufbereich (4), die Präzisierung zu 33.3/35.4 (1 (1)), die Tatsachennotiz zu TB-103 (Resolver mit MANIFEST als Ort; Trockenlauf mit Umgebungsliste; Ladeprotokoll-Teil (4) offen), die Tatsachennotiz zum Lesehaken (TB-92, `a1b_lesehaken.py`; eure Berichtigung), die Schreibziel-Notiz zu `manuelle_eingriffe.log`, die Einordnung der vier Rückfälle mit dem Verweis auf 11.1.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 67,
+  "text": "Angenommen: *„über den Resolver (`shared/paths.py`, direkt oder über `strategy_paths.get_strategy_paths()`)\"*. Meine Fundstelle `shared/paths.py::get_strategy_paths()` war falsch — eine Funktion in der falschen Datei genannt, nicht gemessen. **Achter Fall**, dieselbe Klasse. Berichtigung zu 24c Abschnitt 2 mit eurem Wortlaut.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 53,
+  "text": "**Präzisierung zu 24c (b) und zur Tag-Vorbedingung 24b A2 — drei Klassen von Zugriffen:** Jeder Datei-Zugriff eines Modus-Laufs fällt in genau eine von drei Klassen. **(i) Eingaben** — Kurs-, Universums-, Ergebnis- und Eingabedateien: zulässig nur innerhalb `snapshots/<hash>/` oder als registrierte Eingabedatei; jeder andere ist Befund 1 des Nachweisteils (b). **(ii) Umgebung** — `requirements.lock`, Interpreter- und Plattformdateien, Zufallsquelle, Zeitzonendaten, vom Import der registrierten Pakete geöffnet: zulässig; die Liste dieser Zugriffe je Lauf-Typ steht **mit Aufrufstapel als Tatsachennotiz**, und ein Umgebungszugriff, der in dieser Liste nicht steht, ist ein Befund 1 — nicht weil er die Rechnung berührt, sondern weil niemand weiss, ob er es tut. **(iii) Schreibzugriffe** — ein Modus-Lauf öffnet zum Schreiben nur sein `--ziel` und Belegpfade; jedes andere Schreibziel ist Befund 1 der Schreibziele-Sonde, auch ohne geschriebene Bytes. „0 Zugriffe ausserhalb `snapshots/<hash>/`\" in 24b A2 lies „0 Zugriffe der Klasse (i) ausserhalb; Klasse (ii) nach Liste; Klasse (iii) leer\".",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 55,
+  "text": "*Quelle des Grundes:* 5f — die Umgebung ist registriert (Lock mit Hash, Abschnitt 20), und `requirements.lock` ist die Datei, mit der der Modus die Umgebung **prüft**; ein Nachweis, der die Prüfung als Verstoss zählt, widerspricht sich. Warum die Liste trotzdem geführt wird: `/dev/urandom` beim pandas-Import ist harmlos, solange die Neurechnung bytegleich ist — und genau das ist Nachweisteil (a); ein Lauf, der plötzlich eine sechste Umgebungsdatei öffnet, hat ein Paket oder einen Importpfad gewechselt, und das sieht man sonst nirgends. Kein Ergebnis.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 61,
+  "text": "**Präzisierung zu 24b A2 („geladene Symbolmenge gleich Universumsdatei\"):** (1) Die **Liste**, die der Bot erhält, ist gleich der Universumsdatei des Snapshots nach `EXCLUDE_SYMBOLS` (16.1.3: 24 von 25; 150). (2) Die **geladene Menge** ist gleich der in 16.1.1 für die Bestätigungsperiode registrierten Zahl je Bot *[Voraussetzung, zu messen: dass der Trockenlauf den Loader am Datenende aufruft, wie die Bestätigungsspalte von 16.1.1 gemessen wurde]*. (3) Jede Differenz zwischen (1) und (2) steht im Ladeprotokoll je Symbol mit Grund. (4) Das Ladeprotokoll nennt die Länge der Liste, die Zeilenzahl der Universumsdatei und die **Quelle** der Liste (Pfad). Gleichheit mit und ohne Modus ist Tatsachennotiz, keine Bedingung.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 63,
+  "text": "*Quelle des Grundes:* 3b (b) — welche Symbole geladen werden, entscheidet die registrierte `MIN_HISTORY_*`-Tabelle, und ihr Ergebnis ist in 16.1.1 gemessen und eingetragen; eine Vorbedingung prüft gegen das Register, nicht gegen einen zweiten Lauf. Kein Ergebnis. **Zu (4):** Das Ladeprotokoll nennt heute weder die Zeilenzahl der Datei noch die Quelle — ihr habt es gemessen. Bis das nachgezogen ist (Handwerk mit Freigabe, `shared/ladeprotokoll.py`), ist die Vorbedingung in Teil (4) **nicht** erfüllt; das steht so in der Tatsachennotiz zu TB-103, nicht als Mangel des Laufs, sondern als das, was noch fehlt.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 39,
+  "text": "**Ergänzung zur Tag-Vorbedingung (24b A2):** Der Trockenlauf aller neun Bots im Modus wird **am Tag-Commit** wiederholt — wie das letzte Abbild (37.3) trägt sein Protokoll die Hashes des Standes, den der Tag signiert. Ein Trockenlauf an einem früheren Stand ist eine Tatsachennotiz, keine Tag-Vorbedingung.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 21,
+  "text": "**Präzisierung zu 33.3/35.4 (Ersteintrag):** Der Plan, den `faltenplan.py` zur Laufzeit bildet, trägt keine Grösse, die 33.2/33.3 nicht kennt. Die Faltenplan-Sonde vergleicht den ganzen gerechneten Plan gegen das Abbild, nicht eine Auswahl seiner Felder. Verfahren-A-Felder (`purge_tage`, `embargo_tage`, `training_bis_ausschliesslich`) werden vor dem Tag aus `faltenplan.py` entfernt — Berichtigung des Codes an 2c/4a, planmässig nach 37.3 (Sperrlistenpunkt 2, Freigabe, alter und neuer Hash, neues Abbild). `G8` wird nicht gelöscht, sondern angepasst (23a): es prüft künftig, dass der gerechnete Plan je Falte keine Felder ausserhalb der Feldliste trägt — dieselbe Stelle, die registrierte Erwartung.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 23,
+  "text": "*Quelle des Grundes:* 33.1 (Fables Satz: „Sechzig verschiedene Trainingsgrenzen in einer Datei beschreiben ein Verfahren mit Trainingsfenster. Dass niemand sie liest, sieht man der Datei nicht an\") — er gilt für den gerechneten Plan wie für die Datei. Kein Ergebnis. Wann das geschieht (mit dem Abbild-Auftrag oder davor), ist Handwerk; **vor** der Sonde muss es sein, sonst ist ihr erster Lauf rot aus einem Grund, der keiner ist.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 77,
+  "text": "**Registertext, Ersteintrag — Laufbereich:** Der Laufbereich ist die Menge der Module, die ein Modus-Lauf lädt oder ausführt (Trockenlauf aller neun Bots, Erzeuger, `benchmark.py`, `faltenplan.py`, `auswertung.py` und ihre Kindprozesse), gemessen am Aufrufstapel des Lese-Audits. Die Regeln „kein Fallback unter dem Modus\" (24b A2), die Resolver-Pflicht (24c) und die drei Ausgänge (36.5) gelten für genau diese Menge; die Sonde „Lesequellen\" führt sie. Ein Rückfall in einem Modul ausserhalb des Laufbereichs ist eine Tatsachennotiz, kein Befund — bis das Modul geladen wird.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 35,
+  "text": "**Resolver:** `CONFIG_DIR = <snapshot>/config`, Prüfung beim Import gegen das, was **das MANIFEST** unter `config/` nennt, `SystemExit(2)` bei fehlend/leer/nicht genannt, Dateinamen nicht in `paths.py`, ohne Modus 99 Pfade 0 Unterschiede, vier Mutationsproben, jede beisst allein, 35/35 und 191/191. Das ist die Bauart aus 24b A2, und der Punkt, dass das MANIFEST der eine Ort ist, der die Anordnung kennt, ist besser als das, was ich vorgeschlagen hatte („Kurse flach, Universum unter `config/`\" stand bei mir als Beschreibung, nicht als Quelle). Die fünf Symboldateien mit dem eingebauten Rückfall sind unverändert; ihr Rückfall ist unter dem Modus unerreichbar — solange `paths.py` so bleibt. Das ist eine Tatsachennotiz mit Bedingung, und sie gehört so ins Register.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 85,
+  "text": "**Die vier weiteren Rückfälle — alle vier vor den Tag, in dieser Rangfolge, jeder mit Gegenprobe (Rückfall erreichbar gemacht ⇒ Rückgabe 2):**",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 87,
+  "text": "| | Rückfall | Warum vor den Tag |",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 88,
+  "text": "|---|---|---|",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 89,
+  "text": "| **1** | **(b)** `t3_supertrend`: BTC-Regimefilter fällt still weg, wenn BTCUSDT nicht geladen ist | ⚠️ **Schon registriert als Voraussetzung des Laufs** — 11.1 (`shared/regimewache.py`, `pruefe_einbau()`, „Solange er es nicht ist, darf der Lauf nicht starten\") und Schlusssatz von Abschnitt 10. Kein neuer Beschluss nötig; euer Fund ist die Messung, dass 11.1 offen ist. Dass BTCUSDT im Trockenlauf geladen war, ändert nichts: 11.1 begründet den Abbruch mit Determinismus, nicht mit dem heutigen Bestand |",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 90,
+  "text": "| **2** | **(c)** Backtest-Skripte enden bei „Keine Daten gefunden\" mit `exit()`, rc 0 | Das ist TB-45 in Reinform — 0 ohne Messung —, und 36.5 gilt für jede Wache und jeden Lauf: „Kein Aufruf endet mit 0, ohne dass gemessen wurde.\" Unter dem Modus: 2 |",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 91,
+  "text": "| **3** | **(d)** Stille Ersatzwerte für Schwellen in `faltenplan.py`, `benchmark.py`, `auswertung.py` | Ein Ersatzwert für eine registrierte Schwelle ist ein Fallback für einen Parameter (24b A2 nennt Schwellen ausdrücklich) — und er ist schlimmer als ein Schalter, den 12 für `auswertung.py` ausschliesst: Ein Schalter ist sichtbar, ein `.get(…, default)` nicht. Vorab je Stelle Tatsachennotiz, ob die registrierte Eingabe den Schlüssel je auslässt; unabhängig davon Ersatz durch Abbruch 2. `auswertung.py` ist Sperrlistenpunkt 3/5/14 — planmässig nach 37.3, wie TB-92 |",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 92,
+  "text": "| **4** | **(a)** Krypto-Liste nach `EXCLUDE_SYMBOLS` leer ⇒ Standardliste | Auf dem registrierten Snapshot unerreichbar — aber die Regel gilt für den Modus, nicht für diesen Snapshot; ein Rückfall, den erst der nächste Snapshot erreicht, ist genau „gleich welcher Art\". Kleinster Aufwand (eine Prüfung „leer ⇒ 2\" in `symbols_config.py`, Live-Code, eigene Freigabe); kleinster Rang, aber nicht als Notiz abgetan |",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 94,
+  "text": "*Quelle des Grundes:* 24b A2 im Wortlaut, 36.5, 11.1. Kein Ergebnis: Keiner der vier verändert, was der Lauf rechnet, wenn alles da ist; sie verändern, was er tut, wenn etwas fehlt — und das ist das Einzige, was der Modus regelt.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 90,
+  "text": "## 4. Was auf Register 41/42 kommt, zusätzlich zu 24c/24d/25a",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 46,
+  "text": "**Ergänzung zu 25a (A) — Klasse (iv), Zwischenablage:** Eine Datei, die derselbe Lauf schreibt **und** liest, ist Zwischenablage. Sie ist zulässig, wenn (1) ihr Ordner je Lauf neu und eindeutig angelegt wird (`mkdtemp`) **oder** unter `--ziel` liegt, (2) kein Prozess ausserhalb des Laufs sie liest — im Audit erscheint jeder Lesezugriff auf sie mit dem Schreibzugriff desselben Laufs daneben — und (3) sie am Ende des Laufs entfernt ist **oder** ihr Pfad im Beleg steht. Fehlt eine der drei, ist sie Befund 1 der Schreibziele-Sonde. Klasse (iii) („Schreibziele leer\") heisst damit: kein Schreibzugriff ausser `--ziel`, Belegpfaden und Klasse (iv). Gemessen wird (iii) und (iv) in einer Umgebung, in der die Ziele fehlen (Abschnitt 1).",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 48,
+  "text": "*Quelle des Grundes:* 5e — der Audit soll zeigen, woraus der Lauf gelesen hat; eine Zwischenablage, die er selbst geschrieben hat, ist keine Eingabe, und der Audit muss das **sehen**, nicht wissen. Warum (1): Ein deterministischer Pfad in `$TMPDIR` könnte vom nächsten Lauf gelesen werden — dann wäre eine Zwischenablage eine unregistrierte Eingabe; `mkdtemp` schliesst das aus. Warum (3): Elf Ordner je Lauf, die niemand entfernt, sind kein Verfahrensfehler, aber ein Bestand, den niemand kennt — und „nie entfernt\" heisst heute: **Befund 1**, bis das Aufräumen eingebaut ist (Handwerk, klein). Kein Ergebnis.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 54,
+  "text": "**Ergänzung zu 25a (A) — Klasse „Code\":** Ein Lesezugriff auf eine Datei unter der Codewurzel ist Klasse „Code\" und zulässig, wenn die Datei in einem Pfad liegt, den die Startprüfung (19) über `HEAD` und sauberen Arbeitsbaum bindet. Eine Datei unter der Codewurzel **ausserhalb** dieser Pfade ist weder Code noch Eingabe — sie ist ungebunden und ein Befund 1. Ein Leser, der Werte per Muster aus Quelltext liest, endet mit 2, wenn das Muster nicht genau einmal trifft; ein Ersatzwert ist ausgeschlossen.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 58,
+  "text": "**Und der Befund, den diese Frage erst sichtbar macht:** 19 nennt als `ARBEITSBAUM_PFADE` **`shared/`, `strategies/` und `requirements.lock`** — nicht `research/`, nicht `notifications/`. Der gemessene Laufbereich hat 11 Module aus `research/` und eines aus `notifications/`. Ein veränderter, uncommitteter `benchmark.py` oder `faltenplan.py` würde die Startprüfung heute **nicht** aufhalten. *[Voraussetzung, zu messen: dass 19 den Stand noch beschreibt — die Tatsachennotiz dort ist vom 19.09.]*",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 60,
+  "text": "**Ergänzung zu 19 (Registertext 5e, Codeherkunft):** Die Sauberkeitsprüfung des Arbeitsbaums erstreckt sich auf **jeden Pfad des Laufbereichs** (Abschnitt 5 unten), nicht nur auf `shared/`, `strategies/` und `requirements.lock`; `data/` bleibt ausgenommen (19, aus dem dort genannten Grund). Die Liste der geprüften Pfade steht als Tatsachennotiz neben der Laufbereichsmessung und wird mit ihr am Tag-Commit erneuert.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 62,
+  "text": "*Quelle des Grundes:* 19 selbst — „Liegen Aufrufer und Resolver in verschiedenen Bäumen, beschreibt kein einzelner Commit den gelaufenen Code\"; das gilt für jedes Modul, das läuft. Kein Ergebnis. Zu den neun Optimierern selbst: sie liegen unter `strategies/`, sind also heute schon gebunden — eure Lesart „Code\" gilt für sie ohne Vorbehalt. *[Messbitte, nur das Ob: endet `_min_history` mit 2, wenn das Muster in einer Datei nicht genau einmal trifft?]*",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 68,
+  "text": "**Berichtigung zu 25a (1), Präzisierung zu 33.3/35.4:** „Der Plan … trägt keine Grösse, die 33.2/33.3 nicht kennt\" lies: **„Der Plan, den `faltenplan.py` zur Laufzeit bildet, trägt keine Grösse, die das Verfahren nicht kennt** (Trainingsgrenzen, Embargo, Purge, Mindesttraining). Die Faltenplan-Sonde vergleicht den Plan mit dem Abbild über eine **registrierte Abbildung**: je Feld des Abbilds (33.3) der Planschlüssel, aus dem es gebildet wird. Die **Feldliste des gerechneten Plans** — jeder Schlüssel je Plan und je Falte, mit der Registerstelle, die ihn begründet — ist Registertext; ein Schlüssel im Plan, der dort nicht steht, ist ein Befund der Sonde, ein fehlender ebenso.\"",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 70,
+  "text": "*Quelle des Grundes:* 33.3 (ein Abbild trägt genau die Grössen seines Abschnitts — das Abbild, nicht der Plan), 25.3/32.1 (der Plan trägt seine Herleitung), 33.1 (Felder, die ein anderes Verfahren beschreiben, dürfen nicht drin sein). Kein Ergebnis. **Zu `G8` heute:** Die Feldliste „aus dem Code\" ist eine Kopie des Codes im Test — als benannter Zwischenstand zulässig, wie ihr es benannt habt; sie wandert mit Register 41/42 in den Registertext. Wie der Test dann an den Registertext gebunden wird (Parser wie `G6`, oder Literal mit Test gegen das Register wie in 32.5 (c)), ist die offene Frage aus 32.5 und Handwerk; ich entscheide sie nicht mit.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 74,
+  "text": "Ja, alle drei. 23.5 hat sie schon benannt (*„Beides ist der ersetzte Verfahren-A-Satz (TB-65)\"*, `T56b.6`), und 15.1 sagt: **kein Mindesttraining**, 2c: **kein Embargo zwischen Selektionsfalten**. Sie gehören zur Berichtigung Code an 2c/4a wie die drei Felder — und im ERZEUGT-Block von Abschnitt 3 steht die Zeile „Mindesttraining vor der ersten Falte: 4 Jahre\" bis heute, was mit dem nächsten Erzeugen des Blocks von selbst verschwindet (39.1: der Block ist noch nicht neu erzeugt).",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 78,
+  "text": "**Zur Konstante in `registerdaten.py`** (Sperrlistenpunkt 1, Abschnitt-0-eingefroren): Das Feld und die Zeile gehen jetzt; die Konstante selbst bleibt, bis Punkt 1 ohnehin planmässig geöffnet wird (40.8 (h), die zwölf Rasterachsen) — bis dahin Tatsachennotiz „tot, kein Leser\". *Ein Wert, der nichts mehr steuert, aber einen Namen trägt, der eine Regel verspricht, ist die K1h-Klasse; sie wird mit dem nächsten geplanten Zugriff auf die Datei bereinigt, nicht mit einem eigenen.*",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 84,
+  "text": "**Berichtigung zu 25a Abschnitt 4 (Laufbereich):** Der Laufbereich ist die **Vereinigung** über alle Lauf-Typen des Selektionsmodus. Lauf-Typen sind: der Trockenlauf aller neun Bots; jeder Erzeuger einer registrierten Eingabedatei (`messgroessen.py`, der Listen-Erzeuger auf dem Signalpfad, der Erzeuger der Benchmark-Tabelle mit `faltenplan.py` und seinen Kindprozessen, der Abbild-Erzeuger); `auswertung.py` samt Laufwrapper; die Sonden, soweit sie im Modus laufen. Die Liste der Lauf-Typen ist Registertext und am Tag abschliessend; der Laufbereich wird **am Tag-Commit** über alle Lauf-Typen gemessen (Import-Audit), und das Rückfall-Inventar darüber ist am Tag leer.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 86,
+  "text": "*Quelle des Grundes:* 5e und die Messung, dass `messgroessen.py` ein Modus-Lauf ist (TB-103) — was unter dem Modus läuft, ist Laufbereich, gleich ob ich es aufgezählt habe. Kein Ergebnis. **Folge:** `herkunft.py` und `shared/regimewache.py` treten mit dem Erzeuger bzw. mit TB-105 (b) ein; die 80 sind ein Zwischenstand mit Datum. Und (c) — die `exit()`-Stellen in `__main__` — gehört dazu, sobald ein Modus-Lauf ein Bot-Skript direkt startet; ob der Listen-Erzeuger das tut (Import oder Kindprozess), ist Handwerk, aber die Regel gilt so oder so, weil der Laufbereich am Tag gemessen wird, nicht heute.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 25,
+  "text": "**Präzisierung zu 25a (B), Teil (2):** Die geladene Menge je Bot wird **am Stichtag Go-Live-Schnitt (5.2), ausschliesslich** ermittelt — jede Kursreihe auf den Stichtag gekürzt, Loader wie in TB-40 — und gegen die Bestätigungsspalte von 16.1.1 verglichen. Ein Trockenlauf am Datenende bleibt zulässig als Nachweis „kein Fallback\"; die Mengenprüfung gegen das Register läuft am Stichtag. Tatsachennotiz: am Stand `63e4b6c8…` ergeben beide Stichtage bei 9/9 Bots dieselbe Menge (TB-104).",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 13,
+  "text": "**Eine Fundstelle berichtige ich an eurer Berichtigung:** Der Satz *„Zellen, in denen die Strategie nicht definiert ist, existieren nicht … von 1.024 auf 384\"* steht in **Abschnitt 6 (Die Plateau-Regel)**, im Absatz nach der Spitzenformel — nicht in Abschnitt 4. Abschnitt 4 ist die Drawdown-Bedingung, also genau das, wovon ihr den Zustand abgrenzen wollt; „keine Rasterbedingung (Abschnitt 4)\" würde beim nächsten Leser dieselbe Verwechslung erzeugen, die ihr gerade auflöst. Richtig: **„keine Rasterbedingung (Abschnitt 6)\"**. *[Gelesen im Register, Teil 1; nicht im Repo gemessen — die Nummer ist im Kopf der Kopie nachzusehen, sie lässt sich nicht verwechseln.]*",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 17,
+  "text": "**Registertext, Ergänzung zu 6 und 24b A2 — unbekannter Bedingungstext:** Ein nicht leerer `_bedingung`-Text, den der Code nicht als Rasterbedingung erkennt, ist ein Widerspruch zwischen Register und Code und endet mit 2 — unabhängig vom Modus. Die Deutung des Textes geschieht an **einer** Stelle; jeder Leser (Zellenzahl, Zellmenge, Nachbarschaft) ruft sie. Ein zweiter Textvergleich desselben Strings ist ein zweiter Parser (24b B4).",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 19,
+  "text": "*Quelle des Grundes:* 6 (die Rasterbedingung ist Registertext; ein Code, der sie still übergeht, rechnet ein anderes Raster mit N = 1.024 statt 384 und macht Abschnitt 3 und Festlegung 10 unbemerkt falsch), 24b A2, 24b B4. Kein Ergebnis. **Für TB-106:** rc 2 in `auswertung.py` jetzt; die zweite Stelle (`registerdaten.py:605`, Punkt 1) bekommt die Tatsachennotiz bis 40.8 (h), und **dort** wird die Deutung auf eine Funktion zusammengezogen, die beide rufen — nicht früher, weil Punkt 1 nicht für diesen Satz allein geöffnet wird. Eure Neigung „unabhängig vom Modus\" ist richtig, aus eurem Grund.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 27,
+  "text": "**Berichtigung zu 37.4 (Entscheidung „Nicht öffnen\"):** `herkunft.py` wird einmal geöffnet, um `datenstand()` den Datenpfad durch `block()` und `anhaengen()` durchzureichen (Argument, keine Voreinstellung unter dem Modus). Sonst ändert sich nichts: `EINGEFROREN` bleibt, wie 39.7 es entschieden hat; `register()` bezeugt weiter die Abschnitt-0-Menge; die Sonde bezeugt Abschnitt 10. **Planmässig geöffnet heisst nicht offen** — eine Öffnung nach 37.3 trägt genau die Änderung, für die sie beauftragt ist.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 29,
+  "text": "*Quelle des Grundes:* 37.4 nannte als Grund für „nicht öffnen\" den Ort, nicht den Wortlaut, und die Sonde als Ersatz; für den Datenpfad der Protokollkette gibt es keinen Ersatz ausser einem zweiten Ort (25a). Der Satz „heute gleich, aber keine Eigenschaft des Codes\" ist TB-102 in Kleinformat und steht als Tatsachennotiz daneben. Kein Ergebnis.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 43,
+  "text": "⚠️ **Damit niemand „Abschnitt 11 erfüllt\" liest:** Der Schlusssatz von Abschnitt 10 nennt **beide** Bug-Fixes aus 11. Erfüllt ist **11.1**. 11.2 (Agent 2 auf dem führenden Mass; `evaluate_combination_multi` liefert den Kapital-Drawdown noch nicht) und 11.3 (Durchreichung `sma_trend_filter`, `bb_*`) sind **TB-30b** und offen — sie gehören zum Laufcode, den es nach 24.5 noch nicht gibt. Tatsachennotiz zu 11: 11.1 geschlossen (TB-105), 11.2/11.3 offen.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 57,
+  "text": "`re.findall`, genau ein Treffer, sonst `SystemExit(2)`, unabhängig vom Modus; Mutationsproben „zwei Treffer\" und „kein Treffer\". Der Grund für „unabhängig vom Modus\" ist derselbe wie bei (1): Ein Muster, das in einer Bot-Datei nicht genau einmal trifft, ist ein Widerspruch zwischen der registrierten Tabelle in 16.7 (b) und dem Code — kein Laufzustand. Und der stille Hinweis in `kerzen_elliott_wave()` ist die TB-45-Klasse (weiter ohne Wert); der `TypeError` in `loader_lesart()` ist laut, aber 1 statt 2 — nach 36.5 ein Aufruf, der nicht messen konnte und es nicht mit dem eigenen Wert sagt. Beides geht mit.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 45,
+  "text": "**Zur Zwischenablage:** (1) und (2) erfüllt, (3) nicht — Befund 1, Handwerk. Eine Ergänzung zur Datei: `universum_trockenlauf.py` steht nicht im Abbild, und das ist heute richtig; **mit dem Faltenplan-Abbild (TB-100) wird die Erzeugerkette des Trockenlaufs registriert** — 33.3 sagt es schon: *„der erzeugende Code wird mit der Datei registriert (5e)\"*. Bedingung (ii) der ersten Falte kommt aus dieser Kette (25.3); ein Abbild, dessen Erzeuger ungebunden ist, bezeugt weniger, als es sagt.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 61,
+  "text": "**(a) Die Modus-Abfrage an den 14 Stellen selbst — in Ordnung, mit einer Tatsachennotiz und einer Gegenprobe.** Das Verfahren zählt keine Zeilen; es verlangt, dass es einen Resolver gibt und keinen Fallback. Vierzehn Aufrufe derselben Funktion (`paths.selektionsmodus()`) sind kein zweiter Ort für einen Wert — der Wert lebt in `paths.py`. **Der eigentliche Befund ist der, den ihr gefunden habt:** Drei Regelbetrieb-Werkzeuge (`kurven_lauf.py`, `determinismus_lauf.py`, `messung_primaerschluessel.py`) ersetzen `strategy_paths` in `sys.modules` durch ein Teilmodul. Das ist im Regelbetrieb Handwerk mit Live-Freigabe; **im Laufbereich wäre es ein zweiter Resolver.** Regel daraus, klein: Ein Werkzeug, das den Resolver-Nachbarn austauscht, endet unter dem Modus mit 2, bevor es das tut — dann kann es nie in den Laufbereich geraten. Tatsachennotiz zu den drei Dateien; ob ihr sie ändert, ist Live-Freigabe. **Gegenprobe zu den 14 Stellen:** eine Prüfung, dass jede `__main__`-Stelle im Laufbereich die Abfrage trägt — sonst fehlt sie beim fünfzehnten Skript still (dieselbe Kopplung wie `G6`). Handwerk.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 63,
+  "text": "**(b) `getattr(paths, \"selektionsmodus\", None)` — ja, ein Rückfall der Form nach; entfernen.** Eure Neigung ist richtig, und der Grund ist stärker, als ihr ihn nennt: Fehlt dem Nachbarn die Funktion, kann `strategy_paths.py` **nicht wissen**, ob der Modus an ist — und „dann Regelbetrieb\" ist eine Annahme über genau die Frage, die der Modus beantwortet. Ein Nachbar ohne die Funktion ist kein Nachbar; das ist 19 (gespaltener Baum) in kleiner Form. Also: direkter Aufruf, ohne Modus wie mit Modus, und die zwei Proben bekommen ein `paths`, das die Funktion trägt. Dass `_resolver_ist_nachbar()` das echte `paths.py` zusichert, macht den Zweig unerreichbar, nicht zulässig — euer Zitat aus 25b trifft.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 67,
+  "text": "**(a) Bytecode-Caches — Klasse (ii), Umgebung.** Der Interpreter schreibt sie, nicht der Lauf; ihr Inhalt ist aus dem registrierten Code abgeleitet und keine Eingabe; sie liegen ausserhalb Repo und Snapshot. In der Umgebungsliste stehen sie als **Muster** (`~/Library/Caches/com.apple.python/<wurzel>/…`), nicht als Pfade — der Klonpfad wechselt. Zwei Bedingungen, damit (ii) nicht zur Hintertür wird: Ein `__pycache__` **im Repo** ist nur zulässig, wenn es git-ignoriert ist und nicht unter `snapshots/` liegt (im Klon war `--ignored` leer — gemessen, gut); und ein Cache ist nie Eingabe im Sinn von 5e — der Lese-Audit führt `.pyc`-Zugriffe unter (ii), nicht unter (i).",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 71,
+  "text": "**Ergänzung zu 25a (A) (iii) — registrierte Protokolle:** Zulässige Schreibziele eines Modus-Laufs sind `--ziel`, Belegpfade, Zwischenablagen nach (iv) und **registrierte Protokolle** — heute genau eines: `research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl` (10.1). Ein registriertes Protokoll ist append-only: Die Schreibregel 36.1 gilt in Anhängeform — nie kürzen, nie umschreiben, nie neu anlegen, wenn es existiert; seine Unversehrtheit prüft der Kettenhash (10.1), und `--pruefen` liest es als registrierte Eingabe (i). **Sein Ordner wird nicht angelegt:** Fehlt der registrierte Ort, endet `anhaengen()` mit 2 — ein fehlender Ort ist ein Baum, der nicht der registrierte ist, und ein `makedirs` wäre ein Fallback für genau diese Feststellung. **Ausnahme von 19:** Registrierte Protokolle sind von der Sauberkeitsprüfung des Arbeitsbaums ausgenommen wie `data/` (19), weil sie planmässig während des Laufs wachsen; die Ausnahme ist auf die namentlich registrierten Pfade beschränkt, und der Kettenhash ersetzt dort die Sauberkeit.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 73,
+  "text": "*Quelle des Grundes:* 10.1 (das Protokoll ist der Ort der Läufe, append-only, Kettenhash), 38.3 (es entsteht mit dem Erzeuger), 19 (die `data/`-Ausnahme mit ihrem Grund: eine Datei, die planmässig zwischen Läufen wechselt, darf die Startprüfung nicht auslösen). Kein Ergebnis. *Warum die Ausnahme jetzt und nicht später:* Sobald 19 auf den Laufbereich erweitert ist, liegt das Protokoll unter einem geprüften Pfad — der zweite Lauf würde an der Spur des ersten scheitern. Der 19-Auftrag braucht diese Zeile, bevor er beginnt.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 75,
+  "text": "**Zu `makedirs` in `anhaengen()`:** Der Ordner `ergebnisse/` trägt versionierte Dateien und existiert in jedem Klon; das `makedirs` ist tot — und geht mit derselben Öffnung (2 (a)) heraus, weil eine tote Zeile mit Fallback-Form dieselbe Klasse ist wie `getattr` in (3)(b).",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 41,
+  "text": "37.3 (das letzte Abbild passt zum Tag-Commit); zwischen `836865f` und dem Tag ändern sich `paths.py`-nahe Module noch (Plan-Punkt 2, die Rückfälle aus Abschnitt 4). Kein Ergebnis.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 79,
+  "text": "5e (der Lauf belegt, woraus er gelesen hat — und damit, was er ist) und A8 (eine Regel braucht eine Menge, auf der jemand sie prüfen kann). Kein Ergebnis.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 63,
+  "text": "Bis das nachgezogen ist (Handwerk mit Freigabe, `shared/ladeprotokoll.py`), ist die Vorbedingung in Teil (4) **nicht** erfüllt; das steht so in der Tatsachennotiz zu TB-103, nicht als Mangel des Laufs, sondern als das, was noch fehlt.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 27,
+  "text": "der Modus-Lauf öffnet `logs/notifications/manuelle_eingriffe.log` **im Modus `a`** — zum Anhängen, aus dem Repo, über einen Import aus `notifications/`.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25a_umgebung_liste_laufbereich.md",
+  "zeile": 27,
+  "text": "Ein Import, der beim Laden eine Datei zum Schreiben öffnet, ist eine Nebenwirkung, die im Laufbereich nichts zu suchen hat.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25c_rasterbedingung_abschnitt6_protokoll.md",
+  "zeile": 33,
+  "text": "**(c) `MINDESTTRAINING_JAHRE` rechnet nirgends** — zwei tote Felder, eine tote Zeile: dieselbe Berichtigung wie die drei Felder, wie in 25b (4) gesagt; Konstante bis 40.8 (h).",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 27,
+  "text": "16.1.1 wurde so gemessen; eine Prüfung gegen das Register nimmt das Verfahren des Registers. Kein Ergebnis.",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 19,
+  "text": "*Was ihr mit „heute gleich, keine Eigenschaft des Codes\" benennt, ist TB-102 in Kleinformat und gehört als Tatsachennotiz zu 37.4.*",
+  "wo": "Abschnitt 42"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25b_zwischenablage_abbildung_lauftypen.md",
+  "zeile": 101,
+  "text": "`_bedingung` `None` (α oder β) — **vor TB-106**; `anhaengen()`; `_min_history` bei Fehltreffer; `MINDESTTRAINING_JAHRE` in `erste_falte_4a`",
+  "wo": "Abschnitt 42"
+ }
+]

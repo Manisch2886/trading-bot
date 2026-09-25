@@ -9097,6 +9097,44 @@ Ergebnis TB-106 Befund 1. Freigabe 18:09 und 20:27 (zwei Auswahlkarten).
 
 ---
 
+## DG — TB-108: Register 41 und 42 — die entschiedenen Einträge aus Fable 24b bis 25c und die Tatsachennotizen TB-103 bis TB-107 eingetragen, 108 Zitate mit `diff` rc 0, 20 Marken, numstat 1134/0; H6 als offen benannt, ein dritter Hash-Übergang (TB-103) gefunden (25.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-108_register_41_42.md`*
+
+**Quelle:** Mac-Sitzung **TB-108**, 25.09.2026, Eingang `f61bd97`. Commits `4a84086` (Schritt 0),
+`f4d3e2a` (Abschnitt 41, 42 und alle Marken in einem Commit) und der Abgabe-Commit. Belege
+`docs/belege/TB-108/`. Grundlage Stoffsammlung Register 41/42, Fable 24b–25c. Freigabe 22:34
+(Auswahlkarte).
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **0** | Arbeitsbaum wie erwartet; HEAD, Register (7993 Zeilen), `register()` `0ece95e2`, Sonde 25/0/0 und (ii) 0 gleich dem Soll |
+| **A** | 67 Einträge je mit Fundstelle; einer ohne zitierbaren Text (E7, eigene Fassung). Abweichungen: **H6 bis heute nicht eigenständig** (TB-97); **dritter Übergang an einem gesperrten Pfad** (`messgroessen.py`, TB-103, `EINGEFROREN`); A7-Text doch vorhanden; D3 = D7; `register()`-Wert nach dem Eintrag kann nicht im Eintrag stehen (Selbstbezug) |
+| ⭐⭐ **B/C** | Abschnitt 41 (24b/24c/24d) und 42 (25a/25b/25c, G1–G10, Hash-Übergänge seit 39.5 mit `register()` je Commit, Offenes, Nicht-Getanes); beide Fassungen jeder Kette; 20 Marken an 19 Stellen, keine in Abschnitt 10 |
+| ⭐ **D** | numstat 1134/0; 108/108 Zitate rc 0; Sonde vorher = nachher (nur die angezeigten Zeilen 868–981 ⇒ 894–1007); `register()` ⇒ `c85dd6c3`; `test_vorregistrierung` 196/196 rc 0; `registerbericht --pruefen` rc 1 wie vor TB-106; ausserhalb `docs/` 1538 Dateien gleich, eine DB vom Aktien-Cron 22:50 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **Eine Stoffsammlung ist Vormessung, nicht Stand.** „Seit TB-105 angewandt" stimmte für neue Proben, nicht für H6 — erst der Blick in das Ergebnis, das die Regel ausgelöst hatte (TB-97), zeigte es |
+| ⭐ | **Übergänge an gesperrten Pfaden aus der Historie messen, nicht aus der Auftragsliste.** Über alle Pfade des Abbilds (Punkte und `EINGEFROREN`) seit dem letzten eingetragenen Stand gezählt, kam TB-103 dazu |
+| ⭐ | **Ein Hash über eine Datei kann nicht in dieser Datei stehen.** Der neue `register()`-Wert gehört ins Ergebnis, nicht ins Register |
+| ⭐ | **Registereinträge zuerst gegen eine Kopie einsetzen** (Zitatprüfung und Sonde), dann einmal gegen das Register — alle Wachen im Skript, Abbruch ohne Schreiben |
+
+### Was offen bleibt
+
+- Abschnitt 43 nach Fables Antworten auf 25d, 25e, 25f.
+- H6 eigenständig oder als Paar (vor dem Tag); danach ggf. Berichtigung „sieben".
+- Die Feldliste des gerechneten Plans als Registertext (Zuordnung je Schlüssel), mit dem Faltenplan-Abbild (TB-101).
+- Der 19-Auftrag (Sauberkeit über den Laufbereich) — seine Voraussetzung F8 steht jetzt im Register.
+
+*Geschrieben 25.09.2026 von der Mac-Sitzung TB-108. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

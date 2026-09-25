@@ -1,0 +1,129 @@
+# TB-108 A3, HEAD 4a84086, 2026-09-25 22:43:49 +0200
+## (1) Commits der Stoffsammlung
+836865f 25.09.2026 00:30 TB-103 Abgabe: Block D Trockenlauf aller neun Bots im Selektionsmodus gegen den echten Snapshot
+516badc 25.09.2026 10:32 TB-104 Abgabe: C5 Benchmark im Modus zweimal bytegleich 64fb2912 mit den drei Klassen, D Laufbe
+f334a7b 25.09.2026 10:19 TB-104 Block C: Verfahren-A-Felder aus dem gerechneten Faltenplan (Fable 25a (1), Praezisierung
+d96b352 25.09.2026 10:26 TB-104 Abbild: neues Sperrlisten-Abbild sperrliste_abbild_2026-09-25.json (cb4eb1b4, 9191 B, HE
+2e21471 25.09.2026 13:24 TB-105 Abgabe: F1 Trockenlauf 9x rc 0 in Repo und Klon, Klasse (iii) leer; F2 Benchmark im Modu
+f22f91e 25.09.2026 19:36 TB-106 Abgabe: A8 keine Stelle von der registrierten Eingabe erreicht, A5 Rechenregel; G1 Bench
+e1e6652 25.09.2026 19:08 TB-106 Block F: neues Sperrlisten-Abbild sperrliste_abbild_2026-09-25b.json (40ffe18d) nach dem
+5791b4c 25.09.2026 19:08 TB-106 Block E: herkunft.py block()/anhaengen() reichen daten_dir an datenstand() durch (unter 
+f61bd97 25.09.2026 22:14 TB-107 Abgabe: A2 MIN_HISTORY_HOURS, A4 nicht erreicht; G1 Benchmark im Modus Repo und Klon 64f
+f5fdb53 25.09.2026 21:34 TB-107 Block C (eigener Commit, Fable 25d offen): faltenplan_neun.py volle_jahre ohne inneres J
+5cfe472 25.09.2026 21:36 TB-107 Block D (Live-Code): strategy_paths._im_selektionsmodus ruft paths.selektionsmodus() dir
+a79e715 25.09.2026 21:39 TB-107 Block E: universum_trockenlauf.messe_bot entfernt die Zwischenablage tb40_lauf_* nach de
+9827a3e 25.09.2026 21:42 TB-107 Block F: Laufbereich am Endstand a79e715 neu gemessen (Werkzeug TB-104 D1, Trockenlauf 9
+069370d 23.09.2026 23:48 TB-95 Block D: Messbitte 23f Abschnitt 6 - benchmark.py oeffnet die neun TB-24-Listen ueber fp.
+0292e92 23.09.2026 18:42 TB-92 Block A/A1a: Vollzug Sperrlistenpunkt 4 in Form (ii) - die drei Leser lesen die Neurechnu
+## (2) Abbilder, Benchmark-Tabelle, gesperrte Ergebnisdateien
+6a1b732ed662d339a99785933ba130085069884be2d2d5990fd081124767298c  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+2f23f76c99e22991e4a331ec1107dc0f090a425bc9e050793470ee3cd52dd4fe  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
+cb4eb1b4cf998efcded95acd4d712bb3a0856722489a80ce10bfce511eeb5f89  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25.json
+40ffe18d6a6345d1ab88aa993535cfb10264d8cf2e02e804406bbe85236642c8  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+0e54ac5cf6d554d271c891d7d3ee0f9ebb60b6042b5234ad8d31bfaf60d32339  research/vorregistrierung/ergebnisse/faltenplan.json
+2a9b91660a42f06a33e3582b52359a3fba305c2e0da3b0a383fe5338036928c8  research/vorregistrierung/ergebnisse/messgroessen.json
+a163c49814b9af0c770dce689e8511249bb2c20011243d3aec34b4b84336d1ee  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json
+   herkunft_protokoll.jsonl: ls: research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl: No such file or directory
+## (3) Laufbereich TB-107
+   docs/belege/TB-107/f1_laufbereich_vereinigung.txt: 84 Nicht-Kommentarzeilen; regimewache: 1
+   davon unter docs/: 3
+## (4) herkunft.py: daten_dir, makedirs, TB30A_BASE_DIR
+351f24c2d6a3a512dc1eb1a80b536b99d47c266db38f7dd93b9d1c0199397eef  research/vorregistrierung/herkunft.py
+   letzter Commit 5791b4c TB-106 Block E: herkunft.py block()/anhaengen() reichen daten_dir an datenstand() durch (unter
+51:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
+96:def datenstand(daten_dir=None) -> dict:
+142:def block(anlass: str = "lauf", daten_dir=None) -> dict:
+181:def anhaengen(anlass: str = "lauf", daten_dir=None) -> dict:
+## (5) shared/paths.py: ARBEITSBAUM_PFADE, CONFIG_UNTERORDNER, selektionsmodus
+213:CONFIG_UNTERORDNER = "config"
+225:ARBEITSBAUM_PFADE = ("shared", "strategies", LOCK)
+348:def selektionsmodus():
+## (6) shared/strategy_paths.py: getattr auf paths
+112:def _im_selektionsmodus():
+113:    """Ist der Selektionsmodus aktiv? Gefragt wird `paths.selektionsmodus()`.
+122:    return paths.selektionsmodus() is not None
+148:    if not _im_selektionsmodus():
+## (7) Ladeprotokoll: nennt es Zeilenzahl der Universumsdatei und Quelle (25a (B) (4))?
+shared/ladeprotokoll.py
+114:    def ohne_kursrahmen(self, symbol, quelle):
+115:        """Die Kursquelle hat fuer dieses Symbol ueberhaupt keine Kerze
+121:        `data/` ODER aus dem Live-Abruf - welche der beiden Quellen leer
+123:        eigener Grund mit Platz fuer die Quelle, statt `leer()`
+133:                         f"hat keinen Kursrahmen geliefert ({quelle})")
+161:            text += " Keines ausgelassen."
+   letzter Commit 55b991d 2026-09-17 TB-45: stille Ausfaelle - fuenf Stellen, die aufhoerten zu arbeiten, ohne es zu sag
+## (8) regimewache.pruefe_einbau()
+   {'vollstaendig': True, 'offen': [], 'eingebaut': ['strategies/t3_supertrend/equity_simulation.py', 'strategies/t3_supertrend/multi_symbol_optimise.py', 'strategies/volatility_breakout_crypto/equity_simulation.py']}
+## (9) MIN_HISTORY_* je Bot (G9)
+   elliott_wave_stocks         multi_symbol_optimise.py:1:MIN_HISTORY_DAYS, 
+   elliott_wave                multi_symbol_optimise.py:1:MIN_HISTORY_HOURS, 
+   rsi2_crypto                 multi_symbol_optimise.py:1:MIN_HISTORY_DAYS, 
+   rsi2_mean_reversion         multi_symbol_optimise.py:1:MIN_HISTORY_DAYS, 
+   t3_supertrend               multi_symbol_optimise.py:1:MIN_HISTORY_DAYS, 
+   turtle_soup_crypto          multi_symbol_optimise.py:1:MIN_HISTORY_DAYS, 
+   turtle_soup_stocks          multi_symbol_optimise.py:1:MIN_HISTORY_DAYS, 
+   volatility_breakout_crypto  multi_symbol_optimise.py:1:MIN_HISTORY_DAYS, 
+   volatility_breakout         multi_symbol_optimise.py:1:MIN_HISTORY_DAYS, 
+## (10) registerdaten.py: MINDESTTRAINING_JAHRE und Bedingungsdeutung (Z. 605)
+research/vorregistrierung/benchmark.py:70:MINDESTTRAINING_JAHRE)` - ein Symbol ging fuer die GANZE Falte ein, wenn seine
+research/vorregistrierung/faltenplan.py:80:   `MINDESTTRAINING_JAHRE` geht nicht in die erste Falte ein.
+research/vorregistrierung/registerdaten.py:108:MINDESTTRAINING_JAHRE = 4           # vor der ersten Falte
+    r = raster(mess)[bot]
+    definition = raster_definition()[bot]
+    n = 1
+    for name, werte in r.items():
+        n *= len(werte)
+    if definition.get("_bedingung") == "t3_fast_length < t3_slow_length":
+        # Zellen, in denen die Strategie nicht definiert ist, existieren nicht.
+        schnell = r["t3_fast_length"]
+        langsam = r["t3_slow_length"]
+        gueltig = sum(1 for a in schnell for b in langsam if a < b)
+        n = n // (len(schnell) * len(langsam)) * gueltig
+## (11) test_vorregistrierung: FELDLISTE_PLAN / FELDLISTE_FALTE
+105:FELDLISTE_PLAN = frozenset({
+111:FELDLISTE_FALTE = frozenset({
+## (12) Ersatzmodule fuer strategy_paths (G3)
+shared/kurven_lauf.py:129:    sys.modules["strategy_paths"] = ersatz
+shared/determinismus_lauf.py:162:    sys.modules["strategy_paths"] = ersatz
+research/zuteilungskaskade/messung_primaerschluessel.py:119:    sys.modules["strategy_paths"] = ersatz
+## (13) manual_close.py: Schreiben erst bei erster Zeile (D11)
+235:PROTOKOLL_DATEI = os.path.join(PROTOKOLL_DIR, "manuelle_eingriffe.log")
+237:_protokoll = logging.getLogger("manuelle_eingriffe")
+245:    Bis TB-105 legten `os.makedirs` und der `RotatingFileHandler` Ordner und
+248:    damit `logs/notifications/` an und oeffnete `manuelle_eingriffe.log` zum
+255:        os.makedirs(PROTOKOLL_DIR, exist_ok=True)
+299:    (logs/notifications/manuelle_eingriffe.log). Die Frage, die im Zweifel
+347:    with open(pfad, encoding="utf-8") as fh:
+441:        with open(pfad, encoding="utf-8") as fh:
+## (14) auswertung.Abbruch: Rueckgabewert (G5)
+118:class Abbruch(SystemExit):
+129:    raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
+## (15) TB-92 Lesehaken-Belege (C9/D10)
+   858 docs/belege/TB-92/a1b_lesehaken.py
+   1756 docs/belege/TB-92/a1b_lesequellen_kinder.txt
+   hinzugefuegt 0292e92 23.09.2026 18:42
+== Lauf 3
+    1  repo logs/notifications/manuelle_eingriffe.log
+    1  repo research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+    1  repo research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+## (16) bot_lauf.py Kopf zu symbol (A8)
+   research/exposure_messung/bot_lauf.py
+## (17) 5.4 Wortlaut 'gefundene' (B1)
+3:Gerechnet aus den **gefundenen** Trades je vollem Kalenderjahr
+12:**Ergebnis: genau ein Bot.** `elliott_wave` liegt bei **26,0** gefundenen
+## (18) Registerabschnitt 19: ARBEITSBAUM_PFADE-Zeile (E2)
+2840:| Arbeitsbaum sauber | `git status --porcelain` über `shared/`, `strategies/` und `requirements.lock` (`ARBEITSBAUM_PFADE`), untracked zählt; ⚠️ **nicht** 
+## (19) test_vorregistrierung: Zahl der Pruefungen am letzten Lauf (TB-107 G4)
+16:test_vorregistrierung rc=0 926s: 196/196 Pruefungen bestanden.
+## (20) pfadvergleich.py rc (TB-107, nicht erneut ausgefuehrt)
+1:# TB-107 Nebenwirkung D: research/resolver_selektion/pfadvergleich.py (nicht freigegeben, unveraendert) eigenstaendig, ohne Modus
+3:rc=0
+8:rc=1
+## (21) faltenplan.py: Verfahren-A-Felder im gerechneten Plan
+3
+73:   `purge_tage`, `embargo_tage` und `training_bis_ausschliesslich` nicht mehr
+78:   (25.09.2026, Fable 25b (4), 25c 2 (c)) fehlen auch `embargo_nach_falten`
+79:   (je Falte) und `mindesttraining_jahre` (je Plan): kein Leser, und
+## Ende

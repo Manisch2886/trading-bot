@@ -1,0 +1,12 @@
+# TB-108 Schritt 0, 2026-09-25 22:3x +0200
+0a: Commit 4a84086 (7 Dateien des steuernden Chats: Auftrag TB-108, Zeiger AKTUELLER_AUFTRAG.md,
+    Stoffsammlung Register 41/42, FABLE_ANFRAGE 25e und 25f, AUFGABEN_BETREIBER_2026-09-26,
+    UEBERGABE_2026-09-25 Nachtrag 2) - der Arbeitsbaum entsprach genau der Erwartung des Auftrags.
+0b: .git/*.lock: keine
+    HEAD am Eingang (vor 0a): f61bd97 (Soll f61bd97)
+    Register: 7993 Zeilen (Soll 7993); letzter Commit am Register d0dc890, numstat 463/0 (TB-96)
+    herkunft.register() vorher: 0ece95e2fd4f5bd2787ea40f6a12988aadb0a414c5132553522b55000c6052d7 (0_hashes_vorher.txt (9)) = Soll
+    Datenstand vorher: d9449faf51bffaaa... / 223 (0_hashes_vorher.txt (7)); Snapshot --pruefen (6)
+    Sonde vorher gegen sperrliste_abbild_2026-09-25b.json (40ffe18d): Pfad-Bestandteile 25/0/0,
+        Pruefung (ii) 0, rc 2 nur NICHT PRUEFBAR (0_sonde_vorher.txt) = Soll
+0c: alle sechs FABLE_ANTWORT 24b, 24c, 24d, 25a, 25b, 25c versioniert im Repo (git ls-files), 134/85/119/124/117/106 Zeilen
