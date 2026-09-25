@@ -309,6 +309,8 @@ def messe_bot(bot, stichtage, datenordner=None,
               "--bot", bot, "--aus", ziel,
               "--stichtage", ",".join(stichtage)]
     if datenordner:
+        # Messwerkzeug (stille_filter, Probelaeufe) - unter dem Selektionsmodus
+        # lehnt loaderlauf.py `--daten` mit 2 ab (TB-104).
         befehl += ["--daten", datenordner]
     if ohne_schreibschutz:
         befehl += ["--ohne-schreibschutz"]
@@ -731,7 +733,10 @@ def main(argv=None):
     p.add_argument("--nur-universum", action="store_true",
                    help="Symbole je Bot und Falte (Registertext 3b). Voreinstellung.")
     p.add_argument("--stille-filter", action="store_true",
-                   help="Welche Faelle der Loader ausserdem aussortiert - an Beispieldaten gemessen")
+                   help="Welche Faelle der Loader ausserdem aussortiert - an Beispieldaten "
+                        "gemessen. Messwerkzeug (Ersatz-Kursdatenordner): unter dem "
+                        "Selektionsmodus nicht moeglich, loaderlauf.py lehnt --daten "
+                        "mit 2 ab (TB-104)")
     p.add_argument("--json", default=None, help="Bericht zusaetzlich als JSON ablegen")
     p.add_argument("--faltenplan-json", default=None,
                    help="fertigen faltenplan_neun-Bericht wiederverwenden statt neu zu rechnen")

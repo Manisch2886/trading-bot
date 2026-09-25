@@ -107,8 +107,29 @@ import os
 import sys
 
 _HIER = os.path.dirname(os.path.abspath(__file__))
-BASE_DIR = os.environ.get("TB36_BASE_DIR") or os.path.dirname(
-    os.path.dirname(_HIER))
+_REPO = os.path.dirname(os.path.dirname(_HIER))
+# ⚠️ TB36_BASE_DIR ist eine ERSATZWURZEL - ein Messwerkzeug fuer Tests und
+# Mutationsproben (Wegwerf-Universum mit eigenem `data/` und `config/`), KEIN
+# Modus-Lauf und kein Weg zum Snapshot (Fable 24d Abschnitt 3, TB-104). Unter
+# dem Selektionsmodus bricht jede Nutzung einer Ersatzwurzel mit 2 ab
+# (`_ersatzwurzel` unten); ohne Ersatzwurzel kommen Kurs- und Universumspfade
+# ueber den Resolver.
+ERSATZWURZEL = os.environ.get("TB36_BASE_DIR") or None
+BASE_DIR = ERSATZWURZEL or _REPO
+
+# --- Pfade der Kurs- und Universumsdateien: der Resolver (TB-104) -----------
+# Fable 24c Abschnitt 2 / 25a (C): Jedes Modul des Laufbereichs, das Kurs- oder
+# Universumsdateien liest, bezieht seine Pfade ueber `shared/paths.py` -
+# direkt, nicht ueber `strategy_paths.get_strategy_paths()` (legt
+# `results/<name>/` und `logs/<name>/` an, TB-103 Abschnitt 5 (5)). Ohne Modus
+# sind das `data/` und `config/` der Repo-Wurzel wie vorher, unter dem Modus
+# der Snapshot (Kurse flach, Universum unter `config/`). Bis TB-104 baute diese
+# Datei beide Pfade selbst aus `BASE_DIR` und kannte den Modus nicht. Die
+# Standardbibliothek genuegt weiter: `paths.py` importiert nichts anderes.
+sys.path.insert(0, os.path.join(_REPO, "shared"))
+import paths  # noqa: E402
+
+RUECKGABEWERT_ERSATZWURZEL_IM_MODUS = paths.RUECKGABEWERT_STARTPRUEFUNG
 
 # ==============================================================================
 # Festlegungen aus dem Register - nicht hier erfunden
@@ -210,10 +231,36 @@ TB24_DATEN = os.path.join("research", "tb24_haltedauern", "daten")
 # ==============================================================================
 # 1. Universum und Kursdaten - gelesen, nicht angenommen
 # ==============================================================================
+def _ersatzwurzel(basis: str = None):
+    """Die Ersatzwurzel (Argument `basis` oder TB36_BASE_DIR) - oder None.
+
+    Unter dem Selektionsmodus ist eine Ersatzwurzel ein Widerspruch: sie waere
+    ein Weg an den Snapshot vorbei. Dann Abbruch mit 2 (36.5), vor jedem
+    Lesen - nicht still ignoriert und nicht still benutzt.
+    """
+    wurzel = basis or ERSATZWURZEL
+    if wurzel is not None and paths.selektionsmodus() is not None:
+        sys.stderr.write(
+            "[faltenplan_neun] ABBRUCH: Ersatzwurzel %s unter dem "
+            "Selektionsmodus (%s). Eine Ersatzwurzel ist ein Messwerkzeug, "
+            "kein Modus-Lauf (Fable 24d Abschnitt 3); Kurs- und "
+            "Universumsdateien kommen im Modus nur ueber shared/paths.py.\n"
+            % (wurzel, paths.selektionsmodus()[0]))
+        raise SystemExit(RUECKGABEWERT_ERSATZWURZEL_IM_MODUS)
+    return wurzel
+
+
+def universumsdatei(markt: str, basis: str = None) -> str:
+    """Pfad der Universumsdatei: ueber den Resolver, bei Ersatzwurzel dort."""
+    wurzel = _ersatzwurzel(basis)
+    if wurzel is None:
+        return os.path.join(paths.CONFIG_DIR, os.path.basename(UNIVERSUM[markt]))
+    return os.path.join(wurzel, UNIVERSUM[markt])
+
+
 def symbole(markt: str, basis: str = None) -> list:
     """Die heutige Symbolliste des Marktes, in Dateireihenfolge."""
-    basis = basis or BASE_DIR
-    pfad = os.path.join(basis, UNIVERSUM[markt])
+    pfad = universumsdatei(markt, basis)
     with open(pfad, "r", encoding="utf-8") as datei:
         liste = [zeile.strip() for zeile in datei if zeile.strip()]
     if markt == "krypto":
@@ -222,7 +269,10 @@ def symbole(markt: str, basis: str = None) -> list:
 
 
 def kursdatei(symbol: str, zeitrahmen: str, basis: str = None) -> str:
-    return os.path.join(basis or BASE_DIR, "data", f"{symbol}_{zeitrahmen}.csv")
+    """Pfad der Kursdatei: ueber den Resolver, bei Ersatzwurzel dort."""
+    wurzel = _ersatzwurzel(basis)
+    ordner = paths.DATA_DIR if wurzel is None else os.path.join(wurzel, "data")
+    return os.path.join(ordner, f"{symbol}_{zeitrahmen}.csv")
 
 
 def _zeitstempel(zeile: str):
@@ -487,7 +537,11 @@ def faltenname(block: dict) -> str:
 
 def main(argv=None) -> int:
     zerleger = argparse.ArgumentParser(
-        description="Faltenplan fuer alle neun Bots nach Verfahren B.")
+        description="Faltenplan fuer alle neun Bots nach Verfahren B. "
+                    "Kurs- und Universumsdateien ueber shared/paths.py (unter "
+                    "dem Selektionsmodus aus dem Snapshot). TB36_BASE_DIR ist "
+                    "eine Ersatzwurzel fuer Tests - ein Messwerkzeug, kein "
+                    "Modus-Lauf; unter dem Modus bricht sie mit 2 ab (TB-104).")
     zerleger.add_argument("--json", default=None,
                           help="Bericht als JSON zusaetzlich hierhin schreiben")
     argumente = zerleger.parse_args(argv)

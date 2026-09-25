@@ -1,0 +1,66 @@
+# TB-104 A8 - Sperrlistenpruefung, 2026-09-25 09:17:01 +0200, HEAD be31276
+Register Abschnitt 10: Z. 843-1049
+== research/vorregistrierung/benchmark.py
+   Abschnitt 10, Treffer 'benchmark.py': 2
+      Z. 891: Benchmark-Drawdowns** — `benchmark.py`,
+      Z. 922: point-in-time, `benchmark.py::bh_tagesrenditen`
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: True
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 6 (Punkte [4, 6])
+== research/vorregistrierung/faltenplan.py
+   Abschnitt 10, Treffer 'faltenplan.py': 2
+      Z. 871: `faltenplan.py`, `ergebnisse/faltenplan.json`
+      Z. 884: > Inhalt. `faltenplan.py main()` schreibt heute ohne Abfrage genau hierher
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: True
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 2 (Punkte [2])
+== research/faltenplan_neun/faltenplan_neun.py
+   Abschnitt 10, Treffer 'faltenplan_neun.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/faltenplan_neun/erste_falte_trockenlauf.py
+   Abschnitt 10, Treffer 'erste_falte_trockenlauf.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/universum_trockenlauf/universum_trockenlauf.py
+   Abschnitt 10, Treffer 'universum_trockenlauf.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/universum_trockenlauf/loaderlauf.py
+   Abschnitt 10, Treffer 'loaderlauf.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/faltenplan_neun/test_erste_falte_trockenlauf.py
+   Abschnitt 10, Treffer 'test_erste_falte_trockenlauf.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/faltenplan_neun/test_faltenplan_neun.py
+   Abschnitt 10, Treffer 'test_faltenplan_neun.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/faltenplan_neun/test_horizontbeginn.py
+   Abschnitt 10, Treffer 'test_horizontbeginn.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/universum_trockenlauf/test_universum_trockenlauf.py
+   Abschnitt 10, Treffer 'test_universum_trockenlauf.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/vorregistrierung/test_vorregistrierung.py
+   Abschnitt 10, Treffer 'test_vorregistrierung.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0
+== research/vorregistrierung/registerbericht.py
+   Abschnitt 10, Treffer 'registerbericht.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: False
+   herkunft.py::EINGEFROREN: False
+   Abbild sperrliste_abbild_2026-09-23.json, Treffer: 0

@@ -1,0 +1,35 @@
+# TB-104 A7 - .get(..., default) in auswertung.py: ist ein Ersatzwert mit den REGISTRIERTEN Eingaben je erreichbar?
+# (Fable 25a, Unsicherheit (4)). NUR gelesen; auswertung.py unveraendert (c3b4e69d...). HEAD be31276.
+# Methode: Quelltext gelesen, Kontrollfluss von der Eingabe bis zur Stelle verfolgt; KEIN Lauf (es gibt noch keine
+# Rohergebnisse). "Registrierte Eingaben" = Faltenplan nach 4a/4b (jeder Bot >= 3 Selektionsfalten, heute 7 bzw. 3),
+# vollstaendige zellen.csv nach dem Vertrag in lies_zellen().
+
+Alle .get-Stellen (grep -n '\.get(' auswertung.py):
+Z.  92  os.environ.get("TB30A_BASE_DIR")          - Umgebungsvariable, keine Schwelle/kein Ergebnis. Ausser Betracht.
+Z. 156  definition.get("_bedingung")              - raster_definition() aus registerdaten.py: nur t3_supertrend traegt
+                                                    den Schluessel; fuer die anderen acht ist None die REGISTRIERTE
+                                                    Bedeutung (keine Nebenbedingung). Erreichbar, aber kein Ersatzwert.
+Z. 284  statistik.get(zid, 0.0)                   - statistik = selektionsstatistik(df, sel) = Median je zelle_id ueber
+Z. 286  statistik.get(n, 0.0)                       die Zeilen mit falte in sel. lies_zellen() bricht ab (Abbruch), wenn
+                                                    eine Rasterzelle fehlt oder zu viel ist (Z. 177-184), wenn die
+                                                    Falten einer Zelle nicht genau die des Plans sind (Z. 186-191) und
+                                                    wenn netto_sharpe in Falten mit Trades leer ist (Z. 197-199).
+                                                    zid und n kommen aus alle_zellen() = dieselbe Menge wie "erwartet".
+                                                    => jede zid hat Zeilen in jeder Selektionsfalte, der Median ist
+                                                    definiert. 0.0 ist NUR erreichbar, wenn sel leer ist (Plan ohne
+                                                    Selektionsfalte). Mit dem registrierten Plan (4b: >= 3) UNERREICHBAR.
+Z. 380  bereinigung.get("bestimmt")               - beta_bereinigung() liefert auf JEDEM Rueckweg "bestimmt" (False nur
+                                                    bei leerer Fensterliste = keine Selektionsfalte, Z. 333-334; sonst
+                                                    True oder Abbruch bei < 3 gemeinsamen Tagen, Z. 344-347). Die
+                                                    Voreinstellung None ist unerreichbar; der Zweig "False" ebenso,
+                                                    solange der Plan Selektionsfalten hat.
+Z. 500  bereinigung.get("renditen", [])           - die Schluessel fehlen nur im Rueckweg "bestimmt: False" (s. o.).
+Z. 506-521  bereinigung.get(...) (7 Stellen)        => mit dem registrierten Plan UNERREICHBAR.
+Z. 569  e.get("auswertbar")                       - Ergebnis-dicts aus auswerte_bot(); Rueckweg "nicht auswertbar"
+Z. 656  e.get("auswertbar")                         (Z. ~466-470) setzt den Schluessel - None nur, wenn er fehlte.
+Z. 631  b["zufalls_timing"].get("bestimmt")       - kz.zufalls_timing(); Bericht (Ausgabe), keine Schwelle.
+
+ANTWORT: Kein .get-Ersatzwert, der eine Schwelle oder die Selektionsstatistik vertritt (284/286, 380, 500-521), ist
+mit den registrierten Eingaben erreichbar. Alle haengen an derselben Bedingung "Plan ohne Selektionsfalte", die 4b
+ausschliesst und die heute kein Bot erfuellt. Fuer die Regel (Fable 25a Rueckfall (d)) ohne Belang - dort geht es um
+Ersatz durch Abbruch 2; fuer die Tatsachennotiz: "unerreichbar, solange 4b gilt, aus dem Quelltext gelesen, kein Lauf".

@@ -1,0 +1,49 @@
+# TB-104 A1-A3 - Vormessung nachgemessen (Textsuche ueber *.py ausserhalb docs/, Quelltext gelesen), HEAD be31276,
+# 2026-09-25 09:00-09:20 +0200. Nach A8 des Auftrags gilt diese Messung, wo sie von der Vormessung abweicht.
+
+## A1 - eigene Pfadlogik fuer Kurs- oder Universumsdateien
+Suchmuster: "data" | "config" | DATA_DIR | CONFIG_DIR | top25_symbols | sp500_top150 | kursdatei( | symbole( | UNIVERSUM[
+| Modul | Stelle | Befund |
+|---|---|---|
+| research/vorregistrierung/benchmark.py | Z. 93-95 BASE_DIR aus TB30A_BASE_DIR, DATA_DIR = BASE_DIR/data; Z. 110-111 universumsdatei() = BASE_DIR + rd.UNIVERSUM[markt]; Z. 124 Kursdatei DATA_DIR/<s>_1d.csv | EIGENE LOGIK (Kurse + Universum). Zusaetzlich indirekt: Z. 101-102 faltenschranke_messung -> faltenplan_neun (s. u.), Z. 97 faltenplan -> faltenplan_neun |
+| research/faltenplan_neun/faltenplan_neun.py | Z. 110 BASE_DIR aus TB36_BASE_DIR; Z. 131-137 eigenes UNIVERSUM-dict (zweite Namensliste neben registerdaten.UNIVERSUM, seit TB-36); Z. 213-217 symbole(); Z. 224-225 kursdatei() = <basis or BASE_DIR>/data/<s>_<zr>.csv | EIGENE LOGIK (Kurse + Universum); Parameter `basis` in 9 Funktionen, von keinem Nicht-Test-Aufrufer gesetzt (grep 'basis=' ausserhalb test_* leer) |
+| research/universum_trockenlauf/loaderlauf.py | Z. 91 BASIS aus TB40_BASE_DIR (nur Code-Wurzel: strategies/<bot>/); Z. 534-540 `--daten` setzt modul.DATA_DIR des Loaders von aussen | EIGENE LOGIK nur ueber `--daten`; ohne `--daten` holt der Loader DATA_DIR selbst (strategy_paths -> paths, Resolver) |
+| research/universum_trockenlauf/universum_trockenlauf.py | Z. 105 BASIS aus TB40_BASE_DIR (Register, faltenplan_neun.py); Z. 298-313 messe_bot(..., datenordner) reicht `--daten` durch (nur stille_filter(), Z. 671) | liest SELBST keine Kurs-/Universumsdatei; baut nur den `--daten`-Weg (Probendaten fuer stille_filter) |
+| research/faltenplan_neun/erste_falte_trockenlauf.py | Z. 83 BASE_DIR = fn.BASE_DIR; Z. 175-185 erster_kurstag_des_marktes() ueber fn.symbole()/fn.kursdatei() | KEINE eigene Logik - Kurse/Universum ueber faltenplan_neun; Loader ueber ut.messe_bot() ohne `--daten` |
+| research/faltenplan_neun/faltenschranke_messung.py (NICHT freigegeben) | Z. 70 BASE_DIR = fp.BASE_DIR; Kurse/Universum ueber fp.symbole()/fp.kursdatei(); Z. 139 liest strategies/<bot>/multi_symbol_optimise.py (Code, keine Kursdatei) | KEINE eigene Kurslogik - wird mit faltenplan_neun mit umgestellt |
+| research/faltenplan_neun/embargo_neun.py (NICHT freigegeben) | Z. 60 BASE_DIR aus TB36_BASE_DIR; Kurse ueber faltenplan_neun.symbole/kursdatei(basis) | KEINE eigene Kurslogik; reicht `basis` durch (Voreinstellung None) |
+| research/vorregistrierung/messgroessen.py | seit TB-103 ueber paths | Resolver (Vergleich) |
+=> 4 Module mit eigener Pfadlogik: benchmark.py, faltenplan_neun.py, loaderlauf.py (`--daten`), universum_trockenlauf.py
+   (nur Durchreichen von `--daten`). erste_falte_trockenlauf.py: KEINE eigene (B4 entfaellt als Umbau; Probe trotzdem).
+   Abweichung zur Vormessung: universum_trockenlauf.py liest selbst keine Kursdatei; sein TB40_BASE_DIR ist Code-/
+   Registerwurzel. Der einzige Weg "Datenordner von aussen" ist `--daten`.
+
+## A2 - TB30A_BASE_DIR in weiteren Modulen: liest es Kurs- oder Universumsdateien?
+| Modul | was ueber BASE_DIR gelesen wird | Kurs/Universum? |
+|---|---|---|
+| registerdaten.py | Z. 60 sys.path notifications/ (Import manual_close.allokation); Z. 169 ergebnisse/messgroessen.json (ueber _HIER); UNIVERSUM Z. 142-145 nur Konstante | nein (Konstante, liest nicht) |
+| registerbericht.py | Z. 38 docs/VORREGISTRIERUNG_neuselektion.md; Z. 64 aw.BENCHMARK_TABELLE; indirekt fp.faltenplan() | nein direkt; indirekt ja ueber faltenplan.py -> faltenplan_neun |
+| pruefe_grenzsaetze.py | Z. 79 strategies/<bot>/<datei> (Bot-Quelltext) | nein |
+| herkunft.py | Z. 56 Register; Z. 98 datenstand() Voreinstellung BASE_DIR/data (nur Hash, siehe A5) | Kursdateien NUR fuer den Hash (datenstand), nicht zum Rechnen |
+| auswertung.py | Z. 167/207/224 zellen.csv, Tagesreihen, benchmark_tagesreihen/ unter `--wurzel` (Rohergebnisse); Z. 598 BENCHMARK_TABELLE; indirekt fp.faltenplan() | nein direkt; indirekt ja ueber faltenplan.py -> faltenplan_neun |
+| faltenplan.py | Z. 121/133 research/tb24_haltedauern/daten/<bot>_alle_trades.csv (TB-24-Listen, Ergebnisdateien); Z. 117-119 faltenplan_neun + erste_falte_trockenlauf | nein direkt; INDIREKT JA: fn.symbolbeginn() (Kurse + Universum) und eft (Loader-Kindprozesse) |
+| messgroessen.py | Z. 230 haltedauern_je_bot.csv; Kurse/Universum seit TB-103 ueber paths | nein ueber BASE_DIR |
+=> Abweichung/Ergaenzung zur Vormessung: faltenplan.py (und damit auswertung.py, registerbericht.py, benchmark.py)
+   liest Kurs- und Universumsdateien INDIREKT ueber faltenplan_neun. Die Umstellung von faltenplan_neun.py (B2)
+   deckt diese Wege mit ab.
+
+## A3 - Verfahren-A-Felder und ihre Leser (grep purge_tage|embargo_tage|training_bis_ausschliesslich, *.py)
+| Stelle | Art |
+|---|---|
+| faltenplan.py:270-272 purge_tage() | Erzeuger (liest mess["haltedauer"][bot]["max_tage"]) |
+| faltenplan.py:304, 310, 318, 319 | _plan schreibt training_bis_ausschliesslich je Falte, purge_tage und embargo_tage je Plan |
+| faltenplan.py:464 | LESER in faltenplan.py::main() (Ausgabespalte "Purge") - in der Vormessung nicht genannt |
+| registerbericht.py:147 | LESER (Anzeige, Spalte "Purge = Embargo") - freigegeben 09:10 (C4) |
+| test_vorregistrierung.py:617 (G8) | LESER |
+| test_vorregistrierung.py:619 (G9) | LESER - in der Vormessung NICHT genannt: G9 "Purge und Embargo sind gleich lang" |
+| docs/belege/TB-72/schritt3_faltenplan_tb72.py:38, 96 | Beleg-Skript einer abgeschlossenen Sitzung (liest die Feldnamen); ausserhalb des Laufbereichs, unveraendert |
+mess["haltedauer"]: ausser faltenplan.py:272 nur registerdaten.py:231 (median_balken, Donchian-Untergrenze) und G8.
+purge_tage() wird nur aus _plan (Z. 304) gerufen. benchmark.py, auswertung.py, registerdaten.py lesen keins der Felder.
+=> Abweichung zur Vormessung: zwei weitere Leser (faltenplan.py:464 und G9). Beide liegen in freigegebenen Dateien.
+Nebenbefund (nicht Teil von C, nur gemeldet): _plan schreibt weitere Groessen aus Verfahren A:
+   "mindesttraining_jahre" (Plan) und "embargo_nach_falten" (je Falte). Fable 25a nennt sie nicht; sie bleiben.

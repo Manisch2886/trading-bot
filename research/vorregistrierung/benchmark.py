@@ -90,9 +90,11 @@ import numpy as np
 import pandas as pd
 
 _HIER = os.path.dirname(os.path.abspath(__file__))
+# TB30A_BASE_DIR ersetzt die Repo-Wurzel fuer Mutationsproben (Kopien dieses
+# Ordners finden so `shared/` und `research/faltenplan_neun/`) - KEIN Weg zum
+# Snapshot (TB-104). Kurs- und Universumspfade: unten, ueber den Resolver.
 BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
     os.path.dirname(_HIER))
-DATA_DIR = os.path.join(BASE_DIR, "data")
 
 import faltenplan as fp  # noqa: E402
 import registerdaten as rd  # noqa: E402
@@ -101,6 +103,23 @@ import registerdaten as rd  # noqa: E402
 sys.path.insert(0, os.path.join(BASE_DIR, "research", "faltenplan_neun"))
 import faltenschranke_messung as fsm  # noqa: E402
 
+# --- Pfade der Kurs- und Universumsdateien: der Resolver (TB-104) -----------
+# ⚠️ Fable 24c Abschnitt 2 / 25a (C): Jedes Modul des Laufbereichs, das Kurs-
+# oder Universumsdateien liest, bezieht seine Pfade ueber `shared/paths.py` -
+# direkt wie `messgroessen.py` (TB-103), nicht ueber
+# `strategy_paths.get_strategy_paths()` (legt `results/<name>/` und
+# `logs/<name>/` an). Ohne Modus `data/` und `config/` der Repo-Wurzel wie
+# vorher, unter dem Modus der Snapshot (Kurse flach, Universum unter
+# `config/`). Bis TB-104 stand hier `DATA_DIR = os.path.join(BASE_DIR, "data")`
+# und das Universum kam aus `BASE_DIR + registerdaten.UNIVERSUM` - der Modus
+# war unbekannt. Der Dateiname kommt weiter aus `registerdaten.UNIVERSUM`
+# (`os.path.basename`), keine zweite Namensliste.
+sys.path.insert(0, os.path.join(BASE_DIR, "shared"))
+import paths  # noqa: E402
+
+DATA_DIR = paths.DATA_DIR
+CONFIG_DIR = paths.CONFIG_DIR
+
 # Stuetzstellen der Exposure-Achse: 1 % bis 100 % in Schritten von 1 %.
 # Feiner waere Genauigkeit ohne Aussage - die Kapitalpfade selbst sind auf
 # zwei Nachkommastellen ausgewiesen.
@@ -108,7 +127,7 @@ EXPOSURE_STUFEN = [round(0.01 * k, 2) for k in range(1, 101)]
 
 
 def universumsdatei(markt: str) -> str:
-    return os.path.join(BASE_DIR, rd.UNIVERSUM[markt])
+    return os.path.join(CONFIG_DIR, os.path.basename(rd.UNIVERSUM[markt]))
 
 
 def symbole(markt: str) -> list:
@@ -378,7 +397,10 @@ def main(argv=None):
     zerleger = argparse.ArgumentParser(
         description="Benchmark-Drawdowns je Falte, DD_Toleranz je Bot. "
                     "Schreibt einmalig; Voreinstellung ist ein Name mit "
-                    "Zeitstempel (36.1 (3)).")
+                    "Zeitstempel (36.1 (3)). Kurs- und Universumsdateien ueber "
+                    "shared/paths.py (unter dem Selektionsmodus aus dem "
+                    "Snapshot); TB30A_BASE_DIR ist KEIN Weg zum Snapshot "
+                    "(TB-104).")
     zerleger.add_argument(
         "--ziel", default=None,
         help="Ausgabedatei (Standard: ergebnisse/benchmark_drawdowns_"

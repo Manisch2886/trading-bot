@@ -13,6 +13,10 @@ Geprueft wird, was die Aufgabenstellung ausdruecklich verlangt:
      das 95. Perzentil an einer Reihe mit bekanntem Ergebnis.
   E  Der Registertext ist vollstaendig - und nichts ist geloescht worden.
   F-I  Mutationsproben.
+  K  **TB-104:** `faltenplan_neun.py` und `erste_falte_trockenlauf.py`
+     lesen unter dem Selektionsmodus keine Kurs- und keine Universumsdatei
+     aus `data/` bzw. `config/`; eine Ersatzwurzel (`TB36_BASE_DIR`) bricht
+     unter dem Modus mit 2 ab. Mit Mutationsproben und Gegenproben.
 
 ZU TEIL A - WARUM DIESE PROBE DIE TRAGENDE IST
 ------------------------------------------------------------------------------
@@ -496,7 +500,12 @@ def _ersetze(pfad, alt, neu):
 def _mutiert(datei, alt, neu, werkzeug="faltenplan_neun.py"):
     """Den Ordner kopieren, EINE Zeile aendern, das Werkzeug neu starten."""
     with tempfile.TemporaryDirectory() as m:
-        ordner = _werkzeugkopie(os.path.join(m, "werkzeug"))
+        # Seit TB-104 importiert das Werkzeug den Resolver aus
+        # `<repo>/shared` - zwei Ebenen ueber seinem eigenen Ordner. Die
+        # Kopie liegt deshalb unter `research/faltenplan_neun/`, daneben
+        # `shared/` als Verweis auf das echte.
+        os.symlink(os.path.join(BASE_DIR, "shared"), os.path.join(m, "shared"))
+        ordner = _werkzeugkopie(os.path.join(m, "research", "faltenplan_neun"))
         _ersetze(os.path.join(ordner, datei), alt, neu)
         # Die Repo-Wurzel wandert mit - sonst suchte die Kopie ihre
         # Kursdateien neben dem Wegwerf-Ordner und die Probe scheiterte
@@ -646,12 +655,213 @@ def teil_i():
                for b in fp.BOTS if b != "rsi2_crypto"))
 
 
+# ===========================================================================
+# K  Unter dem Selektionsmodus: Kurs- und Universumsdateien nur aus dem
+#    Snapshot (TB-104, Fable 24c Abschnitt 2, 25a (C)) - Bauart
+#    test_vorregistrierung.py Teil I: Wegwerfbaum mit der ECHTEN paths.py,
+#    erfundenen Kursreihen in data/, Snapshot-Attrappe, eigener Lesehaken.
+# ===========================================================================
+_K_SNAP_HASH = "attrappe_tb104_faltenplan_neun_00000"
+_K_HAKEN = r'''
+import os, sys
+_ziel = os.environ.get("TB104_K_PROTOKOLL")
+if _ziel:
+    _fd = os.open(_ziel, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o644)
+    def _haken(e, a, _fd=_fd, _w=os.write):
+        if e == "open" and a and isinstance(a[0], (str, bytes, os.PathLike)):
+            _w(_fd, (os.fsdecode(a[0]) + "\n").encode("utf-8", "replace"))
+    sys.addaudithook(_haken)
+'''
+# Die Einstiegspunkte im Wegwerfbaum (die Startpruefung von paths.py verlangt
+# sie unter derselben Git-Wurzel). `fn`: Universum, erster/letzter Kurstag je
+# Symbol, Fensteranker; `eft`: der erste Kurstag des Marktes - die Stelle, an
+# der erste_falte_trockenlauf.py selbst Kursdateien oeffnet (ueber fn).
+_K_PROBEN = {
+    "fn": '''import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "research", "faltenplan_neun"))
+import faltenplan_neun as fn
+for markt in ("krypto", "aktien"):
+    for s in fn.symbole(markt):
+        print(s, fn.erster_und_letzter_tag(fn.kursdatei(s, "1d")))
+    print(markt, fn.fensteranker(markt))
+''',
+    "eft": '''import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "research", "faltenplan_neun"))
+import erste_falte_trockenlauf as eft
+for bot in ("rsi2_crypto", "rsi2_mean_reversion"):
+    print(bot, eft.erster_kurstag_des_marktes(bot))
+'''}
+
+# Die drei Stellen, die die Mutationsproben ersetzen - je eine allein.
+_K_KURS = ('    ordner = paths.DATA_DIR if wurzel is None else '
+           'os.path.join(wurzel, "data")\n',
+           '    ordner = os.path.join(wurzel or BASE_DIR, "data")\n')
+_K_UNIVERSUM = ('        return os.path.join(paths.CONFIG_DIR, '
+                'os.path.basename(UNIVERSUM[markt]))\n',
+                '        return os.path.join(BASE_DIR, UNIVERSUM[markt])\n')
+_K_WACHE = ('    if wurzel is not None and paths.selektionsmodus() is not None:\n',
+            '    if False:\n')
+
+
+def _k_kursdateien(ordner):
+    """Erfundene Tagesreihen (Standardbibliothek), dazu config/."""
+    os.makedirs(os.path.join(ordner, "config"), exist_ok=True)
+    namen = []
+    for symbol in ("AAAUSDT", "AAA"):
+        name = f"{symbol}_1d.csv"
+        zeilen = ["open_time,open,high,low,close,volume"]
+        tag = dt.date(2018, 1, 1)
+        for _ in range(400):
+            zeilen.append(f"{tag.isoformat()},1,1,1,1,1")
+            tag += dt.timedelta(days=1)
+        with open(os.path.join(ordner, name), "w", encoding="utf-8") as datei:
+            datei.write("\n".join(zeilen) + "\n")
+        namen.append(name)
+    for name, text in (("top25_symbols.txt", "AAAUSDT\n"),
+                       ("sp500_top150.txt", "AAA\n")):
+        with open(os.path.join(ordner, "config", name), "w") as datei:
+            datei.write(text)
+    return namen
+
+
+def _k_git(baum, *argumente):
+    subprocess.run(["git", "-C", baum] + list(argumente), check=True,
+                   capture_output=True, text=True)
+
+
+def _k_lauf(probe, mutation=None, ersatzwurzel=False):
+    """Eine Probe (`fn` oder `eft`) im Modus, in einem Wegwerfbaum.
+
+    `mutation`: (alt, neu) in faltenplan_neun.py des Baums, oder None.
+    `ersatzwurzel`: TB36_BASE_DIR auf den Baum gesetzt (Messwerkzeug unter
+    dem Modus). Rueckgabe: rc, Zugriffe auf <baum>/data/*.csv, <baum>/config/*,
+    <snapshot>/*.csv, <snapshot>/config/* (verschiedene Dateien)."""
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, haken = (os.path.join(t, n) for n in ("baum", "snap", "haken"))
+        for o in (os.path.join(baum, "shared"), os.path.join(baum, "data"),
+                  os.path.join(baum, "research"), snap, haken):
+            os.makedirs(o)
+        for datei in ("shared/paths.py", "requirements.lock"):
+            shutil.copy2(os.path.join(BASE_DIR, datei), os.path.join(baum, datei))
+        for ordner in ("faltenplan_neun", "universum_trockenlauf"):
+            shutil.copytree(os.path.join(BASE_DIR, "research", ordner),
+                            os.path.join(baum, "research", ordner),
+                            ignore=shutil.ignore_patterns("__pycache__", "daten",
+                                                          "test_*"))
+        if mutation:
+            _ersetze(os.path.join(baum, "research", "faltenplan_neun",
+                                  "faltenplan_neun.py"), *mutation)
+        with open(os.path.join(baum, "probe_k.py"), "w") as datei:
+            datei.write(_K_PROBEN[probe])
+        _k_kursdateien(os.path.join(baum, "data"))
+        os.rename(os.path.join(baum, "data", "config"), os.path.join(baum, "config"))
+        namen = _k_kursdateien(snap)
+        with open(os.path.join(snap, "MANIFEST.json"), "w") as datei:
+            json.dump({"snapshot_hash": _K_SNAP_HASH,
+                       "dateien": dict({n: {} for n in namen},
+                                       **{"config/top25_symbols.txt": {},
+                                          "config/sp500_top150.txt": {}})}, datei)
+        with open(os.path.join(haken, "sitecustomize.py"), "w") as datei:
+            datei.write(_K_HAKEN)
+        _k_git(baum, "init", "-q")
+        _k_git(baum, "add", "-A")
+        _k_git(baum, "-c", "user.name=tb104", "-c", "user.email=tb104@test",
+               "commit", "-q", "-m", "Wegwerfbaum")
+        head = subprocess.run(["git", "-C", baum, "rev-parse", "HEAD"],
+                              capture_output=True, text=True).stdout.strip()
+        u = os.environ.copy()
+        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+            u.pop(v, None)
+        if ersatzwurzel:
+            u["TB36_BASE_DIR"] = baum
+        u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": _K_SNAP_HASH,
+                  "TB_SELEKTIONSCOMMIT": head, "PYTHONPATH": haken,
+                  "TB104_K_PROTOKOLL": os.path.join(t, "protokoll.txt")})
+        r = subprocess.run([sys.executable, "-W", "ignore",
+                            os.path.join(baum, "probe_k.py")],
+                           capture_output=True, text=True, env=u)
+        pfade = []
+        if os.path.exists(u["TB104_K_PROTOKOLL"]):
+            with open(u["TB104_K_PROTOKOLL"], encoding="utf-8") as datei:
+                pfade = [os.path.realpath(z.strip()) for z in datei if z.strip()]
+        daten = os.path.realpath(os.path.join(baum, "data")) + os.sep
+        konfig = os.path.realpath(os.path.join(baum, "config")) + os.sep
+        snapr = os.path.realpath(snap) + os.sep
+        return {"rc": r.returncode,
+                "data_csv": sum(p.startswith(daten) and p.endswith(".csv")
+                                for p in pfade),
+                "baum_config": len({p for p in pfade if p.startswith(konfig)}),
+                "snap_csv": sum(p.startswith(snapr) and p.endswith(".csv")
+                                for p in pfade),
+                "snap_config": len({p for p in pfade
+                                    if p.startswith(snapr + "config" + os.sep)}),
+                "stderr": r.stderr[-300:]}
+
+
+def _k_text(r):
+    return (f"rc {r['rc']}, data/ {r['data_csv']}, config/ {r['baum_config']}, "
+            f"Snapshot-CSV {r['snap_csv']}, Snapshot-config {r['snap_config']}; "
+            f"{r['stderr']}")
+
+
+def _k_sauber(r):
+    return (r["rc"] == 0 and r["data_csv"] == 0 and r["baum_config"] == 0
+            and r["snap_csv"] > 0 and r["snap_config"] == 2)
+
+
+def _k_mit_gegenprobe(name, text, probe, mutation, bedingung, **kw):
+    """Mutationsprobe und Gegenprobe (Register 40.7): dieselbe Probe ohne die
+    Mutation muss SCHEITERN. Die Stelle muss auch dort existieren."""
+    r = _k_lauf(probe, mutation, **kw)
+    pruefe(f"{name}: {text}", bedingung(r), _k_text(r))
+    with open(os.path.join(_HIER, "faltenplan_neun.py"), encoding="utf-8") as d:
+        stelle_da = mutation[0] in d.read()
+    g = _k_lauf(probe, None, **kw)
+    pruefe(f"{name}-G: Gegenprobe zu {name} - ohne die Mutation scheitert sie",
+           stelle_da and not bedingung(g), _k_text(g))
+
+
+def teil_k():
+    r = _k_lauf("fn")
+    pruefe("K1: faltenplan_neun.py im Selektionsmodus - 0 Kursdateien aus "
+           "data/, 0 Universumsdateien aus config/, beides aus dem Snapshot, rc 0",
+           _k_sauber(r), _k_text(r))
+    r = _k_lauf("eft")
+    pruefe("K2: erste_falte_trockenlauf.py im Selektionsmodus - dasselbe "
+           "(es liest ueber faltenplan_neun, ohne eigene Pfadlogik)",
+           _k_sauber(r), _k_text(r))
+    r = _k_lauf("fn", ersatzwurzel=True)
+    pruefe("K3: eine Ersatzwurzel (TB36_BASE_DIR) unter dem Modus bricht mit 2 "
+           "ab, bevor eine Kurs- oder Universumsdatei gelesen ist",
+           r["rc"] == 2 and r["data_csv"] == 0 and r["baum_config"] == 0,
+           _k_text(r))
+    _k_mit_gegenprobe(
+        "K4", "Mutationsprobe 'Resolver-Umstellung der Kursdateien "
+        "zurueckgenommen' - faltenplan_neun.py liest im Modus aus data/ (K1 "
+        "waere rot)", "fn", _K_KURS, lambda r: r["data_csv"] > 0)
+    _k_mit_gegenprobe(
+        "K5", "Mutationsprobe 'Resolver-Umstellung des Universums "
+        "zurueckgenommen' - faltenplan_neun.py liest im Modus aus config/ (K1 "
+        "waere rot)", "fn", _K_UNIVERSUM, lambda r: r["baum_config"] > 0)
+    _k_mit_gegenprobe(
+        "K6", "Mutationsprobe 'Resolver-Umstellung zurueckgenommen' an "
+        "erste_falte_trockenlauf.py (Stelle in faltenplan_neun.py) - K2 waere rot",
+        "eft", _K_KURS, lambda r: r["data_csv"] > 0)
+    _k_mit_gegenprobe(
+        "K7", "Mutationsprobe 'Modus-Wache der Ersatzwurzel entfernt' - die "
+        "Ersatzwurzel liest im Modus aus data/ (K3 waere rot)",
+        "fn", _K_WACHE, lambda r: r["data_csv"] > 0, ersatzwurzel=True)
+
+
 def main():
     print(__doc__.strip().split("\n")[0])
     print("=" * 78)
     for name, teil in (("A", teil_a), ("B", teil_b), ("C", teil_c),
                        ("D", teil_d), ("E", teil_e), ("F", teil_f),
-                       ("G", teil_g), ("H", teil_h), ("I", teil_i)):
+                       ("G", teil_g), ("H", teil_h), ("I", teil_i),
+                       ("K", teil_k)):
         print(f"  Teil {name} ...", flush=True)
         teil()
     print("\n" + "=" * 78)

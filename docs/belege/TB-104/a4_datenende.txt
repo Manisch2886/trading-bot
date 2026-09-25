@@ -1,0 +1,41 @@
+# TB-104 A4 - Ruft der Trockenlauf den Loader "am Datenende" auf, wie 16.1.1 (Spalte Bestaetigung) gemessen wurde?
+# (Fable 25a, Unsicherheit (3)). HEAD be31276, 2026-09-25.
+
+## 1. Wie TB-40 die Bestaetigungsspalte gemessen hat (gelesen, nicht vermutet)
+- docs/ERGEBNIS_TB-40_universum_trockenlauf.md Abschnitt 1: "Der Loader jedes Bots wurde je Falte einmal am
+  Faltenbeginn und einmal am letzten Zeitpunkt der Falte aufgerufen." Lesart H (= 16.1.1) ist "Gemessen am Faltenende".
+- research/universum_trockenlauf/universum_trockenlauf.py::trockenlauf() Z. 343-348: je Falte stichtage_der_falte(von, bis)
+  = (von T00:00:00, bis minus 1 Sekunde); die Bestaetigungsperiode endet am Go-Live-Schnitt 2026-09-01 (ausschliesslich)
+  => Stichtag 2026-08-31T23:59:59. loaderlauf.py::stichtagssicht_an() kuerzt jedes read_csv auf den Stichtag.
+- Zusaetzlich misst trockenlauf() den Stichtag "9999-12-31T23:59:59" ("heute", voller Datenstand) - der geht in
+  "heute_geladen", NICHT in die Bestaetigungsspalte.
+=> ANTWORT: Nein. TB-40 hat die Bestaetigungsspalte NICHT am Datenende gemessen, sondern am Faltenende
+   2026-08-31T23:59:59 mit Datumsgrenze. Der TB-103-Trockenlauf (d_trockenlauf.py -> load_all_symbol_data() ohne
+   Datumsparameter) laedt dagegen am Datenende des Snapshots. Die Verfahren sind verschieden.
+
+## 2. Nachmessung: beide Stichtage, derselbe Loader, je Bot (docs/belege/TB-104/a4_datenende.py)
+Werkzeug: universum_trockenlauf.messe_bot (loaderlauf.py, Kindprozess je Bot, Schreibschutz an), Stichtage
+2026-08-31T23:59:59 (TB-40-Verfahren) und 9999-12-31T23:59:59 (= keine Grenze, Datenende).
+Datenstand data/ = d9449faf... (223 Dateien) = datenstand_hash des Snapshots 63e4b6c8 (0_hashes_vorher.txt (6)/(7)).
+Ohne Selektionsmodus (Messwerkzeug; die Kursdateien sind bytegleich mit dem Snapshot, siehe Datenstand-Hash).
+Laufzeit 30 s.
+
+elliott_wave {'faltenende_2026-08-31T23:59:59': 18, 'datenende': 18, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 24}
+t3_supertrend {'faltenende_2026-08-31T23:59:59': 18, 'datenende': 18, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 24}
+rsi2_crypto {'faltenende_2026-08-31T23:59:59': 20, 'datenende': 20, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 24}
+turtle_soup_crypto {'faltenende_2026-08-31T23:59:59': 20, 'datenende': 20, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 24}
+volatility_breakout_crypto {'faltenende_2026-08-31T23:59:59': 20, 'datenende': 20, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 24}
+elliott_wave_stocks {'faltenende_2026-08-31T23:59:59': 147, 'datenende': 147, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 150}
+rsi2_mean_reversion {'faltenende_2026-08-31T23:59:59': 147, 'datenende': 147, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 150}
+turtle_soup_stocks {'faltenende_2026-08-31T23:59:59': 147, 'datenende': 147, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 150}
+volatility_breakout {'faltenende_2026-08-31T23:59:59': 147, 'datenende': 147, 'gleiche_menge': True, 'nur_datenende': [], 'nur_faltenende': [], 'universum': 150}
+
+## 3. Ergebnis
+9/9 gleiche Menge an beiden Stichtagen: 18 / 18 / 20 / 20 / 20 / 147 / 147 / 147 / 147 - zahlengleich mit 16.1.1
+Spalte Bestaetigung und mit den in TB-103 geladenen Mengen. Kein Symbol nur am Datenende, keins nur am Faltenende.
+=> Die Gleichheit in TB-103 ist KEIN Zufall des Verfahrens, sondern gemessen: zwischen 2026-08-31T23:59:59 und dem
+   Datenende des Snapshots wird kein weiteres Symbol handelbar (und keins faellt weg).
+=> Fuer die Voraussetzung in Fable 25a 3 (B) (2): Der Trockenlauf ruft den Loader NICHT am Faltenende auf, sondern
+   am Datenende; am Stand d9449faf/63e4b6c8 ist das Ergebnis dasselbe. Bei einem Snapshot, der deutlich ueber den
+   Go-Live-Schnitt hinausreicht, koennte es auseinanderlaufen (ein Symbol, dessen Schranke nach dem 31.08. faellt).
+   Tatsachennotiz mit Bedingung, kein Befund.

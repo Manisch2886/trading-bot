@@ -1,0 +1,34 @@
+# TB-104 A5 - herkunft.py::datenstand(): Argument oder fest data/? (Fable 25a, Unsicherheit (1))
+# NUR gelesen und gemessen; herkunft.py unveraendert (Hash vorher 56a1c2e1..., 0_hashes_vorher.txt (2)). HEAD be31276.
+
+## 1. Quelltext (research/vorregistrierung/herkunft.py am Stand be31276)
+Z.  96  def datenstand(daten_dir=None) -> dict:
+Z.  98      daten_dir = daten_dir or os.path.join(BASE_DIR, "data")      # Voreinstellung: <BASE_DIR>/data
+Z. 100      dateien = sorted(f for f in os.listdir(daten_dir) if f.endswith(".csv"))   # nur *.csv, nicht rekursiv
+Z. 126  def block(anlass="lauf"):
+Z. 128      c, d, r = commit(), datenstand(), register()                  # OHNE Argument
+Z. 155  def anhaengen(anlass="lauf"):  ... eintrag = block(anlass)         # erbt die Voreinstellung
+BASE_DIR (Z. 51) = TB30A_BASE_DIR oder Repo-Wurzel - kennt den Selektionsmodus nicht.
+
+## 2. Messung (trading-env/bin/python3, ohne Modus)
+inspect.signature(herkunft.datenstand) = (daten_dir=None) -> dict
+herkunft.datenstand('snapshots/63e4b6c8.../') = d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84, 223 Dateien
+herkunft.datenstand()                          = d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84, 223 Dateien
+(Der Snapshot traegt die Kurse flach in der Wurzel, Universum unter config/, dazu MANIFEST.json - datenstand() zaehlt
+nur *.csv der obersten Ebene, deshalb ergibt es auf dem Snapshot-Ordner genau den MANIFEST-datenstand_hash.
+shared/snapshot.py:358 ruft es genau so: h.datenstand(ordner).)
+
+## 3. Wer ruft block()/anhaengen() der vorregistrierung/herkunft.py?
+Textsuche research/ shared/ strategies/ (ohne docs/belege): kein Modul des Laufbereichs importiert
+research/vorregistrierung/herkunft.py. Importe von "herkunft" gibt es nur in research/turn_of_month/ (eigene
+herkunft.py), test_universum_trockenlauf.py, shared/test_stille_ausfaelle.py, shared/test_abrufschutz.py (Tests).
+auswertung.py nennt herkunft.json nur im Kopftext (liest sie nicht als Modul). D1 misst das am Import-Audit nach.
+
+## 4. Antwort
+ARGUMENT JA: datenstand() nimmt das Verzeichnis als Argument. Wer den Datenstand-Hash des Snapshots braucht, ruft
+datenstand(<Resolver-DATA_DIR>) - am Stand be31276 ergibt das d9449faf... = MANIFEST.
+ABER: block() (und damit anhaengen()) ruft datenstand() OHNE Argument und liest unter dem Modus <BASE_DIR>/data,
+also den Live-Bestand. Wer block() im Modus ruft, bekaeme den Datenstand von data/, nicht vom Snapshot - heute
+zufaellig gleich (beide d9449faf), strukturell nicht. Nach Fable 25a bleibt herkunft.py zu; der Erzeuger darf
+block() unter dem Modus nicht rufen, sondern datenstand(paths.DATA_DIR) selbst. Tatsachennotiz, kein Befund
+(block() liegt heute ausserhalb des Laufbereichs, siehe D1).

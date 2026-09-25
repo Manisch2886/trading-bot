@@ -75,6 +75,11 @@ AUFRUF
 Probelaeufe der Tests und fuer `--stille-filter`). `TB40_BASE_DIR` verschiebt
 die Repo-Wurzel - die Mutationsproben brauchen das, um auf einem Wegwerf-Repo
 zu laufen.
+
+⚠️ `--daten` ist ein MESSWERKZEUG, kein Modus-Lauf (Fable 24d Abschnitt 3,
+TB-104). Unter dem Selektionsmodus endet der Lauf mit `--daten` mit 2, bevor
+ein Bot-Modul geladen wird: der Loader bekommt seinen `DATA_DIR` dann nur vom
+Resolver (`shared/paths.py` ueber `strategy_paths`), nie von aussen.
 """
 
 import argparse
@@ -504,6 +509,20 @@ def stichtagssicht_an():
 
 
 # ---------------------------------------------------------------------------
+# Selektionsmodus - ueber den Resolver gefragt, nicht selbst gelesen (TB-104)
+# ---------------------------------------------------------------------------
+RUECKGABEWERT_DATEN_IM_MODUS = 2       # 36.5: gepruefte Unmoeglichkeit
+
+
+def _modus():
+    """(wurzel, hash) des Selektionsmodus oder None - aus `shared/paths.py`
+    derselben Code-Wurzel, aus der auch der Bot seinen Resolver importiert."""
+    sys.path.insert(0, os.path.join(BASIS, "shared"))
+    import paths
+    return paths.selektionsmodus()
+
+
+# ---------------------------------------------------------------------------
 # Bot-Modul laden
 # ---------------------------------------------------------------------------
 def lade_botmodul(bot, datenordner=None):
@@ -568,6 +587,18 @@ def main(argv=None):
                         "die zeigt, dass der Datenstand-Hash auch ohne ihn "
                         "greift - im Trockenlauf selbst nie benutzt.")
     args = p.parse_args(argv)
+
+    # TB-104 (Fable 24c Abschnitt 2, 24d Abschnitt 3): unter dem Modus setzt
+    # niemand dem Loader einen Datenordner von aussen. Geprueft VOR dem Laden
+    # des Bots und vor dem Schreibschutz; das Ergebnis-JSON nennt den Grund.
+    if args.daten is not None and _modus() is not None:
+        with open(args.aus, "w") as f:
+            json.dump({"bot": args.bot, "laeufe": [], "fehler":
+                       "MODUS: --daten %s unter dem Selektionsmodus (%s) - "
+                       "ein Ersatz-Kursdatenordner ist ein Messwerkzeug, kein "
+                       "Modus-Lauf; nichts geladen" % (args.daten, _modus()[0])},
+                      f, ensure_ascii=False, indent=1)
+        return RUECKGABEWERT_DATEN_IM_MODUS
 
     erlaubt = [os.path.dirname(os.path.abspath(args.aus))]
     if not args.ohne_schreibschutz:

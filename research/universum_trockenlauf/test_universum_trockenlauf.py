@@ -37,6 +37,10 @@ Geprueft wird, was die Aufgabenstellung ausdruecklich verlangt:
      LESENDE Zugriffe ab. **Teil K sieht das nicht** - dort ist `pathlib`
      schon geladen, bevor die Wache angeht. L faehrt beide Reihenfolgen ab,
      unter jeder Python-Fassung, die auf dem Rechner liegt.
+  O  **TB-104:** unter dem Selektionsmodus setzt niemand dem Loader einen
+     Datenordner von aussen - `loaderlauf.py --daten` endet mit 2, ohne eine
+     Kursdatei zu lesen; ohne `--daten` liest der Loader aus dem Snapshot.
+     Mit Mutationsprobe "Modus-Wache entfernt" und Gegenprobe.
 
 ZU DEN MUTATIONSPROBEN - DIE ZWEI WIEDERKEHRENDEN FALLEN
 ------------------------------------------------------------------------------
@@ -1295,6 +1299,187 @@ def teil_n():
            str(ergebnisse["fehlt"]["mkdir"]))
 
 
+# ===========================================================================
+# O  TB-104: unter dem Selektionsmodus setzt niemand dem Loader einen
+#    Datenordner von aussen (Fable 24c Abschnitt 2, 24d Abschnitt 3) -
+#    Bauart research/vorregistrierung/test_vorregistrierung.py Teil I
+# ===========================================================================
+_O_SNAP_HASH = "attrappe_tb104_loaderlauf_0000000000"
+_O_BOT = "attrappe_bot"
+_O_HAKEN = r"""
+import os, sys
+_ziel = os.environ.get("TB104_O_PROTOKOLL")
+if _ziel:
+    _fd = os.open(_ziel, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o644)
+    def _haken(e, a, _fd=_fd, _w=os.write):
+        if e == "open" and a and isinstance(a[0], (str, bytes, os.PathLike)):
+            _w(_fd, (os.fsdecode(a[0]) + "\n").encode("utf-8", "replace"))
+    sys.addaudithook(_haken)
+"""
+# Ein Attrappen-Bot mit demselben Vertrag wie die neun Loader: `DATA_DIR` ist
+# eine Modulvariable aus dem Resolver, die `load_all_symbol_data()` bei jedem
+# Aufruf frisch liest (loaderlauf.lade_botmodul setzt sie bei `--daten` um),
+# die Symbolliste kommt aus `CONFIG_DIR`. Kein Bot-Code wird kopiert.
+_O_LOADER = """import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(
+    os.path.abspath(__file__)))), "shared"))
+import paths
+DATA_DIR = paths.DATA_DIR
+INTERVAL = "1d"
+with open(os.path.join(paths.CONFIG_DIR, "top25_symbols.txt")) as f:
+    SYMBOLS = [z.strip() for z in f if z.strip()]
+
+
+def load_all_symbol_data():
+    geladen = {}
+    for s in SYMBOLS:
+        pfad = os.path.join(DATA_DIR, "%s_%s.csv" % (s, INTERVAL))
+        if os.path.exists(pfad):
+            with open(pfad) as f:
+                geladen[s] = f.read()
+    return geladen
+"""
+# Einstiegspunkt fuer die Probe ueber universum_trockenlauf.messe_bot().
+_O_UT = """import json, os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "research", "universum_trockenlauf"))
+import universum_trockenlauf as ut
+print(json.dumps(ut.messe_bot(sys.argv[1], [], datenordner=sys.argv[2] or None)))
+"""
+# Die Stelle, die die Mutationsprobe ersetzt.
+_O_WACHE = ("    if args.daten is not None and _modus() is not None:\n",
+            "    if False:\n")
+
+
+def _o_lauf(weg, daten=False, mutieren=False):
+    """Ein Lauf im Modus, im Wegwerfbaum (Git-Repo, ECHTE paths.py, ECHTE
+    loaderlauf.py/universum_trockenlauf.py, Attrappen-Bot, data/ und config/
+    mit erfundenen Reihen; daneben die Snapshot-Attrappe).
+    `weg`: "loaderlauf" (Kindprozess direkt) oder "ut" (ueber messe_bot).
+    `daten`: `--daten <baum>/data`. `mutieren=False` ist die Gegenprobe: die
+    Stelle muss trotzdem existieren. Rueckgabe: rc, Ergebnis-JSON, Zugriffe
+    auf <baum>/data/*.csv, <baum>/config/*, <snapshot>/*.csv."""
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, haken = (os.path.join(t, n) for n in ("baum", "snap", "haken"))
+        botdir = os.path.join(baum, "strategies", _O_BOT)
+        for o in (os.path.join(baum, "shared"), os.path.join(baum, "data"),
+                  os.path.join(baum, "config"), botdir, snap,
+                  os.path.join(snap, "config"), haken):
+            os.makedirs(o)
+        for datei in ("shared/paths.py", "requirements.lock"):
+            shutil.copy2(os.path.join(BASE_DIR, datei), os.path.join(baum, datei))
+        shutil.copytree(_HIER, os.path.join(baum, "research", "universum_trockenlauf"),
+                        ignore=shutil.ignore_patterns("__pycache__", "test_*"))
+        loader = os.path.join(baum, "research", "universum_trockenlauf",
+                              "loaderlauf.py")
+        with open(loader, encoding="utf-8") as f:
+            quelle = f.read()
+        if _O_WACHE[0] not in quelle:
+            raise AssertionError("Mutationsstelle nicht gefunden: %r" % _O_WACHE[0])
+        if mutieren:
+            with open(loader, "w", encoding="utf-8") as f:
+                f.write(quelle.replace(_O_WACHE[0], _O_WACHE[1], 1))
+        with open(os.path.join(botdir, "multi_symbol_optimise.py"), "w") as f:
+            f.write(_O_LOADER)
+        with open(os.path.join(baum, "probe_o.py"), "w") as f:
+            f.write(_O_UT)
+        for kurse, wurzel in ((os.path.join(baum, "data"), baum), (snap, snap)):
+            with open(os.path.join(kurse, "AAAUSDT_1d.csv"), "w") as f:
+                f.write("open_time,close\n2020-01-01,1\n")
+            with open(os.path.join(wurzel, "config", "top25_symbols.txt"), "w") as f:
+                f.write("AAAUSDT\n")
+        with open(os.path.join(snap, "MANIFEST.json"), "w") as f:
+            json.dump({"snapshot_hash": _O_SNAP_HASH,
+                       "dateien": {"AAAUSDT_1d.csv": {},
+                                   "config/top25_symbols.txt": {}}}, f)
+        with open(os.path.join(haken, "sitecustomize.py"), "w") as f:
+            f.write(_O_HAKEN)
+        for argumente in (["init", "-q"], ["add", "-A"],
+                          ["-c", "user.name=tb104", "-c", "user.email=tb104@test",
+                           "commit", "-q", "-m", "Wegwerfbaum"]):
+            subprocess.run(["git", "-C", baum] + argumente, check=True,
+                           capture_output=True, text=True)
+        head = subprocess.run(["git", "-C", baum, "rev-parse", "HEAD"],
+                              capture_output=True, text=True).stdout.strip()
+        u = os.environ.copy()
+        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+            u.pop(v, None)
+        u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": _O_SNAP_HASH,
+                  "TB_SELEKTIONSCOMMIT": head, "PYTHONPATH": haken,
+                  "TB104_O_PROTOKOLL": os.path.join(t, "protokoll.txt")})
+        datenordner = os.path.join(baum, "data") if daten else ""
+        if weg == "loaderlauf":
+            aus = os.path.join(t, "aus", "ergebnis.json")
+            os.makedirs(os.path.dirname(aus))
+            befehl = [sys.executable, "-W", "ignore", loader, "--bot", _O_BOT,
+                      "--aus", aus] + (["--daten", datenordner] if daten else [])
+            r = subprocess.run(befehl, capture_output=True, text=True, env=u)
+            ergebnis = None
+            if os.path.exists(aus):
+                with open(aus, encoding="utf-8") as f:
+                    ergebnis = json.load(f)
+        else:
+            r = subprocess.run([sys.executable, "-W", "ignore",
+                                os.path.join(baum, "probe_o.py"), _O_BOT, datenordner],
+                               capture_output=True, text=True, env=u)
+            ergebnis = (json.loads(r.stdout.strip().splitlines()[-1])
+                        if r.returncode == 0 and r.stdout.strip() else None)
+        pfade = []
+        if os.path.exists(u["TB104_O_PROTOKOLL"]):
+            with open(u["TB104_O_PROTOKOLL"], encoding="utf-8") as f:
+                pfade = [os.path.realpath(z.strip()) for z in f if z.strip()]
+        d = os.path.realpath(os.path.join(baum, "data")) + os.sep
+        k = os.path.realpath(os.path.join(baum, "config")) + os.sep
+        sr = os.path.realpath(snap) + os.sep
+        return {"rc": r.returncode, "ergebnis": ergebnis,
+                "data_csv": sum(p.startswith(d) and p.endswith(".csv") for p in pfade),
+                "baum_config": len({p for p in pfade if p.startswith(k)}),
+                "snap_csv": sum(p.startswith(sr) and p.endswith(".csv") for p in pfade),
+                "text": (r.stdout + r.stderr)[-300:]}
+
+
+def _o_fehler(r):
+    return str(((r["ergebnis"] or {}).get("fehler")) or "")
+
+
+def _o_zusatz(r):
+    return "rc %s, data/ %s, config/ %s, Snapshot-CSV %s, fehler %r; %s" % (
+        r["rc"], r["data_csv"], r["baum_config"], r["snap_csv"],
+        _o_fehler(r)[:120], r["text"])
+
+
+def teil_o():
+    r = _o_lauf("loaderlauf")
+    pruefe("O1: loaderlauf.py im Selektionsmodus ohne --daten - der Loader "
+           "liest aus dem Snapshot, 0 Kursdateien aus data/, 0 aus config/",
+           r["rc"] == 0 and not _o_fehler(r) and r["data_csv"] == 0
+           and r["baum_config"] == 0 and r["snap_csv"] > 0
+           and r["ergebnis"]["laeufe"][0]["symbole"] == ["AAAUSDT"], _o_zusatz(r))
+    r = _o_lauf("loaderlauf", daten=True)
+    pruefe("O2: loaderlauf.py --daten im Selektionsmodus endet mit 2, nennt den "
+           "Grund und liest keine Kursdatei - weder aus dem Ersatzordner noch "
+           "aus dem Snapshot",
+           r["rc"] == 2 and _o_fehler(r).startswith("MODUS")
+           and r["data_csv"] == 0 and r["snap_csv"] == 0, _o_zusatz(r))
+    r = _o_lauf("ut", daten=True)
+    pruefe("O3: universum_trockenlauf.messe_bot(datenordner=...) im "
+           "Selektionsmodus - der Kindprozess lehnt ab, 0 Kursdateien aus dem "
+           "Ersatzordner",
+           r["ergebnis"] is not None and _o_fehler(r).startswith("MODUS")
+           and r["data_csv"] == 0, _o_zusatz(r))
+    for name, weg, text in (
+            ("O4", "loaderlauf", "loaderlauf.py liest im Modus aus dem "
+                                 "Ersatzordner (O2 waere rot)"),
+            ("O5", "ut", "messe_bot() liest im Modus aus dem Ersatzordner "
+                         "(O3 waere rot)")):
+        m = _o_lauf(weg, daten=True, mutieren=True)
+        pruefe("%s: Mutationsprobe 'Modus-Wache fuer --daten entfernt' - %s"
+               % (name, text), m["data_csv"] > 0, _o_zusatz(m))
+        g = _o_lauf(weg, daten=True, mutieren=False)
+        pruefe("%s-G: Gegenprobe zu %s - ohne die Mutation scheitert sie"
+               % (name, name), not g["data_csv"] > 0, _o_zusatz(g))
+
+
 def main():
     print(__doc__.strip().split("\n")[0])
     print("=" * 78)
@@ -1302,7 +1487,7 @@ def main():
                        ("D", teil_d), ("E", teil_e), ("F", teil_f),
                        ("G", teil_g), ("H", teil_h), ("I", teil_i),
                        ("J", teil_j), ("K", teil_k), ("L", teil_l),
-                          ("M", teil_m), ("N", teil_n)):
+                          ("M", teil_m), ("N", teil_n), ("O", teil_o)):
         print("  Teil %s ..." % name, flush=True)
         try:
             teil()

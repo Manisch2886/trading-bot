@@ -1,0 +1,47 @@
+# TB-104 A6, Klon HEAD be31276, Bot elliott_wave, 2026-09-25 09:16:14 +0200
+vorher:  ls: logs: No such file or directory ls: logs/elliott_wave: No such file or directory ls: results/elliott_wave: No such file or directory 
+Arbeitsbaum shared/ strategies/ lock (leer = sauber): []
+rc=0
+nachher: logs logs/elliott_wave results/elliott_wave 
+git status --porcelain --ignored (Klon):
+## os.mkdir-Ereignisse (Pfad <- Aufrufstapel innen zuerst), Klonpfad als <klon>:
+   1 /Users/jaquelineloffler/Library/Caches/com.apple.python<klon>  <-  <klon>/docs/belege/TB-103/d_trockenlauf.py:52
+   1 /Users/jaquelineloffler/Library/Caches/com.apple.python<klon>/research  <-  <klon>/docs/belege/TB-103/d_trockenlauf.py:52
+   1 /Users/jaquelineloffler/Library/Caches/com.apple.python<klon>/research/exposure_messung  <-  <klon>/docs/belege/TB-103/d_trockenlauf.py:52
+   1 /Users/jaquelineloffler/Library/Caches/com.apple.python<klon>/shared  <-  <klon>/strategies/elliott_wave/equity_simulation.py:35 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 /Users/jaquelineloffler/Library/Caches/com.apple.python<klon>/strategies  <-  <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 /Users/jaquelineloffler/Library/Caches/com.apple.python<klon>/strategies/elliott_wave  <-  <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/logs  <-  <klon>/shared/strategy_paths.py:131 < <klon>/strategies/elliott_wave/equity_simulation.py:36 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/logs/elliott_wave  <-  <klon>/shared/strategy_paths.py:131 < <klon>/strategies/elliott_wave/backtest_elliott.py:45 < <klon>/strategies/elliott_wave/multi_symbol_optimise.py:37 < <klon>/strategies/elliott_wave/equity_simulation.py:51 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/logs/elliott_wave  <-  <klon>/shared/strategy_paths.py:131 < <klon>/strategies/elliott_wave/elliott_wave_counter.py:23 < <klon>/strategies/elliott_wave/multi_symbol_optimise.py:36 < <klon>/strategies/elliott_wave/equity_simulation.py:51 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/logs/elliott_wave  <-  <klon>/shared/strategy_paths.py:131 < <klon>/strategies/elliott_wave/equity_simulation.py:36 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/logs/elliott_wave  <-  <klon>/shared/strategy_paths.py:131 < <klon>/strategies/elliott_wave/multi_symbol_optimise.py:31 < <klon>/strategies/elliott_wave/equity_simulation.py:51 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/logs/elliott_wave  <-  <klon>/shared/strategy_paths.py:131 < <klon>/strategies/elliott_wave/zigzag_indicator.py:20 < <klon>/strategies/elliott_wave/multi_symbol_optimise.py:35 < <klon>/strategies/elliott_wave/equity_simulation.py:51 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/research/exposure_messung/daten  <-  <klon>/research/exposure_messung/bot_lauf.py:63 < <klon>/docs/belege/TB-103/d_trockenlauf.py:52
+   1 <klon>/results/elliott_wave  <-  <klon>/shared/strategy_paths.py:130 < <klon>/strategies/elliott_wave/backtest_elliott.py:45 < <klon>/strategies/elliott_wave/multi_symbol_optimise.py:37 < <klon>/strategies/elliott_wave/equity_simulation.py:51 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/results/elliott_wave  <-  <klon>/shared/strategy_paths.py:130 < <klon>/strategies/elliott_wave/elliott_wave_counter.py:23 < <klon>/strategies/elliott_wave/multi_symbol_optimise.py:36 < <klon>/strategies/elliott_wave/equity_simulation.py:51 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/results/elliott_wave  <-  <klon>/shared/strategy_paths.py:130 < <klon>/strategies/elliott_wave/equity_simulation.py:36 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/results/elliott_wave  <-  <klon>/shared/strategy_paths.py:130 < <klon>/strategies/elliott_wave/multi_symbol_optimise.py:31 < <klon>/strategies/elliott_wave/equity_simulation.py:51 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+   1 <klon>/results/elliott_wave  <-  <klon>/shared/strategy_paths.py:130 < <klon>/strategies/elliott_wave/zigzag_indicator.py:20 < <klon>/strategies/elliott_wave/multi_symbol_optimise.py:35 < <klon>/strategies/elliott_wave/equity_simulation.py:51 < <klon>/docs/belege/TB-103/d_trockenlauf.py:53
+## Modus-Zeilen aus der Ausgabe:
+[paths] SELEKTIONSMODUS AKTIV - Kursdaten kommen aus /Users/jaquelineloffler/trading-bot/snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2 (snapshot_hash 63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2), nicht aus /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/32418e45-78da-427b-84c0-91fe03b300b8/scratchpad/a6/klon/data.
+[paths] codewurzel          /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/32418e45-78da-427b-84c0-91fe03b300b8/scratchpad/a6/klon
+[paths] commit              be31276e1e87be09e9fd9f1f3aa1a71ed83fbc30
+
+## Auswertung (TB-104, von Hand)
+- Der Klon ist ein frischer `git clone` von be31276 (6 s). Versioniert sind dort results/<bot>/ nur fuer die Bots
+  mit versionierten Dateien (elliott_wave_stocks, rsi2_crypto, rsi2_mean_reversion, t3_supertrend, turtle_soup_*,
+  volatility_breakout*); logs/ ist gar nicht versioniert. Gewaehlt: elliott_wave (weder results/ noch logs/).
+- ANTWORT (Fable 25a Unsicherheit (2)): JA. Ein Modus-Lauf eines Bots legt in einem Baum ohne diese Ordner
+  `logs/`, `logs/elliott_wave/` und `results/elliott_wave/` an - Stelle shared/strategy_paths.py:129-130
+  (os.makedirs(results_dir/logs_dir, exist_ok=True); der Haken meldet die Zeilen 130/131, weil os.makedirs intern
+  os.mkdir ruft), gerufen beim Import von equity_simulation.py:36 und vier weiteren Bot-Modulen. Im echten Repo
+  existieren alle 18 Ordner (Vormessung Auftrag A6), dort legt `makedirs` heute nichts an.
+  Das ist ein Schreibziel der Klasse (iii) (Fable 25a 3 (A)) - "auch ohne geschriebene Bytes".
+- Nebenbefund 1: `research/exposure_messung/daten` legt der MESSUMSCHLAG an (bot_lauf.py:63, os.makedirs beim
+  Import), nicht der Bot. d_trockenlauf.py nutzt bot_lauf nur als Bibliothek; fuer den Erzeuger (Plan-Punkt 3) ist
+  bot_lauf.py damit selbst ein Modul mit Schreibziel beim Import - im echten Repo existiert der Ordner.
+- Nebenbefund 2: sechs Verzeichnisse unter ~/Library/Caches/com.apple.python<klon>/... - das ist der Bytecode-
+  Cache des Apple-Python 3.9 (sys.pycache_prefix), kein Repo-Pfad; Umgebung, Klasse (ii).
+- Keine versionierte Datei geaendert (git status --porcelain --ignored leer - leere Ordner zeigt git nicht).
+- Nichts im echten Repo angelegt oder geaendert (Lauf im Klon; TB_SELEKTIONSWURZEL zeigt nur lesend auf den Snapshot).

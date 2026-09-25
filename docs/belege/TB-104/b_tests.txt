@@ -1,0 +1,33 @@
+# TB-104 B - Tests nach Block B (trading-env/bin/python3 = 3.9.6), 2026-09-25 09:51:38 +0200
+research/faltenplan_neun/test_faltenplan_neun.py rc=0 152s 156/156 Pruefungen bestanden.
+research/faltenplan_neun/test_erste_falte_trockenlauf.py rc=0 134s 50/50 Pruefungen bestanden.
+research/faltenplan_neun/test_horizontbeginn.py rc=0 61s 61/61 Pruefungen bestanden.
+research/universum_trockenlauf/test_universum_trockenlauf.py rc=0 97s 163/163 Pruefungen bestanden.
+shared/test_paths.py rc=0 12s 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+research/vorregistrierung/test_vorregistrierung.py rc=0 834s 194/194 Pruefungen bestanden.
+TESTS_FERTIG
+
+## neue Proben (Ausschnitt: test_faltenplan_neun Teil K, test_universum_trockenlauf Teil O)
+    ok   K1: faltenplan_neun.py im Selektionsmodus - 0 Kursdateien aus data/, 0 Universumsdateien aus config/, beides aus dem Snapshot, rc 0
+    ok   K2: erste_falte_trockenlauf.py im Selektionsmodus - dasselbe (es liest ueber faltenplan_neun, ohne eigene Pfadlogik)
+    ok   K3: eine Ersatzwurzel (TB36_BASE_DIR) unter dem Modus bricht mit 2 ab, bevor eine Kurs- oder Universumsdatei gelesen ist
+    ok   K4: Mutationsprobe 'Resolver-Umstellung der Kursdateien zurueckgenommen' - faltenplan_neun.py liest im Modus aus data/ (K1 waere rot)
+    ok   K4-G: Gegenprobe zu K4 - ohne die Mutation scheitert sie
+    ok   K5: Mutationsprobe 'Resolver-Umstellung des Universums zurueckgenommen' - faltenplan_neun.py liest im Modus aus config/ (K1 waere rot)
+    ok   K5-G: Gegenprobe zu K5 - ohne die Mutation scheitert sie
+    ok   K6: Mutationsprobe 'Resolver-Umstellung zurueckgenommen' an erste_falte_trockenlauf.py (Stelle in faltenplan_neun.py) - K2 waere rot
+    ok   K6-G: Gegenprobe zu K6 - ohne die Mutation scheitert sie
+    ok   K7: Mutationsprobe 'Modus-Wache der Ersatzwurzel entfernt' - die Ersatzwurzel liest im Modus aus data/ (K3 waere rot)
+    ok   K7-G: Gegenprobe zu K7 - ohne die Mutation scheitert sie
+    ok   O1: loaderlauf.py im Selektionsmodus ohne --daten - der Loader liest aus dem Snapshot, 0 Kursdateien aus data/, 0 aus config/
+    ok   O2: loaderlauf.py --daten im Selektionsmodus endet mit 2, nennt den Grund und liest keine Kursdatei - weder aus dem Ersatzordner noch aus dem Snapshot
+    ok   O3: universum_trockenlauf.messe_bot(datenordner=...) im Selektionsmodus - der Kindprozess lehnt ab, 0 Kursdateien aus dem Ersatzordner
+    ok   O4: Mutationsprobe 'Modus-Wache fuer --daten entfernt' - loaderlauf.py liest im Modus aus dem Ersatzordner (O2 waere rot)
+    ok   O4-G: Gegenprobe zu O4 - ohne die Mutation scheitert sie
+    ok   O5: Mutationsprobe 'Modus-Wache fuer --daten entfernt' - messe_bot() liest im Modus aus dem Ersatzordner (O3 waere rot)
+    ok   O5-G: Gegenprobe zu O5 - ohne die Mutation scheitert sie
+(test_vorregistrierung druckt nur Fehlschlaege; J1, J2, J2-G sind in 194/194 enthalten, 191 + 3)
+
+## benchmark.py OHNE Modus nach B: rc 0, 52 s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  <scratch>/bm_nachB_ohne_modus.json
+Soll 64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7 -> bytegleich

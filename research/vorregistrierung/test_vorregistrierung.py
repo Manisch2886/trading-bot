@@ -17,6 +17,9 @@ Geprueft wird, was die Aufgabenstellung ausdruecklich verlangt:
   H  Mutationsproben.
   I  messgroessen.py liest unter dem Selektionsmodus keine Kursdatei aus
      data/ - mit Mutationsprobe "Resolver-Import entfernt" (TB-103).
+  J  benchmark.py liest unter dem Selektionsmodus keine Kurs- und keine
+     Universumsdatei aus data/ bzw. config/ - mit Mutationsprobe
+     "Resolver-Umstellung zurueckgenommen" (TB-104).
 
 ZU DEN MUTATIONSPROBEN - WARUM SIE SO GEBAUT SIND
 ------------------------------------------------------------------------------
@@ -1059,11 +1062,126 @@ def teil_i():
         lambda r: f"rc {r['rc']}, data/ {r['data_csv']}, Snapshot-CSV {r['snap_csv']}")
 
 
+# ===========================================================================
+# J  benchmark.py unter dem Selektionsmodus: keine Kurs- und keine
+#    Universumsdatei aus data/ bzw. config/ (TB-104, Fable 24c Abschnitt 2,
+#    25a (C)) - Bauart Teil I
+# ===========================================================================
+_J_SNAP_HASH = "attrappe_tb104_benchmark_00000000000"
+
+# Dieselbe Stelle, die die Mutation "Resolver-Umstellung zurueckgenommen"
+# ersetzt - die Zuweisungen von vor TB-104, aus BASE_DIR gebaut.
+_J_RESOLVER = ('DATA_DIR = paths.DATA_DIR\n'
+               'CONFIG_DIR = paths.CONFIG_DIR\n')
+_J_OHNE_RESOLVER = ('DATA_DIR = os.path.join(BASE_DIR, "data")\n'
+                    'CONFIG_DIR = os.path.join(BASE_DIR, "config")\n')
+
+# Der Einstiegspunkt im Wegwerfbaum (die Startpruefung von paths.py verlangt
+# ihn unter derselben Git-Wurzel): nur die beiden lesenden Funktionen, die
+# Kurs- und Universumsdateien oeffnen - nicht die ganze Rechnung (die braucht
+# die Loader aller neun Bots).
+_J_PROBE = '''import os, sys
+sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "research", "vorregistrierung"))
+import benchmark as bm
+for markt in ("krypto", "aktien"):
+    print(markt, sorted(bm.tagesschluss(markt)))
+'''
+
+
+def _j_lauf(mutieren):
+    """benchmark.py im Modus, in einem Wegwerfbaum (Git-Repo mit einem
+    Commit) mit der ECHTEN paths.py und den ECHTEN Modulen der Importkette
+    (research/vorregistrierung, research/faltenplan_neun,
+    research/universum_trockenlauf, notifications/manual_close.py), dazu
+    data/ und config/ mit erfundenen Reihen; daneben eine Snapshot-Attrappe
+    mit denselben Reihen flach und dem Universum unter config/.
+    Rueckgabe: rc, Zugriffe auf <baum>/data/*.csv, <baum>/config/*,
+    <snapshot>/*.csv, <snapshot>/config/* (verschiedene Dateien)."""
+    repo = os.path.dirname(os.path.dirname(_HIER))
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, haken = (os.path.join(t, n) for n in ("baum", "snap", "haken"))
+        for o in (os.path.join(baum, "shared"), os.path.join(baum, "data"),
+                  os.path.join(baum, "notifications"), os.path.join(baum, "research"),
+                  snap, haken):
+            os.makedirs(o)
+        for datei in ("shared/paths.py", "requirements.lock",
+                      "notifications/manual_close.py"):
+            shutil.copy2(os.path.join(repo, datei), os.path.join(baum, datei))
+        for ordner in ("vorregistrierung", "faltenplan_neun", "universum_trockenlauf"):
+            shutil.copytree(os.path.join(repo, "research", ordner),
+                            os.path.join(baum, "research", ordner),
+                            ignore=shutil.ignore_patterns("__pycache__", "ergebnisse",
+                                                          "daten", "test_*"))
+        ziel_bm = os.path.join(baum, "research", "vorregistrierung", "benchmark.py")
+        _ersetze(ziel_bm, _J_RESOLVER, _J_OHNE_RESOLVER, mutieren)
+        with open(os.path.join(baum, "probe_j.py"), "w") as f:
+            f.write(_J_PROBE)
+        _i_kursdateien(os.path.join(baum, "data"))
+        os.rename(os.path.join(baum, "data", "config"), os.path.join(baum, "config"))
+        namen = _i_kursdateien(snap)
+        with open(os.path.join(snap, "MANIFEST.json"), "w") as f:
+            json.dump({"snapshot_hash": _J_SNAP_HASH,
+                       "dateien": dict({n: {} for n in namen},
+                                       **{"config/top25_symbols.txt": {},
+                                          "config/sp500_top150.txt": {}})}, f)
+        with open(os.path.join(haken, "sitecustomize.py"), "w") as f:
+            f.write(_I_HAKEN)
+        _i_git(baum, "init", "-q")
+        _i_git(baum, "add", "-A")
+        _i_git(baum, "-c", "user.name=tb104", "-c", "user.email=tb104@test",
+               "commit", "-q", "-m", "Wegwerfbaum")
+        head = subprocess.run(["git", "-C", baum, "rev-parse", "HEAD"],
+                              capture_output=True, text=True).stdout.strip()
+        u = dict(os.environ)
+        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+            u.pop(v, None)
+        u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": _J_SNAP_HASH,
+                  "TB_SELEKTIONSCOMMIT": head, "PYTHONPATH": haken,
+                  "TB103_I_PROTOKOLL": os.path.join(t, "protokoll.txt")})
+        r = subprocess.run([sys.executable, "-W", "ignore",
+                            os.path.join(baum, "probe_j.py")],
+                           capture_output=True, text=True, env=u)
+        pfade = []
+        if os.path.exists(u["TB103_I_PROTOKOLL"]):
+            with open(u["TB103_I_PROTOKOLL"], encoding="utf-8") as f:
+                pfade = [os.path.realpath(z.strip()) for z in f if z.strip()]
+        daten = os.path.realpath(os.path.join(baum, "data")) + os.sep
+        konfig = os.path.realpath(os.path.join(baum, "config")) + os.sep
+        snapr = os.path.realpath(snap) + os.sep
+        return {"rc": r.returncode,
+                "data_csv": sum(p.startswith(daten) and p.endswith(".csv") for p in pfade),
+                "baum_config": len({p for p in pfade if p.startswith(konfig)}),
+                "snap_csv": sum(p.startswith(snapr) and p.endswith(".csv") for p in pfade),
+                "snap_config": len({p for p in pfade
+                                    if p.startswith(snapr + "config" + os.sep)}),
+                "stdout": r.stdout[-200:], "stderr": r.stderr[-300:]}
+
+
+def teil_j():
+    r = _j_lauf(False)
+    pruefe("J1: benchmark.py im Selektionsmodus - 0 Kursdateien aus data/, 0 "
+           "Universumsdateien aus config/, Kurse und Universum aus dem "
+           "Snapshot, rc 0",
+           r["rc"] == 0 and r["data_csv"] == 0 and r["baum_config"] == 0
+           and r["snap_csv"] > 0 and r["snap_config"] == 2,
+           f"rc {r['rc']}, data/ {r['data_csv']}, config/ {r['baum_config']}, "
+           f"Snapshot-CSV {r['snap_csv']}, Snapshot-config {r['snap_config']}; "
+           f"{r['stderr']}")
+    _mit_gegenprobe(
+        "J2", "Mutationsprobe 'Resolver-Umstellung zurueckgenommen' - "
+        "benchmark.py liest im Modus Kurs- und Universumsdateien aus data/ und "
+        "config/ (J1 waere rot)",
+        _j_lauf, lambda r: r["data_csv"] > 0 and r["baum_config"] > 0,
+        lambda r: f"rc {r['rc']}, data/ {r['data_csv']}, config/ {r['baum_config']}, "
+                  f"Snapshot-CSV {r['snap_csv']}")
+
+
 def main():
     print(__doc__.strip().split("\n")[0])
     for name, teil in (("A", teil_a), ("B", teil_b), ("C", teil_c), ("D", teil_d),
                        ("E", teil_e), ("F", teil_f), ("G", teil_g), ("H", teil_h),
-                       ("I", teil_i)):
+                       ("I", teil_i), ("J", teil_j)):
         print(f"  Teil {name} ...", flush=True)
         teil()
     print("\n" + "=" * 78)

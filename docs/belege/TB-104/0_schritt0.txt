@@ -1,0 +1,5 @@
+# TB-104 Schritt 0, 2026-09-25 08:05:50 +0200
+0a: Commit be31276 (7 Dateien des steuernden Chats), gepusht
+0b: .git/*.lock: ls: .git/*.lock: No such file or directory
+HEAD am Eingang (vor 0a): 836865f
+Freigabe registerbericht.py (C4): 2026-09-25 09:10:49 +0200 per Auswahlkarte 'Freigeben (Empfohlen)' - nur Spalte 'Purge = Embargo' der Faltenplan-Tabelle in block() (Z. 141-148)
