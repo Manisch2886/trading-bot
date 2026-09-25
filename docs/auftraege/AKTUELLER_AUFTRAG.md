@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-105** | `docs/auftraege/MAC_TB-105_rueckfaelle_und_schreibziele.md` | ⭐⭐ **Drei Rückfälle im Live-Code und die Schreibziele beim Import** (Fable 24b A2, 25a): (b) Regimewache an den 3 Einbaustellen (Register 11.1), (c) unter dem Modus `exit(2)` statt `exit()` an 14 Stellen, (a) `symbols_config.py` unter dem Modus leere Liste ⇒ 2; `manual_close.py` legt Log erst bei der ersten Zeile an, `strategy_paths.py`/`bot_lauf.py` legen unter dem Modus keine Ordner an. ⭐ Freigabe des Betreibers 25.09.2026, 10:52. Ohne Modus Byte für Byte gleich. (d) ist TB-106 |
+| **TB-106** | `docs/auftraege/MAC_TB-106_ersatzwerte_eingefroren_und_herkunft.md` | ⭐⭐ **Rückfall (d) in den eingefrorenen Dateien und `herkunft.py`** (Fable 25a Rang 3, 25b, 25c): stille Ersatzwerte in `faltenplan.py`, `benchmark.py`, `auswertung.py` ⇒ rc 2; unbekannter `_bedingung`-Text ⇒ rc 2 unabhängig vom Modus; tote Felder `mindesttraining_jahre`/`embargo_nach_falten` und Berichtszeile raus; `herkunft.py` planmässig geöffnet nur für den Datenpfad in `block()`/`anhaengen()`, ohne `makedirs`; neues Abbild. Freigabe 25.09.2026, 18:09 (drei Auswahlkarten, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
@@ -49,7 +49,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
 misst, ob eine Sitzung läuft, und bricht danach folgenlos ab.
 
-*Gesetzt 25.09.2026, 11:15 (zuvor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
+*Gesetzt 25.09.2026, 18:20 (zuvor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
