@@ -1,0 +1,41 @@
+# TB-105 Block C/D/E - Tests, 2026-09-25 12:54:28 +0200, HEAD f524327 + Arbeitsbaum C/D/E
+## Neue Proben
+shared/test_rueckfaelle_modus.py rc=0 | 48/48 (Teil C 14x C1+C2 + Mutation C3 mit Gegenprobe; Teil D D1-D4; Teil E E1-E6, zwei Mutationen je allein)
+notifications/test_manual_close_protokoll.py rc=0 | 12/12 (P1-P3, M1 mit Gegenprobe, B1 Befund am Stand b83e6b9)
+## Bestehende Tests (Endstand C/D/E)
+shared/test_stille_ausfaelle.py rc=0 39s | 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+shared/test_startpruefungen.py rc=0 12s | 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+notifications/test_manual_close.py rc=0 9s | Alle Pruefungen bestanden.
+notifications/test_manual_close_protokoll.py rc=0 0s | 12/12 Pruefungen bestanden.
+notifications/test_schliess_benachrichtigung.py rc=0 2s | 99 von 99 Pruefungen bestanden, 0 fehlgeschlagen.
+dashboard/test_dashboard.py rc=0 41s | 784/784 Pruefungen bestanden.
+research/tb27_kapitalsimulation/test_vergleich.py rc=0 4s | 23/23 bestanden.
+research/tb27_kapitalsimulation/vergleich.py --pruefen rc=0 0s | 
+shared/test_ergebniskurven.py rc=0 31s | 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+shared/test_leeres_symbol.py rc=0 16s | 45 von 45 Pruefungen bestanden, 0 fehlgeschlagen.
+shared/test_regimewache.py rc=0 0s | 13/13 Pruefungen bestanden.
+shared/test_regimewache_einbau.py rc=0 21s | 21/21 Pruefungen bestanden.
+shared/test_determinismus.py rc=0 30s | Ergebnis: 54 bestanden, 0 fehlgeschlagen
+shared/test_entscheidungskerze.py rc=0 9s | Alle 130 Pruefungen bestanden.
+shared/test_groessenfaktor.py rc=0 170s | Alle 171 Pruefungen bestanden.
+shared/test_abrufschutz.py rc=0 34s | 77 von 77 Pruefungen bestanden, 0 fehlgeschlagen.
+
+shared/test_paths.py rc=0 | 35 von 35
+shared/test_strategy_paths.py rc=0 | 23 von 23
+
+## Zwei Befunde beim Bau (beide in dieser Sitzung behoben, ohne gesperrte Dateien)
+1. Erster Entwurf C: Hilfsfunktion keine_daten_unter_modus() in strategy_paths.py, von den 14 Dateien importiert.
+   shared/kurven_lauf.py:118 und shared/determinismus_lauf.py:151 (Cron-Waechter 3:50/4:10) sowie
+   research/zuteilungskaskade/messung_primaerschluessel.py:110 ersetzen `strategy_paths` durch ein Ersatzmodul, das nur
+   get_strategy_paths kennt -> ImportError, test_ergebniskurven 17/32. Diese Dateien sind nicht freigegeben.
+   => Bauart geaendert: die Modus-Abfrage steht an jeder der 14 Stellen selbst und fragt `paths` (import im Zweig),
+   die Hilfsfunktion ist wieder entfernt. test_ergebniskurven danach 44/44.
+2. strategy_paths.py fragte zuerst paths.selektionsmodus() direkt. test_paths Probe A (paths in der Fassung TB-52) und
+   test_strategy_paths C4 (nachgebauter Resolver) setzen absichtlich ein paths OHNE diese Funktion ein -> AttributeError.
+   => _im_selektionsmodus(): fehlt die Funktion am Resolver, bleibt es beim Verhalten vor TB-105 (Anlage). Das echte
+   paths.py fuehrt sie; dass es das echte ist, sichert _resolver_ist_nachbar() zu. Danach 35/35 und 23/23.
+
+## D1-Messung ohne Modus (nicht geaendert, nur gemessen)
+Universumsdatei mit nur ausgeschlossenen Symbolen, ohne Modus: Rueckgabe Standardliste (5), Meldung
+"Warnung: <datei> nicht gefunden. Nutze Standardliste (5 Symbole)." - die Datei EXISTIERT, die Meldung ist in diesem
+Fall falsch (TB-103 A3). Probe D2 haelt genau das fest.

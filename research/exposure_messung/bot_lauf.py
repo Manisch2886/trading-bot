@@ -60,7 +60,12 @@ sys.path.insert(0, os.path.join(_REPO_ROOT, "strategies", BOT))
 sys.path.insert(0, os.path.join(_REPO_ROOT, "shared"))
 
 DATEN_DIR = os.path.join(_DIR, "daten")
-os.makedirs(DATEN_DIR, exist_ok=True)
+# TB-105 (Fable 25a (A) (iii)): unter dem Selektionsmodus keine Ordneranlage
+# beim Import - geschrieben wird nach DATEN_DIR nur in main(). Ohne Modus
+# unveraendert.
+import paths  # noqa: E402  (shared/ steht seit der Zeile oben auf sys.path)
+if paths.selektionsmodus() is None:
+    os.makedirs(DATEN_DIR, exist_ok=True)
 
 TRENNER = "#"   # kommt in keinem Symbol dieses Projekts vor (geprueft, s.u.)
 

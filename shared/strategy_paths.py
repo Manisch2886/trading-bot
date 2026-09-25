@@ -109,6 +109,20 @@ def _resolver_ist_nachbar():
     return os.path.dirname(os.path.realpath(paths.__file__)) == _HIER
 
 
+def _im_selektionsmodus():
+    """Ist der Selektionsmodus aktiv? Gefragt wird `paths.selektionsmodus()`.
+
+    ⚠️ Zwei Proben setzen absichtlich ein `paths` OHNE diese Funktion ein:
+    `shared/test_paths.py` Probe A (die Fassung aus TB-52) und
+    `shared/test_strategy_paths.py` C4 (ein nachgebauter Resolver). Fuer sie
+    bleibt es beim Verhalten vor TB-105 (Ordner werden angelegt). Das echte
+    `paths.py` fuehrt die Funktion; dass es das echte ist, sichert
+    `_resolver_ist_nachbar()` zu.
+    """
+    frage = getattr(paths, "selektionsmodus", None)
+    return frage is not None and frage() is not None
+
+
 def get_strategy_paths(caller_file: str) -> dict:
     strategy_dir = os.path.dirname(os.path.abspath(caller_file))
     base_dir = os.path.dirname(os.path.dirname(strategy_dir))  # .../strategies/<name> -> .../strategies -> BASE
@@ -127,8 +141,14 @@ def get_strategy_paths(caller_file: str) -> dict:
     logs_dir = os.path.join(base_dir, "logs", strategy_name)
     db_file = os.path.join(base_dir, f"paper_trading_{strategy_name}.db")
 
-    os.makedirs(results_dir, exist_ok=True)
-    os.makedirs(logs_dir, exist_ok=True)
+    # TB-105 (Fable 25a (A) (iii)): unter dem Selektionsmodus werden die
+    # Betriebsordner NICHT angelegt - ein geschuetzter Lauf schreibt nicht
+    # ins Repo. Die Pfade kommen trotzdem zurueck; wer unter dem Modus doch
+    # hineinschreibt, bricht mit FileNotFoundError ab, statt still Spuren
+    # im Betrieb zu hinterlassen. Ohne Modus unveraendert.
+    if not _im_selektionsmodus():
+        os.makedirs(results_dir, exist_ok=True)
+        os.makedirs(logs_dir, exist_ok=True)
 
     return {
         "BASE_DIR": base_dir,

@@ -237,13 +237,28 @@ PROTOKOLL_DATEI = os.path.join(PROTOKOLL_DIR, "manuelle_eingriffe.log")
 _protokoll = logging.getLogger("manuelle_eingriffe")
 _protokoll.setLevel(logging.INFO)
 _protokoll.propagate = False
-if not _protokoll.handlers:
-    os.makedirs(PROTOKOLL_DIR, exist_ok=True)
-    _griff = RotatingFileHandler(PROTOKOLL_DATEI, maxBytes=1_000_000,
-                                  backupCount=5, encoding="utf-8")
-    _griff.setFormatter(logging.Formatter(
-        "%(asctime)s MANUELLER-EINGRIFF %(message)s"))
-    _protokoll.addHandler(_griff)
+
+
+def _protokoll_bereit() -> logging.Logger:
+    """Das Protokoll, mit Datei-Handler - angelegt beim ersten Schreiben.
+
+    Bis TB-105 legten `os.makedirs` und der `RotatingFileHandler` Ordner und
+    Datei schon beim IMPORT an. Wer dieses Modul nur liest (etwa
+    `research/vorregistrierung/registerdaten.py` fuer `allokation`), legte
+    damit `logs/notifications/` an und oeffnete `manuelle_eingriffe.log` zum
+    Schreiben - auch im Selektionsmodus (Fable 25a (A) (iii)). Jetzt geschieht
+    beides erst, wenn wirklich eine Zeile geschrieben wird, und genau einmal:
+    haengt schon ein Handler, bleibt es bei ihm. Format und Datei sind
+    dieselben wie vorher.
+    """
+    if not _protokoll.handlers:
+        os.makedirs(PROTOKOLL_DIR, exist_ok=True)
+        griff = RotatingFileHandler(PROTOKOLL_DATEI, maxBytes=1_000_000,
+                                    backupCount=5, encoding="utf-8")
+        griff.setFormatter(logging.Formatter(
+            "%(asctime)s MANUELLER-EINGRIFF %(message)s"))
+        _protokoll.addHandler(griff)
+    return _protokoll
 
 
 def _zustand_kurz(zeile: dict) -> str:
@@ -257,7 +272,7 @@ def _zustand_kurz(zeile: dict) -> str:
 
 
 def protokolliere_erfolg(ergebnis: dict) -> None:
-    _protokoll.info(
+    _protokoll_bereit().info(
         "ERFOLGREICH quelle=%s bot=%s trade_id=%s symbol=%s benutzer=%s "
         "bestaetigung=%s | VORHER %s | NACHHER %s",
         ergebnis.get("quelle", QUELLE_UNBEKANNT),
@@ -268,7 +283,7 @@ def protokolliere_erfolg(ergebnis: dict) -> None:
 
 def protokolliere_ablehnung(bot_name, trade_id, benutzer_id, grund: str,
                              quelle: str = None) -> None:
-    _protokoll.warning(
+    _protokoll_bereit().warning(
         "ABGELEHNT quelle=%s bot=%s trade_id=%s benutzer=%s grund=%s | "
         "Datenbank unveraendert",
         quelle or QUELLE_UNBEKANNT, bot_name, trade_id, benutzer_id, grund)
@@ -293,7 +308,7 @@ def protokolliere_warteauftrag(ereignis: str, bot_name, trade_id, benutzer,
     von protokolliere_erfolg() geschrieben, erkennbar an
     quelle=warteauftrag.
     """
-    _protokoll.info(
+    _protokoll_bereit().info(
         "WARTEAUFTRAG-%s quelle=%s bot=%s trade_id=%s benutzer=%s | %s",
         ereignis, quelle or QUELLE_UNBEKANNT, bot_name, trade_id, benutzer,
         zusatz or "-")
