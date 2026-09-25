@@ -1,0 +1,43 @@
+====================================================================================================
+LAUF <scratch>/c5/auswertung_import  (Prozesse: 1, rc 0)
+
+(i) EINGABEN: 3 verschiedene Dateien, davon 3 im Snapshot (0 CSV, 2 config/, 1 sonst), 0 AUSSERHALB
+
+    Quelltext als DATEN gelesen (.py, im Prozess nicht als Modul geladen): 1
+      2x  <repo>/docs/belege/TB-104/d1_auswertung_import.py
+          <- 
+
+(ii) UMGEBUNG: 682 Zugriffe in der Python-Installation (nur gezaehlt); 5 weitere verschiedene Dateien:
+      2x  /System/Library/CoreServices/SystemVersion.plist
+          <- <repo>/research/vorregistrierung/auswertung.py:89 < <repo>/docs/belege/TB-104/d1_auswertung_import.py:9
+      1x  /dev/urandom
+          <- <repo>/research/vorregistrierung/auswertung.py:89 < <repo>/docs/belege/TB-104/d1_auswertung_import.py:9
+      1x  /private/var/db/timezone/tz/2026c.1.0/zoneinfo/UTC
+          <- <repo>/research/vorregistrierung/auswertung.py:89 < <repo>/docs/belege/TB-104/d1_auswertung_import.py:9
+      2x  <repo>/requirements.lock
+          <- <repo>/shared/paths.py:470 < <repo>/shared/paths.py:499 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/faltenplan_neun/faltenplan_neun.py:130 < <repo>/research/vorregistrierung/faltenplan.py:123
+      2x  /dev/null
+          <- <repo>/shared/paths.py:501 < <repo>/shared/paths.py:603 < <repo>/shared/paths.py:668 < <repo>/research/faltenplan_neun/faltenplan_neun.py:130 < <repo>/research/vorregistrierung/faltenplan.py:123 < <repo>/research/vorregistrierung/benchmark.py:99
+
+(iii) SCHREIBZIELE ausserhalb des Scratchpads: 2
+      1x  mkdir  <repo>/logs/notifications
+          <- <repo>/notifications/manual_close.py:241 < <repo>/research/vorregistrierung/registerdaten.py:62 < <repo>/research/vorregistrierung/faltenplan.py:113 < <repo>/research/vorregistrierung/benchmark.py:99 < <repo>/research/vorregistrierung/auswertung.py:103 < <repo>/docs/belege/TB-104/d1_auswertung_import.py:9
+      1x  a      <repo>/logs/notifications/manuelle_eingriffe.log
+          <- <repo>/notifications/manual_close.py:242 < <repo>/research/vorregistrierung/registerdaten.py:62 < <repo>/research/vorregistrierung/faltenplan.py:113 < <repo>/research/vorregistrierung/benchmark.py:99 < <repo>/research/vorregistrierung/auswertung.py:103 < <repo>/docs/belege/TB-104/d1_auswertung_import.py:9
+
+GELADENE REPO-MODULE (ohne trading-env), je Prozess:
+   pid 94972 (12 Repo-Module) argv docs/belege/TB-104/d1_auswertung_import.py
+
+   VEREINIGUNG dieses Laufs: 12 Repo-Module
+      <repo>/docs/belege/TB-104/haken/sitecustomize.py
+      <repo>/notifications/manual_close.py
+      <repo>/research/faltenplan_neun/erste_falte_trockenlauf.py
+      <repo>/research/faltenplan_neun/faltenplan_neun.py
+      <repo>/research/faltenplan_neun/faltenschranke_messung.py
+      <repo>/research/universum_trockenlauf/universum_trockenlauf.py
+      <repo>/research/vorregistrierung/auswertung.py
+      <repo>/research/vorregistrierung/benchmark.py
+      <repo>/research/vorregistrierung/faltenplan.py
+      <repo>/research/vorregistrierung/kennzahlen.py
+      <repo>/research/vorregistrierung/registerdaten.py
+      <repo>/shared/paths.py

@@ -1,0 +1,57 @@
+# TB-104 D2 - Rueckfall-Inventar TB-103 (a4_rueckfaelle.txt) gegen den Laufbereich (D1)
+# Laufbereich = Vereinigung der geladenen Repo-Module aus: docs/belege/TB-104/d1_laufbereich_trockenlauf.txt, docs/belege/TB-104/d1_laufbereich_benchmark.txt, docs/belege/TB-104/d1_laufbereich_auswertung.txt
+# Spalten: Nr | Fundstelle (Inventar, gekuerzt) | im Laufbereich | geladen von (Lauf-Typ: Datei)
+
+ 1 | shared/symbols_config.py:19, 27-35 | JA | benchmark/trockenlauf: shared/symbols_config.py
+ 2 | strategies/{elliott_wave_stocks,rsi2_mean_reversion,turtle_soup_stocks,volatility_breakout}/stocks_symbols_con | JA | benchmark/trockenlauf: strategies/elliott_wave_stocks/stocks_symbols_config.py; benchmark/trockenlauf: strategies/rsi2_mean_reversion/stocks_symbols_config.py; benchmark/trockenlauf: strategies/turtle_soup_stocks/stocks_symbols_config.py; benchmark/trockenlauf: strategies/volatility_breakout/stocks_symbols_config.py
+ 3 | shared/paths.py (HEAD) CONFIG_DIR = _MODUS[0] | JA | auswertung_import/benchmark/trockenlauf: shared/paths.py
+ 4 | shared/paths.py ohne Modus | JA | auswertung_import/benchmark/trockenlauf: shared/paths.py
+ 5 | shared/strategy_paths.py | JA | benchmark/trockenlauf: shared/strategy_paths.py
+ 6 | strategies/t3_supertrend/equity_simulation.py:77-79; multi_symbol_optimise.py:130-132 | JA | trockenlauf: strategies/t3_supertrend/equity_simulation.py
+ 7 | strategies/*/equity_simulation.py, multi_symbol_optimise.py, multi_symbol_walk_forward.py (z. B. rsi2_mean_rev | JA | trockenlauf: strategies/elliott_wave/equity_simulation.py; trockenlauf: strategies/elliott_wave_stocks/equity_simulation.py; trockenlauf: strategies/rsi2_crypto/equity_simulation.py; trockenlauf: strategies/rsi2_mean_reversion/equity_simulation.py; trockenlauf: strategies/t3_supertrend/equity_simulation.py; trockenlauf: strategies/turtle_soup_crypto/equity_simulation.py; trockenlauf: strategies/turtle_soup_stocks/equity_simulation.py; trockenlauf: strategies/volatility_breakout/equity_simulation.py; trockenlauf: strategies/volatility_breakout_crypto/equity_simulation.py
+ 8 | strategies/*/multi_symbol_optimise.py (z. B. rsi2_crypto:78-82) | JA | benchmark/trockenlauf: strategies/elliott_wave/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/elliott_wave_stocks/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/rsi2_crypto/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/rsi2_mean_reversion/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/t3_supertrend/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/turtle_soup_crypto/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/turtle_soup_stocks/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/volatility_breakout/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+ 9 | strategies/*/multi_symbol_optimise.py (z. B. rsi2_crypto:107) | JA | benchmark/trockenlauf: strategies/elliott_wave/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/elliott_wave_stocks/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/rsi2_crypto/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/rsi2_mean_reversion/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/t3_supertrend/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/turtle_soup_crypto/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/turtle_soup_stocks/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/volatility_breakout/multi_symbol_optimise.py; benchmark/trockenlauf: strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+10 | strategies/*/live_params.py | JA | trockenlauf: strategies/elliott_wave/live_params.py; trockenlauf: strategies/elliott_wave_stocks/live_params.py; benchmark/trockenlauf: strategies/rsi2_crypto/live_params.py; benchmark/trockenlauf: strategies/rsi2_mean_reversion/live_params.py; benchmark/trockenlauf: strategies/t3_supertrend/live_params.py; benchmark/trockenlauf: strategies/turtle_soup_crypto/live_params.py; benchmark/trockenlauf: strategies/turtle_soup_stocks/live_params.py; benchmark/trockenlauf: strategies/volatility_breakout/live_params.py; benchmark/trockenlauf: strategies/volatility_breakout_crypto/live_params.py
+11 | shared/zuteilung.py:228-229, 261-262 | JA | trockenlauf: shared/zuteilung.py
+12 | shared/zuteilung.py:437-450 | JA | trockenlauf: shared/zuteilung.py
+13 | shared/zuteilung.py:362-363 | JA | trockenlauf: shared/zuteilung.py
+14 | research/vorregistrierung/messgroessen.py:50-53 (HEAD) | nein | -
+15 | research/vorregistrierung/messgroessen.py:96-104, 151-153, 237-239 | nein | -
+16 | research/vorregistrierung/messgroessen.py:243-244 | nein | -
+17 | research/vorregistrierung/benchmark.py:93-95 | JA | auswertung_import/benchmark: research/vorregistrierung/benchmark.py
+18 | research/vorregistrierung/benchmark.py:124-129, 152-154 | JA | auswertung_import/benchmark: research/vorregistrierung/benchmark.py
+19 | research/vorregistrierung/benchmark.py:188-189, 249-254, 282 | JA | auswertung_import/benchmark: research/vorregistrierung/benchmark.py
+20 | research/vorregistrierung/benchmark.py:201-203 | JA | auswertung_import/benchmark: research/vorregistrierung/benchmark.py
+21 | research/vorregistrierung/faltenplan.py:105 (+117, 121) | JA | auswertung_import/benchmark: research/vorregistrierung/faltenplan.py
+22 | research/vorregistrierung/faltenplan.py:147-148 | JA | auswertung_import/benchmark: research/vorregistrierung/faltenplan.py
+23 | research/vorregistrierung/faltenplan.py:153-154 | JA | auswertung_import/benchmark: research/vorregistrierung/faltenplan.py
+24 | research/faltenplan_neun/faltenplan_neun.py:110, 225 (ausserhalb des Suchbereichs, nur gegrept) | JA | auswertung_import/benchmark: research/faltenplan_neun/faltenplan_neun.py
+25 | research/vorregistrierung/auswertung.py:92 | JA | auswertung_import: research/vorregistrierung/auswertung.py
+26 | research/vorregistrierung/auswertung.py:284, 286 | JA | auswertung_import: research/vorregistrierung/auswertung.py
+27 | research/vorregistrierung/auswertung.py:333-334 + 380-385 | JA | auswertung_import: research/vorregistrierung/auswertung.py
+28 | research/vorregistrierung/auswertung.py:500 | JA | auswertung_import: research/vorregistrierung/auswertung.py
+29 | research/vorregistrierung/auswertung.py:414-415 | JA | auswertung_import: research/vorregistrierung/auswertung.py
+30 | research/vorregistrierung/auswertung.py:486-490 | JA | auswertung_import: research/vorregistrierung/auswertung.py
+31 | research/vorregistrierung/herkunft.py:51, 98 | nein | -
+32 | research/vorregistrierung/herkunft.py:84-91 | nein | -
+33 | research/vorregistrierung/herkunft.py:113-118 | nein | -
+34 | research/vorregistrierung/herkunft.py:142-146 | nein | -
+35 | research/vorregistrierung/pruefe_grenzsaetze.py:49, 79-81, 90-93 | nein | -
+36 | research/vorregistrierung/registerbericht.py:31 | nein | -
+37 | research/vorregistrierung/registerdaten.py:58-62 | JA | auswertung_import/benchmark: research/vorregistrierung/registerdaten.py
+38 | shared/entscheidungskerze.py:655-664 (+ _aus_datei 675-691) | nein | -
+39 | shared/entscheidungskerze.py:257, 652 | nein | -
+40 | shared/entscheidungskerze.py:356-366, 375-387, 703-716 | nein | -
+41 | shared/groessenfaktor.py:153-209 | nein | -
+42 | shared/fetch_binance_data.py:178-183, 216, 298-310 | JA | benchmark: shared/fetch_binance_data.py
+43 | shared/claude_client.py:46-62 | nein | -
+44 | shared/abrufschutz.py:322-336 | JA | benchmark/trockenlauf: shared/abrufschutz.py
+45 | shared/build_daily_crypto_data.py:63-66 | nein | -
+46 | shared/ergebniskurven.py:175-176 | nein | -
+47 | shared/portfolio_overview.py:154, 222, 250-260, 342-352, 437 | nein | -
+48 | shared/sperrlistensonde.py:288-293 | nein | -
+49 | shared/umstellungstag.py:110-117, 128-131 | nein | -
+50 | strategies/elliott_wave_stocks/get_top_stocks.py:59-63 | nein | -
+51 | strategies/*/buy_and_hold_benchmark.py (z. B. rsi2_mean_reversion:35-38) | nein | -
+
+Summe: 51 Fundstellen-Zeilen, 30 im Laufbereich, 21 nicht

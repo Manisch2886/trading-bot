@@ -8939,6 +8939,48 @@ Belege `docs/belege/TB-103/`. Grundlage Fable 24b A2, 24c Abschnitte 1, 2, 6.
 
 ---
 
+## DC — TB-104: Alle Leser des Laufbereichs auf den Resolver, die Verfahren-A-Felder aus dem gerechneten Faltenplan, der Laufbereich gemessen — Benchmark im Modus zweimal bytegleich, 80 Module, alle vier Rückfälle darin (25.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-104_leser_auf_resolver_und_altfelder.md`*
+
+**Quelle:** Mac-Sitzung **TB-104**, 25.09.2026, Eingang `836865f`. Commits `be31276` (Schritt 0),
+`572d725` (Block A+B), `f334a7b` (Block C), `d96b352` (Abbild) und der Abgabe-Commit. Belege
+`docs/belege/TB-104/`. Grundlage Fable 24c Abschnitt 2, 24d Abschnitt 3, 25a. Freigabe 07:52;
+`registerbericht.py` (eine Spalte) per Auswahlkarte um 09:10.
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **A** | Eigene Pfadlogik hatten `benchmark.py`, `faltenplan_neun.py` und `loaderlauf.py` (`--daten`); `universum_trockenlauf.py` reicht `--daten` nur durch, `erste_falte_trockenlauf.py` hat keine. Die Altfelder hatten zwei Leser mehr als vorgemessen (`faltenplan.py:464`, `G9`). A4: TB-40 mass am Faltenende, der Trockenlauf am Datenende, am Stand ist die Menge 9/9 gleich. A5: `datenstand()` nimmt den Pfad, `block()` nicht. A6: Im frischen Klon legt der Modus-Lauf `logs/<bot>` und `results/<bot>` an. A7: Die Ersatzwerte in `auswertung.py` sind mit dem registrierten Plan unerreichbar |
+| ⭐ **B** | Pfade über `shared/paths.py`. Ersatzwurzel und `--daten` sind als Messwerkzeug benannt und brechen unter dem Modus mit 2 ab. Ohne Modus 8/8 Ausgaben bytegleich, Benchmark `64fb2912`. Proben J, K, O mit 7 Mutationsproben, jede mit Gegenprobe |
+| ⭐ **C** | Die drei Felder sind raus; C2: genau 9 + 9 + 77 weniger, sonst zeichengleich. `G8`/`G9` angepasst, `G8M` neu, 196/196. `registerbericht` ohne die Spalte |
+| ⭐⭐ **C5** | Im Modus zweimal bytegleich `64fb2912`. Kurse und Universum nur aus dem Snapshot, ausserhalb die 9 TB-24-Listen und `messgroessen.json` (Nachweis 2). Umgebung dieselben 5 Dateien wie in TB-103. Schreibziel `manuelle_eingriffe.log` (`a`) über `registerdaten.py:62` → `manual_close.py:241-243`. Neu: 9 Bot-Quelltexte werden als Daten gelesen, 11 `$TMPDIR`-Ablagen bleiben liegen |
+| ⭐⭐ **D** | Laufbereich = 80 Repo-Module aus drei Lauf-Typen; `herkunft`, `regimewache` und `messgroessen` gehören nicht dazu. 30 von 51 Inventarzeilen liegen im Laufbereich, ebenso alle vier Rückfälle: (b) und (a) werden ausgeführt, (c) liegt nur in `__main__`-Blöcken, (d) teils |
+| **E** | Nur freigegebene Dateien und `docs/` geändert, dazu das Abbild `cb4eb1b4`. Sonde: am alten Abbild 2/4/6, am neuen 0 mit 1 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐⭐ | **„Keine eigene Pfadlogik" heisst auch: keine Ersatzwurzel unter dem Modus.** Eine Test-Ersatzwurzel darf bleiben, wenn sie benannt ist und unter dem Modus abbricht. Ignoriert werden darf sie dort nicht |
+| ⭐⭐ | **Ein Import-Audit braucht zwei Quellen.** Kindprozesse mit eigenem Schreibschutz schreiben keine Modulliste; die Öffnungen von `.py`/`.pyc` ergänzen sie. Hauptprozess und Kinder werden getrennt gezählt, sonst verschwinden Module, die nur ein Kind lädt |
+| ⭐ | **„Gemessen wie im Register" gilt nur mit demselben Verfahren.** Gleiche Zahlen aus verschiedenen Stichtagen sind eine Tatsachennotiz mit Bedingung, kein Beleg für das Verfahren |
+| ⭐ | **Eine Feldliste gilt für den Gegenstand, für den sie registriert ist.** 33.3 ist die Liste des Abbilds, nicht des gerechneten Plans; wer sie überträgt, sagt es |
+| ⭐ | **Zählungen aus einem abgeschnittenen Suchlauf (`head`) sind keine Zählungen.** Zweimal in dieser Sitzung zu niedrig angegeben und vor der Abgabe berichtigt |
+
+### Was offen bleibt
+
+- TB-105: die vier Rückfälle (Dateiliste im Ergebnis, Abschnitt 8), dazu das Schreibziel
+  `manuelle_eingriffe.log`, die Ordneranlage unter dem Modus und die `$TMPDIR`-Ablagen.
+- Sechs Fragen an Fable (Ergebnis, Abschnitt 5): Zwischenablagen, Quelltext als Daten, Feldliste von
+  `G8`, weitere Verfahren-A-Reste, `messgroessen` im Laufbereich, der Ort der Log-Behebung.
+- Register 41/42, dort auch der Hash des Abbilds `cb4eb1b4…`.
+
+*Geschrieben 25.09.2026 von der Mac-Sitzung TB-104. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

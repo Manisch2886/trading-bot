@@ -1,0 +1,63 @@
+# TB-104 D3 - Die vier Rueckfaelle aus Fable 25a Abschnitt 4 gegen den Laufbereich (D1). NICHTS geaendert.
+# Stand f334a7b (nach Block B/C). Laufbereich = d1_laufbereich_vereinigung.txt (80 Repo-Module ohne Messumschlaege).
+# "Datei im Laufbereich" = die Datei wird von mindestens einem gemessenen Lauf-Typ geladen oder ausgefuehrt.
+# "Stelle ausgefuehrt" = die Codezeile liegt auf einem Pfad, den der gemessene Lauf ausfuehrt (aus dem Quelltext
+#  und dem Aufrufstapel gelesen, kein Zeilen-Tracing).
+
+## Rang 1 - (b) t3_supertrend: BTC-Regimefilter faellt still weg, wenn BTCUSDT nicht geladen ist
+| Datei:Stelle | Datei im Laufbereich | Lauf-Typ | Stelle ausgefuehrt |
+|---|---|---|---|
+| strategies/t3_supertrend/equity_simulation.py:77-79 (`if "BTCUSDT" in all_data:` ohne else, in collect_all_trades()) | JA | trockenlauf | JA - bot_lauf.hole_trades() ruft collect_all_trades() (bot_lauf.py:110-111: "Der BTC-Regimefilter steckt bei diesem Bot IN collect_all_trades()") |
+| strategies/t3_supertrend/multi_symbol_optimise.py:130-132 (in evaluate_combination_multi()) | JA | trockenlauf, benchmark (Loader-Kindprozess) | NEIN in den gemessenen Laeufen (evaluate_combination_multi ist der Optimierer; der Trockenlauf ruft ihn nicht, der Loader-Kindprozess nur load_all_symbol_data) - der Selektionslauf (Erzeuger/Raster) ruft ihn |
+| shared/regimewache.py::pruefe_einbau() (Register 11.1) | NEIN (nicht geladen) | - | pruefe_einbau() am Stand f334a7b: vollstaendig False, offen = t3_supertrend/equity_simulation.py, t3_supertrend/multi_symbol_optimise.py, volatility_breakout_crypto/equity_simulation.py (3 von 3), eingebaut = [] |
+Zusatz: regimewache.EINBAUSTELLEN nennt auch strategies/volatility_breakout_crypto/equity_simulation.py (Laufbereich JA, trockenlauf).
+
+## Rang 2 - (c) "Keine Daten gefunden." + exit() mit Rueckgabewert 0
+Alle Fundstellen in equity_simulation.py und multi_symbol_optimise.py der Bots liegen im Block `if __name__ == "__main__":`
+(awk ueber die 18 Dateien; Zeile = exit()):
+| Datei:Zeile (exit) | Datei im Laufbereich | Lauf-Typ | Stelle ausgefuehrt |
+|---|---|---|---|
+| strategies/elliott_wave/equity_simulation.py:145 | JA | trockenlauf | NEIN (__main__) |
+| strategies/t3_supertrend/equity_simulation.py:133 | JA | trockenlauf | NEIN (__main__) |
+| strategies/rsi2_crypto/equity_simulation.py:133 | JA | trockenlauf | NEIN (__main__) |
+| strategies/turtle_soup_crypto/equity_simulation.py:116 | JA | trockenlauf | NEIN (__main__) |
+| strategies/volatility_breakout_crypto/equity_simulation.py:164 | JA | trockenlauf | NEIN (__main__) |
+| strategies/elliott_wave_stocks/equity_simulation.py:168 | JA | trockenlauf | NEIN (__main__) |
+| strategies/rsi2_mean_reversion/equity_simulation.py:164 | JA | trockenlauf | NEIN (__main__) |
+| strategies/turtle_soup_stocks/equity_simulation.py:155 | JA | trockenlauf | NEIN (__main__) |
+| strategies/volatility_breakout/equity_simulation.py:149 | JA | trockenlauf | NEIN (__main__) |
+| strategies/elliott_wave/multi_symbol_optimise.py:211 | JA | trockenlauf, benchmark | NEIN (__main__) |
+| strategies/t3_supertrend/multi_symbol_optimise.py:203 | JA | trockenlauf, benchmark | NEIN (__main__) |
+| strategies/elliott_wave_stocks/multi_symbol_optimise.py:236 | JA | trockenlauf, benchmark | NEIN (__main__) |
+| strategies/rsi2_mean_reversion/multi_symbol_optimise.py:194 | JA | trockenlauf, benchmark | NEIN (__main__) |
+| strategies/volatility_breakout/multi_symbol_optimise.py:188 | JA | trockenlauf, benchmark | NEIN (__main__) |
+| strategies/*/multi_symbol_walk_forward.py (9 Dateien, grep -A1 "Keine Daten gefunden" + exit()), buy_and_hold_benchmark.py (7), agent_optimise/quarterly_review/oos_equity_simulation/experiment_* (elliott_wave*, t3) | NEIN | - | - |
+=> Die Dateien sind im Laufbereich, die exit()-Stellen werden von keinem gemessenen Lauf-Typ ausgefuehrt (die Laeufe
+   importieren die Module als Bibliothek). Ein Modus-Lauf, der eines dieser Skripte DIREKT startet
+   (python3 strategies/<bot>/equity_simulation.py), erreicht sie - der Erzeuger (Plan-Punkt 3) ist noch nicht gebaut;
+   ob er die Skripte direkt startet, entscheidet sich dort.
+
+## Rang 3 - (d) stille Ersatzwerte fuer Schwellen
+| Datei:Stelle (Stand f334a7b) | was | Datei im Laufbereich | Lauf-Typ | Stelle ausgefuehrt |
+|---|---|---|---|---|
+| research/vorregistrierung/faltenplan.py:152-153 (volle_jahre) | ohne innere Jahre das erste, angeschnittene Jahr | JA | benchmark, auswertung_import | JA im benchmark-Lauf (faltenlaenge_jahre je Bot); der Zweig "keine inneren Jahre" am echten Bestand nicht (9 Listen mit mehreren Jahren) |
+| research/vorregistrierung/faltenplan.py:159-160 (faltenlaenge_jahre) | Laenge 2, Trades/Jahr 0.0 bei leerer Zaehlung | JA | benchmark, auswertung_import | Funktion ja, Zweig am echten Bestand nein |
+| research/vorregistrierung/benchmark.py:206-207 (drawdown_bei_exposure) | 0.0 bei leerem Renditefenster | JA | benchmark, auswertung_import (Modul) | Funktion ja; Zweig "leer" am echten Bestand: nicht gemessen |
+| research/vorregistrierung/benchmark.py:302 (je_bot) | dd_toleranz 0.0 ohne Selektionsfalten | JA | benchmark | Zeile ja, Zweig "keine Selektionsfalte" nein (4b) |
+| research/vorregistrierung/benchmark.py:221-222 (nachschlagen, e <= 0 -> 0.0) | Rechenregel (TB-103 Inventar: "Rechenregel") | JA | auswertung_import (Modul), Lauf: auswertung.zulaessigkeit | im gemessenen Import nicht |
+| research/vorregistrierung/auswertung.py:284, 286 (statistik.get(.., 0.0)) | Plateau-/Spitzenschwelle | JA | auswertung_import | NEIN (nur Import); nach A7 mit registriertem Plan unerreichbar |
+| research/vorregistrierung/auswertung.py:333-334 + 380-385 | Kriterium (c) "nicht ausgeloest" ohne Selektionsfalten | JA | auswertung_import | NEIN (nur Import); nach A7 unerreichbar |
+| research/vorregistrierung/auswertung.py:500-521 (bereinigung.get) | None/[] | JA | auswertung_import | NEIN (nur Import); nach A7 unerreichbar |
+Beruehrt Block B/C eine dieser Stellen? NEIN. Block B aenderte in benchmark.py nur Z. 90-122 (Pfade), Block C in
+faltenplan.py nur _plan/purge_tage/main-Ausgabe/Kopf - die Stellen oben blieben zeichengleich (nur Zeilennummern
+verschoben sich gegenueber dem TB-103-Inventar: benchmark.py +18 bis +20 durch den Resolver-Block, faltenplan.py +5 durch den Kopfvermerk).
+
+## Rang 4 - (a) symbols_config.py: Liste nach EXCLUDE_SYMBOLS leer -> Standardliste
+| Datei:Stelle | Datei im Laufbereich | Lauf-Typ | Stelle ausgefuehrt |
+|---|---|---|---|
+| shared/symbols_config.py:26-35 (load_symbols; beim Import, SYMBOLS = load_symbols() Z. 38) | JA | trockenlauf, benchmark (Loader-Kindprozesse der Krypto-Bots) | JA (beim Import, jeder Krypto-Bot); der Rueckfallzweig am echten Snapshot nicht (24 von 25 Zeilen bleiben) |
+
+## Summe
+Alle vier Rueckfaelle liegen in Dateien des Laufbereichs. Ausgefuehrt im gemessenen Lauf: (b) ja (t3 collect_all_trades),
+(a) ja (Import; Zweig nicht erreicht), (d) teils (faltenplan.py/benchmark.py Funktionen ja, Zweige am Bestand nicht;
+auswertung.py nur importiert), (c) nein (nur __main__). Keiner davon ist in dieser Sitzung geaendert (TB-105).

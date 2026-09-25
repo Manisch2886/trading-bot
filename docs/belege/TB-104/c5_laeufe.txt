@@ -1,0 +1,39 @@
+# TB-104 benchmark bm_lauf1 , HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:19:18 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+benchmark bm_lauf1  rc=0 61s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_lauf1/benchmark.json
+# TB-104 benchmark bm_lauf2 , HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:20:19 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+benchmark bm_lauf2  rc=0 59s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_lauf2/benchmark.json
+# TB-104 auswertung auswertung_import , HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:18 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+auswertung auswertung_import  rc=0 1s
+# TB-104 bot bot_elliott_wave elliott_wave, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:19 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_elliott_wave elliott_wave rc=0 9s
+# TB-104 bot bot_t3_supertrend t3_supertrend, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:28 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_t3_supertrend t3_supertrend rc=0 3s
+# TB-104 bot bot_rsi2_crypto rsi2_crypto, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:31 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_rsi2_crypto rsi2_crypto rc=0 1s
+# TB-104 bot bot_turtle_soup_crypto turtle_soup_crypto, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:32 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_turtle_soup_crypto turtle_soup_crypto rc=0 2s
+# TB-104 bot bot_volatility_breakout_crypto volatility_breakout_crypto, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:34 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_volatility_breakout_crypto volatility_breakout_crypto rc=0 1s
+# TB-104 bot bot_elliott_wave_stocks elliott_wave_stocks, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:35 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_elliott_wave_stocks elliott_wave_stocks rc=0 15s
+# TB-104 bot bot_rsi2_mean_reversion rsi2_mean_reversion, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:50 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_rsi2_mean_reversion rsi2_mean_reversion rc=0 6s
+# TB-104 bot bot_turtle_soup_stocks turtle_soup_stocks, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:21:56 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_turtle_soup_stocks turtle_soup_stocks rc=0 5s
+# TB-104 bot bot_volatility_breakout volatility_breakout, HEAD f334a7bdfedf9aaaaecc9efdc4430f36e40f6729, 2026-09-25 10:22:01 +0200
+# Arbeitsbaum shared/ strategies/ requirements.lock (leer = sauber): []
+bot bot_volatility_breakout volatility_breakout rc=0 6s
+ALLE_FERTIG
