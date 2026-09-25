@@ -150,3 +150,30 @@ Als Nächstes werden die übrigen Programme auf die zentrale Pfadstelle umgestel
 | **Am Rand** | ⚠️ **Speicher-Export bis 29.09.2026** (nur der Betreiber, `projektfuehrung/ERINNERUNG_2026-09-25_speicher_export.md`) · vier Nachträge in den Projektspeicher (`PRUEFUNG_2026-09-25_drei_festlegungen_im_speicher.md`) |
 
 **Fehler dieses Abschnitts, mit Regel:** Der Name der Anfrage 25b hiess zuerst „sechs_fragen“, der Text zählt fünf. Vor dem Ablegen umbenannt. ⇒ **Dateiname und Inhalt vor dem Ablegen gegeneinander lesen.**
+
+
+---
+
+## Nachtrag 2 — fortgeschrieben 25.09.2026, 22:40, sauberer Stand
+
+**Gemessen.** TB-105, TB-106 und TB-107 sind abgegeben und per Schliess-Auslöser beendet. **HEAD `f61bd97`** (TB-107 Abgabe, 22:14). Es läuft keine Mac-Sitzung. Uncommittet sind nur, alle unter `docs/projektfuehrung/`: `FABLE_ANFRAGE_2026-09-25e_tb107_abgegeben_drei_fragen.md`, `FABLE_ANFRAGE_2026-09-25f_gesamtanalyse_und_ideen.md` (Gesamtanalyse, vom Betreiber 22:28 beauftragt), `STOFFSAMMLUNG_REGISTER_41_42.md` (Vorbereitung des Registerauftrags), `AUFGABEN_BETREIBER_2026-09-26.md` und dieses Dokument (Nachtrag angehängt). Die nächste Mac-Sitzung nimmt sie in Schritt 0 mit.
+
+| | |
+|---|---|
+| **Fertig (TB-105, `2e21471`)** | Regimewache an allen drei Einbaustellen, `pruefe_einbau()` 3 von 3 (Register **11.1 erfüllt**; 11.2/11.3 bleiben offen, TB-30b) · 14 × „Keine Daten gefunden“ unter dem Modus rc 2 · `symbols_config.py` unter dem Modus rc 2 bei leerer oder fehlender Liste · `manual_close.py` legt das Log erst bei der ersten Zeile an · `strategy_paths.py`/`bot_lauf.py` ohne Ordner unter dem Modus · Klasse (iii) im Trockenlauf leer, auch im frischen Klon |
+| **Fertig (TB-106, `f22f91e`)** | Rückfall (d) in den eingefrorenen Dateien: 7 Ersatzwerte ⇒ rc 2 (`faltenplan.py`, `benchmark.py`, `auswertung.py`), unbekannter `_bedingung`-Text ⇒ rc 2 · `nachschlagen()` `e ≤ 0 ⇒ 0` ist Rechenregel, bleibt · tote Felder `mindesttraining_jahre`/`embargo_nach_falten` und Berichtszeile raus · `herkunft.py` planmässig geöffnet: Datenpfad durch `block()`/`anhaengen()`, unter dem Modus Pflicht; im Modus hasht die Kette `d9449faf…` = registrierter Datenstand · **`register()` `57ec6573…` ⇒ `0ece95e2…`** · **neues Abbild `sperrliste_abbild_2026-09-25b.json`, `40ffe18d…`** |
+| **Fertig (TB-107, `f61bd97`)** | `_min_history` genau ein Treffer sonst rc 2 · zweite Kopie in `faltenplan_neun.py` rc 2 (**eigener Commit `f5fdb53`, vor Fables Antwort auf 25d gebaut**) · `getattr` in `strategy_paths.py` raus (Live-Abnahme 101 Aufrufer gleich) · `tb40_lauf_*` werden entfernt · **Laufbereich 81 Module** (neu nur `shared/regimewache.py`) · Gegenprobe `shared/test_main_gegenprobe.py`: 14 Stellen, alle mit Abfrage |
+| **Durchgehend** | Benchmark-Tabelle im Modus (Repo und frischer Klon) und ohne Modus **bytegleich `64fb2912…`** · `test_vorregistrierung` 196/196 · Datenstand `d9449faf…`, Snapshot `63e4b6c8…` unverändert · Register unverändert (0–40, 7993 Zeilen) |
+| **Fable** | 25b, 25c beantwortet und im Repo. **25d (TB-106, vier Fragen) offen**, im Repo und in der Projektablage. **25e (TB-107, drei Fragen)** und **25f (Gesamtanalyse und Ideen, Recherchefreigabe nur für diesen Vorgang)** geschrieben, im Repo und in der Projektablage, noch nicht übergeben. Antwortnamen: 25d, 25e, 25f je passend zur Anfrage |
+| **Offene Punkte vor dem Tag, Reihenfolge** | (1) Fable 25d/25e · (2) **Register 41/42**: Fable-Einträge 24c, 24d, 25a, 25b (a–h), 25c (a–h), dazu 25d/25e · (3) **Auftrag zu 19**: Sauberkeitsprüfung über den Laufbereich, mit der Ausnahme für registrierte Protokolle, die vorher im Register stehen muss (25c 4 (4)(b)) · (4) Plan-Punkt 3, der Erzeuger auf dem Signalpfad (`herkunft.py`: Prüfansicht und `TB30A_BASE_DIR` je nach 25d mit einer Öffnung) · (5) die übrigen Punkte aus Block 4 Zeile 5 |
+| **Freie Nummern** | frei ab **TB-108** · Fable-Anfrage frei ab **25g**, Antworten erwartet **25d, 25e, 25f** |
+| **Wartet** | **Betreiber**: Aufgabenliste `projektfuehrung/AUFGABEN_BETREIBER_2026-09-26.md` |
+
+**Fehler dieses Abschnitts, mit Regeln:**
+
+| | Fehler | Regel daraus |
+|---|---|---|
+| 1 | In Anfrage 25c die Fundstelle der Rasterbedingung als „Abschnitt 4“ genannt, **ohne nachzusehen**; richtig ist Abschnitt 6. Fable hat es gefunden | ⭐ **Jede Registerstelle, die ich nenne, vorher im Register nachsehen** (`awk` auf die Überschrift davor), auch wenn sie mir sicher scheint |
+| 2 | Im Auftrag TB-106 „13 `Abbruch`-Stellen“ geschrieben, gezählt sind 12 | Zahlen im Auftrag nur aus einer Messung übernehmen, sonst „vermutlich“ schreiben |
+| 3 | Ein erster Entwurf von 25d behauptete „von 12 Registerstellen als Abbruch beschrieben“, ohne Messung. Vor dem Ablegen gefunden und ersetzt | ⭐ **Vor dem Ablegen jeden Satz mit einer Zahl oder Fundstelle gegen seine Quelle lesen** |
+| 4 | TB-107: Das Terminalfenster des Wächters wurde zweimal geschlossen, bevor der Satz abgeschickt war; erst der dritte Auslöser lief | Nach jedem Start-Auslöser mit der Sonde `starte_TB-99` prüfen, ob `claude-Prozesse: 1 im Repo`; nach 15 Minuten ohne Schritt-0-Commit den Betreiber erinnern |

@@ -36,20 +36,20 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-107** | `docs/auftraege/MAC_TB-107_nicht_gesperrte_rueckfaelle.md` | ⭐⭐ **Die nicht gesperrten Rückfälle** (Fable 25b (1), 25c 4 (2)/(3)): `_min_history` genau ein Treffer sonst rc 2 (samt `kerzen_elliott_wave`/`loader_lesart`); die zweite Kopie von volle_jahre/faltenlaenge in `faltenplan_neun.py` ⇒ rc 2 (eigener Commit, Fable 25d offen); `getattr`-Ersatz in `strategy_paths.py` raus (Live-Code, ohne Modus bytegleich); `tb40_lauf_*`-Ablagen in `universum_trockenlauf.py` am Ende entfernen; Laufbereich neu messen und Gegenprobe über alle `__main__`-Stellen. Freigabe 25.09.2026, 20:27 (zwei Auswahlkarten, wörtlich im Auftrag) |
+| **TB-108** | `docs/auftraege/MAC_TB-108_register_41_42.md` | ⭐⭐ **Register 41 und 42** (Stoffsammlung `docs/projektfuehrung/STOFFSAMMLUNG_REGISTER_41_42.md`): die entschiedenen Einträge aus Fable 24b–24d (41) und 25a–25c samt Tatsachennotizen TB-103 bis TB-107 (42), zeichengleich eingesetzt, Ketten mit Verweis, Marken an alten Stellen (keine in Abschnitt 10); keine `.py`, kein neues Abbild; 25d/25e/25f später als 43. Freigabe 25.09.2026, 22:34 (Auswahlkarte, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
 | | Sache | ⚠️ Abhängigkeit |
 |---|---|---|
-| **TB-100** | Folge aus TB-98: Registerabschnitt 41 (Sperrlistenpunkt für die neuen Listen, Tatsachennotiz zu 5.4, Berichtigung „sieben statt acht“ nach Fables Antwort auf 24c), `faltenplan.py` auf die registrierte Pfadkonstante (⭐ **Freigabe liegt vor, 24.09. 11:25**), **ein** neues Sperrlisten-Abbild, das zugleich die Gruppen `bestimmt` und `eingefroren` führt | nach TB-98 |
+| ~~TB-100~~ | Folge aus TB-98: Registerabschnitt 41 (Sperrlistenpunkt für die neuen Listen, Tatsachennotiz zu 5.4, Berichtigung „sieben statt acht“ nach Fables Antwort auf 24c), `faltenplan.py` auf die registrierte Pfadkonstante (⭐ **Freigabe liegt vor, 24.09. 11:25**), **ein** neues Sperrlisten-Abbild, das zugleich die Gruppen `bestimmt` und `eingefroren` führt | nach TB-98 ⚠️ **Registerteil aufgegangen in TB-108 (Abschnitt 41), 25.09.2026; nie ausgelöst** |
 | **TB-101** | Plan-Punkt 7: Abbild des Faltenplans (33.3) und Faltenplan-Sonde | ⚠️ **nach** der Ableitung |
 
 ⚠️ **TB-99 ist vergeben und wird nie ein Auftrag:** Die Nummer ist für die
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
 misst, ob eine Sitzung läuft, und bricht danach folgenlos ab.
 
-*Gesetzt 25.09.2026, 20:35 (zuvor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
+*Gesetzt 25.09.2026, 22:45 (zuvor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
