@@ -134,15 +134,32 @@ def _kern(p: dict) -> dict:
 # ==============================================================================
 # 2. elliott_wave: Kerzen zaehlen, nicht Tage
 # ==============================================================================
+def _abbruch_2(stelle: str, text: str):
+    """Laut abbrechen statt still weiterzurechnen (TB-107, Fable 25c 4 (2)).
+
+    Unabhaengig vom Modus: ein Widerspruch zwischen Bot-Datei und Messung ist
+    kein Laufzustand. `paths` ist das, das `faltenplan_neun` schon geladen hat.
+    """
+    print(f"ABBRUCH (faltenschranke_messung.py::{stelle}): {text}", file=sys.stderr)
+    raise SystemExit(fp.paths.RUECKGABEWERT_STARTPRUEFUNG)
+
+
 def _min_history(bot: str):
-    """(Name, Wert) der Loader-Schranke, GELESEN aus multi_symbol_optimise.py."""
+    """(Name, Wert) der Loader-Schranke, GELESEN aus multi_symbol_optimise.py.
+
+    Genau ein Treffer, sonst 2. Bis TB-107 nahm hier `re.search` still den
+    ersten Treffer, und ohne Treffer ging `(None, None)` weiter.
+    """
     pfad = os.path.join(BASE_DIR, "strategies", bot, "multi_symbol_optimise.py")
     with open(pfad, encoding="utf-8") as f:
         quelle = f.read()
-    treffer = re.search(r"^(MIN_HISTORY_(?:DAYS|HOURS))\s*=\s*(\d+)", quelle, re.M)
-    if not treffer:
-        return None, None
-    return treffer.group(1), int(treffer.group(2))
+    treffer = re.findall(r"^(MIN_HISTORY_(?:DAYS|HOURS))\s*=\s*(\d+)", quelle, re.M)
+    if len(treffer) != 1:
+        _abbruch_2("_min_history",
+                   f"{pfad}: {len(treffer)} Treffer fuer MIN_HISTORY_DAYS/"
+                   f"MIN_HISTORY_HOURS {[n for n, _ in treffer]}, erwartet genau einer")
+    name, wert = treffer[0]
+    return name, int(wert)
 
 
 def kerzen_elliott_wave() -> dict:
@@ -150,8 +167,9 @@ def kerzen_elliott_wave() -> dict:
     name, n = _min_history("elliott_wave")
     ergebnis = {"schranke": name, "wert": n, "symbole": {}}
     if name != "MIN_HISTORY_HOURS":
-        ergebnis["hinweis"] = "elliott_wave zaehlt heute nicht mehr Kerzen"
-        return ergebnis
+        _abbruch_2("kerzen_elliott_wave",
+                   f"elliott_wave traegt {name} = {n} statt MIN_HISTORY_HOURS - "
+                   f"bis TB-107 stand hier still ein Hinweis statt der Kerzen")
     for symbol in fp.symbole("krypto"):
         pfad = fp.kursdatei(symbol, "1h")
         if not os.path.exists(pfad):
