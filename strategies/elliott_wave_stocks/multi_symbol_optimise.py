@@ -232,6 +232,12 @@ if __name__ == "__main__":
     all_data = load_all_symbol_data()
 
     if not all_data:
+        # TB-105 Block C (Fable 24b A2): unter dem Selektionsmodus ist das ein
+        # Abbruch mit Rueckgabewert 2, kein exit() mit 0. Ohne Modus wie bisher.
+        import paths
+        if paths.selektionsmodus() is not None:
+            sys.stderr.write("Keine Daten gefunden. Erst 'python3 fetch_multi_data.py' ausfuehren." + "\n")
+            raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
         print("Keine Daten gefunden. Erst 'python3 fetch_multi_data.py' ausfuehren.")
         exit()
 
