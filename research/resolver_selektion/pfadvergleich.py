@@ -76,6 +76,18 @@ ALTE_NAMEN = ("SHARED_DIR", "BASE_DIR", "DATA_DIR", "CONFIG_DIR")
 
 NICHT_PRUEFBAR = 2
 
+# ⚠️ Der benannte Stummel (TB-109 Block D). Fassung TB-52 plus
+# `selektionsmodus()` -> None, weil der heutige Nachbar die Funktion verlangt
+# (Fable 25e (3); `None` statt `False`, weil `strategy_paths` `is not None`
+# fragt). Seit TB-107 ruft `shared/strategy_paths.py` `paths.selektionsmodus()`
+# direkt; die Fassung aus dem Bezugscommit kennt die Funktion nicht, und das
+# Werkzeug endete mit AttributeError (rc 1). Der Stummel behauptet NICHT, TB-52
+# habe die Funktion gehabt: er haengt sie an die alte Fassung an, damit weiter
+# verglichen wird, was verglichen werden soll - die Pfadaufloesung. Verglichen
+# werden nur Zeichenketten; eine Funktion ist keine. Wie `shared/test_paths.py`
+# Probe A.
+STUMMEL = "\n\ndef selektionsmodus():\n    return None\n"
+
 # Der Probeprozess. Er nimmt die Sicht EINES Bots ein und schreibt jede
 # oeffentliche Zeichenkette des Moduls als JSON auf die Standardausgabe.
 _PROBE = r'''
@@ -199,6 +211,7 @@ def main(argv=None):
         print("Der Bezug ist festgenagelt (B3) - ohne ihn wird hier nichts "
               "behauptet.")
         return NICHT_PRUEFBAR
+    alt = alt + STUMMEL
     with open(os.path.join(_WURZEL, "shared", "paths.py"), encoding="utf-8") as d:
         neu = d.read()
 
