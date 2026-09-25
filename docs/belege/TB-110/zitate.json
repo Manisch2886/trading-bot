@@ -1,0 +1,219 @@
+[
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 39,
+  "text": "| | Eintrag |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 40,
+  "text": "|---|---|",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 41,
+  "text": "| a | Tatsachennotiz zu Punkt 4: Interpolation unterhalb der ersten Stützstelle gegen (0, 0), Grenzwert 0 (A5) |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 42,
+  "text": "| b | Kopie in `faltenplan_neun.py`: Abbruch gleich, zweiter Ort, Auflösung nach TB-100 (1) |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 43,
+  "text": "| c | `herkunft.py`: Prüfansicht übergibt `paths.DATA_DIR`; `TB30A_BASE_DIR` unter dem Modus 2 — eine Öffnung, mit oder vor dem Erzeuger (2, 3) |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 44,
+  "text": "| d | Ersteintrag: Ausgänge von `auswertung.py` — 0 oder 2, kein 1 (4) |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 45,
+  "text": "| e | Tatsachennotizen TB-106: sieben Ersatzwerte ⇒ 2, unerreichbar mit registrierten Eingaben; Kette hasht im Modus den registrierten Datenstand; `register()` `0ece95e2…`, `herkunft.py` `351f24c2…`, Abbild `40ffe18d…`; `registerbericht.py --pruefen` rot bis 40.8 (h) |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 31,
+  "text": "**Ergänzung zu 36.5 — Ausgänge von `auswertung.py`:** `auswertung.py` endet mit 0, wenn es gerechnet und berichtet hat; mit **2**, wenn es nicht rechnen konnte — jeder Bruch des Datenvertrags (fehlende Datei oder Spalte, Zelle ausserhalb des Rasters, Plan ohne Selektionsfalte, weniger als drei gemeinsame Tage, unbekannter Bedingungstext) ist ein 2, weil der Lauf dann über den Selektionsraum nichts aussagt. Einen Ausgang 1 hat `auswertung.py` nicht: Die Abbruchkriterien (a)–(d) sind **Ergebnisse** eines gelungenen Laufs (Bleibt/Geht, rc 0), keine Befunde über die Eingabe; Befunde über Plan und Abbild meldet der Laufwrapper (35.4), nicht der Auswerter.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 33,
+  "text": "*Quelle des Grundes:* 36.5 (2 = nicht prüfbar; der Auswerter prüft nicht die Eingabe, er rechnet auf ihr — kann er das nicht, hat er nicht gemessen), 12 (kein Auffüllen), 25c (1) (Register-Code-Widerspruch ist 2). Kein Ergebnis. Eure Beobachtung, dass die Meldungen „nicht entscheidbar\" sagen, ist der Wortlaut dieser Regel. Umsetzung: eine Zeile an der Klasse, mit der nächsten planmässigen Öffnung von `auswertung.py` (Punkte 3/5/14) — und die 12 Stellen (nicht 13) als Tatsachennotiz.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 23,
+  "text": "**(1) Die Kopie in `faltenplan_neun.py` — mit TB-107, `f5fdb53` steht.** Eure Neigung ist richtig, aus eurem Grund: Das Modul liegt im Laufbereich, der Laufbereich wird am Tag über alle Lauf-Typen gemessen, und eine Kopie derselben Regel mit dem alten Ersatzwert ist ein zweiter Ort (24b B4). Der Abbruch ist der Mindestschritt. **Die Kopie selbst bleibt als Befund benannt:** Sobald `fn.json` als Vergleichsgrösse nicht mehr gebraucht wird (nach TB-100, wenn das Faltenplan-Abbild die Vergleichsgrösse ist), ruft `faltenplan_neun.py` die Regel aus `faltenplan.py` statt sie zu tragen. Bis dahin Tatsachennotiz „zweiter Ort, Abbruch gleich, Auflösung nach TB-100\". Kein `revert`.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 25,
+  "text": "**(2) Die Prüfansicht unter dem Modus — die eine Zeile, nicht rc 2.** Eure Neigung ist richtig: `--pruefen` liest das Protokoll als registrierte Eingabe (25c 4 (4)(b)); eine Prüfung, die unter dem Modus nicht laufen kann, prüft nicht, wo sie gebraucht wird — am Tag. Ein 2 an dieser Stelle wäre ehrlich, aber es macht die Wache stumm, wo sie wachen soll.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 27,
+  "text": "**(3) `TB30A_BASE_DIR` in `herkunft.py` unter dem Modus — ja, rc 2 vor dem Lesen (24d Abschnitt 3), und (2) und (3) in einer Öffnung.** *Wann:* Die Regel aus 37.3 (Handwerk: Abbilder nach Bündeln, nicht nach jeder Änderung) gilt für Öffnungen genauso. **Mit dem Erzeuger**, wenn der Erzeuger `herkunft.py` ohnehin öffnet; sonst als eigener kleiner Auftrag **vor** dem Erzeuger — denn der Erzeuger ruft `register()` und `commit()`, und ein `commit()`, das unter einer Ersatzwurzel `\"unbekannt\"` liefert und trotzdem einen Hash schreibt, ist genau die Klasse, die 24b A2 verbietet: ein Wert, der so tut, als wäre er gemessen. Welches von beiden, entscheidet ihr am Erzeuger-Auftrag.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 17,
+  "text": "**Zur roten `registerbericht.py --pruefen`:** bekannt (39.1, dritte Zeile: der ERZEUGT-Block ist nicht neu erzeugt). TB-106 ändert am Block eine Zeile; die Neuerzeugung kommt mit dem Raster-Nachzug (40.8 (h)), nicht vorher — sonst wird der Block zweimal neu.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 31,
+  "text": "| | Eintrag |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 32,
+  "text": "|---|---|",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 33,
+  "text": "| a | Tatsachennotizen TB-107: `_min_history` genau ein Treffer; Kopie mit Abbruch; `getattr` weg; `tb40_lauf_*` nach (iv) erfüllt; Laufbereich 81 Module am Stand `f61bd97`; Gegenprobe aus der Messdatei |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 34,
+  "text": "| b | Klasse (iv): das Aufräumen erscheint im Audit als (iv), nicht als (i) ausserhalb (Handwerk am Audit) |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 35,
+  "text": "| c | Ergänzung „null Trades ist ein Wert\" (2); die zehn Stellen wie die vierzehn; Gegenprobe erweitert |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 36,
+  "text": "| d | `pfadvergleich.py`: Stummel, benannt (3) |",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 21,
+  "text": "**Ergänzung zu 24b A2 / 36.5 — null Trades:** Ein Lauf des Laufbereichs, der keine Trades findet oder ausführt, schreibt dieses Ergebnis (leere Liste, Sharpe 0 nach 1c) und endet mit 0; er endet nie ohne Ausgabe. Unter dem Modus endet ein `exit()` ohne geschriebenes Ergebnis mit 2, gleich was ihm vorausgeht.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 23,
+  "text": "*Quelle des Grundes:* 5.1 Nr. 8, 1c, 36.5. Kein Ergebnis. Umsetzung: die Gegenprobe (`test_main_gegenprobe.py`) zählt künftig jedes `exit()` ohne vorherige Ausgabe, nicht nur die nach fehlender Eingabe; die zehn Stellen bekommen die Modus-Abfrage wie die vierzehn. Dass `__main__` heute von keinem Lauf-Typ erreicht wird, ändert daran nichts — dieselbe Lage wie bei (c). Für den Laufcode (TB-30b) heisst es: Der Erzeuger schreibt für eine Zelle ohne Trades die Nullzeile, nie nichts.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 17,
+  "text": "**(1) `tb40_faltenplan_*` und `tb40_proben_*` — wie `tb40_lauf_*`.** Eure Neigung ist richtig: Klasse (iv) fragt nicht, welcher Lauf den Ordner anlegt, sondern ob ein Modul des Laufbereichs Ablagen hinterlässt. Dass `hole_faltenplan()` ohne JSON von keinem gemessenen Lauf-Typ gerufen wird, ist eine Tatsache über heute; der Laufbereich wird am Tag gemessen. Kleiner Auftrag, dieselbe Bauart (`finally`, Pfad in der Meldung, wenn kein Ergebnis).",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 25,
+  "text": "**(3) `pfadvergleich.py` — der Stummel, wie bei Probe A.** Eure Neigung trifft, mit dem Grund, den ihr nennt (ein Werkzeug, das dauerhaft 1 meldet, verwässert 1), und mit einer Bedingung: Der Stummel wird als solcher benannt (*„Fassung TB-52 plus `selektionsmodus = lambda: False`, weil der heutige Nachbar die Funktion verlangt\"*) — das Werkzeug vergleicht dann weiter, was es vergleichen soll (Pfadauflösung), und behauptet nicht, TB-52 habe die Funktion gehabt. Dass `test_paths` Probe A genau das schon tut, ist der Konsistenzgrund. Das Werkzeug liegt ausserhalb des Laufbereichs; Live-Freigabe wie gehabt.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 29,
+  "text": "Das Register legt für `auswertung.py` keinen Rückgabewert fest",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 15,
+  "text": "„Die Interpolationsregel läuft unterhalb der ersten Stützstelle linear gegen (0, 0); `nachschlagen(t, 0) = 0` ist ihr Grenzwert, gemessen TB-106.\"",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 15,
+  "text": "Kein neuer Registertext — die Regel ist über den Code registriert (Punkt 4 nennt ihn) —, aber ein Leser soll nicht raten müssen.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 3,
+  "text": "Block C (die Kopie in `faltenplan_neun.py`) ist in 25d (1) bestätigt — kein `revert`.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md",
+  "zeile": 13,
+  "text": "TB-106: sieben Ersatzwerte ⇒ 2, unabhängig vom Modus; unbekannter Bedingungstext ⇒ 2, an einer Stelle gedeutet; tote Felder und Zeile weg",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 19,
+  "text": "Ein Skript, das bei null Trades ohne Ausgabe mit 0 endet, ist für den Aufrufer von „gerechnet und geschrieben\" nicht unterscheidbar; das ist die TB-45-Klasse, gleich ob die Leere aus fehlender Eingabe oder aus einer Rechnung stammt.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 11,
+  "text": "dass das Aufräumen im Lese-Audit als zehn Verzeichnis-Öffnungen in (i) erscheint, ist genau der Grund, warum Klasse (iv) eine Klasse ist und keine Erlaubnis — der Audit soll diese Zugriffe als (iv) führen, nicht als (i) ausserhalb; Handwerk am Audit, klein.",
+  "wo": "Abschnitt 43"
+ },
+ {
+  "art": "teil",
+  "quelle": "docs/projektfuehrung/FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md",
+  "zeile": 25,
+  "text": "„Fassung TB-52 plus `selektionsmodus = lambda: False`, weil der heutige Nachbar die Funktion verlangt\"",
+  "wo": "Abschnitt 43"
+ }
+]

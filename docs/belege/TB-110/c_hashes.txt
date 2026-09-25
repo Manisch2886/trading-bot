@@ -1,0 +1,14 @@
+# TB-110 C Hashes: nur das Register und docs/ geaendert, HEAD 474ced1, 2026-09-26 00:42:50 +0200
+## (1) git diff --stat 723281f..HEAD ausserhalb docs/ (leer = nichts):
+   []
+## (2) git diff --stat 723281f..HEAD in docs/:
+    docs/VORREGISTRIERUNG_neuselektion.md | 345 ++++++++++++++++++++++++++++++++++
+    1 file changed, 345 insertions(+)
+## (3) je versionierte Datei ausserhalb docs/ jetzt gegen docs/belege/TB-109/5_alle_nachher.txt (gemessen 00:35, Stand 723281f ausserhalb docs/)
+   gleich (1539 Dateien)
+## (4) *.db gegen TB-109 h1 (8)
+   12 *.db gleich
+## (5) Register und register()
+   0fc0cc4d7504988eacbc6b92fe7da378ef94dfd8a727befd4d5a9a180a775237 Register (vorher ed20408c…, 9127 Zeilen; nachher 9472 Zeilen)
+   register() vorher c85dd6c3… (0_stand.txt), nachher c92900a8b6792eadcc138ad7f56b8cb0e9993e4c73e4732b3dcb2f974cc52031
+## (6) git status ausserhalb docs/: []

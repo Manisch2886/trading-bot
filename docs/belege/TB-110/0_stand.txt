@@ -1,0 +1,24 @@
+# TB-110 Schritt 0 / A-Stand, HEAD 723281f, 2026-09-26 00:38:44 +0200
+Vorbedingungen: Abgabe TB-109 = 723281f (HEAD 723281f); git status --porcelain: [?? docs/belege/TB-110/ ]; TB-109 ohne Abbruchkriterium
+.git/*.lock: []
+Register: 9127 Zeilen, sha256 ed20408c269e283efb2af42141c5a3390fcdbcdb68645b791313e16d13a351b1
+numstat Register gegen HEAD am Eingang: [] (leer = unveraendert)
+## Stand je Eintrag (nur Hashes, rc, Zaehlungen; keine Ergebnisgroessen)
+   83c6bc3c9b683d0b…  research/vorregistrierung/auswertung.py  (letzter Commit 5cc1de4)
+   351f24c2d6a3a512…  research/vorregistrierung/herkunft.py  (letzter Commit 5791b4c)
+   aeeec9b89bdadd1b…  research/vorregistrierung/benchmark.py  (letzter Commit a08c13a)
+   251029be744e9ba9…  research/faltenplan_neun/faltenplan_neun.py  (letzter Commit f5fdb53)
+   bb609d08dcae7d66…  research/resolver_selektion/pfadvergleich.py  (letzter Commit 8570ce8)
+   83d35d228de48063…  research/universum_trockenlauf/universum_trockenlauf.py  (letzter Commit 29640ca)
+   afdeb903660a9c1b…  shared/test_main_gegenprobe.py  (letzter Commit a02f035)
+   933d4d75490447ce…  docs/belege/TB-109/d_auswerten.py  (letzter Commit a02f035)
+   40ffe18d6a6345d1…  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json  (letzter Commit e1e6652)
+   'raise Abbruch' in auswertung.py: 12
+   class Abbruch: 118:class Abbruch(SystemExit):
+   TB30A_BASE_DIR in herkunft.py: 51:BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname( 
+   f5fdb53 auf main: main +tb-111 ; revert von f5fdb53 im Log: 0
+   Worktree: /Users/jaquelineloffler/trading-bot        723281f [main];/Users/jaquelineloffler/trading-bot-tb111  f4d6d6d [tb-111];
+## herkunft.register() vorher
+   register c85dd6c3b6de7a302627f84244226b9ba1ad5e22d6a8cc260cc5c48b588c12e2 fehlend []
+## registerbericht.py --pruefen
+   rc 1

@@ -9174,6 +9174,37 @@ Freigabe 23:04 (zwei Auswahlkarten).
 
 ---
 
+## DI — TB-110: Register 43 — die Einträge aus Fable 25d und 25e, eine vorläufige Berichtigung an 25e (3) mit Verhaltensbeleg, die Tatsachennotizen TB-107 bis TB-109; 31 Zitate mit `diff` rc 0, 6 Marken, numstat 345/0 (26.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-110_register_43.md`*
+
+**Quelle:** Mac-Sitzung **TB-110** (Anschluss in der Sitzung TB-109), 26.09.2026, Eingang `723281f`. Commits
+`474ced1` (Abschnitt 43 und alle Marken in einem Commit) und der Abgabe-Commit. Belege `docs/belege/TB-110/`.
+Grundlage Fable 25d, 25e, Ergebnisse TB-108/TB-109. Freigabe 25.09.2026, 23:04 (Auswahlkarte).
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **0** | Abgabe TB-109 liegt, `git status` leer, kein Abbruchkriterium; Register 9127 Zeilen, `register()` `c85dd6c3`, Sonde 25/0/0 und (ii) 0 |
+| ⭐⭐ **A/B** | Abschnitt 43 (43.0–43.6): 15 Einträge je mit Zitat, Art, Stand, Kette; 43-1 Ausgänge von `auswertung.py` (Plan, heute rc 1), 43-4 zweite Öffnung `herkunft.py` (Plan), 43-7 null Trades (vollzogen TB-109), 43-11 Berichtigung `None` statt `False` **vorläufig**; 6 Marken (5.1 Nr. 8, 12, 15.3, 36.5, 37.4, 42.6), keine in 10 |
+| ⭐ **C** | numstat 345/0; 31/31 Zitate rc 0; Sonde vorher = nachher (Listentext 894–1007 ⇒ 901–1014); `register()` ⇒ `c92900a8`; `test_vorregistrierung` 196/196 rc 0; außerhalb `docs/` und alle `*.db` gleich |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Berichtigung, die nicht vom Prüfer stammt, steht als Vorschlag neben seinem Satz** — gekennzeichnet „vorläufig, nicht bestätigt“, mit Beleg, und mit dem Weg für beide Antworten (bestätigt ⇒ „berichtigt durch“, verworfen ⇒ Rückbau mit Grund) |
+| ⭐ | **Die Antwort gehört zur Frage:** Die Marke zu 43-1 steht in 36.5 unter der Marke aus TB-108, die die Frage offen nannte, nicht darüber |
+
+### Was offen bleibt
+
+- 43.5: `auswertung.Abbruch` ⇒ 2 (nächste Öffnung von `auswertung.py`); zweite Öffnung `herkunft.py` (TB-111, Zweig `tb-111`); Kopie in `faltenplan_neun.py` nach TB-100; ERZEUGT-Block mit 40.8 (h); Nullzeile im Erzeuger (TB-30b); Fables Antworten auf die drei Fragen aus TB-109; 25f.
+
+*Geschrieben 26.09.2026 von der Mac-Sitzung TB-109/TB-110. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

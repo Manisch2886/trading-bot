@@ -1,0 +1,74 @@
+# TB-110 C Sonde nachher gegen sperrliste_abbild_2026-09-25b.json, HEAD 474ced1, 2026-09-26 00:42:31 +0200
+40ffe18d6a6345d1ab88aa993535cfb10264d8cf2e02e804406bbe85236642c8  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+Sperrlisten-Sonde (Register 36.2/36.5/36.6)
+  Abbild:   research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+  Register: /Users/jaquelineloffler/trading-bot/docs/VORREGISTRIERUNG_neuselektion.md
+  Wurzel:   /Users/jaquelineloffler/trading-bot
+  Abbild-Hash: 40ffe18d6a6345d1ab88aa993535cfb10264d8cf2e02e804406bbe85236642c8
+  erzeugt: 2026-09-25T17:08:38Z  HEAD 5791b4c72a7e  von research/vorregistrierung/sperrliste_abbild.py
+
+(i) Jeder Punkt des Abbilds gegen die Datei im Repo:
+  Punkt  1  [2 NICHT PRUEFBAR]  Rastergrenzen und Grenzsätze
+            research/vorregistrierung/registerdaten.py                     gleich     141fa14b6742aae0
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `registerdaten.py`, Abschnitt 3 dieses Registers
+  Punkt  2  [0 in Ordnung]  Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen
+            research/vorregistrierung/faltenplan.py                        gleich     63dafeb44e027cb5
+            research/vorregistrierung/ergebnisse/faltenplan.json           gleich     0e54ac5cf6d554d2
+  Punkt  3  [2 NICHT PRUEFBAR]  Selektionsstatistik, Plateau-Regel, Spitzen-Schwelle
+            research/vorregistrierung/auswertung.py                        gleich     83c6bc3c9b683d0b
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `auswertung.py`, `registerdaten.SPITZEN_SCHWELLE`
+  Punkt  4  [2 NICHT PRUEFBAR]  Drawdown-Bedingung, `DD_Toleranz` und die vorab berechneten Benchmark-Drawdowns
+            research/vorregistrierung/benchmark.py                         gleich     aeeec9b89bdadd1b
+            research/vorregistrierung/ergebnisse/benchmark_drawdowns.json  gleich     a163c49814b9af0c
+            research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json gleich     64fb2912f1a2ffb0
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `benchmark.py`, `ergebnisse/benchmark_drawdowns.json`, **einschliesslich der Interpolationsregel** — und, als die Tabelle, die der Lauf liest, `ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json` (Vollzug der Form (ii), 39.2, 23.09.2026)
+  Punkt  5  [0 in Ordnung]  Abbruchkriterien und Kapitalregel
+            research/vorregistrierung/auswertung.py                        gleich     83c6bc3c9b683d0b
+  Punkt  6  [2 NICHT PRUEFBAR]  Benchmark-Definitionen
+            research/vorregistrierung/benchmark.py                         gleich     aeeec9b89bdadd1b
+            -> nennt Nicht-Dateibezogenes - nicht messbar: gleichgewichtete Tagesrenditen, point-in-time, `benchmark.py::bh_tagesrenditen`
+  Punkt  7  [2 NICHT PRUEFBAR]  N-Buchführung und Clusterschwelle
+            -> kein Dateipfad im Registertext - nicht messbar: `registerdaten.N_HISTORISCH_JE_BOT`, `CLUSTER_SCHWELLE = 0,9`
+  Punkt  8  [2 NICHT PRUEFBAR]  Universumsdateien und point-in-time-Regel
+            config/top25_symbols.txt                                       gleich     3afc95a4f6b5ebc3
+            config/sp500_top150.txt                                        gleich     6acba892f38e998c
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `config/top25_symbols.txt`, `config/sp500_top150.txt`, vier Jahre Vorlauf je Symbol
+  Punkt  9  [2 NICHT PRUEFBAR]  Kosten (0,30 %) und Fill-Konvention
+            -> kein Dateipfad im Registertext - nicht messbar: `TRADING_FEE_PCT = 0,1` und `SLIPPAGE_PCT = 0,05` je Order, Ein- und Ausstieg; Einstieg zum Schlusskurs des Bestätigungsbalkens
+  Punkt 10  [2 NICHT PRUEFBAR]  Zuteilungskaskade inklusive Seed
+            shared/zuteilung.py                                            gleich     68a812a0567dec8b
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `shared/zuteilung.py`, `SEED = 20260913`
+  Punkt 11  [2 NICHT PRUEFBAR]  Commit-Hashes von Simulation, Erkennung, Optimierern und Auswertungsskript
+            research/vorregistrierung/herkunft.py                          gleich     351f24c2d6a3a512
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `herkunft.py::register()` und der Repo-Commit
+  Punkt 12  [2 NICHT PRUEFBAR]  Hash des Datenstands
+            research/vorregistrierung/herkunft.py                          gleich     351f24c2d6a3a512
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `herkunft.py::datenstand()`
+  Punkt 13  [2 NICHT PRUEFBAR]  Die Liste der berichteten Kennzahlen und die Regel, dass alle berichtet werden, auch die unangenehmen
+            -> kein Dateipfad im Registertext - nicht messbar: Abschnitt 8
+  Punkt 14  [2 NICHT PRUEFBAR]  Die Reihenfolge Selektion → Bestätigungsperiode → Bericht
+            research/vorregistrierung/auswertung.py                        gleich     83c6bc3c9b683d0b
+            -> nennt Nicht-Dateibezogenes - nicht messbar: im Kopftext von `auswertung.py` als Ablauf festgeschrieben
+
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 901-1014, Listentext wie bei Erzeugung: ja
+
+Gruppe bestimmt (37.2):  [0 in Ordnung]
+  leer (im Abbild gefuehrt, kein Eintrag)
+
+Gruppe Abschnitt 0 - herkunft.py::EINGEFROREN (39.7):  [0 in Ordnung]
+  research/vorregistrierung/registerdaten.py                       gleich     141fa14b6742aae0
+  research/vorregistrierung/faltenplan.py                          gleich     63dafeb44e027cb5
+  research/vorregistrierung/benchmark.py                           gleich     aeeec9b89bdadd1b
+  research/vorregistrierung/kennzahlen.py                          gleich     d130e15cf2c9b9c1
+  research/vorregistrierung/auswertung.py                          gleich     83c6bc3c9b683d0b
+  research/vorregistrierung/messgroessen.py                        gleich     59b396e76af33dfc
+  research/vorregistrierung/pruefe_grenzsaetze.py                  gleich     1d7358dafc6ecbe1
+  research/vorregistrierung/ergebnisse/messgroessen.json           gleich     2a9b91660a42f06a
+  research/vorregistrierung/ergebnisse/faltenplan.json             gleich     0e54ac5cf6d554d2
+  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json    gleich     a163c49814b9af0c
+
+Pfad-Bestandteile: 25 geprueft, davon 25 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 10)
+Regel-Bestandteile: 12 nicht pruefbar (2), je mit Verweis auf die Tatsachennotiz: Punkt 1 -> keine im Abbild; Punkt 3 -> keine im Abbild; Punkt 4 -> keine im Abbild; Punkt 6 -> keine im Abbild; Punkt 7 -> keine im Abbild; Punkt 8 -> keine im Abbild; Punkt 9 -> keine im Abbild; Punkt 10 -> keine im Abbild; Punkt 11 -> keine im Abbild; Punkt 12 -> keine im Abbild; Punkt 13 -> keine im Abbild; Punkt 14 -> keine im Abbild
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+rc 2
