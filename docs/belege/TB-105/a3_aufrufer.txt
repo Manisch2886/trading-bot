@@ -1,0 +1,54 @@
+# TB-105 A3 - Wer ruft die geaenderten Dateien im Betrieb? 2026-09-25 11:53:07 +0200, HEAD b83e6b9
+# crontab -l: in dieser Sitzung vom Werkzeug ABGELEHNT (auch in der K2a-Form 'crontab -l | grep -c equity_simulation').
+# Ersatz: statische Importketten der im UEBERGABEPROTOKOLL dokumentierten Cron-/Dienst-Einstiegspunkte
+# (Abschnitt 2 Bots, 4.3 Dashboard+Warteauftraege, 4.4 Bruecken, 4.7 Waechter 3:30-4:50, 6.4 Quartals-Review, launchd-Plists).
+# Welche davon tatsaechlich in der Crontab stehen, ist damit NICHT gemessen (Protokoll: Waechter 4.7 eingetragen 14.09.,
+# Quartals-Review und Warteauftraege 'unbestaetigt').
+
+# TB-105 A3 statische Importketten (a3_importketten.py); Einstiegspunkte: 24
+| Datei (geaendert in TB-105) | geladen von Einstiegspunkt(en) |
+|---|---|
+| strategies/elliott_wave/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/elliott_wave/multi_symbol_optimise.py | strategies/elliott_wave/quarterly_review.py, shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/elliott_wave_stocks/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/elliott_wave_stocks/multi_symbol_optimise.py | strategies/elliott_wave_stocks/quarterly_review.py, shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/rsi2_crypto/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/rsi2_crypto/multi_symbol_optimise.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/rsi2_mean_reversion/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/rsi2_mean_reversion/multi_symbol_optimise.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/t3_supertrend/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/t3_supertrend/multi_symbol_optimise.py | strategies/t3_supertrend/quarterly_review.py, shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/turtle_soup_crypto/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/turtle_soup_crypto/multi_symbol_optimise.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/turtle_soup_stocks/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/turtle_soup_stocks/multi_symbol_optimise.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/volatility_breakout/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/volatility_breakout/multi_symbol_optimise.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/volatility_breakout_crypto/equity_simulation.py | shared/ergebniskurven.py, shared/determinismus.py |
+| strategies/volatility_breakout_crypto/multi_symbol_optimise.py | shared/ergebniskurven.py, shared/determinismus.py |
+| shared/symbols_config.py | strategies/elliott_wave/forward_test.py, strategies/elliott_wave_stocks/forward_test.py, strategies/rsi2_crypto/forward_test.py, strategies/rsi2_mean_reversion/forward_test.py, strategies/t3_supertrend/forward_test.py, strategies/turtle_soup_crypto/forward_test.py, strategies/turtle_soup_stocks/forward_test.py, strategies/volatility_breakout/forward_test.py, strategies/volatility_breakout_crypto/forward_test.py, strategies/elliott_wave/quarterly_review.py, strategies/elliott_wave_stocks/quarterly_review.py, strategies/t3_supertrend/quarterly_review.py, shared/ergebniskurven.py, shared/determinismus.py |
+| notifications/manual_close.py | dashboard/server.py, dashboard/warteauftraege_ausfuehren.py |
+| shared/strategy_paths.py | strategies/elliott_wave/forward_test.py, strategies/elliott_wave_stocks/forward_test.py, strategies/rsi2_crypto/forward_test.py, strategies/rsi2_mean_reversion/forward_test.py, strategies/t3_supertrend/forward_test.py, strategies/turtle_soup_crypto/forward_test.py, strategies/turtle_soup_stocks/forward_test.py, strategies/volatility_breakout/forward_test.py, strategies/volatility_breakout_crypto/forward_test.py, strategies/elliott_wave/quarterly_review.py, strategies/elliott_wave_stocks/quarterly_review.py, strategies/t3_supertrend/quarterly_review.py, shared/ergebniskurven.py, shared/determinismus.py |
+| research/exposure_messung/bot_lauf.py | keinem |
+
+## Einordnung je geaenderter Datei (fuer "ohne Modus unveraendert")
+- equity_simulation.py (9): Cron-Waechter 3:50 shared/ergebniskurven.py --nur-abweichung (-> kurven_lauf.py, runpy __main__)
+  und 4:10 shared/determinismus.py --schnell (-> determinismus_lauf.py, runpy __main__, permutiert NUR die Reihenfolge
+  der vollen Symbolliste). Dazu 4:40 research/tb27_kapitalsimulation/vergleich.py --pruefen, das den QUELLTEXT der neun
+  Dateien je Funktion vergleicht (ERWARTUNG, Gruppen) - wird nach Block C nachgemessen, rc muss gleich bleiben.
+  Papierpfad (forward_test.py): importiert equity_simulation NICHT. Dashboard: nicht (statisch).
+- multi_symbol_optimise.py (5 + t3): wie oben (ueber equity_simulation), dazu quarterly_review.py der drei Ur-Bots
+  (Cron unbestaetigt, 1.1./1.4./1.7./1.10. 9:00). forward_test.py: nicht.
+- shared/symbols_config.py: alle neun forward_test.py (Papierpfad, stuendlich bis taeglich), quarterly_review.py,
+  ergebniskurven/determinismus. Aenderung greift NUR unter dem Modus -> Papierpfad unberuehrt.
+- notifications/manual_close.py: dashboard/server.py (launchd-Dienst) und dashboard/warteauftraege_ausfuehren.py
+  (Cron */5 unbestaetigt). Telegram-Bot: nicht (rein lesend). Ausserdem (Klasse iii TB-104) research/vorregistrierung/
+  registerdaten.py:62 `from manual_close import allokation` -> faltenplan.py -> benchmark.py.
+- shared/strategy_paths.py: alle neun forward_test.py (Papierpfad!) + wie equity_simulation. Aenderung greift NUR unter
+  dem Modus.
+- research/exposure_messung/bot_lauf.py: kein Betriebs-Einstiegspunkt (nur Trockenlauf d_trockenlauf.py).
+
+## Abbruchkriterium 4 (BTCUSDT im Live-Bestand?)
+data/BTCUSDT_1d.csv, data/BTCUSDT_4h.csv, data/BTCUSDT_1h.csv vorhanden; config/top25_symbols.txt Z. 1 = BTCUSDT,
+nicht in EXCLUDE_SYMBOLS. Die Cron-Waechter laden die volle Liste (determinismus permutiert nur). Ob BTCUSDT nach
+load_all_symbol_data() tatsaechlich in all_data steht, misst B3 (t3 und vbc). => kein Abbruch vor B.

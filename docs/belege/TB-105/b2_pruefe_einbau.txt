@@ -1,0 +1,1 @@
+{'vollstaendig': True, 'offen': [], 'eingebaut': ['strategies/t3_supertrend/equity_simulation.py', 'strategies/t3_supertrend/multi_symbol_optimise.py', 'strategies/volatility_breakout_crypto/equity_simulation.py']}

@@ -1,0 +1,26 @@
+# TB-105 Block B - Tests, 2026-09-25 12:36:30 +0200, Arbeitsbaum auf HEAD b83e6b9 + Block B
+shared/test_regimewache.py rc=0 | 13/13 (Teil C schaltet mit pruefe_einbau()=vollstaendig auf 'Befund erledigt')
+research/tb27_kapitalsimulation/test_vergleich.py rc=0 | 23/23
+shared/test_ergebniskurven.py rc=0 29s | 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+shared/test_agent2_zielfunktion.py rc=0 6s | 41 von 41 Pruefungen bestanden, 0 fehlgeschlagen.
+shared/test_leeres_symbol.py rc=0 16s | 45 von 45 Pruefungen bestanden, 0 fehlgeschlagen.
+research/hrp_portfolio/test_corrected_curves.py rc=0 0s | 14 Checks bestanden, 0 fehlgeschlagen.
+research/trend_overlay/test_corrected_curves.py rc=0 1s | 14 Checks bestanden, 0 fehlgeschlagen.
+research/vbc_deepdive/test_vbc_core.py rc=0 0s | 56 Checks bestanden, 0 fehlgeschlagen.
+research/sync_check/test_sync_check.py rc=0 1s | 33 Checks bestanden, 0 fehlgeschlagen.
+research/tb27_kapitalsimulation/vergleich.py --pruefen rc=0 0s | 
+shared/test_regimewache_einbau.py rc=0 20s | 21/21 Pruefungen bestanden.
+
+[exited with code 0]
+
+## shared/test_drawdown_beide_masse.py - ANGEPASST (Test des Moduls multi_symbol_optimise, Freigabe 'die Tests dieser Module')
+Befund: die Probedaten enthielten absichtlich KEIN BTCUSDT (Z. 257: 'nie BTCUSDT'), damit t3 den Regimefilter still
+uebersprang. Nach Block B bricht t3 dort an der Wache ab (Einzellauf --bot t3_supertrend: rc 1, RegimefilterFehlt, 0,8 s).
+Anpassung: stub_setzen() neutralisiert Wache/Regime/Filter AUSDRUECKLICH (nur wenn das Modul btc_daten traegt, also t3),
+stub_loesen() stellt sie vor Abschnitt 5 (echte Kursdaten mit BTCUSDT) wieder her.
+Vergleich je betroffenem Bot, Einzellauf --bot, vorher = git worktree b83e6b9 (data/ als Symlink), nachher = Arbeitsbaum:
+  t3: vorher "ok": 21, 4 FEHLER; nachher "ok": 21, 4 FEHLER; Pruefungsnamen und OK/FEHLER je Zeile gleich: JA
+  vbc: vorher "ok": 21, 4 FEHLER; nachher "ok": 21, 4 FEHLER; Pruefungsnamen und OK/FEHLER je Zeile gleich: JA
+  Die 4 FEHLER je Bot liegen alle in Abschnitt 5 (Vergleich mit research/drawdown_reihenfolge/results, Datenstand vor TB-34)
+  und bestehen am Stand b83e6b9 identisch; der Test steht seit TB-34 auf der Liste der dauerhaft roten Mac-Tests (rc 124 nach 300 s).
+  Der Gesamtlauf aller neun Bots wurde abgebrochen (elliott_wave > 20 min); B aendert nur t3 und vbc.

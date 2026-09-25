@@ -1,0 +1,16 @@
+# TB-105 A2: 'Keine Daten gefunden' + exit() in equity_simulation.py / multi_symbol_optimise.py (AST)
+strategies/elliott_wave/equity_simulation.py:145 exit() __main__
+strategies/elliott_wave/multi_symbol_optimise.py:211 exit() __main__
+strategies/elliott_wave_stocks/equity_simulation.py:168 exit() __main__
+strategies/elliott_wave_stocks/multi_symbol_optimise.py:236 exit() __main__
+strategies/rsi2_crypto/equity_simulation.py:133 exit() __main__
+strategies/rsi2_mean_reversion/equity_simulation.py:164 exit() __main__
+strategies/rsi2_mean_reversion/multi_symbol_optimise.py:194 exit() __main__
+strategies/t3_supertrend/equity_simulation.py:133 exit() __main__
+strategies/t3_supertrend/multi_symbol_optimise.py:203 exit() __main__
+strategies/turtle_soup_crypto/equity_simulation.py:116 exit() __main__
+strategies/turtle_soup_stocks/equity_simulation.py:155 exit() __main__
+strategies/volatility_breakout/equity_simulation.py:149 exit() __main__
+strategies/volatility_breakout/multi_symbol_optimise.py:188 exit() __main__
+strategies/volatility_breakout_crypto/equity_simulation.py:164 exit() __main__
+Summe: 14

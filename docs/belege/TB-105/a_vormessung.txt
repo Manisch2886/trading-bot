@@ -1,0 +1,10 @@
+# TB-105 Block A - Vormessung nachgemessen, 2026-09-25 11:54:22 +0200, HEAD b83e6b9
+| | Vormessung | gemessen | Beleg |
+|---|---|---|---|
+| A1 | 0/3 | 0/3 - pruefe_einbau(): vollstaendig False, offen = t3/equity_simulation.py, t3/multi_symbol_optimise.py, vbc/equity_simulation.py, eingebaut = []. t3 ohne BTCUSDT: collect_all_trades und evaluate_combination_multi rechnen WEITER (anderer Hash als mit BTC) = stilles Ueberspringen bestaetigt. vbc: apply_btc_regime_filter bricht heute schon ab (eigenes SystemExit, Z. 103-109), aber ohne regimewache -> pruefe_einbau zaehlt es als offen | b3_vorher.txt |
+| A2 | 14, alle __main__ | 14, alle __main__ (AST) | a2_exit_stellen.txt |
+| A3 | nicht gemessen | crontab -l ABGELEHNT (Werkzeug); statische Importketten der dokumentierten Einstiegspunkte: equity_simulation/multi_symbol_optimise nur ueber Cron-Waechter ergebniskurven/determinismus (runpy __main__) und quarterly_review (mso der drei Ur-Bots), NICHT ueber forward_test.py; symbols_config und strategy_paths ueber alle neun forward_test.py (Papierpfad); manual_close ueber dashboard/server.py und warteauftraege_ausfuehren.py; bot_lauf.py ueber keinen. BTCUSDT liegt in data/ (1d/4h/1h) und in all_data beider Bots -> Abbruchkriterium 4 greift nicht | a3_aufrufer.txt |
+| A4 | nicht gemessen | drei Schreibfunktionen protokolliere_erfolg/_ablehnung/_warteauftrag, Prozesse Dashboard-Dienst und Warteauftrags-Cron; der Modus-Weg zur Datei ist registerdaten.py:62 (nur Import) | a4_manual_close.txt |
+| A5 | nicht gemessen | im gemessenen Modus-Lauf kein schreibender Aufrufer unter results/<bot>, logs/<bot> (nur mkdir); schreibend sind die __main__-Bloecke | a5_strategy_paths.txt, a5_schreiber.txt |
+| A6 | nicht gemessen | keine freigegebene Datei in Abschnitt 10, EINGEFROREN oder Abbild; herkunft.SPERRLISTE_DATEIEN nennt strategies/*/equity_simulation.py und multi_symbol_optimise.py, wird aber von keinem Code gelesen; Punkt 11 sperrt den beim Lauf erfassten Commit, keinen Datei-Hash -> keine Auswahlkarte | a6_sperrliste.txt |
+Abweichung zur Vormessung: keine in A1/A2. A3 nur statisch (crontab gesperrt).

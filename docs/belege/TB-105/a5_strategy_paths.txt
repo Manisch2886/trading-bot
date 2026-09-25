@@ -1,0 +1,16 @@
+# TB-105 A5 - shared/strategy_paths.py::get_strategy_paths(): wer SCHREIBT in RESULTS_DIR/LOGS_DIR, und im Modus-Lauf?
+# 2026-09-25 11:53:32 +0200, HEAD b83e6b9
+Anlage heute: strategy_paths.py Z. 130-131 os.makedirs(results_dir/logs_dir, exist_ok=True) bei JEDEM Aufruf (Import der
+Bot-Module), ohne und mit Modus.
+Statische Lesestellen (a5_schreiber.py -> a5_schreiber.txt): 257 Stellen in 103 Dateien; davon im Block
+if __name__ == "__main__": 209 (71 mit schreibendem Aufruf in derselben Zeile), ausserhalb: 48 (2 schreibend,
+beide research/). Ausserhalb von __main__ in strategies/ + shared/ nur Pfadbildung (ergebniskurven, portfolio_overview,
+Experimente turtle_soup_*), keine Schreibstelle in den Modulen, die der Modus-Lauf laedt.
+Gemessen (TB-104 d1_klassen_trockenlauf.txt, c5_klassen_bm_lauf1/2.txt): in den Modus-Laeufen Trockenlauf und Benchmark
+stehen unter results/<bot>/ und logs/<bot>/ AUSSCHLIESSLICH mkdir-Ereignisse aus strategy_paths.py:130/131, KEIN open
+mit w/a darunter. => Kein schreibender Aufrufer im gemessenen Modus-Lauf. Ohne Ordner wuerde ein Aufrufer, der doch
+schreibt (z. B. python3 strategies/<bot>/equity_simulation.py direkt unter dem Modus: __main__ schreibt
+equity_curve.csv), mit FileNotFoundError abbrechen - erwuenscht (Auftrag A5); gemessen in E4 (Trockenlauf), nicht
+fuer jeden __main__-Block einzeln.
+bot_lauf.py:62-63 DATEN_DIR = research/exposure_messung/daten, os.makedirs beim Import. Schreibend: bot_lauf.py
+schreibt dorthin nur in main() (python3 bot_lauf.py <bot>); der Trockenlauf importiert nur hole_trades().

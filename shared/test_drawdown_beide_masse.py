@@ -225,11 +225,29 @@ def stub_setzen(mo, bauen):
     def stub(marke, *rest, **kw):
         return bauen(_marke_zu_symbol(marke), repr(rest) + repr(sorted(kw.items())))
     mo.get_trades_for_symbol = stub
+    # TB-105 (Register 11.1): bis dahin hielten die Proben den Regimefilter von
+    # t3_supertrend fern, indem BTCUSDT in den Probedaten FEHLTE - der Bot
+    # uebersprang ihn dann still. Seit dem Einbau der Regimewache bricht er
+    # dort ab. Der Filter wird fuer die konstruierten Probedaten deshalb
+    # AUSDRUECKLICH neutralisiert (Wache, Regime, Filter), statt sich auf das
+    # stille Ueberspringen zu verlassen; `stub_loesen` stellt alle drei wieder
+    # her, bevor Abschnitt 5 auf echten Kursdaten (mit BTCUSDT) rechnet.
+    if hasattr(mo, "btc_daten"):
+        if not hasattr(mo, "_echter_regimeteil"):
+            mo._echter_regimeteil = (mo.btc_daten, mo.compute_btc_regime,
+                                     mo.filter_trades_by_regime)
+        mo.btc_daten = lambda *a, **kw: None
+        mo.compute_btc_regime = lambda btc: None
+        mo.filter_trades_by_regime = lambda trades, regime: trades
 
 
 def stub_loesen(mo):
-    """Stellt die echte Trade-Quelle des Bots wieder her."""
+    """Stellt die echte Trade-Quelle des Bots wieder her (und, seit TB-105,
+    den echten Regimeteil)."""
     mo.get_trades_for_symbol = mo._echte_trade_quelle
+    if hasattr(mo, "_echter_regimeteil"):
+        (mo.btc_daten, mo.compute_btc_regime,
+         mo.filter_trades_by_regime) = mo._echter_regimeteil
 
 
 def _frame(pd, zeiten, pnls, symbol):
@@ -255,9 +273,10 @@ def breite_probe(pd, mo, zeiten_vertauscht: bool):
     22 Symbole, 2,0 % Durchschnittsertrag); die Filter bleiben damit
     unangetastet."""
     symbole = [f"PROBE{i:02d}" for i in range(1, 26)]      # nie "BTCUSDT":
-    # der Regimefilter von t3_supertrend greift nur, wenn BTCUSDT unter den
-    # Daten ist - er wuerde die Trade-Menge selbst veraendern und damit die
-    # Frage dieses Abschnitts ueberdecken.
+    # der Regimefilter von t3_supertrend wuerde die Trade-Menge selbst
+    # veraendern und damit die Frage dieses Abschnitts ueberdecken. Seit
+    # TB-105 haelt ihn `stub_setzen` ausdruecklich fern (die Regimewache
+    # bricht bei fehlendem BTCUSDT ab, statt still zu ueberspringen).
 
     def bauen(symbol, kombi):
         rng = random.Random(zlib.crc32(f"{symbol}|{kombi}".encode()))

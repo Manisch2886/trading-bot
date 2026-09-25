@@ -32,6 +32,8 @@ import backtest_trend
 from symbols_config import SYMBOLS
 from fetch_4h_data import INTERVAL
 from regime_filter import compute_btc_regime, filter_trades_by_regime
+# Register 11.1 (TB-105): die Wache vor dem Regimefilter, einmal in shared/.
+from regimewache import btc_daten
 
 T3_FAST_RANGE = [8, 12, 16]
 T3_SLOW_RANGE = [21, 25, 30]
@@ -126,11 +128,14 @@ def evaluate_combination_multi(all_data: dict, t3_fast: int, t3_slow: int,
 
     # Markt-Regime-Filter: nur Trades behalten, die waehrend eines
     # BTC-Aufwaertstrends eroeffnet wurden (reduziert Klumpenrisiko bei
-    # breiten Markteinbruechen deutlich, siehe Diskussion im Chat)
-    if "BTCUSDT" in all_data:
-        btc_regime = compute_btc_regime(all_data["BTCUSDT"])
-        combined = filter_trades_by_regime(combined, btc_regime)
-        contributing_symbols = combined["symbol"].nunique() if not combined.empty else 0
+    # breiten Markteinbruechen deutlich, siehe Diskussion im Chat).
+    # Bis TB-105 `if "BTCUSDT" in all_data:` ohne else - jetzt bricht die
+    # Wache ab, statt ohne Filter weiterzurechnen (Register 11.1).
+    btc = btc_daten(all_data, bot="t3_supertrend",
+                    holen="python3 fetch_4h_data.py")
+    btc_regime = compute_btc_regime(btc)
+    combined = filter_trades_by_regime(combined, btc_regime)
+    contributing_symbols = combined["symbol"].nunique() if not combined.empty else 0
 
     if combined.empty or len(combined) < MIN_TRADES or contributing_symbols < MIN_SYMBOLS_CONTRIBUTING:
         return None

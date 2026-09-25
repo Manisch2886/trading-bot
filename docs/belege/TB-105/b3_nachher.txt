@@ -1,0 +1,14 @@
+# t3_supertrend, BTCUSDT in all_data: True, Symbole geladen: ja
+equity_simulation.collect_all_trades                         sha256 87760a15c67aacfeaf5d9b2ea6b9091bb73f0c0c0ddb32d665ba9aa89b1c1a2b
+multi_symbol_optimise.evaluate_combination_multi(live)       sha256 d3c28444d06b935de4650af6a08c2e7942aa6b16b7d97a0f99d4b61363044001
+# t3_supertrend, BTCUSDT in all_data: True, Symbole geladen: ja
+# --ohne-btc: BTCUSDT aus all_data entfernt
+equity_simulation.collect_all_trades                         ABBRUCH RegimefilterFehlt (SystemExit): t3_supertrend: Der BTC-Regimefilter ist aktiv, aber BTCUSDT fehlt in den geladenen Kursdaten. Der Lauf bricht ab statt ohne Filter weiterzurechnen - ein Lauf oh
+multi_symbol_optimise.evaluate_combination_multi(live)       ABBRUCH RegimefilterFehlt (SystemExit): t3_supertrend: Der BTC-Regimefilter ist aktiv, aber BTCUSDT fehlt in den geladenen Kursdaten. Der Lauf bricht ab statt ohne Filter weiterzurechnen - ein Lauf oh
+# volatility_breakout_crypto, BTCUSDT in all_data: True, Symbole geladen: ja
+equity_simulation.collect_all_trades                         sha256 6c8b39b2d9bada2cf47c8b8e28b19aa99e44dd45528edc2b1a5abb2c596f66fa
+equity_simulation.apply_btc_regime_filter                    sha256 e66730033613bd3c1431888e2ed88968a8892a6b216003631f6705e91d5844e3
+# volatility_breakout_crypto, BTCUSDT in all_data: True, Symbole geladen: ja
+# --ohne-btc: BTCUSDT aus all_data entfernt
+equity_simulation.collect_all_trades                         sha256 7da8d34ade43be81e46d1a1149dfe10f716ace5ecf8e0c1818322a6916506239
+equity_simulation.apply_btc_regime_filter                    ABBRUCH RegimefilterFehlt (SystemExit): volatility_breakout_crypto: Der BTC-Regimefilter ist aktiv, aber BTCUSDT fehlt in den geladenen Kursdaten. Der Lauf bricht ab statt ohne Filter weiterzurechnen 

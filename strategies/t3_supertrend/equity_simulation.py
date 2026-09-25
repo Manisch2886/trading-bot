@@ -33,6 +33,9 @@ from messkette import calculate_max_drawdown, rendite_pct
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 import backtest_trend
 from regime_filter import compute_btc_regime, filter_trades_by_regime
+# Register 11.1 (TB-105): die Wache vor dem Regimefilter, einmal in shared/.
+# Fehlt BTCUSDT, bricht sie ab, statt den Filter still zu ueberspringen.
+from regimewache import btc_daten
 
 # Die Strategie-Parameter kommen DIREKT aus live_params.py - derselben Datei,
 # aus der auch forward_test.py liest (Muster aus PR #31). Vorher standen sie
@@ -73,10 +76,13 @@ def collect_all_trades(all_data: dict, t3_fast: int, t3_slow: int,
     combined["exit_time"] = pd.to_datetime(combined["exit_time"])
 
     # Markt-Regime-Filter: nur Trades behalten, die waehrend eines
-    # BTC-Aufwaertstrends eroeffnet wurden
-    if "BTCUSDT" in all_data:
-        btc_regime = compute_btc_regime(all_data["BTCUSDT"])
-        combined = filter_trades_by_regime(combined, btc_regime)
+    # BTC-Aufwaertstrends eroeffnet wurden. Bis TB-105 stand hier
+    # `if "BTCUSDT" in all_data:` ohne else - fehlte BTCUSDT, rechnete der
+    # Bot still ohne Filter, also als ein anderer Bot (Register 11.1).
+    btc = btc_daten(all_data, bot="t3_supertrend",
+                    holen="python3 fetch_4h_data.py")
+    btc_regime = compute_btc_regime(btc)
+    combined = filter_trades_by_regime(combined, btc_regime)
 
     return combined.sort_values("entry_time").reset_index(drop=True)
 

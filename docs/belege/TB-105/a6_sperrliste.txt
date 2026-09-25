@@ -1,0 +1,126 @@
+# TB-105 A6 - Sperrlistenpruefung, 2026-09-25 11:52:06 +0200, HEAD b83e6b9
+Register Abschnitt 10: Z. 843-1049
+== strategies/t3_supertrend/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/t3_supertrend/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/t3_supertrend/multi_symbol_optimise.py
+   Abschnitt 10, Treffer 'strategies/t3_supertrend/multi_symbol_optimise.py': 0
+   Abschnitt 10, Treffer 'multi_symbol_optimise.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/multi_symbol_optimise.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/volatility_breakout_crypto/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/volatility_breakout_crypto/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/elliott_wave/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/elliott_wave/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/rsi2_crypto/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/rsi2_crypto/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/turtle_soup_crypto/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/turtle_soup_crypto/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/elliott_wave_stocks/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/elliott_wave_stocks/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/rsi2_mean_reversion/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/rsi2_mean_reversion/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/turtle_soup_stocks/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/turtle_soup_stocks/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/volatility_breakout/equity_simulation.py
+   Abschnitt 10, Treffer 'strategies/volatility_breakout/equity_simulation.py': 0
+   Abschnitt 10, Treffer 'equity_simulation.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/equity_simulation.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/elliott_wave/multi_symbol_optimise.py
+   Abschnitt 10, Treffer 'strategies/elliott_wave/multi_symbol_optimise.py': 0
+   Abschnitt 10, Treffer 'multi_symbol_optimise.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/multi_symbol_optimise.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/elliott_wave_stocks/multi_symbol_optimise.py
+   Abschnitt 10, Treffer 'strategies/elliott_wave_stocks/multi_symbol_optimise.py': 0
+   Abschnitt 10, Treffer 'multi_symbol_optimise.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/multi_symbol_optimise.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+   Abschnitt 10, Treffer 'strategies/rsi2_mean_reversion/multi_symbol_optimise.py': 0
+   Abschnitt 10, Treffer 'multi_symbol_optimise.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/multi_symbol_optimise.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== strategies/volatility_breakout/multi_symbol_optimise.py
+   Abschnitt 10, Treffer 'strategies/volatility_breakout/multi_symbol_optimise.py': 0
+   Abschnitt 10, Treffer 'multi_symbol_optimise.py': 0 (Zeilen wie oben)
+   herkunft.py::SPERRLISTE_DATEIEN: ['strategies/*/multi_symbol_optimise.py']
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== shared/symbols_config.py
+   Abschnitt 10, Treffer 'shared/symbols_config.py': 0
+   Abschnitt 10, Treffer 'symbols_config.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: nein
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== notifications/manual_close.py
+   Abschnitt 10, Treffer 'notifications/manual_close.py': 0
+   Abschnitt 10, Treffer 'manual_close.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: nein
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== shared/strategy_paths.py
+   Abschnitt 10, Treffer 'shared/strategy_paths.py': 0
+   Abschnitt 10, Treffer 'strategy_paths.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: nein
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+== research/exposure_messung/bot_lauf.py
+   Abschnitt 10, Treffer 'research/exposure_messung/bot_lauf.py': 0
+   Abschnitt 10, Treffer 'bot_lauf.py': 0
+   herkunft.py::SPERRLISTE_DATEIEN: nein
+   herkunft.py::EINGEFROREN: nein
+   Abbild sperrliste_abbild_2026-09-25.json, Treffer Pfad: 0, Treffer Name: 0
+
+== Punkt 11, Wortlaut (Abschnitt 10)
+   Z. 975: 11. **Commit-Hashes von Simulation, Erkennung, Optimierern und
+
+== Einordnung (TB-105, gelesen)
+Punkt 11 lautet vollstaendig (Register Z. 975-976): "11. **Commit-Hashes von Simulation, Erkennung, Optimierern und
+Auswertungsskript** — `herkunft.py::register()` und der Repo-Commit".
+herkunft.py Z. 63-70: "Die Commit-Hashes, die zusaetzlich auf die Sperrliste gehoeren: Simulation, Erkennung und
+Optimierer je Bot. Sie liegen ausserhalb dieses Ordners und werden ueber den Git-Commit des Repos mit erfasst."
+SPERRLISTE_DATEIEN wird von keinem Code gelesen (grep: nur Definition, Sondenkopf-Kommentar, Belegskripte);
+herkunft.register() hasht REGISTERDATEI + EINGEFROREN, nicht SPERRLISTE_DATEIEN. Die Sonde fuehrt Punkt 11 als
+"2 NICHT PRUEFBAR, keine im Abbild".
+=> Punkt 11 sperrt den COMMIT, der beim Selektionslauf festgehalten wird, keinen Datei-Hash heute. Der Lauf hat nicht
+   begonnen; Register 11.1 verlangt den Einbau der Wache VOR dem Lauf in genau diese Dateien. Keine der 18
+   freigegebenen Dateien steht in Abschnitt 10 (0 Treffer Pfad/Name), in EINGEFROREN oder im Abbild (0 Treffer).
+   => keine Auswahlkarte noetig.

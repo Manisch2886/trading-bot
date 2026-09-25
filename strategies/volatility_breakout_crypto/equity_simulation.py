@@ -52,6 +52,8 @@ from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
 # Dieselben Funktionen, die forward_test.py live benutzt - nicht nachgebaut.
 from regime_filter import compute_btc_regime, filter_trades_by_regime
+# Register 11.1 (TB-105): die Wache vor dem Regimefilter, einmal in shared/.
+from regimewache import btc_daten
 
 STARTING_CAPITAL = 10_000.0
 # EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
@@ -96,17 +98,15 @@ def apply_btc_regime_filter(trades: pd.DataFrame, all_data: dict) -> pd.DataFram
 
     Fehlt BTCUSDT, wird NICHT stillschweigend ungefiltert weitergerechnet -
     das waere genau die Luecke, die hier geschlossen wird, nur unsichtbar.
+    Seit TB-105 prueft das die gemeinsame Wache `shared/regimewache.py`
+    (Register 11.1) statt einer eigenen Abfrage hier; ein abgeschalteter
+    Filter (`aktiv=False`) ist eine Einstellung und gibt `None` zurueck.
     """
-    if not BTC_REGIME_FILTER_ENABLED:
-        return trades
-
-    btc = all_data.get("BTCUSDT")
+    btc = btc_daten(all_data, bot="volatility_breakout_crypto",
+                    holen="python3 fetch_1d_data.py",
+                    aktiv=BTC_REGIME_FILTER_ENABLED)
     if btc is None:
-        raise SystemExit(
-            "BTC_REGIME_FILTER_ENABLED ist aktiv, aber BTCUSDT fehlt in den "
-            "Kursdaten - der Regimefilter ist nicht anwendbar. Erst "
-            "'python3 fetch_1d_data.py' ausfuehren; ein Lauf ohne Filter "
-            "wuerde eine andere Strategie beschreiben als die laufende.")
+        return trades
 
     vorher = len(trades)
     gefiltert = filter_trades_by_regime(trades, compute_btc_regime(btc))
