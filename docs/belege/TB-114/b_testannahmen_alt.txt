@@ -1,0 +1,12 @@
+# TB-114 B - die Testdateien am Stand 77147f7 (vor der Nachfuehrung) gegen herkunft.py mit B1/B3/B4: welche Annahmen brechen
+## test_ersatzwerte.py (alt)
+
+==============================================================================
+60 bestanden, 1 GESCHEITERT:
+  - E-bM: Mutationsprobe 'Voreinstellung BASE_DIR/data unter dem Modus zurueck' - E-b waere rot - rc 2; stderr 't_wurzel     /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmp8ot1yvil/snap\n[paths] snapshot_hash       attrappe_tb106_herkunft_00000000000000\nABBRUCH (herkunft.py::datenstand): unter dem Selektionsmodus ohne Pfad aufgerufen - keine Voreinstellung BASE_DIR/data unter dem Modus (Fable 26a R5 (c))\n'
+rc 1
+## test_sperrlistensonde.py (alt)
+  [FEHL] H7f: die Schlusszeilen trennen Pfad- und Regel-Bestandteile (40.8 (d)) - , davon 34 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 19)
+  [FEHL] 8a: der Erzeuger schreibt die Gruppe bestimmt leer und eingefroren mit den zehn Eintraegen aus herkunft.py - ([], 19)
+57 bestanden, 2 GESCHEITERT:
+rc 1

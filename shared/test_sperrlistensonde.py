@@ -342,8 +342,10 @@ def teil_h(wurzel, abbild):
            "und keinen Pfad aus dem Code der Sonde",
            "Gruppe bestimmt (37.2):  [0 in Ordnung]" in r.stdout
            and "benchmark_drawdowns_vt.json" not in r.stdout, r.stdout[-400:])
+    # TB-114 (Register 45.3, Grundsatz 40): 25 -> 34 Pfad-Bestandteile
+    # (Punkte 15, eingefroren 10 -> 19: die neun TB-24-Listen, Fable 26a R3)
     pruefe("H7f: die Schlusszeilen trennen Pfad- und Regel-Bestandteile (40.8 (d))",
-           "Pfad-Bestandteile: 25 geprueft, davon 25 mit 0 / 0 mit 1 / 0 mit 2" in r.stdout
+           "Pfad-Bestandteile: 34 geprueft, davon 34 mit 0 / 0 mit 1 / 0 mit 2" in r.stdout
            and "Regel-Bestandteile: 12 nicht pruefbar (2)" in r.stdout, r.stdout[-600:])
     r = subprocess.run(cmd + ["--json"], capture_output=True, text=True)
     try:
@@ -368,9 +370,11 @@ def teil_h(wurzel, abbild):
 def fall_8(wurzel, abbild):
     """Die Gruppen kommen aus dem Abbild (40.8 (e)) - mit Gegenprobe."""
     a = _lade(abbild)
+    # TB-114 (Register 45.3, Grundsatz 40): zehn -> neunzehn Eintraege, die
+    # neun TB-24-Listen sind dazugekommen (Fable 26a R3)
     pruefe("8a: der Erzeuger schreibt die Gruppe bestimmt leer und eingefroren "
-           "mit den zehn Eintraegen aus herkunft.py",
-           a.get("bestimmt") == [] and len(a.get("eingefroren", [])) == 10
+           "mit den neunzehn Eintraegen aus herkunft.py",
+           a.get("bestimmt") == [] and len(a.get("eingefroren", [])) == 19
            and [e["pfad"] for e in a["eingefroren"]] == sonde.lies_eingefroren(wurzel),
            (a.get("bestimmt"), len(a.get("eingefroren", []))))
     b = sonde.pruefen(abbild, _register(wurzel), wurzel)

@@ -1,0 +1,40 @@
+# TB-114 B2, HEAD 77147f7, herkunft.py ed521ac147d2e908..., 2026-09-26 17:03:31 +0200
+## (1) Suchmuster: git grep -n -E "\[.fehlend.\]|register_fehlend|\.get\(.fehlend" -- '*.py'
+research/turn_of_month/herkunft.py:126:        "register_fehlend": r["fehlend"],
+research/turn_of_month/herkunft.py:214:    if b["register_fehlend"]:
+research/turn_of_month/herkunft.py:215:        print(f"  ! fehlend     {b['register_fehlend']}")
+research/vorregistrierung/herkunft.py:225:        "register_fehlend": r["fehlend"],
+research/vorregistrierung/herkunft.py:352:    if b["register_fehlend"]:
+research/vorregistrierung/herkunft.py:353:        print(f"  ! fehlend     {b['register_fehlend']}")
+research/vorregistrierung/test_ersatzwerte.py:500:                  "register_fehlend"}
+research/vorregistrierung/test_ersatzwerte.py:875:           reg["fehlend"] == [] and len(teile) == 20 and len(TB24_LISTEN) == 9
+research/vorregistrierung/test_ersatzwerte.py:876:           and teile[-9:] == TB24_LISTEN, f"fehlend {reg['fehlend']}; Teile {teile}")
+## (1b) Aufrufer von register()/block()/anhaengen() ausserhalb docs/belege: git grep -n -E "herkunft\.(register|block|anhaengen)\(" -- '*.py' ':!docs'
+research/vorregistrierung/test_ersatzwerte.py:369:              "print(json.dumps(herkunft.block('probe'), sort_keys=True))\n")
+research/vorregistrierung/test_ersatzwerte.py:528:              "e = (herkunft.commit() if was == 'commit' else herkunft.register()\n"
+research/vorregistrierung/test_ersatzwerte.py:529:              "     if was == 'register' else herkunft.block('probe', sys.argv[2]))\n"
+research/vorregistrierung/test_ersatzwerte.py:871:    reg = herkunft.register()
+## (1c) Laufbereich (TB-112 a2_laufbereich.txt): Zeilen mit herkunft.py: 0
+## (2) Klon <scratch>/b2_klon, HEAD 5c24041 (lokaler Probecommit), weggelegt: research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+   git status: [ D research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv ]
+### (2a) ohne Modus, register()
+register ccacf26034dd0adc ... fehlend ['research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv'] Teile 19
+rc 0
+### (2b) ohne Modus, Pruefansicht herkunft.py
+rc 0
+  Register      ccacf26034dd0adc...
+  ! fehlend     ['research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv']
+  Protokoll     keine Kettenfehler
+### (2c) Modus, Pruefansicht herkunft.py
+rc 0
+  Register      ccacf26034dd0adc...
+  ! fehlend     ['research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv']
+  Protokoll     keine Kettenfehler
+### (2d) Modus, block() mit paths.DATA_DIR: register_fehlend im Herkunftsblock
+rc 0
+register_fehlend ['research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv'] register ccacf26034dd0adc
+### (2e) Gegenprobe: Liste zurueck, Modus, Pruefansicht
+   git status: []
+rc 0
+  Register      5acb4c1924a4a009...
+## Ende 17:03:45

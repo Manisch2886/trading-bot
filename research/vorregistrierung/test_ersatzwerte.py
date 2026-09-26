@@ -40,6 +40,26 @@ Rohergebnissen (Aufruf wie im Betrieb) und an drei der zwoelf Stellen
 (fehlende Spalte, Zelle ausserhalb des Rasters, zu wenige gemeinsame Tage);
 G-M ist die Mutationsprobe "Code 1 zurueck" mit Gegenprobe.
 
+TB-114 (Fable 26a R3/R5 (c), Register 45) - Teil H:
+  H-a  B1: fuer jeden Eintrag von `EINGEFROREN` liefern
+       `herkunft._eingefroren_pfad` und `sperrlistensonde._aufloesen`
+       denselben absoluten Pfad (eine Pfadregel; die Sonde wird von
+       herkunft.py nicht importiert) - im laufenden Prozess (H-a) und im
+       Wegwerfbaum (H-a2);
+  H-aM Mutationsprobe "alte Regel (jeder Eintrag relativ zu _HIER)" mit
+       Gegenprobe - die neun Eintraege mit '/' ausserhalb 'ergebnisse/'
+       laegen dann woanders;
+  H-b  B3: `register()` im Repo - `fehlend` leer, die neun TB-24-Listen
+       unter den Teilen;
+  H-c  B4: unter dem Modus endet `datenstand()` ohne Pfad mit 2;
+  H-cM Mutationsprobe "Voreinstellung BASE_DIR/data unter dem Modus zurueck"
+       mit Gegenprobe;
+  H-d  ohne Modus liefert `datenstand()` ohne Pfad wie vorher BASE_DIR/data.
+Nachgezogen (Grundsatz 40): E-bM - seit B4 endet die Mutation "Voreinstellung
+in block() zurueck" nicht mehr mit 0, sondern an der zweiten Wache in
+`datenstand()` mit 2; die Mutation beisst weiter, weil E-b die Stelle `block`
+verlangt.
+
 Aufruf: trading-env/bin/python3 research/vorregistrierung/test_ersatzwerte.py
 """
 
@@ -454,9 +474,12 @@ def teil_e():
 
     r = _e2_lauf(False)
     pruefe("E-b: Modus, block() ohne daten_dir endet mit 2", _rc2(r, "block"), _info(r))
+    # TB-114 (Grundsatz 40): bis TB-113 lief die Mutation mit rc 0 durch; seit
+    # B4 haelt sie `datenstand()` mit 2 auf. Die Mutation beisst weiter: E-b
+    # verlangt 2 an der Stelle `block`, die Mutation endet an `datenstand`.
     _mit_gegenprobe(
         "E-bM", "Mutationsprobe 'Voreinstellung BASE_DIR/data unter dem Modus zurueck' - E-b waere rot",
-        _e2_lauf, lambda r: r["rc"] == 0, _info)
+        _e2_lauf, lambda r: not _rc2(r, "block") and _rc2(r, "datenstand"), _info)
 
     r = _e3_lauf(False)
     pruefe("E-c: ohne Modus, Protokollordner fehlt -> 2, kein Ordner angelegt",
@@ -754,6 +777,116 @@ def teil_g():
         lambda r: r["rc"] == 1 and "Spalten fehlen in zellen.csv" in r["err"], _info)
 
 
+# ===============================================================================
+# H  herkunft.py - eine Pfadregel mit der Sonde, die neun TB-24-Listen,
+#    datenstand(None) unter dem Modus (TB-114)
+# ===============================================================================
+H1_NEU = '    return os.path.normpath(os.path.join(_WURZEL, rel))\n'
+H1_ALT = '    return os.path.normpath(os.path.join(_HIER, rel))\n'
+B4_NEU = '    if not daten_dir and _paths().selektionsmodus() is not None:\n'
+B4_ALT = '    if False:\n'
+TB24_LISTEN = ["research/tb24_haltedauern/daten/%s_alle_trades.csv" % b
+               for b in sorted(os.listdir(os.path.join(_REPO, "strategies")))
+               if os.path.isdir(os.path.join(_REPO, "strategies", b))]
+# Treiber der Gegenprobe: laedt herkunft.py aus seinem Baum und die Sonde aus
+# der echten shared/ - vergleicht je Eintrag die absoluten Pfade.
+_H_TREIBER = ("import sys, os, json\n"
+              "sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n"
+              "sys.path.insert(0, sys.argv[1])\n"
+              "import herkunft, sperrlistensonde as s\n"
+              "w = herkunft._WURZEL\n"
+              "a = [rel for rel in herkunft.EINGEFROREN if herkunft._eingefroren_pfad(rel)\n"
+              "     != os.path.normpath(os.path.join(w, s._aufloesen(rel)))]\n"
+              "print(json.dumps({'eintraege': len(herkunft.EINGEFROREN), 'abweichend': a}))\n")
+_H_DATENSTAND = ("import sys, os, json\n"
+                 "sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n"
+                 "import herkunft\n"
+                 "print(json.dumps(herkunft.datenstand(), sort_keys=True))\n")
+
+
+def gegenprobe_pfadregel(herkunft_modul, sonde_modul):
+    """B1 im laufenden Prozess: die Eintraege, deren Orte sich unterscheiden."""
+    w = herkunft_modul._WURZEL
+    return [rel for rel in herkunft_modul.EINGEFROREN
+            if herkunft_modul._eingefroren_pfad(rel)
+            != os.path.normpath(os.path.join(w, sonde_modul._aufloesen(rel)))]
+
+
+def _ha_lauf(mut):
+    """Gegenprobe in einem Wegwerfbaum <t>/research/vorregistrierung/, damit
+    `_WURZEL` dort liegt; mit Mutation steht die alte Regel (_HIER) wieder da."""
+    with tempfile.TemporaryDirectory() as t:
+        v = os.path.join(t, "research", "vorregistrierung")
+        os.makedirs(v)
+        shutil.copy2(os.path.join(_HIER, "herkunft.py"), v)
+        _ersetze(os.path.join(v, "herkunft.py"), H1_NEU, H1_ALT, mut)
+        with open(os.path.join(v, "probe_pfadregel.py"), "w", encoding="utf-8") as f:
+            f.write(_H_TREIBER)
+        r = subprocess.run([sys.executable, "-W", "ignore", os.path.join(v, "probe_pfadregel.py"),
+                            os.path.join(_REPO, "shared")], capture_output=True, text=True,
+                           env={k: x for k, x in os.environ.items()
+                                if k not in ("TB30A_BASE_DIR", "PYTHONPATH")
+                                and not k.startswith("TB_SELEKTIONS")})
+    e = json.loads(r.stdout.strip().splitlines()[-1]) if r.returncode == 0 else {}
+    return {"rc": r.returncode, "out": r.stdout[-400:], "err": r.stderr[-600:],
+            "eintraege": e.get("eintraege"), "abweichend": e.get("abweichend")}
+
+
+def _h_datenstand_lauf(mut, modus=True):
+    """datenstand() ohne Pfad im Wegwerfbaum aus Teil E; die Probe ist mit
+    committet, damit der Baum sauber ist."""
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, v, head = _e_baum(t, (B4_NEU, B4_ALT, mut))
+        with open(os.path.join(v, "probe_datenstand.py"), "w", encoding="utf-8") as f:
+            f.write(_H_DATENSTAND)
+        _git(baum, "add", "-A")
+        _git(baum, "-c", "user.name=tb114", "-c", "user.email=tb114@test",
+             "commit", "-q", "-m", "Probe")
+        head = subprocess.run(["git", "-C", baum, "rev-parse", "HEAD"],
+                              capture_output=True, text=True).stdout.strip()
+        r = _e_lauf(t, baum, snap, head, [os.path.join(v, "probe_datenstand.py")], modus=modus)
+        r["soll_data"] = herkunft.datenstand(os.path.join(baum, "data"))["datenstand"]
+        r["ist"] = (json.loads(r["out"].strip().splitlines()[-1])["datenstand"]
+                    if r["rc"] == 0 else None)
+        return r
+
+
+def teil_h():
+    sys.path.insert(0, os.path.join(_REPO, "shared"))
+    import sperrlistensonde  # noqa: E402
+
+    a = gegenprobe_pfadregel(herkunft, sperrlistensonde)
+    pruefe("H-a: B1 - je Eintrag von EINGEFROREN derselbe absolute Pfad in herkunft.py und "
+           "in der Sonde (%d Eintraege)" % len(herkunft.EINGEFROREN),
+           not a and len(herkunft.EINGEFROREN) == 19, f"abweichend {a}")
+    r = _ha_lauf(False)
+    pruefe("H-a2: dieselbe Gegenprobe im Wegwerfbaum, rc 0, 0 abweichend",
+           r["rc"] == 0 and r["abweichend"] == [] and r["eintraege"] == 19, _info(r))
+    _mit_gegenprobe(
+        "H-aM", "Mutationsprobe 'alte Regel: jeder Eintrag relativ zu _HIER' - Gegenprobe rot",
+        _ha_lauf,
+        lambda r: r["rc"] == 0 and sorted(r["abweichend"] or []) == sorted(TB24_LISTEN),
+        lambda r: _info(r) + f"; abweichend {r['abweichend']}")
+
+    reg = herkunft.register()
+    teile = [t["datei"] for t in reg["teile"]]
+    pruefe("H-b: B3 - register() im Repo: fehlend leer, 20 Teile, die neun TB-24-Listen "
+           "in der Reihenfolge von strategies/",
+           reg["fehlend"] == [] and len(teile) == 20 and len(TB24_LISTEN) == 9
+           and teile[-9:] == TB24_LISTEN, f"fehlend {reg['fehlend']}; Teile {teile}")
+
+    r = _h_datenstand_lauf(False)
+    pruefe("H-c: B4 - Modus, datenstand() ohne Pfad endet mit 2, Meldung nennt datenstand, "
+           "keine Ausgabe",
+           _rc2(r, "datenstand") and r["out"] == "", _info(r))
+    _mit_gegenprobe(
+        "H-cM", "Mutationsprobe 'Voreinstellung BASE_DIR/data unter dem Modus zurueck' - H-c waere rot",
+        _h_datenstand_lauf, lambda r: r["rc"] == 0 and r["ist"] == r["soll_data"], _info)
+    r = _h_datenstand_lauf(False, modus=False)
+    pruefe("H-d: ohne Modus datenstand() ohne Pfad wie vorher - rc 0, hasht BASE_DIR/data",
+           r["rc"] == 0 and r["ist"] == r["soll_data"], _info(r))
+
+
 def _sha(pfad):
     if not os.path.exists(pfad):
         return "(fehlt)"
@@ -764,7 +897,7 @@ def _sha(pfad):
 def main():
     print(__doc__.strip().split("\n")[0])
     for name, teil in (("B", teil_b), ("C", teil_c), ("D", teil_d), ("E", teil_e),
-                       ("F", teil_f), ("G", teil_g)):
+                       ("F", teil_f), ("G", teil_g), ("H", teil_h)):
         print(f"  Teil {name} ...", flush=True)
         teil()
     print("\n" + "=" * 78)

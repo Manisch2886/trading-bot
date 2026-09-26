@@ -1,0 +1,7 @@
+# TB-114 B1 register() vor B1 (HEAD 77147f7, herkunft.py unveraendert)
+herkunft.py 5bbfc9e085d7ec70f43eb8aaaf63b957de27e3647023e143d17e9dd8c60448fa
+register()-JSON 3417c32596a29ca339bac56353a57f8b1f5de939114d6bee279dc5773ff79f76  register  "register": "03178075d24f1f41137c9f8f45604556e04cd513e12757b899eb47a0a5c1e91a",
+# nach B1 (nur _eingefroren_pfad und die Schleife in register(), EINGEFROREN unveraendert)
+herkunft.py 3c3fe17ee8132a052cd7fc3890b17edc48cfcc79684f2c498e58a54318bb4343
+register()-JSON 3417c32596a29ca339bac56353a57f8b1f5de939114d6bee279dc5773ff79f76  register  "register": "03178075d24f1f41137c9f8f45604556e04cd513e12757b899eb47a0a5c1e91a",
+register() vor B1 = nach B1: cmp rc 0 (bytegleich, JSON mit Hash, 11 Teilen und fehlend)

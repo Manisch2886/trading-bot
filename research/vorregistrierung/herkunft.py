@@ -63,6 +63,20 @@ EINGEFROREN = [
     "auswertung.py", "messgroessen.py", "pruefe_grenzsaetze.py",
     "ergebnisse/messgroessen.json", "ergebnisse/faltenplan.json",
     "ergebnisse/benchmark_drawdowns.json",
+    # TB-114 (Fable 26a R3, Register 45.3): die neun Handelslisten, aus denen
+    # der Faltenplan seine Faltenlaengen herleitet (TB-95) - Eingaben, kein
+    # Code; repo-relativ (Pfadregel in `_eingefroren_pfad`), Reihenfolge der
+    # Bots wie in strategies/. Schreibt der Erzeuger die neuen Listen an einen
+    # anderen Pfad, folgt diese Liste ihm beim Einbau des Erzeugers (R5).
+    "research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv",
+    "research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv",
+    "research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv",
+    "research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv",
+    "research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv",
+    "research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv",
+    "research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv",
+    "research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv",
+    "research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv",
 ]
 # Die Commit-Hashes, die zusaetzlich auf die Sperrliste gehoeren: Simulation,
 # Erkennung und Optimierer je Bot. Sie liegen ausserhalb dieses Ordners und
@@ -99,7 +113,15 @@ def commit() -> dict:
 
 
 def datenstand(daten_dir=None) -> dict:
-    """SHA-256 ueber alle Kursdateien, in stabiler Reihenfolge."""
+    """SHA-256 ueber alle Kursdateien, in stabiler Reihenfolge.
+
+    TB-114 (Fable 26a R5 (c), 24b A10): unter dem Selektionsmodus ohne
+    uebergebenen Pfad Abbruch mit 2, bevor gelesen wird - keine
+    Voreinstellung `BASE_DIR/data` unter dem Modus. Ohne Modus wie vorher."""
+    if not daten_dir and _paths().selektionsmodus() is not None:
+        _abbruch_2("datenstand",
+                   "unter dem Selektionsmodus ohne Pfad aufgerufen - keine "
+                   "Voreinstellung BASE_DIR/data unter dem Modus (Fable 26a R5 (c))")
     daten_dir = daten_dir or os.path.join(BASE_DIR, "data")
     h = hashlib.sha256()
     dateien = sorted(f for f in os.listdir(daten_dir) if f.endswith(".csv"))
@@ -111,14 +133,28 @@ def datenstand(daten_dir=None) -> dict:
     return {"datenstand": h.hexdigest(), "dateien": len(dateien)}
 
 
+def _eingefroren_pfad(rel: str) -> str:
+    """Ort eines Eintrags von `EINGEFROREN` - TB-114 (Fable 26a R3, Register
+    45.9): dieselbe Regel wie `shared/sperrlistensonde.py::_aufloesen`. Kein
+    '/' oder Praefix 'ergebnisse/' -> relativ zu diesem Ordner; sonst relativ
+    zur Wurzel, in der dieses Modul liegt (`_WURZEL`, wie `_HIER` ohne
+    `TB30A_BASE_DIR`). Die Sonde wird nicht importiert; die Gleichheit prueft
+    eine Gegenprobe im Test. In den Hash geht `rel` unveraendert ein."""
+    if "/" not in rel or rel.startswith("ergebnisse/"):
+        return os.path.normpath(os.path.join(_HIER, rel))
+    return os.path.normpath(os.path.join(_WURZEL, rel))
+
+
 def register() -> dict:
     """SHA-256 ueber die eingefrorenen Festlegungen."""
     _ersatzwurzel_pruefen("register")
     h = hashlib.sha256()
     fehlend = []
     teile = []
-    for rel in ([os.path.relpath(REGISTERDATEI, _HIER)] + EINGEFROREN):
-        pfad = os.path.normpath(os.path.join(_HIER, rel))
+    for i, rel in enumerate([os.path.relpath(REGISTERDATEI, _HIER)] + EINGEFROREN):
+        # die Registerdatei wie bisher relativ zu _HIER, EINGEFROREN nach B1
+        pfad = (os.path.normpath(os.path.join(_HIER, rel)) if i == 0
+                else _eingefroren_pfad(rel))
         if not os.path.exists(pfad):
             fehlend.append(rel)
             continue
