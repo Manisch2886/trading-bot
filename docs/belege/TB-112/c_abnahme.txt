@@ -1,0 +1,15 @@
+# TB-112 C Abnahme, HEAD e731207, 2026-09-26 09:49:56 +0200
+## vorher: research/universum_trockenlauf/test_universum_trockenlauf.py sha256 ab419b9f24978ceb, git diff --numstat []
+   eigenes TMPDIR vorher:  tb40_test_fp_ 0  tb40_test_ll_ 0  tb40_test_ 0  tb44_l_ 0  alle Eintraege 0
+   System-TMPDIR vorher:   tb40_test_fp_ 28  tb40_test_ll_ 138  tb40_test_ 492  tb44_l_ 0  alle Eintraege 6919
+   test rc=0 102s: 163/163 Pruefungen bestanden.
+   eigenes TMPDIR nachher: tb40_test_fp_ 1  tb40_test_ll_ 5  tb40_test_ 18  tb44_l_ 0  alle Eintraege 18
+   System-TMPDIR nachher:  tb40_test_fp_ 28  tb40_test_ll_ 138  tb40_test_ 492  tb44_l_ 0  alle Eintraege 6919
+## nachher: research/universum_trockenlauf/test_universum_trockenlauf.py sha256 b758fce7d04c5812, git diff --numstat [48 24 research/universum_trockenlauf/test_universum_trockenlauf.py]
+   eigenes TMPDIR vorher:  tb40_test_fp_ 0  tb40_test_ll_ 0  tb40_test_ 0  tb44_l_ 0  alle Eintraege 0
+   System-TMPDIR vorher:   tb40_test_fp_ 28  tb40_test_ll_ 138  tb40_test_ 492  tb44_l_ 0  alle Eintraege 6919
+   test rc=0 103s: 163/163 Pruefungen bestanden.
+   eigenes TMPDIR nachher: tb40_test_fp_ 0  tb40_test_ll_ 0  tb40_test_ 0  tb44_l_ 0  alle Eintraege 0
+   System-TMPDIR nachher:  tb40_test_fp_ 28  tb40_test_ll_ 138  tb40_test_ 492  tb44_l_ 0  alle Eintraege 6920
+# neue Fassung liegt wieder im Arbeitsbaum
+## Ende 09:53:24

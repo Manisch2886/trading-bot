@@ -1,0 +1,118 @@
+# TB-112 B3, HEAD e731207, 2026-09-26 09:47:19 +0200, Testziel <scratch>/b3_testziel
+## Zwischenordner db_sicherung.* in $TMPDIR vorher: 0
+## Originale vorher (sha256, mtime)
+8d3eb2a22c4542c23bdcfe88024a2da62e14133f77847e03cf6d0b44b75e6f65  2026-09-25 23:30:28  benachrichtigungen_schliessung.db
+028f367b7c9efe7400ec7e399c0bca3930bfc5630d3d5f9c346b88e87a4fa108  2026-09-26 08:05:00  broker_testnet_t3_supertrend.db
+35a44bf683ee465b8e49c935b1f04262bdcd969a00dc995df06a6b803f4ea96f  2026-09-18 22:15:51  paper_trading_elliott_wave_stocks.db
+f85bd033b635a0024870486eaea46188d789ca33cce04ef4adca83c61de3adc4  2026-09-16 23:00:01  paper_trading_elliott_wave.db
+1c4b8c9b5ff187b715ec40a8ae1c117d62d32fd09ba558b843a1d23d69990f5f  2026-09-24 23:20:25  paper_trading_rsi2_crypto.db
+b65f91f4cb8aab9f7c95b0a0d1b54eec1d06989f6072259af0a3590d66745991  2026-09-25 22:20:47  paper_trading_rsi2_mean_reversion.db
+65cf1458dfc3fd51d4187b1426036025934ba3407ec0cf887989eea749c5126c  2026-09-24 16:00:31  paper_trading_t3_supertrend.db
+30819ee9f3a437d99a588bb271a154b9ea3b58c9f07900068bfa090d6cdf912f  2026-09-25 00:15:25  paper_trading_turtle_soup_crypto.db
+371006e0f4801daa0da49dfbcfa1527a8e8df49ba75a8f43b32c9ed8707270e9  2026-09-25 23:15:45  paper_trading_turtle_soup_stocks.db
+53e2645f508968658d9bb111b54e7e8d5065fa66aae63903c880cb7a8b10079b  2026-09-21 23:50:26  paper_trading_volatility_breakout_crypto.db
+6761e7aab8b00316e7f96e2ec677d56017f29e7d7d3540bf9b0b51bc8a378951  2026-09-25 22:50:45  paper_trading_volatility_breakout.db
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  2026-09-05 21:30:21  strategies/volatility_breakout/paper_trading_volatility_breakout.db
+## Lauf 1
+# db_sicherung 2026-09-26 09:47:20 +0200
+# Repo:  /Users/jaquelineloffler/trading-bot
+# Ziel:  <testziel>/2026-09-26
+# gefunden: 12 Datenbanken
+#   benachrichtigungen_schliessung.db
+#   broker_testnet_t3_supertrend.db
+#   paper_trading_elliott_wave_stocks.db
+#   paper_trading_elliott_wave.db
+#   paper_trading_rsi2_crypto.db
+#   paper_trading_rsi2_mean_reversion.db
+#   paper_trading_t3_supertrend.db
+#   paper_trading_turtle_soup_crypto.db
+#   paper_trading_turtle_soup_stocks.db
+#   paper_trading_volatility_breakout_crypto.db
+#   paper_trading_volatility_breakout.db
+#   strategies/volatility_breakout/paper_trading_volatility_breakout.db
+ok      benachrichtigungen_schliessung.db  (45056 B, 11 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      broker_testnet_t3_supertrend.db  (147456 B, 27 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave_stocks.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_crypto.db  (16384 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_mean_reversion.db  (24576 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_t3_supertrend.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_stocks.db  (32768 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      strategies/volatility_breakout/paper_trading_volatility_breakout.db  (4096 B, 0 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+# gesichert 12 von 12, Fehler 0, Satzgroesse 364 KiB
+# Rueckgabewert 0
+   rc=0 Laufzeit 1s
+## Lauf 2
+# db_sicherung 2026-09-26 09:47:21 +0200
+# Repo:  /Users/jaquelineloffler/trading-bot
+# Ziel:  <testziel>/2026-09-26_094721
+# gefunden: 12 Datenbanken
+#   benachrichtigungen_schliessung.db
+#   broker_testnet_t3_supertrend.db
+#   paper_trading_elliott_wave_stocks.db
+#   paper_trading_elliott_wave.db
+#   paper_trading_rsi2_crypto.db
+#   paper_trading_rsi2_mean_reversion.db
+#   paper_trading_t3_supertrend.db
+#   paper_trading_turtle_soup_crypto.db
+#   paper_trading_turtle_soup_stocks.db
+#   paper_trading_volatility_breakout_crypto.db
+#   paper_trading_volatility_breakout.db
+#   strategies/volatility_breakout/paper_trading_volatility_breakout.db
+ok      benachrichtigungen_schliessung.db  (45056 B, 11 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      broker_testnet_t3_supertrend.db  (147456 B, 27 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave_stocks.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_crypto.db  (16384 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_mean_reversion.db  (24576 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_t3_supertrend.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_stocks.db  (32768 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      strategies/volatility_breakout/paper_trading_volatility_breakout.db  (4096 B, 0 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+# gesichert 12 von 12, Fehler 0, Satzgroesse 364 KiB
+# Rueckgabewert 0
+   rc=0 Laufzeit 1s
+## Testziel: Dateien
+   ./2026-09-26_094721/benachrichtigungen_schliessung.db 45056 B
+   ./2026-09-26_094721/broker_testnet_t3_supertrend.db 147456 B
+   ./2026-09-26_094721/paper_trading_elliott_wave_stocks.db 16384 B
+   ./2026-09-26_094721/paper_trading_elliott_wave.db 16384 B
+   ./2026-09-26_094721/paper_trading_rsi2_crypto.db 16384 B
+   ./2026-09-26_094721/paper_trading_rsi2_mean_reversion.db 24576 B
+   ./2026-09-26_094721/paper_trading_t3_supertrend.db 16384 B
+   ./2026-09-26_094721/paper_trading_turtle_soup_crypto.db 16384 B
+   ./2026-09-26_094721/paper_trading_turtle_soup_stocks.db 32768 B
+   ./2026-09-26_094721/paper_trading_volatility_breakout_crypto.db 16384 B
+   ./2026-09-26_094721/paper_trading_volatility_breakout.db 16384 B
+   ./2026-09-26_094721/PROTOKOLL.txt 2168 B
+   ./2026-09-26_094721/SHA256SUMS 1243 B
+   ./2026-09-26_094721/strategies/volatility_breakout/paper_trading_volatility_breakout.db 4096 B
+   ./2026-09-26/benachrichtigungen_schliessung.db 45056 B
+   ./2026-09-26/broker_testnet_t3_supertrend.db 147456 B
+   ./2026-09-26/paper_trading_elliott_wave_stocks.db 16384 B
+   ./2026-09-26/paper_trading_elliott_wave.db 16384 B
+   ./2026-09-26/paper_trading_rsi2_crypto.db 16384 B
+   ./2026-09-26/paper_trading_rsi2_mean_reversion.db 24576 B
+   ./2026-09-26/paper_trading_t3_supertrend.db 16384 B
+   ./2026-09-26/paper_trading_turtle_soup_crypto.db 16384 B
+   ./2026-09-26/paper_trading_turtle_soup_stocks.db 32768 B
+   ./2026-09-26/paper_trading_volatility_breakout_crypto.db 16384 B
+   ./2026-09-26/paper_trading_volatility_breakout.db 16384 B
+   ./2026-09-26/PROTOKOLL.txt 2161 B
+   ./2026-09-26/SHA256SUMS 1243 B
+   ./2026-09-26/strategies/volatility_breakout/paper_trading_volatility_breakout.db 4096 B
+## je Satz: SHA256SUMS vollstaendig und stimmig (shasum -c), integrity_check je Datei erneut
+   2026-09-26_094721: SHA256SUMS 12 Zeilen, 12 Datenbanken, shasum -c OK 12, integrity_check [ 12 ok ]
+   2026-09-26: SHA256SUMS 12 Zeilen, 12 Datenbanken, shasum -c OK 12, integrity_check [ 12 ok ]
+## Groesse eines Satzes (du -sk)
+   368 KiB  2026-09-26_094721
+   368 KiB  2026-09-26
+## Originale nachher gegen vorher
+   gleich (sha256 und mtime aller 12)
+## Zwischenordner db_sicherung.* in $TMPDIR nachher: 0
+## Ende 09:47:23

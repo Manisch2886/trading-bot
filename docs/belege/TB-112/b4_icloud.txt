@@ -1,0 +1,39 @@
+# TB-112 B4 - ein Lauf ins echte iCloud-Ziel, aus der Claude-Code-Sitzung (Terminal-Prozess), HEAD e731207
+# db_sicherung 2026-09-26 09:48:10 +0200
+# Repo:  ~/trading-bot
+# Ziel:  ~/Library/Mobile Documents/com~apple~CloudDocs/trading-bot-db-sicherung/2026-09-26
+# gefunden: 12 Datenbanken
+#   benachrichtigungen_schliessung.db
+#   broker_testnet_t3_supertrend.db
+#   paper_trading_elliott_wave_stocks.db
+#   paper_trading_elliott_wave.db
+#   paper_trading_rsi2_crypto.db
+#   paper_trading_rsi2_mean_reversion.db
+#   paper_trading_t3_supertrend.db
+#   paper_trading_turtle_soup_crypto.db
+#   paper_trading_turtle_soup_stocks.db
+#   paper_trading_volatility_breakout_crypto.db
+#   paper_trading_volatility_breakout.db
+#   strategies/volatility_breakout/paper_trading_volatility_breakout.db
+ok      benachrichtigungen_schliessung.db  (45056 B, 11 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      broker_testnet_t3_supertrend.db  (147456 B, 27 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave_stocks.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_crypto.db  (16384 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_mean_reversion.db  (24576 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_t3_supertrend.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_stocks.db  (32768 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      strategies/volatility_breakout/paper_trading_volatility_breakout.db  (4096 B, 0 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+# gesichert 12 von 12, Fehler 0, Satzgroesse 364 KiB
+# Rueckgabewert 0
+rc=0 Laufzeit 1s
+## Ziel danach:
+total 0
+drwx------@  3 jaquelineloffler  staff   96 26 Sep 09:48 .
+drwxr-xr-x  13 jaquelineloffler  staff  416 26 Sep 09:48 ..
+drwx------  16 jaquelineloffler  staff  512 26 Sep 09:48 2026-09-26
+shasum -c OK: 12
+368	.

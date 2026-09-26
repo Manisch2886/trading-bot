@@ -1,0 +1,10 @@
+# TB-112 A1 Vorher-Probe, Klon am Commit e731207a592766c7ddcbe52ca35ab79fa50a84c5 (Eingangs-Commit)
+# Einstieg <klon>/tb112_probe_einstieg.py (unversioniert), Modus: Snapshot 63e4b6c8...
+# git status --porcelain im Klon vor den Proben: [?? tb112_probe_einstieg.py]
+leer (keine Aenderung)   -                                                rc 0  stdout: durchgelaufen
+Kontrolle shared/        shared/zuteilung.py                              rc 2  [paths] STARTPRUEFUNG VERLETZT - Der Arbeitsbaum von /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/f3c6cd90-f381-49cc-b058-8b1fa0081050/scratchpad/a1_klon ist ueber shared, strategies, r
+E2 1                     research/vorregistrierung/benchmark.py           rc 0  stdout: durchgelaufen
+E2 2                     research/faltenplan_neun/faltenplan_neun.py      rc 0  stdout: durchgelaufen
+E2 3                     notifications/manual_close.py                    rc 0  stdout: durchgelaufen
+# git status --porcelain im Klon nach den Proben: [?? tb112_probe_einstieg.py]
+# Klon entfernt: True

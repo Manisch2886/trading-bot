@@ -1,0 +1,27 @@
+# TB-112 0c vorher, HEAD e731207, 2026-09-26 09:37:04 +0200
+## ARBEITSBAUM_PFADE / REGISTRIERTE_PROTOKOLLE (grep in shared/paths.py)
+225:ARBEITSBAUM_PFADE = ("shared", "strategies", LOCK)
+## herkunft.register()
+register c92900a8b6792eadcc138ad7f56b8cb0e9993e4c73e4732b3dcb2f974cc52031
+fehlend []
+## Sonde gegen research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+40ffe18d6a6345d1ab88aa993535cfb10264d8cf2e02e804406bbe85236642c8  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+rc 2
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 901-1014, Listentext wie bei Erzeugung: ja
+Pfad-Bestandteile: 25 geprueft, davon 25 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 10)
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+## test_startpruefungen
+rc 0 13s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+  [ok]     N1 ohne Modus: 0 subprocess-Aufrufe, 0 Paketabfragen - subprocess 0 / importlib.metadata 0 / os.system,popen 0
+  [ok]     N4 ohne Modus: alle Pfade zeichengleich wie in 624853bd - 144 Pfade verglichen (9 Bots), 0 Unterschiede
+## tb40_* in $TMPDIR je Praefix
+   tb40_lauf_ 4765
+   tb40_faltenplan_ 70
+   tb40_proben_ 108
+   tb40_test_ 492
+   tb44_l_ 0
+## herkunft_protokoll.jsonl
+ls: research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl: No such file or directory
+## git status ausserhalb docs/
+## Ende

@@ -1,0 +1,51 @@
+# TB-112 A6 Lese-Audit 'Code ungebunden nach E2' - Laeufe: auswertung, bm_repo, bot_elliott_wave, bot_elliott_wave_stocks, bot_rsi2_crypto, bot_rsi2_mean_reversion, bot_t3_supertrend, bot_turtle_soup_crypto, bot_turtle_soup_stocks, bot_volatility_breakout, bot_volatility_breakout_crypto
+# ARBEITSBAUM_PFADE: 15 Eintraege; REGISTRIERTE_PROTOKOLLE: ['research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl']
+lesende Zugriffe gesamt: 22178
+   nicht gezaehlt  Messumschlag docs/belege/              30
+   nicht gezaehlt  Scratchpad (Protokolle, Ziele)          1
+   nicht gezaehlt  Snapshot (Daten)                     4360
+   nicht gezaehlt  ausserhalb des Repos                 4508
+   nicht gezaehlt  gedeckt von ARBEITSBAUM_PFADE         378
+   nicht gezaehlt  trading-env (Umgebung)              12891
+
+CODE unter der Codewurzel ausserhalb von ARBEITSBAUM_PFADE: 0 verschiedene Dateien, 0 Zugriffe
+
+SONSTIGE Dateien unter dem Repo ausserhalb von ARBEITSBAUM_PFADE (Eingaben, nicht Code - nur ausgewiesen): 10 verschiedene, 10 Zugriffe
+             1x  research/vorregistrierung/ergebnisse/messgroessen.json   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv   (Laeufe: bm_repo)
+             1x  research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv   (Laeufe: bm_repo)
+
+ERGEBNIS CODE 0
+
+# --- frischer Klon (Codewurzel <scratch>/a6_klon) ---
+# TB-112 A6 Lese-Audit 'Code ungebunden nach E2' - Laeufe: bm_klon
+# ARBEITSBAUM_PFADE: 15 Eintraege; REGISTRIERTE_PROTOKOLLE: ['research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl']
+lesende Zugriffe gesamt: 14572
+   nicht gezaehlt  Messumschlag docs/belege/              10
+   nicht gezaehlt  Scratchpad (Protokolle, Ziele)          1
+   nicht gezaehlt  Snapshot (Daten)                     3582
+   nicht gezaehlt  ausserhalb des Repos                10707
+   nicht gezaehlt  gedeckt von ARBEITSBAUM_PFADE         262
+
+CODE unter der Codewurzel ausserhalb von ARBEITSBAUM_PFADE: 0 verschiedene Dateien, 0 Zugriffe
+
+SONSTIGE Dateien unter dem Repo ausserhalb von ARBEITSBAUM_PFADE (Eingaben, nicht Code - nur ausgewiesen): 10 verschiedene, 10 Zugriffe
+             1x  research/vorregistrierung/ergebnisse/messgroessen.json   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv   (Laeufe: bm_klon)
+             1x  research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv   (Laeufe: bm_klon)
+
+ERGEBNIS CODE 0

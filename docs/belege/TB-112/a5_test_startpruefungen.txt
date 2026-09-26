@@ -1,0 +1,64 @@
+==============================================================================
+Selbsttests zu shared/paths.py - die Startpruefungen (TB-58)
+==============================================================================
+
+Probe N - ohne Modus: kein git-Aufruf, keine Paketabfrage, alle Pfade wie vor TB-58
+  [ok]     N1 ohne Modus: 0 subprocess-Aufrufe, 0 Paketabfragen - subprocess 0 / importlib.metadata 0 / os.system,popen 0
+  [ok]     N2 ohne Modus: startpruefung() ist None, audit_zeilen() leer, kein subprocess/platform/hashlib/metadata im Modul - Modulnamen im Namensraum: keine
+  [ok]     N3 Syntaxbaum: subprocess/importlib/platform/hashlib werden auf Modulebene nicht importiert - auf Modulebene: keiner
+  [ok]     N1/N2 Mutationsprobe beisst - mit einem git-Aufruf und einer Paketabfrage im Import zaehlt die Attrappe 2 / 2
+  [ok]     N3 Mutationsprobe beisst - 2 Import(e) auf Modulebene gefunden
+  [ok]     N4 ohne Modus: alle Pfade zeichengleich wie in 624853bd - 144 Pfade verglichen (9 Bots), 0 Unterschiede
+  [ok]     N4 Mutationsprobe beisst - verstellte Fassung -> 27 Unterschiede
+
+Probe S - vollstaendiger, richtiger Modus: rc 0, Auditzeilen
+  [ok]     S1 Lauf geht durch (rc 0), DATA_DIR im Snapshot - rc=0, DATA_DIR=/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb58_attrappe_64ixbwso
+  [ok]     S2 startpruefung() traegt alle acht Schluessel - arbeitsbaum, codewurzel, commit, interpreter, lock_sha256, plattform, snapshot_hash, snapshot_wurzel
+  [ok]     S3 Werte stimmen: codewurzel, commit, arbeitsbaum, snapshot - commit 80ce937d, arbeitsbaum sauber
+  [ok]     S4 lock_sha256 ist der SHA-256 der Lock-Datei - 96a5c572a67c65af...
+  [ok]     S5 interpreter und plattform sind gemessen, nicht leer - 3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-...
+  [ok]     S6 dieselben acht Zeilen stehen auf stderr in der [paths]-Form - 8 Auditzeilen, Reihenfolge fest
+  [ok]     S7 der Lauf SAGT weiterhin, dass er im Modus ist - Prueffrage D1
+  [ok]     S8 ein Kindprozess erbt alle drei Variablen und geht durch - rc=0
+  [ok]     S9 `python -c` (kein __file__) -> rc 2, Meldung nennt den Grund - rc=2
+  [ok]     S6 Mutationsprobe beisst - ohne die Schleife: rc 0, 0 Auditzeilen auf stderr
+
+Probe C - falscher, fehlender, beweglicher Commit
+  [ok]     C1 falscher Commit -> rc 2, Meldung nennt HEAD und Soll - rc=2, kein stdout: True
+  [ok]     C2 TB_SELEKTIONSCOMMIT fehlt bei gesetzten anderen beiden -> rc 2 - rc=2
+  [ok]     C3 Zweigname statt Commit -> rc 2 (bewegliche Referenz, B3) - rc=2
+  [ok]     C4 abgekuerzter Commit (7 Zeichen) wird angenommen - rc=0
+  [ok]     C5 TB_SELEKTIONSCOMMIT allein -> Selektionsfehler, rc != 0 - rc=1
+  [ok]     C1 Mutationsprobe beisst - ohne die Pruefung laeuft der falsche Commit durch: rc 0
+  [ok]     C2 Mutationsprobe beisst - mit stillem HEAD-Rueckfall laeuft der halbe Modus durch: rc 0
+
+Probe G - gespaltener Baum: Aufrufer woanders, shared/ hier
+  [ok]     G1 Aufrufer aus einem ANDEREN Git-Baum -> rc 2, Meldung nennt beide Wurzeln - rc=2, kein stdout: True
+  [ok]     G2 Aufrufer aus einem Ordner OHNE Git -> rc 2 - rc=2
+  [ok]     G3 derselbe Aufrufer im selben Baum -> rc 0 - rc=0
+  [ok]     G1 Mutationsprobe beisst - ohne Bedingung 1 rechnet der gespaltene Baum still weiter: rc 0
+
+Probe A - schmutziger Arbeitsbaum ueber shared/, strategies/, Lock
+  [ok]     A1 veraenderte Datei unter shared/ -> rc 2, Meldung nennt sie - rc=2
+  [ok]     A2 neue Datei unter strategies/ -> rc 2 (?? zaehlt) - rc=2
+  [ok]     A3 veraenderte Lock-Datei -> rc 2 - rc=2
+  [ok]     A4 neue Datei unter data/ stoert nicht (data/ ist nicht Code) - rc=0
+  [ok]     A5 zurueckgesetzt -> rc 0, arbeitsbaum sauber - rc=0
+  [ok]     A1 Mutationsprobe beisst - ohne Bedingung 3 rechnet der schmutzige Baum still weiter: rc 0
+
+Probe L - Lock: abweichendes Paket, fehlendes Paket, Interpreter, fehlende Datei
+  [ok]     L1 abweichendes Paket -> rc 2, Meldung nennt das Paket - rc=2
+  [ok]     L2 nicht installiertes Paket -> rc 2, 'NICHT' in der Meldung - rc=2
+  [ok]     L3 vier Abweichungen -> Zahl 4 und die ersten drei genannt - rc=2
+  [ok]     L4 Interpreter weicht von der Kopfzeile ab -> rc 2 - rc=2
+  [ok]     L5 Lock-Datei fehlt -> rc 2 (nicht pruefbar ist nicht gruen) - rc=2
+  [ok]     L6 `>=`-Zeile -> rc 2 ('ist kein Lock') - rc=2
+  [ok]     L1 Mutationsprobe beisst - ohne die Pruefung laeuft das abweichende Paket durch: rc 0
+
+Probe R - Rueckgabewert 2, genau einmal im Modul
+  [ok]     R1 RUECKGABEWERT_STARTPRUEFUNG == 2, genau einmal zugewiesen - [2]
+  [ok]     R2 kein SystemExit mit Zahl-Literal - der Wert kommt aus der Konstante - 0 Literal(e)
+  [ok]     R2 Mutationsprobe beisst - 1 Literal
+
+==============================================================================
+44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.

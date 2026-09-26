@@ -1,0 +1,33 @@
+# TB-112 A6 Modus-Laeufe, Repo, HEAD 21f4cac, 2026-09-26 10:05:36 +0200
+# git status ueber paths.ARBEITSBAUM_PFADE (leer = sauber): []
+# TB-112 benchmark bm_repo , Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:05:36 +0200
+benchmark bm_repo  rc=0 66s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_repo/benchmark.json
+# TB-112 bot bot_elliott_wave elliott_wave, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:06:43 +0200
+bot bot_elliott_wave elliott_wave rc=0 8s
+# TB-112 bot bot_t3_supertrend t3_supertrend, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:06:51 +0200
+bot bot_t3_supertrend t3_supertrend rc=0 4s
+# TB-112 bot bot_rsi2_crypto rsi2_crypto, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:06:55 +0200
+bot bot_rsi2_crypto rsi2_crypto rc=0 1s
+# TB-112 bot bot_turtle_soup_crypto turtle_soup_crypto, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:06:56 +0200
+bot bot_turtle_soup_crypto turtle_soup_crypto rc=0 2s
+# TB-112 bot bot_volatility_breakout_crypto volatility_breakout_crypto, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:06:58 +0200
+bot bot_volatility_breakout_crypto volatility_breakout_crypto rc=0 1s
+# TB-112 bot bot_elliott_wave_stocks elliott_wave_stocks, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:06:59 +0200
+bot bot_elliott_wave_stocks elliott_wave_stocks rc=0 14s
+# TB-112 bot bot_rsi2_mean_reversion rsi2_mean_reversion, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:07:13 +0200
+bot bot_rsi2_mean_reversion rsi2_mean_reversion rc=0 6s
+# TB-112 bot bot_turtle_soup_stocks turtle_soup_stocks, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:07:19 +0200
+bot bot_turtle_soup_stocks turtle_soup_stocks rc=0 6s
+# TB-112 bot bot_volatility_breakout volatility_breakout, Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:07:25 +0200
+bot bot_volatility_breakout volatility_breakout rc=0 6s
+# TB-112 auswertung auswertung , Wurzel /Users/jaquelineloffler/trading-bot, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:07:31 +0200
+auswertung auswertung  rc=0 1s
+
+# TB-112 A6 Modus-Lauf im frischen Klon <scratch>/a6_klon, HEAD 21f4cac, 2026-09-26 10:07:41 +0200
+status --ignored vorher: []
+# TB-112 benchmark bm_klon , Wurzel <scratch>/a6_klon, HEAD 21f4cac14aae0f0a05d0bfd3bb680e2b37eec435, 2026-09-26 10:07:41 +0200
+benchmark bm_klon  rc=0 66s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_klon/benchmark.json
+status --ignored nachher: []
+## Ende 10:08:47

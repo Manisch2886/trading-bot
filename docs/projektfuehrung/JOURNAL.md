@@ -9205,6 +9205,43 @@ Grundlage Fable 25d, 25e, Ergebnisse TB-108/TB-109. Freigabe 25.09.2026, 23:04 (
 
 ---
 
+## DJ — TB-112: Bündel — Sauberkeit über den Laufbereich (Register 19, E2/F8) in `paths.py` nur unter dem Modus, db-Sicherung als Skript nach iCloud, `tb40_test_*` aufgeräumt; Benchmark im Modus (Repo und Klon) `64fb2912`, ohne Modus 8/8 bytegleich (26.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-112_19_laufbereich_db_sicherung.md`*
+
+**Quelle:** Mac-Sitzung **TB-112** (Hauptordner, parallel zu Sitzung B/TB-111 im Worktree), 26.09.2026, Eingang `6a7996a`. Commits
+`e731207` (Schritt 0), `9d711dc` (A), `e65e57c` (B), `21f4cac` (C) und der Abgabe-Commit. Belege `docs/belege/TB-112/`.
+Grundlage Register 19, 42.2 E2, 42.3 F8, Fable 25f O6. Freigabe 26.09.2026, ca. 06:40 und 07:00 (Auswahlkarten).
+⚠️ Kennung **DJ** in dieser Sitzung vergeben; der Block von TB-111 (Zweig `tb-111`) bekommt seine Kennung beim Übertragen.
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **A1** | Befund aus E2 bestätigt: frischer Klon, Modus, uncommittete Änderung in `benchmark.py`/`faltenplan_neun.py`/`manual_close.py` ⇒ je rc 0; Kontrolle `shared/` rc 2 |
+| **A2** | Laufbereich 81 Module = TB-107 F1, 12 außerhalb `shared/`/`strategies/` |
+| ⭐⭐ **A3/A4** | `ARBEITSBAUM_PFADE` + 12 Einzeldateien, `REGISTRIERTE_PROTOKOLLE` als `:(exclude)`; `test_arbeitsbaum_laufbereich.py` 26/26 (12 × rc 2 mit Dateiname, Protokoll neu/verändert rc 0, `data/`/`ergebnisse/` rc 0, Gegenprobe aus der Messdatei, Mutationen beißen) |
+| ⭐ **A5/A6** | Ohne Modus 0/0/0 Aufrufe, 144 Pfade, 8/8 bytegleich. Modus: Benchmark Repo + Klon `64fb2912`, Trockenlauf 9 × rc 0, Sonde und `register()` `c92900a8` gleich, Lese-Audit 0 Code außerhalb der Liste; Randbefund 10 Eingabedateien (`messgroessen.json`, neun TB-24-Listen) außerhalb |
+| ⭐⭐ **B** | `docs/werkzeuge/db_sicherung/`: 12 DBs (11 + 1 leere, Auftrag nannte 12 + 1), `sqlite3 -readonly .backup` über Zwischenordner, Schema-Prüfung 0 Treffer (Gegenprobe `api_key` beißt), `integrity_check`, `SHA256SUMS`; zwei Testläufe 12/12, Originale gleich; **erster Lauf nach iCloud rc 0, 368 KiB**; Cron-Zeile 05:20 nur im LIESMICH |
+| **C** | `test_universum_trockenlauf.py`: 18 ⇒ 0 Ordner je Lauf, 163/163 |
+| **D** | 17 Testdateien rc 0 (`test_vorregistrierung` 196/196) |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Ein Klon im Scratchpad liegt auch im Scratchpad:** Wer Zugriffe nach „unter dem Scratchpad“ aussortiert, bevor er „unter der Codewurzel“ prüft, sortiert den ganzen Klon weg und bekommt eine falsche 0. Erst die Codewurzel prüfen, dann das Scratchpad |
+| ⭐ | **Eine Sicherung prüft vor dem Ziel, nicht im Ziel:** Soll eine Datei bei einem Befund *nicht* gesichert werden, gehört die Prüfung an eine Zwischenkopie außerhalb des Ziels; sonst liegt sie dort schon, wenn der Befund kommt |
+
+### Was offen bleibt
+
+- Cron-Zeile der db-Sicherung (Betreiber), danach das erste Cron-Log auf „Operation not permitted“ ansehen; Aufbewahrung alter Sätze (Betreiber).
+- Register 44 (Tatsachennotiz `arbeitsbaum_pfade.txt`, Vollzug 19 E2/F8); drei Fragen an Fable (Eingaben außerhalb der Liste, Pflege der Liste am Tag-Commit, deutsches Schlüssel-Muster).
+
+*Geschrieben 26.09.2026 von der Mac-Sitzung TB-112. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

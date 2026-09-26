@@ -1,0 +1,25 @@
+# TB-112 A7 - Tatsachennotiz (Register 19 E2): die Liste der geprueften Pfade der Sauberkeitspruefung
+# (shared/paths.py::ARBEITSBAUM_PFADE, gelesen per Import ohne Modus am Stand 21f4cac, 26.09.2026),
+# neben der Laufbereichsmessung docs/belege/TB-112/a2_laufbereich.txt (81 Module, Werkzeug TB-104 D1,
+# drei Lauf-Typen). Am Tag-Commit wird sie MIT der Tag-Messung erneuert. Der Registereintrag folgt in
+# Register 44, nicht hier.
+# Ordner (ganz geprueft), Umgebung, Einzeldateien des Laufbereichs; ausgenommen namentlich:
+GEPRUEFT	15 Eintraege
+shared	Ordner
+strategies	Ordner
+requirements.lock	Lock (Umgebung, TB-58)
+notifications/manual_close.py	Datei (Laufbereich)
+research/exposure_messung/bot_lauf.py	Datei (Laufbereich)
+research/faltenplan_neun/erste_falte_trockenlauf.py	Datei (Laufbereich)
+research/faltenplan_neun/faltenplan_neun.py	Datei (Laufbereich)
+research/faltenplan_neun/faltenschranke_messung.py	Datei (Laufbereich)
+research/universum_trockenlauf/loaderlauf.py	Datei (Laufbereich)
+research/universum_trockenlauf/universum_trockenlauf.py	Datei (Laufbereich)
+research/vorregistrierung/auswertung.py	Datei (Laufbereich)
+research/vorregistrierung/benchmark.py	Datei (Laufbereich)
+research/vorregistrierung/faltenplan.py	Datei (Laufbereich)
+research/vorregistrierung/kennzahlen.py	Datei (Laufbereich)
+research/vorregistrierung/registerdaten.py	Datei (Laufbereich)
+AUSGENOMMEN (REGISTRIERTE_PROTOKOLLE, Register 42.3 F8)	1
+research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl	registriertes Protokoll, Kettenhash statt Sauberkeit (heute nicht vorhanden: True)
+NICHT GEPRUEFT (wie Register 19)	data/, alles uebrige ausserhalb der Liste, u. a. research/vorregistrierung/ergebnisse/

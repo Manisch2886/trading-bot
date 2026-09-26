@@ -1,0 +1,37 @@
+==============================================================================
+Selbsttests zu shared/paths.py - Sauberkeit ueber den Laufbereich (TB-112)
+==============================================================================
+
+Probe G - jeder Pfad der Laufbereichsmessung ist von ARBEITSBAUM_PFADE gedeckt
+  [ok]     G0 die Messdatei nennt Pfade - 81 Pfade ausserhalb docs/
+  [ok]     G1 Gegenprobe: jeder gemessene Pfad gedeckt (Praefix oder Datei) - 81 Pfade, 15 Eintraege im Tupel, ungedeckt: keiner
+  [ok]     G2 ausserhalb shared/strategies als EINZELDATEIEN im Tupel - 12 Module: notifications/manual_close.py, research/exposure_messung/bot_lauf.py, research/faltenplan_neun/erste_falte_trockenlauf.py, research/faltenplan_neun/faltenplan_neun.py, research/faltenplan_neun/faltenschranke_messung.py, research/universum_trockenlauf/loaderlauf.py, research/universum_trockenlauf/universum_trockenlauf.py, research/vorregistrierung/auswertung.py, research/vorregistrierung/benchmark.py, research/vorregistrierung/faltenplan.py, research/vorregistrierung/kennzahlen.py, research/vorregistrierung/registerdaten.py
+  [ok]     G3 Mutationsprobe: je ein Eintrag entfernt -> Gegenprobe rot - 14 von 14 Mutationen beissen (requirements.lock ausgenommen: kein Modul)
+
+Probe K - frischer Klon, Prozesse unter dem Modus
+  Klon $TMPDIR/tb112_klon_dc57ex_k/klon, Pruefstand 01b5b2331266
+  [ok]     K0 sauberer Klon -> rc 0 - rc=0 
+  [ok]     K0b Kontrolle: Aenderung unter shared/ -> rc 2 - rc=2
+  [ok]     K1 notifications/manual_close.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/exposure_messung/bot_lauf.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/faltenplan_neun/erste_falte_trockenlauf.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/faltenplan_neun/faltenplan_neun.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/faltenplan_neun/faltenschranke_messung.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/universum_trockenlauf/loaderlauf.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/universum_trockenlauf/universum_trockenlauf.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/vorregistrierung/auswertung.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/vorregistrierung/benchmark.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/vorregistrierung/faltenplan.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/vorregistrierung/kennzahlen.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K1 research/vorregistrierung/registerdaten.py veraendert -> rc 2, Meldung nennt die Datei - rc=2
+  [ok]     K2a herkunft_protokoll.jsonl neu angelegt -> rc 0 - rc=0 
+  [ok]     K2b herkunft_protokoll.jsonl versioniert und veraendert -> rc 0 - git status [M research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl], rc=0 
+  [ok]     K3 neue Datei unter data/ -> rc 0 - rc=0
+  [ok]     K4 neue, unversionierte Datei in research/vorregistrierung/ergebnisse/ -> rc 0 - rc=0
+  [ok]     P1 Mutationsprobe beisst: ohne Ausnahme, ergebnisse/ als Ordner -> Protokoll-Probe rot (rc 2) - rc=2
+  [ok]     P2 Tatsache: nur die Ausnahme entfernt -> weiter rc 0 (heute deckt kein Pfad das Protokoll) - rc=0
+  [ok]     T1 Mutationsprobe beisst: Tupel vor TB-112 -> benchmark.py veraendert laeuft durch (rc 0, der Befund aus E2) - rc=0
+  [ok]     Z Klon entfernt - $TMPDIR/tb112_klon_dc57ex_k
+
+==============================================================================
+26 von 26 Pruefungen bestanden, 0 fehlgeschlagen.
