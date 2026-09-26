@@ -1,0 +1,23 @@
+# TB-117 D, HEAD ff2f254, 2026-09-26 23:20:09 +0200
+## auswertung.py vorher (ff2f254) und jetzt
+a864b2168a19405d5f1516a17146f78ef44bbca6f4f8d242c9ccb25f937467f3  auswertung.py @ ff2f254
+8ec45123a9daac5ac711dc4cf40a492bdd450216adb8ec03bf83fcfd9a300c98  research/vorregistrierung/auswertung.py
+## register() jetzt (auswertung.py steht in EINGEFROREN)
+register() e87a4d8ea435e6bdaba4bb311a3af829fb9d8626066d7f0820d00d9283d2fb6b fehlend [] teile 23
+## R8 (a): der Satz im Docstring von _abbruch_2 vorher / jetzt
+136:    (`Abbruch` oben endet mit 1 und bleibt, wie er ist.)"""
+155:    (`Abbruch` oben endet seit TB-111 ebenfalls mit 2, Register 44.1 - der
+156:    fruehere Satz "`Abbruch` ... endet mit 1" ist berichtigt, Fable 26a R8 (a),
+## git diff --numstat (ff2f254 -> Arbeitsbaum)
+127	2	research/vorregistrierung/auswertung.py
+## ohne Modus: auswertung.py auf Beispieldaten (turtle_soup_stocks), Kopf des Berichts
+rc 0
+==============================================================================
+TB-30a - AUSWERTUNG DES SELEKTIONSLAUFS
+==============================================================================
+HERKUNFT (herkunft.json je Bot; Register 46.5, Lesart 46.9) - ohne Modus: angezeigt, nicht geprueft
+  commit      0000000000000000000000000000000000000000   (1 Bot(s) gleich)
+  datenstand  0000000000000000000000000000000000000000000000000000000000000000   (1 Bot(s) gleich)
+  register    0000000000000000000000000000000000000000000000000000000000000000   (1 Bot(s) gleich)
+
+JSON herkunft: {"einheitlich": {"commit": "0000000000000000000000000000000000000000", "datenstand": "0000000000000000000000000000000000000000000000000000000000000000", "register": "0000000000000000000000000000000000000000000000000000000000000000"}, "fehlend": [], "geprueft": false, "je_bot": {"turtle_soup_stocks":

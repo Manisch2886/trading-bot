@@ -72,6 +72,24 @@ Modus-Lauf von `block()` dort nach R10 mit 2 - E-a, F-a, F-a2, F-a3);
 H-a/H-a2 19 -> 22 Eintraege, H-aM zusaetzlich die drei Snapshot-Eintraege,
 H-b 20 -> 23 Teile.
 
+TB-117 (Fable 27a R14, Register 46.5; Lesart 46.9) - Teil J, `auswertung.py`
+liest `herkunft.json`. Unter dem Modus (im Prozess nachgestellt:
+`paths._MODUS` gesetzt, `TB_SELEKTIONSCOMMIT` = HEAD; `herkunft.register()`
+laeuft echt) endet `herkunft_pruefen` mit 2, je Bedingung ein Fall:
+  J-1  Datei fehlt;            J-2  Commit nicht der Tag-Commit;
+  J-3  Datenstand nicht der registrierte;
+  J-4  Register-Hash nicht register() zur Laufzeit;
+  J-5  die neun untereinander verschieden (nur ueber den Praefix des
+       Commits unabhaengig erreichbar);
+  J-6  TB_SELEKTIONSCOMMIT kein Commit-Bezeichner; J-7 auch mit einem Bot
+       werden alle neun gelesen;
+je mit Mutationsprobe und Gegenprobe (J-1M bis J-5M; J-3M/J-4M: "gegen die
+Datei selbst statt gegen Register bzw. Laufzeit", die A8-Klasse);
+  J-g  der gute Fall: kein Abbruch, der Kopf traegt die Herkunft;
+  J-o  ohne Modus: `auswertung.py` auf Beispieldaten rc 0, der Kopf zeigt die
+       Nullwerte - und ohne herkunft.json rc 0 mit "fehlt";
+  J-r  `REGISTRIERTER_DATENSTAND` = der Wert in Register 18.
+
 Aufruf: trading-env/bin/python3 research/vorregistrierung/test_ersatzwerte.py
 """
 
@@ -966,6 +984,173 @@ def teil_i():
            r["rc"] == 0 and r["json"].get("fehlend") == [I_OHNE], _info(r) + f"; {r['json'].get('fehlend')}")
 
 
+# ===============================================================================
+# J  auswertung.py - Herkunftspruefung (TB-117, R14, Lesart 46.9)
+# ===============================================================================
+_AW = os.path.join(_HIER, "auswertung.py")
+J_MUT = {
+    "J-1M": ('            if h is None:\n                _abbruch_2(',
+             '            if h is None:\n                continue\n                _abbruch_2('),
+    "J-2M": ('passt = (ist.lower().startswith(soll[feld]) and ist != "")',
+             'passt = True'),
+    "J-3M": ('soll = {"commit": tag, "datenstand": REGISTRIERTER_DATENSTAND,',
+             'soll = {"commit": tag, "datenstand": je_bot[next(iter(je_bot))].get("datenstand"),'),
+    "J-4M": ('"register": herkunft.register()["register"]}',
+             '"register": je_bot[next(iter(je_bot))].get("register")}'),
+    "J-5M": ('                if h.get(feld) != je_bot[erster].get(feld):',
+             '                if False:'),
+}
+
+
+def _j_modul(mut=None):
+    """auswertung.py als eigenes Modul im Prozess, hoechstens EINE Stelle
+    mutiert (die Stelle muss genau einmal vorkommen)."""
+    import types
+    with open(_AW, encoding="utf-8") as f:
+        text = f.read()
+    if mut:
+        alt, neu = mut
+        if text.count(alt) != 1:
+            raise AssertionError(f"Mutationsstelle nicht genau einmal: {alt!r}")
+        text = text.replace(alt, neu, 1)
+    m = types.ModuleType("auswertung_tb117")
+    m.__file__ = _AW
+    exec(compile(text, _AW, "exec"), m.__dict__)
+    return m
+
+
+def _j_head():
+    return subprocess.run(["git", "-C", _REPO, "rev-parse", "HEAD"],
+                          capture_output=True, text=True).stdout.strip()
+
+
+def _j_roh(t, werte, ohne=()):
+    """herkunft.json fuer die neun Bots; `werte` = {bot: dict} ueberschreibt."""
+    import registerdaten as rd
+    soll = {"commit": _j_head(), "datenstand": _F_DATENSTAND,
+            "register": herkunft.register()["register"]}
+    for bot in rd.BOTS:
+        if bot in ohne:
+            continue
+        os.makedirs(os.path.join(t, bot), exist_ok=True)
+        with open(os.path.join(t, bot, "herkunft.json"), "w", encoding="utf-8") as f:
+            json.dump(dict(soll, **werte.get(bot, {})), f)
+    return soll
+
+
+def _j_lauf(mut=None, werte=None, ohne=(), bots=None, tag=None, modus=True):
+    """herkunft_pruefen im Prozess; Modus nachgestellt. Rueckgabe rc/err/kopf."""
+    import contextlib
+    import io
+    m = _j_modul(mut)
+    alt_modus, alt_tag = m.paths._MODUS, os.environ.get("TB_SELEKTIONSCOMMIT")
+    err = io.StringIO()
+    with tempfile.TemporaryDirectory() as t:
+        soll = _j_roh(t, werte or {}, ohne)
+        bots = bots or list(m.rd.BOTS)
+        if modus:
+            m.paths._MODUS = ("(nachgestellt, TB-117 Teil J)", "attrappe")
+            os.environ["TB_SELEKTIONSCOMMIT"] = soll["commit"] if tag is None else tag
+        try:
+            with contextlib.redirect_stderr(err), contextlib.redirect_stdout(io.StringIO()):
+                kopf = m.herkunft_pruefen(t, bots)
+            rc = 0
+        except SystemExit as e:
+            kopf, rc = None, e.code
+        except Exception as e:           # eine Mutation darf abstuerzen - das ist kein 2
+            kopf, rc = None, f"{type(e).__name__}: {e}"
+        finally:
+            m.paths._MODUS = alt_modus
+            if alt_tag is None:
+                os.environ.pop("TB_SELEKTIONSCOMMIT", None)
+            else:
+                os.environ["TB_SELEKTIONSCOMMIT"] = alt_tag
+    return {"rc": rc, "err": err.getvalue()[-600:], "out": "", "kopf": kopf, "soll": soll}
+
+
+def teil_j():
+    import registerdaten as rd
+    bots = list(rd.BOTS)
+    anderer = "f" * 40
+    faelle = {
+        "J-1": (dict(ohne=(bots[3],)), "herkunft.json fehlt", bots[3]),
+        # J-2 bis J-4: alle neun mit demselben falschen Wert - sonst fing der
+        # Vergleich untereinander die Mutation auf, und sie bisse nicht allein
+        "J-2": (dict(werte={b: {"commit": anderer} for b in bots}), "Feld commit", bots[0]),
+        "J-3": (dict(werte={b: {"datenstand": "0" * 64} for b in bots}), "Feld datenstand", bots[0]),
+        "J-4": (dict(werte={b: {"register": "0" * 64} for b in bots}), "Feld register", bots[0]),
+    }
+    for name, (kw, text, bot) in faelle.items():
+        r = _j_lauf(**kw)
+        pruefe(f"{name}: Modus - {text} -> 2, Meldung nennt Bot und Feld",
+               _rc2(r, "auswertung.py::herkunft_pruefen") and text in r["err"] and bot in r["err"],
+               _info(r))
+        _mit_gegenprobe(
+            f"{name}M", f"Mutationsprobe zu {name} - {name} waere rot",
+            lambda mut, kw=kw: _j_lauf(J_MUT[name + "M"] if mut else None, **kw),
+            lambda r, text=text: not (_rc2(r, "auswertung.py::herkunft_pruefen")
+                                      and text in r["err"]), _info)
+    # J-5: Praefix - der Tag-Commit kurz, zwei verschiedene volle Commits
+    head = _j_head()
+    kw5 = dict(werte={bots[7]: {"commit": head[:7] + "0" * 33}}, tag=head[:7])
+    r = _j_lauf(**kw5)
+    pruefe("J-5: Modus - die neun untereinander verschieden (Commit mit gleichem Praefix) -> 2",
+           _rc2(r, "auswertung.py::herkunft_pruefen") and "weicht von" in r["err"]
+           and bots[7] in r["err"], _info(r))
+    _mit_gegenprobe(
+        "J-5M", "Mutationsprobe 'Vergleich untereinander aus' - J-5 waere rot",
+        lambda mut: _j_lauf(J_MUT["J-5M"] if mut else None, **kw5),
+        lambda r: r["rc"] == 0, _info)
+    r = _j_lauf(tag="main")
+    pruefe("J-6: Modus - TB_SELEKTIONSCOMMIT kein Commit-Bezeichner -> 2",
+           _rc2(r, "auswertung.py::herkunft_pruefen") and "Commit-Bezeichner" in r["err"], _info(r))
+    r = _j_lauf(ohne=(bots[0],), bots=[bots[1]])
+    pruefe("J-7: Modus - auch mit einem Bot (--bot) werden alle neun gelesen",
+           _rc2(r, "auswertung.py::herkunft_pruefen") and bots[0] in r["err"], _info(r))
+    r = _j_lauf()
+    k = r["kopf"] or {}
+    pruefe("J-g: Modus, guter Fall - kein Abbruch, der Kopf traegt Commit, Datenstand, "
+           "Register fuer alle neun, geprueft",
+           r["rc"] == 0 and k.get("geprueft") is True and len(k.get("je_bot", {})) == 9
+           and k.get("einheitlich") == r["soll"], f"{_info(r)}; {k.get('einheitlich')}")
+    r = _j_lauf(modus=False, werte={b: {"commit": "0" * 40, "datenstand": "0" * 64,
+                                        "register": "0" * 64} for b in bots}, ohne=(bots[2],))
+    k = r["kopf"] or {}
+    pruefe("J-o1: ohne Modus, Nullwerte und eine fehlende Datei - kein Abbruch, angezeigt",
+           r["rc"] == 0 and k.get("geprueft") is False and k.get("fehlend") == [bots[2]]
+           and k.get("einheitlich", {}).get("datenstand") == "0" * 64, _info(r))
+
+    # J-o2/J-o3: das Programm selbst ohne Modus auf Beispieldaten (Lesart 46.9)
+    import beispieldaten
+    with tempfile.TemporaryDirectory() as t:
+        beispieldaten.erzeuge(t, BOT)
+        u = {k2: v for k2, v in os.environ.items()
+             if not k2.startswith("TB_SELEKTIONS") and k2 != "TB30A_BASE_DIR"}
+        r = subprocess.run([sys.executable, "-W", "ignore", _AW, "--rohergebnisse", t,
+                            "--bot", BOT], capture_output=True, text=True, env=u)
+        kopf = r.stdout.split("-" * 78)[0]
+        pruefe("J-o2: ohne Modus, Beispieldaten - rc 0, der Kopf zeigt die Nullwerte",
+               r.returncode == 0 and "ohne Modus: angezeigt, nicht geprueft" in kopf
+               and "commit      " + "0" * 40 in kopf and "datenstand  " + "0" * 64 in kopf
+               and "register    " + "0" * 64 in kopf, r.stderr[-300:] + kopf[-400:])
+        os.remove(os.path.join(t, BOT, "herkunft.json"))
+        r = subprocess.run([sys.executable, "-W", "ignore", _AW, "--rohergebnisse", t,
+                            "--bot", BOT], capture_output=True, text=True, env=u)
+        pruefe("J-o3: ohne Modus, herkunft.json fehlt - rc 0, der Kopf sagt es",
+               r.returncode == 0 and f"herkunft.json fehlt: {BOT}" in r.stdout,
+               r.stderr[-300:] + r.stdout[:600])
+
+    # J-r: die Konstante gegen den Registertext (Register 18)
+    zeilen = [z for z in open(herkunft.REGISTERDATEI, encoding="utf-8").read().splitlines()
+              if z.startswith("| Datenstand (`datenstand_hash`) |")]
+    import re
+    werte = [re.search(r"`([0-9a-f]{64})`", z).group(1) for z in zeilen]
+    m = _j_modul()
+    pruefe("J-r: REGISTRIERTER_DATENSTAND = Register 18 (genau eine Zeile)",
+           len(werte) == 1 and m.REGISTRIERTER_DATENSTAND == werte[0] == _F_DATENSTAND,
+           f"{werte}")
+
+
 def _sha(pfad):
     if not os.path.exists(pfad):
         return "(fehlt)"
@@ -976,7 +1161,7 @@ def _sha(pfad):
 def main():
     print(__doc__.strip().split("\n")[0])
     for name, teil in (("B", teil_b), ("C", teil_c), ("D", teil_d), ("E", teil_e),
-                       ("F", teil_f), ("G", teil_g), ("H", teil_h), ("I", teil_i)):
+                       ("F", teil_f), ("G", teil_g), ("H", teil_h), ("I", teil_i), ("J", teil_j)):
         print(f"  Teil {name} ...", flush=True)
         teil()
     print("\n" + "=" * 78)

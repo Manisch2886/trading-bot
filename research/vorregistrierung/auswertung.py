@@ -50,6 +50,16 @@ DIE ROHERGEBNISSE - DER VERTRAG
 
     <wurzel>/<bot>/herkunft.json
         Commit-Hash, Datenstand-Hash, Register-Hash - siehe herkunft.py.
+        -> TB-117 (Fable 27a R14, Register 46.5; Lesart 46.9): unter dem
+           Selektionsmodus fuer JEDEN der neun Bots geprueft, sonst Abbruch
+           mit 2 - Datei fehlt; Commit nicht der Tag-Commit
+           (`TB_SELEKTIONSCOMMIT`, Praefix); Datenstand nicht der
+           registrierte (Register 18); Register-Hash nicht
+           `herkunft.register()` zur Laufzeit; die neun untereinander
+           verschieden. Ohne Modus gelesen, wenn vorhanden, und im Kopf des
+           Berichts angezeigt, ohne Abbruch (Beispieldaten und Tests tragen
+           Nullwerte). Der Kopf des Berichts traegt Commit, Datenstand und
+           Register-Hash in beiden Faellen.
 
     <wurzel>/benchmark_tagesreihen/<markt>.csv
         datum, netto_rendite
@@ -111,6 +121,15 @@ import registerdaten as rd  # noqa: E402
 sys.path.insert(0, os.path.join(BASE_DIR, "shared"))
 import paths  # noqa: E402
 
+# TB-117 (Fable 27a R14, Register 46.5): der registrierte Datenstand, gegen den
+# unter dem Modus jede herkunft.json geprueft wird - Register 18, Tabelle "Der
+# gezogene Snapshot", Zeile "Datenstand (`datenstand_hash`)" (aus dem MANIFEST
+# gelesen, dreimal gemessen). Eine Konstante, kein Schalter (Abschnitt 12);
+# test_ersatzwerte.py (Teil J) vergleicht sie mit dem Registertext.
+REGISTRIERTER_DATENSTAND = (
+    "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84")
+HERKUNFT_FELDER = ("commit", "datenstand", "register")
+
 PFLICHTSPALTEN = ["zelle_id", "falte", "rolle", "n_trades", "netto_sharpe",
                   "netto_rendite_pct", "kapital_drawdown_pct", "mittlere_exposure"]
 
@@ -133,9 +152,110 @@ def _abbruch_2(stelle: str, text: str):
     unbekannter Bedingungstext ist ein Widerspruch zwischen Register und Code
     oder Eingabe, kein Laufzustand. Meldung auf stderr, dann
     `SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)` - unabhaengig vom Modus.
-    (`Abbruch` oben endet mit 1 und bleibt, wie er ist.)"""
+    (`Abbruch` oben endet seit TB-111 ebenfalls mit 2, Register 44.1 - der
+    fruehere Satz "`Abbruch` ... endet mit 1" ist berichtigt, Fable 26a R8 (a),
+    TB-117.)"""
     print(f"ABBRUCH (auswertung.py::{stelle}): {text}", file=sys.stderr)
     raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
+
+
+# ---------------------------------------------------------------------------
+# 0. Herkunft (TB-117, Fable 27a R14, Register 46.5; Lesart 46.9)
+# ---------------------------------------------------------------------------
+def lies_herkunft(wurzel: str, bots) -> dict:
+    """Die herkunft.json je Bot, wie sie daliegt: {bot: dict | None}. Eine
+    fehlende Datei ist None; eine nicht lesbare traegt das Feld `fehler`."""
+    je_bot = {}
+    for bot in bots:
+        pfad = os.path.join(wurzel, bot, "herkunft.json")
+        if not os.path.exists(pfad):
+            je_bot[bot] = None
+            continue
+        try:
+            with open(pfad, encoding="utf-8") as f:
+                h = json.load(f)
+            if not isinstance(h, dict):
+                raise ValueError("kein JSON-Objekt")
+        except (OSError, ValueError) as e:
+            h = {"fehler": f"nicht lesbar: {e}"}
+        je_bot[bot] = h
+    return je_bot
+
+
+def herkunft_pruefen(wurzel: str, bots) -> dict:
+    """R14: Unter dem Selektionsmodus liest dieses Programm `herkunft.json`
+    fuer JEDEN der neun Bots (`rd.BOTS`, auch bei `--bot`) und endet mit 2,
+    wenn die Datei fehlt, der Commit nicht zum Tag-Commit passt
+    (`TB_SELEKTIONSCOMMIT`, 7-40 Hex-Zeichen, Praefixvergleich), der
+    Datenstand nicht `REGISTRIERTER_DATENSTAND` ist, der Register-Hash nicht
+    `herkunft.register()["register"]` zur Laufzeit ist, oder die neun Dateien
+    untereinander abweichen. Die Meldung nennt Bot, Feld, erwartet, gefunden.
+    Der Schreiber prueft sich nicht selbst; der Auswerter prueft ihn.
+
+    Ohne Modus (Lesart 46.9): gelesen, wenn vorhanden, fuer die ausgewerteten
+    Bots; kein Abbruch. Liefert den Kopf des Berichts."""
+    modus = paths.selektionsmodus() is not None
+    je_bot = lies_herkunft(wurzel, list(rd.BOTS) if modus else bots)
+    if modus:
+        for bot, h in je_bot.items():
+            if h is None:
+                _abbruch_2("herkunft_pruefen",
+                           f"{bot}: herkunft.json fehlt - erwartet "
+                           f"{os.path.join(wurzel, bot, 'herkunft.json')}, gefunden: keine Datei")
+            if "fehler" in h:
+                _abbruch_2("herkunft_pruefen", f"{bot}: herkunft.json {h['fehler']}")
+        tag = os.environ.get(paths.UMGEBUNG_COMMIT, "").strip().lower()
+        if not (7 <= len(tag) <= 40 and all(z in "0123456789abcdef" for z in tag)):
+            _abbruch_2("herkunft_pruefen",
+                       f"{paths.UMGEBUNG_COMMIT}={tag!r} ist kein Commit-Bezeichner "
+                       f"(7-40 Hex-Zeichen) - der Tag-Commit ist nicht pruefbar")
+        import herkunft   # erst hier: nur der Modus-Lauf liest den Register-Hash
+        soll = {"commit": tag, "datenstand": REGISTRIERTER_DATENSTAND,
+                "register": herkunft.register()["register"]}
+        for bot, h in je_bot.items():
+            for feld in HERKUNFT_FELDER:
+                ist = str(h.get(feld, ""))
+                passt = (ist.lower().startswith(soll[feld]) and ist != "") \
+                    if feld == "commit" else ist == soll[feld]
+                if not passt:
+                    _abbruch_2("herkunft_pruefen",
+                               f"{bot}: Feld {feld} - erwartet {soll[feld]}"
+                               f"{' (Praefix, Tag-Commit)' if feld == 'commit' else ''}, "
+                               f"gefunden {ist or '(fehlt)'}")
+        erster = next(iter(je_bot))
+        for bot, h in je_bot.items():
+            for feld in HERKUNFT_FELDER:
+                if h.get(feld) != je_bot[erster].get(feld):
+                    _abbruch_2("herkunft_pruefen",
+                               f"{bot}: Feld {feld} weicht von {erster} ab - erwartet "
+                               f"{je_bot[erster].get(feld)}, gefunden {h.get(feld)}")
+    kopf = {"geprueft": modus, "je_bot": {}, "fehlend": []}
+    for bot, h in je_bot.items():
+        if h is None:
+            kopf["fehlend"].append(bot)
+        else:
+            kopf["je_bot"][bot] = {f: h.get(f) for f in HERKUNFT_FELDER + ("fehler",)
+                                   if f in h}
+    werte = {f: sorted({str(v.get(f)) for v in kopf["je_bot"].values()})
+             for f in HERKUNFT_FELDER}
+    kopf["einheitlich"] = {f: (w[0] if len(w) == 1 else None) for f, w in werte.items()}
+    return kopf
+
+
+def _drucke_herkunft(kopf: dict):
+    print("HERKUNFT (herkunft.json je Bot; Register 46.5, Lesart 46.9) - "
+          + ("unter dem Modus geprueft: alle fuenf Bedingungen erfuellt"
+             if kopf["geprueft"] else "ohne Modus: angezeigt, nicht geprueft"))
+    for f in HERKUNFT_FELDER:
+        w = kopf["einheitlich"][f]
+        if w is not None:
+            print(f"  {f:11s} {w}   ({len(kopf['je_bot'])} Bot(s) gleich)")
+        else:
+            print(f"  {f:11s} uneinheitlich:")
+            for bot, h in kopf["je_bot"].items():
+                print(f"    {bot:28s} {h.get(f)}")
+    if kopf["fehlend"]:
+        print(f"  herkunft.json fehlt: {', '.join(kopf['fehlend'])}")
 
 
 # ---------------------------------------------------------------------------
@@ -649,11 +769,15 @@ def main():
         tabellen = json.load(f)
 
     bots = args.bot or list(rd.BOTS)
+    # TB-117 (R14): die Herkunft zuerst - unter dem Modus wird nichts
+    # ausgewertet, dessen Herkunft nicht passt.
+    herkunft_kopf = herkunft_pruefen(args.rohergebnisse, bots)
     ergebnisse = [ein_bot(b, args.rohergebnisse, mess, plan, tabellen) for b in bots]
 
     print("=" * 78)
     print("TB-30a - AUSWERTUNG DES SELEKTIONSLAUFS")
     print("=" * 78)
+    _drucke_herkunft(herkunft_kopf)
     for e in ergebnisse:
         print(f"\n{'-' * 78}\n{e['bot']}")
         if not e["auswertbar"]:
@@ -715,7 +839,8 @@ def main():
 
     if args.json:
         with open(args.json, "w", encoding="utf-8") as f:
-            json.dump({"bots": [_ohne_arrays(e) for e in ergebnisse],
+            json.dump({"herkunft": herkunft_kopf,
+                       "bots": [_ohne_arrays(e) for e in ergebnisse],
                        "bleibt_geht": kr}, f, indent=2, ensure_ascii=False,
                       sort_keys=True, default=float)
             f.write("\n")
