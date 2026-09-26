@@ -132,21 +132,27 @@ def _faltenplan():
 
 def _trockenlauf_json(bots, register=None, werkzeug=WERKZEUG, umgebung=None,
                       extra=None):
-    """Das Werkzeug als eigener Prozess; sein JSON-Bericht zurueck."""
+    """Das Werkzeug als eigener Prozess; sein JSON-Bericht zurueck.
+
+    TB-112: der Wegwerfordner wird nach dem Lesen entfernt (vorher blieben je
+    Testlauf 18 `tb40_test_*`-Ordner in $TMPDIR liegen, Randbefund TB-109)."""
     ordner = tempfile.mkdtemp(prefix="tb40_test_")
-    ziel = os.path.join(ordner, "bericht.json")
-    argv = [werkzeug, "--nur-universum", "--json", ziel,
-            "--faltenplan-json", _faltenplan()]
-    for b in bots:
-        argv += ["--bot", b]
-    if register:
-        argv += ["--register", register]
-    argv += list(extra or [])
-    r = _lauf(argv, umgebung)
-    if not os.path.exists(ziel):
-        return None, r
-    with open(ziel, encoding="utf-8") as f:
-        return json.load(f), r
+    try:
+        ziel = os.path.join(ordner, "bericht.json")
+        argv = [werkzeug, "--nur-universum", "--json", ziel,
+                "--faltenplan-json", _faltenplan()]
+        for b in bots:
+            argv += ["--bot", b]
+        if register:
+            argv += ["--register", register]
+        argv += list(extra or [])
+        r = _lauf(argv, umgebung)
+        if not os.path.exists(ziel):
+            return None, r
+        with open(ziel, encoding="utf-8") as f:
+            return json.load(f), r
+    finally:
+        shutil.rmtree(ordner, ignore_errors=True)
 
 
 def _ersetze(pfad, alt, neu):
@@ -190,16 +196,19 @@ def _schreibe_reihe(pfad, anzahl, schritt, ende=dt.datetime(2026, 9, 1)):
 def _loaderlauf_json(bot, datenordner=None, werkzeug=LOADERLAUF, extra=None,
                      umgebung=None):
     ordner = tempfile.mkdtemp(prefix="tb40_test_ll_")
-    ziel = os.path.join(ordner, "l.json")
-    argv = [werkzeug, "--bot", bot, "--aus", ziel]
-    if datenordner:
-        argv += ["--daten", datenordner]
-    argv += extra or []
-    r = _lauf(argv, umgebung)
-    if not os.path.exists(ziel):
-        return None, r
-    with open(ziel, encoding="utf-8") as f:
-        return json.load(f), r
+    try:                                   # TB-112: Ordner wieder entfernen
+        ziel = os.path.join(ordner, "l.json")
+        argv = [werkzeug, "--bot", bot, "--aus", ziel]
+        if datenordner:
+            argv += ["--daten", datenordner]
+        argv += extra or []
+        r = _lauf(argv, umgebung)
+        if not os.path.exists(ziel):
+            return None, r
+        with open(ziel, encoding="utf-8") as f:
+            return json.load(f), r
+    finally:
+        shutil.rmtree(ordner, ignore_errors=True)
 
 
 # ===========================================================================
@@ -1480,7 +1489,22 @@ def teil_o():
                % (name, name), not g["data_csv"] > 0, _o_zusatz(g))
 
 
+def _faltenplan_aufraeumen():
+    """TB-112: der Faltenplan-Ordner lebt fuer den ganzen Testlauf (einmal
+    gerechnet, von mehreren Teilen benutzt) und wird am Ende entfernt."""
+    if _FALTENPLAN[0] is not None:
+        shutil.rmtree(os.path.dirname(_FALTENPLAN[0]), ignore_errors=True)
+        _FALTENPLAN[0] = None
+
+
 def main():
+    try:
+        return _main()
+    finally:
+        _faltenplan_aufraeumen()
+
+
+def _main():
     print(__doc__.strip().split("\n")[0])
     print("=" * 78)
     for name, teil in (("A", teil_a), ("B", teil_b), ("C", teil_c),
