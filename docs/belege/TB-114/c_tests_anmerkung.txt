@@ -1,0 +1,11 @@
+# TB-114: test_drawdown_beide_masse.py nach ~15 min von Hand beendet (kill 48665 48667, 17:40:55) - im Projekt als 'terminiert nicht (bekannt)' gefuehrt (seit TB-34, frueher mit 300-900 s Zeitbudget abgebrochen); beruehrt herkunft.py nicht
+# TB-114 C - die drei Testdateien ohne rc 0, eingeordnet (18:09:57)
+## geaenderte Dateien seit 0df8c64 ausserhalb docs/:
+research/vorregistrierung/herkunft.py
+research/vorregistrierung/test_ersatzwerte.py
+shared/test_sperrlistensonde.py
+## Nennen die roten Tests oder die von ihnen aufgerufenen Module eine dieser Dateien? (grep -l herkunft|sperrlistensonde|test_ersatzwerte|tb24_haltedauern|EINGEFROREN)
+grep rc 1 (1 = kein Treffer)
+## test_stabile_sortierung 43/3: Abschnitt 4 (portfolio_overview / portfolio_correlation_analysis: 'Max Drawdown kombiniert'), Abschnitt 6 (ergebniskurven nicht 9x AKTUELL) - Mac-Stand seit TB-34/TB-45 bekannt 43/3
+## test_wellenauswahl 322/1: Abschnitt 10, dieselbe Ursache (ergebniskurven.py: 5x ABWEICHEND - elliott_wave, rsi2_crypto, t3_supertrend, turtle_soup_crypto, volatility_breakout_crypto; abgelegte Kurven unter results/ vor dem Krypto-Neuaufbau, Beginn 2022-03 statt 2018)
+## test_drawdown_beide_masse: siehe erste Zeile oben

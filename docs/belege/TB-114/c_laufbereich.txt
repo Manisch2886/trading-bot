@@ -1,0 +1,9 @@
+# TB-114 C Laufbereich aus den Laeufen von c_laeufe.sh (<scratch>/c/a6, HEAD 0b7ab4b), Werkzeug TB-104 D1, Vergleich mit TB-112 A2
+# Laufbereich (Vereinigung): 71 Repo-Module
+# Laufbereich (Vereinigung): 64 Repo-Module
+# Laufbereich (Vereinigung): 13 Repo-Module
+TB-112: 81 Module, TB-114: 81 Module, gemeinsam 81
+neu in TB-114 (0): []
+nicht mehr in TB-114 (0): []
+research/vorregistrierung/herkunft.py im Laufbereich: False
+Messumschlaege (docs/, zaehlen nicht): ['docs/belege/TB-103/d_trockenlauf.py', 'docs/belege/TB-104/d1_auswertung_import.py', 'docs/belege/TB-104/haken/sitecustomize.py']
