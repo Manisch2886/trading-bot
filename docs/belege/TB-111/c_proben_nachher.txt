@@ -1,0 +1,6 @@
+# TB-111 C-Proben nochmal, HEAD 6cacfa4, auswertung.py a864b2168a19405d, 2026-09-26 07:34:50 +0200
+leer: rc 2 | stderr wortgleich (197 B) | stdout gleich | elliott_wave: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/ecc21dc4-0f59-48b0-8b6c-97b6c632932b/scratchpa
+spalte: rc 2 | stderr wortgleich (72 B) | stdout gleich | turtle_soup_stocks: Spalten fehlen in zellen.csv: ['mittlere_exposure']
+zelle: rc 2 | stderr wortgleich (96 B) | stdout gleich | turtle_soup_stocks: 1 Zelle(n) in den Rohergebnissen liegen nicht im Raster, z. B. ausserhalb=1
+tage: rc 2 | stderr wortgleich (184 B) | stdout gleich | turtle_soup_stocks/donchian_period=16|max_concurrent_positions=18|stop_mode=2.019: weniger als drei gemeinsame Tage mit 
+basis: rc 0 | stderr wortgleich (0 B) | stdout gleich | 

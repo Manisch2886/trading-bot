@@ -1,0 +1,18 @@
+F-a  ohne Mutation: rc 0 datenstand d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84 223
+F-aM mit Mutation:  rc 2 ['ABBRUCH (herkunft.py::block): unter dem Selektionsmodus ohne daten_dir aufgerufen - keine Voreinstellung unter dem Modus (Fable 25c 2 (a))']
+F-b  pruefansicht ohne Mutation: rc 2, Zugriffe unter der Ersatzwurzel 0
+   stderr: ABBRUCH (herkunft.py::block): TB30A_BASE_DIR ist unter dem Selektionsmodus gesetzt (/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpjsjd7fkb/ersatz) - die Variable ersetzt die Repo-Wurzel fuer Mut
+F-b  commit       ohne Mutation: rc 2, Zugriffe unter der Ersatzwurzel 0
+   stderr: ABBRUCH (herkunft.py::commit): TB30A_BASE_DIR ist unter dem Selektionsmodus gesetzt (/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpbzg2q7bj/ersatz) - die Variable ersetzt die Repo-Wurzel fuer Mu
+F-b  register     ohne Mutation: rc 2, Zugriffe unter der Ersatzwurzel 0
+   stderr: ABBRUCH (herkunft.py::register): TB30A_BASE_DIR ist unter dem Selektionsmodus gesetzt (/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpos2qg2ri/ersatz) - die Variable ersetzt die Repo-Wurzel fuer 
+F-b  block        ohne Mutation: rc 2, Zugriffe unter der Ersatzwurzel 0
+   stderr: ABBRUCH (herkunft.py::block): TB30A_BASE_DIR ist unter dem Selektionsmodus gesetzt (/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmppkv84p37/ersatz) - die Variable ersetzt die Repo-Wurzel fuer Mut
+F-bM  'Pruefung weg'        mit Mutation: rc 0, Zugriffe unter der Ersatzwurzel 5
+      subprocess /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmp3netspqv/ersatz
+      subprocess /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmp3netspqv/ersatz
+      stat /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmp3netspqv/ersatz/docs/VORREGISTRIERUNG_neuselektion.md
+      open /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmp3netspqv/ersatz/docs/VORREGISTRIERUNG_neuselektion.md
+   stderr: -
+F-bM2 'paths aus BASE_DIR'  mit Mutation: rc 1, Zugriffe unter der Ersatzwurzel 0
+   stderr: ModuleNotFoundError: No module named 'paths'

@@ -50,6 +50,10 @@ from datetime import datetime, timezone
 _HIER = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.environ.get("TB30A_BASE_DIR") or os.path.dirname(
     os.path.dirname(_HIER))
+# TB-111 (Fable 25d (3)): die Wurzel, in der dieses Modul liegt - ohne
+# TB30A_BASE_DIR. Aus ihr kommt paths.py, damit schon die Frage "Modus?"
+# nichts unter einer Ersatzwurzel liest.
+_WURZEL = os.path.dirname(os.path.dirname(_HIER))
 
 PROTOKOLL = os.path.join(_HIER, "ergebnisse", "herkunft_protokoll.jsonl")
 
@@ -79,6 +83,7 @@ def _sha256_datei(pfad: str) -> str:
 
 
 def commit() -> dict:
+    _ersatzwurzel_pruefen("commit")
     def git(*args):
         try:
             return subprocess.run(["git", "-C", BASE_DIR, *args],
@@ -108,6 +113,7 @@ def datenstand(daten_dir=None) -> dict:
 
 def register() -> dict:
     """SHA-256 ueber die eingefrorenen Festlegungen."""
+    _ersatzwurzel_pruefen("register")
     h = hashlib.sha256()
     fehlend = []
     teile = []
@@ -125,8 +131,10 @@ def register() -> dict:
 
 def _paths():
     """shared/paths.py - erst bei Bedarf geladen (TB-106), damit der Import
-    dieses Moduls unveraendert bleibt; nicht ueber strategy_paths."""
-    ordner = os.path.join(BASE_DIR, "shared")
+    dieses Moduls unveraendert bleibt; nicht ueber strategy_paths.
+    TB-111: aus `_WURZEL`, nicht aus `BASE_DIR` - sonst laese die Frage nach
+    dem Modus unter `TB30A_BASE_DIR` (gemessen: dort rc 1, `paths` fehlt)."""
+    ordner = os.path.join(_WURZEL, "shared")
     if ordner not in sys.path:
         sys.path.insert(0, ordner)
     import paths
@@ -139,6 +147,22 @@ def _abbruch_2(stelle: str, text: str):
     raise SystemExit(_paths().RUECKGABEWERT_STARTPRUEFUNG)
 
 
+def _ersatzwurzel_pruefen(stelle: str):
+    """TB-111 (Fable 25d (3), 24d Abschnitt 3: erst 2, dann lesen): unter dem
+    Selektionsmodus ist `TB30A_BASE_DIR` kein Weg - Abbruch mit 2, bevor
+    `BASE_DIR`, `REGISTERDATEI` oder `commit()` die Variable benutzen.
+    Gerufen von `commit()`, `register()` und `block()`. Ohne die Variable wird
+    `paths` hier nicht geladen; ohne Modus bleibt alles, wie es war."""
+    if not (os.environ.get("TB30A_BASE_DIR") or BASE_DIR != _WURZEL):
+        return
+    if _paths().selektionsmodus() is not None:
+        _abbruch_2(stelle,
+                   f"TB30A_BASE_DIR ist unter dem Selektionsmodus gesetzt "
+                   f"({BASE_DIR}) - die Variable ersetzt die Repo-Wurzel fuer "
+                   f"Mutationsproben und ist unter dem Modus kein Weg "
+                   f"(Fable 25d (3)); gelesen wird nichts")
+
+
 def block(anlass: str = "lauf", daten_dir=None) -> dict:
     """Der Herkunftsblock, der in jede Ergebnisdatei gehoert.
 
@@ -147,6 +171,7 @@ def block(anlass: str = "lauf", daten_dir=None) -> dict:
     Voreinstellung, sonst hashte die Kette `BASE_DIR/data` statt des
     Snapshots. Ohne Modus bleibt die Voreinstellung `BASE_DIR/data`.
     """
+    _ersatzwurzel_pruefen("block")
     if daten_dir is None and _paths().selektionsmodus() is not None:
         _abbruch_2("block",
                    "unter dem Selektionsmodus ohne daten_dir aufgerufen - keine "
@@ -270,7 +295,11 @@ def main():
         print(json.dumps(e, indent=2, ensure_ascii=False, sort_keys=True))
         return 0
 
-    b = block("pruefung")
+    # Die Pruefansicht wie --anhaengen: unter dem Modus der Datenordner des
+    # Snapshots (TB-111, Fable 25d (2)); ohne Modus die Voreinstellung.
+    resolver = _paths()
+    b = block("pruefung", resolver.DATA_DIR
+              if resolver.selektionsmodus() is not None else None)
     if args.json:
         print(json.dumps({"herkunft": b, "verankerung": verankerung(),
                           "kettenfehler": kette_pruefen()},

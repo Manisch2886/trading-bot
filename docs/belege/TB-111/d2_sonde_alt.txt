@@ -1,0 +1,76 @@
+# TB-111 D2 Sonde gegen ALTES Abbild sperrliste_abbild_2026-09-25b.json, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 6c98c38, 2026-09-26 07:54:35 +0200
+Abbild sha256: 40ffe18d6a6345d1ab88aa993535cfb10264d8cf2e02e804406bbe85236642c8  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+Sperrlisten-Sonde (Register 36.2/36.5/36.6)
+  Abbild:   research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+  Register: /Users/jaquelineloffler/trading-bot-tb111/docs/VORREGISTRIERUNG_neuselektion.md
+  Wurzel:   /Users/jaquelineloffler/trading-bot-tb111
+  Abbild-Hash: 40ffe18d6a6345d1ab88aa993535cfb10264d8cf2e02e804406bbe85236642c8
+  erzeugt: 2026-09-25T17:08:38Z  HEAD 5791b4c72a7e  von research/vorregistrierung/sperrliste_abbild.py
+
+(i) Jeder Punkt des Abbilds gegen die Datei im Repo:
+  Punkt  1  [2 NICHT PRUEFBAR]  Rastergrenzen und Grenzsätze
+            research/vorregistrierung/registerdaten.py                     gleich     141fa14b6742aae0
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `registerdaten.py`, Abschnitt 3 dieses Registers
+  Punkt  2  [0 in Ordnung]  Faltengrenzen, Go-Live-Schnitt, Purge-Längen, Faltenlängen
+            research/vorregistrierung/faltenplan.py                        gleich     63dafeb44e027cb5
+            research/vorregistrierung/ergebnisse/faltenplan.json           gleich     0e54ac5cf6d554d2
+  Punkt  3  [1 BEFUND]  Selektionsstatistik, Plateau-Regel, Spitzen-Schwelle
+            research/vorregistrierung/auswertung.py                        ABWEICHUNG a864b2168a19405d
+            -> Hash weicht ab: research/vorregistrierung/auswertung.py soll 83c6bc3c9b68… ist a864b2168a19…
+  Punkt  4  [2 NICHT PRUEFBAR]  Drawdown-Bedingung, `DD_Toleranz` und die vorab berechneten Benchmark-Drawdowns
+            research/vorregistrierung/benchmark.py                         gleich     aeeec9b89bdadd1b
+            research/vorregistrierung/ergebnisse/benchmark_drawdowns.json  gleich     a163c49814b9af0c
+            research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json gleich     64fb2912f1a2ffb0
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `benchmark.py`, `ergebnisse/benchmark_drawdowns.json`, **einschliesslich der Interpolationsregel** — und, als die Tabelle, die der Lauf liest, `ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json` (Vollzug der Form (ii), 39.2, 23.09.2026)
+  Punkt  5  [1 BEFUND]  Abbruchkriterien und Kapitalregel
+            research/vorregistrierung/auswertung.py                        ABWEICHUNG a864b2168a19405d
+            -> Hash weicht ab: research/vorregistrierung/auswertung.py soll 83c6bc3c9b68… ist a864b2168a19…
+  Punkt  6  [2 NICHT PRUEFBAR]  Benchmark-Definitionen
+            research/vorregistrierung/benchmark.py                         gleich     aeeec9b89bdadd1b
+            -> nennt Nicht-Dateibezogenes - nicht messbar: gleichgewichtete Tagesrenditen, point-in-time, `benchmark.py::bh_tagesrenditen`
+  Punkt  7  [2 NICHT PRUEFBAR]  N-Buchführung und Clusterschwelle
+            -> kein Dateipfad im Registertext - nicht messbar: `registerdaten.N_HISTORISCH_JE_BOT`, `CLUSTER_SCHWELLE = 0,9`
+  Punkt  8  [2 NICHT PRUEFBAR]  Universumsdateien und point-in-time-Regel
+            config/top25_symbols.txt                                       gleich     3afc95a4f6b5ebc3
+            config/sp500_top150.txt                                        gleich     6acba892f38e998c
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `config/top25_symbols.txt`, `config/sp500_top150.txt`, vier Jahre Vorlauf je Symbol
+  Punkt  9  [2 NICHT PRUEFBAR]  Kosten (0,30 %) und Fill-Konvention
+            -> kein Dateipfad im Registertext - nicht messbar: `TRADING_FEE_PCT = 0,1` und `SLIPPAGE_PCT = 0,05` je Order, Ein- und Ausstieg; Einstieg zum Schlusskurs des Bestätigungsbalkens
+  Punkt 10  [2 NICHT PRUEFBAR]  Zuteilungskaskade inklusive Seed
+            shared/zuteilung.py                                            gleich     68a812a0567dec8b
+            -> nennt Nicht-Dateibezogenes - nicht messbar: `shared/zuteilung.py`, `SEED = 20260913`
+  Punkt 11  [1 BEFUND]  Commit-Hashes von Simulation, Erkennung, Optimierern und Auswertungsskript
+            research/vorregistrierung/herkunft.py                          ABWEICHUNG 5bbfc9e085d7ec70
+            -> Hash weicht ab: research/vorregistrierung/herkunft.py soll 351f24c2d6a3… ist 5bbfc9e085d7…
+  Punkt 12  [1 BEFUND]  Hash des Datenstands
+            research/vorregistrierung/herkunft.py                          ABWEICHUNG 5bbfc9e085d7ec70
+            -> Hash weicht ab: research/vorregistrierung/herkunft.py soll 351f24c2d6a3… ist 5bbfc9e085d7…
+  Punkt 13  [2 NICHT PRUEFBAR]  Die Liste der berichteten Kennzahlen und die Regel, dass alle berichtet werden, auch die unangenehmen
+            -> kein Dateipfad im Registertext - nicht messbar: Abschnitt 8
+  Punkt 14  [1 BEFUND]  Die Reihenfolge Selektion → Bestätigungsperiode → Bericht
+            research/vorregistrierung/auswertung.py                        ABWEICHUNG a864b2168a19405d
+            -> Hash weicht ab: research/vorregistrierung/auswertung.py soll 83c6bc3c9b68… ist a864b2168a19…
+
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 894-1007, Listentext wie bei Erzeugung: ja
+
+Gruppe bestimmt (37.2):  [0 in Ordnung]
+  leer (im Abbild gefuehrt, kein Eintrag)
+
+Gruppe Abschnitt 0 - herkunft.py::EINGEFROREN (39.7):  [1 BEFUND]
+  research/vorregistrierung/registerdaten.py                       gleich     141fa14b6742aae0
+  research/vorregistrierung/faltenplan.py                          gleich     63dafeb44e027cb5
+  research/vorregistrierung/benchmark.py                           gleich     aeeec9b89bdadd1b
+  research/vorregistrierung/kennzahlen.py                          gleich     d130e15cf2c9b9c1
+  research/vorregistrierung/auswertung.py                          ABWEICHUNG a864b2168a19405d
+  research/vorregistrierung/messgroessen.py                        gleich     59b396e76af33dfc
+  research/vorregistrierung/pruefe_grenzsaetze.py                  gleich     1d7358dafc6ecbe1
+  research/vorregistrierung/ergebnisse/messgroessen.json           gleich     2a9b91660a42f06a
+  research/vorregistrierung/ergebnisse/faltenplan.json             gleich     0e54ac5cf6d554d2
+  research/vorregistrierung/ergebnisse/benchmark_drawdowns.json    gleich     a163c49814b9af0c
+  -> Hash weicht ab: research/vorregistrierung/auswertung.py soll 83c6bc3c9b68… ist a864b2168a19…
+
+Pfad-Bestandteile: 25 geprueft, davon 19 mit 0 / 6 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 10)
+Regel-Bestandteile: 12 nicht pruefbar (2), je mit Verweis auf die Tatsachennotiz: Punkt 1 -> keine im Abbild; Punkt 3 -> keine im Abbild; Punkt 4 -> keine im Abbild; Punkt 6 -> keine im Abbild; Punkt 7 -> keine im Abbild; Punkt 8 -> keine im Abbild; Punkt 9 -> keine im Abbild; Punkt 10 -> keine im Abbild; Punkt 11 -> keine im Abbild; Punkt 12 -> keine im Abbild; Punkt 13 -> keine im Abbild; Punkt 14 -> keine im Abbild
+RUECKGABEWERT 1 BEFUND - BEFUND in Punkt(en) [3, 5, 11, 12, 14] und in Gruppe(n) ['eingefroren']
+rc 1

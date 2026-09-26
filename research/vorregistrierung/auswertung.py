@@ -116,7 +116,16 @@ PFLICHTSPALTEN = ["zelle_id", "falte", "rolle", "n_trades", "netto_sharpe",
 
 
 class Abbruch(SystemExit):
-    """Ein Vertragsbruch in den Rohergebnissen. Nie eine stille Annahme."""
+    """Ein Vertragsbruch in den Rohergebnissen. Nie eine stille Annahme.
+
+    Ausgaenge von `auswertung.py`: 0 oder 2, kein 1 (Fable 25d (4),
+    Ergaenzung zu 36.5). TB-111: die Meldung geht wie bisher wortgleich auf
+    stderr, der Rueckgabewert ist `paths.RUECKGABEWERT_STARTPRUEFUNG`."""
+
+    def __init__(self, meldung):
+        print(meldung, file=sys.stderr)
+        super().__init__(paths.RUECKGABEWERT_STARTPRUEFUNG)
+        self.meldung = meldung
 
 
 def _abbruch_2(stelle: str, text: str):

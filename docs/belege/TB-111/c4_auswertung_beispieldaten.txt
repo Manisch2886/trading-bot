@@ -1,0 +1,5 @@
+# TB-106 G3, HEAD 6cacfa4, 2026-09-26 07:39:31 +0200
+beispieldaten rc=0 71s
+auswertung rc=0 38s
+fc1781067e73bd7d229449d06ffb1b7742812484b7e7bd4e5110cb3f67d82a79  g3_nachher.json
+Soll (TB-106 G3): fc1781067e73bd7d229449d06ffb1b7742812484b7e7bd4e5110cb3f67d82a79 -> zeichengleich; Aufruf: bash docs/belege/TB-106/g3_auswertung.sh <scratch>/g3_roh <scratch>/g3_nachher.json
