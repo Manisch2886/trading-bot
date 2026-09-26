@@ -229,6 +229,20 @@ def p13(mod):
     return ok, "L1-Klassen %s" % sorted(klassen)
 
 
+# P14 Ausgabe: Text und JSON aus derselben Pruefung wie P13; die Zahl der Tabellen je
+#     Unterschiedsklasse steht im Text, das JSON ist serialisierbar und traegt dieselbe Zahl.
+def p14(mod):
+    import json
+    t = [mod.tabelle_aus_text(x) for x in (ALLE_G, ALLE_S)]
+    p = mod.pruefung(t, [lesart(l1=x, l2="L2b") for x in ("L1a", "L1b", "L1c")])
+    text = mod.als_text(p)
+    js = json.loads(json.dumps(mod.als_json(p), ensure_ascii=False))
+    zeile = "  L1a≠L1b | aktiv A2/K2, Schatten in aktiver Zelle nein, Bestaetigt nein: 1"
+    ok = (zeile in text.split("\n") and js["tabellen_mit_unterschied_je_stelle"]["L1"] == 1
+          and js["tabellen"] == 2 and len(js["je_lesart"]) == 3)
+    return ok, "Textzeile %s, JSON L1 %s" % (zeile in text.split("\n"), js["tabellen_mit_unterschied_je_stelle"]["L1"])
+
+
 def main():
     print("== Hand-Beispiele je Lesart, mit Mutationsgegenprobe")
     probe("P1 alle Grundbudget, L1a (L2a/L2b/L2c)", p1,
@@ -265,6 +279,8 @@ def main():
           '("t3_supertrend", "volatility_breakout_crypto")', '("volatility_breakout_crypto", "t3_supertrend")')
     probe("P13 Pruefung ueber einen Ausschnitt", p13,
           "if k1 == k2:\n                        continue", "if True:\n                        continue")
+    probe("P14 Ausgabe Text und JSON", p14,
+          'a("  %s: %d" % (k, v["tabellen"]))', 'a("  %s: %d" % (k, v["tabellen"] + 1))')
 
     print()
     print("Ergebnis: %d bestanden, %d Fehler" % (_bestanden, len(_fehler)))

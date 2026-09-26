@@ -481,7 +481,7 @@ def als_text(p):
         a("")
         a("-- %s: Unterschiedsklassen (Optionspaar | Merkmal der Tabelle): Tabellen, 3 Beispiele" % st)
         for k, v in sorted(p["unterschiede"][st].items()):
-            a("  %s: %d" % (k, len(v["tabellen"])))
+            a("  %s: %d" % (k, v["tabellen"]))
             for b in v["beispiele"]:
                 o1, o2 = k.split(" | ")[0].split("≠")
                 a("      %s  [uebrige %s]  %s=(%s)  %s=(%s)" % (
