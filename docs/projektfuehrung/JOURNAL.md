@@ -9310,6 +9310,40 @@ Der Block von TB-111 ist mit dieser Sitzung als **DK** übertragen.
 
 ---
 
+## DM — TB-114: Register 45 (Fable 26a, R1–R8 zeichengleich, 11 Marken, numstat 218/0); `herkunft.py` dritte Öffnung — eine Pfadregel mit der Sonde, neun TB-24-Listen in `EINGEFROREN`, `datenstand(None)` im Modus 2; neues Abbild `5e5ad109…`; ⚠️ Abbruch in Block C: die Sonde sieht die neun neuen Einträge gegen das alte Abbild nicht — 45.11 entfällt (26.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-114_register_45_herkunft_pfadregel.md`*
+
+**Quelle:** Mac-Sitzung **TB-114** (Hauptordner), 26.09.2026, Eingang `0df8c64`. Commits `79c2dfa` (Schritt 0),
+`77147f7` (Register 45), `0b7ab4b` (`herkunft.py`, Tests), `e07fefd` (Abbild, Nachmessung) und der Abgabe-Commit.
+Belege `docs/belege/TB-114/`. Freigabe 26.09.2026, ca. 16:30 (Auswahlkarte).
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **0** | Auftrag, Zeiger, Fable 26a committet (md5 ✔). Zwei weitere unversionierte Dateien (`AF-F0_BESTANDSAUFNAHME…`, `FABLE_ANFRAGE_2026-09-26a…`) gemeldet, nicht committet. Ausgangswerte wie erwartet |
+| ⭐⭐ **A** | Register 45: R1–R8 zeichengleich (8/8 `diff` rc 0, Mutationsprobe rc 1), 38 Zitate rc 0, Tatsachennotiz Pfadregel (45.9), Offenes (45.10), 11 Marken (7.1, 19, 27, 30.2, 33.3, 41.1 A12, 42.2 E1/E2, 42.6 (5), 43.3, 44.3), keine in 10 und 9. Sonde vorher = nachher (Abschnitt 10 nur um 4 Zeilen verschoben), `register()` ⇒ `03178075`, 196/196 |
+| ⭐⭐ **B** | B1 `register()` vorher = nachher bytegleich; B3 ⇒ `5acb4c19`, 20 Teile, `fehlend` leer; B4 ⇒ 2. `herkunft.py` ⇒ `ed521ac1`. `test_ersatzwerte` 70/70 (+9), `test_sperrlistensonde` 59/59; drei Testannahmen nachgezogen (E-bM, 8a, H7f). B2 gemessen: eine fehlende eingefrorene Datei gibt nirgends rc ≠ 0 |
+| **C** | Abbild `sperrliste_abbild_2026-09-26_tb114.json` `5e5ad109…`, Sonde 34/0/0. Gegen `e655c1c8`: nur `herkunft.py` (Punkte 11/12), **die neun Einträge nicht** ⇒ Abbruchkriterium. Nachmessung trotzdem: Benchmark Repo + Klon `64fb2912`, Trockenlauf 9 × rc 0, ohne Modus 8/8 bytegleich, Laufbereich 81, `faltenplan.json` unverändert, Tests 43 Dateien, **40 rc 0** (`test_vorregistrierung` 196/196, `test_ersatzwerte` 70/70, `test_sperrlistensonde` 59/59, `test_startpruefungen` 44/44, `test_arbeitsbaum_laufbereich` 26/26, `test_stille_ausfaelle` 27/27, `test_universum_trockenlauf` 163/163); nicht rc 0 und ohne Bezug zu dieser Sitzung: `test_drawdown_beide_masse` (terminiert bekanntlich nicht, nach 880 s beendet), `test_stabile_sortierung` 43/3 und `test_wellenauswahl` 322/1 (abgelegte Ergebniskurven, siehe `c_tests_anmerkung.txt`) |
+| ⛔ **D** | 45.11 nicht geschrieben |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Sonde, die aus dem Abbild heraus prüft, sieht nur, was im Abbild steht.** Zuwachs der Quelle zeigt sie nicht als eigenen Befund, sondern nur, wenn die Quelle selbst gehasht ist. Wer „das Neue wird gemeldet" erwartet, misst es vorher |
+| ⭐ | **Zwei Wachen hintereinander verändern die Mutationsprobe der ersten:** Wird die erste entfernt, endet der Lauf an der zweiten. Die Probe prüft dann die **Stelle** des Abbruchs, nicht nur den Rückgabewert |
+
+### Was offen bleibt
+
+- Fünf Fragen an Fable (Ergebnis Abschnitt 6): B2, Sondenlücke und Gültigkeit von `5e5ad109…`, Pfad des Erzeugers, Testannahmen, Modulkopf.
+- 45.11 (Vollzug) nach Fables Antwort; TB-115 (drei Verfahrensmessungen), Erzeuger, TB-101.
+
+*Geschrieben 26.09.2026 von der Mac-Sitzung TB-114. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
