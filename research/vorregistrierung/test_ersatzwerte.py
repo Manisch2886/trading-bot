@@ -24,6 +24,16 @@ einem Commit, echte `paths.py`, Snapshot-Attrappe): `PROTOKOLL` haengt an
 `_HIER`, und das echte `ergebnisse/herkunft_protokoll.jsonl` darf keine Probe
 beschreiben. Am Ende prueft die Datei, dass es unberuehrt ist.
 
+TB-111 (Fable 25d (2)/(3)) - Teil F, ebenfalls im Wegwerfbaum:
+  F-a  die Pruefansicht (`herkunft.py`, `--json`) laeuft unter dem Modus mit
+       rc 0 und hasht den Snapshot (`paths.DATA_DIR`), am echten Snapshot
+       `d9449faf...`/223;
+  F-b  Modus + `TB30A_BASE_DIR` endet mit 2 - Pruefansicht, `commit()`,
+       `register()`, `block()` -, die Meldung nennt die Variable, und ein
+       Lesehaken sieht keinen Zugriff unter der Ersatzwurzel;
+  F-c  ohne Modus wirkt `TB30A_BASE_DIR` wie vorher;
+  F-aM, F-bM, F-bM2  Mutationsproben mit Gegenprobe.
+
 Aufruf: trading-env/bin/python3 research/vorregistrierung/test_ersatzwerte.py
 """
 
@@ -468,6 +478,213 @@ def teil_e():
            _sha(ECHTES_PROTOKOLL) == vorher, f"vorher {vorher}, nachher {_sha(ECHTES_PROTOKOLL)}")
 
 
+# ===========================================================================
+# F  herkunft.py - Pruefansicht und TB30A_BASE_DIR unter dem Modus (TB-111)
+# ===========================================================================
+_F_SNAP_HASH = "63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2"
+_F_SNAP = os.path.join(_REPO, "snapshots", _F_SNAP_HASH)
+_F_DATENSTAND = "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84"
+FA_NEU = ('    b = block("pruefung", resolver.DATA_DIR\n'
+          '              if resolver.selektionsmodus() is not None else None)\n')
+FA_ALT = '    b = block("pruefung")\n'
+FB_NEU = ('    if not (os.environ.get("TB30A_BASE_DIR") or BASE_DIR != _WURZEL):\n'
+          '        return\n')
+FB_ALT = '    return\n'
+FB2_NEU = '    ordner = os.path.join(_WURZEL, "shared")\n'
+FB2_ALT = '    ordner = os.path.join(BASE_DIR, "shared")\n'
+_F_TREIBER = ("import sys, os, json\n"
+              "sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))\n"
+              "import herkunft\n"
+              "was = sys.argv[1]\n"
+              "e = (herkunft.commit() if was == 'commit' else herkunft.register()\n"
+              "     if was == 'register' else herkunft.block('probe', sys.argv[2]))\n"
+              "print(json.dumps(e, sort_keys=True))\n")
+# Der Lesehaken: jeder Zugriff unter der Ersatzwurzel (open, listdir, scandir,
+# stat - darueber auch exists/isdir -, git und jeder andere Unterprozess)
+# landet im Protokoll. Ueber PYTHONPATH als sitecustomize geladen.
+_F_HAKEN = """
+import builtins, io, os, subprocess
+_E = os.path.realpath(os.environ["TB111_ERSATZ"])
+_P = os.environ["TB111_PROT"]
+_open = builtins.open
+def _merke(art, pfad):
+    try:
+        r = os.path.realpath(os.fspath(pfad))
+    except Exception:
+        return
+    if r == _E or r.startswith(_E + os.sep):
+        with _open(_P, "a") as f:
+            f.write(art + " " + r + chr(10))
+def _huelle(art, echt):
+    def h(pfad=".", *a, **k):
+        if not isinstance(pfad, int):
+            _merke(art, pfad)
+        return echt(pfad, *a, **k)
+    return h
+builtins.open = io.open = _huelle("open", _open)
+os.listdir = _huelle("listdir", os.listdir)
+os.scandir = _huelle("scandir", os.scandir)
+os.stat = _huelle("stat", os.stat)
+_popen = subprocess.Popen.__init__
+def _popen_haken(self, args, *a, **k):
+    for x in ([args] if isinstance(args, (str, bytes)) else list(args)) + [k.get("cwd") or ""]:
+        if isinstance(x, (str, bytes, os.PathLike)) and x:
+            _merke("subprocess", x)
+    return _popen(self, args, *a, **k)
+subprocess.Popen.__init__ = _popen_haken
+"""
+
+
+def _f_ersatz(t):
+    """Die Ersatzwurzel: ein Baum, den `TB30A_BASE_DIR` benennt - mit data/,
+    Registerdatei und eigenem Git, damit jeder Zugriff etwas faende."""
+    e = os.path.join(t, "ersatz")
+    for o in (os.path.join(e, "data"), os.path.join(e, "docs")):
+        os.makedirs(o)
+    _csv(os.path.join(e, "data", "ZZZ_1d.csv"), "9.0")
+    with open(os.path.join(e, "docs", "VORREGISTRIERUNG_neuselektion.md"), "w") as f:
+        f.write("Ersatzregister\n")
+    _git(e, "init", "-q")
+    _git(e, "add", "-A")
+    _git(e, "-c", "user.name=tb111", "-c", "user.email=tb111@test",
+         "commit", "-q", "-m", "Ersatzwurzel")
+    return e
+
+
+def _f_lauf(t, baum, head, argv, snap=_F_SNAP, snap_hash=_F_SNAP_HASH,
+            modus=True, ersatz=None):
+    """Ein Lauf im Wegwerfbaum; mit `ersatz` steht TB30A_BASE_DIR und der
+    Lesehaken zeichnet jeden Zugriff darunter auf."""
+    u = {k: v for k, v in os.environ.items()
+         if k not in ("TB30A_BASE_DIR", "PYTHONPATH") and not k.startswith("TB_SELEKTIONS")}
+    if modus:
+        u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": snap_hash,
+                  "TB_SELEKTIONSCOMMIT": head})
+    prot = os.path.join(t, "lesehaken.txt")
+    if ersatz:
+        haken = os.path.join(t, "haken")
+        os.makedirs(haken, exist_ok=True)
+        with open(os.path.join(haken, "sitecustomize.py"), "w") as f:
+            f.write(_F_HAKEN)
+        u.update({"TB30A_BASE_DIR": ersatz, "PYTHONPATH": haken,
+                  "TB111_ERSATZ": ersatz, "TB111_PROT": prot})
+    r = subprocess.run([sys.executable, "-W", "ignore"] + argv,
+                       capture_output=True, text=True, env=u)
+    zugriffe = []
+    if os.path.exists(prot):
+        with open(prot) as f:
+            zugriffe = [z for z in f.read().splitlines() if z]
+    return {"rc": r.returncode, "out": r.stdout, "err": r.stderr[-600:],
+            "zugriffe": zugriffe}
+
+
+def _f_treiber(v):
+    with open(os.path.join(v, "probe_f.py"), "w", encoding="utf-8") as f:
+        f.write(_F_TREIBER)
+    return os.path.join(v, "probe_f.py")
+
+
+def _f_info(r):
+    return _info(r) + f"; Zugriffe unter der Ersatzwurzel {len(r['zugriffe'])}: {r['zugriffe'][:3]}"
+
+
+def _fa_lauf(mut, snap=_F_SNAP, snap_hash=_F_SNAP_HASH):
+    """Modus, Pruefansicht --json im Wegwerfbaum."""
+    with tempfile.TemporaryDirectory() as t:
+        baum, _, v, head = _e_baum(t, (FA_NEU, FA_ALT, mut))
+        r = _f_lauf(t, baum, head, [os.path.join(v, "herkunft.py"), "--json"],
+                    snap=snap, snap_hash=snap_hash)
+        r["json"] = json.loads(r["out"]) if r["rc"] == 0 else {}
+        r["data_stand"] = herkunft.datenstand(os.path.join(baum, "data"))["datenstand"]
+        return r
+
+
+def _fb_lauf(mut, mutation=None, argv=("pruefansicht",)):
+    """Modus + TB30A_BASE_DIR mit Lesehaken; `mutation` = (neu, alt)."""
+    with tempfile.TemporaryDirectory() as t:
+        ersatz = _f_ersatz(t)
+        baum, _, v, head = _e_baum(t, (mutation + (mut,)) if mutation else None)
+        ziel = ([os.path.join(v, "herkunft.py")] if argv[0] == "pruefansicht"
+                else [_f_treiber(v)] + list(argv))
+        return _f_lauf(t, baum, head, ziel, ersatz=ersatz)
+
+
+def _f_rc2_ohne_zugriff(r, stelle):
+    return (_rc2(r, stelle) and "TB30A_BASE_DIR" in r["err"]
+            and r["zugriffe"] == [])
+
+
+def teil_f():
+    vorher = _sha(ECHTES_PROTOKOLL)
+
+    # F-a: Pruefansicht im Modus, am echten Snapshot und an der Attrappe
+    # (die Attrappe zeigt, dass der Snapshot gehasht wird, nicht data/).
+    r = _fa_lauf(False)
+    h = r["json"].get("herkunft", {})
+    pruefe("F-a: Modus, Pruefansicht --json rc 0, Datenstand des Snapshots d9449faf.../223",
+           r["rc"] == 0 and h.get("datenstand") == _F_DATENSTAND
+           and h.get("datendateien") == 223, _info(r) + f"; herkunft {h}")
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, v, head = _e_baum(t)
+        r2 = _f_lauf(t, baum, head, [os.path.join(v, "herkunft.py"), "--json"],
+                     snap=snap, snap_hash=_E_SNAP_HASH)
+        h2 = json.loads(r2["out"]).get("herkunft", {}) if r2["rc"] == 0 else {}
+        pruefe("F-a2: Modus, Pruefansicht an der Attrappe hasht den Snapshot, nicht data/",
+               r2["rc"] == 0 and h2.get("datenstand") == herkunft.datenstand(snap)["datenstand"]
+               != herkunft.datenstand(os.path.join(baum, "data"))["datenstand"],
+               _info(r2) + f"; herkunft {h2}")
+        r3 = _f_lauf(t, baum, head, [os.path.join(v, "herkunft.py")],
+                     snap=snap, snap_hash=_E_SNAP_HASH)
+        pruefe("F-a3: Modus, Pruefansicht ohne --json rc 0", r3["rc"] == 0, _info(r3))
+    _mit_gegenprobe(
+        "F-aM", "Mutationsprobe 'Pruefansicht ohne Pfad' - F-a waere rot (rc 2 an block)",
+        _fa_lauf, lambda r: _rc2(r, "block"), _info)
+
+    # F-b: Modus + TB30A_BASE_DIR - jeder Einstieg endet mit 2, nichts gelesen.
+    for name, argv, stelle in (("F-b", ("pruefansicht",), "block"),
+                               ("F-b2", ("commit",), "commit"),
+                               ("F-b3", ("register",), "register"),
+                               ("F-b4", ("block", _F_SNAP), "block")):
+        r = _fb_lauf(False, argv=argv)
+        pruefe(f"{name}: Modus + TB30A_BASE_DIR, {argv[0]} endet mit 2, Meldung nennt die "
+               f"Variable, kein Zugriff unter der Ersatzwurzel",
+               _f_rc2_ohne_zugriff(r, stelle), _f_info(r))
+    _mit_gegenprobe(
+        "F-bM", "Mutationsprobe 'Pruefung von TB30A_BASE_DIR weg' - F-b waere rot",
+        lambda mut: _fb_lauf(mut, (FB_NEU, FB_ALT)),
+        lambda r: not _f_rc2_ohne_zugriff(r, "block"), _f_info)
+    _mit_gegenprobe(
+        "F-bM2", "Mutationsprobe 'paths wieder aus BASE_DIR' - F-b waere rot",
+        lambda mut: _fb_lauf(mut, (FB2_NEU, FB2_ALT)),
+        lambda r: not _f_rc2_ohne_zugriff(r, "block"), _f_info)
+
+    # F-c: ohne Modus ist TB30A_BASE_DIR die Ersatzwurzel wie vorher: block()
+    # hasht ersatz/data, register() liest die Registerdatei dort, commit() ist
+    # der Commit der Ersatzwurzel.
+    with tempfile.TemporaryDirectory() as t:
+        ersatz = _f_ersatz(t)
+        baum, _, v, head = _e_baum(t)
+        r = _f_lauf(t, baum, head, [_f_treiber(v), "block", os.path.join(ersatz, "data")],
+                    modus=False, ersatz=ersatz)
+        b = json.loads(r["out"].strip().splitlines()[-1]) if r["rc"] == 0 else {}
+        e_head = subprocess.run(["git", "-C", ersatz, "rev-parse", "HEAD"],
+                                capture_output=True, text=True).stdout.strip()
+        rr = _f_lauf(t, baum, head, [_f_treiber(v), "register"], modus=False, ersatz=ersatz)
+        reg = json.loads(rr["out"].strip().splitlines()[-1]) if rr["rc"] == 0 else {}
+        pruefe("F-c: ohne Modus wirkt TB30A_BASE_DIR wie vorher (Commit, Datenstand, "
+               "Registerdatei der Ersatzwurzel)",
+               r["rc"] == 0 and b.get("commit") == e_head
+               and b.get("datenstand") == herkunft.datenstand(os.path.join(ersatz, "data"))["datenstand"]
+               and rr["rc"] == 0 and any(x["datei"].endswith("VORREGISTRIERUNG_neuselektion.md")
+                                         and x["sha256"] == _sha(os.path.join(
+                                             ersatz, "docs", "VORREGISTRIERUNG_neuselektion.md"))
+                                         for x in reg.get("teile", [])),
+               _info(r) + f"; commit {b.get('commit')} / {e_head}; register {_info(rr)}")
+
+    pruefe("F-e: das echte herkunft_protokoll.jsonl ist unberuehrt",
+           _sha(ECHTES_PROTOKOLL) == vorher, f"vorher {vorher}, nachher {_sha(ECHTES_PROTOKOLL)}")
+
+
 def _sha(pfad):
     if not os.path.exists(pfad):
         return "(fehlt)"
@@ -477,7 +694,8 @@ def _sha(pfad):
 
 def main():
     print(__doc__.strip().split("\n")[0])
-    for name, teil in (("B", teil_b), ("C", teil_c), ("D", teil_d), ("E", teil_e)):
+    for name, teil in (("B", teil_b), ("C", teil_c), ("D", teil_d), ("E", teil_e),
+                       ("F", teil_f)):
         print(f"  Teil {name} ...", flush=True)
         teil()
     print("\n" + "=" * 78)
