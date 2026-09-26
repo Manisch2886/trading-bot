@@ -9414,6 +9414,47 @@ Ergebnisgrösse gelesen oder gerechnet.
 
 ---
 
+## DP — TB-117: Bündel „Wachen vor dem Tag“ (Fable 27a) — Register 45.11 und 46 (R9–R17 zeichengleich, 10 Marken, numstat 232/0); Sonde zweiseitig; `herkunft.py` vierte Öffnung (`fehlend` im Modus 2, MANIFEST und Snapshot-`config/` in `EINGEFROREN`); `auswertung.py` prüft `herkunft.json` (R14, Lesart 46.9); neues Abbild `46f0ad5d…`; 46.11 Vollzug (27.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-117_wachen_vor_dem_tag.md`*
+
+**Quelle:** Mac-Sitzung **TB-117** (Hauptordner), 26./27.09.2026, Eingang `8b342ab`. Commits `753ec11` (Schritt 0),
+`4c5615d` (A), `42ef509` (B), `ff2f254` (C), `852f253` (D), `54ce889` (E), `33f30e2` (E, Testrunde) und der Abgabe-Commit
+(F). Belege `docs/belege/TB-117/`. Freigabe 26.09.2026, ca. 22:20 (Auswahlkarte, „Alle vier freigeben“). Kein
+Abbruchkriterium ausgelöst; keine Ergebnisgrösse gelesen oder gerechnet (Beispieldaten nur als Eingabe von Proben).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | Drei Dateien committet (md5 der Fable-Antwort ✔). 0b: `register()` `5acb4c19…`, Sonde gegen `5e5ad109…` 34/0/0, Benchmark im Modus `64fb2912…`; `auswertung.py` `a864b216…` gegen das Abbild gemessen (TB-116 0b hatte ihn nicht) |
+| ⭐⭐ **A** | 45.11 (R11) und 46.0–46.10, zehn Marken (40.8 (e) als Tabellenzeile). numstat 232/0, R9–R17 9/9 `diff` rc 0 (Mutation rc 1), 35 Zitate rc 0, Sonde vorher = nachher, `test_vorregistrierung` 196/196. Fables erstes „Unsicher“ gemessen: die Sonde steht weder auf der Sperrliste noch in einem Punkt oder einer Gruppe des Abbilds |
+| ⭐⭐ **B** | Sonde vergleicht Liste heute ↔ Abbild (`_vergleiche_eingefroren`, in `pruefen()` nach den Gruppen); gegen `e655c1c8…` genau die neun TB-24-Listen „Liste → Abbild fehlt“. `test_sperrlistensonde` 65/65 |
+| ⭐⭐ **C** | `register()`/`block()` im Modus 2 bei `fehlend` (je eigene Fundstelle), MANIFEST und zwei `config/`-Kopien in `EINGEFROREN` — keine dritte Pfadauflösung; `config/` nur im Snapshot-Hash (225), nicht im Datenstand (223). Sechs Testannahmen nachgezogen (Wegwerfbaum ohne `EINGEFROREN`, Anzahlen 19/20/34 ⇒ 22/23/37), alte Fassungen 62/70 und 63/65. `test_ersatzwerte` 77/77 |
+| ⭐⭐ **D** | `auswertung.py` prüft unter dem Modus fünf Bedingungen ⇒ 2 (alle neun Bots, auch bei `--bot`), ohne Modus Anzeige; Herkunft im Berichtskopf; R8 (a) berichtigt. `test_ersatzwerte` 99/99 (Teil J, 22), `test_vorregistrierung` 196/196 |
+| ⭐⭐ **E** | Abbild `sperrliste_abbild_2026-09-26_tb117.json` `46f0ad5d…` (eingefroren 22), Sonde 37/0/0, kein Mengenbefund; gegen `5e5ad109…` sieben Einträge, alle zugeordnet. Benchmark Repo/Klon `64fb2912…`, 8/8 ohne Modus bytegleich, 9 × rc 0, Laufbereich 81, `faltenplan.json` gleich. `auswertung.py` im echten Modus: gut rc 0, falscher Datenstand rc 2. Probe R13 (a) 9/9. Tests am Stand `54ce889`: 44 Dateien, 41 rc 0; ohne rc 0 nur die drei bekannten ohne Bezug (wie TB-114). ⚠️ `test_vorregistrierung` brach an der eigenen 900-s-Grenze ab und lief ohne Grenze nach (196/196 in 899 s) |
+| **F** | 46.11 Vollzug (Hash-Übergänge, gültiges Abbild, Zuordnung, Probe, `register()` bis `e87a4d8e…`) |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Mutationsprobe muss so gebaut sein, dass nur die gemeinte Wache sie fangen kann.** J-2M war zuerst rot: ein einzelner Bot mit fremdem Commit fiel auch der Prüfung „untereinander“ auf — erst mit dem falschen Wert bei allen neun biss die Mutation allein |
+| ⭐ | **Eine neue Wache macht alte Testbäume zu Befunden.** Der Wegwerfbaum aus TB-106 trug nur `herkunft.py`; mit R10 endete jeder Modus-Lauf darin mit 2 — das neue Verhalten, nicht der Gegenstand der vier Proben. Nachgezogen wird der Baum, nicht die Erwartung |
+| ⭐ | **Ein Import in der Funktion hält die Messung gleich, nicht den Lauf.** `import auswertung` lädt `herkunft.py` nicht, der Modus-Lauf von `auswertung.py` schon — der Laufbereich am Tag muss den Lauf messen |
+
+### Was offen bleibt
+
+- Fable: Lesart 46.9 (und die Reibung mit Register 12), „alle neun auch bei `--bot`“, dritter Ort des registrierten
+  Datenstands, `herkunft.py` im Laufbereich des echten Auswertungslaufs (R4/R5 (a)), Reihenfolge am Tag (Erzeuger und
+  Auswertung am selben Commit).
+- Unverändert offen (46.10): Leiter-Lesarten (TB-116), Listen-Erzeuger (40.6), Zellen-Erzeuger (Stufe V), Stufe IV,
+  R15 (b) am Tag-Commit.
+
+*Geschrieben 27.09.2026 von der Mac-Sitzung TB-117. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

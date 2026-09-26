@@ -1,0 +1,15 @@
+# TB-117 Messung f_nachher, HEAD 33f30e2, 2026-09-27 01:08:17 +0200
+18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c  docs/VORREGISTRIERUNG_neuselektion.md
+c6c133886299bcfa6a91f8bf119e9f6cbedbabe97e5131203bf2d309b7bd0fcf  research/vorregistrierung/herkunft.py
+46f0ad5d1d83a253baa5523f5657881e0d825cebd734f24a42ef5d4fa74f281f  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+Registerzeilen 10347
+register 01f5997a9a13b4b30162e2a04965670a9ffa8d725a93d579e530dc0708ec2a70
+fehlend []
+teile 23
+## Sonde gegen research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+rc 2
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 905-1018, Listentext wie bei Erzeugung: ja
+Pfad-Bestandteile: 37 geprueft, davon 37 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 22)
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+Sonde-JSON ohne Zeitangaben/Zeilen sha256: 9f7364ef32fd80ffba6931c776f3bdf43dc257a1f6aeac304cf818c89023f35e
