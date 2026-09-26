@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-116** | `docs/auftraege/MAC_TB-116_leiter_lesarten_pruefung.md` | ⭐ **Hauptordner**: Prüfung vor dem Tag zu 16.4 — alle 3⁹ = 19 683 Stufentabellen, eindeutiger Multiplikatorvektor je Lesart? Nur Prüfwerkzeug in `research/leiter_pruefung/`, keine Lesart festlegen, kein Bot, kein eingefrorenes Programm; Schritt 0 committet Fable-Anfrage 27a, Übergabe, Aufgabenliste; Journal DO. Freigabe 26.09.2026, ca. 20:50 (Auswahlkarte, wörtlich im Auftrag) |
+| **TB-117** | `docs/auftraege/MAC_TB-117_wachen_vor_dem_tag.md` | ⭐⭐ **Hauptordner**: Bündel „Wachen vor dem Tag“ (Fable 27a) — Register 45.11 und 46 (R9–R17 zeichengleich), Sonde zweiseitig (`sperrlistensonde.py`), vierte Öffnung `herkunft.py` (`fehlend` im Modus 2, MANIFEST und Snapshot-`config/` in `EINGEFROREN`), Öffnung `auswertung.py` (Herkunftsprüfung R14, Lesart 46.9), neues Abbild, Journal DP. Freigabe 26.09.2026, ca. 22:20 (Auswahlkarte, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
