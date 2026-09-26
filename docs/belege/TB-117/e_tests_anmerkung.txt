@@ -1,0 +1,20 @@
+# TB-117 E - die Testdateien ohne rc 0 in e_tests.txt, eingeordnet (2026-09-27 00:52:53 +0200)
+## Geaenderte Dateien ausserhalb docs/ seit 8b342ab (Eingang):
+research/vorregistrierung/auswertung.py
+research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+research/vorregistrierung/herkunft.py
+research/vorregistrierung/test_ersatzwerte.py
+shared/sperrlistensonde.py
+shared/test_ausschlussmengen.py
+shared/test_sperrlistensonde.py
+## Nennen die drei bekannten Roten eine dieser Dateien oder ihre Begriffe? (grep -l herkunft|sperrlistensonde|auswertung|EINGEFROREN|ausschlussmengen)
+grep rc 1 (1 = kein Treffer)
+## test_drawdown_beide_masse rc=142: nach 900 s von der Zeitgrenze beendet (terminiert bekanntlich nicht, TB-114 C nach 880 s von Hand); der Enkelprozess (PID 77340, --bot elliott_wave) blieb danach stehen und ist per kill beendet
+## test_stabile_sortierung 43/3 - dieselben drei Stellen wie TB-114 C:
+  FEHLT shared/portfolio_overview.py: Ausgabe enthaelt 'Max Drawdown kombiniert'
+  FEHLT strategies/rsi2_mean_reversion/portfolio_correlation_analysis.py: Ausgabe enthaelt 'Max Drawdown kombiniert'
+  FEHLT shared/ergebniskurven.py meldet '9x AKTUELL'  [Neu erzeugen mit:  python3 shared/ergebniskurven.py --erzeugen]
+## test_wellenauswahl 322/1 - dieselbe Stelle wie TB-114 C:
+  FEHLT shared/ergebniskurven.py meldet '9x AKTUELL'  [Neu erzeugen mit:  python3 shared/ergebniskurven.py --erzeugen]
+## test_vorregistrierung rc=142: KEIN Befund - die Zeitgrenze von 900 s in e_tests.sh war fuer diese Datei zu knapp (Log endet in Teil I, 00:37-00:52);
+##   ohne Grenze nachgelaufen am selben Stand: siehe e_test_vorregistrierung.txt
