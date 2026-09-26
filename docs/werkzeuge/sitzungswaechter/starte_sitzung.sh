@@ -324,7 +324,7 @@ sage "Auftragssatz abgelegt: $(wc -c < "$SATZDATEI") Bytes"
 sage "Starte Terminal-Fenster (Auftrag als Argument) ..."
 FENSTER=$(osascript <<OSA 2>>"$LOG"
 tell application "Terminal"
-    set neu to do script "cd ~/trading-bot && exec claude --remote-control"
+    set neu to do script "cd ~/trading-bot && exec claude --effort high --remote-control"
     return id of window 1
 end tell
 OSA

@@ -36,8 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-112** | `docs/auftraege/MAC_TB-112_19_laufbereich_db_sicherung.md` | ⭐⭐ **Hauptordner**, Bündel (Fable 25f): **19 auf den Laufbereich** (Register 42.2 E2, 42.3 F8; `shared/paths.py` nur unter dem Modus, Ausnahme `herkunft_protokoll.jsonl`), **db-Sicherung als Skript** (`docs/werkzeuge/db_sicherung/`, lesend mit `sqlite3 .backup`, Ziel iCloud; Cron-Zeile trägt der Betreiber ein), **`tb40_test_*` aufräumen**. ⛔ Worktree `../trading-bot-tb111` nicht betreten. Freigabe 26.09.2026, ca. 06:40 und 07:00 (Auswahlkarten, wörtlich im Auftrag) |
-| **TB-111** | `docs/auftraege/MAC_TB-111_herkunft_auswertung_oeffnung.md` | ⭐⭐ **Sitzung B, parallel, nur im Worktree `~/trading-bot-tb111` auf Zweig `tb-111`** (Fable 25d): `herkunft.py` Prüfansicht und `TB30A_BASE_DIR` unter dem Modus rc 2, `auswertung.Abbruch` rc 2, neues Abbild. Kein Merge nach `main`, kein Eintrag in `JOURNAL.md`. Freigabe 25.09.2026, 23:14 (Auswahlkarten, wörtlich im Auftrag) |
+| **TB-113** | `docs/auftraege/MAC_TB-113_zusammenfuehrung_tb111_register_44.md` | ⭐⭐ **Hauptordner**: Zweig `tb-111` nach `main` zusammenführen und neu prüfen, **Register 44** (Tatsachennotizen TB-111/TB-112, Marken bei 19, 36.5, 37.4, 42.2/42.3, 43), Journal DK/DL, Arbeitsweise 22.1/22.9, Wächter `--effort high` committen, danach `git worktree remove ../trading-bot-tb111`. Freigabe 26.09.2026, 14:28 (Auswahlkarte, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
@@ -50,7 +49,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
 misst, ob eine Sitzung läuft, und bricht danach folgenlos ab.
 
-*Gesetzt 26.09.2026, 07:15 (zuvor TB-109/TB-110, erledigt mit `723281f`/`6a7996a`, 26.09.2026; davor TB-108, erledigt mit `486032d`, 25.09.2026; davor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
+*Gesetzt 26.09.2026, 14:30 (zuvor TB-112, erledigt mit `af6042f`, und TB-111 auf Zweig `tb-111`, erledigt mit `49f0868`, 26.09.2026; davor TB-109/TB-110, erledigt mit `723281f`/`6a7996a`, 26.09.2026; davor TB-108, erledigt mit `486032d`, 25.09.2026; davor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
