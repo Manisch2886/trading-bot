@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-114** | `docs/auftraege/MAC_TB-114_register_45_herkunft_pfadregel_tb24_listen.md` | ⭐⭐ **Hauptordner**: **Register 45** (Fable 26a, R1–R8 zeichengleich, Tatsachennotiz Pfadregel, Marken), dritte Öffnung `herkunft.py` (eine Pfadregel mit der Sonde, neun TB-24-Listen in `EINGEFROREN`, `datenstand(None)` im Modus 2), neues Abbild unter neuem Namen, alles nachgemessen, Journal DM. Freigabe 26.09.2026, ca. 16:30 (Auswahlkarte, wörtlich im Auftrag) |
+| **TB-115** | `docs/auftraege/MAC_TB-115_drei_verfahrensmessungen.md` | ⭐ **Hauptordner, nur lesend**: drei Verfahrensmessungen nach 27.2 (Register 45.7) — M1 geschlossene Kerze je Bot (Papier und Selektion), M2 Adjustierung/Herkunft der Aktienreihen und Preisniveaus je Bot, M3 Deckung der Kette Erzeuger → Auswertung durch die Sonde; Schritt 0 committet AF-F0 und Fable-Anfrage 26a; Journal DN. Freigabe 26.09.2026, ca. 16:20 und 18:40 (Auswahlkarten, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
