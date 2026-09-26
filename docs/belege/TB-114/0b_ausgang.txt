@@ -1,0 +1,26 @@
+# TB-114 0b, HEAD 79c2dfa, 2026-09-26 16:38:45 +0200
+## Hashes (Soll herkunft.py 5bbfc9e0..., Abbild e655c1c8...)
+5bbfc9e085d7ec70f43eb8aaaf63b957de27e3647023e143d17e9dd8c60448fa  research/vorregistrierung/herkunft.py
+e655c1c8c8e576faa1de8021357354b1d9f0b44e9adae3a176c944087b3aacd9  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json
+## herkunft.register() (Soll a0e477fd...)
+register a0e477fd4c8ecace29c60a02de15a7060641fb3c17bec0f76bc2b4e3d0c09e78
+fehlend []
+teile 11
+## Sonde gegen research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json (Soll: Pfad-Bestandteile 25/0/0, (ii) 0)
+rc 2
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 901-1014, Listentext wie bei Erzeugung: ja
+Pfad-Bestandteile: 25 geprueft, davon 25 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 10)
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+## die neun TB-24-Listen (Reihenfolge wie ls strategies/)
+27e319287502144aa0f1445c79e9a8f30dca36f80018a1c0a45b1a8da7f31228  131 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv
+862cbc728cb52aad5e0343cacb0f8ba7755ceb094fb3250c12458e91b1ef0b2c  511 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv
+b5f74c7c691876008e58f4086e49a439d0b7c0c48c2446690ed2527837046674  440 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv
+63c7bc2449b215ba3fef95715294dd420d38b8f4a4636b5449497987fa7e70ab  5392 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv
+530e20fe3d4604eb655eabec573205b63322c92a753dfa281bad37ff8f424827  981 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv
+017c661d51d703f9b40044d8302bf888452095c16df35d8b18c8bde4e7a7fbbc  1600 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv
+f5e4076670942c7272fbe5810c67aa079f2a91ced0fd8a68371c4318bfc6eb0b  12070 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv
+f45253699c041cb676b8f76cb933b39f9b31bb60cb7479eb3ffc610b293e768f  4511 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv
+96e5c4ff36d708d1b4ad4a4991873a469cb67de5de1358ca834098854e176c6c  234 Zeilen  versioniert  status[]  research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv
+## git status ausserhalb docs/
+## Ende

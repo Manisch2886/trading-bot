@@ -1,0 +1,3 @@
+Marken: 11  Zitate: 38 (Zeilen 31, Teile 7)  Registerzeilen: 10034
+eintrag rc 0
+Register = Probelauf-Kopie (cmp rc 0)

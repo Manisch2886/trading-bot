@@ -788,6 +788,10 @@ Alle drei stehen als Zeichenketten in
 `research/vorregistrierung/auswertung.py::kapitalregel` und werden am Ende
 jeder Bleibt-Geht-Liste ausgegeben — auch dann, wenn kein Bot ausscheidet.
 
+> ⭐ **Messungen auf dem Selektionsraum nach dem Tag: siehe 45.6/45.7** (Fable
+> 26a R6/R7, TB-114, 26.09.2026). Die drei Regeln und der Satz oben bleiben
+> zeichengleich.
+
 ---
 
 ## 8. Die Beurteilung — und die Regel, dass alles berichtet wird
@@ -2960,6 +2964,10 @@ Nachweise in `docs/ERGEBNIS_TB-58_startpruefungen.md` und
 > neben der Laufbereichsmessung (44-8). Kasten, Tabelle und Text oben bleiben
 > zeichengleich.
 
+> ⭐ **Pflege von `ARBEITSBAUM_PFADE`: siehe 45.4** (Fable 26a R4, TB-114,
+> 26.09.2026). Kasten, Tabelle, Text und die Marken oben bleiben
+> zeichengleich.
+
 Drei Punkte, die diese Tabelle tragen:
 
 1. **„Der registrierte Commit" ist heute der Wert, den der Modus mitbringt.**
@@ -4954,6 +4962,9 @@ dieselbe Klasse, gegen die `A1` und `B1` gebaut sind.
 | ⛔ | **`BACKLOG.md` bereinigen oder verschieben.** 27.1 verlangt es nicht; die Regel liegt beim Leser, nicht bei der Datei | — |
 | ⚠️ | **Die Prüfung nach 27.4** (Fables Begründungen gegen verbotene Grössen lesen) ist eine stehende Pflicht des steuernden Chats, kein Schritt dieser Aufgabe. Sie steht ab jetzt als Prüfprinzip `A8` (Schritt 4) | laufend |
 
+> ⭐ **Messungen auf dem Selektionsraum nach dem Tag: siehe 45.6/45.7** (Fable
+> 26a R6/R7, TB-114, 26.09.2026). Abschnitt 27 oben bleibt zeichengleich.
+
 ---
 
 ## 28. `asof` ist gesetzt — Berichtigung zu 26.3 und 26.6, und der Vorlauf-Satz gilt fort (TB-78, 21.09.2026)
@@ -5208,6 +5219,10 @@ zeichengleich. Anlass: die Messmeldung
 > **(3)** Genau **eine** solche Datei wird vor dem Tag mit Hash in die Sperrliste aufgenommen (neuer Punkt), und der Lauf liest genau diese. Ihr Inhalt muss dem Registertext aus (2) entsprechen; der Abgleich (Datei gegen Registertext, je Bot, je Jahr) ist eine Prüfung vor dem Tag und wird als Tatsachennotiz mit Ergebnis eingetragen. Trägt eine Datei Felder, die 4a nicht kennt (Trainingsgrenzen, Embargo), ist sie nicht dieses Abbild.
 > > ⭐ **Präzisiert (35.4, TB-83, 22.09.2026):** „und der Lauf liest genau diese" — Fable 22a, zeichengleich: *„Der Lauf verwendet den Plan, den `faltenplan.py` zur Laufzeit bildet. Die Sonde vergleicht diesen Plan **vor dem Start des Laufs** mit dem Abbild (Feldmenge und Werte); bei Abweichung bricht der Laufwrapper ab, bevor `auswertung.py` aufgerufen wird. Das Abbild ist damit der registrierte Sollzustand, gegen den der gerechnete Plan geprüft wird — nicht die Datei, die `auswertung.py` öffnet."* Gemessen (Beleg M3): `auswertung.py` rechnet den Plan über genau einen Aufruf, `fp.faltenplan(mess)`, Z. 589. Der Satz oben bleibt zeichengleich; Sonde und Wrapper sind nicht geschrieben.
 > **(4)** Ob `faltenplan_tb72.json` diese Datei ist, entscheidet allein der Abgleich nach (3) — nicht ihre Herkunft.
+
+> ⭐ **Eingaben in der Gruppe `eingefroren`: siehe 45.3, vollzogen in 45.11**
+> (Fable 26a R3, TB-114, 26.09.2026). Der Registertext oben bleibt
+> zeichengleich.
 
 **Quelle des Grundes,** Fable wörtlich: *„Das Register ist append-only …
 Ersetztes bleibt mit Marke stehen — das gilt für Dateien in der Sperrliste
@@ -5815,6 +5830,10 @@ Ebene weder `asof` noch `quelle`.*
 > gerechneten Plans** ist Registertext (**42.2, E3** — die Zuordnung je
 > Schlüssel steht aus, 42.6). Mit dem Abbild wird die **Erzeugerkette des
 > Trockenlaufs** registriert (**42.3, F4**). Tabelle und Text oben bleiben
+> zeichengleich.
+
+> ⭐ **Eingaben in der Gruppe `eingefroren`: siehe 45.3, vollzogen in 45.11**
+> (Fable 26a R3, TB-114, 26.09.2026). Tabelle, Text und die Marke oben bleiben
 > zeichengleich.
 
 ### 33.4 ⚠️ Zwei Anpassungen an Fables Feldliste, und warum
@@ -8437,6 +8456,9 @@ Registertext (Präzisierung zu 40.6) · Quelle: 24b Abschnitt A3
 **Stand, gemessen:** Der Erzeuger auf dem Signalpfad ist **nicht gebaut**
 (Plan-Punkt 3); die neun Listen sind nicht neu erzeugt.
 
+> ⭐ **Abnahmebedingungen des Erzeugers: siehe 45.5** (Fable 26a R5, TB-114,
+> 26.09.2026). Eintrag und Stand oben bleiben zeichengleich.
+
 ### 41.2 Aus Fable 24c (`FABLE_ANTWORT_2026-09-24c_nachweis_hat_zwei_teile.md`)
 
 Fables Liste für dieses Register, 24c Abschnitt 6 Punkt 4, zeichengleich:
@@ -8824,6 +8846,9 @@ entfernt nach dem Lesen, ohne Ergebnis bleibt der Ordner und sein Pfad steht in
 der Meldung). `tb40_faltenplan_*` und `tb40_proben_*` sind offen — Frage 25e (1),
 42.6.
 
+> ⭐ **Reichweite: siehe 45.2** (Fable 26a R2, TB-114, 26.09.2026). Eintrag
+> und Stand oben bleiben zeichengleich.
+
 **E2 (b) — Klasse „Code"; Ergänzung zu 19: Sauberkeit über den Laufbereich** ·
 Art: Registertext · Quelle: 25b Abschnitt 3 (2) · ergänzt 42.1 (D6)
 
@@ -8849,6 +8874,9 @@ Marke bei 19.
 > ausserhalb `shared/`/`strategies/` als Einzeldateien); die Liste steht als
 > Tatsachennotiz neben der Laufbereichsmessung (44-8). Eintrag und Stand oben
 > bleiben zeichengleich.
+
+> ⭐ **Pflege von `ARBEITSBAUM_PFADE`: siehe 45.4** (Fable 26a R4, TB-114,
+> 26.09.2026). Eintrag, Stand und die Marke oben bleiben zeichengleich.
 
 **E3 (c) — Berichtigung zu 25a (1): der Plan schrumpft nicht; registrierte
 Abbildung; die Feldliste des Plans ist Registertext** · Art: Berichtigung und
@@ -9168,6 +9196,7 @@ deshalb nicht in ihm stehen; er ist nach dem Commit gemessen und steht voll in
 | (3) | **Fable 25f** (Gesamtanalyse) | Abschnitt 43 |
 | (4) | **Die Erweiterung von 19 auf den Laufbereich** (42.2, E2) — Tag-Vorbedingung (25c 2 (d)). Die Ausnahme für registrierte Protokolle, die Fable **vorher** im Register verlangt (25c (h)), steht jetzt in 42.3 (F8) | eigener Auftrag |
 | (5) | **Der Erzeuger auf dem Signalpfad** (41.1 A12, 41.2 B3/B6/B7) — und mit ihm die neun Listen, der Deckel von `t3_supertrend` (41.3 C2), die Donchian-Eingabe, `messgroessen.json` neu und der Benchmark-Nachweis mit beiden Teilen (41.2 B4) | Plan-Punkte 3 und 5 |
+| ↳ (5) | ⭐ **Abnahmebedingungen des Erzeugers: siehe 45.5** (Fable 26a R5, TB-114, 26.09.2026); die Zeile oben bleibt zeichengleich | 45.5 |
 | (6) | **Das Faltenplan-Abbild samt Erzeugerkette des Trockenlaufs** (33.3; 42.3 F4) | Plan-Punkt 7, TB-101 |
 | (7) | **Die Feldliste des gerechneten Plans als Registertext** — je Schlüssel die begründende Registerstelle; die registrierte Abbildung (42.2, E3) | mit (6) |
 | (8) | **H6 eigenständig oder als Paar gezählt**; danach ggf. „sieben" berichtigen (41.1, A4) | vor dem Tag |
@@ -9463,6 +9492,9 @@ Ergebnis TB-109 vorgelegt; **bis er sie bestätigt, steht sie hier als
 Vorschlag.** Fables Satz in 43-10 bleibt zeichengleich stehen. Bestätigt er
 sie, kommt ein Eintrag „berichtigt durch …" dazu; widerspricht er, wird der
 Stummel zurückgebaut, mit Grund.
+
+> ⭐ **Von Fable bestätigt (26a 3 (1)), siehe 45.1** (TB-114, 26.09.2026).
+> Überschrift und Text oben bleiben zeichengleich.
 
 ### 43.4 Tatsachennotizen aus TB-107, TB-108 und TB-109
 
@@ -9797,6 +9829,10 @@ Ergebnisdokumenten:**
 Öffnung von `herkunft.py` (44-2), (7) 19 über den Laufbereich (44-7). (6) ist
 in (1) oben aufgegangen.
 
+> ⭐ **Beantwortet in Fable 26a, siehe 45** (TB-114, 26.09.2026): die Fragen
+> aus TB-109, TB-111 und TB-112 in 45.1 bis 45.8, die Bestätigung von 43-11 in
+> 45.1. Fragen und Tabelle oben bleiben zeichengleich.
+
 ### 44.4 Was hier ausdrücklich NICHT getan wurde
 
 | | | gehört zu |
@@ -9814,3 +9850,185 @@ in (1) oben aufgegangen.
 *Dieser Abschnitt ist rein additiv: Er trägt die Tatsachen aus zwei Aufträgen
 ein, die zwei Pläne aus 43 und einen Beschluss aus 42 vollzogen haben, und
 entfernt nichts.*
+
+## 45. Messbitten nach dem Tag, Reichweite (iv), Eingaben im Abbild, Pflege der Pfadliste, Abnahmebedingungen des Erzeugers — die Einträge aus Fable 26a (TB-114, 26.09.2026)
+
+### 45.0 Was dieser Abschnitt ist
+
+⭐ **Reines Eintragen von Registertext und Tatsachen**, Bauart wie **43**
+(TB-110). Anlass ist die **erste gesammelte Tagesanfrage** an den
+Verfahrensprüfer — Fable, zeichengleich: „Erste gesammelte Tagesanfrage."
+— mit dem neuen Fable-Takt, einmal je Tag: „diese Antwort ist die erste im neuen Takt."
+Sie beantwortet die Ergebnisse TB-109 bis TB-113 und die Fragen, die
+**44.3** (44-12) zeichengleich sammelt.
+
+**Quelle:**
+`docs/projektfuehrung/FABLE_ANTWORT_2026-09-26a_dreizehn_fragen_nullbefund_registerblock.md`
+(md5 `e2a492165d44f6ee3d02eba99d2acf2c`, 22 331 Bytes, committet in TB-114
+Schritt 0, `79c2dfa`), Abschnitt „Registerblock — zeichengleich kopierbar,
+nummeriert", R1–R8. ⚠️ **Tatsachennotiz zur Herkunft (wie 41.0, 43.0):** Die
+Datei hat der steuernde Chat übertragen; die Zitate hier sind zeichengleich
+mit der Datei im Repo, ob diese zeichengleich mit Fables Ablage ist, ist nicht
+gemessen.
+
+**Die Kette zu 43 und 44:** 43.3 führt die Berichtigung „`None` statt
+`False`" als **vorläufig**; 44.3 (1) führt die Fragen aus TB-109, TB-111 und
+TB-112 als offen bei Fable. **Beide sind hier beantwortet** (45.1 bis 45.8).
+Die Zeilen in 43 und 44 bleiben zeichengleich; Marken darunter verweisen
+hierher. Die Nummer hat der steuernde Chat vergeben
+(`docs/auftraege/MAC_TB-114_register_45_herkunft_pfadregel_tb24_listen.md`,
+Freigabe des Betreibers 26.09.2026, ca. 16:30), nicht Fable.
+
+**Bauart je Eintrag:** 45.1 bis 45.8 tragen je einen Baustein R1 bis R8
+**zeichengleich** aus dem Codeblock am Ende der Fable-Antwort, samt seiner
+„Quelle des Grundes", als Blockzitat, **eingesetzt, nicht abgetippt**; je
+Baustein ein `diff` gegen die Quelle mit rc 0
+(`docs/belege/TB-114/a2_r_diff.txt`). Nichts ist umformuliert. Darunter steht
+je Eintrag die Kette (wohin die Marke am alten Ort zeigt). 45.9 ist eine
+Tatsachennotiz des steuernden Chats, 45.10 die Liste des Offenen; der Vollzug
+in TB-114 folgt als 45.11.
+
+**Einordnung von R6 — Fables drittes „Unsicher", zeichengleich:**
+„Ob R6 eine Ergänzung zu 27 oder zu 7.1 ist — ich schlage 27 vor (es geht um Lesen nach dem Tag); Handwerk der Einordnung."
+Eingeordnet ist R6 als Ergänzung zu **27**, wie sein Titel sagt; die Marke
+steht **an beiden Orten** (am Ende von 27 und unter 7.1), weil 7.1 die Regel
+ist, auf die R6 sich für „Bleibt oder Geht" beruft.
+
+⭐ **Die Regel aus 34 gilt weiter:** Marken am alten Ort, der alte Satz
+zeichengleich, `git diff --numstat` auf dieses Register mit `0` in der zweiten
+Spalte. ⛔ **In Abschnitt 10 steht keine Marke** (Sonde, Prüfung (ii)).
+
+### 45.1 R1 — Marke an 43.3 (Bestätigung)
+
+> **R1 — Marke an 43.3 (Bestätigung).** Die Berichtigung „`selektionsmodus = lambda: None` statt `lambda: False`" ist von Fable bestätigt (26a 3 (1)). Grund: Der Stummel soll das Werkzeug so laufen lassen wie am Stand TB-52; gemessen tut das nur `None` (`strategy_paths` legt 9 von 9 Ordner an), `False` nimmt den Modus-Zweig und meldet trotzdem 0 Unterschiede. Fables Beispiel `lambda: False` in 25e 3 war ungemessen — neunter Fall der Klasse „Bestand behauptet statt Voraussetzung genannt". Handwerk als Beifang: Das Werkzeug zählt künftig die angelegten Ordner im Wegwerfbaum und meldet den durchlaufenen Zweig.
+> *Quelle des Grundes:* Messung TB-109/TB-113, Prüfprinzip A5. Kein Ergebnis.
+
+**Kette:** bestätigt **43-11** (43.3, „vorläufig, von Fable nicht
+bestätigt"); die Überschrift und der Text von 43.3 bleiben zeichengleich, die
+Marke steht darunter. Die Zweigprüfung im Werkzeug ist Beifang, kein Auftrag.
+
+### 45.2 R2 — Ergänzung zu 42 (Klasse (iv), Reichweite)
+
+> **R2 — Ergänzung zu 42 (Klasse (iv), Reichweite).** Klasse (iv) umfasst jeden lesenden Zugriff eines Laufs auf seine eigene Zwischenablage: die Verzeichnis-Öffnung beim Aufräumen und das Lesen des darin abgelegten Ergebnisses. Die Probe, die `tempfile` beim Anlegen einer Ablage selbst macht (kein `mkdir` im Protokoll, sofort entfernt), ist Umgebung — Klasse (ii) — und wird als Tatsachennotiz geführt.
+> *Quelle des Grundes:* 25b (Definition von (iv): angelegt mit `mkdtemp`, vom Lauf selbst gelesen, entfernt oder im Beleg), 25e 3 (b). Kein Ergebnis.
+
+**Kette:** ergänzt **42.2 E1** (Klasse (iv)); beantwortet TB-109 Frage 2
+(44.3). Marke unter 42.2 E1.
+
+### 45.3 R3 — Ergänzung zu 30.2 (3) / 33.3 (Abbild der Sperrliste, Gruppe `eingefroren`)
+
+> **R3 — Ergänzung zu 30.2 (3) / 33.3 (Abbild der Sperrliste, Gruppe `eingefroren`).** Versionierte Dateien, die ein Lauf des Laufbereichs als Daten liest und die kein Code sind, gehören mit ihrem Hash in die Gruppe `eingefroren` des Abbilds — namentlich die neun Listen `research/tb24_haltedauern/daten/<bot>_alle_trades.csv`, aus denen der Faltenplan seine Faltenlängen herleitet (TB-95). Die Startprüfung nach 19/E2 bindet Code; das Abbild bindet Eingaben. Dass eine Änderung der Listen den Plan und damit dessen Abbild änderte, ersetzt die Bindung der Eingabe nicht: Der Nachweis verlangt die Eingabe bytegleich und gelesen (24c).
+> *Quelle des Grundes:* 25b (Klasse „Code" gegen Eingaben), 24c (zwei Teile des Nachweises), 24c B1. Kein Ergebnis.
+
+**Kette:** ergänzt **30.2 (3)** und **33.3**; beantwortet TB-112 Frage 1
+(44.3). Marken unter 30.2 und 33.3. Die Voraussetzung dafür, dass die Gruppe
+`eingefroren` diese Pfade aufnehmen kann, ist in **45.9** gemessen; der
+Vollzug steht in **45.11**.
+
+### 45.4 R4 — Ergänzung zu 19 / 42.2 E2 (Pflege von `ARBEITSBAUM_PFADE`)
+
+> **R4 — Ergänzung zu 19 / 42.2 E2 (Pflege von `ARBEITSBAUM_PFADE`).** Die Liste der Pfade der Sauberkeitsprüfung steht als Literal im Resolver; eine Gegenprobe liest die Laufbereichsmessung aus der Messdatei und vergleicht. Am Tag-Commit wird der Laufbereich neu gemessen; weicht die Messung von der Liste ab, ist das ein Befund: Die Liste wird vor dem Tag nachgezogen, nie durch ihn. Die Liste wird nicht aus der Messung erzeugt.
+> *Quelle des Grundes:* Prüfprinzip B3 (ein Gegenbeweis gegen eine bewegliche Referenz prüft nichts), 25b E5 (Messung am Tag-Commit). Kein Ergebnis.
+
+**Kette:** ergänzt **19** und **42.2 E2**; beantwortet TB-112 Frage 2 (44.3).
+Heute gebaut ist genau diese Form (Literal in `shared/paths.py`, Gegenprobe
+in `shared/test_arbeitsbaum_laufbereich.py` gegen
+`docs/belege/TB-112/a2_laufbereich.txt`, 44-8). Marken unter 19 (unter der
+TB-113-Marke) und unter 42.2 E2.
+
+### 45.5 R5 — Abnahmebedingungen des Erzeugers
+
+> **R5 — Abnahmebedingungen des Erzeugers (Ergänzung zu 24b A12 / Plan-Punkt 10).**
+> (a) Die Laufbereichsmessung nach dem Einbau des Erzeugers enthält `research/vorregistrierung/herkunft.py`; `ARBEITSBAUM_PFADE` ist danach nachgezogen (R4). Bis dahin ist `herkunft.py` am committeten Stand über die Sperrliste (Punkte 11/12) und das Abbild gebunden; die Lücke im Arbeitsbaum ist als Tatsachennotiz in 44 benannt.
+> (b) `zellen.csv` enthält für jede Zelle des Rasters genau eine Zeile; die Zeilenzahl ist gleich der Zahl der Zellen; eine Zelle ohne Trades trägt die Nullzeile (Sharpe 0 nach Registertext 1c, leere Trade-Liste), nie nichts. Eine fehlende Zeile ist ein Befund über den Erzeuger, kein Ausgang.
+> (c) `herkunft.datenstand()` endet unter dem Modus ohne übergebenen Pfad mit 2; Beifang der nächsten Öffnung von `herkunft.py`, kein eigener Auftrag.
+> *Quelle des Grundes:* 24b A10 (kein Fallback unter dem Modus), 25e (2) (null Trades ist ein Wert), 36.5, 26a 5. Kein Ergebnis.
+
+**Kette:** ergänzt **41.1 A12** und die Zeile **(5)** in **42.6** (der
+Erzeuger auf dem Signalpfad); beantwortet TB-109 Frage 3 (b) und TB-111
+Frage 1 (c) (44.3) und Fables Punkt (5) zur Wechselwirkung (a). **(c) ist in
+TB-114 vollzogen** (Block B, 45.11). Marken unter 41.1 A12 und in 42.6
+Zeile (5).
+
+### 45.6 R6 — Ergänzung zu 27 (Messungen auf dem Selektionsraum nach dem Tag)
+
+> **R6 — Ergänzung zu 27 (Messungen auf dem Selektionsraum nach dem Tag).** Nach dem signierten Tag werden auf dem Selektionsraum dieses Durchgangs nur die Messungen gerechnet, die vor dem Tag als Messbitte registriert sind (R7). Jede weitere Messung auf denselben Zellen ist ein Versuch: Sie wird im Versuchsregister geführt und zählt in N des nächsten Durchgangs. Keine Messung nach dem Tag — registriert oder nicht — ändert Bleibt oder Geht; das sagt 7.1. Registrierte Messbitten sind Bericht, nicht Tor.
+> *Quelle des Grundes:* 7.1, Festlegung 11, Literatur (Story-telling und Data Snooping nach dem Ergebnis, López de Prado; „every backtest must be reported with all trials"). Kein Ergebnis.
+
+**Kette:** ergänzt **27**; beruft sich auf **7.1**. Registertext **vor** dem
+Tag, weil er am Tag danach schon gelten muss (Fable 26a 3 (6)). Marken am
+Ende von 27 und unter 7.1.
+
+### 45.7 R7 — Liste der registrierten Messbitten für nach dem Tag (Anhang zu R6), Stand 26a
+
+> **R7 — Liste der registrierten Messbitten für nach dem Tag (Anhang zu R6), Stand 26a.**
+> 1. PBO je Bot über alle Zellen (CSCV, S = 16) — 25f V3.
+> 2. MinTRL und Lo-Standardfehler je Gewinnerzelle — 25f V7.
+> 3. Netto-Sharpe der Gewinnerzellen unter 0,5 %, 1,0 % und 1,6 % Roundtrip — 25f K2.
+> 4. Implizite Kelly-Fraktion je Bot gegen die feste Positionsgrösse — 25f P5.
+> 5. Krypto-Umkehr-Bots nach Liquiditätsdrittel des Universums — 25f S8.
+> 6. Block-Bootstrap-Band je Gewinnerzelle für den Vergleich mit der Bestätigungsperiode — 25f O2.
+> Verfahrensmessungen nach 27.2 (vor dem Tag zulässig, nicht Teil dieser Liste): Adjustierungsstand und Herkunft der 150 Aktienreihen im Snapshot; Nutzung von Preisniveaus je Bot; ob alle neun Bots die geschlossene Kerze lesen; ob TB-85 die Kette Erzeuger → Auswertung deckt. Ergänzungen dieser Liste vor dem Tag sind zulässig und werden datiert; nach dem Tag ist die Liste geschlossen.
+> *Quelle des Grundes:* R6. Kein Ergebnis.
+
+**Kette:** Anhang zu **45.6**. Die vier Verfahrensmessungen nach 27.2 sind
+nicht Teil der Liste; drei davon sind in 45.10 als offen geführt. Ergänzungen
+vor dem Tag werden datiert angehängt, hier oder in einem späteren Abschnitt
+mit Marke hier.
+
+### 45.8 R8 — Tatsachennotizen 26a
+
+> **R8 — Tatsachennotizen 26a.**
+> (a) `auswertung._abbruch_2`: Der Docstring sagt „`Abbruch` … endet mit 1"; falsch seit TB-111, stehen geblieben wegen der Freigabe „sonst nichts"; Streichung mit der nächsten planmässigen Öffnung.
+> (b) `str(e)` eines gefangenen `Abbruch` ist `"2"`, die Meldung steht in `e.meldung`; im Laufbereich (81 Module, Stand TB-113) liest kein Aufrufer `str(e)` — Suchmuster in der Notiz nennen, Messung am Tag-Commit wiederholen.
+> (c) db-Sicherung (25f O6): Schlüssel-Muster `key|secret|token|api|passw`, 0 Treffer über 12 Datenbanken; die Tabelle `zustand(schluessel, wert)` in `benachrichtigungen_schliessung.db` enthält laut Code nur `erstlauf_am`; deutsche Wörter nicht aufgenommen — Betrieb, nicht Lauf.
+> (d) N = 653 (Register 9): Was das Versuchsregister nicht zählt und nicht rekonstruieren kann, steht dort in 3.4 und 5.1–5.4; ein Verweis aus Register 9 auf Abschnitt 5 des Versuchsregisters wird nach dem Tag eingetragen. Folge für die Lesart: N_nominal ist eine Untergrenze.
+> (e) Berichtigung zu 25f A2 und C3 Entscheidung 8: Das Zellenbudget steht in 16.4 (g)–(m); offen ist nur der Vollzug im Code (16.11, Zeile 3; Stufe IV). Fables Satz „keinen Abschnitt gefunden" war aus dem Gedächtnis; Fables Regel: Vor „steht nicht im Register" wird im Text gesucht, nicht erinnert, und das Suchwort genannt.
+> *Quelle des Grundes:* Messungen TB-111, TB-112, TB-113, 26a 3 (a)/(b). Kein Ergebnis.
+
+**Kette:** (a) und (b) beantworten TB-111 Fragen 2 und 3, (c) TB-112 Frage 3
+(44.3). ⛔ **(a) ist nicht vollzogen:** Der Docstring von
+`auswertung._abbruch_2` bleibt bis zur nächsten planmässigen Öffnung von
+`auswertung.py` stehen. ⛔ **(d) ist nicht vollzogen:** Der Verweis aus
+Register 9 kommt **nach** dem Tag; in 9 steht deshalb heute keine Marke.
+
+### 45.9 Tatsachennotiz des steuernden Chats zu R3 — zwei Pfadregeln
+
+Fables erstes „Unsicher", zeichengleich:
+„Ob die Gruppe `eingefroren` des Abbilds heute Dateien ausserhalb `research/vorregistrierung/` aufnehmen kann"
+
+**Gemessen am 26.09.2026 über die Brücke am Stand `0df8c64`, nur lesend** (vom
+steuernden Chat; in TB-114 am Stand `79c2dfa` wiederholt, beide Dateien
+unverändert):
+
+- `herkunft.register()` löst jeden Eintrag von `EINGEFROREN` mit
+  `os.path.join(_HIER, rel)` auf, also immer relativ zu
+  `research/vorregistrierung/` — die Zeile, zeichengleich:
+  `pfad = os.path.normpath(os.path.join(_HIER, rel))`
+- `shared/sperrlistensonde.py::_aufloesen` löst einen Eintrag nur dann
+  relativ zu `research/vorregistrierung/` auf, wenn er kein `/` enthält oder
+  mit `ergebnisse/` beginnt; sonst repo-relativ (Feld `pfadregel` im Abbild) —
+  die Zeile, zeichengleich:
+  `if "/" not in pfad or pfad.startswith("ergebnisse/"):`
+- **Folge:** Ein Eintrag für `research/tb24_haltedauern/daten/…` wäre in einem
+  der beiden Programme nicht auffindbar. `register()` führt eine nicht
+  gefundene Datei in `fehlend` und rechnet ohne sie weiter:
+  `fehlend.append(rel)`
+- Die zehn heutigen Einträge sind von der Abweichung nicht betroffen: jeder
+  hat entweder kein `/` oder das Präfix `ergebnisse/`, beide Regeln liefern
+  denselben Ort.
+- **Vollzug:** Block B von TB-114 (45.11).
+
+### 45.10 Was offen bleibt
+
+| | Sache | wohin |
+|---|---|---|
+| (1) | Die drei Verfahrensmessungen nach 27.2: ob alle neun Bots die **geschlossene Kerze** lesen; **Adjustierungsstand und Herkunft der 150 Aktienreihen** im Snapshot; ob **TB-85** die Kette Erzeuger → Auswertung deckt | TB-115 |
+| (2) | **Der Erzeuger** auf dem Signalpfad, mit den Abnahmebedingungen aus 45.5 (a) und (b) | Plan-Punkte 3 und 5 |
+| (3) | **Das Faltenplan-Abbild** und die Faltenplan-Sonde | Plan-Punkt 7, TB-101 |
+| (4) | **Stufe IV** (Leiter-Skript, 16.11 Zeile 3; Fable 26a 2 (a), R8 (e)) | Stufe IV |
+| (5) | R8 (a) Docstring `auswertung._abbruch_2`; R8 (d) Verweis in Register 9 | nächste Öffnung von `auswertung.py`; nach dem Tag |
+
+**Die Marken am alten Ort** (je neue Zeilen, der alte Satz zeichengleich):
+7.1 · 19 · 27 · 30.2 · 33.3 · 41.1 A12 · 42.2 E1 · 42.2 E2 · 42.6 Zeile (5)
+· 43.3 · 44.3. ⛔ Keine in Abschnitt 10, keine in 9.
