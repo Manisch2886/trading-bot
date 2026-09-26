@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-115** | `docs/auftraege/MAC_TB-115_drei_verfahrensmessungen.md` | ⭐ **Hauptordner, nur lesend**: drei Verfahrensmessungen nach 27.2 (Register 45.7) — M1 geschlossene Kerze je Bot (Papier und Selektion), M2 Adjustierung/Herkunft der Aktienreihen und Preisniveaus je Bot, M3 Deckung der Kette Erzeuger → Auswertung durch die Sonde; Schritt 0 committet AF-F0 und Fable-Anfrage 26a; Journal DN. Freigabe 26.09.2026, ca. 16:20 und 18:40 (Auswahlkarten, wörtlich im Auftrag) |
+| **TB-116** | `docs/auftraege/MAC_TB-116_leiter_lesarten_pruefung.md` | ⭐ **Hauptordner**: Prüfung vor dem Tag zu 16.4 — alle 3⁹ = 19 683 Stufentabellen, eindeutiger Multiplikatorvektor je Lesart? Nur Prüfwerkzeug in `research/leiter_pruefung/`, keine Lesart festlegen, kein Bot, kein eingefrorenes Programm; Schritt 0 committet Fable-Anfrage 27a, Übergabe, Aufgabenliste; Journal DO. Freigabe 26.09.2026, ca. 20:50 (Auswahlkarte, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 

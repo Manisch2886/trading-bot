@@ -226,3 +226,32 @@ Der Betreiber ist per Nachricht informiert. Der Hauptordner ist frei.
 | 1 | Beim Prüfen vor dem Schliess-Auslöser einmal `git status --porcelain` über die Brücke ausgeführt. Das ist verboten; es gab nur eine Zahl aus und veränderte nichts | ⭐ Vor dem Schliessen nur `git log`, `rev-parse` und das Wächter-Log. Den sauberen Arbeitsbaum belegt die Sitzung selbst im Ergebnis |
 | 2 | In einem Entwurf die Lückentabelle „Register 16 (Nr. 3)“ genannt, ohne die Unterüberschrift nachzusehen; richtig ist 16.11. Dazu Zeilennummern vom Stand vor TB-110 (+345 Zeilen) | Fundstellen mit Abschnittsnummer nennen, nicht mit Zeile; Zeilen nur mit Stand-Commit |
 | 3 | Sitzung B galt ab „Fertig“ (00:07) als gestartet, ohne Nachweis | Nach dem Start einer App-Sitzung auf einen Nachweis warten (erster Commit oder die Sonde zählt einen Prozess), bevor sie als laufend gemeldet wird |
+
+
+---
+
+## Nachtrag 5 — fortgeschrieben 26.09.2026, 20:50, sauberer Stand
+
+**Gemessen.** Seit Nachtrag 4 sind fünf Aufträge abgegeben (TB-111 bis TB-115), alle per Schliess-Auslöser beendet; die letzte (TB-115) um 18:36Z, „0 noch da“. **HEAD `10e9697`.** Es läuft keine Mac-Sitzung.
+
+| | |
+|---|---|
+| **Fertig (TB-111, Zweig, `49f0868`)** | `herkunft.py` im Modus (Prüfansicht `paths.DATA_DIR`, `TB30A_BASE_DIR` ⇒ 2), `auswertung.Abbruch` endet mit 2 · Befund A2b · Abbild `sperrliste_abbild_2026-09-26.json` `e655c1c8…` |
+| **Fertig (TB-112, `af6042f`)** | 19 über den Laufbereich: `ARBEITSBAUM_PFADE` 15 Einträge, `REGISTRIERTE_PROTOKOLLE` als `:(exclude)`, Test 26/26, Audit 0 · db-Sicherung täglich 05:20 nach iCloud (Cron vom Betreiber gesetzt, `grep -c` = 1) |
+| **Fertig (TB-113, `0df8c64`)** | Merge `257e7db` · Register 44 · Arbeitsweise 22.1 Nachtrag (Wächter startet `claude --effort high --remote-control`) und 22.9 „Sitzung vor dem Satz“ · Worktree entfernt |
+| **Fable 26a** | erste gesammelte Tagesanfrage (13 Fragen, Nullbefund-Skizze, Budget, AF-F0) · Antwort `FABLE_ANTWORT_2026-09-26a_dreizehn_fragen_nullbefund_registerblock.md`: alle fünf Aufträge angenommen; Entscheidung 8 entfällt (16.4 (g)–(m) steht, Fables Selbstberichtigung); `None` bestätigt; R1–R8, darunter **R6/R7: nach dem Tag nur registrierte Messbitten** |
+| **Fertig (TB-114, `90307cb`)** | **Register 45** (R1–R8 zeichengleich, 45.0–45.10, 11 Marken, numstat 218/0) · dritte Öffnung `herkunft.py`: eine Pfadregel mit der Sonde, neun TB-24-Listen in `EINGEFROREN`, `datenstand(None)` im Modus 2 · `register()` `a0e477fd…` ⇒ `03178075…` (A) ⇒ **`5acb4c19…`** (B3) · `herkunft.py` ⇒ `ed521ac1…` · neues Abbild `sperrliste_abbild_2026-09-26_tb114.json` **`5e5ad109…`** (34/0/0, eingefroren 19) · ⚠️ **Abbruch in Block C**: Die Sonde meldet Zuwachs in `EINGEFROREN` gegen ein altes Abbild nicht einzeln. **45.11 nicht geschrieben, `5e5ad109…` noch nicht als gültig registriert** |
+| **Fertig (TB-115, `10e9697`)** | nur lesend. M1: 9/9 geschlossene Kerze (Papier und Selektion); Teilkerze in `XAUTUSDT_1h.csv`, ungelesen · M2: 150 Aktienreihen split- und dividendenbereinigt, keine Bot-Regel mit absolutem Niveau; ⚠️ Zuteilung Stufe 3 vergleicht bereinigtes Dollar-Volumen · M3: Sonde bindet nur `auswertung.py`; ⚠️ `auswertung.py` liest `herkunft.json` nicht |
+| **Durchgehend** | Benchmark `64fb2912…` (Repo, Klon) · ohne Modus 8/8 bytegleich · Trockenlauf 9 × rc 0 · `test_vorregistrierung` 196/196 · Register **0–45** |
+| **Fable** | Anfrage **27a** geschrieben (14 Fragen aus TB-114/115 + Einordnung des Bündels „Wachen vor dem Tag“), im Repo und in der Projektablage, zusammen mit ERGEBNIS_TB-114/115. **Wird am 27.09. übergeben** (ein Takt je Tag) |
+| **Nächste Schritte** | (1) Fable 27a · (2) Bündel „Wachen vor dem Tag“ (Sonde vergleicht `EINGEFROREN`, `fehlend` ⇒ 2, Snapshot nachrechnen, ggf. `auswertung.py` prüft `herkunft.json`) mit 45.11/46 und neuem Abbild · (3) Erzeuger (Stufe V, Abnahme nach R5) · (4) TB-30b Posten, Stufe IV, Block-4-Reste, Kettenlauf, Stufe VI |
+| **Offen beim Betreiber** | Karte „TB-114-Rest“ kam ohne Auswahl zurück ⇒ Vorgabe: über Fable 27a. Speicher-Export bis 29.09. · zwei Crontab-Zählungen (`equity_simulation`, `multi_symbol_optimise`) · db-Sicherungslog nach 05:20 mit `grep -c` |
+| **Freie Nummern** | frei ab **TB-116** · Journal bis **DN** · Fable-Anfrage 27a vergeben, Antwort erwartet 27a |
+
+**Fehler dieses Abschnitts, mit Regeln:**
+
+| | Fehler | Regel daraus |
+|---|---|---|
+| 1 | Im Auftrag TB-114 eine Erwartung an die Sonde gesetzt („die neun neuen Einträge“), ohne die Sonde zu lesen. Die Sitzung hat deshalb abgebrochen; der Befund selbst ist echt | ⭐ **Eine Erwartung an ein Werkzeug steht im Auftrag nur mit Fundstelle im Werkzeug.** Sonst: „vom Werkzeug abhängig, im Ergebnis beschreiben“ |
+| 2 | Titel der Anfrage 27a zuerst mit „siebzehn Fragen“; gezählt 14 | Vor dem Ablegen zählen (`grep -c`), dann benennen |
+| 3 | TB-115: Satz lag 1 h 40 min im Fenster | Nachschau 45 min nach dem Anlegen; ohne Schritt-0-Commit erinnern (so gemacht) |

@@ -95,3 +95,16 @@ Alles Weitere lege ich dir als Auswahlkarten vor, sobald Fable geantwortet hat.
   2. **Warten, bis A den Ordner `~/trading-bot-tb111` angelegt hat.** Das ist etwa zwei bis fünf Minuten nach dem Start der Fall; ich melde es im Chat.
   3. In der Claude-App **„Neu“** ⇒ Sitzung auf dem Laptop im Ordner **`trading-bot-tb111`** öffnen ⇒ den Einfügesatz für **TB-111** senden.
 - **Morgen:** Sitzung B schliesst sich nicht von selbst, also das Fenster schliessen, wenn ihr Ergebnis da ist. Danach folgt die Zusammenführung (TB-112) per Auswahlkarte.
+
+---
+
+## Nachtrag 26.09.2026, 20:50 — was für dich offen ist
+
+1. **Morgen, 27.09.: Fable-Tagesanfrage 27a schicken.** Die Datei liegt in der Projektablage: `projektfuehrung/FABLE_ANFRAGE_2026-09-27a_tagesanfrage_tb114_tb115.md`, dazu die beiden Ergebnisse TB-114 und TB-115. Danach „Fable ist fertig“ schreiben.
+2. **Termin: Speicher-Export bis 29.09.2026** (unverändert, Abschnitt 3).
+3. **Zwei Zählungen im Terminal**, je eine Zeile, zeigen nur eine Zahl:
+   - `crontab -l | grep -c equity_simulation`
+   - `crontab -l | grep -c multi_symbol_optimise`
+4. **Nichts sonst.** Es läuft keine Sitzung. Die db-Sicherung prüfe ich morgen nach 05:20 selbst.
+
+Erledigt seit dem letzten Nachtrag: TB-109 bis TB-115; Fable 25f und 26a; db-Sicherung eingerichtet; Wächter mit Aufwand „hoch“.
