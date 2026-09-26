@@ -1,0 +1,247 @@
+[
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 104,
+  "text": "**R11 — 45.11 (Abbild gültig; Tatsachennotiz zum Abbruch TB-114).** Gültiges Abbild ist `research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb114.json`, `5e5ad109…` (10 805 B, 14 Punkte, `eingefroren` 19, HEAD `0b7ab4b`); Sonde dagegen 34/0/0, (ii) 0, gemessen TB-114 C und TB-115 0b (vorher = nachher). Tatsachennotiz: TB-114 endete in Block C mit Abbruchkriterium, weil der Auftrag gegen das alte Abbild `e655c1c8…` „die neun neuen Einträge in `eingefroren`\" als Befund erwartete; die Sonde meldet Zuwachs in `EINGEFROREN` gegen ein altes Abbild nur mittelbar über den Hash von `herkunft.py` (Punkte 11/12). Zwei Ursachen: eine ungemessene Erwartung im Auftrag (Regel des steuernden Chats: Erwartungen an ein Werkzeug nur mit Fundstelle) und eine einseitige Sonde (R9). Der Abbruch war regelgerecht; nichts wurde repariert. Nach dem Bündel (R9, R10, R14, R15) folgt ein neues Abbild nach 37.3.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 105,
+  "text": "*Quelle des Grundes:* Messungen TB-114/TB-115, Nachtrag 6d (Abbruchkriterium führt zu Abbruch, nie zu Rückfrage). Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 98,
+  "text": "**R9 — Ergänzung zu 40.8 (e) (Sonde, zweite Seite).** Die Sonde prüft die Gruppe `eingefroren` aus dem Abbild heraus (Abbild → Dateien) **und** vergleicht die heutige Menge `herkunft.py::EINGEFROREN` mit der Gruppe `eingefroren` des Abbilds (Liste → Abbild). Ein Eintrag, der in einer der beiden Mengen fehlt, ist ein Befund ⇒ 1, mit Nennung des Eintrags und der Seite. Die Gruppen kommen weiter aus dem Abbild; neu ist nur der Vergleich der Mengen.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 99,
+  "text": "*Quelle des Grundes:* Prüfprinzip C4 (eine Prüfung, die nicht sagt, gegen was sie prüft; zweiseitiger Nachweis), Messung TB-114 Block C. Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 101,
+  "text": "**R10 — Ergänzung zu 41.1 A10 (`herkunft.py`, `fehlend`).** `register()` und `block()` enden unter dem Modus mit 2, wenn `fehlend` nicht leer ist; die Meldung nennt die fehlenden Einträge. Ohne Modus bleibt `fehlend` ein Feld und eine Druckzeile der Prüfansicht. Die neun TB-24-Listen werden nicht in `ARBEITSBAUM_PFADE` aufgenommen (R3: die Sauberkeitsprüfung bindet Code); eine fehlende Liste wird über `register()` ⇒ 2, die Sonde (Gruppe `eingefroren`) und den Abbruch in `faltenplan.py` sichtbar. Umsetzung mit der nächsten Öffnung von `herkunft.py`, zusammen mit dem Nachtrag im Modulkopf (R17 a).",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 102,
+  "text": "*Quelle des Grundes:* 24b A2 (ein Wert, der so tut, als wäre er gemessen), 41.1 A10. Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 107,
+  "text": "**R12 — Tatsachennotiz zu 40.6 / 41.1 A12 / 45.3 (zwei Erzeuger; Bindung der Listen).** Es gibt zwei Erzeuger: den **Listen-Erzeuger** auf dem Signalpfad (40.6, 41.1 A12; heute `research/tb24_haltedauern/positionen_holen.py`, `--ziel`, Einmal-Schreibsperre), der die Trade-Listen vor dem Tag einmal auf dem Snapshot neu erzeugt, und den **Zellen-Erzeuger** (Plan-Punkt 10, R5), der `zellen.csv`, `tagesreihen/` und `herkunft.json` schreibt. `herkunft.py::EINGEFROREN` bindet die neun heutigen Listen unter `research/tb24_haltedauern/daten/`, bis die Listen nach 40.6 neu erzeugt sind und `faltenplan.py` sie über die registrierte Pfadkonstante liest; dann treten die neuen Listen an ihre Stelle, die alten bleiben als historischer Stand liegen und verlassen `EINGEFROREN` (gebunden wird, was gelesen wird, R3); ihre Hashes stehen in `docs/belege/TB-114/`. Die Öffnung von `herkunft.py` dafür erfolgt mit der Neuerzeugung, nicht davor. Der Pfad der neuen Listen ist bis dahin nicht registriert (TB-114 B3).",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 108,
+  "text": "*Quelle des Grundes:* 40.6, 41.1 A12, R3, R5. Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 110,
+  "text": "**R13 — Tatsachennotizen zum Snapshot und zu den Eingaben (neben 5e, 28, 31; Punkt 10; 16.4).**",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 111,
+  "text": "(a) `XAUTUSDT_1h.csv` im Datenstand `d9449faf…` endet auf einer Teilkerze (letzte Kerze `2026-08-30 18:00`, geschrieben 18:39:01 UTC, 21 min vor Kerzenschluss). Kein Lauf liest sie, weil vier Ausschlussmengen das Symbol streichen: `shared/symbols_config.py::EXCLUDE_SYMBOLS`, `messgroessen.py::AUSGESCHLOSSEN`, `faltenplan_neun.py::KRYPTO_AUSSCHLUSS`, `benchmark.py:145`. Wache: eine Probe liest die vier Mengen ein und verlangt Gleichheit (Handwerk, keine Sperrlistennähe). Zusammenlegung auf einen Ort mit der jeweils nächsten planmässigen Öffnung, nicht vor dem Tag.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 112,
+  "text": "(b) 175 Dateien des Datenstands (150 Aktien-1d, 25 Krypto-1h) haben keinen feineren Zeugen für `rand_letzte`; ihr Rand ist durch Schreibpfad und Zeitstempel belegt (TB-115 M1: Aktien letzte Kerze `2026-09-01`, geschrieben 02.09. 04:20–04:22 UTC; Krypto gemeinsamer Stand 15.09. 09:00–09:59 UTC). Der Beleg gilt als Tag-Vorbedingung erfüllt; keine laufende Prüfung eingefrorener Daten.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 113,
+  "text": "(c) Adjustierungsstand der 150 Aktienreihen: split- und dividendenbereinigt, rückwärts, Schnitt je Symbol am letzten Ex-Tag vor dem 02.09.2026 (`yf.download(…, auto_adjust=True)`, kein `Adj Close`); Abrufcode nicht versioniert, nächstliegend `0f6491b`; yfinance-Fassung nicht belegbar; keine Regel eines Aktien-Bots nutzt ein absolutes Preisniveau (P1 = 0 Fundstellen, TB-115 M2 (c)). Schliesst die Verfahrensmessung D3 aus R7.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 114,
+  "text": "(d) Stufe 3 der Zuteilungskaskade (`shared/zuteilung.py`, Punkt 10) reiht nach dem Median von `close × volume` über 20 Tage über Symbole hinweg; `volume` ist split-bereinigt, `close` split- und dividendenbereinigt — das Dollar-Volumen eines Dividendenzahlers ist in der Vergangenheit um das Produkt seiner späteren Ausschüttungen zu klein ausgewiesen. Stufe 3 entscheidet bei `volatility_breakout`, `elliott_wave_stocks`, `turtle_soup_stocks` (keine Signalspalte) bei leerem Buch; Krypto nicht betroffen. Eigenschaft der eingefrorenen Eingabe; **keine Änderung vor dem Tag** (die Korrektur bräuchte Daten, die der Snapshot nicht hat; Ersatzgrössen änderten die Bedeutung der Regel). Wie oft Stufe 3 entscheidet, ist Messbitte R7 Nr. 7.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 115,
+  "text": "(e) Papierpfad: Die beiden Elliott-Bots messen die Signalfrische (`SIGNAL_FRESHNESS_HOURS`) an `pd.Timestamp.utcnow()` statt an `entscheidungskerze.laufbeginn()`; keine Kerzenwahl, wirksam nur an der 48-h-Grenze. Betrieb, mit der nächsten Öffnung von `forward_test.py`, nach dem Tag.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 116,
+  "text": "(f) Tatsachennotiz zu 16.4 (Evidenz der Leiter): `forward_test.py` legt `entry_price`/`stop_price` (Elliott auch `target_price`) als absolute Zahlen ab und vergleicht sie in späteren Läufen mit neu bereinigten Reihen; über einen Ex-Tag oder Split hinweg passen Niveau und Reihe nicht mehr zusammen. Betroffen sind die Bots mit Stop (`volatility_breakout`, `elliott_wave_stocks`) und `pnl_pct` aller vier Aktien-Bots. Der Selektionspfad ist frei davon. Behebung im Betrieb nach dem Tag, vor dem ersten Stufenwechsel der Leiter, der sich auf Papier-Evidenz stützt.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 117,
+  "text": "*Quelle des Grundes:* Messungen TB-115 M1/M2, 31.3, 37.3, Plan-Punkt 6, 16.4 (i). Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 119,
+  "text": "**R14 — Ergänzung zu 12 und 36.5 (Herkunftsprüfung in `auswertung.py`).** `auswertung.py` liest `<wurzel>/<bot>/herkunft.json` für jeden Bot und endet mit 2, wenn die Datei fehlt, wenn der Commit-Hash vom Tag-Commit (5e, `TB_SELEKTIONSCOMMIT`) abweicht, wenn der Datenstand-Hash vom registrierten Datenstand `d9449faf…` abweicht, wenn der Register-Hash von `herkunft.register()` zur Laufzeit der Auswertung abweicht, oder wenn die neun `herkunft.json` untereinander abweichen. Der Bericht trägt Commit, Datenstand und Register-Hash in seinem Kopf. Der Schreiber von `herkunft.json` (Zellen-Erzeuger) prüft sich nicht selbst; der Auswerter prüft ihn. Umsetzung: eine Öffnung von `auswertung.py` (Punkte 3/5/14) vor dem Tag, zusammen mit der Streichung aus R8 (a); Hash-Übergang nach 37.3.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 120,
+  "text": "*Quelle des Grundes:* Docstring von `auswertung.py` Z. 51–52 (nennt `herkunft.json` als Teil des Vertrags), Abschnitt 12 (Vertragsbruch ⇒ Abbruch), 36.5, 25c (1) (Register-Code-Widerspruch ist 2), Prüfprinzip A8. Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 122,
+  "text": "**R15 — Ergänzung zu den Tag-Vorbedingungen (Snapshot-Bindung) und Tatsachennotiz zu Punkt 8.**",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 123,
+  "text": "(a) Das Abbild der Sperrliste führt in der Gruppe `eingefroren` zusätzlich `snapshots/<hash>/MANIFEST.json` und die Snapshot-Kopien von `config/top25_symbols.txt` und `config/sp500_top150.txt` (heute bytegleich mit dem Repo, `3afc95a4…`, `6acba892…`). Punkt 8 bleibt im Wortlaut (bindet die Repo-Dateien); Tatsachennotiz an Punkt 8: unter dem Modus liest der Lauf die Snapshot-Kopien, gebunden über das Abbild.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 124,
+  "text": "(b) Tag-Vorbedingung: `snapshot.py --pruefen` endet am Tag-Commit mit UNVERAENDERT (rc 0), Beleg im Tag-Ordner. Die Startprüfung vergleicht `TB_SELEKTIONSHASH` weiter mit dem im MANIFEST notierten Hash; sie rechnet den Snapshot nicht nach — den gerechneten Datenstand trägt die Kette (R5 (d), R14).",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 125,
+  "text": "*Quelle des Grundes:* R3 (das Abbild bindet Eingaben), Prüfprinzip A8 (Selbstauskunft ist keine Wache), 25f A3 (keine Wache doppelt). Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 127,
+  "text": "**R16 — Ergänzungen zu R5 und R7.**",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 128,
+  "text": "(a) R7 Nr. 7: Wie oft entscheidet Stufe 3 der Zuteilungskaskade je Aktien-Bot und Falte, und wie oft wäre die Rangfolge unter Stückzahl × Split-Faktor eine andere? Bericht, kein Tor (R13 d).",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 129,
+  "text": "(b) R5 (d): Der Zellen-Erzeuger schreibt in `herkunft.json` den mit `herkunft.datenstand(<Snapshot-Datenordner>)` **gerechneten** Datenstand-Hash, nicht den im MANIFEST notierten, dazu Commit und `herkunft.register()`.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 130,
+  "text": "*Quelle des Grundes:* R6/R7, R14, R15. Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 132,
+  "text": "**R17 — Tatsachennotizen 27a.**",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 133,
+  "text": "(a) Modulkopf von `herkunft.py` beschreibt `register` als Hash über „die Registerdatei, die Module dieses Ordners und die vorab berechneten Tabellen\"; seit TB-114 B3 gehören die neun TB-24-Listen dazu. Nachtrag mit der nächsten Öffnung (R10).",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 134,
+  "text": "(b) Testannahmen TB-114 nach Grundsatz 40: `test_ersatzwerte.py` E-bM (Mutation der ersten Wache endet an der zweiten mit 2 statt 0; Ort `block` weiter verlangt), `test_sperrlistensonde.py` 8a (10 ⇒ 19), H7f (25 ⇒ 34); die Fassungen am Stand `77147f7` brechen genau dort (60/61, 57/59).",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 135,
+  "text": "(c) M1 (TB-115): 9/9 Bots entscheiden auf der geschlossenen Kerze — Papierpfad über `entscheidungskerze.lade` (je 1 Aufruf, 0 Abrufe an der Schicht vorbei), Selektionspfad über den Rand des Datenstands. Schliesst die Verfahrensmessung aus R7. Randbefund R2 (Endgültigkeit des yfinance-Schlusskurses um 20:15 UTC) ist Betrieb, nicht gemessen.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 136,
+  "text": "(d) M3 (TB-115): Die Sonde bindet von der Kette Datenstand → Zellen-Erzeuger → `zellen.csv` → `auswertung.py` → Bericht nur Glied 4 samt Importen und Tabellen; Glieder 1, 3 und 5 werden über R14 und R15 gebunden, Glied 2 mit dem Zellen-Erzeuger (R5). Damit ist die vierte Verfahrensmessung aus R7 („deckt TB-85 die Kette\") beantwortet: nein.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "zeile",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 137,
+  "text": "*Quelle des Grundes:* Messungen TB-114/TB-115. Kein Ergebnis.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "teil",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 72,
+  "text": "**Ein Bündel, eine Freigabekarte je Sperrlistendatei** (`herkunft.py`, `auswertung.py`, Sonde), dann ein Abbild.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "teil",
+  "quelle": "git:753ec11:docs/projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md",
+  "zeile": 79,
+  "text": "Ob `sperrlistensonde.py` selbst im Abbild oder auf der Sperrliste steht — wenn ja, folgt der Sonden-Öffnung ein Abbild nach 37.3; wenn nein, nicht. Nicht gemessen.",
+  "wo": "45.11 und Abschnitt 46"
+ },
+ {
+  "art": "teil",
+  "quelle": "git:753ec11:docs/auftraege/MAC_TB-117_wachen_vor_dem_tag.md",
+  "zeile": 59,
+  "text": "R14 unter dem Modus vollständig: Jede der fünf Bedingungen endet mit 2. Ohne Modus liest `auswertung.py` `herkunft.json`, wenn vorhanden, und zeigt Commit, Datenstand und Register-Hash im Kopf des Berichts, bricht aber nicht ab. Grund: Ohne Modus laufen Beispieldaten und Tests, und `beispieldaten.py` schreibt Nullwerte (Z. 210 ff.). Dieselbe Bauart wie R10 (`fehlend` ⇒ 2 nur unter dem Modus).",
+  "wo": "45.11 und Abschnitt 46"
+ }
+]

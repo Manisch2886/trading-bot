@@ -1,0 +1,17 @@
+# TB-117 A2 Mutationsprobe: a2_r_diff.py gegen eine Registerkopie, in der im ersten Vorkommen nach '> **R13 —' 'Zuteilungskaskade' durch 'Zuteilungs-Kaskade' ersetzt ist (erwartet rc 1)
+R9  Fable Z. 98-99 (2 Zeilen, 601 Zeichen)  Register Z. 10128-10129 (2 Zeilen)  diff rc 0
+R10  Fable Z. 101-102 (2 Zeilen, 702 Zeichen)  Register Z. 10146-10147 (2 Zeilen)  diff rc 0
+R11  Fable Z. 104-105 (2 Zeilen, 1039 Zeichen)  Register Z. 10069-10070 (2 Zeilen)  diff rc 0
+R12  Fable Z. 107-108 (2 Zeilen, 1066 Zeichen)  Register Z. 10156-10157 (2 Zeilen)  diff rc 0
+R13  Fable Z. 110-117 (8 Zeilen, 3158 Zeichen)  Register Z. 10168-10175 (8 Zeilen)  diff rc 1
+5c5
+< (d) Stufe 3 der Zuteilungskaskade (`shared/zuteilung.py`, Punkt 10) reiht nach dem Median von `close × volume` über 20 Tage über Symbole hinweg; `volume` ist split-bereinigt, `close` split- und dividendenbereinigt — das Dollar-Volumen eines Dividendenzahlers ist in der Vergangenheit um das Produkt seiner späteren Ausschüttungen zu klein ausgewiesen. Stufe 3 entscheidet bei `volatility_breakout`, `elliott_wave_stocks`, `turtle_soup_stocks` (keine Signalspalte) bei leerem Buch; Krypto nicht betroffen. Eigenschaft der eingefrorenen Eingabe; **keine Änderung vor dem Tag** (die Korrektur bräuchte Daten, die der Snapshot nicht hat; Ersatzgrössen änderten die Bedeutung der Regel). Wie oft Stufe 3 entscheidet, ist Messbitte R7 Nr. 7.
+---
+> (d) Stufe 3 der Zuteilungs-Kaskade (`shared/zuteilung.py`, Punkt 10) reiht nach dem Median von `close × volume` über 20 Tage über Symbole hinweg; `volume` ist split-bereinigt, `close` split- und dividendenbereinigt — das Dollar-Volumen eines Dividendenzahlers ist in der Vergangenheit um das Produkt seiner späteren Ausschüttungen zu klein ausgewiesen. Stufe 3 entscheidet bei `volatility_breakout`, `elliott_wave_stocks`, `turtle_soup_stocks` (keine Signalspalte) bei leerem Buch; Krypto nicht betroffen. Eigenschaft der eingefrorenen Eingabe; **keine Änderung vor dem Tag** (die Korrektur bräuchte Daten, die der Snapshot nicht hat; Ersatzgrössen änderten die Bedeutung der Regel). Wie oft Stufe 3 entscheidet, ist Messbitte R7 Nr. 7.
+
+R14  Fable Z. 119-120 (2 Zeilen, 1015 Zeichen)  Register Z. 10188-10189 (2 Zeilen)  diff rc 0
+R15  Fable Z. 122-125 (4 Zeilen, 954 Zeichen)  Register Z. 10199-10202 (4 Zeilen)  diff rc 0
+R16  Fable Z. 127-130 (4 Zeilen, 499 Zeichen)  Register Z. 10216-10219 (4 Zeilen)  diff rc 0
+R17  Fable Z. 132-137 (6 Zeilen, 1307 Zeichen)  Register Z. 10228-10233 (6 Zeilen)  diff rc 0
+R-Bausteine: 9, diff rc 0: 8, Abweichungen: 1
+rc 1

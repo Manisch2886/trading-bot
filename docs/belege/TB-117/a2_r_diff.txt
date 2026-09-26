@@ -1,0 +1,10 @@
+R9  Fable Z. 98-99 (2 Zeilen, 601 Zeichen)  Register Z. 10128-10129 (2 Zeilen)  diff rc 0
+R10  Fable Z. 101-102 (2 Zeilen, 702 Zeichen)  Register Z. 10146-10147 (2 Zeilen)  diff rc 0
+R11  Fable Z. 104-105 (2 Zeilen, 1039 Zeichen)  Register Z. 10069-10070 (2 Zeilen)  diff rc 0
+R12  Fable Z. 107-108 (2 Zeilen, 1066 Zeichen)  Register Z. 10156-10157 (2 Zeilen)  diff rc 0
+R13  Fable Z. 110-117 (8 Zeilen, 3158 Zeichen)  Register Z. 10168-10175 (8 Zeilen)  diff rc 0
+R14  Fable Z. 119-120 (2 Zeilen, 1015 Zeichen)  Register Z. 10188-10189 (2 Zeilen)  diff rc 0
+R15  Fable Z. 122-125 (4 Zeilen, 954 Zeichen)  Register Z. 10199-10202 (4 Zeilen)  diff rc 0
+R16  Fable Z. 127-130 (4 Zeilen, 499 Zeichen)  Register Z. 10216-10219 (4 Zeilen)  diff rc 0
+R17  Fable Z. 132-137 (6 Zeilen, 1307 Zeichen)  Register Z. 10228-10233 (6 Zeilen)  diff rc 0
+R-Bausteine: 9, diff rc 0: 9, Abweichungen: 0
