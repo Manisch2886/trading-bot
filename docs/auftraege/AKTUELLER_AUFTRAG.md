@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-113** | `docs/auftraege/MAC_TB-113_zusammenfuehrung_tb111_register_44.md` | ⭐⭐ **Hauptordner**: Zweig `tb-111` nach `main` zusammenführen und neu prüfen, **Register 44** (Tatsachennotizen TB-111/TB-112, Marken bei 19, 36.5, 37.4, 42.2/42.3, 43), Journal DK/DL, Arbeitsweise 22.1/22.9, Wächter `--effort high` committen, danach `git worktree remove ../trading-bot-tb111`. Freigabe 26.09.2026, 14:28 (Auswahlkarte, wörtlich im Auftrag) |
+| **TB-114** | `docs/auftraege/MAC_TB-114_register_45_herkunft_pfadregel_tb24_listen.md` | ⭐⭐ **Hauptordner**: **Register 45** (Fable 26a, R1–R8 zeichengleich, Tatsachennotiz Pfadregel, Marken), dritte Öffnung `herkunft.py` (eine Pfadregel mit der Sonde, neun TB-24-Listen in `EINGEFROREN`, `datenstand(None)` im Modus 2), neues Abbild unter neuem Namen, alles nachgemessen, Journal DM. Freigabe 26.09.2026, ca. 16:30 (Auswahlkarte, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
