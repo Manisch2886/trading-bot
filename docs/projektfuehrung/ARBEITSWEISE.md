@@ -1833,6 +1833,15 @@ Registerabschnitt, der einen Irrtum trägt.
 ⚠️ **Was daraus folgt, und was nicht:** Hoher Aufwand heisst gründlicher messen,
 nicht mehr bauen. ⛔ Er ist **kein** Freibrief, über den Auftrag hinauszugehen.
 
+⭐ **Nachtrag 26.09.2026 (TB-113) — seit 26.09.2026 technisch hinterlegt:** Der
+Wächter startet `claude --effort high --remote-control` (Betreiber 26.09.2026,
+09:36: *„Starte die Sessions zukünftig immer mit aufwand hoch“*; die Zeile in
+`docs/werkzeuge/sitzungswaechter/starte_sitzung.sh`, committet in `656f04b`).
+Beleg: `docs/belege/TB-113/0b_effort.txt` — `claude --help` kennt den Schalter,
+und die Befehlszeile der ersten so gestarteten Sitzung (TB-113) trägt ihn.
+⚠️ Die Kopfzeile bzw. `/status` ist aus der Sitzung heraus nicht lesbar; der
+Beleg ist deshalb die Prozesszeile, nicht die Anzeige.
+
 ### 22.2 ⭐⭐ Der Wächter kann messen, ohne zu starten
 
 **Gemessen am 23.09.2026, 17:42.** Die Vorbedingungen des Sitzungswächters
@@ -2012,3 +2021,33 @@ beendet, 0 übrig.
 Gerätesitzung `/exit` **tippen** und abschicken. Das ist Text, keine Taste, und
 geht vom Telefon. Verlässlich nur, wenn die Eingabezeile wartet; ein offener
 Dialog fängt es ab.
+
+### 22.9 ⭐⭐ Die Sitzung wird angelegt, bevor der Satz kommt
+
+⚠️ **Betreiberanweisung 26.09.2026, 09:31:** *„Du sollst immer eine Session
+anlegen, bevor du mir einen Text mit einem Auftrag gibst.“*
+
+**Die Regel, in dieser Reihenfolge:**
+
+1. Der steuernde Chat legt den Auslöser `docs/auftraege/_ausloeser/starte_TB-<Nr>`
+   an (Abschnitt 19).
+2. Er prüft im Wächter-Log (`logs/sitzungswaechter/waechter.log`) die Zeile
+   **„Satz ins Fenster gelegt“** für diese Nummer.
+3. ⚠️ **Hängt noch ein nie abgeschicktes Fenster im Repo**, schliesst er es
+   **vorher** mit `schliesse_<HEAD>` (22.8; beide Wachen dort gelten). Sonst
+   bricht der Wächter beim neuen Auslöser ab, weil schon eine claude-Sitzung im
+   Repo läuft — und ein Satz mit der neuen Nummer hätte kein Fenster.
+4. **Erst dann** gibt er den Einfügesatz aus (22.4: am Schluss der Antwort, im
+   Kopierfeld).
+
+⭐ **Der Anlass, gemessen im Wächter-Log vom 26.09.2026:** Für TB-112 wurde der
+Satz um **05:04:34Z** ins Fenster gelegt (PID 98210). Abgeschickt hat ihn
+niemand; das Fenster fand keiner. Um 05:21 und 07:07 wies der Wächter Sonden
+ab, weil „bereits eine claude-Sitzung im Repo“ arbeitete (Rechenzeit nach über
+zwei Stunden rund 4 min — gewartet, nicht gearbeitet), um 07:31 den zweiten
+Start von TB-112. Erst `schliesse_…` um **07:33:07Z** beendete das Fenster — **2 h 28 min** nach dem Anlegen. Der dritte
+Start um 07:34:28Z lief sofort (`e731207`, 07:36Z).
+
+⭐ *Ein Satz ohne Fenster ist eine Bitte ins Leere; ein Fenster ohne Satz ist
+eine Sitzung, die niemand findet. Deshalb zuerst das Fenster, dann der Satz —
+und vorher nachsehen, ob ein altes im Weg steht.*
