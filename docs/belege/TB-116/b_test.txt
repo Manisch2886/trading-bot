@@ -1,0 +1,38 @@
+== Hand-Beispiele je Lesart, mit Mutationsgegenprobe
+  [OK ] P1 alle Grundbudget, L1a (L2a/L2b/L2c)   m=['9/5', '3/5', '3/5', '3/5', '9/40', '9/40', '3/20', '3/20', '3/20'] Summe=1/2
+  [OK ] P1 alle Grundbudget, L1a (L2a/L2b/L2c) - Mutationsgegenprobe scheitert   Mutation: 'SCHLUESSEL = {"aktien": F(80, 100), "krypto": F(20' -> 'SCHLUESSEL = {"aktien": F(75, 100), "krypto": F(25'
+  [OK ] P2 alle Grundbudget, L1b und L1c   m=['18/5', '6/5', '6/5', '6/5', '9/20', '9/20', '3/10', '3/10', '3/10']
+  [OK ] P2 alle Grundbudget, L1b und L1c - Mutationsgegenprobe scheitert   Mutation: 'w[c] = K[a] / len(RK)' -> 'w[c] = K[a] / len(R)'
+  [OK ] P3 alle Schatten, Benchmark je Lesart   L1b/L2b Benchmark ['4/5', '1/5'], L1a/L2a Summe 0, L1a/L2c ['L2c-benchmark']
+  [OK ] P3 alle Schatten, Benchmark je Lesart - Mutationsgegenprobe scheitert   Mutation: 'bench[a] += w[c]                      # (j)' -> 'bench[a] += 0 * w[c]                  # (j)'
+  [OK ] P4 nur Krypto aktiv, L3a/L3b   L3a m(FK)=9/20, L3b m(FK)=9/4
+  [OK ] P4 nur Krypto aktiv, L3a/L3b - Mutationsgegenprobe scheitert   Mutation: 'if l3 == "L3b" and len(klassen_aktiv) == 1:' -> 'if False:'
+  [OK ] P5 nur Krypto aktiv, L2c   L1b/L2c Antwort True, L1a/L2c fehlt ['L2c']
+  [OK ] P5 nur Krypto aktiv, L2c - Mutationsgegenprobe scheitert   Mutation: 'bezuege = [aktiv | frozenset(t) for r in' -> 'bezuege = [aktiv][:1] or [aktiv | frozenset(t) for'
+  [OK ] P6a Schatten+Bestaetigt, L4a   vbc 9/10
+  [OK ] P6a Schatten+Bestaetigt, L4a - Mutationsgegenprobe scheitert   Mutation: 'summe = sum(faktor[s] for _, s in inhalt)\n' -> 'summe = sum(faktor[s] for _, s in inhalt) + 1\n'
+  [OK ] P6b Schatten+Bestaetigt, L4b   vbc 3/5, Benchmark K 1/30
+  [OK ] P6b Schatten+Bestaetigt, L4b - Mutationsgegenprobe scheitert   Mutation: 'faktor[s] if s != "schatten" else 1' -> 'faktor[s] if s != "schatten" else 0'
+  [OK ] P6c Schatten+Bestaetigt, L4c   Summe 10/9
+  [OK ] P6c Schatten+Bestaetigt, L4c - Mutationsgegenprobe scheitert   Mutation: 'bench[a] += NENNER * n_schatten' -> 'bench[a] += 0 * n_schatten'
+  [OK ] P6d Schatten+Bestaetigt, L4d   vbc 9/10
+  [OK ] P6d Schatten+Bestaetigt, L4d - Mutationsgegenprobe scheitert   Mutation: 'if "bestaetigt" in tab:' -> 'if False:'
+  [OK ] P7 Schatten+Grundbudget, L4d ohne Antwort   fehlt ['L4d']
+  [OK ] P7 Schatten+Grundbudget, L4d ohne Antwort - Mutationsgegenprobe scheitert   Mutation: 'if e_a != e_b:' -> 'if False:'
+  [OK ] P8 Bestaetigt Faktor 1 (L5b)   vbc 9/20
+  [OK ] P8 Bestaetigt Faktor 1 (L5b) - Mutationsgegenprobe scheitert   Mutation: 'faktor["bestaetigt"] = 1' -> 'faktor["bestaetigt"] = 2'
+  [OK ] P9 L1c ungleich L1b   m(VB) L1b 36/5, L1c 6
+  [OK ] P9 L1c ungleich L1b - Mutationsgegenprobe scheitert   Mutation: 'nenner = sum((K[ANLAGE_VON_ZELLE[c]] for c in R), ' -> 'nenner = F(1)'
+  [OK ] P10 Aufzaehlung 19 683 verschiedene Tabellen   19683 Tabellen, 19683 verschieden
+  [OK ] P10 Aufzaehlung 19 683 verschiedene Tabellen - Mutationsgegenprobe scheitert   Mutation: 'return list(itertools.product(STUFEN, repeat=len(B' -> 'return list(itertools.product(STUFEN, repeat=len(B'
+  [OK ] P11 Schreibweise hin und zurueck   Beispiel FA:S UA:SGB FK:SS UK:BSG
+  [OK ] P11 Schreibweise hin und zurueck - Mutationsgegenprobe scheitert   Mutation: '"bestaetigt": "B"}' -> '"bestaetigt": "G"}'
+  [OK ] P12 Zellenzuordnung = Register 16.4 (g)   Register ['Fortsetzung × Aktien', 'Umkehr × Aktien', 'Fortsetzung × Krypto', 'Umkehr × Krypto']
+  [OK ] P12 Zellenzuordnung = Register 16.4 (g) - Mutationsgegenprobe scheitert   Mutation: '("t3_supertrend", "volatility_breakout_crypto")' -> '("volatility_breakout_crypto", "t3_supertrend")'
+  [OK ] P13 Pruefung ueber einen Ausschnitt   L1-Klassen ['L1a≠L1b | aktiv A2/K2, Schatten in aktiver Zelle nein, Bestaetigt nein', 'L1a≠L1c | aktiv A2/K2, Schatten in aktiver Zelle nein, Bestaetigt nein']
+  [OK ] P13 Pruefung ueber einen Ausschnitt - Mutationsgegenprobe scheitert   Mutation: 'if k1 == k2:\n                        continue' -> 'if True:\n                        continue'
+  [OK ] P14 Ausgabe Text und JSON   Textzeile True, JSON L1 1
+  [OK ] P14 Ausgabe Text und JSON - Mutationsgegenprobe scheitert   Mutation: 'a("  %s: %d" % (k, v["tabellen"]))' -> 'a("  %s: %d" % (k, v["tabellen"] + 1))'
+
+Ergebnis: 34 bestanden, 0 Fehler
+rc 0

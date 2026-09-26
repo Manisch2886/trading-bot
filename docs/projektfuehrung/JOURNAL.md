@@ -9378,6 +9378,42 @@ Belege `docs/belege/TB-114/`. Freigabe 26.09.2026, ca. 16:30 (Auswahlkarte).
 
 ---
 
+## DO — TB-116: Prüfung vor dem Tag zu 16.4 — der Registertext ergibt nicht für jede der 19 683 Stufentabellen genau einen Multiplikatorvektor; fünf Lesart-Stellen, alle echt; 72 von 144 Kombinationen beantworten jede Tabelle, 24 mit Buchsumme 1 (16 verschiedene Regeln, einig nur in 17 Tabellen); L1a lässt in jeder Tabelle Buch unverteilt; nur Prüfwerkzeug, keine Lesart festgelegt (26.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-116_leiter_lesarten.md`*
+
+**Quelle:** Mac-Sitzung **TB-116** (Hauptordner), 26.09.2026, Eingang `10e9697`. Commits `50afdbf` (Schritt 0),
+`e414f79` (Werkzeug und Test), `ce982c9` (Nachtrag Werkzeug) und der Abgabe-Commit. Belege `docs/belege/TB-116/`.
+Freigabe 26.09.2026, ca. 20:50 (Auswahlkarte). Sichtschutz 27.1 eingehalten: Stufentabellen aufgezählt, keine
+Ergebnisgrösse gelesen oder gerechnet.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | Fable-Anfrage 27a, Übergabe Nachtrag 5, Aufgabenliste, Auftrag, Zeiger committet (md5 ✔, numstat x/0). 0b vorher = nachher: `register()` `5acb4c19…`, Sonde gegen `5e5ad109…` 34/0/0 (rc 2), Arbeitsbaum ausserhalb `docs/` und `research/leiter_pruefung/` leer |
+| **A** | 18 Suchmuster über das ganze Register: keine spätere Stelle ändert 16.4 (g)–(m); 17.7, 22.4, 26.7, 16.10, 45.8 R8 (e) ergänzen oder verweisen. 20 Zitate in `a_regeln.md`, `diff` 20/20 rc 0, Mutationsprobe rc 1. Neun feste Lesarten L0.1–L0.9, fünf variierte Stellen L1–L5 (L1c, L2, L4c, L5 von der Sitzung ergänzt) |
+| **B** | `research/leiter_pruefung/leiter_lesarten.py` (exakte Brüche, „keine Antwort“ statt Rückfrage) und `test_leiter_lesarten.py` 34/34 (17 Hand-Proben, je eine Mutationsgegenprobe). Erster Volllauf brach in der Textausgabe ab (`len()` auf verdichteter Zahl), behoben mit Probe P14 |
+| ⭐⭐ **C** | 19 683 Tabellen × 144 Kombinationen, 323 s. Je Stelle Tabellen mit anderem Vektor: L1a/L1b 19 682, L1b/L1c 7 914 (nur unter L2a), L2a/L2b 8 866, L3 322, L4a/L4b 18 468, L5 18 468. Ohne Antwort: L2c 8 606/8 866, L4d 496. Buchsumme ≠ 1: L1a in allen 19 683 (mit L2b genau 1/2), L4c bis 14/9. Max. `m_b` 9 / 7,2 / 4,5 / 3,6 / 1,8 je Lesart; unter L1b/L2b/L3a hat `volatility_breakout` in „alle Grundbudget“ 3,6 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Formel mit zwei Wörtern aus zwei Absätzen ist zwei Formeln, bis ein Satz sagt, worauf sich das zweite bezieht.** „Zellenanteil × Klassenschlüssel“ liess das Buch halb unverteilt oder ganz verteilt — je nachdem, ob „das Buch“ in (h) vor oder nach dem Schlüssel geteilt wird |
+| ⭐ | **Ein Verbot der Umverteilung macht einen Zustand zur Geschichte.** (j) „nicht an andere Zellen“ heisst: der Nenner fällt nicht, wenn eine Zelle ausfällt — dann hängt der Vektor an der Vorgeschichte, die eine Stufentabelle nicht trägt, ausser der Nenner ist fest |
+| ⭐ | **Eine Ausgabe, die kein Test liest, ist ungeprüft, auch wenn die Rechnung geprüft ist.** Der erste Volllauf rechnete richtig und brach beim Schreiben ab |
+
+### Was offen bleibt
+
+- Fable: die vier Entscheidungen L2, L3, L4, L5 (Vorschläge als solche markiert im Ergebnis, Abschnitt 5), dazu L1a
+  (Kasse?), L0.1 (Höhe der Benchmark-Position) und (k) (was „neue Zelle aktiv“ heisst).
+- Danach: das eigentliche Leiter-Skript (Stufe IV, 16.11 Zeile 3); das Prüfwerkzeug kann dann als Gegenprobe dienen.
+
+*Geschrieben 26.09.2026 von der Mac-Sitzung TB-116. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

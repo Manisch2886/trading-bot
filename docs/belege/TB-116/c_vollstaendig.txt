@@ -1,0 +1,22 @@
+Kombinationen 144, alle Tabellen beantwortet 72, davon Buchsumme 1 in jeder Tabelle 24
+vollstaendig (c_paare) == Summe-1-Liste: True
+Tabellen mit genau einem Vektor unter den 24 vollstaendigen Kombinationen: 17
+  FA:S UA:SSS FK:SS UK:SSS
+  FA:G UA:GGG FK:GG UK:GGG
+  FA:G UA:GGG FK:GG UK:BBB
+  FA:G UA:GGG FK:BB UK:GGG
+  FA:G UA:GGG FK:BB UK:BBB
+  FA:G UA:BBB FK:GG UK:GGG
+  FA:G UA:BBB FK:GG UK:BBB
+  FA:G UA:BBB FK:BB UK:GGG
+  FA:G UA:BBB FK:BB UK:BBB
+  FA:B UA:GGG FK:GG UK:GGG
+  FA:B UA:GGG FK:GG UK:BBB
+  FA:B UA:GGG FK:BB UK:GGG
+  FA:B UA:GGG FK:BB UK:BBB
+  FA:B UA:BBB FK:GG UK:GGG
+  FA:B UA:BBB FK:GG UK:BBB
+  FA:B UA:BBB FK:BB UK:GGG
+  FA:B UA:BBB FK:BB UK:BBB
+L1b-L2b gegen L1c-L2b (je L3, L4a/L4b, L5): Abweichungen in m oder Benchmark: 0
+rc 0

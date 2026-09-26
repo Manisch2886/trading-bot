@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/Users/jaquelineloffler/trading-bot/research/leiter_pruefung/leiter_lesarten.py", line 512, in <module>
+    sys.exit(main())
+  File "/Users/jaquelineloffler/trading-bot/research/leiter_pruefung/leiter_lesarten.py", line 499, in main
+    f.write(als_text(p))
+  File "/Users/jaquelineloffler/trading-bot/research/leiter_pruefung/leiter_lesarten.py", line 484, in als_text
+    a("  %s: %d" % (k, len(v["tabellen"])))
+TypeError: object of type 'int' has no len()
+rc 1 Dauer 311 s

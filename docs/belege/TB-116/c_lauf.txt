@@ -1,0 +1,8 @@
+Tabellen 19683 (verschieden 19683), Kombinationen 144
+  L1: Unterschied in 19682 Tabellen
+  L2: Unterschied in 8866 Tabellen
+  L3: Unterschied in 322 Tabellen
+  L4: Unterschied in 18468 Tabellen
+  L5: Unterschied in 18468 Tabellen
+  verschiedene Vektoren je Tabelle: {1: 1, 2: 16, 3: 16, 4: 1000, 5: 32, 6: 2056, 7: 15, 8: 8050, 9: 193, 10: 958, 12: 612, 14: 94, 15: 1309, 16: 108, 17: 3, 18: 24, 19: 144, 20: 5040, 24: 12}
+rc 0 Dauer 323 s

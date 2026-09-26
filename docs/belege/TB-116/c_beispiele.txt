@@ -1,0 +1,16 @@
+Bots: volatility_breakout rsi2_mean_reversion turtle_soup_stocks elliott_wave_stocks t3_supertrend volatility_breakout_crypto rsi2_crypto turtle_soup_crypto elliott_wave
+FA:G UA:GGG FK:GG UK:GGG  L1a-L2b-L3a-L4a-L5a  m=(9/5 3/5 3/5 3/5 9/40 9/40 3/20 3/20 3/20)  Benchmark A/K=0/0  Buchsumme=1/2
+FA:G UA:GGG FK:GG UK:GGG  L1b-L2b-L3a-L4a-L5a  m=(18/5 6/5 6/5 6/5 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=0/0  Buchsumme=1
+FA:G UA:SSS FK:GG UK:GGG  L1b-L2a-L3a-L4a-L5a  m=(36/5 0 0 0 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=0/0  Buchsumme=1
+FA:G UA:SSS FK:GG UK:GGG  L1b-L2b-L3a-L4a-L5a  m=(18/5 0 0 0 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=2/5/0  Buchsumme=1
+FA:G UA:SSS FK:GG UK:GGG  L1c-L2a-L3a-L4a-L5a  m=(6 0 0 0 3/4 3/4 1/2 1/2 1/2)  Benchmark A/K=0/0  Buchsumme=1
+FA:G UA:SSS FK:GG UK:GGG  L1b-L2c-L3a-L4a-L5a  keine Antwort: ['L2c']
+FA:G UA:GGS FK:GG UK:GGG  L1b-L2b-L3a-L4a-L5a  m=(18/5 9/5 9/5 0 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=0/0  Buchsumme=1
+FA:G UA:GGS FK:GG UK:GGG  L1b-L2b-L3a-L4b-L5a  m=(18/5 6/5 6/5 0 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=2/15/0  Buchsumme=1
+FA:G UA:GGS FK:GG UK:GGG  L1b-L2b-L3a-L4c-L5a  m=(18/5 9/5 9/5 0 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=1/9/0  Buchsumme=10/9
+FA:G UA:GGS FK:GG UK:GGG  L1b-L2b-L3a-L4d-L5a  keine Antwort: ['L4d']
+FA:S UA:SSS FK:GG UK:GGG  L1b-L2b-L3a-L4a-L5a  m=(0 0 0 0 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=4/5/0  Buchsumme=1
+FA:S UA:SSS FK:GG UK:GGG  L1b-L2b-L3b-L4a-L5a  m=(0 0 0 0 9/4 9/4 3/2 3/2 3/2)  Benchmark A/K=0/0  Buchsumme=1
+FA:G UA:GGB FK:GG UK:GGG  L1b-L2b-L3a-L4a-L5a  m=(18/5 9/10 9/10 9/5 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=0/0  Buchsumme=1
+FA:G UA:GGB FK:GG UK:GGG  L1b-L2b-L3a-L4a-L5b  m=(18/5 6/5 6/5 6/5 9/20 9/20 3/10 3/10 3/10)  Benchmark A/K=0/0  Buchsumme=1
+rc 0

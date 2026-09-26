@@ -1,0 +1,106 @@
+# TB-116 a_fundstellen, HEAD 50afdbf, Register 10034 Zeilen, sha256 696561ea8e58a1f0
+# grep -n -F (feste Zeichenkette); Zeilen auf 240 Zeichen gekuerzt. Abschnitt 16.4 = Z. 1925-2046.
+
+== Muster '16.4': 4 Zeilen
+1925:### 16.4 Registertext 6 — Budgetstufen und Zellenbudget *(neu)*
+4816:| **3. Die Stufe** | 16.4, **Registertext 6, Buchstabe (b)** | *„jeder, der eines erfüllt, auf **Schatten** — sein Budgetanteil hält die statische Benchmark-Position in Höhe seines mittleren Exposures. Die Zuweisung ist Ergebnis des ei
+4817:| **4. Was Schatten heisst, und der Weg zurück** | Registertext 6 (a) und (d), 16.4; Abschnitt 7.1 | Schatten: *„läuft, kein Portfoliogewicht, nicht in Portfolio-Zahlen und nicht am Crash-Knopf"* — mit seinen heutigen Parametern. Kapit
+9986:> (e) Berichtigung zu 25f A2 und C3 Entscheidung 8: Das Zellenbudget steht in 16.4 (g)–(m); offen ist nur der Vollzug im Code (16.11, Zeile 3; Stufe IV). Fables Satz „keinen Abschnitt gefunden" war aus dem Gedächtnis; Fables Regel: Vor
+
+== Muster 'Registertext 6': 7 Zeilen
+1925:### 16.4 Registertext 6 — Budgetstufen und Zellenbudget *(neu)*
+2296:⚠️ **Registertext 6 braucht dafür keine eigene Stufe.** Der Kapitalpfad ist
+2680:> Registertext 6 eingestuft, im Bericht mit dem Vermerk „Backtester unbestimmt
+3522:### 22.4 Registertext 6, Ergänzung — die Notbremse auf einen In-Sample-Befund *(neu)*
+4804:### 26.7 Der Grenzfall — was gilt, wenn für einen Bot kein Parametersatz besteht: die Kette (b) → Festlegung 11 → Registertext 6 (b) → Schatten
+4816:| **3. Die Stufe** | 16.4, **Registertext 6, Buchstabe (b)** | *„jeder, der eines erfüllt, auf **Schatten** — sein Budgetanteil hält die statische Benchmark-Position in Höhe seines mittleren Exposures. Die Zuweisung ist Ergebnis des ei
+4817:| **4. Was Schatten heisst, und der Weg zurück** | Registertext 6 (a) und (d), 16.4; Abschnitt 7.1 | Schatten: *„läuft, kein Portfoliogewicht, nicht in Portfolio-Zahlen und nicht am Crash-Knopf"* — mit seinen heutigen Parametern. Kapit
+
+== Muster 'Zellenbudget': 5 Zeilen
+1925:### 16.4 Registertext 6 — Budgetstufen und Zellenbudget *(neu)*
+1966:#### Das Zellenbudget
+1989:> **(j)** **Aufstieg:** mehr vom **Zellenbudget**; das Zellenbudget ändert sich
+1990:> nicht. **Abstieg:** Zellenbudget **bleibt**, die übrigen teilen es nach (i).
+9986:> (e) Berichtigung zu 25f A2 und C3 Entscheidung 8: Das Zellenbudget steht in 16.4 (g)–(m); offen ist nur der Vollzug im Code (16.11, Zeile 3; Stufe IV). Fables Satz „keinen Abschnitt gefunden" war aus dem Gedächtnis; Fables Regel: Vor
+
+== Muster 'Stufenfaktor': 1 Zeilen
+1985:> **(i)** Innerhalb einer Zelle teilen die Bots nach **Stufenfaktor: Schatten 0,
+
+== Muster 'm_b': 4 Zeilen
+2006:> `m_b = (Zellenanteil × Klassenschlüssel × Bot-Anteil in der Zelle) / (1/9)`
+2008:> **Die Bots lesen `m_b`; sonst ändert sich nichts.**
+2312:| 3 | **6 (a)–(m)** — Budgetstufen, Zellen, `m_b` | **Kein Leiter-Skript.** Kein Bot liest einen Multiplikator; alle neun rechnen mit fester Positionsgrösse (faktisch 1/9). Die 3⁹-Prüfung kann noch nicht laufen. | eigene Aufgabe (`m_b`
+2351:* **Kein `m_b` in den `forward_test.py`** (freigegeben, eigene Aufgabe).
+
+== Muster 'Klassenschlüssel': 1 Zeilen
+2006:> `m_b = (Zellenanteil × Klassenschlüssel × Bot-Anteil in der Zelle) / (1/9)`
+
+== Muster '80/20': 2 Zeilen
+2018:#### Die Begründung des Schlüssels 80/20 — mit ihrer Messung
+2029:**79/21**; 80/20 ist die gerundete Fassung davon und als Betreiberentscheid
+
+== Muster 'Leiter': 9 Zeilen
+125:| `methode` | Fibonacci-Leiter, Bollinger-Fenster | Eigenschaften des Verfahrens, nicht Einstellungen — dieselbe Rolle wie die Kostenkonvention von 0,30 %. |
+1927:**Die Budgetstufen-Leiter stand bisher nirgends im Repo.** Das ist ein Befund
+2002:> **(m)** **Umsetzung ohne gemeinsames Konto:** Das Leiter-Skript berechnet
+2012:> **Die Leiter bewegt Bots. Sie bewegt keine Zellen.** Out-of-Sample-Evidenz
+2038:Das Leiter-Skript muss aus **jeder** möglichen Stufentabelle — **3⁹ = 19 683**,
+2044:⚠️ **Das Leiter-Skript existiert noch nicht.** Siehe 16.11, Zeile 3.
+2312:| 3 | **6 (a)–(m)** — Budgetstufen, Zellen, `m_b` | **Kein Leiter-Skript.** Kein Bot liest einen Multiplikator; alle neun rechnen mit fester Positionsgrösse (faktisch 1/9). Die 3⁹-Prüfung kann noch nicht laufen. | eigene Aufgabe (`m_b`
+2318:| 9 | **6, Zellenzuordnung** | Steht jetzt im Register, aber **nirgends im Code** — kein Modul kennt Zellen. | mit dem Leiter-Skript |
+10029:| (4) | **Stufe IV** (Leiter-Skript, 16.11 Zeile 3; Fable 26a 2 (a), R8 (e)) | Stufe IV |
+
+== Muster 'Benchmark-Position': 7 Zeilen
+766:  Benchmark-Position in Höhe der mittleren Exposure des Gewinners über
+781:- Das **Kapital** geht in eine **statische Benchmark-Position** in Höhe des
+1553:> Benchmark-Position in Höhe seines gemessenen mittleren Exposures**. Die
+1941:> sein Budgetanteil hält die statische Benchmark-Position in Höhe seines
+1992:> Benchmark-Position ihrer Anlage — nicht an andere Zellen.**
+4816:| **3. Die Stufe** | 16.4, **Registertext 6, Buchstabe (b)** | *„jeder, der eines erfüllt, auf **Schatten** — sein Budgetanteil hält die statische Benchmark-Position in Höhe seines mittleren Exposures. Die Zuweisung ist Ergebnis des ei
+4817:| **4. Was Schatten heisst, und der Weg zurück** | Registertext 6 (a) und (d), 16.4; Abschnitt 7.1 | Schatten: *„läuft, kein Portfoliogewicht, nicht in Portfolio-Zahlen und nicht am Crash-Knopf"* — mit seinen heutigen Parametern. Kapit
+
+== Muster 'mittleren Exposure': 7 Zeilen
+453:Der Benchmark ist eine **statische Position** in Höhe der mittleren Exposure
+766:  Benchmark-Position in Höhe der mittleren Exposure des Gewinners über
+782:  mittleren Exposures — nicht in Kasse, nicht zu den Überlebenden.
+1553:> Benchmark-Position in Höhe seines gemessenen mittleren Exposures**. Die
+1942:> mittleren Exposures. **Die Zuweisung ist Ergebnis des eingefrorenen Skripts,
+4816:| **3. Die Stufe** | 16.4, **Registertext 6, Buchstabe (b)** | *„jeder, der eines erfüllt, auf **Schatten** — sein Budgetanteil hält die statische Benchmark-Position in Höhe seines mittleren Exposures. Die Zuweisung ist Ergebnis des ei
+4817:| **4. Was Schatten heisst, und der Weg zurück** | Registertext 6 (a) und (d), 16.4; Abschnitt 7.1 | Schatten: *„läuft, kein Portfoliogewicht, nicht in Portfolio-Zahlen und nicht am Crash-Knopf"* — mit seinen heutigen Parametern. Kapit
+
+== Muster 'Budgetanteil': 2 Zeilen
+1941:> sein Budgetanteil hält die statische Benchmark-Position in Höhe seines
+4816:| **3. Die Stufe** | 16.4, **Registertext 6, Buchstabe (b)** | *„jeder, der eines erfüllt, auf **Schatten** — sein Budgetanteil hält die statische Benchmark-Position in Höhe seines mittleren Exposures. Die Zuweisung ist Ergebnis des ei
+
+== Muster 'Budgetstufe': 3 Zeilen
+1925:### 16.4 Registertext 6 — Budgetstufen und Zellenbudget *(neu)*
+1927:**Die Budgetstufen-Leiter stand bisher nirgends im Repo.** Das ist ein Befund
+2312:| 3 | **6 (a)–(m)** — Budgetstufen, Zellen, `m_b` | **Kein Leiter-Skript.** Kein Bot liest einen Multiplikator; alle neun rechnen mit fester Positionsgrösse (faktisch 1/9). Die 3⁹-Prüfung kann noch nicht laufen. | eigene Aufgabe (`m_b`
+
+== Muster 'Grundbudget': 5 Zeilen
+1936:> **Grundbudget** (im Buch), **Bestätigt** (im Buch, Rang-5-Gewichtung, sobald
+1940:> erfüllt, auf **Grundbudget**; jeder, der eines erfüllt, auf **Schatten** —
+1945:> **(c)** **Aufstieg** Grundbudget → Bestätigt, geprüft am Ende jedes
+1981:> Grundbudget oder Bestätigt steht. **Aktive Zellen teilen das Buch zu gleichen
+1986:> Grundbudget 1, Bestätigt 2** *(Faktor 2 willkürlich)*. Anteil = eigener Faktor
+
+== Muster 'Zellenanteil': 2 Zeilen
+1995:> alle Zellenanteile sinken entsprechend. **Das ist die einzige Umverteilung
+2006:> `m_b = (Zellenanteil × Klassenschlüssel × Bot-Anteil in der Zelle) / (1/9)`
+
+== Muster 'Stufentabelle': 1 Zeilen
+2038:Das Leiter-Skript muss aus **jeder** möglichen Stufentabelle — **3⁹ = 19 683**,
+
+== Muster '3⁹': 2 Zeilen
+2038:Das Leiter-Skript muss aus **jeder** möglichen Stufentabelle — **3⁹ = 19 683**,
+2312:| 3 | **6 (a)–(m)** — Budgetstufen, Zellen, `m_b` | **Kein Leiter-Skript.** Kein Bot liest einen Multiplikator; alle neun rechnen mit fester Positionsgrösse (faktisch 1/9). Die 3⁹-Prüfung kann noch nicht laufen. | eigene Aufgabe (`m_b`
+
+== Muster 'Netting': 4 Zeilen
+501:Deckel je Bot im Netting (Rang 5), und als **berichtete Zeile** in der
+1937:> Netting existiert).
+2000:> gilt, bis Netting (Rang 5) existiert.
+2287:> **(d)** Short-Notional zählt im Netting als **Brutto-Exposure der
+
+== Muster 'Crash-Knopf': 2 Zeilen
+1935:> Portfoliogewicht, nicht in Portfolio-Zahlen und nicht am Crash-Knopf),
+4817:| **4. Was Schatten heisst, und der Weg zurück** | Registertext 6 (a) und (d), 16.4; Abschnitt 7.1 | Schatten: *„läuft, kein Portfoliogewicht, nicht in Portfolio-Zahlen und nicht am Crash-Knopf"* — mit seinen heutigen Parametern. Kapit

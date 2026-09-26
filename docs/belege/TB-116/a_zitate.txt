@@ -1,0 +1,22 @@
+Z1   Register Z. 1934-1937   4 Zeilen    253 Zeichen  diff rc 0
+Z2   Register Z. 1939-1943   5 Zeilen    328 Zeichen  diff rc 0
+Z3   Register Z. 1945-1952   8 Zeilen    562 Zeichen  diff rc 0
+Z4   Register Z. 1954-1957   4 Zeilen    249 Zeichen  diff rc 0
+Z5   Register Z. 1959-1961   3 Zeilen    212 Zeichen  diff rc 0
+Z6   Register Z. 1968-1978  11 Zeilen    494 Zeichen  diff rc 0
+Z7   Register Z. 1980-1983   4 Zeilen    258 Zeichen  diff rc 0
+Z8   Register Z. 1985-1987   3 Zeilen    196 Zeichen  diff rc 0
+Z9   Register Z. 1989-1992   4 Zeilen    282 Zeichen  diff rc 0
+Z10  Register Z. 1994-1996   3 Zeilen    224 Zeichen  diff rc 0
+Z11  Register Z. 1998-2000   3 Zeilen    191 Zeichen  diff rc 0
+Z12  Register Z. 2002-2008   7 Zeilen    303 Zeichen  diff rc 0
+Z13  Register Z. 2012-2016   5 Zeilen    371 Zeichen  diff rc 0
+Z14  Register Z. 2038-2042   5 Zeilen    329 Zeichen  diff rc 0
+Z15  Register Z.  781- 782   2 Zeilen    143 Zeichen  diff rc 0
+Z16  Register Z. 1549-1555   7 Zeilen    471 Zeichen  diff rc 0
+Z17  Register Z. 2054-2057   4 Zeilen    244 Zeichen  diff rc 0
+Z18  Register Z. 3524-3528   5 Zeilen    394 Zeichen  diff rc 0
+Z19  Register Z. 2312-2312   1 Zeilen    264 Zeichen  diff rc 0
+Z20  Register Z. 9986-9986   1 Zeilen    326 Zeichen  diff rc 0
+Zitate: 20, diff rc 0: 20, Abweichungen: 0
+rc 0

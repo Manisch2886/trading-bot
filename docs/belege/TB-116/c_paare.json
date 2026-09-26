@@ -1,0 +1,73 @@
+{
+ "paare_m_verschieden": {
+  "L1 L1a≠L1b": 19682,
+  "L1 L1a≠L1c": 19682,
+  "L1 L1b≠L1c": 7914,
+  "L2 L2a≠L2b": 8866,
+  "L3 L3a≠L3b": 322,
+  "L4 L4a≠L4b": 18468,
+  "L4 L4b≠L4c": 18468,
+  "L4 L4b≠L4d": 17972,
+  "L5 L5a≠L5b": 18468
+ },
+ "paare_nur_benchmark_verschieden": {
+  "L1 L1a≠L1b": 1,
+  "L1 L1a≠L1c": 1,
+  "L1 L1b≠L1c": 1,
+  "L2 L2a≠L2b": 1,
+  "L4 L4a≠L4c": 18468,
+  "L4 L4c≠L4d": 17972
+ },
+ "vollstaendige_kombinationen": [
+  "L1b-L2a-L3a-L4a-L5a",
+  "L1b-L2a-L3a-L4a-L5b",
+  "L1b-L2a-L3a-L4b-L5a",
+  "L1b-L2a-L3a-L4b-L5b",
+  "L1b-L2a-L3b-L4a-L5a",
+  "L1b-L2a-L3b-L4a-L5b",
+  "L1b-L2a-L3b-L4b-L5a",
+  "L1b-L2a-L3b-L4b-L5b",
+  "L1b-L2b-L3a-L4a-L5a",
+  "L1b-L2b-L3a-L4a-L5b",
+  "L1b-L2b-L3a-L4b-L5a",
+  "L1b-L2b-L3a-L4b-L5b",
+  "L1b-L2b-L3b-L4a-L5a",
+  "L1b-L2b-L3b-L4a-L5b",
+  "L1b-L2b-L3b-L4b-L5a",
+  "L1b-L2b-L3b-L4b-L5b",
+  "L1c-L2b-L3a-L4a-L5a",
+  "L1c-L2b-L3a-L4a-L5b",
+  "L1c-L2b-L3a-L4b-L5a",
+  "L1c-L2b-L3a-L4b-L5b",
+  "L1c-L2b-L3b-L4a-L5a",
+  "L1c-L2b-L3b-L4a-L5b",
+  "L1c-L2b-L3b-L4b-L5a",
+  "L1c-L2b-L3b-L4b-L5b"
+ ],
+ "vollstaendig_verschiedene_m_je_tabelle": {
+  "1": 17,
+  "2": 1048,
+  "3": 1848,
+  "4": 9216,
+  "5": 47,
+  "6": 1635,
+  "7": 144,
+  "8": 5702,
+  "10": 11,
+  "12": 3,
+  "16": 12
+ },
+ "vollstaendig_verschiedene_m_und_benchmark_je_tabelle": {
+  "1": 17,
+  "2": 1048,
+  "3": 1848,
+  "4": 9216,
+  "5": 47,
+  "6": 1635,
+  "7": 144,
+  "8": 5702,
+  "10": 8,
+  "12": 6,
+  "16": 12
+ }
+}

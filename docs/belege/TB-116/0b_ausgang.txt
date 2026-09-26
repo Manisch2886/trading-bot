@@ -1,0 +1,20 @@
+# TB-116 0b (vorher), HEAD 50afdbf354560a8d5dca03616b6d0b021b7e5453, 2026-09-26 20:50:15 +0200
+## Letzter Nicht-docs-Commit (Soll: 0b7ab4b/e07fefd-Stand, seit 90307cb nur docs/)
+e07fefd TB-114 Block C: neues Abbild sperrliste_abbild_2026-09-26_tb114.json 5e5ad109 (eingefroren 1
+## Hashes (Soll Abbild 5e5ad109...)
+ed521ac147d2e908b76c37a4339e348c270e7379a203b26a082323695a120654  research/vorregistrierung/herkunft.py
+5e5ad1097909b3531e19b238153cabc46e7b551bb25e369ddc6735836e71cd06  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb114.json
+f88e54ee914ac5f0587f0f999f232a932dd833dc94feee63f09f268e12b9fb79  shared/sperrlistensonde.py
+## herkunft.register() (Soll 5acb4c19...)
+register 5acb4c1924a4a009f82e5b4ffe353d70ba0a2452949be166afaa1af8e9fee6af
+fehlend []
+teile 20
+## Sonde gegen research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb114.json (Soll: Pfad-Bestandteile 34/0/0)
+rc 2
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 905-1018, Listentext wie bei Erzeugung: ja
+Pfad-Bestandteile: 34 geprueft, davon 34 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 19)
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+## git status (ausserhalb docs/ und research/leiter_pruefung/ muss leer sein)
+[Ende status]
+## Ende

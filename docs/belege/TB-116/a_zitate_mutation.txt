@@ -1,0 +1,12 @@
+# Mutationsprobe: in einer Kopie von a_regeln.md 'nicht an andere Zellen' -> 'nicht an andre Zellen' (Z9); Soll rc 1
+105c105
+< > Benchmark-Position ihrer Anlage — nicht an andere Zellen.**
+---
+> > Benchmark-Position ihrer Anlage — nicht an andre Zellen.**
+Z9   Register Z. 1989-1992   4 Zeilen    281 Zeichen  diff rc 1
+4c4
+< > Benchmark-Position ihrer Anlage — nicht an andre Zellen.**
+---
+> > Benchmark-Position ihrer Anlage — nicht an andere Zellen.**
+
+rc 1
