@@ -60,6 +60,18 @@ in block() zurueck" nicht mehr mit 0, sondern an der zweiten Wache in
 `datenstand()` mit 2; die Mutation beisst weiter, weil E-b die Stelle `block`
 verlangt.
 
+TB-117 (Fable 27a R10/R15 (a), Register 46.2/46.6) - Teil I:
+  I-a  Modus + eine fehlende eingefrorene Datei: `register()` endet mit 2,
+       die Meldung nennt `register` und den Eintrag;
+  I-b  dasselbe an `block()` - Meldung nennt `block`;
+  I-c  ohne Modus: rc 0, `fehlend` traegt den Eintrag;
+  I-M  Mutationsprobe "Wache aus" mit Gegenprobe (an register und block).
+Nachgezogen (Grundsatz 40): Der Wegwerfbaum aus Teil E traegt jetzt die
+Registerdatei und alle Eintraege von `EINGEFROREN` (sonst endet jeder
+Modus-Lauf von `block()` dort nach R10 mit 2 - E-a, F-a, F-a2, F-a3);
+H-a/H-a2 19 -> 22 Eintraege, H-aM zusaetzlich die drei Snapshot-Eintraege,
+H-b 20 -> 23 Teile.
+
 Aufruf: trading-env/bin/python3 research/vorregistrierung/test_ersatzwerte.py
 """
 
@@ -378,7 +390,24 @@ def _csv(pfad, text):
         f.write("open_time,close\n2020-01-01,%s\n" % text)
 
 
-def _e_baum(t, mutation=None, mit_ergebnisse=True, git=True):
+def _eingefroren_kopieren(baum, v, mit_ergebnisse=True, ohne=None):
+    """Registerdatei und jeden Eintrag von `EINGEFROREN` aus dem Repo in den
+    Wegwerfbaum, an den Ort, den `herkunft._eingefroren_pfad` dort ergaebe;
+    `ohne` (ein Eintrag) bleibt weg - fuer Teil I."""
+    ziele = [(herkunft.REGISTERDATEI,
+              os.path.join(baum, "docs", "VORREGISTRIERUNG_neuselektion.md"))]
+    for rel in herkunft.EINGEFROREN:
+        if rel == ohne or (rel.startswith("ergebnisse/") and not mit_ergebnisse):
+            continue
+        ziel = (os.path.join(v, rel) if "/" not in rel or rel.startswith("ergebnisse/")
+                else os.path.join(baum, rel))
+        ziele.append((herkunft._eingefroren_pfad(rel), ziel))
+    for quelle, ziel in ziele:
+        os.makedirs(os.path.dirname(ziel), exist_ok=True)
+        shutil.copy2(quelle, ziel)
+
+
+def _e_baum(t, mutation=None, mit_ergebnisse=True, git=True, ohne=None):
     """Ein Baum mit echter paths.py und (mutierter) herkunft.py; data/ und
     die Snapshot-Attrappe tragen VERSCHIEDENE Kursdateien, damit sich zeigt,
     welcher Ordner gehasht wurde."""
@@ -398,6 +427,10 @@ def _e_baum(t, mutation=None, mit_ergebnisse=True, git=True):
         os.makedirs(os.path.join(v, "ergebnisse"))
         with open(os.path.join(v, "ergebnisse", "LIESMICH.txt"), "w") as f:
             f.write("versioniert, damit der Ordner im Klon existiert\n")
+    # TB-117 (R10, Grundsatz 40): Registerdatei und EINGEFROREN wie im Repo,
+    # sonst endet jeder Modus-Lauf von block() nach R10 mit 2. Ohne ergebnisse/
+    # (E-c) bleiben dessen Eintraege weg - ohne Modus ist fehlend nur ein Feld.
+    _eingefroren_kopieren(baum, v, mit_ergebnisse, ohne)
     _csv(os.path.join(baum, "data", "AAA_1d.csv"), "1.0")
     _csv(os.path.join(snap, "AAA_1d.csv"), "2.0")
     _csv(os.path.join(snap, "BBB_1d.csv"), "3.0")
@@ -788,6 +821,11 @@ B4_ALT = '    if False:\n'
 TB24_LISTEN = ["research/tb24_haltedauern/daten/%s_alle_trades.csv" % b
                for b in sorted(os.listdir(os.path.join(_REPO, "strategies")))
                if os.path.isdir(os.path.join(_REPO, "strategies", b))]
+# TB-117 (Fable 27a R15 (a), Register 46.6): MANIFEST und Snapshot-config/ -
+# der Snapshot aus Register 18 (derselbe wie _F_SNAP_HASH in Teil F)
+SNAPSHOT_EINTRAEGE = ["snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/%s" % n
+                      for n in ("MANIFEST.json", "config/top25_symbols.txt",
+                                "config/sp500_top150.txt")]
 # Treiber der Gegenprobe: laedt herkunft.py aus seinem Baum und die Sonde aus
 # der echten shared/ - vergleicht je Eintrag die absoluten Pfade.
 _H_TREIBER = ("import sys, os, json\n"
@@ -858,22 +896,25 @@ def teil_h():
     a = gegenprobe_pfadregel(herkunft, sperrlistensonde)
     pruefe("H-a: B1 - je Eintrag von EINGEFROREN derselbe absolute Pfad in herkunft.py und "
            "in der Sonde (%d Eintraege)" % len(herkunft.EINGEFROREN),
-           not a and len(herkunft.EINGEFROREN) == 19, f"abweichend {a}")
+           not a and len(herkunft.EINGEFROREN) == 22, f"abweichend {a}")
     r = _ha_lauf(False)
     pruefe("H-a2: dieselbe Gegenprobe im Wegwerfbaum, rc 0, 0 abweichend",
-           r["rc"] == 0 and r["abweichend"] == [] and r["eintraege"] == 19, _info(r))
+           r["rc"] == 0 and r["abweichend"] == [] and r["eintraege"] == 22, _info(r))
     _mit_gegenprobe(
         "H-aM", "Mutationsprobe 'alte Regel: jeder Eintrag relativ zu _HIER' - Gegenprobe rot",
         _ha_lauf,
-        lambda r: r["rc"] == 0 and sorted(r["abweichend"] or []) == sorted(TB24_LISTEN),
+        lambda r: r["rc"] == 0
+        and sorted(r["abweichend"] or []) == sorted(TB24_LISTEN + SNAPSHOT_EINTRAEGE),
         lambda r: _info(r) + f"; abweichend {r['abweichend']}")
 
     reg = herkunft.register()
     teile = [t["datei"] for t in reg["teile"]]
-    pruefe("H-b: B3 - register() im Repo: fehlend leer, 20 Teile, die neun TB-24-Listen "
-           "in der Reihenfolge von strategies/",
-           reg["fehlend"] == [] and len(teile) == 20 and len(TB24_LISTEN) == 9
-           and teile[-9:] == TB24_LISTEN, f"fehlend {reg['fehlend']}; Teile {teile}")
+    # TB-117 (Grundsatz 40): 20 -> 23 Teile, die drei Snapshot-Eintraege am Ende
+    pruefe("H-b: B3 - register() im Repo: fehlend leer, 23 Teile, die neun TB-24-Listen "
+           "in der Reihenfolge von strategies/, danach MANIFEST und Snapshot-config/",
+           reg["fehlend"] == [] and len(teile) == 23 and len(TB24_LISTEN) == 9
+           and teile[-12:-3] == TB24_LISTEN and teile[-3:] == SNAPSHOT_EINTRAEGE,
+           f"fehlend {reg['fehlend']}; Teile {teile}")
 
     r = _h_datenstand_lauf(False)
     pruefe("H-c: B4 - Modus, datenstand() ohne Pfad endet mit 2, Meldung nennt datenstand, "
@@ -887,6 +928,44 @@ def teil_h():
            r["rc"] == 0 and r["ist"] == r["soll_data"], _info(r))
 
 
+# ===============================================================================
+# I  herkunft.py - `fehlend` unter dem Modus endet mit 2 (TB-117, R10)
+# ===============================================================================
+I_NEU = '    if fehlend and _paths().selektionsmodus() is not None:\n'
+I_ALT = '    if False:\n'
+I_OHNE = "research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv"
+
+
+def _i_lauf(mut, was="register", modus=True):
+    """Wegwerfbaum aus Teil E ohne einen eingefrorenen Eintrag (vor dem Commit
+    entfernt, der Baum ist sauber); `was` = register oder block."""
+    with tempfile.TemporaryDirectory() as t:
+        baum, snap, v, head = _e_baum(t, (I_NEU, I_ALT, mut), ohne=I_OHNE)
+        argv = [_f_treiber(v), was] + ([snap] if was == "block" else [])
+        # der Treiber kommt nach dem Commit - er liegt unversioniert daneben;
+        # die Sauberkeit des Baums prueft herkunft.commit() nur als Feld
+        r = _e_lauf(t, baum, snap, head, argv, modus=modus)
+        r["json"] = json.loads(r["out"].strip().splitlines()[-1]) if r["rc"] == 0 else {}
+        return r
+
+
+def teil_i():
+    for was in ("register", "block"):
+        r = _i_lauf(False, was)
+        pruefe(f"I-{'a' if was == 'register' else 'b'}: Modus, eine eingefrorene Datei fehlt -> "
+               f"{was}() endet mit 2, Meldung nennt {was} und den Eintrag",
+               _rc2(r, f"herkunft.py::{was}") and I_OHNE in r["err"] and r["out"] == "", _info(r))
+        _mit_gegenprobe(
+            f"I-M{was[0]}", f"Mutationsprobe 'Wache aus' - {was}() liefe mit rc 0 und fehlend durch",
+            lambda m, was=was: _i_lauf(m, was),
+            lambda r: r["rc"] == 0 and I_OHNE in (r["json"].get("fehlend")
+                                                  or r["json"].get("register_fehlend") or []),
+            _info)
+    r = _i_lauf(False, "register", modus=False)
+    pruefe("I-c: ohne Modus register() rc 0, fehlend traegt genau den Eintrag",
+           r["rc"] == 0 and r["json"].get("fehlend") == [I_OHNE], _info(r) + f"; {r['json'].get('fehlend')}")
+
+
 def _sha(pfad):
     if not os.path.exists(pfad):
         return "(fehlt)"
@@ -897,7 +976,7 @@ def _sha(pfad):
 def main():
     print(__doc__.strip().split("\n")[0])
     for name, teil in (("B", teil_b), ("C", teil_c), ("D", teil_d), ("E", teil_e),
-                       ("F", teil_f), ("G", teil_g), ("H", teil_h)):
+                       ("F", teil_f), ("G", teil_g), ("H", teil_h), ("I", teil_i)):
         print(f"  Teil {name} ...", flush=True)
         teil()
     print("\n" + "=" * 78)

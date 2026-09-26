@@ -21,6 +21,16 @@ DREI HASHES
               Aendert sich eine Festlegung, aendert sich dieser Hash - und
               das Protokoll zeigt, dass zwei Laeufe NICHT unter derselben
               Vorregistrierung liefen.
+              Nachtrag TB-117 (Fable 27a R17 (a), Register 46.8): gehasht
+              wird genau die Liste `EINGEFROREN` unten, vor ihr die
+              Registerdatei - seit TB-114 (R3) dazu die neun TB-24-Listen
+              `research/tb24_haltedauern/daten/<bot>_alle_trades.csv`, seit
+              TB-117 (R15 (a)) dazu `MANIFEST.json` und die Kopien von
+              `config/top25_symbols.txt` und `config/sp500_top150.txt` im
+              registrierten Snapshot `snapshots/<hash>/`. Fehlt unter dem
+              Selektionsmodus einer dieser Eintraege, enden `register()` und
+              `block()` mit 2 (R10, Register 46.2); ohne Modus bleibt
+              `fehlend` ein Feld.
 
 WARUM APPEND-ONLY
 ------------------------------------------------------------------------------
@@ -77,6 +87,14 @@ EINGEFROREN = [
     "research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv",
     "research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv",
     "research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv",
+    # TB-117 (Fable 27a R15 (a), Register 46.6): unter dem Modus liest der Lauf
+    # die Snapshot-Kopien der Symbollisten (paths.CONFIG_DIR = <snapshot>/config),
+    # nicht die Repo-Dateien aus Sperrlistenpunkt 8; dazu das MANIFEST, gegen das
+    # die Startpruefung den Snapshot-Hash vergleicht. Registrierter Snapshot:
+    # Register 18. Repo-relativ nach derselben Pfadregel wie die TB-24-Listen.
+    "snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json",
+    "snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt",
+    "snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt",
 ]
 # Die Commit-Hashes, die zusaetzlich auf die Sperrliste gehoeren: Simulation,
 # Erkennung und Optimierer je Bot. Sie liegen ausserhalb dieses Ordners und
@@ -146,8 +164,32 @@ def _eingefroren_pfad(rel: str) -> str:
 
 
 def register() -> dict:
-    """SHA-256 ueber die eingefrorenen Festlegungen."""
+    """SHA-256 ueber die eingefrorenen Festlegungen.
+
+    TB-117 (Fable 27a R10, Register 46.2): unter dem Selektionsmodus endet
+    `register()` mit 2, wenn `fehlend` nicht leer ist - ein Hash ueber eine
+    unvollstaendige Menge ist kein gemessener Wert (24b A2). Ohne Modus
+    unveraendert: `fehlend` ist ein Feld."""
     _ersatzwurzel_pruefen("register")
+    r = _register_messen()
+    _fehlend_unter_modus("register", r["fehlend"])
+    return r
+
+
+def _fehlend_unter_modus(stelle: str, fehlend: list):
+    """R10: `fehlend` nicht leer unter dem Modus -> Abbruch mit 2, die Meldung
+    nennt die Eintraege. `paths` wird nur geladen, wenn etwas fehlt - ohne
+    Fehlendes bleibt der Import-Weg wie vorher."""
+    if fehlend and _paths().selektionsmodus() is not None:
+        _abbruch_2(stelle,
+                   f"unter dem Selektionsmodus fehlen eingefrorene Dateien: {fehlend} - "
+                   f"ein Register-Hash ueber eine unvollstaendige Menge ist kein "
+                   f"gemessener Wert (Fable 27a R10, Register 46.2)")
+
+
+def _register_messen() -> dict:
+    """Die Messung selbst, ohne Wache - gerufen von `register()` und `block()`,
+    die je mit ihrer eigenen Stelle pruefen."""
     h = hashlib.sha256()
     fehlend = []
     teile = []
@@ -212,7 +254,8 @@ def block(anlass: str = "lauf", daten_dir=None) -> dict:
         _abbruch_2("block",
                    "unter dem Selektionsmodus ohne daten_dir aufgerufen - keine "
                    "Voreinstellung unter dem Modus (Fable 25c 2 (a))")
-    c, d, r = commit(), datenstand(daten_dir), register()
+    c, d, r = commit(), datenstand(daten_dir), _register_messen()
+    _fehlend_unter_modus("block", r["fehlend"])
     return {
         "zeitpunkt_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "anlass": anlass,

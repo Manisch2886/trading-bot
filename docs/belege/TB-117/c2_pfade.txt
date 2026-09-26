@@ -1,0 +1,24 @@
+# TB-117 C2, HEAD 42ef509, 2026-09-26 23:08:07 +0200
+## Registrierter Snapshot (Register 18, Z. 2847)
+| Name (`snapshot_hash`) | **`63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2`** |
+## versioniert (git ls-files) und sha256
+snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
+snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+5cf1103e7487514b7c37c1c17cd2ed3a32df584be3f68d9de8fe00f304650c12  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
+3afc95a4f6b5ebc3a8f7bb7854b5dd59c4ecc4e3d86aa7b93c08066a3fccf810  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+6acba892f38e998cf43ae9e5594c4707945143aba481429c44a5c6005339f607  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+3afc95a4f6b5ebc3a8f7bb7854b5dd59c4ecc4e3d86aa7b93c08066a3fccf810  config/top25_symbols.txt
+6acba892f38e998cf43ae9e5594c4707945143aba481429c44a5c6005339f607  config/sp500_top150.txt
+## MANIFEST: Kursdateien im Datenstand vs. Dateien im Snapshot-Hash (Fables drittes 'Unsicher')
+kursdateien 223 dateien_gesamt 225 datenstand_hash d9449faf51bf
+config im MANIFEST (dateien): ['config/sp500_top150.txt', 'config/top25_symbols.txt']
+## Aufloesung: herkunft._eingefroren_pfad und sperrlistensonde._aufloesen (absolut, je Eintrag)
+gleich True snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
+gleich True snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+gleich True snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+EINGEFROREN 22 abweichend 0
+## herkunft.py und register() - vor Block C (git show 42ef509) und jetzt
+ed521ac147d2e908b76c37a4339e348c270e7379a203b26a082323695a120654  herkunft.py @ 42ef509
+c6c133886299bcfa6a91f8bf119e9f6cbedbabe97e5131203bf2d309b7bd0fcf  research/vorregistrierung/herkunft.py
+register() b8f2cc334857daf0d4005c5b3a4640fc4c83473294521458ad54d4ee0bccc283 fehlend [] teile 23
