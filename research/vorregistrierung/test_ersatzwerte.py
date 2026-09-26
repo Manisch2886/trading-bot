@@ -34,6 +34,12 @@ TB-111 (Fable 25d (2)/(3)) - Teil F, ebenfalls im Wegwerfbaum:
   F-c  ohne Modus wirkt `TB30A_BASE_DIR` wie vorher;
   F-aM, F-bM, F-bM2  Mutationsproben mit Gegenprobe.
 
+TB-111 (Fable 25d (4), Ergaenzung zu 36.5) - Teil G: `auswertung.Abbruch`
+endet mit 2 statt 1, die Meldung steht weiter auf stderr - an leeren
+Rohergebnissen (Aufruf wie im Betrieb) und an drei der zwoelf Stellen
+(fehlende Spalte, Zelle ausserhalb des Rasters, zu wenige gemeinsame Tage);
+G-M ist die Mutationsprobe "Code 1 zurueck" mit Gegenprobe.
+
 Aufruf: trading-env/bin/python3 research/vorregistrierung/test_ersatzwerte.py
 """
 
@@ -685,6 +691,69 @@ def teil_f():
            _sha(ECHTES_PROTOKOLL) == vorher, f"vorher {vorher}, nachher {_sha(ECHTES_PROTOKOLL)}")
 
 
+# ===========================================================================
+# G  auswertung.py - Abbruch endet mit 2 (TB-111)
+# ===========================================================================
+T_G_SPALTE = f"""
+import os, tempfile, auswertung as aw
+w = tempfile.mkdtemp()
+os.makedirs(os.path.join(w, {BOT!r}))
+with open(os.path.join(w, {BOT!r}, "zellen.csv"), "w") as f:
+    f.write(",".join(aw.PFLICHTSPALTEN[:-1]) + chr(10))
+aw.lies_zellen({BOT!r}, w, None, None)
+"""
+T_G_ZELLE = f"""
+import os, tempfile, auswertung as aw
+w = tempfile.mkdtemp()
+os.makedirs(os.path.join(w, {BOT!r}))
+with open(os.path.join(w, {BOT!r}, "zellen.csv"), "w") as f:
+    f.write(",".join(aw.PFLICHTSPALTEN) + chr(10) + "ausserhalb=1,2020,selektion,1,0.1,1.0,-5.0,0.5" + chr(10))
+aw.gitterachsen = lambda bot, mess: {{"a": [1, 2]}}
+aw.bedingung_fuer = lambda bot: None
+aw.lies_zellen({BOT!r}, w, None, None)
+"""
+T_G_TAGE = f"""
+import os, tempfile, pandas as pd, auswertung as aw
+w = tempfile.mkdtemp()
+os.makedirs(os.path.join(w, {BOT!r}, "tagesreihen"))
+os.makedirs(os.path.join(w, "benchmark_tagesreihen"))
+tage = pd.date_range("2020-01-01", periods=10, freq="B")
+pd.DataFrame({{"datum": tage, "netto_rendite": 0.001, "exposure": 0.5}}).to_csv(
+    os.path.join(w, {BOT!r}, "tagesreihen", "z.csv"), index=False)
+pd.DataFrame({{"datum": tage[:2], "netto_rendite": 0.001}}).to_csv(
+    os.path.join(w, "benchmark_tagesreihen", "aktien.csv"), index=False)
+plan = {{{BOT!r}: {{"falten": [{{"name": "2020", "von": "2020-01-01",
+    "bis_ausschliesslich": "2021-01-01", "rolle": "selektion"}}]}}}}
+print(aw.beta_bereinigung({BOT!r}, w, "z", plan, ["2020"]))
+"""
+G_NEU = '        super().__init__(paths.RUECKGABEWERT_STARTPRUEFUNG)\n'
+G_ALT = '        super().__init__(1)\n'
+
+
+def _abbruch2(r, text):
+    return r["rc"] == RC_ZWEI and text in r["err"]
+
+
+def teil_g():
+    with tempfile.TemporaryDirectory() as leer:
+        r = subprocess.run([sys.executable, "-W", "ignore", os.path.join(_HIER, "auswertung.py"),
+                            "--rohergebnisse", leer], capture_output=True, text=True,
+                           env=_umgebung())
+        r = {"rc": r.returncode, "out": r.stdout[-400:], "err": r.stderr[-600:]}
+    pruefe("G-a: auswertung.py --rohergebnisse <leer> endet mit 2 (vorher 1), Meldung auf stderr",
+           _abbruch2(r, "fehlt - der Lauf ist unvollstaendig"), _info(r))
+    for name, treiber, text in (("G-b", T_G_SPALTE, "Spalten fehlen in zellen.csv"),
+                                ("G-c", T_G_ZELLE, "liegen nicht im Raster"),
+                                ("G-d", T_G_TAGE, "weniger als drei gemeinsame Tage")):
+        r = _in_kopie(treiber)
+        pruefe(f"{name}: Abbruch '{text}' endet mit 2, Meldung auf stderr",
+               _abbruch2(r, text), _info(r))
+    _mit_gegenprobe(
+        "G-M", "Mutationsprobe 'Code 1 zurueck' - G-b waere rot",
+        lambda mut: _in_kopie(T_G_SPALTE, "auswertung.py", G_NEU, G_ALT, mut),
+        lambda r: r["rc"] == 1 and "Spalten fehlen in zellen.csv" in r["err"], _info)
+
+
 def _sha(pfad):
     if not os.path.exists(pfad):
         return "(fehlt)"
@@ -695,7 +764,7 @@ def _sha(pfad):
 def main():
     print(__doc__.strip().split("\n")[0])
     for name, teil in (("B", teil_b), ("C", teil_c), ("D", teil_d), ("E", teil_e),
-                       ("F", teil_f)):
+                       ("F", teil_f), ("G", teil_g)):
         print(f"  Teil {name} ...", flush=True)
         teil()
     print("\n" + "=" * 78)
