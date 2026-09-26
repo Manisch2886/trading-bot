@@ -1,0 +1,11 @@
+# TB-111 D1 sperrliste_abbild.py --ziel research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 6c98c381634a79a631cd4dadafb5f4d2807e078b, 2026-09-26 07:54:51 +0200
+# Arbeitsbaum ausserhalb docs/ (leer = sauber): []
+Abbild geschrieben.
+  Pfad:    research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json
+  Groesse: 9192 Bytes
+  SHA-256: e655c1c8c8e576faa1de8021357354b1d9f0b44e9adae3a176c944087b3aacd9
+  Punkte:  14 (aus docs/VORREGISTRIERUNG_neuselektion.md Z. 894-1007), 15 Pfadnennungen, HEAD 6c98c381634a
+  Gruppen: bestimmt 0, eingefroren 10
+rc 0
+e655c1c8c8e576faa1de8021357354b1d9f0b44e9adae3a176c944087b3aacd9  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json
+    9192

@@ -1,0 +1,66 @@
+# TB-111 A, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD f4d6d6d, 2026-09-26 07:12:00 +0200
+== A1 main(): Aufrufe von block( in herkunft.py
+142:def block(anlass: str = "lauf", daten_dir=None) -> dict:
+184:    `daten_dir` wie bei `block()`. Der Ordner des Protokolls wird nicht
+190:    eintrag = block(anlass, daten_dir)
+273:    b = block("pruefung")
+== A1 Laeufe der Pruefansicht (Protokoll existiert nicht; kein Schreiben ohne --anhaengen)
+   herkunft.py (ohne Argument): ohne Modus rc 0 | Modus rc 2 | ABBRUCH-Zeile: ABBRUCH (herkunft.py::block): unter dem Selektionsmodus ohne daten_dir aufgerufen - keine Voreinstellung unter dem Modus (Fable 25c 2 (a))
+   herkunft.py --json: ohne Modus rc 0 | Modus rc 2 | ABBRUCH-Zeile: ABBRUCH (herkunft.py::block): unter dem Selektionsmodus ohne daten_dir aufgerufen - keine Voreinstellung unter dem Modus (Fable 25c 2 (a))
+   herkunft.py --pruefen: ohne Modus rc 0 | Modus rc 2 | ABBRUCH-Zeile: ABBRUCH (herkunft.py::block): unter dem Selektionsmodus ohne daten_dir aufgerufen - keine Voreinstellung unter dem Modus (Fable 25c 2 (a))
+== A2 Setzer von TB30A_BASE_DIR ausserhalb docs/ (git grep)
+research/faltenplan_neun/test_erste_falte_trockenlauf.py:173:    u["TB30A_BASE_DIR"] = BASE_DIR
+research/faltenplan_neun/test_faltenplan_neun.py:775:        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+research/universum_trockenlauf/test_universum_trockenlauf.py:1405:        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+research/vorregistrierung/test_ersatzwerte.py:73:    u["TB30A_BASE_DIR"] = _REPO
+research/vorregistrierung/test_vorregistrierung.py:810:    u["TB30A_BASE_DIR"] = os.path.dirname(os.path.dirname(_HIER))
+research/vorregistrierung/test_vorregistrierung.py:1113:        u.pop("TB30A_BASE_DIR", None)
+research/vorregistrierung/test_vorregistrierung.py:1221:        for v in ("TB30A_BASE_DIR", "TB36_BASE_DIR", "TB40_BASE_DIR"):
+== A2 je Setzer: TB_SELEKTIONS in derselben Umgebung? (+-25 Zeilen)
+   research/vorregistrierung/test_vorregistrierung.py:810  TB_SELEKTIONS im Fenster: 0
+   research/vorregistrierung/test_ersatzwerte.py:73  TB_SELEKTIONS im Fenster: 1
+   research/faltenplan_neun/test_erste_falte_trockenlauf.py:173  TB_SELEKTIONS im Fenster: 0
+   test_vorregistrierung.py:810 _umgebung(): u = dict(os.environ) + TB30A -> Modus nur, wenn der Testprozess selbst ihn traegt
+   test_ersatzwerte.py:73 _umgebung(): entfernt TB_SELEKTIONS*, setzt TB30A
+   test_ersatzwerte.py:393, test_vorregistrierung.py:1113/1221, test_faltenplan_neun.py:775, test_universum_trockenlauf.py:1405: entfernen TB30A, bevor sie den Modus setzen
+== A2 Wer ruft in einem Prozess mit TB30A herkunft auf? (import/Laden von herkunft)
+research/etf_trendfolge/datenstand.py:44:    "herkunft", os.path.join(reg.VORREGISTRIERUNG_DIR, "herkunft.py"))
+research/turn_of_month/auswertung.py:51:import herkunft as hk  # noqa: E402
+research/turn_of_month/staging.py:61:import herkunft as hk  # noqa: E402
+research/turn_of_month/test_turn_of_month.py:61:import herkunft as hk  # noqa: E402
+research/universum_trockenlauf/test_universum_trockenlauf.py:88:import herkunft                                                  # noqa: E402
+research/vorregistrierung/test_ersatzwerte.py:42:import herkunft  # noqa: E402
+research/vorregistrierung/test_ersatzwerte.py:332:              "import herkunft\n"
+shared/snapshot.py:356:    h = herkunft or lade_herkunft()
+shared/test_abrufschutz.py:476:    import herkunft                                            # noqa: PLC0415
+shared/test_snapshot.py:270:    herkunft = snapshot.lade_herkunft()
+shared/test_stille_ausfaelle.py:469:    import herkunft                                            # noqa: PLC0415
+== A3 raise Abbruch( in auswertung.py
+12
+== A3 Tests: Rueckgabewert 1 oder Abbruch mit Code
+research/vorregistrierung/test_vorregistrierung.py:200:        except SystemExit:
+research/vorregistrierung/test_vorregistrierung.py:213:        except SystemExit:
+research/vorregistrierung/test_vorregistrierung.py:962:        lambda r: r.returncode == 1 and "Live-Wert" in r.stdout,
+   test_vorregistrierung.py:962 (H5) gilt pruefe_grenzsaetze.py, nicht auswertung.py
+== A4 Import von herkunft.py unter dem Modus, ohne TB30A_BASE_DIR
+   import ok; paths geladen: False | BASE_DIR /Users/jaquelineloffler/trading-bot-tb111
+   datenstand(Snapshot): {'datenstand': 'd9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84', 'dateien': 223}
+   paths nach datenstand geladen: False
+   rc=0
+== A4 dasselbe ueber die beiden Nutzer (datenstand.py per lade_fremdes_modul, snapshot.lade_herkunft)
+   snapshot.lade_herkunft ok: d9449faf51bffaaa
+   rc=0
+   etf datenstand.py import ok
+   rc=0
+## Ende
+== A2b heute: Modus + TB30A_BASE_DIR=/gibt/es/nicht, Pruefansicht (liest nur; --anhaengen wird hier NIE gerufen)
+   rc 1
+  File "/Users/jaquelineloffler/trading-bot-tb111/research/vorregistrierung/herkunft.py", line 132, in _paths
+    import paths
+ModuleNotFoundError: No module named 'paths'
+== A2b heute: dasselbe mit TB30A_BASE_DIR = Worktree-Wurzel
+   rc 2
+ABBRUCH (herkunft.py::block): unter dem Selektionsmodus ohne daten_dir aufgerufen - keine Voreinstellung unter dem Modus (Fable 25c 2 (a))
+== A2b _paths() laedt paths aus BASE_DIR/shared (herkunft.py), also unter einer Ersatzwurzel von dort
+129:    ordner = os.path.join(BASE_DIR, "shared")
+## Ende A2b

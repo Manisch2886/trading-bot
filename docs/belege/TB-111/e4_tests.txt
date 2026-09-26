@@ -1,0 +1,12 @@
+# TB-111 E4 - Tests auf dem Endstand 1dcf273 (Block B + C + Abbild), 2026-09-26 08:24:23 +0200
+research/vorregistrierung/test_vorregistrierung.py rc 0 959s | 196/196 Pruefungen bestanden.
+research/vorregistrierung/test_ersatzwerte.py rc 0 75s | 61/61 Pruefungen bestanden.
+shared/test_paths.py rc 0 13s | 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+shared/test_startpruefungen.py rc 0 13s | 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+shared/test_sperrlistensonde.py rc 0 0s | 59/59 Pruefungen bestanden.
+shared/test_snapshot.py rc 0 7s | 164 von 164 Pruefungen bestanden, 0 fehlgeschlagen.
+E4_FERTIG
+## Protokoll nach den Tests
+ls: research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl: No such file or directory
+## git status ausserhalb docs/ (leer = sauber, inkl. ignorierter)
+## Ende

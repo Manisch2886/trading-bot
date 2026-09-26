@@ -1,0 +1,32 @@
+# TB-106 benchmark bm_modus , Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:55:36 +0200
+benchmark bm_modus  rc=0 69s
+64fb2912f1a2ffb02a36834857fe9a91529b7517a8a7185f5fd7b11642f873b7  bm_modus/benchmark.json
+# TB-106 bot tl_elliott_wave elliott_wave, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:56:45 +0200
+bot tl_elliott_wave elliott_wave rc=0 10s
+# TB-106 bot tl_t3_supertrend t3_supertrend, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:56:55 +0200
+bot tl_t3_supertrend t3_supertrend rc=0 3s
+# TB-106 bot tl_rsi2_crypto rsi2_crypto, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:56:59 +0200
+bot tl_rsi2_crypto rsi2_crypto rc=0 1s
+# TB-106 bot tl_turtle_soup_crypto turtle_soup_crypto, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:57:00 +0200
+bot tl_turtle_soup_crypto turtle_soup_crypto rc=0 2s
+# TB-106 bot tl_volatility_breakout_crypto volatility_breakout_crypto, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:57:02 +0200
+bot tl_volatility_breakout_crypto volatility_breakout_crypto rc=0 1s
+# TB-106 bot tl_elliott_wave_stocks elliott_wave_stocks, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:57:03 +0200
+bot tl_elliott_wave_stocks elliott_wave_stocks rc=0 15s
+# TB-106 bot tl_rsi2_mean_reversion rsi2_mean_reversion, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:57:18 +0200
+bot tl_rsi2_mean_reversion rsi2_mean_reversion rc=0 6s
+# TB-106 bot tl_turtle_soup_stocks turtle_soup_stocks, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:57:24 +0200
+bot tl_turtle_soup_stocks turtle_soup_stocks rc=0 6s
+# TB-106 bot tl_volatility_breakout volatility_breakout, Wurzel /Users/jaquelineloffler/trading-bot-tb111, HEAD 1dcf273755a319d82881955a9d1e1d31fb8c86e2, 2026-09-26 07:57:30 +0200
+bot tl_volatility_breakout volatility_breakout rc=0 7s
+E_FERTIG
+bm_modus rc 0
+tl_elliott_wave_stocks rc 0
+tl_elliott_wave rc 0
+tl_rsi2_crypto rc 0
+tl_rsi2_mean_reversion rc 0
+tl_t3_supertrend rc 0
+tl_turtle_soup_crypto rc 0
+tl_turtle_soup_stocks rc 0
+tl_volatility_breakout_crypto rc 0
+tl_volatility_breakout rc 0

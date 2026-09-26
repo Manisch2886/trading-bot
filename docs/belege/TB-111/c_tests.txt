@@ -1,0 +1,12 @@
+# TB-111 Tests nach Block C (uncommittet, Arbeitsbaum = B + C), 2026-09-26 07:54:25 +0200
+## test_vorregistrierung
+196/196 Pruefungen bestanden.
+   stderr-Zeilen in der Ausgabe (A9/A10 fangen Abbruch im Prozess; die Meldung steht jetzt beim Erzeugen auf stderr):
+     turtle_soup_stocks: Tagesreihe fuer 'donchian_period=16|max_concurrent_positions=18|stop_mode=2.019' fehlt (/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpq19vy168/turtle_soup_stocks/tagesreihen/
+     turtle_soup_stocks: 1 Rasterzelle(n) fehlen in den Rohergebnissen, z. B. donchian_period=11|max_concurrent_positions=18|stop_mode=1.111
+## test_paths_C
+35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+## test_startpruefungen_C
+44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+## test_ersatzwerte
+61/61 Pruefungen bestanden. (69 s; 55 nach Block B + 6 Teil G)

@@ -1,0 +1,10 @@
+# TB-111 0a, 2026-09-26 07:07:57 +0200
+pwd: /Users/jaquelineloffler/trading-bot-tb111
+Zweig: tb-111
+HEAD: f4d6d6d701b179f0ebf7befcc12f2b5f40a20b18
+status --porcelain (leer = sauber): [?? docs/belege/TB-111/]
+main im Hauptordner: 6a7996a4592906b048953f2b56621f386e6d4556
+Worktrees:
+/Users/jaquelineloffler/trading-bot        6a7996a [main]
+/Users/jaquelineloffler/trading-bot-tb111  f4d6d6d [tb-111]
+Anmerkung: die erste Messung um ca. 07:05 (vor dem Anlegen von docs/belege/TB-111/) war leer; der eine Eintrag oben ist der Belegordner dieser Sitzung selbst.

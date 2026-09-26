@@ -1,0 +1,6 @@
+# TB-111 C-Proben, HEAD 6cacfa4, auswertung.py 83c6bc3c9b683d0b, 2026-09-26 07:31:01 +0200
+leer: rc 1 | stderr (197 B, sha 359744a7762abe4c): elliott_wave: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/ecc21dc4-0f59-48b0-8b6c-97b6c632932b/scratchpad/c_vorher/leer/elliott_wave/zellen.csv fehlt - der Lauf ist unvollsta
+spalte: rc 1 | stderr (72 B, sha ec14ab76768e5d07): turtle_soup_stocks: Spalten fehlen in zellen.csv: ['mittlere_exposure']
+zelle: rc 1 | stderr (96 B, sha 2c5c4935e14bf152): turtle_soup_stocks: 1 Zelle(n) in den Rohergebnissen liegen nicht im Raster, z. B. ausserhalb=1
+tage: rc 1 | stderr (184 B, sha fca0a0d5695dca3e): turtle_soup_stocks/donchian_period=16|max_concurrent_positions=18|stop_mode=2.019: weniger als drei gemeinsame Tage mit der Benchmark - die Beta-Bereinigung ist so nicht entscheidbar.
+basis: rc 0 | stderr (0 B, sha e3b0c44298fc1c14): 
