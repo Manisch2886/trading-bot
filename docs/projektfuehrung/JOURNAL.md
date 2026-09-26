@@ -9344,6 +9344,40 @@ Belege `docs/belege/TB-114/`. Freigabe 26.09.2026, ca. 16:30 (Auswahlkarte).
 
 ---
 
+## DN — TB-115: drei Verfahrensmessungen vor dem Tag, nur lesend — M1 geschlossene Kerze 9 × 2 ja (⚠️ Teilkerze `XAUTUSDT_1h.csv` im Snapshot, ungelesen); M2 Aktienreihen split- und dividendenbereinigt, keine Bot-Regel mit Preisniveau, ⚠️ Stufe 3 der Zuteilungskaskade vergleicht Dollar-Volumen; M3 Sonde deckt von der Kette nur `auswertung.py`, ⚠️ `herkunft.json` wird nicht gelesen (26.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-115_drei_verfahrensmessungen.md`*
+
+**Quelle:** Mac-Sitzung **TB-115** (Hauptordner, nur lesend), 26.09.2026, Eingang `90307cb`. Commits `da64869`
+(Schritt 0) und der Abgabe-Commit. Belege `docs/belege/TB-115/`. Freigabe 26.09.2026, ca. 16:20 und 18:40
+(Auswahlkarten). Ein Wegwerflauf im frischen Klon (Scratchpad); Sichtschutz 27.1 eingehalten.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | Auftrag, Zeiger, AF-F0, Fable-Anfrage 26a committet (md5 ✔), sonst nichts uncommittet. 0b vorher = nachher: `register()` `5acb4c19…`, Sonde gegen `5e5ad109…` 34/0/0 (rc 2), Arbeitsbaum ausserhalb `docs/` leer |
+| ⭐⭐ **M1** | Papier 9/9 über `entscheidungskerze.lade` (je 1 Aufruf, 0 Abrufe vorbei, 0 fremde Quellen; jede `iloc[-1]`-Entscheidung auf der gefilterten Tabelle); `test_entscheidungskerze.py` im Klon 130/130. Selektion 9/9: Lader ohne eigenen Filter, aber jede gelesene letzte Kerze ist abgeschlossen (Zeitstempel; ein gemeinsamer Stand 15.09. 09:00–09:59 UTC für 72 Krypto-Dateien; Aktien > 8 h nach Börsenschluss geschrieben). ⚠️ `XAUTUSDT_1h.csv` endet auf einer Teilkerze (21 min vor Schluss geschrieben), im Datenstand `d9449faf…`, von vier Ausschlusslisten ungelesen. Randbefund: Elliott-Frische an der Wanduhr |
+| ⭐⭐ **M2** | 150 Aktien = `sp500_top150.txt`; yfinance `period="max", auto_adjust=True`, `actions`/`back_adjust` nicht gesetzt; Dateien **älter als das Repo** (02.09. 04:20 UTC, `0f6491b` 21:12 UTC), Abrufcode also unversioniert, yfinance-Fassung unbekannt. Kein `Adj Close`; Splits 8/8 bereinigt; Dividenden bereinigt (letzter Schnitt je Zahler Juni–August 2026, über die float32-Zweistelligkeit gemessen). Keine Bot-Regel mit absolutem Preis (P1 = 0). ⚠️ `zuteilung.py` Stufe 3 reiht nach `close * volume` über Symbole — dividendenbereinigt verzerrt; bei drei Aktien-Bots ohne Signalspalte entscheidet sie bei leerem Buch. Randbefund Papier: abgelegte absolute Stopps gegen neu bereinigte Reihen |
+| ⭐⭐ **M3** | Sonde: 14 Punkte (11 Pfade) + 19 eingefrorene, Hash gegen Abbild. Gebunden ist nur Glied 4 (`auswertung.py` und seine Tabellen). Snapshot nur über die Startprüfung, die den Hash **aus dem MANIFEST liest**; Punkt 8 bindet die Repo- statt der Snapshot-`config/`; Erzeuger fehlt; `zellen.csv`/Bericht ohne festen Pfad. ⚠️ `auswertung.py` nennt `herkunft.json` im Vertrag und liest es nirgends |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Wache, die nur dort prüft, wo ein Zeuge liegt, lässt die Dateien ohne Zeugen unbewacht — und das sind meist die meisten.** Hier 175 von 223. Wer „frei von Teilkerzen" sagt, nennt, für welche Dateien das gemessen und für welche es nur geschrieben ist |
+| ⭐ | **Ein Hash, der aus einem Manifest gelesen wird, belegt das Manifest, nicht die Dateien.** Die Frage an jede Startprüfung: rechnet sie nach oder liest sie ab? |
+| ⭐ | **„Relativ" gilt je Regel, nicht je Programm.** Alle Bot-Regeln waren relativ; das eine Niveau in Währung lag in der gemeinsamen Zuteilung, die niemand als Bot-Code liest |
+
+### Was offen bleibt
+
+- Neun Fragen an Fable (Ergebnis Abschnitt 5): F1-1 bis F1-3, F2-1 bis F2-3, F3-1 bis F3-3.
+- 45.11 (Vollzug TB-114) nach Fables Antwort; Erzeuger, TB-101.
+
+*Geschrieben 26.09.2026 von der Mac-Sitzung TB-115. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

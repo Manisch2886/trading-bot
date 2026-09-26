@@ -1,0 +1,42 @@
+# TB-115 M1: shared/test_entscheidungskerze.py im Wegwerfklon /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/508eacbe-6c00-4b31-a887-084c4b576076/scratchpad/klon115 (git clone --no-hardlinks, HEAD da64869), trading-env/bin/python3 (3.9.6), 2026-09-26 20:00 +0200
+[entscheidungskerze] Der Versand ist gescheitert (RuntimeError: Netz weg). Die Meldung gilt als NICHT zugestellt und wird beim naechsten Lauf erneut versucht.
+[waechter_melden] Zustandsdatei /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tmpscaeszg1/nicht/\0/geht nicht lesbar (embedded null byte) - es wird mit leerem Zustand weitergemacht. Ein bestehender Befund wird deshalb einmal erneut gemeldet.
+[entscheidungskerze] Der Meldeteil ist gescheitert (ValueError: embedded null byte). Der Lauf selbst ist davon unberuehrt; die Rueckfaelle stehen oben im Protokoll.
+[entscheidungskerze] notifications/waechter_melden.py liess sich nicht einbinden - es wird ohne Wiederholungsdaempfung gemeldet.
+[entscheidungskerze] notifications/waechter_melden.py liess sich nicht einbinden - es wird ohne Wiederholungsdaempfung gemeldet.
+==============================================================================
+Selbsttests shared/entscheidungskerze.py (TB-38)
+==============================================================================
+
+--- 1  Die Regel, alle drei Intervalle, Krypto --------------------------------
+
+--- 2  Die Regel, Aktien (Tageskerzen, Sitzungsschluss) -----------------------
+
+--- 3  Die Grenze: close_time GENAU auf der Startzeit -------------------------
+
+--- 4  Gegen den ECHTEN Boersenkalender (wenn vorhanden) ----------------------
+
+--- 5  Erwartung und Maske sind derselbe Zeitpunkt ----------------------------
+
+--- 6  Der Rueckfall auf den Live-Abruf ---------------------------------------
+
+--- 7  Die Meldung: genau einmal je Lauf, gedaempft, nie fatal ----------------
+
+--- 8  strategies/t3_supertrend/forward_test.py, wirklich gestartet -----------
+
+--- 9  strategies/turtle_soup_crypto/forward_test.py, wirklich gestartet ------
+
+--- 10 strategies/turtle_soup_stocks/forward_test.py, wirklich gestartet ------
+
+--- 11 Backtest und Forward-Test waehlen dieselbe Kerze -----------------------
+
+--- 12 Mutationsproben: was faellt aus, wenn die Wache fehlt? -----------------
+
+--- 13 Alle neun forward_test.py gehen durch die Schicht ----------------------
+
+--- 14 Was unberuehrt bleiben musste ------------------------------------------
+
+==============================================================================
+Alle 130 Pruefungen bestanden.
+rc 0
+# Hinweis TB-115: ein NUL-Byte der Testausgabe (Mutationsprobe mit ungueltigem Pfad) ist hier als \0 geschrieben.

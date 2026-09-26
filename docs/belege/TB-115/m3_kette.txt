@@ -1,0 +1,69 @@
+# TB-115 M3 - Kette Erzeuger -> Auswertung gegen die Bindungen
+Abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb114.json sha256 5e5ad1097909...: 14 Punkte, 11 verschiedene Pfade; eingefroren 19; bestimmt 0
+herkunft.EINGEFROREN heute: 19; gleich Abbild: True; ARBEITSBAUM_PFADE: 15 Eintraege
+
+Spalten: S=Sperrliste-Punkt(e)  A=Abbild eingefroren  E=EINGEFROREN heute  W=ARBEITSBAUM_PFADE  G=versioniert
+
+## 1 Snapshot
+  -      -  -  -  G   snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json
+  -      -  -  -  G   snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/AAPL_1d.csv
+  -      -  -  -  G   snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/BTCUSDT_4h.csv
+  -      -  -  -  G   snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+  -      -  -  -  G   snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+  8      -  -  -  G   config/top25_symbols.txt
+  8      -  -  -  G   config/sp500_top150.txt
+  -      -  -  W  G   shared/snapshot.py
+  11,12  -  -  -  G   research/vorregistrierung/herkunft.py
+
+## 2 Erzeuger (nicht gebaut)
+  -      -  -  W  G   strategies/volatility_breakout/equity_simulation.py
+  -      -  -  W  G   strategies/volatility_breakout/multi_symbol_optimise.py
+  -      -  -  W  G   strategies/volatility_breakout/backtest_breakout.py
+  -      -  -  W  G   shared/paths.py
+  10     -  -  W  G   shared/zuteilung.py
+  2      A  E  W  G   research/vorregistrierung/faltenplan.py
+  2      A  E  -  G   research/vorregistrierung/ergebnisse/faltenplan.json
+  1      A  E  W  G   research/vorregistrierung/registerdaten.py
+
+## 3 zellen.csv (+ tagesreihen, herkunft.json, benchmark_tagesreihen)
+  -      -  -  -  -   <rohergebnisse>/<bot>/zellen.csv  (kein fester Pfad)
+  -      -  -  -  -   <rohergebnisse>/<bot>/herkunft.json  (kein fester Pfad)
+  -      -  -  -  G   research/vorregistrierung/beispieldaten.py
+
+## 4 auswertung.py (+ Importe und gelesene Tabellen)
+  3,5,14 A  E  W  G   research/vorregistrierung/auswertung.py
+  -      A  E  W  G   research/vorregistrierung/kennzahlen.py
+  4,6    A  E  W  G   research/vorregistrierung/benchmark.py
+  2      A  E  W  G   research/vorregistrierung/faltenplan.py
+  1      A  E  W  G   research/vorregistrierung/registerdaten.py
+  -      A  E  -  G   research/vorregistrierung/messgroessen.py
+  -      A  E  -  G   research/vorregistrierung/ergebnisse/messgroessen.json
+  4      -  -  -  G   research/vorregistrierung/ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json
+  -      -  -  W  G   shared/paths.py
+
+## 5 Bericht
+  -      -  -  -  -   <stdout von auswertung.py>  (kein fester Pfad)
+  -      -  -  -  -   <--json PFAD>  (kein fester Pfad)
+  -      -  -  -  G   research/vorregistrierung/registerbericht.py
+
+## Snapshot-config gegen Repo-config (Sperrlistenpunkt 8 nennt die Repo-Dateien; unter dem Modus liest der Lauf die Snapshot-Kopien)
+  top25_symbols.txt: Repo 3afc95a4f6b5  Snapshot 3afc95a4f6b5  gleich True
+  sp500_top150.txt: Repo 6acba892f38e  Snapshot 6acba892f38e  gleich True
+
+## T1 - rechnet die Startpruefung den Snapshot nach?
+  paths._modus_aus_umgebung ruft: ['Selektionsfehler', '_lies_snapshot_hash', 'abspath', 'get', 'strip']
+  paths._lies_snapshot_hash ruft: ['Selektionsfehler', '_lies_manifest', 'isinstance']
+  paths._lies_manifest ruft: ['Selektionsfehler', 'exists', 'isdir', 'join', 'load', 'open']
+  (kein sha256/hashlib/snapshot_hash/quersumme darunter = der Hash wird aus dem Manifest GELESEN, nicht aus den Dateien gerechnet)
+
+## T2 - liest auswertung.py herkunft.json?
+  Zeilen mit 'herkunft': [51, 52]; im Modul-Docstring (Z. 2-79): True; String-Konstanten ausserhalb des Docstrings: []; Namen/Attribute 'herkunft': []
+
+## Snapshot selbst: shared/snapshot.py --pruefen (liest nur)
+  |   snapshot_hash    Soll 63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+  |                    Ist  63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+  |   datenstand_hash  Soll d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Kursdateien)
+  |                    Ist  d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Kursdateien)
+  | 
+  |   UNVERAENDERT
+  rc 0

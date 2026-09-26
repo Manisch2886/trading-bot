@@ -1,0 +1,67 @@
+# TB-115 M2 (c) - absolute Preisniveaus in den vier Aktien-Bots
+
+## elliott_wave_stocks: 7 Module
+  strategies/elliott_wave_stocks/backtest_elliott.py
+    Z. 132 P3  entry_idx = int(wave["entry_idx"])
+    Z. 144 P2  stop_price = entry_price * (1 - STOP_LOSS_PCT / 100)
+    Z. 144 P4  stop_price = entry_price * (1 - STOP_LOSS_PCT / 100)
+    Z. 155 P4  pnl_pct = (outcome["exit_price"] - entry_price) / entry_price * 100
+    Z. 157 P4  pnl_pct = (entry_price - outcome["exit_price"]) / entry_price * 100
+  strategies/elliott_wave_stocks/forward_test.py
+    Z. 135 P5  if row["low"] <= trade["stop_price"]:
+    Z. 140 P5  if USE_TAKE_PROFIT and row["high"] >= trade["target_price"]:
+    Z. 150 P4  pnl_pct = (exit_price - trade["entry_price"]) / trade["entry_price"] * 100
+    Z. 213 P2  stop_price = entry_price * (1 - STOP_LOSS_PCT / 100)
+    Z. 213 P4  stop_price = entry_price * (1 - STOP_LOSS_PCT / 100)
+    Z. 244 P4  win_rate = (closed_trades["pnl_pct"] > 0).mean() * 100
+  strategies/elliott_wave_stocks/zigzag_indicator.py
+    Z.  68 P4  move_up_pct = (highs[i] - last_pivot_price) / last_pivot_price * 100
+    Z.  69 P4  move_down_pct = (last_pivot_price - lows[i]) / last_pivot_price * 100
+    Z.  88 P4  elif (last_pivot_price - lows[i]) / last_pivot_price * 100 >= deviation_pct:
+    Z.  98 P4  elif (highs[i] - last_pivot_price) / last_pivot_price * 100 >= deviation_pct:
+    Z. 164 P4  move_up_pct = (highs[i] - last_pivot_price) / last_pivot_price * 100
+    Z. 165 P4  move_down_pct = (last_pivot_price - lows[i]) / last_pivot_price * 100
+    Z. 182 P4  elif (last_pivot_price - lows[i]) / last_pivot_price * 100 >= deviation_pct:
+    Z. 195 P4  elif (highs[i] - last_pivot_price) / last_pivot_price * 100 >= deviation_pct:
+
+## rsi2_mean_reversion: 6 Module
+  strategies/rsi2_mean_reversion/backtest_rsi2.py
+    Z. 124 P3  start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+    Z. 140 P2  stop_price = entry_price * (1 - stop_loss_pct / 100) if stop_loss_pct is not None else None
+    Z. 140 P4  stop_price = entry_price * (1 - stop_loss_pct / 100) if stop_loss_pct is not None else None
+    Z. 160 P4  pnl_pct = (exit_price - entry_price) / entry_price * 100
+    Z. 167 P3  "holding_days": holding_days, "rsi_at_entry": round(float(entry_rsi), 2),
+    Z. 170 P2  i = exit_idx + 1  # kein Pyramiding - naechster Scan erst nach dem Ausstieg dieser Position
+  strategies/rsi2_mean_reversion/forward_test.py
+    Z. 156 P4  pnl_pct = (exit_price - trade["entry_price"]) / trade["entry_price"] * 100
+    Z. 204 P2  stop_price = entry_price * (1 - STOP_LOSS_PCT / 100) if STOP_LOSS_PCT is not None else None
+    Z. 204 P4  stop_price = entry_price * (1 - STOP_LOSS_PCT / 100) if STOP_LOSS_PCT is not None else None
+    Z. 236 P4  win_rate = (closed_trades["pnl_pct"] > 0).mean() * 100
+
+## turtle_soup_stocks: 6 Module
+  strategies/turtle_soup_stocks/backtest_turtle_soup.py
+    Z. 122 P3  start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+    Z. 147 P2  stop_price = entry_price * (1 - stop_mode / 100)
+    Z. 147 P4  stop_price = entry_price * (1 - stop_mode / 100)
+    Z. 164 P4  pnl_pct = (exit_price - entry_price) / entry_price * 100
+    Z. 174 P2  i = exit_idx + 1
+  strategies/turtle_soup_stocks/forward_test.py
+    Z. 143 P4  pnl_pct = (exit_price - trade["entry_price"]) / trade["entry_price"] * 100
+    Z. 201 P2  stop_price = entry_price * (1 - STOP_MODE / 100)
+    Z. 201 P4  stop_price = entry_price * (1 - STOP_MODE / 100)
+    Z. 232 P4  win_rate = (closed_trades["pnl_pct"] > 0).mean() * 100
+
+## volatility_breakout: 6 Module
+  strategies/volatility_breakout/backtest_breakout.py
+    Z. 157 P3  start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+    Z. 180 P2  stop_price = entry_price * (1 - stop_loss_pct / 100) if stop_loss_pct is not None else None
+    Z. 180 P4  stop_price = entry_price * (1 - stop_loss_pct / 100) if stop_loss_pct is not None else None
+    Z. 197 P4  pnl_pct = (exit_price - entry_price) / entry_price * 100
+    Z. 207 P2  i = exit_idx + 1  # kein Pyramiding
+  strategies/volatility_breakout/forward_test.py
+    Z. 144 P4  pnl_pct = (exit_price - trade["entry_price"]) / trade["entry_price"] * 100
+    Z. 199 P2  stop_price = entry_price * (1 - STOP_LOSS_PCT / 100) if STOP_LOSS_PCT is not None else None
+    Z. 199 P4  stop_price = entry_price * (1 - STOP_LOSS_PCT / 100) if STOP_LOSS_PCT is not None else None
+    Z. 230 P4  win_rate = (closed_trades["pnl_pct"] > 0).mean() * 100
+
+Fundstellen gesamt: 47

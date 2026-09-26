@@ -1,0 +1,35 @@
+# TB-115 B2 - shared/zuteilung.py, sha256 68a812a0567dec8b...
+## Stufen und Dollar-Volumen (Fundstellen)
+41:     die letzten 60 Handelstage. **Niedriger zuerst.** Bei leerem Buch
+43:  3. **Liquiditaet** - Median des Dollar-Volumens der letzten 20 Handelstage.
+176:# Stufe 2: Laenge des Korrelationsfensters in HANDELSTAGEN (nicht
+180:# Stufe 2: so viele gemeinsame Beobachtungen muss ein Kandidat mit dem Buch
+187:# Stufe 3: Fenster des Medians des Dollar-Volumens, in Handelstagen.
+190:# Stufe 3: Mindestzahl vorhandener Volumentage. Ein Median aus zwei Werten
+273:            umsatz = (close * menge).groupby(tag).sum(min_count=1)
+549:        # Stufe 1 - strategieeigene Signalstaerke
+557:        # Stufe 2 - Diversifikationsbeitrag
+558:        if len(gruppe) > 1 and buch and self.vorrat:
+568:        # Stufe 3 - Liquiditaet
+576:        # Stufe 4 - seeded Zufall
+## SIGNALSPALTE der vier Aktien-Bots (None = Stufe 1 entfaellt)
+strategies/elliott_wave_stocks/equity_simulation.py:132:SIGNALSPALTE = None
+strategies/rsi2_mean_reversion/equity_simulation.py:128:SIGNALSPALTE = ("rsi_at_entry", AUFSTEIGEND)
+strategies/turtle_soup_stocks/equity_simulation.py:119:SIGNALSPALTE = None
+strategies/volatility_breakout/equity_simulation.py:113:SIGNALSPALTE = None
+## Volumen an Split-Tagen im Snapshot (open_time, close, volume) - split-bereinigt, wenn ohne Sprung um den Faktor
+  AAPL:
+    2020-08-27,121.15190887451172,155552400
+    2020-08-28,120.95567321777344,187630000
+    2020-08-31,125.05752563476562,225702700
+    2020-09-01,130.03887939453125,151948100
+  TSLA:
+    2022-08-23,296.4533386230469,63984900
+    2022-08-24,297.0966796875,57259800
+    2022-08-25,296.07000732421875,53230000
+    2022-08-26,288.0899963378906,57163900
+  NVDA:
+    2024-06-06,120.78897094726562,664696000
+    2024-06-07,120.67916107177734,412386000
+    2024-06-10,121.57960510253906,313434100
+    2024-06-11,120.71104431152344,222551200

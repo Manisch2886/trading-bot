@@ -1,0 +1,82 @@
+# TB-115 M1 Papierpfad - 9 forward_test.py, ast-Suche
+
+## elliott_wave  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 3)
+  Z. 150  (M-f) Wanduhr .utcnow()                    find_new_signals     now = pd.Timestamp.utcnow().tz_localize(None)
+  Z. 175  (4) M-a .iloc[negativ]                     find_new_signals     entry_price = latest_price_row.iloc[-1]["close"]
+  Z. 176  (4) M-a .iloc[negativ]                     find_new_signals     entry_reference_time = latest_price_row.iloc[-1]["open_time"]
+  Z. 214  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 218  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}\n")
+  Z. 236  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 238  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(symbol, INTERVAL, LOOKBACK))
+  Z. 257  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()
+
+## elliott_wave_stocks  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 3)
+  Z. 166  (M-f) Wanduhr .utcnow()                    find_new_signals     now = pd.Timestamp.utcnow().tz_localize(None)
+  Z. 208  (4) M-a .iloc[negativ]                     find_new_signals     entry_price = latest_price_row.iloc[-1]["close"]
+  Z. 209  (4) M-a .iloc[negativ]                     find_new_signals     entry_reference_time = latest_price_row.iloc[-1]["open_time"]
+  Z. 248  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 252  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}")
+  Z. 271  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 273  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(
+  Z. 293  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()
+
+## rsi2_crypto  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 2)
+  Z. 174  (4) M-a .iloc[negativ]                     find_new_signals     row = df.iloc[-1]
+  Z. 229  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 233  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}")
+  Z. 245  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 247  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(symbol, INTERVAL, LOOKBACK))
+  Z. 265  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()
+
+## rsi2_mean_reversion  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 2)
+  Z. 185  (4) M-a .iloc[negativ]                     find_new_signals     row = df.iloc[-1]
+  Z. 240  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 244  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}")
+  Z. 256  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 258  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(
+  Z. 277  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()
+
+## t3_supertrend  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 4)
+  Z. 146  (4) M-a .iloc[negativ]                     find_new_signals     row = df.iloc[-1]
+  Z. 147  (4) M-a .iloc[negativ]                     find_new_signals     prev = df.iloc[-2]
+  Z. 196  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 200  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}\n")
+  Z. 209  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 211  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(symbol, INTERVAL, LOOKBACK))
+  Z. 225  (4) M-a .iloc[negativ]                     <modul>              btc_regime_bullish = indicator_data["BTCUSDT"]["supertrend_dir"].iloc[-1] == 1
+  Z. 237  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()
+
+## turtle_soup_crypto  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 2)
+  Z. 171  (4) M-a .iloc[negativ]                     find_new_signals     row = df.iloc[-1]
+  Z. 234  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 238  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}")
+  Z. 250  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 252  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(symbol, INTERVAL, LOOKBACK))
+  Z. 270  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()
+
+## turtle_soup_stocks  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 2)
+  Z. 173  (4) M-a .iloc[negativ]                     find_new_signals     row = df.iloc[-1]
+  Z. 236  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 240  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}")
+  Z. 252  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 254  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(
+  Z. 273  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()
+
+## volatility_breakout  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 3)
+  Z. 177  (4) M-a .iloc[negativ]                     find_new_signals     row = df.iloc[-1]
+  Z. 178  (4) M-a .iloc[negativ]                     find_new_signals     prev = df.iloc[-2]
+  Z. 234  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 238  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}")
+  Z. 249  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 251  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(
+  Z. 270  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()
+
+## volatility_breakout_crypto  (lade 1, melde 1, Abruf an der Schicht vorbei 0, andere Datenquelle 0, Letzte-Zeile-Zugriffe 4)
+  Z. 184  (4) M-a .iloc[negativ]                     find_new_signals     row = df.iloc[-1]
+  Z. 185  (4) M-a .iloc[negativ]                     find_new_signals     prev = df.iloc[-2]
+  Z. 241  (4) M-b .tail()                            print_summary        print(closed_trades.tail(5)[["symbol", "entry_time", "exit_time", "result", "pnl_pct"]].to_stri
+  Z. 245  (M-f) Wanduhr .utcnow()                    <modul>              print(f"Forward-Test-Lauf: {datetime.utcnow().isoformat()}")
+  Z. 258  (1) entscheidungskerze.lade                <modul>              df = entscheidungskerze.lade(
+  Z. 260  (2) fetch_historical_data im Lambda (abruf=) <modul>              abruf=lambda: fetch_historical_data(symbol, INTERVAL, LOOKBACK))
+  Z. 276  (4) M-a .iloc[negativ]                     <modul>              btc_regime_bullish = btc_regime["btc_regime"].iloc[-1] == 1
+  Z. 288  (1) entscheidungskerze.melde               <modul>              entscheidungskerze.melde()

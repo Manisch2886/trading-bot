@@ -1,0 +1,30 @@
+# TB-115 M2 (a)/(b) - Aktienreihen im Snapshot
+(a) *_1d.csv: 174, davon Krypto 24, Aktien 150; config/sp500_top150.txt: 150 Zeilen; Menge gleich: True
+(b1) Spaltenkoepfe der 150 Aktiendateien: {'open_time,open,high,low,close,volume': 150}
+     'Adj Close' vorhanden: False
+(b2) Split-Stichprobe (Schluss am Vortag / am Split-Tag):
+     AAPL    4:1  2020-08-28   120.955673  ->  2020-08-31   125.057526   Quotient 1.0339  (unbereinigt erwartet ~0.2500)  BEREINIGT
+     NVDA   10:1  2024-06-07   120.679161  ->  2024-06-10   121.579605   Quotient 1.0075  (unbereinigt erwartet ~0.1000)  BEREINIGT
+     TSLA    3:1  2022-08-24   297.096680  ->  2022-08-25   296.070007   Quotient 0.9965  (unbereinigt erwartet ~0.3333)  BEREINIGT
+     AMZN   20:1  2022-06-03   122.349998  ->  2022-06-06   124.790001   Quotient 1.0199  (unbereinigt erwartet ~0.0500)  BEREINIGT
+     GOOGL  20:1  2022-07-15   110.795044  ->  2022-07-18   108.071709   Quotient 0.9754  (unbereinigt erwartet ~0.0500)  BEREINIGT
+     WMT     3:1  2024-02-23    56.916161  ->  2024-02-26    57.966549   Quotient 1.0185  (unbereinigt erwartet ~0.3333)  BEREINIGT
+     AVGO   10:1  2024-07-12   166.927643  ->  2024-07-15   168.255646   Quotient 1.0080  (unbereinigt erwartet ~0.1000)  BEREINIGT
+     BRK-B  50:1  2010-01-20    69.519997  ->  2010-01-21    72.720001   Quotient 1.0460  (unbereinigt erwartet ~0.0200)  BEREINIGT
+(b3) letzte unsaubere Zeile je Datei (= letzter Bereinigungsschnitt):
+     Dateien mit mindestens einer unsauberen Zeile: 149; ohne: 1 ['UBER']
+     nach dem Schnitt 100 % sauber: 149 von 149
+     vor dem Schnitt sauber: 19826 von 1371194 Zeilen (1.45 %)
+     Monat der letzten unsauberen Zeile (Anzahl Dateien): {'1998-05': 1, '2001-01': 2, '2001-04': 1, '2005-05': 1, '2020-02': 1, '2021-09': 1, '2022-06': 2, '2022-08': 1, '2024-08': 1, '2024-12': 2, '2025-09': 1, '2025-11': 1, '2025-12': 2, '2026-04': 2, '2026-05': 2, '2026-06': 50, '2026-07': 31, '2026-08': 46, '2026-09': 1}
+       AAPL   letzte unsaubere Zeile 2026-08-06
+       NVDA   letzte unsaubere Zeile 2026-06-02
+       TSLA   letzte unsaubere Zeile 2022-08-24
+       AMZN   letzte unsaubere Zeile 2022-06-02
+       GOOGL  letzte unsaubere Zeile 2026-06-04
+       WMT    letzte unsaubere Zeile 2026-08-20
+       AVGO   letzte unsaubere Zeile 2026-06-17
+       BRK-B  letzte unsaubere Zeile 1998-05-06
+       BRK-B  letzte unsaubere Zeile 1998-05-06
+       MSFT   letzte unsaubere Zeile 2026-08-18
+       JPM    letzte unsaubere Zeile 2026-07-01
+       KO     letzte unsaubere Zeile 2026-06-11

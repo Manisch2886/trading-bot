@@ -1,0 +1,23 @@
+# TB-115 M1 Selektion - letzte Kerze je Snapshot-Kursdatei
+Snapshot 63e4b6c8bb71dc37..., gezogen 2026-09-19T06:49:32+00:00, Kursdateien laut Manifest 223, gezaehlt 223
+
+## Spaltenkoepfe (Anzahl Dateien je Kopfzeile)
+   223  open_time,open,high,low,close,volume
+
+## je Markt und Intervall
+  aktien 1d: 150 Dateien; letzte Kerze (open_time): {'2026-09-01 00:00:00': 150}
+         mtime (UTC) 2026-09-02 04:20:40 .. 2026-09-02 04:22:43; mtime gleich data/: 150/150; kleinster Abstand mtime - Schluss der letzten Kerze: 4:20:40.823904
+  krypto 1d:  24 Dateien; letzte Kerze (open_time): {'2026-09-14 00:00:00': 24}
+         mtime (UTC) 2026-09-15 10:19:16 .. 2026-09-15 10:30:04; mtime gleich data/: 24/24; kleinster Abstand mtime - Schluss der letzten Kerze: 10:19:16.700244
+  krypto 1h:  25 Dateien; letzte Kerze (open_time): {'2026-09-15 08:00:00': 24, '2026-08-30 18:00:00': 1}
+         mtime (UTC) 2026-08-30 18:39:01 .. 2026-09-15 10:29:50; mtime gleich data/: 25/25; kleinster Abstand mtime - Schluss der letzten Kerze: -1 day, 23:39:01.508231
+  krypto 4h:  24 Dateien; letzte Kerze (open_time): {'2026-09-15 04:00:00': 24}
+         mtime (UTC) 2026-09-15 10:19:14 .. 2026-09-15 10:30:00; mtime gleich data/: 24/24; kleinster Abstand mtime - Schluss der letzten Kerze: 2:19:14.698495
+
+## gemeinsamer Stand, alle Krypto-Dateien: [2026-09-15 09:00:00 , 2026-08-30 19:59:59.999000] UTC -> NICHT vertraeglich
+
+## gemeinsamer Stand, ohne die Dateien mit SICHER TEILKERZE: [2026-09-15 09:00:00 , 2026-09-15 09:59:59.999000] UTC -> vertraeglich
+
+## SICHER TEILKERZE (Schluss der letzten Kerze >= mtime): 1 ['XAUTUSDT_1h.csv']
+   XAUTUSDT_1h.csv: letzte Kerze 2026-08-30 18:00:00, Schluss 2026-08-30 18:59:59.999000, geschrieben (mtime) 2026-08-30 18:39:01.507231 - 0:20:58.491769 VOR dem Kerzenschluss
+## Snapshot-Zeitpunkt minus spaetester Schluss: 3 days, 21:49:32.001000
