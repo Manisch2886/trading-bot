@@ -1,0 +1,65 @@
+TB-113 0c — Vorbedingungen, 2026-09-26 14:37:14 CEST
+
+$ git --no-optional-locks worktree list
+/Users/jaquelineloffler/trading-bot        656f04b [main]
+/Users/jaquelineloffler/trading-bot-tb111  49f0868 [tb-111]
+
+$ Index des Worktrees
+2026-09-26 08:26:20 .git/worktrees/trading-bot-tb111/index
+Commitzeit 49f0868: 2026-09-26 08:26:20 +0200
+HEAD im Worktree: ref: refs/heads/tb-111
+Zweig tb-111: 49f086853532bb4695574ff36bb0436e14f7ef5d  origin/tb-111: 49f086853532bb4695574ff36bb0436e14f7ef5d
+
+$ git --no-optional-locks -C ../trading-bot-tb111 status --short (Anzahl)
+       0
+
+$ Prozesse mit cwd im Worktree
+(Ende lsof)
+
+$ git merge-tree --write-tree main tb-111
+e44e1abfbcf7575f2b4a4e7aa433c25e68371e09
+rc 0
+
+merge-base: f4d6d6d701b179f0ebf7befcc12f2b5f40a20b18
+
+$ Schnittmenge git diff --name-only f4d6d6d..main  gegen  f4d6d6d..tb-111
+main:      132 Dateien, tb-111:       32 Dateien
+Schnittmenge:        0
+
+$ sperrliste_abbild_2026-09-26.json auf main / tb-111
+main:   0
+tb-111: research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json
+
+Dateien tb-111:
+docs/belege/TB-111/0_hashes_vorher.txt
+docs/belege/TB-111/0_schritt0.txt
+docs/belege/TB-111/0_sonde_vorher.txt
+docs/belege/TB-111/5_alle_nachher.txt
+docs/belege/TB-111/5_alle_vorher.txt
+docs/belege/TB-111/a_vormessung.sh
+docs/belege/TB-111/a_vormessung.txt
+docs/belege/TB-111/b_tests.txt
+docs/belege/TB-111/b4_proben_einzeln.py
+docs/belege/TB-111/b4_proben_einzeln.txt
+docs/belege/TB-111/c_nochmal.sh
+docs/belege/TB-111/c_proben_nachher.txt
+docs/belege/TB-111/c_proben_vorher.txt
+docs/belege/TB-111/c_proben.sh
+docs/belege/TB-111/c_tests.txt
+docs/belege/TB-111/c4_auswertung_beispieldaten.txt
+docs/belege/TB-111/d1_abbild.txt
+docs/belege/TB-111/d2_sonde_alt.txt
+docs/belege/TB-111/d2_sonde_neu.txt
+docs/belege/TB-111/d3_hashes_register.txt
+docs/belege/TB-111/e1_e3_laeufe.sh
+docs/belege/TB-111/e1_e3_laeufe.txt
+docs/belege/TB-111/e2_ausgaben.txt
+docs/belege/TB-111/e2_ut_vergleich.py
+docs/belege/TB-111/e4_tests.txt
+docs/belege/TB-111/e5_hashes_nachher.txt
+docs/belege/TB-111/hashes.sh
+docs/ERGEBNIS_TB-111_herkunft_auswertung_oeffnung.md
+research/vorregistrierung/auswertung.py
+research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json
+research/vorregistrierung/herkunft.py
+research/vorregistrierung/test_ersatzwerte.py

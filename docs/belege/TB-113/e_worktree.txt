@@ -1,0 +1,16 @@
+TB-113 E - Worktree entfernen, 2026-09-26 15:38:58 +0200, main = e710bf9, origin/main = e710bf9
+$ git --no-optional-locks -C ../trading-bot-tb111 status --porcelain --ignored (vorher)
+(Ende)
+$ git worktree remove ../trading-bot-tb111
+rc 0
+$ git worktree list
+/Users/jaquelineloffler/trading-bot  e710bf9 [main]
+$ ls -d ../trading-bot-tb111
+ls: ../trading-bot-tb111: No such file or directory
+$ Zweig tb-111 lokal / origin
+fatal: Needed a single revision
+49f086853532bb4695574ff36bb0436e14f7ef5d	refs/heads/tb-111
+$ git rev-parse tb-111; git rev-parse origin/tb-111  (Nachmessung; --short mit zwei Namen oben war ein Bedienfehler)
+49f086853532bb4695574ff36bb0436e14f7ef5d
+49f086853532bb4695574ff36bb0436e14f7ef5d
+  tb-111

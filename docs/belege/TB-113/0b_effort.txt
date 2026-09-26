@@ -1,0 +1,18 @@
+TB-113 0b — Beleg, dass der Schalter --effort greift
+gemessen: 2026-09-26 14:37:05 CEST
+
+$ claude --version
+2.1.283 (Claude Code)
+
+$ claude --help | grep -c -- '--effort'
+1
+$ claude --help | grep -- '--effort'
+  --effort <level>                      Effort level for the current session
+
+$ ps -o pid,args -p <Elternprozess der Bash dieser Sitzung>
+  PID ARGS
+32089 claude --effort high --remote-control
+
+Kopfzeile / /status: aus der Sitzung heraus nicht lesbar (Slash-Befehle kann das Modell nicht ausloesen,
+die Kopfzeile erreicht die Werkzeuge nicht). Ersatzbeleg: die Befehlszeile des eigenen Elternprozesses
+oben traegt '--effort high' — diese Sitzung ist vom Waechter mit der geaenderten Startzeile gestartet.

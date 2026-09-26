@@ -1,0 +1,6 @@
+TB-113 B - DK gegen den Journalblock aus ERGEBNIS_TB-111 (diff, erwartet: nur Zeile 1, D? -> DK)
+1c1
+< ## D? — TB-111: die gesperrte Öffnung aus Fable 25d — `herkunft.py` Prüfansicht im Modus (Snapshot `d9449faf…`) und `TB30A_BASE_DIR` im Modus rc 2 vor dem Lesen; `auswertung.Abbruch` endet mit 2, Meldung wortgleich; Abbild `e655c1c8…`; Benchmark im Modus bytegleich (26.09.2026)
+---
+> ## DK — TB-111: die gesperrte Öffnung aus Fable 25d — `herkunft.py` Prüfansicht im Modus (Snapshot `d9449faf…`) und `TB30A_BASE_DIR` im Modus rc 2 vor dem Lesen; `auswertung.Abbruch` endet mit 2, Meldung wortgleich; Abbild `e655c1c8…`; Benchmark im Modus bytegleich (26.09.2026)
+diff rc 1

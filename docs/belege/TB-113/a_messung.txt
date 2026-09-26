@@ -1,0 +1,39 @@
+# TB-113 A nach_merge, HEAD 257e7db, Baum e44e1ab, 2026-09-26 14:39:40 +0200
+## Hashes (Soll herkunft.py 5bbfc9e0..., auswertung.py a864b216..., Abbild e655c1c8...)
+5bbfc9e085d7ec70f43eb8aaaf63b957de27e3647023e143d17e9dd8c60448fa  research/vorregistrierung/herkunft.py
+a864b2168a19405d5f1516a17146f78ef44bbca6f4f8d242c9ccb25f937467f3  research/vorregistrierung/auswertung.py
+e655c1c8c8e576faa1de8021357354b1d9f0b44e9adae3a176c944087b3aacd9  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json
+## herkunft.register() (weder e7d82547... tb-111 noch c92900a8... main erwartet)
+register 469272dfbedf06492f1094bdb636295daeb76a9a7d4cc3fd98e89bcb400c0535
+fehlend []
+## Sonde gegen research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json
+rc 2
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 901-1014, Listentext wie bei Erzeugung: ja
+Pfad-Bestandteile: 25 geprueft, davon 25 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 10)
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+## Wechselwirkung TB-111 x TB-112: Eintraege in paths.ARBEITSBAUM_PFADE und Laufbereichsmessung (TB-112 A2)
+ARBEITSBAUM_PFADE 15
+   shared
+   strategies
+   requirements.lock
+   notifications/manual_close.py
+   research/exposure_messung/bot_lauf.py
+   research/faltenplan_neun/erste_falte_trockenlauf.py
+   research/faltenplan_neun/faltenplan_neun.py
+   research/faltenplan_neun/faltenschranke_messung.py
+   research/universum_trockenlauf/loaderlauf.py
+   research/universum_trockenlauf/universum_trockenlauf.py
+   research/vorregistrierung/auswertung.py
+   research/vorregistrierung/benchmark.py
+   research/vorregistrierung/faltenplan.py
+   research/vorregistrierung/kennzahlen.py
+   research/vorregistrierung/registerdaten.py
+REGISTRIERTE_PROTOKOLLE ('research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl',)
+auswertung.py in ARBEITSBAUM_PFADE: True
+herkunft.py in ARBEITSBAUM_PFADE: False
+   Laufbereichsmessung docs/belege/TB-112/a2_laufbereich.txt: auswertung.py 1 Zeile(n), herkunft.py 0 Zeile(n)
+## herkunft_protokoll.jsonl
+ls: research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl: No such file or directory
+## git status ausserhalb docs/
+## Ende

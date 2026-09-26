@@ -1,0 +1,20 @@
+# TB-113 D Tests, HEAD 257e7db, Arbeitsbaum ausserhalb docs/ [], 2026-09-26 14:53:38 +0200
+test_faltenplan_neun rc=0 173s: 156/156 Pruefungen bestanden.
+test_erste_falte_trockenlauf rc=0 161s: 50/50 Pruefungen bestanden.
+test_horizontbeginn rc=0 67s: 61/61 Pruefungen bestanden.
+test_min_history rc=0 1s: 14/14 Pruefungen bestanden.
+test_volle_jahre rc=0 0s: 7/7 Pruefungen bestanden.
+test_universum_trockenlauf rc=0 104s: 163/163 Pruefungen bestanden.
+test_zwischenablage rc=0 2s: 12/12 Pruefungen bestanden.
+test_paths rc=0 14s: 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+test_nulltrades_modus rc=0 32s: 34/34 Pruefungen bestanden.
+test_strategy_paths rc=0 13s: 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+test_rueckfaelle_modus rc=0 43s: 48/48 Pruefungen bestanden.
+test_ergebniskurven rc=0 33s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_startpruefungen rc=0 13s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_main_gegenprobe rc=0 2s: 13/13 Pruefungen bestanden.
+test_arbeitsbaum_laufbereich rc=0 19s: 26 von 26 Pruefungen bestanden, 0 fehlgeschlagen.
+test_ersatzwerte rc=0 74s: 61/61 Pruefungen bestanden.
+test_vorregistrierung rc=0 953s: 196/196 Pruefungen bestanden.
+tb40_* in $TMPDIR nach den Tests: tb40_lauf_ 4765  tb40_faltenplan_ 70  tb40_proben_ 108  tb40_test_ 492  tb44_l_ 0  tb112_klon_ 0  
+KETTE_ENDE

@@ -1,0 +1,93 @@
+[
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-109_nulltrades_ablagen_stummel.md",
+  "zeile": 133,
+  "text": "1. **Stummel und Probe.** Bestätigst du die Berichtigung `None` statt `False`? Soll das Werkzeug zusätzlich prüfen, dass der Stummel den Nicht-Modus-Zweig nimmt (z. B. die angelegten Ordner im Wegwerfbaum zählen)? Heute würde ein falscher Stummel grün durchgehen.",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-109_nulltrades_ablagen_stummel.md",
+  "zeile": 134,
+  "text": "2. **(iv) im Audit – welche Zugriffe?** Gebaut ist: **alle** lesenden Zugriffe auf die eigene Ablage, also die Verzeichnis-Öffnung beim Aufräumen **und** das Lesen des Ergebnisses darin. Damit ist (i) außerhalb 11. Der Auftrag erwartete 21, also nur die Verzeichnis-Öffnungen umgeordnet. Welche Lesart meint 25e 3 (b)? Und gehört die Tempfile-Probe von `mkdtemp` (von `tempfile` angelegt und sofort entfernt, ohne `mkdir`) ebenfalls zu (iv)?",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-109_nulltrades_ablagen_stummel.md",
+  "zeile": 135,
+  "text": "3. **Grenze der Gegenprobe.** Sie prüft `__main__`-Blöcke, nicht `main()`-Funktionen, die mit `return 0` ohne Ausgabe enden könnten. Soll die Erweiterung auf `main()` für den Laufcode (TB-30b) kommen, oder reicht der Satz aus 25e, dass der Erzeuger für eine Zelle ohne Trades die Nullzeile schreibt?",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-111_herkunft_auswertung_oeffnung.md",
+  "zeile": 146,
+  "text": "1. **`datenstand(None)` im Modus** liest weiter `BASE_DIR/data`, mit oder ohne TB30A. Ich habe das wegen B3 (zeichengleich) nicht geändert. Die Aufrufer im Betrieb übergeben einen Pfad, und `block()` verlangt ihn im Modus. Soll `datenstand()` bei der nächsten Öffnung im Modus ohne Pfad ebenfalls mit 2 enden?",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-111_herkunft_auswertung_oeffnung.md",
+  "zeile": 147,
+  "text": "2. **Veralteter Satz im Docstring von `auswertung._abbruch_2`:** „(`Abbruch` oben endet mit 1 und bleibt, wie er ist.)“ ist seit Block C falsch. Die Freigabe lautete „Sonst nichts“, deshalb habe ich ihn **nicht** geändert. Soll er mit der nächsten Öffnung von `auswertung.py` gestrichen werden, oder als Tatsachennotiz stehen bleiben?",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-111_herkunft_auswertung_oeffnung.md",
+  "zeile": 148,
+  "text": "3. **`str(e)` eines gefangenen `Abbruch`** ist jetzt `\"2\"`, die Meldung steht in `e.meldung`. Heute liest niemand `str(e)`. Reicht das als Tatsachennotiz?",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-112_19_laufbereich_db_sicherung.md",
+  "zeile": 206,
+  "text": "1. **Eingaben außerhalb der Liste.** Das Audit findet 10 versionierte Dateien, die der Benchmark als **Daten** liest und die kein Pfad der Sauberkeitsprüfung deckt: `ergebnisse/messgroessen.json` (durch die Sonde gedeckt, Gruppe `eingefroren`) und die neun `research/tb24_haltedauern/daten/<bot>_alle_trades.csv` (von nichts gedeckt; sie gehen über die Faltenlängen in den Plan ein, TB-95). Eine uncommittete Änderung daran hielte die Startprüfung nicht an. Sollen die neun Listen in `ARBEITSBAUM_PFADE` (dann heißt die Liste „Laufbereich und seine versionierten Eingaben“) oder in das Abbild der Sperrliste? Oder bindet E2 bewusst nur Code?",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-112_19_laufbereich_db_sicherung.md",
+  "zeile": 207,
+  "text": "2. **Pflege der Liste.** Die Liste ist eine Tatsache vom 26.09. und steht als Literal im Resolver; die Gegenprobe liest die Messdatei. Soll der Tag-Commit die Liste aus der Tag-Messung **erzeugen** (ein Schritt, der `paths.py` schreibt), oder bleibt es beim Literal mit Gegenprobe (heute gebaut)?",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "zeile",
+  "quelle": "docs/ERGEBNIS_TB-112_19_laufbereich_db_sicherung.md",
+  "zeile": 208,
+  "text": "3. **Schlüssel-Muster der db-Sicherung.** Englisch nach 25f (`key|secret|token|api|passw`), 0 Treffer. Die Tabelle `zustand(schluessel, wert)` in `benachrichtigungen_schliessung.db` trifft es nicht; laut Code enthält sie nur `erstlauf_am` ⇒ Zeitstempel. Soll das Muster deutsche Wörter mitnehmen? Dann würde diese Datei zurückgehalten, bis der Betreiber entscheidet.",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "teil",
+  "quelle": "research/vorregistrierung/auswertung.py",
+  "zeile": 127,
+  "text": "super().__init__(paths.RUECKGABEWERT_STARTPRUEFUNG)",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "teil",
+  "quelle": "research/vorregistrierung/auswertung.py",
+  "zeile": 121,
+  "text": "Ausgaenge von `auswertung.py`: 0 oder 2, kein 1",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "teil",
+  "quelle": "research/vorregistrierung/herkunft.py",
+  "zeile": 160,
+  "text": "TB30A_BASE_DIR ist unter dem Selektionsmodus gesetzt",
+  "wo": "Abschnitt 44"
+ },
+ {
+  "art": "teil",
+  "quelle": "git:257e7db:docs/VORREGISTRIERUNG_neuselektion.md",
+  "zeile": 8813,
+  "text": "Die Liste der geprüften Pfade steht als Tatsachennotiz neben der Laufbereichsmessung und wird mit ihr am Tag-Commit erneuert.",
+  "wo": "Abschnitt 44"
+ }
+]

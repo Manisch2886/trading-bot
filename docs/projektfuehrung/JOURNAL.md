@@ -9242,6 +9242,74 @@ Grundlage Register 19, 42.2 E2, 42.3 F8, Fable 25f O6. Freigabe 26.09.2026, ca. 
 
 ---
 
+## DK — TB-111: die gesperrte Öffnung aus Fable 25d — `herkunft.py` Prüfansicht im Modus (Snapshot `d9449faf…`) und `TB30A_BASE_DIR` im Modus rc 2 vor dem Lesen; `auswertung.Abbruch` endet mit 2, Meldung wortgleich; Abbild `e655c1c8…`; Benchmark im Modus bytegleich (26.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-111_herkunft_auswertung_oeffnung.md`*
+
+**Quelle:** Mac-Sitzung **TB-111** (Sitzung B, parallel zu TB-109/TB-110 und TB-112), 26.09.2026, im Worktree
+`~/trading-bot-tb111` auf Zweig `tb-111`, Eingang `f4d6d6d`. Commits `6cacfa4` (Block B), `6c98c38` (Block C),
+`1dcf273` (Abbild) und der Abgabe-Commit. Belege `docs/belege/TB-111/`. Grundlage Fable 25d (2)–(4), 25c 2 (a),
+Register 37.3. Freigabe 25.09.2026, 23:14 (zwei Auswahlkarten).
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **0/A** | Worktree sauber, Hashes wie erwartet, Sonde 25/0/0. Kein Test setzt TB30A zusammen mit dem Modus; kein Test erwartet rc 1 von `auswertung.py`; 12 `raise Abbruch(`. ⚠️ `_paths()` lud `paths.py` aus `BASE_DIR/shared`: Modus + Ersatzwurzel endete deshalb mit rc 1 statt 2 |
+| ⭐⭐ **B** | Prüfansicht übergibt im Modus `paths.DATA_DIR` (rc 0, `d9449faf…`/223). `_ersatzwurzel_pruefen()` am Anfang von `commit()`/`register()`/`block()`: Modus + TB30A ⇒ rc 2, Lesehaken 0 Zugriffe; `_paths()` aus der eigenen Wurzel. `test_ersatzwerte` Teil F 15 Prüfungen, drei Mutationen mit Gegenprobe |
+| ⭐⭐ **C** | `Abbruch` ⇒ rc 2, Meldung wortgleich (4 Fälle mit `cmp`), 12 Stellen zeichengleich, Beispieldaten `fc178106…`; Teil G 6 Prüfungen; kein Test umgestellt |
+| **D/E** | Abbild `e655c1c8…`; Sonde gegen alt Befund genau 3/5/11/12/14 + `eingefroren`, gegen neu 25/0/0; `register()` `c85dd6c3` ⇒ `e7d82547`. Benchmark im Modus `64fb2912…`, ohne Modus 8/8 (ut.json bis auf die Wurzel), Trockenlauf 9 × rc 0, `test_vorregistrierung` 196/196, `test_ersatzwerte` 61/61, `test_paths` 35/35, `test_startpruefungen` 44/44; Protokoll nicht angelegt |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Wache, die fragt „bin ich im Modus?“, darf die Antwort nicht dort holen, wovor sie schützt.** Die Modus-Abfrage in `herkunft.py` lud `paths.py` aus der Ersatzwurzel. Das ist erst mit einem Lesehaken und einer nicht existierenden Ersatzwurzel aufgefallen, nicht mit der echten Wurzel als Ersatz |
+| ⭐ | **„Wortgleich“ misst man auf denselben Eingaben, vorher und nachher, mit `cmp`**, nicht an zwei verschiedenen Scratch-Ordnern: der Pfad steht in der Meldung |
+
+### Was offen bleibt
+
+- Zusammenführen `tb-111` ⇒ `main` (eigener Auftrag): danach `register()` und Sonde neu messen, Tatsachennotizen zu 43-1/43-4. Fragen an Fable: `datenstand(None)` im Modus; veralteter Satz im Docstring von `_abbruch_2`; `str(e)` eines `Abbruch` ist jetzt `"2"`.
+
+*Geschrieben 26.09.2026 von der Mac-Sitzung TB-111 im Worktree. Quellenvermerk: siehe Kopf.*
+
+---
+
+## DL — TB-113: `tb-111` nach `main` zusammengeführt und neu geprüft — Merge ohne Konflikt, Benchmark im Modus (Repo und Klon) `64fb2912`, ohne Modus 8/8 bytegleich, 17 Testdateien grün; Register 44 (Vollzug TB-111/TB-112, 7 Marken, numstat 344/0); Arbeitsweise 22.1/22.9; Wächter `--effort high`; Worktree entfernt (26.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-113_zusammenfuehrung_tb111_register_44.md`*
+
+**Quelle:** Mac-Sitzung **TB-113** (Hauptordner, erste Sitzung, die der Wächter mit `--effort high` gestartet hat), 26.09.2026,
+Eingang `af6042f` und Zweig `tb-111` auf `49f0868`. Commits `656f04b` (Schritt 0), `257e7db` (Merge), `dfc11a0` (Register 44),
+`e710bf9` (Arbeitsweise) und der Abgabe-Commit. Belege `docs/belege/TB-113/`. Freigabe 26.09.2026, ca. 14:28 (Auswahlkarte).
+Der Block von TB-111 ist mit dieser Sitzung als **DK** übertragen.
+
+### Was gemessen und getan ist
+
+| | |
+|---|---|
+| **0** | Arbeitsbaum des steuernden Chats committet; `claude --help` kennt `--effort`, die eigene Prozesszeile trägt `--effort high` (Kopfzeile/`/status` aus der Sitzung nicht lesbar). Worktree-Index seit `49f0868` unverändert, `merge-tree` rc 0, Schnittmenge 0, kein zweites Abbild |
+| ⭐⭐ **A** | Merge `257e7db`, Baum = Vorhersage. `register()` `469272df` (neu, wie erwartet), Sonde gegen `e655c1c8` 25/0/0 und (ii) 0, Benchmark im Modus Repo + Klon `64fb2912`, ohne Modus 8/8 (sha256 gleich TB-112 A5), Trockenlauf 9 × rc 0, 17 Testdateien rc 0 (`test_vorregistrierung` 196/196, `test_ersatzwerte` 61/61, `test_startpruefungen` 44/44, `test_arbeitsbaum_laufbereich` 26/26). Wechselwirkung: `auswertung.py` von der Sauberkeitsprüfung gebunden, `herkunft.py` nicht (nicht im Laufbereich) |
+| ⭐⭐ **C** | Register 44 (44-1 bis 44-12): 43-1/43-4 vollzogen, Befund A2b, Hash-Übergänge, gültiges Abbild `e655c1c8`, E2/F8 vollzogen, `arbeitsbaum_pfade.txt` als Tatsachennotiz, neun Fable-Fragen zeichengleich. 7 Marken, keine in 10; numstat 344/0, 13 Zitate `diff` rc 0, Sonde vorher = nachher, `register()` ⇒ `a0e477fd`, 196/196 |
+| **D** | ARBEITSWEISE 22.1 Nachtrag (`--effort high` technisch hinterlegt), 22.9 neu (erst Sitzung anlegen, dann Satz); Anlass im Wächter-Log gemessen: 2 h 28 min |
+| **E** | `git worktree remove ../trading-bot-tb111` rc 0; Zweig `tb-111` bleibt lokal und auf `origin` |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Tatsache aus einem Auftrag wird nachgemessen, bevor sie ins Regelwerk kommt:** „zweieinhalb Stunden“ stand im Auftrag; das Wächter-Log gibt 05:04:34Z bis 07:33:07Z. Erst die Messung macht aus einer Erinnerung einen Beleg |
+| ⭐ | **Ein Zitat aus einem Dokument, das man gerade selbst ändert, liest man am Commit, nicht aus der Datei:** Die Marken verschieben die Zeilen; die Quelle `git:<commit>:<pfad>` bleibt fest |
+
+### Was offen bleibt
+
+- Neun Fragen an Fable (TB-109, TB-111, TB-112; Register 44.3) und die Bestätigung von 43-11.
+- Erzeuger (Plan-Punkte 3/5), Faltenplan-Abbild (TB-101).
+
+*Geschrieben 26.09.2026 von der Mac-Sitzung TB-113. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
