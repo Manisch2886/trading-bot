@@ -33,6 +33,13 @@ denselben Wert wie die Funktion; die Sonde schreibt nichts.
 Und (fall_8, TB-97, 40.8 (e)): die Gruppen `bestimmt` und `eingefroren` kommen
 aus dem Abbild. Ein erfundener bestimmt-Pfad wird gemeldet - und ohne ihn
 (Gegenprobe) nicht; ein Abbild ohne die Gruppen ist dort 2, nie 0.
+
+Und (fall_9, TB-117, Register 46.1, Fable 27a R9): die Gruppe `eingefroren`
+wird zweiseitig geprueft - die heutige Liste `herkunft.py::EINGEFROREN` gegen
+die Gruppe im Abbild. 9a: frisches Abbild, kein Mengenbefund; 9b: ein Eintrag
+mehr in EINGEFROREN (Kopie) -> 1, Seite "Liste -> Abbild fehlt" genannt; 9c:
+ein Eintrag weniger -> 1, Seite "Abbild -> Liste fehlt"; 9M: Mutation
+"Vergleich aus" -> 9b waere rot, mit Gegenprobe.
 """
 
 import json
@@ -456,6 +463,64 @@ def fall_8(wurzel, abbild):
            r.stderr[:200])
 
 
+def fall_9(wurzel, abbild):
+    """Die Gruppe eingefroren zweiseitig (46.1, R9) - mit Mutationsprobe."""
+    herk = os.path.join(wurzel, sonde.HERKUNFT)
+    with open(herk, encoding="utf-8") as f:
+        original = f.read()
+    zusatz = "research/tb24_haltedauern/daten/probe_tb117_alle_trades.csv"
+    mehr = ('EINGEFROREN = [\n', 'EINGEFROREN = [\n    "%s",\n' % zusatz)
+    weniger = ('"benchmark.py", "kennzahlen.py",', '"benchmark.py",')
+
+    def _mit(ersetzung):
+        assert original.count(ersetzung[0]) == 1, ersetzung[0]
+        with open(herk, "w", encoding="utf-8") as f:
+            f.write(original.replace(ersetzung[0], ersetzung[1], 1))
+        try:
+            return sonde.pruefen(abbild, _register(wurzel), wurzel)
+        finally:
+            with open(herk, "w", encoding="utf-8") as f:
+                f.write(original)
+
+    def _seite(b, text, rel):
+        g = b["gruppen"]["eingefroren"]
+        return (g["ausgang"] == 1 and b["ausgang"] == 1 and "eingefroren" in b["grund"]
+                and any(x.startswith(text) and rel in x for x in g["gruende"]))
+
+    b = sonde.pruefen(abbild, _register(wurzel), wurzel)
+    m = b["gruppen"]["eingefroren"].get("mengen") or {}
+    pruefe("9a: frisches Abbild - Mengenvergleich gefuehrt, kein Eintrag nur auf einer Seite, "
+           "Gruppe 0",
+           m.get("ausgang") == 0 and m.get("nur_liste") == [] and m.get("nur_abbild") == []
+           and m.get("liste") == m.get("abbild") == len(_lade(abbild)["eingefroren"])
+           and b["gruppen"]["eingefroren"]["ausgang"] == 0, m)
+    b = _mit(mehr)
+    pruefe("9b: ein Eintrag mehr in EINGEFROREN -> 1, Seite 'Liste → Abbild fehlt' mit dem Eintrag",
+           _seite(b, "Liste → Abbild fehlt", zusatz), b["gruppen"]["eingefroren"]["gruende"])
+    b = _mit(weniger)
+    pruefe("9c: ein Eintrag weniger in EINGEFROREN -> 1, Seite 'Abbild → Liste fehlt' mit dem Eintrag",
+           _seite(b, "Abbild → Liste fehlt", "research/vorregistrierung/kennzahlen.py"),
+           b["gruppen"]["eingefroren"]["gruende"])
+    with open(herk, encoding="utf-8") as f:
+        pruefe("9d: die Kopie von herkunft.py ist wieder wie vorher", f.read() == original)
+
+    # 9M: Mutation "Vergleich aus" - die Sonde prueft nur noch Abbild -> Dateien
+    def _lauf(mutieren):
+        echt = sonde._vergleiche_eingefroren
+        if mutieren:
+            sonde._vergleiche_eingefroren = lambda abbild, wurzel: None
+        try:
+            return _mit(mehr)
+        finally:
+            sonde._vergleiche_eingefroren = echt
+    r = _lauf(True)
+    pruefe("9M: Mutationsprobe 'Vergleich aus' - 9b waere rot (keine Seite genannt)",
+           not _seite(r, "Liste → Abbild fehlt", zusatz), r["gruppen"]["eingefroren"]["gruende"])
+    r = _lauf(False)
+    pruefe("9M-G: Gegenprobe zu 9M - ohne die Mutation meldet 9b die Seite",
+           _seite(r, "Liste → Abbild fehlt", zusatz), r["gruppen"]["eingefroren"]["gruende"])
+
+
 # ---------------------------------------------------------------------------
 
 def main():
@@ -469,7 +534,7 @@ def main():
         pruefe("0: der Erzeuger schreibt das Abbild in die Kopie (rc 0)", rc == 0, text)
         if rc != 0:
             raise SystemExit(text)
-        for fall in (fall_1, fall_2, fall_3, fall_4, fall_5, fall_6, fall_7, teil_h, fall_8):
+        for fall in (fall_1, fall_2, fall_3, fall_4, fall_5, fall_6, fall_7, teil_h, fall_8, fall_9):
             print("\n%s  %s" % (fall.__name__, (fall.__doc__ or "").strip().split("\n")[0]))
             fall(wurzel, abbild)
     finally:

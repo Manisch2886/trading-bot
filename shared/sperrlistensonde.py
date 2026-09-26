@@ -90,6 +90,16 @@ Fuehrt ein Abbild eine Gruppe NICHT (Abbilder vor TB-97), ist sie nicht
 pruefbar (2) und wird so genannt - eine leere Gruppe (`[]`) ist dagegen
 gemessen und 0. Leer und fehlend sind verschiedene Aussagen.
 
+Die Gruppe `eingefroren` wird ZWEISEITIG geprueft (Register 46.1, Fable 27a
+R9, TB-117): Abbild -> Dateien wie oben (Hash je Eintrag des Abbilds), und
+dazu Liste -> Abbild: die heutige Menge `lies_eingefroren(wurzel)` gegen die
+Pfade der Gruppe im Abbild. Ein Eintrag nur auf einer Seite ist ein Befund
+(1) und wird mit der Seite genannt ("Liste -> Abbild fehlt" bzw. "Abbild ->
+Liste fehlt"). Die Gruppen kommen weiter aus dem Abbild; neu ist nur der
+Vergleich der Mengen. Bis TB-116 sah die Sonde einen Zuwachs in
+`EINGEFROREN` gegen ein altes Abbild nur mittelbar ueber den Hash von
+`herkunft.py` (Register 45.11).
+
 Die Schlusszeilen trennen Pfad- und Regel-Bestandteile (40.8 (d), Fable 24a);
 der Gesamtwert bleibt, wie 36.5 ihn definiert. Ein Punkt kann im Abbild ein
 Feld `tatsachennotiz` tragen - den Verweis, den die Regelzeile je Punkt nennt;
@@ -463,6 +473,34 @@ def _pruefe_gruppe(abbild, schluessel, wurzel):
             "gruende": gruende}
 
 
+def _vergleiche_eingefroren(abbild, wurzel):
+    """R9 (Register 46.1): die zweite Seite der Gruppe `eingefroren` - die
+    heutige Liste `herkunft.py::EINGEFROREN` (gelesen mit `lies_eingefroren`,
+    aufgeloest nach R5) gegen die Pfade der Gruppe im Abbild. Liefert None,
+    wenn das Abbild die Gruppe nicht als Liste fuehrt (dann ist sie schon in
+    `_pruefe_gruppe` 2); sonst dict mit ausgang, liste, abbild, nur_liste,
+    nur_abbild, gruende. Ist die Liste heute nicht lesbar: 2, nie 0."""
+    eintraege = abbild.get("eingefroren")
+    if not isinstance(eintraege, list):
+        return None
+    im_abbild = [e.get("pfad") for e in eintraege if isinstance(e, dict) and e.get("pfad")]
+    try:
+        liste = lies_eingefroren(wurzel)
+    except Sondenfehler as e:
+        return {"ausgang": NICHT_PRUEFBAR, "liste": None, "abbild": len(im_abbild),
+                "nur_liste": [], "nur_abbild": [],
+                "gruende": ["Mengenvergleich nicht pruefbar - Liste heute nicht lesbar: %s" % e]}
+    nur_liste = [rel for rel in liste if rel not in set(im_abbild)]
+    nur_abbild = [rel for rel in im_abbild if rel not in set(liste)]
+    gruende = (["Liste → Abbild fehlt: %s (in %s::EINGEFROREN, nicht im Abbild)"
+                % (rel, HERKUNFT) for rel in nur_liste]
+               + ["Abbild → Liste fehlt: %s (im Abbild, nicht in %s::EINGEFROREN)"
+                  % (rel, HERKUNFT) for rel in nur_abbild])
+    return {"ausgang": BEFUND if gruende else OK, "liste": len(liste),
+            "abbild": len(im_abbild), "nur_liste": nur_liste,
+            "nur_abbild": nur_abbild, "gruende": gruende}
+
+
 def _vergleiche_mit_register(abbild, register_pfad):
     """(ii): Abbild gegen den Registertext. Liefert (ausgang, befunde, notiz)."""
     try:
@@ -520,6 +558,15 @@ def pruefen(abbild_pfad, register_pfad, wurzel):
     # die zwei Gruppen neben den Punkten - aus dem Abbild (40.8 (e))
     for schluessel, _ in GRUPPEN:
         bericht["gruppen"][schluessel] = _pruefe_gruppe(abbild, schluessel, wurzel)
+    # R9 (46.1): die zweite Seite der Gruppe eingefroren - Liste heute -> Abbild.
+    # Ein Befund hier schlaegt eine 2 der Gruppe (1 schlaegt 2, 36.5).
+    menge = _vergleiche_eingefroren(abbild, wurzel)
+    if menge is not None:
+        g = bericht["gruppen"]["eingefroren"]
+        g["mengen"] = menge
+        g["gruende"] = g["gruende"] + menge["gruende"]
+        g["ausgang"] = (BEFUND if BEFUND in (g["ausgang"], menge["ausgang"])
+                        else max(g["ausgang"], menge["ausgang"]))
     bericht["bilanz"] = _bilanz(bericht)
 
     gruppen = bericht["gruppen"]
@@ -632,6 +679,13 @@ def _drucke(b):
         teile += "; nicht im Abbild (2): %s" % ", ".join(pf["gruppen_nicht_im_abbild"])
     print("\nPfad-Bestandteile: %d geprueft, davon %d mit 0 / %d mit 1 / %d mit 2  (%s)"
           % (pf["geprueft"], pf["0"], pf["1"], pf["2"], teile))
+    m = b["gruppen"].get("eingefroren", {}).get("mengen")
+    if m is not None:
+        print("Mengenvergleich eingefroren (46.1): Liste heute %s / Abbild %d, nur in der Liste %d, "
+              "nur im Abbild %d  [%s]" % (m["liste"] if m["liste"] is not None else "?", m["abbild"],
+                                         len(m["nur_liste"]), len(m["nur_abbild"]), _WORT[m["ausgang"]]))
+    else:
+        print("Mengenvergleich eingefroren (46.1): nicht gefuehrt - Gruppe nicht im Abbild")
     print("Regel-Bestandteile: %d nicht pruefbar (2), je mit Verweis auf die Tatsachennotiz: %s"
           % (len(rg), "; ".join("Punkt %d -> %s" % (r["punkt"], r["tatsachennotiz"] or "keine im Abbild")
                                 for r in rg) or "-"))
