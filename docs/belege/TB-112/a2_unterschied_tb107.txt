@@ -1,0 +1,4 @@
+# TB-112 A2 Unterschied zur Laufbereichsmessung TB-107 F1 (f1_laufbereich_vereinigung.txt)
+TB-107: 81 Module, TB-112: 81 Module, gemeinsam 81
+neu in TB-112 (0):
+nicht mehr in TB-112 (0):

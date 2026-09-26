@@ -158,7 +158,9 @@ gesetzter Modus ist gefaehrlicher als keiner. ⚠️ Zweignamen (`main`) sind
      --show-toplevel`, beide Seiten ueber `realpath`).
   2. `HEAD` dieser Wurzel **ist** der erwartete Commit.
   3. Der Arbeitsbaum ist **sauber** - `git status --porcelain` ueber
-     `ARBEITSBAUM_PFADE` (`shared/`, `strategies/`, die Lock-Datei). *"Ein
+     `ARBEITSBAUM_PFADE` (`shared/`, `strategies/`, die Lock-Datei und seit
+     TB-112 jede weitere Datei des Laufbereichs), ohne
+     `REGISTRIERTE_PROTOKOLLE`. *"Ein
      sauberer Commit ueber einem schmutzigen Arbeitsbaum beschreibt den Code so
      wenig wie ein gespaltener Baum."* ⚠️ Nicht der ganze Baum: `data/` ist
      versioniert und wird vom Abruf-Cron laufend veraendert - ein Lauf, der
@@ -222,7 +224,41 @@ RUECKGABEWERT_STARTPRUEFUNG = 2
 # ein veraenderter, nicht eingecheckter Lock genau die Umgebung beschreibt,
 # gegen die gleich geprueft wird. ⚠️ `data/` steht absichtlich nicht hier -
 # siehe Kopf.
-ARBEITSBAUM_PFADE = ("shared", "strategies", LOCK)
+#
+# TB-112 (Register 19, Kasten "Sauberkeit ueber den Laufbereich"; 42.2 E2):
+# die Pruefung erstreckt sich auf jeden Pfad des Laufbereichs. Die Module
+# ausserhalb von `shared/` und `strategies/` stehen als EINZELNE DATEIEN hier,
+# nicht als Ordner: ein Ordner wie `research/vorregistrierung/` enthaelt
+# `ergebnisse/`, in das Laeufe schreiben (`--ziel`) - die Pruefung darf nicht
+# an der Ausgabe eines frueheren Laufs scheitern.
+# ⚠️ Tatsache, keine Regel: die Liste ist die Laufbereichsmessung vom
+# 26.09.2026 (`docs/belege/TB-112/a2_laufbereich.txt`, 81 Module, davon 12
+# ausserhalb von `shared/`/`strategies/`). Am Tag-Commit wird sie mit der
+# Tag-Messung erneuert; `shared/test_arbeitsbaum_laufbereich.py` prueft, dass
+# jeder gemessene Pfad hier gedeckt ist.
+ARBEITSBAUM_PFADE = (
+    "shared", "strategies", LOCK,
+    "notifications/manual_close.py",
+    "research/exposure_messung/bot_lauf.py",
+    "research/faltenplan_neun/erste_falte_trockenlauf.py",
+    "research/faltenplan_neun/faltenplan_neun.py",
+    "research/faltenplan_neun/faltenschranke_messung.py",
+    "research/universum_trockenlauf/loaderlauf.py",
+    "research/universum_trockenlauf/universum_trockenlauf.py",
+    "research/vorregistrierung/auswertung.py",
+    "research/vorregistrierung/benchmark.py",
+    "research/vorregistrierung/faltenplan.py",
+    "research/vorregistrierung/kennzahlen.py",
+    "research/vorregistrierung/registerdaten.py",
+)
+
+# Registrierte Protokolle (Register 42.3 F8): von der Sauberkeitspruefung
+# ausgenommen wie `data/`, namentlich - der Kettenhash ersetzt dort die
+# Sauberkeit. Die Ausnahme steht auch dann, wenn heute kein Pfad aus
+# `ARBEITSBAUM_PFADE` sie enthaelt: sie gilt namentlich, nicht zufaellig.
+REGISTRIERTE_PROTOKOLLE = (
+    "research/vorregistrierung/ergebnisse/herkunft_protokoll.jsonl",
+)
 
 # Die Reihenfolge der Auditzeilen (Teil D). Sie steht genau einmal.
 AUDIT_SCHLUESSEL = ("codewurzel", "commit", "arbeitsbaum", "lock_sha256",
@@ -438,16 +474,20 @@ def _pruefe_codeherkunft(erwartet, einstiegspunkt=None, hier=None):
             "als der verlangte - hier wird nicht weitergerechnet."
             % (wurzel_code, head, UMGEBUNG_COMMIT, erwartet))
     status = _git(wurzel_code, "status", "--porcelain", "--",
-                  *ARBEITSBAUM_PFADE)
+                  *(list(ARBEITSBAUM_PFADE)
+                    + [":(exclude)" + p for p in REGISTRIERTE_PROTOKOLLE]))
     zeilen = [z for z in status.splitlines() if z.strip()]
     if zeilen:                                              # Bedingung 3
         raise Startpruefungsfehler(
-            "Der Arbeitsbaum von %s ist ueber %s nicht sauber (%d Eintrag/"
-            "Eintraege, die ersten: %s). Ein sauberer Commit ueber einem "
-            "schmutzigen Arbeitsbaum beschreibt den Code so wenig wie ein "
-            "gespaltener Baum."
-            % (wurzel_code, ", ".join(ARBEITSBAUM_PFADE), len(zeilen),
-               "; ".join(zeilen[:3])))
+            "Der Arbeitsbaum von %s ist ueber die %d Pfade in "
+            "`paths.ARBEITSBAUM_PFADE` (%s und %d Einzeldateien des "
+            "Laufbereichs; ausgenommen `paths.REGISTRIERTE_PROTOKOLLE`) nicht "
+            "sauber (%d Eintrag/Eintraege, die ersten: %s). Ein sauberer "
+            "Commit ueber einem schmutzigen Arbeitsbaum beschreibt den Code "
+            "so wenig wie ein gespaltener Baum."
+            % (wurzel_code, len(ARBEITSBAUM_PFADE),
+               ", ".join(ARBEITSBAUM_PFADE[:3]), len(ARBEITSBAUM_PFADE) - 3,
+               len(zeilen), "; ".join(zeilen[:3])))
     return wurzel_code, head, "sauber"
 
 

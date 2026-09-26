@@ -1,0 +1,81 @@
+# TB-104 D1 Laufbereich 'trockenlauf' - Laeufe: <scratch>/a2/bot_elliott_wave, <scratch>/a2/bot_elliott_wave_stocks, <scratch>/a2/bot_rsi2_crypto, <scratch>/a2/bot_rsi2_mean_reversion, <scratch>/a2/bot_t3_supertrend, <scratch>/a2/bot_turtle_soup_crypto, <scratch>/a2/bot_turtle_soup_stocks, <scratch>/a2/bot_volatility_breakout, <scratch>/a2/bot_volatility_breakout_crypto
+# Prozesse 9, davon ohne Modulliste 0 (Prozess konnte sie beim Ende nicht schreiben: os._exit oder eigener Schreibschutz wie loaderlauf.py)
+# (a) Modulliste: 70 Repo-Module; (b) aus Oeffnungen: 70; (b) ohne (a) = als Daten gelesen: 0
+# (a) ohne (b) (geladen, aber keine Oeffnung protokolliert - z. B. vor dem Haken): 1
+#    docs/belege/TB-104/haken/sitecustomize.py
+# (c) Einstiegspunkte (ausgefuehrt): 1
+#    docs/belege/TB-103/d_trockenlauf.py
+# Quelltext als DATEN gelesen und in keinem Prozess geladen (nicht im Laufbereich):
+# Laufbereich (Vereinigung): 71 Repo-Module
+LISTE
+trockenlauf	docs/belege/TB-103/d_trockenlauf.py
+trockenlauf	docs/belege/TB-104/haken/sitecustomize.py
+trockenlauf	research/exposure_messung/bot_lauf.py
+trockenlauf	shared/abrufschutz.py
+trockenlauf	shared/binance_historie.py
+trockenlauf	shared/data_quality.py
+trockenlauf	shared/fetch_multi_data.py
+trockenlauf	shared/handelskosten.py
+trockenlauf	shared/kursdaten.py
+trockenlauf	shared/ladeprotokoll.py
+trockenlauf	shared/messkette.py
+trockenlauf	shared/paths.py
+trockenlauf	shared/regimewache.py
+trockenlauf	shared/strategy_paths.py
+trockenlauf	shared/symbols_config.py
+trockenlauf	shared/zuteilung.py
+trockenlauf	strategies/elliott_wave/backtest_elliott.py
+trockenlauf	strategies/elliott_wave/elliott_wave_counter.py
+trockenlauf	strategies/elliott_wave/equity_simulation.py
+trockenlauf	strategies/elliott_wave/live_params.py
+trockenlauf	strategies/elliott_wave/multi_symbol_optimise.py
+trockenlauf	strategies/elliott_wave/zigzag_indicator.py
+trockenlauf	strategies/elliott_wave_stocks/backtest_elliott.py
+trockenlauf	strategies/elliott_wave_stocks/elliott_wave_counter.py
+trockenlauf	strategies/elliott_wave_stocks/equity_simulation.py
+trockenlauf	strategies/elliott_wave_stocks/fetch_stock_data.py
+trockenlauf	strategies/elliott_wave_stocks/live_params.py
+trockenlauf	strategies/elliott_wave_stocks/multi_symbol_optimise.py
+trockenlauf	strategies/elliott_wave_stocks/stocks_symbols_config.py
+trockenlauf	strategies/elliott_wave_stocks/zigzag_indicator.py
+trockenlauf	strategies/rsi2_crypto/backtest_rsi2.py
+trockenlauf	strategies/rsi2_crypto/equity_simulation.py
+trockenlauf	strategies/rsi2_crypto/indicators.py
+trockenlauf	strategies/rsi2_crypto/live_params.py
+trockenlauf	strategies/rsi2_crypto/multi_symbol_optimise.py
+trockenlauf	strategies/rsi2_mean_reversion/backtest_rsi2.py
+trockenlauf	strategies/rsi2_mean_reversion/equity_simulation.py
+trockenlauf	strategies/rsi2_mean_reversion/indicators.py
+trockenlauf	strategies/rsi2_mean_reversion/live_params.py
+trockenlauf	strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+trockenlauf	strategies/rsi2_mean_reversion/stocks_symbols_config.py
+trockenlauf	strategies/t3_supertrend/backtest_trend.py
+trockenlauf	strategies/t3_supertrend/equity_simulation.py
+trockenlauf	strategies/t3_supertrend/fetch_4h_data.py
+trockenlauf	strategies/t3_supertrend/indicators.py
+trockenlauf	strategies/t3_supertrend/live_params.py
+trockenlauf	strategies/t3_supertrend/multi_symbol_optimise.py
+trockenlauf	strategies/t3_supertrend/regime_filter.py
+trockenlauf	strategies/turtle_soup_crypto/backtest_turtle_soup.py
+trockenlauf	strategies/turtle_soup_crypto/equity_simulation.py
+trockenlauf	strategies/turtle_soup_crypto/indicators.py
+trockenlauf	strategies/turtle_soup_crypto/live_params.py
+trockenlauf	strategies/turtle_soup_crypto/multi_symbol_optimise.py
+trockenlauf	strategies/turtle_soup_stocks/backtest_turtle_soup.py
+trockenlauf	strategies/turtle_soup_stocks/equity_simulation.py
+trockenlauf	strategies/turtle_soup_stocks/indicators.py
+trockenlauf	strategies/turtle_soup_stocks/live_params.py
+trockenlauf	strategies/turtle_soup_stocks/multi_symbol_optimise.py
+trockenlauf	strategies/turtle_soup_stocks/stocks_symbols_config.py
+trockenlauf	strategies/volatility_breakout/backtest_breakout.py
+trockenlauf	strategies/volatility_breakout/equity_simulation.py
+trockenlauf	strategies/volatility_breakout/indicators.py
+trockenlauf	strategies/volatility_breakout/live_params.py
+trockenlauf	strategies/volatility_breakout/multi_symbol_optimise.py
+trockenlauf	strategies/volatility_breakout/stocks_symbols_config.py
+trockenlauf	strategies/volatility_breakout_crypto/backtest_breakout.py
+trockenlauf	strategies/volatility_breakout_crypto/equity_simulation.py
+trockenlauf	strategies/volatility_breakout_crypto/indicators.py
+trockenlauf	strategies/volatility_breakout_crypto/live_params.py
+trockenlauf	strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+trockenlauf	strategies/volatility_breakout_crypto/regime_filter.py

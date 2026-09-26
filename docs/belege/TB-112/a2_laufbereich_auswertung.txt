@@ -1,0 +1,23 @@
+# TB-104 D1 Laufbereich 'auswertung_import' - Laeufe: <scratch>/a2/auswertung
+# Prozesse 1, davon ohne Modulliste 0 (Prozess konnte sie beim Ende nicht schreiben: os._exit oder eigener Schreibschutz wie loaderlauf.py)
+# (a) Modulliste: 12 Repo-Module; (b) aus Oeffnungen: 12; (b) ohne (a) = als Daten gelesen: 0
+# (a) ohne (b) (geladen, aber keine Oeffnung protokolliert - z. B. vor dem Haken): 1
+#    docs/belege/TB-104/haken/sitecustomize.py
+# (c) Einstiegspunkte (ausgefuehrt): 1
+#    docs/belege/TB-104/d1_auswertung_import.py
+# Quelltext als DATEN gelesen und in keinem Prozess geladen (nicht im Laufbereich):
+# Laufbereich (Vereinigung): 13 Repo-Module
+LISTE
+auswertung_import	docs/belege/TB-104/d1_auswertung_import.py
+auswertung_import	docs/belege/TB-104/haken/sitecustomize.py
+auswertung_import	notifications/manual_close.py
+auswertung_import	research/faltenplan_neun/erste_falte_trockenlauf.py
+auswertung_import	research/faltenplan_neun/faltenplan_neun.py
+auswertung_import	research/faltenplan_neun/faltenschranke_messung.py
+auswertung_import	research/universum_trockenlauf/universum_trockenlauf.py
+auswertung_import	research/vorregistrierung/auswertung.py
+auswertung_import	research/vorregistrierung/benchmark.py
+auswertung_import	research/vorregistrierung/faltenplan.py
+auswertung_import	research/vorregistrierung/kennzahlen.py
+auswertung_import	research/vorregistrierung/registerdaten.py
+auswertung_import	shared/paths.py
