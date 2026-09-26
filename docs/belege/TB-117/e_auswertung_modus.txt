@@ -1,0 +1,11 @@
+# TB-117 E auswertung.py im Modus, HEAD 852f253ffd87ce5eb4ae9045883f76f331920056, 2026-09-26 23:44:49 +0200
+# Arbeitsbaum ausserhalb docs/ (leer = sauber): []
+beispieldaten rc 0
+herkunft.json x9 geschrieben: {'commit': '852f253ffd87ce5eb4ae9045883f76f331920056', 'datenstand': 'd9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84', 'register': 'e87a4d8ea435e6bdaba4bb311a3af829fb9d8626066d7f0820d00d9283d2fb6b'}
+## modus_gut: rc 0
+HERKUNFT (herkunft.json je Bot; Register 46.5, Lesart 46.9) - unter dem Modus geprueft: alle fuenf Bedingungen erfuellt
+  commit      852f253ffd87ce5eb4ae9045883f76f331920056   (9 Bot(s) gleich)
+  datenstand  d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84   (9 Bot(s) gleich)
+  register    e87a4d8ea435e6bdaba4bb311a3af829fb9d8626066d7f0820d00d9283d2fb6b   (9 Bot(s) gleich)
+## modus_datenstand_falsch: rc 2
+ABBRUCH (auswertung.py::herkunft_pruefen): rsi2_crypto: Feld datenstand - erwartet d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84, gefunden 0000000000000000000000000000000000000000000000000000000000000000

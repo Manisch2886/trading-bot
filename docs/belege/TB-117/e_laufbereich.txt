@@ -1,0 +1,9 @@
+# TB-117 E Laufbereich aus den Laeufen von e_laeufe.sh (<scratch>/e/a6, HEAD 852f253), Werkzeug TB-104 D1, Vergleich mit TB-112 A2 (= TB-114 C, 81)
+# # Laufbereich (Vereinigung): 71 Repo-Module
+# # Laufbereich (Vereinigung): 64 Repo-Module
+# # Laufbereich (Vereinigung): 13 Repo-Module
+TB-112: 81 Module, TB-117: 81 Module, gemeinsam 81
+neu in TB-117 (0): []
+nicht mehr in TB-117 (0): []
+research/vorregistrierung/herkunft.py im Laufbereich: False
+Messumschlaege (docs/, zaehlen nicht): ['docs/belege/TB-103/d_trockenlauf.py', 'docs/belege/TB-104/d1_auswertung_import.py', 'docs/belege/TB-104/haken/sitecustomize.py']

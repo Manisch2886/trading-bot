@@ -1,0 +1,19 @@
+# TB-117 E1 Abbild, HEAD 852f253ffd87ce5eb4ae9045883f76f331920056, 2026-09-26 23:46:56 +0200
+test -f vorher: rc 1 (1 = existiert nicht)
+research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-22.json
+research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-23.json
+research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25.json
+research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-25b.json
+research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb114.json
+research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26.json
+Abbild geschrieben.
+  Pfad:    research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+  Groesse: 11432 Bytes
+  SHA-256: 46f0ad5d1d83a253baa5523f5657881e0d825cebd734f24a42ef5d4fa74f281f
+  Punkte:  14 (aus docs/VORREGISTRIERUNG_neuselektion.md Z. 905-1018), 15 Pfadnennungen, HEAD 852f253ffd87
+  Gruppen: bestimmt 0, eingefroren 22
+Erzeuger rc 0
+46f0ad5d1d83a253baa5523f5657881e0d825cebd734f24a42ef5d4fa74f281f  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+   11432
+punkte 14 bestimmt 0 eingefroren 22 EINGEFROREN 22 head 852f253ffd87
+Gruppe eingefroren == lies_eingefroren(Repo), Reihenfolge und Menge: True (22/22)

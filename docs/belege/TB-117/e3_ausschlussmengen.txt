@@ -1,0 +1,18 @@
+Die vier Ausschlussmengen sind gleich (TB-117, Fable 27a R13 (a), Register 46.4)
+    shared/symbols_config.py::EXCLUDE_SYMBOLS                              ['PAXGUSDT', 'XAUTUSDT']
+    research/vorregistrierung/messgroessen.py::AUSGESCHLOSSEN              ['PAXGUSDT', 'XAUTUSDT']
+    research/faltenplan_neun/faltenplan_neun.py::KRYPTO_AUSSCHLUSS         ['PAXGUSDT', 'XAUTUSDT']
+    research/vorregistrierung/benchmark.py::symbole()                      ['PAXGUSDT', 'XAUTUSDT']
+  [ OK ] A1: jede der vier Mengen genau einmal gefunden
+  [ OK ] A2: die vier Mengen sind gleich und enthalten XAUTUSDT
+  [ OK ] M1: Mutationsprobe 'eine Menge ein Symbol mehr (messgroessen.py)' -> Probe rot
+  [ OK ] M1-G: Gegenprobe - dieselbe Kopie ohne Mutation -> gruen
+  [ OK ] M2: Mutationsprobe 'XAUTUSDT fehlt im Literal von benchmark.symbole()' -> Probe rot
+  [ OK ] M2-G: Gegenprobe - dieselbe Kopie ohne Mutation -> gruen
+  [ OK ] M3: Mutationsprobe 'die Konstante in symbols_config.py umbenannt (nicht gefunden)' -> Probe rot
+  [ OK ] M3-G: Gegenprobe - dieselbe Kopie ohne Mutation -> gruen
+  [ OK ] A3: die echten Dateien sind unveraendert gelesen (erneut gleich)
+
+==============================================================================
+9/9 Pruefungen bestanden.
+rc 0
