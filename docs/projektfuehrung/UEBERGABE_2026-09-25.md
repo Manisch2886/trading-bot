@@ -193,3 +193,36 @@ Als Nächstes werden die übrigen Programme auf die zentrale Pfadstelle umgestel
 | **Freie Nummern** | frei ab **TB-112** · Fable-Anfrage frei ab **25g** |
 
 **Fehler dieses Abschnitts, mit Regel:** Keiner neu. Beobachtung: Fable hat 25d/25e beantwortet, während ich die Antworten noch als ausstehend meldete. Die Projektablage war dabei aktuell, meine Suche über `project_search` fand sie nicht sofort. ⇒ **Neue Fable-Antworten über `project_info` (Liste) prüfen, nicht über die Suche.**
+
+
+---
+
+## Nachtrag 4 — fortgeschrieben 26.09.2026, 02:25
+
+**Gemessen.** Sitzung A hat TB-109 (`723281f`, 00:36) und TB-110 (`6a7996a`, 00:57) abgegeben. Um 01:14 wurde sie per Schliess-Auslöser beendet; das Wächter-Log meldet 1 Sitzung mit TERM beendet, 0 noch da. **HEAD `6a7996a`.**
+
+**Sitzung B (TB-111) ist nicht gestartet:**
+- Zweig `tb-111` steht auf `f4d6d6d`;
+- der Worktree-Index ist unverändert seit 23:42;
+- die Sonde um 01:15 meldet „claude-Prozesse: 0 im Repo, 0 ausserhalb“.
+
+Der Betreiber ist per Nachricht informiert. Der Hauptordner ist frei.
+
+| | |
+|---|---|
+| **Fertig (TB-109)** | 10 × `trades.empty ⇒ exit()` unter dem Modus rc 2, ohne Modus zeichengleich (Trade-Listen, `vergleich.py --pruefen` rc 0, `test_ergebniskurven` 44/44) · `tb40_faltenplan_*`/`tb40_proben_*` werden entfernt · Stummel `None` in `pfadvergleich.py` · Gegenprobe 24 Stellen, alle mit Abfrage · Audit (iv): (i) ausserhalb 11 statt erwartet 21 · A3: kein Cron-Lauf erreicht die Stellen |
+| **Fertig (TB-110)** | **Register 0–43**: 15 Einträge aus 25d/25e, 31 Zitate rc 0, 6 Marken, keine in Abschnitt 10, numstat 345/0 · **`register()` `c85dd6c3…` ⇒ `c92900a8…`** · 43.3 = Berichtigung `None` als vorläufig |
+| **Durchgehend** | Benchmark `64fb2912…` (Repo, Klon, ohne Modus) · Sonde gegen `40ffe18d…` vorher = nachher · `test_vorregistrierung` 196/196 · Abbild unverändert `40ffe18d…` |
+| **Fable** | **25f (Gesamtanalyse) beantwortet**: Projektablage 21:45Z, **noch nicht im Repo**. Kern: 10–14 Aufträge bis zum Tag; drei Bündel statt Einzelaufträge; Binance ist seit 1.7.2026 für EU-Kunden keine Ausführungsstelle; vier Dinge vor dem Tag (db-Sicherung O6, zweiter und kalter Leser V8/F3, Nullbefund-Skizze F4, P1 falls fehlend); acht Betreiberentscheidungen |
+| **Gemessen zu 25f** | **P1 steht schon im Register** (16.4 (g)–(m)); offen ist nur der Vollzug (16.11 Nr. 3: kein Leiter-Skript) ⇒ Entscheidung 8 entfällt · **N = 653** zählt deduplizierte Kombinationen einschliesslich Forschungsraster; die Grenzen stehen im Versuchsregister, Abschnitt 5 · Notiz: `ablage/MESSUNG_2026-09-26_fable25f_voraussetzungen.md` |
+| **Vorbereitet, nicht abgelegt** | Anfrage an Fable `ENTWURF_FABLE_ANFRAGE_2026-09-26a_…` (TB-109/110, zwei Messungen, drei Fragen: `None`, Reichweite (iv), Gegenprobe über `main()`); Platzhalter für TB-111 und die 25f-Karten |
+| **Nächste Schritte** | (1) B starten (Betreiber) oder TB-111 im Hauptordner neu fassen · (2) Karten zu 25f, Entscheidungen 1–7 · (3) 25f ins Repo abschreiben · (4) Anfrage 26a ablegen · (5) TB-112 Zusammenführung + Register 44 · (6) nach Fable-Bündelvorschlag: 19-Auftrag mit F8, Erzeuger |
+| **Freie Nummern** | frei ab **TB-112** · Fable-Anfrage frei ab **26a** (25g nicht vergeben) |
+
+**Fehler dieses Abschnitts, mit Regeln:**
+
+| | Fehler | Regel daraus |
+|---|---|---|
+| 1 | Beim Prüfen vor dem Schliess-Auslöser einmal `git status --porcelain` über die Brücke ausgeführt. Das ist verboten; es gab nur eine Zahl aus und veränderte nichts | ⭐ Vor dem Schliessen nur `git log`, `rev-parse` und das Wächter-Log. Den sauberen Arbeitsbaum belegt die Sitzung selbst im Ergebnis |
+| 2 | In einem Entwurf die Lückentabelle „Register 16 (Nr. 3)“ genannt, ohne die Unterüberschrift nachzusehen; richtig ist 16.11. Dazu Zeilennummern vom Stand vor TB-110 (+345 Zeilen) | Fundstellen mit Abschnittsnummer nennen, nicht mit Zeile; Zeilen nur mit Stand-Commit |
+| 3 | Sitzung B galt ab „Fertig“ (00:07) als gestartet, ohne Nachweis | Nach dem Start einer App-Sitzung auf einen Nachweis warten (erster Commit oder die Sonde zählt einen Prozess), bevor sie als laufend gemeldet wird |
