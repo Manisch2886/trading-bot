@@ -1,0 +1,69 @@
+# TB-118 D2 - Block 7 (Fehler -> Regel) aus UEBERGABE_2026-09-19.md (alle Fassungen) und UEBERGABE_2026-09-24.md,
+# je Regel geprueft gegen ARBEITSWEISE.md und docs/PRUEFPRINZIPIEN.md (Suche nach Kernwort, zweite und dritte Suche mit
+# anderem Wortlaut, dann Fundstelle gelesen). Stand: ARBEITSWEISE.md und PRUEFPRINZIPIEN.md an 3018657.
+# ⛔ VORSCHLAG fuer einen Nachtrag - nichts eingetragen (Regelwerk erst nach Freigabe, Auftrag D2).
+#
+# Status: STEHT = Regel steht dort (Fundstelle) · TEILWEISE = Kern steht, aber enger oder nur als Verweis ·
+#         FEHLT = in keiner der zwei Dateien gefunden · KEINE REGEL = Einzelfall, gehoert nicht ins Regelwerk
+# Die "Block 7"-Tabelle der 24.09.-Uebergabe heisst dort "Block 8" (Zaehlung der Datei); Inhalt gleicher Art.
+
+## UEBERGABE_2026-09-19.md, Fassung 19.09. (Block 7, Z. 181-219)
+19/1   K2i: ein Nachtrag nennt keine ungemessene Nummer                STEHT     ARBEITSWEISE 15 (Z. 1519, "mit gemessener Nummer nach K2i"); Wortlaut in BACKLOG_ENTSCHEIDUNGEN K2i
+19/2   vor jeder Folgerung aus einem Zeitstempel date -u gegen Ortszeit TEILWEISE ARBEITSWEISE 7 (Z. 1049) nur fuer die DB-Abweichung gegen Cron ("Ortszeit gegen UTC!")
+19/3   ein Name ist kein Messwert; jeder Satz: gemessen oder erschlossen TEILWEISE ARBEITSWEISE 0 ("Belegt, erschlossen und offen getrennt" - nur fuer Auftraege), Z. 643 als Verweis
+19/4   Herkunft einer Zahl wird gezaehlt, nicht erinnert               STEHT     PRUEFPRINZIPIEN C1; ARBEITSWEISE 0/7 ("Jede Zahl ... an der Rohausgabe nachgerechnet")
+19/5   ein Nachweis gilt fuer den Gegenstand, den er beruehrt           FEHLT
+19/6   ein Abbruchkriterium benennt die Sache, nie ihr Merkmal;         FEHLT     ⚠️ dazu ein Widerspruch: ARBEITSWEISE 6d (Z. 898) "Ein Abbruchkriterium fuehrt zu ABBRUCH und
+       fallen Wortlaut und Zweck auseinander und ist jemand                       Meldung - nie zu einer Rueckfrage"; K2h im Backlog sagt "in ARBEITSWEISE §7c" - dort nicht gefunden
+       erreichbar: fragen
+19/7   nie ueberschreiben, immer neuer Dateiname, danach wc -c/grep     TEILWEISE UMZUG (Z. 130, "Byteweise pruefen, nicht auf 'geschrieben' vertrauen"); PRUEFPRINZIPIEN D6 nur fuer git pull
+19/8   ueber die Bruecke kein git status/git add, lesend nur            STEHT     ARBEITSWEISE 0 (Z. 118), 14 Regel 4 (Z. 1400 f.)
+       mit --no-optional-locks
+19/9   Zwischenlager logs/auftraege/, endgueltiger Ort das Repo,         STEHT     ARBEITSWEISE 2 und 14 Regel 2 (12 Fundstellen "Downloads|logs/auftraege")
+       nie ~/Downloads
+19/10  Zustand der Sitzung messen, bevor am Repo gearbeitet wird         STEHT     ARBEITSWEISE 15 (Z. 1522, "Laeuft gerade eine Mac-Sitzung, ist docs/ gesperrt")
+19/11  Epics nach Voraussetzungen ordnen, nicht nach Anspruch            KEINE REGEL Einzelfall; Reihenfolge AF -> RT -> QR -> KG -> MI steht im Backlog (Verweis auf BACKLOG_EPICS)
+19/K   (Kern 20.09.) ein Messergebnis wird gegen eine zweite,            TEILWEISE PRUEFPRINZIPIEN C2 ("Zwei Parser auf zwei Dateien") - nur fuer Parser, nicht allgemein
+       unabhaengig geschriebene Zaehlung gehalten
+
+## UEBERGABE_2026-09-19.md, Fassung 21.09. (Block 7, Z. 577-596, und Ergaenzungen Z. 687-692, Z. 790-801)
+21/1   nach jeder Fable-Antwort die LAUFENDEN Auftraege gegen sie pruefen FEHLT   (ARBEITSWEISE 8 "Laufende Auftraege" meint etwas anderes)
+21/2   wo ein Aktenzeichen genannt wird, steht der Wortlaut daneben      FEHLT
+21/3   ein Uebergabetext traegt die Fassungszeile im Sendetext selbst    FEHLT
+21/4   die Pruefung, die wir von einer Datei verlangen, gilt auch fuer   FEHLT
+       die unverdaechtige: gleiche Sonde, beide Dateien
+21/5   voller Pfad, nie der blosse Name (find -name ... | head -1)       TEILWEISE ARBEITSWEISE 0/1 "Pfad immer mitgeben, nie beschreiben" - fuer Anleitungen, nicht fuer Messungen
+21/6   Fundstelle statt Inhalt beim Melden eines Sichtschutz-Treffers   FEHLT     steht als Registertext 27.5 (bindet); in ARBEITSWEISE/PRUEFPRINZIPIEN kein Verweis
+21/7   eine Berichtigung von Fable wird gemessen wie jede Behauptung    FEHLT     (PRUEFPRINZIPIEN C1 deckt Zahlen, nicht Quellenangaben/Aktenzeichen)
+
+## UEBERGABE_2026-09-19.md, Fassung 21.09. abends (Block 7, Z. 1118-1145)
+21b/1  vor jedem Schreiben auf eine vorhandene Datei wird sie gelesen   FEHLT     (wie 19/7; UMZUG Z. 130 nur fuer die Ablage)
+21b/2  jeder Kopierblock nennt seinen Empfaenger                        STEHT     ARBEITSWEISE 0 (Z. 125), 6b "Jeder Kopierblock nennt seinen Empfaenger" (Z. 620 ff.)
+21b/3  K2i gilt auch fuer eigene Nachtraege und die Uebergabe            STEHT     wie 19/1
+21b/4  append-only kennt kein "noch frisch"                              TEILWEISE ARBEITSWEISE 22 (Z. 1826 "append-only"); der Zusatz "auch minutenalter Registertext" fehlt
+21b/5  ein Nachtrag, der eine Sitzung nicht mehr erreicht, wird Auftrag  FEHLT
+       und geht nach docs/auftraege/, bevor er in logs/ altert
+
+## UEBERGABE_2026-09-24.md (Block 8 "Die Fehler dieses Chats und die Regeln daraus", Z. 266-288)
+24/1   vor jeder neuen Abschnittsnummer die vorhandenen messen           TEILWEISE K2i (Nachtraege) ueber ARBEITSWEISE 15; fuer Abschnittsnummern im Regelwerk nicht ausdruecklich
+24/2   aus zwei Zahlen derselben Sitzung folgt keine Regel; ein          STEHT     ARBEITSWEISE 22.7 (Z. 1979)
+       Kriterium braucht einen Gegenfall
+24/3   git status ersetzt durch --no-optional-locks diff --stat /        STEHT     ARBEITSWEISE 14 Regel 4 (log -1 und ls-files --others; diff --stat dort nicht genannt)
+       ls-files -o
+24/4   eine Kette ist erst geprueft, wenn alle ihre Eingaben geprueft    FEHLT
+24/5   bei Abweichung von der Vormessung gilt die Nachmessung (A8)       FEHLT     ("Vormessung"/"Nachmessung" 0 Treffer; PRUEFPRINZIPIEN A8 ist eine andere Regel)
+24/6   Hilfsdateien aufraeumen ueber device_request_delete_permission   FEHLT     (Werkzeug der Geraeteanbindung; Fundort eher UMZUG/ARBEITSWEISE 14)
+24/7   nach jedem Ablegen md5sum und wc -c auf beiden Seiten vergleichen TEILWEISE UMZUG Z. 130 (cmp -s je Datei); die Uebergabe nennt "UMZUG Schritt 1" - dort steht es in Abschnitt 1/2, nicht als Schritt
+24/R1  nach jedem Ausloeser die Nachschau planen (send_later)           STEHT     ARBEITSWEISE 22.5 (Z. 1910 ff.)
+24/R2  eine Fable-Anfrage ist erst uebergeben, wenn sie als Kopierblock  FEHLT
+       in der Antwort stand
+
+## Zusammenfassung
+33 Regeln (12 + 7 + 5 + 9): STEHT 10 · TEILWEISE 8 · FEHLT 14 · KEINE REGEL 1 (gezaehlt aus den Zeilen oben).
+Vorschlag fuer den Nachtrag (nach Freigabe, als eigener Auftrag - Vorlage 27b Teil E):
+  - die 14 FEHLT als Regeln mit Herkunft (Uebergabe, Block, Nr.), Zielort je Regel: Messen/Belege -> PRUEFPRINZIPIEN
+    (19/5, 21/4, 24/4, 24/5), Abbruchkriterium -> ARBEITSWEISE 7c (19/6), Umgang mit Fable -> ARBEITSWEISE 15/21
+    (21/1, 21/2, 21/3, 21/7, 24/R2), Schreiben auf Dateien und Nachtraege -> ARBEITSWEISE 14 (21b/1, 21b/5, 24/6),
+    Sichtschutz-Meldung -> Verweis auf Register 27.5 (21/6);
+  - bei den 8 TEILWEISE die engere Fassung erweitern oder bewusst so lassen (Entscheidung je Zeile);
+  - 19/6 zuerst den Widerspruch zu ARBEITSWEISE 6d, Z. 898 ("nie zu einer Rueckfrage") aufloesen.
