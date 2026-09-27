@@ -26,8 +26,7 @@ Trades, bestes Symbol) und O-6 (Positionen des Gewinners).
 
 - Register 22.2: „Der Lauf berichtet je Bot für den Plateau-Gewinner drei Werte“ (beste Falte, bestes Symbol, fünf
   beste Trades), ohne Schwelle, vor dem Tag registriert.
-- Gemessen: `auswertung.py` enthält dazu nichts (0 Treffer für `kill`, `Ertragsanteil`; `c_messung.txt`,
-  `c2_suche.txt`). `auswertung.py` steht auf der Sperrliste (Punkte 3, 5, 14). Die Werte *bestes Symbol* und *fünf
+- Gemessen: `auswertung.py` enthält dazu nichts (0 Treffer für `kill`, `Ertragsanteil`; `e_schluss.txt`). `auswertung.py` steht auf der Sperrliste (Punkte 3, 5, 14). Die Werte *bestes Symbol* und *fünf
   beste Trades* brauchen Daten je Symbol bzw. je Trade, die der Vertrag nicht führt (O-2).
 
 **Offen:** Wer rechnet die drei Werte — der Zellen-Erzeuger (für welche Zelle, wenn der Gewinner erst in
@@ -37,7 +36,7 @@ Trades, bestes Symbol) und O-6 (Positionen des Gewinners).
 
 - Register 15.3 (a): „Jedes Bootstrap-Intervall im Auswertungsskript wird auf der Reihe der täglichen Netto-Mark-to-Market-Renditen des Kapitalpfads gerechnet“
 - Register 15.3 (b): „Mittlere Blocklänge L = max(mediane Haltedauer des Parametersatzes in Handelstagen, ⌈T^(1/3)⌉)“
-- Gemessen: `research/vorregistrierung/*.py` enthält kein `bootstrap` (0 Treffer). Der Vertrag führt keine mediane
+- Gemessen: `research/vorregistrierung/*.py` enthält kein `bootstrap` (0 Treffer, `e_schluss.txt`). Der Vertrag führt keine mediane
   Haltedauer je Zelle.
 
 **Offen:** Welche Grösse trägt ein Bootstrap-Intervall (Abschnitt 8)? Ist er Teil von `auswertung.py` (Öffnung)?
@@ -71,7 +70,7 @@ Spanne `2026-01-01/2026-09-01` bei einem Go-Live-Schnitt `2026-09-01`?
 - Register 16.7 (d): „Berichtet je Bot und Falte, ohne dass ein Kriterium daran hängt“ — Symbolzahl, Anteil,
   Auslassungen mit Grund, und „nach dem Lauf die Faltenkohärenz“.
 - Register 16.11, Zeile 7: „Der spätere Auswerter tut es noch nicht“
-- Gemessen: `auswertung.py` 0 Treffer für `spearman`, `kohaerenz`, `ausgelassen`.
+- Gemessen: `auswertung.py` 0 Treffer für `spearman`, `kohaerenz`, `ausgelassen` (`e_schluss.txt`).
 
 **Offen:** Symbolzahl, Anteil und Auslassungen entstehen beim Laden (Erzeuger). Die Faltenkohärenz braucht die
 Rangfolge aller Zellen, ist also ein Auswertungsschritt; `auswertung.py` ist gesperrt. Wo steht sie?

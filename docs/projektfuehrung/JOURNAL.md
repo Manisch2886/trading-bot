@@ -9535,6 +9535,42 @@ Kein Abbruchkriterium ausgelöst. Kein Fable-Volumen bis 29.09.; Fragen gehen in
 
 ---
 
+## DS — TB-120: Erzeuger-Bestandsaufnahme, nur lesend — 61 Anforderungen aus dem Register (112 Zitate geprüft), Bestand im Code gemessen: Listen-Erzeuger halb da, Zellen-Erzeuger ohne Ansatz, heutiger Kern verwirft Zellen; 17 Lücken, neun Aufträge, 17 Fragen für Fable; UMZUG 6 auf `UEBERGABE.md` (27.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-120_erzeuger_bestandsaufnahme.md`*
+
+**Quelle:** Mac-Sitzung **TB-120** (Hauptordner), 27.09.2026, Eingang `d9e3600`. Commits `5f819c1` (Schritt 0),
+`aab641e` (A), `3265b3a` (B), `42f507a` (C), `d173ad4` (D) und der Abgabe-Commit (E). Belege `docs/belege/TB-120/`.
+Freigabe 27.09.2026, 18:08 und ca. 18:25 („Wir arbeiten alles strukturiert ab“). Keine Rückfrage an den Betreiber.
+Kein Abbruchkriterium ausgelöst. Kein Lauf, keine Codeänderung.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0, A** | 0a wie erwartet (md5 Sammlung `d08f5431…`, 32/0); db-Sicherung 12/12 rc 0. UMZUG 6: zwei Stellen ersetzt, alter Name danach 0-mal |
+| ⭐⭐ **B** | 61 Anforderungen (22 L, 6 L+Z, 33 Z; 5 ohne klaren Ort), jede mit zeichengleichem Kurzzitat, maschinell geprüft; 11 offene Stellen mit beiden Wortlauten. Fundstelle `teile`: 37.4 (22d Abschnitt 3) |
+| ⭐⭐ **C** | `positionen_holen.py`: 36.1-Teil vorhanden; Signalpfad teilweise (zweite Simulation mit Kennzeichnung, `ausgefuehrt`, kein `bot`, `kerzen` statt `haltedauer_balken`, keine Parameter-Hashes). Zellen-Erzeuger: kein Ansatz; `beispieldaten.py` gibt die Gestalt vor. `evaluate_combination_multi` simuliert nicht und verwirft Zellen (`return None`); Kapital-DD 0/9, MtM-Tagesreihe 0/9 im Laufcode; `simuliere_portfolio` gibt ausgeführte Positionen nicht heraus. Posten 3: 1 fehlt, 2 teilweise; Posten 4: 4/4 fehlt; Posten 5: 0/9; Posten 8: fehlt. Listen-Hashes 9/9 = TB-114 |
+| ⭐⭐ **D** | G1–G17, Aufträge E-1 … E-9; ohne Fable: E-1 (Posten 3), E-8 als Gerüst, E-3 zum Teil. Zellenzahl 2 416 = Register Abschnitt 3 |
+| **Durchgehend** | Register sha256 unverändert, Datenbanken 12/12 gleich, 0 Dateien ausserhalb `docs/` |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **`faltenplan.faltenplan()` ist kein Lesen.** Es startet einen Loader-Trockenlauf im Kindprozess. In einem nur lesenden Auftrag brach er ohne Folge ab (fehlendes `binance` unter `/usr/bin/python3`); gezählt wird über `registerdaten.raster()`, die Faltenzahl aus dem Register |
+| ⭐ | **Zahlen im Ergebnis gegen den Beleg zählen, nicht aus der Erinnerung.** „62 Anforderungen“ stand im ersten Entwurf; gezählt waren 61 (eine Nummer nicht vergeben) |
+
+### Was offen bleibt
+
+- Fable (Sammlung, Dienstag): F-1 … F-17 (Ergebnis Abschnitt 6).
+- Steuernder Chat: F-1 … F-17 in die Sammlung übertragen; `UMZUG.md` neu ablegen (md5 im Ergebnis, Abschnitt 7);
+  nächster Auftrag ohne Fable E-1 oder E-8 als Gerüst (Freigabe, weil Code).
+
+*Geschrieben 27.09.2026 von der Mac-Sitzung TB-120. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

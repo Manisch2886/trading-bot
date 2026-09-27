@@ -10,7 +10,7 @@ Zitat ist maschinell gegen das Register geprüft (`b_zitate_pruefen.py`, Ausgabe
 **„vor dem Tag“** heisst hier: muss am Tag-Commit gebaut bzw. (bei L) gelaufen sein. Wo die Fundstelle dafür
 nicht im Register, sondern in `PLAN_VOR_DEM_TAG.md` steht, ist das ausgewiesen („PLAN“).
 
-Die Nummern `AN-nn` sind Nummern dieser Bestandsaufnahme, keine Registernummern.
+Die Nummern `AN-nn` sind Nummern dieser Bestandsaufnahme, keine Registernummern. `AN-29` ist nicht vergeben (Nummernlücke beim Gliedern, keine fehlende Zeile); 61 Zeilen.
 
 ## 1. Listen-Erzeuger (L)
 

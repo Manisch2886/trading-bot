@@ -1,0 +1,35 @@
+# TB-120 E Schlussmessung 2026-09-27 19:56:44 +0200, HEAD d173ad4
+## Register
+18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c  docs/VORREGISTRIERUNG_neuselektion.md
+## Datenbanken gegen 0c
+12/12 gleich (12 Dateien)
+## Dateien seit Eingang d9e3600 (git diff --name-only d9e3600..HEAD), ausserhalb docs/:
+0
+## numstat d9e3600..HEAD
+1	1	docs/auftraege/AKTUELLER_AUFTRAG.md
+165	0	docs/auftraege/MAC_TB-120_erzeuger_bestandsaufnahme.md
+11	0	docs/belege/TB-120/0b_ausgang.txt
+47	0	docs/belege/TB-120/0c_db_sicherung.txt
+23	0	docs/belege/TB-120/a1_nachweis.txt
+89	0	docs/belege/TB-120/b_anforderungen.md
+122	0	docs/belege/TB-120/b_offen.md
+54	0	docs/belege/TB-120/b_zitate_pruefen.py
+116	0	docs/belege/TB-120/b_zitate_pruefen.txt
+12	0	docs/belege/TB-120/c1_listen_hashes.txt
+285	0	docs/belege/TB-120/c2_suche.txt
+161	0	docs/belege/TB-120/c_bestand.md
+129	0	docs/belege/TB-120/c_messung.py
+82	0	docs/belege/TB-120/c_messung.txt
+85	0	docs/belege/TB-120/d_plan.md
+23	0	docs/belege/TB-120/d_zellenzahl.txt
+32	0	docs/projektfuehrung/FABLE_SAMMLUNG_fuer_2026-09-29.md
+2	2	docs/projektfuehrung/UMZUG.md
+## git status --porcelain
+?? docs/belege/TB-120/e_schluss.txt
+## Nachmessung zu O-3, O-4, O-7 (grep -ci je Datei in research/vorregistrierung/*.py ohne test_*)
+kill: 0 Dateien
+ertragsanteil: 0 Dateien
+bootstrap: 0 Dateien
+spearman: 0 Dateien
+kohaerenz: 0 Dateien
+ausgelassen: 0 Dateien
