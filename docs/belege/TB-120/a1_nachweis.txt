@@ -1,0 +1,23 @@
+# TB-120 A1 - UMZUG 6 Eroeffnungstext auf UEBERGABE.md
+
+Stellen des alten Namens im Eroeffnungstext (Codeblock Z. 250-282 am Stand d9e3600): 2, beide in Z. 257-258, beide ersetzt.
+Ausserhalb des Eroeffnungstexts kam der alte Name vor der Aenderung nicht vor (grep vorher: nur Z. 257, 258).
+
+## davor (Z. 257-258)
+1. projektfuehrung/UEBERGABE_2026-09-25.md  — der Stand, das Wichtigste
+                                              (docs/projektfuehrung/UEBERGABE_2026-09-25.md)
+
+## danach (Z. 257-258)
+1. projektfuehrung/UEBERGABE.md  — der Stand, das Wichtigste
+                                              (docs/projektfuehrung/UEBERGABE.md)
+
+## numstat
+2	2	docs/projektfuehrung/UMZUG.md
+
+## grep -n 'UEBERGABE_2026-09-25' docs/projektfuehrung/UMZUG.md danach
+rc 1 (0 Treffer, kein verbleibender Vorgaengerverweis)
+
+## Zielpfad existiert
+-rw-r--r--  1 jaquelineloffler  staff  29858 27 Sep 18:21 docs/projektfuehrung/UEBERGABE.md
+
+Hinweis: Die Spalte mit dem Gedankenstrich in Z. 257 ist nicht nachgerueckt (Auftrag: 'Nichts sonst.'); Z. 258 behaelt ihre Einrueckung.

@@ -1,0 +1,47 @@
+# TB-120 0c - db-Sicherung nach ARBEITSWEISE 7c Schritt 0: docs/werkzeuge/db_sicherung/db_sicherung.sh ins iCloud-Ziel
+# 2026-09-27 19:37:16 +0200
+# db_sicherung 2026-09-27 19:37:16 +0200
+# Repo:  /Users/jaquelineloffler/trading-bot
+# Ziel:  /Users/jaquelineloffler/Library/Mobile Documents/com~apple~CloudDocs/trading-bot-db-sicherung/2026-09-27_193716
+# gefunden: 12 Datenbanken
+#   benachrichtigungen_schliessung.db
+#   broker_testnet_t3_supertrend.db
+#   paper_trading_elliott_wave_stocks.db
+#   paper_trading_elliott_wave.db
+#   paper_trading_rsi2_crypto.db
+#   paper_trading_rsi2_mean_reversion.db
+#   paper_trading_t3_supertrend.db
+#   paper_trading_turtle_soup_crypto.db
+#   paper_trading_turtle_soup_stocks.db
+#   paper_trading_volatility_breakout_crypto.db
+#   paper_trading_volatility_breakout.db
+#   strategies/volatility_breakout/paper_trading_volatility_breakout.db
+ok      benachrichtigungen_schliessung.db  (45056 B, 11 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      broker_testnet_t3_supertrend.db  (155648 B, 27 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave_stocks.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_crypto.db  (16384 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_mean_reversion.db  (24576 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_t3_supertrend.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_stocks.db  (32768 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      strategies/volatility_breakout/paper_trading_volatility_breakout.db  (4096 B, 0 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      docs.tar.gz  (5996599 B, Commit 5f819c1, 1615 Dateien = git ls-tree, gzip -t ok)
+# gesichert 12 von 12, Fehler 0, Satzgroesse 6232 KiB
+# Rueckgabewert 0
+rc 0
+## sha256 der Originale (fuer den Vergleich am Ende)
+8d3eb2a22c4542c23bdcfe88024a2da62e14133f77847e03cf6d0b44b75e6f65  ./benachrichtigungen_schliessung.db
+4e0d1853982db819d68e48d23b9f16e9e448727e1c8e8556f33452ef4a4e837e  ./broker_testnet_t3_supertrend.db
+35a44bf683ee465b8e49c935b1f04262bdcd969a00dc995df06a6b803f4ea96f  ./paper_trading_elliott_wave_stocks.db
+f85bd033b635a0024870486eaea46188d789ca33cce04ef4adca83c61de3adc4  ./paper_trading_elliott_wave.db
+286a2001dd028c7e14978306261033a88b6e10af90c724b0412c72d2ef992e3d  ./paper_trading_rsi2_crypto.db
+b65f91f4cb8aab9f7c95b0a0d1b54eec1d06989f6072259af0a3590d66745991  ./paper_trading_rsi2_mean_reversion.db
+65cf1458dfc3fd51d4187b1426036025934ba3407ec0cf887989eea749c5126c  ./paper_trading_t3_supertrend.db
+30819ee9f3a437d99a588bb271a154b9ea3b58c9f07900068bfa090d6cdf912f  ./paper_trading_turtle_soup_crypto.db
+371006e0f4801daa0da49dfbcfa1527a8e8df49ba75a8f43b32c9ed8707270e9  ./paper_trading_turtle_soup_stocks.db
+53e2645f508968658d9bb111b54e7e8d5065fa66aae63903c880cb7a8b10079b  ./paper_trading_volatility_breakout_crypto.db
+6761e7aab8b00316e7f96e2ec677d56017f29e7d7d3540bf9b0b51bc8a378951  ./paper_trading_volatility_breakout.db
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./strategies/volatility_breakout/paper_trading_volatility_breakout.db

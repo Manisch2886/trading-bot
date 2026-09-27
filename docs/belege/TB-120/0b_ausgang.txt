@@ -1,0 +1,11 @@
+# TB-120 0b Ausgangswerte, gemessen 2026-09-27 19:37:10 CEST
+
+HEAD: 5f819c14723d2a3953289e79d0d9375663d8b55c
+
+## Register
+18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c  docs/VORREGISTRIERUNG_neuselektion.md
+Zeilen: 10347
+
+## git status --porcelain | wc -l
+1
+(der eine Eintrag ist docs/belege/TB-120/ selbst, angelegt fuer diese Datei; vor dem Anlegen 0)
