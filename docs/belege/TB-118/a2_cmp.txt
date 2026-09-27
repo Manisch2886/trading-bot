@@ -1,0 +1,26 @@
+# TB-118 A2 (i): Bodies (ab Zeile 3) der vier Teile in Reihenfolge aneinandergehaengt, cmp gegen das Original am HEAD
+# 2026-09-27 07:54:17 +0200, HEAD f8056ef118f0464f52bfe01ffa1f529be58629be
+$ for n in 1 2 3 4; do tail -n +3 docs/projektfuehrung/REGISTER_KOPIE_teil$n.md; done > <scratch>/bodies.md
+$ git show HEAD:docs/VORREGISTRIERUNG_neuselektion.md > <scratch>/original.md
+$ cmp <scratch>/bodies.md <scratch>/original.md
+rc 0
+$ cmp <scratch>/original.md docs/VORREGISTRIERUNG_neuselektion.md   (Arbeitsbaum = HEAD)
+rc 0
+18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c  <scratch>/bodies.md
+18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c  <scratch>/original.md
+## Kopfzeilen
+# REGISTER-KOPIE Teil 1 von 4 — Abschnitte 0–23 — Commit 1e1145702ba8b6ee6ad4cecaecb75591463faa48 — 2026-09-27 — Original sha256 18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c — KOPIE, nicht das Register
+Zeile 2 Bytes (nur Zeilenende): 1
+# REGISTER-KOPIE Teil 2 von 4 — Abschnitte 24–37 — Commit 1e1145702ba8b6ee6ad4cecaecb75591463faa48 — 2026-09-27 — Original sha256 18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c — KOPIE, nicht das Register
+Zeile 2 Bytes (nur Zeilenende): 1
+# REGISTER-KOPIE Teil 3 von 4 — Abschnitte 38–43 — Commit 1e1145702ba8b6ee6ad4cecaecb75591463faa48 — 2026-09-27 — Original sha256 18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c — KOPIE, nicht das Register
+Zeile 2 Bytes (nur Zeilenende): 1
+# REGISTER-KOPIE Teil 4 von 4 — Abschnitte 44–46 — Commit 1e1145702ba8b6ee6ad4cecaecb75591463faa48 — 2026-09-27 — Original sha256 18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c — KOPIE, nicht das Register
+Zeile 2 Bytes (nur Zeilenende): 1
+## Werkzeug selbst: registerkopie.py --pruefen
+Teil 1: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  239529 Bytes gesamt, Body 239294 Bytes, Abschnitte 0–23  <= 240000
+Teil 2: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  220905 Bytes gesamt, Body 220669 Bytes, Abschnitte 24–37  <= 240000
+Teil 3: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  227107 Bytes gesamt, Body 226871 Bytes, Abschnitte 38–43  <= 240000
+Teil 4: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  59998 Bytes gesamt, Body 59762 Bytes, Abschnitte 44–46  <= 240000
+Bodies aneinander: 746596 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am 1e1145702ba8: 746596 Bytes, sha256 18e39ee29b9bd4f0 (Kopf 18e39ee29b9bd4f0) - BYTEGLEICH
+rc 0

@@ -1,0 +1,10 @@
+# TB-118 A2 (ii): Groesse jedes Teils (wc -c, Kopf eingerechnet), Grenze 240 000 Bytes
+  239529 docs/projektfuehrung/REGISTER_KOPIE_teil1.md
+  220905 docs/projektfuehrung/REGISTER_KOPIE_teil2.md
+  227107 docs/projektfuehrung/REGISTER_KOPIE_teil3.md
+   59998 docs/projektfuehrung/REGISTER_KOPIE_teil4.md
+  747539 total
+Teil 1:   239529 <= 240000 ok
+Teil 2:   220905 <= 240000 ok
+Teil 3:   227107 <= 240000 ok
+Teil 4:    59998 <= 240000 ok

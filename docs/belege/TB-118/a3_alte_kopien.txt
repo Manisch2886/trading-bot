@@ -1,0 +1,9 @@
+# TB-118 A3: alte Registerkopien im Repo - nicht geloescht, nicht verschoben (G3). 2026-09-27 07:59:34 +0200
+$ ls -l docs/projektfuehrung/REGISTER_KOPIE_2026-09-2*
+400730 docs/projektfuehrung/REGISTER_KOPIE_2026-09-22.md
+552130 docs/projektfuehrung/REGISTER_KOPIE_2026-09-24.md
+$ git log --all --format=%h --name-only | grep -c REGISTER_KOPIE_2026-09-21 (Datei 21.09. je im Repo?)
+0
+$ ... grep -c REGISTER_KOPIE_2026-09-24_teil
+0
+Befund: Im Repo liegen nur die Kopien vom 22.09. und 24.09. (Ganzfassung). REGISTER_KOPIE_2026-09-21.md und die drei Teile vom 24.09. sind nie committet worden, in keinem Zweig - sie existieren nur in der Projektablage. Fuer die Loeschliste (F) heisst das: diese vier Dateien sind nur ueber den Registercommit ihres Stands rekonstruierbar, nicht als Datei.

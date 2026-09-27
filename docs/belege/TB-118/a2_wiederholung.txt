@@ -1,0 +1,15 @@
+# TB-118 A2 Zusatz: zweiter Lauf in einen anderen Ordner ergibt bytegleiche Teile (Wiederholbarkeit)
+geschrieben: <scratch>/wdh/REGISTER_KOPIE_teil1.md  Abschnitte 0–23  239529 Bytes
+geschrieben: <scratch>/wdh/REGISTER_KOPIE_teil2.md  Abschnitte 24–37  220905 Bytes
+geschrieben: <scratch>/wdh/REGISTER_KOPIE_teil3.md  Abschnitte 38–43  227107 Bytes
+geschrieben: <scratch>/wdh/REGISTER_KOPIE_teil4.md  Abschnitte 44–46  59998 Bytes
+Teil 1: <scratch>/wdh/REGISTER_KOPIE_teil1.md  239529 Bytes gesamt, Body 239294 Bytes, Abschnitte 0–23  <= 240000
+Teil 2: <scratch>/wdh/REGISTER_KOPIE_teil2.md  220905 Bytes gesamt, Body 220669 Bytes, Abschnitte 24–37  <= 240000
+Teil 3: <scratch>/wdh/REGISTER_KOPIE_teil3.md  227107 Bytes gesamt, Body 226871 Bytes, Abschnitte 38–43  <= 240000
+Teil 4: <scratch>/wdh/REGISTER_KOPIE_teil4.md  59998 Bytes gesamt, Body 59762 Bytes, Abschnitte 44–46  <= 240000
+Bodies aneinander: 746596 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am 1e1145702ba8: 746596 Bytes, sha256 18e39ee29b9bd4f0 (Kopf 18e39ee29b9bd4f0) - BYTEGLEICH
+rc 0
+cmp Teil 1 rc 0
+cmp Teil 2 rc 0
+cmp Teil 3 rc 0
+cmp Teil 4 rc 0

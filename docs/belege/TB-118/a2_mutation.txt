@@ -1,0 +1,16 @@
+# TB-118 A2 Mutationsprobe, 2026-09-27 07:54:29 +0200
+sha256 Teil 3 vorher  82bdf6ba225abd45f9031428a453a363fa47277e4c0c8eabf857336080b77e66
+Byte 100000: 44 -> 45
+$ cmp <scratch>/bodies_mut.md <scratch>/original.md
+<scratch>/bodies_mut.md <scratch>/original.md differ: char 559728, line 8198
+rc 1
+$ registerkopie.py --pruefen
+Teil 3: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  227107 Bytes gesamt, Body 226871 Bytes, Abschnitte 38–43  <= 240000
+Bodies aneinander: 746596 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am 1e1145702ba8: 746596 Bytes, sha256 18e39ee29b9bd4f0 (Kopf 18e39ee29b9bd4f0) - UNGLEICH
+rc 1
+zurueckgesetzt
+sha256 Teil 3 nachher 82bdf6ba225abd45f9031428a453a363fa47277e4c0c8eabf857336080b77e66
+vorher = nachher
+$ registerkopie.py --pruefen (nach dem Zuruecksetzen)
+Bodies aneinander: 746596 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am 1e1145702ba8: 746596 Bytes, sha256 18e39ee29b9bd4f0 (Kopf 18e39ee29b9bd4f0) - BYTEGLEICH
+rc 0
