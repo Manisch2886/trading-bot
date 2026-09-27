@@ -1,0 +1,20 @@
+{
+  "_zweck": "Ereignisgebundene Dokumente der Projektablage (Fable 27b Teil B8, B1-Nachtraege, Sonderfaelle B6). Von Hand gepflegt: je Datei das Austrittsereignis und ob es eingetreten ist. erfuellt=true -> die Datei verlaesst die Ablage; false -> sie bleibt. Statt erfuellt kann 'frist' (JJJJ-MM-TT) stehen: erfuellt ab diesem Tag. 'muster' statt 'datei' fuer Namen, die nur als Anfang bekannt sind. Gelesen von docs/werkzeuge/ablage_soll.py.",
+  "_stand": "2026-09-27, TB-118",
+  "eintraege": [
+    {"datei": "NACHTRAG_ARBEITSWEISE_6d_richtungsweisend.md", "ereignis": "in ARBEITSWEISE eingearbeitet (27b B1, Regel 10)", "erfuellt": true, "beleg": "ARBEITSWEISE.md 6d, Unterabschnitt 'Nur richtungsweisende Rückfragen' (Z. 875 am 3018657)"},
+    {"datei": "BACKLOG_NACHTRAG_2026-09-18.md", "ereignis": "nach Regel 10 als eingearbeitet gemessen (27b B2)", "erfuellt": false, "beleg": "docs/belege/TB-118/c4_offen.txt: Kette 0,82 Nummer ja, Kern nein"},
+    {"datei": "JOURNAL_NACHTRAG_2026-09-18.md", "ereignis": "nach Regel 10 als eingearbeitet gemessen (27b B2)", "erfuellt": true, "beleg": "docs/belege/TB-118/c4_messung.txt: 5/5 Blöcke, verschoben nach nachtraege/_eingearbeitet/"},
+    {"datei": "STOFFSAMMLUNG_REGISTER_41_42.md", "ereignis": "Registerauftrag TB-108 abgegeben (27b B8)", "erfuellt": true, "beleg": "486032d"},
+    {"datei": "AF-F0_BESTANDSAUFNAHME_2026-09-26.md", "ereignis": "Epic AF geparkt bis nach dem Tag; Bestandsaufnahme liegt vor (27b B8, C3 Nr. 7)", "erfuellt": true, "beleg": "27b C3 Nr. 7"},
+    {"datei": "ERINNERUNG_2026-09-25_speicher_export.md", "ereignis": "Termin 29.09.2026 vorbei (27b B8)", "frist": "2026-09-30", "beleg": "27b B8 'nach dem 29.09.'"},
+    {"datei": "BESTANDSAUFNAHME_TB-30b.md", "ereignis": "Zellen-Erzeuger und TB-30b Posten 3-6 abgegeben (27b B8)", "erfuellt": false, "beleg": "PLAN_VOR_DEM_TAG Punkt 10 offen"},
+    {"datei": "NACHTRAG_1_BESTANDSAUFNAHME_TB-30b.md", "ereignis": "wie BESTANDSAUFNAHME_TB-30b.md", "erfuellt": false, "beleg": "wie oben"},
+    {"datei": "NACHTRAG_2_BESTANDSAUFNAHME_TB-30b.md", "ereignis": "wie BESTANDSAUFNAHME_TB-30b.md", "erfuellt": false, "beleg": "wie oben"},
+    {"muster": "PRUEFUNG_2026-09-25_", "ereignis": "die vier Speicher-Nachträge sind gemacht (27b B8)", "erfuellt": false, "beleg": "27b B8"},
+    {"datei": "RECHERCHE_vintage_datenlage.md", "ereignis": "D1 entschieden (27b B8)", "erfuellt": false, "beleg": "27b B8"},
+    {"datei": "FABLE_ANTWORT_2026-09-25f_gesamtanalyse_und_ideen.md", "ereignis": "Ideen in KANDIDATEN_DURCHGANG_2.md, Entscheidungen in BACKLOG_ENTSCHEIDUNGEN.md (27b B6 Sonderfall)", "erfuellt": false, "beleg": "KANDIDATEN_DURCHGANG_2.md existiert nicht; die Antwort liegt nicht im Repo"},
+    {"datei": "FABLE_ANFRAGE_2026-09-25f_gesamtanalyse_und_ideen.md", "ereignis": "wie die Antwort 25f (Paar)", "erfuellt": false, "beleg": "wie oben"},
+    {"datei": "LOESCHLISTE_TB-118.md", "ereignis": "Löschliste vom steuernden Chat vollzogen (27b Teil D F2)", "erfuellt": false, "beleg": "TB-118 F"}
+  ]
+}

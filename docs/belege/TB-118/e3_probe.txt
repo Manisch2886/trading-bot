@@ -1,0 +1,58 @@
+# TB-118 E3 - Probe ablage_soll.py gegen 27b C3 (Ist-Liste REKONSTRUIERT, 145 Pfade - siehe Kopf der Ist-Datei)
+Ist 145, entfernen (Skript) 121, Sofortliste C3 Nr. 1-7 auf derselben Liste 119
+  C3 Nr. 1:   3 Dateien, davon im Skript-entfernen   3
+  C3 Nr. 2:   3 Dateien, davon im Skript-entfernen   3
+  C3 Nr. 3:  83 Dateien, davon im Skript-entfernen  81
+  C3 Nr. 4:  22 Dateien, davon im Skript-entfernen  22
+  C3 Nr. 5:   2 Dateien, davon im Skript-entfernen   2
+  C3 Nr. 6:   2 Dateien, davon im Skript-entfernen   2
+  C3 Nr. 7:   4 Dateien, davon im Skript-entfernen   3
+
+## (a) in C3, vom Skript NICHT entfernt: 3
+  C3 Nr. 7  BACKLOG_NACHTRAG_2026-09-18.md                               Skript: bleibt - B8 Ereignis offen: nach Regel 10 als eingearbeitet gemessen (27b B2)
+  C3 Nr. 3  FABLE_UEBERGABE_2026-09-24_neuer_chat.md                     Skript: bleibt - B6 Sonderfall: juengste FABLE_UEBERGABE
+  C3 Nr. 3  FABLE_WOCHENRUECKMELDUNG_2026-09-22.md                       Skript: bleibt - B6 Sonderfall: juengste FABLE_WOCHENRUECKMELDUNG
+
+## (b) vom Skript entfernt, in C3 NICHT: 5
+  ERGEBNIS_TB-116_leiter_lesarten.md                             Skript: B5 Ergebnis ohne offene Anfrage
+  FABLE_ANFRAGE_2026-09-26a_tagesanfrage_tb109_bis_113.md        Skript: B6 Dialogpaar geschlossen (Index: nicht offen, nicht unter den zwei juengsten)
+  FABLE_ANTWORT_2026-09-26a_dreizehn_fragen_nullbefund_registerblock.md Skript: B6 Dialogpaar geschlossen (Index: nicht offen, nicht unter den zwei juengsten)
+  NACHTRAG_ARBEITSWEISE_6d_richtungsweisend.md                   Skript: B8 Ereignis eingetreten: in ARBEITSWEISE eingearbeitet (27b B1, Regel 10)
+  UEBERGABE_2026-09-25.md                                        Skript: B2 datierte Fassung - UEBERGABE.md liegt im Repo
+
+Ergebnis: 116 von 119 C3-Dateien entfernt das Skript; 3 Abweichungen (a), 5 Abweichungen (b).
+
+## Einordnung der acht Abweichungen (benannt, nicht angepasst - Auftrag E3)
+(a1) BACKLOG_NACHTRAG_2026-09-18.md bleibt: die Messung nach Regel 10 findet den Kern der Kette 0,82 nicht
+     (c4_offen.txt). C3 Nr. 7 setzte "nach Messung eingearbeitet" voraus; die Messung sagt nein. Entscheidung beim
+     Betreiber (c4_offen.txt).
+(a2) FABLE_UEBERGABE_2026-09-24 und (a3) FABLE_WOCHENRUECKMELDUNG_2026-09-22 bleiben: 27b B6 (Sonderfaelle) sagt
+     "Austritt mit der naechsten Wochenrueckmeldung / Fable-Uebergabe" - es gibt keine juengere, also bleibt je die
+     juengste. C3 Nr. 3 nimmt sie pauschal mit "bis einschliesslich 25e" heraus. Widerspruch innerhalb von 27b (B6
+     gegen C3); das Skript folgt B6.
+(b1) ERGEBNIS_TB-116 geht: keine FABLE_ANFRAGE zitiert es (die Tagesanfrage 27c ist nicht geschrieben). 27b B5 nennt
+     "-116 (offen bis 27c)"; nach der Regel aus E2 tritt ein Ergebnis erst mit der Anfrage ein, die es zitiert. Mit
+     27c im Repo und im Index kehrt es ins Soll zurueck.
+(b2) Anfrage und Antwort 26a gehen: der Index fuehrt 26a nicht als offen (alle Fragen in 27a aufgenommen), und die
+     zwei juengsten Paare sind 27a und 27b. 27b B6 zaehlte "26a, 27a" als die zwei juengsten TAGESanfragen - 27b
+     selbst ist keine Tagesanfrage. Die Regel in E2 spricht von Datums-Buchstaben-Paaren, nicht von Tagesanfragen.
+(b3) NACHTRAG_ARBEITSWEISE_6d_richtungsweisend.md geht: er ist eingearbeitet (ARBEITSWEISE 6d, Unterabschnitt
+     "Nur richtungsweisende Rueckfragen"). C3 fuehrt ihn unter "Bleibt ... (bis eingearbeitet)" - das Ereignis ist
+     eingetreten.
+(b4) UEBERGABE_2026-09-25.md geht: UEBERGABE.md liegt seit Schritt D im Repo (27b G2: eine Fassung ohne Datum). C3
+     nennt nur 19 und 24, weil UEBERGABE.md beim Schreiben noch nicht existierte; C3 "Rein" fuehrt UEBERGABE.md.
+Weitere Befunde der Probe:
+- B4 in der woertlichen Fassung ("kein docs/ERGEBNIS_TB-nnn_*.md") haette MAC_TB-79 und MAC_TB-88 als offen gefuehrt
+  und zum Ablegen vorgeschlagen: TB-79 steht als Nachtrag in ERGEBNIS_TB-78, TB-88 unter docs/belege/TB-88/.
+  Das Skript sucht deshalb auch dort (ergebnis_zu()). Gemessen, nicht angenommen.
+- ablegen.txt nennt KANDIDATEN_DURCHGANG_2.md als Standdokument, das es im Repo nicht gibt (27b B2 setzt es voraus).
+- Nicht im Repo, aber in der (rekonstruierten) Ablage: FABLE_ANTWORT_2026-09-25f, REGISTER_KOPIE_2026-09-21 und die drei
+  Teile vom 24.09., SITZUNGSWAECHTER_ausloeser_statt_tippen.md, PROJEKTSTAND_einfache_sprache.md,
+  PRUEFUNG_2026-09-25_*, ERINNERUNG_2026-09-25_*, belege/TB-91_*, belege/TB-93_*. Nach 27b G1 ist das Repo der
+  Traeger - diese Dateien ins Repo holen, BEVOR eine davon aus der Ablage entfernt wird (betrifft aus der Loeschliste:
+  REGISTER_KOPIE_2026-09-21 und die drei Teile - sie sind nur ueber den Registerstand ihres Tages rekonstruierbar -
+  und die zwei Belege).
+Grenze der Probe: Die Ist-Liste ist rekonstruiert (Kopf der Datei: Gruppe 2 trifft die 89 nur, wenn die zwei
+FABLE_UEBERGABE darin mitgezaehlt sind; 17 MAC-Namen und einige Rest-Namen sind Annahmen). Die Probe prueft die Regeln des Skripts gegen die Regeln aus C3 auf derselben Liste,
+nicht den Bestand der Ablage. Mit der echten Ist-Liste des steuernden Chats ist sie zu wiederholen:
+  python3 docs/werkzeuge/ablage_soll.py --ist <ist.txt> --aus <ordner>

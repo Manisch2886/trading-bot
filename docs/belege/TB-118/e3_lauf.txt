@@ -1,0 +1,1 @@
+Ist 145 | Soll 37 | entfernen 121 | bleibt 24 | ablegen 13 | ohne Regel 0

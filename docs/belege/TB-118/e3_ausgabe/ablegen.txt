@@ -1,0 +1,14 @@
+# ABLEGEN (13) - ablage_soll.py, Stand 2026-09-27, Ist-Liste e3_ist_rekonstruiert.txt (145 Pfade)
+projektfuehrung/BACKLOG_ENTSCHEIDUNGEN.md	B2 Stand
+projektfuehrung/FABLE_ANFRAGE_2026-09-27b_konzept_projektwissen.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANTWORT_2026-09-27b_konzept_projektwissen.md	B6 Dialog: Antwort 27b offen
+projektfuehrung/FABLE_DIALOG_INDEX.md	B2 Stand
+KANDIDATEN_DURCHGANG_2.md	B2 Stand - FEHLT IM REPO
+auftraege/MAC_TB-117_wachen_vor_dem_tag.md	B4 Auftrag offen: zugehoerige Antwort 27a im Index offen
+auftraege/MAC_TB-118_projektwissen_aufraeumen.md	B4 Auftrag offen: kein ERGEBNIS_TB-118
+projektfuehrung/REGISTER_INDEX.md	B3 Register, Index
+projektfuehrung/REGISTER_KOPIE_teil1.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil2.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil3.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil4.md	B3 Register, Teil
+projektfuehrung/UEBERGABE.md	B2 Stand

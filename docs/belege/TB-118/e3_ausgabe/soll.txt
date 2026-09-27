@@ -1,0 +1,38 @@
+# SOLL (37) - ablage_soll.py, Stand 2026-09-27, Ist-Liste e3_ist_rekonstruiert.txt (145 Pfade)
+ERGEBNIS_TB-114_register_45_herkunft_pfadregel.md	B5 Ergebnis: zitiert von Anfrage 27a, Antwort 27a offen
+ERGEBNIS_TB-115_drei_verfahrensmessungen.md	B5 Ergebnis: zitiert von Anfrage 27a, Antwort 27a offen
+ERINNERUNG_2026-09-25_speicher_export.md	B8 Ereignis offen: Termin 29.09.2026 vorbei (27b B8)
+FABLE_ANTWORT_2026-09-25f_gesamtanalyse_und_ideen.md	B8 Ereignis offen: Ideen in KANDIDATEN_DURCHGANG_2.md, Entscheidungen in BACKLOG_ENTSCHEIDUNGEN.md (27b B6 Sonderfall)
+KANDIDATEN_DURCHGANG_2.md	B2 Stand - FEHLT IM REPO
+PROJEKTSTAND_einfache_sprache.md	B2 Stand - FEHLT IM REPO
+PRUEFPRINZIPIEN.md	B1 Regelwerk
+PRUEFUNG_2026-09-25_speicher.md	B8 Ereignis offen: die vier Speicher-Nachträge sind gemacht (27b B8)
+SITZUNGSWAECHTER_ausloeser_statt_tippen.md	B1 Regelwerk
+auftraege/MAC_TB-117_wachen_vor_dem_tag.md	B4 Auftrag offen: zugehoerige Antwort 27a im Index offen
+auftraege/MAC_TB-118_projektwissen_aufraeumen.md	B4 Auftrag offen: kein ERGEBNIS_TB-118
+projektfuehrung/ARBEITSWEISE.md	B1 Regelwerk
+projektfuehrung/AUFGABEN_BETREIBER_2026-09-26.md	B2 Stand (Uebergang: AUFGABEN_BETREIBER.md fehlt im Repo, juengste datierte Fassung)
+projektfuehrung/BACKLOG.md	B2 Stand
+projektfuehrung/BACKLOG_ENTSCHEIDUNGEN.md	B2 Stand
+projektfuehrung/BACKLOG_NACHTRAG_2026-09-18.md	B8 Ereignis offen: nach Regel 10 als eingearbeitet gemessen (27b B2)
+projektfuehrung/BESTANDSAUFNAHME_TB-30b.md	B8 Ereignis offen: Zellen-Erzeuger und TB-30b Posten 3-6 abgegeben (27b B8)
+projektfuehrung/DOKUMENTATIONSSTANDARD.md	B1 Regelwerk
+projektfuehrung/FABLE_ANFRAGE_2026-09-25f_gesamtanalyse_und_ideen.md	B8 Ereignis offen: wie die Antwort 25f (Paar)
+projektfuehrung/FABLE_ANFRAGE_2026-09-27a_tagesanfrage_tb114_tb115.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANFRAGE_2026-09-27b_konzept_projektwissen.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md	B6 Dialog: Antwort 27a offen
+projektfuehrung/FABLE_ANTWORT_2026-09-27b_konzept_projektwissen.md	B6 Dialog: Antwort 27b offen
+projektfuehrung/FABLE_DIALOG_INDEX.md	B2 Stand
+projektfuehrung/FABLE_UEBERGABE_2026-09-24_neuer_chat.md	B6 Sonderfall: juengste FABLE_UEBERGABE
+projektfuehrung/FABLE_WOCHENRUECKMELDUNG_2026-09-22.md	B6 Sonderfall: juengste FABLE_WOCHENRUECKMELDUNG
+projektfuehrung/NACHTRAG_1_BESTANDSAUFNAHME_TB-30b.md	B8 Ereignis offen: wie BESTANDSAUFNAHME_TB-30b.md
+projektfuehrung/NACHTRAG_2_BESTANDSAUFNAHME_TB-30b.md	B8 Ereignis offen: wie BESTANDSAUFNAHME_TB-30b.md
+projektfuehrung/PLAN_VOR_DEM_TAG.md	B2 Stand
+projektfuehrung/RECHERCHE_vintage_datenlage.md	B8 Ereignis offen: D1 entschieden (27b B8)
+projektfuehrung/REGISTER_INDEX.md	B3 Register, Index
+projektfuehrung/REGISTER_KOPIE_teil1.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil2.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil3.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil4.md	B3 Register, Teil
+projektfuehrung/UEBERGABE.md	B2 Stand
+projektfuehrung/UMZUG.md	B1 Regelwerk
