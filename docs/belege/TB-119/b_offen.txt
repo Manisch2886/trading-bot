@@ -1,0 +1,35 @@
+# TB-119 Schritt B - was aus Teil E offen blieb oder nicht eindeutig war (nicht geraten, nicht geaendert)
+# Stand der Zeilennummern: HEAD 6126c64 (vor Schritt B). Gemessen mit grep auf `git show HEAD:<datei>`.
+
+## 1. Lesart: bleibt die Erinnerung ein Traeger?  -> Fable
+27b G1 nennt als Traeger nur Repo-Klon, GitHub-Remote und die iCloud-Kopie; Teil E fuer UMZUG 2 ebenso ("Repo (Mac +
+GitHub) und iCloud-Kopie"). Die Erinnerung nennen weder G1 noch Teil E - weder als Traeger noch als Nicht-Traeger.
+Umgesetzt, ohne zu entscheiden:
+  - UMZUG 2: Zeile "Erinnerung" unveraendert stehen gelassen (Teil E aendert sie nicht); die Ueberschrift "Die drei
+    Traeger" stimmt damit weiter (Erinnerung, Repo, iCloud-Kopie).
+  - DOKUMENTATIONSSTANDARD 6 (Regel ueber DOKUMENTE): Tabellenzeile "Erinnerung | wie gearbeitet wird" in den Satz
+    "Die Erinnerung traegt kein Dokument, sondern wie gearbeitet wird (UMZUG 2)" ueberfuehrt - Inhalt gleich, nicht mehr
+    in der Traegertabelle, weil G1 die Traeger eines Dokuments abschliessend nennt.
+Frage: Ist das die gemeinte Lesart?
+
+## 2. Drei Stellen ausserhalb von Teil E nennen die Ablage weiter einen Traeger  -> Fable (Folge von G1)
+Teil E nennt sie nicht; der Auftrag erlaubt nur die Stellen aus Teil E. Nicht geaendert:
+  - ARBEITSWEISE 10, "Die drei Saetze", Satz 2 (Z. 1162-1165): "Traeger sind: Erinnerung (Arbeitsweise),
+    Projektablage (Stand), Repo (Belege)."
+  - ARBEITSWEISE 15, Tabelle "Die Traeger, jedes Mal geprueft statt erinnert (UMZUG.md Abschnitt 2)", Zeile
+    "Projektablage" (Z. 1520).
+  - UMZUG, Einleitung, Tabellenzeile "Die Anhaenge" (Z. 15): "Projektdokumente, Repo und Erinnerung tragen den Stand
+    von selbst in jeden neuen Chat".
+Frage: Sollen diese drei nach G1 nachgezogen werden (gleiche Art wie Teil E: Ablage = Arbeitsflaeche)?
+
+## 3. Folgestelle ausserhalb von Teil E: der Eroeffnungstext zeigt auf die datierte Uebergabe  -> steuernder Chat
+UMZUG 6 (die einzige Fassung des Eroeffnungstexts), Z. 234-235: "1. projektfuehrung/UEBERGABE_2026-09-25.md - der
+Stand, das Wichtigste (docs/projektfuehrung/UEBERGABE_2026-09-25.md)". Fortgeschrieben wird seit TB-118 aber
+UEBERGABE.md. UMZUG 6, Tabelle, Zeile "Uebergabe-Name" (Z. 272) sagt selbst: "Beim Umbenennen der Uebergabe (offener
+Punkt in ihrem Kopf: UEBERGABE.md ohne Datum) wird diese eine Zeile mitgezogen". Teil E nennt UMZUG 6 nicht; nicht
+geaendert. Ein neuer Chat, der den Eroeffnungstext befolgt, liest heute den Stand vom 25.09.
+
+## 4. Keine Stelle aus Teil E war unauffindbar
+Alle elf Stellen (ARBEITSWEISE 7b, 8, 15, neu 23; UMZUG 1, 2, Schritt 3, Schritt 4; DOKUMENTATIONSSTANDARD 6, 9 zweimal)
+eindeutig gefunden: b_einsetzen.py --probe "11 Stellen, alle eindeutig". PRUEFPRINZIPIEN und Register: keine Aenderung
+aus Teil E (B4).

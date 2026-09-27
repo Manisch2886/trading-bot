@@ -132,9 +132,15 @@ am häufigsten gebrochen wird:**
 
 | Träger | wofür |
 |---|---|
-| **Repo** | die Belege, versioniert |
-| **Projektablage** | der Stand, sichtbar für jeden Chat und für Fable |
-| **Erinnerung** | wie gearbeitet wird |
+| **Repo-Klon auf dem Mac** (`~/trading-bot`) | jedes Dokument, versioniert, mit den Belegen |
+| **GitHub-Remote** (`Manisch2886/trading-bot`) | dieselbe Fassung, gepusht nach jedem fertigen Teil (`ARBEITSWEISE.md` 14, Regel 3) |
+| dazu: **die tägliche iCloud-Kopie** | `docs/` als `docs.tar.gz` mit der db-Sicherung (`ARBEITSWEISE.md` 7b) |
+
+⭐ **Neu bestimmt am 27.09.2026** *(27b G1, Teil E, TB-119)*: Die
+**Projektablage ist kein Träger**, sondern Arbeitsfläche — sie hält Kopien aus
+dem Repo für die offenen Vorgänge, und Entfernen dort verliert nichts
+(`ARBEITSWEISE.md` Abschnitt 23). Die **Erinnerung** trägt kein Dokument,
+sondern wie gearbeitet wird (`UMZUG.md` Abschnitt 2).
 
 ⚠️⚠️ **`logs/auftraege/` ist kein Träger** — über `.gitignore:27` (`logs/`)
 ausgeschlossen, also ein Rechner und keine Version. **Jede Datei dort hat eine
@@ -180,11 +186,16 @@ dürfen natürlich gerne gelöscht werden."*
 > ⭐⭐ **Jede Änderung sagt, was sie ablöst — und das Abgelöste wird entfernt,
 > nicht danebengestellt.**
 
+⭐ **Das gilt ausdrücklich auch für die Projektablage** (27b G2, Teil E, TB-119, 27.09.2026): Dort liegt je
+Gegenstand **eine** gültige Fassung unter festem Namen; die abgelöste wird
+entfernt, nicht danebengestellt (`ARBEITSWEISE.md` Abschnitt 23). Die vier
+Ausnahmen unten bleiben.
+
 | ⭐ darf gelöscht werden | ⚠️ darf NICHT gelöscht werden |
 |---|---|
 | Kopien und Entwürfe, deren Inhalt anderswo im Repo steht | **Das Register** `VORREGISTRIERUNG_neuselektion.md` samt Nachträgen |
 | Rückblicke auf erledigte Aufgaben, **deren Lehre bereits als Regel geführt wird** | **`JOURNAL.md`** — ergänzen, nie umschreiben |
-| Überholte Fassungen einer Regel, sobald die neue steht | **Backlog-Abschnitt 8** (Gestrichen) |
+| Überholte Fassungen einer Regel, sobald die neue steht | **`BACKLOG_ERLEDIGT_2026-09.md`, Abschnitt 8** (Gestrichen) — seit der Backlog-Teilung (TB-118) dort, nicht mehr in `BACKLOG.md` *(27b Teil E, TB-119)* |
 | Zwischenlager-Dateien mit erfüllter Bringschuld | **`PRUEFPRINZIPIEN.md`** |
 
 ⚠️ **Warum die vier Ausnahmen keine Bürokratie sind: dort IST die Aufzeichnung

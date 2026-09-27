@@ -1102,6 +1102,22 @@ GitHub ist ab TB-42 unvollständig (**E5**).
 
 ⚠️ **Für alle gilt Abschnitt 7 ohne Ausnahme: Existenz prüfen, nie den Wert.**
 
+### Die tägliche Sicherung nach iCloud — auch `docs/` (27b Teil E, TB-119, 27.09.2026)
+
+⭐ **db-Sicherung sichert zusätzlich `docs/` als `docs.tar.gz`.**
+`docs/werkzeuge/db_sicherung/db_sicherung.sh` (TB-112; Cron täglich 05:20, vom
+Betreiber gesetzt — `UEBERGABE.md`, Nachtrag 5) legt je Lauf einen Satz unter
+`~/Library/Mobile Documents/com~apple~CloudDocs/trading-bot-db-sicherung/<datum_zeit>/`
+an: die Datenbanken und `docs.tar.gz` (`git archive` von `HEAD`, nur `docs/`;
+Dateizahl gegen `git ls-tree`, `gzip -t`), dazu `SHA256SUMS` (TB-118, Schritt H).
+Damit liegt jedes Dokument dreifach — Mac, GitHub, iCloud —, und keine Kopie
+entsteht von Hand (27b G7, Abschnitt 23).
+
+⚠️ **Nicht `git bundle`:** Das ganze Repo hätte je Lauf **117 MiB** gekostet,
+`docs/` kostet **5,3 MiB** (gemessen TB-118). Betreiberentscheidung per
+Auswahlkarte, wörtlich in `docs/belege/TB-118/h_entscheidung_sicherung.txt`.
+*Kein Zip, kein Archiv von Hand* (Abschnitt 2).
+
 ---
 
 ## 7c. Was in jedem Testauftrag für den Mac steht
@@ -1130,6 +1146,10 @@ im Backlog, und jeder ist mindestens einmal vergessen worden.**
 - **Wochenrückmeldung an Fable**, sonntags. Erinnerung liegt in der
   Erinnerungen-App des Nutzers. Hinein gehören **gemessene Ergebnisse** und
   **Widersprüche**, nicht Fortschrittsberichte.
+  ⭐ **Dazu eine Füllstandszeile der Projektablage** (27b Teil E, TB-119, 27.09.2026):
+  `knowledge_size` (Tokens und Anteil), Zahl der Dateien, und die Dateien, die
+  nach **14 Tagen** noch kein Austrittsereignis hatten — **genannt, nicht
+  gelöscht** (27b C2 und G6, Abschnitt 23). Gemessen vom steuernden Chat.
 
 ---
 
@@ -1564,6 +1584,18 @@ ist nach `UMZUG.md` Abschnitt 2 **kein Träger**.
 Austausch sieht im Streitfall vollständig aus.* Wer nur Fables Seite liest,
 sieht neun Entscheidungen ohne die Fragen, die sie ausgelöst haben — und kann
 nicht prüfen, ob die Frage die Antwort schon enthielt.
+
+> ⭐ **Und jede angenommene Antwort bekommt ihre Zeile in
+> `projektfuehrung/FABLE_DIALOG_INDEX.md`** (27b Teil E, TB-119, 27.09.2026) — Antwort
+> (Datum und Buchstabe), Frage in einem Satz, Entscheidung in einem Satz,
+> Register-Fundstelle, Status (offen / registriert / ohne Registertext),
+> Repo-Pfad.
+
+**Wie:** `docs/werkzeuge/dialog_index.py`, die neue Zeile von Hand, danach
+`--pruefen` (`ERGEBNIS_TB-118`, Abschnitt 8, Nr. 6). ⭐ **Warum eine Zeile und
+nicht mehr:** Der Wortlaut steht im Register, die Begründung im Volltext; eine
+dritte Fassung dazwischen wäre eine Quelle, die abweichen kann (27b G4). Ohne
+Indexzeile verlässt kein Dialogpaar die Projektablage (Abschnitt 23, Klasse B6).
 
 ### ⭐ Bei jeder Übergabe wird ungefragt gesagt, was mitgeht und was nicht
 
@@ -2051,3 +2083,96 @@ Start um 07:34:28Z lief sofort (`e731207`, 07:36Z).
 ⭐ *Ein Satz ohne Fenster ist eine Bitte ins Leere; ein Fenster ohne Satz ist
 eine Sitzung, die niemand findet. Deshalb zuerst das Fenster, dann der Satz —
 und vorher nachsehen, ob ein altes im Weg steht.*
+
+---
+
+## 23. Die Projektablage — Arbeitsfläche, nicht Träger (27b Teil E, TB-119, 27.09.2026)
+
+⚠️ **Herkunft:** Fable 27b (`projektfuehrung/FABLE_ANTWORT_2026-09-27b_konzept_projektwissen.md`),
+Teile A–C, eingetragen nach der Tabelle in Teil E. Freigaben: 26.09.2026, ca.
+23:15 („Alle sechs übernehmen“, TB-118), und 27.09.2026, 18:08 und ca. 18:25
+(wörtlich im Auftrag TB-119). Die Repo-Seite hat TB-118 gebaut; die Ablage hat
+der steuernde Chat am 27.09.2026 geräumt. *Nummer gemessen (K2i): die höchste
+vorhandene war 22; 19 ist der Sitzungswächter.*
+
+⚠️ **Zwei Namen weichen vom Wortlaut von 27b ab, beide vom Betreiber per
+Auswahlkarte entschieden (TB-118):** `BACKLOG_ENTSCHEIDUNGEN.md` statt
+`ENTSCHEIDUNGEN.md` (`ERGEBNIS_TB-118`, Abschnitt 9, Punkt 2) · die tägliche
+Sicherung nimmt `docs/` als `docs.tar.gz`, nicht als `git bundle` (ebd., Punkt 8;
+Abschnitt 7b).
+
+> ⭐⭐ **Die Projektablage ist die Arbeitsfläche des Prüfers, kein Träger.** Sie
+> enthält, was für die **offenen** Vorgänge gelesen werden muss, in **einer**
+> gültigen Fassung je Gegenstand. Träger ist das Repo. **Entfernen aus der
+> Ablage verliert nichts.**
+
+### 23.1 Die acht Grundsätze (27b Teil A)
+
+| | Grundsatz |
+|---|---|
+| **G1** Träger und Arbeitsfläche | Träger sind der Repo-Klon auf dem Mac (`~/trading-bot`) und das GitHub-Remote, dazu die tägliche iCloud-Kopie (G7). Alles, was den Umzug überleben muss, liegt dort committet. Die Ablage zählt **nicht** als Träger (`DOKUMENTATIONSSTANDARD.md` 6, `UMZUG.md` 2) |
+| **G2** Eine Fassung, feste Namen | Standdokumente tragen **kein Datum im Namen** (`UEBERGABE.md`, `REGISTER_KOPIE_teil<n>.md`, `AUFGABEN_BETREIBER.md`); das Datum steht im Kopf. Nur Vorgangsdokumente — Anfragen, Antworten, Aufträge, Ergebnisse — tragen ihre Nummer im Namen, weil sie zitiert werden. `DOKUMENTATIONSSTANDARD.md` 9 gilt ausdrücklich auch für die Ablage |
+| **G3** Repo-Pfade bleiben stabil | Das Register zitiert Dateien mit Pfad und Hash; Verschieben bricht Leserpfade. ⛔ **Kein Archiv-Ordner im Repo** — „archiviert“ ist ein Zustand im Index. Die Ausnahme bleibt `_eingearbeitet/` für Nachträge (`DOKUMENTATIONSSTANDARD.md` 10) |
+| **G4** Der Index ist die Verdichtung | Für Registertext ist das Register die Verdichtung. Was eine Antwort darüber hinaus entschieden hat, steht in **einer Zeile** in `FABLE_DIALOG_INDEX.md` (Indexpflicht: Abschnitt 15). Keine dritte Fassung in Prosa |
+| **G5** Sichtschutz bestimmt Belege und Ergebnisse | Nach Register 27.1 und 27.5: `docs/belege/` und Laufergebnisse kommen **vor dem Tag nie** in die Ablage. `ERGEBNIS_TB-*` nur, wenn ihr Kopf die Sichtschutz-Zeile trägt; das prüft der steuernde Chat vor dem Ablegen (27.4). Nach dem Tag: Bericht und Belege des Laufs; Messungen auf dem Selektionsraum nur nach der Liste R7 (R6). `BACKLOG_SICHTSCHUTZ.md` und `BACKLOG_ERLEDIGT_2026-09.md` kommen nie in die Ablage |
+| **G6** Ein- und Austritt sind Ereignisse | Jede Klasse hat ein Eintritts- und ein Austrittsereignis (23.2). Fristen sind nur Sicherheitsnetz: Was nach **14 Tagen** kein Austrittsereignis hatte, wird in der Wochenrückmeldung **genannt, nicht gelöscht** (Abschnitt 8) |
+| **G7** Sicherung ohne Zip | Die tägliche db-Sicherung sichert zusätzlich `docs/` als `docs.tar.gz` nach iCloud (Abschnitt 7b). Drei Kopien — Mac, GitHub, iCloud —, keine von Hand |
+| **G8** Wer misst, wer räumt | Der **steuernde Chat** legt ab, entfernt und misst den Füllstand (`knowledge_size` der Projektschnittstelle). Die **Mac-Sitzung** baut die Repo-Seite (Registerkopie, Index, Backlog-Teilung, Soll-Liste). Der **Betreiber** gibt frei und klickt sonst nichts |
+
+### 23.2 Die Klassen (27b Teil B)
+
+| Klasse | Ort | Eintritt in die Ablage | Austritt aus der Ablage | Beispiele, Hinweise |
+|---|---|---|---|---|
+| **B1 Regelwerk** | Repo **und** Ablage, eine Fassung | — | **nie**; nach jeder Änderung neu abgelegt, gleicher Name | `ARBEITSWEISE.md`, `PRUEFPRINZIPIEN.md`, `DOKUMENTATIONSSTANDARD.md`, `UMZUG.md`, `SITZUNGSWAECHTER_ausloeser_statt_tippen.md`. Ein Nachtrag zum Regelwerk bleibt, bis er eingearbeitet ist (`DOKUMENTATIONSSTANDARD.md` 10), danach nur Repo |
+| **B2 Stand** | Repo **und** Ablage, eine Fassung ohne Datum im Namen | — | **nie** (jeweils die aktuelle Fassung) | `UEBERGABE.md`, `BACKLOG.md` (nur Offenes), `BACKLOG_ENTSCHEIDUNGEN.md`, `PLAN_VOR_DEM_TAG.md`, `AUFGABEN_BETREIBER.md`, `PROJEKTSTAND_einfache_sprache.md`, `FABLE_DIALOG_INDEX.md`, `KANDIDATEN_DURCHGANG_2.md` |
+| **B2 Stand, nur Repo** | nur Repo | **nie** | — | `BACKLOG_ERLEDIGT_2026-09.md` (mit Abschnitt 8 „Gestrichen“), `BACKLOG_SICHTSCHUTZ.md`, die datierten `UEBERGABE_*` |
+| **B3 Register** | Original im Repo, append-only; in der Ablage **Teile mit festen Namen** | — | **nie**; nach jedem Registerauftrag werden alle Teile erneuert | `REGISTER_KOPIE_teil1.md` … `teil4.md` (an Abschnittsgrenzen, je höchstens 240 000 B, Kopf mit KOPIE, Commit, Datum, Abschnitten, Teil n von m) und `REGISTER_INDEX.md`. Nachweis: die Bodies aneinandergehängt sind `cmp`-gleich mit dem Original am genannten Commit |
+| **B4 Aufträge** | `docs/auftraege/MAC_TB-nnn_*.md` | mit der Freigabe | mit der **Annahme des Ergebnisses in einer Fable-Antwort**; ohne Fable-Bezug mit dem Abgabe-Commit | nur **offene** Aufträge liegen in der Ablage |
+| **B5 Ergebnisse** | `docs/ERGEBNIS_TB-nnn_*.md` | mit der Anfrage, die es zitiert, nach Prüfung der Sichtschutz-Zeile (G5) | wenn die Antwort angenommen **und** der Registerauftrag mit den Tatsachennotizen abgegeben ist | Laufergebnisse vor dem Tag **nie**; nach dem Tag der Bericht als Standdokument |
+| **B6 Fable-Dialog** | `docs/projektfuehrung/FABLE_ANFRAGE_*`, `FABLE_ANTWORT_*` | Anfrage mit dem Ablegen, Antwort mit ihrem Eingang | wenn **alle drei** gelten: (a) der Registertext der Antwort steht im Register, (b) keine Frage der Antwort ist offen, (c) die Indexzeile steht (Abschnitt 15) | es bleiben das offene Paar und die zwei jüngsten Paare (Lesart unten). `FABLE_ANTWORT_2026-09-25f` ist ein Standdokument: es bleibt, bis seine Ideen in `KANDIDATEN_DURCHGANG_2.md` und seine Entscheidungen in `BACKLOG_ENTSCHEIDUNGEN.md` stehen |
+| **B7 Belege** | nur Repo (`docs/belege/TB-nnn/`) | vor dem Tag **nie** | — | nach dem Tag nur die Belege des Laufs und Messungen nach R7 |
+| **B8 Bestandsaufnahmen, Stoffsammlungen, Recherchen, Erinnerungen** | Repo | solange ein offener Auftrag oder eine offene Frage sie braucht | mit dem Auftrag, den sie vorbereiten, oder mit dem Ereignis (Erinnerung → Frist) | gepflegt in `docs/werkzeuge/ablage_ereignisse.json` |
+
+⚠️ **Zwei Lesarten sind bei Fable offen. Hier steht, wie `ablage_soll.py` heute arbeitet:**
+
+- `FABLE_WOCHENRUECKMELDUNG_*` und `FABLE_UEBERGABE_*`: **nur die jüngste bleibt** —
+  sie verlassen die Ablage mit der nächsten (27b B6), nicht sofort (27b C3 Nr. 3).
+  *Lesart offen, Fable-Sammlung B4.*
+- „Die zwei jüngsten Paare“ werden nach **Datum und Buchstabe** der Antwort gezählt
+  (27b Teil D, E2), nicht nach Tagesanfragen (B6 nannte 26a und 27a). Eine Anfrage
+  ohne Antwort bleibt, wenn sie jünger ist als die jüngste Antwort.
+  *Lesart offen, Fable-Sammlung B5.*
+
+*Wie `ablage_soll.py` „offen“ bei Aufträgen misst (gekoppelt an die Grundlage des
+Auftrags, nicht an die Annahme), steht in seinem Kopf und in Fable-Sammlung B6.*
+
+### 23.3 Der Mechanismus: Soll-Liste statt Sync (27b C1)
+
+Es gibt keinen Upload und keine Ausschlussliste, sondern eine **Soll-Liste**.
+`docs/werkzeuge/ablage_soll.py` leitet aus dem Repo-Stand ab, was nach 23.2 in der
+Ablage liegen soll:
+
+```
+python3 docs/werkzeuge/ablage_soll.py --ist <ist.txt> --aus <ordner> [--heute JJJJ-MM-TT]
+```
+
+Die Ist-Liste holt der steuernde Chat aus der Projektschnittstelle. Zurück kommen
+`soll.txt`, `entfernen.txt`, `ablegen.txt` und `ohne_regel.txt` — was zu keiner
+Regel passt, wird **gemeldet, nicht entfernt**. Das Skript selbst löscht nichts
+und legt nichts ab.
+
+⭐ **Reihenfolge (27b C4): erst ablegen, dann entfernen, dann messen** — so ist
+der Prüfer nie ohne Register. Danach `knowledge_size` messen und **eine Zeile**
+in `UEBERGABE.md`. Kein Manifest, kein Zip: Git ist die Sicherung, weil im Repo
+nichts verschoben oder gelöscht wird; gelöscht wird nur in der Ablage.
+
+### 23.4 Schwellen und Routine (27b C2)
+
+| Grösse | Wert oder Anlass | Wer |
+|---|---|---|
+| Zielgrösse | ≤ 1,0 Mio. Tokens (50 %) | steuernder Chat, `knowledge_size` |
+| Warnschwelle | 1,4 Mio. Tokens (70 %): Soll/Ist-Abgleich **sofort**, nicht erst zur Routine | steuernder Chat |
+| Registerkopie | nach jedem Registerauftrag erneuert; Kopf nennt den Commit. Die Mac-Sitzung erzeugt sie im Registerauftrag mit: `docs/werkzeuge/registerkopie.py`, Teile committen; `--marken` für `REGISTER_INDEX.md` | Mac-Sitzung erzeugt, steuernder Chat legt ab |
+| Dialog | nach jeder angenommenen Antwort: Indexzeile (Abschnitt 15), Austritt prüfen | steuernder Chat |
+| Übergabe | Soll/Ist-Abgleich als Schritt 4 von `UMZUG.md` | steuernder Chat |
+| Wochenrückmeldung | Füllstandszeile: `knowledge_size`, Dateizahl, Dateien ohne Austrittsereignis nach 14 Tagen (Abschnitt 8) | steuernder Chat |

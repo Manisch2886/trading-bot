@@ -24,8 +24,10 @@ andere folgt daraus.**
 > **Wer die Übergabe erst beim Umzug schreibt, hat ein Zeitfenster, in dem ein
 > unerwarteter Abbruch Arbeit vernichtet. Wer sie laufend pflegt, hat keins.**
 
-⇒ **`UEBERGABE_<datum>.md` wird an jedem sauberen Stand fortgeschrieben** — nicht
-am Ende. Ein sauberer Stand ist: **keine Sitzung läuft, alles ist committet.**
+⇒ **`UEBERGABE.md` wird an jedem sauberen Stand fortgeschrieben** — nicht
+am Ende. ⭐ **Ohne Datum im Namen**; das Datum steht im Kopf und in jedem
+fortgeschriebenen Block. Die datierten Vorgänger (`UEBERGABE_2026-09-19.md`,
+`_24.md`, `_25.md`) bleiben unverändert im Repo *(27b G2, Teil E, TB-119, 27.09.2026)*. Ein sauberer Stand ist: **keine Sitzung läuft, alles ist committet.**
 
 ⭐ **Folge, und sie ist der ganze Gewinn:** Eine überraschende Komprimierung des
 Chats kostet dann **nichts**. Der neue Chat liest die Übergabe und ist auf dem
@@ -41,8 +43,15 @@ ausdrückliche Zuordnung:**
 | Träger | trägt | ⚠️ trägt NICHT |
 |---|---|---|
 | ⭐ **Erinnerung** (`/projects/<id>/preferences.md`) | **Wie der Betreiber arbeiten will.** Wird beim Sitzungsstart von selbst gelesen, ohne dass er etwas tun muss | Fachstand, Zahlen, Befunde. **Keine Belege** — die Erinnerung ist keine Beweisführung |
-| ⭐ **Projektdokumente** (claude.ai-Projekt „Trading Bots") | **Den Stand und die Führungsdokumente.** Sichtbar in **jedem** Chat des Projekts **und für Fable** | Nichts, was git prüfen muss — kein `numstat`, keine Versionsgeschichte |
-| ⭐ **Das Repo** (`Manisch2886/trading-bot`) | **Die Belege.** Versioniert, mit Commit, prüfbar | Es wird von einem neuen Chat **nicht automatisch gelesen** — es braucht einen Verweis |
+| ⭐ **Das Repo** — Klon auf dem Mac (`~/trading-bot`) und GitHub-Remote (`Manisch2886/trading-bot`) | **Alles, was den Umzug überleben muss** — Belege, Stand, Führungsdokumente. Versioniert, mit Commit, prüfbar | Es wird von einem neuen Chat **nicht automatisch gelesen** — es braucht einen Verweis |
+| ⭐ **Die iCloud-Kopie** (tägliche db-Sicherung, `ARBEITSWEISE.md` 7b) | `docs/` als `docs.tar.gz` und die Datenbanken, mit Quersummen — ohne Handarbeit | Code und alles ausserhalb von `docs/`; den Stand zwischen zwei Läufen (gesichert wird der committete `HEAD`) |
+
+⭐ **Die Projektablage (claude.ai-Projekt „Trading Bots") ist Arbeitsfläche, kein
+Träger** *(27b G1, Teil E, TB-119, 27.09.2026)*. Sie ist in **jedem** Chat des Projekts **und für Fable** sichtbar
+und enthält, was für die offenen Vorgänge gelesen werden muss — je Gegenstand eine
+Fassung, als Kopie aus dem Repo (`ARBEITSWEISE.md` Abschnitt 23). **Entfernen aus
+der Ablage verliert nichts.** Sie trägt nichts, was git prüfen muss — kein
+`numstat`, keine Versionsgeschichte.
 
 ⚠️⚠️ **Die Regel, die daraus folgt, und sie ist die wichtigste dieses
 Dokuments:**
@@ -153,7 +162,9 @@ Nachtrag.**
 
 ### Schritt 3 — Die Übergabe fortschreiben
 
-`docs/projektfuehrung/UEBERGABE_<datum>.md`, **und sie enthält immer diese neun
+`docs/projektfuehrung/UEBERGABE.md` — **ohne Datum im Namen, fortgeschrieben statt
+neu angelegt**; die Vorgänger bleiben im Repo *(27b G2, Teil E, TB-119, 27.09.2026)* —
+**und sie enthält immer diese neun
 Blöcke:**
 
 | | Block | ⚠️ |
@@ -168,14 +179,26 @@ Blöcke:**
 | **8** | **Was zwischengelagert und noch nicht eingearbeitet ist** | mit Zielort |
 | **9** | ⭐ **Verweis auf den Eröffnungstext in Abschnitt 6** — dort steht die einzige Fassung | ⚠️ **kein zweiter Text in der Übergabe.** *Bis TB-68 (20.09.2026) verlangte diese Zeile eine Kopie; die beiden Fassungen widersprachen sich vom ersten Commit an* |
 
-### Schritt 4 — In die Projektablage schreiben
+### Schritt 4 — Soll/Ist-Abgleich der Projektablage, Füllstand messen
 
-**Die Übergabe und dieses Dokument gehen zusätzlich in das claude.ai-Projekt**
-(`projektfuehrung/UEBERGABE_<datum>.md`, `projektfuehrung/UMZUG.md`).
+*Ersetzt „In die Projektablage schreiben“ (27b C2, Teil E, TB-119, 27.09.2026).*
 
-⭐ **Warum zusätzlich und nicht stattdessen:** Das Projekt ist der Träger, den ein
-neuer Chat **von selbst** sieht. Das Repo ist der Träger, der **Beweiskraft**
-hat. Beides ist nötig, und sie müssen gleich lauten.
+**Die Ablage wird nicht beschrieben, sondern abgeglichen** (`ARBEITSWEISE.md`
+Abschnitt 23):
+
+1. Die Ist-Liste der Ablage aus der Projektschnittstelle holen.
+2. `python3 docs/werkzeuge/ablage_soll.py --ist <ist.txt> --aus <ordner>` —
+   liefert `ablegen.txt`, `entfernen.txt` und `ohne_regel.txt`.
+3. **Erst ablegen, dann entfernen** (27b C4). `UEBERGABE.md` und dieses Dokument
+   stehen als Stand und Regelwerk immer im Soll. `ohne_regel.txt` ansehen, nicht
+   löschen.
+4. **Füllstand messen** (`knowledge_size`, vorher und nachher) und eine Zeile in
+   `UEBERGABE.md`.
+
+⭐ **Warum ein Abgleich:** Die Ablage ist der Ort, den ein neuer Chat **von
+selbst** sieht; **Beweiskraft** hat das Repo (Abschnitt 2). Was in der Ablage
+liegt, muss mit dem Repo gleich lauten — und es liegt dort nur, was für die
+offenen Vorgänge gebraucht wird.
 
 ### Schritt 5 — Die Erinnerung nachziehen
 
