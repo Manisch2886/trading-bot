@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-119** | `docs/auftraege/MAC_TB-119_repo_nachziehen_regelwerk_nachtrag.md` | ⭐ **Hauptordner**: Repo nachziehen (15 gesicherte Dateien committen, `UEBERGABE.md` Z. 99 nach 27.5 und Stand 27.09.) und Regelwerk-Nachtrag nach Fable 27b Teil E plus 13 fehlende Regeln aus D2 (19/6 nicht, geht in die Fable-Sammlung). Register und Code nicht. Freigabe 27.09.2026, 18:08 und ca. 18:25 (wörtlich im Auftrag) |
+| **TB-120** | `docs/auftraege/MAC_TB-120_erzeuger_bestandsaufnahme.md` | ⭐ **Hauptordner**: Erzeuger-Bestandsaufnahme, **nur lesend** — Anforderungen an Listen- und Zellen-Erzeuger aus dem Register, Bestand im Code, Lückenliste, Schnitt in Aufträge, Fragen für Fable; vorab UMZUG 6 auf `UEBERGABE.md` (Schritt A). Kein Lauf, keine Codeänderung. Freigabe 27.09.2026, 18:08 und ca. 18:25 (wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 

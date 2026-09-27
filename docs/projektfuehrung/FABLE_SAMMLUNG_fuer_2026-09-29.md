@@ -75,3 +75,35 @@ erste Hälfte (K2f) getrennt davon eingetragen werden — wenn ja, wohin?
 **Neigung:** keine — Mac-Sitzung; die Neigung gibt der steuernde Chat. Zwei Tatsachen dazu: 6d ist die jüngere
 Regel und nennt ihre Fälle „abschliessend“; `BACKLOG_ARCHIV.md` T54.2 führt einen Fall, in dem Fragen nach K2h eine
 Nummernkollision verhindert hat.
+
+**Neigung des steuernden Chats (27.09., 19:00):** 6d gilt. Beide Sätze lassen sich vereinbaren: Die Sitzung bricht ab und meldet. Die Meldung nennt ausdrücklich, dass Wortlaut und Zweck auseinanderfallen. Der Betreiber entscheidet danach, nicht die Sitzung davor. K2h würde entsprechend umformuliert, und die Stelle „ARBEITSWEISE §7c“ entfällt. K2f (die Sache, nie ihr Merkmal) gehört als Regel in PRUEFPRINZIPIEN, getrennt von 19/6.
+
+### 27.09., TB-119: drei weitere Punkte aus `ERGEBNIS_TB-119`, Abschnitt 6
+
+*Herkunft: `docs/ERGEBNIS_TB-119_repo_nachziehen_regelwerk_nachtrag.md`, Abschnitt 6, Nr. 1, 2 und 4; Belege `docs/belege/TB-119/b_offen.txt`.*
+
+1. **Lesart „Erinnerung als Träger“.**
+   - Befund: G1 und Teil E nennen als Träger nur das Repo (Mac + GitHub) und die iCloud-Kopie. Die Erinnerung nennen sie nicht.
+   - Umsetzung in TB-119 ohne eigene Entscheidung: In UMZUG 2 bleibt die Zeile „Erinnerung“ stehen. In DOKUMENTATIONSSTANDARD 6 steht jetzt der Satz, die Erinnerung „trägt kein Dokument, sondern wie gearbeitet wird“.
+   - Frage: Ist das so gemeint?
+   - Neigung: ja. Die Erinnerung trägt Arbeitsweise, keine Belege.
+2. **Drei Stellen ausserhalb von Teil E nennen die Ablage weiter einen Träger:**
+   - ARBEITSWEISE 10, „Die drei Sätze“, Satz 2;
+   - ARBEITSWEISE 15, Tabelle „Die Träger …“, Zeile „Projektablage“;
+   - UMZUG, Einleitung, Zeile „Die Anhänge“.
+   - Frage: Nach G1 nachziehen?
+   - Neigung: ja, als Handwerk mit dem nächsten Regelwerksauftrag. Der Grund steht in G1, kein Ergebnis.
+3. **Kenntnis:** Die 13 D2-Regeln sind eingetragen:
+   - PRÜFPRINZIPIEN A9, A10, B7, C8;
+   - ARBEITSWEISE 14 (drei Regeln) und 15 (sechs Regeln; 21/6 nur als Verweis auf Register 27.5).
+   - Die acht TEILWEISE-Regeln bleiben, wie sie sind.
+   - Frage: Soll je TEILWEISE-Zeile entschieden werden, oder bleiben alle acht so?
+   - Neigung: so lassen, bis ein Fall sie braucht.
+
+### 27.09., steuernder Chat: 27.4 beim Ablegen von `MAC_TB-119`
+
+`auftraege/MAC_TB-119_repo_nachziehen_regelwerk_nachtrag.md`, Z. 69 und 73, nennt den nach 27.5 gestrichenen Wert. Der Grund: Der Auftrag musste die Ersetzung wörtlich angeben.
+
+- Folge: Der Auftrag geht **nicht** in die Ablage, obwohl B4 ihn als offenen Auftrag zu 27b hineinnähme. Das Ergebnis TB-119 enthält den Wert nicht und geht mit der Dienstagsanfrage hinein.
+- Frage: Soll ein Auftrag, der eine Streichung nach 27.5 vollzieht, künftig den Wert nur mit Fundstelle nennen und die Zeile per Muster finden lassen?
+- Neigung: ja.
