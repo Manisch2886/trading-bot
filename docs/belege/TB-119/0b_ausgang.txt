@@ -1,0 +1,53 @@
+# TB-119 0b Ausgangswerte, gemessen 2026-09-27 18:19:45 CEST
+
+HEAD: 7eadc7aeb26cd807abf7f418567a2ba50520f64b
+
+## wc -l
+    2053 docs/projektfuehrung/ARBEITSWEISE.md
+     361 docs/projektfuehrung/UMZUG.md
+     278 docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
+     387 docs/PRUEFPRINZIPIEN.md
+     259 docs/projektfuehrung/UEBERGABE.md
+    3338 total
+
+## sha256sum
+e9026711602d9abc237cf6bf8bb5e808c26805df956341b60de36c7a1453b988  docs/projektfuehrung/ARBEITSWEISE.md
+0b11d6f0e187257c6bae69fb0a013a22244d315c95687e0eb5a7f71d0430c2c4  docs/projektfuehrung/UMZUG.md
+34be119298c9ec5726c40110dca059146ae268614326b0e906cfdd9635f9219a  docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
+0e651700a9c863794068f24981eb55736d546868e0e53250fd2966b0690e4d60  docs/PRUEFPRINZIPIEN.md
+c8262d603160d00428f4cf39b6024f9d5e5b08f66192bddc6e1a7f9b2c940970  docs/projektfuehrung/UEBERGABE.md
+
+## Ueberschriften ^## in ARBEITSWEISE.md
+29:## 0. Vor jeder Antwort — die Ausgabe-Checkliste
+160:## 1. Die vier Wege — und sie werden IMMER benannt
+216:## 2. Ausgaben
+332:## 3. Jedes Aufgabendokument trägt im Kopf
+353:## 4. Jedes Ergebnis endet mit „In einfacher Sprache"
+382:## 5. Das Backlog wird fortlaufend geführt
+402:## 5b. Wie die Dokumentation aktualisiert wird
+526:## 6. Nichts wird verworfen oder gelöscht, ohne vorher zu fragen
+549:## 6b. Anweisungen an den Nutzer
+750:## 6bb. Die Aufgaben des Betreibers werden am Ende jeder Antwort benannt
+777:## 6c. Keine Hinweise auf Arbeitszeit
+790:## 6d. Jede Entscheidung wird als anklickbare Frage gestellt — mit Empfehlung
+957:## 7. Terminal-Arbeit
+1071:## 7b. Zugänge zu den Umsystemen
+1107:## 7c. Was in jedem Testauftrag für den Mac steht
+1125:## 8. Laufende Aufträge
+1136:## 9. Ton
+1147:## 10. Der Umzug in einen neuen Chat
+1176:## 11. Änderungsverbote nennen ihren Zweck
+1198:## 12. Prüfprinzipien
+1215:## 13. Immer direkt weitermachen
+1255:## 14. Wie eine Mac-Sitzung gestartet wird
+1500:## 15. Was mit „zukünftig" gesagt wird, wird eingetragen — ohne weitere Aufforderung
+1578:## 16. Dokumentation aktuell halten statt anhäufen
+1595:## 17. Jede Aufgabe beginnt mit einem Satz in einfacher Sprache
+1618:## 18. Zurückgeholt aus dem Archiv (20.09.2026)
+1670:## 19. Der Sitzungswächter — eine Datei startet eine Mac-Sitzung
+1735:## 20. ⭐ Rückfragen an den Betreiber kommen als Auswahlkarte
+1764:## 21. ⛔ Der Auftrag geht NICHT als Argument mit — zweimal gemessen
+1818:## 22. Drei Festlegungen zum Betrieb der Mac-Sitzungen (23.09.2026)
+
+## Register
+18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c  docs/VORREGISTRIERUNG_neuselektion.md
