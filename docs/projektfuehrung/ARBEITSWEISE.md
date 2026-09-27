@@ -1515,6 +1515,27 @@ niemand gewollt hatte.
 > passt nur zu einer offenen Frage, die bestätigt wurde. Ein Protokolleintrag
 > über die Frage selbst existiert nicht.
 
+### ⭐ Schreiben auf Dateien und Nachträge — drei Regeln aus den Übergaben (TB-119, 27.09.2026)
+
+*Sie standen bis zum 27.09.2026 nur in den Fehlertabellen alter Übergaben
+(Bestandsaufnahme TB-118 D2, `docs/belege/TB-118/d2_fehlende_regeln.txt`, Status
+FEHLT). Der Wortlaut ist an der Fundstelle nachgelesen, nicht aus der Kurzfassung
+übernommen.*
+
+| | Regel | Anlass | Herkunft |
+|---|---|---|---|
+| **1** | ⭐⭐ **Vor jedem Schreiben auf eine vorhandene Datei wird sie gelesen, nicht angenommen.** | `AKTUELLER_AUFTRAG.md` hatte 87 Zeilen und wurde mit einer Zeile überschrieben, ohne sie anzusehen (`numstat` `1 86`). *Verloren war nichts, weil git die Fassung hielt — das war Glück, nicht Verfahren* | `projektfuehrung/UEBERGABE_2026-09-19.md`, Block 7 (Fassung 21.09. abends), Nr. 1 — D2 21b/1 |
+| **2** | ⭐ **Ein Nachtrag, der eine Sitzung nicht mehr erreicht, wird zum Auftrag** und geht nach `docs/auftraege/`, **bevor** er in `logs/` altert | Der Nachtrag TB-78b erreichte eine bereits abgeschlossene Sitzung nicht; er lag in `logs/auftraege/`, **kein Träger**. Aus ihm wurde TB-79 | ebd., Nr. 5 — D2 21b/5 |
+| **3** | **Hilfsdateien werden nicht im Repo gelassen; aufgeräumt wird über `device_request_delete_permission`** | Hilfsdateien im Repo gelassen | `projektfuehrung/UEBERGABE_2026-09-24.md`, Block 8, Nr. 6 — D2 24/6 |
+
+⚠️ *Zu 1:* Die Schwesterregel „nie überschreiben, immer neuer Dateiname, danach
+mit `wc -c` und `grep` nachprüfen“ (`projektfuehrung/UEBERGABE_2026-09-19.md`, Block 7, Nr. 7 — D2 19/7) steht
+im Regelwerk nur **teilweise** und bleibt nach dem Auftrag TB-119 so, wie sie ist.
+*Zu 3:* `device_request_delete_permission` ist ein Werkzeug der Geräteanbindung;
+Block 8 der Übergabe vom 24.09. führt die Fehler des steuernden Chats — die Regel
+richtet sich an ihn (erschlossen aus der Herkunft, nicht gemessen). Für eine
+Mac-Sitzung gilt weiter Abschnitt 6: nichts löschen, ohne vorher zu fragen.
+
 ---
 
 ## 15. Was mit „zukünftig" gesagt wird, wird eingetragen — ohne weitere Aufforderung
@@ -1604,6 +1625,22 @@ mitschicken** — der Übergabetext ist selbsttragend, und zwei Quellen für
 denselben Sachverhalt lassen bei jeder Abweichung offen, welche gilt.
 **Ausnahme:** der Beleg auf Widerspruch. Die Entscheidung wird **genannt**, nicht
 stillschweigend getroffen.
+
+### ⭐ Der Austausch mit dem Verfahrensprüfer — sechs Regeln aus den Übergaben (TB-119, 27.09.2026)
+
+*Sie standen bis zum 27.09.2026 nur in den Fehlertabellen alter Übergaben
+(Bestandsaufnahme TB-118 D2, `docs/belege/TB-118/d2_fehlende_regeln.txt`, Status
+FEHLT). Der Wortlaut ist an der Fundstelle nachgelesen, nicht aus der Kurzfassung
+übernommen.*
+
+| | Regel | Anlass | Herkunft |
+|---|---|---|---|
+| **1** | ⭐ **Nach jeder Fable-Antwort werden die laufenden Aufträge gegen sie geprüft, nicht nur die kommenden.** Ein Nachtrag in die laufende Sitzung ist billiger als eine Berichtigung im Register | Ein Auftrag lief mit einer überholten Prämisse: TB-77 wies einen Platzhalter fürs append-only-Register an, während der Wert dort seit dem 19.09. als Tatsache stand. Fables Antwort 21b hob den Blocker auf, als der Auftrag schon lief | `projektfuehrung/UEBERGABE_2026-09-19.md`, Block 7 (Fassung 21.09.), Nr. 1 — D2 21/1 |
+| **2** | ⭐ **Wo ein Aktenzeichen genannt wird, steht der Wortlaut daneben** — Fables eigene Regel, auf uns angewandt | Eine Kette mit falschem Aktenzeichen in einem Auftrag; Fable stellte in 21b klar, dass keine Festlegung den Satz trägt | ebd., Nr. 2 — D2 21/2 |
+| **3** | ⭐ **Ein Übergabetext bekommt eine Fassungszeile im Sendetext selbst**, nicht nur im Rahmendokument. Sonst ist von aussen nicht unterscheidbar, welche Fassung jemand hat | Ein Übergabetext an Fable ging hinaus, dessen vier Fragen er schon beantwortet hatte; die Antwort lag seit einer Stunde vor | ebd., Nr. 3 — D2 21/3 |
+| **4** | ⭐⭐ **Eine Berichtigung von Fable wird gemessen wie jede andere Behauptung — gerade dann, wenn sie uns berichtigt.** Wer sagt „ich kann die Quelle nicht lesen“, liefert damit den Grund, seine Quellenangabe zu prüfen, nicht sie zu übernehmen | Fables Berichtigung einer Kette ungeprüft in einen Auftrag geschrieben, obwohl er im selben Absatz sagte, er könne das Register nicht lesen. Der Auftrag hätte die richtige Kette zerstört | ebd., Ergänzung „Ein siebter Fehler für Block 7“, Nr. 7 — D2 21/7 |
+| **5** | ⭐ **Eine Fable-Anfrage ist erst übergeben, wenn sie als Kopierblock in der Antwort stand.** Das Ablegen fühlt sich wie Erledigung an; es ist keine | Rüge des Betreibers, 24.09.2026, 21:15: *„wieso schickst du mir die fable anfragen nicht?“* | `projektfuehrung/UEBERGABE_2026-09-24.md`, Block 8, „Die zwei Rügen des Betreibers“, Nr. 2 — D2 24/R2 |
+| **6** | ⭐⭐ **Ein Sichtschutz-Treffer wird mit Fundstelle gemeldet, nicht mit Inhalt.** Das ist **Registertext 27.5**; er bindet — hier steht nur der Verweis, nicht der Text | Beim Melden eines Sichtschutz-Verstosses an Fable die betroffene Zeile selbst zitiert — den Sichtschutz beim Melden verletzt | `projektfuehrung/UEBERGABE_2026-09-19.md`, Block 7 (Fassung 21.09.), Ergänzung „Ein sechster Fehler für Block 7“, Nr. 6 — D2 21/6 |
 
 ---
 

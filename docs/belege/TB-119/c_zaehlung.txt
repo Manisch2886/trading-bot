@@ -1,0 +1,20 @@
+# TB-119 C - Zaehlung der eingetragenen D2-Regeln aus den hinzugefuegten Zeilen (git diff -U0, Zeilen mit '+')
+# Soll (Auftrag): 19/5 21/1 21/2 21/3 21/4 21/6 21/7 21b/1 21b/5 24/4 24/5 24/6 24/R2 = 13; 19/6 nur in der Sammlung
+19/5  docs/PRUEFPRINZIPIEN.md  1
+21/1  docs/projektfuehrung/ARBEITSWEISE.md  1
+21/2  docs/projektfuehrung/ARBEITSWEISE.md  1
+21/3  docs/projektfuehrung/ARBEITSWEISE.md  1
+21/4  docs/PRUEFPRINZIPIEN.md  1
+21/6  docs/projektfuehrung/ARBEITSWEISE.md  1
+21/7  docs/projektfuehrung/ARBEITSWEISE.md  1
+21b/1  docs/projektfuehrung/ARBEITSWEISE.md  1
+21b/5  docs/projektfuehrung/ARBEITSWEISE.md  1
+24/4  docs/PRUEFPRINZIPIEN.md  1
+24/5  docs/PRUEFPRINZIPIEN.md  1
+24/6  docs/projektfuehrung/ARBEITSWEISE.md  1
+24/R2  docs/projektfuehrung/ARBEITSWEISE.md  1
+19/6  docs/projektfuehrung/FABLE_SAMMLUNG_fuer_2026-09-29.md  2
+
+# verschiedene IDs im Regelwerk (ARBEITSWEISE + PRUEFPRINZIPIEN), gezaehlt:
+      14
+# Die 14. Kennung ist D2 19/7: nur als Verweis in der Anmerkung 'Zu 1' (ARBEITSWEISE 14), Status TEILWEISE, nicht eingetragen (C3). Eingetragene Regeln: 13.

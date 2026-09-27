@@ -1,0 +1,19 @@
+# TB-119 Schritt C - offen gebliebene Regeln aus D2 (Pruefung des Sinns bei 19/5 und 24/5)
+
+## 19/5 - eindeutig, eingetragen (PRUEFPRINZIPIEN A9)
+Nachgelesen: projektfuehrung/UEBERGABE_2026-09-19.md, Block 7 (Fassung 19.09.), Nr. 5. Fehler und Regel stehen
+nebeneinander: "F1b/Q2 ist erledigt" - fuer die Daten bewiesen, nicht fuer den Lauf ⇒ "Ein Nachweis gilt fuer den
+Gegenstand, den er beruehrt, nicht fuer den Zweck, den er dienen sollte". Der Sinn ergibt sich aus dem Fall; keine
+zweite Lesart gefunden. (Im Regelwerk leicht geglaettet: "dem er dienen sollte" statt "den er dienen sollte" - der
+Dativ ist der Wortlaut ohne Tippfehler; Originalwortlaut hier festgehalten.)
+
+## 24/5 - eindeutig, eingetragen (PRUEFPRINZIPIEN A10)
+Nachgelesen: projektfuehrung/UEBERGABE_2026-09-24.md, Block 8, Nr. 5: "Genau dafuer ist die Vormessung da (A8): bei
+Abweichung gilt die Nachmessung. Die falsche Vormessung ist kein Schaden, sondern der Beweis, dass das Verfahren
+greift". Unklar war in D2 nur der Verweis "A8" (PRUEFPRINZIPIEN A8 ist die Selbstauskunft-Regel). Gemessen: die
+Auftraege MAC_TB-96 (Z. 64), MAC_TB-102 (Z. 69), MAC_TB-103 (Z. 54), MAC_TB-104 (Z. 56) schreiben "Vormessung des
+steuernden Chats ... Nach A8 misst du nach ... Wenn etwas abweicht, gilt deine Messung". Der Verweis ist damit A8
+angewandt (Vormessung = Selbstauskunft, Sitzung = Gegenpruefung), kein zweiter Sinn. So in A10 eingetragen.
+
+## Ergebnis
+c_offen: keine Regel offen. Nicht eingetragen ist nur 19/6 (Auftrag; C2 -> Fable-Sammlung, Abschnitt D).

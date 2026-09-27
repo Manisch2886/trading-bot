@@ -46,3 +46,32 @@
 ## D. Bis Dienstag hinzugekommen
 
 *(wird fortgeschrieben — je Eintrag: Datum, Herkunft, Frage, Neigung)*
+
+### 27.09., TB-119: D2 19/6 gegen ARBEITSWEISE 6d
+
+*Herkunft: `docs/ERGEBNIS_TB-119_repo_nachziehen_regelwerk_nachtrag.md`, Schritt C2; Vorlage
+`docs/belege/TB-118/d2_fehlende_regeln.txt`, Zeile 19/6. Nach Auftrag TB-119 nicht ins Regelwerk eingetragen.*
+
+**Wortlaut 1** — `projektfuehrung/UEBERGABE_2026-09-19.md`, Block 7 (Fassung 19.09.), Nr. 6, Spalte „Regel“:
+> ⭐ **Ein Abbruchkriterium benennt die Sache, nie ihr Merkmal.** Und: fallen Wortlaut und Zweck auseinander und ist
+> jemand erreichbar — **fragen**, nicht entscheiden
+
+**Wortlaut 2** — `projektfuehrung/ARBEITSWEISE.md` 6d, Unterabschnitt „Nur richtungsweisende Rückfragen — und die als
+Multiple Choice (22.09.2026)“, Tabelle „NICHT richtungsweisend“, Z. 898 (Stand `df825b6`):
+> ⚠️⚠️ **Ein Abbruchkriterium.** Es führt zu **ABBRUCH und Meldung** — nie zu einer Rückfrage. *Wer bei einem
+> Abbruchkriterium fragt, verwandelt eine Wache in eine Verhandlung*
+
+**Hinweis:** `projektfuehrung/BACKLOG_ENTSCHEIDUNGEN.md`, Eintrag **K2h** (Z. 111), führt den zweiten Satz von
+Wortlaut 1 als Regel (T55b.5) mit dem Zusatz „— in ARBEITSWEISE §7c“. In ARBEITSWEISE 7c steht dazu nichts: 7c nennt
+das Abbruchkriterium nur als Zeile „gilt nur für Fehlschläge, **die den Gegenstand der Aufgabe betreffen** (T44.11)“.
+Gemessen: `grep -n -i abbruchkriterium` in ARBEITSWEISE, vier Treffer (Z. 155, 898, 1118, 1129 am Stand `7eadc7a`),
+keiner mit „fragen“. — Die erste Hälfte von Wortlaut 1 steht als **K2f** (Z. 109, „gehört auch in
+`docs/PRUEFPRINZIPIEN.md`“) und widerspricht 6d nicht; sie ist mit 19/6 nach Auftrag ebenfalls nicht eingetragen.
+
+**Frage:** Welche Regel gilt, wenn Wortlaut und Zweck eines Abbruchkriteriums auseinanderfallen und jemand erreichbar
+ist: **fragen** (Übergabe 19.09., K2h, T55b.5) oder **Abbruch und Meldung** (ARBEITSWEISE 6d, 22.09.)? Und soll die
+erste Hälfte (K2f) getrennt davon eingetragen werden — wenn ja, wohin?
+
+**Neigung:** keine — Mac-Sitzung; die Neigung gibt der steuernde Chat. Zwei Tatsachen dazu: 6d ist die jüngere
+Regel und nennt ihre Fälle „abschliessend“; `BACKLOG_ARCHIV.md` T54.2 führt einen Fall, in dem Fragen nach K2h eine
+Nummernkollision verhindert hat.

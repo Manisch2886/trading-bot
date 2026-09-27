@@ -147,6 +147,39 @@ und unter `A4` bliebe sie unsichtbar.**
 an der ein Dritter sie widerlegen könnte? Wenn nein, ist es keine Wache — dann
 gehört die Prüfung an die Stelle, wo eine Spur entsteht.
 
+### A9 — Ein Nachweis gilt für den Gegenstand, den er berührt
+
+*Ein Nachweis gilt für den Gegenstand, den er berührt, nicht für den Zweck, dem
+er dienen sollte.*
+
+**Der Fall (19.09.2026):** „F1b/Q2 ist erledigt“ gemeldet. Fable korrigierte:
+**für die Daten** bewiesen (SHA-256 ist pandas-unabhängig), **nicht für den
+Lauf**.
+
+⭐ **Die Prüffrage:** Was hat die Messung berührt — und ist das derselbe
+Gegenstand wie der, über den der Satz etwas behauptet?
+
+**Herkunft:** `projektfuehrung/UEBERGABE_2026-09-19.md`, Block 7 (Fassung 19.09.), Nr. 5 — D2 19/5. Eingetragen
+TB-119, 27.09.2026.
+
+### A10 — Weicht die Nachmessung von der Vormessung ab, gilt die Nachmessung
+
+*Eine Vormessung ist eine Selbstauskunft im Sinn von **A8**: Der steuernde Chat
+misst, bevor er den Auftrag schreibt; die Sitzung misst nach, und bei Abweichung
+gilt **ihre** Messung. Die falsche Vormessung ist kein Schaden, sondern der
+Beweis, dass das Verfahren greift.*
+
+**Der Fall (Übergabe 24.09.2026):** Die Vormessung sagte, `G8` prüfe
+`median_balken`; nachgemessen prüft es `max_tage`.
+
+**So steht es in den Aufträgen**, z. B. `docs/auftraege/MAC_TB-103_resolver_und_trockenlauf.md`,
+Z. 54: *„Alles unten ist **Vormessung** des steuernden Chats … Nach `A8` misst du
+nach. **Wenn etwas abweicht, gilt deine Messung.**“* ⚠️ *Die Bestandsaufnahme D2
+fand „Vormessung“ im Regelwerk mit 0 Treffern und hielt `A8` für eine andere
+Regel; die Aufträge zitieren A8 als Grund des Nachmessens.*
+
+**Herkunft:** `projektfuehrung/UEBERGABE_2026-09-24.md`, Block 8, Nr. 5 — D2 24/5. Eingetragen TB-119, 27.09.2026.
+
 ---
 
 ## B — Wie eine Probe sich selbst täuscht
@@ -226,6 +259,18 @@ seinen eigenen `sys.modules` hat.*
 eine Konstante aus einem Modul, das auf Modulebene `Client()` anlegt, und
 `python-binance` pingt im Konstruktor (T40.6). `shared/paths.py:18` **legt beim
 Import `data/` an** (T46.8).
+
+### B7 — Gleiche Sonde, beide Dateien
+
+*Die Prüfung, die wir von einer Datei verlangen, gilt auch für die Datei, die
+wir für unverdächtig halten.*
+
+**Der Fall (21.09.2026):** Fables Annahme *„das Register hat sein Tor schon“*
+wurde fast ungeprüft übernommen. Sie stimmte — aber das war beim Übernehmen
+nicht gemessen.
+
+**Herkunft:** `projektfuehrung/UEBERGABE_2026-09-19.md`, Block 7 (Fassung 21.09.), Nr. 4 — D2 21/4. Eingetragen
+TB-119, 27.09.2026.
 
 ---
 
@@ -312,6 +357,14 @@ gemessen ist, ist eine der beiden Zahlen falsch.
 
 ⭐ **Die Prüffrage:** Widersprechen sich zwei Zahlen — oder beantworten sie
 verschiedene Fragen? **Und steht dabei, welche?**
+
+### C8 — Eine Kette ist erst geprüft, wenn alle ihre Eingaben geprüft sind
+
+**Der Fall (Übergabe 24.09.2026):** Für `messgroessen.json` wurde „von Befund 1
+nicht betroffen“ behauptet, nachdem nur **ein** Pfad geprüft war — die zweite
+Kette lag daneben.
+
+**Herkunft:** `projektfuehrung/UEBERGABE_2026-09-24.md`, Block 8, Nr. 4 — D2 24/4. Eingetragen TB-119, 27.09.2026.
 
 ---
 

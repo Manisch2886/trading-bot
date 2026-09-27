@@ -1,0 +1,3 @@
+53	0	docs/PRUEFPRINZIPIEN.md
+37	0	docs/projektfuehrung/ARBEITSWEISE.md
+29	0	docs/projektfuehrung/FABLE_SAMMLUNG_fuer_2026-09-29.md
