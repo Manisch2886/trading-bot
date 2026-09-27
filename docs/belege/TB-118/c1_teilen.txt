@@ -1,0 +1,6 @@
+# TB-118 C1 Teilung, 2026-09-27 11:13:22 +0200, Basis HEAD 8a3f6f6
+O  BACKLOG.md                      220 Zeilen,  144 Inhaltszeilen aus der alten Datei
+E  BACKLOG_ENTSCHEIDUNGEN.md       145 Zeilen,  109 Inhaltszeilen aus der alten Datei
+D  BACKLOG_ERLEDIGT_2026-09.md     296 Zeilen,  215 Inhaltszeilen aus der alten Datei
+S  BACKLOG_SICHTSCHUTZ.md           30 Zeilen,   10 Inhaltszeilen aus der alten Datei
+rc 0

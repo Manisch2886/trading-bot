@@ -1,0 +1,60 @@
+# TB-118 C4, 2026-09-27 11:13:49 +0200
+# TB-118 C4 - Messung nach DOKUMENTATIONSSTANDARD 10
+Ziel Backlog: BACKLOG.md, BACKLOG_ARCHIV.md, BACKLOG_ENTSCHEIDUNGEN.md, BACKLOG_EPICS.md, BACKLOG_ERLEDIGT_2026-09.md, BACKLOG_SICHTSCHUTZ.md
+  OK   0,5      Nummer ja   Kern ja   'Krypto-Historie (V2)'
+  OK   0,6      Nummer ja   Kern ja   'T46.1 — die Ausstiegspfade prüfen'
+  OK   0,7      Nummer ja   Kern ja   'TB-46 Erhebung + Snapshot-Werkzeug'
+  OK   0,8      Nummer ja   Kern ja   'TB-47 Snapshotgrenze'
+  OK   0,9      Nummer ja   Kern ja   'Registernachtrag'
+  FEHLT 0,82     Nummer ja   Kern NEIN 'TB-49 — die Ausnahme ins Werkzeug, der P'
+  OK   0,84     Nummer ja   Kern ja   'Snapshot ziehen'
+  OK   0,85     Nummer ja   Kern ja   'Der grosse Umbau: 90 Module der Selektio'
+  OK   0,87     Nummer ja   Kern ja   'In einem Zug, braucht die Freigabe für s'
+  OK   0,95     Nummer ja   Kern ja   'auswertung.py auf Verfahren B'
+  OK   T46b.1   Nummer ja   Kern ja   'DER OFFENE PUNKT, der aus der Prüfung en'
+  OK   T46b.2   Nummer ja   Kern ja   'FABLES ANTWORT (18.09.): GLEICHHEITSPRÜF'
+  OK   T46b.3   Nummer ja   Kern ja   'Die Bündelung, die daraus folgt — und si'
+  OK   T46b.4   Nummer ja   Kern ja   'SNAPSHOT VOR DATENCRON — bestätigt. Läuf'
+  OK   T46b.5   Nummer ja   Kern ja   'Ladeprotokoll.melde() wird im Papierpfad'
+  OK   T46b.6   Nummer ja   Kern ja   'EINE der neun Datenbanken wich im Mac-La'
+  OK   T46b.7   Nummer ja   Kern ja   'Nebenbefund, klein und offen: target_pri'
+  OK   T47.1    Nummer ja   Kern ja   'DIE SNAPSHOT-GRENZE IST GEMESSEN, nicht '
+  OK   T47.2    Nummer ja   Kern ja   'DIE ZWEI HASHES, zum ersten Mal nebenein'
+  OK   T47.3    Nummer ja   Kern ja   '36 von 223 Kursdateien tragen den Befund'
+  OK   T47.4    Nummer ja   Kern ja   'LETZTE Kerze betroffen: False bei allen '
+  OK   T47.5    Nummer ja   Kern ja   'UND DIE ANGABE, DIE EINE PRÜFUNG NICHT A'
+  OK   T47.6    Nummer ja   Kern ja   'shared/snapshot.py erweitert: acht Abbru'
+  OK   T47.7    Nummer ja   Kern ja   'PRÜFPRINZIP B4, neue Variante: eine Prob'
+  OK   T47.8    Nummer ja   Kern ja   'Prozessgruppe behoben: start_new_session'
+  OK   T47.9    Nummer ja   Kern ja   'BEKANNT_ROT enthielt einen falschen Eint'
+  OK   T47.10   Nummer ja   Kern ja   'Nebenwert, der jetzt gebraucht wird: pan'
+  OK   T47.11   Nummer ja   Kern ja   'Referenzen festgenagelt: shared/test_lee'
+  OK   T48.1    Nummer ja   Kern ja   'Abschnitt 17 der Vorregistrierung trägt '
+  OK   T48.2    Nummer ja   Kern ja   'DIE EINE ABWEICHUNG IST MEINE: „die erst'
+  OK   T48.3    Nummer ja   Kern ja   'MEINE REGEL HAT DAS FALSCHE BEWIRKT. Ich'
+  OK   T48.4    Nummer ja   Kern ja   'Der Prüfer sagt selbst, was er nicht kan'
+  OK   T48.5    Nummer ja   Kern ja   'git status im Beleg war VOR dem letzten '
+  OK   TB-49    Nummer ja   Kern ja   'FORMULIERT 18.09.2026 — CLOUD_TB-49_ausn'
+  OK   K1a      Nummer ja   Kern ja   'Sechs der neun Bots überspringen ein lee'
+  OK   K1b      Nummer ja   Kern ja   't3_supertrend ist nur durch die Einrücku'
+  OK   K1c      Nummer ja   Kern ja   'target_price kann None sein, strategies/'
+  OK   K1d      Nummer ja   Kern ja   'broker/test_ibkr.py benutzt US/Eastern —'
+  OK   K1e      Nummer ja   Kern ja   'shared/paths.py:18 legt data/ beim Impor'
+  OK   K1f      Nummer ja   Kern ja   'Das Hash-Verfahren steht doppelt im Repo'
+  OK   K1g      Nummer ja   Kern ja   'Alter stash@{0} auf dem Mac aus der Früh'
+  OK   K1h      Nummer ja   Kern ja   'reg.KURSDATEN_DIR_VERBOTEN — ein Rückfal'
+  OK   K1i      Nummer ja   Kern ja   'Zweiter Umstellungstag ins Register, sob'
+Backlog-Nachtrag: 43 Nummern, nicht angekommen 1
+Traceback (most recent call last):
+  File "/Users/jaquelineloffler/trading-bot/docs/belege/TB-118/c4_messung.py", line 78, in <module>
+    raise SystemExit(main())
+  File "/Users/jaquelineloffler/trading-bot/docs/belege/TB-118/c4_messung.py", line 58, in main
+    text = lies(os.path.join(P, "JOURNAL_NACHTRAG_2026-09-18.md")).split("\n")
+  File "/Users/jaquelineloffler/trading-bot/docs/belege/TB-118/c4_messung.py", line 19, in lies
+    with open(p, encoding="utf-8") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'docs/projektfuehrung/JOURNAL_NACHTRAG_2026-09-18.md'
+rc 1
+
+Folge:
+- JOURNAL_NACHTRAG_2026-09-18.md: 5/5 Bloecke angekommen (BA-BE) -> git mv nach docs/projektfuehrung/nachtraege/_eingearbeitet/ (Ort nach DOKUMENTATIONSSTANDARD 10, Zeile 'Ort'; der Auftrag schreibt docs/projektfuehrung/_eingearbeitet/ - diesen Ordner gibt es nicht, alle 37 eingearbeiteten Nachtraege liegen unter nachtraege/_eingearbeitet/).
+- BACKLOG_NACHTRAG_2026-09-18.md: 42 von 43 Nummern mit Nummer und Kern; bei 0,82 steht die Nummer, der Kern nicht (die Zeile wurde spaeter als ERLEDIGT fortgeschrieben, Kette 0,82 heute '~~TB-49 — die Ausnahme ins Werkzeug~~'). Nach Regel 10 nicht vollstaendig gemessen -> NICHT verschoben, gemeldet in c4_offen.txt.

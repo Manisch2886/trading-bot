@@ -1,0 +1,15 @@
+# TB-118 C2 Zeilenmenge: alte BACKLOG.md am HEAD gegen die vier Dateien in docs/projektfuehrung
+Inhaltszeilen alt: 478 (478 verschiedene)
+Inhaltszeilen BACKLOG.md                     145
+Inhaltszeilen BACKLOG_ENTSCHEIDUNGEN.md      110
+Inhaltszeilen BACKLOG_ERLEDIGT_2026-09.md    216
+Inhaltszeilen BACKLOG_SICHTSCHUTZ.md         11
+Inhaltszeilen neu gesamt: 482
+(a) alte Zeile fehlt: 0
+(b) alte Zeile zu oft: 0
+(c) neue Inhaltszeilen, nicht aus der alten Datei: 4
+    1x > ⭐ **Geteilt TB-118; Erledigtes in `BACKLOG_ERLEDIGT_2026-09.md`, Festlegungen in `BACKLOG_ENTSCHEIDUNGEN.md`, Zeilen nach 27.1 in `BACKLOG_SICHTSCHUTZ.md` (nu
+    1x *Geteilt TB-118 (27.09.2026, Fable 27b B2) aus `BACKLOG.md`; jede Zeile zeichengleich, Nachweis `docs/belege/TB-118/c2_zeilenmenge.txt`. Offenes steht in `BACKL
+    1x *Geteilt TB-118 (27.09.2026, Fable 27b B2) aus `BACKLOG.md`; jede Zeile zeichengleich, Nachweis `docs/belege/TB-118/c2_zeilenmenge.txt`. Enthält Abschnitt 8 „Ge
+    1x *Geteilt TB-118 (27.09.2026, Fable 27b B2, G5) aus `BACKLOG.md`; jede Zeile zeichengleich, Nachweis `docs/belege/TB-118/c2_zeilenmenge.txt`. ⛔ **Nur Repo, nie i
+Ergebnis: jede alte Inhaltszeile genau einmal; neu nur die Kopfzeilen der Teilung, rc 0

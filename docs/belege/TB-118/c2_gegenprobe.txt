@@ -1,0 +1,15 @@
+# TB-118 C2 Gegenprobe: Kopie der vier Dateien im Scratchpad, (1) eine Zeile aus BACKLOG_ENTSCHEIDUNGEN.md entfernt (die mit '| **K2d**'), (2) eine Zeile in BACKLOG_ERLEDIGT_2026-09.md verdoppelt (die mit '| **T44.1**') -> erwartet rc 1 mit (a) 1 und (b) 1
+# TB-118 C2 Zeilenmenge: alte BACKLOG.md am HEAD gegen die vier Dateien in <scratch>/mut
+Inhaltszeilen alt: 478 (478 verschiedene)
+Inhaltszeilen BACKLOG.md                     145
+Inhaltszeilen BACKLOG_ENTSCHEIDUNGEN.md      109
+Inhaltszeilen BACKLOG_ERLEDIGT_2026-09.md    217
+Inhaltszeilen BACKLOG_SICHTSCHUTZ.md         11
+Inhaltszeilen neu gesamt: 482
+(a) alte Zeile fehlt: 1
+    1x | **K2d** | ⭐ **Eine Kostenmessung ist nie die Aussage, sondern ihr Stellvertreter.** Weicht der Stellvertreter ab, wird
+(b) alte Zeile zu oft: 1
+    1x | **T44.1** | ⚠️⚠️ **DER PATCHVORSCHLAG WAR FALSCH — gemessen.** Auf **Python 3.10** steht im Accessor nicht `os.open`, 
+(c) neue Inhaltszeilen, nicht aus der alten Datei: 4
+Ergebnis: ABWEICHUNG, rc 1
+rc 1

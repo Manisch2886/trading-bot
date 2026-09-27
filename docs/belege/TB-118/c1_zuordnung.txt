@@ -1,0 +1,482 @@
+# TB-118 C1 Zuordnung: Zeile | Kennung | Klasse | Grund. Klassen: O offen -> BACKLOG.md, E -> BACKLOG_ENTSCHEIDUNGEN.md,
+# D -> BACKLOG_ERLEDIGT_2026-09.md, S -> BACKLOG_SICHTSCHUTZ.md. K-Nummern werden nach Inhalt eingeordnet, nicht nach
+# dem Praefix: der K-Namensraum gehoert zu Abschnitt 4 'Laufend, klein' und mischt offene Punkte, Regeln und Lehren.
+   3 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+   4 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+   6 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+   7 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+   8 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+   9 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  10 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  11 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  12 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  14 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  15 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  17 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  18 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  19 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  20 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  22 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  23 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  24 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  30 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  31 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  32 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  40 | A1             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  41 | A9             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  42 | A2             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  43 | A3             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  44 | A4             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  45 | F3 + N3        | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  46 | A7             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  47 | (Absatz)       | O | Waechter-Zeile: erledigt, aber 'Offen: fuenf Crontab-Zeilen auf den Wrapper umstellen'
+  49 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  50 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  51 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  57 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  58 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  62 | V1             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  63 | V1             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  64 | V1b            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  65 | V1c            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  66 | V2             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  67 | V3             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  68 | V4             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  69 | V5c            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  70 | W1             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  71 | TB-38          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  72 | R1             | D | R1: Registertexte 6 und 7 stehen seit TB-41 im Register (16.4, 16.5) - gemessen im Register
+  73 | T39.3          | O | T39.3: Familienbuchfuehrung steht in 16.8 (c), aber Q3 fuehrt T39.3 weiter als Punkt fuer die Querpruefung - offen
+  74 | T39.4          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  75 | T39.5          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  76 | TB-39          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  77 | T39.1          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  78 | F1a            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  79 | F1b            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  80 | F2             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  81 | F3a            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  82 | T42.1          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  83 | T42.2          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  84 | T42.3          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  85 | T42.4          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  86 | T42.5          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  87 | T42.6          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  88 | T42.7          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  89 | TB-42          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  90 | Q1             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+  91 | Q2             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  92 | Q3             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  93 | T45.1          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  94 | T45.2          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  95 | T45.3          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+  96 | T45.4          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  97 | T45.5          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  98 | T45.6          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+  99 | T45.7          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 100 | T45.8          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 101 | TB-45          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 102 | U1             | D | U1: docs/UMGEBUNGEN.md existiert und CLAUDE.md verweist darauf - D
+ 103 | T44.8          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 104 | T44.9          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 105 | T44.10         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 106 | T44.11         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 107 | T44.1          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 108 | T44.2          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 109 | T44.3          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 110 | T44.4          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 111 | T44.5          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 112 | T44.6          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 113 | T44.7          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 114 | TB-44          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 115 | T43.7          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 116 | T43.8          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 117 | T43.9          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 118 | T43.10         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 119 | T43.1          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 120 | T43.2          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 121 | T43.3          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 122 | T43.4          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 123 | T43.5          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 124 | T43.6          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 125 | TB-43          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 126 | E2             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 127 | T41.6          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 128 | T41.7          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 129 | T41.8          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 130 | T41.9          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 131 | T41.10         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 132 | T41.1          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 133 | T41.2          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 134 | T41.3          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 135 | T41.4          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 136 | T41.5          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 137 | TB-41          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 138 | E4             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 139 | E5             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 140 | E3             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 141 | E1             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 142 | F4b            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 143 | F4             | S | F4: 'Wirkung von 60/40 gegen 80/20 mit hoher Wahrscheinlichkeit groesser als die des gesamten Dezember-Laufs' - Erwartung ueber den Lauf
+ 144 | F5             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 145 | F6             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 146 | K23            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 147 | K24            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 148 | K15            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 149 | K16            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 150 | K17            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 151 | K18            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 152 | K19            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 153 | K20            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 154 | K21            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 155 | K22            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 156 | K12            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 157 | K13            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 158 | K14            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 159 | K10            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 160 | K11            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 161 | K5             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 162 | K2             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 163 | K3             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 164 | K4             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 165 | K6             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 166 | K7             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 167 | K8             | S | K8: Erwartung netto-Sharpe als Spanne (Einschaetzung) - Erwartung nach 27.1
+ 168 | K9             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 169 | K1             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 170 | T39.2          | S | T39.2: Sharpe-Schwelle bei N = 653 und Satz ueber den Ausgang - vom Auftrag genannt (Z. 170)
+ 171 | D1             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 172 | T38.7          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 173 | T38.8          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 174 | T38.9          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 175 | T38.10         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 176 | T38.11         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 177 | T38.12         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 178 | T38.13         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 179 | T38.3          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 180 | T38.4          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 181 | T38.5          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 182 | T38.6          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 183 | T38.1          | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 184 | T38.2          | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 185 | W9             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 186 | W10            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 187 | W11            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 188 | W12            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 189 | W13            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 190 | W14            | S | W14: Erwartung, wie viele Bots auf Schatten landen - vom Auftrag genannt (Z. 190), Register 27 Tatsachennotiz
+ 191 | W8             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 192 | W2             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 193 | W3             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 194 | W4             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 195 | W5b            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 196 | T40.1          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 197 | T40.2          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 198 | F7             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 199 | F8             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 200 | F9             | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 201 | F10            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 202 | F11            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 203 | F12            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 204 | T40.7          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 205 | T40.3          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 206 | T40.4          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 207 | T40.5          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 208 | T40.6          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 209 | TB-40          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 210 | T36.2b         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 211 | W5             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 212 | W6             | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 213 | W7             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 214 | T36.5          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 215 | T36.6          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 216 | T36.1          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 217 | T36.2          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 218 | T36.3          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 219 | T36.4          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 220 | TB-36          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 221 | V5h            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 222 | V5i            | S | V5i: Vorhersage zu den heutigen Einstellungen fuer den Ausgang der Neuselektion
+ 223 | V5j            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 224 | V5k            | S | V5k: Sharpe-Werte (Grenze bei vier Trades, Unterscheidbarkeitsschwelle) - dieselbe Schwelle wie Z. 170
+ 225 | V5f            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 226 | V5g            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 227 | V5d            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 228 | V5e            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 229 | V5b+           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 230 | V5b            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 231 | V5             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 232 | V6             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 233 | V7             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 239 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 240 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 241 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 242 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 246 | `2b`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 247 | `2c`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 248 | `2d`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 249 | `2e`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 250 | `2f`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 251 | `2g`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 252 | `2h`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 253 | `2i`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 254 | `2j`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 255 | `2k`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 256 | `2m`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 257 | `2n`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 258 | `2o`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 259 | `2p`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 260 | `2q`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 261 | `2r`           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 265 | (Absatz)       | D | Kopfnotiz Block 2s (Einarbeitung TB-59) - D
+ 269 | T56b.1         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 270 | T56b.2         | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 271 | T56b.3         | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 272 | T56b.4         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 273 | T56b.5         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 274 | T56b.6         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 275 | T56b.7         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 276 | T56b.8         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 278 | (Absatz)       | E | Notiz zu T56b.3 (E) - folgt ihrer Zeile
+ 280 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 281 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 282 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 283 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 284 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 285 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 286 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 288 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 289 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 290 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 291 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 292 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 293 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 294 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 295 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 297 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 298 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 299 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 300 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 302 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 303 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 304 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 305 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 306 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 307 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 308 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 314 | T56b.9         | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 315 | T56b.10        | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 316 | T56b.11        | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 317 | T56b.12        | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 318 | T56b.13        | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 319 | T56b.14        | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 320 | T56b.15        | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 321 | T56b.16        | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 323 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 324 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 330 | T46.1a         | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 331 | T46.1b         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 332 | T46.1c         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 333 | T46.1d         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 337 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 338 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 339 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 340 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 341 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 342 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 343 | (Absatz)       | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 347 | `2t`           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 348 | `2u`           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 349 | `2v`           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 350 | `2w`           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 351 | `2x`           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 352 | `2y`           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 358 | (Absatz)       | E | Kopfnotiz Block 2z: der Block ist ueberwiegend Regel/Lehre (E)
+ 362 | K3k            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 363 | K3l            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 364 | K3m            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 365 | K3n            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 366 | K3o            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 367 | K3p            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 368 | K3q            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 369 | K3r            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 370 | K3s            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 371 | K3t            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 372 | K3u            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 373 | K3v            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 374 | K3w            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 375 | K3x            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 376 | K3y            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 377 | K3z            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 378 | K4a            | O | K4a: Lehre (E) plus offene Handlung 'beim naechsten Durchgang zusammenfuehren' - O
+ 379 | K4b            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 380 | K4c            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 381 | K4d            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 382 | K4e            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 383 | K4f            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 384 | K4g            | O | K4g: Rueckblick-Ort und 'Laufreproduktion gegen den Lock' offen (heute Kette 0,99) - O
+ 392 | 0              | O | Kette 0: TB-30a erledigt, 'Offen: GPG-Tag + Zeitanker' - der signierte Tag steht aus
+ 393 | 0,5            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 394 | 0,6            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 395 | 0,7            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 396 | 0,8            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 397 | 0,9            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 398 | 0,82           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 399 | 0,84           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 400 | 0,84           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 401 | 0,85a          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 402 | 0,85a          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 403 | 0,85b          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 404 | 0,85c          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 405 | 0,85c          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 406 | 0,85           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 407 | 0,87           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 408 | 0,86           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 409 | 0,86a          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 410 | 0,86b          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 411 | 0,86c          | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 412 | 0,86a          | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 413 | 0,86           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 414 | 0,88           | O | Kette 0,88: TB-56 erledigt, die Drei-Kategorien-Regel zu Registertext 0 nicht (T56b.14)
+ 415 | 0,86           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 416 | 0,95           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 417 | 1              | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 418 | 2              | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 419 | 3              | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 420 | 4              | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 421 | 5              | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 422 | 0,96           | D | Kette 0,96: AF-F0_BESTANDSAUFNAHME_2026-09-26.md liegt vor - D
+ 423 | 0,97           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 424 | 0,98           | O | Kette 0,98: Recherche liegt vor, die Entscheidung D1 daraus nicht - O
+ 425 | 0,99           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 426 | 6              | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 427 | 7              | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 428 | 8              | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 436 | F2             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 437 | F6 / O2        | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 438 | J6             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 439 | F1             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 440 | P2             | S | P2: Papierpfad-Ergebnis als Summe in Prozentpunkten - Rendite der heutigen Parameter; offen, bleibt offen
+ 441 | Regel          | S | Regel: Rendite-Kennzahlen aus live_params.py (Code-Kopf) im Wortlaut - Regel selbst ist E, Zeile wegen der Zahlen S
+ 442 | K1a            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 443 | K1b            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 444 | K1c            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 445 | K1d            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 446 | K1e            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 447 | K1f            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 448 | K1g            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 449 | K1h            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 450 | K1i            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 451 | K1j            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 452 | K1k            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 453 | K1l            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 454 | K1m            | D | K1m: beantwortet durch Register 21 (T56b.1: kein Registertext nennt eine Jahreszahl) - D
+ 455 | K1n            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 456 | K1o            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 457 | K1p            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 458 | K1q            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 459 | K1n            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 460 | K1r            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 461 | K1s            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 462 | K1t            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 463 | K1u            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 464 | K1v            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 465 | K1w            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 466 | K1x            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 467 | K1y            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 468 | K1z            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 469 | K2a            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 470 | K2b            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 471 | K2c            | D | K2c: A7 steht seit TB-54b in PRUEFPRINZIPIEN.md - D
+ 472 | K2d            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 473 | K2e            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 474 | K2f            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 475 | K2g            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 476 | K2h            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 477 | K2i            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 478 | K2j            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 479 | K2k            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 480 | K2l            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 481 | K2m            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 482 | K2n            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 483 | K2o            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 484 | K2p            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 485 | K2q            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 486 | K2r            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 487 | K2s            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 488 | K2t            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 489 | K2u            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 490 | K2v            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 491 | K2w            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 492 | K2x            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 493 | K2y            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 494 | K2z            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 495 | K3a            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 496 | K3b            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 497 | K3c            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 498 | K3d            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 499 | K3e            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 500 | K3f            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 501 | K3g            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 502 | K3h            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 503 | K3i            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 504 | K3j            | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 505 | K4h            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 506 | K4i            | O | K4i: 'Offen beim Betreiber' (UEBERGABEPROTOKOLL im Lesepfad, Platzhalter oder fester Name) - O
+ 507 | K4j            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 508 | K4k            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 509 | K4l            | D | K4l: die dort offen benannten Punkte sind erledigt (Vollzug TB-92/TB-94, TB-74 -> TB-80) - D
+ 510 | K4m            | S | K4m: MtM-/ereignisindizierte Drawdowns je Bot und Falte - Kennzahl eines Parametersatzes
+ 511 | K4n            | O | K4n: 'Offen: die Regel eintragen - ARBEITSWEISE 14, DOKUMENTATIONSSTANDARD 10' - O
+ 512 | K4o            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 513 | K4p            | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 514 | K4q            | O | K4q: Folgen fuer den steuernden Chat (Ablage, Erinnerung, N1-N5) - O
+ 515 | K4r            | O | K4r: 'offen (asof, Ablage, TB-30b)'; asof ist gesetzt (Register 28), TB-30b offen - O
+ 517 | (Absatz)       | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 521 | (Absatz)       | E | Festlegung, Regel, Lehre oder Betreiberentscheid mit Datum; keine offene Handlung
+ 529 | C8             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 530 | P3             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 531 | P4             | S | P4: 'hat bei 8 von 9 Bots geschadet' - Aussage wie viele Saetze eine Bedingung erfuellen; offen, bleibt offen
+ 532 | I19            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 533 | S-E1           | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 534 | I10            | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 535 | S-D1           | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 536 | Z4 → Z1/Z2     | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 537 | Z5             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 538 | E-Rest         | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 539 | Aufräumstunde  | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 540 | H #61/#62      | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 546 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 554 | G1             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 555 | G2             | O | offen: Aufgabe, Frage oder Entscheidung steht aus (bei Mischzeilen: mindestens ein offener Teil)
+ 557 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 558 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 564 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 566 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 567 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 568 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 569 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 571 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 572 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 573 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 574 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 575 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 576 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 577 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 579 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 580 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 581 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 582 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 583 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 585 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 586 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 587 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 589 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 590 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 591 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 592 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 593 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 595 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 596 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 597 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+ 603 | (Absatz)       | D | erledigt, beantwortet, abgeloest oder Verweis auf Archiv; Abschnitt 8 vollstaendig
+# Summe: D 215, E 109, O 144, S 10

@@ -1,0 +1,55 @@
+==============================================================================
+NACHTRAGSWAECHTER - die Bringschuld der Nachtraege
+==============================================================================
+Ziel (aus BACKLOG.md gelesen): BACKLOG.md 220, BACKLOG_ARCHIV.md 566, BACKLOG_ENTSCHEIDUNGEN.md 145, BACKLOG_EPICS.md 961, BACKLOG_ERLEDIGT_2026-09.md 296, BACKLOG_SICHTSCHUTZ.md 30 Zeilen; JOURNAL.md 9795 (63 Quellenzeilen)
+Frist: 1 Tag(e), Alter aus der Aenderungszeit der Datei
+
+A - OFFEN im Hauptverzeichnis: 0 Datei(en)
+
+B - EINGEARBEITET (_eingearbeitet/): 38 Datei(en)
+  OK  BACKLOG_NACHTRAG_2026-09-18e.md                  Alter   8.1 d   Nummern 7, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-18f.md                  Alter   8.1 d   Nummern 3, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-18g.md                  Alter   8.1 d   Nummern 3, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19h.md                  Alter   8.1 d   Nummern 6, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19i.md                  Alter   8.1 d   Nummern 3, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19j.md                  Alter   8.1 d   Nummern 6, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19k.md                  Alter   8.1 d   Nummern 6, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19l.md                  Alter   8.0 d   Nummern 4, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19m.md                  Alter   7.6 d   Nummern 8, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19n.md                  Alter   7.6 d   Nummern 4, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19o.md                  Alter   7.6 d   Nummern 5, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19p.md                  Alter   7.6 d   Nummern 5, nicht angekommen 0
+  [?] BACKLOG_NACHTRAG_2026-09-19q.md                  Alter   7.6 d   nicht pruefbar - keine Nummer der drei Formen (K, Block, Kette)
+  [?] BACKLOG_NACHTRAG_2026-09-19q_r_berichtigung.md   Alter   7.6 d   nicht pruefbar - keine Nummer der drei Formen (K, Block, Kette)
+  [?] BACKLOG_NACHTRAG_2026-09-19r.md                  Alter   7.6 d   nicht pruefbar - keine Nummer der drei Formen (K, Block, Kette)
+  OK  BACKLOG_NACHTRAG_2026-09-19s.md                  Alter   7.5 d   Nummern 2, nicht angekommen 0
+  OK  BACKLOG_NACHTRAG_2026-09-19t.md                  Alter   7.5 d   Nummern 2, nicht angekommen 0
+  [?] BACKLOG_NACHTRAG_2026-09-19u.md                  Alter   7.5 d   nicht pruefbar - keine Nummer der drei Formen (K, Block, Kette)
+  OK  BACKLOG_NACHTRAG_2026-09-19v.md                  Alter   6.8 d   Nummern 22, nicht angekommen 0
+  [?] JOURNAL_NACHTRAG_2026-09-18.md                   Alter   8.8 d   nicht pruefbar - Dateiname passt zu keiner der zwei Nachtragsarten
+  OK  JOURNAL_NACHTRAG_2026-09-19c.md                  Alter   8.0 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-19d.md                  Alter   8.0 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-19e.md                  Alter   8.0 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-19f.md                  Alter   7.6 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-19g.md                  Alter   7.0 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20a.md                  Alter   7.0 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20b.md                  Alter   6.9 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20c.md                  Alter   6.9 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20d.md                  Alter   6.8 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20e.md                  Alter   6.8 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20f.md                  Alter   6.8 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20g.md                  Alter   6.7 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20h.md                  Alter   6.7 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20i.md                  Alter   6.7 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20j.md                  Alter   6.6 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20k.md                  Alter   6.6 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20l.md                  Alter   6.5 d   Quellenzeile im Journal
+  OK  JOURNAL_NACHTRAG_2026-09-20m.md                  Alter   6.2 d   Quellenzeile im Journal
+
+C - DOPPELBELEGUNG im Ziel (ohne sort -u): keine
+
+Laufzeit: 0.49s
+
+==============================================================================
+Zusammenfassung: 0x OFFEN UEBER DER FRIST, 0x offen in der Frist, 5x NICHT PRUEFBAR, 0x FALSCH VERSCHOBEN, 0x DOPPELBELEGUNG
+Kein Befund: nichts liegt ueber der Frist, nichts ist falsch verschoben, keine Nummer doppelt.

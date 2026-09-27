@@ -1,0 +1,5 @@
+2	385	docs/projektfuehrung/BACKLOG.md
+145	0	docs/projektfuehrung/BACKLOG_ENTSCHEIDUNGEN.md
+296	0	docs/projektfuehrung/BACKLOG_ERLEDIGT_2026-09.md
+30	0	docs/projektfuehrung/BACKLOG_SICHTSCHUTZ.md
+0	0	docs/projektfuehrung/{ => nachtraege/_eingearbeitet}/JOURNAL_NACHTRAG_2026-09-18.md

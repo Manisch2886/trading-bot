@@ -1,0 +1,22 @@
+# TB-118 C1 - Rueckfrage an den Betreiber und seine Antwort, woertlich (ARBEITSWEISE 15, K2n)
+# Zeitpunkt: 2026-09-27 11:11 +0200, Auswahlkarte in der Mac-Sitzung TB-118
+
+Anlass (gemessen, waechter_probe.txt): Probe-Teilung mit dem Auftragsnamen ENTSCHEIDUNGEN.md -> Nachtragswaechter rc 1,
+36 Nummern aus 8 Nachtraegen (19h, 19i, 19j, 19l, 19n, 19o, 19p, 19v) "nicht angekommen", dazu Doppelbelegung Block 2s
+(Ueberschrift in zwei Zieldateien). Grund: der Waechter liest nur BACKLOG.md und die dort genannten BACKLOG_<name>.md
+(system/nachtragswaechter.py, RE_ZIELNENNUNG); DOKUMENTATIONSSTANDARD 10, Zeile "Auslagerung": "Wer etwas aus
+BACKLOG.md in eine eigene Datei auslagert, nennt diese Datei in BACKLOG.md mit Namen, und sie heisst BACKLOG_<name>.md".
+
+Frage, woertlich:
+"TB-118 Schritt C: Wie soll die Datei mit den Festlegungen aus dem Backlog heissen? Mit dem Auftragsnamen
+ENTSCHEIDUNGEN.md meldet der Nachtragswächter gemessen rc 1: 36 Nummern aus 8 Nachträgen gelten als nicht angekommen,
+gemeldet ab dem Cron-Lauf 04:50 täglich per Telegram. DOKUMENTATIONSSTANDARD Regel 10 verlangt für jede Auslagerung
+aus dem Backlog den Namen BACKLOG_<name>.md."
+Optionen: (1) BACKLOG_ENTSCHEIDUNGEN.md (Empfohlen) · (2) ENTSCHEIDUNGEN.md, Wächter erweitern ·
+(3) ENTSCHEIDUNGEN.md, Befund hinnehmen · (4) Teilung C zurückstellen
+
+Antwort des Betreibers, woertlich: "BACKLOG_ENTSCHEIDUNGEN.md (Empfohlen)"
+
+Folge: Die Datei heisst BACKLOG_ENTSCHEIDUNGEN.md; die Kopfzeile C3 nennt diesen Namen statt "ENTSCHEIDUNGEN.md"
+(einzige Abweichung vom Wortlaut des Auftrags in C1/C3). Ueberschriften stehen in den drei neuen Dateien eine Ebene
+tiefer (## -> ###), damit keine Block-Ueberschrift "## 2x" in zwei Zieldateien steht (Waechter Teil C).

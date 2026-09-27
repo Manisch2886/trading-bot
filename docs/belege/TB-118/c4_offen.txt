@@ -1,0 +1,10 @@
+# TB-118 C4 - offen, nicht verschoben
+docs/projektfuehrung/BACKLOG_NACHTRAG_2026-09-18.md
+  Messung (c4_messung.txt): 43 Nummern, 42 mit Nummer und Textkern im Ziel; Kette 0,82: Nummer ja, Kern NEIN.
+  Grund: Der Nachtrag trug "TB-49 — die Ausnahme ins Werkzeug, der Prüfer ins Repo / formuliert 18.09."; die Zeile
+  wurde danach als erledigt fortgeschrieben (heute "~~TB-49 — die Ausnahme ins Werkzeug~~ | ERLEDIGT 18.09. …",
+  jetzt in BACKLOG_ERLEDIGT_2026-09.md). Inhaltlich ist der Nachtrag eingearbeitet (Kopf: "EINGEARBEITET am
+  18.09.2026 …, Commit 02de1f7"); der Nachweis nach Regel 10 (Nummer UND Textkern) gelingt für 0,82 nicht.
+  Entscheidung beim Betreiber: (a) als eingearbeitet werten und verschieben (die Fortschreibung ist dokumentiert),
+  oder (b) liegen lassen. Der Nachtragswächter prüft die Datei in keinem Fall (Name ohne Buchstabe, liegt nicht unter
+  nachtraege/).
