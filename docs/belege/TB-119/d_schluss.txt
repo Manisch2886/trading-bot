@@ -1,0 +1,50 @@
+# TB-119 D - Schlussmessung 2026-09-27 18:32:49 +0200, HEAD 8c6ab75
+## Datenbanken gegen 0c (sha256)
+12/12 gleich
+2026-09-25 23:30:28 ./benachrichtigungen_schliessung.db
+2026-09-27 16:05:01 ./broker_testnet_t3_supertrend.db
+2026-09-18 22:15:51 ./paper_trading_elliott_wave_stocks.db
+2026-09-16 23:00:01 ./paper_trading_elliott_wave.db
+2026-09-26 23:20:30 ./paper_trading_rsi2_crypto.db
+2026-09-25 22:20:47 ./paper_trading_rsi2_mean_reversion.db
+2026-09-24 16:00:31 ./paper_trading_t3_supertrend.db
+2026-09-25 00:15:25 ./paper_trading_turtle_soup_crypto.db
+2026-09-25 23:15:45 ./paper_trading_turtle_soup_stocks.db
+2026-09-21 23:50:26 ./paper_trading_volatility_breakout_crypto.db
+2026-09-25 22:50:45 ./paper_trading_volatility_breakout.db
+2026-09-05 21:30:21 ./strategies/volatility_breakout/paper_trading_volatility_breakout.db
+
+## Register
+18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c  docs/VORREGISTRIERUNG_neuselektion.md
+(0b: 18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c)
+
+## numstat 7eadc7a..HEAD
+53	0	docs/PRUEFPRINZIPIEN.md
+162	0	docs/projektfuehrung/ARBEITSWEISE.md
+15	4	docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
+29	0	docs/projektfuehrung/FABLE_SAMMLUNG_fuer_2026-09-29.md
+19	1	docs/projektfuehrung/UEBERGABE.md
+34	11	docs/projektfuehrung/UMZUG.md
+
+## Dateien ausserhalb docs/ geaendert seit 7eadc7a
+       0
+
+## wc -l / sha256 nachher
+    2215 docs/projektfuehrung/ARBEITSWEISE.md
+     384 docs/projektfuehrung/UMZUG.md
+     289 docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
+     440 docs/PRUEFPRINZIPIEN.md
+     277 docs/projektfuehrung/UEBERGABE.md
+    3605 total
+b2b4c3125bd9e3f48ace30a0e698d9e392bb519200dd807e9d426b66e5e83d0c  docs/projektfuehrung/ARBEITSWEISE.md
+e73478882a4441fbbae98e12b8e335bfe60f244d591cd0138db88d1b949785d6  docs/projektfuehrung/UMZUG.md
+32c83156cc89070f5a5f56b8cc516e7c29562d4db00f70aa115d06e5c9336361  docs/projektfuehrung/DOKUMENTATIONSSTANDARD.md
+a1d95e2f2ad331c30b17c2ee26970e5afb631046a4c4cebb62d55d6eaa0b378b  docs/PRUEFPRINZIPIEN.md
+064acbf504378072dee6cacd92802b07495a99e7a3574a12119aafc8dfbe4c39  docs/projektfuehrung/UEBERGABE.md
+
+## Ueberschriften ^## in ARBEITSWEISE (ab 19)
+1739:## 19. Der Sitzungswächter — eine Datei startet eine Mac-Sitzung
+1804:## 20. ⭐ Rückfragen an den Betreiber kommen als Auswahlkarte
+1833:## 21. ⛔ Der Auftrag geht NICHT als Argument mit — zweimal gemessen
+1887:## 22. Drei Festlegungen zum Betrieb der Mac-Sitzungen (23.09.2026)
+2126:## 23. Die Projektablage — Arbeitsfläche, nicht Träger (27b Teil E, TB-119, 27.09.2026)

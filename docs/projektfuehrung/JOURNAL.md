@@ -9499,6 +9499,42 @@ ausgelöst. `BACKLOG.md` gelesen; die Zeilen nach 27.1 sind nach Fundstelle gena
 
 ---
 
+## DR — TB-119: Repo nachgezogen und Regelwerk-Nachtrag nach Fable 27b Teil E — 15 gesicherte Dateien committet (md5 16/16); `UEBERGABE.md` Z. 99 nach 27.5 (md5 = Ablagefassung) und Stand 27.09.; ARBEITSWEISE 23 „Projektablage“ plus zehn Stellen aus Teil E (numstat 174/15, jede entfernte Zeile im Beleg); 13 Regeln aus D2 (PRUEFPRINZIPIEN A9, A10, B7, C8; ARBEITSWEISE 14 und 15); 19/6 als Frage in die Fable-Sammlung (27.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-119_repo_nachziehen_regelwerk_nachtrag.md`*
+
+**Quelle:** Mac-Sitzung **TB-119** (Hauptordner), 27.09.2026, Eingang `2a0893b`. Commits `7eadc7a` (Schritt 0),
+`4c1650d` (A1), `6126c64` (A2), `df825b6` (B), `8c6ab75` (C) und der Abgabe-Commit (D). Belege `docs/belege/TB-119/`.
+Freigabe 27.09.2026, 18:08 und ca. 18:25 („Wir arbeiten alles strukturiert ab“). Keine Rückfrage an den Betreiber.
+Kein Abbruchkriterium ausgelöst. Kein Fable-Volumen bis 29.09.; Fragen gehen in die Sammlung.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 16 md5 = Auftrag, keine weitere Datei; 17 Dateien committet. db-Sicherung 12/12 rc 0 (mit `docs.tar.gz`, 1596 Dateien) |
+| **A** | A1: `grep -c` 0, md5 `2b61283b…` = Soll. A2: Register 46 / `18e39ee2…`, Abbild `46f0ad5d…`, Sonde 37/0/0, `eingefroren` 22 (rein lesend, `porcelain` vorher = nachher) — keine Abweichung von der Erwartung |
+| ⭐⭐ **B** | 11 Stellen aus Teil E, `--probe` eindeutig, danach Basis + Ersetzungen bytegleich mit dem Arbeitsbaum. Drei Abweichungen vom Wortlaut wie entschieden (`BACKLOG_ENTSCHEIDUNGEN.md`, `docs.tar.gz`, Nummer 23 gemessen); Lesarten B4/B5 so, wie `ablage_soll.py` arbeitet |
+| ⭐⭐ **C** | 13 Regeln, jede genau einmal (Zählung aus dem Diff), Wortlaut an der Fundstelle nachgelesen; PRUEFPRINZIPIEN-Nummern gemessen (A9, A10, B7, C8). 19/5 und 24/5 eindeutig — „A8“ in 24/5 ist A8 angewandt (vier Aufträge zitieren es so). Sammlung 29/0 |
+| **Durchgehend** | Register sha256 unverändert, Datenbanken 12/12 gleich, 0 Dateien ausserhalb `docs/` |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Ein Regelwerk-Nachtrag, der nur die genannten Stellen ändert, hinterlässt Folgestellen.** Drei Sätze nennen die Ablage weiter „Träger“, der Eröffnungstext zeigt auf die datierte Übergabe — gefunden per `grep` auf den geänderten Begriff im ganzen Regelwerk, nicht geändert, sondern gemeldet |
+| ⭐ | **Ein Protokoll „Satz davor und danach“ braucht ganze Zeilen.** Die erste Fassung schnitt am Anker mitten in der Zeile; neu erzeugt gegen `HEAD` mit Bytegleichheitsprüfung, ohne die Dateien erneut anzufassen |
+
+### Was offen bleibt
+
+- Fable (Sammlung, Dienstag): Lesart „Erinnerung als Träger“; drei Folgestellen nach G1; 19/6 gegen 6d (schon in D).
+- Steuernder Chat: sechs geänderte Dateien neu ablegen (md5 im Ergebnis, Abschnitt 7); UMZUG 6 Eröffnungstext; vor
+  dem Ablegen von `MAC_TB-119` 27.4 prüfen (Fundstelle im Ergebnis, Abschnitt 7).
+
+*Geschrieben 27.09.2026 von der Mac-Sitzung TB-119. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
