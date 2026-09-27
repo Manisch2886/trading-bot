@@ -1,0 +1,82 @@
+# TB-120 C - Bestand im Code (nur lesend), HEAD aab641e
+
+## C3 - evaluate_combination_multi je Bot (multi_symbol_optimise.py)
+Bot | Zeilen | Argumente | return None | ruft Simulation | MIN_TRADES/MIN_SYMBOLS/MIN_AVG | Kapital-DD-Feld | Tagesreihe | Trades zurueck | Commit
+elliott_wave | 120-186 | ['all_data', 'deviation_pct', 'stop_loss_pct', 'take_profit_fib'] | 4 | False | True/True/True | False | False | False | f65c344
+t3_supertrend | 108-183 | ['all_data', 't3_fast', 't3_slow', 'adx_threshold', 'stop_loss_pct'] | 4 | False | True/True/True | False | False | False | f65c344
+rsi2_crypto | 111-164 | ['all_data', 'rsi_threshold', 'sma_trend_period', 'stop_loss_pct'] | 3 | False | True/True/True | False | False | False | 26f0dfb
+turtle_soup_crypto | 88-139 | ['all_data', 'donchian_period', 'stop_mode'] | 3 | False | True/True/True | False | False | False | 26f0dfb
+volatility_breakout_crypto | 96-147 | ['all_data', 'stop_loss_pct', 'max_hold_days', 'use_volume_filter'] | 3 | False | True/True/True | False | False | False | 26f0dfb
+elliott_wave_stocks | 134-201 | ['all_data', 'deviation_pct', 'stop_loss_pct', 'take_profit_fib', 'use_take_profit'] | 4 | False | True/True/True | False | False | False | f65c344
+rsi2_mean_reversion | 113-171 | ['all_data', 'rsi_threshold', 'stop_loss_pct'] | 3 | False | True/True/True | False | False | False | f65c344
+turtle_soup_stocks | 100-151 | ['all_data', 'donchian_period', 'stop_mode'] | 3 | False | True/True/True | False | False | False | 26f0dfb
+volatility_breakout | 109-167 | ['all_data', 'stop_loss_pct', 'max_hold_days', 'use_volume_filter'] | 3 | False | True/True/True | False | False | False | f65c344
+
+## C3 - Signalpfad und Kapitalpfad je Bot (equity_simulation.py)
+elliott_wave | collect_all_trades['all_data', 'deviation_pct', 'stop_loss_pct', 'take_profit_fib'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+t3_supertrend | collect_all_trades['all_data', 't3_fast', 't3_slow', 'adx_threshold', 'stop_loss_pct'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'max_concurrent_positions', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+rsi2_crypto | collect_all_trades['all_data', 'rsi_threshold', 'sma_trend_period', 'stop_loss_pct'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'max_concurrent_positions', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+turtle_soup_crypto | collect_all_trades['all_data', 'donchian_period', 'stop_mode'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'max_concurrent_positions', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+volatility_breakout_crypto | collect_all_trades['all_data', 'stop_loss_pct', 'max_hold_days', 'use_volume_filter'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'max_concurrent_positions', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+elliott_wave_stocks | collect_all_trades['all_data', 'deviation_pct', 'stop_loss_pct', 'take_profit_fib', 'use_take_profit'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'max_concurrent_positions', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+rsi2_mean_reversion | collect_all_trades['all_data', 'rsi_threshold', 'stop_loss_pct'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'max_concurrent_positions', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+turtle_soup_stocks | collect_all_trades['all_data', 'donchian_period', 'stop_mode'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'max_concurrent_positions', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+volatility_breakout | collect_all_trades['all_data', 'stop_loss_pct', 'max_hold_days', 'use_volume_filter'] | simulate_portfolio['trades', 'starting_capital', 'allocation_pct', 'max_concurrent_positions', 'kursdaten', 'signalspalte'] | strategy_paths=True live_params=True | 53896e4
+
+## C3 - Rueckgabe von shared/zuteilung.py::simuliere_portfolio
+equity_curve-Zeile: "time": zeit, "symbol": symbole[pos], "pnl_pct": pnl_pct, "allocation": round(allocation, 2), "capital_after": round(capital, 2),
+Rueckgabeschluessel: ['equity_curve', 'final_capital', 'num_executed', 'num_skipped', 'zuteilung']
+Commit f6d9a28
+
+## C3 - Felder der Signalpfad-Trades je Backtest (Schluessel in trades.append/dict)
+elliott_wave | backtest_elliott.py | {'run_backtest': ['price_df', 'impulses']} | Felder ['direction', 'entry_price', 'entry_time', 'exit_price', 'exit_time', 'fib_score', 'pnl_pct', 'pnl_pct_gross', 'result', 'signal_time'] | 04d6ce6
+t3_supertrend | backtest_trend.py | {'run_backtest': ['df', 't3_fast_length', 't3_slow_length', 't3_factor', 'di_length', 'adx_length', 'adx_threshold', 'atr_length', 'atr_mult', 'stop_loss_pct', 'use_t3_exit', 'use_vwap_filter']} | Felder ['entry_price', 'entry_time', 'exit_price', 'exit_time', 'pnl_pct', 'result', 'stop_price'] | 04d6ce6
+rsi2_crypto | backtest_rsi2.py | {'compute_indicators': ['price_df', 'sma_trend_period'], 'run_backtest': ['price_df', 'rsi_threshold', 'sma_trend_period', 'stop_loss_pct', 'entry_cutoff']} | Felder ['entry_price', 'entry_time', 'exit_price', 'exit_time', 'holding_days', 'pnl_pct', 'result', 'rsi_at_entry'] | 04d6ce6
+turtle_soup_crypto | backtest_turtle_soup.py | {'compute_indicators': ['price_df', 'donchian_period'], 'run_backtest': ['price_df', 'stop_mode', 'entry_cutoff', 'max_hold_days', 'donchian_period']} | Felder ['entry_price', 'entry_time', 'exit_price', 'exit_time', 'holding_days', 'pnl_pct', 'result', 'setup_day_low'] | 04d6ce6
+volatility_breakout_crypto | backtest_breakout.py | {'compute_indicators': ['price_df', 'squeeze_lookback_days', 'squeeze_percentile'], 'run_backtest': ['price_df', 'stop_loss_pct', 'entry_cutoff', 'max_hold_days', 'use_volume_filter', 'volume_filter_multiplier']} | Felder ['entry_price', 'entry_time', 'exit_price', 'exit_time', 'holding_days', 'pnl_pct', 'result'] | 04d6ce6
+elliott_wave_stocks | backtest_elliott.py | {'run_backtest': ['price_df', 'impulses', 'use_take_profit']} | Felder ['direction', 'entry_price', 'entry_time', 'exit_price', 'exit_time', 'fib_score', 'pnl_pct', 'pnl_pct_gross', 'result', 'signal_time'] | 04d6ce6
+rsi2_mean_reversion | backtest_rsi2.py | {'compute_indicators': ['price_df'], 'run_backtest': ['price_df', 'rsi_threshold', 'stop_loss_pct', 'entry_cutoff']} | Felder ['entry_price', 'entry_time', 'exit_price', 'exit_time', 'holding_days', 'pnl_pct', 'result', 'rsi_at_entry'] | 04d6ce6
+turtle_soup_stocks | backtest_turtle_soup.py | {'compute_indicators': ['price_df', 'donchian_period'], 'run_backtest': ['price_df', 'stop_mode', 'entry_cutoff', 'max_hold_days', 'donchian_period']} | Felder ['entry_price', 'entry_time', 'exit_price', 'exit_time', 'holding_days', 'pnl_pct', 'result', 'setup_day_low'] | 04d6ce6
+volatility_breakout | backtest_breakout.py | {'compute_indicators': ['price_df', 'squeeze_lookback_days', 'squeeze_percentile'], 'run_backtest': ['price_df', 'stop_loss_pct', 'entry_cutoff', 'max_hold_days', 'use_volume_filter', 'volume_filter_multiplier']} | Felder ['entry_price', 'entry_time', 'exit_price', 'exit_time', 'holding_days', 'pnl_pct', 'result'] | 04d6ce6
+
+## C4 Posten 3 - Durchreichung
+rsi2_mean_reversion compute_indicators ['price_df'] | Konstante: ['SMA_TREND_PERIOD = 200']
+volatility_breakout multi_symbol_optimise.py compute_indicators-Aufrufe: ['compute_indicators(df)'] | squeeze-Argument weitergereicht: False
+volatility_breakout equity_simulation.py compute_indicators-Aufrufe: [] | squeeze-Argument weitergereicht: False
+volatility_breakout_crypto multi_symbol_optimise.py compute_indicators-Aufrufe: ['compute_indicators(price_df)'] | squeeze-Argument weitergereicht: False
+volatility_breakout_crypto equity_simulation.py compute_indicators-Aufrufe: [] | squeeze-Argument weitergereicht: False
+
+## C4 Posten 4 - entry_cutoff / RECENT_YEARS_ONLY je Bot (multi_symbol_optimise.py)
+elliott_wave | keine (kein Horizont, Register 26.2)
+t3_supertrend | keine (kein Horizont, Register 26.2)
+rsi2_crypto | keine (kein Horizont, Register 26.2)
+turtle_soup_crypto | keine (kein Horizont, Register 26.2)
+volatility_breakout_crypto | keine (kein Horizont, Register 26.2)
+elliott_wave_stocks | ['54: RECENT_YEARS_ONLY = 10      # begrenzt die Historie auf die letzten N Jahre - reduziert', '93: cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)']
+rsi2_mean_reversion | ['52: RECENT_YEARS_ONLY = 10       # reduziert Survivorship Bias, wie bei elliott_wave_stocks', '93: entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)']
+turtle_soup_stocks | ['46: RECENT_YEARS_ONLY = 10', '81: entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)']
+volatility_breakout | ['49: RECENT_YEARS_ONLY = 10        # reduziert Survivorship Bias, wie bei den anderen Aktien-Bots', '88: entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)']
+
+## C4 Posten 5 - Wache 29.4 je Bot (Suchworte in multi_symbol_optimise.py)
+elliott_wave | Treffer 0
+t3_supertrend | Treffer 0
+rsi2_crypto | Treffer 0
+turtle_soup_crypto | Treffer 0
+volatility_breakout_crypto | Treffer 0
+elliott_wave_stocks | Treffer 0
+rsi2_mean_reversion | Treffer 0
+turtle_soup_stocks | Treffer 0
+volatility_breakout | Treffer 0
+
+## C5 Posten 8 - Walk-Forward im Modus
+elliott_wave | selektionsmodus 0 | strategy_paths False | 0f6491b
+t3_supertrend | selektionsmodus 0 | strategy_paths False | 0f6491b
+rsi2_crypto | selektionsmodus 0 | strategy_paths False | b4c174c
+turtle_soup_crypto | selektionsmodus 0 | strategy_paths False | 88b9050
+volatility_breakout_crypto | selektionsmodus 0 | strategy_paths False | b4c174c
+elliott_wave_stocks | selektionsmodus 0 | strategy_paths False | 0f6491b
+rsi2_mean_reversion | selektionsmodus 0 | strategy_paths False | f56c6d2
+turtle_soup_stocks | selektionsmodus 0 | strategy_paths False | 88b9050
+volatility_breakout | selektionsmodus 0 | strategy_paths False | b603861
+shared/paths.py | 'walk_forward' im Text: 0
+shared/strategy_paths.py | 'walk_forward' im Text: 0

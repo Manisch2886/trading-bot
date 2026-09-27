@@ -1,0 +1,12 @@
+# TB-120 C1 - Hashes der neun heutigen Listen gegen docs/belege/TB-114/b3_register.txt (nur Hashes, Sichtschutz 27.1; Inhalte nicht gelesen)
+# 2026-09-27 19:40:20 +0200
+# HEAD aab641e
+GLEICH  27e319287502144aa0f1445c79e9a8f30dca36f80018a1c0a45b1a8da7f31228  research/tb24_haltedauern/daten/elliott_wave_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)
+GLEICH  862cbc728cb52aad5e0343cacb0f8ba7755ceb094fb3250c12458e91b1ef0b2c  research/tb24_haltedauern/daten/elliott_wave_stocks_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)
+GLEICH  b5f74c7c691876008e58f4086e49a439d0b7c0c48c2446690ed2527837046674  research/tb24_haltedauern/daten/rsi2_crypto_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)
+GLEICH  63c7bc2449b215ba3fef95715294dd420d38b8f4a4636b5449497987fa7e70ab  research/tb24_haltedauern/daten/rsi2_mean_reversion_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)
+GLEICH  530e20fe3d4604eb655eabec573205b63322c92a753dfa281bad37ff8f424827  research/tb24_haltedauern/daten/t3_supertrend_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)
+GLEICH  017c661d51d703f9b40044d8302bf888452095c16df35d8b18c8bde4e7a7fbbc  research/tb24_haltedauern/daten/turtle_soup_crypto_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)
+GLEICH  f5e4076670942c7272fbe5810c67aa079f2a91ced0fd8a68371c4318bfc6eb0b  research/tb24_haltedauern/daten/turtle_soup_stocks_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)
+GLEICH  f45253699c041cb676b8f76cb933b39f9b31bb60cb7479eb3ffc610b293e768f  research/tb24_haltedauern/daten/volatility_breakout_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)
+GLEICH  96e5c4ff36d708d1b4ad4a4991873a469cb67de5de1358ca834098854e176c6c  research/tb24_haltedauern/daten/volatility_breakout_crypto_alle_trades.csv  (git status: 0 Aenderungen, letzter Commit 78e2bc6)

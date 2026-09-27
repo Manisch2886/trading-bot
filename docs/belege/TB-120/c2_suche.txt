@@ -1,0 +1,285 @@
+# TB-120 C2 - Suche ueber das ganze Repo (git ls-files, ohne trading-env/), HEAD aab641e, 2026-09-27 19:42
+
+## Muster: zellen\.csv
+### Dateien je Art (Anzahl Dateien mit Treffer)
+  55 docs
+   7 py
+### Treffer in .py (Datei:Zeile), ohne docs/belege
+research/vorregistrierung/auswertung.py:38:    <wurzel>/<bot>/zellen.csv
+research/vorregistrierung/auswertung.py:321:    pfad = os.path.join(wurzel, bot, "zellen.csv")
+research/vorregistrierung/auswertung.py:329:        raise Abbruch(f"{bot}: Spalten fehlen in zellen.csv: {fehlend}")
+research/vorregistrierung/beispieldaten.py:25:`zellen.csv`, weil er im echten Lauf aus `equity_simulation.py` kommt, und
+research/vorregistrierung/beispieldaten.py:200:    df.to_csv(os.path.join(ordner, "zellen.csv"), index=False)
+research/vorregistrierung/test_ersatzwerte.py:775:with open(os.path.join(w, {BOT!r}, "zellen.csv"), "w") as f:
+research/vorregistrierung/test_ersatzwerte.py:783:with open(os.path.join(w, {BOT!r}, "zellen.csv"), "w") as f:
+research/vorregistrierung/test_ersatzwerte.py:819:    for name, treiber, text in (("G-b", T_G_SPALTE, "Spalten fehlen in zellen.csv"),
+research/vorregistrierung/test_ersatzwerte.py:828:        lambda r: r["rc"] == 1 and "Spalten fehlen in zellen.csv" in r["err"], _info)
+research/vorregistrierung/test_vorregistrierung.py:206:        p = os.path.join(d, BOT, "zellen.csv")
+research/vorregistrierung/test_vorregistrierung.py:258:            pd.read_csv(os.path.join(d, BOT, "zellen.csv"),
+
+## Muster: tagesreihen
+### Dateien je Art (Anzahl Dateien mit Treffer)
+  28 docs
+   6 py
+### Treffer in .py (Datei:Zeile), ohne docs/belege
+research/vorregistrierung/auswertung.py:45:    <wurzel>/<bot>/tagesreihen/<zelle_id>.csv
+research/vorregistrierung/auswertung.py:64:    <wurzel>/benchmark_tagesreihen/<markt>.csv
+research/vorregistrierung/auswertung.py:362:    pfad = os.path.join(wurzel, bot, "tagesreihen", f"{_dateiname(zid)}.csv")
+research/vorregistrierung/auswertung.py:379:    pfad = os.path.join(wurzel, "benchmark_tagesreihen", f"{markt}.csv")
+research/vorregistrierung/beispieldaten.py:146:            tagesreihen_fuer=None, krisenjahre=None) -> dict:
+research/vorregistrierung/beispieldaten.py:149:    `tagesreihen_fuer` begrenzt, fuer welche Zellen eine Tagesreihe
+research/vorregistrierung/beispieldaten.py:172:    os.makedirs(os.path.join(ordner, "tagesreihen"), exist_ok=True)
+research/vorregistrierung/beispieldaten.py:173:    os.makedirs(os.path.join(wurzel, "benchmark_tagesreihen"), exist_ok=True)
+research/vorregistrierung/beispieldaten.py:205:    gewuenscht = set(df["zelle_id"]) if tagesreihen_fuer is None else set(tagesreihen_fuer)
+research/vorregistrierung/beispieldaten.py:216:    return {"bot": bot, "zeilen": len(df), "tagesreihen": len(gewuenscht)}
+research/vorregistrierung/beispieldaten.py:233:        os.path.join(wurzel, "benchmark_tagesreihen", f"{markt}.csv"), index=False)
+research/vorregistrierung/beispieldaten.py:265:    }).to_csv(os.path.join(ordner, "tagesreihen", f"{aw._dateiname(zid)}.csv"),
+research/vorregistrierung/beispieldaten.py:283:              f"{info['tagesreihen']:5d} Tagesreihen")
+research/vorregistrierung/test_ersatzwerte.py:292:os.makedirs(os.path.join(w, {BOT!r}, "tagesreihen"))
+research/vorregistrierung/test_ersatzwerte.py:293:os.makedirs(os.path.join(w, "benchmark_tagesreihen"))
+research/vorregistrierung/test_ersatzwerte.py:296:    os.path.join(w, {BOT!r}, "tagesreihen", "z.csv"), index=False)
+research/vorregistrierung/test_ersatzwerte.py:298:    os.path.join(w, "benchmark_tagesreihen", "aktien.csv"), index=False)
+research/vorregistrierung/test_ersatzwerte.py:792:os.makedirs(os.path.join(w, {BOT!r}, "tagesreihen"))
+research/vorregistrierung/test_ersatzwerte.py:793:os.makedirs(os.path.join(w, "benchmark_tagesreihen"))
+research/vorregistrierung/test_ersatzwerte.py:796:    os.path.join(w, {BOT!r}, "tagesreihen", "z.csv"), index=False)
+research/vorregistrierung/test_ersatzwerte.py:798:    os.path.join(w, "benchmark_tagesreihen", "aktien.csv"), index=False)
+research/vorregistrierung/test_vorregistrierung.py:195:        os.remove(os.path.join(d, BOT, "tagesreihen",
+research/vorregistrierung/test_vorregistrierung.py:425:        bench = pd.read_csv(os.path.join(d, "benchmark_tagesreihen", "aktien.csv"),
+research/vorregistrierung/test_vorregistrierung.py:432:            os.path.join(d, BOT, "tagesreihen", aw._dateiname(zid) + ".csv"),
+research/vorregistrierung/test_vorregistrierung.py:465:        bench = pd.read_csv(os.path.join(d, "benchmark_tagesreihen", "aktien.csv"),
+research/vorregistrierung/test_vorregistrierung.py:474:            os.path.join(d, BOT, "tagesreihen", aw._dateiname(zid) + ".csv"),
+research/vorregistrierung/test_vorregistrierung.py:491:        bench = pd.read_csv(os.path.join(d, "benchmark_tagesreihen", "aktien.csv"),
+research/vorregistrierung/test_vorregistrierung.py:500:            os.path.join(d, BOT, "tagesreihen", aw._dateiname(zid) + ".csv"),
+shared/zuteilung.py:266:    def _tagesreihen(df):
+shared/zuteilung.py:286:            schluss, umsatz = self._tagesreihen(df)
+shared/zuteilung.py:629:            "rechenzeit_tagesreihen_s": round(self.vorrat.bauzeit_s, 2),
+shared/zuteilung.py:649:        f"{protokoll['rechenzeit_tagesreihen_s']:.2f}s Tagesreihen",
+
+## Muster: herkunft\.json
+### Dateien je Art (Anzahl Dateien mit Treffer)
+  51 docs
+   5 py
+### Treffer in .py (Datei:Zeile), ohne docs/belege
+research/tb24_haltedauern/positionen_holen.py:24:  B5   Neben die drei Dateien kommt `<bot>_herkunft.json`: Erzeuger, Zeit,
+research/tb24_haltedauern/positionen_holen.py:130:               f"{BOT}_meta.json", f"{BOT}_herkunft.json"]
+research/tb24_haltedauern/positionen_holen.py:219:    _schreibe_einmal(f"{BOT}_herkunft.json",
+research/vorregistrierung/auswertung.py:51:    <wurzel>/<bot>/herkunft.json
+research/vorregistrierung/auswertung.py:125:# unter dem Modus jede herkunft.json geprueft wird - Register 18, Tabelle "Der
+research/vorregistrierung/auswertung.py:166:    """Die herkunft.json je Bot, wie sie daliegt: {bot: dict | None}. Eine
+research/vorregistrierung/auswertung.py:170:        pfad = os.path.join(wurzel, bot, "herkunft.json")
+research/vorregistrierung/auswertung.py:186:    """R14: Unter dem Selektionsmodus liest dieses Programm `herkunft.json`
+research/vorregistrierung/auswertung.py:203:                           f"{bot}: herkunft.json fehlt - erwartet "
+research/vorregistrierung/auswertung.py:204:                           f"{os.path.join(wurzel, bot, 'herkunft.json')}, gefunden: keine Datei")
+research/vorregistrierung/auswertung.py:206:                _abbruch_2("herkunft_pruefen", f"{bot}: herkunft.json {h['fehler']}")
+research/vorregistrierung/auswertung.py:246:    print("HERKUNFT (herkunft.json je Bot; Register 46.5, Lesart 46.9) - "
+research/vorregistrierung/auswertung.py:258:        print(f"  herkunft.json fehlt: {', '.join(kopf['fehlend'])}")
+research/vorregistrierung/beispieldaten.py:210:    with open(os.path.join(ordner, "herkunft.json"), "w", encoding="utf-8") as f:
+research/vorregistrierung/test_ersatzwerte.py:76:liest `herkunft.json`. Unter dem Modus (im Prozess nachgestellt:
+research/vorregistrierung/test_ersatzwerte.py:90:       Nullwerte - und ohne herkunft.json rc 0 mit "fehlt";
+research/vorregistrierung/test_ersatzwerte.py:1028:    """herkunft.json fuer die neun Bots; `werte` = {bot: dict} ueberschreibt."""
+research/vorregistrierung/test_ersatzwerte.py:1036:        with open(os.path.join(t, bot, "herkunft.json"), "w", encoding="utf-8") as f:
+research/vorregistrierung/test_ersatzwerte.py:1076:        "J-1": (dict(ohne=(bots[3],)), "herkunft.json fehlt", bots[3]),
+research/vorregistrierung/test_ersatzwerte.py:1136:        os.remove(os.path.join(t, BOT, "herkunft.json"))
+research/vorregistrierung/test_ersatzwerte.py:1139:        pruefe("J-o3: ohne Modus, herkunft.json fehlt - rc 0, der Kopf sagt es",
+research/vorregistrierung/test_ersatzwerte.py:1140:               r.returncode == 0 and f"herkunft.json fehlt: {BOT}" in r.stdout,
+
+## Muster: "teile"|\bteile\b
+### Dateien je Art (Anzahl Dateien mit Treffer)
+  48 docs
+  50 py
+   2 sonst
+### Treffer in .py (Datei:Zeile), ohne docs/belege
+broker/binance_testnet.py:81:    teile = urllib.parse.urlsplit(url)
+broker/binance_testnet.py:82:    if teile.scheme != "https":
+broker/binance_testnet.py:83:        raise TestnetFehler(f"Nur https erlaubt, nicht {teile.scheme!r}: {url}")
+broker/binance_testnet.py:84:    host = (teile.hostname or "").lower()
+broker/binance_testnet.py:95:    if teile.port not in (None, 443):
+broker/binance_testnet.py:96:        raise TestnetFehler(f"Unerwarteter Port {teile.port} in {url}")
+broker/binance_testnet.py:97:    if not teile.path.startswith(zugang.TESTNET_PFAD_PRAEFIX):
+broker/binance_testnet.py:99:            f"Unerwarteter Pfad {teile.path!r} - erwartet wird "
+broker/ibkr_spiegel.py:551:    teile = [f"{z['erfolg']} von {z['aufgaben']} Spiegelung(en) "
+broker/ibkr_spiegel.py:558:        teile.insert(0, f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - Lauf zu "
+broker/ibkr_spiegel.py:561:        teile.append(f"{len(z['fehlgeschlagen'])} fehlgeschlagen: " +
+broker/ibkr_spiegel.py:565:        teile.append(f"{len(z['wartet'])} warten auf die Handelszeit")
+broker/ibkr_spiegel.py:567:        teile.append(f"{len(z['uebersprungen'])} uebersprungen")
+broker/ibkr_spiegel.py:568:    return "; ".join(teile) + "."
+broker/spiegel.py:550:    teile = [f"{z['erfolg']} von {z['aufgaben']} Spiegelung(en) "
+broker/spiegel.py:557:        teile.insert(0, f"NOTBREMSE aktiv ({zugang.NOTBREMSE_DATEI}) - Lauf zu "
+broker/spiegel.py:560:        teile.append(f"{len(z['fehlgeschlagen'])} fehlgeschlagen: " +
+broker/spiegel.py:564:        teile.append(f"{len(z['uebersprungen'])} uebersprungen")
+broker/spiegel.py:565:    return "; ".join(teile) + "."
+dashboard/schliessen.py:1238:    teile = [f"{ergebnis['anzahl_vorgemerkt']} von {ergebnis['angefragt']} "
+dashboard/schliessen.py:1244:        teile.append(f"{ergebnis['anzahl_fehlgeschlagen']} nicht vorgemerkt: {namen}")
+dashboard/schliessen.py:1247:        teile.append(f"{ergebnis['anzahl_uebersprungen']} uebersprungen, weil "
+dashboard/schliessen.py:1250:        teile.append(f"{len(ergebnis['nicht_bestaetigt'])} Position(en) wurden "
+dashboard/schliessen.py:1252:    satz = "; ".join(teile) + "."
+dashboard/schliessen.py:1265:    teile = [f"{ergebnis['anzahl_geschlossen']} von {ergebnis['angefragt']} "
+dashboard/schliessen.py:1270:        teile.append(f"{ergebnis['anzahl_fehlgeschlagen']} fehlgeschlagen: {namen}")
+dashboard/schliessen.py:1273:        teile.append(f"{ergebnis['anzahl_uebersprungen']} uebersprungen, weil "
+dashboard/schliessen.py:1276:        teile.append(f"{len(ergebnis['nicht_bestaetigt'])} Position(en) wurden "
+dashboard/schliessen.py:1279:    satz = "; ".join(teile) + "."
+dashboard/schliessen.py:1683:    teile = [f"{ergebnis['anzahl_geschlossen']} von {ergebnis['angefragt']} "
+dashboard/schliessen.py:1686:        teile.append(f"{ergebnis['anzahl_vorgemerkt']} Position(en) NICHT "
+dashboard/schliessen.py:1691:        teile.append(f"{len(ergebnis['bots_verschoben'])} Bot(s) unberuehrt, "
+dashboard/schliessen.py:1694:        teile.append(f"{ergebnis['anzahl_fehlgeschlagen']} Position(en) "
+dashboard/schliessen.py:1699:        teile.append(f"{len(ergebnis['bots_fehlgeschlagen'])} Bot(s) komplett "
+dashboard/schliessen.py:1702:        teile.append(f"{ergebnis['anzahl_uebersprungen']} Position(en) "
+dashboard/schliessen.py:1707:        teile.append(f"{nachtraeglich} Position(en) wurden erst nach der "
+dashboard/schliessen.py:1709:    satz = "; ".join(teile) + "."
+dashboard/warteauftraege_ausfuehren.py:300:    teile = [f"{len(ergebnis['geschlossen'])} geschlossen",
+dashboard/warteauftraege_ausfuehren.py:304:    satz = ", ".join(teile) + f"; von {ergebnis['auftraege_gesamt']} Auftraegen."
+docs/werkzeuge/dialog_index.py:84:            teile = [t.strip() for t in z.strip().strip("|").split("|")]
+docs/werkzeuge/dialog_index.py:85:            if len(teile) != len(SPALTEN):
+docs/werkzeuge/dialog_index.py:87:            w = dict(zip(SPALTEN, teile))
+docs/werkzeuge/dialog_index.py:148:            teile = [t.strip() for t in z.strip().strip("|").split("|")]
+docs/werkzeuge/dialog_index.py:150:            if len(teile) != len(SPALTEN):
+docs/werkzeuge/dialog_index.py:151:                print("Zeile %d: %d statt %d Felder" % (n, len(teile), len(SPALTEN)))
+docs/werkzeuge/dialog_index.py:154:            w = dict(zip(SPALTEN, teile))
+docs/werkzeuge/registerkopie.py:101:    """Gierig: Abschnitte in Reihenfolge, solange Kopf + Body <= GRENZE. Liefert (teile, befunde)."""
+docs/werkzeuge/registerkopie.py:115:    teile = []
+docs/werkzeuge/registerkopie.py:118:        teile.append((i, g[0][0], g[-1][0], kopf(i, m, g[0][0], g[-1][0], commit, datum, sha) + body))
+docs/werkzeuge/registerkopie.py:119:    return teile, befunde
+docs/werkzeuge/registerkopie.py:179:    teile, _ = schneiden(daten, commit, datum)
+docs/werkzeuge/registerkopie.py:181:    for i, a, b, _ in teile:
+docs/werkzeuge/registerkopie.py:222:    teile, befunde = schneiden(daten, commit, datum)
+docs/werkzeuge/registerkopie.py:224:    for i, von, bis, inhalt in teile:
+notifications/boersenkalender.py:266:    teile = [f"Die {zustand['kalender']} ist geschlossen."]
+notifications/boersenkalender.py:268:        teile.append(f"Letzter Handelstag: {zustand['letzter_handelstag']}.")
+notifications/boersenkalender.py:270:        teile.append(f"Naechste Oeffnung: {zustand['naechste_oeffnung']}.")
+notifications/boersenkalender.py:271:    return " ".join(teile)
+notifications/schliess_benachrichtigung.py:269:    teile = []
+notifications/schliess_benachrichtigung.py:271:        teile.append(f"{tage} Tag" + ("e" if tage != 1 else ""))
+notifications/schliess_benachrichtigung.py:273:        teile.append(f"{stunden} Std.")
+notifications/schliess_benachrichtigung.py:275:        teile.append(f"{minuten} Min.")
+notifications/schliess_benachrichtigung.py:276:    return " ".join(teile) if teile else "unter einer Minute"
+notifications/schliess_benachrichtigung.py:642:    teile = [f"{z['gesendet']} Meldung(en) gesendet ({z['modus']})"]
+notifications/schliess_benachrichtigung.py:644:        teile.append("darunter eine Sammelnachricht")
+notifications/schliess_benachrichtigung.py:646:        teile.append(f"{z['fehlgeschlagen']} Versand(e) fehlgeschlagen")
+notifications/schliess_benachrichtigung.py:648:        teile.append(f"{z['nicht_versucht']} bleiben offen fuer den naechsten Lauf")
+notifications/schliess_benachrichtigung.py:650:        teile.append("WARNUNG: Erstlauf-Marke fehlt bei vorhandenen Vermerken")
+notifications/schliess_benachrichtigung.py:651:    return "; ".join(teile) + "."
+notifications/waechter_melden.py:485:    teile = [f"{kopf} {waechter.klartext} - {_anlass_text(anlass, vermerk, jetzt)}"]
+notifications/waechter_melden.py:488:        teile.append(ergebnis.grund + " Das Werkzeug selbst ist gescheitert, "
+notifications/waechter_melden.py:492:            teile.append("(keine bekannte Befundzeile erkannt - "
+notifications/waechter_melden.py:494:        teile.extend(zeilen)
+notifications/waechter_melden.py:496:        teile.append("Das Werkzeug hat nichts ausgegeben.")
+notifications/waechter_melden.py:498:    teile.append(f"Nachsehen: tail -n 60 ~/trading-bot/{waechter.log}")
+notifications/waechter_melden.py:499:    return "\n".join(teile)
+research/datenordner_schnitt/erhebung.py:165:        teile = [zeilen[von - 1][knoten.col_offset:]]
+research/datenordner_schnitt/erhebung.py:166:        teile += zeilen[von:bis - 1]
+research/datenordner_schnitt/erhebung.py:167:        teile.append(zeilen[bis - 1][:knoten.end_col_offset])
+research/datenordner_schnitt/erhebung.py:168:        stueck = b"\n".join(teile)
+research/datenordner_schnitt/test_prozessgruppe.py:155:                teile = f.read().rsplit(")", 1)[-1].split()
+research/datenordner_schnitt/test_prozessgruppe.py:156:            return bool(teile) and teile[0] == "Z"
+research/leiter_pruefung/leiter_lesarten.py:160:    teile, i = [], 0
+research/leiter_pruefung/leiter_lesarten.py:162:        teile.append(kurz + ":" + "".join(STUFE_KURZ[s] for s in tab[i:i + len(bots)]))
+research/leiter_pruefung/leiter_lesarten.py:164:    return " ".join(teile)
+research/leiter_pruefung/test_leiter_lesarten.py:216:        teile = [x.strip() for x in z[2:].strip().strip("|").split("|")]
+research/leiter_pruefung/test_leiter_lesarten.py:217:        reg.append((teile[0], tuple(b.strip().strip("`") for b in teile[1].split(","))))
+research/selektionsmasse/masse.py:128:    teile = []
+research/selektionsmasse/masse.py:130:        teile.append(knoten.attr)
+research/selektionsmasse/masse.py:133:        teile.append(knoten.id)
+research/selektionsmasse/masse.py:138:    return ".".join(reversed(teile))
+research/snapshotgrenze/erhebung_eingaben.py:133:    teile = []
+research/snapshotgrenze/erhebung_eingaben.py:135:        teile.append(knoten.attr)
+research/snapshotgrenze/erhebung_eingaben.py:138:        teile.append(knoten.id)
+research/snapshotgrenze/erhebung_eingaben.py:139:    elif not teile:
+research/snapshotgrenze/erhebung_eingaben.py:141:    return ".".join(reversed(teile))
+research/snapshotgrenze/erhebung_eingaben.py:194:        teile = _literale(knoten.value, konstanten)
+research/snapshotgrenze/erhebung_eingaben.py:195:        if teile:
+research/snapshotgrenze/erhebung_eingaben.py:196:            konstanten[ziel.id] = teile
+research/snapshotgrenze/erhebung_eingaben.py:256:        teile = []
+research/snapshotgrenze/erhebung_eingaben.py:259:                teile.append(stueck.value)
+research/snapshotgrenze/erhebung_eingaben.py:261:                teile.append("{?}")
+research/snapshotgrenze/erhebung_eingaben.py:262:        return "".join(teile)
+research/snapshotgrenze/erhebung_eingaben.py:272:            teile = [_statischer_wert(a, konstanten) for a in knoten.args]
+research/snapshotgrenze/erhebung_eingaben.py:273:            if any(t is None for t in teile):
+research/snapshotgrenze/erhebung_eingaben.py:275:            return "/".join(t.strip("/") for t in teile if t)
+research/snapshotgrenze/erhebung_eingaben.py:361:    teile = name.split(".")
+research/snapshotgrenze/erhebung_eingaben.py:363:        kandidat = os.path.join(wurzel, stamm, *teile) + ".py"
+research/snapshotgrenze/erhebung_eingaben.py:366:        kandidat = os.path.join(wurzel, stamm, *teile, "__init__.py")
+research/turn_of_month/herkunft.py:100:    fehlend, teile = [], []
+research/turn_of_month/herkunft.py:108:        teile.append({"datei": name, "sha256": d})
+research/turn_of_month/herkunft.py:111:    return {"register": h.hexdigest(), "teile": teile, "fehlend": fehlend}
+research/versuchsregister/raster.py:302:        teile = ([knoten.key, knoten.value] if isinstance(knoten, ast.DictComp)
+research/versuchsregister/raster.py:304:        for teil in teile:
+research/vorregistrierung/herkunft.py:195:    teile = []
+research/vorregistrierung/herkunft.py:204:        teile.append({"datei": rel, "sha256": d})
+research/vorregistrierung/herkunft.py:207:    return {"register": h.hexdigest(), "teile": teile, "fehlend": fehlend}
+research/vorregistrierung/test_ersatzwerte.py:761:                                         for x in reg.get("teile", [])),
+research/vorregistrierung/test_ersatzwerte.py:929:    teile = [t["datei"] for t in reg["teile"]]
+research/vorregistrierung/test_ersatzwerte.py:933:           reg["fehlend"] == [] and len(teile) == 23 and len(TB24_LISTEN) == 9
+research/vorregistrierung/test_ersatzwerte.py:934:           and teile[-12:-3] == TB24_LISTEN and teile[-3:] == SNAPSHOT_EINTRAEGE,
+research/vorregistrierung/test_ersatzwerte.py:935:           f"fehlend {reg['fehlend']}; Teile {teile}")
+shared/binance_historie.py:370:        teile = zeile.split(",")
+shared/binance_historie.py:371:        if len(teile) != len(SPALTEN):
+shared/binance_historie.py:373:                f"{self.pfad} Zeile {nummer}: {len(teile)} Felder statt {len(SPALTEN)}")
+shared/binance_historie.py:376:                "zeitpunkt": teile[0],
+shared/binance_historie.py:377:                "open": float(teile[1]),
+shared/binance_historie.py:378:                "high": float(teile[2]),
+shared/binance_historie.py:379:                "low": float(teile[3]),
+shared/binance_historie.py:380:                "close": float(teile[4]),
+shared/binance_historie.py:381:                "volume": float(teile[5]),
+shared/binance_historie.py:688:        teile = [f"{symbol:<12} "]
+shared/binance_historie.py:691:            teile.append(f"{(eintrag.get('beginn') or eintrag.get('fehler') or '-'):<22}")
+shared/binance_historie.py:693:        teile.append(f"{heute:<20}")
+shared/binance_historie.py:694:        zeilen.append(" ".join(teile))
+shared/entscheidungskerze.py:740:    teile = [kopf, ""]
+shared/entscheidungskerze.py:741:    teile.extend(zeilen)
+shared/entscheidungskerze.py:742:    teile.append("")
+shared/entscheidungskerze.py:743:    teile.append("Der Lauf ist NICHT ausgefallen - er hat live abgerufen und "
+shared/entscheidungskerze.py:747:    teile.append("Abhilfe: den zustaendigen fetch_*.py laufen lassen (bzw. "
+shared/entscheidungskerze.py:751:        teile.append(f"({anlass})")
+shared/entscheidungskerze.py:752:    return "\n".join(teile)
+shared/kursdaten.py:113:        teile = ", ".join(f"{s} ({n})" for s, n in sorted(self.je_symbol.items()))
+shared/kursdaten.py:116:                f"{teile}. Diese Kerzen gehen in KEINE Kennzahl ein.")
+shared/kursdaten_neuaufbau.py:197:        teile = zeile.split(",")
+shared/kursdaten_neuaufbau.py:198:        if len(teile) != len(bh.SPALTEN):
+shared/kursdaten_neuaufbau.py:200:        nach_zeitpunkt[teile[0]] = {
+shared/kursdaten_neuaufbau.py:201:            "open": zahl(teile[1]), "high": zahl(teile[2]),
+shared/kursdaten_neuaufbau.py:202:            "low": zahl(teile[3]), "close": zahl(teile[4]),
+shared/kursdaten_neuaufbau.py:203:            "volume": zahl(teile[5]),
+shared/ladeprotokoll.py:158:            teile = ", ".join(f"{n}x {kurz}" for kurz, n in sorted(zaehlung.items()))
+shared/ladeprotokoll.py:159:            text += f" {len(self.ausgelassen)} ausgelassen: {teile}."
+shared/paths.py:516:                teile = zeile[1:].split()
+shared/paths.py:517:                if len(teile) >= 2:
+shared/paths.py:518:                    kopf.setdefault(teile[0], " ".join(teile[1:]))
+shared/portfolio_overview.py:269:    teile = []
+shared/portfolio_overview.py:271:        teile.append(f"Allokation {anteil * 100:.4g} % ({meta.get('allocation_quelle', '?')})")
+shared/portfolio_overview.py:275:        teile.append(f"kein Positionslimit ({limit_quelle})" if limit_quelle
+shared/portfolio_overview.py:278:        teile.append(f"Limit {limit} ({limit_quelle})")
+shared/portfolio_overview.py:279:    return ", ".join(teile)
+shared/sperrlistensonde.py:677:    teile = ", ".join("%s %d" % (k, n) for k, n in pf["je_gruppe"].items())
+shared/sperrlistensonde.py:679:        teile += "; nicht im Abbild (2): %s" % ", ".join(pf["gruppen_nicht_im_abbild"])
+shared/sperrlistensonde.py:681:          % (pf["geprueft"], pf["0"], pf["1"], pf["2"], teile))
+shared/test_fetch_binance_data.py:176:    teile = zeile.strip().split(",")
+shared/test_fetch_binance_data.py:177:    zeitpunkt = pd.Timestamp(teile[0], tz="UTC")
+shared/test_fetch_binance_data.py:180:    zahlen = [f"{float(wert):.8f}" for wert in teile[1:6]]
+system/nachtragswaechter.py:492:    teile = [f"{len(ueber)}x OFFEN UEBER DER FRIST", f"{len(in_frist)}x offen in der Frist",
+system/nachtragswaechter.py:495:    zeile1 = "Zusammenfassung: " + ", ".join(teile)
+system/test_dienst_plists.py:337:    teile = wert.split(".")
+system/test_dienst_plists.py:338:    if len(teile) != 4:
+system/test_dienst_plists.py:340:    for teil in teile:
+system/test_dienst_plists.py:343:    return int(teile[0]) == 100 and 64 <= int(teile[1]) <= 127
+
+## Muster: Lese-Audit|lese_audit|audit_zeilen
+### Dateien je Art (Anzahl Dateien mit Treffer)
+  69 docs
+   4 py
+### Treffer in .py (Datei:Zeile), ohne docs/belege
+shared/paths.py:125:    "Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts
+shared/paths.py:129:aus einem anderen - haette ein sauberes Lese-Audit und waere trotzdem nicht
+shared/paths.py:182:Werte ueber `startpruefung()` (dict) bzw. `audit_zeilen()` (Textzeilen) fuer
+shared/paths.py:183:das spaetere Lese-Audit.
+shared/paths.py:285:    das spaetere Lese-Audit), bekommt den Fehler als Ausnahme.
+shared/paths.py:666:def audit_zeilen(werte=None):
+shared/paths.py:670:    fuer das spaetere Lese-Audit abrufbar - eine Fassung, nicht zwei.
+shared/paths.py:715:    _sys.stderr.write("".join("[paths] %s\n" % _z for _z in audit_zeilen()))
+shared/test_startpruefungen.py:5:    "Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts
+shared/test_startpruefungen.py:13:und `audit_zeilen()`. Diese Datei ist die Wache dafuer.
+shared/test_startpruefungen.py:132:           "audit_zeilen": paths.audit_zeilen()}, sys.stdout)
+shared/test_startpruefungen.py:256:zaehler["audit_zeilen"] = paths.audit_zeilen()
+shared/test_startpruefungen.py:282:            check("N2 ohne Modus: startpruefung() ist None, audit_zeilen() leer, "
+shared/test_startpruefungen.py:284:                  w["startpruefung"] is None and w["audit_zeilen"] == []
+shared/test_startpruefungen.py:418:              audit_im_stderr == w.get("audit_zeilen")
+shared/test_startpruefungen.py:451:            quelle(), "for _z in audit_zeilen()))", "for _z in []))", "S")
