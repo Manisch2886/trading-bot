@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-118** | `docs/auftraege/MAC_TB-118_projektwissen_aufraeumen.md` | ⭐ **Hauptordner**: Projektwissen aufräumen, Repo-Seite nach Fable 27b Teil D — Registerkopie in Teilen mit festen Namen + `REGISTER_INDEX.md`, `FABLE_DIALOG_INDEX.md`, Backlog-Teilung (vier Dateien), `UEBERGABE.md`, Soll-Skript, Löschliste mit gemessenen Tokens; Schritt H: `git bundle` in die tägliche Sicherung. Nichts im Repo löschen oder verschieben (ausser `_eingearbeitet/`). Freigabe 26.09.2026, ca. 23:15 (Auswahlkarte, wörtlich im Auftrag) |
+| **TB-119** | `docs/auftraege/MAC_TB-119_repo_nachziehen_regelwerk_nachtrag.md` | ⭐ **Hauptordner**: Repo nachziehen (15 gesicherte Dateien committen, `UEBERGABE.md` Z. 99 nach 27.5 und Stand 27.09.) und Regelwerk-Nachtrag nach Fable 27b Teil E plus 13 fehlende Regeln aus D2 (19/6 nicht, geht in die Fable-Sammlung). Register und Code nicht. Freigabe 27.09.2026, 18:08 und ca. 18:25 (wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
