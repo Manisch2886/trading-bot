@@ -23,6 +23,10 @@
 #      bleibt liegen (Pfad steht in der Meldung).
 #   3. Ohne Treffer: Zwischenkopie ins Ziel verschieben (`mv -n`), dort `PRAGMA integrity_check`
 #      (erwartet `ok`) und sha256 der Kopie in <ziel>/SHA256SUMS.
+# Danach, einmal je Lauf (TB-118, Fable 27b G7, Betreiberentscheidung 27.09.2026 "docs/ als Archiv, täglich"):
+#   4. <ziel>/docs.tar.gz = `git archive HEAD docs` (der committete Stand, rund 5 MiB); geprueft mit `gzip -t` und
+#      Dateizahl gegen `git ls-tree -r HEAD docs`; sha256 in SHA256SUMS. Protokolliert werden Commit, Dateizahl und
+#      Bytes - kein Dateiinhalt. Zurueckholen: `tar -xzf docs.tar.gz` in einem leeren Ordner.
 #
 # ⛔ Das Skript loescht nichts: keine Sicherung, keine Datenbank, keine Zwischenkopie. Entfernt
 #    wird am Ende nur der eigene, dann LEERE Zwischenordner (`rmdir`, scheitert bei Inhalt).
@@ -117,6 +121,32 @@ for rel in "${DBS[@]}"; do
     p "ok      $rel  ($groesse B, $n_spalten Spalten, 0 Schluessel-Verdacht, integrity_check ok)"
     GESICHERT=$((GESICHERT + 1))
 done
+
+# docs/ als Archiv (TB-118, Fable 27b G7; Betreiberentscheidung 27.09.2026: "docs/ als Archiv, täglich").
+# Der committete Stand (git archive HEAD docs) - nicht der Arbeitsbaum; gitignorierte Dateien liegen nicht unter docs/.
+# Wie bei den Datenbanken: erst in den Zwischenordner, dann mv -n ins Ziel, pruefen, sha256 in SHA256SUMS.
+# Ausgegeben werden nur Commit, Dateizahl, Bytes und Pruefergebnis - kein Dateiinhalt.
+DOCS_COMMIT="$(git -C "$REPO" rev-parse --short HEAD 2>/dev/null)"
+if [ -z "$DOCS_COMMIT" ]; then
+    p "FEHLER  docs.tar.gz: HEAD nicht lesbar"
+    FEHLERZAHL=$((FEHLERZAHL + 1))
+elif ! aus="$(git -C "$REPO" archive --format=tar.gz -o "$ZWISCHEN/docs.tar.gz" HEAD docs 2>&1)"; then
+    p "FEHLER  docs.tar.gz: git archive scheiterte: $aus"
+    FEHLERZAHL=$((FEHLERZAHL + 1))
+elif ! mv -n "$ZWISCHEN/docs.tar.gz" "$ZIEL/docs.tar.gz" || [ ! -f "$ZIEL/docs.tar.gz" ]; then
+    p "FEHLER  docs.tar.gz: Verschieben ins Ziel scheiterte"
+    FEHLERZAHL=$((FEHLERZAHL + 1))
+else
+    soll=$(git -C "$REPO" ls-tree -r --name-only HEAD docs | wc -l | tr -d ' ')
+    ist=$(tar -tzf "$ZIEL/docs.tar.gz" 2>/dev/null | grep -vc '/$')
+    if gzip -t "$ZIEL/docs.tar.gz" 2>/dev/null && [ "$ist" = "$soll" ]; then
+        (cd "$ZIEL" && shasum -a 256 docs.tar.gz) >> "$ZIEL/SHA256SUMS"
+        p "ok      docs.tar.gz  ($(wc -c < "$ZIEL/docs.tar.gz" | tr -d ' ') B, Commit $DOCS_COMMIT, $ist Dateien = git ls-tree, gzip -t ok)"
+    else
+        p "FEHLER  docs.tar.gz: Pruefung gescheitert (Dateien im Archiv $ist, laut git ls-tree $soll)"
+        FEHLERZAHL=$((FEHLERZAHL + 1))
+    fi
+fi
 
 rmdir "$ZWISCHEN" 2>/dev/null || p "# Zwischenordner nicht leer, bleibt: $ZWISCHEN"
 SATZ=$(du -sk "$ZIEL" | cut -f1)

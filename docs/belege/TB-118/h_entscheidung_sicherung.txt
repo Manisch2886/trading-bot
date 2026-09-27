@@ -1,0 +1,20 @@
+# TB-118 H - Rueckfrage an den Betreiber und seine Antwort, woertlich (ARBEITSWEISE 15, K2n)
+# Zeitpunkt: 2026-09-27 11:48 +0200, Auswahlkarte in der Mac-Sitzung TB-118
+
+Anlass (gemessen, 27.09.2026): git bundle create --all des Repos = 122 729 792 B (117 MiB), 48 s; git archive HEAD docs
+als tar.gz = 5 579 726 B (5,3 MiB). db_sicherung.sh loescht keine alten Saetze (Aufbewahrung offen). Freigabe 26.09.
+Rueckfrage 4: "die tägliche iCloud-Sicherung kopiert zusätzlich docs/"; Auftrag Schritt H: "git bundle create des Repos
+(alle Zweige)".
+
+Frage, woertlich:
+"TB-118 Schritt H: Was soll die tägliche iCloud-Sicherung um 05:20 zusätzlich zu den Datenbanken mitnehmen? Gemessen:
+git bundle des ganzen Repos 117 MiB und 48 s je Lauf. docs/ als Archiv aus HEAD 5,3 MiB. Das Skript löscht keine alten
+Sätze, die Aufbewahrung ist deine offene Frage."
+Optionen: (1) docs/ als Archiv, täglich (Empfohlen) · (2) git bundle täglich, wie Auftrag H ·
+(3) Beides: docs täglich, bundle sonntags
+
+Antwort des Betreibers, woertlich: "docs/ als Archiv, täglich (Empfohlen)"
+
+Folge: db_sicherung.sh schreibt je Lauf docs.tar.gz (git archive HEAD docs) mit sha256 in denselben Zielordner; kein
+git bundle. Einzige Abweichung vom Wortlaut von Schritt H; H2 prueft statt "git bundle verify" das Archiv (gzip -t,
+Dateizahl gegen git ls-tree, sha256 -c).

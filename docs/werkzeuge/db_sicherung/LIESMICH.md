@@ -21,6 +21,14 @@ Wurzelordner und eine leere unter `strategies/volatility_breakout/`).
 | Quersumme | `sha256` jeder Kopie in `SHA256SUMS` im Zielordner |
 | Protokoll | auf dem Bildschirm bzw. im Cron-Log, dazu `PROTOKOLL.txt` im Zielordner |
 
+**Dazu, seit 27.09.2026 (TB-118, Fable 27b G7):** je Lauf `docs.tar.gz` — der
+committete Stand von `docs/` (`git archive HEAD docs`, rund 5 MiB), geprüft mit
+`gzip -t` und der Dateizahl gegen `git ls-tree`, sha256 in `SHA256SUMS`. Damit
+liegen Register, Aufträge, Ergebnisse, Belege und Projektführung dreifach vor
+(Mac, GitHub, iCloud). *Betreiberentscheidung 27.09.2026 per Auswahlkarte: „docs/
+als Archiv, täglich" — nicht das ganze Repo als `git bundle` (117 MiB je Lauf).*
+Zurückholen: `mkdir wieder && tar -xzf docs.tar.gz -C wieder`.
+
 **Ziel:** `~/Library/Mobile Documents/com~apple~CloudDocs/trading-bot-db-sicherung/<JJJJ-MM-TT>/`
 (das ist „iCloud Drive → trading-bot-db-sicherung“ im Finder). Läuft das Skript am
 selben Tag ein zweites Mal, entsteht `<JJJJ-MM-TT>_<HHMMSS>/`; eine vorhandene
