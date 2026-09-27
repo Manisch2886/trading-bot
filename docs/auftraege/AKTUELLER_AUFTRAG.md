@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-117** | `docs/auftraege/MAC_TB-117_wachen_vor_dem_tag.md` | ⭐⭐ **Hauptordner**: Bündel „Wachen vor dem Tag“ (Fable 27a) — Register 45.11 und 46 (R9–R17 zeichengleich), Sonde zweiseitig (`sperrlistensonde.py`), vierte Öffnung `herkunft.py` (`fehlend` im Modus 2, MANIFEST und Snapshot-`config/` in `EINGEFROREN`), Öffnung `auswertung.py` (Herkunftsprüfung R14, Lesart 46.9), neues Abbild, Journal DP. Freigabe 26.09.2026, ca. 22:20 (Auswahlkarte, wörtlich im Auftrag) |
+| **TB-118** | `docs/auftraege/MAC_TB-118_projektwissen_aufraeumen.md` | ⭐ **Hauptordner**: Projektwissen aufräumen, Repo-Seite nach Fable 27b Teil D — Registerkopie in Teilen mit festen Namen + `REGISTER_INDEX.md`, `FABLE_DIALOG_INDEX.md`, Backlog-Teilung (vier Dateien), `UEBERGABE.md`, Soll-Skript, Löschliste mit gemessenen Tokens; Schritt H: `git bundle` in die tägliche Sicherung. Nichts im Repo löschen oder verschieben (ausser `_eingearbeitet/`). Freigabe 26.09.2026, ca. 23:15 (Auswahlkarte, wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
