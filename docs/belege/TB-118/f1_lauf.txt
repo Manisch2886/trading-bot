@@ -1,0 +1,10 @@
+Nr.0 nicht in der Sofortliste C3 (Abweichung, e3_probe.txt)   5 Dateien    104613 B  ~  44772 Tok (kal.)    26153 Tok (/4)  nicht messbar 0
+Nr.1 Registerkopien 21./22./24.09. (Ganzfassung)     3 Dateien   1292039 B  ~ 552968 Tok (kal.)   323009 Tok (/4)  nicht messbar 0
+Nr.2 Registerkopie 24.09. in drei Teilen             3 Dateien    552129 B  ~ 236301 Tok (kal.)   138032 Tok (/4)  nicht messbar 0
+Nr.3 Fable-Dialog bis 25e                           81 Dateien    727700 B  ~ 311442 Tok (kal.)   181925 Tok (/4)  nicht messbar 0
+Nr.4 Aufträge MAC_TB-* und Nachtrag                 22 Dateien    286577 B  ~ 122649 Tok (kal.)    71644 Tok (/4)  nicht messbar 0
+Nr.5 Belege                                          2 Dateien         0 B  ~      0 Tok (kal.)        0 Tok (/4)  nicht messbar 2
+Nr.6 Übergaben mit Datum                             2 Dateien    101254 B  ~  43334 Tok (kal.)    25313 Tok (/4)  nicht messbar 0
+Nr.7 ereignisgebunden, Ereignis eingetreten          3 Dateien     39743 B  ~  17009 Tok (kal.)     9935 Tok (/4)  nicht messbar 0
+Summe 121 Dateien 3104055 B ~1328478 Tok (kal.) 776013 Tok (/4)
+erwartet danach ~563709 Tokens
