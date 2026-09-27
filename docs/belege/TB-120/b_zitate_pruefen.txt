@@ -1,0 +1,116 @@
+## docs/belege/TB-120/b_anforderungen.md: 79 Zitate
+OK         1 W  register,plan,anfrage27c …
+OK         3 W  register,plan,anfrage27c vor dem Tag
+OK         1 W  register     PLAN
+OK        14 W  register     vor dem Tag einmal auf dem registrierten Snapshot mit dem registrierten Code neu erzeugt
+OK         7 W  register     im Selektionsmodus, mit den registrierten heutigen Parametern
+OK         7 W  register     durch einen Erzeuger unter 36.1 (`--ziel`, Einmal-Schreibsperre)
+OK         8 W  register     Er überschreibt nie, auch nicht mit identischem Inhalt.
+OK         4 W  register     der Wert ist 1
+OK        10 W  register     mit Beleg, je Liste Hash, Snapshot-Hash und Commit als Tatsachennotiz
+OK         1 W  register,anfrage27c Unsicher
+OK        13 W  register     je Bot die Hashes der Parameterdateien, der Code-Commit, der Snapshot-Hash und der Modus
+OK         4 W  register     nicht der Ausführungspfad (Zuteilung)
+OK        11 W  register     (`bot`, `symbol`, `entry_time`, dazu die Felder, die der Signalpfad ohnehin liefert)
+OK         8 W  register     ohne Simulationsspalte `ausgefuehrt` und ohne Kennzeichnung im Symbolfeld
+OK        14 W  register     Das Format wird als Feldliste registriert (Bauart 33.3), der Erzeuger schreibt genau diese Felder.
+OK        12 W  register     Die Feldliste der neuen Listen (24b A3) bekommt `exit_time` und `haltedauer_balken` ausdrücklich.
+OK        10 W  register     Kein Messwerkzeug schreibt Kennzeichnungen in Felder, die der Laufcode liest.
+OK         9 W  register     Der Reproduzierbarkeitsnachweis (23e) ist der Modus-Lauf selbst: zweimal, bytegleich.
+OK         9 W  register     Herleitungen aus Trades verwenden gefundene Trades (Signalpfad), nie ausgeführte.
+OK         3 W  register     vor dem Lauf
+OK         1 W  register,auswertung,positionen_holen gefunden
+OK        12 W  register     Der Grundsatz greift dort über das zweite Wort im Registertext aus 24c
+OK        11 W  register     Die alten Listen (`78e2bc6`) bleiben liegen als historischer Stand mit Tatsachennotiz.
+OK         7 W  register     und als Punkt auf die Sperrliste aufgenommen
+OK        10 W  register     `faltenplan.py` liest sie über einen registrierten Pfad (Konstante, kein Schalter)
+OK        12 W  register     Der Pfad der neuen Listen ist bis dahin nicht registriert (TB-114 B3).
+OK        11 W  register     Die Öffnung von `herkunft.py` dafür erfolgt mit der Neuerzeugung, nicht davor.
+OK         9 W  register     aus den neuen Listen abgeleitet und gegen 33.2 verglichen
+OK        11 W  register     Das 95. Perzentil der Haltedauer wird aus den gefundenen Trades gerechnet
+OK         8 W  register     aus `median_balken` der gefundenen Trades, nicht der ausgeführten
+OK        12 W  register     `messgroessen.py` liest die Haltedauern aus der neuen Quelle (Konstante, unter dem Resolver)
+OK         3 W  register     vor dem Lauf
+OK         9 W  register     Das Abbild wird nach der Ableitung erzeugt, nicht vorher
+OK        10 W  register     Unter dem Selektionsmodus gibt es keinen Rückfall auf eingebaute Voreinstellungen
+OK        15 W  register     Jedes Modul des Laufbereichs, das Kursdaten oder Universumsdateien liest, bezieht seine Pfade über den Resolve
+OK         8 W  register     ist kein Modus-Lauf und trägt keinen Nachweisteil (b)
+OK        12 W  register     Fehlt (b) oder zeigt es einen Zugriff ausserhalb, ist der Nachweis 2
+OK         8 W  register     Wurzel, Commit und Sauberkeit werden im Lese-Audit protokolliert.
+OK         9 W  register     ist eine Testtechnik des Regelbetriebs und im Selektionsmodus unzulässig.
+OK         6 W  register     der `zellen.csv`, `tagesreihen/` und `herkunft.json` schreibt
+OK        10 W  register     `zellen.csv` enthält für jede Zelle des Rasters genau eine Zeile
+OK         7 W  register     eine Zelle ohne Trades trägt die Nullzeile
+OK        12 W  register     Der Erzeuger schreibt für eine Zelle ohne Trades die Nullzeile, nie nichts.
+OK        11 W  register     Eine fehlende Zeile ist ein Befund über den Erzeuger, kein Ausgang.
+OK        11 W  register     Unter dem Modus endet ein `exit()` ohne geschriebenes Ergebnis mit 2
+OK        10 W  register     den mit `herkunft.datenstand(<Snapshot-Datenordner>)` gerechneten Datenstand-Hash, nicht den im MANIFEST notie
+OK         7 W  register     schreibt in `herkunft.json` auch das Feld `teile`
+OK        13 W  register     Der Schreiber von `herkunft.json` (Zellen-Erzeuger) prüft sich nicht selbst; der Auswerter prüft ihn.
+OK         5 W  register     `ARBEITSBAUM_PFADE` ist danach nachgezogen (R4)
+OK        10 W  register     Die Liste wird vor dem Tag nachgezogen, nie durch ihn.
+OK        10 W  register     die Liste aller Dateien, die er gelesen hat, mit Inhalts-Hash
+OK         9 W  register     der Snapshot-Hash vor und nach dem Lauf identisch ist
+OK         7 W  register     Jeder Rasterpunkt wird auf jeder Selektionsfalte ausgewertet
+OK         7 W  register     die Spalte `falte` der Bestätigungszeile in `zellen.csv`
+OK         9 W  register     Flache Tage stehen mit Rendite 0 in der Reihe.
+OK         7 W  register     Es gibt keine Mindestzahl Trades je Falte.
+OK        11 W  register     Jeder Handelstag gehört zu der Falte, in die sein Datum fällt.
+OK        10 W  register     Trades werden für die Zählung der Falte ihres Einstiegstags zugeordnet.
+OK        12 W  register     Der Kapital-Drawdown einer Falte für die Nebenbedingung wird auf der täglichen Mark-to-Market-Reihe
+OK         5 W  register     den Kapital-Drawdown noch nicht mitliefert
+OK         1 W  plan         Sperrbedingung
+OK         9 W  register     Der ereignisindizierte Drawdown aus `equity_simulation.py` wird berichtet, nicht bewertet.
+OK         6 W  register     Kein Einstieg liegt vor diesem Datum.
+OK         7 W  register     frühester Einstieg ≥ Beginn der ersten Selektionsfalte
+OK         6 W  register     wird in allen neun `multi_symbol_optimise.py` eingebaut
+OK         8 W  register     Es gilt für alle Symbole des Bots gleich
+OK         9 W  register     ist in `backtest_rsi2.py` eine Konstante und muss Parameter werden
+OK         7 W  register     stehen in `live_params.py`, aber nicht im Optimierer
+OK        10 W  register     Solange er es nicht ist, darf der Lauf nicht starten.
+OK        13 W  register     Symbole ohne Historie in einer Falte tragen 0 Trades und 0 Rendite bei.
+OK         6 W  register     Es gibt keine Mindest-Symbolzahl je Falte.
+OK         6 W  register     Liste der ausgelassenen Symbole mit Grund
+OK         8 W  register     für den Gewinner auf dessen eigenen simulierten Positionen
+OK        10 W  register     Der Lauf berichtet je Bot für den Plateau-Gewinner drei Werte
+OK         3 W  register     (vor dem Tag)
+OK         9 W  register     L wird berechnet und protokolliert; es ist kein Eingabewert.
+OK        11 W  plan         nötig ist nur eine Wache, dass keiner im Lauf aufgerufen wird
+OK         5 W  register     werden später ersetzt, nicht umgestellt
+OK         3 W  plan         enthält die Wache
+## docs/belege/TB-120/b_offen.md: 33 Zitate
+OK        18 W  register     `zellen.csv` enthält für jede Zelle des Rasters genau eine Zeile; die Zeilenzahl ist gleich der Zahl der Zelle
+OK        14 W  auswertung   genau eine Zeile je (Zelle x Falte), fuer ALLE Falten des Faltenplans, Bestaetigungsperiode eingeschlossen.
+OK         2 W  register     leere Trade-Liste
+OK         7 W  register     (Sharpe 0 nach Registertext 1c, leere Trade-Liste)
+OK         9 W  register     schreibt dieses Ergebnis (leere Liste, Sharpe 0 nach 1c)
+OK        10 W  register     Der Lauf berichtet je Bot für den Plateau-Gewinner drei Werte
+OK         2 W  register     im Auswertungsskript
+OK        14 W  register     Jedes Bootstrap-Intervall im Auswertungsskript wird auf der Reihe der täglichen Netto-Mark-to-Market-Renditen 
+OK        11 W  register     Mittlere Blocklänge L = max(mediane Haltedauer des Parametersatzes in Handelstagen, ⌈T^(1/3)⌉)
+OK        16 W  register     Der Kapital-Drawdown einer Falte für die Nebenbedingung wird auf der täglichen Mark-to-Market-Reihe des Kapita
+OK         9 W  register     Der ereignisindizierte Drawdown aus `equity_simulation.py` wird berichtet, nicht bewertet.
+OK        15 W  register,beispieldaten der Kapital-Drawdown einer Falte steht in `zellen.csv`, weil er im echten Lauf aus `equity_simulation.py` komm
+OK        22 W  register     Die Bestätigungsperiode eines Bots beginnt am ersten Handelstag nach Go-Live, an dem keine vor Go-Live eröffne
+OK        14 W  register     Die Bedingung wird im Selektionslauf für den Gewinner auf dessen eigenen simulierten Positionen ausgewertet
+OK         3 W  register     2026-01-01 … 2026-09-01
+OK         5 W  register     Der Go-Live-Schnitt bleibt 2026-09-01, ausschliesslich
+OK         7 W  register     die letzte Falte heisst die Spanne `2026-01-01/2026-09-01`
+OK         2 W  register     nach Go-Live
+OK        11 W  register     Berichtet je Bot und Falte, ohne dass ein Kriterium daran hängt
+OK         5 W  register     nach dem Lauf die Faltenkohärenz
+OK         7 W  register     Der spätere Auswerter tut es noch nicht
+OK         4 W  auswertung   das gleichgewichtete point-in-time-Universum, taeglich.
+OK        20 W  register     Der Benchmark einer Falte wird tagesgenau aus den Symbolen gebildet, die der Loader des Bots an diesem Tag han
+OK        18 W  register     Kein Programm im Repo schreibt an einen Pfad, der auf der Sperrliste steht oder für sie bestimmt ist.
+OK         7 W  register     Jeder Erzeuger einer solchen Datei schreibt einmalig
+OK         7 W  plan         unterliegt der Schreibregel 36.1 von Anfang an
+OK         1 W  register,plan,auswertung bestimmt
+OK        11 W  register     jede gefundene Trade-Zeile trägt `entry_time` und `exit_time`, die Haltedauer folgt daraus
+OK         2 W  register     13 Handelstage
+OK         3 W  positionen_holen beide Enden eingeschlossen
+OK         7 W  register     und als Punkt auf die Sperrliste aufgenommen
+OK        10 W  register     gehören mit ihrem Hash in die Gruppe `eingefroren` des Abbilds
+OK         8 W  register     dann treten die neuen Listen an ihre Stelle
+
+nicht gefunden: 0
