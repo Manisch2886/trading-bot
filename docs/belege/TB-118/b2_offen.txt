@@ -1,0 +1,68 @@
+# TB-118 B2 Messung zu 'offen', 2026-09-27 08:05:11 +0200
+20   Muster  3 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): -
+20a  Muster  4 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): -
+20b  Muster  2 | spaetere Anfragen (Buchstabe): 20c                            | (Commit-Zeit): -
+20c  Muster  2 | spaetere Anfragen (Buchstabe): 20d                            | (Commit-Zeit): -
+20d  Muster  4 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): -
+20e  Muster  1 | spaetere Anfragen (Buchstabe): 21a                            | (Commit-Zeit): 21a
+21a  Muster  6 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): -
+21b  Muster  1 | spaetere Anfragen (Buchstabe): 21c 21d                        | (Commit-Zeit): 21c 21d
+21c  Muster  9 | spaetere Anfragen (Buchstabe): 21d                            | (Commit-Zeit): 21d
+21d  Muster  3 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): -
+21e  Muster  1 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): -
+21f  Muster  2 | spaetere Anfragen (Buchstabe): 21g                            | (Commit-Zeit): 21g
+21g  Muster  5 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): 21c 21d
+21h  Muster  3 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): 21c
+21i  Muster  3 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): 21d
+21j  Muster  3 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): 21d 21e 21f
+21k  Muster  1 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): 21f
+21l  Muster  1 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): -
+21m  Muster  1 | spaetere Anfragen (Buchstabe): 22a                            | (Commit-Zeit): 22a
+22a  Muster  2 | spaetere Anfragen (Buchstabe): 22b                            | (Commit-Zeit): 22b
+22b  Muster  2 | spaetere Anfragen (Buchstabe): 22c                            | (Commit-Zeit): 22c
+22c  Muster  5 | spaetere Anfragen (Buchstabe): 22d                            | (Commit-Zeit): 22d
+22d  Muster  4 | spaetere Anfragen (Buchstabe): 22f 25a                        | (Commit-Zeit): 22f 25a
+22e  Muster  4 | spaetere Anfragen (Buchstabe): 24d                            | (Commit-Zeit): 24d
+22g  Muster  0 | spaetere Anfragen (Buchstabe): 22h 24a 24c                    | (Commit-Zeit): 22f 22h 24a 24c
+22h  Muster  9 | spaetere Anfragen (Buchstabe): 22i 23c 23d 23e                | (Commit-Zeit): 23c 23d 23e
+23a  Muster  6 | spaetere Anfragen (Buchstabe): 23b 23e 23h 24a 24b            | (Commit-Zeit): 23e 23h 24a 24b
+23b  Muster  2 | spaetere Anfragen (Buchstabe): 23c 23d                        | (Commit-Zeit): 23c 23d
+23c  Muster  1 | spaetere Anfragen (Buchstabe): 23d 23e 23f 23g 24a 24c        | (Commit-Zeit): 23f 23g 24a 24c
+23d  Muster  7 | spaetere Anfragen (Buchstabe): 23g 23h 24a 24b 24d 24e        | (Commit-Zeit): 24a 24b 24d 24e
+23e  Muster  3 | spaetere Anfragen (Buchstabe): 23f 23h 24b 24e                | (Commit-Zeit): 24b 24e
+23f  Muster  9 | spaetere Anfragen (Buchstabe): 23g 24a                        | (Commit-Zeit): 24a
+24a  Muster  4 | spaetere Anfragen (Buchstabe): 24b 24c 24d                    | (Commit-Zeit): 24b 24c 24d
+24b  Muster  8 | spaetere Anfragen (Buchstabe): 24c 24e 25a 25c 25d 27a        | (Commit-Zeit): 25a 25c 25d 27a
+24c  Muster  5 | spaetere Anfragen (Buchstabe): 25a 25d 25e                    | (Commit-Zeit): 25a 25d 25e
+24d  Muster 18 | spaetere Anfragen (Buchstabe): 25a 25b 25d 25e                | (Commit-Zeit): 25b 25d 25e
+25a  Muster 17 | spaetere Anfragen (Buchstabe): 25b 25c 25d 25e                | (Commit-Zeit): 25b 25c 25d 25e
+25b  Muster 17 | spaetere Anfragen (Buchstabe): 25c 25d 25e                    | (Commit-Zeit): 25d 25e
+25c  Muster  8 | spaetere Anfragen (Buchstabe): 25d 25e                        | (Commit-Zeit): 25d 25e
+25d  Muster  5 | spaetere Anfragen (Buchstabe): 25e 25f 26a                    | (Commit-Zeit): 26a
+25e  Muster  4 | spaetere Anfragen (Buchstabe): 25f 26a                        | (Commit-Zeit): 26a
+26a  Muster 18 | spaetere Anfragen (Buchstabe): 27a 27b                        | (Commit-Zeit): 26a 27a 27b
+27a  Muster 22 | spaetere Anfragen (Buchstabe): 27b                            | (Commit-Zeit): 27b
+27b  Muster 16 | spaetere Anfragen (Buchstabe): -                              | (Commit-Zeit): -
+
+## Einordnung (gelesen, nicht nur gezaehlt)
+Nur 27a und 27b sind 'offen = ja':
+- 27b: die Rueckfragen hat der Betreiber am 26.09. beantwortet (Auswahlkarte, wörtlich in MAC_TB-118), die Umsetzung
+  (dieser Auftrag, dazu der Regelwerk-Nachtrag nach 27b Teil E) steht aus; keine spaetere Anfrage.
+- 27a: die Auftraege daraus hat TB-117 abgegeben (ERGEBNIS_TB-117), aber keine spaetere Anfrage meldet das zurueck;
+  27b nennt 27a nur als vergebenen Buchstaben. Die Rueckmeldung ist die Tagesanfrage 27c.
+Antworten ohne spaetere Nennung, trotzdem 'nein' (gelesen):
+- 20 (VH/VT): Entscheidung ohne offene Frage, vollzogen in Register 23 (TB-66). Das Muster "20" ist in beiden
+  Suchen nur ueber den Dateinamen messbar; die Buchstabenfolge-Suche waere sonst von "20.09." verfaelscht.
+- 20a: "nicht messen" ist eine Entscheidung, keine Messbitte; registriert (26).
+- 20b, 20c: in der Buchstabenfolge von Anfrage 20c bzw. 20d aufgenommen; die Commit-Zeit-Suche findet sie nicht,
+  weil Anfragen und Antworten dieses Tages zeitnah committet wurden. 20d: keine Nennung; "messen erst nach der
+  Regel" ist mit 24.3 (Regel) und 24.6 (Messung TB-73) vollzogen, registriert (24, 25).
+- 21a, 21e, 21f, 21h: keine Frage an den Betreiber und keine Messbitte im Block Kurz.
+- 21d: die Empfehlung "ganzes Register in die Ablage" ist mit den Registerkopien umgesetzt, der Sichtschutz mit
+  21g/Register 27; die Frage zum Registerzugang (21e: "bleibt offen, bis eure getrennte Antwort kommt") ist durch
+  21g und die Kopien erledigt - Einordnung gelesen, keine Anfrage nennt 21d.
+- 21l: zwei Folgen vor dem Tag, beide Registertext (34.5 Berichtigung "neun"; Erzeuger zellen.csv in PLAN_VOR_DEM_TAG).
+- 22e: die Messung "liest der Lauf im Selektionsmodus aus dem Snapshot?" beantwortet Anfrage 22e (zwei_messungen),
+  die im selben Commit 2144825 ins Repo kam.
+Grenze der Messung: "als beantwortet erscheinen" ist Lesen; die Muster zaehlen Kandidaten, die Nennung in einer
+spaeteren Anfrage ist ein Indiz, kein Beweis. Die Zeile ist nach dem Lesen der Kurz-Bloecke gesetzt.

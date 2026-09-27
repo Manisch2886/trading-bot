@@ -1,0 +1,18 @@
+# TB-118 B3: Zaehlung und Skriptpruefung, 2026-09-27 08:04:49 +0200
+$ ls docs/projektfuehrung/FABLE_ANTWORT_*.md | wc -l
+      44
+$ grep -c "^| [0-9][0-9][a-z]* |" FABLE_DIALOG_INDEX.md  (Datenzeilen)
+44
+$ dialog_index.py --pruefen
+Zeilen im Index: 44, FABLE_ANTWORT_*.md: 44 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 44 von 44
+Status: offen 2, ohne Registertext 10, registriert 32
+rc 0
+## Wiederholung ohne --handfelder behaelt die Handfelder: sha256 vorher f8cda5c518ebaacb, nachher f8cda5c518ebaacb gleich
+## Gegenprobe: ein Handfeld auf '?' gesetzt (Kopie im Scratchpad) -> --pruefen muss 1 geben
+Zeile 24b: nicht gefuellt: Frage
+Zeilen im Index: 44, FABLE_ANTWORT_*.md: 44 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 43 von 44
+Status: offen 2, ohne Registertext 10, registriert 32
+rc 1
+zurueck: sha256 f8cda5c518ebaacb
