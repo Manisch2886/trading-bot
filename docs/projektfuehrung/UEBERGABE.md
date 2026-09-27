@@ -257,3 +257,21 @@ Der Betreiber ist per Nachricht informiert. Der Hauptordner ist frei.
 | 1 | Im Auftrag TB-114 eine Erwartung an die Sonde gesetzt („die neun neuen Einträge“), ohne die Sonde zu lesen. Die Sitzung hat deshalb abgebrochen; der Befund selbst ist echt | ⭐ **Eine Erwartung an ein Werkzeug steht im Auftrag nur mit Fundstelle im Werkzeug.** Sonst: „vom Werkzeug abhängig, im Ergebnis beschreiben“ |
 | 2 | Titel der Anfrage 27a zuerst mit „siebzehn Fragen“; gezählt 14 | Vor dem Ablegen zählen (`grep -c`), dann benennen |
 | 3 | TB-115: Satz lag 1 h 40 min im Fenster | Nachschau 45 min nach dem Anlegen; ohne Schritt-0-Commit erinnern (so gemacht) |
+
+
+---
+
+## Stand 27.09.2026 (TB-119)
+
+**Gemessen von der Mac-Sitzung TB-119 am 27.09.2026, 18:20, am `HEAD 4c1650d` (nach TB-119 A1).** Ausnahme: die Zeile „Projektablage“. Sie hat der steuernde Chat gemessen; die Sitzung sieht die Ablage nicht. Belege: `docs/belege/TB-119/`.
+
+| | |
+|---|---|
+| **Register** | höchster Abschnitt **46**, 10 347 Zeilen, sha256 `18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c` (= 0b und TB-118 0) |
+| **Gültiges Abbild** | `sperrliste_abbild_2026-09-26_tb117.json`, sha256 `46f0ad5d1d83…`. Sonde dagegen, rein lesend: Pfad-Bestandteile **37/0/0** (Punkte 15, bestimmt 0, `eingefroren` **22**), Mengenvergleich 22/22 ohne Befund, rc 2 nur wegen der zwölf Regel-Bestandteile (wie `ERGEBNIS_TB-117`, Zeile 163). Beleg `a2_sonde.txt`; `git status --porcelain` vorher = nachher |
+| **Code-Hashes (sha256)** | `research/vorregistrierung/herkunft.py` `c6c133886299…` · `research/vorregistrierung/auswertung.py` `8ec45123a9da…` · `shared/sperrlistensonde.py` `98c02e0e9b42…` |
+| **Fable** | 27a und 27b beantwortet und im Repo (`FABLE_ANTWORT_2026-09-27a_…`, `…27b_…`). **27c offen** (Anfrage im Repo seit `7eadc7a`, keine Antwort). ⚠️ **Kein Fable-Volumen bis Dienstag, 29.09.2026.** Gesammelt wird in `FABLE_SAMMLUNG_fuer_2026-09-29.md` |
+| **Projektablage** | gemessen vom steuernden Chat am 27.09. gegen 18:15: **vorher 148 Dateien, 1 570 315 Tokens (79 %), nachher 40 Dateien, 638 044 Tokens (32 %)**. Reihenfolge nach 27b C4: erst 13 Dateien abgelegt, dann 120 entfernt, dann gemessen. *Das ist die eine Zeile, die 27b C4 hier verlangt.* |
+| **Plan bis Dienstag** | (1) **TB-119**, Repo nachziehen und Regelwerk-Nachtrag · (2) **TB-120** Erzeuger (Stufe V), Bestandsaufnahme, nur lesend · (3) **TB-121** kalter Leser für Registertext 1–12 (Fable 25f V8/F3). Was an 27c hängt, wartet: Leiter L2–L5, Öffnung `paths.py` (T117-5), Registerauftrag zu 27c |
+| **Offen beim Betreiber** | Speicher-Export des alten Projektspeichers, Frist **Dienstag, 29.09.2026** |
+| **Freie Nummern** | TB frei ab **122**, sobald TB-120/121 vergeben sind · Fable-Anfrage am Dienstag: **29a** · Journal nach TB-119 frei ab **DS** |
