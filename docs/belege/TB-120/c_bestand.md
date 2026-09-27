@@ -86,11 +86,11 @@ Je Bot (Registerachsen aus `registerdaten.raster_definition()`; Kern = `collect_
 | `t3_supertrend` | t3_fast, t3_slow, adx, stop, limit (+ Bedingung) | ja | fehlt | fehlt | teilweise, dito |
 | `rsi2_crypto` | rsi, sma_trend_filter, stop, limit | ja | fehlt | fehlt | teilweise (`holding_days` in Kalendertagen) |
 | `turtle_soup_crypto` | donchian, stop_mode, limit | ja | fehlt | fehlt | teilweise (`holding_days`) |
-| `volatility_breakout_crypto` | bb_squeeze_percentile, bb_lookback, stop, limit | **nein** — Squeeze-Achsen nur in `compute_indicators`, das beim Laden mit Voreinstellung läuft (Posten 3) | fehlt | fehlt | teilweise (`holding_days`) |
+| `volatility_breakout_crypto` | bb_squeeze_percentile, bb_lookback, stop, limit | **nein** — Squeeze-Achsen nur in `compute_indicators`; `get_trades_for_symbol` ruft es ohne diese Argumente (Posten 3) | fehlt | fehlt | teilweise (`holding_days`) |
 | `elliott_wave_stocks` | deviation, stop, take_profit, limit | ja | fehlt | fehlt | teilweise |
 | `rsi2_mean_reversion` | rsi, sma_trend_filter, stop, limit | **nein** — `SMA_TREND_PERIOD = 200` Konstante in `backtest_rsi2.py`, `compute_indicators(price_df)` ohne Argument (Posten 3) | fehlt | fehlt | teilweise (`holding_days`) |
 | `turtle_soup_stocks` | donchian, stop_mode, limit | ja | fehlt | fehlt | teilweise |
-| `volatility_breakout` | bb_squeeze_percentile, bb_lookback, stop, limit | **nein** — wie `volatility_breakout_crypto` (Posten 3) | fehlt | fehlt | teilweise (`holding_days`) |
+| `volatility_breakout` | bb_squeeze_percentile, bb_lookback, stop, limit | **nein** — `load_all_symbol_data` ruft `compute_indicators(df)` beim Laden ohne Squeeze-Argumente (Posten 3) | fehlt | fehlt | teilweise (`holding_days`) |
 
 „Tagesreihe MtM fehlt“ heisst: im Laufcode. `mtm_kern.mtm_pfad` kann sie bilden, braucht aber die ausgeführten
 Positionen, die `simuliere_portfolio` nicht herausgibt — die Stelle liegt in `shared/zuteilung.py` (Punkt 10).

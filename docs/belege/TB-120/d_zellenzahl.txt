@@ -1,0 +1,23 @@
+# Bot | Achsen | Zellen | Falten inkl. Bestaetigung (15.6) | Zeilen zellen.csv nach Vertrag (Zelle x Falte)
+elliott_wave | 3 | 80 | 4 | 320
+t3_supertrend | 5 | 384 | 8 | 3072
+rsi2_crypto | 4 | 400 | 8 | 3200
+turtle_soup_crypto | 3 | 96 | 8 | 768
+volatility_breakout_crypto | 4 | 320 | 8 | 2560
+elliott_wave_stocks | 4 | 320 | 8 | 2560
+rsi2_mean_reversion | 4 | 400 | 8 | 3200
+turtle_soup_stocks | 3 | 96 | 8 | 768
+volatility_breakout | 4 | 320 | 8 | 2560
+Zellen gesamt 2416
+
+# Registerabgleich: grep '2 416|2416|2.416' im Register:
+380:| **Summe** | **2416** | **653** | **3069** |
+7885:| ⭐ | **N = 653 (Festlegung 10) unberührt**; Zellenzahl je Bot 80/384/400/96/320/320/400/96/320, **Summe 2416**, wie Register Abschnitt 3 (ERZEUGT-Block; g
+# => gleich (Register Abschnitt 3, Z. 380; 39.9-Tabelle Z. 7885: 80/384/400/96/320/320/400/96/320).
+
+# Vorfall beim ersten Versuch (2026-09-27, ca. 19:52): Der erste Zaehlversuch rief zusaetzlich
+# faltenplan.faltenplan(mess) auf. Das startet ueber research/universum_trockenlauf/loaderlauf.py
+# einen Loader-Trockenlauf je Bot (Kindprozess). Er brach mit /usr/bin/python3 sofort ab
+# (ModuleNotFoundError: binance, Loader elliott_wave) - vor jedem Laden von Kursdaten.
+# Nachgeprueft: git status leer; kein neuer Ordner tb40_* in $TMPDIR (juengster 27.09. 03:35).
+# Nicht wiederholt; die Faltenzahl oben stammt aus Register 15.6.
