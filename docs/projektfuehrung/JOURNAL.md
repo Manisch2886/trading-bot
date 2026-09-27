@@ -9455,6 +9455,50 @@ Abbruchkriterium ausgelöst; keine Ergebnisgrösse gelesen oder gerechnet (Beisp
 
 ---
 
+## DQ — TB-118: Projektwissen aufräumen, Repo-Seite (Fable 27b Teil D) — Registerkopie in vier Teilen (`cmp` rc 0) und `REGISTER_INDEX.md`; `FABLE_DIALOG_INDEX.md` 44/44; Backlog in vier Dateien (Zeilenmenge rc 0, `BACKLOG_ENTSCHEIDUNGEN.md` per Auswahlkarte); `UEBERGABE.md`; `ablage_soll.py`; Löschliste ≈ 1,33 Mio. Tokens; `docs.tar.gz` in der täglichen Sicherung (27.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-118_projektwissen_aufraeumen.md`*
+
+**Quelle:** Mac-Sitzung **TB-118** (Hauptordner), 27.09.2026, Eingang `1e11457`. Commits `f8056ef` (Schritt 0),
+`6797d70` (A), `8a3f6f6` (B), `3018657` (C), `45ad4fb` (D), `6b5fef2` (E), `d39cab4` (F), `2f57be9` (H) und der
+Abgabe-Commit (G). Belege `docs/belege/TB-118/`. Freigabe 26.09.2026, ca. 23:15 („Alle sechs übernehmen“). Zwei
+Auswahlkarten in der Sitzung (C1 Dateiname, H Umfang der Sicherung), beide wörtlich im Beleg. Kein Abbruchkriterium
+ausgelöst. `BACKLOG.md` gelesen; die Zeilen nach 27.1 sind nach Fundstelle genannt, nicht nach Inhalt.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | Vier Dateien committet (md5 Antwort und Anfrage 27b ✔). Register 10 347 Zeilen, Abschnitte 0–46, sha256 `18e39ee2…`; db-Sicherung 12/12 rc 0 |
+| ⭐⭐ **A** | `registerkopie.py`: vier Teile 0–23 / 24–37 / 38–43 / 44–46 (239 529 / 220 905 / 227 107 / 59 998 B), Bodies `cmp` rc 0, Mutation rc 1, zweiter Lauf bytegleich. `REGISTER_INDEX.md` aus 23 + 42 Marken und 49 Überschriften, drei Stellen mehrdeutig. Vier der sechs Registerkopien der Ablage waren nie im Repo |
+| ⭐⭐ **B** | `dialog_index.py`: 44 Zeilen = 44 Antworten, sechs Felder je Zeile (`--pruefen` rc 0, Gegenprobe rc 1); offen nur 27a, 27b; Anfrage aus dem Bezug der Antwort — der gleiche Buchstabe trifft meist nicht |
+| ⭐⭐ **C** | 478 Inhaltszeilen → offen 144 · Entscheidungen 109 · erledigt 215 · Sichtschutz 10; Zeilenmenge rc 0, Gegenprobe rc 1; Nachtragswächter vorher/nachher rc 0 — mit dem Auftragsnamen `ENTSCHEIDUNGEN.md` war er gemessen rc 1 (36 Nummern). `JOURNAL_NACHTRAG_2026-09-18.md` nach `_eingearbeitet/`, `BACKLOG_NACHTRAG_2026-09-18.md` bleibt (0,82 ohne Kern) |
+| **D** | `UEBERGABE.md` (Rumpf = 25.09.). 33 Regeln aus den Übergaben 19./24.09.: steht 10, teilweise 8, fehlt 14, keine Regel 1; 19/6 widerspricht ARBEITSWEISE 6d |
+| ⭐ **E** | `ablage_soll.py` + `ablage_ereignisse.json`; auf rekonstruierter Ist-Liste 116 von 119 C3-Dateien deckungsgleich, 3 + 5 Abweichungen benannt; B4 sucht Ergebnisse auch als Nachtrag und unter `belege/` (TB-79, TB-88) |
+| ⭐ **F** | Löschliste 121 Dateien, 3 104 055 B, ≈ 1,33 Mio. Tokens (Bytes ÷ 2,337, kalibriert an vier Gruppen der Betreibermessung; ÷ 4 läge 40 % zu tief); Stand danach ≈ 28 % |
+| **H** | `db_sicherung.sh` + `docs.tar.gz` (5,3 MiB, 1576 Dateien) statt `git bundle` (117 MiB): Lauf rc 0, 13/13 sha256 OK, Gegenprobe rc 1; 11/12 Datenbanken gleich wie 0c, die zwölfte schrieb die Broker-Brücke um 08:05 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Wer eine Datei aus einer bewachten Menge herauslöst, misst die Wache vor dem Commit.** Die Probe-Teilung in den Scratchpad plus Wächterlauf hat den Namenskonflikt gefunden, bevor ein Cron ihn per Telegram gemeldet hätte |
+| ⭐ | **Ein Präfix ist keine Klasse.** „K-Einträge“ hiess im Konzept „Festlegungen“, im Backlog mischt der Namensraum offene Aufgaben, Regeln und Lehren — eingeordnet wird nach Inhalt |
+| ⭐ | **Eine Größe, die niemand geschätzt hat, gehört vor den Auftrag, nicht in ihn.** Das `git bundle` war freigegeben, seine 117 MiB am Tag kannte niemand; gemessen, dann gefragt |
+
+### Was offen bleibt
+
+- Steuernder Chat: Ablegen → echte Ist-Liste durch `ablage_soll.py` → Entfernen → `knowledge_size`; vorher
+  entscheiden über die vier Registerkopien und zwei Belege, die nur in der Ablage liegen.
+- Betreiber: Freigabe der Löschliste; `BACKLOG_NACHTRAG_2026-09-18.md` (verschieben oder liegen lassen); Aufbewahrung
+  der täglichen Sicherungssätze.
+- Fable: B6 gegen C3 (Wochenrückmeldung, Übergabe), „zwei jüngste Paare“, drei mehrdeutige Indexstellen, D2-Vorschlag
+  (14 Regeln), Nachtrag zum Regelwerk nach 27b Teil E mit den zwei Namensänderungen.
+
+*Geschrieben 27.09.2026 von der Mac-Sitzung TB-118. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

@@ -2,7 +2,7 @@
 """
 TB-118 C1 - BACKLOG.md in vier Dateien teilen (Fable 27b B2, Teil D C1). Einmaliges Werkzeug, Beleg.
 
-Liest BACKLOG.md am Commit --basis (Standard HEAD) und schreibt nach --ziel (Standard docs/projektfuehrung):
+Liest BACKLOG.md am Commit --basis (Standard 8a3f6f6, der Stand vor der Teilung; beim Lauf war das HEAD) und schreibt nach --ziel (Standard docs/projektfuehrung):
   BACKLOG.md                    O  offen (Struktur der Abschnitte bleibt: jede Ueberschrift steht hier)
   BACKLOG_ENTSCHEIDUNGEN.md     E  Festlegungen, Regeln, Betreiberentscheide mit Datum (Name nach Betreiberentscheidung
                                    27.09.2026 statt "ENTSCHEIDUNGEN.md", c1_entscheidung_dateiname.txt)
@@ -144,7 +144,7 @@ def teilen(zeilen):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--basis", default="HEAD")
+    ap.add_argument("--basis", default="8a3f6f6")  # Stand vor der Teilung; HEAD waere nach Commit C schon geteilt
     ap.add_argument("--ziel", default="docs/projektfuehrung")
     a = ap.parse_args()
     alt = subprocess.run(["git", "show", "%s:%s" % (a.basis, QUELLE)], stdout=subprocess.PIPE, check=True).stdout

@@ -13,3 +13,8 @@ Inhaltszeilen neu gesamt: 482
     1x *Geteilt TB-118 (27.09.2026, Fable 27b B2) aus `BACKLOG.md`; jede Zeile zeichengleich, Nachweis `docs/belege/TB-118/c2_zeilenmenge.txt`. Enthält Abschnitt 8 „Ge
     1x *Geteilt TB-118 (27.09.2026, Fable 27b B2, G5) aus `BACKLOG.md`; jede Zeile zeichengleich, Nachweis `docs/belege/TB-118/c2_zeilenmenge.txt`. ⛔ **Nur Repo, nie i
 Ergebnis: jede alte Inhaltszeile genau einmal; neu nur die Kopfzeilen der Teilung, rc 0
+
+# Nachtrag (TB-118 G): 'HEAD' war beim Lauf 8a3f6f6 (vor dem Commit C). Wiederholung nach dem Commit mit ausdruecklicher Basis:
+$ python3 c2_zeilenmenge.py --basis 8a3f6f6
+Ergebnis: jede alte Inhaltszeile genau einmal; neu nur die Kopfzeilen der Teilung, rc 0
+rc 0

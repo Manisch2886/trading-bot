@@ -2,7 +2,7 @@
 """
 TB-118 C2 - Nachweis der Backlog-Teilung als Zeilenmenge (Fable 27b B2, Teil D C2).
 
-Die Inhaltszeilen der alten BACKLOG.md (am Commit --basis, Standard HEAD) muessen als MULTIMENGE in der Vereinigung
+Die Inhaltszeilen der alten BACKLOG.md (am Commit --basis, Standard 8a3f6f6 = Stand vor der Teilung) muessen als MULTIMENGE in der Vereinigung
 der vier neuen Dateien genau einmal vorkommen. Ausgenommen sind nur Strukturzeilen: Leerzeilen, Ueberschriften
 (#...), "---", Tabellenkopf (die Zeile vor einer Trennzeile) und Trennzeilen |---|. Gezaehlt wird mit Counter, ohne
 Vereinheitlichung (kein set, kein sort -u - K4a).
@@ -41,7 +41,7 @@ def lies(text):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--basis", default="HEAD")
+    ap.add_argument("--basis", default="8a3f6f6")  # Stand vor der Teilung
     ap.add_argument("--ordner", default="docs/projektfuehrung")
     a = ap.parse_args()
     alt_text = subprocess.run(["git", "show", "%s:docs/projektfuehrung/BACKLOG.md" % a.basis],
