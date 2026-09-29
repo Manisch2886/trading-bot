@@ -1,0 +1,68 @@
+# TB-122 C2 - Wertprobe, 2026-09-29 16:08:54 +0200
+## (1) Im Repo, HEAD ab31314 + die drei neuen Testdateien, trading-env Python 3.9.6
+### rsi2_mean_reversion  sha256 1b4edfbc7d2c39c5
+rsi2_mean_reversion: Achse sma_trend_filter, erste Stufe 26, Voreinstellung 200
+16/16 Pruefungen bestanden.
+rc 0
+### volatility_breakout  sha256 50e872e25859a84f
+volatility_breakout: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+12/12 Pruefungen bestanden.
+rc 0
+### volatility_breakout_crypto  sha256 3f78f6da14238479
+volatility_breakout_crypto: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+12/12 Pruefungen bestanden.
+rc 0
+
+## (2) Gegenprobe (Register 40.7): dieselben Testdateien am Stand c064405 (vor B), ausgepackt nach $TMPDIR/tb122_c2_gegenprobe
+# TB-122 C2 Probe, Stand c064405, Testquelle strategies, Umbauquelle keine, 2026-09-29 16:08:56 +0200
+## rsi2_mean_reversion  (sha256 Testdatei 1b4edfbc7d2c39c5)
+rsi2_mean_reversion: Achse sma_trend_filter, erste Stufe 26, Voreinstellung 200
+
+==============================================================================
+2 bestanden, 14 GESCHEITERT:
+  - A0: collect_all_trades nimmt sma_trend_period - collect_all_trades() got an unexpected keyword argument 'sma_trend_period'
+  - A1: compute_indicators erhaelt die Stufe - []
+  - A2: run_backtest erhaelt die Stufe - []
+  - A3: sma_trend ist der SMA der Stufe
+  - B1: ohne Argument erhaelt compute_indicators die Voreinstellung - []
+  - B2: ohne Argument erhaelt run_backtest die Voreinstellung - [None]
+  - B3: equity_simulation.collect_all_trades hat sma_trend_period mit Voreinstellung 200 - None
+  - B3: multi_symbol_optimise.get_trades_for_symbol hat sma_trend_period mit Voreinstellung 200 - None
+  - B3: backtest_rsi2.compute_indicators hat sma_trend_period mit Voreinstellung 200 - None
+  - B3: backtest_rsi2.run_backtest hat sma_trend_period mit Voreinstellung 200 - None
+  - C1: get_trades_for_symbol nimmt sma_trend_period - get_trades_for_symbol() got an unexpected keyword argument 'sma_trend_period'
+  - C2: compute_indicators erhaelt die Stufe - []
+  - C3: run_backtest erhaelt die Stufe - []
+  - D1: mit der Stufe findet der Scan das Signal nach der Stufe - run_backtest() got an unexpected keyword argument 'sma_trend_period'
+rc 1
+## volatility_breakout  (sha256 Testdatei 50e872e25859a84f)
+volatility_breakout: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+
+==============================================================================
+2 bestanden, 10 GESCHEITERT:
+  - A0: collect_all_trades nimmt beide Achsen - collect_all_trades() got an unexpected keyword argument 'squeeze_lookback_days'
+  - A1: compute_indicators erhaelt die Stufen - []
+  - A2: squeeze_thresh in run_backtest ist das Quantil der Stufen
+  - A3: und nicht das Quantil der Voreinstellungen
+  - B1: ohne Argument erhaelt compute_indicators die Voreinstellungen - []
+  - B2: equity_simulation.collect_all_trades hat beide Achsen mit den Voreinstellungen (126, 25.0) - None, None
+  - B2: multi_symbol_optimise.get_trades_for_symbol hat beide Achsen mit den Voreinstellungen (126, 25.0) - None, None
+  - C1: get_trades_for_symbol nimmt beide Achsen - get_trades_for_symbol() got an unexpected keyword argument 'squeeze_lookback_days'
+  - C2: compute_indicators erhaelt die Stufen - []
+  - C3: squeeze_thresh in run_backtest ist das Quantil der Stufen
+rc 1
+## volatility_breakout_crypto  (sha256 Testdatei 3f78f6da14238479)
+volatility_breakout_crypto: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+
+==============================================================================
+3 bestanden, 9 GESCHEITERT:
+  - A0: collect_all_trades nimmt beide Achsen - collect_all_trades() got an unexpected keyword argument 'squeeze_lookback_days'
+  - A1: compute_indicators erhaelt die Stufen - []
+  - A2: squeeze_thresh in run_backtest ist das Quantil der Stufen
+  - A3: und nicht das Quantil der Voreinstellungen
+  - B2: equity_simulation.collect_all_trades hat beide Achsen mit den Voreinstellungen (126, 25.0) - None, None
+  - B2: multi_symbol_optimise.get_trades_for_symbol hat beide Achsen mit den Voreinstellungen (126, 25.0) - None, None
+  - C1: get_trades_for_symbol nimmt beide Achsen - get_trades_for_symbol() got an unexpected keyword argument 'squeeze_lookback_days'
+  - C2: compute_indicators erhaelt die Stufen - []
+  - C3: squeeze_thresh in run_backtest ist das Quantil der Stufen
+rc 1
