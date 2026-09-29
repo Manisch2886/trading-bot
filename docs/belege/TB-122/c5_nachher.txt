@@ -1,0 +1,50 @@
+# TB-122 0b (nachher), HEAD 08153e42d69c410c33fb3158a64689ae5b598765, 2026-09-29 16:10:20 +0200
+## sha256 der sieben Dateien
+836b032a5962c7766e7ed00a75b90ded4155b769fce54a84fead3c4cd5f3b7fc  strategies/rsi2_mean_reversion/backtest_rsi2.py
+777f5cb0a637bb8770d1cd4a89aac03c6b29db98d13ce47eac6de29db279c661  strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+864907fbac088d56c0c97729edea228d3f5b8655b700401f1d34f672e64a2d6c  strategies/rsi2_mean_reversion/equity_simulation.py
+f0a4ee43dca133e89272e48d80280d8a22f57d751d2ddac06751fd091198af2d  strategies/volatility_breakout/multi_symbol_optimise.py
+7cbc7f00ed43810d8d59208a295e8d35d5a3dff99b8ca3734e182c60fe0b084b  strategies/volatility_breakout/equity_simulation.py
+02548e2eb95e34a0afcdbacfa0d806c7406fd4b066d0b26ef3c9839bf83a082b  strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+1109438768c00e10710740775a30de8f3ac9f4309e24b3c54b13266d07df9fad  strategies/volatility_breakout_crypto/equity_simulation.py
+## Hashes Werkzeuge
+c6c133886299bcfa6a91f8bf119e9f6cbedbabe97e5131203bf2d309b7bd0fcf  research/vorregistrierung/herkunft.py
+46f0ad5d1d83a253baa5523f5657881e0d825cebd734f24a42ef5d4fa74f281f  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+98c02e0e9b42831d88e0cd9cbdc39d64c458691fdbf1e650aa4e32c933cc0d71  shared/sperrlistensonde.py
+8ec45123a9daac5ac711dc4cf40a492bdd450216adb8ec03bf83fcfd9a300c98  research/vorregistrierung/auswertung.py
+18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c  docs/VORREGISTRIERUNG_neuselektion.md
+## herkunft.register() (Soll laut ERGEBNIS_TB-117 Zeile F: 01f5997a...)
+register 01f5997a9a13b4b30162e2a04965670a9ffa8d725a93d579e530dc0708ec2a70
+fehlend []
+teile 23
+## Sonde gegen research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+# git status --porcelain vorher: 2 Zeilen
+rc 2
+# git status --porcelain nachher: 2 Zeilen
+# Ausgabe sha256: dd4b4b957fb1ec4fc6e54436b6a443da5c43a28b91cf81046a6bcec7235c3df8, 84 Zeilen
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 905-1018, Listentext wie bei Erzeugung: ja
+Pfad-Bestandteile: 37 geprueft, davon 37 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 22)
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+## Die sieben Dateien im Abbild (Pfad -> Gruppe/Punkt, gemessen aus JSON)
+strategies/rsi2_mean_reversion/backtest_rsi2.py | 0 Treffer
+strategies/rsi2_mean_reversion/multi_symbol_optimise.py | 0 Treffer
+strategies/rsi2_mean_reversion/equity_simulation.py | 0 Treffer
+strategies/volatility_breakout/multi_symbol_optimise.py | 0 Treffer
+strategies/volatility_breakout/equity_simulation.py | 0 Treffer
+strategies/volatility_breakout_crypto/multi_symbol_optimise.py | 0 Treffer
+strategies/volatility_breakout_crypto/equity_simulation.py | 0 Treffer
+## Die sieben Dateien in herkunft.EINGEFROREN
+EINGEFROREN Typ list Laenge 22
+strategies/rsi2_mean_reversion/backtest_rsi2.py | nicht in EINGEFROREN
+strategies/rsi2_mean_reversion/multi_symbol_optimise.py | nicht in EINGEFROREN
+strategies/rsi2_mean_reversion/equity_simulation.py | nicht in EINGEFROREN
+strategies/volatility_breakout/multi_symbol_optimise.py | nicht in EINGEFROREN
+strategies/volatility_breakout/equity_simulation.py | nicht in EINGEFROREN
+strategies/volatility_breakout_crypto/multi_symbol_optimise.py | nicht in EINGEFROREN
+strategies/volatility_breakout_crypto/equity_simulation.py | nicht in EINGEFROREN
+## Sperrliste Punkt 11 im Register (Abschnitt 10), Zeilen mit Punkt 11
+133:11. **Commit-Hashes von Simulation, Erkennung, Optimierern und
+## git status (ausserhalb docs/ muss leer sein)
+[Ende status]
+## Ende

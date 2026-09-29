@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-122** | `docs/auftraege/MAC_TB-122_posten3_achsen_durchreichen.md` | ⭐ **Hauptordner**: TB-30b Posten 3 (E-1) — drei Rasterachsen bis zur Indikatorberechnung durchreichen, 7 Dateien, Ausgabe mit heutigen Voreinstellungen bytegleich. Freigabe 27.09.2026, ca. 20:20 (wörtlich im Auftrag) |
+| **TB-123** | `docs/auftraege/MAC_TB-123_tb122_abschliessen.md` | ⭐ **Hauptordner**: TB-122 abschliessen — Stand der beendeten Sitzung sichern, C3 (Tests vorher/nachher) nachholen, Abgabe, push; kein Code. Unter der Freigabe von TB-122 |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
@@ -49,7 +49,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
 misst, ob eine Sitzung läuft, und bricht danach folgenlos ab.
 
-*Gesetzt 29.09.2026, 14:52 (zuvor TB-121, erledigt mit `04f07ef`, 29.09.2026; davor TB-112, erledigt mit `af6042f`, und TB-111 auf Zweig `tb-111`, erledigt mit `49f0868`, 26.09.2026; davor TB-109/TB-110, erledigt mit `723281f`/`6a7996a`, 26.09.2026; davor TB-108, erledigt mit `486032d`, 25.09.2026; davor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
+*Gesetzt 29.09.2026, 17:50 (zuvor TB-122, beendet ohne Abgabe nach `08153e4`, 29.09.2026; davor TB-121, erledigt mit `04f07ef`, 29.09.2026; davor TB-112, erledigt mit `af6042f`, und TB-111 auf Zweig `tb-111`, erledigt mit `49f0868`, 26.09.2026; davor TB-109/TB-110, erledigt mit `723281f`/`6a7996a`, 26.09.2026; davor TB-108, erledigt mit `486032d`, 25.09.2026; davor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
