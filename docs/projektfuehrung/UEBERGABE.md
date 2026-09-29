@@ -275,3 +275,259 @@ Der Betreiber ist per Nachricht informiert. Der Hauptordner ist frei.
 | **Plan bis Dienstag** | (1) **TB-119**, Repo nachziehen und Regelwerk-Nachtrag · (2) **TB-120** Erzeuger (Stufe V), Bestandsaufnahme, nur lesend · (3) **TB-121** kalter Leser für Registertext 1–12 (Fable 25f V8/F3). Was an 27c hängt, wartet: Leiter L2–L5, Öffnung `paths.py` (T117-5), Registerauftrag zu 27c |
 | **Offen beim Betreiber** | Speicher-Export des alten Projektspeichers, Frist **Dienstag, 29.09.2026** |
 | **Freie Nummern** | TB frei ab **122**, sobald TB-120/121 vergeben sind · Fable-Anfrage am Dienstag: **29a** · Journal nach TB-119 frei ab **DS** |
+
+---
+
+## Umzug 29.09.2026, 07:15 — Stand für den neuen steuernden Chat (UMZUG 4, Schritt 3)
+
+*Geschrieben vom steuernden Chat (seit 24.09., 22:40). Jede Zahl ist mit „gemessen“ (heute über die Geräteanbindung) oder „aus Ergebnis“ (mit Fundstelle) gekennzeichnet.*
+
+### Block 1 — Stand in drei Zeilen
+
+- **Fertig (27.09.):**
+  - TB-118: Projektwissen, Repo-Seite.
+  - Ablage geräumt: 148 → 40 Dateien, 79 % → 32 %.
+  - TB-119: Repo nachgezogen, Regelwerk nach Fable 27b Teil E, 13 D2-Regeln.
+  - TB-120: Erzeuger-Bestandsaufnahme, nur lesend; 61 Anforderungen, 17 Lücken, Schnitt in neun Aufträge E-1 … E-9, 17 Fragen F-1 … F-17.
+- **Läuft:** nichts. Gemessen 05:09Z: 0 claude-Prozesse, nachdem das unbenutzte TB-121-Fenster vom 27.09. geschlossen wurde. TB-121 ist **nie gestartet** worden; der Einfügesatz wurde nicht abgeschickt.
+- **Als Nächstes:**
+  1. **Fable-Anfrage 29a** aus `FABLE_SAMMLUNG_fuer_2026-09-29.md`. Fable hat ab heute wieder Wochenvolumen.
+  2. TB-121, kalter Leser.
+  3. TB-122 = E-1, Posten 3, freigegeben.
+
+### Block 2 — HEAD und Commit-Kette
+
+- **HEAD `07fcca7`** (TB-120 Abgabe, 27.09., 19:59 Ortszeit), gemessen, Zweig `main`.
+- Commits am 27.09.:
+  - TB-118: `f8056ef` … `2a0893b`;
+  - TB-119: `7eadc7a`, `4c1650d`, `6126c64`, `df825b6`, `8c6ab75`, `d9e3600`;
+  - TB-120: `5f819c1`, `aab641e`, `3265b3a`, `42f507a`, `d173ad4`, `07fcca7`.
+- Am 28.09. kein Commit.
+- **Uncommittet** (gemessen, `ls-files --others` und `diff --numstat`):
+
+| Datei | Zustand | md5 |
+|---|---|---|
+| `docs/auftraege/MAC_TB-121_kalter_leser_register_1_12.md` | neu | `f6147088b34eeed7652f62a9eef69da4` |
+| `docs/auftraege/MAC_TB-122_posten3_achsen_durchreichen.md` | neu (heute abgelegt, Platzhalter `<<ERWARTET_0A>>` noch offen) | `ad4eca4c255e5cc803be0f785e200c7a` |
+| `docs/auftraege/AKTUELLER_AUFTRAG.md` | geändert, zeigt auf **TB-121** | `8d1dba47587d45c226a717cec3392598` |
+| `docs/projektfuehrung/FABLE_SAMMLUNG_fuer_2026-09-29.md` | geändert, numstat 84/0 | `b363c9485017b00ff42fee5f45585b49` |
+| `docs/projektfuehrung/UEBERGABE.md` | geändert (dieser Block) | nach dem Anhängen messen |
+
+✅ **TB-121 Schritt 0a ist nachgezogen (29.09., 07:20):** Die Tabelle in `MAC_TB-121` nennt jetzt alle fünf Dateien; für `UEBERGABE.md` prüft sie „numstat gegen HEAD, entfernt 0“ statt eines md5, weil diese Datei sich bis zum Start noch ändern kann. Die md5 von `MAC_TB-121` in der Tabelle oben ist damit überholt — massgeblich ist die Datei.
+
+### Block 3 — Die tragenden Zahlen
+
+| | Wert | Fundstelle |
+|---|---|---|
+| Register | Abschnitte 0–46, 10 347 Zeilen, sha256 `18e39ee2…` | aus Ergebnis TB-119 A2, unverändert seit TB-117 |
+| Gültiges Abbild | `sperrliste_abbild_2026-09-26_tb117.json` `46f0ad5d…`, Sonde 37/0/0, `eingefroren` 22 | TB-119 A2 |
+| `herkunft.py` / `auswertung.py` / `sperrlistensonde.py` | `c6c13388…` / `8ec45123…` / `98c02e0e…` | TB-119 A2 |
+| Snapshot / Datenstand / Benchmark | `63e4b6c8…` / `d9449faf…` / `64fb2912…` | Register 18, 39.2 |
+| Laufbereich | 81 Module | Register 44-8 |
+| Zellen im Raster | 2 416 | Register 3, TB-120 `d_zellenzahl.txt` |
+| db-Sicherung | 29.09., 05:20: 12/12, Fehler 0, `docs.tar.gz` am Commit `07fcca7` | gemessen, `logs/system/db_sicherung.log` |
+| Projektablage | 40 Dateien, 638 044 Tokens (32 %) am 27.09., 18:15 | gemessen dort; heute neu messen (Schritt 4) |
+| **Nummern** | TB frei ab **123** (121, 122 vergeben) · Fable-Anfrage **29a** · Journal frei ab **DT** (TB-120 schrieb DS) | gemessen bzw. aus Ergebnis TB-120 |
+
+### Block 4 — Offene Punkte, in Reihenfolge
+
+1. **Fable 29a:** Die Sammlung wird zu einer Anfrage, gegen 27.1 gelesen, als Kopierblock übergeben. Inhalt:
+   - A: 27c vollständig (T116-1…5, T117-1…7);
+   - B: neun Punkte aus TB-118;
+   - C: Kenntnis Ablage;
+   - D: 19/6 gegen 6d, drei Punkte aus TB-119, 27.4 zu `MAC_TB-119`, F-1 … F-17 mit Neigungen;
+   - dazu der Schnitt E-1 … E-9.
+   - In die Ablage vorher: `ERGEBNIS_TB-118`, `ERGEBNIS_TB-119`, `ERGEBNIS_TB-120` (nach 27.1 lesen) und die Anfrage selbst.
+   - Warum zuerst: E-2 … E-9 warten auf die Antworten.
+2. **TB-121**, kalter Leser: freigegeben, nur lesend, darf parallel zur Fable-Wartezeit laufen.
+3. **TB-122** = E-1, Posten 3: freigegeben (Karte 27.09., ca. 20:20, wörtlich im Auftrag). Vor dem Start den Platzhalter 0a füllen.
+4. Nach Fables Antwort: E-2, Registerauftrag mit den Antworten auf 27c und F-1 … F-17, danach E-3 … E-9 nach TB-120 Abschnitt 5.
+5. Später:
+   - Leiter-Skript und Stufe IV nach 27c L2–L5;
+   - Öffnung `paths.py` (T117-5, E-9);
+   - Kettenlauf und Stufe VI.
+
+### Block 5 — Wartezustände
+
+| wartet | auf |
+|---|---|
+| Fable | Anfrage 29a (noch nicht geschrieben) |
+| TB-121 | Einfügesatz des Betreibers nach dem Auslöser `starte_TB-121` (Zeiger steht auf TB-121) |
+| TB-122 | Abgabe von TB-121, dann Zeiger, Platzhalter und Auslöser |
+| E-2 … E-9 | Fable 29a |
+| **Betreiber** | ⚠️ **Speicher-Export des alten Projektspeichers — Frist HEUTE, 29.09.2026** (`ERINNERUNG_2026-09-25_speicher_export.md`) |
+
+### Block 6 — Freigaben und Sperrliste
+
+**Freigaben, die noch nicht verbraucht sind:**
+- **TB-121:** Karte 27.09., 18:25, „Wir arbeiten alles strukturiert ab“; wörtlich im Auftrag.
+- **TB-122:** Karte 27.09., ca. 20:20, „E-1: TB-30b Posten 3 (Empfohlen)“; wörtlich im Auftrag.
+
+**Nicht freigegeben:**
+- E-3 … E-9;
+- das Register;
+- jede Öffnung von `herkunft.py`, `paths.py`, `zuteilung.py`.
+
+**Sperrliste:** 14 Punkte. TB-122 bewegt Punkt 11 (Commit-Hashes der Optimierer und Simulation) planmässig nach 37.3. Kein neues Abbild vor dem nächsten Bündel.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus
+
+| # | Fehler | ⇒ Regel |
+|---|---|---|
+| 1 | TB-114: Erwartung an die Sonde gesetzt, ohne die Sonde zu lesen ⇒ Abbruch in Block C | **Eine Erwartung an ein Werkzeug steht im Auftrag nur mit Fundstelle im Werkzeug, sonst „vom Werkzeug abhängig, im Ergebnis beschreiben“.** *Nicht in ARBEITSWEISE (gemessen: 0 Treffer)* |
+| 2 | TB-116: Schliess-Auslöser bei 539 s ⇒ vom Wächter abgewiesen | **Alter des Abgabe-Commits vor dem Auslösen messen** (`git log -1 %ct`); erst ab 600 s |
+| 3 | TB-117-Auftrag nannte einen 0b-Wert aus TB-116, den TB-116 nicht gemessen hatte | Zahlen aus früheren Ergebnissen nur mit Fundstelle im Ergebnis |
+| 4 | TB-119-Auftrag musste den nach 27.5 gestrichenen Wert wörtlich nennen ⇒ Auftrag darf nicht in die Ablage | Frage an Fable in der Sammlung. Bis dahin: **Aufträge, die eine 27.5-Streichung vollziehen, gehen nicht in die Ablage** |
+| 5 | TB-120: `faltenplan.faltenplan()` für eine Zählung aufgerufen; es startet einen Loader-Trockenlauf (ohne Folge, abgebrochen) | **`faltenplan.faltenplan()` ist kein Lesen**, wie `faltenplan.py main()`. In nur lesenden Aufträgen verbieten |
+| 6 | TB-121 lag ~35 h unabgeschickt im Fenster, zwei Nachschauen ohne Wirkung | Nach dem Auslöser prüfen, ob Schritt 0 committet ist. Ohne Commit ist der Satz nicht angekommen (K3l) ⇒ einmal Push, dann warten; keine Nachschau-Kette |
+| 7 | `project_write` mit `local_path` ausserhalb des Arbeitsverzeichnisses abgewiesen | Dateien für die Ablage vorher ins Arbeitsverzeichnis kopieren, md5 prüfen, dann `project_write` |
+
+### Block 8 — Zwischengelagert, noch nicht eingearbeitet
+
+- Die fünf uncommitteten Dateien aus Block 2. Sie gehen mit dem nächsten Schritt-0-Commit ins Repo.
+- `logs/auftraege/`: nur ältere Reste (`NACHTRAG_TB-78*`, `TB-58b_v2.md`, `nachtrag5_anzuhaengen.md`), gemessen; nichts Neues aus diesem Chat.
+- Die Regeln aus Block 7, Nr. 1, 5 und 6 stehen noch nicht in ARBEITSWEISE. **Betreiber 29.09., Auswahlkarte beim Umzug: „Ja, mit nächstem Auftrag“.** Sie gehen als kleiner Schritt in TB-122 oder in den Registerauftrag E-2. Auf dieselbe Karte hin sagte der Betreiber zu UMZUG Schritt 2 „Passt so“; die Arbeitsweise bleibt ohne weitere Ergänzung.
+- Die Regeln aus Block 7 stehen seit 29.09. auch in der Erinnerung (`preferences.md` des Projekts).
+- Neu in der Ablage, **nicht** von diesem Chat: `projektfuehrung/FABLE_UEBERGABE_2026-09-29_neuer_chat.md`. Vermutlich ist Fable ebenfalls umgezogen. Der neue Chat liest die Datei und prüft, ob sie ins Repo gehört.
+
+### Block 9 — Eröffnungstext
+
+Die einzige Fassung steht in `UMZUG.md` Abschnitt 6. Sie zeigt seit TB-120 auf diese Datei.
+
+**Stehende Pflichten des steuernden Chats** (Kurzfassung; massgeblich sind ARBEITSWEISE und UMZUG):
+- Aufträge schreiben und per `starte_TB-<n>` auslösen; im Wächter-Log „Satz ins Fenster gelegt“ prüfen; schliessen mit `schliesse_<HEAD>` erst ab 600 s; Sonde `starte_TB-99`; Nachschau per `send_later`.
+- Ergebnisse selbst lesen.
+- Fable-Anfragen als vollständigen Kopierblock geben; Antworten über `project_info` finden, ins Repo übertragen, md5 prüfen.
+- Jede Betreiberentscheidung als Auswahlkarte mit Empfehlung.
+- Befehle für den Betreiber je eine Zeile.
+- Sitzungen mit Aufwand hoch.
+- Eine gesammelte Fable-Anfrage je Tag.
+- Die Sicherheitsregeln oben gelten unverändert: kein `git status`, `git add` oder Commit über die Brücke; nie überschreiben; keine Werte von Schlüsseln; kein SQLite über die Brücke; nichts nach `docs/` bei laufender Sitzung.
+
+**Ablage-Abgleich beim Umzug (UMZUG Schritt 4), gemessen 29.09., 07:12:** Ist 40 · Soll 44 · entfernen 0 · ablegen 5. Abgelegt wurden `UEBERGABE.md` (ersetzt), `MAC_TB-121` und `MAC_TB-122`. **Nicht** abgelegt: `MAC_TB-119` (27.4, Block 7 Nr. 4) sowie `KANDIDATEN_DURCHGANG_2.md` und `PROJEKTSTAND_einfache_sprache.md` (fehlen im Repo). `ohne_regel`: `PROJEKTSTAND_2026-09-26_einfache_sprache.md` bleibt (Betreiber 27.09.). Füllstand: `knowledge_size` 660 197 vorher, 670 544 nachher (42 Dateien, 34 %). Werkzeugausgabe in `logs/ablage_soll_2026-09-29/`.
+
+
+---
+
+## Nachtrag 29.09.2026, 07:55 — Umzugszeitpunkt nach Tokenverbrauch, schlankere Eröffnung
+
+**Betreiberentscheidung 29.09.2026, ca. 07:50, per Auswahlkarte.** Anlass, wörtlich: *„Kannst du mich zukünftig zum passenden Zeitpunkt auf einen Umzug hinweisen damit wir zu einem bestmöglichen Zeitpunkt umziehen um den Verbrauch der beötigten token zu optimieren. Kannst du mir hierfür vorschlage machen und eine Empfehlung geben?“* Wegen „zukünftig“ gilt ARBEITSWEISE 15. Die Karte, wörtlich:
+- „Wann soll ich dir künftig einen Umzug vorschlagen?“ ⇒ **„Mitzählen + sauberer Stand (Empfohlen)“**
+- „Soll das Einlesen beim Umzug schlanker werden?“ ⇒ **„Ja, Kernlektüre ~40 KB (Empfohlen)“**
+
+**Gemessen 29.09., 07:48** (`wc -c`, HEAD `07fcca7` plus Arbeitsbaum):
+
+| Datei | Bytes |
+|---|---|
+| `UEBERGABE.md` | 39 691, davon der letzte Block (Umzug 29.09.) 9 827 |
+| `UMZUG.md` | 21 605 |
+| `ARBEITSWEISE.md` | 130 716, davon Abschnitt 0: 9 018 |
+| `PRUEFPRINZIPIEN.md` | 21 472 |
+| `BACKLOG.md` | 53 236 |
+| **Summe** | **266 720** |
+
+**Erschlossen, nicht gemessen:** Bei rund 3,3 Byte je Token kostet das Einlesen etwa 80 000 Tokens. Die Kernlektüre (letzter Übergabeblock, ARBEITSWEISE 0, UMZUG 3) hat rund 40 KB, also etwa 12 000 Tokens.
+
+**Bringschuld:** Mit TB-122 oder dem Registerauftrag E-2 als Dokumentationsschritt einarbeiten, nach ARBEITSWEISE 5b: Text wörtlich, `numstat` je Datei, nichts umformuliert. Bis dahin gilt beim Umzug der bisherige Eröffnungstext. Der steuernde Chat weist dann darauf hin.
+
+**(1) `UMZUG.md` Abschnitt 3, neue Zeile unter der Tabellenzeile** `| **5** | **Der Betreiber fragt danach** | dann gilt Abschnitt 4 |`:
+
+```
+| **6** | ⭐ **Der mitgezählte Verlauf erreicht etwa 200 000–250 000 Tokens** — das Zwei- bis Dreifache der Einlesekosten (Betreiber 29.09.2026) | am nächsten sauberen Stand oder vor dem nächsten grossen Block; Vorschlag mit Uhrzeit. Gezählt wird, was im Chat gelesen und geschrieben wurde (Bytes der Werkzeugausgaben ÷ ~3,3). ⚠️ **Schätzung, kein Messwert** — der Kontextfüllstand ist nicht ablesbar; die Zahl steht bei jedem Hinweis dabei |
+```
+
+**(2) `UMZUG.md` Abschnitt 4, Schritt 3, neuer Satz direkt vor der Tabelle „| | Block | ⚠️ |“:**
+
+```
+⭐ **Der jüngste Block der Übergabe ist selbsttragend** (Betreiber 29.09.2026): Er enthält alle neun Blöcke und wird beim Umzug als einziger Teil der Übergabe gelesen. Ältere Blöcke werden nur verwiesen, nicht vorausgesetzt.
+```
+
+**(3) `UMZUG.md` Abschnitt 6, benannte Ersetzung im Eröffnungstext:** Die Zeilen von `Lies in dieser Reihenfolge, über den Projects-Zugriff (in Klammern der Pfad im` bis einschliesslich `ohnehin über CLAUDE.md.` werden ersetzt durch:
+
+```
+Lies zuerst nur die Kernlektüre, über den Projects-Zugriff (in Klammern der
+Pfad im Repo, falls du dort liest):
+
+1. projektfuehrung/UEBERGABE.md    — nur den LETZTEN Block (die unterste
+                                      „## …“-Überschrift); ältere nur bei Bedarf
+                                      (docs/projektfuehrung/UEBERGABE.md)
+2. projektfuehrung/ARBEITSWEISE.md — nur Abschnitt 0, die Ausgabe-Checkliste;
+                                      die übrigen Abschnitte über ihre Zeiger,
+                                      sobald der Anlass kommt
+                                      (docs/projektfuehrung/ARBEITSWEISE.md)
+3. projektfuehrung/UMZUG.md        — nur Abschnitt 3, die Auslöser
+                                      (docs/projektfuehrung/UMZUG.md)
+
+Gezielt nachlesen, sobald der Anlass kommt: PRUEFPRINZIPIEN.md vor jedem
+Auftrag und jeder Bewertung (docs/PRUEFPRINZIPIEN.md — NICHT unter
+projektfuehrung/) · projektfuehrung/BACKLOG.md bei Backlog-Arbeit
+(docs/projektfuehrung/BACKLOG.md) · docs/UEBERGABEPROTOKOLL.md für den
+Betrieb (Cronjobs, Neustarts, Schlüsselbund).
+```
+
+Der Rest des Eröffnungstexts bleibt unverändert.
+
+**(4) `ARBEITSWEISE.md` Abschnitt 0, Tabelle „Wenn ein Arbeitsabschnitt endet oder ein Verlust droht“, benannte Ersetzung:**
+Aus `| ☐ | Ein nötiger Umzug wird frühzeitig angekündigt | 10 |` wird:
+
+```
+| ☐ | Ein nötiger Umzug wird frühzeitig angekündigt — auch nach Tokenverbrauch: Verlauf mitzählen, ab ~200–250k am nächsten sauberen Stand vorschlagen, mit Zahl und Uhrzeit | 10; UMZUG 3 |
+```
+
+**(5) Backlog, neue Zeile in Abschnitt 4 unter `K4r`:**
+
+```
+| **K4s** | ⭐ **UMZUG NACH TOKENVERBRAUCH (29.09.2026, Betreiberentscheidung per Auswahlkarte).** Der steuernde Chat zählt den Verlauf mit und schlägt ab ~200–250k Tokens den Umzug am nächsten sauberen Stand vor (UMZUG 3, Zeile 6). Die Eröffnung liest nur noch die Kernlektüre (~40 KB statt 267 KB, gemessen). ⚠️ Die Zählung ist eine Schätzung, der Kontextfüllstand ist nicht ablesbar. **Preis, benannt:** Eine Regel ausserhalb von ARBEITSWEISE 0 greift erst, wenn ihr Abschnitt nachgeschlagen wird. Wortlaut und Messung: `UEBERGABE.md`, Nachtrag 29.09.2026, 07:55 |
+```
+
+**(6) Erinnerung:** eingetragen am 29.09.2026 in `preferences.md` des Projekts.
+
+
+---
+
+## Nachtrag 29.09.2026, 08:50 — Helfer-Agenten für Recherche, Lesen und Gegenlesen
+
+**Betreiberfrage 29.09.2026, 08:45, wörtlich:** *„Ist es korrekt dass wir keine Helfer-Agenten für Recherchen einsetzen? Falls ja weshalb ist das so?“*
+
+**Gemessen 08:47:** `ARBEITSWEISE.md`, `UMZUG.md`, `PRUEFPRINZIPIEN.md` und `UEBERGABE.md` erwähnen Agenten 0-mal. Es gab also keine Regel. Die Arbeitsteilung war um die drei Rollen Mac-Sitzung, Fable und steuernder Chat gewachsen; Helfer kamen darin nicht vor. Das war eine Lücke, kein Grundsatz.
+
+**Betreiberentscheidung per Auswahlkarte, wörtlich:** „Wie sollen Helfer-Agenten künftig eingesetzt werden?“ ⇒ **„Recherche, Lesen, Gegenlesen (Empfohlen)“**
+
+**Die Regel (Wortlaut für die Dokumente):**
+
+```
+### Helfer-Agenten des steuernden Chats (Betreiber 29.09.2026)
+
+Der steuernde Chat setzt Helfer-Agenten ein für:
+1. Web-Recherche, parallel wo sinnvoll;
+2. grosse Lese- und Suchaufträge im Repo oder in der Ablage, deren Ergebnis eine
+   Schlussfolgerung ist — damit das Lesematerial nicht im Chatverlauf landet
+   (UMZUG 3, Auslöser 6);
+3. Gegenlesen vor dem Übergeben: Ein frischer Helfer, der den Text nicht
+   geschrieben hat, prüft jede Fable-Anfrage und jeden Auftrag Satz für Satz —
+   jede Zahl, jede Fundstelle, jede Erwartung an ein Werkzeug gegen ihre Quelle
+   (Übergabe Block 7; Register 27.1 für Fable-Anfragen). Befunde werden vor dem
+   Übergeben eingearbeitet.
+
+Nicht für: Belege — die Aussage eines Helfers ist eine Selbstauskunft (A8); was
+als Messung zählt, prüft der steuernde Chat an der Rohausgabe oder die
+Mac-Sitzung misst nach (A10). Nicht für Register, Commits, Aufträge schreiben
+oder Freigaben. Ein Helfer schreibt nichts ins Repo.
+
+Preis, benannt: mehr Gesamt-Tokens (ein Gegenleser liest seine Quellen selbst,
+geschätzt 30 000–80 000 je Durchgang); dafür wächst der Chat langsamer.
+```
+
+**Bringschuld:** Mit TB-122 oder E-2 einarbeiten, als neuer Unterabschnitt in `ARBEITSWEISE.md` am Ende von Abschnitt 22 (nach 22.9). Dazu eine Zeile in Abschnitt 0, Tabelle „Wenn ich einen Auftrag schreibe“:
+
+```
+| ☐ | Vor dem Übergeben: frischer Helfer liest gegen — jede Zahl, Fundstelle und Werkzeug-Erwartung an der Quelle (auch für Fable-Anfragen) | 22.10 |
+```
+
+Backlog, neue Zeile in Abschnitt 4 unter `K4s`:
+
+```
+| **K4t** | ⭐ **HELFER-AGENTEN (29.09.2026, Betreiberentscheidung per Auswahlkarte).** Der steuernde Chat setzt Helfer für Web-Recherche, grosse Lese-/Suchaufträge und das Gegenlesen jeder Fable-Anfrage und jedes Auftrags vor dem Übergeben ein. Belege bleiben A8/A10, Register/Commits bei der Mac-Sitzung. Vorher gab es keine Regel (0 Treffer in den Führungsdokumenten). Wortlaut: `UEBERGABE.md`, Nachtrag 29.09.2026, 08:50 |
+```
+
+**Erinnerung:** eingetragen am 29.09.2026 in `preferences.md` des Projekts. **Erste Anwendung:** Fable-Anfrage 29a.

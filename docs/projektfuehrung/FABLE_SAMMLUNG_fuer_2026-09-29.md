@@ -107,3 +107,87 @@ Nummernkollision verhindert hat.
 - Folge: Der Auftrag geht **nicht** in die Ablage, obwohl B4 ihn als offenen Auftrag zu 27b hineinnähme. Das Ergebnis TB-119 enthält den Wert nicht und geht mit der Dienstagsanfrage hinein.
 - Frage: Soll ein Auftrag, der eine Streichung nach 27.5 vollzieht, künftig den Wert nur mit Fundstelle nennen und die Zeile per Muster finden lassen?
 - Neigung: ja.
+
+### 27.09., TB-120: siebzehn Fragen zum Erzeuger
+
+*Herkunft: `docs/ERGEBNIS_TB-120_erzeuger_bestandsaufnahme.md`, Abschnitt 6, zeichengleich übernommen. Die Wortlaute stehen vollständig in `docs/belege/TB-120/b_offen.md`. Der Schnitt in neun Aufträge E-1 … E-9 steht im Ergebnis, Abschnitt 5, und muss am Dienstag mit.*
+
+Ohne Neigung. F-1 … F-11 sind O-1 … O-11 aus `b_offen.md`; dort stehen die Wortlaute vollständig und geprüft, hier
+gekürzt. Herkunft jeweils: diese Sitzung, `docs/belege/TB-120/`.
+
+- **F-1 (O-1) Zeilen in `zellen.csv`.** R5 (b): „`zellen.csv` enthält für jede Zelle des Rasters genau eine Zeile; die
+  Zeilenzahl ist gleich der Zahl der Zellen“ — Vertrag `auswertung.py`: „genau eine Zeile je (Zelle x Falte), fuer ALLE
+  Falten des Faltenplans, Bestaetigungsperiode eingeschlossen.“ Welcher Mengenbegriff gilt für die Abnahme?
+- **F-2 (O-2) Leere Trade-Liste.** R5 (b) „(Sharpe 0 nach Registertext 1c, leere Trade-Liste)“, 43-7 „(leere Liste,
+  Sharpe 0 nach 1c)“; der Vertrag kennt keine Trade-Liste je Zelle. Gibt es sie als Rohergebnis, in welcher Datei, mit
+  welchen Feldern?
+- **F-3 (O-3) Kill-Test-Werte.** 22.2: „Der Lauf berichtet je Bot für den Plateau-Gewinner drei Werte“. `auswertung.py`
+  rechnet sie nicht; bestes Symbol und fünf beste Trades brauchen Daten, die der Vertrag nicht führt. Zellen-Erzeuger
+  oder `auswertung.py` (Öffnung der Punkte 3/5/14)?
+- **F-4 (O-4) Bootstrap.** 15.3 (a): „Jedes Bootstrap-Intervall im Auswertungsskript wird auf der Reihe der täglichen
+  Netto-Mark-to-Market-Renditen des Kapitalpfads gerechnet“; 15.3 (b) L = max(„mediane Haltedauer des Parametersatzes in Handelstagen“, …). Im Code 0 Treffer für `bootstrap`; der Vertrag führt keine Haltedauer. Wo entsteht
+  das Intervall, und liefert der Erzeuger die Haltedauer je Zelle?
+- **F-5 (O-5) Zwei Drawdowns.** 24.2: MtM-Drawdown bewertet, „Der ereignisindizierte Drawdown aus
+  `equity_simulation.py` wird berichtet, nicht bewertet.“ — `beispieldaten.py`: „der Kapital-Drawdown einer Falte
+  steht in `zellen.csv`, weil er im echten Lauf aus `equity_simulation.py` kommt“. Der Vertrag hat eine Spalte. Wo steht
+  der ereignisindizierte Wert?
+- **F-6 (O-6) Embargo und Beginn der Bestätigung.** 16.6: „Die Bestätigungsperiode eines Bots beginnt am ersten
+  Handelstag nach Go-Live, an dem keine vor Go-Live eröffnete Position dieses Bots mehr offen ist.“; 41.3 C3: „für den
+  Gewinner auf dessen eigenen simulierten Positionen“ — 15.6/38.1: Bestätigungsfalte `2026-01-01/2026-09-01`,
+  Go-Live-Schnitt „2026-09-01, ausschliesslich“. (1) Wo wird die Bedingung ausgewertet, wenn der Gewinner erst in
+  `auswertung.py` feststeht? (2) Wie verhält sich „nach Go-Live“ zu dieser Spanne?
+- **F-7 (O-7) 3b (d).** Symbolzahl, Anteil, Auslassungen mit Grund und Faltenkohärenz „Berichtet je Bot und Falte“;
+  16.11 Z. 7: „Der spätere Auswerter tut es noch nicht“. Die Kohärenz braucht die Rangfolge aller Zellen. Wo?
+- **F-8 (O-8) Benchmark-Tagesreihe.** Vertrag: `benchmark_tagesreihen/<markt>.csv`, „das gleichgewichtete
+  point-in-time-Universum, taeglich.“ — 23.3: „aus den Symbolen gebildet, die der Loader des Bots an diesem Tag
+  handelbar macht“. 46.3 nennt diese Datei nicht als Ausgabe. Wer schreibt sie, je Markt oder je Bot?
+- **F-9 (O-9) 36.1 für Rohergebnisse.** 36.1 gilt für Pfade, die „auf der Sperrliste steht oder für sie bestimmt ist“;
+  der Plan: „unterliegt der Schreibregel 36.1 von Anfang an“. Genügt der Plan, oder braucht es einen Registersatz?
+- **F-10 (O-10) `haltedauer_balken`.** Name registriert (B6/B7), Zählregel und Einheit nicht; `positionen_holen.py`
+  zählt `kerzen` „beide Enden eingeschlossen“. Welche Zählregel, welche Einheit, welche Umrechnung für den Deckel in
+  Handelstagen?
+- **F-11 (O-11) Bindung der neuen Listen.** 40.6: „und als Punkt auf die Sperrliste aufgenommen“ — R3: „gehören mit
+  ihrem Hash in die Gruppe `eingefroren` des Abbilds“. Beides, oder erfüllt R3 den Satz aus 40.6?
+- **F-12 Ort des Zellen-Kerns.** 11.2: `evaluate_combination_multi` liefere den Kapital-Drawdown „noch nicht“ mit,
+  „Das nachzurüsten ist TB-30b.“; 29.4/34.5: die Wache „wird in allen neun `multi_symbol_optimise.py` eingebaut“ —
+  `PLAN_VOR_DEM_TAG.md`, Posten 2: „im Erzeuger (10)“. Gemessen: `evaluate_combination_multi` simuliert nicht und
+  verwirft Zellen. Wird es zum Zellen-Kern umgebaut, oder rechnet der Erzeuger über `collect_all_trades` und
+  `simulate_portfolio` — und schützt die Wache in den Optimierern dann den Lauf?
+- **F-13 Reihenfolge Listen gegen Posten 4.** 40.6 verlangt die Listen „mit dem registrierten Code“. Posten 4 (26.2,
+  Horizont je Bot) ändert den Signalpfad der vier Aktien-Bots. Werden die Listen vor oder nach Posten 4 erzeugt?
+  (Posten 3 mit unveränderten Voreinstellungen ändert keine Ausgabe; das ist messbar.)
+- **F-14 Ausgeführte Positionen.** `simuliere_portfolio` gibt sie nicht heraus; A9 verbietet die Kennzeichnung; die
+  MtM-Tagesreihe (1a, 24.2) braucht sie. Ist eine zusätzliche Rückgabe aus `shared/zuteilung.py` (Sperrlistenpunkt 10,
+  Rechnung unverändert) als beauftragte Änderung nach 37.3 der Weg, oder ein anderer?
+- **F-15 Abnahme vor dem Tag ohne Ergebnis.** R5 (b) (Zeilenzahl, Nullzeile) ist erst an einem Lauf prüfbar; ein Lauf
+  des Zellen-Erzeugers auf dem Snapshot erzeugt vor dem Tag Ergebnisgrössen des Selektionsraums. Womit wird er vor dem
+  Tag abgenommen (synthetische Eingaben, Teilraster, nur Struktur)?
+- **F-16 Übernahme von `mtm_kern.py`.** Der MtM-Kern liegt in `research/mtm_drawdown/` (TB-73). Import aus dort
+  (Laufbereich wächst um ein Research-Modul) oder Verlagerung nach `shared/`? *Kann auch Handwerk sein; hier genannt,
+  weil es den Laufbereich (R4) ändert.*
+- **F-17 Parameterdateien.** 40.6 (Folgerung TB-96): „je Bot die Hashes der Parameterdateien“. Gemessen stehen
+  Handelsparameter auch als Konstanten in `backtest_*.py` (z. B. `SMA_TREND_PERIOD = 200` in
+  `rsi2_mean_reversion/backtest_rsi2.py`; 15.4 zitiert `MAX_HOLD_HOURS` aus `backtest_elliott.py`). Welche Dateien sind
+  „Parameterdateien“?
+
+**Neigungen des steuernden Chats zu F-1 … F-17 (27.09., 20:15).** Wo „keine“ steht, sehe ich zwei tragfähige Wege und lege mich vor Fable nicht fest.
+
+| F | Neigung |
+|---|---|
+| F-1 | Zeilen je (Zelle × Falte), einschliesslich Bestätigungsperiode; R5 (b) als Kurzform lesen. Abnahme: Zeilenzahl = Zellen × Falten des Faltenplans je Bot |
+| F-2 | keine; hängt an F-3 |
+| F-3 | keine. Jeder Weg öffnet etwas: den Erzeuger-Vertrag oder `auswertung.py` (Punkte 3/5/14) |
+| F-4 | keine; hängt an F-3 (dieselbe Frage: welche Daten je Zelle) |
+| F-5 | keine |
+| F-6 | keine |
+| F-7 | keine |
+| F-8 | keine |
+| F-9 | ein Registersatz. Der Plan ist kein Registertext (K2g: jede Behauptung braucht ihren Beleg im Repo, und die Regel gehört ins Register, nicht in den Plan) |
+| F-10 | keine |
+| F-11 | keine |
+| F-12 | Der Erzeuger rechnet über `collect_all_trades` und `simulate_portfolio`; `evaluate_combination_multi` bleibt ausserhalb des Laufs. Die Wache 29.4 gehört dann in den Pfad, den der Lauf wirklich nimmt; Posten 5 wäre danach neu zu fassen |
+| F-13 | Listen **nach** Posten 4. 40.6 verlangt „den registrierten Code“, und das ist der Code am Tag. Listen vor Posten 4 wären an einen Signalpfad gebunden, der danach wechselt |
+| F-14 | ja: eine zusätzliche Rückgabe aus `shared/zuteilung.py` als beauftragte Änderung nach 37.3, mit dem Nachweis, dass die Rechnung bytegleich bleibt |
+| F-15 | Abnahme vor dem Tag nur auf synthetischen Eingaben (`beispieldaten.py`) und auf Struktur (Zeilenzahl, Nullzeile, Felder); kein Lauf auf dem Snapshot vor dem Tag |
+| F-16 | keine |
+| F-17 | Parameterdateien sind alle Dateien, aus denen der Signalpfad eines Bots einen Handelsparameter liest (`live_params.py` und `backtest_*.py`), per AST gemessen, nicht per Namensliste |

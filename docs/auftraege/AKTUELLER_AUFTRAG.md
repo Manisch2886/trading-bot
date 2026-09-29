@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-120** | `docs/auftraege/MAC_TB-120_erzeuger_bestandsaufnahme.md` | ⭐ **Hauptordner**: Erzeuger-Bestandsaufnahme, **nur lesend** — Anforderungen an Listen- und Zellen-Erzeuger aus dem Register, Bestand im Code, Lückenliste, Schnitt in Aufträge, Fragen für Fable; vorab UMZUG 6 auf `UEBERGABE.md` (Schritt A). Kein Lauf, keine Codeänderung. Freigabe 27.09.2026, 18:08 und ca. 18:25 (wörtlich im Auftrag) |
+| **TB-121** | `docs/auftraege/MAC_TB-121_kalter_leser_register_1_12.md` | ⭐ **Hauptordner**: kalter Leser (Fable 25f V8/F3) — Register Zeilen 1 bis vor Abschnitt 13 ohne Vorwissen lesen; nur lesen, keine anderen Dokumente. Freigabe 27.09.2026, 18:08 und ca. 18:25 (wörtlich im Auftrag) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
