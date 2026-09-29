@@ -1,0 +1,7 @@
+# TB-123 A3 - Bezugspunkt von test_kursdaten: der Test ruft 'git diff --name-only origin/main' (shared/test_kursdaten.py:96) und prueft 'keine equity_simulation.py veraendert'. Derselbe Aufruf, 2026-09-29 20:12:21 +0200, origin/main = dca3096:
+## Worktree /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_vorher2 (HEAD c064405), Treffer equity_simulation.py:
+strategies/rsi2_mean_reversion/equity_simulation.py
+strategies/volatility_breakout/equity_simulation.py
+strategies/volatility_breakout_crypto/equity_simulation.py
+## Hauptordner (HEAD dca3096), Treffer equity_simulation.py: 0
+## Beendete Sitzung TB-122 (fund_tb122_c3_*.txt): vorher HEAD c064405 = damals origin/main -> 0 Treffer, gruen; nachher HEAD 08153e4, origin/main noch c064405 -> dieselben drei Dateien, rot.

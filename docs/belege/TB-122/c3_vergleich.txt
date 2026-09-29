@@ -1,0 +1,56 @@
+# vorher : # TB-122 C3 Tests, HEAD c064405, Arbeitsbaum ausserhalb docs/ [], 2026-09-29 19:12:35 +0200
+# nachher: # TB-122 C3 Tests, HEAD dca3096, Arbeitsbaum ausserhalb docs/ [], 2026-09-29 18:09:43 +0200
+# Testdateien vorher 52, nachher 52, gemeinsam 52
+GLEICH    test_faltenplan_neun           rc 0/0   139s/ 148s  | 156/156 Pruefungen bestanden.
+GLEICH    test_erste_falte_trockenlauf   rc 0/0   140s/ 174s  | 50/50 Pruefungen bestanden.
+GLEICH    test_horizontbeginn            rc 0/0    61s/  65s  | 61/61 Pruefungen bestanden.
+GLEICH    test_min_history               rc 0/0     1s/   1s  | 14/14 Pruefungen bestanden.
+GLEICH    test_volle_jahre               rc 0/0     0s/   1s  | 7/7 Pruefungen bestanden.
+GLEICH    test_universum_trockenlauf     rc 0/0   110s/ 105s  | 163/163 Pruefungen bestanden.
+GLEICH    test_zwischenablage            rc 0/0     2s/   2s  | 12/12 Pruefungen bestanden.
+GLEICH    test_abrufschutz               rc 0/0    35s/  35s  | 77 von 77 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_agent2_kapitalmass        rc 0/0     1s/   0s  | 34/34 Pruefungen bestanden.
+GLEICH    test_agent2_zielfunktion       rc 0/0     5s/   6s  | 41 von 41 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_arbeitsbaum_laufbereich   rc 0/0    20s/  19s  | 26 von 26 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_ausschlussmengen          rc 0/0     1s/   0s  | 9/9 Pruefungen bestanden.
+GLEICH    test_binance_historie          rc 0/0     1s/   2s  | 75/75 Pruefungen bestanden.
+GLEICH    test_determinismus             rc 0/0    30s/  30s  | Ergebnis: 54 bestanden, 0 fehlgeschlagen
+GLEICH    test_drawdown_beide_masse      rc 142/142   900s/ 900s  | 
+GLEICH    test_empfehlung_format         rc 0/0     0s/   1s  | 70/70 Pruefungen bestanden.
+GLEICH    test_entscheidungskerze        rc 0/0    10s/   9s  | Binary file <LOG>/test_entscheidungskerze.log matches
+GLEICH    test_ergebniskurven            rc 0/0    37s/  28s  | 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_fetch_binance_data        rc 0/0     4s/   4s  | 77 von 77 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_groessenfaktor            rc 0/0   199s/ 164s  | Alle 171 Pruefungen bestanden.
+GLEICH    test_kursdaten_neuaufbau       rc 0/0     1s/   1s  | 67/67 Pruefungen bestanden.
+ABWEICHT  test_kursdaten                 rc 1/0    38s/  30s  | 81 von 82 Pruefungen bestanden, 1 fehlgeschlagen.  ||  82 von 82 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_ladeprotokoll             rc 0/0   121s/  95s  | Alle 182 Pruefungen bestanden.
+GLEICH    test_leeres_symbol             rc 0/0    19s/  15s  | 45 von 45 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_live_params_werte         rc 0/0     0s/   0s  | 69/69 Pruefungen bestanden.
+GLEICH    test_main_gegenprobe           rc 0/0     2s/   1s  | 13/13 Pruefungen bestanden.
+GLEICH    test_messkette                 rc 0/0    51s/  35s  | 93/93 Pruefungen bestanden.
+GLEICH    test_nulltrades_modus          rc 0/0    38s/  44s  | 34/34 Pruefungen bestanden.
+GLEICH    test_paths                     rc 0/0    14s/  16s  | 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_regimewache_einbau        rc 0/0    23s/  21s  | 21/21 Pruefungen bestanden.
+GLEICH    test_regimewache               rc 0/0     0s/   0s  | 13/13 Pruefungen bestanden.
+GLEICH    test_rueckfaelle_modus         rc 0/0    46s/  44s  | 48/48 Pruefungen bestanden.
+GLEICH    test_snapshot                  rc 0/0     8s/   7s  | 164 von 164 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_sperrlistensonde          rc 0/0     1s/   1s  | 65/65 Pruefungen bestanden.
+GLEICH    test_stabile_sortierung        rc 1/1    82s/  90s  | Ergebnis: 43 bestanden, 3 fehlgeschlagen
+GLEICH    test_startpruefungen           rc 0/0    14s/  19s  | 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_stille_ausfaelle          rc 0/0    31s/  86s  | 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_strategy_paths            rc 0/0    14s/  23s  | 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+GLEICH    test_umstellungstag            rc 0/0     0s/   0s  | Alle 25 Pruefungen bestanden.
+GLEICH    test_wellenauswahl             rc 1/1   114s/ 151s  | Ergebnis: 322 bestanden, 1 fehlgeschlagen
+GLEICH    test_zeitabdeckung             rc 0/0     1s/   1s  | 40/40 Pruefungen bestanden.
+GLEICH    test_zuteilung                 rc 0/0    28s/  26s  | Ergebnis: 71 bestanden, 0 fehlgeschlagen
+GLEICH    test_ersatzwerte               rc 0/0   225s/ 237s  | 99/99 Pruefungen bestanden.
+GLEICH    test_pnl                       rc 0/0     1s/   1s  | 93/93 Pruefungen bestanden.
+GLEICH    test_vergleich                 rc 0/0     5s/   4s  | 23/23 bestanden.
+GLEICH    test_vol_sizing_core           rc 0/0     1s/   1s  | ALLE CHECKS OK
+GLEICH    test_drawdown                  rc 1/1     0s/   1s  | 
+ABWEICHT  test_sync_check                rc 0/1     1s/   0s  | 33 Checks bestanden, 0 fehlgeschlagen.  ||  30 Checks bestanden, 3 fehlgeschlagen.
+GLEICH    test_vbc_core                  rc 0/0     1s/   1s  | 56 Checks bestanden, 0 fehlgeschlagen.
+GLEICH    test_backtest_defaults         rc 0/0     1s/   1s  | 59/59 Pruefungen bestanden.
+GLEICH    test_wurzelkorrektur           rc 0/0     4s/   4s  | 25 Checks bestanden, 0 fehlgeschlagen.
+GLEICH    test_vorregistrierung          rc 0/0   964s/ 972s  | 196/196 Pruefungen bestanden.
+# gleich 50, abweichend 2: test_kursdaten test_sync_check

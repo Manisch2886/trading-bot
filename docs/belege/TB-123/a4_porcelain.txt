@@ -1,0 +1,5 @@
+# TB-123 A4 - git status --porcelain -- . ':!docs' im Hauptordner
+vor A1 2026-09-29 18:09:43 +0200 HEAD dca3096: 0 Zeilen
+nach A1 2026-09-29 19:10:43 +0200 HEAD dca3096: 0 Zeilen
+vor A2 2026-09-29 19:10:44 +0200 HEAD dca3096: 0 Zeilen
+nach A2 2026-09-29 20:11:53 +0200 HEAD dca3096: 0 Zeilen

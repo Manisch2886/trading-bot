@@ -1,0 +1,66 @@
+# TB-123 A2 - Worktree fuer den Vorher-Lauf (Stand c064405), 2026-09-29 19:10:58 +0200
+# git worktree add --detach /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_vorher c064405
+# Verknuepfungen auf den Hauptordner = alle gitignorierten Eintraege aus 'git status --ignored' ohne __pycache__, .DS_Store, .claude/*.bak, docs/auftraege/_ausloeser/_erledigt/:
+ln -s .env
+ln -s benachrichtigungen_schliessung.db
+ln -s broker_testnet_t3_supertrend.db
+ln -s config/email_config.py
+ln -s data_sicherung
+ln -s email_summary.log
+ln -s forward_test.log
+ln -s logs
+ln -s notifications/rueckfall_zustand.json
+ln -s notifications/state.json
+ln -s notifications/waechter_zustand.json
+ln -s notifications/warteauftraege.json
+ln -s notifications/warteauftraege.json.lock
+ln -s paper_trading_elliott_wave.db
+ln -s paper_trading_elliott_wave_stocks.db
+ln -s paper_trading_rsi2_crypto.db
+ln -s paper_trading_rsi2_mean_reversion.db
+ln -s paper_trading_t3_supertrend.db
+ln -s paper_trading_turtle_soup_crypto.db
+ln -s paper_trading_turtle_soup_stocks.db
+ln -s paper_trading_volatility_breakout.db
+ln -s paper_trading_volatility_breakout_crypto.db
+ln -s research/turn_of_month/daten
+ln -s research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161305.json
+ln -s research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+ln -s results/portfolio_overview/dashboard_snapshot.json
+ln -s strategies/volatility_breakout/paper_trading_volatility_breakout.db
+ln -s trading-env
+
+# Erster Worktree tb123_vorher: Verzeichnis-Verknuepfungen passen nicht auf Muster mit Schraegstrich (git status dort 4 Zeilen '??': data_sicherung, logs, research/turn_of_month/daten, trading-env). Loeschen der Verknuepfung (unlink) abgelehnt -> zweiter, frischer Worktree:
+# 2026-09-29 19:11:39 +0200 git worktree add --detach /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_vorher2 c064405
+HEAD c064405
+ln -s .env
+ln -s benachrichtigungen_schliessung.db
+ln -s broker_testnet_t3_supertrend.db
+ln -s config/email_config.py
+mkdir data_sicherung + 1 Verknuepfungen je Eintrag
+ln -s email_summary.log
+ln -s forward_test.log
+mkdir logs + 25 Verknuepfungen je Eintrag
+ln -s notifications/rueckfall_zustand.json
+ln -s notifications/state.json
+ln -s notifications/waechter_zustand.json
+ln -s notifications/warteauftraege.json
+ln -s notifications/warteauftraege.json.lock
+ln -s paper_trading_elliott_wave.db
+ln -s paper_trading_elliott_wave_stocks.db
+ln -s paper_trading_rsi2_crypto.db
+ln -s paper_trading_rsi2_mean_reversion.db
+ln -s paper_trading_t3_supertrend.db
+ln -s paper_trading_turtle_soup_crypto.db
+ln -s paper_trading_turtle_soup_stocks.db
+ln -s paper_trading_volatility_breakout.db
+ln -s paper_trading_volatility_breakout_crypto.db
+mkdir research/turn_of_month/daten + 4 Verknuepfungen je Eintrag
+ln -s research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161305.json
+ln -s research/vorregistrierung/ergebnisse/faltenplan_2026-09-22-161505.json
+ln -s results/portfolio_overview/dashboard_snapshot.json
+ln -s strategies/volatility_breakout/paper_trading_volatility_breakout.db
+mkdir trading-env + 5 Verknuepfungen je Eintrag
+git status --porcelain im Worktree: 0 Zeilen
+# 2026-09-29 19:12:34 +0200 erster A2-Start scheiterte (rc 127): docs/belege/TB-122/c3_tests.sh kam erst mit ab31314 und fehlt am Stand c064405. Aufruf deshalb aus dem Worktree mit dem Skript des Hauptordners (absoluter Pfad): cd /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_vorher2 && bash /Users/jaquelineloffler/trading-bot/docs/belege/TB-122/c3_tests.sh /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_c3_vorher
+# 2026-09-29 20:12:28 +0200 Lauf fertig (rc_skript 0, Ende 20:11:40), Worktree-porcelain danach 0 Zeilen. Beide Worktrees NICHT entfernt (enthalten Verknuepfungen auf echte DBs und trading-env; 'git worktree remove --force' waere noetig, Risiko nicht eingegangen): /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_vorher (4 Verzeichnis-Verknuepfungen, ungenutzt) und /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_vorher2 (Lauf). Testlogs: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_c3_vorher, /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb123_c3_nachher.

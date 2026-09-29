@@ -1,0 +1,56 @@
+# TB-123: Fund im $TMPDIR - Uebersicht des C3-Laufs der beendeten Sitzung TB-122 (vorher), unveraendert kopiert aus /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb122_c3_vorher.txt (Datei-mtime 2026-09-29 16:07:09, sha256 cd82125cfcde8802...). Nicht der C3-Nachweis von TB-123, nur Vergleichsbeleg.
+# TB-122 C3 Tests, HEAD c064405, Arbeitsbaum ausserhalb docs/ [], 2026-09-29 15:04:46 +0200
+test_faltenplan_neun rc=0 163s: 156/156 Pruefungen bestanden.
+test_erste_falte_trockenlauf rc=0 164s: 50/50 Pruefungen bestanden.
+test_horizontbeginn rc=0 69s: 61/61 Pruefungen bestanden.
+test_min_history rc=0 1s: 14/14 Pruefungen bestanden.
+test_volle_jahre rc=0 1s: 7/7 Pruefungen bestanden.
+test_universum_trockenlauf rc=0 108s: 163/163 Pruefungen bestanden.
+test_zwischenablage rc=0 2s: 12/12 Pruefungen bestanden.
+test_abrufschutz rc=0 36s: 77 von 77 Pruefungen bestanden, 0 fehlgeschlagen.
+test_agent2_kapitalmass rc=0 0s: 34/34 Pruefungen bestanden.
+test_agent2_zielfunktion rc=0 6s: 41 von 41 Pruefungen bestanden, 0 fehlgeschlagen.
+test_arbeitsbaum_laufbereich rc=0 19s: 26 von 26 Pruefungen bestanden, 0 fehlgeschlagen.
+test_ausschlussmengen rc=0 0s: 9/9 Pruefungen bestanden.
+test_binance_historie rc=0 2s: 75/75 Pruefungen bestanden.
+test_determinismus rc=0 39s: Ergebnis: 54 bestanden, 0 fehlgeschlagen
+docs/belege/TB-122/c3_tests.sh: line 10:  6143 Alarm clock: 14         perl -e "alarm shift; exec @ARGV" $GRENZE $PY -W ignore "$t" > "$LOG/$n.log" 2>&1
+test_drawdown_beide_masse rc=142 900s: 
+test_empfehlung_format rc=0 1s: 70/70 Pruefungen bestanden.
+test_entscheidungskerze rc=0 12s: Binary file /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb122_c3_vorher/test_entscheidungskerze.log matches
+test_ergebniskurven rc=0 38s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_fetch_binance_data rc=0 4s: 77 von 77 Pruefungen bestanden, 0 fehlgeschlagen.
+test_groessenfaktor rc=0 210s: Alle 171 Pruefungen bestanden.
+test_kursdaten_neuaufbau rc=0 2s: 67/67 Pruefungen bestanden.
+test_kursdaten rc=0 48s: 82 von 82 Pruefungen bestanden, 0 fehlgeschlagen.
+test_ladeprotokoll rc=0 130s: Alle 182 Pruefungen bestanden.
+test_leeres_symbol rc=0 19s: 45 von 45 Pruefungen bestanden, 0 fehlgeschlagen.
+test_live_params_werte rc=0 0s: 69/69 Pruefungen bestanden.
+test_main_gegenprobe rc=0 2s: 13/13 Pruefungen bestanden.
+test_messkette rc=0 43s: 93/93 Pruefungen bestanden.
+test_nulltrades_modus rc=0 34s: 34/34 Pruefungen bestanden.
+test_paths rc=0 15s: 35 von 35 Pruefungen bestanden, 0 fehlgeschlagen.
+test_regimewache_einbau rc=0 24s: 21/21 Pruefungen bestanden.
+test_regimewache rc=0 0s: 13/13 Pruefungen bestanden.
+test_rueckfaelle_modus rc=0 49s: 48/48 Pruefungen bestanden.
+test_snapshot rc=0 10s: 164 von 164 Pruefungen bestanden, 0 fehlgeschlagen.
+test_sperrlistensonde rc=0 1s: 65/65 Pruefungen bestanden.
+test_stabile_sortierung rc=1 98s: Ergebnis: 43 bestanden, 3 fehlgeschlagen
+test_startpruefungen rc=0 17s: 44 von 44 Pruefungen bestanden, 0 fehlgeschlagen.
+test_stille_ausfaelle rc=0 54s: 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+test_strategy_paths rc=0 13s: 27 von 27 Pruefungen bestanden, 0 fehlgeschlagen.
+test_umstellungstag rc=0 1s: Alle 25 Pruefungen bestanden.
+test_wellenauswahl rc=1 133s: Ergebnis: 322 bestanden, 1 fehlgeschlagen
+test_zeitabdeckung rc=0 1s: 40/40 Pruefungen bestanden.
+test_zuteilung rc=0 31s: Ergebnis: 71 bestanden, 0 fehlgeschlagen
+test_ersatzwerte rc=0 237s: 99/99 Pruefungen bestanden.
+test_pnl rc=0 1s: 93/93 Pruefungen bestanden.
+test_vergleich rc=0 4s: 23/23 bestanden.
+test_vol_sizing_core rc=0 1s: ALLE CHECKS OK
+test_drawdown rc=1 1s: 
+test_sync_check rc=0 0s: 33 Checks bestanden, 0 fehlgeschlagen.
+test_vbc_core rc=0 1s: 56 Checks bestanden, 0 fehlgeschlagen.
+test_backtest_defaults rc=0 1s: 59/59 Pruefungen bestanden.
+test_wurzelkorrektur rc=0 4s: 25 Checks bestanden, 0 fehlgeschlagen.
+test_vorregistrierung rc=0 992s: 196/196 Pruefungen bestanden.
+## Ende 16:07:09
