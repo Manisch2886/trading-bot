@@ -85,26 +85,33 @@ from indicators import sma, rsi
 from live_params import MAX_HOLD_DAYS   # Handelstage NACH dem Einstiegstag
 
 RSI_PERIOD = 2
+# TB-122 (TB-30b Posten 3, Register 11.3): die Trendfilter-Laenge ist eine
+# Rasterachse (`sma_trend_filter`) und wird als Parameter bis in
+# compute_indicators() und run_backtest() durchgereicht - wie beim Krypto-
+# Zwilling. SMA_TREND_PERIOD bleibt als Name der VOREINSTELLUNG stehen; ohne
+# Argument rechnet alles wie vorher.
 SMA_TREND_PERIOD = 200
 SMA_EXIT_PERIOD = 5
 
 from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
 
 
-def compute_indicators(price_df: pd.DataFrame) -> pd.DataFrame:
+def compute_indicators(price_df: pd.DataFrame,
+                        sma_trend_period: int = SMA_TREND_PERIOD) -> pd.DataFrame:
     """Berechnet alle Indikatoren auf der VOLLEN Kurshistorie (nicht erst
     nach einer Zeitraum-Kappung) - der SMA(200)-Trendfilter braucht 200
     Handelstage Vorlauf, sonst waeren die ersten ~200 Tage jedes
     Auswertungsfensters ohne gueltigen Trendfilter (NaN)."""
     df = price_df.sort_values("open_time").reset_index(drop=True).copy()
-    df["sma_trend"] = sma(df["close"], SMA_TREND_PERIOD)
+    df["sma_trend"] = sma(df["close"], sma_trend_period)
     df["sma_exit"] = sma(df["close"], SMA_EXIT_PERIOD)
     df["rsi"] = rsi(df["close"], RSI_PERIOD)
     return df
 
 
 def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
-                  stop_loss_pct: float = None, entry_cutoff=None) -> pd.DataFrame:
+                  stop_loss_pct: float = None, entry_cutoff=None,
+                  sma_trend_period: int = SMA_TREND_PERIOD) -> pd.DataFrame:
     """Laeuft Tag fuer Tag durch die Kursreihe (Indikatoren muessen bereits
     berechnet sein, siehe compute_indicators). entry_cutoff (optional):
     Einstiege vor diesem Zeitpunkt werden verworfen UND der Scan startet
@@ -119,7 +126,7 @@ def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
     open_time = df["open_time"].to_numpy()
     n = len(df)
 
-    start_i = SMA_TREND_PERIOD
+    start_i = sma_trend_period
     if entry_cutoff is not None:
         start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
 

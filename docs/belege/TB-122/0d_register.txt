@@ -1,0 +1,71 @@
+# TB-122 0d Fundstellen, 2026-09-29 15:01:45 +0200, HEAD c064405, Register sha256 18e39ee29b9b
+
+## Registertext 11.3 (Z. 1143-1160, zeichengleich)
+### 11.3 Zwei Achsen brauchen eine Durchreichung
+
+* `rsi2_mean_reversion`: `SMA_TREND_PERIOD = 200` ist in
+  `backtest_rsi2.py` eine Konstante und muss Parameter werden — sonst gilt
+  für die Aktien- und die Krypto-Variante nicht dieselbe Regel.
+* `volatility_breakout` und `volatility_breakout_crypto`:
+  `BB_SQUEEZE_PERCENTILE` und `BB_LOOKBACK` stehen in `live_params.py`, aber
+  nicht im Optimierer.
+
+> ⭐⭐ **Stand der Voraussetzungen aus Abschnitt 11 (42.3 F3, 42.4 G1, Fable 25c,
+> TB-108, 25.09.2026):** **11.1 ist geschlossen** (TB-105, `f524327`:
+> `regimewache.pruefe_einbau()` 3 von 3; vorher rechnete `t3_supertrend` ohne
+> BTCUSDT still weiter, gemessen). **11.2 und 11.3 sind offen** (TB-30b). Wer
+> „Abschnitt 11 erfüllt" liest, liest zu viel. Der Text oben bleibt
+> zeichengleich.
+
+---
+
+## Abschnitt 3, Zeilen der drei Achsen (zeichengleich, mit Registerzeilennummer)
+264:| `volatility_breakout_crypto` | `bb_squeeze_percentile` | 5, 20, 35, 50 | *datenfrequenz* | *ableitung* |
+265:| `volatility_breakout_crypto` | `bb_lookback` | 20, 135, 250, 365 | *methode* | *datenfrequenz* |
+273:| `rsi2_mean_reversion` | `sma_trend_filter` | 26, 82, 139, 196, 252 | *volatilitaet* | *datenfrequenz* |
+279:| `volatility_breakout` | `bb_squeeze_percentile` | 5, 20, 35, 50 | *datenfrequenz* | *ableitung* |
+280:| `volatility_breakout` | `bb_lookback` | 20, 97, 175, 252 | *methode* | *datenfrequenz* |
+
+## Dazu 2.6 (letzter Absatz, zeichengleich)
+**Zwei Achsen verlangen eine Vorarbeit in TB-30b** (siehe Abschnitt 11):
+`sma_trend_filter` ist bei `rsi2_mean_reversion` heute eine Konstante
+(`SMA_TREND_PERIOD = 200` in `backtest_rsi2.py`) und muss durchgereicht
+werden; `bb_squeeze_percentile` und `bb_lookback` stehen bei beiden
+Volatility-Breakout-Bots in `live_params.py`, aber nicht im Optimierer.
+
+## Heutiger Wert je Achse im Code (Datei:Zeile)
+strategies/rsi2_mean_reversion/backtest_rsi2.py:87:RSI_PERIOD = 2
+strategies/rsi2_mean_reversion/backtest_rsi2.py:88:SMA_TREND_PERIOD = 200
+strategies/rsi2_mean_reversion/forward_test.py:64:SMA_TREND_PERIOD = 200
+strategies/rsi2_mean_reversion/forward_test.py:102:    df["sma_trend"] = sma(df["close"], SMA_TREND_PERIOD)
+strategies/volatility_breakout/backtest_breakout.py:97:from live_params import (BB_LOOKBACK as SQUEEZE_LOOKBACK_DAYS,
+strategies/volatility_breakout/backtest_breakout.py:98:                          BB_SQUEEZE_PERCENTILE as SQUEEZE_PERCENTILE,
+strategies/volatility_breakout/backtest_breakout.py:114:WARMUP_PERIOD = max(BB_PERIOD, SQUEEZE_LOOKBACK_DAYS, VOLUME_AVG_PERIOD)
+strategies/volatility_breakout/backtest_breakout.py:117:def compute_indicators(price_df: pd.DataFrame, squeeze_lookback_days: int = SQUEEZE_LOOKBACK_DAYS,
+strategies/volatility_breakout/backtest_breakout.py:118:                        squeeze_percentile: float = SQUEEZE_PERCENTILE) -> pd.DataFrame:
+strategies/volatility_breakout/forward_test.py:51:from live_params import BB_SQUEEZE_PERCENTILE, BB_LOOKBACK, STOP_LOSS_PCT, MAX_HOLD_DAYS, MAX_CONCURRENT_POSITIONS
+strategies/volatility_breakout/forward_test.py:95:    df["squeeze_thresh"] = squeeze_threshold(df["bb_width"], BB_LOOKBACK, BB_SQUEEZE_PERCENTILE)
+strategies/volatility_breakout_crypto/backtest_breakout.py:65:from live_params import (BB_LOOKBACK as SQUEEZE_LOOKBACK_DAYS,
+strategies/volatility_breakout_crypto/backtest_breakout.py:66:                          BB_SQUEEZE_PERCENTILE as SQUEEZE_PERCENTILE,
+strategies/volatility_breakout_crypto/backtest_breakout.py:81:WARMUP_PERIOD = max(BB_PERIOD, SQUEEZE_LOOKBACK_DAYS, VOLUME_AVG_PERIOD)
+strategies/volatility_breakout_crypto/backtest_breakout.py:84:def compute_indicators(price_df: pd.DataFrame, squeeze_lookback_days: int = SQUEEZE_LOOKBACK_DAYS,
+strategies/volatility_breakout_crypto/backtest_breakout.py:85:                        squeeze_percentile: float = SQUEEZE_PERCENTILE) -> pd.DataFrame:
+strategies/volatility_breakout_crypto/forward_test.py:62:    BB_SQUEEZE_PERCENTILE, BB_LOOKBACK, STOP_LOSS_PCT, MAX_HOLD_DAYS,
+strategies/volatility_breakout_crypto/forward_test.py:108:    df["squeeze_thresh"] = squeeze_threshold(df["bb_width"], BB_LOOKBACK, BB_SQUEEZE_PERCENTILE)
+
+## live_params.py
+strategies/volatility_breakout/live_params.py:22:BB_SQUEEZE_PERCENTILE = 25.0
+strategies/volatility_breakout/live_params.py:23:BB_LOOKBACK = 126
+strategies/volatility_breakout_crypto/live_params.py:40:BB_SQUEEZE_PERCENTILE = 25.0
+strategies/volatility_breakout_crypto/live_params.py:41:BB_LOOKBACK = 126
+(rsi2_mean_reversion/live_params.py: 0 Treffer fuer SMA -> Achse steht NICHT in live_params)
+0
+
+## Befunde 0d (Wert Code gegen live_params.py; nicht angeglichen)
+- volatility_breakout, volatility_breakout_crypto: bb_squeeze_percentile 25.0 und bb_lookback 126 im Code = live_params.py (backtest_breakout.py
+  importiert beide aus live_params.py und nutzt sie als Voreinstellung von compute_indicators). Keine Abweichung.
+- rsi2_mean_reversion: SMA_TREND_PERIOD = 200 steht als Konstante in backtest_rsi2.py:88 und ein ZWEITES Mal in forward_test.py:64;
+  live_params.py fuehrt die Achse NICHT (0 Treffer). Befund: die Zahl ist doppelt gefuehrt und nicht in live_params.py
+  (CLAUDE.md: "Jeder Handelsparameter steht genau einmal (in live_params.py)"). Nicht angeglichen (live_params.py und
+  forward_test.py liegen ausserhalb der sieben Dateien).
+- Zum Vergleich: rsi2_crypto/live_params.py fuehrt SMA_TREND_FILTER (150).

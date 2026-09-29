@@ -1,0 +1,48 @@
+# TB-122 B2 - Leser von SMA_TREND_PERIOD (rsi2_mean_reversion), gemessen vor B, HEAD c064405, 2026-09-29 15:02:03 +0200
+## grep -rn SMA_TREND_PERIOD ueber alle *.py ausser trading-env/ und strategies/rsi2_crypto/
+research/exposure_messung/bot_lauf.py:119:        return es.collect_all_trades(all_data, es.RSI_THRESHOLD, es.SMA_TREND_PERIOD,
+research/hrp_portfolio/corrected_curves.py:189:    trades = es.collect_all_trades(all_data, es.RSI_THRESHOLD, es.SMA_TREND_PERIOD, es.STOP_LOSS_PCT)
+research/order_sensitivity/run_one_bot.py:99:        trades = es.collect_all_trades(all_data, es.RSI_THRESHOLD, es.SMA_TREND_PERIOD,
+research/trend_overlay/corrected_curves.py:189:    trades = es.collect_all_trades(all_data, es.RSI_THRESHOLD, es.SMA_TREND_PERIOD, es.STOP_LOSS_PCT)
+research/faltenplan_neun/faltenplan_neun.py:212:                          "'start_i = SMA_TREND_PERIOD' = 200",
+research/sync_check/sync_table.py:20:     (T3_FAST/T3_FAST_LENGTH, SMA_TREND_PERIOD/SMA_TREND_FILTER). Ohne
+research/sync_check/sync_table.py:48:    "SMA_TREND_PERIOD": "SMA_TREND_FILTER",
+research/sync_check/test_sync_check.py:100:check("Alias-Import SMA_TREND_FILTER as SMA_TREND_PERIOD wird aufgeloest",
+research/sync_check/test_sync_check.py:101:      importiert.get("SMA_TREND_PERIOD") == "SMA_TREND_FILTER", str(importiert))
+strategies/rsi2_crypto/experiment_btc_regime_filter.py:17:    STARTING_CAPITAL, ALLOCATION_PCT, MAX_CONCURRENT_POSITIONS, SMA_TREND_PERIOD, RSI_THRESHOLD, STOP_LOSS_PCT
+strategies/rsi2_crypto/experiment_btc_regime_filter.py:57:    trades_no_filter = collect_all_trades(all_data, RSI_THRESHOLD, SMA_TREND_PERIOD, STOP_LOSS_PCT)
+strategies/rsi2_crypto/experiment_btc_regime_filter.py:68:    trades_oos_no_filter = collect_trades_windowed(test_data, RSI_THRESHOLD, SMA_TREND_PERIOD, STOP_LOSS_PCT)
+strategies/rsi2_crypto/equity_simulation.py:47:from live_params import (RSI_THRESHOLD, SMA_TREND_FILTER as SMA_TREND_PERIOD,
+strategies/rsi2_crypto/equity_simulation.py:141:    trades = collect_all_trades(all_data, RSI_THRESHOLD, SMA_TREND_PERIOD, STOP_LOSS_PCT)
+strategies/rsi2_crypto/pipeline_report.py:17:    SMA_TREND_PERIOD, RSI_THRESHOLD, STOP_LOSS_PCT,
+strategies/rsi2_crypto/pipeline_report.py:60:    trades_full = collect_all_trades(all_data, RSI_THRESHOLD, SMA_TREND_PERIOD, STOP_LOSS_PCT)
+strategies/rsi2_crypto/pipeline_report.py:61:    trades_oos = collect_trades_windowed(test_data, RSI_THRESHOLD, SMA_TREND_PERIOD, STOP_LOSS_PCT)
+strategies/rsi2_crypto/pipeline_report.py:64:    print(f"GESAMTZEITRAUM (SMA-Trend {SMA_TREND_PERIOD}, RSI-Schwelle {RSI_THRESHOLD}, "
+strategies/rsi2_crypto/multi_symbol_optimise.py:5:zusaetzlichen Grid-Dimension: SMA_TREND_PERIOD wird hier mitgetestet
+strategies/rsi2_mean_reversion/multi_symbol_optimise.py:35:from backtest_rsi2 import compute_indicators, run_backtest, SMA_TREND_PERIOD
+strategies/rsi2_crypto/backtest_rsi2.py:13:Erweiterung: SMA_TREND_PERIOD ist hier ein Parameter (nicht fest auf 200),
+strategies/rsi2_crypto/backtest_rsi2.py:26:REGELN (identisch zur Aktien-Version, SMA_TREND_PERIOD als Parameter):
+strategies/rsi2_crypto/backtest_rsi2.py:28:1. TRENDFILTER: Schlusskurs > SMA(SMA_TREND_PERIOD) des Schlusskurses.
+strategies/rsi2_mean_reversion/backtest_rsi2.py:88:SMA_TREND_PERIOD = 200
+strategies/rsi2_mean_reversion/backtest_rsi2.py:100:    df["sma_trend"] = sma(df["close"], SMA_TREND_PERIOD)
+strategies/rsi2_mean_reversion/backtest_rsi2.py:122:    start_i = SMA_TREND_PERIOD
+strategies/rsi2_mean_reversion/forward_test.py:64:SMA_TREND_PERIOD = 200
+strategies/rsi2_mean_reversion/forward_test.py:102:    df["sma_trend"] = sma(df["close"], SMA_TREND_PERIOD)
+docs/belege/TB-120/c_messung.py:94:          "| Konstante:", [l.strip() for l in src.splitlines() if l.startswith("SMA_TREND_PERIOD")])
+## Module, die backtest_rsi2 der Aktien-Variante importieren (Pfad rsi2_mean_reversion)
+research/pnl_2025_fixed_size/konfiguration.py
+research/mtm_drawdown/messung.py
+research/faltenplan_neun/faltenplan_neun.py
+research/drawdown_reihenfolge/botenv.py
+research/backtest_defaults/test_backtest_defaults.py
+strategies/volatility_breakout/backtest_breakout.py
+strategies/volatility_breakout/indicators.py
+strategies/rsi2_crypto/multi_symbol_optimise.py
+strategies/rsi2_crypto/live_params.py
+strategies/rsi2_crypto/forward_test.py
+strategies/rsi2_crypto/backtest_rsi2.py
+strategies/turtle_soup_stocks/backtest_turtle_soup.py
+strategies/turtle_soup_crypto/backtest_turtle_soup.py
+docs/belege/TB-120/c_messung.py
+docs/belege/TB-90/b6_backtest_lauf.py
+docs/belege/TB-90/b2_ersetzen.py

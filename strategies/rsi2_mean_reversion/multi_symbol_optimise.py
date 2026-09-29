@@ -100,9 +100,16 @@ def load_all_symbol_data() -> dict:
 
 
 def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, rsi_threshold: float,
-                           stop_loss_pct: float) -> pd.DataFrame:
+                           stop_loss_pct: float,
+                           sma_trend_period: int = SMA_TREND_PERIOD) -> pd.DataFrame:
+    # TB-122 (Posten 3): die Achse `sma_trend_filter` kommt hier an und geht
+    # in die Indikatorberechnung. load_all_symbol_data() hat die Indikatoren
+    # mit der Voreinstellung vorberechnet (andere Leser brauchen sie so); sie
+    # werden hier fuer genau diesen Wert neu gerechnet - mit der Voreinstellung
+    # ergibt das dieselben Zahlen.
+    df_ind = compute_indicators(df_ind, sma_trend_period)
     return run_backtest(df_ind, rsi_threshold=rsi_threshold, stop_loss_pct=stop_loss_pct,
-                         entry_cutoff=entry_cutoff)
+                         entry_cutoff=entry_cutoff, sma_trend_period=sma_trend_period)
 
 
 def calculate_robustness_score(row: dict) -> float:

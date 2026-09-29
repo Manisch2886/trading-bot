@@ -1,0 +1,35 @@
+# TB-122 Befunde neben dem Auftrag, gemessen 2026-09-29 15:12:30 +0200, HEAD c064405 - nur lesend, nichts geaendert
+
+## F1 Scanbeginn der Breakout-Bots haengt an der Voreinstellung (backtest_breakout.py, ausserhalb der sieben Dateien)
+strategies/volatility_breakout/backtest_breakout.py:114:WARMUP_PERIOD = max(BB_PERIOD, SQUEEZE_LOOKBACK_DAYS, VOLUME_AVG_PERIOD)
+strategies/volatility_breakout/backtest_breakout.py:155:    start_i = WARMUP_PERIOD + 1  # +1, da Punkt 2 den Squeeze-Status von t-1 braucht
+strategies/volatility_breakout_crypto/backtest_breakout.py:81:WARMUP_PERIOD = max(BB_PERIOD, SQUEEZE_LOOKBACK_DAYS, VOLUME_AVG_PERIOD)
+strategies/volatility_breakout_crypto/backtest_breakout.py:114:    start_i = WARMUP_PERIOD + 1
+  -> WARMUP_PERIOD = max(20, SQUEEZE_LOOKBACK_DAYS=126, 20) = 126, Scanbeginn Balken 127, unabhaengig vom durchgereichten bb_lookback.
+     Stufen bb_lookback: aktien 20, 97, 175, 252; krypto 20, 135, 250, 365 (Register Abschnitt 3 Z. 265/280).
+     Unter 126 (20, 97) beginnt der Scan spaeter als die Indikatoren es erlauben; darueber sind die Balken bis zur Stufe NaN
+     (bb_width <= NaN ist False, kein Signal) - dort unschaedlich. Krypto: evaluate/collect geben kein entry_cutoff, der Scan
+     beginnt bei jedem Symbol an Balken 127. Aktien: entry_cutoff (RECENT_YEARS_ONLY 10) ueberdeckt es, ausser bei Symbolen mit
+     weniger als ~10 Jahren Historie.
+
+## F2 Vorlauf im Faltenplan-Werkzeug als feste Zahl (research/faltenplan_neun/faltenplan_neun.py)
+186:        "markt": "krypto", "zeitrahmen": "1d", "vorlauf_balken": 150,
+188:                          "'start_i = sma_trend_period'; live_params.py "
+198:        "markt": "krypto", "zeitrahmen": "1d", "vorlauf_balken": 127,
+200:                          "backtest_breakout.py:109 'start_i = WARMUP_PERIOD "
+210:        "markt": "aktien", "zeitrahmen": "1d", "vorlauf_balken": 200,
+212:                          "'start_i = SMA_TREND_PERIOD' = 200",
+221:        "markt": "aktien", "zeitrahmen": "1d", "vorlauf_balken": 127,
+223:                          "backtest_breakout.py:150 'start_i = WARMUP_PERIOD "
+  -> rsi2_mean_reversion: Fundstellentext 'backtest_rsi2.py:117 start_i = SMA_TREND_PERIOD' - nach B lautet die Zeile
+     'start_i = sma_trend_period' (Zeile 129). Der Vorlauf ist nach Posten 3 achsenabhaengig (Stufen 26..252; 252 > 200).
+     Dieselbe Lage besteht schon bei rsi2_crypto (Stufen bis 365, Vorlauf 150). Nicht geaendert (ausserhalb des Auftrags).
+
+## F3 SMA_TREND_PERIOD doppelt gefuehrt und nicht in live_params.py
+strategies/rsi2_mean_reversion/backtest_rsi2.py:88:SMA_TREND_PERIOD = 200
+strategies/rsi2_mean_reversion/forward_test.py:64:SMA_TREND_PERIOD = 200
+  rsi2_mean_reversion/live_params.py, Treffer 'SMA': 0
+
+## F4 Sperrliste Punkt 11 ist maschinell nicht pruefbar, und register() enthaelt die sieben Dateien nicht
+  Sonde: Punkt 11 in 'NICHT PRUEFBAR' (0b_ausgang.txt); herkunft.register() hasht Register + EINGEFROREN (23 Teile), keine der
+  sieben Dateien (0b). Der Hash-Uebergang der sieben Dateien steht deshalb nur im Commit und in der Tatsachennotiz (Entwurf).

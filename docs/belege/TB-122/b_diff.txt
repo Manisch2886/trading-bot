@@ -1,0 +1,264 @@
+# TB-122 B - Umbau, numstat und Diff gegen c064405
+11	4	strategies/rsi2_mean_reversion/backtest_rsi2.py
+6	2	strategies/rsi2_mean_reversion/equity_simulation.py
+9	2	strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+9	2	strategies/volatility_breakout/equity_simulation.py
+11	2	strategies/volatility_breakout/multi_symbol_optimise.py
+9	2	strategies/volatility_breakout_crypto/equity_simulation.py
+8	3	strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+
+## Geaenderte Funktionen je Datei (Hunk-Koepfe)
++++ b/strategies/rsi2_mean_reversion/backtest_rsi2.py
+@@ -87,0 +88,5 @@ RSI_PERIOD = 2
+@@ -94 +99,2 @@ from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
+@@ -100 +106 @@ def compute_indicators(price_df: pd.DataFrame) -> pd.DataFrame:
+@@ -107 +113,2 @@ def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
+@@ -122 +129 @@ def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
++++ b/strategies/rsi2_mean_reversion/equity_simulation.py
+@@ -38,0 +39,2 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
+@@ -68 +70,2 @@ ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
+@@ -71 +74,2 @@ def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: floa
++++ b/strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+@@ -103 +103,8 @@ def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, rsi_threshold: flo
+@@ -105 +112 @@ def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, rsi_threshold: flo
++++ b/strategies/volatility_breakout/equity_simulation.py
+@@ -56,0 +57,3 @@ from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+@@ -67 +70,3 @@ def collect_all_trades(all_data: dict, stop_loss_pct: float, max_hold_days: int
+@@ -70 +75,3 @@ def collect_all_trades(all_data: dict, stop_loss_pct: float, max_hold_days: int
++++ b/strategies/volatility_breakout/multi_symbol_optimise.py
+@@ -37 +37,2 @@ RESULTS_DIR = _P["RESULTS_DIR"]
+@@ -98 +99,9 @@ def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, stop_loss_pct: flo
++++ b/strategies/volatility_breakout_crypto/equity_simulation.py
+@@ -52,0 +53,3 @@ from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+@@ -65 +68,3 @@ def collect_all_trades(all_data: dict, stop_loss_pct: float = None, max_hold_day
+@@ -68 +73,3 @@ def collect_all_trades(all_data: dict, stop_loss_pct: float = None, max_hold_day
++++ b/strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+@@ -30 +30,2 @@ RESULTS_DIR = _P["RESULTS_DIR"]
+@@ -82,2 +83,6 @@ def get_trades_for_symbol(price_df: pd.DataFrame, stop_loss_pct: float = None,
+
+## evaluate_combination_multi / run_multi_optimisation / *_RANGE im Diff (Soll 0 Codezeilen):
+2 - beides Kommentarzeilen in get_trades_for_symbol, die load_all_symbol_data() erwaehnen; 0 Codezeilen
+
+diff --git a/strategies/rsi2_mean_reversion/backtest_rsi2.py b/strategies/rsi2_mean_reversion/backtest_rsi2.py
+index 60bc0c1..a103a72 100644
+--- a/strategies/rsi2_mean_reversion/backtest_rsi2.py
++++ b/strategies/rsi2_mean_reversion/backtest_rsi2.py
+@@ -85,26 +85,33 @@ from indicators import sma, rsi
+ from live_params import MAX_HOLD_DAYS   # Handelstage NACH dem Einstiegstag
+ 
+ RSI_PERIOD = 2
++# TB-122 (TB-30b Posten 3, Register 11.3): die Trendfilter-Laenge ist eine
++# Rasterachse (`sma_trend_filter`) und wird als Parameter bis in
++# compute_indicators() und run_backtest() durchgereicht - wie beim Krypto-
++# Zwilling. SMA_TREND_PERIOD bleibt als Name der VOREINSTELLUNG stehen; ohne
++# Argument rechnet alles wie vorher.
+ SMA_TREND_PERIOD = 200
+ SMA_EXIT_PERIOD = 5
+ 
+ from handelskosten import TRADING_FEE_PCT, SLIPPAGE_PCT
+ 
+ 
+-def compute_indicators(price_df: pd.DataFrame) -> pd.DataFrame:
++def compute_indicators(price_df: pd.DataFrame,
++                        sma_trend_period: int = SMA_TREND_PERIOD) -> pd.DataFrame:
+     """Berechnet alle Indikatoren auf der VOLLEN Kurshistorie (nicht erst
+     nach einer Zeitraum-Kappung) - der SMA(200)-Trendfilter braucht 200
+     Handelstage Vorlauf, sonst waeren die ersten ~200 Tage jedes
+     Auswertungsfensters ohne gueltigen Trendfilter (NaN)."""
+     df = price_df.sort_values("open_time").reset_index(drop=True).copy()
+-    df["sma_trend"] = sma(df["close"], SMA_TREND_PERIOD)
++    df["sma_trend"] = sma(df["close"], sma_trend_period)
+     df["sma_exit"] = sma(df["close"], SMA_EXIT_PERIOD)
+     df["rsi"] = rsi(df["close"], RSI_PERIOD)
+     return df
+ 
+ 
+ def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
+-                  stop_loss_pct: float = None, entry_cutoff=None) -> pd.DataFrame:
++                  stop_loss_pct: float = None, entry_cutoff=None,
++                  sma_trend_period: int = SMA_TREND_PERIOD) -> pd.DataFrame:
+     """Laeuft Tag fuer Tag durch die Kursreihe (Indikatoren muessen bereits
+     berechnet sein, siehe compute_indicators). entry_cutoff (optional):
+     Einstiege vor diesem Zeitpunkt werden verworfen UND der Scan startet
+@@ -119,7 +126,7 @@ def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
+     open_time = df["open_time"].to_numpy()
+     n = len(df)
+ 
+-    start_i = SMA_TREND_PERIOD
++    start_i = sma_trend_period
+     if entry_cutoff is not None:
+         start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+ 
+diff --git a/strategies/rsi2_mean_reversion/equity_simulation.py b/strategies/rsi2_mean_reversion/equity_simulation.py
+index 4581265..8e9a476 100644
+--- a/strategies/rsi2_mean_reversion/equity_simulation.py
++++ b/strategies/rsi2_mean_reversion/equity_simulation.py
+@@ -36,6 +36,8 @@ from zuteilung import simuliere_portfolio, protokollzeilen, AUFSTEIGEND
+ from messkette import calculate_max_drawdown, rendite_pct
+ 
+ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
++# TB-122 (Posten 3): Voreinstellung der Achse `sma_trend_filter`.
++from backtest_rsi2 import SMA_TREND_PERIOD
+ 
+ # Die Parameter kommen DIREKT aus live_params.py - derselben Datei, aus der
+ # auch forward_test.py liest (Muster aus PR #31/#38/#39). Vorher standen sie
+@@ -65,10 +67,12 @@ STARTING_CAPITAL = 10_000.0
+ ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
+ 
+ 
+-def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: float) -> pd.DataFrame:
++def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: float,
++                        sma_trend_period: int = SMA_TREND_PERIOD) -> pd.DataFrame:
+     all_trades = []
+     for symbol, (df_ind, entry_cutoff) in all_data.items():
+-        trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct)
++        trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct,
++                                       sma_trend_period=sma_trend_period)
+         if not trades.empty:
+             trades = trades.copy()
+             trades["symbol"] = symbol
+diff --git a/strategies/rsi2_mean_reversion/multi_symbol_optimise.py b/strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+index 1d52f3e..eb46605 100644
+--- a/strategies/rsi2_mean_reversion/multi_symbol_optimise.py
++++ b/strategies/rsi2_mean_reversion/multi_symbol_optimise.py
+@@ -100,9 +100,16 @@ def load_all_symbol_data() -> dict:
+ 
+ 
+ def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, rsi_threshold: float,
+-                           stop_loss_pct: float) -> pd.DataFrame:
++                           stop_loss_pct: float,
++                           sma_trend_period: int = SMA_TREND_PERIOD) -> pd.DataFrame:
++    # TB-122 (Posten 3): die Achse `sma_trend_filter` kommt hier an und geht
++    # in die Indikatorberechnung. load_all_symbol_data() hat die Indikatoren
++    # mit der Voreinstellung vorberechnet (andere Leser brauchen sie so); sie
++    # werden hier fuer genau diesen Wert neu gerechnet - mit der Voreinstellung
++    # ergibt das dieselben Zahlen.
++    df_ind = compute_indicators(df_ind, sma_trend_period)
+     return run_backtest(df_ind, rsi_threshold=rsi_threshold, stop_loss_pct=stop_loss_pct,
+-                         entry_cutoff=entry_cutoff)
++                         entry_cutoff=entry_cutoff, sma_trend_period=sma_trend_period)
+ 
+ 
+ def calculate_robustness_score(row: dict) -> float:
+diff --git a/strategies/volatility_breakout/equity_simulation.py b/strategies/volatility_breakout/equity_simulation.py
+index 3d2e8f8..d5f8406 100644
+--- a/strategies/volatility_breakout/equity_simulation.py
++++ b/strategies/volatility_breakout/equity_simulation.py
+@@ -54,6 +54,9 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
+ # ausgeschlossen.
+ from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
++# TB-122 (Posten 3): Voreinstellungen der Achsen `bb_lookback` und
++# `bb_squeeze_percentile`.
++from live_params import BB_LOOKBACK, BB_SQUEEZE_PERCENTILE
+ 
+ STARTING_CAPITAL = 10_000.0
+ # EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
+@@ -64,10 +67,14 @@ ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
+ 
+ 
+ def collect_all_trades(all_data: dict, stop_loss_pct: float, max_hold_days: int = None,
+-                        use_volume_filter: bool = False) -> pd.DataFrame:
++                        use_volume_filter: bool = False,
++                        squeeze_lookback_days: int = BB_LOOKBACK,
++                        squeeze_percentile: float = BB_SQUEEZE_PERCENTILE) -> pd.DataFrame:
+     all_trades = []
+     for symbol, (df_ind, entry_cutoff) in all_data.items():
+-        trades = get_trades_for_symbol(df_ind, entry_cutoff, stop_loss_pct, max_hold_days, use_volume_filter)
++        trades = get_trades_for_symbol(df_ind, entry_cutoff, stop_loss_pct, max_hold_days, use_volume_filter,
++                                       squeeze_lookback_days=squeeze_lookback_days,
++                                       squeeze_percentile=squeeze_percentile)
+         if not trades.empty:
+             trades = trades.copy()
+             trades["symbol"] = symbol
+diff --git a/strategies/volatility_breakout/multi_symbol_optimise.py b/strategies/volatility_breakout/multi_symbol_optimise.py
+index 7d02975..f458f7b 100644
+--- a/strategies/volatility_breakout/multi_symbol_optimise.py
++++ b/strategies/volatility_breakout/multi_symbol_optimise.py
+@@ -34,7 +34,8 @@ _P = get_strategy_paths(__file__)
+ DATA_DIR = _P["DATA_DIR"]
+ RESULTS_DIR = _P["RESULTS_DIR"]
+ 
+-from backtest_breakout import compute_indicators, run_backtest, WARMUP_PERIOD
++from backtest_breakout import (compute_indicators, run_backtest, WARMUP_PERIOD,
++                                SQUEEZE_LOOKBACK_DAYS, SQUEEZE_PERCENTILE)
+ from stocks_symbols_config import SYMBOLS
+ 
+ INTERVAL = "1d"
+@@ -95,7 +96,15 @@ def load_all_symbol_data() -> dict:
+ 
+ 
+ def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, stop_loss_pct: float,
+-                           max_hold_days: int = None, use_volume_filter: bool = False) -> pd.DataFrame:
++                           max_hold_days: int = None, use_volume_filter: bool = False,
++                           squeeze_lookback_days: int = SQUEEZE_LOOKBACK_DAYS,
++                           squeeze_percentile: float = SQUEEZE_PERCENTILE) -> pd.DataFrame:
++    # TB-122 (Posten 3): die Achsen `bb_lookback` und `bb_squeeze_percentile`
++    # kommen hier an und gehen in die Indikatorberechnung. load_all_symbol_data()
++    # hat die Indikatoren mit den Voreinstellungen vorberechnet (andere Leser
++    # brauchen sie so); sie werden hier fuer genau diese Werte neu gerechnet -
++    # mit den Voreinstellungen ergibt das dieselben Zahlen.
++    df_ind = compute_indicators(df_ind, squeeze_lookback_days, squeeze_percentile)
+     kwargs = {} if max_hold_days is None else {"max_hold_days": max_hold_days}
+     return run_backtest(df_ind, stop_loss_pct=stop_loss_pct, entry_cutoff=entry_cutoff,
+                          use_volume_filter=use_volume_filter, **kwargs)
+diff --git a/strategies/volatility_breakout_crypto/equity_simulation.py b/strategies/volatility_breakout_crypto/equity_simulation.py
+index ca4f8a1..dd80871 100644
+--- a/strategies/volatility_breakout_crypto/equity_simulation.py
++++ b/strategies/volatility_breakout_crypto/equity_simulation.py
+@@ -50,6 +50,9 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
+ from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
+                           BTC_REGIME_FILTER_ENABLED,
+                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
++# TB-122 (Posten 3): Voreinstellungen der Achsen `bb_lookback` und
++# `bb_squeeze_percentile`.
++from live_params import BB_LOOKBACK, BB_SQUEEZE_PERCENTILE
+ # Dieselben Funktionen, die forward_test.py live benutzt - nicht nachgebaut.
+ from regime_filter import compute_btc_regime, filter_trades_by_regime
+ # Register 11.1 (TB-105): die Wache vor dem Regimefilter, einmal in shared/.
+@@ -62,10 +65,14 @@ ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
+ 
+ 
+ def collect_all_trades(all_data: dict, stop_loss_pct: float = None, max_hold_days: int = None,
+-                        use_volume_filter: bool = False) -> pd.DataFrame:
++                        use_volume_filter: bool = False,
++                        squeeze_lookback_days: int = BB_LOOKBACK,
++                        squeeze_percentile: float = BB_SQUEEZE_PERCENTILE) -> pd.DataFrame:
+     all_trades = []
+     for symbol, price_df in all_data.items():
+-        trades = get_trades_for_symbol(price_df, stop_loss_pct, max_hold_days, use_volume_filter)
++        trades = get_trades_for_symbol(price_df, stop_loss_pct, max_hold_days, use_volume_filter,
++                                       squeeze_lookback_days=squeeze_lookback_days,
++                                       squeeze_percentile=squeeze_percentile)
+         if not trades.empty:
+             trades = trades.copy()
+             trades["symbol"] = symbol
+diff --git a/strategies/volatility_breakout_crypto/multi_symbol_optimise.py b/strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+index bdf1025..fc809ef 100644
+--- a/strategies/volatility_breakout_crypto/multi_symbol_optimise.py
++++ b/strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+@@ -27,7 +27,8 @@ _P = get_strategy_paths(__file__)
+ DATA_DIR = _P["DATA_DIR"]
+ RESULTS_DIR = _P["RESULTS_DIR"]
+ 
+-from backtest_breakout import compute_indicators, run_backtest, WARMUP_PERIOD
++from backtest_breakout import (compute_indicators, run_backtest, WARMUP_PERIOD,
++                                SQUEEZE_LOOKBACK_DAYS, SQUEEZE_PERCENTILE)
+ from symbols_config import SYMBOLS
+ 
+ INTERVAL = "1d"
+@@ -79,8 +80,12 @@ def load_all_symbol_data() -> dict:
+ 
+ def get_trades_for_symbol(price_df: pd.DataFrame, stop_loss_pct: float = None,
+                            max_hold_days: int = None, use_volume_filter: bool = False,
+-                           entry_cutoff=None) -> pd.DataFrame:
+-    df_ind = compute_indicators(price_df)
++                           entry_cutoff=None,
++                           squeeze_lookback_days: int = SQUEEZE_LOOKBACK_DAYS,
++                           squeeze_percentile: float = SQUEEZE_PERCENTILE) -> pd.DataFrame:
++    # TB-122 (Posten 3): die Achsen `bb_lookback` und `bb_squeeze_percentile`
++    # gehen in die Indikatorberechnung; ohne Argument die Voreinstellungen.
++    df_ind = compute_indicators(price_df, squeeze_lookback_days, squeeze_percentile)
+     kwargs = {}
+     if max_hold_days is not None:
+         kwargs["max_hold_days"] = max_hold_days

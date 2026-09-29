@@ -1,0 +1,34 @@
+# TB-122 0c - db-Sicherung nach ARBEITSWEISE 7c Schritt 0: docs/werkzeuge/db_sicherung/db_sicherung.sh ins iCloud-Ziel
+# 2026-09-29 15:01:29 +0200
+# db_sicherung 2026-09-29 15:01:29 +0200
+# Repo:  /Users/jaquelineloffler/trading-bot
+# Ziel:  /Users/jaquelineloffler/Library/Mobile Documents/com~apple~CloudDocs/trading-bot-db-sicherung/2026-09-29_150129
+# gefunden: 12 Datenbanken
+#   benachrichtigungen_schliessung.db
+#   broker_testnet_t3_supertrend.db
+#   paper_trading_elliott_wave_stocks.db
+#   paper_trading_elliott_wave.db
+#   paper_trading_rsi2_crypto.db
+#   paper_trading_rsi2_mean_reversion.db
+#   paper_trading_t3_supertrend.db
+#   paper_trading_turtle_soup_crypto.db
+#   paper_trading_turtle_soup_stocks.db
+#   paper_trading_volatility_breakout_crypto.db
+#   paper_trading_volatility_breakout.db
+#   strategies/volatility_breakout/paper_trading_volatility_breakout.db
+ok      benachrichtigungen_schliessung.db  (49152 B, 11 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      broker_testnet_t3_supertrend.db  (167936 B, 27 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave_stocks.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_elliott_wave.db  (16384 B, 16 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_crypto.db  (16384 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_rsi2_mean_reversion.db  (24576 B, 15 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_t3_supertrend.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_turtle_soup_stocks.db  (40960 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout_crypto.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      paper_trading_volatility_breakout.db  (16384 B, 14 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      strategies/volatility_breakout/paper_trading_volatility_breakout.db  (4096 B, 0 Spalten, 0 Schluessel-Verdacht, integrity_check ok)
+ok      docs.tar.gz  (6145473 B, Commit c064405, 1643 Dateien = git ls-tree, gzip -t ok)
+# gesichert 12 von 12, Fehler 0, Satzgroesse 6400 KiB
+# Rueckgabewert 0
+rc 0

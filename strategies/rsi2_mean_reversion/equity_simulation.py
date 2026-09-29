@@ -36,6 +36,8 @@ from zuteilung import simuliere_portfolio, protokollzeilen, AUFSTEIGEND
 from messkette import calculate_max_drawdown, rendite_pct
 
 from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
+# TB-122 (Posten 3): Voreinstellung der Achse `sma_trend_filter`.
+from backtest_rsi2 import SMA_TREND_PERIOD
 
 # Die Parameter kommen DIREKT aus live_params.py - derselben Datei, aus der
 # auch forward_test.py liest (Muster aus PR #31/#38/#39). Vorher standen sie
@@ -65,10 +67,12 @@ STARTING_CAPITAL = 10_000.0
 ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
-def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: float) -> pd.DataFrame:
+def collect_all_trades(all_data: dict, rsi_threshold: float, stop_loss_pct: float,
+                        sma_trend_period: int = SMA_TREND_PERIOD) -> pd.DataFrame:
     all_trades = []
     for symbol, (df_ind, entry_cutoff) in all_data.items():
-        trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct)
+        trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct,
+                                       sma_trend_period=sma_trend_period)
         if not trades.empty:
             trades = trades.copy()
             trades["symbol"] = symbol

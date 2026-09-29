@@ -27,7 +27,8 @@ _P = get_strategy_paths(__file__)
 DATA_DIR = _P["DATA_DIR"]
 RESULTS_DIR = _P["RESULTS_DIR"]
 
-from backtest_breakout import compute_indicators, run_backtest, WARMUP_PERIOD
+from backtest_breakout import (compute_indicators, run_backtest, WARMUP_PERIOD,
+                                SQUEEZE_LOOKBACK_DAYS, SQUEEZE_PERCENTILE)
 from symbols_config import SYMBOLS
 
 INTERVAL = "1d"
@@ -79,8 +80,12 @@ def load_all_symbol_data() -> dict:
 
 def get_trades_for_symbol(price_df: pd.DataFrame, stop_loss_pct: float = None,
                            max_hold_days: int = None, use_volume_filter: bool = False,
-                           entry_cutoff=None) -> pd.DataFrame:
-    df_ind = compute_indicators(price_df)
+                           entry_cutoff=None,
+                           squeeze_lookback_days: int = SQUEEZE_LOOKBACK_DAYS,
+                           squeeze_percentile: float = SQUEEZE_PERCENTILE) -> pd.DataFrame:
+    # TB-122 (Posten 3): die Achsen `bb_lookback` und `bb_squeeze_percentile`
+    # gehen in die Indikatorberechnung; ohne Argument die Voreinstellungen.
+    df_ind = compute_indicators(price_df, squeeze_lookback_days, squeeze_percentile)
     kwargs = {}
     if max_hold_days is not None:
         kwargs["max_hold_days"] = max_hold_days

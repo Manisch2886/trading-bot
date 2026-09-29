@@ -50,6 +50,9 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
                           BTC_REGIME_FILTER_ENABLED,
                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
+# TB-122 (Posten 3): Voreinstellungen der Achsen `bb_lookback` und
+# `bb_squeeze_percentile`.
+from live_params import BB_LOOKBACK, BB_SQUEEZE_PERCENTILE
 # Dieselben Funktionen, die forward_test.py live benutzt - nicht nachgebaut.
 from regime_filter import compute_btc_regime, filter_trades_by_regime
 # Register 11.1 (TB-105): die Wache vor dem Regimefilter, einmal in shared/.
@@ -62,10 +65,14 @@ ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
 def collect_all_trades(all_data: dict, stop_loss_pct: float = None, max_hold_days: int = None,
-                        use_volume_filter: bool = False) -> pd.DataFrame:
+                        use_volume_filter: bool = False,
+                        squeeze_lookback_days: int = BB_LOOKBACK,
+                        squeeze_percentile: float = BB_SQUEEZE_PERCENTILE) -> pd.DataFrame:
     all_trades = []
     for symbol, price_df in all_data.items():
-        trades = get_trades_for_symbol(price_df, stop_loss_pct, max_hold_days, use_volume_filter)
+        trades = get_trades_for_symbol(price_df, stop_loss_pct, max_hold_days, use_volume_filter,
+                                       squeeze_lookback_days=squeeze_lookback_days,
+                                       squeeze_percentile=squeeze_percentile)
         if not trades.empty:
             trades = trades.copy()
             trades["symbol"] = symbol

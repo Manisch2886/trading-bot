@@ -54,6 +54,9 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 # ausgeschlossen.
 from live_params import (STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
+# TB-122 (Posten 3): Voreinstellungen der Achsen `bb_lookback` und
+# `bb_squeeze_percentile`.
+from live_params import BB_LOOKBACK, BB_SQUEEZE_PERCENTILE
 
 STARTING_CAPITAL = 10_000.0
 # EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
@@ -64,10 +67,14 @@ ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
 def collect_all_trades(all_data: dict, stop_loss_pct: float, max_hold_days: int = None,
-                        use_volume_filter: bool = False) -> pd.DataFrame:
+                        use_volume_filter: bool = False,
+                        squeeze_lookback_days: int = BB_LOOKBACK,
+                        squeeze_percentile: float = BB_SQUEEZE_PERCENTILE) -> pd.DataFrame:
     all_trades = []
     for symbol, (df_ind, entry_cutoff) in all_data.items():
-        trades = get_trades_for_symbol(df_ind, entry_cutoff, stop_loss_pct, max_hold_days, use_volume_filter)
+        trades = get_trades_for_symbol(df_ind, entry_cutoff, stop_loss_pct, max_hold_days, use_volume_filter,
+                                       squeeze_lookback_days=squeeze_lookback_days,
+                                       squeeze_percentile=squeeze_percentile)
         if not trades.empty:
             trades = trades.copy()
             trades["symbol"] = symbol
