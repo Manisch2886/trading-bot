@@ -1,0 +1,5 @@
+# TB-123 B3 - git status --porcelain nach dem Abgabe-Commit, 2026-09-29 20:15:05 +0200, HEAD b116878, origin/main b116878
+# Push des Abgabe-Commits: b116878 refs/remotes/origin/main@{2026-09-29 20:15:01 +0200}: update by push
+# Zeilen: 1
+?? docs/belege/TB-123/b3_porcelain.txt
+# Die eine Zeile ist diese Datei selbst (beim Schreiben schon angelegt, noch unversioniert); sie kommt mit dem letzten Commit. Sonst sauber.
