@@ -1,0 +1,9 @@
+# TB-123 B2 - grep -c PLATZHALTER, 2026-09-29 20:14:44 +0200
+docs/ERGEBNIS_TB-122_posten3_achsen_durchreichen.md:0
+docs/projektfuehrung/JOURNAL.md:2
+## Journal-Treffer (Zeilennummer, Anfang):
+477:Drei Werte wurden als `PLATZHALTER__` markiert statt erfunden, weil launchd
+538:| **O5** | **Der Kommentarkopf der PR-Fassung ging beim Befuellen verloren.** Er enthielt die vo
+## dieselbe Zaehlung am committeten Stand HEAD 68eb778 (vor B2): 2
+## im Block DU (ab Z. 9607 bis zum naechsten ---): 0
+## hinzugefuegte Zeilen im Diff mit PLATZHALTER: 0

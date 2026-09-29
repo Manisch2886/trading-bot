@@ -3,13 +3,29 @@
 **Sitzungstitel:** `TB-122` · **Stand:** 29.09.2026 · **Auftrag:**
 `docs/auftraege/MAC_TB-122_posten3_achsen_durchreichen.md` · **Belege:** `docs/belege/TB-122/`
 **Eingang:** `04f07ef` (Abgabe TB-121). Commits: `c064405` (Schritt 0), `ab31314` (B), `08153e4` (C1/C2 mit den drei
-Testdateien), der Abgabe-Commit (C3–C5, D: dieses Dokument, Journal DU). Gepusht nach 0 und nach der Abgabe.
+Testdateien), der Abgabe-Commit (C3–C5, D: dieses Dokument, Journal DU). Gepusht (Reflog `origin/main`,
+gemessen): `c064405` am 29.09.2026 um 14:57:27; `ab31314` und `08153e4` erst mit `dca3096` (TB-123 Schritt 0) um
+18:09:24; `68eb778` (TB-123 A, C3-Belege) um 20:12:31; der Abgabe-Commit danach, Zeitpunkt in
+`docs/belege/TB-123/b3_porcelain.txt`. Die Sitzung TB-122 endete ohne Abgabe; C3 und D hat TB-123 nachgeholt
+(Abschnitt 10).
 **Freigabe** (wörtlich im Auftrag): 27.09.2026, ca. 20:20, Auswahlkarte „E-1: TB-30b Posten 3 (Empfohlen)“;
 Nachtrag 29.09.2026, ca. 14:52, Auswahlkarte „Ja, bis 3 Testdateien (Empfohlen)“.
 **Umgebung:** Mac, `trading-env/bin/python3` (3.9.6), ohne Modus. **Kein Abbruchkriterium ausgelöst.**
 **Rückfragen an den Betreiber: keine.** **Sichtschutz 27.1:** Alle Vergleichsausgaben liegen unter `$TMPDIR/tb122_*`
 (ausserhalb des Repos). Von ihnen wurden nur `cmp` und sha256 genommen. Keine Kennzahl und keine Trade- oder
 Zeilenzahl wurde gelesen oder gedruckt.
+
+> ⚠️⚠️ **Befund aus C3 (nachgeholt in TB-123):** `research/sync_check/test_sync_check.py` ist **vorher 33/0 rc 0,
+> nachher 30/3 rc 1**. Die Ursache ist `ab31314`: `volatility_breakout/equity_simulation.py` importiert
+> `BB_LOOKBACK` und `BB_SQUEEZE_PERCENTILE` jetzt direkt aus `live_params.py`. `sync_table.compare_bot` führt die
+> beiden deshalb als „im Backtest referenziert“ statt „identisch … wirkt als Default von run_backtest()“. Test
+> Abschnitt 4 verlangt aber genau diesen Default-Status samt Hinweis auf `SQUEEZE_LOOKBACK_DAYS` (drei Prüfungen).
+> Gemessen per Konfigurationsprobe an beiden Ständen (`docs/belege/TB-123/a3_sync_probe.txt`). Die Synchronität
+> selbst ist nicht verletzt, nur die Einstufung hat sich geändert. **Nicht behoben** (kein Code in TB-123). Die
+> zweite Abweichung, `shared/test_kursdaten.py` (vorher 81/82 rc 1, nachher 82/82 rc 0), ist **kein Befund am
+> Code**: Der Test vergleicht gegen `origin/main`, und der Vorher-Stand `c064405` weicht davon um die drei
+> `equity_simulation.py` ab (`docs/belege/TB-123/a3_kursdaten_bezugspunkt.txt`). Die übrigen **50 von 52**
+> Testdateien sind in rc und Schlusszeile gleich, `test_vorregistrierung` 196/196 vorher und nachher.
 
 ⭐ **Kurz:**
 
@@ -21,7 +37,7 @@ Zeilenzahl wurde gelesen oder gedruckt.
 | ⭐⭐ **B** | 7 Dateien, numstat 63/17. Achsen als Parameter von `collect_all_trades` ⇒ `get_trades_for_symbol` ⇒ `compute_indicators` (bei `rsi2` auch ⇒ `run_backtest`, dort `start_i`). Voreinstellung = heutiger Wert. `evaluate_combination_multi`, Raster und `load_all_symbol_data` unverändert ⇒ `ab31314` |
 | ⭐⭐ **C1** | **13/13 bytegleich** (`cmp`) |
 | ⭐⭐ **C2** | Wertprobe mit der ersten Registerstufe (26 / 20 / 5, aus `registerdaten.raster()`): **16/16, 12/12, 12/12**. Gegenprobe am Stand `c064405`: **rc 1** bei allen drei (14 / 10 / 9 Prüfungen rot) |
-| **C3** | *(siehe Abschnitt C3)* |
+| **C3** | *(nachgeholt in TB-123)* 52 Testdateien vorher (`c064405`, Worktree) und nachher (`dca3096`): **50 gleich**, `test_vorregistrierung` 196/196 beide. ⚠️ **Befund:** `test_sync_check` 33/0 ⇒ 30/3 (Folge von `ab31314`, Einstufung „Default“ ⇒ „referenziert“). `test_kursdaten` 81/82 ⇒ 82/82 nur wegen des Bezugspunkts `origin/main`. A4: 0 Zeilen ausserhalb `docs/` |
 | **C4** | Trockenlauf ohne Modus: 9/9 rc 0, **18/18 Dateien zeichengleich** |
 | **C5** | Sondenausgabe vorher = nachher (`cmp` rc 0, sha256 `dd4b4b95…`). `register()` unverändert `01f5997a…`. **Kein Befund an irgendeinem Punkt** — auch nicht an Punkt 11, weil die Sonde ihn nicht prüfen kann (siehe C5) |
 
@@ -128,7 +144,52 @@ Der Probewert ist die erste Stufe aus `registerdaten.raster()` (Abschnitt 3); er
 
 **C3** (`c3_vorher.txt`, `c3_nachher.txt`, Skript `c3_tests.sh`): Testmenge wie TB-117 E, dazu die acht
 Research-Tests, die einen der drei Bots nennen. `test_vorregistrierung` lief mit einer Zeitgrenze von 2400 s.
-PLATZHALTER_C3
+*Nachgeholt in TB-123 (29.09.2026):* **Nachher** am HEAD `dca3096` (Code = `08153e4`) im Hauptordner, 18:09–19:10,
+`docs/belege/TB-122/c3_nachher.txt`. **Vorher** am Stand `c064405` in einem Worktree
+`$TMPDIR/tb123_vorher2`, 19:12–20:11, `docs/belege/TB-122/c3_vorher.txt`. Dort sind alle gitignorierten Einträge
+des Hauptordners verknüpft (`trading-env`, `.env`, `config/email_config.py`, die zwölf `*.db`, `logs/`,
+`notifications/*.json`, `data_sicherung/`, `research/turn_of_month/daten/` u. a.), Liste in
+`docs/belege/TB-123/a2_worktree.txt`. Das Skript `c3_tests.sh` kam erst mit `ab31314` und lief deshalb aus dem
+Hauptordner mit dem Worktree als Arbeitsverzeichnis. Vergleich je Testdatei, rc und Schlusszeile, ohne Dauer:
+`docs/belege/TB-122/c3_vergleich.txt` (Skript `docs/belege/TB-123/a3_vergleich.py`). Beide Läufe rc 0 (Skript),
+52 Testdateien.
+
+| Testdatei rc vorher/nachher | | | |
+|---|---|---|---|
+| `test_faltenplan_neun` 0/0 | `test_erste_falte_trockenlauf` 0/0 | `test_horizontbeginn` 0/0 | `test_min_history` 0/0 |
+| `test_volle_jahre` 0/0 | `test_universum_trockenlauf` 0/0 | `test_zwischenablage` 0/0 | `test_abrufschutz` 0/0 |
+| `test_agent2_kapitalmass` 0/0 | `test_agent2_zielfunktion` 0/0 | `test_arbeitsbaum_laufbereich` 0/0 | `test_ausschlussmengen` 0/0 |
+| `test_binance_historie` 0/0 | `test_determinismus` 0/0 | `test_drawdown_beide_masse` 142/142 | `test_empfehlung_format` 0/0 |
+| `test_entscheidungskerze` 0/0 | `test_ergebniskurven` 0/0 | `test_fetch_binance_data` 0/0 | `test_groessenfaktor` 0/0 |
+| `test_kursdaten_neuaufbau` 0/0 | `test_kursdaten` 1/0 ⚠️ | `test_ladeprotokoll` 0/0 | `test_leeres_symbol` 0/0 |
+| `test_live_params_werte` 0/0 | `test_main_gegenprobe` 0/0 | `test_messkette` 0/0 | `test_nulltrades_modus` 0/0 |
+| `test_paths` 0/0 | `test_regimewache_einbau` 0/0 | `test_regimewache` 0/0 | `test_rueckfaelle_modus` 0/0 |
+| `test_snapshot` 0/0 | `test_sperrlistensonde` 0/0 | `test_stabile_sortierung` 1/1 | `test_startpruefungen` 0/0 |
+| `test_stille_ausfaelle` 0/0 | `test_strategy_paths` 0/0 | `test_umstellungstag` 0/0 | `test_wellenauswahl` 1/1 |
+| `test_zeitabdeckung` 0/0 | `test_zuteilung` 0/0 | `test_ersatzwerte` 0/0 | `test_pnl` 0/0 |
+| `test_vergleich` 0/0 | `test_vol_sizing_core` 0/0 | `test_drawdown` 1/1 | `test_sync_check` 0/1 ⚠️ |
+| `test_vbc_core` 0/0 | `test_backtest_defaults` 0/0 | `test_wurzelkorrektur` 0/0 | `test_vorregistrierung` 0/0 |
+
+**50 von 52 gleich** in rc und Schlusszeile. Rot auf **beiden** Seiten und damit unverändert:
+`test_drawdown_beide_masse` (rc 142 = Zeitgrenze 900 s), `test_stabile_sortierung` (43/3),
+`test_wellenauswahl` (322/1) und `test_drawdown` (rc 1, ohne Schlusszeile). Bei `test_entscheidungskerze` fängt die
+Schlusszeile des Skripts nur „Binary file … matches“ ein, auf beiden Seiten gleich.
+**Zwei Abweichungen** (Befund oben im Kopf):
+- `test_sync_check` **33/0 rc 0 ⇒ 30/3 rc 1**. Das ist eine Folge von `ab31314`. Die Konfigurationsprobe
+  `docs/belege/TB-123/a3_sync_probe.txt` zeigt es: `BB_LOOKBACK` und `BB_SQUEEZE_PERCENTILE` bei
+  `volatility_breakout` vorher „identisch … wirkt als Default von run_backtest()“, nachher „im Backtest
+  referenziert“ ohne Hinweis. Test Abschnitt 4 verlangt den Default-Status (zwei Prüfungen) und den Hinweis auf
+  `SQUEEZE_LOOKBACK_DAYS` (eine Prüfung). Nicht behoben.
+- `test_kursdaten` **81/82 rc 1 ⇒ 82/82 rc 0**. Das ist kein Befund am Code. Der Test prüft
+  `git diff --name-only origin/main` auf geänderte `equity_simulation.py`, und am Vorher-Stand sind das die drei aus
+  `ab31314` (`docs/belege/TB-123/a3_kursdaten_bezugspunkt.txt`).
+
+**A4:** `git status --porcelain -- . ':!docs'` im Hauptordner vor und nach beiden Läufen je **0 Zeilen**
+(`docs/belege/TB-123/a4_porcelain.txt`), im Worktree nach dem Lauf ebenfalls 0.
+**Gegenlauf der beendeten Sitzung:** TB-122 hatte C3 schon gefahren (vorher 15:04–16:07 am `c064405` im
+Hauptordner, nachher 16:09–17:03 am `08153e4`), die Übersichten aber nicht übernommen. Übernommen als
+`docs/belege/TB-123/fund_tb122_c3_vorher.txt` und `…_nachher.txt`: dieselben zwei Abweichungen. `test_kursdaten`
+steht dort spiegelbildlich (vorher grün, nachher rot, weil `origin/main` damals `c064405` war).
 
 **C4** (`c4_trockenlauf.txt`): Der TB-103-Trockenlauf (`d_trockenlauf.py`, wie in TB-117 E) lief **ohne Modus**,
 ohne Snapshot und ohne Lesehaken, für alle neun Bots. Vorher (zweimal, hashgleich) und nachher: 9/9 rc 0,
@@ -263,3 +324,52 @@ scheitert derselbe Test.
 Zwei Dinge sind noch offen und nur gemeldet, weil sie Dateien ausserhalb des Auftrags betreffen: Bei den
 Ausbruchs-Bots hängt der Startpunkt des Durchlaufs noch am alten Wert. Und die Kontrollsonde sieht Änderungen an
 diesen Bot-Dateien grundsätzlich nicht.
+
+## 10. Abschluss durch TB-123
+
+**Auftrag:** `docs/auftraege/MAC_TB-123_tb122_abschliessen.md` (Sitzung TB-123, 29.09.2026, Hauptordner, unter der
+Freigabe von TB-122). Kein Code geändert, keine Datei ausserhalb von `docs/`.
+
+**Was gemessen war** (Auftrag, Abschnitt „Warum dieser Auftrag“, wörtlich; einzige Abweichung: die beiden
+Platzhalter-Namen stehen hier klein geschrieben, damit die Platzhalter-Zählung aus Auftrag B2 nicht auf das Zitat
+anschlägt):
+
+> Gemessen vom steuernden Chat am 29.09.2026, 17:33 (Ortszeit):
+> - Die Sitzung TB-122 hat `c064405` (Schritt 0, gepusht), `ab31314` (B) und `08153e4` (C1/C2) committet. `ab31314` und `08153e4` sind **nicht gepusht** (`origin/main` = `c064405`).
+> - Im Arbeitsbaum liegen, uncommittet und zuletzt um 16:10–16:12 geändert: `docs/ERGEBNIS_TB-122_posten3_achsen_durchreichen.md`, `docs/belege/TB-122/c4_trockenlauf.txt`, `docs/belege/TB-122/c5_nachher.txt` und der Journalblock **DU** in `docs/projektfuehrung/JOURNAL.md` (numstat 41/0).
+> - **C3 ist nicht gelaufen:** Im Ergebnis steht `Platzhalter_C3`, im Journalblock DU `Platzhalter_C3_JOURNAL`. `c3_vorher.txt` und `c3_nachher.txt` fehlen.
+> - Sonde des Wächters um 17:33: **0 claude-Prozesse im Repo**. Warum die Sitzung endete, ist nicht gemessen.
+>
+
+**Was TB-123 getan hat:**
+- **Schritt 0:** `git status --short` genau die sechs erwarteten Einträge. Commit `dca3096` mit allem ausser
+  `JOURNAL.md`, gepusht 18:09:24 (`c064405..dca3096`, damit auch `ab31314` und `08153e4`). db-Sicherung 12/12,
+  rc 0 (`docs/belege/TB-123/0c_db_sicherung.txt`).
+- **A1/A2/A3/A4:** C3 wie in Abschnitt 4 beschrieben. Nachher im Hauptordner, vorher im Worktree am `c064405`.
+  **50 von 52 gleich.** Befund `test_sync_check` (Folge von `ab31314`), dazu `test_kursdaten` als Artefakt des
+  Bezugspunkts. A4 vor und nach beiden Läufen 0 Zeilen ausserhalb `docs/`. Commit `68eb778`, gepusht 20:12:31.
+- **Fund:** Im `$TMPDIR` lagen die Übersichten eines C3-Laufs der beendeten Sitzung
+  (`tb122_c3_vorher.txt` 16:07, `tb122_c3_nachher.txt` 17:03). Die Sitzung hatte C3 also gefahren, aber nicht
+  übernommen. Sie sind als `docs/belege/TB-123/fund_tb122_c3_*.txt` gesichert und zeigen dieselben zwei
+  Abweichungen. Warum die Sitzung endete, ist weiterhin nicht gemessen.
+- **Abweichungen vom Auftragsweg:** Der erste Worktree `$TMPDIR/tb123_vorher` war unbrauchbar, weil
+  Verzeichnis-Verknüpfungen nicht unter Muster wie `logs/` fallen und `git status` dort 4 Zeilen `??` zeigte.
+  Das Löschen der Verknüpfungen wurde abgelehnt, deshalb gibt es einen zweiten Worktree `tb123_vorher2` mit echten
+  Ordnern. `c3_tests.sh` fehlt am `c064405` und lief deshalb aus dem Hauptordner. **Beide Worktrees sind nicht
+  entfernt.** Sie verknüpfen auf die echten Datenbanken und auf `trading-env`, und `git worktree remove --force`
+  wäre nötig gewesen. Pfade: `$TMPDIR/tb123_vorher`, `$TMPDIR/tb123_vorher2`, Testlogs `$TMPDIR/tb123_c3_vorher`,
+  `$TMPDIR/tb123_c3_nachher` (`$TMPDIR` = `/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/`).
+- **B:** `Platzhalter_C3` und die C3-Kurzzeile gefüllt, den Push-Satz im Kopf durch gemessene Zeitpunkte ersetzt,
+  den Befund oben eingefügt, diesen Abschnitt angehängt. Journalblock DU: C3-Zeile gefüllt, Vermerk in der ersten
+  Zeile. Die übrigen Abschnitte sind nicht umformuliert. Die Platzhalter-Zählung ergibt: Ergebnis **0**, Block
+  DU **0**, das ganze Journal **2**. Die zwei Treffer (Z. 477 und 538) stehen in alten, längst committeten Blöcken
+  und schon am Stand vor B2. Sie sind nicht angefasst (`docs/belege/TB-123/b2_platzhalter.txt`).
+
+**Commits TB-123:** `dca3096` (Schritt 0), `68eb778` (A), der Abgabe-Commit „TB-122 Abgabe (nachgeholt in
+TB-123): C3, Ergebnis, Journal DU“ und ein letzter Commit mit `docs/belege/TB-123/b3_porcelain.txt`.
+
+**Für Fable, neu aus TB-123:** Soll `research/sync_check/test_sync_check.py` Abschnitt 4 den neuen Status „im
+Backtest referenziert“ für `BB_LOOKBACK`/`BB_SQUEEZE_PERCENTILE` als synchron annehmen, also den Test nachziehen?
+Oder soll `volatility_breakout/equity_simulation.py` die Voreinstellung wieder über `backtest_breakout` beziehen?
+Beides ist eine Codeänderung ausserhalb von TB-123 und braucht eine eigene Freigabe. Neigung: Test nachziehen, denn
+der direkte Import aus `live_params.py` entspricht der Projektregel „genau einmal in `live_params.py`“ besser.

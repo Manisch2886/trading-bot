@@ -9604,6 +9604,47 @@ Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst. Kein Lauf, 
 
 ---
 
+## DU — TB-122: TB-30b Posten 3 (E-1) — drei Rasterachsen bis zur Indikatorberechnung durchgereicht (`sma_trend_filter` bei `rsi2_mean_reversion`, `bb_lookback`/`bb_squeeze_percentile` bei beiden Breakout-Bots); mit Voreinstellungen 13/13 bytegleich, Wertprobe 16/16, 12/12, 12/12 mit Gegenprobe rc 1; Sonde blind für Punkt 11 (29.09.2026) — C3 und Abgabe nachgeholt in TB-123
+
+*Quelle: `docs/ERGEBNIS_TB-122_posten3_achsen_durchreichen.md`*
+
+**Quelle:** Mac-Sitzung **TB-122** (Hauptordner), 29.09.2026, Eingang `04f07ef`. Commits `c064405` (Schritt 0),
+`ab31314` (B), `08153e4` (C1/C2 mit drei Testdateien) und der Abgabe-Commit. Belege `docs/belege/TB-122/`. Freigabe
+27.09.2026, ca. 20:20 (Auswahlkarte „E-1“), Nachtrag 29.09.2026, ca. 14:52 (bis zu drei Testdateien). Keine Rückfrage
+an den Betreiber. Kein Abbruchkriterium ausgelöst. Ohne Modus; Vergleichsausgaben nur als Hash, in `$TMPDIR/tb122_*`.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | acht erwartete Einträge ⇒ `c064405`; `register()` `01f5997a…` = Soll; Sonde gegen `46f0ad5d…` rc 2, 0 Befunde, Punkt 11 „nicht prüfbar“; die sieben Dateien weder im Abbild noch in `EINGEFROREN`; db 12/12 |
+| **0d** | Breakout: Code = `live_params.py` (126 / 25.0). `rsi2_mean_reversion`: Achse **nicht** in `live_params.py`, `SMA_TREND_PERIOD = 200` doppelt (`backtest_rsi2.py`, `forward_test.py`) — gemeldet, nicht angeglichen |
+| ⭐⭐ **B** | 7 Dateien, 63/17: Achse als hinten angehängter Parameter mit heutiger Voreinstellung von `collect_all_trades` über `get_trades_for_symbol` bis `compute_indicators` (rsi2 auch `run_backtest`/`start_i`). Aktien-Bots rechnen die Indikatoren dort neu, der Lader bleibt (andere Leser brauchen seine Spalten). `evaluate_combination_multi`, Raster, Lader: 0 Codezeilen |
+| ⭐⭐ **C1** | B6 (= TB-90-Hashes), Signalpfad, Kapitalkurve, Optimierer-Kurzlauf: **13/13 `cmp` identisch**; Vorher zweimal hashgleich |
+| ⭐⭐ **C2** | erste Registerstufe aus `registerdaten.raster()` (26; 20/5) kommt per Spion in `compute_indicators` an: 16/16, 12/12, 12/12; am Stand `c064405` rc 1/1/1 |
+| **C3** | *(nachgeholt in TB-123)* 52 Testdateien vorher (`c064405`, Worktree)/nachher: **50 gleich**, `test_vorregistrierung` 196/196 beide. ⚠️ **Befund:** `test_sync_check` 33/0 ⇒ 30/3, Folge von `ab31314` (Einstufung „Default“ ⇒ „referenziert“ bei `BB_LOOKBACK`/`BB_SQUEEZE_PERCENTILE`), nicht behoben; `test_kursdaten` 81/82 ⇒ 82/82 nur Bezugspunkt `origin/main`. Belege `c3_vorher.txt`, `c3_nachher.txt`, `c3_vergleich.txt` |
+| **C4/C5** | Trockenlauf ohne Modus 18/18 zeichengleich; Sondenausgabe byte-gleich, `register()` unverändert — der Übergang der sieben Dateien steht nur im Commit und im Entwurf der Tatsachennotiz |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Die B6-Bauart prüft nur das Backtest-Modul.** Liegt der Umbau in Optimierer oder Simulation, gehört ein Lauf durch `collect_all_trades`/`simulate_portfolio` dazu — sonst ist „bytegleich“ bei unveränderter Datei trivial wahr |
+| ⭐ | **„Bis zur Indikatorberechnung“ ist nicht „bis zum Ende des Backtests“.** Eine Achse kann an einer zweiten Stelle wirken (hier `WARMUP_PERIOD` als Modulkonstante); die Suche nach allen Lesern des alten Werts gehört vor den Umbau |
+| ⭐ | **Eine Sonde, die einen Punkt nicht prüfen kann, meldet dort auch keinen erwarteten Übergang.** „Keine Befunde“ heisst bei Punkt 11 „nicht gesehen“, nicht „in Ordnung“ |
+
+### Was offen bleibt
+
+- Fable (über den steuernden Chat): F1 Scanbeginn Breakout (`backtest_breakout.py`), F2 achsenabhängiger Vorlauf im
+  Faltenplan, F4 Signalpfad-Dateien ausserhalb jeder maschinellen Sperrliste, F3 `sma_trend_filter` nach
+  `live_params.py`, Bauart des Lader-Eingangs (Ergebnis Abschnitt 7).
+- E-2: Tatsachennotiz aus Ergebnis Abschnitt 6 ins Register (Entwurf).
+- Reihenfolge nach R44: als Nächstes E-6 (Posten 4), dann E-3/E-4.
+
+*Geschrieben 29.09.2026 von der Mac-Sitzung TB-122. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
