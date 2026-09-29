@@ -1,0 +1,22 @@
+# TB-121 Schritt B — Liesse sich `auswertung.py` allein aus den Abschnitten 0–12 schreiben?
+
+Kalt angewandt: nur Register Zeilen 1–1225, **ohne** den Code von `auswertung.py` zu lesen. Nummern in „was fehlt“ verweisen auf `a_befunde.md`.
+
+| Baustein | aus 0–12 schreibbar | was fehlt |
+|---|---|---|
+| **Selektionsstatistik** (Median des Netto-Sharpe über die Selektionsfalten) | **nein** | Definition des Netto-Sharpe (Renditereihe, Frequenz, Annualisierung) — 63; welche Falten es sind (Aktien nur in einer ersetzten Tabelle, Krypto gar nicht) — 22, 23, 66; Format der Rohergebnisse — 68. Vorhanden: Median, „ohne Zinsabzug“, Falten ohne Trade = 0 (5.1 Nr. 8). |
+| **Drawdown-Bedingung** | **teilweise** | Formel und „alle Selektionsfalten“ stehen (4.1, 4.2). Es fehlen: welche Kurve (Präzisierung in Abschnitt 24) — 21, 62; wie der Falten-Drawdown gemessen wird — 49; Definition der Exposure — 69; Nachschlagen unter 1 % und bei 0 — 70; bei welcher Exposure `DD_Toleranz` gilt — 50; welche Tabellendatei — 43, 32; Krypto-Tabelle — 67. |
+| **Plateau-Regel** | **ja, bis auf eine Lücke** | Nachbarschaft, Selbstzählung, Spitzenformel, nicht existierende Zellen, unzulässige Nachbarn und Gleichstand sind festgelegt (6, 12). Es fehlt: Bildung des Zellennamens für den Gleichstand — 73; Reihenfolge der Zusatzstufen folgt nur aus der Tabellenreihenfolge in 3. |
+| **Abbruchkriterium (a)** | **nein** (nur wegen Sharpe) | Wie Selektionsstatistik — 63. |
+| **Abbruchkriterium (b)** | **ja** | Kleine Mehrdeutigkeit „alle Falten“ gegenüber „alle Selektionsfalten“ — 53. |
+| **Abbruchkriterium (c)** | **nein** | Calmar und Annualisierung des Alpha — 64; Benchmark-Konstruktion statisch oder täglich gleichgewichtet — 51; point-in-time-Regel für Aktien — 4; mittlere Exposure — 69. Vorhanden: Kleinste Quadrate auf Tagesrenditen, gemeinsame Tage, weniger als drei ⇒ Abbruch, „BEIDES“, Calmar bei DD 0 = 0,0. |
+| **Abbruchkriterium (d)** | **nein** (eine Lesart fehlt) | Was geschieht, wenn der beste Nicht-Spitzen-Punkt (a) *nicht* erfüllt — 48. „Bester Nicht-Spitzen-Punkt“ selbst ist definiert (7). |
+| **Kapitalregel** | **ja** | Die drei Sätze stehen wörtlich in 7.1 und werden nur ausgegeben. Offen nur für die spätere Umsetzung, nicht für das Skript: welche mittlere Exposure — 54. |
+| **Bericht** (Abschnitt 8) | **teilweise** | Die Kennzahlenliste steht vollständig, ebenso Festlegung 12 und die Regel „alles wird berichtet“. Es fehlen: Calmar — 64; Zufalls-Timing-Einzelheiten — 56; drei tiefste Falten-Drawdowns bei weniger als drei Falten — 75; Quelle der berichteten Drawdowns (MtM oder ereignisindiziert) — 62; Umfang der Bestätigungsperiode — 39; Ausgabeformat nur am Beispiel der Risikoappetit-Zeile; Ausgänge 0/2 erst über Marke 43.1 — 37. |
+| **DSR** | **nein** | Eingaben der Formel — 65; welches N je Bot — 47, 78; Clusterregel ≥/> und Korrelationsmass — 55. Vorhanden: drei Werte, Sicherheitsabstand-Satz, Normalverteilung über `math.erf`, Umkehrung nach Acklam, „Bericht, nicht Tor“. |
+| **Faltenplan** | **nein** | Die Tabelle in 3 und die Regeln in 5.1/5.3 sind durch Abschnitt 15 ersetzt — 22, 23, 26; gültig ist „der Plan nach 4a“ — 31; Krypto-Falten fehlen ganz — 66. Übrig aus 0–12: Go-Live-Schnitt 2026-09-01 ausschliesslich, 2020/2022 sind Testfalten, Faltenlänge 1 oder 2 Jahre (Schwelle 30), letzte Falte ist Bestätigungsperiode. |
+| **Benchmark** | **nein** | Konstruktion (statisch gegen täglich gleichgewichtet) — 51; point-in-time-Regel — 4; Krypto — 67; welche Tabelle — 43; Exposure — 69; Interpolationsrand — 70. Vorhanden: Nachschlagen mit linearer Interpolation zwischen Stützstellen, `DD_Toleranz(e)` als Median. |
+
+**Ergebnis:** Von zwölf Zeilen sind drei aus 0–12 schreibbar ((b), Kapitalregel, Plateau mit einer Lücke beim Zellennamen), zwei teilweise (Drawdown-Bedingung, Bericht) und sieben nicht (Selektionsstatistik, (a), (c), (d), DSR, Faltenplan, Benchmark). Die grössten Einzellücken sind die fehlenden Definitionen von **Sharpe, Calmar und Exposure** und dass der **Faltenplan** ausserhalb 0–12 steht.
+
+*Zur Einordnung:* Abschnitt 12 beantwortet eine andere Frage mit Ja: ob das Skript *ohne ein Ergebnis gesehen zu haben* fertig wurde. Hier gefragt war, ob es *allein aus dem Text 0–12* entstehen könnte. Die Antworten widersprechen sich nicht: die Lücken oben sind vermutlich im Code oder in späteren Abschnitten geschlossen — geprüft wurde das nicht.

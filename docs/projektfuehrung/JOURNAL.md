@@ -9571,6 +9571,39 @@ Kein Abbruchkriterium ausgelöst. Kein Lauf, keine Codeänderung.
 
 ---
 
+## DT — TB-121: Kalter Leser (Fable 25f V8/F3), nur lesend — Register Zeilen 1–1225 ohne Vorwissen: 85 Befunde (B 19, V 19, W 8, M 16, A 15, Z 8; alle Zitate maschinell zeichengleich geprüft); `auswertung.py` aus 0–12 allein in 7 von 12 Bausteinen nicht schreibbar; Stichprobe 12/12 gefunden und passend; 39 Fragen für Fable (29.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-121_kalter_leser_register_1_12.md`*
+
+**Quelle:** Mac-Sitzung **TB-121** (Hauptordner), 29.09.2026, Eingang `07fcca7`. Commits `86e0d5e` (Schritt 0) und der
+Abgabe-Commit. Belege `docs/belege/TB-121/`. Freigabe 27.09.2026, 18:08 und ca. 18:25 („Wir arbeiten alles strukturiert ab“).
+Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst. Kein Lauf, keine Codeänderung, Register unverändert.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a wie erwartet (Sammlung md5 `b363c948…` 84/0, TB-122 md5 `ad4eca4c…`, UEBERGABE 256/0, Zeiger 1/1); Register sha256 `18e39ee2…`, `## 13.` in Zeile 1226 = Soll |
+| ⭐⭐ **A** | 85 Befunde. Kern: Sharpe, Calmar, Exposure und DSR-Eingaben in 0–12 nicht definiert (A); Faltenplan, führendes Mass, gültige Benchmark-Tabelle und Voraussetzungen nur über Marken auf 15/24/30/36–46 (V); Benchmark-Datei in 3/4.2 ≠ Sperrlistenpunkt 4, Bestätigungsperiode „wächst“ (5.1 Nr. 7) gegen Schnitt (5.2) (W) |
+| ⭐⭐ **B** | aus 0–12 schreibbar: (b), Kapitalregel, Plateau (Lücke Zellenname); teilweise: Drawdown-Bedingung, Bericht; nicht: Selektionsstatistik, (a), (c), (d), DSR, Faltenplan, Benchmark |
+| **C** | erste zwölf Bezeichner mit Datei: 12/12 gefunden, 12/12 passen; `STOP_LOSS_RANGE` Zeile 44 statt 39; `nachschlagen` regelt den Rand unter 1 % (Text schweigt); „ohne Limitachse“ in `auswertung.py` 0-mal |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Claude-Code-Sitzung auf dem Mac ist nie ganz kalt.** `MEMORY.md` (Gedächtnis-Index mit Zusammenfassungen früherer Sitzungen) und der Git-Stand werden von selbst geladen, wie `CLAUDE.md`. Ein Kaltlese-Auftrag muss das im Ergebnis nennen oder in einer Umgebung ohne Gedächtnis laufen |
+| ⭐ | **Das Journal liest ein Kaltlese-Auftrag erst nach den Befunden** und nur als Formvorlage — sonst ist der Journaleintrag die Tür, durch die das Vorwissen kommt |
+
+### Was offen bleibt
+
+- Fable (Sammlung, Dienstag): 39 Fragen (W 8, M 16, A 15) im Ergebnis, Abschnitt „Für Fable“.
+- Steuernder Chat: Fragen in die Sammlung übertragen; entscheiden, ob die Zehnerliste als Anlass für Klarstellungen in 0–12 (eigener Registereintrag) dient.
+
+*Geschrieben 29.09.2026 von der Mac-Sitzung TB-121. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

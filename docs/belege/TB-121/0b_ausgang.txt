@@ -1,0 +1,8 @@
+TB-121 Schritt 0b — Ausgang (gemessen 29.09.2026)
+HEAD nach Schritt-0-Commit: 86e0d5e (Vorgaenger 07fcca75b7f0024eae66b6b2a15fb65dc1812516)
+Register docs/VORREGISTRIERUNG_neuselektion.md
+  sha256: 18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c
+  Zeilen gesamt: 10347
+  ^## 13\. in Zeile: 1226 (Soll 1226, stimmt) -> gelesen werden Zeilen 1-1225
+Schritt 0a: 5 Dateien wie erwartet; FABLE_SAMMLUNG md5 b363c9485017b00ff42fee5f45585b49 (stimmt), numstat 84/0;
+  TB-122 md5 ad4eca4c255e5cc803be0f785e200c7a (stimmt); UEBERGABE numstat 256/0; AKTUELLER_AUFTRAG 1/1
