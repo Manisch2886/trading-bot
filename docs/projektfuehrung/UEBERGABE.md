@@ -531,3 +531,364 @@ Backlog, neue Zeile in Abschnitt 4 unter `K4s`:
 ```
 
 **Erinnerung:** eingetragen am 29.09.2026 in `preferences.md` des Projekts. **Erste Anwendung:** Fable-Anfrage 29a.
+
+
+---
+
+## Nachtrag 29.09.2026, 09:20 — Helfer-Agenten: ein Regelwerk für alle drei Rollen · Umzugsampel im steuernden Chat · TB-121 abgegeben
+
+**Betreiberfrage 09:12, wörtlich:** *„Was würdest du empfehlen wie wir die agents zukünftig integrieren?“* Vorher war Fables Antwort `FABLE_ANTWORT_2026-09-29a_betreiberentscheid_umzugstakt_ampel_agenten.md` eingegangen (Projektablage 07:11Z, noch nicht im Repo). Darin: Umzugstakt, Umzugsampel und Helfer-Agenten für Fables Rolle, Grundsatz *„finden, zählen, belegen — nie deuten“*.
+
+**Betreiberentscheidungen per Auswahlkarte, wörtlich:**
+- „Wie sollen die Helfer-Agenten künftig integriert werden?“ ⇒ **„Ein Regelwerk, alle 3 Rollen (Empfohlen)“**
+- „Soll auch dieser Chat eine Umzugsampel am Ende jeder Antwort führen?“ ⇒ **„Ja, wie bei Fable (Empfohlen)“**
+
+⚠️ **Ersetzt den Regeltext des Nachtrags 08:50** (Block „Die Regel“ und die Zeile `K4t`). Grund: Dessen Punkt 2 erlaubte eine Zusammenfassung als Ergebnis und ist damit schwächer als Fables Grundsatz. Bei der Einarbeitung gilt nur der Text unten.
+
+**Regeltext (für `ARBEITSWEISE.md`, neuer Abschnitt 22.10; ein Abschnitt für alle Rollen statt zwei Fassungen, DOKUMENTATIONSSTANDARD 9):**
+
+```
+### 22.10 Helfer-Agenten — ein Regelwerk für alle drei Rollen (Betreiber 29.09.2026)
+
+Grundsatz (Fable 29a, Abschnitt 3): Ein Helfer darf finden, zählen und belegen —
+nie deuten. Seine Ausgabe ist Fundstelle, Zahl oder Quelle. Eine Zusammenfassung
+dient höchstens der Orientierung („wo steht was“); was in eine Anfrage, einen
+Auftrag, einen Bericht oder eine Entscheidung eingeht, liest der Auftraggeber
+selbst im Wortlaut an der Fundstelle. Jeder Einsatz bekommt eine Protokollzeile
+(Art, Suchwort oder Frage, erlaubte Dateien, Ergebnis); jeder Auftrag an einen
+Helfer nennt die erlaubten Dateien und das Leseverbot.
+
+Steuernder Chat: (1) Web-Recherche — Quellen mit URL, selbst gegengelesen;
+(2) Fundstellen- und Zählaufträge in Repo und Ablage; (3) Gegenleser vor jedem
+Übergeben einer Fable-Anfrage und eines Auftrags: ein frischer Helfer, der den
+Text nicht geschrieben hat, liefert eine Liste Satz · Behauptung · Quelle ·
+stimmt/weicht ab — für jede Zahl, Fundstelle und Werkzeug-Erwartung; bei
+Fable-Anfragen zusätzlich gegen Register 27.1 (steht ein Wert darin, den Fable
+nicht sehen darf?). Befunde werden vor dem Übergeben eingearbeitet.
+
+Fable: wie FABLE_ANTWORT_2026-09-29a, Abschnitt 3 (Fundstellen, Mechanik,
+Websuche mit Einzelfreigabe; Leseverbot `docs/belege/`, `ergebnisse/`,
+Trade-Listen, `BACKLOG*.md`).
+
+Mac-Sitzungen: Helfer nur zum Suchen und Lesen innerhalb der Sitzung. Messung,
+Beleg und Commit macht die Sitzung selbst; jeder Helfereinsatz steht im
+Ergebnisdokument. Nicht gemessen: ob Sperrliste und `deny` aus
+`.claude/settings.local.json` auch für die Helfer der Sitzung greifen — die
+erste Sitzung, die einen Helfer einsetzt, prüft das als Schritt 0 und bricht
+ab, wenn nicht.
+
+Belege bleiben A8/A10: die Aussage eines Helfers ist eine Selbstauskunft.
+Nie für Register, Commits, Aufträge schreiben oder Freigaben; ein Helfer
+schreibt nichts ins Repo.
+
+Probe statt Regel (Fable 29a: „Die Entscheidung fällt an der Messung, nicht an
+der Ersparnis“): Über die ersten drei Gegenlese-Durchgänge zählt der steuernde
+Chat je Durchgang die Befunde, die er selbst übersehen hätte, und die
+geschätzten Tokens. Hat keiner der drei einen solchen Befund, fällt das
+Gegenlesen weg; sonst wird es Regel. Das Ergebnis steht in der Übergabe.
+```
+
+**Umzugsampel im steuernden Chat (für `UMZUG.md` Abschnitt 3, unter der neuen Zeile 6 aus dem Nachtrag 07:55):**
+
+```
+⭐ **Umzugsampel** (Betreiber 29.09.2026, Form wie Fable 29a Abschnitt 2): letzte Zeile jeder Antwort des steuernden Chats —
+`Umzugsampel: <Farbe> · <geschätzte Tokens im Verlauf> · <Empfehlung>`
+🟢 unter 200 000 — bleiben · 🟡 200 000–300 000 — Umzug am nächsten sauberen Stand oder vor dem nächsten grossen Block, mit Uhrzeit · 🔴 über 300 000, nach einer Komprimierung, oder wenn der Chat merkt, dass er Gelesenes verliert — Umzug vor dem nächsten Auftrag. Schätzung (Bytes ÷ ~3,3), kein Messwert.
+```
+
+Dazu in `ARBEITSWEISE.md` Abschnitt 0, Tabelle „Am Ende jeder Antwort“: `| ☐ | Letzte Zeile: Umzugsampel (Farbe · Tokens · Empfehlung) | UMZUG 3 |`.
+
+**Backlog (Abschnitt 4, unter `K4s`), ersetzt die `K4t`-Zeile des Nachtrags 08:50:**
+
+```
+| **K4t** | ⭐ **HELFER-AGENTEN, EIN REGELWERK FÜR ALLE DREI ROLLEN, UND UMZUGSAMPEL (29.09.2026, zwei Auswahlkarten).** Grundsatz „finden, zählen, belegen — nie deuten“ (Fable 29a) für steuernden Chat, Fable und Mac-Sitzungen; Gegenleser vor jeder Übergabe als Probe über drei Durchgänge. Offen: ob `deny` für Helfer der Mac-Sitzung greift (erste Nutzung misst). Umzugsampel als letzte Zeile jeder Antwort des steuernden Chats. Wortlaut: `UEBERGABE.md`, Nachtrag 29.09.2026, 09:20 |
+```
+
+**Bringschuld:** Mit TB-122 oder E-2 einarbeiten: `ARBEITSWEISE.md` 22.10 und Abschnitt 0, `UMZUG.md` 3, Backlog `K4t`. Dazu `FABLE_ANTWORT_2026-09-29a_…` aus der Ablage ins Repo abschreiben und md5 prüfen.
+
+**Nummern:** Fable hat den Buchstaben 29a für seine Antwort vergeben. ⇒ **Die heutige Tagesanfrage heisst 29b.**
+
+### TB-121 abgegeben (gemessen 09:14)
+
+- `86e0d5e` Schritt 0 (06:48Z) und `04f07ef` Abgabe (07:00Z, Journal **DT**). Um 07:14Z per `schliesse_04f07ef…` geschlossen: 1 mit TERM beendet, 0 übrig. **HEAD `04f07ef`**; die Nachträge 07:55 und 08:50 sind in Schritt 0 mitcommittet (numstat 256/0).
+- Ergebnis `docs/ERGEBNIS_TB-121_kalter_leser_register_1_12.md`, 85 Befunde (B 19 · V 19 · W 8 · M 16 · A 15 · Z 8). Vollständigkeitstest: 3 von 12 Bausteinen aus 0–12 schreibbar, 2 teilweise, 7 nicht. Stichprobe Code: 12/12 gefunden und passend.
+- Die 39 Fragen der Arten W, M und A (Nr. 39–77) gehen mit **29b** an Fable, nach dem Gegenleser gegen 27.1.
+- ⚠️ **Befund zum Verfahren:** Die Sitzung war **nicht vollständig kalt**. Claude Code lädt sein Gedächtnisverzeichnis (`MEMORY.md`) von selbst, mit Zusammenfassungen zu den Registerabschnitten 15–46. Für künftige kalte Leser gehört dieses Gedächtnis vor dem Start ausgeschaltet oder umgangen. Offen, eigener kleiner Punkt; die Frage an Fable, ob das TB-121 entwertet, kommt in 29b.
+
+
+---
+
+## Nachtrag 29.09.2026, 12:25 — Anfrage 29b abgelegt · Betreiberentscheid T116-5 · Gegenlesen Durchgang 1
+
+**Betreiberentscheid per Auswahlkarte (ca. 12:15), wörtlich:** „T116-5 / R24: Soll ein einzelner Bot bis zum Netting bis zu zwei Fünftel des Buchs tragen dürfen?“ ⇒ **„(a) So lassen (Empfohlen)“**. Das ist die Empfehlung von Fable (27c, R24) und des steuernden Chats. Kein Deckel je Bot vor dem Netting; R24 geht als Tatsachennotiz in E-2.
+
+**Fable-Anfrage 29b** `docs/projektfuehrung/FABLE_ANFRAGE_2026-09-29b_tagesanfrage_sammlung_erzeuger_kalter_leser.md`:
+- 31 946 B, md5 `e189f941…`, gleich im Repo (uncommittet) und in der Ablage.
+- Aufbau:
+  - Teil 0: Kenntnis 27c/29a, T116-5, Freigabe `BACKLOG*` nicht erteilt, was mitgeht.
+  - Teil 1: Sammlung B/C/D, zeichengleich, Z. 16–192.
+  - Teil 2: TB-121, Fragen 39–77, zeichengleich, Z. 74–125.
+  - Teil 3: Frage 78 (kalter Leser nicht ganz kalt).
+- Als Kopierblock übergeben; die Antwort erwartet als 29b.
+- Abschnitt A der Sammlung ist durch 27c erledigt.
+
+**Mit der Anfrage abgelegt:** `ERGEBNIS_TB-118/119/120`.
+- md5 `41fcd03b…`, `be616ba8…`, `95e83c61…`, gleich wie auf dem Mac.
+- Sichtschutz-Zeile im Kopf geprüft; der Gegenleser hat gegen 27.1 gelesen.
+- Ein Verdachtsfall (TB-118 Z. 106) war eine Kettenrang-Nummer, kein Ergebnis.
+- `ERGEBNIS_TB-121` nicht abgelegt: Der Kopf hat keine Sichtschutz-Zeile (G5).
+
+**Füllstand der Ablage, gemessen 12:23:** 49 Dateien, `knowledge_size` 745 654 (37 %). Vorher (07:12) 670 544.
+
+**Gegenlesen, Probe Durchgang 1 von 3:** Der Helfer fand 6 Fehler in den neuen Teilen, die ich übersehen hatte, alle vor dem Übergeben berichtigt:
+1. Gegenleser-Regel fälschlich Fables 29a zugeschrieben.
+2. Angekündigte Protokollzeile fehlte.
+3. Verweis auf „Teil C“ statt Abschnitt D.
+4. Buchstaben der Teile doppelt belegt.
+5. „`BACKLOG*.md` geht nicht mit“ falsch; beide liegen seit TB-118 in der Ablage.
+6. Neigung unter der Überschrift „ohne Neigung“.
+
+Dazu: beide übernommenen Blöcke `diff` rc 0. Kosten: Helfer rund 220 000 Tokens (eigene Zählung des Werkzeugs), ausserhalb dieses Chats. ⇒ Der Durchgang hat Befunde, die sonst übersehen worden wären.
+
+**Offen, Reihenfolge:**
+1. Fable 29b abwarten.
+2. TB-122 vorbereiten: Platzhalter 0a, Zeiger, Sitzung anlegen.
+3. `FABLE_ANTWORT_2026-09-27c_…` und `…29a_…` aus der Ablage ins Repo, md5 prüfen.
+4. Indexzeilen in `FABLE_DIALOG_INDEX.md`.
+5. E-2 nach der Antwort auf 29b.
+
+**Berichtigung zum Nachtrag 12:25 (12:40):**
+- Die erste Fassung von 29b (`e189f941…`, 31 946 B) war um die Tabellenzeile F-17 zu kurz. Ursache: Der Übernahmebereich der Sammlung war mit Z. 16–192 vorgegeben, die Datei hat 193 Zeilen.
+- Der Gegenleser prüfte gegen denselben Bereich und konnte den Fehler nicht sehen.
+- Gültige Fassung: **`bb6a9606…`, 32 597 B, 311 Zeilen**. Repo (eigene uncommittete Datei, ersetzt) und Ablage sind gleich; übergeben wurde nur diese Fassung.
+- ⇒ **Regel:** Ein übernommener Block wird bis zu einer Grenze übernommen, die aus der Datei gemessen ist (Dateiende oder nächste Überschrift), nicht aus einer Zeilenzahl. Der Gegenleser bekommt die Grenze als Überschrift, nicht als Zeilennummer.
+
+---
+
+## Nachtrag 29.09.2026, 13:20 — Fable-Filter · 29b gekürzt (Fassung 2) · Gegenlesen Durchgang 2
+
+**Betreiberfrage 12:45, wörtlich:** *„Da wir ein recht beschränktes fable Kontingent haben, müssen wir klar überlegen wie wir in diesem hiermit sinnvoll umgehen. Gebe mir hierzu eine Empfehlung aus wie Fable wirklich nur fable spezifische Tätigkeiten ausführt die wir in Opus nicht in dieser Qualität erreichen.“*
+
+**Betreiberentscheide per Auswahlkarte, wörtlich:**
+- „Wie soll das Fable-Kontingent künftig eingesetzt werden?“ ⇒ **„Filter + Vorprüfung + Form (Empfohlen)“**
+- „Was passiert mit der Anfrage 29b?“ ⇒ **„Gekürzt senden (Empfohlen)“**
+
+**Die Regel (Fable-Filter), Wortlaut für `ARBEITSWEISE.md` (neuer Abschnitt 22.11) und `UMZUG.md`, bei E-2 oder TB-122 einzuarbeiten:**
+
+```
+### 22.11 Fable-Filter — nur Verfahrensfragen, vorgeprüft (Betreiber 29.09.2026)
+
+1. An Fable gehen nur Verfahrensfragen vor dem signierten Tag: Registertext,
+   seine Lesart, der Sichtschutz (27). Handwerk nach 6d — Arbeitsweise, Ablage,
+   Umzug, Agenten, Dateinamen, Lesarten eigener Werkzeuge — entscheiden der
+   steuernde Chat und der Betreiber (Auswahlkarte). Reine Kenntnis geht nicht
+   hin oder als eine Zeile.
+2. Vorprüfung durch Opus (Mac-Sitzung oder Helfer nach 22.10): Jede Frage wird
+   vorher gegen das ganze Register und den Code geprüft. Fable bekommt nur, was
+   dort offen ist — je Frage mit Fundstelle und Neigung des steuernden Chats.
+3. Form: nur Fragen mit Fundstellen, keine kopierten Sammlungen; Antwort je
+   Frage „einverstanden“ oder „anders, weil …“, Registertext nur als R-Block;
+   „In einfacher Sprache“ schreibt der steuernde Chat.
+4. Takt nach Bedarf: wenn eine Frage einen Auftrag blockiert oder genug echte
+   Verfahrensfragen beisammen sind — nicht täglich.
+5. Fables Probe aus 29a (Register Teil 1–3 über einen Fundstellen-Helfer) wird
+   unterstützt; die Übergabe an einen neuen Fable-Chat nennt sie.
+```
+
+Warum (gemessen bzw. aus den Antworten):
+- Fable schätzt sein Anfangswissen je Chat auf etwa 350 000 Tokens (29a).
+- 29a war nach seinem eigenen Satz „alles Handwerk“.
+- In 29b Fassung 1 waren Teil 1 B, C und drei der vier Punkte in D Handwerk oder Kenntnis.
+- Die 39 TB-121-Fragen waren nicht gegen Register 13–46 vorgeprüft.
+
+**29b, Fassung 2:** `docs/projektfuehrung/FABLE_ANFRAGE_2026-09-29b_erzeuger_und_kalter_leser.md`, md5 `0d69a243…`, 13 828 B, 146 Zeilen.
+- Inhalt: F-1 … F-17 samt Neigungen (Sammlung von der Überschrift „27.09., TB-120: …“ bis zum Dateiende, zeichengleich) und die Frage KL (kalter Leser, bisher „78“).
+- Fassung 1 (`…29b_tagesanfrage_sammlung_erzeuger_kalter_leser.md`, `bb6a9606…`) stand im Chat als Kopierblock bereit, ging aber **nicht** an Fable. Sie ist im Repo umbenannt und ersetzt (eigene uncommittete Datei) und aus der Ablage entfernt. Berichtigt damit die Zeile „Als Kopierblock übergeben“ im Nachtrag 12:25.
+- Kopie von Fassung 1 nur im Brücken-Arbeitsordner (kein Träger); Inhalt vollständig beschrieben im Nachtrag 12:25.
+
+**Gegenlesen, Probe Durchgang 2 von 3:** Der Helfer fand 7 Befunde in den neuen Teilen, alle berichtigt:
+1. Protokollzeile fehlte erneut. Derselbe Fehler wie in Durchgang 1, meiner.
+2. „blockieren E-2 … E-9“ zu pauschal (E-3/E-8 nur zum Teil, E-9 an T117-5).
+3. „Fassung 1 nicht übergeben“ missverständlich.
+4. Nummer 78 kollidierte mit Befund 78 in TB-121.
+5. „ohne Neigung“ im Block unerklärt.
+6. Verweise auf Belege und auf TB-121, die nicht in der Ablage liegen.
+7. Eine leere Ankündigung „als Kenntnis“.
+
+Mechanik: `cmp` rc 0. 27.1: keine Verdachtsfälle. ⇒ Stand der Probe: 2 von 2 Durchgängen mit Befunden, die sonst übergeben worden wären.
+
+**Offen aus der Sammlung, jetzt beim steuernden Chat und beim Betreiber (Handwerk, per Karte):**
+- TB-118 B1–B9;
+- TB-119 Nr. 1–3;
+- 19/6 gegen 6d (Neigung: 6d gilt);
+- 27.4 bei `MAC_TB-119` (Neigung: nur Fundstelle, Zeile per Muster).
+
+**Neu offen: Vorprüfung der 39 TB-121-Fragen gegen Register 13–46** (Helfer oder Mac-Sitzung, nur lesend). Danach gehen nur die offenen an Fable.
+
+---
+
+## Umzug 29.09.2026, 14:00 — Stand für den neuen steuernden Chat (selbsttragend, alle neun Blöcke)
+
+*Geschrieben vom steuernden Chat (seit 29.09., 07:26). Anlass des Umzugs: die Umzugsampel des Chats, geschätzt rund 290 000 Tokens (Schwelle 🔴 300 000). ⚠️ **Ausnahme von UMZUG 3:** Zwei Dateien sind uncommittet (Block 2). Sie liegen auf dem Mac und in der Ablage; Schritt 0 von TB-122 committet sie. Gemessen heisst über die Geräteanbindung heute gemessen.*
+
+### Block 1 — Stand in drei Zeilen
+
+- **Fertig heute:**
+  - TB-121 (kalter Leser Register 0–12): Abgabe `04f07ef`, per Wächter geschlossen.
+  - Fable 27c (R18–R32), 29a (Umzugstakt, Ampel, Agenten, alles Handwerk) und **29b (R33–R52)** sind beantwortet und liegen in der Ablage.
+  - Neue Regeln per Betreiberkarte: Umzugsampel, Helfer-Agenten, Fable-Filter (Nachträge 07:55, 09:20, 13:20).
+- **Läuft:** nichts. Keine Mac-Sitzung (Wächter 07:14Z: 0 übrig).
+- **Als Nächstes:**
+  1. TB-122 anlegen (E-1, freigegeben).
+  2. 27c, 29a und 29b ins Repo abschreiben.
+  3. 29b bewerten.
+  4. E-2 vorbereiten (Registerauftrag mit R18–R52), Freigabe per Karte.
+
+### Block 2 — HEAD und Commits
+
+- **HEAD `04f07ef`** (TB-121 Abgabe, 09:00 Ortszeit), Zweig `main`, gemessen. Commits heute: `86e0d5e` (TB-121 Schritt 0), `04f07ef`.
+- **Uncommittet, gemessen:**
+  - `docs/projektfuehrung/UEBERGABE.md` (geändert, nur angehängt; numstat gegen HEAD mit 0 entfernten Zeilen).
+  - `docs/projektfuehrung/FABLE_ANFRAGE_2026-09-29b_tagesanfrage_sammlung_erzeuger_kalter_leser.md` (neu, md5 `bb6a9606…`). **Das ist die an Fable gesendete Fassung** (Fable 29b nennt sie).
+- Nicht im Repo und nicht zu committen: `logs/auftraege/NICHT_GESENDET_FABLE_ANFRAGE_2026-09-29b_erzeuger_und_kalter_leser.md` (Fassung 2, nie gesendet, gitignoriert).
+
+### Block 3 — Tragende Zahlen
+
+| | Wert | Fundstelle |
+|---|---|---|
+| Register | 0–46, sha256 `18e39ee2…`, unverändert | TB-121 Z. 3, gemessen |
+| Gültiges Abbild | `sperrliste_abbild_2026-09-26_tb117.json` `46f0ad5d…` | TB-119 A2 |
+| Snapshot / Datenstand / Benchmark | `63e4b6c8…` / `d9449faf…` / `64fb2912…` | Register 18, 39.2 |
+| Ablage | 50 Dateien; `knowledge_size` 745 654 (37 %) um 12:23, danach +29b-Antwort und Fassung-Tausch | gemessen |
+| Nummern | TB frei ab **123** · Journal frei ab **DU** (TB-121 schrieb DT) · R-Blöcke frei ab **R53** · Fable-Anfrage frei ab **29c** bzw. am nächsten Tag **a**; Antwortbuchstaben 29a/29b vergeben | gemessen / aus Antworten |
+
+### Block 4 — Offene Punkte, in Reihenfolge
+
+1. **TB-122 (E-1, Posten 3)** ist freigegeben (Karte 27.09., ca. 20:20).
+   - Vorher im Auftrag `docs/auftraege/MAC_TB-122_posten3_achsen_durchreichen.md`, Z. 47, den Platzhalter `<<ERWARTET_0A>>` durch die gemessene `git status --short`-Liste ersetzen: die zwei Dateien aus Block 2, dazu alles, was bis zum Start noch abgelegt wird.
+   - `docs/auftraege/AKTUELLER_AUFTRAG.md` bekommt eine Zeile TB-122; vorher lesen (98 Zeilen, Tabelle ab etwa Z. 39).
+   - Dann `starte_TB-122` und den Einfügesatz ausgeben.
+2. **27c, 29a und 29b aus der Ablage ins Repo abschreiben** (`docs/projektfuehrung/`), möglichst **vor** dem Start von TB-122, damit Schritt 0 sie mitnimmt. Die Liste in 0a entsprechend setzen. md5 gegen die Ablage ist nicht möglich (das Werkzeug liefert nur Text); das so vermerken.
+   - ⚠️ 29b hat rund 70 000 Zeichen. Nicht im Chat lesen, sondern per Helfer.
+3. **29b bewerten.** Kern nach Helferauszug:
+   - Die Sammlung ist als Handwerk entschieden und deckt sich weitgehend mit den Neigungen:
+     - B4: B6 gilt.
+     - B5: „zwei jüngste Anfrage-Tage“; `ablage_soll.py` nachziehen.
+     - B6: Austritt nach Wortlaut (Annahme).
+     - 19/6: 6d gilt; K2h umformulieren, K2f nach PRUEFPRINZIPIEN Reihe C, Nummer messen (Fable vermutet C9).
+     - TB-119 Nr. 1–3 wie Neigung.
+     - 27.4: Aufträge nennen Streichwerte nur per Muster.
+   - F-1 … F-17 sind in R33–R47 beantwortet, F-16 als Handwerk.
+   - Die 39 Fragen des kalten Lesers sind in R48–R51 beantwortet. Die Vorprüfung gegen Register 13–46 **entfällt**, Fable hat alle beantwortet.
+   - Frage 78: TB-121 trägt als Untergrenze. Künftige kalte Leser laufen ohne Gedächtnis, mit Beleg in Schritt 0.
+   - R52 ist eine Tatsachennotiz.
+   - Zur Bewertung gehören: Indexzeilen in `FABLE_DIALOG_INDEX.md` für 27c, 29a und 29b sowie der Backlog- und Journal-Nachtrag (ARBEITSWEISE 5b).
+4. **E-2, der Registerauftrag.**
+   - R18–R52 zeichengleich eintragen, jeder Block mit Marken.
+   - **Vorher messen**, was Fable als Voraussetzung nennt:
+     - R25 (Docstring `auswertung.py` „unter dem Modus“), R26 (`--bot` unter dem Modus), R28 (Probe in `snapshot.py`);
+     - R33 (Feld für die Trade-Zahl im Vertrag), R36/R48 (d) (`mittlere_exposure`, `mtm_kern.py`), R41 (Haltedauer TB-24: Kerzenzahl oder Zeitdifferenz);
+     - R48 (c), (f), (g) (`auswertung.py`: Spitze, `markierungen`, Perzentil), R48 (i) (`pruefe_grenzsaetze.py`).
+   - Messbitten: R49 (b) (Quantil-Stufen), R50 (34 Grenzsätze; Kennzahlen-Tatsachennotizen je Datei und Bezeichner).
+   - Weicht eine Messung ab, wird sie gemeldet, nicht eingetragen.
+   - **Freigabe: Registertext ist Einzelfreigabe**, also Karte an den Betreiber.
+   - In denselben Auftrag oder direkt danach die Regelwerksnachträge:
+     - ARBEITSWEISE 22.10 (Helfer), 22.11 (Fable-Filter), Abschnitt 0 (Ampel, Gegenleser);
+     - UMZUG 3 (Auslöser 6, Ampel) und 6 (Eröffnung mit Kernlektüre);
+     - die Regeln aus Block 7 unten und aus dem Umzugsblock vom 07:15 (Nr. 1, 5, 6), Fables 29a Abschnitt 1–3, K2h/K2f, die drei Trägerstellen (TB-119 Nr. 2);
+     - kalter Leser ohne Gedächtnis; Backlog K4s und K4t.
+5. **Fable-Umzug** nach E-2 (Fables Ampel: 🟡, rund 380 000, einmal verdichtet). Die Übergabe-Vorlage vom 29.09. braucht nur Abschnitt 6 und 7 neu (Fable 29b, Ampelzeile).
+6. Später:
+   - E-3 … E-9 nach TB-120 Abschnitt 5 und der Reihenfolge aus R44 (E-1, dann E-6, dann E-3/E-4);
+   - Posten 5 des Plans nach R43 neu fassen;
+   - Leiter-Skript und Stufe IV;
+   - Öffnung von `paths.py` (T117-5, E-9).
+
+### Block 5 — Wartezustände
+
+| wartet | auf |
+|---|---|
+| TB-122 | Platzhalter 0a, Zeiger, Auslöser (steuernder Chat), dann Abschicken des Satzes (Betreiber) |
+| E-2 | Bewertung von 29b, Vormessungen, Freigabekarte |
+| Fable | nichts offen. Die nächste Anfrage erst nach E-2 und nach dem Fable-Filter (nur Verfahrensfragen, vorgeprüft) |
+| Betreiber | Speicher-Export des alten Projektspeichers, Frist 29.09.; ob erledigt, ist nicht gemessen |
+
+### Block 6 — Freigaben
+
+- **Nicht verbraucht:** TB-122 (Karte 27.09., ca. 20:20, wörtlich im Auftrag).
+- **Heute entschieden, per Karte:**
+  - T116-5/R24: „(a) So lassen“.
+  - Umzug nach Tokenverbrauch und Kernlektüre.
+  - Helfer: ein Regelwerk für alle drei Rollen; Ampel im steuernden Chat.
+  - Fable-Filter; 29b „gekürzt senden“ (überholt, weil Fassung 1 schon bei Fable war).
+- **Nicht freigegeben:** E-2 (Register), E-3 … E-9, jede Öffnung von `herkunft.py`, `paths.py`, `zuteilung.py` und `auswertung.py`.
+- **Sperrliste:** 14 Punkte, unverändert. Kein neues Abbild vor dem nächsten Bündel.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus
+
+| # | Fehler | ⇒ Regel |
+|---|---|---|
+| 1 | 29b Fassung 1: Die Zeile F-17 fehlte, weil der Übernahmebereich als Zeilenzahl (16–192) vorgegeben war; der Gegenleser prüfte gegen denselben Bereich | Übernahmegrenzen werden aus der Datei gemessen (Überschrift, Dateiende). Der Gegenleser prüft gegen die **Quelle**, nicht gegen den Bereich (so auch Fable 29b, Teil 0 Nr. 4, B3-Klasse) |
+| 2 | Angekündigte Protokollzeile zweimal vergessen, einmal falsche Herkunft einer Regel (Fable 29a statt Betreiber 09:20); beides fand der Gegenleser | Gegenlesen bleibt; Probe 2 von 2 mit Befunden. Durchgang 3 ist die nächste Übergabe |
+| 3 | In der Übergabe erst „als Kopierblock übergeben“, dann „nicht übergeben“ geschrieben; beides war eine Annahme über das Handeln des Betreibers | Was der Betreiber abgeschickt hat, wird nicht behauptet. Richtig ist „als Kopierblock ausgegeben“; ob gesendet, zeigt erst die Antwort. Vor einer Karte, die einen versendeten Stand ändern will, zuerst fragen, ob schon gesendet |
+| 4 | Fables 70 000 Zeichen grosse Antwort 29b direkt in den Chat gelesen (rund 20 000 Tokens), dadurch Umzug früher als nötig | Grosse Ablage-Dateien liest ein Helfer (Fundstellen). Der Chat liest nur, was er für eine Entscheidung im Wortlaut braucht |
+| 5 | TB-121 lag 57 min unabgeschickt; die Nachschau fand keinen Commit, die Erinnerung ging raus, danach lief die Sitzung | So richtig (Regel 5 vom Umzug 07:15). Kein neuer Fehler, bestätigt |
+
+### Block 8 — Zwischengelagert, noch nicht eingearbeitet
+
+- Die zwei uncommitteten Dateien aus Block 2 gehen mit Schritt 0 von TB-122 ins Repo.
+- Die Regeltexte der Nachträge 07:55, 09:20 und 13:20 sind noch nicht in `ARBEITSWEISE.md` und `UMZUG.md` (siehe Block 4 Nr. 4). Die Erinnerung (`preferences.md` des Projekts) trägt sie schon.
+- Fable 27c, 29a und 29b liegen nur in der Ablage (Block 4 Nr. 2).
+- `FABLE_UEBERGABE_2026-09-29_neuer_chat.md` liegt nur in der Ablage (nicht von diesem Chat). Prüfen, ob die Datei ins Repo gehört (Fable-Übergaben sind Vorgangsdokumente, B6).
+
+### Block 9 — Eröffnungstext
+
+Die Kernlektüre ist Betreiberentscheid (Nachtrag 07:55), in `UMZUG.md` Abschnitt 6 aber noch nicht eingearbeitet. Für diesen Umzug gilt der Text, den der steuernde Chat im Chat als Kopierblock ausgibt: Kernlektüre = **dieser Block** + ARBEITSWEISE Abschnitt 0 + UMZUG Abschnitt 3 + die Erinnerung. Die Einarbeitung in UMZUG 6 folgt mit E-2.
+
+**Stehende Pflichten:**
+- Umzugsampel als letzte Zeile jeder Antwort.
+- Helfer-Agenten nach 22.10, Gegenleser vor jeder Übergabe.
+- An Fable nur vorgeprüfte Verfahrensfragen (22.11).
+- Sonst unverändert wie im Umzugsblock 07:15, Block 9: Auslöser, Nachschau, Karten, Sicherheitsregeln, kein `git status`/`add`/Commit über die Brücke.
+
+**Nachtrag zum Umzugsblock, 14:05: Sonnet 5.5.** Betreiberfrage 13:46, wörtlich: *„Wäre es sinnvoll einen teil der Aufgaben auch noch an Sonet5.5 auszulagern? Dies aber ausdrücklich nur wenn die Qualität des Projektes darunter nicht leidet?“* Karte, wörtlich: „Sollen Teile der Arbeit an Sonnet 5.5 gehen?“ ⇒ **„Nur Mechanik, erst Probe (Empfohlen)“**.
+
+Das heisst:
+- Sonnet übernimmt Fundstellen- und Zählhelfer (Agent mit `model: sonnet`) und reine Dokumentationsaufträge mit wörtlich vorgegebenem Text.
+- Zuerst läuft **ein** Probeauftrag, abgenommen mit numstat, `diff` gegen den Auftragstext und der Zahl der Treffer je Einfügestelle. Hält er, wird es Regel für diese Klasse.
+- Register, Code, Messungen, Gegenleser, Bewertung und steuernder Chat bleiben Opus mit Aufwand hoch.
+- Kandidat für die Probe: der Regelwerksnachtrag aus Block 4 Nr. 4, getrennt vom Registerteil von E-2.
+- Einzuarbeiten als ARBEITSWEISE 22.12 und Abschnitt 3 (Modellwahl), zusammen mit 22.10/22.11.
+- **Ergänzung 14:10:** Es gibt **keinen eigenen Sonnet-Chat**; Betreiber 14:06 fragte nach einem Eröffnungstext, der steuernde Chat hat verneint, mit Begründung. Sonnet läuft nur (a) als Helfer (Agent mit `model: sonnet`), mit allem Nötigen im Helferauftrag, und (b) als Mac-Sitzung je Auftrag, mit dem Modell im Kopf des Auftrags (ARBEITSWEISE 3). Umzug und Ampel betreffen beide nicht. ⚠️ **Lücke:** `docs/werkzeuge/sitzungswaechter/starte_sitzung.sh` startet `claude --effort high --remote-control` ohne Modellwahl, also mit Opus. Vor der Sonnet-Probe prüfen (`claude --help`), ob es einen Modellschalter gibt, und den Wächter je Auftrag steuerbar machen. Das ist Handwerk mit Freigabe, weil der Wächter geändert wird.
+- **Ergänzung 14:15, „zukünftig“ (ARBEITSWEISE 15):** Betreiber 14:10, wörtlich: *„Schicke mir zukünftig immer den Text der Übergabe für den neuen Chat als erste Nachricht direkt im laufenden Chat zum kopieren“*. Bei jedem Umzug geht der Eröffnungstext als **erste** Nachricht im laufenden Chat raus, als Kopierblock in einer eigenen Nachricht vor allen Erläuterungen. Einzuarbeiten in `UMZUG.md` Schritt 6 und in ARBEITSWEISE Abschnitt 0 („Wenn ein Arbeitsabschnitt endet“), zusammen mit E-2 oder der Sonnet-Probe. Erinnerung: eingetragen.
+
+
+---
+
+## Nachtrag 29.09.2026, 14:52 — neuer steuernder Chat: Übernahme, Abschriften, TB-122 gegengelesen und ausgelöst
+
+*Geschrieben vom steuernden Chat seit 29.09.2026, 14:11. Gemessen heisst über die Geräteanbindung heute gemessen.*
+
+- **Übernahme gemessen 14:12:** HEAD `04f07ef`, `BACKLOG.md` 220 Zeilen, Arbeitsbaum wie im Umzugsblock 14:00, Block 2.
+- **Aus der Ablage ins Repo abgeschrieben** (`docs/projektfuehrung/`, uncommittet, TB-122 Schritt 0 nimmt sie mit):
+
+| Datei | Bytes | md5 |
+|---|---|---|
+| `FABLE_ANTWORT_2026-09-27c_leiter_lesarten_und_wachen.md` | 48 420 | `ff96392ed654fdcae2e991e51e424dc5` |
+| `FABLE_ANTWORT_2026-09-29a_betreiberentscheid_umzugstakt_ampel_agenten.md` | 6 250 | `52b6b7f609df6dcb0ee64c58884d75aa` |
+| `FABLE_ANTWORT_2026-09-29b_sammlung_erzeuger_kalter_leser.md` | 73 703 | `898d5bd53b6617209b7ce4f7e8992941` |
+| `FABLE_UEBERGABE_2026-09-29_neuer_chat.md` | 21 705 | `c2bfca14a12064213a59f32e05125f70` |
+
+  Verfahren: je Datei zwei unabhängige Abschriften durch Helfer, `cmp` rc 0. ⚠️ Bytegleichheit mit der Ablage ist **nicht messbar**: Das Werkzeug liefert nur Text; geschützte Leerzeichen und U+FE0F sind darin nicht unterscheidbar (0 × U+00A0 in allen vier Dateien). Eine dritte Abschrift von 29b brach mittendrin ab (18 987 B) und ist verworfen.
+- **Gegenlesen, Probe Durchgang 3 von 3** (TB-122 gegen 27c, 29b und das Register): Befunde 7 abweichend, 21 berührt, 3 veraltet. Vor dem Auslösen eingearbeitet (numstat im Auftrag):
+  1. Fable-Stand statt „Kein Fable bis Dienstag“;
+  2. Fundstelle des Vorbilds `rsi2_crypto` (`docs/belege/TB-120/c_bestand.md`, C4);
+  3. Fundstelle des Sollwerts `register()` (`ERGEBNIS_TB-117`, Zeile F);
+  4. neuer Schritt B4 nach R43: In `multi_symbol_optimise.py` nur die Funktionen, die `collect_all_trades` importiert; `evaluate_combination_multi` bleibt unverändert;
+  5. Überschrift C berichtigt: 24c / 41.2 B4 verlangt einen Modus-Lauf;
+  6. Entwurf der Tatsachennotiz nach 37.3 (Auftrag, Freigabe, Commit, Form 46.11) und R47.
+  ⇒ **3 von 3 Durchgängen mit Befunden, die sonst übergeben worden wären: Das Gegenlesen wird Regel** (Nachtrag 09:20, Probe). Einzuarbeiten mit E-2.
+- **Betreiberentscheid per Auswahlkarte, ca. 14:52:** „TB-122 soll je Bot eine neue Testdatei `test_posten3_durchreichung.py` anlegen … Freigabe erweitern?“ ⇒ **„Ja, bis 3 Testdateien (Empfohlen)“**. Steht wörtlich im Auftrag.
+- **Fehler dieses Chats mit Regel:** Die Kernlektüre wurde über `project_read` gelesen. Das liefert immer die ganze Datei; `UEBERGABE.md` und `ARBEITSWEISE.md` kamen vollständig in den Chat, rund 190 KB statt 40 KB. ⇒ **Die Kernlektüre wird künftig mit Abschnittsfilter aus dem Repo über die Geräteanbindung gelesen** (etwa `awk` ab der letzten `## `-Überschrift). Einzuarbeiten in UMZUG 6 mit E-2.
+- **Nummern:** TB frei ab **123**, sonst wie im Umzugsblock 14:00, Block 3.
+- **Als Nächstes:** TB-122 läuft nach dem Abschicken des Satzes. Danach 29b bewerten (Indexzeilen 27c/29a/29b, Backlog- und Journal-Nachtrag), dann E-2 mit Freigabekarte.
