@@ -1,0 +1,18 @@
+# TB-124 C1 vorher - sha256 der Ausgaben von docs/belege/TB-122/a_lauf.py (Inhalte nicht gelesen), HEAD baf18a2, Arbeitsbaum ausserhalb docs/ [], ohne Modus, 2026-09-30 19:59:02 +0200
+# Ausgabe $TMPDIR/tb124_vorher/ (TMPDIR=/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/)
+=== rsi2_mean_reversion  b6 rc=0 (1 s)  pfad rc=0 (19 s)
+8971aa6218b82c7363821edb3b9d8550f663a5e5c057b3b3732f634901042cbc  rsi2_mean_reversion/b6.csv
+66cfefa59e7ac575e373e324037f70706dcceba388526e1573f42d6eea0f89d3  rsi2_mean_reversion/equity_curve.csv
+699a451962007daafc33071c4564942598490dcee597fcd63acf1b5be78e5845  rsi2_mean_reversion/optimierer.csv
+c6570667ef5ad1661f6b36eb911930776717acdd5453805a247774356607b1ba  rsi2_mean_reversion/trades.csv
+=== volatility_breakout  b6 rc=0 (1 s)  pfad rc=0 (29 s)
+de5f633972c9f262e4a0a0db50be5826894469f839ce1f7b0619075f668ddc9c  volatility_breakout/b6.csv
+5823c7a4bf21191d5f2ead5f53f8b603bc89a0a7b98b94affc3f4c7d1aa043d0  volatility_breakout/equity_curve.csv
+c976b194bfe6684b6278ac9001e0aa729360136fb4dfb1eb062e846f1233122c  volatility_breakout/optimierer.csv
+d50ec2fd4abe078b8b41357a1d5dea6f689e315194455a7f90e9b928de98d2f8  volatility_breakout/trades.csv
+=== volatility_breakout_crypto  b6 rc=0 (1 s)  pfad rc=0 (2 s)
+e913fe74eed2c832d42fb459525e42e82304007fd65e17a66e83dd0654960f1b  volatility_breakout_crypto/b6.csv
+64ee24bbec0085a913806591d1c0ee29a2036bd6a383ead1922e9dcf8fe3a8ef  volatility_breakout_crypto/equity_curve.csv
+7a4aacbfc14a7136e001c7564c94bea3883ccc29d9f107d90612307598239678  volatility_breakout_crypto/optimierer.csv
+b7a8a06922fc05cf2c18fd3f5475cbabad90138bbf6ad88c02c725fea8eb3acf  volatility_breakout_crypto/trades.csv
+795649b8fe7ac4e8972bad1ddad68871ce70936a75678ff32c963e581effbae2  volatility_breakout_crypto/trades_regimefilter.csv

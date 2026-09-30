@@ -49,3 +49,12 @@ Fable hatte für den nächsten Registerschritt aufgeschrieben, was im Code vorhe
 - **R48 (c):** Die Helfer waren uneinig. Die Frage geht an Fable (30a, Frage 3).
 - **Neu:** Der Vorlauf im Faltenplan ist bei sechs Bots achsenabhängig, nicht nur bei den drei aus TB-122 F2; `turtle_soup_*` sind nachgetragen. Das geht an Fable (30a, Frage 1).
 - **F1, F3, Bauart des Laders:** Handwerk, Entscheidung beim Betreiber. **F4:** im Register beantwortet (Punkt 11 „und der Repo-Commit“, 5e, 37.1).
+
+## Nachtrag 30.09.2026, ca. 20:15 — Messbitten aus Fable 30a (R53, R54), gemessen vom steuernden Chat über die Geräteanbindung, nur lesend
+
+| R | Voraussetzung (Fable 30a, „Unsicher“) | gemessen | Folge |
+|---|---|---|---|
+| R54 | Liest und rechnet irgendein Code `netto_rendite_pct` aus dem Vertrag von `auswertung.py`? | `grep -rn netto_rendite_pct --include=*.py` (ohne `ergebnisse/`, `daten/`, `trading-env`): In `research/vorregistrierung/auswertung.py` steht es als Pflichtspalte (Z. 134). Gelesen wird es nur für die Bestätigungsperiode (Z. 624, `float(z["netto_rendite_pct"])`), berichtet in Z. 823. `netto_rendite_pct_ueber_selektionsfalten` (Z. 675) kommt aus `bereinigung["strategie_rendite_pct"]`, nicht aus der Spalte. Sonst nur `beispieldaten.py:192` (Testdaten). `turn_of_month` führt einen anderen Namen (`mittlere_netto_rendite_pct`). | **Trifft zu:** Die Spalte ist eine Berichtsgrösse ohne Leser im Urteil; sie bleibt im Vertrag (Fable 30a Z. 19). |
+| R53 | Sind die oberste Stufe jeder Rückblick-Achse und die festen Fenster je Bot maschinell aus `registerdaten.py` lesbar? | Die Stufen: `registerdaten.raster()` (Z. 587) über `achse_werte` (Z. 558); die oberste Stufe ist der letzte Wert je Achse. Das Bollinger-Fenster: `regel_wert({"regel": "bollinger_fenster"}, …)` gibt 20.0 (Z. 213–216). Eigene Einträge für weitere feste Fenster (etwa `VOLUME_AVG_PERIOD`, den festen Warm-up der Turtle-Soup-Bots) gibt es per `grep` nicht; `donchian_period` ist eine Rasterachse (Z. 385, 512). | **Teilweise:** Stufen und Bollinger-Fenster sind lesbar, andere feste Fenster nicht. Für diese gilt 32.5 (c), Literal mit Test gegen das Register, oder sie werden in `registerdaten.py` ergänzt; das entscheidet E-2 bzw. der Auftrag zu R53 (a). |
+
+*Sichtschutz: nur Code gelesen, keine Ergebnisdatei.*
