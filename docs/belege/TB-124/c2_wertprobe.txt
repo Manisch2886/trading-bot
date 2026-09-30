@@ -1,0 +1,82 @@
+# TB-124 C2 - Wertprobe Scanbeginn (Teil D der zwei test_posten3_durchreichung.py), 2026-09-30 21:02:51 +0200
+## 1) nachher: Hauptordner, Code = f90135e (nach B), Testdateien im Arbeitsbaum
+### volatility_breakout
+volatility_breakout: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+Teil D: Stufen [20, 97, 175, 252], hergeleiteter Scanbeginn [39, 116, 194, 271]; frueher fester Scanbeginn WARMUP_PERIOD + 1 = 127 schnitt ab bei [20, 97]
+
+==============================================================================
+43/43 Pruefungen bestanden.
+rc 0
+### volatility_breakout_crypto
+volatility_breakout_crypto: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+Teil D: Stufen [20, 135, 250, 365], hergeleiteter Scanbeginn [39, 154, 269, 384]; frueher fester Scanbeginn WARMUP_PERIOD + 1 = 127 schnitt ab bei [20]
+
+==============================================================================
+42/42 Pruefungen bestanden.
+rc 0
+
+## 2) nachher, ausgepackt (git archive f90135e) wie die Gegenprobe
+# TB-124 C2 Probe, Stand f90135e, Testquelle /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb124_c2_testquelle, 2026-09-30 21:02:54 +0200
+# sha256 backtest_breakout.py am ausgepackten Stand:
+#   3c7ccbe792ea5eb8dcbc76ae27079f4d7c47ca34bd3ad5edd332d4fdad3c403e  strategies/volatility_breakout_crypto/backtest_breakout.py
+#   3fd0cef6c284a8806cace3663c241295edbb1ef8ee79092abfd0dc55e2bf6a76  strategies/volatility_breakout/backtest_breakout.py
+## volatility_breakout  (sha256 Testdatei 9a360566b33bb294)
+volatility_breakout: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+Teil D: Stufen [20, 97, 175, 252], hergeleiteter Scanbeginn [39, 116, 194, 271]; frueher fester Scanbeginn WARMUP_PERIOD + 1 = 127 schnitt ab bei [20, 97]
+
+==============================================================================
+43/43 Pruefungen bestanden.
+rc 0
+## volatility_breakout_crypto  (sha256 Testdatei 5a5ad774b3954f80)
+volatility_breakout_crypto: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+Teil D: Stufen [20, 135, 250, 365], hergeleiteter Scanbeginn [39, 154, 269, 384]; frueher fester Scanbeginn WARMUP_PERIOD + 1 = 127 schnitt ab bei [20]
+
+==============================================================================
+42/42 Pruefungen bestanden.
+rc 0
+
+## 3) GEGENPROBE (40.7): Stand 105419e (nach A, vor B), dieselben Testdateien
+# TB-124 C2 Probe, Stand 105419e, Testquelle /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb124_c2_testquelle, 2026-09-30 21:02:55 +0200
+# sha256 backtest_breakout.py am ausgepackten Stand:
+#   b7923b084165d47dba99305151f59e8aa7c2e5989e364a7501a604575a555d1b  strategies/volatility_breakout_crypto/backtest_breakout.py
+#   8dce183df74e8f622530a836a7cd1c3053b2bed06884fd444147c8de50ede4ea  strategies/volatility_breakout/backtest_breakout.py
+## volatility_breakout  (sha256 Testdatei 9a360566b33bb294)
+volatility_breakout: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+Teil D: Stufen [20, 97, 175, 252], hergeleiteter Scanbeginn [39, 116, 194, 271]; frueher fester Scanbeginn WARMUP_PERIOD + 1 = 127 schnitt ab bei [20, 97]
+
+==============================================================================
+29 bestanden, 14 GESCHEITERT:
+  - D1: Vermerk 20 im Frame -> Scan beginnt am hergeleiteten Index 39 - ist 127
+  - D1: Vermerk 97 im Frame -> Scan beginnt am hergeleiteten Index 116 - ist 127
+  - D1: Vermerk 175 im Frame -> Scan beginnt am hergeleiteten Index 194 - ist 127
+  - D1: Vermerk 252 im Frame -> Scan beginnt am hergeleiteten Index 271 - ist 127
+  - D1: Vermerk 126 im Frame -> Scan beginnt am hergeleiteten Index 145 - ist 127
+  - D2: ohne Vermerk gilt die Voreinstellung: Scanbeginn 145 - ist 127
+  - D3: Stufe 20: Signalpfad findet den Einstieg am ersten zulaessigen Index 39
+  - D4: Stufe 20: Optimierer-Pfad findet den Einstieg an Index 39
+  - D5: Stufe 20: der Vermerk kommt in run_backtest an - [{}]
+  - D3: Stufe 97: Signalpfad findet den Einstieg am ersten zulaessigen Index 116
+  - D4: Stufe 97: Optimierer-Pfad findet den Einstieg an Index 116
+  - D5: Stufe 97: der Vermerk kommt in run_backtest an - [{}]
+  - D5: Stufe 175: der Vermerk kommt in run_backtest an - [{}]
+  - D5: Stufe 252: der Vermerk kommt in run_backtest an - [{}]
+rc 1
+## volatility_breakout_crypto  (sha256 Testdatei 5a5ad774b3954f80)
+volatility_breakout_crypto: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+Teil D: Stufen [20, 135, 250, 365], hergeleiteter Scanbeginn [39, 154, 269, 384]; frueher fester Scanbeginn WARMUP_PERIOD + 1 = 127 schnitt ab bei [20]
+
+==============================================================================
+30 bestanden, 12 GESCHEITERT:
+  - D1: Vermerk 20 im Frame -> Scan beginnt am hergeleiteten Index 39 - ist 127
+  - D1: Vermerk 135 im Frame -> Scan beginnt am hergeleiteten Index 154 - ist 127
+  - D1: Vermerk 250 im Frame -> Scan beginnt am hergeleiteten Index 269 - ist 127
+  - D1: Vermerk 365 im Frame -> Scan beginnt am hergeleiteten Index 384 - ist 127
+  - D1: Vermerk 126 im Frame -> Scan beginnt am hergeleiteten Index 145 - ist 127
+  - D2: ohne Vermerk gilt die Voreinstellung: Scanbeginn 145 - ist 127
+  - D3: Stufe 20: Signalpfad findet den Einstieg am ersten zulaessigen Index 39
+  - D4: Stufe 20: Optimierer-Pfad findet den Einstieg an Index 39
+  - D5: Stufe 20: der Vermerk kommt in run_backtest an - [{}]
+  - D5: Stufe 135: der Vermerk kommt in run_backtest an - [{}]
+  - D5: Stufe 250: der Vermerk kommt in run_backtest an - [{}]
+  - D5: Stufe 365: der Vermerk kommt in run_backtest an - [{}]
+rc 1

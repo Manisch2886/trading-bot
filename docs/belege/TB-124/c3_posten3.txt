@@ -1,0 +1,11 @@
+# TB-124 C3 - die drei strategies/*/test_posten3_durchreichung.py vor und nach B (rc und Schlusszeile). c3_tests.sh fuehrt sie nicht aus.
+## vor B, HEAD f6aaf33, 2026-09-30 21:00:53 +0200
+rsi2_mean_reversion rc=0: 16/16 Pruefungen bestanden.
+volatility_breakout rc=0: 12/12 Pruefungen bestanden.
+volatility_breakout_crypto rc=0: 12/12 Pruefungen bestanden.
+#   (vor B mit den Testdateien am Stand f6aaf33, d.h. ohne Teil D)
+## nach B, HEAD f90135e (Code f90135e), Testdateien der Breakout-Bots mit Teil D, 2026-09-30 21:03:14 +0200
+rsi2_mean_reversion rc=0: 16/16 Pruefungen bestanden.
+volatility_breakout rc=0: 43/43 Pruefungen bestanden.
+volatility_breakout_crypto rc=0: 42/42 Pruefungen bestanden.
+## die zwoelf Pruefungen aus TB-122 (Teile A-C) nachher bestanden: je Bot Zeilen A*/B*/C* ohne Fehlschlag (Fehlschlaege wuerden unter GESCHEITERT stehen, s. o. keine)

@@ -1,0 +1,7 @@
+# TB-124 C6 - sha256 vorher (Stand f6aaf33 = 0034960 ausserhalb docs/) und nachher je geaenderter Datei unter strategies/ (nachher = Arbeitsbaum, commit folgt als 'TB-124 C')
+strategies/volatility_breakout/backtest_breakout.py | vorher 8dce183df74e8f622530a836a7cd1c3053b2bed06884fd444147c8de50ede4ea | nachher 3fd0cef6c284a8806cace3663c241295edbb1ef8ee79092abfd0dc55e2bf6a76
+strategies/volatility_breakout_crypto/backtest_breakout.py | vorher b7923b084165d47dba99305151f59e8aa7c2e5989e364a7501a604575a555d1b | nachher 3c7ccbe792ea5eb8dcbc76ae27079f4d7c47ca34bd3ad5edd332d4fdad3c403e
+strategies/volatility_breakout/test_posten3_durchreichung.py | vorher 50e872e25859a84f2f64ac7e7113f9fd5e9f08c3b79043ed139c7c579315acf3 | nachher 9a360566b33bb2943d245b9a2d5255238cecaa1f5ab7a45cbd345e2b8d96120b
+strategies/volatility_breakout_crypto/test_posten3_durchreichung.py | vorher 3f78f6da14238479da178629249c4df96f66faaa17db1702b3443135fd3b89dc | nachher 5a5ad774b3954f80469098c29ce811a470d5133d113d9365cfd9a3e8957d7960
+## ausserhalb strategies/ geaendert (A): research/sync_check/sync_table.py | vorher 426fb3110d9eaa11f08242617807a6f9754a5877f57520809bd702151f3694f8 | nachher 44a307df53d41b51bc6e2d9115f467392a382476985c708f977dbac882483b10 | Commit 105419e
+## backtest_breakout.py: Commit f90135e (B); test_posten3_durchreichung.py: Commit 'TB-124 C'

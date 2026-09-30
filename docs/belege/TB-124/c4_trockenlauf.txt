@@ -1,0 +1,66 @@
+# TB-124 C4 - Trockenlauf ohne Modus (docs/belege/TB-122/c4_trockenlauf.sh), vorher f6aaf33 (vor A/B), nachher f90135e (Code f90135e)
+## vorher
+# TB-122 C4 Trockenlauf ohne Modus, HEAD f6aaf33, Arbeitsbaum ausserhalb docs/ [], 2026-09-30 20:59:18 +0200
+elliott_wave rc=0 9s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  elliott_wave/rechnung_stdout.txt
+   fbe07160d5ee4c697dd76a5e9e242c1be5006b8b896d97a8c3fba70ee17106fe  elliott_wave/zusammenfassung.json
+t3_supertrend rc=0 3s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  t3_supertrend/rechnung_stdout.txt
+   7e077ec63eefe6ba50a1cbb1088875d453d771a2268ff8514d5d54c3a35ff541  t3_supertrend/zusammenfassung.json
+rsi2_crypto rc=0 1s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  rsi2_crypto/rechnung_stdout.txt
+   7437f5d83f144e6bd76664a6ed5bbf3d6c020cabc628d42fe57a32205c91596b  rsi2_crypto/zusammenfassung.json
+turtle_soup_crypto rc=0 1s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  turtle_soup_crypto/rechnung_stdout.txt
+   b5bd9cd52d61c19588c429ae46cfa90f9e5e1bc668f55bd8e119636e24e47415  turtle_soup_crypto/zusammenfassung.json
+volatility_breakout_crypto rc=0 1s
+   4c74eea34f70d904582da2372acdfb3e6812698c78afacde6a49019163767335  volatility_breakout_crypto/rechnung_stdout.txt
+   fd21009e8e6762b2f32634b0a7b0f74b027afa093dd6fff63c64de0b6d54456e  volatility_breakout_crypto/zusammenfassung.json
+elliott_wave_stocks rc=0 13s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  elliott_wave_stocks/rechnung_stdout.txt
+   43459076f5209cab9de40f02629ffddce6ff6da731ea3e1c2ae8ed040403e5b8  elliott_wave_stocks/zusammenfassung.json
+rsi2_mean_reversion rc=0 6s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  rsi2_mean_reversion/rechnung_stdout.txt
+   8489bef26c3d1efcb2f23149b9089f9a7ceec2e97db9cdfb369557f5ba8e7ebe  rsi2_mean_reversion/zusammenfassung.json
+turtle_soup_stocks rc=0 5s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  turtle_soup_stocks/rechnung_stdout.txt
+   a05e4cdf87a9a4aafafdd91e01a7c82cfcd1500a9e9784efc08bde450729396b  turtle_soup_stocks/zusammenfassung.json
+volatility_breakout rc=0 9s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  volatility_breakout/rechnung_stdout.txt
+   2f7e4b6b67f49b6e5740439fddccf510b4c523199297ea90c4c83fdedefd4254  volatility_breakout/zusammenfassung.json
+# git status nach den Laeufen ausserhalb docs/: []
+## vorher, zweiter Lauf: alle Hashes gleich dem ersten (Determinismus)
+## nachher
+# TB-122 C4 Trockenlauf ohne Modus, HEAD f90135e, Arbeitsbaum ausserhalb docs/ [ M strategies/volatility_breakout/test_posten3_durchreichung.py  M strategies/volatility_breakout_crypto/test_posten3_durchreichung.py ], 2026-09-30 21:03:17 +0200
+elliott_wave rc=0 9s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  elliott_wave/rechnung_stdout.txt
+   fbe07160d5ee4c697dd76a5e9e242c1be5006b8b896d97a8c3fba70ee17106fe  elliott_wave/zusammenfassung.json
+t3_supertrend rc=0 3s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  t3_supertrend/rechnung_stdout.txt
+   7e077ec63eefe6ba50a1cbb1088875d453d771a2268ff8514d5d54c3a35ff541  t3_supertrend/zusammenfassung.json
+rsi2_crypto rc=0 1s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  rsi2_crypto/rechnung_stdout.txt
+   7437f5d83f144e6bd76664a6ed5bbf3d6c020cabc628d42fe57a32205c91596b  rsi2_crypto/zusammenfassung.json
+turtle_soup_crypto rc=0 1s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  turtle_soup_crypto/rechnung_stdout.txt
+   b5bd9cd52d61c19588c429ae46cfa90f9e5e1bc668f55bd8e119636e24e47415  turtle_soup_crypto/zusammenfassung.json
+volatility_breakout_crypto rc=0 1s
+   4c74eea34f70d904582da2372acdfb3e6812698c78afacde6a49019163767335  volatility_breakout_crypto/rechnung_stdout.txt
+   fd21009e8e6762b2f32634b0a7b0f74b027afa093dd6fff63c64de0b6d54456e  volatility_breakout_crypto/zusammenfassung.json
+elliott_wave_stocks rc=0 14s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  elliott_wave_stocks/rechnung_stdout.txt
+   43459076f5209cab9de40f02629ffddce6ff6da731ea3e1c2ae8ed040403e5b8  elliott_wave_stocks/zusammenfassung.json
+rsi2_mean_reversion rc=0 7s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  rsi2_mean_reversion/rechnung_stdout.txt
+   8489bef26c3d1efcb2f23149b9089f9a7ceec2e97db9cdfb369557f5ba8e7ebe  rsi2_mean_reversion/zusammenfassung.json
+turtle_soup_stocks rc=0 5s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  turtle_soup_stocks/rechnung_stdout.txt
+   a05e4cdf87a9a4aafafdd91e01a7c82cfcd1500a9e9784efc08bde450729396b  turtle_soup_stocks/zusammenfassung.json
+volatility_breakout rc=0 7s
+   e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  volatility_breakout/rechnung_stdout.txt
+   2f7e4b6b67f49b6e5740439fddccf510b4c523199297ea90c4c83fdedefd4254  volatility_breakout/zusammenfassung.json
+# git status nach den Laeufen ausserhalb docs/: [ M strategies/volatility_breakout/test_posten3_durchreichung.py  M strategies/volatility_breakout_crypto/test_posten3_durchreichung.py ]
+## Vergleich (diff der Hashzeilen vorher/nachher)
+ZEICHENGLEICH 18/18 Dateien
+## gegen TB-122 C4 nachher (docs/belege/TB-122/c4_trockenlauf.txt, letzter Block)
+auch gleich TB-122 C4 nachher

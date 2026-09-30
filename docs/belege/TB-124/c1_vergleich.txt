@@ -1,0 +1,19 @@
+# TB-124 C1 - cmp je Datei $TMPDIR/tb124_vorher (Stand baf18a2, vor B) gegen $TMPDIR/tb124_nachher (Stand f90135e, nach B), Werkzeug docs/belege/TB-122/a_lauf.py, ohne Modus, 2026-09-30 21:02:39 +0200
+=== rsi2_mean_reversion  b6 rc=0 (1 s)  pfad rc=0 (11 s)
+=== volatility_breakout  b6 rc=0 (1 s)  pfad rc=0 (13 s)
+=== volatility_breakout_crypto  b6 rc=0 (1 s)  pfad rc=0 (1 s)
+IDENTISCH  rsi2_mean_reversion/b6.csv  8971aa6218b82c73
+IDENTISCH  rsi2_mean_reversion/equity_curve.csv  66cfefa59e7ac575
+IDENTISCH  rsi2_mean_reversion/optimierer.csv  699a451962007daa
+IDENTISCH  rsi2_mean_reversion/trades.csv  c6570667ef5ad166
+IDENTISCH  volatility_breakout_crypto/b6.csv  e913fe74eed2c832
+IDENTISCH  volatility_breakout_crypto/equity_curve.csv  64ee24bbec0085a9
+IDENTISCH  volatility_breakout_crypto/optimierer.csv  7a4aacbfc14a7136
+IDENTISCH  volatility_breakout_crypto/trades_regimefilter.csv  795649b8fe7ac4e8
+IDENTISCH  volatility_breakout_crypto/trades.csv  b7a8a06922fc05cf
+IDENTISCH  volatility_breakout/b6.csv  de5f633972c9f262
+IDENTISCH  volatility_breakout/equity_curve.csv  5823c7a4bf21191d
+IDENTISCH  volatility_breakout/optimierer.csv  c976b194bfe6684b
+IDENTISCH  volatility_breakout/trades.csv  d50ec2fd4abe078b
+# Dateien nachher: 13
+# Ergebnis: 13/13 IDENTISCH
