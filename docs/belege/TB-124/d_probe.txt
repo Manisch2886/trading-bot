@@ -1,0 +1,71 @@
+# TB-124 D - Probe shared/test_verankerter_datenstand.py (R28) und Gegenprobe (40.7), HEAD 499d68b, 2026-09-30 21:04:43 +0200
+## sha256 Probe: 7e9222a7cd9abbc81d0e815b981389528ffdfaa8b86d125d673ea626e9f0a74e
+## D1 Lauf
+Register: /Users/jaquelineloffler/trading-bot/docs/VORREGISTRIERUNG_neuselektion.md
+  Zeilen mit '| Datenstand (`datenstand_hash`) |': 1, Hexwerte: ['d9449faf51bffaaa…']
+  snapshot.VERANKERTER_DATENSTAND: d9449faf51bffaaa…
+
+==============================================================================
+3/3 Pruefungen bestanden.
+rc 0
+## D2 Importe der Probe (statisch): 27:import os 28:import re 29:import sys 35:import snapshot  # noqa: E402 
+## D3 Gegenprobe
+# TB-124 D3 Gegenprobe zu shared/test_verankerter_datenstand.py, Registerkopien unter /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb124_d_gegenprobe
+### F0 unveraendert  -> rc 0 (Soll 0) OK
+    Register: /Users/jaquelineloffler/trading-bot/docs/VORREGISTRIERUNG_neuselektion.md
+      Zeilen mit '| Datenstand (`datenstand_hash`) |': 1, Hexwerte: ['d9449faf51bffaaa…']
+      snapshot.VERANKERTER_DATENSTAND: d9449faf51bffaaa…
+    
+    ==============================================================================
+    3/3 Pruefungen bestanden.
+    D2 Module aus research/vorregistrierung: []
+### F1 Konstante = anderer Wert  -> rc 1 (Soll 1) OK
+    Register: /Users/jaquelineloffler/trading-bot/docs/VORREGISTRIERUNG_neuselektion.md
+      Zeilen mit '| Datenstand (`datenstand_hash`) |': 1, Hexwerte: ['d9449faf51bffaaa…']
+      snapshot.VERANKERTER_DATENSTAND: 0000000000000000…
+    
+    ==============================================================================
+    2 bestanden, 1 GESCHEITERT:
+      - R28-3: snapshot.VERANKERTER_DATENSTAND = Register 18 - 0000000000000000000000000000000000000000000000000000000000000000 gegen ['d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84']
+    D2 Module aus research/vorregistrierung: []
+### F2 zwei Datenstandszeilen  -> rc 1 (Soll 1) OK
+    Register: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb124_d_gegenprobe/reg_zwei_zeilen.md
+      Zeilen mit '| Datenstand (`datenstand_hash`) |': 2, Hexwerte: ['d9449faf51bffaaa…', 'd9449faf51bffaaa…']
+      snapshot.VERANKERTER_DATENSTAND: d9449faf51bffaaa…
+    
+    ==============================================================================
+    0 bestanden, 3 GESCHEITERT:
+      - R28-1: genau eine Datenstandszeile im Register - 2
+      - R28-2: sie traegt genau einen 64-stelligen Hexwert - ['d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84', 'd9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84']
+      - R28-3: snapshot.VERANKERTER_DATENSTAND = Register 18 - d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84 gegen ['d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84', 'd9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84']
+    D2 Module aus research/vorregistrierung: []
+### F3 abweichender Hexwert  -> rc 1 (Soll 1) OK
+    Register: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb124_d_gegenprobe/reg_anderer_wert.md
+      Zeilen mit '| Datenstand (`datenstand_hash`) |': 1, Hexwerte: ['e9449faf51bffaaa…']
+      snapshot.VERANKERTER_DATENSTAND: d9449faf51bffaaa…
+    
+    ==============================================================================
+    2 bestanden, 1 GESCHEITERT:
+      - R28-3: snapshot.VERANKERTER_DATENSTAND = Register 18 - d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84 gegen ['e9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84']
+    D2 Module aus research/vorregistrierung: []
+### F4 ohne Datenstandszeile  -> rc 1 (Soll 1) OK
+    Register: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb124_d_gegenprobe/reg_ohne_zeile.md
+      Zeilen mit '| Datenstand (`datenstand_hash`) |': 0, Hexwerte: []
+      snapshot.VERANKERTER_DATENSTAND: d9449faf51bffaaa…
+    
+    ==============================================================================
+    0 bestanden, 3 GESCHEITERT:
+      - R28-1: genau eine Datenstandszeile im Register - 0
+      - R28-2: sie traegt genau einen 64-stelligen Hexwert - []
+      - R28-3: snapshot.VERANKERTER_DATENSTAND = Register 18 - d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84 gegen []
+    D2 Module aus research/vorregistrierung: []
+# Ergebnis: 5/5 Faelle mit dem Soll-Rueckgabewert
+rc 0
+## D4 nur benannt, nicht geaendert: drittes Literal
+research/registernachtrag_tb48/pruefe_abschnitt17.py:97:SOLL_DATENSTAND = "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84"
+## die zwei gebundenen Kopien und die Quelle
+research/vorregistrierung/auswertung.py:129:REGISTRIERTER_DATENSTAND = (
+research/vorregistrierung/auswertung.py-130-    "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84")
+shared/snapshot.py:260:VERANKERTER_DATENSTAND = (
+shared/snapshot.py-261-    "d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84")
+2852:| Datenstand (`datenstand_hash`) | **`d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84`** bei **223
