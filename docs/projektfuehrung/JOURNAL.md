@@ -9685,6 +9685,41 @@ Fable 30a eingegangen (R53–R55); Nachtrag 1 zu TB-124 (Scanbeginn nie vor dem 
 
 ---
 
+## DW — TB-125: Regelwerk-Nachtrag 29./30.09.2026 — 24/24 Einfügungen E1–E24 per Skript aus dem Auftrag in `UMZUG.md`, `ARBEITSWEISE.md`, `BACKLOG.md`; B3 24/24 zeichengleich, entfernte Zeilen nur aus den Ersetzungen (33/5/0); lief auf Opus 5.5, keine gültige Sonnet-Probe (30.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-125_regelwerk_nachtrag.md`*
+
+**Quelle:** Mac-Sitzung **TB-125** (Hauptordner), 30.09.2026, Eingang `4618fa9`. Commits `b711567` (0), `deba416` (A/B)
+und der Abgabe-Commit. Belege `docs/belege/TB-125/`. Freigabe: Handwerk pauschal frei (26.09.2026). Keine Rückfrage an
+den Betreiber. Kein Abbruchkriterium ausgelöst. Modell laut Selbstauskunft Opus 5.5, nicht Sonnet.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | drei erwartete Einträge ⇒ `b711567`; Ausgang ARBEITSWEISE 2215 Z., UMZUG 384 Z., BACKLOG 228 Z. (sha256 in `0c_ausgang.txt`) |
+| **A** | `einfuegen.py` liest Datei, Anker, Art und Text aus dem Auftrag; 24 × Anker vorher 1, ausgeführt, erste Textzeile nachher 1 |
+| ⭐ **B2** | numstat ARBEITSWEISE 157/5, BACKLOG 2/0, UMZUG 23/33; entfernte Zeilen als Multimenge gleich den ersetzten (E5: Zeilen 251–282 = 32) |
+| ⭐⭐ **B3** | eigener Parser, Bytevergleich auf Zeilengrenzen: **24/24 gleich** |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Die Dateizuordnung einer Einfügung aus der Überschrift zu lesen ist eine Annahme.** E24 stand unter „Datei BACKLOG.md“, Titel und B2 nannten ARBEITSWEISE; erst der Probelauf mit Ankerzählung zeigte es (0 statt 1). Probelauf vor dem echten Lauf |
+| | **Ein Modell, das nicht umgestellt wurde, macht aus der Probe einen gewöhnlichen Lauf** — die Wache in Schritt 0 hat gegriffen, die Probe steht aus |
+
+### Was offen bleibt
+
+- Abnahme der E24-Zuordnung durch den steuernden Chat.
+- Sonnet-Probe nach 22.12 (neuer Lauf mit `/model sonnet` oder Wächter mit Modellwahl).
+- Einarbeitungspunkte ohne Wortlaut: K2h/K2f, drei Trägerstellen (TB-119 Nr. 2), kalter Leser ohne Gedächtnis,
+  Fable 29a Abschnitt 1–3, Fable-Antworten über `project_info`, Fables Umzugshinweis aus 30a.
+
+*Geschrieben 30.09.2026 von der Mac-Sitzung TB-125. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
