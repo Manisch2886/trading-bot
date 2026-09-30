@@ -1,0 +1,12 @@
+# TB-124 E1 - db-Identitaet nach 7c: sha256 der *.db vorher (0f, 19:53) gegen nachher (22:11)
+2c2
+< 0c4162bf4f87f82338f04e3bc2f450ce0f44d418507ad4e18f591fc0f76dcebe  broker_testnet_t3_supertrend.db
+---
+> 327c81324f91acd269c1b4cd3a359ada182077919296f4a850f537e71bc70ca8  broker_testnet_t3_supertrend.db
+# Datenstand vorher/nachher:
+docs/belege/TB-124/e_datenstand_nachher.txt:{'datenstand': 'd9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84', 'dateien': 223}
+docs/belege/TB-124/0f_datenstand.txt:{'datenstand': 'd9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84', 'dateien': 223}
+# Abweichung erklaert: broker_testnet_t3_supertrend.db mtime 2026-09-30 20:05:00 = Cron-Lauf der Bruecke (broker/README.md:237 '5 */4 * * * ... spiegel.py --echt'),
+#   logs/broker/testnet_spiegel.log Eintraege 2026-09-30 20:05:00,9xx (TESTNET UEBERSPRUNGEN ...). Nicht von der Sitzung (kein Aufruf unter broker/).
+# Die elf paper_trading_*.db, benachrichtigungen_schliessung.db und strategies/volatility_breakout/*.db: identisch (11/12 gleich, die zwoelfte durch Cron).
+# Datenstand vorher = nachher = d9449faf.../223.

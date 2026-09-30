@@ -202,3 +202,28 @@ Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt,
 - ⚠️ **Fables Ampel:** Fable meldet „🟡 · ca. 450 000“. Nach den Schwellen vom 29.09. (🔴 über 300 000) ist das **🔴**. Fables Plan „Umzug beim nächsten Registerauftrag (E-2)“ passt trotzdem: Vor E-2 ist keine Fable-Anfrage geplant. Regel: **Vor der nächsten Anfrage an Fable wird Fable umgezogen.** Fables Umzugshinweis zu Abschnitt 6/7 der Vorlage übernehmen.
 - **Nummern:** R-Blöcke frei ab **R56** · Fable-Anfrage frei ab 30b bzw. am nächsten Tag a.
 - **An die laufende Sitzung TB-124:** Die Sitzung liest den Nachtrag 1 nur auf Hinweis. Der Betreiber schickt ihr dafür einen Satz in die Gerätesitzung (Kopierblock im Chat). Den Nachtrag 1, die Antwort 30a, `docs/belege/TB-124/0c_handfelder.json` und diesen Nachtrag committet sie mit ihrem nächsten Commit. BACKLOG-Block „Aus Fable 30a“ und der Satz im Journal DV stehen im Nachtrag 1.
+
+## Nachtrag 30.09.2026, ca. 22:05 — E-2-Vorbereitung: Schnitt, Inventar (T4-Probe), Auftrag TB-125 entworfen
+
+- **Messbitten aus 30a erledigt** (Nachtrag in `VORMESSUNG_E-2_2026-09-29.md`, ca. 20:15):
+  - R54: `netto_rendite_pct` ist eine Berichtsgrösse ohne Leser im Urteil.
+  - R53: Stufen und Bollinger-Fenster sind aus `registerdaten.py` lesbar, weitere feste Fenster nicht.
+- **Schnitt E-2 (Handwerk, Vorgabe des steuernden Chats, dem Betreiber genannt):**
+  - **TB-125:** Regelwerk-Nachtrag (ARBEITSWEISE, UMZUG, BACKLOG K4s/K4t), pauschal frei, als Sonnet-Probe nach dem Entscheid 29.09., 14:05.
+  - **TB-126:** Register (R18–R55, Tatsachennotizen TB-122/TB-124), Einzelfreigabe per Karte.
+  - Grund: verschiedene Freigabeklassen, keine Abhängigkeit; das Regelwerk liest jeder neue Chat zuerst.
+- **T4-Probe (Fundstellen-Check), E-2-Inventar, Sonnet und Opus parallel mit demselben Helferauftrag, ca. 21:45:**
+  - Beide fanden 38 R-Blöcke R18–R55 ohne Lücke und ohne Dopplung (27c: 15, 29b: 20, 30a: 3). Die Voraussetzungen im Block benannten beide gleich.
+  - Regeln für ARBEITSWEISE/UMZUG: Sonnet zählte 45 gültige, Opus 54. Das ist verschiedene Körnung; Opus fand vier weitere in Nachträgen ausserhalb der Quellenliste. Befund gleich: praktisch nichts eingearbeitet, beide Dateien zuletzt am 27.09. geändert (`aab641e`).
+  - Aufwand laut Werkzeugrückmeldung: Sonnet ~253 000 Tokens, 39 Aufrufe, ~9 min; Opus ~196 000 Tokens, 25 Aufrufe, ~5 min.
+  - ⇒ Sonnet war hier nicht billiger. Eine Probe, keine Regel.
+  - Volltexte nur im Arbeitsordner des Chats, nicht im Repo.
+- **TB-125 entworfen:**
+  - 24 Einfügungen mit Anker, jeder Anker am Arbeitsbaum vorgezählt (genau 1).
+  - Der Gegenleser fand 8 MUSS-Befunde, alle eingearbeitet, u. a.:
+    - falsche Zuordnungen und Zeitangaben;
+    - „zweimal“ statt dreimal;
+    - der Zeiger der Kopierblock-Regel (ARBEITSWEISE 15, Austausch Nr. 5). Die Zeile „als Datei, nie als Chat-Text“ in Abschnitt 0 bekommt deshalb eine Ausnahme (E24).
+  - ⚠️ Der Wächter startet ohne Modellwahl. **Vorgabe:** Der Betreiber setzt `/model sonnet` in der Sitzung, Schritt 0 hält das Modell fest; läuft Opus, zählt es nicht als Probe.
+  - Abgelegt wird TB-125 erst, wenn TB-124 geschlossen ist.
+- **Nicht in TB-125, weil ohne vorbereiteten Wortlaut:** K2h/K2f (PRUEFPRINZIPIEN), die drei Trägerstellen (TB-119 Nr. 2), der kalte Leser ohne Gedächtnis, Fable 29a Abschnitt 1–3, die Regel „`project_info`“ (Block 9 vom 29.09., 07:15).

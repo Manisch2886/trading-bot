@@ -9645,6 +9645,46 @@ an den Betreiber. Kein Abbruchkriterium ausgelöst. Ohne Modus; Vergleichsausgab
 
 ---
 
+## DV — TB-124: F1 — Scanbeginn der Breakout-Bots an `bb_lookback` gebunden, nach Nachtrag 1 (Fable 30a, R53) am Vorlauf der Zelle (`BB_PERIOD + L − 1`); mit Voreinstellungen 13/13 bytegleich, Wertprobe 43/43 und 42/42 mit Gegenprobe rc 1; `test_sync_check` wieder 33/0; R28-Probe `snapshot.py` gegen Register 18 (30.09.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-124_scanbeginn_sync_r28.md`*
+
+**Quelle:** Mac-Sitzung **TB-124** (Hauptordner), 30.09.2026, Eingang `0034960`. Commits `baf18a2` (0), `808aa47`
+(Nachtrag 1), `f6aaf33` (0), `105419e` (A), `f90135e` (B), `499d68b` (C), `7453469` (D), `65fcaf0` (C3) und der
+Abgabe-Commit. Belege `docs/belege/TB-124/`. Freigabe 30.09.2026, 19:13, Nachtrag 19:44 (zwei Testdateien); Nachtrag 1
+des steuernden Chats ca. 20:15. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst. Ohne Modus.
+Fable 30a eingegangen (R53–R55); Nachtrag 1 zu TB-124 (Scanbeginn nie vor dem Vorlauf) umgesetzt; BACKLOG-Block ‚Aus Fable 30a‘ eingefügt.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | sieben erwartete Einträge ⇒ `baf18a2`; `register()` `01f5997a…`, Sonde `dd4b4b95…` = TB-122; keine betroffene Datei in Abbild oder `EINGEFROREN`; db 12/12; `d9449faf…`/223; Basislauf 52/52 gleich TB-123. ⚠️ Worktrees `tb123_vorher*` existieren auf dem Mac, `prune` wirkungslos, nicht gelöscht |
+| **A** | `test_sync_check` 30/3 ⇒ **33/0**, Test unverändert. Regel „importiert **und** als Default eingesetzt“ statt „importiert“: wörtlich wäre `T3_FAST_LENGTH` (Abschnitt 3) rot geworden und der Hinweis für 31 Zeilen falsch |
+| ⭐⭐ **B** | Lookback in `df.attrs`, Scanbeginn `BB_PERIOD + L − 1` (am Code hergeleitet, je Stufe gemessen: 39/116/194/271, Krypto 39/154/269/384, Voreinstellung 145 statt 127). Vermerk kommt unter pandas 2.3.3 auf allen fünf Wegen an |
+| ⭐⭐ **C1/C2** | 13/13 `cmp` identisch; 43/43 und 42/42, am Stand vor B rc 1/rc 1. C4 18/18, C5 Sonde byte-gleich, `register()` unverändert |
+| **C3/D** | 51 gleich, `test_sync_check` 33/0, neue Probe `shared/test_verankerter_datenstand.py` 3/3 (Gegenprobe 5/5); `test_vorregistrierung` 196/196. `broker_testnet_…db` durch den Brücken-Cron 20:05 geändert, die elf Paper-DBs identisch |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **„Scanbeginn“ heisst erster Index, an dem die Einstiegsbedingung definiert ist — nicht `max(Fenster) + 1`.** Zwei hintereinanderliegende rollende Fenster teilen sich einen Balken; nachzählen am Code, nicht addieren |
+| ⭐ | **Eine Einstufungsregel wörtlich umsetzen heisst sie über alle Fälle messen.** „Importiert ⇒ identisch“ traf 35 Zeilen, gemeint waren 4 — der Test eines anderen Abschnitts hätte es gezeigt |
+| | **Was der steuernde Chat aus der Brücke als „fehlt“ misst, kann auf dem Mac liegen** (`$TMPDIR` ist dort nicht sichtbar) — vor einem Aufräumschritt am Mac nachsehen |
+
+### Was offen bleibt
+
+- E-2: Tatsachennotiz (Ergebnis Abschnitt 6, Entwurf), R28-Satz (Abschnitt 5), R53-Zählweise L + 19 gegen L + 20
+  (Abschnitt 7).
+- `faltenplan_neun.py` (Vorlauf 127 überholt, BACKLOG R53 (a)); drittes Literal `pruefe_abschnitt17.py:97`;
+  generischer Hinweis `sync_table.py:313`; `experiment_trailing_stop.py` mit eigener Schleife ab 127.
+- Worktrees `$TMPDIR/tb123_vorher*` entfernen (Betreiber oder eigener Schritt).
+
+*Geschrieben 30.09.2026 von der Mac-Sitzung TB-124. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
