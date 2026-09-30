@@ -1,0 +1,54 @@
+# TB-124 A4 - Konfigurationsprobe sync_table (keine Backtest-Ausgabe), 2026-09-30 21:01:23 +0200
+## vorher: sync_table.py am HEAD f6aaf33 (git show) unter $TMPDIR/tb124_a_vorher, strategies/ verknuepft
+wurzel /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb124_a_vorher
+volatility_breakout MAX_HOLD_DAYS | status: identisch | hinweis: aus live_params importiert (backtest_breakout.py), wirkt als Default von run_backtest()
+volatility_breakout BB_LOOKBACK | status: im Backtest referenziert | hinweis: None
+volatility_breakout BB_SQUEEZE_PERCENTILE | status: im Backtest referenziert | hinweis: None
+volatility_breakout_crypto MAX_HOLD_DAYS | status: identisch | hinweis: aus live_params importiert (backtest_breakout.py), wirkt als Default von run_backtest()
+volatility_breakout_crypto BB_LOOKBACK | status: im Backtest referenziert | hinweis: None
+volatility_breakout_crypto BB_SQUEEZE_PERCENTILE | status: im Backtest referenziert | hinweis: None
+Tabelle aller neun Bots: 73 Zeilen, sha256 85d1dd566fc0407f9189682bea4acbfd59259f5e8de8b34be2b259082de7874a
+## nachher: Arbeitsbaum (sync_table.py geaendert)
+wurzel /Users/jaquelineloffler/trading-bot
+volatility_breakout MAX_HOLD_DAYS | status: identisch | hinweis: aus live_params importiert (backtest_breakout.py), wirkt als Default von run_backtest()
+volatility_breakout BB_LOOKBACK | status: identisch | hinweis: aus live_params importiert (equity_simulation.py), wirkt als Default von collect_all_trades(squeeze_lookback_days=…); ebenso importiert in backtest_breakout.py, dort `SQUEEZE_LOOKBACK_DAYS`, Default von compute_indicators(squeeze_lookback_days=…)
+volatility_breakout BB_SQUEEZE_PERCENTILE | status: identisch | hinweis: aus live_params importiert (equity_simulation.py), wirkt als Default von collect_all_trades(squeeze_percentile=…); ebenso importiert in backtest_breakout.py, dort `SQUEEZE_PERCENTILE`, Default von compute_indicators(squeeze_percentile=…)
+volatility_breakout_crypto MAX_HOLD_DAYS | status: identisch | hinweis: aus live_params importiert (backtest_breakout.py), wirkt als Default von run_backtest()
+volatility_breakout_crypto BB_LOOKBACK | status: identisch | hinweis: aus live_params importiert (equity_simulation.py), wirkt als Default von collect_all_trades(squeeze_lookback_days=…); ebenso importiert in backtest_breakout.py, dort `SQUEEZE_LOOKBACK_DAYS`, Default von compute_indicators(squeeze_lookback_days=…)
+volatility_breakout_crypto BB_SQUEEZE_PERCENTILE | status: identisch | hinweis: aus live_params importiert (equity_simulation.py), wirkt als Default von collect_all_trades(squeeze_percentile=…); ebenso importiert in backtest_breakout.py, dort `SQUEEZE_PERCENTILE`, Default von compute_indicators(squeeze_percentile=…)
+Tabelle aller neun Bots: 73 Zeilen, sha256 7044e7449f6bdaeeb5374383c84e3b7aa4e992e977ed68d3cdfb6f23bb562e3f
+## Unterschied der vollen Tabelle (diff vorher nachher; Zeilen sind Status und Hinweis, keine Kennzahl)
+59,60c59,60
+< volatility_breakout BB_LOOKBACK | im Backtest referenziert | None
+< volatility_breakout BB_SQUEEZE_PERCENTILE | im Backtest referenziert | None
+---
+> volatility_breakout BB_LOOKBACK | identisch | aus live_params importiert (equity_simulation.py), wirkt als Default von collect_all_trades(squeeze_lookback_days=…); ebenso importiert in backtest_breakout.py, dort `SQUEEZE_LOOKBACK_DAYS`, Default von compute_indicators(squeeze_lookback_days=…)
+> volatility_breakout BB_SQUEEZE_PERCENTILE | identisch | aus live_params importiert (equity_simulation.py), wirkt als Default von collect_all_trades(squeeze_percentile=…); ebenso importiert in backtest_breakout.py, dort `SQUEEZE_PERCENTILE`, Default von compute_indicators(squeeze_percentile=…)
+67,68c67,68
+< volatility_breakout_crypto BB_LOOKBACK | im Backtest referenziert | None
+< volatility_breakout_crypto BB_SQUEEZE_PERCENTILE | im Backtest referenziert | None
+---
+> volatility_breakout_crypto BB_LOOKBACK | identisch | aus live_params importiert (equity_simulation.py), wirkt als Default von collect_all_trades(squeeze_lookback_days=…); ebenso importiert in backtest_breakout.py, dort `SQUEEZE_LOOKBACK_DAYS`, Default von compute_indicators(squeeze_lookback_days=…)
+> volatility_breakout_crypto BB_SQUEEZE_PERCENTILE | identisch | aus live_params importiert (equity_simulation.py), wirkt als Default von collect_all_trades(squeeze_percentile=…); ebenso importiert in backtest_breakout.py, dort `SQUEEZE_PERCENTILE`, Default von compute_indicators(squeeze_percentile=…)
+## A3 - jeder neue Hinweis gegen den Code (Datei:Zeile, per grep gemessen)
+   volatility_breakout/equity_simulation.py:59:from live_params import BB_LOOKBACK, BB_SQUEEZE_PERCENTILE
+   volatility_breakout/equity_simulation.py:69:def collect_all_trades(all_data: dict, stop_loss_pct: float, max_hold_days: int = None,
+   volatility_breakout/equity_simulation.py:71:                        squeeze_lookback_days: int = BB_LOOKBACK,
+   volatility_breakout/equity_simulation.py:72:                        squeeze_percentile: float = BB_SQUEEZE_PERCENTILE) -> pd.DataFrame:
+   volatility_breakout/backtest_breakout.py:97:from live_params import (BB_LOOKBACK as SQUEEZE_LOOKBACK_DAYS,
+   volatility_breakout/backtest_breakout.py:98:                          BB_SQUEEZE_PERCENTILE as SQUEEZE_PERCENTILE,
+   volatility_breakout/backtest_breakout.py:117:def compute_indicators(price_df: pd.DataFrame, squeeze_lookback_days: int = SQUEEZE_LOOKBACK_DAYS,
+   volatility_breakout/backtest_breakout.py:118:                        squeeze_percentile: float = SQUEEZE_PERCENTILE) -> pd.DataFrame:
+   volatility_breakout_crypto/equity_simulation.py:55:from live_params import BB_LOOKBACK, BB_SQUEEZE_PERCENTILE
+   volatility_breakout_crypto/equity_simulation.py:67:def collect_all_trades(all_data: dict, stop_loss_pct: float = None, max_hold_days: int = None,
+   volatility_breakout_crypto/equity_simulation.py:69:                        squeeze_lookback_days: int = BB_LOOKBACK,
+   volatility_breakout_crypto/equity_simulation.py:70:                        squeeze_percentile: float = BB_SQUEEZE_PERCENTILE) -> pd.DataFrame:
+   volatility_breakout_crypto/backtest_breakout.py:65:from live_params import (BB_LOOKBACK as SQUEEZE_LOOKBACK_DAYS,
+   volatility_breakout_crypto/backtest_breakout.py:66:                          BB_SQUEEZE_PERCENTILE as SQUEEZE_PERCENTILE,
+   volatility_breakout_crypto/backtest_breakout.py:84:def compute_indicators(price_df: pd.DataFrame, squeeze_lookback_days: int = SQUEEZE_LOOKBACK_DAYS,
+   volatility_breakout_crypto/backtest_breakout.py:85:                        squeeze_percentile: float = SQUEEZE_PERCENTILE) -> pd.DataFrame:
+## test_sync_check.py sha256 (unveraendert): 3e1567afa13e77dbeda31b8615c39b496c21814d625a7a2b6a995855f4686e08 / HEAD 3e1567afa13e77dbeda31b8615c39b496c21814d625a7a2b6a995855f4686e08
+## test_sync_check.py
+33 Checks bestanden, 0 fehlgeschlagen.
+rc 0
+## git status ausserhalb docs/: [ M research/sync_check/sync_table.py ]

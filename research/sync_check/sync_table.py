@@ -152,6 +152,27 @@ def abgeleitete_konstanten(path: str, importiert: dict) -> dict:
     return out
 
 
+def default_parameter(path: str, name: str) -> list:
+    """['funktion(parameter=…)', …] fuer jeden Funktionsparameter einer
+    Datei, dessen Voreinstellung genau der Name `name` ist - per AST.
+
+    TB-124: Damit sagt der Hinweis einer Zeile, WO ein importierter Wert als
+    Default wirkt, statt es pauschal zu behaupten.
+    """
+    treffer = []
+    for node in ast.walk(ast.parse(open(path).read())):
+        if not isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+            continue
+        a = node.args
+        positional = a.posonlyargs + a.args
+        paare = list(zip(positional[len(positional) - len(a.defaults):], a.defaults))
+        paare += [(arg, d) for arg, d in zip(a.kwonlyargs, a.kw_defaults) if d is not None]
+        for arg, default in paare:
+            if isinstance(default, ast.Name) and default.id == name:
+                treffer.append(f"{node.name}({arg.arg}=…)")
+    return treffer
+
+
 def referenzierte_namen(path: str) -> set:
     """Alle Bezeichner, die im CODE einer Datei vorkommen - per AST, nicht
     per Textsuche.
@@ -248,6 +269,32 @@ def compare_bot(bot: str) -> dict:
             continue
 
         if live_name in es_namen:
+            # TB-124: Importiert equity_simulation.py den Namen selbst aus
+            # live_params.py UND setzt ihn als Default eines Parameters ein
+            # (seit TB-122 `BB_LOOKBACK`/`BB_SQUEEZE_PERCENTILE` in
+            # collect_all_trades), ist es dieselbe Zahl aus derselben Datei -
+            # "identisch", mit dem Ort, an dem der Default wirkt. Ein Name,
+            # der nur importiert und im Code benutzt wird (etwa T3_FAST_LENGTH
+            # oder STOP_LOSS_PCT), bleibt "im Backtest referenziert".
+            wirkt = [stelle for lokal_es, live_es in sorted(importiert.items())
+                     if live_es == live_name
+                     for stelle in default_parameter(es_path, lokal_es)]
+            if wirkt:
+                hinweis = ("aus live_params importiert (equity_simulation.py), "
+                           "wirkt als Default von " + ", ".join(wirkt))
+                importiert_in = live_importe.get(live_name)
+                if importiert_in:
+                    datei, lokal = importiert_in
+                    hinweis += f"; ebenso importiert in {datei}"
+                    if lokal != live_name:
+                        hinweis += f", dort `{lokal}`"
+                    im_backtest = default_parameter(os.path.join(STRATEGIES, bot, datei), lokal)
+                    if im_backtest:
+                        hinweis += ", Default von " + ", ".join(im_backtest)
+                rows.append({"groesse": live_name, "live_params": live_value,
+                              "equity_simulation": live_value,
+                              "status": "identisch", "hinweis": hinweis})
+                continue
             rows.append({"groesse": live_name, "live_params": live_value,
                           "equity_simulation": "— nicht als Konstante —",
                           "status": "im Backtest referenziert"})
