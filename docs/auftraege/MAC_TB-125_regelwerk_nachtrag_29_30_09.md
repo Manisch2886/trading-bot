@@ -39,7 +39,13 @@ Ergebnis je Einfügung in `docs/belege/TB-125/einfuegungen.txt`: `E<n> · Datei 
 ## Schritt 0 — Sicherung und Ausgang
 
 0a. `git status --short` — genau die Einträge, die der steuernde Chat beim Ablegen hier einträgt:
-PLATZHALTER_0A
+*Eingetragen vom steuernden Chat am 30.09.2026, ca. 22:45 (gemessen über die Geräteanbindung mit `git --no-optional-locks diff --name-only HEAD` und `ls-files --others --exclude-standard`): drei geänderte Dateien, nichts Neues. `UEBERGABE.md` trägt den Umzugsblock 22:15 und den Nachtrag 22:40; `AKTUELLER_AUFTRAG.md` zeigt auf TB-125.*
+
+```
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/auftraege/MAC_TB-125_regelwerk_nachtrag_29_30_09.md
+ M docs/projektfuehrung/UEBERGABE.md
+```
 
 Weicht etwas ab ⇒ Abbruch. Commit `TB-125 Schritt 0`, pushen.
 

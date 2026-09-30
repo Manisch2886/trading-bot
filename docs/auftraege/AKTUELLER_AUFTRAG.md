@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-124** | `docs/auftraege/MAC_TB-124_scanbeginn_sync_r28.md` | ⭐ **Hauptordner**: F1 — Scanbeginn der Breakout-Bots an `bb_lookback` binden (zwei `backtest_breakout.py`, dazu Erweiterung der zwei `test_posten3_durchreichung.py`), Nachweis wie TB-122; `test_sync_check` wieder 33/0; R28-Probe `snapshot.py` gegen Register 18; Schritt 0 sichert den Stand vom 30.09. Freigabe 30.09.2026, 19:13, Nachtrag 19:44 |
+| **TB-125** | `docs/auftraege/MAC_TB-125_regelwerk_nachtrag_29_30_09.md` | ⭐ **Hauptordner**: Regelwerk-Nachtrag 29./30.09. — 24 Einfügungen E1–E24 wörtlich an benannten Ankern in `ARBEITSWEISE.md`, `UMZUG.md`, `BACKLOG.md`, per Skript aus dem Auftrag, Nachweis zeichengleich (B3); kein Code, kein Register. Sonnet-Probe nach 22.12. Handwerk, pauschal frei (26.09.2026) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
@@ -49,7 +49,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 Wächter-Sonde reserviert (`ARBEITSWEISE` 22.2) — ein Auslöser mit dieser Nummer
 misst, ob eine Sitzung läuft, und bricht danach folgenlos ab.
 
-*Gesetzt 30.09.2026, ca. 19:55 (zuvor TB-123, erledigt mit `0034960`, 29.09.2026; davor TB-122, beendet ohne Abgabe nach `08153e4`, 29.09.2026; davor TB-121, erledigt mit `04f07ef`, 29.09.2026; davor TB-112, erledigt mit `af6042f`, und TB-111 auf Zweig `tb-111`, erledigt mit `49f0868`, 26.09.2026; davor TB-109/TB-110, erledigt mit `723281f`/`6a7996a`, 26.09.2026; davor TB-108, erledigt mit `486032d`, 25.09.2026; davor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
+*Gesetzt 30.09.2026, ca. 22:50 (zuvor TB-124, erledigt mit `4618fa9`, 30.09.2026; davor TB-123, erledigt mit `0034960`, 29.09.2026; davor TB-122, beendet ohne Abgabe nach `08153e4`, 29.09.2026; davor TB-121, erledigt mit `04f07ef`, 29.09.2026; davor TB-112, erledigt mit `af6042f`, und TB-111 auf Zweig `tb-111`, erledigt mit `49f0868`, 26.09.2026; davor TB-109/TB-110, erledigt mit `723281f`/`6a7996a`, 26.09.2026; davor TB-108, erledigt mit `486032d`, 25.09.2026; davor TB-107, erledigt mit `f61bd97`, 25.09.2026; davor TB-106, erledigt mit `f22f91e`, 25.09.2026; davor TB-105, erledigt mit `2e21471`, 25.09.2026; davor TB-104, erledigt mit `516badc`, 25.09.2026; davor TB-103, erledigt mit `836865f`, 25.09.2026; davor TB-102, erledigt mit `d05e3ff`, 24.09.2026; davor TB-90, erledigt mit `40bda97`, 23.09.2026; davor TB-89 `563fb54`, TB-88 `ec54618`, TB-87 `afe6192`;
 TB-85 `755b3c4`, TB-84 `03e544e`, TB-83 `fdb181a`, TB-82 `f1a0dc7`, TB-81 `6071f32`). Bei jedem neuen Auftrag wird **nur diese Tabelle**
 gepflegt — erledigte Zeilen werden entfernt, nicht durchgestrichen.*
 
