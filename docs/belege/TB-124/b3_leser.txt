@@ -1,0 +1,42 @@
+# TB-124 B3 - Leser von WARMUP_PERIOD vor B (grep -rn, ohne trading-env/, docs/), HEAD 105419e, 2026-09-30 21:01:43 +0200
+research/faltenplan_neun/faltenplan_neun.py:195:                          "WARMUP_PERIOD + donchian_period' = 20 + 10",
+research/faltenplan_neun/faltenplan_neun.py:200:                          "backtest_breakout.py:109 'start_i = WARMUP_PERIOD "
+research/faltenplan_neun/faltenplan_neun.py:218:                          "WARMUP_PERIOD + donchian_period' = 20 + 10",
+research/faltenplan_neun/faltenplan_neun.py:223:                          "backtest_breakout.py:150 'start_i = WARMUP_PERIOD "
+research/trailing_stops/run_one_bot.py:203:        cfg["warmup"] = bt.WARMUP_PERIOD
+research/vbc_deepdive/run_deepdive.py:121:    return prepared, bt.WARMUP_PERIOD, raw
+strategies/volatility_breakout_crypto/backtest_breakout.py:81:WARMUP_PERIOD = max(BB_PERIOD, SQUEEZE_LOOKBACK_DAYS, VOLUME_AVG_PERIOD)
+strategies/volatility_breakout_crypto/backtest_breakout.py:114:    start_i = WARMUP_PERIOD + 1
+strategies/volatility_breakout_crypto/test_posten3_durchreichung.py:23:Nicht Gegenstand: `backtest_breakout.WARMUP_PERIOD` (Scanbeginn) haengt weiter
+strategies/volatility_breakout_crypto/multi_symbol_optimise.py:30:from backtest_breakout import (compute_indicators, run_backtest, WARMUP_PERIOD,
+strategies/volatility_breakout/multi_symbol_optimise.py:37:from backtest_breakout import (compute_indicators, run_backtest, WARMUP_PERIOD,
+strategies/volatility_breakout/backtest_breakout.py:114:WARMUP_PERIOD = max(BB_PERIOD, SQUEEZE_LOOKBACK_DAYS, VOLUME_AVG_PERIOD)
+strategies/volatility_breakout/backtest_breakout.py:155:    start_i = WARMUP_PERIOD + 1  # +1, da Punkt 2 den Squeeze-Status von t-1 braucht
+strategies/volatility_breakout/test_posten3_durchreichung.py:23:Nicht Gegenstand: `backtest_breakout.WARMUP_PERIOD` (Scanbeginn) haengt weiter
+strategies/volatility_breakout/experiment_trailing_stop.py:73:    from backtest_breakout import WARMUP_PERIOD
+strategies/volatility_breakout/experiment_trailing_stop.py:74:    start_i = WARMUP_PERIOD + 1
+strategies/turtle_soup_stocks/backtest_turtle_soup.py:100:WARMUP_PERIOD = DONCHIAN_PERIOD
+strategies/turtle_soup_stocks/backtest_turtle_soup.py:120:    start_i = WARMUP_PERIOD + donchian_period
+strategies/turtle_soup_crypto/backtest_turtle_soup.py:104:WARMUP_PERIOD = DONCHIAN_PERIOD
+strategies/turtle_soup_crypto/backtest_turtle_soup.py:124:    start_i = WARMUP_PERIOD + donchian_period
+docs/belege/TB-124/b_einbau.py:15:    "volatility_breakout": ('''    start_i = WARMUP_PERIOD + 1  # +1, da Punkt 2 den Squeeze-Status von t-1 braucht
+docs/belege/TB-124/b_einbau.py:26:    # WARMUP_PERIOD bleibt als Voreinstellung fuer seine Leser stehen.
+docs/belege/TB-124/b_einbau.py:30:    "volatility_breakout_crypto": ('''    start_i = WARMUP_PERIOD + 1
+docs/belege/TB-124/b_einbau.py:41:    # WARMUP_PERIOD bleibt als Voreinstellung fuer seine Leser stehen.
+docs/belege/TB-124/b1_herleitung.py:21:    print('%-27s L %3d | bb_width ab %d | squeeze_thresh ab %3d | vol_avg ab %d | erster Einstiegsindex %3d | BB_PERIOD+L-1 = %3d %s | woertlich L+BB_PERIOD = %3d | bisher WARMUP_PERIOD+1 = %d'
+docs/belege/TB-124/b1_herleitung.py:23:             'gleich' if ok == bt.BB_PERIOD+s-1 else 'ABWEICHUNG', s+bt.BB_PERIOD, bt.WARMUP_PERIOD+1))
+## davon Breakout-Bezug (backtest_breakout / volatility_breakout / vbc):
+research/faltenplan_neun/faltenplan_neun.py
+research/trailing_stops/run_one_bot.py
+research/vbc_deepdive/run_deepdive.py
+strategies/volatility_breakout_crypto/backtest_breakout.py
+strategies/volatility_breakout_crypto/test_posten3_durchreichung.py
+strategies/volatility_breakout_crypto/multi_symbol_optimise.py
+strategies/volatility_breakout/backtest_breakout.py
+strategies/volatility_breakout/test_posten3_durchreichung.py
+strategies/volatility_breakout/experiment_trailing_stop.py
+strategies/volatility_breakout/multi_symbol_optimise.py
+strategies/turtle_soup_stocks/backtest_turtle_soup.py
+strategies/turtle_soup_crypto/backtest_turtle_soup.py
+docs/belege/TB-124/b_einbau.py
+docs/belege/TB-124/b1_herleitung.py

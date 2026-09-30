@@ -18,3 +18,23 @@ volatility_breakout_crypto   W3 evaluate_combination_multi(syn, 8.0)            
 volatility_breakout_crypto   W4 load_all_symbol_data -> get_trades_for_symbol(.., 20)   Aufrufe>0: True  Vermerke: ['<kein Vermerk>']
 volatility_breakout_crypto   W5 __main__ von backtest_breakout.py (runpy)               Aufrufe>0: True  Vermerke: ['<kein Vermerk>']
 volatility_breakout_crypto   W6 Vermerk des vorberechneten Frames vor/nach Aufruf mit 20: {} / {}; Rohreihe: {}
+## NACHHER: Repo nach B (Arbeitsbaum, vor Commit), 2026-09-30 21:01:52 +0200
+# TB-124 B2 Vermerk-Probe, Wurzel /Users/jaquelineloffler/trading-bot
+# python 3.9.6, pandas 2.3.3
+volatility_breakout          W1 collect_all_trades(squeeze_lookback_days=20)            Aufrufe>0: True  Vermerke: ['20']
+volatility_breakout          W1 collect_all_trades(squeeze_lookback_days=97)            Aufrufe>0: True  Vermerke: ['97']
+volatility_breakout          W1 collect_all_trades() ohne Achsenargument                Aufrufe>0: True  Vermerke: ['126']
+volatility_breakout          W2 get_trades_for_symbol(df_ind, None, 8.0, 20)            Aufrufe>0: True  Vermerke: ['20']
+volatility_breakout          W2 get_trades_for_symbol(df_ind, None, 8.0)                Aufrufe>0: True  Vermerke: ['126']
+volatility_breakout          W3 evaluate_combination_multi(syn, 8.0)                    Aufrufe>0: True  Vermerke: ['126']
+volatility_breakout          W4 load_all_symbol_data -> get_trades_for_symbol(.., 20)   Aufrufe>0: True  Vermerke: ['20']
+volatility_breakout          W5 __main__ von backtest_breakout.py (runpy)               Aufrufe>0: True  Vermerke: ['126']
+volatility_breakout          W6 Vermerk des vorberechneten Frames vor/nach Aufruf mit 20: {'squeeze_lookback_days': 126} / {'squeeze_lookback_days': 126}; Rohreihe: {}
+volatility_breakout_crypto   W1 collect_all_trades(squeeze_lookback_days=20)            Aufrufe>0: True  Vermerke: ['20']
+volatility_breakout_crypto   W1 collect_all_trades() ohne Achsenargument                Aufrufe>0: True  Vermerke: ['126']
+volatility_breakout_crypto   W2 get_trades_for_symbol(roh, 8.0, squeeze_lookback_days=20) Aufrufe>0: True  Vermerke: ['20']
+volatility_breakout_crypto   W2 get_trades_for_symbol(roh, 8.0)                         Aufrufe>0: True  Vermerke: ['126']
+volatility_breakout_crypto   W3 evaluate_combination_multi(syn, 8.0)                    Aufrufe>0: True  Vermerke: ['126']
+volatility_breakout_crypto   W4 load_all_symbol_data -> get_trades_for_symbol(.., 20)   Aufrufe>0: True  Vermerke: ['20']
+volatility_breakout_crypto   W5 __main__ von backtest_breakout.py (runpy)               Aufrufe>0: True  Vermerke: ['126']
+volatility_breakout_crypto   W6 Vermerk des vorberechneten Frames vor/nach Aufruf mit 20: {'squeeze_lookback_days': 126} / {'squeeze_lookback_days': 126}; Rohreihe: {}
