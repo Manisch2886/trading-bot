@@ -1,0 +1,20 @@
+# TB-124 0c (nachgeholt nach Nachtrag 1), 2026-09-30 20:07:31 +0200, HEAD baf18a2
+## sha256/md5 der Antwort 30a
+0ddc17f7e8f9bf3bb79e7853694236f82c27637a7440a8f678fefc042d3a0b77  docs/projektfuehrung/FABLE_ANTWORT_2026-09-30a_vorgepruefte_fragen_e2.md
+f9cdbbef543ec54ed07ee0566c336dde
+   12925
+## FABLE_DIALOG_INDEX.md vorher sha256: 235dc1c6b27ce0995c9cce9318c6f3339280a99dc08525674b1527b91565d45c
+## dialog_index.py --handfelder docs/belege/TB-124/0c_handfelder.json
+geschrieben: docs/projektfuehrung/FABLE_DIALOG_INDEX.md, 50 Zeilen
+Zeilen im Index: 50, FABLE_ANTWORT_*.md: 50 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 50 von 50
+Status: offen 6, ohne Registertext 12, registriert 32
+rc 0
+## dialog_index.py --pruefen
+Zeilen im Index: 50, FABLE_ANTWORT_*.md: 50 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 50 von 50
+Status: offen 6, ohne Registertext 12, registriert 32
+rc 0
+## FABLE_DIALOG_INDEX.md nachher sha256: 5bbabc36b7894ab4edadd511434066aca533015b218cd948920079f3d372b9eb
+2	1	docs/projektfuehrung/FABLE_DIALOG_INDEX.md
+## git status ausserhalb docs/: []

@@ -1,0 +1,17 @@
+# TB-124 Nachtrag 1, BACKLOG-Block 5b (wortgleich aus dem Nachtrag uebernommen, per Skript aus dem Codeblock), 2026-09-30 20:07:45 +0200
+8	0	docs/projektfuehrung/BACKLOG.md
+diff --git a/docs/projektfuehrung/BACKLOG.md b/docs/projektfuehrung/BACKLOG.md
+index 4af0fc6..1f17b0c 100644
+--- a/docs/projektfuehrung/BACKLOG.md
++++ b/docs/projektfuehrung/BACKLOG.md
+@@ -208,2 +208,10 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
+ 
++### Aus Fable 30a (30.09.2026) — Folgen von R53–R55, vor bzw. mit E-2
++
++- **R53 (a):** `research/faltenplan_neun/faltenplan_neun.py` führt den Vorlauf je Bot als feste Zahl; künftig aus `registerdaten.py` gerechnet (oberste Stufe je Rückblick-Achse zuzüglich fester Fenster), kein Literal; der Faltenplan trägt ihn je Bot als Feld. Erste Falte danach neu ableiten (Verfahrensmessung nach 27.2). Voraussetzung zu messen: Sind oberste Stufe und feste Fenster maschinell aus `registerdaten.py` lesbar? Sonst Literal mit Test nach 32.5 (c).
++- **R53 (b):** Tatsachennotiz zu den Nachmessungen 25.2, 15.5, 21.4 (vor TB-30b Posten 3).
++- **R53, Zählweise:** wörtlich addiertes „zuzüglich der festen Fenster“ gegen den aus dem Code hergeleiteten Vorlauf (TB-124 Nachtrag 1) — in E-2 einordnen.
++- **R54:** Messbitte — liest irgendein Code `netto_rendite_pct` aus dem Vertrag von `auswertung.py` und rechnet damit?
++- **R55:** Probe „leere Menge ⇒ (d) nicht erfüllt“ mit Gegenprobe (40.7), Handwerk; heute prüft sie kein Test. Zu konstruieren: alle zulässigen Zellen sind Spitzen.
++
+ ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*

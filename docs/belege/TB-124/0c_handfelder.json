@@ -1,0 +1,8 @@
+{
+ "_quelle": "steuernder Chat 30.09.2026, ca. 20:10; aus dem Kurz-Block der Antwort 30a",
+ "30a": {
+  "frage": "Welcher Vorlauf gilt nach 4a (i) bei achsenabhängigem Rückblick, wie werden Tagesrenditen aggregiert (2a, 7 (c), 8.1), und ist 7 (d) bei leerer Menge erfüllt?",
+  "entscheidung": "Dreimal einverstanden: Vorlauf je Bot = grösster Vorlauf des Rasters aus den registrierten Stufen, Scanbeginn nie vor dem Vorlauf (R53); verkettet überall, 2a und R48 (g) berichtigt, kennzahlen.py unverändert (R54); leere Menge ⇒ (d) nicht erfüllt, mit Berichtszeile und Probe (R55).",
+  "offen": "ja"
+ }
+}

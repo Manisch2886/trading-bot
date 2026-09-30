@@ -206,6 +206,14 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 | **Aufräumstunde** | F4 (Remote Control), F7 (Cron-Altlasten), F8, F9, O5, AD2 (`float` statt numpy), AB3/AB4 — **gebündelt oder gelöscht**, keiner verdient eine eigene Zeile |
 | **H #61/#62** | #61 schliessen (kollidiert mit #62), #62 entscheiden. *Ein offener PR ist keine Aufgabe, sondern eine Verzögerung mit Nummer* |
 
+### Aus Fable 30a (30.09.2026) — Folgen von R53–R55, vor bzw. mit E-2
+
+- **R53 (a):** `research/faltenplan_neun/faltenplan_neun.py` führt den Vorlauf je Bot als feste Zahl; künftig aus `registerdaten.py` gerechnet (oberste Stufe je Rückblick-Achse zuzüglich fester Fenster), kein Literal; der Faltenplan trägt ihn je Bot als Feld. Erste Falte danach neu ableiten (Verfahrensmessung nach 27.2). Voraussetzung zu messen: Sind oberste Stufe und feste Fenster maschinell aus `registerdaten.py` lesbar? Sonst Literal mit Test nach 32.5 (c).
+- **R53 (b):** Tatsachennotiz zu den Nachmessungen 25.2, 15.5, 21.4 (vor TB-30b Posten 3).
+- **R53, Zählweise:** wörtlich addiertes „zuzüglich der festen Fenster“ gegen den aus dem Code hergeleiteten Vorlauf (TB-124 Nachtrag 1) — in E-2 einordnen.
+- **R54:** Messbitte — liest irgendein Code `netto_rendite_pct` aus dem Vertrag von `auswertung.py` und rechnet damit?
+- **R55:** Probe „leere Menge ⇒ (d) nicht erfüllt“ mit Gegenprobe (40.7), Handwerk; heute prüft sie kein Test. Zu konstruieren: alle zulässigen Zellen sind Spitzen.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen

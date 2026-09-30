@@ -1,0 +1,11 @@
+# TB-124 Nachtrag 1 B1 - Herleitung Scanbeginn (0-basiert), BB_PERIOD = 20
+volatility_breakout         L  20 | bb_width ab 19 | squeeze_thresh ab  38 | vol_avg ab 19 | erster Einstiegsindex  39 | BB_PERIOD+L-1 =  39 gleich | woertlich L+BB_PERIOD =  40 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout         L  97 | bb_width ab 19 | squeeze_thresh ab 115 | vol_avg ab 19 | erster Einstiegsindex 116 | BB_PERIOD+L-1 = 116 gleich | woertlich L+BB_PERIOD = 117 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout         L 175 | bb_width ab 19 | squeeze_thresh ab 193 | vol_avg ab 19 | erster Einstiegsindex 194 | BB_PERIOD+L-1 = 194 gleich | woertlich L+BB_PERIOD = 195 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout         L 252 | bb_width ab 19 | squeeze_thresh ab 270 | vol_avg ab 19 | erster Einstiegsindex 271 | BB_PERIOD+L-1 = 271 gleich | woertlich L+BB_PERIOD = 272 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout         L 126 | bb_width ab 19 | squeeze_thresh ab 144 | vol_avg ab 19 | erster Einstiegsindex 145 | BB_PERIOD+L-1 = 145 gleich | woertlich L+BB_PERIOD = 146 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout_crypto  L  20 | bb_width ab 19 | squeeze_thresh ab  38 | vol_avg ab 19 | erster Einstiegsindex  39 | BB_PERIOD+L-1 =  39 gleich | woertlich L+BB_PERIOD =  40 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout_crypto  L 135 | bb_width ab 19 | squeeze_thresh ab 153 | vol_avg ab 19 | erster Einstiegsindex 154 | BB_PERIOD+L-1 = 154 gleich | woertlich L+BB_PERIOD = 155 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout_crypto  L 250 | bb_width ab 19 | squeeze_thresh ab 268 | vol_avg ab 19 | erster Einstiegsindex 269 | BB_PERIOD+L-1 = 269 gleich | woertlich L+BB_PERIOD = 270 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout_crypto  L 365 | bb_width ab 19 | squeeze_thresh ab 383 | vol_avg ab 19 | erster Einstiegsindex 384 | BB_PERIOD+L-1 = 384 gleich | woertlich L+BB_PERIOD = 385 | bisher WARMUP_PERIOD+1 = 127
+volatility_breakout_crypto  L 126 | bb_width ab 19 | squeeze_thresh ab 144 | vol_avg ab 19 | erster Einstiegsindex 145 | BB_PERIOD+L-1 = 145 gleich | woertlich L+BB_PERIOD = 146 | bisher WARMUP_PERIOD+1 = 127

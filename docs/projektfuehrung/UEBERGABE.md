@@ -187,3 +187,18 @@ Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt,
 - **Fable 30a:** Der Betreiber meldete um 19:28 „fable fertig“. Die Antwort liegt in der Ablage und ist hier nicht lesbar; der Anhang ist angefordert. ⚠️ Sie kommt erst **nach dem Schritt-0-Commit von TB-124** ins Repo, sonst weicht TB-124 0a ab.
 - **TB-124:** Auftrag `docs/auftraege/MAC_TB-124_scanbeginn_sync_r28.md`, vom Gegenleser geprüft (7 MUSS eingearbeitet, tragende Stellen selbst nachgelesen). Befund daraus: Bei der Voreinstellung 126 war der Scanbeginn 127 nie bindend (frühester Einstieg Balken 145); F1 wirkt nur bei den Stufen 20 (Balken 39–126) und 97 (116–126).
 - ⚠️ **Fehler Nr. 2 erneut (30.09., ca. 19:57):** `device_commit_files` meldete „written“, auf dem Gerät lagen aber 24 859 B statt 25 660 B (ein Zwischenstand von Stage-Pfad `tb124_v3`). Die md5-Probe hat es gefangen. Neu abgelegt über `tb124_v4`, md5 `0740787c…` auf beiden Seiten. ⇒ T7 gilt auch, wenn eine Datei unter einem **schon benutzten** Stage-Pfad nach dem ersten Ablegen noch bearbeitet wurde: für jede Ablage ein frischer Pfad.
+
+## Nachtrag 30.09.2026, ca. 20:20 — Fable 30a eingegangen und bewertet (ARBEITSWEISE 5b); Nachtrag 1 zu TB-124
+
+- **Eingang:** Der Betreiber hängte die Antwort um 19:54 als Chat-Anhang an. Sie liegt byte-gleich als `FABLE_ANTWORT_2026-09-30a_vorgepruefte_fragen_e2.md` im Repo (12 925 B, md5 `f9cdbbef…`). ⚠️ Das ist eine Abschrift aus einem `.txt`-Anhang: Die Markdown-Auszeichnung (Überschriften, Fettungen) fehlt. Der Dateiname ist vom steuernden Chat gesetzt, der Name in der Ablage ist unbekannt. **Vor E-2 werden R53–R55 zeichengleich gegen die Datei in der Ablage geprüft** (Regel 4 vom 29.09.: Abschriften zweifach, `cmp`).
+- **Bewertung:**
+  - Frage 1 (R53): einverstanden, übernehmen. Folge für TB-124: Der Scanbeginn der Zelle liegt nie vor ihrem Vorlauf.
+    - B1 des Auftrags (L + 1) hätte das verletzt. Berichtigt mit `NACHTRAG_1_MAC_TB-124_scanbeginn_vorlauf.md` auf `BB_PERIOD + L − 1`; Code gemessen: `rolling` ohne `min_periods`.
+    - Mit der Voreinstellung wird der Scanbeginn 145 statt 127; bytegleich erwartet, weil vorher kein Einstieg möglich ist.
+    - Offen für E-2: Wörtlich addiert gibt R53 L + 20 Balken, hergeleitet sind es L + 19 (zwei Fenster teilen einen Balken). Das ist eine Frage der Zählweise, keine Fable-Frage, solange die Herleitung aus dem Code trägt.
+  - Frage 2 (R54): einverstanden, übernehmen. Das deckt sich mit dem Nachtrag der Vormessung (kein direkter Widerspruch; aufgelöst auf der Registerseite). Messbitte `netto_rendite_pct` (Leser?) vor E-2.
+  - Frage 3 (R55): einverstanden, übernehmen. Probe „leere Menge“ als Handwerk (BACKLOG).
+  - Sichtschutz: Die Faltenjahre in Frage 1 sind Verfahrensmessung nach 27.2. Keine Ergebnisgrösse gelesen.
+- ⚠️ **Fables Ampel:** Fable meldet „🟡 · ca. 450 000“. Nach den Schwellen vom 29.09. (🔴 über 300 000) ist das **🔴**. Fables Plan „Umzug beim nächsten Registerauftrag (E-2)“ passt trotzdem: Vor E-2 ist keine Fable-Anfrage geplant. Regel: **Vor der nächsten Anfrage an Fable wird Fable umgezogen.** Fables Umzugshinweis zu Abschnitt 6/7 der Vorlage übernehmen.
+- **Nummern:** R-Blöcke frei ab **R56** · Fable-Anfrage frei ab 30b bzw. am nächsten Tag a.
+- **An die laufende Sitzung TB-124:** Die Sitzung liest den Nachtrag 1 nur auf Hinweis. Der Betreiber schickt ihr dafür einen Satz in die Gerätesitzung (Kopierblock im Chat). Den Nachtrag 1, die Antwort 30a, `docs/belege/TB-124/0c_handfelder.json` und diesen Nachtrag committet sie mit ihrem nächsten Commit. BACKLOG-Block „Aus Fable 30a“ und der Satz im Journal DV stehen im Nachtrag 1.
