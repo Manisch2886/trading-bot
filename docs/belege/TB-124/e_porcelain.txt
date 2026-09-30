@@ -1,0 +1,4 @@
+# TB-124 E3 - git status --porcelain nach dem Abgabe-Commit 407ec5d, 2026-09-30 22:13:36 +0200
+?? docs/belege/TB-124/e_porcelain.txt
+[Ende, 1 Zeilen]
+# origin/main = 407ec5d
