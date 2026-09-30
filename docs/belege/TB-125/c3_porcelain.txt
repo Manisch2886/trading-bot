@@ -1,0 +1,4 @@
+TB-125 C3 — git status --porcelain nach dem Abgabe-Commit add243a
+(gemessen in eine Shell-Variable, vor dem Anlegen dieser Datei)
+
+Ausgabe: ?? docs/belege/TB-125/c3_porcelain.txt
