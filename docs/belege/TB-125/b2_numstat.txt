@@ -1,0 +1,12 @@
+TB-125 B2 — git diff --numstat gegen HEAD (Ausgangsfassung) und Herkunft der entfernten Zeilen
+
+157	5	docs/projektfuehrung/ARBEITSWEISE.md
+2	0	docs/projektfuehrung/BACKLOG.md
+23	33	docs/projektfuehrung/UMZUG.md
+
+docs/projektfuehrung/UMZUG.md E5: Anfangsanker Zeile 251, Endanker Zeile 282 -> Soll 32 Zeilen (einschliesslich)
+docs/projektfuehrung/UMZUG.md: entfernt Soll 33 (aus E4,5), Ist 33, Zeilen identisch: ja
+docs/projektfuehrung/ARBEITSWEISE.md: entfernt Soll 5 (aus E10,11,12,13,24), Ist 5, Zeilen identisch: ja
+docs/projektfuehrung/BACKLOG.md: entfernt Soll 0 (aus E–), Ist 0, Zeilen identisch: ja
+
+Gesamt: entfernte Zeilen stammen nur aus den Ersetzungen

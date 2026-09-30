@@ -1,0 +1,4 @@
+TB-125 Schritt 0c — Ausgang (nach Commit b711567)
+b2b4c3125bd9e3f48ace30a0e698d9e392bb519200dd807e9d426b66e5e83d0c  2215 Zeilen  130716 B  docs/projektfuehrung/ARBEITSWEISE.md
+548098cf436f9cdf225ad347589f469aac6963ac5ac6749e584e6398cc42d997  384 Zeilen  21605 B  docs/projektfuehrung/UMZUG.md
+68c93e9365d593c61f4ca96b5c91e43ea0b4746d64a85aebcd65c6a1e839adba  228 Zeilen  54334 B  docs/projektfuehrung/BACKLOG.md

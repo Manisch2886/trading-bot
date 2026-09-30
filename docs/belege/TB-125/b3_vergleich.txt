@@ -1,0 +1,30 @@
+TB-125 B3 — Zeichengleichheit (Bytevergleich, keine Normalisierung)
+Je Einfügung: Text aus dem Auftrag (Codeblock unter „#### E<n>“, ohne Zäune),
+gesucht als zusammenhängender Block auf Zeilengrenzen in der Zieldatei. Soll: genau 1.
+
+E1 · docs/projektfuehrung/UMZUG.md · 1 Zeilen · 461 Bytes · Treffer 1 · gleich
+E2 · docs/projektfuehrung/UMZUG.md · 3 Zeilen · 529 Bytes · Treffer 1 · gleich
+E3 · docs/projektfuehrung/UMZUG.md · 1 Zeilen · 372 Bytes · Treffer 1 · gleich
+E4 · docs/projektfuehrung/UMZUG.md · 1 Zeilen · 328 Bytes · Treffer 1 · gleich
+E5 · docs/projektfuehrung/UMZUG.md · 13 Zeilen · 1794 Bytes · Treffer 1 · gleich
+E6 · docs/projektfuehrung/UMZUG.md · 1 Zeilen · 813 Bytes · Treffer 1 · gleich
+E7 · docs/projektfuehrung/ARBEITSWEISE.md · 2 Zeilen · 384 Bytes · Treffer 1 · gleich
+E8 · docs/projektfuehrung/ARBEITSWEISE.md · 1 Zeilen · 175 Bytes · Treffer 1 · gleich
+E9 · docs/projektfuehrung/ARBEITSWEISE.md · 2 Zeilen · 272 Bytes · Treffer 1 · gleich
+E10 · docs/projektfuehrung/ARBEITSWEISE.md · 2 Zeilen · 381 Bytes · Treffer 1 · gleich
+E11 · docs/projektfuehrung/ARBEITSWEISE.md · 2 Zeilen · 506 Bytes · Treffer 1 · gleich
+E12 · docs/projektfuehrung/ARBEITSWEISE.md · 1 Zeilen · 117 Bytes · Treffer 1 · gleich
+E13 · docs/projektfuehrung/ARBEITSWEISE.md · 1 Zeilen · 376 Bytes · Treffer 1 · gleich
+E14 · docs/projektfuehrung/ARBEITSWEISE.md · 2 Zeilen · 356 Bytes · Treffer 1 · gleich
+E15 · docs/projektfuehrung/ARBEITSWEISE.md · 1 Zeilen · 129 Bytes · Treffer 1 · gleich
+E16 · docs/projektfuehrung/ARBEITSWEISE.md · 5 Zeilen · 786 Bytes · Treffer 1 · gleich
+E17 · docs/projektfuehrung/ARBEITSWEISE.md · 2 Zeilen · 370 Bytes · Treffer 1 · gleich
+E18 · docs/projektfuehrung/ARBEITSWEISE.md · 12 Zeilen · 1262 Bytes · Treffer 1 · gleich
+E19 · docs/projektfuehrung/ARBEITSWEISE.md · 1 Zeilen · 314 Bytes · Treffer 1 · gleich
+E20 · docs/projektfuehrung/ARBEITSWEISE.md · 6 Zeilen · 1070 Bytes · Treffer 1 · gleich
+E21 · docs/projektfuehrung/ARBEITSWEISE.md · 114 Zeilen · 6703 Bytes · Treffer 1 · gleich
+E22 · docs/projektfuehrung/BACKLOG.md · 1 Zeilen · 616 Bytes · Treffer 1 · gleich
+E23 · docs/projektfuehrung/BACKLOG.md · 1 Zeilen · 571 Bytes · Treffer 1 · gleich
+E24 · docs/projektfuehrung/ARBEITSWEISE.md · 1 Zeilen · 175 Bytes · Treffer 1 · gleich
+
+Gesamt: 24/24 gleich

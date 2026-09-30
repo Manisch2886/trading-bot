@@ -1,0 +1,6 @@
+TB-125 Schritt 0b — Modell der Sitzung (Selbstauskunft, 30.09.2026)
+
+Modell: Claude Opus 5.5 (Modell-ID claude-opus-5-5), laut Systemangabe der Sitzung.
+Nicht Sonnet 5.5. Nach dem Kopf des Auftrags wird der Auftrag trotzdem
+abgearbeitet, zählt aber NICHT als Probe nach ARBEITSWEISE 22.12.
+Aufwand: nicht selbst ablesbar (keine Angabe in der Sitzung).

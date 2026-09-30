@@ -1,0 +1,38 @@
+TB-125 Schritt A — Einfügungen (Skript docs/belege/TB-125/einfuegen.py,
+Texte, Anker und Art gelesen aus docs/auftraege/MAC_TB-125_regelwerk_nachtrag_29_30_09.md)
+Format: E<n> · Datei · Anker vorher (Zahl; E5 Anfang/Ende) · ausgeführt ja/nein · Text nachher (Zahl der ersten Textzeile am Endstand)
+Anker vorher: gezählt unmittelbar vor der jeweiligen Einfügung, in Reihenfolge E1..E24 (E23-Anker entsteht mit E22).
+
+E1 · docs/projektfuehrung/UMZUG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E2 · docs/projektfuehrung/UMZUG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E3 · docs/projektfuehrung/UMZUG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E4 · docs/projektfuehrung/UMZUG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E5 · docs/projektfuehrung/UMZUG.md · Anker vorher 1/1 · ausgeführt ja · Text nachher 1
+E6 · docs/projektfuehrung/UMZUG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E7 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E8 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E9 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E10 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E11 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E12 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E13 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E14 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E15 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E16 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E17 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E18 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E19 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E20 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E21 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E22 · docs/projektfuehrung/BACKLOG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E23 · docs/projektfuehrung/BACKLOG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E24 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+
+Ersetzte Zeilen je Ersetzung (Anzahl):
+E4: 1 Zeile(n) entfernt, 1 Zeile(n) eingesetzt
+E5: 32 Zeile(n) entfernt, 13 Zeile(n) eingesetzt
+E10: 1 Zeile(n) entfernt, 2 Zeile(n) eingesetzt
+E11: 1 Zeile(n) entfernt, 2 Zeile(n) eingesetzt
+E12: 1 Zeile(n) entfernt, 1 Zeile(n) eingesetzt
+E13: 1 Zeile(n) entfernt, 1 Zeile(n) eingesetzt
+E24: 1 Zeile(n) entfernt, 1 Zeile(n) eingesetzt

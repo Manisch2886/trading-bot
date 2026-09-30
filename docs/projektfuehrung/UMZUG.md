@@ -91,6 +91,11 @@ mitten in einer Sitzung landen kann.
 | **3** | **Der Chat wurde schon einmal komprimiert** | dann beim **nächsten** sauberen Stand, nicht später |
 | **4** | **Ein neuer mehrstündiger Arbeitsabschnitt beginnt** | ⚠️ **davor, nicht danach** — „frühzeitig" heisst vor dem Block |
 | **5** | **Der Betreiber fragt danach** | dann gilt Abschnitt 4 |
+| **6** | ⭐ **Der mitgezählte Verlauf erreicht etwa 200 000–250 000 Tokens** — das Zwei- bis Dreifache der Einlesekosten (Betreiber 29.09.2026) | am nächsten sauberen Stand oder vor dem nächsten grossen Block; Vorschlag mit Uhrzeit. Gezählt wird, was im Chat gelesen und geschrieben wurde (Bytes der Werkzeugausgaben ÷ ~3,3). ⚠️ **Schätzung, kein Messwert** — der Kontextfüllstand ist nicht ablesbar; die Zahl steht bei jedem Hinweis dabei |
+
+⭐ **Umzugsampel** (Betreiber 29.09.2026, Form wie Fable 29a Abschnitt 2): letzte Zeile jeder Antwort des steuernden Chats —
+`Umzugsampel: <Farbe> · <geschätzte Tokens im Verlauf> · <Empfehlung>`
+🟢 unter 200 000 — bleiben · 🟡 200 000–300 000 — Umzug am nächsten sauberen Stand oder vor dem nächsten grossen Block, mit Uhrzeit · 🔴 über 300 000, nach einer Komprimierung, oder wenn der Chat merkt, dass er Gelesenes verliert — Umzug vor dem nächsten Auftrag. Schätzung (Bytes ÷ ~3,3), kein Messwert.
 
 ⭐ **Der Hinweis wird ausgesprochen, nicht abgewartet** — nach derselben Regel
 wie jede andere Aufgabe: *nie eine blosse Ankündigung, sondern ein Vorschlag mit
@@ -167,6 +172,8 @@ neu angelegt**; die Vorgänger bleiben im Repo *(27b G2, Teil E, TB-119, 27.09.2
 **und sie enthält immer diese neun
 Blöcke:**
 
+⭐ **Der jüngste Block der Übergabe ist selbsttragend** (Betreiber 29.09.2026): Er enthält alle neun Blöcke und wird beim Umzug als einziger Teil der Übergabe gelesen. Ältere Blöcke werden nur verwiesen, nicht vorausgesetzt. Seit 30.09.2026 (T5) stehen sie in `docs/projektfuehrung/UEBERGABE_ARCHIV.md`, nur im Repo; in der Projektablage liegt nur `UEBERGABE.md`.
+
 | | Block | ⚠️ |
 |---|---|---|
 | **1** | **Stand in drei Zeilen** — was gerade fertig ist, was läuft, was als Nächstes kommt | |
@@ -212,7 +219,7 @@ irgendetwas gelesen hat.
 
 ### Schritt 6 — Den Eröffnungstext ausgeben
 
-⚠️ **Als Kopierblock in der Antwort** — kein Download, keine Datei, kein Anhang.
+⚠️ **Als Kopierblock, als ERSTE Nachricht im laufenden Chat** — eine eigene Nachricht vor allen Erläuterungen (Betreiber 29.09.2026, 14:10: *„Schicke mir zukünftig immer den Text der Übergabe für den neuen Chat als erste Nachricht direkt im laufenden Chat zum kopieren“*); kein Download, keine Datei, kein Anhang.
 **Vorlage in Abschnitt 6 dieses Dokuments.**
 
 ### Schritt 7 — Den alten Chat nicht sofort schliessen
@@ -248,39 +255,22 @@ stand dort eine abweichende Kopie). ⚠️ **Keine Anhänge. Keine Dateien. Der 
 Chat holt sich alles selbst.**
 
 ```
-Neue Sitzung zum Trading-Bot-Projekt. Das Projekt "Trading Bots" ist angehängt,
-du kommst also an alle Führungsdokumente.
+Neue Sitzung zum Trading-Bot-Projekt (steuernder Chat). Das Projekt "Trading Bots" ist angehängt.
 
-Lies in dieser Reihenfolge, über den Projects-Zugriff (in Klammern der Pfad im
-Repo, falls du dort liest):
+Prüfe als Erstes, ob du über die Geräteanbindung auf ~/trading-bot lesen kannst — nenne mir HEAD und die Zeilenzahl von docs/projektfuehrung/BACKLOG.md als Beleg. Wenn das nicht geht, sag es ausdrücklich, denn dann müssen wir Messungen wieder über mich laufen lassen. Schon für diese erste Messung gilt: git über die Brücke nur mit --no-optional-locks (rev-parse, log, show, ls-files, diff --name-only, worktree list), nie git status. Prüfe ausserdem, ob du die Projektablage lesen kannst (project_info); wenn nicht, sag es — dann kommen Fable-Antworten als Anhang.
 
-1. projektfuehrung/UEBERGABE.md  — der Stand, das Wichtigste
-                                              (docs/projektfuehrung/UEBERGABE.md)
-2. projektfuehrung/UMZUG.md                 — wann und wie umgezogen wird, inkl. Auslöser
-                                              (docs/projektfuehrung/UMZUG.md)
-3. projektfuehrung/ARBEITSWEISE.md          — wie ich arbeiten möchte, verbindlich
-                                              (docs/projektfuehrung/ARBEITSWEISE.md)
-4. PRUEFPRINZIPIEN.md                       — die gemessenen Lehren
-                                              (docs/PRUEFPRINZIPIEN.md — NICHT unter projektfuehrung/)
-5. projektfuehrung/BACKLOG.md               — die aktiven Punkte
-                                              (docs/projektfuehrung/BACKLOG.md)
+Lies dann nur die Kernlektüre, aus dem Repo über die Geräteanbindung mit Abschnittsfilter (project_read liefert immer die ganze Datei):
+1. docs/projektfuehrung/UEBERGABE.md — ab der Überschrift „<Überschrift des ersten Blocks der Kernlektüre>“ bis Dateiende. Ältere Blöcke nur bei Bedarf (auch in UEBERGABE_ARCHIV.md).
+2. docs/projektfuehrung/ARBEITSWEISE.md — nur Abschnitt 0 (von „## 0.“ bis vor „## 1.“).
+3. docs/projektfuehrung/UMZUG.md — nur Abschnitt 3 (von „## 3.“ bis vor „## 4.“).
+Nur wenn die Geräteanbindung fehlt: dieselben Stellen über den Projects-Zugriff (projektfuehrung/…).
 
-Bei Bedarf, nicht als Pflicht: docs/UEBERGABEPROTOKOLL.md — der Betrieb
-(Cronjobs, Neustarts, Schlüsselbund); die Claude-Code-Sitzungen lesen es
-ohnehin über CLAUDE.md.
+PRUEFPRINZIPIEN.md (docs/PRUEFPRINZIPIEN.md — NICHT unter projektfuehrung/) und BACKLOG.md gezielt nachlesen, wenn der Anlass kommt. Grosse Dateien über einen Helfer lesen, der nur eine Kurzfassung zurückgibt. docs/UEBERGABEPROTOKOLL.md nur für den Betrieb (Cronjobs, Neustarts, Schlüsselbund).
 
-Das Repo liegt auf dem MacBook unter ~/trading-bot und ist über die
-Geräteanbindung lesbar. JOURNAL.md nur öffnen, wenn es um eine konkrete
-frühere Messung geht.
-
-Prüfe als Erstes, ob du über die Geräteanbindung auf ~/trading-bot lesen
-kannst — nenne mir HEAD und die Zeilenzahl von docs/projektfuehrung/BACKLOG.md
-als Beleg. Wenn das nicht geht, sag es ausdrücklich, denn dann müssen wir
-Messungen wieder über mich laufen lassen.
-
-Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt,
-und was gerade auf wen wartet. Dann fangen wir an.
+Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt, und was gerade auf wen wartet. Fang danach in derselben Antwort mit dem ersten Handwerksschritt an.
 ```
+
+⭐ **Fassung vom 30.09.2026 (TB-125)** — ersetzt die Fassung von TB-68. Geändert: nur die Kernlektüre statt fünf ganzer Dokumente (Betreiber 29.09.2026, 07:55: „Ja, Kernlektüre ~40 KB (Empfohlen)“), gelesen mit Abschnittsfilter aus dem Repo (29.09.2026: `project_read` liefert immer die ganze Datei, ~190 KB statt ~40 KB); die erste Brückenmessung nur mit `--no-optional-locks` (30.09.2026: ein `git status` hinterliess eine `index.lock`, die die Brücke nicht löschen konnte); Prüfung des Ablage-Zugriffs (30.09.2026: einem Chat fehlte `project_read`); der erste Handwerksschritt folgt in derselben Antwort (29.09.2026). Der Platzhalter für die Überschrift wird beim Umzug gefüllt. Der Vermerk unten („Der letzte Satz ist Absicht“) meint jetzt den Satz „Sag mir in wenigen Sätzen …“.
 
 > ⭐ **Der letzte Satz ist Absicht.** Er zeigt sofort, ob die Übergabe angekommen
 > ist — und er nennt ausdrücklich die **Wartezustände**, weil das der Block ist,

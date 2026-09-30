@@ -46,12 +46,15 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Keine Gefälligkeit — die unbequeme Antwort | 9 |
 | ☐ | Geänderte Regeln im Chat genannt, mit Datum und Abschnitt; `ARBEITSWEISE`/`JOURNAL`/`BACKLOG` nicht bei jeder Änderung mitgeschickt | 2 |
 | ☐ | Sagt der Betreiber „zukünftig": in derselben Antwort in alle Träger eingetragen, ohne Rückfrage | 15 |
+| ☐ | Kurz: „In einfacher Sprache“ im Chat ein bis zwei Zeilen, ausführlich nur in Dokumenten (T6, Betreiber 30.09.2026) | 4 |
+| ☐ | Was der Betreiber abgeschickt hat, wird nicht behauptet — „als Kopierblock ausgegeben“; ob gesendet, zeigt erst die Antwort. Vor einer Karte, die einen versendeten Stand ändern will, zuerst fragen, ob schon gesendet (29.09.2026) | 9 |
 
 **Am Anfang einer Aufgabe**
 
 | | Regel | steht in |
 |---|---|---|
 | ☐ | Ein bis zwei Sätze in einfacher Sprache, was jetzt passiert — vor der ersten Messung | 17 |
+| ☐ | Nach der Übernahme in einem neuen Chat: in derselben Antwort mit dem ersten Handwerksschritt beginnen, nicht auf ein Startzeichen warten (29.09.2026) | 13; UMZUG 6 |
 
 **Am Ende jeder Antwort**
 
@@ -61,14 +64,18 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Bei Wartezuständen: was wann von wem kommt, und was in der Zwischenzeit zu tun ist | 6bb |
 | ☐ | Kein Stillstand: der nächste Handwerksschritt ist getan; kein „soll ich …?"; keine offene Frage nach dem Weiter; neben einer Rückfrage ist alles Unabhängige erledigt | 13 |
 | ☐ | Die Aufgabenliste so kurz wie möglich — nie „entscheiden, wie es weitergeht" | 13 |
+| ☐ | Letzte Zeile: Umzugsampel (Farbe · Tokens · Empfehlung) | UMZUG 3 |
+| ☐ | Eine Auswahlkarte kommt erst danach, als letzter Schritt: Ergebnis, Dateien, Kopierblöcke, „Deine Aufgaben“ und Umzugsampel sind vorher zugestellt (M1, Betreiber 30.09.2026) | 6d |
 
 **Wenn ein Dokument mitgeht**
 
 | | Regel | steht in |
 |---|---|---|
-| ☐ | Als Datei, nie als Chat-Text zum Herauskopieren — für alle vier Wege | 2 |
+| ☐ | Als Datei, nie als Chat-Text zum Herauskopieren — für alle vier Wege. Ausnahme: Eine Fable-Anfrage steht als Kopierblock in der Antwort (15, Austausch Nr. 5) | 2 |
 | ☐ | Dateiname und Überschrift nennen den Empfänger (`CLOUD_TB-` · `MAC_` · `FABLE_`) | 2 |
 | ☐ | Bei Fable: bestehender oder neuer Chat — in der Überschrift und im Text | 1, 2 |
+| ☐ | Fable-Anfrage: Steht ihr voller Text als Kopierblock in DIESER Antwort? Repo und Ablage sind Archiv, nicht die Übergabe (Rüge 24.09.2026; erneut 29./30.09.2026) | 15, Austausch Nr. 5 |
+| ☐ | An Fable nur vorgeprüfte Verfahrensfragen; vor der nächsten Anfrage Fables letzte Umzugsampel prüfen — über 300 000 zieht Fable zuerst um (30.09.2026) | 22.11 |
 | ☐ | Kein Archiv: Commit im Repo und einzelne Dateien im Chat | 2 |
 | ☐ | `BACKLOG.md`/`JOURNAL.md` als Nachtrag (neue Blöcke, benannte Ersetzungen mit Stelle), nie ganz neu; `ARBEITSWEISE.md` ganz | 2 |
 
@@ -81,15 +88,17 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Download an jedem abgeschlossenen Abschnitt angeboten, nicht erst am Ende | 6 |
 | ☐ | Vor jedem drohenden Verlust ausdrücklich gewarnt: Ersetzen, ungesicherte Änderungen, Übergabe | 6 |
 | ☐ | Nichts verworfen oder gelöscht, ohne vorher zu fragen | 6 |
-| ☐ | Ein nötiger Umzug wird frühzeitig angekündigt | 10 |
+| ☐ | Ein nötiger Umzug wird frühzeitig angekündigt — auch nach Tokenverbrauch: Verlauf mitzählen, ab ~200–250k am nächsten sauberen Stand vorschlagen, mit Zahl und Uhrzeit | 10; UMZUG 3 |
+| ☐ | Beim Umzug: der Eröffnungstext als ERSTE Nachricht im laufenden Chat, als eigener Kopierblock vor allen Erläuterungen (Betreiber 29.09.2026, „zukünftig“) | UMZUG 6 |
 
 **Wenn eine Entscheidung beim Betreiber liegt**
 
 | | Regel | steht in |
 |---|---|---|
-| ☐ | Als anklickbare Multiple-Choice-Frage — nicht als Absatz, nicht als Tabelle, nicht gesammelt ans Ende der Antwort | 6d, Form |
+| ☐ | Karte nur für echte Betreiberentscheide: Freigaben (Register, Sperrliste, Signalpfad, Parameterdateien), Löschen und Ablage entfernen, Umzug, Geld, Unumkehrbares. Handwerk entscheidet der steuernde Chat selbst: „Vorgabe: X — gilt, wenn du nicht widersprichst“ (M3, 30.09.2026) | 6d |
+| ☐ | Als anklickbare Karte, nicht als Absatz und nicht als Tabelle; höchstens **eine** Karte je Antwort, bis zu vier Fragen gebündelt, als letzter Schritt der Antwort (M1, M2, 30.09.2026) | 6d, Form |
 | ☐ | Möglichkeiten vollständig, jede mit Preis; **eine** Empfehlung an erster Stelle, gekennzeichnet; Begründung, was sie schlechter macht | 6d |
-| ☐ | Auch bei zwei Wegen, auch wenn sie klein wirkt | 6d, Form |
+| ☐ | Auch bei zwei Wegen, auch wenn sie klein wirkt — sofern es ein Betreiberentscheid nach M3 ist | 6d, Form |
 | ☐ | Hängt sie an etwas, das nur der Betreiber weiss: das sagen, nicht raten | 6d |
 | ☐ | Die Frage ist kein Haltepunkt — die Arbeit läuft daneben weiter; Verfahrensfragen vor dem Tag an Betreiber oder Fable, nie nach erwartetem Effekt | 13 |
 
@@ -115,7 +124,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Keine mehrzeiligen Eingaben über Termius; zeilenweise mit `echo … >>` | 7 |
 | ☐ | Zeilen, die kein Befehl sind, sind als solche gekennzeichnet | 7 |
 | ☐ | Freigabepflichtige Befehle bleiben beim Betreiber — alles bis dahin ist fertig | 13 |
-| ☐ | Kein `git status` über die Geräteanbindung; die zwei lesenden Befehle | 14, Regel 4 |
+| ☐ | Kein `git status` über die Geräteanbindung — auch nicht bei der allerersten Messung eines neuen Chats. git über die Brücke nur mit `--no-optional-locks` (`rev-parse`, `log`, `show`, `ls-files`, `diff --name-only`, `worktree list`), dazu md5 (30.09.2026: ein `git status` hinterliess eine `.git/index.lock`, die die Brücke nicht löschen konnte) | 14, Regel 4 |
 
 **Wenn eine Mac-Sitzung startet, endet oder abbricht**
 
@@ -131,6 +140,20 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Ohne Nachfrage: Start → Startblöcke und Ablegen · fertig, weiter → nächste Startblöcke · fertig, Schluss → Schliessfolge · „Abbruch" → erst messen, dann `screen -r tb` | 6b, Ende |
 | ☐ | Nie zusammengefasst, nie im Fliesstext, nie weggelassen, weil es letztes Mal schon dastand | 6b, Ende |
 | ☐ | Meldet er „Abbruch": messen, wie weit die Sitzung kam (Commits, Arbeitsbaum, `index.lock`), dann die passenden Blöcke ohne Rückfrage | 6b, Start |
+| ☐ | Nach dem Auslöser: Ist Schritt 0 committet? Ohne Commit ist der Satz nicht angekommen ⇒ einmal Hinweis an den Betreiber, dann warten; keine Nachschau-Kette (29.09.2026) | 22.5 |
+| ☐ | Vor dem Schliess-Auslöser das Alter des letzten Commits messen (`git --no-optional-locks log -1 --format=%ct`), erst ab 600 s auslösen (29.09.2026) | 22.8 |
+
+**Wenn Dateien abgelegt oder aus der Ablage gelesen werden**
+
+| | Regel | steht in |
+|---|---|---|
+| ☐ | Nach jedem `device_commit_files`: md5 und `wc -c` auf beiden Seiten, **vor** dem Auslöser. Jede Ablage aus einem frischen Stage-Pfad — auch wenn die Datei nach dem Bereitstellen noch geändert wurde (T7; am 29. und 30.09.2026 kam dreimal eine alte Fassung an, obwohl „written“ gemeldet war) | 23 |
+| ☐ | Dateien für die Projektablage zuerst ins Arbeitsverzeichnis kopieren, md5 prüfen, dann `project_write` (29.09.2026) | 23 |
+| ☐ | Abschriften aus der Ablage zweifach unabhängig, lange Texte in Teilen, `cmp` vor dem Ablegen (29.09.2026) | 23 |
+| ☐ | Grosse Ablage-Dateien liest ein Helfer (Fundstellen); der Chat liest nur, was er für eine Entscheidung im Wortlaut braucht (29.09.2026) | 22.10 |
+| ☐ | Aufträge, die eine 27.5-Streichung vollziehen, gehen nicht in die Ablage (29.09.2026) | 23 |
+| ☐ | In der Ablage liegt von der Übergabe nur `UEBERGABE.md`; `UEBERGABE_ARCHIV.md` und abgeschlossene Dialoge und Aufträge nur im Repo (T5, Betreiber 30.09.2026) | 23 |
+| ☐ | Kernlektüre beim Umzug aus dem Repo mit Abschnittsfilter; `project_read` nur als Rückfall — es liefert immer die ganze Datei (29.09.2026) | UMZUG 6 |
 
 **Wenn ich ein fremdes Ergebnis bewerte (Cloud, Mac, Fable)**
 
@@ -139,6 +162,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | „In einfacher Sprache" am Ende — im Dokument **und** in der Chat-Antwort; nicht in der Planungsunterhaltung | 4 |
 | ☐ | Backlog- und Journal-Nachtrag in derselben Antwort — auch bei Fable, auch wenn kurz | 5b |
 | ☐ | Jede Zahl aus dem fremden Bericht an der Rohausgabe nachgerechnet | 7 |
+| ☐ | Vor dem Urteil „Widerspruch“ prüfen, ob die Registerstelle den gerechneten Fall wörtlich trifft (30.09.2026) | 9 |
 
 **Wenn ich einen Auftrag schreibe**
 
@@ -146,6 +170,11 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 |---|---|---|
 | ☐ | Kopf: `# TB-<Nr> <Kurzname>`, Sitzungstitel, Modell (Abweichung von Opus 5 begründet), Repo/Base frisch von `main` | 3 |
 | ☐ | Belegt, erschlossen und offen getrennt; Raten verboten, Platzhalter verlangt | 18, P.4 |
+| ☐ | Eine Erwartung an ein Werkzeug nur mit Fundstelle im Werkzeug, sonst „vom Werkzeug abhängig, im Ergebnis beschreiben“ (Übergabe, Umzug 29.09.2026, Block 7 Nr. 1) | 18, P.4 |
+| ☐ | Zahlen aus früheren Ergebnissen nur mit Fundstelle im Ergebnis (29.09.2026) | 18, P.4 |
+| ☐ | `faltenplan.faltenplan()` ist kein Lesen (es startet einen Trockenlauf) — in nur lesenden Aufträgen verboten (29.09.2026) | 11 |
+| ☐ | Übernahmegrenzen werden aus der Datei gemessen (Überschrift, Dateiende), nie als Zeilenzahl vorgegeben; der Gegenleser prüft gegen die Quelle (29.09.2026) | 22.10 |
+| ☐ | Vor dem Übergeben liest ein frischer Helfer gegen — jede Zahl, Fundstelle und Werkzeug-Erwartung an der Quelle, bei Fable-Anfragen auch gegen 27.1; gestuft nach T2 | 22.10 |
 | ☐ | Stehende Regeln und Prüfprinzipien verwiesen, nicht abgeschrieben | 2, 12 |
 | ☐ | Jedes Verbot nennt, wovor es schützt; Prüfwerkzeuge gehören mit Zielpfad ins Repo | 11 |
 | ☐ | Alle Ergebnisdokumente am Ende im Repo (Wortlaut in 18, P.4); kurze zusätzlich als Datei im Chat | 18, P.4 |
@@ -347,6 +376,8 @@ parallel und muss sie zuordnen können.
 wird sie **begründet dazugeschrieben** — etwa Fable 5.1 bei Untersuchungen mit
 offener Fragestellung, Sonnet 5 bei reiner Ausführungsarbeit ohne
 Ermessensspielraum.
+
+⭐ **Seit 29.09.2026 gilt dafür 22.12:** Sonnet nur für Mechanik — Fundstellen- und Zählhelfer, Dokumentationsaufträge mit wörtlich vorgegebenem Text —, und für Aufträge erst nach bestandener Probe. Register, Code, Messungen, Gegenleser, Bewertung und der steuernde Chat bleiben Opus mit Aufwand hoch.
 
 ---
 
@@ -788,6 +819,13 @@ Lauf". Gemeint ist die **Aufforderung**, nicht die Information.
 ---
 
 ## 6d. Jede Entscheidung wird als anklickbare Frage gestellt — mit Empfehlung
+
+> ⚠️⚠️ **Eingeschränkt durch den Betreiberentscheid vom 30.09.2026, 19:13** („Wir setzten es wie von dir Vorgeschlagen um“; Wortlaut: `UEBERGABE.md` bzw. `UEBERGABE_ARCHIV.md`, Nachtrag 30.09.2026, 19:13). Anlass: Der steuernde Chat hing wiederholt an der Auswahlkarte.
+> - **M1:** Die Karte ist immer der letzte Schritt einer Antwort. Ergebnis, Dateien, Kopierblöcke, „Deine Aufgaben“ und Ampel sind vorher zugestellt (`SendUserMessage`). Hängt die Karte, fehlt nur die Karte.
+> - **M2:** Höchstens eine Karte je Antwort, bis zu vier Fragen gebündelt.
+> - **M3:** Karten nur für echte Betreiberentscheide: Freigaben für Register, Sperrliste, Signalpfad und Parameterdateien; Löschen und Ablage entfernen, Umzug, Geld, Unumkehrbares. Bei Handwerk entscheidet der steuernde Chat selbst und schreibt: „Vorgabe: X — gilt, wenn du nicht widersprichst“.
+>
+> Wo dieser Abschnitt „jede Entscheidung“ sagt, gilt er in diesem Rahmen. Wo er „nicht gesammelt ans Ende der Antwort“ sagt, gilt M1/M2: eine gebündelte Karte als letzter Schritt.
 
 ⚠️ **Neu am 18.09.2026, weil der Nutzer in dieser Sitzung dreimal nachfragen
 musste: *„was würdest du empfehlen?"***
@@ -2120,6 +2158,120 @@ Start um 07:34:28Z lief sofort (`e731207`, 07:36Z).
 ⭐ *Ein Satz ohne Fenster ist eine Bitte ins Leere; ein Fenster ohne Satz ist
 eine Sitzung, die niemand findet. Deshalb zuerst das Fenster, dann der Satz —
 und vorher nachsehen, ob ein altes im Weg steht.*
+
+---
+
+### 22.10 Helfer-Agenten — ein Regelwerk für alle drei Rollen (Betreiber 29.09.2026)
+
+Grundsatz (Fable 29a, Abschnitt 3): Ein Helfer darf finden, zählen und belegen —
+nie deuten. Seine Ausgabe ist Fundstelle, Zahl oder Quelle. Eine Zusammenfassung
+dient höchstens der Orientierung („wo steht was“); was in eine Anfrage, einen
+Auftrag, einen Bericht oder eine Entscheidung eingeht, liest der Auftraggeber
+selbst im Wortlaut an der Fundstelle. Jeder Einsatz bekommt eine Protokollzeile
+(Art, Suchwort oder Frage, erlaubte Dateien, Ergebnis); jeder Auftrag an einen
+Helfer nennt die erlaubten Dateien und das Leseverbot.
+
+Steuernder Chat: (1) Web-Recherche — Quellen mit URL, selbst gegengelesen;
+(2) Fundstellen- und Zählaufträge in Repo und Ablage; (3) Gegenleser vor jedem
+Übergeben einer Fable-Anfrage und eines Auftrags: ein frischer Helfer, der den
+Text nicht geschrieben hat, liefert eine Liste Satz · Behauptung · Quelle ·
+stimmt/weicht ab — für jede Zahl, Fundstelle und Werkzeug-Erwartung; bei
+Fable-Anfragen zusätzlich gegen Register 27.1 (steht ein Wert darin, den Fable
+nicht sehen darf?). Befunde werden vor dem Übergeben eingearbeitet.
+
+Fable: wie FABLE_ANTWORT_2026-09-29a, Abschnitt 3 (Fundstellen, Mechanik,
+Websuche mit Einzelfreigabe; Leseverbot `docs/belege/`, `ergebnisse/`,
+Trade-Listen, `BACKLOG*.md`).
+
+Mac-Sitzungen: Helfer nur zum Suchen und Lesen innerhalb der Sitzung. Messung,
+Beleg und Commit macht die Sitzung selbst; jeder Helfereinsatz steht im
+Ergebnisdokument. Nicht gemessen: ob Sperrliste und `deny` aus
+`.claude/settings.local.json` auch für die Helfer der Sitzung greifen — die
+erste Sitzung, die einen Helfer einsetzt, prüft das als Schritt 0 und bricht
+ab, wenn nicht.
+
+Belege bleiben A8/A10: die Aussage eines Helfers ist eine Selbstauskunft.
+Nie für Register, Commits, Aufträge schreiben oder Freigaben; ein Helfer
+schreibt nichts ins Repo.
+
+Probe statt Regel (Fable 29a: „Die Entscheidung fällt an der Messung, nicht an
+der Ersparnis“): Über die ersten drei Gegenlese-Durchgänge zählt der steuernde
+Chat je Durchgang die Befunde, die er selbst übersehen hätte, und die
+geschätzten Tokens. Hat keiner der drei einen solchen Befund, fällt das
+Gegenlesen weg; sonst wird es Regel. Das Ergebnis steht in der Übergabe.
+
+⭐ **Ergebnis der Probe (29.09.2026, 14:52): Das Gegenlesen ist Regel.** 3 von 3
+Durchgängen fanden Befunde, die sonst übergeben worden wären (Übergabe,
+Nachträge 29.09.2026, 12:25, 13:20 und 14:52).
+
+⭐ **Ergänzung 30.09.2026, 19:13 — Tokens sparen, ohne dem Projekt zu schaden
+(Betreiberentscheid, T1–T4):**
+- **T1:** Helfer schreiben ihren Volltext in eine Datei (Scratchpad oder
+  Ausgabeordner). Dem Chat geben sie nur rund 20 Zeilen zurück: Urteile,
+  Abweichungen, Offenes.
+- **T2:** Gegenlesen gestuft: zwei unabhängige Parallelläufe nur für Zahlen und
+  Zitate, die ins Register oder an Fable gehen; sonst ein Gegenleser auf das
+  fertige Ergebnis.
+- **T3:** Helfer bekommen Zeilenbereiche aus `REGISTER_INDEX.md` und die
+  bekannten Fundstellen mit.
+- **T4:** Sonnet-Probe beim Fundstellen-Check — Sonnet und Opus parallel, dann
+  Vergleich (Ergebnis in 22.12).
+- Grosse Ablage-Dateien liest ein Helfer; der Chat liest nur, was er für eine
+  Entscheidung im Wortlaut braucht (29.09.2026).
+
+### 22.11 Fable-Filter — nur Verfahrensfragen, vorgeprüft (Betreiber 29.09.2026)
+
+1. An Fable gehen nur Verfahrensfragen vor dem signierten Tag: Registertext,
+   seine Lesart, der Sichtschutz (27). Handwerk nach 6d — Arbeitsweise, Ablage,
+   Umzug, Agenten, Dateinamen, Lesarten eigener Werkzeuge — entscheiden der
+   steuernde Chat und der Betreiber (Auswahlkarte). Reine Kenntnis geht nicht
+   hin oder als eine Zeile.
+2. Vorprüfung durch Opus (Mac-Sitzung oder Helfer nach 22.10): Jede Frage wird
+   vorher gegen das ganze Register und den Code geprüft. Fable bekommt nur, was
+   dort offen ist — je Frage mit Fundstelle und Neigung des steuernden Chats.
+3. Form: nur Fragen mit Fundstellen, keine kopierten Sammlungen; Antwort je
+   Frage „einverstanden“ oder „anders, weil …“, Registertext nur als R-Block;
+   „In einfacher Sprache“ schreibt der steuernde Chat.
+4. Takt nach Bedarf: wenn eine Frage einen Auftrag blockiert oder genug echte
+   Verfahrensfragen beisammen sind — nicht täglich.
+5. Fables Probe aus 29a (Register Teil 1–3 über einen Fundstellen-Helfer) wird
+   unterstützt; die Übergabe an einen neuen Fable-Chat nennt sie.
+
+⭐ **Ergänzung 30.09.2026:** Vor der nächsten Anfrage an Fable prüft der
+steuernde Chat Fables letzte Umzugsampel nach den Schwellen von UMZUG 3. Steht
+sie über 300 000 (🔴), zieht Fable zuerst um. Anlass: Fable meldete in 30a
+„🟡 · ca. 450 000“.
+
+### 22.12 Sonnet 5.5 — nur Mechanik, erst eine Probe (Betreiber 29.09.2026)
+
+Betreiberentscheid 29.09.2026, ca. 14:05, per Auswahlkarte: „Nur Mechanik, erst
+Probe (Empfohlen)“ — ausdrücklich nur, wenn die Qualität des Projekts nicht
+leidet.
+
+- Sonnet übernimmt Fundstellen- und Zählhelfer (Agent mit `model: sonnet`) und
+  reine Dokumentationsaufträge mit wörtlich vorgegebenem Text.
+- Für Dokumentationsaufträge läuft zuerst **ein** Probeauftrag, abgenommen mit
+  `numstat`, `diff` gegen den Auftragstext und der Zahl der Treffer je
+  Einfügestelle. Hält er, wird es Regel für diese Klasse.
+- Register, Code, Messungen, Gegenleser, Bewertung und der steuernde Chat
+  bleiben Opus mit Aufwand hoch.
+- Es gibt keinen eigenen Sonnet-Chat (29.09.2026, 14:10: vom steuernden Chat
+  auf eine Betreiberfrage verneint, mit Begründung). Sonnet läuft
+  nur als Helfer oder als Mac-Sitzung je Auftrag, mit dem Modell im Kopf des
+  Auftrags (Abschnitt 3). Umzug und Ampel betreffen Sonnet nicht.
+- ⚠️ Lücke: Der Wächter (`docs/werkzeuge/sitzungswaechter/starte_sitzung.sh`)
+  startet ohne Modellwahl, also mit Opus. Bis zu einem Umbau (Handwerk mit
+  Freigabe, weil der Wächter geändert wird) setzt der Betreiber das Modell in
+  der Sitzung selbst (Vorgabe des steuernden Chats, 30.09.2026); Schritt 0 hält
+  fest, welches Modell läuft.
+- **Probe Helfer (T4), 30.09.2026:** E-2-Inventar, Sonnet und Opus parallel mit
+  demselben Auftrag. Beide fanden alle 38 R-Blöcke ohne Lücke; Sonnet brauchte
+  rund 253 000 Tokens und 9 Minuten, Opus rund 196 000 und 5 Minuten (Angaben
+  der Werkzeugrückmeldung). Die Zählungen der Regeln wichen in der Körnung ab
+  (45 gegen 54), der Befund war gleich. Sonnet war hier nicht billiger. Eine
+  Probe, noch keine Regel. Fundstelle: Übergabe, Nachtrag 30.09.2026, ca. 22:05.
+- **Probe Dokumentationsauftrag:** TB-125; Ergebnis in
+  `docs/ERGEBNIS_TB-125_regelwerk_nachtrag.md`.
 
 ---
 
