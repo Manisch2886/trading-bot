@@ -1,0 +1,5 @@
+# 0c Ausgang — HEAD eaea530
+b0436ff81a2869189a8bd4115e7e421185e52c0b138f4d3666a2a4c1c8f16d9e  2367 Zeilen  docs/projektfuehrung/ARBEITSWEISE.md
+0a6ff04b1d1d81ce0363c09d6f900ef06913e5f6d4f994a31de39597c747dd53  374 Zeilen  docs/projektfuehrung/UMZUG.md
+4ae3189ca77fb46ba1a9bb906754e73bc7774e0bb7da8cd38167a456cdca44ec  235 Zeilen  docs/projektfuehrung/BACKLOG.md
+6529b6d3b823c436cf5a083f2c5873f1741e1ec84b33a6e8884c2309e02f9f15  237 Zeilen  docs/werkzeuge/registerkopie.py

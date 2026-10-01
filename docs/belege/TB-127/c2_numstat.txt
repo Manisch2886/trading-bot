@@ -1,0 +1,8 @@
+# TB-127 C2 — git diff --numstat je Datei (gegen HEAD eaea530)
+10	2	docs/projektfuehrung/ARBEITSWEISE.md
+4	0	docs/projektfuehrung/UMZUG.md
+7	0	docs/projektfuehrung/BACKLOG.md
+# Soll: entfernte Zeilen nur aus E3 und E4 (je 1 in ARBEITSWEISE) => ARBEITSWEISE 2 entfernt; UMZUG und BACKLOG 0 entfernt.
+# Entfernte Zeilen ARBEITSWEISE im Wortlaut:
+-| ☐ | Letzte Zeile: Umzugsampel (Farbe · Tokens · Empfehlung) | UMZUG 3 |
+-| ☐ | Ein nötiger Umzug wird frühzeitig angekündigt — auch nach Tokenverbrauch: Verlauf mitzählen, ab ~200–250k am nächsten sauberen Stand vorschlagen, mit Zahl und Uhrzeit | 10; UMZUG 3 |

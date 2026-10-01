@@ -97,9 +97,13 @@ mitten in einer Sitzung landen kann.
 `Umzugsampel: <Farbe> · <geschätzte Tokens im Verlauf> · <Empfehlung>`
 🟢 unter 200 000 — bleiben · 🟡 200 000–300 000 — Umzug am nächsten sauberen Stand oder vor dem nächsten grossen Block, mit Uhrzeit · 🔴 über 300 000, nach einer Komprimierung, oder wenn der Chat merkt, dass er Gelesenes verliert — Umzug vor dem nächsten Auftrag. Schätzung (Bytes ÷ ~3,3), kein Messwert.
 
+⭐⭐ **Gilt seit 01.10.2026 (Betreiberentscheid ca. 21:35, per Karte; ersetzt die Schätzung oben und S2 vom selben Tag, `UEBERGABE.md` Nachtrag 01.10.2026, ca. 20:15):** Die Ampel wird **gemessen**, nicht geschätzt — mit `docs/werkzeuge/ampel.py` aus dem Sitzungsprotokoll des Chats (`~/.claude/projects/*/<sitzung>.jsonl`). **Grösse** = `input_tokens + cache_read_input_tokens + cache_creation_input_tokens` des letzten Assistenteneintrags; **Grundlast** = Grösse des ersten Eintrags (feste Anweisungen und Werkzeuge, gemessen rund 120 000); **Verlauf** = Grösse − Grundlast. Die Farben gelten für den **Verlauf**: 🟢 unter 200 000 · 🟡 200 000–300 000 · 🔴 darüber. Form: `Umzugsampel: <Farbe> · Verlauf <n> (Grundlast <g>) · <Empfehlung>`. Umzug vor einer Pause über einer Stunde nur ab 🟡. Für Schätzungen über Text, der per `project_read` gelesen wird, gilt **Bytes ÷ 1,6** (gemessen 01.10.2026: rund 1 MB = 637 677 Tokens); die Ampel selbst bleibt gemessen (F2, Betreiberentscheid 01.10.2026, ca. 21:25). *Anlass, Fehler Nr. 13: S2 mass die Gesamtgrösse samt Grundlast gegen Schwellen, die für den Verlauf gedacht waren — jeder neue Chat stand nach einer Runde auf Gelb. Messung: `docs/projektfuehrung/MESSUNG_2026-10-01_ampel_grundlast.md`.* ⇒ Wer eine Messgrösse ändert, rechnet die Schwellen mit um.
+
 ⭐ **Der Hinweis wird ausgesprochen, nicht abgewartet** — nach derselben Regel
 wie jede andere Aufgabe: *nie eine blosse Ankündigung, sondern ein Vorschlag mit
 Zeitpunkt.*
+
+⭐ **Ein Chat je Auftragsrunde (S1, S7; Betreiberentscheid 01.10.2026, ca. 20:10):** Auftrag schreiben, gegenlesen, freigeben, starten, dann umziehen; die Abnahme macht der nächste Chat. Umzug nach gemessener Ampel und vor einer Pause von mehr als einer Stunde (S1). Seit 21:35 gelten dafür die Ampel auf den Verlauf ohne Grundlast und „vor einer Pause nur ab 🟡“ (oben); die Zahl „rund 250 000“ aus S1 folgt nach Lesart des steuernden Chats dieser Ampel. Eine Nachschau liegt unter einer Stunde, oder vorher wird umgezogen (S7).
 
 ### ⚠️ Wann NICHT umgezogen wird
 

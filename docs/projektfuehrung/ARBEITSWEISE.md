@@ -64,7 +64,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Bei Wartezuständen: was wann von wem kommt, und was in der Zwischenzeit zu tun ist | 6bb |
 | ☐ | Kein Stillstand: der nächste Handwerksschritt ist getan; kein „soll ich …?"; keine offene Frage nach dem Weiter; neben einer Rückfrage ist alles Unabhängige erledigt | 13 |
 | ☐ | Die Aufgabenliste so kurz wie möglich — nie „entscheiden, wie es weitergeht" | 13 |
-| ☐ | Letzte Zeile: Umzugsampel (Farbe · Tokens · Empfehlung) | UMZUG 3 |
+| ☐ | Letzte Zeile: Umzugsampel, gemessen mit `docs/werkzeuge/ampel.py` (Farbe · Verlauf · Grundlast · Empfehlung; Schwellen für den Verlauf ohne Grundlast; Betreiber 01.10.2026) | UMZUG 3 |
 | ☐ | Eine Auswahlkarte kommt erst danach, als letzter Schritt: Ergebnis, Dateien, Kopierblöcke, „Deine Aufgaben“ und Umzugsampel sind vorher zugestellt (M1, Betreiber 30.09.2026) | 6d |
 
 **Wenn ein Dokument mitgeht**
@@ -76,6 +76,8 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Bei Fable: bestehender oder neuer Chat — in der Überschrift und im Text | 1, 2 |
 | ☐ | Fable-Anfrage: Steht ihr voller Text als Kopierblock in DIESER Antwort? Repo und Ablage sind Archiv, nicht die Übergabe (Rüge 24.09.2026; erneut 29./30.09.2026) | 15, Austausch Nr. 5 |
 | ☐ | An Fable nur vorgeprüfte Verfahrensfragen; vor der nächsten Anfrage Fables letzte Umzugsampel prüfen — über 300 000 zieht Fable zuerst um (30.09.2026) | 22.11 |
+| ☐ | Fable-Anfrage nennt die Abschnittsnummern aller berührten Registerstellen; Fable öffnet diese, was der Index als „gilt“ und „dazu“ nennt, und weitere nach eigenem Urteil (F5, 01.10.2026) | 22.11 |
+| ☐ | Fable-Übergabetexte kurz: keine Fehlerliste und keine Landkarte, die schon in R52, 50.1 oder im Index steht — Verweis statt Wiederholung (F6). Probe über zwei Anfragen: ein Fable-Chat je Anfrage, erst nach Fables Antwort auf die Verfahrensfrage zu 27 (F4) (01.10.2026) | 22.11 |
 | ☐ | Kein Archiv: Commit im Repo und einzelne Dateien im Chat | 2 |
 | ☐ | `BACKLOG.md`/`JOURNAL.md` als Nachtrag (neue Blöcke, benannte Ersetzungen mit Stelle), nie ganz neu; `ARBEITSWEISE.md` ganz | 2 |
 
@@ -88,7 +90,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Download an jedem abgeschlossenen Abschnitt angeboten, nicht erst am Ende | 6 |
 | ☐ | Vor jedem drohenden Verlust ausdrücklich gewarnt: Ersetzen, ungesicherte Änderungen, Übergabe | 6 |
 | ☐ | Nichts verworfen oder gelöscht, ohne vorher zu fragen | 6 |
-| ☐ | Ein nötiger Umzug wird frühzeitig angekündigt — auch nach Tokenverbrauch: Verlauf mitzählen, ab ~200–250k am nächsten sauberen Stand vorschlagen, mit Zahl und Uhrzeit | 10; UMZUG 3 |
+| ☐ | Ein nötiger Umzug wird frühzeitig angekündigt — nach gemessener Ampel (Verlauf ab 200 000 am nächsten sauberen Stand oder vor dem nächsten grossen Block), mit Zahl und Uhrzeit; ein Chat je Auftragsrunde (S1; Schwelle nach der Ampel vom 01.10.2026, 21:35) | 10; UMZUG 3 |
 | ☐ | Beim Umzug: der Eröffnungstext als ERSTE Nachricht im laufenden Chat, als eigener Kopierblock vor allen Erläuterungen (Betreiber 29.09.2026, „zukünftig“) | UMZUG 6 |
 
 **Wenn eine Entscheidung beim Betreiber liegt**
@@ -154,6 +156,9 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Aufträge, die eine 27.5-Streichung vollziehen, gehen nicht in die Ablage (29.09.2026) | 23 |
 | ☐ | In der Ablage liegt von der Übergabe nur `UEBERGABE.md`; `UEBERGABE_ARCHIV.md` und abgeschlossene Dialoge und Aufträge nur im Repo (T5, Betreiber 30.09.2026) | 23 |
 | ☐ | Kernlektüre beim Umzug aus dem Repo mit Abschnittsfilter; `project_read` nur als Rückfall — es liefert immer die ganze Datei (29.09.2026) | UMZUG 6 |
+| ☐ | `project_read` nie zur Prüfung grosser Ablagedateien — es liefert jede Datei ganz in den Chat (Fehler Nr. 12: 158 KB inline). Hochladen per `local_path` aus einer md5-geprüften Datei, kein Rücklesen; Schätzung für Gelesenes: Bytes ÷ 1,6 (F2, 01.10.2026) | 23 |
+| ☐ | Das Register liegt in der Ablage je Abschnitt (`REGISTER_KOPIE_ABSCHNITT_<nn>.md`, `REGISTER_INDEX.md` nennt die Datei; erzeugt mit `registerkopie.py --abschnitte`); geöffnet wird nur, was gebraucht wird, im Wortlaut — keine Kurzfassung als zweite Quelle, keine zusammenfassenden Helfer (F1, 01.10.2026) | 23 |
+| ☐ | Grosse Dokumente nicht im Chat zusammensetzen: abschnittsweise in Dateien schreiben, nicht mehrfach umbauen, keine ganzen Dateien in den Chat holen; Mechanik (Anker zählen, md5, Zeilenbereiche, Diffs) als Skript, nicht als Helfer (S3, S6, 01.10.2026) | 22.10 |
 
 **Wenn ich ein fremdes Ergebnis bewerte (Cloud, Mac, Fable)**
 
@@ -183,6 +188,9 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Mac-Auftrag: Auftrag und Belege werden mitcommittet, der Journalblock geht direkt ins Journal | 14, Regel 3 |
 | ☐ | Mac-Testauftrag: die acht Punkte aus 7c (db-Sicherung, Datenstand, Basislauf, Interpreter, Abbruchkriterium, `porcelain` nach dem letzten Commit, Commit, einfache Sprache) | 7c |
 | ☐ | Dokumentationsauftrag: Text wörtlich mit Ankertext; nur `docs/`, `numstat` je Datei, nichts umformuliert, `porcelain` nach dem letzten Commit | 5b |
+| ☐ | Messung 0a (Arbeitsbaum) in den Scratch, bevor der eigene Belegordner entsteht — oder den Belegordner ausdrücklich ausnehmen (Abnahme TB-126, B1) | 14, Regel 3 |
+| ☐ | Trennzeichen in vorgegebenen Listen nach den Daten wählen: tragen die Einträge selbst Kommas, ist „kommagetrennt“ falsch (Abnahme TB-126, B5) | 18, P.4 |
+| ☐ | Gegenleser eng zuschneiden: genaue Dateien und Zeilenbereiche, rund 25 Schritte, dann Zwischenbericht (S5, Probe); eine zweite Runde macht ein frischer Helfer mit Befundliste und geänderten Stellen (S4) (01.10.2026) | 22.10 |
 
 ---
 

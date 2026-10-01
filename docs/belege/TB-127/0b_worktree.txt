@@ -1,0 +1,79 @@
+# 0b Worktree tb123_vorher — 2026-10-01 22:14:12
+$ git worktree list
+/Users/jaquelineloffler/trading-bot                                    eaea530 [main]
+/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher  c064405 (detached HEAD)
+
+$ find /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher -mindepth 1 -maxdepth 1 ! -name .git (mit Typ)
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/research
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_t3_supertrend.db
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_turtle_soup_crypto.db
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/broker
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_elliott_wave_stocks.db
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/broker_testnet_t3_supertrend.db
+Regular File /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/requirements.txt
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/snapshots
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/config
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/forward_test.log
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/strategies
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/email_summary.log
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/.claude
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/trading-env
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_rsi2_mean_reversion.db
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/shared
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_volatility_breakout_crypto.db
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/docs
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_volatility_breakout.db
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_elliott_wave.db
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/dashboard
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_turtle_soup_stocks.db
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/data_sicherung
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/results
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/system
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/logs
+Regular File /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/.env.beispiel
+Regular File /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/.gitignore
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/.env
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/paper_trading_rsi2_crypto.db
+Symbolic Link /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/benachrichtigungen_schliessung.db
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/data
+Directory /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/notifications
+Regular File /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/CLAUDE.md
+Regular File /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher/requirements.lock
+Anzahl: 35
+davon Symlinks: 17
+Eintrag .git: Regular File
+
+## Symlink-Ziele
+.env -> /Users/jaquelineloffler/trading-bot/.env
+benachrichtigungen_schliessung.db -> /Users/jaquelineloffler/trading-bot/benachrichtigungen_schliessung.db
+broker_testnet_t3_supertrend.db -> /Users/jaquelineloffler/trading-bot/broker_testnet_t3_supertrend.db
+data_sicherung -> /Users/jaquelineloffler/trading-bot/data_sicherung
+email_summary.log -> /Users/jaquelineloffler/trading-bot/email_summary.log
+forward_test.log -> /Users/jaquelineloffler/trading-bot/forward_test.log
+logs -> /Users/jaquelineloffler/trading-bot/logs
+paper_trading_elliott_wave_stocks.db -> /Users/jaquelineloffler/trading-bot/paper_trading_elliott_wave_stocks.db
+paper_trading_elliott_wave.db -> /Users/jaquelineloffler/trading-bot/paper_trading_elliott_wave.db
+paper_trading_rsi2_crypto.db -> /Users/jaquelineloffler/trading-bot/paper_trading_rsi2_crypto.db
+paper_trading_rsi2_mean_reversion.db -> /Users/jaquelineloffler/trading-bot/paper_trading_rsi2_mean_reversion.db
+paper_trading_t3_supertrend.db -> /Users/jaquelineloffler/trading-bot/paper_trading_t3_supertrend.db
+paper_trading_turtle_soup_crypto.db -> /Users/jaquelineloffler/trading-bot/paper_trading_turtle_soup_crypto.db
+paper_trading_turtle_soup_stocks.db -> /Users/jaquelineloffler/trading-bot/paper_trading_turtle_soup_stocks.db
+paper_trading_volatility_breakout_crypto.db -> /Users/jaquelineloffler/trading-bot/paper_trading_volatility_breakout_crypto.db
+paper_trading_volatility_breakout.db -> /Users/jaquelineloffler/trading-bot/paper_trading_volatility_breakout.db
+trading-env -> /Users/jaquelineloffler/trading-bot/trading-env
+
+## git -C <pfad> status --porcelain (Anzahl Zeilen, erste 20)
+       4
+?? data_sicherung
+?? logs
+?? research/turn_of_month/daten
+?? trading-env
+
+## git -C <pfad> log --oneline -1
+c064405 TB-122 Schritt 0
+
+## Bewertung
+Soll laut Auftrag 0b: ausser .git genau 4 Eintraege, alle Symlinks. Ist: 35 Eintraege, davon 17 Symlinks, 13 Verzeichnisse, 5 regulaere Dateien (siehe oben).
+Bedingung NICHT erfuellt => Worktree NICHT entfernt (kein git worktree remove, kein prune). Befund, kein Abbruch.
+Lesart: Die "4 Symlinks" aus UEBERGABE.md (Abnahme TB-126 B6, Karte 20:50) sind die 4 UNVERSIONIERTEN Eintraege laut git status im Worktree (data_sicherung, logs, research/turn_of_month/daten, trading-env — alle 4 Symlinks auf den Hauptordner; research/turn_of_month/daten liegt eine Ebene tiefer und faellt aus dem find heraus). Daneben liegt der vollstaendige versionierte Checkout c064405 (ohne Aenderungen). Die im Auftrag vorgeschriebene Messung (find -maxdepth 1 ohne .git) zaehlt den Checkout mit und kann das Soll nie erreichen. Die Sitzung folgt dem Wortlaut des Auftrags (nicht entfernen) und weicht nicht per Lesart ab.
+Hinweis fuer den Entscheid: git worktree remove --force loescht nur die Links, nicht deren Ziele; trotzdem nicht ausgefuehrt, weil die Messung nicht dem Soll entsprach.

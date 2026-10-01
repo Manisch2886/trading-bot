@@ -1,0 +1,11 @@
+# TB-127 Schritt A — Einfügungen (erzeugt von einfuegen.py)
+# E<n> · Datei · Anker vorher · ausgeführt ja/nein · Text nachher
+E1 · docs/projektfuehrung/UMZUG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E2 · docs/projektfuehrung/UMZUG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E3 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E4 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E5 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E6 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E7 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E8 · docs/projektfuehrung/BACKLOG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E9 · docs/projektfuehrung/BACKLOG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
