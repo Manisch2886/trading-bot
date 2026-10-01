@@ -1,0 +1,2 @@
+# TB-127 D3 — git status --porcelain nach dem Abgabe-Commit 792757e (leer = sauber)
+# Zeilen: 0
