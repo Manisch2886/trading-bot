@@ -1,0 +1,2 @@
+Zeilenangaben im Index: 184; mit Markenwort: 184
+Indexzeilen E-2: 6 (Soll 6)

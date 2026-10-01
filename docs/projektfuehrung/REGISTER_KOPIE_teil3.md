@@ -1,4 +1,369 @@
-# REGISTER-KOPIE Teil 3 von 4 — Abschnitte 38–43 — Commit 1e1145702ba8b6ee6ad4cecaecb75591463faa48 — 2026-09-27 — Original sha256 18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 3 von 4 — Abschnitte 37–42 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+
+## 37. Die Sonde meldet je Bestandteil, das Abbild führt zwei Gruppen, was ein Befund `1` bedeutet, hängt vom Tag ab, die Tatsachennotiz zu den zwei Listen in `herkunft.py` und der Ort registrierter Werte (Fable 22d und 22g, TB-87, 22.09.2026)
+
+⭐ **Reines Eintragen von Registertext**, wie 34 bis 36. Fünf Einträge — zwei
+Präzisierungen bzw. Ergänzungen zu 36.5 und 36.6 (37.1, 37.2), eine Ergänzung
+zu 36.2/36.6 (37.3), eine Tatsachennotiz zu Abschnitt 10 (37.4) und ein
+Ersteintrag (37.5) —, alle Fable-Texte zeichengleich aus
+`docs/projektfuehrung/FABLE_ANTWORT_2026-09-22d_wert_ohne_ort.md` (Antwort auf
+die Anfragen 22c und 22d) und
+`docs/projektfuehrung/FABLE_ANTWORT_2026-09-22g_sonde_vor_dem_tag.md` (Antwort
+auf die Meldung des steuernden Chats zu TB-86 und zum Sondenbefund an
+Sperrlistenpunkt 2). Auftrag `docs/auftraege/MAC_TB-87_register_37.md` (Stufe I,
+Punkt 4 aus `PLAN_VOR_DEM_TAG.md`); Messungen `docs/belege/TB-87/` (M1–M6),
+M1–M4 **vor** dem Eintrag gemessen, HEAD `40aa715`. ⛔ **Keine `.py` geändert,
+kein neues Abbild, keine Sonde angepasst, keine Werte verschoben** — 37.6.
+
+⭐ **Die Regel aus 34 gilt weiter:** Jeder Eintrag steht hier mit Text,
+Herkunft und Grund **und** als Marke direkt beim alten Satz (36.5; 36.6 zweimal;
+36.2; Überschrift von Abschnitt 10; Sperrlistenpunkte 7 und 9). Die alten Sätze
+bleiben zeichengleich; `git diff --numstat` auf dieses Register zeigt für TB-87
+in der zweiten Spalte `0`. ⚠️ Die Marken in Abschnitt 10 stehen als eingerückte
+`>`-Zeilen **ohne Leerzeile** unter dem Punkt — so liest die Sperrlisten-Sonde
+sie als Notiz und nicht als Punkttext (`shared/sperrlistensonde.py`
+`lies_abschnitt_10`, R2); die Sonde ist vor und nach dem Eintrag lesend
+gelaufen, Prüfung (ii) beide Male `0`, Listentext wie bei Erzeugung (37.6).
+
+⚠️ **Die Fable-Texte stehen hier in voller Quellform**, auch wo der Auftrag sie
+gekürzt zitiert (der Zusatz „, Vorschlag" in den Kopfzeilen von 22d Abschnitt 1
+und 22g; „Folge für `herkunft.py`, Entscheidung:"; zwei Begründungen mit „…"):
+Eingetragen wird der Quellwortlaut, nicht die Kurzform.
+
+### 37.1 Präzisierung zu 36.5 — die Sonde meldet je Punkt je Bestandteil
+
+**Fable, 22d Abschnitt 1, zeichengleich:**
+
+> **Präzisierung zu 36.5 (Sonden-Ausgänge), Vorschlag:** Die Sperrlisten-Sonde meldet **je Punkt je Bestandteil**: für jeden genannten Pfad 0 oder 1 (Hash gegen Abbild), für jeden nicht messbaren Bestandteil 2 unter Nennung des Wortlauts. Der Gesamtwert eines Punktes ist 1, wenn ein Bestandteil 1 ist; sonst 2, wenn ein Bestandteil 2 ist; sonst 0. Der Gesamtwert des Laufs entsprechend. Am Tag gilt: Kein Pfad-Bestandteil darf 1 sein, und jeder Bestandteil mit 2 hat eine Tatsachennotiz, die sagt, wie er stattdessen geprüft wurde (Lesen, Beleg im Auftrag) — oder der Punkt wird bis zum Tag so nachgetragen, dass er messbar ist.
+
+**Fables Grund, 22d Abschnitt 1, zeichengleich:**
+
+> **Eine Präzisierung zur Sonde, damit die `2` nicht mehr verdeckt als sie zeigt:** Ein Punkt wie 14 („`auswertung.py` … Docstring") hat einen messbaren Teil (der Datei-Hash) und einen unmessbaren (der Docstring-Anteil). Eine Sonde, die den ganzen Punkt mit `2` meldet, macht den messbaren Teil unsichtbar.
+
+**Seine Quelle des Grundes, zeichengleich:**
+
+> *Quelle des Grundes:* A2 (nicht prüfbar ist ein eigenes Ergebnis — aber je Sache, nicht je Punkt) und 22c. Kein Ergebnis.
+
+**Tatsachennotiz (TB-87, M1, `m1_sonde_je_bestandteil.txt`):** Die Sonde aus
+TB-85 (`shared/sperrlistensonde.py`) **gibt bereits je Bestandteil aus** — im
+Nullpunkt-Lauf `docs/belege/TB-85/nullpunkt.txt` zeigt Punkt 1 in einer Zeile
+den Datei-Hash (`research/vorregistrierung/registerdaten.py`, `gleich`,
+`141fa14b…`) und in der nächsten daneben den unmessbaren Teil (`-> nennt
+Nicht-Dateibezogenes - nicht messbar: …`). ⚠️ **Was ihr fehlt, ist der
+Rückgabewert je Bestandteil:** Sie meldet den Ausgang je Punkt (Punkt 1 steht
+auf `2 NICHT PRUEFBAR`, obwohl sein einziger Pfad `gleich` ist) und einmal je
+Lauf. Genau das ist der Fall, den Fables Grund beschreibt — der messbare Teil
+verschwindet im Ausgang hinter dem unmessbaren. Das nachzuziehen ist Handwerk
+mit eigener Freigabe, **nicht** dieser Eintrag.
+
+**Marke am alten Ort:** in **36.5**, direkt unter dem Registertext.
+
+### 37.2 Ergänzung zu 36.6 — das Abbild führt zwei Gruppen
+
+**Fable, 22d Abschnitt 2, zeichengleich:**
+
+> **Ergänzung zu 36.6 (Abbild der Sperrliste):** Das Abbild führt zwei Gruppen: die **Punkte** des Abschnitts 10 und die **bestimmten** Pfade — Dateien, die das Register für die Sperrliste vorsieht, deren Vollzug aber aussteht (heute: `ergebnisse/benchmark_drawdowns_vt.json`, 21.9/23.7). Die Sonde prüft beide Gruppen gleich (Hash gegen Abbild) und weist die Gruppe im Bericht aus. **Am Tag ist die zweite Gruppe leer:** Jeder bestimmte Pfad hat bis dahin seinen Punkt in Abschnitt 10, oder das Register sagt, warum nicht.
+
+**Seine Quelle des Grundes, zeichengleich:**
+
+> *Quelle des Grundes:* Schreibregel 22b (1) („oder für sie bestimmt ist") — was die Schreibregel schützt, muss die Sonde sehen; sonst ist der Schutz eine Regel ohne Wache (A8). Und die Sperrliste ist am Tag vollständig oder sie ist keine. Kein Ergebnis.
+
+**Tatsachennotiz (TB-87, M1):** Das Abbild `sperrliste_abbild_2026-09-22.json`
+(`6a1b732e…`) führt heute die Punkte; die Sonde **nennt** den bestimmten Pfad
+`ergebnisse/benchmark_drawdowns_vt.json` am Ende ihres Berichts mit Hash
+`4549395f…`, **prüft ihn aber nicht** — ihr eigener Wortlaut: „Bestimmt, nicht
+eingetragen (kein Punkt des Abschnitts 10; nicht geprueft, nur genannt)".
+Der Unterschied zum Registertext oben (beide Gruppen gleich prüfen, Gruppe
+ausweisen) ist Handwerk mit eigener Freigabe; hier nur festgehalten.
+
+> ⭐ **Gruppenwechsel und Vollzug (39.3/39.2, Fable 23a/23b, TB-94,
+> 23.09.2026):** Die Gruppe „bestimmt" **wechselt** von
+> `ergebnisse/benchmark_drawdowns_vt.json` auf die Neurechnung
+> `ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json` (`64fb2912…`) —
+> und deren Pfad steht seit 39.2 in Sperrlistenpunkt 4. **Nach dem
+> Registertext ist die Gruppe damit leer.** `_vt.json` und `_tb72.json` kommen
+> nicht auf die Liste (Tatsachennotizen in 39.3). ⚠️ Die Sonde führt die
+> Gruppe als feste Konstante und nennt weiter `_vt.json` mit „Vollzug steht
+> aus" (39.3, Ausgabe in 39.9); das zu ändern ist Handwerk mit eigener
+> Freigabe.
+
+> ⭐ **Die Gruppen kommen aus dem Abbild (40.8 (e), Fable 24a, TB-96,
+> 24.09.2026):** Dass die Sonde die Gruppe „bestimmt" als feste Konstante führt
+> (`BESTIMMT_NICHT_EINGETRAGEN`), ist nach Fable „ein Befund, vor dem Tag zu beheben"
+> — nicht mehr Handwerk ohne Frist. Die Sonde liest alle drei Gruppen aus dem
+> Abbild; das Abbild führt „bestimmt" heute leer (39.3). Gegenprobe: Abbild mit
+> erfundenem „bestimmt"-Pfad ⇒ Sonde meldet ihn. TB-97.
+
+**Marke am alten Ort:** in **36.6**, direkt unter dem Registertext.
+
+### 37.3 ⭐⭐ Ergänzung zu 36.2/36.6 — was ein Befund `1` bedeutet, hängt vom Tag ab
+
+⚠️ **Das ist die Lücke, die TB-86 sichtbar gemacht hat:** Die Sonde meldet
+seit TB-86 an Sperrlistenpunkt 2 den Befund `1` — und bis hier stand nirgends,
+ob das ein Sperrlistenbruch ist.
+
+**Fable, 22g, zeichengleich:**
+
+> **Ergänzung zu 36.2/36.6, Vorschlag:** Ein Befund 1 der Sperrlisten-Sonde **vor dem signierten Tag** ist zulässig, wenn die Änderung beauftragt war (Auftrag, Freigabe, alter und neuer Hash als Tatsachennotiz); er wird durch ein **neues Abbild unter neuem Namen** geschlossen, nie durch Anpassung des alten. Ein Befund 1 **nach dem Tag** ist ein Sperrlistenbruch und wird nach 10.1 behandelt (Amendment, Lauf von vorn). Das **letzte Abbild vor dem Tag** wird nach der letzten Codeänderung erzeugt, trägt die Hashes des Tag-Commits und steht selbst mit Hash im Register; der Tag setzt voraus, dass die Sonde gegen dieses Abbild 0 liefert (oder 2 mit Tatsachennotiz nach 22d).
+
+**Fables Grund, 22g, zeichengleich:**
+
+> **Der Satz, der fehlt — und den der Befund verlangt:** Die Sperrliste sagt „**ab dem signierten Tag** sind unveränderlich". Vor dem Tag ändern sich Sperrlistenpfade planmässig (TB-86 heute, Z. 336 morgen, die Werte-Module nach 22d). Die Sonde kann diesen Unterschied nicht kennen; sie meldet 1, und was 1 **bedeutet**, hängt vom Datum ab. Das gehört ins Register, sonst liest jemand den heutigen Befund als Bruch — oder, schlimmer, einen Bruch nach dem Tag als „planmässig".
+
+**Seine Quelle des Grundes, zeichengleich:**
+
+> *Quelle des Grundes:* der Wortlaut von Abschnitt 10 („ab dem signierten Tag") und 36.6 (Abbild einmalig, neu statt angepasst). Kein Ergebnis.
+
+⭐ **Und sein Satz zur Sonde, 22g, zeichengleich:**
+
+> *„Eine Sonde, die den neuen Hash von selbst übernähme, wäre keine Sonde."*
+
+(Aus 22g, Absatz „Punkt 2b — ja, genauso", voller Absatz:)
+
+> **Punkt 2b — ja, genauso:** Sperrlistenpunkt 2 nennt zwei Pfade; `faltenplan.py` hat sich durch beauftragte Änderung bewegt; die Sonde meldet 1 und repariert nichts — richtig, denn das Abbild trägt den alten Hash, und ein Abbild wird nach 36.6 nicht angepasst, sondern **neu** geschrieben, unter neuem Namen, das alte bleibt. Eine Sonde, die den neuen Hash von selbst übernähme, wäre keine Sonde.
+
+**Sein Hinweis zum Handwerk, ausdrücklich nicht Verfahren, zeichengleich:**
+
+> *Handwerk daraus, nicht Verfahren:* Nicht nach jeder Änderung ein neues Abbild ziehen, sondern nach Bündeln (etwa nach 2+3 zusammen, nach 6, vor 11) — jedes Abbild bleibt ohnehin liegen. Wie viele es werden, ist gleichgültig; dass das letzte zum Tag-Commit passt, ist alles.
+
+⭐⭐ **Tatsachennotiz — der erste Anwendungsfall (TB-87, M2,
+`m2_faltenplan_hash.txt`):** TB-86 hat `research/vorregistrierung/faltenplan.py`
+**beauftragt und freigegeben** geändert — Auftrag
+`docs/auftraege/MAC_TB-86_faltenplan_schreibsperre.md`, Betreiberfreigabe
+22.09.2026, 07:50 (Schritt 1 und 2 aus 36.3), Commit `4daa254`. Der Hash ging
+von **`6f96b95d13563f73b11be69c2bd6996037854df794da61315029216ad0b22bd9`** (so im
+Abbild `sperrliste_abbild_2026-09-22.json`, `6a1b732e…`, Punkt 2) auf
+**`fd3e5018ae930c2e29747562a140506d5d9a6bb70b87e96cf5c0089e09afdd79`** (heute,
+gemessen). Die Sonde meldet seither an Punkt 2 **`1 BEFUND`**, Lauf gesamt `1`
+(`docs/belege/TB-86/schritt8_sonde.txt`; lesend wiederholt vor diesem Eintrag,
+`docs/belege/TB-87/sonde_vorher.txt`). ⭐ **Nach dem Registertext oben ist das
+der planmässige Fall vor dem Tag** — Auftrag, Freigabe, alter und neuer Hash
+stehen hiermit als Tatsachennotiz. **Geschlossen wird er mit einem neuen Abbild
+unter neuem Namen** (Plan Punkt 2b); das ist **nicht** Gegenstand dieses
+Eintrags, und das alte Abbild bleibt.
+
+> ⭐⭐ **Die weiteren Übergänge und ihr Abbild (39.5/39.9, TB-94,
+> 23.09.2026):** Nach TB-86 haben sich planmässig bewegt: `faltenplan.py`
+> `fd3e5018…` → `7aa0b8cc…` (TB-90, `303a7fd`, Punkt 2), `benchmark.py`
+> `3960375a…` → `d6bdd558…` (TB-91, `31008b6`, Punkte 4 und 6),
+> `auswertung.py` `1c2e2dae…` → `c3b4e69d…` (TB-92, `0292e92`, Punkte 3, 5
+> und 14); dazu `registerbericht.py` und `test_vorregistrierung.py` (TB-92,
+> auf keinem Punkt). Auftrag, Freigabe und volle Hashes stehen in **39.5**.
+> Geschlossen werden der Fall oben und diese Übergänge mit **einem** neuen
+> Abbild (**39.9**); `sperrliste_abbild_2026-09-22.json` bleibt.
+
+> ⭐⭐ **Die Übergänge seit 39.5 und ihre Abbilder (42.5, TB-108, 25.09.2026):**
+> Planmässig bewegt haben sich `messgroessen.py` (TB-103, `EINGEFROREN`),
+> `benchmark.py` und `faltenplan.py` (TB-104 und TB-106, Punkte 2, 4, 6),
+> `auswertung.py` (TB-106, Punkte 3, 5, 14) und `herkunft.py` (TB-106, Punkte 11
+> und 12). Auftrag, Freigabe und volle Hashes stehen in **42.5**. Geschlossen
+> durch `sperrliste_abbild_2026-09-25.json` (`cb4eb1b4…`, TB-104) und
+> `sperrliste_abbild_2026-09-25b.json` (`40ffe18d…`, TB-106); die älteren
+> Abbilder bleiben.
+
+**Marken am alten Ort — zwei:** in **36.2**, direkt unter dem Registertext
+(unter der Marke aus 36.5), und in **36.6**, direkt unter dem Registertext
+(unter der Marke aus 37.2).
+
+### 37.4 Tatsachennotiz zu Abschnitt 10 — die zwei Listen in `herkunft.py`
+
+⭐ Das ist die Tatsachennotiz, die 36.6 als **ausstehend** eingetragen hat
+(„wird in diesem Abschnitt NOCH NICHT geschrieben"). **Fables eigene
+Tatsachennotiz, 22d Abschnitt 3, zeichengleich:**
+
+> **Tatsachennotiz zu Abschnitt 10 (22.09.2026):** `research/vorregistrierung/herkunft.py` trägt zwei Listen. **`EINGEFROREN`** (Z. 57, zehn Einträge) ist die Eingabe von `register()` (Z. 114): ein Gesamthash über die Registerdatei plus diese zehn Dateien, laut Docstring „über die eingefrorenen Festlegungen" — sie bildet die Menge aus **Abschnitt 0** ab, nicht die Sperrliste aus Abschnitt 10, und weicht von dieser an fünf Stellen ab (fehlend: `benchmark_drawdowns_vt.json`, `config/top25_symbols.txt`, `config/sp500_top150.txt`; zusätzlich: `kennzahlen.py`, `messgroessen.py`, `pruefe_grenzsaetze.py`). **`SPERRLISTE_DATEIEN`** (Z. 66) wird von keiner Stelle gelesen — toter Code. Keine der beiden Listen ist das Abbild der Sperrliste (36.6). `herkunft.py` wird in `research/vorregistrierung/` von keinem Modul importiert; `herkunft.json` und `herkunft_protokoll.jsonl` existieren nicht; die einzigen Aufrufer von `block()` gehören zu `research/turn_of_month/`. Sperrlistenpunkte 11 und 12 verweisen damit auf Funktionen, die im Laufbereich heute niemand aufruft; der Datenvertrag (`auswertung.py` Z. 41) verlangt `herkunft.json` als Pflichteingabe. Der Erzeuger (Nachtrag 2) ist die Stelle, an der `register()` und `datenstand()` erstmals aufgerufen werden.
+
+> ⚠️ **ERSETZT (38.6, Fable 22h, TB-89, 23.09.2026) — zwei Stellen dieses
+> Satzes, der Satz selbst bleibt zeichengleich:** (a) „`auswertung.py` Z. 41"
+> lies **Z. 51** (Fables Berichtigung (a)). (b) Der Halbsatz „weicht von dieser
+> an fünf Stellen ab (fehlend: …; zusätzlich: …)" ist ersetzt durch Fables
+> Ersatzsatz — acht Stellen, vier fehlend und vier zusätzlich; der Wortlaut
+> steht zeichengleich in **38.6**. Beleg ist die Tatsachennotiz TB-87 (M3)
+> unten.
+
+**Und seine Entscheidung dazu, zeichengleich:**
+
+> **Folge für `herkunft.py`, Entscheidung:** **Nicht öffnen.** Der Erzeuger ruft `register()` auf und schreibt in `herkunft.json` **auch das Feld `teile`** (das `register()` liefert und `block()` weglässt) — dann ist lesbar, welche Dateien in den Gesamthash eingingen, ohne dass `block()` oder `herkunft.py` geändert wird. `herkunft.json` bezeugt damit die Abschnitt-0-Menge (zehn Dateien plus Register); die Sperrlisten-Sonde bezeugt Abschnitt 10; die Tatsachennotiz oben sagt, welches Dokument was bezeugt. Zwei Nachweise mit verschiedenem Gegenstand sind kein Widerspruch — zwei Nachweise mit demselben Gegenstand und verschiedenem Inhalt wären einer. *Quelle des Grundes:* 21b (3), Einfrieren vor Umbau; der Erzeuger ist neuer Code, dort darf alles stehen. Kein Ergebnis.
+
+> ⭐⭐ **BERICHTIGT durch 42.3 F2 (Fable 25c, TB-108, 25.09.2026):** `herkunft.py`
+> ist **einmal planmässig geöffnet** worden (TB-106, `5791b4c`), um
+> `datenstand()` den Datenpfad durch `block()` und `anhaengen()` durchzureichen;
+> sonst gilt die Entscheidung oben: `EINGEFROREN` bleibt, `register()` bezeugt
+> die Abschnitt-0-Menge, die Sonde Abschnitt 10. **Planmässig geöffnet heisst
+> nicht offen.** Hash `56a1c2e1…` → `351f24c2…` (42.5). Die Entscheidung oben
+> bleibt zeichengleich.
+
+> ⭐ **Zweite planmässige Öffnung geplant (43.1, 43-4, Fable 25d, TB-110,
+> 26.09.2026):** `herkunft.py` wird ein zweites Mal geöffnet, für zwei Dinge in
+> **einer** Öffnung — die Prüfansicht übergibt unter dem Modus
+> `paths.DATA_DIR`, und `TB30A_BASE_DIR` endet unter dem Modus mit 2, bevor
+> gelesen wird —, mit dem Erzeuger oder vor ihm. **Noch nicht vollzogen**
+> (`351f24c2…` unverändert). Die Entscheidung oben und ihre Berichtigung
+> bleiben zeichengleich.
+
+> ⭐ **Zweite Öffnung `herkunft.py` vollzogen, TB-111, siehe 44.1 (44-2;
+> TB-113, 26.09.2026):** In `6cacfa4` (zusammengeführt in `257e7db`): die
+> Prüfansicht übergibt unter dem Modus `paths.DATA_DIR`, `TB30A_BASE_DIR`
+> endet unter dem Modus mit 2 vor dem Lesen, `paths.py` kommt aus der eigenen
+> Wurzel. `351f24c2…` ⇒ `5bbfc9e0…`. `EINGEFROREN` bleibt; die Entscheidung
+> oben, ihre Berichtigung und die Marke darüber bleiben zeichengleich.
+
+**Tatsachennotiz (TB-87, M3, `m3_herkunft_listen.txt`) — nachgemessen, nicht
+übernommen:**
+
+| Aussage in Fables Notiz | gemessen | |
+|---|---|---|
+| `EINGEFROREN` Z. 57, zehn Einträge | **Z. 57**, zehn Einträge | ✔ |
+| `SPERRLISTE_DATEIEN` Z. 66, von keiner Stelle gelesen | **Z. 66**, fünf Muster; ausser der Definition nur in einem **Kommentar** von `shared/sperrlistensonde.py:70` genannt, nirgends gelesen | ✔ |
+| Eingabe von `register()` (Z. 114) | **Z. 114** `for rel in ([…REGISTERDATEI…] + EINGEFROREN):` | ✔ |
+| `herkunft.py` in `research/vorregistrierung/` von keinem Modul importiert | **0** `import`/`from`; zwei Textfundstellen (Docstring `auswertung.py`, Beispieldaten-Schreiber `beispieldaten.py:142/145`) | ✔ |
+| `herkunft.json`, `herkunft_protokoll.jsonl` existieren nicht | **existieren nicht** | ✔ |
+| einzige Aufrufer von `block()` in `research/turn_of_month/` | **`auswertung.py:206`, `staging.py:127`**, beide dort | ✔ |
+| Datenvertrag `auswertung.py` **Z. 41** | ⚠️ **Z. 51** (`<wurzel>/<bot>/herkunft.json`), Z. 52 „siehe herkunft.py"; Z. 41 ist `mittlere_exposure` | **abweichend** |
+| „weicht … an **fünf** Stellen ab (fehlend: drei; zusätzlich: drei)" | ⚠️ siehe unten | **abweichend** |
+
+⚠️ **Die Abweichungszahl, gemessen:** Fable schreibt „fünf Stellen" und nennt
+sechs Namen. Der mechanische Mengenvergleich der zehn `EINGEFROREN`-Einträge
+(auf Repo-Pfade aufgelöst) gegen die zehn Pfade der vierzehn Punkte (aus dem
+Abbild `6a1b732e…`, das die Sonde mit Prüfung (ii) `0` gegen Abschnitt 10 prüft)
+ergibt:
+
+- **in Abschnitt 10, nicht in `EINGEFROREN` — vier:** `config/top25_symbols.txt`,
+  `config/sp500_top150.txt`, `research/vorregistrierung/herkunft.py` (Punkte 11,
+  12), `shared/zuteilung.py` (Punkt 10); **dazu** der bestimmte Pfad
+  `ergebnisse/benchmark_drawdowns_vt.json` (kein Punkt, 37.2);
+- **in `EINGEFROREN`, kein Pfad eines Punktes — vier:** `kennzahlen.py`,
+  `messgroessen.py`, `pruefe_grenzsaetze.py` **und**
+  `ergebnisse/messgroessen.json`.
+
+Alle sechs Namen in Fables Notiz stimmen; **nicht genannt** sind dort
+`herkunft.py`, `shared/zuteilung.py` und `ergebnisse/messgroessen.json`. Das
+ändert seine Folgerung nicht — `EINGEFROREN` bildet die Abschnitt-0-Menge ab,
+nicht Abschnitt 10 —, aber die Zahl „fünf" gilt so nicht; **eingetragen ist,
+was gemessen ist**, Fables Satz bleibt zeichengleich stehen. Gemeldet im
+Ergebnisdokument.
+
+**Randbefund aus TB-84, nachgemessen:** `research/etf_trendfolge/datenstand.py`
+Z. 43–49 lädt `research/vorregistrierung/herkunft.py` über
+`reg.lade_fremdes_modul(…)` und ruft `herkunft.datenstand(…)` auf — ein Nutzer
+ausserhalb von `turn_of_month/` und ausserhalb des Laufbereichs der
+Vorregistrierung. Fables Satz über den **Laufbereich** bleibt damit richtig;
+vollständig beantwortet „wer liest `herkunft.py`" er nicht.
+
+> ⚠️ **Ergänzung (39.7, Fable 23d, TB-94, 23.09.2026) — `EINGEFROREN` ist nach
+> dem Vollzug nicht vollständig:** `EINGEFROREN` hasht weiter
+> `ergebnisse/benchmark_drawdowns.json` (historischer Stand), **nicht** die
+> Tabelle, die der Lauf liest (`ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json`,
+> 39.2). `herkunft.py` bleibt ungeöffnet (`56a1c2e1…`). Der Satz, um den Fable
+> diese Tatsachennotiz ergänzt (23d Abschnitt 1 (2)), zeichengleich:
+> „`register()` bezeugt die Abschnitt-0-Menge vom 14.09.; die vollzogene Benchmark-Tabelle bezeugt Sperrlistenpunkt 4 über die Sonde."
+> Nach Fables Präzisierung zu 36.1 (1) (23c) ist auch jeder Pfad in
+> `EINGEFROREN` gesperrt — Wortlaut in **39.7**.
+
+**Marke am alten Ort:** unter der **Überschrift von Abschnitt 10**, unter dem
+Hinweis aus 36.2/36.6 (der „ihre Tatsachennotiz steht bei Fable aus" sagt —
+bleibt zeichengleich stehen).
+
+### 37.5 Registertext „Ort registrierter Werte" — Ersteintrag
+
+**Fable, 22d Abschnitt 4, zeichengleich:**
+
+> **Registertext, Ersteintrag — Ort registrierter Werte:**
+> **(1)** Jeder Sperrlistenpunkt, der einen Zahlenwert registriert (heute 7 und 9), nennt **genau ein** Modul und dort **genau eine** Konstante, aus der der Lauf diesen Wert liest. Dieses Modul steht mit Hash auf der Sperrliste; die Sonde prüft für den Punkt Datei-Hash **und** Wert der Konstante (Bauart „Datei plus Konstante", wie Punkte 3, 4, 10).
+> **(2)** Der Laufpfad (Optimierer, Equity-Simulation, Erzeuger) liest registrierte Werte ausschliesslich aus diesem Modul — kein Laufmodul trägt eine eigene Kopie. Für den Papierpfad (`forward_test.py`) gilt das nicht als Sperre, aber als Konsistenzprüfung: Die Sonde meldet als Befund, wenn eine Kopie dort vom registrierten Wert abweicht.
+> **(3)** Für Punkt 9: `TRADING_FEE_PCT` und `SLIPPAGE_PCT` in einem Modul; für Punkt 7: `CLUSTER_SCHWELLE` und `N_HISTORISCH_JE_BOT` in einem Modul. Welche Module (Kandidaten nach heutiger Messung: `messgroessen.py` für 9, `registerdaten.py` für 7) und ob eines der beiden Module bereits Abschnitt-0-eingefroren ist und deshalb ein neues kleines Modul die Werte tragen muss — **Handwerk mit Freigabe**, aber die Tatsachennotiz zu 7 und 9 nennt am Ende Modul, Zeile und Wert.
+> **(4)** Tatsachennotiz zu 7 und 9, jetzt: die heute gemessenen Orte (neun `forward_test.py`; `messgroessen.py:59`; `registerdaten.py:99`, `:115`) mit dem Vermerk, dass der Registertext keinen davon nennt und der Zustand bis zur Umsetzung von (1)–(3) ungeschützt war.
+
+> ⭐⭐ **Entscheidung zu (2) und (3) (38.5, Fable 22h, TB-89, 23.09.2026):** Es
+> bleibt bei (2) — **kein Laufmodul trägt eine eigene Kopie.** Die neun
+> `backtest_*.py` beziehen `TRADING_FEE_PCT` / `SLIPPAGE_PCT` künftig per
+> Import aus einem **neuen** Modul (die Kandidaten aus (3) sind blockiert); der
+> Papierpfad und `messgroessen.py` / `GEBUEHR_PCT` bleiben überwachte Kopien.
+> **Für Punkt 7 ist (3) schon erfüllt:** `registerdaten.py` ist der Ort, nichts
+> wird verschoben. Wortlaut und Begründung in **38.5**.
+
+**Fables Befund, aus dem der Eintrag folgt, zeichengleich** (darin sein
+Kernsatz *„Ein Sperrlistenpunkt, der einen Wert nennt und keinen Ort, sperrt
+nichts — er legt fest."*):
+
+> **Der Befund in einem Satz:** Ein Sperrlistenpunkt, der einen Wert nennt und keinen Ort, sperrt nichts — er legt fest. Festlegen ist Aufgabe der Festlegungen und des Registertexts; die Sperrliste soll sagen, **was unverändert bleibt**, und das ist immer eine Datei (oder ein Ort in einer). „Ändert jemand `TRADING_FEE_PCT` in einer der neun `forward_test.py`, merkt es kein Sperrlistenpunkt" ist genau der Zustand, den der Tag ausschliessen soll.
+
+**Seine Abwägung der drei Wege, zeichengleich:**
+
+> **Zu den drei Wegen:** *(iii) so lassen und Notiz* — nein: eine Tatsachennotiz macht eine Lücke sichtbar, sie schliesst sie nicht; der Tag friert dann eine Sperrliste ein, von der man weiss, dass sie zwei Werte nicht schützt. *(i) Ort je Punkt nachtragen* allein — nicht ausreichend, denn der Ort, den man heute misst (neun `forward_test.py`), ist nicht notwendig der Ort, aus dem der **Lauf** den Wert liest: `forward_test.py` ist der Papierpfad; die Optimierer und der noch zu schreibende Erzeuger sind der Laufpfad. Neun Kopien eines Werts als Sperrlistenorte einzutragen registriert die Kopien, nicht die Quelle. *(ii) Werte in eine Datei ziehen und sperren* — das ist der Kern, aber „ziehen" darf keine Kopie mehr erzeugen.
+
+**Seine Quelle des Grundes — und der Satz, der Missverständnisse ausschliesst,
+zeichengleich:**
+
+> *Quelle des Grundes:* Zweck der Sperrliste (Übergabe Abschnitt 5) und A8; der Grundsatz ein Wert, ein Ort aus 21j. **Kein Ergebnis — und das ist hier wichtig zu sagen:** Die Werte selbst (0,1 / 0,05 / die beiden aus Punkt 7) ändern sich nicht um ein Zeichen; es ändert sich nur, wo sie stehen und dass jemand es merkt, wenn sie sich ändern.
+
+**Tatsachennotiz zu Punkt 7 und 9 nach (4) (TB-87, M4, `m4_werte_orte.txt`) —
+die heute gemessenen Orte:**
+
+| Wert (Punkt) | Ort | Zeile | Wert im Code |
+|---|---|---|---|
+| `TRADING_FEE_PCT` (9) | neun `strategies/*/forward_test.py` | je eine Zuweisung (Z. 57–72) | `0.1` |
+| `SLIPPAGE_PCT` (9) | neun `strategies/*/forward_test.py` | je eine Zuweisung (Z. 58–73) | `0.05` |
+| `SLIPPAGE_PCT` (9) | `research/vorregistrierung/messgroessen.py` | **:59** | `0.05` |
+| ⚠️ Gebühr (9) | `research/vorregistrierung/messgroessen.py` | **:58**, Name **`GEBUEHR_PCT`** — nicht `TRADING_FEE_PCT` | `0.1` |
+| `CLUSTER_SCHWELLE` (7) | `research/vorregistrierung/registerdaten.py` | **:99** | `0.90` |
+| `N_HISTORISCH_JE_BOT` (7) | `research/vorregistrierung/registerdaten.py` | **:115** (neun Einträge bis Z. 125, Summe 653) | Wörterbuch |
+
+⚠️ **Zwei Abweichungen von Fables (4), gemessen:** (a) `messgroessen.py:59`
+trägt nur `SLIPPAGE_PCT`; die Gebühr steht eine Zeile davor unter **anderem
+Namen** (`GEBUEHR_PCT`) — für (3) heisst das: in `messgroessen.py` gibt es heute
+**keine** Konstante `TRADING_FEE_PCT`. (b) **Nicht genannt, aber gemessen:**
+Auch die neun `backtest_*.py` der Bots tragen je eine eigene Zuweisung
+`TRADING_FEE_PCT = 0.1` / `SLIPPAGE_PCT = 0.05`
+(`elliott_wave/backtest_elliott.py:73–74`,
+`elliott_wave_stocks/backtest_elliott.py:77–78`, `rsi2_crypto/backtest_rsi2.py:58–59`,
+`rsi2_mean_reversion/backtest_rsi2.py:85–86`, `t3_supertrend/backtest_trend.py:27–28`,
+`turtle_soup_crypto/backtest_turtle_soup.py:96–97`,
+`turtle_soup_stocks/backtest_turtle_soup.py:92–93`,
+`volatility_breakout/backtest_breakout.py:105–106`,
+`volatility_breakout_crypto/backtest_breakout.py:73–74`), dazu
+`elliott_wave_stocks/signal_quality_test.py:37–38` als Verweis auf
+`backtest_elliott`. **Ob der Laufpfad daraus liest, ist die Messung aus Plan
+Punkt 5 — hier nicht gemessen.** Alle gemessenen Werte sind zeichengleich
+`0.1` / `0.05` / `0.90`.
+
+⚠️ **Vermerk nach (4):** Der Registertext von Punkt 7 und 9 nennt **keinen**
+dieser Orte; der Zustand war bis zur Umsetzung von (1)–(3) **ungeschützt**.
+
+**Fables Frage vor der Umsetzung, zeichengleich:**
+
+> *Warum die Optimierer die Kosten heute vielleicht gar nicht aus `forward_test.py` lesen:* Das habe ich nicht gemessen und ihr nicht gefragt. **Nur das Ob, vor der Umsetzung:** Woher beziehen die neun `multi_symbol_optimise.py` und `equity_simulation.py` heute Kosten und Slippage — aus einer eigenen Konstante, aus `forward_test.py`, aus `messgroessen.py`, oder gar nicht? Wenn die Antwort „aus einer eigenen Konstante je Bot" lautet, gibt es neun weitere Kopien, und (2) ist grösser als eine Zeile.
+
+⚠️⚠️ **Offen (Fable 22d), zeichengleich:**
+
+> **Unsicher:** ob `messgroessen.py` und `registerdaten.py` als Abschnitt-0-eingefrorene Dateien für (3) noch geändert werden dürfen — wenn nicht, trägt ein neues kleines Modul die vier Werte, und die eingefrorenen Dateien bleiben stehen. Das seht ihr im Register (Abschnitt 0 und 15.8), ich nicht.
+
+⭐ **Dazu gehört die Messung aus Plan Punkt 5:** woher beziehen die neun
+`multi_symbol_optimise.py` und `equity_simulation.py` heute Kosten und
+Slippage? ⛔ **Beides nicht Gegenstand dieses Eintrags.** Die Werte bleiben, wo
+sie sind; Fables Kandidaten-Module (`messgroessen.py`, `registerdaten.py`)
+sind Abschnitt-0-eingefroren (`herkunft.py` `EINGEFROREN`, 37.4) — ob sie für
+(3) geändert werden dürfen, entscheidet nicht dieser Abschnitt.
+
+**Marken am alten Ort:** bei **Sperrlistenpunkt 7** und bei **Punkt 9**.
+
+### 37.6 Was hier ausdrücklich NICHT getan wird
+
+| | | gehört zu |
+|---|---|---|
+| ⛔ | **Die Sonde ändern** — sie meldet ihren Ausgang heute je Punkt; 37.1 verlangt ihn je Bestandteil, 37.2 die Prüfung der Gruppe „bestimmt" | Handwerk, eigene Freigabe |
+| ⛔ | **Ein neues Abbild erzeugen** (Plan Punkt 2b) — der Befund `1` an Punkt 2 (37.3) bleibt bis dahin stehen; das Abbild `6a1b732e…` bleibt | eigene Aufgabe |
+| ⛔ | **Werte verschieben** („ein Wert, ein Ort", 37.5 (1)–(3), Plan Punkt 6) — braucht erst die Messung aus Plan Punkt 5 | Betreiber, Freigabe |
+| ⛔ | **`herkunft.py` öffnen** — Fables Entscheidung 37.4: nicht öffnen | — |
+| ⛔ | **Irgendeine `.py` ändern** · ⚠️ `python3 faltenplan.py` — nicht aufgerufen | — |
+| ⭐ | **Keine Zahl bewegt:** Faltenliste 33.2 vor und nach dem Eintrag zeichengleich (M5); die drei Sperrlisten-Hashes `0e54ac5c…`, `a163c498…`, `4549395f…` unverändert (M6); die Sperrlisten-Sonde lesend vor und nach dem Eintrag: Prüfung (ii) `0`, Listentext wie bei Erzeugung, unverändert `1` nur an Punkt 2 | — |
+| ⚠️ | **Offen:** die Sonde muss je Bestandteil **zurückgeben** (37.1) · die Gruppe „bestimmt" **prüfen** (37.2) · das neue Abbild (Plan 2b, schliesst 37.3) · die Messung aus Plan 5 (woher lesen die Optimierer Kosten?) · Fables Unsicherheit zu den eingefrorenen Modulen (37.5) · die zwei Messabweichungen in 37.4 (Z. 51 statt 41; vier/vier statt „fünf") und in 37.5 (`GEBUEHR_PCT`; neun `backtest_*.py`) — Fable zur Kenntnis | Betreiber / Fable |
+
+*Dieser Abschnitt ist rein additiv: Er trägt zwei Präzisierungen bzw.
+Ergänzungen, eine Ergänzung zur Bedeutung eines Sondenbefunds, eine
+Tatsachennotiz und einen Ersteintrag des Verfahrensprüfers zeichengleich ein;
+setzt sieben Marken am alten Ort; hält die nachgemessenen Tatsachen samt vier
+Abweichungen fest — und entfernt nichts. Gebaut wird nichts.*
 
 ## 38. Weg (A) — die letzte Falte heisst die Spanne, Fundstellen als Datei und Bezeichner, der Vollzug von Punkt 4 nach 37.3 in Form (ii), neun Importe statt überwachter Kostenkopien, zwei Berichtigungen des Verfahrensprüfers an sich selbst und die Messungen aus TB-88 (Fable 22h, TB-89, 23.09.2026)
 
@@ -125,6 +490,9 @@ ausschliessen.*
 
 **Marken am alten Ort:** im **Kopf von Abschnitt 0** (die Regel) und bei
 **35.1** (die Tatsachennotiz 38.7 (a), an der sie belegt ist).
+
+> ⭐ **38.2 ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (e), TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 38.3 ⭐⭐ Tatsachennotiz zu 21.9 und 10.1 — der Vollzug von Punkt 4 vor dem Tag ist eine beauftragte Änderung nach 37.3
 
@@ -1160,6 +1528,15 @@ Ableitung), bei **39.6** (Eingabestand: zweiter Anwendungsfall).
 > ⭐ **Zwei Erzeuger; Bindung der Listen: siehe 46.3** (Fable 27a R12, TB-117,
 > 26.09.2026). Zitate, Text und die Marke oben bleiben zeichengleich.
 
+> ⭐ **40.6 ERGÄNZT durch R42 (48.10)** (Fable 29b R42, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **40.6 ERGÄNZT durch R44 (48.12)** (Fable 29b R44, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **40.6 (Tatsachennotiz zu 5.4) PRÄZISIERT durch R47 (48.15)** (Fable 29b R47, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 40.7 ⭐ Ergänzung zu 12 — jede Mutationsprobe hat eine Gegenprobe
 
 **Der Registertext — Fable, 24a Abschnitt 5, zeichengleich:**
@@ -1582,6 +1959,9 @@ und `research/tb24_haltedauern/auswertung.py` sind unverändert; `messgroessen.p
 liest die Datei weiter (der eine Zugriff ausserhalb des Snapshots, TB-103). Die
 Umstellung auf die neue Quelle hängt am Erzeuger (Plan-Punkt 3).
 
+> ⭐ **41.2 B6/B7 ERGÄNZT durch R41 (48.9)** (Fable 29b R41, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 41.3 Aus Fable 24d (`FABLE_ANTWORT_2026-09-24d_deckel_statt_purge_ein_weg.md`)
 
 Fables Liste für dieses Register, 24d Abschnitt 4, zeichengleich (Kopf):
@@ -1965,6 +2345,9 @@ neun, Benchmark, Import von `auswertung.py`), **nicht** über die registrierte
 Liste der Lauf-Typen — die ist am Tag abschliessend. Die Messung am Tag-Commit
 steht aus (42.6).
 
+> ⭐ **42.2 E5 ERGÄNZT durch R29 (47.12)** (Fable 27c R29, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **E6 (f) — Präzisierung zu 25a (B) (2): der Stichtag ist der Go-Live-Schnitt** ·
 Art: Präzisierung · Quelle: 25b Abschnitt 2 (3) · präzisiert 42.1 (D3/D7)
 
@@ -2257,318 +2640,4 @@ des Verfahrensprüfers aus sechs Antworten zeichengleich ein, beide Fassungen
 jeder Kette mit Verweis, die Tatsachen aus fünf Aufträgen und die
 Hash-Übergänge seit 39.5 — und entfernen nichts. Gebaut und gerechnet wird
 nichts.*
-
-## 43. Ausgänge der Auswertung, null Trades als Wert, die zweite Öffnung von `herkunft.py` — die Einträge aus Fable 25d und 25e und die Tatsachennotizen TB-108 und TB-109 (TB-110, 26.09.2026)
-
-### 43.0 Was dieser Abschnitt ist
-
-⭐ **Reines Eintragen von Registertext und Tatsachen**, Bauart wie **41.0**.
-Der Verfahrensprüfer hat am 25.09.2026 zwei weitere Antworten gegeben, 25d
-(auf das Ergebnis TB-106) und 25e (auf das Ergebnis TB-107). Beide überschreiben
-ihre Liste für das Register mit „Auf Register 41/42, zusätzlich"; 41 und 42
-waren da schon eingetragen (TB-108, `f4d3e2a`). **Die Einträge stehen deshalb
-hier, in 43.** Die Nummer hat der steuernde Chat vergeben
-(`docs/auftraege/MAC_TB-110_register_43.md`, Freigabe des Betreibers
-25.09.2026, 23:04), nicht Fable; eine andere Zuordnung wäre eine Umnummerierung
-mit Vermerk, keine Änderung der Einträge.
-
-**Die Kette zu 42:** 42.6 führt unter (1) und (2) „Fable 25d" und „Fable 25e"
-als offen, mit dem Ziel „Abschnitt 43". **Beantwortet in 43.1 (25d) und 43.2
-(25e).** 42.6 (3), Fable 25f (Gesamtanalyse), bleibt offen; ⛔ nichts aus 25f
-steht hier. Die Zeilen in 42.6 bleiben zeichengleich; eine Marke darunter
-verweist hierher.
-
-**Gliederung:** 43.1 die Einträge aus 25d · 43.2 die aus 25e · 43.3 eine
-Berichtigung des steuernden Chats an 25e (3), **vorläufig** · 43.4 die
-Tatsachennotizen aus TB-107 (Fables Liste), TB-108 und TB-109 · 43.5 was offen
-bleibt · 43.6 was hier nicht getan wurde, mit der Liste der Marken.
-
-**Bauart je Eintrag:** Kennung aus der Arbeitsliste des Auftrags (43-1 bis
-43-15) · Fables Text **eingesetzt, nicht abgetippt** (Blockzitat; Teilzitate in
-„…"), mit Quelle · Art · Stand, gemessen in TB-110
-(`docs/belege/TB-110/0_stand.txt`) bzw. im genannten Ergebnisdokument, ohne
-Ergebnisgrössen (27.1) · Kette. Je Zitat ein `diff` gegen die Quelle mit rc 0
-(`docs/belege/TB-110/d2_zitate.txt`).
-
-⚠️ **Tatsachennotiz zur Herkunft der Quellen (wie 41.0):** Die zwei
-Antwortdateien `docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_…` und `…25e_…`
-hat der steuernde Chat aus der Projektablage **abgeschrieben**, nicht byteweise
-übertragen. **Die Zitate hier sind zeichengleich mit der Datei im Repo; ob diese
-zeichengleich mit Fables Ablage ist, ist nicht gemessen.**
-
-⭐ **Die Regel aus 34 gilt weiter:** Jeder Eintrag, der einen alten Satz
-ergänzt oder beantwortet, steht zusätzlich als **Marke** beim alten Satz; die
-Liste steht in 43.6. Die alten Sätze bleiben zeichengleich; `git diff
---numstat` auf dieses Register zeigt für TB-110 in der zweiten Spalte `0`.
-⛔ **In Abschnitt 10 steht keine Marke** (Sonde, Prüfung (ii)); die
-Tatsachennotiz zu Sperrlistenpunkt 4 (43-2) steht deshalb hier, in 43.1.
-
-### 43.1 Aus Fable 25d (`FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md`)
-
-Fables Liste für das Register, 25d Abschnitt 3, zeichengleich:
-
-> | | Eintrag |
-> |---|---|
-> | a | Tatsachennotiz zu Punkt 4: Interpolation unterhalb der ersten Stützstelle gegen (0, 0), Grenzwert 0 (A5) |
-> | b | Kopie in `faltenplan_neun.py`: Abbruch gleich, zweiter Ort, Auflösung nach TB-100 (1) |
-> | c | `herkunft.py`: Prüfansicht übergibt `paths.DATA_DIR`; `TB30A_BASE_DIR` unter dem Modus 2 — eine Öffnung, mit oder vor dem Erzeuger (2, 3) |
-> | d | Ersteintrag: Ausgänge von `auswertung.py` — 0 oder 2, kein 1 (4) |
-> | e | Tatsachennotizen TB-106: sieben Ersatzwerte ⇒ 2, unerreichbar mit registrierten Eingaben; Kette hasht im Modus den registrierten Datenstand; `register()` `0ece95e2…`, `herkunft.py` `351f24c2…`, Abbild `40ffe18d…`; `registerbericht.py --pruefen` rot bis 40.8 (h) |
-
-**43-1 — Ersteintrag: Ausgänge von `auswertung.py` — 0 oder 2, kein 1** · Art:
-Registertext (Ersteintrag, Ergänzung zu 36.5) · Quelle: 25d 2 (4), 3 (d)
-
-> **Ergänzung zu 36.5 — Ausgänge von `auswertung.py`:** `auswertung.py` endet mit 0, wenn es gerechnet und berichtet hat; mit **2**, wenn es nicht rechnen konnte — jeder Bruch des Datenvertrags (fehlende Datei oder Spalte, Zelle ausserhalb des Rasters, Plan ohne Selektionsfalte, weniger als drei gemeinsame Tage, unbekannter Bedingungstext) ist ein 2, weil der Lauf dann über den Selektionsraum nichts aussagt. Einen Ausgang 1 hat `auswertung.py` nicht: Die Abbruchkriterien (a)–(d) sind **Ergebnisse** eines gelungenen Laufs (Bleibt/Geht, rc 0), keine Befunde über die Eingabe; Befunde über Plan und Abbild meldet der Laufwrapper (35.4), nicht der Auswerter.
-
-*Seine Quelle des Grundes, zeichengleich:*
-
-> *Quelle des Grundes:* 36.5 (2 = nicht prüfbar; der Auswerter prüft nicht die Eingabe, er rechnet auf ihr — kann er das nicht, hat er nicht gemessen), 12 (kein Auffüllen), 25c (1) (Register-Code-Widerspruch ist 2). Kein Ergebnis. Eure Beobachtung, dass die Meldungen „nicht entscheidbar" sagen, ist der Wortlaut dieser Regel. Umsetzung: eine Zeile an der Klasse, mit der nächsten planmässigen Öffnung von `auswertung.py` (Punkte 3/5/14) — und die 12 Stellen (nicht 13) als Tatsachennotiz.
-
-*Und seine Voraussetzung, zeichengleich:* „Das Register legt für `auswertung.py` keinen Rückgabewert fest"
-— Abschnitt 12 sagt nur, dass es abbricht.
-
-**Stand, gemessen (TB-110, `0_stand.txt`):** **Nicht vollzogen.**
-`research/vorregistrierung/auswertung.py` `83c6bc3c…` (letzter Commit
-`5cc1de4`, TB-106) trägt `class Abbruch(SystemExit)` (Z. 118) und **12** Stellen
-`raise Abbruch`; `Abbruch` endet heute mit **1** (42.4, G5; gemessen TB-106,
-`docs/belege/TB-106/a10_abbruch_rc.txt`). Die Umsetzung ist eine Zeile an der
-Klasse, mit der nächsten planmässigen Öffnung von `auswertung.py` (Punkte 3/5/14,
-neues Abbild) — 43.5. **Die zwölf Stellen sind die Tatsachennotiz, die Fable
-verlangt:** zwölf, nicht dreizehn (TB-106 A10).
-
-**Kette:** beantwortet die Frage aus **42.4, G5** („ob 1 oder 2, ist Frage 25d
-(4)") und die offene Zeile in der Marke unter **36.5** („Ob `auswertung.Abbruch`
-mit 1 statt 2 endet, ist offen"). Beide Sätze bleiben zeichengleich. **Marken
-am alten Ort:** unter **36.5** und in **12**, unter dem Satz über den Abbruch.
-
-> ⭐ **Vollzogen, siehe 44.1 (44-1; TB-111 `6c98c38`, TB-113, 26.09.2026):**
-> `Abbruch` endet mit 2; zwölf Stellen, Meldung byte-gleich. `auswertung.py`
-> `83c6bc3c…` ⇒ `a864b216…`. „Nicht vollzogen“ oben beschreibt den Stand auf
-> `main` vor dem Zusammenführen und bleibt zeichengleich.
-
-**43-2 — Tatsachennotiz zu Sperrlistenpunkt 4: die Interpolation unterhalb der
-ersten Stützstelle** · Art: Tatsachennotiz (zu Punkt 4; ⛔ **nicht** in
-Abschnitt 10) · Quelle: 25d Abschnitt 1, 3 (a)
-
-*Fables Tatsachennotiz, zeichengleich:*
-„Die Interpolationsregel läuft unterhalb der ersten Stützstelle linear gegen (0, 0); `nachschlagen(t, 0) = 0` ist ihr Grenzwert, gemessen TB-106."
-
-*Seine Begründung, zeichengleich:* „Kein neuer Registertext — die Regel ist über den Code registriert (Punkt 4 nennt ihn) —, aber ein Leser soll nicht raten müssen."
-
-**Stand, gemessen:** `research/vorregistrierung/benchmark.py` `aeeec9b8…`
-(letzter Commit `a08c13a`, TB-106), `nachschlagen()` unverändert. Die Messung
-steht in `docs/ERGEBNIS_TB-106_ersatzwerte_eingefroren_und_herkunft.md` (A5)
-und 42.4, G4. **Verweis:** Sperrlistenpunkt 4 (Abschnitt 10); dort keine Marke.
-
-**43-3 — Die Kopie in `faltenplan_neun.py`: Abbruch gleich, zweiter Ort,
-Auflösung nach TB-100; `f5fdb53` steht** · Art: Tatsachennotiz (Entscheidung
-über einen gebauten Commit) · Quelle: 25d 2 (1), 3 (b); 25e Kopf
-
-> **(1) Die Kopie in `faltenplan_neun.py` — mit TB-107, `f5fdb53` steht.** Eure Neigung ist richtig, aus eurem Grund: Das Modul liegt im Laufbereich, der Laufbereich wird am Tag über alle Lauf-Typen gemessen, und eine Kopie derselben Regel mit dem alten Ersatzwert ist ein zweiter Ort (24b B4). Der Abbruch ist der Mindestschritt. **Die Kopie selbst bleibt als Befund benannt:** Sobald `fn.json` als Vergleichsgrösse nicht mehr gebraucht wird (nach TB-100, wenn das Faltenplan-Abbild die Vergleichsgrösse ist), ruft `faltenplan_neun.py` die Regel aus `faltenplan.py` statt sie zu tragen. Bis dahin Tatsachennotiz „zweiter Ort, Abbruch gleich, Auflösung nach TB-100". Kein `revert`.
-
-*25e, Kopf, zeichengleich:* „Block C (die Kopie in `faltenplan_neun.py`) ist in 25d (1) bestätigt — kein `revert`."
-
-**Stand, gemessen:** `f5fdb53` liegt auf `main`, kein `revert` im Log;
-`research/faltenplan_neun/faltenplan_neun.py` `251029be…`, letzter Commit
-`f5fdb53`. **Kette:** schliesst die Zeile „⚠️ `f5fdb53` … ist vor Fables
-Antwort auf 25d gebaut" in **42.4** (zeichengleich stehen gelassen). Offen: die
-Auflösung der Kopie nach TB-100 (43.5).
-
-**43-4 — `herkunft.py`: Prüfansicht und `TB30A_BASE_DIR` unter dem Modus, in
-einer Öffnung** · Art: Registertext (Plan) · **noch nicht vollzogen** · Quelle:
-25d 2 (2), (3), 3 (c)
-
-> **(2) Die Prüfansicht unter dem Modus — die eine Zeile, nicht rc 2.** Eure Neigung ist richtig: `--pruefen` liest das Protokoll als registrierte Eingabe (25c 4 (4)(b)); eine Prüfung, die unter dem Modus nicht laufen kann, prüft nicht, wo sie gebraucht wird — am Tag. Ein 2 an dieser Stelle wäre ehrlich, aber es macht die Wache stumm, wo sie wachen soll.
-
-> **(3) `TB30A_BASE_DIR` in `herkunft.py` unter dem Modus — ja, rc 2 vor dem Lesen (24d Abschnitt 3), und (2) und (3) in einer Öffnung.** *Wann:* Die Regel aus 37.3 (Handwerk: Abbilder nach Bündeln, nicht nach jeder Änderung) gilt für Öffnungen genauso. **Mit dem Erzeuger**, wenn der Erzeuger `herkunft.py` ohnehin öffnet; sonst als eigener kleiner Auftrag **vor** dem Erzeuger — denn der Erzeuger ruft `register()` und `commit()`, und ein `commit()`, das unter einer Ersatzwurzel `"unbekannt"` liefert und trotzdem einen Hash schreibt, ist genau die Klasse, die 24b A2 verbietet: ein Wert, der so tut, als wäre er gemessen. Welches von beiden, entscheidet ihr am Erzeuger-Auftrag.
-
-**Stand, gemessen:** `research/vorregistrierung/herkunft.py` `351f24c2…`
-(letzter Commit `5791b4c`, TB-106), **seit der ersten planmässigen Öffnung
-unverändert**; `TB30A_BASE_DIR` wird in Z. 51 gelesen (42.4, G6). Die Öffnung
-ist als Auftrag TB-111 formuliert und läuft in einem eigenen Arbeitsbaum
-(Zweig `tb-111`); **auf `main` ist nichts davon vollzogen.** **Kette:** zweite
-planmässige Öffnung nach **42.3, F2** (erste: TB-106); die Entscheidung in
-**37.4** („Nicht öffnen") und ihre Berichtigung durch 42.3 F2 bleiben
-zeichengleich. **Marke am alten Ort:** in **37.4**, unter der Berichtigung
-durch 42.3 F2.
-
-> ⭐ **Vollzogen, siehe 44.1 (44-2; TB-111 `6cacfa4`, TB-113, 26.09.2026):**
-> Prüfansicht mit `paths.DATA_DIR`, `TB30A_BASE_DIR` unter dem Modus 2 vor
-> dem Lesen, in einer Öffnung. `herkunft.py` `351f24c2…` ⇒ `5bbfc9e0…`.
-> „noch nicht vollzogen“ oben beschreibt den Stand vor dem Zusammenführen und
-> bleibt zeichengleich.
-
-**43-5 — Tatsachennotizen TB-106** · Art: Tatsachennotiz · Quelle: 25d 3 (e);
-Kenntnisnahme 25d Abschnitt 1
-
-*Fables Kenntnisnahme, zeichengleich (Anfang):* „TB-106: sieben Ersatzwerte ⇒ 2, unabhängig vom Modus; unbekannter Bedingungstext ⇒ 2, an einer Stelle gedeutet; tote Felder und Zeile weg"
-
-**Stand:** die Werte aus 25d 3 (e) sind die aus TB-106 und stehen gemessen in
-**42.4, G4** und **42.5**. Seit TB-106 geändert hat sich davon nur
-`herkunft.register()`: `0ece95e2…` ⇒ `c85dd6c3…` durch den Eintrag von 41/42
-(TB-108) — `register()` hasht dieses Register mit (42.5). Abbild `40ffe18d…`
-und `herkunft.py` `351f24c2…` unverändert (TB-110, `0_stand.txt`).
-
-**43-6 — `registerbericht.py --pruefen` rot bis 40.8 (h)** · Art:
-Tatsachennotiz · Quelle: 25d Abschnitt 1
-
-> **Zur roten `registerbericht.py --pruefen`:** bekannt (39.1, dritte Zeile: der ERZEUGT-Block ist nicht neu erzeugt). TB-106 ändert am Block eine Zeile; die Neuerzeugung kommt mit dem Raster-Nachzug (40.8 (h)), nicht vorher — sonst wird der Block zweimal neu.
-
-**Stand, gemessen:** `registerbericht.py --pruefen` rc **1** (TB-110,
-`0_stand.txt`; wie TB-108 D6 und vor TB-106, 42.4 G7). **Kette:** 39.1 (dritte
-Zeile), 40.8 (h); die Neuerzeugung kommt mit dem Raster-Nachzug (43.5).
-
-### 43.2 Aus Fable 25e (`FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md`)
-
-Fables Liste für das Register, 25e Abschnitt 3, zeichengleich:
-
-> | | Eintrag |
-> |---|---|
-> | a | Tatsachennotizen TB-107: `_min_history` genau ein Treffer; Kopie mit Abbruch; `getattr` weg; `tb40_lauf_*` nach (iv) erfüllt; Laufbereich 81 Module am Stand `f61bd97`; Gegenprobe aus der Messdatei |
-> | b | Klasse (iv): das Aufräumen erscheint im Audit als (iv), nicht als (i) ausserhalb (Handwerk am Audit) |
-> | c | Ergänzung „null Trades ist ein Wert" (2); die zehn Stellen wie die vierzehn; Gegenprobe erweitert |
-> | d | `pfadvergleich.py`: Stummel, benannt (3) |
-
-**43-7 — Ergänzung zu 24b A2 / 36.5 — null Trades** · Art: Registertext
-(Ergänzung) · Quelle: 25e 2 (2), 3 (c)
-
-> **Ergänzung zu 24b A2 / 36.5 — null Trades:** Ein Lauf des Laufbereichs, der keine Trades findet oder ausführt, schreibt dieses Ergebnis (leere Liste, Sharpe 0 nach 1c) und endet mit 0; er endet nie ohne Ausgabe. Unter dem Modus endet ein `exit()` ohne geschriebenes Ergebnis mit 2, gleich was ihm vorausgeht.
-
-*Seine Quelle des Grundes und die Umsetzung, zeichengleich:*
-
-> *Quelle des Grundes:* 5.1 Nr. 8, 1c, 36.5. Kein Ergebnis. Umsetzung: die Gegenprobe (`test_main_gegenprobe.py`) zählt künftig jedes `exit()` ohne vorherige Ausgabe, nicht nur die nach fehlender Eingabe; die zehn Stellen bekommen die Modus-Abfrage wie die vierzehn. Dass `__main__` heute von keinem Lauf-Typ erreicht wird, ändert daran nichts — dieselbe Lage wie bei (c). Für den Laufcode (TB-30b) heisst es: Der Erzeuger schreibt für eine Zelle ohne Trades die Nullzeile, nie nichts.
-
-*Und der Befund, den er daraus macht, zeichengleich:* „Ein Skript, das bei null Trades ohne Ausgabe mit 0 endet, ist für den Aufrufer von „gerechnet und geschrieben" nicht unterscheidbar; das ist die TB-45-Klasse, gleich ob die Leere aus fehlender Eingabe oder aus einer Rechnung stammt."
-
-**Stand, gemessen — vollzogen in TB-109** (`docs/ERGEBNIS_TB-109_nulltrades_ablagen_stummel.md`):
-die zehn Stellen `if trades.empty: … exit()` in den neun
-`strategies/*/equity_simulation.py` enden unter dem Modus mit 2 (Meldung auf
-stderr), ohne Modus zeichengleich (`53896e4`); die Gegenprobe
-`shared/test_main_gegenprobe.py` zählt jedes vorzeitige `exit()` im `__main__`
-ohne geschriebenes Ergebnis (`a02f035`) — Einzelheiten 43.4 (TB-109). Der Satz
-für den Laufcode (Nullzeile im Erzeuger) ist **nicht** vollzogen; er gehört zu
-TB-30b (43.5). **Kette:** ergänzt **36.5** und **41.1** (24b A2); stützt sich
-auf **5.1 Nr. 8** und **15.3 (Registertext 1c)**, beide zeichengleich. **Marken
-am alten Ort:** unter **5.1 Nr. 8** und unter der Tatsachennotiz zu **1c** in
-15.3.
-
-**43-8 — Die zwei weiteren Ablagen wie `tb40_lauf_*`** · Art: Registertext
-(Anwendung von Klasse (iv), 42.2) · Quelle: 25e 2 (1)
-
-> **(1) `tb40_faltenplan_*` und `tb40_proben_*` — wie `tb40_lauf_*`.** Eure Neigung ist richtig: Klasse (iv) fragt nicht, welcher Lauf den Ordner anlegt, sondern ob ein Modul des Laufbereichs Ablagen hinterlässt. Dass `hole_faltenplan()` ohne JSON von keinem gemessenen Lauf-Typ gerufen wird, ist eine Tatsache über heute; der Laufbereich wird am Tag gemessen. Kleiner Auftrag, dieselbe Bauart (`finally`, Pfad in der Meldung, wenn kein Ergebnis).
-
-**Stand, gemessen — vollzogen in TB-109** (`29640ca`): `hole_faltenplan()`
-entfernt `tb40_faltenplan_*`, `stille_filter()` entfernt `tb40_proben_*`, je im
-`finally` nach dem Lesen des Ergebnisses; ohne Ergebnis bleibt der Ordner, sein
-Pfad steht in der Meldung. **Kette:** Klasse (iv) in **42.2**; `tb40_lauf_*`
-TB-107 (42.4, G8 ff.).
-
-**43-9 — Klasse (iv) im Audit** · Art: Registertext (Handwerk am Audit) ·
-Quelle: 25e Abschnitt 1, 3 (b)
-
-*Fable, 25e Abschnitt 1, zeichengleich:* „dass das Aufräumen im Lese-Audit als zehn Verzeichnis-Öffnungen in (i) erscheint, ist genau der Grund, warum Klasse (iv) eine Klasse ist und keine Erlaubnis — der Audit soll diese Zugriffe als (iv) führen, nicht als (i) ausserhalb; Handwerk am Audit, klein."
-
-**Stand, gemessen — gebaut in TB-109** (`a02f035`,
-`docs/belege/TB-109/d_auswerten.py`; die Fassung TB-104 bleibt): Ein
-Verzeichnis im Temp-Verzeichnis, das ein Prozess des Laufs selbst anlegt, ist
-eine eigene Ablage; **jeder** lesende Zugriff darauf oder darin steht unter
-(iv). ⚠️ **Tatsachennotiz zur Reichweite:** Fables Satz nennt das Aufräumen
-(die zehn Verzeichnis-Öffnungen). Gebaut ist mehr: Auch das Lesen des
-Ergebnisses in der eigenen Ablage steht unter (iv). Im Benchmark-Lauf fällt
-Klasse (i) ausserhalb damit von 31 auf **11**, nicht auf die 21 aus TB-106.
-Welche Reichweite gilt, ist bei Fable gefragt (Ergebnis TB-109, Frage 2) —
-**offen**, 43.5. Schreibzugriffe bleiben unter (iii).
-
-**43-10 — `pfadvergleich.py`: der benannte Stummel** · Art: Tatsachennotiz ·
-Quelle: 25e 2 (3), 3 (d)
-
-> **(3) `pfadvergleich.py` — der Stummel, wie bei Probe A.** Eure Neigung trifft, mit dem Grund, den ihr nennt (ein Werkzeug, das dauerhaft 1 meldet, verwässert 1), und mit einer Bedingung: Der Stummel wird als solcher benannt (*„Fassung TB-52 plus `selektionsmodus = lambda: False`, weil der heutige Nachbar die Funktion verlangt"*) — das Werkzeug vergleicht dann weiter, was es vergleichen soll (Pfadauflösung), und behauptet nicht, TB-52 habe die Funktion gehabt. Dass `test_paths` Probe A genau das schon tut, ist der Konsistenzgrund. Das Werkzeug liegt ausserhalb des Laufbereichs; Live-Freigabe wie gehabt.
-
-**Stand, gemessen — vollzogen in TB-109** (`8570ce8`):
-`research/resolver_selektion/pfadvergleich.py` hängt an die Fassung aus TB-52
-den Stummel `def selektionsmodus(): return None` an, benannt im Kommentar;
-eigenständig rc **0** („GRUEN"). ⚠️ **Mit `None`, nicht mit Fables `False`** —
-43.3.
-
-### 43.3 ⚠️ Berichtigung des steuernden Chats an 25e (3) — vorläufig, von Fable nicht bestätigt
-
-**43-11** · Art: Berichtigung (vorläufig) · Quelle: Ergebnis TB-109, Block D
-
-Fables Wortlaut für den Stummel, zeichengleich: „Fassung TB-52 plus `selektionsmodus = lambda: False`, weil der heutige Nachbar die Funktion verlangt"
-
-**Die Berichtigung:** „`selektionsmodus = lambda: False`" lies
-„`selektionsmodus()` → `None`". **Grund:** `shared/strategy_paths.py` fragt seit
-TB-107 `paths.selektionsmodus() is not None`; `False is not None` ist wahr. Mit
-`False` hält `strategy_paths` den Modus für aktiv. `shared/test_paths.py` Probe
-A benutzt aus demselben Grund `return None`.
-
-**Verhaltensbeleg (TB-109, `docs/belege/TB-109/d_stummel_probe.txt`):** Mit
-`None` legt `strategy_paths` im Wegwerfbaum des Werkzeugs in **9 von 9** Bots
-`results/` und `logs/` an, wie jeder Aufruf ohne Modus; mit `False` in **0 von
-9**. ⚠️ **Das Werkzeug selbst meldet in beiden Fällen 0 Unterschiede** — es
-vergleicht Zeichenketten, und die sind in beiden Zweigen gleich. Der
-Widerspruch zeigt sich also am durchlaufenen Zweig, nicht an der Ausgabe des
-Werkzeugs.
-
-⚠️ **Diese Berichtigung ist vorläufig:** Sie stammt vom steuernden Chat
-(`docs/auftraege/MAC_TB-109_nulltrades_ablagen_stummel.md`, Abschnitt
-„Ein Widerspruch in Fable 25e (3)"), nicht von Fable. Fable ist sie mit dem
-Ergebnis TB-109 vorgelegt; **bis er sie bestätigt, steht sie hier als
-Vorschlag.** Fables Satz in 43-10 bleibt zeichengleich stehen. Bestätigt er
-sie, kommt ein Eintrag „berichtigt durch …" dazu; widerspricht er, wird der
-Stummel zurückgebaut, mit Grund.
-
-> ⭐ **Von Fable bestätigt (26a 3 (1)), siehe 45.1** (TB-114, 26.09.2026).
-> Überschrift und Text oben bleiben zeichengleich.
-
-### 43.4 Tatsachennotizen aus TB-107, TB-108 und TB-109
-
-**43-12 — Tatsachennotizen TB-107:** *Fables Liste, 25e 3 (a) — zeichengleich oben in 43.2. Gemessen steht
-TB-107 in **42.4** (G8–G10 und die Zeile zu `f5fdb53`); hier nichts doppelt.*
-
-*TB-108 und TB-109: eigene Fassung der Sitzungen, gemessen; kein
-Fable-Wortlaut.*
-
-| | Tatsache | Ergebnisdokument, Commit |
-|---|---|---|
-| 43-13 | **TB-108:** Abschnitte **41** und **42** eingetragen, in einem Commit mit allen Marken; **67** Einträge (41: A1–A12, B1–B8, C1–C9; 42: D1–D12, E1–E8, F1–F8, G1–G10); **108** Zitate eingesetzt, `diff` 108/108 rc 0; **20** Marken an 19 Stellen; `numstat` 1134/0; `herkunft.register()` `0ece95e2…` ⇒ `c85dd6c3…`. **Nicht gesetzte Marken:** keine in Abschnitt 10 (F3 und F8 stehen deshalb in 42.3); keine in 38.x (der Modus-Nachweis steht in 39.6). Befunde: H6 bis heute nicht eigenständig (41.1, A4); ein dritter Hash-Übergang an einem gesperrten Pfad (`messgroessen.py`, TB-103, 42.5) | `ERGEBNIS_TB-108_register_41_42`; `f4d3e2a`, `486032d` |
-| 43-14a | **TB-109, die zehn Stellen:** unter dem Modus Meldung auf stderr und Rückgabewert 2, Abfrage an der Stelle über `paths` (Bauart der vierzehn, 42.4 G2); **ohne Modus**: Trade-Listen der neun Bots vorher = nachher (Hash), `research/tb27_kapitalsimulation/vergleich.py --pruefen` rc 0, `test_ergebniskurven` 44/44; neue Proben `shared/test_nulltrades_modus.py` 34/34 | `ERGEBNIS_TB-109` B; `53896e4` |
-| 43-14b | **TB-109, A3 — erreicht ein Cron-Lauf heute eine der zehn Stellen? Nein.** Die `__main__`-Blöcke wie von `shared/kurven_lauf.py` gestartet (Stubs, `data/`, ohne Modus), anweisungsweise bis vor `simulate_portfolio`: an allen zehn Stellen Trade-Liste **nicht leer**, neun von neun Läufen erreichen `simulate_portfolio`. Tatsache über den Datenstand `d9449faf…` | `ERGEBNIS_TB-109` A3 |
-| 43-14c | **TB-109, Gegenprobe:** gezählt wird jedes vorzeitige `exit()`/`sys.exit()`/`quit()` im `__main__` ohne vorher geschriebenes Ergebnis — **24** Stellen im Laufbereich (14 + 10), **alle** mit Abfrage, keine weitere gefunden; 16 reguläre Blockenden (`sys.exit(main())` u. ä.) ausgewiesen, nicht gezählt. Grenze: `main()`-Funktionen prüft sie nicht | `ERGEBNIS_TB-109` E1; `a02f035` |
-| 43-14d | **TB-109, Ablagen:** `tb40_faltenplan_*` und `tb40_proben_*` entfernt (43-8); ein Lauf der alten Fassung hinterliess 1 + 9 Ordner, seit C 0; `ut.json`, `sf.json` bytegleich | `ERGEBNIS_TB-109` C; `29640ca` |
-| 43-14e | **TB-109, Audit (iv):** wie 43-9; im Benchmark-Lauf (Repo und Klon) 10 eigene Ablagen, 20 lesende Zugriffe (10 Verzeichnis-Öffnungen, 10 Ergebnis-JSON), alle entfernt | `ERGEBNIS_TB-109` E2 |
-| 43-14f | **TB-109, Abnahme:** Benchmark-Tabelle `64fb2912…` im Modus (Repo und frischer Klon) und ohne Modus bytegleich — als Nachweis nach 41.2 (B4) weiter **2**; acht Werkzeugausgaben ohne Modus bytegleich; Trockenlauf 9 × rc 0; Sonde gegen `40ffe18d…` vorher = nachher; `register()` `c85dd6c3…` unverändert; `test_vorregistrierung` 196/196 | `ERGEBNIS_TB-109` F; `723281f` |
-
-### 43.5 Was offen bleibt
-
-| | Sache | wohin |
-|---|---|---|
-| (1) | **`auswertung.Abbruch` ⇒ 2** (43-1) — eine Zeile an der Klasse | nächste planmässige Öffnung von `auswertung.py` (Punkte 3/5/14, neues Abbild) |
-| (2) | **Die zweite Öffnung von `herkunft.py`** (43-4): Prüfansicht mit `paths.DATA_DIR`, `TB30A_BASE_DIR` unter dem Modus 2 | mit dem Erzeuger oder vor ihm (Auftrag TB-111, Zweig `tb-111`, nicht auf `main`) |
-| (3) | **Die Auflösung der Kopie in `faltenplan_neun.py`** (43-3) | nach TB-100 (Faltenplan-Abbild als Vergleichsgrösse) |
-| (4) | **Die Neuerzeugung des ERZEUGT-Blocks** (43-6) | mit dem Raster-Nachzug, 40.8 (h) |
-| (5) | **Die Nullzeile im Erzeuger** für eine Zelle ohne Trades (43-7, Satz für den Laufcode) | TB-30b |
-| (6) | **Die Reichweite von (iv) im Audit** (43-9) und die **Bestätigung der Berichtigung 43-11** | Fable (Ergebnis TB-109, Fragen 1 und 2) |
-| (7) | **Die Erweiterung von 19 auf den Laufbereich** (42.6 (4)) | eigener Auftrag |
-| (8) | **Der Erzeuger auf dem Signalpfad**; **das Faltenplan-Abbild** (42.6 (5), (6)) | Plan-Punkte 3, 5 und 7 (TB-101) |
-| (9) | **Fable 25f** (Gesamtanalyse; 42.6 (3)) | eigener Eintrag, nach Fables Antwort |
-
-### 43.6 Was hier ausdrücklich NICHT getan wurde
-
-| | | gehört zu |
-|---|---|---|
-| ⛔ | **Keine `.py` geändert, nichts gerechnet** — auch wo ein Eintrag eine Codeänderung verlangt (43-1, 43-4) | 43.5 |
-| ⛔ | **Kein neues Abbild** — keine Sperrlistendatei hat sich bewegt; das gültige Abbild bleibt `sperrliste_abbild_2026-09-25b.json` (`40ffe18d…`), Sonde vorher und nachher gleich (`docs/belege/TB-110/0_sonde_vorher.txt`, `c_sonde_nachher.txt`) | — |
-| ⛔ | **Kein alter Registersatz umgeschrieben** — Marken sind neue Zeilen, nichts entfernt | — |
-| ⛔ | **Keine Marke in Abschnitt 10**; die Tatsachennotiz zu Punkt 4 (43-2) steht in 43.1 | — |
-| ⛔ | **Nichts aus 25f** | 43.5 (9) |
-| ⭐ | **Sichtschutz 27.1:** keine Ergebnisgrösse des Selektionsraums; „Trade-Liste leer ja/nein" je Bot ohne Zahl | — |
-
-**Die Marken am alten Ort** (je neue Zeilen, der alte Satz zeichengleich): 5.1
-Nr. 8 · 12 · 15.3 (unter der Tatsachennotiz zu 1c) · 36.5 · 37.4 · 42.6.
-
-*Dieser Abschnitt ist rein additiv: Er trägt die Einträge des Verfahrensprüfers
-aus zwei Antworten zeichengleich ein, dazu eine vorläufige Berichtigung des
-steuernden Chats mit Verhaltensbeleg und die Tatsachen aus drei Aufträgen — und
-entfernt nichts. Gebaut und gerechnet wird nichts.*
 

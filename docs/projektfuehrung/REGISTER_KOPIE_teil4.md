@@ -1,4 +1,318 @@
-# REGISTER-KOPIE Teil 4 von 4 — Abschnitte 44–46 — Commit 1e1145702ba8b6ee6ad4cecaecb75591463faa48 — 2026-09-27 — Original sha256 18e39ee29b9bd4f03a2ad4953c85c2e59558de3aaab26844ae58fb7590fca93c — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 4 von 4 — Abschnitte 43–50 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+
+## 43. Ausgänge der Auswertung, null Trades als Wert, die zweite Öffnung von `herkunft.py` — die Einträge aus Fable 25d und 25e und die Tatsachennotizen TB-108 und TB-109 (TB-110, 26.09.2026)
+
+### 43.0 Was dieser Abschnitt ist
+
+⭐ **Reines Eintragen von Registertext und Tatsachen**, Bauart wie **41.0**.
+Der Verfahrensprüfer hat am 25.09.2026 zwei weitere Antworten gegeben, 25d
+(auf das Ergebnis TB-106) und 25e (auf das Ergebnis TB-107). Beide überschreiben
+ihre Liste für das Register mit „Auf Register 41/42, zusätzlich"; 41 und 42
+waren da schon eingetragen (TB-108, `f4d3e2a`). **Die Einträge stehen deshalb
+hier, in 43.** Die Nummer hat der steuernde Chat vergeben
+(`docs/auftraege/MAC_TB-110_register_43.md`, Freigabe des Betreibers
+25.09.2026, 23:04), nicht Fable; eine andere Zuordnung wäre eine Umnummerierung
+mit Vermerk, keine Änderung der Einträge.
+
+**Die Kette zu 42:** 42.6 führt unter (1) und (2) „Fable 25d" und „Fable 25e"
+als offen, mit dem Ziel „Abschnitt 43". **Beantwortet in 43.1 (25d) und 43.2
+(25e).** 42.6 (3), Fable 25f (Gesamtanalyse), bleibt offen; ⛔ nichts aus 25f
+steht hier. Die Zeilen in 42.6 bleiben zeichengleich; eine Marke darunter
+verweist hierher.
+
+**Gliederung:** 43.1 die Einträge aus 25d · 43.2 die aus 25e · 43.3 eine
+Berichtigung des steuernden Chats an 25e (3), **vorläufig** · 43.4 die
+Tatsachennotizen aus TB-107 (Fables Liste), TB-108 und TB-109 · 43.5 was offen
+bleibt · 43.6 was hier nicht getan wurde, mit der Liste der Marken.
+
+**Bauart je Eintrag:** Kennung aus der Arbeitsliste des Auftrags (43-1 bis
+43-15) · Fables Text **eingesetzt, nicht abgetippt** (Blockzitat; Teilzitate in
+„…"), mit Quelle · Art · Stand, gemessen in TB-110
+(`docs/belege/TB-110/0_stand.txt`) bzw. im genannten Ergebnisdokument, ohne
+Ergebnisgrössen (27.1) · Kette. Je Zitat ein `diff` gegen die Quelle mit rc 0
+(`docs/belege/TB-110/d2_zitate.txt`).
+
+⚠️ **Tatsachennotiz zur Herkunft der Quellen (wie 41.0):** Die zwei
+Antwortdateien `docs/projektfuehrung/FABLE_ANTWORT_2026-09-25d_…` und `…25e_…`
+hat der steuernde Chat aus der Projektablage **abgeschrieben**, nicht byteweise
+übertragen. **Die Zitate hier sind zeichengleich mit der Datei im Repo; ob diese
+zeichengleich mit Fables Ablage ist, ist nicht gemessen.**
+
+⭐ **Die Regel aus 34 gilt weiter:** Jeder Eintrag, der einen alten Satz
+ergänzt oder beantwortet, steht zusätzlich als **Marke** beim alten Satz; die
+Liste steht in 43.6. Die alten Sätze bleiben zeichengleich; `git diff
+--numstat` auf dieses Register zeigt für TB-110 in der zweiten Spalte `0`.
+⛔ **In Abschnitt 10 steht keine Marke** (Sonde, Prüfung (ii)); die
+Tatsachennotiz zu Sperrlistenpunkt 4 (43-2) steht deshalb hier, in 43.1.
+
+### 43.1 Aus Fable 25d (`FABLE_ANTWORT_2026-09-25d_kopie_pruefansicht_abbruch_zwei.md`)
+
+Fables Liste für das Register, 25d Abschnitt 3, zeichengleich:
+
+> | | Eintrag |
+> |---|---|
+> | a | Tatsachennotiz zu Punkt 4: Interpolation unterhalb der ersten Stützstelle gegen (0, 0), Grenzwert 0 (A5) |
+> | b | Kopie in `faltenplan_neun.py`: Abbruch gleich, zweiter Ort, Auflösung nach TB-100 (1) |
+> | c | `herkunft.py`: Prüfansicht übergibt `paths.DATA_DIR`; `TB30A_BASE_DIR` unter dem Modus 2 — eine Öffnung, mit oder vor dem Erzeuger (2, 3) |
+> | d | Ersteintrag: Ausgänge von `auswertung.py` — 0 oder 2, kein 1 (4) |
+> | e | Tatsachennotizen TB-106: sieben Ersatzwerte ⇒ 2, unerreichbar mit registrierten Eingaben; Kette hasht im Modus den registrierten Datenstand; `register()` `0ece95e2…`, `herkunft.py` `351f24c2…`, Abbild `40ffe18d…`; `registerbericht.py --pruefen` rot bis 40.8 (h) |
+
+**43-1 — Ersteintrag: Ausgänge von `auswertung.py` — 0 oder 2, kein 1** · Art:
+Registertext (Ersteintrag, Ergänzung zu 36.5) · Quelle: 25d 2 (4), 3 (d)
+
+> **Ergänzung zu 36.5 — Ausgänge von `auswertung.py`:** `auswertung.py` endet mit 0, wenn es gerechnet und berichtet hat; mit **2**, wenn es nicht rechnen konnte — jeder Bruch des Datenvertrags (fehlende Datei oder Spalte, Zelle ausserhalb des Rasters, Plan ohne Selektionsfalte, weniger als drei gemeinsame Tage, unbekannter Bedingungstext) ist ein 2, weil der Lauf dann über den Selektionsraum nichts aussagt. Einen Ausgang 1 hat `auswertung.py` nicht: Die Abbruchkriterien (a)–(d) sind **Ergebnisse** eines gelungenen Laufs (Bleibt/Geht, rc 0), keine Befunde über die Eingabe; Befunde über Plan und Abbild meldet der Laufwrapper (35.4), nicht der Auswerter.
+
+*Seine Quelle des Grundes, zeichengleich:*
+
+> *Quelle des Grundes:* 36.5 (2 = nicht prüfbar; der Auswerter prüft nicht die Eingabe, er rechnet auf ihr — kann er das nicht, hat er nicht gemessen), 12 (kein Auffüllen), 25c (1) (Register-Code-Widerspruch ist 2). Kein Ergebnis. Eure Beobachtung, dass die Meldungen „nicht entscheidbar" sagen, ist der Wortlaut dieser Regel. Umsetzung: eine Zeile an der Klasse, mit der nächsten planmässigen Öffnung von `auswertung.py` (Punkte 3/5/14) — und die 12 Stellen (nicht 13) als Tatsachennotiz.
+
+*Und seine Voraussetzung, zeichengleich:* „Das Register legt für `auswertung.py` keinen Rückgabewert fest"
+— Abschnitt 12 sagt nur, dass es abbricht.
+
+**Stand, gemessen (TB-110, `0_stand.txt`):** **Nicht vollzogen.**
+`research/vorregistrierung/auswertung.py` `83c6bc3c…` (letzter Commit
+`5cc1de4`, TB-106) trägt `class Abbruch(SystemExit)` (Z. 118) und **12** Stellen
+`raise Abbruch`; `Abbruch` endet heute mit **1** (42.4, G5; gemessen TB-106,
+`docs/belege/TB-106/a10_abbruch_rc.txt`). Die Umsetzung ist eine Zeile an der
+Klasse, mit der nächsten planmässigen Öffnung von `auswertung.py` (Punkte 3/5/14,
+neues Abbild) — 43.5. **Die zwölf Stellen sind die Tatsachennotiz, die Fable
+verlangt:** zwölf, nicht dreizehn (TB-106 A10).
+
+**Kette:** beantwortet die Frage aus **42.4, G5** („ob 1 oder 2, ist Frage 25d
+(4)") und die offene Zeile in der Marke unter **36.5** („Ob `auswertung.Abbruch`
+mit 1 statt 2 endet, ist offen"). Beide Sätze bleiben zeichengleich. **Marken
+am alten Ort:** unter **36.5** und in **12**, unter dem Satz über den Abbruch.
+
+> ⭐ **Vollzogen, siehe 44.1 (44-1; TB-111 `6c98c38`, TB-113, 26.09.2026):**
+> `Abbruch` endet mit 2; zwölf Stellen, Meldung byte-gleich. `auswertung.py`
+> `83c6bc3c…` ⇒ `a864b216…`. „Nicht vollzogen“ oben beschreibt den Stand auf
+> `main` vor dem Zusammenführen und bleibt zeichengleich.
+
+**43-2 — Tatsachennotiz zu Sperrlistenpunkt 4: die Interpolation unterhalb der
+ersten Stützstelle** · Art: Tatsachennotiz (zu Punkt 4; ⛔ **nicht** in
+Abschnitt 10) · Quelle: 25d Abschnitt 1, 3 (a)
+
+*Fables Tatsachennotiz, zeichengleich:*
+„Die Interpolationsregel läuft unterhalb der ersten Stützstelle linear gegen (0, 0); `nachschlagen(t, 0) = 0` ist ihr Grenzwert, gemessen TB-106."
+
+*Seine Begründung, zeichengleich:* „Kein neuer Registertext — die Regel ist über den Code registriert (Punkt 4 nennt ihn) —, aber ein Leser soll nicht raten müssen."
+
+**Stand, gemessen:** `research/vorregistrierung/benchmark.py` `aeeec9b8…`
+(letzter Commit `a08c13a`, TB-106), `nachschlagen()` unverändert. Die Messung
+steht in `docs/ERGEBNIS_TB-106_ersatzwerte_eingefroren_und_herkunft.md` (A5)
+und 42.4, G4. **Verweis:** Sperrlistenpunkt 4 (Abschnitt 10); dort keine Marke.
+
+**43-3 — Die Kopie in `faltenplan_neun.py`: Abbruch gleich, zweiter Ort,
+Auflösung nach TB-100; `f5fdb53` steht** · Art: Tatsachennotiz (Entscheidung
+über einen gebauten Commit) · Quelle: 25d 2 (1), 3 (b); 25e Kopf
+
+> **(1) Die Kopie in `faltenplan_neun.py` — mit TB-107, `f5fdb53` steht.** Eure Neigung ist richtig, aus eurem Grund: Das Modul liegt im Laufbereich, der Laufbereich wird am Tag über alle Lauf-Typen gemessen, und eine Kopie derselben Regel mit dem alten Ersatzwert ist ein zweiter Ort (24b B4). Der Abbruch ist der Mindestschritt. **Die Kopie selbst bleibt als Befund benannt:** Sobald `fn.json` als Vergleichsgrösse nicht mehr gebraucht wird (nach TB-100, wenn das Faltenplan-Abbild die Vergleichsgrösse ist), ruft `faltenplan_neun.py` die Regel aus `faltenplan.py` statt sie zu tragen. Bis dahin Tatsachennotiz „zweiter Ort, Abbruch gleich, Auflösung nach TB-100". Kein `revert`.
+
+*25e, Kopf, zeichengleich:* „Block C (die Kopie in `faltenplan_neun.py`) ist in 25d (1) bestätigt — kein `revert`."
+
+**Stand, gemessen:** `f5fdb53` liegt auf `main`, kein `revert` im Log;
+`research/faltenplan_neun/faltenplan_neun.py` `251029be…`, letzter Commit
+`f5fdb53`. **Kette:** schliesst die Zeile „⚠️ `f5fdb53` … ist vor Fables
+Antwort auf 25d gebaut" in **42.4** (zeichengleich stehen gelassen). Offen: die
+Auflösung der Kopie nach TB-100 (43.5).
+
+**43-4 — `herkunft.py`: Prüfansicht und `TB30A_BASE_DIR` unter dem Modus, in
+einer Öffnung** · Art: Registertext (Plan) · **noch nicht vollzogen** · Quelle:
+25d 2 (2), (3), 3 (c)
+
+> **(2) Die Prüfansicht unter dem Modus — die eine Zeile, nicht rc 2.** Eure Neigung ist richtig: `--pruefen` liest das Protokoll als registrierte Eingabe (25c 4 (4)(b)); eine Prüfung, die unter dem Modus nicht laufen kann, prüft nicht, wo sie gebraucht wird — am Tag. Ein 2 an dieser Stelle wäre ehrlich, aber es macht die Wache stumm, wo sie wachen soll.
+
+> **(3) `TB30A_BASE_DIR` in `herkunft.py` unter dem Modus — ja, rc 2 vor dem Lesen (24d Abschnitt 3), und (2) und (3) in einer Öffnung.** *Wann:* Die Regel aus 37.3 (Handwerk: Abbilder nach Bündeln, nicht nach jeder Änderung) gilt für Öffnungen genauso. **Mit dem Erzeuger**, wenn der Erzeuger `herkunft.py` ohnehin öffnet; sonst als eigener kleiner Auftrag **vor** dem Erzeuger — denn der Erzeuger ruft `register()` und `commit()`, und ein `commit()`, das unter einer Ersatzwurzel `"unbekannt"` liefert und trotzdem einen Hash schreibt, ist genau die Klasse, die 24b A2 verbietet: ein Wert, der so tut, als wäre er gemessen. Welches von beiden, entscheidet ihr am Erzeuger-Auftrag.
+
+**Stand, gemessen:** `research/vorregistrierung/herkunft.py` `351f24c2…`
+(letzter Commit `5791b4c`, TB-106), **seit der ersten planmässigen Öffnung
+unverändert**; `TB30A_BASE_DIR` wird in Z. 51 gelesen (42.4, G6). Die Öffnung
+ist als Auftrag TB-111 formuliert und läuft in einem eigenen Arbeitsbaum
+(Zweig `tb-111`); **auf `main` ist nichts davon vollzogen.** **Kette:** zweite
+planmässige Öffnung nach **42.3, F2** (erste: TB-106); die Entscheidung in
+**37.4** („Nicht öffnen") und ihre Berichtigung durch 42.3 F2 bleiben
+zeichengleich. **Marke am alten Ort:** in **37.4**, unter der Berichtigung
+durch 42.3 F2.
+
+> ⭐ **Vollzogen, siehe 44.1 (44-2; TB-111 `6cacfa4`, TB-113, 26.09.2026):**
+> Prüfansicht mit `paths.DATA_DIR`, `TB30A_BASE_DIR` unter dem Modus 2 vor
+> dem Lesen, in einer Öffnung. `herkunft.py` `351f24c2…` ⇒ `5bbfc9e0…`.
+> „noch nicht vollzogen“ oben beschreibt den Stand vor dem Zusammenführen und
+> bleibt zeichengleich.
+
+**43-5 — Tatsachennotizen TB-106** · Art: Tatsachennotiz · Quelle: 25d 3 (e);
+Kenntnisnahme 25d Abschnitt 1
+
+*Fables Kenntnisnahme, zeichengleich (Anfang):* „TB-106: sieben Ersatzwerte ⇒ 2, unabhängig vom Modus; unbekannter Bedingungstext ⇒ 2, an einer Stelle gedeutet; tote Felder und Zeile weg"
+
+**Stand:** die Werte aus 25d 3 (e) sind die aus TB-106 und stehen gemessen in
+**42.4, G4** und **42.5**. Seit TB-106 geändert hat sich davon nur
+`herkunft.register()`: `0ece95e2…` ⇒ `c85dd6c3…` durch den Eintrag von 41/42
+(TB-108) — `register()` hasht dieses Register mit (42.5). Abbild `40ffe18d…`
+und `herkunft.py` `351f24c2…` unverändert (TB-110, `0_stand.txt`).
+
+**43-6 — `registerbericht.py --pruefen` rot bis 40.8 (h)** · Art:
+Tatsachennotiz · Quelle: 25d Abschnitt 1
+
+> **Zur roten `registerbericht.py --pruefen`:** bekannt (39.1, dritte Zeile: der ERZEUGT-Block ist nicht neu erzeugt). TB-106 ändert am Block eine Zeile; die Neuerzeugung kommt mit dem Raster-Nachzug (40.8 (h)), nicht vorher — sonst wird der Block zweimal neu.
+
+**Stand, gemessen:** `registerbericht.py --pruefen` rc **1** (TB-110,
+`0_stand.txt`; wie TB-108 D6 und vor TB-106, 42.4 G7). **Kette:** 39.1 (dritte
+Zeile), 40.8 (h); die Neuerzeugung kommt mit dem Raster-Nachzug (43.5).
+
+### 43.2 Aus Fable 25e (`FABLE_ANTWORT_2026-09-25e_ablagen_nulltrades_shim.md`)
+
+Fables Liste für das Register, 25e Abschnitt 3, zeichengleich:
+
+> | | Eintrag |
+> |---|---|
+> | a | Tatsachennotizen TB-107: `_min_history` genau ein Treffer; Kopie mit Abbruch; `getattr` weg; `tb40_lauf_*` nach (iv) erfüllt; Laufbereich 81 Module am Stand `f61bd97`; Gegenprobe aus der Messdatei |
+> | b | Klasse (iv): das Aufräumen erscheint im Audit als (iv), nicht als (i) ausserhalb (Handwerk am Audit) |
+> | c | Ergänzung „null Trades ist ein Wert" (2); die zehn Stellen wie die vierzehn; Gegenprobe erweitert |
+> | d | `pfadvergleich.py`: Stummel, benannt (3) |
+
+**43-7 — Ergänzung zu 24b A2 / 36.5 — null Trades** · Art: Registertext
+(Ergänzung) · Quelle: 25e 2 (2), 3 (c)
+
+> **Ergänzung zu 24b A2 / 36.5 — null Trades:** Ein Lauf des Laufbereichs, der keine Trades findet oder ausführt, schreibt dieses Ergebnis (leere Liste, Sharpe 0 nach 1c) und endet mit 0; er endet nie ohne Ausgabe. Unter dem Modus endet ein `exit()` ohne geschriebenes Ergebnis mit 2, gleich was ihm vorausgeht.
+
+*Seine Quelle des Grundes und die Umsetzung, zeichengleich:*
+
+> *Quelle des Grundes:* 5.1 Nr. 8, 1c, 36.5. Kein Ergebnis. Umsetzung: die Gegenprobe (`test_main_gegenprobe.py`) zählt künftig jedes `exit()` ohne vorherige Ausgabe, nicht nur die nach fehlender Eingabe; die zehn Stellen bekommen die Modus-Abfrage wie die vierzehn. Dass `__main__` heute von keinem Lauf-Typ erreicht wird, ändert daran nichts — dieselbe Lage wie bei (c). Für den Laufcode (TB-30b) heisst es: Der Erzeuger schreibt für eine Zelle ohne Trades die Nullzeile, nie nichts.
+
+*Und der Befund, den er daraus macht, zeichengleich:* „Ein Skript, das bei null Trades ohne Ausgabe mit 0 endet, ist für den Aufrufer von „gerechnet und geschrieben" nicht unterscheidbar; das ist die TB-45-Klasse, gleich ob die Leere aus fehlender Eingabe oder aus einer Rechnung stammt."
+
+**Stand, gemessen — vollzogen in TB-109** (`docs/ERGEBNIS_TB-109_nulltrades_ablagen_stummel.md`):
+die zehn Stellen `if trades.empty: … exit()` in den neun
+`strategies/*/equity_simulation.py` enden unter dem Modus mit 2 (Meldung auf
+stderr), ohne Modus zeichengleich (`53896e4`); die Gegenprobe
+`shared/test_main_gegenprobe.py` zählt jedes vorzeitige `exit()` im `__main__`
+ohne geschriebenes Ergebnis (`a02f035`) — Einzelheiten 43.4 (TB-109). Der Satz
+für den Laufcode (Nullzeile im Erzeuger) ist **nicht** vollzogen; er gehört zu
+TB-30b (43.5). **Kette:** ergänzt **36.5** und **41.1** (24b A2); stützt sich
+auf **5.1 Nr. 8** und **15.3 (Registertext 1c)**, beide zeichengleich. **Marken
+am alten Ort:** unter **5.1 Nr. 8** und unter der Tatsachennotiz zu **1c** in
+15.3.
+
+**43-8 — Die zwei weiteren Ablagen wie `tb40_lauf_*`** · Art: Registertext
+(Anwendung von Klasse (iv), 42.2) · Quelle: 25e 2 (1)
+
+> **(1) `tb40_faltenplan_*` und `tb40_proben_*` — wie `tb40_lauf_*`.** Eure Neigung ist richtig: Klasse (iv) fragt nicht, welcher Lauf den Ordner anlegt, sondern ob ein Modul des Laufbereichs Ablagen hinterlässt. Dass `hole_faltenplan()` ohne JSON von keinem gemessenen Lauf-Typ gerufen wird, ist eine Tatsache über heute; der Laufbereich wird am Tag gemessen. Kleiner Auftrag, dieselbe Bauart (`finally`, Pfad in der Meldung, wenn kein Ergebnis).
+
+**Stand, gemessen — vollzogen in TB-109** (`29640ca`): `hole_faltenplan()`
+entfernt `tb40_faltenplan_*`, `stille_filter()` entfernt `tb40_proben_*`, je im
+`finally` nach dem Lesen des Ergebnisses; ohne Ergebnis bleibt der Ordner, sein
+Pfad steht in der Meldung. **Kette:** Klasse (iv) in **42.2**; `tb40_lauf_*`
+TB-107 (42.4, G8 ff.).
+
+**43-9 — Klasse (iv) im Audit** · Art: Registertext (Handwerk am Audit) ·
+Quelle: 25e Abschnitt 1, 3 (b)
+
+*Fable, 25e Abschnitt 1, zeichengleich:* „dass das Aufräumen im Lese-Audit als zehn Verzeichnis-Öffnungen in (i) erscheint, ist genau der Grund, warum Klasse (iv) eine Klasse ist und keine Erlaubnis — der Audit soll diese Zugriffe als (iv) führen, nicht als (i) ausserhalb; Handwerk am Audit, klein."
+
+**Stand, gemessen — gebaut in TB-109** (`a02f035`,
+`docs/belege/TB-109/d_auswerten.py`; die Fassung TB-104 bleibt): Ein
+Verzeichnis im Temp-Verzeichnis, das ein Prozess des Laufs selbst anlegt, ist
+eine eigene Ablage; **jeder** lesende Zugriff darauf oder darin steht unter
+(iv). ⚠️ **Tatsachennotiz zur Reichweite:** Fables Satz nennt das Aufräumen
+(die zehn Verzeichnis-Öffnungen). Gebaut ist mehr: Auch das Lesen des
+Ergebnisses in der eigenen Ablage steht unter (iv). Im Benchmark-Lauf fällt
+Klasse (i) ausserhalb damit von 31 auf **11**, nicht auf die 21 aus TB-106.
+Welche Reichweite gilt, ist bei Fable gefragt (Ergebnis TB-109, Frage 2) —
+**offen**, 43.5. Schreibzugriffe bleiben unter (iii).
+
+**43-10 — `pfadvergleich.py`: der benannte Stummel** · Art: Tatsachennotiz ·
+Quelle: 25e 2 (3), 3 (d)
+
+> **(3) `pfadvergleich.py` — der Stummel, wie bei Probe A.** Eure Neigung trifft, mit dem Grund, den ihr nennt (ein Werkzeug, das dauerhaft 1 meldet, verwässert 1), und mit einer Bedingung: Der Stummel wird als solcher benannt (*„Fassung TB-52 plus `selektionsmodus = lambda: False`, weil der heutige Nachbar die Funktion verlangt"*) — das Werkzeug vergleicht dann weiter, was es vergleichen soll (Pfadauflösung), und behauptet nicht, TB-52 habe die Funktion gehabt. Dass `test_paths` Probe A genau das schon tut, ist der Konsistenzgrund. Das Werkzeug liegt ausserhalb des Laufbereichs; Live-Freigabe wie gehabt.
+
+**Stand, gemessen — vollzogen in TB-109** (`8570ce8`):
+`research/resolver_selektion/pfadvergleich.py` hängt an die Fassung aus TB-52
+den Stummel `def selektionsmodus(): return None` an, benannt im Kommentar;
+eigenständig rc **0** („GRUEN"). ⚠️ **Mit `None`, nicht mit Fables `False`** —
+43.3.
+
+### 43.3 ⚠️ Berichtigung des steuernden Chats an 25e (3) — vorläufig, von Fable nicht bestätigt
+
+**43-11** · Art: Berichtigung (vorläufig) · Quelle: Ergebnis TB-109, Block D
+
+Fables Wortlaut für den Stummel, zeichengleich: „Fassung TB-52 plus `selektionsmodus = lambda: False`, weil der heutige Nachbar die Funktion verlangt"
+
+**Die Berichtigung:** „`selektionsmodus = lambda: False`" lies
+„`selektionsmodus()` → `None`". **Grund:** `shared/strategy_paths.py` fragt seit
+TB-107 `paths.selektionsmodus() is not None`; `False is not None` ist wahr. Mit
+`False` hält `strategy_paths` den Modus für aktiv. `shared/test_paths.py` Probe
+A benutzt aus demselben Grund `return None`.
+
+**Verhaltensbeleg (TB-109, `docs/belege/TB-109/d_stummel_probe.txt`):** Mit
+`None` legt `strategy_paths` im Wegwerfbaum des Werkzeugs in **9 von 9** Bots
+`results/` und `logs/` an, wie jeder Aufruf ohne Modus; mit `False` in **0 von
+9**. ⚠️ **Das Werkzeug selbst meldet in beiden Fällen 0 Unterschiede** — es
+vergleicht Zeichenketten, und die sind in beiden Zweigen gleich. Der
+Widerspruch zeigt sich also am durchlaufenen Zweig, nicht an der Ausgabe des
+Werkzeugs.
+
+⚠️ **Diese Berichtigung ist vorläufig:** Sie stammt vom steuernden Chat
+(`docs/auftraege/MAC_TB-109_nulltrades_ablagen_stummel.md`, Abschnitt
+„Ein Widerspruch in Fable 25e (3)"), nicht von Fable. Fable ist sie mit dem
+Ergebnis TB-109 vorgelegt; **bis er sie bestätigt, steht sie hier als
+Vorschlag.** Fables Satz in 43-10 bleibt zeichengleich stehen. Bestätigt er
+sie, kommt ein Eintrag „berichtigt durch …" dazu; widerspricht er, wird der
+Stummel zurückgebaut, mit Grund.
+
+> ⭐ **Von Fable bestätigt (26a 3 (1)), siehe 45.1** (TB-114, 26.09.2026).
+> Überschrift und Text oben bleiben zeichengleich.
+
+### 43.4 Tatsachennotizen aus TB-107, TB-108 und TB-109
+
+**43-12 — Tatsachennotizen TB-107:** *Fables Liste, 25e 3 (a) — zeichengleich oben in 43.2. Gemessen steht
+TB-107 in **42.4** (G8–G10 und die Zeile zu `f5fdb53`); hier nichts doppelt.*
+
+*TB-108 und TB-109: eigene Fassung der Sitzungen, gemessen; kein
+Fable-Wortlaut.*
+
+| | Tatsache | Ergebnisdokument, Commit |
+|---|---|---|
+| 43-13 | **TB-108:** Abschnitte **41** und **42** eingetragen, in einem Commit mit allen Marken; **67** Einträge (41: A1–A12, B1–B8, C1–C9; 42: D1–D12, E1–E8, F1–F8, G1–G10); **108** Zitate eingesetzt, `diff` 108/108 rc 0; **20** Marken an 19 Stellen; `numstat` 1134/0; `herkunft.register()` `0ece95e2…` ⇒ `c85dd6c3…`. **Nicht gesetzte Marken:** keine in Abschnitt 10 (F3 und F8 stehen deshalb in 42.3); keine in 38.x (der Modus-Nachweis steht in 39.6). Befunde: H6 bis heute nicht eigenständig (41.1, A4); ein dritter Hash-Übergang an einem gesperrten Pfad (`messgroessen.py`, TB-103, 42.5) | `ERGEBNIS_TB-108_register_41_42`; `f4d3e2a`, `486032d` |
+| 43-14a | **TB-109, die zehn Stellen:** unter dem Modus Meldung auf stderr und Rückgabewert 2, Abfrage an der Stelle über `paths` (Bauart der vierzehn, 42.4 G2); **ohne Modus**: Trade-Listen der neun Bots vorher = nachher (Hash), `research/tb27_kapitalsimulation/vergleich.py --pruefen` rc 0, `test_ergebniskurven` 44/44; neue Proben `shared/test_nulltrades_modus.py` 34/34 | `ERGEBNIS_TB-109` B; `53896e4` |
+| 43-14b | **TB-109, A3 — erreicht ein Cron-Lauf heute eine der zehn Stellen? Nein.** Die `__main__`-Blöcke wie von `shared/kurven_lauf.py` gestartet (Stubs, `data/`, ohne Modus), anweisungsweise bis vor `simulate_portfolio`: an allen zehn Stellen Trade-Liste **nicht leer**, neun von neun Läufen erreichen `simulate_portfolio`. Tatsache über den Datenstand `d9449faf…` | `ERGEBNIS_TB-109` A3 |
+| 43-14c | **TB-109, Gegenprobe:** gezählt wird jedes vorzeitige `exit()`/`sys.exit()`/`quit()` im `__main__` ohne vorher geschriebenes Ergebnis — **24** Stellen im Laufbereich (14 + 10), **alle** mit Abfrage, keine weitere gefunden; 16 reguläre Blockenden (`sys.exit(main())` u. ä.) ausgewiesen, nicht gezählt. Grenze: `main()`-Funktionen prüft sie nicht | `ERGEBNIS_TB-109` E1; `a02f035` |
+| 43-14d | **TB-109, Ablagen:** `tb40_faltenplan_*` und `tb40_proben_*` entfernt (43-8); ein Lauf der alten Fassung hinterliess 1 + 9 Ordner, seit C 0; `ut.json`, `sf.json` bytegleich | `ERGEBNIS_TB-109` C; `29640ca` |
+| 43-14e | **TB-109, Audit (iv):** wie 43-9; im Benchmark-Lauf (Repo und Klon) 10 eigene Ablagen, 20 lesende Zugriffe (10 Verzeichnis-Öffnungen, 10 Ergebnis-JSON), alle entfernt | `ERGEBNIS_TB-109` E2 |
+| 43-14f | **TB-109, Abnahme:** Benchmark-Tabelle `64fb2912…` im Modus (Repo und frischer Klon) und ohne Modus bytegleich — als Nachweis nach 41.2 (B4) weiter **2**; acht Werkzeugausgaben ohne Modus bytegleich; Trockenlauf 9 × rc 0; Sonde gegen `40ffe18d…` vorher = nachher; `register()` `c85dd6c3…` unverändert; `test_vorregistrierung` 196/196 | `ERGEBNIS_TB-109` F; `723281f` |
+
+### 43.5 Was offen bleibt
+
+| | Sache | wohin |
+|---|---|---|
+| (1) | **`auswertung.Abbruch` ⇒ 2** (43-1) — eine Zeile an der Klasse | nächste planmässige Öffnung von `auswertung.py` (Punkte 3/5/14, neues Abbild) |
+| (2) | **Die zweite Öffnung von `herkunft.py`** (43-4): Prüfansicht mit `paths.DATA_DIR`, `TB30A_BASE_DIR` unter dem Modus 2 | mit dem Erzeuger oder vor ihm (Auftrag TB-111, Zweig `tb-111`, nicht auf `main`) |
+| (3) | **Die Auflösung der Kopie in `faltenplan_neun.py`** (43-3) | nach TB-100 (Faltenplan-Abbild als Vergleichsgrösse) |
+| (4) | **Die Neuerzeugung des ERZEUGT-Blocks** (43-6) | mit dem Raster-Nachzug, 40.8 (h) |
+| (5) | **Die Nullzeile im Erzeuger** für eine Zelle ohne Trades (43-7, Satz für den Laufcode) | TB-30b |
+| (6) | **Die Reichweite von (iv) im Audit** (43-9) und die **Bestätigung der Berichtigung 43-11** | Fable (Ergebnis TB-109, Fragen 1 und 2) |
+| (7) | **Die Erweiterung von 19 auf den Laufbereich** (42.6 (4)) | eigener Auftrag |
+| (8) | **Der Erzeuger auf dem Signalpfad**; **das Faltenplan-Abbild** (42.6 (5), (6)) | Plan-Punkte 3, 5 und 7 (TB-101) |
+| (9) | **Fable 25f** (Gesamtanalyse; 42.6 (3)) | eigener Eintrag, nach Fables Antwort |
+
+### 43.6 Was hier ausdrücklich NICHT getan wurde
+
+| | | gehört zu |
+|---|---|---|
+| ⛔ | **Keine `.py` geändert, nichts gerechnet** — auch wo ein Eintrag eine Codeänderung verlangt (43-1, 43-4) | 43.5 |
+| ⛔ | **Kein neues Abbild** — keine Sperrlistendatei hat sich bewegt; das gültige Abbild bleibt `sperrliste_abbild_2026-09-25b.json` (`40ffe18d…`), Sonde vorher und nachher gleich (`docs/belege/TB-110/0_sonde_vorher.txt`, `c_sonde_nachher.txt`) | — |
+| ⛔ | **Kein alter Registersatz umgeschrieben** — Marken sind neue Zeilen, nichts entfernt | — |
+| ⛔ | **Keine Marke in Abschnitt 10**; die Tatsachennotiz zu Punkt 4 (43-2) steht in 43.1 | — |
+| ⛔ | **Nichts aus 25f** | 43.5 (9) |
+| ⭐ | **Sichtschutz 27.1:** keine Ergebnisgrösse des Selektionsraums; „Trade-Liste leer ja/nein" je Bot ohne Zahl | — |
+
+**Die Marken am alten Ort** (je neue Zeilen, der alte Satz zeichengleich): 5.1
+Nr. 8 · 12 · 15.3 (unter der Tatsachennotiz zu 1c) · 36.5 · 37.4 · 42.6.
+
+*Dieser Abschnitt ist rein additiv: Er trägt die Einträge des Verfahrensprüfers
+aus zwei Antworten zeichengleich ein, dazu eine vorläufige Berichtigung des
+steuernden Chats mit Verhaltensbeleg und die Tatsachen aus drei Aufträgen — und
+entfernt nichts. Gebaut und gerechnet wird nichts.*
 
 ## 44. Vollzug: `herkunft.py` im Modus, `auswertung.py` endet mit 2, 19 über den Laufbereich — Tatsachennotizen TB-111 und TB-112 (TB-113, 26.09.2026)
 
@@ -163,6 +477,9 @@ Laufbereichs lädt das Modul (Laufbereich 81 Module, TB-107 F1 = TB-112 A2; dort
 Startprüfung also heute nicht an. Kommt das Modul in den Laufbereich (mit dem
 Erzeuger, der `register()` und `commit()` ruft, 43-4), zeigt es die nächste
 Laufbereichsmessung, und die Liste wird mit ihr erneuert (44-8).
+
+> ⭐ **44-6 ERGÄNZT durch R29 (47.12)** (Fable 27c R29, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 44.2 TB-112 — Sauberkeit über den Laufbereich
 
@@ -381,10 +698,16 @@ Vollzug steht in **45.11**.
 > ⭐ **Zwei Erzeuger; Bindung der Listen: siehe 46.3** (Fable 27a R12, TB-117,
 > 26.09.2026). Zitat und Kette oben bleiben zeichengleich.
 
+> ⭐ **45.3 ERGÄNZT durch R42 (48.10)** (Fable 29b R42, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 45.4 R4 — Ergänzung zu 19 / 42.2 E2 (Pflege von `ARBEITSBAUM_PFADE`)
 
 > **R4 — Ergänzung zu 19 / 42.2 E2 (Pflege von `ARBEITSBAUM_PFADE`).** Die Liste der Pfade der Sauberkeitsprüfung steht als Literal im Resolver; eine Gegenprobe liest die Laufbereichsmessung aus der Messdatei und vergleicht. Am Tag-Commit wird der Laufbereich neu gemessen; weicht die Messung von der Liste ab, ist das ein Befund: Die Liste wird vor dem Tag nachgezogen, nie durch ihn. Die Liste wird nicht aus der Messung erzeugt.
 > *Quelle des Grundes:* Prüfprinzip B3 (ein Gegenbeweis gegen eine bewegliche Referenz prüft nichts), 25b E5 (Messung am Tag-Commit). Kein Ergebnis.
+
+> ⭐ **45.4 (R4) ERGÄNZT durch R29 (47.12)** (Fable 27c R29, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** ergänzt **19** und **42.2 E2**; beantwortet TB-112 Frage 2 (44.3).
 Heute gebaut ist genau diese Form (Literal in `shared/paths.py`, Gegenprobe
@@ -400,11 +723,23 @@ TB-113-Marke) und unter 42.2 E2.
 > (c) `herkunft.datenstand()` endet unter dem Modus ohne übergebenen Pfad mit 2; Beifang der nächsten Öffnung von `herkunft.py`, kein eigener Auftrag.
 > *Quelle des Grundes:* 24b A10 (kein Fallback unter dem Modus), 25e (2) (null Trades ist ein Wert), 36.5, 26a 5. Kein Ergebnis.
 
+> ⭐ **45.5 (R5) (a) ERGÄNZT durch R29 (47.12)** (Fable 27c R29, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **45.5 (b) BERICHTIGT durch R33 (48.1)** (Fable 29b R33, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** ergänzt **41.1 A12** und die Zeile **(5)** in **42.6** (der
 Erzeuger auf dem Signalpfad); beantwortet TB-109 Frage 3 (b) und TB-111
 Frage 1 (c) (44.3) und Fables Punkt (5) zur Wechselwirkung (a). **(c) ist in
 TB-114 vollzogen** (Block B, 45.11). Marken unter 41.1 A12 und in 42.6
 Zeile (5).
+
+> ⭐ **45.5 ERGÄNZT durch R34 (48.2)** (Fable 29b R34, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **45.5 PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 45.6 R6 — Ergänzung zu 27 (Messungen auf dem Selektionsraum nach dem Tag)
 
@@ -594,6 +929,12 @@ TB-114-Marke von 41.1 A12 und am Ende von 45.3. ⛔ **Nicht vollzogen und nicht
 Teil von TB-117:** Die Listen werden nicht neu erzeugt, `EINGEFROREN` behält
 die neun heutigen Listen.
 
+> ⭐ **46.3 ERGÄNZT durch R39 (48.7)** (Fable 29b R39, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **46.3 ERGÄNZT durch R42 (48.10)** (Fable 29b R42, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 46.4 R13 — Tatsachennotizen zum Snapshot und zu den Eingaben (neben 5e, 28, 31; Punkt 10; 16.4)
 
 > **R13 — Tatsachennotizen zum Snapshot und zu den Eingaben (neben 5e, 28, 31; Punkt 10; 16.4).**
@@ -618,6 +959,15 @@ werden nur gelesen (46.11). ⛔ **(d) ändert vor dem Tag nichts** an
 
 > **R14 — Ergänzung zu 12 und 36.5 (Herkunftsprüfung in `auswertung.py`).** `auswertung.py` liest `<wurzel>/<bot>/herkunft.json` für jeden Bot und endet mit 2, wenn die Datei fehlt, wenn der Commit-Hash vom Tag-Commit (5e, `TB_SELEKTIONSCOMMIT`) abweicht, wenn der Datenstand-Hash vom registrierten Datenstand `d9449faf…` abweicht, wenn der Register-Hash von `herkunft.register()` zur Laufzeit der Auswertung abweicht, oder wenn die neun `herkunft.json` untereinander abweichen. Der Bericht trägt Commit, Datenstand und Register-Hash in seinem Kopf. Der Schreiber von `herkunft.json` (Zellen-Erzeuger) prüft sich nicht selbst; der Auswerter prüft ihn. Umsetzung: eine Öffnung von `auswertung.py` (Punkte 3/5/14) vor dem Tag, zusammen mit der Streichung aus R8 (a); Hash-Übergang nach 37.3.
 > *Quelle des Grundes:* Docstring von `auswertung.py` Z. 51–52 (nennt `herkunft.json` als Teil des Vertrags), Abschnitt 12 (Vertragsbruch ⇒ Abbruch), 36.5, 25c (1) (Register-Code-Widerspruch ist 2), Prüfprinzip A8. Kein Ergebnis.
+
+> ⭐ **46.5 (R14) ERGÄNZT durch R25 (47.8)** (Fable 27c R25, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **46.5 (R14) ERGÄNZT durch R26 (47.9)** (Fable 27c R26, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **46.5 (R14), Bedingung 5 ERGÄNZT durch R27 (47.10)** (Fable 27c R27, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** ergänzt **12** (Vollständigkeitstest; `auswertung.py` bricht bei
 jeder Verletzung des Datenvertrags ab) und **36.5** (Ausgänge); beantwortet
@@ -680,6 +1030,9 @@ festgelegt und für Fable benannt, zeichengleich
 ⚠️ **Vorläufig, bis Fable bestätigt.** TB-117 setzt diese Lesart in Block D
 um; weicht Fables Antwort ab, ist das eine weitere Öffnung von
 `auswertung.py`.
+
+> ⭐ **46.9 ERGÄNZT durch R25 (47.8)** (Fable 27c R25, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 46.10 Was offen bleibt
 
@@ -776,3 +1129,488 @@ Stellen wie TB-114).
 **Nicht vollzogen in TB-117:** R12 (Neuerzeugung der Listen), R15 (b) (am
 Tag-Commit), R16 (a) (nach dem Tag) und (b) (mit dem Zellen-Erzeuger), die
 Bestätigung von 46.9 durch Fable.
+
+## 47. Fable 27c — Registerblock R18–R32 (TB-126)
+
+Reines Eintragen von Registertext, Bauart wie 46 (46.0). Quelle: `docs/projektfuehrung/FABLE_ANTWORT_2026-09-27c_leiter_lesarten_und_wachen.md`, md5 `ff96392ed654fdcae2e991e51e424dc5`, 48 420 B, am Commit `0f56aeb`, Abschnitt „Registerblock — zeichengleich kopierbar, nummeriert“, Z. 161–209. Die Datei hat der steuernde Chat am 29.09.2026 aus Fables Ablage übertragen, zweifach unabhängig, `cmp` rc 0; Bytegleichheit mit der Ablage war mit dem Werkzeug nicht messbar. Je Block ein Unterabschnitt in der Reihenfolge des Codeblocks, der Block als Blockzitat, darunter die Kette. Die Nummern hat der steuernde Chat vergeben (Auftrag TB-126, Einzelfreigabe des Betreibers), nicht Fable. Die Regel aus 34 gilt weiter: Marke am alten Ort, der alte Satz bleibt zeichengleich. ⛔ In Abschnitt 10 steht keine Marke; was dorthin gehört, steht in der Kette und als Indexzeile in `REGISTER_INDEX.md`. Die Voraussetzungen, die Fable „zu messen“ nennt, stehen mit Befund in 50.1.
+
+### 47.1 R18 — Präzisierung zu 16.4 (m), (h) und (l) (Zellenanteil und Klassenschlüssel; L1)
+
+> **R18 — Präzisierung zu 16.4 (m), (h) und (l) (Zellenanteil und Klassenschlüssel; L1).** Das Buch wird zuerst nach dem Klassenschlüssel (l) auf die Anlagen geteilt. Der Zellenanteil in (m) ist der Anteil der Zelle am Budget ihrer Anlage: zu gleichen Teilen unter den Zellen dieser Anlage nach (g). „Aktive Zellen teilen das Buch zu gleichen Teilen" in (h) ist innerhalb der Anlage zu lesen. Eine Zusammensetzung von (h) und (m), die Buch unverteilt lässt, ist keine Lesart: 7.1 sagt „nicht in Kasse", und 16.4 kennt keinen Anteil, der weder in Bots noch in einer Benchmark-Position liegt.
+> *Quelle des Grundes:* (l) „skaliert die Zellen einer Anlage gemeinsam" (eine Gruppe gemeinsam skalieren legt ihre Summe fest); (j) nennt die Benchmark-Position „ihrer Anlage" als Behälter der Zelle; 7.1. Kein Ergebnis.
+
+**Kette:** Marken: 16.4 (m); 16.4 (h); 16.4 (l).
+
+### 47.2 R19 — Präzisierung zu 16.4 (h), (j) und (k) (Zahl der Zellen; L2; T116-4)
+
+> **R19 — Präzisierung zu 16.4 (h), (j) und (k) (Zahl der Zellen; L2; T116-4).** Die Zahl der Zellen in (h) ist die Zahl der Zeilen in (g), nicht die Zahl der gerade aktiven Zellen. Eine Zelle, in der kein Bot auf Grundbudget oder Bestätigt steht, behält ihren Anteil und hält ihn nach (j) als statische Benchmark-Position ihrer Anlage; die übrigen Zellen wachsen nicht. Eine neue Zelle im Sinn von (k) entsteht nur durch eine neue Zeile in (g) — einen nach 16.8 zugelassenen Bot, dessen Quelle × Anlage in (g) noch nicht steht. Erhält ein Bot einer bestehenden Zelle über einen neuen registrierten Lauf wieder Grundbudget (6 (d), 7.1), geht der Anteil seiner Zelle aus der Benchmark-Position an ihn zurück; die Zahl der Zellen ändert sich nicht. Ein neu zugelassener Bot in einer bestehenden Zelle tritt in deren Teilung nach (i) ein; auch das ändert sie nicht. Die Zahl der Zellen hat keine Vorgeschichte.
+> *Quelle des Grundes:* (j) „nicht an andere Zellen"; das Prinzip „Die Leiter bewegt Bots. Sie bewegt keine Zellen."; (g) „die Zuordnung … ändert sich nur mit dem Bot"; (k) „folgt aus Zulassung, nicht aus Ergebnis". Kein Ergebnis.
+
+**Kette:** Marken: 16.4 (h); 16.4 (j); 16.4 (k).
+
+### 47.3 R20 — Ergänzung zu 16.4 (l) und (j) (Anlage ohne aktive Zelle; L3)
+
+> **R20 — Ergänzung zu 16.4 (l) und (j) (Anlage ohne aktive Zelle; L3).** Der Klassenschlüssel (l) gilt auch dann, wenn eine Anlage keine aktive Zelle hat. Ihr Anteil nach (l) hält die statische Benchmark-Position dieser Anlage; er geht nicht an die andere Anlage.
+> *Quelle des Grundes:* (l) ist ein Betreiberentscheid über den Risikobeitrag (Begründung 80/20 in 16.4), gültig bis Netting, und nicht danach gesetzt, welche Anlage läuft; (j) „nicht an andere Zellen"; 7.1 „nicht zu den Überlebenden". Kein Ergebnis.
+
+**Kette:** Marken: 16.4 (l); 16.4 (j).
+
+### 47.4 R21 — Präzisierung zu 16.4 (b), (i) und (j) und Ergänzung zu 7.1 (Schatten nach der Herkunft der Stufe; L4…
+
+> **R21 — Präzisierung zu 16.4 (b), (i) und (j) und Ergänzung zu 7.1 (Schatten nach der Herkunft der Stufe; L4; Prüfung vor dem Tag).** Der Faktor 0 in (i) ist der Multiplikator jedes Bots auf Schatten. Wohin sein Budgetanteil geht, hängt an der Herkunft der Stufe: (1) Schatten durch Abstieg nach (d) — Quartalsprüfung, Out-of-Sample — zählt in der Teilung der Zelle mit Faktor 0; die übrigen Bots der Zelle teilen das Zellenbudget nach (i) ((j)). (2) Schatten aus jedem anderen Grund — nach (b) im Selektionslauf, nach 15.6 (c) unterbestimmt, nach 16.5/17.7 „Backtester nicht bestätigt", nach (e) Notbremse — behält den Anteil, den (i) ihm auf Grundbudget gäbe (Faktor 1 in der Summe der Faktoren der Zelle); dieser Anteil wird als statische Benchmark-Position seiner Anlage gehalten ((b), 7.1). Steigt ein Bot derselben Zelle auf Bestätigt, gilt (i) über alle Faktoren der Zelle einschliesslich dieses Anteils. Die Benchmark-Position einer ganz inaktiven Zelle nach (j) ist die Summe der Grundbudget-Anteile ihrer Bots. Die Eingabe des Leiter-Skripts ist je Bot die Stufe und, bei Schatten, ob die Stufe aus (d) stammt; die Herkunft steht im Journal ((b): Ergebnis des eingefrorenen Skripts; (d): Quartalsprüfung; (e): protokolliert nach 22.4). Die Prüfung vor dem Tag in 16.4 zählt jede mögliche Eingabe auf — vier Zustände je Bot, 4⁹ = 262 144 —, nicht nur die 3⁹ Stufentabellen; sie verlangt für jede Eingabe einen eindeutigen Multiplikatorvektor und eindeutige Benchmark-Anteile je Anlage, ohne Eingabe des Betreibers.
+> *Quelle des Grundes:* 7.1 „nicht zu den Überlebenden" (Betreiber-Festlegung, Sperrlistenpunkt 5) und (b) für den Ausfall im Lauf; (j) „die übrigen teilen es nach (i)" für den Abstieg; das Prinzip: Out-of-Sample-Evidenz über einen Bot bewegt Kapital zwischen Bots, ein In-Sample-Ausfall nicht (22.4). Beide Sätze stehen; keiner wird gestrichen. Kein Ergebnis.
+
+**Kette:** Marken: 7.1; 16.4 (b); 16.4 (i); 16.4 (j).
+
+### 47.5 R22 — Präzisierung zu 16.4 (a) und (i) (Faktor „Bestätigt" vor Netting; L5)
+
+> **R22 — Präzisierung zu 16.4 (a) und (i) (Faktor „Bestätigt" vor Netting; L5).** Der Faktor 2 in (i) gilt ab der ersten Quartalsprüfung, die einen Bot nach (c) auf Bestätigt setzt. „Rang-5-Gewichtung, sobald Netting existiert" in (a) betrifft die Gewichtung im Netting, nicht den Stufenfaktor.
+> *Quelle des Grundes:* Das Register bedingt in (l) ausdrücklich auf Netting und in (i) nicht; ein Faktor 1 bis Netting machte (c) wirkungslos. Kein Ergebnis.
+
+**Kette:** Marken: 16.4 (a); 16.4 (i).
+
+### 47.6 R23 — Präzisierung zu 16.4 (b), 7.1 und 15.6 (c) (Budgetanteil und Höhe der Benchmark-Position; L0.1; T116-3)
+
+> **R23 — Präzisierung zu 16.4 (b), 7.1 und 15.6 (c) (Budgetanteil und Höhe der Benchmark-Position; L0.1; T116-3).** Der Budgetanteil eines Bots auf Schatten ist ein Budget (R21). Die statische Benchmark-Position darin ist in Höhe seines mittleren Exposures: der mittleren Exposure des Plateau-Gewinners über die Selektionsfalten, wie Abschnitt 7 (c) und der Bericht nach Abschnitt 8 sie führen. Der übrige Teil des Budgets ist nicht Kasse im Sinn von 7.1, sondern der nicht investierte Teil des Budgets, wie ihn der Bot selbst mit derselben mittleren Exposure hielte; 7.1 verbietet, das Budget aus dem Buch zu ziehen oder den Überlebenden zu geben. Das Leiter-Skript gibt Budgets aus (Multiplikatoren je Bot, Benchmark-Anteile je Anlage); die Höhe der Position ist nachgelagert und kein Parameter der Prüfung vor dem Tag.
+> *Quelle des Grundes:* 4.2 (Benchmark als statische Position in Höhe der mittleren Exposure), 7 (c) (mittlere Exposure des Gewinners), 7.1. Kein Ergebnis.
+
+**Kette:** Marken: 7.1; 15.6 (c); 16.4 (b).
+
+### 47.7 R24 — Tatsachennotiz zu 16.4 (h) und (g) (Folge der Gleichteilung bei ungleicher Besetzung; T116-5)
+
+> **R24 — Tatsachennotiz zu 16.4 (h) und (g) (Folge der Gleichteilung bei ungleicher Besetzung; T116-5).** Unter R18–R20 trägt in der Stufentabelle „alle Grundbudget" ein Bot, der allein in seiner Zelle steht, zwei Fünftel des Buchs (TB-116: `volatility_breakout` 3,6-fach seiner heutigen Grösse; die drei Umkehr-Aktien-Bots je 1,2; die Krypto-Bots 0,45 und 0,3 — Budgetanteile aus aufgezählten Tabellen). Das ist eine Folge des Registertexts, keine Lesart und kein Fehler: (h) macht die Zelle zur Einheit der Teilung, (g) nennt die Besetzung. Eine Teilung nach Zahl der Bots je Zelle liesse Bots Zellen bewegen. Ein Deckel je Bot gehört nach 4.3 in das Netting (Rang 5), das nicht existiert; ein Deckel vor Netting wäre ein neuer, als willkürlich gekennzeichneter Registertext des Betreibers (Rest in die Benchmark-Position der Anlage), dessen Quelle des Grundes der Risikoappetit ist, nie die Zahl. Entscheidungsvorlage: (a) so lassen — Empfehlung des Verfahrensprüfers; (b) Deckel je Bot vor Netting — Betreiber.
+> *Quelle des Grundes:* (h) „die einzige Aufteilung, die kein Ergebnis verwendet", das Prinzip, 4.3. Kein Ergebnis.
+
+**Kette:** Marken: 16.4 (h); 16.4 (g). Entscheid: 50.6.
+
+### 47.8 R25 — Bestätigung von 46.9 als Ergänzung zu 12 und R14 (Herkunftsprüfung ohne Modus; T117-1)
+
+> **R25 — Bestätigung von 46.9 als Ergänzung zu 12 und R14 (Herkunftsprüfung ohne Modus; T117-1).** Die Herkunftsprüfung nach R14 ist Teil des Datenvertrags von `auswertung.py` unter dem Selektionsmodus: jede der fünf Bedingungen endet mit 2. Ohne Modus ist `herkunft.json` keine Pflichteingabe; sie wird gelesen, wenn vorhanden, für die ausgewerteten Bots, im Kopf des Berichts angezeigt, und ihr Fehlen oder Abweichen ist kein Abbruch. Grund: Ein Lauf dieses Registers ist ein Lauf unter dem Modus (5e/19, 42.2 E5); ohne Modus läuft `auswertung.py` gegen Beispieldaten mit erfundenen Werten (12), und eine Herkunft, die zu bezeugen wäre, gibt es dort nicht. Die übrigen Vertragsbrüche (43-1, 42.3 F1) bleiben unabhängig vom Modus 2: Ohne sie kann nicht gerechnet werden; ohne `herkunft.json` kann nicht bezeugt werden. Der Docstring, der `herkunft.json` als Teil des Vertrags nennt, trägt den Zusatz „unter dem Modus" [Voraussetzung, zu messen: ob seit TB-117 Block D vorhanden]; wenn nicht, Nachtrag mit der nächsten planmässigen Öffnung von `auswertung.py`, keine eigene.
+> *Quelle des Grundes:* 12, 5e/19, 42.2 E5, R10 (dieselbe Bauart), 25c (1). Kein Ergebnis.
+
+**Kette:** Marken: Abschnitt 12; 46.5, Block R14; 46.9. Voraussetzung gemessen: 50.1.
+
+### 47.9 R26 — Ergänzung zu 12, R14 und 35.4 (alle neun unter dem Modus; --bot; T117-2)
+
+> **R26 — Ergänzung zu 12, R14 und 35.4 (alle neun unter dem Modus; `--bot`; T117-2).** Unter dem Modus prüft `auswertung.py` die `herkunft.json` aller neun Bots, auch wenn nur ein Bot ausgewertet wird; ohne Modus nur die der ausgewerteten. Ein Lauf mit `--bot` unter dem Modus wertet nicht alle neun aus und ist kein Bericht dieses Registers (12: keine Option, die einen Bot ausnimmt; 14: Selektion → Bestätigungsperiode → Bericht für alle neun). Der Bericht des Tages ist der Lauf ohne `--bot`. Der Laufwrapper (35.4) startet `auswertung.py` unter dem Modus nur ohne `--bot`; `auswertung.py` selbst wird dafür nicht geöffnet. [Voraussetzung, zu messen: dass `--bot` unter dem Modus heute bis zum Bericht durchläuft; TB-117 J-7 hat den Modus im Prozess nachgestellt.]
+> *Quelle des Grundes:* 12, 14, R14 „für jeden Bot", 21b (3) (Prüfungen wandern dorthin, wo geändert werden darf). Kein Ergebnis.
+
+**Kette:** Marken: Abschnitt 12; 35.4; 46.5, Block R14. Voraussetzung gemessen: 50.1.
+
+### 47.10 R27 — Tatsachennotiz zu R14 Bedingung 5 und Ergänzung zu den Tag-Vorbedingungen (voller Commit-Hash; T117-3)
+
+> **R27 — Tatsachennotiz zu R14 Bedingung 5 und Ergänzung zu den Tag-Vorbedingungen (voller Commit-Hash; T117-3).** Bedingung 5 (die neun `herkunft.json` untereinander gleich) bleibt; neben 2–4 ist sie redundant, ausser beim Commit, der nach 19 als Präfix eines 7–40-stelligen `TB_SELEKTIONSCOMMIT` verglichen wird. Tag-Vorbedingung: Am Tag ist `TB_SELEKTIONSCOMMIT` der volle Hash des Tag-Commits (40 Zeichen); der Tag referenziert seinen Hash (17.2), und ein Präfix ist nicht sein Hash. Bedingung 5 wird nicht gestrichen: Redundanz in einer Wache ist kein Grund aus der Struktur.
+> *Quelle des Grundes:* 17.2, 19, Prüfprinzip C4. Kein Ergebnis.
+
+**Kette:** Marken: 46.5, Block R14 (Bedingung 5 steht in dessen erster Zeile).
+
+### 47.11 R28 — Tatsachennotiz zu Register 18 und Plan-Punkt 6 (drei Orte des Datenstands; T117-4)
+
+> **R28 — Tatsachennotiz zu Register 18 und Plan-Punkt 6 (drei Orte des Datenstands; T117-4).** Der registrierte Datenstand `d9449faf…` steht in Register 18 (Quelle) und als Codekopie in `shared/snapshot.py::VERANKERTER_DATENSTAND` und `research/vorregistrierung/auswertung.py::REGISTRIERTER_DATENSTAND`. Das ist der Zustand aus 32.5 (c) — Literal mit Probe gegen den Registertext — und als benannter Zwischenstand zulässig, wenn jede Kopie ihre Probe hat; für `auswertung.py` ist es J-r (TB-117) [Voraussetzung, zu messen: ob `snapshot.py` eine Probe gegen Register 18 hat; wenn nein, Handwerk ohne Sperrlistennähe]. Zusammenlegung innerhalb des Laufbereichs mit 40.8 (h): die Konstante wandert nach `registerdaten.py`, `auswertung.py` liest sie von dort. `snapshot.py` bleibt ausserhalb des Laufbereichs und behält seine gebundene Kopie; ein Import zöge es hinein.
+> *Quelle des Grundes:* 21j/37.5 (ein Wert, ein Ort), 32.5, 42.2 E5. Kein Ergebnis.
+
+**Kette:** Marken: Abschnitt 18. Voraussetzung gemessen: 50.1.
+
+### 47.12 R29 — Ergänzung zu 42.2 E5, R4 und R5 (a); Tatsachennotiz zu 44-6 (herkunft.py im Laufbereich; T117-5)
+
+> **R29 — Ergänzung zu 42.2 E5, R4 und R5 (a); Tatsachennotiz zu 44-6 (`herkunft.py` im Laufbereich; T117-5).** Der Lauf-Typ „`auswertung.py` samt Laufwrapper" (E5) ist ein Lauf, kein Import. Der echte Modus-Lauf von `auswertung.py` lädt seit TB-117 Block D `research/vorregistrierung/herkunft.py`; `herkunft.py` gehört damit zum Laufbereich, vor dem Zellen-Erzeuger. Die Laufbereichsmessung misst den Lauf-Typ „auswertung" als echten Modus-Lauf (Beispieldaten mit `herkunft.json`, wie TB-117 E); eine Messung über `import auswertung` ist für diesen Lauf-Typ keine Messung nach E5. `ARBEITSBAUM_PFADE` wird nach R4 vor dem Tag nachgezogen — mit der Öffnung von `paths.py`, die der Zellen-Erzeuger braucht, spätestens vor der ersten Laufbereichsmessung, die als Tag-Messung gilt; `test_arbeitsbaum_laufbereich.py` zieht mit (Grundsatz 40). Bis dahin ist `herkunft.py` am committeten Stand über Sperrlistenpunkte 11/12 und das Abbild gebunden und am Tag über die Sonde im Laufwrapper (36.2 (b)); eine uncommittete Änderung hielte die Startprüfung nicht an, die Sonde wohl. R5 (a) gilt mit diesem Grund fort.
+> *Quelle des Grundes:* 42.2 E5 (Vereinigung aller Lauf-Typen, gemessen als Lauf), R4 (Liste vor dem Tag nachgezogen, nie durch ihn), 25f A3 (keine Öffnung doppelt), Messung TB-117 E. Kein Ergebnis.
+
+**Kette:** Marken: 42.2, Eintrag E5 (e); 44.1, Eintrag 44-6; 45.4, Block R4; 45.5, Block R5, Punkt (a).
+
+### 47.13 R30 — Ergänzung zu 14 und zu den Tag-Vorbedingungen (Erzeuger und Auswertung am Tag-Commit; T117-6)
+
+> **R30 — Ergänzung zu 14 und zu den Tag-Vorbedingungen (Erzeuger und Auswertung am Tag-Commit; T117-6).** Der Zellen-Erzeuger und `auswertung.py` laufen am Tag-Commit (`TB_SELEKTIONSCOMMIT` = HEAD, 19). Zwischen dem Schreiben der `herkunft.json` und der Auswertung ändert sich weder das Register noch eine Datei aus `EINGEFROREN`; sonst endet die Auswertung nach R14 mit 2, und das ist ein Befund, kein Fehler der Wache. Registereinträge zum Lauf kommen nach dem Bericht. Ein späterer Lauf von `auswertung.py` auf demselben Selektionsraum läuft am Tag-Commit, sonst 2; nach R6 ist er nur als registrierte Messbitte zulässig oder ein Versuch.
+> *Quelle des Grundes:* 14 (Reihenfolge), 19 (Tag-Commit = HEAD), R14 (Register-Hash zur Laufzeit), 17.2, R6. Kein Ergebnis.
+
+**Kette:** Marken: keine. Abschnitt 10: Indexzeile, keine Marke.
+
+### 47.14 R31 — Tatsachennotizen 27c
+
+> **R31 — Tatsachennotizen 27c.**
+> (a) R8 (a) ist in TB-117 Block D berichtigt statt gestrichen; der neue Satz nennt den Ausgang 2 und die Quelle 44.1. Angenommen; „Streichung" in R8 (a) und R14 war Handwerk am Wortlaut.
+> (b) `shared/test_sperrlistensonde.py` (8a, H7f) wurde in TB-117 Block C nach Grundsatz 40 nachgezogen, obwohl nur für Block B freigegeben; die alten Fassungen brechen genau dort. Angenommen. Regel: Eine Freigabe je Sperrlistendatei nennt deren Tests ausdrücklich mit.
+> (c) Der TB-117-Auftrag nannte einen 0b-Wert für `auswertung.py`, den TB-116 nicht gemessen hatte; die Sitzung hat gegen das Abbild `5e5ad109…` gemessen. Regel des steuernden Chats (Zahlen aus früheren Ergebnissen nur mit Fundstelle) steht.
+> (d) Zu 27.3: Die Registerkopie liegt in der Ablage seit TB-118 in vier Teilen mit festen Namen (`REGISTER_KOPIE_teil1–4.md`, Abschnitte 0–23 / 24–37 / 38–43 / 44–46, Commit `1e11457`, sha256 `18e39ee2…`, KOPIE) und `REGISTER_INDEX.md`; der Verfahrensprüfer hat am 29.09.2026 alle vier vollständig gelesen (je ein Suchtreffer, Abschnitt 0 dieser Antwort).
+> (e) `FABLE_ANTWORT_2026-09-26a_…` liegt nicht in der Ablage (Übergabe 29.09. sagt das Gegenteil); ihr Registertext steht zeichengleich in 45.
+> *Quelle des Grundes:* ERGEBNIS_TB-117, Übergabe 29.09., `project_info` 29.09.2026. Kein Ergebnis.
+
+**Kette:** Marken: 27.3 (im Zitatblock 27.1 bis 27.5).
+
+### 47.15 R32 — Tatsachennotiz zu 27 — Anfangsbestand des Verfahrensprüfers beim dritten Umzug (29.09.2026)
+
+> **R32 — Tatsachennotiz zu 27 — Anfangsbestand des Verfahrensprüfers beim dritten Umzug (29.09.2026).** Der Chat des Verfahrensprüfers wurde am 29.09.2026 neu begonnen; er kennt aus dem Vorgängerchat nichts. Sein Wissensstand ist: der Wortlaut von `FABLE_UEBERGABE_2026-09-29_neuer_chat.md`; `REGISTER_INDEX.md` und `REGISTER_KOPIE_teil1–4.md` (Register 0–46, Commit `1e11457`, sha256 `18e39ee2…`, vollständig gelesen); aus der Ablage gelesen: `FABLE_ANFRAGE_2026-09-27c_…`, `ERGEBNIS_TB-116_leiter_lesarten.md`, `ERGEBNIS_TB-117_wachen_vor_dem_tag.md`, `FABLE_ANTWORT_2026-09-27a_…`, `FABLE_ANTWORT_2026-09-27b_…`, `UEBERGABE.md` (Stand 29.09.2026, 07:15), die Dateiliste der Ablage (43 Dokumente); als Suchausschnitt gesehen, nicht geöffnet: `BACKLOG_ENTSCHEIDUNGEN.md` (Einträge F2, Q1, E2) und `FABLE_UEBERGABE_2026-09-24_neuer_chat.md` (Abschnitt 2). Darin enthaltene Grössen, die an 27.1 grenzen: die Verfahrensgrössen des Registers (23.4, 24.6, 25.4, 32.2), gemessen nach vorher geschriebener Regel (27.2); die Budgetanteile und Multiplikatoren aus TB-116 (aufgezählte Stufentabellen, keine Kennzahl eines Parametersatzes). `BACKLOG.md`, `BACKLOG_ENTSCHEIDUNGEN.md`, `FABLE_ANTWORT_2026-09-25f_…`, `docs/belege/`, `ergebnisse/` und Trade-Listen: nicht gelesen. Weitere Grössen nach 27.1 kennt der Verfahrensprüfer nicht.
+> *Quelle des Grundes:* 27, Tatsachennotiz zum Anfangsbestand (Bauart 21.09.); Übergabe 29.09. Kein Ergebnis.
+
+**Kette:** Marken: Abschnitt 27.
+
+## 48. Fable 29b — Registerblock R33–R52 (TB-126)
+
+Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/FABLE_ANTWORT_2026-09-29b_sammlung_erzeuger_kalter_leser.md`, md5 `898d5bd53b6617209b7ce4f7e8992941`, 73 703 B, am Commit `0f56aeb`, Abschnitt „Registerblock … (ab R33)“, Z. 190–267. Übertragen wie 27c (47). Die Marken für Register 0–12 setzt dieser Abschnitt nach R51 (48.19); darunter steht **eine Marke in Abschnitt 9** (R48 (b)), die R51 ausdrücklich verlangt. Der Verweis aus R8 (d) in Register 9 (45.8) ist ein anderer und kommt weiter nach dem Tag; die Sätze „in 9 steht … keine Marke“ in 45.8 und 46.0 (und die Listen in 45.10, 46.10) beschreiben den damaligen Stand, ihr einziger Grund war dieser Verweis. Für R48, R49 und R50 stehen Marken an allen Orten, die der Unterpunkt nennt, und an denen der R51-Liste (Vereinigung). Für Abschnitt 10 und den vollen Datenstand-Hash (17.3, 17.9, 18) verlangt R51 Indexzeilen statt Marken.
+
+### 48.1 R33 — Berichtigung zu 45.5 (b) (Zeilen in zellen.csv)
+
+> R33 — Berichtigung zu 45.5 (b) (Zeilen in zellen.csv). „zellen.csv enthält für jede Zelle des Rasters genau eine Zeile; die Zeilenzahl ist gleich der Zahl der Zellen“ lies: „zellen.csv enthält für jede Zelle des Rasters und jede Falte des Faltenplans des Bots — Selektionsfalten und Bestätigungsperiode (35.1) — genau eine Zeile; die Zeilenzahl je Bot ist Zellen × (Selektionsfalten + 1). Eine (Zelle, Falte) ohne Trades trägt die Nullzeile: Trade-Zahl 0, Sharpe 0 nach 1c, Drawdown 0, nie nichts.“ Eine fehlende Zeile ist ein Befund über den Erzeuger, kein Ausgang. Es gibt keine Trade-Liste je Zelle als Rohergebnis; „leere Trade-Liste“ in 45.5 (b) und 43-7 bezeichnet den Fall „keine Trades gefunden“, dessen Ergebnis beim Listen-Erzeuger eine leere Liste und beim Zellen-Erzeuger die Nullzeile ist. F-1, F-2.
+> Quelle des Grundes: Datenvertrag von auswertung.py (Sperrlistenpunkte 3/5/14; „genau eine Zeile je (Zelle x Falte), fuer ALLE Falten des Faltenplans, Bestaetigungsperiode eingeschlossen“), 15.3 (1c: Falten-Sharpe je Falte), 43-7. Der Vertrag stand vor R5 (b); R5 (b) war Kurzform ohne Nachlesen — elfter Fall der Klasse „Bestand behauptet statt Voraussetzung genannt“. Kein Ergebnis.
+
+**Kette:** Marken: 45.5, Block R5, Punkt (b). Voraussetzung gemessen: 50.1.
+
+### 48.2 R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht)
+
+> R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht). Der Zellen-Erzeuger schreibt je Bot eine Datei zellenbericht.csv mit genau einer Zeile je Zelle und den Feldern: die drei Werte aus 22.2 (Ertragsanteil der besten Selektionsfalte, des besten Symbols, der fünf besten Trades), haltedauer_median_handelstage (15.3 (b), R41) und bestaetigung_ab_effektiv (R37). Grundlage der drei Anteile: realisierte Erträge der ausgeführten Trades (Summe pnl_pct), Faltenzuordnung nach dem Einstiegstag (2b), nur Selektionsfalten; Anteil = Beitrag ÷ Gesamtertrag; bei Gesamtertrag ≤ 0 wird kein Anteil gebildet, das Feld trägt „nicht definiert“. auswertung.py liest die Zeile des Plateau-Gewinners und berichtet sie (22.2: Bericht, kein Tor; N unverändert); es rechnet die Werte nicht. Die Feldliste von zellenbericht.csv ist Registertext (R39). F-3, F-4, F-6.
+> Quelle des Grundes: 22.2 (Werte des Laufs für den Gewinner), 12 (auswertung.py hat keinen Schalter und liest Rohergebnisse), Punkt 14 (Reihenfolge Selektion → Bestätigung → Bericht), 2b. Kein Ergebnis.
+
+**Kette:** Marken: 22.2; 45.5.
+
+### 48.3 R35 — Ergänzung zu 15.3 (Bootstrap) und Tatsachennotiz
+
+> R35 — Ergänzung zu 15.3 (Bootstrap) und Tatsachennotiz. 15.3 (a)/(b) regeln die Bauart eines Bootstrap-Intervalls; sie verlangen keines. Abschnitt 8 (Sperrlistenpunkt 13) führt keine Bootstrap-Zeile; der Lauf rechnet kein Intervall. Angewandt wird 15.3 auf die Messbitte R7 Nr. 6 (Block-Bootstrap-Band je Gewinnerzelle, nach dem Tag), gerechnet auf tagesreihen/<zelle>.csv mit L nach 15.3 (b) aus haltedauer_median_handelstage in zellenbericht.csv (R34). Tatsachennotiz: „im Auswertungsskript“ (15.3 (a)) trifft heute keinen Code (0 Treffer bootstrap, TB-120). F-4.
+> Quelle des Grundes: 8 (abschliessende Berichtsliste), 15.3 im Wortlaut („jedes … wird … gerechnet“), R6/R7. Kein Ergebnis.
+
+**Kette:** Marken: 15.3.
+
+### 48.4 R36 — Präzisierung zu 24.2 und 45.5 (zwei Drawdown-Spalten; Konsistenzprüfung; Ausschnitt)
+
+> R36 — Präzisierung zu 24.2 und 45.5 (zwei Drawdown-Spalten; Konsistenzprüfung; Ausschnitt). zellen.csv trägt je (Zelle, Falte) kapital_drawdown_mtm_pct — den Kapital-Drawdown der Nebenbedingung auf der täglichen MtM-Reihe (1a) auf den Tagen des Benchmarks (3b (c)) — und kapital_drawdown_ereignis_pct — den ereignisindizierten Drawdown, berichtet, nicht bewertet (24.2). Die Spalte kapital_drawdown_pct wird durch die zwei benannten ersetzt, nicht umgedeutet. auswertung.py rechnet kapital_drawdown_mtm_pct aus tagesreihen/<zelle>.csv nach und endet bei Abweichung mit 2. Der Drawdown je Falte ist der Ausschnitt eines durchgehenden Kapitalpfads (29.3, 2a): gemessen innerhalb der Falte, mit dem Kapitalstand am Faltenbeginn als erstem Hochpunkt, ohne Neustart des Kapitals. Festlegung 3 und Abschnitt 8 („drei tiefste Falten-Drawdowns“, „Kapital-Drawdown je Falte“) beziehen sich auf kapital_drawdown_mtm_pct; der ereignisindizierte Wert steht daneben als eigene Zeile. Vollzieht K4j (1) und (2); (3) folgt mit 40.8 (h). F-5, M49, M62.
+> Quelle des Grundes: 24.2, 24 (Festlegung 1 präzisiert), 24.6 (Bauart der Faltenmessung), 29.3, 2a, 24b A2 (ein Wert, der nachgerechnet werden kann, tut nicht, als wäre er gemessen), 12. Kein Ergebnis.
+
+**Kette:** Marken: 24.2; 45.5. Voraussetzung gemessen: 50.1.
+
+### 48.5 R37 — Präzisierung zu 16.6, 35.1, 16.4 (c)/(d), 5.1 Nr. 7 (zwei Zeiträume, ein Name)
+
+> R37 — Präzisierung zu 16.6, 35.1, 16.4 (c)/(d), 5.1 Nr. 7 (zwei Zeiträume, ein Name). Der Begriff „Bestätigungsperiode“ bezeichnet zwei Zeiträume. (i) Die Bestätigungsperiode des Selektionslaufs ist die Spanne nach 35.1 (Beginn „Bestätigung ab“, 21.4; Ende Go-Live-Schnitt, ausschliesslich; registrierter Bestand 2026-01-01/2026-09-01), gerechnet auf dem Snapshot; sie wächst nicht (5c: ein zweiter Snapshot ist ein neuer Lauf). Die Bedingung aus 16.6 gilt an ihrem Beginn: Die Bestätigungsstatistik des Gewinners beginnt am ersten Handelstag ab Beginn der Spanne, an dem keine vor der Spanne eröffnete simulierte Position des Gewinners mehr offen ist; Deckel je Bot nach 16.6/41.3 C2; eine am Deckeltag noch offene solche Position zählt nicht (Attribution je Position). Der Zellen-Erzeuger bestimmt diesen Tag für jede Zelle (bestaetigung_ab_effektiv, R34); auswertung.py nimmt den Wert der Gewinnerzelle (41.3 C3). (ii) Die Bestätigungsperiode der Leiter (16.4 (c)/(d)) ist der Papierpfad ab Go-Live; sie wächst; 5.1 Nr. 7 („wächst jeden Monat“), 15.4 2d („Go-Live-Tag plus Embargo“) und der Wortlaut von 16.6 („nach Go-Live“, „im Journal vermerkt“) beschreiben sie; dort gilt dieselbe Bedingung mit der Grenze Go-Live und den Positionsdaten des Papierpfads als Quelle. „Alle Falten“ in Abbruchkriterium (b) sind die Selektionsfalten (4.1); die Bestätigungsperiode ist keine Falte im Sinn von 4a (35.1) und wird ausgewertet, nachdem die Auswahl steht (5.1 Nr. 7). F-6, W39, M53.
+> Quelle des Grundes: 15.1 (Out-of-Sample des Laufs ist allein die Bestätigungsperiode des gewählten Satzes), 5.2 (Forward-Test geht in keine Selektion ein, auch nicht in die Bestätigungsperiode), 35.1, 4.1, 16.4. Kein Ergebnis.
+
+**Kette:** Marken: 5.1, Nr. 7; 16.4 (c); 16.4 (d); 16.6; 35.1.
+
+### 48.6 R38 — Ergänzung zu 16.7 (d) (Ort der Berichtsgrössen)
+
+> R38 — Ergänzung zu 16.7 (d) (Ort der Berichtsgrössen). Die Faltenkohärenz (Spearman-Rangkorrelation der Zellen-Rangfolge einer Falte gegen die Rangfolge nach dem Median der übrigen Selektionsfalten) rechnet auswertung.py aus zellen.csv, je Bot und Falte; sie braucht alle Zellen und existiert nur dort. Symbolzahl, Anteil am Universum und die Liste der ausgelassenen Symbole mit Grund schreibt der Zellen-Erzeuger je Bot und Falte in symbole_je_falte.csv aus dem Ladeprotokoll (42.1 D3/D7); auswertung.py berichtet sie. 16.11 Zeile 7 wird damit geschlossen. F-7.
+> Quelle des Grundes: 16.7 (d) im Wortlaut („nach dem Lauf die Faltenkohärenz“), 5e. Kein Ergebnis.
+
+**Kette:** Marken: 16.7 (d).
+
+### 48.7 R39 — Ergänzung zu 46.3 (R12) und Berichtigung des Datenvertrags (Ausgaben des Zellen-Erzeugers; Feldliste als…
+
+> R39 — Ergänzung zu 46.3 (R12) und Berichtigung des Datenvertrags (Ausgaben des Zellen-Erzeugers; Feldliste als Registertext). Ausgaben des Zellen-Erzeugers je Bot: zellen.csv (R33, R36), tagesreihen/<zelle>.csv, benchmark_tagesreihen/<bot>.csv, zellenbericht.csv (R34), symbole_je_falte.csv (R38), herkunft.json mit teile (37.4) und dem gerechneten Datenstand-Hash (46.7 (b)), Lese-Audit (5e). Die Benchmark-Tagesreihe ist je Bot, nicht je Markt (23.3: Symbole, die der Loader des Bots handelbar macht; 16.7 (b): Schranken je Bot); „benchmark_tagesreihen/<markt>.csv“ im Vertrag lies „<bot>.csv“. Sie wird über benchmark.py::bh_tagesrenditen (Sperrlistenpunkt 6, unverändert) gerechnet — derselbe Code wie für die Benchmark-Tabelle, kein zweiter Rechenweg. Die Feldliste jeder dieser Dateien ist Registertext (Bauart 33.3, 41.1 A12) und wird im Registerauftrag E-2 aus dem Docstring von auswertung.py gemessen eingetragen, nicht abgeschrieben. F-8, A68.
+> Quelle des Grundes: 23.3, 16.7 (b), 37.5 (2) (ein Wert, ein Ort), 33.3, 41.1 A12, 5e. Kein Ergebnis.
+
+**Kette:** Marken: 46.3. Feldliste: 50.2.
+
+### 48.8 R40 — Ersteintrag — Schreibregel für Ausgaben der Erzeuger
+
+> R40 — Registertext, Ersteintrag — Schreibregel für Ausgaben der Erzeuger. Die Ausgaben des Listen-Erzeugers und des Zellen-Erzeugers unterliegen 36.1 (2) und (3): --ziel ist Pflicht, die Voreinstellung ist nie ein Pfad, an dem etwas liegt; existiert eine Zieldatei, endet der Erzeuger mit 1 und schreibt nichts, auch nicht bei gleichem Inhalt. Ein zweiter Lauf schreibt an ein neues Ziel und ist als zweiter Lauf im Lese-Audit und im Protokoll (10.1) sichtbar. Die Hashes aller Ausgaben stehen im Bericht. F-9.
+> Quelle des Grundes: 36.1 (1) deckt Ergebnisse nicht („für sie bestimmt“); 10.1 („Wer Vorher und Nachher vergleicht, hat wieder eine Wahl“ — ein überschriebenes Ergebnis macht den Vergleich unmöglich und unsichtbar zugleich), 5e, Prüfprinzip D6. Kein Ergebnis.
+
+**Kette:** Marken: keine.
+
+### 48.9 R41 — Ergänzung zu 41.2 B6/B7 und 15.3 (b) (haltedauer_balken)
+
+> R41 — Registertext, Ergänzung zu 41.2 B6/B7 und 15.3 (b) (haltedauer_balken). haltedauer_balken ist die Zahl der Kerzen des Zeitrahmens des Bots von der Einstiegskerze bis zur Ausstiegskerze, beide eingeschlossen — die Zählregel, die positionen_holen.py heute anwendet (TB-120 C1). Einheit: Kerzen des Zeitrahmens (1d, 4h, 1h). Umrechnung in Handelstage für den Deckel (16.6) und für L (15.3 (b)): 1d-Bots Balken = Tage (Krypto: Kalendertage, 15.4 Anmerkung 1); 4h-Bots Balken ÷ 6, 1h-Bots Balken ÷ 24, aufgerundet (15.4 Anmerkung 4). Die Donchian-Untergrenze (41.2 B3, median_balken) nutzt dieselbe Einheit. [Voraussetzung, zu messen: ob TB-24 die Haltedauer in 15.4 (t3_supertrend 11,21 Tage) als Kerzenzahl oder als Zeitstempeldifferenz gebildet hat; bei Abweichung trägt die Neurechnung nach 41.3 C2 diese Zählregel, und 15.4 erhält eine Tatsachennotiz.] F-10.
+> Quelle des Grundes: 15.4 Anmerkungen 1 und 4, 41.2 B3/B6/B7, 41.3 C2. Kein Ergebnis.
+
+**Kette:** Marken: 15.3 (b); 15.4; 41.2, Eintrag B6/B7. Voraussetzung gemessen: 50.1.
+
+### 48.10 R42 — Ergänzung zu 40.6, 45.3, 46.3 (Bindung der neuen Listen)
+
+> R42 — Ergänzung zu 40.6, 45.3, 46.3 (Bindung der neuen Listen). Die neun neu erzeugten Trade-Listen werden als neuer Punkt 15 in Abschnitt 10 aufgenommen (Pfad, je Liste Hash; Fortschreibung des Listentexts vor dem Tag, neues Abbild nach 37.3) und stehen zugleich in herkunft.py::EINGEFROREN und der Gruppe eingefroren des Abbilds (R3, R12). Der Punkt ist die Regel, die Gruppe ihre Umsetzung; R3 erfüllt 40.6 nicht, weil ein Abbild den Registertext nicht ersetzt (30.2 (2)). Dass ein Pfad in einem Punkt und in eingefroren steht, gilt heute schon für faltenplan.py, benchmark.py und auswertung.py. F-11.
+> Quelle des Grundes: 40.6 („als Punkt auf die Sperrliste“), 30.2 (2), 36.6, 37.3. Kein Ergebnis.
+
+**Kette:** Marken: 40.6; 45.3; 46.3. Abschnitt 10: Indexzeile, keine Marke.
+
+### 48.11 R43 — Registertext zum Zellen-Kern; Berichtigung zu 29.4/34.5 (Ort der Wache); Tatsachennotiz zu 11.2
+
+> R43 — Registertext zum Zellen-Kern; Berichtigung zu 29.4/34.5 (Ort der Wache); Tatsachennotiz zu 11.2. Der Zellen-Erzeuger rechnet jede Zelle über den Signalpfad (collect_all_trades mit den Achsenwerten) und die Zuteilung (simulate_portfolio → shared/zuteilung.py::simuliere_portfolio, Punkt 10); evaluate_combination_multi der neun Optimierer bleibt ausserhalb des Laufs und wird nicht zum Zellen-Kern umgebaut (es verwirft Zellen und kennt keine Falten; 43-7). Die Wache „frühester Einstieg ≥ Beginn der ersten Selektionsfalte“ (29.4, 34.5) steht im Zellen-Erzeuger — an einer Stelle, für alle neun Bots, mit dem Bericht je Bot aus 34.5 —, nicht in den neun multi_symbol_optimise.py; „in allen neun multi_symbol_optimise.py“ lies „im Zellen-Erzeuger, für alle neun Bots“; die neun Optimierer erhalten eine Tatsachennotiz „nicht im Laufpfad“. Tatsachennotiz zu 11.2: Die Voraussetzung „evaluate_combination_multi liefert den Kapital-Drawdown“ wird für den Lauf gegenstandslos; den Kapital-Drawdown liefert der Zellen-Kern (R36); Agent 2 ist Regelbetrieb. Posten 5 des Plans ist neu zu fassen (Handwerk). F-12, M60.
+> Quelle des Grundes: 43-7 (null Trades ist ein Wert; ein Kern, der Zellen verwirft, rechnet ein anderes Raster), Prüfprinzip A8 (eine Wache ist, was ausgeführt wird), 29.3, 34.5 (Reichweite: alle neun Bots — sie bleibt), Punkt 11 (Optimierer nicht ohne Not öffnen). Kein Ergebnis.
+
+**Kette:** Marken: 11.2; 29.4; 34.5.
+
+### 48.12 R44 — Ergänzung zu 40.6 (Reihenfolge der Neuerzeugung)
+
+> R44 — Ergänzung zu 40.6 (Reihenfolge der Neuerzeugung). Die neun Listen werden nach der letzten Änderung am Signalpfad erzeugt — nach TB-30b Posten 3 (Durchreichung der Achsen) und Posten 4 (Horizont je Bot, 26.2/29) —, am Stand, den der Tag signiert. Eine Erzeugung vor einer dieser Änderungen ist Probe, kein Nachweis. Danach: Ableitung der Faltenlänge nach 5.4 und Vergleich gegen 33.2 (40.6), dann das Abbild des Faltenplans (40.8 (g)). F-13.
+> Quelle des Grundes: 40.6 („mit dem registrierten Code“), 37.3 (das letzte Abbild trägt die Hashes des Tag-Commits), 40.8 (g). Kein Ergebnis.
+
+**Kette:** Marken: 40.6.
+
+### 48.13 R45 — Registertext zu Sperrlistenpunkt 10 (ausgeführte Positionen)
+
+> R45 — Registertext zu Sperrlistenpunkt 10 (ausgeführte Positionen). shared/zuteilung.py::simuliere_portfolio gibt zusätzlich die ausgeführten Positionen (Symbol, Einstiegs- und Ausstiegszeit, Grösse, Preise) heraus — additiv, als weiteres Feld oder weiteren Rückgabewert; Zuteilungsreihenfolge, SEED und Rechnung unverändert; kein Feld, das der Laufcode liest, wird beschrieben (A9). Beauftragte Änderung nach 37.3 mit Nachweis in der Bauart von 10.1: Trade-Listen und equity_curve aller neun Bots bytegleich vor und nach der Änderung; Mutationsprobe: Rückgabe entfernt ⇒ Zellen-Erzeuger endet mit 2; Hash-Übergang Punkt 10, neues Abbild. Eine Rekonstruktion der Positionen aus den Ereignissen der equity_curve ist ein zweiter Rechenweg und wird nicht gegangen. F-14.
+> Quelle des Grundes: 24.2/1a (die MtM-Reihe braucht die Positionen), 37.3, 10.1 („bitidentisch“), 41.1 A9, 37.5 (2) (ein Wert, ein Ort). Kein Ergebnis.
+
+**Kette:** Marken: keine. Abschnitt 10: Indexzeile, keine Marke.
+
+### 48.14 R46 — Ersteintrag — Abnahme des Zellen-Erzeugers vor dem Tag
+
+> R46 — Registertext, Ersteintrag — Abnahme des Zellen-Erzeugers vor dem Tag. Vor dem signierten Tag läuft der Zellen-Erzeuger nicht auf dem registrierten Snapshot mit dem registrierten Raster. Abgenommen wird er im Selektionsmodus gegen einen Test-Snapshot aus synthetischen Kursdaten (mit snapshot.py gezogen, eigener Hash, als Probe benannt; kein Lauf dieses Registers nach 5c/5e), durch die ganze Kette bis auswertung.py und Bericht (der Kettenlauf aus 25f A3 (1); Glied 2 aus 46.8 R17 (d)). Geprüft werden Struktur und Verfahren: Zeilenzahl nach R33, Nullzeile, Feldlisten nach R39, Lese-Audit, Ausgänge nach 36.5, Schreibregel R40, Nachrechnung R36 — nie eine Zahl des Selektionsraums. Der Hash des Test-Snapshots steht in der Tatsachennotiz der Abnahme. F-15.
+> Quelle des Grundes: 27.1, 24.3 (die Regel steht vor der Messung), 23e und 41.3 C6 (der Nachweis geht denselben Weg wie der Lauf; ein Hilfsordner ist kein Modus-Lauf), 5c, Prüfprinzip A8. Kein Ergebnis.
+
+**Kette:** Marken: keine.
+
+### 48.15 R47 — Präzisierung zu 40.6 (Tatsachennotiz zu 5.4: „Parameterdateien“)
+
+> R47 — Präzisierung zu 40.6 (Tatsachennotiz zu 5.4: „Parameterdateien“). Parameterdateien eines Bots sind die Module, aus denen sein Signalpfad zur Laufzeit Handelsparameter bezieht — gemessen am Import-Audit des Modus-Laufs des Listen-Erzeugers (Lauf-Typ nach 42.2 E5), nicht per Namensliste; heute mindestens live_params.py und backtest_*.py je Bot. Nach TB-30b Posten 3 ist SMA_TREND_PERIOD Rasterachse, keine Parameterdatei mehr. Die Tatsachennotiz zu 5.4 nennt je Bot die Liste mit Hash und Commit. F-17.
+> Quelle des Grundes: 40.6, 5e (der Lauf belegt, woraus er gelesen hat), 37.5 (2). Kein Ergebnis.
+
+**Kette:** Marken: 40.6.
+
+### 48.16 R48 — Lesarten zu Register 0–12 (TB-121), je mit Fundstelle
+
+> R48 — Lesarten zu Register 0–12 (TB-121), je mit Fundstelle.
+> (a) Festlegung 4 trägt im Wortlaut kein Exposure-Argument; die registrierte Lesart ist 4.2 (12, Lesart 1). Marke an Festlegung 4 (R51). W42.
+> (b) Abschnitt 9: N je Bot ist N_historisch(Bot) + Zellen(Bot) (Tabelle in 3: N nominal = Zellen + N historisch je Zeile, Summe 3 069); „N = 653 plus die Zellen dieses Laufs, je Bot getrennt“ ist die Kurzform. M47.
+> (c) Abschnitt 7 (d): Ist der Gewinner eine Spitze und erfüllt der beste Nicht-Spitzen-Punkt (a) nicht, ist (d) nicht erfüllt; der Bot bleibt mit dem Plateau-Gewinner, die Spitze ist Markierung (6, 8); (d) tauscht den Gewinner nie aus (22.5). [Voraussetzung, zu messen: die von auswertung.py in diesem Fall ausgegebene Zelle; Abweichung ist ein Register-Code-Widerspruch nach 25c (1).] M48.
+> (d) Exposure: DD_Toleranz(e) und DD_Benchmark(f, e) werden mit der mittleren Exposure des Parametersatzes in der jeweiligen Falte ausgewertet (4.2). Die mittlere Exposure der Kapitalregel (7.1, 7 (c), 16.4 (b), 15.6 (c)) ist die des Gewinners über seine Selektionsfalten (7 (c): „über dieselben Tage“). Mittlere Exposure = Mittel über die Handelstage des Zeitraums (Krypto Kalendertage, 15.4 Anmerkung 1) des Anteils des Kapitals in offenen Positionen am Tagesschluss, bewertet wie die MtM-Reihe (1a). [Voraussetzung, zu messen: Bildung von mittlere_exposure im Vertrag/auswertung.py und in mtm_kern.py; der Registertext folgt dem Code, wo er ihn hat.] M50, M54, A69.
+> (e) Benchmark: Gewichte täglich gleich (23.3, 23.5), Höhe statisch in der mittleren Exposure (4.2, 7 (c)); „statische Position“ meint die Höhe, „point-in-time“ die Menge (23.7). M51.
+> (f) Kante (2.5): jeder Gewinner, der auf mindestens einer Achse auf der ersten oder letzten Stufe liegt, Zusatzstufen („kein“, „structural“) und die Obergrenze des Positionslimits eingeschlossen; die Markierung sagt, wo der Gewinner liegt, nicht, ob erweitert würde. [Voraussetzung, zu messen: auswertung.py markierungen.] M52.
+> (g) Zufalls-Timing (8.1): über die aneinandergehängten Selektionsfalten (dieselben Tage wie 7 (c)); verglichen wird die Summe der täglichen Renditen (2a) der zyklisch verschobenen Exposure-Reihe auf den Benchmark-Tagesrenditen mit der Rendite des Satzes über dieselben Tage; das 95. Perzentil ist das empirische Perzentil über alle T − 1 Verschiebungen. [Voraussetzung, zu messen: Perzentilbildung im Code.] M56.
+> (h) haltedauer (2.2) ist eine Messung aus gefundenen Trades (Grenzsatz „gemessene Median-Haltedauer“; 41.2 B3); „Hypothese“ im Kopf von 3 ist erzeugter Text und bleibt. Bei elliott_wave gilt „gefunden“ ohne Ausnahme (41.3 C4). M57, M58.
+> (i) Die Ziffernregel aus 2.1 gilt für Grenzsätze; Spaltenköpfe der Messgrössentabelle („Median 20-Balken-Spanne“) sind keine Grenzsätze. [Voraussetzung: pruefe_grenzsaetze.py prüft die Satzfelder.] M61.
+> (j) Festlegung 3 bei weniger als drei Selektionsfalten: Der Fall tritt nicht ein — 4b verlangt mindestens 3, sonst 4c (keine Selektion). A75.
+> (k) Präzisierung zu 10.1: „Stichproben-Hash-Vergleich“ lies „Hash-Vergleich aller Ausgabedateien des Laufs nach dem Lese-Audit“; eine Stichprobe hätte eine Ziehung, also eine Wahl, und der Vollvergleich kostet nichts. A74.
+> Quelle des Grundes: die genannten Fundstellen; 22.5; 24b A2; Prüfprinzip C4. Kein Ergebnis.
+
+> ⭐ **48.16 R48 (g) BERICHTIGT durch R54 (49.2)** (Fable 30a R54, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+**Kette:** Marken: 1, Tabelle, Zeile 4; 1, Tabelle, Zeile 3; 2.1; 2.2; 2.5; 7, Tabelle, Zeile (d); 8.1; 9, erster Absatz. Voraussetzung gemessen: 50.1. Abschnitt 10: Indexzeile, keine Marke.
+
+### 48.17 R49 — Tatsachennotizen zu Register 0–12 (TB-121), Marke je am alten Ort
+
+> R49 — Tatsachennotizen zu Register 0–12 (TB-121), Marke je am alten Ort.
+> (a) Zu 2.2: Der erzeugte Abschnitt 3 verwendet ableitung an zwei Stellen (Obergrenze Positionslimit; bb_squeeze_percentile oben) und methode an drei (take_profit_fib; Stop-Zusatzstufe „kein“; bb_lookback unten); 2.2 nennt je ein Beispiel. Massgeblich ist der erzeugte Block (registerbericht.py --pruefen). W40.
+> (b) Zu 2.7: Die Quantil-Achsen (rsi_threshold, adx_threshold) folgen einer dritten Stufungsart — Quantile der gemessenen Verteilung (Grenzsätze in 3) —, die 2.7 nicht nennt. Messbitte (Verfahrensmessung, 27.2), nur das Wie: die Funktion in registerdaten.py, die die Quantil-Stufen bildet, und ihre Eingabe aus messgroessen.json (Zeitraum, Zeitrahmen, Universum); Ergebnis als Tatsachennotiz zu 2.7. W41, A71.
+> (c) Zu 3 und 4.4: Zahlenteil und Beispiel zeigen den Stand 14.09.2026 (benchmark_drawdowns.json, a163c498…); die Tabelle, die der Lauf liest, ist ergebnisse/benchmark_drawdowns_2026-09-23_nach_wegA.json (39.2, 64fb2912…); der ERZEUGT-Block wird mit 40.8 (h) neu erzeugt (43-6); die in 40.8 (b) verlangte Tatsachennotiz an 4.4 steht dort noch nicht. W43.
+> (d) Zu 12: Die Zahl der Prüfungen ist Tatsachennotiz mit Stand; die jüngste Marke gilt (41.1 A1: 196, db50e187…; Mutationsproben H1–H7, H6 offen nach 41.1 A4). W44.
+> (e) Zu 38.2: Die Regel gilt auch für Marken. Die Marke in 6 nennt registerdaten.py:605 ohne Commit; die Zeile ist über 42.3 F1 gedeckt („unverändert seit vor 4faef05“). Künftig nennen Marken Bezeichner, nicht Zeilen. W45.
+> (f) Zum Kopf des Registers: „Stand: 14.09.2026“ ist der Stand der Erstfassung; das Register ist append-only, sein Stand ist der Commit im Kopf der Kopie (27.3) beziehungsweise HEAD. W46.
+> (g) Zu Abschnitt 10, Tatsachennotiz vom 15.09.2026: „nach dem Lauf“ bezeichnet den nativen Neuaufbau der 72 Krypto-Kursdateien (TB-34, shared/kursdaten_neuaufbau.py), keinen Selektionslauf. M59.
+> (h) Zu 11: „die beiden Bug-Fixes“ sind 11.1 und 11.2; 11.3 ist eine dritte Voraussetzung des Laufs (ohne Durchreichung ist das registrierte Raster nicht rechenbar; TB-30b Posten 3, E-1). Stand: 11.1 erfüllt (42.3 F3), 11.2 für den Lauf gegenstandslos (R43), 11.3 offen (E-1). M60.
+> Quelle des Grundes: Messungen TB-120/TB-121, die genannten Fundstellen. Kein Ergebnis.
+
+**Kette:** Marken: Kopf, Absatz „Stand: 14.09.2026“; 2.2; 2.7; 3, Zahlenteil (nach ENDE ERZEUGT); 4.4; Abschnitt 11; Abschnitt 12; 38.2. Voraussetzung gemessen: 50.1. Abschnitt 10: Indexzeile, keine Marke.
+
+### 48.18 R50 — Ergänzung zu 12 (Kennzahlendefinitionen im Code) und Tatsachennotiz zu TB-121
+
+> R50 — Ergänzung zu 12 (Kennzahlendefinitionen im Code) und Tatsachennotiz zu TB-121. Die Definitionen der Kennzahlen des Laufs — Falten-Sharpe (15.3), Calmar und Annualisierung, Alpha/Beta, DSR-Eingaben (Sharpe, T, Schiefe, Wölbung, Streuung), mittlere Exposure, Korrelationsmass und Operator der Clusterschwelle, Zellenname und Gleichstandsschlüssel, Ausstiegskonvention je Ausstiegsart, Interpolation an den Rändern (43-2) — sind im eingefrorenen Code registriert (Sperrliste 3, 5, 7, 9; Abschnitt-0-Menge), nicht im Text von 0–12. Vor dem Tag wird je Kennzahl eine Tatsachennotiz eingetragen: Datei und Bezeichner (38.2), und wo das Register eine Formel nennt (15.3; 7 „Calmar bei Drawdown 0 ist 0,0“; 4.2; 9), die gemessene Übereinstimmung; eine Abweichung ist ein Register-Code-Widerspruch (25c (1)) und wird gemeldet, nicht eingetragen. Der Registertext legt keine dieser Definitionen neu fest. Messbitte (27.2), nur das Ob: trägt registerdaten.py für jede der 34 Rastergrenzen einen Grenzsatz, und fasst registerbericht.py gleiche Sätze zusammen? (Der erzeugte Block führt für t3_slow_length, donchian_period oben und stop_mode unten/oben keinen eigenen Satz; 2.1 verlangt einen je Grenze.) Tatsachennotiz zu TB-121: 85 Befunde (B 19, V 19, W 8, M 16, A 15, Z 8), jedes Zitat maschinell geprüft; Vollständigkeitstest kalt: 3 von 12 Bausteinen aus 0–12 schreibbar; die Sitzung hatte Zusammenfassungen der Abschnitte 15–46 im Gedächtnis (Claude Code MEMORY.md), deshalb ist die Befundliste eine Untergrenze und „3 von 12“ eine Obergrenze; ihre Vollständigkeit ist nicht belegt. A63, A64, A65, A72, A76, M55, A73, Frage 78.
+> Quelle des Grundes: 13 („Das Urteil ist Code“), 12, Sperrliste 3/5/7/9, 38.2, 25c (1), 2.1, Messung TB-121. Kein Ergebnis.
+
+**Kette:** Marken: Abschnitt 12. Voraussetzung gemessen: 50.1.
+
+### 48.19 R51 — Marken am alten Ort für Register 0–12 (Handwerk im Registerauftrag; der alte Satz bleibt zeichengleich)
+
+> R51 — Marken am alten Ort für Register 0–12 (Handwerk im Registerauftrag; der alte Satz bleibt zeichengleich). Festlegung 4 → 4.2 (12, Lesart 1) [W42]. Festlegung 2 und 7 (a) → 15.3 (c) und Formelzeile [A63]. 3, Zahlenteil und 4.4 → 39.2 (Tabelle des Laufs), 40.8 (h), R49 (c) [W43, A67]. 4.2 → 43-2 (Interpolation an den Rändern) [A70]. 5.3 und 15.6 → 33.2 (gültiger Faltenplan, alle neun Bots) [A66]. 9 → R48 (b) [M47]. 10, Tatsachennotiz 15.09. → R49 (g) [M59] — als Indexzeile, in Abschnitt 10 steht keine Marke. 11 → R49 (h) [M60]. 12 → R50. Kopf → R49 (f) [W46]. Datenstand-Hash voll: 17.3/17.9/18 — Indexzeile, keine Marke in 10 [A77].
+> Quelle des Grundes: 34 (Marke am alten Ort), 27.3, REGISTER_INDEX. Kein Ergebnis.
+
+**Kette:** Marken: 1, Tabelle, Zeile 2; 4.2; 5.3; 7, Tabelle, Zeile (a); 15.6. Abschnitt 10: Indexzeile, keine Marke.
+
+### 48.20 R52 — Tatsachennotizen 29b
+
+> R52 — Tatsachennotizen 29b. (a) 27b B3 („die datierten Kopien … sind im Repo committet“) war für vier von sechs Registerkopien falsch (TB-118 A3); zehnter Fall der Klasse „Bestand behauptet statt Voraussetzung genannt“. (b) 45.5 (b) („für jede Zelle genau eine Zeile“) widersprach dem Datenvertrag; berichtigt in R33; elfter Fall. (c) Der Chat des Verfahrensprüfers ist zwischen 29a und 29b einmal verdichtet worden; die Registerteile 1–4, 27b und 25f wurden danach erneut vollständig gelesen; die Umzugsampel steht deshalb auf 🟡, Umzug nach E-2.
+> Quelle des Grundes: Messungen TB-118, TB-120; Leseprotokoll 29b. Kein Ergebnis.
+
+**Kette:** Marken: keine.
+
+## 49. Fable 30a — Registerblock R53–R55 (TB-126)
+
+Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/FABLE_ANTWORT_2026-09-30a_vorgepruefte_fragen_e2.md`, md5 `f9cdbbef543ec54ed07ee0566c336dde`, 12 925 B, am Commit `0f56aeb`, Z. 25–32. Die Datei ist eine Abschrift aus einem Text-Anhang ohne Markdown-Auszeichnung. Die drei Blöcke sind bytegleich mit Fables Ablage-Fassung (`FABLE_ANTWORT_2026-09-30a_vorlauf_aggregation_leere_menge.md`, md5 `5e5401bcc6b5551a7a61a8a1b4331fee`), geprüft vom steuernden Chat am 30.09.2026 (R53 `cbaeea5b…`, R54 `914ddd1d…`, R55 `1f3e534b…`). R54 berichtigt 2a und R48 (g) (48.16); die Marken stehen an 15.4 und unter 48.16.
+
+### 49.1 R53 — Präzisierung zu 4a (i) (25.3, 28.6): Indikator-Vorlauf bei achsenabhängigem Rückblick
+
+> R53 — Präzisierung zu 4a (i) (25.3, 28.6): Indikator-Vorlauf bei achsenabhängigem Rückblick. Der Indikator-Vorlauf eines Bots nach 4a (i) ist der grösste Vorlauf über alle Zellen seines Rasters: je Rückblick-Achse die oberste registrierte Stufe (Abschnitt 3) zuzüglich der festen Fenster des Bots (etwa Bollinger-Fenster, Donchian-Zusatz), gerechnet gegen den Horizontbeginn (28.6). Er wird aus registerdaten.py gerechnet, nicht als Voreinstellung geführt und nicht als Literal gesetzt; der Faltenplan trägt ihn je Bot als Feld. Der Scanbeginn einer Zelle liegt nie vor ihrem Vorlauf (TB-122 F1, Handwerk). Tatsachennotiz: Die Nachmessungen in 25.2 (rsi2_crypto, 150 Balken), 15.5 und 21.4 stammen aus der Zeit vor TB-30b Posten 3; die erste Falte ist nach dieser Präzisierung neu abzuleiten (Verfahrensmessung nach 27.2; Wirkung bekannt und kein Grund).
+> Quelle des Grundes: 2.7 (ein Raster je Bot, identisch über alle Falten), 29.3 (Kapitalpfad beginnt am 1. Januar der ersten Selektionsfalte), 4a (i), 24.3 (Bauart). Kein Ergebnis.
+
+**Kette:** Marken: 15.5; 21.4; 25.2; 25.3, Ersatztext (Bedingung (i) steht in dessen erster Zeile); 28.6. Voraussetzung gemessen: 50.1. Zählweise: 50.5.
+
+### 49.2 R54 — Berichtigung zu Registertext 2a (15.4) und zu R48 (g) (Aggregation von Tagesrenditen)
+
+> R54 — Berichtigung zu Registertext 2a (15.4) und zu R48 (g) (Aggregation von Tagesrenditen). „Die Falten-Rendite ist die Summe der täglichen Netto-Mark-to-Market-Renditen dieser Tage“ lies „Die Falten-Rendite ist die verkettete Rendite dieser Tage, ∏(1 + r_t) − 1 über die täglichen Netto-Mark-to-Market-Renditen“. Renditen über mehrere Tage — je Falte, über die Selektionsfalten (7 (c)), im Zufalls-Timing (8.1), für die konstante Exposure — werden überall verkettet; Drawdowns stehen auf dem verketteten Kapitalpfad (24.2). In R48 (g) lies „die Summe der täglichen Renditen (2a)“ als „die verkettete Rendite (2a)“. Der Falten-Sharpe (15.3: Mittel und Standardabweichung der täglichen Renditen) und die Faltenzuordnung (2a, 2b) sind unberührt. kennzahlen.py (gesamtrendite_pct, Zufalls-Timing, cumprod) bleibt unverändert; es rechnet, was das Register nach dieser Berichtigung sagt. Kategorie: Berichtigung (Registertext an Registertext — Kapitalpfad und Drawdown waren schon verkettet).
+> Quelle des Grundes: 29.3 (Startkapital, durchgehender Pfad), 2a zweiter Satz (Kapitalstand über die Faltengrenzen), 24.2, 7 (c) (Calmar gegen Calmar auf einer Rechenart), 13 (das Urteil ist Code). Kein Ergebnis.
+
+**Kette:** Marken: 15.4 (a); 48.16 (R48), neu in TB-126. Voraussetzung gemessen: 50.1.
+
+### 49.3 R55 — Ergänzung zu 7 (d) (leere Menge) und Tatsachennotiz
+
+> R55 — Ergänzung zu 7 (d) (leere Menge) und Tatsachennotiz. Gibt es keinen zulässigen Nicht-Spitzen-Punkt, ist Abbruchkriterium (d) nicht erfüllt; der Bot bleibt mit dem Plateau-Gewinner (R48 (c)), markiert als Spitze, und der Bericht führt die Zeile „Spitze ohne zulässigen Nicht-Spitzen-Punkt“ — Bericht, kein Tor. Ist keine Zelle zulässig, greift (b); der beste Nicht-Spitzen-Punkt wird dann über alle Zellen bestimmt und berichtet, wie der Plateau-Gewinner in 7. Tatsachennotiz: Der Schlüssel d_spitze_ohne_tragfaehige_alternative in auswertung.py ist ein Name, keine Regel; Umbenennung mit der nächsten planmässigen Öffnung. Eine Prüfung für die leere Menge mit Gegenprobe (40.7) wird ergänzt (Handwerk); heute prüft kein Test den Fall.
+> Quelle des Grundes: Wortlaut von 7 (d) und der Präzisierung (Und-Bedingung), 6 („Ist N(x) leer, ist x keine Spitze“), 12 Lesart 4 (kein undefinierter Fall), 22.5 (ein nicht registriertes Kriterium disqualifiziert nicht), 7.1, 22.1. Kein Ergebnis.
+
+**Kette:** Marken: 7, Tabelle, Zeile (d). Voraussetzung gemessen: 50.1.
+
+## 50. Tatsachennotizen zu E-2 (TB-126)
+
+Tatsachennotizen des steuernden Chats zu den Voraussetzungen, die Fable in 27c, 29b und 30a „zu messen“ nennt, dazu die Vollzugsnotizen TB-122 und TB-124 nach 37.3. Gemessen über die Geräteanbindung, nur lesend, am 29. und 30.09.2026 (`docs/projektfuehrung/VORMESSUNG_E-2_2026-09-29.md` samt Nachträgen); die Sitzung TB-126 hat in Schritt 0 gemessen, dass die genannten Code-Dateien seither unverändert sind (`docs/belege/TB-126/0f_unveraendert.txt`). Zeilenangaben gelten am Commit `0f56aeb`. Kein Ergebnis gelesen (27.1). Eine Voraussetzung, deren Messung abweicht, steht hier mit dem Befund. Der Block steht trotzdem in 47–49, wo Fable den Abweichungsfall im Block selbst regelt oder beantwortet hat (R41: 30a, Teil 0; R48 (g): R54). Wo ein Befund eine Lesart des steuernden Chats braucht, steht das ausdrücklich da; sie geht mit der nächsten Anfrage an Fable (R48 (d), 50.5). Die Nummer hat der steuernde Chat vergeben, nicht Fable.
+
+### 50.1 Voraussetzungen und Befunde
+
+| R | Voraussetzung (Fable) | gemessen | Stand |
+|---|---|---|---|
+| R25 (47.8) | Docstring trägt „unter dem Modus“ seit TB-117 Block D | `research/vorregistrierung/auswertung.py:53–62` (nicht 51–52): „unter dem Selektionsmodus fuer JEDEN der neun Bots geprueft, sonst Abbruch mit 2“ | passt; Fundstelle berichtigt |
+| R26 (47.9) | `--bot` läuft unter dem Modus bis zum Bericht (Fable nannte J-7) | Gemessen in TB-117 E (`docs/belege/TB-117/e_auswertung_modus.txt`, HEAD `852f253`, „modus_gut: rc 0“), nicht in J-7; `auswertung.py` seither unverändert (TB-126, 0f). Ein Laufwrapper nach 35.4 wurde nicht gefunden | passt in der Sache am Stand `852f253` (Fundstelle E statt J-7, von Fable bestätigt, 30a, Teil 0); an `0f56aeb` ohne Lauf nicht neu gemessen (50.7) |
+| R28 (47.11) | Probe von `snapshot.py` gegen Register 18 | fehlte am 29.09.2026; gebaut in TB-124 D: `shared/test_verankerter_datenstand.py`, 3/3, Commit `7453469` (`docs/ERGEBNIS_TB-124_scanbeginn_sync_r28.md` Abschnitt 5, `docs/belege/TB-124/d_probe.txt`). Nebenbefund: ein weiteres Literal des Datenstands, `SOLL_DATENSTAND` in `research/registernachtrag_tb48/pruefe_abschnitt17.py:97`, ohne eigene Registerprobe; R28 nennt es nicht | erfüllt; Nebenbefund offen (50.7) |
+| R33 (48.1) | der Vertrag führt die Trade-Zahl je (Zelle, Falte) | `n_trades`, `auswertung.py:39`, Pflichtspalte Z. 133 | passt |
+| R36 (48.4) | MtM-Drawdown in der Falte, Basis Faltenbeginn | `research/mtm_drawdown/mtm_kern.py:296–304` (Basis: letzter Rastertag vor `von`), Raster Z. 135–139. Der Vertrag führt heute nur `kapital_drawdown_pct`; die zwei Spalten nach R36 kommen mit dem Zellen-Erzeuger | passt |
+| R41 (48.9) | Haltedauer in 15.4: Kerzenzahl oder Zeitstempeldifferenz? | Zeitstempeldifferenz: `research/faltenplan_neun/embargo_neun.py:36–37, 236–238` | weicht ab ⇒ Abweichungsfall nach R41, von Fable bestätigt (30a, Teil 0); Marke an 15.4; Neurechnung nach 41.3 C2 offen (50.7) |
+| R48 (c) (48.16) | die von `auswertung.py` im Fall Spitze ausgegebene Zelle | `auswertung.py:554–556`; ausgegeben wird immer der Plateau-Gewinner mit Markierung (Z. 710–719) | passt; den Randfall ohne zulässigen Nicht-Spitzen-Punkt regelt R55 (49.3) |
+| R48 (d) (48.16) | Bildung von `mittlere_exposure` im Vertrag, in `auswertung.py` und in `mtm_kern.py` | nicht gebildet: `auswertung.py:405` liest sie als Eingabe; `mtm_kern.py` führt keine Exposure (nur `gebunden`, zum Einstand, Z. 186–188); `research/exposure_messung/exposure_kern.py` und `research/exposure_messung/auswertung.py:234` teilen `gebunden / kapital_start`, bewertet zum Einstand | An den drei Orten, die R48 (d) nennt, nicht gebildet; ausserhalb davon zum Einstand bewertet. **Lesart des steuernden Chats:** Wo der Code die Grösse nicht hat, gilt der Registertext (R48 (d): „der Registertext folgt dem Code, wo er ihn hat“). An Fable (50.7); offen bis zum Zellen-Erzeuger |
+| R48 (f) (48.16) | Markierungen in `auswertung.py`: Kante einschliesslich der Zusatzstufen | Kante nach Position (`auswertung.py:466`); „kein“ ist immer die letzte Stufe, „structural“ wird nach Weite einsortiert (`research/vorregistrierung/registerdaten.py:574–583`) | passt nach Fables Lesart „eingeschlossen = zählt als Stufe mit“ (30a, Teil 0) |
+| R48 (g) (48.16) | Perzentilbildung im Code | T − 1 Verschiebungen (`research/vorregistrierung/kennzahlen.py:197`), `np.percentile` (Z. 201); die Rendite wird verkettet (`np.prod`, Z. 199) | T − 1 und Perzentil passen; „Summe“ berichtigt durch R54 (49.2) |
+| R48 (i) (48.16) | `pruefe_grenzsaetze.py` prüft die Satzfelder | `research/vorregistrierung/pruefe_grenzsaetze.py:100–148` | passt |
+| R49 (b) (48.17) | eine Funktion in `registerdaten.py` bildet die Quantil-Stufen | gebildet in `research/vorregistrierung/messgroessen.py::je_zeitrahmen` (Z. 169–219); `registerdaten.py:558–565` (`achse_werte`) liest nur. Universum aus `config/sp500_top150.txt` und `config/top25_symbols.txt`; der Zeitraum steht nur in `datenbereiche`, nicht in einem eigenen Feld | gemessen; der Ort weicht ab (nicht `registerdaten.py`) |
+| R50 (48.18) | Grenzsatz je Rastergrenze; fasst `registerbericht.py` gleiche Sätze zusammen? | Jede Grenze trägt `satz` über `_grenze` (`registerdaten.py:270`); Dubletten werden zusammengefasst (`research/vorregistrierung/registerbericht.py:111–120`). Der Zellenname steht in `auswertung.py::zelle_id` (Z. 272–274), die Cluster in `kennzahlen.py::cluster_anzahl` | Ob: ja und ja; Orte teils anders als in R50; die Zahl „34“ nicht gemessen (50.7) |
+| R53 (49.1) | oberste Stufe jeder Rückblick-Achse und feste Fenster je Bot maschinell aus `registerdaten.py` lesbar? | Stufen: `registerdaten.raster()` über `achse_werte`, die oberste ist der letzte Wert je Achse; Bollinger-Fenster: `regel_wert({"regel": "bollinger_fenster"}, …)` gibt 20.0 (Z. 213–216). Für weitere feste Fenster (`VOLUME_AVG_PERIOD`, fester Warm-up der Turtle-Soup-Bots) gibt es keinen Eintrag; `donchian_period` ist eine Rasterachse | teilweise. R53 sagt „nicht als Literal“; „Literal mit Test nach 32.5 (c)“ nennt Fable nur unter „Unsicher“ (30a) — Reibung, an Fable; entschieden wird mit R53 (a) (50.7). Zählweise: 50.5 |
+| R54 (49.2) | liest und rechnet irgendein Code `netto_rendite_pct` aus dem Vertrag? | Pflichtspalte `auswertung.py:134`; gelesen nur für die Bestätigungsperiode (Z. 624), berichtet in Z. 823; `netto_rendite_pct_ueber_selektionsfalten` (Z. 675) kommt aus `bereinigung["strategie_rendite_pct"]`, nicht aus der Spalte | trifft zu: Berichtsgrösse ohne Leser im Urteil |
+| R55 (49.3) | Nebenfall „keine Zelle zulässig“ | nicht gemessen; im Hauptfall rechnet der Code `None ⇒ False` | Hauptfall passt; Nebenfall erschlossen, Probe offen (50.7) |
+
+### 50.2 R39 (48.7) — Feldliste der Ausgaben, gemessen aus dem Docstring von `auswertung.py`
+
+R39 verlangt, die Feldliste jeder Ausgabe des Zellen-Erzeugers als Registertext „aus dem Docstring von auswertung.py gemessen“ einzutragen, nicht abgeschrieben. Gemessen am Commit `0f56aeb`, `research/vorregistrierung/auswertung.py` Z. 36–67, zeichengleich:
+
+```
+DIE ROHERGEBNISSE - DER VERTRAG
+------------------------------------------------------------------------------
+    <wurzel>/<bot>/zellen.csv
+        zelle_id, <je Rasterachse eine Spalte>, falte, rolle, n_trades,
+        netto_sharpe, netto_rendite_pct, kapital_drawdown_pct,
+        mittlere_exposure
+        -> genau eine Zeile je (Zelle x Falte), fuer ALLE Falten des
+           Faltenplans, Bestaetigungsperiode eingeschlossen.
+
+    <wurzel>/<bot>/tagesreihen/<zelle_id>.csv
+        datum, netto_rendite, exposure
+        -> Tagesreihe ueber alle Falten. Verlangt wird sie fuer jede
+           ZULAESSIGE Zelle; gelesen wird sie nur fuer die Zellen, die das
+           Programm braucht (Gewinner, bester Nicht-Spitzen-Punkt).
+
+    <wurzel>/<bot>/herkunft.json
+        Commit-Hash, Datenstand-Hash, Register-Hash - siehe herkunft.py.
+        -> TB-117 (Fable 27a R14, Register 46.5; Lesart 46.9): unter dem
+           Selektionsmodus fuer JEDEN der neun Bots geprueft, sonst Abbruch
+           mit 2 - Datei fehlt; Commit nicht der Tag-Commit
+           (`TB_SELEKTIONSCOMMIT`, Praefix); Datenstand nicht der
+           registrierte (Register 18); Register-Hash nicht
+           `herkunft.register()` zur Laufzeit; die neun untereinander
+           verschieden. Ohne Modus gelesen, wenn vorhanden, und im Kopf des
+           Berichts angezeigt, ohne Abbruch (Beispieldaten und Tests tragen
+           Nullwerte). Der Kopf des Berichts traegt Commit, Datenstand und
+           Register-Hash in beiden Faellen.
+
+    <wurzel>/benchmark_tagesreihen/<markt>.csv
+        datum, netto_rendite
+        -> das gleichgewichtete point-in-time-Universum, taeglich. Grundlage
+           der Beta-Bereinigung und des Zufalls-Timing-Tests.
+```
+
+„`benchmark_tagesreihen/<markt>.csv`“ im Zitat lies „`<bot>.csv`“ (R39). Für `zellenbericht.csv` (R34), `symbole_je_falte.csv` (R38) und das Lese-Audit führt der Docstring heute keine Feldliste; sie kommt mit dem Zellen-Erzeuger (R46) und wird dann hier nachgetragen.
+
+### 50.3 Vollzug TB-122 (Tatsachennotiz nach 37.3)
+
+*Übernommen zeichengleich aus dem Entwurf in `docs/ERGEBNIS_TB-122_posten3_achsen_durchreichen.md` Z. 235–275 (Commit `0f56aeb`). Der „Stand 11.3“ darin ist der vom 29.09.2026; den dort offenen Scanbeginn hat TB-124 geschlossen (50.4).*
+
+> **Vollzug TB-30b Posten 3 (11.3) in TB-122 (Tatsachennotiz nach 37.3)**
+>
+> **Gemessen in TB-122, 29.09.2026** (Belege `docs/belege/TB-122/`, Ergebnis
+> `docs/ERGEBNIS_TB-122_posten3_achsen_durchreichen.md`). Eingang `04f07ef`, Schritt 0 `c064405`. Freigabe des
+> Betreibers 27.09.2026, ca. 20:20 (Auswahlkarte „E-1: TB-30b Posten 3“), Nachtrag 29.09.2026, ca. 14:52 (bis zu drei
+> Testdateien; 27c R31 (b)). Kein Abbruchkriterium ausgelöst.
+>
+> **Grund:** 11.3 — `sma_trend_filter` war bei `rsi2_mean_reversion` eine Konstante; `bb_squeeze_percentile` und
+> `bb_lookback` erreichten bei beiden Volatility-Breakout-Bots die Indikatorberechnung nicht. Ohne die Durchreichung
+> ist das registrierte Raster (Abschnitt 3) für diese drei Bots nicht rechenbar (R49 (h): 11.3 ist E-1).
+>
+> **Hash-Übergänge nach 37.3** (Sperrlistenpunkt 11, „Commit-Hashes von Simulation, Erkennung, Optimierern“):
+>
+> | Datei | vorher | nachher | Commit | vollzieht |
+> |---|---|---|---|---|
+> | `strategies/rsi2_mean_reversion/backtest_rsi2.py` | `c0a59a43…` | `836b032a…` | `ab31314` | 11.3 |
+> | `strategies/rsi2_mean_reversion/multi_symbol_optimise.py` | `9b2d2a2f…` | `777f5cb0…` | `ab31314` | 11.3 |
+> | `strategies/rsi2_mean_reversion/equity_simulation.py` | `3a29a4f1…` | `864907fb…` | `ab31314` | 11.3 |
+> | `strategies/volatility_breakout/multi_symbol_optimise.py` | `93799bdd…` | `f0a4ee43…` | `ab31314` | 11.3 |
+> | `strategies/volatility_breakout/equity_simulation.py` | `fde65dbb…` | `7cbc7f00…` | `ab31314` | 11.3 |
+> | `strategies/volatility_breakout_crypto/multi_symbol_optimise.py` | `e7710d4d…` | `02548e2e…` | `ab31314` | 11.3 |
+> | `strategies/volatility_breakout_crypto/equity_simulation.py` | `c760c6b8…` | `11094387…` | `ab31314` | 11.3 |
+>
+> Neu (kein Vorher), Commit `08153e4`: `strategies/rsi2_mean_reversion/test_posten3_durchreichung.py` `1b4edfbc…`,
+> `strategies/volatility_breakout/test_posten3_durchreichung.py` `50e872e2…`,
+> `strategies/volatility_breakout_crypto/test_posten3_durchreichung.py` `3f78f6da…`.
+>
+> **`herkunft.register()`:** `01f5997a…` vorher = nachher. Die sieben Dateien gehören nicht zu den eingefrorenen
+> Teilen; die Sonde gegen `46f0ad5d…` ist vorher und nachher byte-gleich (Punkt 11 „nicht prüfbar“). Der Übergang
+> steht deshalb nur hier und im Commit.
+>
+> **Nachweis:** Mit den Voreinstellungen (200; 126 / 25.0) sind die Ausgaben von B6, Signalpfad, Kapitalkurve und
+> Optimierer-Kurzlauf **13/13 bytegleich**; der Trockenlauf ohne Modus ist 18/18 zeichengleich. Die erste
+> Registerstufe (26; 20 / 5) kommt nachweislich in der Indikatorberechnung an (16/16, 12/12, 12/12); am Stand vor
+> dem Umbau scheitert dieselbe Probe (40.7).
+>
+> **Folge aus R47 (Fable 29b, F-17):** Nach Posten 3 ist `SMA_TREND_PERIOD` bei `rsi2_mean_reversion` **Rasterachse**
+> (`sma_trend_filter`), nicht Parameterdatei; der Name in `backtest_rsi2.py` bleibt als Voreinstellung.
+>
+> **Stand 11.3:** geschlossen bis zur Indikatorberechnung; offen der Scanbeginn der Breakout-Bots
+> (`backtest_breakout.py::WARMUP_PERIOD`, TB-122 Befund F1).
+
+### 50.4 Vollzug TB-124 (Tatsachennotiz nach 37.3)
+
+*Übernommen zeichengleich aus dem Entwurf in `docs/ERGEBNIS_TB-124_scanbeginn_sync_r28.md` Z. 289–323 (Commit `0f56aeb`). Abgenommen vom steuernden Chat am 30.09.2026; die Befunde der Abnahme berühren keinen Satz dieses Entwurfs. Der Schlusssatz („Der Scanbeginn der Zelle liegt an ihrem Vorlauf …“) folgt der Lesart in 50.5.*
+
+> **Vollzug TB-30b Posten 3 (11.3), Teil Scanbeginn, in TB-124 (Tatsachennotiz nach 37.3)**
+>
+> **Gemessen in TB-124, 30.09.2026** (Belege `docs/belege/TB-124/`, Ergebnis
+> `docs/ERGEBNIS_TB-124_scanbeginn_sync_r28.md`). Eingang `0034960`, Schritt 0 `baf18a2`. Freigabe des Betreibers
+> 30.09.2026, 19:13 (Sachentscheid „TB-122 F1 … geht in TB-124“), Nachtrag 19:44 (zwei Testdateien; 27c R31 (b)).
+> Handwerksvorgabe Nachtrag 1 (steuernder Chat, ca. 20:15) nach Fable 30a R53. Kein Abbruchkriterium ausgelöst.
+>
+> **Grund:** 11.3 (TB-122 Befund F1) — bei beiden Volatility-Breakout-Bots erreichte `bb_lookback` die
+> Indikatorberechnung (TB-122), der Scanbeginn hing aber an der Voreinstellung (`WARMUP_PERIOD + 1` = 127). Bei den
+> Stufen 20 und 97 schnitt er mögliche Einstiege ab (Balken 39–126 bzw. 116–126); bei den Stufen über 126 lag er vor dem
+> Vorlauf der Zelle.
+>
+> **Hash-Übergänge nach 37.3** (Sperrlistenpunkt 11):
+>
+> | Datei | vorher | nachher | Commit | vollzieht |
+> |---|---|---|---|---|
+> | `strategies/volatility_breakout/backtest_breakout.py` | `8dce183d…` | `3fd0cef6…` | `f90135e` | 11.3 |
+> | `strategies/volatility_breakout_crypto/backtest_breakout.py` | `b7923b08…` | `3c7ccbe7…` | `f90135e` | 11.3 |
+> | `strategies/volatility_breakout/test_posten3_durchreichung.py` | `50e872e2…` | `9a360566…` | `499d68b` | 11.3 (Probe) |
+> | `strategies/volatility_breakout_crypto/test_posten3_durchreichung.py` | `3f78f6da…` | `5a5ad774…` | `499d68b` | 11.3 (Probe) |
+>
+> **`herkunft.register()`:** `01f5997a…` alt = neu. Die vier Dateien gehören nicht zu den eingefrorenen Teilen; die
+> Sonde gegen `46f0ad5d…` ist vorher und nachher byte-gleich (Punkt 11 „nicht prüfbar“). Der Übergang steht deshalb nur
+> hier und im Commit.
+>
+> **Nachweis:** Mit den Voreinstellungen (126 / 25.0) sind B6, Signalpfad, Kapitalkurve und Optimierer-Kurzlauf
+> **13/13 bytegleich**; der Trockenlauf ohne Modus ist 18/18 zeichengleich. Für jede Registerstufe von `bb_lookback`
+> beginnt der Scan am ersten Index, an dem die Einstiegsbedingung definiert ist (`BB_PERIOD + L − 1`), und ein
+> Einstieg genau dort wird über Signal- und Optimierer-Pfad gefunden (43/43, 42/42); am Stand vor dem Umbau scheitert
+> dieselbe Probe (40.7).
+>
+> **Stand 11.3:** geschlossen — `sma_trend_filter` (rsi2_mean_reversion), `bb_squeeze_percentile` und `bb_lookback`
+> (beide Breakout-Bots) erreichen Indikatorberechnung und Scanbeginn. **Der Scanbeginn der Zelle liegt an ihrem Vorlauf
+> (Fable 30a, R53):** er ist der erste Index, an dem die Einstiegsbedingung der Zelle definiert ist — bei den
+> Breakout-Bots `BB_PERIOD + L − 1`, nie früher, nicht später.
+
+### 50.5 Lesart des steuernden Chats zu R53 (49.1) — Zählweise des Vorlaufs
+
+⚠️ **Vorläufig, bis Fable bestätigt** (Bauart 46.9).
+
+R53 nennt die Regel, nicht die Werte (30a, „Unsicher“ zu Frage 1). Wörtlich addiert ergäbe „oberste Stufe zuzüglich der festen Fenster“ bei den zwei Volatility-Breakout-Bots L + 20 (Bollinger-Fenster 20). Aus dem Code hergeleitet ist der erste Balken, an dem die Einstiegsbedingung einer Zelle definiert ist, `BB_PERIOD + L − 1`, also L + 19. Das Bollinger-Fenster über `close` und das Squeeze-Fenster L über `bb_width` sind zwei hintereinanderliegende rollende Fenster ohne `min_periods`, die sich einen Balken teilen (`docs/belege/TB-124/b1_herleitung.txt`, je Stufe von `bb_lookback` und Voreinstellung; Nachtrag 1 zu TB-124). Dieser Eintrag liest R53 als den hergeleiteten Wert, also den ersten definierten Index, nicht als Summe von Fensterlängen. Das ist eine Lesart des steuernden Chats; sie geht mit der nächsten Anfrage an Fable zur Bestätigung. Für die übrigen sieben Bots ist der Vorlauf noch nicht hergeleitet; das geschieht mit R53 (a) (50.7).
+
+### 50.6 Tatsachennotiz zu R24 (47.7) — Entscheid des Betreibers
+
+Zur Entscheidungsvorlage in R24 hat der Betreiber am 29.09.2026 per Auswahlkarte „(a) So lassen“ gewählt, die Empfehlung des Verfahrensprüfers (T116-5; `docs/projektfuehrung/UEBERGABE_ARCHIV.md`, Nachtrag 29.09.2026, 12:25, und Umzug 29.09.2026, 20:48, Block 6). Ein Deckel je Bot vor dem Netting ist damit nicht registriert.
+
+### 50.7 Was offen bleibt
+
+| | offen | wann, wo |
+|---|---|---|
+| 1 | R41: Neurechnung von 15.4 nach 41.3 C2 (Kerzenzählung) | Mac-Messung vor dem Tag |
+| 2 | R48 (d): `mittlere_exposure` im Vertrag bilden, bewertet wie die MtM-Reihe | mit dem Zellen-Erzeuger (R46) |
+| 3 | R50: die Zahl „34“ (Zählweise), die Ausstiegskonvention der neun `backtest_*.py`; Nebenbefund DSR-Einheiten `kennzahlen.py:222–224` (Vormessung 29.09.2026, Abschnitt 2) | vor dem Tag |
+| 4 | R53 (a): Vorlauf je Bot aus `registerdaten.py` rechnen; feste Fenster ohne Eintrag; Herleitung für die übrigen sieben Bots | Handwerk (BACKLOG „Aus Fable 30a“) |
+| 5 | R55: Probe „leere Menge ⇒ (d) nicht erfüllt“ mit Gegenprobe, dazu der Nebenfall | Handwerk (BACKLOG „Aus Fable 30a“) |
+| 6 | R28: das Literal in `pruefe_abschnitt17.py:97` | Fable zur Kenntnis, dann Handwerk |
+| 7 | R39: Feldlisten für `zellenbericht.csv`, `symbole_je_falte.csv`, Lese-Audit | mit dem Zellen-Erzeuger |
+| 8 | R42: Punkt 15 im Listentext von Abschnitt 10 | vor dem Tag, nach R42 |
+| 9 | R21: Anforderung an das Leiter-Skript, Stufe IV | mit dem Leiter-Skript |
+| 10 | R8 (d): Verweis aus Register 9 (45.8) | nach dem Tag; die Marke in 9 aus R51 ist eine andere |
+| 11 | R31 (b), R49 (e): Regeln für das Regelwerk (Freigabe nennt die Tests; Marken nennen Bezeichner) | Dokumentationsauftrag |
+| 12 | Lesarten und Reibung: 50.5 (Zählweise), R48 (d) (Registertext gilt, wo der Code die Grösse nicht hat), R53 („Literal mit Test“ gegen „nicht als Literal“) | nächste Anfrage an Fable |
+| 13 | R26: Lauf von `auswertung.py --bot` unter dem Modus an einem Stand nach `0f56aeb` | vor dem Tag, mit den Tag-Vorbedingungen |

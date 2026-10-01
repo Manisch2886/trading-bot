@@ -1,0 +1,10 @@
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  Abschnitte 0–22  218584 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  Abschnitte 23–36  221323 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  Abschnitte 37–42  232429 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  Abschnitte 43–50  157838 Bytes
+Teil 1: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  218584 Bytes gesamt, Body 218349 Bytes, Abschnitte 0–22  <= 240000
+Teil 2: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  221323 Bytes gesamt, Body 221087 Bytes, Abschnitte 23–36  <= 240000
+Teil 3: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  232429 Bytes gesamt, Body 232193 Bytes, Abschnitte 37–42  <= 240000
+Teil 4: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  157838 Bytes gesamt, Body 157602 Bytes, Abschnitte 43–50  <= 240000
+Bodies aneinander: 829231 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am db108a68ec57: 829231 Bytes, sha256 b58046592205bfac (Kopf b58046592205bfac) - BYTEGLEICH
+rc 0
