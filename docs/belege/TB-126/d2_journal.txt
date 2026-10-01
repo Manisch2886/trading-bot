@@ -1,0 +1,6 @@
+# TB-126 D2 Journal
+letzter Buchstabenblock vorher: ## DW — 
+numstat: 39	0
+Pflichtsatz (ganze Zeile aus dem Auftrag am 0f56aeb) im Journal: 1 (Soll 1)
+Platzhalter im Journal/Ergebnis: docs/projektfuehrung/JOURNAL.md:0 docs/ERGEBNIS_TB-126_register_e2.md:6 
+(Die 6 Treffer im Ergebnis sind das im Kopf definierte Kuerzel ⟨S0⟩ = 0f56aeb, kein offener Platzhalter; ⟪MARKENTABELLE⟫ ist ersetzt: 0.)

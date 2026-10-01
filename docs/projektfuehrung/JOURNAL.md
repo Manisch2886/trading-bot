@@ -9720,6 +9720,45 @@ den Betreiber. Kein Abbruchkriterium ausgelöst. Modell laut Selbstauskunft Opus
 
 ---
 
+## DX — TB-126: Register E-2 — Fable 27c/29b/30a (R18–R55) zeichengleich als Abschnitte 47–49, Tatsachennotizen 50, 88 Marken (87 am alten Ort, 1 unter 48.16); numstat 747/0, R-Diff 38/38, Zitate 4/4 + 3/3, `test_vorregistrierung` 196/196; Registerkopie 4 Teile neu, Index nachgezogen (01.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-126_register_e2.md`*
+
+**Quelle:** Mac-Sitzung **TB-126** (Hauptordner), 01.10.2026, Eingang `41864d4`. Commits `0f56aeb` (Schritt 0),
+`1e13135` (0), `db108a6` (A, einziger Registercommit), `8687eef` (C) und der Abgabe-Commit. Belege
+`docs/belege/TB-126/`. Freigabe des Betreibers 01.10.2026, ca. 08:22 (Auswahlkarte). Keine Rückfrage an den Betreiber.
+Kein Abbruchkriterium ausgelöst.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | Ausgang wie Soll (10 347 Z., `18e39ee2…`, `register()` `01f5997a…`, Sonde 37/0/0, (ii) 0); 0e 196/196; 0f leer; 0g 87/87 Anker, Prüfskript aus Anhang A rc 0. Worktree `tb123_vorher2` entfernt, **`tb123_vorher` verweigert** (vier Symlinks), nicht erzwungen |
+| ⭐⭐ **A** | Probelauf an Kopie, dann echt, `cmp` gleich. R-Diff **38/38**, Mutation rc 1, Zitate **4/4 + 3/3**, Überschriften 38/38, Marken **88/88**, numstat **747/0**, Abschnitt 10 und ERZEUGT-Block bytegleich, Sonde-JSON ohne `zeilen` gleich, `registerbericht --pruefen` gleich (rc 1, schon vorher), `register()` → `525c9c42…`, 196/196 |
+| **C** | Kopie 0–22 / 23–36 / 37–42 / 43–50, `--pruefen` bytegleich; Index: 32 Zeilenangaben umgeschrieben, 88 Marken eingetragen, 6 Indexzeilen, Gegenprobe 184/184 |
+
+Tatsachennotiz zu DV: Es sind zehn Paper-Trading-DBs (neun im Wurzelordner, eine unter `strategies/volatility_breakout/`), nicht elf; „11/12 sha256-identisch“ bleibt richtig (Abnahme TB-124 durch den steuernden Chat, 30.09.2026).
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Liste von Orten, deren Orte selbst Kommas tragen, ist kommagetrennt nicht lesbar.** Die Kette trennt mit „; “ — im Ergebnis als Abweichung vom Auftragswortlaut genannt |
+| | **Was nach einer Einfügestelle steht, gehört zur Prüfung der Einfügestelle.** Eine Marke vor einem Listenpunkt ohne Leerzeile zieht den Punkt ins Blockzitat (Nr. 13, 5.1 Nr. 7) |
+| | **Eine Zeilenabbildung alt → neu über die unveränderten alten Zeilen** zieht jede „Z. n“ im Index mechanisch nach; die Gegenprobe prüft, dass jede Zeile ein Markenwort trägt |
+
+### Was offen bleibt
+
+- 50.7 (13 Punkte), „Für Fable“ im Ergebnis (Lesarten 50.5 und R48 (d), Reibung R53, Nebenbefund R28, Listen B/C,
+  zweite PRÄZISIERT-Marke an 25.3 (i)).
+- `registerbericht.py --pruefen` rc 1 schon vor TB-126 (Zahlenteil veraltet).
+- Worktree `$TMPDIR/tb123_vorher` — Entscheidung des Betreibers.
+- Status von 27c/29b/30a im `FABLE_DIALOG_INDEX.md` und Ablage der neuen Registerkopie — steuernder Chat.
+
+*Geschrieben 01.10.2026 von der Mac-Sitzung TB-126. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
