@@ -77,3 +77,6 @@ Soll laut Auftrag 0b: ausser .git genau 4 Eintraege, alle Symlinks. Ist: 35 Eint
 Bedingung NICHT erfuellt => Worktree NICHT entfernt (kein git worktree remove, kein prune). Befund, kein Abbruch.
 Lesart: Die "4 Symlinks" aus UEBERGABE.md (Abnahme TB-126 B6, Karte 20:50) sind die 4 UNVERSIONIERTEN Eintraege laut git status im Worktree (data_sicherung, logs, research/turn_of_month/daten, trading-env — alle 4 Symlinks auf den Hauptordner; research/turn_of_month/daten liegt eine Ebene tiefer und faellt aus dem find heraus). Daneben liegt der vollstaendige versionierte Checkout c064405 (ohne Aenderungen). Die im Auftrag vorgeschriebene Messung (find -maxdepth 1 ohne .git) zaehlt den Checkout mit und kann das Soll nie erreichen. Die Sitzung folgt dem Wortlaut des Auftrags (nicht entfernen) und weicht nicht per Lesart ab.
 Hinweis fuer den Entscheid: git worktree remove --force loescht nur die Links, nicht deren Ziele; trotzdem nicht ausgefuehrt, weil die Messung nicht dem Soll entsprach.
+
+## Nachtrag: Ignorier-Status der 17 Symlinks oberster Ebene (git check-ignore)
+14 ignoriert (9 paper_trading_*.db, broker_testnet_t3_supertrend.db, benachrichtigungen_schliessung.db, email_summary.log, forward_test.log, .env); 3 nicht ignoriert = unverfolgt (data_sicherung, logs, trading-env); dazu research/turn_of_month/daten eine Ebene tiefer. Versioniert: 0.

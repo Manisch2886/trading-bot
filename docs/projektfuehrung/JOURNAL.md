@@ -9759,6 +9759,43 @@ Tatsachennotiz zu DV: Es sind zehn Paper-Trading-DBs (neun im Wurzelordner, eine
 
 ---
 
+## DY — TB-127: Regelwerk-Nachtrag 01.10.2026 — E1–E9 per Skript aus dem Auftrag in `UMZUG.md`, `ARBEITSWEISE.md`, `BACKLOG.md` (Ampel auf den Verlauf, S1–S7, F1–F6, K4u, Abnahme TB-126), C3 9/9 zeichengleich, numstat 10/2 · 4/0 · 7/0; `registerkopie.py --abschnitte` 51/51 md5-gleich; Worktree `tb123_vorher` nicht entfernt (01.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-127_regelwerk_tokensparen_registerkopie.md`*
+
+**Quelle:** Mac-Sitzung **TB-127** (Hauptordner), 01.10.2026, Eingang `69b9ced`. Commits `eaea530` (Schritt 0),
+`0e8b361` (A/C), `02806ea` (B) und der Abgabe-Commit. Belege `docs/belege/TB-127/`. Freigaben: Handwerk pauschal
+(26.09.2026), Regeln per Karte 01.10.2026 (20:10, 21:25, 21:35), Worktree per Karte 20:45. Keine Rückfrage an den
+Betreiber. Kein Abbruchkriterium ausgelöst.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a 12/12 wie Soll, in den Scratch vor dem Belegordner; optionale `FABLE_UEBERGABE_…_neuer_chat.md` fehlte. ⚠️ 0b: `find` zählt **35** Einträge (17 Symlinks) statt 4 ⇒ Worktree `tb123_vorher` **nicht** entfernt |
+| ⭐ **A/C** | E1–E9 je Anker 1, ausgeführt, erste Zeile nachher 1; C3 (eigener Parser) 9/9 als Block an Zeilengrenzen; entfernt nur die zwei ersetzten Zeilen (E3, E4) |
+| ⭐ **B** | `--abschnitte` in `$TMPDIR`: rc 0, 51 Dateien, md5 51/51 gleich der Ablage-Referenz; `--abschnitte --pruefen` rc 0; Teile-Modus `--pruefen` vorher/nachher rc 0 BYTEGLEICH; Gegenproben rc 2/1/1/0; numstat 126/6 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Eine Vorbedingung muss mit der Messung formuliert sein, die sie meint.** „Vier Symlinks“ (Abnahme TB-126) waren die unverfolgten Einträge laut `git status`; `find -maxdepth 1` zählt den ganzen Checkout und kann das Soll nie erreichen |
+| | **Ein Zerleger, der an Überschriften schneidet, schneidet auch in Codeblöcken.** C3 trennte am `### …` im E9-Text; Schnitte nur an den eigenen Kopfmustern (`### Datei`, `#### E<n>`) |
+| | **Backslash in einem f-String-Ausdruck ist auf Python 3.9 ein Syntaxfehler** — Belegskripte laufen mit `trading-env` (3.9.6) |
+
+### Was offen bleibt
+
+- Worktree `$TMPDIR/tb123_vorher`: neuer Auftrag mit Messung per `git status --porcelain` (Soll: vier `??`, alle Symlinks).
+- `FABLE_UEBERGABE_2026-10-01_neuer_chat.md` noch nicht im Repo.
+- Die Liste „Nicht getan“ im Ergebnis (5b zu 27c/29a/29b, K2h/K2f, Trägerstellen, kalter Leser, 29a 1–3,
+  `project_info`, R31 (b)/R49 (e), Sonnet-Probe, `BACKLOG.md` in der Ablage).
+- `registerkopie_abschnitte.py` (Vorlage) liegt noch; ersetzt durch `registerkopie.py --abschnitte`.
+
+*Geschrieben 01.10.2026 von der Mac-Sitzung TB-127. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
