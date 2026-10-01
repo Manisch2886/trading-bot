@@ -1,0 +1,3 @@
+# TB-126 D3: git status --porcelain nach dem Abgabe-Commit 69aab70, gemessen 2026-10-01 19:30:54 +0200 in den Scratchpad (damit diese Datei sich nicht selbst mitzaehlt)
+Zeilen: 0
+[Ende porcelain]
