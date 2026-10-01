@@ -372,3 +372,119 @@ Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt,
   - BACKLOG, neuer Block vor `## 6 — Geparkt`: `### Aus der Abnahme TB-124 (30.09.2026)` mit (a) die zwei `research/`-Scan-Schleifen aus Befund 5 binden oder begründet lassen, vor E-6/Posten 5; (b) Vergleichsskripte (`cmp`) gehören mit in den Belegordner, in künftigen Aufträgen ausdrücklich nennen.
   - JOURNAL: Tatsachennotiz zu DV: „zehn Paper-Trading-DBs, nicht elf; 11/12 unverändert bleibt richtig“.
 - **Nächstes:** TB-125 starten (0a eingetragen, Auslöser, `/model sonnet`).
+
+## Nachtrag 30.09.2026, ca. 23:20 — Kartenentscheide 22:40, T5 in der Ablage vollzogen, TB-125 abgenommen und geschlossen
+
+- **Betreiberentscheide 30.09.2026, ca. 22:40, per Karte:**
+  - **Worktrees** `tb123_vorher*`: „TB-126 löscht sie (Empfohlen)“ ⇒ Schritt 0 von TB-126: `git worktree remove` für beide, danach nachmessen.
+  - **T5:** „Du machst es (Empfohlen)“.
+- **T5 vollzogen (22:41):** Die 18 Dateien der Liste vorher im Repo nachgezählt (18 Dateien, 364 040 B, alle vorhanden), dann per `project_delete` aus der Ablage entfernt. Ablage jetzt 33 Dateien, `knowledge_size` 659 299 (vorher 51 / 803 641). `UEBERGABE.md` in der Ablage ersetzt durch die Fassung aus `b711567` (md5 `0ff4bca9…`, 35 875 B).
+  - ⚠️ **Fehler Nr. 7:** Die Ablage-Fassung habe ich mit `project_read` ganz in den Chat geholt, statt nur die md5 zu vergleichen (gegen T1), und die md5 danach nicht maschinell verglichen, nur durchgesehen. ⇒ Nach `project_write` die md5 über eine Datei vergleichen, nie den Inhalt in den Chat holen.
+- **TB-125 bewertet (4/5b):** Commits `b711567` 0 · `deba416` A/B · `add243a` Abgabe (Journal **DW**) · `e6456cd`/`41864d4` C3.
+  - **Modell: Opus 5.5, nicht Sonnet** (`0b_modell.txt`) ⇒ **keine gültige Probe nach 22.12**; die Sonnet-Probe steht weiter aus.
+  - Selbst nachgemessen, mit eigenem Parser: alle 24 Texte E1–E24 kommen am Stand `41864d4` genau einmal in ihrer Zieldatei vor und am Stand `b711567` nirgends. numstat `b711567..deba416`: ARBEITSWEISE 157/5, BACKLOG 2/0, UMZUG 23/33 = `b2_numstat.txt`. Geändert nur die drei Dateien, `JOURNAL.md` (+35/0), Ergebnis und Belege.
+  - Die Sitzung fand einen Fehler im Auftrag: **E24 stand unter der Überschrift „Datei BACKLOG.md“**, gehört nach ARBEITSWEISE. Sie hat es nach Titel und B2 richtig zugeordnet und benannt. ⇒ Fehler dieses Chats (Auftrag vom vorigen Chat, gegengelesen): Einfügungen immer mit Zieldatei in der eigenen Zeile.
+  - ⇒ **Abgenommen.** `BACKLOG.md` jetzt 230 Zeilen, md5 `75f4577f…`.
+- **Geschlossen:** `schliesse_41864d416ff9f552c6cba41010ca1bfc7bfa0c9a`, Wächter 21:15:27Z, PID 85913 mit `TERM` beendet, 0 übrig.
+- **Nummern:** TB frei ab **126** · Journal frei ab **DX** · R-Blöcke frei ab **R56**.
+- **Nächstes:** Auftrag TB-126 (Register E-2) schreiben, Freigabekarte (M3). Dazu gehören in Schritt 0: die Worktrees, dieser Nachtrag und der zwischengelagerte BACKLOG-/Journal-Wortlaut aus dem Nachtrag 22:40 — Letzteres als eigene Einfügung, weil TB-126 sonst nur das Register ändert.
+- **R53–R55 gegen die Ablage geprüft (ca. 23:25, ein Helfer, T2):** Ablage-Fassung `FABLE_ANTWORT_2026-09-30a_vorlauf_aggregation_leere_menge.md` (md5 `5e5401bc…`, 13 165 B) gegen die Repo-Abschrift (`f9cdbbef…`, 12 925 B). Die drei Blöcke sind **bytegleich** (R53 1 047 B `cbaeea5b…`, R54 1 241 B `914ddd1d…`, R55 1 016 B `1f3e534b…`; je zwei Zeilen „Rnn —“ bis „Quelle des Grundes …“). Die 240 B Unterschied der ganzen Dateien sind nur Markdown und Leerzeilen. ⇒ TB-126 darf R53–R55 aus der Repo-Datei nehmen; der Vorbehalt aus dem Nachtrag 20:20 ist erledigt.
+
+## Umzug 01.10.2026, ca. 08:20 — Stand für den neuen steuernden Chat (selbsttragend, alle neun Blöcke)
+
+*Geschrieben vom steuernden Chat (Übernahme 30.09., 22:16). Anlass: Auslöser 6, der Verlauf liegt geschätzt bei rund 230 000 Tokens. Sauberer Stand: keine Mac-Sitzung läuft. „Gemessen“ heisst: über die Geräteanbindung, 01.10.2026.*
+
+⚠️ **Ausnahme von UMZUG 3:** Vier Dateien sind uncommittet (Block 2). Schritt 0 von TB-126 nimmt sie mit.
+
+### Block 1 — Stand in drei Zeilen
+
+- **Fertig:**
+  - TB-124 und TB-125 abgenommen und geschlossen (Nachträge 22:40 und 23:20). TB-125 lief auf Opus, die Sonnet-Probe steht aus.
+  - T5 in der Ablage vollzogen (33 Dateien).
+  - R53–R55 bytegleich mit der Ablage.
+  - **Auftrag TB-126 (Register E-2) geschrieben:** `docs/auftraege/MAC_TB-126_register_e2.md`, 131 582 B, md5 `3ec1bcc18f5199dbcd0aca37fddd202a`. Zwei Gegenlese-Durchgänge (12 + 2 MUSS, alle eingearbeitet). Anhang A (38 Überschriften, 88 Marken, sechs Indexzeilen, Prüfskript, JSON) hat ein Helfer am Register `41864d4` gebaut; jeder Anker kommt genau einmal vor, vom Gegenleser nachgeprüft.
+- **Läuft:** nichts.
+- **Als Nächstes:** Freigabe TB-126 (Karte, die Antwort steht unter diesem Block oder fehlt noch), dann TB-126 starten (Block 4 Nr. 1).
+
+### Block 2 — HEAD und Commits
+
+- **HEAD `41864d4`** (`41864d416ff9f552c6cba41010ca1bfc7bfa0c9a`), TB-125 C3.
+- **Uncommittet, gemessen:**
+  - ` M docs/projektfuehrung/UEBERGABE.md` (Nachträge 22:40, 23:20 und dieser Block);
+  - `?? docs/auftraege/MAC_TB-126_register_e2.md`;
+  - `?? docs/projektfuehrung/VORARBEIT_TB-126_bauplan_registerauftrag.md` (md5 `92993b43…`, 30 844 B);
+  - `?? docs/projektfuehrung/VORARBEIT_TB-126_inventar_r18_r55.md` (md5 `0701725d…`, 26 534 B).
+
+### Block 3 — Tragende Zahlen
+
+- Register: 10 347 Zeilen, sha256 `18e39ee2…`, md5 `c8a32c0f…`, letzter Abschnitt 46 · `herkunft.register()` `01f5997a…` · Abbild `46f0ad5d…` · Datenstand `d9449faf…`/223 (TB-124 E).
+- `BACKLOG.md` 230 Zeilen, md5 `75f4577f…` · Ablage 33 Dateien, `knowledge_size` 659 299.
+- **Nummern:** TB frei ab **127** (126 vergeben) · Journal frei ab **DX** · R-Blöcke frei ab **R56** · Fable-Anfrage: am 01.10. frei ab **a**.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+
+1. **TB-126 starten**, sobald die Freigabe vorliegt (Karte M3; Einzelfreigabe Register):
+   - Im Auftrag `PLATZHALTER_FREIGABE` durch den Wortlaut ersetzen (Datum, Uhrzeit, Kanal „Auswahlkarte im steuernden Chat“, Kartentext kursiv, gewählte Option fett, Bauart TB-117). Bei „ohne Marke in 9“ zusätzlich A2/48.0/Freigabetabelle anpassen und die Marke Nr. für Abschnitt 9 in Anhang A streichen.
+   - Zeiger `docs/auftraege/AKTUELLER_AUFTRAG.md`: Zeile `| **TB-125** |` durch TB-126 ersetzen, „Gesetzt“-Zeile vorn um „zuvor TB-125, erledigt mit `41864d4`, 30.09.2026;“ ergänzen.
+   - `PLATZHALTER_0A` messen (`--no-optional-locks diff --name-only HEAD`, `ls-files --others --exclude-standard`) und eintragen. Erwartet fünf Einträge: die vier aus Block 2 und ` M docs/auftraege/AKTUELLER_AUFTRAG.md`.
+   - Danach md5 des Auftrags auf dem Gerät festhalten (in Python am Ort editieren, nicht über `device_commit_files`, oder T7).
+   - Auslöser `starte_TB-126`, Wächter-Log „Satz ins Fenster gelegt“. Modell: Opus (Standard), kein `/model`.
+   - Nachschau per `send_later` nach etwa 2,5 h (zwei Läufe `test_vorregistrierung` à rund 15 min, dazu Einsetzen und Registerkopie).
+2. **Abnahme TB-126** (4/5b, Gegenleser T2, jede Zahl an der Rohausgabe), dann `schliesse_<HEAD>` ab 600 s. Danach Ablage-Abgleich nach UMZUG 4: neue `REGISTER_KOPIE_teil*.md` und `REGISTER_INDEX.md` per `project_write` ablegen, md5 maschinell vergleichen (nie den Inhalt in den Chat holen, Fehler Nr. 7), veraltete Teile entfernen. 30a: In der Ablage bleibt Fables Original (`…_vorlauf_aggregation_leere_menge.md`). Dialog-Index: 27c, 29b und 30a nach TB-126 als registriert führen.
+3. **Fable-Umzug** (Fable 🔴, ~450 000) vor der nächsten Anfrage. Danach eine vorgeprüfte Anfrage mit „Für Fable“ aus TB-126: Lesarten 50.5 (Zählweise L + 19) und R48 (d), Reibung R53 („Literal mit Test“), Nebenbefund R28 (`pruefe_abschnitt17.py:97`), Vereinigung der Markenorte R48–R50, Orte ohne Marke (Anhang A, Listen B und C, u. a. R21 „Prüfung vor dem Tag“).
+4. **Dokumentationsauftrag** (pauschal frei): 5b-Block in `BACKLOG.md` zur Bewertung von 27c, 29a und 29b (fehlt; Fundstelle der Bewertung in UEBERGABE_ARCHIV suchen) · K2h/K2f, Trägerstellen, kalter Leser, 29a 1–3, `project_info`-Regel (TB-125 „Nicht getan“) · R31 (b), R49 (e) ins Regelwerk · neue Fehlerregeln aus Block 7 unten · Sonnet-Probe mit wirksam gesetztem Modell.
+5. Später: R53 (a), R55-Probe, `research/`-Scan-Schleifen (BACKLOG „Aus der Abnahme TB-124“, kommt mit TB-126 0c), R41-Neurechnung, R26-Lauf, E-6, E-3/E-4, Posten 5, Leiter-Skript Stufe IV, `paths.py` (E-9), DSR-Einheiten.
+
+### Block 5 — Wartezustände
+
+| wartet | auf |
+|---|---|
+| TB-126 | Freigabe des Betreibers (Karte), dann Platzhalter, Zeiger, Auslöser, Einfügesatz |
+| Fable | nichts offen; vor der nächsten Anfrage erst der Fable-Umzug |
+| Betreiber | Karte TB-126 · Speicher-Export (Frist 29.09., Stand unbekannt) |
+
+### Block 6 — Freigaben und Entscheide
+
+- **Entschieden 30.09., ca. 22:40, per Karte:** Worktrees „TB-126 löscht sie“ (steht im Auftrag) · T5 „Du machst es“ (vollzogen).
+- **Pauschal frei:** Handwerk ohne Sperrlistennähe (26.09.).
+- **Nicht freigegeben:** TB-126 (Karte gestellt), E-3 … E-9, jede Öffnung von `herkunft.py`, `paths.py`, `zuteilung.py`, `auswertung.py`, `kennzahlen.py`, F3; der Umbau des Wächters (Modellschalter).
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus
+
+| # | Fehler | ⇒ Regel |
+|---|---|---|
+| 7 | UEBERGABE nach `project_write` ganz per `project_read` in den Chat geholt (T1), md5 nicht maschinell verglichen | Nach `project_write` die md5 über eine Datei vergleichen, nie den Inhalt in den Chat holen |
+| 8 | Auftrag TB-125: E24 unter der falschen Dateiüberschrift (Auftrag des vorigen Chats, gegengelesen, nicht gefunden) | Zieldatei je Einfügung in eigener Zeile |
+| 9 | Entwurf TB-126 v1: Lesarten als Tatsache formuliert (R48 (d), 50.5), Markentabelle der Sitzung überlassen, Nachweise „an der Kopie“, die am festen Pfad lesen | Lesarten des steuernden Chats im Registertext als „Lesart, vorläufig“ kennzeichnen; Markentabellen gibt der steuernde Chat fertig vor (Helfer, Anker vorgezählt); bei Prüfwerkzeugen messen, welchen Pfad sie lesen |
+| 10 | TB-125: Sonnet nicht wirksam (Satz lag vor `/model sonnet` schon im Fenster; ungeklärt, ob umgestellt wurde) | Probe erst mit Modellschalter im Wächter oder mit Bestätigung des Modells vor dem Einfügesatz |
+
+Weiter gültig: die Blöcke 7 vom 29.09. und 30.09. (Archiv und oben) samt Kurzfassung.
+
+### Block 8 — Zwischengelagert, noch nicht eingearbeitet
+
+- Die vier uncommitteten Dateien (Block 2) ⇒ TB-126 Schritt 0.
+- Die Volltexte der Gegenleser zu TB-124 und TB-126 lagen nur im Arbeitsordner dieses Chats und gehen verloren (T1); ihre Ergebnisse stehen in den Nachträgen 22:40 und hier. Die Markentabelle steht als Anhang A im Auftrag, Bauplan und Inventar als `VORARBEIT_TB-126_*`.
+
+### Block 9 — Eröffnungstext
+
+```
+Neue Sitzung zum Trading-Bot-Projekt (steuernder Chat). Das Projekt "Trading Bots" ist angehängt.
+
+Prüfe als Erstes, ob du über die Geräteanbindung auf ~/trading-bot lesen kannst — nenne mir HEAD und die Zeilenzahl von docs/projektfuehrung/BACKLOG.md als Beleg. Wenn das nicht geht, sag es ausdrücklich, denn dann müssen wir Messungen wieder über mich laufen lassen. Schon für diese erste Messung gilt: git über die Brücke nur mit --no-optional-locks (rev-parse, log, show, ls-files, diff --name-only), nie git status. Prüfe ausserdem, ob du die Projektablage lesen kannst (project_info); wenn nicht, sag es — dann kommen Fable-Antworten als Anhang.
+
+Lies dann nur die Kernlektüre, aus dem Repo über die Geräteanbindung mit Abschnittsfilter (project_read liefert immer die ganze Datei):
+1. docs/projektfuehrung/UEBERGABE.md — ab der Überschrift „## Umzug 01.10.2026, ca. 08:20“ bis Dateiende. Ältere Blöcke nur bei Bedarf (in derselben Datei weiter oben, noch ältere in UEBERGABE_ARCHIV.md).
+2. docs/projektfuehrung/ARBEITSWEISE.md — nur Abschnitt 0 (von „## 0.“ bis vor „## 1.“).
+3. docs/projektfuehrung/UMZUG.md — nur Abschnitt 3 (von „## 3.“ bis vor „## 4.“).
+Nur wenn die Geräteanbindung fehlt: dieselben Stellen über den Projects-Zugriff (projektfuehrung/…).
+
+Die Regeln vom 29. und 30.09. stehen seit TB-125 in ARBEITSWEISE und UMZUG. PRUEFPRINZIPIEN.md (docs/PRUEFPRINZIPIEN.md), BACKLOG.md und den Auftrag MAC_TB-126 gezielt nachlesen, wenn der Anlass kommt. Grosse Dateien über einen Helfer lesen, der nur eine Kurzfassung zurückgibt.
+
+Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt, und was gerade auf wen wartet. Fang danach in derselben Antwort mit dem ersten Handwerksschritt an.
+```
+
+**Stehende Pflichten (Kurzfassung):** Umzugsampel als letzte Zeile · Karte nach M1–M3 · Helfer nach T1–T3, Gegenleser nach T2 · an Fable nur vorgeprüfte Verfahrensfragen, als Kopierblock · Aufträge per `starte_TB-<n>`, Wächter-Log prüfen, Nachschau per `send_later` · md5 nach jedem Ablegen · Befehle für den Betreiber je eine Zeile, der Einfügesatz am Schluss im Kopierfeld.
+
+**Nachtrag zum Umzugsblock, 01.10.2026, ca. 08:22:** Betreiberentscheide per Karte: TB-126 **„Freigeben wie beschrieben (Empfohlen)“** (Wortlaut steht im Auftrag, `PLATZHALTER_FREIGABE` ist ersetzt; der Auftrag hat damit md5 `e16f50b4d2f818db1ea0e5efb748efbc` statt `3ec1bcc1…` aus Block 1) · Umzug **„Jetzt, neuer Chat startet TB-126 (Empfohlen)“**. Offen für den neuen Chat aus Block 4 Nr. 1 damit nur noch: Zeiger, `PLATZHALTER_0A`, md5, Auslöser, Einfügesatz, Nachschau.
+
+**Nachtrag 01.10.2026, ca. 18:50:** Der Betreiber schrieb 18:46 wörtlich: „wie geht es weiter? Umzug später“. Damit gilt der Kartenentscheid von 08:22 zum Umzug nicht mehr: Dieser Chat startet TB-126 selbst. Umgezogen wird frühestens nach der Abnahme von TB-126 (UMZUG 3: nicht, solange eine Mac-Sitzung läuft). Der Umzugsblock 08:20 bleibt als Stand gültig; für den neuen Chat gelten zusätzlich die Nachträge darunter.
