@@ -1,0 +1,9 @@
+# TB-126 0f, HEAD 0f56aeb, 2026-10-01 18:53:37 +0200
+## git diff --name-only 0034960 HEAD -- <12 Dateien> (Soll leer)
+[Ende diff]
+## git diff --name-only HEAD -- <12 Dateien> (Arbeitsbaum, Soll leer)
+[Ende diff]
+## git log --oneline 852f253..HEAD -- research/vorregistrierung/auswertung.py (Soll leer)
+[Ende log]
+## md5 auswertung.py (Soll 4f4b455e2d33aa46b309bbd2ff3bba33)
+4f4b455e2d33aa46b309bbd2ff3bba33 research/vorregistrierung/auswertung.py

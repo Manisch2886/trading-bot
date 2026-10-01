@@ -1,0 +1,41 @@
+# TB-126 0b — Worktrees, 01.10.2026 18:51
+## vorher: git worktree list --porcelain
+worktree /Users/jaquelineloffler/trading-bot
+HEAD 0f56aeb1cad61919195cea11f08ff735eb90cfa3
+branch refs/heads/main
+
+worktree /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher
+HEAD c0644058efb00c48faae6583322dbb209d6a7e39
+detached
+
+worktree /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher2
+HEAD c0644058efb00c48faae6583322dbb209d6a7e39
+detached
+
+## git -C $p status --porcelain (/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher)
+?? data_sicherung
+?? logs
+?? research/turn_of_month/daten
+?? trading-env
+## git worktree remove /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher
+fatal: '/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher' contains modified or untracked files, use --force to delete it
+rc 128
+## git -C $p status --porcelain (/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher2)
+## git worktree remove /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher2
+rc 0
+## nachher: git worktree list --porcelain
+worktree /Users/jaquelineloffler/trading-bot
+HEAD 0f56aeb1cad61919195cea11f08ff735eb90cfa3
+branch refs/heads/main
+
+worktree /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher
+HEAD c0644058efb00c48faae6583322dbb209d6a7e39
+detached
+
+test -d /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher: rc 0
+test -d /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher2: rc 1
+## Art der vier ungesicherten Eintraege (ls -ld)
+lrwxr-xr-x  1 jaquelineloffler  staff  50 29 Sep 19:10 data_sicherung -> /Users/jaquelineloffler/trading-bot/data_sicherung
+lrwxr-xr-x  1 jaquelineloffler  staff  40 29 Sep 19:10 logs -> /Users/jaquelineloffler/trading-bot/logs
+lrwxr-xr-x  1 jaquelineloffler  staff  64 29 Sep 19:10 research/turn_of_month/daten -> /Users/jaquelineloffler/trading-bot/research/turn_of_month/daten
+lrwxr-xr-x  1 jaquelineloffler  staff  47 29 Sep 19:10 trading-env -> /Users/jaquelineloffler/trading-bot/trading-env

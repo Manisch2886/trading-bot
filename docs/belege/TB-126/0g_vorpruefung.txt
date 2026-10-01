@@ -1,0 +1,107 @@
+# TB-126 0g Vorpruefung am Commit 0f56aeb
+## 1. Anhang A, Daten-Block: Anker und Einfuegestellen
+Nr  1 R49: Anker 1x, Ankerzeile 3 ja, nach Z. 4 ja -> gut
+Nr  2 R48: Anker 1x, Ankerzeile 59 ja, nach Z. 69 ja -> gut
+Nr  3 R48: Anker 1x, Ankerzeile 58 ja, nach Z. 69 ja -> gut
+Nr  4 R51: Anker 1x, Ankerzeile 57 ja, nach Z. 69 ja -> gut
+Nr  5 R48: Anker 1x, Ankerzeile 86 ja, nach Z. 113 ja -> gut
+Nr  6 R48: Anker 1x, Ankerzeile 115 ja, nach Z. 127 ja -> gut
+Nr  7 R49: Anker 1x, Ankerzeile 115 ja, nach Z. 127 ja -> gut
+Nr  8 R48: Anker 1x, Ankerzeile 165 ja, nach Z. 180 ja -> gut
+Nr  9 R49: Anker 1x, Ankerzeile 207 ja, nach Z. 218 ja -> gut
+Nr 10 R49: Anker 1x, Ankerzeile 430 ja, nach Z. 430 ja -> gut
+Nr 11 R51: Anker 1x, Ankerzeile 451 ja, nach Z. 484 ja -> gut
+Nr 12 R49: Anker 1x, Ankerzeile 509 ja, nach Z. 536 ja -> gut
+Nr 13 R37: Anker 1x, Ankerzeile 593 ja, nach Z. 596 ja -> gut
+Nr 14 R51: Anker 1x, Ankerzeile 621 ja, nach Z. 646 ja -> gut
+Nr 15 R48: Anker 1x, Ankerzeile 753 ja, nach Z. 753 ja -> gut
+Nr 16 R51: Anker 1x, Ankerzeile 750 ja, nach Z. 753 ja -> gut
+Nr 17 R55: Anker 1x, Ankerzeile 753 ja, nach Z. 753 ja -> gut
+Nr 18 R21: Anker 1x, Ankerzeile 777 ja, nach Z. 793 ja -> gut
+Nr 19 R23: Anker 1x, Ankerzeile 777 ja, nach Z. 793 ja -> gut
+Nr 20 R48: Anker 1x, Ankerzeile 821 ja, nach Z. 839 ja -> gut
+Nr 21 R48: Anker 1x, Ankerzeile 845 ja, nach Z. 848 ja -> gut
+Nr 22 R43: Anker 1x, Ankerzeile 1119 ja, nach Z. 1141 ja -> gut
+Nr 23 R49: Anker 1x, Ankerzeile 1087 ja, nach Z. 1157 ja -> gut
+Nr 24 R-: Anker 1x, Ankerzeile 1143 ja, nach Z. 1157 ja -> gut
+Nr 25 R25: Anker 1x, Ankerzeile 1161 ja, nach Z. 1222 ja -> gut
+Nr 26 R26: Anker 1x, Ankerzeile 1161 ja, nach Z. 1222 ja -> gut
+Nr 27 R49: Anker 1x, Ankerzeile 1161 ja, nach Z. 1222 ja -> gut
+Nr 28 R50: Anker 1x, Ankerzeile 1161 ja, nach Z. 1222 ja -> gut
+Nr 29 R41: Anker 1x, Ankerzeile 1328 ja, nach Z. 1338 ja -> gut
+Nr 30 R35: Anker 1x, Ankerzeile 1322 ja, nach Z. 1356 ja -> gut
+Nr 31 R54: Anker 1x, Ankerzeile 1362 ja, nach Z. 1381 ja -> gut
+Nr 32 R41: Anker 1x, Ankerzeile 1360 ja, nach Z. 1423 ja -> gut
+Nr 33 R53: Anker 1x, Ankerzeile 1427 ja, nach Z. 1535 ja -> gut
+Nr 34 R23: Anker 1x, Ankerzeile 1553 ja, nach Z. 1562 ja -> gut
+Nr 35 R51: Anker 1x, Ankerzeile 1539 ja, nach Z. 1609 ja -> gut
+Nr 36 R21: Anker 1x, Ankerzeile 1943 ja, nach Z. 1968 ja -> gut
+Nr 37 R22: Anker 1x, Ankerzeile 1938 ja, nach Z. 1968 ja -> gut
+Nr 38 R23: Anker 1x, Ankerzeile 1943 ja, nach Z. 1968 ja -> gut
+Nr 39 R37: Anker 1x, Ankerzeile 1949 ja, nach Z. 1968 ja -> gut
+Nr 40 R37: Anker 1x, Ankerzeile 1958 ja, nach Z. 1968 ja -> gut
+Nr 41 R18: Anker 1x, Ankerzeile 2006 ja, nach Z. 2012 ja -> gut
+Nr 42 R18: Anker 1x, Ankerzeile 1984 ja, nach Z. 2012 ja -> gut
+Nr 43 R18: Anker 1x, Ankerzeile 2002 ja, nach Z. 2012 ja -> gut
+Nr 44 R19: Anker 1x, Ankerzeile 1984 ja, nach Z. 2012 ja -> gut
+Nr 45 R19: Anker 1x, Ankerzeile 1993 ja, nach Z. 2012 ja -> gut
+Nr 46 R19: Anker 1x, Ankerzeile 1998 ja, nach Z. 2012 ja -> gut
+Nr 47 R20: Anker 1x, Ankerzeile 2002 ja, nach Z. 2012 ja -> gut
+Nr 48 R20: Anker 1x, Ankerzeile 1993 ja, nach Z. 2012 ja -> gut
+Nr 49 R21: Anker 1x, Ankerzeile 1989 ja, nach Z. 2012 ja -> gut
+Nr 50 R21: Anker 1x, Ankerzeile 1993 ja, nach Z. 2012 ja -> gut
+Nr 51 R22: Anker 1x, Ankerzeile 1989 ja, nach Z. 2012 ja -> gut
+Nr 52 R24: Anker 1x, Ankerzeile 1984 ja, nach Z. 2012 ja -> gut
+Nr 53 R24: Anker 1x, Ankerzeile 1972 ja, nach Z. 2012 ja -> gut
+Nr 54 R37: Anker 1x, Ankerzeile 2110 ja, nach Z. 2155 ja -> gut
+Nr 55 R38: Anker 1x, Ankerzeile 2207 ja, nach Z. 2216 ja -> gut
+Nr 56 R28: Anker 1x, Ankerzeile 2833 ja, nach Z. 2891 ja -> gut
+Nr 57 R53: Anker 1x, Ankerzeile 3187 ja, nach Z. 3230 ja -> gut
+Nr 58 R34: Anker 1x, Ankerzeile 3484 ja, nach Z. 3502 ja -> gut
+Nr 59 R36: Anker 1x, Ankerzeile 4100 ja, nach Z. 4116 ja -> gut
+Nr 60 R53: Anker 1x, Ankerzeile 4427 ja, nach Z. 4451 ja -> gut
+Nr 61 R53: Anker 1x, Ankerzeile 4461 ja, nach Z. 4468 ja -> gut
+Nr 62 R31: Anker 1x, Ankerzeile 4931 ja, nach Z. 4938 ja -> gut
+Nr 63 R32: Anker 1x, Ankerzeile 4910 ja, nach Z. 4974 ja -> gut
+Nr 64 R53: Anker 1x, Ankerzeile 5082 ja, nach Z. 5103 ja -> gut
+Nr 65 R43: Anker 1x, Ankerzeile 5167 ja, nach Z. 5182 ja -> gut
+Nr 66 R43: Anker 1x, Ankerzeile 6006 ja, nach Z. 6030 ja -> gut
+Nr 67 R37: Anker 1x, Ankerzeile 6115 ja, nach Z. 6185 ja -> gut
+Nr 68 R26: Anker 1x, Ankerzeile 6230 ja, nach Z. 6262 ja -> gut
+Nr 69 R49: Anker 1x, Ankerzeile 7088 ja, nach Z. 7124 ja -> gut
+Nr 70 R42: Anker 1x, Ankerzeile 8048 ja, nach Z. 8158 ja -> gut
+Nr 71 R44: Anker 1x, Ankerzeile 8048 ja, nach Z. 8158 ja -> gut
+Nr 72 R47: Anker 1x, Ankerzeile 8048 ja, nach Z. 8158 ja -> gut
+Nr 73 R41: Anker 1x, Ankerzeile 8572 ja, nach Z. 8580 ja -> gut
+Nr 74 R29: Anker 1x, Ankerzeile 8946 ja, nach Z. 8963 ja -> gut
+Nr 75 R29: Anker 1x, Ankerzeile 9717 ja, nach Z. 9734 ja -> gut
+Nr 76 R42: Anker 1x, Ankerzeile 9940 ja, nach Z. 9951 ja -> gut
+Nr 77 R29: Anker 1x, Ankerzeile 9955 ja, nach Z. 9956 ja -> gut
+Nr 78 R29: Anker 1x, Ankerzeile 9967 ja, nach Z. 9970 ja -> gut
+Nr 79 R33: Anker 1x, Ankerzeile 9968 ja, nach Z. 9970 ja -> gut
+Nr 80 R34: Anker 1x, Ankerzeile 9964 ja, nach Z. 9976 ja -> gut
+Nr 81 R36: Anker 1x, Ankerzeile 9964 ja, nach Z. 9976 ja -> gut
+Nr 82 R39: Anker 1x, Ankerzeile 10154 ja, nach Z. 10164 ja -> gut
+Nr 83 R42: Anker 1x, Ankerzeile 10154 ja, nach Z. 10164 ja -> gut
+Nr 84 R25: Anker 1x, Ankerzeile 10188 ja, nach Z. 10189 ja -> gut
+Nr 85 R26: Anker 1x, Ankerzeile 10188 ja, nach Z. 10189 ja -> gut
+Nr 86 R27: Anker 1x, Ankerzeile 10188 ja, nach Z. 10189 ja -> gut
+Nr 87 R25: Anker 1x, Ankerzeile 10239 ja, nach Z. 10251 ja -> gut
+Marken geprueft: 87, abweichend: 0 []
+R54-Anker unter 48.16 im Register vor dem Eintrag: 0 (Soll 0)
+## 2. docs/ERGEBNIS_TB-122_posten3_achsen_durchreichen.md Z. 235 beginnt mit '> **Vollzug TB-30b Posten 3 (11.3) in TB-122': ja; Z. 275 endet mit 'TB-122 Befund F1).': ja
+## 3. docs/ERGEBNIS_TB-124_scanbeginn_sync_r28.md Z. 289 beginnt mit '> **Vollzug TB-30b Posten 3 (11.3), Teil Scanbeginn': ja; Z. 323 endet mit 'nie früher, nicht später.': ja
+## 4. Docstring research/vorregistrierung/auswertung.py
+Zeile 'DIE ROHERGEBNISSE - DER VERTRAG': 1x [36]; Zeile 'ZWEI DEFINITIONEN ...': 1x [69] (Soll je 1)
+Zitatbereich: Z. 36-67 (Erwartung des steuernden Chats 36-67, kein Soll)
+Zaehlungen: {'<markt>.csv': 1, 'zellenbericht': 0, 'symbole_je_falte': 0, 'audit': 0} (Soll <markt>.csv 1, sonst je 0)
+rc 0: alles wie angegeben
+rc 0
+## Pruefskript aus Anhang A (zeichengleich uebernommen: 0g_pruefe_markentabelle_tb126.py) gegen git archive 0f56aeb docs
+Marken am alten Ort: 87 + 1 unter 48.16 = 88
+je Abschnitt: Kopf: 1, 1: 3, 2: 5, 3: 1, 4: 2, 5: 2, 7: 5, 8: 1, 9: 1, 11: 3, 12: 4, 15: 7, 16: 20, 18: 1, 21: 1, 22: 1, 24: 1, 25: 2, 27: 2, 28: 1, 29: 1, 34: 1, 35: 2, 38: 1, 40: 3, 41: 1, 42: 1, 44: 1, 45: 6, 46: 6
+Anker mit Zahl 1 (Original): 87 von 87
+Anker mit Zahl 1 (nach Simulation): 87 von 87
+Ueberschriften: 38 max. Laenge 120
+rc 0: alles wie angegeben
+rc 0

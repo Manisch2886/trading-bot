@@ -216,6 +216,11 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **R54:** Messbitte — liest irgendein Code `netto_rendite_pct` aus dem Vertrag von `auswertung.py` und rechnet damit?
 - **R55:** Probe „leere Menge ⇒ (d) nicht erfüllt“ mit Gegenprobe (40.7), Handwerk; heute prüft sie kein Test. Zu konstruieren: alle zulässigen Zellen sind Spitzen.
 
+### Aus der Abnahme TB-124 (30.09.2026)
+
+- **Scan-Schleifen in `research/`:** `research/trailing_stops/run_one_bot.py:379` und `research/vbc_deepdive/run_deepdive.py:145` beginnen ihren Scan bei `WARMUP_PERIOD + 1`, unabhängig vom Vorlauf der Zelle (Fundstellen vom Gegenleser der Abnahme, vom steuernden Chat nicht nachgelesen). Binden oder begründet lassen, vor E-6 bzw. Posten 5. Handwerk.
+- **Belegpflicht für Vergleichsskripte:** Das `cmp`-Skript von TB-124 C1 lag nicht im Belegordner. Aufträge nennen ausdrücklich: Jedes Prüf- und Vergleichsskript liegt unter `docs/belege/TB-<n>/` und wird mitcommittet.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen

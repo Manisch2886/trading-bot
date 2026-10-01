@@ -1,0 +1,6 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-126_register_e2.md
+?? docs/belege/TB-126/
+?? docs/projektfuehrung/VORARBEIT_TB-126_bauplan_registerauftrag.md
+?? docs/projektfuehrung/VORARBEIT_TB-126_inventar_r18_r55.md
