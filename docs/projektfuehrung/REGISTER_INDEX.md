@@ -13,14 +13,63 @@ erinnert**. Wo eine Stelle nur über eine Überschrift oder ein anderes Markenwo
 Spalte „dazu“, nicht als „gilt“. Nach dem Auftrag gilt „ERSETZT durch“ und „PRÄZISIERT durch“ als Kette.
 **Mehrdeutig** heisst, dass die Marken keinen einzelnen Ort ergeben. Dann ist der Wortlaut zu lesen.
 
-**Teile der Kopie** (Zuschnitt an Abschnittsgrenzen, je ≤ 240 000 Bytes):
+**Kopie je Abschnitt** (seit 01.10.2026, Betreiberentscheid F1; geschnitten mit `docs/werkzeuge/registerkopie_abschnitte.py`, Bodies aneinandergehängt bytegleich mit dem Register). In der Ablage liegt je Abschnitt eine Datei `REGISTER_KOPIE_ABSCHNITT_<nn>.md`. Wer eine Fundstelle sucht, öffnet die Datei des Abschnitts, nicht das ganze Register.
 
-| Teil | Abschnitte | Zeilen im Register |
+| Abschnitt | Datei in der Ablage | Zeilen im Register |
 |---|---|---|
-| 1 | 0–22 | 1–3818 |
-| 2 | 23–36 | 3819–6839 |
-| 3 | 37–42 | 6840–9480 |
-| 4 | 43–50 | 9481–11094 |
+| 0 | `REGISTER_KOPIE_ABSCHNITT_00.md` | 1–51 |
+| 1 | `REGISTER_KOPIE_ABSCHNITT_01.md` | 52–95 |
+| 2 | `REGISTER_KOPIE_ABSCHNITT_02.md` | 96–248 |
+| 3 | `REGISTER_KOPIE_ABSCHNITT_03.md` | 249–463 |
+| 4 | `REGISTER_KOPIE_ABSCHNITT_04.md` | 464–575 |
+| 5 | `REGISTER_KOPIE_ABSCHNITT_05.md` | 576–731 |
+| 6 | `REGISTER_KOPIE_ABSCHNITT_06.md` | 732–786 |
+| 7 | `REGISTER_KOPIE_ABSCHNITT_07.md` | 787–854 |
+| 8 | `REGISTER_KOPIE_ABSCHNITT_08.md` | 855–903 |
+| 9 | `REGISTER_KOPIE_ABSCHNITT_09.md` | 904–943 |
+| 10 | `REGISTER_KOPIE_ABSCHNITT_10.md` | 944–1150 |
+| 11 | `REGISTER_KOPIE_ABSCHNITT_11.md` | 1151–1233 |
+| 12 | `REGISTER_KOPIE_ABSCHNITT_12.md` | 1234–1310 |
+| 13 | `REGISTER_KOPIE_ABSCHNITT_13.md` | 1311–1326 |
+| 14 | `REGISTER_KOPIE_ABSCHNITT_14.md` | 1327–1341 |
+| 15 | `REGISTER_KOPIE_ABSCHNITT_15.md` | 1342–1792 |
+| 16 | `REGISTER_KOPIE_ABSCHNITT_16.md` | 1793–2544 |
+| 17 | `REGISTER_KOPIE_ABSCHNITT_17.md` | 2545–2998 |
+| 18 | `REGISTER_KOPIE_ABSCHNITT_18.md` | 2999–3063 |
+| 19 | `REGISTER_KOPIE_ABSCHNITT_19.md` | 3064–3178 |
+| 20 | `REGISTER_KOPIE_ABSCHNITT_20.md` | 3179–3259 |
+| 21 | `REGISTER_KOPIE_ABSCHNITT_21.md` | 3260–3611 |
+| 22 | `REGISTER_KOPIE_ABSCHNITT_22.md` | 3612–3818 |
+| 23 | `REGISTER_KOPIE_ABSCHNITT_23.md` | 3819–4200 |
+| 24 | `REGISTER_KOPIE_ABSCHNITT_24.md` | 4201–4545 |
+| 25 | `REGISTER_KOPIE_ABSCHNITT_25.md` | 4546–4769 |
+| 26 | `REGISTER_KOPIE_ABSCHNITT_26.md` | 4770–5093 |
+| 27 | `REGISTER_KOPIE_ABSCHNITT_27.md` | 5094–5167 |
+| 28 | `REGISTER_KOPIE_ABSCHNITT_28.md` | 5168–5308 |
+| 29 | `REGISTER_KOPIE_ABSCHNITT_29.md` | 5309–5391 |
+| 30 | `REGISTER_KOPIE_ABSCHNITT_30.md` | 5392–5525 |
+| 31 | `REGISTER_KOPIE_ABSCHNITT_31.md` | 5526–5657 |
+| 32 | `REGISTER_KOPIE_ABSCHNITT_32.md` | 5658–5868 |
+| 33 | `REGISTER_KOPIE_ABSCHNITT_33.md` | 5869–6080 |
+| 34 | `REGISTER_KOPIE_ABSCHNITT_34.md` | 6081–6291 |
+| 35 | `REGISTER_KOPIE_ABSCHNITT_35.md` | 6292–6488 |
+| 36 | `REGISTER_KOPIE_ABSCHNITT_36.md` | 6489–6839 |
+| 37 | `REGISTER_KOPIE_ABSCHNITT_37.md` | 6840–7204 |
+| 38 | `REGISTER_KOPIE_ABSCHNITT_38.md` | 7205–7580 |
+| 39 | `REGISTER_KOPIE_ABSCHNITT_39.md` | 7581–8101 |
+| 40 | `REGISTER_KOPIE_ABSCHNITT_40.md` | 8102–8496 |
+| 41 | `REGISTER_KOPIE_ABSCHNITT_41.md` | 8497–8914 |
+| 42 | `REGISTER_KOPIE_ABSCHNITT_42.md` | 8915–9480 |
+| 43 | `REGISTER_KOPIE_ABSCHNITT_43.md` | 9481–9794 |
+| 44 | `REGISTER_KOPIE_ABSCHNITT_44.md` | 9795–10101 |
+| 45 | `REGISTER_KOPIE_ABSCHNITT_45.md` | 10102–10325 |
+| 46 | `REGISTER_KOPIE_ABSCHNITT_46.md` | 10326–10610 |
+| 47 | `REGISTER_KOPIE_ABSCHNITT_47.md` | 10611–10724 |
+| 48 | `REGISTER_KOPIE_ABSCHNITT_48.md` | 10725–10890 |
+| 49 | `REGISTER_KOPIE_ABSCHNITT_49.md` | 10891–10915 |
+| 50 | `REGISTER_KOPIE_ABSCHNITT_50.md` | 10916–11094 |
+
+*Frühere Vierteilung* (bis 01.10.2026; „T1“ … „T4“ in den Tabellen unten bezeichnen sie, massgeblich sind Abschnitt und Z.): T1 = 0–22 (Z. 1–3818), T2 = 23–36 (Z. 3819–6839), T3 = 37–42 (Z. 6840–9480), T4 = 43–50 (Z. 9481–11094).
 
 Schreibweise: „15.6 (a)“ ist Unterabschnitt 15.6, Punkt (a). „T2“ heisst Teil 2. „Z.“ ist die Zeile im Register am
 genannten Commit.

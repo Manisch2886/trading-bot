@@ -1,0 +1,14 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/FABLE_DIALOG_INDEX.md
+ M docs/projektfuehrung/REGISTER_INDEX.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-127_regelwerk_tokensparen_registerkopie.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-01_umzug_uebergabe.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-01_messung_steuernder_chat.md
+?? docs/projektfuehrung/MESSUNG_2026-10-01_ampel_grundlast.md
+?? docs/projektfuehrung/STREICHLISTE_F3_projekt_erinnerung_2026-10-01.md
+?? docs/projektfuehrung/register_kopie/
+?? docs/werkzeuge/ampel.py
+?? docs/werkzeuge/registerkopie_abschnitte.py
+
+# Vergleich mit der Soll-Liste des Auftrags (sortiert, Python): soll 12, ist 12, gleich True; optionale FABLE_UEBERGABE_2026-10-01_neuer_chat.md lag NICHT im Arbeitsbaum.

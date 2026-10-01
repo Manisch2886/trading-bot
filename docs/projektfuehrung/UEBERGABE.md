@@ -488,3 +488,125 @@ Sag mir in wenigen Sätzen, was du verstanden hast — Stand, nächster Schritt,
 **Nachtrag zum Umzugsblock, 01.10.2026, ca. 08:22:** Betreiberentscheide per Karte: TB-126 **„Freigeben wie beschrieben (Empfohlen)“** (Wortlaut steht im Auftrag, `PLATZHALTER_FREIGABE` ist ersetzt; der Auftrag hat damit md5 `e16f50b4d2f818db1ea0e5efb748efbc` statt `3ec1bcc1…` aus Block 1) · Umzug **„Jetzt, neuer Chat startet TB-126 (Empfohlen)“**. Offen für den neuen Chat aus Block 4 Nr. 1 damit nur noch: Zeiger, `PLATZHALTER_0A`, md5, Auslöser, Einfügesatz, Nachschau.
 
 **Nachtrag 01.10.2026, ca. 18:50:** Der Betreiber schrieb 18:46 wörtlich: „wie geht es weiter? Umzug später“. Damit gilt der Kartenentscheid von 08:22 zum Umzug nicht mehr: Dieser Chat startet TB-126 selbst. Umgezogen wird frühestens nach der Abnahme von TB-126 (UMZUG 3: nicht, solange eine Mac-Sitzung läuft). Der Umzugsblock 08:20 bleibt als Stand gültig; für den neuen Chat gelten zusätzlich die Nachträge darunter.
+
+## Nachtrag 01.10.2026, ca. 20:15 — Tokenmessung, Sparregeln S1–S7, Umzug jetzt (Ausnahme von UMZUG 3)
+
+- **Gemessen** (Protokoll dieser Sitzung, 30.09. 22:16 bis 01.10. 20:05; effektiv = Eingabe + 0,1 × Cache-Lesen + 2 × Cache-Schreiben + 5 × Ausgabe): rund 16 Mio. effektive Tokens. Davon entfielen 9,2 Mio. auf sechs Helfer (Gegenleser TB-126 2,7 · Markentabelle 1,7 · Bauplan 1,6 · Inventar 1,5 · Gegenleser TB-124 1,4 · Abgleich R53–R55 0,3) und 6,9 Mio. auf den Chat selbst (davon Neueinlesen nach drei Pausen über eine Stunde 2,0 · Verlauf lesen 2,0 · feste Anweisungen 1,3).
+  - Grösse des Chats zuletzt **504 000**; die festen Anweisungen allein 121 000. Die Ampel dieses Chats hatte „ca. 240 000“ geschätzt — ⚠️ **Fehler Nr. 11**: geschätzt statt gemessen, ohne die festen Anweisungen.
+  - Kosten je Schritt: unter 200 000 rund 32 000 · 200–300 000 rund 45 000 · 300–400 000 rund 54 000 · über 400 000 rund 110 000 (mit Pausen).
+  - Helfer: Start je rund 83 000, Ende 270 000–440 000, 37–52 Schritte je Helfer, alle Opus.
+- **Betreiberentscheid 01.10.2026, ca. 20:10, per Karte:** „1–4, 6, 7 jetzt, 5 als Probe (Empfohlen)“. Wortlaut für das Regelwerk (nächster Dokumentationsauftrag):
+  - **S1:** Ein Chat je Auftragsrunde: Auftrag schreiben, gegenlesen, freigeben, starten, dann umziehen; die Abnahme macht der nächste Chat. Umzug nach gemessener Ampel ab rund 250 000 und immer vor einer Pause von mehr als einer Stunde.
+  - **S2:** Die Ampel wird aus dem Protokoll gemessen, nicht geschätzt: im Arbeitsordner des Chats `$CLAUDE_CONFIG_DIR/projects/*/<sitzung>.jsonl` (bzw. `~/.claude/projects/…`), letzter Assistenteneintrag, Grösse = `input_tokens + cache_read_input_tokens + cache_creation_input_tokens`. Schwellen: 🟢 unter 200 000, 🟡 200 000–300 000, 🔴 darüber.
+  - **S3:** Mechanik als Skript, nicht als Helfer (Anker zählen, md5, Zeilenbereiche schneiden, Diffs). Der Helfer entscheidet nur, was Urteil braucht.
+  - **S4:** Eine zweite Gegenleserunde macht ein frischer Helfer mit Befundliste und geänderten Stellen, nicht der alte fortgesetzt.
+  - **S5 (Probe):** Helfer eng zuschneiden: genaue Dateien und Zeilenbereiche, Obergrenze rund 25 Schritte, danach Zwischenbericht statt Abbruch.
+  - **S6:** Grosse Dokumente nicht im Chat zusammensetzen: Aufträge abschnittsweise in Dateien schreiben und nicht mehrfach umbauen, keine ganzen Dateien in den Chat holen.
+  - **S7:** Eine Nachschau liegt unter einer Stunde, oder vorher wird umgezogen.
+  - Nicht beschlossen, ausdrücklich: Gegenlesen streichen, pauschal Sonnet, Fable seltener fragen.
+- **Betreiberentscheid 01.10.2026, ca. 20:10, per Karte:** „Jetzt umziehen, Abnahme im neuen Chat (Empfohlen)“ — **Ausnahme von UMZUG 3**: Der Grund der Regel (Zwischenstände nur im Kopf des alten Chats) trifft nicht zu; Auftrag, Freigabe und Stand stehen vollständig im Repo.
+- **Stand TB-126 beim Umzug (gemessen):** HEAD `69b9ced`, 6 Commit(s) seit `41864d4`. Bei 0 hat die Sitzung Schritt 0 noch nicht committet; ob der Satz abgeschickt wurde, ist dann nicht bekannt (Betreiber fragen, einmal erinnern).
+- **Die Nachschau „Nachschau TB-126“ (20:30) ist gelöscht**, damit der alte Chat nicht parallel weiterarbeitet. Der neue Chat plant seine eigene (S7: unter einer Stunde).
+- ⚠️ Dieser Nachtrag ist uncommittet. Hat TB-126 Schritt 0 schon committet, erscheint `UEBERGABE.md` in seinem porcelain als geändert; das ist dieser Nachtrag, kein Fehler der Sitzung. Er geht mit dem nächsten Commit des steuernden Chats bzw. des nächsten Auftrags ins Repo.
+- **Für den neuen Chat, Reihenfolge:** (1) Ampel nach S2 messen; (2) TB-126 messen: läuft, abgegeben oder nicht gestartet; (3) Nachschau unter einer Stunde planen; (4) Abnahme nach Block 4 Nr. 2 des Umzugsblocks 08:20, der Gegenleser nach S4/S5.
+- **TB-126 ist abgegeben** (gemessen 20:15): `1e13135` 0 · `db108a6` A (Register 47–50) · `8687eef` C (Registerkopie, Index) · `69aab70` Abgabe (Journal DX) · `69b9ced` D3, letzter Commit 2026-10-01 19:30:54 +0200. Die Gerätesitzung ist vermutlich noch offen. **Nächster Schritt im neuen Chat:** Abnahme nach Block 4 Nr. 2, dann `schliesse_69b9ced685ed8945fa0d1bbccc9afc176c724e8b`. Die Ausnahme von UMZUG 3 war damit nicht mehr nötig: Beim Umzug lief keine Arbeit mehr.
+
+
+## Nachtrag 01.10.2026, ca. 20:45 — neuer steuernder Chat: TB-126 abgenommen und geschlossen, Ablage, Fehler Nr. 12, Umzug
+
+- **Übernahme 20:19.** Geräteanbindung und `project_info` gehen. HEAD `69b9ced`, `BACKLOG.md` 235 Zeilen (md5 `49a4e7b7…`). Ampel nach S2 beim Start 122 866.
+- **Abnahme TB-126: abgenommen.** Die Mechanik ist mit eigenen Skripten geprüft, unabhängig von denen der Sitzung (S3; sie lesen per `git show`). Ergebnisse:
+  - Register `69b9ced`: 11 094 Zeilen, sha256 `b5804659…`, md5 `9a5a403f…`. Einziger Registercommit ist `db108a6`, numstat 747/0. difflib zeigt nur Einfügungen.
+  - 87/87 Marken stehen an Anker und Einfügestelle nach Anhang A, dazu R54 unter 48.16; 88 Markenköpfe.
+  - 38/38 R-Blöcke zeilengleich mit den Quellen. 38/38 Überschriften.
+  - Köpfe 47–49 und Abschnitt 50 zeilengleich: 179 Zeilen, mit Docstring Z. 36–67 und den Entwürfen TB-122/TB-124 eingesetzt.
+  - Abschnitt 10 und ERZEUGT unverändert. `registerkopie.py --pruefen` BYTEGLEICH. Index: 173 Z.-Angaben (eigene Zählung), alle auf Marken-/Überschriftszeilen.
+  - `herkunft.register()` am HEAD `525c9c42…`, 23 Teile, `fehlend []` (System-Python im Gerät). Journal DX mit Pflichtsatz.
+  - Gegenleser (T2, ein Helfer, 9 Schritte, 141 000): 103 von 115 Werten belegt.
+- **Befunde der Abnahme** (keiner trifft ein Abbruchkriterium):
+  - B1: `0a_status.txt` hat 6 statt 5 Zeilen. Die sechste ist `?? docs/belege/TB-126/`, der eigene Belegordner der Sitzung (Selbstbezug); das Ergebnis nennt sie nicht. ⇒ Regel für Aufträge: 0a in den Scratch messen wie D3 oder den eigenen Belegordner ausdrücklich ausnehmen.
+  - B2: `register()` „nachher (`db108a6`)“ und der zweite Testlauf sind an `1e13135` mit uncommittetem Register gemessen (gleicher Inhalt, sha256 `b5804659…`). Vom steuernden Chat am HEAD bestätigt.
+  - B3: C2-Kleinigkeiten. Spalte T: 3 Stellen im Ergebnis, 4 im Beleg. „32 Zeilenangaben“ enthält 2 Dubletten. „184/184 auf Markenzeilen“ heisst im Beleg „mit Markenwort“.
+  - B4: „Für Fable“ Nr. 6 nennt Liste B (R27, R28, R30, R48 (d)/(e)) nicht ausdrücklich. Die Fable-Anfrage nimmt sie aus Anhang A, Liste B.
+  - B5: Zwei angesagte Abweichungen sind angenommen: „; “ statt Komma in der Kette, weil die Orte selbst Kommas tragen, und eine Leerzeile nach Marke 13. ⇒ Fehler im Auftrag (Vorgängerchat): „kommagetrennt“ bei Orten mit Komma. Regel: Trennzeichen nach den Daten wählen.
+  - B6: Worktree `$TMPDIR/tb123_vorher` liegt noch (4 Symlinks, `prunable`). Löschen ist ein Betreiberentscheid (Karte).
+  - Bekannt, nicht neu: `registerbericht.py --pruefen` rc 1 (39.1, 42.4 G7, 43-6).
+- **`schliesse_69b9ced685ed8945fa0d1bbccc9afc176c724e8b`** gelegt 18:29:24Z (Alter 3510 s). Wächter: PID 20133 mit TERM beendet, 0 übrig.
+- **Ablage:** `REGISTER_KOPIE_teil1–4.md` und `REGISTER_INDEX.md` sind per `project_write` (`local_path`) ersetzt, mit festen Namen. Die md5 war vor dem Hochladen gleich zum Gerät: teil1 `35af7cb7…`, teil2 `334df4fb…`, teil3 `716b8443…`, teil4 `9338d605…`, Index `57824f7b…`. ⚠️ **Nach dem Hochladen nicht maschinell verglichen.**
+- ⚠️ **Fehler Nr. 12:** Zur md5-Prüfung habe ich `project_read` auf `REGISTER_KOPIE_teil4.md` (158 KB) aufgerufen. Die Datei kam ganz inline in den Chat statt als lokale Datei. Ampel 123 000 ⇒ 320 390. ⇒ **Regel:** `project_read` nie zur Prüfung grosser Ablagedateien. Es liefert auch 158 KB inline. Bis ein Weg gemessen ist, gilt: hochladen per `local_path` aus einer md5-geprüften Datei, kein Rücklesen.
+- **Nicht getan:** Dialog-Index (27c, 29b, 30a als registriert, Repo und Ablage); BACKLOG-/Journal-Nachtrag zur Abnahme (B1–B6, Fehler 12) ⇒ nächster Dokumentationsauftrag, zusammen mit S1–S7 und Block 4 Nr. 4 des Umzugsblocks 08:20.
+- **Stand:** HEAD `69b9ced`, uncommittet nur `UEBERGABE.md` (Nachträge 20:15 und dieser). Keine Gerätesitzung läuft. Nummern: TB frei ab 127, Journal frei ab DY, R frei ab R56, Fable am 01.10. frei ab a.
+- **Für den nächsten Chat, Reihenfolge:**
+  - (1) Ampel nach S2.
+  - (2) Antwort auf die Karte 20:45 (Worktree, Umzug) aus dem Chatverlauf übernehmen; fehlt sie, einmal erinnern.
+  - (3) Fable-Umzug (Block 4 Nr. 3), dann die vorgeprüfte Anfrage aus „Für Fable“ TB-126 samt Liste B (B4).
+  - (4) Dokumentationsauftrag TB-127: Dialog-Index, Abnahme-Nachtrag, S1–S7, Fehler 11/12, B1/B5-Regeln, Block 4 Nr. 4. Schritt 0 committet die zwei UEBERGABE-Nachträge.
+- **Betreiberentscheid 01.10.2026, ca. 20:50, per Karte:** Worktree `tb123_vorher`: **„TB-127 entfernt mit --force (Empfohlen)“**. Schritt 0 von TB-127 misst zuerst, dass im Worktree nur die 4 Symlinks liegen; danach `git worktree remove --force`. Zur Umzugsfrage hat der Betreiber zurückgefragt: „Wie kann es sein dass wir nach dem einlesen wieder direkt umziehen sollen?“ Die Antwort steht im Chat; die Aufschlüsselung ist aus dem Protokoll gemessen: Start 122 866 (davon feste Anweisungen ~121 000), Kernlektüre +17 300, Abnahme rund +93 000, Fehler Nr. 12 +87 700.
+- **Dialog-Index nachgezogen (ca. 21:00, Handwerk, Block 4 Nr. 2):** `docs/werkzeuge/dialog_index.py --handfelder` mit `offen` = nein für 27c, 29b und 30a. Die drei Zeilen stehen jetzt auf registriert, Fundstelle 47/48/49. numstat 3/3, keine andere Zeile geändert, `--pruefen` rc 0 (50/50; Status offen 3, ohne Registertext 12, registriert 35). md5 `56714c98…`, in der Ablage ersetzt. Uncommittet; TB-127 Schritt 0 nimmt ihn mit.
+
+## Nachtrag 01.10.2026, ca. 21:20 — neuer steuernder Chat (Übernahme 20:48): Fable-Umzug vorbereitet, Ablage nachgezogen
+
+- **Übernahme 20:48.** Geräteanbindung und `project_info` gehen. HEAD `69b9ced`, `BACKLOG.md` 235 Zeilen (md5 `49a4e7b7…`). Ampel nach S2 beim Start 143 859.
+- **Berichtigung der Uhrzeiten im Nachtrag 20:45:** Die Einträge „ca. 20:50“ (Worktree-Entscheid) und „ca. 21:00“ (Dialog-Index) wurden vor 20:45 geschrieben. mtime `UEBERGABE.md` 20:45:08, `FABLE_DIALOG_INDEX.md` 20:44:24. Die Inhalte stimmen; die Zeiten waren geschätzt.
+- **Fable-Umzug:**
+  - Vorgabe (kein Widerspruch): Der alte Fable-Chat schreibt die Übergabe selbst, wie am 29.09. Die Bitte steht in `FABLE_ANFRAGE_2026-10-01_umzug_uebergabe.md` (ohne Buchstaben; 01.10. bleibt frei ab a).
+  - Fable hat `FABLE_UEBERGABE_2026-10-01_neuer_chat.md` in die Ablage gelegt (im Repo fehlt sie noch; der Betreiber legt sie ab). Fables Ampel: 🔴 · gemessen 203 823 nach zwei Verdichtungen.
+  - Gemessen: `FABLE_UEBERGABE_2026-10-01_messung_steuernder_chat.md` (Befundliste 1–8 und Eröffnungstext für den neuen Fable-Chat). Kern: Die vier Suchtreffer tragen. Abweichungen von 22.11: Takt nach Bedarf statt täglich; „In einfacher Sprache“ schreibt der steuernde Chat; Kenntnis höchstens als eine Zeile. Sie sind im Eröffnungstext berichtigt, Fables Text bleibt unverändert. „eingefroren 22“ ist ohne Fundstelle ⇒ Voraussetzung.
+- **Ablage nachgezogen:** `ARBEITSWEISE.md` und `UMZUG.md` lagen in der Fassung vom 27.09. (ohne 22.11 und ohne Ampel). Beide sind per `local_path` ersetzt; md5 vor dem Hochladen gleich HEAD: ARBEITSWEISE `7d473a4a…`, UMZUG `3292ff38…`. Kein Rücklesen (Fehler Nr. 12). ⚠️ `BACKLOG.md` in der Ablage ist ebenfalls veraltet (Stand 27.09., Repo 01.10.). Bleibt bis zur Prüfung nach 27.4 so; für Fable ist sie gesperrt.
+- **Fable-Übergabe vom 29.09. liegt noch in der Ablage** (23.2: nur die jüngste bleibt) ⇒ Karte.
+- **Uncommittet:** `UEBERGABE.md`, `FABLE_DIALOG_INDEX.md`, `FABLE_ANFRAGE_2026-10-01_umzug_uebergabe.md`, `FABLE_UEBERGABE_2026-10-01_messung_steuernder_chat.md`; dazu bald `FABLE_UEBERGABE_2026-10-01_neuer_chat.md`. TB-127 Schritt 0 nimmt alle mit.
+- **Stand:** Es läuft keine Gerätesitzung. Nummern: TB frei ab 127, Journal frei ab DY, R frei ab R56, Fable am 01.10. frei ab a.
+- **Für den nächsten Chat, Reihenfolge:**
+  - (1) Ampel nach S2.
+  - (2) Hat der neue Fable-Chat bestätigt (Abschnitt 8 seiner Übergabe)? Seine Suchtreffer gegen die Kopie-Zeilen in der Befundliste prüfen.
+  - (3) TB-127 schreiben (Dokumentationsauftrag, Inhalt wie im Nachtrag 20:45 Nr. 4, dazu: Uhrzeiten-Berichtigung oben, Fable-Übergabe ins Repo, BACKLOG-Ablage).
+  - (4) Die erste Fable-Anfrage vorprüfen lassen („Für Fable“ TB-126, Liste B; Form nach 22.11).
+
+## Nachtrag 01.10.2026, ca. 21:35 — Ampelregel neu (Betreiberentscheid), Fehler Nr. 13
+
+- **Anlass:** Rückfrage des Betreibers, warum fast nach jeder Eingabe ein Umzug empfohlen wird. Messung: `MESSUNG_2026-10-01_ampel_grundlast.md`, Werkzeug `docs/werkzeuge/ampel.py` (md5 `0c42ee78…`, uncommittet).
+- ⚠️ **Fehler Nr. 13:** S2 misst die Gesamtgrösse samt Grundlast (~120 000). Die Schwellen vom 29.09. gelten aber für den Verlauf ohne Grundlast. Geschrieben hat das der Vorgängerchat; dieser Chat hat es ungeprüft angewandt (Ampeln 20:48–21:20). ⇒ **Regel:** Bei jeder Änderung einer Messgrösse die Schwellen mit umrechnen.
+- **Betreiberentscheid 01.10.2026, ca. 21:35, per Karte:** „Verlauf, 200k/300k (Empfohlen)“. Wortlaut für das Regelwerk (TB-127: UMZUG 3, ARBEITSWEISE 0, S2 ersetzen):
+  - Die Umzugsampel misst den **Verlauf = Grösse − Grundlast**, mit `docs/werkzeuge/ampel.py` aus dem Sitzungsprotokoll. Grösse = `input_tokens + cache_read_input_tokens + cache_creation_input_tokens` des letzten Assistenteneintrags; Grundlast = Grösse des ersten Eintrags des Chats.
+  - Schwellen: 🟢 Verlauf unter 200 000 · 🟡 200 000–300 000 · 🔴 darüber.
+  - Form der Ampel: `Umzugsampel: <Farbe> · Verlauf <n> (Grundlast <g>) · <Empfehlung>`.
+  - Umzug vor einer Pause über einer Stunde nur ab 🟡.
+- **Folge für diesen Chat:** Verlauf 128 148 (Grösse 248 600, Grundlast 120 452) ⇒ 🟢. TB-127 wird hier geschrieben.
+- **Karte 21:20, Ablage:** „Nach Bestätigung entfernen (Empfohlen)“. `FABLE_UEBERGABE_2026-09-29_neuer_chat.md` verlässt die Ablage, sobald der neue Fable-Chat Abschnitt 8 bestätigt hat. Die Umzugsfrage der Karte hat der Betreiber durch die Rückfrage ersetzt; sie ist mit dem Entscheid oben erledigt.
+- **Uncommittet zusätzlich:** `MESSUNG_2026-10-01_ampel_grundlast.md`, `docs/werkzeuge/ampel.py`.
+
+## Nachtrag 01.10.2026, ca. 21:50 — Betreiberentscheid F1–F6 (Tokensparen, aus dem Fable-Chat), F1 vollzogen
+
+- **Betreiberentscheid 01.10.2026, ca. 21:25, per Auswahlkarte im Fable-Chat:** „Alle Massnahmen, die du empfiehlst“, Tokensparen ohne Qualitätsverlust.
+  - Anlass: Zweiter Fable-Umzugsversuch, 🔴 bei gemessen 651 713 nach dem Einlesen aller vier Registerteile per `project_read`.
+  - Gemessen dort: rund 1 MB Text = 637 677 Tokens, also etwa 1,6 Bytes je Token.
+- **Wortlaut der Massnahmen** (für TB-127 ins Regelwerk):
+  - **F1 (sofort):** Registerkopie je Abschnitt. 51 Dateien mit gleichem Kopf (Commit, Datum, sha256, KOPIE); `REGISTER_INDEX.md` nennt je Abschnitt die Datei. Die vier Teile verlassen die Ablage, sobald die 51 liegen und md5 geprüft sind. Wortlaut unverändert.
+  - **F2 (sofort):** Schätzformel Bytes ÷ 1,6 für alles über `project_read`. Die Ampel bleibt gemessen.
+  - **F3 (sofort):** Projekt-Erinnerung verdichten. Überholte Vorgeschichte fällt (Termius, screen, Schlüsselbund, mehrfach erzählte Rügen), jede geltende Regel steht einmal. Vor dem Schreiben bekommt der Betreiber die Streichliste.
+  - **F4 (Probe über zwei Anfragen):** Ein Fable-Chat je Anfrage. Vorher geht als Verfahrensfrage an Fable: Darf der Anfangsbestand nach 27 durch das Leseprotokoll festgehalten werden statt durch einen R-Block je Chat? Begonnen wird erst nach der Antwort.
+  - **F5 (ab der nächsten Anfrage):** Jede Anfrage nennt die Abschnittsnummern aller berührten Registerstellen. Fable öffnet diese, was der Index als „gilt“ und „dazu“ nennt, und weitere nach eigenem Urteil.
+  - **F6 (ab dem nächsten Umzug):** Übergabetexte kürzen. Keine Fehlerliste und keine Landkarte, die schon in R52, 50.1 oder im Index steht; Verweis statt Wiederholung.
+  - Ausdrücklich nicht: eine Kurzfassung des Registers als zweite Quelle, zusammenfassende Helfer, das Lesen im Wortlaut zu streichen.
+- **Vom Betreiber/Fable schon gemessen, nicht wiederholen:** md5 der fünf Registerdateien in der Ablage gleich den Werten (Fehler-12-Lücke geschlossen). Stichproben in der Kopie: teil1 Z. 2137, teil2 Z. 1308, teil3 Z. 1537, teil4 Z. 1372. 22.11 steht in ARBEITSWEISE der Ablage.
+- **F1 vollzogen (Handwerk, steuernder Chat):**
+  - Werkzeug `docs/werkzeuge/registerkopie_abschnitte.py` (neu, uncommittet; TB-127 nimmt es in `registerkopie.py` auf, samt `--pruefen`). 51 Dateien `docs/projektfuehrung/register_kopie/REGISTER_KOPIE_ABSCHNITT_00–50.md`. Bodies aneinandergehängt sind BYTEGLEICH mit dem Register am HEAD (sha256 `b5804659…`). Grenzen gleich der alten Vierteilung (3818/6839/9480).
+  - `REGISTER_INDEX.md`: Die Tabelle „Teile der Kopie“ ist durch „Kopie je Abschnitt“ ersetzt (51 Zeilen: Abschnitt, Datei, Register-Z.). Die alte Vierteilung steht als Fussnote, weil die Tabellen „T1–T4“ weiterführen. numstat 55/6, md5 `b9e5eaff…`.
+  - Ablage: 51 Dateien und der Index per `local_path`, md5 vor dem Hochladen gleich Gerät (Liste der 51 md5 als Ganzes verglichen). `REGISTER_KOPIE_teil1–4.md` per `project_delete` aus der Ablage entfernt; im Repo bleiben sie.
+- **Fable-Eröffnung:** Fassung 2 steht in `FABLE_UEBERGABE_2026-10-01_messung_steuernder_chat.md`. Abschnitt 3 ist nach dem Entscheid ersetzt (Index ganz, 45–50 ganz, weitere bei Bedarf), 22.11 angeglichen, F4-Frage angekündigt, keine Stichproben-Wiederholung. Fables Übergabetext selbst bleibt unverändert; die Eröffnung geht vor.
+- **Offen aus F:** F3 (Streichliste an den Betreiber; die Projekt-Erinnerung umfasst 7 Dateien, rund 68 KB, davon `preferences.md` 34 KB). F2, F4, F5, F6 ⇒ TB-127 ins Regelwerk; F4-Frage und F5-Form in die erste Fable-Anfrage.
+- **Uncommittet zusätzlich:** `docs/werkzeuge/registerkopie_abschnitte.py`, `docs/projektfuehrung/register_kopie/` (51 Dateien), `REGISTER_INDEX.md`.
+
+## Nachtrag 01.10.2026, ca. 22:25 — F3 vollzogen, TB-127 geschrieben, gegengelesen und gestartet
+
+- **Betreiberentscheide 01.10.2026, ca. 22:00, per Karte:** F3 „Wie vorgeschlagen (Empfohlen)“ · Umzug: „Hier TB-127 schreiben“ (gegen die Empfehlung, Ampel stand 🟡, Verlauf 210 020).
+- **F3 vollzogen:** Projekt-Erinnerung nach `STREICHLISTE_F3_projekt_erinnerung_2026-10-01.md`. `preferences.md` 34 218 ⇒ 8 648 B, `ways-of-working.md` 10 547 ⇒ 2 232 B. Geltende Regeln sind zusammengelegt, nicht umformuliert; die Ampelzeile nennt die Regel von 21:35.
+- **Hinweis:** Die Betreibernachricht 21:23 (F1–F6) kam in diesem Chat zweimal an. Sie ist einmal umgesetzt.
+- **TB-127:** `docs/auftraege/MAC_TB-127_regelwerk_tokensparen_registerkopie.md` (md5 `7d55e72f…`, 17 942 B).
+  - Inhalt: E1–E9 (UMZUG 3, ARBEITSWEISE 0, BACKLOG K4u und „Aus der Abnahme TB-126“), `registerkopie.py --abschnitte` mit md5-Gleichheit gegen die 51 Referenzdateien, Worktree `tb123_vorher` (Karte 20:45), Journal DY. Ausführungsreihenfolge 0, A, C, B, D.
+  - Bewusst nicht drin: Block 4 Nr. 4 des Umzugsblocks 08:20 (5b zu 27c/29a/29b, K2h/K2f, Trägerstellen, kalter Leser, 29a 1–3, `project_info`-Regel, R31 (b), R49 (e), Sonnet-Probe). Die Wortlaute sind nicht vorbereitet ⇒ Auftrag TB-128.
+  - Gegenleser: ein Helfer nach S5, 16 Aufrufe, 58 Behauptungen. 3 MUSS, alle eingearbeitet: E9 B6-Satz unabhängig vom Ausgang; E1 ohne unbelegten Fable-Schätzsatz; E2 S1 wörtlich („die Abnahme macht“). Von 9 KANN sind 8 eingearbeitet (`--ziel`-Standard, `--marken`-Konflikt, Reihenfolge, Quellenangaben, Wortlaut „das Lesen im Wortlaut streichen“, B4, Fable-Übergabe unter „Nicht getan“). Keine zweite Runde: Die Änderungen sind per Skript mit Trefferzahl 1 je Ersetzung eingesetzt.
+  - Zeiger `AKTUELLER_AUFTRAG.md` steht auf TB-127. 0a ist eingetragen (12 Einträge; `FABLE_UEBERGABE_2026-10-01_neuer_chat.md` optional).
+- **Freigabe:** Handwerk ohne Sperrlistennähe, pauschal frei. Der Code liegt in `docs/werkzeuge/` und ist nicht auf der Sperrliste.
+- **Für den nächsten Chat:** TB-127 nachschauen bzw. abnehmen (B2 md5-Gleichheit, C3 Zeichengleichheit, 0b Worktree). Dann TB-128 schreiben (Block 4 Nr. 4) und die erste Fable-Anfrage vorprüfen (F4-Frage zu 27, „Für Fable“ TB-126 samt Liste B, Abschnittsnummern nach F5).
+- **Betreiberentscheid 01.10.2026, ca. 22:05, per Karte:** „Jetzt umziehen (Empfohlen)“. Der Eröffnungstext steht im Chat: Kernlektüre ab „## Nachtrag 01.10.2026, ca. 20:15“, Ampel mit `ampel.py`. Die Nachschau „Nachschau TB-127“ (22:16) ist gelöscht, damit der alte Chat nicht parallel weiterarbeitet; der neue Chat plant seine eigene (S7). ⚠️ Diese Zeile ist nach dem Anlegen von TB-127 angehängt. Hat Schritt 0 schon committet, erscheint `UEBERGABE.md` im porcelain von TB-127 als geändert; das ist diese Zeile, kein Fehler der Sitzung.
