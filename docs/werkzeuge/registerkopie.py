@@ -28,16 +28,35 @@ Aufrufe (aus der Repo-Wurzel):
                                                             in anderer Form (MARKE+) und Ueberschriften mit Rueckverweis
                                                             (UEBERSCHRIFT), je mit Zeile, Abschnitt, Teil - die Grundlage
                                                             fuer docs/projektfuehrung/REGISTER_INDEX.md
-    --ziel <ordner>                                         anderer Ausgabeordner (Probe); Standard docs/projektfuehrung
+    python3 docs/werkzeuge/registerkopie.py --abschnitte    eine Datei je Abschnitt (F1, Betreiber 01.10.2026), danach
+                                                            selbst pruefen; Standardziel docs/projektfuehrung/register_kopie
+    python3 docs/werkzeuge/registerkopie.py --abschnitte --pruefen
+                                                            nur pruefen: jede Datei 00..<m> da, Kopf in der Form unten,
+                                                            Bodies aneinander == Original am Commit aus dem Kopf (bytegleich)
+    --ziel <ordner>                                         anderer Ausgabeordner (Probe); Standard je Modus:
+                                                            Teile docs/projektfuehrung, Abschnitte .../register_kopie
+
+Abschnitts-Modus (`--abschnitte`, TB-127, aus der Vorlage `registerkopie_abschnitte.py`): je Abschnitt eine Datei
+
+    <ziel>/REGISTER_KOPIE_ABSCHNITT_<nn>.md        (nn zweistellig, 00 .. letzter Abschnitt)
+
+Zeile 1 Kopf, Zeile 2 leer, ab Zeile 3 der Body unveraendert (bytegleich); die Vorrede gehoert zu Abschnitt 00:
+
+    # REGISTER-KOPIE Abschnitt <n> (von 0–<m>) — Register-Z. <a>–<b> — Commit <hash> — <Datum> — Original sha256 <…> — KOPIE, nicht das Register
+
+<hash>/<Datum> wie im Teile-Modus. Die Abschnittsnummern muessen bei 0 beginnen und fortlaufend sein (sonst 2);
+`--marken` zusammen mit `--abschnitte` ergibt 2.
 
 Wann laufen lassen: im Registerauftrag nach dem Registercommit (27b C2), danach Teile committen; der steuernde
-Chat legt sie in der Ablage ab und ersetzt die vorigen gleichen Namens.
+Chat legt sie in der Ablage ab und ersetzt die vorigen gleichen Namens. Seit 01.10.2026 fuehrt die Ablage die
+Abschnittsdateien (`--abschnitte`, F1); REGISTER_INDEX.md nennt je Abschnitt die Datei.
 
 Rueckgabewert: 0 in Ordnung; 1 Pruefung gescheitert (Body ungleich, Teil zu gross, Teil fehlt);
-2 Eingabe unbrauchbar (Arbeitsbaum != HEAD, Abschnittsnummern nicht fortlaufend, kein Commit);
+2 Eingabe unbrauchbar (Arbeitsbaum != HEAD, Abschnittsnummern nicht fortlaufend, kein Commit,
+--marken mit --abschnitte);
 3 geschrieben, aber ein Abschnitt allein ist groesser als die Grenze (Befund, Teil trotzdem geschrieben).
-Das Skript loescht nichts. Liegen aeltere Teile mit hoeherer Nummer als <m> im Ziel, werden sie gemeldet
-(VERALTET), nicht entfernt. Reine Standardbibliothek, laeuft auf Python 3.9.
+Das Skript loescht nichts. Liegen aeltere Teile (bzw. Abschnittsdateien) mit hoeherer Nummer als <m> im Ziel,
+werden sie gemeldet (VERALTET), nicht entfernt. Reine Standardbibliothek, laeuft auf Python 3.9.
 """
 import argparse
 import hashlib
@@ -50,9 +69,14 @@ REGISTER = "docs/VORREGISTRIERUNG_neuselektion.md"
 ZIEL = "docs/projektfuehrung"
 NAME = "REGISTER_KOPIE_teil{}.md"
 GRENZE = 240000
+ZIEL_ABSCHNITTE = "docs/projektfuehrung/register_kopie"
+NAME_ABSCHNITT = "REGISTER_KOPIE_ABSCHNITT_{:02d}.md"
 ABSCHNITT = re.compile(rb"^## (\d+)\.", re.M)
 KOPF = re.compile(r"^# REGISTER-KOPIE Teil (\d+) von (\d+) — Abschnitte (\d+)–(\d+) — Commit ([0-9a-f]{40}) — "
                   r"(\d{4}-\d{2}-\d{2}) — Original sha256 ([0-9a-f]{64}) — KOPIE, nicht das Register$")
+KOPF_ABSCHNITT = re.compile(r"^# REGISTER-KOPIE Abschnitt (\d+) \(von 0–(\d+)\) — Register-Z\. (\d+)–(\d+) — "
+                            r"Commit ([0-9a-f]{40}) — (\d{4}-\d{2}-\d{2}) — Original sha256 ([0-9a-f]{64}) — "
+                            r"KOPIE, nicht das Register$")
 MARKE = re.compile(r"ERSETZT durch|PRÄZISIERT durch")              # das Suchmuster aus dem Auftrag (27b Teil D A4)
 MARKE_WEITER = re.compile(r"\b(ERSETZT|PRÄZISIERT|BERICHTIGT|ERGÄNZT|KORRIGIERT)\b")  # weitere Markenwoerter
 RUECKVERWEIS = re.compile(r"Berichtigung zu|Präzisierung zu|ersetzt die|Ergänzung zu|, Ergänzung|, Präzisierung|"
@@ -173,6 +197,94 @@ def pruefen(ziel):
     return 0 if fehler == 0 else 1
 
 
+def pfad_abschnitt(ziel, n):
+    return os.path.join(ziel, NAME_ABSCHNITT.format(n))
+
+
+def kopf_abschnitt(n, m, za, zb, commit, datum, sha):
+    return ("# REGISTER-KOPIE Abschnitt %d (von 0–%d) — Register-Z. %d–%d — Commit %s — %s — Original sha256 %s — "
+            "KOPIE, nicht das Register\n\n" % (n, m, za, zb, commit, datum, sha)).encode("utf-8")
+
+
+def je_abschnitt(daten, commit, datum):
+    """Liste (nummer, inhalt) mit Kopf; Register-Zeilen a–b wie in der Vorlage (1-basiert, b einschliesslich)."""
+    liste = abschnitte(daten)
+    if liste[0][0] != 0:
+        print("ABBRUCH: Abschnittsnummern beginnen nicht bei 0: %d" % liste[0][0])
+        sys.exit(2)
+    sha = hashlib.sha256(daten).hexdigest()
+    m = liste[-1][0]
+    ergebnis = []
+    for nr, s, e in liste:
+        za = daten.count(b"\n", 0, s) + 1
+        zb = daten.count(b"\n", 0, e) + (1 if e == len(daten) and not daten.endswith(b"\n") else 0)
+        ergebnis.append((nr, kopf_abschnitt(nr, m, za, zb, commit, datum, sha) + daten[s:e]))
+    return ergebnis
+
+
+def pruefen_abschnitte(ziel):
+    """Jede Datei 00..<m> da, Kopf in der Form, Bodies aneinander == Original am Commit aus dem Kopf. rc 0/1."""
+    erster = pfad_abschnitt(ziel, 0)
+    if not os.path.exists(erster):
+        print("FEHLT: %s" % erster)
+        return 1
+    with open(erster, "rb") as f:
+        k = KOPF_ABSCHNITT.match(f.readline().decode("utf-8").rstrip("\n"))
+    if not k:
+        print("KOPF unlesbar: %s" % erster)
+        return 1
+    m, commit, datum, sha_kopf = int(k.group(2)), k.group(5), k.group(6), k.group(7)
+    original = git("show", commit + ":" + REGISTER)
+    fehler = 0
+    bodies = []
+    zeile = 1
+    for n in range(0, m + 1):
+        p = pfad_abschnitt(ziel, n)
+        if not os.path.exists(p):
+            print("FEHLT: %s" % p)
+            return 1
+        with open(p, "rb") as f:
+            inhalt = f.read()
+        teile = inhalt.split(b"\n", 2)
+        kk = KOPF_ABSCHNITT.match(teile[0].decode("utf-8")) if len(teile) == 3 else None
+        body = teile[2] if len(teile) == 3 else b""
+        za_soll, zb_soll = zeile, zeile + body.count(b"\n") - 1
+        if (not kk or teile[1] != b"" or int(kk.group(1)) != n or int(kk.group(2)) != m or kk.group(5) != commit
+                or kk.group(6) != datum or kk.group(7) != sha_kopf
+                or int(kk.group(3)) != za_soll or int(kk.group(4)) != zb_soll):
+            print("KOPF passt nicht: %s" % p)
+            fehler += 1
+        zeile = zb_soll + 1
+        bodies.append(body)
+    zusammen = b"".join(bodies)
+    gleich = zusammen == original
+    print("Abschnitte 0–%d: %d Dateien in %s; Bodies aneinander: %d Bytes, Original %s am %s: %d Bytes, "
+          "sha256 %s (Kopf %s) - %s" % (m, m + 1, ziel, len(zusammen), REGISTER, commit[:12], len(original),
+                                         hashlib.sha256(original).hexdigest()[:16], sha_kopf[:16],
+                                         "BYTEGLEICH" if gleich else "UNGLEICH"))
+    if hashlib.sha256(original).hexdigest() != sha_kopf:
+        print("sha256 im Kopf passt nicht zum Original am Commit")
+        fehler += 1
+    fehler += 0 if gleich else 1
+    n = m + 1
+    while os.path.exists(pfad_abschnitt(ziel, n)):
+        print("VERALTET: %s liegt noch (Abschnitt %d > m=%d) - nicht Teil dieser Kopie, nicht entfernt"
+              % (pfad_abschnitt(ziel, n), n, m))
+        n += 1
+    return 0 if fehler == 0 else 1
+
+
+def abschnitte_schreiben(ziel):
+    daten, commit, datum = original_am_head()
+    liste = je_abschnitt(daten, commit, datum)
+    os.makedirs(ziel, exist_ok=True)
+    for nr, inhalt in liste:
+        with open(pfad_abschnitt(ziel, nr), "wb") as f:
+            f.write(inhalt)
+        print("geschrieben: %s  %d Bytes" % (pfad_abschnitt(ziel, nr), len(inhalt)))
+    return pruefen_abschnitte(ziel)
+
+
 def marken():
     """Alle Marken und Rueckverweis-Ueberschriften mit Zeile, Abschnitt, Teil (Zuschnitt wie beim Schreiben)."""
     daten, commit, datum = original_am_head()
@@ -212,8 +324,16 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[1])
     ap.add_argument("--pruefen", action="store_true")
     ap.add_argument("--marken", action="store_true")
-    ap.add_argument("--ziel", default=ZIEL)
+    ap.add_argument("--abschnitte", action="store_true")
+    ap.add_argument("--ziel", default=None)
     a = ap.parse_args()
+    if a.abschnitte:
+        if a.marken:
+            print("ABBRUCH: --marken und --abschnitte zusammen sind nicht vorgesehen.")
+            return 2
+        ziel = a.ziel if a.ziel is not None else ZIEL_ABSCHNITTE
+        return pruefen_abschnitte(ziel) if a.pruefen else abschnitte_schreiben(ziel)
+    a.ziel = a.ziel if a.ziel is not None else ZIEL
     if a.marken:
         return marken()
     if a.pruefen:
