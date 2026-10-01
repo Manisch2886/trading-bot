@@ -1,0 +1,37 @@
+# TB-126 A5 Probelauf, HEAD 1e13135, 2026-10-01 19:08:37 +0200
+Register 18e39ee29b9bd4f0, Kopie /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/eb8453e7-016b-4efa-ba91-c0bf8df2bb6d/scratchpad/a5_probe_190837.md
+## Einsetzen gegen die Kopie
+Register: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/eb8453e7-016b-4efa-ba91-c0bf8df2bb6d/scratchpad/a5_probe_190837.md
+Marken gesetzt am alten Ort: 87 an 54 Einfuegestellen; davon in Abschnitt 9: 1
+Marke unter 48.16 (R54): 1
+R-Bloecke: 38  Docstring Z. 36-67
+Zeilen vorher: 10347  nachher: 11094
+rc 0
+## Register selbst unberuehrt: 18e39ee29b9bd4f0
+## a6_r_diff.py
+Ergebnis: 38/38 rc 0
+rc 0
+## a6_mutation.py
+geaendert: Register-Zeile 10780 (R40), ' die ' -> ' der ' (erstes Vorkommen)
+R40: 2 Zeilen, diff rc 1
+Ergebnis: 37/38 rc 0
+a6_r_diff.py gegen die Kopie: rc 1 (Soll 1)
+rc 0
+## a6_zitate.py
+Ergebnis: Koepfe/Text 4/4 rc 0; Einzelzitate 3/3 rc 0
+rc 0
+## a6_marken.py
+# TB-126 A6 Ueberschriften und Marken: Register /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/eb8453e7-016b-4efa-ba91-c0bf8df2bb6d/scratchpad/a5_probe_190837.md, Auftrag am Commit 0f56aeb, Datum 01.10.2026
+## Ueberschriften (Tabelle 1)
+Ueberschriften: 38/38 genau einmal als ganze Zeile
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Marken gesetzt: 87 am alten Ort + 1 unter 48.16; Markenzeilen 'TB-126, 01.10.2026' im Register: 88 (Soll 88)
+Marken in Abschnitt 9: 1 (Soll 1); in Abschnitt 10: 0 (Soll 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0d (inhaltlich bytegleich)
+Abschnitt 10: Z. 944-1150, gleich 0d: ja
+ERZEUGT-Block: Z. 257-457, gleich 0d: ja
+rc 0: alles wie Anhang A
+rc 0
+## numstat Original -> Kopie
+747	0
+KOPIE=/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/eb8453e7-016b-4efa-ba91-c0bf8df2bb6d/scratchpad/a5_probe_190837.md

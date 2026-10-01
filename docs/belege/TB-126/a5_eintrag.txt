@@ -1,0 +1,7 @@
+# TB-126 A5 Echtlauf, HEAD 1e13135, 2026-10-01 19:08:44 +0200
+Register: docs/VORREGISTRIERUNG_neuselektion.md
+Marken gesetzt am alten Ort: 87 an 54 Einfuegestellen; davon in Abschnitt 9: 1
+Marke unter 48.16 (R54): 1
+R-Bloecke: 38  Docstring Z. 36-67
+Zeilen vorher: 10347  nachher: 11094
+rc 0

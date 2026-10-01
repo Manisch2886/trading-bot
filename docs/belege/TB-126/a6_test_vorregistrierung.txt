@@ -1,0 +1,4 @@
+# TB-126 test_vorregistrierung, HEAD 1e13135, Register sha256 b58046592205bfac, Start 2026-10-01 19:09:30 +0200
+rc 0
+Dauer 910 s
+Schlusszeile: 196/196 Pruefungen bestanden.

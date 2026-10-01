@@ -1,0 +1,9 @@
+# TB-126 A6 Zitate: Register docs/VORREGISTRIERUNG_neuselektion.md gegen Auftrag/Quellen am Commit 0f56aeb
+Kopf 47.0: 3 Zeilen, diff rc 0
+Kopf 48.0: 3 Zeilen, diff rc 0
+Kopf 49.0: 3 Zeilen, diff rc 0
+Text 50: 179 Zeilen, diff rc 0
+Docstring auswertung.py Z. 36-67: 32 Zeilen, diff rc 0
+Entwurf TB-122 Z. 235-275: 41 Zeilen, diff rc 0
+Entwurf TB-124 Z. 289-323: 35 Zeilen, diff rc 0
+Ergebnis: Koepfe/Text 4/4 rc 0; Einzelzitate 3/3 rc 0

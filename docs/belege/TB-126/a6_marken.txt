@@ -1,0 +1,98 @@
+# TB-126 A6 Ueberschriften und Marken: Register docs/VORREGISTRIERUNG_neuselektion.md, Auftrag am Commit 0f56aeb, Datum 01.10.2026
+## Ueberschriften (Tabelle 1)
+Ueberschriften: 38/38 genau einmal als ganze Zeile
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Nr  1 R49   gesetzt Zeile 6
+Nr  2 R48   gesetzt Zeile 74
+Nr  3 R48   gesetzt Zeile 77
+Nr  4 R51   gesetzt Zeile 80
+Nr  5 R48   gesetzt Zeile 127
+Nr  6 R48   gesetzt Zeile 144
+Nr  7 R49   gesetzt Zeile 147
+Nr  8 R48   gesetzt Zeile 203
+Nr  9 R49   gesetzt Zeile 244
+Nr 10 R49   gesetzt Zeile 459
+Nr 11 R51   gesetzt Zeile 516
+Nr 12 R49   gesetzt Zeile 571
+Nr 13 R37   gesetzt Zeile 634
+Nr 14 R51   gesetzt Zeile 688
+Nr 15 R48   gesetzt Zeile 798
+Nr 16 R51   gesetzt Zeile 801
+Nr 17 R55   gesetzt Zeile 804
+Nr 18 R21   gesetzt Zeile 847
+Nr 19 R23   gesetzt Zeile 850
+Nr 20 R48   gesetzt Zeile 899
+Nr 21 R48   gesetzt Zeile 911
+Nr 22 R43   gesetzt Zeile 1207
+Nr 23 R49   gesetzt Zeile 1226
+Nr 24 R-    gesetzt Zeile 1229
+Nr 25 R25   gesetzt Zeile 1297
+Nr 26 R26   gesetzt Zeile 1300
+Nr 27 R49   gesetzt Zeile 1303
+Nr 28 R50   gesetzt Zeile 1306
+Nr 29 R41   gesetzt Zeile 1425
+Nr 30 R35   gesetzt Zeile 1446
+Nr 31 R54   gesetzt Zeile 1474
+Nr 32 R41   gesetzt Zeile 1519
+Nr 33 R53   gesetzt Zeile 1634
+Nr 34 R23   gesetzt Zeile 1664
+Nr 35 R51   gesetzt Zeile 1714
+Nr 36 R21   gesetzt Zeile 2076
+Nr 37 R22   gesetzt Zeile 2079
+Nr 38 R23   gesetzt Zeile 2082
+Nr 39 R37   gesetzt Zeile 2085
+Nr 40 R37   gesetzt Zeile 2088
+Nr 41 R18   gesetzt Zeile 2135
+Nr 42 R18   gesetzt Zeile 2138
+Nr 43 R18   gesetzt Zeile 2141
+Nr 44 R19   gesetzt Zeile 2144
+Nr 45 R19   gesetzt Zeile 2147
+Nr 46 R19   gesetzt Zeile 2150
+Nr 47 R20   gesetzt Zeile 2153
+Nr 48 R20   gesetzt Zeile 2156
+Nr 49 R21   gesetzt Zeile 2159
+Nr 50 R21   gesetzt Zeile 2162
+Nr 51 R22   gesetzt Zeile 2165
+Nr 52 R24   gesetzt Zeile 2168
+Nr 53 R24   gesetzt Zeile 2171
+Nr 54 R37   gesetzt Zeile 2317
+Nr 55 R38   gesetzt Zeile 2381
+Nr 56 R28   gesetzt Zeile 3059
+Nr 57 R53   gesetzt Zeile 3401
+Nr 58 R34   gesetzt Zeile 3676
+Nr 59 R36   gesetzt Zeile 4293
+Nr 60 R53   gesetzt Zeile 4631
+Nr 61 R53   gesetzt Zeile 4651
+Nr 62 R31   gesetzt Zeile 5124
+Nr 63 R32   gesetzt Zeile 5163
+Nr 64 R53   gesetzt Zeile 5295
+Nr 65 R43   gesetzt Zeile 5377
+Nr 66 R43   gesetzt Zeile 6228
+Nr 67 R37   gesetzt Zeile 6386
+Nr 68 R26   gesetzt Zeile 6466
+Nr 69 R49   gesetzt Zeile 7331
+Nr 70 R42   gesetzt Zeile 8368
+Nr 71 R44   gesetzt Zeile 8371
+Nr 72 R47   gesetzt Zeile 8374
+Nr 73 R41   gesetzt Zeile 8799
+Nr 74 R29   gesetzt Zeile 9185
+Nr 75 R29   gesetzt Zeile 9959
+Nr 76 R42   gesetzt Zeile 10179
+Nr 77 R29   gesetzt Zeile 10187
+Nr 78 R29   gesetzt Zeile 10204
+Nr 79 R33   gesetzt Zeile 10207
+Nr 80 R34   gesetzt Zeile 10216
+Nr 81 R36   gesetzt Zeile 10219
+Nr 82 R39   gesetzt Zeile 10410
+Nr 83 R42   gesetzt Zeile 10413
+Nr 84 R25   gesetzt Zeile 10441
+Nr 85 R26   gesetzt Zeile 10444
+Nr 86 R27   gesetzt Zeile 10447
+Nr 87 R25   gesetzt Zeile 10512
+Nr 88 R54 (unter 48.16) gesetzt Zeile 10850
+Marken gesetzt: 87 am alten Ort + 1 unter 48.16; Markenzeilen 'TB-126, 01.10.2026' im Register: 88 (Soll 88)
+Marken in Abschnitt 9: 1 (Soll 1); in Abschnitt 10: 0 (Soll 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0d (inhaltlich bytegleich)
+Abschnitt 10: Z. 944-1150, gleich 0d: ja
+ERZEUGT-Block: Z. 257-457, gleich 0d: ja
+rc 0: alles wie Anhang A
