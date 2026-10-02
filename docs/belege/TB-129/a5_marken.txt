@@ -1,0 +1,31 @@
+# TB-129 A5 Ueberschriften, Ketten und Marken: Register docs/VORREGISTRIERUNG_neuselektion.md, Auftrag am Commit 477cef2, Datum 02.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+51.1: Ueberschrift gleich, Kette gleich
+51.2: Ueberschrift gleich, Kette gleich
+51.3: Ueberschrift gleich, Kette gleich
+51.4: Ueberschrift gleich, Kette gleich
+51.5: Ueberschrift gleich, Kette gleich
+51.6: Ueberschrift gleich, Kette gleich
+51.7: Ueberschrift gleich, Kette gleich
+Ueberschriften: 7/7, Ketten: 7/7 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Nr  1 R36  1, Tabelle, Zeile 3          gesetzt Zeile 83
+Nr  2 R48  4.2                          gesetzt Zeile 522
+Nr  3 R60  4.2                          gesetzt Zeile 525
+Nr  4 R37  7, Tabelle, Zeile (b)        gesetzt Zeile 816
+Nr  5 R36  8, Tabelle                   gesetzt Zeile 887
+Nr  6 R55  8, Tabelle                   gesetzt Zeile 890
+Nr  7 R21  16.4, „Prüfung vor dem Tag“  gesetzt Zeile 2232
+Nr  8 R58  25.3, Ersatztext             gesetzt Zeile 4675
+Nr  9 R56  Abschnitt 27                 gesetzt Zeile 5190
+Nr 10 R33  43.2, Eintrag 43-7           gesetzt Zeile 9702
+Nr 11 R60  48.16 (R48)                  gesetzt Zeile 10883
+Nr 12 R57  49.1 (R53)                   gesetzt Zeile 10933
+Nr 13 R59  49.1 (R53)                   gesetzt Zeile 10936
+Nr 14 R57  50.5                         gesetzt Zeile 11113
+Marken gesetzt: 14/14; Markenzeilen 'TB-129, 02.10.2026' im Register: 14 (Soll 14)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 962-1168, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A

@@ -1,0 +1,119 @@
+{
+ "register": "docs/VORREGISTRIERUNG_neuselektion.md",
+ "S0": "477cef2",
+ "datum": "02.10.2026",
+ "marken": [
+  {
+   "nr": 1,
+   "R": 36,
+   "stelle": "1, Tabelle, Zeile 3",
+   "nach_alt": 81,
+   "zeile_neu": 83,
+   "m1": "> ⭐ **Festlegung 3 PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 2,
+   "R": 48,
+   "stelle": "4.2",
+   "nach_alt": 517,
+   "zeile_neu": 522,
+   "m1": "> ⭐ **4.2 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkte (d) und (e), nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 3,
+   "R": 60,
+   "stelle": "4.2",
+   "nach_alt": 517,
+   "zeile_neu": 525,
+   "m1": "> ⭐ **4.2 PRÄZISIERT durch R60 (51.5)** (Fable 01a R60, TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 4,
+   "R": 37,
+   "stelle": "7, Tabelle, Zeile (b)",
+   "nach_alt": 805,
+   "zeile_neu": 816,
+   "m1": "> ⭐ **7 (b) PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 5,
+   "R": 36,
+   "stelle": "8, Tabelle",
+   "nach_alt": 873,
+   "zeile_neu": 887,
+   "m1": "> ⭐ **8, Tabelle PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 6,
+   "R": 55,
+   "stelle": "8, Tabelle",
+   "nach_alt": 873,
+   "zeile_neu": 890,
+   "m1": "> ⭐ **8, Tabelle ERGÄNZT durch R55 (49.3)** (Fable 30a R55, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 7,
+   "R": 21,
+   "stelle": "16.4, „Prüfung vor dem Tag“",
+   "nach_alt": 2212,
+   "zeile_neu": 2232,
+   "m1": "> ⭐ **16.4, „Prüfung vor dem Tag“ PRÄZISIERT durch R21 (47.4)** (Fable 27c R21, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 8,
+   "R": 58,
+   "stelle": "25.3, Ersatztext",
+   "nach_alt": 4652,
+   "zeile_neu": 4675,
+   "m1": "> ⭐ **25.3 (i) ERGÄNZT durch R58 (51.3)** (Fable 01a R58, TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 9,
+   "R": 56,
+   "stelle": "Abschnitt 27",
+   "nach_alt": 5164,
+   "zeile_neu": 5190,
+   "m1": "> ⭐ **Abschnitt 27 ERGÄNZT durch R56 (51.1)** (Fable 01a R56, zu 27.4 und 27.6, TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 10,
+   "R": 33,
+   "stelle": "43.2, Eintrag 43-7",
+   "nach_alt": 9673,
+   "zeile_neu": 9702,
+   "m1": "> ⭐ **43-7 PRÄZISIERT durch R33 (48.1)** (Fable 29b R33, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 11,
+   "R": 60,
+   "stelle": "48.16 (R48)",
+   "nach_alt": 10851,
+   "zeile_neu": 10883,
+   "m1": "> ⭐ **48.16 R48 (d) ERGÄNZT durch R60 (51.5)** (Fable 01a R60, TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 12,
+   "R": 57,
+   "stelle": "49.1 (R53)",
+   "nach_alt": 10898,
+   "zeile_neu": 10933,
+   "m1": "> ⭐ **49.1 R53 PRÄZISIERT durch R57 (51.2)** (Fable 01a R57, TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 13,
+   "R": 59,
+   "stelle": "49.1 (R53)",
+   "nach_alt": 10898,
+   "zeile_neu": 10936,
+   "m1": "> ⭐ **49.1 R53 ERGÄNZT durch R59 (51.4)** (Fable 01a R59, TB-129, 02.10.2026)."
+  },
+  {
+   "nr": 14,
+   "R": 57,
+   "stelle": "50.5",
+   "nach_alt": 11072,
+   "zeile_neu": 11113,
+   "m1": "> ⭐ **50.5 ERGÄNZT durch R57 (51.2): die Lesart ist bestätigt** (Fable 01a R57, TB-129, 02.10.2026)."
+  }
+ ]
+}

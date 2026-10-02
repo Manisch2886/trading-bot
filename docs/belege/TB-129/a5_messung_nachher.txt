@@ -1,0 +1,41 @@
+# TB-129 0b (nachher), HEAD b443bcb82d995147604c283c0f67d98596c4462a, 2026-10-02 10:52:04 +0200
+## Register (Soll vorher: 11094 Zeilen, sha256 b5804659..., md5 9a5a403f...)
+Zeilen 11225
+7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4  docs/VORREGISTRIERUNG_neuselektion.md
+b4764e4e140caa37ecef515d73743e1f docs/VORREGISTRIERUNG_neuselektion.md
+## Abbild (Soll 46f0ad5d...)
+46f0ad5d1d83a253baa5523f5657881e0d825cebd734f24a42ef5d4fa74f281f  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+## herkunft.register() (Soll vorher 525c9c42..., fehlend [], 23 Teile)
+register a1e1366ab55719fe4724b9da3d9425f3029628d56460bcda8e2e4476dce8cc40
+fehlend []
+teile 23
+## Sonde gegen research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json (Soll rc 2, 37/0/0, (ii) 0, Listentext wie bei Erzeugung: ja)
+git status --porcelain vorher: 18 Zeilen
+rc 2
+git status --porcelain nachher: 18 Zeilen
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 987-1100, Listentext wie bei Erzeugung: ja
+Pfad-Bestandteile: 37 geprueft, davon 37 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 22)
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+Sonde --json rc 2
+Sonde-JSON ohne 'zeilen' sha256: 9f7364ef32fd80ffba6931c776f3bdf43dc257a1f6aeac304cf818c89023f35e
+## registerbericht.py --pruefen (kein Soll; nachher = vorher)
+rc 1
+Schlusszeile:     python3 research/vorregistrierung/registerbericht.py
+## md5 und Bytes der Quelle 01a am Commit 477cef2 und im Arbeitsbaum (Soll 4995260b..., 22084 B)
+4995260b7af91d2f4c058b1e2c49e788 22084 B  477cef2:FABLE_ANTWORT_2026-10-01a_anfangsbestand_vorlauf_exposure_marken.md
+4995260b7af91d2f4c058b1e2c49e788 22084 B  Arbeitsbaum:FABLE_ANTWORT_2026-10-01a_anfangsbestand_vorlauf_exposure_marken.md
+## Abschnitt 10 und ERZEUGT-Block -> docs/belege/TB-129/0b_abschnitt10_nachher.txt, docs/belege/TB-129/0b_erzeugt_nachher.txt
+Abschnitt 10: Z. 962-1168 (207 Zeilen); ERZEUGT: Z. 260-460 (201 Zeilen)
+da8697c0be1da37f8c6d1eddbf715e8003ba517c119576766f13c0e6a61889bc  docs/belege/TB-129/0b_abschnitt10_nachher.txt
+fda8ead14e4cd96e91548078f9e9dbae0c3a0c631b2a483f4bee757da31c9207  docs/belege/TB-129/0b_erzeugt_nachher.txt
+## Ende
+## registerbericht.py --pruefen nachher, volle Ausgabe
+GESCHEITERT: der erzeugte Block steht nicht woertlich im Register - die Zahlen dort sind veraltet.
+  Neu erzeugen mit:
+    python3 research/vorregistrierung/registerbericht.py
+## Vergleich registerbericht vorher/nachher (cmp)
+cmp rc 0
+## Abschnitt 10 / ERZEUGT nachher gegen vorher (cmp)
+cmp rc 0
+cmp rc 0

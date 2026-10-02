@@ -1,0 +1,40 @@
+# TB-129 A4 Probelauf, HEAD b443bcb, 2026-10-02 10:51:42 +0200
+Register b58046592205bfac, Kopie /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/1e4ba8c4-08da-4b85-a941-1a04808cebd0/scratchpad/a4_probe_105142.md
+## Einsetzen gegen die Kopie
+Register: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/1e4ba8c4-08da-4b85-a941-1a04808cebd0/scratchpad/a4_probe_105142.md
+Marken gesetzt am alten Ort: 14 an 11 Einfuegestellen
+R-Bloecke: 7
+Zeilen vorher: 11094  nachher: 11225
+rc 0
+## Register selbst unberuehrt: b58046592205bfac
+## a5_r_diff.py
+Ergebnis: 7/7 rc 0
+rc 0
+## a5_mutation.py
+a5_r_diff.py gegen die Kopie: rc 1 (Soll 1)
+rc 0
+## a5_zitate.py
+Ergebnis: 2/2 rc 0
+rc 0
+## a5_marken.py
+# TB-129 A5 Ueberschriften, Ketten und Marken: Register /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/1e4ba8c4-08da-4b85-a941-1a04808cebd0/scratchpad/a4_probe_105142.md, Auftrag am Commit 477cef2, Datum 02.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+51.1: Ueberschrift gleich, Kette gleich
+51.2: Ueberschrift gleich, Kette gleich
+51.3: Ueberschrift gleich, Kette gleich
+51.4: Ueberschrift gleich, Kette gleich
+51.5: Ueberschrift gleich, Kette gleich
+51.6: Ueberschrift gleich, Kette gleich
+51.7: Ueberschrift gleich, Kette gleich
+Ueberschriften: 7/7, Ketten: 7/7 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Marken gesetzt: 14/14; Markenzeilen 'TB-129, 02.10.2026' im Register: 14 (Soll 14)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 962-1168, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A
+rc 0
+## numstat Original -> Kopie
+131	0
+KOPIE=/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/1e4ba8c4-08da-4b85-a941-1a04808cebd0/scratchpad/a4_probe_105142.md

@@ -1,0 +1,10 @@
+# TB-129 A5 R-Diff: Register docs/VORREGISTRIERUNG_neuselektion.md gegen Quelle am Commit 477cef2
+Bloecke in der Quelle: 7, im Register: 7
+R56: 2 Zeilen, diff rc 0
+R57: 2 Zeilen, diff rc 0
+R58: 2 Zeilen, diff rc 0
+R59: 2 Zeilen, diff rc 0
+R60: 2 Zeilen, diff rc 0
+R61: 2 Zeilen, diff rc 0
+R62: 2 Zeilen, diff rc 0
+Ergebnis: 7/7 rc 0

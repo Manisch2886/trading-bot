@@ -1,0 +1,4 @@
+# TB-129 test_vorregistrierung, HEAD b443bcb, Register sha256 7f74b0e5a746cbc7, Start 2026-10-02 10:52:49 +0200
+rc 0
+Dauer 865 s
+Schlusszeile: 196/196 Pruefungen bestanden.

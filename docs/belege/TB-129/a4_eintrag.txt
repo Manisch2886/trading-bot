@@ -1,0 +1,6 @@
+# TB-129 A4 Echtlauf, HEAD b443bcb, 2026-10-02 10:51:55 +0200
+Register: docs/VORREGISTRIERUNG_neuselektion.md
+Marken gesetzt am alten Ort: 14 an 11 Einfuegestellen
+R-Bloecke: 7
+Zeilen vorher: 11094  nachher: 11225
+rc 0
