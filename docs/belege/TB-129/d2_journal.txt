@@ -1,0 +1,3 @@
+Anker vorher: 1 | letzte Kennung: DZ | '## EA ' vorher: 0
+erste Blockzeile nachher: 1 | Block nachher: 1
+Nachtrag: Die git-diff-Darstellung nach dem Lauf sah nach einer Leerzeile zu viel vor '## EA' aus. Direkt gemessen (grep -n): Z. 9830 '---', Z. 9831 leer, Z. 9832 '## EA'; vor '## Wiederkehrende Lehren' ebenso. Keine Korrektur noetig; Datei und Skript unveraendert.
