@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 46 (von 0–51) — Register-Z. 10356–10640 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 46 (von 0–52) — Register-Z. 10362–10646 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
 
 ## 46. Sonde zweiseitig, `fehlend` im Modus, zwei Erzeuger, Snapshot-Bindung, Herkunftsprüfung in `auswertung.py` — die Einträge aus Fable 27a (TB-117, 26.09.2026)
 

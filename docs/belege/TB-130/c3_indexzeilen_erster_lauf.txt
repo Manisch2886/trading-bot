@@ -1,0 +1,4 @@
+# TB-130 C3: Indexzeilen aus Fable 01a
+vorher: 'Ohne Marke; an Fable (51.10 Nr. 7).' im Index 6x, als Zeilenschluss im Block 5x (Soll je 5); Zeilen im Block: 6
+NICHT ersetzt (Zaehlung weicht ab)
+rc 1

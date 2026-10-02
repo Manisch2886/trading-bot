@@ -89,7 +89,7 @@ Register.** Der Wortlaut steht nur im Register bzw. in der Kopie je Abschnitt `r
  "Zuletzt nachgezogen in TB-130 (02.10.2026): Zeilenangaben mit `docs/belege/TB-130/c2_index_zeilen.py` vom Stand\n"
  "`f63ad4c` auf `%s` umgeschrieben (jede Zahl in Listen und Bereichen); 52 kommt zu T%d; Abschnittstabelle aus den\n"
  "Köpfen der Abschnittsdateien; Einträge mit `docs/belege/TB-130/c2_index_eintraege.py`; in Abschnitt 6 die fünf\n"
- "Indexzeilen „Ohne Marke; an Fable (51.10 Nr. 7).“ auf die gesetzten Marken umgestellt (`c3_indexzeilen.py`)."
+ "Indexzeilen ohne Marke auf die in TB-130 gesetzten Marken umgestellt (`c3_indexzeilen.py`)."
  % (commit[:7], t52)),
 ]
 for a, b in E:

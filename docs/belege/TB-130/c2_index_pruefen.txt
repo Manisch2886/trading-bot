@@ -1,0 +1,8 @@
+Zeilenangaben im Index: 236; mit Markenwort: 236
+Indexzeilen E-2: 6 (Soll 6)
+Marken TB-129 im Register: 14; mit ihrer Zeile in '6. Die Marken aus Fable 01a (TB-129)': 14 (Soll 14/14)
+Marken TB-130 im Register: 12; mit ihrer Zeile in '7. Die Marken aus Fable 02a (TB-130)': 12 (Soll 12/12)
+C3 (aus dem Auftrag): alt 'Ohne Marke; an Fable (51.10 Nr. 7).', neu 'Marke gesetzt in TB-130 (R65 (b), 52.3).'; im Block: neu 5 (Soll 5), alt im Index 0 (Soll 0), Tag-Vorbedingungen erste Zeile: ja
+Abschnittstabelle: 53/53 Zeilen gleich den Koepfen der Abschnittsdateien
+rc 0
+rc 0

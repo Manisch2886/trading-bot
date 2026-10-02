@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 1 von 4 — Abschnitte 0–22 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 1 von 4 — Abschnitte 0–22 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
 
 # Vorregistrierung der Neuselektion (TB-30a)
 
@@ -525,6 +525,9 @@ Exposure-Argument, nicht über die Tabelle.
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **4.2 PRÄZISIERT durch R60 (51.5)** (Fable 01a R60, TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **4.2 PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, Unterpunkt (a), TB-130, 02.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ### 4.3 Warum es keine absolute Grenze gibt (Festlegung 6)

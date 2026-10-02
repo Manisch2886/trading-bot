@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 47 (von 0–51) — Register-Z. 10641–10754 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 47 (von 0–52) — Register-Z. 10647–10766 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
 
 ## 47. Fable 27c — Registerblock R18–R32 (TB-126)
 
@@ -65,6 +65,9 @@ Reines Eintragen von Registertext, Bauart wie 46 (46.0). Quelle: `docs/projektfu
 > **R26 — Ergänzung zu 12, R14 und 35.4 (alle neun unter dem Modus; `--bot`; T117-2).** Unter dem Modus prüft `auswertung.py` die `herkunft.json` aller neun Bots, auch wenn nur ein Bot ausgewertet wird; ohne Modus nur die der ausgewerteten. Ein Lauf mit `--bot` unter dem Modus wertet nicht alle neun aus und ist kein Bericht dieses Registers (12: keine Option, die einen Bot ausnimmt; 14: Selektion → Bestätigungsperiode → Bericht für alle neun). Der Bericht des Tages ist der Lauf ohne `--bot`. Der Laufwrapper (35.4) startet `auswertung.py` unter dem Modus nur ohne `--bot`; `auswertung.py` selbst wird dafür nicht geöffnet. [Voraussetzung, zu messen: dass `--bot` unter dem Modus heute bis zum Bericht durchläuft; TB-117 J-7 hat den Modus im Prozess nachgestellt.]
 > *Quelle des Grundes:* 12, 14, R14 „für jeden Bot", 21b (3) (Prüfungen wandern dorthin, wo geändert werden darf). Kein Ergebnis.
 
+> ⭐ **47.9 R26 BERICHTIGT durch R61 (51.6)** (Fable 01a R61, Unterpunkt (c), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: Abschnitt 12; 35.4; 46.5, Block R14. Voraussetzung gemessen: 50.1.
 
 ### 47.10 R27 — Tatsachennotiz zu R14 Bedingung 5 und Ergänzung zu den Tag-Vorbedingungen (voller Commit-Hash; T117-3)
@@ -92,6 +95,9 @@ Reines Eintragen von Registertext, Bauart wie 46 (46.0). Quelle: `docs/projektfu
 
 > **R30 — Ergänzung zu 14 und zu den Tag-Vorbedingungen (Erzeuger und Auswertung am Tag-Commit; T117-6).** Der Zellen-Erzeuger und `auswertung.py` laufen am Tag-Commit (`TB_SELEKTIONSCOMMIT` = HEAD, 19). Zwischen dem Schreiben der `herkunft.json` und der Auswertung ändert sich weder das Register noch eine Datei aus `EINGEFROREN`; sonst endet die Auswertung nach R14 mit 2, und das ist ein Befund, kein Fehler der Wache. Registereinträge zum Lauf kommen nach dem Bericht. Ein späterer Lauf von `auswertung.py` auf demselben Selektionsraum läuft am Tag-Commit, sonst 2; nach R6 ist er nur als registrierte Messbitte zulässig oder ein Versuch.
 > *Quelle des Grundes:* 14 (Reihenfolge), 19 (Tag-Commit = HEAD), R14 (Register-Hash zur Laufzeit), 17.2, R6. Kein Ergebnis.
+
+> ⭐ **47.13 R30 BERICHTIGT durch R61 (51.6)** (Fable 01a R61, Unterpunkt (c), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: keine. Abschnitt 10: Indexzeile, keine Marke.
 

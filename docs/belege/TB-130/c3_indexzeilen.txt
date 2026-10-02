@@ -1,0 +1,10 @@
+# TB-130 C3: Indexzeilen aus Fable 01a
+vorher: 'Ohne Marke; an Fable (51.10 Nr. 7).' im Index 5x, als Zeilenschluss im Block 5x (Soll je 5); Zeilen im Block: 6
+nachher: 'Ohne Marke; an Fable (51.10 Nr. 7).' 0x (Soll 0), 'Marke gesetzt in TB-130 (R65 (b), 52.3).' 5x (Soll 5); Tag-Vorbedingungen unveraendert: ja
+  - **Tag-Vorbedingungen** (Fable 01a, Frage 7, empfohlen): R15 (b) (46.6) · R27 (47.10) · R29 (47.12) · R30 (47.13).
+  - **47.9 (R26):** „14“ lies „Sperrlistenpunkt 14 (Abschnitt 10)“ → R61 (c) (51.6). Marke gesetzt in TB-130 (R65 (b), 52.3).
+  - **47.13 (R30):** „Ergänzung zu 14“ lies „Ergänzung zu Sperrlistenpunkt 14 (Abschnitt 10)“ → R61 (c) (51.6). Marke gesetzt in TB-130 (R65 (b), 52.3).
+  - **25.2:** „der 150. Balken liegt am 2018-01-14“ → Tatsachennotiz R62 (a) (51.7). Marke gesetzt in TB-130 (R65 (b), 52.3).
+  - **50.1, Zeile R48 (d):** ergänzt durch R60 (d) (51.5) und 51.8. Marke gesetzt in TB-130 (R65 (b), 52.3).
+  - **50.4, Schlusssatz:** bestätigt durch R57 (51.2). Marke gesetzt in TB-130 (R65 (b), 52.3).
+rc 0

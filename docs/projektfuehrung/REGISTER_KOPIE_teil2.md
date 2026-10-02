@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 2 von 4 — Abschnitte 23–36 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 2 von 4 — Abschnitte 23–36 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
 
 ## 23. Berichtigung zu Registertext 3b (c) — der Benchmark wird tagesgenau (TB-66, 20.09.2026)
 
@@ -811,6 +811,9 @@ erfüllt (`H = 2`, BTC/ETH ab 2018-12-30), **(i) nicht** — 150 Tagesbalken
 Vorlauf am 1. Januar 2018 brauchen Daten ab August 2017, BTC/ETH beginnen am
 17.08.2017 und haben bis zum 31.12.2017 **137** Balken; der 150. Balken liegt am
 **2018-01-14**. Fables Nachrechnung trifft.
+
+> ⭐ **25.2 BERICHTIGT durch R62 (51.7) und R65 (52.3)** (Fable 01a R62, Unterpunkt (a), und Fable 02a R65, Unterpunkt (c), TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **25.2 ERGÄNZT durch R53 (49.1)** (Fable 30a R53, TB-126, 01.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.

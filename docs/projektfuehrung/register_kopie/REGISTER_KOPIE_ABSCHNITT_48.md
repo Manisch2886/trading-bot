@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 48 (von 0–51) — Register-Z. 10755–10923 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 48 (von 0–52) — Register-Z. 10767–10941 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
 
 ## 48. Fable 29b — Registerblock R33–R52 (TB-126)
 
@@ -131,6 +131,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **48.16 R48 (d) ERGÄNZT durch R60 (51.5)** (Fable 01a R60, TB-129, 02.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **48.16 R48 (d) PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 1, Tabelle, Zeile 4; 1, Tabelle, Zeile 3; 2.1; 2.2; 2.5; 7, Tabelle, Zeile (d); 8.1; 9, erster Absatz. Voraussetzung gemessen: 50.1. Abschnitt 10: Indexzeile, keine Marke.
 
 ### 48.17 R49 — Tatsachennotizen zu Register 0–12 (TB-121), Marke je am alten Ort
@@ -159,6 +162,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 
 > R51 — Marken am alten Ort für Register 0–12 (Handwerk im Registerauftrag; der alte Satz bleibt zeichengleich). Festlegung 4 → 4.2 (12, Lesart 1) [W42]. Festlegung 2 und 7 (a) → 15.3 (c) und Formelzeile [A63]. 3, Zahlenteil und 4.4 → 39.2 (Tabelle des Laufs), 40.8 (h), R49 (c) [W43, A67]. 4.2 → 43-2 (Interpolation an den Rändern) [A70]. 5.3 und 15.6 → 33.2 (gültiger Faltenplan, alle neun Bots) [A66]. 9 → R48 (b) [M47]. 10, Tatsachennotiz 15.09. → R49 (g) [M59] — als Indexzeile, in Abschnitt 10 steht keine Marke. 11 → R49 (h) [M60]. 12 → R50. Kopf → R49 (f) [W46]. Datenstand-Hash voll: 17.3/17.9/18 — Indexzeile, keine Marke in 10 [A77].
 > Quelle des Grundes: 34 (Marke am alten Ort), 27.3, REGISTER_INDEX. Kein Ergebnis.
+
+> ⭐ **48.19 R51 PRÄZISIERT durch R65 (52.3)** (Fable 02a R65, Unterpunkt (a), TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 1, Tabelle, Zeile 2; 4.2; 5.3; 7, Tabelle, Zeile (a); 15.6. Abschnitt 10: Indexzeile, keine Marke.
 

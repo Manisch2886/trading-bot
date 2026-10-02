@@ -1,0 +1,11 @@
+# TB-130 C1: registerkopie.py   (HEAD ad351d5, 2026-10-02 15:32:31 +0200)
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  Abschnitte 0–22  219931 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  Abschnitte 23–36  221802 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  Abschnitte 37–42  232429 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  Abschnitte 43–52  195322 Bytes
+Teil 1: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  219931 Bytes gesamt, Body 219696 Bytes, Abschnitte 0–22  <= 240000
+Teil 2: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  221802 Bytes gesamt, Body 221566 Bytes, Abschnitte 23–36  <= 240000
+Teil 3: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  232429 Bytes gesamt, Body 232193 Bytes, Abschnitte 37–42  <= 240000
+Teil 4: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  195322 Bytes gesamt, Body 195086 Bytes, Abschnitte 43–52  <= 240000
+Bodies aneinander: 868541 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am ad351d5f0351: 868541 Bytes, sha256 a749678043f32e5c (Kopf a749678043f32e5c) - BYTEGLEICH
+rc 0

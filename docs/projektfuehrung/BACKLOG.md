@@ -257,6 +257,16 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 
 - **`docs/werkzeuge/ampel.py`:** bricht mit `TypeError` ab, wenn ein Protokollschritt `null` in `cache_read_input_tokens` oder `cache_creation_input_tokens` trägt, und nähme sonst einen Schritt mit Grösse 0 als Grundlast (gemessen am 02.10.2026, 08:40, im Protokoll des steuernden Chats: drei Schritte eines anderen Modells mit Nutzung 0 vor dem ersten eigenen Schritt). Nachziehen: `null` als 0 lesen, Schritte mit Grösse 0 nicht zählen. Handwerk.
 
+### Aus Fable 02a (02.10.2026) — Bewertung nach 5b, eingetragen mit TB-130
+
+- **Bewertung:** Die Antwort trägt. 34 von 37 Registerzitaten stehen wörtlich im Register, drei sind Umschreibungen (zweimal der Schluss von R61 (b), einmal „2 = nicht gerechnet“ zu 43.1); keine Zahl ist falsch. Frage 1 und 4 einverstanden (25.2 als BERICHTIGT), Frage 2 und 3 anders als die Neigung: gemittelt wird über die Benchmark-Tage, der Schnitt auf die gemeinsamen Tage ist Registertext (7, 24.2, 23.3). R63–R65 stehen seit TB-130 im Register, Abschnitt 52; Befunde in 52.4, Offenes in 52.5. Leseprotokoll vollständig nach R56 (b); kein Treffer nach 27.1.
+- **Offen:** R64, zweite Voraussetzung (nicht entscheidbar, solange kein Code den Kalender der Tagesreihe festlegt; Messung mit dem Zellen-Erzeuger, vor dem Tag). Vor dem Zellen-Erzeuger: 02a, „Unsicher“ 1 (Zeitachse des Falten-Sharpe bei teilweisem Benchmark): vorprüfen in 16, 21, 29, 33, dann an Fable; „Unsicher“ 4 (Bestätigungsperiode, `bestaetigung_ab_effektiv`).
+- **Anforderungen an den Zellen-Erzeuger aus 02a:** Wache im Lauf, Ausgang 2, wenn einer Tagesreihe ein Benchmark-Tag fehlt (R64 (c)); Probe „Wert des Gewinners = tagegewichtetes Mittel der Faltenwerte“ in der Abnahme nach R46 (R64 (d)); nichts aus `bot_lauf.py` beziehen (R63 (d)).
+- **Vorprüfen:** `beta_bereinigung` behandelt und prüft weder fehlende Werte noch doppelte Daten. Benchmark-Datei: R39 nennt `<bot>.csv`, `auswertung.py:379` liest `<markt>.csv`. Vom Helfer gemeldet, vom steuernden Chat nicht nachgelesen: Die Tatsachennotiz zu 23.3 („lässt den ersten Kurstag je Falte aus“) gegen `research/vorregistrierung/benchmark.py` (die Reihe entsteht einmal über alle Falten; die Rendite fehlt am ersten Punkt je Symbol).
+- **Fables Ampel:** 🔴, gemessen 332 931 nach einer Anfrage (überschritten beim Lesen der Abschnitte 4, 24 und 43). Jede Anfrage geht an einen neuen Fable-Chat (F4); die Abschnittsliste der Anfrage knapp halten.
+- **Regel für Registeraufträge aus R65 (a):** Die Aufzählung eines Blocks schliesst die Regel aus 34 nicht ab. Der steuernde Chat bestimmt die Marken an allen Orten, denen ein Block ein „lies“, eine Ergänzung oder eine Bestätigung gibt, und weist sie im Auftrag als seine aus.
+- **Regelwerk, nächster Dokumentationsauftrag (ARBEITSWEISE 0):** aus Fehler Nr. 17 (Nummern am Block zählen), Nr. 18 (vor dem Lesen die Bytes messen, ÷ 1,6 gegen die Ampel), Nr. 19 (der Text für die Aufgabe der Claude-Code-Sitzung steht am Ende jeder Antwort; Betreiber 02.10.2026, 10:45).
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen

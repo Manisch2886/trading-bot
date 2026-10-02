@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 51 (von 0–51) — Register-Z. 11138–11225 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 51 (von 0–52) — Register-Z. 11162–11262 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
 
 ## 51. Fable 01a — Registerblock R56–R62 (TB-129)
 
@@ -37,12 +37,21 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > R60 — Bestätigung und Ergänzung zu R48 (d) (48.16) (mittlere Exposure: Registertext und Code; zwei Träger). (a) Wo der Code des Urteils die Grösse nicht bildet, gilt die Definition in R48 (d). Code des Urteils ist der Code auf der Sperrliste und im Laufbereich (R50); ein Messwerkzeug ausserhalb legt keine Definition fest. [Voraussetzung, zu messen: dass research/exposure_messung/ nicht zum Laufbereich gehört.] (b) auswertung.py::beta_bereinigung bildet eine mittlere Exposure als arithmetisches Mittel der Spalte exposure der Tagesreihe und gibt sie unter dem Schlüssel mittlere_exposure zurück. Das ist eine Bildung im Sinn von R48 (d). Der Registertext folgt ihr in der Aggregation (Mittel über die Tage). Die Bewertung der Spalte exposure legt dieser Code nicht fest; sie folgt R48 (d): Anteil des Kapitals in offenen Positionen am Tagesschluss, bewertet wie die MtM-Reihe (1a). [Voraussetzung, zu messen: über welche Tage beta_bereinigung mittelt; R48 (d) und 7 (c) verlangen die Selektionsfalten des Gewinners; eine Abweichung ist ein Register-Code-Widerspruch nach 25c (1) und wird gemeldet.] (c) Der Zellen-Erzeuger schreibt beide Träger aus einer Rechnung: mittlere_exposure in zellen.csv ist je (Zelle, Falte) das Mittel der Spalte exposure der Tagesreihe dieser Zelle über die Tage der Falte. Die Abnahme nach R46 prüft diese Gleichheit, mit Gegenprobe. auswertung.py wird dafür nicht geöffnet. (d) Die Zeile zu R48 (d) in 50.1 ist unvollständig; sie wird als Tatsachennotiz um die Fundstelle in beta_bereinigung ergänzt.
 > Quelle des Grundes: R48 (d), R50 (Definitionen im eingefrorenen Code), 4.2, 7 (c), 37.5 (ein Wert, ein Ort), R36 (Bauart: ein Wert, der nachgerechnet werden kann), R46. Kein Ergebnis.
 
+> ⭐ **51.5 R60 (a) PRÄZISIERT durch R63 (52.1)** (Fable 02a R63, TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **51.5 R60 (b) und (c) PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 4.2; 48.16 (R48). Voraussetzung gemessen: 51.8. Lesart, vorläufig: 51.9. Offen: 51.10 Nr. 6.
 
 ### 51.6 R61 — Marken nach E-2 (Regel, Nachtrag, eine Berichtigung)
 
 > R61 — Marken nach E-2 (Regel, Nachtrag, eine Berichtigung). (a) Nennen R51 und ein Unterpunkt von R48, R49 oder R50 denselben Ort, trägt der Ort eine Marke, die auf den Unterpunkt zeigt; sie erfüllt beide. Zwei Marken an einem Ort sind keine Doppelung, wenn sie auf verschiedene Inhalte zeigen (Abschnitt 12: R49 (d) und R50). (b) Eine Marke steht dort, wo ein Block dem Wortlaut eines Ortes eine Bedeutung gibt oder ihm etwas hinzufügt (34). Keine Marke erhält ein Ort, der nur Quelle des Grundes, Statusliste, Plan oder Code ist, der im erzeugten Block liegt oder in Abschnitt 10. Danach sind nachzutragen, der alte Satz bleibt zeichengleich: 16.4, „Prüfung vor dem Tag“ — PRÄZISIERT durch R21 (47.4). Abschnitt 1, Tabelle, Zeile 3 — PRÄZISIERT durch R36 (48.4). Abschnitt 8, Tabelle — PRÄZISIERT durch R36 (48.4). Abschnitt 8, Tabelle — ERGÄNZT durch R55 (49.3). Abschnitt 7, Tabelle, Zeile (b) — PRÄZISIERT durch R37 (48.5). 4.2 — PRÄZISIERT durch R48 (48.16), Unterpunkte (d) und (e), und durch R60. 43.2, Eintrag 43-7 — PRÄZISIERT durch R33 (48.1). Dazu aus dieser Antwort: 27 — ERGÄNZT durch R56. 49.1 — PRÄZISIERT durch R57 und ERGÄNZT durch R59. 50.5 — bestätigt durch R57. 25.3 — ERGÄNZT durch R58. 48.16 — ERGÄNZT durch R60. Ohne Marke bleiben, vom Index geführt: R27, R28, R30, R54 an 7 (c), R52 (b), R38, R41 an 41.2 B3, R47 an 5.4, R48 (h), R49 (c) und (e), R31 (a) und (e), R39, R43, R25. (c) Berichtigung: In R26 (47.9) und R30 (47.13) lies „14“ als „Sperrlistenpunkt 14 (Abschnitt 10)“; Abschnitt 14 des Registers ist der Nulltest S-E1 und nicht gemeint. [Voraussetzung, zu messen: der Wortlaut von Sperrlistenpunkt 14; hier nach REGISTER_INDEX.]
 > Quelle des Grundes: 34 (Marke am alten Ort, nach der Wiedergabe in 43.0), R51, Kopf von 48 („Vereinigung“), Wortlaut der genannten Orte, Abschnitt 14. Kein Ergebnis.
+
+> ⭐ **51.6 R61 (b) PRÄZISIERT durch R65 (52.3)** (Fable 02a R65, Unterpunkt (a), TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken, nachgetragen nach (b): 1, Tabelle, Zeile 3; 4.2; 7, Tabelle, Zeile (b); 8, Tabelle (R36 und R55); 16.4, „Prüfung vor dem Tag“; 43.2, Eintrag 43-7. Voraussetzung gemessen: 51.8. Orte ohne Marke: 51.10 Nr. 7.
 
@@ -76,6 +85,9 @@ Tatsachennotizen des steuernden Chats zu den Voraussetzungen, die Fable in 01a �
 
 R60 (a) setzt voraus, dass `research/exposure_messung/` nicht zum Laufbereich gehört. Für den Ordner trifft das nicht zu: `bot_lauf.py` steht in der Pfadliste (51.8). Die zwei Stellen, die die Grösse zum Einstand bilden (`exposure_kern.py` und `research/exposure_messung/auswertung.py`, 50.1), stehen nicht darin. `bot_lauf.py` selbst nennt in seinem Docstring (Z. 21–22) als Bedarf einer Exposure-Messung je Zeitpunkt die offenen „Positionen samt gebundenem Kapital“; ob es damit die Grösse im Sinn von R60 (a) bildet, ist nicht gemessen und geht mit an Fable. Dieser Eintrag liest R60 (a) für die Stellen, die die Grösse bilden, nicht für den Ordner: Die Bewertung zum Einstand in diesen zwei Dateien legt keine Definition fest; es gilt R48 (d). Das ist eine Lesart des steuernden Chats; sie geht mit der nächsten Anfrage an Fable. Mit ihr geht die Frage zu R60 (b) und (c): „über die Tage der Falte“ sagt nicht, ob die Tage der Tagesreihe oder die gemeinsamen Tage mit dem Benchmark gemeint sind; `beta_bereinigung` schneidet auf die gemeinsamen Tage, und ob das alle Handelstage des Zeitraums nach R48 (d) sind, ist nicht gemessen (51.8).
 
+> ⭐ **51.9 ERGÄNZT durch R63 (52.1): die Lesart ist bestätigt** (Fable 02a R63, TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 51.10 Was offen bleibt
 
 | | offen | wann, wo |
@@ -88,3 +100,4 @@ R60 (a) setzt voraus, dass `research/exposure_messung/` nicht zum Laufbereich ge
 | 6 | R60 (a), (b) und (c): die Lesart 51.9; die Tage in (b) (gemeinsame Tage mit dem Benchmark gegen „Handelstage des Zeitraums“, nicht gemessen) und in (c) | nächste Anfrage an Fable; die Messung zu (b) vor dem Tag |
 | 7 | Orte, die R61 (b) nicht aufzählt und die deshalb keine Marke tragen: 47.9 und 47.13 (R61 (c): „14“ lies „Sperrlistenpunkt 14“), 25.2 (R62 (a)), 50.1 (R60 (d)), 50.4 (R57: Schlusssatz bestätigt). Sie stehen als Indexzeilen in `REGISTER_INDEX.md` | nächste Anfrage an Fable |
 | 8 | R62 (b): das Literal `SOLL_DATENSTAND` in `research/registernachtrag_tb48/pruefe_abschnitt17.py`, Probe oder Auflösung | Handwerk (50.7 Nr. 6) |
+

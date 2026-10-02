@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 30 (von 0–51) — Register-Z. 5419–5552 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 30 (von 0–52) — Register-Z. 5425–5558 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
 
 ## 30. Was der gesperrte Faltenplan ist — und was der Plan nach 4a ist (Fable 21i, 21.09.2026)
 

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 50 (von 0–51) — Register-Z. 10955–11137 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 50 (von 0–52) — Register-Z. 10973–11161 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
 
 ## 50. Tatsachennotizen zu E-2 (TB-126)
 
@@ -24,6 +24,9 @@ Tatsachennotizen des steuernden Chats zu den Voraussetzungen, die Fable in 27c, 
 | R53 (49.1) | oberste Stufe jeder Rückblick-Achse und feste Fenster je Bot maschinell aus `registerdaten.py` lesbar? | Stufen: `registerdaten.raster()` über `achse_werte`, die oberste ist der letzte Wert je Achse; Bollinger-Fenster: `regel_wert({"regel": "bollinger_fenster"}, …)` gibt 20.0 (Z. 213–216). Für weitere feste Fenster (`VOLUME_AVG_PERIOD`, fester Warm-up der Turtle-Soup-Bots) gibt es keinen Eintrag; `donchian_period` ist eine Rasterachse | teilweise. R53 sagt „nicht als Literal“; „Literal mit Test nach 32.5 (c)“ nennt Fable nur unter „Unsicher“ (30a) — Reibung, an Fable; entschieden wird mit R53 (a) (50.7). Zählweise: 50.5 |
 | R54 (49.2) | liest und rechnet irgendein Code `netto_rendite_pct` aus dem Vertrag? | Pflichtspalte `auswertung.py:134`; gelesen nur für die Bestätigungsperiode (Z. 624), berichtet in Z. 823; `netto_rendite_pct_ueber_selektionsfalten` (Z. 675) kommt aus `bereinigung["strategie_rendite_pct"]`, nicht aus der Spalte | trifft zu: Berichtsgrösse ohne Leser im Urteil |
 | R55 (49.3) | Nebenfall „keine Zelle zulässig“ | nicht gemessen; im Hauptfall rechnet der Code `None ⇒ False` | Hauptfall passt; Nebenfall erschlossen, Probe offen (50.7) |
+
+> ⭐ **50.1, Zeile R48 (d) ERGÄNZT durch R60 (51.5) und 51.8** (Fable 01a R60, Unterpunkt (d), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 50.2 R39 (48.7) — Feldliste der Ausgaben, gemessen aus dem Docstring von `auswertung.py`
 
@@ -151,6 +154,9 @@ DIE ROHERGEBNISSE - DER VERTRAG
 > (beide Breakout-Bots) erreichen Indikatorberechnung und Scanbeginn. **Der Scanbeginn der Zelle liegt an ihrem Vorlauf
 > (Fable 30a, R53):** er ist der erste Index, an dem die Einstiegsbedingung der Zelle definiert ist — bei den
 > Breakout-Bots `BB_PERIOD + L − 1`, nie früher, nicht später.
+
+> ⭐ **50.4, Schlusssatz ERGÄNZT durch R57 (51.2): der Schlusssatz ist bestätigt** (Fable 01a R57, nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 50.5 Lesart des steuernden Chats zu R53 (49.1) — Zählweise des Vorlaufs
 
