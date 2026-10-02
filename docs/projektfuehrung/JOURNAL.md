@@ -9796,6 +9796,39 @@ Betreiber. Kein Abbruchkriterium ausgelöst.
 
 ---
 
+## DZ — TB-128: Regelwerk-Nachtrag 01.10.2026, zweiter Teil — E1–E7 per Skript aus dem Auftrag in `ARBEITSWEISE.md` und `BACKLOG.md` (Fable-Ablage durch den steuernden Chat, Fehler Nr. 8/9/10/14, kalter Leser, `project_info`, R31 (b), R49 (e), 22.12 Probe TB-125 ungültig, 5b-Bewertung 27c/29a/29b, Abnahme TB-127), C3 7/7 zeichengleich, numstat 14/0 · 12/0; Worktree `tb123_vorher` nach drei erfüllten git-Messungen entfernt (02.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-128_regelwerk_nachtrag_worktree.md`*
+
+**Quelle:** Mac-Sitzung **TB-128** (Hauptordner), 02.10.2026, Eingang `eeee21d`. Commits `7238842` (Schritt 0),
+`472a788` (A/C) und der Abgabe-Commit. Belege `docs/belege/TB-128/`. Freigaben: Handwerk pauschal (26.09.2026),
+Worktree per Karte 01.10.2026, ca. 22:20. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a 7/7 wie Soll, in den Scratch vor dem Belegordner. ⭐ 0b: `git -C <pfad> status --porcelain` genau die vier `??` (`data_sicherung`, `logs`, `research/turn_of_month/daten`, `trading-env`), keine `M`; alle vier `test -L` rc 0; HEAD `c064405` Vorfahr von `main` (rc 0) ⇒ `git worktree remove --force` rc 0, `prune` rc 0, `list` nur noch der Hauptordner; Symlink-Ziele im Hauptordner unberührt |
+| ⭐ **A/C** | E1–E7 je Anker 1, ausgeführt, erste Zeile nachher 1; Vorzählung der fünf Suchwörter 0/0 wie beim steuernden Chat; C3 (eigener Parser) 7/7 als Block an Zeilengrenzen; numstat ARBEITSWEISE 14/0, BACKLOG 12/0 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Die Vorbedingung aus TB-127 trägt, wenn sie den Zustand laut git misst.** Drei Messungen (porcelain, `test -L`, `merge-base --is-ancestor`) statt Ordnereinträgen — alle drei erfüllt, Entfernen ohne Restrisiko |
+| | **Der Zerleger-Fehler aus TB-127 kehrte wieder:** C3 schnitt erneut an einem `###` im Codeblock (E7). Die Vorlage war korrigiert, aber das neue Schnittmuster (`#{2,4} `) wurde frisch geschrieben. Schnitte nur an den eigenen Kopfmustern |
+
+### Was offen bleibt
+
+- K2h/K2f; die drei Trägerstellen; Fables 29a Abschnitt 1; Sonnet-Probe mit wirksam gesetztem Modell;
+  `BACKLOG.md` in der Ablage erneuern (vorher 27.4-Prüfung).
+- `registerkopie_abschnitte.py` (Vorlage) liegt noch — Entfernen ist Betreiberentscheid.
+- Nächste Journalkennung nach DZ: **EA** (Muster AZ → BA, BZ → CA, CZ → DA).
+
+*Geschrieben 02.10.2026 von der Mac-Sitzung TB-128. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
