@@ -228,6 +228,18 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **`registerbericht.py --pruefen` rc 1** (39.1, 42.4 G7, 43-6): bekannt seit vor TB-126; laut Ergebnis TB-126 („Für Fable“ Nr. 8) weicht der ERZEUGT-Block in Abschnitt 3 vom Erzeuger ab. Offen.
 - **Befunde B1–B6 der Abnahme** (`UEBERGABE.md`, Nachtrag 01.10.2026, ca. 20:45): B1 und B5 stehen als Regeln in ARBEITSWEISE 0 (TB-127); B6 (Worktree `tb123_vorher`) behandelt TB-127 Schritt 0b, Ausgang im Ergebnis TB-127; B4 (Liste B nicht ausdrücklich genannt) geht in die erste Fable-Anfrage; B2 und B3 sind Kleinigkeiten ohne Folge.
 
+### Aus Fable 27c, 29a und 29b (27.–29.09.2026) — Bewertung nach 5b, nachgetragen 01.10.2026
+
+- **27c (R18–R32):** beantwortet. Die R-Blöcke stehen seit TB-126 (`db108a6`) im Register, Abschnitt 47. Eine eigene Bewertungspassage gibt es nicht; die Einzelstellen stehen in `UEBERGABE_ARCHIV.md`.
+- **29a (Umzugstakt, Umzugsampel, Helfer-Agenten):** alles Handwerk (`UEBERGABE_ARCHIV.md`, Umzug 29.09.2026). Ampel und Helfer-Grundsatz stehen in UMZUG 3 und ARBEITSWEISE 22.10/22.11. Abschnitt 1 (Umzugstakt des Verfahrensprüfers) steht noch nicht im Regelwerk.
+- **29b (R33–R52):** Kern nach Helferauszug (Umzugsblock 29.09.2026, 14:00, Block 4 Nr. 3, `UEBERGABE_ARCHIV.md`): Die Sammlung ist als Handwerk entschieden und deckt sich weitgehend mit den Neigungen. R33–R52 stehen seit TB-126 im Register, Abschnitt 48. Der kalte Leser ohne Gedächtnis steht seit TB-128 in ARBEITSWEISE 0. Offen daraus: K2h umformulieren und K2f nach PRUEFPRINZIPIEN Reihe C (Nummer messen); die drei Trägerstellen nach G1 nachziehen (TB-119 Nr. 2).
+
+### Aus der Abnahme TB-127 (01.10.2026)
+
+- **Fehler Nr. 14:** Der Auftrag TB-127 verlangte vor dem Entfernen des Worktrees `tb123_vorher` „ausser `.git` genau 4 Einträge“; im Ordner liegt der volle Checkout. Die Sitzung hat nach dem Wortlaut nicht entfernt. Die Regel steht in ARBEITSWEISE 0 (TB-128); den Worktree behandelt TB-128 Schritt 0b (Betreiberentscheid 01.10.2026, ca. 22:20), Ausgang im Ergebnis TB-128.
+- **`docs/werkzeuge/registerkopie_abschnitte.py`** (Vorlage) ist durch `registerkopie.py --abschnitte` überholt. Entfernen ist ein Betreiberentscheid und steht aus.
+- **Später, Wortlaute noch nicht vorbereitet:** K2h/K2f (Wortlaut „Stellvertreter“ in `BACKLOG_ENTSCHEIDUNGEN.md` gegen „Merkmal“ in Fable 29b klären); die drei Trägerstellen (kein Ersatzwortlaut in den Quellen); Fables 29a Abschnitt 1; Sonnet-Probe mit wirksam gesetztem Modell; `BACKLOG.md` in der Ablage erneuern (vorher 27.4-Prüfung).
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen

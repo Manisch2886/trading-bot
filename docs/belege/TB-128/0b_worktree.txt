@@ -1,0 +1,38 @@
+# 0b Worktree tb123_vorher — 2026-10-02 07:52:15
+$ git worktree list
+/Users/jaquelineloffler/trading-bot                                    7238842 [main]
+/private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher  c064405 (detached HEAD)
+
+<pfad> = /private/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb123_vorher
+
+## Messung 1: git -C <pfad> status --porcelain
+?? data_sicherung
+?? logs
+?? research/turn_of_month/daten
+?? trading-env
+rc=0  Zeilen=4  M-Zeilen=0
+
+## Messung 2: test -L je Eintrag
+test -L data_sicherung -> rc=0 (Ziel: /Users/jaquelineloffler/trading-bot/data_sicherung)
+test -L logs -> rc=0 (Ziel: /Users/jaquelineloffler/trading-bot/logs)
+test -L research/turn_of_month/daten -> rc=0 (Ziel: /Users/jaquelineloffler/trading-bot/research/turn_of_month/daten)
+test -L trading-env -> rc=0 (Ziel: /Users/jaquelineloffler/trading-bot/trading-env)
+
+## Messung 3: git merge-base --is-ancestor $(git -C <pfad> rev-parse HEAD) main
+HEAD des Worktrees: c0644058efb00c48faae6583322dbb209d6a7e39
+rc=0
+
+## Ergebnis: alle drei Messungen erfüllt -> entfernen
+$ git worktree remove --force <pfad>
+rc=0
+$ git worktree prune
+rc=0
+$ git worktree list
+/Users/jaquelineloffler/trading-bot  7238842 [main]
+
+## Nachkontrolle
+test -e <pfad>: existiert nicht
+Symlinkziel im Hauptordner data_sicherung: vorhanden
+Symlinkziel im Hauptordner logs: vorhanden
+Symlinkziel im Hauptordner research/turn_of_month/daten: vorhanden
+Symlinkziel im Hauptordner trading-env: vorhanden

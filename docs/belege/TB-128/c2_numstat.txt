@@ -1,0 +1,5 @@
+# TB-128 C2 — git diff --numstat je Datei, 2026-10-02 07:53:24, gegen HEAD 7238842
+# hinzugefügt  entfernt  Datei
+14	0	docs/projektfuehrung/ARBEITSWEISE.md
+12	0	docs/projektfuehrung/BACKLOG.md
+# Soll: entfernt 0 in beiden Dateien

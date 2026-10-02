@@ -1,0 +1,3 @@
+# 0c Ausgang — 2026-10-02 07:52:28, HEAD 7238842
+895584763732a3dcdf503e429c77409d7fd02949d6ff6c51fc795c16f2eaf39f  2375 Zeilen  docs/projektfuehrung/ARBEITSWEISE.md
+344a3dd503955a55cbfbe620e06da6a783150ef03ffc1bd871bb59853269a245  242 Zeilen  docs/projektfuehrung/BACKLOG.md

@@ -78,6 +78,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | An Fable nur vorgeprüfte Verfahrensfragen; vor der nächsten Anfrage Fables letzte Umzugsampel prüfen — über 300 000 zieht Fable zuerst um (30.09.2026) | 22.11 |
 | ☐ | Fable-Anfrage nennt die Abschnittsnummern aller berührten Registerstellen; Fable öffnet diese, was der Index als „gilt“ und „dazu“ nennt, und weitere nach eigenem Urteil (F5, 01.10.2026) | 22.11 |
 | ☐ | Fable-Übergabetexte kurz: keine Fehlerliste und keine Landkarte, die schon in R52, 50.1 oder im Index steht — Verweis statt Wiederholung (F6). Probe über zwei Anfragen: ein Fable-Chat je Anfrage, erst nach Fables Antwort auf die Verfahrensfrage zu 27 (F4) (01.10.2026) | 22.11 |
+| ☐ | Dokumente für Fable legt der steuernde Chat selbst ab, in Projektablage und Repo, ohne Aufgabe an den Betreiber; dazu schreibt er den Übergabetext als Kopierblock (Betreiber 01.10.2026, 22:34: „Merke dir das für die Zukunft.“) | 22.11 |
 | ☐ | Kein Archiv: Commit im Repo und einzelne Dateien im Chat | 2 |
 | ☐ | `BACKLOG.md`/`JOURNAL.md` als Nachtrag (neue Blöcke, benannte Ersetzungen mit Stelle), nie ganz neu; `ARBEITSWEISE.md` ganz | 2 |
 
@@ -98,6 +99,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | | Regel | steht in |
 |---|---|---|
 | ☐ | Karte nur für echte Betreiberentscheide: Freigaben (Register, Sperrliste, Signalpfad, Parameterdateien), Löschen und Ablage entfernen, Umzug, Geld, Unumkehrbares. Handwerk entscheidet der steuernde Chat selbst: „Vorgabe: X — gilt, wenn du nicht widersprichst“ (M3, 30.09.2026) | 6d |
+| ☐ | Eine Freigabe je Sperrlistendatei nennt deren Tests ausdrücklich mit (R31 (b)) | Register 47.14 |
 | ☐ | Als anklickbare Karte, nicht als Absatz und nicht als Tabelle; höchstens **eine** Karte je Antwort, bis zu vier Fragen gebündelt, als letzter Schritt der Antwort (M1, M2, 30.09.2026) | 6d, Form |
 | ☐ | Möglichkeiten vollständig, jede mit Preis; **eine** Empfehlung an erster Stelle, gekennzeichnet; Begründung, was sie schlechter macht | 6d |
 | ☐ | Auch bei zwei Wegen, auch wenn sie klein wirkt — sofern es ein Betreiberentscheid nach M3 ist | 6d, Form |
@@ -157,6 +159,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | In der Ablage liegt von der Übergabe nur `UEBERGABE.md`; `UEBERGABE_ARCHIV.md` und abgeschlossene Dialoge und Aufträge nur im Repo (T5, Betreiber 30.09.2026) | 23 |
 | ☐ | Kernlektüre beim Umzug aus dem Repo mit Abschnittsfilter; `project_read` nur als Rückfall — es liefert immer die ganze Datei (29.09.2026) | UMZUG 6 |
 | ☐ | `project_read` nie zur Prüfung grosser Ablagedateien — es liefert jede Datei ganz in den Chat (Fehler Nr. 12: 158 KB inline). Hochladen per `local_path` aus einer md5-geprüften Datei, kein Rücklesen; Schätzung für Gelesenes: Bytes ÷ 1,6 (F2, 01.10.2026) | 23 |
+| ☐ | Neue Fable-Antworten über `project_info` (Liste) prüfen, nicht über die Suche (25.09.2026); Antworten über `project_info` finden, ins Repo übertragen, md5 prüfen (29.09.2026) | UEBERGABE_ARCHIV |
 | ☐ | Das Register liegt in der Ablage je Abschnitt (`REGISTER_KOPIE_ABSCHNITT_<nn>.md`, `REGISTER_INDEX.md` nennt die Datei; erzeugt mit `registerkopie.py --abschnitte`); geöffnet wird nur, was gebraucht wird, im Wortlaut — keine Kurzfassung als zweite Quelle, keine zusammenfassenden Helfer (F1, 01.10.2026) | 23 |
 | ☐ | Grosse Dokumente nicht im Chat zusammensetzen: abschnittsweise in Dateien schreiben, nicht mehrfach umbauen, keine ganzen Dateien in den Chat holen; Mechanik (Anker zählen, md5, Zeilenbereiche, Diffs) als Skript, nicht als Helfer (S3, S6, 01.10.2026) | 22.10 |
 
@@ -191,6 +194,12 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Messung 0a (Arbeitsbaum) in den Scratch, bevor der eigene Belegordner entsteht — oder den Belegordner ausdrücklich ausnehmen (Abnahme TB-126, B1) | 14, Regel 3 |
 | ☐ | Trennzeichen in vorgegebenen Listen nach den Daten wählen: tragen die Einträge selbst Kommas, ist „kommagetrennt“ falsch (Abnahme TB-126, B5) | 18, P.4 |
 | ☐ | Gegenleser eng zuschneiden: genaue Dateien und Zeilenbereiche, rund 25 Schritte, dann Zwischenbericht (S5, Probe); eine zweite Runde macht ein frischer Helfer mit Befundliste und geänderten Stellen (S4) (01.10.2026) | 22.10 |
+| ☐ | Vorbedingung vor dem Entfernen eines Worktrees: porcelain zeigt nur das Erwartete, keine `M`-Zeile, der Commit ist Vorfahr von main — nicht die Zahl der Einträge im Ordner (Fehler Nr. 14, Abnahme TB-127) | UEBERGABE, Nachtrag 01.10.2026, ca. 22:35 |
+| ☐ | Zieldatei je Einfügung in eigener Zeile (Fehler Nr. 8, Auftrag TB-125) | UEBERGABE, Umzug 01.10.2026, 08:20, Block 7 |
+| ☐ | Lesarten des steuernden Chats im Registertext als „Lesart, vorläufig“ kennzeichnen; Markentabellen gibt der steuernde Chat fertig vor (Helfer, Anker vorgezählt); bei Prüfwerkzeugen messen, welchen Pfad sie lesen (Fehler Nr. 9) | UEBERGABE, Umzug 01.10.2026, 08:20, Block 7 |
+| ☐ | Probe erst mit Modellschalter im Wächter oder mit Bestätigung des Modells vor dem Einfügesatz (Fehler Nr. 10: TB-125, Sonnet nicht wirksam) | 22.12; UEBERGABE, Umzug 01.10.2026, 08:20, Block 7 |
+| ☐ | Ein kalter Leser läuft ohne Gedächtnis; das steht als Schritt 0 im Auftrag, mit Beleg: die vom Werkzeug ausgegebene Liste der beim Start geladenen Kontextdateien, sonst ein frischer Klon in einem Ordner ohne `MEMORY.md`/Verlaufsdateien, dessen Inhalt vor dem Start gelistet wird. Gilt für Leser, deren Aussage die Kälte ist; nicht für Mac-Sitzungen, die bauen (Handwerk, 29.09.2026) | Fable 29b |
+| ☐ | Marken nennen Bezeichner, nicht Zeilen (R49 (e)) | Register 48.17 |
 
 ---
 
@@ -2250,6 +2259,10 @@ steuernde Chat Fables letzte Umzugsampel nach den Schwellen von UMZUG 3. Steht
 sie über 300 000 (🔴), zieht Fable zuerst um. Anlass: Fable meldete in 30a
 „🟡 · ca. 450 000“.
 
+⭐ **Ergänzung 01.10.2026 (Betreiberentscheid ca. 21:25, per Auswahlkarte im Fable-Chat; F4–F6, `UEBERGABE.md`, Nachtrag 01.10.2026, ca. 21:50):** **F4 (Probe über zwei Anfragen):** Ein Fable-Chat je Anfrage. Vorher geht als Verfahrensfrage an Fable: Darf der Anfangsbestand nach 27 durch das Leseprotokoll festgehalten werden statt durch einen R-Block je Chat? Begonnen wird erst nach der Antwort. **F5 (ab der nächsten Anfrage):** Jede Anfrage nennt die Abschnittsnummern aller berührten Registerstellen. Fable öffnet diese, was der Index als „gilt“ und „dazu“ nennt, und weitere nach eigenem Urteil. **F6 (ab dem nächsten Umzug):** Übergabetexte kürzen. Keine Fehlerliste und keine Landkarte, die schon in R52, 50.1 oder im Index steht; Verweis statt Wiederholung.
+
+⭐ **Ergänzung 01.10.2026 (Betreiber, 22:34: „Merke dir das für die Zukunft.“; `UEBERGABE.md`, Nachtrag 01.10.2026, ca. 22:50):** Dokumente für Fable legt der steuernde Chat selbst ab, in der Projektablage und im Repo; der Betreiber bekommt dafür keine Aufgabe. Dazu schreibt der steuernde Chat den Übergabetext als Kopierblock in die Antwort; dem Betreiber bleibt das Einfügen im Fable-Chat.
+
 ### 22.12 Sonnet 5.5 — nur Mechanik, erst eine Probe (Betreiber 29.09.2026)
 
 Betreiberentscheid 29.09.2026, ca. 14:05, per Auswahlkarte: „Nur Mechanik, erst
@@ -2280,6 +2293,7 @@ leidet.
   Probe, noch keine Regel. Fundstelle: Übergabe, Nachtrag 30.09.2026, ca. 22:05.
 - **Probe Dokumentationsauftrag:** TB-125; Ergebnis in
   `docs/ERGEBNIS_TB-125_regelwerk_nachtrag.md`.
+  ⚠️ Keine gültige Probe: Die Sitzung lief mit Opus 5.5; das Modell war vor dem Einfügesatz nicht auf Sonnet gestellt (oder die Umstellung griff nicht). Die Sonnet-Probe für Dokumentationsaufträge steht weiter aus (Ergebnis TB-125, „Probe nach 22.12“).
 
 ---
 
