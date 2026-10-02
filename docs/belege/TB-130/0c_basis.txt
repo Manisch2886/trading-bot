@@ -1,0 +1,3 @@
+# TB-130 0c: git diff --name-only 1e13135 HEAD -- research/ shared/ strategies/ config/ data/  (HEAD b0c7a35, 2026-10-02 15:14:45 +0200)
+Zeilen: 0
+Leer => Basis ist docs/belege/TB-129/a5_test_vorregistrierung.txt (196/196); kein eigener Basislauf.

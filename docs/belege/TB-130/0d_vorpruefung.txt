@@ -1,0 +1,99 @@
+# TB-130 0d Vorpruefung am Commit b0c7a35 (b0c7a358a200cc0f4be20c6e4b2acab746ca5998)
+Baum am Commit ausgepackt: 17 Dateien nach /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/bb97a43d-baeb-45f3-b6af-08c031094b59/scratchpad/tb130_s0
+   docs/VORREGISTRIERUNG_neuselektion.md
+   docs/projektfuehrung/BACKLOG.md
+   docs/projektfuehrung/FABLE_ANTWORT_2026-10-02a_exposure_tage_laufbereich_marken.md
+   docs/projektfuehrung/FABLE_DIALOG_INDEX.md
+   docs/projektfuehrung/REGISTER_INDEX.md
+   research/exposure_messung/bot_lauf.py
+   research/vorregistrierung/auswertung.py
+   shared/zuteilung.py
+   strategies/elliott_wave/equity_simulation.py
+   strategies/elliott_wave_stocks/equity_simulation.py
+   strategies/rsi2_crypto/equity_simulation.py
+   strategies/rsi2_mean_reversion/equity_simulation.py
+   strategies/t3_supertrend/equity_simulation.py
+   strategies/turtle_soup_crypto/equity_simulation.py
+   strategies/turtle_soup_stocks/equity_simulation.py
+   strategies/volatility_breakout/equity_simulation.py
+   strategies/volatility_breakout_crypto/equity_simulation.py
+## Nr. 1-4: Pruefskript aus Anhang A gegen den Baum am Commit
+Marken: 12 an 11 Einfuegestellen
+je Abschnitt: 4: 1, 25: 1, 47: 2, 48: 2, 50: 2, 51: 4
+Anker mit Zahl 1 (Original): 12 von 12
+Anker mit Zahl 1 (nach Simulation): 12 von 12
+Bloecke: 3 | Ueberschriften: 3 max. Laenge 132
+Fundstellen: 33 | Zaehlungen: 7 | Kalender: 0 Dateien
+rc 0: alles wie angegeben
+Pruefskript rc 0
+## Nr. 1 je Marke
+Nr  1 R64: Anker 1x, Ankerzeile 484 ja, nach Z. 526 ja
+Nr  2 R62: Anker 1x, Ankerzeile 4626 ja, nach Z. 4650 ja
+Nr  3 R61: Anker 1x, Ankerzeile 10701 ja, nach Z. 10704 ja
+Nr  4 R61: Anker 1x, Ankerzeile 10729 ja, nach Z. 10732 ja
+Nr  5 R64: Anker 1x, Ankerzeile 10864 ja, nach Z. 10884 ja
+Nr  6 R65: Anker 1x, Ankerzeile 10910 ja, nach Z. 10913 ja
+Nr  7 R60: Anker 1x, Ankerzeile 10959 ja, nach Z. 10978 ja
+Nr  8 R57: Anker 1x, Ankerzeile 11067 ja, nach Z. 11105 ja
+Nr  9 R63: Anker 1x, Ankerzeile 11170 ja, nach Z. 11173 ja
+Nr 10 R64: Anker 1x, Ankerzeile 11170 ja, nach Z. 11173 ja
+Nr 11 R65: Anker 1x, Ankerzeile 11177 ja, nach Z. 11180 ja
+Nr 12 R63: Anker 1x, Ankerzeile 11208 ja, nach Z. 11212 ja
+## Nr. 2
+Quelle md5 a7821eeb4f61faad5f74f72ec7201797 (Soll a7821eeb4f61faad5f74f72ec7201797), 21709 B (Soll 21709)
+Blockanfaenge in Z. 112-119: Z. 112 R63, Z. 115 R64, Z. 118 R65
+## Nr. 3
+'## 52.' im Register: 0 (Soll 0); Zeilen mit '> R63 — ': 0 (Soll 0)
+## Nr. 4 je Eintrag
+research/exposure_messung/bot_lauf.py:133 enthaelt 'def simuliere(es, trades, allocation_pct, max_concurrent):': ja
+research/exposure_messung/bot_lauf.py:135 enthaelt 'return es.simulate_portfolio(trades, es.STARTING_CAPITAL, allocation_pct)': ja
+research/exposure_messung/bot_lauf.py:136 enthaelt 'return es.simulate_portfolio(trades, es.STARTING_CAPITAL, allocation_pct, max_concurrent)': ja
+research/exposure_messung/bot_lauf.py:227 enthaelt 'positionen = trades.loc[kennungen.values, ["symbol", "entry_time", "exit_time", "pnl_pct"]].copy()': ja
+research/exposure_messung/bot_lauf.py:228 enthaelt 'rename(columns={"index": "trade_zeile"})': ja
+research/exposure_messung/bot_lauf.py:229 enthaelt 'positionen["allocation"] = equity["allocation"].values': ja
+research/exposure_messung/bot_lauf.py:230 enthaelt 'positionen["capital_after"] = equity["capital_after"].values': ja
+research/exposure_messung/bot_lauf.py:240 enthaelt 'positionen = positionen.drop(columns=["exit_time_equity"])': ja
+research/exposure_messung/bot_lauf.py:242 enthaelt 'positionen.to_csv(os.path.join(DATEN_DIR, f"{BOT}_positionen.csv"), index=False)': ja
+research/exposure_messung/bot_lauf.py:246 enthaelt '"startkapital": es.STARTING_CAPITAL,': ja
+research/exposure_messung/bot_lauf.py:253 enthaelt '"endkapital": ergebnis["final_capital"],': ja
+research/exposure_messung/bot_lauf.py:255 enthaelt '"max_drawdown_pct_bot": es.calculate_max_drawdown(equity, es.STARTING_CAPITAL),': ja
+research/exposure_messung/bot_lauf.py:254 enthaelt '"rendite_pct": round((ergebnis["final_capital"] / es.STARTING_CAPITAL - 1) * 100, 2),': ja
+shared/zuteilung.py:657 enthaelt 'def simuliere_portfolio(': ja
+research/vorregistrierung/auswertung.py:361 enthaelt 'def lies_tagesreihe(': ja
+research/vorregistrierung/auswertung.py:370 enthaelt 'return df.sort_values("datum").reset_index(drop=True)': ja
+research/vorregistrierung/auswertung.py:378 enthaelt 'def lies_benchmark(': ja
+research/vorregistrierung/auswertung.py:379 enthaelt 'pfad = os.path.join(wurzel, "benchmark_tagesreihen", f"{markt}.csv")': ja
+research/vorregistrierung/auswertung.py:386 enthaelt 'return df.sort_values("datum").reset_index(drop=True)': ja
+research/vorregistrierung/auswertung.py:498 enthaelt 'markt = rd.BOTS[bot]["markt"]': ja
+research/vorregistrierung/auswertung.py:510 enthaelt 'def im_fenster(d):': ja
+research/vorregistrierung/auswertung.py:513 enthaelt 'maske_s = reihe["datum"].map(im_fenster)': ja
+research/vorregistrierung/auswertung.py:514 enthaelt 'maske_b = bench["datum"].map(im_fenster)': ja
+research/vorregistrierung/auswertung.py:517 enthaelt 'gemeinsam = s.index.intersection(b.index)': ja
+research/vorregistrierung/auswertung.py:522 enthaelt 'sr = s.loc[gemeinsam, "netto_rendite"].to_numpy(dtype=float)': ja
+research/vorregistrierung/auswertung.py:524 enthaelt 'br = b.loc[gemeinsam, "netto_rendite"].to_numpy(dtype=float)': ja
+research/vorregistrierung/auswertung.py:528 enthaelt 'exposure_mittel = float(np.mean(se))': ja
+docs/VORREGISTRIERUNG_neuselektion.md:10845 enthaelt 'shared/zuteilung.py::simuliere_portfolio': ja
+docs/VORREGISTRIERUNG_neuselektion.md:10803 enthaelt 'benchmark_tagesreihen/<bot>.csv': ja
+docs/VORREGISTRIERUNG_neuselektion.md:11019 enthaelt 'im Zitat lies „`<bot>.csv`“ (R39).': ja
+docs/VORREGISTRIERUNG_neuselektion.md:11204 enthaelt 'Index 149 (nullbasiert) = 2018-01-13, Index 150 = 2018-01-14': ja
+docs/projektfuehrung/FABLE_ANTWORT_2026-10-02a_exposure_tage_laufbereich_marken.md:112 enthaelt 'R63 — Präzisierung zu R60 (a) (51.5)': ja
+docs/projektfuehrung/FABLE_ANTWORT_2026-10-02a_exposure_tage_laufbereich_marken.md:119 enthaelt 'Quelle des Grundes: 34 (Kopf': ja
+research/exposure_messung/bot_lauf.py /\.mean\(|np\.mean/: 0 (Soll 0) ja
+research/vorregistrierung/auswertung.py /dropna/: 0 (Soll 0) ja
+docs/projektfuehrung/BACKLOG.md /^## 6 — Geparkt, null Arbeit/: 1 (Soll 1) ja
+docs/projektfuehrung/BACKLOG.md /Aus Fable 02a/: 0 (Soll 0) ja
+docs/projektfuehrung/FABLE_DIALOG_INDEX.md /^\| 02a \|/: 0 (Soll 0) ja
+docs/projektfuehrung/FABLE_DIALOG_INDEX.md /^\| 01a \|/: 1 (Soll 1) ja
+docs/projektfuehrung/REGISTER_INDEX.md /Ohne Marke; an Fable \(51\.10 Nr\. 7\)\./: 5 (Soll 5) ja
+strategies/*/equity_simulation.py: 9 Dateien (Soll 9)
+  strategies/elliott_wave/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+  strategies/elliott_wave_stocks/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+  strategies/rsi2_crypto/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+  strategies/rsi2_mean_reversion/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+  strategies/t3_supertrend/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+  strategies/turtle_soup_crypto/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+  strategies/turtle_soup_stocks/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+  strategies/volatility_breakout/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+  strategies/volatility_breakout_crypto/equity_simulation.py /^def simulate_portfolio\(/: 1 (Soll 1) ja
+rc 0: alles wie angegeben
+rc 0

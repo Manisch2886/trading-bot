@@ -1,0 +1,6 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-130_register_fable_02a.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-02a_exposure_tage_laufbereich_marken.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-02a_exposure_tage_laufbereich_marken.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-02_eroeffnung.md
