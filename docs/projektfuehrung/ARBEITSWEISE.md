@@ -65,6 +65,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Kein Stillstand: der nächste Handwerksschritt ist getan; kein „soll ich …?"; keine offene Frage nach dem Weiter; neben einer Rückfrage ist alles Unabhängige erledigt | 13 |
 | ☐ | Die Aufgabenliste so kurz wie möglich — nie „entscheiden, wie es weitergeht" | 13 |
 | ☐ | Letzte Zeile: Umzugsampel, gemessen mit `docs/werkzeuge/ampel.py` (Farbe · Verlauf · Grundlast · Empfehlung; Schwellen für den Verlauf ohne Grundlast; Betreiber 01.10.2026) | UMZUG 3 |
+| ☐ | Der Text für die Aufgabe der Claude-Code-Sitzung steht am Ende jeder Antwort als Kopierblock mit Empfänger darüber, unmittelbar vor der Umzugsampel (deren Zeile bleibt die letzte) — auch wenn der Sitzungswächter den Satz schon eingesetzt hat. Wortlaut aus `logs/sitzungswaechter/letzter_satz.txt` bzw. `AKTUELLER_AUFTRAG.md`, nicht aus dem Gedächtnis; ist kein Auftrag startklar, steht das dort (Betreiber 02.10.2026, 10:45: „merke dir das endlich für die Zukunft“; Fehler Nr. 19) | 6b, Start |
 | ☐ | Eine Auswahlkarte kommt erst danach, als letzter Schritt: Ergebnis, Dateien, Kopierblöcke, „Deine Aufgaben“ und Umzugsampel sind vorher zugestellt (M1, Betreiber 30.09.2026) | 6d |
 
 **Wenn ein Dokument mitgeht**
@@ -162,6 +163,8 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Neue Fable-Antworten über `project_info` (Liste) prüfen, nicht über die Suche (25.09.2026); Antworten über `project_info` finden, ins Repo übertragen, md5 prüfen (29.09.2026) | UEBERGABE_ARCHIV |
 | ☐ | Das Register liegt in der Ablage je Abschnitt (`REGISTER_KOPIE_ABSCHNITT_<nn>.md`, `REGISTER_INDEX.md` nennt die Datei; erzeugt mit `registerkopie.py --abschnitte`); geöffnet wird nur, was gebraucht wird, im Wortlaut — keine Kurzfassung als zweite Quelle, keine zusammenfassenden Helfer (F1, 01.10.2026) | 23 |
 | ☐ | Grosse Dokumente nicht im Chat zusammensetzen: abschnittsweise in Dateien schreiben, nicht mehrfach umbauen, keine ganzen Dateien in den Chat holen; Mechanik (Anker zählen, md5, Zeilenbereiche, Diffs) als Skript, nicht als Helfer (S3, S6, 01.10.2026) | 22.10 |
+| ☐ | Vor jedem Lesen in den Chat die Bytes messen und mit ÷ 1,6 gegen die Ampel rechnen; von Vorlagen nur die Gliederung und die eine gebrauchte Stelle; Wortlaute, die ein Skript einsetzt, liest das Skript (Fehler Nr. 18, 02.10.2026: Verlauf 173 970 nach 7 Minuten, 272 304 nach 33 Minuten) | UEBERGABE, Nachtrag 02.10.2026, 10:04 |
+| ☐ | „Frischer Stage-Pfad“ heisst ein neuer Pfadname: Ein zweites `device_commit_files` aus demselben Pfad meldete „written“ und liess die alte Fassung liegen. Die md5-Wache steht vor Zeiger, Nachtrag und Auslöser (T7, erneut am 02.10.2026 bei TB-130) | 23 |
 
 **Wenn ich ein fremdes Ergebnis bewerte (Cloud, Mac, Fable)**
 
@@ -171,6 +174,8 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Backlog- und Journal-Nachtrag in derselben Antwort — auch bei Fable, auch wenn kurz | 5b |
 | ☐ | Jede Zahl aus dem fremden Bericht an der Rohausgabe nachgerechnet | 7 |
 | ☐ | Vor dem Urteil „Widerspruch“ prüfen, ob die Registerstelle den gerechneten Fall wörtlich trifft (30.09.2026) | 9 |
+| ☐ | Nummern am Block zählen, nicht an der Kurzfassung (Fehler Nr. 17: Der Registerblock von Fable 01a reichte bis R62, „Kurz“ nannte R62 nicht) | UEBERGABE, Nachtrag 02.10.2026, 07:46 |
+| ☐ | Ein „kein Widerspruch“ nennt, was gemessen ist und was nicht; eine Teilmessung heisst Teilmessung (02.10.2026: „Unsicher“ 2 zu Fable 01a, vom Gegenleser berichtigt) | UEBERGABE, Nachtrag 02.10.2026, 10:04 |
 
 **Wenn ich einen Auftrag schreibe**
 
@@ -200,6 +205,9 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Probe erst mit Modellschalter im Wächter oder mit Bestätigung des Modells vor dem Einfügesatz (Fehler Nr. 10: TB-125, Sonnet nicht wirksam) | 22.12; UEBERGABE, Umzug 01.10.2026, 08:20, Block 7 |
 | ☐ | Ein kalter Leser läuft ohne Gedächtnis; das steht als Schritt 0 im Auftrag, mit Beleg: die vom Werkzeug ausgegebene Liste der beim Start geladenen Kontextdateien, sonst ein frischer Klon in einem Ordner ohne `MEMORY.md`/Verlaufsdateien, dessen Inhalt vor dem Start gelistet wird. Gilt für Leser, deren Aussage die Kälte ist; nicht für Mac-Sitzungen, die bauen (Handwerk, 29.09.2026) | Fable 29b |
 | ☐ | Marken nennen Bezeichner, nicht Zeilen (R49 (e)) | Register 48.17 |
+| ☐ | Registerauftrag: Die Aufzählung eines Blocks schliesst die Regel aus 34 nicht ab. Der steuernde Chat bestimmt die Marken an allen Orten, denen ein Block ein „lies“, eine Ergänzung oder eine Bestätigung gibt, und weist sie im Auftrag als seine aus (R65 (a)) | Register 52.3 |
+| ☐ | Vor Schritt 0 einer Mac-Sitzung legt der steuernde Chat keine weitere Datei in den Arbeitsbaum (0a zählt die Einträge); nach Schritt 0 fasst er dort nichts an, bis die Sitzung abgegeben hat (02.10.2026) | UEBERGABE, Nachtrag 02.10.2026, 10:19 |
+| ☐ | Folgeauftrag gleicher Bauart: auf den Vorgänger verweisen und nur Unterschiede und Sollwerte nennen, nicht abschreiben; das Prüfskript läuft vor der Freigabe am echten Repo, nicht nur an einer Kopie (TB-130) | 2, 12 |
 
 ---
 

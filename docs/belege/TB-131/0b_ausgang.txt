@@ -1,0 +1,4 @@
+# TB-131 0b — Ausgang am ⟨S0⟩ 5d4f843
+docs/projektfuehrung/ARBEITSWEISE.md · sha256 1c4176dcc9d3f6a3003247372d00ad40de26fc1e3c8eb8635a11ba33e35144b6 · md5 e234bbce7d60cf297532886916d4fce7 · Zeilen 2389
+docs/projektfuehrung/BACKLOG.md · sha256 5c0f902cfa04262f8eb91d258015923273b6cb8b46c4d0047e688b014d49bde7 · md5 d291e17a36229a053301a8a2216c792e · Zeilen 281
+docs/werkzeuge/ampel.py · sha256 4d1f3c0564feeab196fc6daaf6ccd563add62c7f911e853eaeb6afe39144ef36 · md5 0c42ee78b6fa162e795f0cab026cde9e · Zeilen 35

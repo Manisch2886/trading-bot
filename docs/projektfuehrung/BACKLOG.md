@@ -267,6 +267,12 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **Regel für Registeraufträge aus R65 (a):** Die Aufzählung eines Blocks schliesst die Regel aus 34 nicht ab. Der steuernde Chat bestimmt die Marken an allen Orten, denen ein Block ein „lies“, eine Ergänzung oder eine Bestätigung gibt, und weist sie im Auftrag als seine aus.
 - **Regelwerk, nächster Dokumentationsauftrag (ARBEITSWEISE 0):** aus Fehler Nr. 17 (Nummern am Block zählen), Nr. 18 (vor dem Lesen die Bytes messen, ÷ 1,6 gegen die Ampel), Nr. 19 (der Text für die Aufgabe der Claude-Code-Sitzung steht am Ende jeder Antwort; Betreiber 02.10.2026, 10:45).
 
+### Aus der Abnahme TB-130 (02.10.2026)
+
+- **Für die nächste Fable-Anfrage** (neuer Fable-Chat): 52.5 Nr. 2 (Zeitachse des Falten-Sharpe; erst Vorprüfung in 16, 21, 29, 33), Nr. 5, 6, 7 und 9; dazu drei Reibungen aus ERGEBNIS_TB-129 und ERGEBNIS_TB-130: `registerkopie.py --marken` zählt die erste Zitatzeile von R61 (TB-129) und von R65 (TB-130) als Marke; an 25.2 steht die Marke aus R65 vor der älteren aus R53; es gibt kein eigenes Markenwort für Bestätigungen.
+- **T7, erneut:** Ein `device_commit_files` aus einem schon benutzten Stage-Pfad meldete „written“ und liess die alte Fassung liegen (TB-130, 02.10.2026). Die Regel dazu trägt TB-131 in ARBEITSWEISE 0 ein.
+- **Mit TB-131 (Ausgang im Ergebnis TB-131):** die Regeln aus Fehler Nr. 17, 18 und 19 und aus R65 (a) in ARBEITSWEISE 0; `docs/werkzeuge/ampel.py` liest `null` als 0 und zählt Schritte mit Grösse 0 nicht.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen
