@@ -1,0 +1,2 @@
+# TB-128 D3 — git status --porcelain nach dem Abgabe-Commit c0de90f, 2026-10-02 07:54:59
+# Zeilen: 0 (leer = Arbeitsbaum sauber)
