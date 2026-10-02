@@ -1,0 +1,1 @@
+# TB-129 D3: git status --porcelain nach dem Abgabe-Commit 72f5b21, 2026-10-02 11:12:09 +0200; Zeilen: 0
