@@ -1,0 +1,10 @@
+# TB-131 C2 — git diff --numstat 5d4f843 (⟨S0⟩) HEAD 278cf0f
+3	0	docs/belege/TB-131/0a_status.txt
+4	0	docs/belege/TB-131/0b_ausgang.txt
+87	0	docs/belege/TB-131/b2_probe_ampel.py
+21	0	docs/belege/TB-131/b2_probe_ampel.txt
+126	0	docs/belege/TB-131/einfuegen.py
+7	0	docs/belege/TB-131/einfuegungen.txt
+8	0	docs/projektfuehrung/ARBEITSWEISE.md
+6	0	docs/projektfuehrung/BACKLOG.md
+7	2	docs/werkzeuge/ampel.py

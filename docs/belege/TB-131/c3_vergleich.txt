@@ -1,0 +1,8 @@
+# TB-131 C3 — Zeichengleichheit (c3_vergleich.py)
+E1 · docs/projektfuehrung/ARBEITSWEISE.md · 514 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E2 · docs/projektfuehrung/ARBEITSWEISE.md · 417 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E3 · docs/projektfuehrung/ARBEITSWEISE.md · 607 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E4 · docs/projektfuehrung/ARBEITSWEISE.md · 773 Bytes · 3 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E5 · docs/projektfuehrung/BACKLOG.md · 891 Bytes · 5 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+Anzahl Einfügungen: 5 · Gesamt: alle zeichengleich, je genau einmal
+ampel.py · md5 997ce08b0d944bed680285584b9936f8 · Soll 997ce08b0d944bed680285584b9936f8 · GLEICH
