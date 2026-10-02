@@ -1,0 +1,36 @@
+# TB-130 A4 Probelauf, HEAD cd1bf02, 2026-10-02 15:16:10 +0200
+Register 7f74b0e5a746cbc7, Kopie /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/bb97a43d-baeb-45f3-b6af-08c031094b59/scratchpad/a4_probe_151610.md
+## Einsetzen gegen die Kopie
+Register: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/bb97a43d-baeb-45f3-b6af-08c031094b59/scratchpad/a4_probe_151610.md
+Marken gesetzt am alten Ort: 12 an 11 Einfuegestellen
+R-Bloecke: 3
+Zeilen vorher: 11225  nachher: 11313
+rc 0
+## Register selbst unberuehrt: 7f74b0e5a746cbc7
+## a5_r_diff.py
+Ergebnis: 3/3 rc 0
+rc 0
+## a5_mutation.py
+a5_r_diff.py gegen die Kopie: rc 1 (Soll 1)
+rc 0
+## a5_zitate.py
+Ergebnis: 2/2 rc 0
+rc 0
+## a5_marken.py
+# TB-130 A5 Ueberschriften, Ketten und Marken: Register /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/bb97a43d-baeb-45f3-b6af-08c031094b59/scratchpad/a4_probe_151610.md, Auftrag am Commit b0c7a35, Datum 02.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+52.1: Ueberschrift gleich, Kette gleich
+52.2: Ueberschrift gleich, Kette gleich
+52.3: Ueberschrift gleich, Kette gleich
+Ueberschriften: 3/3, Ketten: 3/3 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Marken gesetzt: 12/12; Markenzeilen 'TB-130, 02.10.2026' im Register: 12 (Soll 12)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 965-1171, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A
+rc 0
+## numstat Original -> Kopie
+88	0
+KOPIE=/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/bb97a43d-baeb-45f3-b6af-08c031094b59/scratchpad/a4_probe_151610.md

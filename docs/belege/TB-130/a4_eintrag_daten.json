@@ -1,0 +1,103 @@
+{
+ "register": "docs/VORREGISTRIERUNG_neuselektion.md",
+ "S0": "b0c7a35",
+ "datum": "02.10.2026",
+ "marken": [
+  {
+   "nr": 1,
+   "R": 64,
+   "stelle": "4.2",
+   "nach_alt": 526,
+   "zeile_neu": 528,
+   "m1": "> ⭐ **4.2 PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, Unterpunkt (a), TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 2,
+   "R": 62,
+   "stelle": "25.2, unter dem berichtigten Satz",
+   "nach_alt": 4650,
+   "zeile_neu": 4655,
+   "m1": "> ⭐ **25.2 BERICHTIGT durch R62 (51.7) und R65 (52.3)** (Fable 01a R62, Unterpunkt (a), und Fable 02a R65, Unterpunkt (c), TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 3,
+   "R": 61,
+   "stelle": "47.9 (R26)",
+   "nach_alt": 10704,
+   "zeile_neu": 10712,
+   "m1": "> ⭐ **47.9 R26 BERICHTIGT durch R61 (51.6)** (Fable 01a R61, Unterpunkt (c), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 4,
+   "R": 61,
+   "stelle": "47.13 (R30)",
+   "nach_alt": 10732,
+   "zeile_neu": 10743,
+   "m1": "> ⭐ **47.13 R30 BERICHTIGT durch R61 (51.6)** (Fable 01a R61, Unterpunkt (c), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 5,
+   "R": 64,
+   "stelle": "48.16 (R48)",
+   "nach_alt": 10884,
+   "zeile_neu": 10898,
+   "m1": "> ⭐ **48.16 R48 (d) PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 6,
+   "R": 65,
+   "stelle": "48.19 (R51)",
+   "nach_alt": 10913,
+   "zeile_neu": 10930,
+   "m1": "> ⭐ **48.19 R51 PRÄZISIERT durch R65 (52.3)** (Fable 02a R65, Unterpunkt (a), TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 7,
+   "R": 60,
+   "stelle": "50.1, nach der Tabelle",
+   "nach_alt": 10978,
+   "zeile_neu": 10998,
+   "m1": "> ⭐ **50.1, Zeile R48 (d) ERGÄNZT durch R60 (51.5) und 51.8** (Fable 01a R60, Unterpunkt (d), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 8,
+   "R": 57,
+   "stelle": "50.4, nach dem Zitatblock",
+   "nach_alt": 11105,
+   "zeile_neu": 11128,
+   "m1": "> ⭐ **50.4, Schlusssatz ERGÄNZT durch R57 (51.2): der Schlusssatz ist bestätigt** (Fable 01a R57, nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 9,
+   "R": 63,
+   "stelle": "51.5 (R60)",
+   "nach_alt": 11173,
+   "zeile_neu": 11199,
+   "m1": "> ⭐ **51.5 R60 (a) PRÄZISIERT durch R63 (52.1)** (Fable 02a R63, TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 10,
+   "R": 64,
+   "stelle": "51.5 (R60)",
+   "nach_alt": 11173,
+   "zeile_neu": 11202,
+   "m1": "> ⭐ **51.5 R60 (b) und (c) PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 11,
+   "R": 65,
+   "stelle": "51.6 (R61)",
+   "nach_alt": 11180,
+   "zeile_neu": 11212,
+   "m1": "> ⭐ **51.6 R61 (b) PRÄZISIERT durch R65 (52.3)** (Fable 02a R65, Unterpunkt (a), TB-130, 02.10.2026)."
+  },
+  {
+   "nr": 12,
+   "R": 63,
+   "stelle": "51.9",
+   "nach_alt": 11212,
+   "zeile_neu": 11247,
+   "m1": "> ⭐ **51.9 ERGÄNZT durch R63 (52.1): die Lesart ist bestätigt** (Fable 02a R63, TB-130, 02.10.2026)."
+  }
+ ]
+}

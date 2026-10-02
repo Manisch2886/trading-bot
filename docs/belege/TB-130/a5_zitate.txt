@@ -1,0 +1,4 @@
+# TB-130 A5 Zitate: Register docs/VORREGISTRIERUNG_neuselektion.md gegen Auftrag am Commit b0c7a35
+Kopf 52.0: 3 Zeilen (Register Z. 11263-11265), diff rc 0
+Schluss 52.4-52.5: 26 Zeilen (Register Z. 11288-11313), diff rc 0
+Ergebnis: 2/2 rc 0
