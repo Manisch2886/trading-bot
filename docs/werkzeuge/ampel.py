@@ -9,6 +9,8 @@ Grundlast = Grösse des ersten Schritts (feste Anweisungen, Werkzeuge, erste Nac
 Verlauf   = Grösse - Grundlast (das, was der Chat selbst angesammelt hat)
 effektiv  = input + 0,1 x cache_read + 2 x cache_creation + 5 x output (Gewichte wie Nachtrag 20:15)
 Mehrere Protokollzeilen derselben API-Antwort (gleiche message.id) zählen einmal.
+Felder mit null zählen als 0; Schritte mit Grösse 0 (Hilfsschritte ohne Nutzung, etwa eines anderen
+Modells vor dem ersten eigenen Schritt) zählen nicht (TB-131, Befund 02.10.2026).
 """
 import json, sys
 
@@ -25,8 +27,11 @@ for line in open(sys.argv[1], encoding="utf-8"):
         continue
     seen.add(m.get("id"))
     u = m["usage"]
-    rows.append((d.get("timestamp", ""), u.get("input_tokens", 0), u.get("cache_read_input_tokens", 0),
-                 u.get("cache_creation_input_tokens", 0), u.get("output_tokens", 0)))
+    r = (d.get("timestamp", ""), u.get("input_tokens") or 0, u.get("cache_read_input_tokens") or 0,
+         u.get("cache_creation_input_tokens") or 0, u.get("output_tokens") or 0)
+    if r[1] + r[2] + r[3] == 0:
+        continue
+    rows.append(r)
 
 groesse = lambda r: r[1] + r[2] + r[3]
 grund, jetzt = groesse(rows[0]), groesse(rows[-1])

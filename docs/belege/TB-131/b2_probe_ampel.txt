@@ -1,0 +1,21 @@
+# TB-131 B2 — Probe ampel.py (b2_probe_ampel.py), alt = 5d4f843:docs/werkzeuge/ampel.py
+# Interpreter /Users/jaquelineloffler/trading-bot/trading-env/bin/python3 · Python 3.9.6
+# Protokolle in /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb131_b2_yiu_wjsy (erfunden)
+alt(P1) rc 0
+    stdout: Schritte 3 · Grösse 120502 · Grundlast 120002 · Verlauf 500 · effektiv gesamt 76856
+    stdout: Kosten nächster Schritt (nur Cache-Lesen) ~12050
+alt(P2) rc 1
+    stderr (letzte Zeile): TypeError: unsupported operand type(s) for +: 'int' and 'NoneType'
+neu(P1) rc 0
+    stdout: Schritte 3 · Grösse 120502 · Grundlast 120002 · Verlauf 500 · effektiv gesamt 76856
+    stdout: Kosten nächster Schritt (nur Cache-Lesen) ~12050
+neu(P2) rc 0
+    stdout: Schritte 3 · Grösse 120502 · Grundlast 120002 · Verlauf 500 · effektiv gesamt 76856
+    stdout: Kosten nächster Schritt (nur Cache-Lesen) ~12050
+Soll alt(P1) rc 0: ja
+Soll neu(P1) rc 0: ja
+Soll neu(P1) stdout bytegleich alt(P1): ja
+Soll alt(P2) rc != 0 (Gegenprobe): ja
+Soll neu(P2) rc 0: ja
+Soll neu(P2) stdout bytegleich neu(P1): ja
+Gesamt: alle Soll erfüllt
