@@ -1,0 +1,7 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/FABLE_UEBERGABE_2026-10-01_messung_steuernder_chat.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-128_regelwerk_nachtrag_worktree.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-01a_anfangsbestand_lesarten_marken.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-01a_anfangsbestand_vorlauf_exposure_marken.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-01_neuer_chat.md

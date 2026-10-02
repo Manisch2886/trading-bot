@@ -39,3 +39,28 @@ Deine Übergabe liegt in der Projektablage: projektfuehrung/FABLE_UEBERGABE_2026
 
 Danach warte auf die erste Anfrage.
 ```
+
+## Eröffnungstext für den neuen Fable-Chat, wörtlich — Fassung 3 (ca. 22:50, nach TB-127)
+
+*Fassung 2 ist überholt in zwei Punkten: Die Teile 1–4 liegen nicht mehr in der Ablage, und `ARBEITSWEISE.md`/`UMZUG.md` in der Ablage haben den Stand nach TB-127 (`eeee21d`; md5 `9ab7ff6b…`, `edfe2a34…`). Sonst gleicher Wortlaut.*
+
+```
+Neuer Fable-Chat — Eröffnung, 01.10.2026 (vom steuernden Chat, über den Betreiber)
+
+Deine Übergabe liegt in der Projektablage: projektfuehrung/FABLE_UEBERGABE_2026-10-01_neuer_chat.md. Geschrieben hat sie dein Vorgänger. Lies darin nur den Codeblock unter „Der zu sendende Text, wörtlich“ und folge ihm — mit den Änderungen unten, die vorgehen. Den Rest der Datei brauchst du nicht.
+
+Änderungen (Betreiberentscheid 01.10.2026, ca. 21:25: Tokensparen ohne Qualitätsverlust):
+
+1. Lesen (ersetzt Abschnitt 3): REGISTER_INDEX.md vollständig, die Abschnitte 45–50 vollständig, jeden weiteren Abschnitt bei Bedarf einzeln. Das Register liegt je Abschnitt in einer Datei: projektfuehrung/REGISTER_KOPIE_ABSCHNITT_00.md bis _50.md (Kopf: Abschnitt, Register-Zeilen, Commit db108a6, sha256 b5804659…, KOPIE). Die Tabelle „Kopie je Abschnitt“ in REGISTER_INDEX.md nennt je Abschnitt die Datei. Die Dateien REGISTER_KOPIE_teil1–4.md liegen nicht mehr in der Ablage; wo deine Übergabe „T1–T4“ sagt, nimm die Abschnittsdatei. Die Probe mit dem Fundstellen-Helfer entfällt. Ausdrücklich nicht: eine Kurzfassung des Registers als zweite Quelle, zusammenfassende Helfer, Lesen in Auszügen, wo eine Entscheidung am Wortlaut hängt.
+2. project_read liefert jede Datei ganz in den Chat; gemessen sind etwa 1,6 Bytes je Token. Öffne, was du brauchst, und nur das.
+3. Bestätigung (ersetzt Abschnitt 8): Sag in wenigen Sätzen, ob du REGISTER_INDEX.md und die Abschnitte 45–50 öffnen konntest; dazu dein Leseprotokoll und deine Ampel, gemessen oder als „geschätzt“. Die vier Stichproben und die md5 der Ablage sind schon gemessen; wiederhole sie nicht.
+4. 22.11 gilt im Wortlaut (ARBEITSWEISE.md in der Ablage, Stand 01.10.2026 nach TB-127); Abschnitt 4 wird daran angeglichen:
+   - Takt nach Bedarf, nicht täglich.
+   - „In einfacher Sprache“ schreibt der steuernde Chat, nicht du.
+   - Reine Kenntnis kommt nicht oder als eine Zeile; halte deinen Teil 0 entsprechend kurz.
+   - Jede Anfrage ist gegen Register und Code vorgeprüft, trägt Fundstelle und Neigung des steuernden Chats und nennt die Abschnittsnummern aller berührten Registerstellen. Du öffnest diese Abschnitte, was der Index dazu als „gilt“ und „dazu“ nennt, und weitere nach eigenem Urteil.
+5. Gemessen: Die Zahlen in Abschnitt 7 stimmen mit dem Repo; „eingefroren 22“ hat keine Fundstelle — lies es als Voraussetzung. Die BACKLOG-Sperre (27.4) gilt weiter.
+6. Die erste Anfrage enthält eine Verfahrensfrage zu 27: Darf der Anfangsbestand eines Fable-Chats durch das Leseprotokoll seiner Antwort festgehalten werden statt durch einen R-Block je Chat? (Anlass: Probe „ein Fable-Chat je Anfrage“.) Ob deine erste Antwort R56 als Tatsachennotiz trägt, hängt an deiner Antwort darauf.
+
+Danach warte auf die erste Anfrage.
+```
