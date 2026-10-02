@@ -1,0 +1,7 @@
+# TB-129 C1: registerkopie.py --pruefen  (HEAD f63ad4c, 2026-10-02 11:07:38 +0200)
+Teil 1: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  219786 Bytes gesamt, Body 219551 Bytes, Abschnitte 0–22  <= 240000
+Teil 2: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  221607 Bytes gesamt, Body 221371 Bytes, Abschnitte 23–36  <= 240000
+Teil 3: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  232429 Bytes gesamt, Body 232193 Bytes, Abschnitte 37–42  <= 240000
+Teil 4: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  180076 Bytes gesamt, Body 179840 Bytes, Abschnitte 43–51  <= 240000
+Bodies aneinander: 852955 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am f63ad4cbd123: 852955 Bytes, sha256 7f74b0e5a746cbc7 (Kopf 7f74b0e5a746cbc7) - BYTEGLEICH
+rc 0

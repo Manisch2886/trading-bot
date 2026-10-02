@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 7 (von 0–50) — Register-Z. 787–854 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 7 (von 0–51) — Register-Z. 796–866 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
 
 ## 7. Die Abbruchkriterien
 
@@ -18,6 +18,9 @@ Ein Bot bleibt **nicht**, wenn für den Plateau-Gewinner gilt:
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **7 (d) ERGÄNZT durch R55 (49.3)** (Fable 30a R55, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **7 (b) PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 Präzisierungen, die das eingefrorene Skript umsetzt:

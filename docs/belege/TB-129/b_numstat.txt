@@ -1,0 +1,2 @@
+# git diff --numstat docs/projektfuehrung/BACKLOG.md (Soll 17 0)
+17	0	docs/projektfuehrung/BACKLOG.md

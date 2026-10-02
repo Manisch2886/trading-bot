@@ -1,0 +1,2 @@
+# TB-129 Schritt B — Einfügung (b_einfuegen.py, Auftrag am Commit 477cef2)
+E1 · docs/projektfuehrung/BACKLOG.md · Anker '## 6 — Geparkt, null Arbeit' · Art vor der Zeile · Anker vorher 1 · Ankerzeile vorher 243 · Textzeilen 16 · erste Textzeile vorher 0 · ausgeführt ja · erste Textzeile nachher 1

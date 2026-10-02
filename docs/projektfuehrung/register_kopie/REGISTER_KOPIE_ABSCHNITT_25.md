@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 25 (von 0–50) — Register-Z. 4546–4769 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 25 (von 0–51) — Register-Z. 4567–4793 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
 
 ## 25. Berichtigung zu Registertext 4a und zu 21.3 (b) — die erste Falte ist eine Konjunktion, und der Plan leitet sie aus dem Trockenlauf ab (TB-72, 20.09.2026)
 
@@ -106,6 +106,9 @@ als ersetzt stehen:**
 > ⭐ **(i) „im registrierten Datenhorizont des Bots" PRÄZISIERT durch Abschnitt 26 (TB-77, 21.09.2026), 26.2 — der Wortlaut bleibt stehen.** Der Horizont ist ein absolutes Datum je Bot (`asof` minus `RECENT_YEARS_ONLY`), nicht je Symbol; sein Wert ist ein Platzhalter, bis `asof` gesetzt ist (26.3).
 
 > ⭐ **4a (i) in 25.3 PRÄZISIERT durch R53 (49.1)** (Fable 30a R53, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **25.3 (i) ERGÄNZT durch R58 (51.3)** (Fable 01a R58, TB-129, 02.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Herkunft — seine Rücknahme, wörtlich:** *„‚Der Plan bezieht die erste Falte

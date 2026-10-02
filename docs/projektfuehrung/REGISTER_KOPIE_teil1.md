@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 1 von 4 — Abschnitte 0–22 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 1 von 4 — Abschnitte 0–22 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
 
 # Vorregistrierung der Neuselektion (TB-30a)
 
@@ -80,6 +80,9 @@ Nicht neu verhandelt — eingetragen. Sie stehen maschinenlesbar in
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **Festlegung 2 ERGÄNZT (Verweis) durch R51 (48.19)** (Fable 29b R51, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **Festlegung 3 PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ### Festlegung 12, wörtlich
@@ -518,6 +521,12 @@ Exposure-Argument, nicht über die Tabelle.
 > ⭐ **4.2 ERGÄNZT (Verweis) durch R51 (48.19)** (Fable 29b R51, TB-126, 01.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **4.2 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkte (d) und (e), nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **4.2 PRÄZISIERT durch R60 (51.5)** (Fable 01a R60, TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 4.3 Warum es keine absolute Grenze gibt (Festlegung 6)
 
 Eine feste Untergrenze bindet **nur**, wenn `1,25 × DD_Benchmark` tiefer
@@ -806,6 +815,9 @@ Ein Bot bleibt **nicht**, wenn für den Plateau-Gewinner gilt:
 > ⭐ **7 (d) ERGÄNZT durch R55 (49.3)** (Fable 30a R55, TB-126, 01.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **7 (b) PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 Präzisierungen, die das eingefrorene Skript umsetzt:
 
 * **(b) und der Gewinner.** Gewinnen kann nur ein zulässiger Punkt. Ist keiner
@@ -873,6 +885,12 @@ Berichtet wird je Bot, unabhängig davon, ob er bleibt oder geht:
 | Verletzungen des Risikoappetits (−30 % je Falte) | Festlegung 6 |
 | N_eff, N_nominal, 2 × N_nominal und die drei DSR-Werte | N-Buchführung |
 | Bestätigungsperiode: Sharpe, Rendite, Drawdown, Trades | zuletzt |
+
+> ⭐ **8, Tabelle PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **8, Tabelle ERGÄNZT durch R55 (49.3)** (Fable 30a R55, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Die Regel: alle werden berichtet, auch die unangenehmen.** Sie steht auf
 der Sperrliste. `auswertung.py` hat keinen Schalter, der eine Zeile
@@ -2212,6 +2230,9 @@ Abbruchkriterium.
 > ⭐ **Evidenz der Leiter: siehe 46.4 (f); Lesarten: TB-116** (Fable 27a R13
 > (f), TB-117, 26.09.2026). Die Prüfung vor dem Tag oben bleibt
 > zeichengleich.
+
+> ⭐ **16.4, „Prüfung vor dem Tag“ PRÄZISIERT durch R21 (47.4)** (Fable 27c R21, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ---
 

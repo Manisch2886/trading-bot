@@ -240,6 +240,23 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **`docs/werkzeuge/registerkopie_abschnitte.py`** (Vorlage) ist durch `registerkopie.py --abschnitte` überholt. Entfernen ist ein Betreiberentscheid und steht aus.
 - **Später, Wortlaute noch nicht vorbereitet:** K2h/K2f (Wortlaut „Stellvertreter“ in `BACKLOG_ENTSCHEIDUNGEN.md` gegen „Merkmal“ in Fable 29b klären); die drei Trägerstellen (kein Ersatzwortlaut in den Quellen); Fables 29a Abschnitt 1; Sonnet-Probe mit wirksam gesetztem Modell; `BACKLOG.md` in der Ablage erneuern (vorher 27.4-Prüfung).
 
+### Aus Fable 01a (01.10.2026) — Bewertung nach 5b, eingetragen mit TB-129
+
+- **Bewertung:** Die Antwort trägt; keine Zahl und kein Zitat ist falsch (gemessen am 02.10.2026, `UEBERGABE.md`, Nachtrag 02.10.2026, 07:46). R56–R62 stehen seit TB-129 im Register, Abschnitt 51; die Voraussetzungen mit Befund in 51.8, was offen bleibt in 51.10.
+- **An Fable (02.10.a, neuer Fable-Chat):** R60 (a) — die Voraussetzung trifft für den Ordner `research/exposure_messung/` nicht (`bot_lauf.py` steht im Laufbereich), Lesart 51.9; R60 (b) und (c) — über welche Tage gemittelt wird (`beta_bereinigung` nimmt die gemeinsamen Tage mit dem Benchmark; gegen „Handelstage des Zeitraums“ in R48 (d) nicht gemessen); Marken an 47.9, 47.13, 25.2, 50.1 und 50.4, die R61 (b) nicht aufzählt.
+- **R56 (d), Pflicht des steuernden Chats:** vor jeder Eröffnung eines Fable-Chats die Dateien der Projekt-Erinnerung, die die Plattform lädt (01a nennt `preferences.md` und `ways-of-working.md`), gegen 27.1 messen und im Eröffnungstext nennen.
+- **R56 (e):** vor dem Tag eine Tatsachennotiz über alle Fable-Chats seit R32 (Eröffnungstext, Antwortdateien, md5, Commit); darin die Fassung des Eröffnungstextes vom 01.10.2026: Fassung 2 (Angabe des Betreibers per Karte, 02.10.2026).
+- **R59 (b):** Einträge für feste Fenster in `registerdaten.py`, je mit Probe gegen die Konstante des Bot-Codes und Gegenprobe. Umsetzungsauftrag mit Einzelfreigabe (Registeränderung nach 26.6, 32.5 (a)). Bestand: `bollinger_fenster` (20.0) steht dort schon; ob mit Probe, ist nicht gemessen.
+- **R59 (c), (d), R57:** Probe der Vorlauf-Formel je Bot gegen den Signalpfad; Feld im Faltenplan; Herleitung für die übrigen sieben Bots. Mit R53 (a).
+- **R60 (c):** Der Zellen-Erzeuger schreibt `mittlere_exposure` in `zellen.csv` und die Spalte `exposure` der Tagesreihe aus einer Rechnung; die Abnahme nach R46 prüft die Gleichheit mit Gegenprobe.
+- **R62 (b):** `SOLL_DATENSTAND` in `research/registernachtrag_tb48/pruefe_abschnitt17.py` ist ein vierter Ort des Datenstands; Probe oder Auflösung. Handwerk.
+- **Fehler Nr. 17 (steuernder Chat, 01.10.2026):** Der Registerblock von 01a reicht bis R62; gezählt wurde nach „Kurz“, das R62 nicht nennt. Regel für ARBEITSWEISE 0 (nächster Dokumentationsauftrag): Nummern am Block zählen, nicht an der Kurzfassung.
+- **01a, „Unsicher“ 6 (Zählung):** Der Satz in 25.2 und die „14“ in R26/R30 sind Ungenauigkeiten aus Fable-Texten, berichtigt durch R62 (a) und R61 (c). Sie zählen nicht in die Fehlerliste des steuernden Chats (Vorgabe des steuernden Chats, 02.10.2026).
+
+### Aus der Übernahme 02.10.2026
+
+- **`docs/werkzeuge/ampel.py`:** bricht mit `TypeError` ab, wenn ein Protokollschritt `null` in `cache_read_input_tokens` oder `cache_creation_input_tokens` trägt, und nähme sonst einen Schritt mit Grösse 0 als Grundlast (gemessen am 02.10.2026, 08:40, im Protokoll des steuernden Chats: drei Schritte eines anderen Modells mit Nutzung 0 vor dem ersten eigenen Schritt). Nachziehen: `null` als 0 lesen, Schritte mit Grösse 0 nicht zählen. Handwerk.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen

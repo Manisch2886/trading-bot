@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 8 (von 0–50) — Register-Z. 855–903 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 8 (von 0–51) — Register-Z. 867–921 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
 
 ## 8. Die Beurteilung — und die Regel, dass alles berichtet wird
 
@@ -19,6 +19,12 @@ Berichtet wird je Bot, unabhängig davon, ob er bleibt oder geht:
 | Verletzungen des Risikoappetits (−30 % je Falte) | Festlegung 6 |
 | N_eff, N_nominal, 2 × N_nominal und die drei DSR-Werte | N-Buchführung |
 | Bestätigungsperiode: Sharpe, Rendite, Drawdown, Trades | zuletzt |
+
+> ⭐ **8, Tabelle PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **8, Tabelle ERGÄNZT durch R55 (49.3)** (Fable 30a R55, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Die Regel: alle werden berichtet, auch die unangenehmen.** Sie steht auf
 der Sperrliste. `auswertung.py` hat keinen Schalter, der eine Zeile

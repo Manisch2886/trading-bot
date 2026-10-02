@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 49 (von 0–50) — Register-Z. 10891–10915 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 49 (von 0–51) — Register-Z. 10924–10954 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
 
 ## 49. Fable 30a — Registerblock R53–R55 (TB-126)
 
@@ -8,6 +8,12 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 
 > R53 — Präzisierung zu 4a (i) (25.3, 28.6): Indikator-Vorlauf bei achsenabhängigem Rückblick. Der Indikator-Vorlauf eines Bots nach 4a (i) ist der grösste Vorlauf über alle Zellen seines Rasters: je Rückblick-Achse die oberste registrierte Stufe (Abschnitt 3) zuzüglich der festen Fenster des Bots (etwa Bollinger-Fenster, Donchian-Zusatz), gerechnet gegen den Horizontbeginn (28.6). Er wird aus registerdaten.py gerechnet, nicht als Voreinstellung geführt und nicht als Literal gesetzt; der Faltenplan trägt ihn je Bot als Feld. Der Scanbeginn einer Zelle liegt nie vor ihrem Vorlauf (TB-122 F1, Handwerk). Tatsachennotiz: Die Nachmessungen in 25.2 (rsi2_crypto, 150 Balken), 15.5 und 21.4 stammen aus der Zeit vor TB-30b Posten 3; die erste Falte ist nach dieser Präzisierung neu abzuleiten (Verfahrensmessung nach 27.2; Wirkung bekannt und kein Grund).
 > Quelle des Grundes: 2.7 (ein Raster je Bot, identisch über alle Falten), 29.3 (Kapitalpfad beginnt am 1. Januar der ersten Selektionsfalte), 4a (i), 24.3 (Bauart). Kein Ergebnis.
+
+> ⭐ **49.1 R53 PRÄZISIERT durch R57 (51.2)** (Fable 01a R57, TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **49.1 R53 ERGÄNZT durch R59 (51.4)** (Fable 01a R59, TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 15.5; 21.4; 25.2; 25.3, Ersatztext (Bedingung (i) steht in dessen erster Zeile); 28.6. Voraussetzung gemessen: 50.1. Zählweise: 50.5.
 

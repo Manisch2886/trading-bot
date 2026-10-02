@@ -1,0 +1,22 @@
+# TB-129 C4 (HEAD f63ad4c, 2026-10-02 11:09:48 +0200)
+## dialog_index.py --handfelder docs/belege/TB-129/c4_handfelder.json
+geschrieben: docs/projektfuehrung/FABLE_DIALOG_INDEX.md, 51 Zeilen
+Zeilen im Index: 51, FABLE_ANTWORT_*.md: 51 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 51 von 51
+Status: offen 4, ohne Registertext 12, registriert 35
+rc 0
+## dialog_index.py --pruefen
+Zeilen im Index: 51, FABLE_ANTWORT_*.md: 51 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 51 von 51
+Status: offen 4, ohne Registertext 12, registriert 35
+rc 0
+## Zeile 01a
+| 01a | anfangsbestand vorlauf exposure marken | Darf der Anfangsbestand eines neu begonnenen Fable-Chats über Eröffnungstext und Leseprotokoll festgehalten werden, und wie sind Vorlauf, mittlere Exposure, R53 ohne Rückfall und die Marken nach E-2 zu lesen? | Ja, mit Bindung (R56); der Vorlauf ist der hergeleitete Index, nicht die Summe (R57); 26.2 und R53 stehen nebeneinander (R58); kein Rückfall auf ein Literal, Einträge brauchen Freigabe und Probe (R59); mittlere Exposure mit zwei Trägern aus einer Rechnung (R60); sieben Marken nachtragen (R61); Tatsachennotizen (R62). | offen | 51 | ja | 01a (Bezug) | `FABLE_ANTWORT_2026-10-01a_anfangsbestand_vorlauf_exposure_marken.md` |
+## Schlusszeile
+51 Antworten. Pflege: nach jeder angenommenen Antwort das Skript laufen lassen, die neue Zeile von Hand füllen, `--pruefen`.
+## git diff --numstat
+2	1	docs/projektfuehrung/FABLE_DIALOG_INDEX.md
+## geänderte Zeilen (diff -U0)
++| 01a | anfangsbestand vorlauf exposure marken | Darf der Anfangsbestand eines neu begonnenen Fable-Chats über Eröffnungstext und Leseprotokoll festgehalten we
+-50 Antworten. Pflege: nach jeder angenommenen Antwort das Skript laufen lassen, die neue Zeile von Hand füllen, `--pruefen`.
++51 Antworten. Pflege: nach jeder angenommenen Antwort das Skript laufen lassen, die neue Zeile von Hand füllen, `--pruefen`.

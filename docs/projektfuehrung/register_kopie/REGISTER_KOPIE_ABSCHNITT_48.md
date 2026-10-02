@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 48 (von 0–50) — Register-Z. 10725–10890 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 48 (von 0–51) — Register-Z. 10755–10923 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
 
 ## 48. Fable 29b — Registerblock R33–R52 (TB-126)
 
@@ -126,6 +126,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Quelle des Grundes: die genannten Fundstellen; 22.5; 24b A2; Prüfprinzip C4. Kein Ergebnis.
 
 > ⭐ **48.16 R48 (g) BERICHTIGT durch R54 (49.2)** (Fable 30a R54, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.16 R48 (d) ERGÄNZT durch R60 (51.5)** (Fable 01a R60, TB-129, 02.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 1, Tabelle, Zeile 4; 1, Tabelle, Zeile 3; 2.1; 2.2; 2.5; 7, Tabelle, Zeile (d); 8.1; 9, erster Absatz. Voraussetzung gemessen: 50.1. Abschnitt 10: Indexzeile, keine Marke.

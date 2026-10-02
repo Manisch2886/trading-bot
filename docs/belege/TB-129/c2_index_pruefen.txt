@@ -1,0 +1,7 @@
+Zeilenangaben im Index: 212; mit Markenwort: 212
+Indexzeilen E-2: 6 (Soll 6)
+Marken TB-129 im Register: 14; mit ihrer Zeile in Index-Abschnitt 6: 14 (Soll 14/14)
+C3: 6 Zeilen aus dem Auftrag; im Block '### Indexzeilen aus Fable 01a' zeichengleich: ja
+Abschnittstabelle: 52/52 Zeilen gleich den Koepfen der Abschnittsdateien
+rc 0
+rc 0

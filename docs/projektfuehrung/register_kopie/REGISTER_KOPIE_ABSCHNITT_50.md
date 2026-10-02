@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 50 (von 0–50) — Register-Z. 10916–11094 — Commit db108a68ec57316250ca792a0673b5932dd0f0e8 — 2026-10-01 — Original sha256 b58046592205bfac803f2e590385924dc5c0fd80fa7943c9a9d5cff40cfbbea1 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 50 (von 0–51) — Register-Z. 10955–11137 — Commit f63ad4cbd1230427305a24ac3d7467b83f088fd2 — 2026-10-02 — Original sha256 7f74b0e5a746cbc720b7b7c20af83acddd32d6652c3b57099f18769d3d4b16c4 — KOPIE, nicht das Register
 
 ## 50. Tatsachennotizen zu E-2 (TB-126)
 
@@ -158,6 +158,9 @@ DIE ROHERGEBNISSE - DER VERTRAG
 
 R53 nennt die Regel, nicht die Werte (30a, „Unsicher“ zu Frage 1). Wörtlich addiert ergäbe „oberste Stufe zuzüglich der festen Fenster“ bei den zwei Volatility-Breakout-Bots L + 20 (Bollinger-Fenster 20). Aus dem Code hergeleitet ist der erste Balken, an dem die Einstiegsbedingung einer Zelle definiert ist, `BB_PERIOD + L − 1`, also L + 19. Das Bollinger-Fenster über `close` und das Squeeze-Fenster L über `bb_width` sind zwei hintereinanderliegende rollende Fenster ohne `min_periods`, die sich einen Balken teilen (`docs/belege/TB-124/b1_herleitung.txt`, je Stufe von `bb_lookback` und Voreinstellung; Nachtrag 1 zu TB-124). Dieser Eintrag liest R53 als den hergeleiteten Wert, also den ersten definierten Index, nicht als Summe von Fensterlängen. Das ist eine Lesart des steuernden Chats; sie geht mit der nächsten Anfrage an Fable zur Bestätigung. Für die übrigen sieben Bots ist der Vorlauf noch nicht hergeleitet; das geschieht mit R53 (a) (50.7).
 
+> ⭐ **50.5 ERGÄNZT durch R57 (51.2): die Lesart ist bestätigt** (Fable 01a R57, TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 50.6 Tatsachennotiz zu R24 (47.7) — Entscheid des Betreibers
 
 Zur Entscheidungsvorlage in R24 hat der Betreiber am 29.09.2026 per Auswahlkarte „(a) So lassen“ gewählt, die Empfehlung des Verfahrensprüfers (T116-5; `docs/projektfuehrung/UEBERGABE_ARCHIV.md`, Nachtrag 29.09.2026, 12:25, und Umzug 29.09.2026, 20:48, Block 6). Ein Deckel je Bot vor dem Netting ist damit nicht registriert.
@@ -179,3 +182,4 @@ Zur Entscheidungsvorlage in R24 hat der Betreiber am 29.09.2026 per Auswahlkarte
 | 11 | R31 (b), R49 (e): Regeln für das Regelwerk (Freigabe nennt die Tests; Marken nennen Bezeichner) | Dokumentationsauftrag |
 | 12 | Lesarten und Reibung: 50.5 (Zählweise), R48 (d) (Registertext gilt, wo der Code die Grösse nicht hat), R53 („Literal mit Test“ gegen „nicht als Literal“) | nächste Anfrage an Fable |
 | 13 | R26: Lauf von `auswertung.py --bot` unter dem Modus an einem Stand nach `0f56aeb` | vor dem Tag, mit den Tag-Vorbedingungen |
+
