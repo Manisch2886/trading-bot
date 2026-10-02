@@ -1,0 +1,59 @@
+# TB-129 0d Vorpruefung am Commit 477cef2 (477cef2dca331eefc55ecff9a6a190f5e0b94d34)
+Baum am Commit ausgepackt: 16 Dateien nach /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/1e4ba8c4-08da-4b85-a941-1a04808cebd0/scratchpad/tb129_s0
+   data/BTCUSDT_1d.csv
+   data/ETHUSDT_1d.csv
+   docs/VORREGISTRIERUNG_neuselektion.md
+   docs/belege/TB-112/a2_laufbereich.txt
+   docs/projektfuehrung/BACKLOG.md
+   docs/projektfuehrung/FABLE_ANTWORT_2026-10-01a_anfangsbestand_vorlauf_exposure_marken.md
+   docs/projektfuehrung/FABLE_DIALOG_INDEX.md
+   research/exposure_messung/auswertung.py
+   research/exposure_messung/bot_lauf.py
+   research/faltenplan_neun/faltenplan_neun.py
+   research/vorregistrierung/auswertung.py
+   research/vorregistrierung/faltenplan.py
+   research/vorregistrierung/registerdaten.py
+   shared/paths.py
+   strategies/volatility_breakout/backtest_breakout.py
+   strategies/volatility_breakout_crypto/backtest_breakout.py
+## Nr. 1-4: Pruefskript aus Anhang A gegen den Baum am Commit
+Marken: 14 an 11 Einfuegestellen
+je Abschnitt: 1: 1, 4: 2, 7: 1, 8: 2, 16: 1, 25: 1, 27: 1, 43: 1, 48: 1, 49: 2, 50: 1
+Anker mit Zahl 1 (Original): 14 von 14
+Anker mit Zahl 1 (nach Simulation): 14 von 14
+Bloecke: 7 | Ueberschriften: 7 max. Laenge 115
+Fundstellen: 43 | Zaehlungen: 7 | Kalender: 2 Dateien
+Git-Tatsachen: 3 - von der Sitzung mit git zu pruefen
+rc 0: alles wie angegeben
+Pruefskript rc 0
+## Nr. 1 je Marke
+Nr  1 R36: Anker 1x, Ankerzeile 61 ja, nach Z. 81 ja
+Nr  2 R48: Anker 1x, Ankerzeile 481 ja, nach Z. 517 ja
+Nr  3 R60: Anker 1x, Ankerzeile 481 ja, nach Z. 517 ja
+Nr  4 R37: Anker 1x, Ankerzeile 794 ja, nach Z. 805 ja
+Nr  5 R36: Anker 1x, Ankerzeile 864 ja, nach Z. 873 ja
+Nr  6 R55: Anker 1x, Ankerzeile 864 ja, nach Z. 873 ja
+Nr  7 R21: Anker 1x, Ankerzeile 2200 ja, nach Z. 2212 ja
+Nr  8 R58: Anker 1x, Ankerzeile 4636 ja, nach Z. 4652 ja
+Nr  9 R56: Anker 1x, Ankerzeile 5094 ja, nach Z. 5164 ja
+Nr 10 R33: Anker 1x, Ankerzeile 9652 ja, nach Z. 9673 ja
+Nr 11 R60: Anker 1x, Ankerzeile 10834 ja, nach Z. 10851 ja
+Nr 12 R57: Anker 1x, Ankerzeile 10895 ja, nach Z. 10898 ja
+Nr 13 R59: Anker 1x, Ankerzeile 10895 ja, nach Z. 10898 ja
+Nr 14 R57: Anker 1x, Ankerzeile 11068 ja, nach Z. 11072 ja
+## Nr. 3
+'## 51.' im Register: 0 (Soll 0); Zeilen mit '> R56 — ': 0 (Soll 0)
+## Nr. 4, Git-Tatsachen
+docs/projektfuehrung/FABLE_UEBERGABE_2026-10-01_messung_steuernder_chat.md: Commits ['7238842', 'eaea530'] (Soll ['7238842', 'eaea530']) ja
+  am eaea530: Ueberschrift mit '— Fassung 2 (': 1x ['## Eröffnungstext für den neuen Fable-Chat, wörtlich — Fassung 2 (ca. 21:45, nach Betreiberentscheid F1–F6, 21:25)']
+  am 7238842: Ueberschrift mit '— Fassung 3 (': 1x ['## Eröffnungstext für den neuen Fable-Chat, wörtlich — Fassung 3 (ca. 22:50, nach TB-127)']
+  am eaea530: Ueberschrift mit '— Fassung 3 (': 0x (Soll 0)
+docs/projektfuehrung/FABLE_UEBERGABE_2026-10-01_neuer_chat.md: Commits ['7238842'] (Soll ['7238842']) ja
+docs/projektfuehrung/FABLE_ANTWORT_2026-10-01a_anfangsbestand_vorlauf_exposure_marken.md: Commits ['7238842'] (Soll ['7238842']) ja
+Commit-Datum eaea530: 2026-10-01 (Soll 2026-10-01) ja
+Commit-Datum 7238842: 2026-10-02 (Soll 2026-10-02) ja
+rc 0: alles wie angegeben
+rc 0
+## Zusatz (Sitzung): Ueberschriften 'Fassung' in FABLE_UEBERGABE_2026-10-01_messung_steuernder_chat.md am 477cef2
+18:## Eröffnungstext für den neuen Fable-Chat, wörtlich — Fassung 2 (ca. 21:45, nach Betreiberentscheid F1–F6, 21:25)
+43:## Eröffnungstext für den neuen Fable-Chat, wörtlich — Fassung 3 (ca. 22:50, nach TB-127)
