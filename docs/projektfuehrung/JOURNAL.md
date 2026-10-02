@@ -9905,6 +9905,41 @@ Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
 
 ---
 
+## EC — TB-131: Regelwerk-Nachtrag 02.10.2026 — E1–E5 per Skript aus dem Auftrag in `ARBEITSWEISE.md` und `BACKLOG.md` (Auftragstext am Antwortende vor der Umzugsampel, Fehler Nr. 17/18/19, Teilmessung, T7, R65 (a), Sperre des Arbeitsbaums, Folgeauftrag, Abnahme TB-130), C3 5/5 zeichengleich, numstat 8/0 · 6/0; `ampel.py` liest `null` als 0 und zählt leere Schritte nicht, Probe mit Gegenprobe 6/6 (02.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-131_regelwerk_nachtrag_ampel.md`*
+
+**Quelle:** Mac-Sitzung **TB-131** (Hauptordner), 02.10.2026, Eingang `e8cfff8`. Commits `5d4f843` (Schritt 0),
+`002aa58` (A), `278cf0f` (B), `a50aeed` (C) und der Abgabe-Commit. Belege `docs/belege/TB-131/`. Freigabe: Handwerk
+pauschal (26.09.2026); E1 vom Betreiber am 02.10.2026, 10:45, wörtlich verlangt. Keine Rückfrage an den Betreiber.
+Kein Abbruchkriterium ausgelöst.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a 3/3 wie Soll, in den Scratch vor dem Belegordner; 0b ARBEITSWEISE 2389 Z., BACKLOG 281 Z., `ampel.py` md5 `0c42ee78…`, 35 Z. — alles wie die Vorzählung des steuernden Chats |
+| ⭐ **A/C** | E1–E5 je Anker 1, ausgeführt, erste Zeile nachher 1; C3 (eigener Parser) 5/5 als Block an Zeilengrenzen; numstat ARBEITSWEISE 8/0, BACKLOG 6/0 |
+| ⭐ **B** | `ampel.py` aus dem Codeblock des Auftrags: md5 `997ce08b…`, 40 Z., numstat 7/2. Probe an zwei erfundenen Protokollen: alt(P1) = neu(P1) bytegleich; alt(P2) rc 1 (`TypeError` `int` + `NoneType`, Python 3.9.6); neu(P2) = neu(P1) bytegleich |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Die Probe mit Gegenprobe deckt sich mit der Vorab-Probe des steuernden Chats im Container** — auch unter 3.9.6 auf dem Mac. Ein Werkzeugfix mit erfundenem Fehlerfall und alter Fassung als Gegenprobe ist ohne echte Sitzungsdaten prüfbar |
+| | **`sed` über eine Vorlage ersetzt auch den Vorlagenvermerk.** Die globale Pfadersetzung machte aus „Vorlage: TB-128“ einen Selbstverweis; der Vermerk gehört vor der Ersetzung geschützt oder danach geprüft |
+
+### Was offen bleibt
+
+- `ARBEITSWEISE.md` und `BACKLOG.md` in der Ablage erneuern (steuernder Chat; `BACKLOG.md` erst nach der 27.4-Prüfung).
+- Aus ERGEBNIS_TB-128 unverändert: K2h/K2f; die drei Trägerstellen; Fables 29a Abschnitt 1; Sonnet-Probe;
+  `registerkopie_abschnitte.py` entfernen (Betreiberentscheid).
+- Nächste Journalkennung nach EC: **ED**.
+
+*Geschrieben 02.10.2026 von der Mac-Sitzung TB-131. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
