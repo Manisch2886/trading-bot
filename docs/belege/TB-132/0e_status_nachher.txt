@@ -1,0 +1,16 @@
+?? docs/belege/TB-132/0a_pruefung.txt
+?? docs/belege/TB-132/0a_status.txt
+?? docs/belege/TB-132/0b_abschnitt10_vorher.txt
+?? docs/belege/TB-132/0b_ausgang.sh
+?? docs/belege/TB-132/0b_ausgang.txt
+?? docs/belege/TB-132/0b_erzeugt_vorher.txt
+?? docs/belege/TB-132/0c_basis.txt
+?? docs/belege/TB-132/0d_vorpruefung.py
+?? docs/belege/TB-132/0d_vorpruefung.txt
+?? docs/belege/TB-132/0e_probe_vergleich.txt
+?? docs/belege/TB-132/0e_pycache.txt
+?? docs/belege/TB-132/0e_status_nachher.txt
+?? docs/belege/TB-132/a4_eintrag.py
+?? docs/belege/TB-132/probe_lock_r71.txt
+?? docs/belege/TB-132/probe_lock_r71_rc.txt
+?? docs/belege/TB-132/probe_lock_r71_stderr.txt

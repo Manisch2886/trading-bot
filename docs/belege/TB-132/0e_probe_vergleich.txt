@@ -1,0 +1,6 @@
+Probe: docs/belege/TB-132/probe_lock_r71.txt
+Kopfzeile 3:   pandas 2.3.3, numpy 2.0.2, Python 3.9.6
+Zeilen ab 'A - Faelle': 20 (Vergleich 20)
+letzte Zeile: ERGEBNIS: Aussage bestaetigt unter pandas 2.3.3 -> Rueckgabewert 0
+rc 0: alles wie angegeben
+rc 0

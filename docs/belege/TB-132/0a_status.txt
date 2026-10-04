@@ -1,0 +1,10 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-132_register_fable_02c.md
+?? docs/belege/TB-132/
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-02b_zeitachse_vertrag_benchmarkdatei.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-02c_messung_vor_eintrag_r66_r71.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-02b_zeitachse_vertrag_benchmarkdatei.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-02c_kalender_dsr_embargo_lueckentag.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-02b_eroeffnung.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-02c_eroeffnung.md
