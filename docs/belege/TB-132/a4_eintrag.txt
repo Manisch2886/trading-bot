@@ -1,0 +1,12 @@
+# TB-132 A4 echter Lauf, HEAD f32b5c7, 2026-10-04 08:54:26 +0200
+## git diff --quiet 57ae0d8 -- Auftrag Quelle
+rc 0
+## Einsetzen
+Register: ./docs/VORREGISTRIERUNG_neuselektion.md
+Marken gesetzt am alten Ort: 21 an 13 Einfuegestellen
+R-Bloecke: 8 (R66-R73)
+Zeilen vorher: 11313  nachher: 11471  eingefuegt: 158
+sha256 nachher: 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff
+rc 0
+## cmp Register Probekopie
+cmp rc 0

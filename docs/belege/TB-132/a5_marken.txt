@@ -1,0 +1,39 @@
+# TB-132 A5 Ueberschriften, Ketten und Marken: Register docs/VORREGISTRIERUNG_neuselektion.md, Auftrag am Commit 57ae0d8, Datum 04.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+53.1: Ueberschrift gleich, Kette gleich
+53.2: Ueberschrift gleich, Kette gleich
+53.3: Ueberschrift gleich, Kette gleich
+53.4: Ueberschrift gleich, Kette gleich
+53.5: Ueberschrift gleich, Kette gleich
+53.6: Ueberschrift gleich, Kette gleich
+53.7: Ueberschrift gleich, Kette gleich
+53.8: Ueberschrift gleich, Kette gleich
+Ueberschriften: 8/8, Ketten: 8/8 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Nr  1 R66  15.3 (a)                     gesetzt Zeile 1449
+Nr  2 R66  15.3 (c)                     gesetzt Zeile 1452
+Nr  3 R72  23.3, Registertext 3b (c)    gesetzt Zeile 3947
+Nr  4 R71  23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse gesetzt Zeile 3975
+Nr  5 R72  23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse gesetzt Zeile 3978
+Nr  6 R73  Abschnitt 27                 gesetzt Zeile 5214
+Nr  7 R68  48.1 (R33)                   gesetzt Zeile 10794
+Nr  8 R68  48.5 (R37)                   gesetzt Zeile 10825
+Nr  9 R67  48.7 (R39)                   gesetzt Zeile 10842
+Nr 10 R69  48.7 (R39)                   gesetzt Zeile 10845
+Nr 11 R72  48.16 (R48 (d))              gesetzt Zeile 10931
+Nr 12 R69  51.5 (R60)                   gesetzt Zeile 11238
+Nr 13 R70  51.6 (R61)                   gesetzt Zeile 11251
+Nr 14 R66  52.2 (R64)                   gesetzt Zeile 11318
+Nr 15 R68  52.2 (R64)                   gesetzt Zeile 11321
+Nr 16 R69  52.2 (R64)                   gesetzt Zeile 11324
+Nr 17 R71  52.2 (R64)                   gesetzt Zeile 11327
+Nr 18 R72  52.2 (R64)                   gesetzt Zeile 11330
+Nr 19 R70  52.3 (R65)                   gesetzt Zeile 11340
+Nr 20 R66  52.4, nach der Tabelle       gesetzt Zeile 11358
+Nr 21 R69  52.4, nach der Tabelle       gesetzt Zeile 11361
+Marken gesetzt: 21/21; Markenzeilen 'TB-132, 04.10.2026' im Register: 21 (Soll 21)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 965-1171, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A

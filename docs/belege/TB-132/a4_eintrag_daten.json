@@ -1,0 +1,174 @@
+{
+ "register": "./docs/VORREGISTRIERUNG_neuselektion.md",
+ "S0": "57ae0d8",
+ "marken": [
+  {
+   "nr": 1,
+   "R": 66,
+   "stelle": "15.3 (a)",
+   "nach_alt": 1447,
+   "zeile_neu": 1449,
+   "m1": "> ⭐ **15.3 (a) PRÄZISIERT durch R66 (53.1)** (Fable 02c R66, Unterpunkte (a) und (b), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 2,
+   "R": 66,
+   "stelle": "15.3 (c)",
+   "nach_alt": 1447,
+   "zeile_neu": 1452,
+   "m1": "> ⭐ **15.3 (c) PRÄZISIERT durch R66 (53.1)** (Fable 02c R66, Unterpunkt (c), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 3,
+   "R": 72,
+   "stelle": "23.3, Registertext 3b (c)",
+   "nach_alt": 3939,
+   "zeile_neu": 3947,
+   "m1": "> ⭐ **23.3, Registertext 3b (c) PRÄZISIERT durch R72 (53.7)** (Fable 02c R72, Unterpunkt (b), vom steuernden Chat nach R65 (a) bestimmt, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 4,
+   "R": 71,
+   "stelle": "23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse",
+   "nach_alt": 3964,
+   "zeile_neu": 3975,
+   "m1": "> ⭐ **23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse BERICHTIGT durch R71 (53.6)** (Fable 02c R71, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 5,
+   "R": 72,
+   "stelle": "23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse",
+   "nach_alt": 3964,
+   "zeile_neu": 3978,
+   "m1": "> ⭐ **23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse ERGÄNZT durch R72 (53.7)** (Fable 02c R72, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 6,
+   "R": 73,
+   "stelle": "Abschnitt 27",
+   "nach_alt": 5197,
+   "zeile_neu": 5214,
+   "m1": "> ⭐ **Abschnitt 27 ERGÄNZT durch R73 (53.8)** (Fable 02c R73, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 7,
+   "R": 68,
+   "stelle": "48.1 (R33)",
+   "nach_alt": 10774,
+   "zeile_neu": 10794,
+   "m1": "> ⭐ **48.1 R33 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 8,
+   "R": 68,
+   "stelle": "48.5 (R37)",
+   "nach_alt": 10802,
+   "zeile_neu": 10825,
+   "m1": "> ⭐ **48.5 R37 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 9,
+   "R": 67,
+   "stelle": "48.7 (R39)",
+   "nach_alt": 10816,
+   "zeile_neu": 10842,
+   "m1": "> ⭐ **48.7 R39 ERGÄNZT durch R67 (53.2)** (Fable 02c R67, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 10,
+   "R": 69,
+   "stelle": "48.7 (R39)",
+   "nach_alt": 10816,
+   "zeile_neu": 10845,
+   "m1": "> ⭐ **48.7 R39 ERGÄNZT durch R69 (53.4): R39 ist bestätigt** (Fable 02c R69, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 11,
+   "R": 72,
+   "stelle": "48.16 (R48 (d))",
+   "nach_alt": 10899,
+   "zeile_neu": 10931,
+   "m1": "> ⭐ **48.16 R48 (d) ERGÄNZT durch R72 (53.7)** (Fable 02c R72, Unterpunkt (c), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 12,
+   "R": 69,
+   "stelle": "51.5 (R60)",
+   "nach_alt": 11203,
+   "zeile_neu": 11238,
+   "m1": "> ⭐ **51.5 R60 PRÄZISIERT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 13,
+   "R": 70,
+   "stelle": "51.6 (R61)",
+   "nach_alt": 11213,
+   "zeile_neu": 11251,
+   "m1": "> ⭐ **51.6 R61 PRÄZISIERT durch R70 (53.5)** (Fable 02c R70, Unterpunkt (a), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 14,
+   "R": 66,
+   "stelle": "52.2 (R64)",
+   "nach_alt": 11277,
+   "zeile_neu": 11318,
+   "m1": "> ⭐ **52.2 R64 ERGÄNZT durch R66 (53.1)** (Fable 02c R66, zu (e), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 15,
+   "R": 68,
+   "stelle": "52.2 (R64)",
+   "nach_alt": 11277,
+   "zeile_neu": 11321,
+   "m1": "> ⭐ **52.2 R64 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 16,
+   "R": 69,
+   "stelle": "52.2 (R64)",
+   "nach_alt": 11277,
+   "zeile_neu": 11324,
+   "m1": "> ⭐ **52.2 R64 PRÄZISIERT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 17,
+   "R": 71,
+   "stelle": "52.2 (R64)",
+   "nach_alt": 11277,
+   "zeile_neu": 11327,
+   "m1": "> ⭐ **52.2 R64 PRÄZISIERT durch R71 (53.6): erster Kurstag** (Fable 02c R71, TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 18,
+   "R": 72,
+   "stelle": "52.2 (R64)",
+   "nach_alt": 11277,
+   "zeile_neu": 11330,
+   "m1": "> ⭐ **52.2 R64 PRÄZISIERT durch R72 (53.7): Benchmark-Tag** (Fable 02c R72, Unterpunkt (b), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 19,
+   "R": 70,
+   "stelle": "52.3 (R65)",
+   "nach_alt": 11284,
+   "zeile_neu": 11340,
+   "m1": "> ⭐ **52.3 R65 PRÄZISIERT durch R70 (53.5)** (Fable 02c R70, Unterpunkt (a), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 20,
+   "R": 66,
+   "stelle": "52.4, nach der Tabelle",
+   "nach_alt": 11299,
+   "zeile_neu": 11358,
+   "m1": "> ⭐ **52.4, Zeile „R64 (52.2), zweite“ ERGÄNZT durch R66 (53.1)** (Fable 02c R66, Unterpunkte (a) und (e), TB-132, 04.10.2026)."
+  },
+  {
+   "nr": 21,
+   "R": 69,
+   "stelle": "52.4, nach der Tabelle",
+   "nach_alt": 11299,
+   "zeile_neu": 11361,
+   "m1": "> ⭐ **52.4, Zeile „R64 (52.2) (a)“ BERICHTIGT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026)."
+  }
+ ]
+}

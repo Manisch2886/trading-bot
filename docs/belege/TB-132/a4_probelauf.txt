@@ -1,0 +1,45 @@
+# TB-132 A4 Probelauf, HEAD f32b5c7, 2026-10-04 08:54:11 +0200
+Register a749678043f32e5c, Kopie /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/45bc2232-92e4-447d-bfdc-e3fca6214858/scratchpad/a4_probe_085411.md
+## git diff --quiet 57ae0d8 -- Auftrag Quelle
+rc 0
+## Einsetzen gegen die Kopie
+Register: /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/45bc2232-92e4-447d-bfdc-e3fca6214858/scratchpad/a4_probe_085411.md
+Marken gesetzt am alten Ort: 21 an 13 Einfuegestellen
+R-Bloecke: 8 (R66-R73)
+Zeilen vorher: 11313  nachher: 11471  eingefuegt: 158
+sha256 nachher: 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff
+rc 0
+## Register selbst unberuehrt: a749678043f32e5c
+## a5_r_diff.py
+Ergebnis: 8/8 rc 0
+rc 0
+## a5_mutation.py
+a5_r_diff.py gegen die Kopie: rc 1 (Soll 1)
+rc 0
+## a5_zitate.py
+Ergebnis: 2/2 rc 0
+rc 0
+## a5_marken.py
+# TB-132 A5 Ueberschriften, Ketten und Marken: Register /private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/45bc2232-92e4-447d-bfdc-e3fca6214858/scratchpad/a4_probe_085411.md, Auftrag am Commit 57ae0d8, Datum 04.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+53.1: Ueberschrift gleich, Kette gleich
+53.2: Ueberschrift gleich, Kette gleich
+53.3: Ueberschrift gleich, Kette gleich
+53.4: Ueberschrift gleich, Kette gleich
+53.5: Ueberschrift gleich, Kette gleich
+53.6: Ueberschrift gleich, Kette gleich
+53.7: Ueberschrift gleich, Kette gleich
+53.8: Ueberschrift gleich, Kette gleich
+Ueberschriften: 8/8, Ketten: 8/8 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Marken gesetzt: 21/21; Markenzeilen 'TB-132, 04.10.2026' im Register: 21 (Soll 21)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 965-1171, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A
+rc 0
+## numstat Original -> Kopie
+158	0
+## Zeilen der Kopie: 11471
+KOPIE=/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/45bc2232-92e4-447d-bfdc-e3fca6214858/scratchpad/a4_probe_085411.md
