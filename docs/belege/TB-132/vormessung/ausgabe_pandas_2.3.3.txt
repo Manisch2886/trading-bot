@@ -1,0 +1,25 @@
+R71-Probe: /sessions/rcw-01qjmbvmvdz3gdf4vkyoo9c5/mnt/trading-bot/research/vorregistrierung/benchmark.py
+  SHA-256 aeeec9b89bdadd1b2dc2be76b722dc90c328c9482014bbbbfcabd78edccae219
+  pandas 2.3.3, numpy 2.2.6, Python 3.10.12
+  Weg: je_bot -> tagesschluss (synthetische CSV) -> tagesgenau -> bh_tagesrenditen; Importe faltenplan/registerdaten/faltenschranke_messung/paths sind Attrappen.
+
+A - Faelle, die die Aussage pruefen (bestimmen den Rueckgabewert)
+Fall (i): OK — erster Kurstag T0=2021-12-20 fehlt: True; weitere fehlende Tage: 0; Handelstage je Falte nach je_bot {'2021': 9, '2022': 10} bei 10/10 Kurstagen (also einmal, nicht je Falte; erster Tag der Falte 2022 T10=2022-01-03 steht in der Reihe: True); (i-b) erste Falte beginnt nach dem ersten Kurstag: {'A': 9, 'B': 10} bei 9/10 Kurstagen, in keiner Falte fehlt ein Tag; FutureWarning fill_method: nein
+Fall (ii): OK — Lueckentag T6=2021-12-28 in der Reihe: True; Folgetag T7=2021-12-29 in der Reihe: True; fehlende Tage ausser dem ersten: 0; beide Darstellungen der Luecke gleich: True; FutureWarning fill_method: ja
+Fall (iv): OK — Tage nach dem letzten Kurs von X (T12=2022-01-05 bis T19=2022-01-14) in der Reihe: 8 von 8; fehlende Tage ausser dem ersten: 0; FutureWarning fill_method: ja
+Fall (v): OK — Handelbar-Tag von Y T8=2021-12-30 in der Reihe: True; fehlende Tage ausser dem ersten: 0; FutureWarning fill_method: nein
+Fall (vi): OK — T8=2021-12-30 (Y handelbar mit Kurs, X ohne Kurs) in der Reihe: True, Wert 0.000000; fehlende Tage ausser dem ersten: []; beide Darstellungen gleich: True; FutureWarning fill_method: ja
+Fall (vii): OK — T8=2021-12-30 (erster Kurstag von Y ab Handelbar-Tag, X seit T5=2021-12-27 ohne Kurs) in der Reihe: True, Wert 0.000000; fehlende Tage ausser dem ersten: []; FutureWarning fill_method: ja
+Fall (viii): OK — T6=2021-12-28 (nur Y mit Kurs) in der Reihe: True; T7=2021-12-29 (nur X mit Kurs, X kommt aus der Luecke) in der Reihe: True; fehlende Tage ausser dem ersten: []; beide Darstellungen gleich: True; FutureWarning fill_method: ja
+
+B - Faelle, die nur das Verhalten zeigen (ohne Einfluss auf den Rueckgabewert)
+Fall (ii): VERHALTEN — Lueckentag T6=2021-12-28: X traegt 0 bei (aufgefuellt; Mittel ueber X und Y). Folgetag T7=2021-12-29: X traegt die Rendite ueber die Luecke bei (letzter Kurs vor der Luecke -> heute).
+Fall (iii): VERHALTEN — einziges Symbol X ohne Kurs an T6=2021-12-28: Tag in der Reihe: False (kein Symbol traegt einen Kurs - die Aussage ist nicht beruehrt); Folgetag T7=2021-12-29 traegt die Rendite ueber die Luecke (T5 -> T7); beide Darstellungen gleich: True; FutureWarning fill_method: nein
+Fall (iii-b): VERHALTEN — X ohne Kurs an T6=2021-12-28, Y steht in der Universumsdatei und traegt dort einen Kurs, ist aber erst ab T15=2022-01-10 handelbar: Tag in der Reihe: False (ein Kurstag des Marktes nach R66 (a), aber kein Benchmark-Tag); FutureWarning fill_method: nein
+Fall (iv): VERHALTEN — nach dem letzten Kurs von X (T11=2022-01-04), an den 8 Folgetagen: X traegt 0 bei (aufgefuellt; Mittel ueber X und Y).
+Fall (v): VERHALTEN — Handelbar-Tag von Y T8=2021-12-30: nur X (Y hat an seinem Handelbar-Tag noch keine Rendite); Folgetag T9=2021-12-31: Mittel ueber X und Y.
+
+Nebenpruefung (R66 (a), ohne Einfluss auf den Rueckgabewert): in 17 Laeufen stehen 0 Tage in der Reihe, an denen kein handelbares Symbol einen Kurs traegt.
+FutureWarning (Wortlaut): The default fill_method='pad' in DataFrame.pct_change is deprecated and will be removed in a future version. Either fill in any non-leading NA values prior to calling pct_change or specify 'fill_method=None' to not fill NA values.
+
+ERGEBNIS: Aussage bestaetigt unter pandas 2.3.3 -> Rueckgabewert 0
