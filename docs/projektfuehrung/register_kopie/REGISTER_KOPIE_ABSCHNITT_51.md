@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 51 (von 0–52) — Register-Z. 11162–11262 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 51 (von 0–53) — Register-Z. 11195–11301 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
 
 ## 51. Fable 01a — Registerblock R56–R62 (TB-129)
 
@@ -43,6 +43,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **51.5 R60 (b) und (c) PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, TB-130, 02.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **51.5 R60 PRÄZISIERT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 4.2; 48.16 (R48). Voraussetzung gemessen: 51.8. Lesart, vorläufig: 51.9. Offen: 51.10 Nr. 6.
 
 ### 51.6 R61 — Marken nach E-2 (Regel, Nachtrag, eine Berichtigung)
@@ -51,6 +54,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Quelle des Grundes: 34 (Marke am alten Ort, nach der Wiedergabe in 43.0), R51, Kopf von 48 („Vereinigung“), Wortlaut der genannten Orte, Abschnitt 14. Kein Ergebnis.
 
 > ⭐ **51.6 R61 (b) PRÄZISIERT durch R65 (52.3)** (Fable 02a R65, Unterpunkt (a), TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **51.6 R61 PRÄZISIERT durch R70 (53.5)** (Fable 02c R70, Unterpunkt (a), TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken, nachgetragen nach (b): 1, Tabelle, Zeile 3; 4.2; 7, Tabelle, Zeile (b); 8, Tabelle (R36 und R55); 16.4, „Prüfung vor dem Tag“; 43.2, Eintrag 43-7. Voraussetzung gemessen: 51.8. Orte ohne Marke: 51.10 Nr. 7.

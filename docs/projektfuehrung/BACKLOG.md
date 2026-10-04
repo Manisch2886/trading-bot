@@ -273,6 +273,16 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **T7, erneut:** Ein `device_commit_files` aus einem schon benutzten Stage-Pfad meldete „written“ und liess die alte Fassung liegen (TB-130, 02.10.2026). Die Regel dazu trägt TB-131 in ARBEITSWEISE 0 ein.
 - **Mit TB-131 (Ausgang im Ergebnis TB-131):** die Regeln aus Fehler Nr. 17, 18 und 19 und aus R65 (a) in ARBEITSWEISE 0; `docs/werkzeuge/ampel.py` liest `null` als 0 und zählt Schritte mit Grösse 0 nicht.
 
+### Aus Fable 02b und 02c (02.10.2026) — Bewertung nach 5b, eingetragen mit TB-132
+
+- **Bewertung 02b:** Nicht eingetragen. Von 56 Zitaten und Verweisen trafen 40 im Wortlaut, 14 sinngemäss, 2 nicht (beide in R68: 2d aus 15.4 ist durch 16.6 ersetzt; „beide Träger“ in R60 (c) meint anderes). Die Messung vor dem Eintrag brachte zwei Tatsachen, die 02b nicht kannte: den Handelskalender nach 17.5 und einen Sharpe im DSR auf den gemeinsamen Tagen. Die Antwort bleibt im Repo; ihre Blöcke R66–R71 sind durch 02c vollständig ersetzt.
+- **Bewertung 02c:** Die Antwort trägt. 98 Zitate und Verweise gemessen: keines trifft nicht, zehn treffen sinngemäss (53.9, letzte Zeile). R66–R73 stehen seit TB-132 im Register, Abschnitt 53; Befunde in 53.9, Offenes in 53.10. Frage 1 anders als die Neigung: Für Aktien gilt der Handelskalender nach 17.5, die Kurstage sind die Probe dazu, eine Abweichung endet mit 2. Die Probe zu R71 lief in TB-132 in der Lock-Umgebung, vor dem Eintrag.
+- **R73:** Die Eröffnung 02.10.c kam im Chat der Antwort 02b an; der Betreiber wählte per Karte, dass dieser Chat antwortet. Fables Ampel: 🔴. Die nächste Anfrage geht an einen neuen Chat (F4).
+- **An Fable, nächste Anfrage:** der Kalendername für die Aktien-Tagesreihe (im Repo steht nur „NYSE“, im Live-Pfad; „XNYS“ führt im gemessenen Fenster einen Handelstag mehr); der Deckelfall nach R68 (d), vor der Öffnung nach R69 (b); zur Kenntnis die Marke an 23.3, Registertext 3b (c), und die sinngemässen Verweise (53.10 Nr. 8 und 9).
+- **Vor dem signierten Tag:** Verfahrensmessung am Snapshot nach R72 (d) (Reihenende, Symbol-Tage Lücke; dabei `open_time` und doppelte Daten, 53.10 Nr. 10); Tagesbasis des DSR mit dem Nebenbefund 50.7 Nr. 3; Wiederholung der Probe, falls sich die pandas-Fassung im Lock ändert (R72 (e)).
+- **Umsetzungsauftrag mit Freigabe (R69 (b)):** planmässige Öffnung von `auswertung.py`: Benchmark-Datei je Bot, zusammen mit R36, R37, R34 und R55; Beispieldaten und Tests in derselben Änderung; neues Abbild.
+- **Anforderungen an den Zellen-Erzeuger aus 02c:** Tagesreihe auf jedem Handelstag ab dem 1. Januar der ersten Selektionsfalte (R66 (a)); Wachen mit Ausgang 2 nach R66 (b), R66 (e) und R67; Falten-Sharpe über die Sharpe-Funktion aus `kennzahlen.py` mit 252, bei Krypto 365 (R66 (c)); Bewertung am Lückentag zum letzten Kurs und Zahl der Positionstage je Bot (R72 (c)); Zeile der Bestätigungsperiode nach R68. `mtm_kern.py` bewertet am Lückentag wie R72 (c); sein Raster und `gebunden` zum Einstand passen nicht von selbst (53.9).
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen

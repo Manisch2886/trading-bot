@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 27 (von 0–52) — Register-Z. 5124–5200 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 27 (von 0–53) — Register-Z. 5139–5218 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
 
 ## 27. Sichtschutz des Verfahrensprüfers (Fable 21g, 21.09.2026)
 
@@ -73,6 +73,9 @@ dieselbe Klasse, gegen die `A1` und `B1` gebaut sind.
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **Abschnitt 27 ERGÄNZT durch R56 (51.1)** (Fable 01a R56, zu 27.4 und 27.6, TB-129, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **Abschnitt 27 ERGÄNZT durch R73 (53.8)** (Fable 02c R73, TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ---

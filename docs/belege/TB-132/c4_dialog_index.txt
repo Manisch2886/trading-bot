@@ -1,0 +1,35 @@
+# TB-132 C4 (HEAD ee43f5f, 2026-10-04 09:10:22 +0200)
+## Handfelder gleich dem Auftrag (cmp): ja
+## dialog_index.py --handfelder docs/belege/TB-132/c4_handfelder.json
+geschrieben: docs/projektfuehrung/FABLE_DIALOG_INDEX.md, 54 Zeilen
+Zeilen im Index: 54, FABLE_ANTWORT_*.md: 54 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 54 von 54
+Status: offen 4, ohne Registertext 12, registriert 38
+rc 0
+## dialog_index.py --pruefen
+Zeilen im Index: 54, FABLE_ANTWORT_*.md: 54 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 54 von 54
+Status: offen 4, ohne Registertext 12, registriert 38
+rc 0
+## Zeile 02a
+| 02a | exposure tage laufbereich marken | Gilt die Lesart 51.9 zu R60 (a), über welche Tage wird die mittlere Exposure gemittelt, und tragen die fünf Orte ohne Marke Marken? | 51.9 gilt je Stelle, nicht je Ordner (R63); gemittelt wird über die Benchmark-Tage, der Schnitt auf die gemeinsamen Tage ist Registertext, dazu eine Wache im Lauf (R64); alle fünf Orte tragen Marken, 25.2 als BERICHTIGT, die Aufzählungen schliessen die Regel aus 34 nicht ab (R65). | registriert | 52 | nein | 02a (gleicher Buchstabe) | `FABLE_ANTWORT_2026-10-02a_exposure_tage_laufbereich_marken.md` |
+## Zeile 02b
+| 02b | zeitachse vertrag benchmarkdatei | Führt die Tagesreihe Tage vor dem ersten Handelbar-Tag und über welche Tage läuft der Falten-Sharpe, wer schliesst fehlende Werte und doppelte Daten aus, ab wann gilt R64 für die Zeile der Bestätigungsperiode, wie heisst die Benchmark-Datei, und trägt 7 (c) eine Marke? | Tagesreihe ab dem 1. Januar der ersten Falte, Falten-Sharpe über alle Tage der Tagesreihe (R66–R71 in erster Fassung). Nicht eingetragen: Die Messung vor dem Eintrag brachte zwei Tatsachen, die die Antwort nicht kannte (17.5; Sharpe im DSR), die erste Voraussetzung zu R68 traf nicht, die zu R71 nur eingeschränkt. Ihre Blöcke sind nie eingetragen worden und durch 02c vollständig ersetzt. | registriert | 53 | nein | 02b (gleicher Buchstabe) | `FABLE_ANTWORT_2026-10-02b_zeitachse_vertrag_benchmarkdatei.md` |
+## Zeile 02c
+| 02c | kalender dsr embargo lueckentag | Welche Quelle gilt für den Handelskalender der Aktien-Tagesreihe, auf welchen Tagen steht der Sharpe im DSR, bleibt R68 ohne 2d, was gilt an Kurslücke und Reihenende im Benchmark, welche Orte tragen Marken, und unter welchen Nummern kommen geänderte Blöcke? | Kalender nach 17.5, die Kurstage sind die Probe, eine Abweichung endet mit 2 (R66); der Sharpe im DSR bleibt wie im Code (R66 (d), (f)); Reihen eindeutig, vollständig und endlich (R67); Zeile der Bestätigungsperiode ab bestaetigung_ab_effektiv (R68); R39 bestätigt, planmässige Öffnung von auswertung.py (R69); Marken (R70); erster Kurstag einmal je Bot (R71); Kurslücke als Tatsachennotiz, Reihenende am Snapshot messen (R72); Anfangsbestand des Chats (R73). Dieselben Nummern, letzte Fassung. | offen | 53 | ja | 02c (gleicher Buchstabe) | `FABLE_ANTWORT_2026-10-02c_kalender_dsr_embargo_lueckentag.md` |
+## Schlusszeile
+54 Antworten. Pflege: nach jeder angenommenen Antwort das Skript laufen lassen, die neue Zeile von Hand füllen, `--pruefen`.
+## git diff --numstat
+4	2	docs/projektfuehrung/FABLE_DIALOG_INDEX.md
+## geänderte Zeilen (diff -U0)
+-| 02a | exposure tage laufbereich marken | Gilt die Lesart 51.9 zu R60 (a), über welche Tage wird die mittlere Exposure gemittelt, und tragen die fünf Orte ohne Marke Marken? | 51.9 gilt je Stelle, nicht je Ordner (R63); gemittelt wird über die Benchmark-Tage, der Schnitt auf die gemeinsamen Tage ist Registertext, dazu eine Wache im Lauf (R64); alle fünf Orte tragen Marken, 25.2 als BERICHTIGT, die Aufzählungen schliessen die Regel aus 34 nicht ab (R65). | offen | 52 | ja | 02a (gleicher Buchstabe) | `FABLE_ANTWORT_2026-10-02a_exposure_tage_laufbereich_marken.md` |
++| 02a | exposure tage laufbereich marken | Gilt die Lesart 51.9 zu R60 (a), über welche Tage wird die mittlere Exposure gemittelt, und tragen die fünf Orte ohne Marke Marken? | 51.9 gilt je Stelle, nicht je Ordner (R63); gemittelt wird über die Benchmark-Tage, der Schnitt auf die gemeinsamen Tage ist Registertext, dazu eine Wache im Lauf (R64); alle fünf Orte tragen Marken, 25.2 als BERICHTIGT, die Aufzählungen schliessen die Regel aus 34 nicht ab (R65). | registriert | 52 | nein | 02a (gleicher Buchstabe) | `FABLE_ANTWORT_2026-10-02a_exposure_tage_laufbereich_marken.md` |
++| 02b | zeitachse vertrag benchmarkdatei | Führt die Tagesreihe Tage vor dem ersten Handelbar-Tag und über welche Tage läuft der Falten-Sharpe, wer schliesst fehlende Werte und doppelte Daten aus, ab wann gilt R64 für die Zeile der Bestätigungsperiode, wie heisst die Benchmark-Datei, und trägt 7 (c) eine Marke? | Tagesreihe ab dem 1. Januar der ersten Falte, Falten-Sharpe über alle Tage der Tagesreihe (R66–R71 in erster Fassung). Nicht eingetragen: Die Messung vor dem Eintrag brachte zwei Tatsachen, die die Antwort nicht kannte (17.5; Sharpe im DSR), die erste Voraussetzung zu R68 traf nicht, die zu R71 nur eingeschränkt. Ihre Blöcke sind nie eingetragen worden und durch 02c vollständig ersetzt. | registriert | 53 | nein | 02b (gleicher Buchstabe) | `FABLE_ANTWORT_2026-10-02b_zeitachse_vertrag_benchmarkdatei.md` |
++| 02c | kalender dsr embargo lueckentag | Welche Quelle gilt für den Handelskalender der Aktien-Tagesreihe, auf welchen Tagen steht der Sharpe im DSR, bleibt R68 ohne 2d, was gilt an Kurslücke und Reihenende im Benchmark, welche Orte tragen Marken, und unter welchen Nummern kommen geänderte Blöcke? | Kalender nach 17.5, die Kurstage sind die Probe, eine Abweichung endet mit 2 (R66); der Sharpe im DSR bleibt wie im Code (R66 (d), (f)); Reihen eindeutig, vollständig und endlich (R67); Zeile der Bestätigungsperiode ab bestaetigung_ab_effektiv (R68); R39 bestätigt, planmässige Öffnung von auswertung.py (R69); Marken (R70); erster Kurstag einmal je Bot (R71); Kurslücke als Tatsachennotiz, Reihenende am Snapshot messen (R72); Anfangsbestand des Chats (R73). Dieselben Nummern, letzte Fassung. | offen | 53 | ja | 02c (gleicher Buchstabe) | `FABLE_ANTWORT_2026-10-02c_kalender_dsr_embargo_lueckentag.md` |
+-52 Antworten. Pflege: nach jeder angenommenen Antwort das Skript laufen lassen, die neue Zeile von Hand füllen, `--pruefen`.
++54 Antworten. Pflege: nach jeder angenommenen Antwort das Skript laufen lassen, die neue Zeile von Hand füllen, `--pruefen`.
+## Felder je Zeile (Status | Fundstelle | offen | Anfrage)
+| 02a | registriert | 52 | nein | 02a (gleicher Buchstabe)
+| 02b | registriert | 53 | nein | 02b (gleicher Buchstabe)
+| 02c | offen | 53 | ja | 02c (gleicher Buchstabe)
+02a: Frage und Entscheidung zeichengleich mit HEAD; geändert nur Status und offen

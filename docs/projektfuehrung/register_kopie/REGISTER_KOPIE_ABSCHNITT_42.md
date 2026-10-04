@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 42 (von 0–52) — Register-Z. 8948–9513 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 42 (von 0–53) — Register-Z. 8966–9531 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
 
 ## 42. Zugriffsklassen, Laufbereich, die vier Rückfälle und ihr Schluss — die Einträge aus Fable 25a, 25b, 25c und die Tatsachennotizen TB-103 bis TB-107 (TB-108, 25.09.2026)
 

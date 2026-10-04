@@ -1,0 +1,11 @@
+# TB-132 C1: registerkopie.py   (HEAD ee43f5f, 2026-10-04 09:09:48 +0200)
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  Abschnitte 0–22  220240 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  Abschnitte 23–36  222495 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  Abschnitte 37–42  232429 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  Abschnitte 43–53  232545 Bytes
+Teil 1: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  220240 Bytes gesamt, Body 220005 Bytes, Abschnitte 0–22  <= 240000
+Teil 2: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  222495 Bytes gesamt, Body 222259 Bytes, Abschnitte 23–36  <= 240000
+Teil 3: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  232429 Bytes gesamt, Body 232193 Bytes, Abschnitte 37–42  <= 240000
+Teil 4: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  232545 Bytes gesamt, Body 232309 Bytes, Abschnitte 43–53  <= 240000
+Bodies aneinander: 906766 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am ee43f5f13395: 906766 Bytes, sha256 9a2cefb77a394a0a (Kopf 9a2cefb77a394a0a) - BYTEGLEICH
+rc 0

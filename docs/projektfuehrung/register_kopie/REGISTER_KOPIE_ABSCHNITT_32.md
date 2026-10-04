@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 32 (von 0–52) — Register-Z. 5691–5901 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 32 (von 0–53) — Register-Z. 5709–5919 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
 
 ## 32. Bedingung (i) rechnet gegen den Horizontbeginn aus 28.4 — Umstellung des Faltenplans von der Datenuhr auf das absolute Datum (TB-80, 21.09.2026)
 

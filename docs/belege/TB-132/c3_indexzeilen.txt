@@ -1,0 +1,7 @@
+# TB-132 C3: Indexzeilen aus Fable 02c (Auftrag am Commit 57ae0d8)
+vorher: 'Indexzeilen aus Fable 02c' 0x (Soll 0); Abschnitt 8 1x (Soll 1); Schluss vor Pflege 1x (Soll 1)
+nachher: '### Indexzeilen aus Fable 02c' 1x (Soll 1); Zeilen zeichengleich im Index: 3/3
+  - **7 (c):** mittlere Exposure des Gewinners, Tage nach R64 (a), (b) und (d) (52.2). Ohne Marke (R70 (a) und (b), 53.5).
+  - **17.5:** Handelskalender der Aktien-Tagesreihe → R66 (a) und (b) (53.1). Ohne Marke (R70 (b), 53.5).
+  - **50.7 Nr. 3:** Tagesbasis des DSR → R66 (f) (53.1). Ohne Marke (R70 (b), 53.5).
+rc 0

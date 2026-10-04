@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 18 (von 0–52) — Register-Z. 3023–3087 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 18 (von 0–53) — Register-Z. 3029–3093 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
 
 ## 18. Tatsachennotiz zu Registertext 5 / 5a — der gezogene Snapshot (TB-55, 19.09.2026)
 

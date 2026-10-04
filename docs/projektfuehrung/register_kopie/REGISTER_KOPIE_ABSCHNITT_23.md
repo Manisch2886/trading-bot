@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 23 (von 0–52) — Register-Z. 3843–4224 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 23 (von 0–53) — Register-Z. 3849–4239 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
 
 ## 23. Berichtigung zu Registertext 3b (c) — der Benchmark wird tagesgenau (TB-66, 20.09.2026)
 
@@ -98,6 +98,9 @@ gefasst; die gemessenen Zahlen kommen in die Berichtigungsnotiz (23.4).
 > Drawdown-Nebenbedingung (Abschnitt 4) und für Rang 3. Bot und Benchmark leben
 > an jedem Tag in derselben Menge.
 
+> ⭐ **23.3, Registertext 3b (c) PRÄZISIERT durch R72 (53.7)** (Fable 02c R72, Unterpunkt (b), vom steuernden Chat nach R65 (a) bestimmt, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ⭐ **Geschlossen in TB-71, 20.09.2026 — der Platzhalter ist gefallen.** An
 seiner Stelle steht der Satz zur Zeitachse, verankert an Registertext 3b (b),
 der Grösse, die es gibt und die registriert ist. Er ist **nicht** Fables erste
@@ -122,6 +125,12 @@ ERSETZT.
 > Drawdown und `DD_Toleranz` über 78 × 100 (TB-66, Nachweis 4). Wird
 > `bh_tagesrenditen` je aus anderem Grund angefasst, ist `fillna(0)` auf diesem
 > Tag eine Berichtigung des Codes an den Satz.
+
+> ⭐ **23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse BERICHTIGT durch R71 (53.6)** (Fable 02c R71, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse ERGÄNZT durch R72 (53.7)** (Fable 02c R72, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **`handelstage`** bleibt unverändert die **W-Spalte** — die Länge des
 gemeinsamen Kalenders.

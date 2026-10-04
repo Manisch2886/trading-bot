@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 15 (von 0–52) — Register-Z. 1363–1813 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 15 (von 0–53) — Register-Z. 1363–1819 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
 
 ## 15. Registernachtrag (TB-36, 15.09.2026)
 
@@ -84,6 +84,12 @@ das ist TB-30b und **nicht** dieser Nachtrag.
 > Trades je Falte wird für den Gewinner **berichtet, nicht bewertet.**
 
 > ⭐ **15.3 (b) ERGÄNZT durch R41 (48.9)** (Fable 29b R41, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **15.3 (a) PRÄZISIERT durch R66 (53.1)** (Fable 02c R66, Unterpunkte (a) und (b), TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **15.3 (c) PRÄZISIERT durch R66 (53.1)** (Fable 02c R66, Unterpunkt (c), TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 *Formel für den Falten-Sharpe: Mittel / Standardabweichung der täglichen

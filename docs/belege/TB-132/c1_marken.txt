@@ -1,0 +1,297 @@
+# TB-132 C1: registerkopie.py --marken  (HEAD ee43f5f, 2026-10-04 09:09:48 +0200)
+# Marken im Register am Commit ee43f5f13395 (2026-10-04); Spalten: Zeile | Abschnitt | Teil | Art | unter | Text (gekuerzt)
+# 'unter' = der letzte Unterabschnitt (### n.m) oder Eintrag (**A1 —, > **R1 —) vor der Zeile
+    6 | - | 1 | MARKE+ | - | > ⭐ **Kopf (Stand 14.09.2026) ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (f), TB-126, 01.10.2026).
+   72 | 1 | 1 | MARKE | 1 | > ⭐ **Festlegung 1 PRÄZISIERT durch Abschnitt 24 (TB-71, 20.09.2026, Betreiberentscheidung 18:15) — der Wortlaut bleibt stehen.** Führendes Mass bleibt der Kapital-Drawdown; gerechnet wird er für die Nebenbedingung auf der täglich
+   74 | 1 | 1 | MARKE | 1 | > ⭐ **Festlegung 4 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkt (a), TB-126, 01.10.2026).
+   77 | 1 | 1 | MARKE | 1 | > ⭐ **Festlegung 3 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkt (j), TB-126, 01.10.2026).
+   80 | 1 | 1 | MARKE+ | 1 | > ⭐ **Festlegung 2 ERGÄNZT (Verweis) durch R51 (48.19)** (Fable 29b R51, TB-126, 01.10.2026).
+   83 | 1 | 1 | MARKE | 1 | > ⭐ **Festlegung 3 PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+  130 | 2 | 1 | MARKE | 2.1 | > ⭐ **2.1 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkt (i), TB-126, 01.10.2026).
+  147 | 2 | 1 | MARKE | 2.2 | > ⭐ **2.2 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkt (h), TB-126, 01.10.2026).
+  150 | 2 | 1 | MARKE+ | 2.2 | > ⭐ **2.2 ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (a), TB-126, 01.10.2026).
+  206 | 2 | 1 | MARKE | 2.5 | > ⭐ **2.5 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkt (f), TB-126, 01.10.2026).
+  247 | 2 | 1 | MARKE+ | 2.7 | > ⭐ **2.7 ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (b), TB-126, 01.10.2026).
+  414 | 3 | 1 | MARKE | 3 | > ⚠️ **ERSETZT durch Abschnitt 15 (Registernachtrag TB-36, 15.09.2026), Registertext 2 und 4.**
+  462 | 3 | 1 | MARKE+ | 3 | > ⭐ **Abschnitt 3 (Zahlenteil) ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (c), TB-126, 01.10.2026).
+  519 | 4 | 1 | MARKE+ | 4.2 | > ⭐ **4.2 ERGÄNZT (Verweis) durch R51 (48.19)** (Fable 29b R51, TB-126, 01.10.2026).
+  522 | 4 | 1 | MARKE | 4.2 | > ⭐ **4.2 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkte (d) und (e), nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+  525 | 4 | 1 | MARKE | 4.2 | > ⭐ **4.2 PRÄZISIERT durch R60 (51.5)** (Fable 01a R60, TB-129, 02.10.2026).
+  528 | 4 | 1 | MARKE | 4.2 | > ⭐ **4.2 PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, Unterpunkt (a), TB-130, 02.10.2026).
+  583 | 4 | 1 | MARKE+ | 4.4 | > ⭐ **4.4 ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (c), TB-126, 01.10.2026).
+  592 | 5 | 1 | MARKE | 5.1 | > ⚠️ **ERSETZT durch Abschnitt 15 (Registernachtrag TB-36, 15.09.2026), Registertext 0, 2 und 4.**
+  646 | 5 | 1 | MARKE | 5.1 | > ⭐ **5.1 Nr. 7 PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, TB-126, 01.10.2026).
+  675 | 5 | 1 | MARKE | 5.3 | > ⚠️ **ERSETZT durch Abschnitt 15 (Registernachtrag TB-36, 15.09.2026), Registertext 3 und 4.**
+  700 | 5 | 1 | MARKE+ | 5.3 | > ⭐ **5.3 ERGÄNZT (Verweis) durch R51 (48.19)** (Fable 29b R51, TB-126, 01.10.2026).
+  810 | 7 | 1 | MARKE | 7 | > ⭐ **7 (d) PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkt (c), TB-126, 01.10.2026).
+  813 | 7 | 1 | MARKE+ | 7 | > ⭐ **7 (a) ERGÄNZT (Verweis) durch R51 (48.19)** (Fable 29b R51, TB-126, 01.10.2026).
+  816 | 7 | 1 | MARKE+ | 7 | > ⭐ **7 (d) ERGÄNZT durch R55 (49.3)** (Fable 30a R55, TB-126, 01.10.2026).
+  819 | 7 | 1 | MARKE | 7 | > ⭐ **7 (b) PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+  862 | 7 | 1 | MARKE+ | 7.1 | > ⭐ **7.1 ERGÄNZT durch R21 (47.4)** (Fable 27c R21, TB-126, 01.10.2026).
+  865 | 7 | 1 | MARKE | 7.1 | > ⭐ **7.1 PRÄZISIERT durch R23 (47.6)** (Fable 27c R23, TB-126, 01.10.2026).
+  890 | 8 | 1 | MARKE | 8 | > ⭐ **8, Tabelle PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+  893 | 8 | 1 | MARKE+ | 8 | > ⭐ **8, Tabelle ERGÄNZT durch R55 (49.3)** (Fable 30a R55, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+  920 | 8 | 1 | MARKE | 8.1 | > ⭐ **8.1 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkt (g), TB-126, 01.10.2026).
+  932 | 9 | 1 | MARKE | 9 | > ⭐ **Abschnitt 9 PRÄZISIERT durch R48 (48.16)** (Fable 29b R48, Unterpunkt (b), TB-126, 01.10.2026).
+ 1025 | 10 | 1 | MARKE+ | 10 | > (ERSETZT-Marke). ⛔ **Der Punkttext oben ist NICHT geändert** — der Vollzug
+ 1228 | 11 | 1 | MARKE+ | 11.2 | > ⭐ **11.2 ERGÄNZT durch R43 (48.11)** (Fable 29b R43, TB-126, 01.10.2026).
+ 1247 | 11 | 1 | MARKE+ | 11.3 | > ⭐ **Abschnitt 11 ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (h), TB-126, 01.10.2026).
+ 1250 | 11 | 1 | MARKE+ | 11.3 | > ⭐ **11.3 ERGÄNZT durch 50.3 und 50.4** (Tatsachennotiz, Vollzug TB-122 und TB-124 nach 37.3, TB-126, 01.10.2026).
+ 1318 | 12 | 1 | MARKE+ | 12 | > ⭐ **Abschnitt 12 ERGÄNZT durch R25 (47.8)** (Fable 27c R25, TB-126, 01.10.2026).
+ 1321 | 12 | 1 | MARKE+ | 12 | > ⭐ **Abschnitt 12 ERGÄNZT durch R26 (47.9)** (Fable 27c R26, TB-126, 01.10.2026).
+ 1324 | 12 | 1 | MARKE+ | 12 | > ⭐ **Abschnitt 12 ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (d), TB-126, 01.10.2026).
+ 1327 | 12 | 1 | MARKE+ | 12 | > ⭐ **Abschnitt 12 ERGÄNZT durch R50 (48.18)** (Fable 29b R50, TB-126, 01.10.2026).
+ 1446 | 15 | 1 | MARKE+ | 15.3 | > ⭐ **15.3 (b) ERGÄNZT durch R41 (48.9)** (Fable 29b R41, TB-126, 01.10.2026).
+ 1449 | 15 | 1 | MARKE | 15.3 | > ⭐ **15.3 (a) PRÄZISIERT durch R66 (53.1)** (Fable 02c R66, Unterpunkte (a) und (b), TB-132, 04.10.2026).
+ 1452 | 15 | 1 | MARKE | 15.3 | > ⭐ **15.3 (c) PRÄZISIERT durch R66 (53.1)** (Fable 02c R66, Unterpunkt (c), TB-132, 04.10.2026).
+ 1473 | 15 | 1 | MARKE+ | 15.3 | > ⭐ **15.3 ERGÄNZT durch R35 (48.3)** (Fable 29b R35, TB-126, 01.10.2026).
+ 1496 | 15 | 1 | MARKE | 15.4 | > ⚠️ **ERSETZT durch Abschnitt 16 (Registernachtrag TB-41, 16.09.2026), 16.6.**
+ 1501 | 15 | 1 | MARKE+ | 15.4 | > ⭐ **2a (15.4 (a)) BERICHTIGT durch R54 (49.2)** (Fable 30a R54, TB-126, 01.10.2026).
+ 1546 | 15 | 1 | MARKE+ | 15.4 | > ⭐ **15.4 ERGÄNZT durch R41 (48.9) und 50.1** (Fable 29b R41, TB-126, 01.10.2026).
+ 1551 | 15 | 1 | UEBERSCHRIFT | 15.5 | ### 15.5 Registertext 3 — Universum *(ersetzt die frühere Fassung vollständig)*
+ 1570 | 15 | 1 | MARKE+ | 15.5 | > ⭐ **(c) ERGÄNZT durch Abschnitt 26 (TB-77, 21.09.2026), 26.4 — der Wortlaut bleibt stehen:** der Vorbehalt gilt für die Jahre im Horizont; der Zehnjahres-Horizont begrenzt seine Reichweite, ändert ihn nicht.
+ 1583 | 15 | 1 | MARKE+ | 15.5 | > ⚠️ **Die Klammer in der Krypto-Zeile rechnet falsch und ist KORRIGIERT in
+ 1606 | 15 | 1 | MARKE | 15.5 | > ⚠️ **ERSETZT durch Abschnitt 16 (Registernachtrag TB-41, 16.09.2026), 16.1.1.**
+ 1623 | 15 | 1 | MARKE | 15.5 | > ⚠️ **ERSETZT durch Abschnitt 16 (Registernachtrag TB-41, 16.09.2026), 16.1.2.**
+ 1661 | 15 | 1 | MARKE+ | 15.5 | > ⭐ **15.5 ERGÄNZT durch R53 (49.1)** (Fable 30a R53, TB-126, 01.10.2026).
+ 1673 | 15 | 1 | MARKE | 15.6 | > ⚠️ **(a) ERSETZT durch Abschnitt 25 (Berichtigung TB-72, 20.09.2026), 25.3 — der Wortlaut bleibt stehen.** Die Neufassung führt (a) und 21.3 (b) als Konjunktion in einem Satz zusammen.
+ 1691 | 15 | 1 | MARKE | 15.6 | > ⭐ **15.6 (c) PRÄZISIERT durch R23 (47.6)** (Fable 27c R23, TB-126, 01.10.2026).
+ 1741 | 15 | 1 | MARKE+ | 15.6 | > ⭐ **15.6 ERGÄNZT (Verweis) durch R51 (48.19)** (Fable 29b R51, TB-126, 01.10.2026).
+ 1764 | 15 | 1 | MARKE | 15.7 | > ⚠️ **ERSETZT durch Abschnitt 16 (Registernachtrag TB-41, 16.09.2026), 16.3.**
+ 1997 | 16 | 1 | UEBERSCHRIFT | 16.3 | ### 16.3 Registertext 5 — Datenstand *(ersetzt die Fassung aus 15.7 vollständig)*
+ 2007 | 16 | 1 | MARKE | 16.3 | > ⚠️ **ERSETZT durch Abschnitt 17 (Registernachtrag TB-48, 18.09.2026), 17.1.**
+ 2021 | 16 | 1 | MARKE | 16.3 | > ⚠️ **PRÄZISIERT durch Abschnitt 17, 17.9** — nicht ersetzt. Als dieser Satz
+ 2032 | 16 | 1 | MARKE | 16.3 | > ⚠️ **ERSETZT durch Abschnitt 17 (Registernachtrag TB-48, 18.09.2026), 17.2.**
+ 2103 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (b) PRÄZISIERT durch R21 (47.4)** (Fable 27c R21, TB-126, 01.10.2026).
+ 2106 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (a) PRÄZISIERT durch R22 (47.5)** (Fable 27c R22, TB-126, 01.10.2026).
+ 2109 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (b) PRÄZISIERT durch R23 (47.6)** (Fable 27c R23, TB-126, 01.10.2026).
+ 2112 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (c) PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, TB-126, 01.10.2026).
+ 2115 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (d) PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, TB-126, 01.10.2026).
+ 2162 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (m) PRÄZISIERT durch R18 (47.1)** (Fable 27c R18, TB-126, 01.10.2026).
+ 2165 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (h) PRÄZISIERT durch R18 (47.1)** (Fable 27c R18, TB-126, 01.10.2026).
+ 2168 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (l) PRÄZISIERT durch R18 (47.1)** (Fable 27c R18, TB-126, 01.10.2026).
+ 2171 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (h) PRÄZISIERT durch R19 (47.2)** (Fable 27c R19, TB-126, 01.10.2026).
+ 2174 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (j) PRÄZISIERT durch R19 (47.2)** (Fable 27c R19, TB-126, 01.10.2026).
+ 2177 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (k) PRÄZISIERT durch R19 (47.2)** (Fable 27c R19, TB-126, 01.10.2026).
+ 2180 | 16 | 1 | MARKE+ | 16.4 | > ⭐ **16.4 (l) ERGÄNZT durch R20 (47.3)** (Fable 27c R20, TB-126, 01.10.2026).
+ 2183 | 16 | 1 | MARKE+ | 16.4 | > ⭐ **16.4 (j) ERGÄNZT durch R20 (47.3)** (Fable 27c R20, TB-126, 01.10.2026).
+ 2186 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (i) PRÄZISIERT durch R21 (47.4)** (Fable 27c R21, TB-126, 01.10.2026).
+ 2189 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (j) PRÄZISIERT durch R21 (47.4)** (Fable 27c R21, TB-126, 01.10.2026).
+ 2192 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4 (i) PRÄZISIERT durch R22 (47.5)** (Fable 27c R22, TB-126, 01.10.2026).
+ 2195 | 16 | 1 | MARKE+ | 16.4 | > ⭐ **16.4 (h) ERGÄNZT durch R24 (47.7) und 50.6** (Fable 27c R24, TB-126, 01.10.2026).
+ 2198 | 16 | 1 | MARKE+ | 16.4 | > ⭐ **16.4 (g) ERGÄNZT durch R24 (47.7) und 50.6** (Fable 27c R24, TB-126, 01.10.2026).
+ 2241 | 16 | 1 | MARKE | 16.4 | > ⭐ **16.4, „Prüfung vor dem Tag“ PRÄZISIERT durch R21 (47.4)** (Fable 27c R21, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+ 2289 | 16 | 1 | MARKE+ | 16.5 | ⚠️ **ERGÄNZT durch Abschnitt 17 (Registernachtrag TB-48, 18.09.2026) — an drei
+ 2300 | 16 | 1 | UEBERSCHRIFT | 16.6 | ### 16.6 Registertext 2d — Embargo *(ersetzt die Fassung aus 15.4 vollständig)*
+ 2347 | 16 | 1 | MARKE | 16.6 | > ⭐ **16.6 PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, TB-126, 01.10.2026).
+ 2393 | 16 | 1 | MARKE | 16.7 | > ⚠️ **(c) ERSETZT durch Abschnitt 23 (Berichtigung TB-66, 20.09.2026), 23.3 — der Wortlaut bleibt stehen.**
+ 2411 | 16 | 1 | MARKE+ | 16.7 | > ⭐ **16.7 (d) ERGÄNZT durch R38 (48.6)** (Fable 29b R38, TB-126, 01.10.2026).
+ 2616 | 17 | 1 | UEBERSCHRIFT | 17.1 | ### 17.1 Registertext 5a — Bestand und Snapshot *(ersetzt die Fassung aus 16.3 (a) vollständig)*
+ 2662 | 17 | 1 | UEBERSCHRIFT | 17.2 | ### 17.2 Registertext 5c — Reihenfolge von Snapshot und Tag *(ersetzt die Fassung aus 16.3 (c))*
+ 2857 | 17 | 1 | UEBERSCHRIFT | 17.6 | ### 17.6 Registertext 7, Ergänzung I — der Kein-Entscheid-Tag *(neu)*
+ 2877 | 17 | 1 | UEBERSCHRIFT | 17.7 | ### 17.7 Registertext 7, Ergänzung II — Ereignismenge und Mindestzahl *(neu; schliesst die offene Stelle aus 16.11, Zeile 5)*
+ 2920 | 17 | 1 | UEBERSCHRIFT | 17.8 | ### 17.8 Registertext 7, Ergänzung III — Drift *(neu)*
+ 3089 | 18 | 1 | MARKE+ | 18 | > ⭐ **Abschnitt 18 ERGÄNZT durch R28 (47.11)** (Fable 27c R28, TB-126, 01.10.2026).
+ 3094 | 19 | 1 | UEBERSCHRIFT | 19 | ## 19. Registertext 5e, Ergänzung — die Codeherkunft (TB-58b, 19.09.2026)
+ 3290 | 21 | 1 | UEBERSCHRIFT | 21 | ## 21. Berichtigung zu Registertext 4 — die Faltenschranke (TB-56b, 19.09.2026)
+ 3377 | 21 | 1 | MARKE | 21.3 | > ⚠️ **(b) ERSETZT durch Abschnitt 25 (Berichtigung TB-72, 20.09.2026), 25.3 — der Wortlaut bleibt stehen.** Der Satz hatte keine Richtung; seine Begründung deckt nur den Fall, dass der Trockenlauf **später** liegt. Die Neufassung
+ 3389 | 21 | 1 | MARKE+ | 21.4 | dortige Tabelle bleibt stehen und gilt als **ERSETZT**; sie wird nicht entfernt.
+ 3431 | 21 | 1 | MARKE+ | 21.4 | > ⭐ **21.4 ERGÄNZT durch R53 (49.1)** (Fable 30a R53, TB-126, 01.10.2026).
+ 3494 | 21 | 1 | MARKE+ | 21.6 | | ⭐ **A** *(Empfehlung)* | **Amendment vollziehen**: die neue Tabelle wird die registrierte, die alte bleibt als ERSETZT stehen, `benchmark_drawdowns.json` wird **nicht** überschrieben, sondern der Registertext verweist auf die ne
+ 3521 | 21 | 1 | MARKE+ | 21.7 | landet ab heute in einer als ERSETZT gekennzeichneten Tabelle. **Hier
+ 3706 | 22 | 1 | MARKE+ | 22.2 | > ⭐ **22.2 ERGÄNZT durch R34 (48.2)** (Fable 29b R34, TB-126, 01.10.2026).
+ 3735 | 22 | 1 | UEBERSCHRIFT | 22.4 | ### 22.4 Registertext 6, Ergänzung — die Notbremse auf einen In-Sample-Befund *(neu)*
+ 3849 | 23 | 2 | UEBERSCHRIFT | 23 | ## 23. Berichtigung zu Registertext 3b (c) — der Benchmark wird tagesgenau (TB-66, 20.09.2026)
+ 3853 | 23 | 2 | MARKE | 23 | Marke *„(c) ERSETZT durch Abschnitt 23"*), wird hier wörtlich zitiert und von
+ 3947 | 23 | 2 | MARKE | 23.3 | > ⭐ **23.3, Registertext 3b (c) PRÄZISIERT durch R72 (53.7)** (Fable 02c R72, Unterpunkt (b), vom steuernden Chat nach R65 (a) bestimmt, TB-132, 04.10.2026).
+ 3964 | 23 | 2 | MARKE+ | 23.3 | ERSETZT.
+ 3975 | 23 | 2 | MARKE+ | 23.3 | > ⭐ **23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse BERICHTIGT durch R71 (53.6)** (Fable 02c R71, TB-132, 04.10.2026).
+ 3978 | 23 | 2 | MARKE+ | 23.3 | > ⭐ **23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse ERGÄNZT durch R72 (53.7)** (Fable 02c R72, TB-132, 04.10.2026).
+ 3994 | 23 | 2 | MARKE+ | 23.3 | > ⚠️ **ERSETZT (TB-71, 20.09.2026) durch den Satz zur Zeitachse oben — keine der beiden Fassungen ist gewählt worden.** Die Tabelle bleibt stehen: sie hält fest, wogegen entschieden wurde, und sie enthält die Messung, die C_voll a
+ 4137 | 23 | 2 | MARKE+ | 23.6 | | **21.6**, Z. 2991, Weg A | *„**Amendment vollziehen**: die neue Tabelle wird die registrierte, die alte bleibt als ERSETZT stehen, …"* | *„**Berichtigung vollziehen**: die neue Tabelle wird die registrierte, …"* — der Weg selbst
+ 4240 | 24 | 2 | UEBERSCHRIFT | 24 | ## 24. Präzisierung zu Registertext 4 und zu Festlegung 1 — der Drawdown der Nebenbedingung wird Mark-to-Market gerechnet, und die Regel steht vor der Messung (TB-71, 20.09.2026)
+ 4244 | 24 | 2 | MARKE | 24 | Marke *„PRÄZISIERT durch Abschnitt 24"*), Registertext 1a bleibt in 15.3,
+ 4314 | 24 | 2 | UEBERSCHRIFT | 24.2 | ### 24.2 Der Registertext — Präzisierung zu Registertext 4
+ 4332 | 24 | 2 | MARKE | 24.2 | > ⭐ **24.2 PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, TB-126, 01.10.2026).
+ 4585 | 25 | 2 | UEBERSCHRIFT | 25 | ## 25. Berichtigung zu Registertext 4a und zu 21.3 (b) — die erste Falte ist eine Konjunktion, und der Plan leitet sie aus dem Trockenlauf ab (TB-72, 20.09.2026)
+ 4589 | 25 | 2 | MARKE | 25 | Marke *„(a) ERSETZT durch Abschnitt 25"*), der Ersatztext 21.3 (b) bleibt in
+ 4590 | 25 | 2 | MARKE | 25 | Abschnitt 21 stehen (Marke *„(b) ERSETZT durch Abschnitt 25"*), die
+ 4670 | 25 | 2 | MARKE+ | 25.2 | > ⭐ **25.2 BERICHTIGT durch R62 (51.7) und R65 (52.3)** (Fable 01a R62, Unterpunkt (a), und Fable 02a R65, Unterpunkt (c), TB-130, 02.10.2026).
+ 4673 | 25 | 2 | MARKE+ | 25.2 | > ⭐ **25.2 ERGÄNZT durch R53 (49.1)** (Fable 30a R53, TB-126, 01.10.2026).
+ 4691 | 25 | 2 | MARKE | 25.3 | > ⭐ **(i) „im registrierten Datenhorizont des Bots" PRÄZISIERT durch Abschnitt 26 (TB-77, 21.09.2026), 26.2 — der Wortlaut bleibt stehen.** Der Horizont ist ein absolutes Datum je Bot (`asof` minus `RECENT_YEARS_ONLY`), nicht je S
+ 4693 | 25 | 2 | MARKE | 25.3 | > ⭐ **4a (i) in 25.3 PRÄZISIERT durch R53 (49.1)** (Fable 30a R53, TB-126, 01.10.2026).
+ 4696 | 25 | 2 | MARKE+ | 25.3 | > ⭐ **25.3 (i) ERGÄNZT durch R58 (51.3)** (Fable 01a R58, TB-129, 02.10.2026).
+ 4815 | 26 | 2 | UEBERSCHRIFT | 26 | ## 26. Präzisierung zu Registertext 4a, Bedingung (i) — der Datenhorizont ist ein absolutes Datum je Bot, nicht je Symbol (TB-77, 21.09.2026)
+ 4819 | 26 | 2 | MARKE | 26 | Marke *„(i) PRÄZISIERT durch Abschnitt 26"*), Registertext 3 (c) in 15.5 bleibt
+ 4820 | 26 | 2 | MARKE+ | 26 | stehen (Marke *„ERGÄNZT durch Abschnitt 26, 26.4"*), die Tatsachennotiz 21.4
+ 4901 | 26 | 2 | MARKE+ | 26.2 | die als ERSETZT zu markieren wäre; ersetzt wird ein Wortlaut, der nur in
+ 4974 | 26 | 2 | UEBERSCHRIFT | 26.4 | ### 26.4 Ergänzung zu Registertext 3 (c) — die Reichweite des Survivorship-Vorbehalts
+ 5169 | 27 | 2 | MARKE+ | 27.1 | > ⭐ **27.3 ERGÄNZT durch R31 (47.14)** (Fable 27c R31, Unterpunkt (d), TB-126, 01.10.2026).
+ 5208 | 27 | 2 | MARKE+ | 27.8 | > ⭐ **Abschnitt 27 ERGÄNZT durch R32 (47.15)** (Fable 27c R32, TB-126, 01.10.2026).
+ 5211 | 27 | 2 | MARKE+ | 27.8 | > ⭐ **Abschnitt 27 ERGÄNZT durch R56 (51.1)** (Fable 01a R56, zu 27.4 und 27.6, TB-129, 02.10.2026).
+ 5214 | 27 | 2 | MARKE+ | 27.8 | > ⭐ **Abschnitt 27 ERGÄNZT durch R73 (53.8)** (Fable 02c R73, TB-132, 04.10.2026).
+ 5219 | 28 | 2 | UEBERSCHRIFT | 28 | ## 28. `asof` ist gesetzt — Berichtigung zu 26.3 und 26.6, und der Vorlauf-Satz gilt fort (TB-78, 21.09.2026)
+ 5226 | 28 | 2 | MARKE+ | 28 | hier benannt und trägt seine ERSETZT-Marke an dieser Stelle.
+ 5240 | 28 | 2 | UEBERSCHRIFT | 28.2 | ### 28.2 Registertext 5a, Ergänzung — woher `asof` kommt
+ 5268 | 28 | 2 | MARKE+ | 28.4 | ### 28.4 ⚠️ ERSETZT: die Platzhalter-Tabelle in 26.3
+ 5271 | 28 | 2 | MARKE+ | 28.4 | gesetzt; Datum folgt, sobald 5a einen Wert hat]"* — **gelten als ERSETZT.** Sie
+ 5296 | 28 | 2 | MARKE+ | 28.5 | ### 28.5 ⚠️ ERSETZT: die zwei Zeilen in 26.6, die `asof` als offen führen
+ 5300 | 28 | 2 | MARKE+ | 28.5 | Bis dahin bleibt 26.3 ein Platzhalter"* — **ist ERSETZT.** Entschieden seit
+ 5308 | 28 | 2 | MARKE+ | 28.5 | **Zeile 4 von 26.6** (die Wache in `auswertung.py`) — **ist ERSETZT.** Fable hat
+ 5323 | 28 | 2 | UEBERSCHRIFT | 28.6 | ### 28.6 Registertext 4a, Präzisierung, Ergänzung — der Vorlauf-Satz gilt fort
+ 5346 | 28 | 2 | MARKE | 28.6 | > ⭐ **28.6 PRÄZISIERT durch R53 (49.1)** (Fable 30a R53, TB-126, 01.10.2026).
+ 5413 | 29 | 2 | MARKE+ | 29.4 | ⚠️ **Die Fassung aus 21b (Prüfung gegen den Horizontbeginn) ist ERSETZT.** Es
+ 5428 | 29 | 2 | MARKE+ | 29.4 | > ⭐ **29.4 BERICHTIGT durch R43 (48.11)** (Fable 29b R43, TB-126, 01.10.2026).
+ 5540 | 30 | 2 | UEBERSCHRIFT | 30.6 | ### 30.6 Präzisierung zu 28.6 — der Vorlauf-Satz ist ein Ersteintrag
+ 5558 | 30 | 2 | UEBERSCHRIFT | 30.7 | ### 30.7 Ergänzung zu 29.2 — die Reihenfolge ist der Beleg, nicht die Zahl
+ 5577 | 31 | 2 | UEBERSCHRIFT | 31 | ## 31. Berichtigung zu 28.2 — das Manifest bekommt kein Feld `asof` (Fable 21j, 21.09.2026)
+ 5610 | 31 | 2 | UEBERSCHRIFT | 31.3 | ### 31.3 Präzisierung zu 5a / 17.1 — Ersteintrag, zeichengleich
+ 5929 | 33 | 2 | UEBERSCHRIFT | 33.1 | ### 33.1 Berichtigung zu 30.2 (3) — ein Symptom war zum Kriterium geworden
+ 5932 | 33 | 2 | MARKE+ | 33.1 | (Trainingsgrenzen, Embargo), ist sie nicht dieses Abbild"* — **ist ERSETZT.**
+ 6105 | 33 | 2 | MARKE+ | 33.4 | | | ⚠️ **ERSETZT (35.3, TB-83, 22.09.2026):** „Nicht in die Feldliste" gilt nicht mehr — Fable 22a, zeichengleich: *„Die Bestätigungsperiode ist Feld des Abbilds — weil 33.2 sie nennen muss (siehe 3), nicht weil 21.4 sie registrie
+ 6161 | 34 | 2 | UEBERSCHRIFT | 34.1 | ### 34.1 Ergänzung zu 33.2 — Falten mit Faltenlänge L > 1
+ 6182 | 34 | 2 | UEBERSCHRIFT | 34.2 | ### 34.2 Ergänzung zu 33.2 — der Rest vor dem Go-Live-Schnitt
+ 6210 | 34 | 2 | UEBERSCHRIFT | 34.3 | ### 34.3 Berichtigung zu 30.2 (2) — `3b (b)` lies `3b (a)`
+ 6230 | 34 | 2 | UEBERSCHRIFT | 34.4 | ### 34.4 Ergänzung zu 33.3, Feld `horizontbeginn` — Zeichenkette oder Datum
+ 6253 | 34 | 2 | UEBERSCHRIFT | 34.5 | ### 34.5 Berichtigung zu 29.4 — „vier" → „neun" `multi_symbol_optimise.py`
+ 6279 | 34 | 2 | MARKE+ | 34.5 | > ⭐ **34.5 BERICHTIGT durch R43 (48.11)** (Fable 29b R43, TB-126, 01.10.2026).
+ 6282 | 34 | 2 | UEBERSCHRIFT | 34.6 | ### 34.6 ⚠️ Berichtigung zu 33.4 Punkt 3 — eine Fundstelle des steuernden Chats trug ihren Satz nicht
+ 6318 | 34 | 2 | MARKE+ | 34.6 | > ist **kein Feld** der Feldliste"* ist **ERSETZT**: `bestaetigungsperiode` ist Feld
+ 6361 | 35 | 2 | MARKE+ | 35 | **33.4 Punkt 3 („Nicht in die Feldliste") ist ERSETZT** (35.3) — Fables sechste
+ 6365 | 35 | 2 | UEBERSCHRIFT | 35.1 | ### 35.1 Ergänzung zu 33.2 — die Bestätigungsperiode und ihr Bezeichner
+ 6437 | 35 | 2 | MARKE | 35.1 | > ⭐ **35.1 PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, TB-126, 01.10.2026).
+ 6440 | 35 | 2 | UEBERSCHRIFT | 35.2 | ### 35.2 Ergänzung zu 33.3 — `bestaetigungsperiode` wird Feld
+ 6456 | 35 | 2 | MARKE+ | 35.3 | ⚠️ **Das ERSETZT 33.4 Punkt 3 („Nicht in die Feldliste") und den Schluss von
+ 6483 | 35 | 2 | UEBERSCHRIFT | 35.4 | ### 35.4 Präzisierung zu 30.2 (3) — wann die Sonde prüft
+ 6517 | 35 | 2 | MARKE+ | 35.4 | > ⭐ **35.4 ERGÄNZT durch R26 (47.9)** (Fable 27c R26, TB-126, 01.10.2026).
+ 6750 | 36 | 2 | UEBERSCHRIFT | 36.5 | ### 36.5 ⭐⭐ Drei Ausgänge für jede Sonde und jede Wache — Ersteintrag, und die Berichtigung zu 36.2
+ 6921 | 37 | 3 | UEBERSCHRIFT | 37.1 | ### 37.1 Präzisierung zu 36.5 — die Sonde meldet je Punkt je Bestandteil
+ 6949 | 37 | 3 | UEBERSCHRIFT | 37.2 | ### 37.2 Ergänzung zu 36.6 — das Abbild führt zwei Gruppen
+ 6987 | 37 | 3 | UEBERSCHRIFT | 37.3 | ### 37.3 ⭐⭐ Ergänzung zu 36.2/36.6 — was ein Befund `1` bedeutet, hängt vom Tag ab
+ 7064 | 37 | 3 | MARKE+ | 37.4 | > ⚠️ **ERSETZT (38.6, Fable 22h, TB-89, 23.09.2026) — zwei Stellen dieses
+ 7076 | 37 | 3 | MARKE+ | 37.4 | > ⭐⭐ **BERICHTIGT durch 42.3 F2 (Fable 25c, TB-108, 25.09.2026):** `herkunft.py`
+ 7287 | 38 | 3 | UEBERSCHRIFT | 38.1 | ### 38.1 ⭐⭐ Berichtigung zu 35.1 (Folge/Handwerk) — Weg (A): die letzte Falte heisst die Spanne
+ 7382 | 38 | 3 | MARKE+ | 38.2 | > ⭐ **38.2 ERGÄNZT durch R49 (48.17)** (Fable 29b R49, Unterpunkt (e), TB-126, 01.10.2026).
+ 7413 | 38 | 3 | MARKE+ | 38.4 | > **Form: (ii).** Punkt 4 nennt beide Dateien; `benchmark_drawdowns.json` bleibt gesperrt und unverändert als registrierter historischer Stand mit Tatsachennotiz — wörtlich die Bauart von Punkt 2 (30.3) — und `benchmark_drawdowns_
+ 7419 | 38 | 3 | MARKE+ | 38.4 | > ⚠️⚠️ **ERSETZT (39.1, Fable 23f, TB-94, 23.09.2026) — das Fertigkriterium im
+ 7520 | 38 | 3 | MARKE+ | 38.6 | ERSETZT-Marke; die Tatsachennotiz TB-87 (M3) in 37.4, die beides gemessen
+ 7621 | 38 | 3 | MARKE+ | 38.8 | | ⛔ | **Kein alter Registersatz umgeschrieben** — der alte Satz in 37.4, die Zeilennummern in 35.1 und das Wort „Amendment" in 21.9 bleiben zeichengleich; ERSETZT- und Hinweis-Marken, nichts entfernt | — |
+ 7674 | 39 | 3 | UEBERSCHRIFT | 39.1 | ### 39.1 ⭐⭐ Berichtigung zu 38.4 — das Fertigkriterium von Plan-Punkt 8
+ 7719 | 39 | 3 | MARKE+ | 39.1 | | Fertigkriterium von Plan-Punkt 8 | der **Ersatztext oben** (23f/23a). Der Satz in 38.4 („`test_vorregistrierung.py` grün — die roten Prüfungen misst TB-88 —") bleibt **zeichengleich** stehen und trägt eine ERSETZT-Marke |
+ 8142 | 39 | 3 | MARKE+ | 39.10 | | ⛔ | **Kein alter Registersatz umgeschrieben** — der Satz mit „grün" in 38.4, die offene Frage in 38.7 (d), der Kasten an Punkt 4 und die Punktzeilen 1–4 von Punkt 4 bleiben zeichengleich; ERSETZT-, Vollzugs- und Hinweis-Marken, 
+ 8419 | 40 | 3 | MARKE+ | 40.6 | > ⭐ **40.6 ERGÄNZT durch R42 (48.10)** (Fable 29b R42, TB-126, 01.10.2026).
+ 8422 | 40 | 3 | MARKE+ | 40.6 | > ⭐ **40.6 ERGÄNZT durch R44 (48.12)** (Fable 29b R44, TB-126, 01.10.2026).
+ 8425 | 40 | 3 | MARKE | 40.6 | > ⭐ **40.6 (Tatsachennotiz zu 5.4) PRÄZISIERT durch R47 (48.15)** (Fable 29b R47, TB-126, 01.10.2026).
+ 8428 | 40 | 3 | UEBERSCHRIFT | 40.7 | ### 40.7 ⭐ Ergänzung zu 12 — jede Mutationsprobe hat eine Gegenprobe
+ 8575 | 41 | 3 | MARKE+ | 41.0 | Fassungen stehen**, die frühere mit „⭐ BERICHTIGT durch …", die spätere mit
+ 8724 | 41 | 3 | MARKE | 41.1 A11 | ⭐ **PRÄZISIERT durch 42.1** (D2: „0 Zugriffe" nach drei Klassen; D3: Liste und
+ 8740 | 41 | 3 | MARKE+ | 41.1 A12 | ⭐ **ERGÄNZT durch 41.2 (B3, B6/B7):** Die Feldliste bekommt `exit_time` und
+ 8765 | 41 | 3 | MARKE | 41.2 B4 | ⭐ **PRÄZISIERT durch 42.1 (D6):** Was „ausserhalb" heisst, regeln die drei
+ 8780 | 41 | 3 | MARKE+ | 41.2 B8 | ⭐ **BERICHTIGT durch 41.3 (C8):** „TB-91 A1b" lies „TB-92 A1b". Die Frage
+ 8791 | 41 | 3 | MARKE+ | 41.2 B5 | ⭐ **BERICHTIGT durch 42.1 (D1):** Die Fundstelle „(`shared/paths.py`,
+ 8794 | 41 | 3 | MARKE+ | 41.2 B5 | **ERGÄNZT durch 41.3 (C6):** Ein Modus-Lauf ist ein Lauf unter dem Resolver;
+ 8850 | 41 | 3 | MARKE+ | 41.2 B6/B7 | > ⭐ **41.2 B6/B7 ERGÄNZT durch R41 (48.9)** (Fable 29b R41, TB-126, 01.10.2026).
+ 8911 | 41 | 3 | MARKE+ | 41.3 C5 | — ⭐ **BERICHTIGT (entschieden) durch 42.1 (D5)** · Quelle: 24d Abschnitt 1
+ 9000 | 42 | 3 | MARKE+ | 42.1 D6 | ⭐ **ERGÄNZT durch 42.2 (E1: Klasse (iv) Zwischenablage; E2: Klasse „Code") und
+ 9005 | 42 | 3 | MARKE+ | 42.1 D2 | oben. ⭐ **ERGÄNZT durch 42.2 (E1) und 42.3 (F8)** — Klasse (iii) heisst seitdem
+ 9020 | 42 | 3 | MARKE | 42.1 D3/D7 | ⭐ **PRÄZISIERT durch 42.2 (E6):** Die geladene Menge wird am Stichtag
+ 9035 | 42 | 3 | MARKE+ | 42.1 D5 | Präzisierung, Ersteintrag — ⭐⭐ **BERICHTIGT durch 42.2 (E3)**: Der Plan
+ 9051 | 42 | 3 | MARKE+ | 42.1 D8 | **D8 — der Laufbereich** · Art: Registertext, Ersteintrag — ⭐⭐ **BERICHTIGT
+ 9236 | 42 | 3 | MARKE+ | 42.2 E5 | > ⭐ **42.2 E5 ERGÄNZT durch R29 (47.12)** (Fable 27c R29, TB-126, 01.10.2026).
+ 9726 | 43 | 4 | MARKE | 43.2 | > ⭐ **43-7 PRÄZISIERT durch R33 (48.1)** (Fable 29b R33, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
+10013 | 44 | 4 | MARKE+ | 44.1 | > ⭐ **44-6 ERGÄNZT durch R29 (47.12)** (Fable 27c R29, TB-126, 01.10.2026).
+10212 | 45 | 4 | UEBERSCHRIFT | 45.2 | ### 45.2 R2 — Ergänzung zu 42 (Klasse (iv), Reichweite)
+10220 | 45 | 4 | UEBERSCHRIFT | 45.3 | ### 45.3 R3 — Ergänzung zu 30.2 (3) / 33.3 (Abbild der Sperrliste, Gruppe `eingefroren`)
+10233 | 45 | 4 | MARKE+ | 45.3 R3 | > ⭐ **45.3 ERGÄNZT durch R42 (48.10)** (Fable 29b R42, TB-126, 01.10.2026).
+10236 | 45 | 4 | UEBERSCHRIFT | 45.4 | ### 45.4 R4 — Ergänzung zu 19 / 42.2 E2 (Pflege von `ARBEITSBAUM_PFADE`)
+10241 | 45 | 4 | MARKE+ | 45.4 R4 | > ⭐ **45.4 (R4) ERGÄNZT durch R29 (47.12)** (Fable 27c R29, TB-126, 01.10.2026).
+10258 | 45 | 4 | MARKE+ | 45.5 R5 | > ⭐ **45.5 (R5) (a) ERGÄNZT durch R29 (47.12)** (Fable 27c R29, TB-126, 01.10.2026).
+10261 | 45 | 4 | MARKE+ | 45.5 R5 | > ⭐ **45.5 (b) BERICHTIGT durch R33 (48.1)** (Fable 29b R33, TB-126, 01.10.2026).
+10270 | 45 | 4 | MARKE+ | 45.5 R5 | > ⭐ **45.5 ERGÄNZT durch R34 (48.2)** (Fable 29b R34, TB-126, 01.10.2026).
+10273 | 45 | 4 | MARKE | 45.5 R5 | > ⭐ **45.5 PRÄZISIERT durch R36 (48.4)** (Fable 29b R36, TB-126, 01.10.2026).
+10276 | 45 | 4 | UEBERSCHRIFT | 45.6 | ### 45.6 R6 — Ergänzung zu 27 (Messungen auf dem Selektionsraum nach dem Tag)
+10424 | 46 | 4 | UEBERSCHRIFT | 46.1 | ### 46.1 R9 — Ergänzung zu 40.8 (e) (Sonde, zweite Seite)
+10442 | 46 | 4 | UEBERSCHRIFT | 46.2 | ### 46.2 R10 — Ergänzung zu 41.1 A10 (`herkunft.py`, `fehlend`)
+10464 | 46 | 4 | MARKE+ | 46.3 R12 | > ⭐ **46.3 ERGÄNZT durch R39 (48.7)** (Fable 29b R39, TB-126, 01.10.2026).
+10467 | 46 | 4 | MARKE+ | 46.3 R12 | > ⭐ **46.3 ERGÄNZT durch R42 (48.10)** (Fable 29b R42, TB-126, 01.10.2026).
+10490 | 46 | 4 | UEBERSCHRIFT | 46.5 | ### 46.5 R14 — Ergänzung zu 12 und 36.5 (Herkunftsprüfung in `auswertung.py`)
+10495 | 46 | 4 | MARKE+ | 46.5 R14 | > ⭐ **46.5 (R14) ERGÄNZT durch R25 (47.8)** (Fable 27c R25, TB-126, 01.10.2026).
+10498 | 46 | 4 | MARKE+ | 46.5 R14 | > ⭐ **46.5 (R14) ERGÄNZT durch R26 (47.9)** (Fable 27c R26, TB-126, 01.10.2026).
+10501 | 46 | 4 | MARKE+ | 46.5 R14 | > ⭐ **46.5 (R14), Bedingung 5 ERGÄNZT durch R27 (47.10)** (Fable 27c R27, TB-126, 01.10.2026).
+10510 | 46 | 4 | UEBERSCHRIFT | 46.6 | ### 46.6 R15 — Ergänzung zu den Tag-Vorbedingungen (Snapshot-Bindung) und Tatsachennotiz zu Punkt 8
+10566 | 46 | 4 | MARKE+ | 46.9 | > ⭐ **46.9 ERGÄNZT durch R25 (47.8)** (Fable 27c R25, TB-126, 01.10.2026).
+10669 | 47 | 4 | UEBERSCHRIFT | 47.1 | ### 47.1 R18 — Präzisierung zu 16.4 (m), (h) und (l) (Zellenanteil und Klassenschlüssel; L1)
+10676 | 47 | 4 | UEBERSCHRIFT | 47.2 | ### 47.2 R19 — Präzisierung zu 16.4 (h), (j) und (k) (Zahl der Zellen; L2; T116-4)
+10683 | 47 | 4 | UEBERSCHRIFT | 47.3 | ### 47.3 R20 — Ergänzung zu 16.4 (l) und (j) (Anlage ohne aktive Zelle; L3)
+10690 | 47 | 4 | UEBERSCHRIFT | 47.4 | ### 47.4 R21 — Präzisierung zu 16.4 (b), (i) und (j) und Ergänzung zu 7.1 (Schatten nach der Herkunft der Stufe; L4…
+10697 | 47 | 4 | UEBERSCHRIFT | 47.5 | ### 47.5 R22 — Präzisierung zu 16.4 (a) und (i) (Faktor „Bestätigt" vor Netting; L5)
+10704 | 47 | 4 | UEBERSCHRIFT | 47.6 | ### 47.6 R23 — Präzisierung zu 16.4 (b), 7.1 und 15.6 (c) (Budgetanteil und Höhe der Benchmark-Position; L0.1; T116-3)
+10718 | 47 | 4 | UEBERSCHRIFT | 47.8 | ### 47.8 R25 — Bestätigung von 46.9 als Ergänzung zu 12 und R14 (Herkunftsprüfung ohne Modus; T117-1)
+10725 | 47 | 4 | UEBERSCHRIFT | 47.9 | ### 47.9 R26 — Ergänzung zu 12, R14 und 35.4 (alle neun unter dem Modus; --bot; T117-2)
+10730 | 47 | 4 | MARKE+ | 47.9 R26 | > ⭐ **47.9 R26 BERICHTIGT durch R61 (51.6)** (Fable 01a R61, Unterpunkt (c), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026).
+10735 | 47 | 4 | UEBERSCHRIFT | 47.10 | ### 47.10 R27 — Tatsachennotiz zu R14 Bedingung 5 und Ergänzung zu den Tag-Vorbedingungen (voller Commit-Hash; T117-3)
+10749 | 47 | 4 | UEBERSCHRIFT | 47.12 | ### 47.12 R29 — Ergänzung zu 42.2 E5, R4 und R5 (a); Tatsachennotiz zu 44-6 (herkunft.py im Laufbereich; T117-5)
+10756 | 47 | 4 | UEBERSCHRIFT | 47.13 | ### 47.13 R30 — Ergänzung zu 14 und zu den Tag-Vorbedingungen (Erzeuger und Auswertung am Tag-Commit; T117-6)
+10761 | 47 | 4 | MARKE+ | 47.13 R30 | > ⭐ **47.13 R30 BERICHTIGT durch R61 (51.6)** (Fable 01a R61, Unterpunkt (c), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026).
+10789 | 48 | 4 | UEBERSCHRIFT | 48.1 | ### 48.1 R33 — Berichtigung zu 45.5 (b) (Zeilen in zellen.csv)
+10794 | 48 | 4 | MARKE | 48.1 | > ⭐ **48.1 R33 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
+10799 | 48 | 4 | UEBERSCHRIFT | 48.2 | ### 48.2 R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht)
+10806 | 48 | 4 | UEBERSCHRIFT | 48.3 | ### 48.3 R35 — Ergänzung zu 15.3 (Bootstrap) und Tatsachennotiz
+10813 | 48 | 4 | UEBERSCHRIFT | 48.4 | ### 48.4 R36 — Präzisierung zu 24.2 und 45.5 (zwei Drawdown-Spalten; Konsistenzprüfung; Ausschnitt)
+10820 | 48 | 4 | UEBERSCHRIFT | 48.5 | ### 48.5 R37 — Präzisierung zu 16.6, 35.1, 16.4 (c)/(d), 5.1 Nr. 7 (zwei Zeiträume, ein Name)
+10825 | 48 | 4 | MARKE | 48.5 | > ⭐ **48.5 R37 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
+10830 | 48 | 4 | UEBERSCHRIFT | 48.6 | ### 48.6 R38 — Ergänzung zu 16.7 (d) (Ort der Berichtsgrössen)
+10837 | 48 | 4 | UEBERSCHRIFT | 48.7 | ### 48.7 R39 — Ergänzung zu 46.3 (R12) und Berichtigung des Datenvertrags (Ausgaben des Zellen-Erzeugers; Feldliste als…
+10842 | 48 | 4 | MARKE+ | 48.7 | > ⭐ **48.7 R39 ERGÄNZT durch R67 (53.2)** (Fable 02c R67, TB-132, 04.10.2026).
+10845 | 48 | 4 | MARKE+ | 48.7 | > ⭐ **48.7 R39 ERGÄNZT durch R69 (53.4): R39 ist bestätigt** (Fable 02c R69, TB-132, 04.10.2026).
+10857 | 48 | 4 | UEBERSCHRIFT | 48.9 | ### 48.9 R41 — Ergänzung zu 41.2 B6/B7 und 15.3 (b) (haltedauer_balken)
+10864 | 48 | 4 | UEBERSCHRIFT | 48.10 | ### 48.10 R42 — Ergänzung zu 40.6, 45.3, 46.3 (Bindung der neuen Listen)
+10871 | 48 | 4 | UEBERSCHRIFT | 48.11 | ### 48.11 R43 — Registertext zum Zellen-Kern; Berichtigung zu 29.4/34.5 (Ort der Wache); Tatsachennotiz zu 11.2
+10878 | 48 | 4 | UEBERSCHRIFT | 48.12 | ### 48.12 R44 — Ergänzung zu 40.6 (Reihenfolge der Neuerzeugung)
+10899 | 48 | 4 | UEBERSCHRIFT | 48.15 | ### 48.15 R47 — Präzisierung zu 40.6 (Tatsachennotiz zu 5.4: „Parameterdateien“)
+10922 | 48 | 4 | MARKE+ | 48.16 | > ⭐ **48.16 R48 (g) BERICHTIGT durch R54 (49.2)** (Fable 30a R54, TB-126, 01.10.2026).
+10925 | 48 | 4 | MARKE+ | 48.16 | > ⭐ **48.16 R48 (d) ERGÄNZT durch R60 (51.5)** (Fable 01a R60, TB-129, 02.10.2026).
+10928 | 48 | 4 | MARKE | 48.16 | > ⭐ **48.16 R48 (d) PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, TB-130, 02.10.2026).
+10931 | 48 | 4 | MARKE+ | 48.16 | > ⭐ **48.16 R48 (d) ERGÄNZT durch R72 (53.7)** (Fable 02c R72, Unterpunkt (c), TB-132, 04.10.2026).
+10951 | 48 | 4 | UEBERSCHRIFT | 48.18 | ### 48.18 R50 — Ergänzung zu 12 (Kennzahlendefinitionen im Code) und Tatsachennotiz zu TB-121
+10963 | 48 | 4 | MARKE | 48.19 | > ⭐ **48.19 R51 PRÄZISIERT durch R65 (52.3)** (Fable 02a R65, Unterpunkt (a), TB-130, 02.10.2026).
+10979 | 49 | 4 | UEBERSCHRIFT | 49.1 | ### 49.1 R53 — Präzisierung zu 4a (i) (25.3, 28.6): Indikator-Vorlauf bei achsenabhängigem Rückblick
+10984 | 49 | 4 | MARKE | 49.1 | > ⭐ **49.1 R53 PRÄZISIERT durch R57 (51.2)** (Fable 01a R57, TB-129, 02.10.2026).
+10987 | 49 | 4 | MARKE+ | 49.1 | > ⭐ **49.1 R53 ERGÄNZT durch R59 (51.4)** (Fable 01a R59, TB-129, 02.10.2026).
+10992 | 49 | 4 | UEBERSCHRIFT | 49.2 | ### 49.2 R54 — Berichtigung zu Registertext 2a (15.4) und zu R48 (g) (Aggregation von Tagesrenditen)
+10999 | 49 | 4 | UEBERSCHRIFT | 49.3 | ### 49.3 R55 — Ergänzung zu 7 (d) (leere Menge) und Tatsachennotiz
+11031 | 50 | 4 | MARKE+ | 50.1 | > ⭐ **50.1, Zeile R48 (d) ERGÄNZT durch R60 (51.5) und 51.8** (Fable 01a R60, Unterpunkt (d), nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026).
+11161 | 50 | 4 | MARKE+ | 50.4 | > ⭐ **50.4, Schlusssatz ERGÄNZT durch R57 (51.2): der Schlusssatz ist bestätigt** (Fable 01a R57, nachgetragen nach Fable 02a R65 (b), TB-130, 02.10.2026).
+11170 | 50 | 4 | MARKE+ | 50.5 | > ⭐ **50.5 ERGÄNZT durch R57 (51.2): die Lesart ist bestätigt** (Fable 01a R57, TB-129, 02.10.2026).
+11199 | 51 | 4 | UEBERSCHRIFT | 51.1 | ### 51.1 R56 — Ergänzung zu 27.4 und 27.6 (Anfangsbestand eines neu begonnenen Chats des Verfahrensprüfers)
+11206 | 51 | 4 | UEBERSCHRIFT | 51.2 | ### 51.2 R57 — Präzisierung zu R53 (49.1) und Bestätigung von 50.5 (Zählweise des Vorlaufs)
+11220 | 51 | 4 | UEBERSCHRIFT | 51.4 | ### 51.4 R59 — Ergänzung zu R53 (49.1) (kein Rückfall auf ein Literal; Eingaben der Rechnung)
+11227 | 51 | 4 | UEBERSCHRIFT | 51.5 | ### 51.5 R60 — Bestätigung und Ergänzung zu R48 (d) (48.16) (mittlere Exposure: Registertext und Code; zwei Träger)
+11232 | 51 | 4 | MARKE | 51.5 | > ⭐ **51.5 R60 (a) PRÄZISIERT durch R63 (52.1)** (Fable 02a R63, TB-130, 02.10.2026).
+11235 | 51 | 4 | MARKE | 51.5 | > ⭐ **51.5 R60 (b) und (c) PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, TB-130, 02.10.2026).
+11238 | 51 | 4 | MARKE | 51.5 | > ⭐ **51.5 R60 PRÄZISIERT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026).
+11245 | 51 | 4 | MARKE | 51.6 | > R61 — Marken nach E-2 (Regel, Nachtrag, eine Berichtigung). (a) Nennen R51 und ein Unterpunkt von R48, R49 oder R50 denselben Ort, trägt der Ort eine Marke, die auf den Unterpunkt zeigt; sie erfüllt beide. Zwei Marken an einem O
+11248 | 51 | 4 | MARKE | 51.6 | > ⭐ **51.6 R61 (b) PRÄZISIERT durch R65 (52.3)** (Fable 02a R65, Unterpunkt (a), TB-130, 02.10.2026).
+11251 | 51 | 4 | MARKE | 51.6 | > ⭐ **51.6 R61 PRÄZISIERT durch R70 (53.5)** (Fable 02c R70, Unterpunkt (a), TB-132, 04.10.2026).
+11286 | 51 | 4 | MARKE+ | 51.9 | > ⭐ **51.9 ERGÄNZT durch R63 (52.1): die Lesart ist bestätigt** (Fable 02a R63, TB-130, 02.10.2026).
+11306 | 52 | 4 | UEBERSCHRIFT | 52.1 | ### 52.1 R63 — Präzisierung zu R60 (a) (51.5) und Bestätigung der Lesart 51.9 (Reichweite: die Stelle, nicht der Ordner)
+11313 | 52 | 4 | UEBERSCHRIFT | 52.2 | ### 52.2 R64 — Präzisierung zu R48 (d) (48.16) und zu R60 (b) und (c) (51.5) (über welche Tage die mittlere Exposure gemittelt wird)
+11318 | 52 | 4 | MARKE+ | 52.2 | > ⭐ **52.2 R64 ERGÄNZT durch R66 (53.1)** (Fable 02c R66, zu (e), TB-132, 04.10.2026).
+11321 | 52 | 4 | MARKE | 52.2 | > ⭐ **52.2 R64 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
+11324 | 52 | 4 | MARKE | 52.2 | > ⭐ **52.2 R64 PRÄZISIERT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026).
+11327 | 52 | 4 | MARKE | 52.2 | > ⭐ **52.2 R64 PRÄZISIERT durch R71 (53.6): erster Kurstag** (Fable 02c R71, TB-132, 04.10.2026).
+11330 | 52 | 4 | MARKE | 52.2 | > ⭐ **52.2 R64 PRÄZISIERT durch R72 (53.7): Benchmark-Tag** (Fable 02c R72, Unterpunkt (b), TB-132, 04.10.2026).
+11337 | 52 | 4 | MARKE+ | 52.3 | > R65 — Marken nach R61 (Regel und fünf Orte; eine Berichtigung in „lies“-Form). (a) Die Aufzählungen in R51 und R61 (b) wenden die Regel aus 34 an und schliessen sie nicht ab. Gibt ein Block einem benannten Ort ein „lies“, eine E
+11340 | 52 | 4 | MARKE | 52.3 | > ⭐ **52.3 R65 PRÄZISIERT durch R70 (53.5)** (Fable 02c R70, Unterpunkt (a), TB-132, 04.10.2026).
+11358 | 52 | 4 | MARKE+ | 52.4 | > ⭐ **52.4, Zeile „R64 (52.2), zweite“ ERGÄNZT durch R66 (53.1)** (Fable 02c R66, Unterpunkte (a) und (e), TB-132, 04.10.2026).
+11361 | 52 | 4 | MARKE+ | 52.4 | > ⭐ **52.4, Zeile „R64 (52.2) (a)“ BERICHTIGT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026).
+11382 | 53 | 4 | UEBERSCHRIFT | 53.1 | ### 53.1 R66 — Präzisierung zu Registertext 1a und 1c (15.3 (a), (c)) und Ergänzung zu R64 (e) (52.2) (Kalender der Tagesreihe; Tage des…
+11389 | 53 | 4 | UEBERSCHRIFT | 53.2 | ### 53.2 R67 — Registertext, Ersteintrag, Ergänzung zu R39 (48.7) (Eindeutigkeit und Vollständigkeit der Reihen)
+11396 | 53 | 4 | UEBERSCHRIFT | 53.3 | ### 53.3 R68 — Präzisierung zu R33 (48.1), zu R37 (48.5) und zu R64 (52.2) (Zeile der Bestätigungsperiode in zellen.csv)
+11403 | 53 | 4 | UEBERSCHRIFT | 53.4 | ### 53.4 R69 — Auflösung des Widerspruchs zwischen R39 (48.7) und auswertung.py (Name der Benchmark-Datei); Präzisierung zu R64 (e) (52.2)…
+11410 | 53 | 4 | UEBERSCHRIFT | 53.5 | ### 53.5 R70 — Marken zu R64 (7 (c)) und zu R66 bis R73; Präzisierung zu R61 (b) (51.6) und R65 (a) (52.3)
+11412 | 53 | 4 | MARKE | 53.5 | > R70 — Marken zu R64 (7 (c)) und zu R66 bis R73; Präzisierung zu R61 (b) (51.6) und R65 (a) (52.3). (a) 7 (c) trägt keine Marke zu R64. Abschnitt 7 nennt seine Tage selbst („gemeinsame Tage“, „über dieselben Tage“); R64 gibt das 
+11413 | 53 | 4 | MARKE+ | 53.5 | > Quelle des Grundes: R61 (b), erster und zweiter Satz, und die Zeile „R54 an 7 (c)“; R65 (a) (auch: eine Tabelle von Befunden ist keine Statusliste; eine Bestätigung trägt ERGÄNZT mit Zusatz); 34 (Kopf: die Marke steht am alten O
+11424 | 53 | 4 | UEBERSCHRIFT | 53.7 | ### 53.7 R72 — Tatsachennotiz zu Registertext 3b (c) (23.3) (Kurslücke und Reihenende im Benchmark) und Ergänzung zu R48 (d) (48.16)…
+11467 | 53 | 4 | MARKE | 53.10 | | 8 | Marke an 23.3, Registertext 3b (c): PRÄZISIERT durch R72 (b). R70 (c) nennt sie nicht; der steuernde Chat hat sie nach R65 (a) bestimmt | nächste Anfrage an Fable, zur Kenntnis |
+rc 0

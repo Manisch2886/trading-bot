@@ -1,14 +1,14 @@
 # REGISTER_INDEX — wo was im Register gerade gilt
 
-**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `ad351d5` (02.10.2026), Abschnitte 0–52,
-11 313 Zeilen, sha256 `a7496780…`. Gebaut in TB-118 (Fable 27b B3, Teil D A4), nachgezogen in TB-126 (E-2), TB-129 (Fable 01a) und TB-130 (Fable 02a). **Das ist ein Wegweiser, nicht das
-Register.** Der Wortlaut steht nur im Register bzw. in der Kopie je Abschnitt `register_kopie/REGISTER_KOPIE_ABSCHNITT_00.md` … `_52.md` (Tabelle unten; dazu die Teile `REGISTER_KOPIE_teil1–4.md`).
+**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `ee43f5f` (04.10.2026), Abschnitte 0–53,
+11 471 Zeilen, sha256 `9a2cefb7…`. Gebaut in TB-118 (Fable 27b B3, Teil D A4), nachgezogen in TB-126 (E-2), TB-129 (Fable 01a), TB-130 (Fable 02a) und TB-132 (Fable 02c). **Das ist ein Wegweiser, nicht das
+Register.** Der Wortlaut steht nur im Register bzw. in der Kopie je Abschnitt `register_kopie/REGISTER_KOPIE_ABSCHNITT_00.md` … `_53.md` (Tabelle unten; dazu die Teile `REGISTER_KOPIE_teil1–4.md`).
 
 **Wie gemessen:** `python3 docs/werkzeuge/registerkopie.py --marken` sammelt jede Zeile mit „ERSETZT durch“ oder
-„PRÄZISIERT durch“ (das Suchmuster des Auftrags, Art `MARKE`, 70 Zeilen), jede weitere Zeile mit ERSETZT,
-PRÄZISIERT, BERICHTIGT, ERGÄNZT oder KORRIGIERT (Art `MARKE+`, 111 Zeilen) und jede Überschrift mit Rückverweis
-(„Berichtigung zu“, „Präzisierung zu“, „Ergänzung zu“, „ersetzt die …“; Art `UEBERSCHRIFT`, 82 Zeilen). Die
-Ausgabe liegt in `docs/belege/TB-130/c1_marken.txt` (zuvor `docs/belege/TB-129/c1_marken.txt`, `docs/belege/TB-126/c1_marken.txt`, `docs/belege/TB-118/a4_marken.txt`). Die Ketten unten sind **aus diesen Zeilen gelesen, nicht
+„PRÄZISIERT durch“ (das Suchmuster des Auftrags, Art `MARKE`, 84 Zeilen), jede weitere Zeile mit ERSETZT,
+PRÄZISIERT, BERICHTIGT, ERGÄNZT oder KORRIGIERT (Art `MARKE+`, 121 Zeilen) und jede Überschrift mit Rückverweis
+(„Berichtigung zu“, „Präzisierung zu“, „Ergänzung zu“, „ersetzt die …“; Art `UEBERSCHRIFT`, 88 Zeilen). Die
+Ausgabe liegt in `docs/belege/TB-132/c1_marken.txt` (zuvor `docs/belege/TB-130/c1_marken.txt`, `docs/belege/TB-129/c1_marken.txt`, `docs/belege/TB-126/c1_marken.txt`, `docs/belege/TB-118/a4_marken.txt`). Die Ketten unten sind **aus diesen Zeilen gelesen, nicht
 erinnert**. Wo eine Stelle nur über eine Überschrift oder ein anderes Markenwort erreicht wird, steht sie in der
 Spalte „dazu“, nicht als „gilt“. Nach dem Auftrag gilt „ERSETZT durch“ und „PRÄZISIERT durch“ als Kette.
 **Mehrdeutig** heisst, dass die Marken keinen einzelnen Ort ergeben. Dann ist der Wortlaut zu lesen.
@@ -32,46 +32,47 @@ Spalte „dazu“, nicht als „gilt“. Nach dem Auftrag gilt „ERSETZT durch�
 | 12 | `REGISTER_KOPIE_ABSCHNITT_12.md` | 1255–1331 |
 | 13 | `REGISTER_KOPIE_ABSCHNITT_13.md` | 1332–1347 |
 | 14 | `REGISTER_KOPIE_ABSCHNITT_14.md` | 1348–1362 |
-| 15 | `REGISTER_KOPIE_ABSCHNITT_15.md` | 1363–1813 |
-| 16 | `REGISTER_KOPIE_ABSCHNITT_16.md` | 1814–2568 |
-| 17 | `REGISTER_KOPIE_ABSCHNITT_17.md` | 2569–3022 |
-| 18 | `REGISTER_KOPIE_ABSCHNITT_18.md` | 3023–3087 |
-| 19 | `REGISTER_KOPIE_ABSCHNITT_19.md` | 3088–3202 |
-| 20 | `REGISTER_KOPIE_ABSCHNITT_20.md` | 3203–3283 |
-| 21 | `REGISTER_KOPIE_ABSCHNITT_21.md` | 3284–3635 |
-| 22 | `REGISTER_KOPIE_ABSCHNITT_22.md` | 3636–3842 |
-| 23 | `REGISTER_KOPIE_ABSCHNITT_23.md` | 3843–4224 |
-| 24 | `REGISTER_KOPIE_ABSCHNITT_24.md` | 4225–4569 |
-| 25 | `REGISTER_KOPIE_ABSCHNITT_25.md` | 4570–4799 |
-| 26 | `REGISTER_KOPIE_ABSCHNITT_26.md` | 4800–5123 |
-| 27 | `REGISTER_KOPIE_ABSCHNITT_27.md` | 5124–5200 |
-| 28 | `REGISTER_KOPIE_ABSCHNITT_28.md` | 5201–5341 |
-| 29 | `REGISTER_KOPIE_ABSCHNITT_29.md` | 5342–5424 |
-| 30 | `REGISTER_KOPIE_ABSCHNITT_30.md` | 5425–5558 |
-| 31 | `REGISTER_KOPIE_ABSCHNITT_31.md` | 5559–5690 |
-| 32 | `REGISTER_KOPIE_ABSCHNITT_32.md` | 5691–5901 |
-| 33 | `REGISTER_KOPIE_ABSCHNITT_33.md` | 5902–6113 |
-| 34 | `REGISTER_KOPIE_ABSCHNITT_34.md` | 6114–6324 |
-| 35 | `REGISTER_KOPIE_ABSCHNITT_35.md` | 6325–6521 |
-| 36 | `REGISTER_KOPIE_ABSCHNITT_36.md` | 6522–6872 |
-| 37 | `REGISTER_KOPIE_ABSCHNITT_37.md` | 6873–7237 |
-| 38 | `REGISTER_KOPIE_ABSCHNITT_38.md` | 7238–7613 |
-| 39 | `REGISTER_KOPIE_ABSCHNITT_39.md` | 7614–8134 |
-| 40 | `REGISTER_KOPIE_ABSCHNITT_40.md` | 8135–8529 |
-| 41 | `REGISTER_KOPIE_ABSCHNITT_41.md` | 8530–8947 |
-| 42 | `REGISTER_KOPIE_ABSCHNITT_42.md` | 8948–9513 |
-| 43 | `REGISTER_KOPIE_ABSCHNITT_43.md` | 9514–9830 |
-| 44 | `REGISTER_KOPIE_ABSCHNITT_44.md` | 9831–10137 |
-| 45 | `REGISTER_KOPIE_ABSCHNITT_45.md` | 10138–10361 |
-| 46 | `REGISTER_KOPIE_ABSCHNITT_46.md` | 10362–10646 |
-| 47 | `REGISTER_KOPIE_ABSCHNITT_47.md` | 10647–10766 |
-| 48 | `REGISTER_KOPIE_ABSCHNITT_48.md` | 10767–10941 |
-| 49 | `REGISTER_KOPIE_ABSCHNITT_49.md` | 10942–10972 |
-| 50 | `REGISTER_KOPIE_ABSCHNITT_50.md` | 10973–11161 |
-| 51 | `REGISTER_KOPIE_ABSCHNITT_51.md` | 11162–11262 |
-| 52 | `REGISTER_KOPIE_ABSCHNITT_52.md` | 11263–11313 |
+| 15 | `REGISTER_KOPIE_ABSCHNITT_15.md` | 1363–1819 |
+| 16 | `REGISTER_KOPIE_ABSCHNITT_16.md` | 1820–2574 |
+| 17 | `REGISTER_KOPIE_ABSCHNITT_17.md` | 2575–3028 |
+| 18 | `REGISTER_KOPIE_ABSCHNITT_18.md` | 3029–3093 |
+| 19 | `REGISTER_KOPIE_ABSCHNITT_19.md` | 3094–3208 |
+| 20 | `REGISTER_KOPIE_ABSCHNITT_20.md` | 3209–3289 |
+| 21 | `REGISTER_KOPIE_ABSCHNITT_21.md` | 3290–3641 |
+| 22 | `REGISTER_KOPIE_ABSCHNITT_22.md` | 3642–3848 |
+| 23 | `REGISTER_KOPIE_ABSCHNITT_23.md` | 3849–4239 |
+| 24 | `REGISTER_KOPIE_ABSCHNITT_24.md` | 4240–4584 |
+| 25 | `REGISTER_KOPIE_ABSCHNITT_25.md` | 4585–4814 |
+| 26 | `REGISTER_KOPIE_ABSCHNITT_26.md` | 4815–5138 |
+| 27 | `REGISTER_KOPIE_ABSCHNITT_27.md` | 5139–5218 |
+| 28 | `REGISTER_KOPIE_ABSCHNITT_28.md` | 5219–5359 |
+| 29 | `REGISTER_KOPIE_ABSCHNITT_29.md` | 5360–5442 |
+| 30 | `REGISTER_KOPIE_ABSCHNITT_30.md` | 5443–5576 |
+| 31 | `REGISTER_KOPIE_ABSCHNITT_31.md` | 5577–5708 |
+| 32 | `REGISTER_KOPIE_ABSCHNITT_32.md` | 5709–5919 |
+| 33 | `REGISTER_KOPIE_ABSCHNITT_33.md` | 5920–6131 |
+| 34 | `REGISTER_KOPIE_ABSCHNITT_34.md` | 6132–6342 |
+| 35 | `REGISTER_KOPIE_ABSCHNITT_35.md` | 6343–6539 |
+| 36 | `REGISTER_KOPIE_ABSCHNITT_36.md` | 6540–6890 |
+| 37 | `REGISTER_KOPIE_ABSCHNITT_37.md` | 6891–7255 |
+| 38 | `REGISTER_KOPIE_ABSCHNITT_38.md` | 7256–7631 |
+| 39 | `REGISTER_KOPIE_ABSCHNITT_39.md` | 7632–8152 |
+| 40 | `REGISTER_KOPIE_ABSCHNITT_40.md` | 8153–8547 |
+| 41 | `REGISTER_KOPIE_ABSCHNITT_41.md` | 8548–8965 |
+| 42 | `REGISTER_KOPIE_ABSCHNITT_42.md` | 8966–9531 |
+| 43 | `REGISTER_KOPIE_ABSCHNITT_43.md` | 9532–9848 |
+| 44 | `REGISTER_KOPIE_ABSCHNITT_44.md` | 9849–10155 |
+| 45 | `REGISTER_KOPIE_ABSCHNITT_45.md` | 10156–10379 |
+| 46 | `REGISTER_KOPIE_ABSCHNITT_46.md` | 10380–10664 |
+| 47 | `REGISTER_KOPIE_ABSCHNITT_47.md` | 10665–10784 |
+| 48 | `REGISTER_KOPIE_ABSCHNITT_48.md` | 10785–10974 |
+| 49 | `REGISTER_KOPIE_ABSCHNITT_49.md` | 10975–11005 |
+| 50 | `REGISTER_KOPIE_ABSCHNITT_50.md` | 11006–11194 |
+| 51 | `REGISTER_KOPIE_ABSCHNITT_51.md` | 11195–11301 |
+| 52 | `REGISTER_KOPIE_ABSCHNITT_52.md` | 11302–11377 |
+| 53 | `REGISTER_KOPIE_ABSCHNITT_53.md` | 11378–11471 |
 
-*Frühere Vierteilung* (bis 01.10.2026; „T1“ … „T4“ in den Tabellen unten bezeichnen sie, massgeblich sind Abschnitt und Z.): T1 = 0–22 (Z. 1–3842), T2 = 23–36 (Z. 3843–6872), T3 = 37–42 (Z. 6873–9513), T4 = 43–52 (Z. 9514–11313).
+*Frühere Vierteilung* (bis 01.10.2026; „T1“ … „T4“ in den Tabellen unten bezeichnen sie, massgeblich sind Abschnitt und Z.): T1 = 0–22 (Z. 1–3848), T2 = 23–36 (Z. 3849–6890), T3 = 37–42 (Z. 6891–9531), T4 = 43–53 (Z. 9532–11471).
 
 Schreibweise: „15.6 (a)“ ist Unterabschnitt 15.6, Punkt (a). „T2“ heisst Teil 2. „Z.“ ist die Zeile im Register am
 genannten Commit.
@@ -112,7 +113,7 @@ genannten Commit.
 | 7, Tabelle (a), (b) und (d) | Z. 810 (d) **PRÄZISIERT durch R48 (48.16)**; Z. 813 (a) ERGÄNZT (Verweis) durch R51 (48.19); Z. 816 (d) ERGÄNZT durch R55 (49.3); Z. 819 (b) **PRÄZISIERT durch R37 (48.5)** | 7 (d) **mit** 48.16 R48 (c); 7 (b) **mit** 48.5 R37; dazu 49.3 R55 (leere Menge), 48.19 R51 (T4) |
 | 7.1 Die drei Regeln … | Z. 862 ERGÄNZT durch R21 (47.4); Z. 865 **PRÄZISIERT durch R23 (47.6)** | 7.1 **mit** 47.6 R23; dazu 47.4 R21 (T4) |
 | 8, Tabelle (Bericht je Bot) | Z. 890 **PRÄZISIERT durch R36 (48.4)**; Z. 893 ERGÄNZT durch R55 (49.3) | 8, Tabelle **mit** 48.4 R36; dazu 49.3 R55 (T4) |
-| 8.1 Zufalls-Timing-Test | Z. 920 **PRÄZISIERT durch R48 (48.16)** | 8.1 **mit** 48.16 R48 (g); R48 (g) BERICHTIGT durch 49.2 R54 (Z. 10892) (T4) |
+| 8.1 Zufalls-Timing-Test | Z. 920 **PRÄZISIERT durch R48 (48.16)** | 8.1 **mit** 48.16 R48 (g); R48 (g) BERICHTIGT durch 49.2 R54 (Z. 10922) (T4) |
 | 9, erster Absatz („N = 653 plus …“) | Z. 932 **PRÄZISIERT durch R48 (48.16)** (einzige Marke in 9) | 9 **mit** 48.16 R48 (b) (T4) |
 | 10 Sperrliste | Z. 1025 (MARKE+: der Kasten an Punkt 4 sagt „nicht (iii) (ERSETZT-Marke)“, Form (ii) nach 38.4) | 10, Punkttext unverändert; Vollzug Punkt 4 in 39.2 (T3). Die Sperrlisten-Einträge 36.1, 36.6, 37.2 und 37.3 gehen in Tabelle 4 |
 | ↳ 10, künftiger Punkt 15 (die neun neuen Trade-Listen) | **Indexzeile E-2**, keine Marke (Abschnitt 10) | 48.10 R42 (T4) |
@@ -129,32 +130,32 @@ genannten Commit.
 | Registertext | Ersteintrag | Marken der Kette (Zeile) | **gilt** | dazu (Überschrift oder anderes Markenwort) |
 |---|---|---|---|---|
 | **0** Verfahren | 15.2 | – | **15.2** (T1) | – |
-| **1a** Bootstrap (a) | 15.3 (a) | – | **15.3 (a)** | 24.2 beruft sich auf 1a; Z. 4229 „Registertext 1a bleibt in 15.3“; 15.3 insgesamt: Z. 1467 ERGÄNZT durch R35 (48.3) (T4) |
+| **1a** Bootstrap (a) | 15.3 (a) | Z. 1449 **PRÄZISIERT durch R66 (53.1)** | **15.3 (a)** **mit** 53.1 R66 (a), (b) (T4) | 24.2 beruft sich auf 1a; Z. 4244 „Registertext 1a bleibt in 15.3“; 15.3 insgesamt: Z. 1473 ERGÄNZT durch R35 (48.3) (T4) |
 | **1b** | 15.3 (b) | – | **15.3 (b)** | Z. 1446 ERGÄNZT durch R41 (48.9) (T4) |
-| **1c** | 15.3 (c) | – | **15.3 (c)** | – |
-| **2a–2c** Faltenzuordnung | 15.4 (a)–(c) | – | **15.4 (a)–(c)** | 2a: Z. 1495 **BERICHTIGT durch R54 (49.2)** („lies“); 15.4 insgesamt: Z. 1540 ERGÄNZT durch R41 (48.9) und 50.1 (T4) |
-| **2d** Embargo | 15.4 (d) | Z. 1490 ERSETZT durch 16.6 → Z. 2341 PRÄZISIERT durch R37 (48.5) | **16.6** (T1) **mit** 48.5 R37 (T4) | 41.2 B2 „Berichtigung der 2d-Herleitung“ (T3) |
-| **3a** Universum | 15.5 (a) | Tabelle darunter: Z. 1577 KORRIGIERT in 16.1.3 (MARKE+) | **15.5 (a)**, Rechenweg der Krypto-Zeile **16.1.3** | 15.5 insgesamt: Z. 1655 ERGÄNZT durch R53 (49.1) (T4) |
-| **3b** Symbolzahl je Falte | 15.5 (b) | Tatsachennotizen: Z. 1600 ERSETZT durch 16.1.1, Z. 1617 ERSETZT durch 16.1.2 | Regel **15.5 (b)**, Tatsachen **16.1.1/16.1.2** | Ergänzungen 3b (a)–(e) in **16.7** (siehe nächste Zeilen) |
+| **1c** | 15.3 (c) | Z. 1452 **PRÄZISIERT durch R66 (53.1)** | **15.3 (c)** **mit** 53.1 R66 (c) (T4) | – |
+| **2a–2c** Faltenzuordnung | 15.4 (a)–(c) | – | **15.4 (a)–(c)** | 2a: Z. 1501 **BERICHTIGT durch R54 (49.2)** („lies“); 15.4 insgesamt: Z. 1546 ERGÄNZT durch R41 (48.9) und 50.1 (T4) |
+| **2d** Embargo | 15.4 (d) | Z. 1496 ERSETZT durch 16.6 → Z. 2347 PRÄZISIERT durch R37 (48.5) | **16.6** (T1) **mit** 48.5 R37 (T4) | 41.2 B2 „Berichtigung der 2d-Herleitung“ (T3) |
+| **3a** Universum | 15.5 (a) | Tabelle darunter: Z. 1583 KORRIGIERT in 16.1.3 (MARKE+) | **15.5 (a)**, Rechenweg der Krypto-Zeile **16.1.3** | 15.5 insgesamt: Z. 1661 ERGÄNZT durch R53 (49.1) (T4) |
+| **3b** Symbolzahl je Falte | 15.5 (b) | Tatsachennotizen: Z. 1606 ERSETZT durch 16.1.1, Z. 1623 ERSETZT durch 16.1.2 | Regel **15.5 (b)**, Tatsachen **16.1.1/16.1.2** | Ergänzungen 3b (a)–(e) in **16.7** (siehe nächste Zeilen) |
 | **3b (a)** Ergänzung | 16.7 (a) | – | **16.7 (a)** | – |
 | **3b (b)** Ergänzung | 16.7 (b) | – | **16.7 (b)** | 34.3 berichtigt in 30.2 (2) „3b (b)“ zu „3b (a)“ (T2) |
-| **3b (c)** Benchmark | 16.7 (c) | Z. 2387 (c) ERSETZT durch 23.3 | **23.3** (T2) | 24.2 bezieht sich auf 3b (c) „in der Fassung aus 23.3“ |
-| **3b (d), (e)** | 16.7 (d), (e) | – | **16.7 (d), (e)** | (d): Z. 2405 ERGÄNZT durch R38 (48.6) (T4) |
-| **3c** Vorbehalt | 15.5 (c) | – | **15.5 (c)** | Z. 1564 ERGÄNZT durch 26.4 (T2) |
+| **3b (c)** Benchmark | 16.7 (c) | Z. 2393 (c) ERSETZT durch 23.3 | **23.3** (T2) | 24.2 bezieht sich auf 3b (c) „in der Fassung aus 23.3“ |
+| **3b (d), (e)** | 16.7 (d), (e) | – | **16.7 (d), (e)** | (d): Z. 2411 ERGÄNZT durch R38 (48.6) (T4) |
+| **3c** Vorbehalt | 15.5 (c) | – | **15.5 (c)** | Z. 1570 ERGÄNZT durch 26.4 (T2) |
 | **3d** | 15.5 (d) | – | **15.5 (d)** | – |
-| **4** Falten, insgesamt | 15.6 | – | 15.6 | 21 „Berichtigung zu Registertext 4“ (15.6, Punkt 2 der Tafel, T1); 24.2 „Präzisierung zu Registertext 4“ (Drawdown Mark-to-Market, **ohne Marke in 15.6**, T2); Z. 1735 ERGÄNZT (Verweis) durch R51 (48.19) (T4) |
-| **4a** erste Falte | 15.6 (a) | Z. 1667 (a) ERSETZT durch 25.3 → Z. 4676 (i) PRÄZISIERT durch 26.2 | **25.3**, Bedingung (i) in der Fassung **26.2** (T2) | 21.3 (b) ging ebenfalls in 25.3 auf (Z. 3371). 28.6 „Registertext 4a, Präzisierung, Ergänzung“ → 30.6 „Präzisierung zu 28.6“; 32 „Bedingung (i) rechnet gegen den Horizontbeginn aus 28.4“; 33.2 „Der Faltenplan nach 4a“ (alle T2). **Mehrdeutig, ob 28.6 und 30.6 den Wortlaut von 25.3 fortschreiben oder daneben stehen, Abschnitte 25, 26, 28, 30** |
-| **4b, 4c** | 15.6 (b), (c) | (c): Z. 1685 **PRÄZISIERT durch R23 (47.6)** | **15.6 (b), (c)**, (c) **mit** 47.6 R23 (T4) | – |
-| **4d** Faltenliste | 15.6 (d) | – | Regel **15.6 (d)** | Tatsachennotizen: 21.4 (berichtigte Faltenliste, T1), 26.3 (Platzhalter) **ERSETZT** durch 28.4 (MARKE+ Z. 5250); Faltenplan als Registertext 33.2 (T2) |
-| **5** Datenstand | 15.7 | Z. 1758 ERSETZT durch 16.3 | **16.3**, nach Punkten wie folgt | 18 Tatsachennotiz zu 5/5a (T1) |
-| **5a** Bestand und Snapshot | 16.3 (a) | Z. 2001 ERSETZT durch 17.1 | **17.1** (T1) | 17.3 Zusatz `rand_erste`; 28.2 Ergänzung `asof` → 31 „Berichtigung zu 28.2“, Ersatztext **31.2**; 31.3 „Präzisierung zu 5a / 17.1“ (T2); 41.2 B5 Resolver-Pflicht, Ergänzung zu 5a/5e (T3) |
-| **5b** Registerhash | 16.3 (b) | Z. 2015 PRÄZISIERT durch 17.9 | **16.3 (b) mit 17.9** (T1) | – |
-| **5c** Reihenfolge Snapshot/Tag | 16.3 (c) | Z. 2026 ERSETZT durch 17.2 | **17.2** (T1) | – |
+| **4** Falten, insgesamt | 15.6 | – | 15.6 | 21 „Berichtigung zu Registertext 4“ (15.6, Punkt 2 der Tafel, T1); 24.2 „Präzisierung zu Registertext 4“ (Drawdown Mark-to-Market, **ohne Marke in 15.6**, T2); Z. 1741 ERGÄNZT (Verweis) durch R51 (48.19) (T4) |
+| **4a** erste Falte | 15.6 (a) | Z. 1673 (a) ERSETZT durch 25.3 → Z. 4691 (i) PRÄZISIERT durch 26.2 | **25.3**, Bedingung (i) in der Fassung **26.2** (T2) | 21.3 (b) ging ebenfalls in 25.3 auf (Z. 3377). 28.6 „Registertext 4a, Präzisierung, Ergänzung“ → 30.6 „Präzisierung zu 28.6“; 32 „Bedingung (i) rechnet gegen den Horizontbeginn aus 28.4“; 33.2 „Der Faltenplan nach 4a“ (alle T2). **Mehrdeutig, ob 28.6 und 30.6 den Wortlaut von 25.3 fortschreiben oder daneben stehen, Abschnitte 25, 26, 28, 30** |
+| **4b, 4c** | 15.6 (b), (c) | (c): Z. 1691 **PRÄZISIERT durch R23 (47.6)** | **15.6 (b), (c)**, (c) **mit** 47.6 R23 (T4) | – |
+| **4d** Faltenliste | 15.6 (d) | – | Regel **15.6 (d)** | Tatsachennotizen: 21.4 (berichtigte Faltenliste, T1), 26.3 (Platzhalter) **ERSETZT** durch 28.4 (MARKE+ Z. 5268); Faltenplan als Registertext 33.2 (T2) |
+| **5** Datenstand | 15.7 | Z. 1764 ERSETZT durch 16.3 | **16.3**, nach Punkten wie folgt | 18 Tatsachennotiz zu 5/5a (T1) |
+| **5a** Bestand und Snapshot | 16.3 (a) | Z. 2007 ERSETZT durch 17.1 | **17.1** (T1) | 17.3 Zusatz `rand_erste`; 28.2 Ergänzung `asof` → 31 „Berichtigung zu 28.2“, Ersatztext **31.2**; 31.3 „Präzisierung zu 5a / 17.1“ (T2); 41.2 B5 Resolver-Pflicht, Ergänzung zu 5a/5e (T3) |
+| **5b** Registerhash | 16.3 (b) | Z. 2021 PRÄZISIERT durch 17.9 | **16.3 (b) mit 17.9** (T1) | – |
+| **5c** Reihenfolge Snapshot/Tag | 16.3 (c) | Z. 2032 ERSETZT durch 17.2 | **17.2** (T1) | – |
 | **5d** UTC | 16.3 (d) | – | **16.3 (d)** | – |
 | **5e** Lese-Audit | 17.4 | – | **17.4** (T1) | 19 Ergänzung Codeherkunft (T1) → 45.4 R4 „Ergänzung zu 19“ (T4); 41.2 B5 (T3) |
 | **5f** Umgebung | 17.5 | – | **17.5** (T1) | 20 Tatsachennotiz Lock (T1) |
-| **6** Budgetstufen (a)–(m) | 16.4 | Z. 2097–2192: 18 Marken, davon 14 **PRÄZISIERT** durch R18–R23 (47.1–47.6) und R37 (48.5) — Liste in Abschnitt 5; „Prüfung vor dem Tag“: Z. 2235 **PRÄZISIERT durch R21 (47.4)** — Abschnitt 6 | **16.4** (T1) **mit** 47.1–47.6 und 48.5 für (a)–(d), (h)–(m); „Prüfung vor dem Tag“ **mit** 47.4 R21 (T4) | 47.3 R20 Ergänzung zu (j), (l); 47.7 R24 Tatsachennotiz zu (g), (h) mit 50.6 (T4); 22.4 „Registertext 6, Ergänzung — Notbremse“ (T1); 26.7 Kette „(b) → Festlegung 11 → Registertext 6 (b)“ (T2) |
-| **7** Backtester-Prüfung | 16.5 | – | **16.5** (T1) | Z. 2283 ERGÄNZT durch 17.6, 17.7, 17.8 (Ergänzungen I–III, T1) |
+| **6** Budgetstufen (a)–(m) | 16.4 | Z. 2103–2198: 18 Marken, davon 14 **PRÄZISIERT** durch R18–R23 (47.1–47.6) und R37 (48.5) — Liste in Abschnitt 5; „Prüfung vor dem Tag“: Z. 2241 **PRÄZISIERT durch R21 (47.4)** — Abschnitt 6 | **16.4** (T1) **mit** 47.1–47.6 und 48.5 für (a)–(d), (h)–(m); „Prüfung vor dem Tag“ **mit** 47.4 R21 (T4) | 47.3 R20 Ergänzung zu (j), (l); 47.7 R24 Tatsachennotiz zu (g), (h) mit 50.6 (T4); 22.4 „Registertext 6, Ergänzung — Notbremse“ (T1); 26.7 Kette „(b) → Festlegung 11 → Registertext 6 (b)“ (T2) |
+| **7** Backtester-Prüfung | 16.5 | – | **16.5** (T1) | Z. 2289 ERGÄNZT durch 17.6, 17.7, 17.8 (Ergänzungen I–III, T1) |
 | Kandidatenregeln (a)–(e) | 16.8 | – | **16.8** (T1) | – |
 | Vorab-Filter (a)–(c) | 16.9 | – | **16.9** (T1) | – |
 | short-fähige Sleeves (a)–(e) | 16.10 | – | **16.10** (T1) | – |
@@ -167,42 +168,43 @@ Die Spalte „später berührt“ nennt jede gemessene Marke und jede Rückverwe
 
 | Abschnitt | T | Registertexte / Einträge darin | später berührt (Marke oder Überschrift) |
 |---|---|---|---|
-| 18 Tatsachennotiz 5/5a, Snapshot | 1 | Tatsachennotiz | Z. 3083 ERGÄNZT durch R28 (47.11) (T4) |
+| 18 Tatsachennotiz 5/5a, Snapshot | 1 | Tatsachennotiz | Z. 3089 ERGÄNZT durch R28 (47.11) (T4) |
 | ↳ 17.3, 17.9, 18 — Datenstand-Hash voll | 1 | **Indexzeile E-2**, keine Marke (R51 verlangt Indexzeile) | 48.19 R51 (T4) |
 | 19 Codeherkunft (5e) | 1 | Ergänzung zu 5e | 45.4 R4 Ergänzung zu 19 (T4) |
 | 20 Lock (5f) | 1 | Tatsachennotiz | – |
-| 21 Faltenschranke | 1 | 21.3 Ersatztext (a)–(c); 21.4 Tatsachennotiz zu 4d; 21.9 Entscheidung zu 21.6 | 21.3 (b) **ERSETZT durch 25.3** (Z. 3371); 36.4 Tatsachennotiz zu 21.4; 38.3 Tatsachennotiz zu 21.9; 21.4: Z. 3425 ERGÄNZT durch R53 (49.1) (T4) |
-| 22 Methodenantwort 19.09. | 1 | 22.1 allgemeine Prüfregel; 22.2 Kill-Test-Berichtswerte; 22.3 Abschalt- und Zuschaltregeln; 22.4 Ergänzung zu RT 6 | 22.2: Z. 3700 ERGÄNZT durch R34 (48.2) (T4) |
-| 23 Benchmark tagesgenau | 2 | 23.3 Ersatztext zu 3b (c) | in 23.3 selbst: Z. 3979 „ERSETZT (TB-71) durch den Satz zur Zeitachse oben“ (eine Tabelle in 23.3 durch einen Satz in 23.3) |
-| 24 Mark-to-Market | 2 | 24.2 Präzisierung zu RT 4; 24.3 Entscheidungsregel; 24.4 Festlegung 1 | 24.6 Tatsachennotiz; 24.2 **PRÄZISIERT durch R36 (48.4)** (Z. 4317, T4) |
-| 25 erste Falte, Konjunktion | 2 | 25.3 Ersatztext zu 4a und 21.3 (b) | (i) **PRÄZISIERT durch 26.2** (Z. 4676) und **durch R53 (49.1)** (Z. 4678); 25.2: Z. 4658 ERGÄNZT durch R53 (T4); 25.3 (i) ERGÄNZT durch R58 (51.3) (Z. 4681, T4); 25.2 **BERICHTIGT durch R62 (51.7) und R65 (52.3)** (Z. 4655, T4) |
+| 21 Faltenschranke | 1 | 21.3 Ersatztext (a)–(c); 21.4 Tatsachennotiz zu 4d; 21.9 Entscheidung zu 21.6 | 21.3 (b) **ERSETZT durch 25.3** (Z. 3377); 36.4 Tatsachennotiz zu 21.4; 38.3 Tatsachennotiz zu 21.9; 21.4: Z. 3431 ERGÄNZT durch R53 (49.1) (T4) |
+| 22 Methodenantwort 19.09. | 1 | 22.1 allgemeine Prüfregel; 22.2 Kill-Test-Berichtswerte; 22.3 Abschalt- und Zuschaltregeln; 22.4 Ergänzung zu RT 6 | 22.2: Z. 3706 ERGÄNZT durch R34 (48.2) (T4) |
+| 23 Benchmark tagesgenau | 2 | 23.3 Ersatztext zu 3b (c) | in 23.3 selbst: Z. 3994 „ERSETZT (TB-71) durch den Satz zur Zeitachse oben“ (eine Tabelle in 23.3 durch einen Satz in 23.3); 23.3, Registertext 3b (c) **PRÄZISIERT durch R72 (53.7)** (Z. 3947, vom steuernden Chat nach R65 (a) bestimmt, T4); 23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse **BERICHTIGT durch R71 (53.6)** (Z. 3975), ERGÄNZT durch R72 (53.7) (Z. 3978) (T4) |
+| 24 Mark-to-Market | 2 | 24.2 Präzisierung zu RT 4; 24.3 Entscheidungsregel; 24.4 Festlegung 1 | 24.6 Tatsachennotiz; 24.2 **PRÄZISIERT durch R36 (48.4)** (Z. 4332, T4) |
+| 25 erste Falte, Konjunktion | 2 | 25.3 Ersatztext zu 4a und 21.3 (b) | (i) **PRÄZISIERT durch 26.2** (Z. 4691) und **durch R53 (49.1)** (Z. 4693); 25.2: Z. 4673 ERGÄNZT durch R53 (T4); 25.3 (i) ERGÄNZT durch R58 (51.3) (Z. 4696, T4); 25.2 **BERICHTIGT durch R62 (51.7) und R65 (52.3)** (Z. 4670, T4) |
 | 26 Datenhorizont je Bot | 2 | 26.2 Präzisierung zu 4a (i); 26.4 Ergänzung zu 3 (c); 26.7 Grenzfall | 26.3 (Platzhalter-Tabelle) **ERSETZT** durch 28.4; 26.6 Zeilen 1 und 4 **ERSETZT** durch 28.5, Zeile 2 dort „erledigt“ (MARKE+); 28 „Berichtigung zu 26.3 und 26.6“; 31.6 berichtigt eine Zahl aus 26 |
-| 27 Sichtschutz | 2 | 27.1–27.5 | 45.6 R6 Ergänzung zu 27 (T4); 27.3: Z. 5154 ERGÄNZT durch R31 (47.14); Z. 5193 ERGÄNZT durch R32 (47.15) (T4); Z. 5196 ERGÄNZT durch R56 (51.1) (T4) |
-| 28 `asof` gesetzt | 2 | 28.2 Ergänzung zu 5a; 28.4, 28.5 Ersatzmarken; 28.6 Präzisierung und Ergänzung zu 4a | 28.2 → 31 Berichtigung, Ersatztext **31.2**; 28.6 → 30.6 Präzisierung; 32 rechnet gegen den Horizontbeginn aus 28.4 (Überschrift 32); 28.6 **PRÄZISIERT durch R53 (49.1)** (Z. 5328, T4) |
-| 29 Kapitalpfad ab erster Falte | 2 | 29.3 Registertext | 29.2 → 30.7 Ergänzung; 29.4 → 34.5 Berichtigung; in 29.4: „Fassung aus 21b ist ERSETZT“ (Z. 5395); 29.4 BERICHTIGT durch R43 (48.11) (Z. 5410, T4) |
+| 27 Sichtschutz | 2 | 27.1–27.5 | 45.6 R6 Ergänzung zu 27 (T4); 27.3: Z. 5169 ERGÄNZT durch R31 (47.14); Z. 5208 ERGÄNZT durch R32 (47.15) (T4); Z. 5211 ERGÄNZT durch R56 (51.1) (T4); Z. 5214 ERGÄNZT durch R73 (53.8) (T4) |
+| 28 `asof` gesetzt | 2 | 28.2 Ergänzung zu 5a; 28.4, 28.5 Ersatzmarken; 28.6 Präzisierung und Ergänzung zu 4a | 28.2 → 31 Berichtigung, Ersatztext **31.2**; 28.6 → 30.6 Präzisierung; 32 rechnet gegen den Horizontbeginn aus 28.4 (Überschrift 32); 28.6 **PRÄZISIERT durch R53 (49.1)** (Z. 5346, T4) |
+| 29 Kapitalpfad ab erster Falte | 2 | 29.3 Registertext | 29.2 → 30.7 Ergänzung; 29.4 → 34.5 Berichtigung; in 29.4: „Fassung aus 21b ist ERSETZT“ (Z. 5413); 29.4 BERICHTIGT durch R43 (48.11) (Z. 5428, T4) |
 | 30 gesperrter Faltenplan | 2 | 30.2 Registertext (1)–(3); 30.3 Tatsachennotiz Punkt 2 | 30.2 (2) → 34.3 Berichtigung; 30.2 (3) → 33.1 Berichtigung, 35.4 Präzisierung, 45.3 R3 Ergänzung (T4). **Mehrdeutig, welche Fassung von 30.2 (3) gilt, Abschnitte 33, 35, 45** |
 | 31 kein Feld `asof` | 2 | 31.2 Ersatztext zu 28.2; 31.3 Präzisierung zu 5a/17.1 | – |
 | 32 Horizontbeginn | 2 | Tatsachennotizen, 32.5 Entscheidungsvorlage | – |
-| 33 Faltenplan als Registertext | 2 | 33.2 Registertext; 33.3 Feldliste; 33.4 Anpassungen | 33.2 → 34.1, 34.2, 35.1 Ergänzungen (35.1 → **38.1 Berichtigung**, T3); 33.3 → 34.4, 35.2 Ergänzungen, 42.1 D5 Präzisierung (→ 42.2 E3 BERICHTIGT), 45.3 R3; 33.4 Punkt 3 **ERSETZT** (35.3; MARKE+ Z. 6087), 34.6 Berichtigung. **33.2 und 33.3 sind mehrdeutig: Grundtext plus Ergänzungen in 34, 35, 38, 42 und 45** |
-| 34 Faltenregeln, Feld `horizontbeginn` | 2 | 34.1–34.6 | 34.5 BERICHTIGT durch R43 (48.11) (Z. 6261, T4) |
-| 35 Bestätigungsperiode | 2 | 35.1–35.4 | 35.1 → 38.1 Berichtigung (T3); 35.4 → 42.1 D5 (T3); 35.1 **PRÄZISIERT durch R37 (48.5)** (Z. 6419); 35.4 ERGÄNZT durch R26 (47.9) (Z. 6499) (T4) |
+| 33 Faltenplan als Registertext | 2 | 33.2 Registertext; 33.3 Feldliste; 33.4 Anpassungen | 33.2 → 34.1, 34.2, 35.1 Ergänzungen (35.1 → **38.1 Berichtigung**, T3); 33.3 → 34.4, 35.2 Ergänzungen, 42.1 D5 Präzisierung (→ 42.2 E3 BERICHTIGT), 45.3 R3; 33.4 Punkt 3 **ERSETZT** (35.3; MARKE+ Z. 6105), 34.6 Berichtigung. **33.2 und 33.3 sind mehrdeutig: Grundtext plus Ergänzungen in 34, 35, 38, 42 und 45** |
+| 34 Faltenregeln, Feld `horizontbeginn` | 2 | 34.1–34.6 | 34.5 BERICHTIGT durch R43 (48.11) (Z. 6279, T4) |
+| 35 Bestätigungsperiode | 2 | 35.1–35.4 | 35.1 → 38.1 Berichtigung (T3); 35.4 → 42.1 D5 (T3); 35.1 **PRÄZISIERT durch R37 (48.5)** (Z. 6437); 35.4 ERGÄNZT durch R26 (47.9) (Z. 6517) (T4) |
 | 36 Schreibregel, Sonde, Abbild | 2 | 36.1 Schreibregel; 36.2 Sonde; 36.5 drei Ausgänge; 36.6 Abbild | 36.2 → 36.5 Berichtigung, 37.3 Ergänzung; 36.5 → 37.1 Präzisierung, 46.5 R14 Ergänzung (T4); 36.6 → 37.2, 37.3 Ergänzung |
-| 37 Sonde je Bestandteil | 3 | 37.1–37.3; 37.4 Tatsachennotiz zu Abschnitt 10; 37.5 „Ort registrierter Werte“ | in 37.4: Z. 7046 ERSETZT (38.6); Z. 7058 **BERICHTIGT durch 42.3 F2** |
-| 38 Weg (A), Fundstellen | 3 | 38.1 Berichtigung zu 35.1; **38.2 Fundstellen**; 38.4 Form (ii); 38.5 Kosten | 38.4 Fertigkriterium **ERSETZT (39.1)** (MARKE+ Z. 7401); 38.2 ERGÄNZT durch R49 (48.17) (Z. 7364, T4) |
+| 37 Sonde je Bestandteil | 3 | 37.1–37.3; 37.4 Tatsachennotiz zu Abschnitt 10; 37.5 „Ort registrierter Werte“ | in 37.4: Z. 7064 ERSETZT (38.6); Z. 7076 **BERICHTIGT durch 42.3 F2** |
+| 38 Weg (A), Fundstellen | 3 | 38.1 Berichtigung zu 35.1; **38.2 Fundstellen**; 38.4 Form (ii); 38.5 Kosten | 38.4 Fertigkriterium **ERSETZT (39.1)** (MARKE+ Z. 7419); 38.2 ERGÄNZT durch R49 (48.17) (Z. 7382, T4) |
 | 39 Vollzug Punkt 4 | 3 | 39.1 Berichtigung zu 38.4; 39.2 Vollzug; 39.3–39.9 Tatsachennotizen | – |
-| 40 Testannahmen, Handelslisten | 3 | 40.2 `G6`; 40.3 `H3`; 40.6 Handelslisten; 40.7 Ergänzung zu 12; 40.8 Beschlossenes | 40.6 → 41.1 A3 Berichtigung, A12 Präzisierung, 46.3 R12 (T4); 40.7 → 41.1 A2 Berichtigung; 40.8 (e) → 46.1 R9 Ergänzung (T4); 40.6 ERGÄNZT durch R42 (48.10), R44 (48.12), Tatsachennotiz zu 5.4 **PRÄZISIERT durch R47 (48.15)** (Z. 8401–8407, T4) |
-| 41 aus 24b/24c/24d | 3 | 41.1 A1–A12; 41.2 B1–B8; 41.3 C-Einträge | A10 → 46.2 R10 Ergänzung (T4); A11 **PRÄZISIERT durch 42.1** (D2, D3; Z. 8706); A12 ERGÄNZT durch 41.2 (B3, B6/B7); B4 **PRÄZISIERT durch 42.1 (D6)** (Z. 8747); B5 BERICHTIGT durch 42.1 (D1), ERGÄNZT durch 41.3 (C6); B8 BERICHTIGT durch 41.3 (C8); C5 BERICHTIGT durch 42.1 (D5); B6/B7 ERGÄNZT durch R41 (48.9) (Z. 8832, T4) |
-| 42 aus 25a/25b/25c | 3 | 42.1 D1–D12; 42.2 E-Einträge; 42.3 F-Einträge; 42.4/42.5 Tatsachennotizen | D6 ERGÄNZT durch 42.2 (E1, E2) und 42.3 (F7, F8); D2 ERGÄNZT durch 42.2 (E1), 42.3 (F8); D3/D7 **PRÄZISIERT durch 42.2 (E6)** (Z. 9002); D5 BERICHTIGT durch 42.2 (E3); D8 BERICHTIGT durch 42.2 (E5); 42 (Klasse (iv)) → 45.2 R2; 42.2 E2 → 45.4 R4 (T4); E5 ERGÄNZT durch R29 (47.12) (Z. 9218, T4) |
-| 43 aus 25d/25e | 4 | 43.1, 43.2; 43.3 Berichtigung an 25e (3), vorläufig | 43.3 → 45.1 R1 „Marke an 43.3 (Bestätigung)“ (T4); 43-7 **PRÄZISIERT durch R33 (48.1)** (Z. 9708, T4) |
-| 44 Vollzug TB-111/112 | 4 | Tatsachennotizen | 44-6 ERGÄNZT durch R29 (47.12) (Z. 9995) |
-| 45 aus 26a | 4 | R1–R8 (45.1–45.8), R11 (45.11) | R5, R7 → 46.7 R16 Ergänzungen; 45.3 ERGÄNZT durch R42 (48.10); R4 und R5 (a) ERGÄNZT durch R29 (47.12); R5 (b) **BERICHTIGT durch R33 (48.1)**; 45.5 ERGÄNZT durch R34 (48.2), **PRÄZISIERT durch R36 (48.4)** (Z. 10215–10255) |
-| 46 aus 27a | 4 | R9–R17 (46.1–46.8); 46.9 Lesart; 46.11 Vollzug | 46.3 ERGÄNZT durch R39 (48.7), R42 (48.10); R14 ERGÄNZT durch R25, R26, R27 (Bedingung 5); 46.9 ERGÄNZT durch R25 (47.8, Bestätigung) (Z. 10446–10548) |
-| 47 aus 27c | 4 | R18–R32 (47.1–47.15) | 47.9 R26 **BERICHTIGT durch R61 (51.6)** (Z. 10712); 47.13 R30 **BERICHTIGT durch R61 (51.6)** (Z. 10743); beide nachgetragen nach R65 (b) (52.3) |
-| 48 aus 29b | 4 | R33–R52 (48.1–48.20); R51 = Marken für Register 0–12 | 48.16 R48 (g) **BERICHTIGT durch R54 (49.2)** (Z. 10892); 48.16 R48 (d) ERGÄNZT durch R60 (51.5) (Z. 10895); 48.16 R48 (d) **PRÄZISIERT durch R64 (52.2)** (Z. 10898); 48.19 R51 **PRÄZISIERT durch R65 (52.3)** (Z. 10930) |
-| 49 aus 30a | 4 | R53–R55 (49.1–49.3) | 49.1 R53 **PRÄZISIERT durch R57 (51.2)** (Z. 10951), ERGÄNZT durch R59 (51.4) (Z. 10954) |
-| 50 Tatsachennotizen E-2 | 4 | 50.1 Voraussetzungen; 50.2 Feldliste (R39); 50.3/50.4 Vollzug TB-122/TB-124; 50.5 Lesart Zählweise (vorläufig); 50.6 Entscheid R24; 50.7 Offenes | 50.5 ERGÄNZT durch R57 (51.2): die Lesart ist bestätigt (Z. 11137); 50.1, Zeile R48 (d) ERGÄNZT durch R60 (51.5) und 51.8 (Z. 10998); 50.4, Schlusssatz ERGÄNZT durch R57 (51.2): bestätigt (Z. 11128); beide nachgetragen nach R65 (b) (52.3) |
-| 51 aus 01a | 4 | R56–R62 (51.1–51.7); 51.8 Voraussetzungen; 51.9 Lesart, vorläufig; 51.10 Offenes | 51.5 R60 (a) **PRÄZISIERT durch R63 (52.1)** (Z. 11199), R60 (b) und (c) **PRÄZISIERT durch R64 (52.2)** (Z. 11202); 51.6 R61 (b) **PRÄZISIERT durch R65 (52.3)** (Z. 11212); 51.9 ERGÄNZT durch R63 (52.1): die Lesart ist bestätigt (Z. 11247) |
-| 52 aus 02a | 4 | R63–R65 (52.1–52.3); 52.4 Voraussetzungen; 52.5 Offenes | – |
+| 40 Testannahmen, Handelslisten | 3 | 40.2 `G6`; 40.3 `H3`; 40.6 Handelslisten; 40.7 Ergänzung zu 12; 40.8 Beschlossenes | 40.6 → 41.1 A3 Berichtigung, A12 Präzisierung, 46.3 R12 (T4); 40.7 → 41.1 A2 Berichtigung; 40.8 (e) → 46.1 R9 Ergänzung (T4); 40.6 ERGÄNZT durch R42 (48.10), R44 (48.12), Tatsachennotiz zu 5.4 **PRÄZISIERT durch R47 (48.15)** (Z. 8419–8425, T4) |
+| 41 aus 24b/24c/24d | 3 | 41.1 A1–A12; 41.2 B1–B8; 41.3 C-Einträge | A10 → 46.2 R10 Ergänzung (T4); A11 **PRÄZISIERT durch 42.1** (D2, D3; Z. 8724); A12 ERGÄNZT durch 41.2 (B3, B6/B7); B4 **PRÄZISIERT durch 42.1 (D6)** (Z. 8765); B5 BERICHTIGT durch 42.1 (D1), ERGÄNZT durch 41.3 (C6); B8 BERICHTIGT durch 41.3 (C8); C5 BERICHTIGT durch 42.1 (D5); B6/B7 ERGÄNZT durch R41 (48.9) (Z. 8850, T4) |
+| 42 aus 25a/25b/25c | 3 | 42.1 D1–D12; 42.2 E-Einträge; 42.3 F-Einträge; 42.4/42.5 Tatsachennotizen | D6 ERGÄNZT durch 42.2 (E1, E2) und 42.3 (F7, F8); D2 ERGÄNZT durch 42.2 (E1), 42.3 (F8); D3/D7 **PRÄZISIERT durch 42.2 (E6)** (Z. 9020); D5 BERICHTIGT durch 42.2 (E3); D8 BERICHTIGT durch 42.2 (E5); 42 (Klasse (iv)) → 45.2 R2; 42.2 E2 → 45.4 R4 (T4); E5 ERGÄNZT durch R29 (47.12) (Z. 9236, T4) |
+| 43 aus 25d/25e | 4 | 43.1, 43.2; 43.3 Berichtigung an 25e (3), vorläufig | 43.3 → 45.1 R1 „Marke an 43.3 (Bestätigung)“ (T4); 43-7 **PRÄZISIERT durch R33 (48.1)** (Z. 9726, T4) |
+| 44 Vollzug TB-111/112 | 4 | Tatsachennotizen | 44-6 ERGÄNZT durch R29 (47.12) (Z. 10013) |
+| 45 aus 26a | 4 | R1–R8 (45.1–45.8), R11 (45.11) | R5, R7 → 46.7 R16 Ergänzungen; 45.3 ERGÄNZT durch R42 (48.10); R4 und R5 (a) ERGÄNZT durch R29 (47.12); R5 (b) **BERICHTIGT durch R33 (48.1)**; 45.5 ERGÄNZT durch R34 (48.2), **PRÄZISIERT durch R36 (48.4)** (Z. 10233–10273) |
+| 46 aus 27a | 4 | R9–R17 (46.1–46.8); 46.9 Lesart; 46.11 Vollzug | 46.3 ERGÄNZT durch R39 (48.7), R42 (48.10); R14 ERGÄNZT durch R25, R26, R27 (Bedingung 5); 46.9 ERGÄNZT durch R25 (47.8, Bestätigung) (Z. 10464–10566) |
+| 47 aus 27c | 4 | R18–R32 (47.1–47.15) | 47.9 R26 **BERICHTIGT durch R61 (51.6)** (Z. 10730); 47.13 R30 **BERICHTIGT durch R61 (51.6)** (Z. 10761); beide nachgetragen nach R65 (b) (52.3) |
+| 48 aus 29b | 4 | R33–R52 (48.1–48.20); R51 = Marken für Register 0–12 | 48.16 R48 (g) **BERICHTIGT durch R54 (49.2)** (Z. 10922); 48.16 R48 (d) ERGÄNZT durch R60 (51.5) (Z. 10925); 48.16 R48 (d) **PRÄZISIERT durch R64 (52.2)** (Z. 10928); 48.19 R51 **PRÄZISIERT durch R65 (52.3)** (Z. 10963); 48.1 R33 **PRÄZISIERT durch R68 (53.3)** (Z. 10794); 48.5 R37 **PRÄZISIERT durch R68 (53.3)** (Z. 10825); 48.7 R39 ERGÄNZT durch R67 (53.2) (Z. 10842) und durch R69 (53.4): R39 ist bestätigt (Z. 10845); 48.16 R48 (d) ERGÄNZT durch R72 (53.7) (Z. 10931) |
+| 49 aus 30a | 4 | R53–R55 (49.1–49.3) | 49.1 R53 **PRÄZISIERT durch R57 (51.2)** (Z. 10984), ERGÄNZT durch R59 (51.4) (Z. 10987) |
+| 50 Tatsachennotizen E-2 | 4 | 50.1 Voraussetzungen; 50.2 Feldliste (R39); 50.3/50.4 Vollzug TB-122/TB-124; 50.5 Lesart Zählweise (vorläufig); 50.6 Entscheid R24; 50.7 Offenes | 50.5 ERGÄNZT durch R57 (51.2): die Lesart ist bestätigt (Z. 11170); 50.1, Zeile R48 (d) ERGÄNZT durch R60 (51.5) und 51.8 (Z. 11031); 50.4, Schlusssatz ERGÄNZT durch R57 (51.2): bestätigt (Z. 11161); beide nachgetragen nach R65 (b) (52.3) |
+| 51 aus 01a | 4 | R56–R62 (51.1–51.7); 51.8 Voraussetzungen; 51.9 Lesart, vorläufig; 51.10 Offenes | 51.5 R60 (a) **PRÄZISIERT durch R63 (52.1)** (Z. 11232), R60 (b) und (c) **PRÄZISIERT durch R64 (52.2)** (Z. 11235); 51.6 R61 (b) **PRÄZISIERT durch R65 (52.3)** (Z. 11248); 51.9 ERGÄNZT durch R63 (52.1): die Lesart ist bestätigt (Z. 11286); 51.5 R60 **PRÄZISIERT durch R69 (53.4)** (Z. 11238); 51.6 R61 **PRÄZISIERT durch R70 (53.5)** (Z. 11251) |
+| 52 aus 02a | 4 | R63–R65 (52.1–52.3); 52.4 Voraussetzungen; 52.5 Offenes | 52.2 R64 ERGÄNZT durch R66 (53.1), zu (e) (Z. 11318); 52.2 R64 **PRÄZISIERT durch R68 (53.3)** (Z. 11321), **durch R69 (53.4)** (Z. 11324), **durch R71 (53.6): erster Kurstag** (Z. 11327) und **durch R72 (53.7): Benchmark-Tag** (Z. 11330); 52.3 R65 **PRÄZISIERT durch R70 (53.5)** (Z. 11340); 52.4, Zeile „R64 (52.2), zweite“ ERGÄNZT durch R66 (53.1) (Z. 11358); 52.4, Zeile „R64 (52.2) (a)“ **BERICHTIGT durch R69 (53.4)** (Z. 11361) |
+| 53 aus 02c | 4 | R66–R73 (53.1–53.8); 53.9 Voraussetzungen und Befunde; 53.10 Offenes | – |
 
 ## 5. Die Marken aus E-2 (TB-126)
 
@@ -241,65 +243,65 @@ des Auftrags TB-126 (alter Ort), nicht abgetippt. In Tabelle 1–4 oben stehen s
 | Abschnitt 12 | Z. 1324 | ERGÄNZT | R49 (48.17) | MARKE+ | 1 |
 | Abschnitt 12 | Z. 1327 | ERGÄNZT | R50 (48.18) | MARKE+ | 1 |
 | 15.3 (b) | Z. 1446 | ERGÄNZT | R41 (48.9) | MARKE+ | 1 |
-| 15.3 | Z. 1467 | ERGÄNZT | R35 (48.3) | MARKE+ | 1 |
-| 15.4 (a) | Z. 1495 | BERICHTIGT | R54 (49.2) | MARKE+ | 1 |
-| 15.4 | Z. 1540 | ERGÄNZT | R41 (48.9) und 50.1 | MARKE+ | 1 |
-| 15.5 | Z. 1655 | ERGÄNZT | R53 (49.1) | MARKE+ | 1 |
-| 15.6 (c) | Z. 1685 | PRÄZISIERT | R23 (47.6) | MARKE | 1 |
-| 15.6 | Z. 1735 | ERGÄNZT (Verweis) | R51 (48.19) | MARKE+ | 1 |
-| 16.4 (b) | Z. 2097 | PRÄZISIERT | R21 (47.4) | MARKE | 1 |
-| 16.4 (a) | Z. 2100 | PRÄZISIERT | R22 (47.5) | MARKE | 1 |
-| 16.4 (b) | Z. 2103 | PRÄZISIERT | R23 (47.6) | MARKE | 1 |
-| 16.4 (c) | Z. 2106 | PRÄZISIERT | R37 (48.5) | MARKE | 1 |
-| 16.4 (d) | Z. 2109 | PRÄZISIERT | R37 (48.5) | MARKE | 1 |
-| 16.4 (m) | Z. 2156 | PRÄZISIERT | R18 (47.1) | MARKE | 1 |
-| 16.4 (h) | Z. 2159 | PRÄZISIERT | R18 (47.1) | MARKE | 1 |
-| 16.4 (l) | Z. 2162 | PRÄZISIERT | R18 (47.1) | MARKE | 1 |
-| 16.4 (h) | Z. 2165 | PRÄZISIERT | R19 (47.2) | MARKE | 1 |
-| 16.4 (j) | Z. 2168 | PRÄZISIERT | R19 (47.2) | MARKE | 1 |
-| 16.4 (k) | Z. 2171 | PRÄZISIERT | R19 (47.2) | MARKE | 1 |
-| 16.4 (l) | Z. 2174 | ERGÄNZT | R20 (47.3) | MARKE+ | 1 |
-| 16.4 (j) | Z. 2177 | ERGÄNZT | R20 (47.3) | MARKE+ | 1 |
-| 16.4 (i) | Z. 2180 | PRÄZISIERT | R21 (47.4) | MARKE | 1 |
-| 16.4 (j) | Z. 2183 | PRÄZISIERT | R21 (47.4) | MARKE | 1 |
-| 16.4 (i) | Z. 2186 | PRÄZISIERT | R22 (47.5) | MARKE | 1 |
-| 16.4 (h) | Z. 2189 | ERGÄNZT | R24 (47.7) und 50.6 | MARKE+ | 1 |
-| 16.4 (g) | Z. 2192 | ERGÄNZT | R24 (47.7) und 50.6 | MARKE+ | 1 |
-| 16.6 | Z. 2341 | PRÄZISIERT | R37 (48.5) | MARKE | 1 |
-| 16.7 (d) | Z. 2405 | ERGÄNZT | R38 (48.6) | MARKE+ | 1 |
-| Abschnitt 18 | Z. 3083 | ERGÄNZT | R28 (47.11) | MARKE+ | 1 |
-| 21.4 | Z. 3425 | ERGÄNZT | R53 (49.1) | MARKE+ | 1 |
-| 22.2 | Z. 3700 | ERGÄNZT | R34 (48.2) | MARKE+ | 1 |
-| 24.2 | Z. 4317 | PRÄZISIERT | R36 (48.4) | MARKE | 2 |
-| 25.2 | Z. 4658 | ERGÄNZT | R53 (49.1) | MARKE+ | 2 |
-| 25.3, Ersatztext (Bedingung (i) steht in dessen erster Zeile) | Z. 4678 | PRÄZISIERT | R53 (49.1) | MARKE | 2 |
-| 27.3 (im Zitatblock 27.1 bis 27.5) | Z. 5154 | ERGÄNZT | R31 (47.14) | MARKE+ | 2 |
-| Abschnitt 27 | Z. 5193 | ERGÄNZT | R32 (47.15) | MARKE+ | 2 |
-| 28.6 | Z. 5328 | PRÄZISIERT | R53 (49.1) | MARKE | 2 |
-| 29.4 | Z. 5410 | BERICHTIGT | R43 (48.11) | MARKE+ | 2 |
-| 34.5 | Z. 6261 | BERICHTIGT | R43 (48.11) | MARKE+ | 2 |
-| 35.1 | Z. 6419 | PRÄZISIERT | R37 (48.5) | MARKE | 2 |
-| 35.4 | Z. 6499 | ERGÄNZT | R26 (47.9) | MARKE+ | 2 |
-| 38.2 | Z. 7364 | ERGÄNZT | R49 (48.17) | MARKE+ | 3 |
-| 40.6 | Z. 8401 | ERGÄNZT | R42 (48.10) | MARKE+ | 3 |
-| 40.6 | Z. 8404 | ERGÄNZT | R44 (48.12) | MARKE+ | 3 |
-| 40.6 | Z. 8407 | PRÄZISIERT | R47 (48.15) | MARKE | 3 |
-| 41.2, Eintrag B6/B7 | Z. 8832 | ERGÄNZT | R41 (48.9) | MARKE+ | 3 |
-| 42.2, Eintrag E5 (e) | Z. 9218 | ERGÄNZT | R29 (47.12) | MARKE+ | 3 |
-| 44.1, Eintrag 44-6 | Z. 9995 | ERGÄNZT | R29 (47.12) | MARKE+ | 4 |
-| 45.3 | Z. 10215 | ERGÄNZT | R42 (48.10) | MARKE+ | 4 |
-| 45.4, Block R4 | Z. 10223 | ERGÄNZT | R29 (47.12) | MARKE+ | 4 |
-| 45.5, Block R5, Punkt (a) | Z. 10240 | ERGÄNZT | R29 (47.12) | MARKE+ | 4 |
-| 45.5, Block R5, Punkt (b) | Z. 10243 | BERICHTIGT | R33 (48.1) | MARKE+ | 4 |
-| 45.5 | Z. 10252 | ERGÄNZT | R34 (48.2) | MARKE+ | 4 |
-| 45.5 | Z. 10255 | PRÄZISIERT | R36 (48.4) | MARKE | 4 |
-| 46.3 | Z. 10446 | ERGÄNZT | R39 (48.7) | MARKE+ | 4 |
-| 46.3 | Z. 10449 | ERGÄNZT | R42 (48.10) | MARKE+ | 4 |
-| 46.5, Block R14 | Z. 10477 | ERGÄNZT | R25 (47.8) | MARKE+ | 4 |
-| 46.5, Block R14 | Z. 10480 | ERGÄNZT | R26 (47.9) | MARKE+ | 4 |
-| 46.5, Block R14 (Bedingung 5 steht in dessen erster Zeile) | Z. 10483 | ERGÄNZT | R27 (47.10) | MARKE+ | 4 |
-| 46.9 | Z. 10548 | ERGÄNZT | R25 (47.8) | MARKE+ | 4 |
-| 48.16 (R48), neu in TB-126 | Z. 10892 | BERICHTIGT | R54 (49.2) | MARKE+ | 4 |
+| 15.3 | Z. 1473 | ERGÄNZT | R35 (48.3) | MARKE+ | 1 |
+| 15.4 (a) | Z. 1501 | BERICHTIGT | R54 (49.2) | MARKE+ | 1 |
+| 15.4 | Z. 1546 | ERGÄNZT | R41 (48.9) und 50.1 | MARKE+ | 1 |
+| 15.5 | Z. 1661 | ERGÄNZT | R53 (49.1) | MARKE+ | 1 |
+| 15.6 (c) | Z. 1691 | PRÄZISIERT | R23 (47.6) | MARKE | 1 |
+| 15.6 | Z. 1741 | ERGÄNZT (Verweis) | R51 (48.19) | MARKE+ | 1 |
+| 16.4 (b) | Z. 2103 | PRÄZISIERT | R21 (47.4) | MARKE | 1 |
+| 16.4 (a) | Z. 2106 | PRÄZISIERT | R22 (47.5) | MARKE | 1 |
+| 16.4 (b) | Z. 2109 | PRÄZISIERT | R23 (47.6) | MARKE | 1 |
+| 16.4 (c) | Z. 2112 | PRÄZISIERT | R37 (48.5) | MARKE | 1 |
+| 16.4 (d) | Z. 2115 | PRÄZISIERT | R37 (48.5) | MARKE | 1 |
+| 16.4 (m) | Z. 2162 | PRÄZISIERT | R18 (47.1) | MARKE | 1 |
+| 16.4 (h) | Z. 2165 | PRÄZISIERT | R18 (47.1) | MARKE | 1 |
+| 16.4 (l) | Z. 2168 | PRÄZISIERT | R18 (47.1) | MARKE | 1 |
+| 16.4 (h) | Z. 2171 | PRÄZISIERT | R19 (47.2) | MARKE | 1 |
+| 16.4 (j) | Z. 2174 | PRÄZISIERT | R19 (47.2) | MARKE | 1 |
+| 16.4 (k) | Z. 2177 | PRÄZISIERT | R19 (47.2) | MARKE | 1 |
+| 16.4 (l) | Z. 2180 | ERGÄNZT | R20 (47.3) | MARKE+ | 1 |
+| 16.4 (j) | Z. 2183 | ERGÄNZT | R20 (47.3) | MARKE+ | 1 |
+| 16.4 (i) | Z. 2186 | PRÄZISIERT | R21 (47.4) | MARKE | 1 |
+| 16.4 (j) | Z. 2189 | PRÄZISIERT | R21 (47.4) | MARKE | 1 |
+| 16.4 (i) | Z. 2192 | PRÄZISIERT | R22 (47.5) | MARKE | 1 |
+| 16.4 (h) | Z. 2195 | ERGÄNZT | R24 (47.7) und 50.6 | MARKE+ | 1 |
+| 16.4 (g) | Z. 2198 | ERGÄNZT | R24 (47.7) und 50.6 | MARKE+ | 1 |
+| 16.6 | Z. 2347 | PRÄZISIERT | R37 (48.5) | MARKE | 1 |
+| 16.7 (d) | Z. 2411 | ERGÄNZT | R38 (48.6) | MARKE+ | 1 |
+| Abschnitt 18 | Z. 3089 | ERGÄNZT | R28 (47.11) | MARKE+ | 1 |
+| 21.4 | Z. 3431 | ERGÄNZT | R53 (49.1) | MARKE+ | 1 |
+| 22.2 | Z. 3706 | ERGÄNZT | R34 (48.2) | MARKE+ | 1 |
+| 24.2 | Z. 4332 | PRÄZISIERT | R36 (48.4) | MARKE | 2 |
+| 25.2 | Z. 4673 | ERGÄNZT | R53 (49.1) | MARKE+ | 2 |
+| 25.3, Ersatztext (Bedingung (i) steht in dessen erster Zeile) | Z. 4693 | PRÄZISIERT | R53 (49.1) | MARKE | 2 |
+| 27.3 (im Zitatblock 27.1 bis 27.5) | Z. 5169 | ERGÄNZT | R31 (47.14) | MARKE+ | 2 |
+| Abschnitt 27 | Z. 5208 | ERGÄNZT | R32 (47.15) | MARKE+ | 2 |
+| 28.6 | Z. 5346 | PRÄZISIERT | R53 (49.1) | MARKE | 2 |
+| 29.4 | Z. 5428 | BERICHTIGT | R43 (48.11) | MARKE+ | 2 |
+| 34.5 | Z. 6279 | BERICHTIGT | R43 (48.11) | MARKE+ | 2 |
+| 35.1 | Z. 6437 | PRÄZISIERT | R37 (48.5) | MARKE | 2 |
+| 35.4 | Z. 6517 | ERGÄNZT | R26 (47.9) | MARKE+ | 2 |
+| 38.2 | Z. 7382 | ERGÄNZT | R49 (48.17) | MARKE+ | 3 |
+| 40.6 | Z. 8419 | ERGÄNZT | R42 (48.10) | MARKE+ | 3 |
+| 40.6 | Z. 8422 | ERGÄNZT | R44 (48.12) | MARKE+ | 3 |
+| 40.6 | Z. 8425 | PRÄZISIERT | R47 (48.15) | MARKE | 3 |
+| 41.2, Eintrag B6/B7 | Z. 8850 | ERGÄNZT | R41 (48.9) | MARKE+ | 3 |
+| 42.2, Eintrag E5 (e) | Z. 9236 | ERGÄNZT | R29 (47.12) | MARKE+ | 3 |
+| 44.1, Eintrag 44-6 | Z. 10013 | ERGÄNZT | R29 (47.12) | MARKE+ | 4 |
+| 45.3 | Z. 10233 | ERGÄNZT | R42 (48.10) | MARKE+ | 4 |
+| 45.4, Block R4 | Z. 10241 | ERGÄNZT | R29 (47.12) | MARKE+ | 4 |
+| 45.5, Block R5, Punkt (a) | Z. 10258 | ERGÄNZT | R29 (47.12) | MARKE+ | 4 |
+| 45.5, Block R5, Punkt (b) | Z. 10261 | BERICHTIGT | R33 (48.1) | MARKE+ | 4 |
+| 45.5 | Z. 10270 | ERGÄNZT | R34 (48.2) | MARKE+ | 4 |
+| 45.5 | Z. 10273 | PRÄZISIERT | R36 (48.4) | MARKE | 4 |
+| 46.3 | Z. 10464 | ERGÄNZT | R39 (48.7) | MARKE+ | 4 |
+| 46.3 | Z. 10467 | ERGÄNZT | R42 (48.10) | MARKE+ | 4 |
+| 46.5, Block R14 | Z. 10495 | ERGÄNZT | R25 (47.8) | MARKE+ | 4 |
+| 46.5, Block R14 | Z. 10498 | ERGÄNZT | R26 (47.9) | MARKE+ | 4 |
+| 46.5, Block R14 (Bedingung 5 steht in dessen erster Zeile) | Z. 10501 | ERGÄNZT | R27 (47.10) | MARKE+ | 4 |
+| 46.9 | Z. 10566 | ERGÄNZT | R25 (47.8) | MARKE+ | 4 |
+| 48.16 (R48), neu in TB-126 | Z. 10922 | BERICHTIGT | R54 (49.2) | MARKE+ | 4 |
 
 ## 6. Die Marken aus Fable 01a (TB-129)
 
@@ -317,14 +319,14 @@ sie stehen als Indexzeilen darunter und gehen als Frage an Fable (51.10 Nr. 7).
 | 7, Tabelle, Zeile (b) | Z. 819 | PRÄZISIERT | R37 (48.5) | MARKE | 1 |
 | 8, Tabelle | Z. 890 | PRÄZISIERT | R36 (48.4) | MARKE | 1 |
 | 8, Tabelle | Z. 893 | ERGÄNZT | R55 (49.3) | MARKE+ | 1 |
-| 16.4, „Prüfung vor dem Tag“ | Z. 2235 | PRÄZISIERT | R21 (47.4) | MARKE | 1 |
-| 25.3, Ersatztext | Z. 4681 | ERGÄNZT | R58 (51.3) | MARKE+ | 2 |
-| Abschnitt 27 | Z. 5196 | ERGÄNZT | R56 (51.1) | MARKE+ | 2 |
-| 43.2, Eintrag 43-7 | Z. 9708 | PRÄZISIERT | R33 (48.1) | MARKE | 4 |
-| 48.16 (R48) | Z. 10895 | ERGÄNZT | R60 (51.5) | MARKE+ | 4 |
-| 49.1 (R53) | Z. 10951 | PRÄZISIERT | R57 (51.2) | MARKE | 4 |
-| 49.1 (R53) | Z. 10954 | ERGÄNZT | R59 (51.4) | MARKE+ | 4 |
-| 50.5 | Z. 11137 | ERGÄNZT | R57 (51.2): die Lesart ist bestätigt | MARKE+ | 4 |
+| 16.4, „Prüfung vor dem Tag“ | Z. 2241 | PRÄZISIERT | R21 (47.4) | MARKE | 1 |
+| 25.3, Ersatztext | Z. 4696 | ERGÄNZT | R58 (51.3) | MARKE+ | 2 |
+| Abschnitt 27 | Z. 5211 | ERGÄNZT | R56 (51.1) | MARKE+ | 2 |
+| 43.2, Eintrag 43-7 | Z. 9726 | PRÄZISIERT | R33 (48.1) | MARKE | 4 |
+| 48.16 (R48) | Z. 10925 | ERGÄNZT | R60 (51.5) | MARKE+ | 4 |
+| 49.1 (R53) | Z. 10984 | PRÄZISIERT | R57 (51.2) | MARKE | 4 |
+| 49.1 (R53) | Z. 10987 | ERGÄNZT | R59 (51.4) | MARKE+ | 4 |
+| 50.5 | Z. 11170 | ERGÄNZT | R57 (51.2): die Lesart ist bestätigt | MARKE+ | 4 |
 
 ### Indexzeilen aus Fable 01a
 
@@ -346,17 +348,56 @@ Abschnitt 10 und der ERZEUGT-Block von Abschnitt 3 (R65 (d)).
 | alter Ort (Anhang A) | Marke | Wort | durch | Art | T |
 |---|---|---|---|---|---|
 | 4.2 | Z. 528 | PRÄZISIERT | R64 (52.2) | MARKE | 1 |
-| 25.2, unter dem berichtigten Satz | Z. 4655 | BERICHTIGT | R62 (51.7) und R65 (52.3) | MARKE+ | 2 |
-| 47.9 (R26) | Z. 10712 | BERICHTIGT | R61 (51.6) | MARKE+ | 4 |
-| 47.13 (R30) | Z. 10743 | BERICHTIGT | R61 (51.6) | MARKE+ | 4 |
-| 48.16 (R48) | Z. 10898 | PRÄZISIERT | R64 (52.2) | MARKE | 4 |
-| 48.19 (R51) | Z. 10930 | PRÄZISIERT | R65 (52.3) | MARKE | 4 |
-| 50.1, nach der Tabelle | Z. 10998 | ERGÄNZT | R60 (51.5) und 51.8 | MARKE+ | 4 |
-| 50.4, nach dem Zitatblock | Z. 11128 | ERGÄNZT | R57 (51.2): der Schlusssatz ist bestätigt | MARKE+ | 4 |
-| 51.5 (R60) | Z. 11199 | PRÄZISIERT | R63 (52.1) | MARKE | 4 |
-| 51.5 (R60) | Z. 11202 | PRÄZISIERT | R64 (52.2) | MARKE | 4 |
-| 51.6 (R61) | Z. 11212 | PRÄZISIERT | R65 (52.3) | MARKE | 4 |
-| 51.9 | Z. 11247 | ERGÄNZT | R63 (52.1): die Lesart ist bestätigt | MARKE+ | 4 |
+| 25.2, unter dem berichtigten Satz | Z. 4670 | BERICHTIGT | R62 (51.7) und R65 (52.3) | MARKE+ | 2 |
+| 47.9 (R26) | Z. 10730 | BERICHTIGT | R61 (51.6) | MARKE+ | 4 |
+| 47.13 (R30) | Z. 10761 | BERICHTIGT | R61 (51.6) | MARKE+ | 4 |
+| 48.16 (R48) | Z. 10928 | PRÄZISIERT | R64 (52.2) | MARKE | 4 |
+| 48.19 (R51) | Z. 10963 | PRÄZISIERT | R65 (52.3) | MARKE | 4 |
+| 50.1, nach der Tabelle | Z. 11031 | ERGÄNZT | R60 (51.5) und 51.8 | MARKE+ | 4 |
+| 50.4, nach dem Zitatblock | Z. 11161 | ERGÄNZT | R57 (51.2): der Schlusssatz ist bestätigt | MARKE+ | 4 |
+| 51.5 (R60) | Z. 11232 | PRÄZISIERT | R63 (52.1) | MARKE | 4 |
+| 51.5 (R60) | Z. 11235 | PRÄZISIERT | R64 (52.2) | MARKE | 4 |
+| 51.6 (R61) | Z. 11248 | PRÄZISIERT | R65 (52.3) | MARKE | 4 |
+| 51.9 | Z. 11286 | ERGÄNZT | R63 (52.1): die Lesart ist bestätigt | MARKE+ | 4 |
+
+## 8. Die Marken aus Fable 02c (TB-132)
+
+Alle 21 Marken, die TB-132 gesetzt hat (alle am alten Ort: 20 nach R70 (c), eine an 23.3, Registertext 3b (c), vom
+steuernden Chat nach R65 (a) bestimmt; 52.2 trägt fünf), in der Reihenfolge des Registers. Erzeugt mit
+`docs/belege/TB-132/c2_index_02c.py` aus `docs/belege/TB-132/c1_marken.txt` (Zeile, Art, Teil) und Anhang A des
+Auftrags TB-132 (alter Ort), nicht abgetippt. In Tabelle 3 und 4 oben stehen sie zusätzlich an ihrer Stelle. Keine
+Marke tragen Abschnitt 9, Abschnitt 10 und der ERZEUGT-Block von Abschnitt 3; ohne Marke bleiben 7 (c), 17.5 und
+50.7 Nr. 3 (R70 (b), Indexzeilen darunter) sowie 24.2 und 29.3 (R70 (c)).
+
+| alter Ort (Anhang A) | Marke | Wort | durch | Art | T |
+|---|---|---|---|---|---|
+| 15.3 (a) | Z. 1449 | PRÄZISIERT | R66 (53.1) | MARKE | 1 |
+| 15.3 (c) | Z. 1452 | PRÄZISIERT | R66 (53.1) | MARKE | 1 |
+| 23.3, Registertext 3b (c) | Z. 3947 | PRÄZISIERT | R72 (53.7) | MARKE | 2 |
+| 23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse | Z. 3975 | BERICHTIGT | R71 (53.6) | MARKE+ | 2 |
+| 23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse | Z. 3978 | ERGÄNZT | R72 (53.7) | MARKE+ | 2 |
+| Abschnitt 27 | Z. 5214 | ERGÄNZT | R73 (53.8) | MARKE+ | 2 |
+| 48.1 (R33) | Z. 10794 | PRÄZISIERT | R68 (53.3) | MARKE | 4 |
+| 48.5 (R37) | Z. 10825 | PRÄZISIERT | R68 (53.3) | MARKE | 4 |
+| 48.7 (R39) | Z. 10842 | ERGÄNZT | R67 (53.2) | MARKE+ | 4 |
+| 48.7 (R39) | Z. 10845 | ERGÄNZT | R69 (53.4): R39 ist bestätigt | MARKE+ | 4 |
+| 48.16 (R48 (d)) | Z. 10931 | ERGÄNZT | R72 (53.7) | MARKE+ | 4 |
+| 51.5 (R60) | Z. 11238 | PRÄZISIERT | R69 (53.4) | MARKE | 4 |
+| 51.6 (R61) | Z. 11251 | PRÄZISIERT | R70 (53.5) | MARKE | 4 |
+| 52.2 (R64) | Z. 11318 | ERGÄNZT | R66 (53.1) | MARKE+ | 4 |
+| 52.2 (R64) | Z. 11321 | PRÄZISIERT | R68 (53.3) | MARKE | 4 |
+| 52.2 (R64) | Z. 11324 | PRÄZISIERT | R69 (53.4) | MARKE | 4 |
+| 52.2 (R64) | Z. 11327 | PRÄZISIERT | R71 (53.6): erster Kurstag | MARKE | 4 |
+| 52.2 (R64) | Z. 11330 | PRÄZISIERT | R72 (53.7): Benchmark-Tag | MARKE | 4 |
+| 52.3 (R65) | Z. 11340 | PRÄZISIERT | R70 (53.5) | MARKE | 4 |
+| 52.4, nach der Tabelle | Z. 11358 | ERGÄNZT | R66 (53.1) | MARKE+ | 4 |
+| 52.4, nach der Tabelle | Z. 11361 | BERICHTIGT | R69 (53.4) | MARKE+ | 4 |
+
+### Indexzeilen aus Fable 02c
+
+- **7 (c):** mittlere Exposure des Gewinners, Tage nach R64 (a), (b) und (d) (52.2). Ohne Marke (R70 (a) und (b), 53.5).
+- **17.5:** Handelskalender der Aktien-Tagesreihe → R66 (a) und (b) (53.1). Ohne Marke (R70 (b), 53.5).
+- **50.7 Nr. 3:** Tagesbasis des DSR → R66 (f) (53.1). Ohne Marke (R70 (b), 53.5).
 
 ---
 
@@ -369,7 +410,11 @@ In TB-126 (01.10.2026): Zeilenangaben mit `docs/belege/TB-126/c2_index_zeilen.py
 In TB-129 (02.10.2026): Zeilenangaben mit `docs/belege/TB-129/c2_index_zeilen.py` vom Stand
 `db108a6` auf `f63ad4c` umgeschrieben (jede Zahl in Listen und Bereichen); Zuschnitt der Teile unverändert, 51 kommt
 zu T4; Abschnittstabelle aus den Köpfen der Abschnittsdateien; Einträge mit `docs/belege/TB-129/c2_index_eintraege.py`.
-Zuletzt nachgezogen in TB-130 (02.10.2026): Zeilenangaben mit `docs/belege/TB-130/c2_index_zeilen.py` vom Stand
+In TB-130 (02.10.2026): Zeilenangaben mit `docs/belege/TB-130/c2_index_zeilen.py` vom Stand
 `f63ad4c` auf `ad351d5` umgeschrieben (jede Zahl in Listen und Bereichen); 52 kommt zu T4; Abschnittstabelle aus den
 Köpfen der Abschnittsdateien; Einträge mit `docs/belege/TB-130/c2_index_eintraege.py`; in Abschnitt 6 die fünf
 Indexzeilen ohne Marke auf die in TB-130 gesetzten Marken umgestellt (`c3_indexzeilen.py`).
+Zuletzt nachgezogen in TB-132 (04.10.2026): Zeilenangaben mit `docs/belege/TB-132/c2_index_zeilen.py` vom Stand
+`ad351d5` auf `ee43f5f` umgeschrieben (jede Zahl in Listen und Bereichen); 53 kommt zu T4; Abschnittstabelle aus den
+Köpfen der Abschnittsdateien; Einträge mit `docs/belege/TB-132/c2_index_eintraege.py`; neuer Abschnitt 8 mit den
+21 Marken und den drei Indexzeilen nach R70 (b) (`c3_indexzeilen.py`).

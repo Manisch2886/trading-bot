@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 48 (von 0–52) — Register-Z. 10767–10941 — Commit ad351d5f0351d8a25479547edb96a32dd6cf3bd5 — 2026-10-02 — Original sha256 a749678043f32e5c6bf7034205bc7176550ec4ea35d08171b43d40401aec7ece — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 48 (von 0–53) — Register-Z. 10785–10974 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
 
 ## 48. Fable 29b — Registerblock R33–R52 (TB-126)
 
@@ -8,6 +8,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 
 > R33 — Berichtigung zu 45.5 (b) (Zeilen in zellen.csv). „zellen.csv enthält für jede Zelle des Rasters genau eine Zeile; die Zeilenzahl ist gleich der Zahl der Zellen“ lies: „zellen.csv enthält für jede Zelle des Rasters und jede Falte des Faltenplans des Bots — Selektionsfalten und Bestätigungsperiode (35.1) — genau eine Zeile; die Zeilenzahl je Bot ist Zellen × (Selektionsfalten + 1). Eine (Zelle, Falte) ohne Trades trägt die Nullzeile: Trade-Zahl 0, Sharpe 0 nach 1c, Drawdown 0, nie nichts.“ Eine fehlende Zeile ist ein Befund über den Erzeuger, kein Ausgang. Es gibt keine Trade-Liste je Zelle als Rohergebnis; „leere Trade-Liste“ in 45.5 (b) und 43-7 bezeichnet den Fall „keine Trades gefunden“, dessen Ergebnis beim Listen-Erzeuger eine leere Liste und beim Zellen-Erzeuger die Nullzeile ist. F-1, F-2.
 > Quelle des Grundes: Datenvertrag von auswertung.py (Sperrlistenpunkte 3/5/14; „genau eine Zeile je (Zelle x Falte), fuer ALLE Falten des Faltenplans, Bestaetigungsperiode eingeschlossen“), 15.3 (1c: Falten-Sharpe je Falte), 43-7. Der Vertrag stand vor R5 (b); R5 (b) war Kurzform ohne Nachlesen — elfter Fall der Klasse „Bestand behauptet statt Voraussetzung genannt“. Kein Ergebnis.
+
+> ⭐ **48.1 R33 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 45.5, Block R5, Punkt (b). Voraussetzung gemessen: 50.1.
 
@@ -37,6 +40,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > R37 — Präzisierung zu 16.6, 35.1, 16.4 (c)/(d), 5.1 Nr. 7 (zwei Zeiträume, ein Name). Der Begriff „Bestätigungsperiode“ bezeichnet zwei Zeiträume. (i) Die Bestätigungsperiode des Selektionslaufs ist die Spanne nach 35.1 (Beginn „Bestätigung ab“, 21.4; Ende Go-Live-Schnitt, ausschliesslich; registrierter Bestand 2026-01-01/2026-09-01), gerechnet auf dem Snapshot; sie wächst nicht (5c: ein zweiter Snapshot ist ein neuer Lauf). Die Bedingung aus 16.6 gilt an ihrem Beginn: Die Bestätigungsstatistik des Gewinners beginnt am ersten Handelstag ab Beginn der Spanne, an dem keine vor der Spanne eröffnete simulierte Position des Gewinners mehr offen ist; Deckel je Bot nach 16.6/41.3 C2; eine am Deckeltag noch offene solche Position zählt nicht (Attribution je Position). Der Zellen-Erzeuger bestimmt diesen Tag für jede Zelle (bestaetigung_ab_effektiv, R34); auswertung.py nimmt den Wert der Gewinnerzelle (41.3 C3). (ii) Die Bestätigungsperiode der Leiter (16.4 (c)/(d)) ist der Papierpfad ab Go-Live; sie wächst; 5.1 Nr. 7 („wächst jeden Monat“), 15.4 2d („Go-Live-Tag plus Embargo“) und der Wortlaut von 16.6 („nach Go-Live“, „im Journal vermerkt“) beschreiben sie; dort gilt dieselbe Bedingung mit der Grenze Go-Live und den Positionsdaten des Papierpfads als Quelle. „Alle Falten“ in Abbruchkriterium (b) sind die Selektionsfalten (4.1); die Bestätigungsperiode ist keine Falte im Sinn von 4a (35.1) und wird ausgewertet, nachdem die Auswahl steht (5.1 Nr. 7). F-6, W39, M53.
 > Quelle des Grundes: 15.1 (Out-of-Sample des Laufs ist allein die Bestätigungsperiode des gewählten Satzes), 5.2 (Forward-Test geht in keine Selektion ein, auch nicht in die Bestätigungsperiode), 35.1, 4.1, 16.4. Kein Ergebnis.
 
+> ⭐ **48.5 R37 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 5.1, Nr. 7; 16.4 (c); 16.4 (d); 16.6; 35.1.
 
 ### 48.6 R38 — Ergänzung zu 16.7 (d) (Ort der Berichtsgrössen)
@@ -50,6 +56,12 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 
 > R39 — Ergänzung zu 46.3 (R12) und Berichtigung des Datenvertrags (Ausgaben des Zellen-Erzeugers; Feldliste als Registertext). Ausgaben des Zellen-Erzeugers je Bot: zellen.csv (R33, R36), tagesreihen/<zelle>.csv, benchmark_tagesreihen/<bot>.csv, zellenbericht.csv (R34), symbole_je_falte.csv (R38), herkunft.json mit teile (37.4) und dem gerechneten Datenstand-Hash (46.7 (b)), Lese-Audit (5e). Die Benchmark-Tagesreihe ist je Bot, nicht je Markt (23.3: Symbole, die der Loader des Bots handelbar macht; 16.7 (b): Schranken je Bot); „benchmark_tagesreihen/<markt>.csv“ im Vertrag lies „<bot>.csv“. Sie wird über benchmark.py::bh_tagesrenditen (Sperrlistenpunkt 6, unverändert) gerechnet — derselbe Code wie für die Benchmark-Tabelle, kein zweiter Rechenweg. Die Feldliste jeder dieser Dateien ist Registertext (Bauart 33.3, 41.1 A12) und wird im Registerauftrag E-2 aus dem Docstring von auswertung.py gemessen eingetragen, nicht abgeschrieben. F-8, A68.
 > Quelle des Grundes: 23.3, 16.7 (b), 37.5 (2) (ein Wert, ein Ort), 33.3, 41.1 A12, 5e. Kein Ergebnis.
+
+> ⭐ **48.7 R39 ERGÄNZT durch R67 (53.2)** (Fable 02c R67, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.7 R39 ERGÄNZT durch R69 (53.4): R39 ist bestätigt** (Fable 02c R69, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 46.3. Feldliste: 50.2.
 
@@ -132,6 +144,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **48.16 R48 (d) PRÄZISIERT durch R64 (52.2)** (Fable 02a R64, TB-130, 02.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.16 R48 (d) ERGÄNZT durch R72 (53.7)** (Fable 02c R72, Unterpunkt (c), TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 1, Tabelle, Zeile 4; 1, Tabelle, Zeile 3; 2.1; 2.2; 2.5; 7, Tabelle, Zeile (d); 8.1; 9, erster Absatz. Voraussetzung gemessen: 50.1. Abschnitt 10: Indexzeile, keine Marke.
