@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 48 (von 0–53) — Register-Z. 10785–10974 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 48 (von 0–54) — Register-Z. 10791–10998 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
 
 ## 48. Fable 29b — Registerblock R33–R52 (TB-126)
 
@@ -12,12 +12,18 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **48.1 R33 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **48.1 R33 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (c), vom steuernden Chat nach R65 (a) bestimmt, TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 45.5, Block R5, Punkt (b). Voraussetzung gemessen: 50.1.
 
 ### 48.2 R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht)
 
 > R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht). Der Zellen-Erzeuger schreibt je Bot eine Datei zellenbericht.csv mit genau einer Zeile je Zelle und den Feldern: die drei Werte aus 22.2 (Ertragsanteil der besten Selektionsfalte, des besten Symbols, der fünf besten Trades), haltedauer_median_handelstage (15.3 (b), R41) und bestaetigung_ab_effektiv (R37). Grundlage der drei Anteile: realisierte Erträge der ausgeführten Trades (Summe pnl_pct), Faltenzuordnung nach dem Einstiegstag (2b), nur Selektionsfalten; Anteil = Beitrag ÷ Gesamtertrag; bei Gesamtertrag ≤ 0 wird kein Anteil gebildet, das Feld trägt „nicht definiert“. auswertung.py liest die Zeile des Plateau-Gewinners und berichtet sie (22.2: Bericht, kein Tor; N unverändert); es rechnet die Werte nicht. Die Feldliste von zellenbericht.csv ist Registertext (R39). F-3, F-4, F-6.
 > Quelle des Grundes: 22.2 (Werte des Laufs für den Gewinner), 12 (auswertung.py hat keinen Schalter und liest Rohergebnisse), Punkt 14 (Reihenfolge Selektion → Bestätigung → Bericht), 2b. Kein Ergebnis.
+
+> ⭐ **48.2 R34 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (g), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 22.2; 45.5.
 
@@ -33,6 +39,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > R36 — Präzisierung zu 24.2 und 45.5 (zwei Drawdown-Spalten; Konsistenzprüfung; Ausschnitt). zellen.csv trägt je (Zelle, Falte) kapital_drawdown_mtm_pct — den Kapital-Drawdown der Nebenbedingung auf der täglichen MtM-Reihe (1a) auf den Tagen des Benchmarks (3b (c)) — und kapital_drawdown_ereignis_pct — den ereignisindizierten Drawdown, berichtet, nicht bewertet (24.2). Die Spalte kapital_drawdown_pct wird durch die zwei benannten ersetzt, nicht umgedeutet. auswertung.py rechnet kapital_drawdown_mtm_pct aus tagesreihen/<zelle>.csv nach und endet bei Abweichung mit 2. Der Drawdown je Falte ist der Ausschnitt eines durchgehenden Kapitalpfads (29.3, 2a): gemessen innerhalb der Falte, mit dem Kapitalstand am Faltenbeginn als erstem Hochpunkt, ohne Neustart des Kapitals. Festlegung 3 und Abschnitt 8 („drei tiefste Falten-Drawdowns“, „Kapital-Drawdown je Falte“) beziehen sich auf kapital_drawdown_mtm_pct; der ereignisindizierte Wert steht daneben als eigene Zeile. Vollzieht K4j (1) und (2); (3) folgt mit 40.8 (h). F-5, M49, M62.
 > Quelle des Grundes: 24.2, 24 (Festlegung 1 präzisiert), 24.6 (Bauart der Faltenmessung), 29.3, 2a, 24b A2 (ein Wert, der nachgerechnet werden kann, tut nicht, als wäre er gemessen), 12. Kein Ergebnis.
 
+> ⭐ **48.4 R36 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkte (c) und (d), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 24.2; 45.5. Voraussetzung gemessen: 50.1.
 
 ### 48.5 R37 — Präzisierung zu 16.6, 35.1, 16.4 (c)/(d), 5.1 Nr. 7 (zwei Zeiträume, ein Name)
@@ -41,6 +50,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Quelle des Grundes: 15.1 (Out-of-Sample des Laufs ist allein die Bestätigungsperiode des gewählten Satzes), 5.2 (Forward-Test geht in keine Selektion ein, auch nicht in die Bestätigungsperiode), 35.1, 4.1, 16.4. Kein Ergebnis.
 
 > ⭐ **48.5 R37 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.5 R37 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (a), TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 5.1, Nr. 7; 16.4 (c); 16.4 (d); 16.6; 35.1.
@@ -61,6 +73,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **48.7 R39 ERGÄNZT durch R69 (53.4): R39 ist bestätigt** (Fable 02c R69, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.7 R39 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (b), TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 46.3. Feldliste: 50.2.
@@ -111,6 +126,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 
 > R46 — Registertext, Ersteintrag — Abnahme des Zellen-Erzeugers vor dem Tag. Vor dem signierten Tag läuft der Zellen-Erzeuger nicht auf dem registrierten Snapshot mit dem registrierten Raster. Abgenommen wird er im Selektionsmodus gegen einen Test-Snapshot aus synthetischen Kursdaten (mit snapshot.py gezogen, eigener Hash, als Probe benannt; kein Lauf dieses Registers nach 5c/5e), durch die ganze Kette bis auswertung.py und Bericht (der Kettenlauf aus 25f A3 (1); Glied 2 aus 46.8 R17 (d)). Geprüft werden Struktur und Verfahren: Zeilenzahl nach R33, Nullzeile, Feldlisten nach R39, Lese-Audit, Ausgänge nach 36.5, Schreibregel R40, Nachrechnung R36 — nie eine Zahl des Selektionsraums. Der Hash des Test-Snapshots steht in der Tatsachennotiz der Abnahme. F-15.
 > Quelle des Grundes: 27.1, 24.3 (die Regel steht vor der Messung), 23e und 41.3 C6 (der Nachweis geht denselben Weg wie der Lauf; ein Hilfsordner ist kein Modus-Lauf), 5c, Prüfprinzip A8. Kein Ergebnis.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkte (d) und (f), vom steuernden Chat nach R65 (a) bestimmt, TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: keine.
 

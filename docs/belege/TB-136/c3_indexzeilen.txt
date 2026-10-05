@@ -1,0 +1,6 @@
+# TB-136 C3: Indexzeilen aus Fable 04a (Auftrag am Commit 753ae38)
+vorher: 'Indexzeilen aus Fable 04a' 0x (Soll 0); Abschnitt 9 1x (Soll 1); Schluss vor Pflege 1x (Soll 1)
+nachher: '### Indexzeilen aus Fable 04a' 1x (Soll 1); Zeilen zeichengleich im Index: 2/2
+  - **17.5:** Handelskalender der Aktien-Tagesreihe → R66 (a) und (b) (53.1) und R74 (54.1). Zu R74 mit Marke (R77 (a) und (b), 54.4); zu R66 gilt die Indexzeile aus Fable 02c weiter (R70 (b), 53.5).
+  - **48.20 (R52):** Zählung der Fälle „Bestand behauptet statt Voraussetzung genannt“ → R76 (54.3): zwölf gezählte Fälle bis zur Antwort 02c. Ohne Marke (R77 (c), 54.4). Lesart des steuernden Chats zu R77 (c), vorläufig; der Index ist kein Registertext.
+rc 0

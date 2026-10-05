@@ -1,0 +1,3 @@
+# TB-136 C1: registerkopie.py --abschnitte --pruefen  (HEAD 9b7b060, 2026-10-05 21:49:22 +0200)
+Abschnitte 0–54: 55 Dateien in docs/projektfuehrung/register_kopie; Bodies aneinander: 933576 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am 9b7b06065ebd: 933576 Bytes, sha256 8d505a38ad3abc93 (Kopf 8d505a38ad3abc93) - BYTEGLEICH
+rc 0

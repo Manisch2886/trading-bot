@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 51 (von 0–53) — Register-Z. 11195–11301 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 51 (von 0–54) — Register-Z. 11219–11328 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
 
 ## 51. Fable 01a — Registerblock R56–R62 (TB-129)
 
@@ -44,6 +44,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **51.5 R60 PRÄZISIERT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **51.5 R60 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (d), TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 4.2; 48.16 (R48). Voraussetzung gemessen: 51.8. Lesart, vorläufig: 51.9. Offen: 51.10 Nr. 6.

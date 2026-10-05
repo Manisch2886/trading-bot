@@ -283,6 +283,16 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **Umsetzungsauftrag mit Freigabe (R69 (b)):** planmässige Öffnung von `auswertung.py`: Benchmark-Datei je Bot, zusammen mit R36, R37, R34 und R55; Beispieldaten und Tests in derselben Änderung; neues Abbild.
 - **Anforderungen an den Zellen-Erzeuger aus 02c:** Tagesreihe auf jedem Handelstag ab dem 1. Januar der ersten Selektionsfalte (R66 (a)); Wachen mit Ausgang 2 nach R66 (b), R66 (e) und R67; Falten-Sharpe über die Sharpe-Funktion aus `kennzahlen.py` mit 252, bei Krypto 365 (R66 (c)); Bewertung am Lückentag zum letzten Kurs und Zahl der Positionstage je Bot (R72 (c)); Zeile der Bestätigungsperiode nach R68. `mtm_kern.py` bewertet am Lückentag wie R72 (c); sein Raster und `gebunden` zum Einstand passen nicht von selbst (53.9).
 
+### Aus Fable 04a (04.10.2026) — Bewertung nach 5b, eingetragen mit TB-136
+
+- **Bewertung 04a:** Fable ist mit allen drei Fragen einverstanden. R74–R77 stehen seit TB-136 im Register, Abschnitt 54, mit 15 Marken am alten Ort; Befunde in 54.5, Offenes in 54.6.
+- **An Fable, vor dem Bau der Attribution:** Die Voraussetzung zu R75 (a) trifft im Wortlaut nicht: Der Kern (`research/mtm_drawdown/mtm_kern.py`) bildet keine Tagesrendite (54.5, 54.6 Nr. 2). Die Meldung geht an Fable, bevor der Zellen-Erzeuger die Attribution baut; die Anforderung gehört in die Anforderungsliste des Zellen-Erzeugers (TB-135).
+- **Vor dem signierten Tag:** Verfahrensmessung nach R74 (e) in der Lock-Umgebung am Snapshot, zusammen mit der Messung nach R72 (d) (54.6 Nr. 1).
+- **Fassung des Kalenderpakets:** `eingaben.json` (TB-47) nennt `paket_vorhanden` 5.4.0, der Lock 4.6.1 (54.6 Nr. 8).
+- **An Fable, nächste Anfrage, zur Kenntnis:** die zwei Marken des steuernden Chats an 48.1 (R33) und 48.14 (R46) und die sechs sinngemässen Verweise (54.6 Nr. 6 und 7).
+- **Fables Chat:** Er stand nach einer einzigen Anfrage bei 468 406 (rot). Das ist ein Befund zur Probe „ein Fable-Chat je Anfrage“ (F4); die nächste Anfrage geht an einen neuen Chat.
+- **Für TB-133:** Die Suche der Ablage liefert Ausschnitte gesperrter Dateien (`BACKLOG.md`).
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen

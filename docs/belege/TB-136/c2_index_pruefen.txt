@@ -1,0 +1,11 @@
+Zeilenangaben im Index: 308; mit Markenwort: 308
+Indexzeilen E-2: 6 (Soll 6)
+Marken TB-129 im Register: 14; mit ihrer Zeile in '6. Die Marken aus Fable 01a (TB-129)': 14 (Soll 14/14)
+Marken TB-130 im Register: 12; mit ihrer Zeile in '7. Die Marken aus Fable 02a (TB-130)': 12 (Soll 12/12)
+Marken TB-132 im Register: 21; mit ihrer Zeile in '8. Die Marken aus Fable 02c (TB-132)': 21 (Soll 21/21)
+Marken TB-136 im Register: 15; mit ihrer Zeile in '9. Die Marken aus Fable 04a (TB-136)': 15 (Soll 15/15)
+C3: 2 Zeilen aus dem Auftrag; im Block '### Indexzeilen aus Fable 04a' (Abschnitt 9) zeichengleich: ja
+Indexzeilen aus 01a mit dem Schluss aus TB-130: 5 (Soll 5)
+Abschnittstabelle: 55/55 Zeilen gleich den Koepfen der Abschnittsdateien
+rc 0
+rc 0

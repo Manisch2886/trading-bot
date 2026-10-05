@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 1 von 4 — Abschnitte 0–22 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 1 von 5 — Abschnitte 0–22 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
 
 # Vorregistrierung der Neuselektion (TB-30a)
 
@@ -2349,6 +2349,9 @@ es an der Kursreihe nachgemessen.
 > ⭐ **16.6 PRÄZISIERT durch R37 (48.5)** (Fable 29b R37, TB-126, 01.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **16.6 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (a), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ---
 
 ### 16.7 Registertext 3b — Ergänzungen (a) bis (e) *(neu; die Fassung in 15.5 bleibt stehen)*
@@ -2840,6 +2843,9 @@ seine eigene Eingabe schreibt.
 > derselben registrierten Umgebung** auf einer anderen Maschine bitidentisch
 > ist. Eine Reproduktion auf anderer Umgebung wird **berichtet**, ist aber
 > weder Bedingung noch Widerlegung.
+
+> ⭐ **17.5 ERGÄNZT durch R74 (54.1)** (Fable 04a R74, Unterpunkte (a) und (b), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ⚠️ **Das schärft die Prüfung aus 16.3 nach.** Dort stand: der Lauf „muss auf
 einer zweiten Maschine bitidentisch reproduzieren". **Ohne Umgebungsbegriff war

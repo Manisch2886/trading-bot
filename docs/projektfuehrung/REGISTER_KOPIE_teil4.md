@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 4 von 4 — Abschnitte 43–53 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 4 von 5 — Abschnitte 43–53 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
 
 ## 43. Ausgänge der Auswertung, null Trades als Wert, die zweite Öffnung von `herkunft.py` — die Einträge aus Fable 25d und 25e und die Tatsachennotizen TB-108 und TB-109 (TB-110, 26.09.2026)
 
@@ -1265,12 +1265,18 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **48.1 R33 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **48.1 R33 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (c), vom steuernden Chat nach R65 (a) bestimmt, TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 45.5, Block R5, Punkt (b). Voraussetzung gemessen: 50.1.
 
 ### 48.2 R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht)
 
 > R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht). Der Zellen-Erzeuger schreibt je Bot eine Datei zellenbericht.csv mit genau einer Zeile je Zelle und den Feldern: die drei Werte aus 22.2 (Ertragsanteil der besten Selektionsfalte, des besten Symbols, der fünf besten Trades), haltedauer_median_handelstage (15.3 (b), R41) und bestaetigung_ab_effektiv (R37). Grundlage der drei Anteile: realisierte Erträge der ausgeführten Trades (Summe pnl_pct), Faltenzuordnung nach dem Einstiegstag (2b), nur Selektionsfalten; Anteil = Beitrag ÷ Gesamtertrag; bei Gesamtertrag ≤ 0 wird kein Anteil gebildet, das Feld trägt „nicht definiert“. auswertung.py liest die Zeile des Plateau-Gewinners und berichtet sie (22.2: Bericht, kein Tor; N unverändert); es rechnet die Werte nicht. Die Feldliste von zellenbericht.csv ist Registertext (R39). F-3, F-4, F-6.
 > Quelle des Grundes: 22.2 (Werte des Laufs für den Gewinner), 12 (auswertung.py hat keinen Schalter und liest Rohergebnisse), Punkt 14 (Reihenfolge Selektion → Bestätigung → Bericht), 2b. Kein Ergebnis.
+
+> ⭐ **48.2 R34 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (g), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 22.2; 45.5.
 
@@ -1286,6 +1292,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > R36 — Präzisierung zu 24.2 und 45.5 (zwei Drawdown-Spalten; Konsistenzprüfung; Ausschnitt). zellen.csv trägt je (Zelle, Falte) kapital_drawdown_mtm_pct — den Kapital-Drawdown der Nebenbedingung auf der täglichen MtM-Reihe (1a) auf den Tagen des Benchmarks (3b (c)) — und kapital_drawdown_ereignis_pct — den ereignisindizierten Drawdown, berichtet, nicht bewertet (24.2). Die Spalte kapital_drawdown_pct wird durch die zwei benannten ersetzt, nicht umgedeutet. auswertung.py rechnet kapital_drawdown_mtm_pct aus tagesreihen/<zelle>.csv nach und endet bei Abweichung mit 2. Der Drawdown je Falte ist der Ausschnitt eines durchgehenden Kapitalpfads (29.3, 2a): gemessen innerhalb der Falte, mit dem Kapitalstand am Faltenbeginn als erstem Hochpunkt, ohne Neustart des Kapitals. Festlegung 3 und Abschnitt 8 („drei tiefste Falten-Drawdowns“, „Kapital-Drawdown je Falte“) beziehen sich auf kapital_drawdown_mtm_pct; der ereignisindizierte Wert steht daneben als eigene Zeile. Vollzieht K4j (1) und (2); (3) folgt mit 40.8 (h). F-5, M49, M62.
 > Quelle des Grundes: 24.2, 24 (Festlegung 1 präzisiert), 24.6 (Bauart der Faltenmessung), 29.3, 2a, 24b A2 (ein Wert, der nachgerechnet werden kann, tut nicht, als wäre er gemessen), 12. Kein Ergebnis.
 
+> ⭐ **48.4 R36 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkte (c) und (d), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 24.2; 45.5. Voraussetzung gemessen: 50.1.
 
 ### 48.5 R37 — Präzisierung zu 16.6, 35.1, 16.4 (c)/(d), 5.1 Nr. 7 (zwei Zeiträume, ein Name)
@@ -1294,6 +1303,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Quelle des Grundes: 15.1 (Out-of-Sample des Laufs ist allein die Bestätigungsperiode des gewählten Satzes), 5.2 (Forward-Test geht in keine Selektion ein, auch nicht in die Bestätigungsperiode), 35.1, 4.1, 16.4. Kein Ergebnis.
 
 > ⭐ **48.5 R37 PRÄZISIERT durch R68 (53.3)** (Fable 02c R68, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.5 R37 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (a), TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 5.1, Nr. 7; 16.4 (c); 16.4 (d); 16.6; 35.1.
@@ -1314,6 +1326,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **48.7 R39 ERGÄNZT durch R69 (53.4): R39 ist bestätigt** (Fable 02c R69, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.7 R39 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (b), TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 46.3. Feldliste: 50.2.
@@ -1364,6 +1379,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 
 > R46 — Registertext, Ersteintrag — Abnahme des Zellen-Erzeugers vor dem Tag. Vor dem signierten Tag läuft der Zellen-Erzeuger nicht auf dem registrierten Snapshot mit dem registrierten Raster. Abgenommen wird er im Selektionsmodus gegen einen Test-Snapshot aus synthetischen Kursdaten (mit snapshot.py gezogen, eigener Hash, als Probe benannt; kein Lauf dieses Registers nach 5c/5e), durch die ganze Kette bis auswertung.py und Bericht (der Kettenlauf aus 25f A3 (1); Glied 2 aus 46.8 R17 (d)). Geprüft werden Struktur und Verfahren: Zeilenzahl nach R33, Nullzeile, Feldlisten nach R39, Lese-Audit, Ausgänge nach 36.5, Schreibregel R40, Nachrechnung R36 — nie eine Zahl des Selektionsraums. Der Hash des Test-Snapshots steht in der Tatsachennotiz der Abnahme. F-15.
 > Quelle des Grundes: 27.1, 24.3 (die Regel steht vor der Messung), 23e und 41.3 C6 (der Nachweis geht denselben Weg wie der Lauf; ein Hilfsordner ist kein Modus-Lauf), 5c, Prüfprinzip A8. Kein Ergebnis.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkte (d) und (f), vom steuernden Chat nach R65 (a) bestimmt, TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: keine.
 
@@ -1709,6 +1727,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **51.5 R60 PRÄZISIERT durch R69 (53.4)** (Fable 02c R69, Unterpunkt (c), TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **51.5 R60 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (d), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 4.2; 48.16 (R48). Voraussetzung gemessen: 51.8. Lesart, vorläufig: 51.9. Offen: 51.10 Nr. 6.
 
 ### 51.6 R61 — Marken nach E-2 (Regel, Nachtrag, eine Berichtigung)
@@ -1801,6 +1822,9 @@ Reines Eintragen von Registertext, Bauart wie 51. Quelle: `docs/projektfuehrung/
 > ⭐ **52.2 R64 PRÄZISIERT durch R72 (53.7): Benchmark-Tag** (Fable 02c R72, Unterpunkt (b), TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **52.2 R64 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (d), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 4.2; 48.16 (R48); 51.5 (R60). Voraussetzung gemessen: 52.4. Offen: 52.5 Nr. 1 bis 3, 5 bis 7 und 9.
 
 ### 52.3 R65 — Marken nach R61 (Regel und fünf Orte; eine Berichtigung in „lies“-Form)
@@ -1855,6 +1879,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > R66 — Präzisierung zu Registertext 1a und 1c (15.3 (a), (c)) und Ergänzung zu R64 (e) (52.2) (Kalender der Tagesreihe; Tage des Falten-Sharpe). (a) Die Tagesreihe einer Zelle führt jeden Handelstag des Kapitalpfads, vom 1. Januar der ersten Selektionsfalte des Bots (29.3) bis zum Ende der Bestätigungsperiode (35.1), ohne Lücke. Handelstage sind bei Krypto die Kalendertage (15.4, Anmerkung 1), bei Aktien die Tage des Handelskalenders nach 17.5 (Umgebung, im Lock). Ein Tag, an dem die Zelle keine Position hält, steht mit Rendite 0 und Exposure 0 in der Reihe (1a), auch ein Tag vor dem ersten Handelbar-Tag des Bots. (b) Kalender und Kurse stimmen überein: Im Zeitraum nach (a) trägt an jedem Handelstag mindestens ein Symbol der Universumsdatei des Bots (3a) im Snapshot einen Kurs, und kein Symbol der Universumsdatei trägt einen Kurs an einem Tag, der kein Handelstag ist. Eine Abweichung ist ein Befund über Daten oder Umgebung, kein Ausgang (Bauart R33). Der Zellen-Erzeuger prüft das im Lauf je Bot und endet sonst mit 2. Die Abnahme nach R46 prüft diese Wache, mit Gegenprobe; der registrierte Lauf trägt sie selbst. [Voraussetzung, zu messen: welchen Kalender des Pakets der Code des Laufs benutzt (TB-47, Feld kalender); die Messung zur Anfrage 02.10.c verglich mit dem NYSE-Kalender.] (c) Der Falten-Sharpe nach 1c wird über alle Tage der Tagesreihe gerechnet, die in die Falte fallen (2a; halboffen wie im Faltenplan), nicht nur über die Tage, an denen der Benchmark definiert ist. Ein Tag ohne Benchmark-Tag geht mit Rendite 0 ein. Dasselbe gilt für den Sharpe in der Zeile der Bestätigungsperiode, ab dem Tag nach R68. Der Zellen-Erzeuger bildet ihn mit der Sharpe-Funktion aus kennzahlen.py; sie ist die registrierte Definition (R50), ein zweiter Rechenweg wird nicht gebaut. [Voraussetzung, zu messen: dass der Aufruf mit 252 Perioden je Jahr, bei Krypto 365, die Formel aus 15.3 trifft; den Bezeichner trägt die Tatsachennotiz nach R50 (38.2).] (d) Auf den Tagen des Benchmarks stehen: der Drawdown der Nebenbedingung (24.2, R36), die mittlere Exposure (R64), Beta-Bereinigung und Calmar-Vergleich (7 (c)) und das Zufalls-Timing (R48 (g): dieselben Tage wie 7 (c)). Auf dem Kapitalpfad nach (a) steht der Falten-Sharpe und mit ihm die Selektionsstatistik (15.2). Diese Aufzählung ist abschliessend; sie legt die Tage keiner weiteren Kennzahl fest. Die DSR-Eingaben des Gewinners bildet der eingefrorene Code aus den Renditen der Beta-Bereinigung, also auf den gemeinsamen Tagen mit dem Benchmark; das ist die registrierte Definition (R50), Abschnitt 9 nennt keine Tage, und es ist kein Register-Code-Widerspruch. R64 bleibt unberührt. (e) Führt die Tagesreihe einer Zelle an einem Tag, der kein Benchmark-Tag des Bots ist (R72 (b)), eine Rendite ungleich 0 oder eine Exposure ungleich 0, ist das ein Befund über Erzeuger oder Daten, kein Ausgang (Bauart R33); ausgenommen ist der Tag aus der Tatsachennotiz zu 3b (c), Satz zur Zeitachse, in der Fassung R71. Der Zellen-Erzeuger prüft das im Lauf für jede Tagesreihe und endet sonst mit 2. Die Abnahme nach R46 prüft diese Wache, mit Gegenprobe; der registrierte Lauf trägt sie selbst. Die zweite Voraussetzung aus R64 wird damit im Lauf geprüft. (f) Tatsachennotizen: Kein Code auf der Sperrliste oder im Laufbereich bildet den Falten-Sharpe aus der Tagesreihe oder rechnet ihn nach; die Sharpe-Funktion in kennzahlen.py hat heute keinen Aufrufer, auswertung.py liest netto_sharpe aus zellen.csv. Der Fall, dass der Benchmark nicht an allen Tagen einer Falte definiert ist, tritt in vier ersten Falten auf (33.2, 23.4). Der Sharpe im DSR steht auf den gemeinsamen Tagen, die Schwelle des DSR kommt aus der Selektionsstatistik auf allen Tagen; das gehört zum Nebenbefund der DSR-Einheiten (50.7 Nr. 3) und wird mit ihm vor dem Tag behandelt. Die DSR ist Bericht, nicht Tor (Festlegung 11).
 > Quelle des Grundes: 1c im Wortlaut („aus den täglichen Netto-Renditen des Kapitalpfads“, je Falte, ohne Einschränkung); 1a („Flache Tage stehen mit Rendite 0 in der Reihe“); 2a („Jeder Handelstag gehört zu der Falte, in die sein Datum fällt“); 29.3; 17.5 („Der Handelskalender kommt nicht aus einer Datei, sondern aus dem Paket“; „Umgebung, nicht Eingabe“); 3a („Symbole ohne Historie in einer Falte tragen 0 Trades und 0 Rendite bei“) mit 15.5, Lesart A („trägt für diese Tage 0 bei“); daraus der Schluss des Verfahrensprüfers, dass Nichtteilnahme in der Selektionsstatistik als 0 geführt und nicht ausgeschlossen wird (die Tatsachennotiz zu 1c spricht von Falten ohne Trade, nicht von Tagen ohne Benchmark); 23.2, Grund 2 (der Schaden dort entsteht aus dem Vergleich zweier Reihen; der Falten-Sharpe hat eine); 24.1 und 24.2 (Bewertungsachse; die Zeitachse ist für den Drawdown genannt und bewegt ihn unter (e) nicht: 23.4, Wirkung 3); 23.3 (zur Entstehung: der Kapitalpfad hatte keinen Kalender); R50 („Der Registertext legt keine dieser Definitionen neu fest“); Abschnitt 9; R33; R64 (c); R46; die Messungen des steuernden Chats zur Anfrage 02.10.c, Fragen 1 und 2 (vom Verfahrensprüfer nicht gemessen). Bekannte Richtung der Wirkung, nicht Grund: Über alle Tage der Falte ist der Falten-Sharpe dem Betrag nach nie grösser als über die Benchmark-Tage allein, bei gleichem Vorzeichen (Rechnung des Verfahrensprüfers); die Grösse ist nicht gemessen und für die Entscheidung ohne Belang (Bauart 24.3). Kein Ergebnis.
 
+> ⭐ **53.1 R66 PRÄZISIERT durch R74 (54.1)** (Fable 04a R74, TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 15.3 (a); 15.3 (c); 52.2 (R64); 52.4, Zeile „R64 (52.2), zweite“. Indexzeilen ohne Marke (R70 (b)): 17.5; 50.7 Nr. 3. Voraussetzung gemessen: 53.9. Offen: 53.10 Nr. 1, 5 und 7.
 
 ### 53.2 R67 — Registertext, Ersteintrag, Ergänzung zu R39 (48.7) (Eindeutigkeit und Vollständigkeit der Reihen)
@@ -1869,6 +1896,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > R68 — Präzisierung zu R33 (48.1), zu R37 (48.5) und zu R64 (52.2) (Zeile der Bestätigungsperiode in zellen.csv). (a) Die Zeile der Bestätigungsperiode (R33) trägt für jede Zelle die Bestätigungsstatistik, die R37 (i) für den Gewinner beschreibt. Alle Grössen dieser Zeile stehen auf den Tagen ab bestaetigung_ab_effektiv der Zelle bis zum Ende der Spanne (35.1). Die Spanne bleibt, was 35.1 sagt; ihre Tage vor diesem Tag gehören weder zu einer Selektionsfalte noch zur Bestätigungsstatistik. (b) R64 (a) gilt für die mittlere Exposure dieser Zeile: Mittel über die Benchmark-Tage des Bots innerhalb der Tage nach (a). Die Grösse ist Bericht; auswertung.py liest sie für kein Urteil. (c) Eine Position, die nach der Attribution je Position (16.6, R37) in der Bestätigungsstatistik nicht gezählt wird, geht in keine Grösse der Zeile ein, auch nicht in ihre Exposure. (d) Im Fall nach (c) ist die Zeile nicht der blosse Ausschnitt der Tagesreihe (16.6: „ausdrückliche und seltene Ausnahme von der Ein-Pfad-Regel“). Wie die Gleichheitsproben nach R60 (c) und R64 (d) und die Nachrechnung nach R36 diesen Fall behandeln, ist offen und geht vor der Öffnung nach R69 (b) als Frage an den Verfahrensprüfer. Tatsachennotiz: Die Fassung von 2d in 15.4 (d) („Tage im Embargo gehören zu keiner Periode“) ist durch 16.6 vollständig ersetzt und trägt diesen Block nicht.
 > Quelle des Grundes: R37 (i) („Die Bestätigungsstatistik des Gewinners beginnt am ersten Handelstag ab Beginn der Spanne, an dem keine vor der Spanne eröffnete simulierte Position des Gewinners mehr offen ist“; „Der Zellen-Erzeuger bestimmt diesen Tag für jede Zelle“), R33 (genau eine Zeile je Zelle und Falte, Bestätigungsperiode eingeschlossen), 16.6 (Attribution je Position), R64 (a), R63 (d) (Bauart: Exposure aus derselben Rechnung wie die MtM-Reihe), die Messung des steuernden Chats zur Anfrage 02.10.c, Teil 0 Nr. 2. Kein Ergebnis.
 
+> ⭐ **53.3 R68 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 48.1 (R33); 48.5 (R37); 52.2 (R64). Tatsache gemessen: 53.9. Offen: 53.10 Nr. 2 und 5.
 
 ### 53.4 R69 — Auflösung des Widerspruchs zwischen R39 (48.7) und auswertung.py (Name der Benchmark-Datei); Präzisierung zu R64 (e) (52.2)…
@@ -1876,12 +1906,18 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > R69 — Auflösung des Widerspruchs zwischen R39 (48.7) und auswertung.py (Name der Benchmark-Datei); Präzisierung zu R64 (e) (52.2) und R60 (c) (51.5). (a) Dass auswertung.py benchmark_tagesreihen/<markt>.csv liest und R39 <bot>.csv verlangt, ist ein Register-Code-Widerspruch (25c (1), nach der Wiedergabe in R48 und R50). Er wird zugunsten von R39 aufgelöst; R39 ist damit bestätigt und wird nicht berichtigt. Die Benchmark-Reihe unterscheidet sich je Bot (23.3; 16.7 (b)); eine Datei je Markt kann sie nicht tragen. (b) Vor dem signierten Tag liest auswertung.py die Datei unter dem Namen des Bots. Das ist eine beauftragte Änderung nach 37.3 (Auftrag, Freigabe, alter und neuer Hash) mit neuem Abbild und einem Nachweis mit Gegenprobe (Bauart R55, R64). Sie gehört zur planmässigen Öffnung von auswertung.py, die R36 (zwei Drawdown-Spalten, Nachrechnung), R37 (bestaetigung_ab_effektiv), R34 (zellenbericht.csv) und R55 (Umbenennung) verlangen. Beispieldaten und Tests, die den Namen je Markt schreiben oder lesen, folgen in derselben Änderung. (c) In R64 (e) lies „auswertung.py wird für nichts davon geöffnet“ als „für nichts, was dieser Block in (a) bis (d) regelt, wird auswertung.py geöffnet“. „Dafür“ in R60 (c) bindet ebenso nur die Gleichheit der zwei Träger. Die Öffnung nach (b) berührt beides nicht.
 > Quelle des Grundes: R39 mit seinem Grund (23.3: die Symbole, die der Loader des Bots handelbar macht; 16.7 (b): Schranken je Bot), 37.3, R45 (Bauart einer beauftragten Änderung), R36, R37, R34, R55, 50.1 und 50.2 (Stand des Vertrags), die Messung des steuernden Chats zur Anfrage 02.10.c, Teil 0 Nr. 1 (auswertung.py kennt weder zellenbericht noch kapital_drawdown_mtm_pct noch bestaetigung_ab_effektiv). Bauart, nicht Quelle: 23.5 („ein Name, der etwas anderes verspricht als das Verhalten“, dort zu einem Docstring). Kein Ergebnis.
 
+> ⭐ **53.4 R69 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (h), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 48.7 (R39); 51.5 (R60); 52.2 (R64); 52.4, Zeile „R64 (52.2) (a)“. Tatsache gemessen: 53.9. Offen: 53.10 Nr. 4.
 
 ### 53.5 R70 — Marken zu R64 (7 (c)) und zu R66 bis R73; Präzisierung zu R61 (b) (51.6) und R65 (a) (52.3)
 
 > R70 — Marken zu R64 (7 (c)) und zu R66 bis R73; Präzisierung zu R61 (b) (51.6) und R65 (a) (52.3). (a) 7 (c) trägt keine Marke zu R64. Abschnitt 7 nennt seine Tage selbst („gemeinsame Tage“, „über dieselben Tage“); R64 gibt das „lies“ R48 (d) und R60 (c), nennt 7 (c) als Geltungsbereich und bestätigt in (b) den Code, nicht den Wortlaut von 7. Ein Ort, den ein Block nur als Geltungsbereich einer Regel nennt, deren „lies“ einem anderen Ort gilt, bleibt ohne Marke und wird vom Index geführt, wie R54 an 7 (c) (R61 (b)). Nennt der Wortlaut eines Ortes die Sache nicht und gibt der Block sie ihm, trägt der Ort die Marke: so 4.2 zu R64, 15.3 (a) zu R66 und 48.1 zu R68. (b) Indexzeilen ohne Marke: 7 (c) — mittlere Exposure des Gewinners, Tage nach R64 (a), (b) und (d). 17.5 — Handelskalender der Aktien-Tagesreihe, R66 (a) und (b). 50.7 Nr. 3 — Tagesbasis des DSR, R66 (f). (c) Marken zu dieser Antwort, der alte Satz bleibt zeichengleich: 15.3 (a) — PRÄZISIERT durch R66, Unterpunkte (a) und (b). 15.3 (c) — PRÄZISIERT durch R66, Unterpunkt (c). 48.1 (R33) — PRÄZISIERT durch R68. 48.5 (R37) — PRÄZISIERT durch R68. 48.7 (R39) — ERGÄNZT durch R67; ERGÄNZT durch R69: R39 ist bestätigt. 48.16 (R48 (d)) — ERGÄNZT durch R72, Unterpunkt (c). 51.5 (R60) — PRÄZISIERT durch R69, Unterpunkt (c). 51.6 (R61) — PRÄZISIERT durch R70, Unterpunkt (a). 52.2 (R64) — ERGÄNZT durch R66 (zu (e)), PRÄZISIERT durch R68, durch R69, Unterpunkt (c), und durch R71 und R72, Unterpunkt (b) (Benchmark-Tag; erster Kurstag). 52.3 (R65) — PRÄZISIERT durch R70, Unterpunkt (a). 52.4, Zeile „R64 (52.2), zweite“ — ERGÄNZT durch R66, Unterpunkte (a) und (e). 52.4, Zeile „R64 (52.2) (a)“ — BERICHTIGT durch R69, Unterpunkt (c). 23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse — BERICHTIGT durch R71 und ERGÄNZT durch R72; die Marke steht unter dem Blockzitat der Notiz (Vorbild 25.2). 27 — ERGÄNZT durch R73. Ohne Marke bleiben 24.2, 29.3 und 7 (c) zu R66 (Geltungsbereich oder Quelle des Grundes).
 > Quelle des Grundes: R61 (b), erster und zweiter Satz, und die Zeile „R54 an 7 (c)“; R65 (a) (auch: eine Tabelle von Befunden ist keine Statusliste; eine Bestätigung trägt ERGÄNZT mit Zusatz); 34 (Kopf: die Marke steht am alten Ort; nach der Wiedergabe in R61 und R65); Wortlaut von Abschnitt 7, 4.2, 15.3 (a) und R33. Kein Ergebnis.
+
+> ⭐ **53.5 R70 PRÄZISIERT durch R77 (54.4)** (Fable 04a R77, Unterpunkt (b), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 51.6 (R61); 52.3 (R65). Nach (c) gesetzt: 20 Marken, je in der Kette des Blocks, der sie auslöst. Indexzeilen ohne Marke nach (b): 7 (c); 17.5; 50.7 Nr. 3. Offen: 53.10 Nr. 8 und 9.
 
@@ -1924,6 +1960,9 @@ Tatsachennotizen des steuernden Chats zu den Voraussetzungen, die Fable in 02c �
 | R73 (53.8) | keine Voraussetzung | Die Angaben sind die des Verfahrensprüfers; der steuernde Chat kann sie nicht messen. Der Eröffnungstext 02.10.c (`docs/projektfuehrung/FABLE_UEBERGABE_2026-10-02c_eroeffnung.md`) liegt im Repo; er war nicht Anfangsbestand | Tatsachennotiz des Verfahrensprüfers |
 | R66–R73, Zitate und Verweise | — | 98 Stellen gegen den Wortlaut gemessen (`docs/belege/TB-132/vormessung/v4_register_02c.md`). Sinngemäss treffen zehn: R72 (b) fasst den Benchmark-Tag enger als der Wortlaut von 23.3 (REG Z. 3933–3936), das ist der Inhalt der Präzisierung; R72 nennt im Kopf den Registertext 3b (c), R70 (c) setzt die Marke nur an die Tatsachennotiz (53.10 Nr. 8); „TB-47, Feld kalender“ steht nur in der Erläuterung unter 17.5 (REG Z. 2847); „Dafür“ steht in R60 (c) klein (REG Z. 11196); „Bauart R55, R64“ in R69 (b) meint Prüfungen mit Gegenprobe, die Bauart der beauftragten Änderung steht in R45 (REG Z. 10857); von einer Öffnung spricht unter R36, R37, R34 und R55 nur R55; „R54 an 7 (c)“ ist in R61 (b) ein Glied der Aufzählung, keine Zeile (REG Z. 11209); 24.6 (REG Z. 4471) berichtet eine Zählung in einer Messung; R56 (c) (REG Z. 11168) nennt drei Fälle, der von R73 ist keiner davon; 23.2, Grund 2 (REG Z. 3908) ist Deutung des Verfahrensprüfers | keine Stelle trifft nicht; die sinngemässen gehen zur Kenntnis an Fable (53.10 Nr. 9) |
 
+> ⭐ **53.9, Zeile „R66 (53.1) (b)“ ERGÄNZT durch R74 (54.1)** (Fable 04a R74, Unterpunkte (b) und (f), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 53.10 Was offen bleibt
 
 | | offen | wann, wo |
@@ -1940,3 +1979,4 @@ Tatsachennotizen des steuernden Chats zu den Voraussetzungen, die Fable in 02c �
 | 10 | `tagesschluss` (`benchmark.py:155`, `159–160`) normalisiert `open_time` nicht und prüft keine doppelten Daten; am Bestand vom 02.10.2026 folgenlos | mit der Verfahrensmessung nach Nr. 3 |
 
 Von 52.5 sind damit erledigt: Nr. 2 durch R66 (a) und (c), Nr. 5 durch R67, Nr. 6 durch R68 (a) und (b), Nr. 7 durch R69, Nr. 9 durch R70 (a). Nr. 1 (zweite Voraussetzung zu R64) wird nach R66 (e) im Lauf geprüft. Nr. 3 bleibt; der Deckelfall (R68 (d), hier Nr. 2) berührt die Probe dort. Nr. 4 und 8 bleiben, wie sie dort stehen.
+

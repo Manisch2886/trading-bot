@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 35 (von 0–53) — Register-Z. 6343–6539 — Commit ee43f5f1339549238c0da023db7c9f324b26d28e — 2026-10-04 — Original sha256 9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 35 (von 0–54) — Register-Z. 6349–6545 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
 
 ## 35. Die Bestätigungsperiode bekommt ihren Bezeichner und wird Feld des Abbilds, und 30.2 (3) wird präzisiert — die Sonde prüft den gerechneten Plan vor dem Start (Fable 22a, TB-83, 22.09.2026)
 
