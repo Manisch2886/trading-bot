@@ -908,3 +908,271 @@ Dazu: Die Voraussetzung zu R69 (b) und die zweite zu R68 treffen. Fables „Unsi
 **Nachgezogen.** Im Auftrag steht in Zeile 5 statt „Start von Hand“ der Absatz „Start“ (sonst zeichengleich mit der Fassung von 08:41): 131 271 B, md5 `3bbaa5a46ecfb8142eb9c24928c512eb`, mit `cmp` geprüft. Vorprüfung am Gerät ohne Trockenlauf-Schalter mit `--arbeitsbaum`: rc 0, Ausgabe gleich der von 08:41. Das Soll der Abnahme ist unverändert (sha256 `b6bd4247…`). Der Zeiger nennt den Start über den Wächter. Nach diesem Nachtrag legt der steuernde Chat den Auslöser `starte_TB-132`; ob der Wächter ihn angenommen hat, steht in `logs/sitzungswaechter/waechter.log`.
 
 **Wartet.** Der Betreiber schickt den Einfügesatz ab: in der App unter der Gerätesitzung oder im Terminalfenster mit der Eingabetaste. Die Sitzung läuft nur am 04.10.2026.
+
+## Nachtrag 04.10.2026, 09:23 — TB-132 hat abgegeben; Register zeichengleich mit dem Soll; Sitzung geschlossen; Stand für den Umzug
+
+**Lauf.** Der Betreiber hat den Satz in der Sitzung abgeschickt, die der Wächter angelegt hatte. Commits: `57ae0d8` (Schritt 0, 08:51:37; das ist ⟨S0⟩), `f32b5c7` (0: Ausgang, Vorprüfung, Probe in der Lock-Umgebung, 08:53:04), `ee43f5f` (A: Register 53, Marken, 09:09:36), `12010b2` (B/C: BACKLOG, Registerkopie, Index, Dialog-Index, 09:10:36), `f909e71` (Abgabe: Ergebnis, Journal ED, 09:12:38), `d781f1b` (D3: porcelain nach der Abgabe, 09:12:41). HEAD = `origin/main` = `d781f1b`, Arbeitsbaum leer (gemessen 09:22). Betreiber, 09:21: „Tb132 fertig“.
+
+**Abnahme, erster Teil (gemessen 09:23 über die Brücke).** Das Einfügeskript aus dem Auftrag am HEAD (sha256 `c75b6e88…`, gleich `docs/belege/TB-132/a4_eintrag.py`) mit `--vorschau --s0 57ae0d8 --register <Kopie>` auf das Register am `ad351d5` (11 313 Zeilen, sha256 `a7496780…`): Das Soll ist mit dem Register am HEAD und im Arbeitsbaum zeichengleich (`cmp`), sha256 `9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff`, 11 471 Zeilen, 158 dazu, 0 weg. Im Register: eine Zeile `## 53.` (Z. 11378), R66–R73 als Blöcke, 21 Marken mit „TB-132, 04.10.2026“, kein ⟨S0⟩ übrig. Probe: `probe_lock_r71_rc.txt` nennt rc 0, Zeile 3 der Ausgabe ist `  pandas 2.3.3, numpy 2.0.2, Python 3.9.6`, Schlusszeile „Rueckgabewert 0“, stderr 0 B, `0e_pycache.txt` 0 B. Der Auftrag am HEAD ist die gelegte Fassung (md5 `3bbaa5a4…`).
+
+**Noch nicht abgenommen (zweiter Teil, nächster Chat).** `docs/ERGEBNIS_TB-132_register_fable_02c.md` (16 501 B) lesen und jede Zahl an der Rohausgabe nachrechnen; BACKLOG-Block (287 → 297 Zeilen), Journal ED, Registerkopie (54 Abschnittsdateien), `REGISTER_INDEX.md`, `FABLE_DIALOG_INDEX.md` (auch: was `dialog_index.py` sonst geändert hat), die Nachweise `a5_*` und `0c_basis.txt` unter `docs/belege/TB-132/`.
+
+**Geschlossen.** `schliesse_d781f1b…` gelegt; Wächter-Log 2026-10-04T07:23:39Z: „1 Sitzung(en) mit TERM beendet, 0 noch da.“.
+
+**Offen, in dieser Reihenfolge.** (1) Abnahme, zweiter Teil. (2) Ablage erneuern: 54 Abschnittsdateien, `REGISTER_INDEX.md`, `FABLE_DIALOG_INDEX.md`, `UEBERGABE.md`. (3) Die zwei Fable-Dateien vom 04.10. aus der Ablage ins Repo (`FABLE_UEBERGABE_2026-10-04_neuer_chat.md`, md5 `49deb8fc…`; die Eröffnung in der Fassung, die hinausgeht), vor einer Antwort (R56 (b)). (4) Anfrage 04.10.a: die Punkte aus 53.10 (Kalendername, Deckelfall, Marke an 23.3, sinngemässe Verweise), dazu die Zählung der Fehlerklasse (Stellen aus 01a Nr. 6 und 02c Z. 41); die Eröffnung mit neuem Stand in Abschnitt 3 neu ausgeben (Register am `ee43f5f`, 11 471 Zeilen, Abschnitte 0–53, R66–R73 eingetragen als 53.1–53.8) und in der Ablage ersetzen. (5) Regelwerk nachziehen (ARBEITSWEISE 0) als Auftrag an eine Mac-Sitzung: Fehler Nr. 20 (Start ausserhalb des Wächters erst nach Messung, wo die Sitzung läuft) und `ls-files -m` statt `diff --name-only` über die Brücke.
+
+**Stand.** HEAD `d781f1b`. Uncommittet: nur `UEBERGABE.md` (dieser Nachtrag). Keine Gerätesitzung, kein Auftrag startklar. Nummern: TB frei ab 133; Journal ab EE; R frei ab R74; Fehler ab 21; Fable am 04.10. frei ab a. Die Baudateien des Neubaus (`bau.py`, alte Fassung des Auftrags) liegen nur im Container dieses Chats und im Scratch der Brücke. Ampel gelb; Umzug jetzt, die Abnahme, zweiter Teil, macht der nächste Chat.
+
+## Nachtrag 04.10.2026, 09:50 — TB-132 ganz abgenommen; Ablage erneuert; kein Umzug (Betreiber: „fahre einfach fort wie bisher“), Ampel rot
+
+**Betreiber, 09:33:** „Bewerte den anderen Code Cloud Guthaben und fahre einfach fort wie bisher“. Gelesen als: nicht umziehen, hier weiterarbeiten. Der erste Halbsatz ist nicht sicher verstanden; welches Guthaben belastet wird, sieht der steuernde Chat nicht.
+
+**Abnahme, zweiter Teil (frischer Helfer, nur lesend am Repo; 09:35–09:41).** Rund 160 Angaben des Ergebnisdokuments an Rohausgaben und Commits nachgerechnet: alle treffen; etwa 10 ohne prüfbare Quelle (z. B. „jeder Push im ersten Versuch“, eine Uhrzeit). BACKLOG: numstat 10/0, der Block steht wörtlich im Auftrag (Schritt B, Z. 211–219). Journal ED: numstat 40/0, gleich `d2_journal_block.md`, davor EC. Dialog-Index: numstat 4/2; Zeile 02a Status „offen“ → „registriert“ und offen „ja“ → „nein“, neue Zeilen 02b und 02c, Schlusszeile 52 → 54 Antworten. Register-Index: numstat 218/173, Abschnitt 53 und R66–R73 eingetragen, `c2_index_pruefen.txt` rc 0. Alle 145 berührten Pfade liegen unter `docs/`, nichts gelöscht oder umbenannt. `test_vorregistrierung`: rc 0, 892 s, 196/196. Vom steuernden Chat per Skript gemessen: Alle 54 Abschnittsdateien gleichen ihrem Registerausschnitt, die Bereiche decken Z. 1–11 471 lückenlos. **Unschärfe der Freigabetabelle (steuernder Chat, kein Verstoss der Sitzung):** Sie nannte bei 02a nur „offen → nein“; der Auftrag verlangte in Schritt C auch den Status „registriert“.
+
+**Aus dem Ergebnis für später (noch nicht im BACKLOG):** `registerkopie.py --marken` zählt in Abschnitt 53 drei Zeilen als Marken, die keine sind; Reibung im Index, Tabelle 3, Zeile 3b (c) (Vorschlag für den nächsten Indexlauf); die Bestätigung an 48.7 steht mit dem Markenwort ERGÄNZT; beim nächsten Registerabschnitt dieser Grösse dürfte T4 die Grenze überschreiten; `registerbericht.py --pruefen` rc 1 bleibt (bekannt seit vor TB-126).
+
+**Ablage erneuert (Helfer, 09:36–09:39).** 57 Dateien md5-gleich mit dem Gerät hochgeladen: `REGISTER_KOPIE_ABSCHNITT_00.md` bis `_53.md` (53 ist neu), `REGISTER_INDEX.md` (40 183 B, md5 `bcc69099…`), `FABLE_DIALOG_INDEX.md` (23 548 B, md5 `1b05ff40…`), `UEBERGABE.md` im Stand von 09:23 (145 713 B, md5 `b7ebbbfe…`). Dieser Nachtrag steht noch nicht in der Ablage.
+
+**Ampel.** 09:42: Verlauf 330 374 (rot). Kein Umzug auf Anweisung des Betreibers. Der steuernde Chat liest ab hier Grosses nur über Helfer.
+
+**In Arbeit.** Anfrage 04.10.a an Fable: Kalendername (53.10 Nr. 1), Deckelfall (Nr. 2), zur Kenntnis die Marke an 23.3 (Nr. 8) und die sinngemässen Verweise (Nr. 9), dazu die Zählung der Fehlerklasse. Eine Vormessung durch einen Helfer läuft (Wortlaute und Fundstellen); sie kommt nach `docs/belege/TB-133/vormessung/`. Die Eröffnung wird mit dem Stand nach TB-132 neu gemessen. Offen danach: die zwei Fable-Dateien vom 04.10. ins Repo, Regelwerk-Nachtrag als TB-133.
+
+**Stand.** HEAD `d781f1b`. Uncommittet: `UEBERGABE.md`. Keine Gerätesitzung, kein Auftrag startklar. Nummern unverändert: TB frei ab 133, Journal ab EE, R ab R74, Fehler ab 21, Fable am 04.10. frei ab a.
+
+## Nachtrag 04.10.2026, 10:03 — Anfrage 04.10.a an Fable fertig und abgelegt; Eröffnung neu gemessen; Betreiber will Cloud-Sitzungen für Leseaufgaben nutzen
+
+**Anfrage 04.10.a.** `docs/projektfuehrung/FABLE_ANFRAGE_2026-10-04a_kalendername_deckelfall_zaehlung.md` (9 574 B, md5 `db37f969a557b60a27cbd7ac6b942def`), im Repo (uncommittet) und in der Ablage. Drei Fragen, je mit Fundstelle und Neigung: (1) Kalendername der Aktien-Tagesreihe (Neigung: „NYSE“ des Pakets im Lock, als Präzisierung zu R66 (a)); (2) Deckelfall, Proben nach R60 (c) und R36 (Neigung: Proben bleiben, zweiter attribuierter Träger; Herausrechnen, kein zweiter Lauf; 41.3 C2 ist nur über die Marke an 16.6 gelesen und so gekennzeichnet); (3) Zählung der Fehlerklasse (zwölfter Fall: 02b, R68 (c) zu R60 (c); nicht gezählt: die ersetzte Fassung 2d, weil 02b sie als Voraussetzung genannt hatte, die Kalenderquelle in R66 (a), die zwei Stellen aus 01a Nr. 6). Zur Kenntnis: Marke an 23.3, sinngemässe Verweise, Eintrag durch TB-132. Vormessung durch einen Helfer: `docs/belege/TB-133/vormessung/v1_vormessung_04a.md` (57 081 B, md5 `505ba981…`, uncommittet). Ein Gegenleser prüfte acht Punkte an der Quelle: sieben Befunde, alle eingearbeitet (darunter mein Fehler: die „14“ in R26/R30 steht in R61 (c), nicht in R62; ein Zitat ohne markierte Auslassung; `exchange-calendars` stand unter „53.9“, kommt aber aus `requirements.lock`). Keine zweite Gegenleser-Runde.
+
+**Eröffnung.** `docs/projektfuehrung/FABLE_UEBERGABE_2026-10-04_eroeffnung.md` neu, mit dem Stand nach TB-132 (9 259 B, md5 `c96f56c9682d4fb8a37188735edae7ad`), Repo und Ablage; ersetzt die Fassung von 07:54. Dazu im Repo: `FABLE_UEBERGABE_2026-10-04_neuer_chat.md` (8 190 B, md5 `49deb8fc…`). R56 (d) gemessen 09:53: unverändert. Eröffnung und Anfrage gehen als ein Kopierblock an den Betreiber (Sendetext 17 426 B, md5 `4eef7787…`).
+
+**Betreiber, 09:55:** Er will das Guthaben für Cloud-Sitzungen von Claude Code nutzen: eine von Hand angelegte Cloud-Sitzung bekommt eine Aufgabe, antwortet mit einer Textdatei im eigenen Chat, legt nichts ab; er kopiert die Antwort in den steuernden Chat. Dafür vergeben: **TB-134** (Cloud, nur lesen: Liste der Voraussetzungen in R33–R73 mit Stand der Messung; Wortlaut 41.3 C2) und **TB-135** (Cloud, nur lesen: Anforderungen an den Zellen-Erzeuger aus R33–R73). Beide als Kopierblock ausgegeben. Eine Cloud-Sitzung sieht nur den gepushten Stand (heute `d781f1b`), keine uncommitteten Dateien, keine Lock-Umgebung, keine Daten; ihre Antwort ist Fundstellenliste, kein Nachweis, und wird an Stichproben gemessen. TB-133 bleibt der Regelwerk-Nachtrag (Mac).
+
+**Stand.** HEAD `d781f1b`. Uncommittet: `UEBERGABE.md`; unverfolgt: `docs/belege/TB-133/vormessung/v1_vormessung_04a.md` und die drei Fable-Dateien vom 04.10. Keine Gerätesitzung. Nummern: TB frei ab 136; Journal ab EE; R ab R74; Fehler ab 21; Fable 04.10.a ausgegeben, frei ab b. Ampel rot (Verlauf über 330 000), kein Umzug auf Anweisung des Betreibers.
+
+**Wartet.** Der Betreiber fügt den Sendetext in einen leeren Fable-Chat ein und meldet „Fable ist fertig“; die Cloud-Antworten kopiert er hierher.
+
+## Umzug 04.10.2026, 10:56 — Stand für den neuen steuernden Chat (selbsttragend, alle neun Blöcke)
+
+Betreiber, 10:54: „Bereite den Umzug vor damit wir im neuen Chat nahtlos weiter machen können.“ Die Nachträge vom 04.10.2026 (08:42, 08:47, 09:23, 09:50, 10:03) tragen die Einzelheiten; dieser Block genügt zum Weiterarbeiten.
+
+### Block 1 — Stand in drei Zeilen
+
+- **TB-132 ist gelaufen, ganz abgenommen und geschlossen:** Register Abschnitt 53 (R66–R73 als 53.1–53.8, dazu 53.9 und 53.10) und 21 Marken stehen im Register; HEAD `d781f1b`.
+- **Die Anfrage 04.10.a an Fable ist hinausgegangen, und die Antwort liegt in der Ablage** (`projektfuehrung/FABLE_ANTWORT_2026-10-04a_kalendername_deckelfall_zaehlung.md`, in der Dokumentliste gesehen um 10:54). Sie ist nicht gelesen, nicht ins Repo übertragen und nicht bewertet.
+- **Zwei Leseaufgaben für Cloud-Sitzungen (TB-134, TB-135) sind als Kopierblock ausgegeben;** Antworten sind in diesem Chat nicht eingegangen.
+
+### Block 2 — HEAD und Commits
+
+HEAD = `origin/main` = `d781f1b` (04.10.2026, 09:12). TB-132: `57ae0d8` (Schritt 0), `f32b5c7` (0: Ausgang, Vorprüfung, Probe), `ee43f5f` (A: Register 53, Marken), `12010b2` (B/C), `f909e71` (Abgabe, Journal ED), `d781f1b` (D3). Gemessen 10:55: geändert nur `docs/projektfuehrung/UEBERGABE.md`; unverfolgt vier Dateien: `docs/belege/TB-133/vormessung/v1_vormessung_04a.md`, `docs/projektfuehrung/FABLE_ANFRAGE_2026-10-04a_kalendername_deckelfall_zaehlung.md`, `docs/projektfuehrung/FABLE_UEBERGABE_2026-10-04_eroeffnung.md`, `docs/projektfuehrung/FABLE_UEBERGABE_2026-10-04_neuer_chat.md`. Keine `index.lock`. Keine Gerätesitzung (Wächter-Log 07:23:39Z: geschlossen).
+
+### Block 3 — Tragende Zahlen
+
+- **Register:** Commit `ee43f5f`, 11 471 Zeilen, Abschnitte 0–53, sha256 `9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff`. Höchster Block im Register: R73.
+- **BACKLOG.md** 297 Zeilen. **Journal** bis ED.
+- **Ablage,** erneuert 09:39: 54 Abschnittsdateien, `REGISTER_INDEX.md` (40 183 B, md5 `bcc69099…`), `FABLE_DIALOG_INDEX.md` (23 548 B, md5 `1b05ff40…`). `UEBERGABE.md` wird mit diesem Block neu hochgeladen.
+- **Fable 04.10.a:** Anfrage 9 574 B, md5 `db37f969a557b60a27cbd7ac6b942def`; Eröffnung (Datei) 9 259 B, md5 `c96f56c9682d4fb8a37188735edae7ad`; Sendetext 17 426 B, md5 `4eef7787…`; alle drei am Gerät geprüft.
+- **Nummern:** TB-133 (Regelwerk-Nachtrag, Mac), TB-134 und TB-135 (Cloud, nur lesen) sind vergeben; TB frei ab 136. Journal ab EE. Fehler ab 21. Fable am 04.10. frei ab b. R im Register frei ab R74; was die Antwort 04.10.a vergibt, wird am Block gezählt.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+
+1. **Fable-Antwort 04.10.a holen und messen:** über `project_info` finden, zwei unabhängige Abschriften, `cmp`, md5 mit Fables Angabe vergleichen, ins Repo unter `docs/projektfuehrung/`. Dann jede Fundstelle gegen Register und Code messen (Helfer mit Brückenzugriff, nur lesend), Nummern am Block zählen, nach 5b bewerten. Im Leseprotokoll nachsehen, was Fable zur Projekt-Erinnerung sagt (Punkt 5).
+2. **Registerauftrag für den nächsten Abschnitt (54)** nach Bauart TB-132, Einzelfreigabe per Karte. Lehre aus TB-132: Das feste Datum des Eintrags hat einen Neubau gekostet; entweder am Tag der Freigabe starten oder das Datum zur Laufzeit einsetzen lassen (dann hängt das Soll daran, wie schon an ⟨S0⟩).
+3. **Cloud-Antworten TB-134 und TB-135,** sobald der Betreiber sie einfügt: Fundstellenlisten, kein Nachweis; an Stichproben über die Brücke messen. TB-134 liefert den Wortlaut von 41.3 C2, der in Frage 2 der Anfrage als „nicht gemessen“ steht.
+4. **TB-133, Regelwerk-Nachtrag** als Auftrag an eine Mac-Sitzung (Start über den Wächter): Fehler Nr. 20; `ls-files -m` statt `diff --name-only` über die Brücke; Cloud-Sitzungen nur für Leseaufgaben mit Textantwort (Betreiber, 09:55); die Punkte „für später“ aus dem Ergebnis TB-132 und die Unschärfe der Freigabetabelle in den BACKLOG (Nachtrag 09:50). Schritt 0 committet `UEBERGABE.md` und die unverfolgten Dateien.
+5. **R56 (d):** `ways-of-working.md` der Projekt-Erinnerung trägt seit 04.10.2026, 10:53 MESZ einen neuen Stand (2 503 B statt 2 232 B); nicht gelesen. Vor der nächsten Eröffnung für Fable neu gegen 27.1 messen. Die übrigen drei Dateien sind unverändert (gemessen 10:55).
+6. **Ablage** nach dem nächsten Registereintrag erneuern (Abschnittsdateien, Index, Dialog-Index).
+
+### Block 5 — Wartezustände
+
+Keine Sitzung läuft. „Fable ist fertig“ hat der Betreiber nicht gemeldet; die Antwort liegt trotzdem in der Ablage und wird ohne Meldung gelesen. Die Cloud-Antworten kopiert der Betreiber in den Chat; bis dahin wartet Punkt 3.
+
+### Block 6 — Freigaben und Entscheide des Betreibers am 04.10.2026
+
+- 07:57: TB-132 von Hand in einer neuen Claude-Code-Sitzung der App starten. Die Sitzung lief in der Cloud und hörte ohne Arbeit auf; danach Start über den Wächter (Vorgabe, kein Widerspruch).
+- 08:41, Karte: Neubau TB-132 für den 04.10.2026, „Freigeben wie beschrieben (Empfohlen)“. Verbraucht.
+- 09:33: „fahre einfach fort wie bisher“, kein Umzug trotz Ampel. 10:54: Umzug vorbereiten.
+- 09:55: Das Guthaben für Cloud-Sitzungen von Claude Code nutzen: von Hand angelegte Cloud-Sitzung, Aufgabe als Kopierblock, Antwort als Textdatei im dortigen Chat, nichts wird abgelegt; der Betreiber kopiert die Antwort in den steuernden Chat.
+- Vorgaben ohne Widerspruch: `ls-files -m` über die Brücke; Anfrage 04.10.a erst nach der Abnahme.
+- Keine Karte offen.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus
+
+1. **Nr. 20:** Start von Hand in der App zugesagt und in den Auftrag geschrieben, ohne zu messen, wo eine dort angelegte Sitzung landet. ⇒ Ein Start ausserhalb des Wächters wird erst zugesagt, wenn gemessen ist, wo die Sitzung läuft.
+2. **Ohne Nummer:** Das erste `git --no-optional-locks diff --name-only` über die Brücke hat vermutlich `.git/index` neu geschrieben (07:37:54; nicht bewiesen). ⇒ `ls-files -m`.
+3. **Ohne Nummer, im Entwurf der Anfrage 04.10.a vom Gegenleser gefunden:** die „14“ in R26/R30 dem Block R62 zugeschrieben (sie steht in R61 (c)); ein Zitat ohne markierte Auslassung; eine Tatsache unter der Quelle „53.9“, die aus `requirements.lock` stammt. ⇒ Fundstellen nur, wenn sie vor mir liegen; der Gegenleser vor jeder Anfrage bleibt.
+4. **Ampel:** Der Chat lief auf Anweisung bis 460 540 weiter (rot ab 300 000); der saubere Stand für den Umzug war 09:23 bei 289 306.
+5. **Was getragen hat:** Helfer mit Brückenzugriff und der Regel „nur lesen“ haben den zweiten Teil der Abnahme, die Vormessung und das Gegenlesen erledigt, ohne Schreibzugriff auf das Repo; ein Helfer hat 57 Dateien md5-gleich in die Ablage geladen. Der steuernde Chat las nur Kurzberichte.
+
+### Block 8 — Zwischengelagert, noch nicht eingearbeitet
+
+- Die Punkte „für später“ aus `docs/ERGEBNIS_TB-132_register_fable_02c.md` (Nachtrag 09:50): `registerkopie.py --marken` zählt in Abschnitt 53 drei Zeilen als Marken, die keine sind; Reibung im Index, Tabelle 3, Zeile 3b (c); Markenwort ERGÄNZT an 48.7; T4-Grenze beim nächsten Registerabschnitt dieser Grösse; `registerbericht.py --pruefen` rc 1.
+- Die Vormessung zur Anfrage 04.10.a liegt unverfolgt unter `docs/belege/TB-133/vormessung/`.
+- Die Baudateien des Neubaus von TB-132 (`bau.py`, die Fassung vom 03.10. mit md5 `32e18494…`) liegen nur im Container dieses Chats und gehen mit ihm verloren. Die alte Fassung ist die neue ohne die vier Zusätze und mit dem Datum 03.10.2026.
+- Zwei Stellen in der Landkarte der Fable-Übergabe vom 04.10. treffen den Wortlaut von 02c nicht; sie stehen in der Eröffnung, Abschnitt 3.
+
+### Block 9 — Eröffnungstext
+
+Als Kopierblock im Chat ausgegeben, zusammen mit diesem Umzug. Kernlektüre für den neuen Chat: dieser Block bis Dateiende, dazu ARBEITSWEISE Abschnitt 0 und UMZUG Abschnitt 3.
+
+## Nachtrag 04.10.2026, 11:24 — neuer steuernder Chat (Übernahme 10:57): Fable 04.10.a geholt, gemessen, bewertet: trägt; TB-136 vergeben
+
+**Übernahme.** Der Ordner `~/trading-bot` war nicht verbunden; Freigabe angefordert und erhalten (10:57). Gemessen ohne `git status`: HEAD = `origin/main` = `d781f1b`, `BACKLOG.md` 297 Zeilen, geändert nur `UEBERGABE.md` (160 068 B, md5 `38963f4b…`), unverfolgt die vier genannten Dateien. Projektablage lesbar (95 Dokumente).
+
+**Antwort 04.10.a.** Über `project_info` gefunden, zwei unabhängige Abschriften sind gleich (29 195 B, 167 Zeilen, md5 `856b2c158e4bb6870876de129ce71f76`), im Repo unter `docs/projektfuehrung/FABLE_ANTWORT_2026-10-04a_kalendername_deckelfall_zaehlung.md` (unverfolgt, md5 am Gerät nachgemessen). Fable nennt keine md5 der Datei. Inhalt: R74–R77, alle drei Fragen „einverstanden“; Frage 1 mit anderem Grund (17.5) und anderer Voraussetzung, Frage 2 (a) mit drei Festlegungen.
+
+**Zählung am Block:** vier Blöcke R74–R77 (Unterpunkte a–f, a–h, a–e, a–c), 13 Marken in R77 (a) (8 PRÄZISIERT, 5 ERGÄNZT), drei Voraussetzungen in eckigen Klammern (R74 (b), R75 (a), R75 (g)). R frei ab R78.
+
+**Bewertung (5b): R74–R77 tragen; Eintrag als Abschnitt 54 nach Einzelfreigabe.** Messung durch drei Helfer, nur lesend über die Brücke; Belege unter `docs/belege/TB-136/vormessung/` (vier Dateien, unverfolgt), die Bewertung in `v1_bewertung_fable_04a.md`:
+
+1. **V1 (R74 (b), vor dem Eintrag) trifft:** `research/snapshotgrenze/ergebnisse/eingaben.json:96–106`, Feld `kalender`, führt `notifications/boersenkalender.py`, Zeile 81. Beifang: `paket_vorhanden` 5.4.0, der Lock führt 4.6.1.
+2. **V2 (R75 (a)) trifft im Wortlaut nicht:** `mtm_kern.py` bildet keine Tagesrendite und keine Exposure, nur Kapitalreihen (`mtm = buch + unreal`, Z. 251); Unrealisiertes ist je Position summiert (Z. 244), Realisiertes kommt über `kapital_after`. Die Meldung ist fällig, bevor der Zellen-Erzeuger die Attribution baut; den Eintrag hält sie nicht auf.
+3. **V3 (R75 (g)) trifft am Bestand:** Abschnitt 8 führt 13 Zeilen, keine zu `zellenbericht.csv`; R34 berichtet schon heute ohne eigene Zeile.
+4. **65 Fundstellen:** jedes wörtliche Zitat gefunden, kein Verweis ins Leere. Sieben Stellen treffen sinngemäss, darunter „Die Zuteilung läuft je Zelle einmal (R45)“ (R45 sagt das nicht; es schliesst die Rekonstruktion aus der `equity_curve` aus) und „der Index führt die Zählung“ (`REGISTER_INDEX.md` führt heute keine).
+5. **Marken über R77 (a) hinaus (R65 (a)), Lesart, vorläufig:** 48.14 (R46) wegen R75 (d) und (f); 48.7 (R39) auch für Unterpunkt (g). Der Auftrag bestimmt sie.
+6. **Leseprotokoll:** Fable hat über `project_search` einen Ausschnitt aus `BACKLOG.md` gesehen und nach R56 (b) genannt; das Suchwort steht in der Datei nicht. Fables Ampel: rot, 468 406 nach einer Anfrage; die nächste Anfrage geht an einen neuen Chat.
+
+**R56 (d):** Fable las `preferences.md` (9 241 B) und `ways-of-working.md` (2 232 B), wie genannt. Der neue Stand von `ways-of-working.md` (08:53 UTC) ist gelesen: Werkzeugkopf 2 482 B (oben stand 2 503 B; ungeklärt), neu eine Zeile zur Cloud-Sitzung, keine Grösse nach 27.1 gesehen. Vor der nächsten Eröffnung neu messen.
+
+**Fehler dieses Chats, ohne Nummer:** Pfad des Index den Helfern aus dem Gedächtnis gegeben (`register_kopie/` statt `docs/projektfuehrung/`); 27.3 im Helferauftrag falsch beschrieben. ⇒ Pfade und Inhaltsangaben in Helferaufträgen nur nach `ls` und Überschrift.
+
+**Stand.** HEAD `d781f1b`. Uncommittet: `UEBERGABE.md`; unverfolgt neun Dateien: die vier vom Umzug, die Antwort 04.10.a und vier unter `docs/belege/TB-136/vormessung/`. Keine Gerätesitzung, kein Auftrag startklar. Nummern: TB-136 (Registerauftrag Abschnitt 54, Mac) vergeben, TB frei ab 137; Journal ab EE; R frei ab R78; Fehler ab 21; Fable am 04.10. frei ab b. Ampel 11:24: grün, Verlauf 164 436 (Grundlast 127 365).
+
+**Wartet.** Die Cloud-Antworten TB-134 und TB-135 fügt der Betreiber ein. Sonst wartet nichts auf ihn.
+
+**Als Nächstes:** TB-136 schreiben nach Bauart TB-132 (Verweis auf den Vorgänger, nur Unterschiede und Sollwerte): Abschnitt 54 mit R74–R77 zeichengleich aus der Antwortdatei, Kopf mit Datei, md5 und Commit (R56 (b)), Befunde der Vormessung, Marken (13 von Fable, dazu die des steuernden Chats), Indexzeilen, Dialog-Index, BACKLOG, Journal EE. Schritt 0 committet den Arbeitsbaum und misst V1 am Gerät nach. Das Datum des Eintrags wird zur Laufzeit eingesetzt. Prüfskript vor der Freigabe am echten Repo, Gegenleser, Karte zur Einzelfreigabe. Danach die Cloud-Antworten messen, dann TB-133.
+
+## Umzug 04.10.2026, 13:17 — Stand für den neuen steuernden Chat (selbsttragend, alle neun Blöcke)
+
+Betreiber, auf die Freigabekarte zu TB-136 (gestellt gegen 13:12): „Wir machen eine Pause“. Das ist keine Freigabe und keine Ablehnung: TB-136 ist nicht freigegeben und nicht gestartet. Die Ampel steht auf rot; deshalb der Umzug vor der Pause. Die Nachträge vom 04.10.2026 (11:24) tragen die Bewertung von Fable 04.10.a; dieser Block genügt zum Weiterarbeiten.
+
+### Block 1 — Stand in drei Zeilen
+
+- **Fable 04.10.a ist bewertet: trägt** (R74–R77; Nachtrag 11:24; Bewertung in `docs/belege/TB-136/vormessung/v1_bewertung_fable_04a.md`).
+- **TB-136 (Register Abschnitt 54, 15 Marken) ist gebaut und zweimal gegengelesen** und liegt als Entwurf im Repo: `docs/auftraege/MAC_TB-136_register_fable_04a.md` (unverfolgt, 128 746 B, md5 `a42eacf11713b15fc6d57ced2f50daa0`). Der Platzhalter `⟨⟨FREIGABE⟩⟩` steht noch darin (einmal, Z. 12). **Es fehlt die Einzelfreigabe des Betreibers.**
+- **Die Cloud-Antworten TB-134 und TB-135 sind eingegangen,** abgelegt unter `docs/belege/TB-134/` und `docs/belege/TB-135/` und gemessen (Block 4 Nr. 3).
+
+### Block 2 — HEAD und Arbeitsbaum
+
+HEAD = `origin/main` = `d781f1b`. Gemessen 13:17 ohne `git status`: geändert nur `docs/projektfuehrung/UEBERGABE.md`; unverfolgt 12 Dateien: `docs/auftraege/MAC_TB-136_register_fable_04a.md`; `docs/belege/TB-133/vormessung/v1_vormessung_04a.md`; `docs/belege/TB-134/CLOUD_TB-134_antwort_offene_voraussetzungen.md`; `docs/belege/TB-135/CLOUD_TB-135_antwort_anforderungen_zellen_erzeuger.md`; vier unter `docs/belege/TB-136/vormessung/`; unter `docs/projektfuehrung/` `FABLE_ANFRAGE_2026-10-04a_…`, `FABLE_ANTWORT_2026-10-04a_…`, `FABLE_UEBERGABE_2026-10-04_eroeffnung.md`, `FABLE_UEBERGABE_2026-10-04_neuer_chat.md`. `docs/auftraege/AKTUELLER_AUFTRAG.md` ist unverändert und zeigt noch auf TB-132. Kein Auslöser gelegt, keine Gerätesitzung, keine `index.lock`.
+
+⚠️ Schritt 0a von TB-136 erwartet genau: geändert `UEBERGABE.md` und `AKTUELLER_AUFTRAG.md`, unverfolgt diese 12 Dateien. Jede weitere Datei im Arbeitsbaum bricht 0a ab.
+
+### Block 3 — Tragende Zahlen
+
+- **Register** unverändert: Commit `ee43f5f`, 11 471 Zeilen, sha256 `9a2cefb7…71ff`, md5 `1ce393ae2f07513fa76ccc0b0f927d41`. Höchster eingetragener Block R73.
+- **Antwort 04.10.a:** 29 195 B, 167 Zeilen, md5 `856b2c158e4bb6870876de129ce71f76`; Anfrage md5 `db37f969…`, Eröffnung md5 `c96f56c9…`.
+- **TB-136, Sollwerte aus der Simulation** (Container, an geprüften Kopien): Register 11 471 → 11 581, eingefügt 110 (15 Marken × 3 + Abschnitt 54 = 65), entfernt 0; 15 Marken an 15 Einfügestellen (13 nach R77 (a), zwei des steuernden Chats an 48.1 R33 und 48.14 R46); Abschnitt 54 = 54.1–54.4 (R74–R77), 54.5 Voraussetzungen und Befunde, 54.6 Was offen bleibt. Prüfskript sha256 `2dbc5a55afaecc99c3df35520454720b71dad5ed4d12213f9e91a48532ab15bb`, Einfügeskript sha256 `99881a1b69b9c72a24948d68b839d1c6664db87005d40c81fc407fd159659ea5`. Datum zur Laufzeit (`⟨DATUM⟩`, Schalter `--datum`). Die Registerkopie bekommt einen fünften Teil (Abschnitt 54 allein, gerechnet rund 24 700 B).
+- **Am echten Repo gelaufen, nur lesend, Python 3.10 der Brücke:** Prüfskript rc 1 mit genau einer Abweichung (Freigabe-Platzhalter); 0e rc 0, 25 von 25. Nach den drei letzten Textersetzungen (Auftrag Z. 330 und Z. 415) ist das Prüfskript nicht noch einmal gelaufen; die Skripte selbst sind unverändert.
+- **Nummern:** TB-136 vergeben (Registerauftrag Abschnitt 54, Mac), TB-133 (Regelwerk-Nachtrag, Mac), TB-134 und TB-135 (Cloud) vergeben und beantwortet; TB frei ab 137. Journal ab EE. R74–R77 sind in 04a vergeben und nicht eingetragen; neue Blöcke ab R78. Fehler ab 21. Fable am 04.10. frei ab b.
+- **Ablage:** `UEBERGABE.md` mit diesem Block neu hochgeladen. Abschnittsdateien, Index und Dialog-Index stehen auf dem Stand von 09:39.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+
+1. **Freigabe TB-136 einholen** (Karte, Einzelfreigabe). Kartentext, damit er zur Freigabetabelle des Auftrags passt: „Gibst du TB-136 frei? Das umfasst: Register Abschnitt 54 anhängen (R74–R77 zeichengleich aus Fables Antwort 04.10.a, dazu 54.5–54.6 mit den Messungen des steuernden Chats), 15 Marken am alten Ort (13 nach R77 (a), zwei an 48.1 und 48.14 vom steuernden Chat nach R65 (a) bestimmt; keine in Abschnitt 9, Abschnitt 10 und im ERZEUGT-Block), vorher die Nachmessung der Voraussetzungen am Gerät (bei Abweichung kein Eintrag), Registerkopie, Index und Dialog-Index neu, BACKLOG-Block, Journal EE. Prüfungen am Register: test_vorregistrierung vor dem Commit, registerbericht.py --pruefen, numstat 110/0. Kein Code, kein neues Abbild. Datum des Eintrags: der Tag, an dem die Sitzung einträgt.“ Nach „Freigeben“:
+   a. `⟨⟨FREIGABE⟩⟩` ersetzen in der Form von TB-132 Z. 11: fett Datum und „Auswahlkarte im steuernden Chat (gestellt gegen HH:MM, Antwort eingetragen HH:MM).“, dann `Kartentext: *„…“*` im ganzen Wortlaut, dann `Gewählt: **„Freigeben wie beschrieben (Empfohlen)“**.`
+   b. Auftrag neu ablegen (frischer Stage-Pfad), md5 beidseitig; Prüfskript am echten Repo ohne `--arbeitsbaum`, mit `--datum`: erwartet rc 0.
+   c. `docs/auftraege/AKTUELLER_AUFTRAG.md`, Zeile 39 und Zeile 52, nach `aktueller_auftrag_aenderung.md` (im Archiv, Block 8) ändern; md5 beidseitig.
+   d. Diesen Stand in `UEBERGABE.md` nachtragen, **bevor** der Auslöser liegt; danach im Arbeitsbaum nichts mehr anfassen.
+   e. Auslöser `docs/auftraege/_ausloeser/starte_TB-136` (leer); Wächter-Log auf „Satz ins Fenster gelegt“ prüfen; Nachschau auf den Schritt-0-Commit.
+2. **Nächste Anfrage an Fable** (04.10.b, neuer Fable-Chat; Fables Chat stand bei 468 406): zur Kenntnis die Meldung zu R75 (a), die zwei Marken des steuernden Chats, die sechs sinngemässen Verweise, der Ausschnitt aus `BACKLOG.md` im Leseprotokoll (alles in 54.5 und 54.6 des Auftrags). Vorher `ways-of-working.md` der Projekt-Erinnerung neu gegen 27.1 messen (Werkzeugkopf 2 482 B; oben stand 2 503 B).
+3. **Cloud-Antworten, gemessen an Stichproben und Vollzählungen** (Helfer, Register-Kopie sha256-gleich): **TB-134** nennt 12 Klammern „[Voraussetzung“ in 10 Blöcken; im Register stehen ab 48.1 **17 in 11 Blöcken**, es fehlen die fünf in R48 (48.16, Z. 10911–10917; Tabelle 50.1 führt sie). Die 12 genannten treffen zeichengleich; 41.3 C2 (Z. 8870–8884) zeichengleich; „Attribution je Position“ 7 Vorkommen, wie genannt. **TB-135** trägt: 83 Sätze, alle zeichengleich; Code-Treffer (21 in 7 Dateien, 33 in 6) und 17 Punkte aus TB-120 treffen; fünf Sätze mit „Zellen-Erzeuger“ fehlen in der Fundliste (Überschriften 48.7 und 48.14, Titelsätze R39 und R46, Quelle des Grundes von R68). Für die Anforderungsliste des Zellen-Erzeugers kommen R74 und R75 dazu (54.6 Nr. 3 bis 5 des Auftrags). Der Messbericht liegt im Archiv.
+4. **TB-133, Regelwerk-Nachtrag** (Mac, Start über den Wächter), wie im Umzug 10:56, Block 4 Nr. 4. Dazu aus diesem Chat: Die Suche der Ablage liefert Ausschnitte gesperrter Dateien; Fables Ampel nach einer Anfrage (Probe F4); die Bezeichnung „Frühere Vierteilung“ im Index bei fünf Teilen; Pfade und Inhaltsangaben in Helferaufträgen nur nach `ls` und Überschrift; Zeilenangaben, die in Registertext gehen, misst ein zweiter Helfer.
+5. **Ablage** nach dem Registereintrag erneuern (Abschnittsdateien 0–54, Index, Dialog-Index).
+
+### Block 5 — Wartezustände
+
+Keine Sitzung läuft, kein Auslöser liegt. Die Freigabekarte zu TB-136 ist offen. Auf den Betreiber wartet nur sie.
+
+### Block 6 — Freigaben und Entscheide des Betreibers in diesem Chat
+
+- Gegen 11:27, Karte: „TB-136 hier bauen“ (gegen die Empfehlung, vorher umzuziehen).
+- 11:53: Cloud-Antworten TB-134 und TB-135 eingefügt.
+- Gegen 13:15, Karte zur Freigabe von TB-136: „Wir machen eine Pause“. Keine Freigabe.
+- Vorgaben ohne Widerspruch: Nummer TB-136; Datum des Eintrags zur Laufzeit; Cloud-Antworten unter `docs/belege/TB-134/` und `docs/belege/TB-135/`; der Kopf „Frühere Vierteilung“ im Index bleibt zeichengleich.
+- Keine Karte ist beantwortet offen ausser der Freigabe.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus (alle ohne Nummer)
+
+1. Den Helfern den Pfad des Index und den Inhalt von 27.3 aus dem Gedächtnis gegeben. ⇒ Pfade und Inhaltsangaben in Helferaufträgen nur nach `ls` und Überschrift.
+2. In 54.5 die Zeile „02b Z. 128“ aus einem Helferbericht übernommen; richtig ist Z. 127. Gefunden vom Gegenleser. ⇒ Zeilenangaben, die in Registertext gehen, misst ein zweiter Helfer an der Quelle.
+3. Im Chat eine Marke an 48.7 (R39) angekündigt, bevor die Markentabelle gemessen war; richtig sind 48.1 und 48.14. ⇒ Eigene Marken erst nach der Markentabelle nennen.
+4. Ampel: Übernahme und Bewertung der Fable-Antwort kosteten 173 189; der Bau von TB-136 im selben Chat führte auf 358 513 (rot ab 300 000). ⇒ Der Chat, der eine Fable-Antwort bewertet, baut nicht auch den Registerauftrag.
+5. Was getragen hat: Der Erbauer arbeitete nur an geprüften Kopien im Container (`device_stage_files`), nicht am Repo; drei Gegenleser, eng zugeschnitten; Prüfskript und 0e liefen nur lesend am echten Repo, mit `python3 -B` und Ausgabe ausserhalb von `mnt/`.
+
+### Block 8 — Zwischengelagert, noch nicht eingearbeitet
+
+- Das Baumaterial von TB-136 liegt als Archiv auf dem Mac unter `logs/steuernder_chat/2026-10-04_tb136_bau.tar.gz` (3 154 513 B, md5 `42488dbb66e990bcc6d35434e7caca33`): Vorgabe des steuernden Chats, Bauplan, Markenkandidaten, Baubericht, die drei Gegenleseberichte, die Bau-Pipeline (Teile, Skripte, Simulationsbericht), `aktueller_auftrag_aenderung.md` und der Messbericht zu den Cloud-Antworten. `logs/` wird von git ignoriert (`.gitignore` Z. 27); das Archiv ist nicht committet und steht nicht im Arbeitsbaum.
+- Die Punkte „für später“ aus dem Umzug 10:56, Block 8, gelten unverändert (Marken-Zählung in `registerkopie.py --marken`, Tabelle 3 Zeile 3b (c), Markenwort an 48.7, `registerbericht.py --pruefen` rc 1); die T4-Grenze ist in TB-136 als fünfter Teil geführt.
+- Die Vormessung zur Anfrage 04.10.a liegt weiter unverfolgt unter `docs/belege/TB-133/vormessung/`; Schritt 0 von TB-136 committet sie mit.
+
+### Block 9 — Eröffnungstext
+
+Als Kopierblock im Chat ausgegeben, zusammen mit diesem Umzug. Kernlektüre für den neuen Chat: dieser Block bis Dateiende, dazu ARBEITSWEISE Abschnitt 0 und UMZUG Abschnitt 3.
+
+## Nachtrag 04.10.2026, 18:15 — nach der Pause, im selben Chat: Cloud-Sammelauftrag TB-137 geschrieben und ausgegeben
+
+**Betreiber, 18:10:** „Erstelle mir eine umfangreiche Aufgabenliste, die ich in Claude Code Cloud übergeben kann.“ Dazu: Punkte aus dem Backlog dürfen hinein, es wird nur Claude Code Cloud benutzt (das freie Guthaben), „Diese kann gerne auch bis morgen durchlaufen.“ Am Schluss soll die Cloud-Sitzung ein Gesamtergebnis ausgeben, samt dem, was sie schon geliefert hat.
+
+**TB-137, Sammelauftrag an eine Cloud-Sitzung:** 18 Leseaufgaben und Paket 0 (die schon gelieferten Antworten TB-134 und TB-135). Nur lesen, nichts ausführen, nichts ablegen, Sichtschutz wie bei TB-134/TB-135. Pakete: 1 Berichtigung TB-134 (17 Klammern statt 12) · 2 Ergänzung TB-135 · 3 Abnahmeliste nach R46 · 4 Marken vorwärts · 5 Marken rückwärts (R65 (a)) · 6 Ketten · 7 Verweise und Zitate in R33–R73 · 8 Was vor dem Tag fällig ist, gegen `PLAN_VOR_DEM_TAG.md` · 9 Sperrliste · 10 Zellen-Erzeuger, Bestand am Code · 11 Kern der MtM-Reihe (für die Meldung zu R75 (a)) · 12 Kalender und Paketfassungen · 13 Python 3.9 · 14 Durchsicht des Backlogs · 15 Regelwerk mit Entwurf für TB-133 · 16 Übergabe · 17 Einstiegsdokumente · 18 Index. Als Kopierblock im Chat ausgegeben; Kopie auf dem Mac unter `logs/steuernder_chat/CLOUD_TB-137_sammelauftrag_leseaufgaben.md` (15 954 B, md5 `2d1cc4db26ba9879aad2f6a930e469d9`), von git ignoriert, nicht im Arbeitsbaum.
+
+**Gemessen vor dem Schreiben:** Die im Auftrag genannten Pfade sind am HEAD verfolgt. `registerbericht.py` und `snapshot.py` liegen nicht an den vermuteten Orten und stehen deshalb nicht im Auftrag. Die Cloud-Sitzung sieht nur den gepushten Stand `d781f1b`: kein R74–R77, kein TB-136, keine Belege vom 04.10. Den einen Satz aus R75 (a), den Paket 11 braucht, trägt der Auftrag im Wortlaut.
+
+**Stand unverändert:** HEAD `d781f1b`, geändert nur `UEBERGABE.md`, zwölf unverfolgte Dateien, keine Sitzung, kein Auslöser. TB-136 ist nicht freigegeben; die Freigabekarte ist offen. Nummern: TB-137 vergeben, TB frei ab 138; sonst wie im Umzug 13:17, Block 3.
+
+**Wartet.** Das Gesamtergebnis `GESAMTERGEBNIS_CLOUD_TB-137.md` fügt der Betreiber ein, wenn die Cloud-Sitzung fertig ist — in den neuen steuernden Chat. **Abnahme:** Fundstellenlisten sind kein Nachweis; an Stichproben über die Brücke messen. Paket 1 und 2 gegen den Messbericht im Archiv (`cloud/c1_stichproben_cloud_tb134_tb135.md`); Paket 3 gegen 54.6 Nr. 6 des Auftrags TB-136; Paket 5 liefert Kandidaten für Marken, die Entscheidung bleibt beim steuernden Chat und bei Fable.
+
+**Ampel 18:15:** rot, Verlauf 406 252 (Grundlast 127 365). Dieser Chat arbeitet nach diesem Nachtrag nicht weiter; der Eröffnungstext von 13:17 gilt, mit dem Nachsatz zu diesem Nachtrag.
+
+## Nachtrag 04.10.2026, 21:07 — neuer steuernder Chat (Übernahme 20:57): TB-136 freigegeben, Freigabe eingesetzt, Prüfskript rc 0, Zeiger gesetzt; der Auslöser folgt nach diesem Nachtrag
+
+**Übernahme.** Geräteanbindung nach Freigabe des Ordners `~/trading-bot` (20:57); die Projektablage ist lesbar (`project_info`). Gemessen 20:58 ohne `git status`: HEAD = `origin/main` = `d781f1b`, `BACKLOG.md` 297 Zeilen; geändert nur `UEBERGABE.md` (178 070 B, md5 `d31122adc45c1683f9521812cf0f9416`), 12 unverfolgte Dateien wie im Umzug 13:17, Block 2; Auftragsentwurf 128 746 B, md5 `a42eacf11713b15fc6d57ced2f50daa0`, Platzhalter einmal in Z. 12; keine `index.lock`, kein Auslöser; Archiv md5 `42488dbb…ca33`.
+
+**Freigabe.** Auswahlkarte im steuernden Chat (gestellt gegen 21:00, Antwort eingetragen 21:04), Kartentext im Wortlaut aus dem Umzug 13:17, Block 4 Nr. 1 (vom Skript aus dieser Datei gelesen, 684 Zeichen): „Freigeben wie beschrieben (Empfohlen)“. Der Freigabetext steht im Auftrag an der Stelle des Platzhalters (Z. 12), in der Form von TB-132 Z. 11.
+
+**Gelegt.** `docs/auftraege/MAC_TB-136_register_fable_04a.md`: 129 596 B, md5 `95bffeb29976fc2b08b7160281d6b144`, beidseitig geprüft; gegenüber dem Entwurf ist nur Z. 12 geändert, der Platzhalter kommt 0-mal vor. Prüfskript aus dem Archiv (sha256 `2dbc5a55…15bb`) am echten Repo, ohne `--arbeitsbaum`, mit `--datum 04.10.2026`, `python3 -B` (3.10.12 der Brücke), Ausgabe ausserhalb von `mnt/`: **rc 0** (15 Marken an 15 Einfügestellen; Anker mit Zahl 1: 15 von 15, im Original und nach der Simulation; 4 Blöcke; 3 Dateien, 45 Fundstellen, 13 Zählungen). Zeiger: `docs/auftraege/AKTUELLER_AUFTRAG.md` Z. 39 und Z. 52 nach `aktueller_auftrag_aenderung.md` (Archiv) auf TB-136 gesetzt, „Gesetzt 04.10.2026, 21:04“; 7 538 B, md5 `1717b067759e8a2aab136afc8d09a218`, beidseitig geprüft; geändert genau Z. 39 und Z. 52; gegenüber `AKTUELLER_AUFTRAG_neu.md` aus der Simulation weicht nur die Zeit ab.
+
+**Arbeitsbaum vor dem Auslöser** (gemessen 21:05 mit `ls-files -m` und `ls-files --others --exclude-standard`): geändert `docs/projektfuehrung/UEBERGABE.md` und `docs/auftraege/AKTUELLER_AUFTRAG.md`, unverfolgt die 12 Dateien — der Stand, den Schritt 0a erwartet. Nach diesem Nachtrag fasst der steuernde Chat im Arbeitsbaum nichts mehr an, bis die Sitzung abgegeben hat.
+
+**Auslöser.** `docs/auftraege/_ausloeser/starte_TB-136` (leer) wird unmittelbar nach diesem Nachtrag gelegt. Ob der Wächter ihn angenommen hat, steht nicht hier: Das zeigen `logs/sitzungswaechter/waechter.log` und der Schritt-0-Commit.
+
+**Abnahme danach.** Sollwerte im Umzug 13:17, Block 3: Register 11 471 → 11 581 Zeilen, numstat 110/0, 15 Marken an 15 Einfügestellen, Abschnitt 54 mit 54.1–54.6, Registerkopie mit fünftem Teil. Bricht die Sitzung in der Nachmessung der Voraussetzungen ab, ist das Register unverändert. Danach: schliessen (`schliesse_<Hash>`, frühestens 600 s nach dem letzten Commit), Ablage erneuern (Abschnittsdateien 0–54, Index, Dialog-Index), Anfrage 04.10.b an Fable (neuer Fable-Chat; vorher `ways-of-working.md` gegen 27.1 messen), TB-133. Das Gesamtergebnis zu TB-137 steht noch aus.
+
+**Eigener Fehler (ohne Nummer).** Ein `git --no-optional-locks diff --numstat` auf `AKTUELLER_AUFTRAG.md` über die Brücke (21:05), obwohl die Vorgabe für diesen Chat nur `rev-parse`, `log`, `show`, `ls-files` und `worktree list` nennt. Danach gemessen: keine `index.lock`. ⇒ Zeilenbilanzen über die Brücke mit `diff` zweier Kopien ausserhalb des Repos messen, nicht mit git.
+
+**Nummern** unverändert: TB-137 vergeben, TB frei ab 138; Journal ab EE; R74–R77 vergeben und noch nicht eingetragen, neue Blöcke ab R78; Fehler ab 21; Fable am 04.10. frei ab b.
+
+**Ampel 21:06:** grün, Verlauf 63 592 (Grundlast 127 557).
+
+## Nachtrag 05.10.2026, 21:20 — selber steuernder Chat: TB-136 hat am 04.10. nicht gearbeitet; Stand unverändert, Prüfskript rc 0 mit dem Datum 05.10.2026; der Auslöser wird neu gelegt
+
+**Betreiber, 05.10.2026, 21:17:** „weiter“.
+
+**Gemessen 21:18, ohne `git status`.** HEAD = `origin/main` = `d781f1b`; kein Commit seit dem Auslöser vom 04.10.2026, 21:07. Register unverändert (11 471 Zeilen, md5 `1ce393ae2f07513fa76ccc0b0f927d41`). Unter `docs/belege/TB-136/` liegt nur `vormessung/`. Geändert `UEBERGABE.md` und `AKTUELLER_AUFTRAG.md`, unverfolgt die 12 Dateien; keine `index.lock`. Auftrag md5 `95bffeb29976fc2b08b7160281d6b144`, Zeiger md5 `1717b067759e8a2aab136afc8d09a218`, beide wie am 04.10. gelegt. `waechter.log` trägt nach „Satz ins Fenster gelegt. ER IST NICHT ABGESCHICKT.“ (04.10.2026, 21:07:30) keinen weiteren Eintrag. ⇒ Der Satz ist bei keiner arbeitenden Sitzung angekommen. Ob das Fenster vom 04.10. noch offen ist, ist über die Brücke nicht messbar.
+
+**Was weiter gilt.** Die Einzelfreigabe vom 04.10.2026 (Karte; im Auftrag Z. 12). Der Auftrag trägt kein festes Datum: Die Sitzung setzt das Datum des Eintrags zur Laufzeit ein (`AKTUELLER_AUFTRAG.md` Z. 39: „sie läuft an jedem Tag“). Deshalb kein Neubau und keine neue Freigabe. Prüfskript (sha256 `2dbc5a55…15bb`) am echten Repo, ohne `--arbeitsbaum`, mit `--datum 05.10.2026`, `python3 -B`, Ausgabe ausserhalb von `mnt/`: **rc 0**; die Ausgabe gleicht dem Lauf vom 04.10. bis auf die Datumszeile.
+
+**Auslöser.** `docs/auftraege/_ausloeser/starte_TB-136` wird unmittelbar nach diesem Nachtrag neu gelegt. Läuft im Repo noch eine claude-Sitzung (das Fenster vom 04.10.), weist der Wächter den Start ab und nennt PID, Laufzeit und Zustand (`docs/werkzeuge/sitzungswaechter/starte_sitzung.sh` Z. 244); dann genügt Enter im alten Fenster. Sonst öffnet er ein neues Fenster und legt den Satz hinein. Was davon eintrat, steht in `logs/sitzungswaechter/waechter.log`, nicht hier. Nach diesem Nachtrag fasst der steuernde Chat im Arbeitsbaum nichts an, bis die Sitzung abgegeben hat.
+
+**Seit dem Nachtrag 04.10.2026, 21:07, dazugekommen (ausserhalb des Arbeitsbaums).** `logs/steuernder_chat/FABLE_04b_bauplan.md` (4 817 B, md5 `fdcf2ff19f709189c37e54fc25209e04`, von git ignoriert): Bauplan der nächsten Anfrage an Fable — Frage 1 Meldung zu R75 (a), Frage 2 Marken an 48.1 und 48.14, zur Kenntnis die sechs sinngemässen Verweise, der `BACKLOG.md`-Ausschnitt im Leseprotokoll und der Eintrag durch TB-136. `ways-of-working.md` der Projekt-Erinnerung gegen 27.1 gemessen (gelesen 04.10.2026, gegen 21:09): Stand 08:53 UTC, 2 482 B nach dem Werkzeugkopf, 0 Treffer; die 2 503 B aus dem Umzug 10:56 sind nicht nachvollzogen. Unmittelbar vor dem Absenden der Eröffnung alle vier Erinnerungsdateien neu messen. Vorgabe des steuernden Chats (04.10.2026, 21:11; kein Widerspruch im Chat): Die Anfrage wird erst fertig geschrieben, wenn Abschnitt 54 eingetragen ist und TB-137 die Pakete 3, 5 und 11 geliefert hat. Das Gesamtergebnis zu TB-137 ist in diesem Chat nicht eingegangen (Stand 21:18). Am 04.10. ging keine weitere Anfrage an Fable hinaus; die nächste trägt das Datum des Tages, an dem sie hinausgeht.
+
+**Fehler dieses Chats (ohne Nummer), zu dem vom 04.10. dazu.**
+1. T7 erneut: den Bauplan nach dem Schreiben im selben Stage-Pfad geändert und abgelegt; am Gerät kam die alte Fassung an (4 733 B statt 4 817 B), „written“ war gemeldet. Die md5-Prüfung hat es gezeigt; aus einem frischen Pfad neu abgelegt.
+2. Beim Lesen von 54.5 und 54.6 den Zeilenbereich bis vor die nächste Überschrift gezogen und rund 15 KB statt rund 7 KB in den Chat geholt, obwohl die Bytes vorher gemessen waren. ⇒ Einen Ausschnitt aus einem Codeblock an der schliessenden Zaunzeile schneiden, nicht an der nächsten Überschrift; weicht die gemessene Grösse von der erwarteten ab, zuerst den Bereich prüfen.
+
+**Nummern** unverändert: TB-137 vergeben, TB frei ab 138; Journal ab EE; R74–R77 vergeben und noch nicht eingetragen, neue Blöcke ab R78; Fehler ab 21.
+
+**Ampel 21:18:** grün, Verlauf 136 176 (Grundlast 127 557).
+
+## Nachtrag 05.10.2026, 21:27 — Betreiber: die Claude-Code-Sitzung zukünftig wieder vom steuernden Chat anlegen; die Sitzung vom 04.10. wird geschlossen, TB-136 frisch über den Wächter gestartet
+
+**Betreiber, 05.10.2026, 21:25:** „Legst du mir zukünftig wieder bereits eine claude code Sitzung an“.
+
+**Lesart des steuernden Chats, vorläufig** (stehende Anforderung nach ARBEITSWEISE 15). Ist ein Mac-Auftrag startklar, legt der steuernde Chat die Claude-Code-Sitzung selbst über den Sitzungswächter an, bevor er dem Betreiber „Satz abschicken“ als Aufgabe gibt: Der Betreiber findet eine frische Sitzung mit dem Satz vor. Weist der Wächter den Start ab, weil im Repo eine alte Sitzung schläft, und hat diese nicht gearbeitet, schliesst der steuernde Chat sie über den Schliess-Auslöser und startet neu, ohne Rückfrage. „Nicht gearbeitet“ wird gemessen: kein Commit seit ihrem Start, letzter Commit älter als 600 s, nichts Neues unter dem Belegordner des Auftrags, Rechenzeit zwischen zwei Abweisungen des Wächters praktisch unverändert. Anlass: Am 05.10.2026, 21:20 hat der Wächter den neuen Auslöser abgewiesen (Sitzung vom 04.10., PID 52163), und der steuernde Chat hat dem Betreiber das Fenster vom Vortag überlassen, statt eine frische Sitzung anzulegen.
+
+**Gemessen vor dem Schliessen (21:26).** HEAD `d781f1b8f86ca3b423b4032220ad4b304e4d131b`, Alter des letzten Commits 130 405 s; kein Commit seit dem Auslöser vom 04.10.; unter `docs/belege/TB-136/` nur `vormessung/`; geändert `UEBERGABE.md` und `AKTUELLER_AUFTRAG.md`, unverfolgt 12. Rechenzeit der Sitzung PID 52163 nach `waechter.log`: 6:56.60 (21:20:28) und 6:58.19 (21:26:16), Zustand S+. Sie hat nicht gearbeitet.
+
+**Träger nach ARBEITSWEISE 15.** Erinnerung: eingetragen 05.10.2026 in `ways-of-working.md` der Projekt-Erinnerung, Abschnitt Delegation, mit dem Wortlaut des Betreibers; die Datei hat dadurch 2 723 B statt 2 482 B und einen neuen Stand — vor der nächsten Eröffnung für Fable neu gegen 27.1 messen. `ARBEITSWEISE.md` (Abschnitt 0, „Wenn eine Mac-Sitzung startet, endet oder abbricht“, und 6b, Start) und der Backlog-Nachtrag: **noch nicht eingetragen.** Der Arbeitsbaum bleibt bis zur Abgabe von TB-136 so, wie Schritt 0a ihn erwartet (genau zwei geänderte Dateien); beide Einträge gehen in TB-133 (Regelwerk-Nachtrag). Projektablage: diese Datei, mit diesem Nachtrag hochgeladen.
+
+**Danach, in dieser Reihenfolge.** Schliess-Auslöser `schliesse_d781f1b8f86ca3b423b4032220ad4b304e4d131b`, dann `starte_TB-136`. Was eintrat, steht in `logs/sitzungswaechter/waechter.log`, nicht hier. Im Arbeitsbaum fasst der steuernde Chat danach nichts an, bis die Sitzung abgegeben hat.
+
+**Ampel 21:27:** grün, Verlauf 171 158 (Grundlast 127 557).
