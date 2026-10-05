@@ -1,0 +1,3 @@
+Anker vorher: 1 | letzte Kennung: ED | '## EE ' vorher: 0
+erste Blockzeile nachher: 1 | Block nachher: 1
+rc 0
