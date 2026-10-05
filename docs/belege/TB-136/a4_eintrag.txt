@@ -1,0 +1,9 @@
+# TB-136 A4 echter Lauf, HEAD e9bf3c0, 2026-10-05 21:32:57 +0200, S0 753ae38, Datum 05.10.2026
+Register: ./docs/VORREGISTRIERUNG_neuselektion.md
+Marken gesetzt am alten Ort: 15 an 15 Einfuegestellen
+R-Bloecke: 4 (R74-R77)
+Zeilen vorher: 11471  nachher: 11581  eingefuegt: 110
+sha256 nachher: 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc
+rc 0
+## cmp Register Probekopie
+cmp rc 0

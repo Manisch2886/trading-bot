@@ -1,0 +1,4 @@
+# TB-136 test_vorregistrierung, HEAD e9bf3c0, Register sha256 8d505a38ad3abc93, Start 2026-10-05 21:33:22 +0200
+rc 0
+Dauer 940 s
+Schlusszeile: 196/196 Pruefungen bestanden.
