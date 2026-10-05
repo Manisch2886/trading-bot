@@ -1,0 +1,10 @@
+Datum des Eintrags: 05.10.2026 (aus --datum)
+Arbeitsbaum geaendert: 2 (Soll 2)
+Arbeitsbaum unverfolgt: 12 (Soll 12)
+Marken: 15 an 15 Einfuegestellen
+je Abschnitt: 16: 1, 17: 1, 48: 6, 51: 1, 52: 1, 53: 5
+Anker mit Zahl 1 (Original): 15 von 15
+Anker mit Zahl 1 (nach Simulation): 15 von 15
+Bloecke: 4 | Ueberschriften: 4 max. Laenge 140 | gekuerzt: 2
+Dateien: 3 | Fundstellen: 45 | Zeilenlisten: 0 | Zaehlungen: 13 | *.py im Baum: 693
+rc 0: alles wie angegeben

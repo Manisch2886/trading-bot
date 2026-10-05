@@ -1,0 +1,32 @@
+# TB-136 0b (vorher), HEAD 753ae384b613455c133b22a2f0da0f9f12543d63, 2026-10-05 21:30:38 +0200
+## Register (Soll vorher: 11471 Zeilen, sha256 9a2cefb7..., md5 1ce393ae...)
+Zeilen 11471
+9a2cefb77a394a0a1c87c63cb9437d5693f054e4516333f656fae97668ef71ff  docs/VORREGISTRIERUNG_neuselektion.md
+1ce393ae2f07513fa76ccc0b0f927d41 docs/VORREGISTRIERUNG_neuselektion.md
+## Abbild (Soll 46f0ad5d...)
+46f0ad5d1d83a253baa5523f5657881e0d825cebd734f24a42ef5d4fa74f281f  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+## herkunft.register() (Soll vorher 66480962..., fehlend [], 23 Teile)
+register 664809629137b537d233e19066ac6ab9d422c64be8841ff37c72862e0eb511b3
+fehlend []
+teile 23
+## Sonde gegen research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json (Soll rc 2, 37/0/0, (ii) 0, Listentext wie bei Erzeugung: ja)
+git status --porcelain vorher: 6 Zeilen
+rc 2
+git status --porcelain nachher: 6 Zeilen
+(ii) Abbild gegen den Registertext von Abschnitt 10:  [0 in Ordnung]
+  Registertext: 14 Punkte, Z. 990-1103, Listentext wie bei Erzeugung: ja
+Pfad-Bestandteile: 37 geprueft, davon 37 mit 0 / 0 mit 1 / 0 mit 2  (punkte 15, bestimmt 0, eingefroren 22)
+RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+Sonde --json rc 2
+Sonde-JSON ohne 'zeilen' sha256: 9f7364ef32fd80ffba6931c776f3bdf43dc257a1f6aeac304cf818c89023f35e
+## registerbericht.py --pruefen (kein Soll; nachher = vorher)
+rc 1
+Schlusszeile:     python3 research/vorregistrierung/registerbericht.py
+## md5 und Bytes der Quelle 04a am Commit 753ae38 und im Arbeitsbaum (Soll 856b2c15..., 29195 B)
+856b2c158e4bb6870876de129ce71f76 29195 B  753ae38:FABLE_ANTWORT_2026-10-04a_kalendername_deckelfall_zaehlung.md
+856b2c158e4bb6870876de129ce71f76 29195 B  Arbeitsbaum:FABLE_ANTWORT_2026-10-04a_kalendername_deckelfall_zaehlung.md
+## Abschnitt 10 und ERZEUGT-Block -> docs/belege/TB-136/0b_abschnitt10_vorher.txt, docs/belege/TB-136/0b_erzeugt_vorher.txt
+Abschnitt 10: Z. 965-1171 (207 Zeilen); ERZEUGT: Z. 260-460 (201 Zeilen)
+da8697c0be1da37f8c6d1eddbf715e8003ba517c119576766f13c0e6a61889bc  docs/belege/TB-136/0b_abschnitt10_vorher.txt
+fda8ead14e4cd96e91548078f9e9dbae0c3a0c631b2a483f4bee757da31c9207  docs/belege/TB-136/0b_erzeugt_vorher.txt
+## Ende

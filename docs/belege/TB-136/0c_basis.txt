@@ -1,0 +1,3 @@
+# TB-136 0c: git diff --name-only 1e13135 HEAD -- research/ shared/ strategies/ config/ data/ (HEAD 753ae38)
+Zeilen: 0
+leer => Basis ist docs/belege/TB-132/a5_test_vorregistrierung.txt (196/196)

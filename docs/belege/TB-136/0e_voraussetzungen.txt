@@ -1,0 +1,48 @@
+# TB-136 0e: Nachmessung der Voraussetzungen und Tatsachen fuer 54.5 (nur lesend)
+## V1 - R74 (b): Feld kalender der Messung TB-47
+Feld kalender: {"im_repo": [{"import": "pandas_market_calendars", "modul": "notifications/boersenkalender.py", "zeile": 81}], "in_selektionshuelle": [], "paket_vorhanden": "5.4.0"}
+ok   | im_repo[0].modul | ist 'notifications/boersenkalender.py' | Soll 'notifications/boersenkalender.py'
+ok   | Zahl der Eintraege in im_repo | ist 1 | Soll 1
+ok   | im_repo[0].import | ist 'pandas_market_calendars' | Soll 'pandas_market_calendars'
+ok   | im_repo[0].zeile | ist 81 | Soll 81
+ok   | in_selektionshuelle | ist [] | Soll []
+ok   | paket_vorhanden | ist '5.4.0' | Soll '5.4.0'
+ok   | Kalendername (NYSE, XNYS) im Feld | ist [] | Soll []
+## Tatsachen zu R74 (b): Import, Name, Aufruf, Lock
+ok   | notifications/boersenkalender.py:70 enthaelt 'KALENDER_NAME = "NYSE"' | Zeile: 'KALENDER_NAME = "NYSE"'
+ok   | notifications/boersenkalender.py:81 enthaelt 'import pandas_market_calendars as mcal' | Zeile: 'import pandas_market_calendars as mcal'
+ok   | notifications/boersenkalender.py:109 enthaelt 'mcal.get_calendar(KALENDER_NAME)' | Zeile: '_KALENDER = mcal.get_calendar(KALENDER_NAME)'
+git grep -n 'pandas_market_calendars' -- '*.py': rc 0, 13 Zeilen
+    notifications/boersenkalender.py:38:GEWAEHLT: `pandas_market_calendars`. Begruendung siehe requirements.txt
+    notifications/boersenkalender.py:81:    import pandas_market_calendars as mcal
+    notifications/boersenkalender.py:87:        f"Die Bibliothek pandas_market_calendars ist nicht installiert "
+    research/registernachtrag_tb48/pruefe_abschnitt17.py:47:  * `pandas_market_calendars` **4.6.1** (17.5) - der Registertext sagt
+    research/snapshotgrenze/erhebung_eingaben.py:96:FREMDPAKETE = ("pandas_market_calendars", "exchange_calendars", "pandas",
+    research/snapshotgrenze/erhebung_eingaben.py:609:        "paket_vorhanden": _paketfassung("pandas_market_calendars"),
+    research/snapshotgrenze/erhebung_eingaben.py:669:          "`pandas_market_calendars` gebaut.")
+    shared/entscheidungskerze.py:362:                      "pandas_market_calendars fehlt).")
+    shared/snapshot.py:131:`pandas_market_calendars` (`mcal.get_calendar`), nicht aus einer Datei - er
+    shared/test_entscheidungskerze.py:33:`pandas_market_calendars` auf dem pruefenden Rechner liegt - und zusaetzlich,
+    shared/test_entscheidungskerze.py:169:                "grund": "Die Bibliothek pandas_market_calendars fehlt.",
+    shared/test_entscheidungskerze.py:328:        print("    uebersprungen: pandas_market_calendars ist hier nicht "
+    shared/test_entscheidungskerze.py:885:        print("    uebersprungen: ohne pandas_market_calendars kann der "
+ok   | Import-Anweisungen des Pakets (Datei:Zeile) | ist ['notifications/boersenkalender.py:81'] | Soll ['notifications/boersenkalender.py:81']
+ok   | Treffer unter research/vorregistrierung/ | ist [] | Soll []
+ok   | requirements.lock:51 enthaelt 'pandas-market-calendars==4.6.1' | Zeile: 'pandas-market-calendars==4.6.1'
+## V2 - R75 (a): Kern der MtM-Reihe
+ok   | research/mtm_drawdown/mtm_kern.py Zeilen | ist 339 | Soll 339
+ok   | research/mtm_drawdown/mtm_kern.py:210 enthaelt 'buch' und 'kapital_after' | Zeile: 'buch = np.where(k > 0, kapital_after[np.maximum(k - 1, 0)], float(startkapital))'
+ok   | research/mtm_drawdown/mtm_kern.py:244 enthaelt 'unreal[a:b + 1] += allokation[i] * (schluss / einstand[i] - faktor_kosten)' | Zeile: 'unreal[a:b + 1] += allokation[i] * (schluss / einstand[i] - faktor_kosten)'
+ok   | research/mtm_drawdown/mtm_kern.py:246 enthaelt 'gebunden[a:b + 1] += allokation[i]' | Zeile: 'gebunden[a:b + 1] += allokation[i]'
+ok   | research/mtm_drawdown/mtm_kern.py:251 enthaelt '"mtm": buch + unreal' | Zeile: '"mtm": buch + unreal,'
+## V3 - R75 (g): Abschnitt 8 des Registers
+ok   | Abschnitt 8 (Z. 870-924): Tabellenzeilen nach Kopfzeile und Trennzeile | ist 13 | Soll 13
+ok   | Abschnitt 8: 'zellenbericht' (ohne Gross/Klein) | ist 0 | Soll 0
+## Tatsachen zu R75 (b), (d), (g): auswertung.py
+ok   | research/vorregistrierung/auswertung.py Zeilen | ist 860 | Soll 860
+ok   | research/vorregistrierung/auswertung.py:46 enthaelt 'datum, netto_rendite, exposure' | Zeile: 'datum, netto_rendite, exposure'
+ok   | research/vorregistrierung/auswertung.py: kapital_drawdown_mtm_pct | ist 0 | Soll 0
+ok   | research/vorregistrierung/auswertung.py: zellenbericht | ist 0 | Soll 0
+ok   | research/vorregistrierung/auswertung.py: bestaetigung_ab_effektiv | ist 0 | Soll 0
+rc 0: Voraussetzungen wie in 54.5
+rc 0

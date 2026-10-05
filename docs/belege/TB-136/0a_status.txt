@@ -1,0 +1,11 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-136_register_fable_04a.md
+?? docs/belege/TB-133/
+?? docs/belege/TB-134/
+?? docs/belege/TB-135/
+?? docs/belege/TB-136/
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-04a_kalendername_deckelfall_zaehlung.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-04a_kalendername_deckelfall_zaehlung.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-04_eroeffnung.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-04_neuer_chat.md
