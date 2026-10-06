@@ -10019,6 +10019,40 @@ Laufzeit: 05.10.2026. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium a
 
 ---
 
+## EF — TB-133: Regelwerk-Nachtrag 04.–06.10.2026 — E1–E9 per Skript aus dem Auftrag in `ARBEITSWEISE.md` Abschnitt 0 (16 Zeilen: Uhrzeiten messen, Umzug nur auf Ansage, git über die Brücke, Sitzung über den Wächter, Fehler Nr. 20, Sonde, Ablage durch Helfer, Zaunzeile, Suche der Ablage, Abnahme durch engen Helfer, sechs Auftragsregeln), `UMZUG.md` Abschnitt 3 (Umzug nur auf Ansage oder mit Genehmigung) und `BACKLOG.md` Abschnitt 5; C3 9/9 zeichengleich, numstat 16/0 · 2/0 · 10/0 (06.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-133_regelwerk_nachtrag_umzug_sitzung_bruecke.md`*
+
+**Quelle:** Mac-Sitzung **TB-133** (Hauptordner), 06.10.2026, Eingang `67a2202`. Commits `1ea5213` (Schritt 0),
+`5216e1d` (A), `f5c69b4` (C) und der Abgabe-Commit. Belege `docs/belege/TB-133/`. Freigabe: Handwerk pauschal
+(26.09.2026); E4 und E2/E8 vom Betreiber am 05.10.2026, 21:25 und 23:58, wörtlich verlangt. Keine Rückfrage an den
+Betreiber. Kein Abbruchkriterium ausgelöst.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a 3/3 wie Soll, in den Scratch vor dem Belegordner; 0b ARBEITSWEISE 2397 Z., UMZUG 378 Z., BACKLOG 307 Z., md5 je gleich der Vorzählung des steuernden Chats |
+| ⭐ **A/C** | E1–E9 je Anker 1, ausgeführt, erste Zeile nachher 1; C3 (eigener Parser) 9/9 als Block an Zeilengrenzen; numstat ARBEITSWEISE 16/0, UMZUG 2/0, BACKLOG 10/0 (Leerzeile vor E8/E9 schon vorhanden, nicht verdoppelt) |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| | **Die Vorlagenfalle hat zwei Seiten.** In TB-131 traf die Pfadersetzung den alten Vorlagenvermerk; hier enthielt der *neue* Vorlagenvermerk den Pfad, den ein späterer Ersatz suchte. Eine Wache `assert count == 1` je Ersatz fing es ab, bevor geschrieben wurde |
+
+### Was offen bleibt
+
+- `ARBEITSWEISE.md`, `UMZUG.md` und `BACKLOG.md` in der Ablage erneuern (steuernder Chat; `BACKLOG.md` erst nach der 27.4-Prüfung).
+- Fliesstext `ARBEITSWEISE.md` 6b und 10, git-Liste in `UMZUG.md` Abschnitt 6 — mit dem Entwurf aus TB-137, Paket 15.
+- Aus ERGEBNIS_TB-131 unverändert: K2h/K2f; die drei Trägerstellen; Fables 29a Abschnitt 1; Sonnet-Probe;
+  `registerkopie_abschnitte.py` entfernen (Betreiberentscheid).
+- Nächste Journalkennung nach EF: **EG**.
+
+*Geschrieben 06.10.2026 von der Mac-Sitzung TB-133. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
