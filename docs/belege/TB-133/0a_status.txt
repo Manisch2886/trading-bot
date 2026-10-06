@@ -1,0 +1,3 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-133_regelwerk_nachtrag_umzug_sitzung_bruecke.md

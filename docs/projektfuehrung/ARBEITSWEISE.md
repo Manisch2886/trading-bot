@@ -40,6 +40,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 |---|---|---|
 | ☐ | Bei jedem Dokument und jeder Aufgabe steht, wohin es geht — auch in der Begleitnachricht | 1 |
 | ☐ | Fundstellen nur, wenn sie vor mir liegen; sonst steht „aus dem Gedächtnis" dabei | 7 |
+| ☐ | Uhrzeiten mit `date` messen, im selben Schritt, in dem sie in einen Text gehen — nie schätzen (05.10.2026: 23:50 geschrieben, 23:43 gemessen) | UEBERGABE, Umzug 05.10.2026, 23:46, Block 7 |
 | ☐ | Keine Bemerkung zu Tageszeit, Arbeitsdauer oder Arbeitsende | 6c |
 | ☐ | Direkt und ehrlich: eine Zahl, die nicht trägt, wird so genannt | 9 |
 | ☐ | Eigene Fehler benannt, nicht still korrigiert | 9 |
@@ -93,6 +94,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Vor jedem drohenden Verlust ausdrücklich gewarnt: Ersetzen, ungesicherte Änderungen, Übergabe | 6 |
 | ☐ | Nichts verworfen oder gelöscht, ohne vorher zu fragen | 6 |
 | ☐ | Ein nötiger Umzug wird frühzeitig angekündigt — nach gemessener Ampel (Verlauf ab 200 000 am nächsten sauberen Stand oder vor dem nächsten grossen Block), mit Zahl und Uhrzeit; ein Chat je Auftragsrunde (S1; Schwelle nach der Ampel vom 01.10.2026, 21:35) | 10; UMZUG 3 |
+| ☐ | ⭐⭐ Umgezogen wird nur, wenn der Betreiber es sagt oder genehmigt. Der steuernde Chat zieht nicht von sich aus um: Er kündigt den Umzug an (Zeile darüber, mit Zahl und Uhrzeit), fragt per Karte und arbeitet weiter, bis der Betreiber entscheidet (Betreiber 05.10.2026, 23:58: „Nein du ziehst zukünftig um wenn ich das sage oder genehmige“; Lesart des steuernden Chats, vorläufig: gilt bei jeder Ampelfarbe, Umzugsblock und Eröffnungstext erst nach dem Ja) | UMZUG 3; UEBERGABE, Nachtrag 06.10.2026, 00:13 |
 | ☐ | Beim Umzug: der Eröffnungstext als ERSTE Nachricht im laufenden Chat, als eigener Kopierblock vor allen Erläuterungen (Betreiber 29.09.2026, „zukünftig“) | UMZUG 6 |
 
 **Wenn eine Entscheidung beim Betreiber liegt**
@@ -130,6 +132,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Zeilen, die kein Befehl sind, sind als solche gekennzeichnet | 7 |
 | ☐ | Freigabepflichtige Befehle bleiben beim Betreiber — alles bis dahin ist fertig | 13 |
 | ☐ | Kein `git status` über die Geräteanbindung — auch nicht bei der allerersten Messung eines neuen Chats. git über die Brücke nur mit `--no-optional-locks` (`rev-parse`, `log`, `show`, `ls-files`, `diff --name-only`, `worktree list`), dazu md5 (30.09.2026: ein `git status` hinterliess eine `.git/index.lock`, die die Brücke nicht löschen konnte) | 14, Regel 4 |
+| ☐ | Über die Geräteanbindung auch kein `git diff` (weder `--name-only` noch `--numstat`) und kein `git check-ignore`; erlaubt sind nur `rev-parse`, `log`, `show`, `ls-files` und `worktree list`, je mit `--no-optional-locks`. Geänderte Dateien zeigt `ls-files -m`, Unverfolgtes `ls-files -o --exclude-standard` (ein ignorierter Pfad erscheint dort nicht); Zeilenbilanzen mit `diff` zweier Kopien ausserhalb des Repos. Diese Zeile geht der Zeile darüber vor, soweit jene `diff --name-only` nennt (Liste aus der Vorgabe im Nachtrag 04.10.2026, 21:07; 04.10.2026: `diff --name-only` schrieb vermutlich `.git/index` neu, nicht bewiesen, und `diff --numstat` lag ausserhalb der Vorgabe; 05.10.2026: `check-ignore` ebenso) | UEBERGABE, Umzug 04.10.2026, 10:56, Block 7; Nachtrag 04.10.2026, 21:07; Umzug 05.10.2026, 22:31 und 23:46, Block 7 |
 
 **Wenn eine Mac-Sitzung startet, endet oder abbricht**
 
@@ -147,6 +150,9 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Meldet er „Abbruch": messen, wie weit die Sitzung kam (Commits, Arbeitsbaum, `index.lock`), dann die passenden Blöcke ohne Rückfrage | 6b, Start |
 | ☐ | Nach dem Auslöser: Ist Schritt 0 committet? Ohne Commit ist der Satz nicht angekommen ⇒ einmal Hinweis an den Betreiber, dann warten; keine Nachschau-Kette (29.09.2026) | 22.5 |
 | ☐ | Vor dem Schliess-Auslöser das Alter des letzten Commits messen (`git --no-optional-locks log -1 --format=%ct`), erst ab 600 s auslösen (29.09.2026) | 22.8 |
+| ☐ | Ist ein Mac-Auftrag startklar, legt der steuernde Chat die Claude-Code-Sitzung selbst über den Sitzungswächter an, bevor er dem Betreiber „Satz abschicken“ als Aufgabe gibt. Weist der Wächter ab, weil eine alte Sitzung schläft, und hat sie nicht gearbeitet, schliesst der steuernde Chat sie über den Schliess-Auslöser und startet neu, ohne Rückfrage. „Nicht gearbeitet“ wird gemessen: kein Commit seit ihrem Start, letzter Commit älter als 600 s, nichts Neues unter dem Belegordner des Auftrags, Rechenzeit zwischen zwei Abweisungen des Wächters praktisch unverändert. Der Wächter ist seit dem 23.09.2026 der Weg (`docs/werkzeuge/sitzungswaechter/LIESMICH.md`); die Startblöcke weiter oben gelten für den Start von Hand (Betreiber 05.10.2026, 21:25: „Legst du mir zukünftig wieder bereits eine claude code Sitzung an“; Lesart des steuernden Chats, vorläufig) | UEBERGABE, Nachtrag 05.10.2026, 21:27 |
+| ☐ | Ein Start ausserhalb des Wächters wird erst zugesagt, wenn gemessen ist, wo die Sitzung läuft (Fehler Nr. 20) | UEBERGABE, Umzug 04.10.2026, 10:56, Block 7 |
+| ☐ | Ein abgewiesener Start-Auslöser taugt als Sonde: Der Wächter nennt PID, Laufzeit und Rechenzeit; zwei Abweisungen im Abstand zeigen, ob eine Sitzung arbeitet (05.10.2026) | UEBERGABE, Umzug 05.10.2026, 22:31, Block 7 |
 
 **Wenn Dateien abgelegt oder aus der Ablage gelesen werden**
 
@@ -165,6 +171,9 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Grosse Dokumente nicht im Chat zusammensetzen: abschnittsweise in Dateien schreiben, nicht mehrfach umbauen, keine ganzen Dateien in den Chat holen; Mechanik (Anker zählen, md5, Zeilenbereiche, Diffs) als Skript, nicht als Helfer (S3, S6, 01.10.2026) | 22.10 |
 | ☐ | Vor jedem Lesen in den Chat die Bytes messen und mit ÷ 1,6 gegen die Ampel rechnen; von Vorlagen nur die Gliederung und die eine gebrauchte Stelle; Wortlaute, die ein Skript einsetzt, liest das Skript (Fehler Nr. 18, 02.10.2026: Verlauf 173 970 nach 7 Minuten, 272 304 nach 33 Minuten) | UEBERGABE, Nachtrag 02.10.2026, 10:04 |
 | ☐ | „Frischer Stage-Pfad“ heisst ein neuer Pfadname: Ein zweites `device_commit_files` aus demselben Pfad meldete „written“ und liess die alte Fassung liegen. Die md5-Wache steht vor Zeiger, Nachtrag und Auslöser (T7, erneut am 02.10.2026 bei TB-130) | 23 |
+| ☐ | Die Erneuerung der Ablage (Abschnittsdateien, Index, Dialog-Index) macht ein Helfer, nicht der steuernde Chat; als Kontrolle genügt `project_info`. Statt vieler md5-Zeilen im Chat ein md5 über die md5-Liste (05.10.2026: 57 Antworten von `project_write` und eine Suche mit zwei ganzen Treffern standen im Chat) | UEBERGABE, Umzug 05.10.2026, 23:46, Block 7 |
+| ☐ | Ausschnitte aus Codeblöcken an der Zaunzeile schneiden; weicht die gemessene Grösse von der erwarteten ab, zuerst den Bereich prüfen (05.10.2026: rund 15 KB statt rund 7 KB gelesen) | UEBERGABE, Umzug 05.10.2026, 22:31, Block 7 |
+| ☐ | Die Suche der Ablage liefert Ausschnitte auch aus gesperrten Dateien (04.10.2026: `BACKLOG.md` im Leseprotokoll von Fable 04a). Wie ein solcher Ausschnitt unter dem Sichtschutz zählt, ist Lesart des steuernden Chats, vorläufig, und geht zur Kenntnis an Fable | UEBERGABE, Umzug 04.10.2026, 13:17, Block 4; Register 54.6 Nr. 9 |
 
 **Wenn ich ein fremdes Ergebnis bewerte (Cloud, Mac, Fable)**
 
@@ -176,6 +185,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Vor dem Urteil „Widerspruch“ prüfen, ob die Registerstelle den gerechneten Fall wörtlich trifft (30.09.2026) | 9 |
 | ☐ | Nummern am Block zählen, nicht an der Kurzfassung (Fehler Nr. 17: Der Registerblock von Fable 01a reichte bis R62, „Kurz“ nannte R62 nicht) | UEBERGABE, Nachtrag 02.10.2026, 07:46 |
 | ☐ | Ein „kein Widerspruch“ nennt, was gemessen ist und was nicht; eine Teilmessung heisst Teilmessung (02.10.2026: „Unsicher“ 2 zu Fable 01a, vom Gegenleser berichtigt) | UEBERGABE, Nachtrag 02.10.2026, 10:04 |
+| ☐ | Die Abnahme macht ein eng zugeschnittener Helfer, nur lesend, mit eigenem Ordner für Rohausgaben ausserhalb des Repos; er rechnet jede Zahl an der Rohausgabe nach (wie oben in dieser Gruppe), die Kernzahlen rechnet der steuernde Chat danach mit eigenen Befehlen nach (05.10.2026, Abnahme TB-136) | UEBERGABE, Nachtrag 05.10.2026, 22:55; Umzug 05.10.2026, 22:31 und 23:46, Block 7 |
 
 **Wenn ich einen Auftrag schreibe**
 
@@ -208,6 +218,12 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Registerauftrag: Die Aufzählung eines Blocks schliesst die Regel aus 34 nicht ab. Der steuernde Chat bestimmt die Marken an allen Orten, denen ein Block ein „lies“, eine Ergänzung oder eine Bestätigung gibt, und weist sie im Auftrag als seine aus (R65 (a)) | Register 52.3 |
 | ☐ | Vor Schritt 0 einer Mac-Sitzung legt der steuernde Chat keine weitere Datei in den Arbeitsbaum (0a zählt die Einträge); nach Schritt 0 fasst er dort nichts an, bis die Sitzung abgegeben hat (02.10.2026) | UEBERGABE, Nachtrag 02.10.2026, 10:19 |
 | ☐ | Folgeauftrag gleicher Bauart: auf den Vorgänger verweisen und nur Unterschiede und Sollwerte nennen, nicht abschreiben; das Prüfskript läuft vor der Freigabe am echten Repo, nicht nur an einer Kopie (TB-130) | 2, 12 |
+| ☐ | Pfade und Inhaltsangaben in Helferaufträgen nur nach `ls` und Überschrift, nie aus dem Gedächtnis (04.10.2026) | UEBERGABE, Umzug 04.10.2026, 13:17, Block 7 |
+| ☐ | Zeilenangaben, die in Registertext gehen, misst ein zweiter Helfer an der Quelle (04.10.2026: „02b Z. 128“ aus einem Helferbericht übernommen, richtig ist Z. 127) | UEBERGABE, Umzug 04.10.2026, 13:17, Block 7 |
+| ☐ | Eigene Marken erst nennen, wenn die Markentabelle gemessen ist (04.10.2026: 48.7 angekündigt, richtig sind 48.1 und 48.14) | UEBERGABE, Umzug 04.10.2026, 13:17, Block 7 |
+| ☐ | Der Chat, der eine Fable-Antwort bewertet, baut nicht auch den Registerauftrag (04.10.2026: Übernahme und Bewertung kosteten 173 189, der Bau im selben Chat führte auf 358 513) | UEBERGABE, Umzug 04.10.2026, 13:17, Block 7 |
+| ☐ | Ein Registerauftrag sagt, was Schritt A committet (Abnahme TB-136: die Skripte für B, C und D lagen schon im Registercommit) | UEBERGABE, Nachtrag 05.10.2026, 22:55 |
+| ☐ | Unveränderte Textteile übernimmt ein Skript aus der Quelle, mit `assert` auf die Ankerzeilen; abgetippt wird nichts (05.10.2026) | UEBERGABE, Umzug 05.10.2026, 23:46, Block 7 |
 
 ---
 

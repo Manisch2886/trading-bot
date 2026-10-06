@@ -105,6 +105,8 @@ Zeitpunkt.*
 
 ⭐ **Ein Chat je Auftragsrunde (S1, S7; Betreiberentscheid 01.10.2026, ca. 20:10):** Auftrag schreiben, gegenlesen, freigeben, starten, dann umziehen; die Abnahme macht der nächste Chat. Umzug nach gemessener Ampel und vor einer Pause von mehr als einer Stunde (S1). Seit 21:35 gelten dafür die Ampel auf den Verlauf ohne Grundlast und „vor einer Pause nur ab 🟡“ (oben); die Zahl „rund 250 000“ aus S1 folgt nach Lesart des steuernden Chats dieser Ampel. Eine Nachschau liegt unter einer Stunde, oder vorher wird umgezogen (S7).
 
+⭐⭐ **Gilt seit 05.10.2026, 23:58 (Betreiber, „zukünftig“):** *„Nein du ziehst zukünftig um wenn ich das sage oder genehmige.“* Die Auslöser und die Ampel oben sagen, wann der steuernde Chat den Umzug **anspricht** — mit Zahl und Uhrzeit, als Karte. **Umgezogen wird erst, wenn der Betreiber es sagt oder genehmigt.** Bis dahin arbeitet der Chat weiter, bei jeder Ampelfarbe; den Umzugsblock nach Abschnitt 4 und den Eröffnungstext nach Abschnitt 6 schreibt er erst nach dem Ja (Lesart des steuernden Chats, vorläufig). Wo dieser Abschnitt einen Zeitpunkt für den Umzug nennt („am nächsten sauberen Stand“, „vor dem nächsten Auftrag“, „vor einer Pause“, „dann umziehen“, „vorher wird umgezogen“), ist das seither der Zeitpunkt für den Vorschlag. *Anlass: Am 05.10.2026, 23:46, schrieb der steuernde Chat bei grüner Ampel (Verlauf 184 639 um 23:44) von sich aus den Umzugsblock und gab den Eröffnungstext aus; der Betreiber lehnte ab und liess weiterarbeiten.*
+
 ### ⚠️ Wann NICHT umgezogen wird
 
 | | |

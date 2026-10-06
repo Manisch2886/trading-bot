@@ -1,0 +1,5 @@
+# TB-133 0b — Ausgang der drei Zieldateien (am ⟨S0⟩ 1ea5213)
+# Datei · Zeilen · md5 · sha256 · Soll Zeilen/md5 · Ergebnis
+docs/projektfuehrung/ARBEITSWEISE.md · 2397 · 42e208032b02d9ab586fb3c8841e3f75 · 8946f5483165fdcbde40b9d2160ba62879c403fff771fd3239c978f1855e2935 · 2397/42e208032b02d9ab586fb3c8841e3f75 · GLEICH
+docs/projektfuehrung/UMZUG.md · 378 · edfe2a34ffa016eaf3ab8ea5bdfdd5a8 · b85376f178ccda725afc8f252bc59eeb1b31679fd225d6a86a1bc61392d49cd3 · 378/edfe2a34ffa016eaf3ab8ea5bdfdd5a8 · GLEICH
+docs/projektfuehrung/BACKLOG.md · 307 · c005a57d88d84dd6c6bbfa626fbc8a95 · 8a1d2608aa890181bbaff4c38d9f5f29b45cc685387d03b4faa56965074420ec · 307/c005a57d88d84dd6c6bbfa626fbc8a95 · GLEICH

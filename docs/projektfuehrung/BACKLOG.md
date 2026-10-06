@@ -293,6 +293,16 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **Fables Chat:** Er stand nach einer einzigen Anfrage bei 468 406 (rot). Das ist ein Befund zur Probe „ein Fable-Chat je Anfrage“ (F4); die nächste Anfrage geht an einen neuen Chat.
 - **Für TB-133:** Die Suche der Ablage liefert Ausschnitte gesperrter Dateien (`BACKLOG.md`).
 
+### Aus der Abnahme TB-136 und aus den Umzügen und Nachträgen vom 04. bis 06.10.2026 — eingetragen mit TB-133
+
+- **Ins Regelwerk eingetragen mit TB-133:** Umzug nur auf Ansage oder mit Genehmigung des Betreibers (05.10.2026, 23:58); die Claude-Code-Sitzung legt der steuernde Chat selbst über den Wächter an (05.10.2026, 21:25); git über die Brücke ohne `diff` und ohne `check-ignore`; die Erneuerung der Ablage macht ein Helfer; dazu die Regeln aus den Umzügen vom 04.10. und 05.10.2026 (`ARBEITSWEISE.md` Abschnitt 0, `UMZUG.md` Abschnitt 3). Damit ist die Zeile „Für TB-133“ oben erledigt.
+- **Offen, Index-Bilanz TB-136:** Das Ergebnis nennt 193/155; `diff` zweier Kopien ergibt 192/154, der Saldo ist gleich. Ursache nicht gemessen.
+- **Für den nächsten Registerauftrag:** T4 der Registerkopie steht bei 234 587 B; nach der Rechnung des Werkzeugs (Body 234 351 B, Reserve 240 B) bleiben 5 409 B bis zur Grenze 240 000. Setzt der nächste Eintrag Marken in 43–53, teilt das Werkzeug neu, und die Teilgrenzen im Indexkopf ändern sich (erschlossen, nicht gemessen). Die Bezeichnungen „Frühere Vierteilung“ und „T1 … T4“ im Index passen nicht mehr zu fünf Teilen.
+- **Dialog-Index:** Das Handfeld `entscheidung` der Zeile 04a trägt einen Schlusssatz aus dem Auftrag TB-136, nicht aus Fables Antwort; die Zeile nennt die Anfragedatei nicht mit Dateinamen; `dialog_index.py` nennt als Quelle der Handfelder einen Block „**Kurz:**“, die Antwort hat „## Kurz“.
+- **Aus dem Ergebnis TB-132, für später:** `registerkopie.py --marken` zählt Zeilen als Marken, die keine sind (Abschnitt 53: drei; dazu aus der Abnahme TB-136 die Registerzeilen 11538, 11545 und 11575); Reibung im Index, Tabelle 3, Zeile 3b (c); Markenwort ERGÄNZT an 48.7; `registerbericht.py --pruefen` rc 1. Dazu die Unschärfe der Freigabetabelle zu TB-132 (`UEBERGABE.md`, Nachtrag 04.10.2026, 09:50).
+- **Cloud-Sitzungen, Regel noch nicht gefasst:** Betreiber 04.10.2026, 09:55: von Hand angelegte Cloud-Sitzung, Aufgabe als Kopierblock, Antwort als Textdatei im dortigen Chat, nichts wird abgelegt. Die Übergabe (Umzug 04.10.2026, 10:56, Block 4) fasst das als „nur für Leseaufgaben mit Textantwort“; `ARBEITSWEISE.md` Abschnitt 0 verlangt für angeleitete Läufe noch Belege unter `docs/belege/`. Zusammen mit dem Entwurf aus TB-137, Paket 15.
+- **Nicht in TB-133:** der Fliesstext in `ARBEITSWEISE.md` 6b (Start) und 10 und die git-Liste im Eröffnungstext (`UMZUG.md` Abschnitt 6 nennt noch `diff --name-only`); beides zusammen mit dem Entwurf aus TB-137, Paket 15.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen
