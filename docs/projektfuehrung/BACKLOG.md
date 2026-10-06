@@ -303,6 +303,12 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **Cloud-Sitzungen, Regel noch nicht gefasst:** Betreiber 04.10.2026, 09:55: von Hand angelegte Cloud-Sitzung, Aufgabe als Kopierblock, Antwort als Textdatei im dortigen Chat, nichts wird abgelegt. Die Übergabe (Umzug 04.10.2026, 10:56, Block 4) fasst das als „nur für Leseaufgaben mit Textantwort“; `ARBEITSWEISE.md` Abschnitt 0 verlangt für angeleitete Läufe noch Belege unter `docs/belege/`. Zusammen mit dem Entwurf aus TB-137, Paket 15.
 - **Nicht in TB-133:** der Fliesstext in `ARBEITSWEISE.md` 6b (Start) und 10 und die git-Liste im Eröffnungstext (`UMZUG.md` Abschnitt 6 nennt noch `diff --name-only`); beides zusammen mit dem Entwurf aus TB-137, Paket 15.
 
+### Aus der Abnahme TB-133 (06.10.2026) und aus TB-138 — eingetragen mit TB-138
+
+- **TB-133 abgenommen** am 06.10.2026 vom steuernden Chat: zehn Prüfungen, keine Abweichung gegen ein Soll. Zwei Befunde aus der Abnahme gehen in den nächsten Regelwerk-Nachtrag (`UEBERGABE.md`, Nachtrag 06.10.2026, 10:51).
+- **TB-138:** Verfahrensmessung am Snapshot nach Register 54.6 Nr. 1 und Nr. 8 und 53.10 Nr. 3 und Nr. 10; Ausgang und Befunde stehen in `docs/ERGEBNIS_TB-138_verfahrensmessung_snapshot.md`. Der Stand zu R74 (e) in Register 54.5 wird erst nach einer Einzelfreigabe des Betreibers eingetragen.
+- **Offen danach:** der Regelwerk-Nachtrag (nächste Nummer nach TB-138), die Abnahme von TB-137, die nächste Anfrage an Fable.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen

@@ -1,0 +1,3 @@
+# TB-138 B — Zeichengleichheit (c3_vergleich.py)
+E1 · docs/projektfuehrung/BACKLOG.md · 730 Bytes · 5 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+Anzahl Einfügungen: 1 · Gesamt: alle zeichengleich, je genau einmal
