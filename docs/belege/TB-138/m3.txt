@@ -1,0 +1,23 @@
+# TB-138 Verfahrensmessung m3
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version      3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform         macOS-15.7.9-x86_64-i386-64bit
+pandas_market_calendars  4.6.1
+pandas                   2.3.3
+exchange_calendars       4.5.6
+numpy                    2.0.2
+snapshot         snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+zeit             2026-10-06T15:59:59+02:00
+Fassungen gleich Lock: ja
+
+## Nr. 1  Fassungen gegen requirements.lock
+pandas_market_calendars  Ist 4.6.1      Lock Z. 51 'pandas-market-calendars==4.6.1'         gleich
+pandas                   Ist 2.3.3      Lock Z. 52 'pandas==2.3.3'                          gleich
+exchange_calendars       Ist 4.5.6      Lock Z. 37 'exchange-calendars==4.5.6'              gleich
+numpy                    Ist 2.0.2      Lock Z. 50 'numpy==2.0.2'                           gleich
+Interpreter venv: Ist 3.9.6, Lock Z. 6 3.9.6
+Interpreter voll: gleich Lock Z. 7: ja
+pandas_market_calendars.__file__ /Users/jaquelineloffler/trading-bot/trading-env/lib/python3.9/site-packages/pandas_market_calendars/__init__.py
+
+RUECKGABE 0 (kein Befund)
+rc 0

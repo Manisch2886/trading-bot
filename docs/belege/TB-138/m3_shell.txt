@@ -1,0 +1,24 @@
+# TB-138 M3 Nr. 2-4, HEAD 5e7037a0d7490c4376dfaa820e0d33f62afc206e, 2026-10-06 16:00:31 +0200
+
+## Nr. 2  trading-env/bin/python3 -B research/snapshotgrenze/erhebung_eingaben.py (ohne --json), nur 'Paketfassung hier'
+rc 0
+  Paketfassung hier: 4.6.1
+
+## Nr. 3  Interpreter aus: which -a python3 python3.9 python3.10 python3.11 python3.12 python3.13
+Liste:
+  /usr/bin/python3
+/usr/bin/python3 -> 3.9.6 4.6.1
+
+## Nr. 4  Nennen docs/ERGEBNIS_TB-47_snapshotgrenze.md oder die Commit-Nachricht von fc38d25 den Interpreter des Laufs?
+### ERGEBNIS_TB-47 (Fundstellen: Sitzungsart, Python, Paketfassung)
+3:**Ergebnis der Cloud-Sitzung vom 18.09.2026.**
+122:   es gehört benannt, und in der Cloud war die Fassung **5.4.0**.
+348:| Python | 3.11+ | **3.11.15** ✅ |
+359:| für Teil 1–4 | `pandas 3.0.6`, `numpy 2.4.6`, `pandas_market_calendars 5.4.0`, `pytz 2026.3.post1`, `dateparser 1.4.3` |
+### Commit fc38d25: Autor und Zeit
+fc38d25 Claude 2026-09-18 05:18:53 +0000
+### Commit fc38d25: Zeilen der Nachricht mit python/interpreter/3.9/3.11/5.4/venv/trading-env (leer = nicht gefunden)
+nicht gefunden
+### Letzter Commit an eingaben.json
+fc38d25 Claude 2026-09-18 05:18:53 +0000
+## Ende

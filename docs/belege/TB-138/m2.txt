@@ -1,0 +1,72 @@
+# TB-138 Verfahrensmessung m2
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version      3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform         macOS-15.7.9-x86_64-i386-64bit
+pandas_market_calendars  4.6.1
+pandas                   2.3.3
+exchange_calendars       4.5.6
+numpy                    2.0.2
+snapshot         snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+zeit             2026-10-06T15:59:45+02:00
+Fassungen gleich Lock: ja
+
+## Nr. 1  Reihen je Zeile der Universumsdateien
+aktien: 150 Zeilen; Reihen {'1d': 150}
+FALL	m2	reihe_fehlt_1d_4h	XAUTUSDT	-
+krypto: 25 Zeilen; Reihen {'1d': 24, '1h': 25, '4h': 24}
+Reihen ohne Zeile in einer der zwei Dateien: 0
+
+======================================================================
+# Markt aktien
+Handelstage: Sitzungstage 'NYSE', 1962-01-02..2026-09-01, 16275
+
+## Nr. 2  Reihenenden
+letzter Kurstag des Marktes (L7): 2026-09-01
+FALL	m2	frueher_endend_1d	APH	2026-08-31
+    letzter Kurstag am oder nach dem Ende nach L3 (2026-08-31)
+    danach: 2026-09-01, 6 Spalten, leer: open,high,low,close
+_1d-Reihen, die vor 2026-09-01 enden: 1 von 150
+
+## Nr. 3  Symbol-Tage Luecke (L8) auf _1d
+Summe aktien: 2
+je Kalenderjahr: {1974: 1, 2026: 1}
+FALL	m2	luecke	LMT	1974-06-03
+FALL	m2	luecke	MNST	2026-08-10
+elliott_wave_stocks: Zeitraum 2017-01-01..2026-08-31, Symbol-Tage Luecke 1
+rsi2_mean_reversion: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 1
+turtle_soup_stocks: Zeitraum 2017-01-01..2026-08-31, Symbol-Tage Luecke 1
+volatility_breakout: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 1
+Symbol-Tage vor dem ersten Kurstag eines Symbols, ab 1962-01-02 (ohne Einzelliste), je Kalenderjahr:
+    {1962: 33831, 1963: 33634, 1964: 33902, 1965: 33768, 1966: 33643, 1967: 33383, 1968: 30058, 1969: 33250, 1970: 33782, 1971: 33649, 1972: 31983, 1973: 29401, 1974: 29095, 1975: 29064, 1976: 28842, 1977: 28476, 1978: 28433, 1979: 28083, 1980: 24304, 1981: 22694, 1982: 20999, 1983: 20806, 1984: 19873, 1985: 19388, 1986: 18598, 1987: 17804, 1988: 17070, 1989: 16884, 1990: 16731, 1991: 16347, 1992: 15239, 1993: 14308, 1994: 14003, 1995: 13234, 1996: 13044, 1997: 12716, 1998: 11926, 1999: 11144, 2000: 10222, 2001: 9518, 2002: 9139, 2003: 8568, 2004: 8246, 2005: 7781, 2006: 7378, 2007: 6968, 2008: 6429, 2009: 6167, 2010: 5547, 2011: 4954, 2012: 4176, 2013: 3528, 2014: 3383, 2015: 3276, 2016: 3139, 2017: 2761, 2018: 2657, 2019: 2216, 2020: 1928, 2021: 969, 2022: 513, 2023: 500, 2024: 311, 2025: 28}; Summe 1023691
+
+## Nr. 4  doppelte open_time, doppelte Tage, Zeitanteile (53.10 Nr. 10)
+Summe aktien: doppelte open_time 0, doppelte Tage 0, Zeitanteil ungleich Mitternacht 0
+
+======================================================================
+# Markt krypto
+Handelstage: Kalendertage, 2017-08-17..2026-09-14, 3316
+
+## Nr. 2  Reihenenden
+letzter Kurstag des Marktes (L7): 2026-09-14
+_1d-Reihen, die vor 2026-09-14 enden: 0 von 24
+_1h/_4h (Tag des letzten Zeitstempels, ohne Urteil):
+    XAUTUSDT_1h: letzter Tag 2026-08-30 (nicht bewertet, Register Z. 1583-1586)
+    1h: 25 Reihen, davon vor 2026-09-14 endend: 1
+    4h: 24 Reihen, davon vor 2026-09-14 endend: 0
+
+## Nr. 3  Symbol-Tage Luecke (L8) auf _1d
+Summe krypto: 0
+je Kalenderjahr: {}
+elliott_wave: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 0
+t3_supertrend: Zeitraum 2019-01-01..2026-08-31, Symbol-Tage Luecke 0
+rsi2_crypto: Zeitraum 2019-01-01..2026-08-31, Symbol-Tage Luecke 0
+turtle_soup_crypto: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 0
+volatility_breakout_crypto: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 0
+Symbol-Tage vor dem ersten Kurstag eines Symbols, ab 2017-08-17 (ohne Einzelliste), je Kalenderjahr:
+    {2017: 2958, 2018: 6960, 2019: 5754, 2020: 5084, 2021: 4015, 2022: 4015, 2023: 3080, 2024: 2288, 2025: 1255, 2026: 12}; Summe 35421
+
+## Nr. 4  doppelte open_time, doppelte Tage, Zeitanteile (53.10 Nr. 10)
+Summe krypto: doppelte open_time 0, doppelte Tage 0, Zeitanteil ungleich Mitternacht 0
+
+RUECKGABE 1 (Befund: mindestens eine _1d-Reihe endet frueher)
+rc 1

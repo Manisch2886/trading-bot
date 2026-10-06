@@ -1,0 +1,475 @@
+# TB-138 Gegenprobe, HEAD 5e7037a0d7490c4376dfaa820e0d33f62afc206e
+Arbeitsordner /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb138_gegenprobe.RCgZta (nicht committet)
+Symbole: Aktien AAPL MSFT JNJ; Krypto BTCUSDT ETHUSDT
+
+## Eingriffe in kopie2 (nur Symbol, Datum, Art)
+G1  AAPL     2021-03-10  Zeile entfernt
+G2  AAPL     2022-06-08  Zeile entfernt
+G2  MSFT     2022-06-08  Zeile entfernt
+G2  JNJ      2022-06-08  Zeile entfernt
+G3  AAPL     2023-04-15  Zeile an einem Samstag eingefuegt (Kursspalten x)
+G4  JNJ      2026-08-26..2026-09-01  letzte fuenf Zeilen entfernt, neues Ende 2026-08-25
+G5  JNJ      2024-02-14  Zeile verdoppelt
+G6  MSFT     2020-11-18  close geleert
+G7  BTCUSDT  2023-03-15  open_time + ' 05:00:00'
+G8  ETHUSDT  2025-01-22  Zeile entfernt
+rc Eingriffe 0
+
+==================================================================
+## m1 an kopie1
+# TB-138 Verfahrensmessung m1
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version      3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform         macOS-15.7.9-x86_64-i386-64bit
+pandas_market_calendars  4.6.1
+pandas                   2.3.3
+exchange_calendars       4.5.6
+numpy                    2.0.2
+snapshot         /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb138_gegenprobe.RCgZta/kopie1
+zeit             2026-10-06T15:59:30+02:00
+Fassungen gleich Lock: ja
+
+## Eingaben
+Universumsdatei config/sp500_top150.txt: 3 Symbole, davon mit _1d-Reihe 3
+
+## Nr. 1  K (Tage mit mindestens einem Kurs, L5)
+erster Tag 1962-01-02, letzter Tag 2026-09-01, Anzahl 16275
+
+## Nr. 2  H (Sitzungstage 'NYSE' von 1962-01-02 bis 2026-09-01)
+Anzahl 16275
+
+## Nr. 3  je Kalenderjahr
+Jahr  H     K     nur_H nur_K Symbol-Tage_kein_Handelstag
+1962    252   252     0     0     0
+1963    251   251     0     0     0
+1964    253   253     0     0     0
+1965    252   252     0     0     0
+1966    252   252     0     0     0
+1967    251   251     0     0     0
+1968    226   226     0     0     0
+1969    250   250     0     0     0
+1970    254   254     0     0     0
+1971    253   253     0     0     0
+1972    251   251     0     0     0
+1973    252   252     0     0     0
+1974    253   253     0     0     0
+1975    253   253     0     0     0
+1976    253   253     0     0     0
+1977    252   252     0     0     0
+1978    252   252     0     0     0
+1979    253   253     0     0     0
+1980    253   253     0     0     0
+1981    253   253     0     0     0
+1982    253   253     0     0     0
+1983    253   253     0     0     0
+1984    253   253     0     0     0
+1985    252   252     0     0     0
+1986    253   253     0     0     0
+1987    253   253     0     0     0
+1988    253   253     0     0     0
+1989    252   252     0     0     0
+1990    253   253     0     0     0
+1991    253   253     0     0     0
+1992    254   254     0     0     0
+1993    253   253     0     0     0
+1994    252   252     0     0     0
+1995    252   252     0     0     0
+1996    254   254     0     0     0
+1997    253   253     0     0     0
+1998    252   252     0     0     0
+1999    252   252     0     0     0
+2000    252   252     0     0     0
+2001    248   248     0     0     0
+2002    252   252     0     0     0
+2003    252   252     0     0     0
+2004    252   252     0     0     0
+2005    252   252     0     0     0
+2006    251   251     0     0     0
+2007    251   251     0     0     0
+2008    253   253     0     0     0
+2009    252   252     0     0     0
+2010    252   252     0     0     0
+2011    252   252     0     0     0
+2012    250   250     0     0     0
+2013    252   252     0     0     0
+2014    252   252     0     0     0
+2015    252   252     0     0     0
+2016    252   252     0     0     0
+2017    251   251     0     0     0
+2018    251   251     0     0     0
+2019    252   252     0     0     0
+2020    253   253     0     0     0
+2021    252   252     0     0     0
+2022    251   251     0     0     0
+2023    250   250     0     0     0
+2024    252   252     0     0     0
+2025    250   250     0     0     0
+2026    167   167     0     0     0
+Summe nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+
+Einzelfaelle:
+Fruehestes Jahr, ab dem bis 2026-08-31 keine Abweichung liegt: 1962
+
+## Nr. 4  je Aktien-Bot, Zeitraum Beginn (L4) bis Ende (L3)
+elliott_wave_stocks: Zeitraum 2017-01-01..2026-08-31, Sitzungstage 2428, nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+    erster Tag aus K 2017-01-03 (Beginn 2017-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2017-01-03, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 1962
+rsi2_mean_reversion: Zeitraum 2018-01-01..2026-08-31, Sitzungstage 2177, nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+    erster Tag aus K 2018-01-02 (Beginn 2018-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2018-01-02, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 1962
+turtle_soup_stocks: Zeitraum 2017-01-01..2026-08-31, Sitzungstage 2428, nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+    erster Tag aus K 2017-01-03 (Beginn 2017-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2017-01-03, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 1962
+volatility_breakout: Zeitraum 2018-01-01..2026-08-31, Sitzungstage 2177, nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+    erster Tag aus K 2018-01-02 (Beginn 2018-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2018-01-02, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 1962
+
+## Nr. 5  Zeilen, in denen close fehlt (L5)
+Fehlwert-Texte (pandas._libs.parsers.STR_NA_VALUES): ['', '#N/A', '#N/A N/A', '#NA', '-1.#IND', '-1.#QNAN', '-NaN', '-nan', '1.#IND', '1.#QNAN', '<NA>', 'N/A', 'NA', 'NULL', 'NaN', 'None', 'n/a', 'nan', 'null']
+Summe: leer 0, Fehlwert-Text 0, ohne close-Spalte 0
+Zeilen mit unlesbarem Datum in open_time: 0
+
+## Nr. 6  Verkuerzte Sitzungen (L6)
+Kalenderklasse NYSEExchangeCalendar, Zeitzone America/New_York, regulaerer Schluss (close_time) 16:00:00
+schedule-Spalten: ['market_open', 'market_close']
+Sitzungstage 2017-01-01..2026-09-01: 2429, davon Schluss vor dem regulaeren: 20
+kal.early_closes(schedule): 20; gleich der eigenen Zaehlung: ja
+alle verkuerzten in H: ja
+    Beispiel 2017-07-03, Schluss 13:00 Ortszeit
+    Beispiel 2017-11-24, Schluss 13:00 Ortszeit
+    Beispiel 2018-07-03, Schluss 13:00 Ortszeit
+Jahre mit verkuerzten Sitzungen: {2017: 2, 2018: 3, 2019: 3, 2020: 2, 2021: 1, 2022: 1, 2023: 2, 2024: 3, 2025: 3}
+
+RUECKGABE 0 (kein Befund)
+rc 0
+
+==================================================================
+## m2 an kopie1
+# TB-138 Verfahrensmessung m2
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version      3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform         macOS-15.7.9-x86_64-i386-64bit
+pandas_market_calendars  4.6.1
+pandas                   2.3.3
+exchange_calendars       4.5.6
+numpy                    2.0.2
+snapshot         /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb138_gegenprobe.RCgZta/kopie1
+zeit             2026-10-06T15:59:32+02:00
+Fassungen gleich Lock: ja
+
+## Nr. 1  Reihen je Zeile der Universumsdateien
+aktien: 3 Zeilen; Reihen {'1d': 3}
+krypto: 2 Zeilen; Reihen {'1d': 2, '1h': 2, '4h': 2}
+Reihen ohne Zeile in einer der zwei Dateien: 0
+
+======================================================================
+# Markt aktien
+Handelstage: Sitzungstage 'NYSE', 1962-01-02..2026-09-01, 16275
+
+## Nr. 2  Reihenenden
+letzter Kurstag des Marktes (L7): 2026-09-01
+_1d-Reihen, die vor 2026-09-01 enden: 0 von 3
+
+## Nr. 3  Symbol-Tage Luecke (L8) auf _1d
+Summe aktien: 0
+je Kalenderjahr: {}
+elliott_wave_stocks: Zeitraum 2017-01-01..2026-08-31, Symbol-Tage Luecke 0
+rsi2_mean_reversion: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 0
+turtle_soup_stocks: Zeitraum 2017-01-01..2026-08-31, Symbol-Tage Luecke 0
+volatility_breakout: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 0
+Symbol-Tage vor dem ersten Kurstag eines Symbols, ab 1962-01-02 (ohne Einzelliste), je Kalenderjahr:
+    {1962: 504, 1963: 502, 1964: 506, 1965: 504, 1966: 504, 1967: 502, 1968: 452, 1969: 500, 1970: 508, 1971: 506, 1972: 502, 1973: 504, 1974: 506, 1975: 506, 1976: 506, 1977: 504, 1978: 504, 1979: 506, 1980: 493, 1981: 253, 1982: 253, 1983: 253, 1984: 253, 1985: 252, 1986: 49}; Summe 10832
+
+## Nr. 4  doppelte open_time, doppelte Tage, Zeitanteile (53.10 Nr. 10)
+Summe aktien: doppelte open_time 0, doppelte Tage 0, Zeitanteil ungleich Mitternacht 0
+
+======================================================================
+# Markt krypto
+Handelstage: Kalendertage, 2017-08-17..2026-09-14, 3316
+
+## Nr. 2  Reihenenden
+letzter Kurstag des Marktes (L7): 2026-09-14
+_1d-Reihen, die vor 2026-09-14 enden: 0 von 2
+_1h/_4h (Tag des letzten Zeitstempels, ohne Urteil):
+    1h: 2 Reihen, davon vor 2026-09-14 endend: 0
+    4h: 2 Reihen, davon vor 2026-09-14 endend: 0
+
+## Nr. 3  Symbol-Tage Luecke (L8) auf _1d
+Summe krypto: 0
+je Kalenderjahr: {}
+elliott_wave: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 0
+t3_supertrend: Zeitraum 2019-01-01..2026-08-31, Symbol-Tage Luecke 0
+rsi2_crypto: Zeitraum 2019-01-01..2026-08-31, Symbol-Tage Luecke 0
+turtle_soup_crypto: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 0
+volatility_breakout_crypto: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 0
+Symbol-Tage vor dem ersten Kurstag eines Symbols, ab 2017-08-17 (ohne Einzelliste), je Kalenderjahr:
+    {}; Summe 0
+
+## Nr. 4  doppelte open_time, doppelte Tage, Zeitanteile (53.10 Nr. 10)
+Summe krypto: doppelte open_time 0, doppelte Tage 0, Zeitanteil ungleich Mitternacht 0
+
+RUECKGABE 0 (kein Befund)
+rc 0
+
+==================================================================
+## m1 an kopie2
+# TB-138 Verfahrensmessung m1
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version      3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform         macOS-15.7.9-x86_64-i386-64bit
+pandas_market_calendars  4.6.1
+pandas                   2.3.3
+exchange_calendars       4.5.6
+numpy                    2.0.2
+snapshot         /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb138_gegenprobe.RCgZta/kopie2
+zeit             2026-10-06T15:59:34+02:00
+Fassungen gleich Lock: ja
+
+## Eingaben
+Universumsdatei config/sp500_top150.txt: 3 Symbole, davon mit _1d-Reihe 3
+
+## Nr. 1  K (Tage mit mindestens einem Kurs, L5)
+erster Tag 1962-01-02, letzter Tag 2026-09-01, Anzahl 16275
+
+## Nr. 2  H (Sitzungstage 'NYSE' von 1962-01-02 bis 2026-09-01)
+Anzahl 16275
+
+## Nr. 3  je Kalenderjahr
+Jahr  H     K     nur_H nur_K Symbol-Tage_kein_Handelstag
+1962    252   252     0     0     0
+1963    251   251     0     0     0
+1964    253   253     0     0     0
+1965    252   252     0     0     0
+1966    252   252     0     0     0
+1967    251   251     0     0     0
+1968    226   226     0     0     0
+1969    250   250     0     0     0
+1970    254   254     0     0     0
+1971    253   253     0     0     0
+1972    251   251     0     0     0
+1973    252   252     0     0     0
+1974    253   253     0     0     0
+1975    253   253     0     0     0
+1976    253   253     0     0     0
+1977    252   252     0     0     0
+1978    252   252     0     0     0
+1979    253   253     0     0     0
+1980    253   253     0     0     0
+1981    253   253     0     0     0
+1982    253   253     0     0     0
+1983    253   253     0     0     0
+1984    253   253     0     0     0
+1985    252   252     0     0     0
+1986    253   253     0     0     0
+1987    253   253     0     0     0
+1988    253   253     0     0     0
+1989    252   252     0     0     0
+1990    253   253     0     0     0
+1991    253   253     0     0     0
+1992    254   254     0     0     0
+1993    253   253     0     0     0
+1994    252   252     0     0     0
+1995    252   252     0     0     0
+1996    254   254     0     0     0
+1997    253   253     0     0     0
+1998    252   252     0     0     0
+1999    252   252     0     0     0
+2000    252   252     0     0     0
+2001    248   248     0     0     0
+2002    252   252     0     0     0
+2003    252   252     0     0     0
+2004    252   252     0     0     0
+2005    252   252     0     0     0
+2006    251   251     0     0     0
+2007    251   251     0     0     0
+2008    253   253     0     0     0
+2009    252   252     0     0     0
+2010    252   252     0     0     0
+2011    252   252     0     0     0
+2012    250   250     0     0     0
+2013    252   252     0     0     0
+2014    252   252     0     0     0
+2015    252   252     0     0     0
+2016    252   252     0     0     0
+2017    251   251     0     0     0
+2018    251   251     0     0     0
+2019    252   252     0     0     0
+2020    253   253     0     0     0
+2021    252   252     0     0     0
+2022    251   250     1     0     0
+2023    250   251     0     1     1
+2024    252   252     0     0     0
+2025    250   250     0     0     0
+2026    167   167     0     0     0
+Summe nur_H 1, nur_K 1, Symbol-Tage an Nicht-Handelstagen 1
+
+Einzelfaelle:
+FALL	m1	nur_in_H	-	2022-06-08
+FALL	m1	nur_in_K	AAPL	2023-04-15	(Sat, 1 Symbole)
+Fruehestes Jahr, ab dem bis 2026-08-31 keine Abweichung liegt: 2024
+
+## Nr. 4  je Aktien-Bot, Zeitraum Beginn (L4) bis Ende (L3)
+elliott_wave_stocks: Zeitraum 2017-01-01..2026-08-31, Sitzungstage 2428, nur_H 1, nur_K 1, Symbol-Tage an Nicht-Handelstagen 1
+    erster Tag aus K 2017-01-03 (Beginn 2017-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2017-01-03, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': NICHT erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 2024
+rsi2_mean_reversion: Zeitraum 2018-01-01..2026-08-31, Sitzungstage 2177, nur_H 1, nur_K 1, Symbol-Tage an Nicht-Handelstagen 1
+    erster Tag aus K 2018-01-02 (Beginn 2018-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2018-01-02, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': NICHT erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 2024
+turtle_soup_stocks: Zeitraum 2017-01-01..2026-08-31, Sitzungstage 2428, nur_H 1, nur_K 1, Symbol-Tage an Nicht-Handelstagen 1
+    erster Tag aus K 2017-01-03 (Beginn 2017-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2017-01-03, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': NICHT erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 2024
+volatility_breakout: Zeitraum 2018-01-01..2026-08-31, Sitzungstage 2177, nur_H 1, nur_K 1, Symbol-Tage an Nicht-Handelstagen 1
+    erster Tag aus K 2018-01-02 (Beginn 2018-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2018-01-02, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': NICHT erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 2024
+
+## Nr. 5  Zeilen, in denen close fehlt (L5)
+Fehlwert-Texte (pandas._libs.parsers.STR_NA_VALUES): ['', '#N/A', '#N/A N/A', '#NA', '-1.#IND', '-1.#QNAN', '-NaN', '-nan', '1.#IND', '1.#QNAN', '<NA>', 'N/A', 'NA', 'NULL', 'NaN', 'None', 'n/a', 'nan', 'null']
+MSFT: leer 1, Fehlwert-Text 0, ohne close-Spalte 0
+FALL	m1	close_fehlt_leer	MSFT	2020-11-18
+Summe: leer 1, Fehlwert-Text 0, ohne close-Spalte 0
+Zeilen mit unlesbarem Datum in open_time: 0
+
+## Nr. 6  Verkuerzte Sitzungen (L6)
+Kalenderklasse NYSEExchangeCalendar, Zeitzone America/New_York, regulaerer Schluss (close_time) 16:00:00
+schedule-Spalten: ['market_open', 'market_close']
+Sitzungstage 2017-01-01..2026-09-01: 2429, davon Schluss vor dem regulaeren: 20
+kal.early_closes(schedule): 20; gleich der eigenen Zaehlung: ja
+alle verkuerzten in H: ja
+    Beispiel 2017-07-03, Schluss 13:00 Ortszeit
+    Beispiel 2017-11-24, Schluss 13:00 Ortszeit
+    Beispiel 2018-07-03, Schluss 13:00 Ortszeit
+Jahre mit verkuerzten Sitzungen: {2017: 2, 2018: 3, 2019: 3, 2020: 2, 2021: 1, 2022: 1, 2023: 2, 2024: 3, 2025: 3}
+
+RUECKGABE 1 (Befund: R66 (b) bei mindestens einem Aktien-Bot nicht erfuellt)
+rc 1
+
+==================================================================
+## m2 an kopie2
+# TB-138 Verfahrensmessung m2
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version      3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform         macOS-15.7.9-x86_64-i386-64bit
+pandas_market_calendars  4.6.1
+pandas                   2.3.3
+exchange_calendars       4.5.6
+numpy                    2.0.2
+snapshot         /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb138_gegenprobe.RCgZta/kopie2
+zeit             2026-10-06T15:59:36+02:00
+Fassungen gleich Lock: ja
+
+## Nr. 1  Reihen je Zeile der Universumsdateien
+aktien: 3 Zeilen; Reihen {'1d': 3}
+krypto: 2 Zeilen; Reihen {'1d': 2, '1h': 2, '4h': 2}
+Reihen ohne Zeile in einer der zwei Dateien: 0
+
+======================================================================
+# Markt aktien
+Handelstage: Sitzungstage 'NYSE', 1962-01-02..2026-09-01, 16275
+
+## Nr. 2  Reihenenden
+letzter Kurstag des Marktes (L7): 2026-09-01
+FALL	m2	frueher_endend_1d	JNJ	2026-08-25
+    letzter Kurstag vor dem Ende nach L3 (2026-08-31)
+_1d-Reihen, die vor 2026-09-01 enden: 1 von 3
+
+## Nr. 3  Symbol-Tage Luecke (L8) auf _1d
+Summe aktien: 5
+je Kalenderjahr: {2020: 1, 2021: 1, 2022: 3}
+FALL	m2	luecke	MSFT	2020-11-18
+FALL	m2	luecke	AAPL	2021-03-10
+FALL	m2	luecke	AAPL	2022-06-08
+FALL	m2	luecke	JNJ	2022-06-08
+FALL	m2	luecke	MSFT	2022-06-08
+elliott_wave_stocks: Zeitraum 2017-01-01..2026-08-31, Symbol-Tage Luecke 5
+rsi2_mean_reversion: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 5
+turtle_soup_stocks: Zeitraum 2017-01-01..2026-08-31, Symbol-Tage Luecke 5
+volatility_breakout: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 5
+Symbol-Tage vor dem ersten Kurstag eines Symbols, ab 1962-01-02 (ohne Einzelliste), je Kalenderjahr:
+    {1962: 504, 1963: 502, 1964: 506, 1965: 504, 1966: 504, 1967: 502, 1968: 452, 1969: 500, 1970: 508, 1971: 506, 1972: 502, 1973: 504, 1974: 506, 1975: 506, 1976: 506, 1977: 504, 1978: 504, 1979: 506, 1980: 493, 1981: 253, 1982: 253, 1983: 253, 1984: 253, 1985: 252, 1986: 49}; Summe 10832
+
+## Nr. 4  doppelte open_time, doppelte Tage, Zeitanteile (53.10 Nr. 10)
+FALL	m2	doppelt_open_time	JNJ	2024-02-14
+Summe aktien: doppelte open_time 1, doppelte Tage 0, Zeitanteil ungleich Mitternacht 0
+
+======================================================================
+# Markt krypto
+Handelstage: Kalendertage, 2017-08-17..2026-09-14, 3316
+
+## Nr. 2  Reihenenden
+letzter Kurstag des Marktes (L7): 2026-09-14
+_1d-Reihen, die vor 2026-09-14 enden: 0 von 2
+_1h/_4h (Tag des letzten Zeitstempels, ohne Urteil):
+    1h: 2 Reihen, davon vor 2026-09-14 endend: 0
+    4h: 2 Reihen, davon vor 2026-09-14 endend: 0
+
+## Nr. 3  Symbol-Tage Luecke (L8) auf _1d
+Summe krypto: 1
+je Kalenderjahr: {2025: 1}
+FALL	m2	luecke	ETHUSDT	2025-01-22
+elliott_wave: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 1
+t3_supertrend: Zeitraum 2019-01-01..2026-08-31, Symbol-Tage Luecke 1
+rsi2_crypto: Zeitraum 2019-01-01..2026-08-31, Symbol-Tage Luecke 1
+turtle_soup_crypto: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 1
+volatility_breakout_crypto: Zeitraum 2018-01-01..2026-08-31, Symbol-Tage Luecke 1
+Symbol-Tage vor dem ersten Kurstag eines Symbols, ab 2017-08-17 (ohne Einzelliste), je Kalenderjahr:
+    {}; Summe 0
+
+## Nr. 4  doppelte open_time, doppelte Tage, Zeitanteile (53.10 Nr. 10)
+FALL	m2	zeitanteil	BTCUSDT	2023-03-15
+Summe krypto: doppelte open_time 0, doppelte Tage 0, Zeitanteil ungleich Mitternacht 1
+
+RUECKGABE 1 (Befund: mindestens eine _1d-Reihe endet frueher)
+rc 1
+
+==================================================================
+## Vergleich der FALL-Zeilen (Felder 1-5: FALL, Messung, Art, Symbol, Datum)
+nur an kopie1:
+[Ende]
+nur an kopie2:
+FALL	m1	close_fehlt_leer	MSFT	2020-11-18
+FALL	m1	nur_in_H	-	2022-06-08
+FALL	m1	nur_in_K	AAPL	2023-04-15
+FALL	m2	doppelt_open_time	JNJ	2024-02-14
+FALL	m2	frueher_endend_1d	JNJ	2026-08-25
+FALL	m2	luecke	AAPL	2021-03-10
+FALL	m2	luecke	AAPL	2022-06-08
+FALL	m2	luecke	ETHUSDT	2025-01-22
+FALL	m2	luecke	JNJ	2022-06-08
+FALL	m2	luecke	MSFT	2020-11-18
+FALL	m2	luecke	MSFT	2022-06-08
+FALL	m2	zeitanteil	BTCUSDT	2023-03-15
+[Ende]
+Soll (G1-G8):
+FALL	m1	close_fehlt_leer	MSFT	2020-11-18
+FALL	m1	nur_in_H	-	2022-06-08
+FALL	m1	nur_in_K	AAPL	2023-04-15
+FALL	m2	doppelt_open_time	JNJ	2024-02-14
+FALL	m2	frueher_endend_1d	JNJ	2026-08-25
+FALL	m2	luecke	AAPL	2021-03-10
+FALL	m2	luecke	AAPL	2022-06-08
+FALL	m2	luecke	ETHUSDT	2025-01-22
+FALL	m2	luecke	JNJ	2022-06-08
+FALL	m2	luecke	MSFT	2020-11-18
+FALL	m2	luecke	MSFT	2022-06-08
+FALL	m2	zeitanteil	BTCUSDT	2023-03-15
+[Ende]
+Unterschied gleich Soll: ja
+rc an kopie2 (Soll m1 1, m2 1): m1 1, m2 1
+rc an kopie1 (kein Soll): m1 0, m2 0
+## Ende

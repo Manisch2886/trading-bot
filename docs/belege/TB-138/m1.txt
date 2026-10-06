@@ -1,0 +1,135 @@
+# TB-138 Verfahrensmessung m1
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version      3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform         macOS-15.7.9-x86_64-i386-64bit
+pandas_market_calendars  4.6.1
+pandas                   2.3.3
+exchange_calendars       4.5.6
+numpy                    2.0.2
+snapshot         snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+zeit             2026-10-06T15:59:39+02:00
+Fassungen gleich Lock: ja
+
+## Eingaben
+Universumsdatei config/sp500_top150.txt: 150 Symbole, davon mit _1d-Reihe 150
+
+## Nr. 1  K (Tage mit mindestens einem Kurs, L5)
+erster Tag 1962-01-02, letzter Tag 2026-09-01, Anzahl 16275
+
+## Nr. 2  H (Sitzungstage 'NYSE' von 1962-01-02 bis 2026-09-01)
+Anzahl 16275
+
+## Nr. 3  je Kalenderjahr
+Jahr  H     K     nur_H nur_K Symbol-Tage_kein_Handelstag
+1962    252   252     0     0     0
+1963    251   251     0     0     0
+1964    253   253     0     0     0
+1965    252   252     0     0     0
+1966    252   252     0     0     0
+1967    251   251     0     0     0
+1968    226   226     0     0     0
+1969    250   250     0     0     0
+1970    254   254     0     0     0
+1971    253   253     0     0     0
+1972    251   251     0     0     0
+1973    252   252     0     0     0
+1974    253   253     0     0     0
+1975    253   253     0     0     0
+1976    253   253     0     0     0
+1977    252   252     0     0     0
+1978    252   252     0     0     0
+1979    253   253     0     0     0
+1980    253   253     0     0     0
+1981    253   253     0     0     0
+1982    253   253     0     0     0
+1983    253   253     0     0     0
+1984    253   253     0     0     0
+1985    252   252     0     0     0
+1986    253   253     0     0     0
+1987    253   253     0     0     0
+1988    253   253     0     0     0
+1989    252   252     0     0     0
+1990    253   253     0     0     0
+1991    253   253     0     0     0
+1992    254   254     0     0     0
+1993    253   253     0     0     0
+1994    252   252     0     0     0
+1995    252   252     0     0     0
+1996    254   254     0     0     0
+1997    253   253     0     0     0
+1998    252   252     0     0     0
+1999    252   252     0     0     0
+2000    252   252     0     0     0
+2001    248   248     0     0     0
+2002    252   252     0     0     0
+2003    252   252     0     0     0
+2004    252   252     0     0     0
+2005    252   252     0     0     0
+2006    251   251     0     0     0
+2007    251   251     0     0     0
+2008    253   253     0     0     0
+2009    252   252     0     0     0
+2010    252   252     0     0     0
+2011    252   252     0     0     0
+2012    250   250     0     0     0
+2013    252   252     0     0     0
+2014    252   252     0     0     0
+2015    252   252     0     0     0
+2016    252   252     0     0     0
+2017    251   251     0     0     0
+2018    251   251     0     0     0
+2019    252   252     0     0     0
+2020    253   253     0     0     0
+2021    252   252     0     0     0
+2022    251   251     0     0     0
+2023    250   250     0     0     0
+2024    252   252     0     0     0
+2025    250   250     0     0     0
+2026    167   167     0     0     0
+Summe nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+
+Einzelfaelle:
+Fruehestes Jahr, ab dem bis 2026-08-31 keine Abweichung liegt: 1962
+
+## Nr. 4  je Aktien-Bot, Zeitraum Beginn (L4) bis Ende (L3)
+elliott_wave_stocks: Zeitraum 2017-01-01..2026-08-31, Sitzungstage 2428, nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+    erster Tag aus K 2017-01-03 (Beginn 2017-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2017-01-03, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 1962
+rsi2_mean_reversion: Zeitraum 2018-01-01..2026-08-31, Sitzungstage 2177, nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+    erster Tag aus K 2018-01-02 (Beginn 2018-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2018-01-02, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 1962
+turtle_soup_stocks: Zeitraum 2017-01-01..2026-08-31, Sitzungstage 2428, nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+    erster Tag aus K 2017-01-03 (Beginn 2017-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2017-01-03, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 1962
+volatility_breakout: Zeitraum 2018-01-01..2026-08-31, Sitzungstage 2177, nur_H 0, nur_K 0, Symbol-Tage an Nicht-Handelstagen 0
+    erster Tag aus K 2018-01-02 (Beginn 2018-01-01), letzter Tag aus K 2026-08-31 (Ende 2026-08-31)
+    erster Sitzungstag 2018-01-02, letzter Sitzungstag 2026-08-31
+    URTEIL R66 (b), Kalender 'NYSE': erfuellt
+    fruehestes Jahr, ab dem bis Ende erfuellt: 1962
+
+## Nr. 5  Zeilen, in denen close fehlt (L5)
+Fehlwert-Texte (pandas._libs.parsers.STR_NA_VALUES): ['', '#N/A', '#N/A N/A', '#NA', '-1.#IND', '-1.#QNAN', '-NaN', '-nan', '1.#IND', '1.#QNAN', '<NA>', 'N/A', 'NA', 'NULL', 'NaN', 'None', 'n/a', 'nan', 'null']
+APH: leer 1, Fehlwert-Text 0, ohne close-Spalte 0
+FALL	m1	close_fehlt_leer	APH	2026-09-01
+Summe: leer 1, Fehlwert-Text 0, ohne close-Spalte 0
+Zeilen mit unlesbarem Datum in open_time: 0
+
+## Nr. 6  Verkuerzte Sitzungen (L6)
+Kalenderklasse NYSEExchangeCalendar, Zeitzone America/New_York, regulaerer Schluss (close_time) 16:00:00
+schedule-Spalten: ['market_open', 'market_close']
+Sitzungstage 2017-01-01..2026-09-01: 2429, davon Schluss vor dem regulaeren: 20
+kal.early_closes(schedule): 20; gleich der eigenen Zaehlung: ja
+alle verkuerzten in H: ja
+    Beispiel 2017-07-03, Schluss 13:00 Ortszeit
+    Beispiel 2017-11-24, Schluss 13:00 Ortszeit
+    Beispiel 2018-07-03, Schluss 13:00 Ortszeit
+Jahre mit verkuerzten Sitzungen: {2017: 2, 2018: 3, 2019: 3, 2020: 2, 2021: 1, 2022: 1, 2023: 2, 2024: 3, 2025: 3}
+
+RUECKGABE 0 (kein Befund)
+rc 0
