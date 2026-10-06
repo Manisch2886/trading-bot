@@ -10053,6 +10053,46 @@ Betreiber. Kein Abbruchkriterium ausgelöst.
 
 ---
 
+## EG — TB-138: Verfahrensmessung am Snapshot in der Lock-Umgebung, nur lesend — Kalender „NYSE“ erfüllt R66 (b) bei allen vier Aktien-Bots (0/0 über 16 275 Tage seit 1962); R72 (d) ein Befund: `APH` endet mit Kurs am 2026-08-31, der Markt am 2026-09-01; Lücken Aktien 2, Krypto 0; doppelte Daten und Zeitanteile 0; Paketfassung in `trading-env` 4.6.1 gleich Lock, 5.4.0 aus der Cloud-Sitzung von TB-47; Gegenprobe 12/12 (06.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-138_verfahrensmessung_snapshot.md`*
+
+**Quelle:** Mac-Sitzung **TB-138** (Hauptordner), 06.10.2026, Eingang `0c70853`. Commits `5e7037a` (Schritt 0),
+`9833724` (A), `a5cb034` (B) und der Abgabe-Commit. Belege `docs/belege/TB-138/`. Freigabe: Handwerk pauschal
+(26.09.2026), „Fahre im Backlog fort“ (06.10.2026, 13:22). Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
+
+**Abnahme des Vorgängers, wie in `BACKLOG.md` Abschnitt 5 eingetragen:**
+- **TB-133 abgenommen** am 06.10.2026 vom steuernden Chat: zehn Prüfungen, keine Abweichung gegen ein Soll. Zwei Befunde aus der Abnahme gehen in den nächsten Regelwerk-Nachtrag (`UEBERGABE.md`, Nachtrag 06.10.2026, 10:51).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a gleich, in `$TMPDIR` vor dem Belegordner; 0b: `trading-env` startet (3.9.6), Register 11 581 Z. `8d505a38…`, Abbild `46f0ad5d…`, Universumsdateien gleich, `snapshot.py --pruefen` rc 0 ohne Umgebungsvariablen, 226 Dateien; D0 gleich bis auf HEAD |
+| **Gegenprobe** | acht Eingriffe G1–G8 an einer Kopie in `$TMPDIR`; Unterschied der Einzelfälle genau die 12 erwarteten Meldungen, beim ersten Lauf |
+| ⭐ **M1** | R74 (e)/54.6 Nr. 1: je Aktien-Bot 0 Tage nur im Kalender, 0 nur in den Daten; ganze Spanne 1962-01-02 bis 2026-09-01 ebenso; 20 verkürzte Sitzungen seit 2017 stehen im `schedule`-Index; `close` fehlt in 1 Zeile (`APH` 2026-09-01) |
+| ⚠️ **M2** | R72 (d)/53.10 Nr. 3: `APH` endet einen Tag vor dem letzten Kurstag des Marktes — hängt an L5 („`close` vorhanden“) und L7 (ganze Reihe statt Zeitraum); Lücken Aktien `LMT` 1974-06-03 und `MNST` 2026-08-10 (je Aktien-Bot 1), Krypto 0; 53.10 Nr. 10: 0/0/0 |
+| **M3** | 54.6 Nr. 8: Fassungen 4/4 gleich Lock; `erhebung_eingaben.py` in `trading-env` meldet 4.6.1; „5.4.0“ laut `ERGEBNIS_TB-47` Z. 3/348/359 aus der Cloud (Python 3.11.15, nachinstalliert) |
+| **B** | E1 in `BACKLOG.md` vor `## 6 — Geparkt`, Anker 1, C3 GLEICH, numstat 6/0 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| | **Ob eine Reihe „endet“, hängt daran, was als Kurs zählt.** Am Bestand (nur Datumsspalten) endete keine Reihe früher; mit „`close` vorhanden“ endet `APH` einen Tag früher. Eine Messung zu Reihenenden nennt deshalb immer, ob sie Zeilen oder Werte zählt |
+
+### Was offen bleibt
+
+- Registereintrag 54.5 zu R74 (e): Einzelfreigabe des Betreibers; Sätze dafür im Ergebnis unter „Für das Register“.
+- Befund `APH` (R72 (d)) vor dem Tag entscheiden; Fragen 1–5 im Ergebnis unter „Für Fable“.
+- `eingaben.json`, Feld `kalender`: Umgang nach dem Ergebnis entscheiden.
+- Aus dem BACKLOG-Block: Regelwerk-Nachtrag (nächste Nummer nach TB-138), Abnahme von TB-137, nächste Anfrage an Fable.
+- Nächste Journalkennung nach EG: **EH**.
+
+*Geschrieben 06.10.2026 von der Mac-Sitzung TB-138. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

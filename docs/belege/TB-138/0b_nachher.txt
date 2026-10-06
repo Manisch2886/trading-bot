@@ -1,0 +1,37 @@
+# TB-138 0b (nachher)
+ZEIT 2026-10-06 16:01:31 +0200
+HEAD a5cb034b584d4220bb9388ab7968c4b402d8e9a3
+## Interpreter (Soll: startet; 3.9.6)
+3.9.6 (default, Apr 30 2025, 02:07:18) 
+[Clang 17.0.0 (clang-1700.0.13.5)]
+rc 0
+## Register (Soll: 11581 Zeilen, 8d505a38...)
+11581
+8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc  docs/VORREGISTRIERUNG_neuselektion.md
+## Abbild (Soll: beginnt 46f0ad5d1d83a253)
+46f0ad5d1d83a253baa5523f5657881e0d825cebd734f24a42ef5d4fa74f281f  research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json
+## requirements.lock (nur messen)
+96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5  requirements.lock
+## Universumsdateien im Snapshot (Soll: 6acba892..., 3afc95a4...)
+6acba892f38e998cf43ae9e5594c4707945143aba481429c44a5c6005339f607  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt
+3afc95a4f6b5ebc3a8f7bb7854b5dd59c4ecc4e3d86aa7b93c08066a3fccf810  snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/top25_symbols.txt
+## Umgebungsvariablen des Selektionslaufs (shared/paths.py Z. 205-208), gesetzt?
+TB_SELEKTIONSWURZEL nicht gesetzt
+TB_SELEKTIONSHASH nicht gesetzt
+TB_SELEKTIONSCOMMIT nicht gesetzt
+## snapshot.py --pruefen (ohne --json; Soll rc 0)
+Snapshot nachpruefen: snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+
+  snapshot_hash    Soll 63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+                   Ist  63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2
+  datenstand_hash  Soll d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Kursdateien)
+                   Ist  d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Kursdateien)
+
+  UNVERAENDERT
+rc 0
+## Dateiliste des Snapshots (nur messen; 226 Dateien)
+Dateien 226
+e810849e78baad2f7ac5ad9c8b2f699969be81fa12686112e8c30238dae9aea2  (sha256 ueber "sha256  Pfad", sortiert)
+## git status ausserhalb docs/ (muss leer sein)
+[Ende status]
+## Ende
