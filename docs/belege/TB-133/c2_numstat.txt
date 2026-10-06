@@ -1,0 +1,5 @@
+# TB-133 C2 — git diff --numstat 1ea5213 (⟨S0⟩) 5216e1d
+16	0	docs/projektfuehrung/ARBEITSWEISE.md
+10	0	docs/projektfuehrung/BACKLOG.md
+2	0	docs/projektfuehrung/UMZUG.md
+# Soll: ARBEITSWEISE.md 16 0 · UMZUG.md 2 0 · BACKLOG.md 10 0
