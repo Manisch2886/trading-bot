@@ -1,0 +1,1 @@
+# TB-139 D3: git status --porcelain nach dem Abgabe-Commit 11429c1 (0 Zeilen)
