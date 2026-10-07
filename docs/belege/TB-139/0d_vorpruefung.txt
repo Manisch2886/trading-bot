@@ -1,0 +1,8 @@
+Datum des Eintrags: 07.10.2026 (aus --datum)
+Marken: 20 an 14 Einfuegestellen
+je Abschnitt: 5: 2, 42: 1, 46: 1, 48: 5, 53: 8, 54: 3
+Anker mit Zahl 1 (Original): 20 von 20
+Anker mit Zahl 1 (nach Simulation): 20 von 20
+Bloecke: 6 | Ueberschriften: 6 max. Laenge 139 | gekuerzt: 5
+Dateien: 3 | Fundstellen: 131 | Zeilenlisten: 0 | Zaehlungen: 18 | *.py im Baum: 742
+rc 0: alles wie angegeben

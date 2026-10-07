@@ -1,0 +1,6 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-139_register_fable_07a.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-07a_go_live_schnitt_voraussetzungen.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-07a_schnitt_im_erzeuger_wache_ein_eintrag.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-07_eroeffnung.md

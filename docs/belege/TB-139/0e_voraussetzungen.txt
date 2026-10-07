@@ -1,0 +1,64 @@
+# TB-139 0e: Nachlesen der Voraussetzungen fuer 55.7 an Zwischenstand und Ergebnis von TB-140 (nur lesend)
+Zwischenstand: 11 Zeilen, sha256 0d3f5230c9872c933515f1f92853601d311723995180953dab1a79b4a941311b
+Kopfzeile: # TB-140 Teil 1 — Zwischenstand · 2026-10-07 10:47:10 +0200 · ⟨S0⟩ 8127f7f
+## Zwischenstand V4
+    V4 | erfüllt | W1 67 von 67, W2 67 von 67, Plattform gleich | docs/belege/TB-140/v4.txt
+ok   | V4: Zeilen im Zwischenstand | ist 1 | Soll 1
+ok   | V4: Urteil im Zwischenstand | ist 'erfüllt' | Soll 'erfüllt'
+ok   | V4: Kernzahl | ist 'W1 67 von 67, W2 67 von 67, Plattform gleich' | Soll 'W1 67 von 67, W2 67 von 67, Plattform gleich'
+ok   | V4: Rohausgabe liegt im Repo (docs/belege/TB-140/v4.txt) | ist True | Soll True
+## Zwischenstand V5
+    V5 | erfüllt | Tage je Bot 2428, 2177, 2428, 2177, Abweichungen 0 | docs/belege/TB-140/v5.txt
+ok   | V5: Zeilen im Zwischenstand | ist 1 | Soll 1
+ok   | V5: Urteil im Zwischenstand | ist 'erfüllt' | Soll 'erfüllt'
+ok   | V5: Kernzahl | ist 'Tage je Bot 2428, 2177, 2428, 2177, Abweichungen 0' | Soll 'Tage je Bot 2428, 2177, 2428, 2177, Abweichungen 0'
+ok   | V5: Rohausgabe liegt im Repo (docs/belege/TB-140/v5.txt) | ist True | Soll True
+## Zwischenstand V6
+    V6 | erfüllt | TEIL (i) ja · (ii) ja · (iii) ja | docs/belege/TB-140/v6.txt
+ok   | V6: Zeilen im Zwischenstand | ist 1 | Soll 1
+ok   | V6: Urteil im Zwischenstand | ist 'erfüllt' | Soll 'erfüllt'
+ok   | V6: Kernzahl | ist 'TEIL (i) ja · (ii) ja · (iii) ja' | Soll 'TEIL (i) ja · (ii) ja · (iii) ja'
+ok   | V6: Rohausgabe liegt im Repo (docs/belege/TB-140/v6.txt) | ist True | Soll True
+## Zwischenstand Z1
+    Z1 | erfüllt | Aktien 150 Reihen, 1 Zeilen ohne `close`; Krypto 24 Reihen, 0 Zeilen ohne `close` | docs/belege/TB-140/z1.txt
+ok   | Z1: Zeilen im Zwischenstand | ist 1 | Soll 1
+ok   | Z1: Urteil im Zwischenstand | ist 'erfüllt' | Soll 'erfüllt'
+ok   | Z1: Kernzahl | ist 'Aktien 150 Reihen, 1 Zeilen ohne `close`; Krypto 24 Reihen, 0 Zeilen ohne `close`' | Soll 'Aktien 150 Reihen, 1 Zeilen ohne `close`; Krypto 24 Reihen, 0 Zeilen ohne `close`'
+ok   | Z1: Rohausgabe liegt im Repo (docs/belege/TB-140/z1.txt) | ist True | Soll True
+## Zwischenstand Z2
+    Z2 | nur erschliessbar | „nur erschliessbar“, Stellen Z. 3, 66, 68–69, 102, 121–122, 342, 344, 355, 357–359 | docs/belege/TB-140/z2.txt
+ok   | Z2: Zeilen im Zwischenstand | ist 1 | Soll 1
+ok   | Z2: Urteil im Zwischenstand | ist 'nur erschliessbar' | Soll 'nur erschliessbar'
+ok   | Z2: Kernzahl | ist '„nur erschliessbar“, Stellen Z. 3, 66, 68–69, 102, 121–122, 342, 344, 355, 357–359' | Soll '„nur erschliessbar“, Stellen Z. 3, 66, 68–69, 102, 121–122, 342, 344, 355, 357–359'
+ok   | Z2: Rohausgabe liegt im Repo (docs/belege/TB-140/z2.txt) | ist True | Soll True
+## Ergebnis, Abschnitt 'Fuer den steuernden Chat'
+Ergebnis: 449 Zeilen, sha256 5162fe154344df211d4825cbdad8ed2b30e83c7ba9d79b52076987536f95fcef
+ok   | Ergebnis: Abschnitt 'Für den steuernden Chat' vor 'Für Fable', je einmal | ist True | Soll True
+ok   | V4: Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V4: Urteil im Ergebnis | ist '*erfüllt*' | Soll '*erfüllt*'
+ok   | V5: Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V5: Urteil im Ergebnis | ist '*erfüllt*' | Soll '*erfüllt*'
+ok   | V6: Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V6: Urteil im Ergebnis | ist '*erfüllt*' | Soll '*erfüllt*'
+ok   | Z1: Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | Z1: Urteil im Ergebnis | ist '*erfüllt*' | Soll '*erfüllt*'
+ok   | Z2: Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | Z2: Urteil im Ergebnis | ist '„nur erschliessbar“' | Soll '„nur erschliessbar“'
+ok   | V1 Nr. 0: Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V1 Nr. 0: Urteil im Ergebnis | ist '„kein Zellen-Erzeuger gefunden“' | Soll '„kein Zellen-Erzeuger gefunden“'
+ok   | V1 (i): Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V1 (i): Urteil im Ergebnis | ist '„Spalte und Datei wie die Klammer“' | Soll '„Spalte und Datei wie die Klammer“'
+ok   | V1 (ii): Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V1 (ii): Urteil im Ergebnis | ist 'am vorhandenen Kern „Spalte und Datei wie die Klammer“; Kern des Erzeugers „nicht messbar“' | Soll 'am vorhandenen Kern „Spalte und Datei wie die Klammer“; Kern des Erzeugers „nicht messbar“'
+ok   | V2 (a): Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V2 (a): Urteil im Ergebnis | ist 'verwirft (alle fünf Stellen)' | Soll 'verwirft (alle fünf Stellen)'
+ok   | V2 (b): Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V2 (b): Urteil im Ergebnis | ist '„ein solcher Wert wird gebildet“' | Soll '„ein solcher Wert wird gebildet“'
+ok   | V3 (i): Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V3 (i): Urteil im Ergebnis | ist 'Zählung: 14 Zeilen, 7 mit Fall ohne Zahl (4 mit Wert 0, 3 mit „nicht definiert“), 7 „sagt nichts“' | Soll 'Zählung: 14 Zeilen, 7 mit Fall ohne Zahl (4 mit Wert 0, 3 mit „nicht definiert“), 7 „sagt nichts“'
+ok   | V3 (ii): Zeilen im Ergebnis | ist 1 | Soll 1
+ok   | V3 (ii): Urteil im Ergebnis | ist '„trifft teils zu“' | Soll '„trifft teils zu“'
+## Lock
+ok   | requirements.lock sha256 (Register 20) | ist '96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5' | Soll '96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5'
+rc 0: Voraussetzungen wie in 55.7
+rc 0
