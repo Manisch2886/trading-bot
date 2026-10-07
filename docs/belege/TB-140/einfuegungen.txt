@@ -1,0 +1,3 @@
+# TB-140 Schritt N — Einfügung E1 (erzeugt von einfuegen.py)
+# E<n> · Datei · Anker vorher · ausgeführt ja/nein · Text nachher
+E1 · docs/projektfuehrung/BACKLOG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
