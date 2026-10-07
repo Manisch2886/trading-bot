@@ -1,0 +1,307 @@
+## V3 Nr. 1 - Register: Dateien und Felder (Zaehlung)
+# TB-140 Suche V3-1a
+BEREICH	verfolgte Dateien, pfad ['docs/VORREGISTRIERUNG_neuselektion.md'], endung ['.md'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	nicht definiert	docs/VORREGISTRIERUNG_neuselektion.md	773	(Text nicht gedruckt)
+TREFFER	endlich	docs/VORREGISTRIERUNG_neuselektion.md	840	(Text nicht gedruckt)
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	3695	(Text nicht gedruckt)
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	3695	(Text nicht gedruckt)
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	3696	(Text nicht gedruckt)
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	3805	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	4307	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	4308	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	4422	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	4423	(Text nicht gedruckt)
+TREFFER	zelle_id	docs/VORREGISTRIERUNG_neuselektion.md	4423	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	5982	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	6375	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	6402	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	6468	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	7116	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	7301	(Text nicht gedruckt)
+TREFFER	nicht definiert	docs/VORREGISTRIERUNG_neuselektion.md	9284	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10260	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10460	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10551	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10795	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10797	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10797	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10797	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	10810	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	10810	(Text nicht gedruckt)
+TREFFER	haltedauer_median_handelstage	docs/VORREGISTRIERUNG_neuselektion.md	10810	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	10810	(Text nicht gedruckt)
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	10810	(Text nicht gedruckt)
+TREFFER	nicht definiert	docs/VORREGISTRIERUNG_neuselektion.md	10810	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	10820	(Text nicht gedruckt)
+TREFFER	haltedauer_median_handelstage	docs/VORREGISTRIERUNG_neuselektion.md	10820	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10827	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_ereignis_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	10837	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10850	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	10857	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	10857	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	10936	(Text nicht gedruckt)
+TREFFER	n_trades	docs/VORREGISTRIERUNG_neuselektion.md	11041	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	11042	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11045	(Text nicht gedruckt)
+TREFFER	zelle_id	docs/VORREGISTRIERUNG_neuselektion.md	11050	(Text nicht gedruckt)
+TREFFER	netto_rendite_pct	docs/VORREGISTRIERUNG_neuselektion.md	11052	(Text nicht gedruckt)
+TREFFER	netto_rendite_pct	docs/VORREGISTRIERUNG_neuselektion.md	11052	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11065	(Text nicht gedruckt)
+TREFFER	zelle_id	docs/VORREGISTRIERUNG_neuselektion.md	11066	(Text nicht gedruckt)
+TREFFER	n_trades	docs/VORREGISTRIERUNG_neuselektion.md	11066	(Text nicht gedruckt)
+TREFFER	netto_sharpe	docs/VORREGISTRIERUNG_neuselektion.md	11067	(Text nicht gedruckt)
+TREFFER	netto_rendite_pct	docs/VORREGISTRIERUNG_neuselektion.md	11067	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	11067	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11068	(Text nicht gedruckt)
+TREFFER	zelle_id	docs/VORREGISTRIERUNG_neuselektion.md	11072	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11097	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11206	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11211	(Text nicht gedruckt)
+TREFFER	nicht definiert	docs/VORREGISTRIERUNG_neuselektion.md	11246	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11253	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11253	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11253	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11300	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11301	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11301	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11342	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11403	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11414	(Text nicht gedruckt)
+TREFFER	netto_sharpe	docs/VORREGISTRIERUNG_neuselektion.md	11414	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11424	(Text nicht gedruckt)
+TREFFER	endlich	docs/VORREGISTRIERUNG_neuselektion.md	11424	(Text nicht gedruckt)
+TREFFER	endlich	docs/VORREGISTRIERUNG_neuselektion.md	11424	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11429	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11431	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11431	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11441	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11441	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11442	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11442	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11442	(Text nicht gedruckt)
+TREFFER	endlich	docs/VORREGISTRIERUNG_neuselektion.md	11487	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11488	(Text nicht gedruckt)
+TREFFER	netto_sharpe	docs/VORREGISTRIERUNG_neuselektion.md	11488	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11489	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11490	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	11490	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11490	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11490	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11531	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11531	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11531	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11531	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11531	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11531	(Text nicht gedruckt)
+TREFFER	zellen.csv	docs/VORREGISTRIERUNG_neuselektion.md	11538	(Text nicht gedruckt)
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11538	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11560	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11560	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11561	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11561	(Text nicht gedruckt)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11561	(Text nicht gedruckt)
+TREFFER	zellenbericht	docs/VORREGISTRIERUNG_neuselektion.md	11572	(Text nicht gedruckt)
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11573	(Text nicht gedruckt)
+MUSTER	zellen.csv	Treffer 28	Dateien 1
+MUSTER	zellenbericht	Treffer 15	Dateien 1
+MUSTER	zelle_id	Treffer 4	Dateien 1
+MUSTER	n_trades	Treffer 2	Dateien 1
+MUSTER	netto_sharpe	Treffer 3	Dateien 1
+MUSTER	netto_rendite_pct	Treffer 3	Dateien 1
+MUSTER	kapital_drawdown_pct	Treffer 6	Dateien 1
+MUSTER	kapital_drawdown_mtm_pct	Treffer 8	Dateien 1
+MUSTER	kapital_drawdown_ereignis_pct	Treffer 1	Dateien 1
+MUSTER	mittlere_exposure	Treffer 11	Dateien 1
+MUSTER	haltedauer_median_handelstage	Treffer 2	Dateien 1
+MUSTER	bestaetigung_ab_effektiv	Treffer 10	Dateien 1
+MUSTER	Ertragsanteil	Treffer 5	Dateien 1
+MUSTER	nicht definiert	Treffer 4	Dateien 1
+MUSTER	endlich	Treffer 4	Dateien 1
+RUECKGABE 0
+rc 0
+## V3 Nr. 1 - Register: Felder und Faelle ohne Zahl (Text, je Treffer hoechstens 300 Zeichen)
+# TB-140 Suche V3-1b
+BEREICH	verfolgte Dateien, pfad ['docs/VORREGISTRIERUNG_neuselektion.md'], endung ['.md'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	nicht definiert	docs/VORREGISTRIERUNG_neuselektion.md	773	**Zellen, in denen die Strategie nicht definiert ist, existieren nicht.** Bei
+TREFFER	endlich	docs/VORREGISTRIERUNG_neuselektion.md	840	* **Calmar bei Drawdown 0** ist 0,0, nicht unendlich — sonst gewönne ein
+TREFFER	Blocklänge L = max	docs/VORREGISTRIERUNG_neuselektion.md	1435	> Blocklänge L = max(mediane Haltedauer des Parametersatzes in Handelstagen,
+TREFFER	Standardabweichung 0	docs/VORREGISTRIERUNG_neuselektion.md	1442	> Trades**. Ist die Standardabweichung 0 (kein Trade in der Falte), ist der
+TREFFER	Formel für den Falten-Sharpe	docs/VORREGISTRIERUNG_neuselektion.md	1455	*Formel für den Falten-Sharpe: Mittel / Standardabweichung der täglichen
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	3695	> **Ertragsanteil der besten Falte**, **Ertragsanteil des besten Symbols**,
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	3695	> **Ertragsanteil der besten Falte**, **Ertragsanteil des besten Symbols**,
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	3696	> **Ertragsanteil der fünf besten Trades**.
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	3805	`rsi2_crypto` **7**, vier Bots **8**, zwei Bots **9** (21.4). ⇒ **„Ertragsanteil
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	4308	| `research/vorregistrierung/auswertung.py:246–247` | die Nebenbedingung vergleicht genau dieses `kapital_drawdown_pct` gegen die Benchmark-Grenze (`dd_satz`, `bestanden`) |
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	4422	, `docs/projektfuehrung/BACKLOG.md` Abschnitt 4): **(1)** `auswertung.py`, Datenvertrag Z. 40–58 — `kapital_drawdown_pct` kommt aus derselben Tagesreihe wie der Sharpe (eingefroren, gehört zu TB-30b); **(2)** `beispieldaten.py` Z. 24–26 und Z. 125 — rechnet den Drawdown heute ausdrücklich **nicht** 
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	7116	| Datenvertrag `auswertung.py` **Z. 41** | ⚠️ **Z. 51** (`<wurzel>/<bot>/herkunft.json`), Z. 52 „siehe herkunft.py"; Z. 41 ist `mittlere_exposure` | **abweichend** |
+TREFFER	nicht definiert	docs/VORREGISTRIERUNG_neuselektion.md	9284	**Eine Fundstelle berichtige ich an eurer Berichtigung:** Der Satz *„Zellen, in denen die Strategie nicht definiert ist, existieren nicht … von 1.024 auf 384"* steht in **Abschnitt 6 (Die Plateau-Regel)**, im Absatz nach der Spitzenformel — nicht in Abschnitt 4. Abschnitt 4 ist die Drawdown-Bedingun
+TREFFER	haltedauer_median_handelstage	docs/VORREGISTRIERUNG_neuselektion.md	10810	te aus 22.2 (Ertragsanteil der besten Selektionsfalte, des besten Symbols, der fünf besten Trades), haltedauer_median_handelstage (15.3 (b), R41) und bestaetigung_ab_effektiv (R37). Grundlage der drei Anteile: realisierte Erträge der ausgeführten Trades (Summe pnl_pct), Faltenzuordnung nach dem Eins
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	10810	lte, des besten Symbols, der fünf besten Trades), haltedauer_median_handelstage (15.3 (b), R41) und bestaetigung_ab_effektiv (R37). Grundlage der drei Anteile: realisierte Erträge der ausgeführten Trades (Summe pnl_pct), Faltenzuordnung nach dem Einstiegstag (2b), nur Selektionsfalten; Anteil = Beit
+TREFFER	Ertragsanteil	docs/VORREGISTRIERUNG_neuselektion.md	10810	ne Datei zellenbericht.csv mit genau einer Zeile je Zelle und den Feldern: die drei Werte aus 22.2 (Ertragsanteil der besten Selektionsfalte, des besten Symbols, der fünf besten Trades), haltedauer_median_handelstage (15.3 (b), R41) und bestaetigung_ab_effektiv (R37). Grundlage der drei Anteile: rea
+TREFFER	nicht definiert	docs/VORREGISTRIERUNG_neuselektion.md	10810	n; Anteil = Beitrag ÷ Gesamtertrag; bei Gesamtertrag ≤ 0 wird kein Anteil gebildet, das Feld trägt „nicht definiert“. auswertung.py liest die Zeile des Plateau-Gewinners und berichtet sie (22.2: Bericht, kein Tor; N unverändert); es rechnet die Werte nicht. Die Feldliste von zellenbericht.csv ist Re
+TREFFER	haltedauer_median_handelstage	docs/VORREGISTRIERUNG_neuselektion.md	10820	bitte R7 Nr. 6 (Block-Bootstrap-Band je Gewinnerzelle, nach dem Tag), gerechnet auf tagesreihen/<zelle>.csv mit L nach 15.3 (b) aus haltedauer_median_handelstage in zellenbericht.csv (R34). Tatsachennotiz: „im Auswertungsskript“ (15.3 (a)) trifft heute keinen Code (0 Treffer bootstrap, TB-120). F-4.
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	wdown_ereignis_pct — den ereignisindizierten Drawdown, berichtet, nicht bewertet (24.2). Die Spalte kapital_drawdown_pct wird durch die zwei benannten ersetzt, nicht umgedeutet. auswertung.py rechnet kapital_drawdown_mtm_pct aus tagesreihen/<zelle>.csv nach und endet bei Abweichung mit 2. Der Drawdo
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	und 45.5 (zwei Drawdown-Spalten; Konsistenzprüfung; Ausschnitt). zellen.csv trägt je (Zelle, Falte) kapital_drawdown_mtm_pct — den Kapital-Drawdown der Nebenbedingung auf der täglichen MtM-Reihe (1a) auf den Tagen des Benchmarks (3b (c)) — und kapital_drawdown_ereignis_pct — den ereignisindizierten 
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	kapital_drawdown_pct wird durch die zwei benannten ersetzt, nicht umgedeutet. auswertung.py rechnet kapital_drawdown_mtm_pct aus tagesreihen/<zelle>.csv nach und endet bei Abweichung mit 2. Der Drawdown je Falte ist der Ausschnitt eines durchgehenden Kapitalpfads (29.3, 2a): gemessen innerhalb der F
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	Hochpunkt, ohne Neustart des Kapitals. Festlegung 3 und Abschnitt 8 („drei tiefste Falten-Drawdowns“, „Kapital-Drawdown je Falte“) beziehen sich auf kapital_drawdown_mtm_pct; der ereignisindizierte Wert steht daneben als eigene Zeile. Vollzieht K4j (1) und (2); (3) folgt mit 40.8 (h). F-5, M49, M62.
+TREFFER	kapital_drawdown_ereignis_pct	docs/VORREGISTRIERUNG_neuselektion.md	10827	own der Nebenbedingung auf der täglichen MtM-Reihe (1a) auf den Tagen des Benchmarks (3b (c)) — und kapital_drawdown_ereignis_pct — den ereignisindizierten Drawdown, berichtet, nicht bewertet (24.2). Die Spalte kapital_drawdown_pct wird durch die zwei benannten ersetzt, nicht umgedeutet. auswertung.
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	10837	tion zählt nicht (Attribution je Position). Der Zellen-Erzeuger bestimmt diesen Tag für jede Zelle (bestaetigung_ab_effektiv, R34); auswertung.py nimmt den Wert der Gewinnerzelle (41.3 C3). (ii) Die Bestätigungsperiode der Leiter (16.4 (c)/(d)) ist der Papierpfad ab Go-Live; sie wächst; 5.1 Nr. 7 („
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	10936	rypto Kalendertage, 15.4 Anmerkung 1) des Anteils des Kapitals in offenen Positionen am Tagesschluss, bewertet wie die MtM-Reihe (1a). [Voraussetzung, zu messen: Bildung von mittlere_exposure im Vertrag/auswertung.py und in mtm_kern.py; der Registertext folgt dem Code, wo er ihn hat.] M50, M54, A69.
+TREFFER	n_trades	docs/VORREGISTRIERUNG_neuselektion.md	11041	| R33 (48.1) | der Vertrag führt die Trade-Zahl je (Zelle, Falte) | `n_trades`, `auswertung.py:39`, Pflichtspalte Z. 133 | passt |
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	11042	| R36 (48.4) | MtM-Drawdown in der Falte, Basis Faltenbeginn | `research/mtm_drawdown/mtm_kern.py:296–304` (Basis: letzter Rastertag vor `von`), Raster Z. 135–139. Der Vertrag führt heute nur `kapital_drawdown_pct`; die zwei Spalten nach R36 kommen mit dem Zellen-Erzeuger | passt |
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11045	| R48 (d) (48.16) | Bildung von `mittlere_exposure` im Vertrag, in `auswertung.py` und in `mtm_kern.py` | nicht gebildet: `auswertung.py:405` liest sie als Eingabe; `mtm_kern.py` führt keine Exposure (nur `gebunden`, zum Einstand, Z. 186–188); `research/exposure_messung/exposure_kern.py` und `resear
+TREFFER	netto_rendite_pct	docs/VORREGISTRIERUNG_neuselektion.md	11052	| R54 (49.2) | liest und rechnet irgendein Code `netto_rendite_pct` aus dem Vertrag? | Pflichtspalte `auswertung.py:134`; gelesen nur für die Bestätigungsperiode (Z. 624), berichtet in Z. 823; `netto_rendite_pct_ueber_selektionsfalten` (Z. 675) kommt aus `bereinigung["strategie_rendite_pct"]`, nicht
+TREFFER	netto_rendite_pct	docs/VORREGISTRIERUNG_neuselektion.md	11052	` aus dem Vertrag? | Pflichtspalte `auswertung.py:134`; gelesen nur für die Bestätigungsperiode (Z. 624), berichtet in Z. 823; `netto_rendite_pct_ueber_selektionsfalten` (Z. 675) kommt aus `bereinigung["strategie_rendite_pct"]`, nicht aus der Spalte | trifft zu: Berichtsgrösse ohne Leser im Urteil |
+TREFFER	n_trades	docs/VORREGISTRIERUNG_neuselektion.md	11066	zelle_id, <je Rasterachse eine Spalte>, falte, rolle, n_trades,
+TREFFER	netto_sharpe	docs/VORREGISTRIERUNG_neuselektion.md	11067	netto_sharpe, netto_rendite_pct, kapital_drawdown_pct,
+TREFFER	netto_rendite_pct	docs/VORREGISTRIERUNG_neuselektion.md	11067	netto_sharpe, netto_rendite_pct, kapital_drawdown_pct,
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	11067	netto_sharpe, netto_rendite_pct, kapital_drawdown_pct,
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11068	mittlere_exposure
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11206	| 2 | R48 (d): `mittlere_exposure` im Vertrag bilden, bewertet wie die MtM-Reihe | mit dem Zellen-Erzeuger (R46) |
+TREFFER	nicht definiert	docs/VORREGISTRIERUNG_neuselektion.md	11246	ildet, trägt je Bot eine Probe gegen den Signalpfad: Ein Einstieg genau am Vorlauf wird gefunden, davor ist die Bedingung nicht definiert (Bauart TB-124, 50.4), mit Gegenprobe. (d) Der Faltenplan trägt den gerechneten Wert je Bot als Feld (R53); sichtbar wird der Wert dort, nicht in einer Konstante.
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11253	osure als arithmetisches Mittel der Spalte exposure der Tagesreihe und gibt sie unter dem Schlüssel mittlere_exposure zurück. Das ist eine Bildung im Sinn von R48 (d). Der Registertext folgt ihr in der Aggregation (Mittel über die Tage). Die Bewertung der Spalte exposure legt dieser Code nicht fest;
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11253	 nach 25c (1) und wird gemeldet.] (c) Der Zellen-Erzeuger schreibt beide Träger aus einer Rechnung: mittlere_exposure in zellen.csv ist je (Zelle, Falte) das Mittel der Spalte exposure der Tagesreihe dieser Zelle über die Tage der Falte. Die Abnahme nach R46 prüft diese Gleichheit, mit Gegenprobe. a
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11300	he und Benchmark (`gemeinsam`, Z. 517; Spalte `exposure`, Z. 523; `np.mean`, Z. 528), zurück unter `mittlere_exposure` (Z. 537) | Falten und Zelle: trifft (R48 (d): „die des Gewinners über seine Selektionsfalten (7 (c): „über dieselben Tage“)“). Tage: gemittelt wird über die gemeinsamen Tage mit dem
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11301	py` nur Z. 405 (Eingabe aus `zellen.csv`). Dazu kommt: `auswertung.py::beta_bereinigung` bildet eine mittlere Exposure als arithmetisches Mittel der Spalte `exposure` der Tagesreihe (Z. 523, 528) und gibt sie als `mittlere_exposure` zurück (Z. 537) | ergänzt; die Zeile in 50.1 bleibt zeichengleich |
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11403	| 6 | 02a, „Unsicher“ 4: ob `bestaetigung_ab_effektiv` (R37) den Beginn der Tage nach R64 für die Bestätigungsperiode verschiebt | Vorprüfung, dann an Fable |
+TREFFER	netto_sharpe	docs/VORREGISTRIERUNG_neuselektion.md	11414	chnet ihn nach; die Sharpe-Funktion in kennzahlen.py hat heute keinen Aufrufer, auswertung.py liest netto_sharpe aus zellen.csv. Der Fall, dass der Benchmark nicht an allen Tagen einer Falte definiert ist, tritt in vier ersten Falten auf (33.2, 23.4). Der Sharpe im DSR steht auf den gemeinsamen Tage
+TREFFER	endlich	docs/VORREGISTRIERUNG_neuselektion.md	11424	gesreihe (benchmark_tagesreihen/<bot>.csv) ist datum eindeutig, kein Feld leer und jeder Zahlenwert endlich. Ein flacher Tag trägt 0, nie nichts (1a). Ein Verstoss ist ein Befund über den Erzeuger, kein Ausgang (Bauart R33): Der Zellen-Erzeuger prüft jede dieser Dateien im Lauf, nachdem er sie gesch
+TREFFER	endlich	docs/VORREGISTRIERUNG_neuselektion.md	11424	auf, nachdem er sie geschrieben hat, und endet sonst mit 2. Die Abnahme nach R46 prüft die Wache mit Gegenprobe, je für ein doppeltes Datum, ein leeres Feld und einen nicht endlichen Wert; der registrierte Lauf trägt die Wache selbst. auswertung.py wird dafür nicht geöffnet. Für zellen.csv gilt R33.
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11431	atistik, die R37 (i) für den Gewinner beschreibt. Alle Grössen dieser Zeile stehen auf den Tagen ab bestaetigung_ab_effektiv der Zelle bis zum Ende der Spanne (35.1). Die Spanne bleibt, was 35.1 sagt; ihre Tage vor diesem Tag gehören weder zu einer Selektionsfalte noch zur Bestätigungsstatistik. (b)
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11441	ört zur planmässigen Öffnung von auswertung.py, die R36 (zwei Drawdown-Spalten, Nachrechnung), R37 (bestaetigung_ab_effektiv), R34 (zellenbericht.csv) und R55 (Umbenennung) verlangen. Beispieldaten und Tests, die den Namen je Markt schreiben oder lesen, folgen in derselben Änderung. (c) In R64 (e) l
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11442	, die Messung des steuernden Chats zur Anfrage 02.10.c, Teil 0 Nr. 1 (auswertung.py kennt weder zellenbericht noch kapital_drawdown_mtm_pct noch bestaetigung_ab_effektiv). Bauart, nicht Quelle: 23.5 („ein Name, der etwas anderes verspricht als das Verhalten“, dort zu einem Docstring). Kein Ergebnis.
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11442	, die Messung des steuernden Chats zur Anfrage 02.10.c, Teil 0 Nr. 1 (auswertung.py kennt weder zellenbericht noch kapital_drawdown_mtm_pct noch bestaetigung_ab_effektiv). Bauart, nicht Quelle: 23.5 („ein Name, der etwas anderes verspricht als das Verhalten“, dort zu einem Docstring). Kein Ergebnis.
+TREFFER	endlich	docs/VORREGISTRIERUNG_neuselektion.md	11487	eht als Literal in `auswertung.py:264–265` | trifft für die Funktion; einen Aufruf gibt es noch nicht (der Zellen-Erzeuger fehlt). Den Nenner der Standardabweichung nennt das Register nicht; der Code legt n − 1 fest (R50). Ein nicht endlicher Wert in der Reihe ergäbe still 0; R67 schliesst ihn aus |
+TREFFER	Standardabweichung 0	docs/VORREGISTRIERUNG_neuselektion.md	11487	 ddof=1))` (Z. 105) und gibt `float(np.mean(r)) / s * math.sqrt(perioden_je_jahr)` zurück (Z. 108); Standardabweichung 0 oder weniger als zwei Werte ergeben 0. Formel im Register: REG Z. 1449–1450; 1c: REG Z. 1442–1443. Registrierte Konstante ist `registerdaten.py:109` `HANDELSTAGE_JE_JAHR = 252`; d
+TREFFER	netto_sharpe	docs/VORREGISTRIERUNG_neuselektion.md	11488	e Funktionen weiter (`standard_sharpe`, Lambdas), nicht `kennzahlen.sharpe`; `auswertung.py` liest `netto_sharpe` nur aus `zellen.csv` (Z. 353–354, 395, 577, 622–623, 684); `bootstrap` 0 Treffer in `research/vorregistrierung/*.py`. DSR: `auswertung.py:670` mit den Renditen aus `beta_bereinigung` (Sc
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11489	| R68 (53.3) (b) | Tatsache im Block („auswertung.py liest sie für kein Urteil“) | `mittlere_exposure` wird in `auswertung.py` an zwei Stellen gelesen: Z. 405 in `zulaessigkeit`, nur über die Selektionsfalten (Z. 403); Z. 626 in `bestaetigungsperiode`, nur für den Bericht (Z. 728) | trifft |
+TREFFER	kapital_drawdown_pct	docs/VORREGISTRIERUNG_neuselektion.md	11490	reffer in `auswertung.py`; `kapital_drawdown_mtm_pct` und `bestaetigung_ab_effektiv` 0 Treffer in allen `*.py` des Repos (ohne `ergebnisse/` und `trading-env/`); `kapital_drawdown_pct` in `auswertung.py` Z. 40, 134, 413–414, 625, 681–682 und 824; `auswertung.py:379` liest `f"{markt}.csv"` | trifft |
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11490	elle des Grundes (was `auswertung.py` nicht kennt) | `zellenbericht` 0 Treffer in `auswertung.py`; `kapital_drawdown_mtm_pct` und `bestaetigung_ab_effektiv` 0 Treffer in allen `*.py` des Repos (ohne `ergebnisse/` und `trading-env/`); `kapital_drawdown_pct` in `auswertung.py` Z. 40, 134, 413–414, 625
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11490	ng.py` nicht kennt) | `zellenbericht` 0 Treffer in `auswertung.py`; `kapital_drawdown_mtm_pct` und `bestaetigung_ab_effektiv` 0 Treffer in allen `*.py` des Repos (ohne `ergebnisse/` und `trading-env/`); `kapital_drawdown_pct` in `auswertung.py` Z. 40, 134, 413–414, 625, 681–682 und 824; `auswertung.
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11531	 R36 und R60 (c) bleiben ohne Ausnahme. Für die Zeile der Bestätigungsperiode rechnet auswertung.py kapital_drawdown_mtm_pct aus dem Paar nach (b) nach, für jede Zelle, deren Tagesreihe es liest, und endet bei Abweichung mit 2. Die Abnahme nach R46 prüft die mittlere Exposure dieser Zeile gegen das 
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11531	sure des einen Pfads ein zweites Spaltenpaar: Rendite und Exposure der Bestätigung. An jedem Tag ab bestaetigung_ab_effektiv der Zelle ist es das Paar des einen Pfads abzüglich der Beiträge der nicht gezählten Positionen nach (a); an jedem Tag davor ist es gleich dem Paar des einen Pfads. Das Paar s
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11531	Sinn von 4a). (e) Wache im Lauf. Weicht das Paar nach (b) vom Paar des einen Pfads an einem Tag vor bestaetigung_ab_effektiv ab oder an einem Tag, an dem keine nicht gezählte Position der Zelle offen ist, ist das ein Befund über den Erzeuger, kein Ausgang (Bauart R33). Der Zellen-Erzeuger prüft das 
+TREFFER	mittlere_exposure	docs/VORREGISTRIERUNG_neuselektion.md	11538	 Exposure der Zeile kämen „aus einer Rechnung“. R60 (c) sagt das von den zwei Trägern der Exposure (mittlere_exposure in zellen.csv und die Spalte exposure der Tagesreihe), nicht von Rendite und Exposure; die Bauart steht in R63 (d). Berichtigt in R68, Fassung 02c; zwölfter Fall der Klasse „Bestand 
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11561	y` (860 Zeilen): Der Docstring führt die Tagesreihe in Z. 46 als `datum, netto_rendite, exposure`; `kapital_drawdown_mtm_pct`, `zellenbericht` und `bestaetigung_ab_effektiv` kommen in der Datei nicht vor. Einen Zellen-Erzeuger gibt es im Repo nicht | Bestand; was R75 verlangt, kommt mit der Öffnung 
+TREFFER	bestaetigung_ab_effektiv	docs/VORREGISTRIERUNG_neuselektion.md	11561	ihe in Z. 46 als `datum, netto_rendite, exposure`; `kapital_drawdown_mtm_pct`, `zellenbericht` und `bestaetigung_ab_effektiv` kommen in der Datei nicht vor. Einen Zellen-Erzeuger gibt es im Repo nicht | Bestand; was R75 verlangt, kommt mit der Öffnung nach R69 (b) und mit dem Zellen-Erzeuger (54.6 N
+TREFFER	kapital_drawdown_mtm_pct	docs/VORREGISTRIERUNG_neuselektion.md	11573	| 4 | Planmässige Öffnung von `auswertung.py` (R69 (b)), dazu aus R75: Nachrechnung von `kapital_drawdown_mtm_pct` für die Zeile der Bestätigungsperiode aus dem Paar (R75 (d)); Bericht der Zahl der nicht gezählten Positionen (R75 (g)); die zwei Spaltennamen im Docstring, danach die Feldliste in 50.2
+MUSTER	n_trades	Treffer 2	Dateien 1
+MUSTER	netto_sharpe	Treffer 3	Dateien 1
+MUSTER	netto_rendite_pct	Treffer 3	Dateien 1
+MUSTER	kapital_drawdown_pct	Treffer 6	Dateien 1
+MUSTER	kapital_drawdown_mtm_pct	Treffer 8	Dateien 1
+MUSTER	kapital_drawdown_ereignis_pct	Treffer 1	Dateien 1
+MUSTER	mittlere_exposure	Treffer 11	Dateien 1
+MUSTER	haltedauer_median_handelstage	Treffer 2	Dateien 1
+MUSTER	bestaetigung_ab_effektiv	Treffer 10	Dateien 1
+MUSTER	Ertragsanteil	Treffer 5	Dateien 1
+MUSTER	nicht definiert	Treffer 4	Dateien 1
+MUSTER	endlich	Treffer 4	Dateien 1
+MUSTER	Standardabweichung 0	Treffer 2	Dateien 1
+MUSTER	Formel für den Falten-Sharpe	Treffer 1	Dateien 1
+MUSTER	Blocklänge L = max	Treffer 1	Dateien 1
+RUECKGABE 0
+rc 0
+## V3 Nr. 2 - auswertung.py: Pruefungen auf nicht endliche Werte
+# TB-140 Suche V3-2a
+BEREICH	verfolgte Dateien, pfad ['research/vorregistrierung/auswertung.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	isna	research/vorregistrierung/auswertung.py	355	if df["netto_sharpe"].isna().any():
+MUSTER	isfinite	Treffer 0	Dateien 0
+MUSTER	isinf	Treffer 0	Dateien 0
+MUSTER	finite	Treffer 0	Dateien 0
+MUSTER	isna	Treffer 1	Dateien 1
+MUSTER	notna	Treffer 0	Dateien 0
+MUSTER	fillna	Treffer 0	Dateien 0
+MUSTER	dropna	Treffer 0	Dateien 0
+MUSTER	np.inf	Treffer 0	Dateien 0
+MUSTER	zellenbericht	Treffer 0	Dateien 0
+RUECKGABE 0
+rc 0
+## V3 Nr. 2 - auswertung.py: Pflichtspalten, Leser der Spalten, Abbruch und Rueckgabewert
+# TB-140 Suche V3-2b
+BEREICH	verfolgte Dateien, pfad ['research/vorregistrierung/auswertung.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	PFLICHTSPALTEN	research/vorregistrierung/auswertung.py	133	PFLICHTSPALTEN = ["zelle_id", "falte", "rolle", "n_trades", "netto_sharpe",
+TREFFER	"n_trades"	research/vorregistrierung/auswertung.py	133	PFLICHTSPALTEN = ["zelle_id", "falte", "rolle", "n_trades", "netto_sharpe",
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	133	PFLICHTSPALTEN = ["zelle_id", "falte", "rolle", "n_trades", "netto_sharpe",
+TREFFER	"netto_rendite_pct"	research/vorregistrierung/auswertung.py	134	"netto_rendite_pct", "kapital_drawdown_pct", "mittlere_exposure"]
+TREFFER	"kapital_drawdown_pct"	research/vorregistrierung/auswertung.py	134	"netto_rendite_pct", "kapital_drawdown_pct", "mittlere_exposure"]
+TREFFER	"mittlere_exposure"	research/vorregistrierung/auswertung.py	134	"netto_rendite_pct", "kapital_drawdown_pct", "mittlere_exposure"]
+TREFFER	class Abbruch	research/vorregistrierung/auswertung.py	137	class Abbruch(SystemExit):
+TREFFER	RUECKGABEWERT_STARTPRUEFUNG	research/vorregistrierung/auswertung.py	142	stderr, der Rueckgabewert ist `paths.RUECKGABEWERT_STARTPRUEFUNG`."""
+TREFFER	RUECKGABEWERT_STARTPRUEFUNG	research/vorregistrierung/auswertung.py	146	super().__init__(paths.RUECKGABEWERT_STARTPRUEFUNG)
+TREFFER	RUECKGABEWERT_STARTPRUEFUNG	research/vorregistrierung/auswertung.py	154	`SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)` - unabhaengig vom Modus.
+TREFFER	RUECKGABEWERT_STARTPRUEFUNG	research/vorregistrierung/auswertung.py	159	raise SystemExit(paths.RUECKGABEWERT_STARTPRUEFUNG)
+TREFFER	except	research/vorregistrierung/auswertung.py	179	except (OSError, ValueError) as e:
+TREFFER	def lies_zellen	research/vorregistrierung/auswertung.py	320	def lies_zellen(bot: str, wurzel: str, mess: dict, plan: dict) -> pd.DataFrame:
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	323	raise Abbruch(f"{bot}: {pfad} fehlt - der Lauf ist unvollstaendig.")
+TREFFER	PFLICHTSPALTEN	research/vorregistrierung/auswertung.py	327	fehlend = [s for s in PFLICHTSPALTEN if s not in df.columns]
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	329	raise Abbruch(f"{bot}: Spalten fehlen in zellen.csv: {fehlend}")
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	336	raise Abbruch(f"{bot}: {len(gefunden - erwartet)} Zelle(n) in den "
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	340	raise Abbruch(f"{bot}: {len(erwartet - gefunden)} Rasterzelle(n) fehlen "
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	347	raise Abbruch(f"{bot}/{name}: Falten stimmen nicht mit dem "
+TREFFER	"n_trades"	research/vorregistrierung/auswertung.py	353	df["netto_sharpe"] = np.where(df["n_trades"].to_numpy() == 0, 0.0,
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	353	df["netto_sharpe"] = np.where(df["n_trades"].to_numpy() == 0, 0.0,
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	354	df["netto_sharpe"].to_numpy(dtype=float))
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	355	if df["netto_sharpe"].isna().any():
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	356	raise Abbruch(f"{bot}: netto_sharpe enthaelt Leerwerte in Falten MIT "
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	364	raise Abbruch(f"{bot}: Tagesreihe fuer '{zid}' fehlt ({pfad}). Der "
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	369	raise Abbruch(f"{bot}/{zid}: Spalte '{s}' fehlt in der Tagesreihe")
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	381	raise Abbruch(f"Benchmark-Tagesreihe fuer {markt} fehlt ({pfad}). Ohne "
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	385	raise Abbruch(f"Benchmark {markt}: Spalte 'netto_rendite' fehlt")
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	395	return teil.groupby("zelle_id")["netto_sharpe"].median()
+TREFFER	"mittlere_exposure"	research/vorregistrierung/auswertung.py	405	e = float(z["mittlere_exposure"])
+TREFFER	"kapital_drawdown_pct"	research/vorregistrierung/auswertung.py	413	"dd_satz": float(z["kapital_drawdown_pct"]),
+TREFFER	"kapital_drawdown_pct"	research/vorregistrierung/auswertung.py	414	"bestanden": float(z["kapital_drawdown_pct"]) >= grenze,
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	519	raise Abbruch(f"{bot}/{zid}: weniger als drei gemeinsame Tage mit der "
+TREFFER	"mittlere_exposure"	research/vorregistrierung/auswertung.py	537	"mittlere_exposure": exposure_mittel,
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	577	values="netto_sharpe", aggfunc="first")
+TREFFER	raise Abbruch	research/vorregistrierung/auswertung.py	615	raise Abbruch(f"{bot}: die Bestaetigungsperiode '{name}' fehlt fuer den "
+TREFFER	"n_trades"	research/vorregistrierung/auswertung.py	621	"n_trades": int(z["n_trades"]),
+TREFFER	"n_trades"	research/vorregistrierung/auswertung.py	621	"n_trades": int(z["n_trades"]),
+TREFFER	"n_trades"	research/vorregistrierung/auswertung.py	622	"netto_sharpe": (0.0 if int(z["n_trades"]) == 0
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	622	"netto_sharpe": (0.0 if int(z["n_trades"]) == 0
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	623	else float(z["netto_sharpe"])),
+TREFFER	"netto_rendite_pct"	research/vorregistrierung/auswertung.py	624	"netto_rendite_pct": float(z["netto_rendite_pct"]),
+TREFFER	"netto_rendite_pct"	research/vorregistrierung/auswertung.py	624	"netto_rendite_pct": float(z["netto_rendite_pct"]),
+TREFFER	"kapital_drawdown_pct"	research/vorregistrierung/auswertung.py	625	"kapital_drawdown_pct": float(z["kapital_drawdown_pct"]),
+TREFFER	"kapital_drawdown_pct"	research/vorregistrierung/auswertung.py	625	"kapital_drawdown_pct": float(z["kapital_drawdown_pct"]),
+TREFFER	"mittlere_exposure"	research/vorregistrierung/auswertung.py	626	"mittlere_exposure": float(z["mittlere_exposure"]),
+TREFFER	"mittlere_exposure"	research/vorregistrierung/auswertung.py	626	"mittlere_exposure": float(z["mittlere_exposure"]),
+TREFFER	"kapital_drawdown_pct"	research/vorregistrierung/auswertung.py	681	kz.drei_tiefste_drawdowns(gew_falten["kapital_drawdown_pct"]),
+TREFFER	"kapital_drawdown_pct"	research/vorregistrierung/auswertung.py	682	"falten_drawdowns": {r["falte"]: float(r["kapital_drawdown_pct"])
+TREFFER	"netto_sharpe"	research/vorregistrierung/auswertung.py	684	"falten_sharpe": {r["falte"]: float(r["netto_sharpe"])
+TREFFER	"n_trades"	research/vorregistrierung/auswertung.py	687	if int(r["n_trades"]) == 0],
+MUSTER	PFLICHTSPALTEN	Treffer 2	Dateien 1
+MUSTER	def lies_zellen	Treffer 1	Dateien 1
+MUSTER	"n_trades"	Treffer 6	Dateien 1
+MUSTER	"netto_sharpe"	Treffer 9	Dateien 1
+MUSTER	"netto_rendite_pct"	Treffer 3	Dateien 1
+MUSTER	"kapital_drawdown_pct"	Treffer 7	Dateien 1
+MUSTER	"mittlere_exposure"	Treffer 5	Dateien 1
+MUSTER	class Abbruch	Treffer 1	Dateien 1
+MUSTER	raise Abbruch	Treffer 12	Dateien 1
+MUSTER	RUECKGABEWERT_STARTPRUEFUNG	Treffer 4	Dateien 1
+MUSTER	except	Treffer 1	Dateien 1
+RUECKGABE 0
+rc 0
+# TB-140 Suche V3-2c
+BEREICH	verfolgte Dateien, pfad ['shared/paths.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	RUECKGABEWERT_STARTPRUEFUNG =	shared/paths.py	220	RUECKGABEWERT_STARTPRUEFUNG = 2
+MUSTER	RUECKGABEWERT_STARTPRUEFUNG =	Treffer 1	Dateien 1
+RUECKGABE 0
+rc 0
+## Werkzeugprobe: pandas.isna an NaN, +inf, -inf, 1.0 (Umgebung trading-env/bin/python3; kein Code des Repos)
+pandas 2.3.3 isna [True, False, False, False]
+rc 0
+## Ende
+rc 0

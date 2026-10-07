@@ -1,0 +1,291 @@
+V1-01	docs/VORREGISTRIERUNG_neuselektion.md	10857	teil	Ausgaben des Zellen-Erzeugers je Bot: zellen.csv (R33, R36), tagesreihen/<zelle>.csv, benchmark_tagesreihen/<bot>.csv, zellenbericht.csv (R34), symbole_je_falte.csv (R38), herkunft.json mit teile (37.4)
+V1-02	research/vorregistrierung/auswertung.py	3	zeile	TB-30a - Das eingefrorene Auswertungsskript
+V1-03	research/vorregistrierung/auswertung.py	5	zeile	Dieses Programm liest die ROHERGEBNISSE eines Selektionslaufs und gibt aus:
+V1-04	research/vorregistrierung/auswertung.py	321	zeile	pfad = os.path.join(wurzel, bot, "zellen.csv")
+V1-05	research/vorregistrierung/auswertung.py	379	zeile	pfad = os.path.join(wurzel, "benchmark_tagesreihen", f"{markt}.csv")
+V1-06	research/vorregistrierung/beispieldaten.py	3	zeile	TB-30a - Beispieldaten: Rohergebnisse mit frei erfundenen Werten
+V1-07	research/vorregistrierung/beispieldaten.py	200	zeile	df.to_csv(os.path.join(ordner, "zellen.csv"), index=False)
+V1-08	research/vorregistrierung/beispieldaten.py	210	zeile	with open(os.path.join(ordner, "herkunft.json"), "w", encoding="utf-8") as f:
+V1-09	research/vorregistrierung/beispieldaten.py	233	zeile	os.path.join(wurzel, "benchmark_tagesreihen", f"{markt}.csv"), index=False)
+V1-10	research/vorregistrierung/test_ersatzwerte.py	3	zeile	TB-106 - Rueckfall (d): stille Ersatzwerte in faltenplan.py, benchmark.py,
+V1-11	research/vorregistrierung/test_ersatzwerte.py	775	zeile	with open(os.path.join(w, {BOT!r}, "zellen.csv"), "w") as f:
+V1-12	research/vorregistrierung/test_vorregistrierung.py	3	zeile	TB-30a - Selbsttest der Vorregistrierung
+V1-13	research/vorregistrierung/test_vorregistrierung.py	206	zeile	p = os.path.join(d, BOT, "zellen.csv")
+V1-14	research/tb24_haltedauern/positionen_holen.py	2	zeile	Ein Bot, ein Prozess: Positionen MIT Ausstiegsart und Kerzenzahl herausholen
+V1-15	research/tb24_haltedauern/positionen_holen.py	219	zeile	_schreibe_einmal(f"{BOT}_herkunft.json",
+V1-16	research/vorregistrierung/benchmark.py	120	zeile	DATA_DIR = paths.DATA_DIR
+V1-17	research/vorregistrierung/benchmark.py	121	zeile	CONFIG_DIR = paths.CONFIG_DIR
+V1-18	research/vorregistrierung/benchmark.py	139	zeile	return os.path.join(CONFIG_DIR, os.path.basename(rd.UNIVERSUM[markt]))
+V1-19	research/vorregistrierung/benchmark.py	145	zeile	return [x for x in s if x not in {"XAUTUSDT", "PAXGUSDT"}]
+V1-20	research/vorregistrierung/benchmark.py	148	zeile	def tagesschluss(markt: str) -> dict:
+V1-21	research/vorregistrierung/benchmark.py	152	zeile	pfad = os.path.join(DATA_DIR, f"{s}_1d.csv")
+V1-22	research/vorregistrierung/benchmark.py	155	zeile	df = pd.read_csv(pfad, parse_dates=["open_time"])
+V1-23	research/vorregistrierung/benchmark.py	156	zeile	df = df.dropna(subset=["close"])
+V1-24	research/vorregistrierung/benchmark.py	159	zeile	reihen[s] = pd.Series(df["close"].to_numpy(dtype=float),
+V1-25	research/vorregistrierung/benchmark.py	253	zeile	kurse = {markt: tagesschluss(markt) for markt in ("aktien", "krypto")}
+V1-26	research/vorregistrierung/benchmark.py	271	zeile	reihen = tagesgenau(kurse[eig["markt"]], handelbar)
+V1-27	research/vorregistrierung/test_vorregistrierung.py	1172	zeile	print(markt, sorted(bm.tagesschluss(markt)))
+V1-28	research/vorregistrierung/test_ersatzwerte.py	225	zeile	"bm.tagesschluss = lambda markt: {}\n"
+V1-29	research/vorregistrierung/registerdaten.py	131	zeile	"elliott_wave":               {"markt": "krypto", "zeitrahmen": "1h"},
+V1-30	research/vorregistrierung/registerdaten.py	132	zeile	"t3_supertrend":              {"markt": "krypto", "zeitrahmen": "4h"},
+V1-31	research/vorregistrierung/registerdaten.py	133	zeile	"rsi2_crypto":                {"markt": "krypto", "zeitrahmen": "1d"},
+V1-32	research/vorregistrierung/registerdaten.py	134	zeile	"turtle_soup_crypto":         {"markt": "krypto", "zeitrahmen": "1d"},
+V1-33	research/vorregistrierung/registerdaten.py	135	zeile	"volatility_breakout_crypto": {"markt": "krypto", "zeitrahmen": "1d"},
+V1-34	research/vorregistrierung/registerdaten.py	136	zeile	"elliott_wave_stocks":        {"markt": "aktien", "zeitrahmen": "1d"},
+V1-35	research/vorregistrierung/registerdaten.py	137	zeile	"rsi2_mean_reversion":        {"markt": "aktien", "zeitrahmen": "1d"},
+V1-36	research/vorregistrierung/registerdaten.py	138	zeile	"turtle_soup_stocks":         {"markt": "aktien", "zeitrahmen": "1d"},
+V1-37	research/vorregistrierung/registerdaten.py	139	zeile	"volatility_breakout":        {"markt": "aktien", "zeitrahmen": "1d"},
+V1-38	research/mtm_drawdown/mtm_kern.py	55	zeile	* Er liest und schreibt keine Datei.
+V1-39	research/mtm_drawdown/mtm_kern.py	135	zeile	def tagesraster(schlusskurse: dict, von=None, bis=None) -> pd.DatetimeIndex:
+V1-40	research/mtm_drawdown/mtm_kern.py	139	zeile	(Registertext 3b (c)): die 1d-Kursdateien in data/."""
+V1-41	research/mtm_drawdown/mtm_kern.py	151	zeile	def kurse_auf_raster(schlusskurse: dict, tage: pd.DatetimeIndex):
+V1-42	research/mtm_drawdown/grundlage.py	34	zeile	REPO_ROOT = os.path.dirname(os.path.dirname(_HIER))
+V1-43	research/mtm_drawdown/grundlage.py	35	zeile	DATA_DIR = os.path.join(REPO_ROOT, "data")
+V1-44	research/mtm_drawdown/grundlage.py	82	zeile	def lade_schlusskurse(symbole, zeitrahmen="1d") -> dict:
+V1-45	research/mtm_drawdown/grundlage.py	87	zeile	pfad = os.path.join(DATA_DIR, f"{s}_{zeitrahmen}.csv")
+V1-46	research/mtm_drawdown/grundlage.py	90	zeile	df = pd.read_csv(pfad, parse_dates=["open_time"]).dropna(subset=["close"])
+V1-47	research/mtm_drawdown/grundlage.py	91	zeile	reihen[s] = pd.Series(df["close"].to_numpy(dtype=float),
+V1-48	research/mtm_drawdown/grundlage.py	211	zeile	kerzen = lade_schlusskurse(symbole, meta.get("zeitrahmen", "1d"))
+V1-49	research/mtm_drawdown/grundlage.py	212	zeile	tages = lade_schlusskurse(symbole, "1d")
+V1-50	research/mtm_drawdown/messung.py	147	zeile	tages = grundlage.lade_schlusskurse(pos["symbol"].unique(), "1d")
+V1-51	research/mtm_drawdown/messung.py	153	zeile	tage = mtm_kern.tagesraster(
+V1-52	research/mtm_drawdown/messung.py	157	zeile	kurse, fort = mtm_kern.kurse_auf_raster(tages, tage)
+V1-53	research/mtm_drawdown/richtungsfall.py	135	zeile	tages = grundlage.lade_schlusskurse(pos["symbol"].unique(), "1d")
+V1-54	research/mtm_drawdown/test_mtm_kern.py	121	zeile	kurse = grundlage.lade_schlusskurse(pos["symbol"].unique(), "1d")
+V1-55	research/exposure_messung/auswertung.py	32	zeile	DATA_DIR = os.path.join(_REPO_ROOT, "data")
+V1-56	research/exposure_messung/auswertung.py	86	zeile	pfad = os.path.join(DATA_DIR, f"{sym}_1d.csv")
+V1-57	research/exposure_messung/auswertung.py	96	zeile	kurse[sym] = df.set_index("open_time")["close"].sort_index()
+V1-58	research/exposure_messung/auswertung.py	305	zeile	def mtm_reihen(bot, positionen, kurse, reihen):
+V1-59	research/exposure_messung/auswertung.py	323	zeile	preis = reihe.reindex(tage.union(reihe.index)).ffill().reindex(tage).ffill().bfill()
+V1-60	docs/VORREGISTRIERUNG_neuselektion.md	11493	teil	Welchen Kern der Zellen-Erzeuger übernimmt, legt kein Registertext fest
+V1-61	shared/paths.py	194	zeile	_LIVE_DATA_DIR = os.path.join(BASE_DIR, "data")      # Kursdaten - von allen Strategien nutzbar
+V1-62	shared/paths.py	205	zeile	UMGEBUNG_WURZEL = "TB_SELEKTIONSWURZEL"
+V1-63	shared/paths.py	679	zeile	_MODUS = _modus_aus_umgebung()
+V1-64	shared/paths.py	685	zeile	DATA_DIR = _LIVE_DATA_DIR
+V1-65	shared/paths.py	692	zeile	DATA_DIR = _MODUS[0]
+V1-66	shared/paths.py	693	zeile	CONFIG_DIR = os.path.join(_MODUS[0], CONFIG_UNTERORDNER)
+V1-67	docs/VORREGISTRIERUNG_neuselektion.md	8932	teil	Ein Modus-Lauf ist ein Lauf unter dem Selektionsmodus des Resolvers (`shared/paths.py`, `TB_SELEKTIONSWURZEL`).
+V1-68	research/exposure_messung/auswertung.py	91	zeile	df, gestrichen = entferne_unvollstaendige(df, symbol=sym, melden=False)
+V1-69	research/mtm_drawdown/grundlage.py	46	zeile	BOTS = (
+V1-70	research/mtm_drawdown/alle_bots.py	30	zeile	for bot in BOTS:
+V1-71	research/mtm_drawdown/alle_bots.py	32	zeile	lauf = subprocess.run([sys.executable, os.path.join(_HIER, "messung.py"), bot],
+V1-72	research/mtm_drawdown/messung.py	110	zeile	bot = botenv.setup(argv[0])
+V3-01	docs/VORREGISTRIERUNG_neuselektion.md	11066	zeile	zelle_id, <je Rasterachse eine Spalte>, falte, rolle, n_trades,
+V3-02	docs/VORREGISTRIERUNG_neuselektion.md	11067	zeile	netto_sharpe, netto_rendite_pct, kapital_drawdown_pct,
+V3-03	docs/VORREGISTRIERUNG_neuselektion.md	11068	zeile	mittlere_exposure
+V3-04	docs/VORREGISTRIERUNG_neuselektion.md	10797	teil	Eine (Zelle, Falte) ohne Trades trägt die Nullzeile: Trade-Zahl 0, Sharpe 0 nach 1c, Drawdown 0, nie nichts.
+V3-05	docs/VORREGISTRIERUNG_neuselektion.md	1442	zeile	> Trades**. Ist die Standardabweichung 0 (kein Trade in der Falte), ist der
+V3-06	docs/VORREGISTRIERUNG_neuselektion.md	1443	zeile	> Falten-Sharpe 0. **Es gibt keine Mindestzahl Trades je Falte.** Die Anzahl
+V3-07	docs/VORREGISTRIERUNG_neuselektion.md	1455	zeile	*Formel für den Falten-Sharpe: Mittel / Standardabweichung der täglichen
+V3-08	docs/VORREGISTRIERUNG_neuselektion.md	10827	teil	zellen.csv trägt je (Zelle, Falte) kapital_drawdown_mtm_pct — den Kapital-Drawdown der Nebenbedingung auf der täglichen MtM-Reihe (1a) auf den Tagen des Benchmarks (3b (c))
+V3-09	docs/VORREGISTRIERUNG_neuselektion.md	10827	teil	und kapital_drawdown_ereignis_pct — den ereignisindizierten Drawdown, berichtet, nicht bewertet (24.2).
+V3-10	docs/VORREGISTRIERUNG_neuselektion.md	10827	teil	Die Spalte kapital_drawdown_pct wird durch die zwei benannten ersetzt, nicht umgedeutet.
+V3-11	docs/VORREGISTRIERUNG_neuselektion.md	10827	teil	Der Drawdown je Falte ist der Ausschnitt eines durchgehenden Kapitalpfads (29.3, 2a): gemessen innerhalb der Falte, mit dem Kapitalstand am Faltenbeginn als erstem Hochpunkt, ohne Neustart des Kapitals.
+V3-12	docs/VORREGISTRIERUNG_neuselektion.md	10936	teil	Mittlere Exposure = Mittel über die Handelstage des Zeitraums (Krypto Kalendertage, 15.4 Anmerkung 1) des Anteils des Kapitals in offenen Positionen am Tagesschluss, bewertet wie die MtM-Reihe (1a).
+V3-13	docs/VORREGISTRIERUNG_neuselektion.md	11342	teil	(a) „Handelstage des Zeitraums“ in R48 (d) lies: die Tage des Zeitraums, an denen der Benchmark des Bots definiert ist (23.3), wie benchmark_tagesreihen/<bot>.csv sie führt (R39)
+V3-14	docs/VORREGISTRIERUNG_neuselektion.md	11431	teil	Alle Grössen dieser Zeile stehen auf den Tagen ab bestaetigung_ab_effektiv der Zelle bis zum Ende der Spanne (35.1).
+V3-15	docs/VORREGISTRIERUNG_neuselektion.md	10810	teil	Der Zellen-Erzeuger schreibt je Bot eine Datei zellenbericht.csv mit genau einer Zeile je Zelle und den Feldern:
+V3-16	docs/VORREGISTRIERUNG_neuselektion.md	10810	teil	die drei Werte aus 22.2 (Ertragsanteil der besten Selektionsfalte, des besten Symbols, der fünf besten Trades), haltedauer_median_handelstage (15.3 (b), R41) und bestaetigung_ab_effektiv (R37).
+V3-17	docs/VORREGISTRIERUNG_neuselektion.md	10810	teil	Anteil = Beitrag ÷ Gesamtertrag; bei Gesamtertrag ≤ 0 wird kein Anteil gebildet, das Feld trägt „nicht definiert“.
+V3-18	docs/VORREGISTRIERUNG_neuselektion.md	10880	teil	haltedauer_balken ist die Zahl der Kerzen des Zeitrahmens des Bots von der Einstiegskerze bis zur Ausstiegskerze, beide eingeschlossen
+V3-19	docs/VORREGISTRIERUNG_neuselektion.md	1435	zeile	> Blocklänge L = max(mediane Haltedauer des Parametersatzes in Handelstagen,
+V3-20	docs/VORREGISTRIERUNG_neuselektion.md	10837	teil	Die Bestätigungsstatistik des Gewinners beginnt am ersten Handelstag ab Beginn der Spanne, an dem keine vor der Spanne eröffnete simulierte Position des Gewinners mehr offen ist
+V3-21	docs/VORREGISTRIERUNG_neuselektion.md	10837	teil	Der Zellen-Erzeuger bestimmt diesen Tag für jede Zelle (bestaetigung_ab_effektiv, R34)
+V3-22	docs/VORREGISTRIERUNG_neuselektion.md	11424	teil	In jeder Tagesreihe (tagesreihen/<zelle>.csv) und in jeder Benchmark-Tagesreihe (benchmark_tagesreihen/<bot>.csv) ist datum eindeutig, kein Feld leer und jeder Zahlenwert endlich.
+V3-23	docs/VORREGISTRIERUNG_neuselektion.md	11424	teil	Für zellen.csv gilt R33.
+V3-24	docs/VORREGISTRIERUNG_neuselektion.md	11097	teil	Für `zellenbericht.csv` (R34), `symbole_je_falte.csv` (R38) und das Lese-Audit führt der Docstring heute keine Feldliste
+V3-25	docs/VORREGISTRIERUNG_neuselektion.md	11052	teil	gelesen nur für die Bestätigungsperiode (Z. 624), berichtet in Z. 823; `netto_rendite_pct_ueber_selektionsfalten` (Z. 675) kommt aus `bereinigung["strategie_rendite_pct"]`, nicht aus der Spalte | trifft zu: Berichtsgrösse ohne Leser im Urteil
+V3-26	research/vorregistrierung/auswertung.py	133	zeile	PFLICHTSPALTEN = ["zelle_id", "falte", "rolle", "n_trades", "netto_sharpe",
+V3-27	research/vorregistrierung/auswertung.py	134	zeile	"netto_rendite_pct", "kapital_drawdown_pct", "mittlere_exposure"]
+V3-28	research/vorregistrierung/auswertung.py	137	zeile	class Abbruch(SystemExit):
+V3-29	research/vorregistrierung/auswertung.py	146	zeile	super().__init__(paths.RUECKGABEWERT_STARTPRUEFUNG)
+V3-30	shared/paths.py	220	zeile	RUECKGABEWERT_STARTPRUEFUNG = 2
+V3-31	research/vorregistrierung/auswertung.py	320	zeile	def lies_zellen(bot: str, wurzel: str, mess: dict, plan: dict) -> pd.DataFrame:
+V3-32	research/vorregistrierung/auswertung.py	326	zeile	df = pd.read_csv(pfad, dtype={"falte": str, "zelle_id": str, "rolle": str})
+V3-33	research/vorregistrierung/auswertung.py	329	zeile	raise Abbruch(f"{bot}: Spalten fehlen in zellen.csv: {fehlend}")
+V3-34	research/vorregistrierung/auswertung.py	353	zeile	df["netto_sharpe"] = np.where(df["n_trades"].to_numpy() == 0, 0.0,
+V3-35	research/vorregistrierung/auswertung.py	354	zeile	df["netto_sharpe"].to_numpy(dtype=float))
+V3-36	research/vorregistrierung/auswertung.py	355	zeile	if df["netto_sharpe"].isna().any():
+V3-37	research/vorregistrierung/auswertung.py	356	zeile	raise Abbruch(f"{bot}: netto_sharpe enthaelt Leerwerte in Falten MIT "
+V3-38	research/vorregistrierung/auswertung.py	395	zeile	return teil.groupby("zelle_id")["netto_sharpe"].median()
+V3-39	research/vorregistrierung/auswertung.py	405	zeile	e = float(z["mittlere_exposure"])
+V3-40	research/vorregistrierung/auswertung.py	413	zeile	"dd_satz": float(z["kapital_drawdown_pct"]),
+V3-41	research/vorregistrierung/auswertung.py	414	zeile	"bestanden": float(z["kapital_drawdown_pct"]) >= grenze,
+V3-42	research/vorregistrierung/auswertung.py	577	zeile	values="netto_sharpe", aggfunc="first")
+V3-43	research/vorregistrierung/auswertung.py	621	zeile	"n_trades": int(z["n_trades"]),
+V3-44	research/vorregistrierung/auswertung.py	624	zeile	"netto_rendite_pct": float(z["netto_rendite_pct"]),
+V3-45	research/vorregistrierung/auswertung.py	625	zeile	"kapital_drawdown_pct": float(z["kapital_drawdown_pct"]),
+V3-46	research/vorregistrierung/auswertung.py	626	zeile	"mittlere_exposure": float(z["mittlere_exposure"]),
+V3-47	research/vorregistrierung/auswertung.py	681	zeile	kz.drei_tiefste_drawdowns(gew_falten["kapital_drawdown_pct"]),
+V3-48	research/vorregistrierung/auswertung.py	684	zeile	"falten_sharpe": {r["falte"]: float(r["netto_sharpe"])
+V3-49	research/vorregistrierung/auswertung.py	687	zeile	if int(r["n_trades"]) == 0],
+V3-50	research/vorregistrierung/auswertung.py	179	zeile	except (OSError, ValueError) as e:
+V3-51	research/vorregistrierung/auswertung.py	140	zeile	Ausgaenge von `auswertung.py`: 0 oder 2, kein 1 (Fable 25d (4),
+V2-01	research/vorregistrierung/registerdaten.py	102	zeile	GO_LIVE_SCHNITT = "2026-09-01"      # siehe Abschnitt "Faltenplan" im Register
+V2-02	shared/kursdaten.py	54	zeile	KURSSPALTEN = ["open", "high", "low", "close"]
+V2-03	shared/kursdaten.py	70	zeile	return df[vorhanden].isna().any(axis=1)
+V2-04	shared/kursdaten.py	85	zeile	bereinigt = df[~maske].reset_index(drop=True)
+V2-05	shared/kursdaten.py	86	zeile	if melden:
+V2-06	shared/strategy_paths.py	155	zeile	"DATA_DIR": paths.DATA_DIR,
+V2-07	shared/zuteilung.py	703	zeile	einstieg = pd.to_datetime(trades["entry_time"]).to_numpy()
+V2-08	shared/zuteilung.py	704	zeile	ausstieg = pd.to_datetime(trades["exit_time"]).to_numpy()
+V2-09	shared/zuteilung.py	714	zeile	zeitpunkte = sorted(set(einstiege_je_zeit) | set(ausstiege_je_zeit))
+V2-10	shared/zuteilung.py	722	zeile	for zeit in zeitpunkte:
+V2-11	shared/zuteilung.py	730	zeile	capital += (result_value - allocation)
+V2-12	shared/zuteilung.py	731	zeile	equity_curve.append({
+V2-13	shared/zuteilung.py	334	zeile	return int(np.searchsorted(self._tage, tag, side="left"))
+V2-14	shared/zuteilung.py	352	zeile	anfang = max(0, ende - KORRELATIONSFENSTER_TAGE)
+V2-15	shared/zuteilung.py	400	zeile	anfang = max(0, ende - LIQUIDITAETSFENSTER_TAGE)
+V2-16	shared/zuteilung.py	401	zeile	werte = self._volumen[anfang:ende, self._spalte[symbol]]
+V2-17	shared/zuteilung.py	492	zeile	felder = [s for s in ("symbol", "entry_time", "exit_time", "entry_price",
+V2-18	shared/zuteilung.py	493	zeile	"exit_price", "pnl_pct") if s in trades.columns]
+V2-19	shared/zuteilung.py	495	zeile	self._zufall = [zufallsschluessel(self.seed, werte)
+V2-20	shared/zuteilung.py	540	zeile	return sorted(positionen, key=lambda p: self._zufall[p])
+V2-21	shared/zuteilung.py	577	zeile	gewinner = min(gruppe, key=lambda i: self._zufall[i])
+V2-22	shared/zuteilung.py	782	zeile	else zuteiler.waehle(rest, _buch(open_positions, symbole), zeit))
+V2-23	shared/zuteilung.py	232	zeile	df = wert[0] if isinstance(wert, tuple) else wert
+V2-24	shared/zuteilung.py	312	zeile	self._renditen = kurse.pct_change(fill_method=None).to_numpy(dtype=float)
+V2-25	research/vorregistrierung/faltenplan.py	326	zeile	schnitt = date.fromisoformat(rd.GO_LIVE_SCHNITT)
+V2-26	research/vorregistrierung/faltenplan.py	312	zeile	ende = bis_ausschliesslich
+V2-27	research/vorregistrierung/benchmark.py	280	zeile	bis = pd.Timestamp(f["bis_ausschliesslich"])
+V2-28	research/vorregistrierung/benchmark.py	290	zeile	fenster = renditen[(renditen.index >= von) & (renditen.index < bis)]
+V2-29	research/vorregistrierung/benchmark.py	205	zeile	return rahmen.pct_change().mean(axis=1, skipna=True).dropna()
+V2-30	research/mtm_drawdown/mtm_kern.py	147	zeile	tage = tage[tage < pd.Timestamp(bis)]
+V2-31	research/mtm_drawdown/messung.py	156	zeile	bis=max(plan_bis, ereignisse["exit_time"].max().normalize() + mtm_kern.EIN_TAG))
+V2-32	research/mtm_drawdown/mtm_kern.py	298	zeile	tage_in = pfad[(pfad.index >= von) & (pfad.index < bis)]
+V2-33	research/mtm_drawdown/mtm_kern.py	167	zeile	spalten[symbol] = eigene.ffill()
+V2-34	strategies/elliott_wave/multi_symbol_optimise.py	53	zeile	def load_all_symbol_data() -> dict:
+V2-35	strategies/elliott_wave/multi_symbol_optimise.py	61	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-36	strategies/elliott_wave/multi_symbol_optimise.py	72	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-37	strategies/elliott_wave/multi_symbol_optimise.py	83	zeile	if len(df) < MIN_HISTORY_HOURS:
+V2-38	strategies/elliott_wave/backtest_elliott.py	82	zeile	future = price_df[price_df["open_time"] > entry_time].head(max_hold_hours)
+V2-39	strategies/elliott_wave/backtest_elliott.py	98	zeile	last_row = future.iloc[-1]
+V2-40	strategies/elliott_wave/backtest_elliott.py	99	zeile	return {"exit_time": last_row["open_time"], "exit_price": last_row["close"], "result": "time_exit"}
+V2-41	strategies/elliott_wave/backtest_elliott.py	100	zeile	return {"exit_time": None, "exit_price": entry_price, "result": "no_data"}
+V2-42	strategies/elliott_wave/elliott_wave_counter.py	343	zeile	known = candidates[candidates["confirm_idx"] <= run_bar]
+V2-43	strategies/elliott_wave/elliott_wave_counter.py	358	zeile	row["entry_idx"] = int(run_bar)
+V2-44	strategies/elliott_wave/zigzag_indicator.py	163	zeile	for i in range(1, len(df)):
+V2-45	strategies/elliott_wave/equity_simulation.py	78	zeile	trades = get_trades_for_symbol(price_df, deviation_pct)
+V2-46	strategies/t3_supertrend/multi_symbol_optimise.py	57	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-47	strategies/t3_supertrend/multi_symbol_optimise.py	68	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-48	strategies/t3_supertrend/multi_symbol_optimise.py	79	zeile	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+V2-49	strategies/t3_supertrend/backtest_trend.py	101	zeile	for i in range(1, len(data)):
+V2-50	strategies/t3_supertrend/backtest_trend.py	121	zeile	exit_price = position["stop_price"] if stop_hit else close[i]
+V2-51	strategies/t3_supertrend/backtest_trend.py	127	zeile	trades.append({
+V2-52	strategies/t3_supertrend/backtest_trend.py	137	zeile	return pd.DataFrame(trades)
+V2-53	strategies/t3_supertrend/indicators.py	23	zeile	e1 = series.ewm(span=length, adjust=False).mean()
+V2-54	strategies/t3_supertrend/regime_filter.py	43	zeile	left_on="entry_time", right_on="open_time", direction="backward",
+V2-55	shared/regimewache.py	86	zeile	btc = all_data.get(SYMBOL) if hasattr(all_data, "get") else None
+V2-56	strategies/t3_supertrend/equity_simulation.py	65	zeile	trades = get_trades_for_symbol(price_df, t3_fast, t3_slow, adx_threshold, stop_loss_pct)
+V2-57	strategies/rsi2_crypto/multi_symbol_optimise.py	64	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-58	strategies/rsi2_crypto/multi_symbol_optimise.py	75	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-59	strategies/rsi2_crypto/multi_symbol_optimise.py	85	zeile	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+V2-60	strategies/rsi2_crypto/equity_simulation.py	63	zeile	trades = get_trades_for_symbol(price_df, rsi_threshold, sma_trend_period, stop_loss_pct)
+V2-61	strategies/rsi2_crypto/backtest_rsi2.py	92	zeile	while i < n:
+V2-62	strategies/rsi2_crypto/backtest_rsi2.py	107	zeile	max_offset = min(MAX_HOLD_DAYS, n - 1 - i)
+V2-63	strategies/rsi2_crypto/backtest_rsi2.py	117	zeile	exit_idx, exit_price, result = idx, close[idx], "time_exit"
+V2-64	strategies/rsi2_crypto/backtest_rsi2.py	120	zeile	if exit_idx is None:
+V2-65	strategies/rsi2_crypto/backtest_rsi2.py	121	zeile	break
+V2-66	strategies/rsi2_crypto/indicators.py	21	zeile	return series.rolling(window=window).mean()
+V2-67	strategies/turtle_soup_crypto/multi_symbol_optimise.py	47	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-68	strategies/turtle_soup_crypto/multi_symbol_optimise.py	58	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-69	strategies/turtle_soup_crypto/multi_symbol_optimise.py	67	zeile	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+V2-70	strategies/turtle_soup_crypto/equity_simulation.py	54	zeile	trades = get_trades_for_symbol(price_df, donchian_period, stop_mode)
+V2-71	strategies/turtle_soup_crypto/backtest_turtle_soup.py	130	zeile	while i < n:
+V2-72	strategies/turtle_soup_crypto/backtest_turtle_soup.py	154	zeile	max_offset = min(max_hold_days, n - 1 - i)
+V2-73	strategies/turtle_soup_crypto/backtest_turtle_soup.py	161	zeile	exit_idx, exit_price, result = idx, close[idx], "time_exit"
+V2-74	strategies/turtle_soup_crypto/backtest_turtle_soup.py	164	zeile	if exit_idx is None:
+V2-75	strategies/turtle_soup_crypto/backtest_turtle_soup.py	165	zeile	break
+V2-76	strategies/turtle_soup_crypto/indicators.py	15	zeile	return low.shift(1).rolling(window=period).min()
+V2-77	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	49	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-78	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	60	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-79	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	70	zeile	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+V2-80	strategies/volatility_breakout_crypto/equity_simulation.py	73	zeile	trades = get_trades_for_symbol(price_df, stop_loss_pct, max_hold_days, use_volume_filter,
+V2-81	strategies/volatility_breakout_crypto/backtest_breakout.py	135	zeile	while i < n:
+V2-82	strategies/volatility_breakout_crypto/backtest_breakout.py	157	zeile	max_offset = min(max_hold_days, n - 1 - i)
+V2-83	strategies/volatility_breakout_crypto/backtest_breakout.py	167	zeile	if exit_idx is None:
+V2-84	strategies/volatility_breakout_crypto/backtest_breakout.py	168	zeile	break
+V2-85	strategies/volatility_breakout_crypto/indicators.py	19	zeile	middle = close.rolling(window=period).mean()
+V2-86	strategies/volatility_breakout_crypto/regime_filter.py	39	zeile	left_on="entry_time", right_on="open_time", direction="backward",
+V2-87	shared/kursdaten.py	82	zeile	anzahl = int(maske.sum())
+V2-88	shared/kursdaten.py	104	zeile	self.je_symbol[symbol] = anzahl
+V2-89	shared/kursdaten.py	121	zeile	print(text)
+V2-90	strategies/elliott_wave_stocks/multi_symbol_optimise.py	60	zeile	def load_all_symbol_data() -> dict:
+V2-91	strategies/elliott_wave_stocks/multi_symbol_optimise.py	70	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-92	strategies/elliott_wave_stocks/multi_symbol_optimise.py	81	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-93	strategies/elliott_wave_stocks/multi_symbol_optimise.py	82	zeile	melden=False)
+V2-94	strategies/elliott_wave_stocks/multi_symbol_optimise.py	83	zeile	_luecken.erfasse(symbol, _gestrichen)
+V2-95	strategies/elliott_wave_stocks/multi_symbol_optimise.py	102	zeile	_luecken.melde()
+V2-96	strategies/elliott_wave_stocks/multi_symbol_optimise.py	54	zeile	RECENT_YEARS_ONLY = 10      # begrenzt die Historie auf die letzten N Jahre - reduziert
+V2-97	strategies/elliott_wave_stocks/multi_symbol_optimise.py	93	zeile	cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+V2-98	strategies/elliott_wave_stocks/multi_symbol_optimise.py	94	zeile	df = df[df["open_time"] >= cutoff].reset_index(drop=True)
+V2-99	strategies/elliott_wave_stocks/multi_symbol_optimise.py	96	zeile	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+V2-100	strategies/elliott_wave_stocks/backtest_elliott.py	91	zeile	future = price_df[price_df["open_time"] > entry_time].head(max_hold_hours)
+V2-101	strategies/elliott_wave_stocks/backtest_elliott.py	107	zeile	last_row = future.iloc[-1]
+V2-102	strategies/elliott_wave_stocks/backtest_elliott.py	108	zeile	return {"exit_time": last_row["open_time"], "exit_price": last_row["close"], "result": "time_exit"}
+V2-103	strategies/elliott_wave_stocks/elliott_wave_counter.py	343	zeile	known = candidates[candidates["confirm_idx"] <= run_bar]
+V2-104	strategies/elliott_wave_stocks/zigzag_indicator.py	160	zeile	last_pivot_idx = 0
+V2-105	strategies/elliott_wave_stocks/equity_simulation.py	107	zeile	luecke = combined[preisspalten].isna().any(axis=1)
+V2-106	strategies/elliott_wave_stocks/equity_simulation.py	111	zeile	combined = combined[~luecke]
+V2-107	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	65	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-108	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	76	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-109	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	78	zeile	_luecken.erfasse(symbol, _gestrichen)
+V2-110	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	52	zeile	RECENT_YEARS_ONLY = 10       # reduziert Survivorship Bias, wie bei elliott_wave_stocks
+V2-111	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	86	zeile	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+V2-112	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	93	zeile	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+V2-113	strategies/rsi2_mean_reversion/equity_simulation.py	74	zeile	trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct,
+V2-114	strategies/rsi2_mean_reversion/backtest_rsi2.py	131	zeile	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+V2-115	strategies/rsi2_mean_reversion/backtest_rsi2.py	150	zeile	max_offset = min(MAX_HOLD_DAYS, n - 1 - i)
+V2-116	strategies/rsi2_mean_reversion/backtest_rsi2.py	163	zeile	if exit_idx is None:
+V2-117	strategies/rsi2_mean_reversion/backtest_rsi2.py	164	zeile	break  # nicht genug Restdaten, um diese Position zu schliessen - Scan beenden
+V2-118	strategies/rsi2_mean_reversion/indicators.py	23	zeile	return series.rolling(window=window).mean()
+V2-119	strategies/rsi2_mean_reversion/equity_simulation.py	97	zeile	luecke = combined[preisspalten].isna().any(axis=1)
+V2-120	strategies/turtle_soup_stocks/multi_symbol_optimise.py	54	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-121	strategies/turtle_soup_stocks/multi_symbol_optimise.py	65	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-122	strategies/turtle_soup_stocks/multi_symbol_optimise.py	67	zeile	_luecken.erfasse(symbol, _gestrichen)
+V2-123	strategies/turtle_soup_stocks/multi_symbol_optimise.py	46	zeile	RECENT_YEARS_ONLY = 10
+V2-124	strategies/turtle_soup_stocks/multi_symbol_optimise.py	74	zeile	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+V2-125	strategies/turtle_soup_stocks/multi_symbol_optimise.py	81	zeile	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+V2-126	strategies/turtle_soup_stocks/equity_simulation.py	79	zeile	trades = get_trades_for_symbol(df, entry_cutoff, donchian_period, stop_mode)
+V2-127	strategies/turtle_soup_stocks/backtest_turtle_soup.py	122	zeile	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+V2-128	strategies/turtle_soup_stocks/backtest_turtle_soup.py	150	zeile	max_offset = min(max_hold_days, n - 1 - i)
+V2-129	strategies/turtle_soup_stocks/backtest_turtle_soup.py	160	zeile	if exit_idx is None:
+V2-130	strategies/turtle_soup_stocks/backtest_turtle_soup.py	161	zeile	break
+V2-131	strategies/turtle_soup_stocks/indicators.py	15	zeile	return low.shift(1).rolling(window=period).min()
+V2-132	strategies/turtle_soup_stocks/equity_simulation.py	99	zeile	luecke = combined[preisspalten].isna().any(axis=1)
+V2-133	strategies/volatility_breakout/multi_symbol_optimise.py	61	zeile	csv_path = os.path.join(DATA_DIR, f"{symbol}_{INTERVAL}.csv")
+V2-134	strategies/volatility_breakout/multi_symbol_optimise.py	72	zeile	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+V2-135	strategies/volatility_breakout/multi_symbol_optimise.py	74	zeile	_luecken.erfasse(symbol, _gestrichen)
+V2-136	strategies/volatility_breakout/multi_symbol_optimise.py	50	zeile	RECENT_YEARS_ONLY = 10        # reduziert Survivorship Bias, wie bei den anderen Aktien-Bots
+V2-137	strategies/volatility_breakout/multi_symbol_optimise.py	82	zeile	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+V2-138	strategies/volatility_breakout/multi_symbol_optimise.py	89	zeile	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+V2-139	strategies/volatility_breakout/equity_simulation.py	75	zeile	trades = get_trades_for_symbol(df_ind, entry_cutoff, stop_loss_pct, max_hold_days, use_volume_filter,
+V2-140	strategies/volatility_breakout/backtest_breakout.py	172	zeile	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+V2-141	strategies/volatility_breakout/backtest_breakout.py	198	zeile	max_offset = min(max_hold_days, n - 1 - i)
+V2-142	strategies/volatility_breakout/backtest_breakout.py	208	zeile	if exit_idx is None:
+V2-143	strategies/volatility_breakout/backtest_breakout.py	209	zeile	break  # nicht genug Restdaten, um diese Position zu schliessen - Scan beenden
+V2-144	strategies/volatility_breakout/indicators.py	25	zeile	middle = close.rolling(window=period).mean()
+V2-145	strategies/volatility_breakout/equity_simulation.py	99	zeile	luecke = combined[preisspalten].isna().any(axis=1)
+V2-146	strategies/elliott_wave_stocks/backtest_elliott.py	212	zeile	if __name__ == "__main__":
+V2-147	strategies/elliott_wave_stocks/backtest_elliott.py	216	zeile	price_df = pd.read_csv(os.path.join(DATA_DIR, "AAPL_1d.csv"), parse_dates=["open_time"])
+V2-148	strategies/rsi2_mean_reversion/backtest_rsi2.py	182	zeile	if __name__ == "__main__":
+V2-149	strategies/turtle_soup_stocks/backtest_turtle_soup.py	179	zeile	if __name__ == "__main__":
+V2-150	strategies/volatility_breakout/backtest_breakout.py	227	zeile	if __name__ == "__main__":
+V2-151	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	34	zeile	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+V2-152	strategies/elliott_wave/multi_symbol_optimise.py	50	zeile	MIN_HISTORY_HOURS = 17520  # ca. 2 Jahre - kuerzere Historie reicht nicht fuer Train/Test-Split
+V2-153	strategies/t3_supertrend/multi_symbol_optimise.py	50	zeile	def load_all_symbol_data() -> dict:
+V2-154	strategies/rsi2_crypto/multi_symbol_optimise.py	59	zeile	def load_all_symbol_data() -> dict:
+V2-155	strategies/turtle_soup_crypto/multi_symbol_optimise.py	42	zeile	def load_all_symbol_data() -> dict:
+V2-156	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	44	zeile	def load_all_symbol_data() -> dict:
+V2-157	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	55	zeile	def load_all_symbol_data() -> dict:
+V2-158	strategies/turtle_soup_stocks/multi_symbol_optimise.py	49	zeile	def load_all_symbol_data() -> dict:
+V2-159	strategies/volatility_breakout/multi_symbol_optimise.py	53	zeile	def load_all_symbol_data() -> dict:
+V2-160	shared/fetch_multi_data.py	48	zeile	INTERVAL = Client.KLINE_INTERVAL_1HOUR
+V2-161	strategies/t3_supertrend/fetch_4h_data.py	51	zeile	INTERVAL = Client.KLINE_INTERVAL_4HOUR
+V2-162	strategies/elliott_wave_stocks/fetch_stock_data.py	67	zeile	INTERVAL = "1d"
+V2-163	strategies/rsi2_crypto/multi_symbol_optimise.py	45	zeile	INTERVAL = "1d"
+V2-164	strategies/turtle_soup_crypto/multi_symbol_optimise.py	31	zeile	INTERVAL = "1d"
+V2-165	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	34	zeile	INTERVAL = "1d"
+V2-166	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	38	zeile	INTERVAL = "1d"
+V2-167	strategies/turtle_soup_stocks/multi_symbol_optimise.py	37	zeile	INTERVAL = "1d"
+V2-168	strategies/volatility_breakout/multi_symbol_optimise.py	41	zeile	INTERVAL = "1d"

@@ -1,0 +1,12 @@
+# TB-140 Fundstellen GEGENPROBE
+Ordner /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_fundstellen.e9Ur24
+Eingriffe: V1-21 Zeile +1, V3-36 ein Zeichen (isna -> isnA)
+# TB-140 Fundstellenpruefung, Liste /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_fundstellen.e9Ur24/kopie.tsv
+UNGLEICH	V1-21	research/vorregistrierung/benchmark.py	153	Wortlaut ungleich der Zeile
+UNGLEICH	V3-36	research/vorregistrierung/auswertung.py	355	Wortlaut ungleich der Zeile
+Fundstellen 291, ungleich 2
+RUECKGABE 1
+rc 1
+## Soll: zwei UNGLEICH (V1-21, V3-36), rc 1 - Ist: 2 UNGLEICH, rc 1
+GEGENPROBE: beisst
+rc 0

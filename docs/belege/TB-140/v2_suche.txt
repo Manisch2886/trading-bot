@@ -1,0 +1,927 @@
+## V2 (b) - breite Muster, nur gezaehlt, Bereich die fuenf Ordner
+# TB-140 Suche V2-b1
+BEREICH	verfolgte Dateien, pfad ['research/vorregistrierung', 'research/mtm_drawdown', 'research/exposure_messung', 'shared', 'strategies'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	249
+TREFFER	bfill|backfill	research/exposure_messung/auswertung.py	131	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/exposure_messung/auswertung.py	138	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/exposure_messung/auswertung.py	183	(Text nicht gedruckt)
+TREFFER	bfill|backfill	research/exposure_messung/auswertung.py	214	(Text nicht gedruckt)
+TREFFER	bfill|backfill	research/exposure_messung/auswertung.py	215	(Text nicht gedruckt)
+TREFFER	bfill|backfill	research/exposure_messung/auswertung.py	323	(Text nicht gedruckt)
+TREFFER	bfill|backfill	research/exposure_messung/auswertung.py	351	(Text nicht gedruckt)
+TREFFER	bfill|backfill	research/exposure_messung/auswertung.py	353	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/exposure_messung/exposure_kern.py	202	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/exposure_messung/test_exposure_kern.py	48	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/grundlage.py	115	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/grundlage.py	200	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/mtm_kern.py	294	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/mtm_kern.py	299	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/mtm_kern.py	300	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/mtm_kern.py	321	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/richtungsfall.py	68	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/richtungsfall.py	69	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/richtungsfall.py	100	(Text nicht gedruckt)
+TREFFER	2026-09	research/vorregistrierung/auswertung.py	111	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	16	(Text nicht gedruckt)
+TREFFER	2026-09	research/vorregistrierung/faltenplan.py	19	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	94	(Text nicht gedruckt)
+TREFFER	2026-09	research/vorregistrierung/faltenplan.py	97	(Text nicht gedruckt)
+TREFFER	2026-09	research/vorregistrierung/faltenplan.py	98	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	research/vorregistrierung/faltenplan.py	201	(Text nicht gedruckt)
+TREFFER	2026-09	research/vorregistrierung/faltenplan.py	204	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	research/vorregistrierung/faltenplan.py	209	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	274	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	285	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	326	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	339	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	339	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	475	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/faltenplan.py	475	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	research/vorregistrierung/messgroessen.py	265	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/registerbericht.py	137	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/registerbericht.py	137	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/registerdaten.py	102	(Text nicht gedruckt)
+TREFFER	2026-09	research/vorregistrierung/registerdaten.py	102	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/test_vorregistrierung.py	109	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/test_vorregistrierung.py	739	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/test_vorregistrierung.py	739	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/test_vorregistrierung.py	741	(Text nicht gedruckt)
+TREFFER	go.live	research/vorregistrierung/test_vorregistrierung.py	741	(Text nicht gedruckt)
+TREFFER	go.live	shared/binance_historie.py	16	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	shared/build_daily_crypto_data.py	71	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	shared/build_daily_crypto_data.py	72	(Text nicht gedruckt)
+TREFFER	2026-09	shared/data_quality.py	6	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	shared/determinismus_lauf.py	421	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	shared/determinismus_lauf.py	493	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/entscheidungskerze.py	9	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/entscheidungskerze.py	223	(Text nicht gedruckt)
+TREFFER	2026-09	shared/entscheidungskerze.py	228	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/entscheidungskerze.py	491	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/ergebniskurven.py	254	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/fetch_binance_data.py	84	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/kursdaten.py	146	(Text nicht gedruckt)
+TREFFER	2026-09	shared/kursdaten_neuaufbau.py	90	(Text nicht gedruckt)
+TREFFER	bfill|backfill	shared/portfolio_overview.py	512	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/portfolio_overview.py	523	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/portfolio_overview.py	540	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/status_overview.py	43	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	290	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	291	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	292	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	298	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	299	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	314	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	314	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	314	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	335	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	335	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	335	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	353	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	353	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	354	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	359	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	360	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	363	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	368	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	383	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	383	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	524	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	524	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	524	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	524	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	525	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	526	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	526	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	526	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	526	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	529	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	529	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	529	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	529	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	530	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	531	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	531	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	531	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	531	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	532	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	535	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	535	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	535	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	536	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	536	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	537	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	537	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	537	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	538	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	538	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	541	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	541	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	542	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	542	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	542	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	545	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	545	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	546	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	546	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	618	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	626	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	626	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	627	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	627	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	628	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	628	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	633	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_abrufschutz.py	634	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_binance_historie.py	337	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_determinismus.py	562	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_determinismus.py	564	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	shared/test_drawdown_beide_masse.py	201	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	181	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	181	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	182	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	183	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	183	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	184	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	185	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	185	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	186	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	187	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	187	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	188	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	189	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	189	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	190	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	191	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	191	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	192	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	214	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	215	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	258	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	259	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	272	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	273	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	276	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	279	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	282	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	286	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	286	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	287	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	287	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	288	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	288	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	289	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	289	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	304	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	305	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	332	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	333	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	335	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	336	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	338	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	341	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	342	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	360	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	361	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	365	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	399	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	402	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	402	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	405	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	418	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	418	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	419	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	422	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	422	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	439	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	439	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	440	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	460	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	462	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	476	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	477	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	501	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	502	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	502	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	503	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	503	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	949	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	950	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	968	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	986	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	987	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	999	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	1005	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1012	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1013	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1049	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1050	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1050	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1051	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1058	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1063	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	1063	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1075	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	1075	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1089	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1091	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1092	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	1263	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1280	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1282	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1285	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1285	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1287	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_entscheidungskerze.py	1292	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_entscheidungskerze.py	1292	(Text nicht gedruckt)
+TREFFER	tail\(	shared/test_ergebniskurven.py	388	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_fetch_binance_data.py	422	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_fetch_binance_data.py	423	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_fetch_binance_data.py	443	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	shared/test_kursdaten.py	249	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	shared/test_kursdaten.py	250	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	shared/test_kursdaten.py	293	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_kursdaten.py	296	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_kursdaten.py	573	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_kursdaten.py	625	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	shared/test_kursdaten.py	641	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	shared/test_ladeprotokoll.py	109	(Text nicht gedruckt)
+TREFFER	tail\(	shared/test_leeres_symbol.py	154	(Text nicht gedruckt)
+TREFFER	tail\(	shared/test_leeres_symbol.py	277	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/test_leeres_symbol.py	283	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	6	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	72	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	80	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	89	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	97	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	118	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	126	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	135	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	145	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	318	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	333	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	342	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_live_params_werte.py	343	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_umstellungstag.py	77	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_umstellungstag.py	93	(Text nicht gedruckt)
+TREFFER	2026-09	shared/test_umstellungstag.py	104	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	shared/umstellungstag.py	86	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	shared/zuteilung.py	217	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/elliott_wave/backtest_elliott.py	98	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave/daily_summary_email.py	14	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/elliott_wave/equity_simulation.py	191	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/elliott_wave/forward_test.py	151	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/elliott_wave/forward_test.py	166	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/elliott_wave/forward_test.py	175	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/elliott_wave/forward_test.py	176	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/elliott_wave/forward_test.py	214	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave/live_params.py	11	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave/live_params.py	17	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave/live_params.py	76	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave/multi_symbol_optimise.py	66	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/multi_symbol_walk_forward.py	47	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/multi_symbol_walk_forward.py	47	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/multi_symbol_walk_forward.py	49	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/multi_symbol_walk_forward.py	49	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/oos_equity_simulation.py	44	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/oos_equity_simulation.py	45	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/walk_forward.py	56	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/walk_forward.py	56	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/walk_forward.py	57	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave/walk_forward.py	57	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/elliott_wave_stocks/backtest_elliott.py	107	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/buy_and_hold_benchmark.py	15	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/elliott_wave_stocks/buy_and_hold_benchmark.py	63	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/daily_summary_email.py	14	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/equity_simulation.py	59	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/elliott_wave_stocks/equity_simulation.py	231	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/experiment_combined.py	80	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/experiment_combined.py	81	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/experiment_no_take_profit.py	99	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/experiment_no_take_profit.py	100	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/experiment_position_limit.py	9	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/experiment_position_limit.py	81	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/experiment_position_limit.py	82	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/fetch_stock_data.py	97	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/elliott_wave_stocks/forward_test.py	167	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/elliott_wave_stocks/forward_test.py	183	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/elliott_wave_stocks/forward_test.py	208	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/elliott_wave_stocks/forward_test.py	209	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/elliott_wave_stocks/forward_test.py	248	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	6	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	27	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	29	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	35	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	46	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	51	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	56	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	82	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	87	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	88	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	112	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	117	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	119	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	121	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	125	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	133	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	134	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	134	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/live_params.py	202	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	54	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	65	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/elliott_wave_stocks/multi_symbol_optimise.py	75	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	92	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	93	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_optimise.py	93	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/elliott_wave_stocks/multi_symbol_optimise.py	93	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/elliott_wave_stocks/multi_symbol_optimise.py	94	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_optimise.py	96	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_optimise.py	96	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_walk_forward.py	47	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_walk_forward.py	47	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_walk_forward.py	49	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_walk_forward.py	49	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/oos_equity_simulation.py	50	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/oos_equity_simulation.py	51	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/elliott_wave_stocks/signal_quality_test.py	62	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	76	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	87	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	88	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	123	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	123	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/rsi2_crypto/buy_and_hold_benchmark.py	38	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_crypto/daily_summary_email.py	7	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/rsi2_crypto/forward_test.py	174	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/rsi2_crypto/forward_test.py	229	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_crypto/live_params.py	7	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_crypto/live_params.py	36	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_crypto/multi_symbol_optimise.py	69	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_crypto/multi_symbol_optimise.py	85	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_crypto/multi_symbol_optimise.py	85	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_optimise.py	97	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_optimise.py	99	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_crypto/multi_symbol_walk_forward.py	7	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_crypto/multi_symbol_walk_forward.py	28	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_crypto/multi_symbol_walk_forward.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_walk_forward.py	33	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_walk_forward.py	51	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_walk_forward.py	51	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_walk_forward.py	52	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_walk_forward.py	53	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_walk_forward.py	54	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/pipeline_report.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/pipeline_report.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/pipeline_report.py	30	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/pipeline_report.py	31	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/pipeline_report.py	32	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	14	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	113	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	116	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	130	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	131	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	166	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	166	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	7	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	24	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	39	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	40	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	40	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	40	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	41	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/rsi2_mean_reversion/buy_and_hold_benchmark.py	59	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/rsi2_mean_reversion/correlation_robustness_check.py	119	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/rsi2_mean_reversion/correlation_robustness_check.py	142	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_mean_reversion/daily_summary_email.py	9	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/equity_simulation.py	73	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/equity_simulation.py	74	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_mean_reversion/fetch_stock_data.py	97	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/rsi2_mean_reversion/forward_test.py	185	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/rsi2_mean_reversion/forward_test.py	240	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_mean_reversion/live_params.py	7	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_mean_reversion/live_params.py	29	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	52	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	56	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	59	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	59	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	60	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	70	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	86	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	86	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	91	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	92	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	93	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	93	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	93	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	96	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	102	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	112	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	112	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	124	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	125	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	36	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	37	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	37	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	37	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	38	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	41	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	56	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	56	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	57	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	65	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	65	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	66	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	67	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py	68	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/pipeline_report.py	27	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/pipeline_report.py	27	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/pipeline_report.py	28	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/pipeline_report.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/pipeline_report.py	30	(Text nicht gedruckt)
+TREFFER	bfill|backfill	strategies/rsi2_mean_reversion/portfolio_correlation_analysis.py	97	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/rsi2_mean_reversion/portfolio_correlation_analysis.py	127	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/test_posten3_durchreichung.py	142	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/test_posten3_durchreichung.py	145	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/t3_supertrend/daily_summary_email.py	10	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/t3_supertrend/forward_test.py	146	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/t3_supertrend/forward_test.py	196	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/t3_supertrend/forward_test.py	225	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/t3_supertrend/live_params.py	29	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/t3_supertrend/multi_symbol_optimise.py	62	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/t3_supertrend/multi_symbol_optimise.py	79	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/t3_supertrend/multi_symbol_optimise.py	79	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/t3_supertrend/multi_symbol_walk_forward.py	42	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/t3_supertrend/multi_symbol_walk_forward.py	42	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/t3_supertrend/multi_symbol_walk_forward.py	44	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/t3_supertrend/multi_symbol_walk_forward.py	44	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	113	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	125	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	126	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	167	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	167	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_crypto/buy_and_hold_benchmark.py	36	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_crypto/daily_summary_email.py	6	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_crypto/experiment_capital_management_summary.py	49	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_crypto/experiment_stress_new_config.py	65	(Text nicht gedruckt)
+TREFFER	bfill|backfill	strategies/turtle_soup_crypto/experiment_volatility_breakout_overlap.py	172	(Text nicht gedruckt)
+TREFFER	bfill|backfill	strategies/turtle_soup_crypto/experiment_volatility_breakout_overlap.py	173	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_crypto/forward_test.py	171	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/turtle_soup_crypto/forward_test.py	234	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_crypto/live_params.py	7	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_crypto/live_params.py	39	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_crypto/multi_symbol_optimise.py	52	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_crypto/multi_symbol_optimise.py	67	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_crypto/multi_symbol_optimise.py	67	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_optimise.py	78	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_optimise.py	80	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_optimise.py	80	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_crypto/multi_symbol_walk_forward.py	22	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_crypto/multi_symbol_walk_forward.py	23	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_walk_forward.py	36	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_walk_forward.py	36	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_walk_forward.py	37	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_walk_forward.py	38	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_walk_forward.py	39	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/pipeline_report.py	25	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/pipeline_report.py	25	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/pipeline_report.py	26	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/pipeline_report.py	27	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/pipeline_report.py	28	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_crypto/stress_periods.py	49	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	109	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	121	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	122	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	163	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	163	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/buy_and_hold_benchmark.py	20	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/buy_and_hold_benchmark.py	35	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/buy_and_hold_benchmark.py	36	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/buy_and_hold_benchmark.py	36	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/buy_and_hold_benchmark.py	36	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/buy_and_hold_benchmark.py	37	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_stocks/buy_and_hold_benchmark.py	55	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_stocks/daily_summary_email.py	6	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_stocks/equity_simulation.py	8	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/equity_simulation.py	78	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/equity_simulation.py	79	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_stocks/experiment_capital_management_summary.py	53	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_stocks/experiment_stress_new_config.py	66	(Text nicht gedruckt)
+TREFFER	bfill|backfill	strategies/turtle_soup_stocks/experiment_volatility_breakout_overlap.py	216	(Text nicht gedruckt)
+TREFFER	bfill|backfill	strategies/turtle_soup_stocks/experiment_volatility_breakout_overlap.py	217	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_stocks/fetch_stock_data.py	97	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_stocks/forward_test.py	173	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/turtle_soup_stocks/forward_test.py	236	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_stocks/live_params.py	7	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_stocks/live_params.py	59	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	46	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/turtle_soup_stocks/multi_symbol_optimise.py	59	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/multi_symbol_optimise.py	74	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/multi_symbol_optimise.py	74	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	79	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	80	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	81	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/multi_symbol_optimise.py	81	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	81	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	83	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	89	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	92	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	92	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	103	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	104	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	5	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	21	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	22	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	22	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	22	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	23	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	26	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	36	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	36	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	37	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	38	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_walk_forward.py	39	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/pipeline_report.py	26	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/pipeline_report.py	26	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/pipeline_report.py	27	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/pipeline_report.py	28	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/pipeline_report.py	29	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/turtle_soup_stocks/stress_periods.py	53	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	141	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	145	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	171	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	172	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	211	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	211	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/buy_and_hold_benchmark.py	5	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/buy_and_hold_benchmark.py	22	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/buy_and_hold_benchmark.py	37	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/buy_and_hold_benchmark.py	38	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/buy_and_hold_benchmark.py	38	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/buy_and_hold_benchmark.py	38	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/buy_and_hold_benchmark.py	39	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout/buy_and_hold_benchmark.py	57	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout/capital_management_summary.py	64	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout/daily_summary_email.py	6	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/equity_simulation.py	74	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/equity_simulation.py	75	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout/experiment_2022_stress_best_config.py	66	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	65	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	75	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	76	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	96	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	96	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	114	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	115	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	130	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	130	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	131	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	132	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/experiment_trailing_stop.py	133	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout/fetch_stock_data.py	97	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout/forward_test.py	169	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout/forward_test.py	177	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/volatility_breakout/forward_test.py	234	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout/live_params.py	7	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout/live_params.py	33	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout/live_params.py	57	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_optimise.py	50	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_optimise.py	54	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	56	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout/multi_symbol_optimise.py	66	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/multi_symbol_optimise.py	82	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/multi_symbol_optimise.py	82	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	87	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_optimise.py	88	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_optimise.py	89	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/multi_symbol_optimise.py	89	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	89	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	92	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	98	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	109	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	109	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	123	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	124	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_walk_forward.py	5	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	5	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	24	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	27	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/multi_symbol_walk_forward.py	28	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	28	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	28	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/multi_symbol_walk_forward.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	32	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	52	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	52	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	53	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	54	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_walk_forward.py	55	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/pipeline_report.py	28	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/pipeline_report.py	28	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/pipeline_report.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/pipeline_report.py	30	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/pipeline_report.py	31	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout/stress_period_2020_covid.py	85	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout/stress_period_comparison.py	82	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout/stress_period_comparison.py	116	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/test_posten3_durchreichung.py	153	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/test_posten3_durchreichung.py	156	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	104	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	130	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	131	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	170	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	170	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout_crypto/buy_and_hold_benchmark.py	36	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout_crypto/daily_summary_email.py	7	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout_crypto/experiment_2022_stress_with_btc_filter.py	49	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout_crypto/forward_test.py	184	(Text nicht gedruckt)
+TREFFER	tail\(	strategies/volatility_breakout_crypto/forward_test.py	241	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout_crypto/forward_test.py	276	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout_crypto/live_params.py	7	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout_crypto/live_params.py	52	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout_crypto/live_params.py	78	(Text nicht gedruckt)
+TREFFER	2026-09	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	54	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	70	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	70	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	83	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	92	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	92	(Text nicht gedruckt)
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py	6	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py	22	(Text nicht gedruckt)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py	23	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py	42	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py	42	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py	43	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py	44	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py	45	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/pipeline_report.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/pipeline_report.py	29	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/pipeline_report.py	30	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/pipeline_report.py	31	(Text nicht gedruckt)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/pipeline_report.py	32	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout_crypto/stress_period_2022_crypto_family.py	66	(Text nicht gedruckt)
+TREFFER	iloc\[-1\]	strategies/volatility_breakout_crypto/stress_period_2022_crypto_family.py	98	(Text nicht gedruckt)
+MUSTER	go.live	Treffer 18	Dateien 5
+MUSTER	2026-09	Treffer 244	Dateien 47
+MUSTER	RECENT_YEARS_ONLY	Treffer 39	Dateien 18
+MUSTER	bfill|backfill	Treffer 12	Dateien 5
+MUSTER	shift\(\s*-	Treffer 0	Dateien 0
+MUSTER	center\s*=\s*True	Treffer 0	Dateien 0
+MUSTER	iloc\[-1\]	Treffer 80	Dateien 50
+MUSTER	tail\(	Treffer 15	Dateien 14
+MUSTER	open_time.\]?\.(max|min)\(\)	Treffer 66	Dateien 28
+MUSTER	entry_cutoff|cutoff	Treffer 184	Dateien 39
+RUECKGABE 0
+rc 0
+## V2 (b) - dieselben Muster mit Text, Bereich der Code des Laufs (N5)
+# TB-140 Suche V2-b2
+BEREICH	verfolgte Dateien, pfad ['strategies/elliott_wave/multi_symbol_optimise.py', 'strategies/elliott_wave/equity_simulation.py', 'strategies/elliott_wave/backtest_elliott.py', 'strategies/elliott_wave/zigzag_indicator.py', 'strategies/elliott_wave/elliott_wave_counter.py', 'strategies/t3_supertrend/multi_symbol_optimise.py', 'strategies/t3_supertrend/equity_simulation.py', 'strategies/t3_supertrend/backtest_trend.py', 'strategies/t3_supertrend/indicators.py', 'strategies/t3_supertrend/regime_filter.py', 'strategies/rsi2_crypto/multi_symbol_optimise.py', 'strategies/rsi2_crypto/equity_simulation.py', 'strategies/rsi2_crypto/backtest_rsi2.py', 'strategies/rsi2_crypto/indicators.py', 'strategies/rsi2_crypto/regime_filter.py', 'strategies/turtle_soup_crypto/multi_symbol_optimise.py', 'strategies/turtle_soup_crypto/equity_simulation.py', 'strategies/turtle_soup_crypto/backtest_turtle_soup.py', 'strategies/turtle_soup_crypto/indicators.py', 'strategies/volatility_breakout_crypto/multi_symbol_optimise.py', 'strategies/volatility_breakout_crypto/equity_simulation.py', 'strategies/volatility_breakout_crypto/backtest_breakout.py', 'strategies/volatility_breakout_crypto/indicators.py', 'strategies/volatility_breakout_crypto/regime_filter.py', 'strategies/elliott_wave_stocks/multi_symbol_optimise.py', 'strategies/elliott_wave_stocks/equity_simulation.py', 'strategies/elliott_wave_stocks/backtest_elliott.py', 'strategies/elliott_wave_stocks/zigzag_indicator.py', 'strategies/elliott_wave_stocks/elliott_wave_counter.py', 'strategies/rsi2_mean_reversion/multi_symbol_optimise.py', 'strategies/rsi2_mean_reversion/equity_simulation.py', 'strategies/rsi2_mean_reversion/backtest_rsi2.py', 'strategies/rsi2_mean_reversion/indicators.py', 'strategies/turtle_soup_stocks/multi_symbol_optimise.py', 'strategies/turtle_soup_stocks/equity_simulation.py', 'strategies/turtle_soup_stocks/backtest_turtle_soup.py', 'strategies/turtle_soup_stocks/indicators.py', 'strategies/volatility_breakout/multi_symbol_optimise.py', 'strategies/volatility_breakout/equity_simulation.py', 'strategies/volatility_breakout/backtest_breakout.py', 'strategies/volatility_breakout/indicators.py', 'shared/zuteilung.py', 'shared/kursdaten.py', 'shared/regimewache.py', 'shared/data_quality.py', 'shared/ladeprotokoll.py', 'research/vorregistrierung/benchmark.py', 'research/mtm_drawdown/mtm_kern.py', 'research/mtm_drawdown/grundlage.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	49
+TREFFER	iloc\[-1\]	research/mtm_drawdown/grundlage.py	115	c = c.iloc[-1]
+TREFFER	iloc\[-1\]	research/mtm_drawdown/grundlage.py	200	aus["endkapital"] = float(ereignisse["capital_after"].iloc[-1])
+TREFFER	iloc\[-1\]	research/mtm_drawdown/mtm_kern.py	294	basis_e = float(davor.iloc[-1]) if len(davor) else float(startkapital)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/mtm_kern.py	299	basis_buch = float(pfad_davor["buch"].iloc[-1]) if len(pfad_davor) else float(startkapital)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/mtm_kern.py	300	basis_mtm = float(pfad_davor["mtm"].iloc[-1]) if len(pfad_davor) else float(startkapital)
+TREFFER	iloc\[-1\]	research/mtm_drawdown/mtm_kern.py	321	"offen_am_faltenbeginn": int(pfad_davor["n_offen"].iloc[-1]) if len(pfad_davor) else 0,
+TREFFER	MIN_HISTORY	research/vorregistrierung/benchmark.py	54	erreicht (Registertext 3b (b): `MIN_HISTORY_DAYS` 500 / 730 / 1 825 als
+TREFFER	MIN_HISTORY	research/vorregistrierung/benchmark.py	55	Zeitspanne, bei `elliott_wave` `MIN_HISTORY_HOURS` 17 520 als Kerzenzahl).
+TREFFER	MIN_HISTORY	research/vorregistrierung/benchmark.py	169	(Registertext 3b (b): erster Kurstag + MIN_HISTORY_DAYS; `elliott_wave`:
+TREFFER	2026-09	shared/data_quality.py	6	Am 2026-09-01 trug `data/APH_1d.csv` einen Balken mit Volumen, aber ohne
+TREFFER	iloc\[-1\]	shared/kursdaten.py	146	"letzte_betroffen": bool(maske.iloc[-1]),
+TREFFER	MIN_HISTORY	shared/ladeprotokoll.py	18	if tage < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	shared/ladeprotokoll.py	19	_prot.zu_kurz(symbol, tage, MIN_HISTORY_DAYS); continue
+TREFFER	entry_cutoff|cutoff	shared/zuteilung.py	217	Fuenf Bots liefern `{symbol: df}`, vier `{symbol: (df, entry_cutoff)}`,
+TREFFER	iloc\[-1\]	strategies/elliott_wave/backtest_elliott.py	98	last_row = future.iloc[-1]
+TREFFER	tail\(	strategies/elliott_wave/equity_simulation.py	191	print(result["equity_curve"].tail(10).to_string(index=False))
+TREFFER	MIN_HISTORY	strategies/elliott_wave/multi_symbol_optimise.py	50	MIN_HISTORY_HOURS = 17520  # ca. 2 Jahre - kuerzere Historie reicht nicht fuer Train/Test-Split
+TREFFER	2026-09	strategies/elliott_wave/multi_symbol_optimise.py	66	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	MIN_HISTORY	strategies/elliott_wave/multi_symbol_optimise.py	83	if len(df) < MIN_HISTORY_HOURS:
+TREFFER	MIN_HISTORY	strategies/elliott_wave/multi_symbol_optimise.py	84	_prot.zu_wenige_kerzen(symbol, len(df), MIN_HISTORY_HOURS)
+TREFFER	iloc\[-1\]	strategies/elliott_wave_stocks/backtest_elliott.py	107	last_row = future.iloc[-1]
+TREFFER	2026-09	strategies/elliott_wave_stocks/equity_simulation.py	59	# 2026-09-03 live auf False gesetzt ("Gewinne laufen lassen"), hier blieb es
+TREFFER	tail\(	strategies/elliott_wave_stocks/equity_simulation.py	231	print(result["equity_curve"].tail(10).to_string(index=False))
+TREFFER	MIN_HISTORY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	52	MIN_HISTORY_DAYS = 1825    # ca. 5 Jahre - zeitraum- statt kerzenzahl-basiert (Tages- statt
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	54	RECENT_YEARS_ONLY = 10      # begrenzt die Historie auf die letzten N Jahre - reduziert
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	65	letzten RECENT_YEARS_ONLY Jahre begrenzt (siehe Kommentar oben)."""
+TREFFER	2026-09	strategies/elliott_wave_stocks/multi_symbol_optimise.py	75	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	92	if RECENT_YEARS_ONLY is not None:
+TREFFER	RECENT_YEARS_ONLY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	93	cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_optimise.py	93	cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	entry_cutoff|cutoff	strategies/elliott_wave_stocks/multi_symbol_optimise.py	93	cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	entry_cutoff|cutoff	strategies/elliott_wave_stocks/multi_symbol_optimise.py	94	df = df[df["open_time"] >= cutoff].reset_index(drop=True)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_optimise.py	96	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/elliott_wave_stocks/multi_symbol_optimise.py	96	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	MIN_HISTORY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	97	if timespan_days < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	strategies/elliott_wave_stocks/multi_symbol_optimise.py	98	_prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	76	stop_loss_pct: float = None, entry_cutoff=None) -> pd.DataFrame:
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	87	if entry_cutoff is not None:
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	88	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	123	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/backtest_rsi2.py	123	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	MIN_HISTORY	strategies/rsi2_crypto/multi_symbol_optimise.py	16	MIN_HISTORY_DAYS liegt bewusst hoeher als bei T3/SuperTrend (730), weil der
+TREFFER	MIN_HISTORY	strategies/rsi2_crypto/multi_symbol_optimise.py	56	MIN_HISTORY_DAYS = 500          # deckt den laengsten Trendfilter (SMA 200) plus echten Vorlauf ab
+TREFFER	2026-09	strategies/rsi2_crypto/multi_symbol_optimise.py	69	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_crypto/multi_symbol_optimise.py	85	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_crypto/multi_symbol_optimise.py	85	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	MIN_HISTORY	strategies/rsi2_crypto/multi_symbol_optimise.py	86	if timespan_days < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	strategies/rsi2_crypto/multi_symbol_optimise.py	87	_prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_optimise.py	97	stop_loss_pct: float = None, entry_cutoff=None) -> pd.DataFrame:
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_crypto/multi_symbol_optimise.py	99	return run_backtest(df_ind, rsi_threshold, sma_trend_period, stop_loss_pct, entry_cutoff)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	14	entry_cutoff (minus SMA(200)-Vorlauf), nicht am Anfang der gesamten
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	113	stop_loss_pct: float = None, entry_cutoff=None,
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	116	berechnet sein, siehe compute_indicators). entry_cutoff (optional):
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	130	if entry_cutoff is not None:
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	131	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	166	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/backtest_rsi2.py	166	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/equity_simulation.py	73	for symbol, (df_ind, entry_cutoff) in all_data.items():
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/equity_simulation.py	74	trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct,
+TREFFER	MIN_HISTORY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	51	MIN_HISTORY_DAYS = 1825      # ca. 5 Jahre, zeitraum- statt kerzenzahl-basiert (siehe Projekt-Prinzipien)
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	52	RECENT_YEARS_ONLY = 10       # reduziert Survivorship Bias, wie bei elliott_wave_stocks
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	56	"""Laedt die vollen CSVs (KEINE Kappung auf RECENT_YEARS_ONLY vor der
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	59	entry_cutoff) zurueck - entry_cutoff filtert nur die generierten TRADES
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	59	entry_cutoff) zurueck - entry_cutoff filtert nur die generierten TRADES
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	60	auf die letzten RECENT_YEARS_ONLY Jahre, nicht die Indikator-Basis."""
+TREFFER	2026-09	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	70	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	86	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	86	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	MIN_HISTORY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	87	if timespan_days < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	88	_prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	91	entry_cutoff = None
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	92	if RECENT_YEARS_ONLY is not None:
+TREFFER	RECENT_YEARS_ONLY	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	93	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	93	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	93	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	96	data[symbol] = (df_ind, entry_cutoff)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	102	def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, rsi_threshold: float,
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	112	entry_cutoff=entry_cutoff, sma_trend_period=sma_trend_period)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	112	entry_cutoff=entry_cutoff, sma_trend_period=sma_trend_period)
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	124	for symbol, (df_ind, entry_cutoff) in all_data.items():
+TREFFER	entry_cutoff|cutoff	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	125	trades = get_trades_for_symbol(df_ind, entry_cutoff, rsi_threshold, stop_loss_pct)
+TREFFER	MIN_HISTORY	strategies/t3_supertrend/multi_symbol_optimise.py	46	MIN_HISTORY_DAYS = 730  # ca. 2 Jahre - zeitraum-basiert statt Kerzenzahl,
+TREFFER	2026-09	strategies/t3_supertrend/multi_symbol_optimise.py	62	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/t3_supertrend/multi_symbol_optimise.py	79	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/t3_supertrend/multi_symbol_optimise.py	79	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	MIN_HISTORY	strategies/t3_supertrend/multi_symbol_optimise.py	80	if timespan_days < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	strategies/t3_supertrend/multi_symbol_optimise.py	81	_prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	113	def run_backtest(price_df: pd.DataFrame, stop_mode=None, entry_cutoff=None,
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	125	if entry_cutoff is not None:
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	126	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	167	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/backtest_turtle_soup.py	167	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	MIN_HISTORY	strategies/turtle_soup_crypto/multi_symbol_optimise.py	39	MIN_HISTORY_DAYS = 500
+TREFFER	2026-09	strategies/turtle_soup_crypto/multi_symbol_optimise.py	52	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_crypto/multi_symbol_optimise.py	67	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_crypto/multi_symbol_optimise.py	67	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	MIN_HISTORY	strategies/turtle_soup_crypto/multi_symbol_optimise.py	68	if timespan_days < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	strategies/turtle_soup_crypto/multi_symbol_optimise.py	69	_prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_optimise.py	78	entry_cutoff=None) -> pd.DataFrame:
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_optimise.py	80	return run_backtest(df_ind, stop_mode=stop_mode, entry_cutoff=entry_cutoff, donchian_period=donchian_period)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_crypto/multi_symbol_optimise.py	80	return run_backtest(df_ind, stop_mode=stop_mode, entry_cutoff=entry_cutoff, donchian_period=donchian_period)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	109	def run_backtest(price_df: pd.DataFrame, stop_mode=None, entry_cutoff=None,
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	121	if entry_cutoff is not None:
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	122	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	163	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/backtest_turtle_soup.py	163	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	2026-09	strategies/turtle_soup_stocks/equity_simulation.py	8	2026-09-04 laeuft der Bot live mit 2 % Allokation und OHNE Positionslimit,
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/equity_simulation.py	78	for symbol, (df, entry_cutoff) in all_data.items():
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/equity_simulation.py	79	trades = get_trades_for_symbol(df, entry_cutoff, donchian_period, stop_mode)
+TREFFER	MIN_HISTORY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	45	MIN_HISTORY_DAYS = 1825
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	46	RECENT_YEARS_ONLY = 10
+TREFFER	2026-09	strategies/turtle_soup_stocks/multi_symbol_optimise.py	59	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/multi_symbol_optimise.py	74	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/multi_symbol_optimise.py	74	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	MIN_HISTORY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	75	if timespan_days < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	76	_prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	79	entry_cutoff = None
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	80	if RECENT_YEARS_ONLY is not None:
+TREFFER	RECENT_YEARS_ONLY	strategies/turtle_soup_stocks/multi_symbol_optimise.py	81	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/turtle_soup_stocks/multi_symbol_optimise.py	81	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	81	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	83	data[symbol] = (df, entry_cutoff)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	89	def get_trades_for_symbol(price_df: pd.DataFrame, entry_cutoff, donchian_period: int,
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	92	return run_backtest(df_ind, stop_mode=stop_mode, entry_cutoff=entry_cutoff, donchian_period=donchian_period)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	92	return run_backtest(df_ind, stop_mode=stop_mode, entry_cutoff=entry_cutoff, donchian_period=donchian_period)
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	103	for symbol, (df, entry_cutoff) in all_data.items():
+TREFFER	entry_cutoff|cutoff	strategies/turtle_soup_stocks/multi_symbol_optimise.py	104	trades = get_trades_for_symbol(df, entry_cutoff, donchian_period, stop_mode)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	141	def run_backtest(price_df: pd.DataFrame, stop_loss_pct: float = 5.0, entry_cutoff=None,
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	145	berechnet sein, siehe compute_indicators). entry_cutoff (optional):
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	171	if entry_cutoff is not None:
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	172	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	211	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/backtest_breakout.py	211	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/equity_simulation.py	74	for symbol, (df_ind, entry_cutoff) in all_data.items():
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/equity_simulation.py	75	trades = get_trades_for_symbol(df_ind, entry_cutoff, stop_loss_pct, max_hold_days, use_volume_filter,
+TREFFER	MIN_HISTORY	strategies/volatility_breakout/multi_symbol_optimise.py	49	MIN_HISTORY_DAYS = 1825       # ca. 5 Jahre, zeitraum- statt kerzenzahl-basiert
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_optimise.py	50	RECENT_YEARS_ONLY = 10        # reduziert Survivorship Bias, wie bei den anderen Aktien-Bots
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_optimise.py	54	"""Laedt die vollen CSVs (KEINE Kappung auf RECENT_YEARS_ONLY vor der
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	56	Vorgeschichte. entry_cutoff filtert nur die generierten TRADES."""
+TREFFER	2026-09	strategies/volatility_breakout/multi_symbol_optimise.py	66	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/multi_symbol_optimise.py	82	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/multi_symbol_optimise.py	82	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	MIN_HISTORY	strategies/volatility_breakout/multi_symbol_optimise.py	83	if timespan_days < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	strategies/volatility_breakout/multi_symbol_optimise.py	84	_prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	87	entry_cutoff = None
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_optimise.py	88	if RECENT_YEARS_ONLY is not None:
+TREFFER	RECENT_YEARS_ONLY	strategies/volatility_breakout/multi_symbol_optimise.py	89	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout/multi_symbol_optimise.py	89	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	89	entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	92	data[symbol] = (df_ind, entry_cutoff)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	98	def get_trades_for_symbol(df_ind: pd.DataFrame, entry_cutoff, stop_loss_pct: float,
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	109	return run_backtest(df_ind, stop_loss_pct=stop_loss_pct, entry_cutoff=entry_cutoff,
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	109	return run_backtest(df_ind, stop_loss_pct=stop_loss_pct, entry_cutoff=entry_cutoff,
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	123	for symbol, (df_ind, entry_cutoff) in all_data.items():
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout/multi_symbol_optimise.py	124	trades = get_trades_for_symbol(df_ind, entry_cutoff, stop_loss_pct, max_hold_days, use_volume_filter)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	104	def run_backtest(price_df: pd.DataFrame, stop_loss_pct: float = 8.0, entry_cutoff=None,
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	130	if entry_cutoff is not None:
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	131	start_i = max(start_i, int((df["open_time"] < entry_cutoff).sum()))
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	170	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/backtest_breakout.py	170	if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
+TREFFER	MIN_HISTORY	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	41	MIN_HISTORY_DAYS = 500          # deckt den 126-Tage-Squeeze-Vorlauf plus echten Vorlauf ab
+TREFFER	2026-09	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	54	# Eine einzige solche Zeile (gemessen: APH, 2026-09-01) erzeugt bei
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	70	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	open_time.\]?\.(max|min)\(\)	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	70	timespan_days = (df["open_time"].max() - df["open_time"].min()).days
+TREFFER	MIN_HISTORY	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	71	if timespan_days < MIN_HISTORY_DAYS:
+TREFFER	MIN_HISTORY	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	72	_prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	83	entry_cutoff=None,
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	92	return run_backtest(df_ind, stop_loss_pct=stop_loss_pct, entry_cutoff=entry_cutoff,
+TREFFER	entry_cutoff|cutoff	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	92	return run_backtest(df_ind, stop_loss_pct=stop_loss_pct, entry_cutoff=entry_cutoff,
+MUSTER	go.live	Treffer 0	Dateien 0
+MUSTER	2026-09	Treffer 12	Dateien 12
+MUSTER	RECENT_YEARS_ONLY	Treffer 16	Dateien 4
+MUSTER	bfill|backfill	Treffer 0	Dateien 0
+MUSTER	shift\(\s*-	Treffer 0	Dateien 0
+MUSTER	center\s*=\s*True	Treffer 0	Dateien 0
+MUSTER	iloc\[-1\]	Treffer 9	Dateien 5
+MUSTER	tail\(	Treffer 2	Dateien 2
+MUSTER	open_time.\]?\.(max|min)\(\)	Treffer 20	Dateien 8
+MUSTER	entry_cutoff|cutoff	Treffer 77	Dateien 17
+MUSTER	MIN_HISTORY	Treffer 33	Dateien 11
+RUECKGABE 0
+rc 0
+## V2 (a) - Filter fuer Zeilen ohne Kurse und weitere Lesestellen, Bereich der Code des Laufs
+# TB-140 Suche V2-a1
+BEREICH	verfolgte Dateien, pfad ['strategies/elliott_wave/multi_symbol_optimise.py', 'strategies/elliott_wave/equity_simulation.py', 'strategies/elliott_wave/backtest_elliott.py', 'strategies/elliott_wave/zigzag_indicator.py', 'strategies/elliott_wave/elliott_wave_counter.py', 'strategies/t3_supertrend/multi_symbol_optimise.py', 'strategies/t3_supertrend/equity_simulation.py', 'strategies/t3_supertrend/backtest_trend.py', 'strategies/t3_supertrend/indicators.py', 'strategies/t3_supertrend/regime_filter.py', 'strategies/rsi2_crypto/multi_symbol_optimise.py', 'strategies/rsi2_crypto/equity_simulation.py', 'strategies/rsi2_crypto/backtest_rsi2.py', 'strategies/rsi2_crypto/indicators.py', 'strategies/rsi2_crypto/regime_filter.py', 'strategies/turtle_soup_crypto/multi_symbol_optimise.py', 'strategies/turtle_soup_crypto/equity_simulation.py', 'strategies/turtle_soup_crypto/backtest_turtle_soup.py', 'strategies/turtle_soup_crypto/indicators.py', 'strategies/volatility_breakout_crypto/multi_symbol_optimise.py', 'strategies/volatility_breakout_crypto/equity_simulation.py', 'strategies/volatility_breakout_crypto/backtest_breakout.py', 'strategies/volatility_breakout_crypto/indicators.py', 'strategies/volatility_breakout_crypto/regime_filter.py', 'strategies/elliott_wave_stocks/multi_symbol_optimise.py', 'strategies/elliott_wave_stocks/equity_simulation.py', 'strategies/elliott_wave_stocks/backtest_elliott.py', 'strategies/elliott_wave_stocks/zigzag_indicator.py', 'strategies/elliott_wave_stocks/elliott_wave_counter.py', 'strategies/rsi2_mean_reversion/multi_symbol_optimise.py', 'strategies/rsi2_mean_reversion/equity_simulation.py', 'strategies/rsi2_mean_reversion/backtest_rsi2.py', 'strategies/rsi2_mean_reversion/indicators.py', 'strategies/turtle_soup_stocks/multi_symbol_optimise.py', 'strategies/turtle_soup_stocks/equity_simulation.py', 'strategies/turtle_soup_stocks/backtest_turtle_soup.py', 'strategies/turtle_soup_stocks/indicators.py', 'strategies/volatility_breakout/multi_symbol_optimise.py', 'strategies/volatility_breakout/equity_simulation.py', 'strategies/volatility_breakout/backtest_breakout.py', 'strategies/volatility_breakout/indicators.py', 'shared/zuteilung.py', 'shared/kursdaten.py', 'shared/regimewache.py', 'shared/data_quality.py', 'shared/ladeprotokoll.py', 'research/vorregistrierung/benchmark.py', 'research/mtm_drawdown/mtm_kern.py', 'research/mtm_drawdown/grundlage.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	49
+TREFFER	read_csv	research/mtm_drawdown/grundlage.py	71	pos = pd.read_csv(pfad, parse_dates=["entry_time", "exit_time"])
+TREFFER	read_csv	research/mtm_drawdown/grundlage.py	90	df = pd.read_csv(pfad, parse_dates=["open_time"]).dropna(subset=["close"])
+TREFFER	dropna	research/mtm_drawdown/grundlage.py	90	df = pd.read_csv(pfad, parse_dates=["open_time"]).dropna(subset=["close"])
+TREFFER	read_csv	research/vorregistrierung/benchmark.py	155	df = pd.read_csv(pfad, parse_dates=["open_time"])
+TREFFER	dropna	research/vorregistrierung/benchmark.py	156	df = df.dropna(subset=["close"])
+TREFFER	dropna	research/vorregistrierung/benchmark.py	205	return rahmen.pct_change().mean(axis=1, skipna=True).dropna()
+TREFFER	KURSSPALTEN =	shared/kursdaten.py	54	KURSSPALTEN = ["open", "high", "low", "close"]
+TREFFER	unvollstaendige_maske	shared/kursdaten.py	57	def unvollstaendige_maske(df):
+TREFFER	entferne_unvollstaendige	shared/kursdaten.py	73	def entferne_unvollstaendige(df, symbol=None, melden=True):
+TREFFER	unvollstaendige_maske	shared/kursdaten.py	81	maske = unvollstaendige_maske(df)
+TREFFER	read_csv	shared/kursdaten.py	134	df = pd.read_csv(pfad)
+TREFFER	unvollstaendige_maske	shared/kursdaten.py	139	maske = unvollstaendige_maske(df)
+TREFFER	entferne_unvollstaendige	shared/zuteilung.py	225	durch `shared/kursdaten.entferne_unvollstaendige()`, die dort beim Laden
+TREFFER	read_csv	strategies/elliott_wave/backtest_elliott.py	204	price_df = pd.read_csv(os.path.join(DATA_DIR, "BTCUSDT_1h.csv"), parse_dates=["open_time"])
+TREFFER	dropna	strategies/elliott_wave/elliott_wave_counter.py	334	candidates = candidates.dropna(subset=["confirm_idx", "pivot_idx"])
+TREFFER	read_csv	strategies/elliott_wave/elliott_wave_counter.py	367	zigzag = pd.read_csv(os.path.join(RESULTS_DIR, "BTCUSDT_zigzag.csv"), parse_dates=["time"])
+TREFFER	entferne_unvollstaendige	strategies/elliott_wave/multi_symbol_optimise.py	25	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/elliott_wave/multi_symbol_optimise.py	63	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/elliott_wave/multi_symbol_optimise.py	72	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+TREFFER	read_csv	strategies/elliott_wave/zigzag_indicator.py	207	df = pd.read_csv(os.path.join(DATA_DIR, "BTCUSDT_1h.csv"), parse_dates=["open_time"])
+TREFFER	read_csv	strategies/elliott_wave_stocks/backtest_elliott.py	216	price_df = pd.read_csv(os.path.join(DATA_DIR, "AAPL_1d.csv"), parse_dates=["open_time"])
+TREFFER	dropna	strategies/elliott_wave_stocks/elliott_wave_counter.py	334	candidates = candidates.dropna(subset=["confirm_idx", "pivot_idx"])
+TREFFER	read_csv	strategies/elliott_wave_stocks/elliott_wave_counter.py	367	zigzag = pd.read_csv(os.path.join(RESULTS_DIR, "AAPL_zigzag.csv"), parse_dates=["time"])
+TREFFER	entferne_unvollstaendige	strategies/elliott_wave_stocks/multi_symbol_optimise.py	25	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/elliott_wave_stocks/multi_symbol_optimise.py	72	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/elliott_wave_stocks/multi_symbol_optimise.py	81	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+TREFFER	read_csv	strategies/elliott_wave_stocks/zigzag_indicator.py	207	df = pd.read_csv(os.path.join(DATA_DIR, "AAPL_1d.csv"), parse_dates=["open_time"])
+TREFFER	read_csv	strategies/rsi2_crypto/backtest_rsi2.py	148	price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "BTCUSDT_1d.csv"), parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/rsi2_crypto/multi_symbol_optimise.py	32	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/rsi2_crypto/multi_symbol_optimise.py	66	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/rsi2_crypto/multi_symbol_optimise.py	75	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+TREFFER	read_csv	strategies/rsi2_mean_reversion/backtest_rsi2.py	191	price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "AAPL_1d.csv"), parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	25	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	67	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	76	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+TREFFER	entferne_unvollstaendige	strategies/t3_supertrend/multi_symbol_optimise.py	20	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/t3_supertrend/multi_symbol_optimise.py	59	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/t3_supertrend/multi_symbol_optimise.py	68	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+TREFFER	read_csv	strategies/turtle_soup_crypto/backtest_turtle_soup.py	192	price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "BTCUSDT_1d.csv"), parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/turtle_soup_crypto/multi_symbol_optimise.py	18	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/turtle_soup_crypto/multi_symbol_optimise.py	49	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/turtle_soup_crypto/multi_symbol_optimise.py	58	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+TREFFER	read_csv	strategies/turtle_soup_stocks/backtest_turtle_soup.py	188	price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "AAPL_1d.csv"), parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/turtle_soup_stocks/multi_symbol_optimise.py	24	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/turtle_soup_stocks/multi_symbol_optimise.py	56	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/turtle_soup_stocks/multi_symbol_optimise.py	65	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+TREFFER	read_csv	strategies/volatility_breakout/backtest_breakout.py	236	price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "AAPL_1d.csv"), parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/volatility_breakout/multi_symbol_optimise.py	27	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/volatility_breakout/multi_symbol_optimise.py	63	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/volatility_breakout/multi_symbol_optimise.py	72	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+TREFFER	read_csv	strategies/volatility_breakout_crypto/backtest_breakout.py	195	price_df = pd.read_csv(os.path.join(_P["DATA_DIR"], "BTCUSDT_1d.csv"), parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	20	from kursdaten import entferne_unvollstaendige, Zaehler
+TREFFER	read_csv	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	51	df = pd.read_csv(csv_path, parse_dates=["open_time"])
+TREFFER	entferne_unvollstaendige	strategies/volatility_breakout_crypto/multi_symbol_optimise.py	60	df, _gestrichen = entferne_unvollstaendige(df, symbol=symbol,
+MUSTER	entferne_unvollstaendige	Treffer 20	Dateien 11
+MUSTER	unvollstaendige_maske	Treffer 3	Dateien 1
+MUSTER	read_csv	Treffer 25	Dateien 24
+MUSTER	dropna	Treffer 5	Dateien 4
+MUSTER	KURSSPALTEN =	Treffer 1	Dateien 1
+RUECKGABE 0
+rc 0
+## Ende
+rc 0

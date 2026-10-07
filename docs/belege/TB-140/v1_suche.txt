@@ -1,0 +1,318 @@
+## V1 Nr. 0 - gibt es einen Zellen-Erzeuger? Namen der Ausgaben aus R39 (Register Z. 10857)
+# TB-140 Suche V1-0a
+BEREICH	verfolgte Dateien, pfad alle, endung ['.py'], ohne ['docs']; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	482
+TREFFER	herkunft.json	research/tb24_haltedauern/positionen_holen.py	24	B5   Neben die drei Dateien kommt `<bot>_herkunft.json`: Erzeuger, Zeit,
+TREFFER	herkunft.json	research/tb24_haltedauern/positionen_holen.py	130	f"{BOT}_meta.json", f"{BOT}_herkunft.json"]
+TREFFER	herkunft.json	research/tb24_haltedauern/positionen_holen.py	219	_schreibe_einmal(f"{BOT}_herkunft.json",
+TREFFER	zellen.csv	research/vorregistrierung/auswertung.py	38	<wurzel>/<bot>/zellen.csv
+TREFFER	tagesreihen/	research/vorregistrierung/auswertung.py	45	<wurzel>/<bot>/tagesreihen/<zelle_id>.csv
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	51	<wurzel>/<bot>/herkunft.json
+TREFFER	tagesreihen/	research/vorregistrierung/auswertung.py	64	<wurzel>/benchmark_tagesreihen/<markt>.csv
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/auswertung.py	64	<wurzel>/benchmark_tagesreihen/<markt>.csv
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	125	# unter dem Modus jede herkunft.json geprueft wird - Register 18, Tabelle "Der
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	166	"""Die herkunft.json je Bot, wie sie daliegt: {bot: dict | None}. Eine
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	170	pfad = os.path.join(wurzel, bot, "herkunft.json")
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	186	"""R14: Unter dem Selektionsmodus liest dieses Programm `herkunft.json`
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	203	f"{bot}: herkunft.json fehlt - erwartet "
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	204	f"{os.path.join(wurzel, bot, 'herkunft.json')}, gefunden: keine Datei")
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	206	_abbruch_2("herkunft_pruefen", f"{bot}: herkunft.json {h['fehler']}")
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	246	print("HERKUNFT (herkunft.json je Bot; Register 46.5, Lesart 46.9) - "
+TREFFER	herkunft.json	research/vorregistrierung/auswertung.py	258	print(f"  herkunft.json fehlt: {', '.join(kopf['fehlend'])}")
+TREFFER	zellen.csv	research/vorregistrierung/auswertung.py	321	pfad = os.path.join(wurzel, bot, "zellen.csv")
+TREFFER	zellen.csv	research/vorregistrierung/auswertung.py	329	raise Abbruch(f"{bot}: Spalten fehlen in zellen.csv: {fehlend}")
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/auswertung.py	379	pfad = os.path.join(wurzel, "benchmark_tagesreihen", f"{markt}.csv")
+TREFFER	zellen.csv	research/vorregistrierung/beispieldaten.py	25	`zellen.csv`, weil er im echten Lauf aus `equity_simulation.py` kommt, und
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/beispieldaten.py	173	os.makedirs(os.path.join(wurzel, "benchmark_tagesreihen"), exist_ok=True)
+TREFFER	zellen.csv	research/vorregistrierung/beispieldaten.py	200	df.to_csv(os.path.join(ordner, "zellen.csv"), index=False)
+TREFFER	herkunft.json	research/vorregistrierung/beispieldaten.py	210	with open(os.path.join(ordner, "herkunft.json"), "w", encoding="utf-8") as f:
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/beispieldaten.py	233	os.path.join(wurzel, "benchmark_tagesreihen", f"{markt}.csv"), index=False)
+TREFFER	herkunft.json	research/vorregistrierung/test_ersatzwerte.py	76	liest `herkunft.json`. Unter dem Modus (im Prozess nachgestellt:
+TREFFER	herkunft.json	research/vorregistrierung/test_ersatzwerte.py	90	Nullwerte - und ohne herkunft.json rc 0 mit "fehlt";
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/test_ersatzwerte.py	293	os.makedirs(os.path.join(w, "benchmark_tagesreihen"))
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/test_ersatzwerte.py	298	os.path.join(w, "benchmark_tagesreihen", "aktien.csv"), index=False)
+TREFFER	zellen.csv	research/vorregistrierung/test_ersatzwerte.py	775	with open(os.path.join(w, {BOT!r}, "zellen.csv"), "w") as f:
+TREFFER	zellen.csv	research/vorregistrierung/test_ersatzwerte.py	783	with open(os.path.join(w, {BOT!r}, "zellen.csv"), "w") as f:
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/test_ersatzwerte.py	793	os.makedirs(os.path.join(w, "benchmark_tagesreihen"))
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/test_ersatzwerte.py	798	os.path.join(w, "benchmark_tagesreihen", "aktien.csv"), index=False)
+TREFFER	zellen.csv	research/vorregistrierung/test_ersatzwerte.py	819	for name, treiber, text in (("G-b", T_G_SPALTE, "Spalten fehlen in zellen.csv"),
+TREFFER	zellen.csv	research/vorregistrierung/test_ersatzwerte.py	828	lambda r: r["rc"] == 1 and "Spalten fehlen in zellen.csv" in r["err"], _info)
+TREFFER	herkunft.json	research/vorregistrierung/test_ersatzwerte.py	1028	"""herkunft.json fuer die neun Bots; `werte` = {bot: dict} ueberschreibt."""
+TREFFER	herkunft.json	research/vorregistrierung/test_ersatzwerte.py	1036	with open(os.path.join(t, bot, "herkunft.json"), "w", encoding="utf-8") as f:
+TREFFER	herkunft.json	research/vorregistrierung/test_ersatzwerte.py	1076	"J-1": (dict(ohne=(bots[3],)), "herkunft.json fehlt", bots[3]),
+TREFFER	herkunft.json	research/vorregistrierung/test_ersatzwerte.py	1136	os.remove(os.path.join(t, BOT, "herkunft.json"))
+TREFFER	herkunft.json	research/vorregistrierung/test_ersatzwerte.py	1139	pruefe("J-o3: ohne Modus, herkunft.json fehlt - rc 0, der Kopf sagt es",
+TREFFER	herkunft.json	research/vorregistrierung/test_ersatzwerte.py	1140	r.returncode == 0 and f"herkunft.json fehlt: {BOT}" in r.stdout,
+TREFFER	zellen.csv	research/vorregistrierung/test_vorregistrierung.py	206	p = os.path.join(d, BOT, "zellen.csv")
+TREFFER	zellen.csv	research/vorregistrierung/test_vorregistrierung.py	258	pd.read_csv(os.path.join(d, BOT, "zellen.csv"),
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/test_vorregistrierung.py	425	bench = pd.read_csv(os.path.join(d, "benchmark_tagesreihen", "aktien.csv"),
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/test_vorregistrierung.py	465	bench = pd.read_csv(os.path.join(d, "benchmark_tagesreihen", "aktien.csv"),
+TREFFER	benchmark_tagesreihen	research/vorregistrierung/test_vorregistrierung.py	491	bench = pd.read_csv(os.path.join(d, "benchmark_tagesreihen", "aktien.csv"),
+MUSTER	zellen.csv	Treffer 11	Dateien 4
+MUSTER	zellenbericht	Treffer 0	Dateien 0
+MUSTER	tagesreihen/	Treffer 2	Dateien 1
+MUSTER	benchmark_tagesreihen	Treffer 11	Dateien 4
+MUSTER	symbole_je_falte	Treffer 0	Dateien 0
+MUSTER	herkunft.json	Treffer 22	Dateien 4
+RUECKGABE 0
+rc 0
+# TB-140 Suche V1-0b
+BEREICH	verfolgte Dateien, pfad alle, endung ['.py'], ohne ['docs']; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	482
+TREFFER	lese.?audit	shared/paths.py	125	"Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts
+TREFFER	lese.?audit	shared/paths.py	129	aus einem anderen - haette ein sauberes Lese-Audit und waere trotzdem nicht
+TREFFER	lese.?audit	shared/paths.py	183	das spaetere Lese-Audit.
+TREFFER	lese.?audit	shared/paths.py	285	das spaetere Lese-Audit), bekommt den Fehler als Ausnahme.
+TREFFER	lese.?audit	shared/paths.py	670	fuer das spaetere Lese-Audit abrufbar - eine Fassung, nicht zwei.
+TREFFER	lese.?audit	shared/test_startpruefungen.py	5	"Der Lese-Audit beweist, welche DATEN gelesen wurden. Er sagt nichts
+MUSTER	zellen.?erzeuger	Treffer 0	Dateien 0
+MUSTER	lese.?audit	Treffer 6	Dateien 2
+RUECKGABE 0
+rc 0
+## V1 Nr. 1 - Lesestellen in benchmark.py
+# TB-140 Suche V1-1a
+BEREICH	verfolgte Dateien, pfad ['research/vorregistrierung/benchmark.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	DATA_DIR	research/vorregistrierung/benchmark.py	113	# `config/`). Bis TB-104 stand hier `DATA_DIR = os.path.join(BASE_DIR, "data")`
+TREFFER	DATA_DIR	research/vorregistrierung/benchmark.py	120	DATA_DIR = paths.DATA_DIR
+TREFFER	DATA_DIR	research/vorregistrierung/benchmark.py	120	DATA_DIR = paths.DATA_DIR
+TREFFER	CONFIG_DIR	research/vorregistrierung/benchmark.py	121	CONFIG_DIR = paths.CONFIG_DIR
+TREFFER	CONFIG_DIR	research/vorregistrierung/benchmark.py	121	CONFIG_DIR = paths.CONFIG_DIR
+TREFFER	CONFIG_DIR	research/vorregistrierung/benchmark.py	139	return os.path.join(CONFIG_DIR, os.path.basename(rd.UNIVERSUM[markt]))
+TREFFER	open(	research/vorregistrierung/benchmark.py	143	with open(universumsdatei(markt), encoding="utf-8") as f:
+TREFFER	_1d	research/vorregistrierung/benchmark.py	152	pfad = os.path.join(DATA_DIR, f"{s}_1d.csv")
+TREFFER	DATA_DIR	research/vorregistrierung/benchmark.py	152	pfad = os.path.join(DATA_DIR, f"{s}_1d.csv")
+TREFFER	read_csv	research/vorregistrierung/benchmark.py	155	df = pd.read_csv(pfad, parse_dates=["open_time"])
+TREFFER	"close"	research/vorregistrierung/benchmark.py	156	df = df.dropna(subset=["close"])
+TREFFER	"close"	research/vorregistrierung/benchmark.py	159	reihen[s] = pd.Series(df["close"].to_numpy(dtype=float),
+TREFFER	open(	research/vorregistrierung/benchmark.py	335	with open(pfad, "rb") as f:
+TREFFER	open(	research/vorregistrierung/benchmark.py	388	# O_EXCL statt open(..., "w"): faengt auch ein Ziel ab, das zwischen
+TREFFER	open(	research/vorregistrierung/benchmark.py	390	fd = os.open(ziel, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o644)
+TREFFER	open(	research/vorregistrierung/benchmark.py	397	with os.fdopen(fd, "w", encoding="utf-8") as f:
+MUSTER	read_csv	Treffer 1	Dateien 1
+MUSTER	open(	Treffer 5	Dateien 1
+MUSTER	_1d	Treffer 1	Dateien 1
+MUSTER	_1h	Treffer 0	Dateien 0
+MUSTER	_4h	Treffer 0	Dateien 0
+MUSTER	DATA_DIR	Treffer 4	Dateien 1
+MUSTER	CONFIG_DIR	Treffer 3	Dateien 1
+MUSTER	"close"	Treffer 2	Dateien 1
+RUECKGABE 0
+rc 0
+## V1 Nr. 1 und Nr. 2 - Aufrufer von tagesschluss und lade_schlusskurse
+# TB-140 Suche V1-1b
+BEREICH	verfolgte Dateien, pfad alle, endung ['.py'], ohne ['docs']; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	482
+TREFFER	lade_schlusskurse(	research/mtm_drawdown/grundlage.py	82	def lade_schlusskurse(symbole, zeitrahmen="1d") -> dict:
+TREFFER	lade_schlusskurse(	research/mtm_drawdown/grundlage.py	211	kerzen = lade_schlusskurse(symbole, meta.get("zeitrahmen", "1d"))
+TREFFER	lade_schlusskurse(	research/mtm_drawdown/grundlage.py	212	tages = lade_schlusskurse(symbole, "1d")
+TREFFER	lade_schlusskurse(	research/mtm_drawdown/messung.py	147	tages = grundlage.lade_schlusskurse(pos["symbol"].unique(), "1d")
+TREFFER	lade_schlusskurse(	research/mtm_drawdown/richtungsfall.py	135	tages = grundlage.lade_schlusskurse(pos["symbol"].unique(), "1d")
+TREFFER	lade_schlusskurse(	research/mtm_drawdown/test_mtm_kern.py	121	kurse = grundlage.lade_schlusskurse(pos["symbol"].unique(), "1d")
+TREFFER	tagesschluss(	research/vorregistrierung/benchmark.py	148	def tagesschluss(markt: str) -> dict:
+TREFFER	tagesschluss(	research/vorregistrierung/benchmark.py	253	kurse = {markt: tagesschluss(markt) for markt in ("aktien", "krypto")}
+TREFFER	tagesschluss =	research/vorregistrierung/test_ersatzwerte.py	225	"bm.tagesschluss = lambda markt: {}\n"
+TREFFER	tagesschluss(	research/vorregistrierung/test_vorregistrierung.py	1172	print(markt, sorted(bm.tagesschluss(markt)))
+MUSTER	tagesschluss(	Treffer 3	Dateien 2
+MUSTER	tagesschluss =	Treffer 1	Dateien 1
+MUSTER	lade_schlusskurse(	Treffer 6	Dateien 4
+RUECKGABE 0
+rc 0
+## V1 Nr. 2 - Kern und Ladestelle
+# TB-140 Suche V1-2a
+BEREICH	verfolgte Dateien, pfad ['research/mtm_drawdown/mtm_kern.py', 'research/mtm_drawdown/grundlage.py', 'research/mtm_drawdown/messung.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	3
+TREFFER	zeitrahmen	research/mtm_drawdown/grundlage.py	13	_meta.json, data/<symbol>_<zeitrahmen>.csv, data/<symbol>_1d.csv,
+TREFFER	REPO_ROOT	research/mtm_drawdown/grundlage.py	34	REPO_ROOT = os.path.dirname(os.path.dirname(_HIER))
+TREFFER	DATA_DIR	research/mtm_drawdown/grundlage.py	35	DATA_DIR = os.path.join(REPO_ROOT, "data")
+TREFFER	REPO_ROOT	research/mtm_drawdown/grundlage.py	35	DATA_DIR = os.path.join(REPO_ROOT, "data")
+TREFFER	REPO_ROOT	research/mtm_drawdown/grundlage.py	36	TB24_DIR = os.path.join(REPO_ROOT, "research", "tb24_haltedauern", "daten")
+TREFFER	REPO_ROOT	research/mtm_drawdown/grundlage.py	37	FALTENPLAN = os.path.join(REPO_ROOT, "research", "vorregistrierung", "ergebnisse",
+TREFFER	zeitrahmen	research/mtm_drawdown/grundlage.py	45	# Bot steht im TB-24-Meta (`zeitrahmen`) und wird von dort gelesen.
+TREFFER	REPO_ROOT	research/mtm_drawdown/grundlage.py	68	return None, None, f"fehlt: {os.path.relpath(pfad, REPO_ROOT)}"
+TREFFER	REPO_ROOT	research/mtm_drawdown/grundlage.py	70	return None, None, f"fehlt: {os.path.relpath(meta_pfad, REPO_ROOT)}"
+TREFFER	read_csv	research/mtm_drawdown/grundlage.py	71	pos = pd.read_csv(pfad, parse_dates=["entry_time", "exit_time"])
+TREFFER	open(	research/mtm_drawdown/grundlage.py	75	with open(meta_pfad, encoding="utf-8") as f:
+TREFFER	zeitrahmen	research/mtm_drawdown/grundlage.py	82	def lade_schlusskurse(symbole, zeitrahmen="1d") -> dict:
+TREFFER	zeitrahmen	research/mtm_drawdown/grundlage.py	83	"""Schlusskurse je Symbol aus data/<symbol>_<zeitrahmen>.csv, indiziert mit
+TREFFER	DATA_DIR	research/mtm_drawdown/grundlage.py	87	pfad = os.path.join(DATA_DIR, f"{s}_{zeitrahmen}.csv")
+TREFFER	zeitrahmen	research/mtm_drawdown/grundlage.py	87	pfad = os.path.join(DATA_DIR, f"{s}_{zeitrahmen}.csv")
+TREFFER	read_csv	research/mtm_drawdown/grundlage.py	90	df = pd.read_csv(pfad, parse_dates=["open_time"]).dropna(subset=["close"])
+TREFFER	"close"	research/mtm_drawdown/grundlage.py	90	df = pd.read_csv(pfad, parse_dates=["open_time"]).dropna(subset=["close"])
+TREFFER	"close"	research/mtm_drawdown/grundlage.py	91	reihen[s] = pd.Series(df["close"].to_numpy(dtype=float),
+TREFFER	open(	research/mtm_drawdown/grundlage.py	97	with open(FALTENPLAN, encoding="utf-8") as f:
+TREFFER	tagesraster(	research/mtm_drawdown/grundlage.py	128	tage = mtm_kern.tagesraster(tages, von=ereignisse["entry_time"].min().normalize(),
+TREFFER	kurse_auf_raster(	research/mtm_drawdown/grundlage.py	130	kurse, fort = mtm_kern.kurse_auf_raster(tages, tage)
+TREFFER	zeitrahmen	research/mtm_drawdown/grundlage.py	183	"zeitrahmen": meta.get("zeitrahmen"),
+TREFFER	zeitrahmen	research/mtm_drawdown/grundlage.py	183	"zeitrahmen": meta.get("zeitrahmen"),
+TREFFER	zeitrahmen	research/mtm_drawdown/grundlage.py	211	kerzen = lade_schlusskurse(symbole, meta.get("zeitrahmen", "1d"))
+TREFFER	open(	research/mtm_drawdown/grundlage.py	256	with open(a.json, "w", encoding="utf-8") as f:
+TREFFER	REPO_ROOT	research/mtm_drawdown/messung.py	58	REPO_ROOT = os.path.dirname(os.path.dirname(_HIER))
+TREFFER	REPO_ROOT	research/mtm_drawdown/messung.py	62	sys.path.insert(0, os.path.join(REPO_ROOT, "research", "drawdown_reihenfolge"))
+TREFFER	REPO_ROOT	research/mtm_drawdown/messung.py	63	sys.path.insert(0, os.path.join(REPO_ROOT, "research", "exposure_messung"))
+TREFFER	tagesraster(	research/mtm_drawdown/messung.py	153	tage = mtm_kern.tagesraster(
+TREFFER	kurse_auf_raster(	research/mtm_drawdown/messung.py	157	kurse, fort = mtm_kern.kurse_auf_raster(tages, tage)
+TREFFER	zeitrahmen	research/mtm_drawdown/messung.py	188	"zeitrahmen": meta.get("zeitrahmen"),
+TREFFER	zeitrahmen	research/mtm_drawdown/messung.py	188	"zeitrahmen": meta.get("zeitrahmen"),
+TREFFER	REPO_ROOT	research/mtm_drawdown/messung.py	190	"quelle_positionen": os.path.relpath(os.path.join(grundlage.TB24_DIR, f"{bot}_positionen.csv"), REPO_ROOT),
+TREFFER	REPO_ROOT	research/mtm_drawdown/messung.py	191	"quelle_falten": os.path.relpath(grundlage.FALTENPLAN, REPO_ROOT),
+TREFFER	open(	research/mtm_drawdown/messung.py	217	with open(os.path.join(ERGEBNISSE, f"{bot}.json"), "w", encoding="utf-8") as f:
+TREFFER	tagesraster(	research/mtm_drawdown/mtm_kern.py	135	def tagesraster(schlusskurse: dict, von=None, bis=None) -> pd.DatetimeIndex:
+TREFFER	kurse_auf_raster(	research/mtm_drawdown/mtm_kern.py	151	def kurse_auf_raster(schlusskurse: dict, tage: pd.DatetimeIndex):
+MUSTER	read_csv	Treffer 2	Dateien 1
+MUSTER	open(	Treffer 4	Dateien 2
+MUSTER	DATA_DIR	Treffer 2	Dateien 1
+MUSTER	REPO_ROOT	Treffer 11	Dateien 2
+MUSTER	"close"	Treffer 2	Dateien 1
+MUSTER	zeitrahmen	Treffer 10	Dateien 2
+MUSTER	tagesraster(	Treffer 3	Dateien 3
+MUSTER	kurse_auf_raster(	Treffer 3	Dateien 3
+RUECKGABE 0
+rc 0
+# TB-140 Suche V1-2b
+BEREICH	verfolgte Dateien, pfad ['research/exposure_messung/auswertung.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	DATA_DIR	research/exposure_messung/auswertung.py	32	DATA_DIR = os.path.join(_REPO_ROOT, "data")
+TREFFER	read_csv	research/exposure_messung/auswertung.py	73	pos = pd.read_csv(os.path.join(DATEN_DIR, f"{bot}_positionen.csv"),
+TREFFER	DATA_DIR	research/exposure_messung/auswertung.py	86	pfad = os.path.join(DATA_DIR, f"{sym}_1d.csv")
+TREFFER	read_csv	research/exposure_messung/auswertung.py	90	df = pd.read_csv(pfad, parse_dates=["open_time"])
+TREFFER	"close"	research/exposure_messung/auswertung.py	96	kurse[sym] = df.set_index("open_time")["close"].sort_index()
+TREFFER	read_csv	research/exposure_messung/auswertung.py	112	df = pd.read_csv(os.path.join(_REPO_ROOT, rel_pfad), parse_dates=["time"]).sort_values("time")
+TREFFER	bfill	research/exposure_messung/auswertung.py	131	rahmen = pd.DataFrame({b: s.reindex(tage).ffill().bfill() for b, s in kurven.items()})
+TREFFER	bfill	research/exposure_messung/auswertung.py	214	kapital = r["kapital_ende"].ffill().bfill()
+TREFFER	bfill	research/exposure_messung/auswertung.py	215	kapital_start = r["kapital_start"].ffill().bfill()
+TREFFER	def mtm_reihen	research/exposure_messung/auswertung.py	305	def mtm_reihen(bot, positionen, kurse, reihen):
+TREFFER	bfill	research/exposure_messung/auswertung.py	323	preis = reihe.reindex(tage.union(reihe.index)).ffill().reindex(tage).ffill().bfill()
+TREFFER	bfill	research/exposure_messung/auswertung.py	351	teil = kurve.reindex(tage).ffill().bfill()
+TREFFER	bfill	research/exposure_messung/auswertung.py	353	basis = reihen_je_bot[bot].reindex(tage)["kapital_start"].ffill().bfill().iloc[0]
+MUSTER	DATA_DIR	Treffer 2	Dateien 1
+MUSTER	read_csv	Treffer 3	Dateien 1
+MUSTER	"close"	Treffer 1	Dateien 1
+MUSTER	def mtm_reihen	Treffer 1	Dateien 1
+MUSTER	bfill	Treffer 6	Dateien 1
+RUECKGABE 0
+rc 0
+## V1 Nr. 4 - der Weg zum Snapshot: Resolver und wer ihn kennt
+# TB-140 Suche V1-4a
+BEREICH	verfolgte Dateien, pfad ['shared/paths.py'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	_LIVE_DATA_DIR =	shared/paths.py	194	_LIVE_DATA_DIR = os.path.join(BASE_DIR, "data")      # Kursdaten - von allen Strategien nutzbar
+TREFFER	DATA_DIR = 	shared/paths.py	194	_LIVE_DATA_DIR = os.path.join(BASE_DIR, "data")      # Kursdaten - von allen Strategien nutzbar
+TREFFER	UMGEBUNG_WURZEL =	shared/paths.py	205	UMGEBUNG_WURZEL = "TB_SELEKTIONSWURZEL"
+TREFFER	CONFIG_UNTERORDNER =	shared/paths.py	215	CONFIG_UNTERORDNER = "config"
+TREFFER	_MODUS = 	shared/paths.py	679	_MODUS = _modus_aus_umgebung()
+TREFFER	DATA_DIR = 	shared/paths.py	685	DATA_DIR = _LIVE_DATA_DIR
+TREFFER	DATA_DIR = 	shared/paths.py	687	LIVE_DATA_DIR = _LIVE_DATA_DIR
+TREFFER	DATA_DIR = 	shared/paths.py	692	DATA_DIR = _MODUS[0]
+MUSTER	_LIVE_DATA_DIR =	Treffer 1	Dateien 1
+MUSTER	DATA_DIR = 	Treffer 4	Dateien 1
+MUSTER	_MODUS = 	Treffer 1	Dateien 1
+MUSTER	UMGEBUNG_WURZEL =	Treffer 1	Dateien 1
+MUSTER	CONFIG_UNTERORDNER =	Treffer 1	Dateien 1
+RUECKGABE 0
+rc 0
+# TB-140 Suche V1-4b
+BEREICH	verfolgte Dateien, pfad ['research/vorregistrierung', 'research/mtm_drawdown', 'research/exposure_messung', 'shared', 'strategies'], endung ['.py'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	249
+TREFFER	os.path.join(_REPO_ROOT, "data")	research/exposure_messung/auswertung.py	32	DATA_DIR = os.path.join(_REPO_ROOT, "data")
+TREFFER	import paths	research/exposure_messung/bot_lauf.py	66	import paths  # noqa: E402  (shared/ steht seit der Zeile oben auf sys.path)
+TREFFER	os.path.join(REPO_ROOT, "data")	research/mtm_drawdown/grundlage.py	35	DATA_DIR = os.path.join(REPO_ROOT, "data")
+TREFFER	import paths	research/vorregistrierung/auswertung.py	122	import paths  # noqa: E402
+TREFFER	import paths	research/vorregistrierung/benchmark.py	118	import paths  # noqa: E402
+TREFFER	paths.DATA_DIR	research/vorregistrierung/benchmark.py	120	DATA_DIR = paths.DATA_DIR
+TREFFER	import paths	research/vorregistrierung/faltenplan.py	135	import paths  # noqa: E402
+TREFFER	import paths	research/vorregistrierung/herkunft.py	218	import paths
+TREFFER	paths.DATA_DIR	research/vorregistrierung/messgroessen.py	97	# nur `paths.DATA_DIR`/`paths.CONFIG_DIR` durch und legt dazu
+TREFFER	import paths	research/vorregistrierung/messgroessen.py	106	import paths  # noqa: E402
+TREFFER	paths.DATA_DIR	research/vorregistrierung/messgroessen.py	108	DATA_DIR = paths.DATA_DIR
+TREFFER	paths.DATA_DIR	research/vorregistrierung/test_ersatzwerte.py	29	rc 0 und hasht den Snapshot (`paths.DATA_DIR`), am echten Snapshot
+TREFFER	TB_SELEKTIONSWURZEL	research/vorregistrierung/test_ersatzwerte.py	482	u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": _E_SNAP_HASH,
+TREFFER	paths.DATA_DIR	research/vorregistrierung/test_ersatzwerte.py	509	# E1/E2: Modus, CLI --anhaengen uebergibt paths.DATA_DIR = Snapshot.
+TREFFER	paths.DATA_DIR	research/vorregistrierung/test_ersatzwerte.py	520	pruefe("E-a: Modus, --anhaengen hasht den Snapshot (paths.DATA_DIR), nicht data/",
+TREFFER	TB_SELEKTIONSWURZEL	research/vorregistrierung/test_ersatzwerte.py	641	u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": snap_hash,
+TREFFER	import paths	research/vorregistrierung/test_vorregistrierung.py	1028	'import paths  # noqa: E402\n\n'
+TREFFER	paths.DATA_DIR	research/vorregistrierung/test_vorregistrierung.py	1029	'DATA_DIR = paths.DATA_DIR\n'
+TREFFER	TB_SELEKTIONSWURZEL	research/vorregistrierung/test_vorregistrierung.py	1114	u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": _MESS_SNAP_HASH,
+TREFFER	paths.DATA_DIR	research/vorregistrierung/test_vorregistrierung.py	1158	_J_RESOLVER = ('DATA_DIR = paths.DATA_DIR\n'
+TREFFER	TB_SELEKTIONSWURZEL	research/vorregistrierung/test_vorregistrierung.py	1223	u.update({"TB_SELEKTIONSWURZEL": snap, "TB_SELEKTIONSHASH": _J_SNAP_HASH,
+TREFFER	TB_SELEKTIONSWURZEL	shared/paths.py	49	TB_SELEKTIONSWURZEL   absoluter Pfad zur Snapshot-Wurzel
+TREFFER	TB_SELEKTIONSWURZEL	shared/paths.py	205	UMGEBUNG_WURZEL = "TB_SELEKTIONSWURZEL"
+TREFFER	import paths	shared/strategy_paths.py	88	import paths
+TREFFER	paths.DATA_DIR	shared/strategy_paths.py	155	"DATA_DIR": paths.DATA_DIR,
+TREFFER	import paths	shared/test_arbeitsbaum_laufbereich.py	18	eine unversionierte Datei in der Klonwurzel, die nur `import paths` macht; sie
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_arbeitsbaum_laufbereich.py	54	UMGEBUNG = ("TB_SELEKTIONSWURZEL", "TB_SELEKTIONSHASH", "TB_SELEKTIONSCOMMIT")
+TREFFER	import paths	shared/test_arbeitsbaum_laufbereich.py	146	"import paths\nprint('durchgelaufen')\n")
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_arbeitsbaum_laufbereich.py	152	umgebung.update(TB_SELEKTIONSWURZEL=os.path.join(klon, "snapshots",
+TREFFER	import paths	shared/test_main_gegenprobe.py	286	ERFUNDEN_ABFRAGE = ('        import paths\n'
+TREFFER	import paths	shared/test_paths.py	187	import paths
+TREFFER	paths.DATA_DIR	shared/test_paths.py	188	ergebnis["DATA_DIR"] = paths.DATA_DIR
+TREFFER	import paths	shared/test_paths.py	209	import paths
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_paths.py	228	umgebung.pop("TB_SELEKTIONSWURZEL", None)
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_paths.py	232	umgebung["TB_SELEKTIONSWURZEL"] = wurzel_env
+TREFFER	import paths	shared/test_paths.py	478	"import json,sys;sys.path.insert(0,%r);import paths;"
+TREFFER	paths.DATA_DIR	shared/test_paths.py	479	"json.dump({'DATA_DIR':paths.DATA_DIR},sys.stdout)" % shared)
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_paths.py	492	umgebung["TB_SELEKTIONSWURZEL"] = attrappe
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_rueckfaelle_modus.py	152	for k in ("TB_SELEKTIONSWURZEL", "TB_SELEKTIONSHASH", "TB_SELEKTIONSCOMMIT"):
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_rueckfaelle_modus.py	155	umgebung["TB_SELEKTIONSWURZEL"] = attrappe
+TREFFER	import paths	shared/test_startpruefungen.py	129	import paths
+TREFFER	paths.DATA_DIR	shared/test_startpruefungen.py	130	json.dump({"DATA_DIR": paths.DATA_DIR,
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_startpruefungen.py	184	for name in ("TB_SELEKTIONSWURZEL", "TB_SELEKTIONSHASH",
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_startpruefungen.py	199	umgebung["TB_SELEKTIONSWURZEL"] = attrappe
+TREFFER	import paths	shared/test_startpruefungen.py	253	import paths
+TREFFER	paths.DATA_DIR	shared/test_startpruefungen.py	254	zaehler["DATA_DIR"] = paths.DATA_DIR
+TREFFER	import paths	shared/test_startpruefungen.py	442	wc = lauf(["-c", "import sys; sys.path.insert(0, %r); import paths"
+TREFFER	import paths	shared/test_startpruefungen.py	565	aufrufer = ("import json, sys\nsys.path.insert(0, %r)\nimport paths\n"
+TREFFER	paths.DATA_DIR	shared/test_startpruefungen.py	566	"json.dump({'DATA_DIR': paths.DATA_DIR}, sys.stdout)\n"
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_startpruefungen.py	826	for name in ("TB_SELEKTIONSWURZEL", "TB_SELEKTIONSHASH", "TB_SELEKTIONSCOMMIT"):
+TREFFER	import paths	shared/test_strategy_paths.py	205	import paths
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_strategy_paths.py	218	umgebung.pop("TB_SELEKTIONSWURZEL", None)
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_strategy_paths.py	222	umgebung["TB_SELEKTIONSWURZEL"] = wurzel_env
+TREFFER	paths.DATA_DIR	shared/test_strategy_paths.py	324	verstellt, griff = mutiere(quelle(), '"DATA_DIR": paths.DATA_DIR',
+TREFFER	paths.DATA_DIR	shared/test_strategy_paths.py	373	mutiert, griff = mutiere(quelle(), '"DATA_DIR": paths.DATA_DIR',
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_strategy_paths.py	408	umgebung["TB_SELEKTIONSWURZEL"] = attrappe
+TREFFER	import paths	shared/test_strategy_paths.py	428	quelle(), "\nimport paths\n",
+TREFFER	paths.DATA_DIR	shared/test_strategy_paths.py	433	"paths.DATA_DIR = os.path.join(paths.BASE_DIR, 'data')\n"
+TREFFER	TB_SELEKTIONSWURZEL	shared/test_strategy_paths.py	612	_VERBOTENE_KONSTANTEN = ("TB_SELEKTIONSWURZEL", "TB_SELEKTIONSHASH",
+TREFFER	import paths	shared/test_strategy_paths.py	639	for k in ast.walk(ast.parse(quelle()))), "import paths")
+TREFFER	import paths	shared/test_strategy_paths.py	642	quelle(), "\nimport paths\n",
+TREFFER	import paths	shared/test_strategy_paths.py	643	"\nimport paths\n_EIGEN = os.environ.get(\"TB_SELEKTIONSHASH\")\n", "F")
+TREFFER	import paths	strategies/elliott_wave/equity_simulation.py	146	import paths
+TREFFER	import paths	strategies/elliott_wave/equity_simulation.py	159	import paths
+TREFFER	import paths	strategies/elliott_wave/multi_symbol_optimise.py	212	import paths
+TREFFER	import paths	strategies/elliott_wave_stocks/equity_simulation.py	169	import paths
+TREFFER	import paths	strategies/elliott_wave_stocks/equity_simulation.py	182	import paths
+TREFFER	import paths	strategies/elliott_wave_stocks/multi_symbol_optimise.py	237	import paths
+TREFFER	import paths	strategies/rsi2_crypto/equity_simulation.py	134	import paths
+TREFFER	import paths	strategies/rsi2_crypto/equity_simulation.py	146	import paths
+TREFFER	import paths	strategies/rsi2_mean_reversion/equity_simulation.py	169	import paths
+TREFFER	import paths	strategies/rsi2_mean_reversion/equity_simulation.py	181	import paths
+TREFFER	import paths	strategies/rsi2_mean_reversion/multi_symbol_optimise.py	202	import paths
+TREFFER	import paths	strategies/t3_supertrend/equity_simulation.py	140	import paths
+TREFFER	import paths	strategies/t3_supertrend/equity_simulation.py	153	import paths
+TREFFER	import paths	strategies/t3_supertrend/multi_symbol_optimise.py	209	import paths
+TREFFER	import paths	strategies/turtle_soup_crypto/equity_simulation.py	117	import paths
+TREFFER	import paths	strategies/turtle_soup_crypto/equity_simulation.py	129	import paths
+TREFFER	import paths	strategies/turtle_soup_stocks/equity_simulation.py	156	import paths
+TREFFER	import paths	strategies/turtle_soup_stocks/equity_simulation.py	168	import paths
+TREFFER	import paths	strategies/volatility_breakout/equity_simulation.py	157	import paths
+TREFFER	import paths	strategies/volatility_breakout/equity_simulation.py	169	import paths
+TREFFER	import paths	strategies/volatility_breakout/multi_symbol_optimise.py	198	import paths
+TREFFER	import paths	strategies/volatility_breakout_crypto/equity_simulation.py	172	import paths
+TREFFER	import paths	strategies/volatility_breakout_crypto/equity_simulation.py	184	import paths
+TREFFER	import paths	strategies/volatility_breakout_crypto/equity_simulation.py	197	import paths
+MUSTER	import paths	Treffer 47	Dateien 27
+MUSTER	paths.DATA_DIR	Treffer 17	Dateien 8
+MUSTER	os.path.join(REPO_ROOT, "data")	Treffer 1	Dateien 1
+MUSTER	os.path.join(_REPO_ROOT, "data")	Treffer 1	Dateien 1
+MUSTER	TB_SELEKTIONSWURZEL	Treffer 20	Dateien 8
+RUECKGABE 0
+rc 0
+# TB-140 Suche V1-4c
+BEREICH	verfolgte Dateien, pfad ['docs/VORREGISTRIERUNG_neuselektion.md'], endung ['.md'], ohne nichts; nie ['data/', 'snapshots/', 'trading-env/', 'logs/', '.git/'] und Ordner ergebnisse/
+DATEIEN	1
+TREFFER	Ein Modus-Lauf ist ein Lauf unter dem Selektionsmodus des Resolvers	docs/VORREGISTRIERUNG_neuselektion.md	8932	> **Registertext, Ergänzung zu 5e und zur Resolver-Pflicht (24c):** Ein Modus-Lauf ist ein Lauf unter dem Selektionsmodus des Resolvers (`shared/paths.py`, `TB_SELEKTIONSWURZEL`). Eine Anordnung des Snapshot-Inhalts in Repo-Form — Verknüpfungen, Hilfsordner, Ersatzwurzeln wie `TB30A_BASE_DIR`, `TB36
+MUSTER	Ein Modus-Lauf ist ein Lauf unter dem Selektionsmodus des Resolvers	Treffer 1	Dateien 1
+RUECKGABE 0
+rc 0
+## Ende
+rc 0
