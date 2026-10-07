@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 54 (von 0–54) — Register-Z. 11518–11581 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 54 (von 0–55) — Register-Z. 11569–11642 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
 
 ## 54. Fable 04a — Registerblock R74–R77 (TB-136)
 
@@ -8,6 +8,12 @@ Reines Eintragen von Registertext, Bauart wie 53. Quelle ist allein `docs/projek
 
 > R74 — Präzisierung zu R66 (a) und (b) (53.1) und Ergänzung der Tatsachennotiz in Registertext 5f (17.5) (Name des Handelskalenders der Aktien-Tagesreihe). (a) Handelskalender nach R66 (a) ist der Kalender „NYSE“ des Pakets pandas_market_calendars in der Fassung des Locks (17.5). Handelstage der Aktien-Tagesreihe sind die Tage, die dieser Kalender im Zeitraum nach R66 (a) als Sitzungstage führt, verkürzte Sitzungen eingeschlossen. Ein anderer Kalendername des Pakets ist ein anderer Kalender, auch wenn er dieselbe Börse meint. (b) Tatsachennotiz zu 17.5: 17.5 nennt das Paket und keinen Namen. Im Repo importiert das Paket nur notifications/boersenkalender.py; dort stehen der Name (KALENDER_NAME = "NYSE") und der einzige Aufruf. Die Datei liegt im Live-Pfad; der Code des Selektionslaufs benutzt heute keinen Kalender (53.9). Der Kalender, den 17.5 als gemessen führt, ist damit der Kalender „NYSE“. [Voraussetzung, vor dem Eintrag zu messen: dass das Feld kalender der Messung TB-47 als Importstelle notifications/boersenkalender.py führt; trifft es nicht zu, wird gemeldet, nicht eingetragen.] (c) Der Zellen-Erzeuger ruft den Kalender unter dem Namen nach (a). Steht der Name dafür an einem eigenen Ort im Code des Laufs, ist dieser Ort eine Kopie von KALENDER_NAME und trägt eine Probe gegen diese Konstante, mit Gegenprobe (Bauart R59 (b)). Ob der Erzeuger die Konstante liest oder eine Kopie führt, ist Handwerk. (d) An der Wahl des Namens hängt kein Wert des Laufs: Die Wache nach R66 (b) lässt nur einen Kalender zu, dessen Tage im Zeitraum nach R66 (a) die Kurstage des Snapshots sind; ein Kalender, der davon abweicht, endet mit 2. Der Name steht vor dem Tag fest, damit am Tag keine Wahl bleibt. (e) Vor dem signierten Tag wird in der Lock-Umgebung am Snapshot gemessen (Verfahrensmessung nach 27.2, zusammen mit der Messung nach R72 (d)), dass die Bedingung aus R66 (b) für den Kalender nach (a) erfüllt ist, je Aktien-Bot. Ist sie es nicht, wird gemeldet und vor dem Tag entschieden; der Name wird nicht ohne diese Entscheidung gewechselt. Die Vergleiche in 53.9 sind Ersatzmessungen ausserhalb der Lock-Umgebung und ersetzen diese Messung nicht. (f) Die Voraussetzung in R66 (b) („welchen Kalender des Pakets der Code des Laufs benutzt“) ist damit beantwortet: heute keinen (53.9), im Lauf den nach (a).
 > Quelle des Grundes: 17.5 („Der Handelskalender kommt nicht aus einer Datei, sondern aus dem Paket“; „Umgebung, nicht Eingabe“; gemessen TB-47, Feld kalender), R66 (a) und (b), 37.5 (2) (ein Wert, ein Ort; nach der Wiedergabe in R39 und R45), R59 (b) und R28 (Bauart: Kopie mit Probe), 27.2, R72 (d) (Bauart: Verfahrensmessung am Snapshot vor dem Tag), R46 (der Erzeuger läuft vor dem Tag nicht auf dem registrierten Snapshot), die Messungen des steuernden Chats in 53.9 und zur Anfrage 04.10.a, Frage 1 (vom Verfahrensprüfer nicht gemessen): einziger Import und einziger Aufruf in boersenkalender.py; „XNYS“ führt im Fenster 2000-01-01 bis 2026-09-30 einen Handelstag mehr als „NYSE“. Nicht Grund: dass „NYSE“ am Bestand vom 02.10.2026 die Kurstage trifft; das prüft die Wache. Kein Ergebnis.
+
+> ⭐ **54.1 R74 PRÄZISIERT durch R78 (55.1)** (Fable 07a R78, Unterpunkt (f), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **54.1 R74 ERGÄNZT durch R79 (55.2): die Bedingung aus (e) ist gemessen erfüllt** (Fable 07a R79, Unterpunkte (a) und (b), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 17.5; 53.1 (R66); 53.9, Zeile „R66 (53.1) (b)“. Voraussetzung gemessen: 54.5. Offen: 54.6 Nr. 1, 3 und 8.
 
@@ -48,6 +54,9 @@ Tatsachennotizen des steuernden Chats zu den Voraussetzungen, die Fable in 04a �
 | R77 (54.4) (a) | 13 Orte | alle 13 Orte vorhanden; die Zuordnung Unterabschnitt zu Block stimmt an den zehn Orten, die R77 (a) mit Blocknummer nennt | trifft; dazu zwei Marken des steuernden Chats (54.6 Nr. 6) |
 | R74–R77, Zitate und Verweise | — | 65 Messpunkte in drei Berichten. Jedes wörtliche Zitat ist gefunden; vier stehen im Register über einen Zeilenumbruch (je zwei in 17.5 und 16.6), eines davon mit Fettdruck im Zitat. Sinngemäss treffen sechs Stellen der Blöcke: R75 (a) „Die Zuteilung läuft je Zelle einmal (R45)“ (R45 nennt die Rekonstruktion der Positionen aus der equity_curve einen zweiten Rechenweg; „einmal“ und „je Zelle“ stehen dort nicht); R75, Quelle, „29.3 (ein Kapitalpfad)“ (29.3 legt den Beginn des Kapitalpfads eines Bots fest; „ein Kapitalpfad“ steht dort nicht); R74, Quelle, „R28 (Bauart: Kopie mit Probe)“ (R28: „Literal mit Probe gegen den Registertext“; die Wortfolge steht in der Quelle von R59); R75 (b) „nie leer (R67)“ (R67: „kein Feld leer“); R77 (c) „53.10 (Statusliste)“ (53.10 heisst „Was offen bleibt“); R77 (c) „der Index führt die Zählung“ (`REGISTER_INDEX.md` führte am 04.10.2026 keine Zählung der Fälle; Lesart des steuernden Chats, vorläufig: Vorgabe für den Index, kein Bestand) | keine Stelle trifft nicht; die sinngemässen gehen zur Kenntnis an Fable (54.6 Nr. 7) |
 
+> ⭐ **54.5, Zeile „R74 (54.1) (e)“ ERGÄNZT durch R79 (55.2)** (Fable 07a R79, Unterpunkte (a) und (b), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 54.6 Was offen bleibt
 
 | | offen | wann, wo |
@@ -64,3 +73,4 @@ Tatsachennotizen des steuernden Chats zu den Voraussetzungen, die Fable in 04a �
 | 10 | Trade-Zahl und ereignisindizierter Drawdown der Zeile im Deckelfall: R75 (a) gibt den Grundsatz. Welcher Handelstag der Deckeltag ist, bestimmen R37 (i), 16.6 und 41.3 C2; R75 legt dazu nichts fest (Antwort 04.10.a, „Unsicher“ 3 und 4) | mit dem Zellen-Erzeuger; reicht der Grundsatz nicht, Frage an Fable |
 
 Von 53.10 sind damit erledigt: Nr. 1 durch R74 (a), Nr. 2 durch R75 (a) bis (f) und (h), Nr. 8 durch die Antwort 04.10.a („Zur Kenntnis“, K1: einverstanden), Nr. 9 durch R76 (d). Nr. 3 bleibt und nimmt die Messung nach R74 (e) auf (hier Nr. 1). Nr. 4 und Nr. 5 bleiben und sind hier um Nr. 4 und Nr. 3 erweitert. Nr. 6, 7 und 10 bleiben, wie sie dort stehen.
+

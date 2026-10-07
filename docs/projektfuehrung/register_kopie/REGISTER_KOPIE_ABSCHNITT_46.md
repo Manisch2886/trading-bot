@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 46 (von 0–54) — Register-Z. 10386–10670 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 46 (von 0–55) — Register-Z. 10395–10682 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
 
 ## 46. Sonde zweiseitig, `fehlend` im Modus, zwei Erzeuger, Snapshot-Bindung, Herkunftsprüfung in `auswertung.py` — die Einträge aus Fable 27a (TB-117, 26.09.2026)
 
@@ -100,6 +100,9 @@ die neun heutigen Listen.
 > (e) Papierpfad: Die beiden Elliott-Bots messen die Signalfrische (`SIGNAL_FRESHNESS_HOURS`) an `pd.Timestamp.utcnow()` statt an `entscheidungskerze.laufbeginn()`; keine Kerzenwahl, wirksam nur an der 48-h-Grenze. Betrieb, mit der nächsten Öffnung von `forward_test.py`, nach dem Tag.
 > (f) Tatsachennotiz zu 16.4 (Evidenz der Leiter): `forward_test.py` legt `entry_price`/`stop_price` (Elliott auch `target_price`) als absolute Zahlen ab und vergleicht sie in späteren Läufen mit neu bereinigten Reihen; über einen Ex-Tag oder Split hinweg passen Niveau und Reihe nicht mehr zusammen. Betroffen sind die Bots mit Stop (`volatility_breakout`, `elliott_wave_stocks`) und `pnl_pct` aller vier Aktien-Bots. Der Selektionspfad ist frei davon. Behebung im Betrieb nach dem Tag, vor dem ersten Stufenwechsel der Leiter, der sich auf Papier-Evidenz stützt.
 > *Quelle des Grundes:* Messungen TB-115 M1/M2, 31.3, 37.3, Plan-Punkt 6, 16.4 (i). Kein Ergebnis.
+
+> ⭐ **46.4 R13 ERGÄNZT durch R79 (55.2)** (Fable 07a R79, Unterpunkt (d), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** beantwortet F1-1 bis F2-3 (Fable 27a Abschnitt 3, M1 und M2).
 Marke unter **16.4** („Prüfung vor dem Tag") für (f). Die Notizen (a) bis (e)

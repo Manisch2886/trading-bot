@@ -1,0 +1,1 @@
+Ersetzungen: 8, Tabellenzeilen: 5 und neue Zeile 55, je Anker genau 1; Abschnittstabelle 0-55 aus den Koepfen; Teile: T1 = 0–22 (Z. 1–3860), T2 = 23–36 (Z. 3861–6902), T3 = 37–42 (Z. 6903–9546), T4 = 43–53 (Z. 9547–11568), T5 = 54–55 (Z. 11569–11733); Arten {'MARKE': 100, 'MARKE+': 145, 'UEBERSCHRIFT': 96}

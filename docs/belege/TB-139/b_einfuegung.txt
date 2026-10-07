@@ -1,0 +1,4 @@
+# TB-139 Schritt B — Einfügungen E1 und E2 (erzeugt von b_einfuegen.py)
+# E<n> · Datei · Anker vorher · ausgeführt ja/nein · Text nachher
+E1 · docs/projektfuehrung/BACKLOG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1
+E2 · docs/projektfuehrung/BACKLOG.md · Anker vorher 1 · ausgeführt ja · Text nachher 1

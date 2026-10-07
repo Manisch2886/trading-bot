@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 34 (von 0–54) — Register-Z. 6138–6348 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 34 (von 0–55) — Register-Z. 6144–6354 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
 
 ## 34. Fünf Einträge des Verfahrensprüfers aus 21l/21m und eine Berichtigung eines eigenen Satzes — Faltenregeln, `horizontbeginn`, „vier" → „neun" (TB-82, 22.09.2026)
 

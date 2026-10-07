@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 48 (von 0–54) — Register-Z. 10791–10998 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 48 (von 0–55) — Register-Z. 10803–11025 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
 
 ## 48. Fable 29b — Registerblock R33–R52 (TB-126)
 
@@ -15,6 +15,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **48.1 R33 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (c), vom steuernden Chat nach R65 (a) bestimmt, TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **48.1 R33 ERGÄNZT durch R82 (55.5)** (Fable 07a R82, Unterpunkt (a), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 45.5, Block R5, Punkt (b). Voraussetzung gemessen: 50.1.
 
 ### 48.2 R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht)
@@ -23,6 +26,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Quelle des Grundes: 22.2 (Werte des Laufs für den Gewinner), 12 (auswertung.py hat keinen Schalter und liest Rohergebnisse), Punkt 14 (Reihenfolge Selektion → Bestätigung → Bericht), 2b. Kein Ergebnis.
 
 > ⭐ **48.2 R34 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (g), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.2 R34 ERGÄNZT durch R82 (55.5)** (Fable 07a R82, Unterpunkt (b), TB-139, 07.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 22.2; 45.5.
@@ -106,6 +112,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > R43 — Registertext zum Zellen-Kern; Berichtigung zu 29.4/34.5 (Ort der Wache); Tatsachennotiz zu 11.2. Der Zellen-Erzeuger rechnet jede Zelle über den Signalpfad (collect_all_trades mit den Achsenwerten) und die Zuteilung (simulate_portfolio → shared/zuteilung.py::simuliere_portfolio, Punkt 10); evaluate_combination_multi der neun Optimierer bleibt ausserhalb des Laufs und wird nicht zum Zellen-Kern umgebaut (es verwirft Zellen und kennt keine Falten; 43-7). Die Wache „frühester Einstieg ≥ Beginn der ersten Selektionsfalte“ (29.4, 34.5) steht im Zellen-Erzeuger — an einer Stelle, für alle neun Bots, mit dem Bericht je Bot aus 34.5 —, nicht in den neun multi_symbol_optimise.py; „in allen neun multi_symbol_optimise.py“ lies „im Zellen-Erzeuger, für alle neun Bots“; die neun Optimierer erhalten eine Tatsachennotiz „nicht im Laufpfad“. Tatsachennotiz zu 11.2: Die Voraussetzung „evaluate_combination_multi liefert den Kapital-Drawdown“ wird für den Lauf gegenstandslos; den Kapital-Drawdown liefert der Zellen-Kern (R36); Agent 2 ist Regelbetrieb. Posten 5 des Plans ist neu zu fassen (Handwerk). F-12, M60.
 > Quelle des Grundes: 43-7 (null Trades ist ein Wert; ein Kern, der Zellen verwirft, rechnet ein anderes Raster), Prüfprinzip A8 (eine Wache ist, was ausgeführt wird), 29.3, 34.5 (Reichweite: alle neun Bots — sie bleibt), Punkt 11 (Optimierer nicht ohne Not öffnen). Kein Ergebnis.
 
+> ⭐ **48.11 R43 ERGÄNZT durch R81 (55.4)** (Fable 07a R81, Unterpunkte (b) und (g), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 11.2; 29.4; 34.5.
 
 ### 48.12 R44 — Ergänzung zu 40.6 (Reihenfolge der Neuerzeugung)
@@ -128,6 +137,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Quelle des Grundes: 27.1, 24.3 (die Regel steht vor der Messung), 23e und 41.3 C6 (der Nachweis geht denselben Weg wie der Lauf; ein Hilfsordner ist kein Modus-Lauf), 5c, Prüfprinzip A8. Kein Ergebnis.
 
 > ⭐ **48.14 R46 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkte (d) und (f), vom steuernden Chat nach R65 (a) bestimmt, TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R78 (55.1) und R81 (55.4)** (Fable 07a R78, Unterpunkt (e), und R81, Unterpunkt (h), TB-139, 07.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: keine.
@@ -188,6 +200,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 
 > R50 — Ergänzung zu 12 (Kennzahlendefinitionen im Code) und Tatsachennotiz zu TB-121. Die Definitionen der Kennzahlen des Laufs — Falten-Sharpe (15.3), Calmar und Annualisierung, Alpha/Beta, DSR-Eingaben (Sharpe, T, Schiefe, Wölbung, Streuung), mittlere Exposure, Korrelationsmass und Operator der Clusterschwelle, Zellenname und Gleichstandsschlüssel, Ausstiegskonvention je Ausstiegsart, Interpolation an den Rändern (43-2) — sind im eingefrorenen Code registriert (Sperrliste 3, 5, 7, 9; Abschnitt-0-Menge), nicht im Text von 0–12. Vor dem Tag wird je Kennzahl eine Tatsachennotiz eingetragen: Datei und Bezeichner (38.2), und wo das Register eine Formel nennt (15.3; 7 „Calmar bei Drawdown 0 ist 0,0“; 4.2; 9), die gemessene Übereinstimmung; eine Abweichung ist ein Register-Code-Widerspruch (25c (1)) und wird gemeldet, nicht eingetragen. Der Registertext legt keine dieser Definitionen neu fest. Messbitte (27.2), nur das Ob: trägt registerdaten.py für jede der 34 Rastergrenzen einen Grenzsatz, und fasst registerbericht.py gleiche Sätze zusammen? (Der erzeugte Block führt für t3_slow_length, donchian_period oben und stop_mode unten/oben keinen eigenen Satz; 2.1 verlangt einen je Grenze.) Tatsachennotiz zu TB-121: 85 Befunde (B 19, V 19, W 8, M 16, A 15, Z 8), jedes Zitat maschinell geprüft; Vollständigkeitstest kalt: 3 von 12 Bausteinen aus 0–12 schreibbar; die Sitzung hatte Zusammenfassungen der Abschnitte 15–46 im Gedächtnis (Claude Code MEMORY.md), deshalb ist die Befundliste eine Untergrenze und „3 von 12“ eine Obergrenze; ihre Vollständigkeit ist nicht belegt. A63, A64, A65, A72, A76, M55, A73, Frage 78.
 > Quelle des Grundes: 13 („Das Urteil ist Code“), 12, Sperrliste 3/5/7/9, 38.2, 25c (1), 2.1, Messung TB-121. Kein Ergebnis.
+
+> ⭐ **48.18 R50 ERGÄNZT durch R81 (55.4) und R83 (55.6)** (Fable 07a R81, Unterpunkt (e), und R83, Unterpunkt (c), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: Abschnitt 12. Voraussetzung gemessen: 50.1.
 

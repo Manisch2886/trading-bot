@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 1 von 5 — Abschnitte 0–22 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 1 von 5 — Abschnitte 0–22 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
 
 # Vorregistrierung der Neuselektion (TB-30a)
 
@@ -671,6 +671,12 @@ September 2026 im Paper-Trading; die Kursdateien dieses Repos enden am
 2026-09-01 (Aktien) bzw. 2026-08-31 (Krypto). Alles davor ist
 Backtest-Material, alles ab diesem Tag ist Forward-Test und geht in **keine**
 Selektion ein — auch nicht in die Bestätigungsperiode.
+
+> ⭐ **5.2 PRÄZISIERT durch R81 (55.4)** (Fable 07a R81, Unterpunkte (a), (b) und (f), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **5.2 ERGÄNZT durch R83 (55.6)** (Fable 07a R83, Unterpunkt (d), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 5.3 Krypto: Platzhalter mit Regel
 

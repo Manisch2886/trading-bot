@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 42 (von 0–54) — Register-Z. 8972–9537 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 42 (von 0–55) — Register-Z. 8978–9546 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
 
 ## 42. Zugriffsklassen, Laufbereich, die vier Rückfälle und ihr Schluss — die Einträge aus Fable 25a, 25b, 25c und die Tatsachennotizen TB-103 bis TB-107 (TB-108, 25.09.2026)
 
@@ -279,6 +279,9 @@ Art: Präzisierung · Quelle: 25b Abschnitt 2 (3) · präzisiert 42.1 (D3/D7)
 > **Präzisierung zu 25a (B), Teil (2):** Die geladene Menge je Bot wird **am Stichtag Go-Live-Schnitt (5.2), ausschliesslich** ermittelt — jede Kursreihe auf den Stichtag gekürzt, Loader wie in TB-40 — und gegen die Bestätigungsspalte von 16.1.1 verglichen. Ein Trockenlauf am Datenende bleibt zulässig als Nachweis „kein Fallback"; die Mengenprüfung gegen das Register läuft am Stichtag. Tatsachennotiz: am Stand `63e4b6c8…` ergeben beide Stichtage bei 9/9 Bots dieselbe Menge (TB-104).
 
 *Seine Quelle des Grundes, zeichengleich:* „16.1.1 wurde so gemessen; eine Prüfung gegen das Register nimmt das Verfahren des Registers. Kein Ergebnis."
+
+> ⭐ **42.2 E6 ERGÄNZT durch R81 (55.4)** (Fable 07a R81, Unterpunkt (c), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **E7 (g) — Tatsachennotizen zu TB-104** · Art: Tatsachennotiz · Quelle: 25b
 Abschnitt 4, Zeile g. ⚠️ **Fable nennt hier nur Stichworte; die Notiz ist eine

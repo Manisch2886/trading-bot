@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 53 (von 0–54) — Register-Z. 11408–11517 — Commit 9b7b06065ebdae3f36f3102306c76bb844300e90 — 2026-10-05 — Original sha256 8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 53 (von 0–55) — Register-Z. 11435–11568 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
 
 ## 53. Fable 02c — Registerblock R66–R73 (TB-132)
 
@@ -12,12 +12,21 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > ⭐ **53.1 R66 PRÄZISIERT durch R74 (54.1)** (Fable 04a R74, TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **53.1 R66 PRÄZISIERT durch R78 (55.1)** (Fable 07a R78, Unterpunkt (a), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.1 R66 ERGÄNZT durch R81 (55.4)** (Fable 07a R81, Unterpunkte (e) und (g), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 15.3 (a); 15.3 (c); 52.2 (R64); 52.4, Zeile „R64 (52.2), zweite“. Indexzeilen ohne Marke (R70 (b)): 17.5; 50.7 Nr. 3. Voraussetzung gemessen: 53.9. Offen: 53.10 Nr. 1, 5 und 7.
 
 ### 53.2 R67 — Registertext, Ersteintrag, Ergänzung zu R39 (48.7) (Eindeutigkeit und Vollständigkeit der Reihen)
 
 > R67 — Registertext, Ersteintrag, Ergänzung zu R39 (48.7) (Eindeutigkeit und Vollständigkeit der Reihen). In jeder Tagesreihe (tagesreihen/<zelle>.csv) und in jeder Benchmark-Tagesreihe (benchmark_tagesreihen/<bot>.csv) ist datum eindeutig, kein Feld leer und jeder Zahlenwert endlich. Ein flacher Tag trägt 0, nie nichts (1a). Ein Verstoss ist ein Befund über den Erzeuger, kein Ausgang (Bauart R33): Der Zellen-Erzeuger prüft jede dieser Dateien im Lauf, nachdem er sie geschrieben hat, und endet sonst mit 2. Die Abnahme nach R46 prüft die Wache mit Gegenprobe, je für ein doppeltes Datum, ein leeres Feld und einen nicht endlichen Wert; der registrierte Lauf trägt die Wache selbst. auswertung.py wird dafür nicht geöffnet. Für zellen.csv gilt R33.
 > Quelle des Grundes: R33 („Eine fehlende Zeile ist ein Befund über den Erzeuger, kein Ausgang“; „nie nichts“), R39 (die Feldliste jeder Ausgabe ist Registertext), R64 (c) (Bauart), R46, die Messung in 52.4 (lies_tagesreihe, lies_benchmark und beta_bereinigung behandeln und prüfen weder fehlende Werte noch doppelte Daten). Kein Ergebnis.
+
+> ⭐ **53.2 R67 ERGÄNZT durch R78 (55.1) und R82 (55.5)** (Fable 07a R78, Unterpunkt (e), und R82, TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 48.7 (R39). Offen: 53.10 Nr. 5.
 
@@ -63,6 +72,15 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > R72 — Tatsachennotiz zu Registertext 3b (c) (23.3) (Kurslücke und Reihenende im Benchmark) und Ergänzung zu R48 (d) (48.16) (Bewertung am Lückentag). (a) Unter der registrierten Umgebung (17.5) schreibt bh_tagesrenditen den letzten Kurs eines Symbols fort: An einem Tag, an dem ein handelbares Symbol keinen Kurs trägt und ein anderes handelbares einen trägt, geht das Symbol mit Rendite 0 in das Mittel ein, am nächsten Kurstag mit der Rendite über die Lücke. Das ist, was der Code tut, und kein Widerspruch zu 3b (c): Das Symbol bleibt nach 3b (b) handelbar, und der Bot kann es über die Lücke halten. (b) Benchmark-Tag des Bots im Sinn von 23.3, R64 und R66 ist ein Tag, an dem mindestens ein nach 3b (b) handelbares Symbol des Bots einen Kurs trägt; ausgenommen ist der Tag aus R71. Ein Handelstag, an dem kein handelbares Symbol einen Kurs trägt, ist kein Benchmark-Tag. (c) Der Zellen-Erzeuger bewertet eine offene Position an einem Tag ohne Kurs ihres Symbols zum letzten Kurs; die Position trägt an diesem Tag Rendite 0 und bleibt in der Exposure. Er berichtet je Bot die Zahl solcher Positionstage (Bauart 24.6). Bot und Benchmark werden am Lückentag damit gleich bewertet. (d) Nach dem letzten Kurs eines Symbols führte derselbe Code das Symbol an jedem Folgetag mit Rendite 0 im Mittel weiter. Das wäre mit 3b (c) nicht vereinbar: Ein Symbol ohne weitere Kurse gehört nicht mehr zu der Menge, in der der Bot lebt. Am Bestand vom 02.10.2026 endet keine Reihe früher. Vor dem signierten Tag wird am Snapshot gemessen (Verfahrensmessung nach 27.2), dass keine Kursreihe eines Symbols der zwei Universumsdateien vor dem letzten Kurstag ihres Marktes endet, und wie viele Symbol-Tage Lücke im Zeitraum nach R66 (a) liegen. Endet eine Reihe früher, wird gemeldet und vor dem Tag entschieden. benchmark.py wird für nichts in diesem Block geöffnet. (e) Das Verhalten nach (a) hängt an der pandas-Fassung des Locks: Gemessen füllt 2.3.3 auf, 3.0.5 nicht. Die Prüfung der Umgebung nach 5f deckt das im Lauf. Eine Änderung der pandas-Fassung im Lock vor dem Tag verlangt die Wiederholung der Probe; weicht das Verhalten ab, wird gemeldet. [Voraussetzung, vor dem Eintrag zu messen: die Wiederholung der Probe in der Lock-Umgebung auf dem Betriebsrechner; dass kein vorhandener Kern, den der Zellen-Erzeuger für die MtM-Reihe übernimmt, am Lückentag anders bewertet als (c).]
 > Quelle des Grundes: 23.3 („nur eines darf im Register stehen, und es muss das sein, was der Code tut“; „Bot und Benchmark leben an jedem Tag in derselben Menge“; „handelbar“ nach 3b (b)); 23.4 („der Rahmen kennt nur Tage, an denen mindestens ein Symbol einen Kurs hat“); 23.2 (die Menge, in der ein Bot lebt); 17.5 (registrierte Umgebung, Abbruch bei Abweichung); 24.6 (Bauart: fortgeschriebene Kurstage werden gezählt); R48 (d) (bewertet wie die MtM-Reihe); die Probe und die Zählung des steuernden Chats zur Anfrage 02.10.c, Frage 4 (vom Verfahrensprüfer nicht gemessen). Kein Ergebnis.
 
+> ⭐ **53.7 R72 PRÄZISIERT durch R78 (55.1)** (Fable 07a R78, Unterpunkte (a) bis (d) und (f), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.7 R72 BERICHTIGT durch R78 (55.1)** (Fable 07a R78, Unterpunkt (g), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.7 R72 ERGÄNZT durch R79 (55.2)** (Fable 07a R79, Unterpunkt (c), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 23.3, Registertext 3b (c) (vom steuernden Chat bestimmt, 53.10 Nr. 8); 23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse; 48.16 (R48); 52.2 (R64). Voraussetzung gemessen: 53.9. Offen: 53.10 Nr. 3, 5, 6 und 10.
 
 ### 53.8 R73 — Tatsachennotiz zu 27 nach R56 (c) (die Antwort 02c stammt aus dem Chat der Antwort 02b)
@@ -91,6 +109,12 @@ Tatsachennotizen des steuernden Chats zu den Voraussetzungen, die Fable in 02c �
 | R66–R73, Zitate und Verweise | — | 98 Stellen gegen den Wortlaut gemessen (`docs/belege/TB-132/vormessung/v4_register_02c.md`). Sinngemäss treffen zehn: R72 (b) fasst den Benchmark-Tag enger als der Wortlaut von 23.3 (REG Z. 3933–3936), das ist der Inhalt der Präzisierung; R72 nennt im Kopf den Registertext 3b (c), R70 (c) setzt die Marke nur an die Tatsachennotiz (53.10 Nr. 8); „TB-47, Feld kalender“ steht nur in der Erläuterung unter 17.5 (REG Z. 2847); „Dafür“ steht in R60 (c) klein (REG Z. 11196); „Bauart R55, R64“ in R69 (b) meint Prüfungen mit Gegenprobe, die Bauart der beauftragten Änderung steht in R45 (REG Z. 10857); von einer Öffnung spricht unter R36, R37, R34 und R55 nur R55; „R54 an 7 (c)“ ist in R61 (b) ein Glied der Aufzählung, keine Zeile (REG Z. 11209); 24.6 (REG Z. 4471) berichtet eine Zählung in einer Messung; R56 (c) (REG Z. 11168) nennt drei Fälle, der von R73 ist keiner davon; 23.2, Grund 2 (REG Z. 3908) ist Deutung des Verfahrensprüfers | keine Stelle trifft nicht; die sinngemässen gehen zur Kenntnis an Fable (53.10 Nr. 9) |
 
 > ⭐ **53.9, Zeile „R66 (53.1) (b)“ ERGÄNZT durch R74 (54.1)** (Fable 04a R74, Unterpunkte (b) und (f), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.9, Zeile „R72 (53.7), zweite“ ERGÄNZT durch R78 (55.1) und R83 (55.6)** (Fable 07a R78, Unterpunkt (a), und R83, Unterpunkt (e), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.9, Zeile „R72 (53.7) (d)“ ERGÄNZT durch R79 (55.2) und R78 (55.1)** (Fable 07a R79, Unterpunkt (c), und R78, Unterpunkt (d), TB-139, 07.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ### 53.10 Was offen bleibt

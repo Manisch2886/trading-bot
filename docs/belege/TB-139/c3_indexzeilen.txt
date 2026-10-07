@@ -1,0 +1,6 @@
+# TB-139 C3: Indexzeilen aus Fable 07a (Auftrag am Commit e16872e)
+vorher: 'Indexzeilen aus Fable 07a' 0x (Soll 0); Abschnitt 10 1x (Soll 1); Schluss vor Pflege 1x (Soll 1)
+nachher: '### Indexzeilen aus Fable 07a' 1x (Soll 1); Zeilen zeichengleich im Index: 3/3
+  - **48.20 (R52):** Zählung der Fälle „Bestand behauptet statt Voraussetzung genannt“ → R76 (54.3) und R79 (g) (55.2): vierzehn gezählte Fälle bis zur Antwort 07.10.a; der dreizehnte ist der Satz „Am Bestand vom 02.10.2026 endet keine Reihe früher“ aus R72 (d), der vierzehnte der Satz zur Herkunft von 5.4.0 in der Fassung der Antwort 06.10.a, die nie eingetragen worden ist. Ohne Marke (R80 (b), 55.3); die Indexzeile aus Fable 04a bleibt stehen.
+  - **54.3 (R76):** Massstab der Zählung (R76 (a) und (e)) → R79 (g) (55.2): dreizehnter und vierzehnter Fall. Ohne Marke (R80 (b), 55.3). Der Index ist kein Registertext.
+  - **10, Sperrlistenpunkte 6, 10 und 11:** Zeilen ab dem Go-Live-Schnitt → R81 (b) (55.4): Geschnitten wird im Zellen-Erzeuger; eine Änderung an Code der Sperrliste verlangt der Block nicht, wird sie gewählt, gilt 37.3 mit der Freigabe des Betreibers. Keine Marke (Abschnitt 10; R80 (b), 55.3).

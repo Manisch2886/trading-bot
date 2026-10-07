@@ -1,0 +1,33 @@
+# git status --porcelain vor dem Commit A
+ M docs/VORREGISTRIERUNG_neuselektion.md
+?? docs/belege/TB-139/0b_abschnitt10_nachher.txt
+?? docs/belege/TB-139/0b_erzeugt_nachher.txt
+?? docs/belege/TB-139/0b_nachher.txt
+?? docs/belege/TB-139/a4_datum.txt
+?? docs/belege/TB-139/a4_eintrag.txt
+?? docs/belege/TB-139/a4_eintrag_daten.json
+?? docs/belege/TB-139/a4_probelauf.txt
+?? docs/belege/TB-139/a5_marken.txt
+?? docs/belege/TB-139/a5_numstat.txt
+?? docs/belege/TB-139/a5_r_diff.txt
+?? docs/belege/TB-139/a5_r_diff_mutation.txt
+?? docs/belege/TB-139/a5_test_vorregistrierung.txt
+?? docs/belege/TB-139/a5_zitate.txt
+# git show --stat --format=%h HEAD
+ad1fc0d
+
+ docs/VORREGISTRIERUNG_neuselektion.md           | 152 +++++++++++++++++
+ docs/belege/TB-139/0b_abschnitt10_nachher.txt   | 207 ++++++++++++++++++++++++
+ docs/belege/TB-139/0b_erzeugt_nachher.txt       | 201 +++++++++++++++++++++++
+ docs/belege/TB-139/0b_nachher.txt               |  45 ++++++
+ docs/belege/TB-139/a4_datum.txt                 |   1 +
+ docs/belege/TB-139/a4_eintrag.txt               |   6 +
+ docs/belege/TB-139/a4_eintrag_daten.json        | 166 +++++++++++++++++++
+ docs/belege/TB-139/a4_probelauf.txt             |  43 +++++
+ docs/belege/TB-139/a5_marken.txt                |  36 +++++
+ docs/belege/TB-139/a5_numstat.txt               |   4 +
+ docs/belege/TB-139/a5_r_diff.txt                |   9 ++
+ docs/belege/TB-139/a5_r_diff_mutation.txt       |   4 +
+ docs/belege/TB-139/a5_test_vorregistrierung.txt |   4 +
+ docs/belege/TB-139/a5_zitate.txt                |   4 +
+ 14 files changed, 882 insertions(+)
