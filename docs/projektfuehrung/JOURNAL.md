@@ -10142,6 +10142,52 @@ Handwerk pauschal (26.09.2026), Betreiber 07.10.2026, 08:10. Keine Rückfrage an
 
 ---
 
+## EI — TB-139: Nachlesen der Voraussetzungen an Zwischenstand und Ergebnis TB-140 (V4 und V5 „erfüllt“, rc 0, 46/46 Zeilen); Register Abschnitt 55 — Fable 07a (R78–R83 in der Fassung 07.10.a) zeichengleich, Tatsachennotizen 55.7–55.8, 20 Marken am alten Ort, die Fassung 06.10.a nicht eingetragen; numstat 152/0, R-Diff 6/6, Zitate 2/2, `test_vorregistrierung` 196/196; zwei BACKLOG-Blöcke, Registerkopie 56 Abschnittsdateien und 5 Teile, Index und Dialog-Index nachgezogen (07.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-139_register_fable_07a.md`*
+
+**Quelle:** Mac-Sitzung **TB-139** (Hauptordner, lokal), 07.10.2026, Eingang `b07ec7d`. Commits `e16872e` (Schritt 0),
+`35b4743` (0), `ad1fc0d` (A, einziger Registercommit), `be2fa85` (B/C) und der Abgabe-Commit. Belege
+`docs/belege/TB-139/`. Freigabe des Betreibers 07.10.2026 (Auswahlkarte, eingetragen 22:44). Datum des Eintrags zur
+Laufzeit: 07.10.2026. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
+
+**Nachtrag des steuernden Chats zum Stand vor TB-139, wie in `BACKLOG.md` Abschnitt 5 eingetragen:**
+- **TB-140 abgenommen** am 07.10.2026: Die Sitzung lief 10:45 bis 11:08; sieben Commits `8127f7f` (Schritt 0, darin Anfrage, Eröffnung und Antwort 06.10.a — R56 (b) erfüllt) bis `b07ec7d`. Ergebnis `docs/ERGEBNIS_TB-140_verfahrensmessung_voraussetzungen.md` (78 246 B), Belege `docs/belege/TB-140/`. Abnahme durch einen Helfer, nur lesend: Commits im erlaubten Bereich, keine Code-, Daten-, Register- oder Parameterdatei berührt; 109 Einzelwerte, 291 Fundstellen, E1 und J1 bytegleich. Abweichungen: „git 2.39.5“ (Ergebnis Z. 90) ohne Beleg; `v4.txt` vergleicht den Lock-Kopf mit der Umgebung, die Plattform gegen das Register nur über den Lock-Hash; vier ungenaue Zeilenzuordnungen (Pfadzeile statt `read_csv`); „In einfacher Sprache“ Z. 446–447 („schneiden nirgends am 1. September 2026 ab“) trägt V2 (b) nicht; die Sitzung nennt selbst einen Sichtschutz-Vorfall bei einem ihrer Helfer (Ergebnis Z. 427–431). Nachtrag zur Abnahme: Ergebnis Z. 235 trifft nicht — die `_1h`- und `_4h`-Reihen enden am 2026-09-15 (`UEBERGABE.md`, Nachträge 07.10.2026, 11:36 und 15:59).
+- **Urteile der Sitzung TB-140:** V4 = R79 (a) erfüllt; V5 = R79 (b) erfüllt; V6 = R79 (g) erfüllt, der dreizehnte Fall zählt; Z1 (R79 (c)) erfüllt; Z2 (R79 (f)) „nur erschliessbar“; V1 = R78 (a): kein Zellen-Erzeuger als Code, Kern des Erzeugers nicht messbar; V2 (a) = R78 (d): verwirft, alle fünf Stellen; V2 (b) = R78 (d): „ein solcher Wert wird gebildet“; V3 (i), (ii) = R78 (e): 14 Zeilen, 7 „sagt nichts“; „trifft teils zu“. Folge aus V2 (b): Nach R78 (d) kommt die Frage vor dem Tag an den Verfahrensprüfer, und (d) wird neu entschieden (`UEBERGABE.md`, Nachtrag 07.10.2026, 11:36).
+- **Betreiber, Karte, beantwortet 07.10.2026, 14:55:** „Erst Fable, dann ein Eintrag (Empfohlen)“ — R78 bis R80 und was Fable darauf liefert, kommen zusammen als Abschnitt 55 ins Register (`UEBERGABE.md`, Nachtrag 07.10.2026, 15:59).
+- **Anfrage 07.10.a an den Verfahrensprüfer** (neuer Fable-Chat; `docs/projektfuehrung/FABLE_ANFRAGE_2026-10-07a_go_live_schnitt_voraussetzungen.md`, 27 939 B, md5 `dfe819837d507aee48051567998d1d63`; Eröffnungstext `docs/projektfuehrung/FABLE_UEBERGABE_2026-10-07_eroeffnung.md`, 7 796 B, md5 `df96bf552778f7a62836dd2c8c9209ba`): fünf Fragen — (1) R78 (d) neu nach V2 (b), (2) R78 (e) nach V3, (3) Form des einen Eintrags (Blöcke berichtigt, bevor sie eingetragen sind), (4) R79 (f) nach Z2, (5) R78 (a) und der Ordner (V1, O7) — dazu K1 ff. Vorprüfung und Entwurf ein Helfer, Gegenlesen ein frischer Helfer (rund 350 Stellen, 8 Fehler, 6 Lücken); Berichtigung v2 nach dem Gegenlesen, die Berichtigungen sind nicht erneut gegengelesen (`UEBERGABE.md`, Nachtrag 07.10.2026, 15:59, und Zusatz 16:21).
+- **Befund an der Projekt-Erinnerung** (Messung eines Helfers, nur gelesen, nichts geändert): Vier weitere gelistete Dateien tragen Werte oder Ergebnisse und waren von den bisherigen Messungen nicht erfasst. Die Eröffnung sperrt nach R56 (d) schon alle nicht genannten Erinnerungsdateien; neu ist, dass die vier gemessen und in der Eröffnung vom 07.10.2026 beim Namen genannt sind. Ob sie bereinigt oder gelöscht werden, entscheidet der Betreiber (`UEBERGABE.md`, Nachtrag 07.10.2026, 15:59, und Zusatz 16:21).
+- **Nummern und Offenes:** Der nächste Mac-Auftrag nach TB-139 ist TB-141; TB-137 steht weiter aus (`UEBERGABE.md`, Nachträge 07.10.2026, 10:32 und 11:36).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a sechs Einträge wie Soll; drei Skripte aus Anhang A sha256 gleich, Prüfskript rc 0; Umstellskript 20/20 `ok`, 0 Abweichungen; Ausgang wie Soll (11 581 Z., `8d505a38…`, `register()` `cfff54ca…`, Sonde 37/0/0, (ii) 0, JSON `9f7364ef…`, Quelle 07a `388187e2…`/57 165 B); 0c leer ⇒ Basis 196/196 aus TB-136; 0d rc 0 |
+| ⭐⭐ **0e** | Nachlesen statt Nachmessen: Zwischenstand TB-140 nennt V4 und V5 je in genau einer Zeile „erfüllt“, mit Kernzahl und Rohausgabe im Repo; V6, Z1, Z2 wie 55.7; das Ergebnis TB-140 nennt in „Für den steuernden Chat“ alle zwölf Urteile wie 55.7; Lock `96a5c572…` — 46/46 `ok`, rc 0 |
+| ⭐⭐ **A** | Einfügeskript aus Anhang A unverändert, Probelauf an Kopie, dann echt, `cmp` gleich, `sha256 nachher` in beiden `ab97ae1e…` (Wachen zu R79 (a), R79 (b) und Platzhaltern liefen in beiden). R-Diff **6/6**, Mutation rc 1, Zitate **2/2**, Überschriften und Ketten 6/6, Marken **20/20** an den Soll-Zeilen, numstat **152/0**, Abschnitt 10 (jetzt Z. 971–1177) und ERZEUGT-Block bytegleich, Sonde-JSON gleich, `registerbericht --pruefen` gleich (rc 1, schon vorher), `register()` → `ee6947a6…`, 196/196 (919 s) |
+| **B** | BACKLOG E1 und E2: Anker 1, numstat 18/0, beide GLEICH; J1 in diesem Block |
+| **C** | Kopie 0–22 / 23–36 / 37–42 / 43–53 / 54–55, Grössen auf das Byte wie gerechnet (T4 236 927 B, 3 069 B Luft), 56 Abschnittsdateien, alle `--pruefen` bytegleich; `--marken` 100/145/96 wie erwartet; Index: 308 Zahlen umgeschrieben (271 geändert), neue Zeile 5.2 in Tabelle 2, Anhänge an 42/46/48/53/54 und neue Zeile 55 in Tabelle 4, Abschnitt 10 mit 20 Marken und drei Indexzeilen, Gegenprobe rc 0; Dialog-Index: 07a (55, offen), 06a (55, registriert), 04a unverändert, 57 Antworten |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Übernommene Skripte stellt ein Skript um, das je Vorlage und je Ergebnis den sha256 prüft und je Ersetzung die Zahl der Vorkommen** (`tb139_umstellen.py`) — 20 Skripte, 157 Ersetzungen, ohne Handarbeit und ohne Abweichung; eine geänderte Vorlage fiele vor dem ersten Lauf auf |
+| | **Hat eine andere Sitzung gemessen, liest die eintragende Sitzung nur deren Urteile nach und misst nicht neu** — sonst stünden zwei Messungen ohne Regel nebeneinander; die Wache im Einfügeskript liest dieselbe Zeile noch einmal |
+
+### Was offen bleibt
+
+- 55.8 (14 Punkte), „Für Fable“ im Ergebnis (55.8 Nr. 5, 6, 9, 10, 12, 13; `--marken` zählt sieben Zeilen aus 55 mit).
+- Index: Kopf „*Frühere Vierteilung*“ nennt weiter „T1“ … „T4“, die Liste danach fünf Teile.
+- `registerbericht.py --pruefen` rc 1 schon vor TB-126 (Zahlenteil veraltet).
+- Ablage der 56 Abschnittsdateien, der fünf Teile, des Index und des Dialog-Index — steuernder Chat.
+- Nächste Journalkennung nach EI: **EJ**; nächster Mac-Auftrag TB-141; TB-137 steht weiter aus.
+
+*Geschrieben 07.10.2026 von der Mac-Sitzung TB-139. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
