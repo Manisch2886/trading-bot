@@ -1565,3 +1565,241 @@ Als Kopierblock im Chat ausgegeben, als erste Nachricht nach dem Ja des Betreibe
 - **Nummern:** Journal EG erwartet für TB-138; der Regelwerk-Nachtrag bekommt die Nummer nach TB-138.
 - **Fehler dieses Chats (ohne Nummer):** zwei Werkzeugausgaben ohne Grenze (Ordnerliste des Wächters, 40 Trefferzeilen aus dem Auftrag TB-136) und eine zu knappe Rechnung für das Einlesen. Ampel: Verlauf 31 644 (13:47) · 120 047 (13:52) · 163 553 (14:10) · 203 332 (14:23, gelb). Im ersten Entwurf stützte sich der Beginn je Bot nur auf 21.5; die Tabelle 33.2 und den Vorbehalt aus R53 fand erst der Gegenleser. ⇒ Vor einer Lesart zum Zeitraum im Index nachsehen, was er zu der Stelle als „gilt“ und „dazu“ führt; jede `ls`- und `grep`-Ausgabe mit `head` begrenzen.
 - **Offen wie im Umzugsblock 13:43:** TB-137 (Abnahme, sobald das Ergebnis kommt), die Anfrage an Fable, der Regelwerk-Nachtrag. Die Ablage trägt `UEBERGABE.md` noch im Stand 13:43.
+
+## Umzug 06.10.2026, 16:40 — Stand für den neuen steuernden Chat (selbsttragend, alle neun Blöcke)
+
+Betreiber, 06.10.2026, per Karte (gestellt nach der Ampel von 14:26, Antwort eingetragen 15:07): „Nach Abgabe TB-138 (Empfohlen)“. 16:37: „Tb138 fertig“. Ampel 16:40: siehe Antwort des Chats (zuletzt gemessen 15:07: Verlauf 249 089, Grundlast 128 903, gelb). Der Nachtrag vom 06.10.2026, 14:25, trägt die Einzelheiten zum Bau; dieser Block genügt zum Weiterarbeiten.
+
+### Block 1 — Stand in drei Zeilen
+
+- **TB-138 ist abgegeben, aber nicht abgenommen** (sechs Commits `5e7037a` bis `8d172c0`, 15:53 bis 16:05). Aus der Journalüberschrift EG der Sitzung, vom steuernden Chat **nicht nachgerechnet**: Kalender „NYSE“ erfüllt R66 (b) bei allen vier Aktien-Bots (0/0 über 16 275 Tage seit 1962); **R72 (d) ein Befund: `APH` endet mit Kurs am 2026-08-31, der Markt am 2026-09-01**; Lücken Aktien 2, Krypto 0; doppelte Daten und Zeitanteile 0; Paketfassung in `trading-env` 4.6.1 gleich Lock, 5.4.0 aus der Cloud-Sitzung von TB-47; Gegenprobe 12/12. Gemessen vom steuernden Chat: rc `m1` 0, `m2` 1, `m3` 0; kein `abbruch.txt`; `d3_porcelain.txt` 0 B.
+- **Die Abnahme von TB-138 ist der erste Schritt des neuen Chats.** Der Helferauftrag liegt bereit (Block 8).
+- **TB-137 steht weiter aus.** Fable-Anfrage und Regelwerk-Nachtrag warten wie im Umzugsblock 13:43.
+
+### Block 2 — HEAD und Arbeitsbaum
+
+HEAD = `origin/main` = `8d172c0` (TB-138 D3, 06.10.2026, 16:05:05). Kette des Tages nach `0c70853`: `5e7037a` Schritt 0 (15:53:41) · `9833724` A: Messskript, Gegenprobe, M1–M3 · `a5cb034` B: BACKLOG · `b923a05` Abgabe: Ergebnis, Journal EG · `439834c` D3 numstat und porcelain · `8d172c0` D3 porcelain neu gemessen. Gemessen 16:38 ohne `git status` und ohne `git diff`: geändert nichts, unverfolgt nichts, keine `index.lock`. **Seit 16:40 ist `docs/projektfuehrung/UEBERGABE.md` wieder geändert und uncommittet (dieser Block);** der nächste Mac-Auftrag nimmt sie in Schritt 0 mit.
+
+**Die Sitzung TB-138 schläft noch:** Wächter-Sonde `starte_TB-99`, 14:38:21Z: „claude im Repo: PID 21434 (Laufzeit 02:12:49, Rechenzeit 1:48.02, S+)“, Start abgewiesen. Schliessen nach der Abnahme über den Schliess-Auslöser (Name nach dem Muster in `docs/auftraege/_ausloeser/_erledigt/`: `schliesse_<voller HEAD-Hash>`, erschlossen; vorher `LIESMICH.md` des Wächters lesen und das Alter des letzten Commits messen, ab 600 s). `AKTUELLER_AUFTRAG.md` zeigt auf TB-138 (md5 `665f314bd9cfb9c00c72ecb606804807`); `letzter_satz.txt` trägt den Satz zu TB-138; kein Auftrag ist startklar.
+
+### Block 3 — Tragende Zahlen
+
+- **Register:** unverändert, 11 581 Zeilen, sha256 `8d505a38ad3abc93624c7a95eb1f1e63228a937047734408d0dfb8518ca568dc` (gemessen 16:38), Stand `9b7b060`. Höchster Block R77.
+- **TB-138:** Auftrag `docs/auftraege/MAC_TB-138_verfahrensmessung_snapshot.md` (33 392 B, md5 `3fbed4ebcb5d0cf4ddcd4ae10c9cea36`, committet in `5e7037a`) · Ergebnis `docs/ERGEBNIS_TB-138_verfahrensmessung_snapshot.md` (18 100 B, 181 Zeilen, md5 `ac4d8a31c50a6e90e8b2df0cb3a3bf7d`) · Belege `docs/belege/TB-138/` (19 Einträge; `m1.txt` 6 097 B, `m2.txt` 4 124 B, `m3.txt` 1 233 B, `m3_shell.txt` 1 179 B, `gegenprobe.txt` 21 112 B, `d3_numstat.txt` 20 Zeilen).
+- **Regeldateien:** `ARBEITSWEISE.md` 2 413 Zeilen (156 926 B, md5 `e85163e98db7f0b9387f4c990b67f8ca`; Abschnitt 0: 25 681 B) · `UMZUG.md` 380 Zeilen (26 923 B; Abschnitt 3: 5 897 B) · `BACKLOG.md` 323 Zeilen (73 765 B, md5 `5721615ef4d59f600018e08d681fc5c8`; sechs Zeilen mehr als 317, wie im Auftrag vorgesehen). Journal: Block EG steht (Z. 10056), nächste Kennung EH.
+- **Für den Zeitraum nach R66 (a), im Auftrag als Lesarten L3 und L4, vorläufig:** Ende 31.08.2026 einschliesslich (Register 35.1, Z. 6375, Z. 6385–6388); Beginn je Bot aus Register 33.2, Tabelle Z. 5994–6004 (Aktien 2017/2018/2017/2018; Krypto 2018–2019, 2019, 2019, 2018, 2018), unter dem Vorbehalt aus R53 (49.1, Z. 11005: „die erste Falte ist nach dieser Präzisierung neu abzuleiten“; der Vorlauf nach R53 (a) offen in Z. 11208 und Z. 11323).
+- **Ablage:** 96 Einträge (gemessen 13:46). `UEBERGABE.md` mit diesem Block: Stand in der Antwort des Chats. `BACKLOG.md` in der Ablage trägt noch den Stand vor TB-138.
+- **Projekt-Erinnerung:** in diesem Chat nicht gelesen und nicht geändert (Stand wie im Umzugsblock 13:43). Vor der Eröffnung für Fable alle vier Dateien neu gegen 27.1 messen.
+- **Nummern:** nächster Auftrag nach TB-138 (vorgesehen: Regelwerk-Nachtrag; die Nummer TB-139 ist erschlossen, im Backlog nicht nachgesehen). Journal ab EH. Neue Blöcke ab R78. Fehler ab 21. Die nächste Fable-Anfrage trägt das Datum des Tages, an dem sie hinausgeht.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+
+1. **TB-138 abnehmen** (zuerst, weil die Sitzung noch schläft und der Befund zu `APH` eine Entscheidung vor dem Tag verlangt). Enger Helfer, nur lesend: `logs/steuernder_chat/HELFER_AUFTRAG_TB-138_abnahme.md`. Danach rechnet der steuernde Chat die Kernzahlen mit eigenen Befehlen nach (letzter Kurstag `APH` gegen den Markt, nur die Datumsspalte; die Zählungen 0/0 und 16 275; rc der drei Messungen). Dann die Sitzung schliessen (Block 2), Backlog- und Journal-Nachtrag zur Abnahme mit dem nächsten Mac-Auftrag.
+2. **Befund `APH` (R72 (d): „Endet eine Reihe früher, wird gemeldet und vor dem Tag entschieden“):** nach der Abnahme dem Betreiber melden; die Entscheidung ist eine Verfahrensfrage (Fable) und kein Handwerk. Das Ende des Zeitraums nach L3 ist der 31.08.2026: ob die Reihe im Zeitraum vollständig ist, steht im Ergebnis und ist bei der Abnahme zu prüfen (nicht gemessen).
+3. **Registereintrag nach TB-138** (54.5, Stand zu R74 (e); 53.10 Nr. 3 und Nr. 10; 54.6 Nr. 1 und Nr. 8): **Einzelfreigabe des Betreibers**, eigener Registerauftrag; der Chat, der abnimmt, baut ihn nicht selbst, wenn die Ampel es nicht trägt.
+4. **TB-137 abnehmen,** sobald der Betreiber `GESAMTERGEBNIS_CLOUD_TB-137.md` einfügt (bis rund 120 000 Zeichen; danach sofort die Ampel messen). Helferauftrag `logs/steuernder_chat/HELFER_AUFTRAG_TB-137_abnahme.md`; Zeilennummern gelten am Stand `d781f1b`. Die Pakete 8 und 12 gegen Auftrag und Ergebnis TB-138 halten.
+5. **Anfrage an Fable fertigschreiben** (neuer Fable-Chat): `logs/steuernder_chat/FABLE_naechste_anfrage_feste_teile.md` („Vor dem Absenden“), Bauplan daneben. Dazu neu, zur Kenntnis oder als Frage: der Befund `APH`; die Lesarten L1–L9 aus TB-138; `faltenplan.json` im Abbild führt den Stand TB-30a; `XAUTUSDT` hat im Snapshot nur eine `_1h`-Reihe.
+6. **Regelwerk-Nachtrag** (nach TB-137), wie Umzugsblock 13:43, Block 4 Nr. 4; dazu die Regeln aus Block 7 hier und aus dem Nachtrag 14:25.
+7. **Ablage:** `BACKLOG.md` erneuern (erst nach der 27.4-Prüfung), durch einen Helfer.
+8. **`AKTUELLER_AUFTRAG.md`** beim Legen des nächsten Auftrags umstellen.
+
+### Block 5 — Wartezustände
+
+TB-138 wartet auf die Abnahme durch den neuen Chat; die Sitzung PID 21434 wartet auf das Schliessen. TB-137 wartet auf die Cloud-Sitzung und das Einfügen durch den Betreiber. Keine Karte ist offen, keine Nachschau ist geplant, keine Rückfrage an Sitzung oder Fable ist offen.
+
+### Block 6 — Freigaben und Entscheide des Betreibers in diesem Chat
+
+- 06.10.2026, 13:46: Ordnerfreigabe für `~/trading-bot`. Zwischen 15:07 und 15:53: Satz zu TB-138 abgeschickt (erschlossen aus dem Commit von Schritt 0, 15:53:41). 16:37: „Tb138 fertig“.
+- Karte zum Umzug: „Nach Abgabe TB-138 (Empfohlen)“ (eingetragen 15:07).
+- Vorgaben ohne Widerspruch (im Chat genannt 14:26): 53.10 Nr. 10 läuft in TB-138 mit; die Lesarten L1–L9 gelten als vorläufig; die Abnahme von TB-133 kommt mit TB-138 in Backlog und Journal; TB-137 wird nicht mehr in den alten Chat eingefügt.
+- TB-138 lief unter der pauschalen Freigabe für Handwerk ohne Sperrlistennähe (an der Sperrliste gemessen: kein Pfad des Abbilds unter `docs/`).
+- **Keine Freigabe** für Register, Sperrliste, Signalpfad oder Parameterdateien.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus (alle ohne Nummer)
+
+1. Wie Nachtrag 14:25: zwei Werkzeugausgaben ohne Grenze; Einlesen und Bestand teurer als gerechnet; der Beginn je Bot zuerst nur auf 21.5 gestützt. ⇒ Jede `ls`- und `grep`-Ausgabe mit `head` begrenzen; vor einer Lesart den Index nach „gilt“ und „dazu“ fragen.
+2. Das Ablege-Skript scheiterte an einer falschen Zählung im Zeiger (`TB-138` dreimal, nicht zweimal), **nachdem** es den Auftrag schon kopiert hatte; der zweite Lauf brauchte eine Ausnahme. Kein Schaden gemessen (md5 beidseitig gleich). ⇒ Ein Ablege-Skript prüft erst alles und schreibt dann; es ist wiederholbar gebaut.
+3. Ampel: 31 644 (13:47) · 120 047 (13:52) · 163 553 (14:10) · 203 332 (14:23) · 235 294 (14:26) · 249 089 (15:07). Die erste Runde kostete rund 88 000 in fünf Minuten: Kernlektüre 43 KB, Bestandsbericht 30 KB, dazu Vorbild und zwei Aufträge. ⇒ Den Bestandsbericht durch einen Helfer auf die Stellen kürzen lassen, die der Bau braucht; der Chat, der einen Auftrag baut, liest die Kernlektüre und sonst nur Ausschnitte.
+4. Die Berichtigungen aus Runde 2 des Gegenlesens hat nur das Bauskript geprüft, kein weiterer Leser. Bei der Abnahme darauf achten (Gegenprobe-Tabelle G1–G8, Urteil-Regel in M1 Nr. 4).
+5. Was getragen hat: Bauskript mit 139 Prüfungen an der Quelle; zwei gleichzeitige Gegenleser mit getrenntem Zuschnitt (Quellen, Logik) und ein dritter für die Nachlese; die Tabelle je Kalenderjahr als Schutz gegen vorläufige Lesarten; die Karte zum Umzug vor dem Warten statt danach.
+
+### Block 8 — Zwischengelagert, noch nicht eingearbeitet
+
+- Unter `logs/steuernder_chat/` (von git ignoriert), neu aus diesem Chat: `HELFER_AUFTRAG_TB-138_abnahme.md` (3 377 B, md5 `3dbe153ea2b9f1809904fc90267c6f3b`) · `TB-138_entwurf_v1.md`, `_v2.md`, `_v3.md` (v3 gleich dem gelegten Auftrag) · `TB-138_bau_vorlage.md`, `TB-138_bau_bauen.py`, `TB-138_bau_runde1.py`, `TB-138_bau_runde2.py`, `TB-138_bau_ablegen.py`, `TB-138_nachtrag_vorlage.md` · `TB-138_gegenlesen_1a.md`, `_1b.md`, `_2.md` (1b führt sechs Sprachhinweise und 16 Hinweise, 2 weitere 16, nicht einzeln eingearbeitet) · `TB-138_notiz_entscheide.md`. Nicht ohne Frage löschen.
+- Unverändert von früher: die Dateien aus dem Umzugsblock 13:43, Block 8 (Helferauftrag TB-137, feste Teile der Fable-Anfrage, Bauplan, Cloud-Sammelauftrag, Archiv TB-136, die überflüssigen Arbeitskopien).
+- Verfällt mit diesem Chat: der Ordner `tb138/` und `kern/` in der Umgebung der Geräteanbindung (alles Tragende ist nach `logs/steuernder_chat/` kopiert).
+
+### Block 9 — Eröffnungstext
+
+Als Kopierblock im Chat ausgegeben, als erste Nachricht der Antwort nach „Tb138 fertig“. Kernlektüre für den neuen Chat: dieser Block bis Dateiende, dazu ARBEITSWEISE Abschnitt 0 und UMZUG Abschnitt 3.
+
+## Nachtrag 06.10.2026, 20:18 — TB-138 abgenommen, Sitzung geschlossen
+
+Betreiber, 06.10.2026, 20:10: „weiter im backlog“ (im alten Chat; der Umzug war für die Zeit nach der Abgabe entschieden, ein neuer Chat ist nicht eröffnet). Der alte Chat hat deshalb Block 4 Nr. 1 des Umzugsblocks 16:40 selbst erledigt. **Dieser Nachtrag geht dem Umzugsblock 16:40 in Block 1, Block 2 (Sitzung), Block 4 Nr. 1 und Block 5 vor.**
+
+- **TB-138 ist abgenommen** (06.10.2026). Helfer, nur lesend, zehn Prüfungen: sieben ohne Abweichung, drei mit formaler Abweichung, keine gegen einen Messwert. Kein Kurs, keine Rendite, keine Kennzahl in Belegen, Ergebnis oder Journalblock. Bericht: `logs/steuernder_chat/TB-138_abnahme_helferbericht.md` (11 264 B, md5 `8c8251032bfd56d3cd723d3df6926d58`).
+- **Abweichungen:** (1) `0b_nachher.txt` weicht in drei Kopfzeilen von `0b_ausgang.txt` ab (Marke, Zeit, HEAD); alle Messwerte sind gleich. (2) Zwei D3-Commits statt einem: In `439834c` trug `d3_porcelain.txt` eine Zeile (`?? docs/belege/TB-138/d3_numstat.txt`), `8d172c0` mass neu; am HEAD hat die Datei 0 B. (3) Das Ergebnis führt Abweichungen vom Auftrag nicht als solche: Das Skript prüft bei Zeilen nach dem letzten Kurstag auch, welche übrigen Spalten leer sind (ausgegeben werden nur Spaltennamen); H je Bot ist ein Ausschnitt der einmal gerechneten Menge und kein eigener `schedule`-Aufruf (ob beides dasselbe liefert, ist nicht gemessen); „In einfacher Sprache“ trägt eine Vermutung („wohl nicht“, Z. 178). Der Beginn je Bot steht als feste Tabelle im Skript (Z. 46–54), wie L4 es vorgibt.
+- **Vom steuernden Chat nachgerechnet** (20:16, eigene Befehle am Snapshot, nur die Datumsspalte und ob `close` fehlt): Aktien 150 Reihen, 16 275 Kurstage von 1962-01-02 bis 2026-09-01 (16 274 bis 31.08.2026); früher endend nur `APH` (2026-08-31); `close` fehlt genau einmal; zwei Lücken (`LMT` 1974-06-03, `MNST` 2026-08-10), gerechnet gegen die Kurstage als Ersatz für den Kalender; kein doppelter Tag. Krypto 24 Reihen, 3 316 Tage von 2017-08-17 bis 2026-09-14, keine früher endende Reihe, keine Lücke, kein doppelter Tag. **Nicht nachgerechnet:** der Vergleich mit dem Kalender „NYSE“ in der Lock-Umgebung (0 Tage nur im Kalender, 0 nur in den Daten); er steht nur in der Ausgabe der Sitzung (`m1.txt`).
+- **Befund zu R72 (d), genauer:** `APH` hat am 2026-09-01 eine Zeile mit leerem `open`, `high`, `low` und `close` (`m2.txt` Z. 25–27, `m1.txt` Z. 118–120). Der letzte Kurs liegt am 2026-08-31, dem Ende des Zeitraums nach L3; bis dahin hat `APH` keine Lücke. Der Befund hängt an den Lesarten L5 und L7. R72 (d) verlangt: melden und vor dem Tag entscheiden. Dem Betreiber im Chat gemeldet; die Entscheidung ist eine Verfahrensfrage und geht in die nächste Anfrage an Fable.
+- **M3:** Die vier Paketfassungen in `trading-env` sind gleich dem Lock. Zu „5.4.0“: `docs/ERGEBNIS_TB-47_snapshotgrenze.md` Z. 3, Z. 122, Z. 348 und Z. 359 (Cloud-Sitzung vom 18.09.2026, Python 3.11.15, Paket 5.4.0 nachinstalliert). Dass dieser Interpreter das Feld `kalender` schrieb, ist erschlossen.
+- **Sitzung TB-138:** Schliess-Auslöser `schliesse_<HEAD>` gelegt um 20:18; `waechter.log`: „1 Sitzung(en) mit TERM beendet, 0 noch da.“.
+- **Noch offen aus der Abnahme:** Backlog- und Journal-Nachtrag zur Abnahme TB-138 mit dem nächsten Mac-Auftrag (5b). Der Registereintrag nach TB-138 braucht die Einzelfreigabe des Betreibers.
+- **Ampel:** 279 597 (16:41) · 295 029 (19:40); der Stand nach diesem Nachtrag steht in der Antwort des Chats.
+
+## Nachtrag 06.10.2026, 21:00 — Bestandsaufnahme zum Registereintrag nach TB-138: in der Hauptsache kein Vorbild für einen Eintrag ohne Fable
+
+- **Betreiber, Karte nach der Ampel von 20:19 (Verlauf 316 395, rot):** „Hier weiterbauen“ — der Registerauftrag zu TB-138 soll im alten Chat entstehen. Der Eröffnungstext von 16:41 ist überholt und nicht ersetzt.
+- **Zwei Helfer, nur lesend:** `logs/steuernder_chat/TB-139_bestand_A1.md` (Bauart TB-136, 42 979 B, md5 `3e1fa205aa165f3bb8683a0a6226bf6f`) und `logs/steuernder_chat/TB-139_bestand_A2.md` (Vorbilder und Markenregeln im Register, 61 516 B, md5 `1fa0890646d6261747f3bd3b871f76f5`).
+- **Befunde aus den Helferberichten** (vom steuernden Chat nicht nachgemessen):
+  1. Die Ergebnisse der Verfahrensmessungen TB-115 kamen **über Fable** ins Register: Tagesanfrage 27a, Antwort, dann TB-117 mit Fable-Blöcken (R11, R13, R17; Register Z. 10358–10552). Kein eigener Abschnitt, keine Notiz des steuernden Chats.
+  2. Abschnitte ohne Fable-Block gibt es: 44 (Z. 9855) und 50 (Z. 11030, TB-126; Einleitung endet „Die Nummer hat der steuernde Chat vergeben, nicht Fable“). Marke ohne Fable: Z. 1250 („11.3 ERGÄNZT durch 50.3 und 50.4 (Tatsachennotiz, …, TB-126, 01.10.2026)“).
+  3. Statuslisten wie 53.10 und 54.6 bekommen keine Marke (R61 (b), Z. 11272; R77 (c), Z. 11545). Die Erledigung steht im Schlusssatz des neuen Abschnitts (Vorbild Z. 11581).
+  4. Eine Zeilenmarke an einer Befundtabelle (54.5, 53.9) setzt nach R65 (a) (Z. 11367) „einen Block“ voraus. Ein Markenwort für „offen, jetzt gemessen“ gibt es nicht (ERGÄNZT 74, PRÄZISIERT 69, BERICHTIGT 11, je einmal NACHGETRAGEN, VOLLZOGEN, BEANTWORTET).
+  5. Das Register sagt nicht, wer das Ergebnis einer Verfahrensmessung einträgt und ob der Verfahrensprüfer es vorher sieht. Für „Bedingung erfüllt“ (R74 (e)) nennt es keinen Folgeschritt; für R72 (d) verlangt es Meldung und Entscheidung vor dem Tag.
+  6. Prüf- und Einfügeskript von TB-136 setzen eine Fable-Quelle voraus (Auftrag TB-136, Anhang A, Z. 588, 621–638, 824–848, 872). T4 der Registerkopie hat 5 409 B Luft bis 240 000. Sollwert `herkunft.register()` nach TB-136: `cfff54ca81d3dbf594a28880b17d4ba8389e0436c2d48cd50248586c1de03a81` (ERGEBNIS_TB-136 Z. 81; heute nicht gemessen).
+- **Folgerung des steuernden Chats, vorläufig:** Der Weg mit Vorbild ist: Ergebnis TB-138 und Befund `APH` zuerst als Anfrage an Fable, danach **ein** Registerauftrag der Bauart TB-136, der Fables Blöcke und die Tatsachennotizen zusammen einträgt. Ein eigener Abschnitt 55 ohne Fable hätte die Bauart von Abschnitt 50, bliebe ohne Zeilenmarken und zöge nach Fables Antwort einen zweiten Registerauftrag nach sich. Dem Betreiber als Karte vorgelegt; die Antwort steht im nächsten Nachtrag.
+- **Fehler dieses Chats (ohne Nummer):** Die Vorgabe von 20:19 („als Nächstes kommt der Registereintrag zu TB-138“) stand, bevor gemessen war, wie das Register Messergebnisse aufnimmt; die Karte „Hier weiterbauen“ fragte deshalb nach dem Ort für einen Bau, dessen Weg nicht feststand. ⇒ Vor einer Vorgabe zur Reihenfolge das Vorbild im Register messen lassen.
+- **Nummern:** TB-139 ist nicht vergeben; kein Auftrag ist gelegt, kein Zeiger umgestellt.
+
+## Nachtrag 06.10.2026, 21:30 — Anfrage 06.10.a an Fable gebaut (TB-138: Befund `APH`, Form des Eintrags)
+
+- **Betreiber, Karte nach dem Nachtrag 21:00:** „Erst Fable, dann ein Eintrag (Empfohlen)“. Das Ergebnis TB-138 geht als eigene Anfrage an einen neuen Fable-Chat, ohne auf TB-137 zu warten; danach trägt **ein** Registerauftrag der Bauart TB-136 Fables Blöcke und die Tatsachennotizen ein. Kein Auftrag ist gelegt, TB-139 ist nicht vergeben.
+- **Dateien, vom steuernden Chat gelegt, unverfolgt** (der nächste Mac-Auftrag nimmt sie in Schritt 0 mit): `docs/projektfuehrung/FABLE_ANFRAGE_2026-10-06a_verfahrensmessung_snapshot_aph.md` (11 681 B, md5 `06ae4b76831d547cff57b2d2ce425dfb`) und `docs/projektfuehrung/FABLE_UEBERGABE_2026-10-06_eroeffnung.md` (7 295 B, md5 `6e9fa10d1e7ae7c733ad1d889c6e81d4`). Für die Ablage dazu das Ergebnis TB-138 ohne den Abschnitt „In einfacher Sprache“ (Z. 1–172, 17 279 B, md5 `e0813faa8cbaf293fc8848e034edb1aa`; Z. 178 der Datei im Repo trägt eine Stelle nach 27.5). Stand der Ablage: in der Antwort des Chats.
+- **Zwei Fragen:** (1) Ist die Zeile ohne Kurs von `APH` am 2026-09-01 ein „Endet eine Reihe früher“ nach R72 (d), und was ist dann vor dem Tag zu entscheiden, von wem? (2) Bestätigt Fable die Lesarten L1–L9, und in welcher Form kommt das Ergebnis ins Register (Blöcke ab R78, Marke an den Zeilen „R74 (54.1) (e)“ in 54.5 und „R72 (53.7) (d)“ in 53.9, Stand von 53.10 Nr. 3 und Nr. 10 und 54.6 Nr. 1 und Nr. 8)? Dazu fünf Punkte zur Kenntnis (K1–K5).
+- **Vorprüfung** (Helfer, `logs/steuernder_chat/TB-139_vorpruefung_06a.md`): Weder das Register noch das Manifest kennen den Fall. Das Manifest führt 36 zugelassene Befunde, alle `rand_erste`, keinen an einer Aktien-Datei; R13 (b) (46.4, Z. 10480) führt für die 150 Aktien-Dateien den 2026-09-01 als letzte Kerze und spricht nicht von einer Zeile ohne Kurs; R72 (d) stellt das Reihenende nicht unter den Zeitraum nach R66 (a).
+- **Gegenlesen** (frischer Helfer, `logs/steuernder_chat/TB-139_gegenlesen_06a.md`): 81 Stellen an der Quelle, sieben Fehler und acht Lücken, alle berichtigt; kein Verstoss gegen 27.1. Die Berichtigungen hat kein weiterer Leser geprüft. Die zwei Absätze „Neigung“ stammen vom steuernden Chat.
+- **Erinnerungsdateien gegen 27.1** (Helfer, 21:18): je 0 Treffer in den vier Dateien; Grössen laut Liste 9 461, 2 765, 385 und 673 B (der Lesekopf nennt für die zwei Projektdateien 9 440 und 2 723 B). In diesem Chat wurde keine Erinnerungsdatei geändert.
+- **Eigene Zählung, neu:** In den 24 Krypto-`_1d`-Reihen des Snapshots fehlt `close` in keiner Zeile (20:16).
+- **Wartezustand:** Der Betreiber eröffnet einen neuen Fable-Chat und fügt Eröffnung und Anfrage ein. Fables Antwort kommt nach `projektfuehrung/FABLE_ANTWORT_2026-10-06a_<stichwort>.md`. Danach: Antwort bewerten (nicht in dem Chat, der den Registerauftrag baut), Registerauftrag bauen, Einzelfreigabe per Karte. Geht die Anfrage erst an einem späteren Tag hinaus, ändern sich Datum, Titel und Dateiname.
+- **Unverändert offen:** TB-137 (Abnahme), die zweite Fable-Anfrage (54.6 Nr. 2, 6, 7, 9), der Regelwerk-Nachtrag, Backlog und Journal zur Abnahme TB-138, `BACKLOG.md` in der Ablage.
+- **Ampel:** 316 395 (20:19) · 345 974 (21:01); der Stand danach steht in der Antwort des Chats.
+
+## Umzug 07.10.2026, 06:59 — Stand für den neuen steuernden Chat (selbsttragend, alle neun Blöcke)
+
+Betreiber, 07.10.2026, 06:57: „jetzt Hauptchat auch umziehen. Fable läuft.“ Ampel 06:58: Verlauf 450 461 (Grundlast 128 903), rot. **Dieser Block ersetzt den Umzugsblock vom 06.10.2026, 16:40;** die Nachträge vom 06.10.2026 (20:18, 21:00, 21:30) tragen die Einzelheiten und sind nur bei Bedarf zu lesen.
+
+### Block 1 — Stand in drei Zeilen
+
+- **TB-138 ist abgenommen** (06.10.2026; zehn Prüfungen eines Helfers, drei formale Abweichungen, keine gegen einen Messwert), die Sitzung ist geschlossen. Ins Register ist davon nichts eingetragen.
+- **Die Anfrage 06.10.a liegt beim Verfahrensprüfer:** ein neuer Fable-Chat arbeitet daran (Betreiber, 07.10.2026, 06:57: „Fable läuft“; wann sie abgeschickt wurde, ist nicht gemessen). Die Antwort steht aus; im Repo liegt keine `FABLE_ANTWORT_2026-10-06…` oder `…-07…` (gemessen 06:58).
+- **Danach kommt ein Registerauftrag** (Bauart TB-136), der Fables Blöcke und die Tatsachennotizen zu TB-138 zusammen einträgt. TB-137 steht weiter aus.
+
+### Block 2 — HEAD und Arbeitsbaum
+
+HEAD = `origin/main` = `8d172c0` (TB-138 D3, 06.10.2026, 16:05:05). Gemessen 07.10.2026, 06:58, ohne `git status` und ohne `git diff`: geändert nur `docs/projektfuehrung/UEBERGABE.md` (diese Datei); unverfolgt `docs/projektfuehrung/FABLE_ANFRAGE_2026-10-06a_verfahrensmessung_snapshot_aph.md` und `docs/projektfuehrung/FABLE_UEBERGABE_2026-10-06_eroeffnung.md`; keine `index.lock`. Der nächste Mac-Auftrag nimmt alle drei in Schritt 0 mit; sein 0a muss diese drei Einträge und den Auftrag selbst erwarten.
+
+**Keine Sitzung läuft:** Schliess-Auslöser 06.10.2026, 20:17 („1 Sitzung(en) mit TERM beendet, 0 noch da“); Wächter-Sonde `starte_TB-99` am 07.10.2026, 04:58:27Z: kein Abbruch wegen einer laufenden Sitzung, Schlüsselbund entsperrt, Abbruch erst am Zeiger (TB-99 ist kein Auftrag). `AKTUELLER_AUFTRAG.md` zeigt auf TB-138 (md5 `665f314bd9cfb9c00c72ecb606804807`); `letzter_satz.txt` trägt den Satz zu TB-138; kein Auftrag ist startklar.
+
+### Block 3 — Tragende Zahlen
+
+- **Register:** unverändert, 11 581 Zeilen, sha256 beginnt `8d505a38ad3abc93` (gemessen 06:58), Stand `9b7b060`. Höchster Block R77; Fable vergibt ab R78. Sollwert `herkunft.register()` nach TB-136: `cfff54ca81d3dbf594a28880b17d4ba8389e0436c2d48cd50248586c1de03a81` (ERGEBNIS_TB-136 Z. 81; seither nicht gemessen).
+- **TB-138:** Auftrag `docs/auftraege/MAC_TB-138_verfahrensmessung_snapshot.md` · Ergebnis `docs/ERGEBNIS_TB-138_verfahrensmessung_snapshot.md` (18 100 B, 181 Zeilen; Z. 178 trägt eine Stelle nach 27.5) · Belege `docs/belege/TB-138/`. Kernzahlen, vom steuernden Chat nachgerechnet (nur Datumsspalte und ob `close` fehlt): Aktien 150 Reihen, 16 275 Kurstage 1962-01-02 bis 2026-09-01; früher endend nur `APH` (letzter Kurs 2026-08-31, am 2026-09-01 eine Zeile ohne Kurs); zwei Lücken (`LMT` 1974-06-03, `MNST` 2026-08-10); Krypto 24 Reihen ohne Befund. Nicht nachgerechnet: der Vergleich mit dem Kalender „NYSE“ in der Lock-Umgebung (0/0, nur Ausgabe der Sitzung).
+- **Anfrage 06.10.a:** `FABLE_ANFRAGE_2026-10-06a_verfahrensmessung_snapshot_aph.md` (11 681 B, md5 `06ae4b76831d547cff57b2d2ce425dfb`) und `FABLE_UEBERGABE_2026-10-06_eroeffnung.md` (7 295 B, md5 `6e9fa10d1e7ae7c733ad1d889c6e81d4`), beide im Repo (unverfolgt) und in der Ablage. Zwei Fragen: (1) Ist die Zeile ohne Kurs von `APH` ein „Endet eine Reihe früher“ nach R72 (d), und was ist dann vor dem Tag zu entscheiden, von wem? (2) Gelten die Lesarten L1–L9, und in welcher Form kommt das Ergebnis ins Register (Blöcke ab R78, Marke an den Zeilen „R74 (54.1) (e)“ in 54.5 und „R72 (53.7) (d)“ in 53.9, Stand von 53.10 Nr. 3 und Nr. 10 und 54.6 Nr. 1 und Nr. 8)? Dazu K1–K5 zur Kenntnis. Die Antwort wird als `projektfuehrung/FABLE_ANTWORT_2026-10-06a_<stichwort>.md` erwartet.
+- **Regeldateien:** `ARBEITSWEISE.md` 2 413 Zeilen (156 926 B, md5 `e85163e98db7f0b9387f4c990b67f8ca`; Abschnitt 0: 25 681 B) · `UMZUG.md` 380 Zeilen (26 923 B; Abschnitt 3: 5 897 B) · `BACKLOG.md` 323 Zeilen (73 765 B, md5 `5721615ef4d59f600018e08d681fc5c8`). Journal: Block EG steht, nächste Kennung EH.
+- **Ablage:** 99 Einträge (06.10.2026, 21:31): neu die zwei Fable-Dateien und `projektfuehrung/ERGEBNIS_TB-138_verfahrensmessung_snapshot.md` (nur Z. 1–172, 17 279 B). `UEBERGABE.md` mit diesem Block: Stand in der Antwort des Chats. `BACKLOG.md` in der Ablage trägt noch den Stand vor TB-138.
+- **Projekt-Erinnerung:** vier Dateien am 06.10.2026, 21:18, gegen 27.1 gemessen, je 0 Treffer (Grössen laut Liste 9 461, 2 765, 385, 673 B); in diesem Chat nicht geändert. Vor der nächsten Eröffnung für Fable neu messen.
+- **Nummern:** TB-139 ist nicht vergeben und für den Registerauftrag nach Fables Antwort vorgesehen; der Regelwerk-Nachtrag bekommt die Nummer danach (Vorgabe des steuernden Chats). Journal ab EH. Fehler ab 21. Die nächste Fable-Anfrage trägt das Datum des Tages, an dem sie hinausgeht.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+
+1. **Fables Antwort 06.10.a übernehmen und bewerten,** sobald der Betreiber „Fable ist fertig“ meldet: über `project_info` finden, ins Repo übertragen (md5 beidseitig), Blöcke und Nummern am Block zählen, jede Zahl an der Quelle nachrechnen, Backlog- und Journal-Nachtrag vormerken (5b). **Die Entscheidung zu `APH` dem Betreiber vorlegen** (Frage 1 (b): das Register sagt nicht, wer entscheidet).
+2. **Registerauftrag (TB-139), Bauart TB-136:** Fables Blöcke ab R78 als Abschnitt 55, dazu „Voraussetzungen und Befunde“ und „Was offen bleibt“ des steuernden Chats, Marken nach Fables Antwort. Bestandsaufnahme liegt vor: `logs/steuernder_chat/TB-139_bestand_A1.md` (Gliederung, Daten-Block, Skripte, Schritt C, Sollwerte von TB-136) und `TB-139_bestand_A2.md` (Vorbilder, Markenregeln). Zu beachten: T4 der Registerkopie hat 5 409 B Luft bis 240 000; Prüf- und Einfügeskript stehen an festen Stellen auf TB-136. **Einzelfreigabe des Betreibers per Karte.** Der Chat, der die Antwort bewertet, baut den Auftrag nicht auch (ARBEITSWEISE 0).
+3. **TB-137 abnehmen,** sobald der Betreiber `GESAMTERGEBNIS_CLOUD_TB-137.md` einfügt (bis rund 120 000 Zeichen; danach sofort die Ampel messen). Helferauftrag `logs/steuernder_chat/HELFER_AUFTRAG_TB-137_abnahme.md`; Zeilennummern gelten am Stand `d781f1b`. Die Pakete 8 und 12 gegen Auftrag und Ergebnis TB-138 halten.
+4. **Zweite Anfrage an Fable** (54.6 Nr. 2 und Nr. 6 als Fragen, Nr. 7 und Nr. 9 zur Kenntnis): `logs/steuernder_chat/FABLE_naechste_anfrage_feste_teile.md`; wartet auf die Pakete 3, 5 und 11 von TB-137.
+5. **Regelwerk-Nachtrag** (nach TB-137): wie Umzugsblock 06.10.2026, 13:43, Block 4 Nr. 4; dazu die Regeln aus Block 7 hier, aus Block 7 des Umzugsblocks 16:40 und aus den Nachträgen 14:25 und 21:00.
+6. **Backlog und Journal** zur Abnahme TB-138 und zur Anfrage 06.10.a: mit dem nächsten Mac-Auftrag (5b).
+7. **Ablage:** `BACKLOG.md` erneuern (erst nach der 27.4-Prüfung), durch einen Helfer.
+8. **`AKTUELLER_AUFTRAG.md`** beim Legen des nächsten Auftrags umstellen.
+
+### Block 5 — Wartezustände
+
+Der Fable-Chat arbeitet an 06.10.a; der Betreiber meldet „Fable ist fertig“. TB-137 wartet auf die Cloud-Sitzung und das Einfügen durch den Betreiber. Keine Mac-Sitzung läuft, keine Karte ist offen, keine Nachschau ist geplant.
+
+### Block 6 — Freigaben und Entscheide des Betreibers in diesem Chat (seit 16:40)
+
+- 06.10.2026, 19:40: „TB138 fertig“ (zweite Meldung; der Stand war unverändert). 20:10: „weiter im backlog“ — der alte Chat hat daraufhin TB-138 selbst abgenommen.
+- Karte nach der Ampel von 20:19 (rot): „Hier weiterbauen“. Karte nach dem Nachtrag 21:00: „Erst Fable, dann ein Eintrag (Empfohlen)“.
+- 07.10.2026, 06:57: „jetzt Hauptchat auch umziehen. Fable läuft.“
+- Vorgaben ohne Widerspruch: `eingaben.json` bleibt als Beleg von TB-47 (K5 der Anfrage); kein zweiter Snapshot vorgeschlagen (Neigung zu Frage 1); TB-139 für den Registerauftrag.
+- **Keine Freigabe** für Register, Sperrliste, Signalpfad oder Parameterdateien. Die Freigabe zum Registerauftrag steht aus.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus (alle ohne Nummer)
+
+1. Die Vorgabe „als Nächstes der Registereintrag“ (20:19) stand, bevor gemessen war, wie das Register Messergebnisse aufnimmt; die Karte „Hier weiterbauen“ fragte nach dem Ort für einen Bau, dessen Weg nicht feststand. ⇒ Vor einer Vorgabe zur Reihenfolge das Vorbild im Register messen lassen.
+2. Der Eröffnungstext von 16:41 lag drei Stunden im Chat und war nach „weiter im backlog“ überholt (Abnahme, Sitzung, Ablage). ⇒ Arbeitet ein Chat nach dem Eröffnungstext weiter, kennzeichnet er den alten Text in derselben Antwort als überholt und gibt beim Umzug einen neuen aus.
+3. Das Datum der Anfrage (06.10.a) steht in Titel und Dateiname; wann der Betreiber sie abgeschickt hat, ist nicht gemessen. Geht eine Anfrage erst am Folgetag hinaus, weicht das Datum von der Regel ab. ⇒ Beim Ausgeben einer Anfrage spät am Tag den Betreiber fragen, wann er sendet, oder das Datum offen lassen.
+4. Die Eröffnung 06.10. trägt zwei unschöne Zeilenumbrüche (Abschnitt 2 und 3), weil das Skript Zeilen ersetzt hat, ohne neu zu umbrechen; der Inhalt stimmt. ⇒ Nach dem Ersetzen in umbrochenem Text die Zeilenlängen prüfen.
+5. Ampel im roten Bereich: 316 395 (06.10., 20:19) · 345 974 (21:01) · 428 399 (21:32) · 450 461 (07.10., 06:58). Rund 82 000 kostete die Fable-Anfrage: der Sendetext (18 KB) wurde einmal gelesen und einmal als Kopierblock ausgegeben, dazu vier Helferberichte. ⇒ Eine Fable-Anfrage baut ein frischer Chat; der Kopierblock kommt aus einer Datei, die ein Skript gebaut hat, und wird nur einmal in den Chat geholt.
+6. Was getragen hat: die Bestandsaufnahme vor dem Bau (zwei Helfer, getrennter Zuschnitt); die Vorprüfung durch einen Helfer, der den Entwurf gleich mitbaut; Berichtigungen per Skript mit `assert` auf genau einen Treffer; md5 beidseitig bei jeder Ablage.
+
+### Block 8 — Zwischengelagert, noch nicht eingearbeitet
+
+- Unter `logs/steuernder_chat/` (von git ignoriert), neu seit 16:40: `TB-138_abnahme_helferbericht.md` · `TB-139_bestand_A1.md`, `TB-139_bestand_A2.md` · `TB-139_vorpruefung_06a.md`, `TB-139_gegenlesen_06a.md` · `ablage_06a/` mit dem gekürzten Ergebnis TB-138 und `FABLE_2026-10-06a_SENDETEXT.txt` (18 399 B, md5 `2a5064e789ccee6779d4b8a3c10b819d`). Dazu die Dateien aus dem Umzugsblock 16:40, Block 8. Nicht ohne Frage löschen.
+- `HELFER_AUFTRAG_TB-138_abnahme.md` ist erledigt.
+- Verfällt mit diesem Chat: die Ordner `tb138/`, `tb139/`, `tb138_abnahme/` und `kern/` in der Umgebung der Geräteanbindung (das Tragende ist nach `logs/steuernder_chat/` kopiert).
+
+### Block 9 — Eröffnungstext
+
+Als Kopierblock im Chat ausgegeben, als erste Nachricht der Antwort auf „jetzt Hauptchat auch umziehen“. Kernlektüre für den neuen Chat: dieser Block bis Dateiende, dazu ARBEITSWEISE Abschnitt 0 und UMZUG Abschnitt 3.
+
+---
+
+## Nachtrag 07.10.2026, 10:32 — Fable 06.10.a übernommen und bewertet; TB-140 (Messung) vor TB-139 (Registereintrag); Arbeitstag ohne Umzug
+
+Betreiber, 07.10.2026, 08:10: „Ich bin heute den ganzen Tag unterwegs und arbeite nicht am Mac. Meine Arbeiten kann ich dennoch über die mobile App und Termius ausführen.“ · „Arbeite heute so viel wie möglich selbstständig ab, damit wir endlich wieder größere Fortschritte machen.“ · „Vermutlich können wir heute über den Tag hinweg dann auch keinen Umzug durchführen.“ · „Fable ist fertig.“
+
+Die Abschnitte 1 bis 5 sind die Bewertung des steuernden Chats vom 07.10.2026 zur Antwort 06.10.a, übernommen per Skript aus `logs/steuernder_chat/BEWERTUNG_FABLE_2026-10-06a.md` (dort Abschnitte 1 bis 5; Abschnitt 7 dort ist hier Abschnitt 6). Die Abnahme machte ein Helfer, nur lesend; die Kernzahl hat der steuernde Chat selbst nachgezählt.
+
+### 1. Übernahme
+Ablage → Repo über zwei unabhängige Abschriften (zwei Helfer, `cmp` gleich): `docs/projektfuehrung/FABLE_ANTWORT_2026-10-06a_verfahrensmessung_snapshot_aph.md`, 26 689 B, 159 Zeilen, md5 `2fc513b93ef8b3ecb794a543c9fe5dc3`, beidseitig gemessen 07.10.2026. **Grenze:** Die Leerstelle in Zifferngruppen (Z. 3, 20, 21, 130, 132, 154 — Z. 154 ist der Block R79) ist als U+0020 geschrieben; ob die Ablage dort ein anderes Leerzeichen führt, zeigt `project_read` nicht.
+
+### 2. Was Fable entschieden hat
+- **APH (R78 (d)):** Reihenende nach R72 (d), war zu melden; berührt 3b (c) im Lauf nicht, weil der Tag ohne Kurs (2026-09-01) nach dem Ende der Bestätigungsperiode liegt. Snapshot bleibt, `benchmark.py` wird nicht geöffnet, die Zeile wird nicht ergänzt. Für den Betreiber bleibt keine Wahl ausser der Einzelfreigabe des Eintrags.
+- **Wer entscheidet (R78 (f)):** der Verfahrensprüfer durch Block vor dem signierten Tag; Änderungen an Snapshot, Lock oder Sperrlisten-Code daneben mit Freigabe des Betreibers.
+- **L1–L9 bestätigt**, L2 und L6 mit Voraussetzung. Drei Blöcke R78 (a)–(g), R79 (a)–(g), R80 (a)–(c).
+- **Sechs Voraussetzungen:** vor dem Eintrag R79 (a), R79 (b); vor dem signierten Tag R78 (d); ohne Zeitpunkt R78 (a), R78 (e), R79 (g).
+
+### 3. Abnahme
+Helfer (nur lesend, 30 Schritte): `logs/steuernder_chat/FABLE_06a_abnahme_helferbericht.md`. Geprüft: 52 Verweise, 26 Zitate, 28 Aussagen über das Register, 34 Zahlen, 16 Markenorte. **Keine Abweichung gegen einen Messwert in einem Block.**
+Eigene Nachzählung des steuernden Chats am Snapshot `63e4b6c8…` (awk über 174 `*_1d.csv`, 07.10.2026): `close` fehlt in genau einer Zeile (`APH` 2026-09-01); 150 Dateien enden 2026-09-01, 24 enden 2026-09-14; `XAUTUSDT` nur als `_1h.csv`. Nicht nachgerechnet: Kalendervergleich, doppelte `open_time`, Paketfassungen (Ausgabe der Sitzung TB-138).
+
+### 4. Abweichungen und Befunde (gehen in „Voraussetzungen und Befunde“, TB-139)
+1. Der Kopf von R78 nennt R74 (e) nicht; R78 (f) gibt R74 (e) eine Lesart, R80 (a) setzt dafür die Marke an 54.1.
+2. R78 „Quelle des Grundes“ zitiert „Nicht gemessen: Zeilen ohne close“; im Register steht `close` in Backticks.
+3. R79 (c) „in den 24 Krypto-Tagesreihen in keiner“: im Ergebnis TB-138 „nicht gemessen“; Quelle war die Zählung des steuernden Chats (Anfrage). Bekommt in TB-140 einen Beleg (Zusatz Z1).
+4. R79 (f) führt die Herkunft von 5.4.0 als Tatsache; die Anfrage nannte sie „erschlossen“. TB-140 liest die Stelle in `docs/ERGEBNIS_TB-47_snapshotgrenze.md` (Zusatz Z2).
+5. R79 (g) „dreizehnter Fall“: rechnerisch richtig (zwölf nach R76 (e)); R76 (e) zählt Aussagen „über Repo oder Register“, R79 (g) spricht vom Bestand. Lesart des steuernden Chats, vorläufig: der Snapshot liegt im Repo, also zählt es; zur Kenntnis an Fable.
+6. Nur im Antworttext, nicht im Block: „vierzehn Tage“ bei Krypto ist gerechnet, nicht aus „Für Fable“ Nr. 3; L9 sagt, Stundenreihen enden nicht früher — `XAUTUSDT_1h` endet früher (R79 (c) sagt es richtig); „am Tagesschluss“ steht in R48 (d) bei der Exposure.
+7. R56 (b): Eröffnung, Anfrage und Antwort 06.10.a sind am HEAD `8d172c0` nicht in git; Schritt 0 von TB-140 committet sie — vor dem Eintrag.
+8. Vorbild 25.2 trägt die Marke unter dem berichtigten Satz, kein Blockzitat (Handwerk für TB-139).
+
+### 5. Orte ohne Marke in R80 (a) — der steuernde Chat bestimmt seine Marken in TB-139 (R65 (a))
+53.9-Zeile ohne R78 (g) · 54.5-Zeile ohne R79 (f) · 46.4 für R13 (a) · 48.1, 48.2, 48.7 zu R78 (e) · in R80 (b) nicht genannt: 17.0, R37, R48, R53, R75. Erst nennen, wenn die Markentabelle gemessen ist.
+
+
+### 6. Nicht gemessen
+Fables Selbstauskünfte (Ampel, Leseprotokoll-Zahlen); 37.3, 34, 5.2, 2a, 24b A2; `gegenprobe.txt`, `c3_vergleich.txt` der Belege TB-138.
+
+### 7. Vorgaben des steuernden Chats vom 07.10.2026 (gelten, wenn der Betreiber nicht widerspricht)
+
+- **TB-140 ist die „Verfahrensmessung 2“,** nur lesend, auf dem Mac: Sie misst die sechs Voraussetzungen aus R78 und R79 und zwei Belege zu R79 (c) und R79 (f) (Z1: `close` je Tagesreihe des Snapshots; Z2: Herkunft von „5.4.0“ in `docs/ERGEBNIS_TB-47_snapshotgrenze.md`). **Teil 1 vor Teil 2:** Teil 1 = R79 (a), R79 (b), R79 (g), Z1, Z2 (darauf wartet der Eintrag); Teil 2 = R78 (a), R78 (d), R78 (e) durch Lesen des Codes. Freigabe: Handwerk ohne Sperrlistennähe, pauschal frei (Betreiberentscheid 26.09.2026); der Betreiber startet durch Absenden des Satzes. Auftrag: `docs/auftraege/MAC_TB-140_verfahrensmessung_voraussetzungen.md`.
+- **TB-140 läuft vor TB-139.** Grund: R79 (a) und R79 (b) verlangen ihre Messung „vor dem Eintrag“, und sie laufen nur in `trading-env` auf dem Mac.
+- **Nummern (berichtigt den Umzugsblock 06:59, Block 3):** TB-139 bleibt der Registerauftrag und trägt genau die Blöcke R78 bis R80 als Abschnitt 55, dazu „Voraussetzungen und Befunde“ und „Was offen bleibt“ des steuernden Chats. TB-140 ist die Messung. Der Regelwerk-Nachtrag bekommt die Nummer danach.
+- **Die Einzelfreigabe des Betreibers für den Registereintrag steht aus** (Karte, mit dem fertigen Auftrag). **TB-137 steht weiter aus.**
+- **TB-139 baut heute ein Helfer mit eigenem Kontext, kein neuer Chat.** Das weicht von ARBEITSWEISE 0 ab („Der Chat, der eine Fable-Antwort bewertet, baut nicht auch den Registerauftrag“); Grund: Heute ist kein Umzug möglich (Betreiber 08:10). Der Zweck der Regel bleibt gewahrt, weil der Bau nicht im Verlauf des steuernden Chats liegt.
+- **Der Auslöser wird erst gelegt,** wenn der gegengelesene Auftrag, der Zeiger und dieser Nachtrag im Arbeitsbaum liegen. Der Betreiber schickt den Satz von unterwegs ab (Claude-App, Gerätesitzung, oder Termius).
+- **Die Antwort 06.10.a liegt seit dem 07.10.2026 im Repo** (unverfolgt, md5 `2fc513b93ef8b3ecb794a543c9fe5dc3`, 26 689 B); Schritt 0 von TB-140 committet sie zusammen mit Anfrage und Eröffnung (R56 (b)).
+
+### 8. Fehler dieses Chats (ohne Nummer) und was getragen hat
+
+1. Die Zwischenmeldung an den Betreiber (08:43) nannte die acht Punkte aus Abschnitt 4 „formale Befunde“. Zwei davon (Nr. 3 und Nr. 4) sind Aussagen in einem Block ohne Beleg; dafür misst TB-140 Z1 und Z2. ⇒ Ein Sammelwort für Befunde erst wählen, wenn jeder Befund einzeln eingeordnet ist.
+2. Eine Schnellprüfung „Lock gegen `dist-info`“ mit awk über die Geräteanbindung trug nicht (Lesefehler an mehrzeiligen Metadaten bei fünf Paketen); tragfähig daraus ist nur: 67 Zeilen `name==version` im Lock, 67 `dist-info` in `trading-env`. Die Messung macht TB-140 (R79 (a)).
+3. Getragen hat: zwei unabhängige Abschriften mit `cmp` für die Übernahme aus der Ablage; Bestand und Entwurf in einem Helfer, danach zwei frische Gegenleser mit getrenntem Zeilenbereich.
+
+### 9. Setzungen im Auftrag TB-140 (Lesarten des steuernden Chats, vorläufig)
+
+- **N7:** „`benchmark.py` wird nicht geöffnet“ (R72 (d), R78 (d)) heisst im Auftrag: nicht geändert, nicht importiert, nicht ausgeführt. Gelesen wird die Datei, weil die Klammer zu R78 (d) das Lesen des Codes verlangt.
+- **Z2** kennt drei Urteile: „belegt (Wortlaut)“, „nur erschliessbar“, „nicht gefunden“; die Abgrenzung steht im Auftrag bei Z2.
+- **Ziele der Befunde (Schritt D des Auftrags), wo die Klammer kein Ziel und keinen Zeitpunkt nennt:** V1 (Spalte, Datei und Ordner je Lesestelle) geht unter „Für Fable“ und als Tatsache in „Voraussetzungen und Befunde“ des Registerauftrags. V2 (a) (behält oder verwirft, je Stelle) geht mit V2 (b): bei einem Befund dort an den Verfahrensprüfer, sonst als Tatsachennotiz an den steuernden Chat. V3 (ii) geht als Tatsache an den steuernden Chat (für den Bau des Zellen-Erzeugers) und unter „Für Fable“ zur Kenntnis; ob die Prüfung genügt, entscheidet der Verfahrensprüfer. V3 (i) wird vor dem signierten Tag gemessen.
+- **Urteile:** rc 0 = erfüllt, rc 1 = nicht erfüllt, rc 2 = nicht messbar. V1 trägt kein „erfüllt“ für den Kern eines künftigen Zellen-Erzeugers, weil es den Erzeuger als Code nicht gibt (`docs/ERGEBNIS_TB-120_erzeuger_bestandsaufnahme.md`); gemessen wird am vorhandenen Kern.
+- **Bau:** Entwurf und Bestand ein Helfer, drei Gegenleserunden frischer Helfer (zwei mit getrenntem Zeilenbereich, eine über die Änderungen); die Skizzen liefen in der Linux-Umgebung der Geräteanbindung, nicht in `trading-env` und nicht unter macOS. Unterlagen: `logs/steuernder_chat/TB-140_*`.
