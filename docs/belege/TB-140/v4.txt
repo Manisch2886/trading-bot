@@ -1,0 +1,25 @@
+# TB-140 V4
+zeit             2026-10-07T10:45:53+02:00
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.prefix       /Users/jaquelineloffler/trading-bot/trading-env
+lock             requirements.lock  sha256 96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5  gleich Register
+Paketzeilen      67 (Register: 67), Zeilen ohne `==`: 0
+
+## Kopf des Locks gegen die Umgebung
+KOPF	interpreter_voll	'3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]'	'3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]'	gleich	(prueft der Lauf)
+KOPF	plattform	'macOS-15.7.9-x86_64-i386-64bit'	'macOS-15.7.9-x86_64-i386-64bit'	gleich	(prueft der Lauf)
+KOPF	interpreter_venv	'3.9.6'	'3.9.6'	gleich	(prueft der Lauf nicht; erstes Wort)
+KOPF	maschine	'x86_64'	'x86_64'	gleich	(prueft der Lauf nicht; ohne Urteil)
+
+## W1  importlib.metadata.version(name) je Lock-Zeile (der Weg des Laufs)
+W1 gleich 67 von 67
+
+## W2  alle installierten Distributionen, Namen nach PEP 503 (ohne Einfluss auf die Rueckgabe)
+W2 gleich 67 von 67
+installiert, nicht im Lock (ohne Urteil): 0 []
+mehr als eine Fassung installiert (ohne Urteil): 0 []
+
+URTEIL V4 gegen requirements.lock, Kopf und W1: gleich
+W2 (ohne Einfluss auf die Rueckgabe): gleich
+RUECKGABE 0
+rc 0

@@ -1,0 +1,6 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-140_verfahrensmessung_voraussetzungen.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-06a_verfahrensmessung_snapshot_aph.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-06a_verfahrensmessung_snapshot_aph.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-06_eroeffnung.md

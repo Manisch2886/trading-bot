@@ -1,0 +1,39 @@
+# TB-140 V6 GEGENPROBE
+## G1 Zeile mit close (Soll rc 1)
+Kopf open_time,open,high,low,close,volume; Datenzeilen 2; letzte Datumszelle 2026-09-01
+Zeilen mit open_time 2026-09-01: 1
+Zeile 2026-09-01: 6 Spalten; leer: []; Fehlwert-Text: []; Spalte fehlt: []
+close fehlt: nein
+rc 1
+## G2 close leer (Soll rc 0)
+Kopf open_time,open,high,low,close,volume; Datenzeilen 2; letzte Datumszelle 2026-09-01
+Zeilen mit open_time 2026-09-01: 1
+Zeile 2026-09-01: 6 Spalten; leer: ['open', 'high', 'low', 'close']; Fehlwert-Text: []; Spalte fehlt: []
+close fehlt: ja
+rc 0
+## G3 close mit Fehlwert-Text NaN (Soll rc 0)
+Kopf open_time,open,high,low,close,volume; Datenzeilen 1; letzte Datumszelle 2026-09-01
+Zeilen mit open_time 2026-09-01: 1
+Zeile 2026-09-01: 6 Spalten; leer: []; Fehlwert-Text: ['close']; Spalte fehlt: []
+close fehlt: ja
+rc 0
+## G4 Datum fehlt (Soll rc 1)
+Kopf open_time,open,high,low,close,volume; Datenzeilen 1; letzte Datumszelle 2026-08-31
+Zeilen mit open_time 2026-09-01: 0
+die Zeile gibt es nicht genau einmal
+rc 1
+## G5 Zeile doppelt (Soll rc 1)
+Kopf open_time,open,high,low,close,volume; Datenzeilen 2; letzte Datumszelle 2026-09-01
+Zeilen mit open_time 2026-09-01: 2
+die Zeile gibt es nicht genau einmal
+rc 1
+## G6 leere Eingabe (Soll rc 2)
+NICHT MESSBAR: leere Eingabe
+rc 2
+## G7 Kopfzeile ohne close (Soll rc 2)
+NICHT MESSBAR: Kopfzeile ohne open_time an erster Stelle oder ohne close (5 Felder, Inhalt nicht gedruckt)
+rc 2
+## Soll
+Rueckgaben 1001122 (Soll 1001122)
+GEGENPROBE: beisst
+rc 0

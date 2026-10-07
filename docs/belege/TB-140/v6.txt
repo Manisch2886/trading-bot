@@ -1,0 +1,37 @@
+# TB-140 V6
+ZEIT 2026-10-07 10:46:08 +0200
+HEAD 8127f7f5189579f5ac209ced4bb72cf5be3459c0
+## Stand der Messung vom 02.10.2026
+077945307bc3f0c3eff9a9e05ba61ec799f4cb5c 2026-10-02T18:11:14+02:00 TB-131 D3: porcelain nach der Abgabe
+## Commits an data/APH_1d.csv (alle)
+0f6491b 2026-09-02T23:12:10+02:00 Initial commit
+## Commits an data/APH_1d.csv nach dem Stand 0779453
+keiner
+## Blobs in git
+0779453:data/APH_1d.csv 847a599c4d065f662dc1b096bf1618c69c81c719
+HEAD:data/APH_1d.csv 847a599c4d065f662dc1b096bf1618c69c81c719
+0779453:snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/APH_1d.csv 847a599c4d065f662dc1b096bf1618c69c81c719
+HEAD:snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/APH_1d.csv 847a599c4d065f662dc1b096bf1618c69c81c719
+## Arbeitsdateien: Blob (gerechnet wie git: sha1 ueber 'blob <Bytes>', ein Nullbyte und den Inhalt; git wird dafuer nicht aufgerufen), sha256, Bytes, Aenderungszeit (UTC)
+ARBEITSDATEI	data/APH_1d.csv	blob 847a599c4d065f662dc1b096bf1618c69c81c719	sha256 8d5d53241fd60d4f53258e38422b07e39cc01a8a9133aaf8ed1bb8e8ef1edc71	bytes 821714	mtime 2026-09-02T04:21:29+00:00
+WERT	blob	847a599c4d065f662dc1b096bf1618c69c81c719
+WERT	vor_grenze	ja
+ARBEITSDATEI	snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/APH_1d.csv	blob 847a599c4d065f662dc1b096bf1618c69c81c719	sha256 8d5d53241fd60d4f53258e38422b07e39cc01a8a9133aaf8ed1bb8e8ef1edc71	bytes 821714	mtime 2026-09-02T04:21:29+00:00
+## MANIFEST
+MANIFEST 8d5d53241fd60d4f53258e38422b07e39cc01a8a9133aaf8ed1bb8e8ef1edc71 821714 2026-09-19T06:49:32+00:00 /Users/jaquelineloffler/trading-bot/data
+## Zeile 2026-09-01 am Stand 0779453 (nur Spaltennamen)
+Kopf open_time,open,high,low,close,volume; Datenzeilen 8764; letzte Datumszelle 2026-09-01
+Zeilen mit open_time 2026-09-01: 1
+Zeile 2026-09-01: 6 Spalten; leer: ['open', 'high', 'low', 'close']; Fehlwert-Text: []; Spalte fehlt: []
+close fehlt: ja
+rc 0
+## Zeile 2026-09-01 in der Arbeitsdatei
+Kopf open_time,open,high,low,close,volume; Datenzeilen 8764; letzte Datumszelle 2026-09-01
+Zeilen mit open_time 2026-09-01: 1
+Zeile 2026-09-01: 6 Spalten; leer: ['open', 'high', 'low', 'close']; Fehlwert-Text: []; Spalte fehlt: []
+close fehlt: ja
+rc 0
+## Teile
+TEIL (i) ja · (ii) ja · (iii) ja
+## Ende
+rc 0

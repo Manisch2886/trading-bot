@@ -1,0 +1,61 @@
+# TB-140 Z2
+ZEIT 2026-10-07 10:46:24 +0200
+HEAD 8127f7f5189579f5ac209ced4bb72cf5be3459c0
+## Datei
+Zeilen 526, Bytes 25988
+577f1bb2d517a41b99b1ee5d4ded1c7a183ee827a3f014a8cdcf1210ca2535cf  docs/ERGEBNIS_TB-47_snapshotgrenze.md
+## Feld kalender in research/snapshotgrenze/ergebnisse/eingaben.json (nur dieses Feld; die Datei wird nicht geaendert)
+{"im_repo": [{"import": "pandas_market_calendars", "modul": "notifications/boersenkalender.py", "zeile": 81}], "in_selektionshuelle": [], "paket_vorhanden": "5.4.0"}
+## Muster 5\.4\.0 (ohne Gross/Klein): 2 Zeilen
+122:   es gehört benannt, und in der Cloud war die Fassung **5.4.0**.
+359:| für Teil 1–4 | `pandas 3.0.6`, `numpy 2.4.6`, `pandas_market_calendars 5.4.0`, `pytz 2026.3.post1`, `dateparser 1.4.3` |
+## Muster cloud (ohne Gross/Klein): 7 Zeilen
+3:**Ergebnis der Cloud-Sitzung vom 18.09.2026.**
+122:   es gehört benannt, und in der Cloud war die Fassung **5.4.0**.
+351:| `node` | Mac v24.21.0 | **v22.22.2** in der Cloud |
+352:| `timeout` (GNU) | Mac: fehlt | in der Cloud **vorhanden** (`/usr/bin/timeout`) — der Python-Runner wurde trotzdem benutzt, denn er ist der, der auf dem Mac läuft |
+393:| `research/hrp_portfolio/test_hrp_core.py` | **bekannt rot** — `scipy` fehlt auch in dieser Cloud |
+394:| `shared/test_zuteilung.py` | ⚠️ **Netzsperre** — `ProxyError … api.binance.com`. Genau der in der Aufgabenstellung als „nur Cloud" genannte Fall. *Der Runner markiert ihn als „UNERWARTET", weil seine `BEKANNT_ROT`-Liste **Mac-Werte** führt und dieser Test dort grün ist — die Markierung ist richtig, der Befund ist trotzdem erklärt.* |
+428:Reinform:** „die Cloud ist nicht EINE Umgebung, sondern eine je Sitzung."
+## Muster eingaben\.json (ohne Gross/Klein): 2 Zeilen
+69:nichts). **Rohdaten:** `research/snapshotgrenze/ergebnisse/eingaben.json`.
+469:| `research/snapshotgrenze/ergebnisse/eingaben.json` | **neu** — die Rohdaten der Erhebung |
+## Muster kalender (ohne Gross/Klein): 9 Zeilen
+59:| **Kommt der Handelskalender aus einer Datei oder aus einem Paket?** | ⭐ **Aus einem Paket.** `pandas_market_calendars`, `mcal.get_calendar()`. Keine Datei. Er ist **Umgebung**, gehört ins Lock — und er liegt **nicht** in der Hülle der 90. |
+89:| NYSE-Handelskalender | `notifications/boersenkalender.py:81` | ⭐ **`pandas_market_calendars`** | — | **Umgebung** |
+102:### ⭐ Der Handelskalender im Besonderen
+105:ganzen Repo ist `notifications/boersenkalender.py:81`:
+110:_KALENDER = mcal.get_calendar(KALENDER_NAME)
+124:⭐ **Und ein Befund dazu:** der Kalender liegt **nicht in der Hülle der 90**.
+126:(`shared/entscheidungskerze.py` → `notifications/boersenkalender.py`), und der
+137:2. **5a sagt nichts über Umgebung, die keine Datei ist.** Der Kalender ist der
+500:Der **Börsenkalender** (welcher Tag ein Handelstag ist) kommt nicht aus einer
+## Muster paket_vorhanden (ohne Gross/Klein): 0 Zeilen
+## Muster nachinstall (ohne Gross/Klein): 4 Zeilen
+350:| `pandas` | „wechselnd; 3.x verlangt `>=3.11`" | ⚠️ **nachinstalliert: 3.0.6** — also die 3.x-Reihe, **nicht** die 2.3.3 des Macs |
+355:**Nachinstalliert wurde** (`pip install`, in zwei Runden):
+362:⚠️ **`scipy` wurde bewusst NICHT nachinstalliert.** Es fehlt auf dem Mac
+415:Arbeit. Nach dem Nachinstallieren einzeln nachgemessen:
+## Muster python (ohne Gross/Klein): 4 Zeilen
+107:```python
+348:| Python | 3.11+ | **3.11.15** ✅ |
+352:| `timeout` (GNU) | Mac: fehlt | in der Cloud **vorhanden** (`/usr/bin/timeout`) — der Python-Runner wurde trotzdem benutzt, denn er ist der, der auf dem Mac läuft |
+360:| für den Basislauf | `fastapi`, `uvicorn`, `httpx`, `yfinance 1.7.0`, `python-binance 1.0.37` |
+## Jede Zeile mit 5.4.0 mit drei Zeilen davor und danach
+119-   `pandas_market_calendars` seine Feiertagstabelle, ändert sich das
+120-   Ergebnis, ohne dass `snapshot_hash` oder `datenstand_hash` sich rühren.
+121-   **Das ist eine Eigenschaft des Aufbaus, keine Lücke dieses Moduls** — aber
+122:   es gehört benannt, und in der Cloud war die Fassung **5.4.0**.
+123-
+124-⭐ **Und ein Befund dazu:** der Kalender liegt **nicht in der Hülle der 90**.
+125-Der Selektionslauf erreicht ihn überhaupt nicht; er hängt am Live-Pfad
+--
+356-
+357-| Runde | Pakete |
+358-|---|---|
+359:| für Teil 1–4 | `pandas 3.0.6`, `numpy 2.4.6`, `pandas_market_calendars 5.4.0`, `pytz 2026.3.post1`, `dateparser 1.4.3` |
+360-| für den Basislauf | `fastapi`, `uvicorn`, `httpx`, `yfinance 1.7.0`, `python-binance 1.0.37` |
+361-
+362-⚠️ **`scipy` wurde bewusst NICHT nachinstalliert.** Es fehlt auf dem Mac
+## Ende
+rc 0

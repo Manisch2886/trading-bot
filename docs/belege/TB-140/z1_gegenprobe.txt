@@ -1,0 +1,65 @@
+# TB-140 Z1 GEGENPROBE
+Ordner /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_z1_gegenprobe.g71zxy
+## erster Ordner (Soll rc 1)
+# TB-140 Z1
+zeit             2026-10-07T10:46:13+02:00
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+snapshot         /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_z1_gegenprobe.g71zxy/eins
+Fehlwert-Texte   19 aus pandas._libs.parsers.STR_NA_VALUES
+Universum        aktien 1, krypto 2, in beiden []
+Dateien *_1d.csv 2
+Symbole ohne _1d-Reihe: 1 ['CCCUSDT']
+
+DATEI	markt	datei	zeilen	ohne_close	leer	fehlwert_text	spalte_fehlt	letzte_zeile	letzte_zeile_mit_close
+DATEI	aktien	AAA_1d.csv	3	1	1	0	0	2026-09-01	2026-08-31
+DATEI	krypto	BBBUSDT_1d.csv	4	2	1	1	0	2026-09-14	2026-09-14
+
+Einzelfaelle (Zeile ohne close)
+FALL	z1	aktien	AAA_1d.csv	2026-09-01	leer
+FALL	z1	krypto	BBBUSDT_1d.csv	2026-09-12	leer
+FALL	z1	krypto	BBBUSDT_1d.csv	2026-09-13	natext
+Einzelfaelle gedruckt: 3
+
+Summen je Markt
+SUMME	aktien	dateien 1	zeilen 3	ohne_close 1
+SUMME	krypto	dateien 1	zeilen 4	ohne_close 2
+ENDE	aktien	letzte_zeile	2026-09-01	1
+ENDE	aktien	letzte_zeile_mit_close	2026-08-31	1
+ENDE	krypto	letzte_zeile	2026-09-14	1
+ENDE	krypto	letzte_zeile_mit_close	2026-09-14	1
+
+Hinweise: 0
+
+SATZ R79 (c), Aktien: close fehlt in genau [('APH_1d.csv', '2026-09-01')] -> TRIFFT NICHT ZU
+SATZ R79 (c), Krypto: close fehlt in keiner der 24 Reihen -> TRIFFT NICHT ZU (Zeilen ohne close: 2, Reihen: 1)
+Dateien ohne Zuordnung: 0, darin Zeilen ohne close: 0
+RUECKGABE 1
+rc 1
+## zweiter Ordner, leere Tagesreihe (Soll rc 2)
+# TB-140 Z1
+zeit             2026-10-07T10:46:14+02:00
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+snapshot         /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_z1_gegenprobe.g71zxy/leer
+Fehlwert-Texte   19 aus pandas._libs.parsers.STR_NA_VALUES
+Universum        aktien 1, krypto 2, in beiden []
+Dateien *_1d.csv 1
+Symbole ohne _1d-Reihe: 2 ['BBBUSDT', 'CCCUSDT']
+
+DATEI	markt	datei	zeilen	ohne_close	leer	fehlwert_text	spalte_fehlt	letzte_zeile	letzte_zeile_mit_close
+DATEI	aktien	AAA_1d.csv	NICHT LESBAR: leer
+
+Einzelfaelle (Zeile ohne close)
+Einzelfaelle gedruckt: 0
+
+Summen je Markt
+
+Hinweise: 0
+
+NICHT MESSBAR: 1 Datei(en) nicht lesbar
+rc 2
+## Soll
+erster Ordner: rc 1 (Soll 1) · DATEI aktien AAA 1 (Soll 1) · DATEI krypto BBBUSDT 1 (Soll 1) · FALL 3 (Soll 3) · TRIFFT NICHT ZU 2 (Soll 2) · Symbole ohne _1d-Reihe CCCUSDT 1 (Soll 1)
+zweiter Ordner: rc 2 (Soll 2) · NICHT LESBAR: leer 1 (Soll 1)
+GEGENPROBE: beisst
+## Ende
+rc 0

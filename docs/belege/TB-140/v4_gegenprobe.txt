@@ -1,0 +1,75 @@
+# TB-140 V4 GEGENPROBE
+Ordner /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_v4_gegenprobe.dzDGbU
+zweite Kopie: G1 in Z. 52, G3 in Z. 8, G2 als letzte Zeile
+## erste Kopie (unveraendert)
+# TB-140 V4
+zeit             2026-10-07T10:45:49+02:00
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.prefix       /Users/jaquelineloffler/trading-bot/trading-env
+lock             /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_v4_gegenprobe.dzDGbU/k1.lock  sha256 96a5c572a67c65afc66a18d51341330c341e76ee6fe4c250273c59e5988fdfe5  gleich Register
+Paketzeilen      67 (Register: 67), Zeilen ohne `==`: 0
+
+## Kopf des Locks gegen die Umgebung
+KOPF	interpreter_voll	'3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]'	'3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]'	gleich	(prueft der Lauf)
+KOPF	plattform	'macOS-15.7.9-x86_64-i386-64bit'	'macOS-15.7.9-x86_64-i386-64bit'	gleich	(prueft der Lauf)
+KOPF	interpreter_venv	'3.9.6'	'3.9.6'	gleich	(prueft der Lauf nicht; erstes Wort)
+KOPF	maschine	'x86_64'	'x86_64'	gleich	(prueft der Lauf nicht; ohne Urteil)
+
+## W1  importlib.metadata.version(name) je Lock-Zeile (der Weg des Laufs)
+W1 gleich 67 von 67
+
+## W2  alle installierten Distributionen, Namen nach PEP 503 (ohne Einfluss auf die Rueckgabe)
+W2 gleich 67 von 67
+installiert, nicht im Lock (ohne Urteil): 0 []
+mehr als eine Fassung installiert (ohne Urteil): 0 []
+
+URTEIL V4 gegen /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_v4_gegenprobe.dzDGbU/k1.lock, Kopf und W1: gleich
+W2 (ohne Einfluss auf die Rueckgabe): gleich
+RUECKGABE 0
+rc 0
+## zweite Kopie (G1, G2, G3)
+# TB-140 V4
+zeit             2026-10-07T10:45:49+02:00
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.prefix       /Users/jaquelineloffler/trading-bot/trading-env
+lock             /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_v4_gegenprobe.dzDGbU/k2.lock  sha256 440151cd3ec79f03f63b0a84a6271ed87ff4c3ba07954a32b5e09f47f7186f1a  UNGLEICH Register
+Paketzeilen      68 (Register: 67), Zeilen ohne `==`: 0
+
+## Kopf des Locks gegen die Umgebung
+KOPF	interpreter_voll	'3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]'	'3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]'	gleich	(prueft der Lauf)
+KOPF	plattform	'andere-plattform'	'macOS-15.7.9-x86_64-i386-64bit'	ABWEICHUNG	(prueft der Lauf)
+KOPF	interpreter_venv	'3.9.6'	'3.9.6'	gleich	(prueft der Lauf nicht; erstes Wort)
+KOPF	maschine	'x86_64'	'x86_64'	gleich	(prueft der Lauf nicht; ohne Urteil)
+
+## W1  importlib.metadata.version(name) je Lock-Zeile (der Weg des Laufs)
+PAKET	W1	52	pandas	0.0.1	2.3.3
+PAKET	W1	84	kein-solches-paket-tb140	1.0	FEHLT
+W1 gleich 66 von 68
+
+## W2  alle installierten Distributionen, Namen nach PEP 503 (ohne Einfluss auf die Rueckgabe)
+PAKET	W2	52	pandas	0.0.1	2.3.3
+PAKET	W2	84	kein-solches-paket-tb140	1.0	FEHLT
+W2 gleich 66 von 68
+installiert, nicht im Lock (ohne Urteil): 0 []
+mehr als eine Fassung installiert (ohne Urteil): 0 []
+
+URTEIL V4 gegen /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb140_v4_gegenprobe.dzDGbU/k2.lock, Kopf und W1: NICHT gleich
+W2 (ohne Einfluss auf die Rueckgabe): ABWEICHEND in 2 Zeilen
+RUECKGABE 1
+rc 1
+## Unterschied der Zeilen KOPF und PAKET (< erste Kopie, > zweite Kopie)
+2c2
+< KOPF	plattform	'macOS-15.7.9-x86_64-i386-64bit'	'macOS-15.7.9-x86_64-i386-64bit'	gleich	(prueft der Lauf)
+---
+> KOPF	plattform	'andere-plattform'	'macOS-15.7.9-x86_64-i386-64bit'	ABWEICHUNG	(prueft der Lauf)
+4a5,8
+> PAKET	W1	52	pandas	0.0.1	2.3.3
+> PAKET	W1	84	kein-solches-paket-tb140	1.0	FEHLT
+> PAKET	W2	52	pandas	0.0.1	2.3.3
+> PAKET	W2	84	kein-solches-paket-tb140	1.0	FEHLT
+## Soll
+zweite Kopie: rc 1 (Soll 1) · KOPF plattform ABWEICHUNG 1 (Soll 1) · PAKET W1 pandas 0.0.1: 1 (Soll 1) · PAKET W1 kein-solches-paket-tb140 FEHLT: 1 (Soll 1)
+zweite Kopie, W2: PAKET W2 pandas 0.0.1: 1 · PAKET W2 kein-solches-paket-tb140 FEHLT: 1 (Soll je 1; ein Strich heisst: W2 war nicht messbar, die zwei Zeilen entfallen)
+erste Kopie: keine dieser PAKET-Zeilen: 0 (Soll 0)
+GEGENPROBE: beisst
+rc 0

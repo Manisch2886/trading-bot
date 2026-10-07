@@ -1,0 +1,30 @@
+# TB-140 V5 GEGENPROBE
+zeit             2026-10-07T10:45:54+02:00
+sys.executable   /Users/jaquelineloffler/trading-bot/trading-env/bin/python3
+sys.version      3.9.6 (default, Apr 30 2025, 02:07:18) [Clang 17.0.0 (clang-1700.0.13.5)]
+platform         macOS-15.7.9-x86_64-i386-64bit
+pandas_market_calendars  4.6.1
+pandas                   2.3.3
+exchange_calendars       4.5.6
+numpy                    2.0.2
+
+einmal gerechnete Menge 1962-01-02..2026-09-01: 16275 Tage
+FALL	v5	nur_im_ausschnitt	elliott_wave_stocks	2017-01-07
+FALL	v5	nur_im_aufruf	elliott_wave_stocks	2017-05-26
+elliott_wave_stocks: Ausschnitt 2428, Aufruf 2428 (doppelt im Index 0), nur im Ausschnitt 1, nur im Aufruf 1, erster Tag 2017-01-03 / 2017-01-03, letzter Tag 2026-08-31 / 2026-08-31
+    URTEIL V5 elliott_wave_stocks, Zeitraum 2017-01-01..2026-08-31: NICHT gleich
+FALL	v5	nur_im_ausschnitt	rsi2_mean_reversion	2018-01-06
+FALL	v5	nur_im_aufruf	rsi2_mean_reversion	2018-05-25
+rsi2_mean_reversion: Ausschnitt 2177, Aufruf 2177 (doppelt im Index 0), nur im Ausschnitt 1, nur im Aufruf 1, erster Tag 2018-01-02 / 2018-01-02, letzter Tag 2026-08-31 / 2026-08-31
+    URTEIL V5 rsi2_mean_reversion, Zeitraum 2018-01-01..2026-08-31: NICHT gleich
+FALL	v5	nur_im_ausschnitt	turtle_soup_stocks	2017-01-07
+FALL	v5	nur_im_aufruf	turtle_soup_stocks	2017-05-26
+turtle_soup_stocks: Ausschnitt 2428, Aufruf 2428 (doppelt im Index 0), nur im Ausschnitt 1, nur im Aufruf 1, erster Tag 2017-01-03 / 2017-01-03, letzter Tag 2026-08-31 / 2026-08-31
+    URTEIL V5 turtle_soup_stocks, Zeitraum 2017-01-01..2026-08-31: NICHT gleich
+FALL	v5	nur_im_ausschnitt	volatility_breakout	2018-01-06
+FALL	v5	nur_im_aufruf	volatility_breakout	2018-05-25
+volatility_breakout: Ausschnitt 2177, Aufruf 2177 (doppelt im Index 0), nur im Ausschnitt 1, nur im Aufruf 1, erster Tag 2018-01-02 / 2018-01-02, letzter Tag 2026-08-31 / 2026-08-31
+    URTEIL V5 volatility_breakout, Zeitraum 2018-01-01..2026-08-31: NICHT gleich
+
+RUECKGABE 1
+rc 1

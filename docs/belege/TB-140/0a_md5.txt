@@ -1,0 +1,6 @@
+06ae4b76831d547cff57b2d2ce425dfb docs/projektfuehrung/FABLE_ANFRAGE_2026-10-06a_verfahrensmessung_snapshot_aph.md
+   11681 docs/projektfuehrung/FABLE_ANFRAGE_2026-10-06a_verfahrensmessung_snapshot_aph.md
+6e9fa10d1e7ae7c733ad1d889c6e81d4 docs/projektfuehrung/FABLE_UEBERGABE_2026-10-06_eroeffnung.md
+    7295 docs/projektfuehrung/FABLE_UEBERGABE_2026-10-06_eroeffnung.md
+2fc513b93ef8b3ecb794a543c9fe5dc3 docs/projektfuehrung/FABLE_ANTWORT_2026-10-06a_verfahrensmessung_snapshot_aph.md
+   26689 docs/projektfuehrung/FABLE_ANTWORT_2026-10-06a_verfahrensmessung_snapshot_aph.md
