@@ -1,0 +1,166 @@
+{
+ "register": "./docs/VORREGISTRIERUNG_neuselektion.md",
+ "S0": "e16872e",
+ "marken": [
+  {
+   "nr": 1,
+   "R": 81,
+   "stelle": "5.2",
+   "nach_alt": 671,
+   "zeile_neu": 673,
+   "m1": "> ⭐ **5.2 PRÄZISIERT durch R81 (55.4)** (Fable 07a R81, Unterpunkte (a), (b) und (f), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 2,
+   "R": 83,
+   "stelle": "5.2",
+   "nach_alt": 671,
+   "zeile_neu": 676,
+   "m1": "> ⭐ **5.2 ERGÄNZT durch R83 (55.6)** (Fable 07a R83, Unterpunkt (d), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 3,
+   "R": 81,
+   "stelle": "42.2, Eintrag E6",
+   "nach_alt": 9250,
+   "zeile_neu": 9258,
+   "m1": "> ⭐ **42.2 E6 ERGÄNZT durch R81 (55.4)** (Fable 07a R81, Unterpunkt (c), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 4,
+   "R": 79,
+   "stelle": "46.4 (R13)",
+   "nach_alt": 10485,
+   "zeile_neu": 10496,
+   "m1": "> ⭐ **46.4 R13 ERGÄNZT durch R79 (55.2)** (Fable 07a R79, Unterpunkt (d), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 5,
+   "R": 82,
+   "stelle": "48.1 (R33)",
+   "nach_alt": 10804,
+   "zeile_neu": 10818,
+   "m1": "> ⭐ **48.1 R33 ERGÄNZT durch R82 (55.5)** (Fable 07a R82, Unterpunkt (a), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 6,
+   "R": 82,
+   "stelle": "48.2 (R34)",
+   "nach_alt": 10814,
+   "zeile_neu": 10831,
+   "m1": "> ⭐ **48.2 R34 ERGÄNZT durch R82 (55.5)** (Fable 07a R82, Unterpunkt (b), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 7,
+   "R": 81,
+   "stelle": "48.11 (R43)",
+   "nach_alt": 10895,
+   "zeile_neu": 10915,
+   "m1": "> ⭐ **48.11 R43 ERGÄNZT durch R81 (55.4)** (Fable 07a R81, Unterpunkte (b) und (g), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 8,
+   "R": 78,
+   "stelle": "48.14 (R46)",
+   "nach_alt": 10919,
+   "zeile_neu": 10942,
+   "m1": "> ⭐ **48.14 R46 ERGÄNZT durch R78 (55.1) und R81 (55.4)** (Fable 07a R78, Unterpunkt (e), und R81, Unterpunkt (h), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 9,
+   "R": 81,
+   "stelle": "48.18 (R50)",
+   "nach_alt": 10978,
+   "zeile_neu": 11004,
+   "m1": "> ⭐ **48.18 R50 ERGÄNZT durch R81 (55.4) und R83 (55.6)** (Fable 07a R81, Unterpunkt (e), und R83, Unterpunkt (c), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 10,
+   "R": 78,
+   "stelle": "53.1 (R66)",
+   "nach_alt": 11418,
+   "zeile_neu": 11447,
+   "m1": "> ⭐ **53.1 R66 PRÄZISIERT durch R78 (55.1)** (Fable 07a R78, Unterpunkt (a), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 11,
+   "R": 81,
+   "stelle": "53.1 (R66)",
+   "nach_alt": 11418,
+   "zeile_neu": 11450,
+   "m1": "> ⭐ **53.1 R66 ERGÄNZT durch R81 (55.4)** (Fable 07a R81, Unterpunkte (e) und (g), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 12,
+   "R": 78,
+   "stelle": "53.2 (R67)",
+   "nach_alt": 11425,
+   "zeile_neu": 11460,
+   "m1": "> ⭐ **53.2 R67 ERGÄNZT durch R78 (55.1) und R82 (55.5)** (Fable 07a R78, Unterpunkt (e), und R82, TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 13,
+   "R": 78,
+   "stelle": "53.7 (R72)",
+   "nach_alt": 11469,
+   "zeile_neu": 11507,
+   "m1": "> ⭐ **53.7 R72 PRÄZISIERT durch R78 (55.1)** (Fable 07a R78, Unterpunkte (a) bis (d) und (f), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 14,
+   "R": 78,
+   "stelle": "53.7 (R72)",
+   "nach_alt": 11469,
+   "zeile_neu": 11510,
+   "m1": "> ⭐ **53.7 R72 BERICHTIGT durch R78 (55.1)** (Fable 07a R78, Unterpunkt (g), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 15,
+   "R": 79,
+   "stelle": "53.7 (R72)",
+   "nach_alt": 11469,
+   "zeile_neu": 11513,
+   "m1": "> ⭐ **53.7 R72 ERGÄNZT durch R79 (55.2)** (Fable 07a R79, Unterpunkt (c), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 16,
+   "R": 78,
+   "stelle": "53.9, Zeile „R72 (53.7), zweite“",
+   "nach_alt": 11499,
+   "zeile_neu": 11546,
+   "m1": "> ⭐ **53.9, Zeile „R72 (53.7), zweite“ ERGÄNZT durch R78 (55.1) und R83 (55.6)** (Fable 07a R78, Unterpunkt (a), und R83, Unterpunkt (e), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 17,
+   "R": 79,
+   "stelle": "53.9, Zeile „R72 (53.7) (d)“",
+   "nach_alt": 11499,
+   "zeile_neu": 11549,
+   "m1": "> ⭐ **53.9, Zeile „R72 (53.7) (d)“ ERGÄNZT durch R79 (55.2) und R78 (55.1)** (Fable 07a R79, Unterpunkt (c), und R78, Unterpunkt (d), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 18,
+   "R": 78,
+   "stelle": "54.1 (R74)",
+   "nach_alt": 11525,
+   "zeile_neu": 11578,
+   "m1": "> ⭐ **54.1 R74 PRÄZISIERT durch R78 (55.1)** (Fable 07a R78, Unterpunkt (f), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 19,
+   "R": 79,
+   "stelle": "54.1 (R74)",
+   "nach_alt": 11525,
+   "zeile_neu": 11581,
+   "m1": "> ⭐ **54.1 R74 ERGÄNZT durch R79 (55.2): die Bedingung aus (e) ist gemessen erfüllt** (Fable 07a R79, Unterpunkte (a) und (b), TB-139, 07.10.2026)."
+  },
+  {
+   "nr": 20,
+   "R": 79,
+   "stelle": "54.5, Zeile „R74 (54.1) (e)“",
+   "nach_alt": 11564,
+   "zeile_neu": 11623,
+   "m1": "> ⭐ **54.5, Zeile „R74 (54.1) (e)“ ERGÄNZT durch R79 (55.2)** (Fable 07a R79, Unterpunkte (a) und (b), TB-139, 07.10.2026)."
+  }
+ ]
+}

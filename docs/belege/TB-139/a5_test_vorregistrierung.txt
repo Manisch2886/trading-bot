@@ -1,0 +1,4 @@
+# TB-139 test_vorregistrierung, HEAD 35b4743, Register sha256 ab97ae1e31da161b, Start 2026-10-07 23:00:22 +0200
+rc 0
+Dauer 919 s
+Schlusszeile: 196/196 Pruefungen bestanden.

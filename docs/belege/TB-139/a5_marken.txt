@@ -1,0 +1,36 @@
+# TB-139 A5 Ueberschriften, Ketten und Marken: Register docs/VORREGISTRIERUNG_neuselektion.md, Auftrag am Commit e16872e, Datum 07.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+55.1: Ueberschrift gleich, Kette gleich
+55.2: Ueberschrift gleich, Kette gleich
+55.3: Ueberschrift gleich, Kette gleich
+55.4: Ueberschrift gleich, Kette gleich
+55.5: Ueberschrift gleich, Kette gleich
+55.6: Ueberschrift gleich, Kette gleich
+Ueberschriften: 6/6, Ketten: 6/6 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Nr  1 R81  5.2                          gesetzt Zeile 673
+Nr  2 R83  5.2                          gesetzt Zeile 676
+Nr  3 R81  42.2, Eintrag E6             gesetzt Zeile 9258
+Nr  4 R79  46.4 (R13)                   gesetzt Zeile 10496
+Nr  5 R82  48.1 (R33)                   gesetzt Zeile 10818
+Nr  6 R82  48.2 (R34)                   gesetzt Zeile 10831
+Nr  7 R81  48.11 (R43)                  gesetzt Zeile 10915
+Nr  8 R78  48.14 (R46)                  gesetzt Zeile 10942
+Nr  9 R81  48.18 (R50)                  gesetzt Zeile 11004
+Nr 10 R78  53.1 (R66)                   gesetzt Zeile 11447
+Nr 11 R81  53.1 (R66)                   gesetzt Zeile 11450
+Nr 12 R78  53.2 (R67)                   gesetzt Zeile 11460
+Nr 13 R78  53.7 (R72)                   gesetzt Zeile 11507
+Nr 14 R78  53.7 (R72)                   gesetzt Zeile 11510
+Nr 15 R79  53.7 (R72)                   gesetzt Zeile 11513
+Nr 16 R78  53.9, Zeile „R72 (53.7), zweite“ gesetzt Zeile 11546
+Nr 17 R79  53.9, Zeile „R72 (53.7) (d)“ gesetzt Zeile 11549
+Nr 18 R78  54.1 (R74)                   gesetzt Zeile 11578
+Nr 19 R79  54.1 (R74)                   gesetzt Zeile 11581
+Nr 20 R79  54.5, Zeile „R74 (54.1) (e)“ gesetzt Zeile 11623
+Marken gesetzt: 20/20; Markenzeilen 'TB-139, 07.10.2026' im Register: 20 (Soll 20)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 971-1177, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A

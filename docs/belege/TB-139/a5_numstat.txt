@@ -1,0 +1,4 @@
+# git diff --numstat docs/VORREGISTRIERUNG_neuselektion.md (Soll zweite Spalte 0)
+152	0	docs/VORREGISTRIERUNG_neuselektion.md
+# cmp Register Probekopie
+cmp rc 0
