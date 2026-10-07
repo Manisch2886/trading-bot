@@ -1,0 +1,11 @@
+# TB-140 D1 - Tabellen im Ergebnis (ergebnis_tabellen.py --pruefen)
+TABELLE	z2_stellen.md	1487 Bytes	36 Zeile(n)	Vorkommen 1	an Zeilengrenzen 1	Kennungen 0, nicht in fundstellen.tsv: 0 []	GLEICH
+TABELLE	teil2_je_bot.md	5063 Bytes	13 Zeile(n)	Vorkommen 1	an Zeilengrenzen 1	Kennungen 42, nicht in fundstellen.tsv: 0 []	GLEICH
+TABELLE	v1_erzeuger.md	3088 Bytes	11 Zeile(n)	Vorkommen 1	an Zeilengrenzen 1	Kennungen 15, nicht in fundstellen.tsv: 0 []	GLEICH
+TABELLE	v1_spalte.md	15939 Bytes	21 Zeile(n)	Vorkommen 1	an Zeilengrenzen 1	Kennungen 49, nicht in fundstellen.tsv: 0 []	GLEICH
+TABELLE	v2_lader_schnitt.md	18530 Bytes	60 Zeile(n)	Vorkommen 1	an Zeilengrenzen 1	Kennungen 135, nicht in fundstellen.tsv: 0 []	GLEICH
+TABELLE	v3_endlich.md	8496 Bytes	37 Zeile(n)	Vorkommen 1	an Zeilengrenzen 1	Kennungen 50, nicht in fundstellen.tsv: 0 []	GLEICH
+Marken im Ergebnis: 0 (Soll 0)
+Gesamt: alle Tabellen zeichengleich, je genau einmal
+RUECKGABE 0
+rc 0

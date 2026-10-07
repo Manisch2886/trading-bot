@@ -10093,6 +10093,55 @@ Betreiber. Kein Abbruchkriterium ausgelöst.
 
 ---
 
+## EH — TB-140: Verfahrensmessung 2, nur lesend — Voraussetzungen aus R78 und R79: `trading-env` gleich dem ganzen Lock (67/67, Plattform gleich), `schedule` je Aktien-Bot gleich dem Ausschnitt, `APH` im Bestand vom 02.10.2026 belegt, `close` je Tagesreihe wie R79 (c), 5.4.0 nach `ERGEBNIS_TB-47` nur erschliessbar; im Code kein Zellen-Erzeuger, `close` aus `<SYMBOL>_1d.csv`, Zeilen ohne `close` verworfen, Werte aus Zeilen ab dem Go-Live-Schnitt werden gebildet (Befund), `auswertung.py` fängt nicht endliche Werte nur teils (07.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-140_verfahrensmessung_voraussetzungen.md`*
+
+**Quelle:** Mac-Sitzung **TB-140** (Hauptordner), 07.10.2026, Eingang `8d172c0`. Commits `8127f7f` (Schritt 0),
+`7b22367` (Teil 1), `face453` (Teil 2), `fa57fcb` (N) und der Abgabe-Commit. Belege `docs/belege/TB-140/`. Freigabe:
+Handwerk pauschal (26.09.2026), Betreiber 07.10.2026, 08:10. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
+
+**Nachtrag des steuernden Chats zum Stand vor TB-140, wie in `BACKLOG.md` Abschnitt 5 eingetragen:**
+- **TB-138 abgenommen** am 06.10.2026: zehn Prüfungen eines Helfers, drei formale Abweichungen, keine gegen einen Messwert; die Sitzung ist geschlossen. Ins Register ist davon nichts eingetragen (`UEBERGABE.md`, Umzug 07.10.2026, 06:59, Block 1 und Block 3).
+- **Anfrage 06.10.a an den Verfahrensprüfer** (`docs/projektfuehrung/FABLE_ANFRAGE_2026-10-06a_verfahrensmessung_snapshot_aph.md`, Eröffnungstext `docs/projektfuehrung/FABLE_UEBERGABE_2026-10-06_eroeffnung.md`): zwei Fragen — (1) ob die Zeile ohne Kurs von `APH` ein „Endet eine Reihe früher“ nach R72 (d) ist und was dann vor dem Tag zu entscheiden ist, von wem; (2) ob die Lesarten L1–L9 gelten und in welcher Form das Ergebnis ins Register kommt. Dazu K1–K5 zur Kenntnis (`UEBERGABE.md`, Umzug 07.10.2026, 06:59, Block 3).
+- **Antwort 06.10.a,** geschrieben am 07.10.2026 (`docs/projektfuehrung/FABLE_ANTWORT_2026-10-06a_verfahrensmessung_snapshot_aph.md`, 26 689 B, md5 `2fc513b93ef8b3ecb794a543c9fe5dc3`): drei Blöcke R78–R80. Entscheidung zu `APH` (R78 (d)): Reihenende nach R72 (d); es berührt 3b (c) im Lauf nicht; der Snapshot bleibt. Sechs Voraussetzungen: vor dem Eintrag R79 (a) und R79 (b), vor dem signierten Tag R78 (d), ohne Zeitpunkt R78 (a), R78 (e) und R79 (g).
+- **Bewertung des steuernden Chats vom 07.10.2026:** in den Blöcken keine Abweichung gegen einen Messwert (Abnahme durch einen Helfer, nur lesend); acht Abweichungen und Befunde, darunter zwei Aussagen eines Blocks ohne Beleg (dazu Z1 und Z2), sie gehen in „Voraussetzungen und Befunde“ des Registerauftrags; eigene Nachzählung am Snapshot `63e4b6c8…` über 174 Dateien `*_1d.csv`: `close` fehlt in genau einer Zeile (`APH`, 2026-09-01), 150 Dateien enden 2026-09-01, 24 enden 2026-09-14. Nicht nachgerechnet: Kalendervergleich, doppelte `open_time`, Paketfassungen (Ausgabe der Sitzung TB-138). Nicht gemessen: Fables Selbstauskünfte (Ampel, Leseprotokoll-Zahlen); 37.3, 34, 5.2, 2a, 24b A2; `gegenprobe.txt`, `c3_vergleich.txt` der Belege TB-138 (`UEBERGABE.md`, Nachtrag 07.10.2026, 10:32).
+- **Reihenfolge:** TB-140 misst die sechs Voraussetzungen und zwei Belege zu R79 (c) und R79 (f), nur lesend, und läuft vor TB-139. TB-139 trägt die Blöcke R78–R80 als Abschnitt 55 ins Register ein; die Einzelfreigabe des Betreibers dafür steht aus. TB-137 steht weiter aus (`UEBERGABE.md`, Umzug 07.10.2026, 06:59, Block 1, Block 4 Nr. 2 und Block 6; Nachtrag 07.10.2026, 10:32).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a gleich (sechs Einträge, md5 der drei Fable-Dateien gleich, Platzhaltersuche kein Treffer); 0b gleich, Lock `96a5c572…` gleich Register; D0 gleich bis auf die drei Kopfzeilen |
+| **V4** | R79 (a) *erfüllt*: W1 und W2 je 67/67, Interpreter und Plattform gleich dem Lock |
+| **V5** | R79 (b) *erfüllt*: je Aktien-Bot Aufruf gleich Ausschnitt (2 428 / 2 177 Tage) |
+| **V6** | R79 (g) *erfüllt*: `0779453` führt `APH` 2026-09-01 ohne `close`; Arbeitsdatei gleicher Blob, seit 2026-09-02 unverändert |
+| **Z1** | zu R79 (c) *erfüllt*: `close` fehlt nur in `APH_1d.csv` 2026-09-01; Krypto 24 Reihen, 0 Zeilen |
+| **Z2** | zu R79 (f) „nur erschliessbar“: Cloud-Sitzung und nachinstallierte 5.4.0 stehen da, keine Zeile verbindet sie mit `eingaben.json` |
+| **V1** | kein Zellen-Erzeuger gefunden; Benchmark und vorhandener Kern lesen `close` aus `<SYMBOL>_1d.csv` („Spalte und Datei wie die Klammer“); Ordner: Benchmark über den Resolver, Kern fest `data/`; Kern des Erzeugers nicht messbar |
+| ⚠️ **V2** | (a) Lader und `tagesschluss` verwerfen Zeilen ohne `close`; (b) Befund „ein solcher Wert wird gebildet“: Aufnahme der Symbole aus der ganzen Datei (alle neun Lader), frühester Einstieg der Aktien-Bots aus `max(open_time)`, Schlüssel der Stufe 4 aus Ausstiegswerten — geht vor dem Tag an den Verfahrensprüfer |
+| **V3** | (i) 14 Felder-Zeilen, 7 mit Fall ohne Zahl, 7 ohne Aussage; (ii) „trifft teils zu“: nur NaN in `netto_sharpe` endet mit 2 |
+| **N** | E1 in `BACKLOG.md`, Anker 1, C3 GLEICH, numstat 8/0; J1 in diesem Block |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| | **Wörtliche Fundstellen liest ein Skript aus der Datei, nicht der Leser.** Die Liste trägt je Stelle nur Datei, Zeile und ein Prüfstück; den Wortlaut zieht `fundstellen_bauen.py`, und die Prüfung vergleicht ihn erneut. So stimmen auch die Zitate der Lese-Helfer zeichengenau (291/0) |
+| | **Ein Helfer, der „nur lesen“ soll, braucht den Suchbereich als Werkzeug, nicht als Satz.** Ein Helfer durchsuchte trotz Verbot mit `grep -r` auch gesperrte Ordner (nur `*.py`, ohne Ausgabe daraus); die Belege laufen deshalb über `suche.py` mit benanntem Bereich |
+
+### Was offen bleibt
+
+- Registereintrag TB-139 (R78–R80 als Abschnitt 55): Einzelfreigabe des Betreibers; Tatsachen aus V4, V5, V6, Z1, Z2 im Ergebnis unter „Für den steuernden Chat“.
+- Befund V2 (b) und Tabelle V3 (i) vor dem Tag an den Verfahrensprüfer; Fragen 1–7 im Ergebnis unter „Für Fable“ (darin O5, O7).
+- Der Zellen-Erzeuger (Kern, Schnitt am Go-Live-Tag, Prüfung nicht endlicher Werte) bleibt zu bauen.
+- TB-137 steht weiter aus; der Regelwerk-Nachtrag bekommt die Nummer nach TB-139/TB-140.
+- Nächste Journalkennung nach EH: **EI**.
+
+*Geschrieben 07.10.2026 von der Mac-Sitzung TB-140. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

@@ -1,0 +1,2 @@
+# TB-140 D2 — Zeichengleichheit J1 (j1_vergleich.py)
+J1 · docs/projektfuehrung/JOURNAL.md · 2548 Bytes · 6 Zeile(n) · Soll Vorkommen 1 · Vorkommen 1 · an Zeilengrenzen 1 · Zeilen von J1 einzeln im Journal 6 · im neuen Block EH ja · vor `### Was gemessen ist` ja · GLEICH
