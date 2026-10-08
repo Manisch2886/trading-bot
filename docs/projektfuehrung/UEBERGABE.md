@@ -2028,3 +2028,153 @@ Lesart des steuernden Chats, vorläufig: Keiner dieser Befunde verlangt eine Rü
 **Start:** Sonde `starte_TB-99` 22:44: „claude-Prozesse: 0 im Repo, 0 ausserhalb“, „Schluesselbund entsperrt“. Danach Auftrag, Zeiger und dieser Nachtrag in den Arbeitsbaum, dann `starte_TB-139`. Ob der Satz im Fenster liegt, steht in `logs/sitzungswaechter/waechter.log` („Satz ins Fenster gelegt“); abgeschickt wird er vom Betreiber. Der Wächter startet mit `--effort high` und setzt kein Modell. Bis zum Commit von Schritt 0 legt der steuernde Chat nichts in den Arbeitsbaum, danach nichts bis zur Abgabe. Eine Nachschau per `send_later` ist geplant (unter einer Stunde); ohne Commit von Schritt 0 ist der Satz nicht angekommen: ein Hinweis an den Betreiber, dann warten. Geschlossen wird mit `schliesse_<voller HEAD>`, erst ab 600 s Alter des letzten Commits.
 
 **Für die Abnahme (nächster Chat):** Sollwerte oben; Abnahme durch einen eng zugeschnittenen Helfer, nur lesend (Muster `logs/steuernder_chat/HELFER_AUFTRAG_TB-138_abnahme.md`); danach erneuert ein Helfer die Ablage (Abschnitt 55, Index, Dialog-Index, `BACKLOG.md`). Bau, Berichte und Helferaufträge liegen im Archiv `logs/steuernder_chat/2026-10-07_tb139_v4.tar.gz`; der fertige Auftrag und der Freigabetext zusätzlich unter `logs/steuernder_chat/` (`MAC_TB-139_register_fable_07a.md`, `TB-139_freigabe_0710.txt`). Offen danach: Streichliste der Erinnerungsdateien; die acht Widersprüche W1 bis W8 vor dem Bau von TB-141; TB-137; die zweite Fable-Anfrage.
+
+---
+
+## Umzug 07.10.2026, 23:39 — Stand für den neuen steuernden Chat (alle neun Blöcke; den Bau von TB-139 tragen die Nachträge 20:13, 21:19 mit Zusatz 22:03 und 22:45 unmittelbar davor)
+
+Betreiber: Karte, beantwortet 22:44: „Nach der Abgabe von TB-139 (Empfohlen)“. Ampel 23:38: Verlauf 279 652 (Grundlast 124 190), gelb. **Dieser Block ersetzt den Umzugsblock vom 07.10.2026, 19:45.** Kernlektüre für den neuen Chat: ab dieser Überschrift bis Dateiende; die Nachträge 20:13 bis 22:45 nur bei Bedarf.
+
+### Block 1 — Stand in drei Zeilen
+
+- **TB-139 (Registereintrag, Abschnitt 55, R78–R83, 20 Marken) ist gelaufen und abgegeben** (HEAD `d4a28e9`), **aber noch nicht abgenommen.** Kernzahlen, vom steuernden Chat 23:37 gemessen, wie simuliert: Register 11 733 Zeilen, 998 257 B; numstat 152/0 im Commit `ad1fc0d`; 20 Marken mit „TB-139“; Überschriften 55.1 bis 55.8; alle 12 nicht leeren Zeilen aus Z. 227–243 der Antwortdatei stehen im Register.
+- **Die Ablage ist nicht erneuert:** Abschnitt 55 fehlt dort, die Abschnittskopien mit neuen Marken, die Teile, Index, Dialog-Index und `BACKLOG.md` tragen den alten Stand.
+- **Zwei Betreiberentscheide vom 07.10.2026, 22:44, sind noch nicht ausgeführt:** Erinnerungsdateien bereinigen (die Streichliste liegt vor, 25 Stellen brauchen sein Urteil) und „Fable-Anfrage ab rund 20 KB als Datei“ (gehört in TB-141).
+
+### Block 2 — HEAD und Arbeitsbaum
+
+HEAD = `d4a28e91f359cdd7fba4baa62f0ba1f8d430badb` (TB-139 D3, 07.10.2026, 23:23); `origin/main` (lokaler Zeiger) = `d4a28e9`. Gemessen 23:37, ohne `git status` und ohne `git diff`: vor diesem Block nichts geändert, nichts unverfolgt; jetzt geändert nur `docs/projektfuehrung/UEBERGABE.md` (dieser Block); keine `index.lock`. **Keine Sitzung läuft** (Schliess-Auslöser 23:37: „1 Sitzung(en) mit TERM beendet, 0 noch da“). `AKTUELLER_AUFTRAG.md` zeigt auf TB-139 (erledigt; md5 `1dbc864fa7b5353ace3f71f66e70b40c`), `letzter_satz.txt` trägt den Satz zu TB-139; kein Auftrag ist startklar. Der nächste Mac-Auftrag erwartet in 0a: geändert `UEBERGABE.md` und `AKTUELLER_AUFTRAG.md`; unverfolgt sich selbst.
+
+### Block 3 — Tragende Zahlen
+
+- **Register:** 11 733 Zeilen, 998 257 B, sha256 beginnt `ab97ae1e31da161b`, Stand `ad1fc0d`, Abschnitte 0 bis 55. Höchster eingetragener Block R83; Fable vergibt ab R84.
+- **TB-139:** Auftrag `docs/auftraege/MAC_TB-139_register_fable_07a.md` (228 647 B, md5 `4c03950eb4783091734ec8b46d0682da`) · Ergebnis `docs/ERGEBNIS_TB-139_register_fable_07a.md` (22 625 B, 248 Zeilen) · Belege `docs/belege/TB-139/` (66 Dateien) · Commits `e16872e` (Schritt 0: Stand des steuernden Chats), `35b4743` (0), `ad1fc0d` (A: Register), `be2fa85` (B/C), `11429c1` (Abgabe, Journal EI), `d4a28e9` (D3). **Sollwerte für die Abnahme:** 11 581 → 11 733 Zeilen; numstat 152/0; 20 Marken an 14 Einfügestellen (PRÄZISIERT 4, BERICHTIGT 1, ERGÄNZT 15); Blöcke 6/6 zeichengleich aus der Antwort 07.10.a, Z. 227–243; `registerkopie.py --marken` nachher 100/145/96 (vorher 95/128/91); T4 behält 3 069 B Luft; Dialog-Index 06a „nein“, 07a „ja“. Aus dem Ergebnis, ungeprüft: `registerbericht.py --pruefen` rc 1 bleibt (schon vor TB-126); `test_vorregistrierung` 919 s; Index-Diff 298/252; Abschnitt „Für Fable (nur Verfahrensfragen)“ Z. 189–212.
+- **Regeldateien:** `ARBEITSWEISE.md` unverändert (md5 `e85163e98db7f0b9387f4c990b67f8ca`; Abschnitt 0: 25 681 B) · `UMZUG.md` unverändert (Abschnitt 3: 5 897 B) · `BACKLOG.md` 349 Zeilen (82 007 B, md5 `583b4049aca0bd9e9aa12c97580c21c5`). Journal: Block EI steht, nächste Kennung EJ.
+- **Ablage:** `UEBERGABE.md` erneuert mit diesem Block; alles andere Stand vor TB-139, `BACKLOG.md` vor TB-138. 104 Einträge, 53,5 % (19:50).
+- **Projekt-Erinnerung:** Streichliste `logs/steuernder_chat/TB-139_ERINNERUNG_streichliste.md` (40 914 B, ohne Werte): 12 Dateien, 72 Fundstellen — 5 Zeilen streichen, 8 Halbsätze, 34 bleiben, 25 Entscheid des Betreibers. Nichts geändert. Die kontoweite Datei `/areas/trading-agent-projekt.md` (7 Fundstellen) ist aus einer Projektsitzung nicht schreibbar. Neun Zeilen mit Live-Parametern: nach dem Wortlaut von 27.1 kein Wert, die Messung vom 07.10. zählte sie als Wert.
+- **Nummern:** nächster Mac-Auftrag TB-141 (Regelwerk-Nachtrag). Journal ab EJ. Fable vergibt ab R84. Fehler ab 21. Die nächste Fable-Anfrage trägt das Datum des Sendetags und geht an einen neuen Fable-Chat.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+
+1. **TB-139 abnehmen:** ein eng zugeschnittener Helfer, nur lesend, eigener Ordner ausserhalb des Repos (Muster `logs/steuernder_chat/HELFER_AUFTRAG_TB-138_abnahme.md`); er rechnet jede Zahl an der Rohausgabe nach, die Kernzahlen danach der steuernde Chat. Backlog- und Journal-Nachtrag zur Abnahme in derselben Antwort.
+2. **Ablage erneuern** (Helfer): Abschnittskopien (55 neu; 05, 42, 46, 48, 53, 54 mit neuen Marken), Teile, `REGISTER_INDEX.md`, `FABLE_DIALOG_INDEX.md`, `BACKLOG.md`, Ergebnis TB-139; Kontrolle über `project_info`.
+3. **Streichliste der Erinnerung:** dem Betreiber die 25 Entscheide als Karte vorlegen, nach Art gebündelt (Live-Parameter; Zählungen zu Verfahrensbefunden; Ergebnisse verworfener Strategien; Einschätzungen eines früheren Fable-Chats); danach bereinigen. Zwei Inhalte fand der Helfer im Repo nicht (Befunde der Paar-Rotation, Fable-Einschätzung zum Neuaufbau): vor dem Streichen klären, wo sie stehen sollen. Die Liste ist dem Betreiber als Datei gegeben.
+4. **TB-141, Regelwerk-Nachtrag:** Bestand `logs/steuernder_chat/TB-141_bestand_REGELN.md` (38 Regeln: 4 stehen schon, 18 zu ergänzen, 16 neu; Vorbild TB-133, 20 294 B). Acht Widersprüche W1 bis W8 brauchen vor dem Bau einen Entscheid (W3 ist mit der Karte 22:44 entschieden: ab rund 20 KB als Datei). Dazu Block 7 hier.
+5. **TB-137 abnehmen,** sobald der Betreiber `GESAMTERGEBNIS_CLOUD_TB-137.md` einfügt (Helferauftrag `logs/steuernder_chat/HELFER_AUFTRAG_TB-137_abnahme.md`; Zeilennummern am Stand `d781f1b`; danach sofort die Ampel messen).
+6. **Zweite Fable-Anfrage:** 54.6 Nr. 2, 6, 7, 9, 10; aus 55.8 die Posten „nächste Anfrage an Fable“ (Nr. 5, 6, 9, 10, 12, 13), darunter die zwei unsicheren Orte 48.7 (R39) und 53.1 (R66) (b) und die Form der Marken; zur Kenntnis die neun Befunde (55.7). Feste Teile `logs/steuernder_chat/FABLE_naechste_anfrage_feste_teile.md`; wartet auf die Pakete 3, 5 und 11 von TB-137. Ab rund 20 KB als Datei. Vor dem Absenden alle Erinnerungsdateien gegen 27.1 messen.
+7. **Bauauftrag Zellen-Erzeuger** nach R81 und R82 (55.8 Nr. 1 bis 4; Backlog E-7/E-8).
+8. **Stehen so im Register, als Hinweis bekannt:** Kette 55.1 ohne Nr. 12, Kette 55.6 ohne Nr. 2 (Zuordnung nach der Sache; Nachtrag 21:19, Zusatz 22:03).
+
+### Block 5 — Wartezustände
+
+TB-137 wartet auf die Cloud-Sitzung und das Einfügen durch den Betreiber. Kein Fable-Chat hat eine offene Anfrage. Keine Mac-Sitzung läuft, keine Karte ist offen, keine Nachschau ist geplant.
+
+### Block 6 — Freigaben und Entscheide des Betreibers in diesem Chat
+
+- Karte, gestellt gegen 22:05, beantwortet 22:44: „Ja, freigeben (Empfohlen)“ (Einzelfreigabe TB-139, mit dem Eintrag verbraucht) · „Bereinigen, Liste vorab (Empfohlen)“ · „Ja, ab 20 KB als Datei (Empfohlen)“ · „Nach der Abgabe von TB-139 (Empfohlen)“.
+- Vorgaben ohne Widerspruch: E1 bis E4 und das Grössenziel (Nachtrag 20:13; E2 mit zwei unsicheren Orten, Nachtrag 21:19).
+- **Keine Freigabe** für weitere Registereinträge, Sperrliste, Signalpfad oder Parameterdateien. In der Erinnerung wird nichts gestrichen, bevor der Betreiber die Liste gesehen und die 25 Stellen entschieden hat.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus (alle ohne Nummer)
+
+1. **Ampel:** 47 500 (19:50) → 202 792 (22:03) → 245 814 (22:46) → 256 206 (23:10) → 279 652 (23:38), bei 16 Helfern. Die Helferaufträge kamen aus Bausteindateien auf dem Gerät (Aufruf je rund 600 B, der Helfer liest seinen Auftrag selbst) — das trug. Teuer war die Zahl der eigenen Schritte (69): Jeder liest den ganzen Verlauf. ⇒ Messungen bündeln (ein Aufruf, mehrere Fragen); Helfer parallel starten; nach jedem Helferbericht nur eine Nachmessung.
+2. **Aus Helferberichten ungeprüft übernommen:** „zwei zu zwei“ (Vorbild E1) und „keiner zwingend“ (E2); dazu eigener Fehler in Befund 8 (15.3 falsch eingeordnet). Alle drei vom Gegenleser gefunden. ⇒ Was in Registertext oder in eine Vorgabe geht, an der Tabelle des Berichts lesen, nicht an der Kurzantwort; der Gegenleser bekommt genau diese Stellen genannt.
+3. **Zwei Helfer widersprachen sich** (K13, Vorbild der Ketten). ⇒ Bei Widerspruch misst der steuernde Chat die eine Tatsache selbst, mit einem Skript.
+4. **Geräteanbindung fiel 21:31 weg,** während ein Helfer einen langen Bau im Hintergrund laufen liess. ⇒ Bauläufe über die Brücke in Einzelschritten, nichts im Hintergrund, kein Aufruf über 150 s.
+5. **Ein Helferaufruf lief, ohne dass sein Bericht ankam** (BAU, 20:15, der Chat wurde unterbrochen); der zweite fand dessen `v3/` vor und mass nach. ⇒ Vor einem Helferstart prüfen, ob der Zielordner schon existiert.
+6. **Was getragen hat:** Helferaufträge als Datei; zwei Gegenleser mit getrenntem Bereich und Einordnung A/B mit kleinster Berichtigung; die Zweitmessung der Zeilenangaben; `z1_abschluss.py` (Freigabe einsetzen, dann Simulation am fertigen Auftrag); die Sonde vor dem Zeigerwechsel; der Start vorbereitet, während gegengelesen wurde; Nachschau per `send_later` (eine, nach dem Blick um 23:08 verschoben auf 23:36).
+
+### Block 8 — Zwischengelagert, noch nicht eingearbeitet
+
+- Unter `logs/steuernder_chat/` (von git ignoriert), neu in diesem Chat: `TB-139_v3_BESTAND.md`, `_MARKEN.md`, `_ZEILEN.md`, `_BAU.md`, `_GEGEN1.md`, `_GEGEN2.md`, `TB-139_v3_befunde_07a.md` · `TB-139_v4_BERICHTIGEN.md` · `TB-139_START.md` · `TB-141_bestand_REGELN.md` · `TB-139_ERINNERUNG_streichliste.md` · `MAC_TB-139_entwurf_v4.md`, `MAC_TB-139_register_fable_07a.md`, `TB-139_freigabe_0710.txt` · zwei Archive: `2026-10-07_tb139_v4.tar.gz` (46,5 MB; Bau v4 mit Simulation) und `2026-10-07_tb139_nach_archiv.tar.gz` (189436 B; alle Helferaufträge und Bausteine unter `tb139/auftraege/`, Berichte, Eingaben, Abschlusslauf). Nicht ohne Frage löschen.
+- Verfällt mit diesem Chat: die Ordner `tb139/` und `tb141/` in der Umgebung der Geräteanbindung; das Tragende liegt in den zwei Archiven.
+
+### Block 9 — Eröffnungstext
+
+Als Kopierblock im Chat ausgegeben, als erste Nachricht nach der Abgabe; Kopie unter `logs/steuernder_chat/EROEFFNUNG_2026-10-07_nach_TB-139.txt`. Der neue Chat wird aus der Claude-Desktop-App auf dem MacBook geöffnet, mit dem Rechner ausgewählt (UMZUG 8). Kernlektüre: ab der Überschrift dieses Umzugsblocks bis Dateiende, dazu ARBEITSWEISE Abschnitt 0 und UMZUG Abschnitt 3.
+
+## Nachtrag 08.10.2026, 07:36 — neuer steuernder Chat: Abnahme TB-139, Ablage, Entscheide W1/W2/W7, Start TB-141
+
+- **Übernahme** 07.10.2026, 23:52: HEAD `d4a28e9` = `origin/main`, `BACKLOG.md` 349 Zeilen, geändert nur diese Datei. Kernlektüre über die Geräteanbindung mit Abschnittsfilter.
+- **TB-139 abgenommen** (Helfer ABNAHME139; Kernzahlen vom steuernden Chat 00:11 mit eigenem Skript nachgemessen, alle wie Soll). Anmerkungen und **Fehler Nr. 21** (Register Z. 11727: „48.7 (R39) zu R81 (a)“ neben „(a) und (b)“, aus dem Auftrag) und **Nr. 22** („Backlog E-7/E-8“ in Block 4 Nr. 7 des Umzugs 07.10., 23:39; richtig: `docs/ERGEBNIS_TB-120_erzeuger_bestandsaufnahme.md` Z. 122/123) stehen im Journalblock EJ, den TB-141 einträgt. Bericht `logs/steuernder_chat/TB-139_ABNAHME_bericht.md`.
+- **Ablage erneuert** (Helfer ABLAGE139): 63 Dateien (61 ersetzt, 2 neu), 104 → 106 Einträge, 54,2 % → 56,5 %; md5 über die md5-Liste `acef90519ecef4ed36f112b06ed281b1`.
+- **Karte** (gestellt 08.10.2026, 00:34; beantwortet vor 06:55): W1 „Helfer bauen Entwürfe (Empfohlen)“ · W2 „Nur wörtlicher Auszug (Empfohlen)“ · W7 „Wichtiges ja, Form als Hinweis (Empfohlen)“. Vorgaben W4, W5, W6, W8 (Antwort 00:33) ohne Widerspruch. Wortlaute: TB-141.
+- **TB-141** `docs/auftraege/MAC_TB-141_regelwerk_nachtrag_0807.md` (76 559 B, md5 `fc488cb6a158bec5ac0d4a4f067c25aa`): gebaut von Helfer BAU141, an Kopien simuliert (Python 3.10 und 3.9.25), gegengelesen von GEGEN141_1 und _2 (8 A-Befunde eingearbeitet), zweite Runde GEGEN141_3 (keine A). Formhinweise nicht eingearbeitet (W7): G1 B2–B7 (darunter: das Prüfskript lief nicht am echten Repo, weil `probe` Belege schreibt), G2 B1, B2, B4, B5, B6, B8, G3 B-a, B-b; W8 lässt ARBEITSWEISE Z. 97 stehen. Berichte `logs/steuernder_chat/TB-141_*_bericht.md`.
+- **Start:** Sonde 08.10.2026, 07:18:49 (05:18:49Z): 0 Sitzungen, Schlüsselbund entsperrt. Danach Auftrag, Zeiger und dieser Nachtrag in den Arbeitsbaum, dann `starte_TB-141`.
+- **Reihenfolge danach:** TB-141 → Abnahme TB-137 (wartet auf den Betreiber) → zweite Fable-Anfrage → Bauauftrag Zellen-Erzeuger (Bestand `logs/steuernder_chat/ERZEUGER_bestand_R81_R82_bericht.md`; Signalpfad braucht Einzelfreigabe nach 37.3). Streichliste der Erinnerung: Karte an den Betreiber, nichts gestrichen.
+- Arbeitsdateien unter `$HOME/sc/` der Geräteanbindung verfallen mit diesem Chat; das Tragende liegt in `logs/steuernder_chat/2026-10-08_sc_tb141.tar.gz`.
+
+## Umzug 08.10.2026, 19:58 — Stand für den neuen steuernden Chat (alle neun Blöcke)
+
+Betreiber: Karte, beantwortet 08.10.2026 vor 19:58: „Jetzt umziehen (Empfohlen)“ (zuvor genehmigt: „Nach Abgabe von TB-141“). Ampel 19:54: Verlauf 302 222 (Grundlast 130 887), rot. **Dieser Block ersetzt den Umzugsblock vom 07.10.2026, 23:39.** Den neuen Chat legt der steuernde Chat selbst an (Betreiber 08.10.2026, 08:36, per Karte präzisiert: der steuernde Chat beim Umzug).
+
+### Block 1 — Stand in drei Zeilen
+- **TB-141 (Regelwerk-Nachtrag) ist gebaut, gegengelesen, im Arbeitsbaum und gestartet, aber nicht angekommen:** Die Sitzung (PID 3242, seit 09:24) hängt an der Chrome-Startfrage von Claude Code; der Satz ging ins falsche Fenster (Fehler 23).
+- **TB-139 ist abgenommen, die Ablage erneuert, die Projekt-Erinnerung bereinigt** (Nachtrag 07:36; Streichliste 08.10.2026 vollzogen).
+- **Offen beim Betreiber:** Enter im Terminal-Fenster „claude --effort high --remote-control“ und Satz TB-141 einfügen; Text für die kontoweite Erinnerung (Antwort 07:47) abschicken; Gesamtergebnis TB-137.
+
+### Block 2 — HEAD und Arbeitsbaum
+HEAD = `origin/main` = `d4a28e91f359cdd7fba4baa62f0ba1f8d430badb`. Geändert: `docs/projektfuehrung/UEBERGABE.md` (Nachtrag 07:36 und dieser Block), `docs/auftraege/AKTUELLER_AUFTRAG.md` (Zeiger auf TB-141, 7 822 B, md5 `5684de57530b…`, gesetzt 07:36). Unverfolgt: `docs/auftraege/MAC_TB-141_regelwerk_nachtrag_0807.md` (76 559 B, md5 `fc488cb6a158bec5ac0d4a4f067c25aa`). Gemessen ohne `git status`. Terminal auf dem Mac: Fenster mit Titel „claude --effort high --remote-control“ (window_id 20771) wartet an „Use Chrome browser by default?“ (vorausgewählt „1. No, keep browser tools off“); das Fenster 15501 ist eine bash-Shell, in der die Sätze TB-132 bis TB-141 als Befehle stehen. Sonde 19:11: 1 claude-Prozess im Repo, schlafend. Eine Cloud-Sitzung des Betreibers (19:11, Zweig `claude/tb-141-auftrag-7cu68m`) las `origin/main`, fand TB-141 nicht und brach ohne Änderung ab.
+
+### Block 3 — Tragende Zahlen
+- **TB-141 Sollwerte:** ARBEITSWEISE 58/0 (2 413 → 2 471 Zeilen), BACKLOG 13/0 (349 → 362), JOURNAL Block der Sitzung + 3 + 11 + 1 (Simulation 28/0); Anhang-Skript sha256 `1af78b61…5d6c`; 0a erwartet geändert `UEBERGABE.md` und `AKTUELLER_AUFTRAG.md`, unverfolgt den Auftrag (prüft kein md5 der Übergabe). Berichte: `logs/steuernder_chat/TB-141_BAU141_bericht.md`, `TB-141_GEGEN141_1/2/3_bericht.md`.
+- **Register** unverändert: 11 733 Zeilen, 998 257 B, Stand `ad1fc0d`, Abschnitte 0–55, höchster Block R83.
+- **Ablage:** 106 Einträge, 56,5 % (08.10.2026, 00:2x); `UEBERGABE.md` mit diesem Block erneuert.
+- **Projekt-Erinnerung:** `overview.md` 9 989 B, `methodology-and-learnings.md` 6 338 B (Streichliste vollzogen); `preferences.md` und `ways-of-working.md` mit den Regeln vom 08.10.2026. Kontoweite Datei: Text an den Betreiber (Antwort 07:47), ob abgeschickt, ist nicht gemessen.
+- **Nummern:** nächster Mac-Auftrag TB-142 (Wächter-Reparatur); Journal: EJ trägt TB-141, danach EK; Fable vergibt ab R84; Fehler ab 24; die nächste Fable-Anfrage trägt das Datum des Sendetags und geht an einen neuen Fable-Chat.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+1. **TB-141 zum Laufen bringen:** messen, ob Schritt 0 committet ist. Wenn nein: per Computer Use (Terminal, Stufe „click“) nachsehen, ob die Startfrage noch steht; Aufgabe an den Betreiber [Mac-pflichtig]: Enter, dann Satz. Danach Nachschau per `send_later`, Abnahme nach der Abgabe (Helfer nach Muster `HELFER_ABNAHME139` im Archiv; Kernzahlen selbst), Schliessen ab 600 s.
+2. **TB-142 Wächter-Reparatur** (Fehler 23): Satz ins neu geöffnete claude-Fenster statt ins vorderste Terminal-Fenster; Chrome-Startfrage beim Start beantworten oder abschalten; Erfolgsmeldung erst nach geprüfter Eingabezeile. Vorher: Ziel `docs/werkzeuge/sitzungswaechter/starte_sitzung.sh` gegen die Sperrliste prüfen.
+3. **TB-137 abnehmen,** sobald der Betreiber das Gesamtergebnis einfügt (Helferauftrag `logs/steuernder_chat/HELFER_AUFTRAG_TB-137_abnahme.md`; Zeilen am Stand `d781f1b`).
+4. **Zweite Fable-Anfrage** wie Umzug 07.10.2026, 23:39, Block 4 Nr. 6; dazu Fehler 21 (Register Z. 11727: „48.7 (R39) zu R81 (a)“ neben „(a) und (b)“) zu 55.8 Nr. 10. Vor dem Absenden alle Erinnerungsdateien gegen 27.1 messen (kontoweite Datei erst nach Bestätigung des Betreibers).
+5. **Bauauftrag Zellen-Erzeuger** nach R81/R82 erst nach der Fable-Antwort (Bestand `logs/steuernder_chat/ERZEUGER_bestand_R81_R82_bericht.md`; Signalpfad braucht Einzelfreigabe nach 37.3).
+6. **Nächster Regelwerk-Nachtrag** (nach TB-141): Regeln vom 08.10.2026 (neuer steuernder Chat beim Umzug wird vom steuernden Chat angelegt; Sitzung nach dem Start selbst ansehen; Erinnerung schreibt nur der steuernde Chat), die 14 Formhinweise aus TB-141, U25 in `UMZUG.md`, W8 und ARBEITSWEISE Z. 97.
+
+### Block 5 — Wartezustände
+TB-141 wartet auf den Betreiber (Enter + Satz). TB-137 wartet auf die Cloud-Sitzung und das Einfügen. Kein Fable-Chat hat eine offene Anfrage. Keine Karte offen. Geplante Nachschauen: keine.
+
+### Block 6 — Freigaben und Entscheide des Betreibers am 08.10.2026
+- Karte 00:34: W1 „Helfer bauen Entwürfe“, W2 „Nur wörtlicher Auszug“, W7 „Wichtiges ja, Form als Hinweis“ (alle Empfohlen); Vorgaben W4, W5, W6, W8 ohne Widerspruch.
+- Karte 07:39 (Streichliste): Live-Parameter „Wert streichen, Verweis lassen“; Zählungen „Zahl streichen, Aussage lassen“; Verworfene „Werte streichen, verworfen bleibt“; Fable-Einschätzung „Streichen“ (alle Empfohlen) — vollzogen.
+- Karten zum Umzug: 07:47 „Nach Abgabe von TB-141“; 19:54 „Jetzt umziehen“.
+- 08:36 „Lege mir zukünftig immer einen neuen Chat bereit“ → per Karte: der steuernde Chat beim Umzug. 09:22 und 19:11: die Claude-Code-Sitzung für den Mac-Auftrag muss für ihn bereitliegen („so wie es bisher bereits immer gemacht worden ist“).
+- **Keine Freigabe** für Registereinträge, Sperrliste, Signalpfad oder Parameterdateien.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus
+- **Nr. 21, 22:** siehe Nachtrag 07:36.
+- **Nr. 23:** Der steuernde Chat gab dreimal „Satz abschicken“ aus, gestützt nur auf die Wächter-Zeile „Satz ins Fenster gelegt“; tatsächlich lag der Satz in einer bash-Shell, und die claude-Sitzung hing an der Chrome-Startfrage. Der Betreiber fand den ganzen Tag keine Sitzung. ⇒ Nach jedem Start das claude-Fenster selbst ansehen (Computer Use, nur lesen/klicken); „Satz abschicken“ erst, wenn die Eingabezeile steht; sonst die genaue Handlung am Mac als Aufgabe.
+- **Ampel:** 29 759 (23:53) → 101 308 (00:33) → 180 609 (07:38) → 208 294 (07:47) → 302 222 (19:54), bei 14 Helfern. Teuer waren Nachschauen und Fehlersuche am Ende, nicht die Helfer.
+- **Getragen hat:** Bausteindateien für Helfer, zwei getrennte Gegenleser plus zweite Runde (8 A gefunden), Simulation unter Python 3.9, Byte-Abgleich beim Schreiben der Erinnerung.
+
+### Block 8 — Zwischengelagert
+Unter `logs/steuernder_chat/` (ignoriert): `TB-139_ABNAHME_bericht.md`, `TB-139_ABLAGE_bericht.md`, `TB-139_ERINNERUNG_karte_bericht.md`, `TB-139_ERINNERUNG_suche_zwei_bericht.md`, `TB-141_KARTE_W_bericht.md`, `TB-141_BAU141_bericht.md`, `TB-141_GEGEN141_1/2/3_bericht.md`, `ERZEUGER_bestand_R81_R82_bericht.md`, Archive `2026-10-08_sc_auftraege_berichte.tar.gz` und `2026-10-08_sc_tb141.tar.gz` (Bausteine, Helferaufträge, Bau TB-141 samt Simulation). `$HOME/sc/` der Geräteanbindung verfällt mit diesem Chat (Streichplan und Soll-Dateien darin sind vollzogen).
+
+### Block 9 — Eröffnungstext
+Als Kopierblock im Chat ausgegeben und als neuer Chat angelegt (einmalige geplante Aufgabe mit dem Rechner). Wortlaut:
+
+```
+Neue Sitzung zum Trading-Bot-Projekt (steuernder Chat). Das Projekt "Trading Bots" ist angehängt. Diesen Chat hat der vorige steuernde Chat für dich angelegt (Betreiber 08.10.2026: „Lege mir zukünftig immer einen neuen Chat bereit“).
+
+Prüfe als Erstes, ob du über die Geräteanbindung auf ~/trading-bot lesen kannst — nenne mir HEAD und die Zeilenzahl von docs/projektfuehrung/BACKLOG.md als Beleg. Ist kein Ordner verbunden, fordere die Freigabe für ~/trading-bot an (device_request_folder_access). Wenn das nicht geht, sag es ausdrücklich. git über die Brücke nur mit --no-optional-locks und nur rev-parse, log, show, ls-files, worktree list — nie git status, kein git diff, kein git check-ignore. Geänderte Dateien misst du mit ls-files -m, Unverfolgtes mit ls-files -o --exclude-standard. Uhrzeiten über die Brücke mit TZ=Europe/Berlin date.
+
+Lies dann nur die Kernlektüre, aus dem Repo über die Geräteanbindung mit Abschnittsfilter:
+1. docs/projektfuehrung/UEBERGABE.md — ab der Überschrift „## Umzug 08.10.2026, 19:58“ bis Dateiende (alle neun Blöcke). Den Nachtrag 08.10.2026, 07:36 davor und den Umzugsblock 07.10.2026, 23:39 nur bei Bedarf.
+2. docs/projektfuehrung/ARBEITSWEISE.md — nur Abschnitt 0 (von „## 0.“ bis vor „## 1.“).
+3. docs/projektfuehrung/UMZUG.md — nur Abschnitt 3 (von „## 3.“ bis vor „## 4.“).
+Nur wenn die Geräteanbindung fehlt: dieselben Stellen über den Projects-Zugriff (projektfuehrung/…).
+
+Grosse Dateien über Helfer; Helferaufträge als Bausteindateien auf dem Gerät (Vorbild: sc/auftraege/ im Archiv logs/steuernder_chat/2026-10-08_sc_tb141.tar.gz), Berichte auf rund 3 KB begrenzt; Helfer bauen Entwürfe ausserhalb des Repos, ein frischer Gegenleser ist Pflicht (W1); Erinnerungsdateien schreibt nur der steuernde Chat selbst (Helfer haben kein memory_str_replace). Die Umzugsampel misst du mit docs/werkzeuge/ampel.py auf deinem eigenen Sitzungsprotokoll (~/.claude/projects/*/<sitzung>.jsonl; ampel.py per device_stage_files holen). Messungen bündeln, Helfer parallel starten.
+
+Umgezogen wird nur, wenn ich es sage oder genehmige. Beim Umzug legst du mir den neuen steuernden Chat selbst an (einmalige geplante Aufgabe mit dem Rechner, Eröffnungstext als erste Nachricht) und gibst den Eröffnungstext zusätzlich als Kopierblock aus.
+
+Arbeite selbstständig (Betreiber 07.10.2026, 19:44). Karten nur für echte Betreiberentscheide, als letzter Schritt; vor einer Karte alles Unabhängige anstossen. Aufgaben an mich nur, wo meine Hand nötig ist, je [ortsunabhängig] oder [Mac-pflichtig].
+
+Achtung, das Wichtigste (Einzelheiten in den neun Blöcken):
+1. TB-141 (Regelwerk-Nachtrag) liegt startklar im Arbeitsbaum: Auftrag docs/auftraege/MAC_TB-141_regelwerk_nachtrag_0807.md (unverfolgt), Zeiger und UEBERGABE.md geändert. Die Claude-Code-Sitzung auf dem Mac läuft seit 08.10.2026, 09:24 (PID 3242), hing aber an der Chrome-Startfrage von Claude Code; ich muss dort Enter drücken und den Satz einfügen. Miss zuerst, ob Schritt 0 committet ist; wenn ja: Nachschau per send_later, Abnahme nach der Abgabe (Helfer, Kernzahlen selbst), schliessen ab 600 s.
+2. Fehler Nr. 23: Der Sitzungswächter meldet „Satz ins Fenster gelegt“, legt den Satz aber ins falsche Terminal-Fenster (eine bash-Shell; dort steht „-bash: TB-141:: command not found“, ebenso TB-132 bis TB-140). Nach jedem Start siehst du selbst nach (Computer Use, Terminal nur Stufe „click“: app_list_windows, app_screenshot des Fensters mit „claude“ im Titel), ob die Sitzung ohne Startfrage an der Eingabezeile steht, bevor du mir „Satz abschicken“ gibst. Den Wächter repariert ein eigener Mac-Auftrag (TB-142) nach TB-141.
+3. Ich habe am 08.10.2026 viermal gerügt, dass keine Claude-Code-Sitzung für mich bereitlag. Die Sitzung muss für mich in der App sichtbar und eingabebereit sein.
+4. Danach: TB-137 abnehmen, sobald ich das Gesamtergebnis einfüge; zweite Fable-Anfrage (wartet auf TB-137); Bauauftrag Zellen-Erzeuger erst nach Fable.
+
+Sag mir in wenigen Sätzen, was du verstanden hast, und fang in derselben Antwort mit dem ersten Handwerksschritt an. Am Ende jeder Antwort: Kopierblock für die Claude-Code-Sitzung (Wortlaut aus logs/sitzungswaechter/letzter_satz.txt), dann die Zeile mit der Umzugsampel.
+```
