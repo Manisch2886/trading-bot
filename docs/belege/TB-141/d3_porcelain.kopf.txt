@@ -1,0 +1,1 @@
+# TB-141 D3 — git status --porcelain nach dem Abgabe-Commit ab362b0, Rohausgabe in d3_porcelain.txt: 0 B, 0 Zeilen, md5 d41d8cd98f00b204e9800998ecf8427e
