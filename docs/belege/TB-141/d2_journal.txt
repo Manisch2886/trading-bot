@@ -1,0 +1,8 @@
+# TB-141 D2 — Journalblock (tb141_einfuegen.py journal)
+Ankertext genau 1 · ja
+Kopfzeile '## EJ — TB-141' im Journal noch 0 · ja
+Block beginnt mit der Kopfzeile · ja
+Block hat genau einen Absatz **Quelle:** · ja
+Block hat genau eine Zeile ### Was gemessen ist · ja
+Block ohne Trennstrich und ohne J1 · ja
+Zeilen Journal vorher 10528 · nachher 10566 · geschrieben

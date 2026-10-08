@@ -1,0 +1,6 @@
+# TB-141 D2 — J1 (tb141_einfuegen.py j1 --probe)
+Ankertext genau 1 · ja
+Kopfzeile '## EJ — TB-141' genau 1, vor dem Ankertext · ja
+im Block genau ein **Quelle:** und genau ein ### Was gemessen ist, in dieser Folge · ja
+erste Zeile von J1 im Journal noch 0 · ja
+J1 · docs/projektfuehrung/JOURNAL.md · Block EJ · Textzeilen 11 · Zeilen +12 · Probe, nichts geschrieben

@@ -1,0 +1,2 @@
+# TB-141 D2 — J1 Zeichengleichheit (tb141_einfuegen.py j1vergleich)
+J1 · docs/projektfuehrung/JOURNAL.md · 4238 Bytes · 11 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · im Block EJ vor ### Was gemessen ist ja · GLEICH

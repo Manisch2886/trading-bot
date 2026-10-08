@@ -10188,6 +10188,56 @@ Laufzeit: 07.10.2026. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium a
 
 ---
 
+## EJ — TB-141: Regelwerk-Nachtrag 06.–08.10.2026 — 26 Einfügungen aus dem Auftrag per Skript (`ARBEITSWEISE.md` Abschnitt 0, 13, 15 Regel 5a, 22.5, 22.10; `BACKLOG.md` Abschnitt 5), alle zeichengleich und je genau einmal, numstat 58/0 und 13/0; Prüfungen S1–S4 10/10 Prüfanker je 1; Sperrlisten-Wache 0 Treffer; Nachtrag J1 in diesem Block (08.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-141_regelwerk_nachtrag_0807.md`*
+
+**Quelle:** Mac-Sitzung **TB-141** (Hauptordner, lokal), 08.10.2026, ab 21:26 (gemessen, `TZ=Europe/Berlin date`), Eingang `d4a28e9`. Commits `f7d57d4` (Schritt 0),
+`7988ce6` (A), `febde0e` (C) und der Abgabe-Commit. Belege `docs/belege/TB-141/`. Freigabe: Handwerk ohne
+Sperrlistennähe, pauschal frei (Betreiberentscheid 26.09.2026). Datum des Eintrags zur Laufzeit: 08.10.2026.
+Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
+
+**Nachtrag des steuernden Chats zum Stand vor TB-141, wie in `BACKLOG.md` Abschnitt 5 eingetragen:**
+- **TB-139 abgenommen** (08.10.2026; Helfer ABNAHME139, Kernzahlen vom steuernden Chat mit eigenem Skript nachgemessen, 00:11): Abgenommen. Register 11 581 → 11 733 Zeilen, 998 257 B, sha256 beginnt `ab97ae1e31da161b`, Stand `ad1fc0d`, an HEAD gleich; 152 hinzu, 0 entfernt; 20 Marken an 14 Einfügestellen (PRÄZISIERT 4, BERICHTIGT 1, ERGÄNZT 15); 55.1–55.8; höchster Block R83; Blöcke 6/6 zeichengleich (12/12 Zeilen). Prüfungen P1 14/14, P2 6/6, P3 10/10, P4 20/20, P5 3/3, P6 6/6, P9 7/7, P10 3/3.
+- **Anmerkungen zur Abnahme:** (1) `docs/belege/TB-139/d3_porcelain.txt` (78 B) trägt eine Kommentarzeile „(0 Zeilen)“ statt der Rohausgabe; „leer“ nur erschlossen. (2) `b_vergleich.txt` Z. 4, `j1_einsetzen.txt` Z. 2, `j1_vergleich.txt` Z. 2: Kopfzeile fehlt, Reststück am Ende. (3) Das Ergebnis (Z. 20) nennt keine Abweichungen; (1) und (2) fehlen dort. (4) Nicht nachgerechnet, nur an der Rohausgabe gelesen: Test, Sonde, `register()`, Werkzeugläufe; Zahlenprüfung Teilmessung: 594 Zahlen, 36 in keiner Rohausgabe.
+- **Fehler Nr. 21 (steuernder Chat, Auftrag TB-139):** Register Z. 11727 (55.8) nennt die unsichere Marke einmal „48.7 (R39) zu R81 (a)“ (Sp. 310, gezählt ab 1) und einmal „48.7 (R39) zu R81 (a) und (b)“ (Sp. 1029); der Text kam zeichengleich aus dem Auftrag (Auftrag Z. 12 nur „(a)“). Am Register wird nichts geändert; geht mit 55.8 Nr. 10 an Fable (zweite Anfrage).
+- **Fehler Nr. 22 (steuernder Chat, Umzugsblock 07.10.2026, 23:39, Block 4 Nr. 7):** „Backlog E-7/E-8“ — E-7 und E-8 stehen nicht im Backlog, sondern in `docs/ERGEBNIS_TB-120_erzeuger_bestandsaufnahme.md` Z. 122/123. **Berichtigung:** Wo `UEBERGABE.md` im Umzug 07.10.2026, 23:39, Block 4 Nr. 7, „Backlog E-7/E-8“ nennt, sind E-7 (Zellen-Kern) und E-8 (Zellen-Erzeuger) der Tabelle in `docs/ERGEBNIS_TB-120_erzeuger_bestandsaufnahme.md` Z. 122/123 gemeint; `UEBERGABE.md` selbst wird nicht geändert.
+- Ablage erneuert (Helfer ABLAGE139): 63 Dateien (61 ersetzt, 2 neu: `REGISTER_KOPIE_ABSCHNITT_55.md`, `ERGEBNIS_TB-139_register_fable_07a.md`); vorher 104 Einträge, 54,2 %; nachher 106, 56,5 %; md5 über die md5-Liste `acef90519ecef4ed36f112b06ed281b1`; nicht zurückgelesen.
+- Reihenfolge danach (Bestand Helfer BESTAND_ERZEUGER): Bauauftrag Zellen-Erzeuger nach R81/R82 erst nach der zweiten Fable-Anfrage (55.8 Nr. 5 „vor dem Bau des Schnitts im Zellen-Erzeuger“); er berührt Sperrlisten-Dateien, der Signalpfad braucht eine Einzelfreigabe nach 37.3 (55.8 Nr. 3). Reihenfolge: TB-141 → Abnahme TB-137 → Fable-Anfrage → Bauauftrag.
+- Streichliste der Erinnerung: Bilanz bestätigt (72: 5/8/34/25); die vier Arten decken 19 der 25; zwei Inhalte stehen teilweise im Repo (Paar-Rotation nur auf `origin/claude/pair-rotation-prototype`, Commit `d7ab671`). Entscheid des Betreibers steht aus; nichts gestrichen.
+- Berichte: `logs/steuernder_chat/TB-139_ABNAHME_bericht.md`, `TB-139_ABLAGE_bericht.md`, `TB-141_KARTE_W_bericht.md`, `TB-139_ERINNERUNG_karte_bericht.md`, `TB-139_ERINNERUNG_suche_zwei_bericht.md`, `ERZEUGER_bestand_R81_R82_bericht.md` (von git ignoriert).
+- **Ins Regelwerk eingetragen mit TB-141:** die 38 Regeln U1–U38 aus `logs/steuernder_chat/TB-141_bestand_REGELN.md` (4 standen schon und sind nur geprüft, 18 ergänzt, 16 neu), die fünf Regeln aus Block 7 des Umzugs 07.10.2026, 23:39, die Entscheide W1, W2, W3 und W7 des Betreibers und die Vorgaben W4, W5, W6 und W8 — `ARBEITSWEISE.md` Abschnitt 0 (39 Zeilen), 13, 15 (Regel 5a), 22.5 und 22.10. Wo ein Entscheid eine Regel des Bestands anders fasst, gilt der Entscheid (U2, U16, U22, U28, U30, U31, U34).
+- **Nicht in TB-141:** die übrigen Posten, die die Übergabe dem Regelwerk-Nachtrag zuweist (Bestand Abschnitt 7: `diff --name-only` in `ARBEITSWEISE.md` Abschnitt 0 und in `UMZUG.md` Abschnitt 6, der Fliesstext in 6b und 10, die Regel zu Cloud-Sitzungen, der Entwurf aus Paket 15, die zwei Befunde aus der Abnahme TB-133); eine eigene Gruppe für Helfer in Abschnitt 0; die Kennzeichnung der Aufgaben im Text von 6bb; U25 in `UMZUG.md` Abschnitt 4, Schritt 6. Ob ein eigener Nachtrag sie trägt, ist offen.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0a** | `git status --porcelain` drei Einträge wie Soll, HEAD `d4a28e91…`; Skript aus Anhang A sha256 `1af78b61…` wie Soll (vor und nach dem Kopieren); Rohausgabe `0a_status.txt` 132 B, 3 Zeilen, Beschreibung in `0a_status.kopf.txt` |
+| **0b** | Ausgang an `f7d57d4`: `ARBEITSWEISE.md` 2 413 Z., md5 `e85163e9…`; `BACKLOG.md` 349 Z., md5 `583b4049…`; `JOURNAL.md` 10 528 Z., md5 `1eb65c7e…` — alle wie Soll |
+| **0c** | Probe rc 0: 26 Einfügungen `ok` (Ankerzeilen wie die Zeilenbilanz), 10 Prüfanker je 1, Sperrliste fünf Suchworte je 0 in Register Abschnitt 10 (207 Zeilen) und ARBEITSWEISE-Tabelle (10 Zeilen); `Gesamt: wie Soll` |
+| **A** | `einfuegen` rc 0: 26× `ausgeführt ja · Text nachher 1`, Zeilen je wie Bilanz; `ARBEITSWEISE.md` 2 413 → 2 471, `BACKLOG.md` 349 → 362 |
+| **C2** | numstat `f7d57d4..7988ce6` rc 0: `ARBEITSWEISE.md` 58/0, `BACKLOG.md` 13/0, sonst nur Belege, keine entfernte Zeile |
+| **C3** | `vergleich` rc 0: 26× `GLEICH` (Block-Einfügungen mit je einer Leerzeile davor und danach), 10 Prüfanker `nachher 1 · ok` |
+| **D2** | Kennung gemessen: letzter Block vor `## Wiederkehrende Lehren` war EI ⇒ **EJ** wie erwartet; Block und J1 per Skript eingesetzt, Werte in `d2_journal.txt`, `d2_j1.txt`, `d2_j1_vergleich.txt` |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| | **Keine neue.** Ein einziges Skript aus dem Auftrag, das Texte, Anker und Sollwerte selbst liest und jede Belegdatei mit Kopfzeile neu schreibt und zurückliest, trug alle Schritte ohne Handarbeit und ohne Abweichung |
+
+### Was offen bleibt
+
+- Ablage von `ARBEITSWEISE.md` und `BACKLOG.md` — steuernder Chat.
+- Die Posten unter „Nicht in TB-141“ (`BACKLOG.md` Abschnitt 5, Block TB-141); ob ein eigener Nachtrag sie trägt, ist offen.
+- `UEBERGABE.md` und `UMZUG.md` unverändert (Fehler Nr. 22 nur im Backlog berichtigt).
+- Nächste Journalkennung nach EJ: **EK**.
+
+*Geschrieben 08.10.2026 von der Mac-Sitzung TB-141. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
