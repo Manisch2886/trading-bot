@@ -1,0 +1,1 @@
+# TB-141 0a — git status --porcelain vor f7d57d4 am HEAD d4a28e9, Rohausgabe in 0a_status.txt: 132 B, 3 Zeilen, md5 f11301dba0df696a5f2ccc9f2857f9b6

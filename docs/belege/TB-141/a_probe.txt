@@ -1,0 +1,43 @@
+# TB-141 0c — Probe, nur gelesen (tb141_einfuegen.py probe)
+E1 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 42 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E2 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 43 · Art nach der Zeile · Form Zeilen · Textzeilen 2 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E3 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 51 · Art nach der Zeile · Form Zeilen · Textzeilen 2 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E4 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 64 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E5 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 66 · Art nach der Zeile · Form Zeilen · Textzeilen 2 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E6 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 67 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E7 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 79 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E8 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 83 · Art nach der Zeile · Form Zeilen · Textzeilen 2 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E9 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 85 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E10 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 97 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E11 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 98 · Art nach der Zeile · Form Zeilen · Textzeilen 2 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E12 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 104 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E13 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 110 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E14 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 135 · Art nach der Zeile · Form Zeilen · Textzeilen 2 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E15 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 151 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E16 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 155 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E17 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 171 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E18 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 176 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E19 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 188 · Art nach der Zeile · Form Zeilen · Textzeilen 2 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E20 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 226 · Art nach der Zeile · Form Zeilen · Textzeilen 13 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E21 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 1317 · Art nach der Zeile · Form Block · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E22 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 1339 · Art nach der Zeile · Form Zeilen · Textzeilen 5 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E23 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 1721 · Art nach der Zeile · Form Zeilen · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E24 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 2084 · Art vor der Zeile · Form Block · Textzeilen 1 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E25 · docs/projektfuehrung/ARBEITSWEISE.md · Anker vorher 1 · Ankerzeile 2263 · Art vor der Zeile · Form Block · Textzeilen 8 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+E26 · docs/projektfuehrung/BACKLOG.md · Anker vorher 1 · Ankerzeile 338 · Art vor der Zeile · Form Block · Textzeilen 12 · erste Textzeile schon 0 · Anker in neuen Texten 0 · ok
+S1 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'Karte nur für echte Betreiberentscheide: Freigaben' · 1 · ok
+S2 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'Nach jedem ausgelösten Auftrag plant der steuernde Chat eine' · 1 · ok
+S3 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'Abschriften aus der Ablage zweifach unabhängig' · 1 · ok
+S3 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'md5 und `wc -c` auf beiden Seiten' · 1 · ok
+S3 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'Statt vieler md5-Zeilen im Chat ein md5 über die md5-Liste' · 1 · ok
+S3 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'Ist ein Mac-Auftrag startklar, legt der steuernde Chat die C' · 1 · ok
+S3 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'im selben Schritt, in dem sie in einen Text gehen — nie schä' · 1 · ok
+S4 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'Umgezogen wird nur, wenn der Betreiber es sagt oder genehmig' · 1 · ok
+S4 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'und kein `git check-ignore`' · 1 · ok
+S4 · docs/projektfuehrung/ARBEITSWEISE.md · Prüfanker 'Die Erneuerung der Ablage (Abschnittsdateien, Index, Dialog-' · 1 · ok
+Sperrliste · 'projektfuehrung' · Register Abschnitt 10 (207 Zeilen) 0 · ARBEITSWEISE-Tabelle (10 Zeilen) 0
+Sperrliste · 'ARBEITSWEISE' · Register Abschnitt 10 (207 Zeilen) 0 · ARBEITSWEISE-Tabelle (10 Zeilen) 0
+Sperrliste · 'BACKLOG' · Register Abschnitt 10 (207 Zeilen) 0 · ARBEITSWEISE-Tabelle (10 Zeilen) 0
+Sperrliste · 'JOURNAL' · Register Abschnitt 10 (207 Zeilen) 0 · ARBEITSWEISE-Tabelle (10 Zeilen) 0
+Sperrliste · 'docs/' · Register Abschnitt 10 (207 Zeilen) 0 · ARBEITSWEISE-Tabelle (10 Zeilen) 0
+Einfügungen 26 · Prüfungen 4 · Sperrliste Treffer 0 · Gesamt: wie Soll

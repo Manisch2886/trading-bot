@@ -40,7 +40,10 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 |---|---|---|
 | ☐ | Bei jedem Dokument und jeder Aufgabe steht, wohin es geht — auch in der Begleitnachricht | 1 |
 | ☐ | Fundstellen nur, wenn sie vor mir liegen; sonst steht „aus dem Gedächtnis" dabei | 7 |
+| ☐ | Vor einer Folgerung die Stelle lesen, die sie regelt (07.10.2026, Nachtrag 15:59: die Stelle war die Eröffnung, R56 (d)) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 5 |
 | ☐ | Uhrzeiten mit `date` messen, im selben Schritt, in dem sie in einen Text gehen — nie schätzen (05.10.2026: 23:50 geschrieben, 23:43 gemessen) | UEBERGABE, Umzug 05.10.2026, 23:46, Block 7 |
+| ☐ | Über die Geräteanbindung: `date` liefert dort UTC ⇒ `TZ=Europe/Berlin date` (07.10.2026) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 7 |
+| ☐ | Für Helferläufe Anfang und Ende messen oder die Spanne zwischen zwei Messungen nennen (06.10.2026: geschätzte Uhrzeit („13:24–13:31“) im Nachtrag 13:33) | UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 1 |
 | ☐ | Keine Bemerkung zu Tageszeit, Arbeitsdauer oder Arbeitsende | 6c |
 | ☐ | Direkt und ehrlich: eine Zahl, die nicht trägt, wird so genannt | 9 |
 | ☐ | Eigene Fehler benannt, nicht still korrigiert | 9 |
@@ -49,6 +52,8 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Sagt der Betreiber „zukünftig": in derselben Antwort in alle Träger eingetragen, ohne Rückfrage | 15 |
 | ☐ | Kurz: „In einfacher Sprache“ im Chat ein bis zwei Zeilen, ausführlich nur in Dokumenten (T6, Betreiber 30.09.2026) | 4 |
 | ☐ | Was der Betreiber abgeschickt hat, wird nicht behauptet — „als Kopierblock ausgegeben“; ob gesendet, zeigt erst die Antwort. Vor einer Karte, die einen versendeten Stand ändern will, zuerst fragen, ob schon gesendet (29.09.2026) | 9 |
+| ☐ | ⭐⭐ Selbstständig arbeiten, zukünftig immer (Betreiber 07.10.2026, 19:44: „Ich fand deine selbstständige Arbeitsweise heute super und möchte das du zukünftig immer so arbeitest!“); was „so“ heisst, steht als Lesart des steuernden Chats, vorläufig, in 13 | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46 |
+| ☐ | Messungen bündeln (ein Aufruf, mehrere Fragen); Helfer parallel starten; nach jedem Helferbericht nur eine Nachmessung (07.10.2026: Teuer war die Zahl der eigenen Schritte (69)) | UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 1 |
 
 **Am Anfang einer Aufgabe**
 
@@ -62,9 +67,13 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | | Regel | steht in |
 |---|---|---|
 | ☐ | Abgesetzter Block „Deine Aufgaben": nummeriert, je Aufgabe Was · Wo · Woran; dazu, was nicht von ihm abhängt; ist nichts zu tun, steht das ausdrücklich da | 6bb |
+| ☐ | Jede Aufgabe an den Betreiber trägt die Kennzeichnung [ortsunabhängig] / [Mac-pflichtig]; was auch ortsunabhängig ginge, ist ortsunabhängig (Erinnerung, 19.09.2026; am 07.10.2026 versäumt: „Beides gilt weiter.“) | UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46 |
 | ☐ | Bei Wartezuständen: was wann von wem kommt, und was in der Zwischenzeit zu tun ist | 6bb |
 | ☐ | Kein Stillstand: der nächste Handwerksschritt ist getan; kein „soll ich …?"; keine offene Frage nach dem Weiter; neben einer Rückfrage ist alles Unabhängige erledigt | 13 |
+| ☐ | Nach jedem Schritt folgt ohne Startzeichen der nächste, auch über mehrere Aufträge und während eine Mac-Sitzung läuft; die Grenzen bleiben: nach Schritt 0 nichts im Arbeitsbaum anfassen (Gruppe „Wenn ich einen Auftrag schreibe“), kein Umzug, während eine Sitzung läuft (10) (Lesart des steuernden Chats, vorläufig, zum Betreibersatz vom 07.10.2026, 19:44) | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46 |
+| ☐ | Zwischenmeldungen mit Ergebnis statt Rückfragen (Lesart des steuernden Chats, vorläufig, zum Betreibersatz vom 07.10.2026, 19:44) | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46 |
 | ☐ | Die Aufgabenliste so kurz wie möglich — nie „entscheiden, wie es weitergeht" | 13 |
+| ☐ | Aufgaben an den Betreiber nur, wo seine Hand nötig ist (Lesart des steuernden Chats, vorläufig, zum Betreibersatz vom 07.10.2026, 19:44) | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46 |
 | ☐ | Letzte Zeile: Umzugsampel, gemessen mit `docs/werkzeuge/ampel.py` (Farbe · Verlauf · Grundlast · Empfehlung; Schwellen für den Verlauf ohne Grundlast; Betreiber 01.10.2026) | UMZUG 3 |
 | ☐ | Der Text für die Aufgabe der Claude-Code-Sitzung steht am Ende jeder Antwort als Kopierblock mit Empfänger darüber, unmittelbar vor der Umzugsampel (deren Zeile bleibt die letzte) — auch wenn der Sitzungswächter den Satz schon eingesetzt hat. Wortlaut aus `logs/sitzungswaechter/letzter_satz.txt` bzw. `AKTUELLER_AUFTRAG.md`, nicht aus dem Gedächtnis; ist kein Auftrag startklar, steht das dort (Betreiber 02.10.2026, 10:45: „merke dir das endlich für die Zukunft“; Fehler Nr. 19) | 6b, Start |
 | ☐ | Eine Auswahlkarte kommt erst danach, als letzter Schritt: Ergebnis, Dateien, Kopierblöcke, „Deine Aufgaben“ und Umzugsampel sind vorher zugestellt (M1, Betreiber 30.09.2026) | 6d |
@@ -77,12 +86,16 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Dateiname und Überschrift nennen den Empfänger (`CLOUD_TB-` · `MAC_` · `FABLE_`) | 2 |
 | ☐ | Bei Fable: bestehender oder neuer Chat — in der Überschrift und im Text | 1, 2 |
 | ☐ | Fable-Anfrage: Steht ihr voller Text als Kopierblock in DIESER Antwort? Repo und Ablage sind Archiv, nicht die Übergabe (Rüge 24.09.2026; erneut 29./30.09.2026) | 15, Austausch Nr. 5 |
+| ☐ | ⭐ Eine Fable-Anfrage ab rund 20 KB geht als Datei in den Chat, der Betreiber lädt sie im Fable-Chat hoch; kürzere bleiben Kopierblock. Diese Zeile geht der Zeile darüber und der Ausnahme in der ersten Zeile dieser Gruppe vor (Betreiber, Karte 07.10.2026, 22:44: „Ja, ab 20 KB als Datei (Empfohlen)“; 07.10.2026: Kopierblock von 34 882 B einmal gelesen und einmal ausgegeben) | 15, Austausch Nr. 5a |
 | ☐ | An Fable nur vorgeprüfte Verfahrensfragen; vor der nächsten Anfrage Fables letzte Umzugsampel prüfen — über 300 000 zieht Fable zuerst um (30.09.2026) | 22.11 |
 | ☐ | Fable-Anfrage nennt die Abschnittsnummern aller berührten Registerstellen; Fable öffnet diese, was der Index als „gilt“ und „dazu“ nennt, und weitere nach eigenem Urteil (F5, 01.10.2026) | 22.11 |
 | ☐ | Fable-Übergabetexte kurz: keine Fehlerliste und keine Landkarte, die schon in R52, 50.1 oder im Index steht — Verweis statt Wiederholung (F6). Probe über zwei Anfragen: ein Fable-Chat je Anfrage, erst nach Fables Antwort auf die Verfahrensfrage zu 27 (F4) (01.10.2026) | 22.11 |
 | ☐ | Dokumente für Fable legt der steuernde Chat selbst ab, in Projektablage und Repo, ohne Aufgabe an den Betreiber; dazu schreibt er den Übergabetext als Kopierblock (Betreiber 01.10.2026, 22:34: „Merke dir das für die Zukunft.“) | 22.11 |
+| ☐ | Eine Fable-Anfrage baut ein frischer Helfer (Vorprüfung und Entwurf), ein zweiter liest gegen. Ein frischer Chat nur nach dem Ja des Betreibers zum Umzug (Regel 05.10.2026, 23:58, geht vor); der Kopierblock kommt aus einer Datei, die ein Skript gebaut hat, und wird nur einmal in den Chat geholt — ab rund 20 KB geht die Datei selbst (Zeile „ab rund 20 KB“ oben) (Vorgabe W4, 08.10.2026; 06.10.2026: Rund 82 000 kostete die Fable-Anfrage) | 22.10; UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 5 |
+| ☐ | Beim Ausgeben einer Anfrage spät am Tag den Betreiber fragen, wann er sendet, oder das Datum offen lassen (06.10.2026: wann der Betreiber sie abgeschickt hat, ist nicht gemessen) | UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 3 |
 | ☐ | Kein Archiv: Commit im Repo und einzelne Dateien im Chat | 2 |
 | ☐ | `BACKLOG.md`/`JOURNAL.md` als Nachtrag (neue Blöcke, benannte Ersetzungen mit Stelle), nie ganz neu; `ARBEITSWEISE.md` ganz | 2 |
+| ☐ | Nach dem Ersetzen in umbrochenem Text die Zeilenlängen prüfen (06.10.2026: die Eröffnung trägt zwei unschöne Zeilenumbrüche) | UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 4 |
 
 **Wenn ein Arbeitsabschnitt endet oder ein Verlust droht**
 
@@ -95,19 +108,24 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Nichts verworfen oder gelöscht, ohne vorher zu fragen | 6 |
 | ☐ | Ein nötiger Umzug wird frühzeitig angekündigt — nach gemessener Ampel (Verlauf ab 200 000 am nächsten sauberen Stand oder vor dem nächsten grossen Block), mit Zahl und Uhrzeit; ein Chat je Auftragsrunde (S1; Schwelle nach der Ampel vom 01.10.2026, 21:35) | 10; UMZUG 3 |
 | ☐ | ⭐⭐ Umgezogen wird nur, wenn der Betreiber es sagt oder genehmigt. Der steuernde Chat zieht nicht von sich aus um: Er kündigt den Umzug an (Zeile darüber, mit Zahl und Uhrzeit), fragt per Karte und arbeitet weiter, bis der Betreiber entscheidet (Betreiber 05.10.2026, 23:58: „Nein du ziehst zukünftig um wenn ich das sage oder genehmige“; Lesart des steuernden Chats, vorläufig: gilt bei jeder Ampelfarbe, Umzugsblock und Eröffnungstext erst nach dem Ja) | UMZUG 3; UEBERGABE, Nachtrag 06.10.2026, 00:13 |
+| ☐ | Die Karte zum Umzug kommt vor dem grossen Block statt danach und vor dem Warten statt danach (06.10.2026, so getragen) | UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 4; UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 5 |
 | ☐ | Beim Umzug: der Eröffnungstext als ERSTE Nachricht im laufenden Chat, als eigener Kopierblock vor allen Erläuterungen (Betreiber 29.09.2026, „zukünftig“) | UMZUG 6 |
+| ☐ | Arbeitet ein Chat nach dem Eröffnungstext weiter, kennzeichnet er den alten Text in derselben Antwort als überholt und gibt beim Umzug einen neuen aus (06.10.2026: Der Eröffnungstext von 16:41 lag drei Stunden im Chat) | UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 2 |
+| ☐ | Arbeitsstände sofort nach `logs/steuernder_chat/`; der Ordner ist von git ignoriert und zählt nicht als Träger nach 10 Nr. 2 (06.10.2026, so getragen; Lesart des steuernden Chats, vorläufig, zum Träger) | UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 4 |
 
 **Wenn eine Entscheidung beim Betreiber liegt**
 
 | | Regel | steht in |
 |---|---|---|
 | ☐ | Karte nur für echte Betreiberentscheide: Freigaben (Register, Sperrliste, Signalpfad, Parameterdateien), Löschen und Ablage entfernen, Umzug, Geld, Unumkehrbares. Handwerk entscheidet der steuernde Chat selbst: „Vorgabe: X — gilt, wenn du nicht widersprichst“ (M3, 30.09.2026) | 6d |
+| ☐ | Vor einer Vorgabe zur Reihenfolge das Vorbild im Register messen lassen (06.10.2026, 20:19: die Vorgabe „als Nächstes der Registereintrag“ stand vor der Messung) | UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 1; UEBERGABE, Nachtrag 06.10.2026, 21:00 |
 | ☐ | Eine Freigabe je Sperrlistendatei nennt deren Tests ausdrücklich mit (R31 (b)) | Register 47.14 |
 | ☐ | Als anklickbare Karte, nicht als Absatz und nicht als Tabelle; höchstens **eine** Karte je Antwort, bis zu vier Fragen gebündelt, als letzter Schritt der Antwort (M1, M2, 30.09.2026) | 6d, Form |
 | ☐ | Möglichkeiten vollständig, jede mit Preis; **eine** Empfehlung an erster Stelle, gekennzeichnet; Begründung, was sie schlechter macht | 6d |
 | ☐ | Auch bei zwei Wegen, auch wenn sie klein wirkt — sofern es ein Betreiberentscheid nach M3 ist | 6d, Form |
 | ☐ | Hängt sie an etwas, das nur der Betreiber weiss: das sagen, nicht raten | 6d |
 | ☐ | Die Frage ist kein Haltepunkt — die Arbeit läuft daneben weiter; Verfahrensfragen vor dem Tag an Betreiber oder Fable, nie nach erwartetem Effekt | 13 |
+| ☐ | Zusatz zur Zeile darüber (W8): Eine offene Karte hält den Chat technisch an — vor der Karte wird alles Unabhängige angestossen, auch langlaufende Helfer (Vorgabe 08.10.2026; 07.10.2026: Die Karte stand von 11:37 bis 14:55 offen; solange arbeitet der Chat nicht.) | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 6 |
 
 **Wenn ich den Betreiber anleite**
 
@@ -133,6 +151,8 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Freigabepflichtige Befehle bleiben beim Betreiber — alles bis dahin ist fertig | 13 |
 | ☐ | Kein `git status` über die Geräteanbindung — auch nicht bei der allerersten Messung eines neuen Chats. git über die Brücke nur mit `--no-optional-locks` (`rev-parse`, `log`, `show`, `ls-files`, `diff --name-only`, `worktree list`), dazu md5 (30.09.2026: ein `git status` hinterliess eine `.git/index.lock`, die die Brücke nicht löschen konnte) | 14, Regel 4 |
 | ☐ | Über die Geräteanbindung auch kein `git diff` (weder `--name-only` noch `--numstat`) und kein `git check-ignore`; erlaubt sind nur `rev-parse`, `log`, `show`, `ls-files` und `worktree list`, je mit `--no-optional-locks`. Geänderte Dateien zeigt `ls-files -m`, Unverfolgtes `ls-files -o --exclude-standard` (ein ignorierter Pfad erscheint dort nicht); Zeilenbilanzen mit `diff` zweier Kopien ausserhalb des Repos. Diese Zeile geht der Zeile darüber vor, soweit jene `diff --name-only` nennt (Liste aus der Vorgabe im Nachtrag 04.10.2026, 21:07; 04.10.2026: `diff --name-only` schrieb vermutlich `.git/index` neu, nicht bewiesen, und `diff --numstat` lag ausserhalb der Vorgabe; 05.10.2026: `check-ignore` ebenso) | UEBERGABE, Umzug 04.10.2026, 10:56, Block 7; Nachtrag 04.10.2026, 21:07; Umzug 05.10.2026, 22:31 und 23:46, Block 7 |
+| ☐ | Jede `ls`- und `grep`-Ausgabe mit `head` begrenzen (06.10.2026: zwei Werkzeugausgaben ohne Grenze) | UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 1; UEBERGABE, Nachtrag 06.10.2026, 14:25 |
+| ☐ | Bauläufe über die Brücke in Einzelschritten, nichts im Hintergrund, kein Aufruf über 150 s (07.10.2026: die Geräteanbindung fiel 21:31 weg, während ein Helfer einen langen Bau im Hintergrund laufen liess) | UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 4 |
 
 **Wenn eine Mac-Sitzung startet, endet oder abbricht**
 
@@ -149,10 +169,12 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Nie zusammengefasst, nie im Fliesstext, nie weggelassen, weil es letztes Mal schon dastand | 6b, Ende |
 | ☐ | Meldet er „Abbruch": messen, wie weit die Sitzung kam (Commits, Arbeitsbaum, `index.lock`), dann die passenden Blöcke ohne Rückfrage | 6b, Start |
 | ☐ | Nach dem Auslöser: Ist Schritt 0 committet? Ohne Commit ist der Satz nicht angekommen ⇒ einmal Hinweis an den Betreiber, dann warten; keine Nachschau-Kette (29.09.2026) | 22.5 |
+| ☐ | Klarstellung zur Zeile darüber (W5): Beide Zeilen gelten: nach jedem Start-Auslöser plant der steuernde Chat eine Nachschau per `send_later` (unter einer Stunde); ohne Commit von Schritt 0 ein Hinweis an den Betreiber, dann warten, keine Nachschau-Kette (Vorgabe 08.10.2026; 07.10.2026: nach dem Auslöser für TB-140 war keine Nachschau per `send_later` geplant) | 22.5; UMZUG 3 |
 | ☐ | Vor dem Schliess-Auslöser das Alter des letzten Commits messen (`git --no-optional-locks log -1 --format=%ct`), erst ab 600 s auslösen (29.09.2026) | 22.8 |
 | ☐ | Ist ein Mac-Auftrag startklar, legt der steuernde Chat die Claude-Code-Sitzung selbst über den Sitzungswächter an, bevor er dem Betreiber „Satz abschicken“ als Aufgabe gibt. Weist der Wächter ab, weil eine alte Sitzung schläft, und hat sie nicht gearbeitet, schliesst der steuernde Chat sie über den Schliess-Auslöser und startet neu, ohne Rückfrage. „Nicht gearbeitet“ wird gemessen: kein Commit seit ihrem Start, letzter Commit älter als 600 s, nichts Neues unter dem Belegordner des Auftrags, Rechenzeit zwischen zwei Abweisungen des Wächters praktisch unverändert. Der Wächter ist seit dem 23.09.2026 der Weg (`docs/werkzeuge/sitzungswaechter/LIESMICH.md`); die Startblöcke weiter oben gelten für den Start von Hand (Betreiber 05.10.2026, 21:25: „Legst du mir zukünftig wieder bereits eine claude code Sitzung an“; Lesart des steuernden Chats, vorläufig) | UEBERGABE, Nachtrag 05.10.2026, 21:27 |
 | ☐ | Ein Start ausserhalb des Wächters wird erst zugesagt, wenn gemessen ist, wo die Sitzung läuft (Fehler Nr. 20) | UEBERGABE, Umzug 04.10.2026, 10:56, Block 7 |
 | ☐ | Ein abgewiesener Start-Auslöser taugt als Sonde: Der Wächter nennt PID, Laufzeit und Rechenzeit; zwei Abweisungen im Abstand zeigen, ob eine Sitzung arbeitet (05.10.2026) | UEBERGABE, Umzug 05.10.2026, 22:31, Block 7 |
+| ☐ | Die Sonde `starte_TB-99` vor dem Zeigerwechsel legen (07.10.2026, so getragen; ebenso die Sonde vor dem Zeigerwechsel im Umzug 23:39) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 6 |
 
 **Wenn Dateien abgelegt oder aus der Ablage gelesen werden**
 
@@ -169,11 +191,13 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Neue Fable-Antworten über `project_info` (Liste) prüfen, nicht über die Suche (25.09.2026); Antworten über `project_info` finden, ins Repo übertragen, md5 prüfen (29.09.2026) | UEBERGABE_ARCHIV |
 | ☐ | Das Register liegt in der Ablage je Abschnitt (`REGISTER_KOPIE_ABSCHNITT_<nn>.md`, `REGISTER_INDEX.md` nennt die Datei; erzeugt mit `registerkopie.py --abschnitte`); geöffnet wird nur, was gebraucht wird, im Wortlaut — keine Kurzfassung als zweite Quelle, keine zusammenfassenden Helfer (F1, 01.10.2026) | 23 |
 | ☐ | Grosse Dokumente nicht im Chat zusammensetzen: abschnittsweise in Dateien schreiben, nicht mehrfach umbauen, keine ganzen Dateien in den Chat holen; Mechanik (Anker zählen, md5, Zeilenbereiche, Diffs) als Skript, nicht als Helfer (S3, S6, 01.10.2026) | 22.10 |
+| ☐ | Backlog-Übersichten in eine Datei schreiben und nur die Kandidaten in den Chat holen (06.10.2026: 17 KB Zeilenanfänge des Backlogs im Chat) | UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 2 |
 | ☐ | Vor jedem Lesen in den Chat die Bytes messen und mit ÷ 1,6 gegen die Ampel rechnen; von Vorlagen nur die Gliederung und die eine gebrauchte Stelle; Wortlaute, die ein Skript einsetzt, liest das Skript (Fehler Nr. 18, 02.10.2026: Verlauf 173 970 nach 7 Minuten, 272 304 nach 33 Minuten) | UEBERGABE, Nachtrag 02.10.2026, 10:04 |
 | ☐ | „Frischer Stage-Pfad“ heisst ein neuer Pfadname: Ein zweites `device_commit_files` aus demselben Pfad meldete „written“ und liess die alte Fassung liegen. Die md5-Wache steht vor Zeiger, Nachtrag und Auslöser (T7, erneut am 02.10.2026 bei TB-130) | 23 |
 | ☐ | Die Erneuerung der Ablage (Abschnittsdateien, Index, Dialog-Index) macht ein Helfer, nicht der steuernde Chat; als Kontrolle genügt `project_info`. Statt vieler md5-Zeilen im Chat ein md5 über die md5-Liste (05.10.2026: 57 Antworten von `project_write` und eine Suche mit zwei ganzen Treffern standen im Chat) | UEBERGABE, Umzug 05.10.2026, 23:46, Block 7 |
 | ☐ | Ausschnitte aus Codeblöcken an der Zaunzeile schneiden; weicht die gemessene Grösse von der erwarteten ab, zuerst den Bereich prüfen (05.10.2026: rund 15 KB statt rund 7 KB gelesen) | UEBERGABE, Umzug 05.10.2026, 22:31, Block 7 |
 | ☐ | Die Suche der Ablage liefert Ausschnitte auch aus gesperrten Dateien (04.10.2026: `BACKLOG.md` im Leseprotokoll von Fable 04a). Wie ein solcher Ausschnitt unter dem Sichtschutz zählt, ist Lesart des steuernden Chats, vorläufig, und geht zur Kenntnis an Fable | UEBERGABE, Umzug 04.10.2026, 13:17, Block 4; Register 54.6 Nr. 9 |
+| ☐ | Ein Ablege-Skript prüft erst alles und schreibt dann; es ist wiederholbar gebaut (06.10.2026: Das Ablege-Skript scheiterte an einer falschen Zählung im Zeiger, nachdem es den Auftrag schon kopiert hatte) | UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 2 |
 
 **Wenn ich ein fremdes Ergebnis bewerte (Cloud, Mac, Fable)**
 
@@ -186,6 +210,8 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Nummern am Block zählen, nicht an der Kurzfassung (Fehler Nr. 17: Der Registerblock von Fable 01a reichte bis R62, „Kurz“ nannte R62 nicht) | UEBERGABE, Nachtrag 02.10.2026, 07:46 |
 | ☐ | Ein „kein Widerspruch“ nennt, was gemessen ist und was nicht; eine Teilmessung heisst Teilmessung (02.10.2026: „Unsicher“ 2 zu Fable 01a, vom Gegenleser berichtigt) | UEBERGABE, Nachtrag 02.10.2026, 10:04 |
 | ☐ | Die Abnahme macht ein eng zugeschnittener Helfer, nur lesend, mit eigenem Ordner für Rohausgaben ausserhalb des Repos; er rechnet jede Zahl an der Rohausgabe nach (wie oben in dieser Gruppe), die Kernzahlen rechnet der steuernde Chat danach mit eigenen Befehlen nach (05.10.2026, Abnahme TB-136) | UEBERGABE, Nachtrag 05.10.2026, 22:55; Umzug 05.10.2026, 22:31 und 23:46, Block 7 |
+| ☐ | Ein Sammelwort für Befunde erst wählen, wenn jeder Befund einzeln eingeordnet ist (07.10.2026: „acht formale Befunde“ für eine Liste, in der zwei Aussagen ohne Beleg standen) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 3; UEBERGABE, Nachtrag 07.10.2026, 10:32, Abschnitt 8 Nr. 1 |
+| ☐ | Bei Widerspruch misst der steuernde Chat die eine Tatsache selbst, mit einem Skript (07.10.2026: Zwei Helfer widersprachen sich, K13) | UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 3 |
 
 **Wenn ich einen Auftrag schreibe**
 
@@ -224,6 +250,19 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Der Chat, der eine Fable-Antwort bewertet, baut nicht auch den Registerauftrag (04.10.2026: Übernahme und Bewertung kosteten 173 189, der Bau im selben Chat führte auf 358 513) | UEBERGABE, Umzug 04.10.2026, 13:17, Block 7 |
 | ☐ | Ein Registerauftrag sagt, was Schritt A committet (Abnahme TB-136: die Skripte für B, C und D lagen schon im Registercommit) | UEBERGABE, Nachtrag 05.10.2026, 22:55 |
 | ☐ | Unveränderte Textteile übernimmt ein Skript aus der Quelle, mit `assert` auf die Ankerzeilen; abgetippt wird nichts (05.10.2026) | UEBERGABE, Umzug 05.10.2026, 23:46, Block 7 |
+| ☐ | ⭐ Helfer bauen ausserhalb des Repos (Aufträge, Registerentwürfe); Urteil und Freigabe bleiben beim steuernden Chat; ins Repo schreibt nur die Mac-Sitzung; ein frischer Gegenleser ist Pflicht (Betreiber, Karte 08.10.2026: „Helfer bauen Entwürfe (Empfohlen)“) | 22.10 |
+| ☐ | Die Bestandsaufnahme vor dem Bau (zwei Helfer, getrennter Zuschnitt); Bestand und Entwurf in einem Helfer, danach Gegenleser mit getrenntem Zeilenbereich (06. und 07.10.2026, so getragen) | UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 6; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8 |
+| ☐ | F1 bleibt für Registertext. Helferberichte darf ein Helfer auf die Stellen schneiden, die der Bau braucht: wörtlich, mit Zeile, nichts umformuliert; der Chat, der einen Auftrag baut, liest die Kernlektüre und sonst nur Ausschnitte (Betreiber, Karte 08.10.2026: „Nur wörtlicher Auszug (Empfohlen)“; 06.10.2026: Kernlektüre 43 KB, Bestandsbericht 30 KB) | 22.10; UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 3 |
+| ☐ | T1 bleibt (aus Helferberichten nur die Abweichungen in den Chat); was in Registertext oder eine Vorgabe geht, liest der steuernde Chat an der Tabelle des Berichts, nicht an der Kurzantwort; der Gegenleser bekommt genau diese Stellen genannt (Vorgabe W6, 08.10.2026; 07.10.2026: „zwei zu zwei“ und „keiner zwingend“ ungeprüft übernommen) | 22.10; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 2 |
+| ☐ | Befunde, die eine Messung, einen Sollwert, eine Fundstelle oder Registertext ändern, werden immer eingearbeitet; reine Formlücken dürfen als Hinweis im Auftrag stehen bleiben, der steuernde Chat nennt sie dem Betreiber bei der Übergabe; dem Berichtiger ein Grössenziel geben (Betreiber, Karte 08.10.2026: „Wichtiges ja, Form als Hinweis (Empfohlen)“; 07.10.2026: TB-140 wuchs über drei Gegenleserunden von 58 709 B auf 159 021 B) | 22.10; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 2 |
+| ☐ | Zählungen im Auftrag kommen aus dem Skript; zwei Runden Gegenlesen bleiben (06.10.2026: beim Bau von TB-133 die Zeilen einer Einfügung falsch gezählt) | UEBERGABE, Umzug 06.10.2026, 07:08, Block 7 Nr. 3 |
+| ☐ | Helferberichte auf rund 3 KB begrenzen, das Übrige in Dateien; enge Helfer mit Berichtsgrenze und Berichtsdatei (06.10.2026; ergänzt T1 in 22.10) | UEBERGABE, Umzug 06.10.2026, 07:08, Block 7 Nr. 4; UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 4 |
+| ☐ | Lange Auftragstexte aus Bausteindateien per Skript bauen; Helferaufträge aus Bausteindateien bauen — der Helfer liest seinen Auftrag selbst (07.10.2026: rund 20 Aufträge zu 3 bis 6 KB von Hand geschrieben) | UEBERGABE, Umzug 06.10.2026, 07:08, Block 7 Nr. 4; UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 2; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 1; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 1 |
+| ☐ | Vorzählung als Skript vor und nach jeder Berichtigung; Berichtigungen per Skript mit `assert` auf genau einen Treffer (06.10.2026, so getragen) | UEBERGABE, Umzug 06.10.2026, 07:08, Block 7 Nr. 5; UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 4; UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 6 |
+| ☐ | Vor einer Lesart den Index nach „gilt“ und „dazu“ fragen (06.10.2026: der Beginn je Bot zuerst nur auf 21.5 gestützt) | UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 1; UEBERGABE, Nachtrag 06.10.2026, 14:25 |
+| ☐ | Ein Bauskript prüft an der Quelle; zwei gleichzeitige Gegenleser mit getrenntem Zuschnitt (Quellen, Logik) und ein dritter für die Nachlese (06.10.2026: Bauskript mit 139 Prüfungen an der Quelle; 07.10.2026: zwei Gegenleser mit getrenntem Bereich) | UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 5; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 6 |
+| ☐ | Die Simulation an Kopien samt Gegenprobe; den nächsten Auftrag vorbauen, während eine Sitzung misst (07.10.2026: der Vorbau von TB-139 während der Messung) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8 |
+| ☐ | Vor einem Helferstart prüfen, ob der Zielordner schon existiert (07.10.2026: Ein Helferaufruf lief, ohne dass sein Bericht ankam; der zweite fand dessen `v3/` vor) | UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 5 |
 
 ---
 
@@ -1316,6 +1355,8 @@ die Cloud-Sitzungen können `docs/PRUEFPRINZIPIEN.md` lesen.
 ⚠️⚠️ **Ausdrückliche Anweisung des Betreibers, 19.09.2026:** *„Mache immer
 direkt weiter ohne das ich dich fragen muss wie geht es weiter."*
 
+⚠️⚠️ **Ergänzung, Betreiber 07.10.2026, 19:44 („zukünftig“):** *„Ich fand deine selbstständige Arbeitsweise heute super und möchte das du zukünftig immer so arbeitest!“* Lesart des steuernden Chats, vorläufig — „so“ heisst: Grosses bauen und prüfen Helfer mit eigenem Kontext, der steuernde Chat holt nur Kurzberichte; Handwerk entscheidet er als Vorgabe, Karten nur für echte Betreiberentscheide; nach jedem Schritt folgt ohne Startzeichen der nächste, auch über mehrere Aufträge und während eine Mac-Sitzung läuft; Zwischenmeldungen mit Ergebnis statt Rückfragen; Aufgaben an den Betreiber nur, wo seine Hand nötig ist. Was Helfer bauen und was der steuernde Chat aus Helferberichten liest, regelt seit dem 08.10.2026 die Ergänzung in 22.10 (W1, W2, W6); sie geht der Lesart vor (UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46).
+
 > ⭐⭐ **Eine Antwort endet nie mit einem Stillstand.** Ist der nächste Schritt
 > Handwerk, wird er **getan** — nicht angekündigt, nicht zur Entscheidung
 > gestellt, nicht auf ein Startzeichen gelegt. **Der Betreiber soll nie fragen
@@ -1337,6 +1378,11 @@ oder an Fable, und **nie nach erwartetem Effekt**. ⭐ **Der Unterschied ist,
 WIE gefragt wird:** Eine Entscheidungsvorlage ist **kein Haltepunkt**. Sie wird
 als anklickbare Frage mit Empfehlung gestellt (Abschnitt 6d) — und die Arbeit
 läuft daneben weiter. **Gefragt wird nebenher, nicht statt zu arbeiten.**
+⭐ **Zusatz 08.10.2026 (W8; Vorgabe des steuernden Chats, gilt, da nicht
+widersprochen):** Eine offene Karte hält den Chat technisch an. Am 07.10.2026
+stand eine Karte von 11:37 bis 14:55 offen; solange arbeitete der Chat nicht
+(UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 6). Deshalb gilt:
+vor der Karte wird alles Unabhängige angestossen, auch langlaufende Helfer.
 
 ⚠️ **Ebenso unberührt:** Freigabepflichtige Befehle bleiben beim Betreiber
 (Abschnitt 7, Vorsatz). *„Direkt weitermachen"* heisst **nicht**, sie selbst
@@ -1719,6 +1765,7 @@ FEHLT). Der Wortlaut ist an der Fundstelle nachgelesen, nicht aus der Kurzfassun
 | **3** | ⭐ **Ein Übergabetext bekommt eine Fassungszeile im Sendetext selbst**, nicht nur im Rahmendokument. Sonst ist von aussen nicht unterscheidbar, welche Fassung jemand hat | Ein Übergabetext an Fable ging hinaus, dessen vier Fragen er schon beantwortet hatte; die Antwort lag seit einer Stunde vor | ebd., Nr. 3 — D2 21/3 |
 | **4** | ⭐⭐ **Eine Berichtigung von Fable wird gemessen wie jede andere Behauptung — gerade dann, wenn sie uns berichtigt.** Wer sagt „ich kann die Quelle nicht lesen“, liefert damit den Grund, seine Quellenangabe zu prüfen, nicht sie zu übernehmen | Fables Berichtigung einer Kette ungeprüft in einen Auftrag geschrieben, obwohl er im selben Absatz sagte, er könne das Register nicht lesen. Der Auftrag hätte die richtige Kette zerstört | ebd., Ergänzung „Ein siebter Fehler für Block 7“, Nr. 7 — D2 21/7 |
 | **5** | ⭐ **Eine Fable-Anfrage ist erst übergeben, wenn sie als Kopierblock in der Antwort stand.** Das Ablegen fühlt sich wie Erledigung an; es ist keine | Rüge des Betreibers, 24.09.2026, 21:15: *„wieso schickst du mir die fable anfragen nicht?“* | `projektfuehrung/UEBERGABE_2026-09-24.md`, Block 8, „Die zwei Rügen des Betreibers“, Nr. 2 — D2 24/R2 |
+| **5a** | ⭐ **Eine Fable-Anfrage ab rund 20 KB geht als Datei in den Chat, der Betreiber lädt sie im Fable-Chat hoch; kürzere bleiben Kopierblock.** Für die Datei gilt Regel 5 entsprechend: übergeben ist sie erst, wenn sie als Datei im Chat stand (Lesart des steuernden Chats, vorläufig) | Anfrage 07.10.a: der Kopierblock (34 882 B einmal gelesen und einmal ausgegeben) | Betreiber, Karte 07.10.2026, 22:44: „Ja, ab 20 KB als Datei (Empfohlen)“ (W3); UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 1 |
 | **6** | ⭐⭐ **Ein Sichtschutz-Treffer wird mit Fundstelle gemeldet, nicht mit Inhalt.** Das ist **Registertext 27.5**; er bindet — hier steht nur der Verweis, nicht der Text | Beim Melden eines Sichtschutz-Verstosses an Fable die betroffene Zeile selbst zitiert — den Sichtschutz beim Melden verletzt | `projektfuehrung/UEBERGABE_2026-09-19.md`, Block 7 (Fassung 21.09.), Ergänzung „Ein sechster Fehler für Block 7“, Nr. 6 — D2 21/6 |
 
 ---
@@ -2081,6 +2128,8 @@ drei Messungen:
 beim nächsten Kontakt von selbst gelesen. Der Betreiber muss nicht „Fable ist
 fertig" sagen, damit sie gefunden wird.
 
+⭐ **Klarstellung 08.10.2026 (W5; Vorgabe des steuernden Chats, gilt, da nicht widersprochen):** Beide Zeilen gelten: nach jedem Start-Auslöser plant der steuernde Chat eine Nachschau per `send_later` (unter einer Stunde); ohne Commit von Schritt 0 ein Hinweis an den Betreiber, dann warten, keine Nachschau-Kette. Gemeint sind die Regel oben und die Zeile in Abschnitt 0, Gruppe „Wenn eine Mac-Sitzung startet, endet oder abbricht“ („keine Nachschau-Kette (29.09.2026)“). „Unter einer Stunde“: Eine Nachschau liegt unter einer Stunde (UMZUG 3, S7). Anlass: nach dem Auslöser für TB-140 war keine Nachschau per `send_later` geplant (UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46).
+
 ### 22.6 ⭐ Eine untätige Sitzung ist kein Schreibverbot — aber sie wird gemessen
 
 **Die stehende Regel** lautet: *nichts nach `docs/` schreiben, solange eine
@@ -2259,6 +2308,15 @@ Nachträge 29.09.2026, 12:25, 13:20 und 14:52).
   Vergleich (Ergebnis in 22.12).
 - Grosse Ablage-Dateien liest ein Helfer; der Chat liest nur, was er für eine
   Entscheidung im Wortlaut braucht (29.09.2026).
+
+⭐ **Ergänzung 08.10.2026 — Entscheide W1, W2 und W7 (Betreiber per Karte, gestellt 08.10.2026, 00:34; beantwortet vor 08.10.2026, 06:55) und Vorgaben W4 und W6 des steuernden Chats (Antwort 08.10.2026, 00:33; gelten, da nicht widersprochen):**
+- **W1** „Helfer bauen Entwürfe (Empfohlen)“: 22.10 wird ergänzt — Helfer bauen ausserhalb des Repos (Aufträge, Registerentwürfe); Urteil und Freigabe bleiben beim steuernden Chat; ins Repo schreibt nur die Mac-Sitzung; ein frischer Gegenleser ist Pflicht.
+  Das geht dem Grundsatz „nie deuten“ und dem Satz „Nie für Register, Commits, Aufträge schreiben oder Freigaben“ oben vor, soweit es um Entwürfe ausserhalb des Repos geht; Anlass ist der Betreibersatz vom 07.10.2026, 19:44, in 13 (Lesart des steuernden Chats, vorläufig).
+- **W2** „Nur wörtlicher Auszug (Empfohlen)“: F1 bleibt für Registertext. Helferberichte darf ein Helfer auf die Stellen schneiden, die der Bau braucht: wörtlich, mit Zeile, nichts umformuliert; was in Registertext oder eine Vorgabe geht, liest der steuernde Chat an der Tabelle des Berichts. Das geht dem Satz „liest der Auftraggeber selbst im Wortlaut an der Fundstelle“ oben vor, soweit der Bericht den Wortlaut mit Zeile trägt (Lesart des steuernden Chats, vorläufig).
+- **W7** „Wichtiges ja, Form als Hinweis (Empfohlen)“: Befunde, die eine Messung, einen Sollwert, eine Fundstelle oder Registertext ändern, werden immer eingearbeitet; reine Formlücken dürfen als Hinweis im Auftrag stehen bleiben, der steuernde Chat nennt sie dem Betreiber bei der Übergabe.
+  Das präzisiert den Satz „Befunde werden vor dem Übergeben eingearbeitet“ oben.
+- **W4:** Eine Fable-Anfrage baut ein frischer Helfer (Vorprüfung und Entwurf), ein zweiter liest gegen. Ein frischer Chat nur nach dem Ja des Betreibers zum Umzug (Regel 05.10.2026, 23:58, geht vor).
+- **W6:** T1 bleibt (aus Helferberichten nur die Abweichungen in den Chat); was in Registertext oder eine Vorgabe geht, liest der steuernde Chat an der Tabelle des Berichts, nicht an der Kurzantwort (Block 7 Nr. 2 des Umzugs 07.10.2026, 23:39).
 
 ### 22.11 Fable-Filter — nur Verfahrensfragen, vorgeprüft (Betreiber 29.09.2026)
 

@@ -1,0 +1,4 @@
+# TB-141 0b — Ausgang der Zieldateien an f7d57d4 (sha256 · md5 · Zeilen)
+docs/projektfuehrung/ARBEITSWEISE.md · sha256 dc35da4cb0c9ed94ae804361ac997b78a5a6afd65e6a30b3f4d7fbec47ab1c0d · md5 e85163e98db7f0b9387f4c990b67f8ca · Zeilen 2413
+docs/projektfuehrung/BACKLOG.md · sha256 b8a74fcec2a6cfd62fd6904aaf681aee684c22817b259e9ed8fc3b4fcbfc1746 · md5 583b4049aca0bd9e9aa12c97580c21c5 · Zeilen 349
+docs/projektfuehrung/JOURNAL.md · sha256 d2b6cc10873f8542aa30c7f47b0498fbdfe2a628ca6a11f58193e95ce39eda89 · md5 1eb65c7e9fbc378b8713fef7af4e1160 · Zeilen 10528
