@@ -1,0 +1,38 @@
+# TB-141 C3 — Zeichengleichheit (tb141_einfuegen.py vergleich)
+E1 · docs/projektfuehrung/ARBEITSWEISE.md · 183 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E2 · docs/projektfuehrung/ARBEITSWEISE.md · 378 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E3 · docs/projektfuehrung/ARBEITSWEISE.md · 576 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E4 · docs/projektfuehrung/ARBEITSWEISE.md · 281 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E5 · docs/projektfuehrung/ARBEITSWEISE.md · 629 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E6 · docs/projektfuehrung/ARBEITSWEISE.md · 203 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E7 · docs/projektfuehrung/ARBEITSWEISE.md · 416 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E8 · docs/projektfuehrung/ARBEITSWEISE.md · 756 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E9 · docs/projektfuehrung/ARBEITSWEISE.md · 192 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E10 · docs/projektfuehrung/ARBEITSWEISE.md · 231 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E11 · docs/projektfuehrung/ARBEITSWEISE.md · 553 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E12 · docs/projektfuehrung/ARBEITSWEISE.md · 267 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E13 · docs/projektfuehrung/ARBEITSWEISE.md · 333 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E14 · docs/projektfuehrung/ARBEITSWEISE.md · 472 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E15 · docs/projektfuehrung/ARBEITSWEISE.md · 391 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E16 · docs/projektfuehrung/ARBEITSWEISE.md · 246 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E17 · docs/projektfuehrung/ARBEITSWEISE.md · 203 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E18 · docs/projektfuehrung/ARBEITSWEISE.md · 267 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E19 · docs/projektfuehrung/ARBEITSWEISE.md · 497 Bytes · 2 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E20 · docs/projektfuehrung/ARBEITSWEISE.md · 4242 Bytes · 13 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E21 · docs/projektfuehrung/ARBEITSWEISE.md · 870 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E22 · docs/projektfuehrung/ARBEITSWEISE.md · 373 Bytes · 5 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E23 · docs/projektfuehrung/ARBEITSWEISE.md · 515 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E24 · docs/projektfuehrung/ARBEITSWEISE.md · 699 Bytes · 1 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E25 · docs/projektfuehrung/ARBEITSWEISE.md · 2120 Bytes · 8 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E26 · docs/projektfuehrung/BACKLOG.md · 4275 Bytes · 12 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+S1 · Prüfanker 'Karte nur für echte Betreiberentscheide: Freigaben' · nachher 1 · ok
+S2 · Prüfanker 'Nach jedem ausgelösten Auftrag plant der steuernde Chat eine' · nachher 1 · ok
+S3 · Prüfanker 'Abschriften aus der Ablage zweifach unabhängig' · nachher 1 · ok
+S3 · Prüfanker 'md5 und `wc -c` auf beiden Seiten' · nachher 1 · ok
+S3 · Prüfanker 'Statt vieler md5-Zeilen im Chat ein md5 über die md5-Liste' · nachher 1 · ok
+S3 · Prüfanker 'Ist ein Mac-Auftrag startklar, legt der steuernde Chat die C' · nachher 1 · ok
+S3 · Prüfanker 'im selben Schritt, in dem sie in einen Text gehen — nie schä' · nachher 1 · ok
+S4 · Prüfanker 'Umgezogen wird nur, wenn der Betreiber es sagt oder genehmig' · nachher 1 · ok
+S4 · Prüfanker 'und kein `git check-ignore`' · nachher 1 · ok
+S4 · Prüfanker 'Die Erneuerung der Ablage (Abschnittsdateien, Index, Dialog-' · nachher 1 · ok
+Anzahl Einfügungen: 26 · Gesamt: alle zeichengleich, je genau einmal
