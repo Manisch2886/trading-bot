@@ -1,0 +1,5 @@
+Datei: f_porcelain.txt
+Was: git status --porcelain nach dem Abgabe-Commit b39cf3dda483f9b1fdd91cbe6ab3aa33d90fbb03
+Befehl: git status --porcelain > "$TMPDIR/tb145_f.txt", unverändert hierher kopiert (cmp gleich)
+Ergebnis: 0 B, wie Soll
+Bytes: 0 · Zeilen: 0 · md5: d41d8cd98f00b204e9800998ecf8427e

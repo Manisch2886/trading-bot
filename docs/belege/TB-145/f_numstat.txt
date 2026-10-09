@@ -1,0 +1,53 @@
+# TB-145 numstat — git diff --numstat 82b580a6c852dfe191a021e46f2a86889bb852e5 b39cf3dda483f9b1fdd91cbe6ab3aa33d90fbb03 gegen die Sollwerte
+roh: 63	0	docs/ERGEBNIS_TB-145_regelwerk_nachtrag_0809.md
+roh: 2	0	docs/auftraege/_ausloeser/.gitignore
+roh: 9	0	docs/auftraege/_ausloeser/LIESMICH.md
+roh: 5	0	docs/belege/TB-145/0a_status.kopf.txt
+roh: 3	0	docs/belege/TB-145/0a_status.txt
+roh: 5	0	docs/belege/TB-145/0b_ausgang.kopf.txt
+roh: 12	0	docs/belege/TB-145/0b_ausgang.txt
+roh: 6	0	docs/belege/TB-145/a_modus.kopf.txt
+roh: 2	0	docs/belege/TB-145/a_modus.txt
+roh: 5	0	docs/belege/TB-145/e_einfuegen.kopf.txt
+roh: 48	0	docs/belege/TB-145/e_einfuegen.txt
+roh: 5	0	docs/belege/TB-145/e_numstat.kopf.txt
+roh: 34	0	docs/belege/TB-145/e_numstat.txt
+roh: 5	0	docs/belege/TB-145/e_probe.kopf.txt
+roh: 41	0	docs/belege/TB-145/e_probe.txt
+roh: 5	0	docs/belege/TB-145/e_vergleich.kopf.txt
+roh: 33	0	docs/belege/TB-145/e_vergleich.txt
+roh: 5	0	docs/belege/TB-145/e_waechterlog.kopf.txt
+roh: 5	0	docs/belege/TB-145/e_waechterlog.txt
+roh: 5	0	docs/belege/TB-145/e_zweitlauf.kopf.txt
+roh: 58	0	docs/belege/TB-145/e_zweitlauf.txt
+roh: 5	0	docs/belege/TB-145/f_vergleich.kopf.txt
+roh: 33	0	docs/belege/TB-145/f_vergleich.txt
+roh: 5	0	docs/belege/TB-145/f_waechter_md5.kopf.txt
+roh: 4	0	docs/belege/TB-145/f_waechter_md5.txt
+roh: 4	0	docs/belege/TB-145/j_block.kopf.txt
+roh: 28	0	docs/belege/TB-145/j_block.md
+roh: 5	0	docs/belege/TB-145/j_journal.kopf.txt
+roh: 12	0	docs/belege/TB-145/j_journal.txt
+roh: 5	0	docs/belege/TB-145/j_journal_probe.kopf.txt
+roh: 12	0	docs/belege/TB-145/j_journal_probe.txt
+roh: 4	0	docs/belege/TB-145/tb145_einfuegen.kopf.txt
+roh: 256	0	docs/belege/TB-145/tb145_einfuegen.py
+roh: 6	0	docs/belege/TB-145/w_fenster.kopf.txt
+roh: 120	0	docs/belege/TB-145/w_fenster.txt
+roh: 36	0	docs/projektfuehrung/ARBEITSWEISE.md
+roh: 11	0	docs/projektfuehrung/BACKLOG.md
+roh: 41	0	docs/projektfuehrung/JOURNAL.md
+roh: 15	0	docs/projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md
+roh: 2	0	docs/projektfuehrung/UMZUG.md
+roh: 2	0	docs/werkzeuge/sitzungswaechter/LIESMICH.md
+Soll docs/auftraege/_ausloeser/.gitignore 2	0 · Ist [2, 0] · gleich
+Soll docs/auftraege/_ausloeser/LIESMICH.md 9	0 · Ist [9, 0] · gleich
+Soll docs/projektfuehrung/ARBEITSWEISE.md 36	0 · Ist [36, 0] · gleich
+Soll docs/projektfuehrung/BACKLOG.md 11	0 · Ist [11, 0] · gleich
+Soll docs/projektfuehrung/JOURNAL.md 41	0 · Ist [41, 0] · gleich
+Soll docs/projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md 15	0 · Ist [15, 0] · gleich
+Soll docs/projektfuehrung/UMZUG.md 2	0 · Ist [2, 0] · gleich
+Soll docs/werkzeuge/sitzungswaechter/LIESMICH.md 2	0 · Ist [2, 0] · gleich
+weitere Dateien ausser Belegen und Ergebnis: keine
+Gesamt: wie Soll, keine entfernte Zeile in den Zieldateien
+rc 0

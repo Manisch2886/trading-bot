@@ -1,0 +1,5 @@
+Datei: f_numstat.txt
+Was: git diff --numstat S0..F gegen die Sollwerte, JOURNAL.md mit n = 28 + 9 + 4 = 41
+Befehl: trading-env/bin/python3 -B docs/belege/TB-145/tb145_einfuegen.py numstat 82b580a6c852dfe191a021e46f2a86889bb852e5 b39cf3dda483f9b1fdd91cbe6ab3aa33d90fbb03 docs/belege/TB-145/j_block.md; echo "rc $?"
+Ergebnis: rc 0, acht Zieldateien gleich (JOURNAL 41/0), weitere Dateien keine
+Bytes: 2775 · Zeilen: 53 · md5: 72a90d03d72bfd91cfe5ef468dc9e252
