@@ -2467,3 +2467,84 @@ Sag mir in wenigen Sätzen, was du verstanden hast, und fang in derselben Antwor
 - **TB-143 gebaut** vom steuernden Chat ausserhalb des Repos (`docs/auftraege/MAC_TB-143_waechter_modus_schalter.md`, md5 `7ec666d0c11b2d9f34d508d76280760f`): Skript aus A2 an Kopien simuliert (Werte `default` und `manual`, je eine Zeile geändert, zweiter Lauf abgewiesen, falscher Wert abgewiesen), zwei Gegenleser (GEGEN143: 6 Befunde W, 7 F; Nachlese GEGEN143b: 4 W, 8 F). Alle W sind eingearbeitet; die letzte Fassung ist nicht noch einmal gegengelesen.
 - **Vor dem Lauf nicht messbar:** ob der Auto-Modus der Sitzung A2, Commit und Push zulässt; welche Werte `claude --help` nennt; ob die geänderte Startzeile startet (`bash -n` prüft den AppleScript-Rumpf nicht) — das zeigt erst der Start für TB-144. Scheitert der, steht es im Wächter-Log, und der Betreiber muss einmal von Hand starten (ARBEITSWEISE 6b, Start).
 - **Für TB-144:** Bestand `sc/berichte/BESTAND143.md`. Nach TB-143 ist Z. 327 geändert; das Stück W5 ersetzt Z. 324–339 und trägt die Startzeile noch ohne Schalter, ebenso `w2.txt` Z. 12 und 45 ⇒ dort den Schalter nachziehen, sonst nimmt der Bau ihn wieder heraus. Arbeitsstände: `logs/steuernder_chat/2026-10-09_sc_tb143.tar.gz`.
+
+## Umzug 09.10.2026, 11:06 — Stand für den neuen steuernden Chat (alle neun Blöcke; nach der Abnahme von TB-143; die Abnahme des Teilstands TB-142 und den Bau von TB-143 tragen die Nachträge 07:55 und 08:19 unmittelbar davor)
+
+Betreiber: Karte 09:05, „Nach Abnahme von TB-143 (Empfohlen)“. Ampel 11:05: Verlauf 251 010 (Grundlast 123 059), gelb. Dieser Block ersetzt den Umzugsblock von 07:23; dessen Blöcke 3 (Zahlen) und 8 (Zwischengelagertes) gelten weiter, soweit hier nichts anderes steht.
+
+### Block 1 — Stand in drei Zeilen
+- **TB-143 ist fertig und abgenommen:** Der Wächter startet Sitzungen mit `--permission-mode manual` (Z. 327, Commit `1636764`). Gemessen 11:04 im Fenster einer Probesitzung: Titel `claude --permission-mode manual --effort high --remote-control`, Statuszeile „manual mode on“, Eingabezeile, keine Startfrage, Fernsteuerung aktiv.
+- **TB-142 ist nur zum Teil gebaut** (Schritt 0 und A). Offen: Messungen M1–M5, W2–W6, Probe, Unterlagen, Journal ⇒ TB-144.
+- **Keine Sitzung offen, keine Karte offen.** Beim Betreiber: Gesamtergebnis TB-137 einfügen; Text für die kontoweite Erinnerung abschicken; Anmeldung von Claude Code am Mac läuft um den 11.10.2026 ab („Your login expires in 2 days“, gesehen 09:04 und 11:04).
+
+### Block 2 — HEAD und Arbeitsbaum
+Gemessen 10:58: HEAD = `origin/main` = `6415b899e084a4d202c676609bb4d122e8602030` („TB-143 Abgabe: Belege und Ergebnis“, 09:31:57); davor `1636764` („TB-143 A“, 09:30:11), `9f7befe` („TB-143 Schritt 0“, 09:29:19), `a57d5c2`. Arbeitsbaum danach sauber; seither geändert nur `docs/projektfuehrung/UEBERGABE.md` (dieser Block). `starte_sitzung.sh`: 357 Zeilen, md5 `7d78764c75659b2fb9616dd4edf8a63d`, ein `do script`, einmal `--permission-mode`. Die vier Dokumente und `.claude/settings.local.json` md5-gleich mit `a57d5c2`. Wache auf Z. 2185–2189: `eb6a8513c664…`. In Terminal stehen vier Fenster ohne Sitzung (21040, 21346, 21349, 21560); das Aufräumen ist Teil von TB-144.
+
+### Block 3 — Tragende Zahlen
+Wie Umzug 07:23, Block 3. Dazu: `claude --help` (2.1.295, `docs/belege/TB-143/a1_hilfe.txt`) nennt als Werte `acceptEdits`, `auto`, `bypassPermissions`, `manual`, `dontAsk`, `plan` — nicht `default`. Vorprobe TB-143: Der direkte lesende Aufruf `osascript -e 'tell application "Terminal" to get id of every window'` lief **im Auto-Modus** durch (`b_vorprobe.txt`); abgelehnt wurden in TB-142 nur Aufrufe über Skriptdateien. Der Wächter nennt im Log weiter ein falsches Fenster (08:19: 21346 statt 21349; 10:59: 21040 statt 21560). Neue Log-Zeile seit ⟨A⟩ von TB-142: „⚠️ KEIN SATZ IM FENSTER (seit TB-142): Der Waechter legt den Satz nicht mehr hinein.“ Nummern: nächster Mac-Auftrag TB-144; Journal: EK ist nicht geschrieben; Fehler ab Nr. 31; Fable ab R84.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+1. **TB-144 bauen** (Helfer, aus den Bausteinen `sc/tb142/bau/` im Archiv `2026-10-09_sc_tb142_bau.tar.gz`; Bestand `sc/berichte/BESTAND143.md` im Archiv `2026-10-09_sc_tb143.tar.gz`, 67 KB, nur in Teilen). Zu ändern, belegt im Bestand: Base und Soll-HEAD (`6415b89` plus Schritt 0); Schritt 0 und A entfallen (`k20` Z. 12–45), W1 ist verbraucht (`bauen.py` Z. 17 bräche ab); Bilanzen ab 357 Zeilen neu rechnen (`9⇥15`, `293⇥34`); **W5 (ersetzt Z. 324–339) und `w2.txt` Z. 12 und 45 tragen die Startzeile ohne Schalter ⇒ `--permission-mode manual` nachziehen;** `--no-chrome` in `k30` Z. 28–36, 52 gegen die neue Zeile prüfen; M0 gilt als gemessen, die Befunde greifen im Auftrag Z. 86, 90, 93 (`pgrep -a`, `Terminal.sdef` statt `sdef`); „Start von Hand“ (Z. 5) ⇒ Start über den Wächter; ein Abbruchkriterium für eine Ablehnung durch Claude Code ergänzen; im Archiv fehlen `sim/head/` und die Laufordner ⇒ aus HEAD neu anlegen. Simulation an Kopien samt Gegenprobe, frischer Gegenleser.
+2. **Freigabe für TB-144:** Die Karte vom 09.10.2026, 06:50 deckt TB-142 „wie gebaut“, die Karte von 07:57 den Weg über den Modus. Lesart des steuernden Chats, vorläufig: Übernimmt TB-144 die Schritte B–F unverändert bis auf die Punkte aus Nr. 1, braucht es keine weitere Einzelfreigabe; sonst eine Karte.
+3. **Vor dem Start:** Der erste Schritt von TB-144 misst, ob die Sitzung im Modus „Manual“ läuft (eigene Aussage der Sitzung und ein `osascript`-Aufruf über eine Skriptdatei, wie er in TB-142 abgelehnt wurde), bevor sie baut.
+4. **TB-137 abnehmen,** sobald der Betreiber das Gesamtergebnis einfügt; **zweite Fable-Anfrage;** **Bauauftrag Zellen-Erzeuger** nach Fable; **Regelwerk-Nachtrag** (Posten wie Umzug 06:52, Block 4 Nr. 8; dazu Fehler Nr. 25 bis 30 und die überholte Lesart „Umzugs-Chat anlegen“ in den Blöcken 22:03, 06:52, 07:23).
+5. **Projekt-Erinnerung, nicht nachgezogen:** `preferences.md` nennt „Wächter-Log ‚Satz ins Fenster gelegt‘ prüfen“ (die Zeile gibt es nicht mehr, neue Zeile in Block 3); `ways-of-working.md` nennt den Schalter mit `default`, gesetzt ist `manual`.
+
+### Block 5 — Wartezustände
+Keine Mac-Sitzung offen (PID 43361 geschlossen 10:58:48, Probesitzung PID 48991 geschlossen 11:04:40). TB-137 wartet auf die Cloud-Sitzung und das Einfügen. Kein Fable-Chat offen. Keine Karte offen. Keine Nachschau geplant.
+
+### Block 6 — Freigaben und Entscheide des Betreibers
+Wie Umzug 07:23, Block 6. Dazu: Karte 07:57 „Wächter startet in „Manual“ (Empfohlen)“ (Wortlaut im Auftrag TB-143); Karte 09:05 „Nach Abnahme von TB-143 (Empfohlen)“ (Umzug); 10:57 „143 fertig“.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus
+- **Nr. 28:** Die wartende TB-142-Sitzung nach den eigenen Kernzahlen geschlossen, bevor der Abnahme-Helfer fertig war (Auftrag der Übergabe: erst abnehmen). ⇒ Schliessen erst nach dem Helferbericht.
+- **Nr. 29:** Der Bestands-Helfer lief 13,5 Minuten und kostete rund 300 000 Helfer-Tokens (Bericht 67 KB), und er lief vor der Karte. ⇒ Bestandsaufnahmen auf die Stellen des gewählten Wegs zuschneiden, mit Schrittgrenze wie bei Gegenlesern (rund 25).
+- **Nr. 30:** Die Freigabeanfrage für den Blick ins Terminal hielt den Chat von etwa 08:20 bis 09:04 an; die Sitzung stand seit 08:19 bereit, der Betreiber hatte den Satz nicht. ⇒ Zuerst Satz und Aufgaben zustellen, dann die Freigabe anfordern. Der Zugriff verfällt nach 30 Minuten ohne Nutzung; die zweite Anfrage (11:03) war sofort beantwortet. **Der Blick gelang** (`computer_app_list_windows`, dann `computer_app_screenshot` mit der Fensternummer, die der Wächter nicht nennt).
+- **Abweichung, als Vorgabe:** TB-143 ohne Helfer abgenommen (kleiner Auftrag; Kernzahlen, Belege und Ergebnis selbst gelesen, md5 des Skripts gleich der Simulation).
+- **Ampel:** 103 142 (07:55) → 200 678 (09:04) → 218 998 (09:21) → 251 010 (11:05). Teuer: der Auftrag TB-143 zweimal ganz geschrieben (12 und 15 KB), drei Helferberichte, die Kernlektüre (60 KB), zwei Bildschirmfotos. ⇒ Kleine Aufträge einmal schreiben, Berichtigungen nur per Skript.
+- **So getragen:** Vorprobe als eigener kleiner Auftrag vor dem grossen; Probestart über `starte_TB-<n>` ohne Satz, Blick ins Fenster, `schliesse_<HEAD>` — misst den Wächter ohne Handgriff des Betreibers.
+
+### Block 8 — Zwischengelagert
+Wie Umzug 07:23, Block 8; dazu `logs/steuernder_chat/2026-10-09_sc_tb143_vorbereitung.tar.gz`, `2026-10-09_sc_tb143.tar.gz` (Helferaufträge, Berichte ABNAHME142T, BESTAND143, GEGEN143, GEGEN143b, Bau und Simulation von TB-143) und `2026-10-09_EROEFFNUNG_4.txt` (dieser Eröffnungstext). Ablage: `UEBERGABE.md` mit diesem Block erneuert. Nicht getan: UMZUG Abschnitt 4 und 6 nicht gelesen (Form nach dem Vorbild 07:23); kein Soll/Ist-Abgleich der übrigen Ablage.
+
+### Block 9 — Eröffnungstext
+Als Kopierblock im Chat ausgegeben; kein Chat und keine geplante Aufgabe angelegt. Wortlaut:
+
+```
+Neue Sitzung zum Trading-Bot-Projekt (steuernder Chat). Das Projekt "Trading Bots" ist angehängt.
+
+Prüfe als Erstes, ob du über die Geräteanbindung auf ~/trading-bot lesen kannst — nenne mir HEAD, die letzten drei Commits und die Zeilenzahl von docs/projektfuehrung/BACKLOG.md als Beleg. Ist kein Ordner verbunden, fordere die Freigabe für ~/trading-bot an (device_request_folder_access; läuft der Aufruf nicht, in der nächsten Runde noch einmal). Wenn das nicht geht, sag es ausdrücklich. git über die Brücke nur mit --no-optional-locks und nur rev-parse, log, show, ls-files, worktree list — nie git status, kein git diff, kein git check-ignore. Geänderte Dateien misst du mit ls-files -m, Unverfolgtes mit ls-files -o --exclude-standard. Uhrzeiten über die Brücke mit TZ=Europe/Berlin date.
+
+Lies dann nur die Kernlektüre, aus dem Repo über die Geräteanbindung mit Abschnittsfilter:
+1. docs/projektfuehrung/UEBERGABE.md — ab der Überschrift „## Nachtrag 09.10.2026, 07:55“ bis Dateiende (zwei Nachträge, dann „## Umzug 09.10.2026, 11:06“ mit allen neun Blöcken). Davor nur bei Bedarf: Umzug 09.10.2026, 07:23 (Blöcke 3, 4 und 8) und Nachtrag 09.10.2026, 01:32 (Bau von TB-142, Sollwerte).
+2. docs/projektfuehrung/ARBEITSWEISE.md — nur Abschnitt 0 (von „## 0.“ bis vor „## 1.“; rund 37 KB).
+3. docs/projektfuehrung/UMZUG.md — nur Abschnitt 3 (von „## 3.“ bis vor „## 4.“).
+4. docs/ERGEBNIS_TB-143_waechter_modus_schalter.md (4,8 KB).
+Nur wenn die Geräteanbindung fehlt: die Stellen 1 bis 3 über den Projects-Zugriff (projektfuehrung/…).
+
+Grosse Dateien über Helfer; Helferaufträge als Bausteindateien auf dem Gerät (Vorbilder: sc/auftraege/ im Archiv logs/steuernder_chat/2026-10-09_sc_tb143.tar.gz, für den Bau HELFER_BAU142.md in 2026-10-09_sc_tb142_bau.tar.gz), Berichte auf rund 3 KB begrenzt und eng zugeschnitten; Helfer schreiben ihren Bericht nach jeder Prüfung fort und versuchen bei „device not connected“ dreimal neu; Helfer bauen Entwürfe ausserhalb des Repos, ein frischer Gegenleser ist Pflicht (W1); Erinnerungsdateien schreibt nur der steuernde Chat selbst. Die Umzugsampel misst du mit docs/werkzeuge/ampel.py auf deinem eigenen Sitzungsprotokoll (~/.claude/projects/*/<sitzung>.jsonl; ampel.py per device_stage_files holen). Messungen bündeln, Helfer parallel starten.
+
+Umgezogen wird nur, wenn ich es sage oder genehmige. Beim Umzug gibst du mir den Eröffnungstext als Kopierblock; du legst dafür keinen Chat und keine geplante Aufgabe an (Betreiber 09.10.2026, 07:25).
+
+Arbeite selbstständig (Betreiber 07.10.2026, 19:44). Karten nur für echte Betreiberentscheide, als letzter Schritt; vor einer Karte alles Unabhängige anstossen. Aufgaben an mich nur, wo meine Hand nötig ist, je [ortsunabhängig] oder [Mac-pflichtig].
+
+Achtung, das Wichtigste (Einzelheiten in den neun Blöcken):
+1. Der Abbruch von TB-142 ist geklärt: Claude Code startete die Sitzungen von sich aus im Auto-Modus, und dort fällt unsere Regel Bash(*) weg. Ich habe per Karte entschieden (09.10.2026, 07:57): Der Wächter startet in „Manual“. TB-143 hat den Schalter gesetzt (--permission-mode manual, Commit 1636764) und ist abgenommen. Eine Probesitzung stand um 11:04 mit „manual mode on“ an der Eingabezeile, ohne Startfrage. Keine Sitzung ist offen.
+2. Als Nächstes TB-144: der Rest von TB-142 (Messungen M1–M5, Stücke W2–W6, Probe über launchd, Unterlagen, Journal), aus den Bausteinen im Archiv, nicht neu. Das Stück W5 und w2.txt tragen die Startzeile noch ohne den Schalter — dort nachziehen, sonst nimmt der Bau ihn wieder heraus. Was sich sonst ändert, steht in Block 4.
+3. Halte deine Antworten kurz (meine Rüge vom 09.10.2026, 07:06). Gib mir keinen Handgriff, den du selbst tun kannst. Lege Claude-Code-Sitzungen selbst über den Sitzungswächter an, ich füge nur den Satz in der App ein. Stelle mir den Satz und meine Aufgaben zu, bevor du eine Freigabe für den Blick ins Terminal anforderst (Fehler Nr. 30). Lege keine geplanten Aufgaben an, um Chats zu öffnen (Fehler Nr. 27). Ein Kopierfeld trägt nur Text, den ich abschicken soll (Fehler Nr. 25).
+4. Aufgaben am Mac gibst du mir in einfacher Sprache: ein Handgriff je Schritt, mit dem, was ich auf dem Bildschirm sehe (Fehler Nr. 24).
+5. Danach: TB-137 abnehmen, sobald ich das Gesamtergebnis einfüge; zweite Fable-Anfrage (wartet auf TB-137); Bauauftrag Zellen-Erzeuger erst nach Fable.
+
+Sag mir in wenigen Sätzen, was du verstanden hast, und fang in derselben Antwort mit dem ersten Handwerksschritt an. Am Ende jeder Antwort: der Satz für die Claude-Code-Sitzung als Kopierfeld (Wortlaut aus logs/sitzungswaechter/letzter_satz.txt), aber nur, wenn ein Auftrag startklar ist — sonst ein gewöhnlicher Satz „Kein Auftrag startklar“; dann die Zeile mit der Umzugsampel.
+```
+
+## Nachtrag 09.10.2026, 12:56 — neuer steuernder Chat (Übernahme 11:32): TB-144 gebaut, dreimal gegengelesen, Einzelfreigabe erteilt, Auftrag und Zeiger im Arbeitsbaum, Sitzung über den Wächter angelegt
+
+- **Übernahme 11:33:** HEAD `6415b899e084a4d202c676609bb4d122e8602030`, geändert nur `UEBERGABE.md`; Kernlektüre aus dem Repo über die Geräteanbindung.
+- **TB-144 gebaut** (Helfer BAU144, 11:36–12:14, 83 Schritte, rund 495 000 Helfer-Tokens) aus den Bausteinen von TB-142, per Skript (116 Ersetzungen). Neu gegenüber TB-142: Schritt A (Modus messen: Prozesszeile, Aussage, ein `osascript`-Aufruf über eine Skriptdatei; Ablehnung oder Bestätigungsfrage ⇒ ABBRUCH), Schritt D0 (die vier alten Fenster ohne Sitzung schliessen), Stück E12 (ARBEITSWEISE 22.1, Startzeile seit TB-143), zwei Zeilen in E11/J1 zu TB-142 und TB-143; W1 entfällt; `STARTZEILE` in W2 trägt `--permission-mode manual`; M0 wird neu gemessen (`pgrep -a`, `Terminal.sdef`); Abbruchkriterium „Claude Code lehnt ab oder verlangt eine Bestätigung“.
+- **Fehler Nr. 31:** Der Helferauftrag BAU144 trug keine Schrittgrenze, obwohl Fehler Nr. 29 sie verlangt. ⇒ Auch Bau-Helfer bekommen eine Schrittgrenze und ein Zwischenziel.
+- **Gegengelesen:** GEGEN144_1 (Quellen: 3 W, 8 F), GEGEN144_2 (Logik, eigene Simulation: 6 W, 6 F), Berichtiger BERICHT144 (B1–B10), Nachlese GEGEN144_3 (4 W, 4 F). Eingearbeitet B1–B16; B11–B16 vom steuernden Chat per Skript (`berichtigung3.py`, `berichtigung4.py`). **Die letzte Fassung von Z. 143, 157, 191 (B13–B16) und die Freigabe in Z. 14 hat kein Gegenleser gesehen.** 12 + 4 Formbefunde bleiben als Hinweis in den Berichten.
+- **Simulation an Kopien (Linux, bash 5):** `starte_sitzung.sh` 357 → 622 Zeilen (`294⇥29`), LIESMICH +65, ARBEITSWEISE +7 (mit E6 +8), BACKLOG +13; `pruef.py` 200 ok, 0 NEIN. Nur der Mac zeigt: bash 3.2, `osascript`, launchd, ob „Manual“ Aufrufe über Skriptdateien zulässt, `pgrep -a -x Terminal`, die Form von `lstart`, ob `history` nach einer Sitzung `exec claude` enthält.
+- **Einzelfreigabe:** Karte gestellt nach 12:42, beantwortet vor 12:53: „Freigeben wie gebaut (Empfohlen)“; Wortlaut im Auftrag Z. 14. Grund der Karte: Die Karte von 06:50 nennt 6 (7) Zeilen in ARBEITSWEISE und 11 im BACKLOG; TB-144 trägt 7 (8) und 13, dazu D0.
+- **Abgelegt 12:54:** `docs/auftraege/MAC_TB-144_waechter_reparatur_rest.md` (81 477 B, md5 `60629d13aacb7a2e702fcf821019ffe0`), Zeiger auf TB-144. **Auslöser `starte_TB-144` 12:54:41;** Wächter-Log 10:54:42Z–10:55:04Z: 0 Sitzungen im Repo, „TB-144 steht im Auftragszeiger“, „Terminal-Fenster 21040 offen“ (die Nummer ist nach Block 3 des Umzugs 11:06 nicht verlässlich), „KEIN SATZ IM FENSTER (seit TB-142)“. Satz und Aufgabe dem Betreiber danach zugestellt. Arbeitsstände: `logs/steuernder_chat/2026-10-09_sc_tb144.tar.gz`.
+- **Für den Regelwerk-Nachtrag:** ARBEITSWEISE Z. 161, 775, 1447, 1465 nennen den Start von Hand ohne den Schalter (Befund BAU144, nur gemeldet). Die Projekt-Erinnerung (Umzug 11:06, Block 4 Nr. 5) wird nach TB-144 nachgezogen, weil sich die Log-Zeilen dort noch einmal ändern. Fehler ab Nr. 32.
