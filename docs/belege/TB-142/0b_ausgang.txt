@@ -1,0 +1,7 @@
+# 0b Ausgang an S0 4ed91da94a9312d747a62322dd3a8b775a5468b7 (md5, Zeilen)
+docs/werkzeuge/sitzungswaechter/starte_sitzung.sh 5f2982187411294fe783aa011ee64b23 363
+docs/werkzeuge/sitzungswaechter/LIESMICH.md 502b3aee263da5a489b382d1b4c2ff81 304
+docs/projektfuehrung/ARBEITSWEISE.md c5e0689a944394f9dfe3f3427ace4498 2471
+docs/projektfuehrung/BACKLOG.md cda13f78d4477e620da9901df6ba81a1 362
+docs/projektfuehrung/JOURNAL.md 1719db0d9c5ebef07cc0cb33984ce1c3 10578
+letzte Journal-Kennung: ## EJ — TB-141: Regelwerk-Nachtrag 06.–08.10.2026 — 26 Einfü

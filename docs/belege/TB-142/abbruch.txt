@@ -1,0 +1,37 @@
+TB-142 ABBRUCH in Schritt B (Messung M1/M2), 09.10.2026 ca. 05:15Z
+
+Kriterium (Auftrag, "Abbruchkriterien"): "osascript haengt oder verlangt eine neue Berechtigung".
+Hier: Die Berechtigung fehlt nicht bei macOS, sondern bei Claude Code selbst. Der
+Klassifizierer des Auto-Modus hat jeden osascript-Aufruf an Terminal abgelehnt:
+  1. Skript $TMPDIR/m12.sh (Testfenster 1 oeffnen + Lesungen) - abgelehnt,
+     "The server-side auto mode classifier judged this action dangerous".
+  2. /bin/bash "$TMPDIR/T" 'id of every window' (rein lesend) - abgelehnt,
+     Grund "[Create Unsafe Agents]".
+Die Sitzung hat das NICHT umgangen.
+
+Stand beim Abbruch:
+  - starte_sitzung.sh steht am Stand <A> 02a8a5326339b3a606b9f3b67dd3bab73b98bd80 (V4):
+    /bin/bash -n rc 0; in Befehlszeilen genau ein 'do script', ohne ' in window';
+    kein Wert '<<M...>>'. Kein Start-Ausloeser gibt mehr Text in ein Fenster.
+  - Kein Testfenster geoeffnet, kein Probe-Ausloeser angelegt, keine Sitzung beendet.
+  - M0 gemessen (b_m0.txt). M1-M5 nicht gemessen. Schritte C, D, E, F nicht ausgefuehrt.
+  - LIESMICH.md, ARBEITSWEISE.md, BACKLOG.md, JOURNAL.md unberuehrt.
+
+Befunde aus M0:
+  - macOS-pgrep laesst ohne -a die eigenen Vorfahren weg: 'pgrep -x claude' aus der
+    Sitzung heraus nennt die eigene PID 40587 nicht, 'pgrep -a -x claude' nennt sie.
+    Fuer den Waechter unter launchd ohne Belang (er ist kein Nachfahre): waechter.log
+    05:09:34Z und 05:11:22Z zaehlt PID 40587 richtig als "claude im Repo".
+  - 'sdef' verlangt Xcode; gleichwertig gelesen: Terminal.sdef direkt. contents,
+    history, busy, processes, tty, close, exists, do script stehen alle darin.
+  - Diese Sitzung (PID 40587, ttys008) startete 05:08:02Z - eine Sekunde nach dem
+    Waechterlauf "starte_TB-142" (waechter.log 05:08:00-05:08:23Z, "Terminal-Fenster
+    21346", "Satz ins Fenster gelegt"). Sie wurde also ueber den Waechter gestartet,
+    nicht wie im Auftragskopf vorgesehen von Hand.
+
+Was der Betreiber tun muss, damit TB-142 weiterlaufen kann:
+  Claude Code in dieser (oder einer neuen) Sitzung osascript-Aufrufe an Terminal
+  erlauben, z. B. eine Erlaubnisregel fuer Bash "osascript" bzw. "/bin/bash $TMPDIR/T"
+  und "/bin/bash $TMPDIR/m12.sh" in .claude/settings.local.json, oder die Sitzung fuer
+  Schritt B-D ohne Auto-Modus (mit Einzelbestaetigung) laufen lassen. Danach kann
+  ab Schritt B fortgesetzt werden; Schritt 0 und A sind erledigt und gepusht.

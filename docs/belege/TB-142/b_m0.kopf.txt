@@ -1,0 +1,5 @@
+Datei: b_m0.txt
+Was/Befehl: M0: sw_vers, bash --version, claude --version, TERM_PROGRAM, claude --help|grep --no-chrome, sdef (scheitert: Xcode fehlt) + Ergaenzung: grep in Terminal.sdef, pgrep -a; eigene PID. Keine Konto- oder Mailzeilen, nichts ersetzt
+Bytes: 1930
+Zeilen: 29
+md5: 43d51bec2a4c3562a06ed6339beebf70

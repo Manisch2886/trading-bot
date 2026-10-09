@@ -1,0 +1,5 @@
+Datei: a_v4.txt
+Was/Befehl: PY WZ waechter v4; echo "rc $?"
+Bytes: 363
+Zeilen: 5
+md5: 638d7fc253da28ecdeddc48a605d4765

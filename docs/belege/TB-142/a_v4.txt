@@ -1,0 +1,5 @@
+# TB-142 waechter v4 — Stuecke aus Anhang A auf docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+W1 · Anker Z. 347 · 15 Zeilen ersetzt durch 9 · ok
+starte_sitzung.sh · 357 Zeilen · bash -n rc 0 · 'do script' in Befehlszeilen 1 · verbotene Woerter 0 · bash-4 0
+geschrieben · sha256 9b77d15b6a25da1c89bb454ad7c2f51f580d253e1f8f6a0183ba8fa1d3c75781
+rc 0

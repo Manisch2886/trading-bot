@@ -1,0 +1,29 @@
+$ sw_vers -productVersion
+15.7.9
+$ /bin/bash --version | head -1
+GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin24)
+$ claude --version
+2.1.295 (Claude Code)
+$ echo "$TERM_PROGRAM"
+Apple_Terminal
+$ claude --help | grep -n -- '--no-chrome'
+141:  --no-chrome                           Disable Claude in Chrome integration
+$ sdef /System/Applications/Utilities/Terminal.app | grep -n -E 'name="(contents|history|busy|tty|processes|close|exists|do script)"'
+xcode-select: error: tool 'sdef' requires Xcode, but active developer directory '/Library/Developer/CommandLineTools' is a command line tools instance
+$ (eigene Sitzung)
+EIGEN=40587
+n/Users/jaquelineloffler/trading-bot
+# Ergaenzung (gleichwertige Befehle, siehe Abweichungen):
+$ grep -n -E 'name="(contents|history|busy|tty|processes|close|exists|do script)"' /System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.sdef
+21:		<command name="close" code="coreclos" description="Close a document."> 
+144:		<command name="exists" code="coredoex" description="Verify if an object exists."> 
+320:		<command name="do script" code="coredosc" description="Runs a UNIX shell script or command."> 
+421:			<property name="contents" description="The currently visible contents of the tab." code="pcnt" type="text" access="r">
+424:			<property name="history" description="The contents of the entire scrolling buffer of the tab." code="hist" type="text" access="r">
+427:			<property name="busy" description="Whether the tab is busy running a process." code="busy" type="boolean" access="r">
+430:			<property name="processes" description="The processes currently running in the tab." code="prcs" access="r">
+444:			<property name="tty" description="The tab’s TTY device." code="ttty" type="text" access="r">
+$ pgrep -a -x claude | grep -x 40587   # -a: macOS-pgrep laesst ohne -a die eigenen Vorfahren weg
+40587
+$ ps -o pid=,ppid=,comm= -p 40587
+40587 40585 claude

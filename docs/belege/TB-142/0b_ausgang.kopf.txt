@@ -1,0 +1,5 @@
+Datei: 0b_ausgang.txt
+Was/Befehl: md5 und Zeilen der fuenf Zieldateien an S0 4ed91da (git show S0:<pfad> | md5 -q / wc -l); alle fuenf wie Soll, letzte Kennung EJ
+Bytes: 549
+Zeilen: 7
+md5: 4b448a86802d99538e72d11997e707aa

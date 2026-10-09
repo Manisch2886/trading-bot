@@ -1,0 +1,5 @@
+Datei: 0a_status.txt
+Was/Befehl: git status --porcelain vor Schritt 0 (Schritt 0a), aus $TMPDIR/tb142_0a.txt kopiert, cmp gleich
+Bytes: 127
+Zeilen: 3
+md5: 99fafc47c50536d4e5cd5398876e87b4
