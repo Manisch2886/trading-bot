@@ -1,0 +1,8 @@
+## claude --version
+2.1.295 (Claude Code)
+## claude --help | grep -n -A 3 -- '--permission-mode'
+150:  --permission-mode <mode>              Permission mode to use for the session
+151-                                        (choices: "acceptEdits", "auto",
+152-                                        "bypassPermissions", "manual",
+153-                                        "dontAsk", "plan")
+rc grep 0

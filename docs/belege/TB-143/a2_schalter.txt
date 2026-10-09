@@ -1,0 +1,2 @@
+starte_sitzung.sh | 357 Zeilen | Z. 327 ersetzt | alt 0 | neu 1 | bash -n rc 0
+in Befehlszeilen: 'do script' 1 | ' in window' 0 | 'keystroke' 0 | 'System Events' 0 | '--permission-mode' 1

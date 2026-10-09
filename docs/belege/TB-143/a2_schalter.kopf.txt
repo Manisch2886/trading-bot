@@ -1,0 +1,6 @@
+Datei: a2_schalter.txt
+Was: Schritt A2: Ausgabe (stdout+stderr) des Auftragsskripts mit WERT=manual, rc 0
+Befehl: trading-env/bin/python3 -B - docs/werkzeuge/sitzungswaechter/starte_sitzung.sh manual <<'EOF' ... (Wortlaut wie Auftrag A2) > a2_schalter.txt 2>&1
+Bytes: 188
+Zeilen: 2
+md5: 76e8eeeea63687a35e6ea1a3b4cf2a9e

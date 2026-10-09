@@ -1,0 +1,6 @@
+Datei: a3_numstat.txt
+Was: Schritt A3: numstat des Commits <A> 1636764
+Befehl: git show --numstat --format=%h HEAD
+Bytes: 63
+Zeilen: 3
+md5: e7de78d2ba838af375da9c3c7bce7298

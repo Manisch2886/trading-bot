@@ -1,0 +1,6 @@
+Datei: 0b_ausgang.txt
+Was: Schritt 0b: md5 und Zeilenzahl von docs/werkzeuge/sitzungswaechter/starte_sitzung.sh an <S0> 9f7befe
+Befehl: git rev-parse HEAD; md5 -q starte_sitzung.sh; wc -l < starte_sitzung.sh
+Bytes: 106
+Zeilen: 3
+md5: ab87b9a676655f672362b8c4c4d5b114

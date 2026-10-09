@@ -1,0 +1,8 @@
+Datei: b_vorprobe.txt
+Was: Schritt B1, Vorprobe, genau ein Aufruf, Zeitgrenze 30 s am Bash-Werkzeug (timeout 30000 ms). Ausgang: LÄUFT.
+Befehl: osascript -e 'tell application "Terminal" to get id of every window'
+Hinweis: Der Befehl lief wörtlich ohne Umleitung (Auftrag: keine Variante). Die Ausgabe wurde aus dem Werkzeugergebnis unverändert in die Datei übertragen (printf). Kein Fehlertext, keine Rückfrage von Claude Code, keine Rückfrage von macOS. Zeit: kurz vor 09.10.2026 09:30:32 CEST.
+B0 — Aussage, keine Messung: Diese Sitzung läuft nach eigener Kenntnis im Auto-Modus (die Hinweise, die Claude Code der Sitzung mitgibt, lauten "While auto mode is active"). Gestartet wurde sie vom Wächter mit der alten Zeile 327 (ohne --permission-mode).
+Bytes: 20
+Zeilen: 1
+md5: e53d01c07508b0710a2fd9dec8337a70

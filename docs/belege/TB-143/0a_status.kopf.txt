@@ -1,0 +1,6 @@
+Datei: 0a_status.txt
+Was: Schritt 0a: git status --porcelain vor Schritt 0, aus $TMPDIR/tb143_0a.txt kopiert (cmp gleich); HEAD dabei a57d5c2ee2282a3bb5d6ee4331810fd6aaea6371
+Befehl: git status --porcelain > "$TMPDIR/tb143_0a.txt"; cp nach 0a_status.txt; cmp
+Bytes: 132
+Zeilen: 3
+md5: e2184c5833d8de6c357a3e90df584468

@@ -1,0 +1,6 @@
+Datei: a1_hilfe.txt
+Was: Schritt A1: Version und Hilfezeilen zu --permission-mode; die Zeile 'rc grep' ist ein Zusatz dieser Sitzung (Rueckgabewert von grep). Hilfe zaehlt Werte auf, nennt manual, nicht default => WERT manual
+Befehl: claude --version; claude --help | grep -n -A 3 -- '--permission-mode'
+Bytes: 405
+Zeilen: 8
+md5: 2412548fd4e1523c48112a7a750df41a
