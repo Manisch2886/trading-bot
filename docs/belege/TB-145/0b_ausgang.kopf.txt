@@ -1,0 +1,5 @@
+Datei: 0b_ausgang.txt
+Was: Zeilen und md5 der acht Zieldateien und von starte_sitzung.sh an S0 82b580a; Zeilen von waechter.log
+Befehl: wc -l, md5 -q je Datei
+Soll: alle Werte wie Auftrag 0b — erfüllt, keine Abweichung
+Bytes: 862 · Zeilen: 12 · md5: c9c0542f127c017e257c92621009401a

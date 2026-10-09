@@ -5,6 +5,21 @@
 tippen** — und deshalb keine Sitzung starten. Dateien im Repo anlegen kann er.
 Dieser Wächter macht aus einer Datei einen Sitzungsstart.
 
+⭐⭐ **Gilt seit TB-142 und TB-144 (Wächter-Reparatur, 09.10.2026) — geht dem Text
+unten vor:** Der Wächter legt den Auftragssatz nicht mehr ins Fenster (seit
+TB-142); abgeschickt wird der Satz vom Betreiber. Nach `starte_TB-<Nr>` liest
+der Wächter den Inhalt des neu geöffneten Fensters; die Erfolgszeile im Log
+heisst „⭐ EINGABEBEREIT (TB-<Nr>)“. Der Wächter kennt drei Auslöserarten:
+`starte_TB-<Nr>`, `schliesse_<HEAD>` und `probe_<PID>`. Alles Weitere steht in
+`docs/werkzeuge/sitzungswaechter/LIESMICH.md`, Abschnitt „Gilt seit TB-144
+(Wächter-Reparatur)“, und wird hier nicht wiederholt. Den Stand davor
+beschreiben in diesem Dokument mindestens vier Stellen: im Abschnitt „Die
+Betreiberentscheidung vom 23.09.2026: kein Return“ die Sätze „Der Wächter
+schreibt den Auftragssatz in die Eingabezeile“ und „er schickt den Satz per
+AppleScript an Terminal“ sowie die Tabellenzeile „Was entfällt“ („Text einfügen
+— all das macht der Wächter“); im Abschnitt „Was der Wächter NICHT kann“ der
+Satz „Der Wächter wartet **20 Sekunden**“.
+
 ---
 
 ## ⭐ Der Befund, der dahintersteht (gemessen 23.09.2026)

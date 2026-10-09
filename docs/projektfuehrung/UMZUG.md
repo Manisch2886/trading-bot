@@ -228,6 +228,8 @@ irgendetwas gelesen hat.
 ⚠️ **Als Kopierblock, als ERSTE Nachricht im laufenden Chat** — eine eigene Nachricht vor allen Erläuterungen (Betreiber 29.09.2026, 14:10: *„Schicke mir zukünftig immer den Text der Übergabe für den neuen Chat als erste Nachricht direkt im laufenden Chat zum kopieren“*); kein Download, keine Datei, kein Anhang.
 **Vorlage in Abschnitt 6 dieses Dokuments.**
 
+⭐ **Nachtrag mit TB-145 (U25, Regel vom 07.10.2026):** Arbeitet ein Chat nach dem Eröffnungstext weiter, kennzeichnet er den alten Text in derselben Antwort als überholt und gibt beim Umzug einen neuen aus (06.10.2026: Der Eröffnungstext von 16:41 lag drei Stunden im Chat; UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 2; `ARBEITSWEISE.md` Abschnitt 0, Gruppe „Wenn ein Arbeitsabschnitt endet oder ein Verlust droht“).
+
 ### Schritt 7 — Den alten Chat nicht sofort schliessen
 
 ⚠️ **Der neue Chat bestätigt zuerst, was er verstanden hat.** Fehlt etwas, wird

@@ -72,10 +72,12 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Kein Stillstand: der nächste Handwerksschritt ist getan; kein „soll ich …?"; keine offene Frage nach dem Weiter; neben einer Rückfrage ist alles Unabhängige erledigt | 13 |
 | ☐ | Nach jedem Schritt folgt ohne Startzeichen der nächste, auch über mehrere Aufträge und während eine Mac-Sitzung läuft; die Grenzen bleiben: nach Schritt 0 nichts im Arbeitsbaum anfassen (Gruppe „Wenn ich einen Auftrag schreibe“), kein Umzug, während eine Sitzung läuft (10) (Lesart des steuernden Chats, vorläufig, zum Betreibersatz vom 07.10.2026, 19:44) | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46 |
 | ☐ | Zwischenmeldungen mit Ergebnis statt Rückfragen (Lesart des steuernden Chats, vorläufig, zum Betreibersatz vom 07.10.2026, 19:44) | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46 |
+| ☐ | Zusatz zur Zeile darüber: eine Zwischenmeldung an den Betreiber je abgeschlossener Stufe (09.10.2026, so getragen) | UEBERGABE, Umzug 09.10.2026, 06:52, Block 7 |
 | ☐ | Die Aufgabenliste so kurz wie möglich — nie „entscheiden, wie es weitergeht" | 13 |
 | ☐ | Aufgaben an den Betreiber nur, wo seine Hand nötig ist (Lesart des steuernden Chats, vorläufig, zum Betreibersatz vom 07.10.2026, 19:44) | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Zusatz 19:46 |
 | ☐ | Letzte Zeile: Umzugsampel, gemessen mit `docs/werkzeuge/ampel.py` (Farbe · Verlauf · Grundlast · Empfehlung; Schwellen für den Verlauf ohne Grundlast; Betreiber 01.10.2026) | UMZUG 3 |
 | ☐ | Der Text für die Aufgabe der Claude-Code-Sitzung steht am Ende jeder Antwort als Kopierblock mit Empfänger darüber, unmittelbar vor der Umzugsampel (deren Zeile bleibt die letzte) — auch wenn der Sitzungswächter den Satz schon eingesetzt hat. Wortlaut aus `logs/sitzungswaechter/letzter_satz.txt` bzw. `AKTUELLER_AUFTRAG.md`, nicht aus dem Gedächtnis; ist kein Auftrag startklar, steht das dort (Betreiber 02.10.2026, 10:45: „merke dir das endlich für die Zukunft“; Fehler Nr. 19) | 6b, Start |
+| ☐ | Löst den letzten Halbsatz der Zeile darüber ab („ist kein Auftrag startklar, steht das dort“): Ist kein Auftrag startklar, steht das als gewöhnlicher Satz am Schluss der Antwort, nicht in einem Kopierfeld und ohne Empfängerzeile — ein Kopierfeld trägt nur Text, der abgeschickt werden soll. Das ändert die Form der Regel vom 02.10.2026, 10:45 für diesen einen Fall (Vorgabe des steuernden Chats vom 09.10.2026, vom Betreiber mit dem Eröffnungstext des Umzugs 11:06 abgeschickt; Fehler Nr. 25: der Betreiber schickte den Kopierfeld-Text an eine Claude-Code-Cloud-Sitzung) | UEBERGABE, Nachtrag 09.10.2026, 07:01; Umzug 09.10.2026, 11:06, Block 9; Nachtrag 09.10.2026, 12:56 (Übernahme 11:32) |
 | ☐ | Eine Auswahlkarte kommt erst danach, als letzter Schritt: Ergebnis, Dateien, Kopierblöcke, „Deine Aufgaben“ und Umzugsampel sind vorher zugestellt (M1, Betreiber 30.09.2026) | 6d |
 
 **Wenn ein Dokument mitgeht**
@@ -110,8 +112,10 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | ⭐⭐ Umgezogen wird nur, wenn der Betreiber es sagt oder genehmigt. Der steuernde Chat zieht nicht von sich aus um: Er kündigt den Umzug an (Zeile darüber, mit Zahl und Uhrzeit), fragt per Karte und arbeitet weiter, bis der Betreiber entscheidet (Betreiber 05.10.2026, 23:58: „Nein du ziehst zukünftig um wenn ich das sage oder genehmige“; Lesart des steuernden Chats, vorläufig: gilt bei jeder Ampelfarbe, Umzugsblock und Eröffnungstext erst nach dem Ja) | UMZUG 3; UEBERGABE, Nachtrag 06.10.2026, 00:13 |
 | ☐ | Die Karte zum Umzug kommt vor dem grossen Block statt danach und vor dem Warten statt danach (06.10.2026, so getragen) | UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 4; UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 5 |
 | ☐ | Beim Umzug: der Eröffnungstext als ERSTE Nachricht im laufenden Chat, als eigener Kopierblock vor allen Erläuterungen (Betreiber 29.09.2026, „zukünftig“) | UMZUG 6 |
+| ☐ | Beim Umzug wird kein Chat per geplanter Aufgabe angelegt; der Betreiber bekommt den Eröffnungstext als Kopierblock und öffnet den neuen Chat selbst. Die Lesart „neuer steuernder Chat beim Umzug“ in den Umzugsblöcken 08.10.2026, 19:58 und 22:03 sowie 09.10.2026, 06:52 und 07:23 (je Kopf und Block 9) ist überholt (09.10.2026, Fehler Nr. 27: Betreiber 08.10.2026, 08:36: „Lege mir zukünftig immer einen neuen Chat bereit“ meinte die initiale Claude-Code-Sitzung) | UEBERGABE, Nachtrag 09.10.2026, 07:26; Umzug 08.10.2026, 19:58, Kopf und Block 9 |
 | ☐ | Arbeitet ein Chat nach dem Eröffnungstext weiter, kennzeichnet er den alten Text in derselben Antwort als überholt und gibt beim Umzug einen neuen aus (06.10.2026: Der Eröffnungstext von 16:41 lag drei Stunden im Chat) | UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 2 |
 | ☐ | Arbeitsstände sofort nach `logs/steuernder_chat/`; der Ordner ist von git ignoriert und zählt nicht als Träger nach 10 Nr. 2 (06.10.2026, so getragen; Lesart des steuernden Chats, vorläufig, zum Träger) | UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 4 |
+| ☐ | Zusatz zur Zeile darüber: Notizen unter `logs/steuernder_chat/`, solange eine Sitzung den Arbeitsbaum hat (08.10.2026, so getragen) | UEBERGABE, Umzug 08.10.2026, 22:03, Block 7 |
 
 **Wenn eine Entscheidung beim Betreiber liegt**
 
@@ -126,6 +130,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Hängt sie an etwas, das nur der Betreiber weiss: das sagen, nicht raten | 6d |
 | ☐ | Die Frage ist kein Haltepunkt — die Arbeit läuft daneben weiter; Verfahrensfragen vor dem Tag an Betreiber oder Fable, nie nach erwartetem Effekt | 13 |
 | ☐ | Zusatz zur Zeile darüber (W8): Eine offene Karte hält den Chat technisch an — vor der Karte wird alles Unabhängige angestossen, auch langlaufende Helfer (Vorgabe 08.10.2026; 07.10.2026: Die Karte stand von 11:37 bis 14:55 offen; solange arbeitet der Chat nicht.) | 13; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 6 |
+| ☐ | Eine Betreiberregel geht einer Vorgabe des steuernden Chats vor; hält der steuernde Chat den Weg für riskant, nennt er das Risiko und fragt per Karte, statt dem Betreiber die Arbeit zu geben (09.10.2026, Fehler Nr. 26: die Vorgabe „Start einmal von Hand“ stand über der Betreiberregel vom 08.10.2026, 21:26) | UEBERGABE, Nachtrag 09.10.2026, 07:12 |
 
 **Wenn ich den Betreiber anleite**
 
@@ -139,6 +144,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Ein Befehl, der einen Editor öffnet, nie ohne den Weg heraus: Speichern, Schliessen, Abbrechen, je mit Erkennungszeichen; `EDITOR=nano crontab -e` | 6b, Editor |
 | ☐ | Nach dem Editor eine Zählung als Kontrolle, nie „sollte jetzt drin sein" | 6b, Editor |
 | ☐ | Ein Befund aus einem angeleiteten Lauf geht als Datei nach `docs/belege/` und wird committet; die Anforderung steht im Auftrag an die Cloud-Sitzung | 2 |
+| ☐ | Aufgaben am Mac in einfacher Sprache, ein Handgriff je Schritt, mit dem, was der Betreiber sieht (08.10.2026, Fehler Nr. 24: die Aufgabe verlangte, unter fünf Terminal-Fenstern das richtige über das Menü „Fenster“ zu finden) | UEBERGABE, Umzug 08.10.2026, 22:03, Block 7 Nr. 24 |
 
 **Wenn Terminalbefehle drin sind**
 
@@ -152,6 +158,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Kein `git status` über die Geräteanbindung — auch nicht bei der allerersten Messung eines neuen Chats. git über die Brücke nur mit `--no-optional-locks` (`rev-parse`, `log`, `show`, `ls-files`, `diff --name-only`, `worktree list`), dazu md5 (30.09.2026: ein `git status` hinterliess eine `.git/index.lock`, die die Brücke nicht löschen konnte) | 14, Regel 4 |
 | ☐ | Über die Geräteanbindung auch kein `git diff` (weder `--name-only` noch `--numstat`) und kein `git check-ignore`; erlaubt sind nur `rev-parse`, `log`, `show`, `ls-files` und `worktree list`, je mit `--no-optional-locks`. Geänderte Dateien zeigt `ls-files -m`, Unverfolgtes `ls-files -o --exclude-standard` (ein ignorierter Pfad erscheint dort nicht); Zeilenbilanzen mit `diff` zweier Kopien ausserhalb des Repos. Diese Zeile geht der Zeile darüber vor, soweit jene `diff --name-only` nennt (Liste aus der Vorgabe im Nachtrag 04.10.2026, 21:07; 04.10.2026: `diff --name-only` schrieb vermutlich `.git/index` neu, nicht bewiesen, und `diff --numstat` lag ausserhalb der Vorgabe; 05.10.2026: `check-ignore` ebenso) | UEBERGABE, Umzug 04.10.2026, 10:56, Block 7; Nachtrag 04.10.2026, 21:07; Umzug 05.10.2026, 22:31 und 23:46, Block 7 |
 | ☐ | Jede `ls`- und `grep`-Ausgabe mit `head` begrenzen (06.10.2026: zwei Werkzeugausgaben ohne Grenze) | UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 1; UEBERGABE, Nachtrag 06.10.2026, 14:25 |
+| ☐ | `list_triggers` nur mit kleiner Grenze aufrufen (08.10.2026, 22:02: eine Liste aller geplanten Aufgaben des Kontos, unnötig gross) | UEBERGABE, Umzug 08.10.2026, 22:03, Block 7 |
 | ☐ | Bauläufe über die Brücke in Einzelschritten, nichts im Hintergrund, kein Aufruf über 150 s (07.10.2026: die Geräteanbindung fiel 21:31 weg, während ein Helfer einen langen Bau im Hintergrund laufen liess) | UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 4 |
 
 **Wenn eine Mac-Sitzung startet, endet oder abbricht**
@@ -159,6 +166,7 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | | Regel | steht in |
 |---|---|---|
 | ☐ | Der Start als getrennte Kopierblöcke in fester Reihenfolge: `screen -U -S tb` · `security unlock-keychain` (zweites Fenster) · `cd ~/trading-bot && claude --remote-control` · Einfügesatz mit TB-Nummer; `screen -r tb` nach Abbruch; `/remote-control` nur bei laufender Sitzung | 6b, Start |
+| ☐ | ⭐ Gilt seit TB-143 (09.10.2026; für den Start von Hand Vorgabe des steuernden Chats, vorläufig): Ein Start von Hand trägt `--permission-mode manual` — `cd ~/trading-bot && claude --permission-mode manual --effort high --remote-control`; ohne andere Vorgabe starten Terminal-Sitzungen im Auto-Modus, und beim Eintritt in den Auto-Modus fallen breite Erlaubnisregeln weg, ausdrücklich `Bash(*)` | 22.1; UEBERGABE, Nachtrag 09.10.2026, 07:55 |
 | ☐ | ⭐ **Jeder Kopierblock nennt über sich seinen Empfänger** — Mac-Sitzung, Fable-Chat, Terminal; auch wenn es aus dem Zusammenhang hervorzugehen scheint | 6b, Empfänger |
 | ☐ | Der Startbefehl ist kopierfertig, `--remote-control` immer dabei, der Anweisungstext nie im Startbefehl | 1; 14, Regel 1 |
 | ☐ | Zuerst die Anmeldung: Schlüsselbund entsperrt, Kopfzeile „Claude Max", kein „Not logged in"; erst dann `/login` | 14, Regel 0; 6b, Ende |
@@ -171,12 +179,16 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Nach dem Auslöser: Ist Schritt 0 committet? Ohne Commit ist der Satz nicht angekommen ⇒ einmal Hinweis an den Betreiber, dann warten; keine Nachschau-Kette (29.09.2026) | 22.5 |
 | ☐ | Klarstellung zur Zeile darüber (W5): Beide Zeilen gelten: nach jedem Start-Auslöser plant der steuernde Chat eine Nachschau per `send_later` (unter einer Stunde); ohne Commit von Schritt 0 ein Hinweis an den Betreiber, dann warten, keine Nachschau-Kette (Vorgabe 08.10.2026; 07.10.2026: nach dem Auslöser für TB-140 war keine Nachschau per `send_later` geplant) | 22.5; UMZUG 3 |
 | ☐ | Vor dem Schliess-Auslöser das Alter des letzten Commits messen (`git --no-optional-locks log -1 --format=%ct`), erst ab 600 s auslösen (29.09.2026) | 22.8 |
+| ☐ | Schliessen erst nach dem Helferbericht (09.10.2026, Fehler Nr. 28: die wartende TB-142-Sitzung nach den eigenen Kernzahlen geschlossen, bevor der Abnahme-Helfer fertig war) | UEBERGABE, Umzug 09.10.2026, 11:06, Block 7 Nr. 28 |
 | ☐ | Ist ein Mac-Auftrag startklar, legt der steuernde Chat die Claude-Code-Sitzung selbst über den Sitzungswächter an, bevor er dem Betreiber „Satz abschicken“ als Aufgabe gibt. Weist der Wächter ab, weil eine alte Sitzung schläft, und hat sie nicht gearbeitet, schliesst der steuernde Chat sie über den Schliess-Auslöser und startet neu, ohne Rückfrage. „Nicht gearbeitet“ wird gemessen: kein Commit seit ihrem Start, letzter Commit älter als 600 s, nichts Neues unter dem Belegordner des Auftrags, Rechenzeit zwischen zwei Abweisungen des Wächters praktisch unverändert. Der Wächter ist seit dem 23.09.2026 der Weg (`docs/werkzeuge/sitzungswaechter/LIESMICH.md`); die Startblöcke weiter oben gelten für den Start von Hand (Betreiber 05.10.2026, 21:25: „Legst du mir zukünftig wieder bereits eine claude code Sitzung an“; Lesart des steuernden Chats, vorläufig) | UEBERGABE, Nachtrag 05.10.2026, 21:27 |
+| ☐ | Hängt eine Sitzung unsichtbar an einer Frage: nicht das Fenster suchen lassen, sondern die Sitzung schliessen (Schliess-Auslöser) und neu beginnen (08.10.2026, Fehler Nr. 24) | UEBERGABE, Umzug 08.10.2026, 22:03, Block 7 Nr. 24 |
 | ☐ | Ein Start ausserhalb des Wächters wird erst zugesagt, wenn gemessen ist, wo die Sitzung läuft (Fehler Nr. 20) | UEBERGABE, Umzug 04.10.2026, 10:56, Block 7 |
 | ☐ | Ein abgewiesener Start-Auslöser taugt als Sonde: Der Wächter nennt PID, Laufzeit und Rechenzeit; zwei Abweisungen im Abstand zeigen, ob eine Sitzung arbeitet (05.10.2026) | UEBERGABE, Umzug 05.10.2026, 22:31, Block 7 |
 | ☐ | Die Sonde `starte_TB-99` vor dem Zeigerwechsel legen (07.10.2026, so getragen; ebenso die Sonde vor dem Zeigerwechsel im Umzug 23:39) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 6 |
 | ☐ | ⭐⭐ Den Start der Claude-Code-Sitzung führt der steuernde Chat immer selbst aus; der Betreiber bekommt lediglich den Text mit der Anweisung (Betreiber 08.10.2026, 21:26: „`cd ~/trading-bot && claude --effort high --remote-control` + enter sollst du zukünftig immer ausführen und mir lediglich den Text schicken mit der Anweisung. Merke dir das für die Zukunft“). Weg: der Sitzungswächter über `starte_TB-<Nr>` (Terminal bleibt für den steuernden Chat Stufe „click“); seine Startzeile steht in `starte_sitzung.sh` (`STARTZEILE`) | 19; 22.9; LIESMICH, „Gilt seit TB-144“; UEBERGABE, Nachtrag 08.10.2026, 21:47 |
 | ☐ | Nach einem Start-Auslöser stützt sich der steuernde Chat auf die Zeile des Wächter-Logs für diese Nummer und auf den eigenen Blick ins Fenster (Fehler Nr. 23): „⭐ EINGABEBEREIT (TB-<Nr>)“ heisst Eingabezeile steht, keine Frage offen, kein Satz im Fenster; „⛔ STARTFRAGE (TB-<Nr>)“ und „⛔ KEINE EINGABEZEILE (TB-<Nr>)“ heissen nicht eingabebereit, die letzten Zeilen des Fensters stehen im Log; steht keine der drei Zeilen da (⛔ ABBRUCH davor), gilt dasselbe — dann „Satz abschicken“ nicht als Aufgabe geben. Die Zeile „Satz ins Fenster gelegt“ gibt es seit TB-142 nicht mehr; der Wächter legt keinen Satz mehr ins Fenster | 22.9; LIESMICH, „Gilt seit TB-144“; UEBERGABE, Umzug 08.10.2026, 19:58, Block 7 (Nr. 23) |
+| ☐ | Zuerst Satz und Aufgaben zustellen, dann die Freigabe für den Blick ins Terminal anfordern; der Zugriff verfällt nach 30 Minuten ohne Nutzung (09.10.2026, Fehler Nr. 30: die Freigabeanfrage hielt den Chat von etwa 08:20 bis 09:04 an) | UEBERGABE, Umzug 09.10.2026, 11:06, Block 7 Nr. 30 |
+| ☐ | Probestart über `starte_TB-<n>` ohne Satz, Blick ins Fenster, `schliesse_<HEAD>` — misst den Wächter ohne Handgriff des Betreibers (09.10.2026, so getragen) | UEBERGABE, Umzug 09.10.2026, 11:06, Block 7 |
 
 **Wenn Dateien abgelegt oder aus der Ablage gelesen werden**
 
@@ -212,8 +224,10 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Nummern am Block zählen, nicht an der Kurzfassung (Fehler Nr. 17: Der Registerblock von Fable 01a reichte bis R62, „Kurz“ nannte R62 nicht) | UEBERGABE, Nachtrag 02.10.2026, 07:46 |
 | ☐ | Ein „kein Widerspruch“ nennt, was gemessen ist und was nicht; eine Teilmessung heisst Teilmessung (02.10.2026: „Unsicher“ 2 zu Fable 01a, vom Gegenleser berichtigt) | UEBERGABE, Nachtrag 02.10.2026, 10:04 |
 | ☐ | Die Abnahme macht ein eng zugeschnittener Helfer, nur lesend, mit eigenem Ordner für Rohausgaben ausserhalb des Repos; er rechnet jede Zahl an der Rohausgabe nach (wie oben in dieser Gruppe), die Kernzahlen rechnet der steuernde Chat danach mit eigenen Befehlen nach (05.10.2026, Abnahme TB-136) | UEBERGABE, Nachtrag 05.10.2026, 22:55; Umzug 05.10.2026, 22:31 und 23:46, Block 7 |
+| ☐ | Zusatz zur Zeile darüber: Abnahme durch Helfer und Kernzahlen in einem einzigen eigenen Befehl (08.10.2026, so getragen) | UEBERGABE, Umzug 08.10.2026, 22:03, Block 7 |
 | ☐ | Ein Sammelwort für Befunde erst wählen, wenn jeder Befund einzeln eingeordnet ist (07.10.2026: „acht formale Befunde“ für eine Liste, in der zwei Aussagen ohne Beleg standen) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 3; UEBERGABE, Nachtrag 07.10.2026, 10:32, Abschnitt 8 Nr. 1 |
 | ☐ | Bei Widerspruch misst der steuernde Chat die eine Tatsache selbst, mit einem Skript (07.10.2026: Zwei Helfer widersprachen sich, K13) | UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 3 |
+| ☐ | Eine Erfolgsmeldung, die der Betreiber einfügt, zuerst als solche benennen (08.10.2026, Fehler Nr. 24: der Betreiber schrieb um 21:37 „Nichts funktioniert mehr“, gemeint war die Erfolgsmeldung von TB-141) | UEBERGABE, Umzug 08.10.2026, 22:03, Block 7 Nr. 24 |
 
 **Wenn ich einen Auftrag schreibe**
 
@@ -253,18 +267,33 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Ein Registerauftrag sagt, was Schritt A committet (Abnahme TB-136: die Skripte für B, C und D lagen schon im Registercommit) | UEBERGABE, Nachtrag 05.10.2026, 22:55 |
 | ☐ | Unveränderte Textteile übernimmt ein Skript aus der Quelle, mit `assert` auf die Ankerzeilen; abgetippt wird nichts (05.10.2026) | UEBERGABE, Umzug 05.10.2026, 23:46, Block 7 |
 | ☐ | ⭐ Helfer bauen ausserhalb des Repos (Aufträge, Registerentwürfe); Urteil und Freigabe bleiben beim steuernden Chat; ins Repo schreibt nur die Mac-Sitzung; ein frischer Gegenleser ist Pflicht (Betreiber, Karte 08.10.2026: „Helfer bauen Entwürfe (Empfohlen)“) | 22.10 |
+| ☐ | Erinnerungsdateien schreibt nur der steuernde Chat selbst (08.10.2026: Helfer haben kein memory_str_replace) | UEBERGABE, Umzug 08.10.2026, 19:58, Block 4 Nr. 6 und Block 9 |
+| ☐ | Byte-Abgleich beim Schreiben der Erinnerung (08.10.2026, so getragen) | UEBERGABE, Umzug 08.10.2026, 19:58, Block 7 |
 | ☐ | Die Bestandsaufnahme vor dem Bau (zwei Helfer, getrennter Zuschnitt); Bestand und Entwurf in einem Helfer, danach Gegenleser mit getrenntem Zeilenbereich (06. und 07.10.2026, so getragen) | UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 6; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8 |
+| ☐ | Bestandsaufnahmen auf die Stellen des gewählten Wegs zuschneiden, mit Schrittgrenze wie bei Gegenlesern (rund 25) (09.10.2026, Fehler Nr. 29: der Bestands-Helfer lief 13,5 Minuten und kostete rund 300 000 Helfer-Tokens) | UEBERGABE, Umzug 09.10.2026, 11:06, Block 7 Nr. 29 |
+| ☐ | Auch Bau-Helfer bekommen eine Schrittgrenze und ein Zwischenziel (09.10.2026, Fehler Nr. 31: der Helferauftrag BAU144 trug keine Schrittgrenze, obwohl Fehler Nr. 29 sie verlangt) | UEBERGABE, Nachtrag 09.10.2026, 12:56 |
 | ☐ | F1 bleibt für Registertext. Helferberichte darf ein Helfer auf die Stellen schneiden, die der Bau braucht: wörtlich, mit Zeile, nichts umformuliert; der Chat, der einen Auftrag baut, liest die Kernlektüre und sonst nur Ausschnitte (Betreiber, Karte 08.10.2026: „Nur wörtlicher Auszug (Empfohlen)“; 06.10.2026: Kernlektüre 43 KB, Bestandsbericht 30 KB) | 22.10; UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 3 |
 | ☐ | T1 bleibt (aus Helferberichten nur die Abweichungen in den Chat); was in Registertext oder eine Vorgabe geht, liest der steuernde Chat an der Tabelle des Berichts, nicht an der Kurzantwort; der Gegenleser bekommt genau diese Stellen genannt (Vorgabe W6, 08.10.2026; 07.10.2026: „zwei zu zwei“ und „keiner zwingend“ ungeprüft übernommen) | 22.10; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 2 |
 | ☐ | Befunde, die eine Messung, einen Sollwert, eine Fundstelle oder Registertext ändern, werden immer eingearbeitet; reine Formlücken dürfen als Hinweis im Auftrag stehen bleiben, der steuernde Chat nennt sie dem Betreiber bei der Übergabe; dem Berichtiger ein Grössenziel geben (Betreiber, Karte 08.10.2026: „Wichtiges ja, Form als Hinweis (Empfohlen)“; 07.10.2026: TB-140 wuchs über drei Gegenleserunden von 58 709 B auf 159 021 B) | 22.10; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 2 |
+| ☐ | Ein Grössenziel aus dem Vorbild gleicher Bauart ableiten (TB-141: 76,6 KB) (09.10.2026: 45 KB war gesetzt, nicht gemessen; v1 hatte 69 KB, v5 75,9 KB) | UEBERGABE, Umzug 09.10.2026, 06:52, Block 7 |
 | ☐ | Zählungen im Auftrag kommen aus dem Skript; zwei Runden Gegenlesen bleiben (06.10.2026: beim Bau von TB-133 die Zeilen einer Einfügung falsch gezählt) | UEBERGABE, Umzug 06.10.2026, 07:08, Block 7 Nr. 3 |
 | ☐ | Helferberichte auf rund 3 KB begrenzen, das Übrige in Dateien; enge Helfer mit Berichtsgrenze und Berichtsdatei (06.10.2026; ergänzt T1 in 22.10) | UEBERGABE, Umzug 06.10.2026, 07:08, Block 7 Nr. 4; UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 4 |
 | ☐ | Lange Auftragstexte aus Bausteindateien per Skript bauen; Helferaufträge aus Bausteindateien bauen — der Helfer liest seinen Auftrag selbst (07.10.2026: rund 20 Aufträge zu 3 bis 6 KB von Hand geschrieben) | UEBERGABE, Umzug 06.10.2026, 07:08, Block 7 Nr. 4; UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 2; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 1; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 1 |
 | ☐ | Vorzählung als Skript vor und nach jeder Berichtigung; Berichtigungen per Skript mit `assert` auf genau einen Treffer (06.10.2026, so getragen) | UEBERGABE, Umzug 06.10.2026, 07:08, Block 7 Nr. 5; UEBERGABE, Umzug 06.10.2026, 13:43, Block 7 Nr. 4; UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 6 |
+| ☐ | Der Berichtiger arbeitet in den Bausteinen und übernimmt Sollwerte aus der Simulation (`werte.json`), nie von Hand (09.10.2026) | UEBERGABE, Umzug 09.10.2026, 06:52, Block 7 |
+| ☐ | Kleine Berichtigungen (einzelne Zeilen, kein Sollwert) macht der steuernde Chat per Skript mit `assert` auf genau einen Treffer und lässt einen engen frischen Gegenleser nur diese Zeilen lesen (rund 12 Schritte) (09.10.2026: Nach v5 kam kein Gegenleser mehr — dem Betreiber vor der Karte gesagt) | UEBERGABE, Umzug 09.10.2026, 06:52, Block 7 |
+| ☐ | Kleine Aufträge einmal schreiben, Berichtigungen nur per Skript (09.10.2026: der Auftrag TB-143 zweimal ganz geschrieben, 12 und 15 KB) | UEBERGABE, Umzug 09.10.2026, 11:06, Block 7 |
 | ☐ | Vor einer Lesart den Index nach „gilt“ und „dazu“ fragen (06.10.2026: der Beginn je Bot zuerst nur auf 21.5 gestützt) | UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 1; UEBERGABE, Nachtrag 06.10.2026, 14:25 |
 | ☐ | Ein Bauskript prüft an der Quelle; zwei gleichzeitige Gegenleser mit getrenntem Zuschnitt (Quellen, Logik) und ein dritter für die Nachlese (06.10.2026: Bauskript mit 139 Prüfungen an der Quelle; 07.10.2026: zwei Gegenleser mit getrenntem Bereich) | UEBERGABE, Umzug 06.10.2026, 16:40, Block 7 Nr. 5; UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 6 |
+| ☐ | Die Nachlese „als Mac-Sitzung durchgehen“ samt Abgleich mit den `deny`-Regeln (09.10.2026, so getragen) | UEBERGABE, Umzug 09.10.2026, 06:52, Block 7 |
+| ☐ | Prüfstände der Gegenleser mit Attrappen für `osascript` (09.10.2026, so getragen) | UEBERGABE, Umzug 09.10.2026, 06:52, Block 7 |
 | ☐ | Die Simulation an Kopien samt Gegenprobe; den nächsten Auftrag vorbauen, während eine Sitzung misst (07.10.2026: der Vorbau von TB-139 während der Messung) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8 |
+| ☐ | Zusatz zur Zeile darüber: Simulation unter Python 3.9 (08.10.2026, so getragen) | UEBERGABE, Umzug 08.10.2026, 19:58, Block 7 |
 | ☐ | Vor einem Helferstart prüfen, ob der Zielordner schon existiert (07.10.2026: Ein Helferaufruf lief, ohne dass sein Bericht ankam; der zweite fand dessen `v3/` vor) | UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 5 |
+| ☐ | Zusatz zur Zeile darüber: ein abgebrochener Helferauftrag läuft als frischer Helfer neu (Zielordner vorher ansehen) (09.10.2026) | UEBERGABE, Umzug 09.10.2026, 06:52, Block 7 |
+| ☐ | Helfer schreiben den Bericht nach jeder Prüfung fort und versuchen dreimal neu (09.10.2026: einem Helfer fiel die Anbindung nach 13 Aufrufen weg, „device not connected“) | UEBERGABE, Umzug 09.10.2026, 06:52, Block 7 |
+| ☐ | Vor einem Auftrag, der Programme ausserhalb des Repos steuert (`osascript`, `launchctl`, `kill`), den Berechtigungsmodus der Mac-Sitzung messen und den heikelsten Befehl in einer kurzen Vorprobe laufen lassen, bevor der grosse Auftrag gebaut wird (09.10.2026: der Auftrag TB-142 rechnete nicht mit dem Auto-Modus) | UEBERGABE, Umzug 09.10.2026, 07:23, Block 7 |
+| ☐ | Vorprobe als eigener kleiner Auftrag vor dem grossen (09.10.2026, so getragen) | UEBERGABE, Umzug 09.10.2026, 11:06, Block 7 |
 
 ---
 
@@ -778,6 +807,8 @@ Tippfehler, gegen die der feste Zeiger gebaut wurde.*
 | **4** | Der Einfügesatz mit vorangestellter TB-Nummer | ⭐ **immer** |
 | **5** | `screen -r tb` | ⚠️ **nach einem Verbindungsabbruch** — neu verbinden, diesen Befehl, und man steht mitten in der laufenden Sitzung |
 | **6** | `/remote-control` | ⚠️ **nur wenn die Sitzung schon läuft** oder ohne das Flag gestartet wurde |
+
+⭐ **Gilt seit TB-143 (09.10.2026), zu Block 3 der Tabelle darüber:** Ein Start von Hand trägt (Vorgabe des steuernden Chats, vorläufig) `--permission-mode manual` — `cd ~/trading-bot && claude --permission-mode manual --effort high --remote-control`; ohne andere Vorgabe starten Terminal-Sitzungen im Auto-Modus, und beim Eintritt in den Auto-Modus fallen breite Erlaubnisregeln weg, ausdrücklich `Bash(*)` (UEBERGABE, Nachtrag 09.10.2026, 07:55; Abschnitt 22.1).
 
 ⚠️⚠️ **ZWEIMAL BERICHTIGT.** Am **20.09.2026, 13:10** wurde die Forderung
 *„VIER getrennte Blöcke, auch wenn einer gerade nicht nötig scheint“* auf zwei
@@ -1449,6 +1480,8 @@ an den Befehl gehängt, nie in einen Chat kopiert (Abschnitt 7).
 cd ~/trading-bot && claude --remote-control
 ```
 
+⭐ **Gilt seit TB-143 (09.10.2026), zu „2. Sitzung starten“:** Ein Start von Hand trägt (Vorgabe des steuernden Chats, vorläufig) `--permission-mode manual` — `cd ~/trading-bot && claude --permission-mode manual --effort high --remote-control`; ohne andere Vorgabe starten Terminal-Sitzungen im Auto-Modus, und beim Eintritt in den Auto-Modus fallen breite Erlaubnisregeln weg, ausdrücklich `Bash(*)` (UEBERGABE, Nachtrag 09.10.2026, 07:55; Abschnitt 22.1).
+
 ⭐ **Bleibt es bei „Not logged in", erst dann `/login`** — dann ist die Anmeldung
 wirklich weg und nicht nur eingeschlossen.
 
@@ -1466,6 +1499,8 @@ Gestartet wird nackt, in einer Zeile:
 ```
 cd ~/trading-bot && claude --remote-control
 ```
+
+⭐ **Gilt seit TB-143 (09.10.2026), zur Startzeile im Codeblock darüber:** Ein Start von Hand trägt (Vorgabe des steuernden Chats, vorläufig) `--permission-mode manual` — `cd ~/trading-bot && claude --permission-mode manual --effort high --remote-control`; ohne andere Vorgabe starten Terminal-Sitzungen im Auto-Modus, und beim Eintritt in den Auto-Modus fallen breite Erlaubnisregeln weg, ausdrücklich `Bash(*)` (UEBERGABE, Nachtrag 09.10.2026, 07:55; Abschnitt 22.1).
 
 Der Anweisungstext kommt **danach** als eigener Block in die wartende
 Eingabezeile. *Was nicht durch eine Shell und durch Anführungszeichen muss, kann
@@ -2103,6 +2138,7 @@ gelegt", und die Antwort verwies nur darauf. ⭐ **Der Betreiber arbeitet aber
 meist in der Claude-App und nicht am Terminal** — dort muss er den Satz
 einfügen, und dann braucht er ihn im Chat.
 ⭐ **Gilt seit TB-142 (Wächter-Reparatur, Fehler Nr. 23):** Der Wächter legt den Satz nicht mehr ins Terminalfenster, und die Meldung „Satz ins Fenster gelegt“ gibt es nicht mehr. Die Regel dieses Abschnitts gilt unverändert; der Satz erreicht den Betreiber jetzt nur noch über das Kopierfeld und über `logs/sitzungswaechter/letzter_satz.txt`.
+⭐ **Gilt seit TB-144 (Wächter-Reparatur, Fehler Nr. 23):** Die Meldung im Wächter-Log heisst jetzt „⭐ EINGABEBEREIT (TB-<Nr>)“. Steht dort „⛔ STARTFRAGE“ oder „⛔ KEINE EINGABEZEILE“, ist die Sitzung nicht eingabebereit. Dazu sieht der steuernde Chat selbst ins Fenster (Abschnitt 0, Gruppe „Wenn eine Mac-Sitzung startet, endet oder abbricht“).
 
 **Auf dem Mac steht er zusätzlich in** `logs/sitzungswaechter/letzter_satz.txt`.
 

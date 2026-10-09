@@ -1,0 +1,6 @@
+Datei: a_modus.txt
+Was: Prozesszeile der eigenen Claude-Code-Sitzung (EIGEN, wie TB-144 M0)
+Befehl: Elternkette ab $$ bis comm=claude, dann ps -o command=
+Soll: --permission-mode manual in der Prozesszeile — erfüllt
+Aussage der Sitzung (Aussage, nicht Messung): Mein Berechtigungsmodus ist mir aus dem Kontext nicht ausdrücklich genannt; nicht bekannt. Bisher wurde kein Aufruf abgelehnt und keine Bestätigung verlangt.
+Bytes: 87 · Zeilen: 2 · md5: 7c0a8b34528a26b9127acc0a4122cde5

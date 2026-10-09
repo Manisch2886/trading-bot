@@ -1,0 +1,4 @@
+Datei: tb145_einfuegen.py
+Was: Werkzeug, ausgelesen aus Anhang B des Auftrags
+sha256: 2e04e5a4c6841c997e84c9e70e7b8db9adb9c1b7d7afd69be6ca7851459b7a49 (Soll 2e04e5a4…7a49 — gleich)
+Bytes: 13350 · Zeilen: 256 · md5: 30b6b52949516cb0ae955e02cc584eff

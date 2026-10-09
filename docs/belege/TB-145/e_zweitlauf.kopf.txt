@@ -1,0 +1,5 @@
+Datei: e_zweitlauf.txt
+Was: zweiter Lauf von einfuegen, md5 der sieben Dateien davor und danach
+Befehl: md5 <7 Dateien>; trading-env/bin/python3 -B docs/belege/TB-145/tb145_einfuegen.py einfuegen; echo "rc $?"; md5 <7 Dateien>
+Ergebnis: rc 2, ABGEWIESEN mit allen 30 Kennungen, md5 vorher = nachher
+Bytes: 7840 · Zeilen: 58 · md5: c0c995eafd7480f4d1a611c612651e33

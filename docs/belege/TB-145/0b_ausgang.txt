@@ -1,0 +1,12 @@
+# TB-145 0b — Ausgang der acht Zieldateien an S0 82b580a6c852dfe191a021e46f2a86889bb852e5 (wc -l, md5)
+2479 7c6b41f1ed3728e6b57058abca90b84d docs/projektfuehrung/ARBEITSWEISE.md
+380 4c2dda0b24fa888107429a5aa1addd97 docs/projektfuehrung/UMZUG.md
+229 6daacc8f763fca9dcc2402a57356168f docs/projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md
+375 e64195f08e152cb7702ec28a7b38aadf docs/projektfuehrung/BACKLOG.md
+10628 6704e039b1e3e2793db20cf16e3e555d docs/projektfuehrung/JOURNAL.md
+369 6fbed208259d1b9cd1f462d7e423755f docs/werkzeuge/sitzungswaechter/LIESMICH.md
+6 9a4e82c60cd3521c8e6f6e39f7537808 docs/auftraege/_ausloeser/.gitignore
+14 53f240fe2e77d551b73a400ddcbae4e4 docs/auftraege/_ausloeser/LIESMICH.md
+622 464ac93c53829935e479c5f14121c574 docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+# waechter.log:
+    2034 logs/sitzungswaechter/waechter.log

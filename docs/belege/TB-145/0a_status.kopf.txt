@@ -1,0 +1,5 @@
+Datei: 0a_status.txt
+Was: git status --porcelain vor Schritt 0, am HEAD 80c5a9b116e0b02b240568d35232b490ee07bfde
+Befehl: git status --porcelain > "$TMPDIR/tb145_0a.txt", danach unverändert hierher kopiert (cmp gleich)
+Soll: genau die drei Einträge laut Auftrag 0a — erfüllt
+Bytes: 132 · Zeilen: 3 · md5: b5d32a2bbcdfe2a7d96af3027dc53921

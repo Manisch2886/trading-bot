@@ -1,0 +1,5 @@
+Datei: e_einfuegen.txt
+Was: Einfügen der 30 Stücke
+Befehl: trading-env/bin/python3 -B docs/belege/TB-145/tb145_einfuegen.py einfuegen; echo "rc $?"
+Ergebnis: rc 0, sieben Dateien geschrieben und zurückgelesen, Schlusszeile wie Soll
+Bytes: 6728 · Zeilen: 48 · md5: 4e8dd2b1f26dcca1ef824b878b9fbec1

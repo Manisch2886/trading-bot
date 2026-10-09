@@ -1,0 +1,58 @@
+# md5 vorher
+MD5 (docs/projektfuehrung/ARBEITSWEISE.md) = e7e767e7316764d2ce6c9c914470582a
+MD5 (docs/projektfuehrung/UMZUG.md) = 745eed37adf8c28cc9fa2aa28168de19
+MD5 (docs/projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md) = e133fdbcad7136ae904dcc502c51d9b2
+MD5 (docs/projektfuehrung/BACKLOG.md) = 233f7bb397f1f4edfa68df70dcc43ff2
+MD5 (docs/werkzeuge/sitzungswaechter/LIESMICH.md) = 61353389b9c2a1a66ce2bd669932937a
+MD5 (docs/auftraege/_ausloeser/.gitignore) = 0ff633de65bf4ddd6ed7dd986954318e
+MD5 (docs/auftraege/_ausloeser/LIESMICH.md) = 34932920e8da5ff3ae8ba4936c725474
+# einfuegen (zweiter Lauf)
+# TB-145 einfuegen — Stuecke aus Anhang A
+R01 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 74 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R02 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 79 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R03 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 114 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R04 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 117 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R05 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 132 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R06 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 146 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R07 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 160 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+G1 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 168 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R08 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 181 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R09 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 183 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R10 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 189 · nach · Zeilen · Textzeilen 2 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R11 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 226 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R12 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 229 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R13 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 269 · nach · Zeilen · Textzeilen 2 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R14 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 272 · nach · Zeilen · Textzeilen 2 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R15 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 277 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R16 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 282 · nach · Zeilen · Textzeilen 3 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R17 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 287 · nach · Zeilen · Textzeilen 2 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R18 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 290 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R19 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 292 · nach · Zeilen · Textzeilen 4 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+G2 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 809 · nach · Block · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+G3 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 1485 · vor · Block · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+G4 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 1505 · vor · Block · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+G5 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 2140 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+U1 · docs/projektfuehrung/UMZUG.md · Anker Z. 229 · nach · Block · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+L1 · docs/werkzeuge/sitzungswaechter/LIESMICH.md · Anker Z. 60 · nach · Block · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+S1 · docs/projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md · Anker Z. 6 · nach · Block · Textzeilen 14 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+A1 · docs/auftraege/_ausloeser/.gitignore · Anker Z. 2 · nach · Zeilen · Textzeilen 2 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+A2 · docs/auftraege/_ausloeser/LIESMICH.md · Anker Z. 8 · nach · Block · Textzeilen 8 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+B1 · docs/projektfuehrung/BACKLOG.md · Anker Z. 375 · vor · Block · Textzeilen 10 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+Datei docs/auftraege/_ausloeser/.gitignore · Zeilen vorher 8 · nachher 8 · +0 · Soll +2 · ABWEICHUNG
+Datei docs/auftraege/_ausloeser/LIESMICH.md · Zeilen vorher 23 · nachher 23 · +0 · Soll +9 · ABWEICHUNG
+Datei docs/projektfuehrung/ARBEITSWEISE.md · Zeilen vorher 2515 · nachher 2515 · +0 · Soll +36 · ABWEICHUNG
+Datei docs/projektfuehrung/BACKLOG.md · Zeilen vorher 386 · nachher 386 · +0 · Soll +11 · ABWEICHUNG
+Datei docs/projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md · Zeilen vorher 244 · nachher 244 · +0 · Soll +15 · ABWEICHUNG
+Datei docs/projektfuehrung/UMZUG.md · Zeilen vorher 382 · nachher 382 · +0 · Soll +2 · ABWEICHUNG
+Datei docs/werkzeuge/sitzungswaechter/LIESMICH.md · Zeilen vorher 371 · nachher 371 · +0 · Soll +2 · ABWEICHUNG
+Stuecke 30 · eingefuegte Zeilen 0
+ABGEWIESEN, nichts geschrieben: erste Zeile steht schon in der Datei (zweiter Lauf?): R01 R02 R03 R04 R05 R06 R07 G1 R08 R09 R10 R11 R12 R13 R14 R15 R16 R17 R18 R19 G2 G3 G4 G5 U1 L1 S1 A1 A2 B1
+rc 2
+# md5 nachher
+MD5 (docs/projektfuehrung/ARBEITSWEISE.md) = e7e767e7316764d2ce6c9c914470582a
+MD5 (docs/projektfuehrung/UMZUG.md) = 745eed37adf8c28cc9fa2aa28168de19
+MD5 (docs/projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md) = e133fdbcad7136ae904dcc502c51d9b2
+MD5 (docs/projektfuehrung/BACKLOG.md) = 233f7bb397f1f4edfa68df70dcc43ff2
+MD5 (docs/werkzeuge/sitzungswaechter/LIESMICH.md) = 61353389b9c2a1a66ce2bd669932937a
+MD5 (docs/auftraege/_ausloeser/.gitignore) = 0ff633de65bf4ddd6ed7dd986954318e
+MD5 (docs/auftraege/_ausloeser/LIESMICH.md) = 34932920e8da5ff3ae8ba4936c725474

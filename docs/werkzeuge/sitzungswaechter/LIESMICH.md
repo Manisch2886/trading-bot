@@ -59,6 +59,8 @@ Eine Datei `docs/auftraege/_ausloeser/probe_<PID>` öffnet ein Fenster wie ein e
 | **M5** „Teach auto mode“ beim Start | 'Teach auto mode' kommt in 0 von 18 Lesungen aus M2 und M3 und in 0 von 4 Probe-Logs vor (Teilmessung, nur der Start ohne Auftrag). |
 | **Probe** über Auslöser und launchd | Vier Laeufe ueber probe_52208 und launchd (Fenster 21632, 21633, 21634, 21635), je neu geoeffnet, EINGABEBEREIT nach 6 s (Lesung 2), Probesitzung mit TERM beendet, Fenster geschlossen, danach im Repo nur PID 52208, rc 0; Prozesszeile der Probesitzung in Lauf 2 bis 4 gelesen, sie trug --permission-mode manual (und --no-chrome); keine neue Berechtigung. |
 
+⭐ **Berichtigung aus der Abnahme TB-144 (09.10.2026):** `busy` war bei wartender Sitzung `false` (`docs/belege/TB-144/b_m1.txt` Z. 15–16, `b_m3.txt` Z. 15–16), am Fenster der arbeitenden Sitzung aber `true` (`d0_fenster.txt` Z. 112–113; in diesem Tab liefen `login, claude, caffeinate`, Z. 133–134). `busy` sagt also nicht verlässlich, ob in einem Fenster eine Sitzung läuft; vor dem Schliessen schützt die Prüfung `claude_im_repo` in `fenster_aufraeumen`. Für die drei toten Fenster nannte Terminal das tty des Fensters der laufenden Sitzung; für eine Aufräumregel über alte Fenster wäre `processes of tab` der zuverlässigere Prüfwert (`docs/ERGEBNIS_TB-144_waechter_reparatur_rest.md`, Abschnitt D0).
+
 Rohausgaben: `docs/belege/TB-144/`. Ergebnis: `docs/ERGEBNIS_TB-144_waechter_reparatur_rest.md`.
 
 ### Was bleibt

@@ -1,5 +1,7 @@
 # Ausloeserdateien sind fluechtig - sie leben Sekunden und gehoeren nicht in git.
 starte_TB-*
+schliesse_*
+probe_*
 _erledigt/
 # Diese Datei und die Erklaerung bleiben verfolgt.
 !.gitignore
