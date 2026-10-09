@@ -1,0 +1,38 @@
+# C1 AppleScript-Syntax: die fuenf Stuecke aus W2 mit Beispielwerten (STARTZEILE mit --no-chrome, LESE_EIGENSCHAFT=contents, TABNR=1, FENSTER/$1=21630), uebersetzt, nicht ausgefuehrt
+## fensterliste
+tell application "Terminal" to return id of every window
+$ osacompile -o $TMPDIR/c1/fensterliste.scpt $TMPDIR/c1/fensterliste.applescript
+rc 0
+## fenster_starten
+tell application "Terminal"
+    set neu to do script "cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome"
+    return neu
+end tell
+$ osacompile -o $TMPDIR/c1/fenster_starten.scpt $TMPDIR/c1/fenster_starten.applescript
+rc 0
+## fenster_lesen
+with timeout of 10 seconds
+    tell application "Terminal" to return contents of tab 1 of window id 21630
+end timeout
+$ osacompile -o $TMPDIR/c1/fenster_lesen.scpt $TMPDIR/c1/fenster_lesen.applescript
+rc 0
+## fenster_tty
+with timeout of 10 seconds
+    tell application "Terminal" to return tty of tab 1 of window id 21630
+end timeout
+$ osacompile -o $TMPDIR/c1/fenster_tty.scpt $TMPDIR/c1/fenster_tty.applescript
+rc 0
+## fenster_zu
+with timeout of 10 seconds
+    tell application "Terminal"
+        if not (exists window id 21630) then return "fehlt"
+        if (count of tabs of window id 21630) is not 1 then return "mehrere"
+        if busy of tab 1 of window id 21630 then return "arbeitet"
+        close window id 21630
+        delay 1
+        if exists window id 21630 then return "offen"
+        return "zu"
+    end tell
+end timeout
+$ osacompile -o $TMPDIR/c1/fenster_zu.scpt $TMPDIR/c1/fenster_zu.applescript
+rc 0

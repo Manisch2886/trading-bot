@@ -1,0 +1,5 @@
+a_modus.txt — Schritt A, Modus der Sitzung
+Befehle: A1 while-Zeile aus M0 + ps -o command= -p EIGEN; A2 Aussage; A3 /bin/bash "$TMPDIR/T" 'id of every window' (Bash-Werkzeug mit Zeitgrenze 30000 ms)
+Die Ausgabe von A3 wurde aus der Werkzeugausgabe in die Datei uebertragen (der Aufruf selbst lief ohne Umleitung, damit er dem abgelehnten Aufruf aus TB-142 gleicht).
+Bytes 736 · Zeilen 14 · md5 4c2a5037b95d8011988182890f3cee94
+Aussage: A1 Prozesszeile 'claude --permission-mode manual --effort high --remote-control' (PID 52208) — Soll erfuellt. A2 Modus der Sitzung selbst nicht bekannt, nach Prozesszeile manual. A3 LAEUFT, rc 0, fuenf Fenster. Weiter mit Schritt B.

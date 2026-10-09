@@ -1,0 +1,4 @@
+b_m4.txt — M4 Schliessen, Testfenster 1
+Befehl: ps -t ttys017 -o pid=,comm=; ps -o tty=/command= -p 52522; kill -TERM 52522; nach 5 s T 'busy …'; osascript close window id 21630; nach 1 s T 'exists window id 21630'
+Bytes 626 · Zeilen 30 · md5 df5f2678edde96b6f41503c2a9d1120f
+Aussage: claude PID 52522 (nicht EIGEN 52208), tty 'ttys017 ' (mit Leerzeichen am Ende) = tty of tab; Prozesszeile traegt --permission-mode manual; nach TERM busy false; close ohne Rueckfrage, exists false => FENSTER_SCHLIESSEN=ja.

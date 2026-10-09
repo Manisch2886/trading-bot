@@ -1,0 +1,4 @@
+b_m1.txt — M1 Fenster zu einem Tab, Testfenster 1
+Befehl: /bin/bash $TMPDIR/m12.sh '<Startzeile HEAD>' $TMPDIR/tf1 (T 'id of every window'; osascript do script ... return neu; T 'id of every window'; nach den Lesungen T 'tty …', T 'busy …')
+Bytes 454 · Zeilen 17 · md5 fbb829c5857be14ba88bcf5d81533e96
+Aussage: do script liefert 'tab 1 of window id 21630'; 21630 stand vorher nicht in der Liste, nachher schon. tty /dev/ttys017; busy false, obwohl claude per exec im Tab laeuft (processes: login, claude).

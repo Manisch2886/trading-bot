@@ -1,0 +1,4 @@
+c2_hand.txt — C2 Handzaehlung
+Befehl: grep -v Kommentarzeilen | grep -c …; git diff --summary/--numstat gegen den Index (= S0)
+Bytes 331 · Zeilen 10 · md5 cac1eef82b623f32737a10db544530bd
+Aussage: --permission-mode manual 1, do script 1, ' in window' 0, keystroke 0, System Events 0, Wert ="<< 0; kein Moduswechsel; numstat 294 29 (Soll).

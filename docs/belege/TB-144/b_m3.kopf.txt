@@ -1,0 +1,4 @@
+b_m3.txt — M3 Testfenster 2: Oeffnen, Beenden, Schliessen
+Befehl: /bin/bash $TMPDIR/m12.sh '<Startzeile HEAD> --no-chrome' $TMPDIR/tf2; danach wie M4 (ps -t, ps -o tty/command, kill -TERM, nach 5 s busy, close, nach 1 s exists)
+Bytes 1116 · Zeilen 47 · md5 b85e96b7a60e8321a254738f93dae313
+Aussage: Rueckgabe 'tab 1 of window id 21631', neu; claude PID 52923 mit --permission-mode manual ... --no-chrome; nach TERM busy false; close; exists false.

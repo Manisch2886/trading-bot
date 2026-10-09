@@ -1,0 +1,4 @@
+c2_bau_zweit.txt — C2 zweiter Lauf
+Befehl: PY WZ waechter bau 'FENSTER_SCHLIESSEN=ja'; echo rc
+Bytes 195 · Zeilen 3 · md5 df08e8c4a200f7fbcdb8c8dae8d40c64
+Aussage: ABGEWIESEN, rc 2 (Soll).

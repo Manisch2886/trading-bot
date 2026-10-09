@@ -1,0 +1,12 @@
+# TB-144 waechter bau — Stuecke aus Anhang A auf docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+W2 · Anker Z. 43 · nach der Zeile · Zeilen +210 · ok
+W3 · Anker Z. 133 · vor der Zeile · Zeilen +2 · ok
+W4 · Anker Z. 141 · vor der Zeile · Zeilen +64 · ok
+W5 · Anker Z. 324 · 16 Zeilen ersetzt durch 2 · ok
+W6 · Anker Z. 342 · 16 Zeilen ersetzt durch 19 · ok
+gesetzt · MERKMAL_EINGABEZEILE · Z. 58
+gesetzt · FENSTER_SCHLIESSEN · Z. 61
+gesetzt · STARTZEILE · Z. 56
+starte_sitzung.sh · 622 Zeilen · bash -n rc 0 · 'do script' in Befehlszeilen 1 · verbotene Woerter 0 · bash-4 0
+geschrieben · sha256 299fc75cc0f4c7a856d7ce7d9c52909e51e9d7a8d806eaa33b2b48f10d897990
+rc 0

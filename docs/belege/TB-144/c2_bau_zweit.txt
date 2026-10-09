@@ -1,0 +1,3 @@
+# TB-144 waechter bau — Stuecke aus Anhang A auf docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+ABGEWIESEN, nichts geschrieben: steht schon in der Datei (zweiter Lauf?): W2 W3 W4 W5 W6
+rc 2

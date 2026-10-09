@@ -1,0 +1,10 @@
+# C2 Handzaehlung nach dem Bau
+Befehlszeilen mit '--permission-mode manual': 1
+Befehlszeilen mit 'do script': 1
+Zeilen mit ' in window': 0
+Zeilen mit 'keystroke': 0
+Zeilen mit 'System Events': 0
+Befehlszeilen mit Wert ="<<: 0
+git diff --summary (Modus):
+git diff --numstat:
+294	29	docs/werkzeuge/sitzungswaechter/starte_sitzung.sh

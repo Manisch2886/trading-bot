@@ -1,0 +1,17 @@
+$ T 'id of every window' (vorher)
+21040, 21346, 21349, 21560, 21627
+rc 0
+$ osascript ... set neu to do script "cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control" ... return neu
+10:58:26Z
+tab 1 of window id 21630
+rc 0
+$ T 'id of every window' (nachher)
+21040, 21346, 21349, 21560, 21627, 21630
+rc 0
+K=1 N=21630
+$ T 'tty of tab 1 of window id 21630'
+/dev/ttys017
+rc 0
+$ T 'busy of tab 1 of window id 21630'
+false
+rc 0

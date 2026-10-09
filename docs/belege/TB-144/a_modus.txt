@@ -1,0 +1,14 @@
+# Schritt A — Modus der Sitzung (roh)
+## A1 Prozesszeile
+EIGEN=52208
+$ ps -o command= -p 52208
+claude --permission-mode manual --effort high --remote-control
+## A2 Aussage der Sitzung (AUSSAGE, keine Messung)
+Der Sitzung ist ihr Berechtigungsmodus nicht unmittelbar bekannt: Ihr Systemtext sagt nur, Werkzeuge liefen 'behind a user-selected permission mode', ohne ihn zu nennen. Nach der Prozesszeile (A1) ist es 'manual'.
+## A3 Ein lesender Aufruf ueber eine Skriptdatei (Zeitgrenze 30 s)
+$ cat "$TMPDIR/T"
+osascript -e "tell application \"Terminal\" to return $1"
+$ /bin/bash "$TMPDIR/T" 'id of every window'; echo "rc $?"
+21040, 21346, 21349, 21560, 21627
+rc 0
+Ausgang: LAEUFT (keine Rueckfrage, keine Ablehnung durch Claude Code)

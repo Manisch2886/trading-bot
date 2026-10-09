@@ -1,0 +1,35 @@
+# M0 Umgebung (roh)
+$ sw_vers -productVersion
+15.7.9
+rc 0
+$ /bin/bash --version | head -1
+GNU bash, version 3.2.57(1)-release (x86_64-apple-darwin24)
+rc 0
+$ claude --version
+2.1.295 (Claude Code)
+rc 0
+$ echo "$TERM_PROGRAM"
+Apple_Terminal
+rc 0
+$ claude --help | grep -n -- '--no-chrome'
+141:  --no-chrome                           Disable Claude in Chrome integration
+rc 0
+$ grep -n -E 'name="(contents|history|busy|tty|processes|close|exists|do script)"' /System/Applications/Utilities/Terminal.app/Contents/Resources/Terminal.sdef
+21:		<command name="close" code="coreclos" description="Close a document."> 
+144:		<command name="exists" code="coredoex" description="Verify if an object exists."> 
+320:		<command name="do script" code="coredosc" description="Runs a UNIX shell script or command."> 
+421:			<property name="contents" description="The currently visible contents of the tab." code="pcnt" type="text" access="r">
+424:			<property name="history" description="The contents of the entire scrolling buffer of the tab." code="hist" type="text" access="r">
+427:			<property name="busy" description="Whether the tab is busy running a process." code="busy" type="boolean" access="r">
+430:			<property name="processes" description="The processes currently running in the tab." code="prcs" access="r">
+444:			<property name="tty" description="The tab’s TTY device." code="ttty" type="text" access="r">
+rc 0
+$ (while-Zeile M0)
+EIGEN=52208
+$ pgrep -a -x claude | grep -x "$p"
+52208
+rc 0
+$ lsof -a -p "$p" -d cwd -Fn | grep ^n
+n/Users/jaquelineloffler/trading-bot
+$ pgrep -a -x claude (alle)
+52208

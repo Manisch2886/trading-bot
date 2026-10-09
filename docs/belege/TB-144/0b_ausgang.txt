@@ -1,0 +1,10 @@
+# 0b Ausgang an S0 0c678047dd173dce34d947d09f6c29a3481efec8 (md5, Zeilen)
+docs/werkzeuge/sitzungswaechter/starte_sitzung.sh · 357 Z. · 7d78764c75659b2fb9616dd4edf8a63d
+docs/werkzeuge/sitzungswaechter/LIESMICH.md · 304 Z. · 502b3aee263da5a489b382d1b4c2ff81
+docs/projektfuehrung/ARBEITSWEISE.md · 2471 Z. · c5e0689a944394f9dfe3f3427ace4498
+docs/projektfuehrung/BACKLOG.md · 362 Z. · cda13f78d4477e620da9901df6ba81a1
+docs/projektfuehrung/JOURNAL.md · 10578 Z. · 1719db0d9c5ebef07cc0cb33984ce1c3
+starte_sitzung.sh 'do script' (alle Zeilen): 1
+starte_sitzung.sh 'do script' (Befehlszeilen): 1
+starte_sitzung.sh '--permission-mode' (alle Zeilen): 1
+JOURNAL letzte Kennung: ## EJ — TB-141: Regelwerk-Nachtrag 06.–08.10.2026 — 26 Einfü

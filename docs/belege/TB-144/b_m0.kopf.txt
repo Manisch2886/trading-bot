@@ -1,0 +1,4 @@
+b_m0.txt — M0 Umgebung
+Befehle: wie im Auftrag Schritt B, M0 (je Zeile mit $ davor in der Datei), dazu 'pgrep -a -x claude' (alle)
+Bytes 1600 · Zeilen 35 · md5 2f2ae3eae9fb99133464b0075e17eaae
+Aussage: macOS 15.7.9; /bin/bash 3.2.57; Claude Code 2.1.295; TERM_PROGRAM=Apple_Terminal (Soll); --help nennt --no-chrome (Z. 141); Terminal.sdef nennt close, exists, do script, contents, history, busy, processes, tty; EIGEN=52208, einzige claude-PID, cwd ~/trading-bot (Soll).

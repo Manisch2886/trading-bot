@@ -1,0 +1,4 @@
+c2_bau.txt — C2 Bau, geschrieben
+Befehl: PY WZ waechter bau 'MERKMAL_EINGABEZEILE=? for shortcuts' 'FENSTER_SCHLIESSEN=ja' 'STARTZEILE=cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome'; echo rc
+Bytes 698 · Zeilen 12 · md5 19aade5b7c685536790d5c05e3f4e3e8
+Aussage: wie Probelauf, geschrieben, sha256 299fc75c…, rc 0.

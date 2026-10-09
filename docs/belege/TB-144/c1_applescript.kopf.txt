@@ -1,0 +1,4 @@
+c1_applescript.txt — C1 AppleScript-Syntax der fuenf Stuecke aus W2
+Befehl: osacompile -o $TMPDIR/c1/<name>.scpt $TMPDIR/c1/<name>.applescript (je Stueck, Beispielwerte in der Datei genannt; uebersetzt, nicht ausgefuehrt)
+Bytes 1571 · Zeilen 38 · md5 520b437d5ceb1af59860d75e429f5de0
+Aussage: fensterliste, fenster_starten, fenster_lesen, fenster_tty, fenster_zu je rc 0.

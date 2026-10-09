@@ -1,0 +1,4 @@
+c2_bau_probe.txt — C2 Bau, Probelauf
+Befehl: PY WZ waechter bau 'MERKMAL_EINGABEZEILE=? for shortcuts' 'FENSTER_SCHLIESSEN=ja' 'STARTZEILE=cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome' --probe; echo rc
+Bytes 619 · Zeilen 11 · md5 94e416ce468712c40e09aa3ba1e8d41d
+Aussage: wie Soll: W2 +210, W3 +2, W4 +64, W5 16->2, W6 16->19, drei Werte gesetzt, 622 Zeilen, bash -n rc 0, do script 1, verbotene Woerter 0, bash-4 0, rc 0.

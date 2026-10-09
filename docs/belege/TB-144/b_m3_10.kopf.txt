@@ -1,0 +1,4 @@
+b_m3_10.txt — M3 Lesung nach 10 s, Testfenster 2 (21631, mit --no-chrome)
+Befehl: /bin/bash $TMPDIR/T 'contents of tab 1 of window id 21631'
+Bytes 1813 · Zeilen 56 · md5 35e5470598501f224ed6b15f9584fad3
+Aussage: Schranke 3: Zeilen mit Konto- oder Mailangaben (Abo-Name, Login-Ablauf, '@') sind durch '<<entfernt: Kontozeile>>' ersetzt (je Lesung 2 Zeilen: die Zeile mit dem Abo-Namen und die Zeile zum Login-Ablauf). Letzte Zeile 'rc <n>' ist der Rueckgabewert der Lesung. Merkmal '? for shortcuts' vorhanden; 'Enter to confirm' 0; 'Teach auto mode' 0; 'manual mode on' vorhanden.

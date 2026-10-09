@@ -1,0 +1,30 @@
+# M4 Schliessen, Testfenster 1 (Fenster 21630, Tab 1, /dev/ttys017)
+$ ps -t ttys017 -o pid=,comm=
+52521 login
+52522 claude
+rc 0
+$ ps -o tty= -p 52522
+ttys017 
+rc 0
+$ ps -o command= -p 52522
+claude --permission-mode manual --effort high --remote-control
+rc 0
+$ kill -TERM 52522
+11:00:07Z
+rc 0
+$ (nach 5 s) T 'busy of tab 1 of window id 21630'
+false
+rc 0
+$ ps -p 52522 -o pid=,comm=
+rc 1
+$ T 'processes of tab 1 of window id 21630'
+
+rc 0
+$ osascript -e 'tell application "Terminal" to close window id 21630'
+rc 0
+$ (nach 1 s) T 'exists window id 21630'
+false
+rc 0
+$ T 'id of every window'
+21040, 21346, 21349, 21560, 21627
+rc 0
