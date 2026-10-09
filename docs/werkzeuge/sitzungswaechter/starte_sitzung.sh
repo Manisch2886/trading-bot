@@ -344,20 +344,14 @@ sage "$WARTE s gewartet."
 # ⭐ Wenn der Prompt als Argument ankam, ARBEITET die Sitzung bereits - sie
 #   verbraucht Rechenzeit. Bleibt sie bei fast null, wartet sie auf Eingabe.
 printf '%s\n' "$SATZ" > "$LOGDIR/letzter_satz.txt"
-osascript <<OSA 2>>"$LOG"
-tell application "Terminal"
-    do script "$SATZ" in window id $FENSTER
-end tell
-OSA
-if [ $? -ne 0 ]; then
-    sage "⚠️ Der Satz konnte nicht uebergeben werden. Das FENSTER LAEUFT aber."
-    sage "   Auftragssatz zum Einfuegen von Hand: $LOGDIR/letzter_satz.txt"
-    exit 1
-fi
-sage "⭐ Satz ins Fenster gelegt. ⚠️ ER IST NICHT ABGESCHICKT."
-sage "   Der Betreiber schickt ihn ab - in der Claude-App unter der"
-sage "   Geraetesitzung (Laptop-Symbol, noch OHNE TB-Nummer im Titel)"
-sage "   oder im Terminalfenster mit Enter."
-sage "   Der Satz steht auch in $LOGDIR/letzter_satz.txt"
+# ⛔ SEIT TB-142 (V4): Der Satz wird NICHT mehr ins Fenster gelegt. Der
+#   Terminal-Befehl, der Text in ein vorhandenes Fenster gibt, schickt eine
+#   Befehlszeile samt Zeilenende - im richtigen Fenster waere das das
+#   Abschicken, das ARBEITSWEISE 19 ausschliesst. Am 08.10.2026 landete der
+#   Satz so in einer bash-Shell ("-bash: TB-141:: command not found").
+#   Der Satz steht in der Datei eine Zeile weiter oben.
+sage "⚠️ KEIN SATZ IM FENSTER (seit TB-142): Der Waechter legt den Satz nicht mehr hinein."
+sage "   Ob die Sitzung eingabebereit ist, ist in diesem Zwischenstand NICHT geprueft."
+sage "   Der Satz steht in $LOGDIR/letzter_satz.txt"
 sage "----- fertig -----"
 exit 0
