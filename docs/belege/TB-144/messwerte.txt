@@ -1,0 +1,7 @@
+# TB-144 Messwerte, je ein Satz (Rohausgaben in docs/belege/TB-144/)
+M1: do script ohne in liefert beim Oeffnen 'tab 1 of window id <n>' (Testfenster 21630 und 21631, Probe 21632 bis 21635); <n> stand jeweils vorher nicht in der Fensterliste und nachher schon; tty des Tabs /dev/ttys017, ps meldet dafuer 'ttys017 ' mit Leerzeichen am Ende.
+M2: Merkmal '? for shortcuts' steht in allen 18 Lesungen der wartenden Sitzung (3 bis 60 s, beide Testfenster), schon in der ersten nach 3 s; keine Lesung zeigte Shell, Ladeanzeige oder eine Frage; Zeilen mit LF getrennt, kein CR; 'manual mode on' stand in jeder Lesung; busy meldet false, obwohl claude per exec im Tab laeuft.
+M3: Mit und ohne --no-chrome erschien keine Frage (beide Testfenster 60 s ohne 'Enter to confirm'); die Wirkung von --no-chrome ist damit nicht zuzuordnen; nach der Tabelle in Schritt B ist der Schalter angehaengt.
+M4: Nach TERM an die claude-PID meldet busy false, und close window id schliesst das Fenster ohne Rueckfrage (exists danach false, Testfenster 21630 und 21631) - FENSTER_SCHLIESSEN=ja.
+M5: 'Teach auto mode' kommt in 0 von 18 Lesungen aus M2 und M3 und in 0 von 4 Probe-Logs vor (Teilmessung, nur der Start ohne Auftrag).
+PROBE: Vier Laeufe ueber probe_52208 und launchd (Fenster 21632, 21633, 21634, 21635), je neu geoeffnet, EINGABEBEREIT nach 6 s (Lesung 2), Probesitzung mit TERM beendet, Fenster geschlossen, danach im Repo nur PID 52208, rc 0; Prozesszeile der Probesitzung in Lauf 2 bis 4 gelesen, sie trug --permission-mode manual (und --no-chrome); keine neue Berechtigung.

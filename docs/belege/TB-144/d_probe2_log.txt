@@ -1,0 +1,7 @@
+2026-10-09T11:04:43Z  ----- Waechter geweckt -----
+2026-10-09T11:04:43Z  ----- Probe-Ausloeser: probe_52208 -----
+2026-10-09T11:04:44Z  Fenster 21633 neu geoeffnet (Tab 1). Gemerkt in /Users/jaquelineloffler/trading-bot/logs/sitzungswaechter/letztes_fenster_probe.txt
+2026-10-09T11:04:51Z  ⭐ EINGABEBEREIT (PROBE): Fenster 21633, Eingabezeile steht, keine Frage offen (nach 6 s, Lesung 2). ⚠️ KEIN SATZ IM FENSTER.
+2026-10-09T11:04:51Z    Probe: beende PID 53949 (ttys017) mit TERM. PID 52208 bleibt unberuehrt.
+2026-10-09T11:04:57Z    Fenster 21633 geschlossen (das beim Start gemerkte, kein laufender Prozess).
+2026-10-09T11:04:57Z  ----- fertig (probe), rc 0 -----

@@ -1,0 +1,4 @@
+messwerte.txt — M1–M5 und PROBE, je ein Satz
+Befehl: von Hand aus den Rohausgaben geschrieben
+Bytes 1566 · Zeilen 7 · md5 487bd28357e5be7791b1a44203bde829
+Aussage: sechs Zeilen M1..M5, PROBE; je <= 400 Zeichen, ohne '|'.

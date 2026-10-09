@@ -1,0 +1,4 @@
+d_probe2_fenster.txt — Probe 2, Fenster und Prozesse
+Befehl: $TMPDIR/probe2.sh <i> (wie probe.sh, aber alle 2 s nachgesehen, hoechstens 100 x 2 s = 200 s), i=2
+Bytes 527 · Zeilen 19 · md5 7c2c04752130d4649f9316143574f707
+Aussage: Ausloeser 11:04:41Z (nur 14 s nach Ende von Lauf 1 - Abstand unter 35 s, launchd weckte erst 11:04:43Z = 30 s nach Lauf 1); Prozesszeile PID 53949 mit --permission-mode manual --no-chrome; rc 0.

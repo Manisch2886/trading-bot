@@ -1,0 +1,4 @@
+d_probe3_log.txt — Probe 3, Waechter-Log ab Z0+1
+Befehl: tail -n +$((Z0+1)) logs/sitzungswaechter/waechter.log
+Bytes 674 · Zeilen 7 · md5 4d2f48fdd35dbe9348232a12337fcdda
+Aussage: Fenster 21634 neu geoeffnet; 1x EINGABEBEREIT; fertig (probe), rc 0. Keine Fensterzeilen (nur bei Abbruch).

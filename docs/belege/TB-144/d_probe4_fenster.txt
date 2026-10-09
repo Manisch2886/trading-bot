@@ -1,0 +1,19 @@
+# Probe 4 — Fenster vorher
+11:06:16Z
+$ T 'id of every window'
+21040, 21346, 21349, 21560, 21627
+rc 0
+Z0=1977
+Ausloeser probe_52208 angelegt 11:06:16Z
+nach 2 s: $ ps -o command= -p 54414
+claude --permission-mode manual --effort high --remote-control --no-chrome
+Ende nach 14 s: 2026-10-09T11:06:31Z  ----- fertig (probe), rc 0 -----
+# Fenster nachher
+$ T 'id of every window'
+21040, 21346, 21349, 21560, 21627
+rc 0
+$ pgrep -a -x claude (mit cwd)
+52208 /Users/jaquelineloffler/trading-bot
+$ ls _ausloeser
+_erledigt
+LIESMICH.md

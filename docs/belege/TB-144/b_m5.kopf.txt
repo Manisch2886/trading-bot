@@ -1,0 +1,4 @@
+b_m5.txt — M5 Zaehlung 'Teach auto mode'
+Befehl: grep -c 'Teach auto mode' je Datei (Belegdateien und ungeschwaerzte Lesungen im Scratch)
+Bytes 796 · Zeilen 42 · md5 2b08648338f86783cf77b76ee2a41272
+Aussage: ueberall 0.

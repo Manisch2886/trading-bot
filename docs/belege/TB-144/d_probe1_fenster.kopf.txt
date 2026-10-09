@@ -1,0 +1,4 @@
+d_probe1_fenster.txt — Probe 1, Fenster und Prozesse
+Befehl: $TMPDIR/probe.sh 1 (T 'id of every window'; wc -l waechter.log = Z0; : > _ausloeser/probe_52208; alle 10 s Log hinter Z0 pruefen, claude-PIDs != 52208 mit cwd im Repo einmal ps -o command=; nachher Fensterliste, claude-PIDs mit cwd, ls _ausloeser)
+Bytes 416 · Zeilen 17 · md5 4c95efa8b28eeea6560c26f241f83f3a
+Aussage: Ausloeser 11:04:13Z, Schlusszeile nach 20 s, rc 0; Fensterliste vorher = nachher; danach nur 52208 im Repo; Prozesszeile der Probesitzung NICHT gelesen (Sitzung nach 7 s schon beendet, Takt 10 s).

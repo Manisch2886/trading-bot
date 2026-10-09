@@ -1,0 +1,4 @@
+d_probe3_fenster.txt — Probe 3, Fenster und Prozesse
+Befehl: $TMPDIR/probe2.sh <i> (wie probe.sh, aber alle 2 s nachgesehen, hoechstens 100 x 2 s = 200 s), i=3
+Bytes 527 · Zeilen 19 · md5 5febd6d00f45579f7b6ab1f13afb5815
+Aussage: Ausloeser 11:05:08Z (11 s nach Ende von Lauf 2 - Abstand unter 35 s; Weckzeit 11:05:14Z); Prozesszeile PID 54178 mit --permission-mode manual --no-chrome; rc 0.

@@ -1,0 +1,138 @@
+$ T 'id of every window' (vorher)
+21040, 21346, 21349, 21560, 21627
+rc 0
+$ pgrep -a -x Terminal
+52069
+rc 0
+$ ps -o lstart= -p 
+ps: option requires an argument -- p
+usage: ps [-AaCcEefhjlMmrSTvwXx] [-O fmt | -o fmt] [-G gid[,gid...]]
+          [-g grp[,grp...]] [-u [uid,uid...]]
+          [-p pid[,pid...]] [-t tty[,tty...]] [-U user[,user...]]
+       ps [-L]
+rc 1
+$ date
+Fr  9 Okt 2026 13:03:17 CEST
+## Fenster 21040
+$ T 'exists window id 21040'
+true
+rc 0
+$ T 'count of tabs of window id 21040'
+1
+rc 0
+$ T 'tty of tab 1 of window id 21040'
+/dev/ttys004
+rc 0
+$ T 'busy of tab 1 of window id 21040'
+false
+rc 0
+$ ps -t ttys004 -o pid=,comm=
+22939 login
+22942 -bash
+rc 0
+$ T 'history of tab 1 of window id 21040' | grep -c 'exec claude'
+0
+## Fenster 21346
+$ T 'exists window id 21346'
+true
+rc 0
+$ T 'count of tabs of window id 21346'
+1
+rc 0
+$ T 'tty of tab 1 of window id 21346'
+/dev/ttys008
+rc 0
+$ T 'busy of tab 1 of window id 21346'
+false
+rc 0
+$ ps -t ttys008 -o pid=,comm=
+52205 login
+52208 claude
+53005 caffeinate
+rc 0
+$ T 'history of tab 1 of window id 21346' | grep -c 'exec claude'
+1
+## Fenster 21349
+$ T 'exists window id 21349'
+true
+rc 0
+$ T 'count of tabs of window id 21349'
+1
+rc 0
+$ T 'tty of tab 1 of window id 21349'
+/dev/ttys008
+rc 0
+$ T 'busy of tab 1 of window id 21349'
+false
+rc 0
+$ ps -t ttys008 -o pid=,comm=
+52205 login
+52208 claude
+53005 caffeinate
+rc 0
+$ T 'history of tab 1 of window id 21349' | grep -c 'exec claude'
+1
+## Fenster 21560
+$ T 'exists window id 21560'
+true
+rc 0
+$ T 'count of tabs of window id 21560'
+1
+rc 0
+$ T 'tty of tab 1 of window id 21560'
+/dev/ttys008
+rc 0
+$ T 'busy of tab 1 of window id 21560'
+false
+rc 0
+$ ps -t ttys008 -o pid=,comm=
+52205 login
+52208 claude
+53005 caffeinate
+rc 0
+$ T 'history of tab 1 of window id 21560' | grep -c 'exec claude'
+1
+# Nachtrag: Startzeit von Terminal (pgrep -a, Terminal ist Vorfahr dieser Sitzung)
+$ pgrep -a -x Terminal
+52069
+$ ps -o lstart= -p 52069
+Di 15 Sep 09:14:08 2026     
+rc 0
+$ date
+Fr  9 Okt 2026 13:03:34 CEST
+# Vergleich: eigenes tty und Fenster 21627
+$ ps -o tty= -p 52208
+ttys008 
+$ T 'count of tabs of window id 21627'
+1
+rc 0
+$ T 'tty of tab 1 of window id 21627'
+/dev/ttys008
+rc 0
+$ T 'busy of tab 1 of window id 21627'
+true
+rc 0
+$ T 'tty of every tab of every window'
+/dev/ttys004, /dev/ttys008, /dev/ttys008, /dev/ttys008, /dev/ttys008
+rc 0
+$ T 'name of every window'  (nur Anzahl Zeichen)
+     227
+# Nachtrag: processes je Fenster
+$ T 'processes of tab 1 of window id 21040'
+login, -bash
+rc 0
+$ T 'processes of tab 1 of window id 21346'
+
+rc 0
+$ T 'processes of tab 1 of window id 21349'
+
+rc 0
+$ T 'processes of tab 1 of window id 21560'
+
+rc 0
+$ T 'processes of tab 1 of window id 21627'
+login, claude, caffeinate
+rc 0
+$ T 'id of every window' (nachher, nichts geschlossen)
+21040, 21346, 21349, 21560, 21627
+rc 0

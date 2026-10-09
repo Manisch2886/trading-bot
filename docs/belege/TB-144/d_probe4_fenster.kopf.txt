@@ -1,0 +1,4 @@
+d_probe4_fenster.txt — Probe 4, Fenster und Prozesse
+Befehl: $TMPDIR/probe4.sh (40 s warten, dann $TMPDIR/probe2.sh <i> (wie probe.sh, aber alle 2 s nachgesehen, hoechstens 100 x 2 s = 200 s), i=4)
+Bytes 527 · Zeilen 19 · md5 8a692655e407039c697121284379e373
+Aussage: Ausloeser 11:06:16Z, 48 s nach Ende von Lauf 3 (Abstand eingehalten); Prozesszeile PID 54414 mit --permission-mode manual --no-chrome; rc 0.
