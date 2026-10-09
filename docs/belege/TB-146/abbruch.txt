@@ -1,0 +1,24 @@
+# TB-146 ABBRUCH in Schritt E, nach dem Einfügen, vor dem Commit ⟨E⟩
+
+Grund (Abbruchkriterium „Claude Code lehnt einen Aufruf ab oder verlangt eine Bestätigung"):
+Claude Code hat einen Bash-Aufruf der Sitzung abgelehnt. Wortlaut der Rückmeldung (Anfang):
+"Permission to use Bash with command S=/private/tmp/claude-501/-Users-jaquelineloffler-trading-bot/5c40578b-eba9-4cdf-8bbb-fbf9c3274997/scratchpad; mkdir -p $S; cat > $S/kopf.sh <<'EOF' … has been denied."
+Der abgelehnte Aufruf sollte im Scratchpad der Sitzung ein kleines Hilfsskript kopf.sh anlegen (mkdir, cat-Heredoc, chmod +x)
+und damit die Kopfdateien e_probe.kopf.txt, e_einfuegen.kopf.txt, e_vergleich.kopf.txt, e_zweitlauf.kopf.txt schreiben.
+Nichts davon ist entstanden; der Aufruf wurde nicht umgangen und nicht anders wiederholt.
+
+Stand beim Abbruch:
+- Schritt 0: ⟨S0⟩ 7f0b59dd6691d2a01b5df0ed888a7080922a81b9 (gepusht); 0a, sha256 des Werkzeugs und 0b wie Soll.
+- Schritt A: Prozesszeile trägt --permission-mode manual (wie Soll).
+- Schritt E: probe rc 0, einfuegen rc 0, vergleich rc 0, zweiter Lauf rc 2 mit md5 vorher = nachher — alle wie Soll.
+  Die drei Zieldateien sind GESCHRIEBEN (nur eingefügt) und gehen mit Namen in diesen Abbruch-Commit; keine hat weniger Zeilen als an ⟨S0⟩.
+- Nicht erreicht: Kopfdateien zu e_probe/e_einfuegen/e_vergleich/e_zweitlauf, Commit ⟨E⟩, e_numstat, Schritt J (Journalblock), Schritt F (Ergebnis).
+
+Zeilen und md5 der drei Zieldateien beim Abbruch:
+docs/projektfuehrung/ARBEITSWEISE.md · 2531 Z. · b856395e6c1df8581cf9a44ca33c441e (an ⟨S0⟩: 2515 Z.)
+docs/projektfuehrung/UMZUG.md · 392 Z. · 017136adf27c96b861cab1357276b41c (an ⟨S0⟩: 382 Z.)
+docs/projektfuehrung/BACKLOG.md · 395 Z. · 3caf2260ef772e453b80a4fbdb3491a6 (an ⟨S0⟩: 386 Z.)
+git diff --numstat 7f0b59d (Arbeitsbaum):
+16	0	docs/projektfuehrung/ARBEITSWEISE.md
+9	0	docs/projektfuehrung/BACKLOG.md
+10	0	docs/projektfuehrung/UMZUG.md

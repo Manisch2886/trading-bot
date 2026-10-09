@@ -1,0 +1,4 @@
+Was: Rohausgabe von git status --porcelain vor Schritt 0 (vor dem Anlegen von docs/belege/TB-146/), unverändert aus $TMPDIR/tb146_0a.txt kopiert (cmp gleich).
+Befehl: git status --porcelain > "$TMPDIR/tb146_0a.txt"; HEAD dabei bbe26ba79f763c270109d9e9f97ac79d5b9fe4c8 (git rev-parse HEAD).
+Bytes: 389 · Zeilen: 6 · md5: 2fab461dc2fb8632bb24683d66264c54
+Aussage: genau die sechs Einträge aus 0a, HEAD wie Soll.

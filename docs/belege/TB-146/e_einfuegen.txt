@@ -1,0 +1,24 @@
+# TB-146 einfuegen — Stuecke aus Anhang A
+R01 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 44 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R02 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 97 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R03 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 112 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R04 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 114 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R05 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 133 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R06 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 147 · nach · Zeilen · Textzeilen 4 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +4 · ok
+R07 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 202 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R08 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 209 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R09 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 211 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R10 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 262 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R12 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 294 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +1 · ok
+R11 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 296 · nach · Zeilen · Textzeilen 2 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle ja · Zeilen +2 · ok
+U1 · docs/projektfuehrung/UMZUG.md · Anker Z. 258 · nach · Block · Textzeilen 9 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle – · Zeilen +10 · ok
+B1 · docs/projektfuehrung/BACKLOG.md · Anker Z. 375 · vor · Block · Textzeilen 8 · erste Zeile schon 0 · Anker in neuen Texten 0 · Tabelle – · Zeilen +9 · ok
+Datei docs/projektfuehrung/ARBEITSWEISE.md · Zeilen vorher 2515 · nachher 2531 · +16 · Soll +16 · gleich
+Datei docs/projektfuehrung/BACKLOG.md · Zeilen vorher 386 · nachher 395 · +9 · Soll +9 · gleich
+Datei docs/projektfuehrung/UMZUG.md · Zeilen vorher 382 · nachher 392 · +10 · Soll +10 · gleich
+Stuecke 14 · eingefuegte Zeilen 35
+geschrieben und zurueckgelesen: docs/projektfuehrung/ARBEITSWEISE.md
+geschrieben und zurueckgelesen: docs/projektfuehrung/BACKLOG.md
+geschrieben und zurueckgelesen: docs/projektfuehrung/UMZUG.md
+Gesamt: wie Soll, alle eingefuegt, je genau einmal
+rc 0

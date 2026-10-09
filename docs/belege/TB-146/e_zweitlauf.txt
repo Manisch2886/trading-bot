@@ -1,0 +1,29 @@
+# md5 vorher
+MD5 (docs/projektfuehrung/ARBEITSWEISE.md) = b856395e6c1df8581cf9a44ca33c441e
+MD5 (docs/projektfuehrung/UMZUG.md) = 017136adf27c96b861cab1357276b41c
+MD5 (docs/projektfuehrung/BACKLOG.md) = 3caf2260ef772e453b80a4fbdb3491a6
+# TB-146 einfuegen — Stuecke aus Anhang A
+R01 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 44 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R02 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 98 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R03 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 114 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R04 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 117 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R05 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 137 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R06 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 152 · nach · Zeilen · Textzeilen 4 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R07 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 211 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R08 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 219 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R09 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 222 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R10 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 274 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R12 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 307 · nach · Zeilen · Textzeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+R11 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 310 · nach · Zeilen · Textzeilen 2 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+U1 · docs/projektfuehrung/UMZUG.md · Anker Z. 258 · nach · Block · Textzeilen 9 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+B1 · docs/projektfuehrung/BACKLOG.md · Anker Z. 384 · vor · Block · Textzeilen 8 · erste Zeile schon 1 · Anker in neuen Texten 0 · Tabelle – · Zeilen +0 · ABWEICHUNG
+Datei docs/projektfuehrung/ARBEITSWEISE.md · Zeilen vorher 2531 · nachher 2531 · +0 · Soll +16 · ABWEICHUNG
+Datei docs/projektfuehrung/BACKLOG.md · Zeilen vorher 395 · nachher 395 · +0 · Soll +9 · ABWEICHUNG
+Datei docs/projektfuehrung/UMZUG.md · Zeilen vorher 392 · nachher 392 · +0 · Soll +10 · ABWEICHUNG
+Stuecke 14 · eingefuegte Zeilen 0
+ABGEWIESEN, nichts geschrieben: erste Zeile steht schon in der Datei (zweiter Lauf?): R01 R02 R03 R04 R05 R06 R07 R08 R09 R10 R12 R11 U1 B1
+rc 2
+# md5 nachher
+MD5 (docs/projektfuehrung/ARBEITSWEISE.md) = b856395e6c1df8581cf9a44ca33c441e
+MD5 (docs/projektfuehrung/UMZUG.md) = 017136adf27c96b861cab1357276b41c
+MD5 (docs/projektfuehrung/BACKLOG.md) = 3caf2260ef772e453b80a4fbdb3491a6

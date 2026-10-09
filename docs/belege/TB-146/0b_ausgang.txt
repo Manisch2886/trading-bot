@@ -1,0 +1,8 @@
+# TB-146 0b — Zeilen und md5 der Zieldateien und der UEBERGABE.md an S0 7f0b59dd6691d2a01b5df0ed888a7080922a81b9 (git show S0:<pfad> | wc -l / md5 -q)
+docs/projektfuehrung/ARBEITSWEISE.md · 2515 Z. · e7e767e7316764d2ce6c9c914470582a
+docs/projektfuehrung/UMZUG.md · 382 Z. · 745eed37adf8c28cc9fa2aa28168de19
+docs/projektfuehrung/BACKLOG.md · 386 Z. · 233f7bb397f1f4edfa68df70dcc43ff2
+docs/projektfuehrung/JOURNAL.md · 10669 Z. · c5102f2d0aace7e1821017f757c92225
+docs/projektfuehrung/UEBERGABE.md · 2866 Z. · 59293669702764c5dd1cd34fcaf291fe
+Soll: ARBEITSWEISE 2515 e7e767e7316764d2ce6c9c914470582a · UMZUG 382 745eed37adf8c28cc9fa2aa28168de19 · BACKLOG 386 233f7bb397f1f4edfa68df70dcc43ff2 · JOURNAL 10669 c5102f2d0aace7e1821017f757c92225 · UEBERGABE ohne Sollwert
+Ergebnis: vier Zieldateien gleich Soll

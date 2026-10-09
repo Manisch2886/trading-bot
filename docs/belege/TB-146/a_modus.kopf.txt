@@ -1,0 +1,5 @@
+Was: Rohausgabe der Modusmessung aus Schritt A (eigene Sitzung: Elternkette ab $$ bis zum Prozess claude, dann dessen Prozesszeile).
+Befehl: p=$$; while [ "$p" -gt 1 ]; do case "$(ps -o comm= -p "$p")" in claude|*/claude) break ;; esac; p=$(ps -o ppid= -p "$p" | tr -d ' '); done; echo "EIGEN=$p"; ps -o command= -p "$p"
+Bytes: 87 · Zeilen: 2 · md5: 90fce08ccb0312ca793893d7fde73d19
+Gemessen: Die Prozesszeile (PID 70880) trägt --permission-mode manual — wie Soll. Daneben --effort high --remote-control --no-chrome.
+Aussage der Sitzung (keine Messung): Den eigenen Berechtigungsmodus kennt die Sitzung nicht aus sich selbst — nicht bekannt; sie weiss nur, dass Aufrufe hinter einem vom Nutzer gewählten Berechtigungsmodus laufen.

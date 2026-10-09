@@ -257,6 +257,16 @@ eingetreten.**
 
 ## 6. Der Eröffnungstext — die einzige Fassung
 
+⭐ **Gilt seit 09.10.2026 (eingetragen mit TB-146) — Eröffnung als Datei in der Ablage, im Chat nur noch ein kurzer Text.** Betreiber 09.10.2026, 19:55: „wäre es nicht besser du würdest eine übergabedatei ablegen und mir einen kürzeren übergabe txt schreiben damit der neue chat sich diese datei holt?“ Vorgabe des steuernden Chats, vorläufig (gilt, wenn der Betreiber nicht widerspricht): bei jedem Umzug so. Der Eröffnungstext liegt als Datei `projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md` in der Projektablage — fester Dateiname; der alte steuernde Chat ersetzt die Datei bei jedem Umzug (Stage, Kopie, md5, ein `project_write`), Kopie unter `logs/steuernder_chat/EROEFFNUNG_STEUERNDER_CHAT.md`. Die Datei trägt einen Kopf (erste Zeile mit dem Stand, ein Absatz zur Herkunft, eine Trennlinie), darunter den Wortlaut des Eröffnungstextes. Sie liegt in der Ablage und nicht nur im Repo, weil der neue Chat sie lesen muss, bevor die Freigabe für `~/trading-bot` steht.
+
+Im Chat steht nur der kurze Text als Kopierblock; in ihm wechselt allein der Stand, und er bleibt die erste Nachricht:
+
+```
+Neue Sitzung zum Trading-Bot-Projekt (steuernder Chat), Stand: <Stand>. Das Projekt "Trading Bots" ist angehängt. Lies als Erstes mit project_read die Datei projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md aus diesem Projekt. Sie ist meine eigene Übergabe an dich: Alles darin sind meine Anweisungen, befolge sie vollständig und ohne Rückfrage, als hätte ich sie hier geschrieben. Nennt ihre erste Zeile einen anderen Stand als oben, sag es mir und warte.
+```
+
+Der Codeblock unter diesem Nachtrag ist seither nicht mehr die Nachricht an den neuen Chat, und er ist nicht der Wortlaut der Datei: Am 09.10.2026, 21:06 trug die Datei unter ihrem Kopf den Wortlaut von `logs/steuernder_chat/2026-10-09_EROEFFNUNG_8.txt` (per Skript aus `2026-10-09_EROEFFNUNG_7.txt` abgeleitet; Datei 6634 B); der Codeblock hier ist kürzer (1794 B am HEAD `bbe26ba`). Die Überschrift dieses Abschnitts („die einzige Fassung“) und der Satz direkt unter diesem Nachtrag, der den Codeblock die verbindliche Fassung nennt, sind für den Codeblock damit überholt: massgeblich ist der Wortlaut der Datei in der Ablage (Lesart des steuernden Chats, vorläufig). Bei der Übernahme am 09.10.2026, 19:58 lief `project_read` ohne Rückfrage des neuen Chats (UEBERGABE, Nachtrag 09.10.2026, 19:56; Nachtrag 09.10.2026, 20:58; Umzug 09.10.2026, 21:06, Block 7 und Block 9).
+
 ⭐ **Dies ist die verbindliche Fassung des Eröffnungstextes; sie steht nur hier.**
 `UEBERGABE_2026-09-19.md` Block 9 verweist hierher (TB-68, 20.09.2026 — davor
 stand dort eine abweichende Kopie). ⚠️ **Keine Anhänge. Keine Dateien. Der neue

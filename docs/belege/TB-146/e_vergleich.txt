@@ -1,0 +1,17 @@
+# TB-146 vergleich — jedes Stueck zeichengleich und genau einmal in seiner Zieldatei
+R01 · docs/projektfuehrung/ARBEITSWEISE.md · 368 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R02 · docs/projektfuehrung/ARBEITSWEISE.md · 290 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R03 · docs/projektfuehrung/ARBEITSWEISE.md · 419 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R04 · docs/projektfuehrung/ARBEITSWEISE.md · 615 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R05 · docs/projektfuehrung/ARBEITSWEISE.md · 239 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R06 · docs/projektfuehrung/ARBEITSWEISE.md · 1664 Bytes · 4 Zeile(n) · Vorkommen 1 · GLEICH
+R07 · docs/projektfuehrung/ARBEITSWEISE.md · 477 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R08 · docs/projektfuehrung/ARBEITSWEISE.md · 444 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R09 · docs/projektfuehrung/ARBEITSWEISE.md · 430 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R10 · docs/projektfuehrung/ARBEITSWEISE.md · 772 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R12 · docs/projektfuehrung/ARBEITSWEISE.md · 297 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R11 · docs/projektfuehrung/ARBEITSWEISE.md · 468 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+U1 · docs/projektfuehrung/UMZUG.md · 2463 Bytes · 9 Zeile(n) · Vorkommen 1 · GLEICH
+B1 · docs/projektfuehrung/BACKLOG.md · 4203 Bytes · 8 Zeile(n) · Vorkommen 1 · GLEICH
+Gesamt: alle zeichengleich, je genau einmal
+rc 0

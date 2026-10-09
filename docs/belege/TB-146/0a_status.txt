@@ -1,0 +1,6 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-146_regelwerk_dokunachtrag_0910.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-09a_kern_marken_listen_handelbar_tag.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-09a_beitrag_aus_r45_listen_geschnitten_handelbar_tag.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-09_eroeffnung.md

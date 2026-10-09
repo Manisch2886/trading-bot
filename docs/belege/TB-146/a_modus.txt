@@ -1,0 +1,2 @@
+EIGEN=70880
+claude --permission-mode manual --effort high --remote-control --no-chrome
