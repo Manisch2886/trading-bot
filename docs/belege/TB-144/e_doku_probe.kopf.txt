@@ -1,0 +1,4 @@
+e_doku_probe.txt — E Unterlagen, Probelauf
+Befehl: PY WZ doku --probe; echo rc
+Bytes 1383 · Zeilen 19 · md5 6ff62c218355be53509e2813dc3d6846
+Aussage: Startzeile geaendert (--no-chrome) => E6 dabei; 12 Einfuegungen je ok; ARBEITSWEISE +8, BACKLOG +13, LIESMICH +65; rc 0.

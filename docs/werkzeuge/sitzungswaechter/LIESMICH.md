@@ -7,6 +7,68 @@ Dieser Wächter macht aus einer Datei einen Sitzungsstart.
 
 ---
 
+## ⭐⭐ Gilt seit TB-144 (Wächter-Reparatur)
+
+**Dieser Abschnitt geht allem vor, was weiter unten anders steht.** Das Alte bleibt als Geschichte stehen; wo es nicht mehr gilt, folgt ihm eine Zeile „⭐ Gilt seit TB-142“ (kein Satz), „… TB-143“ (Startzeile) oder „… TB-144“.
+
+**Der Anlass (Fehler Nr. 23):** Seit dem 29.09.2026 meldeten 20 Starts in Folge „Terminal-Fenster 15501“ — das vorderste Fenster, nicht das neu geöffnete. Der Satz ging samt Zeilenende in eine bash-Shell („-bash: TB-141:: command not found“), die Sitzung stand in einem anderen Fenster an einer Startfrage, und das Log meldete „Satz ins Fenster gelegt“.
+
+### Was der Wächter nach `starte_TB-<Nr>` jetzt tut
+
+| | |
+|---|---|
+| **Öffnen** | ein **neues** Terminal-Fenster mit der Startzeile `cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome` |
+| **Fenster** | Die Nummer kommt aus dem Tab, den Terminal beim Öffnen zurückgibt. Gab es sie schon vorher, bricht er ab |
+| **Merken** | Die Nummer steht in `logs/sitzungswaechter/letztes_fenster.txt` |
+| **Prüfen** | Er **liest** den Inhalt dieses Fensters über Terminal selbst, in Stufen von 3 3 4 5 5 10 10 10 10 Sekunden, zusammen höchstens 60 s |
+| **Melden** | eine der drei Zeilen unten; bei ⛔ ist sein Rückgabewert 3 oder 4. Kann er das neue Fenster nicht bestimmen („⛔ MESSWERTE FEHLEN“, „⛔ FENSTERLISTE NICHT LESBAR“, „⛔ osascript konnte Terminal nicht ansteuern“, „⛔ FENSTER NICHT BESTIMMBAR“, „⛔ FENSTER NICHT NEU“, „⛔ FENSTER FEHLT“, danach „⛔ ABBRUCH“), prüft er nichts, Rückgabewert 1 — ein Fenster kann dann trotzdem offen sein |
+| ⛔ **Kein Satz** | Er legt den Auftragssatz **nicht mehr** ins Fenster (schon seit TB-142). Der Satz steht in `logs/sitzungswaechter/letzter_satz.txt` und als Kopierblock in der Antwort des steuernden Chats; abgeschickt wird er vom Betreiber |
+
+**Warum kein Satz mehr:** Der Terminal-Befehl, der Text in ein vorhandenes Fenster gibt (`do script … in window`), schickt eine Befehlszeile **samt Zeilenende**. Im richtigen Fenster wäre das das Abschicken, das die Betreiberentscheidung vom 23.09.2026 ausschliesst.
+
+### Die Zeilen im Wächter-Log
+
+```
+⭐ EINGABEBEREIT (TB-<Nr>): Fenster <n>, Eingabezeile steht, keine Frage offen (nach <s> s, Lesung <i>). ⚠️ KEIN SATZ IM FENSTER.
+⛔ STARTFRAGE (TB-<Nr>): Fenster <n> zeigt nach <s> s eine Frage ("Enter to confirm"). Die Sitzung ist NICHT eingabebereit.
+⛔ KEINE EINGABEZEILE (TB-<Nr>): Fenster <n> zeigt nach <s> s keine Eingabezeile von Claude Code (verlangt: zwei Lesungen in Folge). Die Sitzung gilt als NICHT eingabebereit.
+   Lesbar waren <g> von <i> Lesungen (0 = Terminal hat nicht geantwortet; dann liegt es nicht am Merkmal).
+Fenster <n> neu geoeffnet (Tab <k>). Gemerkt in <Pfad>/letztes_fenster.txt
+  Fenster <n> geschlossen (das beim Start gemerkte, kein laufender Prozess).
+  ⚠️ Fenster <n> bleibt offen: <Grund>.
+```
+
+Bei ⛔ stehen darunter die letzten Zeilen des neu geöffneten Fensters (höchstens 8, je 160 Zeichen), und das Fenster bleibt offen. **Woran er die Eingabezeile erkennt (Merkmal gemessen; zwei Lesungen: Lesart, vorläufig):** Der Fensterinhalt enthält in zwei Lesungen hintereinander `? for shortcuts` und in keiner `Enter to confirm`.
+
+### Fenster aufräumen
+
+Nach `schliesse_<HEAD>` (beide Wachen unverändert: HEAD-Gleichheit, 600 s) schliesst der Wächter **genau das gemerkte Fenster** — nur wenn im Repo keine `claude`-Sitzung mehr läuft, das Fenster genau einen Tab hat und darin kein Prozess mehr läuft. Sonst bleibt es offen, und das Log nennt den Grund. Schalter im Skript: `FENSTER_SCHLIESSEN="ja"`. Kein anderes Fenster wird angefasst. Ein Probefenster, das die Probe selbst nicht schliessen konnte, schliesst auch `schliesse_<HEAD>` nicht (es ist in `letztes_fenster_probe.txt` gemerkt, nicht in `letztes_fenster.txt`); es bleibt offen, das Log nennt seine Nummer, schliessen muss es der Betreiber.
+
+### Probe ohne Auftrag: `probe_<PID>`
+
+Eine Datei `docs/auftraege/_ausloeser/probe_<PID>` öffnet ein Fenster wie ein echter Start (gleicher Ordner, gleiche Startzeile, dieselben Funktionen), prüft die Eingabezeile, beendet genau die dabei entstandene Sitzung mit `TERM` und räumt das Fenster auf — kein Auftrag, kein Satz. `<PID>` ist die eine `claude`-Sitzung im Repo, die die Probe auslöst; läuft dort eine andere, bricht die Probe ab. Wache 3 für echte Starts ist unverändert; gelesen wird nur der Dateiname. Rückgabewert der Probe wie beim Start; dazu **5**, wenn die Eingabezeile stand, das Log aber „NICHT beendet“ meldet: Eine `claude`-Sitzung im Repo hing nicht am neuen Tab und läuft weiter.
+
+### Gemessen in TB-144
+
+| | |
+|---|---|
+| **M1** Fenster zu einem Tab | do script ohne in liefert beim Oeffnen 'tab 1 of window id <n>' (Testfenster 21630 und 21631, Probe 21632 bis 21635); <n> stand jeweils vorher nicht in der Fensterliste und nachher schon; tty des Tabs /dev/ttys017, ps meldet dafuer 'ttys017 ' mit Leerzeichen am Ende. |
+| **M2** Eingabezeile im Fensterinhalt | Merkmal '? for shortcuts' steht in allen 18 Lesungen der wartenden Sitzung (3 bis 60 s, beide Testfenster), schon in der ersten nach 3 s; keine Lesung zeigte Shell, Ladeanzeige oder eine Frage; Zeilen mit LF getrennt, kein CR; 'manual mode on' stand in jeder Lesung; busy meldet false, obwohl claude per exec im Tab laeuft. |
+| **M3** `--no-chrome` | Mit und ohne --no-chrome erschien keine Frage (beide Testfenster 60 s ohne 'Enter to confirm'); die Wirkung von --no-chrome ist damit nicht zuzuordnen; nach der Tabelle in Schritt B ist der Schalter angehaengt. |
+| **M4** Schliessen ohne Rückfrage | Nach TERM an die claude-PID meldet busy false, und close window id schliesst das Fenster ohne Rueckfrage (exists danach false, Testfenster 21630 und 21631) - FENSTER_SCHLIESSEN=ja. |
+| **M5** „Teach auto mode“ beim Start | 'Teach auto mode' kommt in 0 von 18 Lesungen aus M2 und M3 und in 0 von 4 Probe-Logs vor (Teilmessung, nur der Start ohne Auftrag). |
+| **Probe** über Auslöser und launchd | Vier Laeufe ueber probe_52208 und launchd (Fenster 21632, 21633, 21634, 21635), je neu geoeffnet, EINGABEBEREIT nach 6 s (Lesung 2), Probesitzung mit TERM beendet, Fenster geschlossen, danach im Repo nur PID 52208, rc 0; Prozesszeile der Probesitzung in Lauf 2 bis 4 gelesen, sie trug --permission-mode manual (und --no-chrome); keine neue Berechtigung. |
+
+Rohausgaben: `docs/belege/TB-144/`. Ergebnis: `docs/ERGEBNIS_TB-144_waechter_reparatur_rest.md`.
+
+### Was bleibt
+
+Kein Enter, kein Tastendruck, kein Abschicken durch den Wächter; den Fensterinhalt liest er nur. Die sechs Wachen vor dem Start und die zwei Wachen des Schliess-Auslösers sind unverändert. Der steuernde Chat sieht nach jedem Start weiter selbst ins Fenster: Die Log-Zeile sagt, was der Wächter bis höchstens 60 s nach dem Öffnen gelesen hat — nicht, was danach erscheint.
+
+**In einfacher Sprache:** Der Wächter öffnet ein neues Fenster, startet dort Claude Code und sieht dann selbst nach, ob Claude Code auf eine Eingabe wartet. Nur dann schreibt er „eingabebereit“ ins Protokoll. Steht dort eine Frage, schreibt er das hin. Den Auftragssatz legt er nicht mehr ins Fenster; den schickst du selbst ab, in der Claude-App oder im Fenster.
+
+---
+
 ## ⭐ Der Befund, der dahintersteht (gemessen 23.09.2026)
 
 | App | Stufe |
@@ -78,6 +140,7 @@ Namen liegt im Protokoll dieser Sitzung; alle acht wurden abgewiesen.*
 
 **Der Wächter schreibt den Auftragssatz in die Eingabezeile — und schickt ihn
 NICHT ab.** Den letzten Tastendruck macht der Betreiber.
+⭐ **Gilt seit TB-142 (Abschnitt „Gilt seit TB-144“ oben):** Der Wächter schreibt den Satz nicht mehr in die Eingabezeile und gibt keinen Text mehr an ein Fenster; er öffnet es, und seit TB-144 liest er es und meldet. „Kein Return“ gilt unverändert. Die Sätze weiter unten „er schickt den Satz per AppleScript an Terminal“ und „Text einfügen“ gelten nicht mehr.
 
 ⚠️ **Warum, und das ist kein Schönheitsfehler:** Beim Zugriff auf Terminal
 antwortet die Geräteanbindung ausdrücklich
@@ -196,6 +259,7 @@ Zustand `S+`.
 
 **Der Wächter öffnet das Fenster und legt den Auftrag hinein. Abgeschickt wird
 er vom Betreiber.** Das ist keine Notlösung mehr, sondern der Weg.
+⭐ **Gilt seit TB-142 (Abschnitt „Gilt seit TB-144“ oben):** Der Wächter legt den Auftrag nicht mehr ins Fenster; in der Tabelle darunter entfällt „Text einfügen“, und seit TB-144 prüft er statt der „Anlaufzeit“, ob die Eingabezeile steht. Abgeschickt wird weiter vom Betreiber.
 
 | | |
 |---|---|
@@ -281,6 +345,7 @@ ersten Satz annimmt. Der Wächter wartet **20 Sekunden**. Erweist sich das als z
 knapp, steht der Satz in `logs/sitzungswaechter/letzter_satz.txt` und lässt sich
 von Hand einfügen — das Fenster läuft dann bereits.
 `WAECHTER_WARTESEKUNDEN=30` stellt die Wartezeit um.
+⭐ **Gilt seit TB-144 (Abschnitt „Gilt seit TB-144“ oben):** Die feste Wartezeit von 20 Sekunden und `WAECHTER_WARTESEKUNDEN` gibt es nicht mehr. Der Wächter liest den Fensterinhalt in Stufen bis höchstens 60 s und legt (schon seit TB-142) keinen Satz mehr ins Fenster; `letzter_satz.txt` bleibt.
 
 ---
 

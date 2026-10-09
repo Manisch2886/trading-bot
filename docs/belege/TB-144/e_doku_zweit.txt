@@ -1,0 +1,4 @@
+# TB-144 doku — Einfuegungen E aus Anhang B
+Startzeile: cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome · geaendert
+ABGEWIESEN, nichts geschrieben: steht schon in der Datei (zweiter Lauf?): E1 E2 E3 E4 E5 E6 E7 E8 E9 E10 E11 E12
+rc 2

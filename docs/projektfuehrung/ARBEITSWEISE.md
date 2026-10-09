@@ -175,6 +175,8 @@ und sie heisst 0, damit keine bestehende Nummer und kein Verweis wandert.)*
 | ☐ | Ein Start ausserhalb des Wächters wird erst zugesagt, wenn gemessen ist, wo die Sitzung läuft (Fehler Nr. 20) | UEBERGABE, Umzug 04.10.2026, 10:56, Block 7 |
 | ☐ | Ein abgewiesener Start-Auslöser taugt als Sonde: Der Wächter nennt PID, Laufzeit und Rechenzeit; zwei Abweisungen im Abstand zeigen, ob eine Sitzung arbeitet (05.10.2026) | UEBERGABE, Umzug 05.10.2026, 22:31, Block 7 |
 | ☐ | Die Sonde `starte_TB-99` vor dem Zeigerwechsel legen (07.10.2026, so getragen; ebenso die Sonde vor dem Zeigerwechsel im Umzug 23:39) | UEBERGABE, Umzug 07.10.2026, 19:45, Block 7 Nr. 8; UEBERGABE, Umzug 07.10.2026, 23:39, Block 7 Nr. 6 |
+| ☐ | ⭐⭐ Den Start der Claude-Code-Sitzung führt der steuernde Chat immer selbst aus; der Betreiber bekommt lediglich den Text mit der Anweisung (Betreiber 08.10.2026, 21:26: „`cd ~/trading-bot && claude --effort high --remote-control` + enter sollst du zukünftig immer ausführen und mir lediglich den Text schicken mit der Anweisung. Merke dir das für die Zukunft“). Weg: der Sitzungswächter über `starte_TB-<Nr>` (Terminal bleibt für den steuernden Chat Stufe „click“); seine Startzeile steht in `starte_sitzung.sh` (`STARTZEILE`) | 19; 22.9; LIESMICH, „Gilt seit TB-144“; UEBERGABE, Nachtrag 08.10.2026, 21:47 |
+| ☐ | Nach einem Start-Auslöser stützt sich der steuernde Chat auf die Zeile des Wächter-Logs für diese Nummer und auf den eigenen Blick ins Fenster (Fehler Nr. 23): „⭐ EINGABEBEREIT (TB-<Nr>)“ heisst Eingabezeile steht, keine Frage offen, kein Satz im Fenster; „⛔ STARTFRAGE (TB-<Nr>)“ und „⛔ KEINE EINGABEZEILE (TB-<Nr>)“ heissen nicht eingabebereit, die letzten Zeilen des Fensters stehen im Log; steht keine der drei Zeilen da (⛔ ABBRUCH davor), gilt dasselbe — dann „Satz abschicken“ nicht als Aufgabe geben. Die Zeile „Satz ins Fenster gelegt“ gibt es seit TB-142 nicht mehr; der Wächter legt keinen Satz mehr ins Fenster | 22.9; LIESMICH, „Gilt seit TB-144“; UEBERGABE, Umzug 08.10.2026, 19:58, Block 7 (Nr. 23) |
 
 **Wenn Dateien abgelegt oder aus der Ablage gelesen werden**
 
@@ -1887,6 +1889,7 @@ Datei einen Sitzungsstart.**
 
 **Er erledigt:** Terminal öffnen, `cd`, Start, Anlaufzeit abwarten, den
 Auftragssatz einsetzen (zeichengleich, aus der geprüften Nummer selbst gebaut).
+⭐ **Gilt seit TB-142 (Wächter-Reparatur, Fehler Nr. 23):** Er setzt den Satz nicht mehr ein und gibt keinen Text mehr in ein bestehendes Fenster. Seit TB-144 wartet er keine feste Anlaufzeit ab: Er öffnet ein neues Fenster, liest dessen Inhalt bis höchstens 60 s und meldet „⭐ EINGABEBEREIT“, „⛔ STARTFRAGE“ oder „⛔ KEINE EINGABEZEILE“; der Satz steht in `logs/sitzungswaechter/letzter_satz.txt` (`docs/werkzeuge/sitzungswaechter/LIESMICH.md`, „Gilt seit TB-144“).
 
 ⚠️ **Er schickt den Satz NICHT ab.** Den letzten Tastendruck machst du —
 **Betreiberentscheidung 23.09.2026.** Der Grund steht in der `LIESMICH.md`:
@@ -1987,6 +1990,7 @@ Sitzung in der App und keine Fernsteuerung.
 
 **Der Sitzungswächter öffnet das Fenster und legt den Auftrag hinein. Abgeschickt
 wird er vom Betreiber.** Das ist der Weg, keine Notlösung.
+⭐ **Gilt seit TB-142 (Wächter-Reparatur, Fehler Nr. 23):** Der Wächter legt den Auftrag nicht mehr ins Fenster; in der Tabelle darunter entfällt „Text einfügen“, und seit TB-144 prüft er statt der „Anlaufzeit“, ob die Eingabezeile steht. Abgeschickt wird weiter vom Betreiber.
 
 | | |
 |---|---|
@@ -2036,6 +2040,8 @@ Beleg: `docs/belege/TB-113/0b_effort.txt` — `claude --help` kennt den Schalter
 und die Befehlszeile der ersten so gestarteten Sitzung (TB-113) trägt ihn.
 ⚠️ Die Kopfzeile bzw. `/status` ist aus der Sitzung heraus nicht lesbar; der
 Beleg ist deshalb die Prozesszeile, nicht die Anzeige.
+⭐ **Gilt seit TB-143 (Commit `1636764`):** Der Wächter startet `claude --permission-mode manual --effort high --remote-control` (Betreiber, Karte 09.10.2026, 07:57; `docs/ERGEBNIS_TB-143_waechter_modus_schalter.md`).
+⭐ **Gilt seit TB-144 (Wächter-Reparatur, Fehler Nr. 23):** Die Startzeile des Wächters lautet jetzt `cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome` (Konstante `STARTZEILE` in `starte_sitzung.sh`); die bisherigen Schalter bleiben. Was die Probe dazu gemessen hat: `docs/ERGEBNIS_TB-144_waechter_reparatur_rest.md`, „Gemessen (M1–M5)“.
 
 ### 22.2 ⭐⭐ Der Wächter kann messen, ohne zu starten
 
@@ -2096,6 +2102,7 @@ gelegt hat.** Das war der Anlass: Der Wächter hatte gemeldet „Satz ins Fenste
 gelegt", und die Antwort verwies nur darauf. ⭐ **Der Betreiber arbeitet aber
 meist in der Claude-App und nicht am Terminal** — dort muss er den Satz
 einfügen, und dann braucht er ihn im Chat.
+⭐ **Gilt seit TB-142 (Wächter-Reparatur, Fehler Nr. 23):** Der Wächter legt den Satz nicht mehr ins Terminalfenster, und die Meldung „Satz ins Fenster gelegt“ gibt es nicht mehr. Die Regel dieses Abschnitts gilt unverändert; der Satz erreicht den Betreiber jetzt nur noch über das Kopierfeld und über `logs/sitzungswaechter/letzter_satz.txt`.
 
 **Auf dem Mac steht er zusätzlich in** `logs/sitzungswaechter/letzter_satz.txt`.
 
@@ -2230,6 +2237,7 @@ anlegen, bevor du mir einen Text mit einem Auftrag gibst.“*
    an (Abschnitt 19).
 2. Er prüft im Wächter-Log (`logs/sitzungswaechter/waechter.log`) die Zeile
    **„Satz ins Fenster gelegt“** für diese Nummer.
+   ⭐ **Gilt seit TB-144 (Wächter-Reparatur, Fehler Nr. 23):** Die Zeile heisst jetzt „⭐ EINGABEBEREIT (TB-<Nr>)“. Steht dort „⛔ STARTFRAGE“ oder „⛔ KEINE EINGABEZEILE“, ist die Sitzung nicht eingabebereit. Dazu sieht der steuernde Chat selbst ins Fenster (Abschnitt 0, Gruppe „Wenn eine Mac-Sitzung startet, endet oder abbricht“).
 3. ⚠️ **Hängt noch ein nie abgeschicktes Fenster im Repo**, schliesst er es
    **vorher** mit `schliesse_<HEAD>` (22.8; beide Wachen dort gelten). Sonst
    bricht der Wächter beim neuen Auslöser ab, weil schon eine claude-Sitzung im

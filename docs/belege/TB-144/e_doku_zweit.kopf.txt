@@ -1,0 +1,4 @@
+e_doku_zweit.txt — E zweiter Lauf
+Befehl: PY WZ doku; echo rc
+Bytes 289 · Zeilen 4 · md5 39a7710d9237fa7aea8c87ed7a2757a5
+Aussage: ABGEWIESEN, rc 2 (Soll).

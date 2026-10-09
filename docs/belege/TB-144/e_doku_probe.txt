@@ -1,0 +1,19 @@
+# TB-144 doku (Probe) — Einfuegungen E aus Anhang B
+Startzeile: cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome · geaendert
+E1 · ARBEITSWEISE.md · Anker Z. 177 · nach der Zeile · Zeilen +2 · ok
+E2 · ARBEITSWEISE.md · Anker Z. 1889 · nach der Zeile · Zeilen +1 · ok
+E3 · ARBEITSWEISE.md · Anker Z. 1989 · nach der Zeile · Zeilen +1 · ok
+E4 · ARBEITSWEISE.md · Anker Z. 2098 · nach der Zeile · Zeilen +1 · ok
+E5 · ARBEITSWEISE.md · Anker Z. 2232 · nach der Zeile · Zeilen +1 · ok
+E6 · ARBEITSWEISE.md · Anker Z. 2038 · nach der Zeile · Zeilen +1 · ok
+E7 · LIESMICH.md · Anker Z. 10 · vor der Zeile · Zeilen +62 · ok
+E8 · LIESMICH.md · Anker Z. 80 · nach der Zeile · Zeilen +1 · ok
+E9 · LIESMICH.md · Anker Z. 198 · nach der Zeile · Zeilen +1 · ok
+E10 · LIESMICH.md · Anker Z. 283 · nach der Zeile · Zeilen +1 · ok
+E11 · BACKLOG.md · Anker Z. 351 · vor der Zeile · Zeilen +13 · ok
+E12 · ARBEITSWEISE.md · Anker Z. 2038 · nach der Zeile · Zeilen +1 · ok
+Datei docs/projektfuehrung/ARBEITSWEISE.md · Zeilen vorher 2471 · nachher 2479 · +8
+Datei docs/projektfuehrung/BACKLOG.md · Zeilen vorher 362 · nachher 375 · +13
+Datei docs/werkzeuge/sitzungswaechter/LIESMICH.md · Zeilen vorher 304 · nachher 369 · +65
+Gesamt: 12 Einfuegungen, nichts geschrieben (Probe)
+rc 0

@@ -1,0 +1,4 @@
+e_doku.txt — E Unterlagen, geschrieben
+Befehl: PY WZ doku; echo rc
+Bytes 1377 · Zeilen 19 · md5 79442c8d8d03dd32b7e15f0bb99d5cfd
+Aussage: wie Probelauf, geschrieben, je genau einmal, rc 0.
