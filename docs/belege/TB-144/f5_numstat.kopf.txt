@@ -1,0 +1,4 @@
+f5_numstat.txt — F5 numstat S0..Abgabe
+Befehl: git diff --numstat 0c678047dd173dce34d947d09f6c29a3481efec8 3f98565
+Bytes 4110 · Zeilen 102 · md5 f41117fa96f2c38002764314e8b1a8f7
+Aussage: starte_sitzung.sh 294/29, LIESMICH 65/0, ARBEITSWEISE 8/0 (mit E6), BACKLOG 13/0, JOURNAL 50/0 (= 38 + 8 + 1 + 3), Ergebnis 90/0, 96 Belegdateien je x/0; ausser starte_sitzung.sh keine entfernte Zeile — alles wie Soll.

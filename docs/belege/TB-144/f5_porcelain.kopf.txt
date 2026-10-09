@@ -1,0 +1,4 @@
+f5_porcelain.txt — F5 git status --porcelain nach der Abgabe
+Befehl: git status --porcelain > $TMPDIR/tb144_f5.txt; cp nach f5_porcelain.txt; cmp gleich
+Bytes 0 · Zeilen 0 · md5 d41d8cd98f00b204e9800998ecf8427e
+Aussage: 0 B (Soll): Arbeitsbaum sauber nach dem Abgabe-Commit 3f98565.
