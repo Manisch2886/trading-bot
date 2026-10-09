@@ -1,0 +1,33 @@
+# TB-145 vergleich — jedes Stueck zeichengleich und genau einmal in seiner Zieldatei
+R01 · docs/projektfuehrung/ARBEITSWEISE.md · 171 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R02 · docs/projektfuehrung/ARBEITSWEISE.md · 715 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R03 · docs/projektfuehrung/ARBEITSWEISE.md · 567 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R04 · docs/projektfuehrung/ARBEITSWEISE.md · 188 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R05 · docs/projektfuehrung/ARBEITSWEISE.md · 364 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R06 · docs/projektfuehrung/ARBEITSWEISE.md · 294 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R07 · docs/projektfuehrung/ARBEITSWEISE.md · 187 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+G1 · docs/projektfuehrung/ARBEITSWEISE.md · 456 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R08 · docs/projektfuehrung/ARBEITSWEISE.md · 235 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R09 · docs/projektfuehrung/ARBEITSWEISE.md · 239 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R10 · docs/projektfuehrung/ARBEITSWEISE.md · 515 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R11 · docs/projektfuehrung/ARBEITSWEISE.md · 177 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R12 · docs/projektfuehrung/ARBEITSWEISE.md · 272 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R13 · docs/projektfuehrung/ARBEITSWEISE.md · 308 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R14 · docs/projektfuehrung/ARBEITSWEISE.md · 512 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R15 · docs/projektfuehrung/ARBEITSWEISE.md · 207 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R16 · docs/projektfuehrung/ARBEITSWEISE.md · 732 Bytes · 3 Zeile(n) · Vorkommen 1 · GLEICH
+R17 · docs/projektfuehrung/ARBEITSWEISE.md · 304 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R18 · docs/projektfuehrung/ARBEITSWEISE.md · 136 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R19 · docs/projektfuehrung/ARBEITSWEISE.md · 922 Bytes · 4 Zeile(n) · Vorkommen 1 · GLEICH
+G2 · docs/projektfuehrung/ARBEITSWEISE.md · 471 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+G3 · docs/projektfuehrung/ARBEITSWEISE.md · 467 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+G4 · docs/projektfuehrung/ARBEITSWEISE.md · 476 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+G5 · docs/projektfuehrung/ARBEITSWEISE.md · 370 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+U1 · docs/projektfuehrung/UMZUG.md · 430 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+L1 · docs/werkzeuge/sitzungswaechter/LIESMICH.md · 723 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+S1 · docs/projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md · 1092 Bytes · 14 Zeile(n) · Vorkommen 1 · GLEICH
+A1 · docs/auftraege/_ausloeser/.gitignore · 19 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+A2 · docs/auftraege/_ausloeser/LIESMICH.md · 548 Bytes · 8 Zeile(n) · Vorkommen 1 · GLEICH
+B1 · docs/projektfuehrung/BACKLOG.md · 3752 Bytes · 10 Zeile(n) · Vorkommen 1 · GLEICH
+Gesamt: alle zeichengleich, je genau einmal
+rc 0

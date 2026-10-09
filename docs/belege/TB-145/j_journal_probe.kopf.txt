@@ -1,0 +1,5 @@
+Datei: j_journal_probe.txt
+Was: Probe des Journal-Einsetzens
+Befehl: trading-env/bin/python3 -B docs/belege/TB-145/tb145_einfuegen.py journal docs/belege/TB-145/j_block.md --probe; echo "rc $?"
+Ergebnis: acht Bedingungen ja, Kennung EL (erwartet EL), J1-Zeilen 9, Zeilen +41 = 28 + 9 + 1 + 3, rc 0
+Bytes: 664 · Zeilen: 12 · md5: 5c468b68e500c16321b60b82cd0b68a0

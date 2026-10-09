@@ -1,0 +1,5 @@
+Datei: f_waechter_md5.txt
+Was: Zeilen und md5 von docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+Befehl: wc -l; md5 -q; git diff --stat 80c5a9b -- <Datei>
+Ergebnis: 622 Zeilen, 464ac93c53829935e479c5f14121c574 — wie 0b, unverändert
+Bytes: 149 · Zeilen: 4 · md5: 4875a5384b48d55b0fdd163dc14391c9

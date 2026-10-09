@@ -1,0 +1,6 @@
+Datei: w_fenster.txt
+Was: Schritt W, Rohausgaben je Befehl mit rc; Verlauf der Fenster nur als grep-Zahl, nie selbst in einer Datei
+Befehle: osascript -e 'tell application "Terminal" to return <Ausdruck>' direkt, ohne Skriptdatei; pgrep -a -x Terminal; ps -o lstart= -p 52069; date; close window id <n>; osascript -e 'delay 1' als 1-s-Wartezeit
+Ergebnis: Terminal 52069, lstart 'Di 15 Sep 09:14:08 2026' wie TB-144; 21346, 21349, 21560, 21627 je exists true, 1 Tab, processes genau eine leere Zeile (rc 0), busy false, Verlauf 1 ⇒ alle vier geschlossen, je exists false nach 1 s; danach 21040, 21663
+Hinweis: Die fünf Abfragen liefen für alle vier Fenster zuerst als Block, dann je Fenster unmittelbar vor dem Schliessen erneut (exists, Tabs, processes, Verlauf).
+Bytes: 3552 · Zeilen: 120 · md5: df8bcc040c840b337a48f05384d180ca

@@ -1,0 +1,5 @@
+Datei: j_journal.txt
+Was: Journal-Einsetzen
+Befehl: trading-env/bin/python3 -B docs/belege/TB-145/tb145_einfuegen.py journal docs/belege/TB-145/j_block.md; echo "rc $?"
+Ergebnis: rc 0, JOURNAL.md geschrieben und zurückgelesen; git diff --numstat danach 41/0
+Bytes: 693 · Zeilen: 12 · md5: ae12e958831dd4140f50bb3d44bd91e4

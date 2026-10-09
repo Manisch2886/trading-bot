@@ -1,0 +1,5 @@
+Datei: e_waechterlog.txt
+Was: Zeilen von logs/sitzungswaechter/waechter.log seit 0b (2034 Zeilen), roh
+Befehl: wc -l logs/sitzungswaechter/waechter.log; tail -n +2035 logs/sitzungswaechter/waechter.log
+Befund (nur gemeldet): +2 Zeilen, 'Waechter geweckt' und 'Kein Ausloeser da. Nichts zu tun.' um 12:51:57Z; mtime von _ausloeser/.gitignore und _ausloeser/LIESMICH.md nach dem Einfügen ebenfalls 12:51:57Z (stat, UTC) ⇒ das Schreiben im Auslöserordner hat den Wächter geweckt, folgenlos
+Bytes: 216 · Zeilen: 5 · md5: 52d63c5cd210ff8ff5e18092d515b8be

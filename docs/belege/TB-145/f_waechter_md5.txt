@@ -1,0 +1,4 @@
+$ wc -l; md5 -q docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+622
+464ac93c53829935e479c5f14121c574
+(git diff --stat 80c5a9b leer = unverändert)

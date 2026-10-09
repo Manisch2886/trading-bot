@@ -1,0 +1,5 @@
+# wc -l waechter.log (0b: 2034)
+    2036 logs/sitzungswaechter/waechter.log
+# Zeilen seit 0b (ab 2035), roh:
+2026-10-09T12:51:57Z  ----- Waechter geweckt -----
+2026-10-09T12:51:57Z  Kein Ausloeser da. Nichts zu tun.

@@ -1,0 +1,120 @@
+# TB-145 Schritt W — einmal vorweg
+$ osascript -e tell application "Terminal" to return id of every window
+21040, 21346, 21349, 21560, 21627, 21663
+rc 0
+$ pgrep -a -x Terminal
+52069
+rc 0
+$ pgrep -x Terminal
+rc 1
+# (pgrep ohne -a schliesst unter macOS die eigenen Vorfahren aus; Terminal ist Vorfahr dieser Shell, daher rc 1 — massgeblich ist der Aufruf mit -a laut Auftrag)
+$ ps -o lstart= -p 52069
+Di 15 Sep 09:14:08 2026     
+rc 0
+# lstart ohne Leerzeichen am Ende, in eckigen Klammern: [Di 15 Sep 09:14:08 2026]
+$ date
+Fr  9 Okt 2026 14:53:04 CEST
+rc 0
+# Vergleich TB-144 d0_fenster.txt Z. 97 und 99:
+52069
+Di 15 Sep 09:14:08 2026     
+## Fenster 21346 — Prüfung
+$ T exists window id 21346
+true
+rc 0
+$ T count of tabs of window id 21346
+1
+rc 0
+$ T processes of tab 1 of window id 21346  (2>&1, Ausgabe hexdump-kontrolliert)
+
+rc 0
+0000000   \n                                                            
+0000001
+$ T busy of tab 1 of window id 21346
+false
+rc 0
+$ osascript -e 'tell application "Terminal" to get history of tab 1 of window id 21346' | grep -c 'exec claude'
+1
+rc 0
+## Fenster 21349 — Prüfung
+$ T exists window id 21349
+true
+rc 0
+$ T count of tabs of window id 21349
+1
+rc 0
+$ T processes of tab 1 of window id 21349  (2>&1, Ausgabe hexdump-kontrolliert)
+
+rc 0
+0000000   \n                                                            
+0000001
+$ T busy of tab 1 of window id 21349
+false
+rc 0
+$ osascript -e 'tell application "Terminal" to get history of tab 1 of window id 21349' | grep -c 'exec claude'
+1
+rc 0
+## Fenster 21560 — Prüfung
+$ T exists window id 21560
+true
+rc 0
+$ T count of tabs of window id 21560
+1
+rc 0
+$ T processes of tab 1 of window id 21560  (2>&1, Ausgabe hexdump-kontrolliert)
+
+rc 0
+0000000   \n                                                            
+0000001
+$ T busy of tab 1 of window id 21560
+false
+rc 0
+$ osascript -e 'tell application "Terminal" to get history of tab 1 of window id 21560' | grep -c 'exec claude'
+1
+rc 0
+## Fenster 21627 — Prüfung
+$ T exists window id 21627
+true
+rc 0
+$ T count of tabs of window id 21627
+1
+rc 0
+$ T processes of tab 1 of window id 21627  (2>&1, Ausgabe hexdump-kontrolliert)
+
+rc 0
+0000000   \n                                                            
+0000001
+$ T busy of tab 1 of window id 21627
+false
+rc 0
+$ osascript -e 'tell application "Terminal" to get history of tab 1 of window id 21627' | grep -c 'exec claude'
+1
+rc 0
+## Fenster 21346 — Schliessen (Bedingungen unmittelbar davor erneut: exists/tabs/processes/Verlauf)
+exists=true tabs=1 processes=[] rc 0 verlauf=1
+$ osascript -e 'tell application "Terminal" to close window id 21346'
+rc 0
+$ T exists window id 21346 (nach 1 s)
+false
+## Fenster 21349 — Schliessen (Bedingungen unmittelbar davor erneut: exists/tabs/processes/Verlauf)
+exists=true tabs=1 processes=[] rc 0 verlauf=1
+$ osascript -e 'tell application "Terminal" to close window id 21349'
+rc 0
+$ T exists window id 21349 (nach 1 s)
+false
+## Fenster 21560 — Schliessen (Bedingungen unmittelbar davor erneut: exists/tabs/processes/Verlauf)
+exists=true tabs=1 processes=[] rc 0 verlauf=1
+$ osascript -e 'tell application "Terminal" to close window id 21560'
+rc 0
+$ T exists window id 21560 (nach 1 s)
+false
+## Fenster 21627 — Schliessen (Bedingungen unmittelbar davor erneut: exists/tabs/processes/Verlauf)
+exists=true tabs=1 processes=[] rc 0 verlauf=1
+$ osascript -e 'tell application "Terminal" to close window id 21627'
+rc 0
+$ T exists window id 21627 (nach 1 s)
+false
+# Einmal danach
+$ T id of every window
+21040, 21663
+rc 0

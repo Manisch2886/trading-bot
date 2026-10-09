@@ -1,0 +1,4 @@
+Datei: j_block.md
+Was: Journalblock der Sitzung, von ihr geschrieben, ohne J1 (setzt das Werkzeug ein)
+Ergebnis: 28 Zeilen, als Block EL ins JOURNAL gesetzt
+Bytes: 3167 · Zeilen: 28 · md5: 01895b12ee369d56a28a387abfcc4e1e

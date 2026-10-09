@@ -10288,6 +10288,47 @@ Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
 
 ---
 
+## EL — TB-145: Regelwerk-Nachtrag 08.–09.10.2026 — 30 Stücke in sieben Dateien per Werkzeug (77 Zeilen, 0 entfernt), vier tote Terminal-Fenster geschlossen (21346, 21349, 21560, 21627); `starte_sitzung.sh` unverändert (09.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-145_regelwerk_nachtrag_0809.md`*
+
+**Quelle:** Mac-Sitzung **TB-145** (Hauptordner, lokal), 09.10.2026, ab 14:44 MESZ, gestartet über den Sitzungswächter (Fenster 21663, Log 12:44:07Z „⭐ EINGABEBEREIT (TB-145)“), Eingang `80c5a9b`. Commits `82b580a` (Schritt 0, 14:51:02), `2222997` (E, 14:52:25) und der Abgabe-Commit. Belege `docs/belege/TB-145/`. Freigabe: Handwerk ohne Sperrlistennähe, pauschal frei (Betreiber 26.09.2026); Schritt W für 21346, 21349, 21560 von der Karte vom 09.10.2026 gedeckt, für 21627 Vorgabe des steuernden Chats. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst; Claude Code hat keinen Aufruf abgelehnt und keine Bestätigung verlangt, auch nicht bei den direkten `osascript`-Aufrufen an Terminal in Schritt W.
+
+**Nachtrag des steuernden Chats zum Stand vor TB-145, wie in `BACKLOG.md` Abschnitt 5 eingetragen (wörtlich aus `UEBERGABE.md`, Nachtrag 09.10.2026, 13:30; dazu die Zeile zu den Fehlern Nr. 24 bis 31):**
+- **Abgabe TB-144:** sechs Commits `0c67804` (Schritt 0, 12:57:23), `d7b4bc4` (C), `7b212c4` (D), `107bf33` (E), `3f98565` (Abgabe), `80c5a9b` (F5, 13:10:28); HEAD = `80c5a9b116e0b02b240568d35232b490ee07bfde`, Arbeitsbaum danach sauber. Kein Abbruch, keine Rückfrage; Claude Code lehnte im Modus „Manual“ keinen Aufruf ab und verlangte keine Bestätigung (Ergebnis, Kopf; `a_modus.txt`).
+- **Abnahme** (Helfer ABNAHME144, 37 Schritte, Bericht `sc/berichte/ABNAHME144.md`, md5 `97392de3ee2a…`; Kernzahlen selbst nachgerechnet 13:25): 109 Pfad-Einträge, keiner ausserhalb der erlaubten Liste; Auftrag an `0c67804` md5-gleich mit dem abgelegten; `starte_sitzung.sh` 357 → 622 Zeilen, +294/−29, `bash -n` rc 0 (bash der VM), `do script` 1, ` in window` 0, `keystroke` 0, `System Events` 0, `--permission-mode manual` 1, md5 `464ac93c53829935e479c5f14121c574` = Simulation `lauf_b`; LIESMICH +65/0, ARBEITSWEISE +8/0, BACKLOG +13/0, JOURNAL +50/0.
+- **Gesetzte Werte:** `STARTZEILE="cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome"`, `MERKMAL_EINGABEZEILE="? for shortcuts"`, `FENSTER_SCHLIESSEN="ja"`. `--no-chrome` ist angehängt, seine Wirkung ist nicht belegt (M3: mit und ohne keine Frage); gedeckt von der Karte 06:50.
+- **Probe in der Sitzung:** vier Läufe über `probe_52208`, je rc 0, Fenster 21632–21635, je „⭐ EINGABEBEREIT (PROBE)“ nach 6 s, Probesitzung per TERM beendet, Fenster geschlossen.
+- **D0: kein altes Fenster geschlossen.** 21040: Verlauf ohne `exec claude`, darin läuft eine bash (vermutlich ein Fenster des Betreibers; der alte Wächter nannte im Log stets diese Nummer). 21346, 21349, 21560: tot, Terminal nennt für sie das tty des Fensters der laufenden Sitzung ⇒ Bedingung „kein `claude` auf dem tty“ verletzt. Befund der Sitzung: für tote Fenster ist `processes of tab` der bessere Prüfwert.
+- **Befunde zur Entscheidung, Vorgabe des steuernden Chats:** (a) `busy` war `false` bei wartender Sitzung (`b_m1.txt`, `b_m3.txt`) und `true` am eigenen Fenster (`d0_fenster.txt` Z. 112–113, 133–134); `busy` schützt also nicht verlässlich, der Schutz liegt bei `claude_im_repo`. Der Wächter bleibt unverändert; die Sätze in LIESMICH (Zeile M2) und JOURNAL (EK, Zeile M4) stehen ohne diese Einschränkung ⇒ Regelwerk-Nachtrag. (b) Ungenauigkeiten im Ergebnis, ohne Wirkung auf ein Ergebnis: Schwärzung 40 statt 36 Zeilen (Z. 73); Wortlaut der geschwärzten Anmeldezeile zitiert (Z. 83); „`pgrep` ohne `-a` im Beleg sichtbar“ (Z. 70; `d0_fenster.txt` Z. 4–5 zeigt `-a`); „jeweils 30 s“ (Lauf 3: 31 s); launchd-Logs „unverändert“ ohne Beleg.
+- **Echter Probestart ohne Auftrag** (misst W5, W6, W3, die in TB-144 nie liefen): `starte_TB-144` 13:27:11 ⇒ Log 11:27:14Z „Fenster 21642 neu geoeffnet (Tab 1). Gemerkt in …/letztes_fenster.txt“, 11:27:20Z „⭐ EINGABEBEREIT (TB-144): Fenster 21642 … (nach 6 s, Lesung 2)“; `schliesse_80c5a9b…` 13:28:50 ⇒ PID 55752 beendet, 11:28:58Z „Fenster 21642 geschlossen (das beim Start gemerkte, kein laufender Prozess)“. **Der eigene Blick ins Fenster gelang nicht** (drei Versuche 13:28–13:30, Bildschirmaufnahme antwortete nicht); die Zeile „EINGABEBEREIT“ ist beim echten Start also nicht am Fenster gegengeprüft. Beim Start von TB-144 (12:56) gelang der Blick.
+- **Fehler Nr. 24 bis 31:** Regeln in `ARBEITSWEISE.md` Abschnitt 0, eingetragen mit TB-145 (UEBERGABE: Umzug 08.10.2026, 22:03, Block 7 Nr. 24; Nachträge 09.10.2026, 07:01, 07:12 und 07:26 zu Nr. 25, 26 und 27; Umzug 09.10.2026, 11:06, Block 7 Nr. 28 bis 30; Nachtrag 09.10.2026, 12:56 zu Nr. 31).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | Ausgang genau die drei Einträge am HEAD `80c5a9b`; Werkzeug sha256 `2e04e5a4…7a49` wie Soll; alle acht Zieldateien und `starte_sitzung.sh` mit Zeilen und md5 wie 0b |
+| **A** | Prozesszeile `claude --permission-mode manual --effort high --remote-control --no-chrome` (EIGEN 57951) |
+| **E** | `probe` rc 0, Ankerzeilen und Zeilen je Stück wie Anhang A „Am HEAD“ (30/30); `einfuegen` rc 0; `vergleich` rc 0 (30× GLEICH); zweiter Lauf rc 2 mit allen 30 Kennungen, md5 unverändert; `numstat` S0..E rc 0: ARBEITSWEISE 36/0, UMZUG 2/0, SITZUNGSWAECHTER_ausloeser_statt_tippen 15/0, BACKLOG 11/0, Wächter-LIESMICH 2/0, `_ausloeser/.gitignore` 2/0, `_ausloeser/LIESMICH.md` 9/0 |
+| **E, Wächter** | Das Einfügen in `_ausloeser/.gitignore` und `_ausloeser/LIESMICH.md` hat den Wächter geweckt: Log 12:51:57Z „Waechter geweckt“, „Kein Ausloeser da. Nichts zu tun.“ — gleiche Sekunde wie die mtime der beiden Dateien; folgenlos |
+| **W, vorweg** | Fenster 21040, 21346, 21349, 21560, 21627, 21663; Terminal PID 52069, `lstart` „Di 15 Sep 09:14:08 2026“ wie TB-144. `pgrep -x Terminal` ohne `-a` gibt rc 1 (macOS schliesst die eigenen Vorfahren aus) |
+| **W, je Fenster** | 21346, 21349, 21560, 21627: je `exists` true, 1 Tab, `processes` genau eine leere Zeile (rc 0), `busy` false, Verlauf mit `exec claude` 1 ⇒ alle vier geschlossen, je `exists` false nach 1 s, keine Rückfrage von Terminal |
+| **W, danach** | Fenster 21040, 21663 — die Liste von vorher ohne die vier |
+
+### Was offen bleibt
+
+- Fenster 21040 (bash, vermutlich des Betreibers) bleibt beim Betreiber.
+- Die 14 Formhinweise aus TB-141 und „W8 und ARBEITSWEISE Z. 97“ — ohne Wortlaut, nicht in TB-145.
+- Befunde `busy` und tty am Wächter: nur in der LIESMICH berichtigt (L1), `starte_sitzung.sh` unverändert.
+- Ob ein Schreiben im Auslöserordner den Wächter wecken soll (gemessen: er wird geweckt, tut nichts) — nur gemeldet.
+- Ablage; Projekt-Erinnerung.
+- Nächste Journalkennung nach EL: **EM**.
+
+*Geschrieben 09.10.2026 von der Mac-Sitzung TB-145. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
