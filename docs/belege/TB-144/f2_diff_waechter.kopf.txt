@@ -1,0 +1,4 @@
+f2_diff_waechter.txt — F2 Diff des Waechters S0..HEAD
+Befehl: git diff 0c67804 HEAD -- docs/werkzeuge/sitzungswaechter/starte_sitzung.sh (HEAD = 107bf33)
+Bytes 16005 · Zeilen 357 · md5 5f010206f2db38182893a7925a93f231
+Aussage: vier Hunks: Einfuegung nach Z. 43 (W2), vor Z. 133 (W3), vor Z. 141 (W4), Ersatz ab Z. 324 (W5, W6); entfernt nur S0-Z. 324–357 (29 Zeilen); Z. 44–132 und 142–323 unveraendert.

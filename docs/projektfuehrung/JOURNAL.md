@@ -10238,6 +10238,56 @@ Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
 
 ---
 
+## EK — TB-144: Wächter-Reparatur, Rest von TB-142 — neues Fenster aus dem Tab, Lesen statt Warten (Merkmal `? for shortcuts`), Aufräumen des gemerkten Fensters, Probe `probe_<PID>` über launchd 4× rc 0; Startzeile mit `--no-chrome`; vier alte Fenster nicht geschlossen (09.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-144_waechter_reparatur_rest.md`*
+
+**Quelle:** Mac-Sitzung **TB-144** (Hauptordner, lokal), 09.10.2026, ab 12:55 MESZ, gestartet über den Sitzungswächter (alter Stand), Eingang `6415b89`. Commits `0c67804` (Schritt 0), `d7b4bc4` (C, Wächter), `7b212c4` (D, Probe), `107bf33` (E, Unterlagen) und der Abgabe-Commit. Belege `docs/belege/TB-144/`. Freigabe: Handwerk mit Einzelfreigabe des Betreibers (Karte 09.10.2026, beantwortet vor 12:53, wörtlich im Auftrag). Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst; Claude Code hat keinen Aufruf abgelehnt.
+
+**Nachtrag des steuernden Chats zum Stand vor TB-144, wie in `BACKLOG.md` Abschnitt 5 eingetragen (wörtlich aus `UEBERGABE.md`, Nachtrag 08.10.2026, 21:47; dazu TB-142 und TB-143):**
+- **TB-141:** Commits `f7d57d4` (Schritt 0, 21:26:37), `7988ce6` (A), `febde0e` (C), `ab362b0` (Abgabe, Journal EJ), `5ed3827` (D3, 21:28:59); HEAD = `origin/main` = `5ed3827e32dc7592a08cc54283893173b459b45e`; Arbeitsbaum leer. **Abgenommen** (Helfer ABNAHME141, Kernzahlen vom steuernden Chat mit eigenen Befehlen nachgemessen): `ARBEITSWEISE.md` 2 413 → 2 471 (58/0), `BACKLOG.md` 349 → 362 (13/0), `JOURNAL.md` 10 528 → 10 578 (50/0 = 35 + 3 + 11 + 1), `UEBERGABE.md` und `UMZUG.md` unverändert; E1–E26 je genau einmal an HEAD, 0 an ⟨S0⟩; 10/10 Prüfanker; Skript bytegleich zum Anhang A; `d3_porcelain.txt` 0 B; EJ einmal, EK frei.
+- **Anmerkungen zur Abnahme:** (1) `rc` steht in keiner Belegdatei, nur im Ergebnis und im Journalblock (Ergebnis nennt es). (2) Ergebnis Z. 5 nennt Abgabe- und D3-Commit ohne Hash; Z. 21 Ist-Spalte D3 nur als Verweis. (3) Vier von zehn Prüfankern sind in den Belegen auf 60 Zeichen gekürzt. (4) `c3_vergleich.txt` nennt die Leerzeilen der Form Block nicht eigens; eigene Messung E21, E24, E25, E26 je 1/1. (5) Auftrag Z. 99: „vier Zeilen“ zu E22, der Block hat fünf (Zählfehler des steuernden Chats im Auftrag; von der Sitzung gemeldet, eingefügt ist der Text unverändert). Nicht gemessen: zweites porcelain nach D3, `cmp` gegen `$TMPDIR`. Bericht: `logs/steuernder_chat/TB-141_ABNAHME_bericht.md` (21 871 B, md5 `6892e4c5cbdd7addbafa87c5e111d3d8`).
+- **Sitzung geschlossen** über `schliesse_5ed3827e…` um 21:47:23 (Alter 1 099 s; PID 23068, „1 Sitzung(en) mit TERM beendet, 0 noch da“). Im Fenster stand zuletzt ein Angebot von Claude Code („Teach auto mode about your environment?“), unbeantwortet.
+- **Ursache von Fehler Nr. 23** (`docs/werkzeuge/sitzungswaechter/starte_sitzung.sh`, Stand `d4a28e9`): Z. 325–329 `set neu to do script …`, danach `return id of window 1`; `neu` wird nicht verwendet, gemeldet wird das vorderste Fenster. Z. 337–339 feste Wartezeit 20 s, keine Prüfung des Fensterinhalts. Z. 347–357 `do script "$SATZ" in window id $FENSTER`, geprüft wird nur der Rückgabewert. `waechter.log`: 20 Starts in Folge mit Fenster 15501 seit 29.09.2026, 15:39:35Z (TB-123). Bestand für TB-142: `logs/steuernder_chat/TB-142_BESTAND_WAECHTER_bericht.md` (md5 `527286875d4581c47fe647bf188bc70d`). Sperrlistennähe: keine `deny`-/`ask`-Regel trifft den Ordner; Register 36.3/37.3 nennen ihn nicht; Auftrag TB-125 Z. 369–371: „Handwerk mit Freigabe, weil der Wächter geändert wird“. Claude-Code-Doku: Schalter `--no-chrome` ist dokumentiert; ob er die Startfrage unterdrückt, ist nicht dokumentiert.
+- **Neue Regel (Betreiber 08.10.2026, 21:26, „zukünftig“, „Merke dir das für die Zukunft“):** „`cd ~/trading-bot && claude --effort high --remote-control` + enter sollst du zukünftig immer ausführen und mir lediglich den Text schicken mit der Anweisung.“ Eingetragen in die Projekt-Erinnerung (`ways-of-working.md`, 21:27); `ARBEITSWEISE.md` trägt sie mit dem nächsten Mac-Auftrag. Weg des steuernden Chats: der Sitzungswächter (Terminal bleibt Stufe „click“); TB-142 muss ihn so richten, dass die Sitzung eingabebereit und für den Betreiber sichtbar dasteht.
+- **TB-142 (09.10.2026), Teilstand:** Schritt 0 und A (`4ed91da`, `02a8a53`), Abbruch in Schritt B (`a57d5c2`): Claude Code verwehrte im Auto-Modus zwei `osascript`-Aufrufe an Terminal über Skriptdateien (`docs/belege/TB-142/abbruch.txt` Z. 5–9; UEBERGABE Z. 2457, 2459, 2484).
+- **TB-143 (09.10.2026):** Der Wächter startet Sitzungen mit `--permission-mode manual` (Commit `1636764`; UEBERGABE Z. 2476).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **A** | Prozesszeile `claude --permission-mode manual --effort high --remote-control`; ein lesender `osascript`-Aufruf über eine Skriptdatei lief ohne Rückfrage (in TB-142 im Auto-Modus abgelehnt) |
+| **M1** | `do script` ohne `in` liefert `tab 1 of window id <n>`, `<n>` neu in der Fensterliste — die Form im Entwurf trägt |
+| **M2** | Die wartende Sitzung steht schon nach 3 s; Merkmal `? for shortcuts` in allen 18 Lesungen; keine Frage, „manual mode on“ sichtbar |
+| **M3** | Mit und ohne `--no-chrome` keine Frage ⇒ Schalter angehängt, Wirkung nicht zuzuordnen |
+| **M4** | Nach `TERM` schliesst Terminal das Fenster ohne Rückfrage ⇒ `FENSTER_SCHLIESSEN=ja`. Befund: `busy` ist auch bei laufendem `exec claude` `false` — Schutz liegt allein bei `claude_im_repo` |
+| **M5** | „Teach auto mode“ 0-mal (Teilmessung, nur Start ohne Auftrag) |
+| **C** | W2–W6 per Werkzeug, 357 → 622 Zeilen, `bash -n` rc 0, numstat 294/29, zweiter Lauf abgewiesen |
+| **D0** | Keines der vier alten Fenster geschlossen: 21040 trägt eine bash ohne `exec claude` im Verlauf; 21346/21349/21560 sind ohne Prozess, Terminal nennt für sie aber das tty dieser Sitzung (`ttys008`) — die Prüfung „kein `claude` auf dem tty“ schlug an |
+| **D** | Vier Probeläufe über `probe_52208` und launchd (Fenster 21632–21635), je eingabebereit nach 6 s, Probesitzung beendet, Fenster zu, rc 0; keine neue Berechtigung. Zwei Läufe mit zu kurzem Abstand (launchd drosselte, lief trotzdem) |
+| **E/F1** | LIESMICH +65, ARBEITSWEISE +8 (mit E6), BACKLOG +13; `nachweis` rc 0 |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| | Wer Läufe über launchd mit Mindestabstand auslöst, baut die Wartezeit in den Aufruf selbst ein — nach Augenmass waren zwei von vier Abständen zu kurz |
+| | Der Name des tty, den Terminal für ein Fenster nennt, beweist nicht, dass die Prozesse auf diesem tty zu diesem Fenster gehören: ein Fenster ohne Prozess behält seinen alten Namen. Für alte Fenster `processes of tab` lesen |
+
+### Was offen bleibt
+
+- Erster echter Start mit W5/W6 (die Probe nimmt W4) — steuernder Chat sieht ins Log und ins Fenster; W3 (`schliesse_<HEAD>`) ebenso noch nie gelaufen.
+- Vier alte Fenster (21040, 21346, 21349, 21560) schliesst der Betreiber von Hand.
+- Anmeldung in Claude Code läuft laut Fenster in einem Tag ab — Betreiber, `/login`.
+- Befunde `busy` (M4) und tty-Namen (D0) — zur Entscheidung beim steuernden Chat.
+- Ablage; Stellen ausserhalb des Auftrags (`SITZUNGSWAECHTER_ausloeser_statt_tippen.md`, `_ausloeser/LIESMICH.md` und `.gitignore` ohne `schliesse_`/`probe_`).
+- Nächste Journalkennung nach EK: **EL**.
+
+*Geschrieben 09.10.2026 von der Mac-Sitzung TB-144. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

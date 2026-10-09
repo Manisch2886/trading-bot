@@ -1,0 +1,4 @@
+f1_nachweis.txt — F1 Nachweis
+Befehl: PY WZ nachweis; echo rc; dazu von Hand grep -v Kommentarzeilen | grep -c -- '--permission-mode manual'
+Bytes 1579 · Zeilen 31 · md5 adb02f007708fa91d38aba8a9ac11cd5
+Aussage: rc 0, Gesamt wie Soll; bash -n rc 0, do script 1, verbotene Woerter 0, bash-4 0; W2 206/209 (drei gesetzte Konstanten), W3 2/2, W4 62/62, W5 2/2, W6 19/19; E1–E12 je Vorkommen 1 GLEICH; von Hand 1.

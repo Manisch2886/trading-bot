@@ -1,0 +1,4 @@
+f4_journal.txt — F4 Journal, geschrieben
+Befehl: PY WZ journal docs/belege/TB-144/f4_journal_block.md; echo rc
+Bytes 518 · Zeilen 9 · md5 00bc4d789806bf4c8f2dae1d95395d8c
+Aussage: wie Probelauf, geschrieben, rc 0; numstat JOURNAL 50/0.

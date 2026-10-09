@@ -1,0 +1,31 @@
+# TB-144 nachweis — Zustand der Zieldateien gegen den Auftrag
+starte_sitzung.sh · 622 Zeilen · bash -n rc 0 · 'do script' in Befehlszeilen 1 · verbotene Woerter 0 · bash-4 0
+Konstante STARTZEILE = cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome
+Konstante STUFEN = 3 3 4 5 5 10 10 10 10
+Konstante MERKMAL_EINGABEZEILE = ? for shortcuts
+Konstante MERKMAL_FRAGE = Enter to confirm
+Konstante FENSTER_SCHLIESSEN = ja
+Konstante LESE_EIGENSCHAFT = contents
+W2 · 206 von 209 Zeilen woertlich in der Datei
+   anders: STARTZEILE="cd ~/trading-bot && exec claude --permission-mode manual --effort high --remot
+   anders: MERKMAL_EINGABEZEILE="<<M2_MERKMAL_EINGABEZEILE>>"
+   anders: FENSTER_SCHLIESSEN="<<M4_JA_ODER_NEIN>>"
+W3 · 2 von 2 Zeilen woertlich in der Datei
+W4 · 62 von 62 Zeilen woertlich in der Datei
+W5 · 2 von 2 Zeilen woertlich in der Datei
+W6 · 19 von 19 Zeilen woertlich in der Datei
+E1 · ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+E2 · ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+E3 · ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+E4 · ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+E5 · ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+E6 · ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+E7 · LIESMICH.md · Vorkommen 1 · GLEICH
+E8 · LIESMICH.md · Vorkommen 1 · GLEICH
+E9 · LIESMICH.md · Vorkommen 1 · GLEICH
+E10 · LIESMICH.md · Vorkommen 1 · GLEICH
+E11 · BACKLOG.md · Vorkommen 1 · GLEICH
+E12 · ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+Gesamt: wie Soll
+rc 0
+von Hand: Befehlszeilen mit '--permission-mode manual': 1

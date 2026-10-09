@@ -1,0 +1,357 @@
+diff --git a/docs/werkzeuge/sitzungswaechter/starte_sitzung.sh b/docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+index 8a65ff5..85a7d44 100755
+--- a/docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
++++ b/docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+@@ -42,6 +42,216 @@ sage() { echo "$(date -u '+%Y-%m-%dT%H:%M:%SZ')  $*" >> "$LOG"; }
+ 
+ sage "----- Waechter geweckt -----"
+ 
++# ⭐⭐ SEIT TB-144 (Waechter-Reparatur). Anlass: Fehler Nr. 23 - 20 Starts in
++#    Folge meldeten das VORDERSTE Fenster (15501) statt des neu geoeffneten,
++#    und der Satz ging samt Zeilenende in eine bash-Shell.
++# ⛔ Der Waechter legt KEINEN Satz mehr in ein Fenster, schickt nichts ab und
++#    drueckt keine Taste. Den Fensterinhalt LIEST er nur, ueber Terminal selbst.
++# ⛔ Ins Log gehen hoechstens die letzten 8 Zeilen (je 160 Zeichen) des NEU
++#    GEOEFFNETEN Fensters, und nur, wenn die Pruefung scheitert. Sonst gilt der
++#    Kopf dieser Datei: keine Umgebungsvariablen, Schluessel, Dateiinhalte.
++# ⚠️ /bin/bash des Macs ist 3.2: nur Mittel, die es dort gibt.
++# ⚠️ Solange ein Wert mit <<M…>> dasteht, oeffnet der Waechter KEIN Fenster.
++# --------------------------------------------------------------------------
++STARTZEILE="cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control --no-chrome"
++MERKMAL_FRAGE="Enter to confirm"
++MERKMAL_EINGABEZEILE="? for shortcuts"
++LESE_EIGENSCHAFT="contents"
++STUFEN="3 3 4 5 5 10 10 10 10"
++FENSTER_SCHLIESSEN="ja"
++FENSTERDATEI="$LOGDIR/letztes_fenster.txt"
++FENSTER=""
++TABNR=""
++
++ziffern() {
++    case "$1" in ''|*[!0-9]*) return 1 ;; esac
++    return 0
++}
++
++# PIDs aller claude-Prozesse mit cwd im Repo; gelesen wird nur das cwd (wie Wache 4a).
++claude_im_repo() {
++    local pid cwd
++    for pid in $(pgrep -x claude 2>/dev/null); do
++        cwd=$(lsof -a -p "$pid" -d cwd -Fn 2>/dev/null | grep '^n' | cut -c2-)
++        case "$cwd" in "$REPO"|"$REPO"/*) echo "$pid" ;; esac
++    done
++}
++
++fensterliste() {
++    osascript <<OSA 2>>"$LOG"
++tell application "Terminal" to return id of every window
++OSA
++}
++
++fenster_starten() {
++    osascript <<OSA 2>>"$LOG"
++tell application "Terminal"
++    set neu to do script "$STARTZEILE"
++    return neu
++end tell
++OSA
++}
++
++# Nur lesen. M2: LESE_EIGENSCHAFT am Funktionsverzeichnis von Terminal pruefen.
++fenster_lesen() {
++    osascript <<OSA 2>>"$LOG"
++with timeout of 10 seconds
++    tell application "Terminal" to return $LESE_EIGENSCHAFT of tab $TABNR of window id $FENSTER
++end timeout
++OSA
++}
++
++fenster_tty() {
++    osascript <<OSA 2>>"$LOG"
++with timeout of 10 seconds
++    tell application "Terminal" to return tty of tab $TABNR of window id $FENSTER
++end timeout
++OSA
++}
++
++# M4: schliesst Terminal ein Fenster ohne laufenden Prozess ohne Rueckfrage?
++fenster_zu() {
++    osascript <<OSA 2>>"$LOG"
++with timeout of 10 seconds
++    tell application "Terminal"
++        if not (exists window id $1) then return "fehlt"
++        if (count of tabs of window id $1) is not 1 then return "mehrere"
++        if busy of tab 1 of window id $1 then return "arbeitet"
++        close window id $1
++        delay 1
++        if exists window id $1 then return "offen"
++        return "zu"
++    end tell
++end timeout
++OSA
++}
++
++# V1: Die Fensternummer kommt aus dem Tab, den Terminal beim Oeffnen liefert.
++# M1: Form der Rueckgabe "tab <k> of window id <n>" - belegt nur fuer den alten
++#     zweiten Aufruf (launchd_aus.log, 51 Zeilen); fuers Oeffnen misst TB-144.
++fenster_oeffnen() {
++    local vorher nachher tab rest
++    FENSTER=""
++    TABNR=""
++    case "$MERKMAL_EINGABEZEILE$FENSTER_SCHLIESSEN$STARTZEILE" in
++        *"<<"*)
++            sage "⛔ MESSWERTE FEHLEN in starte_sitzung.sh (TB-144). Kein Fenster geoeffnet."
++            return 1 ;;
++    esac
++    vorher=$(fensterliste) || {
++        sage "⛔ FENSTERLISTE NICHT LESBAR: Terminal nennt seine Fenster nicht. Kein Fenster geoeffnet."
++        return 1
++    }
++    vorher=" $(printf '%s' "$vorher" | tr -c '0-9' ' ') "
++    tab=$(fenster_starten) || {
++        sage "⛔ osascript konnte Terminal nicht ansteuern. Fehlt die Automation-Berechtigung?"
++        return 1
++    }
++    nachher=" $(fensterliste | tr -c '0-9' ' ') "
++    case "$tab" in
++        "tab "*" of window id "*)
++            rest="${tab#tab }"
++            TABNR="${rest%% of window id *}"
++            FENSTER="${tab##* of window id }" ;;
++    esac
++    if ! ziffern "$TABNR" || ! ziffern "$FENSTER"; then
++        sage "⛔ FENSTER NICHT BESTIMMBAR: Terminal lieferte keinen Tab der Form 'tab <k> of window id <n>'. Ein Fenster kann trotzdem offen sein."
++        FENSTER=""
++        return 1
++    fi
++    case "$vorher" in *" $FENSTER "*)
++        sage "⛔ FENSTER NICHT NEU: Fenster $FENSTER gab es schon vor dem Oeffnen. Es wird weder gelesen noch gemerkt."
++        FENSTER=""
++        return 1 ;;
++    esac
++    case "$nachher" in *" $FENSTER "*) : ;; *)
++        sage "⛔ FENSTER FEHLT: Fenster $FENSTER steht nach dem Oeffnen nicht in der Fensterliste."
++        FENSTER=""
++        return 1 ;;
++    esac
++    printf '%s\n' "$FENSTER" > "$FENSTERDATEI"
++    sage "Fenster $FENSTER neu geoeffnet (Tab $TABNR). Gemerkt in $FENSTERDATEI"
++    return 0
++}
++
++# ⛔ Begrenzt: hoechstens 8 Zeilen, je 160 Zeichen, nur vom neu geoeffneten Fenster.
++fensterzeilen() {
++    local z
++    sage "   Letzte Zeilen von Fenster $FENSTER (hoechstens 8, je 160 Zeichen):"
++    printf '%s\n' "$1" | tr '\r' '\n' | grep -v '^[[:space:]]*$' | tail -n 8 | cut -c1-160 | while IFS= read -r z; do
++        sage "   | $z"
++    done
++}
++
++# V3: Pruefung statt Wartezeit. $1 = Kennung fuers Log (TB-Nummer oder PROBE).
++# Rueckgabe: 0 eingabebereit · 3 Startfrage · 4 keine Eingabezeile.
++warte_auf_eingabezeile() {
++    local kenn="$1" summe=0 lesung=0 gelesen=0 bereit=0 inhalt="" s
++    for s in $STUFEN; do
++        sleep "$s"
++        summe=$((summe+s))
++        lesung=$((lesung+1))
++        inhalt=$(fenster_lesen) || { inhalt=""; bereit=0; continue; }
++        gelesen=$((gelesen+1))
++        case "$inhalt" in
++            *"$MERKMAL_FRAGE"*)
++                sage "⛔ STARTFRAGE ($kenn): Fenster $FENSTER zeigt nach $summe s eine Frage (\"$MERKMAL_FRAGE\"). Die Sitzung ist NICHT eingabebereit."
++                fensterzeilen "$inhalt"
++                return 3 ;;
++            *"$MERKMAL_EINGABEZEILE"*)
++                bereit=$((bereit+1))
++                if [ "$bereit" -ge 2 ]; then
++                    sage "⭐ EINGABEBEREIT ($kenn): Fenster $FENSTER, Eingabezeile steht, keine Frage offen (nach $summe s, Lesung $lesung). ⚠️ KEIN SATZ IM FENSTER."
++                    return 0
++                fi ;;
++            *)  bereit=0 ;;
++        esac
++    done
++    sage "⛔ KEINE EINGABEZEILE ($kenn): Fenster $FENSTER zeigt nach $summe s keine Eingabezeile von Claude Code (verlangt: zwei Lesungen in Folge). Die Sitzung gilt als NICHT eingabebereit."
++    sage "   Lesbar waren $gelesen von $lesung Lesungen (0 = Terminal hat nicht geantwortet; dann liegt es nicht am Merkmal)."
++    fensterzeilen "$inhalt"
++    return 4
++}
++
++# V5: nur das EINE gemerkte Fenster; nur ohne claude-Sitzung im Repo (ausser der
++# PID in $1, die die Probe ausloest), nur ein Tab, nur ohne laufenden Prozess.
++fenster_aufraeumen() {
++    local ausser="${1:-}" f pid antwort
++    if [ ! -f "$FENSTERDATEI" ]; then
++        sage "  Kein gemerktes Fenster. Nichts aufzuraeumen."
++        return 0
++    fi
++    f=$(head -n 1 "$FENSTERDATEI" | tr -d '\r')
++    if ! ziffern "$f"; then
++        sage "  ⚠️ $FENSTERDATEI nennt keine Fensternummer. Nichts geschlossen."
++        return 0
++    fi
++    for pid in $(claude_im_repo); do
++        [ "$pid" = "$ausser" ] && continue
++        sage "  ⚠️ Fenster $f bleibt offen: im Repo laeuft noch eine claude-Sitzung (PID $pid)."
++        return 0
++    done
++    if [ "$FENSTER_SCHLIESSEN" != "ja" ] && [ "$FENSTER_SCHLIESSEN" != "nein" ]; then
++        sage "  ⚠️ Fenster $f bleibt offen: FENSTER_SCHLIESSEN steht weder auf ja noch auf nein (Messwert M4 fehlt)."
++        return 0
++    fi
++    if [ "$FENSTER_SCHLIESSEN" != "ja" ]; then
++        sage "  ⚠️ Fenster $f bleibt offen: Terminal schliesst es nicht ohne Rueckfrage (gemessen in TB-144)."
++        return 0
++    fi
++    antwort=$(fenster_zu "$f")
++    case "$antwort" in
++        zu)
++            mv "$FENSTERDATEI" "$LOGDIR/letztes_fenster_geschlossen.txt" 2>/dev/null
++            sage "  Fenster $f geschlossen (das beim Start gemerkte, kein laufender Prozess)." ;;
++        fehlt)    sage "  Fenster $f gibt es nicht mehr. Nichts geschlossen." ;;
++        arbeitet) sage "  ⚠️ Fenster $f bleibt offen: dort laeuft noch ein Prozess." ;;
++        mehrere)  sage "  ⚠️ Fenster $f bleibt offen: es hat mehr als einen Tab." ;;
++        *)        sage "  ⚠️ Fenster $f bleibt offen: Terminal hat das Schliessen nicht bestaetigt." ;;
++    esac
++    return 0
++}
++
+ # --------------------------------------------------------------------------
+ # 0. ⭐⭐ SCHLIESS-AUSLOESER (seit 24.09.2026) — eine Sitzung beenden,
+ #    ohne Tastenkombination. Anlass: Betreiberanweisung 24.09., 08:41 —
+@@ -130,6 +340,8 @@ if [ -n "$SCHLIESSER" ]; then
+             sage "     haengt an etwas, das ein Mensch ansehen sollte."
+         fi
+     fi
++    # ⭐ Seit TB-144 (V5): das beim Start gemerkte Fenster aufraeumen.
++    fenster_aufraeumen
+     sage "----- fertig (schliessen) -----"
+     exit 0
+ fi
+@@ -138,6 +350,70 @@ fi
+ # --------------------------------------------------------------------------
+ # 1. Die Ausloeserdatei finden. Nur der NAME zaehlt.
+ # --------------------------------------------------------------------------
++
++# ⭐ 1a. PROBE-AUSLOESER (seit TB-144): Datei probe_<PID>
++#    Oeffnet ein Fenster wie ein echter Start (gleicher Ordner, gleiche
++#    Startzeile, dieselben Funktionen), prueft die Eingabezeile, beendet GENAU
++#    DIE EINE dabei entstandene Sitzung mit TERM und raeumt das Fenster auf.
++#    KEIN Auftrag, KEIN Satz. <PID> ist die eine claude-Sitzung im Repo, die
++#    die Probe ausloest; nur sie wird nicht gezaehlt. Laeuft im Repo eine
++#    andere, oder ist <PID> keine claude-Sitzung im Repo: ABBRUCH, kein Fenster.
++# ⚠️ Die Wache 4a fuer echte Starts steht unveraendert weiter unten.
++# ⚠️ Auch hier wird nur der DATEINAME gelesen, nie der Inhalt.
++PROBE=""
++for f in "$AUSLOESER"/probe_*; do
++    [ -e "$f" ] || continue
++    PROBE="$f"
++    break
++done
++if [ -n "$PROBE" ]; then
++    EIGEN="$(basename "$PROBE")"
++    EIGEN="${EIGEN#probe_}"
++    STEMPEL="$(date -u '+%Y%m%dT%H%M%SZ')"
++    if ! ziffern "$EIGEN" || [ ${#EIGEN} -gt 7 ]; then
++        mv "$PROBE" "$ERLEDIGT/ABGEWIESEN_${STEMPEL}_probe" 2>/dev/null
++        sage "⛔ ABGEWIESEN: Der Probe-Ausloeser nennt keine gueltige PID."
++        exit 1
++    fi
++    mv "$PROBE" "$ERLEDIGT/${STEMPEL}_probe_$EIGEN" || { sage "⛔ Konnte Probe-Ausloeser nicht wegraeumen. Abbruch."; exit 1; }
++    sage "----- Probe-Ausloeser: probe_$EIGEN -----"
++    GENANNT=0
++    ANDERE=0
++    for pid in $(claude_im_repo); do
++        if [ "$pid" = "$EIGEN" ]; then GENANNT=1; else ANDERE=$((ANDERE+1)); fi
++    done
++    if [ "$GENANNT" -ne 1 ] || [ "$ANDERE" -ne 0 ]; then
++        sage "⛔ ABBRUCH (Probe): PID $EIGEN als claude-Sitzung im Repo: $GENANNT (verlangt 1), andere claude-Sitzungen im Repo: $ANDERE (verlangt 0). Kein Fenster geoeffnet."
++        exit 1
++    fi
++    if ! security show-keychain-info "$HOME/Library/Keychains/login.keychain-db" > /dev/null 2>&1; then
++        sage "⛔ ABBRUCH (Probe): Schluesselbund gesperrt. Kein Fenster geoeffnet."
++        exit 1
++    fi
++    FENSTERDATEI="$LOGDIR/letztes_fenster_probe.txt"
++    fenster_oeffnen || { sage "----- fertig (probe), rc 1 -----"; exit 1; }
++    warte_auf_eingabezeile "PROBE"
++    RC=$?
++    # Beendet wird nur, was im Repo laeuft, NICHT die genannte PID ist und am
++    # Terminal des neuen Tabs haengt.
++    TTY_TAB="$(fenster_tty)"
++    for pid in $(claude_im_repo); do
++        [ "$pid" = "$EIGEN" ] && continue
++        TTY_PID="$(ps -o tty= -p "$pid" 2>/dev/null | tr -d ' ')"
++        if [ -n "$TTY_PID" ] && [ "/dev/$TTY_PID" = "$TTY_TAB" ]; then
++            sage "  Probe: beende PID $pid ($TTY_PID) mit TERM. PID $EIGEN bleibt unberuehrt."
++            kill -TERM "$pid" 2>/dev/null
++        else
++            sage "  ⚠️ Probe: PID $pid haengt nicht am neuen Tab (${TTY_PID:-?} gegen ${TTY_TAB:-?}). NICHT beendet."
++            [ "$RC" -eq 0 ] && RC=5    # 5: eingabebereit, aber eine Probe-Sitzung steht noch
++        fi
++    done
++    sleep 5
++    fenster_aufraeumen "$EIGEN"
++    sage "----- fertig (probe), rc $RC -----"
++    exit "$RC"
++fi
++
+ DATEI=""
+ for f in "$AUSLOESER"/starte_TB-*; do
+     [ -e "$f" ] || continue
+@@ -321,37 +597,26 @@ SATZDATEI="$LOGDIR/auftragssatz_$NUMMER.txt"
+ printf '%s' "$SATZ" > "$SATZDATEI" || abbruch "Konnte den Auftragssatz nicht ablegen."
+ sage "Auftragssatz abgelegt: $(wc -c < "$SATZDATEI") Bytes"
+ 
+-sage "Starte Terminal-Fenster (Auftrag als Argument) ..."
+-FENSTER=$(osascript <<OSA 2>>"$LOG"
+-tell application "Terminal"
+-    set neu to do script "cd ~/trading-bot && exec claude --permission-mode manual --effort high --remote-control"
+-    return id of window 1
+-end tell
+-OSA
+-) || abbruch "osascript konnte Terminal nicht ansteuern. Fehlt die Automation-Berechtigung? (Systemeinstellungen > Datenschutz & Sicherheit > Automation)"
+-
+-sage "Terminal-Fenster $FENSTER offen. Warte auf die Eingabezeile ..."
+-
+-# ⚠️ Claude Code braucht Anlaufzeit. Gemessen ist sie nicht — deshalb
+-#    grosszuegig und in Stufen, mit Protokoll.
+-WARTE="${WAECHTER_WARTESEKUNDEN:-20}"
+-sleep "$WARTE"
+-sage "$WARTE s gewartet."
++sage "Starte Terminal-Fenster (seit TB-142: ohne Satz) ..."
++fenster_oeffnen || abbruch "Das neue Terminal-Fenster ist nicht offen oder nicht bestimmbar - siehe die Zeile davor im Protokoll."
+ 
+ # --------------------------------------------------------------------------
+-# 7. Hat der Auftrag gegriffen? Messen statt annehmen.
++# 7. Steht die Eingabezeile? Lesen statt warten (seit TB-144).
+ # --------------------------------------------------------------------------
+-# ⭐ Wenn der Prompt als Argument ankam, ARBEITET die Sitzung bereits - sie
+-#   verbraucht Rechenzeit. Bleibt sie bei fast null, wartet sie auf Eingabe.
++# ⛔ Der Satz wird NICHT mehr ins Fenster gelegt (V4): Der Terminal-Befehl,
++#   der Text in ein vorhandenes Fenster gibt, schickt eine Befehlszeile samt
++#   Zeilenende - im richtigen Fenster waere das das Abschicken, das
++#   ARBEITSWEISE 19 ausschliesst. Der Satz steht in der Datei.
+ printf '%s\n' "$SATZ" > "$LOGDIR/letzter_satz.txt"
+-# ⛔ SEIT TB-142 (V4): Der Satz wird NICHT mehr ins Fenster gelegt. Der
+-#   Terminal-Befehl, der Text in ein vorhandenes Fenster gibt, schickt eine
+-#   Befehlszeile samt Zeilenende - im richtigen Fenster waere das das
+-#   Abschicken, das ARBEITSWEISE 19 ausschliesst. Am 08.10.2026 landete der
+-#   Satz so in einer bash-Shell ("-bash: TB-141:: command not found").
+-#   Der Satz steht in der Datei eine Zeile weiter oben.
+-sage "⚠️ KEIN SATZ IM FENSTER (seit TB-142): Der Waechter legt den Satz nicht mehr hinein."
+-sage "   Ob die Sitzung eingabebereit ist, ist in diesem Zwischenstand NICHT geprueft."
+-sage "   Der Satz steht in $LOGDIR/letzter_satz.txt"
++warte_auf_eingabezeile "$NUMMER"
++RC=$?
++sage "   Der Waechter legt keinen Satz ins Fenster. Wortlaut: $LOGDIR/letzter_satz.txt"
++if [ "$RC" -eq 0 ]; then
++    sage "   Der Betreiber schickt ihn ab - in der Claude-App unter der"
++    sage "   Geraetesitzung (Laptop-Symbol) oder im Terminal-Fenster $FENSTER."
++else
++    sage "   Fenster $FENSTER bleibt offen. Schliessen: _ausloeser/schliesse_<HEAD> (ARBEITSWEISE 22.8)."
++    printf '%s\n' "Start $NUMMER: Fenster $FENSTER ist nicht eingabebereit (Rueckgabe $RC). Siehe waechter.log." > "$LOGDIR/letzter_abbruch.txt"
++fi
+ sage "----- fertig -----"
+-exit 0
++exit "$RC"

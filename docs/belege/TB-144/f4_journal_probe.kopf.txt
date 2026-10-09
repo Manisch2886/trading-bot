@@ -1,0 +1,4 @@
+f4_journal_probe.txt — F4 Journal, Probelauf
+Befehl: PY WZ journal docs/belege/TB-144/f4_journal_block.md --probe; echo rc
+Bytes 526 · Zeilen 9 · md5 82e0113613664479a54935b5e964ba75
+Aussage: sechs Bedingungen ja, Kennung EK, Block 38, J1 8, +50, rc 0.
