@@ -1,0 +1,6 @@
+    2531 docs/projektfuehrung/ARBEITSWEISE.md
+     392 docs/projektfuehrung/UMZUG.md
+     395 docs/projektfuehrung/BACKLOG.md
+   10669 docs/projektfuehrung/JOURNAL.md
+   13987 total
+rc 0

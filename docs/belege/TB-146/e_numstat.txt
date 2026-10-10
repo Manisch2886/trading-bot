@@ -1,0 +1,23 @@
+# TB-146 numstat — git diff --numstat 7f0b59d e39cc44 gegen die Sollwerte
+roh: 4	0	docs/belege/TB-146/0a_status.kopf.txt
+roh: 6	0	docs/belege/TB-146/0a_status.txt
+roh: 3	0	docs/belege/TB-146/0b_ausgang.kopf.txt
+roh: 8	0	docs/belege/TB-146/0b_ausgang.txt
+roh: 5	0	docs/belege/TB-146/a_modus.kopf.txt
+roh: 2	0	docs/belege/TB-146/a_modus.txt
+roh: 24	0	docs/belege/TB-146/abbruch.txt
+roh: 24	0	docs/belege/TB-146/e_einfuegen.txt
+roh: 21	0	docs/belege/TB-146/e_probe.txt
+roh: 17	0	docs/belege/TB-146/e_vergleich.txt
+roh: 29	0	docs/belege/TB-146/e_zweitlauf.txt
+roh: 3	0	docs/belege/TB-146/tb146_einfuegen.kopf.txt
+roh: 242	0	docs/belege/TB-146/tb146_einfuegen.py
+roh: 16	0	docs/projektfuehrung/ARBEITSWEISE.md
+roh: 9	0	docs/projektfuehrung/BACKLOG.md
+roh: 10	0	docs/projektfuehrung/UMZUG.md
+Soll docs/projektfuehrung/ARBEITSWEISE.md 16	0 · Ist [16, 0] · gleich
+Soll docs/projektfuehrung/BACKLOG.md 9	0 · Ist [9, 0] · gleich
+Soll docs/projektfuehrung/UMZUG.md 10	0 · Ist [10, 0] · gleich
+weitere Dateien ausser Belegen und Ergebnis: keine
+Gesamt: wie Soll, keine entfernte Zeile in den Zieldateien
+rc 0

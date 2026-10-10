@@ -1,0 +1,12 @@
+# TB-146 journal — Block der Sitzung samt J1 vor '## Wiederkehrende Lehren'
+letzte Kennung EL, Kopfzeile beginnt mit '## EM — TB-146' · ja
+genau eine Zeile '### Was gemessen ist', Leerzeile davor · ja
+genau eine Zeile '### Was offen bleibt' · ja
+kein Trennstrich im Block, Schlusszeile beginnt mit '*Geschrieben' · ja
+J1 weder im Journal noch im Block · ja
+vor der Schlussueberschrift stehen '---' und eine Leerzeile · ja
+B1 steht genau einmal im BACKLOG (Schritt E gelaufen) · ja
+J1-Zeilen 7 wie Soll 7 · ja
+Kennung EM (erwartet EM) · Blockzeilen 33 · J1-Zeilen 7 · Zeilen +44 (= Block + J1 + 1 + 3)
+Gesamt: geschrieben und zurueckgelesen: docs/projektfuehrung/JOURNAL.md
+rc 0

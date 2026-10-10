@@ -1,0 +1,6 @@
+MD5 (docs/projektfuehrung/ARBEITSWEISE.md) = b856395e6c1df8581cf9a44ca33c441e
+MD5 (docs/projektfuehrung/UMZUG.md) = 017136adf27c96b861cab1357276b41c
+MD5 (docs/projektfuehrung/BACKLOG.md) = 3caf2260ef772e453b80a4fbdb3491a6
+MD5 (docs/projektfuehrung/JOURNAL.md) = c5102f2d0aace7e1821017f757c92225
+MD5 (docs/belege/TB-146/tb146_einfuegen.py) = 483dae103b6611ad0f074297294fc9b9
+rc 0
