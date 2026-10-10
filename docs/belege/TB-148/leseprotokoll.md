@@ -72,6 +72,9 @@ Gelesen wurden ausserdem, vor M1, die Steuerdateien `docs/auftraege/AKTUELLER_AU
 | `research/mtm_drawdown/test_mtm_kern.py` | 30–109; 220–244 | M3 |
 | `strategies/elliott_wave/elliott_wave_counter.py` (weitere Datei, importiert von `elliott_wave/multi_symbol_optimise.py` Z. 36) | 1–382 (ganz) | M4 |
 | `strategies/elliott_wave_stocks/elliott_wave_counter.py` (weitere Datei, importiert von `elliott_wave_stocks/multi_symbol_optimise.py` Z. 36) | 160–189; 305–374 | M4 |
+| `research/exposure_messung/exposure_kern.py` | 195–226 | M5 |
+| `research/exposure_messung/auswertung.py` | 420–479 | M5 |
+| `research/exposure_messung/test_exposure_kern.py` | 135–154 | M5 |
 | `docs/projektfuehrung/FABLE_ANTWORT_2026-10-09a_beitrag_aus_r45_listen_geschnitten_handelbar_tag.md` (Quelle der Fragen und von R87 (a), (b)) | 195–234 | M3, M4, M5 |
 
 ## Vermerke
