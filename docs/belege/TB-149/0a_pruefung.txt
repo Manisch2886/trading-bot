@@ -1,0 +1,12 @@
+Datum des Eintrags: 10.10.2026 (aus --datum)
+Arbeitsbaum geaendert: 2 (Soll 2)
+Arbeitsbaum unverfolgt: 1 (Soll 1)
+Dateien 09.10.a (R88 (g), R56 (b)): 3 von 3 von git verfolgt, Arbeitsbaum gleich HEAD, dazugekommen in 7f0b59d, md5 und Bytes wie im Daten-Block
+Orte: 21 Anker, je genau einmal: True; Zeilen am Ort (Anker bis vor die naechste Ueberschrift), die den Block der neuen Marke nennen (R89 (b), (d)): 0; Zeilen mit R84 bis R89 im Register: 0
+Marken: 31 an 21 Einfuegestellen
+je Abschnitt: 23: 1, 40: 1, 41: 1, 48: 13, 52: 1, 53: 3, 54: 3, 55: 8
+Anker mit Zahl 1 (Original): 31 von 31
+Anker mit Zahl 1 (nach Simulation): 31 von 31
+Bloecke: 6 | Ueberschriften: 6 max. Laenge 140 | gekuerzt: 5
+Dateien: 0 | Fundstellen: 29 | Zeilenlisten: 0 | Zaehlungen: 19 | *.py im Baum: 747
+rc 0: alles wie angegeben
