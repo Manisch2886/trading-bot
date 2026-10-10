@@ -10373,6 +10373,37 @@ Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
 
 ---
 
+## EN — TB-148: Verfahrensmessung durch Lesen (27.2) zu den fünf Messfragen M1 bis M5 — Schlüssel der Zuteilung ist ein Streuwert; Zeitzone durch Lesen nicht entscheidbar; ein Ausstieg je Position bei allen neun Bots; Einstieg vor dem Handelbar-Tag kann bei allen neun; Handelbar-Tag steht in `je_bot`, nicht in `bh_tagesrenditen` (10.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-148_verfahrensmessung_schluessel_zeitzone_handelbar.md`*
+
+**Quelle:** Mac-Sitzung **TB-148** (Hauptordner, lokal), 10.10.2026, Eingang `3ecde87` (HEAD in 0a gemessen); gestartet laut Auftrag über den Sitzungswächter (`starte_TB-148`) — von der Sitzung nicht gemessen. Commits: `4ebd251` (Schritt 0), `40fbfcd` (M1), `050e95e` (M2), `80e630d` (M3), `9100da5` (M4), `505b216` (M5), dazu der Abgabe-Commit mit Ergebnis und diesem Block und ein letzter Commit mit porcelain und numstat nach der Abgabe. Belege in `docs/belege/TB-148/`. Auftrag: `docs/auftraege/MAC_TB-148_verfahrensmessung_schluessel_zeitzone_handelbar.md`. Fragen aus Register 55.8 Nr. 5 und der Antwort 09.10.a (R84 (e), R86 (e), R87 (d), „Unsicher“ 7). Freigabe: Handwerk ohne Sperrlistennähe, pauschal frei (Betreiber 26.09.2026). Keine Rückfrage an den Betreiber. Claude Code hat keinen Aufruf abgelehnt und keine Bestätigung verlangt; jeder Shell-Befehl stand wörtlich im Auftrag. Das Suchwerkzeug von Claude Code stand nicht zur Verfügung; die Sitzung hat nur gelesen.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0a** | genau die drei Einträge (`AKTUELLER_AUFTRAG.md`, `UEBERGABE.md` geändert, Auftrag TB-148 neu) am HEAD `3ecde87`; Beleg per `cmp` gleich |
+| **A** | Prozesszeile `claude --permission-mode manual --effort high --remote-control --no-chrome` (EIGEN 91560) |
+| **M1** | `shared/zuteilung.py` bildet den Schlüssel als Streuwert (blake2b, 16 Byte, hex) über `str(SEED)` und die Textform von `symbol`, `entry_time`, `exit_time`, `entry_price`, `exit_price`, `pnl_pct` (soweit vorhanden), Z. 425–426, 492–497; geordnet wird nach dem Streuwert (Z. 540, 577); kein Bot übergibt einen eigenen Startwert |
+| **M2** | Schnitt (`registerdaten.py` Z. 102) und `open_time` (neun Lader, `parse_dates` ohne Zeitzone) werden zonenlos gelesen; an keiner gelesenen Vergleichsstelle (`loaderlauf.py` Z. 505, `benchmark.py` Z. 290, `faltenplan_neun.py` Z. 283) wird eine Zeitzone zugewiesen; `open_time` Krypto = UTC (Erzeuger), Aktien von yfinance bestimmt → durch Lesen nicht entscheidbar |
+| **M3** | `ereignisreihenfolge` gewinnt die Reihenfolge bei gleichem Zeitstempel aus `capital_after` zurück (mit `allocation`, `pnl_pct`, `KETTEN_TOLERANZ`; `mtm_kern.py` Z. 99–119), sonst aus `exit_time`; eine ausgeführte Position hat bei allen neun Bots genau einen Ausstieg (erschlossen) |
+| **M4** | Handelbar-Tag nach `faltenschranke_messung.loader_lesart`; der Scan kann bei allen neun Bots vor dem Handelbar-Tag einsteigen (erschlossen: Lader prüft die ganze Datei, Scan beginnt beim Indikator-Vorlauf) |
+| **M5** | keine der beiden `bh_tagesrenditen` gibt den Tag heraus; `benchmark.py::je_bot` Z. 276 legt `handelbar_ab` je Symbol in den Rückgabewert und über `schreibe_tabellen` in die JSON-Datei; die Benchmark-Rechnung ruft ihre eigene `bh_tagesrenditen` (Z. 272) |
+| **D0** | `wc -l` und `md5` über 70 gelesene Dateien (63 Startdateien, 7 weitere), je `rc 0` |
+
+### Was offen bleibt
+
+- Was aus M1 bis M5 folgt — ob der Zellen-Erzeuger `ereignisreihenfolge` übernimmt, ob M4 eine Tatsachennotiz oder ein Register-Code-Widerspruch ist, wie mit der Zeitzone der Aktien-Dateien umzugehen ist —, entscheidet der Verfahrensprüfer; die Frage stellt der steuernde Chat mit den Fundstellen des Ergebnisses.
+- Aussagen „an keiner Stelle“ (M2-25, Kette in M4) sind ohne Suchwerkzeug erschlossen, nicht vollständig nachgewiesen.
+- Registereintrag R84 bis R89, Bau der zwei Erzeuger, Neuerzeugung der Listen (nicht in TB-148).
+- Abnahme von TB-148, `AKTUELLER_AUFTRAG.md` umstellen, Ablage, Projekt-Erinnerung (steuernder Chat).
+- Nächste Journalkennung nach EN: **EO**.
+
+*Geschrieben 10.10.2026 von der Mac-Sitzung TB-148. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
