@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 52 (von 0–55) — Register-Z. 11356–11434 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 52 (von 0–56) — Register-Z. 11404–11485 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
 
 ## 52. Fable 02a — Registerblock R63–R65 (TB-130)
 
@@ -42,6 +42,9 @@ Reines Eintragen von Registertext, Bauart wie 51. Quelle: `docs/projektfuehrung/
 > Quelle des Grundes: 34 (Kopf: die Marke steht am alten Ort; 34.3: ein „lies“ trägt die Marke direkt unter dem berichtigten Satz), 43.0, R61 (b), erster Satz, und (c), R62 (a) mit der Messung in 51.8 (Index 149 = 2018-01-13, Index 150 = 2018-01-14, zwei Dateien), R57, R60 (d), die Marken an 46.9 und unter 48.16. Kein Ergebnis.
 
 > ⭐ **52.3 R65 PRÄZISIERT durch R70 (53.5)** (Fable 02c R70, Unterpunkt (a), TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **52.3 R65 PRÄZISIERT durch R89 (56.6)** (Fable 09a R89, Unterpunkte (a) bis (c), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 48.19 (R51); 51.6 (R61); nachgetragen nach (b): 25.2; 47.9 (R26); 47.13 (R30); 50.1, Zeile R48 (d); 50.4, Schlusssatz. In Abschnitt 10 steht weiter keine Marke (R65 (d)).

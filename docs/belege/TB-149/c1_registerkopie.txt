@@ -1,0 +1,13 @@
+# TB-149 C1: registerkopie.py   (HEAD d950e03, 2026-10-10 12:35:46 +0200)
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  Abschnitte 0–22  220839 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  Abschnitte 23–36  222662 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  Abschnitte 37–42  232851 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  Abschnitte 43–53  239683 Bytes
+geschrieben: docs/projektfuehrung/REGISTER_KOPIE_teil5.md  Abschnitte 54–56  145682 Bytes
+Teil 1: docs/projektfuehrung/REGISTER_KOPIE_teil1.md  220839 Bytes gesamt, Body 220604 Bytes, Abschnitte 0–22  <= 240000
+Teil 2: docs/projektfuehrung/REGISTER_KOPIE_teil2.md  222662 Bytes gesamt, Body 222426 Bytes, Abschnitte 23–36  <= 240000
+Teil 3: docs/projektfuehrung/REGISTER_KOPIE_teil3.md  232851 Bytes gesamt, Body 232615 Bytes, Abschnitte 37–42  <= 240000
+Teil 4: docs/projektfuehrung/REGISTER_KOPIE_teil4.md  239683 Bytes gesamt, Body 239447 Bytes, Abschnitte 43–53  <= 240000
+Teil 5: docs/projektfuehrung/REGISTER_KOPIE_teil5.md  145682 Bytes gesamt, Body 145446 Bytes, Abschnitte 54–56  <= 240000
+Bodies aneinander: 1060538 Bytes, Original docs/VORREGISTRIERUNG_neuselektion.md am d950e0365e3d: 1060538 Bytes, sha256 b2d569495e133762 (Kopf b2d569495e133762) - BYTEGLEICH
+rc 0

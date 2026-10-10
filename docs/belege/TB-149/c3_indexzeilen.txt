@@ -1,0 +1,6 @@
+# TB-149 C3: Indexzeilen aus Fable 09a (Auftrag am Commit c71dca9)
+vorher: 'Indexzeilen aus Fable 09a' 0x (Soll 0); Abschnitt 11 1x (Soll 1); Schluss vor Pflege 1x (Soll 1)
+nachher: '### Indexzeilen aus Fable 09a' 1x (Soll 1); Zeilen zeichengleich im Index: 3/3
+  - **48.20 (R52):** Zählung der Fälle „Bestand behauptet statt Voraussetzung genannt“ → R88 (f) (56.5): weiter vierzehn gezählte Fälle bis zur Antwort 09.10.a; aus den Befunden der Abnahme der Antwort 07.10.a (55.7) und aus der Anfrage 09.10.a wird kein Fall gezählt. Ohne Marke (R89 (h), 56.6); die Indexzeilen aus Fable 04a und Fable 07a bleiben stehen.
+  - **54.3 (R76):** Massstab der Zählung (R76 (e)) → R88 (f) (56.5): weiter vierzehn gezählte Fälle. Ohne Marke (R89 (h), 56.6). Der Index ist kein Registertext.
+  - **10, Sperrlistenpunkt 10:** die Rückgabe nach R45 → R84 (e) (56.1): Zu den ausgeführten Positionen gibt die Rückgabe je Ausstieg das realisierte Ergebnis heraus, wie die Zuteilung es dem Kapital zurechnet, ungerundet, in der Reihenfolge, in der die Zuteilung die Ausstiege führt; Nachweis und Freigabe nach 37.3 bleiben. Keine Marke (Abschnitt 10; R89 (h), 56.6).

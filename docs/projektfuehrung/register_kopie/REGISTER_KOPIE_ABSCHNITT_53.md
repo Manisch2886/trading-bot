@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 53 (von 0–55) — Register-Z. 11435–11568 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 53 (von 0–56) — Register-Z. 11486–11628 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
 
 ## 53. Fable 02c — Registerblock R66–R73 (TB-132)
 
@@ -38,6 +38,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > ⭐ **53.3 R68 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **53.3 R68 PRÄZISIERT durch R85 (56.2)** (Fable 09a R85, Unterpunkte (a) und (b), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 48.1 (R33); 48.5 (R37); 52.2 (R64). Tatsache gemessen: 53.9. Offen: 53.10 Nr. 2 und 5.
 
 ### 53.4 R69 — Auflösung des Widerspruchs zwischen R39 (48.7) und auswertung.py (Name der Benchmark-Datei); Präzisierung zu R64 (e) (52.2)…
@@ -56,6 +59,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > Quelle des Grundes: R61 (b), erster und zweiter Satz, und die Zeile „R54 an 7 (c)“; R65 (a) (auch: eine Tabelle von Befunden ist keine Statusliste; eine Bestätigung trägt ERGÄNZT mit Zusatz); 34 (Kopf: die Marke steht am alten Ort; nach der Wiedergabe in R61 und R65); Wortlaut von Abschnitt 7, 4.2, 15.3 (a) und R33. Kein Ergebnis.
 
 > ⭐ **53.5 R70 PRÄZISIERT durch R77 (54.4)** (Fable 04a R77, Unterpunkt (b), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.5 R70 PRÄZISIERT durch R89 (56.6)** (Fable 09a R89, Unterpunkt (c), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 51.6 (R61); 52.3 (R65). Nach (c) gesetzt: 20 Marken, je in der Kette des Blocks, der sie auslöst. Indexzeilen ohne Marke nach (b): 7 (c); 17.5; 50.7 Nr. 3. Offen: 53.10 Nr. 8 und 9.
@@ -79,6 +85,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **53.7 R72 ERGÄNZT durch R79 (55.2)** (Fable 07a R79, Unterpunkt (c), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.7 R72 PRÄZISIERT durch R88 (56.5)** (Fable 09a R88, Unterpunkt (e), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 23.3, Registertext 3b (c) (vom steuernden Chat bestimmt, 53.10 Nr. 8); 23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse; 48.16 (R48); 52.2 (R64). Voraussetzung gemessen: 53.9. Offen: 53.10 Nr. 3, 5, 6 und 10.

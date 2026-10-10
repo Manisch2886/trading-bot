@@ -1,0 +1,4 @@
+E1 · docs/projektfuehrung/BACKLOG.md · 4754 Bytes · 9 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+E2 · docs/projektfuehrung/BACKLOG.md · 3402 Bytes · 9 Zeile(n) · Vorkommen 1 · an Zeilengrenzen 1 · GLEICH
+Anzahl Einfügungen: 2 · Gesamt: alle zeichengleich, je genau einmal
+ 2 · Gesamt: alle zeichengleich, je genau einmal

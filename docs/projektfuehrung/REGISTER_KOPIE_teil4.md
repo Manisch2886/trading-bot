@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 4 von 5 — Abschnitte 43–53 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 4 von 5 — Abschnitte 43–53 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
 
 ## 43. Ausgänge der Auswertung, null Trades als Wert, die zweite Öffnung von `herkunft.py` — die Einträge aus Fable 25d und 25e und die Tatsachennotizen TB-108 und TB-109 (TB-110, 26.09.2026)
 
@@ -1274,6 +1274,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **48.1 R33 ERGÄNZT durch R82 (55.5)** (Fable 07a R82, Unterpunkt (a), TB-139, 07.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **48.1 R33 PRÄZISIERT durch R85 (56.2)** (Fable 09a R85, Unterpunkt (a), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 45.5, Block R5, Punkt (b). Voraussetzung gemessen: 50.1.
 
 ### 48.2 R34 — Ergänzung zu 22.2 und 45.5 (Zellenbericht)
@@ -1302,6 +1305,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Quelle des Grundes: 24.2, 24 (Festlegung 1 präzisiert), 24.6 (Bauart der Faltenmessung), 29.3, 2a, 24b A2 (ein Wert, der nachgerechnet werden kann, tut nicht, als wäre er gemessen), 12. Kein Ergebnis.
 
 > ⭐ **48.4 R36 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkte (c) und (d), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.4 R36 PRÄZISIERT durch R85 (56.2)** (Fable 09a R85, Unterpunkt (b), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 24.2; 45.5. Voraussetzung gemessen: 50.1.
@@ -1340,6 +1346,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **48.7 R39 ERGÄNZT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (b), TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **48.7 R39 ERGÄNZT durch R81 (55.4)** (Fable 07a R81, Unterpunkte (a) und (b), nachgetragen nach Fable 09a R89 (d), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 46.3. Feldliste: 50.2.
 
 ### 48.8 R40 — Ersteintrag — Schreibregel für Ausgaben der Erzeuger
@@ -1371,6 +1380,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **48.11 R43 ERGÄNZT durch R81 (55.4)** (Fable 07a R81, Unterpunkte (b) und (g), TB-139, 07.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **48.11 R43 ERGÄNZT durch R87 (56.4)** (Fable 09a R87, Unterpunkt (c), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 11.2; 29.4; 34.5.
 
 ### 48.12 R44 — Ergänzung zu 40.6 (Reihenfolge der Neuerzeugung)
@@ -1378,12 +1390,18 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > R44 — Ergänzung zu 40.6 (Reihenfolge der Neuerzeugung). Die neun Listen werden nach der letzten Änderung am Signalpfad erzeugt — nach TB-30b Posten 3 (Durchreichung der Achsen) und Posten 4 (Horizont je Bot, 26.2/29) —, am Stand, den der Tag signiert. Eine Erzeugung vor einer dieser Änderungen ist Probe, kein Nachweis. Danach: Ableitung der Faltenlänge nach 5.4 und Vergleich gegen 33.2 (40.6), dann das Abbild des Faltenplans (40.8 (g)). F-13.
 > Quelle des Grundes: 40.6 („mit dem registrierten Code“), 37.3 (das letzte Abbild trägt die Hashes des Tag-Commits), 40.8 (g). Kein Ergebnis.
 
+> ⭐ **48.12 R44 PRÄZISIERT durch R86 (56.3)** (Fable 09a R86, Unterpunkte (b) bis (e), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 40.6.
 
 ### 48.13 R45 — Registertext zu Sperrlistenpunkt 10 (ausgeführte Positionen)
 
 > R45 — Registertext zu Sperrlistenpunkt 10 (ausgeführte Positionen). shared/zuteilung.py::simuliere_portfolio gibt zusätzlich die ausgeführten Positionen (Symbol, Einstiegs- und Ausstiegszeit, Grösse, Preise) heraus — additiv, als weiteres Feld oder weiteren Rückgabewert; Zuteilungsreihenfolge, SEED und Rechnung unverändert; kein Feld, das der Laufcode liest, wird beschrieben (A9). Beauftragte Änderung nach 37.3 mit Nachweis in der Bauart von 10.1: Trade-Listen und equity_curve aller neun Bots bytegleich vor und nach der Änderung; Mutationsprobe: Rückgabe entfernt ⇒ Zellen-Erzeuger endet mit 2; Hash-Übergang Punkt 10, neues Abbild. Eine Rekonstruktion der Positionen aus den Ereignissen der equity_curve ist ein zweiter Rechenweg und wird nicht gegangen. F-14.
 > Quelle des Grundes: 24.2/1a (die MtM-Reihe braucht die Positionen), 37.3, 10.1 („bitidentisch“), 41.1 A9, 37.5 (2) (ein Wert, ein Ort). Kein Ergebnis.
+
+> ⭐ **48.13 R45 PRÄZISIERT durch R84 (56.1)** (Fable 09a R84, Unterpunkt (e), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: keine. Abschnitt 10: Indexzeile, keine Marke.
 
@@ -1396,6 +1414,27 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **48.14 R46 ERGÄNZT durch R78 (55.1) und R81 (55.4)** (Fable 07a R78, Unterpunkt (e), und R81, Unterpunkt (h), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R60 (51.5)** (Fable 01a R60, Unterpunkt (c), nachgetragen nach Fable 09a R89 (d), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R64 (52.2)** (Fable 02a R64, Unterpunkte (c) und (d), nachgetragen nach Fable 09a R89 (d), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R66 (53.1)** (Fable 02c R66, Unterpunkte (b) und (e), nachgetragen nach Fable 09a R89 (d), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R67 (53.2)** (Fable 02c R67, nachgetragen nach Fable 09a R89 (d), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R84 (56.1)** (Fable 09a R84, Unterpunkt (d), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R85 (56.2)** (Fable 09a R85, Unterpunkt (c), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R87 (56.4)** (Fable 09a R87, Unterpunkt (c), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: keine.
@@ -1853,6 +1892,9 @@ Reines Eintragen von Registertext, Bauart wie 51. Quelle: `docs/projektfuehrung/
 > ⭐ **52.3 R65 PRÄZISIERT durch R70 (53.5)** (Fable 02c R70, Unterpunkt (a), TB-132, 04.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **52.3 R65 PRÄZISIERT durch R89 (56.6)** (Fable 09a R89, Unterpunkte (a) bis (c), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 48.19 (R51); 51.6 (R61); nachgetragen nach (b): 25.2; 47.9 (R26); 47.13 (R30); 50.1, Zeile R48 (d); 50.4, Schlusssatz. In Abschnitt 10 steht weiter keine Marke (R65 (d)).
 
 ### 52.4 Voraussetzungen und Befunde
@@ -1926,6 +1968,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > ⭐ **53.3 R68 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **53.3 R68 PRÄZISIERT durch R85 (56.2)** (Fable 09a R85, Unterpunkte (a) und (b), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: 48.1 (R33); 48.5 (R37); 52.2 (R64). Tatsache gemessen: 53.9. Offen: 53.10 Nr. 2 und 5.
 
 ### 53.4 R69 — Auflösung des Widerspruchs zwischen R39 (48.7) und auswertung.py (Name der Benchmark-Datei); Präzisierung zu R64 (e) (52.2)…
@@ -1944,6 +1989,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > Quelle des Grundes: R61 (b), erster und zweiter Satz, und die Zeile „R54 an 7 (c)“; R65 (a) (auch: eine Tabelle von Befunden ist keine Statusliste; eine Bestätigung trägt ERGÄNZT mit Zusatz); 34 (Kopf: die Marke steht am alten Ort; nach der Wiedergabe in R61 und R65); Wortlaut von Abschnitt 7, 4.2, 15.3 (a) und R33. Kein Ergebnis.
 
 > ⭐ **53.5 R70 PRÄZISIERT durch R77 (54.4)** (Fable 04a R77, Unterpunkt (b), TB-136, 05.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.5 R70 PRÄZISIERT durch R89 (56.6)** (Fable 09a R89, Unterpunkt (c), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 51.6 (R61); 52.3 (R65). Nach (c) gesetzt: 20 Marken, je in der Kette des Blocks, der sie auslöst. Indexzeilen ohne Marke nach (b): 7 (c); 17.5; 50.7 Nr. 3. Offen: 53.10 Nr. 8 und 9.
@@ -1967,6 +2015,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **53.7 R72 ERGÄNZT durch R79 (55.2)** (Fable 07a R79, Unterpunkt (c), TB-139, 07.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.7 R72 PRÄZISIERT durch R88 (56.5)** (Fable 09a R88, Unterpunkt (e), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 23.3, Registertext 3b (c) (vom steuernden Chat bestimmt, 53.10 Nr. 8); 23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse; 48.16 (R48); 52.2 (R64). Voraussetzung gemessen: 53.9. Offen: 53.10 Nr. 3, 5, 6 und 10.

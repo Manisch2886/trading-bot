@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 41 (von 0–55) — Register-Z. 8560–8977 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 41 (von 0–56) — Register-Z. 8566–8986 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
 
 ## 41. Nachweis mit zwei Teilen, Resolver ohne Rückfall, Deckel statt Purge, Mutationsproben einzeln — die Einträge aus Fable 24b, 24c, 24d (TB-108, 25.09.2026)
 
@@ -337,6 +337,9 @@ berichtigt 41.2 (B2)
 (`research/tb24_haltedauern/daten/t3_supertrend_positionen.csv`, TB-24). Neu zu rechnen, wenn
 die neuen Listen gefundener Trades vorliegen (Plan-Punkt 5, 24d Abschnitt 4).
 Marken bei 15.4 und 16.6.
+
+> ⭐ **41.3 C2 ERGÄNZT durch R86 (56.3)** (Fable 09a R86, Unterpunkt (a), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **C3 (c) — die Bedingung wird für den Gewinner auf dessen Positionen
 ausgewertet** · Art: Registertext (Präzisierung zu 2d, Fassung 16.6) · Quelle:

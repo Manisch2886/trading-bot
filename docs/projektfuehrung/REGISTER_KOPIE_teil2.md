@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 2 von 5 — Abschnitte 23–36 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 2 von 5 — Abschnitte 23–36 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
 
 ## 23. Berichtigung zu Registertext 3b (c) — der Benchmark wird tagesgenau (TB-66, 20.09.2026)
 
@@ -99,6 +99,9 @@ gefasst; die gemessenen Zahlen kommen in die Berichtigungsnotiz (23.4).
 > an jedem Tag in derselben Menge.
 
 > ⭐ **23.3, Registertext 3b (c) PRÄZISIERT durch R72 (53.7)** (Fable 02c R72, Unterpunkt (b), vom steuernden Chat nach R65 (a) bestimmt, TB-132, 04.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **23.3, Registertext 3b (c) PRÄZISIERT durch R87 (56.4)** (Fable 09a R87, Unterpunkt (a), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ⭐ **Geschlossen in TB-71, 20.09.2026 — der Platzhalter ist gefallen.** An

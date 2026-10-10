@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 3 von 5 — Abschnitte 37–42 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 3 von 5 — Abschnitte 37–42 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
 
 ## 37. Die Sonde meldet je Bestandteil, das Abbild führt zwei Gruppen, was ein Befund `1` bedeutet, hängt vom Tag ab, die Tatsachennotiz zu den zwei Listen in `herkunft.py` und der Ort registrierter Werte (Fable 22d und 22g, TB-87, 22.09.2026)
 
@@ -1537,6 +1537,9 @@ Ableitung), bei **39.6** (Eingabestand: zweiter Anwendungsfall).
 > ⭐ **40.6 (Tatsachennotiz zu 5.4) PRÄZISIERT durch R47 (48.15)** (Fable 29b R47, TB-126, 01.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **40.6 PRÄZISIERT durch R86 (56.3)** (Fable 09a R86, TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 40.7 ⭐ Ergänzung zu 12 — jede Mutationsprobe hat eine Gegenprobe
 
 **Der Registertext — Fable, 24a Abschnitt 5, zeichengleich:**
@@ -1994,6 +1997,9 @@ berichtigt 41.2 (B2)
 (`research/tb24_haltedauern/daten/t3_supertrend_positionen.csv`, TB-24). Neu zu rechnen, wenn
 die neuen Listen gefundener Trades vorliegen (Plan-Punkt 5, 24d Abschnitt 4).
 Marken bei 15.4 und 16.6.
+
+> ⭐ **41.3 C2 ERGÄNZT durch R86 (56.3)** (Fable 09a R86, Unterpunkt (a), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **C3 (c) — die Bedingung wird für den Gewinner auf dessen Positionen
 ausgewertet** · Art: Registertext (Präzisierung zu 2d, Fassung 16.6) · Quelle:

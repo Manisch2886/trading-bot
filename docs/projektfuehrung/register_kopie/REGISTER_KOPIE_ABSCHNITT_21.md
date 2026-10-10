@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 21 (von 0–55) — Register-Z. 3302–3653 — Commit ad1fc0d3e5397cec6eb75c5e62de3b1bb7868c24 — 2026-10-07 — Original sha256 ab97ae1e31da161bc1aebed6b00bb2ec6eec07f760c45c645b9801e6e916b9cd — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 21 (von 0–56) — Register-Z. 3302–3653 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
 
 ## 21. Berichtigung zu Registertext 4 — die Faltenschranke (TB-56b, 19.09.2026)
 
