@@ -1,0 +1,4 @@
+geaendert: Register-Zeile 11834 (R84), ' die ' -> ' der ' (erstes Vorkommen)
+R84: 2 Zeilen, diff rc 1
+Ergebnis: 5/6 rc 0
+a5_r_diff.py gegen die Kopie: rc 1 (Soll 1)

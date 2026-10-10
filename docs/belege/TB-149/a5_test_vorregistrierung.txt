@@ -1,0 +1,4 @@
+# TB-149 test_vorregistrierung, HEAD ca687fc, Register sha256 b2d569495e133762, Start 2026-10-10 12:20:16 +0200
+rc 0
+Dauer 905 s
+Schlusszeile: 196/196 Pruefungen bestanden.

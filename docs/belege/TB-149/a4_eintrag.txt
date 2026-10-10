@@ -1,0 +1,5 @@
+Register: ./docs/VORREGISTRIERUNG_neuselektion.md
+Marken gesetzt am alten Ort: 31 an 21 Einfuegestellen
+R-Bloecke: 6 (R84-R89)
+Zeilen vorher: 11733  nachher: 11920  eingefuegt: 187
+sha256 nachher: b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687

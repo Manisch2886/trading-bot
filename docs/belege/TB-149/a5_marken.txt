@@ -1,0 +1,47 @@
+# TB-149 A5 Ueberschriften, Ketten und Marken: Register docs/VORREGISTRIERUNG_neuselektion.md, Auftrag am Commit c71dca9, Datum 10.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+56.1: Ueberschrift gleich, Kette gleich
+56.2: Ueberschrift gleich, Kette gleich
+56.3: Ueberschrift gleich, Kette gleich
+56.4: Ueberschrift gleich, Kette gleich
+56.5: Ueberschrift gleich, Kette gleich
+56.6: Ueberschrift gleich, Kette gleich
+Ueberschriften: 6/6, Ketten: 6/6 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Nr  1 R87  23.3, Registertext 3b (c)    gesetzt Zeile 3962
+Nr  2 R86  40.6                         gesetzt Zeile 8443
+Nr  3 R86  41.3, Eintrag C2             gesetzt Zeile 8904
+Nr  4 R85  48.1 (R33)                   gesetzt Zeile 10830
+Nr  5 R85  48.4 (R36)                   gesetzt Zeile 10863
+Nr  6 R81  48.7 (R39)                   gesetzt Zeile 10902
+Nr  7 R87  48.11 (R43)                  gesetzt Zeile 10936
+Nr  8 R86  48.12 (R44)                  gesetzt Zeile 10946
+Nr  9 R84  48.13 (R45)                  gesetzt Zeile 10956
+Nr 10 R60  48.14 (R46)                  gesetzt Zeile 10972
+Nr 11 R64  48.14 (R46)                  gesetzt Zeile 10975
+Nr 12 R66  48.14 (R46)                  gesetzt Zeile 10978
+Nr 13 R67  48.14 (R46)                  gesetzt Zeile 10981
+Nr 14 R84  48.14 (R46)                  gesetzt Zeile 10984
+Nr 15 R85  48.14 (R46)                  gesetzt Zeile 10987
+Nr 16 R87  48.14 (R46)                  gesetzt Zeile 10990
+Nr 17 R89  52.3 (R65)                   gesetzt Zeile 11448
+Nr 18 R85  53.3 (R68)                   gesetzt Zeile 11524
+Nr 19 R89  53.5 (R70)                   gesetzt Zeile 11547
+Nr 20 R88  53.7 (R72)                   gesetzt Zeile 11573
+Nr 21 R84  54.2 (R75)                   gesetzt Zeile 11651
+Nr 22 R85  54.2 (R75)                   gesetzt Zeile 11654
+Nr 23 R84  54.5, Zeile „R75 (54.2) (a)“ gesetzt Zeile 11692
+Nr 24 R88  55.1 (R78)                   gesetzt Zeile 11721
+Nr 25 R88  55.1 (R78)                   gesetzt Zeile 11724
+Nr 26 R88  55.3 (R80)                   gesetzt Zeile 11741
+Nr 27 R89  55.3 (R80)                   gesetzt Zeile 11744
+Nr 28 R86  55.4 (R81)                   gesetzt Zeile 11754
+Nr 29 R87  55.4 (R81)                   gesetzt Zeile 11757
+Nr 30 R88  55.5 (R82)                   gesetzt Zeile 11767
+Nr 31 R88  55.6 (R83)                   gesetzt Zeile 11777
+Marken gesetzt: 31/31; Markenzeilen 'TB-149, 10.10.2026' im Register: 31 (Soll 31)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 971-1177, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A
