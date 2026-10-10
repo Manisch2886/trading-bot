@@ -1,0 +1,4 @@
+EIGEN=91560
+claude --permission-mode manual --effort high --remote-control --no-chrome
+
+Aussage der Sitzung (nicht gemessen, eigene Angabe): Berechtigungsmodus nicht bekannt; die Sitzung sieht ihren Modus nicht selbst. Die Prozesszeile oben traegt --permission-mode manual.
