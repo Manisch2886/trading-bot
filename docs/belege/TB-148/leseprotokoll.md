@@ -70,6 +70,8 @@ Gelesen wurden ausserdem, vor M1, die Steuerdateien `docs/auftraege/AKTUELLER_AU
 | `research/mtm_drawdown/messung.py` | 60–159 | M3 |
 | `research/mtm_drawdown/richtungsfall.py` | 50–79 | M3 |
 | `research/mtm_drawdown/test_mtm_kern.py` | 30–109; 220–244 | M3 |
+| `strategies/elliott_wave/elliott_wave_counter.py` (weitere Datei, importiert von `elliott_wave/multi_symbol_optimise.py` Z. 36) | 1–382 (ganz) | M4 |
+| `strategies/elliott_wave_stocks/elliott_wave_counter.py` (weitere Datei, importiert von `elliott_wave_stocks/multi_symbol_optimise.py` Z. 36) | 160–189; 305–374 | M4 |
 | `docs/projektfuehrung/FABLE_ANTWORT_2026-10-09a_beitrag_aus_r45_listen_geschnitten_handelbar_tag.md` (Quelle der Fragen und von R87 (a), (b)) | 195–234 | M3, M4, M5 |
 
 ## Vermerke
@@ -94,5 +96,6 @@ Gelesen wurden ausserdem, vor M1, die Steuerdateien `docs/auftraege/AKTUELLER_AU
 - `shared/kursdaten.py:15`–`16`, `21`–`22` — Ergebniszahl im Quelltext, nicht wiedergegeben
 - `strategies/elliott_wave/backtest_elliott.py:26` — Ergebniszahl im Quelltext, nicht wiedergegeben
 - `research/vorregistrierung/benchmark.py:38`, `43`–`46`, `58` — Ergebniszahl im Quelltext, nicht wiedergegeben
+- `strategies/elliott_wave/elliott_wave_counter.py:34`–`35`, `41`–`43`, `61`, `223` — Ergebniszahl im Quelltext, nicht wiedergegeben
 - Parameterwerte in Kommentaren der Backtest-Module, nicht wiedergegeben: `strategies/elliott_wave/backtest_elliott.py:51`; `strategies/t3_supertrend/backtest_trend.py:37`–`39`; `strategies/turtle_soup_crypto/backtest_turtle_soup.py:97`–`98`; `strategies/volatility_breakout_crypto/backtest_breakout.py:103`; `strategies/volatility_breakout/backtest_breakout.py:140`
 - Parameterwerte in Kommentaren (Werte aus oder gegen `live_params.py`), nicht wiedergegeben: `strategies/elliott_wave/equity_simulation.py:58`; `strategies/volatility_breakout_crypto/equity_simulation.py:5`; `strategies/elliott_wave_stocks/equity_simulation.py:65`; `strategies/rsi2_mean_reversion/equity_simulation.py:46`–`47`, `53`, `63`; `strategies/turtle_soup_stocks/equity_simulation.py:6`–`8`, `46`–`47`, `61`, `69`; `strategies/volatility_breakout/equity_simulation.py:41`, `51`, `62`; `strategies/rsi2_crypto/equity_simulation.py:52`; `strategies/turtle_soup_crypto/equity_simulation.py:46`; `strategies/volatility_breakout_crypto/equity_simulation.py:62`; `strategies/t3_supertrend/equity_simulation.py:49`
