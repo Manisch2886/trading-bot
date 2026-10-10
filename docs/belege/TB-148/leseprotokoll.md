@@ -65,6 +65,11 @@ Gelesen wurden ausserdem, vor M1, die Steuerdateien `docs/auftraege/AKTUELLER_AU
 | `strategies/elliott_wave/zigzag_indicator.py` | 25–214 | M2 |
 | `strategies/elliott_wave_stocks/zigzag_indicator.py` | 36–43; 132–137; 204–208 | M2 |
 | `research/vorregistrierung/benchmark.py` | 1–460 | M2 (auch M4, M5) |
+| `research/mtm_drawdown/mtm_kern.py` | 1–135 | M3 |
+| `research/mtm_drawdown/grundlage.py` | 1–214 | M3 |
+| `research/mtm_drawdown/messung.py` | 60–159 | M3 |
+| `research/mtm_drawdown/richtungsfall.py` | 50–79 | M3 |
+| `research/mtm_drawdown/test_mtm_kern.py` | 30–109; 220–244 | M3 |
 | `docs/projektfuehrung/FABLE_ANTWORT_2026-10-09a_beitrag_aus_r45_listen_geschnitten_handelbar_tag.md` (Quelle der Fragen und von R87 (a), (b)) | 195–234 | M3, M4, M5 |
 
 ## Vermerke
