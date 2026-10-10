@@ -1,0 +1,13 @@
+300	0	docs/ERGEBNIS_TB-148_verfahrensmessung_schluessel_zeitzone_handelbar.md
+3	0	docs/belege/TB-148/0a_status.txt
+4	0	docs/belege/TB-148/a_modus.txt
+71	0	docs/belege/TB-148/lese_md5.txt
+72	0	docs/belege/TB-148/lese_zeilen.txt
+106	0	docs/belege/TB-148/leseprotokoll.md
+21	0	docs/belege/TB-148/m1_fundstellen.md
+47	0	docs/belege/TB-148/m2_fundstellen.md
+47	0	docs/belege/TB-148/m3_fundstellen.md
+35	0	docs/belege/TB-148/m4_fundstellen.md
+20	0	docs/belege/TB-148/m5_fundstellen.md
+31	0	docs/projektfuehrung/JOURNAL.md
+rc 0
