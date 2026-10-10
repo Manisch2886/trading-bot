@@ -1,0 +1,37 @@
+# TB-146 numstat — git diff --numstat 7f0b59d aa9cae06135771e17d41a4d8f667003cc584dea3 gegen die Sollwerte
+roh: 98	0	docs/ERGEBNIS_TB-146_regelwerk_dokunachtrag_0910.md
+roh: 2	2	docs/auftraege/AKTUELLER_AUFTRAG.md
+roh: 310	0	docs/auftraege/MAC_TB-147_rest_tb146_journal_ergebnis.md
+roh: 4	0	docs/belege/TB-146/0a_status.kopf.txt
+roh: 6	0	docs/belege/TB-146/0a_status.txt
+roh: 3	0	docs/belege/TB-146/0b_ausgang.kopf.txt
+roh: 8	0	docs/belege/TB-146/0b_ausgang.txt
+roh: 5	0	docs/belege/TB-146/a_modus.kopf.txt
+roh: 2	0	docs/belege/TB-146/a_modus.txt
+roh: 24	0	docs/belege/TB-146/abbruch.txt
+roh: 24	0	docs/belege/TB-146/e_einfuegen.txt
+roh: 23	0	docs/belege/TB-146/e_numstat.txt
+roh: 21	0	docs/belege/TB-146/e_probe.txt
+roh: 17	0	docs/belege/TB-146/e_vergleich.txt
+roh: 29	0	docs/belege/TB-146/e_zweitlauf.txt
+roh: 33	0	docs/belege/TB-146/j_block.md
+roh: 12	0	docs/belege/TB-146/j_journal.txt
+roh: 12	0	docs/belege/TB-146/j_journal_probe.txt
+roh: 3	0	docs/belege/TB-146/t147_0a_status.txt
+roh: 6	0	docs/belege/TB-146/t147_0b_ausgang.txt
+roh: 6	0	docs/belege/TB-146/t147_0b_md5.txt
+roh: 17	0	docs/belege/TB-146/t147_n_vergleich.txt
+roh: 3	0	docs/belege/TB-146/tb146_einfuegen.kopf.txt
+roh: 242	0	docs/belege/TB-146/tb146_einfuegen.py
+roh: 16	0	docs/projektfuehrung/ARBEITSWEISE.md
+roh: 9	0	docs/projektfuehrung/BACKLOG.md
+roh: 44	0	docs/projektfuehrung/JOURNAL.md
+roh: 220	0	docs/projektfuehrung/UEBERGABE.md
+roh: 10	0	docs/projektfuehrung/UMZUG.md
+Soll docs/projektfuehrung/ARBEITSWEISE.md 16	0 · Ist [16, 0] · gleich
+Soll docs/projektfuehrung/BACKLOG.md 9	0 · Ist [9, 0] · gleich
+Soll docs/projektfuehrung/JOURNAL.md 44	0 · Ist [44, 0] · gleich
+Soll docs/projektfuehrung/UMZUG.md 10	0 · Ist [10, 0] · gleich
+weitere Dateien ausser Belegen und Ergebnis: docs/auftraege/AKTUELLER_AUFTRAG.md docs/auftraege/MAC_TB-147_rest_tb146_journal_ergebnis.md docs/projektfuehrung/UEBERGABE.md
+Gesamt: ABWEICHUNG
+rc 1
