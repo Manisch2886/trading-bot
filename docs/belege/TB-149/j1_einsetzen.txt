@@ -1,0 +1,2 @@
+# TB-149 D2 — Absatz J1 (erzeugt von j1_einsetzen.py)
+J1 · docs/projektfuehrung/JOURNAL.md · Block EO · Ankertext 1 · `**Quelle:**` 1 · `### Was gemessen ist` 1 · Textzeilen 8 · eingesetzt

@@ -10404,6 +10404,54 @@ Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst.
 
 ---
 
+## EO — TB-149: Register Abschnitt 56 — Fable 09a (R84–R89) zeichengleich, Tatsachennotizen 56.7–56.8, 31 Marken am alten Ort an 21 Orten (5 nachgetragen nach R89 (d)); vorher gemessen: Dateien 09.10.a mit Commit im Repo, an keinem Ort schon eine Marke zum Block der neuen; numstat 187/0, R-Diff 6/6, Zitate 2/2, `test_vorregistrierung` 196/196; zwei BACKLOG-Blöcke, Registerkopie 57 Abschnittsdateien und 5 Teile (T4 noch 313 B Luft), Index und Dialog-Index nachgezogen (10.10.2026)
+
+*Quelle: `docs/ERGEBNIS_TB-149_register_fable_09a.md`*
+
+**Quelle:** Mac-Sitzung **TB-149** (Hauptordner, lokal), 10.10.2026, Eingang `15775a7`. Commits `c71dca9` (Schritt 0),
+`ca687fc` (0), `d950e03` (A, einziger Registercommit), `21ec3f5` (B/C) und der Abgabe-Commit. Belege
+`docs/belege/TB-149/`. Freigabe des Betreibers 10.10.2026 (Auswahlkarte, eingetragen 11:26). Datum des Eintrags zur
+Laufzeit: 10.10.2026. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium ausgelöst; kein Aufruf abgelehnt.
+
+**Nachtrag des steuernden Chats zum Stand vor TB-149, wie in `BACKLOG.md` Abschnitt 5 eingetragen:**
+- **Anfrage 09.10.a an den Verfahrensprüfer** (neuer Fable-Chat; `docs/projektfuehrung/FABLE_ANFRAGE_2026-10-09a_kern_marken_listen_handelbar_tag.md`, 43 945 B, md5 `284049b082e380851257445072251af6`; Eröffnungstext `docs/projektfuehrung/FABLE_UEBERGABE_2026-10-09_eroeffnung.md`, 7 077 B, md5 `9973d83825dba26092712f28e86e7981`): sechs Fragen, 14 Kenntniszeilen, elf Posten (54.6 Nr. 2, 6, 7, 9, 10; 55.8 Nr. 5, 6, 9, 10, 12, 13). Gebaut von drei engen Bau-Helfern (sieben Bausteine, 36 494 B); Neigungen, Kopf, Rahmen und Eröffnung schrieb der steuernde Chat. Gegenlesen: zwei Gegenleser (12 F, 0 S, 9 L, 8 N; alle F und L eingearbeitet), ein dritter an den geänderten Zeilen (drei Nachbesserungen), ein vierter an der Endfassung (0 Fehler, 5 Hinweise); ein Satz zum Schluss der Anfrage kam danach dazu und ist nicht gegengelesen. Die Kennung 09.10.a ist der Tag des Ausgebens (Vorgabe des steuernden Chats, vorläufig) (`UEBERGABE.md`, Nachtrag 09.10.2026, 20:58).
+- **Antwort 09.10.a eingegangen** (Betreiber 21:36: „fable fertig“): 52 721 B, 233 Zeilen, md5 `a6e5d3d277c5d4069b443a8f8f9df17f`; im Arbeitsbaum seit 21:52. Vorprüfung durch einen Helfer, der zählt und misst und nicht urteilt (Aussagen des Helfers, nicht nachgemessen): 278 Registerstellen geprüft, 269 gleich, 6 sind R84 bis R89 selbst, 3 ohne eigene Überschrift, 0 weicht ab; 55 Zitate ab 25 Zeichen geprüft, 48 gleich, 2 weichen ab, 5 nicht prüfbar (`UEBERGABE.md`, Nachträge 09.10.2026, 22:03 und 22:31).
+- **TB-146 (Regelwerk-Dokunachtrag):** freigegeben und ausgelegt 22:29 (`docs/auftraege/MAC_TB-146_regelwerk_dokunachtrag_0910.md`, 52 696 B, md5 `31fd9db2a3d5e83589c86bc07835e75d`); 15 Stücke (R01 bis R12, U1, B1, J1) in vier Dateien. **Der eingefügte Teil ist abgenommen** (Helfer, nur lesend: keine Abweichung in sieben Prüfungen; vom steuernden Chat selbst nachgemessen): zwei Commits, `7f0b59d` (die sechs Pfade aus 0a, darin Anfrage, Eröffnung und Antwort 09.10.a) und `e39cc44` (13 Belege und die drei Zieldateien); 14 Stücke je genau einmal und am Anker; `ARBEITSWEISE.md` 2515 → 2531, `UMZUG.md` 382 → 392, `BACKLOG.md` 386 → 395 Zeilen, `JOURNAL.md` unverändert. Nicht geprüft: Sachinhalt der Stücke, Stand des Servers, das Werkzeug Zeile für Zeile. Sitzung geschlossen 22:53 (`UEBERGABE.md`, Nachträge 09.10.2026, 22:03, 22:31 und 22:56). Der in TB-146 abgelehnte Aufruf enthielt `chmod +x`, und `Bash(chmod:*)` steht in `permissions.deny` der `.claude/settings.local.json` (Nachtrag 23:51).
+- **Betreiber 09.10.2026, 22:53 (wörtlich):** „Ich möchte nun dass du die kommenden 8 Stunden selbstständig ohne meine Bestätigungen weiterarbeitest. Stehen Fragen an verwende deine Empfehlung. Alle Fragen die du nicht beurteilen kannst, sammle diese und stelle mir diese bei meiner Rückkehr.“ Lesart des steuernden Chats, vorläufig: gilt bis rund 06:53 am 10.10.2026; in dieser Zeit keine Karte; Betreiberentscheide nach Empfehlung, je als solche in der UEBERGABE genannt. Dazu, wörtlich: 22:57 „fahre ansonsten im Backlog fort“ · 22:58 „Verdopple für diesen Zeitraum die Token Umzugsgrenze“ · 23:00 „Gerne kannst du mir auch noch eine grosse claude code aufgabe schreiben die paralell laufen kann“ · 23:18 „eröffne mir noch eine initale claude code session“ (`UEBERGABE.md`, Nachträge 09.10.2026, 22:56 und 23:51).
+- **Nummern (Vorgabe des steuernden Chats):** TB-147 Rest von TB-146 · TB-148 Verfahrensmessung durch Lesen · TB-149 Registereintrag Fable 09.10.a · TB-150 Cloud-Sammelauftrag · TB-151 frei (Eröffnungsdatei im Repo, `ablage_soll.py`). Nächster Fehler Nr. 42 (`UEBERGABE.md`, Nachtrag 09.10.2026, 23:51).
+- **TB-147, TB-148, TB-150:** Stand 10.10.2026: TB-147 (Journalblock und Ergebnis zu TB-146; `docs/auftraege/MAC_TB-147_rest_tb146_journal_ergebnis.md`) ist gelaufen (`3ecde87`). TB-148, die Verfahrensmessung durch Lesen nach 27.2 (M1 bis M5), ist gelaufen (`15775a7`); sie hing nicht am Registereintrag. TB-150 (elf Leseaufgaben) ist gelaufen, sein Ergebnis gesichert und an Stichproben abgenommen; ein enger Gegenleser fand am 09.10.2026 nach dem Ausgeben eine Abweichung (`UEBERGABE.md`, Nachträge 09.10.2026, 23:51 und 23:53, und 10.10.2026, 08:15, 08:43 und 10:13).
+- **TB-149 — Abweichung von einer Regel, mit Grund:** Abschnitt 0 der ARBEITSWEISE sagt, der Chat, der eine Fable-Antwort bewertet, baue nicht auch den Registerauftrag; ein Umzug war ohne den Betreiber nicht möglich. Der steuernde Chat liess den Registerauftrag von Helfern bauen; die Freigabe (Einzelfreigabe Registertext) bleibt beim Betreiber (`UEBERGABE.md`, Nachtrag 09.10.2026, 23:51).
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **0** | 0a drei Einträge wie Soll, HEAD `15775a7`; drei Skripte aus Anhang A sha256 gleich, Prüfskript rc 0; Umstellskript 20/20 `ok`, 0 Abweichungen (129 Ersetzungen, Vorlagen aus TB-139); Ausgang wie Soll (11 733 Z., `ab97ae1e…`, `register()` `ee6947a6…`, Sonde 37/0/0, (ii) 0, JSON `9f7364ef…`, Quelle 09a `a6e5d3d2…`/52 721 B; Abschnitt 10 und ERZEUGT `cmp`-gleich mit TB-139); 0c leer ⇒ Basis 196/196 aus TB-139 |
+| ⭐⭐ **0d** | rc 0: Anfrage, Eröffnungstext und Antwort 09.10.a 3 von 3 von git verfolgt, in `7f0b59d` dazugekommen, md5 und Bytes wie Soll (R88 (g), R56 (b)); 21 Orte je genau einmal; vom Anker bis vor die nächste Überschrift nennt an keinem Ort eine Zeile den Block der neuen Marke (an 48.14 kein R60, R64, R66, R67; an 48.7 kein R81); R84–R89 vorher in keiner Registerzeile |
+| ⭐⭐ **A** | Einfügeskript aus Anhang A unverändert, Probelauf an Kopie, dann echt, `cmp` gleich, `sha256 nachher` in beiden `b2d56949…`. R-Diff **6/6**, Mutation rc 1, Zitate **2/2**, Überschriften und Ketten 6/6, Marken **31/31** an den Soll-Zeilen, numstat **187/0**, Abschnitt 10 und ERZEUGT-Block bytegleich (wandern nicht), Sonde-Text und -JSON gleich, `registerbericht --pruefen` gleich (rc 1, schon vorher), `register()` → `1ddb56ee…`, 196/196 (905 s) |
+| **B** | BACKLOG E1 und E2: Anker 1 (Z. 384), numstat 20/0, beide GLEICH; J1 in diesem Block |
+| **C** | Kopie 0–22 / 23–36 / 37–42 / 43–53 / 54–56, Grössen auf das Byte wie gerechnet (T4 239 683 B, **313 B Luft**), 57 Abschnittsdateien, alle `--pruefen` bytegleich; `--marken` 114/167/102 wie erwartet; Index: 348 Zahlen umgeschrieben (199 geändert), Anhänge an 23/40/41/48/52/53/54/55 und neue Zeile 56 in Tabelle 4, Abschnitt 11 mit 31 Marken und drei Indexzeilen, Gegenprobe rc 0; Dialog-Index: 09a (56, offen „ja“), 07a unverändert, 58 Antworten |
+
+### Was aus dieser Sitzung an Regeln bleibt
+
+| | Regel |
+|---|---|
+| ⭐ | **Liegen die Fable-Dateien schon mit Commit im Repo, misst die eintragende Sitzung das vor dem Eintrag selbst** (verfolgt, Commit, md5, Arbeitsbaum gleich HEAD) — die Vormessung des steuernden Chats ist kein Nachweis; Prüfskript und Einfügeskript tragen die Sperre |
+| | **Nachgetragene Marken zu Blöcken früherer Antworten brauchen eine Wache gegen Doppelsetzen am ganzen Ort** (vom Anker bis vor die nächste Überschrift, jede Zeile, nicht nur Markenzeilen) — sonst stünde eine Marke zweimal, wenn eine frühere Sitzung sie schon gesetzt hätte |
+
+### Was offen bleibt
+
+- 56.8 (17 Punkte), „Für Fable“ im Ergebnis (56.8 Nr. 9 bis 12 und 14 bis 17; `--marken` zählt elf Zeilen aus 56 mit).
+- ⚠️ T4 der Registerkopie (Abschnitte 43–53) hat nur noch 313 B Luft; die zweite weitere Marke dort teilt neu.
+- Index: Kopf „*Frühere Vierteilung*“ nennt weiter „T1“ … „T4“, die Liste danach fünf Teile.
+- `registerbericht.py --pruefen` rc 1 schon vor TB-126 (Zahlenteil veraltet).
+- Ablage der 57 Abschnittsdateien, der fünf Teile, des Index und des Dialog-Index — steuernder Chat.
+- Nächste Journalkennung nach EO: **EP**; R-Blöcke frei ab R90.
+
+*Geschrieben 10.10.2026 von der Mac-Sitzung TB-149. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
