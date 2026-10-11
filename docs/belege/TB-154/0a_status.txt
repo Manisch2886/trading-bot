@@ -1,0 +1,4 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-154_register_fable_10a.md

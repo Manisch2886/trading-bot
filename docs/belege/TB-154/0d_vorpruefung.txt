@@ -1,0 +1,11 @@
+Datum des Eintrags: 11.10.2026 (aus --datum)
+Dateien 10.10.a (R91 (h), R56 (b)): 3 von 3 von git verfolgt, Arbeitsbaum gleich HEAD, dazugekommen in 82120cf, md5 und Bytes wie im Daten-Block
+Orte: 9 Anker, je genau einmal: True; Zeilen am Ort (Anker bis vor die naechste Ueberschrift), die den Block der neuen Marke nennen: 0; Zeilen mit R90 bis R93 im Register: 0
+Voraussetzung R93 (a): der zitierte Satz in 15.5 1-mal (Z. 1641 bis 1643); Zeilen mit Markenwort in 15.5: [1576, 1589, 1612, 1629, 1667], davon Markenzeilen (Markenwort und 'durch') 4, Markenwort im Satz 1; nach dem Satz: [1667]
+Marken: 11 an 9 Einfuegestellen
+je Abschnitt: 15: 1, 27: 1, 48: 1, 55: 1, 56: 7
+Anker mit Zahl 1 (Original): 11 von 11
+Anker mit Zahl 1 (nach Simulation): 11 von 11
+Bloecke: 4 | Ueberschriften: 4 max. Laenge 140 | gekuerzt: 2
+Dateien: 0 | Fundstellen: 30 | Zeilenlisten: 0 | Zaehlungen: 18 | *.py im Baum: 784
+rc 0: alles wie angegeben
