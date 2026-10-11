@@ -1,0 +1,27 @@
+# TB-152 numstat — git diff --numstat 415044cefed47c3a0e8751139aea52ef499295eb c151026bd0f3289ba05bbc7cbd7ba987bf014cf5 gegen die Sollwerte
+roh: 89	0	docs/ERGEBNIS_TB-152_regelwerk_nachtrag_1010.md
+roh: 4	0	docs/belege/TB-152/0a_status.txt
+roh: 5	0	docs/belege/TB-152/0b_ausgang.txt
+roh: 2	0	docs/belege/TB-152/a_modus.txt
+roh: 46	0	docs/belege/TB-152/e_einfuegen.txt
+roh: 18	0	docs/belege/TB-152/e_numstat.txt
+roh: 43	0	docs/belege/TB-152/e_probe.txt
+roh: 39	0	docs/belege/TB-152/e_vergleich.txt
+roh: 51	0	docs/belege/TB-152/e_zweitlauf.txt
+roh: 1	0	docs/belege/TB-152/f_uebergabe.txt
+roh: 39	0	docs/belege/TB-152/f_vergleich.txt
+roh: 21	0	docs/belege/TB-152/j_block.md
+roh: 12	0	docs/belege/TB-152/j_journal.txt
+roh: 12	0	docs/belege/TB-152/j_journal_probe.txt
+roh: 242	0	docs/belege/TB-152/tb152_einfuegen.py
+roh: 43	0	docs/projektfuehrung/ARBEITSWEISE.md
+roh: 41	0	docs/projektfuehrung/BACKLOG.md
+roh: 49	0	docs/projektfuehrung/JOURNAL.md
+roh: 47	0	docs/projektfuehrung/UMZUG.md
+Soll docs/projektfuehrung/ARBEITSWEISE.md 43	0 · Ist [43, 0] · gleich
+Soll docs/projektfuehrung/BACKLOG.md 41	0 · Ist [41, 0] · gleich
+Soll docs/projektfuehrung/JOURNAL.md 49	0 · Ist [49, 0] · gleich
+Soll docs/projektfuehrung/UMZUG.md 47	0 · Ist [47, 0] · gleich
+weitere Dateien ausser Belegen und Ergebnis: keine
+Gesamt: wie Soll, keine entfernte Zeile in den Zieldateien
+rc 0
