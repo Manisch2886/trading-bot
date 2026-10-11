@@ -53,7 +53,9 @@ EREIGNISSE = os.path.join(DOCS, "werkzeuge", "ablage_ereignisse.json")
 REGELWERK = ["ARBEITSWEISE.md", "PRUEFPRINZIPIEN.md", "DOKUMENTATIONSSTANDARD.md", "UMZUG.md",
              "SITZUNGSWAECHTER_ausloeser_statt_tippen.md"]                                     # 27b B1
 STAND = ["UEBERGABE.md", "BACKLOG.md", "BACKLOG_ENTSCHEIDUNGEN.md", "PLAN_VOR_DEM_TAG.md", "AUFGABEN_BETREIBER.md",
-         "PROJEKTSTAND_einfache_sprache.md", "FABLE_DIALOG_INDEX.md", "KANDIDATEN_DURCHGANG_2.md"]  # 27b B2
+         "PROJEKTSTAND_einfache_sprache.md", "FABLE_DIALOG_INDEX.md", "KANDIDATEN_DURCHGANG_2.md",
+         "EROEFFNUNG_STEUERNDER_CHAT.md"]  # 27b B2
+# EROEFFNUNG_STEUERNDER_CHAT.md: Eroeffnung des steuernden Chats, fester Name, bei jedem Umzug ersetzt (TB-151)
 # BACKLOG_ENTSCHEIDUNGEN.md statt "ENTSCHEIDUNGEN.md": Betreiberentscheidung 27.09.2026 (TB-118 C1)
 NUR_REPO = re.compile(r"^(BACKLOG_ERLEDIGT_.*|BACKLOG_SICHTSCHUTZ|BACKLOG_ARCHIV|BACKLOG_EPICS)\.md$")  # 27b B2
 DATIERT = re.compile(r"^(?P<name>[A-Za-z_]+?)_(?P<datum>\d{4}-\d{2}-\d{2})[a-z]?\.md$")
