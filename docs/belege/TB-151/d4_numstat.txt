@@ -1,0 +1,5 @@
+4310f20
+
+112	0	docs/ERGEBNIS_TB-151_eroeffnungsdatei_im_repo.md
+7	0	docs/projektfuehrung/BACKLOG.md
+24	0	docs/projektfuehrung/JOURNAL.md
