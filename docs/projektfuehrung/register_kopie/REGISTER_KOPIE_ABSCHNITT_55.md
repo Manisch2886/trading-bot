@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 55 (von 0–56) — Register-Z. 11712–11827 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 55 (von 0–57) — Register-Z. 11721–11839 — Commit 3f2e97e5ce3c991465b264e6182e4b447b741982 — 2026-10-11 — Original sha256 459be94e388490fb4aac35e8955d5d1098ccff3a508991d3893cd7693449c350 — KOPIE, nicht das Register
 
 ## 55. Fable 07a — Registerblock R78–R83 (TB-139)
 
@@ -94,6 +94,9 @@ Tatsachennotizen des steuernden Chats zu den acht Voraussetzungen, die Fable in 
 | R80 (55.3) (a), Orte | 15 Orte | Alle 15 Orte sind vorhanden (am Register gemessen, jeder Anker genau einmal): 53.7 ist R72, 53.1 ist R66, 54.1 ist R74, 48.14 ist R46, 53.2 ist R67, 46.4 ist R13, 48.11 ist R43, 48.18 ist R50, 48.1 ist R33, 48.2 ist R34; 5.2 heisst „Der Go-Live-Schnitt“; 42.2 führt den Eintrag E6; die Zeile „R74 (54.1) (e)“ in 54.5 und die Zeilen „R72 (53.7) (d)“ und „R72 (53.7), zweite“ in 53.9 gibt es. Gesetzt sind 20 Marken: 2 an 5.2, 2 an 53.1 (R66), 3 an 53.7 (R72), 2 an 54.1 (R74), je eine an den 11 übrigen Orten | trifft; zu weiteren Orten 55.8 Nr. 10 |
 | R80 (55.3) (a), Vorbild 25.2 | „die Marke zum „lies“ unter dem Blockzitat von R72 (Vorbild 25.2)“ | Die Marke an 25.2 steht unter dem berichtigten Satz im Text des Abschnitts, nicht unter einem Blockzitat. Hier stehen die drei Marken an 53.7 nach dem Blockzitat von R72 und vor der Kette, in der Reihenfolge, in der R80 (a) sie nennt | trifft sinngemäss (Marke unter dem berichtigten Satz); zur Kenntnis an Fable (55.8 Nr. 9) |
 | R80 (55.3) (d), Ersteintrag | „Die Antwortdatei mit der früheren Fassung bleibt im Repo und wird im Kopf des Abschnitts als Teil des Dialogs genannt“ | Der Kopf dieses Abschnitts nennt die Antwort 06.10.a; ihre Blöcke sind nicht eingetragen und tragen keine Marke. Je Unterpunkt verglichen (per Skript): Geändert sind in R78 Kopf, (a), (c), (d), (e) und Quelle des Grundes, in R79 (f), (g) und Quelle des Grundes; R80 ist in allen Teilen geändert, (d) ist neu; die übrigen Unterpunkte von R78 und R79 sind zeichengleich. R81 bis R83 gibt es in der Fassung 06.10.a nicht | ausgeführt nach (d) |
+
+> ⭐ **55.7, Zeile „R78 (55.1) (a), erste“ ERGÄNZT durch R88 (56.5)** (Fable 09a R88, Unterpunkte (b) und (c), nachgetragen nach Fable 10a R93 (a), TB-154, 11.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 55.8 Was offen bleibt
 

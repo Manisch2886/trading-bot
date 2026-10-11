@@ -1,0 +1,17 @@
+3f2e97e
+
+ docs/VORREGISTRIERUNG_neuselektion.md           | 103 ++++++++++++
+ docs/belege/TB-154/0b_abschnitt10_nachher.txt   | 207 ++++++++++++++++++++++++
+ docs/belege/TB-154/0b_erzeugt_nachher.txt       | 201 +++++++++++++++++++++++
+ docs/belege/TB-154/0b_nachher.txt               |  38 +++++
+ docs/belege/TB-154/a4_datum.txt                 |   1 +
+ docs/belege/TB-154/a4_eintrag.txt               |   5 +
+ docs/belege/TB-154/a4_eintrag_daten.json        |  94 +++++++++++
+ docs/belege/TB-154/a4_probelauf.txt             |  41 +++++
+ docs/belege/TB-154/a5_marken.txt                |  25 +++
+ docs/belege/TB-154/a5_numstat.txt               |   4 +
+ docs/belege/TB-154/a5_r_diff.txt                |   7 +
+ docs/belege/TB-154/a5_r_diff_mutation.txt       |   4 +
+ docs/belege/TB-154/a5_test_vorregistrierung.txt |   4 +
+ docs/belege/TB-154/a5_zitate.txt                |   4 +
+ 14 files changed, 738 insertions(+)

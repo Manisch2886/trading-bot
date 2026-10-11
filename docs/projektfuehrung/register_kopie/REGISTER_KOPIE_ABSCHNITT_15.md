@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 15 (von 0–56) — Register-Z. 1369–1825 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 15 (von 0–57) — Register-Z. 1369–1828 — Commit 3f2e97e5ce3c991465b264e6182e4b447b741982 — 2026-10-11 — Original sha256 459be94e388490fb4aac35e8955d5d1098ccff3a508991d3893cd7693449c350 — KOPIE, nicht das Register
 
 ## 15. Registernachtrag (TB-36, 15.09.2026)
 
@@ -299,6 +299,9 @@ entscheidet nicht dieses Werkzeug, sondern der Registertext selbst: 3b nennt
 hätte jeder Bot seine eigene, wie die Tabelle zeigt.
 
 > ⭐ **15.5 ERGÄNZT durch R53 (49.1)** (Fable 30a R53, TB-126, 01.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **15.5, Absatz zu Lesart A ERGÄNZT durch R87 (56.4)** (Fable 09a R87, Unterpunkt (a), nachgetragen nach Fable 10a R93 (a), TB-154, 11.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ---

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 4 von 5 — Abschnitte 43–53 — Commit d950e0365e3d73f5feaaab79f8e2fb750e54add9 — 2026-10-10 — Original sha256 b2d569495e133762b65f035b284af83fc3cb7795563910abcede9e0487a19687 — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 4 von 5 — Abschnitte 43–53 — Commit 3f2e97e5ce3c991465b264e6182e4b447b741982 — 2026-10-11 — Original sha256 459be94e388490fb4aac35e8955d5d1098ccff3a508991d3893cd7693449c350 — KOPIE, nicht das Register
 
 ## 43. Ausgänge der Auswertung, null Trades als Wert, die zweite Öffnung von `herkunft.py` — die Einträge aus Fable 25d und 25e und die Tatsachennotizen TB-108 und TB-109 (TB-110, 26.09.2026)
 
@@ -1435,6 +1435,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **48.14 R46 ERGÄNZT durch R87 (56.4)** (Fable 09a R87, Unterpunkt (c), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R90 (57.1)** (Fable 10a R90, Unterpunkt (g), TB-154, 11.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: keine.
