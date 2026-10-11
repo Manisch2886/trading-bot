@@ -1,0 +1,2 @@
+ablage_soll.py | 290 -> 292 Zeilen | Anker Z. 56 einmal | 1 Zeile ersetzt durch 3 | STAND 9 Namen, letzter EROEFFNUNG_STEUERNDER_CHAT.md
+md5 vorher 46c6a18024784b86561ec2486cadc863 | md5 nachher 2d050828f6cf80b2f95196955828e8c7 | Bytes 14652
