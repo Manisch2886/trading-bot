@@ -1,0 +1,25 @@
+# TB-154 A5 Ueberschriften, Ketten und Marken: Register docs/VORREGISTRIERUNG_neuselektion.md, Auftrag am Commit 4fbc2f3, Datum 11.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+57.1: Ueberschrift gleich, Kette gleich
+57.2: Ueberschrift gleich, Kette gleich
+57.3: Ueberschrift gleich, Kette gleich
+57.4: Ueberschrift gleich, Kette gleich
+Ueberschriften: 4/4, Ketten: 4/4 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Nr  1 R87  15.5, am Absatz zu Lesart A  gesetzt Zeile 1670
+Nr  2 R91  Abschnitt 27                 gesetzt Zeile 5235
+Nr  3 R90  48.14 (R46)                  gesetzt Zeile 10999
+Nr  4 R88  55.7, Zeile „R78 (55.1) (a), erste“ gesetzt Zeile 11816
+Nr  5 R91  56.1 (R84)                   gesetzt Zeile 11849
+Nr  6 R92  56.3 (R86)                   gesetzt Zeile 11866
+Nr  7 R90  56.4 (R87)                   gesetzt Zeile 11876
+Nr  8 R91  56.5 (R88)                   gesetzt Zeile 11886
+Nr  9 R90  56.7, Zeile „R87 (56.4) (d)“ gesetzt Zeile 11922
+Nr 10 R91  56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“ gesetzt Zeile 11925
+Nr 11 R92  56.7, Zeile „R86 (56.3) (e)“ gesetzt Zeile 11928
+Marken gesetzt: 11/11; Markenzeilen 'TB-154, 11.10.2026' im Register: 11 (Soll 11)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 971-1177, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A

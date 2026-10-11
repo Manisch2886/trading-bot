@@ -1,0 +1,94 @@
+{
+ "register": "./docs/VORREGISTRIERUNG_neuselektion.md",
+ "S0": "4fbc2f3",
+ "marken": [
+  {
+   "nr": 1,
+   "R": 87,
+   "stelle": "15.5, am Absatz zu Lesart A",
+   "nach_alt": 1668,
+   "zeile_neu": 1670,
+   "m1": "> ⭐ **15.5, Absatz zu Lesart A ERGÄNZT durch R87 (56.4)** (Fable 09a R87, Unterpunkt (a), nachgetragen nach Fable 10a R93 (a), TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 2,
+   "R": 91,
+   "stelle": "Abschnitt 27",
+   "nach_alt": 5230,
+   "zeile_neu": 5235,
+   "m1": "> ⭐ **Abschnitt 27 ERGÄNZT durch R91 (57.2)** (Fable 10a R91, Unterpunkt (h), TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 3,
+   "R": 90,
+   "stelle": "48.14 (R46)",
+   "nach_alt": 10991,
+   "zeile_neu": 10999,
+   "m1": "> ⭐ **48.14 R46 ERGÄNZT durch R90 (57.1)** (Fable 10a R90, Unterpunkt (g), TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 4,
+   "R": 88,
+   "stelle": "55.7, Zeile „R78 (55.1) (a), erste“",
+   "nach_alt": 11805,
+   "zeile_neu": 11816,
+   "m1": "> ⭐ **55.7, Zeile „R78 (55.1) (a), erste“ ERGÄNZT durch R88 (56.5)** (Fable 09a R88, Unterpunkte (b) und (c), nachgetragen nach Fable 10a R93 (a), TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 5,
+   "R": 91,
+   "stelle": "56.1 (R84)",
+   "nach_alt": 11835,
+   "zeile_neu": 11849,
+   "m1": "> ⭐ **56.1 R84 ERGÄNZT durch R91 (57.2)** (Fable 10a R91, Unterpunkte (a) und (b), TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 6,
+   "R": 92,
+   "stelle": "56.3 (R86)",
+   "nach_alt": 11849,
+   "zeile_neu": 11866,
+   "m1": "> ⭐ **56.3 R86 ERGÄNZT durch R92 (57.3)** (Fable 10a R92, TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 7,
+   "R": 90,
+   "stelle": "56.4 (R87)",
+   "nach_alt": 11856,
+   "zeile_neu": 11876,
+   "m1": "> ⭐ **56.4 R87 ERGÄNZT durch R90 (57.1)** (Fable 10a R90, TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 8,
+   "R": 91,
+   "stelle": "56.5 (R88)",
+   "nach_alt": 11863,
+   "zeile_neu": 11886,
+   "m1": "> ⭐ **56.5 R88 PRÄZISIERT durch R91 (57.2)** (Fable 10a R91, Unterpunkte (d) und (e), TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 9,
+   "R": 90,
+   "stelle": "56.7, Zeile „R87 (56.4) (d)“",
+   "nach_alt": 11896,
+   "zeile_neu": 11922,
+   "m1": "> ⭐ **56.7, Zeile „R87 (56.4) (d)“ ERGÄNZT durch R90 (57.1)** (Fable 10a R90, Unterpunkt (a), TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 10,
+   "R": 91,
+   "stelle": "56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“",
+   "nach_alt": 11896,
+   "zeile_neu": 11925,
+   "m1": "> ⭐ **56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“ ERGÄNZT durch R91 (57.2)** (Fable 10a R91, Unterpunkte (a) und (b), TB-154, 11.10.2026)."
+  },
+  {
+   "nr": 11,
+   "R": 92,
+   "stelle": "56.7, Zeile „R86 (56.3) (e)“",
+   "nach_alt": 11896,
+   "zeile_neu": 11928,
+   "m1": "> ⭐ **56.7, Zeile „R86 (56.3) (e)“ ERGÄNZT durch R92 (57.3)** (Fable 10a R92, TB-154, 11.10.2026)."
+  }
+ ]
+}

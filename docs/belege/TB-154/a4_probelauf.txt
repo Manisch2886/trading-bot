@@ -1,0 +1,41 @@
+# TB-154 A4 Probelauf, HEAD 336e752, 2026-10-11 13:34:43 +0200
+Register b2d569495e133762, Kopie /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//a4_probe_133443.md
+## git diff --quiet 4fbc2f3 -- Auftrag Quelle Anfrage Eroeffnungstext
+rc 0
+## Einsetzen gegen die Kopie
+Register: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//a4_probe_133443.md
+Marken gesetzt am alten Ort: 11 an 9 Einfuegestellen
+R-Bloecke: 4 (R90-R93)
+Zeilen vorher: 11920  nachher: 12023  eingefuegt: 103
+sha256 nachher: 459be94e388490fb4aac35e8955d5d1098ccff3a508991d3893cd7693449c350
+rc 0
+## Register selbst unberuehrt: b2d569495e133762
+## a5_r_diff.py
+Ergebnis: 4/4 rc 0
+rc 0
+## a5_mutation.py
+a5_r_diff.py gegen die Kopie: rc 1 (Soll 1)
+rc 0
+## a5_zitate.py
+Ergebnis: 2/2 rc 0
+rc 0
+## a5_marken.py
+# TB-154 A5 Ueberschriften, Ketten und Marken: Register /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//a4_probe_133443.md, Auftrag am Commit 4fbc2f3, Datum 11.10.2026
+## Ueberschriften und Ketten (Tabelle 1)
+57.1: Ueberschrift gleich, Kette gleich
+57.2: Ueberschrift gleich, Kette gleich
+57.3: Ueberschrift gleich, Kette gleich
+57.4: Ueberschrift gleich, Kette gleich
+Ueberschriften: 4/4, Ketten: 4/4 gleich
+## Marken (Tabelle 2, Daten-Block): gesetzt / nicht gesetzt, Zeile nachher
+Marken gesetzt: 11/11; Markenzeilen 'TB-154, 11.10.2026' im Register: 11 (Soll 11)
+Marken in Abschnitt 9: 0, in Abschnitt 10: 0, im ERZEUGT-Block: 0 (Soll je 0)
+## Abschnitt 10 und ERZEUGT-Block gegen 0b (bytegleich)
+Abschnitt 10: Z. 971-1177, gleich 0b: ja
+ERZEUGT-Block: Z. 260-460, gleich 0b: ja
+rc 0: alles wie Anhang A
+rc 0
+## numstat Original -> Kopie
+103	0
+## Zeilen der Kopie: 12023
+KOPIE=/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//a4_probe_133443.md
