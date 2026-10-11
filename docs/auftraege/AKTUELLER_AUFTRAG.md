@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-151** | `docs/auftraege/MAC_TB-151_eroeffnungsdatei_im_repo.md` | Die Eröffnungsdatei des steuernden Chats kommt verfolgt nach `docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md`, `docs/werkzeuge/ablage_soll.py` führt sie als B2 Stand (ein Name in `STAND`), sechs Läufe als Nachweis, BACKLOG und Journal; Handwerk, keine Betreiberfreigabe; Schritt 0 committet `UEBERGABE.md`, die drei Fable-Dateien vom 10.10.2026 und die Recherche zu Kerzenformationen; Start über den Sitzungswächter |
+| **TB-152** | `docs/auftraege/MAC_TB-152_regelwerk_nachtrag_1010.md` | Regelwerk-Nachtrag 10.10.2026: 38 Stücke, davon 36 eingefügt in `ARBEITSWEISE.md` (+43), `UMZUG.md` (+47) und `BACKLOG.md` (+41), dazu der Journalblock EQ; Schritt 0 committet `UEBERGABE.md` und `EROEFFNUNG_STEUERNDER_CHAT.md`; Start über den Sitzungswächter |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
