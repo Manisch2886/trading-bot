@@ -1,0 +1,66 @@
+== stdout ==
+Ist 56 | Soll 53 | entfernen 2 | bleibt 53 | ablegen 0 | ohne Regel 1
+== soll.txt ==
+# SOLL (53) - ablage_soll.py, Stand 2026-10-11, Ist-Liste ist_neu_mit.txt (56 Pfade)
+ERGEBNIS_TB-114_register_45_herkunft_pfadregel.md	B5 Ergebnis: zitiert von Anfrage 27a, Antwort 27a offen
+ERGEBNIS_TB-115_drei_verfahrensmessungen.md	B5 Ergebnis: zitiert von Anfrage 27a, Antwort 27a offen
+KANDIDATEN_DURCHGANG_2.md	B2 Stand - FEHLT IM REPO
+PROJEKTSTAND_einfache_sprache.md	B2 Stand - FEHLT IM REPO
+PRUEFPRINZIPIEN.md	B1 Regelwerk
+auftraege/MAC_TB-117_wachen_vor_dem_tag.md	B4 Auftrag offen: zugehoerige Antwort 27a im Index offen
+auftraege/MAC_TB-118_projektwissen_aufraeumen.md	B4 Auftrag offen: zugehoerige Antwort 27b im Index offen
+auftraege/MAC_TB-119_repo_nachziehen_regelwerk_nachtrag.md	B4 Auftrag offen: zugehoerige Antwort 27b im Index offen
+auftraege/MAC_TB-121_kalter_leser_register_1_12.md	B4 Auftrag offen: zugehoerige Antwort 25f im Index offen
+auftraege/MAC_TB-136_register_fable_04a.md	B4 Auftrag offen: zugehoerige Antwort 04a im Index offen
+auftraege/MAC_TB-139_register_fable_07a.md	B4 Auftrag offen: zugehoerige Antwort 07a im Index offen
+auftraege/MAC_TB-142_waechter_reparatur.md	B4 Auftrag offen: kein ERGEBNIS_TB-142
+auftraege/MAC_TB-149_register_fable_09a.md	B4 Auftrag offen: zugehoerige Antwort 09a im Index offen
+auftraege/MAC_TB-151_eroeffnungsdatei_im_repo.md	B4 Auftrag offen: kein ERGEBNIS_TB-151
+projektfuehrung/ARBEITSWEISE.md	B1 Regelwerk
+projektfuehrung/AUFGABEN_BETREIBER_2026-09-26.md	B2 Stand (Uebergang: AUFGABEN_BETREIBER.md fehlt im Repo, juengste datierte Fassung)
+projektfuehrung/BACKLOG.md	B2 Stand
+projektfuehrung/BACKLOG_ENTSCHEIDUNGEN.md	B2 Stand
+projektfuehrung/BACKLOG_NACHTRAG_2026-09-18.md	B8 Ereignis offen: nach Regel 10 als eingearbeitet gemessen (27b B2)
+projektfuehrung/BESTANDSAUFNAHME_TB-30b.md	B8 Ereignis offen: Zellen-Erzeuger und TB-30b Posten 3-6 abgegeben (27b B8)
+projektfuehrung/DOKUMENTATIONSSTANDARD.md	B1 Regelwerk
+projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md	B2 Stand
+projektfuehrung/FABLE_ANFRAGE_2026-09-25f_gesamtanalyse_und_ideen.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANFRAGE_2026-09-27a_tagesanfrage_tb114_tb115.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANFRAGE_2026-09-27b_konzept_projektwissen.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANFRAGE_2026-09-27c_tagesanfrage_tb116_tb117.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANFRAGE_2026-09-29b_tagesanfrage_sammlung_erzeuger_kalter_leser.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANFRAGE_2026-09-30a_vorgepruefte_fragen_e2.md	B6 Dialog: Anfrage zur gehaltenen Antwort
+projektfuehrung/FABLE_ANTWORT_2026-09-25f_gesamtanalyse_und_ideen.md	B6 Dialog: Antwort 25f offen
+projektfuehrung/FABLE_ANTWORT_2026-09-27a_sonde_zweiseitig_herkunft_in_auswertung.md	B6 Dialog: Antwort 27a offen
+projektfuehrung/FABLE_ANTWORT_2026-09-27b_konzept_projektwissen.md	B6 Dialog: Antwort 27b offen
+projektfuehrung/FABLE_ANTWORT_2026-09-29b_sammlung_erzeuger_kalter_leser.md	B6 Dialog: Antwort 29b unter den zwei juengsten
+projektfuehrung/FABLE_ANTWORT_2026-09-30a_vorgepruefte_fragen_e2.md	B6 Dialog: Antwort 30a unter den zwei juengsten
+projektfuehrung/FABLE_ANTWORT_2026-10-04a_kalendername_deckelfall_zaehlung.md	B6 Dialog: Antwort 04a offen
+projektfuehrung/FABLE_ANTWORT_2026-10-07a_schnitt_im_erzeuger_wache_ein_eintrag.md	B6 Dialog: Antwort 07a offen
+projektfuehrung/FABLE_ANTWORT_2026-10-09a_beitrag_aus_r45_listen_geschnitten_handelbar_tag.md	B6 Dialog: Antwort 09a offen
+projektfuehrung/FABLE_DIALOG_INDEX.md	B2 Stand
+projektfuehrung/FABLE_UEBERGABE_2026-10-10_eroeffnung.md	B6 Sonderfall: juengste FABLE_UEBERGABE
+projektfuehrung/FABLE_WOCHENRUECKMELDUNG_2026-09-22.md	B6 Sonderfall: juengste FABLE_WOCHENRUECKMELDUNG
+projektfuehrung/LOESCHLISTE_TB-118.md	B8 Ereignis offen: Löschliste vom steuernden Chat vollzogen (27b Teil D F2)
+projektfuehrung/NACHTRAG_1_BESTANDSAUFNAHME_TB-30b.md	B8 Ereignis offen: wie BESTANDSAUFNAHME_TB-30b.md
+projektfuehrung/NACHTRAG_2_BESTANDSAUFNAHME_TB-30b.md	B8 Ereignis offen: wie BESTANDSAUFNAHME_TB-30b.md
+projektfuehrung/PLAN_VOR_DEM_TAG.md	B2 Stand
+projektfuehrung/RECHERCHE_vintage_datenlage.md	B8 Ereignis offen: D1 entschieden (27b B8)
+projektfuehrung/REGISTER_INDEX.md	B3 Register, Index
+projektfuehrung/REGISTER_KOPIE_teil1.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil2.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil3.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil4.md	B3 Register, Teil
+projektfuehrung/REGISTER_KOPIE_teil5.md	B3 Register, Teil
+projektfuehrung/SITZUNGSWAECHTER_ausloeser_statt_tippen.md	B1 Regelwerk
+projektfuehrung/UEBERGABE.md	B2 Stand
+projektfuehrung/UMZUG.md	B1 Regelwerk
+== entfernen.txt ==
+# ENTFERNEN (2) - ablage_soll.py, Stand 2026-10-11, Ist-Liste ist_neu_mit.txt (56 Pfade)
+belege/TB-151/probe_b7.md	B7 Beleg - vor dem Tag nie in der Ablage
+projektfuehrung/BACKLOG_ARCHIV.md	B2 nur Repo
+== ablegen.txt ==
+# ABLEGEN (0) - ablage_soll.py, Stand 2026-10-11, Ist-Liste ist_neu_mit.txt (56 Pfade)
+== ohne_regel.txt ==
+# OHNE REGEL (1) - nicht entfernen, pruefen - ablage_soll.py, Stand 2026-10-11, Ist-Liste ist_neu_mit.txt (56 Pfade)
+projektfuehrung/PROBE_TB-151_ohne_regel.md	keine Regel

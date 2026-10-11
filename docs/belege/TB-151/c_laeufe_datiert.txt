@@ -1,0 +1,5 @@
+Notiz Voraussetzung: Datei unter docs/projektfuehrung/ ja
+neu_datiert | rc 0 | Ist 57 | Soll 53 | entfernen 3 | bleibt 53 | ablegen 0 | ohne Regel 1
+Notiz entfernen.txt: projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT_2026-10-10.md	B2 datierte Fassung - EROEFFNUNG_STEUERNDER_CHAT.md liegt im Repo
+Notiz Zahlen gegen neu_mit: Ist +1, Soll +0, entfernen +1, bleibt +0, ablegen +0, ohne Regel +0
+ERGEBNIS datiert: 0 Fehler | Python 3.9.6
