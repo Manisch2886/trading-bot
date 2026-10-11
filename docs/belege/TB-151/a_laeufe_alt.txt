@@ -1,0 +1,6 @@
+ok   Voraussetzung: die Datei liegt nicht unter docs/projektfuehrung/
+0 | rc 0 | Ist 0 | Soll 52 | entfernen 0 | bleibt 0 | ablegen 52 | ohne Regel 0
+ok   Basis: Pfade aus dem Soll der Vorfassung, die Datei ist nicht darunter
+alt_mit | rc 0 | Ist 56 | Soll 52 | entfernen 2 | bleibt 52 | ablegen 0 | ohne Regel 2
+ok   alt_mit: die Datei steht nur in ohne_regel.txt, Grund 'keine Regel'
+ERGEBNIS alt: 0 Fehler | Python 3.9.6

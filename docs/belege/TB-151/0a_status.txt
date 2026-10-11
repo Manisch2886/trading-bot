@@ -1,0 +1,7 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-151_eroeffnungsdatei_im_repo.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-10a_m4_kauf_vor_handelbar_tag.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-10a_m4_widerspruch_schranke_am_einstieg.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-10_eroeffnung.md
+?? docs/projektfuehrung/RECHERCHE_2026-10-10_kerzenformationen.md

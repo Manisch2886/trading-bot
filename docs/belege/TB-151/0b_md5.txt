@@ -1,0 +1,4 @@
+379f2472eb84c4bf15807f8267d60541 docs/belege/TB-151/laeufe.py
+004bf1d29194d5cdc823a28be9c791f5 docs/belege/TB-151/aendere.py
+46c6a18024784b86561ec2486cadc863 docs/werkzeuge/ablage_soll.py
+769588e7c4234ccfe694106a40c761e5 logs/steuernder_chat/EROEFFNUNG_STEUERNDER_CHAT.md
