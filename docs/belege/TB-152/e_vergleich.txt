@@ -1,0 +1,39 @@
+# TB-152 vergleich — jedes Stueck zeichengleich und genau einmal in seiner Zieldatei
+R01 · docs/projektfuehrung/ARBEITSWEISE.md · 329 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R02 · docs/projektfuehrung/ARBEITSWEISE.md · 676 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R03 · docs/projektfuehrung/ARBEITSWEISE.md · 428 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R04 · docs/projektfuehrung/ARBEITSWEISE.md · 462 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R05 · docs/projektfuehrung/ARBEITSWEISE.md · 2495 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R06 · docs/projektfuehrung/ARBEITSWEISE.md · 719 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R07 · docs/projektfuehrung/ARBEITSWEISE.md · 1017 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R25 · docs/projektfuehrung/ARBEITSWEISE.md · 665 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R08 · docs/projektfuehrung/ARBEITSWEISE.md · 625 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R09 · docs/projektfuehrung/ARBEITSWEISE.md · 551 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R10 · docs/projektfuehrung/ARBEITSWEISE.md · 590 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R11 · docs/projektfuehrung/ARBEITSWEISE.md · 359 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R12 · docs/projektfuehrung/ARBEITSWEISE.md · 463 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R13 · docs/projektfuehrung/ARBEITSWEISE.md · 1161 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R14 · docs/projektfuehrung/ARBEITSWEISE.md · 1342 Bytes · 4 Zeile(n) · Vorkommen 1 · GLEICH
+R15 · docs/projektfuehrung/ARBEITSWEISE.md · 502 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R16 · docs/projektfuehrung/ARBEITSWEISE.md · 670 Bytes · 2 Zeile(n) · Vorkommen 1 · GLEICH
+R17 · docs/projektfuehrung/ARBEITSWEISE.md · 627 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R18 · docs/projektfuehrung/ARBEITSWEISE.md · 1690 Bytes · 5 Zeile(n) · Vorkommen 1 · GLEICH
+R19 · docs/projektfuehrung/ARBEITSWEISE.md · 1098 Bytes · 4 Zeile(n) · Vorkommen 1 · GLEICH
+R20 · docs/projektfuehrung/ARBEITSWEISE.md · 563 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R21 · docs/projektfuehrung/ARBEITSWEISE.md · 561 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R24 · docs/projektfuehrung/ARBEITSWEISE.md · 771 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R23 · docs/projektfuehrung/ARBEITSWEISE.md · 569 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+R22 · docs/projektfuehrung/ARBEITSWEISE.md · 781 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+U1 · docs/projektfuehrung/UMZUG.md · 696 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+U2 · docs/projektfuehrung/UMZUG.md · 1097 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+U3 · docs/projektfuehrung/UMZUG.md · 5366 Bytes · 40 Zeile(n) · Vorkommen 1 · GLEICH
+U4 · docs/projektfuehrung/UMZUG.md · 1363 Bytes · 1 Zeile(n) · Vorkommen 1 · GLEICH
+B1 · docs/projektfuehrung/BACKLOG.md · 1567 Bytes · 4 Zeile(n) · Vorkommen 1 · GLEICH
+B2 · docs/projektfuehrung/BACKLOG.md · 2537 Bytes · 5 Zeile(n) · Vorkommen 1 · GLEICH
+B3 · docs/projektfuehrung/BACKLOG.md · 2607 Bytes · 6 Zeile(n) · Vorkommen 1 · GLEICH
+B4 · docs/projektfuehrung/BACKLOG.md · 1248 Bytes · 3 Zeile(n) · Vorkommen 1 · GLEICH
+B5 · docs/projektfuehrung/BACKLOG.md · 647 Bytes · 3 Zeile(n) · Vorkommen 1 · GLEICH
+B6 · docs/projektfuehrung/BACKLOG.md · 3766 Bytes · 7 Zeile(n) · Vorkommen 1 · GLEICH
+B7 · docs/projektfuehrung/BACKLOG.md · 1992 Bytes · 6 Zeile(n) · Vorkommen 1 · GLEICH
+Gesamt: alle zeichengleich, je genau einmal
+rc 0

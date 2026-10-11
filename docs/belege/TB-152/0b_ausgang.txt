@@ -1,0 +1,5 @@
+2531 b856395e6c1df8581cf9a44ca33c441e docs/projektfuehrung/ARBEITSWEISE.md
+392 017136adf27c96b861cab1357276b41c docs/projektfuehrung/UMZUG.md
+422 1cf506eb32be6d8d217b8cff264b2f2c docs/projektfuehrung/BACKLOG.md
+10816 ec8f1995ece5136d4e8565803235afa4 docs/projektfuehrung/JOURNAL.md
+3712 9316bfa06a84ca7db3d657d32312ded7 docs/projektfuehrung/UEBERGABE.md

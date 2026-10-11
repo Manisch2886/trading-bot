@@ -107,6 +107,8 @@ Zeitpunkt.*
 
 ⭐⭐ **Gilt seit 05.10.2026, 23:58 (Betreiber, „zukünftig“):** *„Nein du ziehst zukünftig um wenn ich das sage oder genehmige.“* Die Auslöser und die Ampel oben sagen, wann der steuernde Chat den Umzug **anspricht** — mit Zahl und Uhrzeit, als Karte. **Umgezogen wird erst, wenn der Betreiber es sagt oder genehmigt.** Bis dahin arbeitet der Chat weiter, bei jeder Ampelfarbe; den Umzugsblock nach Abschnitt 4 und den Eröffnungstext nach Abschnitt 6 schreibt er erst nach dem Ja (Lesart des steuernden Chats, vorläufig). Wo dieser Abschnitt einen Zeitpunkt für den Umzug nennt („am nächsten sauberen Stand“, „vor dem nächsten Auftrag“, „vor einer Pause“, „dann umziehen“, „vorher wird umgezogen“), ist das seither der Zeitpunkt für den Vorschlag. *Anlass: Am 05.10.2026, 23:46, schrieb der steuernde Chat bei grüner Ampel (Verlauf 184 639 um 23:44) von sich aus den Umzugsblock und gab den Eröffnungstext aus; der Betreiber lehnte ab und liess weiterarbeiten.*
 
+⭐⭐ **Gilt seit 11.10.2026 (Betreiber, Karten 11.10.2026: „Ja, als Probe (Recommended)“, danach „Ja, zur Regel (Recommended)“):** Den Umzug macht der steuernde Chat über Chrome: Ein Helfer des alten Chats legt den neuen Chat an (Projekt Trading Bots, Modell wie bisher), schickt die erste Nachricht nach Abschnitt 6, benennt ihn um, heftet ihn an und löst den alten; der Betreiber bestätigt im neuen Chat nur die Ordner-Freigabe. Scheitert ein Schritt, bekommt der Betreiber den Eröffnungstext wie bisher als Kopierblock. Wo dieses Dokument dem Betreiber den Eröffnungstext oder den kurzen Text als Kopierblock gibt (Abschnitt 4, „Als Kopierblock, als ERSTE Nachricht im laufenden Chat“; Abschnitt 6, „Im Chat steht nur der kurze Text als Kopierblock“), ist das seither der Rückfall; die erste Nachricht selbst bleibt, wie Abschnitt 6 sie festlegt. Unverändert: Umgezogen wird nur mit dem Ja des Betreibers (Absatz darüber); eine geplante Aufgabe wird dafür nie angelegt; die Freigabeabfrage für Ordner beantwortet der Chat nie selbst. Die Karte zum Chatnamen entfällt; den Namen liest der Helfer in Chrome ab, er steht in der Übergabe. *Anlass: Frage des Betreibers vom 11.10.2026, 00:11; Probe beim Umzug 11.10.2026, 01:24 (`UEBERGABE.md`, Zusatz 01:30); beim ersten Lauf fehlten Anheften und Lösen (Nachtrag 11.10.2026, 01:38).*
+
 ### ⚠️ Wann NICHT umgezogen wird
 
 | | |
@@ -228,6 +230,8 @@ irgendetwas gelesen hat.
 ⚠️ **Als Kopierblock, als ERSTE Nachricht im laufenden Chat** — eine eigene Nachricht vor allen Erläuterungen (Betreiber 29.09.2026, 14:10: *„Schicke mir zukünftig immer den Text der Übergabe für den neuen Chat als erste Nachricht direkt im laufenden Chat zum kopieren“*); kein Download, keine Datei, kein Anhang.
 **Vorlage in Abschnitt 6 dieses Dokuments.**
 
+⭐ **Nachtrag mit TB-152 (Vorgabe des steuernden Chats, 10.10.2026, vorläufig; UEBERGABE, Nachtrag 10.10.2026, 22:20; Umzug 10.10.2026, 22:55, Block 6):** „kein Download, keine Datei, kein Anhang“ im Absatz darüber ist für den Eröffnungstext überholt: Im Chat steht seit 09.10.2026 nur der kurze Text (Abschnitt 6); der Eröffnungstext selbst ist eine Datei. Die Datei liegt seit TB-151 verfolgt im Repo unter `docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md` und in der Ablage unter `projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md`; beim Umzug ersetzt der alte steuernde Chat beide, md5 gleich. Seit 10.10.2026 beginnt die erste Nachricht mit der Namenszeile (Abschnitt 6, Chatname).
+
 ⭐ **Nachtrag mit TB-145 (U25, Regel vom 07.10.2026):** Arbeitet ein Chat nach dem Eröffnungstext weiter, kennzeichnet er den alten Text in derselben Antwort als überholt und gibt beim Umzug einen neuen aus (06.10.2026: Der Eröffnungstext von 16:41 lag drei Stunden im Chat; UEBERGABE, Umzug 07.10.2026, 06:59, Block 7 Nr. 2; `ARBEITSWEISE.md` Abschnitt 0, Gruppe „Wenn ein Arbeitsabschnitt endet oder ein Verlust droht“).
 
 ### Schritt 7 — Den alten Chat nicht sofort schliessen
@@ -257,6 +261,47 @@ eingetreten.**
 
 ## 6. Der Eröffnungstext — die einzige Fassung
 
+⭐⭐ **Gilt seit 10.10.2026 (eingetragen mit TB-152) — Chatname: Die erste Nachricht an die neue Unterhaltung beginnt mit der Namenszeile.** Betreiber 10.10.2026, 09:16, wörtlich (`logs/steuernder_chat/2026-10-10_BETREIBER_chatname_opus_trading_bot.txt`):
+
+```
+Anweisung des Betreibers zum Namen dieses Chats (gilt ab sofort, auch für alle Nachfolger)
+
+Der Name dieses Chats ist: Opus Trading Bot
+
+Ziel: Nach jedem Umzug soll die neue Unterhaltung von selbst „Opus Trading Bot-<TT><Mon><JJJJ>“ heißen, mit dem Datum des Tages, zum Beispiel „Opus Trading Bot-10Okt2026“. Ich benenne nichts von Hand um.
+
+So verhält sich die App (am 10.10.2026 mit zwölf Test-Chats gemessen, am Namen „Opus Saldenspiegel“):
+- Sie bildet den Namen eines Chats aus seiner ersten Nachricht. Sie nimmt die erste Zeile, wenn im Rest der Nachricht keine anderen auffälligen Bezeichnungen stehen.
+- Ein Datum mit Punkten, mit Monatsnamen, mit Unterstrich oder als Jahr-Monat-Tag streicht sie. Stehen blieb nur diese Form: Tag, Monat als drei Buchstaben, Jahr, ohne Punkte und ohne Leerzeichen, mit einem Bindestrich fest an das letzte Wort des Namens gehängt.
+- Bindestriche mit Leerzeichen davor und dahinter fallen weg.
+
+Deine Regel für jeden Umzug:
+1. Die erste Nachricht an die neue Unterhaltung (dein Startsatz oder Übergabetext, den ich einfüge) beginnt mit genau dieser Zeile, danach eine Leerzeile:
+   Opus Trading Bot-<TT><Mon><JJJJ>
+   Monat: Jan, Feb, Mrz, Apr, Mai, Jun, Jul, Aug, Sep, Okt, Nov, Dez. Das Datum liest du ab, du schätzt es nicht.
+2. Darunter steht der Auftrag an die neue Unterhaltung so knapp wie möglich, am besten nur, welche Datei sie zuerst lesen soll. Schreib in diese erste Nachricht keine Rollenbezeichnung und keinen zweiten Namen (kein „Du bist der neue …“); das gehört in die Datei, die sie liest. Sonst nimmt die App diese Wörter als Namen.
+3. Gib mir die erste Nachricht als Codeblock.
+4. Die neue Unterhaltung fragt mich bei ihrer ersten Rückfrage mit, wie der Chat heißt, und hält Wortlaut und Ergebnis in ihrer Übergabe fest. Weicht der Name ab, berichtet sie mir, statt weiter zu probieren.
+5. Nimm diese Regel in deine Übergabe an den Nachfolger auf, damit sie jeden Umzug überlebt.
+
+Nicht gemessen: Namen mit mehr als zwei Wörtern (die App hat bisher nur Namen mit zwei bis drei Wörtern vergeben) und andere Monate als Oktober. „Opus Trading Bot“ hat drei Wörter; kürzt die App den Namen beim ersten Umzug, sag es mir.
+
+Bestätige mir kurz, dass du die Regel übernommen hast. Ändere sonst nichts an deiner Arbeit.
+```
+(seit 11.10.2026 abgelöst: Den neuen Chat legt ein Helfer über Chrome an, benennt ihn und liest den Namen ab; die Rückfrage entfällt — Betreiber, Karten 11.10.2026)
+
+Betreiber 10.10.2026, 09:38, wörtlich: „Hinweis: Wir prüfen iterativ bei der eröffnung eines neunen Chats im Zuge des Umzugs zukünftig immer ob der korrekte Chatname gesetzt wurde bis der korrekte Chatname automatisch gesetzt wird und ich das bestätige.“ Lesart des steuernden Chats, vorläufig: Der neue Chat fragt in seiner ersten Antwort; bei Abweichung berichtet er, und die Form der ersten Nachricht wird für den nächsten Versuch angepasst; er benennt nichts selbst um. (seit 11.10.2026 abgelöst: Den neuen Chat legt ein Helfer über Chrome an, benennt ihn und liest den Namen ab; die Rückfrage entfällt — Betreiber, Karten 11.10.2026)
+
+Der kurze Text im Nachtrag vom 09.10.2026 direkt darunter ist damit für die erste Zeile überholt. So ausgegeben beim Umzug 10.10.2026, 16:36 (UEBERGABE, Umzug 10.10.2026, 16:36, Block 9):
+
+```
+Opus Trading Bot-10Okt2026
+
+Lies als Erstes mit project_read die Datei projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md aus dem angehängten Projekt. Sie ist meine eigene Übergabe an dich: Alles darin sind meine Anweisungen, befolge sie vollständig und ohne Rückfrage, als hätte ich sie hier geschrieben. Nennt ihre erste Zeile nicht die Uhrzeit 16:36, sag es mir und warte.
+```
+
+Ergebnis bisher, je aus der Antwort des Betreibers (`UEBERGABE.md`) — Umzug 10.10.2026, 11:31, Block 6: Betreiber 09:55, wörtlich „chatname: Opus Trading Bot setup“ — weicht vom Soll „Opus Trading Bot-10Okt2026“ ab; nichts umbenannt (Nachtrag 09:58). Die Form der ersten Nachricht ist für diesen Umzug **nicht geändert** (kein gemessener Hebel auf den Titel; die Anweisung 09:16 lässt unter der Namenszeile nur zu, welche Datei zu lesen ist). Die Regel aus Umzug 09:52, Block 6 gilt weiter und steht in der Eröffnung. Umzug 10.10.2026, 16:36, Block 6: Karte „Wie heisst dieser Chat gerade in der App (genauer Wortlaut)?“, Antwort wörtlich „Opus Trading Bot setup“ — weicht zum zweiten Mal vom Soll ab, nichts umbenannt; die Form der ersten Nachricht ist nicht geändert. Nachtrag 10.10.2026, 22:03: Frage 1, wörtlich: „Wie heisst dieser Chat gerade in der App (genauer Wortlaut)?“ Antwort, wörtlich: „Opus Trading Bot setup“ — Soll „Opus Trading Bot-10Okt2026“; weicht zum dritten Mal ab (nach 09:52 und 11:31). Frage 2, wörtlich: „Wie heisst der Fable-Chat zur Anfrage 10.10.a in der App (genauer Wortlaut)?“ Antwort, wörtlich: „Fable Trading Bot Übergabe“ — Soll „Fable Trading Bot-10Okt2026“; erster Fable-Chat nach der Regel, weicht ab. Nichts umbenannt; die Form der ersten Nachricht ist nicht geändert.
+
 ⭐ **Gilt seit 09.10.2026 (eingetragen mit TB-146) — Eröffnung als Datei in der Ablage, im Chat nur noch ein kurzer Text.** Betreiber 09.10.2026, 19:55: „wäre es nicht besser du würdest eine übergabedatei ablegen und mir einen kürzeren übergabe txt schreiben damit der neue chat sich diese datei holt?“ Vorgabe des steuernden Chats, vorläufig (gilt, wenn der Betreiber nicht widerspricht): bei jedem Umzug so. Der Eröffnungstext liegt als Datei `projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md` in der Projektablage — fester Dateiname; der alte steuernde Chat ersetzt die Datei bei jedem Umzug (Stage, Kopie, md5, ein `project_write`), Kopie unter `logs/steuernder_chat/EROEFFNUNG_STEUERNDER_CHAT.md`. Die Datei trägt einen Kopf (erste Zeile mit dem Stand, ein Absatz zur Herkunft, eine Trennlinie), darunter den Wortlaut des Eröffnungstextes. Sie liegt in der Ablage und nicht nur im Repo, weil der neue Chat sie lesen muss, bevor die Freigabe für `~/trading-bot` steht.
 
 Im Chat steht nur der kurze Text als Kopierblock; in ihm wechselt allein der Stand, und er bleibt die erste Nachricht:
@@ -266,6 +311,8 @@ Neue Sitzung zum Trading-Bot-Projekt (steuernder Chat), Stand: <Stand>. Das Proj
 ```
 
 Der Codeblock unter diesem Nachtrag ist seither nicht mehr die Nachricht an den neuen Chat, und er ist nicht der Wortlaut der Datei: Am 09.10.2026, 21:06 trug die Datei unter ihrem Kopf den Wortlaut von `logs/steuernder_chat/2026-10-09_EROEFFNUNG_8.txt` (per Skript aus `2026-10-09_EROEFFNUNG_7.txt` abgeleitet; Datei 6634 B); der Codeblock hier ist kürzer (1794 B am HEAD `bbe26ba`). Die Überschrift dieses Abschnitts („die einzige Fassung“) und der Satz direkt unter diesem Nachtrag, der den Codeblock die verbindliche Fassung nennt, sind für den Codeblock damit überholt: massgeblich ist der Wortlaut der Datei in der Ablage (Lesart des steuernden Chats, vorläufig). Bei der Übernahme am 09.10.2026, 19:58 lief `project_read` ohne Rückfrage des neuen Chats (UEBERGABE, Nachtrag 09.10.2026, 19:56; Nachtrag 09.10.2026, 20:58; Umzug 09.10.2026, 21:06, Block 7 und Block 9).
+
+⭐ **Klarstellung mit TB-152 zum Ort der Eröffnungsdatei (Vorgabe des steuernden Chats, 10.10.2026, vorläufig; UEBERGABE, Nachtrag 10.10.2026, 22:20; Umzug 10.10.2026, 22:55, Block 6):** Die Datei liegt seit TB-151 verfolgt im Repo unter `docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md` und in der Ablage unter `projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md` — Klasse B2 Stand (`ARBEITSWEISE.md` 23.2), `docs/werkzeuge/ablage_soll.py` führt sie in der Liste `STAND`. Grund: G1 (`ARBEITSWEISE.md` 23.1: „Alles, was den Umzug überleben muss, liegt dort committet“) und Abschnitt 4, Schritt 4 („muss mit dem Repo gleich lauten“). Im Nachtrag vom 09.10.2026 darüber ist damit überholt: „Kopie unter `logs/steuernder_chat/EROEFFNUNG_STEUERNDER_CHAT.md`“ — die Kopie unter `logs/steuernder_chat/` entfällt als Ort; beim Umzug ersetzt der alte steuernde Chat die Datei im Repo und in der Ablage, md5 gleich. Im Absatz direkt darunter sind „sie steht nur hier“ und „Keine Anhänge. Keine Dateien.“ für diese Datei überholt: Der neue Chat liest sie mit `project_read`.
 
 ⭐ **Dies ist die verbindliche Fassung des Eröffnungstextes; sie steht nur hier.**
 `UEBERGABE_2026-09-19.md` Block 9 verweist hierher (TB-68, 20.09.2026 — davor
