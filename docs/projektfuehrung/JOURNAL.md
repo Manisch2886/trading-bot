@@ -10452,6 +10452,30 @@ Laufzeit: 10.10.2026. Keine Rückfrage an den Betreiber. Kein Abbruchkriterium a
 
 ---
 
+## EP — TB-151: Eröffnungsdatei des steuernden Chats verfolgt unter `docs/projektfuehrung/`, `ablage_soll.py` führt sie als B2 Stand
+
+*Quelle: `docs/ERGEBNIS_TB-151_eroeffnungsdatei_im_repo.md`*
+
+**Quelle:** Mac-Sitzung **TB-151**, 11.10.2026, Auftrag `docs/auftraege/MAC_TB-151_eroeffnungsdatei_im_repo.md`. Commits und Hashes stehen im Ergebnis, Belege unter `docs/belege/TB-151/`. Entscheid des steuernden Chats vom 10.10.2026 (Handwerk, keine Betreiberfreigabe nötig). Der Wortlaut dieses Blocks stand im Auftrag; die Sitzung hat ihn gesetzt, nachdem jedes Soll der Schritte 0 bis C gehalten hat.
+
+### Was gemessen ist
+
+| | |
+|---|---|
+| **A** | Vorfassung von `ablage_soll.py` (md5 `46c6a18024784b86561ec2486cadc863`): Steht die Eröffnungsdatei in der Ist-Liste, fällt sie nach `ohne_regel.txt`, Grund „keine Regel“ (`a_laeufe_alt.txt`) |
+| **B** | `STAND` trägt neun Namen, der neunte ist `EROEFFNUNG_STEUERNDER_CHAT.md`; numstat 3/1, md5 nachher `2d050828f6cf80b2f95196955828e8c7` (`b_aendere.txt`, `b_numstat.txt`). Liegt die Datei nicht unter `docs/`, steht sie mit „B2 Stand - FEHLT IM REPO“ in `soll.txt` und `ablegen.txt` (`b_laeufe_fehlt.txt`) |
+| **C** | Datei von `logs/steuernder_chat/` nach `docs/projektfuehrung/` kopiert, md5 beider Seiten gleich, von git verfolgt (`c_kopie.txt`, `c_verfolgt.txt`). Im Ist: bleibt, Pfad `projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md`, Grund „B2 Stand“; nicht im Ist: `ablegen.txt`. Alle übrigen Zeilen der vier Listen sind in vier Läufen gleich (`c_laeufe_neu.txt`) |
+
+### Was offen bleibt
+
+- `UMZUG.md` Z. 260 nennt als Ort der Datei noch die Ablage und die Kopie unter `logs/steuernder_chat/`; `ARBEITSWEISE.md` Z. 118 nennt nur die Ablage, Z. 212 sagt „in der Ablage und nicht nur im Repo“ (TB-152). Der steuernde Chat ersetzt die Datei ab TB-151 bei jedem Umzug im Repo und in der Ablage, md5 gleich (Vorgabe des steuernden Chats, vorläufig; `UEBERGABE.md`, Umzug 10.10.2026, 22:55, Block 6); die Regeltexte folgen mit TB-152.
+- Die Läufe nahmen eine künstliche Ist-Liste; den Abgleich mit der echten Ablage macht der steuernde Chat.
+- Nächste Journalkennung nach EP: **EQ**.
+
+*Geschrieben 11.10.2026 von der Mac-Sitzung TB-151 nach dem Wortlaut des Auftrags. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

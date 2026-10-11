@@ -401,6 +401,13 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **An Fable, nächste Anfrage** (neuer Chat; die Antwort 09.10.a nennt ihre Umzugsampel rot): zur Kenntnis L1, L2, L3, B1 und B2 (56.8 Nr. 9), die drei Kandidaten für eine Marke (56.8 Nr. 10), dazu 56.8 Nr. 14 bis 17; der Fund aus M4 (TB-148) als Frage, M1, M2, M3 und M5 zur Kenntnis.
 - **Registerkopie:** T4 (Abschnitte 43–53) wächst mit diesem Eintrag um 2 756 B; nach der Rechnung des Werkzeugs bleiben danach 313 B bis zur Grenze 240 000 (gerechnet beim Bau; der gemessene Wert steht im Ergebnis TB-149).
 
+### Eröffnungsdatei des steuernden Chats im Repo, `ablage_soll.py` führt sie als B2 Stand — eingetragen mit TB-151
+
+- **Entscheid des steuernden Chats (Handwerk, 10.10.2026):** Die Eröffnungsdatei liegt verfolgt unter `docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md` und ist Klasse B2 Stand (ARBEITSWEISE 23.2: Repo und Ablage, eine Fassung ohne Datum im Namen). Grund: G1 (ARBEITSWEISE 23.1, „Alles, was den Umzug überleben muss, liegt dort committet“) und `UMZUG.md` Abschnitt 4, Schritt 4 („muss mit dem Repo gleich lauten“).
+- **Gebaut mit TB-151:** Die Datei ist aus `logs/steuernder_chat/` kopiert (md5 beider Seiten gleich, `docs/belege/TB-151/c_kopie.txt`). `docs/werkzeuge/ablage_soll.py` trägt den Namen in der Liste `STAND` (eine Zeile ersetzt durch drei; md5 nachher `2d050828f6cf80b2f95196955828e8c7`). Vorher fiel die Datei nach `ohne_regel.txt`, und ihr Fehlen meldete das Werkzeug nicht. Nachweis: `docs/belege/TB-151/c_laeufe_neu.txt`.
+- **Folge für jeden Auftrag:** Ersetzt ein Umzug die Datei im Repo, ist sie beim nächsten Auftrag geändert und gehört in das Soll von 0a und in den Commit von Schritt 0, wie `UEBERGABE.md`.
+- **Offen:** `UMZUG.md` Z. 260 nennt als Ort der Datei noch die Ablage und die Kopie unter `logs/steuernder_chat/`; `ARBEITSWEISE.md` Z. 118 nennt nur die Ablage, Z. 212 sagt „in der Ablage und nicht nur im Repo“ (TB-152). Der steuernde Chat ersetzt die Datei ab TB-151 bei jedem Umzug im Repo und in der Ablage, md5 gleich (Vorgabe des steuernden Chats, vorläufig; `UEBERGABE.md`, Umzug 10.10.2026, 22:55, Block 6); die Regeltexte folgen mit TB-152.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen
