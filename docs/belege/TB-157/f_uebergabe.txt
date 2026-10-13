@@ -1,0 +1,2 @@
+    4019 docs/projektfuehrung/UEBERGABE.md
+MD5 (docs/projektfuehrung/UEBERGABE.md) = d2c799505b73a032d815fc973c5aced8

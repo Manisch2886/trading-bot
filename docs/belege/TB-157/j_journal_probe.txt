@@ -1,0 +1,13 @@
+endet mit Zeilenende: ja
+Kopfzeile ## ET — TB-157: …: ja
+### Was gemessen ist genau einmal, Leerzeile davor: ja
+### Was offen bleibt genau einmal: ja
+keine Zeile ---: ja
+Schlusszeile *Geschrieben …: ja
+## Wiederkehrende Lehren genau einmal: ja
+davor --- und Leerzeile: ja
+Kennung noch frei: ja
+Kennung ET (erwartet ET) · letzte ES
+Zeilen +21
+Probe: nichts geschrieben
+rc 0

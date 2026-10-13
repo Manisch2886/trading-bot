@@ -1,0 +1,19 @@
+8	0	docs/ERGEBNIS_TB-156_waechter_fensterinhalt.md
+4	0	docs/belege/TB-157/0a_status.txt
+13	0	docs/belege/TB-157/0b_ausgang.txt
+45	0	docs/belege/TB-157/e_einfuegen.txt
+40	0	docs/belege/TB-157/e_probe.txt
+34	0	docs/belege/TB-157/e_vergleich.txt
+44	0	docs/belege/TB-157/e_zweitlauf.txt
+214	0	docs/belege/TB-157/tb157_einfuegen.py
+27	0	docs/projektfuehrung/ARBEITSWEISE.md
+9	1	docs/projektfuehrung/BACKLOG.md
+2	0	docs/projektfuehrung/UMZUG.md
+1	1	docs/werkzeuge/sitzungswaechter/LIESMICH.md
+Soll docs/ERGEBNIS_TB-156_waechter_fensterinhalt.md 8	0 · Ist [8, 0] · gleich
+Soll docs/projektfuehrung/ARBEITSWEISE.md 27	0 · Ist [27, 0] · gleich
+Soll docs/projektfuehrung/BACKLOG.md 9	1 · Ist [9, 1] · gleich
+Soll docs/projektfuehrung/UMZUG.md 2	0 · Ist [2, 0] · gleich
+Soll docs/werkzeuge/sitzungswaechter/LIESMICH.md 1	1 · Ist [1, 1] · gleich
+weitere Dateien ausser Belegen, Auftrag und Ergebnis: keine
+rc 0
