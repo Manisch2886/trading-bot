@@ -1,0 +1,45 @@
+TB-155 ABBRUCH — Mac-Sitzung, 13.10.2026, 07:23 (+0200)
+
+Art: Claude Code hat einen Aufruf abgelehnt (Abbruchkriterium "Claude Code lehnt
+einen Aufruf ab oder verlangt eine Bestätigung: melden, nicht umgehen").
+
+Abgelehnter Aufruf: Bash, ein Hilfsskript kopf.sh im Scratchpad anlegen
+(mkdir -p /private/tmp/claude-501/…/scratchpad && cat > …/kopf.sh <<'EOF' … EOF
+&& chmod +x …/kopf.sh). Zweck: die Kopfdateien <name>.kopf.txt der Belege
+schreiben. Der Aufruf gehört zu keinem Schritt des Auftrags; er war ein Hilfsmittel
+der Sitzung. Es ist dasselbe Muster, das schon TB-146 in Schritt E abgebrochen hat
+(Hilfsskript kopf.sh im Scratchpad, e39cc44). Nicht umgangen.
+
+Stand beim Abbruch:
+- 0a: wie Soll (HEAD fb8d3894948b2609b5ce4891937225b14e81c241, genau die vier
+  Einträge); sha256 des Werkzeugs fc69bc899e595842504ba528cabf25e621b65d68cb2b7fb10e3e4027f0ff26e5 wie Soll.
+- Schritt 0 committet und gepusht: ⟨S0⟩ = 7362b1ee7e31302d3b14e3c7ede9ff918c7fa558.
+- 0a_status.txt gleich $TMPDIR/tb155_0a.txt (cmp gleich); Werkzeug nach
+  docs/belege/TB-155/tb155_werkzeug.py, sha256 erneut fc69bc89… .
+- 0b gelaufen, beide rc 0, alle Sollwerte erreicht:
+  starte_sitzung.sh 622 Zeilen, md5 464ac93c53829935e479c5f14121c574;
+  LIESMICH.md 371 Zeilen, md5 61353389b9c2a1a66ce2bd669932937a;
+  BACKLOG.md 480 Zeilen, md5 1b020860a28912cf9b281a017ae9d33b;
+  neun Anker je 1 (Zeilen am HEAD wie im Auftrag: S1 50, S2 177–184, S3 187,
+  S4a 196, S4b 201, S4c 204; L1 Z. 10, L2 Z. 41, B1 Z. 469);
+  bash -n rc 0; Test unter /bin/bash 3.2.57(1)-release: 113 ok, 0 FEHL, Test rc 0
+  (darunter "ok   Schnitt: 202 Striche werden 160 ganze Zeichen");
+  Kopie md5 8ea9eaaa2b6a1be8ca5587b21a7fcd7f (723 Zeilen);
+  LIESMICH.md Zeilen + 31 (entfernt 0), BACKLOG.md Zeilen + 8 (entfernt 0).
+- NICHT GEBAUT: Schritt A lief nicht. starte_sitzung.sh steht am Stand ⟨S0⟩
+  (md5 464ac93c53829935e479c5f14121c574); test_fensterinhalt.sh gibt es nicht.
+  Kein Rückweg nötig, keine Datei liegen geblieben. LIESMICH.md, BACKLOG.md,
+  JOURNAL.md unverändert. Keine Probe, kein Auslöser angelegt.
+- Kopfdateien (*.kopf.txt) wurden NICHT geschrieben (das war der abgelehnte
+  Aufruf). Beschreibung der Belege stattdessen hier:
+  0a_status.txt · 185 B · 4 Zeilen · md5 c69b9aee7937bd36f3d5eaf672481603 ·
+    git status --porcelain > "$TMPDIR/tb155_0a.txt", dann cp
+  tb155_werkzeug.py · 33480 B · 482 Zeilen · md5 a148e524d6453e6d92a80cad2a3eabdb ·
+    aus dem Auftrag ausgelesen (Befehl in Schritt 0a), dann cp
+  0b_waechter_probe.txt · 4676 B · 126 Zeilen · md5 3ff11a52e40c3bc359c06e251041a439 ·
+    trading-env/bin/python3 -B docs/belege/TB-155/tb155_werkzeug.py waechter --probe
+  0b_doku_probe.txt · 573 B · 9 Zeilen · md5 bfcd6873fdd0ba51d4eb5edd01f24cdf ·
+    trading-env/bin/python3 -B docs/belege/TB-155/tb155_werkzeug.py doku --probe
+
+Für die Fortsetzung: Ab Schritt A (A1 `PY WZ waechter`) in einer neuen Sitzung;
+⟨S0⟩ = 7362b1e. Kopfdateien ohne Hilfsskript im Scratchpad schreiben.
