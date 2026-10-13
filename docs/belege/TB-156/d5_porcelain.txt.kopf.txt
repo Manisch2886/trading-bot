@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/d5_porcelain.txt
+Bytes: 0 · Zeilen: 0 · md5: d41d8cd98f00b204e9800998ecf8427e
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `git status --porcelain > "$TMPDIR/tb156_d5.txt"`, dann `cp "$TMPDIR/tb156_d5.txt" docs/belege/TB-156/d5_porcelain.txt`
+Geschrieben: 13.10.2026, 12:32:05 (+0200) von WZ kopf (TB-156)
