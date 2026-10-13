@@ -1,0 +1,8 @@
+Ausgang docs/werkzeuge/sitzungswaechter/LIESMICH.md · 371 Zeilen · 22552 B · md5 61353389b9c2a1a66ce2bd669932937a
+LIESMICH.md · L1 Abschnitt · Anker 1 (Soll 1) · Zeilen 1 -> 31
+LIESMICH.md · L2 Zeile · Anker 1 (Soll 1) · Zeilen 1 -> 2
+docs/werkzeuge/sitzungswaechter/LIESMICH.md · Zeilen + 31 (entfernt 0)
+Ausgang docs/projektfuehrung/BACKLOG.md · 480 Zeilen · 128279 B · md5 1b020860a28912cf9b281a017ae9d33b
+BACKLOG.md · B1 Block · Anker 1 (Soll 1) · Zeilen 1 -> 9
+docs/projektfuehrung/BACKLOG.md · Zeilen + 8 (entfernt 0)
+rc 0

@@ -7,6 +7,36 @@ Dieser Wächter macht aus einer Datei einen Sitzungsstart.
 
 ---
 
+## ⭐⭐ Gilt seit TB-155 (Fensterinhalt im Log)
+
+**Dieser Abschnitt geht dem Abschnitt „Gilt seit TB-144“ vor, wo beide sich widersprechen** (dort: „höchstens 8, je 160 Zeichen“, nur bei ⛔).
+
+Unter „⭐ EINGABEBEREIT“ und unter jeder ⛔-Zeile der Fensterprüfung („⛔ STARTFRAGE“, „⛔ KEINE EINGABEZEILE“, „⛔ NICHT ANGEMELDET“, „⛔ API-ABRECHNUNG“) stehen jetzt:
+
+```
+   Anmeldung: Abo                 (oder: API · nicht angemeldet · unklar)
+   Ablaufwarnung: nein            (oder: Ablaufwarnung: ja | <die Zeile im Wortlaut>)
+   Letzte Zeilen von Fenster <n> (hoechstens 12, je 160 Zeichen, Kontozeilen ersetzt):
+   | <Zeile>
+```
+
+Bei leerem oder nicht lesbarem Fensterinhalt steht unter „⛔ KEINE EINGABEZEILE“ nur: `   Fensterinhalt leer oder nicht lesbar: keine Anmeldung, keine Ablaufwarnung, keine Zeilen.`
+
+**Die drei folgenden Regeln sind Lesarten — erschlossen, vorläufig:**
+
+- **Anmeldung:** „Abo“ bei `Claude Max`, „API“ bei `API Usage Billing`, „nicht angemeldet“ bei `Not logged in`, sonst „unklar“; treffen mehrere zu: nicht angemeldet vor API vor Abo.
+- **Ablaufwarnung:** die erste Zeile mit `expire` (Gross- und Kleinschreibung egal).
+- **Kontozeilen — eine Merkmalliste, kein Beweis:** Trägt eine Zeile (Gross/Klein egal) eines der Merkmale `@`, `claude max`, `api usage billing`, `claude pro`, `claude team`, `claude enterprise`, `organization`, `organisation`, `welcome back`, `logged in as`, `account`, `konto`, `sk-`, `api key`, `api-key`, `token`, `secret`, `password`, `passwort`, `api_key`, `apikey`, `bearer `, `ghp_`, `github_pat_`, `xoxb-`, `aws_secret`, wird sie durch `<<entfernt: Kontozeile>>` ersetzt, bei ⭐ und bei ⛔; `/Users/<name>` wird zu `~` (Name bis zum nächsten `/`; im Beleg in jeder Zeile). **Ein Name ohne Merkmal oder ein umbrochener Mailrest bleibt stehen** — vor dem Weitergeben eines Log-Ausschnitts selbst nach Konto, Name und Schlüssel sehen. Die Adresse der Sitzung (`https://claude.ai/code/session_…`) bleibt im Klartext.
+- **⛔ NICHT ANGEMELDET (TB-<Nr>)** (Rückgabewert 6) oder **⛔ API-ABRECHNUNG (TB-<Nr>)** (Rückgabewert 7) statt „⭐ EINGABEBEREIT“, wenn die Eingabezeile steht, das Fenster aber `Not logged in` oder `API Usage Billing` nennt (über die API liefe die Sitzung auf Rechnung statt über das Abo). Beim echten Start bleibt das Fenster offen; die Probe versucht bei jeder Rückgabe der Prüfung, ihr Fenster zu schliessen — ob es geschlossen ist oder offen bleibt, steht im Log. „Anmeldung: unklar“ bleibt „⭐ EINGABEBEREIT“. Wortlaut und Stelle von `Not logged in` und der Zeile bei `API Usage Billing` sind erschlossen, nicht gemessen (Stand: `docs/ERGEBNIS_TB-155_waechter_fensterinhalt.md`).
+
+**Schranke 3, neu:** höchstens 12 nicht-leere Zeilen je 160 Zeichen des **neu geöffneten** Fensters, Kontozeilen ersetzt (nach dem Kürzen leere Zeilen zählen nicht); unverändert keine Umgebungsvariablen, Schlüssel, Dateiinhalte. Das Log wird nicht gepusht; in Belegen wird zusätzlich die Zeile der Ablaufwarnung ersetzt.
+
+**Test ohne Fenster:** `/bin/bash docs/werkzeuge/sitzungswaechter/test_fensterinhalt.sh`; Soll: letzte Zeile `Test Fensterinhalt: <n> ok, 0 FEHL`, Rückgabewert 0.
+
+**In einfacher Sprache:** Der Wächter schreibt jetzt immer ins Protokoll, was im neuen Fenster steht (zwölf Zeilen, ohne die Zeile mit deinem Konto), ob die Sitzung über dein Abo läuft und ob die Anmeldung bald abläuft. Ist Claude Code nicht angemeldet oder liefe die Sitzung über die bezahlte API statt über dein Abo, meldet er einen Fehler. Die Zeile mit deinem Konto erkennt er an einer Wortliste — das ist kein Beweis.
+
+---
+
 ## ⭐⭐ Gilt seit TB-144 (Wächter-Reparatur)
 
 **Dieser Abschnitt geht allem vor, was weiter unten anders steht.** Das Alte bleibt als Geschichte stehen; wo es nicht mehr gilt, folgt ihm eine Zeile „⭐ Gilt seit TB-142“ (kein Satz), „… TB-143“ (Startzeile) oder „… TB-144“.
@@ -39,6 +69,7 @@ Fenster <n> neu geoeffnet (Tab <k>). Gemerkt in <Pfad>/letztes_fenster.txt
 ```
 
 Bei ⛔ stehen darunter die letzten Zeilen des neu geöffneten Fensters (höchstens 8, je 160 Zeichen), und das Fenster bleibt offen. **Woran er die Eingabezeile erkennt (Merkmal gemessen; zwei Lesungen: Lesart, vorläufig):** Der Fensterinhalt enthält in zwei Lesungen hintereinander `? for shortcuts` und in keiner `Enter to confirm`.
+⭐ **Gilt seit TB-155 (Abschnitt „Gilt seit TB-155“ oben):** höchstens 12 Zeilen, auch unter „⭐ EINGABEBEREIT“, Kontozeilen ersetzt.
 
 ### Fenster aufräumen
 

@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/c_doku.txt
+Bytes: 546 · Zeilen: 8 · md5: 2327dc8ac96df3922dfe301487dd2110
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `PY WZ doku > docs/belege/TB-156/c_doku.txt 2>&1`
+Geschrieben: 13.10.2026, 12:30:08 (+0200) von WZ kopf (TB-156)

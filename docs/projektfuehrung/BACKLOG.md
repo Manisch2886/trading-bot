@@ -466,6 +466,14 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
 - **Register:** R90–R93 stehen seit TB-154 im Register, Abschnitt 57, mit 11 Marken am alten Ort; Befunde in 57.5, Offenes in 57.6. Vor dem Eintrag hat der steuernde Chat über die Geräteanbindung durch Lesen vorgemessen (Stand `fa40ccb`, kein Nachweis): R91 (f), R93 (a), die Zitate der Antwort und die Orte der Marken; den Inhalt von `overview.md` gegen 27.1 hat der steuernde Chat gemessen (kein Nachweis der Sitzung). Die Sitzung TB-154 hat R91 (f), R91 (h) mit R56 (b), R93 (a) und die Orte vor dem Eintrag selbst gemessen (`docs/belege/TB-154/0d_vorpruefung.txt`).
 - **Registerkopie:** Abschnitt 57 kommt nach der Rechnung des Werkzeugs zu T5 (Abschnitte 54–57; danach 192 705 B, 47 291 B bis zur Grenze 240 000); T4 (Abschnitte 43–53) wächst mit diesem Eintrag um 148 B, danach bleiben 165 B bis zur Grenze (gerechnet beim Bau; die gemessenen Werte stehen im Ergebnis TB-154).
 
+### Sitzungswächter schreibt den Fensterinhalt ins Log (11.10.2026) — eingetragen mit TB-155
+
+- **Freigabe:** Einzelfreigabe des Betreibers, Auswahlkarten vom 11.10.2026, 11:01 und 13:00 (Antwort 13:02): 12 Fensterzeilen unter „⭐ EINGABEBEREIT“, Kontozeile ersetzt, Anmeldung und Ablaufwarnung als eigene Zeilen; Wortlaut in `docs/auftraege/MAC_TB-155_waechter_fensterinhalt.md`.
+- **Vorgaben des steuernden Chats, dem Betreiber genannt, ohne Widerspruch:** „⛔ NICHT ANGEMELDET“ (Rückgabewert 6) und „⛔ API-ABRECHNUNG“ (7) statt „⭐ EINGABEBEREIT“; 12 Zeilen und Ersetzen auch bei ⛔; Adresse der Sitzung im Klartext; erster versionierter Test (`test_fensterinhalt.sh`). Quelle: `UEBERGABE.md`, Umzug 11.10.2026, 14:13, Block 4 Nr. 2 und Block 6.
+- **Geändert:** `docs/werkzeuge/sitzungswaechter/starte_sitzung.sh` schreibt unter „⭐ EINGABEBEREIT“ und unter jeder ⛔-Zeile der Fensterprüfung „Anmeldung: …“, „Ablaufwarnung: …“ und die letzten 12 nicht-leeren Zeilen des neu geöffneten Fensters ins Log, Kontozeilen ersetzt; dazu die zwei neuen ⛔-Zeilen. Schranke 3, Kontoregel und Test: `LIESMICH.md` dort, „Gilt seit TB-155“.
+- **Erschlossen, nicht gemessen (Lesarten, vorläufig):** Wortlaut und Stelle von `Not logged in` und der Zeile bei `API Usage Billing`; „Abo“ = `Claude Max`; Ablaufwarnung = Zeile mit `expire`; die Kontoregel (Merkmalliste, kein Beweis: ein Name ohne Merkmal oder ein umbrochener Mailrest bleibt stehen). Gemessenes: `docs/ERGEBNIS_TB-155_waechter_fensterinhalt.md`.
+- **Nicht in TB-155:** `ARBEITSWEISE.md` (nächster Regelwerk-Nachtrag), der Satz für die Sitzung, Chrome, `einschalten.sh`, die plist.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen
