@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-157** | `docs/auftraege/MAC_TB-157_regelwerk_nachtrag_1013.md` | Nachtrag zum Ergebnis TB-156 (ABN156 A1, A2, B4; Ursache `pgrep` ohne `-a`) und Regelwerk-Nachtrag (Chatname, Fehler Nr. 55–73, Lehren der Chats 20–22); jede Datei mit vorgegebenem Befehl (Anhang); Start über den Sitzungswächter |
+| **TB-159** | `docs/auftraege/MAC_TB-159_agenten_aus.md` | Agenten-Schalter: Agent 1, 3 und 4 abschalten über `config/agenten_aus.txt` (Betreiber 13.10.2026, 21:00), Berichte laufen ohne KI-Teil weiter, Wiedereinschalten per Schalterdatei; jede Datei mit vorgegebenem Befehl (Anhang); Start über den Sitzungswächter |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 

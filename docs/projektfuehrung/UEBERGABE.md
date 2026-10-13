@@ -4017,3 +4017,135 @@ Steuernder Chat 23 („Opus Trading Bot-13.10.2026“, https://claude.ai/chat/b1
 - **TB-157 ausgelegt:** `docs/auftraege/MAC_TB-157_regelwerk_nachtrag_1013.md`, md5 `389ac30cc865e1bd538857996cf3319c`; Zeiger von TB-156 auf TB-157. Entscheide `sc/tb157_ENTSCHEIDE.md` (F1–F8) und `…_NACHTRAG.md` (F9–F13) und `…_NACHTRAG2.md` (F14–F15), dem Betreiber genannt. Inhalt: Nachtrag zum Ergebnis TB-156 (ABN156 A1, A2, B4; Ursache `pgrep` ohne `-a`), Regelwerk-Nachtrag (32 Stücke: Fehler Nr. 55–73, Chatname „Opus Trading Bot-<TT>.<MM>.<JJJJ>“, Eröffnung 9 (a)–(f) soweit nicht am HEAD, Lehren der Chats 20–22), jede Datei mit vorgegebenem Befehl (Anhang); Abbruch vor dem gepushten ⟨S0⟩ schreibt nichts.
 - **Weg zur Fassung:** BAU157 (Stempel 15:58) · GEGEN157_Q und _L (16:14; L-A1–A3, Q-A1–A2, B/F) · Runde 2 über denselben Bau-Helfer (F9–F13) · enger Gegenleser GEGEN157_E (16:24; kein A, B1 Kreis im Abbruchweg) · Runde 3 (F14–F15: gescheiterter Push des Abbruch-Commits ⇒ nur melden) · enger Gegenleser GEGEN157_E2 (16:29). Vorgaben dem Betreiber genannt: kein Schritt „Modus“ (Abbruchkriterium „verlangt eine Bestätigung“ trägt); vier Pfade in Schritt 0.
 - **Vor dem Start in Chrome:** geprüft, dass keine andere Sitzung im Repo arbeitet (Vorsicht bis zur Probe, Block 4 Nr. 3).
+
+## Nachtrag 13.10.2026, 16:48 — Chat 23: TB-157 abgegeben, abgenommen, geschlossen; Ablage erneuert; „Neues Handling für Chats (Fassung 2)“
+
+- **TB-157 gestartet:** Auslöser 16:32:52; Wächter „claude-Prozesse: 0 im Repo, 0 ausserhalb“, ⭐ EINGABEBEREIT, Anmeldung Abo, Fenster 23860, Sitzung https://claude.ai/code/session_01NyTBVpm8WMcZFUTS4zac4q. Satz vom steuernden Chat über Chrome abgeschickt (16:34; noch nach Eröffnung 9 (a), ohne Karte), Return einmal.
+- **Abgabe:** `0f2664e` (S0, 16:35) · `18fb519` (E) · `83da019` (Abgabe, Journal ET) · `300ba31` (F, 16:37) = origin/main. Kernzahlen selbst: numstat ARBEITSWEISE 27/0, UMZUG 2/0, BACKLOG 9/1, LIESMICH 1/1, ERGEBNIS_TB-156 8/0; Arbeitsbaum sauber.
+- **Abnahme ABN157** (Stempel 16:38; `$HOME/sc/berichte/ABN157.md`): abnahmefähig mit Hinweisen, kein A; alle 32 Stücke byte-gleich nachgebaut. Hinweise: B1 Anhang C verlangt im Journalblock den Hash von ⟨F⟩ — selbstbezüglich, nicht erfüllbar (für künftige Aufträge ändern); B2 Journalblock ohne Zeile zu F; B3 Sitzung las zusätzlich mit `git diff -U0`, `wc -c`, `md5 -q` (keine Liste freier Lesebefehle im Auftrag); F1 Ergebniskopf ohne Hash von ⟨F⟩.
+- **Geschlossen:** Auslöser 16:47:19 (Alter 613 s), PID 41366 mit TERM beendet, Fenster 23860 zu.
+- **Ablage erneuert** (je md5 Gerät = Kopie): ERGEBNIS_TB-157 (neu), ERGEBNIS_TB-156 (mit Nachtrag), ARBEITSWEISE, UMZUG, BACKLOG, UEBERGABE (Stand vor diesem Nachtrag, md5 `d2c79950…`).
+- **⭐ Betreiber 16:35: „Neues Handling für Chats (Fassung 2)“** — Wortlaut, Widersprüche W1–W9 und Karte: `logs/steuernder_chat/2026-10-13_BETREIBER_handling_fassung2.md` (md5 `c9cb5265…`). Karte: W1 „Ja, Karte je Satz“ (löst 9 (a) ab), W2/W3 „Opus Trading Bots-TT.MM.JJJJ a“ (Satz „Dieser Chat heißt …“ löst die Regel vom 10.10. gegen einen zweiten Namen ab), W4 „Ein Skript-Aufruf“, W5 „Bleibt für Mac-Sitzungen“. Gehört in den nächsten Umzugsblock, die Eröffnung (Fassung 23) und den nächsten Regelwerk-Nachtrag.
+- **Nicht gelöscht:** die Nachschau 16:56 (send_later) — das Löschen wies die Erlaubnisprüfung ab; nicht umgangen, sie läuft ins Leere.
+
+## Umzug 13.10.2026, 18:51 — Stand für den neuen steuernden Chat (alle neun Blöcke; die Arbeit dieses Chats tragen die Nachträge 13.10.2026, 15:57, „ausgelegt 16:32 — TB-157“ und 16:48 davor)
+
+Betreiber, Karte zum Umzug (gestellt 13.10.2026 nach 16:57; die Frage begann „Jetzt umziehen? Schritte, die dein Ja deckt: …“ und nannte vier Schritte: Block und Eröffnung Fassung 23 in Repo und Ablage; Startsatz als Datei mit md5; neue Sitzung auf der Projektseite über Chrome mit Modellprüfung, Vergleich, Senden, Zurücklesen, Namensprüfung; anheften und lösen) — „Jetzt umziehen (Recommended)“. Erster Umzug nach „Neues Handling für Chats (Fassung 2)“. Dieser Block ersetzt den Umzugsblock 13.10.2026, 13:03; dessen Verweise gelten weiter, soweit hier nichts anderes steht.
+
+### Block 1 — Stand in drei Zeilen
+- **TB-157 ist abgegeben, abgenommen (ABN157: mit Hinweisen) und geschlossen:** Commits `0f2664e` bis `300ba31` (16:35–16:37); Ergebnis-Nachtrag TB-156 und Regelwerk-Nachtrag (32 Stücke, Fehler Nr. 55–73). Geschlossen 16:47 (PID 41366).
+- **Ursache `pgrep` gemessen** (Nachtrag 15:57): macOS-`pgrep` ohne `-a` schliesst Vorfahren aus; Wache 4a und Schliess-Auslöser arbeiten (beim Start TB-157: „claude-Prozesse: 0 im Repo, 0 ausserhalb“).
+- **⭐ „Neues Handling für Chats (Fassung 2)“ gilt** (Betreiber 16:35; Wortlaut, W1–W9, Karte: `logs/steuernder_chat/2026-10-13_BETREIBER_handling_fassung2.md`). Offen zuerst: Probe des Wächters (Block 4).
+
+### Block 2 — HEAD und Arbeitsbaum
+HEAD `300ba31997802dbc4293397c338117d6f9e06d5b` = `origin/main`. Geändert mit diesem Umzug: `docs/projektfuehrung/UEBERGABE.md` und `docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md` (Fassung 23). Unverfolgt: nichts. `AKTUELLER_AUFTRAG.md` zeigt auf TB-157 (abgegeben).
+
+### Block 3 — Tragende Zahlen
+- Nummern: TB-153 Messauftrag Kerzenformationen · TB-157 abgegeben · TB-158 frei. Journal: nächste Kennung EU. Fehler ab Nr. 74 (Nr. 55–73 stehen seit TB-157 in ARBEITSWEISE; die Fehler dieses Chats, Block 7, noch ohne Nummer). Fable ab R94.
+- TB-157: Auftrag `docs/auftraege/MAC_TB-157_regelwerk_nachtrag_1013.md` 62 304 B, md5 `389ac30cc865e1bd538857996cf3319c`; Ergebnis `docs/ERGEBNIS_TB-157_regelwerk_nachtrag_1013.md`. Bausteine `$HOME/sc/tb157/bau/` (Archiv, Block 8), Entscheide `sc/tb157_ENTSCHEIDE.md` (F1–F8), `…_NACHTRAG.md` (F9–F13), `…_NACHTRAG2.md` (F14–F15).
+- Ablage: erneuert 13.10.2026 (Nachträge 15:57 und 16:48): ERGEBNIS_TB-156, ERGEBNIS_TB-157, ARBEITSWEISE, UMZUG, BACKLOG, UEBERGABE; mit diesem Umzug Eröffnung (Fassung 23) und UEBERGABE neu.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+1. **Probe des Wächters als kleiner Mac-Auftrag TB-158** (offen seit TB-155): Ursache gemessen, EIGEN in der Sitzung mit `pgrep -a -x claude` plus cwd oder über die Elternkette; dass `pgrep -a` am Mac so wirkt, misst der Auftrag zuerst. Bauweg wie TB-157; Satz erst nach Karte „Senden?“ (W1). Bis dahin vor jedem Start: Wächter-Log „claude-Prozesse: 0 im Repo“.
+2. **Regelwerk-Nachtrag zu Fassung 2** (W1–W9 und die Karte; was Fassung 2 an 9 (a), Fehler Nr. 59, der Chatnamen-Regel vom 10.10., der Nachschau und „Angeheftet“ ablöst), dazu ABN157-Hinweise (Anhang C: Hash von ⟨F⟩ selbstbezüglich; Liste freier Lesebefehle), E2-B2 (Commit des Abbruch-Commits scheitert: nicht geregelt) und Block 7.
+3. Wie Umzug 11.10.2026, 14:13, Block 4 Nr. 5 und 6 (Ort der Schranke; nächste Fable-Anfrage jetzt nach Fassung 2 Nr. 4 mit Karte „Senden?“; Soll/Ist der Ablage; TB-153).
+4. **„Angeheftet“ einmal aufräumen** — nur Chats dieses Projekts, vorher Karte mit Liste (Fassung 2 Nr. 3); Chats anderer Projekte nie anfassen.
+5. Vorschlag an den Betreiber, nicht entschieden: 203 verfolgte Belegdateien mit Heimordner im Pfad (Umzug 13.10.2026, 11:15, Block 4 Nr. 5).
+
+### Block 5 — Wartezustände
+Beim Betreiber: im neuen Chat die Ordner-Freigabe. Keine Sitzung läuft (TB-157 geschlossen 16:47). Kein Helfer läuft. Die Nachschau 16:56 ist gelaufen (ins Leere); keine weitere liegt.
+
+### Block 6 — Freigaben und Entscheide des Betreibers in diesem Chat
+- Ordner-Freigabe ~/trading-bot (vor 15:54).
+- Karte 13.10.2026 nach 16:35, W1–W5: „Ja, Karte je Satz (Recommended)“ · „Opus Trading Bots-TT.MM.JJJJ a (Recommended)“ · „Ein Skript-Aufruf (Recommended)“ · „Bleibt für Mac-Sitzungen (Recommended)“; W6–W9 als Lesart genannt, ohne Widerspruch (Datei Block 1).
+- Karte zum Umzug: „Jetzt umziehen (Recommended)“.
+- Vorgaben ohne Widerspruch: F1–F15 zu TB-157; kein Schritt „Modus“; vier Pfade in Schritt 0; stehen gelassen E2-B2.
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus (noch ohne Nummer)
+- **Abbruchkreis erst vom engen Gegenleser gefunden** (Push des Abbruch-Commits scheitert ⇒ Abbruchweg von vorn), obwohl F9 den Abbruchweg neu ordnete. ⇒ Ein Entscheid, der einen Abbruchweg ändert, regelt auch das Scheitern seines eigenen Commits und Pushs.
+- **Backticks in `python3 -c "…"`:** die Shell ersetzte sie, ein Nachtragstext war kurz falsch (berichtigt). ⇒ Skripte mit Backticks nur als Datei (Heredoc mit `'EOF'`).
+- **Wartezeit über die Brücke zu lang:** `sleep` bis 600 s Commit-Alter in einem Aufruf mit 175 s Grenze — Zeitgrenze, Auslöser nicht gelegt (folgenlos). ⇒ Warten über die Brücke unter 150 s je Aufruf.
+- **Satz TB-157 ohne Karte** (16:34, nach Eröffnung 9 (a)); eine Minute später kam Fassung 2, die eine Karte je Senden verlangt (W1). Kein Verstoss gegen die damalige Regel; genannt.
+- **Gelernt:** Vorgebaute Skripte (`uebernahme23/gen_E.py`, `auslegen157.py`) machen enge Gegenleser und Auslegen zu je einem Aufruf; der Wächter schreibt Anmeldung und Fensterinhalt ins Log (TB-156 wirkt); TB-157 brauchte drei Minuten Sitzung; Löschen einer eigenen Nachschau (`delete_trigger`) wies die Erlaubnisprüfung ab — nicht umgangen.
+- **Ampel:** 62 134 (15:57) → 100 192 (15:58) → 120 825 (16:16) → 150 412 (16:28) → 173 336 (16:35) → 178 014 (16:36) → 211 873 (16:48) → 221 363 (16:57). Teuer: Kernlektüre (rund 45 000), die Chrome-Bildschirmfotos, die Antwort zu Fassung 2.
+- **Helfer** (Stempel des Auftrags; Helfer-Tokens): BAU157 (15:58; Runden 2 und 3 über SendMessage; zuletzt 279 656) · GEGEN157_Q und _L (16:14; 157 830 und 145 320) · GEGEN157_E (16:24; 124 175) · GEGEN157_E2 (16:29; 109 127) · ABN157 (16:38; 131 584).
+
+### Block 8 — Zwischengelagert
+Unter `logs/steuernder_chat/`: `2026-10-13_sc_opus_umzug13.tar.gz` (`$HOME/sc/` ohne Helfer-Arbeitsordner; nach `$HOME/` auspacken; Grösse und md5 im Zusatz) · `2026-10-13_NOTIZEN_chat23.md` · `2026-10-13_EROEFFNUNG_23.txt` · `2026-10-13_STARTSATZ_23.txt` · `2026-10-13_BETREIBER_handling_fassung2.md`. Im Archiv neu: `tb157/` (bau, bau_vor_runde2/3, sim, sim_abbruch, runde2/3.diff), `tb157_ENTSCHEIDE*.md`, `auftraege/HELFER_*157*.md`, `berichte/*157*.md`, `uebernahme23/` (`auslegen157.py`, `gen_E.py`, `nachtrag_auslegen.md`), `umzug13/`.
+
+### Block 9 — Eröffnung
+In Ablage und Repo ersetzt: `EROEFFNUNG_STEUERNDER_CHAT.md` (Fassung 23, md5 gleich; Wortlaut `logs/steuernder_chat/2026-10-13_EROEFFNUNG_23.txt`). Der steuernde Chat legt den neuen Chat selbst über Chrome an (Fassung 2 Nr. 1), Startsatz wörtlich (Datei `2026-10-13_STARTSATZ_23.txt`):
+
+```
+Opus Trading Bots-13.10.2026 a
+
+Dieser Chat heißt Opus Trading Bots-13.10.2026 a. Lies zuerst nur die Datei projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md, in einem Aufruf für sich und nichts gleichzeitig, und folge ihr.
+```
+
+**Zusatz 18:56 — Ergebnis des Umzugs (steuernder Chat 23 selbst über Chrome, nach Fassung 2):** Neuer Chat https://claude.ai/chat/b4d8135e-7280-49d1-9d50-7ee31c96e73d im Projekt „Trading Bots“, Modell Opus 5.5 (im Feld geprüft: „Opus 5.5 Hoch“). Startsatz per Einfügen, Vergleich (normalisiert 218 Zeichen, Prüfzahl gleich) und Senden in einem Skript-Aufruf; zurückgelesen: die Nachricht beginnt mit „Opus Trading Bots-13.10.2026 a“. **Name:** Die App setzte „Opus Trading Bots“ (nicht richtig) ⇒ umbenannt und abgelesen: „Opus Trading Bots-13.10.2026 a“. Angeheftet: b4d8135e. Gelöst: /chat/b17e2895-f6b8-452d-ae90-f96473b1e331 (Chat 23). Angeheftet sind jetzt: f765ca3b, 851d7498, 90288c60, b4f25908, 22be6b84, b4d8135e, 4e6319ca, 6a11009f. Archiv `2026-10-13_sc_opus_umzug13.tar.gz`: 39 200 382 B, md5 `d7698cd8ca73f6abf0013bff65ecd1ca`. **⚠️ Fehler von Chat 23:** Beim Anheften habe ich Escape gedrückt, um ein vermeintlich offenes Menü zu schliessen; das Menü war schon zu, die Taste ging an den neuen Chat und unterbrach dessen erste Antwort („Claudes Antwort wurde unterbrochen“; zu sehen davor: Eröffnung gelesen, Ordner-Freigabe angefordert, „3 Befehle ausgeführt, Zugriff auf einen Ordner“). Nicht wiederholt — „Erneut versuchen“ ist ein Senden und liegt beim Betreiber. ⇒ Escape nur, wenn ein Menü sichtbar offen ist (am Bildschirmfoto, nicht an der Zahl der `menuitem`-Knoten, die nach dem Schliessen im DOM bleiben). Dieser Zusatz steht nur im Repo, nicht in der Ablage.
+
+## Umzug 13.10.2026, 21:59 — Stand für den neuen steuernden Chat (alle neun Blöcke; Arbeitsnotizen dieses Chats: `logs/steuernder_chat/2026-10-13_NOTIZEN_chat24.md`)
+
+Betreiber, Karte zum Umzug (gestellt 13.10.2026 gegen 21:47; die Frage begann „Jetzt umziehen? Schritte, die dein Ja deckt: …“ und nannte vier Schritte: nach Abschluss der zwei laufenden Helfer Umzugsblock und Eröffnung Fassung 24 in Repo und Ablage samt Archiv; Startsatz als Datei mit md5; neue Sitzung über Chrome mit Modellprüfung, Vergleich, Senden, Zurücklesen, Namensprüfung; anheften und lösen) — „Nach den Helfern umziehen (Recommended)“. Dieser Block ersetzt den Umzugsblock 13.10.2026, 18:51; dessen Verweise gelten weiter, soweit hier nichts anderes steht.
+
+### Block 1 — Stand in drei Zeilen
+- **Im Repo nichts Neues:** HEAD `300ba31` unverändert; dieser Chat hat zwei Mac-Aufträge ausserhalb des Repos gebaut und gegenlesen lassen, keiner ist ausgelegt.
+- **⭐ TB-159 Agenten-Schalter** (Betreiber 21:00: „schalte die bewertenden agents ab … wir können sie später bei bedarf wieder aktivieren“; Karte: „Agent 1, 3 und 4 (Recommended)“ · „Schalterdatei (Recommended)“) geht vor TB-158. Stand: gebaut in drei Runden (Auftrag 52 797 B, `bau.sh` 58 Prüfungen, 8 Simulationsfälle grün); zwei frische Gegenleser (Q, L) lasen Runde 1, ihre Befunde sind mit F13–F16 in Runde 3 eingearbeitet — **Runde 2 und 3 noch ohne engen Gegenleser** (`gen_E159.py GEGEN159_E 3`, Vergleich gegen `bau_vor_runde2/`); Vorgaben: Schalterdatei unlesbar ⇒ aus (F10), `WZ basis` eine Datei je Aufruf (neuer sha256).
+- **TB-158 Probe des Wächters:** Stand: gebaut in fünf Runden (Auftrag 43 006 B, `bau.sh` 53 Prüfungen, 12 Simulationsfälle grün), am HEAD `300ba31`; Runden 1–4 gegengelesen (Q, L, drei enge), **Runde 5 (E22–E25: `LC_ALL=C ps -o lstart=`, weil der Mac die Startzeit deutsch ausgibt) noch ohne engen Gegenleser**; ⚠️ offen für den engen Gegenleser: im Fall „rc 2 ohne `--probe`“ bleiben nach dem Abbruch `BACKLOG.md`, `JOURNAL.md` geändert und das Ergebnis unverfolgt im Arbeitsbaum (Bericht BAU158, Runde 5) — zu entscheiden. Nach TB-159 ist HEAD anders ⇒ neu bauen (Block 4 Nr. 2).
+
+### Block 2 — HEAD und Arbeitsbaum
+HEAD `300ba31997802dbc4293397c338117d6f9e06d5b` = `origin/main` (zuletzt gemessen vom Bau). Geändert mit diesem Umzug: `docs/projektfuehrung/UEBERGABE.md` und `docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md` (Fassung 24). Unverfolgt: nichts. `AKTUELLER_AUFTRAG.md` zeigt weiter auf TB-157 (abgegeben).
+
+### Block 3 — Tragende Zahlen
+- Nummern: TB-153 Messauftrag Kerzenformationen · TB-157 abgegeben · **TB-158** und **TB-159** gebaut, nicht ausgelegt · TB-160 frei. Journal: nächste Kennung EU (beide Aufträge bestimmen sie zur Laufzeit; TB-159 läuft zuerst ⇒ voraussichtlich EU, TB-158 EV). Fehler ab Nr. 74 (die Fehler der Chats 23 und 24 noch ohne Nummer). Fable ab R94.
+- TB-159: `$HOME/sc/tb159/bau/MAC_TB-159_agenten_aus.md` 52797 B, md5 `77e22c45e1ec060650d0a0d1e8fda516` (die md5 ändert sich bei jedem Bau mit dem Stand-Zeitstempel); Entscheide `sc/tb159_ENTSCHEIDE.md` (F1–F8), `…_NACHTRAG.md` (F9–F12), `…_NACHTRAG2.md` (F13–F16); Bericht `sc/berichte/BAU159.md`.
+- TB-158: `$HOME/sc/tb158/bau/MAC_TB-158_waechter_probe.md` 43006 B, md5 `84e87452fa93102b710ba5fb5da6ed1e`; Entscheide `sc/tb158_ENTSCHEIDE.md` (F1–F9), `…_NACHTRAG.md` (E1–E10), `…_NACHTRAG2.md` (E11–E16), `…_NACHTRAG3.md` (E17–E21); Bericht `sc/berichte/BAU158.md`.
+- Ablage: mit diesem Umzug Eröffnung (Fassung 24) und UEBERGABE neu.
+
+### Block 4 — Offene Punkte, in Reihenfolge
+1. **TB-159 zu Ende bringen:** falls noch Berichtigungen ohne engen Gegenleser: `python3 -B $HOME/sc/uebernahme23/gen_E159.py <NAME> <runde>`, Helfer starten; dann Auslege-Skript `auslegen159.py` nach Vorbild `uebernahme23/auslegen157.py` bauen (`--trocken` zuerst), auslegen, Start-Auslöser, Wächter-Log (EINGABEBEREIT, Anmeldung Abo, „0 im Repo“), Sitzung in Chrome prüfen, Karte „Senden?“ für den Satz (W1), senden, zurücklesen, Nachschau per `send_later` (W5). Abnahme mit Helfer (Vorbild `HELFER_ABN157.md`). Wichtig fürs Ergebnis an den Betreiber: „So schaltest du einen Agent wieder ein“.
+2. **TB-158 danach:** HEAD hat sich durch TB-159 geändert ⇒ `bau.sh` an neuem HEAD (0a/0b sind HEAD-gebunden), `diff` gegen die gegengelesene Fassung; ein enger Gegenleser nur für die geänderten Zeilen; dann auslegen wie TB-159.
+3. Regelwerk-Nachtrag zu Fassung 2 (Umzug 13.10.2026, 18:51, Block 4 Nr. 2) mit den Fehlern der Chats 23 und 24 (je Block 7); dann wie Umzug 11.10.2026, 14:13, Block 4 Nr. 5 und 6.
+4. „Angeheftet“ einmal aufräumen — nur nach Karte mit Liste.
+5. Vorschläge an den Betreiber, nicht entschieden: 203 Belegdateien mit Heimordner im Pfad; **Erreichbarkeitsprüfung Dashboard/Tailscale** als Backlog-Punkt (13.10.2026, 21:31: Dashboard nicht erreichbar, Tailscale am Mac war deaktiviert; Betreiber hat es selbst behoben).
+
+### Block 5 — Wartezustände
+Keine Mac-Sitzung läuft. Kein Helfer läuft (die zwei letzten waren der Grund für „nach den Helfern“). Beim Betreiber: im neuen Chat nichts, ausser der Ordner-Freigabe, falls das System fragt; danach die Karte „Senden?“ für TB-159.
+
+### Block 6 — Freigaben und Entscheide des Betreibers in diesem Chat
+- Ordner-Freigabe ~/trading-bot: war schon erteilt („alreadyGranted“, 20:43).
+- Karte nach 21:00 zu TB-159: „Agent 1, 3 und 4 (Recommended)“ · „Schalterdatei (Recommended)“.
+- Karte zum Umzug: „Nach den Helfern umziehen (Recommended)“.
+- Browser der Claude-App: einmalige Freigabe für `http://100.106.38.8:8787` (Laden scheiterte, Tailscale aus).
+- Vorgaben ohne Widerspruch: F1–F9 und E1–E21 zu TB-158; F1–F16 zu TB-159; „TB-159 vor TB-158“; Schalterdatei vorhanden, aber nicht lesbar ⇒ Agent aus (F10).
+
+### Block 7 — Fehler dieses Chats und die Regeln daraus (noch ohne Nummer)
+- **Dateizeiten über die Brücke sind UTC:** dem Betreiber „seit 18:50 läuft auf dem Mac nichts“ gesagt (`ls`/`find` in der VM), richtig 20:50 Ortszeit, die Jobs liefen. Berichtigt. ⇒ Dateizeiten über die Brücke nur mit `TZ=Europe/Berlin ls`/`date -r`.
+- **Falsche Adresse geprüft:** Dashboard auf `127.0.0.1:8787` gesucht, obwohl der Server an die Tailscale-Adresse aus `.env` (`DASHBOARD_HOST`) bindet. ⇒ Vor einer Prüfung die Adresse an der Konfiguration messen.
+- **TB-158 brauchte vier Berichtigungsrunden** (Fehler Nr. 72 in neuer Gestalt): jede Runde an den Sonderzweigen (zweite Sitzung im Repo, Kennung belegt, rc 3) öffnete eine neue Lücke. ⇒ Vor dem Bau die Zweige als Tabelle entscheiden (Zweig × was geschrieben × was committet × Ende).
+- **Kernlektüre in einem Aufruf über 60 KB** (ARBEITSWEISE Teil 2, UMZUG 3, Fassung 2): die Ausgabe wurde in eine Datei umgeleitet und in drei Teilen gelesen. ⇒ Teil 2 von ARBEITSWEISE 0 für sich lesen.
+- **Gelernt:** Zwei Aufträge parallel bauen und gegenlesen trägt; Helferaufträge per `sed` aus dem Vorgänger (gen_E158/159.py); Berichtigungen über denselben Bau-Helfer per SendMessage; Platz in der VM: Kopien ohne Datenordner (BAU159 füllte einmal die Platte, selbst aufgeräumt).
+- **Ampel:** 92 895 (20:45) → 114 165 → 143 016 → 162 087 (21:10) → 186 545 → 193 211 → 202 140 (21:38) → 217 214 (21:45) → 240 477 → rund 250 000 beim Umzug (Uhrzeiten nur, wo gemessen).
+- **Helfer** (Stempel des Auftrags): BAU158 20:45, GEGEN158_Q 21:03, GEGEN158_L 21:03, GEGEN158_E 21:16, GEGEN158_E2 21:29, GEGEN158_E3 21:46, BAU159 20:45, GEGEN159_Q 21:38, GEGEN159_L 21:38.
+
+### Block 8 — Zwischengelagert
+Unter `logs/steuernder_chat/`: `2026-10-13_sc_opus_umzug14.tar.gz` (`$HOME/sc/` ohne Helfer-Arbeitsordner; nach `$HOME/` auspacken; Grösse und md5 im Zusatz) · `2026-10-13_NOTIZEN_chat24.md` · `2026-10-13_EROEFFNUNG_24.txt` · `2026-10-13_STARTSATZ_24.txt`.
+
+### Block 9 — Eröffnung
+In Ablage und Repo ersetzt: `EROEFFNUNG_STEUERNDER_CHAT.md` (Fassung 24, md5 gleich; Wortlaut `logs/steuernder_chat/2026-10-13_EROEFFNUNG_24.txt`). Startsatz wörtlich (Datei `2026-10-13_STARTSATZ_24.txt`):
+
+```
+Opus Trading Bots-13.10.2026 b
+
+Dieser Chat heißt Opus Trading Bots-13.10.2026 b. Lies zuerst nur die Datei projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md, in einem Aufruf für sich und nichts gleichzeitig, und folge ihr.
+```
+
+**Zusatz 22:06 — Ergebnis des Umzugs (steuernder Chat 24 selbst über Chrome, nach Fassung 2):** Neuer Chat https://claude.ai/chat/b5c2992d-310b-4906-8ef3-a38eaa2b9196 im Projekt „Trading Bots“. Modell: im Feld stand „Fable 5.1 Hoch“ ⇒ über das Modellmenü auf „Opus 5.5“ gestellt, abgelesen „Opus 5.5 Hoch“. Startsatz per Einfügen, Vergleich (normalisiert 218 Zeichen, SHA-256 gleich) und Senden in einem Skript-Aufruf; zurückgelesen: die Nachricht beginnt mit „Opus Trading Bots-13.10.2026 b“. **Name:** Die App setzte „Opus Trading Bots“ ⇒ umbenannt über den Titel, abgelesen „Opus Trading Bots-13.10.2026 b“. Angeheftet: b5c2992d. Gelöst: /chat/b4d8135e-7280-49d1-9d50-7ee31c96e73d (Chat 24). Angeheftet sind jetzt: f765ca3b, 851d7498, 90288c60, b4f25908, 22be6b84, b5c2992d, 38c4fdea, 539dc5cd. Archiv `2026-10-13_sc_opus_umzug14.tar.gz`: 59 911 853 B, md5 `b968985661f500027c1d2e60252c9190` (ohne helfer_*, tb154–tb157, uebernahme20–22, umzug10–13; die stehen in umzug13 und davor). **⚠️ Erste Antwort des neuen Chats:** Er kam nicht an die Eröffnung („Die Verbindung zum Rechner ist also im Moment nicht aktiv“) und bat, den Chat in der Claude-Desktop-App auf dem Mac zu öffnen und dort kurz zu schreiben (z. B. „weiter“) — die Aufgabe liegt beim Betreiber; der alte Chat hat dort nichts gesendet. **Fehler von Chat 24:** Nach dem Umbenennen klickte ich auf die alte Koordinate des Titelmenüs; der Titel war länger geworden, der Klick öffnete wieder das Umbenennfeld (Wert unverändert), mit Escape verlassen, nichts geändert. ⇒ Nach jeder Änderung im Kopf die Koordinaten neu messen. Dieser Zusatz steht nur im Repo, nicht in der Ablage.
+
+## Nachtrag 13.10.2026, ausgelegt 22:48 — TB-159 (Agenten-Schalter)
+
+Steuernder Chat 25 („Opus Trading Bots-13.10.2026 b“).
+
+- **TB-159 ausgelegt:** `docs/auftraege/MAC_TB-159_agenten_aus.md`, md5 `06a38a923ecae519fdf50298a14f5af3`; Zeiger von TB-157 auf TB-159. Entscheide `sc/tb159_ENTSCHEIDE.md` mit NACHTRAG und NACHTRAG2.
+- **Weg zur Fassung:** BAU159 in drei Runden · GEGEN159_Q und _L (Runde 1) · enger Gegenleser GEGEN159_E (Runden 2 und 3, Vergleich gegen `bau_vor_runde2/`; A1 Abbruchweg bei scheiterndem Befehl in 0c/0d/8a, B1 `timeout`) · Runde 4 (A1, B1) · enger Gegenleser GEGEN159_E2.
+- **Betreiber 13.10.2026, 22:32–22:36 (Karte):** Reihenfolge „Handel zuerst“ (TB-159, TB-158, Regelwerk-Nachtrag zurückgestellt, dann Rang 1 und parallel S-B1-Vorbereitung); schlanke Arbeitsweise: keine neuen Ablaufregeln ausser nach echtem Schaden, Gegenleser nur für Code an Handel, Daten oder Broker, kurze Übergaben (1–2 KB), seltener umziehen. Eintrag ins Regelwerk mit TB-158.
