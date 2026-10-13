@@ -1,0 +1,13 @@
+# Abgeschaltete Agenten (TB-159, 13.10.2026)
+#
+# Je Zeile ein Name: agent1 (Einordnung der neun Tagesberichte),
+# agent3 (Marktkontext per Web-Suche), agent4 (Einordnung der Wochen-Mail).
+# Ein Agent, der hier steht, ruft die Claude-API nicht auf; sein Bericht
+# geht ohne KI-Teil raus. Alles hinter # ist Kommentar.
+#
+# So schaltest du einen Agent wieder ein: die Zeile mit seinem Namen löschen
+# (oder ein # davorsetzen), speichern, committen. Fehlt diese Datei ganz,
+# laufen alle drei Agenten wie vor TB-159.
+agent1
+agent3
+agent4

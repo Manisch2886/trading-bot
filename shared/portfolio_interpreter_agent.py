@@ -35,7 +35,7 @@ zurueck - der Rest der E-Mail (siehe weekly_portfolio_email.py) funktioniert
 dann trotzdem wie gewohnt, nur ohne die KI-Einordnung.
 """
 
-from claude_client import call_claude, MODEL_SONNET
+from claude_client import call_claude, MODEL_SONNET, agent_abgeschaltet
 from empfehlung_format import PROMPT_BAUSTEIN_HINWEIS
 
 SYSTEM_PROMPT = """Du bist ein nuechterner, sachlicher Portfolio-Analyst.
@@ -133,6 +133,9 @@ def generate_portfolio_interpretation(overview_text: str) -> str:
     API-Key gesetzt) - identisches Fallback-Verhalten wie bei den anderen
     drei Agenten.
     """
+    if agent_abgeschaltet("agent4"):
+        return ""
+
     if not overview_text or not overview_text.strip():
         return ""
 

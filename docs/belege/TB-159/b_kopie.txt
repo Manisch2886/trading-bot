@@ -1,0 +1,2 @@
+kopie: 1101 verfolgte Dateien ohne docs/, data/, snapshots/, 27438990 B, nach /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T//tb159_kopie
+rc 0

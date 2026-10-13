@@ -1,0 +1,10 @@
+A1 config/agenten_aus.txt · GLEICH
+A2 shared/test_agenten_aus.py · GLEICH
+A3 shared/claude_client.py · GLEICH
+A4a shared/daily_interpreter.py · GLEICH
+A4b shared/daily_interpreter.py · GLEICH
+A5a shared/market_context_agent.py · GLEICH
+A5b shared/market_context_agent.py · GLEICH
+A6a shared/portfolio_interpreter_agent.py · GLEICH
+A6b shared/portfolio_interpreter_agent.py · GLEICH
+rc 0

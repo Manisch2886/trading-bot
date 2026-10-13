@@ -1,0 +1,13 @@
+     134 shared/claude_client.py
+      60 shared/daily_interpreter.py
+      84 shared/market_context_agent.py
+     174 shared/portfolio_interpreter_agent.py
+     496 docs/projektfuehrung/BACKLOG.md
+   10953 docs/projektfuehrung/JOURNAL.md
+   11901 total
+MD5 (shared/claude_client.py) = fd034c968454682e81366182ceb9c4f5
+MD5 (shared/daily_interpreter.py) = f17b0f1375090ba91ac3fbab3f871d70
+MD5 (shared/market_context_agent.py) = c581ad8324e241cbc04fcdbffdcd6f95
+MD5 (shared/portfolio_interpreter_agent.py) = 7d899df8670e80d9d2242b8f48bbf45b
+MD5 (docs/projektfuehrung/BACKLOG.md) = fd096b8e4cb97315f1b9ffd2bbc3041c
+MD5 (docs/projektfuehrung/JOURNAL.md) = 84b2246ef95ad1616b1ded56287b3ae9

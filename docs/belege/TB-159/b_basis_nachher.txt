@@ -1,0 +1,8 @@
+Lauf nachher · /Users/jaquelineloffler/trading-bot/trading-env/bin/python3 · 13.10.2026 22:51:32 · shared/test_empfehlung_format.py · rc 0 · 0.6 s · [OK ] 70 · [FEHLER] 0 · letzte Zeile: 70/70 Pruefungen bestanden.
+rc 0
+Lauf nachher · /Users/jaquelineloffler/trading-bot/trading-env/bin/python3 · 13.10.2026 22:51:34 · shared/test_agent2_kapitalmass.py · rc 0 · 0.5 s · [OK ] 0 · [FEHLER] 0 · letzte Zeile: 34/34 Pruefungen bestanden.
+rc 0
+Lauf nachher · /Users/jaquelineloffler/trading-bot/trading-env/bin/python3 · 13.10.2026 22:51:40 · shared/test_agent2_zielfunktion.py · rc 0 · 4.9 s · [OK ] 41 · [FEHLER] 0 · letzte Zeile: ==============================================================================
+rc 0
+Lauf nachher · /Users/jaquelineloffler/trading-bot/trading-env/bin/python3 · 13.10.2026 22:51:40 · shared/test_agenten_aus.py · rc 0 · 0.1 s · [OK ] 30 · [FEHLER] 0 · letzte Zeile: Alle 30 Pruefungen bestanden.
+rc 0

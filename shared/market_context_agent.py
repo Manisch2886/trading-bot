@@ -18,7 +18,7 @@ Wird bewusst nur EINMAL TAEGLICH aufgerufen (nicht bei jedem
 Forward-Test-Lauf), um Kosten und API-Anfragen ueberschaubar zu halten.
 """
 
-from claude_client import call_claude
+from claude_client import call_claude, agent_abgeschaltet
 
 SYSTEM_PROMPT = """Du bist ein neutraler Marktbeobachter. Du bekommst eine
 Liste von Symbolen (Kryptowaehrungen oder Aktien) und sollst kurz
@@ -48,6 +48,9 @@ def get_market_context(symbols: list, context_label: str = "") -> str:
              idealerweise nur die Symbole mit aktuell offenen Positionen
              oder neuen Signalen, nicht die komplette Watchlist).
     """
+    if agent_abgeschaltet("agent3"):
+        return ""
+
     if not symbols:
         return ""
 

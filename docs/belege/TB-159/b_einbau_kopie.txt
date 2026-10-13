@@ -1,0 +1,17 @@
+A1 config/agenten_aus.txt neu · 13 Zeilen
+A2 shared/test_agenten_aus.py neu · 163 Zeilen
+A3 shared/claude_client.py danach · Anker Vorkommen 1 · Z. 31
+A4a shared/daily_interpreter.py ersetzen · Anker Vorkommen 1 · Z. 15
+A4b shared/daily_interpreter.py davor · Anker Vorkommen 1 · Z. 48
+A5a shared/market_context_agent.py ersetzen · Anker Vorkommen 1 · Z. 21
+A5b shared/market_context_agent.py davor · Anker Vorkommen 1 · Z. 51
+A6a shared/portfolio_interpreter_agent.py ersetzen · Anker Vorkommen 1 · Z. 38
+A6b shared/portfolio_interpreter_agent.py davor · Anker Vorkommen 1 · Z. 136
+Soll numstat config/agenten_aus.txt 13 / 0
+Soll numstat shared/claude_client.py 32 / 0
+Soll numstat shared/daily_interpreter.py 4 / 1
+Soll numstat shared/market_context_agent.py 4 / 1
+Soll numstat shared/portfolio_interpreter_agent.py 4 / 1
+Soll numstat shared/test_agenten_aus.py 163 / 0
+einbau: 6 Dateien geschrieben
+rc 0

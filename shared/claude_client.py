@@ -30,6 +30,38 @@ import anthropic
 MODEL_SONNET = "claude-sonnet-5"
 MODEL_HAIKU = "claude-haiku-4-5-20251001"
 
+# TB-159: Schalterdatei fuer die bewertenden Agenten 1, 3 und 4. Je Zeile ein
+# Name (agent1, agent3, agent4), '#' leitet einen Kommentar ein. Steht ein
+# Agent darin, ruft er die API nicht auf und gibt zurueck, was er auch bei
+# einem fehlgeschlagenen Aufruf zurueckgibt (leerer Text) - der Bericht geht
+# dann ohne KI-Teil raus. Wieder einschalten: die Zeile in der Datei loeschen.
+AGENTEN_AUS_DATEI = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                                 "config", "agenten_aus.txt")
+
+
+def agent_abgeschaltet(name: str, pfad: str = None) -> bool:
+    """
+    True, wenn `name` in der Schalterdatei steht - dann KEIN API-Aufruf.
+    Fehlt die Datei oder steht der Name nicht darin: False, der Agent
+    laeuft wie bisher. Liest ausschliesslich die Schalterdatei.
+    Ist die Datei vorhanden, aber nicht lesbar: True (lieber kein Aufruf
+    als ein ungewollter), mit einer Warnung im Log.
+    """
+    datei = AGENTEN_AUS_DATEI if pfad is None else pfad
+    nummer = name[len("agent"):] if name.startswith("agent") else name
+    try:
+        with open(datei, encoding="utf-8") as f:
+            zeilen = f.read().splitlines()
+    except FileNotFoundError:
+        return False
+    except (OSError, UnicodeDecodeError) as e:
+        print(f"Warnung: config/agenten_aus.txt nicht lesbar ({e}) - Agent {nummer} bleibt aus")
+        return True
+    if name not in {z.split("#", 1)[0].strip() for z in zeilen}:
+        return False
+    print(f"Agent {nummer} abgeschaltet (config/agenten_aus.txt)")
+    return True
+
 
 def get_client():
     """

@@ -12,7 +12,7 @@ Antwort zurueck - der Rest der E-Mail funktioniert dann trotzdem wie
 gewohnt (nur ohne die Zusatz-Einordnung).
 """
 
-from claude_client import call_claude, MODEL_HAIKU
+from claude_client import call_claude, MODEL_HAIKU, agent_abgeschaltet
 from empfehlung_format import PROMPT_BAUSTEIN_HINWEIS
 
 # Der Hinweis-Baustein wird NICHT hier abgetippt, sondern aus
@@ -45,6 +45,9 @@ def generate_interpretation(strategy_name: str, summary_text: str) -> str:
     Gibt einen kurzen Interpretations-Text zurueck, oder einen leeren
     String, falls die Anfrage fehlschlaegt (z.B. kein API-Key gesetzt).
     """
+    if agent_abgeschaltet("agent1"):
+        return ""
+
     user_message = f"Strategie: {strategy_name}\n\nTages-Zusammenfassung:\n{summary_text}"
 
     # max_tokens von 300 auf 500 angehoben: der Prompt kann jetzt zusaetzlich
