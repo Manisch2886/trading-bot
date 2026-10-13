@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-154** | `docs/auftraege/MAC_TB-154_register_fable_10a.md` | Registerauftrag zu Fables Antwort 10.10.a: Abschnitt 57 (R90 bis R93, dazu 57.5 und 57.6), 11 Marken an 9 Stellen, `BACKLOG.md`, Registerkopie, Index, Dialog-Index, Journal; Schritt 0 committet `UEBERGABE.md` und `EROEFFNUNG_STEUERNDER_CHAT.md`; Start über den Sitzungswächter |
+| **TB-155** | `docs/auftraege/MAC_TB-155_waechter_fensterinhalt.md` | Sitzungswächter schreibt den Fensterinhalt ins Log: `starte_sitzung.sh` (Fensterzeilen, Kontoregel, Anmeldung), `test_fensterinhalt.sh` neu, Probe über den echten Weg, `LIESMICH.md`, `BACKLOG.md`, Journal; Schritt 0 committet `UEBERGABE.md` und `EROEFFNUNG_STEUERNDER_CHAT.md`; Start über den Sitzungswächter |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
