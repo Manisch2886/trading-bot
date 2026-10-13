@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/d4_journal.txt
+Bytes: 481 · Zeilen: 10 · md5: 643fb2b8a61bfd90fe7c5b01c56e7852
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `PY WZ journal docs/belege/TB-156/d4_journal_block.md > docs/belege/TB-156/d4_journal.txt 2>&1`
+Geschrieben: 13.10.2026, 12:31:51 (+0200) von WZ kopf (TB-156)

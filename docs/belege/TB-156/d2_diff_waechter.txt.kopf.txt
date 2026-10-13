@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/d2_diff_waechter.txt
+Bytes: 8299 · Zeilen: 160 · md5: 09b35e6881c8b2ce84713542d8d87b8a
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `git diff ⟨S0⟩ HEAD -- docs/werkzeuge/sitzungswaechter/starte_sitzung.sh > docs/belege/TB-156/d2_diff_waechter.txt`
+Geschrieben: 13.10.2026, 12:30:22 (+0200) von WZ kopf (TB-156)

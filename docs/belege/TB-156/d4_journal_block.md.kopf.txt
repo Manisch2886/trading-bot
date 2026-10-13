@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/d4_journal_block.md
+Bytes: 1714 · Zeilen: 19 · md5: 9c32f30fcffe5ac88c7e1f148a56b27e
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): Write (Claude Code): Wortlaut aus Anhang B, nur die Stellen `<…>` ersetzt; nach `WZ journal` mit rc 1 gerichtet mit Edit (Claude Code)
+Geschrieben: 13.10.2026, 12:31:50 (+0200) von WZ kopf (TB-156)

@@ -1,0 +1,15 @@
+bash -n rc 0: ja
+Test rc 0 · Test Fensterinhalt: 113 ok, 0 FEHL: ja
+'do script' in Befehlszeilen 1: ja
+'--permission-mode manual' in Befehlszeilen 1: ja
+kein offener Platzhalter (der Ersatztext der Kontozeile zaehlt nicht): ja
+keystroke, System Events, ' in window' 0: ja
+bash-4-Mittel 0: ja
+'tail -n 12' 1, 'tail -n 8' 0: ja
+Marken ANFANG und ENDE je 1: ja
+jedes neue Stueck genau einmal: ja
+neue Log-Zeilen in Skript und LIESMICH: ja
+jede Einfuegung genau einmal: ja
+Test gleich dem Anhang: ja
+Kontoregel: Skript, Test und Werkzeug nennen dieselben 26 Merkmale: ja
+rc 0

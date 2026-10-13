@@ -1,0 +1,10 @@
+Ausgang docs/projektfuehrung/JOURNAL.md · 10910 Zeilen · 720487 B · md5 0ec0e4480a8adbb2b2cb14f83ab7a550
+Anker genau einmal: ja
+Kopfzeile '## ES — TB-156: …': ja
+'### Was gemessen ist', '### Was offen bleibt' je einmal: ja
+kein '---', keine zweite '## '-Zeile: ja
+Schlusszeile '*Geschrieben … von der Mac-Sitzung TB-156. Quellenvermerk: siehe Kopf.*': ja
+Block noch nicht im Journal: ja
+keine offene Stelle '<…>' im Block: ja
+Kennung ES · Zeilen + 22 (entfernt 0)
+rc 0

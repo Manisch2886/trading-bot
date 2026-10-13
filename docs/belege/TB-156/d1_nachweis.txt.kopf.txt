@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/d1_nachweis.txt
+Bytes: 573 · Zeilen: 15 · md5: e961a52dd1b1cd4a463201d8ab45b4fa
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `PY WZ nachweis > docs/belege/TB-156/d1_nachweis.txt 2>&1`
+Geschrieben: 13.10.2026, 12:30:18 (+0200) von WZ kopf (TB-156)
