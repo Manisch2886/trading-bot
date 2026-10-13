@@ -47,9 +47,15 @@ sage "----- Waechter geweckt -----"
 #    und der Satz ging samt Zeilenende in eine bash-Shell.
 # ⛔ Der Waechter legt KEINEN Satz mehr in ein Fenster, schickt nichts ab und
 #    drueckt keine Taste. Den Fensterinhalt LIEST er nur, ueber Terminal selbst.
-# ⛔ Ins Log gehen hoechstens die letzten 8 Zeilen (je 160 Zeichen) des NEU
-#    GEOEFFNETEN Fensters, und nur, wenn die Pruefung scheitert. Sonst gilt der
-#    Kopf dieser Datei: keine Umgebungsvariablen, Schluessel, Dateiinhalte.
+# ⛔ SEIT TB-155 (Schranke 3 neu): Ins Log gehen hoechstens die letzten 12
+#    nicht-leeren Zeilen (je 160 Zeichen) des NEU GEOEFFNETEN Fensters - bei
+#    jeder ⛔-Zeile der Fensterpruefung UND bei ⭐ EINGABEBEREIT. Jede Zeile mit
+#    einem Merkmal der Kontoregel (konto_ersetzen, Gross/Klein egal) wird vorher
+#    durch "<<entfernt: Kontozeile>>" ersetzt, "/Users/<name>" durch "~".
+#    ⚠️ Die Kontoregel ist eine Merkmalliste, kein Beweis: Ein Name ohne Merkmal
+#    oder ein umbrochener Mailrest bleibt stehen. Dazu zwei eigene Zeilen:
+#    "Anmeldung: …" und "Ablaufwarnung: …". Sonst gilt der Kopf dieser Datei:
+#    keine Umgebungsvariablen, Schluessel, Dateiinhalte.
 # ⚠️ /bin/bash des Macs ist 3.2: nur Mittel, die es dort gibt.
 # ⚠️ Solange ein Wert mit <<M…>> dasteht, oeffnet der Waechter KEIN Fenster.
 # --------------------------------------------------------------------------
@@ -174,17 +180,101 @@ fenster_oeffnen() {
     return 0
 }
 
-# ⛔ Begrenzt: hoechstens 8 Zeilen, je 160 Zeichen, nur vom neu geoeffneten Fenster.
+# >>> TB-155 FENSTERINHALT ANFANG (test_fensterinhalt.sh liest genau diesen Block)
+# ⛔ Hoechstens 12 nicht-leere Zeilen, je 160 Zeichen, nur vom neu geoeffneten
+#    Fenster, Kontozeilen ersetzt. Jede Funktion liest den Fensterinhalt von der
+#    Standardeingabe und schreibt nur auf die Standardausgabe.
+MERKMAL_ABO="Claude Max"
+MERKMAL_API="API Usage Billing"
+MERKMAL_ABGEMELDET="Not logged in"
+MERKMAL_ABLAUF="expire"
+ERSATZ_KONTO="<<entfernt: Kontozeile>>"
+
+# Ein Wort: frage | eingabezeile | nichts. Die Frage geht vor (wie seit TB-144).
+fenster_lage() {
+    local t
+    t=$(cat)
+    case "$t" in
+        *"$MERKMAL_FRAGE"*)        echo "frage" ;;
+        *"$MERKMAL_EINGABEZEILE"*) echo "eingabezeile" ;;
+        *)                         echo "nichts" ;;
+    esac
+}
+
+# Abo | API | nicht angemeldet | unklar. Nicht angemeldet geht vor API, API vor Abo.
+anmeldung_einordnen() {
+    local t
+    t=$(cat)
+    case "$t" in
+        *"$MERKMAL_ABGEMELDET"*) echo "nicht angemeldet" ;;
+        *"$MERKMAL_API"*)        echo "API" ;;
+        *"$MERKMAL_ABO"*)        echo "Abo" ;;
+        *)                       echo "unklar" ;;
+    esac
+}
+
+# Urteil fuer ein Fenster MIT Eingabezeile: bereit | nicht angemeldet | api.
+# Nur "bereit" (Abo oder unklar) heisst EINGABEBEREIT.
+eingabe_urteil() {
+    case "$(anmeldung_einordnen)" in
+        "nicht angemeldet") echo "nicht angemeldet" ;;
+        API)                echo "api" ;;
+        *)                  echo "bereit" ;;
+    esac
+}
+
+# Kontoregel: eine MERKMALLISTE, kein Beweis - ein Name ohne Merkmal oder ein
+# umbrochener Mailrest bleibt stehen. Vergleich ohne Gross/Klein (bash 3.2: ueber
+# tr); in jeder Zeile wird "/Users/<name>" zu "~" (Name bis zum naechsten "/").
+konto_ersetzen() {
+    local z k
+    LC_ALL=C sed 's|/Users/[^/]*|~|g' | while IFS= read -r z || [ -n "$z" ]; do
+        k=$(printf '%s\n' "$z" | LC_ALL=C tr 'A-Z' 'a-z')
+        case "$k" in
+            *"@"*|*"claude max"*|*"api usage billing"*|*"claude pro"*|*"claude team"*|*"claude enterprise"*|*"organization"*|*"organisation"*|*"welcome back"*|*"logged in as"*|*"account"*|*"konto"*|*"sk-"*|*"api key"*|*"api-key"*|*"token"*|*"secret"*|*"password"*|*"passwort"*|*"api_key"*|*"apikey"*|*"bearer "*|*"ghp_"*|*"github_pat_"*|*"xoxb-"*|*"aws_secret"*)
+                printf '%s\n' "$ERSATZ_KONTO" ;;
+            *)  printf '%s\n' "$z" ;;
+        esac
+    done
+}
+
+# Schnitt auf 160 ZEICHEN. LC_ALL, damit cut auch unter launchd (dort ohne
+# Sprachumgebung) Zeichen zaehlt und keines zerschneidet: ERSCHLOSSEN, nur am
+# Mac messbar (der Test misst es: "Schnitt: 202 Striche").
+schnitt() {
+    LC_ALL=en_US.UTF-8 cut -c1-160
+}
+
+# Die erste Zeile mit der Ablaufwarnung (Kontozeile ersetzt); leer, wenn keine.
+ablaufwarnung() {
+    tr '\r' '\n' | grep -i -- "$MERKMAL_ABLAUF" | head -n 1 | konto_ersetzen | sed 's/^[[:space:]]*//' | schnitt
+}
+
+# Die letzten 12 Zeilen, die NACH Kontoregel und Schnitt nicht leer sind. Die
+# Kontoregel laeuft vor dem Schnitt (ein "@" hinter Spalte 160 zaehlt).
+fenster_ausschnitt() {
+    tr '\r' '\n' | grep -v '^[[:space:]]*$' | konto_ersetzen | schnitt | LC_ALL=C grep -v '^[[:space:]]*$' | tail -n 12
+}
+# <<< TB-155 FENSTERINHALT ENDE
+
+# Schreibt Anmeldung, Ablaufwarnung und den Ausschnitt ins Log. $1 = Fensterinhalt.
 fensterzeilen() {
-    local z
-    sage "   Letzte Zeilen von Fenster $FENSTER (hoechstens 8, je 160 Zeichen):"
-    printf '%s\n' "$1" | tr '\r' '\n' | grep -v '^[[:space:]]*$' | tail -n 8 | cut -c1-160 | while IFS= read -r z; do
+    local z w
+    case "$1" in *[![:space:]]*) : ;; *)
+        sage "   Fensterinhalt leer oder nicht lesbar: keine Anmeldung, keine Ablaufwarnung, keine Zeilen."
+        return 0 ;;
+    esac
+    sage "   Anmeldung: $(printf '%s\n' "$1" | anmeldung_einordnen)"
+    w=$(printf '%s\n' "$1" | ablaufwarnung)
+    if [ -n "$w" ]; then sage "   Ablaufwarnung: ja | $w"; else sage "   Ablaufwarnung: nein"; fi
+    sage "   Letzte Zeilen von Fenster $FENSTER (hoechstens 12, je 160 Zeichen, Kontozeilen ersetzt):"
+    printf '%s\n' "$1" | fenster_ausschnitt | while IFS= read -r z; do
         sage "   | $z"
     done
 }
 
 # V3: Pruefung statt Wartezeit. $1 = Kennung fuers Log (TB-Nummer oder PROBE).
-# Rueckgabe: 0 eingabebereit · 3 Startfrage · 4 keine Eingabezeile.
+# Rueckgabe: 0 eingabebereit · 3 Startfrage · 4 keine Eingabezeile · 6 nicht angemeldet · 7 API-Abrechnung (6, 7 seit TB-155).
 warte_auf_eingabezeile() {
     local kenn="$1" summe=0 lesung=0 gelesen=0 bereit=0 inhalt="" s
     for s in $STUFEN; do
@@ -193,15 +283,26 @@ warte_auf_eingabezeile() {
         lesung=$((lesung+1))
         inhalt=$(fenster_lesen) || { inhalt=""; bereit=0; continue; }
         gelesen=$((gelesen+1))
-        case "$inhalt" in
-            *"$MERKMAL_FRAGE"*)
+        case "$(printf '%s\n' "$inhalt" | fenster_lage)" in
+            frage)
                 sage "⛔ STARTFRAGE ($kenn): Fenster $FENSTER zeigt nach $summe s eine Frage (\"$MERKMAL_FRAGE\"). Die Sitzung ist NICHT eingabebereit."
                 fensterzeilen "$inhalt"
                 return 3 ;;
-            *"$MERKMAL_EINGABEZEILE"*)
+            eingabezeile)
                 bereit=$((bereit+1))
                 if [ "$bereit" -ge 2 ]; then
+                    case "$(printf '%s\n' "$inhalt" | eingabe_urteil)" in
+                        "nicht angemeldet")
+                            sage "⛔ NICHT ANGEMELDET ($kenn): Fenster $FENSTER zeigt nach $summe s die Eingabezeile, nennt aber \"$MERKMAL_ABGEMELDET\" (Lesung $lesung). Die Sitzung ist NICHT eingabebereit."
+                            fensterzeilen "$inhalt"
+                            return 6 ;;
+                        api)
+                            sage "⛔ API-ABRECHNUNG ($kenn): Fenster $FENSTER zeigt nach $summe s die Eingabezeile, nennt aber \"$MERKMAL_API\" (Lesung $lesung). Die Sitzung liefe ueber API-Abrechnung statt ueber das Abo und ist NICHT eingabebereit."
+                            fensterzeilen "$inhalt"
+                            return 7 ;;
+                    esac
                     sage "⭐ EINGABEBEREIT ($kenn): Fenster $FENSTER, Eingabezeile steht, keine Frage offen (nach $summe s, Lesung $lesung). ⚠️ KEIN SATZ IM FENSTER."
+                    fensterzeilen "$inhalt"
                     return 0
                 fi ;;
             *)  bereit=0 ;;

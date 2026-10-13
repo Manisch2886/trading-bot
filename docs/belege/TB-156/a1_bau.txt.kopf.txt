@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/a1_bau.txt
+Bytes: 4891 · Zeilen: 127 · md5: b2f88839f11a2509510be3a35caa5b35
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `PY WZ waechter > docs/belege/TB-156/a1_bau.txt 2>&1`
+Geschrieben: 13.10.2026, 12:28:44 (+0200) von WZ kopf (TB-156)
