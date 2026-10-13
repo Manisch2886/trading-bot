@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/b_probe.txt
+Bytes: 647 · Zeilen: 1 · md5: 7bb8420812ddfe4fc786dc24ef6d47e7
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): Write, danach Edit (Claude Code): je Lauf eine Zeile `PROBE: …`
+Geschrieben: 13.10.2026, 12:30:01 (+0200) von WZ kopf (TB-156)
