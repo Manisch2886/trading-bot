@@ -1,0 +1,13 @@
+    2574 docs/projektfuehrung/ARBEITSWEISE.md
+     439 docs/projektfuehrung/UMZUG.md
+     488 docs/projektfuehrung/BACKLOG.md
+     402 docs/werkzeuge/sitzungswaechter/LIESMICH.md
+      54 docs/ERGEBNIS_TB-156_waechter_fensterinhalt.md
+    4019 docs/projektfuehrung/UEBERGABE.md
+    7976 total
+MD5 (docs/projektfuehrung/ARBEITSWEISE.md) = 7e95d77a7a85126314c7bcb922303cc0
+MD5 (docs/projektfuehrung/UMZUG.md) = 5694ef86f45ce8527642bf8c614626a9
+MD5 (docs/projektfuehrung/BACKLOG.md) = b55d5992a7b88ff36da120ce80b1bd00
+MD5 (docs/werkzeuge/sitzungswaechter/LIESMICH.md) = 011b0a9759b2e774deb850d2211a395c
+MD5 (docs/ERGEBNIS_TB-156_waechter_fensterinhalt.md) = 56beb22e19d73ca77e89aa70aed4477b
+MD5 (docs/projektfuehrung/UEBERGABE.md) = d2c799505b73a032d815fc973c5aced8

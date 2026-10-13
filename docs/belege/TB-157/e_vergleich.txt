@@ -1,0 +1,34 @@
+F55 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F56 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F57 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F58 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F59 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F60 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F61 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F62 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F63 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F64 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F65 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F66 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F67 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F68 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F69 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F70 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F71 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F72 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+F73 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+L1 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+C1 · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+P9a · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+P9b · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+P9c · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+P9e · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+P9f · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+X1 · docs/werkzeuge/sitzungswaechter/LIESMICH.md · Vorkommen 1 · GLEICH
+X2 · docs/projektfuehrung/BACKLOG.md · Vorkommen 1 · GLEICH
+U1 · docs/projektfuehrung/UMZUG.md · Vorkommen 1 · GLEICH
+B1 · docs/projektfuehrung/BACKLOG.md · Vorkommen 1 · GLEICH
+E1 · docs/ERGEBNIS_TB-156_waechter_fensterinhalt.md · Vorkommen 1 · GLEICH
+P9d · docs/projektfuehrung/ARBEITSWEISE.md · Vorkommen 1 · GLEICH
+Gesamt: alle zeichengleich, je genau einmal
+rc 0

@@ -1,0 +1,44 @@
+MD5 (docs/projektfuehrung/ARBEITSWEISE.md) = 881739c9856a810d53373d6f32d1f742
+MD5 (docs/projektfuehrung/UMZUG.md) = ed0c881aba18239fd4fe7adcb3174d6c
+MD5 (docs/projektfuehrung/BACKLOG.md) = fd096b8e4cb97315f1b9ffd2bbc3041c
+MD5 (docs/werkzeuge/sitzungswaechter/LIESMICH.md) = f226a2db9305c70f69edc605e73b26fb
+MD5 (docs/ERGEBNIS_TB-156_waechter_fensterinhalt.md) = 3ccfba600adec6f513857ab82fa08a90
+F55 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 60 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F56 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 161 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F57 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 183 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F58 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 373 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F59 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 232 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F60 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 161 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F61 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 161 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F62 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 373 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F63 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 60 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F64 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 373 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F65 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 373 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F66 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 60 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F67 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 373 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F68 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 161 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F69 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 60 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F70 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 373 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F71 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 373 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F72 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 373 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+F73 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 289 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+L1 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 232 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+C1 · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 138 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+P9a · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 232 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+P9b · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 60 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+P9c · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 232 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+P9e · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 232 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+P9f · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 232 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+X1 · docs/werkzeuge/sitzungswaechter/LIESMICH.md · Anker Z. 30 · ersetzen · Alt 0 · Neu 1 · ok
+X2 · docs/projektfuehrung/BACKLOG.md · Anker Z. 474 · ersetzen · Alt 0 · Neu 1 · ok
+U1 · docs/projektfuehrung/UMZUG.md · Anker Z. 264 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+B1 · docs/projektfuehrung/BACKLOG.md · Anker Z. 485 · vor · Zeilen 7 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+E1 · docs/ERGEBNIS_TB-156_waechter_fensterinhalt.md · Anker Z. - · ende · Zeilen 7 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+P9d · docs/projektfuehrung/ARBEITSWEISE.md · Anker Z. 88 · nach · Zeilen 1 · erste Zeile schon 1 · Anker in neuen Texten 0 · ok
+ABGEWIESEN, nichts geschrieben: schon eingefuegt: F55, F56, F57, F58, F59, F60, F61, F62, F63, F64, F65, F66, F67, F68, F69, F70, F71, F72, F73, L1, C1, P9a, P9b, P9c, P9e, P9f, X1, X2, U1, B1, E1, P9d
+rc 2
+MD5 (docs/projektfuehrung/ARBEITSWEISE.md) = 881739c9856a810d53373d6f32d1f742
+MD5 (docs/projektfuehrung/UMZUG.md) = ed0c881aba18239fd4fe7adcb3174d6c
+MD5 (docs/projektfuehrung/BACKLOG.md) = fd096b8e4cb97315f1b9ffd2bbc3041c
+MD5 (docs/werkzeuge/sitzungswaechter/LIESMICH.md) = f226a2db9305c70f69edc605e73b26fb
+MD5 (docs/ERGEBNIS_TB-156_waechter_fensterinhalt.md) = 3ccfba600adec6f513857ab82fa08a90
