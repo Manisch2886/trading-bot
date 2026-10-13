@@ -1,0 +1,126 @@
+Ausgang docs/werkzeuge/sitzungswaechter/starte_sitzung.sh · 622 Zeilen · 28755 B · md5 464ac93c53829935e479c5f14121c574
+starte_sitzung.sh · S1 Kopf · Anker 1 (Soll 1) · Zeilen 3 -> 9
+starte_sitzung.sh · S2 Block · Anker 1 (Soll 1) · Zeilen 8 -> 92
+starte_sitzung.sh · S3 Rueckgabe · Anker 1 (Soll 1) · Zeilen 1 -> 1
+starte_sitzung.sh · S4a Frage · Anker 1 (Soll 1) · Zeilen 2 -> 2
+starte_sitzung.sh · S4b Eingabezeile · Anker 1 (Soll 1) · Zeilen 2 -> 2
+starte_sitzung.sh · S4c angemeldet · Anker 1 (Soll 1) · Zeilen 2 -> 13
+Kopie /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb156_starte_sitzung.sh · 723 Zeilen · 33704 B · md5 8ea9eaaa2b6a1be8ca5587b21a7fcd7f
+bash -n rc 0 
+ok   Abo
+ok   Abo, Gegenprobe
+ok   Abo: eine Zeile ersetzt
+ok   Abo: Adresse im Klartext
+ok   API
+ok   API, Gegenprobe
+ok   API vor Abo
+ok   Nicht angemeldet
+ok   Nicht angemeldet, Gegenprobe
+ok   Nicht angemeldet vor Abo und API
+ok   Nicht angemeldet: Lage eingabezeile
+ok   Ablauf: Zeile im Wortlaut
+ok   Ablauf, Gegenprobe
+ok   Ablauf: Warnung mit @ ersetzt
+ok   Konto: Fenster hat zwei Zeilen mit @
+ok   Konto: Ausschnitt hat keine
+ok   Konto: drei ersetzt (auch @ hinter Spalte 160, Welcome back)
+ok   Konto, Gegenprobe ohne Kontozeile
+ok   Startfrage
+ok   Startfrage, Gegenprobe
+ok   Startfrage vor Eingabezeile
+ok   Grenze: 12 Zeilen
+ok   Grenze: die LETZTEN 12
+ok   Grenze: 160 Zeichen
+ok   Abo: Lage eingabezeile
+ok   API: eine Zeile ersetzt
+ok   Nicht angemeldet: nichts ersetzt
+ok   Konto: Adresse im Klartext
+ok   Startfrage: Anmeldung unklar
+ok   Grenze: CR trennt Zeilen
+ok   Grenze: leerer Inhalt, keine Zeile
+ok   Urteil Abo: bereit
+ok   Urteil API: api (nicht eingabebereit)
+ok   Urteil API, Gegenprobe mit Abo-Zeile: bereit
+ok   Urteil nicht angemeldet
+ok   Urteil unklar: bereit
+ok   Schnitt: 202 Striche werden 160 ganze Zeichen
+ok   Leer nach dem Schnitt: zaehlt nicht mit (12 Zeilen)
+ok   Leer nach dem Schnitt: die LETZTEN 12 ohne sie
+ok   Leer nach dem Schnitt: keine leere Zeile im Ausschnitt
+ok   Pfad: /Users/<name> wird ~
+ok   Pfad, Gegenprobe
+ok   Pfad mit Leerzeichen im Namen
+ok   Kontoregel '@'
+ok   Kontoregel '@', Gegenprobe
+ok   Kontoregel 'claude max'
+ok   Kontoregel 'claude max', Gegenprobe
+ok   Kontoregel 'api usage billing'
+ok   Kontoregel 'api usage billing', Gegenprobe
+ok   Kontoregel 'claude pro'
+ok   Kontoregel 'claude pro', Gegenprobe
+ok   Kontoregel 'claude team'
+ok   Kontoregel 'claude team', Gegenprobe
+ok   Kontoregel 'claude enterprise'
+ok   Kontoregel 'claude enterprise', Gegenprobe
+ok   Kontoregel 'organization'
+ok   Kontoregel 'organization', Gegenprobe
+ok   Kontoregel 'organisation'
+ok   Kontoregel 'organisation', Gegenprobe
+ok   Kontoregel 'welcome back'
+ok   Kontoregel 'welcome back', Gegenprobe
+ok   Kontoregel 'logged in as'
+ok   Kontoregel 'logged in as', Gegenprobe
+ok   Kontoregel 'account'
+ok   Kontoregel 'account', Gegenprobe
+ok   Kontoregel 'konto'
+ok   Kontoregel 'konto', Gegenprobe
+ok   Kontoregel 'sk-'
+ok   Kontoregel 'sk-', Gegenprobe
+ok   Kontoregel 'api key'
+ok   Kontoregel 'api key', Gegenprobe
+ok   Kontoregel 'api-key'
+ok   Kontoregel 'api-key', Gegenprobe
+ok   Kontoregel 'token'
+ok   Kontoregel 'token', Gegenprobe
+ok   Kontoregel 'secret'
+ok   Kontoregel 'secret', Gegenprobe
+ok   Kontoregel 'password'
+ok   Kontoregel 'password', Gegenprobe
+ok   Kontoregel 'passwort'
+ok   Kontoregel 'passwort', Gegenprobe
+ok   Kontoregel 'api_key'
+ok   Kontoregel 'api_key', Gegenprobe
+ok   Kontoregel 'apikey'
+ok   Kontoregel 'apikey', Gegenprobe
+ok   Kontoregel 'bearer '
+ok   Kontoregel 'bearer ', Gegenprobe
+ok   Kontoregel 'ghp_'
+ok   Kontoregel 'ghp_', Gegenprobe
+ok   Kontoregel 'github_pat_'
+ok   Kontoregel 'github_pat_', Gegenprobe
+ok   Kontoregel 'xoxb-'
+ok   Kontoregel 'xoxb-', Gegenprobe
+ok   Kontoregel 'aws_secret'
+ok   Kontoregel 'aws_secret', Gegenprobe
+ok   Lauf Abo: rc 0
+ok   Lauf Abo: EINGABEBEREIT und Anmeldung Abo
+ok   Lauf Abo: Kontozeile im Log ersetzt
+ok   Lauf Abo: Abo-Zeile steht nicht im Log
+ok   Lauf API: rc 7
+ok   Lauf API: API-ABRECHNUNG statt EINGABEBEREIT
+ok   Lauf nicht angemeldet: rc 6
+ok   Lauf nicht angemeldet: NICHT ANGEMELDET statt EINGABEBEREIT
+ok   Lauf Startfrage: rc 3
+ok   Lauf ohne Eingabezeile: rc 4
+ok   Lauf leeres Fenster: rc 4
+ok   Lauf leeres Fenster: 'leer oder nicht lesbar', keine Fensterzeile
+ok   Lauf langes Fenster: rc 0
+ok   Lauf langes Fenster: 12 Fensterzeilen im Log
+ok   Lauf API: fensterzeilen gerufen
+ok   Lauf nicht angemeldet: fensterzeilen gerufen
+ok   Lauf Startfrage: fensterzeilen gerufen
+ok   Lauf Ablaufwarnung mit @: im Log ersetzt
+Test Fensterinhalt: 113 ok, 0 FEHL
+Test rc 0
+Probe: im Repo nichts geschrieben.
+rc 0

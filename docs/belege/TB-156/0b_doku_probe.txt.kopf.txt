@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/0b_doku_probe.txt
+Bytes: 573 · Zeilen: 9 · md5: bfcd6873fdd0ba51d4eb5edd01f24cdf
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `PY WZ doku --probe > docs/belege/TB-156/0b_doku_probe.txt 2>&1`
+Geschrieben: 13.10.2026, 12:28:29 (+0200) von WZ kopf (TB-156)

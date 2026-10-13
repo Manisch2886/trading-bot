@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/0a_status.txt
+Bytes: 197 · Zeilen: 4 · md5: fae427afe5d2e25baee8466383795803
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `git status --porcelain > "$TMPDIR/tb156_0a.txt"`, dann `cp "$TMPDIR/tb156_0a.txt" docs/belege/TB-156/0a_status.txt`
+Geschrieben: 13.10.2026, 12:28:21 (+0200) von WZ kopf (TB-156)

@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/tb156_werkzeug.py
+Bytes: 36866 · Zeilen: 518 · md5: 4f8468e5bd78468e80dc068120637796
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `trading-env/bin/python3 -B - docs/auftraege/MAC_TB-156_waechter_fensterinhalt_fortsetzung.md "$TMPDIR" <<'EOF'` … `EOF` (Schritt 0a), dann `cp "$TMPDIR/tb156_werkzeug.py" docs/belege/TB-156/tb156_werkzeug.py`
+Geschrieben: 13.10.2026, 12:28:21 (+0200) von WZ kopf (TB-156)

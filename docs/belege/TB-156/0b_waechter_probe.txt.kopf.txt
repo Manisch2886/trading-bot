@@ -1,0 +1,4 @@
+Beleg: docs/belege/TB-156/0b_waechter_probe.txt
+Bytes: 4676 · Zeilen: 126 · md5: d33ee8cb2005b02a112c72c78bdfa1ef
+Befehl (aus dem Auftrag, im Werkzeug hinterlegt): `PY WZ waechter --probe > docs/belege/TB-156/0b_waechter_probe.txt 2>&1`
+Geschrieben: 13.10.2026, 12:28:29 (+0200) von WZ kopf (TB-156)
