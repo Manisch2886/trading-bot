@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-155** | `docs/auftraege/MAC_TB-155_waechter_fensterinhalt.md` | Sitzungswächter schreibt den Fensterinhalt ins Log: `starte_sitzung.sh` (Fensterzeilen, Kontoregel, Anmeldung), `test_fensterinhalt.sh` neu, Probe über den echten Weg, `LIESMICH.md`, `BACKLOG.md`, Journal; Schritt 0 committet `UEBERGABE.md` und `EROEFFNUNG_STEUERNDER_CHAT.md`; Start über den Sitzungswächter |
+| **TB-156** | `docs/auftraege/MAC_TB-156_waechter_fensterinhalt_fortsetzung.md` | Fortsetzung von TB-155 ab Schritt A (TB-155 abgebrochen nach 0b): Sitzungswächter schreibt den Fensterinhalt ins Log; Werkzeug mit `kopf`, jede Datei mit vorgegebenem Befehl (Anhang); Schritt 0 committet `AKTUELLER_AUFTRAG.md`, `UEBERGABE.md` und `EROEFFNUNG_STEUERNDER_CHAT.md`; Start über den Sitzungswächter |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
