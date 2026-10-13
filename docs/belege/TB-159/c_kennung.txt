@@ -1,0 +1,2 @@
+Kennung EU (naechste freie; hoechste vorhandene ET)
+rc 0

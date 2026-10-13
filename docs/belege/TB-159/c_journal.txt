@@ -1,0 +1,8 @@
+Block beginnt mit '## EU — TB-159: ' (naechste freie nach ET): ja
+keine weitere '## '-Zeile im Block: ja
+kein '---' im Block: ja
+Kennung EU noch frei: ja
+Anker einmal: ja
+vor dem Anker '---' und Leerzeile: ja
+eingefuegt: Kennung EU, 21 Zeilen Block
+rc 0
