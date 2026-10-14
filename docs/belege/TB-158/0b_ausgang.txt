@@ -1,0 +1,8 @@
+     723 docs/werkzeuge/sitzungswaechter/starte_sitzung.sh
+     497 docs/projektfuehrung/BACKLOG.md
+   10977 docs/projektfuehrung/JOURNAL.md
+   12197 total
+MD5 (docs/werkzeuge/sitzungswaechter/starte_sitzung.sh) = 8ea9eaaa2b6a1be8ca5587b21a7fcd7f
+MD5 (docs/projektfuehrung/BACKLOG.md) = c803f0d6d58a9a7f19fcf762b81f0cc4
+MD5 (docs/projektfuehrung/JOURNAL.md) = f305e8ee4d8cdfa695c989eabb238b76
+86521eba71f56f81d735f3281ad07cbd6c65a528c8568d49d6dbdc25a93dc0ea  docs/belege/TB-156/tb156_werkzeug.py
