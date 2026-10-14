@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-158** | `docs/auftraege/MAC_TB-158_waechter_probe.md` | Probe des Sitzungswächters über den echten Weg (Start, Fensterinhalt im Log, Schliessen), mit `LC_ALL=C ps -o lstart=`; Abbruch-Commit nimmt schon geänderte Zieldateien mit (Betreiber 14.10.2026); jede Datei mit vorgegebenem Befehl (Anhang); Start über den Sitzungswächter |
+| **TB-161** | `docs/auftraege/MAC_TB-161_sb1_datenlauf.md` | S-B1-Vorbereitung, Datenlauf: offene Schritte 2–9 aus `docs/TESTAUFTRAG_TB-39_sb1_vorbereitung.md` am aktuellen `main` (14 Signal-ETFs laden, historie, raster, kosten); kein Backtest; UCITS-Paare offen (Betreiber 13.10.2026, 22:34; Entscheide 14.10.2026) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
