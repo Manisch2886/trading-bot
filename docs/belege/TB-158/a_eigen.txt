@@ -1,0 +1,25 @@
+$ pgrep -x claude · rc 1 · 0 Zeilen
+$ pgrep -a -x claude · rc 0 · 1 Zeilen
+67799
+$ lsof -a -p 67799 -d cwd -Fn · rc 0
+p67799
+fcwd
+n~/trading-bot
+$ ps -o ppid=,comm= -p 68619 · rc 0
+67799 /bin/bash
+$ ps -o ppid=,comm= -p 67799 · rc 0
+67796 claude
+$ ps -o ppid=,comm= -p 67796 · rc 0
+52069 login
+$ ps -o ppid=,comm= -p 52069 · rc 0
+    1 /System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal
+$ LC_ALL=C ps -o lstart= -p 67799 · rc 0 · Wed Oct 14 06:53:47 2026
+(a) pgrep -x claude: keine
+(b) pgrep -a -x claude: 67799
+(a) gegen (b): nur in (b) 67799 · nur in (a) keine
+(b) mit cwd im Repo: 67799
+(c) Elternkette ab $$: 68619 67799 67796 52069
+(b) mit cwd im Repo, nicht in (c): keine
+EIGEN: 67799
+Probe: ja
+WZ beleg: zerschnittene Zeichen (kein gueltiges UTF-8), durch U+FFFD ersetzt: 0
