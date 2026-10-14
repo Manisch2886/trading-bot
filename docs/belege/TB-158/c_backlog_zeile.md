@@ -1,0 +1,1 @@
+  - **Nachtrag TB-158 (14.10.2026):** EIGEN in der Sitzung: (a) `pgrep -x claude` keine, (b) `pgrep -a -x claude` 67799, EIGEN 67799; Probe gelaufen, zwei Läufe (Fenster 24412 und 24414), je rc 0, danach im Repo je nur EIGEN. Beleg `docs/belege/TB-158/a_eigen.txt`, Ergebnis `docs/ERGEBNIS_TB-158_waechter_probe.md`.

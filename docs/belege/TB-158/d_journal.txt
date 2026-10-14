@@ -1,0 +1,13 @@
+endet mit Zeilenende: ja
+Kopfzeile ## EV — TB-158: …: ja
+### Was gemessen ist genau einmal, Leerzeile davor: ja
+### Was offen bleibt genau einmal: ja
+keine Zeile ---: ja
+Schlusszeile *Geschrieben …: ja
+## Wiederkehrende Lehren genau einmal: ja
+davor --- und Leerzeile: ja
+Kennung noch frei: ja
+Kennung EV (erwartet EV) · letzte EU
+Zeilen +22
+geschrieben und zurueckgelesen: docs/projektfuehrung/JOURNAL.md · md5 e37e0af3c5b8fa9bb74bf68d1a0f4217 · gleich
+rc 0

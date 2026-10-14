@@ -1,0 +1,10 @@
+genau eine Zeile mit Zeilenende: ja
+beginnt mit '  - **Nachtrag TB-158 (': ja
+nennt docs/ERGEBNIS_TB-158_waechter_probe.md: ja
+keine offene Stelle (kein '<', kein '>'): ja
+Anker genau einmal: ja
+Nachtrag noch nicht da: ja
+Ausgang docs/projektfuehrung/BACKLOG.md · 497 Zeilen · md5 c803f0d6d58a9a7f19fcf762b81f0cc4
+Anker Z. 483 · Zeilen +1
+Probe: nichts geschrieben
+rc 0
