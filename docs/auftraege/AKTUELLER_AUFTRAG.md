@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-159** | `docs/auftraege/MAC_TB-159_agenten_aus.md` | Agenten-Schalter: Agent 1, 3 und 4 abschalten über `config/agenten_aus.txt` (Betreiber 13.10.2026, 21:00), Berichte laufen ohne KI-Teil weiter, Wiedereinschalten per Schalterdatei; jede Datei mit vorgegebenem Befehl (Anhang); Start über den Sitzungswächter |
+| **TB-158** | `docs/auftraege/MAC_TB-158_waechter_probe.md` | Probe des Sitzungswächters über den echten Weg (Start, Fensterinhalt im Log, Schliessen), mit `LC_ALL=C ps -o lstart=`; Abbruch-Commit nimmt schon geänderte Zieldateien mit (Betreiber 14.10.2026); jede Datei mit vorgegebenem Befehl (Anhang); Start über den Sitzungswächter |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
