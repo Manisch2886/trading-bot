@@ -1,0 +1,34 @@
+/Users/jaquelineloffler/trading-bot/trading-env/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+    Hinweis: SPY: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 8485, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  SPY     8484 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: IWM: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 6635, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  IWM     6634 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: EFA: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 6320, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  EFA     6319 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: EEM: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 5914, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  EEM     5913 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: IEF: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 6092, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  IEF     6091 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: TLT: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 6092, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  TLT     6091 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: LQD: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 6092, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  LQD     6091 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: HYG: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 4910, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  HYG     4909 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: GLD: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 5510, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  GLD     5509 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: SLV: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 5148, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  SLV     5147 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: DBC: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 5205, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  DBC     5204 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: DBA: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 4975, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  DBA     4974 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: FXE: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 5242, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  FXE     5241 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+    Hinweis: FXY: 1 Kerze(n) nach der Entscheidungskerze verworfen (von 4949, Intervall 1d, aktien). Entschieden wird auf der letzten Kerze, deren Zeitraum vor 2026-10-14 18:50:23.577364 endete.
+  FXY     4948 Handelstage  (0 unvollstaendig, 1 nach der Entscheidungskerze verworfen)
+
+  Manifest: /Users/jaquelineloffler/trading-bot/research/etf_trendfolge/daten/manifest.json
+  Naechster Schritt: python3 research/etf_trendfolge/historie.py
+rc 0

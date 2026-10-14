@@ -1,0 +1,203 @@
+{
+  "kosten_je_order_pct": 0.15,
+  "kosten_je_roundtrip_pct": 0.3,
+  "umschichtungen_je_jahr": 12,
+  "formel": "Jahreskosten in Prozentpunkten = w * 0,15 + 12 * d * 0,15 ; w = Kippungen je Instrument und Jahr, d = Drift je Umschichtung als Anteil des Buches",
+  "instrumentenzahl_kuerzt_sich_heraus": true,
+  "obere_schranke_pct": 1.7999999999999998,
+  "massstab_voller_roundtrip_je_monat_pct": 3.5999999999999996,
+  "tabelle": [
+    {
+      "kippungen_je_instrument_und_jahr": 1,
+      "jahreskosten_pct": {
+        "0.0": 0.15,
+        "0.005": 0.159,
+        "0.01": 0.168,
+        "0.02": 0.186
+      }
+    },
+    {
+      "kippungen_je_instrument_und_jahr": 2,
+      "jahreskosten_pct": {
+        "0.0": 0.3,
+        "0.005": 0.309,
+        "0.01": 0.318,
+        "0.02": 0.336
+      }
+    },
+    {
+      "kippungen_je_instrument_und_jahr": 3,
+      "jahreskosten_pct": {
+        "0.0": 0.45,
+        "0.005": 0.459,
+        "0.01": 0.468,
+        "0.02": 0.486
+      }
+    },
+    {
+      "kippungen_je_instrument_und_jahr": 4,
+      "jahreskosten_pct": {
+        "0.0": 0.6,
+        "0.005": 0.609,
+        "0.01": 0.618,
+        "0.02": 0.636
+      }
+    },
+    {
+      "kippungen_je_instrument_und_jahr": 6,
+      "jahreskosten_pct": {
+        "0.0": 0.9,
+        "0.005": 0.909,
+        "0.01": 0.918,
+        "0.02": 0.936
+      }
+    }
+  ],
+  "was_bleibt": [
+    {
+      "angenommener_bruttoertrag_pct": 2.0,
+      "je_kipprate": [
+        {
+          "kippungen_je_instrument_und_jahr": 1,
+          "kosten_pct": 0.159,
+          "netto_pct": 1.841,
+          "anteil_des_ertrags_pct": 8.0
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 2,
+          "kosten_pct": 0.309,
+          "netto_pct": 1.691,
+          "anteil_des_ertrags_pct": 15.4
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 3,
+          "kosten_pct": 0.459,
+          "netto_pct": 1.541,
+          "anteil_des_ertrags_pct": 22.9
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 4,
+          "kosten_pct": 0.609,
+          "netto_pct": 1.391,
+          "anteil_des_ertrags_pct": 30.4
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 6,
+          "kosten_pct": 0.909,
+          "netto_pct": 1.091,
+          "anteil_des_ertrags_pct": 45.4
+        }
+      ]
+    },
+    {
+      "angenommener_bruttoertrag_pct": 4.0,
+      "je_kipprate": [
+        {
+          "kippungen_je_instrument_und_jahr": 1,
+          "kosten_pct": 0.159,
+          "netto_pct": 3.841,
+          "anteil_des_ertrags_pct": 4.0
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 2,
+          "kosten_pct": 0.309,
+          "netto_pct": 3.691,
+          "anteil_des_ertrags_pct": 7.7
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 3,
+          "kosten_pct": 0.459,
+          "netto_pct": 3.541,
+          "anteil_des_ertrags_pct": 11.5
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 4,
+          "kosten_pct": 0.609,
+          "netto_pct": 3.391,
+          "anteil_des_ertrags_pct": 15.2
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 6,
+          "kosten_pct": 0.909,
+          "netto_pct": 3.091,
+          "anteil_des_ertrags_pct": 22.7
+        }
+      ]
+    },
+    {
+      "angenommener_bruttoertrag_pct": 6.0,
+      "je_kipprate": [
+        {
+          "kippungen_je_instrument_und_jahr": 1,
+          "kosten_pct": 0.159,
+          "netto_pct": 5.841,
+          "anteil_des_ertrags_pct": 2.6
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 2,
+          "kosten_pct": 0.309,
+          "netto_pct": 5.691,
+          "anteil_des_ertrags_pct": 5.1
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 3,
+          "kosten_pct": 0.459,
+          "netto_pct": 5.541,
+          "anteil_des_ertrags_pct": 7.6
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 4,
+          "kosten_pct": 0.609,
+          "netto_pct": 5.391,
+          "anteil_des_ertrags_pct": 10.1
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 6,
+          "kosten_pct": 0.909,
+          "netto_pct": 5.091,
+          "anteil_des_ertrags_pct": 15.2
+        }
+      ]
+    },
+    {
+      "angenommener_bruttoertrag_pct": 8.0,
+      "je_kipprate": [
+        {
+          "kippungen_je_instrument_und_jahr": 1,
+          "kosten_pct": 0.159,
+          "netto_pct": 7.841,
+          "anteil_des_ertrags_pct": 2.0
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 2,
+          "kosten_pct": 0.309,
+          "netto_pct": 7.691,
+          "anteil_des_ertrags_pct": 3.9
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 3,
+          "kosten_pct": 0.459,
+          "netto_pct": 7.541,
+          "anteil_des_ertrags_pct": 5.7
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 4,
+          "kosten_pct": 0.609,
+          "netto_pct": 7.391,
+          "anteil_des_ertrags_pct": 7.6
+        },
+        {
+          "kippungen_je_instrument_und_jahr": 6,
+          "kosten_pct": 0.909,
+          "netto_pct": 7.091,
+          "anteil_des_ertrags_pct": 11.4
+        }
+      ]
+    }
+  ],
+  "offen_bis_rang_1": [
+    "w - die Kipprate je Instrument und Jahr",
+    "d - der Drift der inversen Volatilitaetsgewichte",
+    "der Bruttoertrag selbst"
+  ]
+}

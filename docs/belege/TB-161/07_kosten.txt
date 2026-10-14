@@ -1,0 +1,35 @@
+S-B1 - Kosten bei 0,30 Prozentpunkten je Round Trip
+
+  Jahreskosten in Prozentpunkten = w * 0,15 + 12 * d * 0,15 ; w = Kippungen je Instrument und Jahr, d = Drift je Umschichtung als Anteil des Buches
+
+  w \ d       0.000     0.005     0.010     0.020
+  -----------------------------------------------
+    1         0.150     0.159     0.168     0.186
+    2         0.300     0.309     0.318     0.336
+    3         0.450     0.459     0.468     0.486
+    4         0.600     0.609     0.618     0.636
+    6         0.900     0.909     0.918     0.936
+
+  (Prozentpunkte je Jahr, auf das ganze Buch)
+
+  Obere Schranke (jeden Monat kippt alles): 1.80 Prozentpunkte je Jahr
+  Massstab, ein VOLLER Round Trip je Monat:  3.60 Prozentpunkte je Jahr
+
+  Was von einem ANGENOMMENEN Bruttoertrag bleibt (Annahme des Lesers, keine Messung):
+
+    brutto   w=1      w=2      w=3      w=4      w=6
+      2.0 %     1.84     1.69     1.54     1.39     1.09
+      4.0 %     3.84     3.69     3.54     3.39     3.09
+      6.0 %     5.84     5.69     5.54     5.39     5.09
+      8.0 %     7.84     7.69     7.54     7.39     7.09
+
+    (Nettoertrag in Prozent, bei Drift d = 0,005)
+
+  Offen bis Rang 1 - diese Groessen sind KEINE Annahme, sondern Messungen,
+  die erst der Backtest liefern darf:
+    - w - die Kipprate je Instrument und Jahr
+    - d - der Drift der inversen Volatilitaetsgewichte
+    - der Bruttoertrag selbst
+
+  geschrieben: docs/belege/TB-161/07_kosten.json
+rc 0

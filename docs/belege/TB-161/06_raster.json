@@ -1,0 +1,72 @@
+{
+  "achsen": [
+    {
+      "name": "vol_rueckblick_tage",
+      "stufen": [
+        42,
+        66,
+        103,
+        161,
+        252
+      ],
+      "anzahl": 5
+    }
+  ],
+  "grenzsatz_vol_rueckblick": {
+    "regel": "vielfaches_des_umschichtungsabstands",
+    "grundlage": "datenfrequenz",
+    "satz": "Der Volatilitaets-Rueckblick reicht vom Doppelten des Umschichtungsabstands bis zum laengsten Signalfenster. Geometrisch gestuft nach der Projektregel.",
+    "unten": 42,
+    "oben": 252,
+    "stufen": 5
+  },
+  "feste_werte": {
+    "signalfenster_monate": [
+      3,
+      6,
+      12
+    ],
+    "signal_mehrheit": 2,
+    "signalmass": "vorzeichen_der_fensterrendite",
+    "gewichtung": "inverse_volatilitaet",
+    "volatilitaetsmass": "standardabweichung_taeglicher_renditen",
+    "gewichtsdeckel": null,
+    "kasse_verzinst": false,
+    "umschichtung": "monatlich",
+    "umschichtung_entscheidungstag": "letzter_handelstag_des_kalendermonats",
+    "umschichtung_ausfuehrung": "eroeffnung_des_ersten_handelstags_des_folgemonats",
+    "kosten_je_roundtrip_pct": 0.3
+  },
+  "zellen": [
+    "vol_rueckblick_tage=42",
+    "vol_rueckblick_tage=66",
+    "vol_rueckblick_tage=103",
+    "vol_rueckblick_tage=161",
+    "vol_rueckblick_tage=252"
+  ],
+  "N": 5,
+  "N_historisch": 653,
+  "N_gesamt_nominal": 658,
+  "was_waere_wenn": [
+    {
+      "fall": "die drei Signalfenster je vierstufig im Raster (statt fest)",
+      "N": 320
+    },
+    {
+      "fall": "zusaetzlich ein Gewichtsdeckel mit drei Stufen",
+      "N": 15
+    },
+    {
+      "fall": "zusaetzlich der Umschichtungstag mit drei Stufen",
+      "N": 15
+    },
+    {
+      "fall": "zusaetzlich das Signalmass mit zwei Stufen",
+      "N": 10
+    },
+    {
+      "fall": "alles davon zusammen",
+      "N": 5760
+    }
+  ]
+}

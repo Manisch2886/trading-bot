@@ -1,0 +1,26 @@
+     498 docs/projektfuehrung/BACKLOG.md
+   10999 docs/projektfuehrung/JOURNAL.md
+   11497 total
+MD5 (docs/projektfuehrung/BACKLOG.md) = 223c696f1fa0ad418939a06931d5a3f3
+MD5 (docs/projektfuehrung/JOURNAL.md) = e37e0af3c5b8fa9bb74bf68d1a0f4217
+research/etf_trendfolge:
+.
+..
+.gitignore
+beispieldaten.py
+datenlauf.py
+datenstand.py
+ergebnisse
+historie.py
+kosten.py
+raster.py
+README.md
+register.py
+test_etf_trendfolge.py
+
+research/etf_trendfolge/ergebnisse:
+.
+..
+datenstand_vorher.json
+kosten.json
+raster.json

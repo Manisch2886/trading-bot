@@ -1,0 +1,37 @@
+S-B1 - das Raster
+
+  Achse  vol_rueckblick_tage    5 Stufen: [42, 66, 103, 161, 252]
+
+  Fest (zaehlt NICHT zu N):
+    signalfenster_monate             (3, 6, 12)
+    signal_mehrheit                  2
+    signalmass                       vorzeichen_der_fensterrendite
+    gewichtung                       inverse_volatilitaet
+    volatilitaetsmass                standardabweichung_taeglicher_renditen
+    gewichtsdeckel                   None
+    kasse_verzinst                   False
+    umschichtung                     monatlich
+    umschichtung_entscheidungstag    letzter_handelstag_des_kalendermonats
+    umschichtung_ausfuehrung         eroeffnung_des_ersten_handelstags_des_folgemonats
+    kosten_je_roundtrip_pct          0.3
+
+  Zellen (5), gezaehlt aus der Liste:
+    vol_rueckblick_tage=42
+    vol_rueckblick_tage=66
+    vol_rueckblick_tage=103
+    vol_rueckblick_tage=161
+    vol_rueckblick_tage=252
+
+  N                  5
+  N_historisch       653  (Neuselektion, Vorregistrierung Abschnitt 9)
+  N gesamt, nominal  658
+
+  Was weitere Achsen kosten wuerden (Bild, keine Alternative):
+       320  die drei Signalfenster je vierstufig im Raster (statt fest)
+        15  zusaetzlich ein Gewichtsdeckel mit drei Stufen
+        15  zusaetzlich der Umschichtungstag mit drei Stufen
+        10  zusaetzlich das Signalmass mit zwei Stufen
+      5760  alles davon zusammen
+
+  geschrieben: docs/belege/TB-161/06_raster.json
+rc 0

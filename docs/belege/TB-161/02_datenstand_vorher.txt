@@ -1,0 +1,11 @@
+S-B1 - Wache ueber data/
+
+  Ist    d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Dateien)
+  Soll   d9449faf51bffaaac96004e7a192978b4bef4498404f245421e7ccfcea995f84  (223 Dateien)
+  unveraendert
+
+  Zielordner der ETF-Kursdateien: /Users/jaquelineloffler/trading-bot/research/etf_trendfolge/daten
+  liegt ausserhalb von data/ - richtig so.
+
+  geschrieben: docs/belege/TB-161/02_datenstand_vorher.json
+rc 0
