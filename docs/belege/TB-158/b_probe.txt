@@ -1,0 +1,2 @@
+PROBE: Lauf 1 · Fenster 24412 · 15 s bis eingabebereit (26 s vom Wecken bis fertig) · Anmeldung: Abo · Ablaufwarnung: nein · Zeilen `   | …`: 8 · davon ersetzt: 1 · Adresse: ja · rc 0
+PROBE: Lauf 2 · Fenster 24414 · 6 s bis eingabebereit (15 s vom Wecken bis fertig) · Anmeldung: Abo · Ablaufwarnung: nein · Zeilen `   | …`: 8 · davon ersetzt: 1 · Adresse: ja · rc 0

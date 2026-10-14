@@ -1,0 +1,5 @@
+67799
+p67799
+fcwd
+n~/trading-bot
+WZ beleg: zerschnittene Zeichen (kein gueltiges UTF-8), durch U+FFFD ersetzt: 0

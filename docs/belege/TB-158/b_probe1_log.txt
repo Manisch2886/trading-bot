@@ -1,0 +1,19 @@
+2026-10-14T05:07:08Z  ----- Waechter geweckt -----
+2026-10-14T05:07:08Z  ----- Probe-Ausloeser: probe_67799 -----
+2026-10-14T05:07:10Z  Fenster 24412 neu geoeffnet (Tab 1). Gemerkt in ~/trading-bot/logs/sitzungswaechter/letztes_fenster_probe.txt
+2026-10-14T05:07:27Z  ⭐ EINGABEBEREIT (PROBE): Fenster 24412, Eingabezeile steht, keine Frage offen (nach 15 s, Lesung 4). ⚠️ KEIN SATZ IM FENSTER.
+2026-10-14T05:07:27Z     Anmeldung: Abo
+2026-10-14T05:07:27Z     Ablaufwarnung: nein
+2026-10-14T05:07:27Z     Letzte Zeilen von Fenster 24412 (hoechstens 12, je 160 Zeichen, Kontozeilen ersetzt):
+2026-10-14T05:07:27Z     | ▗ ▗   ▖ ▖  Claude Code v2.1.299
+2026-10-14T05:07:27Z     | <<entfernt: Kontozeile>>
+2026-10-14T05:07:27Z     |  ▘▘   ▝▝   ~/trading-bot · /rc
+2026-10-14T05:07:27Z     |   /remote-control is active · Continue here, on your phone, or at https://claude.ai/code/session_01FC5D4nw7YSUwn1oiZuQnpn
+2026-10-14T05:07:27Z     | ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-14T05:07:27Z     | ❯ Try "how does test_sperrlistensonde.py work?"
+2026-10-14T05:07:27Z     | ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-14T05:07:27Z     |   ⏸ manual mode on · ? for shortcuts · ← for agents
+2026-10-14T05:07:27Z    Probe: beende PID 68688 (ttys017) mit TERM. PID 67799 bleibt unberuehrt.
+2026-10-14T05:07:34Z    Fenster 24412 geschlossen (das beim Start gemerkte, kein laufender Prozess).
+2026-10-14T05:07:34Z  ----- fertig (probe), rc 0 -----
+WZ beleg: zerschnittene Zeichen (kein gueltiges UTF-8), durch U+FFFD ersetzt: 0

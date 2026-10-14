@@ -1,0 +1,19 @@
+2026-10-14T05:08:54Z  ----- Waechter geweckt -----
+2026-10-14T05:08:54Z  ----- Probe-Ausloeser: probe_67799 -----
+2026-10-14T05:08:55Z  Fenster 24414 neu geoeffnet (Tab 1). Gemerkt in ~/trading-bot/logs/sitzungswaechter/letztes_fenster_probe.txt
+2026-10-14T05:09:02Z  ⭐ EINGABEBEREIT (PROBE): Fenster 24414, Eingabezeile steht, keine Frage offen (nach 6 s, Lesung 2). ⚠️ KEIN SATZ IM FENSTER.
+2026-10-14T05:09:02Z     Anmeldung: Abo
+2026-10-14T05:09:02Z     Ablaufwarnung: nein
+2026-10-14T05:09:02Z     Letzte Zeilen von Fenster 24414 (hoechstens 12, je 160 Zeichen, Kontozeilen ersetzt):
+2026-10-14T05:09:02Z     | ▗ ▗   ▖ ▖  Claude Code v2.1.299
+2026-10-14T05:09:02Z     | <<entfernt: Kontozeile>>
+2026-10-14T05:09:02Z     |  ▘▘   ▝▝   ~/trading-bot · /rc
+2026-10-14T05:09:02Z     |   /remote-control is active · Continue here, on your phone, or at https://claude.ai/code/session_019hKpFLh4GUdquEPpHhsRdy
+2026-10-14T05:09:02Z     | ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-14T05:09:02Z     | ❯ Try "how does faltenplan.py work?"
+2026-10-14T05:09:02Z     | ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+2026-10-14T05:09:02Z     |   ⏸ manual mode on · ? for shortcuts · ← for agents
+2026-10-14T05:09:02Z    Probe: beende PID 68976 (ttys017) mit TERM. PID 67799 bleibt unberuehrt.
+2026-10-14T05:09:09Z    Fenster 24414 geschlossen (das beim Start gemerkte, kein laufender Prozess).
+2026-10-14T05:09:09Z  ----- fertig (probe), rc 0 -----
+WZ beleg: zerschnittene Zeichen (kein gueltiges UTF-8), durch U+FFFD ersetzt: 0
