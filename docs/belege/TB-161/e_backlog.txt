@@ -1,0 +1,6 @@
+Rang-4-Zeile genau einmal: ja
+Rang-4-Zeile endet auf '| vorbereiten |': ja
+K15-Zeile genau einmal: ja
+Vermerke noch nicht da: ja
+geschrieben: Rang 4 Z. 149, K15 Z. 63
+rc 0

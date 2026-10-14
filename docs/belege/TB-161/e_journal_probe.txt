@@ -1,0 +1,8 @@
+Block beginnt mit '## EW — TB-161: ' (naechste freie nach EV): ja
+keine weitere '## '-Zeile im Block: ja
+kein '---' im Block: ja
+Kennung EW noch frei: ja
+Anker einmal: ja
+vor dem Anker '---' und Leerzeile: ja
+probe: Kennung EW, 24 Zeilen Block
+rc 0
