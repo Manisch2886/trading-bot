@@ -1,0 +1,37 @@
+ja    elliott_wave_stocks: Quelltext: kein Fenster aus open_time.max() - DateOffset
+ja    elliott_wave_stocks: horizontbeginn_ts() = faltenplan.horizontbeginn = 2016-09-19 · 2016-09-19 00:00:00
+ja    elliott_wave_stocks: Wert kommt aus faltenplan.HORIZONTBEGINN (Modul research/vorregistrierung)
+ja    elliott_wave_stocks: [naiv] alle drei synthetischen Symbole geladen · ['AAA', 'BBB', 'CCC']
+ja    elliott_wave_stocks: [naiv] Anfang der geladenen Zeilen = Horizontbeginn, gleich fuer drei Dateienden · {'AAA': '2016-09-19 00:00:00', 'BBB': '2016-09-19 00:00:00', 'CCC': '2016-09-19 00:00:00'}
+ja    elliott_wave_stocks: [naiv] laengere Datei (CCC) beginnt zeilengleich wie AAA
+ja    elliott_wave_stocks: [tz UTC] alle drei synthetischen Symbole geladen · ['AAA', 'BBB', 'CCC']
+ja    elliott_wave_stocks: [tz UTC] Anfang der geladenen Zeilen = Horizontbeginn, gleich fuer drei Dateienden · {'AAA': '2016-09-19 00:00:00+00:00', 'BBB': '2016-09-19 00:00:00+00:00', 'CCC': '2016-09-19 00:00:00+00:00'}
+ja    elliott_wave_stocks: [tz UTC] laengere Datei (CCC) beginnt zeilengleich wie AAA
+ja    rsi2_mean_reversion: Quelltext: kein Fenster aus open_time.max() - DateOffset
+ja    rsi2_mean_reversion: horizontbeginn_ts() = faltenplan.horizontbeginn = 2016-09-19 · 2016-09-19 00:00:00
+ja    rsi2_mean_reversion: Wert kommt aus faltenplan.HORIZONTBEGINN (Modul research/vorregistrierung)
+ja    rsi2_mean_reversion: [naiv] alle drei synthetischen Symbole geladen · ['AAA', 'BBB', 'CCC']
+ja    rsi2_mean_reversion: [naiv] Fenster (entry_cutoff) = Horizontbeginn in der Spaltenzone, gleich fuer drei Dateienden · {'AAA': '2016-09-19 00:00:00', 'BBB': '2016-09-19 00:00:00', 'CCC': '2016-09-19 00:00:00'}
+ja    rsi2_mean_reversion: [tz UTC] alle drei synthetischen Symbole geladen · ['AAA', 'BBB', 'CCC']
+ja    rsi2_mean_reversion: [tz UTC] Fenster (entry_cutoff) = Horizontbeginn in der Spaltenzone, gleich fuer drei Dateienden · {'AAA': '2016-09-19 00:00:00+00:00', 'BBB': '2016-09-19 00:00:00+00:00', 'CCC': '2016-09-19 00:00:00+00:00'}
+ja    turtle_soup_stocks: Quelltext: kein Fenster aus open_time.max() - DateOffset
+ja    turtle_soup_stocks: horizontbeginn_ts() = faltenplan.horizontbeginn = 2016-09-19 · 2016-09-19 00:00:00
+ja    turtle_soup_stocks: Wert kommt aus faltenplan.HORIZONTBEGINN (Modul research/vorregistrierung)
+ja    turtle_soup_stocks: [naiv] alle drei synthetischen Symbole geladen · ['AAA', 'BBB', 'CCC']
+ja    turtle_soup_stocks: [naiv] Fenster (entry_cutoff) = Horizontbeginn in der Spaltenzone, gleich fuer drei Dateienden · {'AAA': '2016-09-19 00:00:00', 'BBB': '2016-09-19 00:00:00', 'CCC': '2016-09-19 00:00:00'}
+ja    turtle_soup_stocks: [tz UTC] alle drei synthetischen Symbole geladen · ['AAA', 'BBB', 'CCC']
+ja    turtle_soup_stocks: [tz UTC] Fenster (entry_cutoff) = Horizontbeginn in der Spaltenzone, gleich fuer drei Dateienden · {'AAA': '2016-09-19 00:00:00+00:00', 'BBB': '2016-09-19 00:00:00+00:00', 'CCC': '2016-09-19 00:00:00+00:00'}
+ja    volatility_breakout: Quelltext: kein Fenster aus open_time.max() - DateOffset
+ja    volatility_breakout: horizontbeginn_ts() = faltenplan.horizontbeginn = 2016-09-19 · 2016-09-19 00:00:00
+ja    volatility_breakout: Wert kommt aus faltenplan.HORIZONTBEGINN (Modul research/vorregistrierung)
+ja    volatility_breakout: [naiv] alle drei synthetischen Symbole geladen · ['AAA', 'BBB', 'CCC']
+ja    volatility_breakout: [naiv] Fenster (entry_cutoff) = Horizontbeginn in der Spaltenzone, gleich fuer drei Dateienden · {'AAA': '2016-09-19 00:00:00', 'BBB': '2016-09-19 00:00:00', 'CCC': '2016-09-19 00:00:00'}
+ja    volatility_breakout: [naiv] Scanbeginn (Zeilen vor entry_cutoff) gleich fuer drei Dateienden · {'AAA': 2273, 'BBB': 2273, 'CCC': 2273}
+ja    volatility_breakout: [naiv] kein Einstieg vor dem Horizontbeginn · 29
+ja    volatility_breakout: [naiv] Trades bis 60 Tage vor dem Ende von AAA gleich bei laengerer Datei · 29
+ja    volatility_breakout: [tz UTC] alle drei synthetischen Symbole geladen · ['AAA', 'BBB', 'CCC']
+ja    volatility_breakout: [tz UTC] Fenster (entry_cutoff) = Horizontbeginn in der Spaltenzone, gleich fuer drei Dateienden · {'AAA': '2016-09-19 00:00:00+00:00', 'BBB': '2016-09-19 00:00:00+00:00', 'CCC': '2016-09-19 00:00:00+00:00'}
+ja    volatility_breakout: [tz UTC] Scanbeginn (Zeilen vor entry_cutoff) gleich fuer drei Dateienden · {'AAA': 2273, 'BBB': 2273, 'CCC': 2273}
+INFO  volatility_breakout: [tz UTC] run_backtest: Cannot compare tz-naive and tz-aware timestamps - Befund ausserhalb E-6, nicht gezaehlt
+34 von 34 Pruefungen bestanden
+rc 0

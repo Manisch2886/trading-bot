@@ -1,0 +1,16 @@
+ja    Testbeleg docs/belege/TB-163/e_test.txt: alle bestanden, rc 0 (34 von 34 Pruefungen bestanden)
+ja    elliott_wave_stocks: kein Fenster aus dem Dateiende (open_time.max() - DateOffset)
+ja    elliott_wave_stocks: Fenster aus faltenplan.horizontbeginn("elliott_wave_stocks")
+ja    rsi2_mean_reversion: kein Fenster aus dem Dateiende (open_time.max() - DateOffset)
+ja    rsi2_mean_reversion: Fenster aus faltenplan.horizontbeginn("rsi2_mean_reversion")
+ja    turtle_soup_stocks: kein Fenster aus dem Dateiende (open_time.max() - DateOffset)
+ja    turtle_soup_stocks: Fenster aus faltenplan.horizontbeginn("turtle_soup_stocks")
+ja    volatility_breakout: kein Fenster aus dem Dateiende (open_time.max() - DateOffset)
+ja    volatility_breakout: Fenster aus faltenplan.horizontbeginn("volatility_breakout")
+ja    elliott_wave_stocks: Anfang der geladenen Zeilen = Horizontbeginn (Kappung an cutoff)
+ja    volatility_breakout: Scanbeginn folgt entry_cutoff (backtest_breakout.py unverändert)
+ja    faltenplan.py unverändert
+R81 (d) Voraussetzung: erfuellt (Fenster, Scanbeginn, Anfang der geladenen Zeilen ohne Dateiende)
+INFO Befund (kein Teil von R81 (d)): die Aufnahme eines Symbols (timespan_days = max - min gegen MIN_HISTORY_DAYS) haengt weiter vom Dateiende ab; buy_and_hold_benchmark.py der drei Bots rsi2, turtle, vb bildet cutoff weiter aus .max() (nicht E-6)
+Pruefungen: 14, NEIN: 0
+rc 0

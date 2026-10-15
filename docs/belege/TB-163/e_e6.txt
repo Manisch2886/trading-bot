@@ -1,0 +1,18 @@
+ja    vorher strategies/elliott_wave_stocks/multi_symbol_optimise.py sha256 275273776fafb245…
+ja    strategies/elliott_wave_stocks/multi_symbol_optimise.py: Anker genau einmal
+ja    nachher strategies/elliott_wave_stocks/multi_symbol_optimise.py sha256 3b7757004b1c2db527262cbacf0f86c095729080074e73ced750b82fc8677232 (Soll aus dem Bau)
+ja    vorher strategies/rsi2_mean_reversion/multi_symbol_optimise.py sha256 777f5cb0a637bb87…
+ja    strategies/rsi2_mean_reversion/multi_symbol_optimise.py: Anker genau einmal
+ja    nachher strategies/rsi2_mean_reversion/multi_symbol_optimise.py sha256 61838aca901cabeace70511b71742d10cba4de6575a999aecf5a492f938ad6dc (Soll aus dem Bau)
+ja    vorher strategies/turtle_soup_stocks/multi_symbol_optimise.py sha256 e4277f013be6d0af…
+ja    strategies/turtle_soup_stocks/multi_symbol_optimise.py: Anker genau einmal
+ja    nachher strategies/turtle_soup_stocks/multi_symbol_optimise.py sha256 29e7f10c3eb79f8316c53c9a31ee3ea0dd450d44bb9904dc2ba9944df003c0cc (Soll aus dem Bau)
+ja    vorher strategies/volatility_breakout/multi_symbol_optimise.py sha256 f0a4ee43dca133e8…
+ja    strategies/volatility_breakout/multi_symbol_optimise.py: Anker genau einmal
+ja    nachher strategies/volatility_breakout/multi_symbol_optimise.py sha256 24c182ae1cf7c882c9e3aec31c5088348e2fa44c5cc2e99eab54ecf29b337585 (Soll aus dem Bau)
+ja    geschrieben strategies/elliott_wave_stocks/multi_symbol_optimise.py sha256 3b7757004b1c2db527262cbacf0f86c095729080074e73ced750b82fc8677232
+ja    geschrieben strategies/rsi2_mean_reversion/multi_symbol_optimise.py sha256 61838aca901cabeace70511b71742d10cba4de6575a999aecf5a492f938ad6dc
+ja    geschrieben strategies/turtle_soup_stocks/multi_symbol_optimise.py sha256 29e7f10c3eb79f8316c53c9a31ee3ea0dd450d44bb9904dc2ba9944df003c0cc
+ja    geschrieben strategies/volatility_breakout/multi_symbol_optimise.py sha256 24c182ae1cf7c882c9e3aec31c5088348e2fa44c5cc2e99eab54ecf29b337585
+Pruefungen: 16, NEIN: 0
+rc 0

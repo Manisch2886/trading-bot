@@ -46,6 +46,25 @@ MIN_HISTORY_DAYS = 1825
 RECENT_YEARS_ONLY = 10
 
 
+def horizontbeginn_ts(spalte=None) -> pd.Timestamp:
+    """TB-163 (E-6, TB-30b Posten 4; R44, R81 (d), Register 26.2/28.4/28.5): der
+    Horizontbeginn des Bots aus research/vorregistrierung/faltenplan.py
+    (HORIZONTBEGINN ueber faltenplan.horizontbeginn) - ein Datum fuer alle Symbole
+    des Bots, nicht die letzte Zeile der Datei. Import erst beim Aufruf. Mit
+    `spalte` (open_time) in deren Zeitzone: naiv bleibt naiv, tz-behaftet
+    wird der Grenzwert auf die Spaltenzone lokalisiert."""
+    _vr = os.path.join(os.path.dirname(os.path.dirname(_STRATEGY_DIR)), "research", "vorregistrierung")
+    if _vr not in sys.path:
+        sys.path.insert(0, _vr)
+    import faltenplan  # noqa: E402
+    h = faltenplan.horizontbeginn("turtle_soup_stocks")
+    if h is None:
+        raise ValueError("turtle_soup_stocks: kein Horizontbeginn im Faltenplan")
+    t = pd.Timestamp(h)
+    tz = getattr(getattr(spalte, "dt", None), "tz", None) if spalte is not None else None
+    return t.tz_localize(tz) if tz is not None else t
+
+
 def load_all_symbol_data() -> dict:
     data = {}
     _luecken = Zaehler()
@@ -78,7 +97,7 @@ def load_all_symbol_data() -> dict:
 
         entry_cutoff = None
         if RECENT_YEARS_ONLY is not None:
-            entry_cutoff = df["open_time"].max() - pd.DateOffset(years=RECENT_YEARS_ONLY)
+            entry_cutoff = horizontbeginn_ts(df["open_time"])  # TB-163 (E-6): Horizont aus faltenplan.HORIZONTBEGINN, nicht aus dem Dateiende (R81 (d), 28.4)
 
         data[symbol] = (df, entry_cutoff)
     _luecken.melde()
