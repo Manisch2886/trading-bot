@@ -1,0 +1,8 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-165/v_voraussetzung.txt)
+ja    Quelle md5 9bc9e2f1ccf3e14804549b23662a2caf, Registerblock R98/R99
+ja    61 noch nicht im Register; endet mit einer Leerzeile
+ja    Ort 57.1 R90: Einfuegestelle Z. 11980
+ja    Ort 56.3 R86: Einfuegestelle Z. 11885
+ja    Ort 57.2 R91: Einfuegestelle Z. 11987
+Pruefungen: 6, NEIN: 0
+rc 0

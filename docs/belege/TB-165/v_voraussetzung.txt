@@ -1,0 +1,22 @@
+ja    R99 (g)/R56 (b): docs/projektfuehrung/FABLE_ANTWORT_2026-10-15a_schranke_je_bot_parameterweg_abnahme_am_erzeuger.md verfolgt, gleich HEAD, md5 9bc9e2f1ccf3e14804549b23662a2caf
+ja    R99 (g)/R56 (b): docs/projektfuehrung/FABLE_ANFRAGE_2026-10-15a_schranke_im_signalpfad.md verfolgt, gleich HEAD, md5 26108d4fe8474e8035d500a78371ed21
+ja    R99 (g)/R56 (b): docs/projektfuehrung/FABLE_UEBERGABE_2026-10-15a_eroeffnung.md verfolgt, gleich HEAD, md5 4821ff1958955d333585c839b007dbe7
+ja    Registerblock 15a: genau R98, Quelle, R99, Quelle im Codeblock (Z. 46–49)
+ja    Register: 60 da, 61 nicht; R98/R99 0 Treffer
+ja    Register endet mit genau einer Leerzeile
+ja    Ort 57.1 R90: genau einmal, Einfuegestelle Z. 11980, R98 dort noch nicht genannt
+ja    Ort 56.3 R86: genau einmal, Einfuegestelle Z. 11885, R98 dort noch nicht genannt
+ja    Ort 57.2 R91: genau einmal, Einfuegestelle Z. 11987, R99 dort noch nicht genannt
+ja    R99 (g): Abschnitt 37 am 35dae90 = HEAD = gelesene Kopie (d950e03), Endleerzeilen nicht gezaehlt
+ja    R99 (g): Abschnitt 55 am 35dae90 = HEAD = gelesene Kopie (3f2e97e), Endleerzeilen nicht gezaehlt
+ja    R99 (g) Befund: 56 am 35dae90 = HEAD; gelesene Kopie (3f2e97e) ohne die Marke „56.1 R84 PRÄZISIERT durch R95 (58.2)“ (+3 Zeilen, TB-162), sonst zeichengleich
+ja    R99 (g): Abschnitt 57 am 35dae90 = HEAD = gelesene Kopie (3f2e97e), Endleerzeilen nicht gezaehlt
+ja    R99 (b): Zeilen mit „25c (1)“ ausserhalb 57 = die 12 Zeilen der Urteilsliste
+ja    R99 (b): „25c (1)“ in 12 Zeilen ausserhalb 57 (darunter R60 (b) Z. 11352, R63 (c) Z. 11434), 3 in 57
+ja    42.3 und F1 (a) genau da
+ja    Index: Kopf 0–60, Zeilen 56, 57 (– ), 60, Pflegezeile TB-164, Pflege-Anker je genau einmal; kein Abschnitt 14
+ja    Dialog-Index: 15a noch nicht
+ja    BACKLOG: Rang 1 (Stand TB-164) genau einmal
+ja    Journal: höchste Kennung FA, nächste FB frei
+Pruefungen: 20, NEIN: 0
+rc 0

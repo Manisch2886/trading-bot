@@ -1,0 +1,7 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-165_register61_fable15a.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-15a_schranke_im_signalpfad.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-15a_schranke_je_bot_parameterweg_abnahme_am_erzeuger.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-15a_eroeffnung.md

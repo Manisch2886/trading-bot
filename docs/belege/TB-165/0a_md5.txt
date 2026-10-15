@@ -1,0 +1,5 @@
+ja    md5 docs/projektfuehrung/FABLE_ANTWORT_2026-10-15a_schranke_je_bot_parameterweg_abnahme_am_erzeuger.md = 9bc9e2f1ccf3e14804549b23662a2caf
+ja    md5 docs/projektfuehrung/FABLE_ANFRAGE_2026-10-15a_schranke_im_signalpfad.md = 26108d4fe8474e8035d500a78371ed21
+ja    md5 docs/projektfuehrung/FABLE_UEBERGABE_2026-10-15a_eroeffnung.md = 4821ff1958955d333585c839b007dbe7
+Pruefungen: 3, NEIN: 0
+rc 0
