@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-163** | `docs/auftraege/MAC_TB-163_register59_posten4_horizont.md` | Tatsachennotiz TB-162 als Registerabschnitt 59; TB-30b Posten 4 (E-6): Horizont je Bot aus faltenplan.HORIZONTBEGINN in den vier Aktien-Optimierern, R81 (d), Einzelfreigabe nach 37.3 (Karten 15.10.2026) |
+| **TB-164** | `docs/auftraege/MAC_TB-164_register60_vollzug_tb163.md` | Registerabschnitt 60 Vollzug TB-163 (Hash-Uebergang 37.3 nach Bauart 50.3, Sonde gemessen) und Tatsachennotiz Posten 5 nach R43; Backlog-Zeilen (Karten 15.10.2026) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
