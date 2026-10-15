@@ -1,0 +1,11 @@
+ja    Fassung aus dem Beleg: nicht prüfbar
+ja    Quelle ERGEBNIS_TB-163 md5 9e4c8f7df087bb25f3b7dba93e51119e, Z. 111-123 (13 Zeilen)
+ja    R43-Wortlaut genau einmal
+ja    neun Optimierer
+ja    60 noch nicht im Register; endet mit einer Leerzeile
+ja    Abbild führt keinen Optimierer
+ja    nachher: altes Register unverändert vorn (append-only), 60 genau einmal, Z. 12153
+ja    Z. 111-123 zeichengleich im Register
+ja    Register endet mit genau einer Leerzeile
+Pruefungen: 9, NEIN: 0
+rc 0

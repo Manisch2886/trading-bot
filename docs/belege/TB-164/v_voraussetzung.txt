@@ -1,0 +1,25 @@
+ja    Register: 59 genau einmal, 60 noch nicht
+ja    Register endet mit genau einer Leerzeile
+ja    Register: Vorbild 50.3 genau einmal, Z. 11198–11242
+ja    Register: R43-Wortlaut (Wache, „nicht im Laufpfad“, Posten 5 neu zu fassen) genau einmal (Z. 10942)
+ja    Register: 37.3 „Ein Befund 1 der Sperrlisten-Sonde“ genau einmal
+ja    ERGEBNIS_TB-163 md5 9e4c8f7df087bb25f3b7dba93e51119e
+ja    ERGEBNIS_TB-163 zuletzt in Commit d81dc88
+ja    ERGEBNIS_TB-163: Grenzen Z. 109 Kopf, Z. 111-123 Entwurf, Z. 124 leer, Z. 125 herkunft.register()
+ja    ERGEBNIS_TB-163 Z. 113-123 = docs/belege/TB-163/e_uebergang.md
+ja    ERGEBNIS_TB-163 Z. 129 enthält den Satz zur Sonde
+ja    sha256 heute = nachher strategies/elliott_wave_stocks/multi_symbol_optimise.py (3b7757004b1c2db5…, 11a267f)
+ja    sha256 heute = nachher strategies/rsi2_mean_reversion/multi_symbol_optimise.py (61838aca901cabea…, 11a267f)
+ja    sha256 heute = nachher strategies/turtle_soup_stocks/multi_symbol_optimise.py (29e7f10c3eb79f83…, 11a267f)
+ja    sha256 heute = nachher strategies/volatility_breakout/multi_symbol_optimise.py (24c182ae1cf7c882…, 11a267f)
+ja    Commit 11a267f vorhanden
+ja    sha256 Abbild 46f0ad5d1d83a253… und Sonde 98c02e0e9b42831d…
+ja    Abbild führt keinen Optimierer
+ja    neun Optimierer verfolgt
+ja    Posten 5 alt (MAC_TB-120 Z. 128), Bestand 0/9 (ERGEBNIS_TB-120 Z. 101)
+ja    backtest_breakout.py Z. 211 enthält entry_time >= np.datetime64(entry_cutoff)
+ja    Index: Kopf 0–59, Zeile 59, Pflegezeile TB-163 je genau einmal
+ja    BACKLOG: Rang 1 (Stand TB-163) und Scan-Schleifen je genau einmal
+ja    Journal: höchste Kennung EZ, nächste FA frei
+Pruefungen: 23, NEIN: 0
+rc 0
