@@ -1,6 +1,6 @@
 # REGISTER_INDEX — wo was im Register gerade gilt
 
-**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `92cb637` (15.10.2026), Abschnitte 0–60,
+**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `173368f` (15.10.2026), Abschnitte 0–61,
 12 023 Zeilen, sha256 `459be94e…`. Gebaut in TB-118 (Fable 27b B3, Teil D A4), nachgezogen in TB-126 (E-2), TB-129 (Fable 01a), TB-130 (Fable 02a), TB-132 (Fable 02c), TB-136 (Fable 04a), TB-139 (Fable 07a), TB-149 (Fable 09a) und TB-154 (Fable 10a). **Das ist ein Wegweiser, nicht das
 Register.** Der Wortlaut steht nur im Register bzw. in der Kopie je Abschnitt `register_kopie/REGISTER_KOPIE_ABSCHNITT_00.md` … `_57.md` (Tabelle unten; dazu die Teile `REGISTER_KOPIE_teil1–5.md`).
 
@@ -212,11 +212,12 @@ Die Spalte „später berührt“ nennt jede gemessene Marke und jede Rückverwe
 | 53 aus 02c | 4 | R66–R73 (53.1–53.8); 53.9 Voraussetzungen und Befunde; 53.10 Offenes | 53.1 R66 **PRÄZISIERT durch R74 (54.1)** (Z. 11519); 53.3 R68 **PRÄZISIERT durch R75 (54.2)** (Z. 11545); 53.4 R69 ERGÄNZT durch R75 (54.2) (Z. 11558); 53.5 R70 **PRÄZISIERT durch R77 (54.4)** (Z. 11568); 53.9, Zeile „R66 (53.1) (b)“ ERGÄNZT durch R74 (54.1) (Z. 11627); 53.1 R66 **PRÄZISIERT durch R78 (55.1)** (Z. 11522), ERGÄNZT durch R81 (55.4) (Z. 11525); 53.2 R67 ERGÄNZT durch R78 (55.1) und R82 (55.5) (Z. 11535); 53.7 R72 **PRÄZISIERT durch R78 (55.1)** (Z. 11588), **BERICHTIGT durch R78 (55.1)** (Z. 11591), ERGÄNZT durch R79 (55.2) (Z. 11594); 53.9, Zeile „R72 (53.7), zweite“ ERGÄNZT durch R78 (55.1) und R83 (55.6) (Z. 11630); 53.9, Zeile „R72 (53.7) (d)“ ERGÄNZT durch R79 (55.2) und R78 (55.1) (Z. 11633); 53.3 R68 **PRÄZISIERT durch R85 (56.2)** (Z. 11548); 53.5 R70 **PRÄZISIERT durch R89 (56.6)** (Z. 11571); 53.7 R72 **PRÄZISIERT durch R88 (56.5)** (Z. 11597) |
 | 54 aus 04a | 5 | R74–R77 (54.1–54.4); 54.5 Voraussetzungen und Befunde; 54.6 Offenes | 54.1 R74 **PRÄZISIERT durch R78 (55.1)** (Z. 11662), ERGÄNZT durch R79 (55.2): die Bedingung aus (e) ist gemessen erfüllt (Z. 11665); 54.5, Zeile „R74 (54.1) (e)“ ERGÄNZT durch R79 (55.2) (Z. 11713); 54.2 R75 **PRÄZISIERT durch R84 (56.1)** (Z. 11675), **PRÄZISIERT durch R85 (56.2)** (Z. 11678); 54.5, Zeile „R75 (54.2) (a)“ ERGÄNZT durch R84 (56.1) (Z. 11716) |
 | 55 aus 07a | 5 | R78–R83 (55.1–55.6); 55.7 Voraussetzungen und Befunde; 55.8 Offenes | 55.1 R78 **BERICHTIGT durch R88 (56.5)** (Z. 11745), **PRÄZISIERT durch R88 (56.5)** (Z. 11748); 55.3 R80 ERGÄNZT durch R88 (56.5) (Z. 11765), ERGÄNZT durch R89 (56.6) (Z. 11768); 55.4 R81 ERGÄNZT durch R86 (56.3) (Z. 11778), ERGÄNZT durch R87 (56.4) (Z. 11781); 55.5 R82 **BERICHTIGT durch R88 (56.5)** (Z. 11791); 55.6 R83 ERGÄNZT durch R88 (56.5) (Z. 11801); 55.7, Zeile „R78 (55.1) (a), erste“ ERGÄNZT durch R88 (56.5) (Z. 11831, nachgetragen nach R93 (a)) |
-| 56 aus 09a | 5 | R84–R89 (56.1–56.6); 56.7 Voraussetzungen und Befunde; 56.8 Offenes | 56.1 R84 ERGÄNZT durch R91 (57.2) (Z. 11864); 56.3 R86 ERGÄNZT durch R92 (57.3) (Z. 11884); 56.4 R87 ERGÄNZT durch R90 (57.1) (Z. 11894); 56.5 R88 **PRÄZISIERT durch R91 (57.2)** (Z. 11904); 56.7, Zeile „R87 (56.4) (d)“ ERGÄNZT durch R90 (57.1) (Z. 11940); 56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“ ERGÄNZT durch R91 (57.2) (Z. 11943); 56.7, Zeile „R86 (56.3) (e)“ ERGÄNZT durch R92 (57.3) (Z. 11946); 56.1 R84 **PRÄZISIERT durch R95 (58.2)** (Z. 11867) |
-| 57 aus 10a | 5 | R90–R93 (57.1–57.4); 57.5 Voraussetzungen und Befunde; 57.6 Offenes | – |
-| 58 aus 14a und 14b | 6 | R94–R96 (58.1–58.3, 14a); R97 (58.4, 14b); 58.5 Voraussetzungen und Befunde | 58.2 R95 **BERICHTIGT durch R97 (58.4)** (Z. 12059); 58.3 R96 **BERICHTIGT durch R97 (58.4)** (Z. 12069) |
+| 56 aus 09a | 5 | R84–R89 (56.1–56.6); 56.7 Voraussetzungen und Befunde; 56.8 Offenes | 56.1 R84 ERGÄNZT durch R91 (57.2) (Z. 11864); 56.3 R86 ERGÄNZT durch R92 (57.3) (Z. 11884); 56.4 R87 ERGÄNZT durch R90 (57.1) (Z. 11897); 56.5 R88 **PRÄZISIERT durch R91 (57.2)** (Z. 11907); 56.7, Zeile „R87 (56.4) (d)“ ERGÄNZT durch R90 (57.1) (Z. 11943); 56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“ ERGÄNZT durch R91 (57.2) (Z. 11946); 56.7, Zeile „R86 (56.3) (e)“ ERGÄNZT durch R92 (57.3) (Z. 11949); 56.1 R84 **PRÄZISIERT durch R95 (58.2)** (Z. 11867); 56.3 R86 ERGÄNZT durch R98 (61.1) (Z. 11887) |
+| 57 aus 10a | 5 | R90–R93 (57.1–57.4); 57.5 Voraussetzungen und Befunde; 57.6 Offenes | 57.1 R90 ERGÄNZT durch R98 (61.1) (Z. 11985); 57.2 R91 **PRÄZISIERT durch R99 (61.2)** (Z. 11995) |
+| 58 aus 14a und 14b | 6 | R94–R96 (58.1–58.3, 14a); R97 (58.4, 14b); 58.5 Voraussetzungen und Befunde | 58.2 R95 **BERICHTIGT durch R97 (58.4)** (Z. 12068); 58.3 R96 **BERICHTIGT durch R97 (58.4)** (Z. 12078) |
 | 59 Tatsachennotiz TB-162 | 6 | 59.1 Tatsachennotiz zu 24.2, 24.3, R36 und 11.2 mit R43 (Kapital-Drawdown E und M je WF-Abschnitt; aus ERGEBNIS_TB-162 Z. 199–232) | – |
 | 60 Vollzug TB-163 | 6 | 60.1 Hash-Übergang nach 37.3 (E-6, vier Aktien-Optimierer, Commit `11a267f`; aus ERGEBNIS_TB-163 Z. 111–123) mit Sonde zu Punkt 11; 60.2 Tatsachennotiz Posten 5 nach R43 („nicht im Laufpfad“, neun Optimierer) | – |
+| 61 aus 15a | 6 | R98–R99 (61.1–61.2); 61.3 Voraussetzungen und Befunde | – |
 
 ## 5. Die Marken aus E-2 (TB-126)
 
@@ -551,11 +552,11 @@ Geltungsbereich aufzählen, dazu Abschnitt 10, Sperrlistenpunkte 9 und 11 (Lesar
 | 55.7, Zeile „R78 (55.1) (a), erste“ | Z. 11831 | ERGÄNZT | R88 (56.5) | MARKE+ | 5 |
 | 56.1 (R84) | Z. 11864 | ERGÄNZT | R91 (57.2) | MARKE+ | 5 |
 | 56.3 (R86) | Z. 11884 | ERGÄNZT | R92 (57.3) | MARKE+ | 5 |
-| 56.4 (R87) | Z. 11894 | ERGÄNZT | R90 (57.1) | MARKE+ | 5 |
-| 56.5 (R88) | Z. 11904 | PRÄZISIERT | R91 (57.2) | MARKE | 5 |
-| 56.7, Zeile „R87 (56.4) (d)“ | Z. 11940 | ERGÄNZT | R90 (57.1) | MARKE+ | 5 |
-| 56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“ | Z. 11943 | ERGÄNZT | R91 (57.2) | MARKE+ | 5 |
-| 56.7, Zeile „R86 (56.3) (e)“ | Z. 11946 | ERGÄNZT | R92 (57.3) | MARKE+ | 5 |
+| 56.4 (R87) | Z. 11897 | ERGÄNZT | R90 (57.1) | MARKE+ | 5 |
+| 56.5 (R88) | Z. 11907 | PRÄZISIERT | R91 (57.2) | MARKE | 5 |
+| 56.7, Zeile „R87 (56.4) (d)“ | Z. 11943 | ERGÄNZT | R90 (57.1) | MARKE+ | 5 |
+| 56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“ | Z. 11946 | ERGÄNZT | R91 (57.2) | MARKE+ | 5 |
+| 56.7, Zeile „R86 (56.3) (e)“ | Z. 11949 | ERGÄNZT | R92 (57.3) | MARKE+ | 5 |
 
 ### Indexzeilen aus Fable 10a
 
@@ -577,14 +578,32 @@ Alle 8 Marken, die TB-162 nach R96 (d) und R97 (e) gesetzt hat (6 am alten Ort, 
 | 48.13 R45 | Z. 10974 | ERGÄNZT | R97 (58.4) | 6 |
 | 48.14 R46 | Z. 11014 | ERGÄNZT | R94 (58.1) | 6 |
 | 56.1 R84 | Z. 11867 | PRÄZISIERT | R95 (58.2) | 6 |
-| 58.2 R95 | Z. 12059 | BERICHTIGT | R97 (58.4) | 6 |
-| 58.3 R96 | Z. 12069 | BERICHTIGT | R97 (58.4) | 6 |
+| 58.2 R95 | Z. 12068 | BERICHTIGT | R97 (58.4) | 6 |
+| 58.3 R96 | Z. 12078 | BERICHTIGT | R97 (58.4) | 6 |
 
 ### Indexzeilen aus Fable 14a und 14b
 
 - **48.20 (R52):** Zählung der Fälle „Bestand behauptet statt Voraussetzung genannt“ → R96 (c) (58.3) mit R97 (d) (58.4): fünfzehn gezählte Fälle; der fünfzehnte ist „ein solches Modul schreibt keines“ in R95 (a). In R96 (c) lies „Gezählt sind fünfzehn Fälle.“ Ohne Marke (R96 (d), R97 (e)). Der Index ist kein Registertext.
 - **54.3 (R76):** Massstab der Zählung (R76 (e)) → R97 (d) (58.4): fünfzehnter Fall. Ohne Marke (R97 (e)). Der Index ist kein Registertext.
 - **Abschnitt 10, Punkt 10:** → R97 (b) (58.4): die ausgeführten Positionen aus der Rückgabe nach R45 mit R84 (e), nachdem Punkt 10 nach 37.3 beauftragt und freigegeben ist; bis dahin Rekonstruktion. Ohne Marke (R97 (e)). Der Index ist kein Registertext.
+
+---
+
+## 14. Die Marken aus Fable 15a (TB-165)
+
+Alle 3 Marken, die TB-165 nach R99 (d) gesetzt hat, in der Reihenfolge des Registers; Zeilen aus `docs/belege/TB-165/r_daten.json`.
+
+| Ort | Marke | Wort | durch | T |
+|---|---|---|---|---|
+| 56.3 R86 | Z. 11887 | ERGÄNZT | R98 (61.1) | 6 |
+| 57.1 R90 | Z. 11985 | ERGÄNZT | R98 (61.1) | 6 |
+| 57.2 R91 | Z. 11995 | PRÄZISIERT | R99 (61.2) | 6 |
+
+### Indexzeilen aus Fable 15a
+
+- **„25c (1)“, an jeder Stelle des Registers:** „25c (1)“ ist 42.3 F1 (a), nach R91 (f) → R99 (b) (61.2). Ohne Marke (R99 (b), (d)). Messung je Stelle: 61.3 (b). Der Index ist kein Registertext.
+- **Abschnitt 10, Sperrlistenpunkte 9 und 11 (R90 (f)); Punkte 6, 10 und 11 (R81 (b)):** bestätigt durch R99 (c) (61.2), unverändert. Der Index ist kein Registertext.
+
 
 
 **Pflege:** Nach jedem Registerauftrag zusammen mit `registerkopie.py` erneuern. Die Marken misst das Skript neu,
@@ -622,4 +641,5 @@ Köpfen der Abschnittsdateien; Einträge mit `docs/belege/TB-154/c2_index_eintra
 11 Marken und drei Indexzeilen nach R93 (d) (`c3_indexzeilen.py`).
 In TB-162 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 9a1bc7a 0e1e662`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-162 (`index`); 58 (R94–R97) kommt zu T6; neuer Abschnitt 13 (8 Marken).
 In TB-163 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py cff0de3 35dae90`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-163 (`index`); 59 (Tatsachennotiz TB-162) kommt zu T6.
-Zuletzt nachgezogen in TB-164 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 1d037f9 92cb637`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-164 (`index`); 60 (Vollzug TB-163, Posten 5) kommt zu T6.
+In TB-164 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 1d037f9 92cb637`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-164 (`index`); 60 (Vollzug TB-163, Posten 5) kommt zu T6.
+Zuletzt nachgezogen in TB-165 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 4edd877 173368f`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-165 (`index`); 61 (R98–R99) kommt zu T6; neuer Abschnitt 14 (3 Marken).

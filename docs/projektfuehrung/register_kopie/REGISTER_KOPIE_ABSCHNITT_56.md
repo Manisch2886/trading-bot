@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 56 (von 0–60) — Register-Z. 11855–11972 — Commit 92cb637bd43efc20e0143fcaee8c09c90193252a — 2026-10-15 — Original sha256 fc91256fb429e91a53b9e06e738eaa0f367de14c88947bd2946936b5d2239569 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 56 (von 0–61) — Register-Z. 11855–11975 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
 
 ## 56. Fable 09a — Registerblock R84–R89 (TB-149)
 
@@ -30,6 +30,9 @@ Reines Eintragen von Registertext, Bauart wie 55. Quelle ist allein `docs/projek
 > Quelle des Grundes: 5.2 im Wortlaut („geht in keine Selektion ein — auch nicht in die Bestätigungsperiode“), R81 (a) („jede Art der Abhängigkeit“), (b), (c), (d), (e), (g) und (h), 40.6 („sind Eingabe einer Herleitung von Registertext (33.2)“; ein Hash sagt nicht, „ob sie den Datenstand beschreiben, mit dem der Lauf rechnet“), 5.4, 41.2 B1, B3, B4 und B6/B7, 41.3 C2 (der Deckel aus den gefundenen Trades der neuen Listen), R41, R12 (46.3: zwei Erzeuger), R44, R42, R83 (b) und (c), 17.1, 17.2, 41.1 A3, A4, A5 und A12, R59 (b), R46 (Bauart), die Antwort 07.10.a, „Unsicher“ 4 und 6. Nicht Grund: ob und wie viele Trades der Schnitt einer Liste nimmt; das ist nicht gemessen und für die Entscheidung ohne Belang (Bauart 24.3). Kein Ergebnis.
 
 > ⭐ **56.3 R86 ERGÄNZT durch R92 (57.3)** (Fable 10a R92, TB-154, 11.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **56.3 R86 ERGÄNZT durch R98 (61.1)** (Fable 15a R98, Unterpunkt (d), TB-165, 15.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 40.6; 41.3, Eintrag C2; 48.12 (R44); 55.4 (R81). Voraussetzung und Befunde: 56.7. Offen: 56.8 Nr. 3, 7, 9, 10 und 15.

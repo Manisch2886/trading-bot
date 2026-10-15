@@ -1,0 +1,10 @@
+ja    r_daten.json: 3 Marken mit Zeile
+ja    Abschnitt 61 in genau einer Teildatei: T[6]
+ja    Kopf genau einmal, nennt 0–60
+ja    Zeile 56 genau einmal
+ja    Zeile 57 genau einmal, ohne Marke
+ja    Zeile 60 genau einmal
+ja    Pflege-Anker genau einmal, davor Leerzeile
+ja    Pflegezeile TB-164 genau einmal
+Pruefungen: 8, NEIN: 0
+rc 0

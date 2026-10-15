@@ -1,0 +1,7 @@
+{
+ "15a": {
+  "frage": "Wo sitzt die Schranke nach R90 (c) bei den neun Bots — reicht ein Parameter wie entry_cutoff, genügt eine Freigabe je Bauauftrag, wo läuft die Prüfung nach R90 (g) — und tragen der Verweis in R90 (c) und die Lesarten aus 57.6 Nr. 4 und 5?",
+  "entscheidung": "Die Schranke sitzt je Bot, wo sein Scan den Einstieg bildet; ein Parameter trägt unter drei Bedingungen, sonst der Scan mit 37.3; eine Freigabe je Bauauftrag; Abnahme am Erzeuger (R98). Der Verweis in R90 (c) trägt; R91 (f) gilt an jeder Stelle, Indexzeile statt Marke; Lesarten zu 15.5 und Abschnitt 10 bestätigt (R99).",
+  "offen": "ja"
+ }
+}

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 60 (von 0–60) — Register-Z. 12153–12193 — Commit 92cb637bd43efc20e0143fcaee8c09c90193252a — 2026-10-15 — Original sha256 fc91256fb429e91a53b9e06e738eaa0f367de14c88947bd2946936b5d2239569 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 60 (von 0–61) — Register-Z. 12162–12203 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
 
 ## 60. Vollzug TB-163 (Tatsachennotiz nach 37.3) und Tatsachennotiz Posten 5 (TB-164)
 
@@ -41,3 +41,4 @@ R43 (Register Z. 10942): „Die Wache „frühester Einstieg ≥ Beginn der erst
 | `strategies/turtle_soup_stocks/multi_symbol_optimise.py` | `29e7f10c3eb79f8316c53c9a31ee3ea0dd450d44bb9904dc2ba9944df003c0cc` |
 | `strategies/volatility_breakout/multi_symbol_optimise.py` | `24c182ae1cf7c882c9e3aec31c5088348e2fa44c5cc2e99eab54ecf29b337585` |
 | `strategies/volatility_breakout_crypto/multi_symbol_optimise.py` | `02548e2eb95e34a0afcdbacfa0d806c7406fd4b066d0b26ef3c9839bf83a082b` |
+

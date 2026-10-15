@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 6 von 6 — Abschnitte 58–60 — Commit 92cb637bd43efc20e0143fcaee8c09c90193252a — 2026-10-15 — Original sha256 fc91256fb429e91a53b9e06e738eaa0f367de14c88947bd2946936b5d2239569 — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 6 von 6 — Abschnitte 58–61 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
 
 ## 58. Fable 14a und 14b — Registerblock R94–R97 (TB-162)
 
@@ -151,3 +151,72 @@ R43 (Register Z. 10942): „Die Wache „frühester Einstieg ≥ Beginn der erst
 | `strategies/turtle_soup_stocks/multi_symbol_optimise.py` | `29e7f10c3eb79f8316c53c9a31ee3ea0dd450d44bb9904dc2ba9944df003c0cc` |
 | `strategies/volatility_breakout/multi_symbol_optimise.py` | `24c182ae1cf7c882c9e3aec31c5088348e2fa44c5cc2e99eab54ecf29b337585` |
 | `strategies/volatility_breakout_crypto/multi_symbol_optimise.py` | `02548e2eb95e34a0afcdbacfa0d806c7406fd4b066d0b26ef3c9839bf83a082b` |
+
+## 61. Fable 15a — Registerblock R98–R99 (TB-165)
+
+Reines Eintragen von Registertext, Bauart wie 58. Quelle ist allein `docs/projektfuehrung/FABLE_ANTWORT_2026-10-15a_schranke_je_bot_parameterweg_abnahme_am_erzeuger.md`, md5 `9bc9e2f1ccf3e14804549b23662a2caf`, 12 056 B, Abschnitt „Registerblock — zeichengleich kopierbar, nummeriert (ab R98)“, Z. 46–49, im Repo seit Commit `4edd877`. Nicht eingetragen werden Leseprotokoll, Teile, „Kurz“ und „Unsicher“ der Antwort. Zum Dialog gehören die Anfrage 15.10.a und die Übergabe 15.10.a (beide seit `4edd877`). Eingetragen am 15.10.2026 mit TB-165.
+
+### 61.1 R98 — Ergänzung zu R90 (c), (f) und (g) (57.1) und zu R86 (d) (56.3) (Ort der Schranke, Parameterweg, Freigabe, Abnahme)
+
+> R98 — Ergänzung zu R90 (c), (f) und (g) (57.1) und zu R86 (d) (56.3) (Ort der Schranke, Parameterweg, Freigabe, Abnahme). (a) Ort. R90 (c) verlangt keine eine Stelle für alle neun Bots; die Schranke sitzt je Bot dort, wo sein Scan den Einstieg bildet, im Signalpfad oder in einem Parameter, den der Signalpfad führt. Mischformen sind zulässig. Den Handelbar-Tag je Symbol und Bot nimmt jede Stelle aus der Rechnung nach R90 (e); das erfüllt 37.5 (2). (b) Parameterweg. Ein Parameter erfüllt R90 (c), wenn er je Symbol den Handelbar-Tag trägt, den Scan hindert, vor diesem Tag einen Einstieg zu bilden, so dass der Scan fortfährt und ein späteres Signal den Einstieg bildet, und keinen Zustand des Scans oder der Zuteilung aus einem verhinderten Einstieg bestehen lässt. Ein Parameter, der Trades nach dem Scan entfernt, ist Streichen (R90 (d)) und erfüllt (c) nicht. Ein Parameter mit einem Stichtag je Lauf erfüllt (c) nur, wenn der Scan je Symbol mit dessen Tag läuft. [Voraussetzung, mit dem Bau durch Lesen zu messen, nur das Wie (27.2): ob entry_cutoff in den sechs Backtests (TB-148, M2-15) diese drei Bedingungen erfüllt; welche Stelle es bei elliott_wave, elliott_wave_stocks und t3_supertrend ist (Zählung des steuernden Chats, 57.5; Code nicht gelesen).] (c) Freigabe. Wird für die Schranke Code der Sperrliste geändert, genügt eine Freigabe des Betreibers je Bauauftrag für alle darin genannten Dateien, wenn sie jede Datei mit ihrem Sperrlistenpunkt und ihren Tests nennt (R31 (b), nach der Wiedergabe in 56.8 Nr. 8) und die Tatsachennotiz nach 37.3 je Datei alten und neuen Hash führt; ein neues Abbild unter neuem Namen schliesst den Befund. Eine Freigabe je Datei verlangt 37.3 nicht. (d) Abnahme. Die Prüfung nach R90 (g) läuft am Erzeuger: für den Zellen-Erzeuger in der Abnahme nach R46, für den Listen-Erzeuger in der Probe nach R86 (d), je auf dem Test-Snapshot, geprüft an den Ausgaben des Erzeugers, mit der Gegenprobe über die Wache nach R87 (c); sie steht neben der Probe des Schnitts nach R86 (d), jede beisst allein (41.1 A5). Eine Prüfung unmittelbar am Signalpfad ist Handwerk daneben und ersetzt sie nicht.
+> Quelle des Grundes: R90 (c) bis (h), R87 (c), R86 (b) und (d), R81 (b) und (h), 37.3 im Wortlaut („beauftragt war (Auftrag, Freigabe, alter und neuer Hash als Tatsachennotiz)“; neues Abbild unter neuem Namen), 39.5 und 42.5 nach der Wiedergabe in 37.3, 37.5 (2) nach der Wiedergabe in R45, R46 (Bauart), 41.1 A5 nach der Wiedergabe in R81, R31 (b) nach der Wiedergabe in 56.8 Nr. 8, die Anfrage 15.10.a und 57.5 (Zählung zu entry_cutoff; vom Verfahrensprüfer nicht gemessen). Nicht Grund: wie viele Einstiege die Schranke nimmt und welcher Weg weniger Aufwand ist. 10 und 41 hat der Verfahrensprüfer nicht gelesen. Kein Ergebnis.
+
+**Kette:** Marken nach R99 (d): 57.1 (R90); 56.3 (R86), Unterpunkt (d). Ohne Marke (R99 (d)): 48.14 (R46), 55.4 (R81), 56.4 (R87), 37.3, 37.5, 41.1, 48.13 (R45). Offen: die Voraussetzung in (b), Messung mit dem Bau E-3 (61.3 (c)).
+
+### 61.2 R99 — Tatsachennotizen 15a; Präzisierung zu R91 (f) (57.2); Stand der Rückfragen aus 57.6 Nr. 4 bis 6; Zählung
+
+> R99 — Tatsachennotizen 15a; Präzisierung zu R91 (f) (57.2); Stand der Rückfragen aus 57.6 Nr. 4 bis 6; Zählung. (a) Zu R90 (c): Der Verweis „(R81 (b))“ hinter „die Indikatoren rechnen über die Historie des Symbols vor dem Schnitt“ trägt dem Sinn nach: R81 (b) bestimmt, dass der Signalpfad keine Zeile ab dem Schnitt erhält, also die Zeilen davor; „Indikatorwert“ steht in R81 (a). Keine Berichtigung; kein Fall (R76 (e)). (b) Zu R91 (f): Der Satz gilt für jede Stelle des Registers, an der „25c (1)“ steht; die vier genannten Orte sind Beispiele, keine Aufzählung. Er gibt keinem Ort eine Bedeutung und fügt nichts hinzu; er löst eine Zitierweise auf. Deshalb keine Marke an 48.16 (R48), 48.18 (R50), 56.4 (R87), 53.4 (R69) oder einem weiteren Ort; Indexzeile: „25c (1)“ ist 42.3 F1 (a), nach R91 (f). [Voraussetzung, zu messen: dass die Lesart an jeder Stelle trifft, die der steuernde Chat gezählt hat (zwölf Zeilen, dazu R60 (b) und R63 (c); 57.5); trifft sie an einer nicht, kommt die Stelle mit Wortlaut als Frage an den Verfahrensprüfer.] (c) Lesarten des steuernden Chats, bestätigt: Die Marke an 15.5 steht hinter der Marke zu R53 (49.1) und nennt den Ort „15.5, Absatz zu Lesart A“ (57.5); die Indexzeile aus R93 (d) steht an Abschnitt 10, Sperrlistenpunkte 9 und 11 (nach der Messung in 57.5; Abschnitt 10 nicht gelesen); die Indexzeile aus R81 (b) an den Punkten 6, 10 und 11 bleibt daneben. (d) Marken zu dieser Antwort, der alte Satz bleibt zeichengleich: 57.1 (R90) — ERGÄNZT durch R98. 56.3 (R86) — ERGÄNZT durch R98, Unterpunkt (d). 57.2 (R91) — PRÄZISIERT durch R99, Unterpunkt (b). Ohne Marke: 48.14 (R46) (R90 (g) trägt die Marke schon; R98 (d) gibt der Abnahme keine neue Prüfung), 55.4 (R81), 56.4 (R87), 37.3, 37.5, 41.1, 48.13 (R45), 57.5, 57.6 (Quelle des Grundes, Bauart, Geltungsbereich, Statusliste); Abschnitt 10 (Indexzeilen: Punkte 9 und 11 — R90 (f); Punkte 6, 10 und 11 — R81 (b)); Abschnitt 9 und der ERZEUGT-Block von Abschnitt 3. (e) Zählung. Aus der Bewertung der Antwort 10.10.a (57.5, F1 bis F8) und aus der Anfrage 15.10.a wird kein Fall gezählt (R76 (e)): Verweise, die sinngemäss treffen, eine nicht als vollständig genannte Aufzählung, Befunde zur Form. Gezählt sind fünfzehn Fälle (R97 (d)); Indexzeilen an 48.20 (R52) und 54.3 (R76) unverändert. (f) Stand. 57.6 Nr. 4 ist für F1 und F2 mit (a) und (b) erledigt; F4 (Punkte 10 bis 12 der Anfrage 10.10.a) kommt mit Wortlaut in die nächste Anfrage. 57.6 Nr. 5 ist mit (b) und (c) erledigt, Nr. 6 mit (b) und (d). Neu offen: die Messung nach R98 (b), mit dem Bau. (g) Der Chat des Verfahrensprüfers vom 15.10.2026 (Antwort 15.10.a) ist neu begonnen; Anfangsbestand ist die Übergabe 15.10.a mit den Codeblöcken 09.10. und 01.10. und das Leseprotokoll der Antwort (R56 (a)); gelesen sind der Registerindex, 58 und 59 am Commit 35dae90, 55, 56 und 57 am Commit 3f2e97e und 37 am Commit d950e03, kein Helfer, kein Suchlauf, das Repo nicht erreicht; 59.1 enthält Tatsachennotizen nach R94 (b) zu den registrierten heutigen Parametern, gelesen auf Weisung der Eröffnung. [Voraussetzung, zu messen: dass 37, 55, 56 und 57 am Stand 35dae90 zeichengleich mit den gelesenen Kopien sind; dass Übergabe, Anfrage und Antwort mit Commit im Repo liegen, bevor eingetragen wird (R56 (b)).]
+> Quelle des Grundes: R81 (a) und (b), R90 (c), R91 (e) und (f) im Wortlaut, 42.3 F1 (a) nach der Wiedergabe in R91 (f), R61 (b) („dem Wortlaut eines Ortes eine Bedeutung gibt oder ihm etwas hinzufügt“; zweiter Satz nach 57.6 Nr. 6), R65 (a), R89 (c), R93 (a) und (d), 57.5 und 57.6 Nr. 4 bis 6 (Lesarten des steuernden Chats), R76 (e) nach der Wiedergabe in R88 (f), R97 (d), R56 (a), (b) und (d), 27.1, R94 (b), Leseprotokoll 15a. 42.3, 47, 48, 51, 52 und 10 hat der Verfahrensprüfer nicht gelesen. Kein Ergebnis.
+
+**Kette:** Marke nach R99 (d): 57.2 (R91), Unterpunkt (b). Indexzeile statt Marke (R99 (b)): „25c (1)“ ist 42.3 F1 (a). Nach (f) erledigt: 57.6 Nr. 4 für F1 und F2, Nr. 5, Nr. 6; F4 kommt in die nächste Anfrage (61.3 (d)). Voraussetzungen und Befunde: 61.3.
+
+### 61.3 Voraussetzungen und Befunde
+
+Gemessen vor dem Eintrag mit `docs/belege/TB-165/v_voraussetzung.txt` (Werkzeug `voraussetzung`, Anhang B des Auftrags TB-165), Zeilen wörtlich:
+
+    ja    R99 (g)/R56 (b): docs/projektfuehrung/FABLE_ANTWORT_2026-10-15a_schranke_je_bot_parameterweg_abnahme_am_erzeuger.md verfolgt, gleich HEAD, md5 9bc9e2f1ccf3e14804549b23662a2caf
+    ja    R99 (g)/R56 (b): docs/projektfuehrung/FABLE_ANFRAGE_2026-10-15a_schranke_im_signalpfad.md verfolgt, gleich HEAD, md5 26108d4fe8474e8035d500a78371ed21
+    ja    R99 (g)/R56 (b): docs/projektfuehrung/FABLE_UEBERGABE_2026-10-15a_eroeffnung.md verfolgt, gleich HEAD, md5 4821ff1958955d333585c839b007dbe7
+    ja    Registerblock 15a: genau R98, Quelle, R99, Quelle im Codeblock (Z. 46–49)
+    ja    Register: 60 da, 61 nicht; R98/R99 0 Treffer
+    ja    Register endet mit genau einer Leerzeile
+    ja    Ort 57.1 R90: genau einmal, Einfuegestelle Z. 11980, R98 dort noch nicht genannt
+    ja    Ort 56.3 R86: genau einmal, Einfuegestelle Z. 11885, R98 dort noch nicht genannt
+    ja    Ort 57.2 R91: genau einmal, Einfuegestelle Z. 11987, R99 dort noch nicht genannt
+    ja    R99 (g): Abschnitt 37 am 35dae90 = HEAD = gelesene Kopie (d950e03), Endleerzeilen nicht gezaehlt
+    ja    R99 (g): Abschnitt 55 am 35dae90 = HEAD = gelesene Kopie (3f2e97e), Endleerzeilen nicht gezaehlt
+    ja    R99 (g) Befund: 56 am 35dae90 = HEAD; gelesene Kopie (3f2e97e) ohne die Marke „56.1 R84 PRÄZISIERT durch R95 (58.2)“ (+3 Zeilen, TB-162), sonst zeichengleich
+    ja    R99 (g): Abschnitt 57 am 35dae90 = HEAD = gelesene Kopie (3f2e97e), Endleerzeilen nicht gezaehlt
+    ja    R99 (b): Zeilen mit „25c (1)“ ausserhalb 57 = die 12 Zeilen der Urteilsliste
+    ja    R99 (b): „25c (1)“ in 12 Zeilen ausserhalb 57 (darunter R60 (b) Z. 11352, R63 (c) Z. 11434), 3 in 57
+    ja    42.3 und F1 (a) genau da
+    ja    Index: Kopf 0–60, Zeilen 56, 57 (– ), 60, Pflegezeile TB-164, Pflege-Anker je genau einmal; kein Abschnitt 14
+    ja    Dialog-Index: 15a noch nicht
+    ja    BACKLOG: Rang 1 (Stand TB-164) genau einmal
+    ja    Journal: höchste Kennung FA, nächste FB frei
+    Pruefungen: 20, NEIN: 0
+
+(a) R99 (g): 37, 55 und 57 am Commit `35dae90` = am Stand `4edd877` = gelesene Kopie (37 am Kopf `d950e03`, 55 und 57 am Kopf `3f2e97e`; Leerzeilen am Abschnittsende nicht gezählt). **Befund:** 56 am Kopf `3f2e97e`, den der Verfahrensprüfer gelesen hat (Leseprotokoll 15a), ist ohne die Marke „56.1 R84 PRÄZISIERT durch R95 (58.2)“ (drei Zeilen, gesetzt mit TB-162); sonst zeichengleich. R95 selbst hat er in 58 am Commit `35dae90` gelesen. Übergabe, Anfrage und Antwort 15.10.a liegen seit `4edd877` im Repo (R56 (b)).
+
+(b) R99 (b): „25c (1)“ steht am Stand `4edd877` in 12 Zeilen ausserhalb 57, darunter R60 (b) (Z. 11352) und R63 (c) (Z. 11434), wie 57.5 („auch im Blocktext“); dazu 3 Zeilen in 57 (Z. 11986, 12025, 12035). Gemessen sind zwölf Zeilen einschliesslich R60 (b) und R63 (c), nicht zwölf und zwei dazu. Die Lesart „25c (1) ist 42.3 F1 (a)“ je Stelle ausserhalb 57 (Ausschnitt höchstens 200 Zeichen; Urteil aus der Liste je Zeile im Werkzeug, gemessen vom steuernden Chat am 15.10.2026; 42.3 F1 (a), Register Z. 9310–9312: „unbekannter Bedingungstext ⇒ 2“):
+
+| Z. | Ort | Zeile | Ausschnitt | Urteil |
+|---|---|---|---|---|
+| 9632 | 43, 43.1 | Quelle des Grundes | … Eingabe, er rechnet auf ihr — kann er das nicht, hat er nicht gemessen), 12 (kein Auffüllen), 25c (1) (Register-Code-Widerspruch ist 2). Kein Ergebnis. Eure Beobachtung, dass die Meldungen „ni… | trifft |
+| 10532 | 46, 46.5 | Quelle des Grundes | …2 (nennt `herkunft.json` als Teil des Vertrags), Abschnitt 12 (Vertragsbruch ⇒ Abbruch), 36.5, 25c (1) (Register-Code-Widerspruch ist 2), Prüfprinzip A8. Kein Ergebnis. | trifft |
+| 10760 | 47, 47.8 | Quelle des Grundes | > *Quelle des Grundes:* 12, 5e/19, 42.2 E5, R10 (dieselbe Bauart), 25c (1). Kein Ergebnis. | trifft (42.3 F1 (a): unbekannter Bedingungstext ⇒ 2; R25: endet mit 2) |
+| 11031 | 48, 48.16 | andere Zeile | …wertung.py in diesem Fall ausgegebene Zelle; Abweichung ist ein Register-Code-Widerspruch nach 25c (1).] M48. | trifft |
+| 11073 | 48, 48.18 | R-Zeile | …0“; 4.2; 9), die gemessene Übereinstimmung; eine Abweichung ist ein Register-Code-Widerspruch (25c (1)) und wird gemeldet, nicht eingetragen. Der Registertext legt keine dieser Definitionen neu… | trifft |
+| 11074 | 48, 48.18 | Quelle des Grundes | > Quelle des Grundes: 13 („Das Urteil ist Code“), 12, Sperrliste 3/5/7/9, 38.2, 25c (1), 2.1, Messung TB-121. Kein Ergebnis. | trifft |
+| 11352 | 51, 51.5 | R-Zeile | …gen die Selektionsfalten des Gewinners; eine Abweichung ist ein Register-Code-Widerspruch nach 25c (1) und wird gemeldet.] (c) Der Zellen-Erzeuger schreibt beide Träger aus einer Rechnung: mitt… | trifft |
+| 11434 | 52, 52.1 | R-Zeile | …d kein Mittel daraus rechnet.] Trifft sie nicht zu, ist das ein Register-Code-Widerspruch nach 25c (1) zur Bewertung in R48 (d) und R60 (b) und wird gemeldet, nicht eingetragen. (d) Der Zellen-… | trifft |
+| 11435 | 52, 52.1 | Quelle des Grundes | …ch R49 (e)), R45 (kein zweiter Rechenweg), 24.4 (bewertet zum Marktpreis, nicht zum Einstand), 25c (1). Kein Ergebnis. | trifft |
+| 11555 | 53, 53.4 | R-Zeile | …k_tagesreihen/<markt>.csv liest und R39 <bot>.csv verlangt, ist ein Register-Code-Widerspruch (25c (1), nach der Wiedergabe in R48 und R50). Er wird zugunsten von R39 aufgelöst; R39 ist damit b… | trifft |
+| 11891 | 56, 56.4 | R-Zeile | …achennotiz, und die Wache bleibt. Kann er es bei einem, ist das ein Register-Code-Widerspruch (25c (1), nach der Wiedergabe in R48 und R50) und kommt vor dem Bau mit der Fundstelle als Frage an… | trifft |
+| 11966 | 56, 56.8 | andere Zeile | \| 14 \| R87 (d) verweist auf „25c (1), nach der Wiedergabe in R48 und R50“; 42.3 („Aus Fable 25c“) führt keinen Eintrag „(1)“, d… | trifft |
+
+Stellen mit „Frage an Fable“: keine.
+
+(c) R98 (b): offen. Ob `entry_cutoff` in den sechs Backtests die drei Bedingungen erfüllt und welche Stelle es bei elliott_wave, elliott_wave_stocks und t3_supertrend ist, misst der Bau E-3 durch Lesen (27.2, nur das Wie); nicht Teil von TB-165.
+
+(d) F4 (Punkte 10 bis 12 der Anfrage 10.10.a): kommt mit Wortlaut in die nächste Fable-Anfrage (R99 (f)); nicht Teil von TB-165.

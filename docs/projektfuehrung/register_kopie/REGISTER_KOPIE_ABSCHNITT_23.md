@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 23 (von 0–60) — Register-Z. 3864–4257 — Commit 92cb637bd43efc20e0143fcaee8c09c90193252a — 2026-10-15 — Original sha256 fc91256fb429e91a53b9e06e738eaa0f367de14c88947bd2946936b5d2239569 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 23 (von 0–61) — Register-Z. 3864–4257 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
 
 ## 23. Berichtigung zu Registertext 3b (c) — der Benchmark wird tagesgenau (TB-66, 20.09.2026)
 
