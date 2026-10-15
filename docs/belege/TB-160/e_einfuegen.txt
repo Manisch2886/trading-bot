@@ -1,0 +1,28 @@
+M1 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M2 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M3 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M4 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M5 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M6 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M7 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M8 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M9 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M10 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M11 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M12 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M13 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M14 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M15 · docs/projektfuehrung/ARBEITSWEISE.md · Alt Vorkommen 1 · ok
+M16 · docs/projektfuehrung/UMZUG.md · Alt Vorkommen 1 · ok
+A2 · ARBEITSWEISE · vor Z. 37 · 28 Zeilen
+B1 · BACKLOG · vor Z. 487 · 6 Zeilen
+docs/werkzeuge/ampel.py · Soll c0e9b93945dc1d075a5d49e60a1d0734 · Ist c0e9b93945dc1d075a5d49e60a1d0734 · gleich
+docs/projektfuehrung/ARBEITSWEISE.md · Soll 1b248e900249a13ec4e7530a24bbcb7c · Ist 1b248e900249a13ec4e7530a24bbcb7c · gleich
+docs/projektfuehrung/BACKLOG.md · Soll 05a63a1ef403016834a2460391ca3471 · Ist 05a63a1ef403016834a2460391ca3471 · gleich
+docs/projektfuehrung/UMZUG.md · Soll 572c0fc5029d541b9398d05e8d0a1907 · Ist 572c0fc5029d541b9398d05e8d0a1907 · gleich
+geschrieben und zurueckgelesen: docs/werkzeuge/ampel.py · gleich
+geschrieben und zurueckgelesen: docs/projektfuehrung/ARBEITSWEISE.md · gleich
+geschrieben und zurueckgelesen: docs/projektfuehrung/BACKLOG.md · gleich
+geschrieben und zurueckgelesen: docs/projektfuehrung/UMZUG.md · gleich
+Gesamt: wie Soll, alle eingefuegt
+rc 0

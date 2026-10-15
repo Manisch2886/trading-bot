@@ -1,0 +1,2 @@
+ABGEWIESEN, nichts geschrieben: schon eingefuegt: docs/werkzeuge/ampel.py, docs/projektfuehrung/ARBEITSWEISE.md, docs/projektfuehrung/BACKLOG.md, docs/projektfuehrung/UMZUG.md
+rc 2

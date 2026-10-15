@@ -1,0 +1,6 @@
+docs/werkzeuge/ampel.py · md5 c0e9b93945dc1d075a5d49e60a1d0734 · GLEICH
+docs/projektfuehrung/ARBEITSWEISE.md · md5 1b248e900249a13ec4e7530a24bbcb7c · GLEICH
+docs/projektfuehrung/BACKLOG.md · md5 05a63a1ef403016834a2460391ca3471 · GLEICH
+docs/projektfuehrung/UMZUG.md · md5 572c0fc5029d541b9398d05e8d0a1907 · GLEICH
+Gesamt: alle wie Soll
+rc 0

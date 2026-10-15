@@ -1,0 +1,5 @@
+docs/werkzeuge/ampel.py · 40 Z. · md5 997ce08b0d944bed680285584b9936f8 · Soll 997ce08b0d944bed680285584b9936f8 · gleich
+docs/projektfuehrung/ARBEITSWEISE.md · 2601 Z. · md5 881739c9856a810d53373d6f32d1f742 · Soll 881739c9856a810d53373d6f32d1f742 · gleich
+docs/projektfuehrung/BACKLOG.md · 498 Z. · md5 350a08d00c147ab9241362d8327a9ccf · Soll 350a08d00c147ab9241362d8327a9ccf · gleich
+docs/projektfuehrung/UMZUG.md · 441 Z. · md5 ed0c881aba18239fd4fe7adcb3174d6c · Soll ed0c881aba18239fd4fe7adcb3174d6c · gleich
+docs/projektfuehrung/JOURNAL.md · 11052 Z. · md5 ab0a91e08d3f0e28667325bfa5a585f6 · Soll ab0a91e08d3f0e28667325bfa5a585f6 · gleich

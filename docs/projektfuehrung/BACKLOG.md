@@ -484,6 +484,12 @@ Abschnitt 4. Reihenfolge der Epics: `AF → RT → QR → KG → MI` (RT9).
   - **Nachtrag TB-158 (14.10.2026):** EIGEN in der Sitzung: (a) `pgrep -x claude` keine, (b) `pgrep -a -x claude` 67799, EIGEN 67799; Probe gelaufen, zwei Läufe (Fenster 24412 und 24414), je rc 0, danach im Repo je nur EIGEN. Beleg `docs/belege/TB-158/a_eigen.txt`, Ergebnis `docs/ERGEBNIS_TB-158_waechter_probe.md`.
 - **Offen, nicht eingeordnet** (UEBERGABE, Umzug 11.10.2026, 11:58, Block 4 Nr. 4; Lesart des steuernden Chats, vorläufig): die Formhinweise der Abnahmen TB-151 (Ergebnis Z. 88, 90, 94) und TB-152 (H1 bis H6); dazu „(o) E10 Ersetzungen in bestehenden Zeilen (UMZUG Z. 228, 260, 270–272; ARBEITSWEISE Z. 118, 212, 2480) — strittig, **Entscheid offen**“
 
+### Schlanke Arbeitsweise und Ampel mit Farbzeichen — eingetragen mit TB-160
+
+- **Ampel mit Farbzeichen** (Betreiber 13.10.2026, 22:36: „repariere die Ampel sie zeigt keine farbliches signal mehr“; Anweisung 22:53, Punkt 4): `docs/werkzeuge/ampel.py` gibt wieder 🟢/🟡/🔴 und die Empfehlung nach `UMZUG.md` Abschnitt 3 aus; Messformel und die zwei bisherigen Ausgabezeilen unverändert. Eingetragen mit TB-160.
+- **Schlanke Arbeitsweise** (Vorschlag des steuernden Chats 13.10.2026, 22:34; Ja des Betreibers 22:36; Anweisung 22:53, Punkt 1; Karte des Betreibers 15.10.2026): Absatz am Anfang von `ARBEITSWEISE.md` Abschnitt 0; 15 Zeilen dort und `UMZUG.md` Z. 106 tragen eine Marke („abgelöst durch …“ oder „gilt nur noch für …“). Die 60 Zeilen mit „Fehler Nr.“ bleiben (Karte 15.10.2026). Eingetragen mit TB-160.
+- **Offen:** der `jq`-Weg der Ampel (Abschnitt 0, „Am Ende jeder Antwort“) gibt keine Farbe aus.
+
 ## 6 — Geparkt, null Arbeit *(ins Archiv verschoben 20.09.2026, TB-60)*
 
 ## 7 — Architektur, offen
