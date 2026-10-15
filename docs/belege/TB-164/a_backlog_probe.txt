@@ -1,0 +1,4 @@
+ja    BACKLOG Rang 1 genau einmal, Stand TB-163
+ja    BACKLOG-Zeile 'Scan-Schleifen in research/' genau einmal
+Pruefungen: 2, NEIN: 0
+rc 0
