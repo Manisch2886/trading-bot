@@ -1,0 +1,11 @@
+2	0	docs/belege/TB-160/0a_status.txt
+5	0	docs/belege/TB-160/0b_ausgang.txt
+28	0	docs/belege/TB-160/e_einfuegen.txt
+24	0	docs/belege/TB-160/e_probe.txt
+6	0	docs/belege/TB-160/e_vergleich.txt
+2	0	docs/belege/TB-160/e_zweitlauf.txt
+154	0	docs/belege/TB-160/tb160_wz.py
+43	15	docs/projektfuehrung/ARBEITSWEISE.md
+6	0	docs/projektfuehrung/BACKLOG.md
+1	1	docs/projektfuehrung/UMZUG.md
+20	2	docs/werkzeuge/ampel.py

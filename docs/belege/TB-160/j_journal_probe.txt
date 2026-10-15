@@ -1,0 +1,11 @@
+endet mit Zeilenende: ja
+Kopfzeile ## EY — TB-160: …: ja
+keine Zeile ---: ja
+Schlusszeile *Geschrieben …: ja
+## Wiederkehrende Lehren genau einmal: ja
+davor --- und Leerzeile: ja
+Kennung noch frei: ja
+Kennung EY (gemessen; am Bau-HEAD erwartet EY) · letzte EX
+Zeilen +20
+Probe: nichts geschrieben
+rc 0
