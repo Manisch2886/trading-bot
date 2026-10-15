@@ -1,0 +1,10 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-162_wf_kapital_dd.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-14a_wf_kapital_dd_vor_dem_tag.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-14b_positionen_ohne_kennung.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-14a_wf_kapital_dd_versuch_vor_dem_tag.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-14b_doppellauf_verstoesst_gegen_a9_positionen_nach_r45.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-14_eroeffnung.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-14b_eroeffnung.md

@@ -1,0 +1,17 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-162/v_voraussetzung.txt)
+ja    Ort Abschnitt 27 (R94): Anfang genau einmal
+ja    Ort Abschnitt 27: letzte Marke Z. 5236, R94 dort noch nicht genannt
+ja    Ort Abschnitt 27 (R97): Anfang genau einmal
+ja    Ort Abschnitt 27: letzte Marke Z. 5236, R97 dort noch nicht genannt
+ja    Ort 48.13 R45 (R95): Anfang genau einmal
+ja    Ort 48.13 R45: letzte Marke Z. 10963, R95 dort noch nicht genannt
+ja    Ort 48.13 R45 (R97): Anfang genau einmal
+ja    Ort 48.13 R45: letzte Marke Z. 10963, R97 dort noch nicht genannt
+ja    Ort 48.14 R46 (R94): Anfang genau einmal
+ja    Ort 48.14 R46: letzte Marke Z. 11000, R94 dort noch nicht genannt
+ja    Ort 56.1 R84 (R95): Anfang genau einmal
+ja    Ort 56.1 R84: letzte Marke Z. 11850, R95 dort noch nicht genannt
+ja    Register endet mit genau einer Leerzeile
+ja    6 Marken am alten Ort (R96 (d), R97 (e)), 2 in 58 (R97 (e))
+Pruefungen: 15, NEIN: 0
+rc 0

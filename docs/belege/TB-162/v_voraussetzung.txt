@@ -1,0 +1,27 @@
+ja    R94: Sperrliste herkunft.py Z. 102-106 nennt shared/messkette.py
+ja    R94: Sperrliste herkunft.py Z. 102-106 nennt shared/zuteilung.py
+ja    R94: Sperrliste herkunft.py Z. 102-106 nennt strategies/*/equity_simulation.py
+ja    R94: Sperrliste herkunft.py Z. 102-106 nennt strategies/*/multi_symbol_optimise.py
+ja    R94: Sperrliste herkunft.py Z. 102-106 nennt strategies/*/multi_symbol_walk_forward.py
+ja    R94: neun Walk-Forward-Rechner verfolgt (die sechs Rechner und drei Erben)
+ja    R94/R96 (b)/R97 (f): Abschnitt 9 am Stand 3f2e97e zeichengleich mit d950e03
+ja    R94/R96 (b)/R97 (f): Abschnitt 11 am Stand 3f2e97e zeichengleich mit d950e03
+ja    R94/R96 (b)/R97 (f): Abschnitt 24 am Stand 3f2e97e zeichengleich mit d950e03
+ja    R94/R96 (b)/R97 (f): Abschnitt 37 am Stand 3f2e97e zeichengleich mit d950e03
+ja    R94/R96 (b)/R97 (f): Abschnitt 41 am Stand 3f2e97e zeichengleich mit d950e03
+ja    R94/R96 (b)/R97 (f): Abschnitt 51 am Stand 3f2e97e zeichengleich mit d950e03
+ja    R94/R96 (b)/R97 (f): Abschnitt 54 am Stand 3f2e97e zeichengleich mit d950e03
+ja    Register seit 3f2e97e unveraendert
+ja    F11 (3)/R97 (f): research/tb24_haltedauern/positionen_holen.py am HEAD unveraendert gegen 7b9f9ac (Verhalten nach der Wiedergabe in 14.10.b)
+ja    F11 (3)/R97 (f): shared/zuteilung.py am HEAD unveraendert gegen 7b9f9ac (Verhalten nach der Wiedergabe in 14.10.b)
+ja    F11 (1)/R56 (b): docs/projektfuehrung/FABLE_ANTWORT_2026-10-14a_wf_kapital_dd_versuch_vor_dem_tag.md verfolgt, gleich HEAD
+ja    F11 (1)/R56 (b): docs/projektfuehrung/FABLE_ANFRAGE_2026-10-14a_wf_kapital_dd_vor_dem_tag.md verfolgt, gleich HEAD
+ja    F11 (1)/R56 (b): docs/projektfuehrung/FABLE_UEBERGABE_2026-10-14_eroeffnung.md verfolgt, gleich HEAD
+ja    F11 (1)/R56 (b): docs/projektfuehrung/FABLE_ANTWORT_2026-10-14b_doppellauf_verstoesst_gegen_a9_positionen_nach_r45.md verfolgt, gleich HEAD
+ja    F11 (1)/R56 (b): docs/projektfuehrung/FABLE_ANFRAGE_2026-10-14b_positionen_ohne_kennung.md verfolgt, gleich HEAD
+ja    F11 (1)/R56 (b): docs/projektfuehrung/FABLE_UEBERGABE_2026-10-14b_eroeffnung.md verfolgt, gleich HEAD
+ja    Fable-Datei 14.10.a md5 c33799567a0205f66c502dbf5aaff5c5
+ja    Fable-Datei 14.10.b md5 4b02ae62279294f5b1df4b1472cc2435
+ja    R94-R97 und Abschnitt 58 noch nicht im Register
+Pruefungen: 25, NEIN: 0
+rc 0
