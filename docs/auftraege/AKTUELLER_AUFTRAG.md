@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-161** | `docs/auftraege/MAC_TB-161_sb1_datenlauf.md` | S-B1-Vorbereitung, Datenlauf: offene Schritte 2–9 aus `docs/TESTAUFTRAG_TB-39_sb1_vorbereitung.md` am aktuellen `main` (14 Signal-ETFs laden, historie, raster, kosten); kein Backtest; UCITS-Paare offen (Betreiber 13.10.2026, 22:34; Entscheide 14.10.2026) |
+| **TB-162** | `docs/auftraege/MAC_TB-162_wf_kapital_dd.md` | Kapital-Drawdown E und M der heutigen Parameter je Bot, auch in den WF-Fenstern, Forschungsmessung ohne Rastersuche (R94 (b)); Positionen als Rekonstruktion (R97 (b)); Register R94–R97 als Abschnitt 58; Fable-Dateien 14.10.a/b in S0 (Karten 14.10. und 15.10.2026) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
