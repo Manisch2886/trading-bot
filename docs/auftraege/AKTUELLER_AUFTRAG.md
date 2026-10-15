@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-160** | `docs/auftraege/MAC_TB-160_ampel_farbe_schlank.md` | Ampel mit Farbzeichen in docs/werkzeuge/ampel.py (UMZUG 3); Absatz schlanke Arbeitsweise in ARBEITSWEISE 0 mit Marken an den abgeloesten Stellen, UMZUG Z. 106 (Betreiber 13.10.2026, 22:36; Karten 15.10.2026, Wegfall-Liste freigegeben) |
+| **TB-163** | `docs/auftraege/MAC_TB-163_register59_posten4_horizont.md` | Tatsachennotiz TB-162 als Registerabschnitt 59; TB-30b Posten 4 (E-6): Horizont je Bot aus faltenplan.HORIZONTBEGINN in den vier Aktien-Optimierern, R81 (d), Einzelfreigabe nach 37.3 (Karten 15.10.2026) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
