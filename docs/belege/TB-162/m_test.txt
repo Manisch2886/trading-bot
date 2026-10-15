@@ -1,0 +1,11 @@
+ok    F1 zeitbasiert: Grenze je Symbol = split_time {'A': Timestamp('2020-03-11 00:00:00'), 'B': Timestamp('2021-01-08 00:00:00')}
+ok    F2 zeilenbasiert: Grenze = open_time der Zeile 70, leerer OOS-Teil = None
+ok    F3 widerspruechliche Grenze bricht ab (ValueError)
+ok    F4 Abschnitte gesamt/IS/gemischt/OOS lueckenlos
+ok    F4 Grenze vor dem Pfadbeginn bricht ab (ValueError)
+ok    F5 Streuung: Spannweite 303.0 Tage, ohne Grenze ['C']
+ok    P1 kein Neustart: Basis M des OOS = Stand am Vortag der Grenze (9800.0), nicht das Startkapital
+ok    P3 Handposition ueber die Grenze: E 0.0, M gesamt -4.0, M IS -2.0
+ok    P2 Intraday: E = M in allen 4 Abschnitten [('gesamt', -0.55, -0.55), ('IS', -0.3, -0.3), ('gemischt', 0.0, 0.0), ('OOS', -0.4, -0.4)]
+9 von 9 Pruefungen bestanden, 0 gescheitert, Laufzeit 0.1 s
+rc 0

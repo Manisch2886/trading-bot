@@ -1,0 +1,72 @@
+{
+ "commit": "4ec04df1d3dd32cfe4aef8ee0619571aa312a90b",
+ "parameterdateien": {
+  "elliott_wave": {
+   "strategies/elliott_wave/backtest_elliott.py": "5358994a2d3d61800a031f14035fdcc516f4cdaa7da0a11ad59394e139e16187",
+   "strategies/elliott_wave/live_params.py": "a4afe7c179cf20d26ae998204e5d3e0b3ec816ca3077623f068edd027e05b27b"
+  },
+  "elliott_wave_stocks": {
+   "strategies/elliott_wave_stocks/backtest_elliott.py": "174ba29d24ffb9eefa99f7a7466d31df870493cb92d9a69abc1bbbfa6074633c",
+   "strategies/elliott_wave_stocks/live_params.py": "dd2b6afd47c5f282f42455e53edc52c5b2e57e332bd70aae8493939c3c007ba4"
+  },
+  "rsi2_crypto": {
+   "strategies/rsi2_crypto/backtest_rsi2.py": "84930445e34940775f6fcc6715616eb77589fc960f988a19b26199f1393e1aca",
+   "strategies/rsi2_crypto/live_params.py": "37546218591f26b0a7be600154e15cf21497e6023bc15c524900a3458a06ef6b"
+  },
+  "rsi2_mean_reversion": {
+   "strategies/rsi2_mean_reversion/backtest_rsi2.py": "836b032a5962c7766e7ed00a75b90ded4155b769fce54a84fead3c4cd5f3b7fc",
+   "strategies/rsi2_mean_reversion/live_params.py": "6a23bbf606f25d3be413138cb6b279f67f3bf2792afe573db86fdacdfa169e06"
+  },
+  "t3_supertrend": {
+   "strategies/t3_supertrend/backtest_trend.py": "7a764353d092e521cc24b80ae97193d624224b38a6a62a45394360fe50cb04bb",
+   "strategies/t3_supertrend/live_params.py": "1425af6743c266bdf82ad2b6526b542036a10c28ccb47e3c49cdd4a4e22faaa3"
+  },
+  "turtle_soup_crypto": {
+   "strategies/turtle_soup_crypto/backtest_turtle_soup.py": "0704c9a96898ede99e9cf2b153da33d0cb885bf16c89e642d8514f277e8a0089",
+   "strategies/turtle_soup_crypto/live_params.py": "28e915726d702ba34ce3a61df225dd1604c103e8ba867f66a5a6c0c87e58e9d8"
+  },
+  "turtle_soup_stocks": {
+   "strategies/turtle_soup_stocks/backtest_turtle_soup.py": "0de39bf20bbbd3c0988b270262728a08cddc79a448fd0300c2f6b94998df50bb",
+   "strategies/turtle_soup_stocks/live_params.py": "a556ffbf3f9de63dff1e2751cd29d40b0fe8a6d13761da412bee40ce79908469"
+  },
+  "volatility_breakout": {
+   "strategies/volatility_breakout/backtest_breakout.py": "3fd0cef6c284a8806cace3663c241295edbb1ef8ee79092abfd0dc55e2bf6a76",
+   "strategies/volatility_breakout/live_params.py": "c1bc00d8627aa66324c98230357ccad8df3694d3ac37fe71b3526db285f75770"
+  },
+  "volatility_breakout_crypto": {
+   "strategies/volatility_breakout_crypto/backtest_breakout.py": "3c7ccbe792ea5eb8dcbc76ae27079f4d7c47ca34bd3ad5edd332d4fdad3c403e",
+   "strategies/volatility_breakout_crypto/live_params.py": "0cae328c0ed5155ee1a585b7bd96924125440f02303472325814eb74e6a60e86"
+  }
+ },
+ "sperrliste": {
+  "shared/messkette.py": "885697825c4ab81f6140bda866db82067a5d57f3523cdfc0d49ffe37c0782de0",
+  "shared/zuteilung.py": "68a812a0567dec8b72e6d60fd891091aff546d1adaddf03ddd9b4459ca73da47",
+  "strategies/elliott_wave/equity_simulation.py": "f45e92cdac5a4f03d3bd2f10165034d27b20603846e3072d02a7baf807cd127b",
+  "strategies/elliott_wave_stocks/equity_simulation.py": "80ea2a331538bbe6270a97c03627c3393c56848bfff00d9a9d44024fc0768a21",
+  "strategies/rsi2_crypto/equity_simulation.py": "1406de58ad920116d15a08384b88b78d37ee4944c925ff36fddedd123963e9ab",
+  "strategies/rsi2_mean_reversion/equity_simulation.py": "864907fbac088d56c0c97729edea228d3f5b8655b700401f1d34f672e64a2d6c",
+  "strategies/t3_supertrend/equity_simulation.py": "0aed45b7e8d1a0386c381fc462f96233723ff9036e863e70741e2c224fc6ef1b",
+  "strategies/turtle_soup_crypto/equity_simulation.py": "f0638e8e92ae98683385ea3082fbc8c56db4bc74631001c147eef54f70d7ea03",
+  "strategies/turtle_soup_stocks/equity_simulation.py": "a76d360bb14dfe9a53d2607902ec0dcceecee8e5908cb6095439d5084a39f769",
+  "strategies/volatility_breakout/equity_simulation.py": "7cbc7f00ed43810d8d59208a295e8d35d5a3dff99b8ca3734e182c60fe0b084b",
+  "strategies/volatility_breakout_crypto/equity_simulation.py": "1109438768c00e10710740775a30de8f3ac9f4309e24b3c54b13266d07df9fad",
+  "strategies/elliott_wave/multi_symbol_optimise.py": "ba3f5fdcf42537d586144174401c6dbf1e93a1f62476083fb3184028c3b2ce6c",
+  "strategies/elliott_wave_stocks/multi_symbol_optimise.py": "275273776fafb2453cdb41f634b86bacffd5994f8b5508ef034400cd7c5ede9d",
+  "strategies/rsi2_crypto/multi_symbol_optimise.py": "7a6378a49cdf993da79d3223cc3255d027e24cc5dac25c9d12c8acd61f1350d3",
+  "strategies/rsi2_mean_reversion/multi_symbol_optimise.py": "777f5cb0a637bb8770d1cd4a89aac03c6b29db98d13ce47eac6de29db279c661",
+  "strategies/t3_supertrend/multi_symbol_optimise.py": "e314d7bf7bb35854c9280a5b51362f2c8a6c33771a06188a14afee7c8ff39f14",
+  "strategies/turtle_soup_crypto/multi_symbol_optimise.py": "e638e1121116e7197445b774a438e1ecc79fffc991156e6094c15f47977b42d0",
+  "strategies/turtle_soup_stocks/multi_symbol_optimise.py": "e4277f013be6d0af85647f5d32d8cdb60ef086d06c6e041853c6da571c96ddd4",
+  "strategies/volatility_breakout/multi_symbol_optimise.py": "f0a4ee43dca133e89272e48d80280d8a22f57d751d2ddac06751fd091198af2d",
+  "strategies/volatility_breakout_crypto/multi_symbol_optimise.py": "02548e2eb95e34a0afcdbacfa0d806c7406fd4b066d0b26ef3c9839bf83a082b",
+  "strategies/elliott_wave/multi_symbol_walk_forward.py": "6d90bb2f7cec3713d8477a0412813b719c8dc1746fe8016a326a0679e2630a1a",
+  "strategies/elliott_wave_stocks/multi_symbol_walk_forward.py": "54d905003dd8d607c88e0b4b491cd5925c264e360476f691dcab8f6056a73882",
+  "strategies/rsi2_crypto/multi_symbol_walk_forward.py": "9b7ffbcd86f637bc946fa2fa0aaf94fcbbcee69c3ef0277724408d6b9ab21a7f",
+  "strategies/rsi2_mean_reversion/multi_symbol_walk_forward.py": "fc28a4ebcb250af3f4519103db48ec48cff9e24229acd16575154d286e9cb272",
+  "strategies/t3_supertrend/multi_symbol_walk_forward.py": "3f063cb64f2bd5afa8f5e1e2d809684267e9534081f42fcd0f16ccdd9c4380cb",
+  "strategies/turtle_soup_crypto/multi_symbol_walk_forward.py": "66409c7e4a8543b557efd2accc3453cd9d12bd6be30f2082057863135f910dac",
+  "strategies/turtle_soup_stocks/multi_symbol_walk_forward.py": "12a16125c34a782f24d70c3017f634249f06f664469a698e9aed9c80c7e0250e",
+  "strategies/volatility_breakout/multi_symbol_walk_forward.py": "de5353d20d54e1f37380fd72ae56c25a8f8110888b71bacbaa8a61376346e86f",
+  "strategies/volatility_breakout_crypto/multi_symbol_walk_forward.py": "1c883b62c170406a2b910a66648d6c71be6f2e1cab216fcfcda3f16820f34175"
+ }
+}

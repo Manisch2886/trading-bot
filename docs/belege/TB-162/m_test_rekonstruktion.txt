@@ -1,0 +1,12 @@
+ok    R1 eindeutig: 4 von 4 zugeordnet, Kette schliesst
+ok    R2 Kapitalprobe trennt gleichen Schluessel (Einstieg vor/nach Gewinn Y): allocation je Zeile {1: 1000.0, 0: 1000.0, 2: 1020.0}, {'eindeutig': 2, 'durch_kapitalprobe': 1, 'inhaltsgleich': 0}
+ok    R3 inhaltsgleich: 1 gezaehlt, Zeilen [0, 1]
+ok    R4 NICHT ZUORDENBAR gemeldet: [{'kurvenzeile': 0, 'symbol': 'X', 'time': '2021-01-10 00:00:00+00:00', 'kandidaten': 2}]
+ok    R5 Kurvenzeile ohne Kandidat gemeldet
+ok    R6 Zeitzone: Berlin-Text gegen naive UTC-Kurve, 4 zugeordnet
+ok    R7 Lauf und Zuordnung lassen die Trades unveraendert (DataFrame.equals)
+ok    R8 Quellen ohne Schreibzugriff auf Trades und ohne positionen_holen: keiner
+ok    R9 Nullschritt im Gleichstand: mtm_kern.ereignisreihenfolge folgt der Kurvenreihenfolge
+ok    R10 wie __main__: Aufrufe [('ohne', True), ('mit', 3, True)], kursdaten_symbole 3/3, ohne Kursdaten Abbruch: True
+10 von 10 Pruefungen bestanden, 0 gescheitert, Laufzeit 0.2 s
+rc 0

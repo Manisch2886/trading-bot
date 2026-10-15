@@ -1,0 +1,43 @@
+{
+ "art": "Rekonstruktion",
+ "regel": "Z1 gleiches Symbol, exit_time = time (UTC), |pnl_pct-Diff| <= 1e-09; Z2 bei mehreren: Kapitalprobe |allocation - allocation_pct x Kapital beim Einstieg| <= 0.01; Z3 inhaltsgleiche Kandidaten: kleinste Zeile; Z4 sonst nicht zuordenbar (gemeldet)",
+ "toleranz": {
+  "pnl_pct": 1e-09,
+  "geld": 0.01
+ },
+ "trades_gefunden": 4510,
+ "kurvenzeilen": 1461,
+ "zugeordnet": 1461,
+ "nicht_zuordenbar": 0,
+ "nicht_zuordenbar_zeilen": [],
+ "eindeutig": 1461,
+ "durch_kapitalprobe": 0,
+ "inhaltsgleich": 0,
+ "trades_ausgefuehrt": 1461,
+ "trades_uebersprungen": 3049,
+ "allocation_pct": 0.1,
+ "max_concurrent_positions": 15,
+ "trades_unveraendert": true,
+ "kursdaten_symbole": 147,
+ "zuteilung": {
+  "seed": 20260913,
+  "primaerschluessel": null,
+  "kursdaten_symbole": 147,
+  "umstrittene_zuteilungen": 555,
+  "entschieden_durch": {
+   "signalstaerke": 0,
+   "diversifikation": 554,
+   "liquiditaet": 0,
+   "zufall": 1
+  },
+  "korrelationen_gerechnet": 2484,
+  "buchreihen_gerechnet": 554,
+  "liquiditaet_speichertreffer": 0,
+  "rechenzeit_kaskade_s": 0.54,
+  "rechenzeit_tagesreihen_s": 2.53
+ },
+ "final_capital": 30958.92,
+ "num_executed": 1461,
+ "num_skipped": 3049,
+ "aufruf": "simulate_portfolio argumentgleich mit dem __main__ des Bots (am Code geprueft); kein zweiter Bot-Lauf zum Abgleich"
+}

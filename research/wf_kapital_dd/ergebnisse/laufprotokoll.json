@@ -1,0 +1,70 @@
+{
+ "lauf": {
+  "elliott_wave": {
+   "rc": 0,
+   "s": 8.3,
+   "stderr_ende": [
+    ""
+   ]
+  },
+  "elliott_wave_stocks": {
+   "rc": 0,
+   "s": 16.9,
+   "stderr_ende": [
+    ""
+   ]
+  },
+  "rsi2_crypto": {
+   "rc": 0,
+   "s": 1.3,
+   "stderr_ende": [
+    ""
+   ]
+  },
+  "rsi2_mean_reversion": {
+   "rc": 0,
+   "s": 12.1,
+   "stderr_ende": [
+    ""
+   ]
+  },
+  "t3_supertrend": {
+   "rc": 0,
+   "s": 3.1,
+   "stderr_ende": [
+    ""
+   ]
+  },
+  "turtle_soup_crypto": {
+   "rc": 0,
+   "s": 1.8,
+   "stderr_ende": [
+    ""
+   ]
+  },
+  "turtle_soup_stocks": {
+   "rc": 0,
+   "s": 16.3,
+   "stderr_ende": [
+    ""
+   ]
+  },
+  "volatility_breakout": {
+   "rc": 0,
+   "s": 13.5,
+   "stderr_ende": [
+    ""
+   ]
+  },
+  "volatility_breakout_crypto": {
+   "rc": 0,
+   "s": 1.3,
+   "stderr_ende": [
+    ""
+   ]
+  }
+ },
+ "sperrliste_gleich": true,
+ "laufzeit_s": 74.5,
+ "python": "3.9.6"
+}
