@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 58 (von 0–58) — Register-Z. 12043–12110 — Commit 0e1e662c92cb0b580231988f6c7b286333845916 — 2026-10-15 — Original sha256 05ff8ae7f459117a58a8336e55acd15bfe58996deb2c218f2d7ea05897e782f2 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 58 (von 0–59) — Register-Z. 12043–12111 — Commit 35dae904145fe3ba4e18b2dfbb6c28e0e2239fb6 — 2026-10-15 — Original sha256 662b12455d65974be5543f247ff33d79716f256c705ff4c3f10473d426a09c65 — KOPIE, nicht das Register
 
 ## 58. Fable 14a und 14b — Registerblock R94–R97 (TB-162)
 
@@ -68,3 +68,4 @@ Gemessen vor dem Eintrag mit `docs/belege/TB-162/v_voraussetzung.txt` (Werkzeug 
     ja    Fable-Datei 14.10.b md5 4b02ae62279294f5b1df4b1472cc2435
     ja    R94-R97 und Abschnitt 58 noch nicht im Register
     Pruefungen: 25, NEIN: 0
+

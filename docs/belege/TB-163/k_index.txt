@@ -1,0 +1,6 @@
+ja    Abschnitt 59 in genau einer Teildatei: T[6]
+ja    Kopf genau einmal, nennt 0–58
+ja    Zeile 58 genau einmal
+ja    Pflegezeile TB-162 genau einmal
+Pruefungen: 4, NEIN: 0
+rc 0

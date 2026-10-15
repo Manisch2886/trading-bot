@@ -1,6 +1,6 @@
 # REGISTER_INDEX — wo was im Register gerade gilt
 
-**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `0e1e662` (15.10.2026), Abschnitte 0–58,
+**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `35dae90` (15.10.2026), Abschnitte 0–59,
 12 023 Zeilen, sha256 `459be94e…`. Gebaut in TB-118 (Fable 27b B3, Teil D A4), nachgezogen in TB-126 (E-2), TB-129 (Fable 01a), TB-130 (Fable 02a), TB-132 (Fable 02c), TB-136 (Fable 04a), TB-139 (Fable 07a), TB-149 (Fable 09a) und TB-154 (Fable 10a). **Das ist ein Wegweiser, nicht das
 Register.** Der Wortlaut steht nur im Register bzw. in der Kopie je Abschnitt `register_kopie/REGISTER_KOPIE_ABSCHNITT_00.md` … `_57.md` (Tabelle unten; dazu die Teile `REGISTER_KOPIE_teil1–5.md`).
 
@@ -215,6 +215,7 @@ Die Spalte „später berührt“ nennt jede gemessene Marke und jede Rückverwe
 | 56 aus 09a | 5 | R84–R89 (56.1–56.6); 56.7 Voraussetzungen und Befunde; 56.8 Offenes | 56.1 R84 ERGÄNZT durch R91 (57.2) (Z. 11864); 56.3 R86 ERGÄNZT durch R92 (57.3) (Z. 11884); 56.4 R87 ERGÄNZT durch R90 (57.1) (Z. 11894); 56.5 R88 **PRÄZISIERT durch R91 (57.2)** (Z. 11904); 56.7, Zeile „R87 (56.4) (d)“ ERGÄNZT durch R90 (57.1) (Z. 11940); 56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“ ERGÄNZT durch R91 (57.2) (Z. 11943); 56.7, Zeile „R86 (56.3) (e)“ ERGÄNZT durch R92 (57.3) (Z. 11946); 56.1 R84 **PRÄZISIERT durch R95 (58.2)** (Z. 11867) |
 | 57 aus 10a | 5 | R90–R93 (57.1–57.4); 57.5 Voraussetzungen und Befunde; 57.6 Offenes | – |
 | 58 aus 14a und 14b | 6 | R94–R96 (58.1–58.3, 14a); R97 (58.4, 14b); 58.5 Voraussetzungen und Befunde | 58.2 R95 **BERICHTIGT durch R97 (58.4)** (Z. 12059); 58.3 R96 **BERICHTIGT durch R97 (58.4)** (Z. 12069) |
+| 59 Tatsachennotiz TB-162 | 6 | 59.1 Tatsachennotiz zu 24.2, 24.3, R36 und 11.2 mit R43 (Kapital-Drawdown E und M je WF-Abschnitt; aus ERGEBNIS_TB-162 Z. 199–232) | – |
 
 ## 5. Die Marken aus E-2 (TB-126)
 
@@ -618,4 +619,5 @@ In TB-154 (11.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py
 `d950e03` auf `3f2e97e` umgeschrieben (jede Zahl in Listen und Bereichen); 57 kommt zu T5; Abschnittstabelle aus den
 Köpfen der Abschnittsdateien; Einträge mit `docs/belege/TB-154/c2_index_eintraege.py`; neuer Abschnitt 12 mit den
 11 Marken und drei Indexzeilen nach R93 (d) (`c3_indexzeilen.py`).
-Zuletzt nachgezogen in TB-162 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 9a1bc7a 0e1e662`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-162 (`index`); 58 (R94–R97) kommt zu T6; neuer Abschnitt 13 (8 Marken).
+In TB-162 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 9a1bc7a 0e1e662`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-162 (`index`); 58 (R94–R97) kommt zu T6; neuer Abschnitt 13 (8 Marken).
+Zuletzt nachgezogen in TB-163 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py cff0de3 35dae90`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-163 (`index`); 59 (Tatsachennotiz TB-162) kommt zu T6.

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 36 (von 0–58) — Register-Z. 6567–6917 — Commit 0e1e662c92cb0b580231988f6c7b286333845916 — 2026-10-15 — Original sha256 05ff8ae7f459117a58a8336e55acd15bfe58996deb2c218f2d7ea05897e782f2 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 36 (von 0–59) — Register-Z. 6567–6917 — Commit 35dae904145fe3ba4e18b2dfbb6c28e0e2239fb6 — 2026-10-15 — Original sha256 662b12455d65974be5543f247ff33d79716f256c705ff4c3f10473d426a09c65 — KOPIE, nicht das Register
 
 ## 36. Die Schreibregel für Sperrlistenpfade, die Sperrlisten-Sonde mit drei Ausgängen, das Abbild der Sperrliste als neue Datei und die Reihenfolge der Handwerksschritte — und eine Tatsachennotiz zur ⚠️-Markierung in 21.4 (Fable 22b und 22c, TB-84, 22.09.2026)
 
