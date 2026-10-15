@@ -1,0 +1,8 @@
+ja    Kopfzeile ## EX — TB-162: …
+ja    Anker genau einmal
+ja    davor '---' und Leerzeile
+ja    eine ## -Zeile, kein ---
+ja    Teil 'Was gemessen ist'
+ja    Kennung EX frei
+Pruefungen: 6, NEIN: 0
+rc 0
