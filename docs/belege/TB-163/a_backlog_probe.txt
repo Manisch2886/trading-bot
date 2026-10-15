@@ -1,0 +1,4 @@
+ja    BACKLOG Rang 1 genau einmal, Stand 'zu formulieren'
+ja    BACKLOG-Zeile 'Vor der Neuerzeugung der Listen' genau einmal
+Pruefungen: 2, NEIN: 0
+rc 0

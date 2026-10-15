@@ -1,0 +1,8 @@
+ja    Kopfzeile ## EZ — TB-163: …
+ja    Anker genau einmal
+ja    davor '---' und Leerzeile
+ja    eine ## -Zeile, kein ---
+ja    Teile 'Was gemessen ist', 'In einfacher Sprache'
+ja    Kennung EZ frei
+Pruefungen: 6, NEIN: 0
+rc 0
