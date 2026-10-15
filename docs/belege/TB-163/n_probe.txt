@@ -1,0 +1,5 @@
+ja    Quelle ERGEBNIS_TB-162 md5 210508624458a7287f89888a65304394, 34 Zeilen
+ja    59 noch nicht im Register
+ja    Register endet mit genau einer Leerzeile
+Pruefungen: 3, NEIN: 0
+rc 0

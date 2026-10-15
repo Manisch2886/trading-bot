@@ -1,0 +1,7 @@
+ja    Quelle ERGEBNIS_TB-162 md5 210508624458a7287f89888a65304394, 34 Zeilen
+ja    59 noch nicht im Register
+ja    Register endet mit genau einer Leerzeile
+ja    nachher: altes Register unverändert vorn (append-only), 59 genau einmal, Z. 12112
+ja    Notiz zeichengleich im Register
+Pruefungen: 5, NEIN: 0
+rc 0

@@ -1,0 +1,20 @@
+ja    Sperrliste herkunft.py Z. 102-106 nennt strategies/*/multi_symbol_optimise.py (Punkt 11, 37.3)
+ja    sha256 vorher research/vorregistrierung/faltenplan.py = 63dafeb44e027cb5…
+ja    sha256 vorher strategies/elliott_wave_stocks/multi_symbol_optimise.py = 275273776fafb245…
+ja    sha256 vorher strategies/rsi2_mean_reversion/multi_symbol_optimise.py = 777f5cb0a637bb87…
+ja    sha256 vorher strategies/turtle_soup_stocks/multi_symbol_optimise.py = e4277f013be6d0af…
+ja    sha256 vorher strategies/volatility_breakout/backtest_breakout.py = 3fd0cef6c284a880…
+ja    sha256 vorher strategies/volatility_breakout/multi_symbol_optimise.py = f0a4ee43dca133e8…
+ja    faltenplan.py: HORIZONTBEGINN-Literal genau einmal (aktien 2016-09-19)
+ja    Register: 58 genau einmal, 59 noch nicht
+ja    Register: Voraussetzung R81 (d) genau einmal (Z. [11775])
+ja    Register endet mit genau einer Leerzeile
+ja    ERGEBNIS_TB-162 md5 210508624458a7287f89888a65304394
+ja    ERGEBNIS_TB-162: Notiz Z. 199-232 (Z. 197 Kopf, Z. 233 leer, Z. 234 Abweichungen)
+ja    ERGEBNIS_TB-162 zuletzt in Commit 16db5e3
+ja    E-6 Anker in strategies/elliott_wave_stocks/multi_symbol_optimise.py genau einmal (Datenuhr-Zeile, def load_all_symbol_data() -> dict:), horizontbeginn_ts noch nicht da
+ja    E-6 Anker in strategies/rsi2_mean_reversion/multi_symbol_optimise.py genau einmal (Datenuhr-Zeile, def load_all_symbol_data() -> dict:), horizontbeginn_ts noch nicht da
+ja    E-6 Anker in strategies/turtle_soup_stocks/multi_symbol_optimise.py genau einmal (Datenuhr-Zeile, def load_all_symbol_data() -> dict:), horizontbeginn_ts noch nicht da
+ja    E-6 Anker in strategies/volatility_breakout/multi_symbol_optimise.py genau einmal (Datenuhr-Zeile, def load_all_symbol_data() -> dict:), horizontbeginn_ts noch nicht da
+Pruefungen: 18, NEIN: 0
+rc 0
