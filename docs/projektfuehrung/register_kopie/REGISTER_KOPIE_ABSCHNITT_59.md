@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 59 (von 0–59) — Register-Z. 12112–12151 — Commit 35dae904145fe3ba4e18b2dfbb6c28e0e2239fb6 — 2026-10-15 — Original sha256 662b12455d65974be5543f247ff33d79716f256c705ff4c3f10473d426a09c65 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 59 (von 0–60) — Register-Z. 12112–12152 — Commit 92cb637bd43efc20e0143fcaee8c09c90193252a — 2026-10-15 — Original sha256 fc91256fb429e91a53b9e06e738eaa0f367de14c88947bd2946936b5d2239569 — KOPIE, nicht das Register
 
 ## 59. Tatsachennotiz TB-162 — Kapital-Drawdown E und M je Abschnitt des bot-eigenen Walk-Forward (TB-163)
 
@@ -40,3 +40,4 @@ Reines Eintragen einer Tatsachennotiz, Bauart 24.6 (Betreiberkarte 15.10.2026, 1
 > | volatility_breakout_crypto | −16.29 / −19.30 | −16.29 / −19.30 | −14.86 / −14.40 | −3.95 / −6.56 |
 >
 > Angaben in Prozent. **M flacher als E** in vier Abschnitten: elliott_wave_stocks gesamt und IS (+2,06 pp), turtle_soup_stocks gemischt (+0,11 pp), volatility_breakout_crypto gemischt (+0,46 pp). Die Spannweite der Symbolgrenzen beträgt bei rsi2_mean_reversion, turtle_soup_stocks und volatility_breakout 1,0 Tag (Abschnitt „gemischt“ mit 0, 17 und 0 Ausstiegen), bei elliott_wave_stocks 542 Tage, bei den fünf Krypto-Bots 724 bis 831 Tage.
+
