@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 2 von 5 — Abschnitte 23–36 — Commit 3f2e97e5ce3c991465b264e6182e4b447b741982 — 2026-10-11 — Original sha256 459be94e388490fb4aac35e8955d5d1098ccff3a508991d3893cd7693449c350 — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 2 von 6 — Abschnitte 23–36 — Commit 0e1e662c92cb0b580231988f6c7b286333845916 — 2026-10-15 — Original sha256 05ff8ae7f459117a58a8336e55acd15bfe58996deb2c218f2d7ea05897e782f2 — KOPIE, nicht das Register
 
 ## 23. Berichtigung zu Registertext 3b (c) — der Benchmark wird tagesgenau (TB-66, 20.09.2026)
 
@@ -1372,6 +1372,12 @@ dieselbe Klasse, gegen die `A1` und `B1` gebaut sind.
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **Abschnitt 27 ERGÄNZT durch R91 (57.2)** (Fable 10a R91, Unterpunkt (h), TB-154, 11.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **Abschnitt 27 ERGÄNZT durch R94 (58.1)** (Fable 14a R94, Unterpunkte (a) und (b) (zu 27.2), TB-162, 15.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **Abschnitt 27 ERGÄNZT durch R97 (58.4)** (Fable 14b R97, Unterpunkt (b) (zu R94 (b) und 27.2), TB-162, 15.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ---

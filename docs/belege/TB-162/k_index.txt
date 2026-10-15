@@ -1,0 +1,11 @@
+ja    r_daten.json: 8 Marken mit Zeile
+ja    Abschnitt 58 in genau einer Teildatei: T[6]
+ja    Kopf genau einmal, nennt 0–57
+ja    Index-Zeile | 27 Sichtschutz | genau einmal
+ja    Index-Zeile | 48 aus 29b | genau einmal
+ja    Index-Zeile | 56 aus 09a | genau einmal
+ja    Zeile 57 genau einmal
+ja    Pflege-Anker genau einmal, davor '---'
+ja    Pflegezeile TB-154 genau einmal
+Pruefungen: 9, NEIN: 0
+rc 0

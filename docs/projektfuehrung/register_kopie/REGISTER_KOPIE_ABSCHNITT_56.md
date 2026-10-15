@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 56 (von 0–57) — Register-Z. 11840–11954 — Commit 3f2e97e5ce3c991465b264e6182e4b447b741982 — 2026-10-11 — Original sha256 459be94e388490fb4aac35e8955d5d1098ccff3a508991d3893cd7693449c350 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 56 (von 0–58) — Register-Z. 11855–11972 — Commit 0e1e662c92cb0b580231988f6c7b286333845916 — 2026-10-15 — Original sha256 05ff8ae7f459117a58a8336e55acd15bfe58996deb2c218f2d7ea05897e782f2 — KOPIE, nicht das Register
 
 ## 56. Fable 09a — Registerblock R84–R89 (TB-149)
 
@@ -10,6 +10,9 @@ Reines Eintragen von Registertext, Bauart wie 55. Quelle ist allein `docs/projek
 > Quelle des Grundes: R75 (a) („der Teil der Kapitaländerung dieses Tages, der aus ihr stammt“; „Der Nenner bleibt der Kapitalstand des einen Pfads“), 24.6 (Bestimmung von M: Buchwert plus Bewertung der offenen Positionen, Ausstiege mit dem realisierten Ergebnis), 24.2, 29.3, R54 (verkettet; der Drawdown steht auf dem verketteten Kapitalpfad), R45 („Eine Rekonstruktion der Positionen aus den Ereignissen der equity_curve ist ein zweiter Rechenweg und wird nicht gegangen.“), R63 (d), R43, 37.5 (2) (ein Wert, ein Ort; nach der Wiedergabe in R39 und R45), R33 und R75 (e) (Bauart), 41.1 A5, 53.9 und 54.5, die Messung des steuernden Chats zur Anfrage 09.10.a, Frage 1 (mtm_kern.py Z. 72, 79, 210, 235, 244 und 251; zuteilung.py Z. 657, 730 und 734; vom Verfahrensprüfer nicht gemessen). Nicht Grund: dass mtm_kern.py der einzige vorhandene Kern ist. Kein Ergebnis.
 
 > ⭐ **56.1 R84 ERGÄNZT durch R91 (57.2)** (Fable 10a R91, Unterpunkte (a) und (b), TB-154, 11.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **56.1 R84 PRÄZISIERT durch R95 (58.2)** (Fable 14a R95, Unterpunkte (a) und (b), TB-162, 15.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 48.13 (R45); 48.14 (R46); 54.2 (R75); 54.5, Zeile „R75 (54.2) (a)“. Voraussetzungen und Befunde: 56.7. Indexzeile ohne Marke (R89 (h)): Abschnitt 10, Punkt 10. Offen: 56.8 Nr. 4, 7, 8, 9 und 11.

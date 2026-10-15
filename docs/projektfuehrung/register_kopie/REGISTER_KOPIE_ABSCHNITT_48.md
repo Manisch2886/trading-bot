@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 48 (von 0–57) — Register-Z. 10818–11082 — Commit 3f2e97e5ce3c991465b264e6182e4b447b741982 — 2026-10-11 — Original sha256 459be94e388490fb4aac35e8955d5d1098ccff3a508991d3893cd7693449c350 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 48 (von 0–58) — Register-Z. 10824–11097 — Commit 0e1e662c92cb0b580231988f6c7b286333845916 — 2026-10-15 — Original sha256 05ff8ae7f459117a58a8336e55acd15bfe58996deb2c218f2d7ea05897e782f2 — KOPIE, nicht das Register
 
 ## 48. Fable 29b — Registerblock R33–R52 (TB-126)
 
@@ -147,6 +147,12 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > ⭐ **48.13 R45 PRÄZISIERT durch R84 (56.1)** (Fable 09a R84, Unterpunkt (e), TB-149, 10.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **48.13 R45 PRÄZISIERT durch R95 (58.2)** (Fable 14a R95, Unterpunkte (a) und (b), TB-162, 15.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.13 R45 ERGÄNZT durch R97 (58.4)** (Fable 14b R97, Unterpunkt (b), TB-162, 15.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken: keine. Abschnitt 10: Indexzeile, keine Marke.
 
 ### 48.14 R46 — Ersteintrag — Abnahme des Zellen-Erzeugers vor dem Tag
@@ -182,6 +188,9 @@ Reines Eintragen von Registertext, Bauart wie 47. Quelle: `docs/projektfuehrung/
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **48.14 R46 ERGÄNZT durch R90 (57.1)** (Fable 10a R90, Unterpunkt (g), TB-154, 11.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **48.14 R46 ERGÄNZT durch R94 (58.1)** (Fable 14a R94, Unterpunkte (a) und (b), TB-162, 15.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: keine.

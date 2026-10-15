@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 57 (von 0–57) — Register-Z. 11955–12023 — Commit 3f2e97e5ce3c991465b264e6182e4b447b741982 — 2026-10-11 — Original sha256 459be94e388490fb4aac35e8955d5d1098ccff3a508991d3893cd7693449c350 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 57 (von 0–58) — Register-Z. 11973–12042 — Commit 0e1e662c92cb0b580231988f6c7b286333845916 — 2026-10-15 — Original sha256 05ff8ae7f459117a58a8336e55acd15bfe58996deb2c218f2d7ea05897e782f2 — KOPIE, nicht das Register
 
 ## 57. Fable 10a — Registerblock R90–R93 (TB-154)
 
@@ -69,3 +69,4 @@ Tatsachennotizen des steuernden Chats zu den fünf eckigen Klammern, in denen Fa
 | 8 | Die nächste Anfrage geht an einen neuen Fable-Chat. Die Antwort 10.10.a nennt ihre Umzugsampel rot: „die nächste Anfrage geht an einen neuen Chat; in diesem beantworte ich keine zweite“ (Z. 108) | nächste Anfrage an Fable |
 
 Von 56.8 führt R93 (e) den Stand so: „56.8 Nr. 5 ist mit R90 entschieden, Nr. 2, Nr. 4 und Nr. 6 sind gemessen und zur Kenntnis genommen (R91 (a) bis (c), R90 (e)), Nr. 9 und Nr. 14 bis Nr. 17 sind mit der Antwort 10.10.a, R91 und (b) erledigt, Nr. 10 mit (a) und (b).“ Mit „(b)“ meint R93 (e) dort den Unterpunkt R93 (b) (57.5, Zeile „Antwort 10.10.a, Bewertung“, F5). 56.8 Nr. 3 bleibt für die vier Aktien-Bots offen (R92 (c); hier Nr. 2). Neu offen sind nach R93 (e), mit den zwei Erzeugern und ihrer Abnahme, die Schranke nach R90 (c), die Messung nach R90 (f) und die Abnahme nach R90 (g) (hier Nr. 3) und, vor der Neuerzeugung der Listen, die Messung nach R92 (c) (hier Nr. 2). 56.8 Nr. 1, 7, 8, 11, 12 und 13 nennt R93 (e) nicht; sie bleiben, wie sie dort stehen (hier Nr. 1). An 56.8 steht dazu keine Marke (R93 (d)); dieser Absatz führt ihren Stand.
+
