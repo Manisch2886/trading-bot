@@ -1,0 +1,22 @@
+ja    R100 (e)/R56 (b): docs/projektfuehrung/FABLE_ANTWORT_2026-10-15b_marken_tb150_etc_kein_ucits_korrelation_vor_pruefung.md verfolgt, gleich HEAD, md5 c0f3e3ef60b22e6b750ad59c59ca7e03
+ja    R100 (e)/R56 (b): docs/projektfuehrung/FABLE_ANTWORT_2026-10-16b_g6_ews_schranke_vor_schnitt.md verfolgt, gleich HEAD, md5 811fa8b7a9ff6403862385ce498593bc
+ja    Codebloecke: R100, Quelle, R101, Quelle (15b Z. 46); R102, Quelle, R103, Quelle (16b Z. 24)
+ja    Register: 61 da, 62 nicht; R100–R103 0 Treffer
+ja    Register endet mit genau einer Leerzeile
+ja    Zeile 5.1 Nr. 4 (G6-Anker) genau einmal
+ja    R100 (a): drei Marken-Saetze 55.2 (R79), 55.1 (R78), 53.7 (R72) je genau einmal im Wortlaut
+ja    R100 (a) Voraussetzung: R72 Unterpunkt (c) allein gelesen; nennt den Go-Live-Schnitt: nein ⇒ Marke 53.7 wird gesetzt
+info  R72 (c) Wortlaut: (c) Der Zellen-Erzeuger bewertet eine offene Position an einem Tag ohne Kurs ihres Symbols zum letzten Kurs; die Position trägt an diesem Tag Rendite 0 und bleibt in der Exposure. Er berichtet je Bot die Zahl solcher Positionstage (Bauart 24.6). Bot und Benchmark werden am Lückentag damit gleich bewertet.
+ja    Ort 5.1 Nr. 4: Einfuegestelle Z. 633, Marke noch nicht da
+ja    Ort 55.4: Einfuegestelle Z. 11783, Marke noch nicht da
+ja    Ort 60.1: Einfuegestelle Z. 12185, Marke noch nicht da
+ja    Ort 55.2: Einfuegestelle Z. 11757, Marke noch nicht da
+ja    Ort 55.1: Einfuegestelle Z. 11750, Marke noch nicht da
+ja    Ort 53.7: Einfuegestelle Z. 11599, Marke noch nicht da
+ja    R100 (c) gemessen: Fundstellen ['TB-148 M1', 'TB-148 M2', 'TB-148 M3', 'TB-148 M5', 'research/faltenplan_neun/faltenschranke_messung.py', 'research/mtm_drawdown/mtm_kern.py', 'research/vorregistrierung/benchmark.py', 'shared/zuteilung.py']; geaenderte Zellen (bestehende Spalten) in d9f8489 (leseprotokoll.md): 38; Fundstellen in geaenderten Zellen: ['`strategies/elliott_wave/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/elliott_wave_stocks/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/rsi2_crypto/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/rsi2_mean_reversion/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/t3_supertrend/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/turtle_soup_crypto/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/turtle_soup_stocks/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/volatility_breakout/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/volatility_breakout_crypto/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', 'research/faltenplan_neun/faltenschranke_messung.py: Zeilenbereich 1–534 (ganz)→1–533 (ganz)', 'shared/zuteilung.py: Zeilenbereich 1–799 (ganz)→1–798 (ganz)']
+info  R100 (c) BEFUND, zu melden (kein Abbruch): ['`strategies/elliott_wave/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/elliott_wave_stocks/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/rsi2_crypto/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/rsi2_mean_reversion/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/t3_supertrend/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/turtle_soup_crypto/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/turtle_soup_stocks/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/volatility_breakout/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', '`strategies/volatility_breakout_crypto/multi_symbol_optimise.py`: Messpunkt M2 (auch M3, M4)→M2 (auch M4)', 'research/faltenplan_neun/faltenschranke_messung.py: Zeilenbereich 1–534 (ganz)→1–533 (ganz)', 'shared/zuteilung.py: Zeilenbereich 1–799 (ganz)→1–798 (ganz)']
+info  R101 (a) Voraussetzung (Messung, kein Urteil): S-B1 Abschnitt 9 („## 9. Die Sperrliste“) fuehrt Gold/Silber: False/False; Abschnitt 2 (Die Kandidatenliste) fuehrt Gold/Silber: True/True; ob ein UCITS-Fonds auf ein einzelnes Edelmetall besteht: im Repo nicht messbar, offen
+info  R101: nennt keine Marke (Wortlaut ohne ERGÄNZT/PRÄZISIERT an einem Ort)
+ja    strategies/elliott_wave_stocks/multi_symbol_optimise.py = 60.1 nachher 3b7757004b1c…, gleich HEAD
+Pruefungen: 20, NEIN: 0
+rc 0

@@ -1,0 +1,10 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-167_g6_ews_schranke_vor_schnitt.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-16a_mehrmodell_grok_pruefung.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-16b_g6_ews_testfalte_2020.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-16a_mehrmodell_grok_pruefung.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-16b_g6_ews_schranke_vor_schnitt.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-16a_eroeffnung.md
+?? docs/projektfuehrung/RECHERCHE_2026-10-16_grok_innovationen.md

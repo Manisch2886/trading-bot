@@ -1,0 +1,11 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-167/v_voraussetzung.txt)
+ja    Quellen md5 wie Soll, vier Bloecke
+ja    62 noch nicht im Register; endet mit einer Leerzeile
+ja    6 Einfuegestellen eindeutig
+ja    nachher: 6 Marken Z. [634, 11603, 11757, 11767, 11796, 12201]; Abschnitt 62 Z. 12291
+ja    Quellenzeilen 11a267f~1: Schnitt Z. 92–94, Pruefung Z. 96–99
+ja    R100–R103 mit Quellenzeile je genau einmal zeichengleich
+ja    append-only bis auf die Marken (je Leerzeile, Marke, Zeichengleich-Zeile)
+ja    G6-Anker 5.1 Nr. 4 weiter genau einmal
+Pruefungen: 9, NEIN: 0
+rc 0

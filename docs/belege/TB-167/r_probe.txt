@@ -1,0 +1,6 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-167/v_voraussetzung.txt)
+ja    Quellen md5 wie Soll, vier Bloecke
+ja    62 noch nicht im Register; endet mit einer Leerzeile
+ja    6 Einfuegestellen eindeutig
+Pruefungen: 4, NEIN: 0
+rc 0

@@ -1,0 +1,32 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md
+ M docs/projektfuehrung/UEBERGABE.md
+ M research/exposure_messung/bot_lauf.py
+ M research/faltenplan_neun/faltenschranke_messung.py
+ M strategies/elliott_wave/elliott_wave_counter.py
+ M strategies/elliott_wave/equity_simulation.py
+ M strategies/elliott_wave/multi_symbol_optimise.py
+ M strategies/elliott_wave_stocks/elliott_wave_counter.py
+ M strategies/elliott_wave_stocks/equity_simulation.py
+ M strategies/elliott_wave_stocks/multi_symbol_optimise.py
+ M strategies/rsi2_crypto/backtest_rsi2.py
+ M strategies/rsi2_crypto/equity_simulation.py
+ M strategies/rsi2_mean_reversion/backtest_rsi2.py
+ M strategies/t3_supertrend/backtest_trend.py
+ M strategies/t3_supertrend/equity_simulation.py
+ M strategies/t3_supertrend/multi_symbol_optimise.py
+ M strategies/turtle_soup_crypto/backtest_turtle_soup.py
+ M strategies/turtle_soup_crypto/equity_simulation.py
+ M strategies/turtle_soup_stocks/backtest_turtle_soup.py
+ M strategies/volatility_breakout/backtest_breakout.py
+ M strategies/volatility_breakout_crypto/backtest_breakout.py
+ M strategies/volatility_breakout_crypto/equity_simulation.py
+?? docs/auftraege/MAC_TB-167_g6_ews_schranke_vor_schnitt.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-16a_mehrmodell_grok_pruefung.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-16b_g6_ews_testfalte_2020.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-16a_mehrmodell_grok_pruefung.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-16b_g6_ews_schranke_vor_schnitt.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-16a_eroeffnung.md
+?? docs/projektfuehrung/RECHERCHE_2026-10-16_grok_innovationen.md
+?? research/faltenplan_neun/test_handelbar_tag.py
+?? shared/test_schranke_signalpfad.py
