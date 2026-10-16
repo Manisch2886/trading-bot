@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 43 (von 0–61) — Register-Z. 9568–9884 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 43 (von 0–62) — Register-Z. 9571–9887 — Commit 437085796f14e63e3d3792b43248e1435c87a336 — 2026-10-16 — Original sha256 6026c2ab59785156950d99ae86857e41557fee5e013b9efa3f6ba22a64e6a1af — KOPIE, nicht das Register
 
 ## 43. Ausgänge der Auswertung, null Trades als Wert, die zweite Öffnung von `herkunft.py` — die Einträge aus Fable 25d und 25e und die Tatsachennotizen TB-108 und TB-109 (TB-110, 26.09.2026)
 

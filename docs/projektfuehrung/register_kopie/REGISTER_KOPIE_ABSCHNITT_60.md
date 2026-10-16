@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 60 (von 0–61) — Register-Z. 12162–12203 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 60 (von 0–62) — Register-Z. 12177–12221 — Commit 437085796f14e63e3d3792b43248e1435c87a336 — 2026-10-16 — Original sha256 6026c2ab59785156950d99ae86857e41557fee5e013b9efa3f6ba22a64e6a1af — KOPIE, nicht das Register
 
 ## 60. Vollzug TB-163 (Tatsachennotiz nach 37.3) und Tatsachennotiz Posten 5 (TB-164)
 
@@ -23,6 +23,9 @@ Neu (kein Vorher), Commit `11a267f`: `research/posten4_horizont/test_posten4_hor
 Unverändert: `research/vorregistrierung/faltenplan.py` `63dafeb44e027cb5d93ac19cddfc7d4e98b468cece116512c2b3f1601bd4a4c7`, `strategies/volatility_breakout/backtest_breakout.py` `3fd0cef6c284a8806cace3663c241295edbb1ef8ee79092abfd0dc55e2bf6a76`.
 
 **Sperrlisten-Sonde zu Punkt 11** (gemessen in TB-164 am Stand `1d037f9`; Aufruf wie TB-122 0b: `trading-env/bin/python3 -B -W ignore shared/sperrlistensonde.py --abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json`, Abbild `46f0ad5d…`; Beleg `docs/belege/TB-164/s_sonde.txt`): Punkt 11 „nicht prüfbar“ (`2`). Das Abbild führt keinen der Optimierer (kein Pfad `strategies/*/multi_symbol_optimise.py` darin) — wie bei 50.3. Der Übergang steht deshalb nur hier und in den Commits.
+
+> ⭐ **60.1 ERGÄNZT durch R102 (62.3) und R103 (62.4)** (Fable 16b R103 (c): R102 Unterpunkte (b) und (c), R103 Unterpunkt (b), TB-167, 16.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 60.2 Tatsachennotiz Posten 5 (R43)
 

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 53 (von 0–61) — Register-Z. 11510–11652 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 53 (von 0–62) — Register-Z. 11513–11658 — Commit 437085796f14e63e3d3792b43248e1435c87a336 — 2026-10-16 — Original sha256 6026c2ab59785156950d99ae86857e41557fee5e013b9efa3f6ba22a64e6a1af — KOPIE, nicht das Register
 
 ## 53. Fable 02c — Registerblock R66–R73 (TB-132)
 
@@ -88,6 +88,9 @@ Reines Eintragen von Registertext, Bauart wie 52. Quelle ist allein `docs/projek
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **53.7 R72 PRÄZISIERT durch R88 (56.5)** (Fable 09a R88, Unterpunkt (e), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **53.7 (R72) — ERGÄNZT durch R81 (55.4), Unterpunkt (b), wie 48.7 (R39) nach R89 (d)** (Fable 15b R100 (a), TB-167, 16.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 23.3, Registertext 3b (c) (vom steuernden Chat bestimmt, 53.10 Nr. 8); 23.3, Tatsachennotiz zu 3b (c), Satz zur Zeitachse; 48.16 (R48); 52.2 (R64). Voraussetzung gemessen: 53.9. Offen: 53.10 Nr. 3, 5, 6 und 10.

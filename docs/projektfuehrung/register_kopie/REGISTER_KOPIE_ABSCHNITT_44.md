@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 44 (von 0–61) — Register-Z. 9885–10191 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 44 (von 0–62) — Register-Z. 9888–10194 — Commit 437085796f14e63e3d3792b43248e1435c87a336 — 2026-10-16 — Original sha256 6026c2ab59785156950d99ae86857e41557fee5e013b9efa3f6ba22a64e6a1af — KOPIE, nicht das Register
 
 ## 44. Vollzug: `herkunft.py` im Modus, `auswertung.py` endet mit 2, 19 über den Laufbereich — Tatsachennotizen TB-111 und TB-112 (TB-113, 26.09.2026)
 

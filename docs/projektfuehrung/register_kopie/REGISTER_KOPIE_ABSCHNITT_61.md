@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 61 (von 0–61) — Register-Z. 12204–12271 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 61 (von 0–62) — Register-Z. 12222–12290 — Commit 437085796f14e63e3d3792b43248e1435c87a336 — 2026-10-16 — Original sha256 6026c2ab59785156950d99ae86857e41557fee5e013b9efa3f6ba22a64e6a1af — KOPIE, nicht das Register
 
 ## 61. Fable 15a — Registerblock R98–R99 (TB-165)
 
@@ -68,3 +68,4 @@ Stellen mit „Frage an Fable“: keine.
 (c) R98 (b): offen. Ob `entry_cutoff` in den sechs Backtests die drei Bedingungen erfüllt und welche Stelle es bei elliott_wave, elliott_wave_stocks und t3_supertrend ist, misst der Bau E-3 durch Lesen (27.2, nur das Wie); nicht Teil von TB-165.
 
 (d) F4 (Punkte 10 bis 12 der Anfrage 10.10.a): kommt mit Wortlaut in die nächste Fable-Anfrage (R99 (f)); nicht Teil von TB-165.
+

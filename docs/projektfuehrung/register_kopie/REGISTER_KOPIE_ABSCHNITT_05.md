@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 5 (von 0–61) — Register-Z. 588–749 — Commit 173368f5edf8ce41fe0e067f7788cc47587cd923 — 2026-10-15 — Original sha256 fac7a7a26360288e355712a3ad4099f9e6d6cf46be7e81c215cc1b013b874b72 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 5 (von 0–62) — Register-Z. 588–752 — Commit 437085796f14e63e3d3792b43248e1435c87a336 — 2026-10-16 — Original sha256 6026c2ab59785156950d99ae86857e41557fee5e013b9efa3f6ba22a64e6a1af — KOPIE, nicht das Register
 
 ## 5. Der Faltenplan
 
@@ -45,6 +45,9 @@
    > über **eine** Funktion, `beispieldaten.py::jahre_aus_register_5_1_nr_4`.
    > Ein zweiter Parser derselben Zeile wäre ein zweiter Ort (Fable 24b B4).
    > Die Warnung oben gilt für beide Leser.
+
+   > ⭐ **5.1 Nr. 4 ERGÄNZT durch R103 (62.4)** (Fable 16b R103, Unterpunkt (a); die Zeile „4. …“ oben bleibt zeichengleich, TB-167, 16.10.2026).
+   > Eintrag und Stand oben bleiben zeichengleich.
 
 5. **Purge und Embargo** in Höhe der **maximalen gemessenen Haltedauer** des
    Bots, aus `research/tb24_haltedauern/`. Purge: der Rand vor der Falte
