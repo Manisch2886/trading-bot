@@ -1,0 +1,10 @@
+ja    Fassung aus dem Beleg: nicht prüfbar
+ja    Quelle ERGEBNIS_TB-167 md5 2267e7334770a6ef950dcf2f782af75a, Z. 47-51 (5 Zeilen)
+ja    Karte TB-167: MAC_TB-167 md5 188606f7f8f35bef33a7a34530f84203, Z. 13
+ja    Karte TB-168 gefüllt
+ja    63 noch nicht im Register; endet mit einer Leerzeile
+ja    62.5 (a) genau einmal, Z. [12349]
+ja    Vorbild 60.1 genau einmal, Z. [12181]
+ja    Abbild führt keinen Optimierer
+Pruefungen: 8, NEIN: 0
+rc 0

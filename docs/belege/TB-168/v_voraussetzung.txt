@@ -1,0 +1,32 @@
+ja    Register: 62 genau einmal, 63 noch nicht
+ja    Register endet mit genau einer Leerzeile
+ja    Register: Vorbild 60 genau einmal, Z. [12177]; 60.1 genau einmal, Z. [12181]
+ja    Register: 37.3 „Ein Befund 1 der Sperrlisten-Sonde“ zuerst Z. 7025 (1 Treffer)
+ja    Register: 62.5 (a) genau einmal, Z. [12349], nennt Bauart 60 und „Bis dahin offen.“
+ja    ERGEBNIS_TB-167 md5 2267e7334770a6ef950dcf2f782af75a
+ja    ERGEBNIS_TB-167 zuletzt in Commit 9449f6f
+ja    ERGEBNIS_TB-167: Z. 45 Kopf, Z. 47-51 Entwurf, Z. 52 leer, Z. 53 'Was offen bleibt'
+ja    ERGEBNIS_TB-167 Z. 47-51 = docs/belege/TB-167/m_uebergang.md
+ja    Entwurf: Datei, vorher 3b7757004b1c2db5…, nachher 0298263c755c5d24…, Commit b6aaa24
+ja    sha256 heute = nachher, zuletzt in Commit b6aaa24
+ja    MAC_TB-167 md5 188606f7f8f35bef33a7a34530f84203, Commit bc5e165
+ja    MAC_TB-167: Z. 11 Kopf, Z. 13 Karte, Z. 15 Bedingung
+ja    TB-167 m1_test_alt.txt endet mit rc 1
+ja    TB-167 m1_g6_rot.txt endet mit rc 0
+ja    TB-167 m2_plan_alt.txt endet mit rc 0
+ja    TB-167 m3_code_probe.txt endet mit rc 0
+ja    TB-167 m3_code.txt endet mit rc 0
+ja    TB-167 m4_test_neu.txt endet mit rc 0
+ja    TB-167 m4_g6_gruen.txt endet mit rc 0
+ja    TB-167 m5_posten4.txt endet mit rc 0
+ja    TB-167 m6_plan_neu.txt endet mit rc 0
+ja    sha256 Abbild 46f0ad5d1d83a253… und Sonde 98c02e0e9b42831d…
+ja    Abbild führt keinen Optimierer
+ja    Freigabe-Karte TB-168 gefüllt, eine Zeile: Karte des Betreibers im Chat 31 („Opus Trading Bots-16.10.2026 a“), 16.10.2026, 14:10, Frage und Antwort im Wortlaut (au
+ja    Dialog-Index: Zeile 16a genau einmal, offen „–“; dialog_index.py 3735aa226af0bcdb…
+ja    Wert für 16a offen: nein
+ja    Index: Kopf 0–62, Zeile 62, Pflegezeile TB-167 je genau einmal
+ja    BACKLOG: Rang 1 (Stand TB-167) genau einmal
+ja    Journal: höchste Kennung FC, nächste FD frei
+Pruefungen: 30, NEIN: 0
+rc 0
