@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-166** | `docs/auftraege/MAC_TB-166_e3a_schranke_je_symbol.md` | E-3a: Schranke je Symbol im Signalpfad und gemeinsame Tag-Rechnung (R90 (c)-(e), R98 (a)-(c)), Sperrliste 9/11 nach Einzelfreigabe; Tatsachennotiz 37.3, Abnahme mit E-3b |
+| **TB-167** | `docs/auftraege/MAC_TB-167_g6_ews_schranke_vor_schnitt.md` | Abhilfe G6 elliott_wave_stocks: Laengenpruefung vor dem Zeilenschnitt (R102 (c), Fable 16.10.b), Register 62 (R100-R103), bedingte Freigabe nach 37.3; Vollzug mit Folgeauftrag |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
