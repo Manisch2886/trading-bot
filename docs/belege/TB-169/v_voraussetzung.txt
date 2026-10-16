@@ -1,0 +1,41 @@
+ja    Register: 63 genau einmal, 64 noch nicht
+ja    Register endet mit genau einer Leerzeile
+ja    Vorbild 63.1 genau einmal, Z. [12372]
+ja    37.3 zuerst Z. 7025
+ja    vorher research/tb24_haltedauern/alle_bots.py: 6e9ddce913b555a1
+ja    Anhang docs/belege/TB-169/e3b_alle_bots.py = nachher 4246b577bfc486e3…
+ja    vorher research/tb24_haltedauern/positionen_holen.py: a9e81f02dd69d946
+ja    Anhang docs/belege/TB-169/e3b_positionen_holen.py = nachher b6d1e2d66eae02a8…
+ja    vorher research/tb24_haltedauern/test_listen_erzeuger.py: fehlt
+ja    Anhang docs/belege/TB-169/e3b_test_listen_erzeuger.py = nachher e196884a152796e4…
+ja    e_notiz.md md5 e28885ae5e10e158860fb457671ce900, Commit 4a51876
+ja    e_notiz.md: 20 Zeilen, 20 Dateien
+ja    heute = nachher, zuletzt in 15f28e4: research/exposure_messung/bot_lauf.py
+ja    heute = nachher, zuletzt in 15f28e4: research/faltenplan_neun/faltenschranke_messung.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/elliott_wave/elliott_wave_counter.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/elliott_wave/equity_simulation.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/elliott_wave/multi_symbol_optimise.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/elliott_wave_stocks/elliott_wave_counter.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/elliott_wave_stocks/equity_simulation.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/elliott_wave_stocks/multi_symbol_optimise.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/rsi2_crypto/backtest_rsi2.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/rsi2_crypto/equity_simulation.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/rsi2_mean_reversion/backtest_rsi2.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/t3_supertrend/backtest_trend.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/t3_supertrend/equity_simulation.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/t3_supertrend/multi_symbol_optimise.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/turtle_soup_crypto/backtest_turtle_soup.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/turtle_soup_crypto/equity_simulation.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/turtle_soup_stocks/backtest_turtle_soup.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/volatility_breakout/backtest_breakout.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/volatility_breakout_crypto/backtest_breakout.py
+ja    heute = nachher, zuletzt in 15f28e4: strategies/volatility_breakout_crypto/equity_simulation.py
+ja    sha256 Abbild 46f0ad5d1d83a253… und Sonde 98c02e0e9b42831d…
+ja    Abbild fuehrt keine der 20 Dateien
+ja    Karte TB-166: Z. 14, md5 57d05b949318d95e5ef28a5692ef1241, Commit 57a1062
+ja    Karte TB-169 gefuellt
+ja    Index: Kopf 0–63, Zeile 63, Pflegezeile TB-168
+ja    BACKLOG Rang 1 (Stand TB-166) genau einmal
+ja    Journal hoechste FE, naechste FF frei
+Pruefungen: 39, NEIN: 0
+rc 0

@@ -1,0 +1,4 @@
+ja    Rueckgabewert vorher rc 1, nachher rc 1
+ja    Fehlzeilen vorher 1 = nachher 1:   - wer schreibt, schreibt in den eigenen Ordner (aussen vor: ['positionen_holen.py'])
+Pruefungen: 2, NEIN: 0
+rc 0

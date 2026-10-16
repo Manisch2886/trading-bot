@@ -1,0 +1,8 @@
+ja    vorher research/tb24_haltedauern/alle_bots.py
+ja    Quelle docs/belege/TB-169/e3b_alle_bots.py = nachher
+ja    vorher research/tb24_haltedauern/positionen_holen.py
+ja    Quelle docs/belege/TB-169/e3b_positionen_holen.py = nachher
+ja    vorher research/tb24_haltedauern/test_listen_erzeuger.py
+ja    Quelle docs/belege/TB-169/e3b_test_listen_erzeuger.py = nachher
+Pruefungen: 6, NEIN: 0
+rc 0

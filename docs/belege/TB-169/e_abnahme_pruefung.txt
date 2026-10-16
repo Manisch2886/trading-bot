@@ -1,0 +1,13 @@
+ja    rsi2_crypto: 13 Pruefungen ja
+ja    turtle_soup_crypto: 13 Pruefungen ja
+ja    volatility_breakout_crypto: 13 Pruefungen ja
+ja    rsi2_mean_reversion: 13 Pruefungen ja
+ja    turtle_soup_stocks: 13 Pruefungen ja
+ja    volatility_breakout: 13 Pruefungen ja
+ja    t3_supertrend: 13 Pruefungen ja
+ja    elliott_wave: 13 Pruefungen ja
+ja    elliott_wave_stocks: 13 Pruefungen ja
+ja    keine NEIN-Zeile
+ja    Ergebnis 117 von 117, rc 0
+Pruefungen: 11, NEIN: 0
+rc 0

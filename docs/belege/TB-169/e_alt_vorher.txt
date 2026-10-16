@@ -1,0 +1,65 @@
+1.-11. Gegenproben auf dem echten Rechenkern
+  ok    1.1 Einstieg 01., Ausstieg 04. -> 3 Kalendertage
+  ok    1.2 Stundenkerzen: 2 Tage 4 Stunden -> 2,1667 Tage (nicht 2, nicht 3)
+  ok    1.3 Gegenprobe: Ein- und Ausstieg am selben Tag -> 0 Tage
+  ok    2.1 n=10, Median 5,5, Mittel 5,5 bei 1..10
+  ok    2.2 Quartile 3,25 / 7,75 (lineare Interpolation)
+  ok    2.3 10./90. Perzentil 1,9 / 9,1
+  ok    2.4 Gegenprobe: ein Ausreisser zieht den Mittelwert (10,9), nicht den Median (1,0)
+  ok    2.5 leere Reihe -> n = 0, kein Absturz
+  ok    3.1 Klassen [0,3) [3,10) [10,inf) zaehlen 2 / 2 / 2
+  ok    3.2 Gegenprobe Klassengrenze: 3,0 gehoert in [3,10), nicht in [0,3)
+  ok    4.1 Stop nach 1 Tag gegen Zeitausstieg nach 10 Tagen -> zwei Gruppen
+  ok    4.2 Gegenprobe: gleiche Streuung in beiden Arten -> KEINE zwei Gruppen
+  ok    4.3 nur eine Ausstiegsart -> keine zwei Gruppen (und kein Absturz)
+  ok    5.1 Position vom 01. bis 03. belegt drei Kalendertage
+  ok    5.2 Gegenprobe: Ein-Tages-Position belegt genau einen Tag
+  ok    5.3 Freitag bis Montag sind vier Kalendertage - das Wochenende zaehlt mit
+  ok    5.4 zwei Titel an denselben drei Tagen: 3 Positionstage, 6 Titeltage
+  ok    6.1 Gegenprobe: Zeitraeume ohne Ueberschneidung -> kein gemeinsames Fenster
+  ok    6.2 Fenster ist die Schnittmenge (03. bis 05.)
+  ok    7.1 A haelt 10 Tage, an 4 davon haelt auch B -> 40 %
+  ok    7.2 Gegenprobe zur Richtung: umgekehrt sind es 100 % - die Zahl ist nicht symmetrisch
+  ok    7.3 Gegenprobe Titel gegen Tage: dieselben Tage, anderer Titel -> 100 % / 0 %
+  ok    8.1 Abstand genau 3 Tage liegt NOCH im Fenster -> 2 von 2 Einstiegen
+  ok    8.2 Gegenprobe Fensterrand: Abstand 4 Tage liegt NICHT mehr drin -> 1 von 2
+  ok    8.3 Gegenprobe: gleiche Tage, aber kein gemeinsamer Titel -> 0 Treffer
+  ok    9.1 Versatz 0 und +3 Tage -> Median 1,5
+  ok    9.2 Vorzeichen: B steigt SPAETER ein -> positiver Versatz
+  ok    9.3 Deckung: 'Anteil bis 3 Tage' aus der Versatzrechnung gleicht dem Anteil aus der Fenstersuche
+  ok    9.4 Gegenprobe Vorzeichen: umgekehrte Richtung -> Median -1,5
+  ok    10.1 Ziehung (0.132) und geschlossene Form (0.137) liegen weniger als 3 Prozentpunkte auseinander
+  ok    10.2 die Ziehung liegt nicht ueber der geschlossenen Form - diese vernachlaessigt die Randeffekte und ist deshalb die obere Schranke
+  ok    11.1 Median 2,99 Tage -> 'bis 2 Tage'
+  ok    11.2 Gegenprobe Klassengrenze: 3,0 und 10,0 liegen im Fenster der Vermutung
+  ok    11.3 10,5 und 21,0 liegen darueber
+  ok    11.4 200 Tage -> 'ueber 90 Tage'
+  35 von 35 Gegenproben bestanden
+
+14. Live-Weg gegen eine gebaute Datenbank (Gegenprobe zu 'nichts gefunden')
+  ok    14.1 drei geschlossene Trades gelesen, der offene nicht
+  ok    14.2 Gegenprobe: fehlende Datenbank gibt None, nicht einen leeren Satz - 'nicht nachgesehen' und 'nichts da' bleiben unterscheidbar
+  ok    14.3 Haltedauern 3 und 10 Tage - der manuelle Ausstieg (2 Tage) bleibt aussen vor
+  ok    14.4 Median daraus 6,5 Tage
+  ok    14.5 mode=ro verweigert einen Schreibversuch auf dieselbe Datei
+
+12. Mutationsproben - jede Verfaelschung des Kerns muss auffallen
+  ok    Haltedauer in Stunden statt Tagen -> 2 Pruefung(en) schlagen an
+  ok    Ausstiegstag nicht mehr als Positionstag gezaehlt -> 5 Pruefung(en) schlagen an
+  ok    Naehe-Fenster um einen Tag zu eng -> 3 Pruefung(en) schlagen an
+  ok    Vorzeichen des Versatzes gedreht -> 3 Pruefung(en) schlagen an
+  ok    Histogramm-Klassen rechts geschlossen statt links -> 2 Pruefung(en) schlagen an
+  ok    Zweigipfligkeit immer bejaht -> 1 Pruefung(en) schlagen an
+  ok    Grenze der Horizont-Klasse verschoben -> 1 Pruefung(en) schlagen an
+  ok    Ueberlappung auf B statt auf A bezogen -> 2 Pruefung(en) schlagen an
+  ok    Titel-Ueberlappung rechnet mit Tagen statt mit Titeln -> 1 Pruefung(en) schlagen an
+  ok    getrennte Zeitraeume gelten als ueberlappend -> 1 Pruefung(en) schlagen an
+  10 von 10 Mutationen erkannt
+
+13. Wache: die Untersuchung fasst nichts ausserhalb ihres Ordners an
+  ok    dieser Testlauf hat den Arbeitsbaum nicht veraendert
+  FEHLT wer schreibt, schreibt in den eigenen Ordner (aussen vor: ['positionen_holen.py'])
+
+1 Pruefung(en) fehlgeschlagen:
+  - wer schreibt, schreibt in den eigenen Ordner (aussen vor: ['positionen_holen.py'])
+rc 1

@@ -126,13 +126,15 @@ if not os.path.isdir(ZIEL_DIR):
     sys.stderr.write("ABBRUCH: Zielordner fehlt: %s - er wird nicht angelegt.\n" % ZIEL_DIR)
     sys.exit(NICHT_MOEGLICH)
 
-ZIELDATEIEN = [f"{BOT}_positionen.csv", f"{BOT}_alle_trades.csv",
-               f"{BOT}_meta.json", f"{BOT}_herkunft.json"]
+# TB-169 (E-3b, R97 (a)): der Doppellauf ist weg, `<bot>_positionen.csv` entfaellt.
+ZIELDATEIEN = [f"{BOT}_alle_trades.csv", f"{BOT}_meta.json", f"{BOT}_herkunft.json"]
 
 # Der Modulkopf von bot_lauf.py setzt sys.path fuer strategies/<BOT> und
 # shared/ und legt die Stubs an; er liest den Bot-Namen aus sys.argv[1].
 sys.path.insert(0, _EXPOSURE_DIR)
 import bot_lauf as basis                                    # noqa: E402
+sys.path.insert(0, os.path.join(_REPO_ROOT, "research", "faltenplan_neun"))
+import faltenschranke_messung as fsm                        # noqa: E402
 
 assert basis.BOT == BOT, f"bot_lauf.py hat '{basis.BOT}' gelesen, erwartet '{BOT}'"
 
@@ -249,166 +251,131 @@ def kerzen_je_trade(trades: pd.DataFrame, all_data: dict) -> pd.Series:
         if reihe is None:
             werte.append(pd.NA)
             continue
-        links = reihe.searchsorted(pd.Timestamp(ein), side="left")
-        rechts = reihe.searchsorted(pd.Timestamp(aus), side="right")
+        # TB-169: datetime64 statt Timestamp - unter pandas 2.3.3/numpy 2.0.2 wirft searchsorted sonst TypeError
+        links = reihe.searchsorted(pd.Timestamp(ein).to_datetime64(), side="left")
+        rechts = reihe.searchsorted(pd.Timestamp(aus).to_datetime64(), side="right")
         werte.append(int(rechts - links))
     return pd.Series(werte, index=trades.index, dtype="Int64")
 
 
-def abgleich_exposure_messung(positionen: pd.DataFrame) -> dict:
-    """Pflicht-Gegencheck: dieselben ausgefuehrten Positionen wie in
-    `research/exposure_messung/daten/<bot>_positionen.csv`?
+# --- TB-169 (E-3b): Schnitt an der Eingabe, Wachen, kein Doppellauf ---------
+# Go-Live-Schnitt (ausschliesslich) aus derselben Quelle wie der Handelbar-Tag
+# (faltenschranke_messung.handelbar_ab rechnet mit faltenplan_neun.GO_LIVE).
+SCHNITT = pd.Timestamp(fsm.fp.GO_LIVE)
+WACHE = 2   # 36.5: Befund ueber den Erzeuger, kein Ausgang (R81 (g), R86 (d), R87 (c))
 
-    Diese Untersuchung rechnet auf demselben Trade-Satz wie die
-    Exposure-Messung. Waeren die Positionen verschieden, wuerde hier etwas
-    anderes gemessen als dort - eine Abweichung ist deshalb ein Befund und
-    kein Abbruchgrund (gemeldet wird sie in jedem Fall).
-    """
-    pfad = os.path.join(_EXPOSURE_DIR, "daten", f"{BOT}_positionen.csv")
-    if not os.path.exists(pfad):
-        return {"datei": os.path.relpath(pfad, _REPO_ROOT), "vorhanden": False}
 
-    alt = pd.read_csv(pfad, parse_dates=["entry_time", "exit_time"])
-    spalten = ["symbol", "entry_time", "exit_time", "pnl_pct", "allocation"]
-    zahlenspalten = ["pnl_pct", "allocation"]
-    gleich_lang = len(alt) == len(positionen)
-    abweichende = None
-    if gleich_lang:
-        def ordne(df):
-            df = df[spalten].sort_values(spalten, kind="stable").reset_index(drop=True)
-            df[zahlenspalten] = df[zahlenspalten].round(6)
-            return df
-        a, b = ordne(alt.copy()), ordne(positionen.copy())
-        abweichende = int((a != b).any(axis=1).sum())
-    return {
-        "datei": os.path.relpath(pfad, _REPO_ROOT),
-        "vorhanden": True,
-        "zeilen_dort": int(len(alt)),
-        "zeilen_hier": int(len(positionen)),
-        "identisch": bool(gleich_lang and abweichende == 0),
-        "abweichende_zeilen": abweichende,
-    }
+def _abbruch(text):
+    sys.stderr.write("[positionen_holen] ABBRUCH %s: %s\n" % (BOT, text))
+    sys.exit(WACHE)
+
+
+def _vor_schnitt(zeiten) -> pd.Series:
+    """Maske 'Zeit < Schnitt' in der Zeitzone der Spalte (R86 (e): beide gleich gelesen)."""
+    t = pd.to_datetime(zeiten)
+    s = SCHNITT.tz_localize(t.dt.tz) if t.dt.tz is not None else SCHNITT
+    return t < s
+
+
+def lesesicht_an():
+    """R86 (b), eine Stelle fuer neun Bots: `read_csv` liefert nur Zeilen mit
+    open_time < Schnitt (Bauart loaderlauf.stichtagssicht_an, aber '<').
+    Gilt fuer den ganzen Lauf, also auch fuer Dateien, die collect_all_trades
+    selbst liest (BTC-Regimefilter)."""
+    echt = pd.read_csv
+
+    def sicht(*a, **k):
+        df = echt(*a, **k)
+        if isinstance(df, pd.DataFrame) and "open_time" in df.columns:
+            df = df[_vor_schnitt(df["open_time"]).values].reset_index(drop=True)
+        return df
+    pd.read_csv = sicht
+
+
+def wache_zeilen(all_data):
+    """R86 (d) Wache 1: keine Zeile ab dem Schnitt erreicht den Signalpfad."""
+    for symbol, eintrag in all_data.items():
+        df = kursreihe(eintrag)
+        if len(df) and not _vor_schnitt(df["open_time"]).all():
+            _abbruch("Zeile ab dem Schnitt %s im Signalpfad (%s, R86 (d))" % (SCHNITT.date(), symbol))
+
+
+def wache_trades(trades, handelbar):
+    """R86 (d) Wache 2 und R87 (c): keine Ein-/Ausstiegszeit am Schnitt oder spaeter,
+    kein Einstieg vor dem Handelbar-Tag des Symbols (Tag aus derselben Rechnung)."""
+    for spalte in ("entry_time", "exit_time"):
+        if not _vor_schnitt(trades[spalte]).all():
+            _abbruch("Trade mit %s am Schnitt oder spaeter (R86 (d))" % spalte)
+    for symbol, gruppe in trades.groupby(trades["symbol"].astype(str)):
+        tag = handelbar.get(symbol)
+        if tag is None:
+            _abbruch("Trade fuer %s ohne Handelbar-Tag (R81 (c))" % symbol)
+        t = pd.to_datetime(gruppe["entry_time"]); h = pd.Timestamp(tag)
+        if t.dt.tz is not None:
+            h = h.tz_localize(t.dt.tz)
+        if (t.dt.normalize() < h).any():
+            _abbruch("Einstieg %s vor dem Handelbar-Tag %s bei %s (R87 (c))" % (t.min(), tag, symbol))
 
 
 def main():
     import equity_simulation as es
 
+    lesesicht_an()
     all_data = es.load_all_symbol_data()
     if not all_data:
         raise SystemExit(f"{BOT}: keine Kursdaten gefunden.")
+    wache_zeilen(all_data)
 
-    trades = basis.hole_trades(es, all_data)
+    handelbar = fsm.handelbar_ab(BOT)
+    trades = basis.hole_trades(es, all_data, handelbar)
     if trades is None or trades.empty:
         raise SystemExit(f"{BOT}: keine Trades.")
 
     trades = trades.copy()
     trades["entry_time"] = pd.to_datetime(trades["entry_time"])
     trades["exit_time"] = pd.to_datetime(trades["exit_time"])
-    if trades["symbol"].astype(str).str.contains(TRENNER).any():
-        raise SystemExit(f"{BOT}: Symbol enthaelt '{TRENNER}' - Kennzeichnung nicht eindeutig.")
-
-    allocation_pct = es.ALLOCATION_PCT
-    hat_limit = "max_concurrent_positions" in es.simulate_portfolio.__code__.co_varnames
-    max_concurrent = (getattr(es, "MAX_CONCURRENT_POSITIONS", None) if hat_limit
-                      else basis._KEIN_LIMIT_PARAMETER)
-    limit_wert = None if max_concurrent is basis._KEIN_LIMIT_PARAMETER else max_concurrent
-
-    # --- Lauf 1: unveraendert -----------------------------------------------
-    ergebnis = basis.simuliere(es, trades, allocation_pct, max_concurrent)
-    equity = ergebnis["equity_curve"]
-
-    # --- Lauf 2: mit Zeilenkennung im Symbol --------------------------------
-    markiert = trades.copy()
-    markiert["symbol"] = [f"{s}{TRENNER}{i}" for i, s in zip(markiert.index, markiert["symbol"])]
-    ergebnis_markiert = basis.simuliere(es, markiert, allocation_pct, max_concurrent)
-    equity_markiert = ergebnis_markiert["equity_curve"]
-
-    kennzeichnung_neutral = bool(
-        len(equity) == len(equity_markiert)
-        and ergebnis["num_executed"] == ergebnis_markiert["num_executed"]
-        and ergebnis["num_skipped"] == ergebnis_markiert["num_skipped"]
-        and equity["capital_after"].reset_index(drop=True).equals(
-            equity_markiert["capital_after"].reset_index(drop=True))
-        and equity["allocation"].reset_index(drop=True).equals(
-            equity_markiert["allocation"].reset_index(drop=True))
-    )
-    if not kennzeichnung_neutral:
-        raise SystemExit(f"{BOT}: Kennzeichnung hat die Simulation veraendert - Abbruch.")
-
-    kennungen = equity_markiert["symbol"].astype(str).str.rsplit(TRENNER, n=1).str[-1].astype(int)
-    if kennungen.duplicated().any():
-        raise SystemExit(f"{BOT}: dieselbe Trade-Zeile doppelt ausgefuehrt - Abbruch.")
+    wache_trades(trades, handelbar)
 
     # --- Alle gefundenen Trades, mit Kerzenzahl und Ausstiegsart ------------
+    # A9 (41.1, R97 (a)): `symbol` bleibt unveraendert, keine Kennung.
     trades["kerzen"] = kerzen_je_trade(trades, all_data)
-    trades["ausgefuehrt"] = False
-    trades.loc[kennungen.values, "ausgefuehrt"] = True
-
     ausgabespalten = [s for s in ("symbol", "entry_time", "exit_time", "result",
-                                   "pnl_pct", "entry_price", "exit_price", "kerzen",
-                                   "ausgefuehrt")
+                                   "pnl_pct", "entry_price", "exit_price", "kerzen")
                       if s in trades.columns]
     alle = trades[ausgabespalten].copy()
     alle.insert(0, "trade_zeile", trades.index)
-
-    positionen = trades.loc[kennungen.values, ausgabespalten].copy()
-    positionen.insert(0, "trade_zeile", kennungen.values)
-    positionen["allocation"] = equity["allocation"].values
-    positionen["capital_after"] = equity["capital_after"].values
-
-    # Gegenproben (Prinzip 12): die Ausstiegszeit aus der Trade-Tabelle muss
-    # die der Kapitalkurve sein, und kein Einstieg darf nach seinem Ausstieg
-    # liegen. Beide Pruefungen stammen aus bot_lauf.py.
-    if not (positionen["exit_time"].to_numpy() == pd.to_datetime(equity["time"]).to_numpy()).all():
-        raise SystemExit(f"{BOT}: Ausstiegszeiten passen nicht zusammen - Abbruch.")
-    if (positionen["entry_time"] > positionen["exit_time"]).any():
+    if (alle["entry_time"] > alle["exit_time"]).any():
         raise SystemExit(f"{BOT}: Einstieg nach Ausstieg - Abbruch.")
 
-    positionen = positionen.sort_values("entry_time", kind="stable").reset_index(drop=True)
     alle = alle.sort_values("entry_time", kind="stable").reset_index(drop=True)
     hashes = {}
-    hashes[f"{BOT}_positionen.csv"] = _schreibe_einmal(
-        f"{BOT}_positionen.csv", positionen.to_csv(index=False))
     hashes[f"{BOT}_alle_trades.csv"] = _schreibe_einmal(
         f"{BOT}_alle_trades.csv", alle.to_csv(index=False))
 
     fehlende_kerzen = int(alle["kerzen"].isna().sum())
     ohne_result = "result" not in trades.columns
-
     meta = {
         "bot": BOT,
         "zeitrahmen": ZEITRAHMEN.get(BOT),
         "anlageklasse": ANLAGEKLASSE.get(BOT),
-        "startkapital": es.STARTING_CAPITAL,
-        "allocation_pct": allocation_pct,
-        "max_concurrent_positions": limit_wert,
-        "bot_hat_limit_parameter": hat_limit,
+        "go_live_schnitt": str(SCHNITT.date()),
         "trades_gefunden": int(len(trades)),
-        "trades_ausgefuehrt": int(ergebnis["num_executed"]),
-        "trades_uebersprungen": int(ergebnis["num_skipped"]),
         "symbole_gefunden": int(trades["symbol"].nunique()),
-        "symbole_ausgefuehrt": int(positionen["symbol"].nunique()),
-        "erster_einstieg": str(positionen["entry_time"].min()),
-        "letzter_ausstieg": str(positionen["exit_time"].max()),
+        "symbole_geladen": int(len(all_data)),
+        "erster_einstieg": str(alle["entry_time"].min()),
+        "letzter_ausstieg": str(alle["exit_time"].max()),
         "ausstiegsarten": (None if ohne_result
                             else {str(k): int(v) for k, v
-                                  in positionen["result"].value_counts().items()}),
+                                  in alle["result"].value_counts().items()}),
         "spalte_result_vorhanden": not ohne_result,
         "kerzen_ohne_wert": fehlende_kerzen,
-        "kennzeichnung_neutral": kennzeichnung_neutral,
-        "abgleich_exposure_messung": abgleich_exposure_messung(positionen),
     }
     hashes[f"{BOT}_meta.json"] = _schreibe_einmal(
         f"{BOT}_meta.json", json.dumps(meta, indent=2, default=str))
     _schreibe_herkunft(hashes)
-
-    abgleich = meta["abgleich_exposure_messung"]
-    marke = "identisch" if abgleich.get("identisch") else f"ABWEICHEND ({abgleich})"
-    print(f"{BOT}: {meta['trades_ausgefuehrt']} ausgefuehrt / "
-          f"{meta['trades_uebersprungen']} uebersprungen, "
-          f"Ausstiegsarten: {meta['ausstiegsarten']}, "
-          f"Kerzen ohne Wert: {fehlende_kerzen}, "
-          f"Abgleich Exposure-Messung: {marke}")
+    print(f"{BOT}: {meta['trades_gefunden']} Trades gefunden, "
+          f"{meta['symbole_gefunden']} Symbole, Ausstiegsarten: {meta['ausstiegsarten']}, "
+          f"Kerzen ohne Wert: {fehlende_kerzen}")
 
 
 if __name__ == "__main__":

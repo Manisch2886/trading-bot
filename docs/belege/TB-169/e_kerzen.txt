@@ -1,0 +1,11 @@
+ja   elliott_wave: Trades in der Liste 130, mit Kursreihe im Snapshot 130 (Symbole 18 von 18), kerzen gleich 130, abweichend 0
+ja   t3_supertrend: Trades in der Liste 980, mit Kursreihe im Snapshot 980 (Symbole 18 von 18), kerzen gleich 980, abweichend 0
+ja   rsi2_crypto: Trades in der Liste 439, mit Kursreihe im Snapshot 439 (Symbole 18 von 18), kerzen gleich 439, abweichend 0
+ja   turtle_soup_crypto: Trades in der Liste 1599, mit Kursreihe im Snapshot 1599 (Symbole 20 von 20), kerzen gleich 1599, abweichend 0
+ja   volatility_breakout_crypto: Trades in der Liste 233, mit Kursreihe im Snapshot 233 (Symbole 20 von 20), kerzen gleich 233, abweichend 0
+ja   elliott_wave_stocks: Trades in der Liste 510, mit Kursreihe im Snapshot 510 (Symbole 137 von 137), kerzen gleich 510, abweichend 0
+ja   rsi2_mean_reversion: Trades in der Liste 5391, mit Kursreihe im Snapshot 5391 (Symbole 147 von 147), kerzen gleich 5391, abweichend 0
+ja   turtle_soup_stocks: Trades in der Liste 12069, mit Kursreihe im Snapshot 12069 (Symbole 147 von 147), kerzen gleich 12069, abweichend 0
+ja   volatility_breakout: Trades in der Liste 4510, mit Kursreihe im Snapshot 4510 (Symbole 147 von 147), kerzen gleich 4510, abweichend 0
+Ergebnis: 25861 Trades verglichen, 0 abweichend oder ohne Kursreihe
+rc 0

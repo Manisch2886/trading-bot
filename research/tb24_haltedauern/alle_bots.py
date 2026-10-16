@@ -44,15 +44,20 @@ def main():
     args = aufruf.parse_args()
     ziel = os.path.abspath(args.ziel)
     bots = args.bots or BOTS
-    fehler = []
+    fehler, wache = [], []
     for bot in bots:
         print(f"\n=== {bot}", flush=True)
         ergebnis = subprocess.run(
             [sys.executable, os.path.join(_DIR, "positionen_holen.py"), bot,
              "--ziel", ziel], cwd=_DIR)
-        if ergebnis.returncode != 0:
+        if ergebnis.returncode == 2:
+            wache.append(bot)   # TB-169 (E-3b): Wache eines Bots bleibt 2 (36.5)
+        elif ergebnis.returncode != 0:
             fehler.append(bot)
 
+    if wache:
+        print(f"\nWACHE (2): {', '.join(wache)}" + (f"; FEHLGESCHLAGEN: {', '.join(fehler)}" if fehler else ""))
+        sys.exit(2)
     if fehler:
         print(f"\nFEHLGESCHLAGEN: {', '.join(fehler)}")
         sys.exit(1)

@@ -1,0 +1,11 @@
+ja    vorher research/tb24_haltedauern/alle_bots.py
+ja    Quelle docs/belege/TB-169/e3b_alle_bots.py = nachher
+ja    vorher research/tb24_haltedauern/positionen_holen.py
+ja    Quelle docs/belege/TB-169/e3b_positionen_holen.py = nachher
+ja    vorher research/tb24_haltedauern/test_listen_erzeuger.py
+ja    Quelle docs/belege/TB-169/e3b_test_listen_erzeuger.py = nachher
+ja    nachher research/tb24_haltedauern/alle_bots.py 4246b577bfc486e3f872ea5132412fe5e23092e23b737182d765373118666964
+ja    nachher research/tb24_haltedauern/positionen_holen.py b6d1e2d66eae02a8a546cab15649a4100e3c1b2df0a9a668140f23de3a8573db
+ja    nachher research/tb24_haltedauern/test_listen_erzeuger.py e196884a152796e4a9ab6e715de70933ebf7614ecf4f38d763eed24d46cda1bf
+Pruefungen: 9, NEIN: 0
+rc 0

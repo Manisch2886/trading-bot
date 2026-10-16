@@ -1,0 +1,119 @@
+ja    rsi2_crypto: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, -48)
+ja    rsi2_crypto: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    rsi2_crypto: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH rsi2_crypto: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    rsi2_crypto: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 28 Einstiege ab dem Schnitt
+ja    rsi2_crypto: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH rsi2_crypto: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    rsi2_crypto: 3a R90 (g): Tag in offener Position -> kein Einstieg davor, verdraengter zweiter Einstieg erscheint · ('AAA', '2020-04-03', 'alte Position bis 2020-04-10 00:00:00', 'verdraengter Einstieg 2020-04-06 00:00:00')
+ja    rsi2_crypto: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 70/70
+ja    rsi2_crypto: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH rsi2_crypto: Einstieg 2019-05-10 00:00:00 vor dem Handelbar-Tag 2022-12-21 bei AAA (R87 (c))')
+ja    rsi2_crypto: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    rsi2_crypto: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (rsi2_crypto) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    rsi2_crypto: 6 A9 symbol unveraendert, keine positionen.csv · ['rsi2_crypto_alle_trades.csv', 'rsi2_crypto_herkunft.json', 'rsi2_crypto_meta.json']
+ja    rsi2_crypto: 7 R86 (c): offene Position am Ende von B (1) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['kein Trade']
+ja    rsi2_crypto: 8 nur Dateien des Test-Snapshots gelesen (8 read_csv)
+ja    turtle_soup_crypto: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, -9)
+ja    turtle_soup_crypto: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    turtle_soup_crypto: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH turtle_soup_crypto: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    turtle_soup_crypto: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 82 Einstiege ab dem Schnitt
+ja    turtle_soup_crypto: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH turtle_soup_crypto: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    turtle_soup_crypto: 3a R90 (g): Tag in offener Position -> kein Einstieg davor, verdraengter zweiter Einstieg erscheint · ('AAA', '2020-05-12', 'alte Position bis 2020-05-13 00:00:00', 'verdraengter Einstieg 2020-05-13 00:00:00')
+ja    turtle_soup_crypto: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 97/97
+ja    turtle_soup_crypto: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH turtle_soup_crypto: Einstieg 2019-01-30 00:00:00 vor dem Handelbar-Tag 2023-07-05 bei AAA (R87 (c))')
+ja    turtle_soup_crypto: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    turtle_soup_crypto: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (turtle_soup_crypto) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    turtle_soup_crypto: 6 A9 symbol unveraendert, keine positionen.csv · ['turtle_soup_crypto_alle_trades.csv', 'turtle_soup_crypto_herkunft.json', 'turtle_soup_crypto_meta.json']
+ja    turtle_soup_crypto: 7 R86 (c): offene Position am Ende von B (1) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['kein Trade']
+ja    turtle_soup_crypto: 8 nur Dateien des Test-Snapshots gelesen (8 read_csv)
+ja    volatility_breakout_crypto: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, -209)
+ja    volatility_breakout_crypto: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    volatility_breakout_crypto: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH volatility_breakout_crypto: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    volatility_breakout_crypto: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 1 Einstiege ab dem Schnitt
+ja    volatility_breakout_crypto: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH volatility_breakout_crypto: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    volatility_breakout_crypto: 3a R90 (g): Tag in offener Position -> kein Einstieg davor, verdraengter zweiter Einstieg erscheint · ('AAA', '2021-03-01', 'alte Position bis 2021-03-05 00:00:00', 'verdraengter Einstieg 2021-03-01 00:00:00')
+ja    volatility_breakout_crypto: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 19/19
+ja    volatility_breakout_crypto: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH volatility_breakout_crypto: Einstieg 2019-09-25 00:00:00 vor dem Handelbar-Tag 2022-04-25 bei AAA (R87 (c))')
+ja    volatility_breakout_crypto: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    volatility_breakout_crypto: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (volatility_breakout_crypto) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    volatility_breakout_crypto: 6 A9 symbol unveraendert, keine positionen.csv · ['volatility_breakout_crypto_alle_trades.csv', 'volatility_breakout_crypto_herkunft.json', 'volatility_breakout_crypto_meta.json']
+ja    volatility_breakout_crypto: 7 R86 (c): offene Position am Ende von B (1) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['kein Trade']
+ja    volatility_breakout_crypto: 8 nur Dateien des Test-Snapshots gelesen (8 read_csv)
+ja    rsi2_mean_reversion: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, -112)
+ja    rsi2_mean_reversion: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    rsi2_mean_reversion: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH rsi2_mean_reversion: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    rsi2_mean_reversion: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 9 Einstiege ab dem Schnitt
+ja    rsi2_mean_reversion: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH rsi2_mean_reversion: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    rsi2_mean_reversion: 3a R90 (g): Tag in offener Position -> kein Einstieg davor, verdraengter zweiter Einstieg erscheint · ('AAA', '2017-05-18', 'alte Position bis 2017-05-23 00:00:00', 'verdraengter Einstieg 2017-05-18 00:00:00')
+ja    rsi2_mean_reversion: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 38/38
+ja    rsi2_mean_reversion: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH rsi2_mean_reversion: Einstieg 2017-02-22 00:00:00 vor dem Handelbar-Tag 2023-11-01 bei AAA (R87 (c))')
+ja    rsi2_mean_reversion: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    rsi2_mean_reversion: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (rsi2_mean_reversion) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    rsi2_mean_reversion: 6 A9 symbol unveraendert, keine positionen.csv · ['rsi2_mean_reversion_alle_trades.csv', 'rsi2_mean_reversion_herkunft.json', 'rsi2_mean_reversion_meta.json']
+ja    rsi2_mean_reversion: 7 R86 (c): offene Position am Ende von B (1) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['kein Trade']
+ja    rsi2_mean_reversion: 8 nur Dateien des Test-Snapshots gelesen (6 read_csv)
+ja    turtle_soup_stocks: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, 0)
+ja    turtle_soup_stocks: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    turtle_soup_stocks: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH turtle_soup_stocks: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    turtle_soup_stocks: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 24 Einstiege ab dem Schnitt
+ja    turtle_soup_stocks: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH turtle_soup_stocks: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    turtle_soup_stocks: 3a R90 (g): Tag in offener Position -> kein Einstieg davor, verdraengter zweiter Einstieg erscheint · ('AAA', '2016-10-07', 'alte Position bis 2016-10-20 00:00:00', 'verdraengter Einstieg 2016-10-11 00:00:00')
+ja    turtle_soup_stocks: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 69/69
+ja    turtle_soup_stocks: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH turtle_soup_stocks: Einstieg 2016-09-19 00:00:00 vor dem Handelbar-Tag 2021-09-16 bei AAA (R87 (c))')
+ja    turtle_soup_stocks: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    turtle_soup_stocks: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (turtle_soup_stocks) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    turtle_soup_stocks: 6 A9 symbol unveraendert, keine positionen.csv · ['turtle_soup_stocks_alle_trades.csv', 'turtle_soup_stocks_herkunft.json', 'turtle_soup_stocks_meta.json']
+ja    turtle_soup_stocks: 7 R86 (c): offene Position am Ende von B (1) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['kein Trade']
+ja    turtle_soup_stocks: 8 nur Dateien des Test-Snapshots gelesen (6 read_csv)
+ja    volatility_breakout: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, -25)
+ja    volatility_breakout: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    volatility_breakout: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH volatility_breakout: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    volatility_breakout: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 13 Einstiege ab dem Schnitt
+ja    volatility_breakout: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH volatility_breakout: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    volatility_breakout: 3a R90 (g): Tag in offener Position -> kein Einstieg davor, verdraengter zweiter Einstieg erscheint · ('AAA', '2018-01-16', 'alte Position bis 2018-02-05 00:00:00', 'verdraengter Einstieg 2018-01-16 00:00:00')
+ja    volatility_breakout: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 27/27
+ja    volatility_breakout: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH volatility_breakout: Einstieg 2016-10-18 00:00:00 vor dem Handelbar-Tag 2021-12-15 bei AAA (R87 (c))')
+ja    volatility_breakout: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    volatility_breakout: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (volatility_breakout) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    volatility_breakout: 6 A9 symbol unveraendert, keine positionen.csv · ['volatility_breakout_alle_trades.csv', 'volatility_breakout_herkunft.json', 'volatility_breakout_meta.json']
+ja    volatility_breakout: 7 R86 (c): offene Position am Ende von B (2) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['kein Trade', 'kein Trade']
+ja    volatility_breakout: 8 nur Dateien des Test-Snapshots gelesen (6 read_csv)
+ja    t3_supertrend: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, -82)
+ja    t3_supertrend: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    t3_supertrend: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH t3_supertrend: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    t3_supertrend: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 20 Einstiege ab dem Schnitt
+ja    t3_supertrend: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH t3_supertrend: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    t3_supertrend: 3a R90 (g) Tatsachennotiz: Einstieg nur am Kreuzen nach oben (backtest_trend.py Z. 111-112), die Position endet am Kreuzen nach unten, am Trend-Flip des Supertrend (Z. 123) oder am Stop: solange sie offen ist, entsteht kein zweites Einstiegssignal, das verdraengt werden koennte · 14 Versuche, kein verdraengter Einstieg; kein Einstieg vor dem Tag
+ja    t3_supertrend: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 16/16
+ja    t3_supertrend: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH t3_supertrend: Einstieg 2021-05-18 16:00:00 vor dem Handelbar-Tag 2024-12-12 bei AAA (R87 (c))')
+ja    t3_supertrend: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    t3_supertrend: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (t3_supertrend) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    t3_supertrend: 6 A9 symbol unveraendert, keine positionen.csv · ['t3_supertrend_alle_trades.csv', 't3_supertrend_herkunft.json', 't3_supertrend_meta.json']
+ja    t3_supertrend: 7 R86 (c): offene Position am Ende von B (1) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['kein Trade']
+ja    t3_supertrend: 8 nur Dateien des Test-Snapshots gelesen (8 read_csv)
+ja    elliott_wave: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, -4843)
+ja    elliott_wave: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    elliott_wave: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH elliott_wave: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    elliott_wave: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 5 Einstiege ab dem Schnitt
+ja    elliott_wave: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH elliott_wave: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    elliott_wave: 3a R90 (g) Tatsachennotiz: Teilmessung - die Trade-Schleife fuehrt keinen Positionszustand (backtest_elliott.py Z. 113: je Welle ein Trade); verdraengt wird nur in der Wellenauswahl (traded, elliott_wave_counter.py Z. 363), die Schranke steht davor (Z. 361): eine gesperrte Welle hinterlaesst keinen traded-Eintrag - belegt am Signalpfad in TB-166 (test_schranke_signalpfad Pruefung 5 und Mutation, docs/belege/TB-166/e_test_schranke.txt); am Erzeuger nicht herstellbar (kein Paar alter Einstiege innerhalb SIGNAL_FRESHNESS_BARS 48 im Test-Snapshot); geprueft: kein Einstieg vor dem Tag, alte Trades ab dem Tag bleiben · 3 Versuche, kein verdraengter Einstieg; kein Einstieg vor dem Tag
+ja    elliott_wave: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 2/2
+ja    elliott_wave: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH elliott_wave: Einstieg 2023-05-11 21:00:00 vor dem Handelbar-Tag 2025-03-17 bei AAA (R87 (c))')
+ja    elliott_wave: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    elliott_wave: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (elliott_wave) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    elliott_wave: 6 A9 symbol unveraendert, keine positionen.csv · ['elliott_wave_alle_trades.csv', 'elliott_wave_herkunft.json', 'elliott_wave_meta.json']
+ja    elliott_wave: 7 R86 (c): offene Position am Ende von B (1) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['Ausstieg 2026-08-31 23:00:00 (time_exit)']
+ja    elliott_wave: 8 nur Dateien des Test-Snapshots gelesen (8 read_csv)
+ja    elliott_wave_stocks: 0 Snapshot nach R81 (h): Signal ab dem Schnitt und offene Position am Ende von B · Seed/Versatz (169, 669)
+ja    elliott_wave_stocks: 1 Probe R86 (d): Listen A = B, rc 0 · (0, 0, '')
+ja    elliott_wave_stocks: 2a Schnitt aus -> Wache 1 beisst allein (2) · (2, '[positionen_holen] ABBRUCH elliott_wave_stocks: Zeile ab dem Schnitt 2026-09-01 im Signalpfad (AAA, R86 (d))')
+ja    elliott_wave_stocks: 2b Schnitt und Wachen aus -> Listen weichen von B ab, 5 Einstiege ab dem Schnitt
+ja    elliott_wave_stocks: 2c Schnitt und Wache 1 aus -> Wache 2 beisst allein (2) · (2, '[positionen_holen] ABBRUCH elliott_wave_stocks: Trade mit entry_time am Schnitt oder spaeter (R86 (d))')
+ja    elliott_wave_stocks: 3a R90 (g) Tatsachennotiz: Teilmessung - wie elliott_wave (backtest_elliott.py Z. 122, elliott_wave_counter.py Z. 361/363, SIGNAL_FRESHNESS_BARS 5; TB-166 Pruefung 5 und Mutation); geprueft: kein Einstieg vor dem Tag, alte Trades ab dem Tag bleiben · 3 Versuche, kein verdraengter Einstieg; kein Einstieg vor dem Tag
+ja    elliott_wave_stocks: 3b spaetes Symbol CCC gleich mit/ohne Schranke · 4/4
+ja    elliott_wave_stocks: 4 Gegenprobe R87 (c): Schranke aus -> Wache 3 beisst (2) · (2, '[positionen_holen] ABBRUCH elliott_wave_stocks: Einstieg 2016-12-14 00:00:00 vor dem Handelbar-Tag 2022-06-07 bei AAA (R87 (c))')
+ja    elliott_wave_stocks: 5a R81 (h) Symbol SPAET: rc 0, Tag None, nicht in der Liste · (0, None, '')
+ja    elliott_wave_stocks: 5b SPAET mit Zeilen ab dem Schnitt geladen, ohne Tag -> R81 (c) beisst (2) · (2, '[bot_lauf] ABBRUCH: SPAET (elliott_wave_stocks) geladen, aber ohne Handelbar-Tag (R81 (c))')
+ja    elliott_wave_stocks: 6 A9 symbol unveraendert, keine positionen.csv · ['elliott_wave_stocks_alle_trades.csv', 'elliott_wave_stocks_herkunft.json', 'elliott_wave_stocks_meta.json']
+ja    elliott_wave_stocks: 7 R86 (c): offene Position am Ende von B (1) nach der Konvention des Signalpfads, keine leere Ausstiegszeit, rc 0 · ['Ausstieg 2026-08-31 00:00:00 (time_exit)']
+ja    elliott_wave_stocks: 8 nur Dateien des Test-Snapshots gelesen (6 read_csv)
+Ergebnis: 117 von 117 bestanden
+rc 0
