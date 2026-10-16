@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-165** | `docs/auftraege/MAC_TB-165_register61_fable15a.md` | Registerabschnitt 61 aus Fable 15.10.a (R98 Ort der Schranke, Parameterweg, Freigabe, Abnahme; R99 Tatsachennotizen, Lesart 25c (1)), drei Marken, Voraussetzungen und Befunde; Fable-Dateien 15.10.a eingecheckt |
+| **TB-166** | `docs/auftraege/MAC_TB-166_e3a_schranke_je_symbol.md` | E-3a: Schranke je Symbol im Signalpfad und gemeinsame Tag-Rechnung (R90 (c)-(e), R98 (a)-(c)), Sperrliste 9/11 nach Einzelfreigabe; Tatsachennotiz 37.3, Abnahme mit E-3b |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
