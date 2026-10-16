@@ -1,0 +1,35 @@
+Symbole je Bot: {'elliott_wave': 24, 't3_supertrend': 24, 'rsi2_crypto': 24, 'turtle_soup_crypto': 24, 'volatility_breakout_crypto': 24, 'elliott_wave_stocks': 150, 'rsi2_mean_reversion': 150, 'turtle_soup_stocks': 150, 'volatility_breakout': 150}
+Dateien mit Zeilen ab Schnitt: 222 von 222 max 345
+Abweichungen alt/neu: 30
+FLIP t3_supertrend ENSOUSDT 2027-10-14 None
+FLIP t3_supertrend TRUMPUSDT 2027-01-19 None
+FLIP t3_supertrend PUMPUSDT 2027-09-11 None
+FLIP t3_supertrend ZKCUSDT 2027-09-15 None
+FLIP t3_supertrend UUSDT 2028-01-13 None
+FLIP t3_supertrend BMTUSDT 2027-03-18 None
+FLIP rsi2_crypto ENSOUSDT 2027-02-26 None
+FLIP rsi2_crypto PUMPUSDT 2027-01-24 None
+FLIP rsi2_crypto ZKCUSDT 2027-01-28 None
+FLIP rsi2_crypto UUSDT 2027-05-28 None
+FLIP turtle_soup_crypto ENSOUSDT 2027-02-26 None
+FLIP turtle_soup_crypto PUMPUSDT 2027-01-24 None
+FLIP turtle_soup_crypto ZKCUSDT 2027-01-28 None
+FLIP turtle_soup_crypto UUSDT 2027-05-28 None
+FLIP volatility_breakout_crypto ENSOUSDT 2027-02-26 None
+FLIP volatility_breakout_crypto PUMPUSDT 2027-01-24 None
+FLIP volatility_breakout_crypto ZKCUSDT 2027-01-28 None
+FLIP volatility_breakout_crypto UUSDT 2027-05-28 None
+FLIP elliott_wave_stocks GEV 2029-03-26 None
+FLIP elliott_wave_stocks SNDK 2030-02-12 None
+FLIP elliott_wave_stocks CEG 2027-01-18 None
+FLIP rsi2_mean_reversion GEV 2029-03-26 None
+FLIP rsi2_mean_reversion SNDK 2030-02-12 None
+FLIP rsi2_mean_reversion CEG 2027-01-18 None
+FLIP turtle_soup_stocks GEV 2029-03-26 None
+FLIP turtle_soup_stocks SNDK 2030-02-12 None
+FLIP turtle_soup_stocks CEG 2027-01-18 None
+FLIP volatility_breakout GEV 2029-03-26 None
+FLIP volatility_breakout SNDK 2030-02-12 None
+FLIP volatility_breakout CEG 2027-01-18 None
+alte Rechnung >= Schnitt: 30
+rc 0
