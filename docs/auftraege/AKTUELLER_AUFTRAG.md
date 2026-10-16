@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-168** | `docs/auftraege/MAC_TB-168_register63_vollzug_tb167.md` | Vollzug nach 37.3 der Abhilfe G6 (TB-167, elliott_wave_stocks): Register 63, Sperrliste ews 3b775700 => 0298263c, Handfeld 16a; nach Freigabe des Betreibers |
+| **TB-166** | `docs/auftraege/MAC_TB-166_e3a_schranke_je_symbol.md` | E-3a Neubau auf e654b08: Schranke je Symbol im Signalpfad und gemeinsame Tag-Rechnung (R90 (c)-(e), R98 (a)-(c)), Sperrliste 9/11 nach Einzelfreigabe (Karte 16.10.); Tatsachennotiz 37.3, Abnahme mit E-3b |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
