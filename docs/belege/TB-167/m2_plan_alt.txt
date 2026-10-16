@@ -1,0 +1,6 @@
+info  status endgueltig; falten [('2021', 'selektion'), ('2022', 'selektion'), ('2023', 'selektion'), ('2024', 'selektion'), ('2025', 'selektion'), ('2026-01-01/2026-09-01', 'bestaetigung')]
+info  erste_falte_4a_messung {'horizontbeginn': '2016-09-19', 'warm_ab_fruehestes': '2016-09-19', 'erste_falte_4a': 2017}
+ja    rd._mess()/plan_aktien schreiben nichts ins Repo (porcelain vorher = nachher)
+ja    Gegenprobe: Selektionsfalten beginnen nicht 2017: ['2021', '2022', '2023', '2024', '2025']
+Pruefungen: 4, NEIN: 0
+rc 0

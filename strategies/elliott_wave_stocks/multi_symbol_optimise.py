@@ -108,14 +108,15 @@ def load_all_symbol_data() -> dict:
             _prot.leer(symbol, csv_path)
             continue
 
-        if RECENT_YEARS_ONLY is not None:
-            cutoff = horizontbeginn_ts(df["open_time"])  # TB-163 (E-6): Horizont aus faltenplan.HORIZONTBEGINN, nicht aus dem Dateiende (R81 (d), 28.4)
-            df = df[df["open_time"] >= cutoff].reset_index(drop=True)
-
+        # TB-167 (R102 (c)): Schranke 16.7 (b) an der Reihe, vor dem Zeilenschnitt am Horizontbeginn (28.6); Bauart rsi2_mean_reversion
         timespan_days = (df["open_time"].max() - df["open_time"].min()).days
         if timespan_days < MIN_HISTORY_DAYS:
             _prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
             continue
+
+        if RECENT_YEARS_ONLY is not None:
+            cutoff = horizontbeginn_ts(df["open_time"])  # TB-163 (E-6): Horizont aus faltenplan.HORIZONTBEGINN, nicht aus dem Dateiende (R81 (d), 28.4)
+            df = df[df["open_time"] >= cutoff].reset_index(drop=True)
 
         data[symbol] = df
     _luecken.melde()

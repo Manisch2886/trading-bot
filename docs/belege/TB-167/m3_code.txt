@@ -1,0 +1,6 @@
+ja    vorher 3b7757004b1c2db527262cbacf0f86c095729080074e73ced750b82fc8677232 (60.1 nachher)
+ja    Block Z. 111: Schnitt (3 Zeilen), Leerzeile, Laengenpruefung (4 Zeilen), Leerzeile - genau einmal
+ja    nur Reihenfolge und eine Kommentarzeile; Schnitt zeichengleich
+info  strategies/elliott_wave_stocks/multi_symbol_optimise.py  vorher 3b7757004b1c2db527262cbacf0f86c095729080074e73ced750b82fc8677232  nachher 0298263c755c5d24ccff09c35aa447efd4fff70f05223942813361955e0362e6
+Pruefungen: 4, NEIN: 0
+rc 0

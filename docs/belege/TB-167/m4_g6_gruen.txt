@@ -1,0 +1,3 @@
+ja    Messung: rc 0, kein Fehler (rc 0)
+Pruefungen: 1, NEIN: 0
+rc 0
