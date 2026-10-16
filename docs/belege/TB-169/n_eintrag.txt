@@ -1,0 +1,37 @@
+ja    Fassung Sonde: nicht prüfbar
+ja    Abnahme-Beleg 117 von 117, rc 0
+ja    Beleg v_voraussetzung.txt: letzte Zeile rc 0, NEIN-Zeilen 0
+ja    Beleg e_alt_vergleich.txt: letzte Zeile rc 0, NEIN-Zeilen 0
+ja    Beleg e_e3b_probe.txt: letzte Zeile rc 0, NEIN-Zeilen 0
+ja    Beleg e_e3b.txt: letzte Zeile rc 0, NEIN-Zeilen 0
+ja    Beleg e_kerzen.txt: letzte Zeile rc 0, NEIN-Zeilen 0
+ja    Beleg e_abnahme.txt: letzte Zeile rc 0, NEIN-Zeilen 0
+ja    Beleg e_abnahme_pruefung.txt: letzte Zeile rc 0, NEIN-Zeilen 0
+ja    Quelle e_notiz.md md5 e28885ae5e10e158860fb457671ce900, 20 Zeilen
+ja    heute = nachher: research/exposure_messung/bot_lauf.py
+ja    heute = nachher: research/faltenplan_neun/faltenschranke_messung.py
+ja    heute = nachher: strategies/elliott_wave/elliott_wave_counter.py
+ja    heute = nachher: strategies/elliott_wave/equity_simulation.py
+ja    heute = nachher: strategies/elliott_wave/multi_symbol_optimise.py
+ja    heute = nachher: strategies/elliott_wave_stocks/elliott_wave_counter.py
+ja    heute = nachher: strategies/elliott_wave_stocks/equity_simulation.py
+ja    heute = nachher: strategies/elliott_wave_stocks/multi_symbol_optimise.py
+ja    heute = nachher: strategies/rsi2_crypto/backtest_rsi2.py
+ja    heute = nachher: strategies/rsi2_crypto/equity_simulation.py
+ja    heute = nachher: strategies/rsi2_mean_reversion/backtest_rsi2.py
+ja    heute = nachher: strategies/t3_supertrend/backtest_trend.py
+ja    heute = nachher: strategies/t3_supertrend/equity_simulation.py
+ja    heute = nachher: strategies/t3_supertrend/multi_symbol_optimise.py
+ja    heute = nachher: strategies/turtle_soup_crypto/backtest_turtle_soup.py
+ja    heute = nachher: strategies/turtle_soup_crypto/equity_simulation.py
+ja    heute = nachher: strategies/turtle_soup_stocks/backtest_turtle_soup.py
+ja    heute = nachher: strategies/volatility_breakout/backtest_breakout.py
+ja    heute = nachher: strategies/volatility_breakout_crypto/backtest_breakout.py
+ja    heute = nachher: strategies/volatility_breakout_crypto/equity_simulation.py
+ja    Karte TB-169 gefuellt
+ja    Karte TB-166 Z. 14
+ja    64 noch nicht; Register endet mit einer Leerzeile
+ja    nachher: append-only, 64 genau einmal, Z. 12390
+ja    e_notiz.md zeichengleich; Register endet mit einer Leerzeile
+Pruefungen: 35, NEIN: 0
+rc 0

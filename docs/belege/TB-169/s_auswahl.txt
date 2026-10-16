@@ -1,0 +1,6 @@
+Fassung: nicht prüfbar
+ja    git status --porcelain vor und nach der Sonde gleich
+ja    sha256 Abbild und Sonde
+ja    Punkt 11 im Beleg: ['2'] · RUECKGABEWERT 2 NICHT PRUEFBAR - NICHT PRUEFBAR: Punkt(e) [1, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14] · rc 2
+Pruefungen: 3, NEIN: 0
+rc 0
