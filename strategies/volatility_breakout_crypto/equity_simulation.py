@@ -64,15 +64,31 @@ STARTING_CAPITAL = 10_000.0
 ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100
 
 
+def _cutoff_je_symbol(entry_cutoffs, symbol):
+    """TB-166 (E-3a, R98 (b)): entry_cutoff des Symbols aus `entry_cutoffs` ({symbol: Zeitpunkt},
+    spaeterer von Horizontbeginn und Handelbar-Tag). Ohne `entry_cutoffs` None - die alte Bahn.
+    Fehlt ein geladenes Symbol oder ist sein Wert None, hat es keinen Handelbar-Tag: Abbruch
+    mit 2 (R81 (c)), kein stilles Weiterrechnen ohne Schranke."""
+    if entry_cutoffs is None:
+        return None
+    wert = entry_cutoffs.get(symbol)
+    if wert is None:
+        sys.stderr.write("[equity_simulation] ABBRUCH: %s ohne entry_cutoff (kein Handelbar-Tag)\n" % symbol)
+        raise SystemExit(2)
+    return wert
+
+
 def collect_all_trades(all_data: dict, stop_loss_pct: float = None, max_hold_days: int = None,
                         use_volume_filter: bool = False,
                         squeeze_lookback_days: int = BB_LOOKBACK,
-                        squeeze_percentile: float = BB_SQUEEZE_PERCENTILE) -> pd.DataFrame:
+                        squeeze_percentile: float = BB_SQUEEZE_PERCENTILE,
+                        entry_cutoffs: dict = None) -> pd.DataFrame:
     all_trades = []
     for symbol, price_df in all_data.items():
         trades = get_trades_for_symbol(price_df, stop_loss_pct, max_hold_days, use_volume_filter,
                                        squeeze_lookback_days=squeeze_lookback_days,
-                                       squeeze_percentile=squeeze_percentile)
+                                       squeeze_percentile=squeeze_percentile,
+                                       entry_cutoff=_cutoff_je_symbol(entry_cutoffs, symbol))
         if not trades.empty:
             trades = trades.copy()
             trades["symbol"] = symbol

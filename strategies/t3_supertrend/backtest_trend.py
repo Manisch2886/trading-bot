@@ -67,7 +67,8 @@ from live_params import (T3_FACTOR, DI_LENGTH, ADX_LENGTH, ATR_LENGTH,
 def run_backtest(df: pd.DataFrame, t3_fast_length=T3_FAST_LENGTH, t3_slow_length=T3_SLOW_LENGTH,
                   t3_factor=T3_FACTOR, di_length=DI_LENGTH, adx_length=ADX_LENGTH,
                   adx_threshold=ADX_THRESHOLD, atr_length=ATR_LENGTH, atr_mult=ATR_MULT,
-                  stop_loss_pct=STOP_LOSS_PCT, use_t3_exit=True, use_vwap_filter=False) -> pd.DataFrame:
+                  stop_loss_pct=STOP_LOSS_PCT, use_t3_exit=True, use_vwap_filter=False,
+                  entry_cutoff=None) -> pd.DataFrame:
     """
     Ein einziger Durchlauf durch die Zeitreihe (Zustandsmaschine:
     entweder in Position oder nicht) - effizienter als ein verschachtelter
@@ -95,6 +96,11 @@ def run_backtest(df: pd.DataFrame, t3_fast_length=T3_FAST_LENGTH, t3_slow_length
     supertrend_dir = data["supertrend_dir"].to_numpy()
     vwap = data["vwap"].to_numpy()
 
+    # TB-166 (E-3a, R90 (c), R98 (a)): Schranke im Scan - ein Einstieg erst ab dem ersten
+    # Balken >= entry_cutoff; Indikatoren ueber die ganze Reihe; vor dem Tag entsteht keine
+    # Position, also kein Zustand, der ein spaeteres Signal sperrt.
+    erster_einstieg = 0 if entry_cutoff is None else int((data["open_time"] < entry_cutoff).sum())
+
     trades = []
     position = None  # None oder dict mit entry-Infos
 
@@ -105,7 +111,7 @@ def run_backtest(df: pd.DataFrame, t3_fast_length=T3_FAST_LENGTH, t3_slow_length
         if position is None:
             crossed_up = t3_fast[i - 1] <= t3_slow[i - 1] and t3_fast[i] > t3_slow[i]
             vwap_ok = (not use_vwap_filter) or (not pd.isna(vwap[i]) and close[i] > vwap[i])
-            if crossed_up and adx[i] > adx_threshold and vwap_ok:
+            if crossed_up and adx[i] > adx_threshold and vwap_ok and i >= erster_einstieg:
                 entry_price = close[i]
                 position = {
                     "entry_time": open_time[i],

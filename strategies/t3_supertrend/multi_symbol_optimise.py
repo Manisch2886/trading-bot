@@ -88,7 +88,8 @@ def load_all_symbol_data() -> dict:
 
 
 def get_trades_for_symbol(price_df: pd.DataFrame, t3_fast: int, t3_slow: int,
-                           adx_threshold: float, stop_loss_pct: float) -> pd.DataFrame:
+                           adx_threshold: float, stop_loss_pct: float,
+                           entry_cutoff=None) -> pd.DataFrame:
     if t3_fast >= t3_slow:
         return pd.DataFrame()
     return run_backtest(
@@ -97,6 +98,7 @@ def get_trades_for_symbol(price_df: pd.DataFrame, t3_fast: int, t3_slow: int,
         t3_slow_length=t3_slow,
         adx_threshold=adx_threshold,
         stop_loss_pct=stop_loss_pct,
+        entry_cutoff=entry_cutoff,  # TB-166 (E-3a)
     )
 
 

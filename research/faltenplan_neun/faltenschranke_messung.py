@@ -220,6 +220,45 @@ def kerzen_elliott_wave() -> dict:
 # ==============================================================================
 # 3. Loader-Lesart je Bot, nachgerechnet (Registertext 3b (b))
 # ==============================================================================
+def handelbar_ab(bot: str, schnitt=None) -> dict:
+    """TB-166 (E-3a; R87 (a)/(c), R90 (e), R98): der Handelbar-Tag je Symbol - EINE Rechnung
+    fuer Wache, Benchmark (`benchmark.je_bot` ueber `loader_lesart`) und Schranke.
+
+    Gerechnet an der Reihe OHNE Zeilen ab dem Schnitt (`schnitt`, Voreinstellung
+    `faltenplan_neun.GO_LIVE`, ausschliesslich): Zeitspannen-Bots erster Kurstag +
+    MIN_HISTORY_DAYS, Kerzen-Bot Datum der N-ten Kerze vor dem Schnitt. Ein Tag am oder
+    nach dem Schnitt ist None - vor dem Schnitt nie handelbar. Fehlt die Datei: None.
+    """
+    schnitt = fp.GO_LIVE if schnitt is None else schnitt
+    eig = fp.BOTS[bot]
+    name, n = _min_history(bot)
+    aus = {}
+    for symbol in fp.symbole(eig["markt"]):
+        pfad = fp.kursdatei(symbol, eig["zeitrahmen"])
+        if not os.path.exists(pfad):
+            aus[symbol] = None
+            continue
+        erster = nte = None
+        zahl = 0
+        with open(pfad, encoding="utf-8") as f:
+            f.readline()
+            for zeile in f:
+                tag = fp._zeitstempel(zeile)
+                if tag is None or tag >= schnitt:
+                    continue
+                if erster is None:
+                    erster = tag
+                zahl += 1
+                if zahl == n:
+                    nte = tag
+        if name == "MIN_HISTORY_HOURS":
+            t = nte
+        else:
+            t = None if erster is None else erster + dt.timedelta(days=n)
+        aus[symbol] = t.isoformat() if t is not None and t < schnitt else None
+    return aus
+
+
 def loader_lesart(bot: str) -> dict:
     """Erstes Kalenderjahr, in dem der Loader mindestens ein Symbol laedt.
 
@@ -230,27 +269,12 @@ def loader_lesart(bot: str) -> dict:
     eig = fp.BOTS[bot]
     name, n = _min_history(bot)
     aus = {"schranke": name, "wert": n, "handelbar_ab": {}}
-    if name == "MIN_HISTORY_HOURS":
-        k = kerzen_elliott_wave()
-        aus["handelbar_ab"] = {s: (w["n_te_kerze_am"] if w else None)
-                               for s, w in k["symbole"].items()}
-    else:
+    # TB-166 (E-3a, R90 (e)): dieselbe Rechnung wie Wache und Schranke - an der Reihe
+    # ohne Zeilen ab dem Schnitt; bis TB-166 rechnete hier eine eigene Schleife an der
+    # ganzen Datei (Kerzen-Bot ueber kerzen_elliott_wave).
+    aus["handelbar_ab"] = handelbar_ab(bot)
+    if name != "MIN_HISTORY_HOURS":
         anker = fp.fensteranker(eig["markt"])
-        for symbol in fp.symbole(eig["markt"]):
-            pfad = fp.kursdatei(symbol, eig["zeitrahmen"])
-            if not os.path.exists(pfad):
-                aus["handelbar_ab"][symbol] = None
-                continue
-            erster, _ = fp.erster_und_letzter_tag(pfad)
-            if erster is None:
-                aus["handelbar_ab"][symbol] = None
-                continue
-            # Aktien: der Loader schneidet auf RECENT_YEARS_ONLY, gemessen am
-            # letzten Tag der DURCHGEREICHTEN Daten (im Trockenlauf: am
-            # Stichtag). Fuer "ab wann handelbar" zaehlt deshalb der erste
-            # Kurstag der Datei, nicht der Fensteranker - der Anker wird nur
-            # ausgewiesen.
-            aus["handelbar_ab"][symbol] = (erster + dt.timedelta(days=n)).isoformat()
         aus["fensteranker"] = anker.isoformat() if anker else None
     daten = [d for d in aus["handelbar_ab"].values() if d]
     aus["fruehestes_symbol_handelbar_ab"] = min(daten) if daten else None

@@ -100,32 +100,67 @@ sys.modules.setdefault("yfinance", _fake_yf)
 _KEIN_LIMIT_PARAMETER = object()   # elliott_wave kennt gar keinen Limit-Parameter
 
 
-def hole_trades(es, all_data):
+def _schranke_je_symbol(all_data, handelbar):
+    """TB-166 (E-3a, R90 (e), R98 (b) (i)): entry_cutoff je Symbol = spaeterer von Horizontbeginn
+    und Handelbar-Tag (`handelbar`: {symbol: Tag} aus faltenschranke_messung.handelbar_ab).
+    Aktien-Bots mit Tupel {symbol: (df, Horizontbeginn)}: Tupel (df, max(...)); sonst
+    {symbol: df} und {"entry_cutoffs": {symbol: ...}} fuer collect_all_trades. Ein geladenes
+    Symbol ohne Tag: Abbruch mit 2 (R81 (c)). Der Tag folgt der Zeitzone der Spalte open_time."""
+    neu, cut = {}, {}
+    for symbol, wert in all_data.items():
+        df, alt = wert if isinstance(wert, tuple) else (wert, None)
+        tag = handelbar.get(symbol)
+        if tag is None:
+            sys.stderr.write("[bot_lauf] ABBRUCH: %s (%s) geladen, aber ohne Handelbar-Tag (R81 (c))\n" % (symbol, BOT))
+            raise SystemExit(2)
+        tag = pd.Timestamp(tag)
+        tz = getattr(df["open_time"].dt, "tz", None)
+        if tz is not None and tag.tzinfo is None:
+            tag = tag.tz_localize(tz)
+        if BOT == "elliott_wave_stocks":
+            import multi_symbol_optimise as mso   # Zeilen am Horizontbeginn gekappt (TB-163)
+            alt = mso.horizontbeginn_ts(df["open_time"])
+        c = tag if alt is None else max(alt, tag)
+        if isinstance(wert, tuple):
+            neu[symbol] = (df, c)
+        else:
+            neu[symbol] = df
+            cut[symbol] = c
+    return neu, ({"entry_cutoffs": cut} if cut else {})
+
+
+def hole_trades(es, all_data, handelbar=None):
     """Ruft `collect_all_trades()` mit GENAU den Argumenten auf, die der
     `__main__`-Block des jeweiligen Bots verwendet - inklusive des
     BTC-Regimefilters, den `volatility_breakout_crypto` bewusst erst danach
-    anwendet (`apply_btc_regime_filter`, eigener Kommentarblock dort)."""
+    anwendet (`apply_btc_regime_filter`, eigener Kommentarblock dort).
+
+    TB-166 (E-3a): mit `handelbar` traegt jeder Bot die Schranke je Symbol
+    (`_schranke_je_symbol`); ohne `handelbar` die alte Bahn, unveraendert."""
+    kw = {}
+    if handelbar is not None:
+        all_data, kw = _schranke_je_symbol(all_data, handelbar)
     if BOT == "elliott_wave":
         return es.collect_all_trades(all_data, es.DEVIATION_PCT, es.STOP_LOSS_PCT,
-                                      es.TAKE_PROFIT_FIB)
+                                      es.TAKE_PROFIT_FIB, **kw)
     if BOT == "elliott_wave_stocks":
         return es.collect_all_trades(all_data, es.DEVIATION_PCT, es.STOP_LOSS_PCT,
-                                      es.TAKE_PROFIT_FIB, es.USE_TAKE_PROFIT)
+                                      es.TAKE_PROFIT_FIB, es.USE_TAKE_PROFIT, **kw)
     if BOT == "t3_supertrend":
         # Der BTC-Regimefilter steckt bei diesem Bot IN collect_all_trades().
         return es.collect_all_trades(all_data, es.T3_FAST, es.T3_SLOW,
-                                      es.ADX_THRESHOLD, es.STOP_LOSS_PCT)
+                                      es.ADX_THRESHOLD, es.STOP_LOSS_PCT, **kw)
     if BOT == "rsi2_crypto":
         return es.collect_all_trades(all_data, es.RSI_THRESHOLD, es.SMA_TREND_PERIOD,
-                                      es.STOP_LOSS_PCT)
+                                      es.STOP_LOSS_PCT, **kw)
     if BOT == "rsi2_mean_reversion":
-        return es.collect_all_trades(all_data, es.RSI_THRESHOLD, es.STOP_LOSS_PCT)
+        return es.collect_all_trades(all_data, es.RSI_THRESHOLD, es.STOP_LOSS_PCT, **kw)
     if BOT in ("turtle_soup_crypto", "turtle_soup_stocks"):
-        return es.collect_all_trades(all_data, es.DONCHIAN_PERIOD, es.STOP_MODE)
+        return es.collect_all_trades(all_data, es.DONCHIAN_PERIOD, es.STOP_MODE, **kw)
     if BOT == "volatility_breakout":
-        return es.collect_all_trades(all_data, es.STOP_LOSS_PCT)
+        return es.collect_all_trades(all_data, es.STOP_LOSS_PCT, **kw)
     if BOT == "volatility_breakout_crypto":
-        trades = es.collect_all_trades(all_data, es.STOP_LOSS_PCT)
+        trades = es.collect_all_trades(all_data, es.STOP_LOSS_PCT, **kw)
         return es.apply_btc_regime_filter(trades, all_data)
     raise ValueError(f"Unbekannter Bot: {BOT}")
 

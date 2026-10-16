@@ -163,16 +163,22 @@ def run_backtest(price_df: pd.DataFrame, rsi_threshold: float,
         if exit_idx is None:
             break  # nicht genug Restdaten, um diese Position zu schliessen - Scan beenden
 
-        if entry_cutoff is None or entry_time >= np.datetime64(entry_cutoff):
-            pnl_pct = (exit_price - entry_price) / entry_price * 100
-            total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
-            holding_days = (pd.Timestamp(open_time[exit_idx]) - pd.Timestamp(entry_time)).days
-            trades.append({
-                "entry_time": pd.Timestamp(entry_time), "entry_price": entry_price,
-                "exit_time": pd.Timestamp(open_time[exit_idx]), "exit_price": exit_price,
-                "result": result, "pnl_pct": round(pnl_pct - total_cost_pct, 2),
-                "holding_days": holding_days, "rsi_at_entry": round(float(entry_rsi), 2),
-            })
+        # TB-166 (E-3a, R90 (d)): Wache statt Streichen. Der Scan beginnt am ersten Balken
+        # >= entry_cutoff (start_i oben); ein Einstieg davor ist ein Fehler im Signalpfad -
+        # Abbruch mit Befund, kein Trade, der nach dem Ausstieg still entfaellt.
+        if entry_cutoff is not None and entry_time < np.datetime64(entry_cutoff):
+            sys.stderr.write("[%s] ABBRUCH (Wache R90 (d)): Einstieg %s vor entry_cutoff %s\n"
+                             % (__name__, entry_time, entry_cutoff))
+            raise SystemExit(2)
+        pnl_pct = (exit_price - entry_price) / entry_price * 100
+        total_cost_pct = 2 * (TRADING_FEE_PCT + SLIPPAGE_PCT)
+        holding_days = (pd.Timestamp(open_time[exit_idx]) - pd.Timestamp(entry_time)).days
+        trades.append({
+            "entry_time": pd.Timestamp(entry_time), "entry_price": entry_price,
+            "exit_time": pd.Timestamp(open_time[exit_idx]), "exit_price": exit_price,
+            "result": result, "pnl_pct": round(pnl_pct - total_cost_pct, 2),
+            "holding_days": holding_days, "rsi_at_entry": round(float(entry_rsi), 2),
+        })
 
         i = exit_idx + 1  # kein Pyramiding - naechster Scan erst nach dem Ausstieg dieser Position
 

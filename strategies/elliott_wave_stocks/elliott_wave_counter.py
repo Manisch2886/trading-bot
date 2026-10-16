@@ -243,7 +243,8 @@ def remove_overlapping(impulses: pd.DataFrame) -> pd.DataFrame:
 
 
 def find_causal_waves(zigzag: pd.DataFrame, min_fib_score: float = 0.3,
-                       freshness_bars: int = None, direction: str = "bearish") -> pd.DataFrame:
+                       freshness_bars: int = None, direction: str = "bearish",
+                       min_entry_idx: int = None) -> pd.DataFrame:
     """
     Wellenerkennung OHNE Blick in die Zukunft - fuer den Backtest.
 
@@ -352,6 +353,12 @@ def find_causal_waves(zigzag: pd.DataFrame, min_fib_score: float = 0.3,
             if end_time in traded:
                 continue
             if freshness_bars is not None and run_bar - int(wave["pivot_idx"]) > freshness_bars:
+                continue
+            # TB-166 (E-3a, R90 (c), R98 (a)): Schranke im Scan - vor dem Handelbar-Tag
+            # (min_entry_idx: erster Balken >= entry_cutoff) kein Einstieg. VOR traded.add: die
+            # gesperrte Welle hinterlaesst keinen Zustand und kann an einem spaeteren Lauf
+            # >= min_entry_idx (noch frisch) einsteigen.
+            if min_entry_idx is not None and run_bar < min_entry_idx:
                 continue
             traded.add(end_time)
             row = wave.to_dict()

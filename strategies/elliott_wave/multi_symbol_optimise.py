@@ -90,7 +90,8 @@ def load_all_symbol_data() -> dict:
     return data
 
 
-def get_trades_for_symbol(price_df: pd.DataFrame, deviation_pct: float) -> pd.DataFrame:
+def get_trades_for_symbol(price_df: pd.DataFrame, deviation_pct: float,
+                          entry_cutoff=None) -> pd.DataFrame:
     """Fuehrt Zigzag -> Wellenerkennung -> Bereinigung -> Backtest fuer ein Symbol aus."""
     # Kausale Wellenerkennung: die Auswahl zum Zeitpunkt T darf nur Wellen
     # kennen, die bis T bestaetigt sind, und eine spaeter auftauchende, besser
@@ -105,7 +106,10 @@ def get_trades_for_symbol(price_df: pd.DataFrame, deviation_pct: float) -> pd.Da
     impulses = find_causal_waves(
         zigzag, min_fib_score=0.3,
         freshness_bars=backtest_elliott.SIGNAL_FRESHNESS_BARS,
-        direction="bearish")   # Long-only, wie zuvor festgelegt
+        direction="bearish",   # Long-only, wie zuvor festgelegt
+        # TB-166 (E-3a, R98 (a)/(b)): Schranke je Symbol - erster Balken >= entry_cutoff
+        min_entry_idx=(None if entry_cutoff is None
+                       else int((price_df["open_time"] < entry_cutoff).sum())))
     if impulses.empty:
         return pd.DataFrame()
 
