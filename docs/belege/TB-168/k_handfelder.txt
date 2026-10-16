@@ -1,0 +1,4 @@
+ja    Zeile 16a genau einmal, offen „–“; neuer Wert nein
+info  Handfelder 16a (Frage, Entscheidung wie im Index; offen nein) geschrieben: docs/belege/TB-168/k_handfelder.json
+Pruefungen: 2, NEIN: 0
+rc 0

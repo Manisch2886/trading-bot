@@ -1,0 +1,6 @@
+ja    Abschnitt 63 in genau einer Teildatei: T[6]
+ja    Kopf genau einmal, nennt 0–62
+ja    Zeile 62 genau einmal
+ja    Pflegezeile TB-167 genau einmal
+Pruefungen: 4, NEIN: 0
+rc 0

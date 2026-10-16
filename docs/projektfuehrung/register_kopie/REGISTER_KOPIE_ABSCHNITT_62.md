@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 62 (von 0–62) — Register-Z. 12291–12366 — Commit 437085796f14e63e3d3792b43248e1435c87a336 — 2026-10-16 — Original sha256 6026c2ab59785156950d99ae86857e41557fee5e013b9efa3f6ba22a64e6a1af — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 62 (von 0–63) — Register-Z. 12291–12367 — Commit 02f19f50ce120752615c3cc8342de18cc864c920 — 2026-10-16 — Original sha256 5fa3ff3c55db390de5a4b0f8e53ba248995daea4ca695dda6b6959a75952c9c9 — KOPIE, nicht das Register
 
 ## 62. Fable 15b und 16b — Registerblöcke R100–R103 (TB-167)
 
@@ -76,3 +76,4 @@ Gemessen vor dem Eintrag mit `docs/belege/TB-167/v_voraussetzung.txt` (Werkzeug 
     Z. 97:         if timespan_days < MIN_HISTORY_DAYS:
     Z. 98:             _prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
     Z. 99:             continue
+

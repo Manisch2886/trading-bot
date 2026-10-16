@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 6 von 6 — Abschnitte 58–62 — Commit 437085796f14e63e3d3792b43248e1435c87a336 — 2026-10-16 — Original sha256 6026c2ab59785156950d99ae86857e41557fee5e013b9efa3f6ba22a64e6a1af — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 6 von 6 — Abschnitte 58–63 — Commit 02f19f50ce120752615c3cc8342de18cc864c920 — 2026-10-16 — Original sha256 5fa3ff3c55db390de5a4b0f8e53ba248995daea4ca695dda6b6959a75952c9c9 — KOPIE, nicht das Register
 
 ## 58. Fable 14a und 14b — Registerblock R94–R97 (TB-162)
 
@@ -300,3 +300,25 @@ Gemessen vor dem Eintrag mit `docs/belege/TB-167/v_voraussetzung.txt` (Werkzeug 
     Z. 97:         if timespan_days < MIN_HISTORY_DAYS:
     Z. 98:             _prot.zu_kurz(symbol, timespan_days, MIN_HISTORY_DAYS)
     Z. 99:             continue
+
+## 63. Vollzug TB-167 (Tatsachennotiz nach 37.3; Abhilfe G6 elliott_wave_stocks) (TB-168)
+
+Reines Eintragen, Bauart 60.1 (Register Z. 12181 ff.); Karte des Betreibers (Auftrag TB-168, Abschnitt Freigabe, wörtlich): „Karte des Betreibers im Chat 31 („Opus Trading Bots-16.10.2026 a“), 16.10.2026, 14:10, Frage und Antwort im Wortlaut (aus logs/steuernder_chat/2026-10-16_BETREIBER_chat31_karten.md, per Skript): Your questions have been answered: "Freigabe Vollzug TB-168? TB-167 ist fertig, HEAD 2ccec1c (gepusht). Gemessen in Schritt M: Gegenprobe am alten Code mit genau einem Fehler (G6 ews, Falten 2021–2025); nach der Abhilfe test_vorregistrierung 196/196, G6 grün, test_posten4_horizont 34/34, Selektionsfalten für ews 2017–2025. ews-Optimierer sha256 3b775700… ⇒ 0298263c…; geändert ist nur die Reihenfolge plus eine Kommentarzeile. Der Vollzug nach 37.3 trägt den neuen Hash in die Sperrliste ein, mit Tatsachennotiz und Registerkopie, nach dem Vorbild TB-164. Kein Lauf auf Kursdaten, kein Live, kein Geld. Der Auftrag wird gerade gebaut und gegengelesen; deine Freigabe kommt im Wortlaut hinein, gesendet wird erst nach einer eigenen Karte „Senden?“. Empfehlung: freigeben."="Ja, freigeben (Recommended)"“ Eingetragen am 16.10.2026 mit TB-168 (Stand `a2768a1`). Vollzieht 62.5 (a) (Z. 12349); 62.5 (a) bleibt zeichengleich. Nichts entfernt, kein bestehender Satz umgeschrieben; kein neues Abbild; keine Marke.
+
+### 63.1 Vollzug TB-167 (Tatsachennotiz nach 37.3)
+
+*Übernommen zeichengleich aus dem Entwurf in `docs/ERGEBNIS_TB-167_g6_ews_schranke_vor_schnitt.md` Z. 47–51 (Commit `9449f6f`, md5 `2267e7334770a6ef950dcf2f782af75a`); Z. 45 ist die Überschrift des Entwurfs und gehört nicht dazu; Z. 47–51 sind `docs/belege/TB-167/m_uebergang.md`. Vollzogen in Commit `b6aaa24` (TB-167 M). „Entwurf, nicht eingetragen“ darin beschreibt den Stand im Ergebnis; eingetragen ist der Übergang mit diesem Abschnitt.*
+
+| Datei | vorher | nachher | Commit | vollzieht |
+|---|---|---|---|---|
+| `strategies/elliott_wave_stocks/multi_symbol_optimise.py` | `3b7757004b1c2db527262cbacf0f86c095729080074e73ced750b82fc8677232` | `0298263c755c5d24ccff09c35aa447efd4fff70f05223942813361955e0362e6` | `b6aaa24` | R102 (c) (Posten 4; R44, R81 (d); E-6 berichtigt) |
+
+Entwurf, nicht eingetragen (TB-167, 16.10.2026). Freigabe: Karte im Auftrag TB-167. Sonde Punkt 11: nicht gemessen (Abbild führt keinen Optimierer, 60.1).
+
+**Freigabe-Karte, wörtlich** (zu „Freigabe: Karte im Auftrag TB-167“ im Entwurf; aus `docs/auftraege/MAC_TB-167_g6_ews_schranke_vor_schnitt.md` Z. 13, Commit `bc5e165`, md5 `188606f7f8f35bef33a7a34530f84203`):
+
+> Karte des Betreibers im Chat 31 („Opus Trading Bots-16.10.2026 a“), 16.10.2026, 12:52, Frage und Antwort im Wortlaut (aus logs/steuernder_chat/2026-10-16_BETREIBER_chat31_karten.md, per Skript): Your questions have been answered: "Wie soll die Freigabe für TB-167 (Abhilfe G6 ews) laufen? R102 (c) sagt wörtlich: Voraussetzungen „vor der Freigabe zu messen“. Gebaut ist eine bedingte Freigabe: Du gibst sie vorab, die Mac-Sitzung misst in Schritt M die Gegenprobe (alter Code: G6 rot), dann neuer Code (G6 grün, test_posten4_horizont grün, Plan 2017–2025) und committet nur, wenn alles ja ist; sonst Abbruch ohne Commit. Den Vollzug nach 37.3 (Hash in der Sperrliste) bekommst du ohnehin danach mit den Messwerten. Zweistufig hiesse: erst eine Mac-Runde, die nur misst, dann deine Karte, dann eine zweite Runde zum Commit. Meine Empfehlung: bedingt. Der Commit hängt maschinell an der Gegenprobe, du siehst die Werte vor dem Vollzug, und es spart eine Mac-Runde. Die Abweichung vom Wortlaut halte ich in 62.5 fest."="Bedingt (Recommended)"
+
+Bedingung dazu (ebenda Z. 15): „Die Freigabe gilt nur, wenn die Voraussetzungen aus R102 (c) in Schritt M vor dem Commit der Abhilfe gemessen erfüllt sind (Gegenprobe rot, danach G6 grün, test_posten4_horizont grün, Plan 2017–2025). Sonst kein Commit der Abhilfe, **ABBRUCH**.“ Gemessen in TB-167 Schritt M vor dem Commit `b6aaa24`: `docs/belege/TB-167/m1_test_alt.txt` rc 1, `docs/belege/TB-167/m1_g6_rot.txt` rc 0, `docs/belege/TB-167/m2_plan_alt.txt` rc 0, `docs/belege/TB-167/m3_code_probe.txt` rc 0, `docs/belege/TB-167/m3_code.txt` rc 0, `docs/belege/TB-167/m4_test_neu.txt` rc 0, `docs/belege/TB-167/m4_g6_gruen.txt` rc 0, `docs/belege/TB-167/m5_posten4.txt` rc 0, `docs/belege/TB-167/m6_plan_neu.txt` rc 0.
+
+**Sperrlisten-Sonde zu Punkt 11** (gemessen in TB-168 am Stand `a2768a1`; Aufruf wie TB-164 Schritt S: `trading-env/bin/python3 -B -W ignore shared/sperrlistensonde.py --abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json`, Abbild `46f0ad5d…`; Beleg `docs/belege/TB-168/s_sonde.txt`): Punkt 11 „nicht prüfbar“ (`2`). Das Abbild führt keinen der Optimierer (kein Pfad `strategies/*/multi_symbol_optimise.py` darin) — wie bei 60.1. Der Übergang steht deshalb nur hier und in den Commits.

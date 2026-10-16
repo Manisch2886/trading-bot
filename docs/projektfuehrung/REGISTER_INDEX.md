@@ -1,6 +1,6 @@
 # REGISTER_INDEX — wo was im Register gerade gilt
 
-**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `4370857` (16.10.2026), Abschnitte 0–62,
+**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `02f19f5` (16.10.2026), Abschnitte 0–63,
 12 023 Zeilen, sha256 `459be94e…`. Gebaut in TB-118 (Fable 27b B3, Teil D A4), nachgezogen in TB-126 (E-2), TB-129 (Fable 01a), TB-130 (Fable 02a), TB-132 (Fable 02c), TB-136 (Fable 04a), TB-139 (Fable 07a), TB-149 (Fable 09a) und TB-154 (Fable 10a). **Das ist ein Wegweiser, nicht das
 Register.** Der Wortlaut steht nur im Register bzw. in der Kopie je Abschnitt `register_kopie/REGISTER_KOPIE_ABSCHNITT_00.md` … `_57.md` (Tabelle unten; dazu die Teile `REGISTER_KOPIE_teil1–5.md`).
 
@@ -219,6 +219,7 @@ Die Spalte „später berührt“ nennt jede gemessene Marke und jede Rückverwe
 | 60 Vollzug TB-163 | 6 | 60.1 Hash-Übergang nach 37.3 (E-6, vier Aktien-Optimierer, Commit `11a267f`; aus ERGEBNIS_TB-163 Z. 111–123) mit Sonde zu Punkt 11; 60.2 Tatsachennotiz Posten 5 nach R43 („nicht im Laufpfad“, neun Optimierer) | – |
 | 61 aus 15a | 6 | R98–R99 (61.1–61.2); 61.3 Voraussetzungen und Befunde | – |
 | 62 aus 15b und 16b | 6 | R100–R103 (62.1–62.4); 62.5 Voraussetzungen und Befunde | – |
+| 63 Vollzug TB-167 | 6 | 63.1 Hash-Übergang nach 37.3 (Abhilfe G6 elliott_wave_stocks, Commit `b6aaa24`; aus ERGEBNIS_TB-167 Z. 47–51) mit Freigabe-Karte und Sonde zu Punkt 11 | – |
 
 ## 5. Die Marken aus E-2 (TB-126)
 
@@ -660,4 +661,5 @@ In TB-162 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py
 In TB-163 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py cff0de3 35dae90`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-163 (`index`); 59 (Tatsachennotiz TB-162) kommt zu T6.
 In TB-164 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 1d037f9 92cb637`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-164 (`index`); 60 (Vollzug TB-163, Posten 5) kommt zu T6.
 In TB-165 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 4edd877 173368f`; Einträge mit dem Werkzeug aus Anhang B des Auftrags TB-165 (`index`); 61 (R98–R99) kommt zu T6; neuer Abschnitt 14 (3 Marken).
-Zuletzt nachgezogen in TB-167 (16.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py bc5e165 4370857`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-167 (`index`); 62 (R100–R103) kommt zu T6; neuer Abschnitt 15 (6 Marken).
+In TB-167 (16.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py bc5e165 4370857`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-167 (`index`); 62 (R100–R103) kommt zu T6; neuer Abschnitt 15 (6 Marken).
+Zuletzt nachgezogen in TB-168 (16.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py a2768a1 02f19f5`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-168 (`index`); 63 (Vollzug TB-167) kommt zu T6.
