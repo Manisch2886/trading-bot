@@ -18,11 +18,11 @@ ja    sha256 vorher strategies/turtle_soup_stocks/backtest_turtle_soup.py
 ja    sha256 vorher strategies/volatility_breakout/backtest_breakout.py
 ja    sha256 vorher strategies/volatility_breakout_crypto/backtest_breakout.py
 ja    sha256 vorher strategies/volatility_breakout_crypto/equity_simulation.py
-ja    Register endet mit 61, 62 fehlt
+ja    Register endet mit 63, 64 fehlt
 ja    R98 genau einmal im Register
 ja    research/faltenplan_neun/test_handelbar_tag.py noch nicht da
 ja    shared/test_schranke_signalpfad.py noch nicht da
-ja    TB-166 weder in BACKLOG noch in JOURNAL
+ja    TB-166 noch nicht abgegeben (BACKLOG ohne 'gebaut mit TB-166', kein Journal-Block, kein Ergebnis)
 Pruefungen: 25, NEIN: 0
 rc 0
 rc 0
