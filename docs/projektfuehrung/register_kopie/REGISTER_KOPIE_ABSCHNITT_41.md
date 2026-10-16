@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 41 (von 0–63) — Register-Z. 8581–9001 — Commit 02f19f50ce120752615c3cc8342de18cc864c920 — 2026-10-16 — Original sha256 5fa3ff3c55db390de5a4b0f8e53ba248995daea4ca695dda6b6959a75952c9c9 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 41 (von 0–64) — Register-Z. 8581–9001 — Commit 3cbcdee1096fa8983be83e4dd395dec7150c019c — 2026-10-16 — Original sha256 f5510c4b330c769e1b7e1a173c21013cda264ef65a1080c2437bfce2f4780411 — KOPIE, nicht das Register
 
 ## 41. Nachweis mit zwei Teilen, Resolver ohne Rückfall, Deckel statt Purge, Mutationsproben einzeln — die Einträge aus Fable 24b, 24c, 24d (TB-108, 25.09.2026)
 

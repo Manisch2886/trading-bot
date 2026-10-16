@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 38 (von 0–63) — Register-Z. 7286–7661 — Commit 02f19f50ce120752615c3cc8342de18cc864c920 — 2026-10-16 — Original sha256 5fa3ff3c55db390de5a4b0f8e53ba248995daea4ca695dda6b6959a75952c9c9 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 38 (von 0–64) — Register-Z. 7286–7661 — Commit 3cbcdee1096fa8983be83e4dd395dec7150c019c — 2026-10-16 — Original sha256 f5510c4b330c769e1b7e1a173c21013cda264ef65a1080c2437bfce2f4780411 — KOPIE, nicht das Register
 
 ## 38. Weg (A) — die letzte Falte heisst die Spanne, Fundstellen als Datei und Bezeichner, der Vollzug von Punkt 4 nach 37.3 in Form (ii), neun Importe statt überwachter Kostenkopien, zwei Berichtigungen des Verfahrensprüfers an sich selbst und die Messungen aus TB-88 (Fable 22h, TB-89, 23.09.2026)
 
