@@ -1,0 +1,69 @@
+Selbsttests: backtest-Defaults und Kopplung an live_params.py
+
+1) Das Werkzeug an kuenstlichen Faellen
+  [OK ] Positions-Argument zaehlt als Ueberschreibung
+  [OK ] Schluesselwort-Argument zaehlt als Ueberschreibung
+  [OK ] Nicht uebergebener Parameter wirkt ueber den Default   {'LIVE': ['equity_simulation.py:4']}
+  [OK ] Ein Aufruf im KOMMENTAR aendert nichts
+  [OK ] Live-Pfad wird transitiv erkannt (ueber eine Suchdatei hinweg)   {'LIVE': ['multi_symbol_optimise.py:3']}
+  [OK ] Die daneben stehende Suchfunktion gilt NICHT als Live-Pfad
+  [OK ] **kwargs-Aufrufstelle wird als unklar gemeldet, nicht stillschweigend entschieden
+  [OK ] Alias SQUEEZE_LOOKBACK_DAYS -> BB_LOOKBACK wird aufgeloest   KANDIDAT
+  [OK ] Ein abweichender Wert wird als ABWEICHUNG gemeldet, nicht als Kandidat   ABWEICHUNG
+  [OK ] Zuweisung 'modul.KONSTANTE = ...' wird gefunden   [{'datei': 'equity_simulation.py', 'modul': 'backtest_x.py', 'konstante': 'TAKE_PROFIT_FIB', 'zeile': 4}]
+  [OK ] Ein im Rumpf gelesener Modulwert wird erkannt (das sieht ein reiner Default-Scan nicht)   {'TAKE_PROFIT_FIB': {'run'}}
+  [OK ] Ein Default in der Signatur zaehlt NICHT als Rumpf-Lesezugriff
+
+2) Das Ergebnis im Repo
+  [OK ] rsi2_mean_reversion/backtest_rsi2.py: MAX_HOLD_DAYS kommt aus live_params.MAX_HOLD_DAYS   MAX_HOLD_DAYS
+  [OK ] rsi2_mean_reversion/backtest_rsi2.py: MAX_HOLD_DAYS steht NICHT mehr als eigene Zahl da
+  [OK ] turtle_soup_crypto/backtest_turtle_soup.py: MAX_HOLD_DAYS kommt aus live_params.MAX_HOLD_DAYS   MAX_HOLD_DAYS
+  [OK ] turtle_soup_crypto/backtest_turtle_soup.py: MAX_HOLD_DAYS steht NICHT mehr als eigene Zahl da
+  [OK ] turtle_soup_stocks/backtest_turtle_soup.py: MAX_HOLD_DAYS kommt aus live_params.MAX_HOLD_DAYS   MAX_HOLD_DAYS
+  [OK ] turtle_soup_stocks/backtest_turtle_soup.py: MAX_HOLD_DAYS steht NICHT mehr als eigene Zahl da
+  [OK ] volatility_breakout/backtest_breakout.py: MAX_HOLD_DAYS kommt aus live_params.MAX_HOLD_DAYS   MAX_HOLD_DAYS
+  [OK ] volatility_breakout/backtest_breakout.py: MAX_HOLD_DAYS steht NICHT mehr als eigene Zahl da
+  [OK ] volatility_breakout/backtest_breakout.py: SQUEEZE_LOOKBACK_DAYS kommt aus live_params.BB_LOOKBACK   BB_LOOKBACK
+  [OK ] volatility_breakout/backtest_breakout.py: SQUEEZE_LOOKBACK_DAYS steht NICHT mehr als eigene Zahl da
+  [OK ] volatility_breakout/backtest_breakout.py: SQUEEZE_PERCENTILE kommt aus live_params.BB_SQUEEZE_PERCENTILE   BB_SQUEEZE_PERCENTILE
+  [OK ] volatility_breakout/backtest_breakout.py: SQUEEZE_PERCENTILE steht NICHT mehr als eigene Zahl da
+  [OK ] volatility_breakout_crypto/backtest_breakout.py: MAX_HOLD_DAYS kommt aus live_params.MAX_HOLD_DAYS   MAX_HOLD_DAYS
+  [OK ] volatility_breakout_crypto/backtest_breakout.py: MAX_HOLD_DAYS steht NICHT mehr als eigene Zahl da
+  [OK ] volatility_breakout_crypto/backtest_breakout.py: SQUEEZE_LOOKBACK_DAYS kommt aus live_params.BB_LOOKBACK   BB_LOOKBACK
+  [OK ] volatility_breakout_crypto/backtest_breakout.py: SQUEEZE_LOOKBACK_DAYS steht NICHT mehr als eigene Zahl da
+  [OK ] volatility_breakout_crypto/backtest_breakout.py: SQUEEZE_PERCENTILE kommt aus live_params.BB_SQUEEZE_PERCENTILE   BB_SQUEEZE_PERCENTILE
+  [OK ] volatility_breakout_crypto/backtest_breakout.py: SQUEEZE_PERCENTILE steht NICHT mehr als eigene Zahl da
+  [OK ] turtle_soup_crypto/backtest_turtle_soup.py: DONCHIAN_PERIOD bleibt bewusst eine eigene Konstante
+  [OK ] turtle_soup_stocks/backtest_turtle_soup.py: DONCHIAN_PERIOD bleibt bewusst eine eigene Konstante
+  [OK ] t3_supertrend/backtest_trend.py: T3_FAST_LENGTH bleibt bewusst eine eigene Konstante
+  [OK ] t3_supertrend/backtest_trend.py: T3_SLOW_LENGTH bleibt bewusst eine eigene Konstante
+  [OK ] t3_supertrend/backtest_trend.py: ADX_THRESHOLD bleibt bewusst eine eigene Konstante
+  [OK ] t3_supertrend/backtest_trend.py: STOP_LOSS_PCT bleibt bewusst eine eigene Konstante
+  [OK ] elliott_wave/backtest_elliott.py: STOP_LOSS_PCT bleibt bewusst eine eigene Konstante
+  [OK ] elliott_wave/backtest_elliott.py: TAKE_PROFIT_FIB bleibt bewusst eine eigene Konstante
+  [OK ] elliott_wave_stocks/backtest_elliott.py: STOP_LOSS_PCT bleibt bewusst eine eigene Konstante
+  [OK ] elliott_wave_stocks/backtest_elliott.py: TAKE_PROFIT_FIB bleibt bewusst eine eigene Konstante
+  [OK ] elliott_wave/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] elliott_wave_stocks/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] t3_supertrend/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] rsi2_crypto/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] rsi2_mean_reversion/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] turtle_soup_crypto/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] turtle_soup_stocks/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] volatility_breakout/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] volatility_breakout_crypto/live_params.py importiert nichts (kein Importzyklus)
+  [OK ] rsi2_mean_reversion/backtest_rsi2.py ist syntaktisch gueltig
+  [OK ] turtle_soup_crypto/backtest_turtle_soup.py ist syntaktisch gueltig
+  [OK ] turtle_soup_stocks/backtest_turtle_soup.py ist syntaktisch gueltig
+  [OK ] volatility_breakout/backtest_breakout.py ist syntaktisch gueltig
+  [OK ] volatility_breakout/backtest_breakout.py ist syntaktisch gueltig
+  [OK ] volatility_breakout/backtest_breakout.py ist syntaktisch gueltig
+  [OK ] volatility_breakout_crypto/backtest_breakout.py ist syntaktisch gueltig
+  [OK ] volatility_breakout_crypto/backtest_breakout.py ist syntaktisch gueltig
+  [OK ] volatility_breakout_crypto/backtest_breakout.py ist syntaktisch gueltig
+
+3) Keine offenen Faelle mehr
+  [OK ] Kein wirksamer Default ist mehr Kandidat oder Abweichung
+
+59/59 Pruefungen bestanden.
+rc 0

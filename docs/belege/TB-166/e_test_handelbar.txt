@@ -1,0 +1,13 @@
+ja    Lauf ohne Fehler
+ja    Zeitspanne: erster Kurstag + MIN_HISTORY_DAYS (rsi2_crypto AAA = 2021-05-15) · 2021-05-15
+ja    4h-Bot t3_supertrend: 2023-01-01 + 730 Tage = 2024-12-31 · 2024-12-31
+ja    Kerzen: elliott_wave AAA = Datum der 17 520. Kerze trotz Luecken (2023-01-01 + 17519 // 23 = 761 Tage, nicht 730) · 2025-01-31
+ja    Tag >= Schnitt -> None (SPAET 1d, SPAET 1h, KURZ)
+ja    Datei fehlt -> None (FEHLT)
+ja    Aktien: XX = 2015-03-02 + 1825 · 2020-02-29
+ja    Zeilen ab dem Schnitt aendern keinen Tag (mit gegen ohne Zeilen ab Schnitt)
+ja    loader_lesart ruft dieselbe Rechnung (R90 (e)) · {'elliott_wave': True, 'rsi2_crypto': True, 'rsi2_mean_reversion': True}
+ja    Gegenprobe Schnitt 2100: SPAET bekommt einen Tag (der Schnitt beisst) · 2026-10-14
+ja    Mutationsprobe (Schnitt in handelbar_ab entfernt): Abweichung erkannt
+11 von 11 Pruefungen bestanden
+rc 0

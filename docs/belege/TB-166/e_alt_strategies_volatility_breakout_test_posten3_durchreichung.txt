@@ -1,0 +1,6 @@
+volatility_breakout: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+Teil D: Stufen [20, 97, 175, 252], hergeleiteter Scanbeginn [39, 116, 194, 271]; frueher fester Scanbeginn WARMUP_PERIOD + 1 = 127 schnitt ab bei [20, 97]
+
+==============================================================================
+43/43 Pruefungen bestanden.
+rc 0

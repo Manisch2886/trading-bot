@@ -1,0 +1,5 @@
+rsi2_mean_reversion: Achse sma_trend_filter, erste Stufe 26, Voreinstellung 200
+
+==============================================================================
+16/16 Pruefungen bestanden.
+rc 0

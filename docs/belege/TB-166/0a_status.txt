@@ -1,0 +1,6 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-166_e3a_schranke_je_symbol.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-15b_f4_wortlaut_sb1_paare_10a.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-15b_marken_tb150_etc_kein_ucits_korrelation_vor_pruefung.md

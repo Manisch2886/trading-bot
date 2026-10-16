@@ -1,0 +1,96 @@
+
+--- Abschnitt 1 - Stufe 1: Signalstaerke ---
+  OK    der Pruefall unterscheidet ueberhaupt (Zufall haette den anderen gewaehlt)
+  OK    das staerkere Signal bekommt den Platz
+  OK    das Protokoll schreibt die Entscheidung Stufe 1 zu
+  OK    umgedrehte Richtung waehlt den anderen Kandidaten
+  OK    unbekannte SIGNALSPALTE bricht ab, statt still zu ruhen
+
+--- Abschnitt 2 - Stufe 2: Diversifikation ---
+  OK    der Pruefall unterscheidet ueberhaupt (Zufall haette den anderen gewaehlt)
+  OK    der unkorrelierteste Kandidat bekommt den Platz
+  OK    das Protokoll schreibt die Entscheidung Stufe 2 zu
+  OK    Korrelation des Gleichlaeufers ist ~ +1
+  OK    Korrelation des Gegenlaeufers ist ~ -1
+  OK    das Fenster endet vor dem Kalendertag des Einstiegs
+  OK    der Einstiegstag selbst zaehlt nicht mehr mit
+
+--- Abschnitt 3 - Stufe 3: Liquiditaet ---
+  OK    der Pruefall unterscheidet ueberhaupt (Zufall haette den anderen gewaehlt)
+  OK    der liquidere Kandidat bekommt den Platz
+  OK    das Protokoll schreibt die Entscheidung Stufe 3 zu
+  OK    das Dollar-Volumen wird als close*volume gemessen
+  OK    bei leerem Buch entfaellt Stufe 2 und Stufe 3 entscheidet
+
+--- Abschnitt 4 - Stufe 4: seeded Zufall ---
+  OK    derselbe Startwert liefert dasselbe Ergebnis
+  OK    ein anderer Startwert liefert ein anderes Ergebnis
+  OK    der Startwert steht im Protokoll
+  OK    der Startwert steht auch im Protokolltext
+  OK    der Fingerabdruck haengt nicht an PYTHONHASHSEED (drei Prozesse)
+
+--- Abschnitt 5 - fehlende Angaben ---
+  OK    zu kurze Historie liefert keinen Korrelationswert
+  OK    der Pruefall ist brauchbar: der mittlere Wert liegt echt dazwischen
+  OK    der Kandidat ohne Historie verdraengt den besseren nicht
+  OK    ohne Wert: schlaegt die ueberdurchschnittlich korrelierten
+  OK    ohne Wert: unterliegt den unterdurchschnittlich korrelierten
+  OK    kennt niemand einen Wert, entfaellt die Stufe ganz
+
+--- Abschnitt 6 - Reihenfolge-Invarianz ---
+  OK    der Pruefall ist ueberhaupt knapp (es wird abgelehnt)
+  OK    20 Permutationen von Zeilen- und Symbolreihenfolge: identischer Kapitalpfad
+
+--- Abschnitt 7 - Gegenprobe ohne Knappheit ---
+  OK    ohne Knappheit wird nichts abgelehnt
+  OK    Endkapital wie vor TB-26
+  OK    Zahl der ausgefuehrten Trades wie vor TB-26
+  OK    die Kapitalkurve ist Zeile fuer Zeile dieselbe
+  OK    bei gleichzeitigen Ausstiegen bleibt das Endkapital gleich
+  OK    bei gleichzeitigen Ausstiegen bleibt die Zeilenmenge gleich
+
+--- Abschnitt 8 - Mutationsproben ---
+  OK    stufe2_richtung_verdreht: genau die erwarteten Abschnitte schlagen an
+  OK    stufe3_richtung_verdreht: genau die erwarteten Abschnitte schlagen an
+  OK    zufall_ohne_startwert: genau die erwarteten Abschnitte schlagen an
+  OK    ausstiege_wieder_in_dateireihenfolge: genau die erwarteten Abschnitte schlagen an
+  OK    fehlende_werte_ans_ende: genau die erwarteten Abschnitte schlagen an
+  OK    keine_kaskade_erster_der_liste: genau die erwarteten Abschnitte schlagen an
+
+--- Abschnitt 9 - die neun Bots ---
+  OK    neun Bots gefunden
+  OK    elliott_wave: benutzt die Kaskade (Startwert im Protokoll)
+  OK    elliott_wave: die Knappheit wurde als solche erkannt
+  OK    elliott_wave kennt weiterhin kein Positionslimit-Argument
+  OK    elliott_wave_stocks: benutzt die Kaskade (Startwert im Protokoll)
+  OK    elliott_wave_stocks: die Knappheit wurde als solche erkannt
+  OK    elliott_wave_stocks: Positionslimit-Argument erhalten
+  OK    rsi2_crypto: benutzt die Kaskade (Startwert im Protokoll)
+  OK    rsi2_crypto: die Knappheit wurde als solche erkannt
+  OK    rsi2_crypto: Positionslimit-Argument erhalten
+  OK    rsi2_mean_reversion: benutzt die Kaskade (Startwert im Protokoll)
+  OK    rsi2_mean_reversion: die Knappheit wurde als solche erkannt
+  OK    rsi2_mean_reversion: Positionslimit-Argument erhalten
+  OK    t3_supertrend: benutzt die Kaskade (Startwert im Protokoll)
+  OK    t3_supertrend: die Knappheit wurde als solche erkannt
+  OK    t3_supertrend: Positionslimit-Argument erhalten
+  OK    turtle_soup_crypto: benutzt die Kaskade (Startwert im Protokoll)
+  OK    turtle_soup_crypto: die Knappheit wurde als solche erkannt
+  OK    turtle_soup_crypto: Positionslimit-Argument erhalten
+  OK    turtle_soup_stocks: benutzt die Kaskade (Startwert im Protokoll)
+  OK    turtle_soup_stocks: die Knappheit wurde als solche erkannt
+  OK    turtle_soup_stocks: Positionslimit-Argument erhalten
+  OK    volatility_breakout: benutzt die Kaskade (Startwert im Protokoll)
+  OK    volatility_breakout: die Knappheit wurde als solche erkannt
+  OK    volatility_breakout: Positionslimit-Argument erhalten
+  OK    volatility_breakout_crypto: benutzt die Kaskade (Startwert im Protokoll)
+  OK    volatility_breakout_crypto: die Knappheit wurde als solche erkannt
+  OK    volatility_breakout_crypto: Positionslimit-Argument erhalten
+
+--- der Test selbst ---
+  OK    git status unveraendert (der Test schreibt nicht ins Repo)
+
+==============================================================================
+Ergebnis: 71 bestanden, 0 fehlgeschlagen
+==============================================================================
+rc 0

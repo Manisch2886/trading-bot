@@ -1,0 +1,38 @@
+{
+ "elliott_wave": {
+  "n": 21,
+  "sha256": "8c6d53013a93bf8dacc9b3f0fa0de7c1b08d1985fa48dcad593d36553788b80e"
+ },
+ "elliott_wave_stocks": {
+  "n": 30,
+  "sha256": "75c212258b463563db8235708a48bdcfc396497c9bec872015ed37f918541e5b"
+ },
+ "rsi2_crypto": {
+  "n": 246,
+  "sha256": "d1b00f495c649088c6e8f15c57997558376ef2b6e2e10d97162c3cc37be01591"
+ },
+ "rsi2_mean_reversion": {
+  "n": 73,
+  "sha256": "682dbad6ebffb3a6f6bff59b20ec1fab2949ce460fe87e6a054f495e16a98ede"
+ },
+ "t3_supertrend": {
+  "n": 89,
+  "sha256": "1d4892500a1e55d527c80946084201b64f47a2e4bb9846a1172dd3b378287aa0"
+ },
+ "turtle_soup_crypto": {
+  "n": 520,
+  "sha256": "9a389b2edd934e4f873211f63bca4aa8b86c79bc5c9f747c31decd87bb354939"
+ },
+ "turtle_soup_stocks": {
+  "n": 247,
+  "sha256": "2f0bf13fa592081b604643ac80f13ac7fea860c82503a6043407aece48ae20b8"
+ },
+ "volatility_breakout": {
+  "n": 84,
+  "sha256": "c4943f20c379f09cc5592c246b8f8eae044b1246b48a78edbb3ad95bae654f1e"
+ },
+ "volatility_breakout_crypto": {
+  "n": 83,
+  "sha256": "db8d281cded47004feaf7b97cdd531eca0d63950056c8db505ffbbda0acf30d6"
+ }
+}

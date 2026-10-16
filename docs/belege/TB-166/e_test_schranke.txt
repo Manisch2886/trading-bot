@@ -1,0 +1,49 @@
+ja    rsi2_crypto: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 246 Trades
+ja    rsi2_crypto: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    rsi2_crypto: 3 Tag in alter Position: ab dem Tag wird eingestiegen, vor dem Ende der alten Position · ('BBB', '2019-09-15', '2019-09-15 00:00:00', 'alte Position bis 2019-09-16 00:00:00')
+ja    rsi2_crypto: 4 Indikatoren ungekuerzt: CCC (Tag 2019-07-01, kein Signal davor) gleich mit/ohne Schranke · 60/60
+ja    rsi2_crypto: 6 Mutationsprobe (Scanbeginn aus) beisst · Wache rc 2
+ja    turtle_soup_crypto: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 520 Trades
+ja    turtle_soup_crypto: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    turtle_soup_crypto: 3 Tag in alter Position: ab dem Tag wird eingestiegen, vor dem Ende der alten Position · ('AAA', '2019-04-20', '2019-04-21 00:00:00', 'alte Position bis 2019-04-21 00:00:00')
+ja    turtle_soup_crypto: 4 Indikatoren ungekuerzt: CCC (Tag 2019-02-13, kein Signal davor) gleich mit/ohne Schranke · 114/114
+ja    turtle_soup_crypto: 6 Mutationsprobe (Scanbeginn aus) beisst · Wache rc 2
+ja    volatility_breakout_crypto: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 83 Trades
+ja    volatility_breakout_crypto: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    volatility_breakout_crypto: 3 Tag in alter Position: ab dem Tag wird eingestiegen, vor dem Ende der alten Position · ('BBB', '2020-11-07', '2020-11-07 00:00:00', 'alte Position bis 2020-11-17 00:00:00')
+ja    volatility_breakout_crypto: 4 Indikatoren ungekuerzt: CCC (Tag 2020-01-30, kein Signal davor) gleich mit/ohne Schranke · 14/14
+ja    volatility_breakout_crypto: 6 Mutationsprobe (Scanbeginn aus) beisst · Wache rc 2
+ja    rsi2_mean_reversion: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 73 Trades
+ja    rsi2_mean_reversion: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    rsi2_mean_reversion: 3 Tag in alter Position: ab dem Tag wird eingestiegen, vor dem Ende der alten Position · ('BBB', '2017-01-28', '2017-02-01 00:00:00', 'alte Position bis 2017-02-10 00:00:00')
+ja    rsi2_mean_reversion: 4 Indikatoren ungekuerzt: CCC (Tag 2016-11-07, kein Signal davor) gleich mit/ohne Schranke · 16/16
+ja    rsi2_mean_reversion: 6 Mutationsprobe (Scanbeginn aus) beisst · Wache rc 2
+ja    turtle_soup_stocks: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 247 Trades
+ja    turtle_soup_stocks: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    turtle_soup_stocks: 3 Tag in alter Position: ab dem Tag wird eingestiegen, vor dem Ende der alten Position · ('AAA', '2016-10-26', '2016-11-07 00:00:00', 'alte Position bis 2016-11-08 00:00:00')
+ja    turtle_soup_stocks: 4 Indikatoren ungekuerzt: CCC (Tag 2016-10-19, kein Signal davor) gleich mit/ohne Schranke · 90/90
+ja    turtle_soup_stocks: 6 Mutationsprobe (Scanbeginn aus) beisst · Wache rc 2
+ja    volatility_breakout: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 84 Trades
+ja    volatility_breakout: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    volatility_breakout: 3 Tag in alter Position: ab dem Tag wird eingestiegen, vor dem Ende der alten Position · ('AAA', '2017-08-08', '2017-08-08 00:00:00', 'alte Position bis 2017-08-24 00:00:00')
+ja    volatility_breakout: 4 Indikatoren ungekuerzt: CCC (Tag 2017-03-01, kein Signal davor) gleich mit/ohne Schranke · 24/24
+ja    volatility_breakout: 6 Mutationsprobe (Scanbeginn aus) beisst · Wache rc 2
+ja    t3_supertrend: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 89 Trades
+ja    t3_supertrend: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    t3_supertrend: 3 Tag in alter Position: ab dem Tag wird eingestiegen (nach Kreuzen) · ('BBB', '2021-06-02', '2021-11-18 08:00:00', 'alte Position bis 2021-06-04 00:00:00')
+ja    t3_supertrend: 4 Indikatoren ungekuerzt: CCC (Tag 2021-06-01, kein Signal davor) gleich mit/ohne Schranke · 19/19
+ja    t3_supertrend: 6 Mutationsprobe (Scan-Schranke aus/nach traded.add) beisst · NEIN-Zeilen: t3_supertrend: 2 kein Einstieg vor dem entry_cutoff je Symbol (12 Laeufe) · [('BBB',; t3_supertrend: 3 Tag in alter Position: ab dem Tag wird eingestiegen (nach Kreuzen) 
+ja    elliott_wave: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 21 Trades
+ja    elliott_wave: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    elliott_wave: 3 Tag in alter Position: ab dem Tag wird eingestiegen (Elliott: alte Trades ab Tag bleiben) · ('AAA', '2022-04-29', '2022-05-21 21:00:00', '7 alte Trades ab Tag erhalten')
+ja    elliott_wave: 4 Indikatoren ungekuerzt: CCC (Tag 2022-03-31, kein Signal davor) gleich mit/ohne Schranke · 7/7
+ja    elliott_wave: 5 gesperrte Welle hinterlaesst keinen traded-Eintrag: sie steigt am ersten Lauf >= Schranke ein · ('2022-04-27 20:00:00', 2820, 3381)
+ja    elliott_wave: 6 Mutationsprobe (Scan-Schranke aus/nach traded.add) beisst · NEIN-Zeilen: elliott_wave: 5 gesperrte Welle hinterlaesst keinen traded-Eintrag: sie steigt am er
+ja    elliott_wave_stocks: 1 alte Bahn ohne handelbar byte-gleich zum unveraenderten Stand · 30 Trades
+ja    elliott_wave_stocks: 2 kein Einstieg vor dem entry_cutoff je Symbol (3 Laeufe)
+ja    elliott_wave_stocks: 3 Tag in alter Position: ab dem Tag wird eingestiegen (Elliott: alte Trades ab Tag bleiben) · ('AAA', '2017-02-18', '2017-10-03 00:00:00', '14 alte Trades ab Tag erhalten')
+ja    elliott_wave_stocks: 4 Indikatoren ungekuerzt: CCC (Tag 2017-05-11, kein Signal davor) gleich mit/ohne Schranke · 9/9
+ja    elliott_wave_stocks: 5 gesperrte Welle hinterlaesst keinen traded-Eintrag: sie steigt am ersten Lauf >= Schranke ein · ('2017-02-15 00:00:00', 109, 163)
+ja    elliott_wave_stocks: 6 Mutationsprobe (Scan-Schranke aus/nach traded.add) beisst · NEIN-Zeilen: elliott_wave_stocks: 5 gesperrte Welle hinterlaesst keinen traded-Eintrag: sie steig
+47 von 47 Pruefungen bestanden
+rc 0

@@ -1,0 +1,6 @@
+volatility_breakout_crypto: erste Stufen bb_lookback 20, bb_squeeze_percentile 5; Voreinstellungen (126, 25.0)
+Teil D: Stufen [20, 135, 250, 365], hergeleiteter Scanbeginn [39, 154, 269, 384]; frueher fester Scanbeginn WARMUP_PERIOD + 1 = 127 schnitt ab bei [20]
+
+==============================================================================
+42/42 Pruefungen bestanden.
+rc 0

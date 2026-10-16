@@ -1,0 +1,19 @@
+TB-107 Block B - die Loader-Schranke aus dem Programmtext: genau ein Treffer
+  [ok]     B-0: unveraenderte Bot-Kopie - genau ein Treffer, rc 0, derselbe Wert wie im Repo
+  [ok]     B-0e: elliott_wave traegt heute MIN_HISTORY_HOURS (A2)
+  [ok]     B-A1z: zwei Treffer => rc 2, Meldung nennt Datei und Trefferzahl
+  [ok]     B-A1k: kein Treffer => rc 2, Meldung nennt Datei und Trefferzahl
+  [ok]     B-A1zM: Mutationsprobe 're.search zurueck' - bei zwei Treffern still der erste, B-A1z waere rot
+  [ok]     B-A1zM-G: Gegenprobe zu B-A1zM - ohne die Mutation scheitert sie
+  [ok]     B-A1kM: Mutationsprobe 're.search zurueck' - ohne Treffer still (None, None), B-A1k waere rot
+  [ok]     B-A1kM-G: Gegenprobe zu B-A1kM - ohne die Mutation scheitert sie
+  [ok]     B-A2: elliott_wave mit MIN_HISTORY_DAYS => kerzen_elliott_wave endet mit 2
+  [ok]     B-A2M: Mutationsprobe 'stiller Hinweis zurueck' - B-A2 waere rot
+  [ok]     B-A2M-G: Gegenprobe zu B-A2M - ohne die Mutation scheitert sie
+  [ok]     B-A3: loader_lesart ohne Treffer endet in _min_history mit 2 (kein TypeError, rc 1)
+  [ok]     B-A3M: Mutationsprobe 're.search zurueck' - loader_lesart faellt wieder in den TypeError (rc 1)
+  [ok]     B-A3M-G: Gegenprobe zu B-A3M - ohne die Mutation scheitert sie
+
+==============================================================================
+14/14 Pruefungen bestanden.
+rc 0
