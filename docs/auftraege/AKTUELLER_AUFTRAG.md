@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-169** | `docs/auftraege/MAC_TB-169_e3b_listen_erzeuger.md` | E-3b Listen-Erzeuger (Schnitt an der Eingabe, Wachen, Doppellauf weg), Abnahme E-3a nach R98 (d), Vollzug 37.3 der E-3a-Hashes als Register 64 (Karte 16.10.2026, 20:25, bedingt) |
+| **TB-170** | `docs/auftraege/MAC_TB-170_register65_fable16c.md` | Register 65: R104–R105 aus Fable 16.10.c mit 5 Marken und Tatsachennotizen, Fable-Dateien 16c, BACKLOG-Nachträge (Karte 17.10.2026, 06:06) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
