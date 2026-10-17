@@ -1,0 +1,38 @@
+ja    R56 (b)/0a-Datei: docs/projektfuehrung/FABLE_ANTWORT_2026-10-16c_r100c_elliott_abnahme.md verfolgt, gleich HEAD, md5 ebde5e999690f5c8ab0e1930ffb81783
+ja    R56 (b)/0a-Datei: docs/projektfuehrung/FABLE_ANFRAGE_2026-10-16c_r100c_leseprotokoll_elliott_abnahme.md verfolgt, gleich HEAD, md5 4021b20db4e9b9899e040fa5b2236b35
+ja    R56 (b)/0a-Datei: docs/projektfuehrung/FABLE_UEBERGABE_2026-10-16c_eroeffnung.md verfolgt, gleich HEAD, md5 7f767820b48fd139690ace13f8ae81e7
+ja    R56 (b)/0a-Datei: docs/projektfuehrung/UEBERGABE.md verfolgt, gleich HEAD, md5 a5a81d372183bd8127102917df8c1d61
+ja    R56 (b)/0a-Datei: docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md verfolgt, gleich HEAD, md5 14db36f1fe8f03eebcd75a28dafa1f6e
+ja    Registerblock 16c: genau R104, Quelle, R105, Quelle im Codeblock (Z. 21–26)
+ja    Register: 64 da, 65 nicht; R104/R105 0 Treffer
+ja    Register endet mit genau einer Leerzeile
+ja    Ort 62.1: Einfuegestelle nach Z. 12298 eindeutig, R104/R105 dort noch nicht genannt
+ja    Ort 62.5 (c): Einfuegestelle nach Z. 12353 eindeutig, R104/R105 dort noch nicht genannt
+ja    Ort 57.1: Einfuegestelle nach Z. 12001 eindeutig, R104/R105 dort noch nicht genannt
+ja    Ort 61.1: Einfuegestelle nach Z. 12229 eindeutig, R104/R105 dort noch nicht genannt
+ja    Ort 64.1: Einfuegestelle nach Z. 12432 eindeutig, R104/R105 dort noch nicht genannt
+ja    R104 (a): Leseprotokoll docs/belege/TB-148/leseprotokoll.md md5 a1a324e02f06e2fc311ec26ca3b0ba74 (= Stand d9f8489)
+info  Leseprotokoll zuletzt geaendert in Commit d9f8489
+ja    R104 (a) Voraussetzung, elliott_wave: M3 ausserhalb multi_symbol_optimise.py: strategies/elliott_wave/equity_simulation.py (Z. 10); strategies/elliott_wave/backtest_elliott.py (Z. 41)
+ja    R104 (a) Voraussetzung, t3_supertrend: M3 ausserhalb multi_symbol_optimise.py: strategies/t3_supertrend/equity_simulation.py (Z. 11); strategies/t3_supertrend/backtest_trend.py (Z. 42); strategies/t3_supertrend/regime_filter.py (Z. 59)
+ja    R104 (a) Voraussetzung, rsi2_crypto: M3 ausserhalb multi_symbol_optimise.py: strategies/rsi2_crypto/equity_simulation.py (Z. 12); strategies/rsi2_crypto/backtest_rsi2.py (Z. 43)
+ja    R104 (a) Voraussetzung, turtle_soup_crypto: M3 ausserhalb multi_symbol_optimise.py: strategies/turtle_soup_crypto/equity_simulation.py (Z. 13); strategies/turtle_soup_crypto/backtest_turtle_soup.py (Z. 44)
+ja    R104 (a) Voraussetzung, volatility_breakout_crypto: M3 ausserhalb multi_symbol_optimise.py: strategies/volatility_breakout_crypto/equity_simulation.py (Z. 14); strategies/volatility_breakout_crypto/backtest_breakout.py (Z. 45); strategies/volatility_breakout_crypto/regime_filter.py (Z. 60)
+ja    R104 (a) Voraussetzung, elliott_wave_stocks: M3 ausserhalb multi_symbol_optimise.py: strategies/elliott_wave_stocks/equity_simulation.py (Z. 15); strategies/elliott_wave_stocks/backtest_elliott.py (Z. 46)
+ja    R104 (a) Voraussetzung, rsi2_mean_reversion: M3 ausserhalb multi_symbol_optimise.py: strategies/rsi2_mean_reversion/equity_simulation.py (Z. 16); strategies/rsi2_mean_reversion/backtest_rsi2.py (Z. 47)
+ja    R104 (a) Voraussetzung, turtle_soup_stocks: M3 ausserhalb multi_symbol_optimise.py: strategies/turtle_soup_stocks/equity_simulation.py (Z. 17); strategies/turtle_soup_stocks/backtest_turtle_soup.py (Z. 48)
+ja    R104 (a) Voraussetzung, volatility_breakout: M3 ausserhalb multi_symbol_optimise.py: strategies/volatility_breakout/equity_simulation.py (Z. 18); strategies/volatility_breakout/backtest_breakout.py (Z. 49)
+ja    R105 (c) Code strategies/elliott_wave/elliott_wave_counter.py: Z. 192 end_time = times[i + 5]; 341 traded; 352–353 Schluessel end_time; 358–360 Kommentar; 361 Schranke; 363 traded.add(end_time)
+ja    R105 (c) Code strategies/elliott_wave_stocks/elliott_wave_counter.py: Z. 192 end_time = times[i + 5]; 341 traded; 352–353 Schluessel end_time; 358–360 Kommentar; 361 Schranke; 363 traded.add(end_time)
+ja    BACKLOG-Nachtrag: research/mtm_drawdown/grundlage.py Z. 65 liest <bot>_positionen.csv
+ja    BACKLOG-Nachtrag: research/tb24_haltedauern/test_haltedauer_kern.py Z. 362 Pruefung 13 (Wache)
+ja    BACKLOG-Nachtrag: docs/belege/TB-169/e_alt_vergleich.txt zeigt den Alt-Test rot (rc 1 vorher und nachher)
+ja    BACKLOG-Nachtrag: docs/belege/TB-169/f_porcelain.txt nennt nur sich selbst (Selbstbezug)
+ja    BACKLOG-Nachtrag: Index-Kopf Z. 3 nennt 0–64 und 12 023 Zeilen/459be94e (gemischter Stand)
+ja    BACKLOG: grundlage.py und test_haltedauer_kern noch nicht genannt
+ja    BACKLOG: Rang 1 (Stand TB-169) genau einmal
+ja    Index: Zeile 64, Pflegezeile TB-169, Pflege-Anker je genau einmal; kein Abschnitt 16
+ja    Dialog-Index: 16c noch nicht
+ja    Journal: hoechste FF, naechste FG frei
+Pruefungen: 35, NEIN: 0
+rc 0

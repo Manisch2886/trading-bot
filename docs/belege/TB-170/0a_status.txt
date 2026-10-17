@@ -1,0 +1,7 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+ M docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md
+ M docs/projektfuehrung/UEBERGABE.md
+?? docs/auftraege/MAC_TB-170_register65_fable16c.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-16c_r100c_leseprotokoll_elliott_abnahme.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-16c_r100c_elliott_abnahme.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-16c_eroeffnung.md

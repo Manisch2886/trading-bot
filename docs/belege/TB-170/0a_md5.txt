@@ -1,0 +1,7 @@
+ja    md5 docs/projektfuehrung/FABLE_ANTWORT_2026-10-16c_r100c_elliott_abnahme.md = ebde5e999690f5c8ab0e1930ffb81783
+ja    md5 docs/projektfuehrung/FABLE_ANFRAGE_2026-10-16c_r100c_leseprotokoll_elliott_abnahme.md = 4021b20db4e9b9899e040fa5b2236b35
+ja    md5 docs/projektfuehrung/FABLE_UEBERGABE_2026-10-16c_eroeffnung.md = 7f767820b48fd139690ace13f8ae81e7
+ja    md5 docs/projektfuehrung/UEBERGABE.md = a5a81d372183bd8127102917df8c1d61
+ja    md5 docs/projektfuehrung/EROEFFNUNG_STEUERNDER_CHAT.md = 14db36f1fe8f03eebcd75a28dafa1f6e
+Pruefungen: 5, NEIN: 0
+rc 0

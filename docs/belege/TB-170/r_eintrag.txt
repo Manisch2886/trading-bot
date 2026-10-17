@@ -1,0 +1,11 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-170/v_voraussetzung.txt)
+ja    Quelle md5 ebde5e999690f5c8ab0e1930ffb81783, Registerblock R104/R105
+ja    65 noch nicht im Register; endet mit einer Leerzeile
+ja    5 Einfuegestellen eindeutig
+ja    Karte TB-170 gefuellt (Abschnitt Freigabe des Auftrags)
+ja    64: Absatz Sperrlisten-Sonde genau einmal, nennt `69539db` (Z. [12434])
+ja    nachher: 5 Marken Z. [12003, 12234, 12306, 12364, 12446]; Abschnitt 65 Z. 12451
+ja    R104, R105 mit Quellenzeile je genau einmal zeichengleich (Zeichenvergleich mit dem Codeblock)
+ja    append-only bis auf die fuenf Marken (je Leerzeile, Marke, Zeichengleich-Zeile)
+Pruefungen: 9, NEIN: 0
+rc 0
