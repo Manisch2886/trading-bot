@@ -1,0 +1,13 @@
+144	0	docs/ERGEBNIS_TB-177_ki_forschung_ba1.md
+2	0	docs/belege/TB-177/0a_status.txt
+9	0	docs/belege/TB-177/a_backlog_journal.txt
+5	0	docs/belege/TB-177/b_sha.txt
+2	0	docs/belege/TB-177/t_status.txt
+68	0	docs/belege/TB-177/t_wachen.txt
+7	0	docs/belege/TB-177/v_voraussetzung.txt
+1	1	docs/projektfuehrung/BACKLOG.md
+19	0	docs/projektfuehrung/JOURNAL.md
+179	0	ki_forschung/abrufe.py
+221	0	ki_forschung/aufrufe.py
+14	0	ki_forschung/pfade.py
+647	0	ki_forschung/test_ki_wachen.py
