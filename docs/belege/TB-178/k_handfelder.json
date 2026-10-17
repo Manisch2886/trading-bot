@@ -1,0 +1,12 @@
+{
+ "17d": {
+  "frage": "R108 (d): Startkapital-Wert in 59.1; R108 (e): Prüfung am späten Symbol weicht ab",
+  "entscheidung": "(a) anders: 59.1 ist Beleg, kein Ort; Registertext zu 29.3 nach der Tatsachennotiz mit neun Fundstellen; Ort im Modul aus 38.5 (R109 (a)); (b) anders bei der Fallwahl: später Symbolfall wird gebaut, Tag aus der Rechnung nach 23.5; Voraussetzung zu 3b zu messen (R109 (b))",
+  "offen": "ja"
+ },
+ "17e": {
+  "frage": "R109: Tag in 3b gesetzt; Ort des Startkapitals ohne Sperrlisten-Pfad; Probe der Ergebniskurven",
+  "entscheidung": "(a) einverstanden: 3b setzt den Tag, alle drei Bots am gebauten Fall, Abnahme am Erzeuger; (b) anders: Pfad zuerst ins Register (Nachtrag zu Punkt 9 nach 38.5), Bauauftrag nach 37.3 in vier Schritten, Sonde bis zum Tag 2 mit Tatsachennotiz; (c) einverstanden: test_ergebniskurven.py Handwerk in der Freigabe (R110)",
+  "offen": "ja"
+ }
+}

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 39 (von 0–68) — Register-Z. 7683–8203 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 39 (von 0–70) — Register-Z. 7698–8218 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
 
 ## 39. Der Vollzug von Sperrlistenpunkt 4 im Register — Berichtigung des Fertigkriteriums in 38.4, Form (ii) vollzogen, Determinismus- und Modus-Nachweis, fünf Hash-Übergänge nach 37.3, zwei Eingaben ohne registrierten Eingabestand und das neue Abbild (Fable 23a–23f, TB-94, 23.09.2026)
 

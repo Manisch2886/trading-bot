@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 38 (von 0–68) — Register-Z. 7307–7682 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 38 (von 0–70) — Register-Z. 7319–7697 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
 
 ## 38. Weg (A) — die letzte Falte heisst die Spanne, Fundstellen als Datei und Bezeichner, der Vollzug von Punkt 4 nach 37.3 in Form (ii), neun Importe statt überwachter Kostenkopien, zwei Berichtigungen des Verfahrensprüfers an sich selbst und die Messungen aus TB-88 (Fable 22h, TB-89, 23.09.2026)
 
@@ -247,6 +247,9 @@ Handwerk, TB-90 (Freigabe des Betreibers liegt nach dem Auftrag vor,
 **Marken am alten Ort:** bei **Abschnitt 10, Punkt 9** und **Punkt 7**, je
 unter der Marke aus 37.5, die zeichengleich bleibt; bei **37.5**, direkt unter
 dem Registertext.
+
+> ⭐ **38.5 ERGÄNZT durch R110 (70.1)** (Fable 17e R110, Unterpunkt (b), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 38.6 ⚠️ Fables zwei Berichtigungen an sich selbst — Z. 51, und acht statt fünf Stellen
 

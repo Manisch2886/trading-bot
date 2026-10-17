@@ -1,0 +1,8 @@
+ja    Abschnitte 69 und 70 in je genau einer Teildatei: {'69': [6], '70': [6]}; 10 Marken mit Zeile
+ja    Kopf genau einmal, nennt 0–68
+ja    Zeile 68 genau einmal
+ja    jede Marke in genau einer Teildatei
+ja    Pflege-Anker genau einmal, davor Leerzeile; kein Abschnitt 20
+ja    Pflegezeile TB-176a genau einmal
+Pruefungen: 6, NEIN: 0
+rc 0

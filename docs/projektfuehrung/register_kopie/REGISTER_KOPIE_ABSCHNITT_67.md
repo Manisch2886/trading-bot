@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 67 (von 0–68) — Register-Z. 12648–12716 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 67 (von 0–70) — Register-Z. 12669–12740 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
 
 ## 67. Fable 17b — Registerblock R107 (TB-175)
 
@@ -10,6 +10,9 @@ Reines Eintragen von Registertext, Bauart wie 66. Quelle ist allein `docs/projek
 > Quelle des Grundes: 28.6 mit seiner Quelle, R57, R81 (d), (g), (h), R102, 26.2 und 42.3 F1 (a) nach der Wiedergabe in R90 und R103, R76 (e) nach R97 (d), R106, R90 (g), R98 (d), R87 (c), R75 (f), R78 (a), R86, R92, R94, R95, R97, R84 (e), R101, 16.3 (a), 16.4, 16.8, 16.9, 24.3 und 29.3 nach R94 und R84, 37.3, 37.5 (2), 60.1, 63.1, die Ergebnisse TB-172 und TB-174 und die Anfrage 17.10.b (Belege, Code, EPICS, K24, BACKLOG, S-B1 nach Wiedergabe). 9, 10, 17, 26, 33, 40, 41, 42 und Code nicht gelesen. Kein Ergebnis.
 
 > ⭐ **67.1 R107 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkte (b) bis (e), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **67.1 R107 ERGÄNZT durch R109 (69.1)** (Fable 17d R109, Unterpunkt (b), TB-178, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken nach R107 (f): 62.3 (R102), Unterpunkt (a), ergänzt und berichtigt; 55.4 (R81), Unterpunkt (a); 66.1 (R106) und 64.1, Absatz „Abnahme nach R98 (d)“, Unterpunkt (b); 56.3 (R86), Unterpunkte (c) und (e); 57.3 (R92), Unterpunkt (c); 16.4 und 16.8, Unterpunkt (d); 58.4 (R97), Unterpunkt (e). Ohne Marke: 28.6, 51.2 (R57), 26.2, 16.9, 62.2 (R101), 55.1 (R78), 56.1 (R84), 48.13 (R45), 57.1 (R90), 61.1 (R98), 58.1 (R94), 58.2 (R95), 60.1, 63.1, 24.3, 17.1, 17.2, 29.3, 37.3, 37.5, 40.6, 62.5, 66.2, Abschnitt 9, 10, 41, 42. Indexzeilen 48.20 (R52) und 54.3 (R76): sechzehn Fälle (R107 (f)). Voraussetzungen in (b) und (e) gemessen: 67.2 (a) (Teilmessung) und (b); Umstellung der Leser: nach der Frage zu D4 (BACKLOG Rang 1).

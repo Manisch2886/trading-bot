@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 64 (von 0–68) — Register-Z. 12450–12504 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 64 (von 0–70) — Register-Z. 12465–12519 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
 
 ## 64. Vollzug TB-166 (Tatsachennotiz nach 37.3; E-3a Schranke je Symbol) mit Abnahme nach R98 (d) (TB-169)
 

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 66 (von 0–68) — Register-Z. 12576–12647 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 66 (von 0–70) — Register-Z. 12591–12668 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
 
 ## 66. Fable 17a — Registerblock R106 (TB-173)
 
@@ -13,6 +13,12 @@ Reines Eintragen von Registertext, Bauart wie 65. Quelle ist allein `docs/projek
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **66.1 R106 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (e), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **66.1 R106 BERICHTIGT durch R109 (69.1)** (Fable 17d R109, Unterpunkt (b) („lies“), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **66.1 R106 ERGÄNZT durch R110 (70.1)** (Fable 17e R110, Unterpunkt (a), TB-178, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken nach R106 (e): 65.2 (R105), Unterpunkt (a) präzisiert, Unterpunkte (b) bis (d) ergänzt; 57.1 (R90) und 61.1 (R98), Unterpunkt (b); 64.1, Absatz „Abnahme nach R98 (d)“, Unterpunkt (c). Ohne Marke: 56.4 (R87), 55.4 (R81), 54.2 (R75), 48.14 (R46); 65.3; Abschnitt 10. Voraussetzung in (c) gemessen: 66.2 (a). Stand t3_supertrend nach (d): BACKLOG Rang 1.
