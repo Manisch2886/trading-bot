@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-170** | `docs/auftraege/MAC_TB-170_register65_fable16c.md` | Register 65: R104–R105 aus Fable 16.10.c mit 5 Marken und Tatsachennotizen, Fable-Dateien 16c, BACKLOG-Nachträge (Karte 17.10.2026, 06:06) |
+| **TB-171** | `docs/auftraege/MAC_TB-171_r105c_elliott_fall.md` | R105 (c) Weg 1: Probe test_elliott_verdraengung.py führt den Fall nach R90 (g) bei elliott_wave und elliott_wave_stocks herbei; Handelscode unverändert (Karte 17.10.2026, 09:12) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
