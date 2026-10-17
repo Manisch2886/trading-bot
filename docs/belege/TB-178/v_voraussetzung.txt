@@ -1,0 +1,37 @@
+ja    unveraendert: research/exposure_messung/bot_lauf.py md5 01fd9282ded2
+ja    unveraendert: research/faltenplan_neun/faltenschranke_messung.py md5 584d9ff959da
+ja    unveraendert: research/tb24_haltedauern/haltedauer_kern.py md5 60942de99b32
+ja    unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    unveraendert: research/tb24_haltedauern/test_listen_erzeuger.py md5 d77e73ed5ff7
+ja    unveraendert: strategies/elliott_wave/multi_symbol_optimise.py md5 bf11370b140d
+ja    unveraendert: strategies/elliott_wave_stocks/multi_symbol_optimise.py md5 571076168d56
+ja    unveraendert: strategies/t3_supertrend/multi_symbol_optimise.py md5 dc85993e8d42
+ja    BACKLOG Rang 1 genau einmal, endet mit ' |', noch ohne TB-178
+ja    Journal: hoechste FN (FN am Bau-HEAD)
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17d_r108d_startkapital_r108e_spaetes_symbol.md verfolgt, gleich HEAD, md5 007196934a22163335439c2888886047
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANTWORT_2026-10-17d_59_1_beleg_kein_ort_spaetes_symbol_gebaut.md verfolgt, gleich HEAD, md5 3b886ee769174d7c474679dd4452c9eb
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17d_eroeffnung.md verfolgt, gleich HEAD, md5 b968fc124c5361f03e0f1118fdec1994
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17e_r109_tag_gesetzt_sperrliste_sonde.md verfolgt, gleich HEAD, md5 36389b7829a6e77c3ebe327fc58b7d25
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANTWORT_2026-10-17e_drei_bots_am_fall_punkt9_pfad_sonde_wert_probe_handwerk.md verfolgt, gleich HEAD, md5 1d964b3107485a44ba29467ebc56c34a
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17e_eroeffnung.md verfolgt, gleich HEAD, md5 a204bed16a9f30adda7c2b34489856ba
+ja    Registerblock 17d: genau R109 und Quelle im Codeblock (Z. 15–18)
+ja    Registerblock 17e: genau R110 und Quelle im Codeblock (Z. 17–20)
+ja    Register: 68 da, 69 und 70 nicht; R109/R110 0 Treffer
+ja    Register endet mit genau einer Leerzeile
+ja    Ort 68.1 (R109): Einfuegestelle vor Z. 12725 eindeutig, R109 dort noch nicht genannt
+ja    Ort 29.3 (R109): Einfuegestelle vor Z. 5458 eindeutig, R109 dort noch nicht genannt
+ja    Ort 66.1 (R109): Einfuegestelle vor Z. 12590 eindeutig, R109 dort noch nicht genannt
+ja    Ort 67.1 (R109): Einfuegestelle vor Z. 12659 eindeutig, R109 dort noch nicht genannt
+ja    Ort 66.1 (R110): Einfuegestelle vor Z. 12590 eindeutig, R110 dort noch nicht genannt
+ja    Ort 37.2 (R110): Einfuegestelle vor Z. 7034 eindeutig, R110 dort noch nicht genannt
+ja    Ort 37.5 (R110): Einfuegestelle vor Z. 7288 eindeutig, R110 dort noch nicht genannt
+ja    Ort 29.3 (R110): Einfuegestelle vor Z. 5458 eindeutig, R110 dort noch nicht genannt
+ja    Ort 38.5 (R110): Einfuegestelle vor Z. 7554 eindeutig, R110 dort noch nicht genannt
+ja    Index-Kopf Z. 3 nennt 0–68
+ja    Index: Zeile 68, Pflegezeile TB-176a, Pflege-Anker, Abschnitt 19 je genau einmal; kein Abschnitt 20
+ja    Dialog-Index: 17d und 17e noch nicht
+ja    R109 (b) Voraussetzung lesbar: research/tb24_haltedauern/test_listen_erzeuger.py hb() und Pruefung 3b je genau eine Zeile
+info  R109 (b) Voraussetzung (Messung, kein Urteil; R110 (a): gesetzt): research/tb24_haltedauern/test_listen_erzeuger.py Z. [76] `x.update(t)` in hb() - die vom Test uebergebenen Tage ueberschreiben die Rechnung; Z. [161] Pruefung 3b setzt den Tag von CCC (`json.dumps({"CCC": ...})`)
+ja    Probe noch nicht im Repo (docs/belege/TB-178/tb178_probe_spaetes_symbol.py)
+Pruefungen: 34, NEIN: 0
+rc 0

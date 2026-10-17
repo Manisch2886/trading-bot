@@ -5456,6 +5456,12 @@ dem Hinweis *„die Wirkung ist ja klein"* aufgeweicht wird — dieselbe Bauart 
 > ⭐ **29.3 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (d), TB-176a, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **29.3 ERGÄNZT durch R109 (69.1)** (Fable 17d R109, Unterpunkt (a), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **29.3 ERGÄNZT durch R110 (70.1)** (Fable 17e R110, Unterpunkt (b), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 29.4 Die Wache in TB-30b — geändert gegenüber 21b
 
 ⚠️ **Die Fassung aus 21b (Prüfung gegen den Horizontbeginn) ist ERSETZT.** Es
@@ -7032,6 +7038,9 @@ ausweisen) ist Handwerk mit eigener Freigabe; hier nur festgehalten.
 
 **Marke am alten Ort:** in **36.6**, direkt unter dem Registertext.
 
+> ⭐ **37.2 ERGÄNZT durch R110 (70.1)** (Fable 17e R110, Unterpunkt (b), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 37.3 ⭐⭐ Ergänzung zu 36.2/36.6 — was ein Befund `1` bedeutet, hängt vom Tag ab
 
 ⚠️ **Das ist die Lücke, die TB-86 sichtbar gemacht hat:** Die Sonde meldet
@@ -7284,6 +7293,9 @@ sind Abschnitt-0-eingefroren (`herkunft.py` `EINGEFROREN`, 37.4) — ob sie für
 **Marken am alten Ort:** bei **Sperrlistenpunkt 7** und bei **Punkt 9**.
 
 > ⭐ **37.5 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (d), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **37.5 ERGÄNZT durch R110 (70.1)** (Fable 17e R110, Unterpunkt (b), TB-178, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ### 37.6 Was hier ausdrücklich NICHT getan wird
@@ -7551,6 +7563,9 @@ Handwerk, TB-90 (Freigabe des Betreibers liegt nach dem Auftrag vor,
 **Marken am alten Ort:** bei **Abschnitt 10, Punkt 9** und **Punkt 7**, je
 unter der Marke aus 37.5, die zeichengleich bleibt; bei **37.5**, direkt unter
 dem Registertext.
+
+> ⭐ **38.5 ERGÄNZT durch R110 (70.1)** (Fable 17e R110, Unterpunkt (b), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 38.6 ⚠️ Fables zwei Berichtigungen an sich selbst — Z. 51, und acht statt fünf Stellen
 
@@ -12588,6 +12603,12 @@ Reines Eintragen von Registertext, Bauart wie 65. Quelle ist allein `docs/projek
 > ⭐ **66.1 R106 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (e), TB-176a, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **66.1 R106 BERICHTIGT durch R109 (69.1)** (Fable 17d R109, Unterpunkt (b) („lies“), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **66.1 R106 ERGÄNZT durch R110 (70.1)** (Fable 17e R110, Unterpunkt (a), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken nach R106 (e): 65.2 (R105), Unterpunkt (a) präzisiert, Unterpunkte (b) bis (d) ergänzt; 57.1 (R90) und 61.1 (R98), Unterpunkt (b); 64.1, Absatz „Abnahme nach R98 (d)“, Unterpunkt (c). Ohne Marke: 56.4 (R87), 55.4 (R81), 54.2 (R75), 48.14 (R46); 65.3; Abschnitt 10. Voraussetzung in (c) gemessen: 66.2 (a). Stand t3_supertrend nach (d): BACKLOG Rang 1.
 
 ### 66.2 Voraussetzungen und Befunde
@@ -12657,6 +12678,9 @@ Reines Eintragen von Registertext, Bauart wie 66. Quelle ist allein `docs/projek
 > ⭐ **67.1 R107 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkte (b) bis (e), TB-176a, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **67.1 R107 ERGÄNZT durch R109 (69.1)** (Fable 17d R109, Unterpunkt (b), TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken nach R107 (f): 62.3 (R102), Unterpunkt (a), ergänzt und berichtigt; 55.4 (R81), Unterpunkt (a); 66.1 (R106) und 64.1, Absatz „Abnahme nach R98 (d)“, Unterpunkt (b); 56.3 (R86), Unterpunkte (c) und (e); 57.3 (R92), Unterpunkt (c); 16.4 und 16.8, Unterpunkt (d); 58.4 (R97), Unterpunkt (e). Ohne Marke: 28.6, 51.2 (R57), 26.2, 16.9, 62.2 (R101), 55.1 (R78), 56.1 (R84), 48.13 (R45), 57.1 (R90), 61.1 (R98), 58.1 (R94), 58.2 (R95), 60.1, 63.1, 24.3, 17.1, 17.2, 29.3, 37.3, 37.5, 40.6, 62.5, 66.2, Abschnitt 9, 10, 41, 42. Indexzeilen 48.20 (R52) und 54.3 (R76): sechzehn Fälle (R107 (f)). Voraussetzungen in (b) und (e) gemessen: 67.2 (a) (Teilmessung) und (b); Umstellung der Leser: nach der Frage zu D4 (BACKLOG Rang 1).
 
 ### 67.2 Voraussetzungen und Befunde
@@ -12723,6 +12747,9 @@ Reines Eintragen von Registertext, Bauart wie 67. Quelle ist allein `docs/projek
 > R108 — Ergänzung zu R101 (a) bis (c) (62.2) mit Berichtigung („lies“) zu R101 (a) (S-B1, 10a.2); Ergänzung zu R107 (d) (Sammler; Leseregel nach 24.3 und 16.8 (e)); Ergänzung zu 16.6 und 41.3 C2 (Deckel t3_supertrend; D4); Ergänzung zu 29.3 und 37.5 (Startkapital: Wert und Ort); Ergänzung zu R107 (b) (Teilmessung TB-169 3b). (a) S-B1. Die Änderung steht vor dem Tag und vor der Prüfung nach 10a.2 (a) (R101 (d), 24.3), als datierter Nachtrag 10a.5 der S-B1-Vorregistrierung; 10a.2 bleibt zeichengleich, Marke dort. Wortlaut: „Ergänzung zu Registertext 3 (10a.2): Für Gold und Silber ist das Gegenstück je ein ETC auf dasselbe Metall, ohne Hebel und ohne Währungssicherung, weil ein UCITS-Fonds auf ein einzelnes Edelmetall nicht besteht (Tatsachennotiz mit äusserer Quelle und Datum). Die Registerzeile nennt das Instrument als ETC mit ISIN, Handelsplatz und Handelswährung; der Bericht nennt den Unterschied zum Fonds (Schuldverschreibung, Emittentenrisiko). Für alle übrigen Paare bleibt es beim UCITS-Gegenstück; Anteilsklassen mit Währungssicherung bilden kein Paar.“ Der Grund trägt mit der Teilmessung: Die Liste führt Gold und Silber (Abschnitt 2, Z. 85; 62.5 (d)); dass kein UCITS-Fonds auf ein einzelnes Edelmetall besteht, ist im Repo nicht messbar und steht als allgemeiner Umstand mit genannter Quelle (Bauart R101); ohne Quelle trägt er nicht, und 10a.2 bleibt. Berichtigung: In R101 (a) lies „(Abschnitt 9 der S-B1-Vorregistrierung)“ als „(Abschnitt 2 der S-B1-Vorregistrierung, in der Sperrliste Abschnitt 9 Nr. 1 geführt)“; kein Fall (als nicht gelesen gekennzeichnet). Währung (R101 (b)): USD, die Währung der Signalreihe; die Kursreihe des Gegenstücks ist die seines Handelsplatzes, umgerechnet mit dem EZB-Referenzkurs des Schlusstags (Tag t für den Schluss des Tags t); die Wechselkursreihe wird wie die ETF-Kursdateien einmal geholt, eingefroren und im Manifest mit Hash geführt (S-B1 3.2). Zeitraum (R101 (c)): nicht überlappende Renditen je Kalenderwoche, Schluss zu Schluss am letzten Handelstag der Woche, an dem beide Reihen einen Schluss haben (willkürlich: eine Woche deckt den Versatz; ein Monat kürzte die Stichprobe auf ein Viertel); der Beginn der gemeinsamen Historie (10a.2 (c)) ist die erste volle Woche. Die Schwelle 0,97 bleibt; was die Prüfung ergibt, ändert keine dieser Festlegungen (R101 (d)). (b) Sammler. R107 (d) genügt mit vier Ergänzungen zum Bauplan: (1) Der Sammler liest keine Ausgabe eines Bots (results/, paper_trading_*.db, Listen, ergebnisse/) und schreibt nichts unter data/ (17.1); seine einzigen Eingaben sind die eingefrorenen Abrufe. (2) Die Datenbank ist nur anfügend; jede Zeile trägt Zeitstempel, Quellen-Hash, Prompt-Hash, Katalogversion und Modell; Katalog v1 und Prompt liegen mit Hash im Repo, bevor der erste Lauf schreibt; eine Änderung ist v2. (3) Ein Zustand ist Modellantwort und nicht reproduzierbar erzeugbar; er gilt als aufgezeichnete Reihe, nie als herleitbare Grösse. (4) Die Kachel zeigt die Reihe und rechnet keine Verknüpfung mit einer Bot-Zahl. Leseregel (24.3), jetzt registriert: Zustände werden gegen Bot-Ergebnisse nur aus der Bestätigungsperiode gelesen, nie gegen Selektionsfalten (16.8 (e)); die Auswertung ist Bericht, kein Tor und keine Stufe (16.4 (e)); eine Regel, die aus ihr entsteht, ist ein Overlay-Kandidat nach 16.8 (e). Der Auswerteplan nennt vor der ersten Auswertung Grösse, Fenster, Bots und Quelle der Bot-Zahlen und geht an den Verfahrensprüfer; der Erstlauf braucht ihn nicht. Der Wachen-Test prüft (1), (2) und R107 (d) mit Gegenprobe (40.7). (c) t3_supertrend. 13 bleibt in 16.6, bis der Deckel nach 41.3 C2 aus den neuen Listen gefundener Trades hergeleitet ist (R44, R107 (e)): Tatsachennotiz mit Hash der Liste, Snapshot-Hash und Commit, Rundung nach 15.4 Anmerkung 4. Keine Herleitung auf den alten Listen: historischer Stand aus dem Doppellauf (41.2 B6/B7, R97 (a)); ein Wert daraus stünde als zweiter neben 13 (37.5 (2)). D4 vergleicht P90 gegen den Bericht TB-24, eine Grösse ausserhalb des Registers aus ausgeführten Positionen; mit der Neuerzeugung entfällt dieser Vergleich: Die Herleitung des Deckels wird mit erzeugten Beispieldaten geprüft (bekanntes Perzentil, Aufrundung, plus 1; Störprobe in beide Richtungen, 41.1 A5; Bauart R46), nicht gegen einen früheren Wert und nicht gegen sich selbst, ohne Ausnahme für einen Bot. Bis dahin bleibt D4 unverändert; die t3-Abweichung ist ein Befund der alten Listen, kein Fehler. Mit der Neuerzeugung liest die Herleitung die neuen Listen, oder embargo_neun.py wird historischer Stand (41.2 B6/B7). (d) Startkapital. 29.3 nennt „das registrierte Startkapital“; einen Wert nennt das Register nach 29.2 nicht. [Voraussetzung, zu messen: dass am Stand 7fe6342 kein Abschnitt einen Wert für das Startkapital nennt; nennt einer ihn, ist er der Ort, und dieser Unterpunkt gilt für ihn.] Befund an 29.3: ein registrierter Wert ohne Ort (37.5). Reihenfolge: (1) Wert und Ort ins Register nach 37.5 (1) bis (3), ein Modul, eine Konstante, auf der Sperrliste, Sonde prüft Datei und Wert; der Wert ist der heute in den neun equity_simulation.py gelesene, Tatsachennotiz mit Fundstelle je Datei [zu messen: dass alle neun denselben Wert tragen, sonst Befund an 29.3]; Ort ist das Modul aus 38.5, kein neuer. (1) kommt vor dem Bauauftrag der Leser oder als dessen erster Schritt. (2) Die Leser (TB-175/176) lesen diesen Ort ab ihrem Bau, vor ihrer ersten Messung, weder Meta-Zeile noch es.STARTING_CAPITAL. (3) Die neun Kopien in equity_simulation.py sind ein Befund zu 37.5 (2); Abhilfe wie 38.5 (Import aus dem Ort), nach 37.3 (die neun stehen auf der Sperrliste, 58.5), vor dem Tag; vor oder nach R44 ist Handwerk, weil R44 auf dem Signalpfad läuft (41.1 A12). (e) R107 (b). Die Teilmessung reicht nicht: TB-169 3b vergleicht Schranke am Tag gegen Schranke am natürlichen Tag; dass diese nichts nimmt, ist erschlossen, und der Codeweg der Schranke läuft in beiden Läufen; die Voraussetzung verlangt die Gleichheit mit und ohne Schranke. Nachgeholt wird eine Prüfung: derselbe späte Symbolfall, Lauf mit Schranke am Tag gegen Lauf ohne Schranke, Wachen nach R86 (d) und R87 (c) eingeschaltet, Ausgaben bytegleich, Zählzeile der von der Schranke entfernten Zeilen (0), Lesehaken nach 41.2 B4 (b) (schliesst Einschränkung B für diesen Lauf); für t3_supertrend und die zwei Elliott-Bots in einem Lauf (Handwerk). R106 (c) bleibt stehen; weicht die Prüfung ab, ist das ein Befund daran und kommt als Frage. Bis dahin ist die Bedingung des Tags aus R105 (c) für t3_supertrend offen; R107 (b) bleibt zeichengleich. (f) Marken, der alte Satz bleibt zeichengleich: 62.2 (R101) — ERGÄNZT durch R108, Unterpunkt (a); BERICHTIGT durch R108, Unterpunkt (a). 16.4 — ERGÄNZT durch R108, Unterpunkt (b). 16.8 — ERGÄNZT durch R108, Unterpunkt (b). 16.6 — ERGÄNZT durch R108, Unterpunkt (c). 41.3 C2 — ERGÄNZT durch R108, Unterpunkt (c). 29.3 — ERGÄNZT durch R108, Unterpunkt (d). 37.5 — ERGÄNZT durch R108, Unterpunkt (d). 66.1 (R106) — ERGÄNZT durch R108, Unterpunkt (e). R107 (sobald eingetragen) — ERGÄNZT durch R108, Unterpunkte (b) bis (e). S-B1-Vorregistrierung 10a.2 — ERGÄNZT durch 10a.5 (Unterpunkt (a)). Ohne Marke: 15.4, 17.1, 24.3, 37.3, 38.5, 40.7, 41.1, 41.2, 58.4, 58.5, 62.5, 66.2, Abschnitt 10, S-B1 2, 3.2, 9, 10a.4. Zählung: kein Fall; sechzehn.
 > Quelle des Grundes: R101, 10a.2, 10a.4, S-B1 Abschnitt 2, 3.2, 9 im Wortlaut (Ablage-Kopie, Stand 16.09.2026), 62.5 (d), R107 (b), (d), (e), R106 (c), (d), 16.4 (a), (e), 16.8 (e), 16.9, 24.3, 16.6, 41.3 C2, 15.4 Anm. 4, 41.2 B1, B4, B6/B7, 41.1 A5, A12, R97 (a), (b), R94 (b), R46 nach R94, 29.2, 29.3, 37.5 (1) bis (3), 38.5 nach der Wiedergabe in 37.5, 37.3, 58.5, 66.2 (a), R86 (d) und R87 (c) nach der Wiedergabe in R106, die Anfrage 17.10.c (Befunde, Zahlen, TB-169, Code nach Wiedergabe). 9, 10, 11, 56, 57 und Code nicht gelesen. Kein Ergebnis.
 
+> ⭐ **68.1 R108 BERICHTIGT und ERGÄNZT durch R109 (69.1)** (Fable 17d R109, Unterpunkt (a): BERICHTIGT („lies“); Unterpunkte (a) und (b): ERGÄNZT, TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 **Kette:** Marken nach R108 (f): 62.2 (R101), Unterpunkt (a), ergänzt und berichtigt; 16.4 und 16.8, Unterpunkt (b); 16.6 und 41.3 C2, Unterpunkt (c); 29.3 und 37.5, Unterpunkt (d); 66.1 (R106), Unterpunkt (e); 67.1 (R107), Unterpunkte (b) bis (e); S-B1-Vorregistrierung 10a.2, ergänzt durch den Nachtrag 10a.5 (Unterpunkt (a)). Ohne Marke: 15.4, 17.1, 24.3, 37.3, 38.5, 40.7, 41.1, 41.2, 58.4, 58.5, 62.5, 66.2, Abschnitt 10, S-B1 2, 3.2, 9, 10a.4. Zählung: kein Fall; sechzehn (R108 (f)). Nicht mit TB-176a: Wert und Ort des Startkapitals (R108 (d) (1) bis (3)) und die nachgeholte Prüfung nach R108 (e) (BACKLOG Rang 1).
 
 ### 68.2 Voraussetzungen und Befunde
@@ -12783,3 +12810,85 @@ Gemessen vor dem Eintrag mit `docs/belege/TB-176a/v_voraussetzung.txt` (Werkzeug
 (b) R108 (a): Der Nachtrag 10a.5 steht im Wortlaut aus R108 (a) in `docs/VORREGISTRIERUNG_S-B1_etf_trendfolge.md`; die Tatsachennotiz mit äusserer Quelle und Datum (kein UCITS-Fonds auf ein einzelnes Edelmetall) liegt im Repo nicht vor und ist nicht eingetragen.
 
 (c) R56 (b): Anfrage, Antwort und Übergabe 17.10.c liegen seit `17648ad` im Repo (aus `data_sicherung/steuernder_chat_tmp/f17c/`, md5 vorher = nachher, `docs/belege/TB-176a/0a_md5.txt`).
+
+## 69. Fable 17d — Registerblock R109 (TB-178)
+
+Reines Eintragen von Registertext, Bauart wie 67 und 68. Quelle ist allein `docs/projektfuehrung/FABLE_ANTWORT_2026-10-17d_59_1_beleg_kein_ort_spaetes_symbol_gebaut.md`, md5 `3b886ee769174d7c474679dd4452c9eb`, 6 141 B, Abschnitt „Registerblock — zeichengleich kopierbar, nummeriert (ab R109)“, Z. 15–18, im Repo seit Commit `14833dd`. Nicht eingetragen werden „Kurz“, Erschlossenes, Leseprotokoll und Ampel der Antwort. Zum Dialog gehören die Anfrage 17.10.d (`docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17d_r108d_startkapital_r108e_spaetes_symbol.md`) und die Übergabe 17.10.d (`docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17d_eroeffnung.md`), beide seit `14833dd`. Marken nach R109 (c). Karte des Betreibers (Auftrag TB-178, Abschnitt Freigabe, wörtlich): „Karte des Betreibers im Chat 35 („Opus Trading Bots-17.10.2026 b“), 17.10.2026, Frage und Antwort im Wortlaut (aus dem Sitzungsprotokoll, per Skript, Zeit 2026-10-17T20:15:56.508Z UTC): Your questions have been answered: "Gibst du TB-178 frei? Der Auftrag macht drei Dinge. (1) Er bringt Anfrage, Übergabe und Antwort von Fable 17.10.d und 17.10.e unverändert ins Repo, mit md5 vorher und nachher. (2) Er schreibt Register 69 (R109) und 70 (R110) zeichengleich aus den Antworten, dazu zehn Marken, Index und Kopien. (3) Er prüft am Mac den späten Symbolfall für t3_supertrend, elliott_wave und elliott_wave_stocks: mit und ohne Schranke bytegleich, dazu die Gegenprobe in beide Richtungen. Die Probe liegt mit Prüfzahl im Repo. In der Simulation lief t3 58/58 und elliott_wave 11/11 bytegleich, und die Gegenproben schlugen an. Ist die Prüfung grün, ist die Bedingung des Tags aus R105 (c) für alle drei Bots erfüllt. Kein Handelscode, keine Kursdaten aus data/, kein Geld. Das Startkapital (Sperrliste, Konstante, Test-Anpassung) ist Handelscode und kommt als eigener Auftrag TB-180 mit frischem Gegenleser. bau.sh endet mit rc 0, simuliert auf dem Gerät mit Python 3.10, am Mac läuft 3.9. Gesendet wird erst nach einer eigenen Karte „Senden?“. TB-179 (Regeln der KI-Forschung) folgt danach; ich passe ihn an den neuen Stand an. Empfehlung: freigeben."="Freigeben (Recommended)". You can now continue with these answers in mind.“ Eingetragen am 17.10.2026 mit TB-178.
+
+### 69.1 R109 — Berichtigung („lies“) und Ergänzung zu R108 (d) (Startkapital: 59.1 ist Beleg, kein Ort); Ergänzung zu R108 (e) und R107 (b)…
+
+> R109 — Berichtigung („lies“) und Ergänzung zu R108 (d) (Startkapital: 59.1 ist Beleg, kein Ort); Ergänzung zu R108 (e) und R107 (b) (67.1), Berichtigung („lies“) zu R106 (c) (66.1) (der späte Symbolfall). (a) Startkapital. In R108 (d) lies „dass am Stand 7fe6342 kein Abschnitt einen Wert für das Startkapital nennt; nennt einer ihn, ist er der Ort“ als „dass am Stand 7fe6342 kein Registertext und keine Festlegung einen Wert für das Startkapital festlegt; eine Tatsachennotiz, die den Wert nennt, ist Beleg, kein Ort“. So gelesen ist sie gemessen erfüllt (Anfrage 17.10.d: einziger Treffer mit Wert ist 59.1; 29.2: 0). 59.1 legt nichts fest: sie berichtet den Parameter einer Messung ausserhalb des Laufcodes (24.6) und nennt weder Modul noch Konstante (37.5 (1)); sie bleibt zeichengleich, ohne Marke (R96 (d)). Die Reihenfolge aus R108 (d) bleibt. Der Registertext nach (1) lautet als Ergänzung zu 29.3: „Das registrierte Startkapital ist 10 000, wie der Code es am Commit der Tatsachennotiz in den neun strategies/<bot>/equity_simulation.py trägt; sein Ort ist eine Konstante im Modul aus 38.5, mit Hash auf der Sperrliste; die Sonde prüft Datei und Wert (37.5 (1)).“ Eingetragen wird er, wenn die Tatsachennotiz nach R108 (d) (1) die neun Fundstellen mit Commit nennt; bis dahin ist ihre Gleichheit Vormessung an einer Kopie. Die dritte Konstante im Modul aus 38.5 ist eine beauftragte Änderung nach 37.3; Name und Docstring sind Handwerk. 59.1 ist Beleg, nicht Grund. (b) Später Symbolfall. Die Prüfung nach R108 (e) läuft an einem Symbol, dessen Reihe vor seinem Handelbar-Tag (R87 (a): je Symbol, aus der Rechnung nach 23.5, R87 (c)) kein Einstiegssignal des Bots trägt (R90 (g) nach R107 (b)); der Tag gilt nur diesem Symbol. Der Fall wird herbeigeführt (R106 (b)): ein eingesetztes Symbol mit spätem Datenbeginn, ohne Signal bis zum Handelbar-Tag. Beide Läufe mit Wachen nach R86 (d) und R87 (c): mit Schranke rc 0, Zählzeile 0; ohne Schranke rc 0, Ausgaben bytegleich. Endet der Lauf ohne Schranke mit 2 oder entfernt die Schranke Zeilen, trägt das Symbol Signale vor dem Tag; das ist der Verdrängungsfall nach R105 (c) (TB-171, TB-174), nicht dieser. Ein von einem Test gesetzter Tag ist kein Handelbar-Tag nach R87 (a). [Voraussetzung, zu messen, nur das Wie: woher TB-169 3b und die Probe den Tag des späten Symbols nehmen — aus der Rechnung nach 23.5 oder gesetzt.] Stand: elliott_wave_stocks erfüllt mit TB-169 3b (6 von 6, bytegleich, 0 entfernt), unter dieser Voraussetzung; t3_supertrend und elliott_wave am gebauten Fall. In R106 (c) lies „Die Gleichheit der Ausgaben mit und ohne Schranke an einem Symbol ohne Signal vor dem Tag steht mit TB-169 (Prüfung 3b, nach der Wiedergabe in der Anfrage 17.10.a).“ als „… steht für elliott_wave_stocks mit TB-169 3b; für elliott_wave wird sie am gebauten Fall gezeigt (R109 (b)).“ Weg 1 bleibt für alle drei Bots geschlossen; die Bedingung des Tags aus R105 (c) ist für elliott_wave_stocks erfüllt, für t3_supertrend und elliott_wave offen bis zur Prüfung. Die Voraussetzung in R107 (b) ist gemessen nicht erfüllt. R106 (c) im Übrigen und R107 (b) bleiben zeichengleich. Zählung: kein Fall; sechzehn. (c) Marken, der alte Satz bleibt zeichengleich: R108 (sobald eingetragen) — BERICHTIGT durch R109, Unterpunkt (a); ERGÄNZT durch R109, Unterpunkte (a) und (b). 29.3 — ERGÄNZT durch R109, Unterpunkt (a). 66.1 (R106) — BERICHTIGT durch R109, Unterpunkt (b). 67.1 (R107) — ERGÄNZT durch R109, Unterpunkt (b). Ohne Marke: 59.1, 29.2, 24.6, 37.3, 37.5, 38.5, 23.5, 56.3 (R86), 56.4 (R87), 57.1 (R90), 65.2 (R105), 66.2, 67.2, Abschnitt 10.
+> Quelle des Grundes: 29.2, 29.3, 37.5, 38.5, 59 und 59.1 im Wortlaut, 24.6 und R96 (d) nach 59, R86 (d), R87 (a), (c), R106 (b), (c), R107 (b), (e), 67.2, R108 (d), (e), R90 (g), R105 (c) und 23.5 nach Wiedergabe, die Anfrage 17.10.d (Treffer, Code, BAU176 nach Wiedergabe). 23, 57, 65 und Code nicht gelesen. Kein Ergebnis.
+
+> ⭐ **69.1 R109 BERICHTIGT und ERGÄNZT durch R110 (70.1)** (Fable 17e R110, Unterpunkte (a) und (b): BERICHTIGT („lies“); Unterpunkte (a) bis (c): ERGÄNZT, TB-178, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+**Kette:** Marken nach R109 (c): 68.1 (R108), Unterpunkt (a) berichtigt, Unterpunkte (a) und (b) ergänzt; 29.3, Unterpunkt (a); 66.1 (R106), Unterpunkt (b), berichtigt; 67.1 (R107), Unterpunkt (b). Ohne Marke: 59.1, 29.2, 24.6, 37.3, 37.5, 38.5, 23.5, 56.3 (R86), 56.4 (R87), 57.1 (R90), 65.2 (R105), 66.2, 67.2, Abschnitt 10. Zählung: kein Fall; sechzehn (R109 (b)).
+
+### 69.2 Voraussetzungen und Befunde
+
+Gemessen vor dem Eintrag mit `docs/belege/TB-178/v_voraussetzung.txt` (Werkzeug `voraussetzung`, Anhang A des Auftrags TB-178), Zeilen wörtlich:
+
+    ja    unveraendert: research/exposure_messung/bot_lauf.py md5 01fd9282ded2
+    ja    unveraendert: research/faltenplan_neun/faltenschranke_messung.py md5 584d9ff959da
+    ja    unveraendert: research/tb24_haltedauern/haltedauer_kern.py md5 60942de99b32
+    ja    unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+    ja    unveraendert: research/tb24_haltedauern/test_listen_erzeuger.py md5 d77e73ed5ff7
+    ja    unveraendert: strategies/elliott_wave/multi_symbol_optimise.py md5 bf11370b140d
+    ja    unveraendert: strategies/elliott_wave_stocks/multi_symbol_optimise.py md5 571076168d56
+    ja    unveraendert: strategies/t3_supertrend/multi_symbol_optimise.py md5 dc85993e8d42
+    ja    BACKLOG Rang 1 genau einmal, endet mit ' |', noch ohne TB-178
+    ja    Journal: hoechste FN (FN am Bau-HEAD)
+    ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17d_r108d_startkapital_r108e_spaetes_symbol.md verfolgt, gleich HEAD, md5 007196934a22163335439c2888886047
+    ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANTWORT_2026-10-17d_59_1_beleg_kein_ort_spaetes_symbol_gebaut.md verfolgt, gleich HEAD, md5 3b886ee769174d7c474679dd4452c9eb
+    ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17d_eroeffnung.md verfolgt, gleich HEAD, md5 b968fc124c5361f03e0f1118fdec1994
+    ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17e_r109_tag_gesetzt_sperrliste_sonde.md verfolgt, gleich HEAD, md5 36389b7829a6e77c3ebe327fc58b7d25
+    ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANTWORT_2026-10-17e_drei_bots_am_fall_punkt9_pfad_sonde_wert_probe_handwerk.md verfolgt, gleich HEAD, md5 1d964b3107485a44ba29467ebc56c34a
+    ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17e_eroeffnung.md verfolgt, gleich HEAD, md5 a204bed16a9f30adda7c2b34489856ba
+    ja    Registerblock 17d: genau R109 und Quelle im Codeblock (Z. 15–18)
+    ja    Registerblock 17e: genau R110 und Quelle im Codeblock (Z. 17–20)
+    ja    Register: 68 da, 69 und 70 nicht; R109/R110 0 Treffer
+    ja    Register endet mit genau einer Leerzeile
+    ja    Ort 68.1 (R109): Einfuegestelle vor Z. 12725 eindeutig, R109 dort noch nicht genannt
+    ja    Ort 29.3 (R109): Einfuegestelle vor Z. 5458 eindeutig, R109 dort noch nicht genannt
+    ja    Ort 66.1 (R109): Einfuegestelle vor Z. 12590 eindeutig, R109 dort noch nicht genannt
+    ja    Ort 67.1 (R109): Einfuegestelle vor Z. 12659 eindeutig, R109 dort noch nicht genannt
+    ja    Ort 66.1 (R110): Einfuegestelle vor Z. 12590 eindeutig, R110 dort noch nicht genannt
+    ja    Ort 37.2 (R110): Einfuegestelle vor Z. 7034 eindeutig, R110 dort noch nicht genannt
+    ja    Ort 37.5 (R110): Einfuegestelle vor Z. 7288 eindeutig, R110 dort noch nicht genannt
+    ja    Ort 29.3 (R110): Einfuegestelle vor Z. 5458 eindeutig, R110 dort noch nicht genannt
+    ja    Ort 38.5 (R110): Einfuegestelle vor Z. 7554 eindeutig, R110 dort noch nicht genannt
+    ja    Index-Kopf Z. 3 nennt 0–68
+    ja    Index: Zeile 68, Pflegezeile TB-176a, Pflege-Anker, Abschnitt 19 je genau einmal; kein Abschnitt 20
+    ja    Dialog-Index: 17d und 17e noch nicht
+    ja    R109 (b) Voraussetzung lesbar: research/tb24_haltedauern/test_listen_erzeuger.py hb() und Pruefung 3b je genau eine Zeile
+    info  R109 (b) Voraussetzung (Messung, kein Urteil; R110 (a): gesetzt): research/tb24_haltedauern/test_listen_erzeuger.py Z. [76] `x.update(t)` in hb() - die vom Test uebergebenen Tage ueberschreiben die Rechnung; Z. [161] Pruefung 3b setzt den Tag von CCC (`json.dumps({"CCC": ...})`)
+    ja    Probe noch nicht im Repo (docs/belege/TB-178/tb178_probe_spaetes_symbol.py)
+    Pruefungen: 34, NEIN: 0
+
+(a) R109 (b), Voraussetzung (nur das Wie), gemessen durch Lesen am Commit `14833dd`: `research/tb24_haltedauern/test_listen_erzeuger.py` setzt den Tag selbst — `hb()` überschreibt die Rechnung mit den vom Test übergebenen Tagen (`x.update(t)`, Z. 76), Prüfung 3b übergibt den Tag von CCC (Z. 161). Ergebnis: gesetzt; so eingetragen in R110 (a) (70.1).
+
+(b) R109 (a): Der Registertext zu 29.3 wird mit TB-178 nicht eingetragen; er folgt dem Bauauftrag nach 37.3 aus R110 (b) (70.1) in der dort berichtigten Fassung.
+
+(c) R56 (b): Anfrage, Antwort und Übergabe 17.10.d liegen seit `14833dd` im Repo (aus `data_sicherung/steuernder_chat_tmp/f17d/`, md5 vorher = nachher, `docs/belege/TB-178/0a_md5.txt`).
+
+## 70. Fable 17e — Registerblock R110 (TB-178)
+
+Reines Eintragen von Registertext, Bauart wie 67 und 68. Quelle ist allein `docs/projektfuehrung/FABLE_ANTWORT_2026-10-17e_drei_bots_am_fall_punkt9_pfad_sonde_wert_probe_handwerk.md`, md5 `1d964b3107485a44ba29467ebc56c34a`, 5 115 B, Abschnitt „Registerblock — zeichengleich kopierbar (ab R110)“, Z. 17–20, im Repo seit Commit `14833dd`. Nicht eingetragen werden „Kurz“, Erschlossenes, Leseprotokoll und Ampel der Antwort. Zum Dialog gehören die Anfrage 17.10.e (`docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17e_r109_tag_gesetzt_sperrliste_sonde.md`) und die Übergabe 17.10.e (`docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17e_eroeffnung.md`), beide seit `14833dd`. Marken nach R110 (d). Karte des Betreibers (Auftrag TB-178, Abschnitt Freigabe, wörtlich): „Karte des Betreibers im Chat 35 („Opus Trading Bots-17.10.2026 b“), 17.10.2026, Frage und Antwort im Wortlaut (aus dem Sitzungsprotokoll, per Skript, Zeit 2026-10-17T20:15:56.508Z UTC): Your questions have been answered: "Gibst du TB-178 frei? Der Auftrag macht drei Dinge. (1) Er bringt Anfrage, Übergabe und Antwort von Fable 17.10.d und 17.10.e unverändert ins Repo, mit md5 vorher und nachher. (2) Er schreibt Register 69 (R109) und 70 (R110) zeichengleich aus den Antworten, dazu zehn Marken, Index und Kopien. (3) Er prüft am Mac den späten Symbolfall für t3_supertrend, elliott_wave und elliott_wave_stocks: mit und ohne Schranke bytegleich, dazu die Gegenprobe in beide Richtungen. Die Probe liegt mit Prüfzahl im Repo. In der Simulation lief t3 58/58 und elliott_wave 11/11 bytegleich, und die Gegenproben schlugen an. Ist die Prüfung grün, ist die Bedingung des Tags aus R105 (c) für alle drei Bots erfüllt. Kein Handelscode, keine Kursdaten aus data/, kein Geld. Das Startkapital (Sperrliste, Konstante, Test-Anpassung) ist Handelscode und kommt als eigener Auftrag TB-180 mit frischem Gegenleser. bau.sh endet mit rc 0, simuliert auf dem Gerät mit Python 3.10, am Mac läuft 3.9. Gesendet wird erst nach einer eigenen Karte „Senden?“. TB-179 (Regeln der KI-Forschung) folgt danach; ich passe ihn an den neuen Stand an. Empfehlung: freigeben."="Freigeben (Recommended)". You can now continue with these answers in mind.“ Eingetragen am 17.10.2026 mit TB-178.
+
+### 70.1 R110 — Berichtigung („lies“) zu R109 (a) und (b) (Fable 17d); Ergänzung zu R109 (b), R106 (c) (66.1), 37.2, 37.5 und 29.3; Tatsachennotiz…
+
+> R110 — Berichtigung („lies“) zu R109 (a) und (b) (Fable 17d); Ergänzung zu R109 (b), R106 (c) (66.1), 37.2, 37.5 und 29.3; Tatsachennotiz zu 38.5. (a) Später Symbolfall. In R109 (b) lies „Stand: elliott_wave_stocks erfüllt mit TB-169 3b (6 von 6, bytegleich, 0 entfernt), unter dieser Voraussetzung; t3_supertrend und elliott_wave am gebauten Fall.“ als „Stand: TB-169 3b setzt den Tag selbst (test_listen_erzeuger.py, hb) und trägt keinen Bot; alle drei Bots am gebauten Fall.“ und im „lies“ zu R106 (c) „für elliott_wave wird sie am gebauten Fall gezeigt (R109 (b))“ als „für alle drei Bots wird sie am gebauten Fall gezeigt (R109 (b), R110 (a))“. Die Voraussetzung in R109 (b) ist gemessen: gesetzt. Dass kein Symbol des Falls vor seinem Handelbar-Tag (23.5) ein Signal trägt, ist Bedingung des Falls, nicht Ergebnis. Gegenprobe (40.7, 41.1 A5): ein Symbol mit Signal vor seinem Tag — ohne Schranke 2, mit Schranke Zählzeile über 0, rc 0. Abnahme am Erzeuger auf dem Mac (R106 (b)): Probe mit sha256 im Repo, 6 von 6 je Bot, Gegenprobe beide Seiten; dann ist die Bedingung des Tags aus R105 (c) für alle drei Bots erfüllt, R107 (b) erledigt; bis dahin offen. Nur das Ob: ob eine andere Abnahme in 64.1 allein auf 3b steht. (b) Ort. In R109 (a) lies „sein Ort ist eine Konstante im Modul aus 38.5, mit Hash auf der Sperrliste; die Sonde prüft Datei und Wert (37.5 (1))“ als „sein Ort ist die Konstante STARTING_CAPITAL in shared/handelskosten.py (38.5), sobald dieses Modul nach 38.5 als Nachtrag zu Punkt 9 mit Pfad und Hash auf der Sperrliste steht; die Sonde prüft Datei und Wert (37.5 (1))“. Tatsachennotiz zu 38.5: Der angeordnete Nachtrag zu Punkt 9 fehlt (Register, Abbild je 0 Treffer); das Modul ist ein bestimmter Pfad (36.1, 37.2): Gruppe „bestimmt“ nicht leer, Abbild führt sie leer. Ein Bauauftrag nach 37.3: (1) Nachtrag zu Punkt 9 mit Pfad, drei Bezeichnern, Hash des Stands nach (2), Punkttext zeichengleich (38.4); (2) Konstante hinzu; (3) neues Abbild unter neuem Namen; (4) Ergänzung zu 29.3 nach R109 (a) in der Fassung oben, mit den neun Fundstellen aus 68.2 (a) und Commit. Sonde: Der Datei-Hash ist die Sperre; der Wert ist Nachweis, dass der gesperrte Wert der registrierte ist (37.5 (1)). Bis zum Tag genügt 2 mit Tatsachennotiz (Wert in Datei gleich Registerwert, am Commit; 37.1), am Tag Sonde oder Notiz zum Tag-Commit; keine neue Bauart, Umbau der Sonde Handwerk mit Freigabe (37.6). (c) Probe. shared/test_ergebniskurven.py anzupassen ist Handwerk in der Freigabe des Bauauftrags (R31 (b)): Mutation am Ort, genau einmal; alle neun Kurven weichen ab, zurückgesetzt bytegleich (41.1 A5); bleibt eine gleich, Befund zu 37.5 (2). Zählung: kein Fall; sechzehn. (d) Marken, der alte Satz bleibt zeichengleich: R109 (sobald eingetragen) — BERICHTIGT durch R110, Unterpunkte (a) und (b); ERGÄNZT durch R110, Unterpunkte (a) bis (c). 66.1 (R106) — ERGÄNZT durch R110, Unterpunkt (a). 37.2 — ERGÄNZT durch R110, Unterpunkt (b). 37.5 — ERGÄNZT durch R110, Unterpunkt (b). 29.3 — ERGÄNZT durch R110, Unterpunkt (b). 38.5 — ERGÄNZT durch R110, Unterpunkt (b). Ohne Marke: 36.1, 37.1, 37.3, 37.6, 38.4, 56.4, 64.1, 67.1, 68.2, Abschnitt 10 (Indexzeile Punkt 9).
+> Quelle des Grundes: R109, R106 (b), (c), R107 (b), R87 (a), (c), 37.1, 37.2, 37.5, 37.6, 38.4, 38.5, 36.1 nach 37.2, 40.7, 41.1 A5, R31 (b) nach Wiedergabe, 68.2 (a), 10 Punkt 9, die Anfrage 17.10.e. Code nicht gelesen. Kein Ergebnis.
+
+**Kette:** Marken nach R110 (d): 69.1 (R109), Unterpunkte (a) und (b) berichtigt, (a) bis (c) ergänzt; 66.1 (R106), Unterpunkt (a); 37.2, 37.5, 29.3 und 38.5, Unterpunkt (b). Ohne Marke: 36.1, 37.1, 37.3, 37.6, 38.4, 56.4, 64.1, 67.1, 68.2, Abschnitt 10 (Indexzeile Punkt 9). Zählung: kein Fall; sechzehn (R110).
+
+### 70.2 Voraussetzungen und Befunde
+
+Voraussetzungen: dieselbe Messung wie 69.2 (`docs/belege/TB-178/v_voraussetzung.txt`).
+
+(a) R110 (a): Die Abnahme am Erzeuger (Probe mit sha256 im Repo, 6 von 6 je Bot, Gegenprobe beide Seiten) folgt in TB-178 nach diesem Eintrag (Schritt P); ihr Ergebnis steht im Ergebnis TB-178, nicht hier. Bis dahin offen.
+
+(b) R110 (b) und (c): Der Bauauftrag nach 37.3 (Nachtrag zu Punkt 9, Konstante, neues Abbild, Ergänzung zu 29.3) und die Probe in `shared/test_ergebniskurven.py` sind Handelscode und nicht Teil von TB-178.
+
+(c) R56 (b): Anfrage, Antwort und Übergabe 17.10.e liegen seit `14833dd` im Repo (aus `data_sicherung/steuernder_chat_tmp/f17e/`, md5 vorher = nachher, `docs/belege/TB-178/0a_md5.txt`).

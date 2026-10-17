@@ -1,0 +1,13 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-178/v_voraussetzung.txt)
+ja    Quelle 17d md5 3b886ee769174d7c474679dd4452c9eb, Registerblock R109
+ja    Quelle 17e md5 1d964b3107485a44ba29467ebc56c34a, Registerblock R110
+ja    69 und 70 noch nicht im Register; endet mit einer Leerzeile
+ja    Karte TB-178 gefuellt (Abschnitt Freigabe des Auftrags)
+ja    R109: 4 Einfuegestellen eindeutig (68.1 vor Z. 12725, 29.3 vor Z. 5458, 66.1 vor Z. 12590, 67.1 vor Z. 12659)
+ja    R110: 6 Einfuegestellen eindeutig (69.1 vor Z. 12807, 66.1 vor Z. 12596, 37.2 vor Z. 7037, 37.5 vor Z. 7291, 29.3 vor Z. 5461, 38.5 vor Z. 7557)
+ja    nachher: 10 Marken Z. [5459, 5462, 7041, 7298, 7567, 12606, 12609, 12681, 12750, 12823]; Abschnitt 69 Z. 12814, 70 Z. 12875
+ja    R109 mit Quellenzeile je genau einmal zeichengleich (Zeichenvergleich mit dem Codeblock)
+ja    R110 mit Quellenzeile je genau einmal zeichengleich (Zeichenvergleich mit dem Codeblock)
+ja    Register append-only bis auf die 10 Marken (je Leerzeile, Marke, Zeichengleich-Zeile)
+Pruefungen: 11, NEIN: 0
+rc 0

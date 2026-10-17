@@ -1,0 +1,2 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+?? docs/auftraege/MAC_TB-178_register69_70_fable17d17e_spaetes_symbol.md

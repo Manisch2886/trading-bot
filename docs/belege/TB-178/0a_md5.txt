@@ -1,0 +1,8 @@
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17d/FABLE_ANFRAGE_2026-10-17d_r108d_startkapital_r108e_spaetes_symbol.md = nachher docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17d_r108d_startkapital_r108e_spaetes_symbol.md = 007196934a22163335439c2888886047
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17d/FABLE_ANTWORT_2026-10-17d_59_1_beleg_kein_ort_spaetes_symbol_gebaut.md = nachher docs/projektfuehrung/FABLE_ANTWORT_2026-10-17d_59_1_beleg_kein_ort_spaetes_symbol_gebaut.md = 3b886ee769174d7c474679dd4452c9eb
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17d/FABLE_UEBERGABE_2026-10-17d_eroeffnung.md = nachher docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17d_eroeffnung.md = b968fc124c5361f03e0f1118fdec1994
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17e/FABLE_ANFRAGE_2026-10-17e_r109_tag_gesetzt_sperrliste_sonde.md = nachher docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17e_r109_tag_gesetzt_sperrliste_sonde.md = 36389b7829a6e77c3ebe327fc58b7d25
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17e/FABLE_ANTWORT_2026-10-17e_drei_bots_am_fall_punkt9_pfad_sonde_wert_probe_handwerk.md = nachher docs/projektfuehrung/FABLE_ANTWORT_2026-10-17e_drei_bots_am_fall_punkt9_pfad_sonde_wert_probe_handwerk.md = 1d964b3107485a44ba29467ebc56c34a
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17e/FABLE_UEBERGABE_2026-10-17e_eroeffnung.md = nachher docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17e_eroeffnung.md = a204bed16a9f30adda7c2b34489856ba
+Pruefungen: 6, NEIN: 0
+rc 0
