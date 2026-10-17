@@ -1,0 +1,5 @@
+ja    Kopfzeile ## FI — TB-172: …
+ja    Anker genau einmal, davor '---' und Leerzeile
+ja    Block: eine ## -Zeile, kein ---, Teile da
+Pruefungen: 3, NEIN: 0
+rc 0

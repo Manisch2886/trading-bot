@@ -1,0 +1,4 @@
+ja    Urteile aus m1 (3) und m2 (1) gelesen
+ja    BACKLOG Rang 1 genau einmal, Stand TB-171
+Pruefungen: 2, NEIN: 0
+rc 0
