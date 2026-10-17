@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-172** | `docs/auftraege/MAC_TB-172_verfahrensmessung_r102d_r92c.md` | Verfahrensmessung R102 (d) (Indikatoren vor Horizontbeginn, drei Aktien-Bots) und R92 (c) (open_time-Form am Snapshot), nur Lesen (Karte 17.10.2026, 15:21) |
+| **TB-173** | `docs/auftraege/MAC_TB-173_register66_fable17a.md` | Register 66: R106 aus Fable 17.10.a mit Marken, Voraussetzung R106 (c) gemessen, Fable-Dateien 17a, BACKLOG (Karte 17.10.2026, 16:27) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
