@@ -1,0 +1,2 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+?? docs/auftraege/MAC_TB-177_ki_forschung_ba1.md

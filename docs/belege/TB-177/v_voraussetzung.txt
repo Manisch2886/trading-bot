@@ -1,0 +1,7 @@
+ja   md5 shared/claude_client.py = Bau
+ja   md5 notifications/monitor.py = Bau
+ja   md5 shared/paths.py = Bau
+ja   ki_forschung/ fehlt
+ja   kein Modul in shared/strategies/notifications nennt ki_forschung []
+Pruefungen: 5, NEIN: 0
+rc 0
