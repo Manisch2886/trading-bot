@@ -1,0 +1,10 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-173/v_voraussetzung.txt)
+ja    Quelle md5 e222920fc17f72fb7f516d41a6203457, Registerblock R106
+ja    66 noch nicht im Register; endet mit einer Leerzeile
+ja    4 Einfuegestellen eindeutig
+ja    Karte TB-173 gefuellt (Abschnitt Freigabe des Auftrags)
+ja    nachher: 4 Marken Z. [12006, 12240, 12455, 12476]; Abschnitt 66 Z. 12531
+ja    R106 mit Quellenzeile je genau einmal zeichengleich (Zeichenvergleich mit dem Codeblock)
+ja    append-only bis auf die vier Marken (je Leerzeile, Marke, Zeichengleich-Zeile)
+Pruefungen: 8, NEIN: 0
+rc 0

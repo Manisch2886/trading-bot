@@ -1,0 +1,5 @@
+ja    md5 docs/projektfuehrung/FABLE_ANTWORT_2026-10-17a_r105c_elliott_geschlossen_t3_weg1.md = e222920fc17f72fb7f516d41a6203457
+ja    md5 docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17a_r105c_weg1_elliott_t3.md = fae73317801514cd86be1f9101a1c401
+ja    md5 docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17a_eroeffnung.md = 2d1b9293fc22e8c79a0111655302ad5c
+Pruefungen: 3, NEIN: 0
+rc 0

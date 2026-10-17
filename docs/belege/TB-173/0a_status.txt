@@ -1,0 +1,5 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+?? docs/auftraege/MAC_TB-173_register66_fable17a.md
+?? docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17a_r105c_weg1_elliott_t3.md
+?? docs/projektfuehrung/FABLE_ANTWORT_2026-10-17a_r105c_elliott_geschlossen_t3_weg1.md
+?? docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17a_eroeffnung.md

@@ -1,0 +1,45 @@
+ja    R56 (b)/0a-Datei: docs/projektfuehrung/FABLE_ANTWORT_2026-10-17a_r105c_elliott_geschlossen_t3_weg1.md verfolgt, gleich HEAD, md5 e222920fc17f72fb7f516d41a6203457
+ja    R56 (b)/0a-Datei: docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17a_r105c_weg1_elliott_t3.md verfolgt, gleich HEAD, md5 fae73317801514cd86be1f9101a1c401
+ja    R56 (b)/0a-Datei: docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17a_eroeffnung.md verfolgt, gleich HEAD, md5 2d1b9293fc22e8c79a0111655302ad5c
+ja    Registerblock 17a: genau R106 und Quelle im Codeblock (Z. 28–31)
+ja    Register: 65 da, 66 nicht; R106 0 Treffer
+ja    Register endet mit genau einer Leerzeile
+ja    Ort 65.2: Einfuegestelle nach Z. 12465 eindeutig, R106 dort noch nicht genannt
+ja    Ort 57.1: Einfuegestelle nach Z. 12004 eindeutig, R106 dort noch nicht genannt
+ja    Ort 61.1: Einfuegestelle nach Z. 12235 eindeutig, R106 dort noch nicht genannt
+ja    Ort 64.1: Einfuegestelle nach Z. 12447 eindeutig, R106 dort noch nicht genannt
+ja    R106 (c) Stand: research/tb24_haltedauern/test_elliott_verdraengung.py sha256 59f6c90b… (Stand der Probe TB-171)
+ja    R106 (c) Stand: research/tb24_haltedauern/test_listen_erzeuger.py sha256 e196884a… (Stand der Probe TB-171)
+ja    R106 (c) Stand: research/tb24_haltedauern/positionen_holen.py sha256 b6d1e2d6… (Stand der Probe TB-171)
+ja    R106 (c) Voraussetzung, Wachen: Pruefung 1 (mit Schranke) ruft den Erzeuger mit leerem Modus (research/tb24_haltedauern/test_elliott_verdraengung.py Z. [102])
+ja    R106 (c) Voraussetzung, Wachen: research/tb24_haltedauern/test_listen_erzeuger.py ersetzt die Wachen nur in den Modi wache1_aus/wachen_aus (Z. [85, 86])
+ja    R106 (c) Voraussetzung, Wachen: research/tb24_haltedauern/positionen_holen.py main ruft wache_zeilen Z. [327] und wache_trades Z. [337] ohne Bedingung (Einrueckung 4)
+ja    R106 (c) Voraussetzung, Wachen: wache_zeilen (Z. [295]) nach R86 (d), wache_trades (Z. [303]) nach R86 (d) und R87 (c)
+ja    R106 (c) Voraussetzung, Beleg docs/belege/TB-171/e_probe.txt, elliott_wave: Pruefung 1 ja (rc 0); Pruefung 2 ja, Wache R87 (c) beisst ohne Schranke
+ja    R106 (c) Voraussetzung, Beleg docs/belege/TB-171/e_probe.txt, elliott_wave_stocks: Pruefung 1 ja (rc 0); Pruefung 2 ja, Wache R87 (c) beisst ohne Schranke
+ja    R106 (c) Beleg docs/belege/TB-171/e_probe.txt: 16 von 16, rc 0
+ja    R106 (c) Voraussetzung, Kursabschnitt: die Probe bildet ihn selbst (bauplan, einsetzen) in der Kopie des Test-Snapshots; der Snapshot entsteht aus default_rng(seed + k) im Temp-Ordner
+info  Lesestelle Probe Z. 50: pd.read_csv(…) Wurzel d
+info  Lesestelle Probe Z. 76: open(…) Wurzel tempfile.mkdtemp()
+info  Lesestelle Probe Z. 79: pd.read_csv(…) Wurzel tempfile.mkdtemp()
+info  Lesestelle Probe Z. 136: open(…) Wurzel tle.WURZEL
+info  Lesestelle tle Z. 53: shutil.copy(…) Wurzel WURZEL
+info  Lesestelle tle Z. 54: os.symlink(…) Wurzel WURZEL
+info  Lesestelle tle Z. 96: open(…) Wurzel d
+info  Lesestelle tle Z. 98: open(…) Wurzel d
+info  Lesestelle tle Z. 106: pd.read_csv(…) Wurzel Speicher
+ja    R106 (c) Voraussetzung, Lesen: 9 Lesestellen in Probe und tle, Wurzel nur Temp-Ordner der Probe (d, z, t, tempfile.mkdtemp()), Repo (WURZEL) oder Speicher
+ja    R106 (c) Voraussetzung, Lesen: kein absoluter Pfad, kein expanduser/HOME, kein data/ des Repos; Kindprozess mit TB36_BASE_DIR und DATA_DIR im Temp-Ordner (Teilmessung am Code; e_probe.txt fuehrt keine Lesespur)
+ja    TB-172: docs/ERGEBNIS_TB-172_verfahrensmessung_r102d_r92c.md und docs/belege/TB-172/m1_r102d.txt: R102 (d) ja bei rsi2_mean_reversion, turtle_soup_stocks, volatility_breakout; rc 0
+ja    TB-172: docs/belege/TB-172/m2_r92c.txt: R92 (c) erfüllt (150 von 150), rc 0
+ja    BACKLOG-Leser: research/exposure_messung/auswertung.py Z. 73 liest <bot>_positionen.csv
+ja    BACKLOG-Leser: research/faltenplan_neun/embargo_neun.py Z. 232 liest <bot>_positionen.csv
+ja    BACKLOG-Leser: research/mtm_drawdown/grundlage.py Z. 65 liest <bot>_positionen.csv
+ja    BACKLOG-Leser: research/tb24_haltedauern/auswertung.py Z. 71 liest <bot>_positionen.csv
+ja    Index-Kopf Z. 3 nennt 0–65
+ja    BACKLOG: Rang 1 (Stand TB-172) genau einmal
+ja    Index: Zeile 65, Pflegezeile TB-170, Pflege-Anker je genau einmal; kein Abschnitt 17
+ja    Dialog-Index: 17a noch nicht
+ja    Journal: hoechste FI, naechste FJ frei
+Pruefungen: 34, NEIN: 0
+rc 0
