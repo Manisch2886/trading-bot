@@ -1,0 +1,15 @@
+95	0	docs/ERGEBNIS_TB-171_r105c_elliott_fall.md
+2	0	docs/belege/TB-171/0a_status.txt
+3	0	docs/belege/TB-171/a_backlog.txt
+3	0	docs/belege/TB-171/a_backlog_probe.txt
+19	0	docs/belege/TB-171/a_block.md
+5	0	docs/belege/TB-171/a_journal.txt
+5	0	docs/belege/TB-171/a_journal_probe.txt
+1	0	docs/belege/TB-171/a_kennung.txt
+20	0	docs/belege/TB-171/e_nachher.txt
+20	0	docs/belege/TB-171/e_probe.txt
+63	0	docs/belege/TB-171/tb171_werkzeug.py
+22	0	docs/belege/TB-171/v_voraussetzung.txt
+1	1	docs/projektfuehrung/BACKLOG.md
+20	0	docs/projektfuehrung/JOURNAL.md
+155	0	research/tb24_haltedauern/test_elliott_verdraengung.py
