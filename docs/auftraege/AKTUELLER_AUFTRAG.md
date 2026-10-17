@@ -37,6 +37,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | TB | Auftragsdokument | kurz |
 |---|---|---|
 | **TB-175** | `docs/auftraege/MAC_TB-175_pruefung13_leser_alle_trades.md` | Register 67 (Fable 17.10.b, R107, neun Marken) und Prüfung 13 im Alt-Test test_haltedauer_kern.py erneuert; kein Handelscode (Karte 17.10.2026, 19:14) |
+| **TB-176** | `docs/auftraege/MAC_TB-176a_register68_fable17c_leser.md` | TB-176a (erster Teil von TB-176): Fable 17.10.c ins Repo, Register 68 (R108, neun Marken, S-B1 10a.5 nicht eingetragen), Leser auswertung.py und embargo_neun.py auf alle_trades; kein Handelscode (Karte 17.10.2026, 20:40) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
