@@ -1,0 +1,10 @@
+ja    sha256 shared/handelskosten.py = Bau-Soll = Commit f60f92b: b2efabe4a51b26d6b9f34b1b8b9d0f5bc45b463aabd6b9bbd95237f560273a5e
+ja    Punkt 9 Z. 1077-1079 zeichengleich, Kasten darunter
+ja    Sonden-Parser: 14 Punkte, ausser Punkt 9 unveraendert
+ja    Punkt 9: Pfad shared/handelskosten.py, Titel gleich (vorher pfade [])
+ja    additiv: drei Folgezeilen nach Z. 1079, sonst zeichengleich
+   — Ort: `shared/handelskosten.py` mit `TRADING_FEE_PCT`, `SLIPPAGE_PCT`
+   und `STARTING_CAPITAL` (sha256 `b2efabe4…` am Commit `f60f92b`; Nachtrag
+   nach 38.5 und R110 (b), 71.1, TB-180, 17.10.2026)
+Pruefungen: 5, NEIN: 0
+rc 0

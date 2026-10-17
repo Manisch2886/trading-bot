@@ -1,0 +1,19 @@
+ja    Karte des Betreibers gefuellt
+ja    Fundstelle am ebee3ef: strategies/elliott_wave/equity_simulation.py Z. [66]
+ja    Fundstelle am ebee3ef: strategies/elliott_wave_stocks/equity_simulation.py Z. [71]
+ja    Fundstelle am ebee3ef: strategies/rsi2_crypto/equity_simulation.py Z. [51]
+ja    Fundstelle am ebee3ef: strategies/rsi2_mean_reversion/equity_simulation.py Z. [62]
+ja    Fundstelle am ebee3ef: strategies/t3_supertrend/equity_simulation.py Z. [54]
+ja    Fundstelle am ebee3ef: strategies/turtle_soup_crypto/equity_simulation.py Z. [45]
+ja    Fundstelle am ebee3ef: strategies/turtle_soup_stocks/equity_simulation.py Z. [68]
+ja    Fundstelle am ebee3ef: strategies/volatility_breakout/equity_simulation.py Z. [61]
+ja    Fundstelle am ebee3ef: strategies/volatility_breakout_crypto/equity_simulation.py Z. [61]
+ja    Ort am Commit f60f92b: Z. [39], Wert 10000.0
+ja    Kurven vorher/nachher: ['Ergebnis: 9 von 9 bytegleich (vorher gegen nachher)']
+ja    Probe R110 (c): 5; ['49 von 49 Pruefungen bestanden, 0 fehlgeschlagen.']
+ja    Abbild da; Sonde neu ohne Befund, alt mit Befund
+ja    Nachtrag zu Punkt 9 steht (Z. 1080-1082)
+ja    29.4 eindeutig, Leerzeile davor
+ja    append-only bis auf die Marke an 29.3
+Pruefungen: 17, NEIN: 0
+rc 0

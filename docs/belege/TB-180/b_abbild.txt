@@ -1,0 +1,7 @@
+Abbild geschrieben.
+  Pfad:    research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-10-17_tb180.json
+  Groesse: 11780 Bytes
+  SHA-256: f83f0323ed2e900406f908b8ba39155fd6c6472696a1b454d2bbf238a8a2d6d9
+  Punkte:  14 (aus docs/VORREGISTRIERUNG_neuselektion.md Z. 999-1115), 16 Pfadnennungen, HEAD f60f92b75952
+  Gruppen: bestimmt 0, eingefroren 22
+rc 0
