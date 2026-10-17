@@ -1,0 +1,13 @@
+ja   md5 shared/claude_client.py = Bau
+ja   md5 notifications/monitor.py = Bau
+ja   md5 shared/paths.py = Bau
+ja   sha256 ki_forschung/pfade.py = TB-177
+ja   sha256 ki_forschung/abrufe.py = TB-177
+ja   sha256 ki_forschung/aufrufe.py = TB-177
+ja   sha256 ki_forschung/test_ki_wachen.py = TB-177
+ja   ki_forschung/regeln fehlt
+ja   ki_forschung/prompts fehlt
+ja   ki_forschung/test_ki_regeln.py fehlt
+ja   kein Modul in shared/strategies/notifications nennt ki_forschung []
+Pruefungen: 11, NEIN: 0
+rc 0

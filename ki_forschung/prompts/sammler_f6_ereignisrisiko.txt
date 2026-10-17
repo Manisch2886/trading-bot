@@ -1,0 +1,1 @@
+F6 Ereignisrisiko 7 Tage: Stehen in den nächsten 7 Tagen laut der eingefrorenen Terminliste Veröffentlichungen an, die diesen Markt stark bewegen können? -2 = mehrere gewichtige Termine, +2 = keine gewichtigen Termine. Ohne Terminliste: 0, Zuversicht niedrig.

@@ -1,0 +1,1 @@
+F1 Risikoneigung: Wie gross ist die Bereitschaft der Marktteilnehmer, Risiko in diesem Markt zu halten (Stimmungsindex, Risikoaufschläge, Volatilitätsindex, Verhalten nach Rückgängen)? -2 = ausgeprägte Risikoscheu, +2 = ausgeprägte Risikofreude.

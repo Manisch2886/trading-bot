@@ -1,0 +1,68 @@
+Wachen-Test KI-Forschung (TB-177)  Repo /Users/jaquelineloffler/trading-bot
+
+W1 Importe
+  ok   W1 nur Importe der Positivliste (5 Dateien)
+
+W2 Schreibziele (statisch)
+  ok   W2 keine fremden Schreibziele, connect nur in verbinden(), kein open()
+  ok   W2b abrufe.db und aufrufe.db liegen in ki_forschung/   ('/Users/jaquelineloffler/trading-bot/ki_forschung/abrufe.db', '/Users/jaquelineloffler/trading-bot/ki_forschung/aufrufe.db')
+
+W3 Erkennung und Laufbereich
+  ok   W3 nicht in strategies/, ASSET_CLASS, Laufbereich; kein Modul in shared/strategies/notifications nennt ki_forschung
+
+W5 Schluessel und Websuche
+  ok   W5 kein os.environ, keine .env, kein email_config, keine Websuche
+
+W4/W6 Laufzeit mit Attrappe (temporaere DBs)
+Agent ki_bots abgeschaltet (config/agenten_aus.txt)
+  ok   W4a normaler Aufruf: abgerechnet, Monatssumme = echter Preis
+  ok   W4b Modell = MODEL_HAIKU, tools=None an call_claude
+  ok   W4c Bremse stoppt vor dem Deckel (Summe <= 3 $, nicht zu frueh, gebremster Aufruf ohne Attrappe)
+  ok   W4d Aufruf, dessen Hoechstpreis den Rest uebersteigt, wird gebremst; Attrappe nicht gerufen
+  ok   W4e Toepfe getrennt: voller Topf sammler bremst ki_bots nicht
+  ok   W4f Monatswechsel (UTC): neuer Monat beginnt bei 0
+  ok   W4g Notschalter ki_bots: kein Aufruf
+  ok   W4h Fehlerpfad: Reservierung bleibt stehen (zu viel, nie zu wenig)
+  ok   W4i aufrufe.db nur anfuegend (UPDATE und DELETE abgewiesen)
+  ok   W4k max_tokens negativ, 0, Kommazahl, bool, None, Text und Nicht-Text-Eingaben: ValueError vor jeder Buchung, Attrappe nie gerufen
+  ok   W4l aufrufe.db CHECK: negative Kosten, max_tokens 0/-5/2.5 abgewiesen
+  ok   W4j unbekannter Topf abgelehnt
+  ok   W6a einfrieren: sha256 der Rohkopie
+  ok   W6b Vintage: Stand am 17.10. ist der Abruf vom 17.10., vorher keiner
+  ok   W6c Ausfall wird gebucht, nicht geworfen; Stand bleibt beim letzten guten
+  ok   W6d abrufen mit Attrappe friert ein
+  ok   W6e abrufe.db nur anfuegend
+  ok   W6f unbekannte Quelle abgelehnt
+  ok   W6h Zeitgrenze als Zeitpunkt (Abruf 12:00:00,5; Z, +02:00, Komma, datetime, ohne Zone abgewiesen)
+  ok   W6j Abrufzeit und Buchungszeit nicht vom Aufrufer setzbar
+  ok   W6g abrufe.db: INSERT OR REPLACE mit vorhandener id abgewiesen, Zeile 1 unveraendert
+  ok   W6i abrufe.db: Abrufzeit ausserhalb des festen Formats abgewiesen (CHECK)
+  ok   W6g aufrufe.db: INSERT OR REPLACE auf eine Abrechnungszeile abgewiesen, Summe unveraendert
+  ok   W2c Laufzeit: jedes connect/open zum Schreiben im temporaeren Ordner (175 Zugriffe)
+  ok   W2e Laufzeit: kein Netz (urlopen nie gerufen)
+  ok   W2f Code unter shared/, strategies/, notifications/ vorher = nachher (239 Dateien, Groesse/mtime/sha256)
+  ok   W2d Laufzeit: echte abrufe.db/aufrufe.db nicht angelegt
+
+G Gegenproben (verfaelschte Kopien muessen rot werden)
+  ok   G1 Import aus strategies/ -> rot   ['aufrufe.py:36 strategies.t3_supertrend']
+  ok   G1b Import zuteilung -> rot   ['abrufe.py:26 zuteilung']
+  ok   G2 Schreibziel Bot-DB -> rot   ["pfade.py:14 nennt 'paper_trading'"]
+  ok   G2b connect ausserhalb verbinden() -> rot   ['abrufe.py:162 sqlite3.connect ausserhalb verbinden()']
+  ok   G2c os.open -> rot   ['abrufe.py:106 .open']
+  ok   G2d getattr(os, 'open') -> rot   ["abrufe.py:106 getattr(..., 'open')"]
+  ok   G2e getattr mit Namen aus einer Variablen -> rot   ['abrufe.py:107 getattr mit Namen aus einer Variablen']
+  ok   G5 Schluessel aus der Umgebung -> rot   ['aufrufe.py:174 os.environ']
+  ok   G5b Websuche als Werkzeug -> rot   ['aufrufe.py:204 tools= nicht None', "aufrufe.py:204 nennt 'web_search'"]
+  ok   G4 Bremse ausgebaut -> Summe ueber dem Deckel (rot)
+  ok   W4m Code-Pruefung ausgebaut: CHECK in aufrufe.db weist die negative Reserve allein ab
+  ok   G7 Pruefung und CHECK ausgebaut -> negative Buchung, danach mehr als 3 $ echt ausgegeben (rot)   (7, 7.000006999999999)
+  ok   G2f Laufzeit: os.open ausserhalb des temporaeren Ordners -> rot   ['/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb177_gp_m167rzt0/fremd_g2f.txt']
+  ok   G6 abrufe ohne Ersetzungsschutz -> W6g rot   (True, False)
+  ok   G6c aufrufe ohne Ersetzungsschutz -> W6g rot   (True, 0.003852, 0.003502)
+  ok   G6b Zeitgrenze als Text -> W6h rot   ['12:00:00Z', '12:00:00,5Z', '14:00:00+02:00', 'datetime 12:00:00.5 UTC', 'ohne Zeitzone -> ValueError']
+  ok   G3 Laufbereichsmodul nennt ki_forschung -> rot
+  ok   G3b ki_forschung unter strategies/ -> rot
+
+Pruefungen: 50, FEHLT: 0
+temporaere Ordner entfernt: 18
+rc 0

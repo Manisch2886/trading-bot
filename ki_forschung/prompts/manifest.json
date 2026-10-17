@@ -1,0 +1,79 @@
+{
+ "version": "v1",
+ "modell": "claude-haiku-4-5-20251001",
+ "deckel_usd_je_monat": {
+  "sammler": 3.0,
+  "bots": 3.0
+ },
+ "websuche": "aus",
+ "entstanden": "TB-179 (BA3)",
+ "prompts": {
+  "nachrichten_bot.txt": {
+   "sha256": "d7e6532dedc270c8d08d5dad6ca7227515948b86a3fb64d26c14ee5c4b85ae54",
+   "verbraucher": "nachrichten_bot",
+   "topf": "bots"
+  },
+  "regime_bot.txt": {
+   "sha256": "f6ab08a6dfc5321136c3b715f5e93c44173dc02bcbc0533c7a05211b769d33bc",
+   "verbraucher": "regime_bot",
+   "topf": "bots"
+  },
+  "rotations_bot.txt": {
+   "sha256": "9641a17bdf193eb687a6779918c6a91ea04c1f2ebfa58f851b16cd96795fd339",
+   "verbraucher": "rotations_bot",
+   "topf": "bots"
+  },
+  "sammler_f1_risikoneigung.txt": {
+   "sha256": "8657c39a39c5719a775db6d45cd5f8734e01c27425debe0f2cda0673a3a89242",
+   "verbraucher": "sammler",
+   "topf": "sammler"
+  },
+  "sammler_f2_trend.txt": {
+   "sha256": "8c2c15ca26dea29fa5e8b8489feb8f8585ae69d314197a15eb782033f2813c85",
+   "verbraucher": "sammler",
+   "topf": "sammler"
+  },
+  "sammler_f3_vola_regime.txt": {
+   "sha256": "2eb59a1cf257835ddbb9b6a4d215fe18c062b9a095850063ddc6a5eae5f137f9",
+   "verbraucher": "sammler",
+   "topf": "sammler"
+  },
+  "sammler_f4_makro.txt": {
+   "sha256": "3eb0022cd60567cfc50ed7af983ee5daab7a91c8533c76a80d45a664af550744",
+   "verbraucher": "sammler",
+   "topf": "sammler"
+  },
+  "sammler_f5_liquiditaet.txt": {
+   "sha256": "8d42479b8cb10e324686225e874edd3ca43e37fe4eb4a56633422bdd8d9b7d85",
+   "verbraucher": "sammler",
+   "topf": "sammler"
+  },
+  "sammler_f6_ereignisrisiko.txt": {
+   "sha256": "d9c1ae746ad45ecd748d20701a23ffb7afd80698b9fd66bf252942e0a90f4e67",
+   "verbraucher": "sammler",
+   "topf": "sammler"
+  },
+  "sammler_system.txt": {
+   "sha256": "2ca4331535326ff1ac7e1b6dd860058cb45ebaa8c5490484e77551f634b4bd10",
+   "verbraucher": "sammler",
+   "topf": "sammler"
+  }
+ },
+ "regeln": {
+  "filter.md": {
+   "sha256": "567c469ba8495776bc1d1f12347f605971b64ce54367521f98febe1d4faa38ac"
+  },
+  "nachrichten_bot.md": {
+   "sha256": "f4592c17a404530492e820f914264c8520cfedd73ee87c3870b8055152968705"
+  },
+  "regime_bot.md": {
+   "sha256": "abe56d30393bb9a82adf506bc146fad57adc82070bb2eabb5dec50982022b070"
+  },
+  "rotations_bot.md": {
+   "sha256": "d866551f8f06bb8f87827e3267e88d10f988b3770a96955d70bbb72e50b73bca"
+  },
+  "sammler.md": {
+   "sha256": "a12425d493e516018b64351708b79b36a02d24e62e29faaae5bd3d5128c838b4"
+  }
+ }
+}

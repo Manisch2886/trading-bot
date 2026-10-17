@@ -1,0 +1,1 @@
+F2 Trend: Wie ist der Trend des Leitwerts über 20, 50 und 200 Tage (Lage zu den gleitenden Durchschnitten, Steigung, Hochs und Tiefs)? -2 = klarer Abwärtstrend, +2 = klarer Aufwärtstrend.

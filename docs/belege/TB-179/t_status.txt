@@ -1,0 +1,5 @@
+ M ki_forschung/test_ki_wachen.py
+?? docs/belege/TB-179/
+?? ki_forschung/prompts/
+?? ki_forschung/regeln/
+?? ki_forschung/test_ki_regeln.py

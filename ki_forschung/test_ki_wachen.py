@@ -62,7 +62,7 @@ def temp(prefix):
     TEMP.append(d)
     return d
 
-ERLAUBTE_IMPORTE = {"ast", "builtins", "datetime", "io", "re", "hashlib", "os", "shutil", "sqlite3", "sys", "tempfile", "types",
+ERLAUBTE_IMPORTE = {"ast", "builtins", "datetime", "io", "re", "hashlib", "os", "shutil", "sqlite3", "sys", "tempfile", "types", "json",
                     "urllib", "urllib.request", "pfade", "abrufe", "aufrufe", "claude_client"}
 VERBOTENE_WORTE = ("paper_trading", "strategies", "notifications", "results", "data/", ".log", ".env",
                    "email_config", "web_search", "environ", "manual_close", "zuteilung", "messkette")

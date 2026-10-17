@@ -1,0 +1,17 @@
+Regel-Test KI-Forschung (TB-179)
+  ok   R1-R3 Manifest: Modell, Prompts und Regelblaetter mit sha256
+  ok   R4-R5 Regelblaetter: Pflichtfelder und Inhalt (5 Blaetter)
+  ok   R6 Prompts: JSON verlangt, keine Websuche, keine Adresse
+  ok   G1 Prompt um ein Zeichen geaendert wird rot   ['sha256 weicht ab: prompts/regime_bot.txt']
+  ok   G2 Prompt ohne Manifest-Eintrag wird rot   ['Prompt ohne Eintrag: zusatz.txt']
+  ok   G3 Modell im Manifest getauscht wird rot   ["Modell 'claude-sonnet-5xclaude-haiku-4-5-20251001' statt 'claude-haiku-4-5-20251001'"]
+  ok   G4 Regelblatt nach dem Hash geaendert wird rot   ['sha256 weicht ab: regeln/filter.md']
+  ok   G5 Pflichtfeld Ausstieg entfernt wird rot   ['regime_bot.md: Pflichtfeld Ausstieg fehlt']
+  ok   G6 ISIN mit falscher Pruefziffer wird rot   ['regime_bot.md: ISIN IE00B5BMR088 Pruefziffer falsch']
+  ok   G7 US-ETF im Universum wird rot   ['regime_bot.md: US-ISIN US78462F1030 (nur UCITS)']
+  ok   G8 'nie Zulassungsgrund' entfernt wird rot   ["filter.md: Status ohne 'nie Zulassungsgrund'"]
+  ok   G9 Rotation mit neun Krypto wird rot   ['rotations_bot.md: nicht genau 10 ETF und 10 Krypto']
+  ok   G10 Pflichtfeld doppelt wird rot   ['sammler.md: Pflichtfeld Version doppelt']
+  ok   G11 Websuche im Prompt wird rot   ["nachrichten_bot.txt nennt 'web_search'"]
+Pruefungen: 14, FEHLT: 0
+rc 0

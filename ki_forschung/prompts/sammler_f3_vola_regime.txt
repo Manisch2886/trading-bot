@@ -1,0 +1,1 @@
+F3 Vola-Regime: Wie ist die Schwankung der letzten 20 Tage im Vergleich zu den letzten 200 Tagen, und steigt oder fällt sie? -2 = hohe und steigende Schwankung, +2 = niedrige und fallende Schwankung.
