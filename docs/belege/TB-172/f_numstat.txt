@@ -1,0 +1,17 @@
+92	0	docs/ERGEBNIS_TB-172_verfahrensmessung_r102d_r92c.md
+2	0	docs/belege/TB-172/0a_status.txt
+4	0	docs/belege/TB-172/a_backlog.txt
+4	0	docs/belege/TB-172/a_backlog_probe.txt
+21	0	docs/belege/TB-172/a_block.md
+5	0	docs/belege/TB-172/a_journal.txt
+5	0	docs/belege/TB-172/a_journal_probe.txt
+1	0	docs/belege/TB-172/a_kennung.txt
+43	0	docs/belege/TB-172/m1_r102d.md
+16	0	docs/belege/TB-172/m1_r102d.txt
+165	0	docs/belege/TB-172/m2_r92c.md
+6	0	docs/belege/TB-172/m2_r92c.txt
+20	0	docs/belege/TB-172/m_nachher.txt
+139	0	docs/belege/TB-172/tb172_werkzeug.py
+22	0	docs/belege/TB-172/v_voraussetzung.txt
+1	1	docs/projektfuehrung/BACKLOG.md
+22	0	docs/projektfuehrung/JOURNAL.md
