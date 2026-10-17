@@ -11048,6 +11048,25 @@ Die neue Antwort des Verfahrensprüfers liegt mit Anfrage und Übergabe unverän
 
 ---
 
+## FN — TB-177: KI-Forschung BA1 (`ki_forschung/`: Abruf- und Einfrierschicht, Aufrufbuch mit Kostenbremse, Wachen-Test)
+*Quelle: `docs/ERGEBNIS_TB-177_ki_forschung_ba1.md`, Auftrag `docs/auftraege/MAC_TB-177_ki_forschung_ba1.md`, Belege `docs/belege/TB-177/`, Commits `8d739b7` (S0, Auftrag) und `57637b4` (B, vier Dateien), danach der Abgabe-Commit.*
+
+### Was gemessen ist
+- B: vier neue Dateien unter `ki_forschung/`, sha256 wie Soll (`b_sha.txt`, rc 0).
+- T: Wachen-Test 50 Prüfungen, FEHLT 0, rc 0 (`t_wachen.txt`), darunter Gegenproben an verfälschten Kopien in Temp-Ordnern; `t_status.txt` nur `ki_forschung/` und `BEL` unverfolgt, kein `.db`, kein `__pycache__`.
+- Kein echter Abruf, kein API-Aufruf, kein Schlüssel gelesen; `shared/`, `strategies/`, `notifications/` unverändert (`f_numstat.txt`).
+
+### Was offen bleibt
+- E1 Haiku-Preis (1 $/5 $ je Million Token, Preisliste, nicht gemessen) und E3 Formatierungszuschlag (500 Token, gewählt): am Erstlauf messen (BA7).
+- BA3 Regelblätter/Katalog/Prompts mit Hash, BA2 Sammler (R108 (b)), BA7 Schlüssel, Cron, Erstlauf.
+
+### In einfacher Sprache
+Der Ordner für die KI-Versuche steht neben den neun Bots: Datenspeicher, der festhält, was wann bekannt war, und ein Kostenbuch mit Monatsbremse. Er ruft noch nichts ab und kostet nichts; ein Selbsttest belegt, dass er die neun Bots nicht berührt und die Bremse greift.
+
+*Geschrieben 17.10.2026 von der Mac-Sitzung TB-177. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese

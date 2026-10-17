@@ -1,0 +1,9 @@
+ja   Vorbedingungen (Rang-1-Anker, t_wachen, Commits, Journal-Anker, Kennung FN frei)
+ja   keine Platzhalter mehr
+ja   BACKLOG: Zeile genau einmal, Rang 1 endet mit " |"
+ja   BACKLOG: Zeilenzahl gleich
+ja   Journal: Block FN genau einmal, vor Wiederkehrende Lehren
+ja   Journal: alter Inhalt unveraendert (nur eingefuegt)
+Kennung FN
+Pruefungen: 6, NEIN: 0
+rc 0
