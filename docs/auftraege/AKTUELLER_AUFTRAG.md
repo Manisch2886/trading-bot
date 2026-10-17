@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-171** | `docs/auftraege/MAC_TB-171_r105c_elliott_fall.md` | R105 (c) Weg 1: Probe test_elliott_verdraengung.py führt den Fall nach R90 (g) bei elliott_wave und elliott_wave_stocks herbei; Handelscode unverändert (Karte 17.10.2026, 09:12) |
+| **TB-172** | `docs/auftraege/MAC_TB-172_verfahrensmessung_r102d_r92c.md` | Verfahrensmessung R102 (d) (Indikatoren vor Horizontbeginn, drei Aktien-Bots) und R92 (c) (open_time-Form am Snapshot), nur Lesen (Karte 17.10.2026, 15:21) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
