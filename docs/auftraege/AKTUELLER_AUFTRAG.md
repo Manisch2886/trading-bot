@@ -36,7 +36,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 
 | TB | Auftragsdokument | kurz |
 |---|---|---|
-| **TB-173** | `docs/auftraege/MAC_TB-173_register66_fable17a.md` | Register 66: R106 aus Fable 17.10.a mit Marken, Voraussetzung R106 (c) gemessen, Fable-Dateien 17a, BACKLOG (Karte 17.10.2026, 16:27) |
+| **TB-174** | `docs/auftraege/MAC_TB-174_r106d_t3_fall.md` | R106 (d) Weg 1: Probe test_t3_verdraengung.py führt den Fall nach R90 (g) bei t3_supertrend herbei; Handelscode unverändert (Karte 17.10.2026, 17:03) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
