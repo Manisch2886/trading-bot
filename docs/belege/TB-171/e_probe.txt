@@ -1,0 +1,20 @@
+/Users/jaquelineloffler/trading-bot/trading-env/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+ja    elliott_wave: 0 Signalpfad: ohne Schranke W bei k+1 (2025-03-04 23:00:00), mit Schranke ab Tag 2025-03-05 W bei k+4 (2025-03-05 02:00:00) · (['2025-03-04 23:00:00'], ['2025-03-05 02:00:00'])
+ja    elliott_wave: 0b W ist dieselbe Welle (signal_time = P5 2025-03-04 22:00:00, fib_score 1.0), ohne Schranke Ausstieg am Tag oder spaeter · [('2025-03-04 22:00:00', 1.0, '2025-03-14 23:00:00'), ('2025-03-04 22:00:00', 1.0, '2025-03-05 13:00:00')]
+ja    elliott_wave: 1 Erzeuger mit Schranke: rc 0, kein Einstieg von AAA vor dem Tag, W erscheint bei k+4 · (0, ['2025-03-05 02:00:00'])
+ja    elliott_wave: 2 Gegenprobe 40.7: Schranke aus -> Wache R87 (c) beisst an W (Einstieg k+1 2025-03-04 23:00:00) mit 2 · (2, '[positionen_holen] ABBRUCH elliott_wave: Einstieg 2025-03-04 23:00:00 vor dem Handelbar-Tag 2025-03-05 bei AAA (R87 (c))')
+ja    elliott_wave: 3 Schranke und Wachen aus: W bei k+1 vor dem Tag, Ausstieg am Tag oder spaeter, Einstieg bei k+4 fehlt (verdraengt) · (0, ['2025-03-04 23:00:00'], '2025-03-14 23:00:00')
+ja    elliott_wave: 4 ohne Eingriff (Snapshot TB-169): AAA ohne Einstieg bei k+1 und k+4 · (0, [])
+ja    elliott_wave: 5 BBB/CCC mit und ohne Tag fuer AAA gleich
+ja    elliott_wave: 6 Mutante M1 (Kopie des Counters, Schranke hinter traded.add): W fehlt bei k+4 - die Probe 1 schlaegt an · (True, 0, [])
+ja    elliott_wave_stocks: 0 Signalpfad: ohne Schranke W bei k+1 (2025-04-04 00:00:00), mit Schranke ab Tag 2025-04-07 W bei k+4 (2025-04-09 00:00:00) · (['2025-04-04 00:00:00'], ['2025-04-09 00:00:00'])
+ja    elliott_wave_stocks: 0b W ist dieselbe Welle (signal_time = P5 2025-04-03 00:00:00, fib_score 1.0), ohne Schranke Ausstieg am Tag oder spaeter · [('2025-04-03 00:00:00', 1.0, '2025-08-08 00:00:00'), ('2025-04-03 00:00:00', 1.0, '2025-04-10 00:00:00')]
+ja    elliott_wave_stocks: 1 Erzeuger mit Schranke: rc 0, kein Einstieg von AAA vor dem Tag, W erscheint bei k+4 · (0, ['2025-04-09 00:00:00'])
+ja    elliott_wave_stocks: 2 Gegenprobe 40.7: Schranke aus -> Wache R87 (c) beisst an W (Einstieg k+1 2025-04-04 00:00:00) mit 2 · (2, '[positionen_holen] ABBRUCH elliott_wave_stocks: Einstieg 2025-04-04 00:00:00 vor dem Handelbar-Tag 2025-04-07 bei AAA (R87 (c))')
+ja    elliott_wave_stocks: 3 Schranke und Wachen aus: W bei k+1 vor dem Tag, Ausstieg am Tag oder spaeter, Einstieg bei k+4 fehlt (verdraengt) · (0, ['2025-04-04 00:00:00'], '2025-08-08 00:00:00')
+ja    elliott_wave_stocks: 4 ohne Eingriff (Snapshot TB-169): AAA ohne Einstieg bei k+1 und k+4 · (0, [])
+ja    elliott_wave_stocks: 5 BBB/CCC mit und ohne Tag fuer AAA gleich
+ja    elliott_wave_stocks: 6 Mutante M1 (Kopie des Counters, Schranke hinter traded.add): W fehlt bei k+4 - die Probe 1 schlaegt an · (True, 0, [])
+Ergebnis: 16 von 16 bestanden
+rc 0

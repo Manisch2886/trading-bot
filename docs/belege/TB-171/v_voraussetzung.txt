@@ -1,0 +1,22 @@
+ja    Handelscode/Erzeuger unveraendert: research/exposure_messung/bot_lauf.py md5 01fd9282ded2
+ja    Handelscode/Erzeuger unveraendert: research/faltenplan_neun/faltenschranke_messung.py md5 584d9ff959da
+ja    Handelscode/Erzeuger unveraendert: research/tb24_haltedauern/alle_bots.py md5 7bb90ef438d5
+ja    Handelscode/Erzeuger unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    Handelscode/Erzeuger unveraendert: research/tb24_haltedauern/test_listen_erzeuger.py md5 d77e73ed5ff7
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave/backtest_elliott.py md5 df5c314e9268
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave/elliott_wave_counter.py md5 75b26dd79237
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave/equity_simulation.py md5 a058c69a7a6c
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave/multi_symbol_optimise.py md5 bf11370b140d
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave/zigzag_indicator.py md5 6e9a91ccc131
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave_stocks/backtest_elliott.py md5 f1979557a945
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave_stocks/elliott_wave_counter.py md5 b7fd099124b4
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave_stocks/equity_simulation.py md5 4ff525c50514
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave_stocks/multi_symbol_optimise.py md5 571076168d56
+ja    Handelscode/Erzeuger unveraendert: strategies/elliott_wave_stocks/zigzag_indicator.py md5 407cd69fb5c2
+ja    Probe noch nicht im Repo: research/tb24_haltedauern/test_elliott_verdraengung.py
+ja    Register: R105 genau einmal, (c) Weg 1 im Wortlaut
+ja    Register 65 (c): Weg 2 traegt nicht, Weg 1 bleibt (genau einmal)
+ja    BACKLOG Rang 1 genau einmal, Stand TB-170, nennt R105 (c) Weg 1
+ja    Journal: hoechste FG (naechste FH)
+Pruefungen: 20, NEIN: 0
+rc 0
