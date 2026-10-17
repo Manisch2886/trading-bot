@@ -1,0 +1,3 @@
+ja    BACKLOG Rang 1 genau einmal, endet mit ' |', noch ohne TB-176a
+Pruefungen: 1, NEIN: 0
+rc 0
