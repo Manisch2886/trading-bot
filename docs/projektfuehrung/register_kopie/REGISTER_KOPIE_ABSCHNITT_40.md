@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 40 (von 0–70) — Register-Z. 8219–8616 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 40 (von 0–71) — Register-Z. 8225–8622 — Commit fd8f27705d7c47212587c0d7b475c3be206dd989 — 2026-10-17 — Original sha256 df17ea87835b662c960e35a530035f06359fb7ac6d0042bef5d37fe0c00ef837 — KOPIE, nicht das Register
 
 ## 40. Testannahmen folgen dem Register, und die neun Handelslisten sind Eingabedateien — `G6`/`H3`, die Kopplung an 5.1 Nr. 4, jede Mutationsprobe mit Gegenprobe, was TB-97/TB-98 tun, und drei angenommene Berichtigungen an den Verfahrensprüfer (Fable 24a, TB-96, 24.09.2026)
 

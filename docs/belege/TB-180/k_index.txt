@@ -1,0 +1,6 @@
+ja    Abschnitt 71 in genau einer Teildatei: [6]
+ja    Kopf genau einmal, nennt 0–70
+ja    Zeile 70 genau einmal
+ja    Pflegezeile TB-178 genau einmal
+Pruefungen: 4, NEIN: 0
+rc 0

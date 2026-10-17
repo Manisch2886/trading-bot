@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 10 (von 0–70) — Register-Z. 974–1180 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 10 (von 0–71) — Register-Z. 974–1183 — Commit fd8f27705d7c47212587c0d7b475c3be206dd989 — 2026-10-17 — Original sha256 df17ea87835b662c960e35a530035f06359fb7ac6d0042bef5d37fe0c00ef837 — KOPIE, nicht das Register
 
 ## 10. Die Sperrliste
 
@@ -106,6 +106,9 @@ Ab dem signierten Tag sind unveränderlich:
 9. **Kosten (0,30 %) und Fill-Konvention** — `TRADING_FEE_PCT = 0,1` und
    `SLIPPAGE_PCT = 0,05` je Order, Ein- und Ausstieg; Einstieg zum
    Schlusskurs des Bestätigungsbalkens
+   — Ort: `shared/handelskosten.py` mit `TRADING_FEE_PCT`, `SLIPPAGE_PCT`
+   und `STARTING_CAPITAL` (sha256 `b2efabe4…` am Commit `f60f92b`; Nachtrag
+   nach 38.5 und R110 (b), 71.1, TB-180, 17.10.2026)
    > ⚠️ **Ort registrierter Werte (37.5, Fable 22d, TB-87, 22.09.2026):** Dieser
    > Punkt nennt Werte, aber keinen Ort — *„Ein Sperrlistenpunkt, der einen Wert
    > nennt und keinen Ort, sperrt nichts — er legt fest."* Nach 37.5 (1)–(3)

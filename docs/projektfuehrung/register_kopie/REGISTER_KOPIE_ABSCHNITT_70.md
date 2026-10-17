@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 70 (von 0–70) — Register-Z. 12875–12894 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 70 (von 0–71) — Register-Z. 12881–12901 — Commit fd8f27705d7c47212587c0d7b475c3be206dd989 — 2026-10-17 — Original sha256 df17ea87835b662c960e35a530035f06359fb7ac6d0042bef5d37fe0c00ef837 — KOPIE, nicht das Register
 
 ## 70. Fable 17e — Registerblock R110 (TB-178)
 
@@ -20,3 +20,4 @@ Voraussetzungen: dieselbe Messung wie 69.2 (`docs/belege/TB-178/v_voraussetzung.
 (b) R110 (b) und (c): Der Bauauftrag nach 37.3 (Nachtrag zu Punkt 9, Konstante, neues Abbild, Ergänzung zu 29.3) und die Probe in `shared/test_ergebniskurven.py` sind Handelscode und nicht Teil von TB-178.
 
 (c) R56 (b): Anfrage, Antwort und Übergabe 17.10.e liegen seit `14833dd` im Repo (aus `data_sicherung/steuernder_chat_tmp/f17e/`, md5 vorher = nachher, `docs/belege/TB-178/0a_md5.txt`).
+

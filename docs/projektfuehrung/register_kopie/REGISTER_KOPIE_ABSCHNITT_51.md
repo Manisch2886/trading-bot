@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 51 (von 0–70) — Register-Z. 11360–11469 — Commit 47f184b3bd61a7a475f435acca81ad68c9112e21 — 2026-10-17 — Original sha256 640ee3a0ff7cad55bbfc5e673161c6b709311b99458cfb37edfa0134a216bb66 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 51 (von 0–71) — Register-Z. 11366–11475 — Commit fd8f27705d7c47212587c0d7b475c3be206dd989 — 2026-10-17 — Original sha256 df17ea87835b662c960e35a530035f06359fb7ac6d0042bef5d37fe0c00ef837 — KOPIE, nicht das Register
 
 ## 51. Fable 01a — Registerblock R56–R62 (TB-129)
 
