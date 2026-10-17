@@ -1,0 +1,12 @@
+/Users/jaquelineloffler/trading-bot/trading-env/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+ja    t3_supertrend: 0 Signalpfad: ohne Schranke E1 (2024-08-05 08:00:00) vor dem Tag 2024-08-15, kein Einstieg bei s (2025-01-01 00:00:00); mit Schranke kein Einstieg vor dem Tag, E2 bei s · (['2024-08-05 08:00:00'], ['2025-01-01 00:00:00'])
+ja    t3_supertrend: 0b Gleichstand: E1 bis s-1 fast >= slow, fast == slow auf 496 Balken bis s-1, fast > slow bei s, ADX 100.0; use_t3_exit True, vom Erzeuger nicht uebergeben · ANKER 2024-06-10, L 63.0, Abschnitt-Einstiege ohne Schranke ['2024-06-19 16:00:00', '2024-08-05 08:00:00'], Ausstieg E1 2025-01-02 16:00:00
+ja    t3_supertrend: 1 Erzeuger mit Schranke: rc 0, kein Einstieg von AAA vor dem Tag, E2 erscheint bei s · (0, ['2025-01-01 00:00:00'])
+ja    t3_supertrend: 2 Gegenprobe 40.7: Schranke aus -> Wache R87 (c) beisst an einem Einstieg des Abschnitts vor dem Tag (2024-08-05 08:00:00) mit 2 · (2, '[positionen_holen] ABBRUCH t3_supertrend: Einstieg 2024-08-05 08:00:00 vor dem Handelbar-Tag 2024-08-15 bei AAA (R87 (c))')
+ja    t3_supertrend: 3 Schranke und Wachen aus: E1 vor dem Tag, Ausstieg nach s, Einstieg bei s fehlt (verdraengt) · (0, ['2024-08-05 08:00:00'], '2025-01-02 16:00:00')
+ja    t3_supertrend: 4 ohne Eingriff (Snapshot TB-169): AAA ohne Einstieg bei E1 und bei s · (0, [])
+ja    t3_supertrend: 5 BBB/CCC/BTCUSDT mit und ohne Tag fuer AAA gleich
+ja    t3_supertrend: 6 Mutante M1 (Kopie von backtest_trend.py, Schranke hinter der Zustandsmaschine): kein Einstieg vor dem Tag, aber E2 fehlt bei s - die Probe 1 schlaegt an · (True, 0, [])
+Ergebnis: 8 von 8 bestanden
+rc 0

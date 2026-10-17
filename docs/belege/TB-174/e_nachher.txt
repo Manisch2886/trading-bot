@@ -1,0 +1,17 @@
+ja    Handelscode/Erzeuger unveraendert: research/exposure_messung/bot_lauf.py md5 01fd9282ded2
+ja    Handelscode/Erzeuger unveraendert: research/faltenplan_neun/faltenschranke_messung.py md5 584d9ff959da
+ja    Handelscode/Erzeuger unveraendert: research/tb24_haltedauern/alle_bots.py md5 7bb90ef438d5
+ja    Handelscode/Erzeuger unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    Handelscode/Erzeuger unveraendert: research/tb24_haltedauern/test_listen_erzeuger.py md5 d77e73ed5ff7
+ja    Handelscode/Erzeuger unveraendert: shared/regimewache.py md5 82cd933f9ba9
+ja    Handelscode/Erzeuger unveraendert: strategies/t3_supertrend/backtest_trend.py md5 896948ee3eca
+ja    Handelscode/Erzeuger unveraendert: strategies/t3_supertrend/equity_simulation.py md5 be665a734328
+ja    Handelscode/Erzeuger unveraendert: strategies/t3_supertrend/indicators.py md5 8452ad509b7a
+ja    Handelscode/Erzeuger unveraendert: strategies/t3_supertrend/live_params.py md5 f28553e8deba
+ja    Handelscode/Erzeuger unveraendert: strategies/t3_supertrend/multi_symbol_optimise.py md5 dc85993e8d42
+ja    Handelscode/Erzeuger unveraendert: strategies/t3_supertrend/regime_filter.py md5 b02087926d7d
+ja    Probe im Repo = Anhang (sha256 492421a7fe0c)
+ja    e_probe.txt endet mit 'Ergebnis: 8 von 8 bestanden' und 'rc 0'
+ja    e_probe.txt: 8 ja-Zeilen, keine NEIN-Zeile
+Pruefungen: 15, NEIN: 0
+rc 0
