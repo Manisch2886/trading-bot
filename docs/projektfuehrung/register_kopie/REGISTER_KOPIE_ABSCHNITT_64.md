@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 64 (von 0–65) — Register-Z. 12402–12450 — Commit 7aecfe6cd9f4ac84e91702d0256e784df77bb6a2 — 2026-10-17 — Original sha256 08b072674617cbf73c8a63472367f56e53158c61d56d696152896c3f91a806cb — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 64 (von 0–66) — Register-Z. 12408–12459 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
 
 ## 64. Vollzug TB-166 (Tatsachennotiz nach 37.3; E-3a Schranke je Symbol) mit Abnahme nach R98 (d) (TB-169)
 
@@ -45,6 +45,9 @@ Vorab gemessen (`docs/belege/TB-166/s0_vorab.txt`): 30 Symbole wechseln von eine
 **Abnahme nach R98 (d)** (gemessen in TB-169 Schritt E am Erzeuger, Commit `8520d9e`): `research/tb24_haltedauern/test_listen_erzeuger.py` auf einem Test-Snapshot, geprüft an den Ausgaben von `positionen_holen.py` (Probe nach R86 (d) mit und ohne Zeilen ab dem Schnitt; Wachen nach R86 (d) und R87 (c) je allein beissend, 41.1 A5; Fall nach R90 (g), Tatsachennotiz für t3_supertrend und die zwei Elliott-Bots im Beleg; Symbol nach R81 (h); offene Position nach R86 (c)); Beleg `docs/belege/TB-169/e_abnahme.txt`: „Ergebnis: 117 von 117 bestanden“, `rc 0`; Kerzen-Probe `docs/belege/TB-169/e_kerzen.txt`: „Ergebnis: 25861 Trades verglichen, 0 abweichend oder ohne Kursreihe“.
 
 > ⭐ **64.1, Absatz „Abnahme nach R98 (d)“ ERGÄNZT durch R105 (65.2)** (Fable 16c R105, Unterpunkt (c), TB-170, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **64.1, Absatz „Abnahme nach R98 (d)“ ERGÄNZT durch R106 (66.1)** (Fable 17a R106, Unterpunkt (c), TB-173, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Sperrlisten-Sonde zu Punkt 11** (gemessen in TB-169 am Stand `69539db`; Aufruf wie TB-168 Schritt S: `trading-env/bin/python3 -B -W ignore shared/sperrlistensonde.py --abbild research/vorregistrierung/ergebnisse/sperrliste_abbild_2026-09-26_tb117.json`, Abbild `46f0ad5d…`; Beleg `docs/belege/TB-169/s_sonde.txt`): Punkt 11 „nicht prüfbar“ (`2`). Das Abbild führt keine der 20 Dateien — wie bei 60.1 und 63.1. Der Übergang steht deshalb nur hier und in den Commits.

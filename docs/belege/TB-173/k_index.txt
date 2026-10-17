@@ -1,0 +1,7 @@
+ja    Abschnitt 66 in genau einer Teildatei: T[6]; 4 Marken mit Zeile
+ja    Kopf genau einmal, nennt 0–65
+ja    Zeile 65 genau einmal
+ja    Pflege-Anker genau einmal, davor Leerzeile; kein Abschnitt 17
+ja    Pflegezeile TB-170 genau einmal
+Pruefungen: 5, NEIN: 0
+rc 0

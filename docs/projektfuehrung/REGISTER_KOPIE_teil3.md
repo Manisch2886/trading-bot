@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 3 von 6 — Abschnitte 37–42 — Commit 7aecfe6cd9f4ac84e91702d0256e784df77bb6a2 — 2026-10-17 — Original sha256 08b072674617cbf73c8a63472367f56e53158c61d56d696152896c3f91a806cb — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 3 von 6 — Abschnitte 37–42 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
 
 ## 37. Die Sonde meldet je Bestandteil, das Abbild führt zwei Gruppen, was ein Befund `1` bedeutet, hängt vom Tag ab, die Tatsachennotiz zu den zwei Listen in `herkunft.py` und der Ort registrierter Werte (Fable 22d und 22g, TB-87, 22.09.2026)
 

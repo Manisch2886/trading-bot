@@ -1,6 +1,6 @@
 # REGISTER_INDEX — wo was im Register gerade gilt
 
-**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `7aecfe6` (17.10.2026), Abschnitte 0–65,
+**Stand:** Register `docs/VORREGISTRIERUNG_neuselektion.md` am Commit `7fe6342` (17.10.2026), Abschnitte 0–66,
 12 023 Zeilen, sha256 `459be94e…`. Gebaut in TB-118 (Fable 27b B3, Teil D A4), nachgezogen in TB-126 (E-2), TB-129 (Fable 01a), TB-130 (Fable 02a), TB-132 (Fable 02c), TB-136 (Fable 04a), TB-139 (Fable 07a), TB-149 (Fable 09a) und TB-154 (Fable 10a). **Das ist ein Wegweiser, nicht das
 Register.** Der Wortlaut steht nur im Register bzw. in der Kopie je Abschnitt `register_kopie/REGISTER_KOPIE_ABSCHNITT_00.md` … `_57.md` (Tabelle unten; dazu die Teile `REGISTER_KOPIE_teil1–5.md`).
 
@@ -213,8 +213,8 @@ Die Spalte „später berührt“ nennt jede gemessene Marke und jede Rückverwe
 | 54 aus 04a | 5 | R74–R77 (54.1–54.4); 54.5 Voraussetzungen und Befunde; 54.6 Offenes | 54.1 R74 **PRÄZISIERT durch R78 (55.1)** (Z. 11668), ERGÄNZT durch R79 (55.2): die Bedingung aus (e) ist gemessen erfüllt (Z. 11671); 54.5, Zeile „R74 (54.1) (e)“ ERGÄNZT durch R79 (55.2) (Z. 11719); 54.2 R75 **PRÄZISIERT durch R84 (56.1)** (Z. 11681), **PRÄZISIERT durch R85 (56.2)** (Z. 11684); 54.5, Zeile „R75 (54.2) (a)“ ERGÄNZT durch R84 (56.1) (Z. 11722) |
 | 55 aus 07a | 5 | R78–R83 (55.1–55.6); 55.7 Voraussetzungen und Befunde; 55.8 Offenes | 55.1 R78 **BERICHTIGT durch R88 (56.5)** (Z. 11751), **PRÄZISIERT durch R88 (56.5)** (Z. 11754); 55.3 R80 ERGÄNZT durch R88 (56.5) (Z. 11777), ERGÄNZT durch R89 (56.6) (Z. 11780); 55.4 R81 ERGÄNZT durch R86 (56.3) (Z. 11790), ERGÄNZT durch R87 (56.4) (Z. 11793); 55.5 R82 **BERICHTIGT durch R88 (56.5)** (Z. 11806); 55.6 R83 ERGÄNZT durch R88 (56.5) (Z. 11816); 55.7, Zeile „R78 (55.1) (a), erste“ ERGÄNZT durch R88 (56.5) (Z. 11846, nachgetragen nach R93 (a)) |
 | 56 aus 09a | 5 | R84–R89 (56.1–56.6); 56.7 Voraussetzungen und Befunde; 56.8 Offenes | 56.1 R84 ERGÄNZT durch R91 (57.2) (Z. 11879); 56.3 R86 ERGÄNZT durch R92 (57.3) (Z. 11899); 56.4 R87 ERGÄNZT durch R90 (57.1) (Z. 11912); 56.5 R88 **PRÄZISIERT durch R91 (57.2)** (Z. 11922); 56.7, Zeile „R87 (56.4) (d)“ ERGÄNZT durch R90 (57.1) (Z. 11958); 56.7, Zeilen „R84 (56.1) (e), erste“ und „R84 (56.1) (e), zweite“ ERGÄNZT durch R91 (57.2) (Z. 11961); 56.7, Zeile „R86 (56.3) (e)“ ERGÄNZT durch R92 (57.3) (Z. 11964); 56.1 R84 **PRÄZISIERT durch R95 (58.2)** (Z. 11882); 56.3 R86 ERGÄNZT durch R98 (61.1) (Z. 11902) |
-| 57 aus 10a | 5 | R90–R93 (57.1–57.4); 57.5 Voraussetzungen und Befunde; 57.6 Offenes | 57.1 R90 ERGÄNZT durch R98 (61.1) (Z. 12000); 57.2 R91 **PRÄZISIERT durch R99 (61.2)** (Z. 12013) |
-| 58 aus 14a und 14b | 6 | R94–R96 (58.1–58.3, 14a); R97 (58.4, 14b); 58.5 Voraussetzungen und Befunde | 58.2 R95 **BERICHTIGT durch R97 (58.4)** (Z. 12086); 58.3 R96 **BERICHTIGT durch R97 (58.4)** (Z. 12096) |
+| 57 aus 10a | 5 | R90–R93 (57.1–57.4); 57.5 Voraussetzungen und Befunde; 57.6 Offenes | 57.1 R90 ERGÄNZT durch R98 (61.1) (Z. 12000); 57.2 R91 **PRÄZISIERT durch R99 (61.2)** (Z. 12016) |
+| 58 aus 14a und 14b | 6 | R94–R96 (58.1–58.3, 14a); R97 (58.4, 14b); 58.5 Voraussetzungen und Befunde | 58.2 R95 **BERICHTIGT durch R97 (58.4)** (Z. 12089); 58.3 R96 **BERICHTIGT durch R97 (58.4)** (Z. 12099) |
 | 59 Tatsachennotiz TB-162 | 6 | 59.1 Tatsachennotiz zu 24.2, 24.3, R36 und 11.2 mit R43 (Kapital-Drawdown E und M je WF-Abschnitt; aus ERGEBNIS_TB-162 Z. 199–232) | – |
 | 60 Vollzug TB-163 | 6 | 60.1 Hash-Übergang nach 37.3 (E-6, vier Aktien-Optimierer, Commit `11a267f`; aus ERGEBNIS_TB-163 Z. 111–123) mit Sonde zu Punkt 11; 60.2 Tatsachennotiz Posten 5 nach R43 („nicht im Laufpfad“, neun Optimierer) | – |
 | 61 aus 15a | 6 | R98–R99 (61.1–61.2); 61.3 Voraussetzungen und Befunde | – |
@@ -222,6 +222,7 @@ Die Spalte „später berührt“ nennt jede gemessene Marke und jede Rückverwe
 | 63 Vollzug TB-167 | 6 | 63.1 Hash-Übergang nach 37.3 (Abhilfe G6 elliott_wave_stocks, Commit `b6aaa24`; aus ERGEBNIS_TB-167 Z. 47–51) mit Freigabe-Karte und Sonde zu Punkt 11 | – |
 | 64 Vollzug TB-166 | 6 | 64.1 Hash-Übergänge nach 37.3 (E-3a, 20 Dateien, Commit `15f28e4`; aus docs/belege/TB-166/e_notiz.md) mit Freigabe-Karten, Abnahme nach R98 (d) am Listen-Erzeuger (TB-169) und Sonde zu Punkt 11 | – |
 | 65 aus 16c | 6 | R104–R105 (65.1–65.2); 65.3 Voraussetzungen und Befunde | – |
+| 66 aus 17a | 6 | R106 (66.1); 66.2 Voraussetzungen und Befunde | – |
 
 ## 5. Die Marken aus E-2 (TB-126)
 
@@ -582,8 +583,8 @@ Alle 8 Marken, die TB-162 nach R96 (d) und R97 (e) gesetzt hat (6 am alten Ort, 
 | 48.13 R45 | Z. 10977 | ERGÄNZT | R97 (58.4) | 6 |
 | 48.14 R46 | Z. 11017 | ERGÄNZT | R94 (58.1) | 6 |
 | 56.1 R84 | Z. 11882 | PRÄZISIERT | R95 (58.2) | 6 |
-| 58.2 R95 | Z. 12086 | BERICHTIGT | R97 (58.4) | 6 |
-| 58.3 R96 | Z. 12096 | BERICHTIGT | R97 (58.4) | 6 |
+| 58.2 R95 | Z. 12089 | BERICHTIGT | R97 (58.4) | 6 |
+| 58.3 R96 | Z. 12099 | BERICHTIGT | R97 (58.4) | 6 |
 
 ### Indexzeilen aus Fable 14a und 14b
 
@@ -601,7 +602,7 @@ Alle 3 Marken, die TB-165 nach R99 (d) gesetzt hat, in der Reihenfolge des Regis
 |---|---|---|---|---|
 | 56.3 R86 | Z. 11902 | ERGÄNZT | R98 (61.1) | 6 |
 | 57.1 R90 | Z. 12000 | ERGÄNZT | R98 (61.1) | 6 |
-| 57.2 R91 | Z. 12013 | PRÄZISIERT | R99 (61.2) | 6 |
+| 57.2 R91 | Z. 12016 | PRÄZISIERT | R99 (61.2) | 6 |
 
 ### Indexzeilen aus Fable 15a
 
@@ -621,7 +622,7 @@ Alle 6 Marken, die TB-167 nach R100 (a) und R103 (c) gesetzt hat, in der Reihenf
 | 55.1 | Z. 11757 | 55.1 (R78) — ERGÄNZT durch R83 (55.6), Unterpunkte (e), (f) und (g) | Fable 15b R100 (a) | 6 |
 | 55.2 | Z. 11767 | 55.2 (R79) — ERGÄNZT durch R80 (55.3), Unterpunkt (c): die Voraussetzungen aus (a), (b) und (g) sind gemessen erfüllt (TB-140) | Fable 15b R100 (a) | 6 |
 | 55.4 | Z. 11796 | 55.4 R81 PRÄZISIERT durch R102 (62.3) | Fable 16b R102, Unterpunkte (a) und (c) | 6 |
-| 60.1 | Z. 12204 | 60.1 ERGÄNZT durch R102 (62.3) und R103 (62.4) | Fable 16b R103 (c): R102 Unterpunkte (b) und (c), R103 Unterpunkt (b) | 6 |
+| 60.1 | Z. 12207 | 60.1 ERGÄNZT durch R102 (62.3) und R103 (62.4) | Fable 16b R103 (c): R102 Unterpunkte (b) und (c), R103 Unterpunkt (b) | 6 |
 
 ---
 
@@ -632,10 +633,24 @@ Alle 5 Marken, die TB-170 nach R104 (c) und R105 (e) gesetzt hat, in der Reihenf
 | Ort | Marke | Kopf | T |
 |---|---|---|---|
 | 57.1 | Z. 12003 | 57.1 R90 PRÄZISIERT durch R105 (65.2) | 6 |
-| 61.1 | Z. 12234 | 61.1 R98 ERGÄNZT durch R105 (65.2) | 6 |
-| 62.1 | Z. 12306 | 62.1 R100 ERGÄNZT durch R104 (65.1) | 6 |
-| 62.5 (c) | Z. 12364 | 62.5, Absatz (c) ERGÄNZT durch R104 (65.1) | 6 |
-| 64.1 | Z. 12446 | 64.1, Absatz „Abnahme nach R98 (d)“ ERGÄNZT durch R105 (65.2) | 6 |
+| 61.1 | Z. 12237 | 61.1 R98 ERGÄNZT durch R105 (65.2) | 6 |
+| 62.1 | Z. 12312 | 62.1 R100 ERGÄNZT durch R104 (65.1) | 6 |
+| 62.5 (c) | Z. 12370 | 62.5, Absatz (c) ERGÄNZT durch R104 (65.1) | 6 |
+| 64.1 | Z. 12452 | 64.1, Absatz „Abnahme nach R98 (d)“ ERGÄNZT durch R105 (65.2) | 6 |
+
+---
+
+## 17. Die Marken aus Fable 17a (TB-173)
+
+Alle 4 Marken, die TB-173 nach R106 (e) gesetzt hat, in der Reihenfolge des Registers; Zeilen aus `docs/belege/TB-173/r_daten.json`.
+
+| Ort | Marke | Kopf | T |
+|---|---|---|---|
+| 57.1 | Z. 12006 | 57.1 R90 ERGÄNZT durch R106 (66.1) | 6 |
+| 61.1 | Z. 12240 | 61.1 R98 ERGÄNZT durch R106 (66.1) | 6 |
+| 64.1 | Z. 12455 | 64.1, Absatz „Abnahme nach R98 (d)“ ERGÄNZT durch R106 (66.1) | 6 |
+| 65.2 | Z. 12476 | 65.2 R105 PRÄZISIERT und ERGÄNZT durch R106 (66.1) | 6 |
+
 
 
 
@@ -681,4 +696,5 @@ In TB-165 (15.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py
 In TB-167 (16.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py bc5e165 4370857`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-167 (`index`); 62 (R100–R103) kommt zu T6; neuer Abschnitt 15 (6 Marken).
 In TB-168 (16.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py a2768a1 02f19f5`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-168 (`index`); 63 (Vollzug TB-167) kommt zu T6.
 In TB-169 (16.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 69539db 3cbcdee`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-169 (`index`); 64 (Vollzug TB-166) kommt zu T6.
-Zuletzt nachgezogen in TB-170 (17.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 801a055 7aecfe6`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-170 (`index`); 65 (R104–R105) kommt zu T6; neuer Abschnitt 16 (5 Marken). Der Kopf mischt weiter Stände (BACKLOG Rang 1, TB-170).
+In TB-170 (17.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py 801a055 7aecfe6`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-170 (`index`); 65 (R104–R105) kommt zu T6; neuer Abschnitt 16 (5 Marken). Der Kopf mischt weiter Stände (BACKLOG Rang 1, TB-170).
+Zuletzt nachgezogen in TB-173 (17.10.2026): Zeilenangaben mit `docs/belege/TB-154/c2_index_zeilen.py f79f239 7fe6342`; Einträge mit dem Werkzeug aus Anhang A des Auftrags TB-173 (`index`); 66 (R106) kommt zu T6; neuer Abschnitt 17 (4 Marken). Der Kopf mischt weiter Stände (BACKLOG Rang 1, TB-170).

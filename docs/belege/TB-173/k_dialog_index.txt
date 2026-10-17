@@ -1,0 +1,5 @@
+geschrieben: docs/projektfuehrung/FABLE_DIALOG_INDEX.md, 67 Zeilen
+Zeilen im Index: 67, FABLE_ANTWORT_*.md: 67 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 67 von 67
+Status: offen 14, ohne Registertext 13, registriert 40
+rc 0

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 61 (von 0–65) — Register-Z. 12225–12296 — Commit 7aecfe6cd9f4ac84e91702d0256e784df77bb6a2 — 2026-10-17 — Original sha256 08b072674617cbf73c8a63472367f56e53158c61d56d696152896c3f91a806cb — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 61 (von 0–66) — Register-Z. 12228–12302 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
 
 ## 61. Fable 15a — Registerblock R98–R99 (TB-165)
 
@@ -10,6 +10,9 @@ Reines Eintragen von Registertext, Bauart wie 58. Quelle ist allein `docs/projek
 > Quelle des Grundes: R90 (c) bis (h), R87 (c), R86 (b) und (d), R81 (b) und (h), 37.3 im Wortlaut („beauftragt war (Auftrag, Freigabe, alter und neuer Hash als Tatsachennotiz)“; neues Abbild unter neuem Namen), 39.5 und 42.5 nach der Wiedergabe in 37.3, 37.5 (2) nach der Wiedergabe in R45, R46 (Bauart), 41.1 A5 nach der Wiedergabe in R81, R31 (b) nach der Wiedergabe in 56.8 Nr. 8, die Anfrage 15.10.a und 57.5 (Zählung zu entry_cutoff; vom Verfahrensprüfer nicht gemessen). Nicht Grund: wie viele Einstiege die Schranke nimmt und welcher Weg weniger Aufwand ist. 10 und 41 hat der Verfahrensprüfer nicht gelesen. Kein Ergebnis.
 
 > ⭐ **61.1 R98 ERGÄNZT durch R105 (65.2)** (Fable 16c R105, Unterpunkt (c), TB-170, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **61.1 R98 ERGÄNZT durch R106 (66.1)** (Fable 17a R106, Unterpunkt (b), TB-173, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken nach R99 (d): 57.1 (R90); 56.3 (R86), Unterpunkt (d). Ohne Marke (R99 (d)): 48.14 (R46), 55.4 (R81), 56.4 (R87), 37.3, 37.5, 41.1, 48.13 (R45). Offen: die Voraussetzung in (b), Messung mit dem Bau E-3 (61.3 (c)).

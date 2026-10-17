@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 57 (von 0–65) — Register-Z. 11991–12069 — Commit 7aecfe6cd9f4ac84e91702d0256e784df77bb6a2 — 2026-10-17 — Original sha256 08b072674617cbf73c8a63472367f56e53158c61d56d696152896c3f91a806cb — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 57 (von 0–66) — Register-Z. 11991–12072 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
 
 ## 57. Fable 10a — Registerblock R90–R93 (TB-154)
 
@@ -13,6 +13,9 @@ Reines Eintragen von Registertext, Bauart wie 56. Quelle ist allein `docs/projek
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **57.1 R90 PRÄZISIERT durch R105 (65.2)** (Fable 16c R105, Unterpunkte (a) und (b), TB-170, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **57.1 R90 ERGÄNZT durch R106 (66.1)** (Fable 17a R106, Unterpunkt (b), TB-173, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 48.14 (R46); 56.4 (R87); 56.7, Zeile „R87 (56.4) (d)“. Voraussetzung und Befunde: 57.5. Indexzeile ohne Marke (R93 (d)): Abschnitt 10, Sperrlistenpunkte 9 und 11 (Lesart des steuernden Chats, vorläufig). Offen: 57.6 Nr. 3, 4 und 5.
