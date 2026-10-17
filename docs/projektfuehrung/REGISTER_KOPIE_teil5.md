@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 5 von 6 — Abschnitte 53–57 — Commit 3cbcdee1096fa8983be83e4dd395dec7150c019c — 2026-10-16 — Original sha256 f5510c4b330c769e1b7e1a173c21013cda264ef65a1080c2437bfce2f4780411 — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 5 von 6 — Abschnitte 53–57 — Commit 7aecfe6cd9f4ac84e91702d0256e784df77bb6a2 — 2026-10-17 — Original sha256 08b072674617cbf73c8a63472367f56e53158c61d56d696152896c3f91a806cb — KOPIE, nicht das Register
 
 ## 53. Fable 02c — Registerblock R66–R73 (TB-132)
 
@@ -488,6 +488,9 @@ Reines Eintragen von Registertext, Bauart wie 56. Quelle ist allein `docs/projek
 > Quelle des Grundes: R87 (a), (c), (d) („die Regel nach (a) steht dann schon“; der Satz zum Streichen) und (e), 26.2 (das Fenster ist eine Zahl je Bot, der Code gibt nach, nicht der Plan), R69 (a) und (b) (Bauart: Auflösung zugunsten des Registertexts, beauftragte Änderung nach 37.3 mit Gegenprobe), 42.3 F1 (a) (ein Widerspruch zwischen Register und Code endet mit 2), 37.3, R81 (b) und (c), R43, R45 (Bauart einer beauftragten Änderung), R46, R81 (h) und R75 (f) (Bauart: die Abnahme führt den Fall herbei), 37.5 (2) (ein Wert, ein Ort; nach der Wiedergabe in R45), 24.3, R88 (d), das Ergebnis TB-148 (M3, M4, M5) und die Vorprüfung des steuernden Chats zur Anfrage 10.10.a (vom Verfahrensprüfer nicht gemessen; Code nicht gelesen). 23.2, 23.3 und 23.5 hat der Verfahrensprüfer nicht gelesen; sie stehen nach der Wiedergabe in R87. Nicht Grund: wie viele Einstiege die Schranke einem Bot nimmt und welcher Weg weniger Aufwand ist. Kein Ergebnis.
 
 > ⭐ **57.1 R90 ERGÄNZT durch R98 (61.1)** (Fable 15a R98, TB-165, 15.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **57.1 R90 PRÄZISIERT durch R105 (65.2)** (Fable 16c R105, Unterpunkte (a) und (b), TB-170, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 48.14 (R46); 56.4 (R87); 56.7, Zeile „R87 (56.4) (d)“. Voraussetzung und Befunde: 57.5. Indexzeile ohne Marke (R93 (d)): Abschnitt 10, Sperrlistenpunkte 9 und 11 (Lesart des steuernden Chats, vorläufig). Offen: 57.6 Nr. 3, 4 und 5.
