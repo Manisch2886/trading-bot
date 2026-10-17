@@ -1,0 +1,10 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-175/v_voraussetzung.txt)
+ja    Quelle md5 d13e691973d3b98528b72c67ac000eb9, Registerblock R107
+ja    67 noch nicht im Register; endet mit einer Leerzeile
+ja    9 Einfuegestellen eindeutig
+ja    Karte TB-175 gefuellt (Abschnitt Freigabe des Auftrags)
+ja    nachher: 9 Marken Z. [2256, 2469, 11805, 11914, 12038, 12124, 12347, 12479, 12564]; Abschnitt 67 Z. 12624
+ja    R107 mit Quellenzeile je genau einmal zeichengleich (Zeichenvergleich mit dem Codeblock)
+ja    append-only bis auf die neun Marken (je Leerzeile, Marke, Zeichengleich-Zeile)
+Pruefungen: 8, NEIN: 0
+rc 0

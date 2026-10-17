@@ -1,0 +1,4 @@
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17b/FABLE_ANTWORT_2026-10-17b_r102d_schnitt_t3_geschlossen_modus_sammler_quelle.md = nachher docs/projektfuehrung/FABLE_ANTWORT_2026-10-17b_r102d_schnitt_t3_geschlossen_modus_sammler_quelle.md = d13e691973d3b98528b72c67ac000eb9
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17b/FABLE_ANFRAGE_2026-10-17b_r102d_vorlauf_t3_selektionsmodus.md = nachher docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17b_r102d_vorlauf_t3_selektionsmodus.md = af2c861a88a083dd7652dcbc07650d8f
+Pruefungen: 2, NEIN: 0
+rc 0

@@ -1,0 +1,43 @@
+ja    Gruppe unveraendert: research/tb24_haltedauern/alle_bots.py md5 7bb90ef438d5
+ja    Gruppe unveraendert: research/tb24_haltedauern/auswertung.py md5 c15e6375520e
+ja    Gruppe unveraendert: research/tb24_haltedauern/haltedauer_kern.py md5 60942de99b32
+ja    Gruppe unveraendert: research/tb24_haltedauern/live_haltedauern.py md5 7d21a66cd317
+ja    Gruppe unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    Test vor E = Bau-Stand (md5 807d278e60a9, Pruefung 13 alt)
+ja    BACKLOG Rang 1 genau einmal, endet mit ' |', noch ohne TB-175
+ja    Journal: hoechste FK (FK am Bau-HEAD)
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANTWORT_2026-10-17b_r102d_schnitt_t3_geschlossen_modus_sammler_quelle.md verfolgt, gleich HEAD, md5 d13e691973d3b98528b72c67ac000eb9
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17b_r102d_vorlauf_t3_selektionsmodus.md verfolgt, gleich HEAD, md5 af2c861a88a083dd7652dcbc07650d8f
+ja    Registerblock 17b: genau R107 und Quelle im Codeblock (Z. 13–16)
+ja    Register: 66 da, 67 nicht; R107 0 Treffer
+ja    Register endet mit genau einer Leerzeile
+ja    Ort 62.3: Einfuegestelle nach Z. 12327 eindeutig, R107 dort noch nicht genannt
+ja    Ort 55.4: Einfuegestelle nach Z. 11797 eindeutig, R107 dort noch nicht genannt
+ja    Ort 66.1: Einfuegestelle nach Z. 12538 eindeutig, R107 dort noch nicht genannt
+ja    Ort 64.1: Einfuegestelle nach Z. 12456 eindeutig, R107 dort noch nicht genannt
+ja    Ort 56.3: Einfuegestelle nach Z. 11903 eindeutig, R107 dort noch nicht genannt
+ja    Ort 57.3: Einfuegestelle nach Z. 12024 eindeutig, R107 dort noch nicht genannt
+ja    Ort 16.4: Einfuegestelle nach Z. 2254 eindeutig, R107 dort noch nicht genannt
+ja    Ort 16.8: Einfuegestelle nach Z. 2464 eindeutig, R107 dort noch nicht genannt
+ja    Ort 58.4: Einfuegestelle nach Z. 12107 eindeutig, R107 dort noch nicht genannt
+ja    Index-Kopf Z. 3 nennt 0–66
+ja    Index: Zeile 66, Pflegezeile TB-173, Pflege-Anker je genau einmal; kein Abschnitt 18
+ja    Dialog-Index: 17b noch nicht
+ja    E2-Ausgang: research/faltenplan_neun/embargo_neun.py md5 b93af1460411
+ja    E2-Ausgang: research/mtm_drawdown/grundlage.py md5 81cf1c93243a
+ja    E2-Ausgang: research/mtm_drawdown/messung.py md5 00eb23079f1b
+ja    E2-Ausgang: research/mtm_drawdown/test_mtm_kern.py md5 80f1511a18d2
+ja    E2-Ausgang: research/wf_kapital_dd/messung.py md5 94c091f4c4e1
+ja    Fundstelle abn: docs/belege/TB-169/e_abnahme.txt Z. 85 unveraendert (Bau-Stand)
+ja    Fundstelle aus_lade: research/tb24_haltedauern/auswertung.py Z. 69–71 unveraendert (Bau-Stand)
+ja    Fundstelle emb: research/faltenplan_neun/embargo_neun.py Z. 232 unveraendert (Bau-Stand)
+ja    Fundstelle gl_meta: research/mtm_drawdown/grundlage.py Z. 189–198 unveraendert (Bau-Stand)
+ja    Fundstelle mg: research/vorregistrierung/messgroessen.py Z. 230–231 unveraendert (Bau-Stand)
+ja    Fundstelle tle_aus: research/tb24_haltedauern/test_listen_erzeuger.py Z. 87–88 unveraendert (Bau-Stand)
+ja    Fundstelle tle_modus: research/tb24_haltedauern/test_listen_erzeuger.py Z. 161 unveraendert (Bau-Stand)
+ja    Fundstelle tle_p8: research/tb24_haltedauern/test_listen_erzeuger.py Z. 177 unveraendert (Bau-Stand)
+ja    Fundstelle tle_tag: research/tb24_haltedauern/test_listen_erzeuger.py Z. 159–163 unveraendert (Bau-Stand)
+ja    Fundstelle tle_wachen: research/tb24_haltedauern/test_listen_erzeuger.py Z. 85–86 unveraendert (Bau-Stand)
+ja    Fundstelle wf: research/wf_kapital_dd/messung.py Z. 120 unveraendert (Bau-Stand)
+Pruefungen: 41, NEIN: 0
+rc 0
