@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 56 (von 0–66) — Register-Z. 11870–11990 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 56 (von 0–67) — Register-Z. 11879–12002 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
 
 ## 56. Fable 09a — Registerblock R84–R89 (TB-149)
 
@@ -33,6 +33,9 @@ Reines Eintragen von Registertext, Bauart wie 55. Quelle ist allein `docs/projek
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **56.3 R86 ERGÄNZT durch R98 (61.1)** (Fable 15a R98, Unterpunkt (d), TB-165, 15.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **56.3 R86 ERGÄNZT durch R107 (67.1)** (Fable 17b R107, Unterpunkte (c) und (e), TB-175, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 40.6; 41.3, Eintrag C2; 48.12 (R44); 55.4 (R81). Voraussetzung und Befunde: 56.7. Offen: 56.8 Nr. 3, 7, 9, 10 und 15.

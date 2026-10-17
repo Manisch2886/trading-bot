@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 16 (von 0–66) — Register-Z. 1832–2589 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 16 (von 0–67) — Register-Z. 1832–2595 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
 
 ## 16. Registernachtrag (TB-41, 16.09.2026)
 
@@ -424,6 +424,9 @@ Abbruchkriterium.
 > ⭐ **16.4, „Prüfung vor dem Tag“ PRÄZISIERT durch R21 (47.4)** (Fable 27c R21, nachgetragen nach Fable 01a R61 (b), TB-129, 02.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **16.4 ERGÄNZT durch R107 (67.1)** (Fable 17b R107, Unterpunkt (d), TB-175, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ---
 
 ### 16.5 Registertext 7 — Backtester-Prüfung *(neu)*
@@ -633,6 +636,9 @@ zwei Einheiten**.
 > gestapelte Selektion — ein Overlay wird auf denselben Daten geprüft, auf denen
 > die Bots gewählt wurden, und sein Ergebnis hängt von dieser Wahl ab. Die
 > Falten sind für ein Overlay kein unabhängiger Boden mehr.*
+
+> ⭐ **16.8 ERGÄNZT durch R107 (67.1)** (Fable 17b R107, Unterpunkt (d), TB-175, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ---
 

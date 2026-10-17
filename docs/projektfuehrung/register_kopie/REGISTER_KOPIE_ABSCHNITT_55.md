@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 55 (von 0–66) — Register-Z. 11742–11869 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 55 (von 0–67) — Register-Z. 11748–11878 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
 
 ## 55. Fable 07a — Registerblock R78–R83 (TB-139)
 
@@ -55,6 +55,9 @@ Reines Eintragen von Registertext, Bauart wie 54. Quelle ist allein `docs/projek
 > Eintrag und Stand oben bleiben zeichengleich.
 
 > ⭐ **55.4 R81 PRÄZISIERT durch R102 (62.3)** (Fable 16b R102, Unterpunkte (a) und (c), TB-167, 16.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **55.4 R81 ERGÄNZT durch R107 (67.1)** (Fable 17b R107, Unterpunkt (a), TB-175, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 5.2; 42.2, Eintrag E6; 48.11 (R43); 48.18 (R50) (die Marke nennt auch R83); 53.1 (R66). Mitgenannt in der Marke an 48.14 (R46) (Kette von 55.1). Voraussetzungen: 55.7. Indexzeile ohne Marke (R80 (b)): Abschnitt 10, Punkte 6, 10 und 11. Offen: 55.8 Nr. 1 bis 6 und 11.

@@ -1,0 +1,4 @@
+Zeilen im Index: 68, FABLE_ANTWORT_*.md: 68 - gleich
+Zeilen mit allen sechs Feldern (27b G4) und offen in {ja, nein}: 68 von 68
+Status: offen 15, ohne Registertext 13, registriert 40
+rc 0

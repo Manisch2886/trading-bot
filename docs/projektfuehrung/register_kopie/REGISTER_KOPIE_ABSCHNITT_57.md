@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 57 (von 0–66) — Register-Z. 11991–12072 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 57 (von 0–67) — Register-Z. 12003–12087 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
 
 ## 57. Fable 10a — Registerblock R90–R93 (TB-154)
 
@@ -34,6 +34,9 @@ Reines Eintragen von Registertext, Bauart wie 56. Quelle ist allein `docs/projek
 
 > R92 — Ergänzung zu R86 (e) (56.3) (Zeitzone von open_time und Go-Live-Schnitt: Stand nach TB-148 und was die Voraussetzung schliesst). (a) Gemessen (TB-148, M2, durch Lesen): Der Go-Live-Schnitt wird als Kalenderdatum ohne Uhrzeit und ohne Zeitzone gelesen, open_time von allen neun Ladern ohne Zeitzone, wie der Text der Datei ihn gibt; an keiner gelesenen Vergleichsstelle wird einer Seite eine Zeitzone zugewiesen oder umgerechnet. Die Meldung, die R86 (e) für den anderen Fall verlangt, ist mit dem Ergebnis TB-148 und der Anfrage 10.10.a geschehen. (b) Krypto. open_time der Krypto-Dateien ist nach dem Vertrag ihrer Erzeuger ein zonenloser UTC-Zeitstempel. Für die fünf Krypto-Bots ist die Voraussetzung damit erfüllt: Beide Seiten werden gleich gelesen, und eine Zeile ab dem Schnitt (R81 (a)) ist eine Zeile, deren open_time am Kalendertag des Schnitts, 00:00 UTC, oder später liegt. (c) Aktien. Welche Zeitzone und welchen Kalendertag open_time in den Aktien-Dateien trägt, bestimmt die Datenquelle; durch Lesen des Codes ist es nicht entscheidbar. Die Voraussetzung bleibt für die vier Aktien-Bots offen. [Voraussetzung, vor der Neuerzeugung der Listen zu messen, als Verfahrensmessung am Datenbestand des Snapshots (27.2), nur die Form: ob open_time in jeder Aktien-Tagesreihe als Kalenderdatum steht, ohne Zonenangabe und ohne Uhrzeit, die den Tag verschiebt; gezählt je Datei, kein Kurs wird gelesen oder genannt. Steht es so, ist die Voraussetzung erfüllt: Der Tag einer Zeile ist der Handelstag, den die Datei nennt, und der Schnitt ist ein Kalendertag. Sonst kommt es mit der Fundstelle als Frage an den Verfahrensprüfer.] (d) Zu 5.2 legt dieser Block nichts fest.
 > Quelle des Grundes: R86 (e) („sonst wird gemeldet“), R81 (a) (Zeile ab dem Schnitt), R83 (d) (Bauart: der Bestand des Snapshots als Tatsachennotiz), 27.2 (Datenbestand), das Ergebnis TB-148 (M2-1, M2-8 bis M2-13, M2-22 bis M2-25; vom Verfahrensprüfer nicht gemessen). 5.2 hat der Verfahrensprüfer nicht gelesen. Kein Ergebnis.
+
+> ⭐ **57.3 R92 ERGÄNZT durch R107 (67.1)** (Fable 17b R107, Unterpunkt (c): die Voraussetzung in (c) ist gemessen erfüllt, TB-175, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken: 56.3 (R86); 56.7, Zeile „R86 (56.3) (e)“. Voraussetzung und Befunde: 57.5. Offen: 57.6 Nr. 2.
 

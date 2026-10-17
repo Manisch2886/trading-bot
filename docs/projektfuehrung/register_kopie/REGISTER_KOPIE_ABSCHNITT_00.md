@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 0 (von 0–66) — Register-Z. 1–51 — Commit 7fe63423b7ef9d52428658156063e3883bfe93c4 — 2026-10-17 — Original sha256 945ba13ff18946e7a53465173cb629fdeaa6f2df2c72cf4591e9fb8bad415805 — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 0 (von 0–67) — Register-Z. 1–51 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
 
 # Vorregistrierung der Neuselektion (TB-30a)
 
