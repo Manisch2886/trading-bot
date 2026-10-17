@@ -1,0 +1,15 @@
+ja    unveraendert: research/exposure_messung/bot_lauf.py md5 01fd9282ded2
+ja    unveraendert: research/faltenplan_neun/faltenschranke_messung.py md5 584d9ff959da
+ja    unveraendert: research/tb24_haltedauern/haltedauer_kern.py md5 60942de99b32
+ja    unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    unveraendert: research/tb24_haltedauern/test_listen_erzeuger.py md5 d77e73ed5ff7
+ja    unveraendert: strategies/elliott_wave/multi_symbol_optimise.py md5 bf11370b140d
+ja    unveraendert: strategies/elliott_wave_stocks/multi_symbol_optimise.py md5 571076168d56
+ja    unveraendert: strategies/t3_supertrend/multi_symbol_optimise.py md5 dc85993e8d42
+ja    Probe im Repo = Anhang B (sha256 1fe6f12ef5f47603)
+ja    R110 (a) t3_supertrend: 6 von 6 (Abnahme am Erzeuger)
+ja    R110 (a) elliott_wave: 6 von 6 (Abnahme am Erzeuger)
+ja    R110 (a) elliott_wave_stocks: 6 von 6 (Abnahme am Erzeuger)
+ja    p_probe.txt: 18 von 18, rc 0; Gegenprobe beide Seiten mit Zaehlzeile
+Pruefungen: 13, NEIN: 0
+rc 0

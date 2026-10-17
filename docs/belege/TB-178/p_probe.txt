@@ -1,0 +1,26 @@
+ja    t3_supertrend: 1 Tage aus der Rechnung nach 23.5, kein Tag gesetzt; SPAET 2025-05-31 vor dem Schnitt und nach den uebrigen (2023-06-01); Lauf nutzte die Rechnung (spur 2025-05-31)
+ja    t3_supertrend: 2 rc S 0, rc O 0 (Wachen R86 (d), R87 (c) an)
+ja    t3_supertrend: 3 Ausgaben S und O bytegleich (6116 Zeichen)
+Zaehlzeile t3_supertrend: Zeilen S 58, O 58; von der Schranke entfernt 0; nur in S 0; SPAET-Trades 3, davon vor dem Tag 0, erster Einstieg 2025-11-26 16:00:00
+ja    t3_supertrend: 4 Zaehlzeile entfernt 0, nur in S 0; SPAET traegt Trades ab dem Tag, keinen davor
+ja    t3_supertrend: 5 Lesehaken: nur Snapshot-Dateien gelesen (S 5, O 5)
+Zaehlzeile Gegenprobe t3_supertrend: mit Schranke rc 0, Zeilen 58; ohne Schranke und Wachen Zeilen 67; Zeilen nur ohne Schranke und Wachen 60
+ja    t3_supertrend: 6 Gegenprobe beide Seiten (40.7, R110 (a)): SPAET mit Signal vor dem Tag -> ohne Schranke rc 2 ([positionen_holen] ABBRUCH t3_supertrend: Einstieg 2023-09-06 04:00:00 vor dem Handelbar-T); mit Schranke rc 0, Zaehlzeile (Zeilen nur ohne Schranke) 60
+ja    elliott_wave: 1 Tage aus der Rechnung nach 23.5, kein Tag gesetzt; SPAET 2026-05-31 vor dem Schnitt und nach den uebrigen (2023-12-31); Lauf nutzte die Rechnung (spur 2026-05-31)
+ja    elliott_wave: 2 rc S 0, rc O 0 (Wachen R86 (d), R87 (c) an)
+ja    elliott_wave: 3 Ausgaben S und O bytegleich (1238 Zeichen)
+Zaehlzeile elliott_wave: Zeilen S 11, O 11; von der Schranke entfernt 0; nur in S 0; SPAET-Trades 1, davon vor dem Tag 0, erster Einstieg 2026-07-03 23:00:00
+ja    elliott_wave: 4 Zaehlzeile entfernt 0, nur in S 0; SPAET traegt Trades ab dem Tag, keinen davor
+ja    elliott_wave: 5 Lesehaken: nur Snapshot-Dateien gelesen (S 5, O 5)
+Zaehlzeile Gegenprobe elliott_wave: mit Schranke rc 0, Zeilen 11; ohne Schranke und Wachen Zeilen 15; Zeilen nur ohne Schranke und Wachen 11
+ja    elliott_wave: 6 Gegenprobe beide Seiten (40.7, R110 (a)): SPAET mit Signal vor dem Tag -> ohne Schranke rc 2 ([positionen_holen] ABBRUCH elliott_wave: Einstieg 2024-12-03 21:00:00 vor dem Handelbar-Ta); mit Schranke rc 0, Zaehlzeile (Zeilen nur ohne Schranke) 11
+ja    elliott_wave_stocks: 1 Tage aus der Rechnung nach 23.5, kein Tag gesetzt; SPAET 2024-01-01 vor dem Schnitt und nach den uebrigen (2012-12-31); Lauf nutzte die Rechnung (spur 2024-01-01)
+ja    elliott_wave_stocks: 2 rc S 0, rc O 0 (Wachen R86 (d), R87 (c) an)
+ja    elliott_wave_stocks: 3 Ausgaben S und O bytegleich (3055 Zeichen)
+Zaehlzeile elliott_wave_stocks: Zeilen S 36, O 36; von der Schranke entfernt 0; nur in S 0; SPAET-Trades 2, davon vor dem Tag 0, erster Einstieg 2025-03-27 00:00:00
+ja    elliott_wave_stocks: 4 Zaehlzeile entfernt 0, nur in S 0; SPAET traegt Trades ab dem Tag, keinen davor
+ja    elliott_wave_stocks: 5 Lesehaken: nur Snapshot-Dateien gelesen (S 4, O 4)
+Zaehlzeile Gegenprobe elliott_wave_stocks: mit Schranke rc 0, Zeilen 36; ohne Schranke und Wachen Zeilen 40; Zeilen nur ohne Schranke und Wachen 25
+ja    elliott_wave_stocks: 6 Gegenprobe beide Seiten (40.7, R110 (a)): SPAET mit Signal vor dem Tag -> ohne Schranke rc 2 ([positionen_holen] ABBRUCH elliott_wave_stocks: Einstieg 2020-08-07 00:00:00 vor dem Hande); mit Schranke rc 0, Zaehlzeile (Zeilen nur ohne Schranke) 25
+Ergebnis: 18 von 18 bestanden
+rc 0
