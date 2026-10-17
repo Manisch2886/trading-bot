@@ -11090,6 +11090,25 @@ Zwei neue Antworten des Verfahrensprüfers liegen mit Anfrage und Übergabe unve
 
 ---
 
+## FP — TB-179: KI-Forschung BA3 (Regelblätter, Fragenkatalog v1, Prompts mit Manifest, Regel-Test)
+*Quelle: `docs/ERGEBNIS_TB-179_ki_forschung_ba3.md`, Auftrag `docs/auftraege/MAC_TB-179_ki_forschung_ba3.md`, Belege `docs/belege/TB-179/`, Commits `cb62aee` (S0, Auftrag) und `afa5676` (B, Regelblätter, Prompts, Test), danach der Abgabe-Commit.*
+
+### Was gemessen ist
+- B: fünf Regelblätter, Prompts und `manifest.json` unter `ki_forschung/`, `test_ki_regeln.py` neu, eine Zeile in `test_ki_wachen.py`; sha256 wie Soll (`b_sha.txt`, rc 0).
+- T: Regel-Test 14 Prüfungen, FEHLT 0 (`t_regeln.txt`); Wachen-Test 50 Prüfungen, FEHLT 0 (`t_wachen.txt`); `t_status.txt` ohne `.db`, ohne `__pycache__`.
+- Kein Abruf, kein API-Aufruf, kein Schlüssel; `shared/`, `strategies/`, `notifications/` unverändert (`f_numstat.txt`).
+
+### Was offen bleibt
+- Startkapital-Ort nach R110 (b) (`shared/handelskosten.py`, TB-180); Feed-Adressen und F6-Termine vor dem ersten Lauf; Auswerteplan nach R108 (b); alle „Vorschlag“-Werte gelten mit der Karte.
+- BA2 Sammler, BA4 drei KI-Bots, BA5 Filtervergleich, BA6 Dashboard, BA7 am Mac.
+
+### In einfacher Sprache
+Die Spielregeln der KI-Versuche stehen jetzt fest im Repo, jede Anweisung an das Modell mit Fingerabdruck; ein Test schlägt an, wenn sich auch nur ein Zeichen ändert. Gehandelt und bezahlt wird noch nichts.
+
+*Geschrieben 17.10.2026 von der Mac-Sitzung TB-179. Quellenvermerk: siehe Kopf.*
+
+---
+
 ## Wiederkehrende Lehren
 
 - **Frontend-Prüfungen je Funktion, nicht im ganzen Dokument.** Diese
