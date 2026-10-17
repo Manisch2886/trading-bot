@@ -41,6 +41,7 @@ Fehler bei einem Zeiger ist ein Zeiger, den jemand zu aktualisieren vergisst.*
 | **TB-177** | `docs/auftraege/MAC_TB-177_ki_forschung_ba1.md` | KI-Forschung BA1: ki_forschung/ (Abruf- und Einfrier-Schicht, Kostenbremse je Topf 3 $/Monat, Wachen-Test); kein Handelscode, kein API-Aufruf (Karte 17.10.2026, 21:09) |
 | **TB-178** | `docs/auftraege/MAC_TB-178_register69_70_fable17d17e_spaetes_symbol.md` | Fable 17.10.d und 17.10.e ins Repo, Register 69 (R109) und 70 (R110), Abnahme später Symbolfall am Erzeuger für drei Bots; kein Handelscode (Karte 17.10.2026, 22:09) |
 | **TB-179** | `docs/auftraege/MAC_TB-179_ki_forschung_ba3.md` | KI-Forschung BA3: Regelblätter (Sammler, Filter, Regime-, Rotations-, Nachrichten-Bot), Prompts mit Hash, Regel-Test; kein Handelscode, kein API-Aufruf (Karte 17.10.2026, ~22:00) |
+| **TB-180** | `docs/auftraege/MAC_TB-180_startkapital_am_ort_punkt9_abbild_probe.md` | Startkapital am Ort nach R110 (b): Nachtrag Punkt 9 (shared/handelskosten.py), Konstante, neun Importe, neues Abbild, Register 71, Probe test_ergebniskurven.py, vergleich.py; HANDELSCODE, gegengelesen (Karte 17.10.2026, ~23:20) |
 
 ⭐⭐ **Was danach kommt — die Reihenfolge steht fest (Fable 24a Abschnitt 8):**
 
