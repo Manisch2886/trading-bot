@@ -1,0 +1,5 @@
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17c/FABLE_ANTWORT_2026-10-17c_sb1_festlegungen_sammler_t3_r44_startkapital_ort.md = nachher docs/projektfuehrung/FABLE_ANTWORT_2026-10-17c_sb1_festlegungen_sammler_t3_r44_startkapital_ort.md = a2b38226f683d8d106a5dec61fa5f325
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17c/FABLE_ANFRAGE_2026-10-17c_r101_sb1_sammler_t3_embargo.md = nachher docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17c_r101_sb1_sammler_t3_embargo.md = 0a559c880aa422ca0d77f03c5aa240bc
+ja    md5 vorher data_sicherung/steuernder_chat_tmp/f17c/FABLE_UEBERGABE_2026-10-17c_eroeffnung.md = nachher docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17c_eroeffnung.md = db41d912f05314a47dcc0e501c3aed5a
+Pruefungen: 3, NEIN: 0
+rc 0

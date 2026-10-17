@@ -1,0 +1,49 @@
+ja    unveraendert: research/faltenplan_neun/embargo_neun.py md5 b93af1460411
+ja    unveraendert: research/faltenplan_neun/test_faltenplan_neun.py md5 ae43038a02e7
+ja    unveraendert: research/mtm_drawdown/grundlage.py md5 81cf1c93243a
+ja    unveraendert: research/mtm_drawdown/messung.py md5 00eb23079f1b
+ja    unveraendert: research/mtm_drawdown/test_mtm_kern.py md5 80f1511a18d2
+ja    unveraendert: research/tb24_haltedauern/alle_bots.py md5 7bb90ef438d5
+ja    unveraendert: research/tb24_haltedauern/auswertung.py md5 c15e6375520e
+ja    unveraendert: research/tb24_haltedauern/haltedauer_kern.py md5 60942de99b32
+ja    unveraendert: research/tb24_haltedauern/live_haltedauern.py md5 7d21a66cd317
+ja    unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    unveraendert: research/tb24_haltedauern/test_haltedauer_kern.py md5 a482804dde0c
+ja    unveraendert: research/wf_kapital_dd/messung.py md5 94c091f4c4e1
+ja    BACKLOG Rang 1 genau einmal, endet mit ' |', noch ohne TB-176a
+ja    Journal: hoechste FL (FL am Bau-HEAD)
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANTWORT_2026-10-17c_sb1_festlegungen_sammler_t3_r44_startkapital_ort.md verfolgt, gleich HEAD, md5 a2b38226f683d8d106a5dec61fa5f325
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_ANFRAGE_2026-10-17c_r101_sb1_sammler_t3_embargo.md verfolgt, gleich HEAD, md5 0a559c880aa422ca0d77f03c5aa240bc
+ja    R56 (b)/S0-Datei: docs/projektfuehrung/FABLE_UEBERGABE_2026-10-17c_eroeffnung.md verfolgt, gleich HEAD, md5 db41d912f05314a47dcc0e501c3aed5a
+ja    Registerblock 17c: genau R108 und Quelle im Codeblock (Z. 13–16)
+ja    R108 (a): Wortlaut 10a.5 genau einmal zwischen „Wortlaut: „“ und „“ Der Grund trägt“
+ja    Register: 67 da, 68 nicht; R108 0 Treffer
+ja    Register endet mit genau einer Leerzeile
+ja    Ort 62.2: Einfuegestelle vor Z. 12339 eindeutig, R108 dort noch nicht genannt
+ja    Ort 16.4: Einfuegestelle vor Z. 2258 eindeutig, R108 dort noch nicht genannt
+ja    Ort 16.6: Einfuegestelle vor Z. 2367 eindeutig, R108 dort noch nicht genannt
+ja    Ort 16.8: Einfuegestelle vor Z. 2471 eindeutig, R108 dort noch nicht genannt
+ja    Ort 29.3: Einfuegestelle vor Z. 5446 eindeutig, R108 dort noch nicht genannt
+ja    Ort 37.5: Einfuegestelle vor Z. 7273 eindeutig, R108 dort noch nicht genannt
+ja    Ort 41.3 C2: Einfuegestelle vor Z. 8927 eindeutig, R108 dort noch nicht genannt
+ja    Ort 66.1: Einfuegestelle vor Z. 12566 eindeutig, R108 dort noch nicht genannt
+ja    Ort 67.1: Einfuegestelle vor Z. 12632 eindeutig, R108 dort noch nicht genannt
+ja    S-B1: 10a.2 und 10a.4 je einmal, 10a.5 nicht, R108 nicht; Marke vor Z. 605, 10a.5 vor Z. 635
+ja    Index-Kopf Z. 3 nennt 0–67
+ja    Index: Zeile 67, Pflegezeile TB-175, Pflege-Anker je genau einmal; kein Abschnitt 19
+ja    Dialog-Index: 17c noch nicht
+ja    R108 (d): Register am Stand 7fe6342 lesbar (git show)
+info  R108 (d) Voraussetzung (Messung, kein Urteil): Register am Stand 7fe6342 nennt einen Wert des Startkapitals an 1 Stelle(n):
+info    Z. 12167 (59.1): nen** durchgehenden Kapitalpfad je Bot (Startkapital 10 000, ohne Neustart, R36), ausgeschn
+info  R108 (d) Wert: strategies/elliott_wave/equity_simulation.py Z. 66 STARTING_CAPITAL = 10_000.0
+info  R108 (d) Wert: strategies/elliott_wave_stocks/equity_simulation.py Z. 71 STARTING_CAPITAL = 10_000.0
+info  R108 (d) Wert: strategies/rsi2_crypto/equity_simulation.py Z. 51 STARTING_CAPITAL = 10_000.0
+info  R108 (d) Wert: strategies/rsi2_mean_reversion/equity_simulation.py Z. 62 STARTING_CAPITAL = 10_000.0
+info  R108 (d) Wert: strategies/t3_supertrend/equity_simulation.py Z. 54 STARTING_CAPITAL = 10_000.0
+info  R108 (d) Wert: strategies/turtle_soup_crypto/equity_simulation.py Z. 45 STARTING_CAPITAL = 10_000.0
+info  R108 (d) Wert: strategies/turtle_soup_stocks/equity_simulation.py Z. 68 STARTING_CAPITAL = 10_000.0
+info  R108 (d) Wert: strategies/volatility_breakout/equity_simulation.py Z. 61 STARTING_CAPITAL = 10_000.0
+info  R108 (d) Wert: strategies/volatility_breakout_crypto/equity_simulation.py Z. 61 STARTING_CAPITAL = 10_000.0
+info  R108 (d): neun Dateien, alle denselben Wert 10_000.0
+Pruefungen: 35, NEIN: 0
+rc 0

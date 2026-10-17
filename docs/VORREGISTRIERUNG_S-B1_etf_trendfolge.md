@@ -603,6 +603,9 @@ und genau 2008 ist der Grund, warum der Zeitraum bis 2007 zurückreicht. Eine
 Korrelation von 0,99 über 2012–2026 sagt nichts darüber, ob das UCITS-Produkt
 im Oktober 2008 dasselbe getan hätte.*
 
+> ⭐ **S-B1 10a.2 ERGÄNZT durch 10a.5** (Fable 17c R108 (68.1), Unterpunkt (a), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ### 10a.3 Falls ein Short-Arm gebaut wird
 
 > ⚠️ Ein Short-Arm über einen **inversen UCITS-ETF** darf **nicht** als
@@ -632,6 +635,12 @@ Stress-Tagesverlust.
 * **Es ist kein Paar eingetragen.** Die Tabelle ist leer, bis die Prüfung aus
   (a) gelaufen ist — und sie kann nur auf dem MacBook laufen, weil die
   Kursanbieter aus der Cloud gesperrt sind.
+
+### 10a.5 Nachtrag vom 17.10.2026 — Ergänzung zu Registertext 3 (10a.2) (R108 (a), TB-176a)
+
+> Ergänzung zu Registertext 3 (10a.2): Für Gold und Silber ist das Gegenstück je ein ETC auf dasselbe Metall, ohne Hebel und ohne Währungssicherung, weil ein UCITS-Fonds auf ein einzelnes Edelmetall nicht besteht (Tatsachennotiz mit äusserer Quelle und Datum). Die Registerzeile nennt das Instrument als ETC mit ISIN, Handelsplatz und Handelswährung; der Bericht nennt den Unterschied zum Fonds (Schuldverschreibung, Emittentenrisiko). Für alle übrigen Paare bleibt es beim UCITS-Gegenstück; Anteilsklassen mit Währungssicherung bilden kein Paar.
+
+*Quelle: R108 (a) (Register `docs/VORREGISTRIERUNG_neuselektion.md`, Abschnitt 68.1), Fable-Antwort 17.10.c (`docs/projektfuehrung/FABLE_ANTWORT_2026-10-17c_sb1_festlegungen_sammler_t3_r44_startkapital_ort.md`, md5 `a2b38226f683d8d106a5dec61fa5f325`). 10a.2 bleibt zeichengleich (Marke dort). Die Tatsachennotiz mit äusserer Quelle und Datum ist nicht eingetragen (68.2 (b)).*
 
 ---
 

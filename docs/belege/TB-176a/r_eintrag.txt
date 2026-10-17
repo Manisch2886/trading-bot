@@ -1,0 +1,13 @@
+ja    Beleg der Voraussetzung: rc 0, ohne NEIN (docs/belege/TB-176a/v_voraussetzung.txt)
+ja    Quelle md5 a2b38226f683d8d106a5dec61fa5f325, Registerblock R108
+ja    Wortlaut 10a.5 aus R108 (a) gelesen
+ja    68 noch nicht im Register; endet mit einer Leerzeile
+ja    9 Einfuegestellen eindeutig (41.3 zwischen C2 und C3)
+ja    S-B1: Einfuegestellen Marke 10a.2 und 10a.5 eindeutig
+ja    Karte TB-176a gefuellt (Abschnitt Freigabe des Auftrags)
+ja    nachher: 9 Marken Z. [2259, 2371, 2478, 5456, 7286, 8943, 12358, 12588, 12657]; Abschnitt 68 Z. 12717
+ja    R108 mit Quellenzeile je genau einmal zeichengleich (Zeichenvergleich mit dem Codeblock)
+ja    Register append-only bis auf die 9 Marken (je Leerzeile, Marke, Zeichengleich-Zeile)
+ja    S-B1: Marke Z. [606], 10a.5 Z. [639]; sonst zeichengleich; Wortlaut = R108 (a)
+Pruefungen: 11, NEIN: 0
+rc 0
