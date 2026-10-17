@@ -1,0 +1,11 @@
+
+13. Wache: die Untersuchung fasst nichts ausserhalb ihres Ordners an
+
+13. Wache: die Untersuchung fasst nichts ausserhalb ihres Ordners an
+
+13. Wache: die Untersuchung fasst nichts ausserhalb ihres Ordners an
+ja    Kopie kontrolle (/var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb175_kontrolle_yq4qv7n8): Pruefung 13 gruen, FEHLT 0
+ja    Kopie voreinstellung: Ersetzung 1-mal, Pruefung 13 rot: ["wer schreibt, schreibt nur an einen erlaubten Ort (aussen vor: [('positionen_holen.py', '--ziel mit Voreinstellung (default)')])"]
+ja    Kopie open_w: Ersetzung 1-mal, Pruefung 13 rot: ["wer schreibt, schreibt nur an einen erlaubten Ort (aussen vor: [('positionen_holen.py', 'Z. 352 open ausserhalb von _schreibe_einmal')])", 'Gegenprobe 13: open(..., "w") statt _schreibe_einmal -> positionen_holen.py faellt auf (trifft 0-mal)']
+Pruefungen: 3, NEIN: 0
+rc 0

@@ -1,0 +1,13 @@
+ja    Gruppe unveraendert: research/tb24_haltedauern/alle_bots.py md5 7bb90ef438d5
+ja    Gruppe unveraendert: research/tb24_haltedauern/auswertung.py md5 c15e6375520e
+ja    Gruppe unveraendert: research/tb24_haltedauern/haltedauer_kern.py md5 60942de99b32
+ja    Gruppe unveraendert: research/tb24_haltedauern/live_haltedauern.py md5 7d21a66cd317
+ja    Gruppe unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    Test im Repo = Anhang (sha256 b73adc87d57c)
+ja    e_alt.txt: rc 1, einziges FEHLT = alte Pruefung 13 an positionen_holen.py
+ja    e_neu.txt: 'Alle Pruefungen bestanden.', rc 0, kein FEHLT
+ja    uebrige Pruefungen (vor 13) unveraendert gruen: alt 50, neu 50 ok-Zeilen, gleich
+ja    e_neu.txt Pruefung 13: 8 ok (Arbeitsbaum, Schreibziele, 6 Gegenproben)
+ja    e_gegenprobe.txt: 3 Kopien wie Soll, rc 0
+Pruefungen: 11, NEIN: 0
+rc 0

@@ -314,9 +314,9 @@ _PRODUKTIVORDNER = ("strategies", "shared", "results", "broker", "config",
 
 def _arbeitsbaum():
     """Zustand des Arbeitsbaums - Namen UND Inhalt der Aenderungen."""
-    status = subprocess.run(["git", "status", "--porcelain"], cwd=_REPO_ROOT,
+    status = subprocess.run(["git", "--no-optional-locks", "status", "--porcelain"], cwd=_REPO_ROOT,
                             capture_output=True, text=True)
-    diff = subprocess.run(["git", "diff", "--", *_PRODUKTIVORDNER],
+    diff = subprocess.run(["git", "--no-optional-locks", "diff", "--", *_PRODUKTIVORDNER],
                           cwd=_REPO_ROOT, capture_output=True, text=True)
     return status.stdout + "\n---\n" + diff.stdout
 
@@ -327,7 +327,244 @@ def _arbeitsbaum():
 _ARBEITSBAUM_ZU_BEGINN = None
 
 
-def wache_repo_unveraendert():
+# ---------------------------------------------------------------------------
+# 13 (b) Schreibziele - je Schreibaufruf, ueber den Syntaxbaum (TB-175)
+# ---------------------------------------------------------------------------
+# Bis TB-175 galt: wer schreibt (open mit w/a/x oder JEDER to_csv/to_json-
+# Aufruf), muss irgendwo im Quelltext ERGEBNIS_DIR, DATEN_DIR oder
+# TemporaryDirectory nennen. Seit TB-98 (46e3ed0) schreibt
+# positionen_holen.py in den Ordner aus dem Pflichtargument --ziel, ueber
+# _schreibe_einmal (O_EXCL); die alte Fassung war damit rot, ohne dass falsch
+# geschrieben wurde (`alle.to_csv(index=False)` liefert nur Text). Jetzt gilt
+# je Schreibaufruf:
+#   * allgemein: der Aufruf bildet sein Ziel aus ERGEBNIS_DIR oder DATEN_DIR
+#     (beide genau einmal auf Modulebene aus `_DIR`), oder er liegt in einem
+#     `with ...TemporaryDirectory()`-Block;
+#   * positionen_holen.py (Register 36.1): ZIEL_DIR genau einmal, nur aus
+#     `--ziel` (required=True, keine Voreinstellung, kein set_defaults), und
+#     geschrieben wird nur in `_schreibe_einmal`, das mit O_CREAT|O_EXCL
+#     (ohne O_TRUNC) in ZIEL_DIR oeffnet.
+
+import ast as _ast
+
+_ERLAUBTE_ORTE = ("ERGEBNIS_DIR", "DATEN_DIR")
+_SCHREIBMODUS = ("w", "a", "x", "+")
+_METHODE_ZIEL = {"to_csv": "path_or_buf", "to_json": "path_or_buf",
+                 "to_excel": "excel_writer", "to_parquet": "path",
+                 "to_pickle": "path", "to_feather": "path", "to_html": "buf",
+                 "to_string": "buf", "to_markdown": "buf", "savefig": "fname"}
+_OS_SCHREIBT = ("makedirs", "mkdir", "replace", "rename", "remove", "unlink",
+                "rmdir", "symlink", "link", "truncate")
+_SHUTIL_SCHREIBT = ("copy", "copy2", "copyfile", "copytree", "move", "rmtree")
+_NP_SCHREIBT = ("save", "savetxt", "savez", "savez_compressed")
+_OS_SCHREIBFLAGS = ("O_WRONLY", "O_RDWR", "O_CREAT", "O_APPEND", "O_TRUNC")
+
+
+def _namen(knoten):
+    return {k.id for k in _ast.walk(knoten) if isinstance(k, _ast.Name)}
+
+
+def _attrs(knoten):
+    return {k.attr for k in _ast.walk(knoten) if isinstance(k, _ast.Attribute)}
+
+
+def _modus(knoten, stelle):
+    werte = list(knoten.args[stelle:stelle + 1]) + [
+        k.value for k in knoten.keywords if k.arg == "mode"]
+    if not werte:
+        return False
+    w = werte[0]
+    if not (isinstance(w, _ast.Constant) and isinstance(w.value, str)):
+        return True                     # Modus nicht ablesbar: gilt als schreibend
+    return any(z in w.value for z in _SCHREIBMODUS)
+
+
+def _schreibart(knoten):
+    """Name der Schreibart, wenn der Aufruf schreibt, sonst None."""
+    f = knoten.func
+    basis = f.value.id if (isinstance(f, _ast.Attribute)
+                           and isinstance(f.value, _ast.Name)) else None
+    name = f.id if isinstance(f, _ast.Name) else getattr(f, "attr", None)
+    if name == "open" and basis in (None, "io", "codecs", "builtins"):
+        return "open" if _modus(knoten, 1) else None
+    if name == "open" and basis == "os":
+        return "os.open" if _attrs(knoten) & set(_OS_SCHREIBFLAGS) else None
+    if name == "fdopen":
+        return "os.fdopen" if _modus(knoten, 1) else None
+    if basis == "os" and name in _OS_SCHREIBT:
+        return "os." + name
+    if basis == "shutil" and name in _SHUTIL_SCHREIBT:
+        return "shutil." + name
+    if basis in ("np", "numpy") and name in _NP_SCHREIBT:
+        return "np." + name
+    if name in ("write_text", "write_bytes"):
+        return name
+    if name in _METHODE_ZIEL and isinstance(f, _ast.Attribute):
+        if knoten.args or any(k.arg == _METHODE_ZIEL[name] for k in knoten.keywords):
+            return name                 # mit Ziel; ohne Ziel liefert es nur Text
+    return None
+
+
+def _schreibaufrufe(baum):
+    """(Aufruf, Schreibart, umgebende Funktion, in TemporaryDirectory-Block)."""
+    gefunden = []
+
+    def gehe(knoten, funktion, temp):
+        if isinstance(knoten, (_ast.FunctionDef, _ast.AsyncFunctionDef)):
+            funktion = knoten.name
+        if isinstance(knoten, (_ast.With, _ast.AsyncWith)) and any(
+                isinstance(p.context_expr, _ast.Call) and "TemporaryDirectory" in (
+                    {getattr(p.context_expr.func, "id", None),
+                     getattr(p.context_expr.func, "attr", None)})
+                for p in knoten.items):
+            temp = True
+        if isinstance(knoten, _ast.Call):
+            art = _schreibart(knoten)
+            if art:
+                gefunden.append((knoten, art, funktion, temp))
+        for kind in _ast.iter_child_nodes(knoten):
+            gehe(kind, funktion, temp)
+
+    gehe(baum, None, False)
+    return gefunden
+
+
+def _zuweisungen(baum, name):
+    """Alle Zuweisungen an `name` (auch in Funktionen), als (Knoten, Wert, Modulebene)."""
+    oben = set(id(k) for k in baum.body)
+    gef = []
+    for k in _ast.walk(baum):
+        ziele = (k.targets if isinstance(k, _ast.Assign) else
+                 [k.target] if isinstance(k, (_ast.AnnAssign, _ast.AugAssign)) else [])
+        for z in ziele:
+            if name in {t.id for t in _ast.walk(z) if isinstance(t, _ast.Name)}:
+                gef.append((k, getattr(k, "value", None), id(k) in oben))
+        if isinstance(k, _ast.Global) and name in k.names:
+            gef.append((k, None, False))
+    return gef
+
+
+def _regel_allgemein(baum, aufrufe):
+    grund = []
+    for ort in _ERLAUBTE_ORTE:
+        z = _zuweisungen(baum, ort)
+        if z and not (len(z) == 1 and z[0][2] and "_DIR" in _namen(z[0][1])):
+            grund.append(f"{ort} nicht genau einmal auf Modulebene aus _DIR")
+    for knoten, art, _funktion, temp in aufrufe:
+        if temp:
+            continue
+        if not (_namen(knoten) & set(_ERLAUBTE_ORTE)) or not any(
+                _zuweisungen(baum, o) for o in _namen(knoten) & set(_ERLAUBTE_ORTE)):
+            grund.append(f"Z. {knoten.lineno} {art} ohne ERGEBNIS_DIR/DATEN_DIR")
+    return grund
+
+
+def _regel_positionen_holen(baum, aufrufe):
+    """Register 36.1: Ziel nur aus --ziel, Schreiben nur ueber _schreibe_einmal."""
+    grund = []
+    ziel_arg = [k for k in _ast.walk(baum) if isinstance(k, _ast.Call)
+                and getattr(k.func, "attr", None) == "add_argument"
+                and any(isinstance(a, _ast.Constant) and a.value == "--ziel"
+                        for a in k.args)]
+    if len(ziel_arg) != 1:
+        grund.append(f"--ziel {len(ziel_arg)}-mal statt genau einmal")
+    else:
+        kw = {k.arg: k.value for k in ziel_arg[0].keywords}
+        if not (isinstance(kw.get("required"), _ast.Constant)
+                and kw["required"].value is True):
+            grund.append("--ziel nicht required=True")
+        if "default" in kw:
+            grund.append("--ziel mit Voreinstellung (default)")
+    if any(isinstance(k, _ast.Call) and getattr(k.func, "attr", None) == "set_defaults"
+           for k in _ast.walk(baum)):
+        grund.append("set_defaults vorhanden")
+    leser = {z.id for k in _ast.walk(baum) if isinstance(k, _ast.Assign)
+             and isinstance(k.value, _ast.Call)
+             and getattr(k.value.func, "attr", None) == "parse_args"
+             for z in k.targets if isinstance(z, _ast.Name)}
+    erlaubt = {_ast.dump(_ast.parse(f"os.path.abspath({n}.ziel)", mode="eval").body)
+               for n in leser} | {_ast.dump(_ast.parse(f"{n}.ziel", mode="eval").body)
+                                  for n in leser}
+    z = _zuweisungen(baum, "ZIEL_DIR")
+    if not (len(z) == 1 and z[0][2] and z[0][1] is not None
+            and _ast.dump(z[0][1]) in erlaubt):
+        grund.append("ZIEL_DIR nicht genau einmal, nur aus --ziel")
+    defs = [k for k in baum.body if isinstance(k, _ast.FunctionDef)
+            and k.name == "_schreibe_einmal"]
+    if len(defs) != 1:
+        grund.append("_schreibe_einmal nicht genau einmal auf Modulebene")
+    for knoten, art, funktion, _temp in aufrufe:
+        if funktion != "_schreibe_einmal":
+            grund.append(f"Z. {knoten.lineno} {art} ausserhalb von _schreibe_einmal")
+        elif art == "os.open":
+            fl = set().union(*(_attrs(a) for a in knoten.args[1:2]))
+            pfad = knoten.args[0] if knoten.args else None
+            aus_ziel = pfad is not None and ("ZIEL_DIR" in _namen(pfad) or any(
+                "ZIEL_DIR" in _namen(w) for _k, w, _o in (
+                    _zuweisungen(defs[0], pfad.id) if defs and isinstance(pfad, _ast.Name)
+                    else []) if w is not None))
+            if not ({"O_CREAT", "O_EXCL"} <= fl) or "O_TRUNC" in fl:
+                grund.append(f"Z. {knoten.lineno} os.open ohne O_CREAT|O_EXCL")
+            if not aus_ziel:
+                grund.append(f"Z. {knoten.lineno} os.open nicht in ZIEL_DIR")
+        elif art != "os.fdopen":
+            grund.append(f"Z. {knoten.lineno} {art} in _schreibe_einmal")
+    if defs and not any(art == "os.open" and f == "_schreibe_einmal"
+                        for _k, art, f, _t in aufrufe):
+        grund.append("_schreibe_einmal ohne os.open")
+    return grund
+
+
+_SONDERREGELN = {"positionen_holen.py": _regel_positionen_holen}
+
+
+def schreibziele_aus_quellen(quellen):
+    """quellen: {Dateiname: Quelltext}. Liefert [(Datei, Grund)] - leer = gut."""
+    befund = []
+    for name in sorted(quellen):
+        baum = _ast.parse(quellen[name])
+        aufrufe = _schreibaufrufe(baum)
+        regel = _SONDERREGELN.get(name)
+        if regel is None and not aufrufe:
+            continue
+        for g in (regel or _regel_allgemein)(baum, aufrufe):
+            befund.append((name, g))
+    return befund
+
+
+def _gruppe(ordner):
+    return {n: open(os.path.join(ordner, n), encoding="utf-8").read()
+            for n in sorted(os.listdir(ordner))
+            if n.endswith(".py") and not n.startswith("test_")}
+
+
+# Gegenproben zu 13 (b) (Prinzip 12): je EINE Stelle im Quelltext verfaelscht,
+# nur im Speicher; jede muss genau einmal treffen und die Datei rot machen.
+GEGENPROBEN_13 = [
+    ("--ziel mit Voreinstellung", "positionen_holen.py",
+     '_aufruf.add_argument("--ziel", required=True,',
+     '_aufruf.add_argument("--ziel", required=True, default=".",'),
+    ("--ziel nicht Pflicht", "positionen_holen.py",
+     '_aufruf.add_argument("--ziel", required=True,',
+     '_aufruf.add_argument("--ziel", required=False,'),
+    ("ZIEL_DIR nicht aus --ziel", "positionen_holen.py",
+     "ZIEL_DIR = os.path.abspath(_args.ziel)",
+     'ZIEL_DIR = os.path.join(_DIR, "daten")'),
+    ("O_EXCL durch O_TRUNC ersetzt", "positionen_holen.py",
+     "os.O_WRONLY | os.O_CREAT | os.O_EXCL",
+     "os.O_WRONLY | os.O_CREAT | os.O_TRUNC"),
+    ('open(..., "w") statt _schreibe_einmal', "positionen_holen.py",
+     'hashes[f"{BOT}_alle_trades.csv"] = _schreibe_einmal(\n'
+     '        f"{BOT}_alle_trades.csv", alle.to_csv(index=False))',
+     'open(os.path.join(ZIEL_DIR, f"{BOT}_alle_trades.csv"), "w").write(\n'
+     '        alle.to_csv(index=False))'),
+    ("auswertung.py schreibt neben ERGEBNIS_DIR", "auswertung.py",
+     'open(os.path.join(ERGEBNIS_DIR, "zusammenfassung.json"), "w")',
+     'open(os.path.join(_DIR, "..", "zusammenfassung.json"), "w")'),
+]
+
+
+def wache_repo_unveraendert(ordner=None):
     """Die Untersuchung fasst nichts ausserhalb ihres Ordners an.
 
     Bis TB-30a stand hier eine andere Pruefung: `git status` durfte nichts
@@ -353,7 +590,10 @@ def wache_repo_unveraendert():
          dazwischen laufen.
       2. **Wer schreibt, schreibt in den eigenen Ordner.** Ueber den
          Syntaxbaum geprueft, nicht ueber eine Textsuche: ein Kommentar mit
-         `open(..., "w")` soll nicht anschlagen.
+         `open(..., "w")` soll nicht anschlagen. Seit TB-175 je
+         Schreibaufruf: Ziel aus ERGEBNIS_DIR/DATEN_DIR, bei
+         `positionen_holen.py` nur aus `--ziel` ueber `_schreibe_einmal`
+         (O_EXCL); dazu sechs Gegenproben im Speicher (GEGENPROBEN_13).
 
     Was hier bewusst NICHT geschieht: `auswertung.py` starten. Es wuerde die
     abgelegten Ergebnisdateien neu schreiben - eine Wache, die den Zustand
@@ -361,7 +601,7 @@ def wache_repo_unveraendert():
     """
     print("\n13. Wache: die Untersuchung fasst nichts ausserhalb ihres "
           "Ordners an")
-    ausgabe = subprocess.run(["git", "status", "--porcelain"], cwd=_REPO_ROOT,
+    ausgabe = subprocess.run(["git", "--no-optional-locks", "status", "--porcelain"], cwd=_REPO_ROOT,
                               capture_output=True, text=True)
     if ausgabe.returncode != 0:
         pruefe(False, "git status nicht ausfuehrbar")
@@ -370,36 +610,19 @@ def wache_repo_unveraendert():
     pruefe(_ARBEITSBAUM_ZU_BEGINN == _arbeitsbaum(),
            "dieser Testlauf hat den Arbeitsbaum nicht veraendert")
 
-    import ast
-    fremde_ziele = []
-    for name in sorted(os.listdir(_DIR)):
-        if not name.endswith(".py") or name.startswith("test_"):
-            continue
-        quelle = open(os.path.join(_DIR, name), encoding="utf-8").read()
-        schreibt = False
-        for knoten in ast.walk(ast.parse(quelle)):
-            if not isinstance(knoten, ast.Call):
-                continue
-            ziel = getattr(knoten.func, "id", None) or getattr(
-                knoten.func, "attr", None)
-            if ziel == "open":
-                modi = [a.value for a in knoten.args[1:2]
-                        if isinstance(a, ast.Constant)]
-                modi += [k.value.value for k in knoten.keywords
-                         if k.arg == "mode" and isinstance(k.value, ast.Constant)]
-                if any(m and ("w" in m or "a" in m or "x" in m) for m in modi):
-                    schreibt = True
-            if ziel in ("to_csv", "to_json"):
-                schreibt = True
-        # Wer schreibt, bildet sein Ziel aus dem eigenen Ordner: in diesen
-        # Programmen ueber ERGEBNIS_DIR bzw. DATEN_DIR, beide aus `_DIR`.
-        if schreibt and not any(marke in quelle for marke in
-                                ("ERGEBNIS_DIR", "DATEN_DIR",
-                                 "TemporaryDirectory")):
-            fremde_ziele.append(name)
-    pruefe(not fremde_ziele,
-           f"wer schreibt, schreibt in den eigenen Ordner "
-           f"(aussen vor: {fremde_ziele or 'keine'})")
+    # (b) TB-175: jeder Schreibaufruf an einen erlaubten Ort (Regeln oben).
+    quellen = _gruppe(ordner or _DIR)
+    befund = schreibziele_aus_quellen(quellen)
+    pruefe(not befund,
+           f"wer schreibt, schreibt nur an einen erlaubten Ort "
+           f"(aussen vor: {befund or 'keine'})")
+    for titel, datei, alt, neu in GEGENPROBEN_13:
+        treffer = quellen.get(datei, "").count(alt)
+        rot = treffer == 1 and any(
+            d == datei for d, _g in schreibziele_aus_quellen(
+                dict(quellen, **{datei: quellen[datei].replace(alt, neu)})))
+        pruefe(rot, f"Gegenprobe 13: {titel} -> {datei} faellt auf"
+                    + ("" if treffer == 1 else f" (trifft {treffer}-mal)"))
 
 
 # ===========================================================================
