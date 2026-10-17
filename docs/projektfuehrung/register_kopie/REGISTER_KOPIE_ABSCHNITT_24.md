@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 24 (von 0–67) — Register-Z. 4267–4611 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 24 (von 0–68) — Register-Z. 4276–4620 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
 
 ## 24. Präzisierung zu Registertext 4 und zu Festlegung 1 — der Drawdown der Nebenbedingung wird Mark-to-Market gerechnet, und die Regel steht vor der Messung (TB-71, 20.09.2026)
 

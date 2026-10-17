@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 3 von 6 — Abschnitte 37–42 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 3 von 6 — Abschnitte 37–42 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
 
 ## 37. Die Sonde meldet je Bestandteil, das Abbild führt zwei Gruppen, was ein Befund `1` bedeutet, hängt vom Tag ab, die Tatsachennotiz zu den zwei Listen in `herkunft.py` und der Ort registrierter Werte (Fable 22d und 22g, TB-87, 22.09.2026)
 
@@ -346,6 +346,9 @@ sind Abschnitt-0-eingefroren (`herkunft.py` `EINGEFROREN`, 37.4) — ob sie für
 (3) geändert werden dürfen, entscheidet nicht dieser Abschnitt.
 
 **Marken am alten Ort:** bei **Sperrlistenpunkt 7** und bei **Punkt 9**.
+
+> ⭐ **37.5 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (d), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 37.6 Was hier ausdrücklich NICHT getan wird
 
@@ -1999,6 +2002,9 @@ die neuen Listen gefundener Trades vorliegen (Plan-Punkt 5, 24d Abschnitt 4).
 Marken bei 15.4 und 16.6.
 
 > ⭐ **41.3 C2 ERGÄNZT durch R86 (56.3)** (Fable 09a R86, Unterpunkt (a), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **41.3 C2 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (c), TB-176a, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **C3 (c) — die Bedingung wird für den Gewinner auf dessen Positionen

@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 41 (von 0–67) — Register-Z. 8587–9007 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 41 (von 0–68) — Register-Z. 8602–9025 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
 
 ## 41. Nachweis mit zwei Teilen, Resolver ohne Rückfall, Deckel statt Purge, Mutationsproben einzeln — die Einträge aus Fable 24b, 24c, 24d (TB-108, 25.09.2026)
 
@@ -339,6 +339,9 @@ die neuen Listen gefundener Trades vorliegen (Plan-Punkt 5, 24d Abschnitt 4).
 Marken bei 15.4 und 16.6.
 
 > ⭐ **41.3 C2 ERGÄNZT durch R86 (56.3)** (Fable 09a R86, Unterpunkt (a), TB-149, 10.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **41.3 C2 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (c), TB-176a, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **C3 (c) — die Bedingung wird für den Gewinner auf dessen Positionen

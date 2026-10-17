@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 29 (von 0–67) — Register-Z. 5396–5478 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 29 (von 0–68) — Register-Z. 5405–5490 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
 
 ## 29. Der Kapitalpfad beginnt am 1. Januar der ersten Selektionsfalte (TB-78, 21.09.2026)
 
@@ -50,6 +50,9 @@ sehen."*
 ⭐ **Der letzte Satz ist Absicht.** Er schliesst aus, dass die Regel später mit
 dem Hinweis *„die Wirkung ist ja klein"* aufgeweicht wird — dieselbe Bauart wie
 24.3.
+
+> ⭐ **29.3 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (d), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 ### 29.4 Die Wache in TB-30b — geändert gegenüber 21b
 

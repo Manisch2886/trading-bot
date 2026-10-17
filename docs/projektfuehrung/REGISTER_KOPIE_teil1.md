@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Teil 1 von 6 — Abschnitte 0–22 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
+# REGISTER-KOPIE Teil 1 von 6 — Abschnitte 0–22 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
 
 # Vorregistrierung der Neuselektion (TB-30a)
 
@@ -2258,6 +2258,9 @@ Abbruchkriterium.
 > ⭐ **16.4 ERGÄNZT durch R107 (67.1)** (Fable 17b R107, Unterpunkt (d), TB-175, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **16.4 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (b), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ---
 
 ### 16.5 Registertext 7 — Backtester-Prüfung *(neu)*
@@ -2367,6 +2370,9 @@ es an der Kursreihe nachgemessen.
 > ⭐ **16.6 PRÄZISIERT durch R75 (54.2)** (Fable 04a R75, Unterpunkt (a), TB-136, 05.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
+> ⭐ **16.6 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (c), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
 ---
 
 ### 16.7 Registertext 3b — Ergänzungen (a) bis (e) *(neu; die Fassung in 15.5 bleibt stehen)*
@@ -2469,6 +2475,9 @@ zwei Einheiten**.
 > Falten sind für ein Overlay kein unabhängiger Boden mehr.*
 
 > ⭐ **16.8 ERGÄNZT durch R107 (67.1)** (Fable 17b R107, Unterpunkt (d), TB-175, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **16.8 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (b), TB-176a, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 ---

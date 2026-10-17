@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 62 (von 0–67) — Register-Z. 12321–12406 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 62 (von 0–68) — Register-Z. 12339–12427 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
 
 ## 62. Fable 15b und 16b — Registerblöcke R100–R103 (TB-167)
 
@@ -18,6 +18,9 @@ Reines Eintragen von Registertext, Bauart wie 61. Quellen sind allein `docs/proj
 
 > R101 — Lesung zu S-B1, Registertext 3 (10a.2) (nach dem Zitat in der Anfrage 15.10.b; die Vorregistrierung S-B1 nicht gelesen). (a) Ein ETC ist nach dem Wortlaut von 10a.2 kein UCITS-Gegenstück; ein Paar auf einem ETC verlangt eine Änderung des Registertexts vor dem Tag. Zulässig ist sie mit einem Grund aus dem Text, nicht mit dem Grund, dass sonst die Untergrenze aus (d) greift; die Zahl der handelbaren Paare ist die Messung, die (d) vorsieht, und ändert die Regel nicht. [Voraussetzung, zu messen: dass die Kandidatenliste (Abschnitt 9 der S-B1-Vorregistrierung) Gold und Silber führt und ein UCITS-Fonds auf ein einzelnes Edelmetall nicht besteht; dann trägt der Grund.] Die Registerzeile nennt das Instrument als ETC, der Bericht den Unterschied zum Fonds. (b) 10a.2 legt die Währung der Tagesrenditen nicht fest. Sie ist vor dem Lauf der Prüfung nach (a) festzulegen, nicht nach Ansicht einer Korrelation; die Lesart nächst dem Zweck (c, Begründung: ob das Instrument dasselbe getan hätte) ist währungsbereinigt, mit Nennung von Währung, Wechselkursquelle und Tageszuordnung. (c) 10a.2 legt die Zuordnung der Schlusskurse nicht fest. Sie ist vor dem Lauf der Prüfung festzulegen; die Lesart nächst dem Zweck ist die gleiche Informationsmenge je Rendite (Nettoinventarwert zum US-Schluss am gleichen Tag, oder Renditen über einen Zeitraum, der den Versatz deckt). Die Schwelle 0,97 bleibt. (d) Was die Prüfung ergibt, ist kein Grund für eine dieser Festlegungen.
 > Quelle des Grundes: 10a.2 im Wortlaut (zweimal „UCITS“; (b) „kein Proxy“; (c) und die Begründung „ob das UCITS-Produkt im Oktober 2008 dasselbe getan hätte“; (d)), 10a.4 („Zulassungsfrage, keine Parameterwahl“; „Die Tabelle ist leer, bis die Prüfung aus (a) gelaufen ist“), F17 (Quelle des Grundes), 24.3 (Entscheidungsregel vor jeder Messung; Bauart), die Suche des steuernden Chats nach der Wiedergabe in der Anfrage 15.10.b (vom Verfahrensprüfer nicht gemessen). Dass ein ETC kein UCITS-Fonds ist, ist allgemeiner Umstand, nicht gemessen. Kein Ergebnis.
+
+> ⭐ **62.2 R101 ERGÄNZT und BERICHTIGT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (a): ERGÄNZT zu (a) bis (c), BERICHTIGT zu (a) („lies“), TB-176a, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Ohne Marke (R101 nennt keine); Lesung zu S-B1 Registertext 3 (10a.2), die Vorregistrierung S-B1 bleibt unberührt. Voraussetzung (a): 62.5 (d).
 

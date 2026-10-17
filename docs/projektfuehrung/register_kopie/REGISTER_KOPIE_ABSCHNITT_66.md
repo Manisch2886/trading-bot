@@ -1,4 +1,4 @@
-# REGISTER-KOPIE Abschnitt 66 (von 0–67) — Register-Z. 12555–12623 — Commit 3a00cf8c9f5f7080c75a94e2a44518ed721fed09 — 2026-10-17 — Original sha256 8f464607b313cfe74132bf244fcc94fe3618d9171d8b3cbf44fa7a207eae235a — KOPIE, nicht das Register
+# REGISTER-KOPIE Abschnitt 66 (von 0–68) — Register-Z. 12576–12647 — Commit 53e8d543706c488c4aaf6c0056397ee1650271d3 — 2026-10-17 — Original sha256 c968a0ec5a2a92eae6043229e4b3e8094d93f13966747536dc1e3ae8273df317 — KOPIE, nicht das Register
 
 ## 66. Fable 17a — Registerblock R106 (TB-173)
 
@@ -10,6 +10,9 @@ Reines Eintragen von Registertext, Bauart wie 65. Quelle ist allein `docs/projek
 > Quelle des Grundes: R105 (a) bis (d), R90 (c) und (g), R98 (d), R87 (c) im Wortlaut, R81 (h) und R75 (f) nach der Wiedergabe in R90, 40.7 nach der Wiedergabe in R105, R61 (b), R65 (a), 65.3 (c), 64.1, das Ergebnis TB-171 (docs/belege/TB-171/e_probe.txt nach seiner Wiedergabe), die Anfrage 17.10.a (docs/belege/TB-169/e_abnahme.txt Prüfungen 3a und 3b und backtest_trend.py nach ihrer Wiedergabe; Helfer BAU171 und Gegenleser GEGEN171B nicht gelesen). docs/belege/ und Code nicht gelesen. Kein Ergebnis.
 
 > ⭐ **66.1 R106 ERGÄNZT durch R107 (67.1)** (Fable 17b R107, Unterpunkt (b), TB-175, 17.10.2026).
+> Eintrag und Stand oben bleiben zeichengleich.
+
+> ⭐ **66.1 R106 ERGÄNZT durch R108 (68.1)** (Fable 17c R108, Unterpunkt (e), TB-176a, 17.10.2026).
 > Eintrag und Stand oben bleiben zeichengleich.
 
 **Kette:** Marken nach R106 (e): 65.2 (R105), Unterpunkt (a) präzisiert, Unterpunkte (b) bis (d) ergänzt; 57.1 (R90) und 61.1 (R98), Unterpunkt (b); 64.1, Absatz „Abnahme nach R98 (d)“, Unterpunkt (c). Ohne Marke: 56.4 (R87), 55.4 (R81), 54.2 (R75), 48.14 (R46); 65.3; Abschnitt 10. Voraussetzung in (c) gemessen: 66.2 (a). Stand t3_supertrend nach (d): BACKLOG Rang 1.
