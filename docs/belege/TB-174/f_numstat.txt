@@ -1,0 +1,15 @@
+86	0	docs/ERGEBNIS_TB-174_r106d_t3_fall.md
+2	0	docs/belege/TB-174/0a_status.txt
+3	0	docs/belege/TB-174/a_backlog.txt
+3	0	docs/belege/TB-174/a_backlog_probe.txt
+20	0	docs/belege/TB-174/a_block.md
+5	0	docs/belege/TB-174/a_journal.txt
+5	0	docs/belege/TB-174/a_journal_probe.txt
+1	0	docs/belege/TB-174/a_kennung.txt
+17	0	docs/belege/TB-174/e_nachher.txt
+12	0	docs/belege/TB-174/e_probe.txt
+65	0	docs/belege/TB-174/tb174_werkzeug.py
+19	0	docs/belege/TB-174/v_voraussetzung.txt
+1	1	docs/projektfuehrung/BACKLOG.md
+21	0	docs/projektfuehrung/JOURNAL.md
+192	0	research/tb24_haltedauern/test_t3_verdraengung.py
