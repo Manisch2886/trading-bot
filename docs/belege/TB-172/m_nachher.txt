@@ -1,0 +1,20 @@
+ja    unveraendert seit dem Bau: research/exposure_messung/bot_lauf.py md5 01fd9282ded2
+ja    unveraendert seit dem Bau: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    unveraendert seit dem Bau: snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/MANIFEST.json md5 e0f647ce41f5
+ja    unveraendert seit dem Bau: snapshots/63e4b6c8bb71dc3749dd566172ca16d24f9dda0f904d058eacb440653cb2ceb2/config/sp500_top150.txt md5 bf54515b89f6
+ja    unveraendert seit dem Bau: strategies/elliott_wave_stocks/multi_symbol_optimise.py md5 571076168d56
+ja    unveraendert seit dem Bau: strategies/rsi2_mean_reversion/backtest_rsi2.py md5 58589cfbdc50
+ja    unveraendert seit dem Bau: strategies/rsi2_mean_reversion/equity_simulation.py md5 774e7fecad93
+ja    unveraendert seit dem Bau: strategies/rsi2_mean_reversion/multi_symbol_optimise.py md5 b325d38f5527
+ja    unveraendert seit dem Bau: strategies/turtle_soup_stocks/backtest_turtle_soup.py md5 d8f24c681d39
+ja    unveraendert seit dem Bau: strategies/turtle_soup_stocks/equity_simulation.py md5 f45e55aadcb9
+ja    unveraendert seit dem Bau: strategies/turtle_soup_stocks/multi_symbol_optimise.py md5 0d7398e70477
+ja    unveraendert seit dem Bau: strategies/volatility_breakout/backtest_breakout.py md5 ea48150ccab6
+ja    unveraendert seit dem Bau: strategies/volatility_breakout/equity_simulation.py md5 dd5fa96bb927
+ja    unveraendert seit dem Bau: strategies/volatility_breakout/multi_symbol_optimise.py md5 3ec15ddc4140
+ja    m1_r102d.txt endet mit rc 0
+ja    m1_r102d.md: 3 Urteilszeile(n)
+ja    m2_r92c.txt endet mit rc 0
+ja    m2_r92c.md: 1 Urteilszeile(n)
+Pruefungen: 18, NEIN: 0
+rc 0

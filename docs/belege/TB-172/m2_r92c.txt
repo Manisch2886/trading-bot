@@ -1,0 +1,6 @@
+Summe: Dateien 150, Zeilen 1417557, D 1417557, M 0, Z 0, U 0, X 0, doppelte Tage 0
+URTEIL R92 (c): erfüllt (150 von 150 Dateien: open_time Kalenderdatum, ohne Zone, ohne verschiebende Uhrzeit; D 1417557, M 0)
+ja    MANIFEST: 150 Aktien-Tagesreihen (Name *_1d.csv ohne USDT; Art ['Kursdatei'])
+ja    sha256 je Aktien-Datei = MANIFEST (150 von 150)
+Pruefungen: 2, NEIN: 0
+rc 0

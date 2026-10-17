@@ -1,0 +1,2 @@
+ M docs/auftraege/AKTUELLER_AUFTRAG.md
+?? docs/auftraege/MAC_TB-172_verfahrensmessung_r102d_r92c.md

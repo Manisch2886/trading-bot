@@ -1,0 +1,16 @@
+URTEIL R102 (d) rsi2_mean_reversion: ja
+URTEIL R102 (d) turtle_soup_stocks: ja
+URTEIL R102 (d) volatility_breakout: ja
+KONTROLLE elliott_wave_stocks: nein (Zeilenschnitt Z. 119)
+ja    rsi2_mean_reversion: load_all_symbol_data mit Einlesen, Horizontbeginn, Übergabe gefunden
+ja    rsi2_mean_reversion: compute_indicators, run_backtest, start_i aus entry_cutoff gefunden
+ja    turtle_soup_stocks: load_all_symbol_data mit Einlesen, Horizontbeginn, Übergabe gefunden
+ja    turtle_soup_stocks: compute_indicators, run_backtest, start_i aus entry_cutoff gefunden
+ja    volatility_breakout: load_all_symbol_data mit Einlesen, Horizontbeginn, Übergabe gefunden
+ja    volatility_breakout: compute_indicators, run_backtest, start_i aus entry_cutoff gefunden
+ja    elliott_wave_stocks: load_all_symbol_data mit Einlesen, Horizontbeginn, Übergabe gefunden
+ja    Kontrolle elliott_wave_stocks: Zeilenschnitt vor der Übergabe erkannt
+ja    research/tb24_haltedauern/positionen_holen.py lesesicht_an: gefunden, kein Zeilenschnitt an open_time >=
+ja    research/exposure_messung/bot_lauf.py _schranke_je_symbol: gefunden, kein Zeilenschnitt an open_time >=
+Pruefungen: 10, NEIN: 0
+rc 0
