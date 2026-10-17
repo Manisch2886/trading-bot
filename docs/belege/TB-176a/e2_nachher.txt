@@ -1,0 +1,19 @@
+ja    unveraendert: research/faltenplan_neun/test_faltenplan_neun.py md5 ae43038a02e7
+ja    unveraendert: research/mtm_drawdown/grundlage.py md5 81cf1c93243a
+ja    unveraendert: research/mtm_drawdown/messung.py md5 00eb23079f1b
+ja    unveraendert: research/mtm_drawdown/test_mtm_kern.py md5 80f1511a18d2
+ja    unveraendert: research/tb24_haltedauern/alle_bots.py md5 7bb90ef438d5
+ja    unveraendert: research/tb24_haltedauern/haltedauer_kern.py md5 60942de99b32
+ja    unveraendert: research/tb24_haltedauern/live_haltedauern.py md5 7d21a66cd317
+ja    unveraendert: research/tb24_haltedauern/positionen_holen.py md5 006375593b4b
+ja    unveraendert: research/tb24_haltedauern/test_haltedauer_kern.py md5 a482804dde0c
+ja    unveraendert: research/wf_kapital_dd/messung.py md5 94c091f4c4e1
+ja    E2 umgestellt: research/faltenplan_neun/embargo_neun.py = Anhang (sha256 f35119ba4b89)
+ja    R108 (d) (2): research/faltenplan_neun/embargo_neun.py liest kein Startkapital
+ja    E2 umgestellt: research/tb24_haltedauern/auswertung.py = Anhang (sha256 9de89e6d3024)
+ja    R108 (d) (2): research/tb24_haltedauern/auswertung.py liest kein Startkapital
+ja    Probe E2 = Anhang E
+ja    e2_probe.txt: 9 von 9, rc 0
+ja    e2_test.txt: Test am neuen auswertung.py gruen, Gegenprobe trifft
+Pruefungen: 17, NEIN: 0
+rc 0

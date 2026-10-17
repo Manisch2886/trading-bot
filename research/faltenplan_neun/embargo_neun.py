@@ -32,7 +32,8 @@ zweite Halbsatz der Regel.
 
 DAS 95. PERZENTIL
 ------------------------------------------------------------------------------
-Gerechnet auf denselben Positionen wie TB-24 (`daten/<bot>_positionen.csv`,
+Gerechnet auf allen gefundenen Trades der TB-24-Liste
+(`daten/<bot>_alle_trades.csv`; R107 (e), TB-176a - kein Filter auf
 ausgefuehrte Positionen), Haltedauer als exakte Differenz
 `exit_time - entry_time` in Tagen. Die Perzentilrechnung ist die lineare
 Interpolation, die auch `pandas.Series.quantile` verwendet; dass sie
@@ -228,8 +229,8 @@ def perzentil(werte, q: float):
 
 
 def haltedauern_tage(bot: str, basis: str = None) -> list:
-    """Haltedauer je ausgefuehrter Position in Tagen, aus den TB-24-Daten."""
-    pfad = os.path.join(basis or BASE_DIR, TB24_DATEN, f"{bot}_positionen.csv")
+    """Haltedauer je gefundenem Trade in Tagen, aus der TB-24-Liste (R107 (e))."""
+    pfad = os.path.join(basis or BASE_DIR, TB24_DATEN, f"{bot}_alle_trades.csv")
     werte = []
     with open(pfad, "r", encoding="utf-8") as datei:
         for zeile in csv.DictReader(datei):
@@ -277,8 +278,8 @@ def embargo_fuer_bot(bot: str, basis: str = None) -> dict:
         embargo = int(math.ceil(grundlage)) + 1
         art = "perzentil"
         laengste = None
-        p95 = {"p95_tage": round(p95_roh, 4), "n_positionen": len(werte),
-               "herkunft": f"{TB24_DATEN}/{bot}_positionen.csv"}
+        p95 = {"p95_tage": round(p95_roh, 4), "n_trades_gefunden": len(werte),
+               "herkunft": f"{TB24_DATEN}/{bot}_alle_trades.csv"}
 
     return {
         "bot": bot, "markt": markt, "zeitrahmen": BOTS[bot]["zeitrahmen"],
@@ -332,7 +333,7 @@ def main(argv=None) -> int:
         else:
             p = e["perzentil95"]
             print(f"  {bot:<28}keine Zeitbremse - P95 = {p['p95_tage']:.4f} "
-                  f"Tage aus {p['n_positionen']} Positionen, {p['herkunft']}")
+                  f"Tage aus {p['n_trades_gefunden']} gefundenen Trades, {p['herkunft']}")
 
     if argumente.json:
         with open(argumente.json, "w", encoding="utf-8") as datei:

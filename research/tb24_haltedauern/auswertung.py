@@ -1,9 +1,13 @@
 """
 Auswertung: Haltedauern, Ueberlappungsmatrix, Einordnung (TB-24)
 ==============================================================================
-Liest die Positionsdateien aus `daten/` (erzeugt von `positionen_holen.py`)
-und schreibt alle Tabellen des Berichts nach `ergebnisse/`. Rechnet
-ausschliesslich mit den Funktionen aus `haltedauer_kern.py`.
+Liest je Bot `daten/<bot>_alle_trades.csv` und `daten/<bot>_meta.json`
+(erzeugt von `positionen_holen.py`) und rechnet auf ALLEN gefundenen Trades
+(R107 (e), TB-176a): kein Filter auf ausgefuehrte Positionen, keine Eingabe
+aus trades_ausgefuehrt, allocation oder capital_after. Die Gegenprobe zum
+Positionslimit (ausgefuehrt gegen alle) ist damit entfallen. Schreibt alle
+Tabellen des Berichts nach `ergebnisse/`. Rechnet ausschliesslich mit den
+Funktionen aus `haltedauer_kern.py`.
 
 **Liest nur.** Es wird keine Bot-Datei und nichts unter `results/` angefasst.
 
@@ -66,11 +70,10 @@ ERTRAGSQUELLE = {
 HIST_KANTEN = [0, 1, 2, 3, 5, 8, 11, 16, 21, 31, 61, 91]
 
 
-def lade(bot: str, nur_ausgefuehrt: bool = True) -> pd.DataFrame:
-    if nur_ausgefuehrt:
-        pfad = os.path.join(DATEN_DIR, f"{bot}_positionen.csv")
-    else:
-        pfad = os.path.join(DATEN_DIR, f"{bot}_alle_trades.csv")
+def lade(bot: str) -> pd.DataFrame:
+    """Alle gefundenen Trades des Bots (R107 (e)); eine Spalte `ausgefuehrt`
+    aus aelteren Listen wird nicht ausgewertet."""
+    pfad = os.path.join(DATEN_DIR, f"{bot}_alle_trades.csv")
     return pd.read_csv(pfad, parse_dates=["entry_time", "exit_time"])
 
 
@@ -145,32 +148,6 @@ def tabelle_zweigipfligkeit(positionen: dict) -> pd.DataFrame:
             "zwei_gruppen": z["zwei_gruppen"],
             "verglichen": " / ".join(z.get("vergleich", [])),
             "begruendung": z["begruendung"],
-        })
-    return pd.DataFrame(zeilen)
-
-
-def tabelle_limit_vergleich(meta: dict) -> pd.DataFrame:
-    """Gegenprobe: haengt der Median an der Positionslimit-Auswahl?
-
-    Gemessen wird derselbe Median einmal ueber die AUSGEFUEHRTEN Positionen
-    (das reale Buch) und einmal ueber ALLE gefundenen Trades (also auch die,
-    die `simulate_portfolio()` wegen `MAX_CONCURRENT_POSITIONS` oder
-    fehlendem freien Kapital uebersprungen hat). Waeren die Zahlen weit
-    auseinander, haenge der Befund an einer Kapitalmanagement-Einstellung
-    statt an der Ausstiegsregel.
-    """
-    zeilen = []
-    for bot in BOTS:
-        ausgefuehrt = lade(bot, nur_ausgefuehrt=True)
-        alle = lade(bot, nur_ausgefuehrt=False)
-        a = k.kennzahlen(k.haltedauer_tage(ausgefuehrt))
-        b = k.kennzahlen(k.haltedauer_tage(alle))
-        zeilen.append({
-            "bot": bot,
-            "n_ausgefuehrt": a["n"], "median_ausgefuehrt": round(a["median"], 2),
-            "n_alle": b["n"], "median_alle": round(b["median"], 2),
-            "differenz_tage": round(a["median"] - b["median"], 2),
-            "uebersprungen": meta[bot]["trades_uebersprungen"],
         })
     return pd.DataFrame(zeilen)
 
@@ -300,7 +277,6 @@ def main():
     ausstiegsarten = tabelle_ausstiegsarten(positionen)
     hist = tabelle_histogramm(positionen)
     zwei = tabelle_zweigipfligkeit(positionen)
-    limit = tabelle_limit_vergleich(meta)
     print("Ueberlappungsmatrix (72 geordnete Paare) - das dauert etwa eine Minute ...",
           flush=True)
     ueber = tabelle_ueberlappung(positionen, meta)
@@ -311,7 +287,6 @@ def main():
     ausstiegsarten.to_csv(os.path.join(ERGEBNIS_DIR, "haltedauern_je_ausstiegsart.csv"), index=False)
     hist.to_csv(os.path.join(ERGEBNIS_DIR, "haltedauern_histogramm.csv"))
     zwei.to_csv(os.path.join(ERGEBNIS_DIR, "verteilungsform.csv"), index=False)
-    limit.to_csv(os.path.join(ERGEBNIS_DIR, "gegenprobe_positionslimit.csv"), index=False)
     ueber.to_csv(os.path.join(ERGEBNIS_DIR, "ueberlappungsmatrix.csv"), index=False)
     naehe_df.to_csv(os.path.join(ERGEBNIS_DIR, "naehe_der_einstiege.csv"), index=False)
     versatz.to_csv(os.path.join(ERGEBNIS_DIR, "versatz_der_einstiege.csv"), index=False)
@@ -322,18 +297,15 @@ def main():
             "zeitrahmen": meta[bot]["zeitrahmen"],
             "anlageklasse": meta[bot]["anlageklasse"],
             "trades_gefunden": meta[bot]["trades_gefunden"],
-            "trades_ausgefuehrt": meta[bot]["trades_ausgefuehrt"],
-            "symbole_ausgefuehrt": meta[bot]["symbole_ausgefuehrt"],
+            "symbole_gefunden": meta[bot]["symbole_gefunden"],
             "erster_einstieg": meta[bot]["erster_einstieg"][:10],
             "letzter_ausstieg": meta[bot]["letzter_ausstieg"][:10],
-            "abgleich_exposure_messung_identisch":
-                meta[bot]["abgleich_exposure_messung"].get("identisch"),
         } for bot in BOTS
     }
     with open(os.path.join(ERGEBNIS_DIR, "zusammenfassung.json"), "w") as f:
         json.dump(zusammenfassung, f, indent=2, ensure_ascii=False)
 
-    print("\n--- Haltedauern (Kalendertage, ausgefuehrte Positionen) ---")
+    print("\n--- Haltedauern (Kalendertage, alle gefundenen Trades) ---")
     print(haltedauern[["bot", "zeitrahmen", "n", "tage_p10", "tage_q1", "tage_median",
                         "tage_q3", "tage_p90", "kerzen_median",
                         "horizont_klasse"]].to_string(index=False))

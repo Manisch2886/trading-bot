@@ -1,0 +1,12 @@
+Kopie: /var/folders/b_/yqcfpq996cxb1_v02m180f580000gn/T/tb176a_probe_6ttwke7h
+ja    auswertung.py (neu) an der Kopie: rc 0 
+ja    haltedauern_je_bot.csv: je Bot n = 6 (alle gefundenen Trades, auch die 2 mit ausgefuehrt=False): ['6']
+ja    Median je Bot = 3.5 Tage (von Hand: Median von [1, 2, 3, 4, 10, 6])
+ja    zusammenfassung.json: datenbasis ohne trades_/symbole_ausgefuehrt, mit trades_gefunden 6 und symbole_gefunden 2
+ja    gegenprobe_positionslimit.csv entfallen (haengt an ausgefuehrt)
+ja    Gegenprobe: auswertung.py am HEAD scheitert an derselben Kopie (liest <bot>_positionen.csv): rc 1
+ja    embargo_neun.haltedauern_tage (neu): alle 6 gefundenen Trades [1.0, 2.0, 3.0, 4.0, 6.0, 10.0]
+ja    embargo_fuer_bot(t3_supertrend): P95 9.0000 (von Hand), Embargo 10 = aufgerundet + 1, n_trades_gefunden 6, herkunft alle_trades
+ja    Gegenprobe: embargo_neun.py am HEAD scheitert an derselben Kopie (liest <bot>_positionen.csv): FileNotFoundError
+Ergebnis: 9 von 9 bestanden
+rc 0
