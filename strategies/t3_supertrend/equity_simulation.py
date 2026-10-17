@@ -51,7 +51,7 @@ from regimewache import btc_daten
 from live_params import (T3_FAST_LENGTH as T3_FAST, T3_SLOW_LENGTH as T3_SLOW,
                           ADX_THRESHOLD, STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS)
 
-STARTING_CAPITAL = 10_000.0
+from handelskosten import STARTING_CAPITAL
 # ALLOCATION_PCT steht bei diesem Bot NICHT in live_params.py - eine
 # dokumentierte Luecke (Sync-Check, PR #24), kein Versehen dieser Aenderung.
 # Der Wert bleibt deshalb hier.

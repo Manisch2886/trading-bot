@@ -42,7 +42,7 @@ from multi_symbol_optimise import load_all_symbol_data, get_trades_for_symbol
 from live_params import (DONCHIAN_PERIOD, STOP_MODE, MAX_CONCURRENT_POSITIONS,
                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
 
-STARTING_CAPITAL = 10_000.0
+from handelskosten import STARTING_CAPITAL
 # EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
 # Skript rechnet mit dem ANTEIL (0.10) - siehe Sync-Check (PR #24).
 ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100

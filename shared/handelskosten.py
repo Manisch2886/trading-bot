@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Die Handelskosten der Backtests: EIN Ort, zwei Konstanten
+Die Handelskosten der Backtests: EIN Ort, drei Konstanten
 ==============================================================================
 Der eine Ort der registrierten Kosten (Sperrlistenpunkt 9 im Register
 `docs/VORREGISTRIERUNG_neuselektion.md`, Registertext 37.5 und 38.5):
@@ -22,9 +22,18 @@ Bewusst NICHT hier angebunden (38.5): die `forward_test.py` (Papierpfad,
 eigene Freigabe) und `research/vorregistrierung/messgroessen.py`
 (eingefroren, `GEBUEHR_PCT`).
 
+Dazu das registrierte Startkapital je Bot (Ergaenzung zu 29.3 nach R109 (a) in
+der Fassung R110 (b), TB-180):
+
+    STARTING_CAPITAL    10 000   Startkapital des Kapitalpfads, gleich fuer alle neun
+
+Die neun `strategies/*/equity_simulation.py` importieren es von hier und tragen
+keine eigene Kopie (Bauart 38.5); bis TB-180 stand es dort neunmal als Zuweisung.
+
 Keine Funktion, keine Berechnung, kein Import, kein Seiteneffekt - ein Modul,
 das nur Werte traegt, kann nicht heimlich etwas anderes tun.
 """
 
 TRADING_FEE_PCT = 0.1      # je Order (Einstieg und Ausstieg je einmal)
 SLIPPAGE_PCT = 0.05        # angenommene Abweichung vom gewuenschten Preis, je Order
+STARTING_CAPITAL = 10_000.0    # Startkapital je Bot (29.3, R110 (b))

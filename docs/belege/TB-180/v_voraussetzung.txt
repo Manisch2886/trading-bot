@@ -1,0 +1,38 @@
+ja    unveraendert: research/tb27_kapitalsimulation/test_vergleich.py md5 e01c1b1f747e
+ja    unveraendert: research/tb27_kapitalsimulation/vergleich.py md5 3a3c3d01497d
+ja    unveraendert: research/vorregistrierung/sperrliste_abbild.py md5 0dd8c6e00bf9
+ja    unveraendert: shared/ergebniskurven.py md5 2b2c30457eb3
+ja    unveraendert: shared/handelskosten.py md5 a1baa909d0e5
+ja    unveraendert: shared/kurven_lauf.py md5 e7fdff7dd9ec
+ja    unveraendert: shared/sperrlistensonde.py md5 a8a47c882f32
+ja    unveraendert: shared/test_ergebniskurven.py md5 326ce323f464
+ja    unveraendert: strategies/elliott_wave/equity_simulation.py md5 a058c69a7a6c
+ja    unveraendert: strategies/elliott_wave_stocks/equity_simulation.py md5 4ff525c50514
+ja    unveraendert: strategies/rsi2_crypto/equity_simulation.py md5 1dc8f5f5e57a
+ja    unveraendert: strategies/rsi2_mean_reversion/equity_simulation.py md5 774e7fecad93
+ja    unveraendert: strategies/t3_supertrend/equity_simulation.py md5 be665a734328
+ja    unveraendert: strategies/turtle_soup_crypto/equity_simulation.py md5 0680a092cf49
+ja    unveraendert: strategies/turtle_soup_stocks/equity_simulation.py md5 f45e55aadcb9
+ja    unveraendert: strategies/volatility_breakout/equity_simulation.py md5 dd5fa96bb927
+ja    unveraendert: strategies/volatility_breakout_crypto/equity_simulation.py md5 f5168c0f865a
+ja    Fundstelle strategies/elliott_wave/equity_simulation.py Z. [66] STARTING_CAPITAL = 10_000.0 (Bau: Z. 66)
+ja    Fundstelle strategies/elliott_wave_stocks/equity_simulation.py Z. [71] STARTING_CAPITAL = 10_000.0 (Bau: Z. 71)
+ja    Fundstelle strategies/rsi2_crypto/equity_simulation.py Z. [51] STARTING_CAPITAL = 10_000.0 (Bau: Z. 51)
+ja    Fundstelle strategies/rsi2_mean_reversion/equity_simulation.py Z. [62] STARTING_CAPITAL = 10_000.0 (Bau: Z. 62)
+ja    Fundstelle strategies/t3_supertrend/equity_simulation.py Z. [54] STARTING_CAPITAL = 10_000.0 (Bau: Z. 54)
+ja    Fundstelle strategies/turtle_soup_crypto/equity_simulation.py Z. [45] STARTING_CAPITAL = 10_000.0 (Bau: Z. 45)
+ja    Fundstelle strategies/turtle_soup_stocks/equity_simulation.py Z. [68] STARTING_CAPITAL = 10_000.0 (Bau: Z. 68)
+ja    Fundstelle strategies/volatility_breakout/equity_simulation.py Z. [61] STARTING_CAPITAL = 10_000.0 (Bau: Z. 61)
+ja    Fundstelle strategies/volatility_breakout_crypto/equity_simulation.py Z. [61] STARTING_CAPITAL = 10_000.0 (Bau: Z. 61)
+ja    Register: R110 eingetragen (TB-178), Abschnitt 70 da, 71 nicht
+ja    Abschnitt 10 Punkt 9 Z. 1077-1079 wie am Bau, Kasten direkt darunter
+ja    Abschnitt 10 nennt handelskosten noch nicht (kein Nachtrag zu Punkt 9)
+ja    Register: noch kein Nachtrag und keine Marke von TB-180 (TB-180 dort nur als Vorschlag)
+ja    letztes Abbild sperrliste_abbild_2026-09-26_tb117.json, keines mit tb180
+ja    shared/handelskosten.py traegt STARTING_CAPITAL noch nicht
+ja    keine Belege TB-180 aus einem frueheren Lauf
+ja    Index: Kopf 0–70, Zeile 70, Pflegezeile TB-178
+info  Journal: hoechste Kennung FP, naechste FQ
+ja    BACKLOG Rang 1 genau einmal, endet mit ' |', noch ohne Eintrag TB-180
+Pruefungen: 35, NEIN: 0
+rc 0

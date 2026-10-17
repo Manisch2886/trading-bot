@@ -1,0 +1,37 @@
+ja    md5 = Bau-Soll: shared/handelskosten.py
+ja    md5 = Bau-Soll: strategies/elliott_wave/equity_simulation.py
+ja    md5 = Bau-Soll: strategies/elliott_wave_stocks/equity_simulation.py
+ja    md5 = Bau-Soll: strategies/rsi2_crypto/equity_simulation.py
+ja    md5 = Bau-Soll: strategies/rsi2_mean_reversion/equity_simulation.py
+ja    md5 = Bau-Soll: strategies/t3_supertrend/equity_simulation.py
+ja    md5 = Bau-Soll: strategies/turtle_soup_crypto/equity_simulation.py
+ja    md5 = Bau-Soll: strategies/turtle_soup_stocks/equity_simulation.py
+ja    md5 = Bau-Soll: strategies/volatility_breakout/equity_simulation.py
+ja    md5 = Bau-Soll: strategies/volatility_breakout_crypto/equity_simulation.py
+ja    md5 = Bau-Soll: shared/test_ergebniskurven.py
+ja    md5 = Bau-Soll: research/tb27_kapitalsimulation/vergleich.py
+ja    Werte am Ort: STARTING_CAPITAL 10000.0, TRADING_FEE_PCT 0.1, SLIPPAGE_PCT 0.05
+ja    Literal am Ort genau einmal (Mutation R110 (c))
+ja    strategies/elliott_wave/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    elliott_wave importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    strategies/elliott_wave_stocks/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    elliott_wave_stocks importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    strategies/rsi2_crypto/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    rsi2_crypto importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    strategies/rsi2_mean_reversion/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    rsi2_mean_reversion importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    strategies/t3_supertrend/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    t3_supertrend importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    strategies/turtle_soup_crypto/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    turtle_soup_crypto importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    strategies/turtle_soup_stocks/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    turtle_soup_stocks importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    strategies/volatility_breakout/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    volatility_breakout importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    strategies/volatility_breakout_crypto/equity_simulation.py: keine eigene Zuweisung, ein Import
+ja    volatility_breakout_crypto importiert STARTING_CAPITAL aus shared/handelskosten.py (True shared/handelskosten.py)
+ja    vergleich.py --pruefen nach dem Umbau = vorher (v_vergleich.txt), rc 1
+ja    vergleich.py Uebersicht: STARTING_CAPITAL 9x aus shared/handelskosten.py
+ja    Gegenprobe vergleich.py: Ort auf 20_000.0 -> rc 1, 9 STARTKAPITAL-Zeilen (Soll 1, 9); Ort echt: 0
+Pruefungen: 35, NEIN: 0
+rc 0

@@ -58,7 +58,7 @@ from regime_filter import compute_btc_regime, filter_trades_by_regime
 # Register 11.1 (TB-105): die Wache vor dem Regimefilter, einmal in shared/.
 from regimewache import btc_daten
 
-STARTING_CAPITAL = 10_000.0
+from handelskosten import STARTING_CAPITAL
 # EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
 # Skript rechnet mit dem ANTEIL (0.10) - siehe Sync-Check (PR #24).
 ALLOCATION_PCT = _ALLOCATION_PCT_PROZENT / 100

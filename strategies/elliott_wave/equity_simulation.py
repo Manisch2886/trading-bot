@@ -63,7 +63,7 @@ import backtest_elliott
 # also ausgeschlossen.
 from live_params import DEVIATION_PCT, STOP_LOSS_PCT, TAKE_PROFIT_FIB
 
-STARTING_CAPITAL = 10_000.0
+from handelskosten import STARTING_CAPITAL
 ALLOCATION_PCT = 0.10  # Anteil des aktuellen Kapitals pro Trade
 
 

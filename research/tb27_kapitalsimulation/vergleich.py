@@ -89,6 +89,15 @@ _STRATEGIEN = os.environ.get("TB27_STRATEGIEN") or os.path.join(_WURZEL, "strate
 
 DATEINAME = "equity_simulation.py"
 
+# Der Ort des Startkapitals (29.3 nach R110 (b), TB-180): Seit TB-180 importieren
+# die neun `equity_simulation.py` STARTING_CAPITAL aus `shared/handelskosten.py`.
+# Fuer den Vergleich wird es dort gelesen (ast, ohne Import); eine eigene
+# Zuweisung in der Bot-Datei gilt weiterhin. `TB27_HANDELSKOSTEN` zeigt fuer die
+# Gegenprobe auf eine andere Datei. Der Waechter prueft den Wert (STARTKAPITAL).
+_HANDELSKOSTEN = (os.environ.get("TB27_HANDELSKOSTEN")
+                  or os.path.join(_WURZEL, "shared", "handelskosten.py"))
+STARTKAPITAL = 10_000.0
+
 # Der `if __name__ == "__main__"`-Block wird wie eine Funktion behandelt und
 # unter diesem Namen gefuehrt - er ist bei diesen Dateien der Ort, an dem aus
 # der Trade-Liste eine Zahl wird, und gehoert deshalb in den Vergleich.
@@ -164,6 +173,19 @@ KONSTANTEN = ("STARTING_CAPITAL", "ALLOCATION_PCT", "SIGNALSPALTE", "RESULTS_DIR
 # ---------------------------------------------------------------------------
 # Einlesen und Normalisieren
 # ---------------------------------------------------------------------------
+
+def _ort_konstanten():
+    """Modulweite Zuweisungen in `shared/handelskosten.py`: Name -> (Quelltext, Wert)."""
+    with open(_HANDELSKOSTEN, encoding="utf-8") as f:
+        text = f.read()
+    gefunden = {}
+    for knoten in ast.parse(text).body:
+        if isinstance(knoten, ast.Assign):
+            for ziel in knoten.targets:
+                if isinstance(ziel, ast.Name):
+                    gefunden[ziel.id] = (ast.unparse(knoten), ast.literal_eval(knoten.value))
+    return gefunden
+
 
 def bots(dateiname=DATEINAME):
     """Die Bot-Ordner, die eine Datei dieses Namens haben (neun beim Standard)."""
@@ -258,6 +280,7 @@ class Datei:
         self.stuecke = {}      # Name -> (ast-Kennung, token-Kennung, Quelltext)
         self.konstanten = {}   # Name -> Quelltext der Zuweisung
         self.importe = []      # (modul, [namen])
+        self.werte = {}        # Name -> Wert (nur Literale; 29.3)
         self._zerlegen()
 
     def _merken(self, name, knoten):
@@ -281,9 +304,19 @@ class Datei:
                 for ziel in knoten.targets:
                     if isinstance(ziel, ast.Name):
                         self.konstanten[ziel.id] = ast.unparse(knoten)
+                        try:
+                            self.werte[ziel.id] = ast.literal_eval(knoten.value)
+                        except ValueError:
+                            pass
             elif isinstance(knoten, (ast.Import, ast.ImportFrom)):
                 modul = getattr(knoten, "module", None) or ""
                 self.importe.append((modul, [a.name for a in knoten.names]))
+                if modul == "handelskosten":
+                    ort = _ort_konstanten()
+                    for a in knoten.names:
+                        if a.name in ort:
+                            self.konstanten[a.asname or a.name] = ort[a.name][0] + "  (aus shared/handelskosten.py)"
+                            self.werte[a.asname or a.name] = ort[a.name][1]
 
     def signatur(self, name):
         for knoten in self.baum.body:
@@ -424,6 +457,13 @@ def pruefen(dateien):
                 f"GRUPPEN ANDERS  {name}\n"
                 f"      erwartet: {sorted(soll)}\n"
                 f"      gefunden: {sorted(ist)}")
+
+    for datei in dateien:
+        wert = datei.werte.get("STARTING_CAPITAL")
+        if not (type(wert) is float and wert == STARTKAPITAL):
+            abweichungen.append(
+                f"STARTKAPITAL  {datei.bot}: {wert!r}, Soll {STARTKAPITAL!r} "
+                f"(Ort shared/handelskosten.py, 29.3)")
 
     if abweichungen:
         print("ABWEICHUNG gegenueber dem Stand TB-27 (13.09.2026):\n")

@@ -1,0 +1,8 @@
+ABWEICHUNG gegenueber dem Stand TB-27 (13.09.2026):
+
+  NEUE FUNKTION  _cutoff_je_symbol: kommt in elliott_wave, elliott_wave_stocks, rsi2_crypto, t3_supertrend, turtle_soup_crypto, volatility_breakout_crypto vor und steht nicht in ERWARTUNG.
+
+Entweder ist eine stille Divergenz entstanden - dann gehoert sie behoben -,
+oder die Aenderung war gewollt; dann ist ERWARTUNG in diesem Werkzeug
+nachzuziehen und im Pull Request zu begruenden.
+rc 1

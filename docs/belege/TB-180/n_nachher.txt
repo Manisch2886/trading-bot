@@ -1,0 +1,11 @@
+ja    elliott_wave rc 0 sha256 6630ebe18a3ce7478e0594b69cdd3ad05b9899b43b215bd88932211eb7bc52ae Zeilen 227
+ja    elliott_wave_stocks rc 0 sha256 7ab94aa92332eeafbe24b5c342c808f8b33e8a96f1c4daef16e4ee5f32e78ece Zeilen 394
+ja    rsi2_crypto rc 0 sha256 28b29e71615928e78a72d3f7c04cf8d9e7bdb9fd92d390d0aae0f2eefa99bd17 Zeilen 663
+ja    rsi2_mean_reversion rc 0 sha256 8ca06360dff11846beef156c9a23ff5cfecd9a6f780712578d7957d9a387c5e3 Zeilen 4194
+ja    t3_supertrend rc 0 sha256 ecee4cedeaf11d2ebf2e1ce1ffb23cd04d670c29e0f1f401a1c5cb7528df4bb9 Zeilen 1031
+ja    turtle_soup_crypto rc 0 sha256 803c3640eb1f75d53e0b63f46f5878a96f633b2df83a76d8a317ca745be578b1 Zeilen 1971
+ja    turtle_soup_stocks rc 0 sha256 96b1489f4c4f7e6ec7e4336fdd79d0f3c7839e939a384ff2470c7b80ff60014e Zeilen 8871
+ja    volatility_breakout rc 0 sha256 977f19a55df6a580e361dce2fb843a6c96c8a2e5293ae362ac970242b55ad921 Zeilen 1447
+ja    volatility_breakout_crypto rc 0 sha256 5c43ea7516bd76a37eb451edfbb279a876d62d87317c1700d240d4904678dd12 Zeilen 342
+Pruefungen: 9, NEIN: 0
+rc 0

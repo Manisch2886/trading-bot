@@ -1,0 +1,12 @@
+ja    elliott_wave bytegleich 6630ebe18a3ce747 / 6630ebe18a3ce747
+ja    elliott_wave_stocks bytegleich 7ab94aa92332eeaf / 7ab94aa92332eeaf
+ja    rsi2_crypto bytegleich 28b29e71615928e7 / 28b29e71615928e7
+ja    rsi2_mean_reversion bytegleich 8ca06360dff11846 / 8ca06360dff11846
+ja    t3_supertrend bytegleich ecee4cedeaf11d2e / ecee4cedeaf11d2e
+ja    turtle_soup_crypto bytegleich 803c3640eb1f75d5 / 803c3640eb1f75d5
+ja    turtle_soup_stocks bytegleich 96b1489f4c4f7e6e / 96b1489f4c4f7e6e
+ja    volatility_breakout bytegleich 977f19a55df6a580 / 977f19a55df6a580
+ja    volatility_breakout_crypto bytegleich 5c43ea7516bd76a3 / 5c43ea7516bd76a3
+Ergebnis: 9 von 9 bytegleich (vorher gegen nachher)
+Pruefungen: 9, NEIN: 0
+rc 0

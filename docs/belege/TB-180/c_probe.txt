@@ -1,0 +1,26 @@
+ja    vorher md5 = Bau: shared/handelskosten.py
+ja    vorher md5 = Bau: shared/test_ergebniskurven.py
+ja    vorher md5 = Bau: research/tb27_kapitalsimulation/vergleich.py
+ja    vorher md5 = Bau: strategies/elliott_wave/equity_simulation.py
+ja    vorher md5 = Bau: strategies/elliott_wave_stocks/equity_simulation.py
+ja    vorher md5 = Bau: strategies/rsi2_crypto/equity_simulation.py
+ja    vorher md5 = Bau: strategies/rsi2_mean_reversion/equity_simulation.py
+ja    vorher md5 = Bau: strategies/t3_supertrend/equity_simulation.py
+ja    vorher md5 = Bau: strategies/turtle_soup_crypto/equity_simulation.py
+ja    vorher md5 = Bau: strategies/turtle_soup_stocks/equity_simulation.py
+ja    vorher md5 = Bau: strategies/volatility_breakout/equity_simulation.py
+ja    vorher md5 = Bau: strategies/volatility_breakout_crypto/equity_simulation.py
+ja    nachher md5 = Bau-Soll af7023efc2c2: shared/handelskosten.py
+ja    nachher md5 = Bau-Soll 6afca6962d34: strategies/elliott_wave/equity_simulation.py
+ja    nachher md5 = Bau-Soll 30b869d449fb: strategies/elliott_wave_stocks/equity_simulation.py
+ja    nachher md5 = Bau-Soll b238ba4c9779: strategies/rsi2_crypto/equity_simulation.py
+ja    nachher md5 = Bau-Soll cd8300caf45e: strategies/rsi2_mean_reversion/equity_simulation.py
+ja    nachher md5 = Bau-Soll 93167e43f228: strategies/t3_supertrend/equity_simulation.py
+ja    nachher md5 = Bau-Soll c470c8364d3d: strategies/turtle_soup_crypto/equity_simulation.py
+ja    nachher md5 = Bau-Soll 3494f4536a4f: strategies/turtle_soup_stocks/equity_simulation.py
+ja    nachher md5 = Bau-Soll 0094cbe01f99: strategies/volatility_breakout/equity_simulation.py
+ja    nachher md5 = Bau-Soll d7db54736e99: strategies/volatility_breakout_crypto/equity_simulation.py
+ja    nachher md5 = Bau-Soll d05674ddafa6: shared/test_ergebniskurven.py
+ja    nachher md5 = Bau-Soll 9a4589524ec8: research/tb27_kapitalsimulation/vergleich.py
+Pruefungen: 24, NEIN: 0
+rc 0

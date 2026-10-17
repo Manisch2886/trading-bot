@@ -59,7 +59,7 @@ from backtest_rsi2 import SMA_TREND_PERIOD
 from live_params import (RSI_THRESHOLD, STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
 
-STARTING_CAPITAL = 10_000.0
+from handelskosten import STARTING_CAPITAL
 # EINHEITEN: live_params.py notiert die Allokation in PROZENT (5), dieses
 # Skript rechnet mit dem ANTEIL (0.05) - deshalb die Umrechnung statt eines
 # direkten Imports. shared/portfolio_overview.py liest ALLOCATION_PCT von hier

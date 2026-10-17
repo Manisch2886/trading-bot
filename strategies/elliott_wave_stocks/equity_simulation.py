@@ -68,7 +68,7 @@ import backtest_elliott
 from live_params import (DEVIATION_PCT, STOP_LOSS_PCT, TAKE_PROFIT_FIB,
                           USE_TAKE_PROFIT, MAX_CONCURRENT_POSITIONS)
 
-STARTING_CAPITAL = 10_000.0
+from handelskosten import STARTING_CAPITAL
 # ALLOCATION_PCT steht bei diesem Bot NICHT in live_params.py - eine
 # dokumentierte Luecke (Sync-Check, PR #24), kein Versehen dieser Aenderung.
 ALLOCATION_PCT = 0.10  # Anteil des aktuellen Kapitals pro Trade

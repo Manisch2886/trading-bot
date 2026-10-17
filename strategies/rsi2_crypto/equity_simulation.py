@@ -48,7 +48,7 @@ from live_params import (RSI_THRESHOLD, SMA_TREND_FILTER as SMA_TREND_PERIOD,
                           STOP_LOSS_PCT, MAX_CONCURRENT_POSITIONS,
                           ALLOCATION_PCT as _ALLOCATION_PCT_PROZENT)
 
-STARTING_CAPITAL = 10_000.0
+from handelskosten import STARTING_CAPITAL
 # EINHEITEN: live_params.py notiert die Allokation in PROZENT (10), dieses
 # Skript rechnet mit dem ANTEIL (0.10). Deshalb die Umrechnung statt eines
 # direkten Imports - dieselbe Falle, die auch der Sync-Check (PR #24)

@@ -62,6 +62,13 @@ import ergebniskurven as ek                                    # noqa: E402
 # derjenige, an dem der HRP-Bericht gekippt ist.
 BOT = "volatility_breakout_crypto"
 
+# Der Ort des Startkapitals (29.3 nach R110 (b), TB-180): eine Konstante in
+# `shared/handelskosten.py`; die neun `equity_simulation.py` importieren sie.
+ORT = "handelskosten.py"
+ALLE_NEUN = ("elliott_wave", "elliott_wave_stocks", "rsi2_crypto", "rsi2_mean_reversion",
+             "t3_supertrend", "turtle_soup_crypto", "turtle_soup_stocks",
+             "volatility_breakout", "volatility_breakout_crypto")
+
 BESTANDEN = 0
 FEHLER = []
 
@@ -80,12 +87,15 @@ def check(name, bedingung, detail=""):
 # Probe-Umgebung
 # ---------------------------------------------------------------------------
 
-def probe_umgebung(bot=BOT):
+def probe_umgebung(bot=BOT, bots=None):
     """Ein vollstaendiger, lauffaehiger Klon des Repos in einem eigenen
     Ordner.
 
-    `shared/`, `data/` und `config/` werden verknuepft (nur gelesen),
-    `strategies/<bot>/` wird KOPIERT - nur dort wird mutiert. `results/`
+    `data/`, `config/`, `research/` und `notifications/` werden verknuepft
+    (nur gelesen), `shared/` Datei
+    fuer Datei - nur `handelskosten.py`, der Ort des Startkapitals (29.3,
+    R110 (c)), wird KOPIERT. `strategies/<bot>/` wird KOPIERT - nur dort
+    und am Ort wird mutiert. `results/`
     ist leer und gehoert allein diesem Klon.
 
     Dass das traegt, haengt an einer Eigenschaft der Projektkonvention:
@@ -94,12 +104,26 @@ def probe_umgebung(bot=BOT):
     `abspath` loest Verknuepfungen NICHT auf. Der Klon sieht sich deshalb
     selbst als Projektwurzel."""
     ordner = tempfile.mkdtemp(prefix="ergebniskurven_probe_")
-    for name in ("shared", "data", "config"):
+    # `research/` und `notifications/` braucht die Kurve von fuenf Bots (Importe
+    # im __main__-Pfad); nur gelesen, wie `data/` und `config/`.
+    for name in ("data", "config", "research", "notifications"):
         os.symlink(os.path.join(BASE_DIR, name), os.path.join(ordner, name))
+    # Eine Verknuepfung von `shared/` liesse die Mutation am Ort (R110 (c))
+    # bis ins Repo durchschlagen - deshalb Datei fuer Datei, der Ort als Kopie.
+    os.makedirs(os.path.join(ordner, "shared"))
+    for name in os.listdir(_SHARED):
+        if name == "__pycache__":
+            continue
+        quelle, ziel = os.path.join(_SHARED, name), os.path.join(ordner, "shared", name)
+        if name == ORT:
+            shutil.copy2(quelle, ziel)
+        else:
+            os.symlink(quelle, ziel)
     os.makedirs(os.path.join(ordner, "strategies"))
-    shutil.copytree(os.path.join(BASE_DIR, "strategies", bot),
-                    os.path.join(ordner, "strategies", bot))
-    os.makedirs(os.path.join(ordner, "results", bot))
+    for b in (bots or [bot]):
+        shutil.copytree(os.path.join(BASE_DIR, "strategies", b),
+                        os.path.join(ordner, "strategies", b))
+        os.makedirs(os.path.join(ordner, "results", b))
     return ordner
 
 
@@ -120,6 +144,21 @@ def mutiere(ordner, alt, neu, bot=BOT):
     """Aendert die Konfiguration des Bots IM KLON. Gibt zurueck, wie oft
     ersetzt wurde - 0 waere ein stiller Fehlschlag der Probe."""
     pfad = os.path.join(ordner, "strategies", bot, "equity_simulation.py")
+    with open(pfad) as f:
+        text = f.read()
+    anzahl = text.count(alt)
+    with open(pfad, "w") as f:
+        f.write(text.replace(alt, neu))
+    return anzahl
+
+
+def mutiere_ort(ordner, alt, neu):
+    """Aendert das Startkapital AM ORT (`shared/handelskosten.py`) im Klon,
+    R110 (c). Gibt zurueck, wie oft ersetzt wurde - verlangt ist genau 1.
+    Eine Verknuepfung statt der Kopie waere das Repo: dann Abbruch."""
+    pfad = os.path.join(ordner, "shared", ORT)
+    if os.path.islink(pfad):
+        raise RuntimeError("shared/%s ist im Klon verknuepft - keine Mutation" % ORT)
     with open(pfad) as f:
         text = f.read()
     anzahl = text.count(alt)
@@ -187,8 +226,8 @@ def test_kern_gleiche_zeilenzahl():
         # Schritt 2: NUR die Konfiguration des Bots aendern. Die abgelegte
         # Kurve wird nicht angefasst - sie ist ab jetzt die Kurve eines Bots,
         # den es so nicht mehr gibt.
-        ersetzt = mutiere(ordner, "STARTING_CAPITAL = 10_000.0",
-                          "STARTING_CAPITAL = 20_000.0")
+        ersetzt = mutiere_ort(ordner, "STARTING_CAPITAL = 10_000.0",
+                              "STARTING_CAPITAL = 20_000.0")
         check("die Konfigurationsaenderung ist angekommen", ersetzt == 1, ersetzt)
 
         # Schritt 3: dieselbe Pruefung erneut.
@@ -286,7 +325,7 @@ def test_veraltet_gegen_abweichend():
         # Gegenrichtung: derselbe Schalter darf eine echte Abweichung NICHT
         # verschlucken. Ohne diese Probe koennte --nur-abweichung schlicht
         # immer 0 liefern und die Pruefung oben waere wertlos.
-        mutiere(ordner, "STARTING_CAPITAL = 10_000.0", "STARTING_CAPITAL = 20_000.0")
+        mutiere_ort(ordner, "STARTING_CAPITAL = 10_000.0", "STARTING_CAPITAL = 20_000.0")
         eng2 = werkzeug(ordner, "--nur-abweichung")
         check("--nur-abweichung meldet die echte Abweichung weiterhin",
               eng2.returncode == 1, eng2.returncode)
@@ -320,7 +359,7 @@ def test_pruefen_schreibt_nicht():
             vorher_inhalt = f.read()
 
         # Auch im Befund-Fall darf nichts geschrieben werden - gerade dann.
-        mutiere(ordner, "STARTING_CAPITAL = 10_000.0", "STARTING_CAPITAL = 20_000.0")
+        mutiere_ort(ordner, "STARTING_CAPITAL = 10_000.0", "STARTING_CAPITAL = 20_000.0")
         lauf = werkzeug(ordner)
         check("die Pruefung meldet einen Befund", lauf.returncode == 1)
 
@@ -415,6 +454,54 @@ def test_vergleichsregeln():
 
 
 # ---------------------------------------------------------------------------
+def test_ort_alle_neun():
+    print("\n11) Der Ort des Startkapitals traegt alle neun (R110 (c))")
+    ordner = probe_umgebung(bots=ALLE_NEUN)
+    ort = os.path.join(ordner, "shared", ORT)
+    repo_ort = os.path.join(_SHARED, ORT)
+    with open(ort, "rb") as f:
+        original = f.read()
+    with open(repo_ort, "rb") as f:
+        repo_vorher = f.read()
+
+    def kurven(etikett):
+        ziel = tempfile.mkdtemp(prefix="kurven_%s_" % etikett)
+        inhalt = {}
+        for b in ALLE_NEUN:
+            os.makedirs(os.path.join(ziel, b))
+            r = subprocess.run([sys.executable, os.path.join(ordner, "shared", "kurven_lauf.py"), b,
+                                os.path.join(ziel, b)], capture_output=True, text=True, cwd=ordner, timeout=600)
+            datei = os.path.join(ziel, b, "equity_curve.csv")
+            inhalt[b] = None
+            if r.returncode == 0 and os.path.exists(datei):
+                with open(datei, "rb") as f:
+                    inhalt[b] = f.read()
+        shutil.rmtree(ziel, ignore_errors=True)
+        return inhalt
+
+    try:
+        vorher = kurven("vorher")
+        fehlt = [b for b in ALLE_NEUN if vorher[b] is None]
+        check("neun Kurven vor der Mutation erzeugt", not fehlt, "fehlt: %s" % fehlt if fehlt else "%d von %d" % (len(ALLE_NEUN), len(ALLE_NEUN)))
+        ersetzt = mutiere_ort(ordner, "STARTING_CAPITAL = 10_000.0", "STARTING_CAPITAL = 20_000.0")
+        check("Mutation am Ort, genau einmal", ersetzt == 1, ersetzt)
+        mutiert = kurven("mutiert")
+        gleich = [b for b in ALLE_NEUN if mutiert[b] is None or mutiert[b] == vorher[b]]
+        check("alle neun Kurven weichen ab", not gleich and not fehlt,
+              "gleich oder fehlend: %s" % gleich if gleich else "%d von %d" % (len(ALLE_NEUN), len(ALLE_NEUN)))
+        with open(ort, "wb") as f:
+            f.write(original)
+        zurueck = kurven("zurueck")
+        anders = [b for b in ALLE_NEUN if zurueck[b] is None or zurueck[b] != vorher[b]]
+        check("zurueckgesetzt: alle neun bytegleich", not anders and not fehlt,
+              "abweichend: %s" % anders if anders else "%d von %d" % (len(ALLE_NEUN), len(ALLE_NEUN)))
+        with open(repo_ort, "rb") as f:
+            check("der Ort im Repo blieb unberuehrt", f.read() == repo_vorher)
+    finally:
+        shutil.rmtree(ordner, ignore_errors=True)
+
+
+# ---------------------------------------------------------------------------
 def main():
     print("=" * 78)
     print("Selbsttests der Ergebniskurven-Pruefung")
@@ -423,7 +510,7 @@ def main():
              test_kern_gleiche_zeilenzahl, test_hrp_fall_regimefilter,
              test_veraltet_gegen_abweichend, test_fehlende_kurve,
              test_pruefen_schreibt_nicht, test_pruefung_am_echten_repo_ist_folgenlos,
-             test_werkzeugverhalten, test_vergleichsregeln]
+             test_werkzeugverhalten, test_vergleichsregeln, test_ort_alle_neun]
     for test in tests:
         try:
             test()
